@@ -72,6 +72,15 @@ export type QuestionBankDataset = {
 export type CardLearningState = {
   visited: boolean;
   selectedChoiceIndex?: number;
+  recorded?: boolean;
+  recordingDurationMillis?: number;
+  tagIds?: ('good' | 'memory' | 'confused')[];
+  highlights?: {
+    blockId: 'question' | 'reference';
+    wordIndex: number;
+    colorId: 'green' | 'yellow' | 'red';
+    quote: string;
+  }[];
   note: string;
   updatedAt: string;
 };

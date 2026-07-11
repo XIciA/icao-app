@@ -1,4 +1,5 @@
-import { BookOpenCheck, Settings, UserRound } from 'lucide-react-native';
+import { Bookmark, BookOpenCheck, Settings, UserRound } from 'lucide-react-native';
+import { useRouter } from 'expo-router';
 
 import { TabPlaceholderScreen } from '@/components/screens/TabPlaceholderScreen';
 
@@ -14,9 +15,15 @@ const entries = [
     slug: 'learning-records',
     title: '学习记录',
     description: '集中查看学习进度与本地记录。',
-    meta: '阶段 2 起接入本地持久化',
+    meta: '最近 100 条本地学习报告',
     icon: BookOpenCheck,
-    enabled: false,
+  },
+  {
+    slug: 'annotations',
+    title: '我的标注',
+    description: '集中查看题目标签、高亮与学习笔记。',
+    meta: '按题库保存，仅存当前设备',
+    icon: Bookmark,
   },
   {
     slug: 'settings',
@@ -29,5 +36,10 @@ const entries = [
 ];
 
 export default function ProfileTab() {
-  return <TabPlaceholderScreen entries={entries} subtitle="管理学习记录、个人资料和应用设置。" title="我的" />;
+  const router = useRouter();
+  return <TabPlaceholderScreen entries={entries} subtitle="管理学习记录、个人资料和应用设置。" title="我的" onEntryPress={(entry) => {
+    if (entry.slug === 'learning-records') router.push('/learning-records');
+    else if (entry.slug === 'annotations') router.push('/annotations');
+    else router.push({ pathname: '/detail/[slug]', params: { slug: entry.slug } });
+  }} />;
 }

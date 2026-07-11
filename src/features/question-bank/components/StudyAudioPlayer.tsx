@@ -13,7 +13,7 @@ function formatTime(value: number) {
   return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
 }
 
-export function StudyAudioPlayer({ uri, label }: { uri?: string; label: string }) {
+export function StudyAudioPlayer({ uri, label, generatedAudio = false }: { uri?: string; label: string; generatedAudio?: boolean }) {
   const player = useAudioPlayer(null, { updateInterval: 250, preferredForwardBufferDuration: 10 });
   const status = useAudioPlayerStatus(player);
   const [speedIndex, setSpeedIndex] = useState(1);
@@ -24,7 +24,7 @@ export function StudyAudioPlayer({ uri, label }: { uri?: string; label: string }
 
   useEffect(() => {
     player.pause();
-    player.replace(uri ?? null);
+    if (uri) player.replace(uri);
   }, [player, uri]);
 
   useEffect(() => {
@@ -65,7 +65,15 @@ export function StudyAudioPlayer({ uri, label }: { uri?: string; label: string }
         <AppText numberOfLines={1} style={styles.label} variant="caption">{label}</AppText>
       </View>
 
-      {!uri || status.playbackState === 'error' ? (
+      {!uri && generatedAudio ? (
+        <View style={styles.generated}>
+          <Headphones color={colors.primary} size={18} />
+          <View style={styles.errorCopy}>
+            <AppText variant="button">生成语音预留</AppText>
+            <AppText variant="caption">OPI 题目按既定方向使用生成语音，本阶段不捆绑本地问题音频。</AppText>
+          </View>
+        </View>
+      ) : !uri || status.playbackState === 'error' ? (
         <View style={styles.error}>
           <AlertCircle color={colors.destructive} size={18} />
           <View style={styles.errorCopy}>
@@ -128,6 +136,7 @@ const styles = StyleSheet.create({
   speed: { backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, paddingHorizontal: spacing[2.5], paddingVertical: spacing[1.5] },
   speedText: { color: colors.foreground, fontFamily: fonts.monoRegular },
   error: { alignItems: 'flex-start', backgroundColor: 'rgba(219,43,51,0.08)', borderColor: 'rgba(219,43,51,0.25)', borderRadius: radii.xl, borderWidth: 1, flexDirection: 'row', gap: spacing[2.5], padding: spacing[3] },
+  generated: { alignItems: 'flex-start', backgroundColor: colors.primary06, borderColor: colors.primary20, borderRadius: radii.xl, borderWidth: 1, flexDirection: 'row', gap: spacing[2.5], padding: spacing[3] },
   errorCopy: { flex: 1 },
   retry: { alignItems: 'center', flexDirection: 'row', gap: spacing[1], padding: spacing[1] },
   pressed: { opacity: 0.75, transform: [{ scale: 0.95 }] },

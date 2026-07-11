@@ -9,10 +9,11 @@ import { useQuestionBank } from '@/features/question-bank/hooks/useQuestionBank'
 import type { QuestionBankId } from '@/features/question-bank/types';
 
 export default function QuestionBankStudyRoute() {
-  const { bankId, categoryId, topicId } = useLocalSearchParams<{
+  const { bankId, categoryId, topicId, cardId } = useLocalSearchParams<{
     bankId: QuestionBankId;
     categoryId: string;
     topicId: string;
+    cardId?: string;
   }>();
   const state = useQuestionBank(bankId);
 
@@ -35,5 +36,5 @@ export default function QuestionBankStudyRoute() {
     );
   }
 
-  return <ListeningStudyScreen category={category} dataset={state.data} topic={topic} />;
+  return <ListeningStudyScreen category={category} dataset={state.data} initialCardId={cardId} topic={topic} />;
 }

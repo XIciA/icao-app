@@ -4,14 +4,14 @@ import { StyleSheet, View } from 'react-native';
 import { AppText, Button, Card, Screen, Tag } from '@/components/ui';
 import { colors, fonts, radii, spacing } from '@/theme';
 
-import type { LearningRecord } from '../types';
+import type { LearningRecord, StudyInteraction } from '../types';
 
 function formatDuration(total: number) {
   const seconds = Math.max(1, Math.floor(total));
   return seconds < 60 ? `${seconds} 秒` : `${Math.floor(seconds / 60)} 分 ${seconds % 60} 秒`;
 }
 
-export function StudyReport({ record, noteCount, onReturn }: { record: LearningRecord; noteCount: number; onReturn: () => void }) {
+export function StudyReport({ record, noteCount, onReturn, interaction }: { record: LearningRecord; noteCount: number; onReturn: () => void; interaction: StudyInteraction }) {
   const completed = record.reason === 'complete' && record.completedCount >= record.totalCount;
   const progress = record.totalCount ? (record.completedCount / record.totalCount) * 100 : 0;
   return (
@@ -34,7 +34,7 @@ export function StudyReport({ record, noteCount, onReturn }: { record: LearningR
         </View>
         <View style={styles.track}><View style={[styles.fill, { width: `${progress}%` }]} /></View>
         <View style={styles.metrics}>
-          <Metric icon={Target} label="答对题数" value={String(record.correctCount)} />
+          <Metric icon={Target} label={interaction === 'choices' ? '答对题数' : '完成练习'} value={String(interaction === 'choices' ? record.correctCount : record.completedCount)} />
           <Metric icon={NotebookPen} label="笔记数" value={String(noteCount)} />
           <Metric icon={Clock3} label="学习时长" value={formatDuration(record.durationSeconds)} />
         </View>

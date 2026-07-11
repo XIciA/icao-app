@@ -45,6 +45,8 @@ export default function RootLayout() {
         <Stack.Screen name="detail/[slug]" />
         <Stack.Screen name="question-bank/[bankId]/index" />
         <Stack.Screen name="question-bank/[bankId]/study/[categoryId]/[topicId]" />
+        <Stack.Screen name="learning-records" />
+        <Stack.Screen name="annotations" />
       </Stack>
     </SafeAreaProvider>
   );

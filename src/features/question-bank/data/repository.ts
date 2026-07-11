@@ -22,3 +22,7 @@ export const embeddedQuestionBankRepository: QuestionBankRepository = {
 export function getEmbeddedQuestionBankIds() {
   return datasets.map((dataset) => dataset.id);
 }
+
+export function getEmbeddedQuestionBanks() {
+  return datasets;
+}

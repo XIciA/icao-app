@@ -7,9 +7,11 @@ jest.mock('lucide-react-native', () => {
   const Icon = (props: object) => <View {...props} />;
 
   return {
+    BookOpenText: Icon,
     ChevronRight: Icon,
     Headphones: Icon,
     MessageSquareQuote: Icon,
+    Mic2: Icon,
     RadioTower: Icon,
   };
 });
@@ -26,5 +28,7 @@ describe('<QuestionBankTab />', () => {
     expect(screen.getByText('听力')).toBeTruthy();
     expect(screen.getByText('900 句')).toBeTruthy();
     expect(screen.getByText('陆空通话')).toBeTruthy();
+    expect(screen.getByText('OPI')).toBeTruthy();
+    expect(screen.getByText('故事复诵')).toBeTruthy();
   });
 });

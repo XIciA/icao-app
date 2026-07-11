@@ -13,6 +13,7 @@ export type FoundationEntry = {
   meta: string;
   icon: LucideIcon;
   enabled?: boolean;
+  statusLabel?: string;
 };
 
 type Props = {
@@ -59,7 +60,7 @@ export function TabPlaceholderScreen({ title, subtitle, eyebrow, entries, onEntr
                 <View style={styles.copy}>
                   <View style={styles.titleLine}>
                     <AppText variant="cardTitle">{entry.title}</AppText>
-                    <Tag tone={enabled ? 'primary' : 'muted'}>{enabled ? '基础壳已就绪' : '即将上线'}</Tag>
+                    <Tag tone={enabled ? 'primary' : 'muted'}>{enabled ? (entry.statusLabel ?? '可练习') : '即将上线'}</Tag>
                   </View>
                   <AppText style={styles.description} variant="caption">
                     {entry.description}

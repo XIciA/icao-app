@@ -1,4 +1,5 @@
 import { useRouter } from 'expo-router';
+import { usePreventRemove } from '@react-navigation/native';
 import { ChevronLeft, ChevronRight, Grid3X3, NotebookPen, WifiOff, X } from 'lucide-react-native';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
@@ -12,13 +13,16 @@ import { resolveQuestionBankAsset } from '../platform/resource-service';
 import { completedCards, sqliteLearningStore } from '../platform/learning-store';
 import type { CardLearningState, LearningRecord, QuestionBankCategory, QuestionBankDataset, QuestionBankTopic } from '../types';
 import { AnswerCardSheet } from './AnswerCardSheet';
+import { AnnotationToolbar } from './AnnotationToolbar';
 import { ChoiceList } from './ChoiceList';
+import { InteractiveStudyText } from './InteractiveStudyText';
 import { StudyAudioPlayer } from './StudyAudioPlayer';
 import { StudyReport } from './StudyReport';
+import { SpeakingPracticePanel } from './SpeakingPracticePanel';
 
-type Props = { dataset: QuestionBankDataset; category: QuestionBankCategory; topic: QuestionBankTopic };
+type Props = { dataset: QuestionBankDataset; category: QuestionBankCategory; topic: QuestionBankTopic; initialCardId?: string };
 
-export function ListeningStudyScreen({ dataset, category, topic }: Props) {
+export function ListeningStudyScreen({ dataset, category, topic, initialCardId }: Props) {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const startedAt = useRef(Date.now());
@@ -29,6 +33,12 @@ export function ListeningStudyScreen({ dataset, category, topic }: Props) {
   const [exitVisible, setExitVisible] = useState(false);
   const [connectivity, setConnectivity] = useState<Connectivity>('unknown');
   const [report, setReport] = useState<LearningRecord | null>(null);
+  const [highlightMode, setHighlightMode] = useState(false);
+  const [highlightColor, setHighlightColor] = useState<'green' | 'yellow' | 'red'>('green');
+  const [dictionaryMode, setDictionaryMode] = useState(false);
+  const [lookupWord, setLookupWord] = useState<string>();
+
+  usePreventRemove(!report, () => setExitVisible(true));
 
   const card = topic.cards[currentIndex];
   const cardState = card ? states[card.id] : undefined;
@@ -39,14 +49,15 @@ export function ListeningStudyScreen({ dataset, category, topic }: Props) {
       if (!active) return;
       setStates(saved);
       setConnectivity(network);
+      const requestedIndex = initialCardId ? topic.cards.findIndex((item) => item.id === initialCardId) : -1;
       const firstUnvisited = topic.cards.findIndex((item) => !saved[item.id]?.visited);
-      setCurrentIndex(firstUnvisited >= 0 ? firstUnvisited : 0);
+      setCurrentIndex(requestedIndex >= 0 ? requestedIndex : firstUnvisited >= 0 ? firstUnvisited : 0);
       setHydrated(true);
     });
     return () => {
       active = false;
     };
-  }, [topic]);
+  }, [initialCardId, topic]);
 
   const persistCard = useCallback(
     (cardId: string, patch: Partial<CardLearningState>) => {
@@ -103,6 +114,7 @@ export function ListeningStudyScreen({ dataset, category, topic }: Props) {
   if (report) {
     return (
       <StudyReport
+        interaction={dataset.study.interaction}
         noteCount={noteCount}
         onReturn={() => router.replace({ pathname: '/question-bank/[bankId]', params: { bankId: dataset.id } })}
         record={report}
@@ -120,6 +132,7 @@ export function ListeningStudyScreen({ dataset, category, topic }: Props) {
   }
 
   const progress = ((currentIndex + 1) / topic.cards.length) * 100;
+  const interactionLabel = dataset.study.interaction === 'choices' ? 'LISTENING' : dataset.study.interaction === 'retell' ? 'RETELL' : 'SPEAKING';
 
   return (
     <SafeAreaView edges={['top']} style={styles.root}>
@@ -155,9 +168,29 @@ export function ListeningStudyScreen({ dataset, category, topic }: Props) {
         </View>
 
         <Card elevated style={styles.studyCard}>
-          <AppText color={colors.primary} variant="micro">LISTENING · {currentIndex + 1}</AppText>
+          <AppText color={colors.primary} variant="micro">{interactionLabel} · {currentIndex + 1}</AppText>
           <AppText style={styles.taskTitle} variant="sectionTitle">{card.taskTitle}</AppText>
-          <StudyAudioPlayer label={card.taskTitle} uri={resolveQuestionBankAsset(card.audio)} />
+          <StudyAudioPlayer generatedAudio={dataset.id === 'opi' && !card.audio} label={card.taskTitle} uri={resolveQuestionBankAsset(card.audio)} />
+
+          {dataset.study.tools.recorder ? (
+            <SpeakingPracticePanel
+              mode={dataset.study.interaction === 'retell' ? 'retell' : 'speaking'}
+              onRecorded={(recordingDurationMillis) => persistCard(card.id, { recorded: true, recordingDurationMillis, visited: true })}
+            />
+          ) : null}
+
+          {dataset.study.tools.tags || dataset.study.tools.highlights ? (
+            <AnnotationToolbar
+              activeColor={highlightColor}
+              dictionaryMode={dictionaryMode}
+              highlightMode={highlightMode}
+              onColorChange={setHighlightColor}
+              onDictionaryModeChange={(value) => { setDictionaryMode(value); if (value) setHighlightMode(false); }}
+              onHighlightModeChange={(value) => { setHighlightMode(value); if (value) setDictionaryMode(false); }}
+              onTagsChange={(tagIds) => persistCard(card.id, { tagIds, visited: true })}
+              selectedTags={cardState?.tagIds ?? []}
+            />
+          ) : null}
 
           {card.choices?.length ? (
             <View style={styles.section}>
@@ -173,19 +206,38 @@ export function ListeningStudyScreen({ dataset, category, topic }: Props) {
 
           <View style={styles.section}>
             <AppText variant="cardTitle">{dataset.study.copy.transcriptLabel}</AppText>
-            <AppText color={colors.foreground} style={styles.transcript}>{card.audioText}</AppText>
+            <InteractiveStudyText
+              blockId="question"
+              dictionaryMode={dictionaryMode}
+              highlightColor={highlightColor}
+              highlightMode={highlightMode}
+              highlights={cardState?.highlights ?? []}
+              onHighlightsChange={(highlights) => persistCard(card.id, { highlights, visited: true })}
+              onLookup={setLookupWord}
+              text={card.audioText}
+            />
             {card.audioTextZh ? <AppText style={styles.translation}>{card.audioTextZh}</AppText> : null}
           </View>
 
-          {cardState?.selectedChoiceIndex !== undefined && card.referenceText ? (
+          {(dataset.study.interaction !== 'choices' || cardState?.selectedChoiceIndex !== undefined) && card.referenceText ? (
             <View style={styles.reference}>
               <AppText color={colors.primary} variant="button">{dataset.study.copy.referenceLabel}</AppText>
-              <AppText color={colors.foreground}>{card.referenceText}</AppText>
+              <InteractiveStudyText
+                blockId="reference"
+                dictionaryMode={dictionaryMode}
+                highlightColor={highlightColor}
+                highlightMode={highlightMode}
+                highlights={cardState?.highlights ?? []}
+                onHighlightsChange={(highlights) => persistCard(card.id, { highlights, visited: true })}
+                onLookup={setLookupWord}
+                text={card.referenceText}
+              />
+              {card.referenceTextZh ? <AppText>{card.referenceTextZh}</AppText> : null}
             </View>
           ) : null}
         </Card>
 
-        <Card style={styles.notesCard}>
+        {dataset.study.tools.notes ? <Card style={styles.notesCard}>
           <View style={styles.notesHeader}>
             <NotebookPen color={colors.primary} size={18} />
             <AppText variant="cardTitle">学习笔记</AppText>
@@ -201,7 +253,7 @@ export function ListeningStudyScreen({ dataset, category, topic }: Props) {
             value={cardState?.note ?? ''}
           />
           <AppText variant="micro">内容会自动保存在当前设备</AppText>
-        </Card>
+        </Card> : null}
       </ScrollView>
 
       <View style={[styles.footer, { paddingBottom: Math.max(insets.bottom, spacing[3]) }]}>
@@ -253,6 +305,15 @@ export function ListeningStudyScreen({ dataset, category, topic }: Props) {
           <Button onPress={() => void finish('abort')} size="lg" variant="outline">结束并查看报告</Button>
         </View>
       </BottomSheet>
+
+      <BottomSheet accessibilityLabel="上下文查词" onClose={() => setLookupWord(undefined)} visible={Boolean(lookupWord)}>
+        <View style={styles.lookupContent}>
+          <AppText color={colors.primary} variant="micro">CONTEXT WORD LOOKUP</AppText>
+          <AppText variant="pageTitle">{lookupWord}</AppText>
+          <AppText>查词入口、上下文和失败承载已复刻。当前阶段不接真实 AI 释义，后续服务接入时可替换此内容层。</AppText>
+          <Button onPress={() => setLookupWord(undefined)} size="lg">返回学习</Button>
+        </View>
+      </BottomSheet>
     </SafeAreaView>
   );
 }
@@ -274,7 +335,6 @@ const styles = StyleSheet.create({
   studyCard: { gap: spacing[3] },
   taskTitle: { marginBottom: spacing[1] },
   section: { gap: spacing[3], marginTop: spacing[3] },
-  transcript: { fontSize: 15, lineHeight: 25 },
   translation: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth, paddingTop: spacing[3] },
   reference: { backgroundColor: colors.primary06, borderRadius: radii.xl, gap: spacing[1.5], marginTop: spacing[2], padding: spacing[3] },
   notesCard: { gap: spacing[3], marginTop: spacing[3] },
@@ -283,6 +343,7 @@ const styles = StyleSheet.create({
   footer: { alignItems: 'center', backgroundColor: colors.background72, borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth, bottom: 0, flexDirection: 'row', gap: spacing[2], justifyContent: 'space-between', left: 0, paddingHorizontal: spacing[4], paddingTop: spacing[3], position: 'absolute', right: 0, ...shadows.floating },
   answerButton: { alignItems: 'center', gap: 2, minWidth: 54 },
   exitContent: { gap: spacing[3], paddingBottom: spacing[2] },
+  lookupContent: { gap: spacing[3], paddingBottom: spacing[4] },
   exitIcon: { alignItems: 'center', alignSelf: 'center', backgroundColor: colors.primary10, borderRadius: radii.xl, height: 56, justifyContent: 'center', width: 56 },
   exitDescription: { textAlign: 'center' },
   exitProgress: { alignItems: 'center', backgroundColor: colors.secondary, borderRadius: radii.xl, flexDirection: 'row', justifyContent: 'space-between', padding: spacing[4] },
