@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { AuthScreen } from '@/features/auth/AuthScreen';
+import { LoginScreen } from '@/components/auth/login-screen';
 
 jest.mock('lucide-react-native', () => {
   const { View } = jest.requireActual('react-native');
@@ -14,11 +14,11 @@ jest.mock('expo-router', () => ({
   useRouter: () => ({ back: jest.fn(), push: jest.fn(), replace: jest.fn() }),
 }));
 
-describe('<AuthScreen />', () => {
+describe('<LoginScreen />', () => {
   it('renders the Web-aligned login entries', async () => {
     const screen = await render(
       <SafeAreaProvider initialMetrics={{ frame: { height: 812, width: 375, x: 0, y: 0 }, insets: { bottom: 34, left: 0, right: 0, top: 47 } }}>
-        <AuthScreen />
+        <LoginScreen />
       </SafeAreaProvider>,
     );
 

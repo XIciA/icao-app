@@ -1,5 +1,5 @@
-import type { PropsWithChildren } from 'react';
-import { Modal, Pressable, StyleSheet, View } from 'react-native';
+import type { PropsWithChildren, ReactNode } from 'react';
+import { Modal, Pressable, ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { colors, radii, shadows, spacing } from '@/theme';
@@ -8,19 +8,24 @@ type Props = PropsWithChildren<{
   visible: boolean;
   onClose: () => void;
   accessibilityLabel?: string;
+  footer?: ReactNode;
 }>;
 
-export function BottomSheet({ visible, onClose, children, accessibilityLabel = '底部弹层' }: Props) {
+export function BottomSheet({ visible, onClose, children, footer, accessibilityLabel = '底部弹层' }: Props) {
   const insets = useSafeAreaInsets();
+  const { height } = useWindowDimensions();
 
   return (
     <Modal animationType="slide" onRequestClose={onClose} transparent visible={visible}>
       <View accessibilityLabel={accessibilityLabel} style={styles.root}>
         <View style={[StyleSheet.absoluteFill, styles.overlay]} />
         <Pressable accessibilityLabel="关闭弹层" onPress={onClose} style={StyleSheet.absoluteFill} />
-        <View style={[styles.sheet, { paddingBottom: Math.max(insets.bottom, spacing[4]) }]}>
+        <View style={[styles.sheet, { maxHeight: height * 0.92, paddingBottom: Math.max(insets.bottom, spacing[4]) }]}>
           <View style={styles.handle} />
-          {children}
+          <ScrollView style={styles.scrollContent} contentContainerStyle={styles.scrollInner}>
+            {children}
+          </ScrollView>
+          {footer ? <View style={styles.footer}>{footer}</View> : null}
         </View>
       </View>
     </Modal>
@@ -34,8 +39,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.card,
     borderTopLeftRadius: radii.xxxl,
     borderTopRightRadius: radii.xxxl,
-    maxHeight: '92%',
-    paddingHorizontal: spacing[5],
     paddingTop: spacing[3],
     ...shadows.modal,
   },
@@ -47,4 +50,7 @@ const styles = StyleSheet.create({
     marginBottom: spacing[4],
     width: 40,
   },
+  scrollContent: { paddingHorizontal: spacing[5] },
+  scrollInner: { paddingBottom: spacing[4] },
+  footer: { paddingHorizontal: spacing[5], paddingTop: spacing[4], borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: colors.border },
 });

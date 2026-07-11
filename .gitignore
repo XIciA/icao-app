@@ -33,6 +33,7 @@ coverage/
 
 # local env files
 .env*.local
+infra/runtime/.env
 
 # typescript
 *.tsbuildinfo
