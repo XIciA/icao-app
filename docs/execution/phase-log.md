@@ -27,6 +27,7 @@
 ### 验证结果
 
 - `pnpm check`：通过（TypeScript、ESLint、Jest）。
+- `expo export --platform all`：通过，iOS、Android 与 Web 生产 Bundle 均成功生成到临时目录。
 - `pnpm doctor`：19/19 通过。
 - iOS Debug Development Build：通过，0 error，3 个上游非阻塞 warning。
 - Android Debug Development Build：通过，433 个任务完成；上游依赖存在非阻塞 deprecated warning。
@@ -44,4 +45,44 @@
 
 - 未开始页面批量复刻。
 - 未接 Supabase、真实后端、AI、支付或云同步。
+- 未修改只读设计稿仓库。
+
+## 阶段 1：设计基础与导航壳
+
+状态：本地带条件通过，可进入阶段 2；iOS 首次引导点击留作最终人工项
+
+### 已完成
+
+- 将设计稿 OKLCH 色彩转换为跨平台 RN sRGB 令牌，保留暖象牙、墨蓝、钴蓝、琥珀与危险红语义。
+- 接入 Geist、Noto Serif SC 与 Geist Mono，保持标题、正文和数据字体分工。
+- 建立文字、按钮、卡片、标签、输入、顶部栏、Bottom Sheet、页面容器、加载与异常状态组件。
+- 将 Web 单体 `AppShell` 关系转换为 Expo Router Root Stack + 题库/发现/我的三个主 Tab。
+- 建立全屏子页、居中顶部标题、返回按钮、iOS 手势承载和 Android 系统返回链路。
+- 接入安全区、Tab 内容底部避让、键盘避让、根级加载与 Error Boundary。
+- 建立页面对照矩阵与阶段归属：`docs/execution/phase1-page-matrix.md`。
+- `react-native-svg` 已经双端增量重建并正式链接，Lucide 图标在双端正常渲染。
+
+### 方案调整记录
+
+- Noto Serif SC npm 包含全部字重，pnpm 在 Node 24 对 80MB 压缩包做完整性散列时触发
+  `invalid array length`。改为从同一 npm 发布包只提取设计实际使用的 600 字重和字体许可证，
+  资产写入 RN 工程；避免引入八个未使用字重，不改变字体设计决策。
+- `expo-blur` 初次热更新需要重建原生壳。由于模糊只承担装饰效果，改用跨平台半透明表面；
+  卡片、导航和弹层的颜色、边框、圆角、轻阴影与层次关系保持不变，减少无必要原生依赖。
+
+### 验证结果
+
+- `pnpm check`：通过（TypeScript、ESLint、Jest）。
+- iOS Debug Development Build 增量重建：通过，0 error，3 个上游非阻塞 warning。
+- Android Debug Development Build 增量重建：通过，453 个任务，19 秒。
+- Android 题库/发现 Tab 切换、全屏子页、顶部返回与系统返回键：通过；返回后保持原 Tab。
+- 360、375、390、430 宽度截图：无横向溢出、卡片裁切或底部导航遮挡。
+- iOS 安全区和底层页面渲染正常；Development Build 首次引导遮罩需要点击后才能完成无干扰交互截图。
+- 审查结论：带条件通过。剩余项只影响 iOS 截图洁净度，不影响代码、构建或阶段 2 本地开发。
+
+### 明确未做
+
+- 未提前实现完整业务页面或复制 Web DOM/CSS 实现。
+- 未改变品牌色、字体分工、导航模式、卡片气质或 Lucide 图标体系。
+- 未接真实登录、Supabase、AI、支付、云同步或离线资源系统。
 - 未修改只读设计稿仓库。
