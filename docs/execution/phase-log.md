@@ -246,3 +246,31 @@
 - 未接 Supabase Auth、云同步、云端资料保存、真实账户注销或反馈提交。
 - 未接通知模块或发送通知；当前仅保留未来系统权限入口。
 - 未修改只读设计稿仓库。
+
+## 阶段 6：双端完整验收
+
+状态：自动化、双端模拟器与等价设备通过；物理 iPhone / Android 终验待人工完成
+
+### 已完成
+
+- 建立 `stage6-acceptance-matrix.md`，覆盖全部页面族、核心流程、状态、设备、构建和战略边界。
+- Android 对 6 条代表路由完成 360、375、390、430 四种逻辑宽度巡检，无 Render Error。
+- 四种宽度的设置页均无标题、卡片、开关、按钮裁切或横向溢出。
+- Android 登录页键盘开启后，输入、主按钮、恢复入口和协议仍可见；退出确认 Bottom Sheet 安全区与操作完整。
+- Android 真实音频进入 PLAYING 并播放至 19 秒结束后 STOPPED；返回 App 页面状态正常。
+- 重新执行并安装 Android / iOS Debug Development Build，双端听力目录均在新构建上正常渲染。
+- 源码扫描确认没有 DOM、localStorage、iframe 或 WebView 依赖。
+- 对照总战略与 ADR 复查：RN/Expo/TypeScript、本地轻量持久化、未来 Supabase/对象存储边界保持一致。
+
+### 验证结果
+
+- `pnpm check`：4 个 Jest 套件 / 6 个测试及 TypeScript、ESLint 全部通过。
+- `pnpm doctor`：19/19 通过；三平台导出成功，18 条静态路由。
+- Android Debug：`BUILD SUCCESSFUL`，664 个任务；新 APK 安装后通过冒烟验证。
+- iOS Debug Simulator：`BUILD SUCCEEDED`；新 App 安装后通过冒烟验证。
+- 完整结果与剩余终验位于 `docs/execution/stage6-acceptance-matrix.md`，证据位于 `docs/execution/evidence/stage6/`。
+
+### 剩余终验
+
+- 当前未检测到物理 iPhone 或 Android 手机。路线图要求的双物理真机核心链路、真实音频焦点、中断恢复和手势终验必须由用户连接设备后完成。
+- 该限制不影响当前代码、自动化、模拟器或原生构建结论，但在真机完成前阶段 6 不能标记为无条件完成。
