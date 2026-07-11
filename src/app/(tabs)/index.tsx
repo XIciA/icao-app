@@ -1,4 +1,5 @@
 import { Headphones, MessageSquareQuote, RadioTower } from 'lucide-react-native';
+import { useRouter } from 'expo-router';
 
 import { TabPlaceholderScreen } from '@/components/screens/TabPlaceholderScreen';
 
@@ -29,12 +30,16 @@ const entries = [
 ];
 
 export default function QuestionBankTab() {
+  const router = useRouter();
   return (
     <TabPlaceholderScreen
       entries={entries}
       eyebrow="ICAO Learning"
       subtitle="跟着课程计划，逐个攻克核心模块。"
       title="稳步进阶，冲刺目标等级"
+      onEntryPress={(entry) => {
+        if (entry.slug === 'listening') router.push('/question-bank/listening');
+      }}
     />
   );
 }

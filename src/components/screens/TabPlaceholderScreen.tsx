@@ -20,9 +20,10 @@ type Props = {
   subtitle: string;
   eyebrow?: string;
   entries: FoundationEntry[];
+  onEntryPress?: (entry: FoundationEntry) => void;
 };
 
-export function TabPlaceholderScreen({ title, subtitle, eyebrow, entries }: Props) {
+export function TabPlaceholderScreen({ title, subtitle, eyebrow, entries, onEntryPress }: Props) {
   const router = useRouter();
 
   return (
@@ -48,7 +49,7 @@ export function TabPlaceholderScreen({ title, subtitle, eyebrow, entries }: Prop
               accessibilityLabel={`${entry.title}，${enabled ? '打开' : '功能开发中'}`}
               disabled={!enabled}
               key={entry.slug}
-              onPress={() => router.push({ pathname: '/detail/[slug]', params: { slug: entry.slug } })}
+              onPress={() => onEntryPress ? onEntryPress(entry) : router.push({ pathname: '/detail/[slug]', params: { slug: entry.slug } })}
               style={!enabled ? styles.disabled : null}
             >
               <View style={styles.row}>

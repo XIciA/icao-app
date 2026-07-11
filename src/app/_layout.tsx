@@ -43,6 +43,8 @@ export default function RootLayout() {
       >
         <Stack.Screen name="(tabs)" options={{ animation: 'fade' }} />
         <Stack.Screen name="detail/[slug]" />
+        <Stack.Screen name="question-bank/[bankId]/index" />
+        <Stack.Screen name="question-bank/[bankId]/study/[categoryId]/[topicId]" />
       </Stack>
     </SafeAreaProvider>
   );
