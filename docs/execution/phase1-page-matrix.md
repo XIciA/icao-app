@@ -20,7 +20,7 @@
 | --- | --- | --- | --- |
 | 题库 | 五题库入口、目录、学习卡、学习报告 | `/(tabs)` + `/question-bank/*` | 阶段 3 完成 |
 | 学习能力 | 音频、选择题、跟读/录音、故事复诵 | `/question-bank/[bankId]/study/*` | 阶段 3 完成 |
-| 发现 | 单词、文章、资源、体系课程、随身听、AI 模考、AI 报告、OPI 热点 | Tab + Root Stack | 5 |
+| 发现 | 单词、文章、资源、体系课程、随身听、AI 模考、AI 报告、OPI 热点 | `/(tabs)/discover` + `/content/[slug]` | 阶段 4 完成 |
 | 我的 | 我的标注、学习记录 | `/annotations`、`/learning-records` | 阶段 3 完成 |
 | 认证 | 启动、登录、注册、手机验证码、忘记密码 | Root Stack | 5 |
 | 账户 | 资料、编辑资料、设置、同步、安全、换手机/邮箱/密码、注销、退出确认 | Root Stack + Sheet | 5 |

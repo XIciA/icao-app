@@ -122,7 +122,7 @@ export function StudyAudioPlayer({ uri, label, generatedAudio = false }: { uri?:
 }
 
 const styles = StyleSheet.create({
-  root: { backgroundColor: 'rgba(244,242,236,0.55)', borderColor: colors.border, borderRadius: radii.xxl, borderWidth: 1, padding: spacing[3] },
+  root: { alignSelf: 'stretch', backgroundColor: 'rgba(244,242,236,0.55)', borderColor: colors.border, borderRadius: radii.xxl, borderWidth: 1, padding: spacing[3] },
   labelRow: { alignItems: 'center', flexDirection: 'row', gap: spacing[1.5], marginBottom: spacing[2] },
   label: { flex: 1, fontFamily: fonts.sansSemibold },
   playerRow: { alignItems: 'center', flexDirection: 'row', gap: spacing[3] },
