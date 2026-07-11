@@ -1,0 +1,320 @@
+{
+  "schemaVersion": 1,
+  "items": [
+    {
+      "id": "listening-main-122",
+      "audioText": "If you look at the weather chart, you might see the low pressure area with precipitation approaching Xi'an.\nQuestion: What kind of weather is expected near Xi'an?",
+      "audioTextZh": "如果查看天气图，你可能会看到伴有降水的低压区正接近西安。\n问题：西安附近预计会出现什么天气？"
+    },
+    {
+      "id": "listening-main-123",
+      "audioText": "Flight 152 from Beijing was supposed to arrive at 10:00, but it has been delayed at least an hour.\nQuestion: When was the flight supposed to arrive?",
+      "audioTextZh": "从北京起飞的152号航班原定10点到达，但已经延误了至少1小时。\n问题：该航班原定什么时候到达？"
+    },
+    {
+      "id": "listening-main-125",
+      "audioText": "When flying an approach with a strong gusty headwind, Vref should be adjusted by half the headwind and the full gust.\nQuestion: In windy conditions, how much should Vref be adjusted by during an approach?",
+      "audioTextZh": "在强阵性逆风条件下进近时，参考速度Vref应按一半逆风分量加全部阵风增量进行调整。\n问题：在大风条件下进近时，Vref应增加多少？"
+    },
+    {
+      "id": "listening-main-141",
+      "audioText": "We've just received instructions from our airline to divert to Pudong Airport to pick up an additional flight.\nQuestion: What caused the diversion?",
+      "audioTextZh": "我们刚收到航空公司的指示，改航至浦东机场去承接一个额外航班。\n问题：是什么导致了这次改航？"
+    },
+    {
+      "id": "listening-main-142",
+      "audioText": "Ladies and gentlemen, this is your captain speaking. We will begin descent in approximately five minutes and will land in 30 minutes from now, at local time six twenty.\nQuestion: When does the captain estimate the aircraft will land?",
+      "audioTextZh": "女士们、先生们，这里是机长广播。我们将在大约5分钟后开始下降，并于30分钟后、当地时间6点20分着陆。\n问题：机长预计飞机什么时候着陆？"
+    },
+    {
+      "id": "listening-main-143",
+      "audioText": "The fuel selector valves are used to select fuel from various tanks and normally have four positions: LEFT, RIGHT, BOTH, and OFF.\nQuestion: What are the four normal positions of a fuel selector valve?",
+      "audioTextZh": "燃油选择活门用于选择不同油箱的燃油，通常有4个位置：左、右、两侧和关闭。\n问题：燃油选择活门的4个正常位置是什么？"
+    },
+    {
+      "id": "listening-main-144",
+      "audioText": "Because there was smoke, the commander ordered the passengers and crew to evacuate the aircraft in accordance with standard operating procedures.\nQuestion: Who ordered people to evacuate the aircraft?",
+      "audioTextZh": "由于出现烟雾，机长命令乘客和机组人员按照标准操作程序撤离飞机。\n问题：是谁命令机上人员撤离飞机的？"
+    },
+    {
+      "id": "listening-main-145",
+      "audioText": "The pilot gave an incorrect readback and switched the radio frequency before being corrected. As a result, the aircraft crossed the active runway without clearance.\nQuestion: Why wasn't the readback corrected?",
+      "audioTextZh": "飞行员进行了错误复诵，并在管制员纠正之前切换了无线电频率。结果，飞机未经许可穿越了正在使用的跑道。\n问题：错误复诵为什么没有得到纠正？"
+    },
+    {
+      "id": "listening-main-147",
+      "audioText": "Last week, while we were taxiing onto the runway, we got a low hydraulic quantity warning. After confirming that we were losing fluid, we stopped and called for a tug. Unfortunately, we had to wait nearly one hour before it came, and it was two hours later when we changed aircraft and took off.\nQuestion: How did they get back to the gate?",
+      "audioTextZh": "上周，我们正滑入跑道时出现液压油量低警告。确认液压油正在泄漏后，我们停下并呼叫了牵引车。不幸的是，牵引车将近1小时后才到；等我们更换飞机并起飞时，已经过去了2小时。\n问题：他们是怎样返回登机口的？"
+    },
+    {
+      "id": "listening-main-154",
+      "audioText": "P: New York Departure, good morning, CCA818, climbing through 3000 feet, heading 220, direct VINE.\nQuestion: What is the current heading for Air China 818?",
+      "audioTextZh": "飞行员：纽约离场，早上好，CCA818，正在爬升通过3000英尺，航向220，直飞VINE。\n问题：国航818当前的航向是多少？"
+    },
+    {
+      "id": "listening-main-161",
+      "audioText": "Because the aircraft is heavier than air, the wings must thrust the air in a way that makes the air support the aircraft.\nQuestion: What is the man mainly talking about?",
+      "audioTextZh": "由于飞机比空气重，机翼必须对空气施加作用，使空气能够支撑飞机。\n问题：这名男子主要在谈论什么？"
+    },
+    {
+      "id": "listening-main-162",
+      "audioText": "There are many types of fire extinguishers, such as water, dry foam and BTM. BCF fire extinguishers are used in the cockpit.\nQuestion: What type of fire extinguishers are used in the cockpit?",
+      "audioTextZh": "灭火器有很多种，例如水剂、干泡沫和BTM灭火器。驾驶舱使用BCF灭火器。\n问题：驾驶舱使用哪种灭火器？"
+    },
+    {
+      "id": "listening-main-165",
+      "audioText": "P1: John, do you know there is a word that ATC will use to inform the pilot that the last clearance has been changed and the new clearance supersedes the preceding clearance? P2: Ah, yes, there is.\nQuestion: What word should be used in this situation?",
+      "audioTextZh": "说话人1：John，你知道空中交通管制会用哪个词来通知飞行员上一项许可已被更改、新许可取代原许可吗？说话人2：啊，知道，有这个词。\n问题：这种情况下应该使用哪个词？"
+    },
+    {
+      "id": "listening-main-183",
+      "audioText": "Wake turbulence refers to rotating air masses generated behind the wingtips of large jet aircraft. It begins on rotation and ends when the nose gear touches down.\nQuestion: Which of the following concerning wake turbulence is true?",
+      "audioTextZh": "尾流颠簸是指大型喷气式飞机翼尖后方产生的旋转气团。它从飞机抬轮时开始，到前起落架接地时结束。\n问题：关于尾流颠簸，下列哪一项是正确的？"
+    },
+    {
+      "id": "listening-main-184",
+      "audioText": "The controller, who had only five months' experience on the job, was not aware of the collision course and did not take any corrective action.\nQuestion: Why did the controller not take any corrective action?",
+      "audioTextZh": "这名管制员只有5个月的岗位经验，没有意识到两机处于相撞航迹上，因此没有采取任何纠正措施。\n问题：管制员为什么没有采取纠正措施？"
+    },
+    {
+      "id": "listening-main-185",
+      "audioText": "The airline couldn't find a replacement aircraft, so the flight was canceled. The passengers then had to be booked into a hotel until they could be put onto a new flight.\nQuestion: Why were the passengers booked into a hotel?",
+      "audioTextZh": "航空公司找不到替代飞机，因此取消了航班。乘客只得被安排入住酒店，直到能够改乘新的航班。\n问题：这些乘客为什么被安排入住酒店？"
+    },
+    {
+      "id": "listening-main-229",
+      "audioText": "The major refueling hazard is the possible combustion of fuel. The most likely spark is from static electricity discharged between the refueling equipment and the aircraft.\nQuestion: What may cause a spark when refueling?",
+      "audioTextZh": "加油作业的主要危险是燃油可能被点燃。最可能出现的火花来自加油设备与飞机之间释放的静电。\n问题：加油时什么可能产生火花？"
+    },
+    {
+      "id": "listening-main-281",
+      "audioText": "Captain: Have you checked the load sheet? First officer: Yes, but I have just found an error in the fuel quantity. Captain: Then you should correct it before you give it back.\nQuestion: What does the captain advise the first officer to do?",
+      "audioTextZh": "机长：你检查过载重表了吗？副驾驶：检查过，但我刚发现燃油量有一处错误。机长：那么，你应该在交回去之前把错误更正。\n问题：机长建议副驾驶做什么？"
+    },
+    {
+      "id": "listening-main-282",
+      "audioText": "The airplane stalled during takeoff because there was an error in the load sheet and the aircraft was not loaded properly.\nQuestion: What caused the aircraft to become unstable and stall?",
+      "audioTextZh": "由于载重表有误，飞机配载不当，在起飞过程中发生了失速。\n问题：什么导致飞机失去稳定并发生失速？"
+    },
+    {
+      "id": "listening-main-283",
+      "audioText": "The landing gear and full flaps should be extended to provide maximum drag so that the descent can be made as quickly as possible without exceeding the speed limit.\nQuestion: What flight maneuver is indicated in this situation?",
+      "audioTextZh": "应放下起落架并放出全襟翼，以提供最大阻力，从而在不超过速度限制的情况下尽快下降。\n问题：这种情况所指的是哪一种飞行机动？"
+    },
+    {
+      "id": "listening-main-284",
+      "audioText": "An aircraft should be separated from an aircraft dumping fuel by at least 10 nautical miles horizontally and should not fly behind the aircraft dumping fuel.\nQuestion: What is the separation between the two aircraft during fuel dumping?",
+      "audioTextZh": "航空器与正在放油的航空器之间应至少保持10海里的水平间隔，并且不得在放油航空器后方飞行。\n问题：放油期间两架航空器之间应保持多大间隔？"
+    },
+    {
+      "id": "listening-main-285",
+      "audioText": "M1: The wear of carbon brakes is related to the number of applications and the pressure applied. M2: Yes, the proper use of carbon brakes will ... of them.\nQuestion: What is the main idea of the conversation?",
+      "audioTextZh": "说话人1：碳刹车的磨损与使用次数和施加的压力有关。说话人2：是的，正确使用碳刹车会……。\n问题：这段对话的中心意思是什么？"
+    },
+    {
+      "id": "listening-main-294",
+      "audioText": "P: Moscow Approach, CSN235, overhead GCF, 4500 feet on QNH, request joining instructions.\nQuestion: What stage of flight is China Southern 235 about to carry out next?",
+      "audioTextZh": "飞行员：莫斯科进近，CSN235，飞越GCF，按QNH高度4500英尺，请求加入进近指令。\n问题：南航235接下来将进入哪个飞行阶段？"
+    },
+    {
+      "id": "listening-main-301",
+      "audioText": "Ailerons, the flight control surfaces at the outboard ends of the wings, control roll; pitch is controlled by the elevator, and the rudder controls yaw.\nQuestion: Which of the following is not mentioned?",
+      "audioTextZh": "副翼是位于机翼外端的飞行操纵面，用于控制滚转；升降舵控制俯仰，方向舵控制偏航。\n问题：下列哪一项没有被提到？"
+    },
+    {
+      "id": "listening-main-302",
+      "audioText": "When wind direction is changing, it is given as a range, such as variable from 270 to 330 degrees.\nQuestion: How large is the range from 270 to 330 degrees?",
+      "audioTextZh": "风向不断变化时，会用一个范围表示，例如在270度至330度之间变化。\n问题：270度至330度的变化范围是多少？"
+    },
+    {
+      "id": "listening-main-303",
+      "audioText": "The safety investigation showed that the runway incursion was caused by a communication problem. The pilot switched radio frequency before the controller corrected his readback.\nQuestion: What caused the communication problem?",
+      "audioTextZh": "安全调查表明，这起跑道侵入由通信问题造成。飞行员在管制员纠正复诵之前就切换了无线电频率。\n问题：是什么造成了这次通信问题？"
+    },
+    {
+      "id": "listening-main-304",
+      "audioText": "The pilot is vacating the runway. His takeoff was aborted due to engine failure, and he tells the controller that he can taxi back under his own power.\nQuestion: What is the pilot's intention?",
+      "audioTextZh": "飞行员正在脱离跑道。他因发动机故障中断了起飞，并告诉管制员可以依靠自身动力滑行返回。\n问题：飞行员的意图是什么？"
+    },
+    {
+      "id": "listening-main-305",
+      "audioText": "Their flight wasn't leaving on time because they were held up at the gate. They couldn't be pushed back until the visibility improved.\nQuestion: What is the probable reason for the delay?",
+      "audioTextZh": "他们的航班未能按时离场，因为飞机被滞留在登机口。能见度改善前，飞机无法推出。\n问题：延误最可能是什么原因造成的？"
+    },
+    {
+      "id": "listening-main-308",
+      "audioText": "As you work towards an instrument rating, you learn to control the aircraft precisely, navigate by radio aids, deal with air traffic control, and make instrument approaches.\nQuestion: Which of the following is not mentioned?",
+      "audioTextZh": "在接受仪表等级训练时，你会学习精确操纵飞机、使用无线电导航设备导航、与空中交通管制沟通以及实施仪表进近。\n问题：下列哪一项没有被提到？"
+    },
+    {
+      "id": "listening-main-321",
+      "audioText": "M1: Crew Resource Management is a process using all available resources, such as equipment, procedures, and people, to achieve a safe and efficient flight operation. M2: You are right.\nQuestion: What are they talking about?",
+      "audioTextZh": "说话人1：机组资源管理是利用设备、程序和人员等所有可用资源，实现安全、高效飞行运行的过程。说话人2：你说得对。\n问题：他们在谈论什么？"
+    },
+    {
+      "id": "listening-main-322",
+      "audioText": "Ladies and gentlemen, due to favorable weather, we expect to arrive about an hour earlier than scheduled.\nQuestion: When do they expect to arrive?",
+      "audioTextZh": "女士们、先生们，由于天气状况有利，我们预计将比计划时间提前大约1小时到达。\n问题：他们预计什么时候到达？"
+    },
+    {
+      "id": "listening-main-323",
+      "audioText": "Flight 152 from Beijing was supposed to arrive an hour ago, but now it is already 10 o'clock.\nQuestion: When was the flight supposed to arrive?",
+      "audioTextZh": "从北京飞来的152号航班原定1小时前到达，但现在已经10点了。\n问题：该航班原定什么时候到达？"
+    },
+    {
+      "id": "listening-main-324",
+      "audioText": "Vortex circulation is outward and upward around the wingtips when viewed from either ahead of or behind the aircraft.\nQuestion: How does the vortex circulate?",
+      "audioTextZh": "无论从飞机前方还是后方观察，翼尖涡流都在翼尖周围向外、向上旋转。\n问题：涡流是怎样旋转的？"
+    },
+    {
+      "id": "listening-main-327",
+      "audioText": "The required runway length for takeoff and landing may vary considerably with changes in outside air temperature, runway surface, aircraft load, and airfield elevation.\nQuestion: According to the statement, which of the following will not affect the required runway length for takeoff and landing?",
+      "audioTextZh": "起飞和着陆所需的跑道长度会随外界气温、跑道道面、飞机载荷和机场标高的变化而显著改变。\n问题：根据这段陈述，下列哪一项不会影响起飞和着陆所需的跑道长度？"
+    },
+    {
+      "id": "listening-main-329",
+      "audioText": "Heathrow Information C: cloud scattered at 3000 feet, broken at 5000 feet; wind 210 degrees at 8 knots; visibility 2 miles with light wind. Report established on the ILS for runway 23.\nQuestion: What is the cloud cover at 5000 feet?",
+      "audioTextZh": "希思罗C通播：3000英尺疏云，5000英尺多云；风向210度、风速8节；能见度2英里，轻风。建立23跑道ILS后报告。\n问题：5000英尺处的云量状况是什么？"
+    },
+    {
+      "id": "listening-main-330",
+      "audioText": "A clearway is a defined area on the ground or water under the control of the appropriate authority. The length of a clearway should not exceed 50% of the takeoff run available (TORA).\nQuestion: How long should a clearway be according to what you have heard?",
+      "audioTextZh": "净空道是由有关部门控制的、位于陆地或水面上的特定区域。净空道长度不得超过可用起飞滑跑距离（TORA）的50%。\n问题：根据所听内容，净空道长度应为多少？"
+    },
+    {
+      "id": "listening-main-331",
+      "audioText": "P: ACA215, unknown fast-moving traffic, 11 o'clock, 10 miles, crossing left to right.\nQuestion: Where is the unknown traffic?",
+      "audioTextZh": "飞行员：ACA215，不明快速移动航空器，在11点钟方向、距离10海里，正从左向右穿越。\n问题：不明航空器在哪里？"
+    },
+    {
+      "id": "listening-main-341",
+      "audioText": "Clear ice is found between 0 and minus 10 degrees, mixed and clear ice between minus 10 and minus 15 degrees, and rime ice between minus 15 and minus 20 degrees.\nQuestion: What type of ice is usually found between 0 and minus 10 degrees?",
+      "audioTextZh": "0至零下10度之间通常形成明冰；零下10至零下15度之间形成混合冰和明冰；零下15至零下20度之间形成雾凇冰。\n问题：0至零下10度之间通常会形成哪种冰？"
+    },
+    {
+      "id": "listening-main-342",
+      "audioText": "Singapore Airlines 413 is inbound to Beijing Capital, but there is fog at the airport and the RVR is below the landing limits, so the aircraft has to hold for an improvement in visibility.\nQuestion: Why is Singapore Airlines 413 holding?",
+      "audioTextZh": "新加坡航空413正飞往北京首都机场，但机场有雾，跑道视程（RVR）低于着陆标准，因此飞机必须等待能见度改善。\n问题：新加坡航空413为什么等待？"
+    },
+    {
+      "id": "listening-main-343",
+      "audioText": "According to the FAR, the minimum equipment required for flight in a Terminal Control Area is a two-way radio, a transponder, and VOR.\nQuestion: What is the minimum equipment required to operate in a Terminal Control Area?",
+      "audioTextZh": "根据美国联邦航空条例，在终端管制区飞行所需的最低设备包括双向无线电、应答机和VOR设备。\n问题：在终端管制区运行所需的最低设备是什么？"
+    },
+    {
+      "id": "listening-main-344",
+      "audioText": "The most common altimeter error is also the easiest to correct. It often occurs when you fail to keep the altimeter set to the local altimeter setting.\nQuestion: Which of the following can result in common altimeter errors?",
+      "audioTextZh": "最常见的高度表误差也最容易纠正。这种误差通常发生在没有把高度表持续调至当地高度表拨正值时。\n问题：下列哪一项会导致常见的高度表误差？"
+    },
+    {
+      "id": "listening-main-345",
+      "audioText": "That flight has a problem. If they can't get the landing gear down, they have to go around.\nQuestion: What will they have to do if they cannot get the landing gear down?",
+      "audioTextZh": "那个航班遇到了问题。如果无法放下起落架，他们就必须复飞。\n问题：如果无法放下起落架，他们必须怎么做？"
+    },
+    {
+      "id": "listening-main-347",
+      "audioText": "We normally classify runways into non-instrument runways and instrument runways, and these runways can be further classified as precision and non-precision. One of the most important associated areas of a precision runway is the stopway, which is mainly used for rejected takeoff.\nQuestion: According to what you have heard, what is the stopway mainly used for?",
+      "audioTextZh": "我们通常把跑道分为非仪表跑道和仪表跑道，还可进一步分为精密和非精密类型。精密跑道最重要的相关区域之一是停止道，主要用于中断起飞。\n问题：根据所听内容，停止道主要用于什么？"
+    },
+    {
+      "id": "listening-main-350",
+      "audioText": "The controller confused the call signs of two aircraft in the hold and issued instructions to the wrong one. Fortunately, the crew asked for confirmation, so the controller realized the mistake and made a correction.\nQuestion: What did the crew do after receiving the instructions?",
+      "audioTextZh": "管制员混淆了两架等待航空器的呼号，把指令发给了错误的航空器。幸运的是，机组请求确认，管制员因此意识到错误并作出纠正。\n问题：机组收到指令后做了什么？"
+    },
+    {
+      "id": "listening-main-353",
+      "audioText": "P: Ground, CSN15, on taxiway N for runway 27L. We see debris on the left side of the runway near the high-speed turnoff. It appears to be part of an engine cowling.\nQuestion: Where is the debris?",
+      "audioTextZh": "飞行员：地面，CSN15，在N滑行道，前往27L跑道。我们看到跑道左侧、靠近快速脱离道的位置有碎片，看起来像发动机整流罩的一部分。\n问题：碎片在哪里？"
+    },
+    {
+      "id": "listening-main-354",
+      "audioText": "P: Guangzhou Departure, CSN5469, airborne, passing 600 meters, climbing to 3000 meters, request heading 290 due to weather.\nQuestion: What stage of flight does the transmission refer to?",
+      "audioTextZh": "飞行员：广州离场，CSN5469，已经离地，正通过600米爬升至3000米；由于天气原因，请求航向290。\n问题：这段通话所指的是哪个飞行阶段？"
+    },
+    {
+      "id": "listening-main-362",
+      "audioText": "Pilots are urged, in their own interest, to request assistance from emergency services whenever there is any doubt about the safe conduct of the flight.\nQuestion: When should pilots request assistance from emergency services?",
+      "audioTextZh": "为了飞行员自身利益，只要对飞行能否安全进行存在任何疑问，都强烈建议请求应急服务援助。\n问题：飞行员应在什么时候请求应急服务援助？"
+    },
+    {
+      "id": "listening-main-363",
+      "audioText": "The aircraft flew over the touchdown zone and landed halfway down the runway. It braked heavily and vacated the runway onto taxiway A4.\nQuestion: Where did the aircraft land?",
+      "audioTextZh": "飞机飞越接地区后，在跑道中段才接地。随后飞机大力刹车，并脱离跑道进入A4滑行道。\n问题：飞机在哪里接地？"
+    },
+    {
+      "id": "listening-main-364",
+      "audioText": "Leading-edge slats can be deployed during both landing and takeoff. They increase wing camber, area, and mean aerodynamic chord, which increases lift and decreases stall speed.\nQuestion: What is the statement referring to?",
+      "audioTextZh": "前缘缝翼可在起飞和着陆期间放出。它们增大机翼弯度、面积和平均气动弦长，从而增加升力并降低失速速度。\n问题：这段陈述指的是什么？"
+    },
+    {
+      "id": "listening-main-365",
+      "audioText": "This is an uncontrolled airfield. Everyone flying in and around the airspace looks out for one another, and information is passed among pilots.\nQuestion: How is information passed in the airspace?",
+      "audioTextZh": "这是一个无管制机场。在该空域内及其周边飞行的人员相互观察避让，信息由飞行员彼此传递。\n问题：该空域内的信息是怎样传递的？"
+    },
+    {
+      "id": "listening-main-367",
+      "audioText": "While you can minimize barometric altimeter errors, you cannot entirely eliminate the common inaccuracy caused by nonstandard atmospheric conditions.\nQuestion: Which of the following concerning barometric altimeter errors is true?",
+      "audioTextZh": "虽然可以尽量减小气压高度表误差，但无法完全消除非标准大气条件造成的常见不准确性。\n问题：关于气压高度表误差，下列哪一项是正确的？"
+    },
+    {
+      "id": "listening-main-368",
+      "audioText": "A1: There is a height at which the pilot must have the runway approach lights in sight to continue the descent. If not, the pilot has to initiate a missed approach. A2: The height is very important for safety.\nQuestion: What were the men talking about?",
+      "audioTextZh": "说话人1：有一个高度，在该高度上飞行员必须看到跑道进近灯才能继续下降；如果看不到，就必须复飞。说话人2：这个高度对飞行安全非常重要。\n问题：他们在谈论什么？"
+    },
+    {
+      "id": "listening-main-373",
+      "audioText": "W: I've been told there are some changes to my departure. M: Yes, the changes are as follows: climb on runway heading until 6000 feet, then turn right to intercept the 235 radial of MT VOR.\nQuestion: Which radial must be intercepted?",
+      "audioTextZh": "女飞行员：我被告知离场程序有一些变化。男管制员：是的，变更如下：沿跑道航向爬升至6000英尺，然后右转截获MT VOR的235度径向线。\n问题：必须截获哪一条径向线？"
+    },
+    {
+      "id": "listening-main-381",
+      "audioText": "The emergency lights must be on or armed during taxi, takeoff, and landing, but not during cruise or before engine start.\nQuestion: When must the emergency lights be armed?",
+      "audioTextZh": "在滑行、起飞和着陆期间，应急灯必须打开或预位；巡航期间和发动机启动前则不需要。\n问题：应急灯必须在什么时候预位？"
+    },
+    {
+      "id": "listening-main-384",
+      "audioText": "M: Hey, look at that. There is some rubber on the runway. Maybe it came from an aircraft tire. Have we had any report from a landing or departing aircraft?\nQuestion: What is on the runway?",
+      "audioTextZh": "男子：嘿，看那里，跑道上有一些橡胶，可能来自飞机轮胎。我们收到过着陆或离场飞机的相关报告吗？\n问题：跑道上有什么？"
+    },
+    {
+      "id": "listening-main-385",
+      "audioText": "Ladies and gentlemen, due to our early arrival, our gate is still occupied. We have to wait here for a few minutes until the aircraft pushes back.\nQuestion: When can they go to their gate?",
+      "audioTextZh": "女士们、先生们，由于我们提前到达，登机口仍被另一架飞机占用。我们必须在这里等几分钟，直到那架飞机推出。\n问题：他们什么时候可以前往自己的登机口？"
+    },
+    {
+      "id": "listening-main-387",
+      "audioText": "Last week, while we were taxiing onto the runway, we got a low hydraulic quantity warning. After confirming that we were losing fluid, we stopped and called for a tug. Unfortunately, we had to wait nearly one hour before it came, and it was two hours later when we changed aircraft and took off.\nQuestion: How did they get back to the gate?",
+      "audioTextZh": "上周，我们正滑入跑道时出现液压油量低警告。确认液压油正在泄漏后，我们停下并呼叫了牵引车。不幸的是，牵引车将近1小时后才到；等我们更换飞机并起飞时，已经过去了2小时。\n问题：他们是怎样返回登机口的？"
+    },
+    {
+      "id": "listening-main-401",
+      "audioText": "The original route was closed due to a severe thunderstorm, so they filed an alternate flight plan. It still has not been approved.\nQuestion: Why did they file an alternate flight plan?",
+      "audioTextZh": "由于严重雷暴，原航路关闭，因此他们提交了备用飞行计划，但该计划尚未获批。\n问题：他们为什么提交备用飞行计划？"
+    },
+    {
+      "id": "listening-main-402",
+      "audioText": "The aircraft had a problem. All passengers were seated in the last rows, so the crew asked the passengers to change seats.\nQuestion: Why did the crew take this action?",
+      "audioTextZh": "飞机出现了问题，而且所有乘客都坐在最后几排，因此机组要求乘客调整座位。\n问题：机组为什么采取这一措施？"
+    },
+    {
+      "id": "listening-main-403",
+      "audioText": "The required runway lengths for takeoff and landing may vary considerably with changes in outside air temperature, runway surface, aircraft load, and field elevation.\nQuestion: According to the statement, which of the following will affect the required runway length for takeoff and landing?",
+      "audioTextZh": "起飞和着陆所需的跑道长度会随外界气温、跑道道面、飞机载荷和机场标高的变化而显著改变。\n问题：根据这段陈述，下列哪一项会影响起飞和着陆所需的跑道长度？"
+    },
+    {
+      "id": "listening-main-404",
+      "audioText": "In a swept-wing aircraft, the aircraft structural limit with one flap down and the paired flap up is lower.\nQuestion: What type of aircraft is mentioned in the statement?",
+      "audioTextZh": "对于后掠翼飞机，当一侧襟翼放下而另一侧对应襟翼仍收起时，飞机的结构限制更低。\n问题：这段陈述提到的是哪种飞机？"
+    },
+    {
+      "id": "listening-main-406",
+      "audioText": "During routine maintenance, mechanics found damage to the fan blades, turbine blades, and compressor blades.\nQuestion: Which part or parts of the aircraft were damaged?",
+      "audioTextZh": "例行维修期间，机务人员发现风扇叶片、涡轮叶片和压气机叶片受损。\n问题：飞机的哪个部件受到了损伤？"
+    },
+    {
+      "id": "listening-main-407",
+      "audioText": "Ladies and gentlemen, this is the captain speaking. We have closed the door and are about to push back. Please turn off all electronic equipment.\nQuestion: Which of the following can passengers use?",
+      "audioTextZh": "女士们、先生们，这里是机长广播。我们已经关闭舱门，即将推出，请关闭所有电子设备。\n问题：下列哪一样物品乘客可以使用？"
+    }
+  ]
+}

@@ -1,4 +1,6 @@
 import {
+  AudioQuality,
+  IOSOutputFormat,
   RecordingPresets,
   requestRecordingPermissionsAsync,
   setAudioModeAsync,
@@ -8,11 +10,32 @@ import {
   useAudioRecorderState,
 } from 'expo-audio';
 import { Mic, Pause, Play, RotateCcw, ShieldAlert, Square } from 'lucide-react-native';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import { AppText, Button } from '@/components/ui';
 import { colors, fonts, radii, spacing } from '@/theme';
+
+// Use uncompressed PCM on iOS. On the physical iPhone/iOS 26.5 validation
+// device, AVAudioRecorder's AAC encoder reports that it is recording but only
+// writes its 0.09-second priming frames. PCM bypasses that encoder while the
+// Android and web settings remain those of Expo's high-quality preset.
+const VOICE_RECORDING_OPTIONS = {
+  ...RecordingPresets.HIGH_QUALITY,
+  bitRate: 256_000,
+  isMeteringEnabled: true,
+  numberOfChannels: 1,
+  ios: {
+    ...RecordingPresets.HIGH_QUALITY.ios,
+    audioQuality: AudioQuality.HIGH,
+    extension: '.wav',
+    linearPCMBitDepth: 16,
+    linearPCMIsBigEndian: false,
+    linearPCMIsFloat: false,
+    outputFormat: IOSOutputFormat.LINEARPCM,
+    sampleRate: 16_000,
+  },
+};
 
 function formatDuration(milliseconds: number) {
   const seconds = Math.max(0, Math.floor(milliseconds / 1000));
@@ -26,17 +49,17 @@ export function SpeakingPracticePanel({
   mode: 'speaking' | 'retell';
   onRecorded: (durationMillis: number) => void;
 }) {
-  const recorder = useAudioRecorder(RecordingPresets.HIGH_QUALITY);
+  const recorder = useAudioRecorder(VOICE_RECORDING_OPTIONS);
   const recorderState = useAudioRecorderState(recorder, 200);
-  const playback = useAudioPlayer(null, { updateInterval: 200 });
-  const playbackStatus = useAudioPlayerStatus(playback);
   const [recordingUri, setRecordingUri] = useState<string>();
+  // Recreate the native player from the finished file instead of replacing a
+  // null source. This avoids a race on iOS between recorder teardown and a
+  // player that is asked to play before its local file has loaded.
+  const playback = useAudioPlayer(recordingUri ?? null, { updateInterval: 200 });
+  const playbackStatus = useAudioPlayerStatus(playback);
+  const [recordedDurationMillis, setRecordedDurationMillis] = useState(0);
   const [permissionDenied, setPermissionDenied] = useState(false);
   const [error, setError] = useState<string>();
-
-  useEffect(() => {
-    if (recordingUri) playback.replace(recordingUri);
-  }, [playback, recordingUri]);
 
   async function startRecording() {
     setError(undefined);
@@ -48,9 +71,19 @@ export function SpeakingPracticePanel({
     setPermissionDenied(false);
     try {
       playback.pause();
-      await setAudioModeAsync({ allowsRecording: true, playsInSilentMode: true, shouldPlayInBackground: false });
+      setRecordingUri(undefined);
+      setRecordedDurationMillis(0);
+      await setAudioModeAsync({ allowsRecording: true, playsInSilentMode: true, shouldPlayInBackground: false, shouldRouteThroughEarpiece: false });
       await recorder.prepareToRecordAsync();
+      const availableInputs = recorder.getAvailableInputs();
+      const builtInMicrophone = availableInputs.find((input) =>
+        /built.?in|microphonebuiltin/i.test(`${input.name} ${input.type}`),
+      );
+      if (builtInMicrophone) recorder.setInput(builtInMicrophone.uid);
       recorder.record();
+      if (!recorder.isRecording) {
+        throw new Error('Native audio recorder did not start');
+      }
     } catch {
       setError('录音启动失败，请稍后重试。');
     }
@@ -58,24 +91,50 @@ export function SpeakingPracticePanel({
 
   async function stopRecording() {
     try {
-      const duration = recorderState.durationMillis;
+      // The hook update can lag one render behind the native recorder on a
+      // physical iPhone. Capture the recorder's own clock before stopping,
+      // then reconcile it with its final native status.
+      const durationBeforeStop = Math.max(
+        recorderState.durationMillis,
+        Math.round(recorder.currentTime * 1000),
+      );
       await recorder.stop();
-      await setAudioModeAsync({ allowsRecording: false, playsInSilentMode: true, shouldPlayInBackground: false });
-      if (recorder.uri) {
-        setRecordingUri(recorder.uri);
+      const finalStatus = recorder.getStatus();
+      const duration = Math.max(durationBeforeStop, finalStatus.durationMillis);
+      const savedUri = finalStatus.url ?? recorder.uri;
+      await setAudioModeAsync({ allowsRecording: false, interruptionMode: 'doNotMix', playsInSilentMode: true, shouldPlayInBackground: false, shouldRouteThroughEarpiece: false });
+      if (savedUri && duration >= 250) {
+        setRecordingUri(savedUri);
+        setRecordedDurationMillis(duration);
         onRecorded(duration);
+      } else {
+        setRecordingUri(undefined);
+        setRecordedDurationMillis(0);
+        setError('没有采集到录音内容，请确认麦克风未被占用后重新录制。');
       }
     } catch {
       setError('录音保存失败，请重新录制。');
     }
   }
 
-  function togglePlayback() {
+  async function togglePlayback() {
     if (!recordingUri) return;
-    if (playbackStatus.playing) playback.pause();
-    else {
-      if (playbackStatus.didJustFinish) void playback.seekTo(0);
+    try {
+      if (playbackStatus.playing) {
+        playback.pause();
+        return;
+      }
+      await setAudioModeAsync({ allowsRecording: false, interruptionMode: 'doNotMix', playsInSilentMode: true, shouldPlayInBackground: false, shouldRouteThroughEarpiece: false });
+      if (!playbackStatus.isLoaded) {
+        setError('录音正在准备回放，请稍候再试。');
+        return;
+      }
+      if (playbackStatus.didJustFinish || playbackStatus.currentTime >= playbackStatus.duration) {
+        await playback.seekTo(0);
+      }
       playback.play();
+    } catch {
+      setError('录音回放失败，请重新录制。');
     }
   }
 
@@ -114,10 +173,10 @@ export function SpeakingPracticePanel({
           <AppText color={recorderState.isRecording ? colors.destructive : colors.foreground} variant="button">
             {recorderState.isRecording ? '正在录音' : recordingUri ? '录音已保存在本机临时目录' : '点击开始录音'}
           </AppText>
-          <AppText style={styles.duration} variant="micro">{formatDuration(recorderState.durationMillis)}</AppText>
+          <AppText style={styles.duration} variant="micro">{formatDuration(recorderState.isRecording ? recorderState.durationMillis : recordedDurationMillis)}</AppText>
         </View>
         {recordingUri ? (
-          <Pressable accessibilityLabel={playbackStatus.playing ? '暂停我的录音' : '播放我的录音'} onPress={togglePlayback} style={styles.playbackButton}>
+          <Pressable accessibilityLabel={playbackStatus.playing ? '暂停我的录音' : '播放我的录音'} disabled={!playbackStatus.isLoaded} onPress={() => void togglePlayback()} style={[styles.playbackButton, !playbackStatus.isLoaded ? styles.playbackPending : null]}>
             {playbackStatus.playing ? <Pause color={colors.primary} size={18} /> : <Play color={colors.primary} fill={colors.primary} size={18} />}
           </Pressable>
         ) : null}
@@ -129,6 +188,7 @@ export function SpeakingPracticePanel({
           <AppText variant="caption">重新录音</AppText>
         </Pressable>
       ) : null}
+      {recordingUri && !playbackStatus.isLoaded ? <AppText variant="caption">正在准备本地录音回放…</AppText> : null}
       {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
     </View>
   );
@@ -145,6 +205,7 @@ const styles = StyleSheet.create({
   status: { flex: 1 },
   duration: { fontFamily: fonts.monoRegular, marginTop: spacing[1] },
   playbackButton: { alignItems: 'center', backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, height: 40, justifyContent: 'center', width: 40 },
+  playbackPending: { opacity: 0.45 },
   retry: { alignItems: 'center', alignSelf: 'flex-start', flexDirection: 'row', gap: spacing[1.5] },
   permission: { alignItems: 'flex-start', backgroundColor: 'rgba(183,118,16,0.08)', borderRadius: radii.xl, flexDirection: 'row', gap: spacing[2.5], padding: spacing[3] },
   permissionCopy: { flex: 1 },

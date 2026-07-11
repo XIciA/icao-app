@@ -1,0 +1,228 @@
+{
+  "schemaVersion": 1,
+  "items": [
+    {
+      "id": "listening-main-166",
+      "audioTextZh": "空速表以海里每小时为单位进行标示，简称为“节”。节是以海里为基础的速度单位。航空中，距离和速度会使用海里或法定英里。\n问题：下列哪一项没有被提到？"
+    },
+    {
+      "id": "listening-main-168",
+      "audioTextZh": "某些天气现象会严重降低飞机性能，例如湍流和山地波。结冰条件也可能非常危险；飞行员需要了解冻雨、云或毛毛雨会使飞机关键表面形成积冰。\n问题：哪种天气会造成严重结冰条件？"
+    },
+    {
+      "id": "listening-main-170",
+      "audioTextZh": "机组资源管理（CRM）以前称为驾驶舱资源管理，是利用设备、程序和人员等所有可用资源，实现安全、高效飞行运行的过程。\n问题：根据这段陈述，CRM的目标是什么？"
+    },
+    {
+      "id": "listening-main-188",
+      "audioTextZh": "这架飞机正从北京飞往巴黎。当飞机到达最高巡航高度层时，客舱增压至相当于8000英尺的客舱高度，这需要保持8至9 psi的压差。\n问题：这段陈述中的8至9 psi指什么？"
+    },
+    {
+      "id": "listening-main-193",
+      "audioTextZh": "所有电台，武汉地面，G通播有效，当前地面风为220度、5米/秒。\n问题：G通播中的什么信息发生了变化？"
+    },
+    {
+      "id": "listening-main-201",
+      "audioTextZh": "飞行前必须清除冰、雪和霜，因为它们会严重影响起飞距离和起飞爬升性能。\n问题：这段陈述描述的是哪种天气条件？"
+    },
+    {
+      "id": "listening-main-202",
+      "audioTextZh": "塔台灯光信号中，闪烁绿灯表示“返场着陆”或“许可滑行”，而稳定绿灯表示“许可着陆”。\n问题：对于飞行中的航空器，管制塔台发出的闪烁绿灯表示什么？"
+    },
+    {
+      "id": "listening-main-203",
+      "audioTextZh": "你位于16L跑道，已获准立即起飞。你看到前方有一架支线飞机正从平行的16R跑道方向朝你的16L跑道滑行。\n问题：这架支线飞机到达你的16L跑道时应该怎么做？"
+    },
+    {
+      "id": "listening-main-204",
+      "audioTextZh": "如果发现右机翼有燃油泄漏的迹象，飞行员必须请机务人员检查飞机的燃油系统。\n问题：根据这段陈述，必须检查飞机的哪个系统？"
+    },
+    {
+      "id": "listening-main-205",
+      "audioTextZh": "那群游客不得不改乘较晚的航班，因为他们无法及时赶到机场。通往机场的主干道发生了一起严重事故，因此他们不得不绕行。\n问题：他们为什么不能及时赶到机场？"
+    },
+    {
+      "id": "listening-main-206",
+      "audioText": "A British Airways B737 skidded off the runway at Charles de Gaulle Airport in Paris on November 16, 2006, while landing in bad weather. There were no fatalities; ten passengers and two crew members were injured. The airplane sustained minor structural damage.\nQuestion: How many people died in the accident in Paris?",
+      "audioTextZh": "2006年11月16日，一架英国航空B737在恶劣天气中着陆时冲出巴黎戴高乐机场跑道。事故没有造成人员死亡，10名乘客和2名机组成员受伤，飞机结构受到轻微损伤。\n问题：巴黎的这起事故中有多少人死亡？"
+    },
+    {
+      "id": "listening-main-210",
+      "audioTextZh": "执行ETOPS延程双发运行，需要了解运行程序、临界燃油储备、高度能力、巡航航程性能和天气条件。\n问题：下列哪一项没有在陈述中提到？"
+    },
+    {
+      "id": "listening-main-214",
+      "audioTextZh": "飞行员：塔台，NWA 14，宣布紧急情况。我们的1号发动机着火，需要返回机场并在28L跑道着陆。\n问题：他们正在请求什么？"
+    },
+    {
+      "id": "listening-main-222",
+      "audioTextZh": "就燃油泵系统而言，它通常用于低翼飞机，因为这类飞机的燃油箱通常位于发动机下方。\n问题：燃油泵系统通常用在什么飞机上？"
+    },
+    {
+      "id": "listening-main-223",
+      "audioText": "The ailerons perform the same function on the ground as they do in the air. That is, they alter the lift and drag components on the wings.\nQuestion: What is the function of the ailerons?",
+      "audioTextZh": "副翼在地面上和在空中发挥相同的作用，即改变机翼上的升力和阻力分量。\n问题：副翼的作用是什么？"
+    },
+    {
+      "id": "listening-main-224",
+      "audioTextZh": "飞行机组应始终把座椅调整到合适位置，以便能够立即操纵飞机。\n问题：飞行机组的座椅为什么必须调整到合适位置？"
+    },
+    {
+      "id": "listening-main-225",
+      "audioTextZh": "这里是机长广播，柏林天气晴朗，有轻微西风。\n问题：下列哪一项描述了柏林的天气？"
+    },
+    {
+      "id": "listening-main-230",
+      "audioTextZh": "说话人1：你听说法国发生的那起事故了吗？说话人2：没有，发生了什么？说话人1：直升机坠毁引发了当地森林火灾，但幸运的是，火很快被扑灭了。这起空难造成3人死亡。\n问题：这起空难造成了什么后果？"
+    },
+    {
+      "id": "listening-main-241",
+      "audioTextZh": "由于天气恶劣且离场延误，航班直到午夜以后才抵达。因此，转机旅客错过了后续航班，只能被安排入住酒店。\n问题：为什么这些旅客被安排入住酒店？"
+    },
+    {
+      "id": "listening-main-242",
+      "audioTextZh": "ICAO IIIA类运行限制为决断高0英尺、跑道视程（RVR）200米。\n问题：IIIA类进近的运行限制是什么？"
+    },
+    {
+      "id": "listening-main-243",
+      "audioTextZh": "目的地机场的天气低于最低标准，机长决定飞往备降机场，该机场距军用机场不远。\n问题：机长决定飞往哪个机场？"
+    },
+    {
+      "id": "listening-main-244",
+      "audioTextZh": "起飞时配载平衡良好的飞机，在经停一两个站点后，可能因乘客和货物装卸或位置移动而出现严重失衡。\n问题：什么会造成飞机失衡？"
+    },
+    {
+      "id": "listening-main-245",
+      "audioTextZh": "那架进场飞机遇到了问题。如果襟翼无法放出，他们就必须使用更长的跑道，或者放掉一部分燃油。\n问题：他们为什么需要更长的跑道？"
+    },
+    {
+      "id": "listening-main-248",
+      "audioText": "A rapid exit taxiway is connected to a runway at an acute angle and is designed to allow landing aircraft to turn off the runway at high speed, thereby minimizing runway occupancy time and increasing runway efficiency.\nQuestion: At what angle should the rapid exit taxiway be connected to the runway?",
+      "audioTextZh": "快速脱离滑行道以锐角与跑道相连，其设计目的是让着陆飞机能够以较高速度脱离跑道，从而尽量缩短跑道占用时间，提高跑道使用效率。\n问题：快速脱离滑行道应以什么角度与跑道相连？"
+    },
+    {
+      "id": "listening-main-261",
+      "audioTextZh": "243.0应急频率由军用航空器、军用塔台、大多数民用塔台和雷达设施守听。\n问题：下列哪一项不守听243.0应急频率？"
+    },
+    {
+      "id": "listening-main-262",
+      "audioTextZh": "目视搜索其他航空器对于避免空中相撞非常重要，尤其是在按目视飞行规则（VFR）飞行时。\n问题：特别是在按VFR飞行时，目视搜索空中其他航空器有什么作用？"
+    },
+    {
+      "id": "listening-main-263",
+      "audioTextZh": "飞行员：飞行中方向舵脚蹬压力不足。我们怀疑液压系统一定存在泄漏。机务：我们会接通辅助泵来排查问题。\n问题：为查明液压系统的问题，应采取什么措施？"
+    },
+    {
+      "id": "listening-main-264",
+      "audioTextZh": "飞行计划似乎有一处错误：离场时间填写的是当地时间，而不是协调世界时（UTC）。\n问题：根据这段陈述，出现了什么错误？"
+    },
+    {
+      "id": "listening-main-265",
+      "audioTextZh": "检查单只用于核实影响安全的关键项目是否已经完成。\n问题：检查单会检查哪类项目？"
+    },
+    {
+      "id": "listening-main-268",
+      "audioTextZh": "发动机启动期间，一些飞行员认为N1和排气温度（EGT）最需要重点监控，但飞行员还应监控N2、燃油流量、启动活门打开指示灯和发动机启动电门。\n问题：根据这段陈述，一些飞行员认为什么最需要重点监控？"
+    },
+    {
+      "id": "listening-main-270",
+      "audioTextZh": "起飞前监控轮胎温度很重要，因为温度升高会导致轮胎压力增大，使轮胎膨胀，甚至可能达到爆裂极限，从而造成严重后果。\n问题：起飞前为什么必须监控轮胎温度？"
+    },
+    {
+      "id": "listening-main-355",
+      "audioText": "P: Approach, good morning, CCA 512, descending through FL200, squawking 4123.\nQuestion: What is the squawk code of Air China 512?",
+      "audioTextZh": "飞行员：进近，早上好，CCA 512，正在下降通过FL200，应答机编码4123。\n问题：国航512的应答机编码是多少？"
+    },
+    {
+      "id": "listening-main-361",
+      "audioText": "There are 2 pilots aboard this afternoon and an observer in the cockpit jump seat, 3 flight attendants, and 89 passengers.\nQuestion: How many people are there in the cockpit?",
+      "audioTextZh": "今天下午，机上有2名飞行员，驾驶舱观察员座椅上还有1名观察员，另有3名乘务员和89名乘客。\n问题：驾驶舱里共有多少人？"
+    },
+    {
+      "id": "listening-main-382",
+      "audioText": "The flight was delayed because 3 passengers were late. Then the tug was 10 minutes late, and the aircraft had to wait 15 minutes due to flow control.\nQuestion: How many passengers were late?",
+      "audioTextZh": "航班因3名乘客迟到而延误，随后牵引车又晚到10分钟；由于流量控制，飞机还必须等待15分钟。\n问题：有多少名乘客迟到？"
+    },
+    {
+      "id": "listening-main-383",
+      "audioText": "Dublin at 0830: wind 280 degrees at 12 knots, visibility 10 kilometers or more, cloud scattered at 2200 feet, temperature 12, dew point 6, QNH 1002, no significant change.\nQuestion: What is the temperature-dew point spread?",
+      "audioTextZh": "都柏林，时间0830；风向280度、风速12节；能见度10公里以上；2200英尺有疏云；温度12度，露点6度；QNH 1002；无显著变化。\n问题：温度与露点之差是多少？"
+    },
+    {
+      "id": "listening-main-405",
+      "audioText": "With the help of two cabin crew members, 35 passengers evacuated the aircraft on the right side, including 8 from the right wing.\nQuestion: How many passengers evacuated the aircraft on the right side?",
+      "audioTextZh": "在2名客舱乘务员的帮助下，35名乘客从飞机右侧撤离，其中8人经右翼撤离。\n问题：有多少名乘客从飞机右侧撤离？"
+    },
+    {
+      "id": "listening-main-414",
+      "audioText": "P: Control, CSN303, over OBC at 15, FL330, estimating PNO at 46, WFT next.\nQuestion: What is the immediate next reporting point?",
+      "audioTextZh": "飞行员：区调，CSN303，15分飞越OBC，FL330，预计46分到达PNO，下一报告点WFT。\n问题：紧接着要到达的报告点是哪一个？"
+    },
+    {
+      "id": "listening-main-422",
+      "audioText": "Your flight is at FL350 and you are experiencing turbulence. You would like to climb higher to FL390, but it is not available.\nQuestion: Look at the following 4 flight levels. Which level should you request?",
+      "audioTextZh": "你的航班目前在FL350飞行并遭遇颠簸。你希望爬升至更高的FL390，但该高度层不可用。\n问题：查看以下4个飞行高度层，你应该申请哪一个？"
+    },
+    {
+      "id": "listening-main-441",
+      "audioTextZh": "说话人：机长应在离场前检查维修记录本，确认维修放行仍然有效，并满足本次飞行要求。\n问题：短语“in force”是什么意思？"
+    },
+    {
+      "id": "listening-main-446",
+      "audioTextZh": "说话人1：我想知道你是否了解风切变。说话人2：了解，最危险的风切变是微下击暴流，它可能出现在雷暴、阵雨或积云下方。\n问题：哪种风切变最危险？"
+    },
+    {
+      "id": "listening-main-449",
+      "audioTextZh": "飞行员：塔台，AFR2136，正在复飞，我们在进近过程中遭遇了严重尾流颠簸。\n问题：进近过程中的颠簸是什么造成的？"
+    },
+    {
+      "id": "listening-main-451",
+      "audioTextZh": "说话人：这种气压基准设置显示航空器相对于机场场面的高度，也就是说，飞机在该机场着陆时高度表将显示为零。\n问题：这里提到的是哪一种高度表气压基准？"
+    },
+    {
+      "id": "listening-main-452",
+      "audioTextZh": "说话人：没有一种仪表扫视模式适用于所有飞行员。专业仪表飞行员会扫视所有仪表，其中姿态指示器最多可占扫视时间的三分之二。\n问题：飞行员会把多达三分之二的扫视时间用于哪个仪表？"
+    },
+    {
+      "id": "listening-main-454",
+      "audioTextZh": "说话人：每次飞行前，飞行员必须备齐所有必要文件，例如飞行计划、天气预报、航行通告（NOTAM）等。\n问题：哪一种文件没有被提到？"
+    },
+    {
+      "id": "listening-main-455",
+      "audioTextZh": "说话人：由于温度、压力和湿度的影响，空气密度很容易随压缩和膨胀而发生变化。\n问题：下列哪一项没有被提到？"
+    },
+    {
+      "id": "listening-main-173",
+      "audioTextZh": "飞行员：塔台，CCA 1452，准备离场。管制员：CCA1452，许可按跑道航向飞行并保持跑道航向，爬升至1800米，然后右转加入航路。联系126.25。飞行员：跑道航向，1800米，然后右转加入航路，联系126.25。\n问题：这段通话中没有提到什么？"
+    },
+    {
+      "id": "listening-main-176",
+      "audioTextZh": "管制员：CSN 316，地面风340度、2米/秒，许可在36L跑道着陆。飞行员：许可在36L跑道着陆，CSN316。管制员：CSN316，由于施工，E3快速脱离滑行道不可用。飞行员：收到，CSN316。\n问题：管制员向飞行员提醒了什么？"
+    },
+    {
+      "id": "listening-main-124",
+      "audioText": "A localizer signal provides course guidance along the descent path to the runway threshold from a distance of 18 nautical miles from the antenna site.\nQuestion: What type of approach does the statement refer to?",
+      "audioTextZh": "航向道信号从距天线一侧18海里处开始，沿通往跑道入口的下降路径提供航道引导。\n问题：这段陈述指的是哪一种进近？"
+    },
+    {
+      "id": "listening-main-325",
+      "audioText": "The greater the weight of an aircraft, the more wake turbulence it tends to generate, particularly when it affects an aircraft with a shorter wingspan than that of the generating aircraft.\nQuestion: What phenomenon does this statement refer to?",
+      "audioTextZh": "飞机重量越大，就越容易产生尾流颠簸；当受影响航空器的翼展小于产生尾流的飞机时，这种影响尤其明显。\n问题：这段陈述指的是哪一种现象？"
+    },
+    {
+      "id": "listening-main-408",
+      "audioText": "There are three flight crew members, 9 flight attendants, and 235 passengers on board the Airbus.\nQuestion: How many crew members are there on board the Airbus?",
+      "audioTextZh": "这架空客飞机上有3名飞行机组成员、9名客舱乘务员和235名乘客。\n问题：这架空客飞机上共有多少名机组成员？"
+    },
+    {
+      "id": "listening-main-376",
+      "audioText": "P: PAN PAN, PAN PAN, PAN PAN, CCA320, B747. We have shut down No. 2 engine due to excessive vibration. Heading now 120 degrees, altitude 600 meters, current position 20 miles east of HJU. Request return to your airport for immediate landing.\nQuestion: What type of aircraft was Air China 320?",
+      "audioTextZh": "飞行员：PAN PAN，PAN PAN，PAN PAN，CCA320，机型B747。由于振动过大，我们已经关闭2号发动机；当前航向120度、高度600米，位置在HJU以东20海里。请求返回你方机场立即着陆。\n问题：国航320是什么机型？"
+    },
+    {
+      "id": "listening-main-333",
+      "audioText": "C: CSN302, turn right heading 040, descend to 900 meters, QFE 1002.\nQuestion: Which of the following is true?",
+      "audioTextZh": "管制员：CSN302，右转航向040，下降至900米，场压（QFE）1002。\n问题：下列哪一项是正确的？"
+    }
+  ]
+}

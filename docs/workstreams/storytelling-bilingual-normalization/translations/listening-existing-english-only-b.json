@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 1,
+  "items": [
+    {
+      "id": "listening-main-177",
+      "audioTextZh": "管制员：AFR201，由于有故障航空器，取消23L跑道着陆许可，改用23R跑道，许可在23R跑道着陆。飞行员：AFR201，由于制动问题，无法在23R跑道着陆。我们需要一条更长的跑道。问题：他们为什么不能在23R跑道着陆？"
+    },
+    {
+      "id": "listening-main-178",
+      "audioText": "P: SIA3478, request low approach for visual check of the landing gear. C: SIA3478, cleared low approach runway 28 not below 400ft above threshold elevation, report final. P: Cleared low approach runway 28 not below 400ft above threshold elevation, wilco, SIA3478.\nQuestion: Why does SIA3478 request a low approach?",
+      "audioTextZh": "飞行员：SIA3478，请求低空进近，以便目视检查起落架。管制员：SIA3478，许可对28号跑道实施低空进近，通过跑道入口时不得低于跑道入口标高以上400英尺，报告最后进近。飞行员：许可对28号跑道实施低空进近，通过跑道入口时不得低于跑道入口标高以上400英尺，照办，SIA3478。问题：SIA3478为什么请求低空进近？"
+    },
+    {
+      "id": "listening-main-179",
+      "audioTextZh": "飞行员：塔台，Qantas332，我们正在接近等待点。管制员：Qantas332，进跑道对正并等待。注意前方离场航空器的尾流，等待起飞。飞行员：进跑道对正并等待。问题：飞行员应该注意什么？"
+    },
+    {
+      "id": "listening-main-197",
+      "audioTextZh": "NWA18正经T滑行道滑往23R跑道。飞行员：NWA18，在16号跑道外等待。管制员：NWA18，许可立即穿越跑道，最后进近航空器距跑道3海里。飞行员：NWA18，无法加快滑行，我们已经停住。管制员：NWA18，在16号跑道外等待，滑行许可取消。飞行员：NWA18，在跑道外等待。问题：请描述发生了什么。"
+    },
+    {
+      "id": "listening-main-199",
+      "audioTextZh": "管制员：TWA141，经A4和A滑行道滑往36号跑道等待点。谨慎滑行，滑行道湿滑。管制员：TWA141，立即停止，前方有冲突航空器正迎面而来。飞行员：正在停止，已看到该航空器，TWA141。问题：机组在途中可能看到了什么？"
+    },
+    {
+      "id": "listening-main-200",
+      "audioTextZh": "飞行员：伦敦管制，BAW403，我们失去了俯仰操纵能力，需要一个很长的最后进近，并请求着陆时安排消防救援。当前位置距跑道入口14海里，高度4000英尺，航向250。管制员：BAW403，伦敦管制，暂时保持此航向，我会立即引导你建立长距离直线进近。问题：飞行员提出了什么请求？"
+    },
+    {
+      "id": "listening-main-217",
+      "audioTextZh": "飞行员：武汉塔台，BAW70，我们失去了转向能力，无法自行脱离跑道。管制员：收到，BAW70，报告你的意图。飞行员：我们需要维修人员检查前轮，并派一辆牵引车把我们拖回航站楼，BAW70。问题：BAW70发生了什么？"
+    },
+    {
+      "id": "listening-main-218",
+      "audioTextZh": "管制员：BAW238，你所在区域的飞行条件正在变得颠簸。飞行员：是的，云中有严重颠簸，请求向航路右侧偏置飞行，BAW238。管制员：BAW238，我收到前机报告，9500米高度飞行平稳。飞行员：BAW238，请求爬升至9600米。问题：飞行员最初提出了什么请求？"
+    },
+    {
+      "id": "listening-main-219",
+      "audioTextZh": "飞行员：武汉管制，CSN319，请求下降。管制员：CSN319，下降并保持4800米，下降率每分钟2500英尺。飞行员：下降并保持4800米，下降率每分钟2500英尺，CSN319。问题：通话中没有包含哪项信息？"
+    },
+    {
+      "id": "listening-main-236",
+      "audioTextZh": "飞行员：上海，CES324，晚上好，保持9500米，应答机编码3426。管制员：CES324，收到，向L右侧偏置飞行。飞行员：无法偏置，我们是737-500，没有自动航迹跟踪能力，CES324。管制员：CES324，收到，按计划航路飞行。问题：中国东方航空324为什么没有偏置飞行？"
+    },
+    {
+      "id": "listening-main-237",
+      "audioTextZh": "管制员：Qantas5643，准备好时下降至FL170，离开FL220时报告。飞行员：准备好时下降至FL170，离开FL220时报告，Qantas5643。管制员：Qantas5643，立即爬升至FL240。飞行员：立即爬升至FL240，Qantas5643。问题：Qantas5643最初收到的指令是什么？"
+    },
+    {
+      "id": "listening-main-240",
+      "audioTextZh": "管制员：CCA1，进跑道对正并等待。飞行员：14R跑道上有一大群鸟。管制员：CCA1，那些鸟一直都在那里。飞行员：有其他可用跑道吗？管制员：27L跑道可用，预计延误15分钟。飞行员：CCA1，我们愿意接受一点延误。管制员：CCA1，在当前位置等待，我目前还不能批准，T滑行道上有相向航空器。问题：以下哪项说法正确？"
+    },
+    {
+      "id": "listening-main-256",
+      "audioTextZh": "管制员：United985，注意，23L跑道的ILS停止使用，预计对16号跑道实施VOR进近，再盘旋到23R跑道着陆。地面风250度、5节，阵风15节；云底高350米，多云。飞行员：United985，信息已收到，我们检查进近最低标准后再报告。问题：他们为什么不能直接进近23L跑道？"
+    },
+    {
+      "id": "listening-main-258",
+      "audioText": "C: CCA1365, Beijing Control, climb to and maintain 11000m. P: Request cruising level 9800m. Forecast weather is more favorable at this level, CCA1365. C: Roger, CCA1365, climb to and maintain 9800m, final level.\nQuestion: Why has CCA1365 requested a lower level?",
+      "audioTextZh": "管制员：CCA1365，北京管制，爬升并保持11000米。飞行员：请求巡航高度9800米，预报显示该高度的天气更有利，CCA1365。管制员：收到，CCA1365，爬升并保持9800米，作为最终高度。问题：CCA1365为什么请求较低的高度？"
+    },
+    {
+      "id": "listening-main-260",
+      "audioTextZh": "管制员：BAW342，不明航空器在你10点钟方向、距离6海里，正从左向右穿越，高度不明，速度很快。如未目视该航空器，左转航向270。飞行员：左转航向270，BAW342。管制员：BAW342，已避开冲突航空器，恢复自主领航，直飞LARIX。飞行员：照办，BAW342。问题：BAW342为什么左转？"
+    },
+    {
+      "id": "listening-main-276",
+      "audioTextZh": "飞行员：武汉塔台，CSN316，在36L跑道航向道上保持1200米。管制员：CSN316，继续进近，2点钟方向有航空器在36R跑道着陆，目视该航空器时报告。飞行员：继续进近，照办，CSN316。问题：2点钟方向的航空器在哪条跑道着陆？"
+    },
+    {
+      "id": "listening-main-277",
+      "audioText": "P: MAYDAY, MAYDAY, MAYDAY, ACA3428 has intercepted a distress call from CCA3256. I say again, CCA3256, double engine failure, forced landing, current position 10 miles east of LAMOT, over. C: ACA3248, roger your relayed MAYDAY for CCA3256.\nQuestion: What do you learn from the exchange?",
+      "audioTextZh": "飞行员：MAYDAY，MAYDAY，MAYDAY，ACA3428截获了CCA3256的遇险呼叫。再说一遍，CCA3256，两台发动机失效，实施强迫着陆，当前位置在LAMOT以东10海里。完毕。管制员：ACA3248，收到你转报的CCA3256 MAYDAY信息。问题：你从这段通话中了解到什么？"
+    },
+    {
+      "id": "listening-main-278",
+      "audioTextZh": "飞行员1：在下一个路口右转。飞行员2：你确定吗？这是跑道。我们一定错过转弯了。告诉地面管制，我们正在等待指令。管制员：CCA0011，刚才……呼叫你。你们错过了T滑行道，可以沿当前未使用的5L跑道继续，左转进入E滑行道，再右转进入S滑行道前往跑道。不要再错过S滑行道，否则你们将进入正在使用的跑道。问题：机组做错了什么？"
+    },
+    {
+      "id": "listening-main-279",
+      "audioTextZh": "飞行员：MAYDAY，MAYDAY，MAYDAY，北京管制，SIA442，B777，后部洗手间起火，正在下降至3600米，请求在北京机场紧急着陆。当前位置在北京以西50海里，航向060。管制员：SIA442，收到MAYDAY。各台注意，所有在126.3频率上的电台停止发射，MAYDAY。问题：SIA442的位置在哪里？"
+    },
+    {
+      "id": "listening-main-280",
+      "audioText": "P: Melbourne Center, BAW315, we are unsure of our position and request radar vector to the nearest airport due to insufficient fuel. We are maintaining FL110, heading 060. C: BAW315, Melbourne Center, copied your transmission, confirm you wish to make PAN, sir. P: BAW315, affirm, PAN PAN, PAN PAN, PAN PAN.\nQuestion: Why does the pilot request vector to the nearest airport?",
+      "audioTextZh": "飞行员：墨尔本中心，BAW315，由于燃油不足，我们无法确定自身位置，请求雷达引导至最近的机场。我们保持FL110，航向060。管制员：BAW315，墨尔本中心，已收到你的信息，请确认你希望宣布PAN，先生。飞行员：BAW315，确认，PAN PAN，PAN PAN，PAN PAN。问题：飞行员为什么请求引导至最近的机场？"
+    },
+    {
+      "id": "listening-main-298",
+      "audioText": "C: United15, be advised runway 23L ILS is out of service, expect VOR approach runway 16, circle to land runway 23R, surface wind 250 at 5 gusting to 15, ceiling 350m broken. P: United15, information copied, check the minima for approach, will advise.\nQuestion: Which active runway is the surface wind favoring?",
+      "audioTextZh": "管制员：United15，注意，23L跑道的ILS停止使用，预计对16号跑道实施VOR进近，再盘旋到23R跑道着陆。地面风250度、5节，阵风15节；云底高350米，多云。飞行员：United15，信息已收到，我们检查进近最低标准后再报告。问题：地面风有利于使用哪条正在运行的跑道？"
+    },
+    {
+      "id": "listening-main-380",
+      "audioText": "P: MAYDAY, MAYDAY, MAYDAY, NWA987, engine fire after takeoff, request turn back for emergency landing. C: NWA987, roger MAYDAY, turn right heading 090. P: NWA987, we've lost the use of all instruments, the fuel is still burning, we have runway 22 in sight and return to land immediately, out.\nQuestion: What type of approach will Northwest987 carry out?",
+      "audioTextZh": "飞行员：MAYDAY，MAYDAY，MAYDAY，NWA987，起飞后发动机起火，请求返场紧急着陆。管制员：NWA987，收到MAYDAY，右转航向090。飞行员：NWA987，我们所有仪表都已失效，燃油仍在燃烧。我们已目视22号跑道，将立即返场着陆，通话结束。问题：西北航空987将实施哪种进近？"
+    },
+    {
+      "id": "listening-main-448",
+      "audioTextZh": "管制员：JAL785，地面机务报告，APU排气口下方的两盏白色航行灯和一盏频闪灯不工作。飞行员：是这样吗？我们必须检查最低设备清单（MEL）。飞行员：地面，JAL785，飞机不适航，我们将滑回停机位更换设备。问题：飞机为什么滑回？"
+    },
+    {
+      "id": "listening-main-453",
+      "audioTextZh": "飞行员：BAW309，我们无法控制增压，座舱高度正在迅速上升，请求立即下降至FL120。管制员：BAW309，收到，下降至FL120，到达时报告。飞行员：正在下降至FL120，照办，BAW309。问题：飞机正下降到哪个高度，原因是什么？"
+    },
+    {
+      "id": "listening-main-458",
+      "audioTextZh": "飞行员：MAYDAY，MAYDAY，MAYDAY，离场管制，Karun Airlines2633，我们客舱后部有烟雾，请求在FL180改平并返场着陆。管制员：Karun Airlines2633，收到MAYDAY，爬升并保持FL180，你是着陆第一顺位。问题：飞机发生了什么？"
+    },
+    {
+      "id": "listening-main-167",
+      "audioText": "My friend is really angry with the airline. Last week, he had a reservation for a flight to Shanghai for an important meeting. But he didn't get on the flight even though he got to the airport ahead of time. The airline apologized and offered him money, but he refused the money and took legal action against the airline.\nQuestion: Which statement is correct?",
+      "audioTextZh": "我的朋友对这家航空公司非常生气。上周，他预订了一个飞往上海的航班，要去参加一场重要会议。尽管他提前到达机场，却没能登上航班。航空公司向他道歉并提出赔偿，但他拒绝接受这笔钱，并对航空公司采取了法律行动。问题：以下哪项说法正确？"
+    },
+    {
+      "id": "listening-main-186",
+      "audioTextZh": "说话人1：飞行前检查分为不同类型和不同程度。说话人2：是的，各个部件会根据着陆次数、飞行小时数和其他标准进行更换。问题：更换单个部件的依据是什么？"
+    },
+    {
+      "id": "listening-main-187",
+      "audioTextZh": "说话人：在仪表飞行期间，你的大部分仪表扫描时间都会用在姿态指示器上。你会发现，仪表飞行比目视飞行精确得多，这是因为你现在更关注仪表所显示的飞行性能，而过去则把时间花在观察机外。问题：说话人主要在谈论什么？"
+    },
+    {
+      "id": "listening-main-189",
+      "audioTextZh": "飞机刚刚起飞，机组预计右转飞往航路点YB，该点是标准仪表离场程序（SID）的出口点。通过600米时，离场管制员指示他们右转飞往VINI；机组不理解也不认识这个航路点，因此决定联系离场管制。问题：机组为什么需要联系离场管制？"
+    },
+    {
+      "id": "listening-main-190",
+      "audioTextZh": "当气温低于冰点、但云中仍有部分液态水时，就存在空中结冰条件。影响云中积冰的最重要因素，是云中液态水的含量和水滴的大小。通常，结冰问题最初表现为指示空速下降、爬升率降低，以及为保持选定空速需要使用比正常更高的功率设置。问题：结冰问题最初的征兆之一是什么？"
+    },
+    {
+      "id": "listening-main-198",
+      "audioTextZh": "飞行员：PAN PAN，PAN PAN，PAN PAN，AFR4095，B737。由于遭遇鸟击，我们已经关闭2号发动机。当前航向230，高度600米，位置在RTD以南10海里，请求立即返场着陆。问题：为什么关闭发动机？"
+    },
+    {
+      "id": "listening-main-207",
+      "audioTextZh": "说话人1：有一种广播通过连续、重复播发的方式，为进场和离场航空器提供最新的日常运行信息。说话人2：这种广播使用ICAO拼读字母标识，并按照字母顺序依次播发。问题：他们在谈论什么？"
+    },
+    {
+      "id": "listening-main-208",
+      "audioTextZh": "在许可航空器起飞前，塔台管制员有责任保持航空器之间的适当间隔。该间隔会根据飞行航路、机型和天气条件而变化。在低能见度条件下，管制员使用场面监视雷达监控每架航空器在地面的具体位置。问题：在低能见度条件下，管制员使用什么设备？"
+    },
+    {
+      "id": "listening-main-209",
+      "audioText": "The controller mistakenly tells the Cessna on the ground rather than the one in the air to execute a 360 turn. When he sees the one in the air not following his instructions, he repeats the command. The pilot on the ground taxis in a circle and says, 'I am doing this as far as I can.'\nQuestion: Whom did the controller want to execute a three-sixty turn?",
+      "audioTextZh": "管制员错误地指示地面上的塞斯纳做360度转弯，而这条指令本应发给空中的那架塞斯纳。当他看到空中的飞机没有执行指令时，又重复了一遍。地面上的飞行员则让飞机滑行转了一圈，并说：“我会尽我所能执行。”问题：管制员原本想让谁做360度转弯？"
+    },
+    {
+      "id": "listening-main-226",
+      "audioText": "M1: The main objective of AIS aerodrome units is to provide pilots with aeronautical information for a flight. M2: In effect, it's very important to provide information in such a way that will facilitate safe briefing for pilots to obtain the required information.\nQuestion: What is the main idea of the conversation?",
+      "audioTextZh": "说话人1：航空情报服务（AIS）机场单位的主要目标，是向飞行员提供一次飞行所需的航空情报。说话人2：实际上，以便于飞行员安全完成飞行前讲解并获取所需信息的方式提供这些情报非常重要。问题：这段对话的主旨是什么？"
+    },
+    {
+      "id": "listening-main-228",
+      "audioTextZh": "精密进近CAT IIIA跑道的运行标准为跑道视程（RVR）200米、不设决断高，在着陆最后阶段利用目视范围完成操作。CAT IIIB适用于最低RVR 15米，同样不设决断高，并需要利用目视范围滑行。问题：CAT IIIA运行的最低标准是什么？"
+    },
+    {
+      "id": "listening-main-246",
+      "audioTextZh": "联邦法规规定了必须使用补充氧气的情况。如果飞行员在12000英尺巡航高度飞行，应查阅相关法规。一般而言，白天飞行高度超过10000英尺、夜间超过5000英尺时，应考虑使用补充氧气。问题：一般来说，什么时候应该使用补充氧气？"
+    },
+    {
+      "id": "listening-main-247",
+      "audioTextZh": "安全调查显示，由于机组执勤时间限制，该航班承受着时间压力。雾正在涌入，能见度接近或低于合法起飞最低标准。如果不能尽快起飞，他们就必须返回登机口，并将航班推迟到第二天。因此，机长决定立即起飞。问题：机长为什么决定在恶劣条件下起飞？"
+    },
+    {
+      "id": "listening-main-249",
+      "audioTextZh": "一般来说，抑制类药物会降低身体机能，包括降低血压、削弱思维处理能力，并使动作和反应变慢。有多种药物和酒精会对身体产生这种抑制作用，其中最常见的就是酒精。问题：酒精通常会怎样降低身体机能？"
+    },
+    {
+      "id": "listening-main-250",
+      "audioTextZh": "今天上午上海地区预报：云底高900米，多云；3000米，阴天。能见度4000米，在阵雨中降低至1000米。风向320度，风速每秒10米，阵风每秒15米。问题：以下哪项说法不正确？"
+    },
+    {
+      "id": "listening-main-257",
+      "audioTextZh": "飞行员：PAN PAN，PAN PAN，PAN PAN，马尼拉塔台，CCA982，我们的发动机火警灯亮起。我们已经完成紧急检查单程序，警告灯仍然亮着，但没有看到任何起火迹象。我们需要脱离跑道，请求滑行指令。问题：飞行员为什么发出紧急呼叫？"
+    },
+    {
+      "id": "listening-main-266",
+      "audioTextZh": "飞机制造商正在使用更轻的材料制造飞机，以降低燃油成本。然而，与使用铝材制造的老式飞机相比，一些新飞机承受雷击的能力可能较弱，因为铝是一种良好的导体。以一些早期飞机的翼尖为例，近期事件中曾报告一架CRJ的翼尖遭雷击受损。问题：由于采用轻质材料，新飞机可能面临什么安全问题？"
+    },
+    {
+      "id": "listening-main-267",
+      "audioTextZh": "形成火灾需要三个要素：氧气、可燃物，例如旅客行李或计算机设备，以及点火源，例如热量。消除火灾最实际的方法是切断氧气供应。问题：根据这段陈述，扑灭火灾的最佳方法是什么？"
+    },
+    {
+      "id": "listening-main-269",
+      "audioTextZh": "我们目前在10500米，颠簸正在增强。其他航空器报告12500米处颠簸不大，但我们太重，无法爬升到那么高。管制员表示，我们可以爬升至11500米，或者下降至9500米以下。该区域交通繁忙，因此可选方案十分有限。问题：可以申请以下哪个高度？"
+    },
+    {
+      "id": "listening-main-288",
+      "audioText": "Obstacle clearance is based on aircraft climbing at 200ft per nm, crossing the end of the runway at 35ft AGL, and climbing to 400ft above airport elevation before turning unless otherwise specified by the procedure.\nQuestion: What is the limitation of obstacle clearance when the airplane is crossing the end of the runway?",
+      "audioTextZh": "越障标准以航空器保持每海里200英尺的爬升梯度、以高于地面35英尺的高度飞越跑道末端，并在转弯前爬升至机场标高以上400英尺为基础，除非程序另有规定。问题：飞机飞越跑道末端时的越障高度限制是多少？"
+    },
+    {
+      "id": "listening-main-443",
+      "audioTextZh": "说话人：在地面滑跑期间，可以通过谨慎地向一侧刹车施加压力，或对两侧刹车施加不均等压力来改变飞机方向。问题：地面滑跑期间，应如何使用刹车控制方向？"
+    }
+  ]
+}

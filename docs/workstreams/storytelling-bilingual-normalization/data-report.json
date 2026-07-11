@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-10T03:29:49.662Z",
+  "writeMode": true,
+  "storytelling": {
+    "cards": 296,
+    "audioTextZhFilled": 296,
+    "audioFilesMounted": 296,
+    "methods": {
+      "translation-marker": 81,
+      "language-boundary": 110,
+      "translated": 56,
+      "outline-extracted": 49
+    },
+    "reviewCorrections": 63,
+    "chineseLeakInAudioText": []
+  },
+  "listening": {
+    "cards": 631,
+    "audioTextZhFilled": 631,
+    "audioTextZhUsable": 631,
+    "audioTextEnglishOnly": 631,
+    "translationOverrides": 451,
+    "remainingMissing": []
+  }
+}

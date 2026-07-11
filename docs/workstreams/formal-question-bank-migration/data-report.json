@@ -1,0 +1,47 @@
+{
+  "sourceRoot": "/Users/codex-backup/Desktop/work/feizhuicu/public/data/question-bank/mini-v1",
+  "sourceAudioRoot": "/Users/codex-backup/Desktop/work/feizhuicu/public/question-bank",
+  "outputPath": "/Users/codex-backup/Desktop/work/icao-design/lib/question-banks/data/question-bank.json",
+  "outputAudioRoot": "/Users/codex-backup/Desktop/work/icao-design/public/question-bank/listening",
+  "datasets": [
+    {
+      "id": "listening",
+      "categories": 4,
+      "topics": 4,
+      "cards": 632
+    },
+    {
+      "id": "sentences900",
+      "categories": 3,
+      "topics": 3,
+      "cards": 900
+    },
+    {
+      "id": "radiotelephony",
+      "categories": 11,
+      "topics": 107,
+      "cards": 1851
+    },
+    {
+      "id": "opi",
+      "categories": 7,
+      "topics": 121,
+      "cards": 1269
+    },
+    {
+      "id": "storytelling",
+      "categories": 2,
+      "topics": 4,
+      "cards": 296
+    }
+  ],
+  "listeningAudioCount": 632,
+  "forbiddenKeys": [
+    "schemaVersion",
+    "source",
+    "rawSourceId",
+    "media",
+    "catalog"
+  ],
+  "leakedKeys": []
+}

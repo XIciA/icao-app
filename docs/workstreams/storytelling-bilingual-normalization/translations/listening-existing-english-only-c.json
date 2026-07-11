@@ -1,0 +1,200 @@
+{
+  "schemaVersion": 1,
+  "items": [
+    {
+      "id": "listening-main-445",
+      "audioTextZh": "机长：我是机长。欢迎乘坐飞往纽约的305号航班。目前舱门已经关闭。不过，由于空中交通拥堵，航班将短暂延误。我们接到通知，还要再等待10分钟才能推出。\n问题：305号航班在推出前还要等待多长时间？"
+    },
+    {
+      "id": "listening-main-171",
+      "audioTextZh": "管制员：CES5402，武汉进近，低高度警告。请按QNH1012检查高度，最低安全高度为900米。\n飞行员：照办，5402。\n问题：发生了什么情况？"
+    },
+    {
+      "id": "listening-main-172",
+      "audioTextZh": "飞行员：地面管制，CSN378。\n管制员：CSN378，地面，请讲。\n飞行员：我们的APU发生故障，请求在机位启动2号发动机，CSN378。\n问题：CSN378请求做什么？"
+    },
+    {
+      "id": "listening-main-174",
+      "audioTextZh": "管制员：左转30度，完成转弯后，预计在你两点钟方向有一架正在爬升的飞机，高度为1,000英尺或以下。\n问题：该飞机什么时候会出现在两点钟方向？"
+    },
+    {
+      "id": "listening-main-175",
+      "audioText": "C: AFR765, reply not received, if you read, turn left heading 040 degrees, I say again, turn left heading 040 degrees.\nQuestion: What problem might Air France have?",
+      "audioTextZh": "管制员：AFR765，未收到你的回答。如果你能听到，左转航向040度。再说一遍，左转航向040度。\n问题：法航飞机可能出现了什么问题？"
+    },
+    {
+      "id": "listening-main-180",
+      "audioTextZh": "管制员：UAL755，云底高度250英尺、变化不定，雾中能见度2,200米，建议复飞。\n飞行员：UAL755。\n飞行员：UAL755，在最低标准高度未建立目视，正在复飞。\n问题：管制员建议复飞的原因是什么？"
+    },
+    {
+      "id": "listening-main-191",
+      "audioTextZh": "管制员：Qantas541，允许爬升至8,100米。\n飞行员：我们的飞行计划只申请了7,500米，不过如果你希望我们使用8,100米，我们也可以接受。\n问题：飞行员的回答是什么意思？"
+    },
+    {
+      "id": "listening-main-192",
+      "audioTextZh": "飞行员：武汉地面，CCA101，请求拖飞机。由于前起落架卡住，请将这架波音737从M5机位拖至维修机坪。\n管制员：同意拖行，经M滑行道前往维修机坪。\n问题：这架飞机出了什么问题？"
+    },
+    {
+      "id": "listening-main-194",
+      "audioTextZh": "飞行员：离场，AFR456。我们在起飞过程中遭遇鸟击，风挡出现裂纹，因此正在返航。\n管制员：AFR456，收到，加入右三边。\n问题：AFR为什么返航？"
+    },
+    {
+      "id": "listening-main-195",
+      "audioTextZh": "管制员：NWA898，允许经A1飞往北京，爬升至6,000米，执行WeKing 4离场，应答机编码5501。呃，更正，应答机编码稍后通知。\n问题：西北航空898应该设置什么应答机编码？"
+    },
+    {
+      "id": "listening-main-196",
+      "audioTextZh": "管制员：CES147，你们希望医务人员在登机口等候，还是在你们脱离跑道的滑行道上等候？\n飞行员：CES147，我们将经N滑行道脱离，希望医务人员在那里等候。\n问题：东航147希望医务人员在哪里接应？"
+    },
+    {
+      "id": "listening-main-211",
+      "audioTextZh": "飞行员：我们无法按时到达除冰坪，因此经过协调，我们获得了新的时隙时间。\n管制员：好的，我查看一下，并为你安排一个新的离场时隙。\n问题：他们为什么需要获得新的离场时隙？"
+    },
+    {
+      "id": "listening-main-212",
+      "audioTextZh": "管制员：CCA1141，经A4滑行道脱离跑道。注意，右侧有一道大沟；更正，A4滑行道左侧有一道大沟。\n问题：管制员是什么意思？"
+    },
+    {
+      "id": "listening-main-215",
+      "audioTextZh": "管制员：CCA1365，北京放行，由于军事活动正在进行，取消放行许可，预计20分钟后获得新的放行许可。\n问题：CCA1365在20分钟后应预计获得什么？"
+    },
+    {
+      "id": "listening-main-216",
+      "audioTextZh": "飞行员：ACA177，我们在当前飞行高度层一直遭遇严重颠簸。可以给我们一个稍低的高度层吗？\n管制员：ACA177，稍等。\n飞行员：收到，ACA177。如果没有较低高度层，我们也可以接受较高的高度层。\n管制员：ACA177，爬升至FL370。\n问题：飞行员为什么希望改变飞行高度层？"
+    },
+    {
+      "id": "listening-main-220",
+      "audioTextZh": "管制员：空中交通管制许可NWA146按飞行计划航路飞往目的地，执行Arch County Standard Vortex 1离场，使用23R跑道，应答机编码2512。离地后在125.6联系雷达管制。\n问题：应答机编码是多少？"
+    },
+    {
+      "id": "listening-main-221",
+      "audioTextZh": "管制员：该飞机完成转弯后，会出现在你一点钟方向，高度限制在12,000英尺。\n问题：该飞机什么时候会出现在一点钟方向？"
+    },
+    {
+      "id": "listening-main-231",
+      "audioTextZh": "管制员：SIA919，北京区调，左转航向220度，相反方向有一架空客飞机在FL330飞行。\n问题：相反方向的飞机正在什么高度飞行？"
+    },
+    {
+      "id": "listening-main-232",
+      "audioText": "C: CCA1, heavy, cleared to land runway 19R, do you overtake EJR on your right? Confirm you have it in sight.\nQuestion: Where is the other aircraft?",
+      "audioTextZh": "管制员：CCA1，重型，允许在19R跑道着陆。你们正在超越右侧的EJR飞机，确认已经看到该机。\n问题：另一架飞机在哪里？"
+    },
+    {
+      "id": "listening-main-233",
+      "audioTextZh": "管制员：CES5632，50分时，一架离场的波音757报告在800英尺遭遇风切变，空速损失20节，并出现强烈右偏。\n问题：飞行员可能会遇到什么危险？"
+    },
+    {
+      "id": "listening-main-234",
+      "audioTextZh": "管制员：CES345，你们的离场时间是14:00，对吗？\n飞行员：是的，那是计划离场时间。我会在启动发动机前15分钟呼叫你。\n问题：飞行员什么时候会联系空中交通管制？"
+    },
+    {
+      "id": "listening-main-235",
+      "audioText": "C: NWA 142, cleared visual approach runway 19L, maintain visual separation with Air China 737 ahead on short final landing on parallel runway. Confirm you have it in sight.\nQuestion: Where is the other aircraft?",
+      "audioTextZh": "管制员：NWA142，允许目视进近19L跑道。与前方在平行跑道短五边着陆的国航波音737保持目视间隔，确认已经看到该机。\n问题：另一架飞机在哪里？"
+    },
+    {
+      "id": "listening-main-238",
+      "audioTextZh": "管制员：UAL347，由于有冲突飞机，立即下降，一架波音737正在接近你们。\n飞行员：管制，UAL347，我们的TCAS决断咨询指令我们立即爬升以避让。前方冲突飞机正在下降。\n问题：发生了什么情况？"
+    },
+    {
+      "id": "listening-main-239",
+      "audioTextZh": "管制员：UAL895，注意，23L跑道ILS停止使用。预计对16号跑道实施VOR进近，随后盘旋在23R跑道着陆。地面风向250度，阵风15节，云底250英尺，多云。\n飞行员：UAL895，收到。VOR进近16号跑道，盘旋在23R跑道着陆。\n问题：机组预计可以实施哪种进近？"
+    },
+    {
+      "id": "listening-main-251",
+      "audioTextZh": "管制员：SIA786，武汉进近，允许对04号跑道实施ILS进近，随后盘旋在22号跑道着陆。\n问题：新航786应该在哪条跑道着陆？"
+    },
+    {
+      "id": "listening-main-252",
+      "audioTextZh": "飞行员：CCA981，经过S后继续进入K滑行道，在27号跑道外等待；请求从27号跑道全跑道起飞，CCA981。\n管制员：CCA981，收到，经J滑行道滑行，在27号跑道外等待。\n问题：CCA981提出了什么请求？"
+    },
+    {
+      "id": "listening-main-253",
+      "audioTextZh": "管制员：CSN3342，不要把飞机停在那里，机头应该背向机库。\n问题：说话人是什么意思？"
+    },
+    {
+      "id": "listening-main-254",
+      "audioTextZh": "管制员：CCA412，重型，允许从23L跑道起飞，风向220度，风速15节。\n问题：国航412使用哪条跑道起飞？"
+    },
+    {
+      "id": "listening-main-255",
+      "audioTextZh": "管制员：BAW725，在35L跑道外等待。你是第二个离场，在那架波音737之后起飞。\n问题：预计BAW725应位于哪里？"
+    },
+    {
+      "id": "listening-main-259",
+      "audioText": "P: Center, CES16, we need to turn left 30 degrees due to weather. C: CES16, unable due to traffic. Can you accept 20 degrees right? P: Affirm, we can accept 20 degrees right. Heading 090 degree, CES16.\nQuestion: Which course change is refused by the controller?",
+      "audioTextZh": "飞行员：区调，CES16，由于天气原因，我们需要左偏30度。\n管制员：CES16，由于有冲突飞机，无法批准。你们能接受右偏20度吗？\n飞行员：可以，我们能接受右偏20度，航向090度，CES16。\n问题：管制员拒绝了哪项航向改变请求？"
+    },
+    {
+      "id": "listening-main-271",
+      "audioTextZh": "管制员：Qantas501，在16号跑道外等待，避让着陆飞机，在124.95联系塔台。\n问题：塔台为什么要求Qantas501在跑道外等待？"
+    },
+    {
+      "id": "listening-main-272",
+      "audioTextZh": "管制员：BAW7421，27号跑道跑道视程：接地区200米，中间段300米，停止端1,000米。\n问题：着陆飞机会遇到哪类问题？"
+    },
+    {
+      "id": "listening-main-273",
+      "audioTextZh": "管制员：NWA40，重型，前方FL380以上报告有中度颠簸。你们需要较低高度吗？\n飞行员：收到，FL360可用吗？NWA40，重型。\n问题：报告的颠簸位于哪里？"
+    },
+    {
+      "id": "listening-main-274",
+      "audioTextZh": "管制员：AFR215，目前FL310不可用，可选择FL350，请告知。\n问题：哪项说法正确？"
+    },
+    {
+      "id": "listening-main-275",
+      "audioTextZh": "管制员：NWA152，左转航向050度。完成转弯后，冲突飞机会出现在你一点钟方向。\n问题：冲突飞机什么时候会出现在一点钟方向？"
+    },
+    {
+      "id": "listening-main-311",
+      "audioText": "P: Control, CCA980, confirm holding instruction. C: CCA980, hold at N VOR/DME 120 radial, inbound track 220, right hand turn.\nQuestion: What is the inbound track?",
+      "audioTextZh": "飞行员：区调，CCA980，请证实等待指令。\n管制员：CCA980，在N VOR/DME的120度径向线上等待，向台航迹220度，右转。\n问题：向台航迹是多少？"
+    },
+    {
+      "id": "listening-main-313",
+      "audioText": "C: AFR133, SIA Ground, take the first left, then contact Ground 121.6.\nQuestion: What radio frequency is ground control on?",
+      "audioTextZh": "管制员：AFR133，新加坡地面，在第一个道口左转，然后在121.6联系地面管制。\n问题：地面管制使用什么无线电频率？"
+    },
+    {
+      "id": "listening-main-315",
+      "audioText": "C: SIA146, cleared to taxi to runway 10 via V1 and V2, be advised low visibility procedures are in force, RVR runway 10 is 250m, mid point 220, stop end 200m.\nQuestion: What is mid-point RVR?",
+      "audioTextZh": "管制员：SIA146，允许经V1和V2滑行至10号跑道。注意，低能见度程序正在实施；10号跑道跑道视程为250米，中间段220米，停止端200米。\n问题：中间段跑道视程是多少？"
+    },
+    {
+      "id": "listening-main-320",
+      "audioText": "C: CCA981, Wuhan Tower, radar shows you are 200 feet above glide slope. P: Tower, CCA981, roger, we've just lost glide slope indication on the instrument, we are going around as published.\nQuestion: What type of approach was CCA981 flying before the missed approach?",
+      "audioTextZh": "管制员：CCA981，武汉塔台，雷达显示你们高于下滑道200英尺。\n飞行员：塔台，CCA981，收到。我们的仪表刚刚失去下滑道指示，正在按公布程序复飞。\n问题：CCA981复飞前实施的是什么进近？"
+    },
+    {
+      "id": "listening-main-335",
+      "audioText": "P: Departure, AFR486, reaching 3000ft. C: AFR486, climb to 9000ft, expedite climb until passing 5000ft, report 7000ft.\nQuestion: In which section of altitude should AFR486 speed up the climb?",
+      "audioTextZh": "飞行员：离场，AFR486，正到达3,000英尺。\n管制员：AFR486，爬升至9,000英尺，在通过5,000英尺前加速爬升，7,000英尺时报告。\n问题：AFR486应在哪一段高度加速爬升？"
+    },
+    {
+      "id": "listening-main-391",
+      "audioText": "C: BAW505, after departure, contact departure on 119.7, cleared for takeoff runway 25L, wind calm.\nQuestion: Which runway is the runway in use?",
+      "audioTextZh": "管制员：BAW505，离场后在119.7联系离场管制，允许从25L跑道起飞，静风。\n问题：当前使用哪条跑道？"
+    },
+    {
+      "id": "listening-main-439",
+      "audioText": "C: CCA101, backtrack on runway 11R, then take the first convenient left to vacate the runway.\nQuestion: On which runway should the aircraft backtrack?",
+      "audioTextZh": "管制员：CCA101，在11R跑道上调头滑行，然后从第一个方便的左侧道口脱离跑道。\n问题：飞机应该在哪条跑道上调头滑行？"
+    },
+    {
+      "id": "listening-main-447",
+      "audioTextZh": "管制员：BAW505，你们的时隙时间是12:50；更正，12:05。可自行决定启动发动机。\n问题：预计飞机什么时候离场？"
+    },
+    {
+      "id": "listening-main-450",
+      "audioTextZh": "管制员：BAW141，避免从破损道面上滑过，那里可能会造成颠簸。\n问题：说话人是什么意思？"
+    },
+    {
+      "id": "listening-main-456",
+      "audioTextZh": "管制员：BAW480，你们起飞时左主起落架有烟冒出，请告知意图。\n飞行员：收到，稍等，随后告知，BAW480。\n问题：管制员向Speedbird 480提供了什么信息？"
+    },
+    {
+      "id": "listening-main-457",
+      "audioTextZh": "飞行员：北京塔台，CSN311，ILS进近36L跑道。\n管制员：CSN311，继续进近，在距离台7海里前保持170节。\n飞行员：继续进近，在距离台7海里前保持170节，CSN311。\n问题：管制员发布了什么指令？"
+    }
+  ]
+}

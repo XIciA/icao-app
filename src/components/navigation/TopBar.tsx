@@ -17,6 +17,10 @@ type Props = {
 export function TopBar({ title, onBack, close = false, right }: Props) {
   const router = useRouter();
   const Icon = close ? X : ArrowLeft;
+  const handleBack = onBack ?? (() => {
+    if (router.canGoBack()) router.back();
+    else router.replace('/(tabs)');
+  });
 
   return (
     <View style={styles.bar}>
@@ -24,7 +28,7 @@ export function TopBar({ title, onBack, close = false, right }: Props) {
         accessibilityLabel={close ? '关闭' : '返回'}
         accessibilityRole="button"
         hitSlop={8}
-        onPress={onBack ?? router.back}
+        onPress={handleBack}
         style={({ pressed }) => [styles.iconButton, pressed ? styles.pressed : null]}
       >
         <Icon color={colors.foreground} size={20} strokeWidth={2} />

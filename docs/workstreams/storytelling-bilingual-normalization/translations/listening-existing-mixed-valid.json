@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "items": [
+    {
+      "id": "listening-main-121",
+      "audioText": "If significant engine vibration occurs due to ice buildup on the blades, the engine should be accelerated to a minimum of 70% N1 for approximately 15 seconds.\nQuestion: What causes the vibration?",
+      "audioTextZh": "如果叶片积冰导致发动机明显振动，应把发动机加速至至少70% N1，并保持约15秒。\n问题：是什么造成了发动机振动？"
+    },
+    {
+      "id": "listening-main-129",
+      "audioText": "P: On landing, I noticed the landing gear had a little shimmy. M: Okay, we will check it. The ... is good, ... in the center, the gear is not locked down properly.\nQuestion: What was the problem with the nose gear on landing?",
+      "audioTextZh": "飞行员：着陆时，我注意到起落架有些摆振。机务：好的，我们会检查。……状态正常，……位于中心，起落架没有正确锁定在放下位。\n问题：着陆时前起落架出现了什么问题？"
+    },
+    {
+      "id": "listening-main-163",
+      "audioText": "M1: According to the current law, those who take dangerous goods onto an airplane have to be detained for 5 to 15 days. M2: That's serious.\nQuestion: How long will a person be detained for carrying forbidden goods?",
+      "audioTextZh": "说话人1：根据现行法律，携带危险品登机的人将被拘留5至15天。说话人2：后果很严重。\n问题：携带违禁品的人会被拘留多长时间？"
+    },
+    {
+      "id": "listening-main-164",
+      "audioText": "There are 3 flight crew members, 6 flight attendants, and only 8 passengers on board the DC-10.\nQuestion: How many cabin crew members were on board the aircraft?",
+      "audioTextZh": "这架DC-10上有3名飞行机组成员、6名客舱乘务员和仅8名乘客。\n问题：飞机上有多少名客舱机组成员？"
+    },
+    {
+      "id": "listening-main-181",
+      "audioText": "M1: Do you know there is a word the controller will use to inform pilots to disregard a taxi clearance issued at the beginning of the transmission? M2: Yes, there is an ICAO standard word.\nQuestion: What word should be used in this situation?",
+      "audioTextZh": "说话人1：你知道管制员会用哪个词通知飞行员作废本次通话开头发布的滑行许可吗？说话人2：知道，ICAO有一个标准用语。\n问题：这种情况下应该使用哪个词？"
+    },
+    {
+      "id": "listening-main-182",
+      "audioText": "Nickel-cadmium, or NiCad, batteries are frequently used in turboprop aircraft.\nQuestion: According to the statement, what type of aircraft is more likely to have a NiCad battery?",
+      "audioTextZh": "镍镉电池（NiCad）经常用于涡轮螺旋桨飞机。\n问题：根据这段陈述，哪种飞机更可能使用NiCad电池？"
+    },
+    {
+      "id": "listening-main-430",
+      "audioText": "P: On landing, I noticed the landing gear had a little shimmy. M: Okay, we will check it. The ... is good, ... in the center, the gear is not locked down properly.\nQuestion: What was the problem with the nose gear on landing?",
+      "audioTextZh": "飞行员：着陆时，我注意到起落架有些摆振。机务：好的，我们会检查。……状态正常，……位于中心，起落架没有正确锁定在放下位。\n问题：着陆时前起落架出现了什么问题？"
+    },
+    {
+      "id": "listening-main-463",
+      "audioText": "The analysis of ground incidents reported during the period from 1987 to 2000 reveals a total of 18 fatalities and 149 injuries, of which 55 were serious.\nQuestion: How many people died in ground accidents between 1987 and 2003?",
+      "audioTextZh": "对1987年至2000年期间报告的地面事故进行分析后发现，共有18人死亡、149人受伤，其中55人重伤。\n问题：1987年至2003年期间的地面事故中有多少人死亡？"
+    },
+    {
+      "id": "listening-main-489",
+      "audioText": "P: Alaska 304, ML in 2 minutes. C: Alaska 304, proceed to GC and hold at FL150 due to traffic congestion. P: Standard pattern GC, FL150, Alaska 304.\nQuestion: Why is the pilot required to hold?",
+      "audioTextZh": "飞行员：Alaska 304，预计2分钟到达ML。管制员：Alaska 304，由于交通拥堵，前往GC并在FL150等待。飞行员：按标准等待航线飞往GC，FL150，Alaska 304。\n问题：为什么要求飞行员等待？"
+    },
+    {
+      "id": "listening-main-492",
+      "audioText": "C: Southern 302, for your information, taxi via Charlie; centerline lighting is unserviceable. P: Roger, 302.\nQuestion: What do you learn from the exchange between the pilot and the controller?",
+      "audioTextZh": "管制员：Southern 302，提醒你，经C滑行道滑行；滑行道中线灯不工作。飞行员：收到，302。\n问题：从飞行员与管制员的通话中可以了解到什么？"
+    }
+  ]
+}
