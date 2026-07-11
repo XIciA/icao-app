@@ -10,7 +10,7 @@ import {
   useAudioRecorderState,
 } from 'expo-audio';
 import { Mic, Pause, Play, RotateCcw, ShieldAlert, Square } from 'lucide-react-native';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import { AppText, Button } from '@/components/ui';
@@ -60,6 +60,7 @@ export function SpeakingPracticePanel({
   const [recordedDurationMillis, setRecordedDurationMillis] = useState(0);
   const [permissionDenied, setPermissionDenied] = useState(false);
   const [error, setError] = useState<string>();
+  const startPromise = useRef<Promise<void> | null>(null);
 
   async function startRecording() {
     setError(undefined);
@@ -138,6 +139,18 @@ export function SpeakingPracticePanel({
     }
   }
 
+  async function retryPermission() {
+    const permission = await requestRecordingPermissionsAsync();
+    setPermissionDenied(!permission.granted);
+  }
+
+  function resetRecording() {
+    playback.pause();
+    setRecordingUri(undefined);
+    setRecordedDurationMillis(0);
+    setError(undefined);
+  }
+
   if (permissionDenied) {
     return (
       <View style={styles.permission}>
@@ -146,44 +159,34 @@ export function SpeakingPracticePanel({
           <AppText variant="button">需要麦克风权限</AppText>
           <AppText variant="caption">允许后即可录制；题目、原文和参考答案仍可正常学习。</AppText>
         </View>
-        <Button onPress={() => void startRecording()} size="sm" variant="outline">重试</Button>
+        <Button onPress={() => void retryPermission()} size="sm" variant="outline">重试</Button>
       </View>
     );
   }
 
   return (
     <View style={styles.root}>
-      <View style={styles.heading}>
-        <View style={styles.icon}><Mic color={colors.primary} size={18} /></View>
-        <View style={styles.headingCopy}>
-          <AppText variant="button">{mode === 'retell' ? '故事复述录音' : '口语作答录音'}</AppText>
-          <AppText variant="micro">本地录音练习 · 当前阶段不上传、不调用 AI</AppText>
-        </View>
-      </View>
+      <Pressable
+        accessibilityLabel={recorderState.isRecording ? '松开结束录音' : mode === 'retell' ? '按住开始复述' : '按住说话'}
+        onPressIn={() => { startPromise.current = startRecording(); }}
+        onPressOut={() => { void (async () => { await startPromise.current; if (recorder.isRecording) await stopRecording(); })(); }}
+        style={[styles.recordButton, recorderState.isRecording ? styles.recording : null]}
+      >
+        {recorderState.isRecording ? <Square color={colors.primaryForeground} fill={colors.primaryForeground} size={17} /> : <Mic color={colors.primaryForeground} size={18} />}
+        <AppText color={colors.primaryForeground} variant="button">{recorderState.isRecording ? '松开结束' : '按住说话'}</AppText>
+      </Pressable>
 
-      <View style={styles.console}>
-        <Pressable
-          accessibilityLabel={recorderState.isRecording ? '停止录音' : '开始录音'}
-          onPress={() => recorderState.isRecording ? void stopRecording() : void startRecording()}
-          style={[styles.recordButton, recorderState.isRecording ? styles.recording : null]}
-        >
-          {recorderState.isRecording ? <Square color={colors.primaryForeground} fill={colors.primaryForeground} size={18} /> : <Mic color={colors.primaryForeground} size={20} />}
-        </Pressable>
-        <View style={styles.status}>
-          <AppText color={recorderState.isRecording ? colors.destructive : colors.foreground} variant="button">
-            {recorderState.isRecording ? '正在录音' : recordingUri ? '录音已保存在本机临时目录' : '点击开始录音'}
-          </AppText>
-          <AppText style={styles.duration} variant="micro">{formatDuration(recorderState.isRecording ? recorderState.durationMillis : recordedDurationMillis)}</AppText>
-        </View>
+      {recordingUri ? <View style={styles.console}>
+        <View style={styles.status}><AppText variant="caption">录音已保存在本机临时目录</AppText><AppText style={styles.duration} variant="micro">{formatDuration(recordedDurationMillis)}</AppText></View>
         {recordingUri ? (
           <Pressable accessibilityLabel={playbackStatus.playing ? '暂停我的录音' : '播放我的录音'} disabled={!playbackStatus.isLoaded} onPress={() => void togglePlayback()} style={[styles.playbackButton, !playbackStatus.isLoaded ? styles.playbackPending : null]}>
             {playbackStatus.playing ? <Pause color={colors.primary} size={18} /> : <Play color={colors.primary} fill={colors.primary} size={18} />}
           </Pressable>
         ) : null}
-      </View>
+      </View> : null}
 
       {recordingUri && !recorderState.isRecording ? (
-        <Pressable accessibilityLabel="重新录音" onPress={() => void startRecording()} style={styles.retry}>
+        <Pressable accessibilityLabel="重新录音" onPress={resetRecording} style={styles.retry}>
           <RotateCcw color={colors.mutedForeground} size={14} />
           <AppText variant="caption">重新录音</AppText>
         </Pressable>
@@ -195,12 +198,9 @@ export function SpeakingPracticePanel({
 }
 
 const styles = StyleSheet.create({
-  root: { backgroundColor: colors.primary06, borderColor: colors.primary20, borderRadius: radii.xxl, borderWidth: 1, gap: spacing[3], padding: spacing[3] },
-  heading: { alignItems: 'center', flexDirection: 'row', gap: spacing[2.5] },
-  icon: { alignItems: 'center', backgroundColor: colors.card, borderRadius: radii.lg, height: 36, justifyContent: 'center', width: 36 },
-  headingCopy: { flex: 1 },
+  root: { gap: spacing[2] },
   console: { alignItems: 'center', flexDirection: 'row', gap: spacing[3] },
-  recordButton: { alignItems: 'center', backgroundColor: colors.primary, borderRadius: radii.full, height: 50, justifyContent: 'center', width: 50 },
+  recordButton: { alignItems: 'center', backgroundColor: colors.primary, borderRadius: radii.full, flexDirection: 'row', gap: spacing[2], height: 48, justifyContent: 'center', width: '100%' },
   recording: { backgroundColor: colors.destructive },
   status: { flex: 1 },
   duration: { fontFamily: fonts.monoRegular, marginTop: spacing[1] },

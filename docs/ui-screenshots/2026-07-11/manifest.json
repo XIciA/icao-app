@@ -1,0 +1,68 @@
+{
+  "captureDate": "2026-07-11",
+  "viewport": {
+    "width": 375,
+    "height": 812
+  },
+  "captureMode": "embed=1&capture=1",
+  "status": "in-progress",
+  "capturedCount": 74,
+  "coverageSource": "docs/screenshot-state-manifest.md",
+  "entries": [
+    {
+      "id": "auth.splash",
+      "status": "captured",
+      "path": "02-auth/splash.png",
+      "route": "/auth?embed=1&capture=1"
+    },
+    {
+      "id": "auth.login.default",
+      "status": "captured",
+      "path": "02-auth/login-default.png",
+      "route": "/auth?embed=1&capture=1",
+      "entryAction": "在启动页点击登录"
+    },
+    {
+      "id": "auth.register.disabled",
+      "status": "captured",
+      "path": "02-auth/register-disabled.png",
+      "route": "/auth?embed=1&capture=1",
+      "entryAction": "在启动页点击注册新账号"
+    },
+    {
+      "id": "auth.register.ready",
+      "status": "captured",
+      "path": "02-auth/register-ready.png",
+      "route": "/auth?embed=1&capture=1",
+      "entryAction": "填写注册表单并同意协议"
+    },
+    {
+      "id": "auth.user-agreement",
+      "status": "captured",
+      "path": "02-auth/user-agreement.png",
+      "route": "/auth?embed=1&capture=1",
+      "entryAction": "注册页打开用户协议"
+    },
+    {
+      "id": "auth.privacy-policy",
+      "status": "captured",
+      "path": "02-auth/privacy-policy.png",
+      "route": "/auth?embed=1&capture=1",
+      "entryAction": "注册页打开隐私政策"
+    },
+    {
+      "id": "auth.phone-code",
+      "status": "captured",
+      "path": "02-auth/phone-code.png",
+      "route": "/auth?embed=1&capture=1",
+      "entryAction": "密码登录页打开验证码登录"
+    },
+    {
+      "id": "auth.forgot-password",
+      "status": "captured",
+      "path": "02-auth/forgot-password.png",
+      "route": "/auth?embed=1&capture=1",
+      "entryAction": "密码登录页打开忘记密码"
+    }
+  ]
+}

@@ -29,12 +29,12 @@
 ### 2.2 RN 工程
 
 - 分支：`main`
-- HEAD：`58faca702284d7877ca37d0d933ad701a9501d1e`
+- HEAD：`65e3ec35aeb558b1c1e5575e78acfd84a2e79613`
 - 与远程：`main` 在已提交基线上与 `origin/main` 同步
 - 技术：Expo SDK 55、React Native 0.83.6、React 19.2、Expo Router、TypeScript、expo-audio、expo-sqlite
 - RN 页面路由文件：15 个（不含测试）
 - `src/components` 与 `src/features` 下有 34 个 TSX 文件
-- 盘点时工作树已有 15 个修改/未跟踪条目，包含 iPhone 返回与录音修复、阶段文档、测试及其他文档导入；这些改动不属于本盘点创建，后续执行必须保留并先记录基线
+- 小流程启动时，已提交基线与 `origin/main` 同步；工作树仅有一个无关的未跟踪战略目录 `战略/第二阶段-真实资源账号同步AI与商业化/`，后续执行必须保持不修改
 
 ## 3. Web 真实页面模型
 
@@ -145,10 +145,9 @@ RN 的路由覆盖已通过，但现有证据只抽查登录、设置和麦克�
 ## 7. 截图与设备条件
 
 - Web 已具备稳定 `PhoneFrame` iframe，适合从 iframe 内容层自动截图；
-- 当前 iOS 26.3 已创建设备主要为 iPhone 17 系列和 iPhone 16e，现有截图为 1206 × 2622，对应约 402 逻辑宽度；
-- 本机运行时支持 iPhone 11 Pro / 12 mini / 13 mini 设备类型，可在执行阶段创建 375 × 812 对照模拟器；
-- Android 已有 `ICAO_API_36` AVD，历史上已完成 360/375/390/430 逻辑宽度检查；
-- 当前没有专用于 Web/RN 同状态批量采集、裁切、叠加与报告生成的仓库脚本。
+- 当前 iOS 26.3 原有设备主要为 iPhone 17 系列和 iPhone 16e；小流程阶段 0 已创建并启动 iPhone 11 Pro `ICAO_375_812` 对照模拟器；
+- 用户已明确本 workstream 不执行任何 Android 模拟器测试；
+- 阶段 0 已建立基于隔离 Chrome/CDP 的 Web 状态采集脚本，可从 PhoneFrame iframe 生成 375 × 812 PNG；RN 同状态采集与差异图仍待后续阶段完成。
 
 ## 8. 风险
 

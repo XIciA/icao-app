@@ -1,12 +1,12 @@
 import { useRouter } from 'expo-router';
 import { usePreventRemove } from '@react-navigation/native';
-import { ChevronLeft, ChevronRight, Grid3X3, NotebookPen, WifiOff, X } from 'lucide-react-native';
+import { Check, ChevronLeft, ChevronRight, Flag, Grid3X3, NotebookPen, WifiOff, X } from 'lucide-react-native';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { AppText, BottomSheet, Button, Card, Tag } from '@/components/ui';
-import { colors, fonts, radii, shadows, spacing } from '@/theme';
+import { AppText, BottomSheet, Button, Card } from '@/components/ui';
+import { colors, fonts, radii, spacing } from '@/theme';
 
 import { getConnectivity, type Connectivity } from '../platform/network-service';
 import { resolveQuestionBankAsset } from '../platform/resource-service';
@@ -37,6 +37,7 @@ export function ListeningStudyScreen({ dataset, category, topic, initialCardId }
   const [highlightColor, setHighlightColor] = useState<'green' | 'yellow' | 'red'>('green');
   const [dictionaryMode, setDictionaryMode] = useState(false);
   const [lookupWord, setLookupWord] = useState<string>();
+  const [revealedCards, setRevealedCards] = useState<Set<string>>(() => new Set());
 
   usePreventRemove(!report, () => setExitVisible(true));
 
@@ -131,24 +132,20 @@ export function ListeningStudyScreen({ dataset, category, topic, initialCardId }
     );
   }
 
-  const progress = ((currentIndex + 1) / topic.cards.length) * 100;
-  const interactionLabel = dataset.study.interaction === 'choices' ? 'LISTENING' : dataset.study.interaction === 'retell' ? 'RETELL' : 'SPEAKING';
+  const revealed = revealedCards.has(card.id);
 
   return (
     <SafeAreaView edges={['top']} style={styles.root}>
       <View style={styles.topBar}>
         <Pressable accessibilityLabel="结束学习" onPress={() => setExitVisible(true)} style={styles.circleButton}>
-          <X color={colors.foreground} size={20} />
+          <ChevronLeft color={colors.foreground} size={22} />
         </Pressable>
-        <View style={styles.topCopy}>
-          <AppText numberOfLines={1} style={styles.topTitle} variant="cardTitle">{dataset.title}</AppText>
-          <AppText style={styles.counter} variant="micro">{currentIndex + 1} / {topic.cards.length}</AppText>
-        </View>
-        <Pressable accessibilityLabel="打开答题卡" onPress={() => setAnswerCardVisible(true)} style={styles.circleButton}>
-          <Grid3X3 color={colors.foreground} size={19} />
+        <View style={styles.topCopy} />
+        <Pressable accessibilityLabel="打开答题卡" onPress={() => setAnswerCardVisible(true)} style={styles.counterButton}>
+          <Grid3X3 color={colors.mutedForeground} size={16} />
+          <AppText style={styles.counter} variant="button">{currentIndex + 1} / {topic.cards.length}</AppText>
         </Pressable>
       </View>
-      <View style={styles.progressTrack}><View style={[styles.progressFill, { width: `${progress}%` }]} /></View>
 
       {connectivity === 'offline' ? (
         <View style={styles.offlineBanner}>
@@ -162,23 +159,11 @@ export function ListeningStudyScreen({ dataset, category, topic, initialCardId }
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
       >
-        <View style={styles.contextRow}>
-          <Tag>{category.name}</Tag>
-          <AppText numberOfLines={1} style={styles.topicLabel} variant="caption">{topic.name}</AppText>
-        </View>
-
-        <Card elevated style={styles.studyCard}>
-          <AppText color={colors.primary} variant="micro">{interactionLabel} · {currentIndex + 1}</AppText>
-          <AppText style={styles.taskTitle} variant="sectionTitle">{card.taskTitle}</AppText>
-          <StudyAudioPlayer generatedAudio={dataset.id === 'opi' && !card.audio} label={card.taskTitle} uri={resolveQuestionBankAsset(card.audio)} />
-
-          {dataset.study.tools.recorder ? (
-            <SpeakingPracticePanel
-              mode={dataset.study.interaction === 'retell' ? 'retell' : 'speaking'}
-              onRecorded={(recordingDurationMillis) => persistCard(card.id, { recorded: true, recordingDurationMillis, visited: true })}
-            />
-          ) : null}
-
+        <View style={styles.toolsRow}>
+          <Pressable accessibilityLabel={revealed ? '收起答案' : '显示答案'} onPress={() => setRevealedCards((current) => { const next = new Set(current); if (next.has(card.id)) next.delete(card.id); else next.add(card.id); return next; })} style={[styles.answerTool, revealed ? styles.answerToolActive : null]}>
+            <Check color={revealed ? colors.primary : colors.mutedForeground} size={14} />
+            <AppText color={revealed ? colors.primary : colors.mutedForeground} variant="caption">答案</AppText>
+          </Pressable>
           {dataset.study.tools.tags || dataset.study.tools.highlights ? (
             <AnnotationToolbar
               activeColor={highlightColor}
@@ -191,20 +176,37 @@ export function ListeningStudyScreen({ dataset, category, topic, initialCardId }
               selectedTags={cardState?.tagIds ?? []}
             />
           ) : null}
+        </View>
+
+        <Card elevated style={styles.studyCard}>
+          <View style={styles.cardHeader}>
+            <AppText numberOfLines={1} style={styles.taskTitle} variant="caption">♧ {card.taskTitle}</AppText>
+            <View style={styles.onlineDot} />
+          </View>
+          <StudyAudioPlayer generatedAudio={dataset.id === 'opi' && !card.audio} label={card.taskTitle} uri={resolveQuestionBankAsset(card.audio)} />
+
+          {dataset.study.tools.recorder ? (
+            <SpeakingPracticePanel
+              mode={dataset.study.interaction === 'retell' ? 'retell' : 'speaking'}
+              onRecorded={(recordingDurationMillis) => persistCard(card.id, { recorded: true, recordingDurationMillis, visited: true })}
+            />
+          ) : null}
 
           {card.choices?.length ? (
             <View style={styles.section}>
-              <AppText variant="cardTitle">选择正确答案</AppText>
               <ChoiceList
                 choices={card.choices}
                 correctChoiceIndex={card.correctChoiceIndex}
                 onSelect={(index) => persistCard(card.id, { selectedChoiceIndex: index, visited: true })}
                 selectedChoiceIndex={cardState?.selectedChoiceIndex}
+                showResult={revealed}
               />
             </View>
           ) : null}
 
-          <View style={styles.section}>
+        </Card>
+
+        {revealed ? <Card style={styles.transcriptCard}>
             <AppText variant="cardTitle">{dataset.study.copy.transcriptLabel}</AppText>
             <InteractiveStudyText
               blockId="question"
@@ -217,9 +219,9 @@ export function ListeningStudyScreen({ dataset, category, topic, initialCardId }
               text={card.audioText}
             />
             {card.audioTextZh ? <AppText style={styles.translation}>{card.audioTextZh}</AppText> : null}
-          </View>
 
-          {(dataset.study.interaction !== 'choices' || cardState?.selectedChoiceIndex !== undefined) && card.referenceText ? (
+
+          {card.referenceText ? (
             <View style={styles.reference}>
               <AppText color={colors.primary} variant="button">{dataset.study.copy.referenceLabel}</AppText>
               <InteractiveStudyText
@@ -235,9 +237,9 @@ export function ListeningStudyScreen({ dataset, category, topic, initialCardId }
               {card.referenceTextZh ? <AppText>{card.referenceTextZh}</AppText> : null}
             </View>
           ) : null}
-        </Card>
+        </Card> : null}
 
-        {dataset.study.tools.notes ? <Card style={styles.notesCard}>
+        {revealed && dataset.study.tools.notes ? <Card style={styles.notesCard}>
           <View style={styles.notesHeader}>
             <NotebookPen color={colors.primary} size={18} />
             <AppText variant="cardTitle">学习笔记</AppText>
@@ -257,6 +259,7 @@ export function ListeningStudyScreen({ dataset, category, topic, initialCardId }
       </ScrollView>
 
       <View style={[styles.footer, { paddingBottom: Math.max(insets.bottom, spacing[3]) }]}>
+        <Button leading={<Flag color={colors.foreground} size={17} />} onPress={() => setExitVisible(true)} variant="outline">结束</Button>
         <Button
           disabled={currentIndex === 0}
           leading={<ChevronLeft color={colors.foreground} size={18} />}
@@ -265,10 +268,6 @@ export function ListeningStudyScreen({ dataset, category, topic, initialCardId }
         >
           上一题
         </Button>
-        <Pressable accessibilityLabel="答题卡" onPress={() => setAnswerCardVisible(true)} style={styles.answerButton}>
-          <Grid3X3 color={colors.primary} size={19} />
-          <AppText color={colors.primary} variant="caption">{completedCount}/{topic.cards.length}</AppText>
-        </Pressable>
         <Button
           leading={currentIndex < topic.cards.length - 1 ? undefined : <ChevronRight color={colors.primaryForeground} size={18} />}
           onPress={() => {
@@ -323,25 +322,26 @@ const styles = StyleSheet.create({
   loading: { alignItems: 'center', backgroundColor: colors.background, flex: 1, gap: spacing[3], justifyContent: 'center' },
   topBar: { alignItems: 'center', flexDirection: 'row', minHeight: 54, paddingHorizontal: spacing[3] },
   circleButton: { alignItems: 'center', borderRadius: radii.full, height: 40, justifyContent: 'center', width: 40 },
-  topCopy: { alignItems: 'center', flex: 1 },
-  topTitle: { fontSize: 16 },
+  topCopy: { flex: 1 },
   counter: { color: colors.mutedForeground, fontFamily: fonts.monoRegular },
-  progressTrack: { backgroundColor: colors.secondary, height: 3 },
-  progressFill: { backgroundColor: colors.primary, height: '100%' },
+  counterButton: { alignItems: 'center', backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[2], minHeight: 38, paddingHorizontal: spacing[3] },
   offlineBanner: { alignItems: 'center', backgroundColor: 'rgba(183,118,16,0.08)', flexDirection: 'row', gap: spacing[2], paddingHorizontal: spacing[5], paddingVertical: spacing[2] },
-  scroll: { paddingHorizontal: spacing[5], paddingTop: spacing[4] },
-  contextRow: { alignItems: 'center', flexDirection: 'row', gap: spacing[2], marginBottom: spacing[3] },
-  topicLabel: { flex: 1 },
+  scroll: { paddingHorizontal: spacing[5], paddingTop: spacing[1] },
+  toolsRow: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[2], marginBottom: spacing[3] },
+  answerTool: { alignItems: 'center', backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 30, paddingHorizontal: spacing[3] },
+  answerToolActive: { backgroundColor: colors.primary06, borderColor: colors.primary },
   studyCard: { gap: spacing[3] },
-  taskTitle: { marginBottom: spacing[1] },
-  section: { gap: spacing[3], marginTop: spacing[3] },
+  cardHeader: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] },
+  taskTitle: { flex: 1 },
+  onlineDot: { backgroundColor: '#42BF8A', borderRadius: radii.full, height: 9, width: 9 },
+  section: { gap: spacing[2] },
+  transcriptCard: { gap: spacing[3], marginTop: spacing[4] },
   translation: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth, paddingTop: spacing[3] },
   reference: { backgroundColor: colors.primary06, borderRadius: radii.xl, gap: spacing[1.5], marginTop: spacing[2], padding: spacing[3] },
   notesCard: { gap: spacing[3], marginTop: spacing[3] },
   notesHeader: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] },
   notesInput: { backgroundColor: colors.secondary, borderColor: colors.input, borderRadius: radii.md, borderWidth: 1, color: colors.foreground, fontFamily: fonts.sansRegular, fontSize: 14, lineHeight: 22, minHeight: 108, padding: spacing[3] },
-  footer: { alignItems: 'center', backgroundColor: colors.background72, borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth, bottom: 0, flexDirection: 'row', gap: spacing[2], justifyContent: 'space-between', left: 0, paddingHorizontal: spacing[4], paddingTop: spacing[3], position: 'absolute', right: 0, ...shadows.floating },
-  answerButton: { alignItems: 'center', gap: 2, minWidth: 54 },
+  footer: { alignItems: 'center', backgroundColor: colors.background72, bottom: 0, flexDirection: 'row', gap: spacing[2], justifyContent: 'space-between', left: 0, paddingHorizontal: spacing[5], paddingTop: spacing[3], position: 'absolute', right: 0 },
   exitContent: { gap: spacing[3], paddingBottom: spacing[2] },
   lookupContent: { gap: spacing[3], paddingBottom: spacing[4] },
   exitIcon: { alignItems: 'center', alignSelf: 'center', backgroundColor: colors.primary10, borderRadius: radii.xl, height: 56, justifyContent: 'center', width: 56 },

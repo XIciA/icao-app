@@ -1,4 +1,5 @@
-import { Bookmark, Highlighter, Search } from 'lucide-react-native';
+import { Highlighter, Search, Tags } from 'lucide-react-native';
+import { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import { AppText } from '@/components/ui';
@@ -36,14 +37,25 @@ export function AnnotationToolbar({
   onTagsChange: (value: NonNullable<CardLearningState['tagIds']>) => void;
   selectedTags: NonNullable<CardLearningState['tagIds']>;
 }) {
+  const [tagsOpen, setTagsOpen] = useState(false);
+
   return (
     <View style={styles.root}>
-      <Pressable accessibilityLabel={dictionaryMode ? '关闭查词模式' : '开启查词模式'} onPress={() => onDictionaryModeChange(!dictionaryMode)} style={[styles.highlightToggle, dictionaryMode ? styles.highlightActive : null]}>
-        <Search color={dictionaryMode ? colors.primary : colors.mutedForeground} size={15} />
-        <AppText color={dictionaryMode ? colors.primary : colors.mutedForeground} variant="caption">点词查词</AppText>
-      </Pressable>
-      <View style={styles.section}>
-        <View style={styles.labelRow}><Bookmark color={colors.mutedForeground} size={15} /><AppText variant="caption">题目标签</AppText></View>
+      <View style={styles.toolbar}>
+        <Pressable accessibilityLabel={dictionaryMode ? '关闭查词模式' : '开启查词模式'} onPress={() => onDictionaryModeChange(!dictionaryMode)} style={[styles.tool, dictionaryMode ? styles.toolActive : null]}>
+          <Search color={dictionaryMode ? colors.primary : colors.mutedForeground} size={14} />
+          <AppText color={dictionaryMode ? colors.primary : colors.mutedForeground} variant="caption">查词</AppText>
+        </Pressable>
+        <Pressable accessibilityLabel={highlightMode ? '关闭高亮模式' : '开启高亮模式'} onPress={() => onHighlightModeChange(!highlightMode)} style={[styles.tool, highlightMode ? styles.toolActive : null]}>
+          <Highlighter color={highlightMode ? colors.primary : colors.mutedForeground} size={14} />
+          <AppText color={highlightMode ? colors.primary : colors.mutedForeground} variant="caption">划线</AppText>
+        </Pressable>
+        <Pressable accessibilityLabel={tagsOpen ? '关闭标签面板' : '打开标签面板'} onPress={() => setTagsOpen((value) => !value)} style={[styles.tool, tagsOpen || selectedTags.length ? styles.toolActive : null]}>
+          <Tags color={tagsOpen || selectedTags.length ? colors.primary : colors.mutedForeground} size={14} />
+          <AppText color={tagsOpen || selectedTags.length ? colors.primary : colors.mutedForeground} variant="caption">标签 {selectedTags.length}</AppText>
+        </Pressable>
+      </View>
+      {tagsOpen ? <View style={styles.section}>
         <View style={styles.options}>
           {tags.map((tag) => {
             const selected = selectedTags.includes(tag.id);
@@ -59,13 +71,8 @@ export function AnnotationToolbar({
             );
           })}
         </View>
-      </View>
-      <View style={styles.section}>
-        <Pressable accessibilityLabel={highlightMode ? '关闭高亮模式' : '开启高亮模式'} onPress={() => onHighlightModeChange(!highlightMode)} style={[styles.highlightToggle, highlightMode ? styles.highlightActive : null]}>
-          <Highlighter color={highlightMode ? colors.primary : colors.mutedForeground} size={15} />
-          <AppText color={highlightMode ? colors.primary : colors.mutedForeground} variant="caption">点词高亮</AppText>
-        </Pressable>
-        {highlightMode ? (
+      </View> : null}
+      {highlightMode ? <View style={styles.section}>
           <View style={styles.options}>
             {highlights.map((item) => (
               <Pressable accessibilityLabel={`高亮颜色${item.label}`} key={item.id} onPress={() => onColorChange(item.id)} style={[styles.colorButton, activeColor === item.id ? styles.colorActive : null]}>
@@ -73,21 +80,20 @@ export function AnnotationToolbar({
               </Pressable>
             ))}
           </View>
-        ) : null}
-      </View>
+      </View> : null}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  root: { borderColor: colors.border, borderRadius: radii.xl, borderWidth: 1, gap: spacing[3], padding: spacing[3] },
+  root: { gap: spacing[2] },
+  toolbar: { flexDirection: 'row', gap: spacing[2] },
   section: { gap: spacing[2] },
-  labelRow: { alignItems: 'center', flexDirection: 'row', gap: spacing[1.5] },
   options: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing[2] },
   pill: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], paddingHorizontal: spacing[2.5], paddingVertical: spacing[1.5] },
   dot: { borderRadius: radii.full, height: 7, width: 7 },
-  highlightToggle: { alignItems: 'center', alignSelf: 'flex-start', borderRadius: radii.full, flexDirection: 'row', gap: spacing[1.5], paddingVertical: spacing[1] },
-  highlightActive: { backgroundColor: colors.primary08, paddingHorizontal: spacing[2] },
+  tool: { alignItems: 'center', backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 30, paddingHorizontal: spacing[3] },
+  toolActive: { backgroundColor: colors.primary06, borderColor: colors.primary },
   colorButton: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], paddingHorizontal: spacing[2], paddingVertical: spacing[1] },
   colorActive: { borderColor: colors.primary, backgroundColor: colors.primary06 },
   colorDot: { borderRadius: radii.full, height: 10, width: 10 },

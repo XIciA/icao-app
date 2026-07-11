@@ -1,10 +1,12 @@
 import { useRouter } from 'expo-router';
 import { ChevronRight, type LucideIcon } from 'lucide-react-native';
+import type { ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { colors, radii, spacing } from '@/theme';
 
 import { AppText, PressableCard, Screen, Tag } from '../ui';
+import { SoftGlow } from '../visual/SoftGlow';
 
 export type FoundationEntry = {
   slug: string;
@@ -20,24 +22,32 @@ type Props = {
   title: string;
   subtitle: string;
   eyebrow?: string;
+  headerLeading?: ReactNode;
+  headerTrailing?: ReactNode;
   entries: FoundationEntry[];
   onEntryPress?: (entry: FoundationEntry) => void;
 };
 
-export function TabPlaceholderScreen({ title, subtitle, eyebrow, entries, onEntryPress }: Props) {
+export function TabPlaceholderScreen({ title, subtitle, eyebrow, headerLeading, headerTrailing, entries, onEntryPress }: Props) {
   const router = useRouter();
 
   return (
     <Screen bottomInset scroll contentStyle={styles.content}>
-      <View pointerEvents="none" style={styles.glowOne} />
-      <View pointerEvents="none" style={styles.glowTwo} />
+      <SoftGlow intensity={1.15} size={340} style={styles.glowOne} />
+      <SoftGlow intensity={0.65} size={320} style={styles.glowTwo} />
       <View style={styles.header}>
+        {headerLeading || headerTrailing ? (
+          <View style={styles.toolbar}>
+            <View>{headerLeading}</View>
+            <View>{headerTrailing}</View>
+          </View>
+        ) : null}
         {eyebrow ? (
           <AppText color={colors.primary} style={styles.eyebrow} variant="micro">
             {eyebrow}
           </AppText>
         ) : null}
-        <AppText variant="pageTitle">{title}</AppText>
+        <AppText style={headerLeading || headerTrailing ? styles.titleWithToolbar : null} variant="pageTitle">{title}</AppText>
         <AppText style={styles.subtitle}>{subtitle}</AppText>
       </View>
 
@@ -80,8 +90,10 @@ export function TabPlaceholderScreen({ title, subtitle, eyebrow, entries, onEntr
 }
 
 const styles = StyleSheet.create({
-  content: { paddingTop: spacing[4] },
+  content: { paddingTop: spacing[2] },
   header: { marginBottom: spacing[5] },
+  toolbar: { alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' },
+  titleWithToolbar: { marginTop: spacing[6] },
   eyebrow: { letterSpacing: 1.8, marginBottom: spacing[2], textTransform: 'uppercase' },
   subtitle: { marginTop: spacing[2], maxWidth: 330 },
   list: { gap: spacing[2.5] },
@@ -100,23 +112,11 @@ const styles = StyleSheet.create({
   meta: { marginTop: spacing[1] },
   disabled: { opacity: 0.65 },
   glowOne: {
-    backgroundColor: colors.primary10,
-    borderRadius: radii.full,
-    height: 240,
-    left: -120,
-    opacity: 0.5,
-    position: 'absolute',
-    top: -140,
-    width: 240,
+    left: -145,
+    top: -190,
   },
   glowTwo: {
-    backgroundColor: colors.primary08,
-    borderRadius: radii.full,
-    height: 210,
-    opacity: 0.4,
-    position: 'absolute',
-    right: -120,
-    top: 110,
-    width: 210,
+    right: -175,
+    top: 35,
   },
 });

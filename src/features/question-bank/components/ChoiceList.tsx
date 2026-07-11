@@ -8,16 +8,17 @@ type Props = {
   choices: string[];
   correctChoiceIndex?: number;
   selectedChoiceIndex?: number;
+  showResult?: boolean;
   onSelect: (index: number) => void;
 };
 
-export function ChoiceList({ choices, correctChoiceIndex, selectedChoiceIndex, onSelect }: Props) {
+export function ChoiceList({ choices, correctChoiceIndex, selectedChoiceIndex, showResult = false, onSelect }: Props) {
   return (
     <View style={styles.list}>
       {choices.map((choice, index) => {
         const selected = selectedChoiceIndex === index;
-        const correct = selectedChoiceIndex !== undefined && correctChoiceIndex === index;
-        const incorrect = selected && correctChoiceIndex !== undefined && correctChoiceIndex !== index;
+        const correct = showResult && correctChoiceIndex === index;
+        const incorrect = showResult && selected && correctChoiceIndex !== undefined && correctChoiceIndex !== index;
         return (
           <Pressable
             accessibilityLabel={`选项 ${String.fromCharCode(65 + index)}：${choice}`}
@@ -38,8 +39,8 @@ export function ChoiceList({ choices, correctChoiceIndex, selectedChoiceIndex, o
               </AppText>
             </View>
             <AppText color={colors.foreground} style={styles.copy}>{choice}</AppText>
-            {correct ? <Check color={colors.primary} size={18} /> : null}
-            {incorrect ? <X color={colors.destructive} size={18} /> : null}
+            {correct ? <Check accessibilityLabel="正确答案" color={colors.primary} size={18} /> : null}
+            {incorrect ? <X accessibilityLabel="错误答案" color={colors.destructive} size={18} /> : null}
           </Pressable>
         );
       })}
@@ -48,12 +49,12 @@ export function ChoiceList({ choices, correctChoiceIndex, selectedChoiceIndex, o
 }
 
 const styles = StyleSheet.create({
-  list: { gap: spacing[2.5] },
-  choice: { alignItems: 'center', backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.xl, borderWidth: 1, flexDirection: 'row', gap: spacing[3], minHeight: 54, padding: spacing[3] },
-  selected: { borderColor: colors.primary20 },
+  list: { gap: spacing[2] },
+  choice: { alignItems: 'center', backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[2], minHeight: 46, paddingHorizontal: spacing[4], paddingVertical: spacing[2] },
+  selected: { borderColor: colors.primary },
   correct: { backgroundColor: colors.primary06, borderColor: colors.primary },
   incorrect: { backgroundColor: 'rgba(219,43,51,0.06)', borderColor: 'rgba(219,43,51,0.45)' },
-  letter: { alignItems: 'center', backgroundColor: colors.secondary, borderRadius: radii.full, height: 30, justifyContent: 'center', width: 30 },
+  letter: { alignItems: 'center', borderRadius: radii.full, height: 24, justifyContent: 'center', width: 24 },
   letterSelected: { backgroundColor: colors.primary },
   copy: { flex: 1 },
   pressed: { opacity: 0.75 },

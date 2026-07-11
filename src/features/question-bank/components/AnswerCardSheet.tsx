@@ -1,4 +1,4 @@
-import { Check } from 'lucide-react-native';
+import { Check, X } from 'lucide-react-native';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import { AppText, BottomSheet } from '@/components/ui';
@@ -16,7 +16,7 @@ type Props = {
 export function AnswerCardSheet({ visible, total, current, visited, onSelect, onClose }: Props) {
   return (
     <BottomSheet accessibilityLabel="答题卡" onClose={onClose} visible={visible}>
-      <AppText variant="sectionTitle">答题卡</AppText>
+      <View style={styles.header}><AppText variant="sectionTitle">答题卡</AppText><Pressable accessibilityLabel="关闭答题卡" onPress={onClose} style={styles.close}><X color={colors.foreground} size={20} /></Pressable></View>
       <View style={styles.legend}>
         <Legend color={colors.primary} label="当前" />
         <Legend color={colors.primary10} label="已学" />
@@ -64,12 +64,14 @@ function Legend({ color, label, outlined = false }: { color: string; label: stri
 }
 
 const styles = StyleSheet.create({
+  header: { alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' },
+  close: { alignItems: 'center', height: 36, justifyContent: 'center', width: 36 },
   legend: { flexDirection: 'row', gap: spacing[4], marginTop: spacing[4] },
   legendItem: { alignItems: 'center', flexDirection: 'row', gap: spacing[1.5] },
   legendDot: { borderRadius: radii.full, height: 12, width: 12 },
   outlined: { borderColor: colors.border, borderWidth: 1 },
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing[3], paddingBottom: spacing[5], paddingTop: spacing[4] },
-  number: { alignItems: 'center', aspectRatio: 1, backgroundColor: colors.background, borderColor: colors.border, borderRadius: radii.xl, borderWidth: 1, justifyContent: 'center', position: 'relative', width: '17%' },
+  number: { alignItems: 'center', aspectRatio: 1, backgroundColor: colors.background, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, justifyContent: 'center', position: 'relative', width: '17%' },
   numberCurrent: { backgroundColor: colors.primary, borderColor: colors.primary },
   numberVisited: { backgroundColor: colors.primary10, borderColor: colors.primary20 },
   numberText: { fontFamily: fonts.monoRegular },

@@ -8,6 +8,7 @@ jest.mock('lucide-react-native', () => {
   return {
     BookMarked: Icon,
     Bot: Icon,
+    ChevronRight: Icon,
     FileText: Icon,
     Flame: Icon,
     FolderOpen: Icon,

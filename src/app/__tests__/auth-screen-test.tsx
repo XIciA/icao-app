@@ -6,7 +6,7 @@ import { AuthScreen } from '@/features/auth/AuthScreen';
 jest.mock('lucide-react-native', () => {
   const { View } = jest.requireActual('react-native');
   const Icon = (props: object) => <View {...props} />;
-  return { ArrowLeft: Icon, CheckCircle2: Icon, KeyRound: Icon, Plane: Icon, ShieldCheck: Icon, X: Icon };
+  return { ArrowLeft: Icon, Check: Icon, Eye: Icon, EyeOff: Icon, KeyRound: Icon, MessageSquareCode: Icon, Plane: Icon, Smartphone: Icon };
 });
 
 jest.mock('expo-router', () => ({
@@ -15,17 +15,17 @@ jest.mock('expo-router', () => ({
 }));
 
 describe('<AuthScreen />', () => {
-  it('renders the login demo boundary and all recovery entries', async () => {
+  it('renders the Web-aligned login entries', async () => {
     const screen = await render(
       <SafeAreaProvider initialMetrics={{ frame: { height: 812, width: 375, x: 0, y: 0 }, insets: { bottom: 34, left: 0, right: 0, top: 47 } }}>
         <AuthScreen />
       </SafeAreaProvider>,
     );
 
-    expect(screen.getByText('当前为认证交互演示，不发送验证码、不创建真实账户。')).toBeTruthy();
-    expect(screen.getByText('登录演示账户')).toBeTruthy();
-    expect(screen.getByText('手机验证码登录')).toBeTruthy();
-    expect(screen.getByText('忘记密码')).toBeTruthy();
-    expect(screen.getByText('注册账户')).toBeTruthy();
+    expect(screen.getByText('欢迎回来')).toBeTruthy();
+    expect(screen.getByText('登录以继续你的 ICAO 备考进度')).toBeTruthy();
+    expect(screen.getByText('验证码登录')).toBeTruthy();
+    expect(screen.getByText('忘记密码？')).toBeTruthy();
+    expect(screen.getByText('立即注册')).toBeTruthy();
   });
 });

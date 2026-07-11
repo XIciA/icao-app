@@ -46,13 +46,13 @@ export function StudyAudioPlayer({ uri, label, generatedAudio = false }: { uri?:
   function cycleSpeed() {
     const next = (speedIndex + 1) % speeds.length;
     setSpeedIndex(next);
-    player.playbackRate = speeds[next];
+    player.setPlaybackRate(speeds[next]);
   }
 
   function retry() {
     if (!uri) return;
     player.replace(uri);
-    player.playbackRate = speeds[speedIndex];
+    player.setPlaybackRate(speeds[speedIndex]);
     player.play();
   }
 

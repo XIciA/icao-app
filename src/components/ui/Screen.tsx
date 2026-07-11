@@ -30,7 +30,7 @@ export function Screen({
 }: Props) {
   const content = scroll ? (
     <ScrollView
-      contentContainerStyle={[styles.content, bottomInset ? styles.withTabBar : null, contentStyle]}
+      contentContainerStyle={[styles.content, styles.scrollContent, bottomInset ? styles.withTabBar : null, contentStyle]}
       keyboardShouldPersistTaps="handled"
       showsVerticalScrollIndicator={false}
       {...scrollProps}
@@ -63,5 +63,6 @@ const styles = StyleSheet.create({
   safeArea: { backgroundColor: colors.background, flex: 1 },
   flex: { flex: 1 },
   content: { paddingHorizontal: spacing[5] },
+  scrollContent: { flexGrow: 1 },
   withTabBar: { paddingBottom: 112 },
 });

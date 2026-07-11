@@ -1,12 +1,12 @@
 # RN 与 Web 手机端 1:1 对照复刻技术方案
 
-状态：方案草稿，等待确认  
+状态：已确认，进入小流程执行
 更新时间：2026-07-11  
 前置文档：`requirements.md`
 
 ## 1. 方案结论
 
-采用“冻结 Web 基线 → 建立页面状态清单 → 自动采集 Web 金标准 → 校准 RN 原子组件 → 按用户流程逐状态复刻 → 截图叠加与操作轨迹双验收”的路线。
+采用“冻结 Web 基线 → 建立页面状态清单 → 采用既有 Web 金标准 → 校准 RN 原子组件 → 按用户流程逐状态复刻 → 截图并列与操作轨迹双验收”的路线。
 
 Web 代码只用于定位状态、数据、交互与精确样式依据；RN 保持 Expo Router、React Native 原生组件、原生音频/录音与本地数据边界。视觉复刻不改变客户端技术路线，不引入 WebView，不让业务页面直接依赖浏览器实现。
 
@@ -20,21 +20,18 @@ docs/workstreams/rn-web-mobile-parity/
 ├── technical-plan.md
 ├── technical-audit.md
 ├── roadmap.md
-├── state-manifest.json
 ├── parity-matrix.md
 ├── native-exceptions.md
 ├── phase-log.md
 ├── closeout.md
 └── evidence/
-    ├── web/<page-family>/<state-id>.png
     ├── rn/ios/<page-family>/<state-id>.png
-    ├── rn/android/<page-family>/<state-id>.png
     └── diff/<page-family>/<state-id>.png
 ```
 
 说明：
 
-- `state-manifest.json` 是机器可读的状态与操作轨迹来源。
+- `docs/ui-screenshots/2026-07-11/manifest.json` 与 `state-inventory.md` 共同作为 Web 证据和操作轨迹来源。
 - `parity-matrix.md` 是面向审查的覆盖率、差异与关闭结论。
 - `native-exceptions.md` 只记录系统级允许差异，不保存普通 UI 偏差。
 - 原有 `docs/execution/evidence/` 继续作为历史功能验收证据，不直接充当本 workstream 的 Web 对照金标准。
@@ -70,14 +67,14 @@ state.network.offline
 - `stateId`、页面族、优先级、状态说明；
 - Web 提交、入口预览路由、iframe 路径、375 × 812 视口；
 - 前置数据、浏览器本地状态、操作步骤、滚动位置；
-- Web 截图、RN iOS 截图、RN Android 截图和差异图路径；
+- Web 截图、RN iOS 截图和差异图路径；
 - RN 路由及相关组件；
 - 视觉结果、交互结果、返回结果、恢复结果；
 - `aligned`、`native-exception`、`baseline-pending`、`needs-fix` 四类结论。
 
 Manifest 只保存确定、可重放的数据；一次性坐标或依赖当前窗口位置的操作不得作为长期标准。
 
-## 4. Web 基线采集方案
+## 4. Web 基线使用方案
 
 ### 4.1 冻结与启动
 
@@ -90,18 +87,16 @@ Manifest 只保存确定、可重放的数据；一次性坐标或依赖当前�
 
 使用设计稿已锁定的依赖运行本地 Next.js。默认入口包括 `/`、`/auth`、`/account`、`/info`、`/state`。`/curriculum` 是桌面营销页，明确排除。
 
-### 4.2 截图目标
+### 4.2 截图库
 
-顶层预览页会包含 `PhoneFrame`。自动化应进入其 iframe 内的 `?embed=1` 页面并截取 **iframe 内容画布**，而不是把黑色手机壳、浏览器背景或开发工具悬浮按钮当成 App UI。
+Web 金标准直接使用 `docs/ui-screenshots/2026-07-11/`。这些图片已经按 `?embed=1&capture=1` 生成 375 × 812 App 内容画布，不包含 PhoneFrame 外壳。
 
 采集规则：
 
-- 基准 CSS 视口固定为 375 × 812；
-- 等待字体、图片和必要资源稳定后截图；
-- 使用固定数据与确定的本地认证状态；
-- 长页面记录首屏、关键操作区域和滚动终点；
-- Sheet、Popover、Dialog、选择器和错误提示均单独建状态；
-- 音频、录音、按压和动画记录稳定的前置/进行/结果状态，不以偶然帧作为唯一标准。
+- 不重复生成或复制 Web 截图；
+- RN 对照图直接引用相同页面族和状态文件名；
+- 交互含义不明确时只读检查 Web 代码与原始截图清单；
+- 现有图片缺口进入矩阵，不阻塞已覆盖页面的 RN 对齐。
 
 ### 4.3 状态发现
 
@@ -113,7 +108,7 @@ Manifest 只保存确定、可重放的数据；一次性坐标或依赖当前�
 4. 数据驱动的题库交互差异；
 5. 加载、失败、空、权限与 mock 状态。
 
-代码扫描只负责发现候选，最终是否纳入及状态截图以浏览器真实渲染为准。
+代码扫描只负责理解候选状态与交互；视觉标准以现有截图文件为准。
 
 ## 5. RN 复刻方案
 
@@ -189,7 +184,7 @@ AI、云同步、支付、会员等复杂能力不接真实服务，但采用“
 - Web 金标准保留 375 × 812 原始 PNG；
 - RN 基准优先使用 375 逻辑宽度环境，并统一裁出 App 内容区；
 - 当前 iOS 26.3 只有 402 宽的已创建设备，执行阶段可创建系统支持的 iPhone 11 Pro（375 × 812）模拟器作为几何对照设备；
-- Android 使用现有 API 36 AVD 调整逻辑宽度并保留实际系统安全区；
+- 本 workstream 不启动或使用 Android 模拟器；多宽度视觉检查在 Web 与 iOS 可用画布完成；
 - 差异图使用并列图和 50% 透明叠加图，必要时增加标注框；
 - 不用跨浏览器/原生的原始像素相等作为单一门禁，因为字体栅格化和系统合成不同；任何肉眼可见、未记录的布局或视觉偏差仍视为失败。
 

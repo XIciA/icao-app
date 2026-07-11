@@ -1,9 +1,10 @@
 import { useRouter } from 'expo-router';
-import { BookMarked, Bot, FileText, Flame, FolderOpen, GraduationCap, LineChart, Radio, type LucideIcon } from 'lucide-react-native';
+import { BookMarked, Bot, ChevronRight, FileText, Flame, FolderOpen, GraduationCap, LineChart, Radio, type LucideIcon } from 'lucide-react-native';
 import { Pressable, StyleSheet, View } from 'react-native';
 
-import { AppText, Card, Screen, Tag } from '@/components/ui';
-import { colors, radii, spacing } from '@/theme';
+import { AppText, Card, Screen } from '@/components/ui';
+import { SoftGlow } from '@/components/visual/SoftGlow';
+import { colors, fonts, radii, spacing } from '@/theme';
 
 type Entry = { slug: string; title: string; en: string; description: string; icon: LucideIcon; mock?: boolean };
 const features: Entry[] = [
@@ -24,7 +25,7 @@ export function DiscoverHomeScreen() {
   const open = (slug: string) => router.push({ pathname: '/content/[slug]', params: { slug } });
   return (
     <Screen bottomInset scroll contentStyle={styles.screen}>
-      <View style={styles.glow} />
+      <SoftGlow intensity={0.8} size={320} style={styles.glow} />
       <View style={styles.header}><AppText variant="pageTitle">发现</AppText><AppText>功能、资源与课程，探索更多学习方式。</AppText></View>
       <SectionTitle title="功能" en="Features" />
       <Card style={styles.featureCard}>
@@ -43,24 +44,26 @@ function SectionTitle({ title, en }: { title: string; en: string }) {
 }
 function Feature({ entry, onPress }: { entry: Entry; onPress: () => void }) {
   const Icon = entry.icon;
-  return <Pressable accessibilityLabel={`打开${entry.title}`} onPress={onPress} style={styles.feature}><View style={styles.icon}><Icon color={colors.primary} size={20} /></View><AppText style={styles.center} variant="caption">{entry.title}</AppText>{entry.mock ? <Tag tone="muted">演示</Tag> : null}</Pressable>;
+  return <Pressable accessibilityLabel={`打开${entry.title}`} onPress={onPress} style={({ pressed }) => [styles.feature, pressed ? styles.pressed : null]}><View style={styles.icon}><Icon color={colors.primary} size={20} />{entry.mock ? <View style={styles.soonDot} /> : null}</View><AppText style={styles.featureLabel} variant="caption">{entry.title}</AppText></Pressable>;
 }
 function ListEntry({ entry, onPress, emphasis }: { entry: Entry; onPress: () => void; emphasis?: boolean }) {
   const Icon = entry.icon;
-  return <Pressable accessibilityLabel={`打开${entry.title}`} onPress={onPress}><Card style={styles.row}><View style={[styles.icon, emphasis ? styles.largeIcon : null]}><Icon color={colors.primary} size={emphasis ? 23 : 20} /></View><View style={styles.copy}><AppText variant={emphasis ? 'sectionTitle' : 'cardTitle'}>{entry.title}</AppText><AppText numberOfLines={1} variant="caption">{entry.description}</AppText></View><AppText color={colors.primary} variant="micro">进入</AppText></Card></Pressable>;
+  return <Pressable accessibilityLabel={`打开${entry.title}`} onPress={onPress} style={({ pressed }) => pressed ? styles.pressed : null}><Card style={styles.row}><View style={[styles.icon, emphasis ? styles.largeIcon : null]}><Icon color={colors.primary} size={emphasis ? 23 : 20} /></View><View style={styles.copy}><AppText variant={emphasis ? 'sectionTitle' : 'cardTitle'}>{entry.title}</AppText><AppText numberOfLines={1} variant="caption">{entry.description}</AppText></View><ChevronRight color={colors.mutedForeground} size={17} /></Card></Pressable>;
 }
 
 const styles = StyleSheet.create({
-  screen: { paddingTop: spacing[5] },
-  glow: { backgroundColor: colors.primary08, borderRadius: radii.full, height: 220, left: -120, position: 'absolute', top: -120, width: 220 },
+  screen: { paddingTop: spacing[2] },
+  glow: { left: -170, top: -180 },
   header: { gap: spacing[1], marginBottom: spacing[5] },
-  sectionTitle: { alignItems: 'baseline', flexDirection: 'row', gap: spacing[2], marginBottom: spacing[2], marginTop: spacing[2] },
+  sectionTitle: { alignItems: 'baseline', flexDirection: 'row', gap: spacing[2], marginBottom: spacing[3], marginTop: spacing[1] },
   featureCard: { padding: spacing[3] },
   grid: { flexDirection: 'row' },
-  feature: { alignItems: 'center', flex: 1, gap: spacing[1.5], paddingVertical: spacing[1] },
+  feature: { alignItems: 'center', flex: 1, gap: spacing[1.5], paddingVertical: spacing[1.5] },
   icon: { alignItems: 'center', backgroundColor: colors.primary08, borderRadius: radii.xl, height: 44, justifyContent: 'center', width: 44 },
   largeIcon: { height: 50, width: 50 },
-  center: { textAlign: 'center' },
+  featureLabel: { color: colors.foreground, fontFamily: fonts.sansMedium, textAlign: 'center' },
+  soonDot: { backgroundColor: colors.mutedForeground, borderRadius: radii.full, height: 8, opacity: 0.5, position: 'absolute', right: -2, top: -2, width: 8 },
+  pressed: { opacity: 0.78, transform: [{ scale: 0.98 }] },
   list: { gap: spacing[2.5] },
   row: { alignItems: 'center', flexDirection: 'row', gap: spacing[3] },
   copy: { flex: 1, minWidth: 0 },
