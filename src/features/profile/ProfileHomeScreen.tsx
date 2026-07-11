@@ -18,7 +18,9 @@ export function ProfileHomeScreen() {
   function open(slug: string) {
     if (slug === 'learning-records') router.push('/learning-records');
     else if (slug === 'annotations') router.push('/annotations');
-    else router.push({ pathname: '/detail/[slug]', params: { slug } });
+    else if (slug === 'settings') router.push('/account/settings');
+    else if (slug === 'help') router.push('/info/help');
+    else router.push('/account/profile');
   }
   return <Screen bottomInset scroll contentStyle={styles.screen}><Pressable onPress={() => open('profile-detail')}><Card elevated style={styles.profile}><View style={styles.avatar}><UserRound color={colors.primary} size={28} /></View><View style={styles.copy}><AppText variant="sectionTitle">飞行学员</AppText><AppText variant="caption">目标：ICAO 4 级 · 加油！</AppText></View><ChevronRight color={colors.mutedForeground} /></Card></Pressable><View style={styles.stats}><Card style={styles.stat}><AppText style={styles.value} variant="pageTitle">{cards}</AppText><AppText variant="caption">已学卡片</AppText></Card><Card style={styles.stat}><AppText style={styles.value} variant="pageTitle">{records.length}</AppText><AppText variant="caption">学习次数</AppText></Card></View><Card style={styles.menu}>{menu.map((item, index) => { const Icon = item.icon; return <Pressable key={item.slug} onPress={() => open(item.slug)} style={[styles.row, index ? styles.border : null]}><View style={styles.icon}><Icon color={colors.primary} size={18} /></View><AppText style={styles.copy} variant="button">{item.label}</AppText><ChevronRight color={colors.mutedForeground} size={18} /></Pressable>; })}</Card><AppText style={styles.footer} variant="micro">© 2026 飞猪 ICAO · 当前为本地演示数据</AppText></Screen>;
 }

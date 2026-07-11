@@ -22,10 +22,10 @@
 | 学习能力 | 音频、选择题、跟读/录音、故事复诵 | `/question-bank/[bankId]/study/*` | 阶段 3 完成 |
 | 发现 | 单词、文章、资源、体系课程、随身听、AI 模考、AI 报告、OPI 热点 | `/(tabs)/discover` + `/content/[slug]` | 阶段 4 完成 |
 | 我的 | 我的标注、学习记录 | `/annotations`、`/learning-records` | 阶段 3 完成 |
-| 认证 | 启动、登录、注册、手机验证码、忘记密码 | Root Stack | 5 |
-| 账户 | 资料、编辑资料、设置、同步、安全、换手机/邮箱/密码、注销、退出确认 | Root Stack + Sheet | 5 |
-| 信息 | 协议、隐私、帮助、反馈、关于 | Root Stack | 5 |
-| 状态 | 麦克风权限/拒绝、通知权限、无网络、加载失败、维护、全局加载 | `CenteredState` / `GlobalLoadingScreen` | 4-5 |
+| 认证 | 启动、登录、注册、手机验证码、忘记密码 | `/auth/[slug]` | 阶段 5 完成（模拟认证） |
+| 账户 | 资料、编辑资料、设置、同步、安全、换手机/邮箱/密码、注销、退出确认 | `/account/[slug]` + Sheet | 阶段 5 完成（本地演示） |
+| 信息 | 协议、隐私、帮助、反馈、关于 | `/info/[slug]` | 阶段 5 完成 |
+| 状态 | 麦克风权限/拒绝、通知权限、无网络、加载失败、维护、全局加载 | `/state/[slug]` + `CenteredState` | 阶段 5 完成 |
 | Web 专属 | PhoneFrame、iframe、桌面营销页 `/curriculum` | 不迁移 | 明确排除 |
 
 ## 共享视觉基础

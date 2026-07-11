@@ -48,6 +48,10 @@ export default function RootLayout() {
         <Stack.Screen name="learning-records" />
         <Stack.Screen name="annotations" />
         <Stack.Screen name="content/[slug]" />
+        <Stack.Screen name="auth/[slug]" />
+        <Stack.Screen name="account/[slug]" />
+        <Stack.Screen name="info/[slug]" />
+        <Stack.Screen name="state/[slug]" />
       </Stack>
     </SafeAreaProvider>
   );
