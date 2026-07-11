@@ -118,7 +118,7 @@ Web `card-study-view.tsx` 是高状态密度页面，包含：
 - 退出确认 Dialog；
 - 音频、录音、翻卡/答案、AI 示例及多种失败/重试状态。
 
-RN `ListeningStudyScreen` 已实现核心学习、答题卡、标注、查词 Sheet、退出 Sheet、音频和录音，但组件结构、工具入口、部分 AI 示例状态及弹层表现与 Web 不同，需要作为最高优先级逐状态对照，而不能只按“学习链路可完成”验收。
+RN 学习页现由 `QuestionBankStudyScreen` 和 `useStudySession` 统一承载五大题库；选择、录音、复诵、工作台和反馈差异通过集中策略配置。后续验收仍需逐状态对照 Web，不能只按“学习链路可完成”判定。
 
 ### 5.6 认证、账户、信息与状态
 

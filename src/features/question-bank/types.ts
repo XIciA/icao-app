@@ -3,6 +3,8 @@ export type QuestionBankId = 'listening' | 'sentences900' | 'radiotelephony' | '
 export type QuestionBankIconKey = 'headphones' | 'sentences' | 'radioTower' | 'mic' | 'story';
 export type StudyInteraction = 'speaking' | 'choices' | 'retell';
 export type StudyConsoleTab = 'mine' | 'reference' | 'notes';
+export type StudyToolMode = 'dictionary' | 'highlight' | 'tags';
+export type StudyReviewKind = 'none' | 'exact-match' | 'grammar-placeholder' | 'opi-placeholder';
 
 export type StudyToolConfig = {
   recorder: boolean;
@@ -71,14 +73,15 @@ export type QuestionBankDataset = {
 
 export type CardLearningState = {
   visited: boolean;
+  completed: boolean;
   selectedChoiceIndex?: number;
   recorded?: boolean;
   recordingDurationMillis?: number;
-  tagIds?: ('good' | 'memory' | 'confused')[];
+  tagIds?: string[];
   highlights?: {
     blockId: 'question' | 'reference';
     wordIndex: number;
-    colorId: 'green' | 'yellow' | 'red';
+    colorId: string;
     quote: string;
   }[];
   note: string;
@@ -86,6 +89,7 @@ export type CardLearningState = {
 };
 
 export type LearningRecord = {
+  schemaVersion?: 1 | 2;
   id: string;
   bankId: QuestionBankId;
   bankTitle: string;
@@ -94,7 +98,20 @@ export type LearningRecord = {
   completedCount: number;
   totalCount: number;
   correctCount: number;
+  annotationCount?: number;
+  noteCount?: number;
+  feedbackCount?: number;
   durationSeconds: number;
   reason: 'abort' | 'complete';
   createdAt: string;
+};
+
+export type StudyBehavior = {
+  taskKind: 'choices' | 'recording';
+  recordingMode?: 'speaking' | 'retell';
+  workbenchTabs: StudyConsoleTab[];
+  reviewKind: StudyReviewKind;
+  generatedAudio: boolean;
+  transcriptLabel: string;
+  referenceLabel: string;
 };
