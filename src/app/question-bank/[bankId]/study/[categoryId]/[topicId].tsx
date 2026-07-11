@@ -1,19 +1,21 @@
-import { useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { BookX } from 'lucide-react-native';
 
 import { CenteredState } from '@/components/states/CenteredState';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { Screen } from '@/components/ui';
-import { ListeningStudyScreen } from '@/features/question-bank/components/ListeningStudyScreen';
+import { QuestionBankStudyScreen } from '@/features/question-bank/components/QuestionBankStudyScreen';
 import { useQuestionBank } from '@/features/question-bank/hooks/useQuestionBank';
 import type { QuestionBankId } from '@/features/question-bank/types';
 
 export default function QuestionBankStudyRoute() {
-  const { bankId, categoryId, topicId, cardId } = useLocalSearchParams<{
+  const router = useRouter();
+  const { bankId, categoryId, topicId, cardId, returnTo } = useLocalSearchParams<{
     bankId: QuestionBankId;
     categoryId: string;
     topicId: string;
     cardId?: string;
+    returnTo?: 'annotations';
   }>();
   const state = useQuestionBank(bankId);
 
@@ -21,20 +23,36 @@ export default function QuestionBankStudyRoute() {
   const category = state.status === 'ready' ? state.data.categories.find((item) => item.id === categoryId) : undefined;
   const topic = category?.topics.find((item) => item.id === topicId);
 
-  if (state.status === 'error' || !category || !topic) {
+  const targetCardMissing = Boolean(cardId && topic && !topic.cards.some((card) => card.id === cardId));
+
+  if (state.status === 'error' || !category || !topic || targetCardMissing) {
     return (
       <Screen>
         <CenteredState
           actionLabel="重新加载"
-          description="当前学习主题不存在或读取失败，请返回后重试。"
+          description={targetCardMissing ? '原题内容已更新或不可用，请返回“我的标注”选择其他内容。' : '当前学习主题不存在或读取失败，请返回后重试。'}
           icon={BookX}
           onAction={state.retry}
-          title="学习内容加载失败"
+          title={targetCardMissing ? '原题不可用' : '学习内容加载失败'}
           tone="destructive"
         />
       </Screen>
     );
   }
 
-  return <ListeningStudyScreen category={category} dataset={state.data} initialCardId={cardId} topic={topic} />;
+  if (topic.cards.length === 0) {
+    return (
+      <Screen>
+        <CenteredState
+          actionLabel="返回题库"
+          description="题目正在整理中，可以先返回题库选择其他主题继续学习。"
+          icon={BookX}
+          onAction={router.back}
+          title="这个主题还没有内容"
+        />
+      </Screen>
+    );
+  }
+
+  return <QuestionBankStudyScreen category={category} dataset={state.data} initialCardId={cardId} returnTo={returnTo} topic={topic} />;
 }

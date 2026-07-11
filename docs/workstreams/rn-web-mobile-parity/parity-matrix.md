@@ -16,10 +16,11 @@
 | 体系课程 | 1 | `ContentLibraryScreen` | Hero、指标、课程示例 | aligned |
 | AI 模考 | 3 | `MockExamScreen` | 设置联动真实；考试/报告明确 Mock | aligned |
 | 随身听 | 3 | `RadioPlayerScreen` | 真实题库音频、倍速、字幕和列表 | aligned |
-| 听力题库 | 6 | `QuestionBankCatalog` / `ListeningStudyScreen` | 选择、揭示、答题卡、本地进度 | aligned |
-| 900 句 | 3 | 同上，共享数据驱动架构 | 音频、答案、标注和笔记 | aligned |
-| 陆空通话 | 2 | 同上，共享数据驱动架构 | 场景学习与本地记录 | aligned |
-| OPI | 2 | 同上 + `SpeakingPracticePanel` | 本地录音/回放真实，AI 反馈预留 | aligned |
+| 听力题库 | 6 | `QuestionBankCatalog` / `QuestionBankStudyScreen` | 共享会话引擎 + 选择任务策略 | aligned |
+| 900 句 | 3 | 同一学习页 + 录音策略 | 我的回答、笔记、本地原文对比 | aligned |
+| 陆空通话 | 2 | 同一学习页 + 录音策略 | 我的回答、参考答案、语法反馈预留 | aligned |
+| OPI | 2 | 同一学习页 + 录音策略 | 生成语音和表达分析预留 | aligned |
+| 故事复诵 | 共享状态 | 同一学习页 + retell 文案策略 | 我的回答、参考答案、语法反馈预留 | aligned |
 
 ## 原生例外
 

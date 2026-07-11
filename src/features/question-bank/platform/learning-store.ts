@@ -2,14 +2,12 @@ import Storage from 'expo-sqlite/kv-store';
 
 import type { CardLearningState, LearningRecord, QuestionBankCard, QuestionBankTopic } from '../types';
 
-const TOPIC_PREFIX = 'icao.learning.v1.topic.';
+const LEGACY_TOPIC_PREFIX = 'icao.learning.v1.topic.';
+const TOPIC_PREFIX = 'icao.learning.v2.topic.';
+const MIGRATION_PREFIX = 'icao.learning.v2.migrated.';
 const RECORDS_KEY = 'icao.learning.v1.records';
 const MAX_RECORDS = 100;
 const topicWriteQueues = new Map<string, Promise<void>>();
-
-async function waitForTopicWrites(key: string) {
-  await topicWriteQueues.get(key)?.catch(() => undefined);
-}
 
 export type LearningStore = {
   getCardState(topicId: string, cardId: string): Promise<CardLearningState | undefined>;
@@ -28,14 +26,62 @@ function parseJson<T>(value: string | null, fallback: T): T {
   }
 }
 
+function hasCompletionEvidence(state: Partial<CardLearningState>) {
+  return state.selectedChoiceIndex !== undefined
+    || Boolean(state.recorded)
+    || Boolean(state.note?.trim())
+    || Boolean(state.tagIds?.length)
+    || Boolean(state.highlights?.length);
+}
+
+export function migrateLegacyCardState(state: Partial<CardLearningState>): CardLearningState {
+  return {
+    ...state,
+    visited: Boolean(state.visited),
+    completed: state.completed ?? hasCompletionEvidence(state),
+    note: state.note ?? '',
+    updatedAt: state.updatedAt ?? new Date(0).toISOString(),
+  };
+}
+
+function normalizeTopicStates(value: Record<string, Partial<CardLearningState>>) {
+  return Object.fromEntries(
+    Object.entries(value).map(([cardId, state]) => [cardId, migrateLegacyCardState(state)]),
+  );
+}
+
+async function readTopicStates(topicId: string) {
+  const key = `${TOPIC_PREFIX}${topicId}`;
+  const previousWrite = topicWriteQueues.get(key) ?? Promise.resolve();
+  let result: Record<string, CardLearningState> = {};
+  const readOrMigrate = previousWrite.catch(() => undefined).then(async () => {
+    const current = normalizeTopicStates(parseJson<Record<string, Partial<CardLearningState>>>(await Storage.getItem(key), {}));
+    const migrationComplete = await Storage.getItem(`${MIGRATION_PREFIX}${topicId}`);
+    if (migrationComplete) {
+      result = current;
+      return;
+    }
+
+    const legacy = normalizeTopicStates(parseJson<Record<string, Partial<CardLearningState>>>(
+      await Storage.getItem(`${LEGACY_TOPIC_PREFIX}${topicId}`),
+      {},
+    ));
+    result = { ...legacy, ...current };
+    if (Object.keys(result).length > 0) await Storage.setItem(key, JSON.stringify(result));
+    await Storage.setItem(`${MIGRATION_PREFIX}${topicId}`, '1');
+  });
+  topicWriteQueues.set(key, readOrMigrate);
+  try {
+    await readOrMigrate;
+  } finally {
+    if (topicWriteQueues.get(key) === readOrMigrate) topicWriteQueues.delete(key);
+  }
+  return result;
+}
+
 export const sqliteLearningStore: LearningStore = {
   async getCardState(topicId, cardId) {
-    const key = `${TOPIC_PREFIX}${topicId}`;
-    await waitForTopicWrites(key);
-    const states = parseJson<Record<string, CardLearningState>>(
-      await Storage.getItem(key),
-      {},
-    );
+    const states = await readTopicStates(topicId);
     return states[cardId];
   },
   async saveCardState(topicId, cardId, state) {
@@ -44,8 +90,10 @@ export const sqliteLearningStore: LearningStore = {
     const nextWrite = previousWrite
       .catch(() => undefined)
       .then(async () => {
-        const states = parseJson<Record<string, CardLearningState>>(await Storage.getItem(key), {});
-        await Storage.setItem(key, JSON.stringify({ ...states, [cardId]: state }));
+        const states = normalizeTopicStates(
+          parseJson<Record<string, Partial<CardLearningState>>>(await Storage.getItem(key), {}),
+        );
+        await Storage.setItem(key, JSON.stringify({ ...states, [cardId]: migrateLegacyCardState(state) }));
       });
 
     topicWriteQueues.set(key, nextWrite);
@@ -56,12 +104,7 @@ export const sqliteLearningStore: LearningStore = {
     }
   },
   async getTopicStates(topic) {
-    const key = `${TOPIC_PREFIX}${topic.id}`;
-    await waitForTopicWrites(key);
-    return parseJson<Record<string, CardLearningState>>(
-      await Storage.getItem(key),
-      {},
-    );
+    return readTopicStates(topic.id);
   },
   async addRecord(record) {
     const current = await this.getRecords();
@@ -73,5 +116,9 @@ export const sqliteLearningStore: LearningStore = {
 };
 
 export function completedCards(cards: QuestionBankCard[], states: Record<string, CardLearningState>) {
-  return cards.reduce((count, card) => count + (states[card.id]?.visited ? 1 : 0), 0);
+  return cards.reduce((count, card) => count + (states[card.id]?.completed ? 1 : 0), 0);
+}
+
+export function resetLearningStoreForTests() {
+  topicWriteQueues.clear();
 }

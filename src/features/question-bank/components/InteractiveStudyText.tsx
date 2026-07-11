@@ -1,47 +1,66 @@
-import { Text, StyleSheet } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 
 import { colors, fonts } from '@/theme';
 
-import type { CardLearningState } from '../types';
+import { sentenceAround } from '../annotations/text';
+import type { AnnotationDefinition, AnnotationHighlight, AnnotationTextBlockId, AnnotationToneKey } from '../annotations/types';
 
-const tones = { green: '#CFEBD8', yellow: '#F8E7A9', red: '#F5C8CB' } as const;
+const tones: Record<AnnotationToneKey, string> = {
+  green: '#45A26B',
+  yellow: '#D6A72D',
+  red: '#D94A53',
+  blue: colors.primary,
+};
 
 export function InteractiveStudyText({
   blockId,
+  definitions,
   dictionaryMode,
-  highlightColor,
   highlightMode,
   highlights,
-  onHighlightsChange,
+  onHighlight,
   onLookup,
   text,
 }: {
-  blockId: 'question' | 'reference';
+  blockId: AnnotationTextBlockId;
+  definitions: AnnotationDefinition[];
   dictionaryMode: boolean;
-  highlightColor: 'green' | 'yellow' | 'red';
   highlightMode: boolean;
-  highlights: NonNullable<CardLearningState['highlights']>;
-  onHighlightsChange: (value: NonNullable<CardLearningState['highlights']>) => void;
-  onLookup: (word: string) => void;
+  highlights: AnnotationHighlight[];
+  onHighlight: (value: { blockId: AnnotationTextBlockId; wordIndex: number; quote: string; sentence: string; sourceText: string }) => void;
+  onLookup: (value: { word: string; sentence: string }) => void;
   text: string;
 }) {
   let wordIndex = -1;
+  let cursor = 0;
+  const definitionMap = new Map(definitions.map((definition) => [definition.id, definition]));
+
   return (
     <Text style={styles.text}>
       {text.split(/(\s+)/).map((part, tokenIndex) => {
+        const start = cursor;
+        const end = start + part.length;
+        cursor = end;
         if (/^\s+$/.test(part)) return <Text key={`${tokenIndex}-space`}>{part}</Text>;
         wordIndex += 1;
         const index = wordIndex;
         const active = highlights.find((item) => item.blockId === blockId && item.wordIndex === index);
+        const tone = active ? definitionMap.get(active.colorId)?.color ?? 'green' : undefined;
         return (
           <Text
-            accessibilityLabel={dictionaryMode ? `查词：${part}` : highlightMode ? `${active ? '取消' : '添加'}高亮：${part}` : undefined}
+            accessibilityLabel={dictionaryMode ? `查词：${part}` : highlightMode ? `${active ? '更新或取消' : '添加'}高亮：${part}` : undefined}
             key={`${tokenIndex}-${part}`}
-            onPress={dictionaryMode ? () => onLookup(part.replace(/^[^\p{L}]+|[^\p{L}]+$/gu, '')) : highlightMode ? () => {
-              const rest = highlights.filter((item) => !(item.blockId === blockId && item.wordIndex === index));
-              onHighlightsChange(active ? rest : [...rest, { blockId, wordIndex: index, colorId: highlightColor, quote: part }]);
-            } : undefined}
-            style={active ? { backgroundColor: tones[active.colorId], textDecorationColor: colors.primary, textDecorationLine: 'underline' } : undefined}
+            onPress={dictionaryMode ? () => onLookup({
+              word: part.replace(/^[^\p{L}]+|[^\p{L}]+$/gu, ''),
+              sentence: sentenceAround(text, start, end),
+            }) : highlightMode ? () => onHighlight({
+              blockId,
+              wordIndex: index,
+              quote: part,
+              sentence: sentenceAround(text, start, end),
+              sourceText: text,
+            }) : undefined}
+            style={active ? { textDecorationColor: tones[tone ?? 'green'], textDecorationLine: 'underline', textDecorationStyle: 'solid' } : undefined}
           >
             {part}
           </Text>

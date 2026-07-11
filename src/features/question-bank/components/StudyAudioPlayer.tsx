@@ -1,7 +1,7 @@
 import { setAudioModeAsync, useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import { AlertCircle, Headphones, Pause, Play, RotateCcw } from 'lucide-react-native';
-import { useEffect, useState } from 'react';
-import { ActivityIndicator, AppState, Pressable, StyleSheet, View } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { ActivityIndicator, AppState, LayoutChangeEvent, Pressable, StyleSheet, View } from 'react-native';
 
 import { AppText } from '@/components/ui';
 import { colors, fonts, radii, spacing } from '@/theme';
@@ -13,10 +13,28 @@ function formatTime(value: number) {
   return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
 }
 
-export function StudyAudioPlayer({ uri, label, generatedAudio = false }: { uri?: string; label: string; generatedAudio?: boolean }) {
+export function StudyAudioPlayer({
+  uri,
+  label,
+  generatedAudio = false,
+  playbackKey,
+  autoPlayRequest = 0,
+  tagColors = [],
+}: {
+  uri?: string;
+  label: string;
+  generatedAudio?: boolean;
+  playbackKey: string;
+  autoPlayRequest?: number;
+  tagColors?: string[];
+}) {
   const player = useAudioPlayer(null, { updateInterval: 250, preferredForwardBufferDuration: 10 });
   const status = useAudioPlayerStatus(player);
   const [speedIndex, setSpeedIndex] = useState(1);
+  const speedRef = useRef(1);
+  const pendingAutoPlayRef = useRef(false);
+  const appStateRef = useRef<'active' | 'background' | 'inactive' | 'unknown' | 'extension'>('active');
+  const [trackWidth, setTrackWidth] = useState(0);
 
   useEffect(() => {
     void setAudioModeAsync({ playsInSilentMode: true, shouldPlayInBackground: false });
@@ -24,12 +42,27 @@ export function StudyAudioPlayer({ uri, label, generatedAudio = false }: { uri?:
 
   useEffect(() => {
     player.pause();
-    if (uri) player.replace(uri);
-  }, [player, uri]);
+    pendingAutoPlayRef.current = false;
+    void player.seekTo(0).catch(() => undefined);
+    if (!uri) return;
+    player.replace(uri);
+    player.setPlaybackRate(speedRef.current);
+    pendingAutoPlayRef.current = autoPlayRequest > 0;
+  }, [autoPlayRequest, playbackKey, player, uri]);
+
+  useEffect(() => {
+    if (!pendingAutoPlayRef.current || appStateRef.current !== 'active' || !status.isLoaded || status.playbackState === 'error') return;
+    pendingAutoPlayRef.current = false;
+    player.play();
+  }, [player, status.isLoaded, status.playbackState]);
 
   useEffect(() => {
     const subscription = AppState.addEventListener('change', (next) => {
-      if (next !== 'active' && player.playing) player.pause();
+      appStateRef.current = next;
+      if (next !== 'active') {
+        pendingAutoPlayRef.current = false;
+        if (player.playing) player.pause();
+      }
     });
     return () => subscription.remove();
   }, [player]);
@@ -46,14 +79,25 @@ export function StudyAudioPlayer({ uri, label, generatedAudio = false }: { uri?:
   function cycleSpeed() {
     const next = (speedIndex + 1) % speeds.length;
     setSpeedIndex(next);
+    speedRef.current = speeds[next];
     player.setPlaybackRate(speeds[next]);
   }
 
   function retry() {
     if (!uri) return;
+    pendingAutoPlayRef.current = true;
     player.replace(uri);
     player.setPlaybackRate(speeds[speedIndex]);
-    player.play();
+  }
+
+  function seekFromLocation(locationX: number) {
+    if (!status.duration || !trackWidth) return;
+    const next = Math.max(0, Math.min(status.duration, (locationX / trackWidth) * status.duration));
+    void player.seekTo(next);
+  }
+
+  function onTrackLayout(event: LayoutChangeEvent) {
+    setTrackWidth(event.nativeEvent.layout.width);
   }
 
   const progress = status.duration ? Math.min(100, (status.currentTime / status.duration) * 100) : 0;
@@ -63,6 +107,7 @@ export function StudyAudioPlayer({ uri, label, generatedAudio = false }: { uri?:
       <View style={styles.labelRow}>
         <Headphones color={colors.mutedForeground} size={14} />
         <AppText numberOfLines={1} style={styles.label} variant="caption">{label}</AppText>
+        {tagColors.length ? <View accessibilityLabel={`已添加${tagColors.length}个标签`} style={styles.tagDots}>{tagColors.map((color, index) => <View key={`${color}-${index}`} style={[styles.tagDot, { backgroundColor: color }, index ? styles.tagDotOverlap : null]} />)}</View> : null}
       </View>
 
       {!uri && generatedAudio ? (
@@ -104,9 +149,22 @@ export function StudyAudioPlayer({ uri, label, generatedAudio = false }: { uri?:
             )}
           </Pressable>
           <View style={styles.timeline}>
-            <View style={styles.track}>
+            <Pressable
+              accessibilityActions={[{ name: 'increment', label: '快进' }, { name: 'decrement', label: '后退' }]}
+              accessibilityLabel="播放进度"
+              accessibilityRole="adjustable"
+              onAccessibilityAction={(event) => {
+                const delta = event.nativeEvent.actionName === 'increment' ? 5 : -5;
+                void player.seekTo(Math.max(0, Math.min(status.duration, status.currentTime + delta)));
+              }}
+              onLayout={onTrackLayout}
+              onPress={(event) => seekFromLocation(event.nativeEvent.locationX)}
+              style={styles.track}
+            >
+              <View style={styles.trackBase} />
               <View style={[styles.fill, { width: `${progress}%` }]} />
-            </View>
+              <View style={[styles.thumb, { left: `${progress}%` }]} />
+            </Pressable>
             <View style={styles.timeRow}>
               <AppText style={styles.time} variant="micro">{formatTime(status.currentTime)}</AppText>
               <AppText style={styles.time} variant="micro">{formatTime(status.duration)}</AppText>
@@ -125,12 +183,17 @@ const styles = StyleSheet.create({
   root: { alignSelf: 'stretch', backgroundColor: 'rgba(244,242,236,0.55)', borderColor: colors.border, borderRadius: radii.xxl, borderWidth: 1, padding: spacing[3] },
   labelRow: { alignItems: 'center', flexDirection: 'row', gap: spacing[1.5], marginBottom: spacing[2] },
   label: { flex: 1, fontFamily: fonts.sansSemibold },
+  tagDots: { alignItems: 'center', flexDirection: 'row', paddingRight: 2 },
+  tagDot: { borderColor: colors.card, borderRadius: radii.full, borderWidth: 2, height: 13, width: 13 },
+  tagDotOverlap: { marginLeft: -5 },
   playerRow: { alignItems: 'center', flexDirection: 'row', gap: spacing[3] },
   play: { alignItems: 'center', backgroundColor: colors.primary, borderRadius: radii.full, height: 42, justifyContent: 'center', width: 42 },
   playIcon: { marginLeft: 2 },
   timeline: { flex: 1 },
-  track: { backgroundColor: colors.border, borderRadius: radii.full, height: 6, overflow: 'hidden' },
-  fill: { backgroundColor: colors.primary, borderRadius: radii.full, height: '100%' },
+  track: { height: 18, justifyContent: 'center' },
+  trackBase: { backgroundColor: colors.border, borderRadius: radii.full, height: 6, left: 0, position: 'absolute', right: 0 },
+  fill: { backgroundColor: colors.primary, borderRadius: radii.full, height: 6 },
+  thumb: { backgroundColor: colors.card, borderColor: colors.primary, borderRadius: radii.full, borderWidth: 2, height: 14, marginLeft: -7, position: 'absolute', width: 14 },
   timeRow: { flexDirection: 'row', justifyContent: 'space-between', marginTop: spacing[1] },
   time: { color: colors.mutedForeground, fontFamily: fonts.monoRegular },
   speed: { backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, paddingHorizontal: spacing[2.5], paddingVertical: spacing[1.5] },

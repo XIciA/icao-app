@@ -1,4 +1,4 @@
-import { CheckCircle2, Clock3, Flag, NotebookPen, Target } from 'lucide-react-native';
+import { CheckCircle2, Clock3, Flag, Highlighter, NotebookPen, Sparkles, Target } from 'lucide-react-native';
 import { StyleSheet, View } from 'react-native';
 
 import { AppText, Button, Card, Screen, Tag } from '@/components/ui';
@@ -35,8 +35,10 @@ export function StudyReport({ record, noteCount, onReturn, interaction }: { reco
         <View style={styles.track}><View style={[styles.fill, { width: `${progress}%` }]} /></View>
         <View style={styles.metrics}>
           <Metric icon={Target} label={interaction === 'choices' ? '答对题数' : '完成练习'} value={String(interaction === 'choices' ? record.correctCount : record.completedCount)} />
-          <Metric icon={NotebookPen} label="笔记数" value={String(noteCount)} />
+          <Metric icon={Highlighter} label="标注数" value={String(record.annotationCount ?? 0)} />
+          <Metric icon={NotebookPen} label="笔记数" value={String(record.noteCount ?? noteCount)} />
           <Metric icon={Clock3} label="学习时长" value={formatDuration(record.durationSeconds)} />
+          <Metric icon={Sparkles} label="反馈次数" value={String(record.feedbackCount ?? 0)} />
         </View>
       </Card>
       <Button onPress={onReturn} size="lg" style={styles.button}>返回题库目录</Button>
@@ -64,8 +66,8 @@ const styles = StyleSheet.create({
   progressNumber: { fontFamily: fonts.monoRegular, fontSize: 18 },
   track: { backgroundColor: colors.secondary, borderRadius: radii.full, height: 8, marginTop: spacing[3], overflow: 'hidden' },
   fill: { backgroundColor: colors.primary, borderRadius: radii.full, height: '100%' },
-  metrics: { flexDirection: 'row', gap: spacing[2.5], marginTop: spacing[4] },
-  metric: { backgroundColor: 'rgba(244,242,236,0.55)', borderRadius: radii.xl, flex: 1, minHeight: 105, padding: spacing[3] },
+  metrics: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing[2.5], marginTop: spacing[4] },
+  metric: { backgroundColor: 'rgba(244,242,236,0.55)', borderRadius: radii.xl, minHeight: 105, padding: spacing[3], width: '47%' },
   metricIcon: { alignItems: 'center', backgroundColor: colors.primary08, borderRadius: radii.md, height: 32, justifyContent: 'center', width: 32 },
   metricValue: { marginTop: spacing[3] },
   button: { marginTop: spacing[6] },

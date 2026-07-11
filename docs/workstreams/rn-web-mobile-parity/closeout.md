@@ -12,7 +12,7 @@
 
 ## 验证
 
-- `pnpm check`：8 suites / 13 tests 全通过。
+- `pnpm check`：16 suites / 31 tests 全通过。
 - iOS Development Build：成功，0 errors。
 - iOS Release Build：用于无开发浮层的最终视觉取证。
 - 375 × 812 代表状态已与 Web 标准并列检查。
