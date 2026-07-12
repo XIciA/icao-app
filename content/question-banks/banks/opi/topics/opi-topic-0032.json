@@ -1,0 +1,57 @@
+{
+  "categoryId": "opi-category-03",
+  "id": "opi-topic-0032",
+  "name": "RVSM",
+  "declaredCardCount": 7,
+  "cards": [
+    {
+      "id": "opi-core-460",
+      "taskTitle": "缩略词-RVSM-1",
+      "audioText": "Do you know RVSM? What does RVSM stand for? What's your understand RVSM?",
+      "audioTextZh": "你了解 RVSM 吗？RVSM 代表什么？你对 RVSM 的理解是怎样的？",
+      "referenceText": "RVSM stands for reduced vertical separation minimum. It aims to make full use of the airspace. But in my opinion, it increases workload for both the controller and pilot. What's more, it increases the risk of mid - air collision and misunderstanding.\nRVSM 代表最小垂直间隔缩小（Reduced Vertical Separation Minimum  ）。它旨在充分利用空域。但在我看来，它增加了管制员和飞行员的工作负荷。而且，它增加了空中相撞和误解的风险。\n\nRVSM stands for Reduced Vertical Separation Minimum. It is an airspace operation standard that reduces the vertical separation between aircraft in the range of 8900m to 12500m to 300m, optimizing airspace utilization.\nRVSM即缩小最低垂直间隔，是一种空域运行标准，将8900米至12500米高度范围内的航空器垂直间隔缩小至300米，以优化空域利用率。"
+    },
+    {
+      "id": "opi-core-461",
+      "taskTitle": "缩略词-RVSM-2",
+      "audioText": "What is the base level? And Top level of RVSM airspace?\nRVSM",
+      "audioTextZh": "空域的基准高度层和最高高度层分别是什么？",
+      "referenceText": "The basic level of RVSM airspace is 8900 meters (29100 feet), and the top level is 12500 meters (41100 feet). Vertical separation within this range is set to 300 meters.\nRVSM空域的最低高度为8900米（29100英尺），最高高度为12500米（41100英尺），该范围内的垂直间隔设定为300米。"
+    },
+    {
+      "id": "opi-core-462",
+      "taskTitle": "缩略词-RVSM-3",
+      "audioText": "Are there any qualifications/requirements if a pilot fly into RVSM airspace?",
+      "audioTextZh": "飞行员进入 RVSM 空域，有哪些资质 / 要求？",
+      "referenceText": "1   If we fly into RVSM airspace, we must meet some requirements. And the aircraft should be equipped with auto pilot, TCAS, RNP, The inertial reference system and so on.\n若进入 RVSM 空域，我们必须满足一些要求。飞机应配备自动驾驶仪、空中交通警戒与防撞系统（TCAS）、所需导航性能（RNP）、惯性参考系统等设备。\n\n2   A pilot cannot legally fly into RVSM airspace unless they are operating an RVSM-certified aircraft, for an RVSM-authorized operator, and have themselves been trained in that operator's specific RVSM procedures.\n飞行员必须同时满足以下三个条件方可合法进入RVSM空域：驾驶经RVSM认证的航空器，代表获RVSM授权的运营商执飞，且已完成该运营商特定的RVSM程序培训。"
+    },
+    {
+      "id": "opi-core-463",
+      "taskTitle": "缩略词-RVSM-4",
+      "audioText": "If the autopilot failure in RVSM airspace, what will you do?",
+      "audioTextZh": "若在 RVSM 空域出现自动驾驶仪故障，你会怎么做？",
+      "referenceText": "If the autopilot failure in RVSM airspace, we are no longer qualified. We will request leave the RVSM airspace.\n若在 RVSM 空域发生自动驾驶仪故障，我们将不再满足（该空域的 ）运行资质要求。我们会申请离开 RVSM 空域。"
+    },
+    {
+      "id": "opi-core-464",
+      "taskTitle": "缩略词-RVSM-5",
+      "audioText": "Nowadays, the terminal airspace is becoming more and more crowded, are there any potential risks?",
+      "audioTextZh": "如今终端空域（进近 / 起降空域 ）越来越繁忙，存在哪些潜在风险？",
+      "referenceText": "In my opinion, because there are more and more aircraft, it increases workload for both pilot and ATC. What's more, it increases the risk of mid - air collision and misunderstanding.\n在我看来，由于飞机数量越来越多，这增加了飞行员和空中交通管制员（ATC）的工作负荷。而且，它增加了空中相撞和指令误解的风险。"
+    },
+    {
+      "id": "opi-core-465",
+      "taskTitle": "缩略词-RVSM-6",
+      "audioText": "How to avoid traffic conflicts at the busy terminal?",
+      "audioTextZh": "如何在复杂终端进近区避免航空器冲突?",
+      "referenceText": "Strictly follow ATC vectors and speed restrictions, maintain situational awareness via EFIS/TCAS, use standard communication, avoid last-minute maneuver changes, and request clearances in advance. Improve coordination with ATC and adhere to approach procedures.\n严格遵循空管引导和速度限制，通过电子飞行仪表系统（EFIS）/TCAS保持情景意识，使用标准通讯，避免临时变更机动动作，并提前申请许可；加强与空管的协调，严格遵守进近程序。"
+    },
+    {
+      "id": "opi-core-466",
+      "taskTitle": "缩略词-RVSM-7",
+      "audioText": "What is the advantage of operating RVSM?",
+      "audioTextZh": "实施RVSM的优势有哪些?",
+      "referenceText": "Operating RVSM fully utilizes airspace capacity, increases flight efficiency, allows pilots to select optimal cruising altitudes to save fuel, reduces flight delays, and lowers operational costs for airlines.\n实施RVSM能充分利用空域容量，提升飞行效率，让飞行员选择最优巡航高度以节省燃油，减少航班延误，并降低航空公司运营成本。"
+    }
+  ]
+}

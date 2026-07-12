@@ -1,0 +1,18 @@
+{
+  "id": "atc-afr",
+  "name": "AFR",
+  "declaredTopicCount": 10,
+  "declaredCardCount": 185,
+  "topicIds": [
+    "atc-scenario-0015",
+    "atc-scenario-0016",
+    "atc-scenario-0017",
+    "atc-scenario-0018",
+    "atc-scenario-0019",
+    "atc-scenario-0020",
+    "atc-scenario-0021",
+    "atc-scenario-0022",
+    "atc-scenario-0023",
+    "atc-scenario-0024"
+  ]
+}

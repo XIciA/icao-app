@@ -1,0 +1,43 @@
+{
+  "categoryId": "opi-category-03",
+  "id": "opi-topic-0069",
+  "name": "QRH",
+  "declaredCardCount": 5,
+  "cards": [
+    {
+      "id": "opi-core-724",
+      "taskTitle": "缩略词-QRH-1",
+      "audioText": "What is QRH ？",
+      "audioTextZh": "什么是快速参考手册（QRH）？",
+      "referenceText": "QRH stands for Quick Reference Handbook. It includes normal checklists, abnormal checklists, aircraft performance data and maneuvering flight procedures. The main purpose of QRH is to remind the pilot of relevant procedures. It reduces human errors, improves efficiency, and lessens the pilot's workload.\n快速参考手册（QRH）是 Quick Reference Handbook 的缩写。它涵盖正常检查单、非正常检查单、航空器性能数据以及机动飞行程序 。QRH 的主要作用是提醒飞行员相关操作程序，能够减少人为差错、提升工作效率，同时减轻飞行员的工作负荷 。\n\nQRH stands for Quick Reference Handbook, containing normal and abnormal/emergency checklists. It helps pilots respond quickly and correctly to issues like engine failure or depressurization by providing step-by-step guidance, reducing human errors and ensuring safety in critical situations.\n快速检查单（QRH）包含正常和非正常/紧急检查项目，为发动机故障、释压等情况提供分步指导，帮助飞行员快速正确应对，减少人为失误，在关键场景中保障安全。"
+    },
+    {
+      "id": "opi-core-725",
+      "taskTitle": "缩略词-QRH-2",
+      "audioText": "What's the difference between interactive QRH and conventional QRH?",
+      "audioTextZh": "交互式QRH和传统QRH有什么区别？",
+      "referenceText": "There are some differences between interactive QRH and conventional QRH. There are some notes in every step in the interactive QRH, it’s easier for pilots to understand what to do, how to do it and why to do it. But in conventional QRH, there are only procedures without any notes.\n交互式QRH和传统QRH有一些差别。在交互式QRH里，每一步骤都有注释，使飞行员更容易理解做什么，怎么做，为什么做。但传统QRH只有程序，没有注释。"
+    },
+    {
+      "id": "opi-core-726",
+      "taskTitle": "缩略词-QRH-3",
+      "audioText": "Do you know anything about QRH? Can you say something about QRH?",
+      "audioTextZh": "你知道QRH吗？QRH代表什么？",
+      "referenceText": "QRH is Quick Reference Handbook. QRH includes normal checklist, emergency checklist and procedures.\nQRH是快速参考手册（ Quick Reference Handbook）。QRH对飞行员有用，因为QRH包括正常检查单，紧急检查单和程序。"
+    },
+    {
+      "id": "opi-core-727",
+      "taskTitle": "缩略词-QRH-4",
+      "audioText": "Do you think you QRH is useful?",
+      "audioTextZh": "你认为QRH有用吗？",
+      "referenceText": "Yes, I think QRH is useful. If emergency situation occurs, we can follow the checklists and procedures in QRH. It can increase our situation awareness, reduce our workload, reduce human errors and ensure flight safety.\n是的，我认为QRH有用。如果发生紧急情况，我们可以遵照QRH检查单和程序，这样可以减轻飞行员负担，减少人为差错，确保飞行安全。"
+    },
+    {
+      "id": "opi-core-728",
+      "taskTitle": "缩略词-QRH-5",
+      "audioText": "Have you ever heard of interactive QRH?",
+      "audioTextZh": "你听说过交互式QRH吗？",
+      "referenceText": "Yes, I have heard of interactive QRH (quick reference handbook).\n嗯，我听说过交互式快速参考手册（QRH） 。\n\nBoeing Interactive Quick Reference Handbook (IQRH) is the mobile version of the paper QRH, providing increased efficiency to Boeing airplane operators that have FCOM/QRH data subscriptions. With Interactive QRH, Boeing pilots will enjoy\n波音交互式快速参考手册（IQRH）是纸质版 QRH 的移动版本，可为订阅飞行机组操作手册 / 快速参考手册（FCOM/QRH ）数据的波音飞机运营方提升工作效率。借助交互式 QRH，波音飞行员将能享受到：\n\nElectronic access to all normal and non-normal checklists, performance tables, and maneuvers\n以电子方式获取所有正常及非正常检查单、性能表以及机动飞行程序\nChecklists that are interactive, aircraft tail number-specific, and customizable (e.g. font size, night mode)\n具备交互功能、针对飞机尾号定制且可个性化设置（如字体大小、夜间模式 ）的检查单\nEffortless electronic distribution of QRH updates\n便捷的 QRH 更新电子分发（功能 ）\nAdvanced navigation and search capabilities\n先进的导航及搜索功能"
+    }
+  ]
+}

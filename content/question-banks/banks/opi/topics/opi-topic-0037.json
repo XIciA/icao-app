@@ -1,0 +1,134 @@
+{
+  "categoryId": "opi-category-01",
+  "id": "opi-topic-0037",
+  "name": "积雨云与雷暴",
+  "declaredCardCount": 18,
+  "cards": [
+    {
+      "id": "opi-core-494",
+      "taskTitle": "气象-积雨云与雷暴-1",
+      "audioText": "How do you search for cumulonimbus or thunderstorm during flight.",
+      "audioTextZh": "飞行中如何搜寻积雨云或雷暴？",
+      "referenceText": "First of all, we will maintain communication with ATC to know the cumulonimbus and thunderstorm en route. Secondly, we should have good task sharing in the cockpit. The PF should control the aircraft. The PM should pay close attention to the outside to visually check for cumulonimbus and thunderstorm. At last, we can monitor the weather radar to detect CBs and thunderstorm.\n首先，我们会与空中交通管制（ATC）做好沟通，了解航路上积雨云与雷暴的情况。其次，驾驶舱内要做好任务分工，操纵飞机的飞行员（PF）负责控制飞机，监控飞行员（PM）需密切关注外部，目视检查积雨云与雷暴。最后，我们可通过监视气象雷达，来探测积雨云（CBs）和雷暴 。"
+    },
+    {
+      "id": "opi-core-495",
+      "taskTitle": "气象-积雨云与雷暴-2",
+      "audioText": "What damage might CB bring to your aircraft?\nCB",
+      "audioTextZh": "会给飞机带来哪些危害？",
+      "referenceText": "（1）CBs really pose a threat to flight safety. If we encounter CBs, it may make the aircraft difficult to control, cause structural damage or injuries to passengers. We should try our best to avoid CBs.\n积雨云（CBs）确实对飞行安全构成威胁。若遭遇积雨云，可能使飞机难以操控、造成结构损坏或乘客受伤。我们应尽力避让积雨云。\n（2）CB is dangerous because CB is often accompanied by lightning, heavy rain, strong wind and severe turbulence. Lightning strike may cause structural damage to the aircraft, especially to the electronic equipment. Heavy rain may cause low visibility or engine flameout. Strong wind and severe turbulence may make the aircraft difficult to control.\n积雨云（CB）很危险，因为它常伴随雷电、强降雨、大风和严重颠簸。雷击可能对飞机造成结构损坏，尤其会影响电子设备。强降雨可能导致能见度降低或发动机熄火。大风和严重颠簸可能使飞机难以操控 。"
+    },
+    {
+      "id": "opi-core-496",
+      "taskTitle": "气象-积雨云与雷暴-3",
+      "audioText": "Have you ever flown into CB? Why is CB dangerous?",
+      "audioTextZh": "你曾飞进过积雨云（CB）吗？积雨云为何危险？",
+      "referenceText": "No, I have never flown into CB, but I know CB is dangerous because CB is often accompanied by lightning, heavy rain, strong wind and severe turbulence. Lightning strike may cause structural damage to the aircraft, especially to the electronic equipment. Heavy rain may cause engine flameout. Strong wind and severe turbulence may make the aircraft difficult to control.\n没有，我从未飞进过积雨云。但我知道积雨云危险，因为它常伴随雷电、强降雨、大风和严重颠簸。雷击可能对飞机造成结构损坏，尤其会影响电子设备。强降雨可能导致发动机熄火。大风和严重颠簸可能使飞机难以操控 。\n\nNo, I haven’t flown into CB. CB is dangerous because it contains multiple hazards: heavy rain, hail, lightning strikes, strong turbulence, and icing. These can make the aircraft hard to control, cause structural damage, system malfunctions, or even engine failure, posing severe threats to flight safety.\n我没有飞进过积雨云（CB）。积雨云危险是因为它包含多种危害：大雨、冰雹、雷击、强颠簸和积冰。这些会导致飞机难以操控、结构损伤、系统故障甚至发动机失效，对飞行安全构成严重威胁。"
+    },
+    {
+      "id": "opi-core-497",
+      "taskTitle": "气象-积雨云与雷暴-4",
+      "audioText": "How is CB displayed on the instrument in the cockpit?",
+      "audioTextZh": "驾驶舱仪表上如何显示积雨云（CBs）？",
+      "referenceText": "The CBs are displayed in red on the ND/MFD in the cockpit.\n积雨云在导航显示器 / 多功能显示器（ND/MFD）上以红色显示 。\n\nCBs are displayed on the on-board weather radar in the cockpit. Typically, they show as red areas, indicating intense precipitation and strong convective activity. Pilots can also detect CBs through visual checks — they appear as dark, towering clouds with a cauliflower-like shape.\n积雨云在驾驶舱的机载气象雷达上显示为红色区域，代表强降水和强烈对流活动。"
+    },
+    {
+      "id": "opi-core-498",
+      "taskTitle": "气象-积雨云与雷暴-5",
+      "audioText": "How do pilots search for CB ahead?",
+      "audioTextZh": "飞行员如何搜寻前方的积雨云（CB）？",
+      "referenceText": "We can search for CB ahead with the weather radar, and the CBs are displayed in red on the ND/MFD.\n我们可以用气象雷达搜寻前方的积雨云。积雨云会在导航显示器 / 多功能显示器（ND/MFD）上以红色显示 。"
+    },
+    {
+      "id": "opi-core-499",
+      "taskTitle": "气象-积雨云与雷暴-6",
+      "audioText": "Describe one of the unforgettable flights when encountering CB",
+      "audioTextZh": "描述一次遭遇积雨云（CB）时难忘的飞行经历",
+      "referenceText": "Sorry, I have never encountered CB. But I know CB is dangerous. If we encounter CB, we will report the situation to ATC and request clearance to go round. Then we will change the course/route. When we are clear of the thunderstorm, we will rejoin the planned route.\n抱歉，我从未遭遇过积雨云。但我知道积雨云很危险。若遭遇积雨云，我们会向空中交通管制（ATC）报告情况，申请许可绕飞。随后我们会变更航线。当脱离雷暴影响后，我们会重新加入预定航线 。"
+    },
+    {
+      "id": "opi-core-500",
+      "taskTitle": "气象-积雨云与雷暴-7",
+      "audioText": "What should a pilot do if there is\nan indication of CBs ahead?",
+      "audioTextZh": "当前方有积雨云时,飞行员应该怎么做?",
+      "referenceText": "When CBs are indicated ahead, I first report to ATC and request deviation to avoid them. I use the weather radar to confirm their position and extent, then adjust the flight route to offset left or right until clear of the weather. I never fly through CBs and will divert or hold if necessary.\n当前方出现积雨云指示时，我首先向空管报告并申请偏离航线避让；通过气象雷达确认积雨云的位置和范围，调整航线向左或向右偏移，直至脱离危险天气。绝不穿越积雨云，必要时改航或等待。"
+    },
+    {
+      "id": "opi-core-501",
+      "taskTitle": "气象-积雨云与雷暴-8",
+      "audioText": "How does the on-board weather\nradar detect the intensity of\nprecipitation?",
+      "audioTextZh": "机载气象雷达如何检测降水的强度?",
+      "referenceText": "On-board weather radar emits microwave pulses that reflect off water droplets or ice crystals in precipitation. The intensity of the reflected signal determines precipitation strength — stronger reflections (displayed as red) indicate heavy precipitation, while weaker ones (green/yellow) mean light to moderate precipitation.\n机载气象雷达发射微波脉冲，脉冲遇到降水中的水滴或冰晶后反射。反射信号的强度决定降水强度：强反射（显示为红色）代表强降水，弱反射（绿色/黄色）代表弱至中强度降水。"
+    },
+    {
+      "id": "opi-core-502",
+      "taskTitle": "气象-积雨云与雷暴-9",
+      "audioText": "What is the main purpose of the weather radar on board?",
+      "audioTextZh": "机载气象雷达的主要作用是什么？",
+      "referenceText": "The main purpose of the weather radar is to detect hazardous weather ahead, such as thunderstorms, heavy precipitation, hail, and turbulence. It helps pilots avoid dangerous areas by displaying weather returns on the navigation screen. Different colors represent different precipitation intensities — green for light, yellow for moderate, and red for severe. Pilots can use the radar to determine the most effective deviation path, usually upwind of a storm. The radar also helps maintain passenger comfort and fuel efficiency by avoiding unnecessary turbulence. However, pilots must understand its limitations, such as radar shadowing and attenuation. Proper use of weather radar is essential for weather avoidance and flight safety.\n气象雷达的主要作用是探测前方危险天气，例如雷暴、强降水、冰雹和颠簸。它通过在导航屏幕上显示气象回波，帮助飞行员避开危险区域。不同颜色代表不同降水强度 —— 绿色为轻度，黄色为中度，红色为重度。飞行员可以利用雷达确定最有效的绕飞路径，通常在雷雨的上风侧。气象雷达还能通过避开不必要的颠簸，提升乘客舒适度并节省燃油。但飞行员必须了解其局限性，如雷达阴影和信号衰减。正确使用气象雷达对避开恶劣天气和保障飞行安全至关重要。"
+    },
+    {
+      "id": "opi-core-503",
+      "taskTitle": "气象-积雨云与雷暴-10",
+      "audioText": "How do you use weather radar to avoid a thunderstorm?",
+      "audioTextZh": "你如何使用气象雷达避开雷雨？",
+      "referenceText": "When I see a thunderstorm on weather radar, I first identify the red or magenta areas, which indicate the most severe activity. I never try to fly through or under a thunderstorm. The recommended procedure is to deviate upwind of the storm, because hail and turbulence are usually more severe on the downwind side. I maintain at least 20 nautical miles separation from severe cells. If the radar shows heavy precipitation ahead, I request ATC for deviation and inform the cabin crew. I also adjust the radar tilt to see weather at my flight level and below. Continuous monitoring is important because storms can grow or change direction quickly. Weather radar is a tool, but my eyes and ATC information also help.\n当我在气象雷达上看到雷雨时，首先识别红色或品红色区域，这些区域表示最强烈的天气活动。我从不试图从雷雨下方或中间穿过。推荐的做法是向雷雨的上风侧绕飞，因为冰雹和颠簸通常在下风侧更严重。我至少与强雷暴单体保持 20 海里的间隔。如果雷达前方显示强降水，我会请求空管允许偏航，并通知客舱机组。我还会调整雷达俯仰角，以观察我所在高度层及下方的天气。持续监控很重要，因为雷雨可能快速增强或改变方向。气象雷达是工具，但目视观察和空管信息同样有帮助。"
+    },
+    {
+      "id": "opi-core-504",
+      "taskTitle": "气象-积雨云与雷暴-11",
+      "audioText": "What are the limitations of weather radar?",
+      "audioTextZh": "气象雷达有哪些局限性？",
+      "referenceText": "Weather radar has several limitations. First, it only detects precipitation, not turbulence directly. Turbulence is inferred from precipitation intensity. Second, radar shadowing occurs when a strong storm blocks the radar beam, hiding weather behind it. Third, attenuation happens in heavy rain, reducing the radar's ability to see beyond the storm. Fourth, the radar cannot detect dry turbulence, clear air turbulence, or volcanic ash. Fifth, the tilt setting must be adjusted correctly; if set too low, it may show ground returns instead of weather. Finally, storms can develop faster than the radar can update. Therefore, pilots should never rely solely on weather radar. They should also use ATC weather reports, onboard lightning sensors, and visual observation. Safety requires multiple sources of information.\n气象雷达有若干局限性。第一，它只探测降水，不能直接探测颠簸 —— 颠簸是通过降水强度推断的。第二，当强雷暴阻挡雷达波束时会产生雷达阴影，遮蔽后方的天气。第三，强降雨中会发生信号衰减，降低雷达穿透雷雨后的探测能力。第四，雷达无法探测干性颠簸、晴空颠簸或火山灰。第五，必须正确调整俯仰角设置，如果设得过低，可能显示地面回波而非天气。最后，雷暴的发展速度可能快于雷达的更新速度。因此，飞行员绝不能仅依赖气象雷达，还应结合空管天气报告、机载雷电传感器和目视观察。安全需要多种信息来源。"
+    },
+    {
+      "id": "opi-core-506",
+      "taskTitle": "气象-积雨云与雷暴-12",
+      "audioText": "How does a thunderstorm develop?",
+      "audioTextZh": "雷暴是如何发展形成的？",
+      "referenceText": "If there is moist air, swift updraft, and an unstable atmosphere, a thunderstorm will develop.\n若存在潮湿空气、强烈上升气流以及不稳定的大气环境，雷暴便会发展形成 。"
+    },
+    {
+      "id": "opi-core-507",
+      "taskTitle": "气象-积雨云与雷暴-13",
+      "audioText": "What are the stages of thunderstorms?",
+      "audioTextZh": "雷暴的发展阶段有哪些？",
+      "referenceText": "Thunderstorms always happen in summer. There are three stages of a thunderstorm: developing stage, mature stage, and dissipating stage. During the developing stage, it is full of updraft. During the mature stage, there is rainfall. During the dissipating stage, there are strong downdrafts.\n雷暴常发生在夏季。雷暴有三个发展阶段：发展阶段、成熟阶段和消散阶段。在发展阶段，上升气流旺盛；在成熟阶段，会出现降雨；在消散阶段，有强烈的下沉气流 。\n\nThunderstorms have three stages. The developing stage is full of updrafts, with moisture condensing into water droplets to form storm clouds. The mature stage has both updrafts and downdrafts, accompanied by heavy rain, lightning, and thunder. The dissipating stage features stronger downdrafts, with the storm dying out as warm moist air stops rising.\n雷暴分为三个阶段。发展阶段：充满上升气流，水汽凝结成水滴，风暴云逐渐形成；成熟阶段：上升气流与下降气流并存，伴随大雨、雷电；消散阶段：下降气流占主导，暖湿空气停止上升，风暴逐渐减弱直至消失。"
+    },
+    {
+      "id": "opi-core-508",
+      "taskTitle": "气象-积雨云与雷暴-14",
+      "audioText": "How do pilots go round the thunderstorm during flight?",
+      "audioTextZh": "飞行中飞行员如何绕飞雷暴？",
+      "referenceText": "For example, if I encounter a thunderstorm during flight, I will advise the controller of our situation and request an offset of 10 miles to the right or left of the track to avoid the thunderstorm.\n例如，若我在飞行中遭遇雷暴，会向管制员报告情况，并申请向航迹右侧或左侧偏移 10 海里以避让雷暴 。"
+    },
+    {
+      "id": "opi-core-509",
+      "taskTitle": "气象-积雨云与雷暴-15",
+      "audioText": "In which season is a thunderstorm most likely to occur?",
+      "audioTextZh": "雷暴最有可能在哪个季节发生？",
+      "referenceText": "Thunderstorms are most likely to occur in summer.\n雷暴最有可能在夏季发生 。\n\nThunderstorms are most likely to occur in summer. Summer’s high temperature leads to strong convective currents in the air, which easily form cumulonimbus clouds (CBs) — the main source of thunderstorms. They can also occur in spring or autumn in some regions with unstable weather conditions.\n雷暴最常见于夏季。夏季气温高，空气对流强烈，易形成积雨云（CB），而积雨云是雷暴的主要成因。在部分地区，春秋季天气不稳定时也可能出现雷暴。"
+    },
+    {
+      "id": "opi-core-510",
+      "taskTitle": "气象-积雨云与雷暴-16",
+      "audioText": "if there is an indication of thunderstorm, what will you do?",
+      "audioTextZh": "若有雷暴迹象，你会怎么做？",
+      "referenceText": "If there is an indication of a thunderstorm ahead of us, we will report the situation to ATC and request clearance to go round. Then we will change the course/route. When we are clear of the thunderstorm, we will rejoin the planned route.\n若前方有雷暴迹象，我们会向空中交通管制（ATC）报告情况，申请许可绕飞。随后我们会变更航线。当脱离雷暴影响后，我们会重新加入预定航线 。"
+    },
+    {
+      "id": "opi-core-511",
+      "taskTitle": "气象-积雨云与雷暴-17",
+      "audioText": "If there is a thunderstorm at the airport, what will you do?",
+      "audioTextZh": "若机场有雷暴，你会怎么做？",
+      "referenceText": "If there is a thunderstorm at the airport and we are still on the ground, we will stop the aircraft and wait for the weather to improve. If we are flying in the air, we will hold to wait for the weather to improve or divert to the alternate airport.\n若机场有雷暴且我们仍在地面，会让飞机停场并等待天气好转。若在空中飞行，我们会盘旋等待天气好转，或改航至备降机场 。\n\nIf there is a thunderstorm at the airport, I will request to delay departure or change to another runway before flight. During flight, I will ask ATC for holding until the weather improves, or request diversion to an alternate airport. I will never attempt to take off or land in a thunderstorm to avoid hazards like lightning strikes.\n若机场附近有雷暴，起飞前我会申请延误起飞或更换跑道；飞行中则向空管申请等待至天气好转，或请求改航至备降机场。绝不会在雷暴中尝试起降，以规避雷击等风险。"
+    },
+    {
+      "id": "opi-core-512",
+      "taskTitle": "气象-积雨云与雷暴-18",
+      "audioText": "How do you make the weather analysis before each flight?",
+      "audioTextZh": "每次飞行前，你们如何进行天气分析？",
+      "referenceText": "Before flight, we can get weather information from the dispatching office, ATIS, or ATC. During the preflight briefing, we will discuss the weather information in the briefing room.\n飞行前，我们可从签派室、自动终端情报服务（ATIS）或空中交通管制（ATC）获取天气信息。在飞行前简报阶段，我们会在 briefing room（ briefing 一般指飞行前的任务、天气等简报会，可译为 “飞行准备室 / briefing 室” ，若需更明确，也可结合公司习惯，比如 “ briefing 室” 常用作 “飞行准备室” ）讨论天气信息 。"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "categoryId": "opi-category-06",
+  "id": "opi-topic-0142",
+  "name": "皮托管",
+  "declaredCardCount": 4,
+  "cards": [
+    {
+      "id": "opi-extra-334",
+      "taskTitle": "飞机系统-皮托管-1",
+      "audioText": "What is the pitot tube used for?",
+      "audioTextZh": "皮托管的用途是什么？",
+      "referenceText": "Pitot tube is used to collect the total pressure. It is used to measure the airspeed of the aircraft.\n用于采集总压，进而测量飞机的空速。"
+    },
+    {
+      "id": "opi-extra-335",
+      "taskTitle": "飞机系统-皮托管-2",
+      "audioText": "What is the indication when pitot tube is blocked?",
+      "audioTextZh": "皮托管堵塞时，会出现什么指示现象？",
+      "referenceText": "When pitot tube is blocked, the airspeed indicator will act as an altimeter. It means when we are in level flight, the airspeed indication will not change no matter of the power setting. The airspeed reading will increase when climbing and decrease when descending.\n空速表会表现出类似高度表的特性：平飞时，无论推力如何调整，空速指示不变；爬升时空速读数上升，下降时读数下降。\n\n If the pitot tube is blocked, the aircraft’s instrument indications become unreliable. Specifically, the airspeed indicator will show incorrect or fluctuating readings, which may mislead pilots and affect flight safety. Visual checks may also reveal blockages by foreign objects.\n若皮托管堵塞，飞机仪表指示会变得不可靠，尤其是空速表会显示错误或波动的读数，可能误导飞行员并影响飞行安全，通过目视检查也可能发现外物堵塞迹象。"
+    },
+    {
+      "id": "opi-extra-336",
+      "taskTitle": "飞机系统-皮托管-3",
+      "audioText": "What will you do if pitot tube is blocked?",
+      "audioTextZh": "皮托管堵塞时，你会怎么做？",
+      "referenceText": "I will turn on the pitot heating system and maintain level flight before the ice is melted.\n开启皮托管加热系统，并在积冰融化前保持平飞。\n\nFirst, follow QRH/ECAM procedures. If blocked by ice, activate the pitot heating function and change altitude to avoid icing areas. Monitor other reliable instruments (altimeter, attitude indicator) for flight control. If unresolved, report to ATC and request diversion for maintenance.\n首先遵循快速检查单QRH或电子中央飞机监控ECAM程序；若为结冰堵塞，开启皮托管加温功能并改变高度避开结冰区；依托高度表、姿态仪等可靠仪表控制飞机；若问题未解决，向空管报告并申请备降检修。"
+    },
+    {
+      "id": "opi-extra-337",
+      "taskTitle": "飞机系统-皮托管-4",
+      "audioText": "What do you know about pitot tube?",
+      "audioTextZh": "你知道皮托管吗?",
+      "referenceText": "The pitot tube is a key aircraft component used to measure total air pressure. By combining with static pressure data, it calculates indicated airspeed (IAS), vertical speed (VSI), and altitude. It has a front opening to collect total pressure, critical for flight parameter monitoring.\n皮托管是飞机关键部件，用于测量空气总压，结合静压数据可计算出指示空速IAS、垂直速度VSI和高度。其前端有开口用于收集总压，对飞行参数监控至关重要。"
+    }
+  ]
+}

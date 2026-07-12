@@ -1,0 +1,143 @@
+{
+  "categoryId": "atc-ual",
+  "id": "atc-scenario-0040",
+  "name": "UAL 811 转述增压问题",
+  "declaredCardCount": 15,
+  "cards": [
+    {
+      "id": "atc-scenario-0040-card-main-678",
+      "taskTitle": "UAL 811-1",
+      "audioText": "B: Your call sign is United 811, from Los Angeles to Wuhan, you have received an Urgency call from Air France 103, Air France 103 had a pressurization problem and the cabin altitude was rising rapidly, relay the message to Zhengzhou Control.",
+      "audioTextZh": "B：你的呼号是 United 811，从洛杉矶飞往武汉，你收到 Air France 103 的紧急呼叫，Air France 103 出现增压问题且客舱高度快速上升，将该信息转报给郑州管制。",
+      "referenceText": "PANPAN PANPAN PANPAN, Zhengzhou Control, UAL811, we have intercepted an Urgency call from AFR103, AFR103 had a pressurization problem and the cabin altitude was rising rapidly.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，郑州管制，UAL811，我们截收到 AFR103 的紧急呼叫，AFR103 出现增压问题，客舱高度快速上升。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/693.mp3"
+    },
+    {
+      "id": "atc-scenario-0040-card-main-679",
+      "taskTitle": "UAL 811-2",
+      "audioText": "C: United 811, roger PANPAN,  break, break, Air France 103, you are number 1 to land, the medical service will be ready for you.\nB: You relay the message to Air France 103.",
+      "audioTextZh": "C：United 811，收到 PANPAN，Break，Break，Air France 103，你是第一架落地，医疗服务将为你准备好。\nB：你将该信息转报给 Air France 103。",
+      "referenceText": "AFR103, UAL811, you are No.1 to land, the medical service will be ready for you.",
+      "referenceTextZh": "AFR103，UAL811，你是第一架落地，医疗服务将为你准备好。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/694.mp3"
+    },
+    {
+      "id": "atc-scenario-0040-card-main-680",
+      "taskTitle": "UAL 811-3",
+      "audioText": "C: United 811, offset 3 miles right of track, reduce speed to mach 0.75 due radar failure.",
+      "audioTextZh": "C：United 811，因雷达故障，向航迹右侧偏置 3 海里，减速至马赫 0.75。",
+      "referenceText": "Offset 3 miles right of track, reduce speed to M.75, UAL811.",
+      "referenceTextZh": "向航迹右侧偏置 3 海里，减速至 M.75，UAL811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/695.mp3"
+    },
+    {
+      "id": "atc-scenario-0040-card-main-681",
+      "taskTitle": "UAL 811-4",
+      "audioText": "B: Your weather radar indicates there is a cumulonimbus ahead, request Zhengzhou Control for 20 miles deviation right of track and state the reason.",
+      "audioTextZh": "B：气象雷达显示前方有积雨云，向郑州管制请求向航迹右侧偏航 20 海里，并说明原因。",
+      "referenceText": "Zhengzhou Control, UAL811, our weather radar indicates there is a cumulonimbus ahead, request 20 miles deviation right of track.",
+      "referenceTextZh": "郑州管制，UAL811，我们气象雷达显示前方有积雨云，请求向航迹右侧偏航 20 海里。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/696.mp3"
+    },
+    {
+      "id": "atc-scenario-0040-card-main-682",
+      "taskTitle": "UAL 811-5",
+      "audioText": "C: United 811, 20 miles deviation to the right approved, report when clear of weather.",
+      "audioTextZh": "C：United 811，同意向右偏航 20 海里，脱离天气后报告。",
+      "referenceText": "20 miles deviation to the right approved, report when clear of weather, UAL811.",
+      "referenceTextZh": "同意向右偏航 20 海里，脱离天气后报告，UAL811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/697.mp3"
+    },
+    {
+      "id": "atc-scenario-0040-card-main-683",
+      "taskTitle": "UAL 811-6",
+      "audioText": "B: You have encountered severe clear air turbulence at 10400 meters, contact Zhengzhou Control and request climb to a higher level.",
+      "audioTextZh": "B：你在 10400 米遭遇严重晴空颠簸，联系郑州管制，请求爬升到更高高度。",
+      "referenceText": "Zhengzhou Control, UAL811, we have encountered severe clear air turbulence at 10400 meters, request climb to a higher level.",
+      "referenceTextZh": "郑州管制，UAL811，我们在 10400 米遭遇严重晴空颠簸，请求爬升到更高高度。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/698.mp3"
+    },
+    {
+      "id": "atc-scenario-0040-card-main-684",
+      "taskTitle": "UAL 811-7",
+      "audioText": "C: United 811, climb to and maintain 11000 meters.",
+      "audioTextZh": "C：United 811，爬升并保持 11000 米。",
+      "referenceText": "Climb to and maintain 11000 meters, UAL811.",
+      "referenceTextZh": "爬升并保持 11000 米，UAL811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/699.mp3"
+    },
+    {
+      "id": "atc-scenario-0040-card-main-685",
+      "taskTitle": "UAL 811-8",
+      "audioText": "C: United 811, reduce speed to mach 0.72.\nB: Advice Zhengzhou Control 0.72 is not acceptable, it's too low for your aircraft.",
+      "audioTextZh": "C：United 811，减速至马赫 0.72。\nB：告知郑州管制 M.72 不能接受，对你们飞机来说太低。",
+      "referenceText": "Negative, M.72 is too low for our aircraft, UAL811.",
+      "referenceTextZh": "不能接受，M.72 对我们飞机来说太低，UAL811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/700.mp3"
+    },
+    {
+      "id": "atc-scenario-0040-card-main-686",
+      "taskTitle": "UAL 811-9",
+      "audioText": "C: United 811, maintain mach 0.75, we are limiting the number of aircraft flying through Wuhan Control area due to Wuhan radar failure.",
+      "audioTextZh": "C：United 811，保持马赫 0.75，因武汉雷达故障，我们正在限制飞越武汉管制区的飞机数量。",
+      "referenceText": "Maintain M.75, UAL811.",
+      "referenceTextZh": "保持 M.75，UAL811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/701.mp3"
+    },
+    {
+      "id": "atc-scenario-0040-card-main-687",
+      "taskTitle": "UAL 811-10",
+      "audioText": "C: United 811, what is your estimated time for OBLIK ?\nB: Inform Zhengzhou Control your estimated time for OBLIK is 1152 Zulu time.",
+      "audioTextZh": "C：United 811，你预计到达 OBLIK 的时间是多少？\nB：告知郑州管制预计 1152Z 到达 OBLIK。",
+      "referenceText": "Estimating OBLIK 1152Z, UAL811.",
+      "referenceTextZh": "预计 OBLIK 1152Z，UAL811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/702.mp3"
+    },
+    {
+      "id": "atc-scenario-0040-card-main-688",
+      "taskTitle": "UAL 811-11",
+      "audioText": "C: United 811, make an orbit right, reach OBLIK not earlier than 1200.",
+      "audioTextZh": "C：United 811，右盘旋，抵达 OBLIK 不早于 1200。",
+      "referenceText": "Make an orbit right, reach OBLIK not earlier than 1200, UAL811.",
+      "referenceTextZh": "右盘旋，抵达 OBLIK 不早于 1200，UAL811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/703.mp3"
+    },
+    {
+      "id": "atc-scenario-0040-card-main-689",
+      "taskTitle": "UAL 811-12",
+      "audioText": "B: You are over OBLIK at time 1200 Zulu time, maintaining 11000 meters, you are estimating Zulu Foxtrot at time 1230, your next waypoint is Whiskey Uniform Hotel, make a standard position report to Wuhan Control.",
+      "audioTextZh": "B：你 1200Z 飞越 OBLIK，保持 11000 米，预计 1230 到达 Zulu Foxtrot，下一航路点 Whiskey Uniform Hotel，向武汉管制作标准位置报告。",
+      "referenceText": "Wuhan Control, UAL811, OBLIK 1200Z, maintaining 11000 meters, estimating ZF 1230, WUH next.",
+      "referenceTextZh": "武汉管制，UAL811，OBLIK 1200Z，保持 11000 米，预计 ZF 1230，下一点 WUH。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/704.mp3"
+    },
+    {
+      "id": "atc-scenario-0040-card-main-690",
+      "taskTitle": "UAL 811-13",
+      "audioText": "C: United 811, Wuhan Control, roger, maintain 11000 meters, report Zulu Foxtrot.",
+      "audioTextZh": "C：United 811，武汉管制，收到，保持 11000 米，报告 Zulu Foxtrot。",
+      "referenceText": "Maintain 11000 meters, report ZF, UAL811.",
+      "referenceTextZh": "保持 11000 米，报告 ZF，UAL811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/705.mp3"
+    },
+    {
+      "id": "atc-scenario-0040-card-main-691",
+      "taskTitle": "UAL 811-14",
+      "audioText": "C: United 811, for identification, reset squawk 3572.",
+      "audioTextZh": "C：United 811，为识别，重设应答机 3572。",
+      "referenceText": "Reset squawk 3572, UAL811.",
+      "referenceTextZh": "重设应答机 3572，UAL811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/706.mp3"
+    },
+    {
+      "id": "atc-scenario-0040-card-main-692",
+      "taskTitle": "UAL 811-15",
+      "audioText": "C: United 811, radar contact, omit position reports, resume own navigation to Zulu Foxtrot.",
+      "audioTextZh": "C：United 811，雷达识别，可以省略位置报告，自主导航至 Zulu Foxtrot。",
+      "referenceText": "Omit position reports, resume own navigation to ZF, UAL811.",
+      "referenceTextZh": "省略位置报告，自主导航至 ZF，UAL811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/707.mp3"
+    }
+  ]
+}

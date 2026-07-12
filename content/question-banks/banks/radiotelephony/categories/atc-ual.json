@@ -1,0 +1,17 @@
+{
+  "id": "atc-ual",
+  "name": "UAL",
+  "declaredTopicCount": 9,
+  "declaredCardCount": 149,
+  "topicIds": [
+    "atc-scenario-0033",
+    "atc-scenario-0034",
+    "atc-scenario-0035",
+    "atc-scenario-0036",
+    "atc-scenario-0037",
+    "atc-scenario-0038",
+    "atc-scenario-0039",
+    "atc-scenario-0040",
+    "atc-scenario-0041"
+  ]
+}

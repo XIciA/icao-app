@@ -15,6 +15,7 @@ export function questionBankCardTargetKey(target: QuestionBankCardTarget) {
 }
 
 const cardIndex = new Map<string, IndexedQuestionBankCard>();
+const topicCardIndex = new Map<string, IndexedQuestionBankCard>();
 
 getEmbeddedQuestionBanks().forEach((bank) => {
   bank.categories.forEach((category) => {
@@ -32,6 +33,7 @@ getEmbeddedQuestionBanks().forEach((bank) => {
           card,
         };
         cardIndex.set(questionBankCardTargetKey(value), value);
+        topicCardIndex.set(`${topic.id}:${card.id}`, value);
       });
     });
   });
@@ -39,6 +41,10 @@ getEmbeddedQuestionBanks().forEach((bank) => {
 
 export function getQuestionBankCardReference(target: QuestionBankCardTarget) {
   return cardIndex.get(questionBankCardTargetKey(target));
+}
+
+export function findQuestionBankCardReference(topicId: string, cardId: string) {
+  return topicCardIndex.get(`${topicId}:${cardId}`);
 }
 
 export function getQuestionBankCardSource(target: QuestionBankCardTarget) {

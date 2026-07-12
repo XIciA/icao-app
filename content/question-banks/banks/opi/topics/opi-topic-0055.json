@@ -1,0 +1,29 @@
+{
+  "categoryId": "opi-category-03",
+  "id": "opi-topic-0055",
+  "name": "CPDLC",
+  "declaredCardCount": 3,
+  "cards": [
+    {
+      "id": "opi-core-624",
+      "taskTitle": "缩略词-CPDLC-1",
+      "audioText": "What is  CPDLC？",
+      "audioTextZh": "什么是管制员 - 飞行员数据链通信（CPDLC）？",
+      "referenceText": "CPDLC stands for controller and pilot Data Link Communication.\n管制员 - 飞行员数据链通信（CPDLC）的全称是 Controller - Pilot Data Link Communication 。\n\nCPDLC stands for Controller and Pilot Data Link Communication. It is a data link system that allows ATC and pilots to communicate via text messages (instead of voice), including clearances, requests, and reports, supplementing verbal communication to avoid frequency jam and misunderstandings.\nCPDLC是管制员和驾驶员数据链通讯（Controller and Pilot Data Link Communication）的缩写，是一种数据链系统，允许空管和飞行员通过文本报文（而非语音）通信，包括放行指令、请求和报告等，补充语音通信，避免频率拥堵和误解。"
+    },
+    {
+      "id": "opi-core-625",
+      "taskTitle": "缩略词-CPDLC-2",
+      "audioText": "If you have communication failure, how do you use CPDLC on DA-40?",
+      "audioTextZh": "若发生通信故障，在 DA - 40 飞机上如何使用管制员 - 飞行员数据链通信（CPDLC）？",
+      "referenceText": "(1) When we encounter two - way radio communication failure during flight:\nFirst, we will squawk 7600.\nSecond, we will follow the last ATC instructions.\nThird, we will use CPDLC to inform the controller that we have a two - way communication failure and request to revert to CPDLC.\nFourth, we will acknowledge/copy ATC instructions and send them back to confirm compliance.\n飞行中遇到双向无线电通信故障时：\n第一步，设置应答机编码 7600 。\n第二步，执行最后收到的空中交通管制（ATC）指令 。\n第三步，利用 CPDLC 告知管制员我们出现双向通信故障，并请求切换至 CPDLC 通信模式 。\n第四步，确认并复诵 ATC 指令，回传以表明将遵照执行 。\n\n(2) Actually, our DA - 40 isn’t equipped with CPDLC. I don’t know much about its operation on this aircraft. But in my flight school training, if we encounter communication failure:\nFirst, we follow SOP (Standard Operating Procedures) and perform the checklist to check communication equipment like the earphone, microphone, frequency, etc.\nSecond, we transmit blind on 121.5 MHz and squawk 7600.\nFinally, if we still lose contact with the controller:\n\nIf operating under IFR (Instrument Flight Rules), we will fly to the destination via the planned route.\nIf operating under VFR (Visual Flight Rules), we will land as soon as possible.实际上，我们的 DA - 40 飞机未配备 CPDLC 设备，我对该机型上 CPDLC 的操作了解有限。不过在飞行学校训练中，若遇到通信故障：首先，遵循标准操作程序（SOP），执行检查单，检查耳机、麦克风、频率等通信设备 。其次，在 121.5 兆赫频率上进行盲目发射，并设置应答机编码 7600 。最后，若仍与管制员失去联系：• 若按仪表飞行规则（IFR）飞行，沿飞行计划航线飞往目的地 。• 若按目视飞行规则（VFR）飞行，尽快寻找场地着陆 。"
+    },
+    {
+      "id": "opi-core-626",
+      "taskTitle": "缩略词-CPDLC-3",
+      "audioText": "Do you have any idea about how we can operate the CPDLC to contact with the ATC or to follow the ATC's instructions when there is a two-way radio failure?",
+      "audioTextZh": "当双向无线电发生故障时，我们如何操作CPDLC与空管取得联系或听从空管的指示？",
+      "referenceText": "First, confirm CPDLC availability. Then, send a text message to ATC indicating two-way radio failure and requesting instructions. Follow ATC’s text clearances via CPDLC, monitor the display closely, and confirm receipt by replying “WILCO”. If CPDLC fails, switch to emergency frequency 121.5 and perform blind transmission.\n首先确认管制员和驾驶员数据链通讯（CPDLC）可用，然后向空管发送文本报文说明双向无线电失效并请求指令；通过CPDLC遵循空管的文本放行指令，密切监控显示，回复“WILCO”（明白照办）确认接收；若CPDLC失效，切换至应急频率121.5并进行盲目发射。"
+    }
+  ]
+}

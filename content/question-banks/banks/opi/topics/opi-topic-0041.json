@@ -1,0 +1,42 @@
+{
+  "categoryId": "opi-category-03",
+  "id": "opi-topic-0041",
+  "name": "GPWS与EGPWS",
+  "declaredCardCount": 5,
+  "cards": [
+    {
+      "id": "opi-core-520",
+      "taskTitle": "缩略词-GPWS与EGPWS-1",
+      "audioText": "What is EGPWS",
+      "referenceText": "EGPWS stands for Enhanced Ground Proximity Warning System. It is used to alert pilots to avoid obstacles and terrain. It will give pilots warnings like \"TERRAIN, TERRAIN. PULL UP, PULL UP.\" What’s more, EGPWS can also provide wind shear warnings. It is very important for flight safety.\nEGPWS 是增强型近地警告系统（Enhanced Ground Proximity Warning System ）的缩写。它用于提醒飞行员避让障碍物与地形，会发出如 “地形，地形。拉升，拉升” 这类警告。此外，EGPWS 还可提供风切变警告，对飞行安全至关重要"
+    },
+    {
+      "id": "opi-core-521",
+      "taskTitle": "缩略词-GPWS与EGPWS-2",
+      "audioText": "What is the function of GPWS?\nGPWS",
+      "audioTextZh": "的功能是什么？",
+      "referenceText": "The Ground Proximity Warning System (GPWS) is designed to prevent CFIT (controlled flight into terrain). It can give flight crew some advanced warning, both aurally and visually, if the aircraft is too close to the ground.\n近地警告系统（GPWS）用于防止可控飞行撞地（CFIT），当飞机过于接近地面时，可通过声音和视觉方式向机组发出提前警告。\n\n GPWS stands for Ground Proximity Warning System. It uses radio altimeter and flight computers to monitor the aircraft’s distance to terrain. When the aircraft is at risk of collision, it issues aural (for example “pull up”) and visual warnings, helping pilots avoid CFIT (Controlled Flight into Terrain) accidents.\n近地警告系统（GPWS）通过无线电高度表和飞行计算机监控飞机与地形的距离。当飞机面临撞地风险时，会发出“拉升”等声音和视觉警告，帮助飞行员避免可控飞行撞地（CFIT）事故。"
+    },
+    {
+      "id": "opi-core-522",
+      "taskTitle": "缩略词-GPWS与EGPWS-3",
+      "audioText": "How does GPWS work?\nGPWS",
+      "audioTextZh": "的工作原理是什么？",
+      "referenceText": "GPWS is based on radio altimeter to provide terrain alert to pilots. If the aircraft is too close to the ground, it will trigger the warning. There are different modes of GPWS. Such as, if the aircraft is close to the ground and its descent rate is too much, you will hear “sink rate”.\n基于无线电高度表为飞行员提供地形告警：当飞机过于接近地面时，触发告警。GPWS 有多种工作模式，例如，若飞机接近地面且下降率过大，会听到 “sink rate”（下降率过大）的语音告警。"
+    },
+    {
+      "id": "opi-core-523",
+      "taskTitle": "缩略词-GPWS与EGPWS-4",
+      "audioText": "What is the difference between GPWS\nand EGPWS?\nGPWS",
+      "audioTextZh": "与 EGPWS 有何区别",
+      "referenceText": "EGPWS stands for enhanced ground proximity warning system. It is more advanced. GPWS can only look downward. But EGPWS can also look forward. If there is high and steep terrain ahead of the aircraft, GPWS cannot detect and give a warning but EGPWS can. EGPWS can also give a warning for no precision approach but GPWS cannot.\nEGPWS 是增强型近地警告系统（Enhanced Ground Proximity Warning System）的缩写，比 GPWS 更先进：GPWS 仅能向下探测，而 EGPWS 还能向前探测 —— 若飞机前方有高大陡峭地形，GPWS 无法探测和告警，EGPWS 则可以；此外，EGPWS 还能为非精密进近提供告警，GPWS 无此功能。\n\n EGPWS is the enhanced version of GPWS. It integrates global terrain, obstacle, and airport databases, enabling advance warnings for complex terrains (e.g., cliffs) where GPWS fails. EGPWS also provides wind shear warnings and uses GPS for terrain comparison, offering more comprehensive protection.\n增强型近地警告系统（EGPWS）是近地警告系统（GPWS）的升级版，整合了全球地形、障碍物和机场数据库，能对GPWS无法及时预警的复杂地形（如断崖）提前发出警告；还具备风切变预警功能，并利用全球定位系统（GPS）进行地形对比，防护更全面。"
+    },
+    {
+      "id": "opi-core-524",
+      "taskTitle": "缩略词-GPWS与EGPWS-5",
+      "audioText": "What are the differences between the GPWS and TCAS?",
+      "audioTextZh": "近地警告系统和空中防撞系统有什么区别?",
+      "referenceText": "GPWS focuses on preventing terrain/obstacle collisions, monitoring vertical distance to the ground and issuing warnings. TCAS targets mid-air collisions, tracking nearby aircraft via transponders and providing resolution advisories (climb/descend) to maintain separation. Their protection scopes and monitoring objects are distinct.\n近地警告系统（GPWS）侧重预防飞机与地形/障碍物相撞，监控飞机与地面的垂直距离并发出警告；空中防撞系统（TCAS）针对空中相撞风险，通过应答机追踪周边飞机，提供爬升/下降等决断咨询以保持安全间隔，二者防护范围和监控对象不同。"
+    }
+  ]
+}

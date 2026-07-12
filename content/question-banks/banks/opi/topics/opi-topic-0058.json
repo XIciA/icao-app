@@ -1,0 +1,43 @@
+{
+  "categoryId": "opi-category-03",
+  "id": "opi-topic-0058",
+  "name": "CDFA",
+  "declaredCardCount": 5,
+  "cards": [
+    {
+      "id": "opi-core-633",
+      "taskTitle": "缩略词-CDFA-1",
+      "audioText": "What is the CDFA?",
+      "audioTextZh": "什么是连续下降最后进近（CDFA）？",
+      "referenceText": "CDFA stands for Continuous Descent Final Approach. It is a flight technique used during non - precision approaches. During a non - precision approach, to avoid Controlled Flight Into Terrain (CFIT) incidents or accidents, pilots use the CDFA technique. At the Designated Decision Altitude (DDA) or Designated Decision Height (DDH), if the runway is not in sight, a go - around should be initiated.\n连续下降最后进近（CDFA）的全称是 Continuous Descent Final Approach ，是一种用于非精密进近的飞行技术。在非精密进近过程中，为避免可控飞行撞地（CFIT）事件或事故发生，飞行员会采用 CDFA 技术。在决断高度（DDA）或决断高（DDH）时，若未建立跑道目视参考，应执行复飞 。\n\nCDFA stands for Continuous Descent Final Approach. It’s a non-precision approach technique with continuous descent (no level flight) from FAF to 15m above runway threshold or flare point. It’s applicable to VOR, NDB, LOC, GNSS approaches but not visual circling, aiming to avoid CFIT and reduce workload.\nCDFA即连续下降最后进近，是一种非精密进近技术，从最后进近定位点（FAF）开始连续下降（无平飞），直至跑道入口上方15米或拉平操作点。适用于VOR、NDB、LOC、GNSS等进近方式，不适用于目视盘旋进近，目的是避免可控飞行撞地（CFIT）并降低飞行员工作负荷。"
+    },
+    {
+      "id": "opi-core-634",
+      "taskTitle": "缩略词-CDFA-2",
+      "audioText": "What's the difference between CDFA and precision approach?",
+      "audioTextZh": "连续下降最后进近（CDFA）和精密进近有什么区别？",
+      "referenceText": "When conducting a CDFA, we initiate a go - around at the Designated Decision Altitude (DDA) or Designated Decision Height (DDH) if the runway is not in sight. For a precision approach, we initiate a go - around at the Decision Altitude (DA) or Decision Height (DH) if visual contact with the runway is not established.\n实施连续下降最后进近（CDFA）时，若看不到跑道，需在指定决断高度（DDA）或指定决断高（DDH）执行复飞；而实施精密进近时，若未建立跑道目视接触，要在决断高度（DA）或决断高（DH）执行复飞 。"
+    },
+    {
+      "id": "opi-core-635",
+      "taskTitle": "缩略词-CDFA-3",
+      "audioText": "What's the difference between CDFA and non-precision approach?",
+      "audioTextZh": "连续下降最后进近（CDFA）和非精密进近有什么区别？",
+      "referenceText": "When conducting a CDFA, we initiate a go - around at the Designated Decision Altitude (DDA) or Designated Decision Height (DDH) if the runway is not in sight. For a non - precision approach, we first descend to the Minimum Descent Altitude (MDA) or Minimum Descent Height (MDH), and then execute the missed approach procedure if the runway is not visible.\n实施连续下降最后进近（CDFA）时，若看不到跑道，需在指定决断高度（DDA）或指定决断高（DDH）执行复飞；而实施非精密进近时，会先下降至最低下降高度（MDA）或最低下降高（MDH），若仍看不到跑道，再执行复飞程序 。"
+    },
+    {
+      "id": "opi-core-636",
+      "taskTitle": "缩略词-CDFA-4",
+      "audioText": "What's the advantages of CDFA compare with the conventional step-down point?",
+      "audioTextZh": "与传统分段下降进近相比，连续下降最后进近（CDFA）有哪些优势？",
+      "referenceText": "When using CDFA, it helps reduce the risk of Controlled Flight Into Terrain (CFIT) incidents. Unlike the conventional step - down approach with multiple level - offs, CDFA maintains a continuous descent. At the Designated Decision Altitude (DDA) or Designated Decision Height (DDH), if the runway isn’t visually acquired, a go - around is initiated promptly. This steady descent profile enhances terrain and obstacle clearance awareness, simplifies pilot workload by avoiding frequent altitude adjustments, and improves overall approach stability.\n采用连续下降最后进近（CDFA）时，有助于降低可控飞行撞地（CFIT）事件风险。不同于传统分段下降进近需多次平飞改平，CDFA 保持连续下降。在指定决断高度（DDA）或指定决断高（DDH）时，若未建立跑道目视参考，可立即执行复飞。这种稳定的下降剖面提升了飞行员对地形和障碍物净空的感知，避免频繁调整高度减轻了工作负荷，还增强了进近整体稳定性 。\n\nCDFA’s advantages include saving fuel and time by eliminating level-offs, reducing pilot workload, establishing stable approaches, ensuring better obstacle clearance, and effectively avoiding CFIT compared to traditional step-down descent procedures.\nCDFA的优势包括：无需平飞，节省燃油和时间；降低飞行员工作负荷；建立稳定进近状态；提供更好的超障保护；相较于传统梯级下降程序，能有效避免可控飞行撞地（CFIT）。"
+    },
+    {
+      "id": "opi-core-637",
+      "taskTitle": "缩略词-CDFA-5",
+      "audioText": "Have you ever been required to use this technique?",
+      "audioTextZh": "你是否被要求使用过该技术？",
+      "referenceText": "Yes. When we perform non-precision approach, we will use CDFA.\n是的，执行非精密进近时会使用 CDFA。"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "categoryId": "opi-category-03",
+  "id": "opi-topic-0040",
+  "name": "GPS",
+  "declaredCardCount": 5,
+  "cards": [
+    {
+      "id": "opi-core-515",
+      "taskTitle": "缩略词-GPS-1",
+      "audioText": "What is GPS?",
+      "audioTextZh": "什么是 GPS？",
+      "referenceText": "GPS stands for Global Positioning System. It is a part of GNSS.\nGPS 是全球定位系统（Global Positioning System ）的缩写，它是 GNSS（全球导航卫星系统 ）的组成部分 。"
+    },
+    {
+      "id": "opi-core-516",
+      "taskTitle": "缩略词-GPS-2",
+      "audioText": "GPS VS Conventional navigation\nGPS",
+      "audioTextZh": "与传统导航对比",
+      "referenceText": "Compared with conventional navigation, GPS is more reliable, more accurate, and safer.\n与传统导航相比，GPS 更可靠、更精准且更安全 。"
+    },
+    {
+      "id": "opi-core-517",
+      "taskTitle": "缩略词-GPS-3",
+      "audioText": "How much do you know about GPS?",
+      "audioTextZh": "你对GPS了解多少？",
+      "referenceText": "As I know, GPS is the Global Positioning System. It is one of the most widely used global navigation satellite systems (GNSS).\n据我所知，GPS 是全球定位系统（Global Positioning System ）。它是使用最广泛的全球导航卫星系统（GNSS ）之一 。。"
+    },
+    {
+      "id": "opi-core-518",
+      "taskTitle": "缩略词-GPS-4",
+      "audioText": "Do you prefer GPS or conventional navigation systems?",
+      "audioTextZh": "你更喜欢GPS还是更喜欢传统导航系统？",
+      "referenceText": "I prefer GPS because:\nGPS can provide more precise guidance to the aircraft;\nGPS can be used in all weather conditions;\nGPS can be used all over the world.\n我更喜欢 GPS ，原因如下：\nGPS 能为飞机提供更精准的引导；\nGPS 可在各类天气条件下使用；\nGPS 可在全球范围内使用。"
+    },
+    {
+      "id": "opi-core-519",
+      "taskTitle": "缩略词-GPS-5",
+      "audioText": "If GPS fails during flight, what will you do?",
+      "audioTextZh": "如果飞行中GPS失效，你会怎么办？",
+      "referenceText": "If GPS fails during flight, we will use conventional navigation systems such as VOR, NDB, and DME. Besides, we will report our situation to ATC and request radar monitoring and radar vectors.\n如果飞行中GPS失效，我们将使用传统导航系统，比如VOR，NDB，DME。此外，我们将报告管制我们的情况，请求雷达监控和雷达引导。"
+    }
+  ]
+}

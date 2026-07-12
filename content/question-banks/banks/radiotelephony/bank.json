@@ -1,0 +1,55 @@
+{
+  "id": "radiotelephony",
+  "title": "陆空通话",
+  "nameEn": "Radiotelephony",
+  "description": "结构 词汇 理解能力",
+  "summary": "107 场景 / 1851 卡",
+  "enabled": true,
+  "statusLabel": "可练习",
+  "icon": "radioTower",
+  "declaredTopicCount": 107,
+  "declaredCardCount": 1851,
+  "categoryUnit": "航司",
+  "topicUnit": "场景",
+  "cardUnit": "卡",
+  "study": {
+    "interaction": "speaking",
+    "tools": {
+      "recorder": true,
+      "choices": false,
+      "notes": true,
+      "dictionary": true,
+      "highlights": true,
+      "tags": true
+    },
+    "audioTitlePattern": "card-title",
+    "consoleTabs": [
+      "mine",
+      "reference",
+      "notes"
+    ],
+    "copy": {
+      "transcriptLabel": "音频原文",
+      "referenceLabel": "参考答案"
+    }
+  },
+  "capabilities": {
+    "audioMode": "file",
+    "reviewMode": "grammar",
+    "radioEligible": false,
+    "mockExamEligible": true
+  },
+  "categoryIds": [
+    "atc-qfa",
+    "atc-sia",
+    "atc-afr",
+    "atc-baw",
+    "atc-ual",
+    "atc-klm",
+    "atc-jal",
+    "atc-aca",
+    "atc-cca",
+    "atc-csn",
+    "atc-ces"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "categoryId": "opi-category-05",
+  "id": "opi-topic-0051",
+  "name": "航食",
+  "declaredCardCount": 5,
+  "cards": [
+    {
+      "id": "opi-core-602",
+      "taskTitle": "运行-航食-1",
+      "audioText": "Do you think the captain and first officer should eat the same food?",
+      "audioTextZh": "你认为机长和副驾驶应该吃一样的食物吗？",
+      "referenceText": "No, the captain and first officer should eat different meals at staggered times to avoid foodborne illness.\n不，机长和副驾驶应食用不同餐食，且错时进餐，以此避免食物中毒（食源性疾病） 。\n\nNo, they can't. To avoid both being incapacitated due to food poisoning, which endangers flight safety, the captain and co-pilot are arranged to have different meals simultaneously. This is a strict regulation to ensure at least one pilot can maintain normal operation.\n不会。为避免两人因食物中毒同时失能而危及飞行安全，机长和副驾会被安排同时食用不同餐食。这是保障至少一名飞行员能维持正常操作的严格规定。"
+    },
+    {
+      "id": "opi-core-603",
+      "taskTitle": "运行-航食-2",
+      "audioText": "Do you think the security check on the catering staff is necessary?",
+      "audioTextZh": "你认为对航食工作人员进行安全检查有必要吗？",
+      "referenceText": "Yes, it’s necessary. Because it helps ensure food safety and prevent potential security threats, including terrorist activities.\n有必要。因为这有助于保障航食安全，防范包括恐怖活动在内的潜在安全威胁 。"
+    },
+    {
+      "id": "opi-core-604",
+      "taskTitle": "运行-航食-3",
+      "audioText": "Do you like in-flight catering?",
+      "audioTextZh": "你喜欢机上餐食吗？",
+      "referenceText": "No, I don't like it. It's not delicious.\n不，我不喜欢。机上餐食不好吃。"
+    },
+    {
+      "id": "opi-core-605",
+      "taskTitle": "运行-航食-4",
+      "audioText": "How do you like in-flight catering? What do you think of in-flight catering?",
+      "audioTextZh": "你觉得机上餐食怎么样？你对机上餐食有什么看法？",
+      "referenceText": "I think in - flight catering is okay. We have several choices. I like in - flight catering.\n我觉得机上餐食还不错，有几种选择可选，我喜欢机上餐食。"
+    },
+    {
+      "id": "opi-core-606",
+      "taskTitle": "运行-航食-5",
+      "audioText": "Does the captain share the same food with the copilot? Why?",
+      "audioTextZh": "机长和副驾驶会吃同样的食物吗？为什么？",
+      "referenceText": "No, the captain doesn’t share the same food with the copilot. If they eat the same food, it may cause both pilots to become incapacitated.\n不会，机长和副驾驶不会吃同样的食物。如果两人食用相同食物，可能会导致两名飞行员都失能 。\n\nNo. To avoid both being incapacitated due to food poisoning, which endangers flight safety, the captain and co-pilot are arranged to have different meals simultaneously. This is a strict regulation to ensure at least one pilot can maintain normal operation.\n不会。为避免两人因食物中毒同时失能而危及飞行安全，机长和副驾会被安排同时食用不同餐食。这是保障至少一名飞行员能维持正常操作的严格规定。"
+    }
+  ]
+}

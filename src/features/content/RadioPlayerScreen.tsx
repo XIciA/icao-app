@@ -7,7 +7,7 @@ import { TopBar } from '@/components/navigation/TopBar';
 import { AppText, BottomSheet } from '@/components/ui';
 import { colors, fonts, radii, spacing } from '@/theme';
 import { getEmbeddedQuestionBanks } from '@/features/question-bank/data/repository';
-import { resolveQuestionBankAsset } from '@/features/question-bank/platform/resource-service';
+import { useQuestionBankAsset } from '@/features/question-bank/hooks/useQuestionBankAsset';
 
 type BankId = 'listening' | 'sentences900' | 'storytelling';
 const banks = getEmbeddedQuestionBanks().filter((bank): bank is (typeof bank & { id: BankId }) => ['listening', 'sentences900', 'storytelling'].includes(bank.id));
@@ -28,7 +28,7 @@ export function RadioPlayerScreen() {
   const bank = banks.find((item) => item.id === bankId) ?? banks[0];
   const tracks = useMemo(() => bank.categories.flatMap((category) => category.topics.flatMap((topic) => topic.cards)).filter((card) => card.audio).slice(0, 50), [bank]);
   const track = tracks[index] ?? tracks[0];
-  const uri = resolveQuestionBankAsset(track?.audio);
+  const { uri } = useQuestionBankAsset(track?.audio);
   const player = useAudioPlayer(null, { updateInterval: 250, preferredForwardBufferDuration: 10 });
   const status = useAudioPlayerStatus(player);
 

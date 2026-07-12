@@ -1,10 +1,14 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { AlertTriangle, Bell, Bookmark, Check, CheckCircle2, ChevronRight, Cloud, History, Info, Languages, LogOut, Mail, MapPin, Pencil, Phone, RefreshCcw, Shield, Smartphone, Trash2, UserRound } from 'lucide-react-native';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, Modal, Pressable, StyleSheet, Switch, View } from 'react-native';
 
 import { TopBar } from '@/components/navigation/TopBar';
 import { AppText, BottomSheet, Button, Card, Screen, Tag, TextField } from '@/components/ui';
+import { useAuth } from '@/features/auth/AuthProvider';
+import { readAnnotationStore } from '@/features/question-bank/annotations/annotation-store';
+import { sqliteLearningStore } from '@/features/question-bank/platform/learning-store';
+import { bindLearningSync, getLearningSyncStatus, inspectLearningSyncBinding, runLearningSync, type LearningSyncStatus } from '@/features/sync/learning-sync';
 import { colors, radii, spacing } from '@/theme';
 
 type AccountSlug = 'profile' | 'edit-profile' | 'settings' | 'sync' | 'security' | 'change-phone' | 'change-email' | 'change-password' | 'delete-account';
@@ -43,22 +47,78 @@ function EditProfilePage() {
 
 function SettingsPage() {
   const router = useRouter();
+  const auth = useAuth();
   const [notify, setNotify] = useState(false);
   const [confirm, setConfirm] = useState(false);
-  return <Page title="设置"><View style={styles.content}><Section title="账号"><Row icon={Shield} label="账号安全" hint="手机号、邮箱、密码" first onPress={() => router.push('/account/security')} /><Row icon={Bell} label="消息通知" value={notify ? '已开启' : '未开启'} trailing={<Switch value={notify} onValueChange={setNotify} />} /></Section><Section title="通用"><Row icon={Cloud} label="学习数据同步" value="仅本机" first onPress={() => router.push('/account/sync')} /><Row icon={Languages} label="语言" value="简体中文" /><Row icon={RefreshCcw} label="深色模式" value="跟随系统" /><Row icon={Trash2} label="清理缓存" value="12.6 MB" /></Section><Section title="支持"><Row icon={Info} label="帮助中心" first onPress={() => router.push('/info/help')} /><Row icon={Info} label="关于飞猪 ICAO" value="v1.0.0" onPress={() => router.push('/info/about')} /></Section><Button leading={<LogOut color={colors.destructive} size={16} />} onPress={() => setConfirm(true)} variant="outline">退出登录</Button><AppText style={styles.center} variant="micro">© 2026 飞猪 ICAO</AppText></View><LogoutDialog visible={confirm} onCancel={() => setConfirm(false)} onConfirm={() => { setConfirm(false); router.replace('/auth/splash'); }} /></Page>;
+  const [signOutError, setSignOutError] = useState('');
+  async function signOut() {
+    try {
+      await auth.signOut();
+      setConfirm(false);
+      router.replace('/auth/splash');
+    } catch {
+      setSignOutError('退出失败，请稍后重试');
+    }
+  }
+  return <Page title="设置"><View style={styles.content}><Section title="账号"><Row icon={Shield} label="账号安全" hint="邮箱、密码" first onPress={() => router.push('/account/security')} /><Row icon={Bell} label="消息通知" value={notify ? '已开启' : '未开启'} trailing={<Switch value={notify} onValueChange={setNotify} />} /></Section><Section title="通用"><Row icon={Cloud} label="学习数据同步" value="待绑定" first onPress={() => router.push('/account/sync')} /><Row icon={Languages} label="语言" value="简体中文" /><Row icon={RefreshCcw} label="深色模式" value="跟随系统" /><Row icon={Trash2} label="清理缓存" value="12.6 MB" /></Section><Section title="支持"><Row icon={Info} label="帮助中心" first onPress={() => router.push('/info/help')} /><Row icon={Info} label="关于飞猪 ICAO" value="v1.0.0" onPress={() => router.push('/info/about')} /></Section>{signOutError ? <AppText color={colors.destructive} variant="caption">{signOutError}</AppText> : null}<Button disabled={!auth.session} leading={<LogOut color={colors.destructive} size={16} />} onPress={() => setConfirm(true)} variant="outline">退出登录</Button><AppText style={styles.center} variant="micro">© 2026 飞猪 ICAO</AppText></View><LogoutDialog visible={confirm} onCancel={() => setConfirm(false)} onConfirm={() => { void signOut(); }} /></Page>;
 }
 
 type SyncPhase = 'idle' | 'syncing' | 'success';
 function SyncPage() {
+  const auth = useAuth();
+  const router = useRouter();
   const [phase, setPhase] = useState<SyncPhase>('idle');
-  function sync() { setPhase('syncing'); setTimeout(() => setPhase('success'), 900); }
-  const copy = phase === 'idle' ? ['云同步待接入', '当前数据只保存在本机，可预览完整同步交互。'] : phase === 'syncing' ? ['正在同步', '正在演示上传学习记录与标注数据。'] : ['同步成功', '状态演示完成，本机数据没有被修改。'];
-  return <Page title="学习数据同步"><View style={styles.content}><Card elevated style={styles.syncCard}><View style={styles.syncIcon}>{phase === 'syncing' ? <ActivityIndicator color={colors.primary} /> : phase === 'success' ? <Check color={colors.primary} size={22} /> : <Cloud color={colors.primary} size={22} />}</View><View style={styles.flex}><AppText variant="cardTitle">{copy[0]}</AppText><AppText variant="caption">{copy[1]}</AppText></View></Card><Section title="本机数据"><Row icon={History} label="学习记录" value="0 条" first /><Row icon={Bookmark} label="标注与笔记" value="1 项" /></Section><Button disabled={phase === 'syncing'} leading={phase === 'syncing' ? <ActivityIndicator color={colors.primaryForeground} /> : <RefreshCcw color={colors.primaryForeground} size={16} />} onPress={sync} size="lg">{phase === 'syncing' ? '同步中' : '演示立即同步'}</Button><AppText style={styles.center} variant="micro">设计稿演示：未连接真实账号与云端服务。</AppText></View></Page>;
+  const [status, setStatus] = useState<LearningSyncStatus>({ cursor: 0, pendingCount: 0 });
+  const [needsBinding, setNeedsBinding] = useState(false);
+  const [localCounts, setLocalCounts] = useState({ annotations: 0, records: 0 });
+  const [error, setError] = useState('');
+
+  const refresh = useCallback(async () => {
+    const [nextStatus, records, annotations] = await Promise.all([
+      getLearningSyncStatus(),
+      sqliteLearningStore.getRecords(),
+      readAnnotationStore(),
+    ]);
+    setStatus(nextStatus);
+    setLocalCounts({ records: records.length, annotations: Object.keys(annotations.entries).length });
+    if (auth.session) setNeedsBinding((await inspectLearningSyncBinding(auth.session.user.id)).needsConfirmation);
+  }, [auth.session]);
+
+  useEffect(() => { void refresh(); }, [refresh]);
+
+  async function sync() {
+    if (!auth.session) { router.push('/auth/login'); return; }
+    setPhase('syncing');
+    setError('');
+    try {
+      if (needsBinding || status.boundUserId !== auth.session.user.id) await bindLearningSync(auth.session.user.id, 'upload-local');
+      else await runLearningSync(auth.session.user.id);
+      await refresh();
+      setNeedsBinding(false);
+      setPhase('success');
+    } catch {
+      setError('同步失败，本机数据和待发送队列均已保留，请稍后重试。');
+      setPhase('idle');
+      await refresh();
+    }
+  }
+
+  const bound = Boolean(auth.session && status.boundUserId === auth.session.user.id);
+  const copy = !auth.session
+    ? ['登录后启用云同步', '未登录时继续使用本机学习数据。']
+    : phase === 'syncing'
+      ? ['正在同步', '正在安全推送并拉取当前账号的学习数据。']
+      : phase === 'success'
+        ? ['同步成功', '当前账号的云端与本机核心学习数据已更新。']
+        : bound
+          ? ['云同步已绑定', status.lastSyncedAt ? `上次同步：${new Date(status.lastSyncedAt).toLocaleString()}` : '尚未完成首次同步。']
+          : ['需要确认数据归属', '确认后先保留本机快照，再将数据归入当前邮箱账号。'];
+  return <Page title="学习数据同步"><View style={styles.content}><Card elevated style={styles.syncCard}><View style={styles.syncIcon}>{phase === 'syncing' ? <ActivityIndicator color={colors.primary} /> : phase === 'success' ? <Check color={colors.primary} size={22} /> : <Cloud color={colors.primary} size={22} />}</View><View style={styles.flex}><AppText variant="cardTitle">{copy[0]}</AppText><AppText variant="caption">{copy[1]}</AppText></View></Card><Section title="本机数据"><Row icon={History} label="学习记录" value={`${localCounts.records} 条`} first /><Row icon={Bookmark} label="标注与笔记" value={`${localCounts.annotations} 项`} /><Row icon={Cloud} label="待同步变更" value={`${status.pendingCount} 项`} /></Section>{error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}<Button disabled={phase === 'syncing'} leading={phase === 'syncing' ? <ActivityIndicator color={colors.primaryForeground} /> : <RefreshCcw color={colors.primaryForeground} size={16} />} onPress={() => void sync()} size="lg">{phase === 'syncing' ? '同步中' : !auth.session ? '去登录' : bound ? '立即同步' : '确认归属并同步'}</Button><AppText style={styles.center} variant="micro">失败不会删除本机数据；不支持跨账号自动合并。</AppText></View></Page>;
 }
 
 function SecurityPage() {
-  const router = useRouter();
-  return <Page title="账号安全"><View style={styles.content}><Section title="登录与绑定"><Row icon={Smartphone} label="手机号" value="157****1388" first onPress={() => router.push('/account/change-phone')} /><Row icon={Mail} label="邮箱" value="pilot@example.com" onPress={() => router.push('/account/change-email')} /><Row icon={Shield} label="登录密码" value="已设置" onPress={() => router.push('/account/change-password')} /></Section><Section title="安全"><Row icon={Shield} label="生物识别登录" value="未开启" first /></Section><Section title="危险操作"><Row danger icon={Trash2} label="注销账号" hint="永久删除账号与数据" first onPress={() => router.push('/account/delete-account')} /></Section></View></Page>;
+  const auth = useAuth();
+  return <Page title="账号安全"><View style={styles.content}><Section title="登录与绑定"><Row icon={Mail} label="邮箱" value={auth.session?.user.email ?? '未登录'} first /><Row icon={Shield} label="登录密码" value="已设置" /><Row icon={Smartphone} label="手机号" value="本阶段未开放" /></Section><Section title="安全"><Row icon={Shield} label="会话存储" value="本机加密" first /></Section><Section title="危险操作"><Row danger icon={Trash2} label="注销账号" hint="本阶段不支持用户自行注销" first /></Section></View></Page>;
 }
 
 function CredentialPage({ page }: { page: 'change-phone' | 'change-email' | 'change-password' }) {
@@ -85,7 +145,7 @@ function Choice({ label, options, value, onChange, compact = false }: { label: s
 function Section({ title, children }: { title: string; children: React.ReactNode }) { return <View style={styles.section}><AppText variant="caption">{title}</AppText><Card style={styles.rows}>{children}</Card></View>; }
 function Row({ icon: Icon, label, hint, value, onPress, first = false, danger = false, trailing }: { icon: typeof UserRound; label: string; hint?: string; value?: string; onPress?: () => void; first?: boolean; danger?: boolean; trailing?: React.ReactNode }) { const content = <View style={[styles.row, !first && styles.rowBorder]}><View style={[styles.rowIcon, danger && styles.rowIconDanger]}><Icon color={danger ? colors.destructive : colors.primary} size={16} /></View><View style={styles.flex}><AppText color={danger ? colors.destructive : colors.foreground} variant="button">{label}</AppText>{hint ? <AppText variant="micro">{hint}</AppText> : null}</View>{value ? <AppText variant="caption">{value}</AppText> : null}{trailing}{onPress ? <ChevronRight color={colors.mutedForeground} size={16} /> : null}</View>; return onPress ? <Pressable onPress={onPress}>{content}</Pressable> : content; }
 function SheetResult({ title, body, onPress }: { title: string; body: string; onPress: () => void }) { return <View style={styles.sheet}><CheckCircle2 color={colors.primary} size={38} /><AppText variant="sectionTitle">{title}</AppText><AppText style={styles.center}>{body}</AppText><Button onPress={onPress}>我知道了</Button></View>; }
-function LogoutDialog({ visible, onCancel, onConfirm }: { visible: boolean; onCancel: () => void; onConfirm: () => void }) { return <Modal animationType="slide" onRequestClose={onCancel} transparent visible={visible}><Pressable onPress={onCancel} style={styles.overlay}><Pressable onPress={() => undefined} style={styles.logout}><View style={styles.handle} /><View style={styles.dangerIcon}><LogOut color={colors.destructive} size={26} /></View><AppText variant="sectionTitle">退出登录</AppText><AppText style={styles.center}>退出后将返回启动页。当前为设计预览，不会执行真实账号操作。</AppText><Button onPress={onConfirm} size="lg" variant="destructive">确认退出</Button><Button onPress={onCancel} size="lg" variant="outline">再想想</Button></Pressable></Pressable></Modal>; }
+function LogoutDialog({ visible, onCancel, onConfirm }: { visible: boolean; onCancel: () => void; onConfirm: () => void }) { return <Modal animationType="slide" onRequestClose={onCancel} transparent visible={visible}><Pressable onPress={onCancel} style={styles.overlay}><Pressable onPress={() => undefined} style={styles.logout}><View style={styles.handle} /><View style={styles.dangerIcon}><LogOut color={colors.destructive} size={26} /></View><AppText variant="sectionTitle">退出登录</AppText><AppText style={styles.center}>退出后将清除本机登录会话，并返回启动页。</AppText><Button onPress={onConfirm} size="lg" variant="destructive">确认退出</Button><Button onPress={onCancel} size="lg" variant="outline">再想想</Button></Pressable></Pressable></Modal>; }
 
 const styles = StyleSheet.create({
   screen: { paddingHorizontal: 0 }, content: { gap: spacing[5], padding: spacing[5] }, profileHero: { alignItems: 'center', gap: spacing[2], paddingHorizontal: spacing[5], paddingTop: spacing[5] }, avatar: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.full, height: 74, justifyContent: 'center', position: 'relative', width: 74 }, avatarSmall: { height: 58, width: 58 }, editBadge: { alignItems: 'center', backgroundColor: colors.primary, borderColor: colors.card, borderRadius: radii.full, borderWidth: 2, bottom: 0, height: 20, justifyContent: 'center', position: 'absolute', right: 0, width: 20 }, avatarEdit: { alignItems: 'center', gap: spacing[2], paddingTop: spacing[5] }, form: { gap: spacing[4], padding: spacing[5] }, formNoPad: { gap: spacing[4] }, textarea: { minHeight: 72, textAlignVertical: 'top' }, center: { textAlign: 'center' }, section: { gap: spacing[2] }, rows: { padding: 0 }, row: { alignItems: 'center', flexDirection: 'row', gap: spacing[3], minHeight: 58, paddingHorizontal: spacing[3] }, rowBorder: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth }, rowIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.md, height: 34, justifyContent: 'center', width: 34 }, rowIconDanger: { backgroundColor: 'rgba(219,43,51,0.08)' }, flex: { flex: 1 }, choice: { gap: spacing[2] }, choiceRow: { flexDirection: 'row', gap: spacing[2] }, choiceButton: { alignItems: 'center', backgroundColor: colors.card, borderColor: colors.input, borderRadius: radii.md, borderWidth: 1, flex: 1, justifyContent: 'center', minHeight: 40, paddingHorizontal: spacing[1] }, choiceSelected: { backgroundColor: colors.primary10, borderColor: colors.primary }, syncCard: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[3] }, syncIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.md, height: 44, justifyContent: 'center', width: 44 }, current: { alignItems: 'center', flexDirection: 'row', gap: spacing[3] }, softIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.md, height: 40, justifyContent: 'center', width: 40 }, delete: { gap: spacing[3], padding: spacing[5] }, dangerHero: { alignItems: 'center', gap: spacing[2] }, dangerIcon: { alignItems: 'center', backgroundColor: 'rgba(219,43,51,0.10)', borderRadius: radii.full, height: 62, justifyContent: 'center', width: 62 }, risks: { backgroundColor: 'rgba(219,43,51,0.04)', borderColor: 'rgba(219,43,51,0.22)', gap: spacing[3] }, risk: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[2] }, riskDot: { alignItems: 'center', backgroundColor: 'rgba(219,43,51,0.10)', borderRadius: radii.full, height: 18, justifyContent: 'center', width: 18 }, consent: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] }, checkbox: { alignItems: 'center', borderColor: colors.input, borderRadius: radii.sm, borderWidth: 1, height: 18, justifyContent: 'center', width: 18 }, checkboxOn: { backgroundColor: colors.primary, borderColor: colors.primary }, sheet: { alignItems: 'center', gap: spacing[3], paddingBottom: spacing[3] }, overlay: { backgroundColor: colors.overlay, flex: 1, justifyContent: 'flex-end' }, logout: { alignItems: 'stretch', backgroundColor: colors.card, borderTopLeftRadius: radii.xxl, borderTopRightRadius: radii.xxl, gap: spacing[3], padding: spacing[5], paddingBottom: spacing[8] }, handle: { alignSelf: 'center', backgroundColor: colors.border, borderRadius: radii.full, height: 4, marginBottom: spacing[1], width: 40 },

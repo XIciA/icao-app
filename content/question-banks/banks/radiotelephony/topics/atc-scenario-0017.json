@@ -1,0 +1,170 @@
+{
+  "categoryId": "atc-afr",
+  "id": "atc-scenario-0017",
+  "name": "AFR 941 右EGT波动 滑油压力下降 右发失效",
+  "declaredCardCount": 18,
+  "cards": [
+    {
+      "id": "atc-scenario-0017-card-main-279",
+      "taskTitle": "AFR 941-1",
+      "audioText": "B: Your call sign is Air France 941, you are descending through 3900 meters for 3600 meters, contact Wuhan Approach.",
+      "audioTextZh": "你的呼号是Air France 941，正在从3900米下降至3600米，请联系武汉进近。",
+      "referenceText": "Wuhan Approach, AFR941, leaving 3900 meters for 3600 meters.",
+      "referenceTextZh": "武汉进近，AFR941，离开3900米下降至3600米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/294.mp3"
+    },
+    {
+      "id": "atc-scenario-0017-card-main-280",
+      "taskTitle": "AFR 941-2",
+      "audioText": "C: Air France 941, Wuhan Approach, radar identified, information Echo is current, descend to and maintain 3000 meters on QNH 1004.",
+      "audioTextZh": "管制员：Air France 941，武汉进近，雷达识别，当前通播为Echo，按QNH 1004下降并保持3000米。",
+      "referenceText": "Information E, descend to and maintain 3000 meters on QNH 1004, AFR941.",
+      "referenceTextZh": "通播E，按QNH 1004下降并保持3000米，AFR941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/295.mp3"
+    },
+    {
+      "id": "atc-scenario-0017-card-main-281",
+      "taskTitle": "AFR 941-3",
+      "audioText": "C: Air France 941, descend and maintain 2400 meters, reduce to minimum clean speed.\nB: Read back the instruction and tell the controller that the clean configuration speed of your aircraft is 200 knots.",
+      "audioTextZh": "管制员：Air France 941，下降并保持2400米，减至最小光洁速度。请复诵指令，并告诉管制员你机型的光洁形态速度是200节。",
+      "referenceText": "Descend and maintain 2400 meters, reduce to minimum clean speed, our clean configuration speed is 200 knots, AFR941.",
+      "referenceTextZh": "下降并保持2400米，减至最小光洁速度，我们的光洁形态速度是200节，AFR941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/296.mp3"
+    },
+    {
+      "id": "atc-scenario-0017-card-main-282",
+      "taskTitle": "AFR 941-4",
+      "audioText": "C: Air France 941, turn right heading 300, you are number 3, 25 miles from touchdown.",
+      "audioTextZh": "管制员：Air France 941，右转航向300，你是第三架，距接地点25海里。",
+      "referenceText": "Turn right heading 300, roger, AFR941.",
+      "referenceTextZh": "右转航向300，收到，AFR941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/297.mp3"
+    },
+    {
+      "id": "atc-scenario-0017-card-main-283",
+      "taskTitle": "AFR 941-5",
+      "audioText": "C: Air France 941, turn left proceed direct Delta Alpha, descend to and maintain 2100 meters.",
+      "audioTextZh": "管制员：Air France 941，左转直飞DA，下降并保持2100米。",
+      "referenceText": "Turn left proceed direct DA, descend to and maintain 2100 meters, AFR941.",
+      "referenceTextZh": "左转直飞DA，下降并保持2100米，AFR941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/298.mp3"
+    },
+    {
+      "id": "atc-scenario-0017-card-main-284",
+      "taskTitle": "AFR 941-6",
+      "audioText": "C: Air France 941, hold at Delta Alpha as published.\nB: Read back and ask the reason for holding.",
+      "audioTextZh": "管制员：Air France 941，在DA按公布程序等待。请复诵并询问等待原因。",
+      "referenceText": "Hold at DA as published, what's the reason for holding? AFR941.",
+      "referenceTextZh": "在DA按公布程序等待，请问等待原因？AFR941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/299.mp3"
+    },
+    {
+      "id": "atc-scenario-0017-card-main-285",
+      "taskTitle": "AFR 941-7",
+      "audioText": "C: Air France 941, there are having a runway inspection at the moment, expect to delay more than 15 minutes.\nB: Read back the ATC instruction and report that you are entering the hold.",
+      "audioTextZh": "管制员：Air France 941，目前正在进行跑道检查，预计延误超过15分钟。请复诵空管指令，并报告你正在进入等待。",
+      "referenceText": "Roger, we are entering the hold, AFR941.",
+      "referenceTextZh": "收到，我们正在进入等待，AFR941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/300.mp3"
+    },
+    {
+      "id": "atc-scenario-0017-card-main-286",
+      "taskTitle": "AFR 941-8",
+      "audioText": "B: The EGT of your starboard engine is fluctuating, state the situation to the controller, ask to leave the holding pattern right away.",
+      "audioTextZh": "你的右发排气温度波动，请向管制员说明情况，并申请立即脱离等待程序。",
+      "referenceText": "Wuhan Approach, AFR941, the EGT of our starboard engine is fluctuating, request leave the holding pattern immediately.",
+      "referenceTextZh": "武汉进近，AFR941，我们右发排气温度波动，申请立即脱离等待程序。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/301.mp3"
+    },
+    {
+      "id": "atc-scenario-0017-card-main-287",
+      "taskTitle": "AFR 941-9",
+      "audioText": "C: Air France 941, roger, stand by, continue your hold, we're changing the landing sequence, expect call you in 2 minutes.\nB: The oil pressure of your starboard engine is rapidly decreasing, state the situation to the controller, request immediate exit and request descent.",
+      "audioTextZh": "管制员：Air France 941，收到，请稍等，继续等待。我们正在调整落地顺序，预计2分钟后呼叫你。你的右发滑油压力正在快速下降，请向管制员说明情况，申请立即退出等待并下降。",
+      "referenceText": "The oil pressure of our starboard engine is rapidly decreasing, request immediate exit and descent, AFR941.",
+      "referenceTextZh": "我们右发滑油压力正在快速下降，申请立即退出等待并下降，AFR941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/302.mp3"
+    },
+    {
+      "id": "atc-scenario-0017-card-main-288",
+      "taskTitle": "AFR 941-10",
+      "audioText": "C: Air France 941, stand by, a traffic at your 3 o'clock position, is maintaining 1800 meters, crossing from your right to the left, report visual.\nB: Tell the controller you have seen the conflicting aircraft.",
+      "audioTextZh": "管制员：Air France 941，请稍等。你三点钟方向有冲突飞机，保持1800米，从你右侧向左侧穿越，看到请报告。告诉管制员你已看到冲突飞机。",
+      "referenceText": "Traffic in sight, AFR941.",
+      "referenceTextZh": "看到该飞机，AFR941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/303.mp3"
+    },
+    {
+      "id": "atc-scenario-0017-card-main-289",
+      "taskTitle": "AFR 941-11",
+      "audioText": "B: Your starboard engine has failed, make an Urgency call and ask for landing priority.",
+      "audioTextZh": "你的右发已经失效，请发出紧急信号并申请优先落地。",
+      "referenceText": "PANPAN PANPAN PANPAN, Wuhan Approach, AFR941, our starboard engine has failed, request priority landing.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，武汉进近，AFR941，我们右发失效，申请优先落地。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/304.mp3"
+    },
+    {
+      "id": "atc-scenario-0017-card-main-290",
+      "taskTitle": "AFR 941-12",
+      "audioText": "C: Air France 941, roger PAN, turn left heading 060, descend to 900 meters, cleared ILS approach runway 36 left.",
+      "audioTextZh": "管制员：Air France 941，收到紧急信号，左转航向060，下降至900米，可以ILS进近36左跑道。",
+      "referenceText": "Turn left heading 060, descend to 900 meters, cleared ILS approach runway 36L, AFR941.",
+      "referenceTextZh": "左转航向060，下降至900米，可以ILS进近36L，AFR941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/305.mp3"
+    },
+    {
+      "id": "atc-scenario-0017-card-main-291",
+      "taskTitle": "AFR 941-13",
+      "audioText": "C: Air France 941, contact Wuhan Tower, frequency 124.35, goodbye.",
+      "audioTextZh": "管制员：Air France 941，联系武汉塔台，频率124.35，再见。",
+      "referenceText": "124.35, AFR941.",
+      "referenceTextZh": "124.35，AFR941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/306.mp3"
+    },
+    {
+      "id": "atc-scenario-0017-card-main-292",
+      "taskTitle": "AFR 941-14",
+      "audioText": "B: Your heading is 060 and your altitude is 900 meters, contact Wuhan Tower and tell him about the condition of the aircraft.",
+      "audioTextZh": "你当前航向060，高度900米，请联系武汉塔台并说明飞机状况。",
+      "referenceText": "Wuhan Tower, AFR941, heading 060, 900 meters, our starboard engine has failed, request priority landing.",
+      "referenceTextZh": "武汉塔台，AFR941，航向060，900米，我们右发失效，申请优先落地。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/307.mp3"
+    },
+    {
+      "id": "atc-scenario-0017-card-main-293",
+      "taskTitle": "AFR 941-15",
+      "audioText": "C: Roger, Air France 941, maintain present heading.",
+      "audioTextZh": "管制员：收到，Air France 941，保持当前航向。",
+      "referenceText": "Maintain present heading, AFR941.",
+      "referenceTextZh": "保持当前航向，AFR941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/308.mp3"
+    },
+    {
+      "id": "atc-scenario-0017-card-main-294",
+      "taskTitle": "AFR 941-16",
+      "audioText": "C: Air France 941, turn left heading 030 to intercept the localizer for runway 36 left.",
+      "audioTextZh": "管制员：Air France 941，左转航向030，截获36左跑道航向道。",
+      "referenceText": "Turn left heading 030 to intercept the localizer for runway 36L, AFR941.",
+      "referenceTextZh": "左转航向030，截获36L航向道，AFR941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/309.mp3"
+    },
+    {
+      "id": "atc-scenario-0017-card-main-295",
+      "taskTitle": "AFR 941-17",
+      "audioText": "B: Report you have established localizer runway 36 left.",
+      "audioTextZh": "报告你已建立36左跑道航向道。",
+      "referenceText": "Wuhan Tower, AFR941, established localizer runway 36L.",
+      "referenceTextZh": "武汉塔台，AFR941，已建立36L航向道。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/310.mp3"
+    },
+    {
+      "id": "atc-scenario-0017-card-main-296",
+      "taskTitle": "AFR 941-18",
+      "audioText": "C: Air France 941, cleared to land.",
+      "audioTextZh": "管制员：Air France 941，可以落地。",
+      "referenceText": "Cleared to land, AFR941.",
+      "referenceTextZh": "可以落地，AFR941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/311.mp3"
+    }
+  ]
+}

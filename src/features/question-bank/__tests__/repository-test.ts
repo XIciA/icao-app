@@ -1,7 +1,24 @@
-import { embeddedQuestionBankRepository, getEmbeddedQuestionBankIds } from '../data/repository';
+/* eslint-disable import/first */
+const mockStorageValues = new Map<string, string>();
+
+jest.mock('expo-sqlite/kv-store', () => ({
+  getItem: jest.fn(async (key: string) => mockStorageValues.get(key) ?? null),
+  setItem: jest.fn(async (key: string, value: string) => { mockStorageValues.set(key, value); }),
+}));
+
+import { embeddedQuestionBankRepository, getEmbeddedQuestionBankIds, loadQuestionBank } from '../data/repository';
 import audioIndex from '../data/audio-index.json';
 
 describe('embeddedQuestionBankRepository', () => {
+  const originalApiUrl = process.env.EXPO_PUBLIC_ICAO_API_URL;
+
+  afterEach(() => {
+    mockStorageValues.clear();
+    jest.restoreAllMocks();
+    if (originalApiUrl === undefined) delete process.env.EXPO_PUBLIC_ICAO_API_URL;
+    else process.env.EXPO_PUBLIC_ICAO_API_URL = originalApiUrl;
+  });
+
   it('keeps the canonical five-bank registry intact', () => {
     expect(getEmbeddedQuestionBankIds()).toEqual([
       'listening',
@@ -50,5 +67,27 @@ describe('embeddedQuestionBankRepository', () => {
       expect(cards).toHaveLength(4947);
       expect(cards.filter((card) => card.audio && !files.has(card.audio))).toEqual([]);
     });
+  });
+
+  it('loads and caches a remote release through the unified repository', async () => {
+    const dataset = await embeddedQuestionBankRepository.getDataset('listening');
+    process.env.EXPO_PUBLIC_ICAO_API_URL = 'http://127.0.0.1:3101';
+    jest.spyOn(globalThis, 'fetch').mockResolvedValue({
+      ok: true,
+      status: 200,
+      json: async () => ({ requestId: 'test', data: { bankId: 'listening', version: 1, checksum: 'abc', dataset } }),
+    } as Response);
+
+    const result = await loadQuestionBank('listening');
+    expect(result).toMatchObject({ source: 'remote', dataset: { id: 'listening' } });
+    expect(mockStorageValues.has('icao.content.v1.bank.listening')).toBe(true);
+  });
+
+  it('falls back to the embedded release when the remote API fails without cache', async () => {
+    process.env.EXPO_PUBLIC_ICAO_API_URL = 'http://127.0.0.1:3101';
+    jest.spyOn(globalThis, 'fetch').mockRejectedValue(new Error('offline'));
+
+    const result = await loadQuestionBank('opi');
+    expect(result).toMatchObject({ source: 'embedded', warning: 'question_bank_remote_unavailable', dataset: { id: 'opi' } });
   });
 });

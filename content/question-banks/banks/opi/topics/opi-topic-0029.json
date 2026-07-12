@@ -1,0 +1,43 @@
+{
+  "categoryId": "opi-category-05",
+  "id": "opi-topic-0029",
+  "name": "夜航",
+  "declaredCardCount": 5,
+  "cards": [
+    {
+      "id": "opi-core-441",
+      "taskTitle": "运行-夜航-1",
+      "audioText": "During night flying, What kind of runway equipment Could help you land safely?",
+      "audioTextZh": "夜间飞行时，哪些跑道设备能帮助你安全着陆？",
+      "referenceText": "There are runway centerline lighting, runway edge lighting, PAPI (Precision Approach Path Indicator) lights, approach lights, and so on. They could help us land safely.\n有跑道中心线灯、跑道边灯、精密进近航道指示器（PAPI）灯、进近灯等等。它们能帮助我们安全着陆。"
+    },
+    {
+      "id": "opi-core-442",
+      "taskTitle": "运行-夜航-2",
+      "audioText": "What is the difference between the day flight and Night flight?",
+      "audioTextZh": "白天飞行和夜间飞行有什么区别？",
+      "referenceText": "1）Actually, the night flight is exactly the same as the day flight, except that we cannot see the outside. During day flight, we can see everything clearly, and we visually check the landmarks, terrain and foreign objects. But during night flight, we cannot see the landmarks clearly, and we are more dependent on the lights and instruments. What's more, it is easy to have illusions during night flight.\n实际上，夜间飞行和白天飞行基本一样，只是我们看不见（外界 ）。白天飞行时，我们能清楚看到一切，会目视检查地标、地形和异物。但夜间飞行时，我们无法清晰看到地标，更依赖灯光和仪表。而且，夜间飞行时容易产生错觉。\n（2）There are some differences between day flight and night flight. During day flight, we have better visual reference. During night flight, it's difficult to have visual contact with the runway, and we have to use ground equipment to help us land safely.\n白天飞行和夜间飞行存在一些差异。白天飞行时，我们有更好的目视参考。夜间飞行时，难以目视看清跑道，得借助地面设备辅助安全着陆"
+    },
+    {
+      "id": "opi-core-443",
+      "taskTitle": "运行-夜航-3",
+      "audioText": "In night flight, what equipment can help you to land safely on airport?",
+      "audioTextZh": "夜间飞行时，哪些设备能帮助你在机场安全着陆？",
+      "referenceText": "In night flight, there is some ground equipment we can use to help us land safely at the airport, such as approach lights, ILS (Instrument Landing System), NDB (Non - directional Beacon), and VOR (VHF Omnidirectional Range).\n夜间飞行时，有一些地面设备可用于帮助我们在机场安全着陆，比如进近灯、仪表着陆系统（ILS）、无方向信标（NDB）和甚高频全向信标（VOR） 。"
+    },
+    {
+      "id": "opi-core-444",
+      "taskTitle": "运行-夜航-4",
+      "audioText": "What do you know about runway light system?",
+      "audioTextZh": "你知道哪些跑道灯光系统?",
+      "referenceText": "Common runway light systems include runway edge lights, centerline lights, threshold lights, touchdown zone lights, PAPI (Precision Approach Path Indicator), and approach lights. These lights enhance visibility at night or in low-visibility conditions to guide takeoff and landing.\n常见的跑道灯光系统包括跑道边灯、中心线灯、入口灯、 touchdown区灯、精密进近航道指示器（PAPI）和进近灯光。这些灯光在夜间或低能见度条件下提升可视性，为起降提供引导。"
+    },
+    {
+      "id": "opi-core-445",
+      "taskTitle": "运行-夜航-5",
+      "audioText": "What are the functions of the runway light system?",
+      "audioTextZh": "跑道灯光系统的作用是什么?",
+      "referenceText": "Runway light systems improve visibility of runway boundaries, centerline, and approach path, especially at night or in low-visibility weather (e.g., fog, rain). They help pilots judge position, altitude, and glide slope, ensuring accurate alignment and safe takeoff/landing.\n跑道灯光系统的作用是提升跑道边界、中心线和进近航道的可视性，尤其在夜间或低能见度天气（如雾、雨）下。帮助飞行员判断飞机位置、高度和下滑道，确保精准对准跑道并安全起降。"
+    }
+  ]
+}

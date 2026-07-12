@@ -1,0 +1,134 @@
+{
+  "categoryId": "opi-category-02",
+  "id": "opi-topic-0010",
+  "name": "危险品运输",
+  "declaredCardCount": 18,
+  "cards": [
+    {
+      "id": "opi-core-167",
+      "taskTitle": "特情-危险品运输-1",
+      "audioText": "Does your company provide training about/concerning/regarding dangerous goods transportation? Did you receive/get/have training to deal with/handling dangerous goods?",
+      "audioTextZh": "你公司是否提供有关危险货物运输的培训？您是否接受过/接受过/处理危险品的培训？",
+      "referenceText": "No, I have not back to the company yet. I have not took this training yet. Now I still take flight training in the flight school.\n不，我还没有回公司。我还没有接受过这种训练。现在我还在飞行学校接受飞行训练。"
+    },
+    {
+      "id": "opi-core-168",
+      "taskTitle": "特情-危险品运输-2",
+      "audioText": "What do you learn during your dangerous goods transportation training?",
+      "audioTextZh": "你在危险品运输培训中学到了什么？",
+      "referenceText": "We will learn the regulation about the dangerous goods, the dangerous goods category and how to transport the dangerous goods and so on.\n我们将学习有关危险货物、危险货物类别以及如何运输危险货物等的规定。"
+    },
+    {
+      "id": "opi-core-169",
+      "taskTitle": "特情-危险品运输-3",
+      "audioText": "Why are some goods considered dangerous? Why is liquid not allowed to bring into the cabin? Do you think lithium battery is battery is dangers? Why?",
+      "audioTextZh": "为什么有些货物被认为是危险的？为什么不允许携带液体进入机舱？你认为锂电池是电池的危险吗？为什么？",
+      "referenceText": "Because they may be flammable, explosive or toxic. (Yes, I think so) Because they may harm the people and endanger flight safety.\n因为它们可能易燃、易爆或有毒。（是的，我想是的）因为它们可能会伤害人民，危及飞行安全。"
+    },
+    {
+      "id": "opi-core-170",
+      "taskTitle": "特情-危险品运输-4",
+      "audioText": "Do you think that pilots should have some knowledge of dangerous goods transportation?",
+      "audioTextZh": "你认为飞行员应该对危险品运输有一些了解吗？",
+      "referenceText": "Yes, I think pilots should have some knowledge of dangerous goods transportation because dangerous goods will endanger the flight safety. If pilots do not have knowledge about the dangerous goods, they don't know how to deal with the dangerous goods leakage in flight. It is very dangerous.\n是的，我认为飞行员应该对危险品运输有一些了解，因为危险品会危及飞行安全。如果飞行员不了解危险品，他们就不知道如何处理飞行中的危险品泄漏。这非常危险。"
+    },
+    {
+      "id": "opi-core-171",
+      "taskTitle": "特情-危险品运输-5",
+      "audioText": "Are you familiar with dangerous goods? Can you name a few?",
+      "audioTextZh": "你熟悉危险品吗？你能说出几个吗？",
+      "referenceText": "Yes, I am familiar with dangerous goods because I have learned the courses regarding dangerous goods. As I know, there are many dangerous goods such as flammables, explosives, chemicals, radioactive and weapons.\n是的，我熟悉危险品，因为我已经学习了有关危险品的课程。据我所知，有许多危险品，如易燃物、爆炸物、化学品、放射性物质和武器。"
+    },
+    {
+      "id": "opi-core-172",
+      "taskTitle": "特情-危险品运输-6",
+      "audioText": "Can you name some of the dangerous goods in aviation industry.",
+      "audioTextZh": "你能说出民航业中的一些危险品吗。",
+      "referenceText": "As I know, there are many dangerous goods such as flammables, explosives, chemicals, radioactive and weapons.\n据我所知，有许多危险品，如易燃物、爆炸物、化学品、放射性物质和武器。"
+    },
+    {
+      "id": "opi-core-173",
+      "taskTitle": "特情-危险品运输-7",
+      "audioText": "Why are some goods considered as dangerous?",
+      "audioTextZh": "为什么有些货物被认为是危险的？",
+      "referenceText": "Some substances such as flammables and explosives are dangerous because they may cause the aircraft to catch fire or cause structural damage to the aircraft. Besides it may affect the safety of persons on board．\n易燃易爆等物质是危险的，因为它们可能会导致飞机着火或对飞机造成结构损坏。此外，这可能会影响机上人员的安全。"
+    },
+    {
+      "id": "opi-core-174",
+      "taskTitle": "特情-危险品运输-8",
+      "audioText": "Why is some liquid not allowed to be carried into cabin?",
+      "audioTextZh": "为什么有些液体不允许带入客舱？",
+      "referenceText": "Some liquids are not allowed to be carried into the cabin.\nfirst, it is difficult to detect/find/check if the liquids are dangerous goods or not.\nsecond, different liquids may be brought/carried/taken into the cabin by different people and mixed together to make a bomb. (different people may take different liquids into the cabin and mix it together to make a bomb)\n一些液体不允许带入客舱,因为很难探测液体是否是危险品，不同的液体可能由不同的人带入客舱，并混合制造炸弹。\n\nSome liquids are prohibited in the cabin because they are flammable (e.g., fuel, gasoline) and may leak, causing fires or smoke. Additionally, liquid bombs are hard to detect via security scanners, posing hijacking risks that threaten flight safety.\n部分液体禁止带入客舱，因为这类液体（如燃油、汽油）具有易燃性，泄漏后可能引发火情或烟雾；且液体炸弹难以通过安检扫描仪检测，可能被恐怖分子用于劫持，威胁飞行安全。"
+    },
+    {
+      "id": "opi-core-175",
+      "taskTitle": "特情-危险品运输-9",
+      "audioText": "What precautions should you rake if you are informed of transporting dangerous goods？",
+      "audioTextZh": "如果你被告知运输危险货物，你应该采取哪些预防措施",
+      "referenceText": "If we are informed of transporting dangerous goods. First, we will check the loading sheet about the dangerous goods. Second, we will monitor the aircraft to check if there is dangerous goods leak.\n如果我们被告知运输危险货物。首先，我们将检查危险货物的装载单。其次，我们将监控飞机，检查是否有危险品泄漏。\n\nFirst, review the Dangerous Goods Transportation Manual and confirm the type, quantity, and packaging of the goods. Ensure the goods are properly stowed and labeled. Brief the crew on emergency procedures. Monitor the cargo area during flight and be ready to handle leaks or fires, coordinating with ATC for emergency landing if needed.\n首先查阅《危险品运输手册》，确认危险品的类型、数量和包装是否合规；确保货物正确装载并张贴标识，向机组通报应急处置程序；飞行中监控货舱区域，做好泄漏或火情处置准备，必要时协调空管紧急落地。"
+    },
+    {
+      "id": "opi-core-176",
+      "taskTitle": "特情-危险品运输-10",
+      "audioText": "If some dangerous goods are leaked in flight, what would you do?",
+      "audioTextZh": "如果一些危险品在飞行中泄漏，你会怎么做？",
+      "referenceText": "If some dangerous goods are leaking during flight, we will report the situation to ATC and request emergency landing and emergency services. After landing, we will execute emergency evacuation.\n如果飞行中有危险品泄漏，我们将向空中交通管制部门报告情况，并请求紧急降落和紧急服务。着陆后，我们将进行紧急疏散。\n\nImmediately follow SOP and execute the dangerous goods leakage checklist. Isolate the leak area, have cabin crew keep passengers away, provide first aid for injuries. Report to ATC, request priority landing and fire/medical services. Prepare for emergency evacuation after landing if the situation is uncontrollable.\n立即遵循标准操作程序（SOP）执行危险品泄漏检查单，隔离泄漏区域，让乘务员引导乘客远离，对受伤人员实施急救；向空管报告情况，请求优先落地及消防、医疗支援；若情况失控，准备落地后紧急撤离。"
+    },
+    {
+      "id": "opi-core-177",
+      "taskTitle": "特情-危险品运输-11",
+      "audioText": "Have you ever taken any dangergoods training? How often?",
+      "audioTextZh": "你参加过危险品运输培训吗？多久一次？",
+      "referenceText": "Yes. I have taken dangerous goods (transportation) training. According to the regulation, pilots should have dangerous goods training every two years.\n是的，我参加过危险品运输培训。根据法规，飞行员应该每两年参加一次危险品培训。"
+    },
+    {
+      "id": "opi-core-178",
+      "taskTitle": "特情-危险品运输-12",
+      "audioText": "Why do pilots need to take some specific dangerous goods transportation training?",
+      "audioTextZh": "为什么飞行员需要参加危险品运输培训？",
+      "referenceText": "I think pilots should have (specific) training for dangerous goods transportation because dangerous good are dangerous to flight safety and we should know how to identify the dangerous goods and how to handle dangerous goods leak.\n我认为飞行员需要特别的危险品运输培训，因为危险品会危及飞行安全，我们应该了解如何识别危险品，如何处理危险品泄露。"
+    },
+    {
+      "id": "opi-core-179",
+      "taskTitle": "特情-危险品运输-13",
+      "audioText": "If you have flammable liquid substance leak during flight what will you do",
+      "audioTextZh": "如果飞行中易燃液体物质泄漏，应如何处置？",
+      "referenceText": "If we have flammable liquid leak during flight,\nfirst, we will report the situation to ATC and request emergency landing and emergency services such as fire services and medical services.\nsecond, after landing, we will execute/make emergency evacuation.\n如果飞行中出现危险品泄露，我们将报告管制我们的情况，请求紧急着陆，请求紧急服务，比如消防服务和医疗服务，着陆后，我们将执行紧急撤离。"
+    },
+    {
+      "id": "opi-core-180",
+      "taskTitle": "特情-危险品运输-14",
+      "audioText": "What topics do you often discuss in dangerous goods transportation? Give one or two examples",
+      "audioTextZh": "在危险品运输培训中，你们经常讨论哪些话题？举一两个例子",
+      "referenceText": "We can discuss some topics in dangerous goods training such as how to identify/find/check the dangerous goods, the danger of dangerous goods, how to deal with dangerous goods (leak) during flight.\n在危险品培训中，我们经常讨论一些话题，比如，如何识别危险品，危险品的危害，飞行中如何处理危险品(泄露)。"
+    },
+    {
+      "id": "opi-core-181",
+      "taskTitle": "特情-危险品运输-15",
+      "audioText": "Are lithium batteries dangerous good what threats may be the batteries bring to the aircraft",
+      "audioTextZh": "锂电池是危险品吗？锂电池会给飞机带来哪些危害？",
+      "referenceText": "Yes, lithium batteries are dangerous goods. They are dangerous to flight safety because they are flammable and explosive, they may cause smoke or fire on board and cause structural damage to the aircraft.\n是的，锂电池是危险品，他们对飞行安全有害，因为他们是易燃易爆的，他们可能导致机上起火，导致飞机机构损坏。"
+    },
+    {
+      "id": "opi-core-182",
+      "taskTitle": "特情-危险品运输-16",
+      "audioText": "Does your company provide any guidelines for identifying and dealing with dangerous goods during flight?",
+      "audioTextZh": "你公司有提供飞行中识别和处理危险品的操作指引吗？",
+      "referenceText": "Yes, our company provides clear guidelines for identifying and handling dangerous goods. Before each flight, we check the cargo manifest to confirm if there are dangerous goods on board. If present, we monitor the aircraft closely to prevent dangerous goods leakage. In case of a leakage, we report to ATC immediately, request an emergency landing at the nearest suitable airport, and call for emergency services.\n\n是的，我司有明确指引识别和处理危险品。每次飞行前，我们会核查货物舱单确认机上是否有危险品。若有，会密切监控飞机以防泄漏。一旦发生泄漏，会立即报告 ATC，申请在最近合适机场紧急降落并呼叫应急服务 。"
+    },
+    {
+      "id": "opi-core-183",
+      "taskTitle": "特情-危险品运输-17",
+      "audioText": "Why do you think we need a specific training for dangerous goods transportation?",
+      "audioTextZh": "为什么我们需要危险品运输的特别培训？",
+      "referenceText": "I think pilots should have specific training for dangerous goods transportation because dangerous good are dangerous to flight safety and we should have some knowledge of dangerous goods transportation.\n我认为飞行员需要特别的危险品运输培训，因为危险品会危及飞行安全，我们应该了解一些危险品运输知识。"
+    },
+    {
+      "id": "opi-core-187",
+      "taskTitle": "特情-危险品运输-18",
+      "audioText": "What can be regarded as dangerous goods in aviation industry?",
+      "audioTextZh": "在民航业,哪些物品可以被视为是危险品?",
+      "referenceText": "Dangerous goods in aviation include radioactive, flammable, explosive, toxic, or corrosive substances. Examples are alcohol, lithium batteries, fireworks, oxygen cylinders, dry ice, paint, lighters, and weapons, which pose risks to health, safety, property, or the environment.\n民航业中的危险品包括放射性、易燃、易爆、有毒或腐蚀性物质，例如酒精、锂电池、烟花、氧气瓶、干冰、油漆、打火机和武器等，这类物品会对健康、安全、财产或环境构成威胁。"
+    }
+  ]
+}

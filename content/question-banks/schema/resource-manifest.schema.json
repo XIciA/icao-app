@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "icao-question-bank-resources",
+  "type": "object",
+  "required": ["schemaVersion", "version", "files"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "version": { "type": "integer", "minimum": 1 },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["objectKey", "bankId", "sourceRelativePath", "publicPath", "sizeBytes", "mimeType", "checksum", "status"],
+        "properties": {
+          "objectKey": { "type": "string", "minLength": 1 },
+          "bankId": { "type": "string", "minLength": 1 },
+          "sourceRelativePath": { "type": "string", "minLength": 1 },
+          "publicPath": { "type": "string", "minLength": 1 },
+          "sizeBytes": { "type": "integer", "minimum": 1 },
+          "mimeType": { "const": "audio/mpeg" },
+          "checksum": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "status": { "enum": ["ready", "missing", "disabled"] }
+        }
+      }
+    }
+  }
+}

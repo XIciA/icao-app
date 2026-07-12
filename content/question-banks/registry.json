@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "releaseVersion": 1,
+  "releasedAt": "2026-07-12T00:00:00.000Z",
+  "bankIds": [
+    "listening",
+    "sentences900",
+    "radiotelephony",
+    "opi",
+    "storytelling"
+  ],
+  "resourceModuleAliases": {
+    "sentence900": "sentences900"
+  }
+}

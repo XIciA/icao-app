@@ -1,5 +1,7 @@
 import Storage from 'expo-sqlite/kv-store';
 
+import { enqueueAnnotationStore } from '@/features/sync/learning-sync';
+
 import { getEmbeddedQuestionBanks } from '../data/repository';
 import { sqliteLearningStore } from '../platform/learning-store';
 import type { CardLearningState, QuestionBankId } from '../types';
@@ -198,6 +200,17 @@ export async function readAnnotationStore({ force = false }: { force?: boolean }
 export async function updateAnnotationStore(updater: (store: QuestionBankAnnotationStore) => QuestionBankAnnotationStore) {
   const current = cachedStore ?? await readAnnotationStore();
   const next = normalizeAnnotationStore(updater(current));
+  cachedStore = next;
+  emitChange();
+  const queued = writeQueue.catch(() => undefined).then(() => writeStore(next));
+  writeQueue = queued;
+  await queued;
+  await enqueueAnnotationStore(next);
+  return next;
+}
+
+export async function replaceAnnotationStoreFromSync(value: unknown) {
+  const next = normalizeAnnotationStore(value);
   cachedStore = next;
   emitChange();
   const queued = writeQueue.catch(() => undefined).then(() => writeStore(next));

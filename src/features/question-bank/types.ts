@@ -24,6 +24,13 @@ export type QuestionBankStudyConfig = {
   showChoicePrompt?: boolean;
 };
 
+export type QuestionBankCapabilities = {
+  audioMode: 'file' | 'generated';
+  reviewMode: 'none' | 'exact-match' | 'grammar' | 'expression-analysis';
+  radioEligible: boolean;
+  mockExamEligible: boolean;
+};
+
 export type QuestionBankCard = {
   id: string;
   taskTitle: string;
@@ -68,6 +75,7 @@ export type QuestionBankDataset = {
   topicUnit: string;
   cardUnit: string;
   study: QuestionBankStudyConfig;
+  capabilities?: QuestionBankCapabilities;
   categories: QuestionBankCategory[];
 };
 

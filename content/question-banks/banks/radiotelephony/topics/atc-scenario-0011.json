@@ -1,0 +1,170 @@
+{
+  "categoryId": "atc-sia",
+  "id": "atc-scenario-0011",
+  "name": "SIA 323 地面车堵塞 左发EGT超温",
+  "declaredCardCount": 18,
+  "cards": [
+    {
+      "id": "atc-scenario-0011-card-main-179",
+      "taskTitle": "SIA 323-1",
+      "audioText": "B: Your call sign is Singapore 323, a flight from Wuhan to Singapore, you are at gate Echo 3, with information Charlie, request ATC clearance from Wuhan Delivery.",
+      "audioTextZh": "B：你的呼号是 Singapore 323，从武汉飞往新加坡，在 Echo 3 登机口，收到 Charlie 情报，向武汉放行请求 ATC 放行许可。",
+      "referenceText": "Wuhan Delivery, SIA323, gate E3, information C, request ATC clearance to Singapore.",
+      "referenceTextZh": "武汉放行，SIA323，E3 登机口，收到 C 情报，申请前往新加坡的 ATC 放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/179.mp3"
+    },
+    {
+      "id": "atc-scenario-0011-card-main-180",
+      "taskTitle": "SIA 323-2",
+      "audioText": "C: Singapore 323, Wuhan Delivery, cleared to Singapore via flight planned route, departure runway 36 right, follow Lima Kilo Oscar 01 departure, initial climb 1800 meters, cruising level 10400 meters, departure frequency 119.7, squawk 3763.",
+      "audioTextZh": "C：Singapore 323，武汉放行，许可按飞行计划航路飞往新加坡，离场跑道 36 右，执行 Lima Kilo Oscar 01 离场，初始爬升 1800 米，巡航高度 10400 米，离场频率 119.7，应答机 3763。",
+      "referenceText": "Cleared to Singapore via flight planned route, departure runway 36R, follow LKO 01 departure, initial climb 1800m, cruising level 10400m, departure frequency 119.7, squawk 3763, SIA323.",
+      "referenceTextZh": "许可按飞行计划航路飞往新加坡，离场跑道 36R，执行 LKO 01 离场，初始爬升 1800 米，巡航高度 10400 米，离场频率 119.7，应答机 3763，SIA323。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/180.mp3"
+    },
+    {
+      "id": "atc-scenario-0011-card-main-181",
+      "taskTitle": "SIA 323-3",
+      "audioText": "B: Now you are ready for push back and start up, contact Wuhan Ground.",
+      "audioTextZh": "B：现在你准备好推出和开车，联系武汉地面。",
+      "referenceText": "Wuhan Ground, SIA323, request push back and start up.",
+      "referenceTextZh": "武汉地面，SIA323，请求推出和开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/181.mp3"
+    },
+    {
+      "id": "atc-scenario-0011-card-main-182",
+      "taskTitle": "SIA 323-4",
+      "audioText": "C: Singapore 323, push back and start up approved, facing east.",
+      "audioTextZh": "C：Singapore 323，推出和开车批准，机头向东。",
+      "referenceText": "Push back and start up approved, facing east, SIA323.",
+      "referenceTextZh": "推出和开车批准，机头向东，SIA323。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/182.mp3"
+    },
+    {
+      "id": "atc-scenario-0011-card-main-183",
+      "taskTitle": "SIA 323-5",
+      "audioText": "B: You have completed push back with engines running, you are ready for taxi.",
+      "audioTextZh": "B：你已完成推出，发动机运转，准备好滑行。",
+      "referenceText": "Wuhan Ground, SIA323, push back and start up completed, request taxi.",
+      "referenceTextZh": "武汉地面，SIA323，推出和开车完成，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/183.mp3"
+    },
+    {
+      "id": "atc-scenario-0011-card-main-184",
+      "taskTitle": "SIA 323-6",
+      "audioText": "C: Singapore 323, taxi via taxiway Zulu 4, Alpha 3 and Alpha to holding point runway 36 right.",
+      "audioTextZh": "C：Singapore 323，经 Zulu 4、Alpha 3 和 Alpha 滑行道滑行至跑道 36 右等待点。",
+      "referenceText": "Taxi via taxiway Z4, A3 and A to holding point runway 36R, SIA323.",
+      "referenceTextZh": "经 Z4、A3 和 A 滑行道滑行至跑道 36R 等待点，SIA323。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/184.mp3"
+    },
+    {
+      "id": "atc-scenario-0011-card-main-185",
+      "taskTitle": "SIA 323-7",
+      "audioText": "B: During taxiing, a ground truck has broken down on taxiway Alpha 3 and blocked your way, ask Wuhan Ground for a tug to tow the vehicle away.",
+      "audioTextZh": "B：滑行期间，一辆地面车辆在 Alpha 3 滑行道上故障并挡住你的路线，请求武汉地面派牵引车将车辆拖走。",
+      "referenceText": "Wuhan Ground, SIA323, a ground truck has broken down on taxiway A3 and blocked our way, request a tug to tow the vehicle away.",
+      "referenceTextZh": "武汉地面，SIA323，一辆地面车辆在 A3 滑行道上故障并挡住我们的路线，请求牵引车将车辆拖走。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/185.mp3"
+    },
+    {
+      "id": "atc-scenario-0011-card-main-186",
+      "taskTitle": "SIA 323-8",
+      "audioText": "C: Singapore 323, hold position, the tug will come soon.",
+      "audioTextZh": "C：Singapore 323，保持位置，牵引车很快会来。",
+      "referenceText": "Roger, hold position, SIA323.",
+      "referenceTextZh": "收到，保持位置，SIA323。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/186.mp3"
+    },
+    {
+      "id": "atc-scenario-0011-card-main-187",
+      "taskTitle": "SIA 323-9",
+      "audioText": "B: Now you are at holding point runway 36 right, you notice the wind sock shows strong tailwind, ask Wuhan Tower to check the wind.",
+      "audioTextZh": "B：现在你在跑道 36 右等待点，注意到风向袋显示强顺风，请武汉塔台检查风。",
+      "referenceText": "Wuhan Tower, SIA323, holding point runway 36R, the wind sock shows strong tailwind, request wind check.",
+      "referenceTextZh": "武汉塔台，SIA323，跑道 36R 等待点，风向袋显示强顺风，请求风向风速检查。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/187.mp3"
+    },
+    {
+      "id": "atc-scenario-0011-card-main-188",
+      "taskTitle": "SIA 323-10",
+      "audioText": "C: Singapore 323, wind 200 degrees, 8 meters per second.\nB: The tailwind exceeds your takeoff limit, ask Wuhan Tower to change to runway 18 left for departure.",
+      "audioTextZh": "C：Singapore 323，风 200 度，8 米/秒。\nB：顺风超过你的起飞限制，请武汉塔台改用跑道 18 左离场。",
+      "referenceText": "Roger, the tailwind exceeds our takeoff limit, request change to runway 18L, SIA323.",
+      "referenceTextZh": "收到，顺风超过我们的起飞限制，请求改用跑道 18L，SIA323。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/188.mp3"
+    },
+    {
+      "id": "atc-scenario-0011-card-main-189",
+      "taskTitle": "SIA 323-11",
+      "audioText": "C: Singapore 323, taxi via Alpha, Alpha 3, Tango and November to runway 18 left.",
+      "audioTextZh": "C：Singapore 323，经 Alpha、Alpha 3、Tango 和 November 滑行至跑道 18 左。",
+      "referenceText": "Taxi via A, A3, T and N to runway 18L, SIA323.",
+      "referenceTextZh": "经 A、A3、T 和 N 滑行至跑道 18L，SIA323。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/189.mp3"
+    },
+    {
+      "id": "atc-scenario-0011-card-main-190",
+      "taskTitle": "SIA 323-12",
+      "audioText": "B: Now you are holding short of runway 18 left, you are ready for departure.",
+      "audioTextZh": "B：现在你在跑道 18 左外等待，准备好离场。",
+      "referenceText": "Wuhan Tower, SIA323, holding short of runway 18L, ready for departure.",
+      "referenceTextZh": "武汉塔台，SIA323，跑道 18L 外等待，准备好离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/190.mp3"
+    },
+    {
+      "id": "atc-scenario-0011-card-main-191",
+      "taskTitle": "SIA 323-13",
+      "audioText": "B: Now you are airborne, passing 600 meters, contact Wuhan Departure.",
+      "audioTextZh": "B：现在你已离地，正通过 600 米，联系武汉离场。",
+      "referenceText": "Wuhan Departure, SIA323, passing 600m.",
+      "referenceTextZh": "武汉离场，SIA323，正通过 600 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/191.mp3"
+    },
+    {
+      "id": "atc-scenario-0011-card-main-192",
+      "taskTitle": "SIA 323-14",
+      "audioText": "C: Singapore 323, Wuhan Departure, radar contact, turn right, direct to Whiskey Hotel Alpha, climb to and maintain 3000 meters.",
+      "audioTextZh": "C：Singapore 323，武汉离场，雷达识别，右转，直飞 Whiskey Hotel Alpha，爬升并保持 3000 米。",
+      "referenceText": "Turn right, direct to WHA, climb to and maintain 3000m, SIA323.",
+      "referenceTextZh": "右转，直飞 WHA，爬升并保持 3000 米，SIA323。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/192.mp3"
+    },
+    {
+      "id": "atc-scenario-0011-card-main-193",
+      "taskTitle": "SIA 323-15",
+      "audioText": "B: During climb, you hear loud noise coming from the left engine, and the instrument shows the EGT of port engine exceeds temperature limit, report this situation to ATC and hold for check.",
+      "audioTextZh": "B：爬升过程中，你听到左发有巨大噪音，仪表显示左发 EGT 超温，向 ATC 报告情况并请求等待检查。",
+      "referenceText": "Wuhan Departure, SIA323, we hear loud noise coming from the left engine, and the instrument shows the EGT of port engine exceeds temperature limit, request hold for check.",
+      "referenceTextZh": "武汉离场，SIA323，我们听到左发有巨大噪音，仪表显示左发 EGT 超温，请求等待检查。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/193.mp3"
+    },
+    {
+      "id": "atc-scenario-0011-card-main-194",
+      "taskTitle": "SIA 323-16",
+      "audioText": "C: Singapore 323, hold at Whiskey Hotel Alpha VOR as published.",
+      "audioTextZh": "C：Singapore 323，按公布程序在 Whiskey Hotel Alpha VOR 等待。",
+      "referenceText": "Hold at WHA VOR as published, SIA323.",
+      "referenceTextZh": "按公布程序在 WHA VOR 等待，SIA323。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/194.mp3"
+    },
+    {
+      "id": "atc-scenario-0011-card-main-195",
+      "taskTitle": "SIA 323-17",
+      "audioText": "B: You have shut down the port engine, request immediate descent and return for landing.",
+      "audioTextZh": "B：你已关停左发，请求立即下降并返回着陆。",
+      "referenceText": "Wuhan Departure, SIA323, we have shut down the port engine, request immediate descent and return for landing.",
+      "referenceTextZh": "武汉离场，SIA323，我们已关停左发，请求立即下降并返回着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/195.mp3"
+    },
+    {
+      "id": "atc-scenario-0011-card-main-196",
+      "taskTitle": "SIA 323-18",
+      "audioText": "C: Singapore 323, turn left, direct to Lima Kilo Oscar, expect ILS approach runway 36 right.",
+      "audioTextZh": "C：Singapore 323，左转，直飞 Lima Kilo Oscar，预期跑道 36 右 ILS 进近。",
+      "referenceText": "Turn left, direct to LKO, expect ILS approach runway 36R, SIA323.",
+      "referenceTextZh": "左转，直飞 LKO，预期跑道 36R ILS 进近，SIA323。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/196.mp3"
+    }
+  ]
+}

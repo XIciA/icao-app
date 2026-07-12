@@ -1,0 +1,152 @@
+{
+  "categoryId": "atc-cca",
+  "id": "atc-scenario-0100",
+  "name": "CCA 102 左发熄火 液压 起落架",
+  "declaredCardCount": 16,
+  "cards": [
+    {
+      "id": "atc-scenario-0100-card-main-1726",
+      "taskTitle": "CCA 102-1",
+      "audioText": "B: Your call sign is Air China 102, now call Wuhan Departure and report you are 400 meters, climbing.",
+      "audioTextZh": "B：你的呼号是 Air China 102，现在呼叫武汉离场并报告你 400 米，正在爬升。",
+      "referenceText": "Wuhan Departure, CCA102, 400 meters climbing.",
+      "referenceTextZh": "武汉离场，CCA102，400 米爬升中。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1257.mp3"
+    },
+    {
+      "id": "atc-scenario-0100-card-main-1727",
+      "taskTitle": "CCA 102-2",
+      "audioText": "C: Air China 102, Wuhan Departure is with you. Continue climb to 4200 meters. Pass Hekou at 4200 meters.\nB: Acknowledge the controller’s instruction",
+      "audioTextZh": "C：Air China 102，武汉离场收到。继续爬升至 4200 米。以 4200 米通过河口。\nB：确认收到管制员指令。",
+      "referenceText": "Continue climb to 4200 meters. Pass Hekou at 4200 meters, CCA102.",
+      "referenceTextZh": "继续爬升至 4200 米。以 4200 米通过河口，CCA102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1258.mp3"
+    },
+    {
+      "id": "atc-scenario-0100-card-main-1728",
+      "taskTitle": "CCA 102-3",
+      "audioText": "B: As the aircraft is reaching 4200 meters, you suddenly find No.1 engine has flamed out. You declare an emergency.",
+      "audioTextZh": "B：飞机到达 4200 米时，你突然发现 1 号发动机熄火。你宣布紧急情况。",
+      "referenceText": "PANPAN PANPAN PANPAN, Wuhan Departure, CCA102, No.1 engine has flamed out at 4200 meters.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，武汉离场，CCA102，1 号发动机在 4200 米熄火。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1259.mp3"
+    },
+    {
+      "id": "atc-scenario-0100-card-main-1729",
+      "taskTitle": "CCA 102-4",
+      "audioText": "C: Roger PAN, Air China 102, what is your intention?\nB: Tell controller you intend to return to land as soon as possible.",
+      "audioTextZh": "C：收到 PAN，Air China 102，你的意图？\nB：告诉管制员你打算尽快返回着陆。",
+      "referenceText": "Wuhan Departure, CCA102, we would like to return to land on the departure airport.",
+      "referenceTextZh": "武汉离场，CCA102，我们想返回起飞机场着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1260.mp3"
+    },
+    {
+      "id": "atc-scenario-0100-card-main-1730",
+      "taskTitle": "CCA 102-5",
+      "audioText": "C: Air China 102, turn left proceed to Hotel Golf, make straight in ILS approach runway 18 left.",
+      "audioTextZh": "C：Air China 102，左转前往 Hotel Golf，执行跑道 18L 直线 ILS 进近。",
+      "referenceText": "Turn left proceed to HG, make straight in ILS approach runway 18 left, CCA102.",
+      "referenceTextZh": "左转前往 HG，执行跑道 18L 直线 ILS 进近，CCA102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1261.mp3"
+    },
+    {
+      "id": "atc-scenario-0100-card-main-1731",
+      "taskTitle": "CCA 102-6",
+      "audioText": "C: Air China 102, contact Tower 124.35.\nB: Call Tower.",
+      "audioTextZh": "C：Air China 102，联系塔台 124.35。\nB：呼叫塔台。",
+      "referenceText": "Wuhan Tower, CCA102, go ahead.",
+      "referenceTextZh": "武汉塔台，CCA102，请讲。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1262.mp3"
+    },
+    {
+      "id": "atc-scenario-0100-card-main-1732",
+      "taskTitle": "CCA 102-7",
+      "audioText": "B: You have another problem. The hydraulic pressure is dropping rapidly.",
+      "audioTextZh": "B：你有另一个问题。液压压力正在快速下降。",
+      "referenceText": "Wuhan Tower, CCA102, we have another problem, the hydraulic pressure is dropping rapidly.",
+      "referenceTextZh": "武汉塔台，CCA102，我们还有一个问题，液压压力正在快速下降。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1263.mp3"
+    },
+    {
+      "id": "atc-scenario-0100-card-main-1733",
+      "taskTitle": "CCA 102-8",
+      "audioText": "C: Air China 102, Can you extend the landing gear?\nB: You are not certain if you could extend the gear. You are going around.",
+      "audioTextZh": "C：Air China 102，你能放下起落架吗？\nB：你不确定是否能放下起落架。你正在复飞。",
+      "referenceText": "We can not sure if we could extend the landing gear, going around, CCA102.",
+      "referenceTextZh": "我们不能确定是否能放下起落架，正在复飞，CCA102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1264.mp3"
+    },
+    {
+      "id": "atc-scenario-0100-card-main-1734",
+      "taskTitle": "CCA 102-9",
+      "audioText": "C: Air China 102, standard missed approach.\nB: You are flying to the holding for further check of the landing gear.",
+      "audioTextZh": "C：Air China 102，标准复飞。\nB：你正飞往等待区进一步检查起落架。",
+      "referenceText": "We are going to the holding for further check. Call you back, CCA102.",
+      "referenceTextZh": "我们去等待区进一步检查。稍后呼叫你，CCA102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1265.mp3"
+    },
+    {
+      "id": "atc-scenario-0100-card-main-1735",
+      "taskTitle": "CCA 102-10",
+      "audioText": "B: You have tried several ways, but you could not extend the landing gear. You decided to make a belly landing. Tell the controller about it",
+      "audioTextZh": "B：你尝试了几种方法，但无法放下起落架。你决定进行机腹着陆。告诉管制员。",
+      "referenceText": "Wuhan Tower, CCA102, I have tried several ways, but I could not extend the landing gear. We would like to make a belly landing.",
+      "referenceTextZh": "武汉塔台，CCA102，我尝试了几种方法，但无法放下起落架。我们想进行机腹着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1266.mp3"
+    },
+    {
+      "id": "atc-scenario-0100-card-main-1736",
+      "taskTitle": "CCA 102-11",
+      "audioText": "C: Air China 102, any airport assistance do you need?\nB: Tell the controller you like the runway to be foamed at the touch down zone of the landing runway.",
+      "audioTextZh": "C：Air China 102，你需要任何机场协助吗？\nB：告诉管制员你希望在落地跑道接地区铺设泡沫。",
+      "referenceText": "Wuhan Tower, CCA102, request a foam carpet at the touch down zone of the runway.",
+      "referenceTextZh": "武汉塔台，CCA102，请求在跑道接地区铺设泡沫。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1267.mp3"
+    },
+    {
+      "id": "atc-scenario-0100-card-main-1737",
+      "taskTitle": "CCA 102-12",
+      "audioText": "C: Air China 102, roger. We will spray foam around the touch down.\nB: You ask how long will foam-spay last.",
+      "audioTextZh": "C：Air China 102，收到。我们将在接地区周围喷洒泡沫。\nB：你询问泡沫喷洒将持续多久。",
+      "referenceText": "Wuhan Tower, CCA102, how long will foam spray last?",
+      "referenceTextZh": "武汉塔台，CCA102，泡沫喷洒会持续多久？",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1268.mp3"
+    },
+    {
+      "id": "atc-scenario-0100-card-main-1738",
+      "taskTitle": "CCA 102-13",
+      "audioText": "C: Air China 102, foam spraying will last 15 minutes. I will call you back.\nB: Tell controller you would like to land as soon as possible",
+      "audioTextZh": "C：Air China 102，泡沫喷洒将持续 15 分钟。我稍后呼叫你。\nB：告诉管制员你想尽快着陆。",
+      "referenceText": "Wuhan Tower, CCA102, we would like to land as soon as possible.",
+      "referenceTextZh": "武汉塔台，CCA102，我们想尽快着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1269.mp3"
+    },
+    {
+      "id": "atc-scenario-0100-card-main-1739",
+      "taskTitle": "CCA 102-14",
+      "audioText": "C: Air China 102, cleared to land runway 18 left, wind 120, 10 knots.\nB: You confirm with the controller if the landing runway is 18 Left.",
+      "audioTextZh": "C：Air China 102，跑道 18L 可以落地，风 120，10 节。\nB：你向管制员确认落地跑道是否为 18L。",
+      "referenceText": "Wuhan Tower, CCA102, confirm landing runway is 18 left.",
+      "referenceTextZh": "武汉塔台，CCA102，确认落地跑道是 18L。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1270.mp3"
+    },
+    {
+      "id": "atc-scenario-0100-card-main-1740",
+      "taskTitle": "CCA 102-15",
+      "audioText": "C: Correct, Air China 102, landing runway 18 left, report runway in sight.\nB: You have runway in sight, report to Tower.",
+      "audioTextZh": "C：正确，Air China 102，落地跑道 18L，报告看到跑道。\nB：你看到跑道，向塔台报告。",
+      "referenceText": "Wuhan Tower, CCA102, runway in sight.",
+      "referenceTextZh": "武汉塔台，CCA102，看到跑道。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1271.mp3"
+    },
+    {
+      "id": "atc-scenario-0100-card-main-1741",
+      "taskTitle": "CCA 102-16",
+      "audioText": "C: Air China 102, cleared to land.",
+      "audioTextZh": "C：Air China 102，可以落地。",
+      "referenceText": "Cleared to land, CCA102.",
+      "referenceTextZh": "可以落地，CCA102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1272.mp3"
+    }
+  ]
+}

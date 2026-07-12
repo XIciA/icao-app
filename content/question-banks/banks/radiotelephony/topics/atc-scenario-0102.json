@@ -1,0 +1,107 @@
+{
+  "categoryId": "atc-csn",
+  "id": "atc-scenario-0102",
+  "name": "CSN 3426 乘客坐错 翼尖相撞",
+  "declaredCardCount": 11,
+  "cards": [
+    {
+      "id": "atc-scenario-0102-card-main-1757",
+      "taskTitle": "CSN 3426-1",
+      "audioText": "B: Your call sign is China Southern 426, at gate 410, ask Beijing East Ground for taxi instruction.",
+      "audioTextZh": "B: 你的呼号是 China Southern 426，在 410 登机口，请向北京东地面申请滑行指令。",
+      "referenceText": "Beijing East Ground, CSN3426, gate 410, request taxi.",
+      "referenceTextZh": "北京东地面，CSN3426，410 登机口，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1606.mp3"
+    },
+    {
+      "id": "atc-scenario-0102-card-main-1758",
+      "taskTitle": "CSN 3426-2",
+      "audioText": "C: China Southern 426, taxi to holding point of runway 36 right via Yankee 1 and Charlie 1.",
+      "audioTextZh": "C: China Southern 426，经 Yankee 1 和 Charlie 1 滑行至跑道 36 right 等待点。",
+      "referenceText": "Taxi to holding point of runway 36R via Y1 and C1, CSN3426.",
+      "referenceTextZh": "经 Y1 和 C1 滑行至跑道 36R 等待点，CSN3426。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1607.mp3"
+    },
+    {
+      "id": "atc-scenario-0102-card-main-1759",
+      "taskTitle": "CSN 3426-3",
+      "audioText": "B: Now you’re on the taxiway Charlie 1, you got the report from the purser that 1 passenger had boarded the wrong airplane. Request back to the gate.",
+      "audioTextZh": "B: 现在你在滑行道 Charlie 1，乘务长报告有 1 名旅客登错飞机。请求返回登机口。",
+      "referenceText": "Beijing East Ground, CSN3426, request back to gate due to 1 passenger boarding the wrong aircraft.",
+      "referenceTextZh": "北京东地面，CSN3426，由于 1 名旅客登错飞机，请求返回登机口。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1608.mp3"
+    },
+    {
+      "id": "atc-scenario-0102-card-main-1760",
+      "taskTitle": "CSN 3426-4",
+      "audioText": "C: China Southern 426, backtrack at present position, back to the gate via Charlie 1 and Yankee 1.",
+      "audioTextZh": "C: China Southern 426，在当前位置反向滑行，经 Charlie 1 和 Yankee 1 返回登机口。",
+      "referenceText": "Backtrack at present position, back to the gate via C1 and Y1, CSN3426.",
+      "referenceTextZh": "在当前位置反向滑行，经 C1 和 Y1 返回登机口，CSN3426。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1609.mp3"
+    },
+    {
+      "id": "atc-scenario-0102-card-main-1761",
+      "taskTitle": "CSN 3426-5",
+      "audioText": "B: Half an hour later, you ask Ground for permission of taxiing again.",
+      "audioTextZh": "B: 半小时后，你再次向地面申请滑行许可。",
+      "referenceText": "Beijing East Ground ,CSN3426, request taxi.",
+      "referenceTextZh": "北京东地面，CSN3426，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1610.mp3"
+    },
+    {
+      "id": "atc-scenario-0102-card-main-1762",
+      "taskTitle": "CSN 3426-6",
+      "audioText": "C: China Southern 426, taxi to holding point of runway 36 right via Yankee 1 and Charlie 1.",
+      "audioTextZh": "C: China Southern 426，经 Yankee 1 和 Charlie 1 滑行至跑道 36 right 等待点。",
+      "referenceText": "Taxi to holding point of runway 36R via Y1 and C1, CSN3426.",
+      "referenceTextZh": "经 Y1 和 C1 滑行至跑道 36R 等待点，CSN3426。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1611.mp3"
+    },
+    {
+      "id": "atc-scenario-0102-card-main-1763",
+      "taskTitle": "CSN 3426-7",
+      "audioText": "C: China Southern 426, hold short at intersection between Yankee 1 and Tango 2, 1 Airbus 330 taxiing east on taxiway Tango 2.",
+      "audioTextZh": "C: China Southern 426，在 Yankee 1 与 Tango 2 交叉口前等待，1 架 Airbus 330 正在 Tango 2 上向东滑行。",
+      "referenceText": "Holding short, A330 in sight, CSN3426.",
+      "referenceTextZh": "等待，看到 A330，CSN3426。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1612.mp3"
+    },
+    {
+      "id": "atc-scenario-0102-card-main-1764",
+      "taskTitle": "CSN 3426-8",
+      "audioText": "C: China Southern 426, after Airbus 330 vacating intersection, continue to taxi.",
+      "audioTextZh": "C: China Southern 426，Airbus 330 脱离交叉口后，继续滑行。",
+      "referenceText": "After A330 is clear, continue to taxi, CSN3426.",
+      "referenceTextZh": "A330 clear 后继续滑行，CSN3426。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1613.mp3"
+    },
+    {
+      "id": "atc-scenario-0102-card-main-1765",
+      "taskTitle": "CSN 3426-9",
+      "audioText": "B: Your aircraft left wingtip collided with left stabilizer of Airbus 330 during taxing, report it to the controller and ask for assistance.",
+      "audioTextZh": "B: 你机左翼尖在滑行中与 Airbus 330 左平尾相撞，向管制员报告并请求协助。",
+      "referenceText": "Beijing East Ground, CSN3426, our aircraft left wingtip collided with left stabilizer of A330, request airport assistance.",
+      "referenceTextZh": "北京东地面，CSN3426，我机左翼尖与 A330 左平尾相撞，请求机场协助。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1614.mp3"
+    },
+    {
+      "id": "atc-scenario-0102-card-main-1766",
+      "taskTitle": "CSN 3426-10",
+      "audioText": "C: China Southern 426, I’ve reported it to relevant departments. And investigation car is on the way.",
+      "audioTextZh": "C: China Southern 426，我已向相关部门报告。调查车正在路上。",
+      "referenceText": "Roger, CSN3426.",
+      "referenceTextZh": "收到，CSN3426。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1615.mp3"
+    },
+    {
+      "id": "atc-scenario-0102-card-main-1767",
+      "taskTitle": "CSN 3426-11",
+      "audioText": "B: You reported the accident to the company and you got the company’s decision that the passengers would be arranged for another airplane, you request the controller to send shuttle bus soon.",
+      "audioTextZh": "B: 你已向公司报告事故，公司决定将旅客安排到另一架飞机上，你请求管制员尽快派摆渡车。",
+      "referenceText": "Beijing East Ground, CSN3426, request shuttle bus to send passengers back to gate.",
+      "referenceTextZh": "北京东地面，CSN3426，请求摆渡车送旅客返回登机口。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1616.mp3"
+    }
+  ]
+}

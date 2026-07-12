@@ -9,6 +9,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { CenteredState } from '@/components/states/CenteredState';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
+import { AuthProvider } from '@/features/auth/AuthProvider';
 import { colors } from '@/theme';
 
 SplashScreen.preventAutoHideAsync().catch(() => undefined);
@@ -30,29 +31,31 @@ export default function RootLayout() {
 
   return (
     <SafeAreaProvider>
-      <StatusBar backgroundColor={colors.background} style="dark" />
-      <Stack
-        screenOptions={{
-          animation: 'slide_from_right',
-          animationDuration: 220,
-          contentStyle: { backgroundColor: colors.background },
-          fullScreenGestureEnabled: true,
-          gestureEnabled: true,
-          headerShown: false,
-        }}
-      >
-        <Stack.Screen name="(tabs)" options={{ animation: 'fade' }} />
-        <Stack.Screen name="detail/[slug]" />
-        <Stack.Screen name="question-bank/[bankId]/index" />
-        <Stack.Screen name="question-bank/[bankId]/study/[categoryId]/[topicId]" />
-        <Stack.Screen name="learning-records" />
-        <Stack.Screen name="annotations" />
-        <Stack.Screen name="content/[slug]" />
-        <Stack.Screen name="auth/[slug]" />
-        <Stack.Screen name="account/[slug]" />
-        <Stack.Screen name="info/[slug]" />
-        <Stack.Screen name="state/[slug]" />
-      </Stack>
+      <AuthProvider>
+        <StatusBar backgroundColor={colors.background} style="dark" />
+        <Stack
+          screenOptions={{
+            animation: 'slide_from_right',
+            animationDuration: 220,
+            contentStyle: { backgroundColor: colors.background },
+            fullScreenGestureEnabled: true,
+            gestureEnabled: true,
+            headerShown: false,
+          }}
+        >
+          <Stack.Screen name="(tabs)" options={{ animation: 'fade' }} />
+          <Stack.Screen name="detail/[slug]" />
+          <Stack.Screen name="question-bank/[bankId]/index" />
+          <Stack.Screen name="question-bank/[bankId]/study/[categoryId]/[topicId]" />
+          <Stack.Screen name="learning-records" />
+          <Stack.Screen name="annotations" />
+          <Stack.Screen name="content/[slug]" />
+          <Stack.Screen name="auth/[slug]" />
+          <Stack.Screen name="account/[slug]" />
+          <Stack.Screen name="info/[slug]" />
+          <Stack.Screen name="state/[slug]" />
+        </Stack>
+      </AuthProvider>
     </SafeAreaProvider>
   );
 }

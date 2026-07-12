@@ -1,0 +1,161 @@
+{
+  "categoryId": "atc-sia",
+  "id": "atc-scenario-0013",
+  "name": "SIA 308 客舱烟雾 错过脱离滑行道",
+  "declaredCardCount": 17,
+  "cards": [
+    {
+      "id": "atc-scenario-0013-card-main-215",
+      "taskTitle": "SIA 308-1",
+      "audioText": "B: Your call sign is Singapore 308, a flight from Wuhan to Frankfurt, you are parking at gate Mike 5, you have got the latest ATIS Golf, contact Wuhan Delivery for ATC clearance.",
+      "audioTextZh": "B：你的呼号是 Singapore 308，从武汉飞往法兰克福，停在 Mike 5 登机口，已收到最新 ATIS Golf，联系武汉放行申请 ATC 放行许可。",
+      "referenceText": "Wuhan Delivery, SIA308, gate M5, information G, request ATC clearance to Frankfurt.",
+      "referenceTextZh": "武汉放行，SIA308，M5 登机口，收到 G 情报，申请前往法兰克福的 ATC 放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/215.mp3"
+    },
+    {
+      "id": "atc-scenario-0013-card-main-216",
+      "taskTitle": "SIA 308-2",
+      "audioText": "C: Singapore 308, Wuhan Delivery, cleared to Frankfurt via flight planned route, departure runway 04, initial climb 1500 meters, Zulu Foxtrot 05 departure, cruising level 11000 meters, departure frequency 119.45, squawk 3763.",
+      "audioTextZh": "C：Singapore 308，武汉放行，许可按飞行计划航路飞往法兰克福，离场跑道 04，初始爬升 1500 米，Zulu Foxtrot 05 离场，巡航高度 11000 米，离场频率 119.45，应答机 3763。",
+      "referenceText": "Cleared to Frankfurt via flight planned route, departure runway 04, initial climb 1500 meters, ZF 05 departure, cruising level 11000 meters, departure frequency 119.45, squawk 3763, SIA308.",
+      "referenceTextZh": "许可按飞行计划航路飞往法兰克福，离场跑道 04，初始爬升 1500 米，ZF 05 离场，巡航高度 11000 米，离场频率 119.45，应答机 3763，SIA308。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/216.mp3"
+    },
+    {
+      "id": "atc-scenario-0013-card-main-217",
+      "taskTitle": "SIA 308-3",
+      "audioText": "B: Now you have completed push back and start up, you are ready for taxi, contact Wuhan Ground.",
+      "audioTextZh": "B：现在你已完成推出和开车，准备好滑行，联系武汉地面。",
+      "referenceText": "Wuhan Ground, SIA308, push back and start up completed, request taxi.",
+      "referenceTextZh": "武汉地面，SIA308，推出和开车完成，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/217.mp3"
+    },
+    {
+      "id": "atc-scenario-0013-card-main-218",
+      "taskTitle": "SIA 308-4",
+      "audioText": "C: Singapore 308, Wuhan Ground, taxi to holding point 04 via taxiway Zulu 4, Alpha 2, Alpha to holding point Echo 5 runway 04.",
+      "audioTextZh": "C：Singapore 308，武汉地面，经 Zulu 4、Alpha 2、Alpha 滑行道滑行至 04 等待点，至跑道 04 Echo 5 等待点。",
+      "referenceText": "Taxi to holding point 04 via taxiway Z4, A2, Alpha to holding point E5 runway 04, SIA308.",
+      "referenceTextZh": "经 Z4、A2、Alpha 滑行道滑行至 04 等待点，至跑道 04 E5 等待点，SIA308。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/218.mp3"
+    },
+    {
+      "id": "atc-scenario-0013-card-main-219",
+      "taskTitle": "SIA 308-5",
+      "audioText": "B: Now you are holding at holding point Echo 5, runway 04, contact Wuhan Tower, and tell controller you are ready for departure.",
+      "audioTextZh": "B：现在你在 Echo 5 等待点，跑道 04，联系武汉塔台并告诉管制员你准备好离场。",
+      "referenceText": "Wuhan Tower, SIA308, holding point E5, runway 04, ready for departure.",
+      "referenceTextZh": "武汉塔台，SIA308，E5 等待点，跑道 04，准备好离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/219.mp3"
+    },
+    {
+      "id": "atc-scenario-0013-card-main-220",
+      "taskTitle": "SIA 308-6",
+      "audioText": "C: Singapore 308, line up runway 04 and cleared for immediate takeoff, traffic on final.",
+      "audioTextZh": "C：Singapore 308，进入跑道 04 并立即起飞，五边有航空器。",
+      "referenceText": "Roger, line up runway 04 and cleared for immediate takeoff, SIA308.",
+      "referenceTextZh": "收到，进入跑道 04 并立即起飞，SIA308。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/220.mp3"
+    },
+    {
+      "id": "atc-scenario-0013-card-main-221",
+      "taskTitle": "SIA 308-7",
+      "audioText": "B: Now you are airborne, passing 600 meters, climbing to 1500 meters, contact Wuhan Departure and ask to cancel SID and proceed to Zulu Foxtrot.",
+      "audioTextZh": "B：现在你已离地，正通过 600 米，爬升至 1500 米，联系武汉离场并请求取消 SID，直飞 Zulu Foxtrot。",
+      "referenceText": "Wuhan Departure, SIA308, airborne, passing 600 meters, climbing to 1500 meters, request cancel SID and proceed to ZF.",
+      "referenceTextZh": "武汉离场，SIA308，已离地，正通过 600 米，爬升至 1500 米，请求取消 SID，直飞 ZF。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/221.mp3"
+    },
+    {
+      "id": "atc-scenario-0013-card-main-222",
+      "taskTitle": "SIA 308-8",
+      "audioText": "C: Singapore 308, Wuhan Departure, radar contact, cancel SID, turn right, direct to Zulu Foxtrot, climb to and maintain 4500 meters.",
+      "audioTextZh": "C：Singapore 308，武汉离场，雷达识别，取消 SID，右转，直飞 Zulu Foxtrot，爬升并保持 4500 米。",
+      "referenceText": "Cancel SID, turn right, direct to ZF, climb to and maintain 4500 meters, SIA308.",
+      "referenceTextZh": "取消 SID，右转，直飞 ZF，爬升并保持 4500 米，SIA308。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/222.mp3"
+    },
+    {
+      "id": "atc-scenario-0013-card-main-223",
+      "taskTitle": "SIA 308-9",
+      "audioText": "B: Now you are en route Germany, Rhein Radar Control, you are cruising at flight level 360, make an initial contact with Rhein Radar Control.",
+      "audioTextZh": "B：现在你在前往德国航路上，莱茵雷达管制，巡航高度 FL360，与 莱茵雷达管制 首次联系。",
+      "referenceText": "Rhein Radar, SIA308, en route, cruising at FL360.",
+      "referenceTextZh": "Rhein Radar，SIA308，航路中，巡航高度 FL360。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/223.mp3"
+    },
+    {
+      "id": "atc-scenario-0013-card-main-224",
+      "taskTitle": "SIA 308-10",
+      "audioText": "C: Singapore 308, maintain flight level 360, offset 3 miles right of track due weather ahead.",
+      "audioTextZh": "C：Singapore 308，保持 FL360，因前方天气，航迹右侧偏置 3 海里。",
+      "referenceText": "Maintain FL360, offset 3 miles right of track, SIA308.",
+      "referenceTextZh": "保持 FL360，航迹右侧偏置 3 海里，SIA308。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/224.mp3"
+    },
+    {
+      "id": "atc-scenario-0013-card-main-225",
+      "taskTitle": "SIA 308-11",
+      "audioText": "B: Now you have smoke in the cockpit, make a Distress call to Rhein Radar and request emergency descent to remove the smoke.",
+      "audioTextZh": "B：现在驾驶舱有烟雾，向 Rhein Radar 发出遇险呼叫，请求紧急下降以排除烟雾。",
+      "referenceText": "MAYDAY MAYDAY MAYDAY, Rhein Radar, SIA308, we have smoke in the cockpit, request emergency descent for smoke removal.",
+      "referenceTextZh": "MAYDAY MAYDAY MAYDAY，Rhein Radar，SIA308，驾驶舱有烟雾，请求紧急下降以排烟。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/225.mp3"
+    },
+    {
+      "id": "atc-scenario-0013-card-main-226",
+      "taskTitle": "SIA 308-12",
+      "audioText": "C: Singapore 308, roger MAYDAY, descend to and maintain flight level 100, keep us advised the situation on board and your intention.\nB: Read back the instructions and tell the controller you are working the checklist and will advise.",
+      "audioTextZh": "C：Singapore 308，收到 MAYDAY，下降并保持 FL100，持续告知机上情况和你的意图。\nB：复诵指令并告诉管制员你正在执行检查单，将会通知。",
+      "referenceText": "Descend to and maintain FL100, we are working the checklist and will advise, SIA308.",
+      "referenceTextZh": "下降并保持 FL100，我们正在执行检查单，将会通知，SIA308。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/226.mp3"
+    },
+    {
+      "id": "atc-scenario-0013-card-main-227",
+      "taskTitle": "SIA 308-13",
+      "audioText": "B: After completing the checklist, the smoke can't be removed and you decide to divert to Paris, inform the controller your situation and intention.",
+      "audioTextZh": "B：完成检查单后，烟雾无法消除，你决定备降巴黎，通知管制员你的情况和意图。",
+      "referenceText": "Rhein Radar, SIA308, the smoke can't be removed, request divert to Paris.",
+      "referenceTextZh": "Rhein Radar，SIA308，烟雾无法消除，请求备降巴黎。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/227.mp3"
+    },
+    {
+      "id": "atc-scenario-0013-card-main-228",
+      "taskTitle": "SIA 308-14",
+      "audioText": "C: Singapore 308, roger, turn left heading 350, descend to and maintain 8000 feet, contact Paris Approach on 119.4.",
+      "audioTextZh": "C：Singapore 308，收到，左转航向 350，下降并保持 8000 英尺，联系巴黎进近119.4。",
+      "referenceText": "Turn left heading 350, descend to and maintain 8000 feet, 119.4, SIA308.",
+      "referenceTextZh": "左转航向 350，下降并保持 8000 英尺，119.4，SIA308。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/228.mp3"
+    },
+    {
+      "id": "atc-scenario-0013-card-main-229",
+      "taskTitle": "SIA 308-15",
+      "audioText": "C: Singapore 308, descend to and maintain 6000 feet, cleared for ILS approach runway 08 left.",
+      "audioTextZh": "C：Singapore 308，下降并保持 6000 英尺，许可跑道 08 左 ILS 进近。",
+      "referenceText": "Descend to and maintain 6000 feet, cleared for ILS approach runway 08L, SIA308.",
+      "referenceTextZh": "下降并保持 6000 英尺，许可跑道 08L ILS 进近，SIA308。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/229.mp3"
+    },
+    {
+      "id": "atc-scenario-0013-card-main-230",
+      "taskTitle": "SIA 308-16",
+      "audioText": "B: Now you have landed on runway 08 left, but you missed the first rapid exit, report it to Paris Tower and request vacate via the second rapid exit.",
+      "audioTextZh": "B：现在你已在跑道 08 左落地，但错过了第一个快速出口，向巴黎塔台报告，并请求经第二个快速出口脱离。",
+      "referenceText": "Paris Tower, SIA308, we have missed the first rapid exit, request vacate via the second rapid exit.",
+      "referenceTextZh": "巴黎塔台，SIA308，我们错过了第一个快速出口，请求经第二个快速出口脱离。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/230.mp3"
+    },
+    {
+      "id": "atc-scenario-0013-card-main-231",
+      "taskTitle": "SIA 308-17",
+      "audioText": "C: Singapore 308, roger, take second rapid exit, when vacated, contact Paris Ground on 118.5.",
+      "audioTextZh": "C：Singapore 308，收到，使用第二个快速出口，脱离后联系巴黎地面118.5。",
+      "referenceText": "Take second rapid exit, when vacated, contact Paris Ground on 118.5, SIA308.",
+      "referenceTextZh": "使用第二个快速出口，脱离后联系巴黎地面118.5，SIA308。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/231.mp3"
+    }
+  ]
+}

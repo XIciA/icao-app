@@ -1,0 +1,78 @@
+{
+  "categoryId": "opi-category-07",
+  "id": "opi-topic-0112",
+  "name": "英语课程",
+  "declaredCardCount": 10,
+  "cards": [
+    {
+      "id": "opi-extra-065",
+      "taskTitle": "其它-英语课程-1",
+      "audioText": "Have you took any radiotelephone communication course?",
+      "audioTextZh": "你修过无线电电话通信课程吗？",
+      "referenceText": "Yes, I have.\n是的，我修过。"
+    },
+    {
+      "id": "opi-extra-066",
+      "taskTitle": "其它-英语课程-2",
+      "audioText": "Do you think it is necessary to take such course?",
+      "audioTextZh": "你认为修这样一门课程有必要吗？",
+      "referenceText": "Yes, I think it is necessary to take such a course. Because we learn standard phraseology and RTF (Radio Telephony) communication procedures. They are very important in communications between pilots and air traffic controllers.\n是的，我认为修这样一门课程有必要。因为我们会学习标准用语以及无线电通话（RTF）通信程序。这些在飞行员与空中交通管制员的通信中至关重要 。"
+    },
+    {
+      "id": "opi-extra-067",
+      "taskTitle": "其它-英语课程-3",
+      "audioText": "Do you have any Aviation English course? What are they?",
+      "audioTextZh": "你修过航空英语相关课程吗？都有哪些？",
+      "referenceText": "Yes, I have taken some Aviation English courses, such as the ICAO course, ATPL course, Reading course, Listening course, Oral English course, and so on.\n修过，我修了一些航空英语课程，像国际民用航空组织（ICAO）课程、航空运输飞行员执照（ATPL）课程、阅读课程、听力课程、英语口语课程等等 。"
+    },
+    {
+      "id": "opi-extra-068",
+      "taskTitle": "其它-英语课程-4",
+      "audioText": "What's the difference between everyday general English and Aviation English?",
+      "audioTextZh": "日常通用英语和航空英语之间的区别是什么？",
+      "referenceText": "In my opinion, Aviation English emphasizes standard words and phrases, as well as standard communication procedures, to avoid misunderstandings between pilots and ATC. It is more accurate, concise, and clear.\n在我看来，航空英语强调标准词汇和短语，以及标准通信程序，以此避免飞行员与空中交通管制员（ATC）之间出现误解。它更加准确、简洁、清晰 。"
+    },
+    {
+      "id": "opi-extra-069",
+      "taskTitle": "其它-英语课程-5",
+      "audioText": "Have you ever learned any courses about radiotelephony communication in English?",
+      "audioTextZh": "你学过任何关于英语无线电电话通信的课程吗？",
+      "referenceText": "Yes, I have learned the course about radiotelephony communication in English during ground training.\n学过，我在地面训练期间学过英语无线电电话通信课程 。"
+    },
+    {
+      "id": "opi-extra-070",
+      "taskTitle": "其它-英语课程-6",
+      "audioText": "What have you learned from this course?",
+      "audioTextZh": "你从这门课程中学到了什么？",
+      "referenceText": "I have learned many things from this course. First, I have learned the communication procedures between pilots and controllers. Second, I have learned that we should use the standard words and phrases to avoid misunderstanding. Third, I have learned that we should speak loudly and clearly．\n我从这门课程中学到了很多东西。首先，我了解了飞行员与管制员之间的通信程序。其次，我懂得了应该使用标准词汇和短语来避免误解。第三，我知道了说话要响亮、清晰 。"
+    },
+    {
+      "id": "opi-extra-071",
+      "taskTitle": "其它-英语课程-7",
+      "audioText": "What are the differences between radiotelephony (RTF) English and general daily used English?",
+      "audioTextZh": "无线电通话（RTF）英语和一般日常使用的英语有什么区别？",
+      "referenceText": "There are some differences between radiotelephony English and general daily used English. In radiotelephony communication, we should use standard words without misunderstanding. In daily used communication, we can use any words and we can use body language to help understanding.\n无线电通话英语和一般日常使用的英语存在一些区别。在无线电通话交流中，我们应使用不会产生误解的标准词汇。在日常交流中，我们可以使用任意词汇，还可以借助肢体语言辅助理解 。"
+    },
+    {
+      "id": "opi-extra-072",
+      "taskTitle": "其它-英语课程-8",
+      "audioText": "Do you think it's difficult to communicate with ATC in English?",
+      "audioTextZh": "你认为用英语与空中交通管制员（ATC）交流困难吗？",
+      "referenceText": "Yes, I think it's easy to communicate with ATC in English in normal situations. But in emergency situations, it's a little difficult to communicate with ATC.\n是的，我认为在正常情况下，用英语与空中交通管制员交流很容易。但在紧急情况下，与空中交通管制员交流就有点困难了 。"
+    },
+    {
+      "id": "opi-extra-073",
+      "taskTitle": "其它-英语课程-9",
+      "audioText": "How do you improve your aviation English\ncommunication skills?",
+      "audioTextZh": "你如何提升航空英语沟通能力？",
+      "referenceText": "- Master ICAO standard terminology proficiently and strengthen daily practice of standard communication sentences;\n- Participate in more English communication scenarios in simulator training to accumulate practical experience;\n- Listen to real-time ATC communications and watch aviation English teaching videos to improve listening and pronunciation;\n- Conduct simulated English communication exercises with colleagues to correct expression mistakes targetedly;\n- Review aviation English-related manuals and course content regularly to consolidate professional vocabulary and usage.\n- 熟练掌握ICAO标准术语，日常强化标准通话句式练习；- 多参与模拟机训练中的英语通讯场景，积累实操经验；- 收听ATC实时通讯、观看航空英语教学视频，提升听力与发音；- 与同事开展英语通讯模拟练习，针对性纠正表达误区；- 定期复习航空英语相关手册与课程内容，巩固专业词汇与用法。"
+    },
+    {
+      "id": "opi-extra-074",
+      "taskTitle": "其它-英语课程-10",
+      "audioText": "How long have you been learning\nEnglish?\nHave you received any training\nrelated English?",
+      "audioTextZh": "你学习英语多长时间了?你接受过任何英语训练吗?",
+      "referenceText": "I have been learning English for more than 15 years. During my flight training, I have received professional aviation English training, including radio communication, aviation terminology and interview English, which has laid a solid foundation for my aviation career.\n我学习英语已经有15年多了。在飞行训练期间，我接受过专业的航空英语培训，包括无线电通讯、航空术语和面试英语等，为我的航空职业生涯打下了坚实的基础。"
+    }
+  ]
+}

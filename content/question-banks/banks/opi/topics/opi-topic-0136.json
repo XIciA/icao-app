@@ -1,0 +1,29 @@
+{
+  "categoryId": "opi-category-05",
+  "id": "opi-topic-0136",
+  "name": "飞行操纵检查",
+  "declaredCardCount": 3,
+  "cards": [
+    {
+      "id": "opi-extra-311",
+      "taskTitle": "运行-飞行操纵检查-1",
+      "audioText": "When do pilots need to do the flight control check?",
+      "audioTextZh": "飞行员需在何时进行飞行操纵检查？",
+      "referenceText": "During walk around inspection and before taxi we will check the flight control.\n绕机检查期间和滑行前需进行飞行操纵检查。"
+    },
+    {
+      "id": "opi-extra-312",
+      "taskTitle": "运行-飞行操纵检查-2",
+      "audioText": "What is the procedure of the flight control check in\nyour company’s SOP?",
+      "audioTextZh": "贵公司 SOP（标准操作程序）中，飞行操纵检查的流程是什么？",
+      "referenceText": "I fly C172. According to the SOP, first, during walk around inspection, we should move the control surface to make sure it is not jammed. Second, before taxi, I will move the control column and press the rudder pedal to check the ailerons, elevator and rudder and make sure they are working properly.\n我驾驶 C172。根据 SOP：一是绕机检查时，需活动操纵面，确保无卡阻；二是滑行前，推动驾驶杆并踩踏方向舵踏板，检查副翼、升降舵和方向舵，确保工作正常。"
+    },
+    {
+      "id": "opi-extra-313",
+      "taskTitle": "运行-飞行操纵检查-3",
+      "audioText": "Do both PM and PF need to carry out the\nflight control check? Why?",
+      "audioTextZh": "机组成员中的 PM（监控飞行员）和 PF（操纵飞行员）是否都需进行飞行操纵检查？为什么？",
+      "referenceText": "Yes, of course, both PM and PF need to carry out the flight control check. Each pilot has one set of control system, they are related, pilot should ensure they are in good conditions, because if the PF get incapacitated during flight, the PM can take over his control and ensure the flight safety.\n是的，PM 和 PF 都需进行飞行操纵检查。每位飞行员都有一套操纵系统，且系统相互关联，需确保其状态良好 —— 若飞行中 PF 失去能力，PM 可接管操纵，保障飞行安全。"
+    }
+  ]
+}

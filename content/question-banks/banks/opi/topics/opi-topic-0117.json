@@ -1,0 +1,92 @@
+{
+  "categoryId": "opi-category-02",
+  "id": "opi-topic-0117",
+  "name": "劫机与非法干扰",
+  "declaredCardCount": 12,
+  "cards": [
+    {
+      "id": "opi-extra-096",
+      "taskTitle": "特情-劫机与非法干扰-1",
+      "audioText": "Does your company provide training about/concerning/regarding hijack? Did you receive/get/have training to deal with/handling hijack?",
+      "audioTextZh": "你们公司有提供劫机相关培训吗？你接受过应对劫机的培训吗？",
+      "referenceText": "No, I have not returned to the company yet. I have not taken this training yet. Now I am still taking flight training in the flight school.\n没有，我还没回到公司，也还没参加过这类培训。目前我仍在飞行学校进行飞行训练 。"
+    },
+    {
+      "id": "opi-extra-097",
+      "taskTitle": "特情-劫机与非法干扰-2",
+      "audioText": "What will you do if you have hijack situation during flight?",
+      "audioTextZh": "飞行中遭遇劫机情况时，你们会怎么做？",
+      "referenceText": "If we encounter this situation during flight, first of all, the cabin crew will try their best to inform us of the situation. We will squawk 7500 and keep monitoring the situation in the cabin through the camera. Then we will advise the controller of our situation, request to land as soon as possible and request airport police upon arrival.\n若飞行中遭遇此类情况，首先客舱乘务员会尽力向我们通报情况。我们会设置 7500 劫机代码，通过摄像头持续监控客舱内状况。随后会向管制员报告我们的情况，请求尽快降落，并在抵达时要求机场警方到场 。"
+    },
+    {
+      "id": "opi-extra-098",
+      "taskTitle": "特情-劫机与非法干扰-3",
+      "audioText": "Have you ever encountered hijacking?",
+      "audioTextZh": "你曾遭遇过劫机事件吗？",
+      "referenceText": "No, I have never encountered hijacking.\n没有，我从未遭遇过劫机事件 。"
+    },
+    {
+      "id": "opi-extra-099",
+      "taskTitle": "特情-劫机与非法干扰-4",
+      "audioText": "What should you do if you encounter a hijack?",
+      "audioTextZh": "若遭遇劫机，你们应采取什么行动？",
+      "referenceText": "If we encounter a hijack, first, we will squawk 7500. Second, we crew members will work together to fight against the hijackers. Third, we will try our best to land as soon as possible. If possible, we will report our situation to ATC and request airport security to await our arrival.\n若遭遇劫机，首先我们会设置 7500 劫机应答代码。其次，机组人员会协同对抗劫机者。第三，我们会尽力尽快降落。如有可能，会向空中交通管制（ATC）报告情况，并请求机场安保人员在我们抵达时待命 。"
+    },
+    {
+      "id": "opi-extra-100",
+      "taskTitle": "特情-劫机与非法干扰-5",
+      "audioText": "How to prevent hijack/terrorism from happening'?",
+      "audioTextZh": "如何预防劫机/恐怖主义事件发生？",
+      "referenceText": "Many things can be done to prevent terrorism from occurring. First, we can enhance airport security checks to prevent terrorists and dangerous goods from entering the airport and aircraft. Second, both pilots and cabin crew can improve their skills to combat terrorism or hijacking, and conduct regular emergency drills.\n可采取多项措施预防恐怖主义事件发生。首先，加强机场安检，阻止恐怖分子和危险物品进入机场及飞机。其次，飞行员和客舱乘务员可提升应对恐怖主义或劫机的技能，并开展定期应急演练 。"
+    },
+    {
+      "id": "opi-extra-101",
+      "taskTitle": "特情-劫机与非法干扰-6",
+      "audioText": "If the passenger refuses to check in over-sized baggage at the gate, what will you do?",
+      "audioTextZh": "若乘客在登机口拒绝托运超大行李，你会怎么做？",
+      "referenceText": "If the passenger refuses to check in over - sized baggage at the gate, I will ask the purser to deal with it. We can inform the passenger of the dangers of carrying the over - sized baggage into the cabin. For example, we can tell the passenger that over - sized baggage may cause damage to the aircraft or injury to persons on board, and it may affect flight safety.\n若乘客在登机口拒绝托运超大行李，我会请乘务长来处理。我们可以告知乘客将超大行李带入客舱的危险。比如，告诉乘客超大行李可能会对飞机造成损坏，或对机上人员造成伤害，还可能影响飞行安全 。"
+    },
+    {
+      "id": "opi-extra-102",
+      "taskTitle": "特情-劫机与非法干扰-7",
+      "audioText": "If the passenger refuses to turn off the cell phone, what will you do?",
+      "audioTextZh": "若乘客拒绝关闭手机，你会怎么做？",
+      "referenceText": "If the passenger refuses to turn off the cell phone, the flight attendants or the purser may inform the passenger that it may affect flight safety. For example, the passenger will be informed that it may interfere with the radio communication between the pilots and air traffic controllers.\n若乘客拒绝关闭手机，乘务员或乘务长可告知乘客这可能影响飞行安全。比如，会告知乘客此举可能干扰飞行员与空中交通管制员之间的无线电通信 。\n\nNormally, this is handled by cabin crew and air marshals. I will instruct the cabin crew to explain the safety risks of mobile phone interference with aircraft systems. If the passenger persists and disturbs flight safety, contact airport security to handle it upon arrival and ensure no disruption to flight operations.\n通常该情况由乘务员和空保处理，我会指示乘务员向乘客说明手机信号干扰航空器系统的安全风险；若乘客执意拒绝并影响飞行安全，落地后联系机场安保处置，确保飞行运行不受干扰。"
+    },
+    {
+      "id": "opi-extra-103",
+      "taskTitle": "特情-劫机与非法干扰-8",
+      "audioText": "What is unlawful interference in civil aviation? Can you give some examples?",
+      "audioTextZh": "什么是民用航空中的非法干扰？你能举一些例子吗？",
+      "referenceText": "Unlawful interference means any act that threatens the safety of civil aviation. Examples include hijacking, bomb threats, sabotage of aircraft or airport facilities, taking hostages on board, and using an aircraft as a weapon. It also includes unlawful entry into the cockpit, carrying concealed weapons or explosives, and making false threats that cause disruption. Even a joke about a bomb is considered unlawful interference. These acts are serious crimes under international and national laws. Airlines and airports have security procedures to prevent, detect, and respond to such acts. Any suspected unlawful interference must be reported immediately to the captain and authorities.\n非法干扰是指任何威胁民用航空安全的行为。例如劫持、炸弹威胁、破坏飞机或机场设施、在机上劫持人质、以及将飞机用作武器。它还包括非法进入驾驶舱、携带隐藏武器或爆炸物、以及制造导致混乱的虚假威胁。即使是关于炸弹的玩笑也被视为非法干扰。根据国际法和国内法，这些行为属于严重犯罪。航空公司和机场有安保程序来预防、发现和应对此类行为。任何疑似非法干扰必须立即报告机长和当局。"
+    },
+    {
+      "id": "opi-extra-104",
+      "taskTitle": "特情-劫机与非法干扰-9",
+      "audioText": "What should a pilot do if a passenger claims there is a bomb on board?",
+      "audioTextZh": "如果有乘客声称机上有炸弹，飞行员应该怎么做？",
+      "referenceText": "First, the pilot should remain calm and not panic. The captain must be informed immediately. Do not announce the threat to all passengers unless instructed. The pilot should contact ATC and declare an emergency using the code 7700. Request priority landing at the nearest suitable airport. Follow the airline’s bomb threat checklist. Security personnel on board, if any, should be alerted. Avoid sudden maneuvers that might cause panic. Do not land at a small airport without emergency services. After landing, follow ATC and ground security instructions to evacuate the aircraft safely. Never assume a bomb threat is a joke. Treat every threat as real until proven otherwise.\n首先，飞行员应保持冷静、不慌张。必须立即通知机长。除非有指示，否则不要向所有乘客宣布威胁。飞行员应联系空管，使用代码 7700 宣布紧急情况，请求在最近的合适机场优先着陆。遵循航空公司的炸弹威胁检查单。应提醒机上的安保人员（如有）。避免可能导致恐慌的剧烈机动。不要在没有应急服务的支线机场着陆。着陆后，听从空管和地面安保指示安全疏散飞机。绝不要假设炸弹威胁是玩笑。在证实并非如此之前，将每一次威胁都当作真实的来处理。"
+    },
+    {
+      "id": "opi-extra-105",
+      "taskTitle": "特情-劫机与非法干扰-10",
+      "audioText": "What communication procedure should a pilot follow if a hijacker takes control of the cockpit?",
+      "audioTextZh": "如果劫机者控制了驾驶舱，飞行员应遵循什么通信程序？",
+      "referenceText": "If a hijacker takes control, the pilot should first try to set the transponder code to 7500, which is the universal code for unlawful interference. This alerts ATC without speaking. Do not announce the hijacking over the radio unless safe to do so. If possible, maintain normal communication with ATC using coded phrases. For example, say “we have a situation” instead of “hijacking.” Follow the airline’s hijacking procedure. Do not argue with or provoke the hijacker. Prioritize passenger and crew safety. Expect that ATC will clear the airspace and military interception may follow. The pilot’s goal is to land safely at the nearest suitable airport and follow the hijacker’s demands only to the extent that does not endanger lives unnecessarily.\n如果劫机者控制了驾驶舱，飞行员首先应尝试将应答机编码设为 7500，这是非法干扰的通用代码。这可以在不说话的情况下提醒空管。除非安全，否则不要在无线电上宣布劫机。如有可能，使用编码短语与空管保持正常通信，例如说 “我们有一个情况” 而不是 “劫机”。遵循公司的劫机程序。不要与劫机者争论或挑衅。优先考虑乘客和机组安全。预计空管会清空空域，可能会有军用拦截。飞行员的目标是在最近的合适机场安全着陆，并在不造成不必要危险的前提下遵从劫机者的要求。"
+    },
+    {
+      "id": "opi-extra-106",
+      "taskTitle": "特情-劫机与非法干扰-11",
+      "audioText": "After a bomb threat is received on the ground, should pilots allow passengers to disembark immediately? Why or why not?",
+      "audioTextZh": "在地面收到炸弹威胁后，飞行员是否应立即允许乘客下机？为什么？",
+      "referenceText": "Not immediately. The pilot should follow the airline’s bomb threat checklist. First, the captain must contact ATC and airport security. The aircraft should be taxied to a remote area away from terminals and other aircraft if possible. Evacuation should only be ordered if there is visible evidence of a bomb or if security experts recommend it. Premature passenger disembarkation could cause panic and increase the risk of explosion if a bomb is actually present. In most procedures, passengers are kept on board until security personnel arrive and conduct a search. However, if the threat is specific and credible, an emergency evacuation using slides may be ordered. Safety coordination with ground security is critical.\n不要立即下机。飞行员应遵循公司的炸弹威胁检查单。首先，机长必须联系空管和机场安保。如有可能，应将飞机滑行到远离候机楼和其他飞机的隔离区域。只有在有炸弹的明显证据或安保专家建议时才下令撤离。过早让乘客下机可能引发恐慌，并在真有炸弹时增加爆炸风险。多数程序中，乘客留在机上直到安保人员到达并完成搜索。但如果威胁具体且可信，可下令使用滑梯紧急撤离。与地面安保的安全协调至关重要。"
+    },
+    {
+      "id": "opi-extra-107",
+      "taskTitle": "特情-劫机与非法干扰-12",
+      "audioText": "What about emergency evacuation on the runway? Can you explain the standard procedures?",
+      "audioTextZh": "跑道上紧急撤离的标准程序是什么？",
+      "referenceText": "After stopping safely on the runway, the captain immediately orders emergency evacuation. The crew activates emergency lights and briefs passengers to leave baggage behind. Pilots shut down engines, fuel, and electric systems. Flight attendants open exits and deploy slides if safe. Passengers evacuate quickly and move away from the aircraft. Pilots are the last to leave, checking the cockpit and cabin. After evacuation, the crew gathers passengers at a safe distance and reports to rescue services. Evacuation must be completed within 90 seconds. The captain coordinates with ATC and emergency services throughout. Safety is the top priority.\n在跑道上安全停稳后，机长立即下令紧急撤离。机组开启应急灯光，告知乘客不要携带行李。飞行员关闭发动机、燃油和电气系统。乘务员在安全情况下打开出口并展开滑梯。乘客快速撤离并远离飞机。飞行员最后离开，检查驾驶舱和客舱。撤离后，机组将乘客集合在安全区域并向救援人员报告。撤离必须在 90 秒内完成。全程由机长与空管和应急部门协调。安全是最高优先级。"
+    }
+  ]
+}

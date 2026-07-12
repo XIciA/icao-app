@@ -1,0 +1,16 @@
+{
+  "id": "atc-baw",
+  "name": "BAW",
+  "declaredTopicCount": 8,
+  "declaredCardCount": 135,
+  "topicIds": [
+    "atc-scenario-0025",
+    "atc-scenario-0026",
+    "atc-scenario-0027",
+    "atc-scenario-0028",
+    "atc-scenario-0029",
+    "atc-scenario-0030",
+    "atc-scenario-0031",
+    "atc-scenario-0032"
+  ]
+}

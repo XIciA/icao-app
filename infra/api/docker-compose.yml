@@ -1,0 +1,27 @@
+name: icao-api
+
+services:
+  api:
+    build:
+      context: ../..
+      dockerfile: infra/api/Dockerfile
+    image: icao-api:phase2a
+    container_name: icao-api
+    restart: unless-stopped
+    networks:
+      - supabase
+    ports:
+      - 127.0.0.1:3101:3101
+    env_file:
+      - /opt/icao/runtime/api/.env
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3101/health/ready').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+networks:
+  supabase:
+    external: true
+    name: supabase_default

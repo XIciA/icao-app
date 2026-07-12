@@ -1,0 +1,9 @@
+{
+  "id": "listening-category-02",
+  "name": "20s陆空通话",
+  "declaredTopicCount": 1,
+  "declaredCardCount": 114,
+  "topicIds": [
+    "listening-topic-02"
+  ]
+}

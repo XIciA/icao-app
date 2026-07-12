@@ -1,0 +1,161 @@
+{
+  "categoryId": "atc-csn",
+  "id": "atc-scenario-0087",
+  "name": "CSN 6682 试音 襟翼卡起飞位 液压漏油",
+  "declaredCardCount": 17,
+  "cards": [
+    {
+      "id": "atc-scenario-0087-card-main-1494",
+      "taskTitle": "CSN 6682-1",
+      "audioText": "B: Your call sign is China Southern 682, you are at stand Kilo 38 with information Bravo, your destination is Guangzhou, request ATC clearance from Wuhan Delivery.",
+      "audioTextZh": "B：你的呼号是 China Southern 682，在 Kilo 38 号停机位，通播 Bravo，目的地广州，向武汉放行请求 ATC 放行许可。",
+      "referenceText": "Wuhan Delivery, CSN6682, stand K38, information B, request ATC clearance.",
+      "referenceTextZh": "武汉放行，CSN6682，K38 停机位，通播 B，请求 ATC 放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1570.mp3"
+    },
+    {
+      "id": "atc-scenario-0087-card-main-1495",
+      "taskTitle": "CSN 6682-2",
+      "audioText": "C: China Southern 682, I read you 3, loud background whistle, check your transmitter.\nB: You have the transmitter checked and carry out radio check with Wuhan Delivery on the frequency 118.3.",
+      "audioTextZh": "C：China Southern 682，我听你 3，背景有很大的哨音，检查你的发射机。\nB：你检查发射机后，在 118.3 频率与武汉放行进行无线电检查。",
+      "referenceText": "Wuhan Delivery, CSN6682, radio check on frequency 118.3,\n1，2，3，4，5, how do you read?",
+      "referenceTextZh": "武汉放行，CSN6682，在频率 118.3 无线电检查，\n1，2，3，4，5，你听我怎样？",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1571.mp3"
+    },
+    {
+      "id": "atc-scenario-0087-card-main-1496",
+      "taskTitle": "CSN 6682-3",
+      "audioText": "C: China Southern 682, I read you 5.\nB: Acknowledge the transmission and request ATC clearance.",
+      "audioTextZh": "C：China Southern 682，我听你 5。\nB：确认收到并请求 ATC 放行许可。",
+      "referenceText": "Roger, stand K38, information B, request ATC clearance, CSN6682.",
+      "referenceTextZh": "收到，K38 停机位，通播 B，请求 ATC 放行许可，CSN6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1572.mp3"
+    },
+    {
+      "id": "atc-scenario-0087-card-main-1497",
+      "taskTitle": "CSN 6682-4",
+      "audioText": "C: China Southern 682, Wuhan Delivery, cleared to Guangzhou via flight planned route, departure runway 36 right, follow Lima Kilo Oscar 01 Departure, initial climb 1200 meters, cruising level 8400 meters, departure frequency 119.6, squawk 3115.",
+      "audioTextZh": "C：China Southern 682，武汉放行，许可飞往广州，按飞行计划航路，离场跑道 36R，执行 Lima Kilo Oscar 01 离场，起始爬升 1200 米，巡航高度 8400 米，离场频率 119.6，应答机 3115。",
+      "referenceText": "Cleared to Guangzhou via flight planned route, departure runway 36R, follow LKO 01 Departure, initial climb 1200 meters, cruising level 8400 meters, departure frequency 119.6, squawk 3115, CSN6682.",
+      "referenceTextZh": "许可飞往广州，按飞行计划航路，离场跑道 36R，执行 LKO 01 离场，起始爬升 1200 米，巡航高度 8400 米，离场频率 119.6，应答机 3115，CSN6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1573.mp3"
+    },
+    {
+      "id": "atc-scenario-0087-card-main-1498",
+      "taskTitle": "CSN 6682-5",
+      "audioText": "B: Now you have completed push back and start up, and you are ready for taxi, contact Wuhan Ground.",
+      "audioTextZh": "B：现在你已完成推出和开车，准备好滑行，联系武汉地面。",
+      "referenceText": "Wuhan Ground, CSN6682, request taxi.",
+      "referenceTextZh": "武汉地面，CSN6682，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1574.mp3"
+    },
+    {
+      "id": "atc-scenario-0087-card-main-1499",
+      "taskTitle": "CSN 6682-6",
+      "audioText": "C: China Southern 682, taxi via taxiway Zulu 4, Alpha 3 and Alpha to holding point runway 36 right.",
+      "audioTextZh": "C：China Southern 682，经滑行道 Zulu 4、Alpha 3 和 Alpha 滑行至跑道 36R 等待点。",
+      "referenceText": "Taxi via taxiway Z4, A3 and A to holding point runway 36R, CSN6682.",
+      "referenceTextZh": "经滑行道 Z4、A3 和 A 滑行至跑道 36R 等待点，CSN6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1575.mp3"
+    },
+    {
+      "id": "atc-scenario-0087-card-main-1500",
+      "taskTitle": "CSN 6682-7",
+      "audioText": "B: Now you are at holding point runway 36 right, you are ready for departure, contact Wuhan Tower.",
+      "audioTextZh": "B：现在你在跑道 36R 等待点，准备好离场，联系武汉塔台。",
+      "referenceText": "Wuhan Tower, CSN6682, holding point runway 36R, ready for departure.",
+      "referenceTextZh": "武汉塔台，CSN6682，跑道 36R 等待点，准备好离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1576.mp3"
+    },
+    {
+      "id": "atc-scenario-0087-card-main-1501",
+      "taskTitle": "CSN 6682-8",
+      "audioText": "C: China Southern 682, runway 36 right, cleared for takeoff, surface wind 350 degrees, 5 knots.",
+      "audioTextZh": "C：China Southern 682，跑道 36R，可以起飞，地面风 350 度，5 节。",
+      "referenceText": "Cleared for takeoff runway 36R, CSN6682.",
+      "referenceTextZh": "跑道 36R 可以起飞，CSN6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1577.mp3"
+    },
+    {
+      "id": "atc-scenario-0087-card-main-1502",
+      "taskTitle": "CSN 6682-9",
+      "audioText": "B: Now you are airborne, passing 600 meters, contact Wuhan Approach.",
+      "audioTextZh": "B：现在你已离地，正通过 600 米，联系武汉进近。",
+      "referenceText": "Wuhan Approach, CSN6682, airborne, passing 600 meters.",
+      "referenceTextZh": "武汉进近，CSN6682，已离地，通过 600 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1578.mp3"
+    },
+    {
+      "id": "atc-scenario-0087-card-main-1503",
+      "taskTitle": "CSN 6682-10",
+      "audioText": "C: China Southern 682, Wuhan Approach, radar contact, climb to 3900 meters, expedite until passing 2100 meters.",
+      "audioTextZh": "C：China Southern 682，武汉进近，雷达识别，爬升至 3900 米，通过 2100 米前加快爬升。",
+      "referenceText": "Climb to 3900 meters, expedite until passing 2100 meters, CSN6682.",
+      "referenceTextZh": "爬升至 3900 米，通过 2100 米前加快爬升，CSN6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1579.mp3"
+    },
+    {
+      "id": "atc-scenario-0087-card-main-1504",
+      "taskTitle": "CSN 6682-11",
+      "audioText": "B: During climb, you find that the flaps are jammed at takeoff position, inform Wuhan Approach this situation, and ask to fly direct to Whiskey Hotel Alpha for trouble shooting.",
+      "audioTextZh": "B：爬升中，你发现襟翼卡在起飞位置，告知武汉进近该情况，并请求直飞 Whiskey Hotel Alpha 排故。",
+      "referenceText": "Wuhan Approach, CSN6682, our flaps are jammed at takeoff position, request fly direct to WHA for trouble shooting.",
+      "referenceTextZh": "武汉进近，CSN6682，我们的襟翼卡在起飞位置，请求直飞 WHA 排故。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1580.mp3"
+    },
+    {
+      "id": "atc-scenario-0087-card-main-1505",
+      "taskTitle": "CSN 6682-12",
+      "audioText": "C: China Southern 682, roger, turn right, direct to Whiskey Hotel Alpha, climb to and maintain 3000 meters, hold at Whiskey Hotel Alpha as published.",
+      "audioTextZh": "C：China Southern 682，收到，右转，直飞 Whiskey Hotel Alpha，爬升并保持 3000 米，在 Whiskey Hotel Alpha 按公布程序等待。",
+      "referenceText": "Turn right, direct to WHA, climb to and maintain 3000 meters, hold at WHA as published, CSN6682.",
+      "referenceTextZh": "右转，直飞 WHA，爬升并保持 3000 米，在 WHA 按公布程序等待，CSN6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1581.mp3"
+    },
+    {
+      "id": "atc-scenario-0087-card-main-1506",
+      "taskTitle": "CSN 6682-13",
+      "audioText": "B: During hold, you notice that 1 of the hydraulic systems is leaking fluid rapidly, make an urgency call to Wuhan Approach and request descent and return to land at Wuhan Airport.",
+      "audioTextZh": "B：等待中，你注意到 1 套液压系统正在快速漏液，向武汉进近发布紧急情况呼叫，并请求下降返回武汉机场着陆。",
+      "referenceText": "PANPAN PANPAN PANPAN, Wuhan Approach, CSN6682, 1 of the hydraulic system is leaking fuel rapidly, request descent and return to land at Wuhan Airport.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，武汉进近，CSN6682，1 套液压系统正在快速漏燃油，请求下降并返回武汉机场着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1582.mp3"
+    },
+    {
+      "id": "atc-scenario-0087-card-main-1507",
+      "taskTitle": "CSN 6682-14",
+      "audioText": "C: China Southern 682, roger PAN, turn right heading 240, descend to 2400 meters, expect radar vector for ILS approach runway 36 right.",
+      "audioTextZh": "C：China Southern 682，收到 PAN，右转航向 240，下降至 2400 米，预计雷达引导 ILS 进近跑道 36R。",
+      "referenceText": "Turn right heading 240, descend to 2400 meters, expect radar vector for ILS approach runway 36R, CSN6682.",
+      "referenceTextZh": "右转航向 240，下降至 2400 米，预计雷达引导 ILS 进近跑道 36R，CSN6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1583.mp3"
+    },
+    {
+      "id": "atc-scenario-0087-card-main-1508",
+      "taskTitle": "CSN 6682-15",
+      "audioText": "C: China Southern 682, turn right heading 330, descend to 900 meters, cleared for ILS approach runway 36 right, report established.",
+      "audioTextZh": "C：China Southern 682，右转航向 330，下降至 900 米，许可 ILS 进近跑道 36R，报告建立。",
+      "referenceText": "Turn right heading 330, descend to 900 meters, cleared for ILS approach runway 36R, report established, CSN6682.",
+      "referenceTextZh": "右转航向 330，下降至 900 米，许可 ILS 进近跑道 36R，报告建立，CSN6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1584.mp3"
+    },
+    {
+      "id": "atc-scenario-0087-card-main-1509",
+      "taskTitle": "CSN 6682-16",
+      "audioText": "B: Now you have intercepted the localizer runway 36 right, contact Wuhan Tower.",
+      "audioTextZh": "B：现在你已截获跑道 36R 航向道，联系武汉塔台。",
+      "referenceText": "Wuhan Tower, CSN6682, established localizer runway 36R.",
+      "referenceTextZh": "武汉塔台，CSN6682，已建立跑道 36R 航向道。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1585.mp3"
+    },
+    {
+      "id": "atc-scenario-0087-card-main-1510",
+      "taskTitle": "CSN 6682-17",
+      "audioText": "C: China Southern 682, cleared to land runway 36 right.",
+      "audioTextZh": "C：China Southern 682，跑道 36R 可以落地。",
+      "referenceText": "Cleared to land runway 36R, CSN6682.",
+      "referenceTextZh": "跑道 36R 可以落地，CSN6682。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1586.mp3"
+    }
+  ]
+}

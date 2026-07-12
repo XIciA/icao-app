@@ -1,0 +1,51 @@
+{
+  "id": "opi",
+  "title": "OPI",
+  "nameEn": "Oral Proficiency Interview",
+  "description": "发音 结构 词汇 流利度 理解能力 应对能力",
+  "summary": "121 话题 / 1269 卡",
+  "enabled": true,
+  "statusLabel": "可练习",
+  "icon": "mic",
+  "declaredTopicCount": 121,
+  "declaredCardCount": 1269,
+  "categoryUnit": "分类",
+  "topicUnit": "话题",
+  "cardUnit": "卡",
+  "study": {
+    "interaction": "speaking",
+    "tools": {
+      "recorder": true,
+      "choices": false,
+      "notes": true,
+      "dictionary": true,
+      "highlights": true,
+      "tags": true
+    },
+    "audioTitlePattern": "card-title",
+    "consoleTabs": [
+      "mine",
+      "reference",
+      "notes"
+    ],
+    "copy": {
+      "transcriptLabel": "音频原文",
+      "referenceLabel": "参考答案"
+    }
+  },
+  "capabilities": {
+    "audioMode": "generated",
+    "reviewMode": "expression-analysis",
+    "radioEligible": false,
+    "mockExamEligible": true
+  },
+  "categoryIds": [
+    "opi-category-01",
+    "opi-category-02",
+    "opi-category-03",
+    "opi-category-04",
+    "opi-category-05",
+    "opi-category-06",
+    "opi-category-07"
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "categoryId": "opi-category-06",
+  "id": "opi-topic-0089",
+  "name": "电力系统失效",
+  "declaredCardCount": 11,
+  "cards": [
+    {
+      "id": "opi-core-879",
+      "taskTitle": "飞机系统-电力系统失效-1",
+      "audioText": "Have you ever encountered the electrical system failure?",
+      "audioTextZh": "你遭遇过电气失效吗？",
+      "referenceText": "No, I have never encountered electrical system failure during flight.\n没有，我从未在飞行中遭遇过电气系统失效 。"
+    },
+    {
+      "id": "opi-core-880",
+      "taskTitle": "飞机系统-电力系统失效-2",
+      "audioText": "What will you do if one of your electrical system fails?",
+      "audioTextZh": "如果一套电气系统失效 你该怎么处置",
+      "referenceText": "I fly the DA - 40 for flight training. It is a small and light training aircraft. We only have one electrical system. In case of electrical system failure, I will follow the SOP and perform the checklist, try to solve the problem. I will turn on the backup battery, turn off unnecessary equipment. Because our backup battery can only last 30 minutes, we will advise the controller of our situation, request to return to land or direct to the nearest suitable airport. After landing, we will ask the ground mechanic to check the aircraft.\n我驾驶 DA - 40 进行飞行训练，它是小型轻型训练飞机，我们只有一套电气系统。若遭遇电气系统失效，我会遵循标准操作程序（SOP ）、执行检查单，尝试解决问题。我会打开备份电池、关闭非必要设备。由于备份电池仅能维持 30 分钟，我们会将情况告知管制员，申请返航着陆或前往最近合适机场。着陆后，会让地面机械师检查飞机 。"
+    },
+    {
+      "id": "opi-core-881",
+      "taskTitle": "飞机系统-电力系统失效-3",
+      "audioText": "How many electrical power sources are there on board?",
+      "audioTextZh": "飞机上有哪些电气动力来源",
+      "referenceText": "(1)\nWe have an engine - driven generator, an APU - driven generator and a backup battery.\n我们有发动机驱动的发电机、辅助动力装置（APU ）驱动的发电机以及备份电池 。\n(2)\nDuring flight, the electrical power is coming from the generator powered by engine. Before start up, APU will supply electrical power to the aircraft. In emergence condition, the RAT can supply electrical power to the main system.\n飞行中，电源来自发动机驱动的发电机；启动前，由辅助动力装置（APU）供电；应急情况下，冲压空气涡轮（RAT）可为主系统供电。"
+    },
+    {
+      "id": "opi-core-882",
+      "taskTitle": "飞机系统-电力系统失效-4",
+      "audioText": "When do pilots need to use external power?",
+      "audioTextZh": "什么时候飞行员有必要使用外接电源？",
+      "referenceText": "(1)\nSometimes, when we are on the ground, we will use external power.\n有时，当我们在地面时，会使用外接电源 。\n(2)\nWhen we are on the ground, before engines are started and APU is inoperative (INOP), we will use external power.\n当我们在地面上，发动机启动前且辅助动力装置（APU ）失效时，我们会使用外接电源 。"
+    },
+    {
+      "id": "opi-core-883",
+      "taskTitle": "飞机系统-电力系统失效-5",
+      "audioText": "When do pilots need to use APU for power supply?",
+      "audioTextZh": "什么时候有必要使用 APU（辅助动力装置 ）供电？",
+      "referenceText": "(1)\nWhen we are on the ground or there is an engine failure during flight, we will use the APU for power supply.\n当我们在地面上，或者飞行中发动机失效时，我们会使用 APU 供电 。\n(2)\nWhen we are on the ground, before engines are started and GPU is not available, we will use APU for power supply. When we are in the air, if the engines fail, we will use APU for power supply.\n当我们在地面上，发动机启动前且无法使用地面动力装置（GPU ）时，我们会使用 APU 供电；当我们在空中，如果发动机失效，我们会使用 APU 供电 。"
+    },
+    {
+      "id": "opi-core-884",
+      "taskTitle": "飞机系统-电力系统失效-6",
+      "audioText": "What are the functions of electrical system?",
+      "audioTextZh": "电气系统的功能是什么？",
+      "referenceText": "The electrical system is used to provide electrical power to essential systems, flight instruments and passenger services.\n电气系统用于为基本系统、飞行仪表以及乘客服务提供电力 。\n\n Electrical systems supply power to aircraft components, including lights, navigation equipment, instrument displays, communication systems, flight control systems, air conditioning, and emergency equipment. They are essential for normal flight operation and emergency response.\n电气系统为飞机各部件供电，包括灯光、导航设备、仪表显示、通讯系统、飞行控制系统、空调及应急设备等，是飞机正常运行和应急处置的必备保障。"
+    },
+    {
+      "id": "opi-core-885",
+      "taskTitle": "飞机系统-电力系统失效-7",
+      "audioText": "If you encounter electrical failure during flight, what will you do?",
+      "audioTextZh": "飞行中遭遇电气故障时，你会怎么做？",
+      "referenceText": "First, we will report our situation to ATC and request radar vectors to the nearest suitable airport. Second, we will identify the faulty circuit and shut off non - essential electrical loads. Third, we will land as soon as possible.\n首先，我们会向空中交通管制（ATC）报告情况，请求雷达引导至最近的合适机场。其次，我们会识别故障电路，关闭非必要的电气负载。第三，我们会尽快着陆 。\n\nSwitch to backup power (battery or RAT) immediately. Use standby analog instruments for navigation and control. Isolate the faulty electrical system to prevent further damage. Report to ATC, declare emergency if necessary, and request diversion to the nearest airport. Minimize non-essential electrical loads to conserve power.\n立即切换至备用电源（电池或冲压空气涡轮RAT）；使用备用模拟仪表进行导航和操纵；隔离故障电气系统以防损坏扩大；向空管报告，必要时宣布紧急状态，请求改航至最近机场；关闭非必要用电设备以节省电量。"
+    },
+    {
+      "id": "opi-core-886",
+      "taskTitle": "飞机系统-电力系统失效-8",
+      "audioText": "What reasons may cause electrical system to fail during flight?",
+      "audioTextZh": "飞行中哪些原因可能导致电气系统失效？",
+      "referenceText": "There are many reasons for electrical failure. First, engine/generator failure may cause electrical failure. Second, lightning strike may cause failure. Third, fire on board may cause electrical failure. Besides, there are some other reasons for electrical failure.\n电气故障有多种原因。首先，发动机 / 发电机故障可能导致电气故障。其次，雷击可能引发故障。第三，机上起火可能导致电气故障。此外，还有其他一些导致电气故障的原因 。\n\nKey causes include lightning strike, electrical short circuit, overheating, generator/alternator failure, improper maintenance, wiring damage, or battery malfunction. Severe weather (e.g., turbulence) or bird strike may also indirectly trigger electrical system failures.\n主要原因包括雷击、电气短路、过热、发电机/交流发电机故障、维护不当、线路损坏或电池故障；恶劣天气（如颠簸）或鸟击也可能间接引发电气系统故障。"
+    },
+    {
+      "id": "opi-core-887",
+      "taskTitle": "飞机系统-电力系统失效-9",
+      "audioText": "What kind of problems may be caused by electrical system failure?",
+      "audioTextZh": "电气系统失效可能引发哪些问题？",
+      "referenceText": "If there is electrical system failure, first, it may cause digital flight instrument failure. Second, it may cause loss of communication and navigation. Third, it may cause fire on board.\n若电气系统失效，首先，可能导致数字飞行仪表故障；其次，可能造成通信和导航中断；第三，可能引发机上起火 。\n\nElectrical failure can lead to loss of instrument displays, navigation/communication systems malfunction, lighting failure, autopilot disconnection, and in-flight fire or smoke. It may also affect hydraulic, pressurization, and fuel systems, reducing aircraft controllability and endangering flight safety.\n电气失效会导致仪表显示失灵、导航/通讯系统故障、灯光熄灭、自动驾驶断开，还可能引发机上火情或烟雾；同时可能影响液压、增压和燃油系统，降低飞机操纵性，威胁飞行安全。"
+    },
+    {
+      "id": "opi-core-888",
+      "taskTitle": "飞机系统-电力系统失效-10",
+      "audioText": "If you encounter navaids display failure because of electrical power, what are you going to do？",
+      "audioTextZh": "若因电力问题遭遇导航设备显示故障，你会怎么做？",
+      "referenceText": "If there is navigation display malfunction, we will use standby instruments and request radar vectors.\n若出现导航显示故障，我们会使用备用仪表并请求雷达引导 。"
+    },
+    {
+      "id": "opi-core-889",
+      "taskTitle": "飞机系统-电力系统失效-11",
+      "audioText": "If you encounter display failure because of electrical power, what are you going to do?",
+      "audioTextZh": "如果你遇到因电气系统故障导致的显示故障,你该怎么办?",
+      "referenceText": "Switch to backup power and use standby analog instruments (e.g., attitude indicator, altimeter) for flight control. Request radar vectors from ATC for navigation. Isolate the faulty electrical bus to prevent system spread. Declare urgency if needed and divert to the nearest suitable airport for maintenance.\n切换至备用电源，使用备用模拟仪表（如姿态仪、高度表）进行飞行操纵；向空管请求雷达引导导航；隔离故障电气总线以防故障扩散；必要时宣布紧急状态，改航至最近合适机场进行维修。"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "categoryId": "opi-category-02",
+  "id": "opi-topic-0093",
+  "name": "医疗紧急情况",
+  "declaredCardCount": 2,
+  "cards": [
+    {
+      "id": "opi-extra-009",
+      "taskTitle": "特情-医疗紧急情况-1",
+      "audioText": "Under what circumstance would you declare medical emergency?",
+      "audioTextZh": "在何种情况下你会宣布医疗紧急情况？",
+      "referenceText": "There are some situations I will declare medical emergency, for example, the crew member is incapacitated, the PAX is seriously ill or suffering from heart attack and so on.\n在一些情况下我会宣布医疗紧急情况，比如机组成员失去行为能力、乘客重病或突发心脏病等 。"
+    },
+    {
+      "id": "opi-extra-010",
+      "taskTitle": "特情-医疗紧急情况-2",
+      "audioText": "What kind of medical help the cabin crew can provide during the flight?",
+      "audioTextZh": "飞行中客舱乘务员能提供哪些医疗救助？",
+      "referenceText": "For example, if the PAX is ill or gets injured, the cabin crew can give them first aid. If the PAX loses consciousness or suffers from a heart attack, the cabin crew can give them CPR.\n比如，若乘客生病或受伤，客舱乘务员可提供急救；若乘客失去意识或突发心脏病，客舱乘务员可实施心肺复苏（CPR） 。\n\nCabin crew can offer basic first aid, such as bleeding control, bandaging and CPR for cardiac arrest. They use on-board emergency medical kits under professional guidance. They monitor sick passengers, maintain cabin order and inform pilots. For serious emergencies, they assist in diverting and coordinating with ground medical services to ensure passengers receive timely treatment.\n机组人员能提供基础急救，如止血、包扎，对心脏骤停乘客实施心肺复苏；在专业指导下使用机上应急医疗箱；监测患病乘客状况，维持客舱秩序并告知飞行员。遇到严重紧急情况时，协助改航并与地面医疗服务协调，确保乘客及时获得救治。"
+    }
+  ]
+}

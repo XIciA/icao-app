@@ -1,0 +1,152 @@
+{
+  "categoryId": "atc-sia",
+  "id": "atc-scenario-0008",
+  "name": "SIA 123 拖把断了 鸟击 放油",
+  "declaredCardCount": 16,
+  "cards": [
+    {
+      "id": "atc-scenario-0008-card-main-127",
+      "taskTitle": "SIA 123-1",
+      "audioText": "B: Your call sign is Singapore 123, stand 215, from Wuhan to Singapore, information Bravo received, request ATC clearance to Singapore.",
+      "audioTextZh": "B：你的呼号是 Singapore 123，215 号机位，从武汉飞往新加坡，已收到 Bravo 情报，请求前往新加坡的 ATC 放行许可。",
+      "referenceText": "Wuhan Delivery, SIA123, stand 215, information B, request ATC clearance to Singapore.",
+      "referenceTextZh": "武汉放行，SIA123，215 号机位，收到 B 情报，申请前往新加坡的 ATC 放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/127.mp3"
+    },
+    {
+      "id": "atc-scenario-0008-card-main-128",
+      "taskTitle": "SIA 123-2",
+      "audioText": "C: Singapore 123, cleared to Singapore via flight planned route, Lima killer Oscars 01 departure, initial climb to 1800 meters, cruising level 10400 meters, runaway 36 right, contact Departure on 119.7, squawk 6325.",
+      "audioTextZh": "C：Singapore 123，许可按飞行计划航路飞往新加坡，Lima Kilo Oscar 01 离场，初始爬升至 1800 米，巡航高度 10400 米，跑道 36 右，联系离场 119.7，应答机 6325。",
+      "referenceText": "Cleared to Singapore via flight planned route, LKO 01 departure, initial climb to 1800 meters, cruising level 10400 meters, runaway 36R, contact Departure on 119.7, squawk 6325, SIA123.",
+      "referenceTextZh": "许可按飞行计划航路飞往新加坡，LKO 01 离场，初始爬升至 1800 米，巡航高度 10400 米，跑道 36R，联系离场 119.7，应答机 6325，SIA123。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/128.mp3"
+    },
+    {
+      "id": "atc-scenario-0008-card-main-129",
+      "taskTitle": "SIA 123-3",
+      "audioText": "B: You are now ready, contact Ground to request push back and start up.",
+      "audioTextZh": "B：你现在准备好了，联系地面请求推出和开车。",
+      "referenceText": "Wuhan Ground, SIA123, request push back and start up.",
+      "referenceTextZh": "武汉地面，SIA123，请求推出和开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/129.mp3"
+    },
+    {
+      "id": "atc-scenario-0008-card-main-130",
+      "taskTitle": "SIA 123-4",
+      "audioText": "C: Singapore 123, push back and start up approved, facing east.",
+      "audioTextZh": "C：Singapore 123，推出和开车批准，机头向东。",
+      "referenceText": "Push back and start up approved, facing east, SIA123.",
+      "referenceTextZh": "推出和开车批准，机头向东，SIA123。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/130.mp3"
+    },
+    {
+      "id": "atc-scenario-0008-card-main-131",
+      "taskTitle": "SIA 123-5",
+      "audioText": "B: While being pushed back, the tow bar bent, contact Ground to request another tow bar.",
+      "audioTextZh": "B：推出过程中，拖把弯曲，联系地面请求另一根拖把。",
+      "referenceText": "Wuhan Ground, SIA123, our tow bar was bent, request another tow bar.",
+      "referenceTextZh": "武汉地面，SIA123，我们的拖把弯曲，请求另一根拖把。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/131.mp3"
+    },
+    {
+      "id": "atc-scenario-0008-card-main-132",
+      "taskTitle": "SIA 123-6",
+      "audioText": "B: While taxing, you notice the wind sock shows a strong tailwind, contact Tower to check the wind.",
+      "audioTextZh": "B：滑行时，你注意到风向袋显示强顺风，联系塔台检查风。",
+      "referenceText": "Wuhan Tower, SIA123, wind sock shows strong tailwind, request wind check.",
+      "referenceTextZh": "武汉塔台，SIA123，风向袋显示强顺风，请求风向风速检查。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/132.mp3"
+    },
+    {
+      "id": "atc-scenario-0008-card-main-133",
+      "taskTitle": "SIA 123-7",
+      "audioText": "C: Singapore 123, surface wind 220 degrees, 8 meters per second.\nB: The tailwind exceeds your takeoff limit, contact Tower to change to runway 18 left and state the reason.",
+      "audioTextZh": "C：Singapore 123，地面风 220 度，8 米/秒。\nB：顺风超过你的起飞限制，联系塔台改用跑道 18 左并说明原因。",
+      "referenceText": "The tailwind exceeds our takeoff limit, request change to runway 18L, SIA123.",
+      "referenceTextZh": "顺风超过我们的起飞限制，请求改用跑道 18L，SIA123。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/133.mp3"
+    },
+    {
+      "id": "atc-scenario-0008-card-main-134",
+      "taskTitle": "SIA 123-8",
+      "audioText": "B: You have departed from runway 18 left, shortly after lift off you encountered a bird strike, your right engine has failed, make an Emergency call, request to maintain runway heading.",
+      "audioTextZh": "B：你已从跑道 18 左离场，起飞后不久遭遇鸟击，右发失效，发出紧急呼叫，请求保持跑道航向。",
+      "referenceText": "PANPAN PANPAN PANPAN, Wuhan Tower, SIA123, we encountered bird strike, right engine failed, request maintain runway heading.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，武汉塔台，SIA123，我们遭遇鸟击，右发失效，请求保持跑道航向。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/134.mp3"
+    },
+    {
+      "id": "atc-scenario-0008-card-main-135",
+      "taskTitle": "SIA 123-9",
+      "audioText": "B: Tell the Tower you want to dump fuel and return to Wuhan Airport.",
+      "audioTextZh": "B：告诉塔台你想放油并返回武汉机场。",
+      "referenceText": "Wuhan Tower, SIA123, request dump fuel and return to Wuhan Airport.",
+      "referenceTextZh": "武汉塔台，SIA123，请求放油并返回武汉机场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/135.mp3"
+    },
+    {
+      "id": "atc-scenario-0008-card-main-136",
+      "taskTitle": "SIA 123-10",
+      "audioText": "C: Singapore 123, roger, turn right heading 240 to intercept Lima Kilo Oscar VOR 030 radio inbound, climb to 3000 meters.",
+      "audioTextZh": "C：Singapore 123，收到，右转航向 240，截获 LKO VOR 030 径向线入航，爬升至 3000 米。",
+      "referenceText": "Turn right heading 240 to intercept LKO VOR 030 radio inbound, climb to 3000 meters, SIA123.",
+      "referenceTextZh": "右转航向 240，截获 LKO VOR 030 径向线入航，爬升至 3000 米，SIA123。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/136.mp3"
+    },
+    {
+      "id": "atc-scenario-0008-card-main-137",
+      "taskTitle": "SIA 123-11",
+      "audioText": "C: Singapore 123, advise the time required for fuel jettison.\nB: Tell the controller you need approximately 25 minutes.",
+      "audioTextZh": "C：Singapore 123，告知所需放油时间。\nB：告诉管制员你大约需要 25 分钟。",
+      "referenceText": "We need approximately 25 minutes, SIA123.",
+      "referenceTextZh": "我们大约需要 25 分钟，SIA123。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/137.mp3"
+    },
+    {
+      "id": "atc-scenario-0008-card-main-138",
+      "taskTitle": "SIA 123-12",
+      "audioText": "C: Singapore 123, after passing Lima Kilo Oscar, heading 220, maintain 3000 meters, report when over Lima Kilo Oscar.",
+      "audioTextZh": "C：Singapore 123，飞越 Lima Kilo Oscar 后，航向 220，保持 3000 米，飞越 Lima Kilo Oscar 时报告。",
+      "referenceText": "After passing LKO, heading 220, maintain 3000 meters, report when over LKO, SIA123.",
+      "referenceTextZh": "飞越 LKO 后，航向 220，保持 3000 米，飞越 LKO 时报告，SIA123。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/138.mp3"
+    },
+    {
+      "id": "atc-scenario-0008-card-main-139",
+      "taskTitle": "SIA 123-13",
+      "audioText": "B: You are over Lima Kilo Oscar, call Wuhan Control.",
+      "audioTextZh": "B：你在 Lima Kilo Oscar 上空，呼叫武汉管制。",
+      "referenceText": "Wuhan Control, SIA123, over LKO.",
+      "referenceTextZh": "武汉管制，SIA123，飞越 LKO。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/139.mp3"
+    },
+    {
+      "id": "atc-scenario-0008-card-main-140",
+      "taskTitle": "SIA 123-14",
+      "audioText": "B: Tell Wuhan Approach fuel dumping is now completed, request radar vectors for runway 22.",
+      "audioTextZh": "B：告诉武汉进近放油现已完成，请求跑道 22 雷达引导。",
+      "referenceText": "Wuhan Approach, SIA123, fuel dumping completed, request radar vectors for runway 22.",
+      "referenceTextZh": "武汉进近，SIA123，放油完成，请求跑道 22 雷达引导。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/140.mp3"
+    },
+    {
+      "id": "atc-scenario-0008-card-main-141",
+      "taskTitle": "SIA 123-15",
+      "audioText": "C: Singapore 123, turn right track direct to Delta Alpha, descend and maintain 2100 meters on QNH 1015, expect runway 22.",
+      "audioTextZh": "C：Singapore 123，右转直飞 Delta Alpha，下降并保持 QNH 1015 上 2100 米，预期跑道 22。",
+      "referenceText": "Turn right track director to DA, descend and maintain 2100 meters on QNH 1015, expect runway 22, SIA123.",
+      "referenceTextZh": "右转直飞 DA，下降并保持 QNH 1015 上 2100 米，预期跑道 22，SIA123。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/141.mp3"
+    },
+    {
+      "id": "atc-scenario-0008-card-main-142",
+      "taskTitle": "SIA 123-16",
+      "audioText": "B: You are now established on ILS approach runway 22, contact Tower.",
+      "audioTextZh": "B：你现在已建立跑道 22 ILS 进近，联系塔台。",
+      "referenceText": "Wuhan Tower, SIA123, established on ILS approach runway 22.",
+      "referenceTextZh": "武汉塔台，SIA123，已建立跑道 22 ILS 进近。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/142.mp3"
+    }
+  ]
+}

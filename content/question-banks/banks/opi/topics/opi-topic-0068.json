@@ -1,0 +1,29 @@
+{
+  "categoryId": "opi-category-03",
+  "id": "opi-topic-0068",
+  "name": "MEL",
+  "declaredCardCount": 3,
+  "cards": [
+    {
+      "id": "opi-core-721",
+      "taskTitle": "缩略词-MEL-1",
+      "audioText": "What is MEL",
+      "audioTextZh": "什么是最低设备清单（MEL）",
+      "referenceText": "MEL stands for Minimum Equipment List. MEL is an essential document for aircraft dispatch. It can tell the crew whether they can fly when the aircraft has malfunctions.\n最低设备清单（MEL）是 Minimum Equipment List 的缩写。它是航空器放行至关重要的文件，能够告知机组人员，当飞机出现故障时是否可以飞行 。\n\nMEL stands for Minimum Equipment List. It specifies the minimum equipment required for safe flight. If equipment malfunctions, MEL determines if the aircraft is airworthy. It ensures flights proceed safely without unnecessary cancellations, balancing operational efficiency and safety.\n最低设备清单（MEL）规定了安全飞行所需的最低设备要求。若设备故障，MEL可判定飞机是否适航，确保航班在安全前提下运行，避免不必要的取消，平衡运行效率与安全。"
+    },
+    {
+      "id": "opi-core-722",
+      "taskTitle": "缩略词-MEL-2",
+      "audioText": "Do you know about MEL?What does MEL stand for?",
+      "audioTextZh": "你知道MEL吗？MEL代表什么？",
+      "referenceText": "Yes, I know about MEL. MEL stands for Minimum Equipment List.\n是的，我了解最低设备清单（MEL）。它代表最低设备清单（Minimum Equipment List ） 。"
+    },
+    {
+      "id": "opi-core-723",
+      "taskTitle": "缩略词-MEL-3",
+      "audioText": "Why is MEL important to flight safety?",
+      "audioTextZh": "为什么MEL对飞行安全重要？",
+      "referenceText": "MEL is important for flight safety. There are many important items in the MEL. They are the minimum requirements of the flight. If we are going to fly the aircraft, the aircraft must meet the MEL requirements, or our flight will be cancelled.\nMEL对飞行安全重要，MEL里边有很多重要的项目，他们是飞行的最低要求。如果我们要飞，飞机必须满足MEL要求，否则航班将被取消。"
+    }
+  ]
+}

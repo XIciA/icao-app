@@ -1,0 +1,152 @@
+{
+  "categoryId": "atc-ual",
+  "id": "atc-scenario-0039",
+  "name": "UAL 835 TCAS机动2重伤3轻伤",
+  "declaredCardCount": 16,
+  "cards": [
+    {
+      "id": "atc-scenario-0039-card-main-662",
+      "taskTitle": "UAL 835-1",
+      "audioText": "B: Your call sign is United 835, you are approaching Tango Oscar Lima, maintaining 8900 meters, squawking 3566, make initial contact with Shanghai Control.",
+      "audioTextZh": "B：你的呼号是 United 835，接近 Tango Oscar Lima，保持 8900 米，应答机 3566，首次联系上海管制。",
+      "referenceText": "Shanghai Control, UAL835, approaching TOL, maintaining 8900 meters, squawking 3566.",
+      "referenceTextZh": "上海管制，UAL835，接近 TOL，保持 8900 米，应答机 3566。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/677.mp3"
+    },
+    {
+      "id": "atc-scenario-0039-card-main-663",
+      "taskTitle": "UAL 835-2",
+      "audioText": "C: United 835, radar contact, descend and maintain 8400 meters.",
+      "audioTextZh": "C：United 835，雷达识别，下降并保持 8400 米。",
+      "referenceText": "Descend and maintain 8400 meters, UAL835.",
+      "referenceTextZh": "下降并保持 8400 米，UAL835。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/678.mp3"
+    },
+    {
+      "id": "atc-scenario-0039-card-main-664",
+      "taskTitle": "UAL 835-3",
+      "audioText": "B: During descent, your TCAS warning was triggered, you are executing TCAS climbing, inform this situation to Shanghai Control.",
+      "audioTextZh": "B：下降过程中 TCAS 告警触发，你正在按 TCAS 爬升，向上海管制报告。",
+      "referenceText": "Shanghai Control, UAL835, our TACS warning was triggered, TCAS climbing.",
+      "referenceTextZh": "上海管制，UAL835，TCAS 告警触发，正在按 TCAS 爬升。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/679.mp3"
+    },
+    {
+      "id": "atc-scenario-0039-card-main-665",
+      "taskTitle": "UAL 835-4",
+      "audioText": "C: United 835, roger, the conflicting traffic is military, report clear of traffic.",
+      "audioTextZh": "C：United 835，收到，冲突航空器为军机，脱离冲突后报告。",
+      "referenceText": "Roger, report clear of traffic, UAL835.",
+      "referenceTextZh": "收到，脱离冲突后报告，UAL835。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/680.mp3"
+    },
+    {
+      "id": "atc-scenario-0039-card-main-666",
+      "taskTitle": "UAL 835-5",
+      "audioText": "B: During TCAS maneuver, the cabin crew reports you have 2 serious and 3 minor injuries on board, make an Urgency call to Shanghai Control.",
+      "audioTextZh": "B：TCAS 机动过程中，客舱乘务员报告机上有 2 人重伤、3 人轻伤，向上海管制发出紧急呼叫。",
+      "referenceText": "PANPAN PANPAN PANPAN, Shanghai Control, UAL835, we have 2 serious and 3 minor injuries on board during TCAS maneuver.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，上海管制，UAL835，TCAS 机动过程中机上有 2 人重伤、3 人轻伤。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/681.mp3"
+    },
+    {
+      "id": "atc-scenario-0039-card-main-667",
+      "taskTitle": "UAL 835-6",
+      "audioText": "B: Now you are clear of the conflicting, contact Shanghai Control and request resume descent.",
+      "audioTextZh": "B：你现在已脱离冲突，联系上海管制，请求恢复下降。",
+      "referenceText": "Shanghai Control, UAL835, clear of conflict, request resume descent.",
+      "referenceTextZh": "上海管制，UAL835，已脱离冲突，请求恢复下降。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/682.mp3"
+    },
+    {
+      "id": "atc-scenario-0039-card-main-668",
+      "taskTitle": "UAL 835-7",
+      "audioText": "C: United 835, roger, descend to 5100 meters, contact Wuhan Control on 120.35.",
+      "audioTextZh": "C：United 835，收到，下降至 5100 米，联系武汉管制120.35。",
+      "referenceText": "Descend to 5100 meters, 120.35, UAL835.",
+      "referenceTextZh": "下降至 5100 米，120.35，UAL835。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/683.mp3"
+    },
+    {
+      "id": "atc-scenario-0039-card-main-669",
+      "taskTitle": "UAL 835-8",
+      "audioText": "B: Now you are passing 5400 meters for 3600 meters, squawking 3125, contact Wuhan Control.",
+      "audioTextZh": "B：你现在通过 5400 米下降至 3600 米，应答机 3125，联系武汉管制。",
+      "referenceText": "Wuhan Control, UAL835, passing 5400 meters for 3600 meters, squawking 3125.",
+      "referenceTextZh": "武汉管制，UAL835，通过 5400 米下降至 3600 米，应答机 3125。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/684.mp3"
+    },
+    {
+      "id": "atc-scenario-0039-card-main-670",
+      "taskTitle": "UAL 835-9",
+      "audioText": "B: Now you are over Zulu Foxtrot, maintaining 5100 meters, you have got information Golf, make initial contact with Wuhan Approach.",
+      "audioTextZh": "B：你现在飞越 Zulu Foxtrot，保持 5100 米，已收到通播 Golf，首次联系武汉进近。",
+      "referenceText": "Wuhan Approach, UAL835, over ZF, maintaining 5100 meters, information G.",
+      "referenceTextZh": "武汉进近，UAL835，飞越 ZF，保持 5100 米，收到通播 G。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/685.mp3"
+    },
+    {
+      "id": "atc-scenario-0039-card-main-671",
+      "taskTitle": "UAL 835-10",
+      "audioText": "C: United 835, radar contact, turn right, direct to X-Ray Sierra Hotel, expect X-Ray Sierra Hotel 03 Alpha arrival and radar vector for ILS approach runway 36 right.",
+      "audioTextZh": "C：United 835，雷达识别，右转直飞 X-Ray Sierra Hotel，预计 X-Ray Sierra Hotel 03 Alpha 进场，并雷达引导 ILS 进近跑道 36 右。",
+      "referenceText": "Turn right, direct to XSH, expect XSH 03A arrival and radar vector for ILS approach runway 36R, UAL835.",
+      "referenceTextZh": "右转直飞 XSH，预计 XSH 03A 进场并雷达引导 ILS 进近跑道 36R，UAL835。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/686.mp3"
+    },
+    {
+      "id": "atc-scenario-0039-card-main-672",
+      "taskTitle": "UAL 835-11",
+      "audioText": "C: United 835, turn right heading 300, descend to and maintain 2400 meters.",
+      "audioTextZh": "C：United 835，右转航向 300，下降并保持 2400 米。",
+      "referenceText": "Turn right heading 300, descend to and maintain 2400 meters, UAL835.",
+      "referenceTextZh": "右转航向 300，下降并保持 2400 米，UAL835。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/687.mp3"
+    },
+    {
+      "id": "atc-scenario-0039-card-main-673",
+      "taskTitle": "UAL 835-12",
+      "audioText": "C: United 835, what assistance do you need?\nB: Tell Wuhan Approach that you need ambulances on arrival.",
+      "audioTextZh": "C：United 835，你需要什么协助？\nB：告诉武汉进近，落地后需要救护车。",
+      "referenceText": "We need ambulances on arrival, UAL835.",
+      "referenceTextZh": "落地后需要救护车，UAL835。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/688.mp3"
+    },
+    {
+      "id": "atc-scenario-0039-card-main-674",
+      "taskTitle": "UAL 835-13",
+      "audioText": "C: United 835, ambulance will be ready upon your arrival.",
+      "audioTextZh": "C：United 835，救护车将在你到达时准备好。",
+      "referenceText": "Roger, UAL835.",
+      "referenceTextZh": "收到，UAL835。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/689.mp3"
+    },
+    {
+      "id": "atc-scenario-0039-card-main-675",
+      "taskTitle": "UAL 835-14",
+      "audioText": "C: United 835, cleared ILS approach runway 36 right, report established.",
+      "audioTextZh": "C：United 835，可以 ILS 进近跑道 36 右，建立后报告。",
+      "referenceText": "Cleared ILS approach runway 36R, report established, UAL835.",
+      "referenceTextZh": "可以 ILS 进近跑道 36R，建立后报告，UAL835。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/690.mp3"
+    },
+    {
+      "id": "atc-scenario-0039-card-main-676",
+      "taskTitle": "UAL 835-15",
+      "audioText": "B: Now you have established on ILS runway 36 right, report it to Wuhan Tower.",
+      "audioTextZh": "B：你现在已建立跑道 36 右 ILS，向武汉塔台报告。",
+      "referenceText": "Wuhan Tower, UAL835, established on ILS runway 36R.",
+      "referenceTextZh": "武汉塔台，UAL835，已建立跑道 36R ILS。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/691.mp3"
+    },
+    {
+      "id": "atc-scenario-0039-card-main-677",
+      "taskTitle": "UAL 835-16",
+      "audioText": "C: United 835, runway 36 right, cleared to land.",
+      "audioTextZh": "C：United 835，跑道 36 右，可以落地。",
+      "referenceText": "Runway 36R, cleared to land, UAL835.",
+      "referenceTextZh": "跑道 36R，可以落地，UAL835。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/692.mp3"
+    }
+  ]
+}

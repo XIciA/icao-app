@@ -1,0 +1,8 @@
+[Unit]
+Description=ICAO PostgreSQL local backup
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh /opt/icao/runtime/source/infra/backup/backup-postgres.sh

@@ -1,0 +1,154 @@
+{
+  "categoryId": "opi-category-03",
+  "id": "opi-topic-0006",
+  "name": "CVR与FDR",
+  "declaredCardCount": 21,
+  "cards": [
+    {
+      "id": "opi-core-114",
+      "taskTitle": "缩略词-CVR与FDR-1",
+      "audioText": "What is CVR",
+      "referenceText": "CVR stands for cockpit voice recorder. It's a part of the black box. If the a/c crashed, the aviation authority will use CVR to investigate the accident.\nCVR代表驾驶舱语音记录器。这是黑匣子的一部分。如果飞机坠毁，航空当局将使用CVR调查事故。\n\nCVR stands for Cockpit Voice Recorder. It records cockpit communications (crew conversations, ATC radio), warnings, and background sounds for at least 2 hours. Its main function is to provide critical clues for accident investigation, helping identify the cause of incidents.\n座舱语音记录器（CVR）用于记录驾驶舱内的通讯内容（机组对话、空管无线电通讯）、警告声及背景声音，记录时长至少2小时。其核心作用是为事故调查提供关键线索，助力查明事件原因。"
+    },
+    {
+      "id": "opi-core-115",
+      "taskTitle": "缩略词-CVR与FDR-2",
+      "audioText": "Are all your company's aircraft equipped with CVR?",
+      "audioTextZh": "你公司所有飞机都配备有驾驶舱语音记录器吗？",
+      "referenceText": "Yes, according to the regulation, all the aircraft should be equipped with CVR.\n\n是的，按照法规要求，所有飞机都应该安装CVR。"
+    },
+    {
+      "id": "opi-core-116",
+      "taskTitle": "缩略词-CVR与FDR-3",
+      "audioText": "What's the function of CVR?\nCVR",
+      "audioTextZh": "的功能是什么？",
+      "referenceText": "The Cockpit Voice Recorder (CVR) is used to record various voice - related information in the cockpit. It captures voice communications between flight crew members, conversations between pilots and air traffic controllers, interactions between flight crew and cabin crew, as well as voice warnings that occur in the cockpit.\n驾驶舱语音记录器（CVR）用于记录驾驶舱内各类与语音相关的信息，包括飞行机组成员之间的交流、飞行员和管制员的通话、飞行人员与客舱人员的互动，以及驾驶舱内出现的语音警告等内容 。\n\nCVR stands for Cockpit Voice Recorder. It records cockpit communications (crew conversations, ATC radio), warnings, and background sounds for at least 2 hours. Its main function is to provide critical clues for accident investigation, helping identify the cause of incidents.\n座舱语音记录器（CVR）用于记录驾驶舱内的通讯内容（机组对话、空管无线电通讯）、警告声及背景声音，记录时长至少2小时。其核心作用是为事故调查提供关键线索，助力查明事件原因。"
+    },
+    {
+      "id": "opi-core-117",
+      "taskTitle": "缩略词-CVR与FDR-4",
+      "audioText": "What are your opinions about CVR supervision function?",
+      "audioTextZh": "你对驾驶舱语音记录器（CVR）的监视功能怎么看？",
+      "referenceText": "I think the Cockpit Voice Recorder (CVR) is extremely important for supervision. It ensures pilots communicate with crew members or controllers following standard operating procedures, reduces unnecessary chatter in the cockpit, and ultimately safeguards flight safety.\n我认为驾驶舱语音记录器（CVR）的监视功能十分重要，它能督促飞行员依照标准操作程序，与机组人员、管制员规范交流，减少驾驶舱内无关闲聊，从沟通环节保障飞行安全 。"
+    },
+    {
+      "id": "opi-core-118",
+      "taskTitle": "缩略词-CVR与FDR-5",
+      "audioText": "What do you know about CVR?",
+      "audioTextZh": "你对 CVR 有什么了解？",
+      "referenceText": "CVR is a critical component of an aircraft's \"black box\" system. It records audio in the cockpit, including crew communications, radio transmissions, and warnings, which is vital for accident investigations.\nCVR 是飞机 “黑匣子” 系统的关键组成部分。它记录驾驶舱内的音频，包括机组人员对话、无线电传输和警告信息，对事故调查至关重要。"
+    },
+    {
+      "id": "opi-core-119",
+      "taskTitle": "缩略词-CVR与FDR-6",
+      "audioText": "What kind of audio information does CVR record?\nCVR",
+      "audioTextZh": "记录哪些类型的音频信息？",
+      "referenceText": "It records voice communications among flight crew, radio transmissions with ATC, intercoms between the flight deck and cabin, and audible alerts (e.g., caution, warning signals) in the cockpit.\n它记录机组人员之间的语音交流、与空中交通管制的无线电传输、驾驶舱与客舱的对讲机通话，以及驾驶舱内的可听警报（如提示、警告信号）。"
+    },
+    {
+      "id": "opi-core-120",
+      "taskTitle": "缩略词-CVR与FDR-7",
+      "audioText": "According to ICAO requirements, what is the recording duration of CVR for different types of aircraft?",
+      "audioTextZh": "根据国际民航组织（ICAO）的要求，不同类型飞机的 CVR 记录时长是多少？",
+      "referenceText": "ICAO requires most commercial aircraft to have a CVR that records at least the last 2 hours of audio. Some newer aircraft may have longer recording durations (e.g., 25 hours) to capture more data.\n国际民航组织要求大多数商用飞机的 CVR 至少记录最后 2 小时的音频。一些较新型的飞机可能有更长的记录时长（如 25 小时），以捕捉更多数据。"
+    },
+    {
+      "id": "opi-core-121",
+      "taskTitle": "缩略词-CVR与FDR-8",
+      "audioText": "How does CVR help in aircraft accident investigation?\nCVR",
+      "audioTextZh": "如何帮助飞机事故调查？",
+      "referenceText": "CVR provides critical audio evidence. Investigators analyze recorded conversations and sounds to understand crew actions, decisions, and communication before and during the accident, helping determine the cause.\nCVR 提供关键的音频证据。调查人员通过分析记录的对话和声音，了解事故发生前后机组人员的行动、决策和沟通情况，从而帮助确定事故原因。"
+    },
+    {
+      "id": "opi-core-122",
+      "taskTitle": "缩略词-CVR与FDR-9",
+      "audioText": "Some companies have policies on CVR supervision. Do you think it's necessary?",
+      "audioTextZh": "一些公司有关于 CVR 监控的政策。你认为有必要吗？",
+      "referenceText": "Yes, it is necessary. Supervision ensures crews follow standard operating procedures, maintain professional communication, reduce irrelevant talk, and ultimately enhance flight safety.\n是的，有必要。监控能确保机组人员遵守标准操作程序，保持专业沟通，减少无关交谈，最终提升飞行安全。"
+    },
+    {
+      "id": "opi-core-123",
+      "taskTitle": "缩略词-CVR与FDR-10",
+      "audioText": "What are the differences between old-type CVR and modern CVR?",
+      "audioTextZh": "老式 CVR 和现代 CVR 有什么区别？",
+      "referenceText": "Modern CVRs have longer recording durations (e.g., 25 hours vs. 30 minutes in old types), better sound quality, more durable casings (resistant to fire and impact), and compatibility with advanced aircraft systems.\n现代 CVR 记录时长更长（例如 25 小时，而老式的为 30 分钟）、音质更好、外壳更耐用（防火抗冲击），且与先进的飞机系统兼容。"
+    },
+    {
+      "id": "opi-core-124",
+      "taskTitle": "缩略词-CVR与FDR-11",
+      "audioText": "Why is CVR usually painted in red or orange?",
+      "audioTextZh": "为什么 CVR 通常涂成红色或橙色？",
+      "referenceText": "These colors are highly visible, making the CVR easier to locate at accident sites—especially in debris, water, or low-light conditions—helping investigators recover it quickly.\n这些颜色具有高可见度，使 CVR 在事故现场（尤其是在残骸、水中或低光环境下）更容易被找到，帮助调查人员快速回收。"
+    },
+    {
+      "id": "opi-core-125",
+      "taskTitle": "缩略词-CVR与FDR-12",
+      "audioText": "If the CVR malfunctions during the flight, what should the crew do?",
+      "audioTextZh": "如果飞行中 CVR 出现故障，机组人员应该怎么做？",
+      "referenceText": "The crew should follow standard operating procedures: note the malfunction in the flight log, inform air traffic control if required, and report it to maintenance after landing for repair.\n机组人员应遵循标准操作程序：在飞行日志中记录故障，必要时通知空中交通管制，并在降落后向维修部门报告以便修复"
+    },
+    {
+      "id": "opi-core-126",
+      "taskTitle": "缩略词-CVR与FDR-13",
+      "audioText": "According to ICAO recommendations, what are the requirements for CVR installation on aircraft over 5,700 kg maximum take-off mass?",
+      "audioTextZh": "根据国际民航组织的建议，最大起飞质量超过 5700 公斤的飞机安装 CVR 有什么要求？",
+      "referenceText": "ICAO recommends installing CVR in a crash-resistant, fire-protected location. It should auto-start recording when the aircraft is powered on and capture audio throughout the flight, with a durable design to survive accidents.\n国际民航组织建议将 CVR 安装在抗撞击、防火的位置。它应在飞机通电时自动开始记录，并在整个飞行过程中捕捉音频，且设计耐用以在事故中保存下来。"
+    },
+    {
+      "id": "opi-core-127",
+      "taskTitle": "缩略词-CVR与FDR-14",
+      "audioText": "How is a CVR test completed?",
+      "audioTextZh": "如何完成 CVR 测试？",
+      "referenceText": "Generally, it can be completed by pressing the CVR test button. But it should be noted that the parking brake needs to be set, otherwise the test audio will not be emitted through the speaker because the parking brake relay will interrupt the signal.\n通常可以通过按下 CVR 测试按钮来完成。但需要注意的是，要设置好停留刹车，否则测试音频不会通过扬声器发出，因为停留刹车继电器会中断信号。"
+    },
+    {
+      "id": "opi-core-128",
+      "taskTitle": "缩略词-CVR与FDR-15",
+      "audioText": "Why is CVR an important part of the aircraft's \"black - box\" system?",
+      "audioTextZh": "为什么 CVR 是飞机 “黑匣子” 系统的重要组成部分？",
+      "referenceText": "Because it records key audio information in the cockpit, which can provide crucial evidence for accident investigation, helping investigators understand the crew's actions, decisions, and the situation in the cockpit before and during the accident.\n因为它记录了驾驶舱内关键的音频信息，能为事故调查提供重要证据，帮助调查人员了解事故发生前后机组人员的行动、决策以及驾驶舱内的情况。"
+    },
+    {
+      "id": "opi-core-129",
+      "taskTitle": "缩略词-CVR与FDR-16",
+      "audioText": "Can CVR record all sounds in the cockpit?\nCVR",
+      "audioTextZh": "能记录驾驶舱内的所有声音吗？",
+      "referenceText": "CVR mainly records voice communications among flight crew, radio transmissions with ATC, intercoms between the flight deck and cabin, and audible alerts. It may not record very faint or some non - audio - related small sounds, but it can record the main sounds relevant to flight operations.\nCVR 主要记录机组人员之间的语音交流、与空中交通管制的无线电传输、驾驶舱与客舱的对讲机通话以及可听警报。它可能无法记录非常微弱或一些与音频无关的细微声音，但能记录与飞行操作相关的主要声音。"
+    },
+    {
+      "id": "opi-core-130",
+      "taskTitle": "缩略词-CVR与FDR-17",
+      "audioText": "How does CVR store the recorded audio?\nCVR",
+      "audioTextZh": "如何存储记录的音频？",
+      "referenceText": "Microphones send audio to the CVR, and the CVR digitizes and stores the signals. Modern CVRs usually use solid - state memory to store audio, which can ensure the security and integrity of the data to a certain extent.\n麦克风将音频发送到 CVR，CVR 将信号数字化并存储。现代 CVR 通常使用固态存储器来存储音频，这能在一定程度上确保数据的安全性和完整性。"
+    },
+    {
+      "id": "opi-core-131",
+      "taskTitle": "缩略词-CVR与FDR-18",
+      "audioText": "What do you know about FDR?",
+      "audioTextZh": "你知道飞行数据记录仪吗?",
+      "referenceText": "FDR stands for Flight Data Recorder, also known as the “black box.” It records hundreds of flight parameters (airspeed, altitude, attitude, thrust, control inputs) for at least 25 hours. It is designed to withstand extreme conditions and provides essential data for accident analysis.\n飞行数据记录仪（FDR）又称“黑匣子”，记录空速、高度、姿态、推力、操纵输入等数百项飞行参数，记录时长至少25小时。其设计能承受极端环境，为事故分析提供核心数据。"
+    },
+    {
+      "id": "opi-core-132",
+      "taskTitle": "缩略词-CVR与FDR-19",
+      "audioText": "What are the usage of CVR and FDR?\nCVR",
+      "audioTextZh": "和FDR的作用是什么?",
+      "referenceText": "Both CVR and FDR are key for accident investigation. CVR records cockpit voices and communications to reflect crew operations and decision-making. FDR documents flight parameters to track the aircraft’s status and performance. Together, they help authorities determine accident causes and improve flight safety.\n座舱语音记录器（CVR）和飞行数据记录仪（FDR）均为事故调查的关键设备。CVR记录驾驶舱语音和通讯，反映机组操作与决策过程；FDR记录飞行参数，追踪飞机状态与性能。二者结合帮助官方查明事故原因，进而提升飞行安全。"
+    },
+    {
+      "id": "opi-core-133",
+      "taskTitle": "缩略词-CVR与FDR-20",
+      "audioText": "What is your opinion on your company's CVR supervision policy?",
+      "audioTextZh": "你们公司的CVR监管政策是什么?",
+      "referenceText": "My company’s CVR supervision policy complies with CAAC regulations, using recorded data only for accident investigation and flight safety improvement. It prohibits unauthorized access to protect privacy. I support it as it helps identify risks and enhance operational standardization without affecting normal flight.\n我公司的座舱语音记录器（CVR）监管政策符合中国民航局（CAAC）规定，记录数据仅用于事故调查和飞行安全改进，禁止未经授权访问以保护隐私。我支持该政策，它有助于识别风险、提升运行规范性，且不影响正常飞行。"
+    },
+    {
+      "id": "opi-core-134",
+      "taskTitle": "缩略词-CVR与FDR-21",
+      "audioText": "Will the supervision affect your performance in flight, like your action or operation will be restricted?",
+      "audioTextZh": "你觉得公司对CVR的监管会影响你的飞行表现吗?譬如限制你的行为和操作?",
+      "referenceText": "No, the supervision doesn’t restrict normal operations or affect my performance. I strictly follow SOPs and regulations in flight, and CVR supervision only helps standardize operations and correct irregularities. It enhances my sense of responsibility, ensuring I maintain professional operation without unnecessary constraints.\n不会，这种监管不会限制正常操作，也不会影响我的飞行表现。我在飞行中严格遵循标准操作程序（SOP）和规章，座舱语音记录器（CVR）监管仅助力规范操作、纠正违规行为，还能增强我的责任意识，确保我保持专业操作，无不必要的限制。"
+    }
+  ]
+}

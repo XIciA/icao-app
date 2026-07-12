@@ -1,0 +1,36 @@
+{
+  "categoryId": "opi-category-05",
+  "id": "opi-topic-0114",
+  "name": "驾驶舱进入规则",
+  "declaredCardCount": 4,
+  "cards": [
+    {
+      "id": "opi-extra-081",
+      "taskTitle": "运行-驾驶舱进入规则-1",
+      "audioText": "What are your cockpit entry rules?",
+      "audioTextZh": "你们的驾驶舱进入规则是什么？",
+      "referenceText": "First of all, passengers are not allowed to enter the cockpit during flight. For crew members, if they want to enter the cockpit during flight, the pilot will use the camera and interphone to confirm the crew's identification.\n首先，飞行期间乘客不得进入驾驶舱。对于机组人员，若飞行期间想要进入驾驶舱，飞行员会通过摄像头和内部通话设备确认机组人员的身份 。"
+    },
+    {
+      "id": "opi-extra-082",
+      "taskTitle": "运行-驾驶舱进入规则-2",
+      "audioText": "Who can enter the cockpit?",
+      "audioTextZh": "谁可以进入驾驶舱？",
+      "referenceText": "The pilot, the cabin crew (CC), the authorized company operation staff, the authorized inspector, and so on.\n飞行员、客舱乘务员（CC）、经授权的公司运营人员、经授权的检查员等等 。\n\nThose allowed to enter the cockpit include flight crew, authorized cabin crew (for example purser for catering), authorities’ supervisors/representatives, and personnel approved by the captain whose entry is necessary for safe operation. The cockpit door must stay locked during flight, with at least two crew members inside.\n允许进入驾驶舱的人员包括机组成员、授权客舱机组（如负责餐饮的乘务长）、局方监察员或委任代表，以及经机长同意且进入对安全运行必要或有益的人员。飞行期间驾驶舱门需关闭锁定，且需始终有两名机组成员在驾驶舱内。"
+    },
+    {
+      "id": "opi-extra-083",
+      "taskTitle": "运行-驾驶舱进入规则-3",
+      "audioText": "When?\n（",
+      "audioTextZh": "相关人员 ）什么时候（可以进入驾驶舱 ）？",
+      "referenceText": "For example, during catering time, the cabin crew will send meals or coffee to the cockpit.\n例如，在配餐时段，客舱乘务员会给驾驶舱送餐或咖啡"
+    },
+    {
+      "id": "opi-extra-084",
+      "taskTitle": "运行-驾驶舱进入规则-4",
+      "audioText": "In flight what are procedures for crew\nmember to enter the cockpit?",
+      "audioTextZh": "飞行中，机组人员进入驾驶舱的流程是什么？",
+      "referenceText": "During the critical flight phase, the crew member can’t enter the cockpit. During cruising, if the crew member wants to enter the cockpit, they need get the captain’s permission first.\n关键飞行阶段（如起飞、进近、着陆），机组人员不得进入驾驶舱；巡航阶段，若需进入，需先获得机长许可。"
+    }
+  ]
+}

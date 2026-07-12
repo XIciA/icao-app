@@ -1,0 +1,18 @@
+{
+  "id": "opi-category-04",
+  "name": "人的因素",
+  "declaredTopicCount": 10,
+  "declaredCardCount": 147,
+  "topicIds": [
+    "opi-topic-0007",
+    "opi-topic-0043",
+    "opi-topic-0061",
+    "opi-topic-0062",
+    "opi-topic-0066",
+    "opi-topic-0071",
+    "opi-topic-0072",
+    "opi-topic-0073",
+    "opi-topic-0074",
+    "opi-topic-0130"
+  ]
+}

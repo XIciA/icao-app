@@ -1,5 +1,7 @@
 import Storage from 'expo-sqlite/kv-store';
 
+import { enqueueCardState, enqueueLearningRecord } from '@/features/sync/learning-sync';
+
 import type { CardLearningState, LearningRecord, QuestionBankCard, QuestionBankTopic } from '../types';
 
 const LEGACY_TOPIC_PREFIX = 'icao.learning.v1.topic.';
@@ -93,7 +95,9 @@ export const sqliteLearningStore: LearningStore = {
         const states = normalizeTopicStates(
           parseJson<Record<string, Partial<CardLearningState>>>(await Storage.getItem(key), {}),
         );
-        await Storage.setItem(key, JSON.stringify({ ...states, [cardId]: migrateLegacyCardState(state) }));
+        const normalized = migrateLegacyCardState(state);
+        await Storage.setItem(key, JSON.stringify({ ...states, [cardId]: normalized }));
+        await enqueueCardState(topicId, cardId, normalized);
       });
 
     topicWriteQueues.set(key, nextWrite);
@@ -109,6 +113,7 @@ export const sqliteLearningStore: LearningStore = {
   async addRecord(record) {
     const current = await this.getRecords();
     await Storage.setItem(RECORDS_KEY, JSON.stringify([record, ...current].slice(0, MAX_RECORDS)));
+    await enqueueLearningRecord(record);
   },
   async getRecords() {
     return parseJson<LearningRecord[]>(await Storage.getItem(RECORDS_KEY), []);

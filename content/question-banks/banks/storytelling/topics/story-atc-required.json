@@ -1,0 +1,448 @@
+{
+  "categoryId": "story-category-2",
+  "id": "story-atc-required",
+  "name": "必做题库",
+  "declaredCardCount": 55,
+  "cards": [
+    {
+      "id": "story-kongguan-001",
+      "taskTitle": "管制ICAO-必做题库-1",
+      "audioText": "One day in 2000, Flight 154 reported bird strike three minutes after takeoff, and requested return to the airport. But the controller told the crew that the RVR of the airport was below landing minima, so the captain made a decision to make an emergency landing at airport A. Air traffic controller quickly contacted A airport and gained permission for a landing on runway 15. However, the aircraft could not reach A airport due to lack of altitude. The crew decided to make a ditching in a river and they reported it to the controller. Finally, the crew made a ditching without power at about 150 miles per hour in the river.",
+      "referenceText": "Q: what did flight 154 encounter after takeoff?\nDid they return to land? Why?\nDid they land at airport A?\nWhat is the crew’s final decision?",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/001.mp3",
+      "audioTextZh": "2000年的一天，154号航班起飞三分钟后报告遭遇鸟击，并请求返场。但管制员告知机组，该机场的跑道视程（RVR）低于着陆最低标准，因此机长决定在A机场紧急着陆。空中交通管制员迅速联系A机场，并获得在15号跑道着陆的许可。然而，由于高度不足，飞机无法到达A机场。机组决定在一条河流上实施水上迫降，并将这一决定报告给管制员。最终，机组以大约每小时150英里的速度，在无动力状态下迫降于河面。"
+    },
+    {
+      "id": "story-kongguan-002",
+      "taskTitle": "管制ICAO-必做题库-2",
+      "audioText": "When SIA188 was approaching the airspace of Chicago Area Control Center, the controller instructed the flight crew to change radio frequency for the next sector on 132.1. The first officer acknowledged the frequency change and read back the correct frequency. However, the flight crew did not contact ATC on the new frequency. Because the controllers in the receiving units were preparing for a shift change, they didn’t know that flight 188 did not establish radio contact, 30 minutes later, the controller at the next sector identified SIA188 on the radar. Although they attempted to establish contact with the airplane by calling the company dispatcher, they got no response from the pilots. The controller finally regained contact with SIA188 on the emergency frequency 50 minutes later.",
+      "referenceText": "Q: what abnormal thing happened to SIA188? Why didn’t controller know that flight 188 did not establish radio contact with next ATC? How did the controller establish contact with SIA188 50 minutes later?",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/002.mp3",
+      "audioTextZh": "当SIA188接近芝加哥区域管制中心空域时，管制员指示机组将无线电频率改为下一扇区的132.1。副驾驶确认了频率转换指令，并正确复诵了该频率。然而，机组没有在新频率上联系空中交通管制。由于接收单位的管制员正在准备交接班，他们没有发现188号航班尚未建立无线电联系。30分钟后，下一扇区的管制员在雷达上识别出SIA188。尽管管制员尝试通过联系航空公司签派员与飞机建立联系，但始终没有收到飞行员的回应。50分钟后，管制员最终在应急频率上重新与SIA188取得联系。"
+    },
+    {
+      "id": "story-kongguan-003",
+      "taskTitle": "管制ICAO-必做题库-3",
+      "audioText": "Landing light signal could provide useful information to controllers. One day, a B757 vacated runway 36L via taxiway A9 after landing. It was then cleared to cross runway 36R. But it stopped taxiing on taxiway A9 between runway 36L and runway 36R. The tower controller attempted to contact the pilot but received no reply. He saw the aircraft landing lights were also off. This made him believe that the B757 had a radio failure and had not received the clearance to cross runway 36R. So he issued takeoff clearance to A320 on runway 36R. Suddenly, the controller noticed the B757’s lights came on and it began to move. Realizing the risk of runway incursion, he cancelled A320’s takeoff clearance immediately.",
+      "referenceText": "Q:Where did B757 stopped after vacating runway? What is the controller’s instruction to B757? Why did controller cancel takeoff clearance to A320?",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/003.mp3",
+      "audioTextZh": "着陆灯信号可以为管制员提供有用信息。一天，一架B757着陆后经A9滑行道脱离36L跑道，随后获准穿越36R跑道。但飞机停在了36L与36R跑道之间的A9滑行道上。塔台管制员尝试联系飞行员，但没有收到回答。他还看到飞机的着陆灯处于关闭状态。这使他认为B757发生了无线电失效，并未收到穿越36R跑道的许可。因此，他向36R跑道上的一架A320发布了起飞许可。突然，管制员注意到B757的灯亮了起来，飞机也开始移动。意识到存在跑道侵入风险后，他立即取消了A320的起飞许可。"
+    },
+    {
+      "id": "story-kongguan-004",
+      "taskTitle": "管制ICAO-必做题库-4",
+      "audioText": "It was a foggy day in 2002, SIA 686 was cleared to taxi to runway 36R. A few minutes later, the Cessna pilot requested engine start. The ground controller gave start-up clearance. Then he requested Flight 686 to contact the Tower controller. From then on, those two aircraft were on two different radio frequencies. The Cessna started to taxi, but the pilot made a mistake to taxi to right and entered taxiway R6. But the ground controller did not realize it and cleared the Cessna to continue its taxi. At the same time, the Tower controller cleared Flight 686 for takeoff. When the flight 686 was rolling on the runway, the Cessna crossed the runway holding sign and entered the active runway 36R. Unfortunately, the two aircraft collided, all 114 people on board died.",
+      "referenceText": "Q: what is this story about? Who should be blamed for this accident? What is the result of this accident?",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/004.mp3",
+      "audioTextZh": "2002年一个有雾的日子，SIA686获准滑行前往36R跑道。几分钟后，一架塞斯纳的飞行员请求启动发动机，地面管制员发布了开车许可。随后，他要求686号航班联系塔台管制员。从那时起，两架飞机分别使用不同的无线电频率。塞斯纳开始滑行，但飞行员错误地向右滑行并进入了R6滑行道。地面管制员没有意识到这一错误，仍许可塞斯纳继续滑行。与此同时，塔台管制员许可686号航班起飞。当686号航班正在跑道上滑跑时，塞斯纳越过跑道等待位置标志，进入了正在使用的36R跑道。遗憾的是，两架飞机相撞，机上114人全部遇难。"
+    },
+    {
+      "id": "story-kongguan-005",
+      "taskTitle": "管制ICAO-必做题库-5",
+      "audioText": "Flight 345 nearly collided with Flight 101 at the intersection of runway 16 and runway 22. There were no injuries and no damage to either aircraft. But it was regarded as the most serious incident of this kind. That day, the tower controller cleared Flight 345 to land on runway 22. But he forgot the arriving aircraft when he cleared Flight 101 to take off from the intersecting runway 16. After Flight 345 touched down, the ground radar system alerted. The controller tried to instruct Flight 345 to stop short of runway 16. However, the aircraft managed to stop in the middle of the intersection. It was impossible for Flight 101 to abort takeoff. Flight 101 made an early liftoff and flew over Flight 345. The two aircraft missed colliding by only 50 feet.",
+      "referenceText": "Q: what happened between Flight 345&Flight 101? What was the controller’s instruction when he realize the two aircraft had conflict? What is the result of this event?",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/005.mp3",
+      "audioTextZh": "345号航班与101号航班险些在16号跑道和22号跑道的交叉口相撞。事故没有造成人员受伤，两架飞机也均未受损，但它被视为此类事件中最严重的一起。当天，塔台管制员许可345号航班在22号跑道着陆，但在许可101号航班从相交的16号跑道起飞时，忘记了这架正在进场的飞机。345号航班接地后，地面雷达系统发出警报。管制员试图指示345号航班在16号跑道外停止，但飞机最终停在了跑道交叉口中央。101号航班已无法中断起飞，只得提前离地并从345号航班上方飞过。两架飞机仅以50英尺的间隔避免相撞。"
+    },
+    {
+      "id": "story-kongguan-006",
+      "taskTitle": "管制ICAO-必做题库-6",
+      "audioText": "As American Flight 835 was approaching the terminal area of its destination, the flight crew contacted the Approach Control and requested ILS approach for runway 12. Tailwind conditions were reported on runway 12 at that time, so the controller advised the pilot to make a circling approach fro runway 30. But the crew insisted to land on runway 12 and the controller cleared them to land on the runway 12. The runway was wet and braking action was not good. During landing roll, the aircraft skidded to the leftof the runway and went through the airport fences. The fuselage was broken into three pieces, the right engine and right main gear were separated from the aircraft. No one was killed, but many passengers suffered from serious injuries.",
+      "referenceText": "Q: nature of the emergency? Weather and runway condition? Result?",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/006.mp3",
+      "audioTextZh": "美国航空835号航班接近目的地终端区时，机组联系进近管制，并请求对12号跑道实施ILS进近。当时12号跑道报告有顺风，因此管制员建议飞行员进行盘旋进近，在30号跑道着陆。但机组坚持在12号跑道着陆，管制员随后许可其在12号跑道着陆。跑道湿滑，制动效应不佳。着陆滑跑期间，飞机向跑道左侧打滑并冲破机场围栏。机身断成三截，右发动机和右主起落架与机体分离。事故无人死亡，但许多乘客严重受伤。"
+    },
+    {
+      "id": "story-kongguan-007",
+      "taskTitle": "管制ICAO-必做题库-7",
+      "audioText": "One day, Flight 123, a B737 carrying 152 passengers and 9 crews was flying to land at Tokyo International Airport. When it was transferred from Tokyo Control to Tokyo Approach, flight 123 was instructed to proceed to DA to hold because of traffic congestion. During the holding, the flight crew was informed that the local weather was deteriorating and the controller suggested the pilot divert to the alternate, but the pilot reported that their fuel was not enough to the alternate. So the controller vectored flight 123 by radar to land at runway 34R. Unfortunately, the pilot couldn’t stabilize the aircraft on the localizer due to wind shear. Flight 123 went around and made a second approach. Later, it crashed into a hillside due to fuel shortage. The aircraft was broken into pieces and all the people on board were killed.",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/007.mp3",
+      "audioTextZh": "一天，123号航班，一架载有152名乘客和9名机组人员的B737，正在飞往东京国际机场着陆。当该航班从东京区调移交给东京进近时，由于空中交通拥堵，123号航班被指示飞往DA点等待。在等待期间，机组获悉当地天气正在恶化，管制员建议飞行员备降，但飞行员报告剩余燃油不足以飞到备降机场。因此，管制员对123号航班实施雷达引导，使其在34R跑道着陆。遗憾的是，由于风切变，飞行员无法使飞机在航向道上稳定下来。123号航班复飞后进行了第二次进近。随后，飞机因燃油不足撞上山坡。飞机解体，机上所有人员全部遇难。"
+    },
+    {
+      "id": "story-kongguan-008",
+      "taskTitle": "管制ICAO-必做题库-8",
+      "audioText": "One day, Indonesia 205 took off from Jinan to Hangzhou. About one hour later, the aircraft was transferred to Hangzhou Approach. Hangzhou Approach required Indonesia 205 to slow down to 190 knots and later the controller asked the pilot to reduce speed to 160 knots. Three minutes later, Indonesia 205 passed the outer marker inbound. At that time, the controller issued a missed approach clearance because of separation. He instructed Indonesia 205 to make a right turn to a heading of 180 and climb to 900m. But during the missed approach, the aircraft was out of control because of mechanical problem. The aircraft continued to descend with a high angle of attack. The aircraft impacted trees and buildings and part of the fuselage was damaged.",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/008.mp3",
+      "audioTextZh": "一天，印度尼西亚航空205号航班从济南起飞前往杭州。大约一小时后，该航班被移交给杭州进近。杭州进近要求205号航班减速至190节，随后管制员又要求飞行员将速度减至160节。三分钟后，205号航班向台飞越外指点标。当时，管制员因间隔原因发布了复飞许可，指示205号航班右转至航向180度并爬升至900米。但在复飞过程中，飞机因机械故障失去控制，以大迎角状态持续下降。飞机撞上树木和建筑物，部分机身受损。"
+    },
+    {
+      "id": "story-kongguan-009",
+      "taskTitle": "管制ICAO-必做题库-9",
+      "audioText": "One day, AFR188 crashed at Singapore Changi Airport during takeoff. The tower controller instructed the crew to takeoff on Runway 02L, but the crew lined up runway 02R and began their takeoff rolling. The aircraft overran the runway, and crashed into the fence of the airport. Crew members and 110 passengers were killed, and the co-pilot was badly injured. The plane was destroyed by the impact and caught on an intense fire. According to the investigation, there were three reasons leading to the accidents. First of all, the crew didn’t use effective methods to verify their position at the airport. Secondly, the crew forgot to check whether they were on the correct runway or not. Finally, the crew members’ idle chatting during the taxi resulted the loss of situational awareness.",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/009.mp3",
+      "audioTextZh": "一天，AFR188在新加坡樟宜机场起飞期间坠毁。塔台管制员指示机组从02L跑道起飞，但机组却在02R跑道对正并开始起飞滑跑。飞机冲出跑道，撞上机场围栏。机组成员和110名乘客遇难，副驾驶严重受伤。飞机因撞击而损毁，并燃起猛烈大火。调查显示，有三个原因导致了这起事故。首先，机组没有采用有效方法确认自己在机场内的位置。其次，机组忘记核实自己是否位于正确的跑道。最后，机组成员在滑行期间闲聊，导致情景意识丧失。"
+    },
+    {
+      "id": "story-kongguan-010",
+      "taskTitle": "管制ICAO-必做题库-10",
+      "audioText": "One day, an A320 collided with a B737 during taxi. The right ailerons of B737 was severely damaged but A320 only had minor damage of its left wing. Luckily, there were no injuries. After receiving ATC taxi instruction, the A320 began to pass the B737 from the right side. The captain of A320 thought they had enough room to pass over the B737. But unfortunately, two aircraft collided together with the wings. Both captains reported the collision immediately to the controller. Because the Boeing aircraft was damaged seriously, fuel leakage was reported and fire services were required. Fortunately, the fuel leak didn’t develop into fire. The crew of the Boeing aircraft complained that they just parked stationary with the parking brakes applied when they were hit.",
+      "referenceText": "同飞翅必做2，树袋熊44",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/010.mp3",
+      "audioTextZh": "一天，一架A320与一架B737在滑行期间相撞。B737的右副翼严重受损，而A320的左翼仅轻微受损。幸运的是，没有人员受伤。收到空中交通管制的滑行指令后，A320开始从B737右侧通过。A320机长认为有足够空间可以从B737旁边通过，但两架飞机的机翼不幸发生碰撞。两位机长立即向管制员报告了相撞情况。由于波音飞机受损严重，机组报告发生燃油泄漏并请求消防救援。幸运的是，泄漏的燃油没有起火。波音飞机机组表示，他们被撞时一直停在原地，并已设置停留刹车。"
+    },
+    {
+      "id": "story-kongguan-011",
+      "taskTitle": "管制ICAO-必做题库-11",
+      "audioText": "A pilot of Air China airline company told us an event with landing gear problem several days ago. After normal pushback, startup and taxi, he requested takeoff at the holding point of the active runway. However, he was instructed to hold short of the runway in order to give way to AFR123 on final. AFR123 declared emergency because of landing gear problem. AFR123 asked for a low pass to have a visual check. The controller verified the landing gear was still in up position during low pass. Then AFR123 requested a touch and go to jar the jammed gear. Unfortunately, after doing this, the landing gear still couldn’t be extended. So, AFR123 had to make a belly landing on a foamed runway. AFR123 made a safe landing. There were no casualties except some minor injuries.",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/011.mp3",
+      "audioTextZh": "一名中国国际航空公司的飞行员向我们讲述了几天前发生的一起起落架故障事件。在正常完成推出、开车和滑行后，他在正在使用跑道的等待点请求起飞。然而，为了给最后进近中的AFR123让行，他被指示在跑道外等待。AFR123因起落架故障宣布紧急状态，并请求低空通场，以便从地面目视检查。低空通场期间，管制员确认起落架仍处于收上位置。随后，AFR123请求进行一次连续起飞，试图通过震动使卡住的起落架放下。遗憾的是，这样做之后起落架仍无法放出。因此，AFR123不得不在铺设了泡沫的跑道上实施机腹着陆。AFR123安全着陆，除少数人员轻伤外，没有其他伤亡。"
+    },
+    {
+      "id": "story-kongguan-012",
+      "taskTitle": "管制ICAO-必做题库-12",
+      "audioText": "CSN341 was a flight from Beijing to Los Angles. When CSN341 initially contacted the tower controller, he was told the runway visual range was 500m. The pilot executed a missed approach two minutes later because of no contact at minima. Then, CSN341 was given radar vectors for a second ILS approach. In the second approach, the controller issued landing clear to CSN341 at outer marker. One minute later, the controller observed the airplane was leaving the glide path on his radar display, so he issued missed approach instructions again. There was no further reply from the pilot. The airplane impacted the top of a tall building and crashed. According to the investigation, the poor visibility made the pilot nervous and he misunderstood the missed approach instructions and made a wrong turn.",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/012.mp3",
+      "audioTextZh": "CSN341是一个从北京飞往洛杉矶的航班。CSN341首次联系塔台管制员时，被告知跑道视程为500米。两分钟后，由于在最低标准处未能建立目视，飞行员实施复飞。随后，CSN341接受雷达引导，准备进行第二次ILS进近。第二次进近中，CSN341飞越外指点标时，管制员向其发布了着陆许可。一分钟后，管制员在雷达显示器上观察到飞机正在偏离下滑道，于是再次发布复飞指令。此后没有再收到飞行员的回答。飞机撞上一座高层建筑的顶部后坠毁。调查显示，低能见度使飞行员感到紧张，他误解了复飞指令并转向错误方向。"
+    },
+    {
+      "id": "story-kongguan-013",
+      "taskTitle": "管制ICAO-必做题库-13",
+      "audioText": "This story is about runway incursion. One day, A B767 nearly collided with an A320 at New York Airport, which is operating with two intersecting runways. Although there was neither casualties nor aircraft damages for both aircraft, still the incident was regarded as one of the most serious incidents of this kind. The tower controller instructed B767 to land at runway 21, meanwhile, he cleared A320 to take off at runway 18. Just as B767 touched down, the ground radar system sounded the alarm. The tower controller realized the problem and instructed B767 to stop landing rolling immediately, trying to stay out of the intersection of runway 18. In spite of the effort, B767 could only stop in the middle of the intersecting runway. However, the pilot of A320 could not abort takeoff, and pulled up the aircraft in advance to avoid collision. They missed each other by only 60 feet.",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/013.mp3",
+      "audioTextZh": "这个故事与跑道侵入有关。一天，一架B767与一架A320在纽约机场险些相撞，该机场使用两条相交跑道运行。虽然两架飞机均无人员伤亡或飞机损伤，这起事件仍被视为同类事件中最严重的一起。塔台管制员指示B767在21号跑道着陆，同时许可A320从18号跑道起飞。就在B767接地时，地面雷达系统发出警报。塔台管制员意识到问题后，立即指示B767停止着陆滑跑，试图使其停在18号跑道交叉口之外。尽管采取了措施，B767最终只能停在相交跑道的中央。A320飞行员此时已无法中断起飞，只得提前拉起飞机避免相撞。两架飞机仅以60英尺的间隔擦肩而过。"
+    },
+    {
+      "id": "story-kongguan-014",
+      "taskTitle": "管制ICAO-必做题库-14",
+      "audioText": "It was a sunny day in 2010, a Delta Airline’s 767-300 departed from Shanghai Pudong International Airport to Seoul. It carried 256 passengers and 13 crew members on board. During takeoff rolling, an unknown foreign object was sucked into port engine and the engine fire warning light illuminated. Then the flight crew declared an emergency right after airborne and completed the emergency checklist procedure. Through good communication, the controller understood the flight crew wanted to return to land. But the pilot had to dump fuel before landing because the aircraft was overweight to land. So the controller vectored the aircraft by radar to the dumping area. After circling over the sea and dumping fuel for almost one hour, the plane returned to land at departure airport safely.",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/014.mp3",
+      "audioTextZh": "2010年一个晴朗的日子，达美航空一架767-300从上海浦东国际机场起飞前往首尔，机上载有256名乘客和13名机组人员。起飞滑跑期间，一个不明外来物被吸入左发动机，发动机火警灯亮起。飞机离地后，机组立即宣布紧急状态，并完成紧急检查单程序。通过良好沟通，管制员了解到机组希望返场着陆。但由于飞机重量超过着陆限制，飞行员必须在着陆前放油。因此，管制员对飞机实施雷达引导，前往放油区。飞机在海上盘旋并放油近一小时后，安全返回起飞机场着陆。"
+    },
+    {
+      "id": "story-kongguan-015",
+      "taskTitle": "管制ICAO-必做题库-15",
+      "audioText": "One day, a B737 flew into the terminal control area of its destination airport. After establishing contact with Approach control, the flight crew requested clearance for ILS approach runway 22. During the approach, the controller suggested the flight crew make a circling to land on runway 04 because strong tailwind on runway 22 was just reported by previous A330. But the crew insisted on using runway 22, so the controller gave them clearance to land on runway 22. It was at night, the runway was scattered with snow and ice. Unfortunately, the plane missed the proper landing point on the runway, overran the runway and crashed into the fence of the airport. The fuselage was broken into three parts with the starboard engine separated from the wing. Fortunately, there were no killings, but many passengers were seriously injured.",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/015.mp3",
+      "audioTextZh": "一天，一架B737进入目的地机场的终端管制区。与进近管制建立联系后，机组请求获准对22号跑道实施ILS进近。进近期间，由于前一架A330刚刚报告22号跑道有强顺风，管制员建议机组实施盘旋，在04号跑道着陆。但机组坚持使用22号跑道，管制员随后许可其在22号跑道着陆。当时正值夜间，跑道上散布着冰雪。遗憾的是，飞机错过了跑道上的适当接地点，冲出跑道并撞上机场围栏。机身断成三截，右发动机与机翼分离。幸运的是，事故没有造成人员死亡，但许多乘客严重受伤。"
+    },
+    {
+      "id": "story-kongguan-016",
+      "taskTitle": "管制ICAO-必做题库-16",
+      "audioText": "In November 1996 I was in a flight flying to New York. I was in the flight because I got a call from New York Hospital that a heart would be ready for me. The pilot called the tower and told them who we were. The ATC said we could not land because President Clinton was there and the security service would not let us land. The pilot told the ATC that he would report this to the press and TV stations. I think they would let us land because of the bad influence. However, it didn’t work because the controllers wanted to have a look of Clinton. So we had to divert to the alternate airport instead. Fortunately, I got to the hospital on time. It was a great heart as you can see I am still alive almost 11 years after the operation. (145 words)",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/016.mp3",
+      "audioTextZh": "1996年11月，我乘坐一个飞往纽约的航班。我之所以搭乘该航班，是因为接到纽约医院的电话，得知已经有一颗可供我移植的心脏。飞行员呼叫塔台并说明了我们的身份。空中交通管制员表示，由于克林顿总统当时在那里，安保部门不允许我们着陆。飞行员告诉管制员，他会把这件事报告给报社和电视台。我原以为他们会顾及不良影响而允许我们着陆，但这并没有奏效，因为管制员们想看一眼克林顿。因此，我们只得改降备降机场。幸运的是，我及时赶到了医院。那是一颗非常好的心脏——正如你所见，手术过去将近11年后，我仍然活着。（145词）"
+    },
+    {
+      "id": "story-kongguan-017",
+      "taskTitle": "管制ICAO-必做题库-17",
+      "audioText": "On February 17th, 2005, United airline 123, an Airbus 320, collided with Air China 321, a Boeing 737, during taxi in the run-up area at the north end of runway 19. The right aileron of the Boeing 737 was severely damaged; the left wing of the Airbus 320 had minor damage. There were no injuries. The pilot of the Airbus 320 reported that he was positioned to the right of the Boeing 737. ATC cleared them for departure, which required them to taxi past the Boeing 737. The captain stated that he checked the position of the Boeing 737, and he thought he could clear it and then felt the impact. The captain notified ATC of the collision. Airport fire crews responded, but there was no fuel leak or fire. The crew of the Boeing 737 reported that they were stationary with the parking brake applied while awaiting ATC clearance. (150 words)",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/017.mp3",
+      "audioTextZh": "2005年2月17日，美联航123号航班，一架空客A320，在19号跑道北端的试车区滑行时，与中国国际航空321号航班的一架波音737相撞。波音737的右副翼严重受损，空客A320的左翼轻微受损，没有人员受伤。A320飞行员报告称，其飞机当时位于B737右侧。空中交通管制许可他们离场，这要求A320从B737旁边滑过。机长表示，他检查了B737的位置，认为能够安全通过，随后便感受到了撞击。机长将相撞情况通知了空中交通管制。机场消防人员赶到现场，但没有发生燃油泄漏或火灾。B737机组报告称，他们当时设置了停留刹车，停在原地等待空中交通管制许可。（150词）"
+    },
+    {
+      "id": "story-kongguan-018",
+      "taskTitle": "管制ICAO-必做题库-18",
+      "audioText": "The crew of flight 523 found a traffic 20 miles at FL 294 right ahead of the airplane on TCAS at FL 290 near LAMEN. The captain reported to Shanghai Control immediately, but the controller responded that there was no indication on his radar screen and there had not been any flight advisory. The captain then instructed the crew to turn left and found the conflicting traffic closing to the flight path and a TCAS warning was initiated. The crew then immediately turns right for avoidance, disengage the autopilot and descended to a lower altitude. The crew reported to the controller about the conflict after the conflict had been cleared.",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/018.mp3",
+      "audioTextZh": "523号航班机组在LAMEN附近以FL290飞行时，通过TCAS发现飞机正前方20海里处有一架位于FL294的航空器。机长立即向上海管制报告，但管制员回应称，雷达屏幕上没有相关显示，此前也没有收到任何飞行情报。随后，机长指示机组左转，并发现冲突航空器正不断接近本机航迹，TCAS警告随即触发。机组立即右转避让，断开自动驾驶并下降到较低高度。冲突解除后，机组向管制员报告了此次冲突。"
+    },
+    {
+      "id": "story-kongguan-019",
+      "taskTitle": "管制ICAO-必做题库-19",
+      "audioText": "On September 28, 2003, United 552, a DC-9-82, experienced an in-flight engine fire during departure climb from New York City. During the return to the departure airport, the nose landing gear failed to extend, and the flight crew was instructed by the ATC to execute a go-around, during which the crew extended the nose gear using the emergency procedure. The flight crew conducted an emergency landing, and the 2 flight crewmembers, 3 flight attendants, and 138 passengers deplaned on the runway. No occupant injuries were reported, but the airplane sustained substantial damage from the fire.\nThe National Transportation Safety Board determines that the probable cause of this accident was American Airlines’ maintenance personnel’s use of an inappropriate manual engine-start procedure, which led to the subsequent left engine fire. (128 words)",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/019.mp3",
+      "audioTextZh": "2003年9月28日，美联航552号航班，一架DC-9-82，在从纽约市起飞爬升期间发生空中发动机火警。飞机返航起飞机场期间，前起落架无法放出，空中交通管制指示机组复飞；复飞过程中，机组使用应急程序放出了前起落架。机组随后实施紧急着陆，2名飞行机组成员、3名乘务员和138名乘客在跑道上撤离。机上人员均未受伤，但飞机因火灾严重受损。美国国家运输安全委员会认定，这起事故的可能原因是美国航空维修人员采用了不适当的人工启动发动机程序，进而引发左发动机火灾。（128词）"
+    },
+    {
+      "id": "story-kongguan-020",
+      "taskTitle": "管制ICAO-必做题库-20",
+      "audioText": "On March 22, 2008, China Southern 303, a Boeing 757-200, lost a left upper wing trailing edge panel during cruise flight at FL270. Initially, ATC received a pilot report that the flight crew had experienced \"light chop\" at the time. The flight was en route from Greenyard Airport to Blueyard Airport. The broken panel struck the window of passenger row 19ABC and cracked only the outer portion of the window. Pressurization was not lost. The flight crew continued on to Blueyard. Upon approach to Blueyard, ATC instructed the flight crew to expedite for separation. the flight crew informed ATC that they could not increase their airspeed due to possible airframe damage. The flight landed safely. There were 174 passengers and 6 crew members on board with no reported injuries.(128 words)",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/020.mp3",
+      "audioTextZh": "2008年3月22日，中国南方航空303号航班，一架波音757-200，在FL270巡航时，左翼上表面的一块后缘面板脱落。最初，空中交通管制收到飞行员报告称，机组当时遭遇了“轻度颠簸”。该航班正从绿园机场飞往蓝园机场。脱落的面板击中了19ABC排乘客的舷窗，仅使舷窗外层开裂，飞机没有失压。机组继续飞往蓝园机场。飞机进近蓝园机场时，空中交通管制为建立间隔指示机组加快速度；机组告知管制员，由于机体可能受损，他们无法提高空速。航班最终安全着陆。机上共有174名乘客和6名机组人员，没有人员受伤报告。（128词）"
+    },
+    {
+      "id": "story-kongguan-021",
+      "taskTitle": "管制ICAO-必做题库-21",
+      "audioText": "On February 17, 2005, an Airbus 320 operated by United Airline, collided with an ERJ 145, operated by US Airways during taxi in the runup area of taxiway J at the north end of runway 19. The right aileron of the ERJ 145 was substantially damaged; the left winglet of the Airbus 320 had minor damage. There were no injuries.\nThe pilot of the Airbus 320 reported that he was positioned to the right of the ERJ 145. ATC cleared them for departure, which required them to taxi past the ERJ 145. The captain stated that he checked the proximity of the ERJ 145, and it looked like he could clear it and then felt the impact. The captain notified ATC of the collision. Airport fire crews responded, but there was no fuel leak or fire. The crew of the ERJ 145 reported that they were stationary with the parking brake applied while awaiting ATC clearance. (155 words)",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/021.mp3",
+      "audioTextZh": "2005年2月17日，美联航运营的一架空客A320在19号跑道北端J滑行道试车区滑行时，与全美航空运营的一架ERJ145相撞。ERJ145的右副翼严重受损，空客A320的左翼梢小翼轻微受损，没有人员受伤。A320飞行员报告称，其飞机当时位于ERJ145右侧。空中交通管制许可他们离场，这要求A320从ERJ145旁边滑过。机长表示，他检查了与ERJ145之间的距离，认为能够安全通过，随后便感受到了撞击。机长将相撞情况通知了空中交通管制。机场消防人员赶到现场，但没有发生燃油泄漏或火灾。ERJ145机组报告称，他们当时设置了停留刹车，停在原地等待空中交通管制许可。（155词）"
+    },
+    {
+      "id": "story-kongguan-022",
+      "taskTitle": "管制ICAO-必做题库-22",
+      "audioText": "Prior to initiating the first ILS approach to runway 10R, the pilot of Japan air 223 was advised by the tower controller that the runway visual range (RVR) was 600 feet, followed by being given a landing clearance. The pilot declared a missed approach two minutes later and was given radar vectors for a second ILS approach. After turning inbound on the localizer, the pilot was advised the runway visual range and then cleared to land. When the tower controller observed the airplane turning to the south of the runway on her radar display, she issued missed approach instructions. There was no further reply from the pilot. The airplane impacted the top of an 85-foot tall tree, and then continued to collide on the ground. The published missed approach procedure instructed the pilot to climb to 900 feet, then right turn to intercept the 160 degree radial of the VORTAC. It appears the pilot likely misinterpreted the missed approach instructions by making the right hand turn prior to initiating a climb to 900 feet, which resulted in the subsequent impact with the tree. (179 words)",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/022.mp3",
+      "audioTextZh": "日本航空223号航班的飞行员在开始对10R跑道实施第一次ILS进近前，塔台管制员告知其跑道视程（RVR）为600英尺，随后向其发布了着陆许可。两分钟后，飞行员宣布复飞，并接受雷达引导进行第二次ILS进近。转入航向道向台飞行后，飞行员再次获知跑道视程，随后获准着陆。当塔台管制员在雷达显示器上观察到飞机正在向跑道南侧转弯时，她发布了复飞指令。此后没有再收到飞行员的回答。飞机撞上一棵85英尺高的大树顶部，随后继续撞击地面。公布的复飞程序要求飞行员先爬升至900英尺，然后右转切入VORTAC的160度径向线。飞行员很可能误解了复飞指令，在开始爬升至900英尺之前就进行了右转，最终导致飞机撞树。（179词）"
+    },
+    {
+      "id": "story-kongguan-023",
+      "taskTitle": "管制ICAO-必做题库-23",
+      "audioText": "On February 28, 2001, A Boeing 757 and a Bombardier were substantially damaged when the tails of both airplanes collided during the pushback process from two adjacent terminal gates in Greenyard airport. The flight crew of the Bombardier reported that during the final stages of pushback from gate 79, they were in a stopped position while their ground crew was in the process of disconnecting the tug when the collision occurred. Company maintenance personnel stated they were pushing the 757 back from gate 80 and did not see the Bombardier. Review of ATC communication recordings between ground control and both airplanes revealed that the 757 was initially cleared for pushback onto taxiway alpha from gate 80. About 41 seconds later, the ground controller cleared the Bombardier to push back onto taxiway alpha from gate 79. The recordings revealed that the ground controller did not advise either aircraft of simultaneous adjacent pushback operations. The controller stated that he believed there was room for both aircraft to push back and did not forecast a traffic conflict. (174 words)",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/023.mp3",
+      "audioTextZh": "2001年2月28日，在绿园机场两个相邻机位推出过程中，一架波音757和一架庞巴迪飞机的尾部发生碰撞，两架飞机均严重受损。庞巴迪机组报告称，他们从79号机位推出进入最后阶段时，飞机已经停住，地面人员正在断开牵引车，此时碰撞发生。航空公司维修人员表示，他们正将757从80号机位推出，没有看到庞巴迪飞机。对地面管制与两架飞机之间的空中交通管制通信录音进行审查后发现，757最初获准从80号机位推出至A滑行道。约41秒后，地面管制员又许可庞巴迪飞机从79号机位推出至A滑行道。录音显示，地面管制员没有向任何一架飞机通报相邻机位同时推出的情况。该管制员表示，他认为两架飞机都有足够的推出空间，没有预见到交通冲突。（174词）"
+    },
+    {
+      "id": "story-kongguan-024",
+      "taskTitle": "管制ICAO-必做题库-24",
+      "audioText": "On December 11, 2002, Air France 551 departed runway 15R and over flew United83, which had landed on runway 10 at Atlantic international Airport. The tower controller had cleared United83 to land on runway 10 when United83 was approximately 6 mile on final approach. Simultaneously, the ATC local controller cleared Air France 551 for takeoff on runway 15R. Air France 551 was on taxiway A about 500 feet short of runway 15R when the takeoff clearance was issued. Air France 551 rotated at taxiway F and over flew United83 by 300 feet at the intersection of runways 10 and 15R. United83 exited runway 10 afterwards. The main cause of this incident is local controller's failure of maintaining awareness of the situation and failing to provide the appropriate separation between the two aircraft operating on intersecting runways. (136 words)",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/024.mp3",
+      "audioTextZh": "2002年12月11日，在大西洋国际机场，法国航空551号航班从15R跑道起飞，并从已在10号跑道着陆的美联航83号航班上方飞过。当美联航83号航班在10号跑道最后进近约6海里处时，塔台管制员已许可其着陆。与此同时，本场管制员许可法国航空551号航班从15R跑道起飞。起飞许可发布时，法国航空551号航班位于A滑行道，距15R跑道约500英尺。法国航空551号航班在F滑行道处抬前轮，并在10号与15R跑道交叉口上方，以300英尺垂直间隔飞越美联航83号航班。随后，美联航83号航班脱离10号跑道。事件的主要原因是本场管制员未能保持情景意识，也未能为在相交跑道上运行的两架飞机提供适当间隔。（136词）"
+    },
+    {
+      "id": "story-kongguan-025",
+      "taskTitle": "管制ICAO-必做题库-25",
+      "audioText": "The Piper and Cessna pilot were both inbound to the same airport. The Cessna pilot reported to the local controller that he was 13.5 miles to the northeast of the airport. The LC directed the pilot to report entering a left downwind, and the pilot continued on south heading for 4 miles before turning right to a southwest heading. The Piper pilot contacted the LC and reported 10 miles to the north of the airport. The LC directed the Piper pilot to enter a left downwind. The LC noticed two VFR targets close to one another. Assuming the target on a southwest heading was a VFR helicopter when it was actually the Cessna, the LC issued conflict traffic to the southbound aircraft, assuming it was the Cessna pilot when it was actually the Piper pilot, and the Cessna pilot acknowledged the traffic call. Forty one seconds later, the Piper pilot informed the LC of the collision and declared an emergency. (161 words)",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/025.mp3",
+      "audioTextZh": "一架派珀和一架塞斯纳都在飞往同一机场。塞斯纳飞行员向本场管制员报告，飞机位于机场东北方向13.5英里处。本场管制员指示其报告进入左三边，飞行员继续向南飞行4英里后，右转至西南航向。派珀飞行员联系本场管制员，报告位于机场以北10英里处。本场管制员指示派珀进入左三边。随后，管制员注意到两个目视飞行规则雷达目标彼此接近。他误以为向西南飞行的目标是一架目视飞行规则直升机，而实际上那是塞斯纳；他又向南行航空器通报了冲突交通，以为该航空器是塞斯纳，实际上却是派珀，而塞斯纳飞行员确认收到了这份交通通报。41秒后，派珀飞行员通知本场管制员两机已经相撞，并宣布紧急状态。（161词）"
+    },
+    {
+      "id": "story-kongguan-026",
+      "taskTitle": "管制ICAO-必做题库-26",
+      "audioText": "On August 15, 2006, a runway incursion occurred at Los Angeles International Airport, California. Japan air 4421 landed on runway 22R and exited at taxiway Y then changed to ground control frequency without authorization. The airplane was holding between the parallel runways. Meanwhile, the tower controller cleared Qantas180 for takeoff from runway 22L. The pilot of Japan air 4421 contacted ground control and said, \"Ground, Japan air 4421with you on taxiway yankee for gate 35.\" The ground controller believed that the aircraft has crossed runway 22L and responded, \" Japan air 4421, Los Angeles tower, taxi via taxiway echo to the gate.\" Ten seconds later, the pilot of Japan air 4421 confirmed whether they were cleared to cross runway 22L. The ground controller then realized that Japan air 4421 had not been instructed to cross runway 22L and told Japan air 4421 to stop. The two aircraft missed colliding by 37 feet as Qantas180 departed runway 22L.(154 words)",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/026.mp3",
+      "audioTextZh": "2006年8月15日，美国加利福尼亚州洛杉矶国际机场发生一起跑道侵入事件。日本航空4421号航班在22R跑道着陆，经Y滑行道脱离后，未经许可便转换到地面管制频率。飞机停在两条平行跑道之间。与此同时，塔台管制员许可澳洲航空180号航班从22L跑道起飞。日本航空4421号航班飞行员联系地面管制并说：“地面，日本航空4421，在Y滑行道，前往35号登机口。”地面管制员以为飞机已经穿越22L跑道，回答：“日本航空4421，洛杉矶塔台，经E滑行道滑往登机口。”十秒后，日本航空4421号航班飞行员确认他们是否获准穿越22L跑道。此时地面管制员才意识到，日本航空4421号航班并未得到穿越22L跑道的指令，于是指示其停止。澳洲航空180号航班从22L跑道起飞时，两架飞机仅以37英尺的间隔避免相撞。（154词）"
+    },
+    {
+      "id": "story-kongguan-027",
+      "taskTitle": "管制ICAO-必做题库-27",
+      "audioText": "The Flight 004 was a scheduled passenger flight from Hong Kong to Sydney with an en route stop in Bangkok, Thailand. The flight departed Bangkok at 1602 hours on May 26, 1991 for the final flight sector to Sydney. All pre-flight, ground, and flight operations appear routine until five minutes after the cockpit voice recorder recorded the sounds of engine power being advanced for takeoff. The crew discussed this alert for several minutes. The Quick Reference Handbook was consulted to determine appropriate crew actions in response to the alert. No actions were required. Ten minutes into the flight the co-pilot advised the captain of the need for rudder trim to the left. The pilot-in-command acknowledged the co-pilot's statement. Fifteen seconds later the CVR recording ended with multiple sounds thought to be structural breakup. The airplane crashed in mountainous jungle terrain at approximately 1617 hours. 10 crewmember and 213 passengers were killed. (153words)",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/027.mp3",
+      "audioTextZh": "004号航班是一班从香港飞往悉尼、途中经停泰国曼谷的定期客运航班。1991年5月26日16时02分，航班从曼谷起飞，执行前往悉尼的最后一个航段。起飞前、地面和飞行操作看起来一直正常，直到驾驶舱话音记录器记录到发动机加大推力起飞的声音五分钟后。机组围绕这一警报讨论了几分钟，并查阅《快速检查单手册》，以确定针对该警报应采取的适当措施；检查结果显示无需采取任何行动。飞行十分钟后，副驾驶告知机长需要向左配平方向舵，机长确认了副驾驶的报告。15秒后，驾驶舱话音记录器的录音在多次疑似结构解体的声响中终止。飞机于大约16时17分坠毁在山地丛林中，10名机组人员和213名乘客全部遇难。（153词）"
+    },
+    {
+      "id": "story-kongguan-028",
+      "taskTitle": "管制ICAO-必做题库-28",
+      "audioText": "The incident occurred on 22 October 2005. An Airbus 319 was operating a scheduled passenger flight from London to Paris. As the aircraft climbed to FL 200 at night, there was a major electrical failure. This resulted in the loss of some important aircraft systems. The crew reported that both the captain’s and co-pilot’s PFDs and NDs didn’t work, nor did the upper ECAM display. The autopilot and autothrust systems disconnected, the VHF radio and intercom were inoperative and most of the cockpit lighting went off. The captain maintained control of the aircraft with standby instruments. The co-pilot carried out the abnormal checklist actions which appeared on the lower ECAM display, the only available electronic flight display in the aircraft.\nMost of the affected systems were restored after about 90 seconds, when the co-pilot selected the AC Essential Feed switch to Alternate. There were no injuries to any of the 76 passengers or 6 crew. (152words)",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/028.mp3",
+      "audioTextZh": "该事件发生于2005年10月22日。一架空客A319正在执行从伦敦飞往巴黎的定期客运航班。飞机夜间爬升至FL200时，发生严重电气故障，导致部分重要机载系统失效。机组报告称，机长和副驾驶的主飞行显示器（PFD）及导航显示器（ND）均不工作，上部ECAM显示器也失效。自动驾驶和自动推力系统断开，甚高频（VHF）无线电和内话系统无法使用，驾驶舱内大部分照明熄灭。机长依靠备用仪表保持对飞机的控制。副驾驶按照下部ECAM显示器上出现的非正常检查单执行操作；这是飞机当时唯一可用的电子飞行显示器。大约90秒后，副驾驶将交流基本汇流条供电开关选择至备用位，大多数受影响的系统恢复。机上76名乘客和6名机组人员均未受伤。（152词）"
+    },
+    {
+      "id": "story-kongguan-029",
+      "taskTitle": "管制ICAO-必做题库-29",
+      "audioText": "On July 13, 2003, Air Sunshine Airlines, a Cessna was ditched in the Atlantic Ocean following the in-flight failure of the right engine. Four of the nine passengers sustained no injuries, three passengers and the pilot sustained minor injuries, and one adult and one child passenger died after they evacuated the airplane. The airplane sustained substantial damage. The airplane was being operated as a scheduled international passenger commuter flight from F Hollywood International Airport, Florida, to MYAT. Visual meteorological conditions prevailed for the flight, which operated on a visual flight rules flight plan.\nThe National Transportation Safety Board determines that the probable cause of this accident was the in-flight failure of the right engine and the pilot’s failure to adequately manage the airplane’s performance after the engine failed. The right engine failure resulted from inadequate maintenance that was performed by Air Sunshine’s maintenance personnel.",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/029.mp3",
+      "audioTextZh": "2003年7月13日，阳光航空一架塞斯纳飞机因右发动机在飞行中失效，迫降于大西洋。9名乘客中有4人未受伤，3名乘客和飞行员轻伤，1名成人和1名儿童乘客在撤离飞机后死亡。飞机严重受损。该机当时正在执行从佛罗里达州F好莱坞国际机场飞往MYAT的定期国际通勤客运航班。航班在目视气象条件下运行，并按目视飞行规则飞行计划飞行。美国国家运输安全委员会认定，这起事故的可能原因是右发动机在飞行中失效，以及发动机失效后飞行员未能妥善管理飞机性能。右发动机失效源于阳光航空维修人员实施的维修不当。"
+    },
+    {
+      "id": "story-kongguan-030",
+      "taskTitle": "管制ICAO-必做题库-30",
+      "audioText": "On November 22, 2004, a Gulf-stream airlines aircraft struck a light pole and crashed about 3 miles southwest of Hobby Airport, Houston, Texas, while on an instrument landing system approach to runway 4. The two pilots and the flight attendant were killed, an individual in a vehicle near the airport received minor injuries, and the airplane was destroyed by impact forces. The airplane was being operated on an instrument flight rules flight plan. Instrument meteorological conditions (IMC) prevailed at the time of the accident.\nThe accident flight was scheduled to depart from Dallas Airport. The flight crew planned to pick up former President George Bush and other passengers at Houston. The flight was scheduled to depart HOU about 0654.\nThe flight departed Dallas Airport about 0530, the departure was delayed because of poor weather conditions at DAL. The captain was the flying pilot, and the first officer performed the non-flying pilot duties.\nBefore flight the flight crew received ATIS information “Quebec,” which reported that the winds were calm, the visibility was low in fog, and the clouds were broken at 100 feet and overcast at 9,000 feet.",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/030.mp3",
+      "audioTextZh": "2004年11月22日，湾流航空一架飞机在仪表着陆系统进近休斯敦霍比机场4号跑道时，撞上一根灯杆，并在机场西南约3英里处坠毁。两名飞行员和一名乘务员遇难，机场附近一辆汽车中的一人轻伤，飞机因撞击力完全损毁。该机按照仪表飞行规则飞行计划运行，事故发生时为仪表气象条件（IMC）。事故航班原计划从达拉斯机场起飞，机组计划在休斯敦接前总统乔治·布什及其他乘客。该航班计划于大约06时54分从HOU起飞。航班约于05时30分离开达拉斯机场；由于DAL天气不佳，起飞受到延误。机长担任操纵飞行员，副驾驶承担非操纵飞行员职责。飞行前，机组收到了代号为“Quebec”的自动终端情报服务（ATIS）信息，其中报告风平静、雾中能见度低、云层在100英尺处为多云、在9000英尺处为阴天。"
+    },
+    {
+      "id": "story-kongguan-031",
+      "taskTitle": "管制ICAO-必做题库-31",
+      "audioText": "On March 23 1994 the aircraft named Glinka, after the father of Russian music, was flying from Moscow to Hong Kong. There were sixty-three passengers with twelve crew members on board.\nThe aircraft crashed after a captain allowed his child to manipulate the controls of the plane. The pilot's 11 year old daughter and 16 year old son were taking turns in the pilot's seat. While the boy was flying, the captain inadvertently disengaged the autopilot linkage to the ailerons and put the airliner in a bank of 90 degrees which caused the nose to drop sharply.\nThe co-pilot pulled back on the yoke to obtain level flight but the plane stalled. With his seat pulled all the way back, the co-pilot in the right hand seat could not properly control the aircraft. After several stalls and rapid pull-ups the plane went into a spiral descent. In the end, the co-pilot initiated a pull-up and nearly regained a stable flight path but the aircraft struck the ground in an almost level attitude killing all 75 aboard.",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/031.mp3",
+      "audioTextZh": "1994年3月23日，以俄罗斯音乐之父命名的“格林卡”号飞机正从莫斯科飞往香港，机上有63名乘客和12名机组人员。事故发生前，机长允许自己的孩子操纵飞机。机长11岁的女儿和16岁的儿子轮流坐在飞行员座椅上。男孩操纵飞机时，机长无意中断开了自动驾驶仪与副翼的连接，使客机形成90度坡度，导致机头急剧下沉。副驾驶向后拉驾驶盘试图恢复平飞，但飞机发生失速。由于座椅被调到最靠后位置，坐在右座的副驾驶无法正确操纵飞机。经过数次失速和快速拉起后，飞机进入螺旋下降。最后，副驾驶开始拉起并几乎恢复了稳定航迹，但飞机以接近水平的姿态撞击地面，机上75人全部遇难。"
+    },
+    {
+      "id": "story-kongguan-032",
+      "taskTitle": "管制ICAO-必做题库-32",
+      "audioText": "On June 10 1990 there was a flight from Birmingham, England to Malaga, Spain, when the aircraft was flying at FL 173, a large section of windshield fell away from the aircraft. The decompression pulled the captain out from under his seatbelt. Despite trying to hold onto the yoke, the captain was sucked out into the opening. He was in an immediate danger.\nA steward in the cockpit was fortunately able to grab hold of his legs. Another steward was able to strap him into the vacant seat and aid in holding onto the captain's legs. The copilot wearing full restraints made an emergency landing at Southampton.\nThe captain remained half way out of the aircraft for 15 minutes and suffered only frostbite and some fractures. Improper bolts used to replace the windshield two days earlier resulted in the accident.",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/032.mp3",
+      "audioTextZh": "1990年6月10日，一架飞机执行从英国伯明翰飞往西班牙马拉加的航班。当飞机在FL173飞行时，一大块风挡从飞机上脱落。失压将机长从安全带下方向外拉出。尽管机长试图抓住驾驶盘，他还是被吸出风挡开口，立即陷入危险。幸运的是，驾驶舱内一名乘务员抓住了机长的双腿。另一名乘务员将自己固定在空座椅上，协助抓住机长双腿。系着全套安全带的副驾驶在南安普敦实施了紧急着陆。机长身体有一半悬在飞机外长达15分钟，最终仅遭受冻伤和部分骨折。事故原因是两天前更换风挡时使用了不合适的螺栓。"
+    },
+    {
+      "id": "story-kongguan-033",
+      "taskTitle": "管制ICAO-必做题库-33",
+      "audioText": "On August 14, 2005 at approximately 12:00 p.m local Greek time, a Boeing 737-300, crashed into rolling terrain northeast of Athens, Greece. The aircraft had departed Larnaka Airport, Cyprus, two hours and 57 minutes prior to the accident.\nAccording to the investigation, during climb-out as the aircraft passed 12,000 feet, the cabin altitude warning horn sounded. The captain then began radio communications with his company maintenance base at Larnaka. The aircraft was on autopilot at the time and followed its FMCS inserted route. It subsequently entered the missed approach holding pattern.\nTwo Air Force F-16 fighter aircraft intercepted the aircraft emergency call and one of the pilots noticed that the captain's seat was empty and the first officer's seat was occupied by an incapacitated person. Shortly thereafter, one person was seen to enter the cockpit wearing an oxygen mask.\nAfter 1 hour and 12 minutes in the holding pattern the left engine flamed out due to fuel starvation and 10 minutes later the right engine also flamed out. The cabin altitude warning horn subsequently stopped sounding after the aircraft later descended below 10,000 feet during its final descent.\nGreek authorities suggested the failure of pressurization in the aircraft may have caused the crash when they ruled out a terrorist attack.",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/033.mp3",
+      "audioTextZh": "2005年8月14日希腊当地时间大约12时，一架波音737-300在希腊雅典东北部起伏地带坠毁。事故发生前2小时57分，飞机从塞浦路斯拉纳卡机场起飞。调查显示，飞机起飞爬升通过12000英尺时，座舱高度警告喇叭响起。机长随后开始通过无线电与拉纳卡的公司维修基地通信。当时飞机由自动驾驶操纵，并按照飞行管理计算机系统（FMCS）中输入的航路飞行，随后进入复飞等待航线。两架空军F-16战斗机对该机实施拦截，其中一名飞行员注意到机长座椅无人，副驾驶座椅上坐着一名已经失去行动能力的人。不久后，有人被看到戴着氧气面罩进入驾驶舱。飞机在等待航线飞行1小时12分钟后，左发动机因燃油耗尽而熄火；10分钟后，右发动机也熄火。此后飞机在最后下降过程中降至10000英尺以下，座舱高度警告喇叭随即停止鸣响。希腊当局排除恐怖袭击后认为，飞机增压失效可能导致了这起坠机事故。"
+    },
+    {
+      "id": "story-kongguan-034",
+      "taskTitle": "管制ICAO-必做题库-34",
+      "audioText": "The flight departed Peachtree Airport, moments later the pilot radioed that the airplane had a landing gear problem, and there was smoke in the cockpit. The pilot was instructed to enter visual traffic for Runway 2R. Once the airplane was in the traffic pattern, the controller told the pilot that it appeared that the landing gear was extended, and cleared the flight to land. As the airplane neared touchdown the controller told the pilot that the landing gear was not down and locked, and then instructed the pilot to go - around. As the pilot maneuvered the airplane for a landing on runway 27, the pilot was again instructed to go around. Seconds later the aircraft touched down in a grassy area the approach ends of runways 2R.\nExamination of the airplane disclosed that the airplane had sustained extensive fire damage to the floor area beneath the pilot's seat. The examination revealed that a flex hydraulic fluid supply line was missing, and there had been electrical arcing in the immediate vicinity of the hot spot.\nThe National Transportation Safety Board determines the probable cause(s) of this accident as follows: The failure of the flex hydraulic line and the chaffing of an electrical line under the pilot seat that resulted in an in-flight fire.",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/034.mp3",
+      "audioTextZh": "飞机从桃树机场起飞。不久后，飞行员通过无线电报告飞机出现起落架故障，驾驶舱内有烟雾。管制员指示飞行员加入2R跑道的目视起落航线。飞机进入起落航线后，管制员告诉飞行员，起落架看起来已经放出，并许可航班着陆。飞机接近接地时，管制员又告知飞行员起落架并未放下锁定，随后指示其复飞。飞行员操纵飞机准备在27号跑道着陆时，再次被指示复飞。数秒后，飞机在2R跑道进近端附近的一片草地上接地。对飞机的检查发现，飞行员座椅下方地板区域遭受严重火灾损坏。检查还发现，一根柔性液压油供油管缺失，热点附近存在电弧痕迹。美国国家运输安全委员会认定，这起事故的可能原因是柔性液压管路失效，以及飞行员座椅下方一根电线磨损，从而引发空中火灾。"
+    },
+    {
+      "id": "story-kongguan-035",
+      "taskTitle": "管制ICAO-必做题库-35",
+      "audioText": "On 18 August 2006, a Boeing 747aircraft, with a crew of 18 and 243 passengers departed Hong Kong, China, on a scheduled passenger service to Melbourne, Australia.\nWhile in cruise, one of the cabin crew notified the flight crew that there was a smell of fuel in the first class cabin. One of the pilots verified the fuel smell and then proceeded to inspect the engines from the cabin windows.\nA fluid trail was evident from the rear of the number-3 engine. During this time, it was noted by the other pilots that the number-3 engine had a higher than normal fuel flow. The flight crew conducted an in-flight shut down of the number-3 engine and diverted the aircraft to Darwin.\nA subsequent inspection of the number-3 engine revealed the fuel manifold return line had fractured, causing a fuel leak. The fuel line was replaced and the aircraft was returned to service.\nIn 2005, the ATSB investigated two other fuel manifold return line fractures, from the same engine type, under similar circumstances.",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/035.mp3",
+      "audioTextZh": "2006年8月18日，一架波音747载有18名机组人员和243名乘客，从中国香港起飞，执行前往澳大利亚墨尔本的定期客运航班。巡航期间，一名客舱机组人员通知飞行机组，头等舱内有燃油气味。一名飞行员确认存在燃油气味，随后从客舱舷窗检查发动机。3号发动机后部有明显液体流痕；与此同时，其他飞行员注意到3号发动机的燃油流量高于正常值。机组在飞行中关闭3号发动机，并将飞机备降至达尔文。后续检查发现，3号发动机的燃油总管回油管断裂，造成燃油泄漏。更换燃油管后，飞机恢复运行。2005年，澳大利亚运输安全局（ATSB）还调查过同型发动机在类似情况下发生的另外两起燃油总管回油管断裂事件。"
+    },
+    {
+      "id": "story-kongguan-036",
+      "taskTitle": "管制ICAO-必做题库-36",
+      "audioText": "On 18 January 2005, a Beech aircraft sustained damage when its main landing gear collapsed during touchdown on runway 24 at Perth Airport, WA.\nThe aircraft had earlier departed the aerodrome on a charter flight with one pilot and seven passengers on board. Shortly after takeoff, the pilot selected the landing gear up and subsequently observed that the red ‘gear-in-transit’ warning light remained illuminated. An aerodrome controller noticed that the aircraft’s landing gear did not retract and passed that information to the departures controller. The departures controller cleared the pilot to climb to 4,000 ft and provided radar vectors to a suitable area where the pilot could complete troubleshooting of the aircraft systems.\nThe pilot completed the checklist actions in an attempt to manually extend the landing gear. However, the green ‘gear down’ indicator lights did not illuminate\nThe pilot returned to Perth Airport and conducted a fly-past of the aerodrome control tower and maintenance facility at an altitude of about 500 ft. Engineer and air traffic control witnesses to that flypast indicated to the pilot that the landing gear appeared to be in the extended position.\nDuring the subsequent landing, the right main landing gear collapsed and retracted into the wheel well. The left main landing gear partially retracted into the wheel well and the nose gear remained extended. The right engine nacelle fuel tank was punctured, requiring removal of the remaining fuel in that tank prior to the aircraft’s removal from the runway.",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/036.mp3",
+      "audioTextZh": "2005年1月18日，一架比奇飞机在西澳大利亚州珀斯机场24号跑道接地时，主起落架折叠，飞机受损。此前，该机载有1名飞行员和7名乘客，从该机场起飞执行包机航班。起飞后不久，飞行员选择收起起落架，随后观察到红色“起落架转换中”警告灯持续亮起。一名机场管制员注意到飞机起落架没有收上，并将该信息告知离场管制员。离场管制员许可飞行员爬升至4000英尺，并用雷达引导飞机前往合适区域，以便飞行员排查机载系统故障。飞行员按照检查单操作，尝试人工放出起落架，但绿色“起落架放下”指示灯没有亮起。飞行员返回珀斯机场，并以大约500英尺高度飞越机场管制塔台和维修设施。工程人员和空中交通管制目击者在飞机通场后告知飞行员，起落架看起来处于放出位置。随后着陆时，右主起落架折叠并收入轮舱，左主起落架部分收入轮舱，前起落架则保持放出。右发动机短舱燃油箱被刺穿，因此在将飞机移出跑道前，必须先抽走该油箱内的剩余燃油。"
+    },
+    {
+      "id": "story-kongguan-037",
+      "taskTitle": "管制ICAO-必做题库-37",
+      "audioText": "The Scott Aviation aircraft with two crew members and four passengers on board, took off from Montréal, Quebec, for a night instrument flight rules flight to Bromont, Quebec.\nUpon approaching Bromont, the co-pilot activated the lighting system and contacted the approach. The flight crew was advised that the runway edge lights were out of order. However, the approach lights and the visual approach slope indicator did turn on.\nThe flight crew executed the approach, and the aircraft touched down at 300 feet to the left of Runway 05L and 1800 feet beyond the threshold. It continued on its course for a distance of approximately 1800 feet before coming to a stop in a ditch. The crew tried to stop the engines, but the left engine did not stop.\nThe co-pilot entered the cabin to direct the evacuation. One of the passengers tried to open the emergency exit door, but was unsuccessful. All of the aircraft's occupants exited through the main entrance door. Both pilots and one passenger sustained serious injuries, and the three remaining passengers received minor injuries. The aircraft suffered major damage.",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/037.mp3",
+      "audioTextZh": "一架斯科特航空公司的飞机载有2名机组人员和4名乘客，从魁北克省蒙特利尔起飞，执行前往魁北克省布罗蒙的夜间仪表飞行规则航班。接近布罗蒙时，副驾驶启动了灯光系统并联系进近管制。机组被告知跑道边灯故障，但进近灯和目视进近坡度指示器确实已经点亮。机组实施进近，飞机在05L跑道左侧300英尺、越过跑道入口1800英尺的位置接地。飞机沿原方向继续滑行约1800英尺后，停在一条沟中。机组试图关闭发动机，但左发动机没有停车。副驾驶进入客舱指挥撤离。一名乘客尝试打开应急出口门，但未能成功。机上所有人员最终都通过主入口舱门撤离。两名飞行员和一名乘客严重受伤，其余三名乘客轻伤，飞机严重受损。"
+    },
+    {
+      "id": "story-kongguan-038",
+      "taskTitle": "管制ICAO-必做题库-38",
+      "audioText": "A witness reported that he observed the aircraft taxi to the eastern end of the runway and commence the take-off roll but lost sight of the aircraft as it moved along the runway.\nThe pilot stated that the take-off roll was from a rolling start with power being slowly applied until engine output stabilized. At about 90 kts indicated air speed, the pilot attempted to rotate the aircraft but encountered resistance to rearward movement of the control column. He decided to reject the takeoff because the aircraft speed at the time was below his nominated decision speed of 100 kts. The pilot reported that he then reduced the engine power to idle and applied maximum braking.\nThe aircraft overran the runway, passed through the airport boundary fence, continued across a public road, and passed through another fence before coming to a stop 162 m beyond the end of the runway. An inspection of the runway revealed a skid mark from the aircraft’s right tire, which commenced 65 m before the end of the runway.\nAfter the aircraft came to a stop, the pilot exited the aircraft via the crew door, assisted the passengers to evacuate the aircraft through the rear cabin door and marshalled them to an area away from the aircraft. A passenger then used a mobile phone to contact emergency services, who attended the scene soon after.",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/038.mp3",
+      "audioTextZh": "一名目击者报告称，他看到飞机滑行至跑道东端并开始起飞滑跑，但飞机沿跑道移动后便离开了他的视线。飞行员表示，飞机以滑行中不停顿的方式开始起飞滑跑，发动机功率逐渐增加，直至输出稳定。在指示空速约90节时，飞行员尝试抬前轮，却发现驾驶盘向后移动受到阻力。由于当时飞机速度低于其设定的100节决断速度，他决定中断起飞。飞行员报告称，他随后将发动机功率减至慢车并实施最大制动。飞机冲出跑道，穿过机场边界围栏，继续越过一条公共道路，再穿过另一道围栏，最终停在跑道末端以外162米处。对跑道的检查发现了飞机右轮留下的刹车痕迹，痕迹从距跑道末端65米处开始。飞机停稳后，飞行员经机组舱门离机，协助乘客通过后客舱门撤离，并将他们引导至远离飞机的区域。一名乘客随后使用手机联系应急服务部门，救援人员很快赶到现场。"
+    },
+    {
+      "id": "story-kongguan-039",
+      "taskTitle": "管制ICAO-必做题库-39",
+      "audioText": "A Boeing 737-200 was scheduled to operate a regular public transport flight from Hobart to Sydney on 17 May 2005 departing at 0600 Eastern Standard Time with 6 crew members and 26 passengers.\nDuring the starting of the right engine, the aircraft dispatcher informed the flight crew that there was smoke and sparks shooting from the right engine and advised to get everyone off. The pilot in command called for an emergency evacuation without initiating the Passenger Evacuation Checklist. As a result, the wing flaps were not set to the extended position and the tail section of the aircraft was dark without emergency lighting while passengers were exiting the aircraft. The forward Door Right 1 escape slide fell to the ground un-inflated when the door was opened. A number of ground personnel ran to the front of the aircraft and helped 22 passengers off the forward Door Left 1 slide and directed them towards the terminal. Four passengers exited by the Door 2 slide at the rear of the aircraft and ran into the middle of the apron. The over-wing exits were not opened.\nThe aircraft’s dispatcher had not received any education in emergency communications with flight crew nor aircraft evacuations at the terminal. The reported smoke and sparks was a result of the right engine air turbine starter failing during the engine start sequence.",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/039.mp3",
+      "audioTextZh": "一架波音737-200计划于2005年5月17日澳大利亚东部标准时间06时00分从霍巴特起飞，执行前往悉尼的定期公共运输航班，机上有6名机组人员和26名乘客。右发动机启动期间，飞机签派员通知飞行机组，右发动机喷出烟雾和火花，并建议让所有人员撤离。机长没有启动《旅客撤离检查单》，便下令紧急撤离。因此，在乘客撤离时，机翼襟翼没有设置到放出位置，飞机尾部一片黑暗，应急照明也未点亮。前部右1号舱门打开时，其逃生滑梯未充气便落到地面。多名地面人员跑到飞机前部，帮助22名乘客从前部左1号舱门滑梯撤离，并引导他们前往航站楼。4名乘客从飞机后部2号舱门滑梯撤离后，跑到了机坪中央。翼上应急出口没有打开。飞机签派员此前没有接受过关于与飞行机组进行应急通信或在航站区实施飞机撤离的任何培训。报告的烟雾和火花是右发动机空气涡轮起动机在发动机启动过程中发生故障造成的。"
+    },
+    {
+      "id": "story-kongguan-040",
+      "taskTitle": "管制ICAO-必做题库-40",
+      "audioText": "The DC-10 aircraft was flying from Kingston to Toronto Airport. The aircraft departed Kingston at 1400 Eastern Standard Time with the first office designated as the pilot flying.\nDuring the initial climb following take-off, the first officer noted that abnormal forward pressure on the control column was required to keep the aircraft from pitching nose up. To counter the pitch-up, he trimmed the aircraft nose down. Thirty seconds after becoming airborne, the aircraft was 350 feet above ground level and the first officer had applied full nose-down trim. The amount of forward pressure on the control column continued to increase as the aircraft accelerated, and the first officer notified the captain of the control difficulties and requested his assistance in holding the control column forward.\nAs the aircraft climbed, the captain declared an emergency, indicating that they were experiencing control difficulties and that the aircraft may have to land nearby. The flight crew leveled the aircraft at 4000 feet on the sea level and pulled the elevator pitch disconnect handle, isolating the left and right elevators. The captain's elevator control functioned normally after the disconnection, and he decided to continue the flight. The flight crew conducted a flapless landing at Toronto without further incident.\nWhen the aircraft was inspected after landing, the right-side elevator spring tab was jammed in the trailing-edge-down position.",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/040.mp3",
+      "audioTextZh": "这架DC-10正在从金斯敦飞往多伦多机场。飞机于东部标准时间14时00分从金斯敦起飞，由副驾驶担任操纵飞行员。起飞后的初始爬升期间，副驾驶发现，为防止飞机机头上仰，必须对驾驶盘施加异常的向前压力。为抵消上仰趋势，他将飞机配平至机头向下。离地30秒后，飞机位于距地面350英尺高度，副驾驶已使用全部机头向下配平。随着飞机加速，驾驶盘所需的向前压力继续增大，副驾驶将操纵困难告知机长，并请求机长协助向前稳住驾驶盘。飞机继续爬升时，机长宣布紧急状态，称飞机存在操纵困难，可能需要在附近着陆。机组在海拔4000英尺处改平飞机，并拉动升降舵俯仰断开手柄，将左右升降舵隔离。断开后，机长一侧的升降舵操纵恢复正常，他决定继续飞行。机组最终在多伦多实施无襟翼着陆，未再发生其他事件。飞机着陆后接受检查时，发现右侧升降舵弹簧调整片卡在后缘向下位置。"
+    },
+    {
+      "id": "story-kongguan-041",
+      "taskTitle": "管制ICAO-必做题库-41",
+      "audioText": "June 21, 2002 FAA reminds all pilots to be particularly alert in their own flight preparations as well as activities at their local airports. This week incident with the Cessna 182, which is flying into restricted airspace in Washington, D.C. clearly indicates that flight preparation is more important than ever. The C-182 was intercepted by military aircraft after inadvertently straying into the restricted airspace while attempting to avoid bad weather.\nBefore taking off, the pilots should contact FAA Flight Service to receive the latest information; know and understand all applicable NOTAMs, and know where the Temporary Flight Restrictions are. Also maintain high vigilance at local airports, report suspicious activities to local authorities, and take the time to secure the airplane before you leave. It is critical that pilots continue to use the highest levels of preparation, responsibility and judgment, and that they encourage others to do so as well.",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/041.mp3",
+      "audioTextZh": "2002年6月21日，美国联邦航空局（FAA）提醒所有飞行员，在准备自身飞行以及参与本地机场活动时都要保持特别警惕。本周一架塞斯纳182误入华盛顿特区限制空域的事件清楚表明，飞行准备比以往任何时候都更加重要。该C-182在试图避开恶劣天气时无意中偏入限制空域，随后遭到军机拦截。起飞前，飞行员应联系FAA飞行服务部门获取最新信息；了解并理解所有适用的航行通告（NOTAM），并掌握临时飞行限制区的位置。此外，在本地机场也应保持高度警惕，向当地有关部门报告可疑活动，并在离开前花时间确保飞机得到妥善锁闭。飞行员继续保持最高水平的准备、责任心和判断力，并鼓励其他人也这样做，至关重要。"
+    },
+    {
+      "id": "story-kongguan-042",
+      "taskTitle": "管制ICAO-必做题库-42",
+      "audioText": "On 25 July 2005, a Piper Aircraft Corporation’s aircraft overran runway 27 at Nhill aerodrome following a rejected night takeoff. The aircraft was being operated on an instrument flight rules charter flight to Charlton, with the pilot and three passengers on board.\nThe pilot reported that, during the pre-flight preparation he set the elevator trim to the take-off position by winding the trim wheel. The pilot recalled removing the lock from the control column prior to starting the engines for departure. The operator’s Operations Manual included a series of checklists to be used during operation of the aircraft. The ‘Start Up’ and ‘Pre takeoff’ checklists included checking full and free movement of the flight controls.\nThe pilot stated that the take-off roll was from a rolling start with power being slowly applied until engine output stabilized. At about 90 kts indicated air speed, the pilot attempted to rotate the aircraft but encountered resistance to rearward movement of the control column. He decided to reject the takeoff because the aircraft speed at the time was below his nominated decision speed of 100 kts. The pilot then reduced the engine power to idle and applied maximum braking.\nAfter the aircraft came to a stop160 m beyond the end of the runway, the pilot exited the aircraft via the crew door, assisted the passengers to evacuate the aircraft through the rear cabin door and marshalled them to an area away from the aircraft. A passenger then used a mobile phone to contact emergency services, who attended the scene soon after.",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/042.mp3",
+      "audioTextZh": "2005年7月25日，派珀飞机公司的一架飞机在尼尔机场夜间中断起飞后冲出27号跑道。该机当时执行前往查尔顿的仪表飞行规则包机航班，机上有1名飞行员和3名乘客。飞行员报告称，飞行前准备期间，他通过转动配平轮将升降舵配平设置到起飞位置。飞行员记得在启动发动机离场前，已从驾驶盘上取下操纵锁。运营人的《运行手册》包含飞机运行期间应使用的一系列检查单，其中“启动”和“起飞前”检查单都要求检查飞行操纵装置是否能够全行程自由活动。飞行员表示，飞机以滑行中不停顿的方式开始起飞滑跑，发动机功率逐渐增加，直至输出稳定。在指示空速约90节时，飞行员尝试抬前轮，却发现驾驶盘向后移动受到阻力。由于当时飞机速度低于其设定的100节决断速度，他决定中断起飞。随后，飞行员将发动机功率减至慢车并实施最大制动。飞机最终停在跑道末端以外160米处。飞行员经机组舱门离机，协助乘客通过后客舱门撤离，并将他们引导至远离飞机的区域。一名乘客随后使用手机联系应急服务部门，救援人员很快赶到现场。"
+    },
+    {
+      "id": "story-kongguan-043",
+      "taskTitle": "管制ICAO-必做题库-43",
+      "audioText": "on october 14, 2005, flight 522 crushed on the ground with running out of fuel cost 121 people on board killedinclude both captain and the first officer. Before the air crash, there were two fighters followed the aircraft. However, they didn't find any fire or smoke from the site, only to see someone waving his hand in the cockpit. After the investigation, it proves thatboth the pilot in command in the copilot both faint due to hypoxia, and it was the attendant who was trying to save the airplane in the cockpit. The engineer also find that the compression switch was turned to manual positionbecause the maintain staff failed to finish his work. It is clear that the continual decompression and human error caused this accident",
+      "referenceText": "这篇没有文本，参考文本是我自己听的，不足之处欢迎纠正",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/043.mp3",
+      "audioTextZh": "2005年10月14日，522号航班因燃油耗尽坠毁在地面，机上121人全部遇难，包括机长和副驾驶。坠机前，有两架战斗机跟随该机飞行。然而，战斗机飞行员没有发现飞机上有任何火焰或烟雾，只看到驾驶舱内有人挥手。调查证明，机长和副驾驶都因缺氧昏迷，驾驶舱内试图挽救飞机的人是一名乘务员。工程人员还发现，由于维修人员未能完成工作，增压选择开关被置于人工位。显然，持续失压和人为错误共同导致了这起事故。"
+    },
+    {
+      "id": "story-kongguan-044",
+      "taskTitle": "管制ICAO-必做题库-44",
+      "audioText": "Passage One\n\n On Oct 2nd 2010，two aircraft with similar callsign caused an unsafe situation. CCA102 was instructed to dove to 2700 meters by controller when approaching destination airport.\nMeanwhile,CCA101 was descending to 3000 meters when he first had radio contact with controller. Later on,the controller asked CCA102 to continue descent to 1800 meters,but got readback with loud noise.\nA few minutes later, he noticed that CCA101 was passing 2700 meters and seemed to continue.Simultaneously,there was an aircraft levelling at 2400 meters in opposite direction.\nThe controller stopped CCA101 descending ,but the TCAS still sounded alarm.\nInvestigator found it was because CCA101 mistakenly executed descent instruction and controller didn’t find the differential in frequency noise.",
+      "referenceText": "单词：\ndove 【dəʊv】：（dive的过去式）大下降率下降\nsimultaneously【ˌsɪməlˈteɪniəsli】：同时\ninvestigator【ɪnˈvestɪɡeɪtər】：调查员\nmistakenly【mɪˈsteɪkən】：错误地\ndifferential【ˌdɪfəˈrenʃl】：差别",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/044.mp3",
+      "audioTextZh": "短文一。2010年10月2日，两架呼号相近的飞机导致了一起不安全事件。CCA102接近目的地机场时，管制员指示其下降至2700米。与此同时，CCA101首次与管制员建立无线电联系时，正在下降至3000米。随后，管制员要求CCA102继续下降至1800米，但收到的复诵伴有很强的噪声。几分钟后，管制员注意到CCA101正通过2700米并且似乎仍在继续下降。与此同时，相反方向有一架飞机正在2400米改平。管制员制止CCA101继续下降，但TCAS仍然发出了警报。调查人员发现，事故原因是CCA101错误执行了下降指令，而管制员没有从频率噪声中发现复诵内容的差异。"
+    },
+    {
+      "id": "story-kongguan-045",
+      "taskTitle": "管制ICAO-必做题库-45",
+      "audioText": "Passage Two\n\n A runway incursion occurred at Sydeny airport on Tuesday. CSN321, bound for London, was holding short of runway. Meanwhile, JAL578 was on long final for landing.\nAfter receiving reports from both flight, the tower controller asked CSN321 to line up and wait after the JAL578 landing.\nAt that time, the radio communication broke down.The rear part of instruction was interrupted by static noise .The pilot of CSN321 misunderstood that he was cleared for departure ,and then lined up.\nThe tower controller identified the potential danger. Without hesitation, he instructed JAL578 to pull up immediately and initiate go-around in an attempt to avoid collision .The two aircraft missed colliding by only 100 feet.\nThe subsequent investigation revealed the improper syntax of the controller’s instruction was one of contributors to such incident.",
+      "referenceText": "单词：\nbound for：去往\nstatic noise：静电噪音\nmeanwhile【ˈmiːnwaɪl】：同时\npotential【pəˈtenʃl】：潜在\nhesitation【ˌhezɪˈteɪʃn】：犹豫\nsyntax【ˈsɪntæks】：词序\ncontributor【kənˈtrɪbjətər】：致因",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/045.mp3",
+      "audioTextZh": "短文二。星期二，悉尼机场发生一起跑道侵入事件。飞往伦敦的CSN321正在跑道外等待，与此同时，JAL578正在远距离最后进近。收到两个航班的报告后，塔台管制员要求CSN321在JAL578着陆后进跑道对正并等待。此时，无线电通信出现故障，指令的后半部分被静电噪声中断。CSN321飞行员误以为自己已获准起飞，随后进入跑道对正。塔台管制员发现了潜在危险，毫不犹豫地指示JAL578立即拉起并开始复飞，以避免相撞。两架飞机仅以100英尺的间隔避免碰撞。后续调查显示，管制员指令使用了不恰当的句法，这是导致该事件的因素之一。"
+    },
+    {
+      "id": "story-kongguan-046",
+      "taskTitle": "管制ICAO-必做题库-46",
+      "audioText": "Passage Three\n\n On Sep 15th 1995, DAL716 performed a scheduled flight with 105 tons of fuel. When he approached the destination airport, the controller instructed DAL716 to enter holding procedure due to traffic congestion.\nAfter three times of holding procedure, the controller told DAL716 that he was expected to continue holding for another 20 minutes.\nThe pilot informed he could only hold for another 5 minutes because of fuel shortage, and intended to land as soon as possible. Upon receiving the request, the controller delivered landing clearance immediately.\nDuring the final approach, visibility got worse as a result of heavy shower. DAL716 had to execute missed approach. At last, this aircraft impacted hillside following fuel starvation. There were no survivors.",
+      "referenceText": "单词：\nfuel starvation【stɑːrˈveɪʃn】：燃油耗尽\nsurvivors【səˈvaɪvəz】：幸存者",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/046.mp3",
+      "audioTextZh": "短文三。1995年9月15日，DAL716执行一班定期航班，载有105吨燃油。接近目的地机场时，由于空中交通拥堵，管制员指示DAL716进入等待程序。完成三次等待后，管制员告知DAL716，预计还要继续等待20分钟。飞行员报告，由于燃油不足，他们最多只能再等待5分钟，并希望尽快着陆。收到请求后，管制员立即发布着陆许可。最后进近期间，受强阵雨影响，能见度进一步恶化，DAL716不得不实施复飞。最终，飞机因燃油耗尽撞上山坡，无人生还。"
+    },
+    {
+      "id": "story-kongguan-047",
+      "taskTitle": "管制ICAO-必做题库-47",
+      "audioText": "Passage Four\n\nOn a sunny day in July, CCA101 departed from Nanjing bound for Los Angles. After takeoff, the pilot reported a passenger suffered acute pain in the heart area and requested return to land.However, they had to dump fuel before landing because of overweight.\nUpon receiving the request for fuel jettison, the controller instructed CCA101 to proceed to fuel dumping area with heading 060. After fuel dumping was completed, the pilot reported the sick passenger’s situation got worse and had fainted.\nThe crew informed their company of details. The dispatcher contacted pertinent airport authorities, and then advised flight crew to divert to Shanghai Pudong airport due to first-aid service supply.\nAfterwards, the pilot told ATC they intended to proceed to Shanghai Pudong airport. The controller coordinated with relevant units, and got landing permission to the flight. Finally, CCA101 landed safely on runway 35L, and the sick passenger was carried off on a stretcher.",
+      "referenceText": "单词：\nacute [əˈkjuːt]：急性的，严重的\nfaint [feɪnt]：晕厥\npertinent [ˈpɜːrtnənt]：相关的\nafterwards [ˈæftərwərdz]：然后\nstretcher [ˈstretʃər]：担架",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/047.mp3",
+      "audioTextZh": "短文四。7月一个晴朗的日子，CCA101从南京起飞前往洛杉矶。起飞后，飞行员报告一名乘客心脏部位剧烈疼痛，并请求返场着陆。然而，由于飞机超重，他们必须在着陆前放油。收到放油请求后，管制员指示CCA101以航向060度飞往放油区。放油完成后，飞行员报告患病乘客的情况恶化，已经昏厥。机组将详细情况通知航空公司。签派员联系了相关机场部门，随后鉴于急救服务保障情况，建议机组备降上海浦东机场。之后，飞行员告知空中交通管制，他们计划飞往上海浦东机场。管制员与相关单位协调，并为该航班取得着陆许可。最终，CCA101安全降落在35L跑道，患病乘客由担架抬下飞机。"
+    },
+    {
+      "id": "story-kongguan-048",
+      "taskTitle": "管制ICAO-必做题库-48",
+      "audioText": "Passage Five\n\nOne day, Flight 218 performed schedule flight carrying 108 passengers and 8 crew.When he was transferred to the Approach Control, two engines flamed out due to unexpected destructive weather caused by typhoon.The flight crew worked the contingency checklist immediately and decided to return to land.\nUnfortunately, most of their attempts were unsuccessful. The engines sustained severe damage beyond repair afterall. Finally, Flight 218 plunged into ground before reaching the runway. 98 passengers including 2 Frenchmen were killed, and 10 passengers were badly injured.\nThe airline set up an emergency center following this miserable tragedy. The subsequent investigation revealed that this aircraft had experienced around two hours delay due to bad weather before takeoff. When the weather trend looked promising, the flight crew insisted on departure in spite of ATC’s suggestion.\nThe airline exhausted all means to help the families of the victims. They also dispatched the expert squad for further investigation.",
+      "referenceText": "单词：\ndestructive [dɪˈstrʌktɪv]：破坏性的\ncontingency [kənˈtɪndʒənsi]：应急\nplunge [plʌndʒ]：突然坠入\nmiserable [ˈmɪzrəbl]：悲惨的\ntragedy [ˈtrædʒədi]：灾难，惨剧\nsubsequent [ˈsʌbsɪkwənt]：随后的\nreveal [rɪˈviːl]：显示，揭露\npromising [ˈprɑːmɪsɪŋ]：有希望，有好转\nvictim [ˈvɪktɪm]：牺牲者，受害人\ndispatch [dɪˈspætʃ]：派遣",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/048.mp3",
+      "audioTextZh": "短文五。一天，218号航班载有108名乘客和8名机组人员执行定期航班。该航班被移交给进近管制时，受台风造成的突发破坏性天气影响，两台发动机熄火。飞行机组立即执行应急检查单，并决定返场着陆。遗憾的是，他们的大部分尝试都没有成功，两台发动机最终遭受无法修复的严重损坏。218号航班在到达跑道前撞向地面。包括2名法国人在内的98名乘客遇难，另有10名乘客严重受伤。这场惨剧发生后，航空公司成立了应急中心。后续调查显示，由于天气恶劣，该机起飞前曾延误大约两小时。当天气趋势看起来有所好转时，尽管空中交通管制提出劝告，飞行机组仍坚持起飞。航空公司想尽一切办法帮助遇难者家属，并派出专家组开展进一步调查。"
+    },
+    {
+      "id": "story-kongguan-049",
+      "taskTitle": "管制ICAO-必做题库-49",
+      "audioText": "Passage Six\n\n On May 24th, United Airlines 126 departed from New York to Los Angeles with 85 souls on board. In the process of its climbout,the captain found the left engine thrust loss.Upon reaching 7000 feet, the port engine surge warning sounded.\nIn the meantime, the crew requested to return. But they needed fuel dumping prior to land. During the fuel dumping process,the situation deteriorated. The captain heard a loud bang and the flight attendants saw flames coming out the front and the rear of the engine. Without any hesitation, the crew sent out a distress call and received clearance to make a forced landing.\nAbout two minutes later, the radar target of United Airlines 126 disappeared from the radar screen. The controllers tried their best to contact the crew. However,there was no reponse.\nFinally,the aircraft crashed into a densely populated residential area, killing all occupants except an infant. The contributor to the engine issue is still unveiled.",
+      "referenceText": "单词：\nclimbout：（从起飞到巡航之间）爬升阶段\nsurge [sɜːrdʒ]：（发动机）喘振\nprior [ˈpraɪər]：先于\nhesitation [ˌhezɪˈteɪʃn]：犹豫\ndensely [ˈdensli]：密集地\npopulated [ˈpɑːpjuleɪtid]：有人口居住的\nresidential [ˌrezɪˈdenʃl]：住宅的\noccupant [ˈɑːkjəpənt]：机上的人\ninfant [ˈɪnfənt]：婴儿\nunveil [ˌʌnˈveɪl]：披露",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/049.mp3",
+      "audioTextZh": "短文六。5月24日，美联航126号航班载有85人，从纽约起飞前往洛杉矶。爬升过程中，机长发现左发动机推力下降。飞机到达7000英尺时，左发动机喘振警告响起。与此同时，机组请求返场，但必须在着陆前放油。放油期间，情况进一步恶化。机长听到一声巨响，乘务员看到火焰从发动机前后部喷出。机组毫不犹豫地发出遇险呼叫，并获得强迫着陆许可。大约两分钟后，美联航126号航班的雷达目标从雷达屏幕上消失。管制员竭尽全力联系机组，但没有收到回应。最终，飞机坠入人口稠密的居民区，除一名婴儿外，机上所有人员全部遇难。发动机问题的成因仍未查明。"
+    },
+    {
+      "id": "story-kongguan-050",
+      "taskTitle": "管制ICAO-必做题库-50",
+      "audioText": "Passage Seven\n\n On May 17,1986, two B747, Flight 1205 and Flight 1627 collided on the runway at Tenerife Airport killing 461 people, which is considered as the worst disaster in aviation history.\nA terrorist incident at another airport had caused many flights to be diverted to Tenerife Airport, including the two accident aircraft.The airport quickly became congested and forced departing aircraft to taxi on the runway instead.\nAnd the thick patches of fog also prevented aircraft and control tower from seeing each other.The collision occurred when Flight 1205 initiated its takeoff run while Flight 1627 was still on the runway.",
+      "referenceText": "单词：\ndisaster [dɪˈzæstər]：灾难\nthick [θɪk]：厚的，浓密的\npatch [pætʃ]：块，片\ncrucial [ˈkruːʃl]：重要的，决定性的\n figure out：断定，证实\ncross-interference：交叉干扰 （cross-check：交叉检查）",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/050.mp3",
+      "audioTextZh": "短文七。1986年5月17日，两架B747——1205号航班和1627号航班——在特内里费机场跑道上相撞，造成461人死亡，被认为是航空史上最严重的灾难。另一座机场发生的恐怖事件导致许多航班备降特内里费机场，其中包括这两架事故飞机。机场很快变得拥堵，迫使离场飞机改在跑道上滑行。浓密的雾团也使飞机与管制塔台彼此无法看见。1205号航班开始起飞滑跑时，1627号航班仍在跑道上，碰撞由此发生。"
+    },
+    {
+      "id": "story-kongguan-051",
+      "taskTitle": "管制ICAO-必做题库-51",
+      "audioText": "Passage Eight\n\n One day in 1998, an B747 collided with mountains and crashed 6 miles from the runway. After the accident , some authorities and organizations carried out investigations and managed to figure out the fatal reasons causing this disaster.\nOne of the main reasons was the misunderstanding of the two words TWO and TO in communication between controller and the pilot. In the beginning, the controller instructed the pilot to “descend to two seven zero zero”,and the pilot readback as “cleared to two thousand seven hundred”.\nBut later on, the controller gave the instruction as “Descend two four zero zero”,and the pilot readback as “OK, four zero zero”.That means, unfortunately, the pilot misunderstood “descend two four zero zero”as “descend to four zero zero”.\nFinally, the aircraft crashed on the mountain during descending to 400 feet. According to this accident, standard phraseologies, readback and hearback play the key roles in communication between controller and pilot",
+      "referenceText": "单词：\nfatal [ˈfeɪtl]：致命的，重大的\nphraseology [ˌfreɪziˈɑːlədʒi]：术语，词组",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/051.mp3",
+      "audioTextZh": "短文八。1998年的一天，一架B747撞山并坠毁在距跑道6英里处。事故发生后，一些主管部门和组织开展调查，并设法查明了造成这场灾难的致命原因。其中一个主要原因，是管制员与飞行员通信时对“TWO”和“TO”两个词产生了误解。起初，管制员指示飞行员“descend to two seven zero zero（下降至二七零零）”，飞行员复诵为“cleared to two thousand seven hundred（获准下降至二千七百）”。但后来，管制员发布指令“Descend two four zero zero（下降二四零零）”，飞行员却复诵为“OK, four zero zero（好的，四零零）”。这意味着，飞行员不幸将“descend two four zero zero”误解为“descend to four zero zero（下降至四零零）”。最终，飞机在下降至400英尺过程中撞山。该事故表明，标准通话用语、复诵与监听复诵在管制员和飞行员之间的通信中起着关键作用。"
+    },
+    {
+      "id": "story-kongguan-052",
+      "taskTitle": "管制ICAO-必做题库-52",
+      "audioText": "Passage Nine\n\nOn October 4th,2010, International Flight 142 was cleared by ATC to follow the VOR/DME approach to runway 36L. But the captain decided to request for RNAV approach regardless of the fact that his aircraft was not equipped with mandatory navigation equipment （GNSS）required for RNAV approach.\nThe Approach controller found the flight being right of track and asked cockpit crew to verify it. The Captain quickly asked first officer to tell the Approach that they were following RNAV procedure.\nActually, the cockpit crew was carryingout VOR/DME approach.The captain kept flying the aircraft with no visual cuesdue to poor visibility. Increased stress level, loss of situational awareness and reduced mental ability caused the pilots flying low on approach with high speed.\nThe aircraft bounced on the runway after touchdown and skidded off. All passengers were safely evacuated, but the aircraft wings and two engines sustained extensive damage after landing gears collapsed.",
+      "referenceText": "单词：\nmandatory [ˈmændətɔːri]：强制的\nverify [ˈverɪfaɪ]：核实\ncue [kjuː]：线索\nmental [ˈmentl]：精神的\nbounce [baʊns]：弹起\nextensive [ɪkˈstensɪv]：大量的\nregardless of：不管，不顾",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/052.mp3",
+      "audioTextZh": "短文九。2010年10月4日，空中交通管制许可国际航空142号航班按照VOR/DME进近程序飞向36L跑道。但机长无视飞机未配备RNAV进近所必需的导航设备（GNSS）这一事实，决定申请RNAV进近。进近管制员发现航班偏在航迹右侧，要求驾驶舱机组进行核实。机长立即让副驾驶告诉进近管制，他们正在按照RNAV程序飞行。实际上，驾驶舱机组正在执行VOR/DME进近。由于能见度不佳，机长在没有目视参照的情况下继续操纵飞机。压力水平上升、情景意识丧失和认知能力下降，导致飞行员以过高速度进行低高度进近。飞机接地后弹跳并冲出跑道。所有乘客均安全撤离，但起落架折断后，飞机机翼和两台发动机严重受损。"
+    },
+    {
+      "id": "story-kongguan-053",
+      "taskTitle": "管制ICAO-必做题库-53",
+      "audioText": "Passage Ten\n\n On a cloudy day in July, a B737 departed from Guangzhou to Jinan via Hefei. When it was cruising at 7500 meters in Hefei controlled area, it encountered chronic decompression. The crew reported that there was a cabin altitude warning horn sound and the cabin pressure was dropping gradually.\nConsidering the safety of passengers, the crew requested to descend immediately and land at local airport. However, there were a lot of flights below the Boeing 737 so that it was difficult for controller to give the descent instructions initially.\nThen Hefei Air Traffic Control Center cooperated with other relative units efficiently and requested maneuvering airspace from military. A few minutes later, controllers instructed the pilot to deviate to the west and descend, and then direct to Hefei airport. Finally, as the crew required, the Boeing 737 landed at Hefei Airport in 25 minutes without any injuries.",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/053.mp3",
+      "audioTextZh": "短文十。7月一个多云的日子，一架B737从广州起飞，经合肥飞往济南。当飞机在合肥管制区内以7500米高度巡航时，发生缓慢失压。机组报告座舱高度警告喇叭响起，座舱压力正逐渐下降。考虑到乘客安全，机组请求立即下降并在当地机场着陆。然而，B737下方有大量航班，管制员起初难以发布下降指令。随后，合肥空中交通管制中心与其他相关单位高效协作，并向军方申请机动空域。几分钟后，管制员指示飞行员向西偏航并下降，随后直飞合肥机场。最终，按照机组请求，这架B737在25分钟内降落合肥机场，没有人员受伤。"
+    },
+    {
+      "id": "story-kongguan-054",
+      "taskTitle": "管制ICAO-必做题库-54",
+      "audioText": "Passage Eelven\n\n On Saturday, June 14th,1956, TWA Flight 201 departed from Los Angeles to Washington D.C. United Airlines Flight 718 left Los Angeles for Chicago. Both aircraft were initially assigned the same route,with the TWA aircraft climbing to 17000 feet and the United aircraft climbing to 21000 feet.\nAbout one hour later, the pilots of both aircraft requested that they intended to take short-cuts to their destination. Air traffic controllers routinely approved this route deviation.Then the two flights entered uncontrolled airspace and operated under VFR flight rules.\nWhen the pilots of both aircraft failed to make any additional position reports,an intensive ground and air search was begun.The wreckage of the two aircraft was eventually found scattered in a remote gorge. There were no survivors.\nAccording to the ensuing investigation ,the underlying reason was that additional airways had not been developed due to insufficient funding during the previous decade.This midair collision finally persuaded the government to embark on massive ATC modernization plans",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/054.mp3",
+      "audioTextZh": "短文十一。1956年6月14日星期六，环球航空201号航班从洛杉矶起飞前往华盛顿特区；美联航718号航班则从洛杉矶飞往芝加哥。两架飞机最初被分配了同一条航路，环球航空飞机爬升至17000英尺，美联航飞机爬升至21000英尺。大约一小时后，两架飞机的飞行员都请求采用捷径飞往目的地，空中交通管制员按惯例批准了这一航路偏离。随后，两架航班进入非管制空域，按照目视飞行规则（VFR）运行。当两架飞机的飞行员均未再提交任何位置报告时，地面和空中随即展开大规模搜索。两架飞机的残骸最终被发现在一处偏远峡谷中，散落各处，无人生还。后续调查显示，根本原因是此前十年间资金不足，未能建设更多航路。这起空中相撞事故最终促使政府启动大规模空中交通管制现代化计划。"
+    },
+    {
+      "id": "story-kongguan-055",
+      "taskTitle": "管制ICAO-必做题库-55",
+      "audioText": "Passage Twelve\n\nOne day,a B747 was flying over the Southeast of Asia, but there was a volcano located in Indonesia erupting thousands of kilometers away.The flight crew did not realize what would happen to them because there was no any abnormal indication on the weather radar screen. Suddenly, one of the four engines failed without any previous warning.\nThe crew followed the checklist and tried to deal with it. however, the other three engines failed subsequently. So the flight crew decided immediately to divert to Indonesia. Fortunately,this B747 landed successfully in the poor visibility even without power.\nThe investigation reported that this aircraft happened to run into the volcanic ash cloud and a large amount of volcanic ash had been ingested into power plant, which caused deformed blades and overheated engines.",
+      "referenceText": "",
+      "audio": "/question-bank-assets/audio/storytelling/kongguan/055.mp3",
+      "audioTextZh": "短文十二。一天，一架B747正在东南亚上空飞行，而数千公里外印度尼西亚的一座火山正在喷发。由于气象雷达屏幕上没有任何异常显示，飞行机组没有意识到接下来会发生什么。突然，四台发动机中的一台在没有任何先兆的情况下失效。机组按照检查单进行处置，但其余三台发动机随后也相继失效。因此，飞行机组立即决定备降印度尼西亚。幸运的是，这架B747在能见度不佳且没有动力的情况下成功着陆。调查报告称，飞机恰好进入了火山灰云，大量火山灰被吸入发动机，导致叶片变形和发动机过热。"
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "categoryId": "atc-aca",
+  "id": "atc-scenario-0050",
+  "name": "ACA 517 左发失效 复飞",
+  "declaredCardCount": 16,
+  "cards": [
+    {
+      "id": "atc-scenario-0050-card-main-854",
+      "taskTitle": "ACA 517-1",
+      "audioText": "B: Your call sign is Air Canada 517, you are maintaining 10100 meters, approaching DAPRO, squawking 3215, contact Wuhan Control.",
+      "audioTextZh": "B: 你的呼号是 Air Canada 517，保持 10100 米，接近 DAPRO，应答机 3215，联系武汉管制。",
+      "referenceText": "Wuhan Control, ACA517, maintaining 10100 meters, approaching DAPRO, squawking 3215.",
+      "referenceTextZh": "武汉管制，ACA517，保持 10100 米，接近 DAPRO，应答机 3215。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/869.mp3"
+    },
+    {
+      "id": "atc-scenario-0050-card-main-855",
+      "taskTitle": "ACA 517-2",
+      "audioText": "C: Air Canada 517, Wuhan Control, radar identified, omit position reports.",
+      "audioTextZh": "C: Air Canada 517，武汉管制，雷达识别，省略位置报告。",
+      "referenceText": "Omit position reports, ACA517.",
+      "referenceTextZh": "省略位置报告，ACA517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/870.mp3"
+    },
+    {
+      "id": "atc-scenario-0050-card-main-856",
+      "taskTitle": "ACA 517-3",
+      "audioText": "B: There is moderate turbulence at 10100 meters, ask Wuhan Control if there is any turbulence reported at 10700 meters.",
+      "audioTextZh": "B: 10100 米有中度颠簸，询问 武汉管制 10700 米是否有颠簸报告。",
+      "referenceText": "Wuhan Control, ACA517, there is moderate turbulence at 10100 meters, is there any turbulence reported at 10700 meters ?",
+      "referenceTextZh": "武汉管制，ACA517，10100 米有中度颠簸，10700 米是否有颠簸报告？",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/871.mp3"
+    },
+    {
+      "id": "atc-scenario-0050-card-main-857",
+      "taskTitle": "ACA 517-4",
+      "audioText": "C: Air Canada 517, there is no turbulence report at 10700 meters\nB: Ask to climb to 10700 meters due moderate turbulence.",
+      "audioTextZh": "C: Air Canada 517，10700 米没有颠簸报告。\nB: 因中度颠簸请求爬升到 10700 米。",
+      "referenceText": "Request climb to 10700 meters due moderate turbulence, ACA517.",
+      "referenceTextZh": "因中度颠簸请求爬升到 10700 米，ACA517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/872.mp3"
+    },
+    {
+      "id": "atc-scenario-0050-card-main-858",
+      "taskTitle": "ACA 517-5",
+      "audioText": "C: Air Canada 517, climb to reach 10700 meters within 2 minutes.",
+      "audioTextZh": "C: Air Canada 517，爬升并在 2 分钟内到达 10700 米。",
+      "referenceText": "Climb to reach 1 10700 meters within 2 minutes, ACA517.",
+      "referenceTextZh": "爬升并在 2 分钟内到达 10700 米，ACA517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/873.mp3"
+    },
+    {
+      "id": "atc-scenario-0050-card-main-859",
+      "taskTitle": "ACA 517-6",
+      "audioText": "B: When you are at 10700 meters, your left engine failed, make an Urgency call and request turn right and descend to 6300 meters.",
+      "audioTextZh": "B: 当你在 10700 米时，左发失效，发出紧急呼叫并请求右转下降到 6300 米。",
+      "referenceText": "PANPAN PANPAN PANPAN, Wuhan Control, ACA517, our left engine failed, request turn right and descend to 6300 meters.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，武汉管制，ACA517，我们左发失效，请求右转并下降到 6300 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/874.mp3"
+    },
+    {
+      "id": "atc-scenario-0050-card-main-860",
+      "taskTitle": "ACA 517-7",
+      "audioText": "C: Air Canada 517, turn right heading 200, descend and maintain 6300 meters.",
+      "audioTextZh": "C: Air Canada 517，右转航向 200，下降并保持 6300 米。",
+      "referenceText": "Turn right heading 200, descend and maintain 6300 meters, ACA517.",
+      "referenceTextZh": "右转航向 200，下降并保持 6300 米，ACA517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/875.mp3"
+    },
+    {
+      "id": "atc-scenario-0050-card-main-861",
+      "taskTitle": "ACA 517-8",
+      "audioText": "B: Advice Wuhan Control you want to divert to Wuhan and track direct to Whiskey Hotel Alpha and descend to lower levels.",
+      "audioTextZh": "B: 通知 武汉管制 你想改航 Wuhan，直飞 Whiskey Hotel Alpha 并下降到较低高度。",
+      "referenceText": "Wuhan Control, ACA517, request divert to Wuhan and track direct to WHA and descend to lower levels.",
+      "referenceTextZh": "武汉管制，ACA517，请求改航 Wuhan，直飞 WHA，并下降到较低高度。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/876.mp3"
+    },
+    {
+      "id": "atc-scenario-0050-card-main-862",
+      "taskTitle": "ACA 517-9",
+      "audioText": "C: Air Canada 517, turn left, direct to Whiskey Hotel Alpha, descend and maintain 2100 meters.",
+      "audioTextZh": "C: Air Canada 517，左转，直飞 Whiskey Hotel Alpha，下降并保持 2100 米。",
+      "referenceText": "Turn left, direct to WHA, descend and maintain 2100 meters, ACA517.",
+      "referenceTextZh": "左转，直飞 WHA，下降并保持 2100 米，ACA517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/877.mp3"
+    },
+    {
+      "id": "atc-scenario-0050-card-main-863",
+      "taskTitle": "ACA 517-10",
+      "audioText": "C: Air Canada 517, expect radar vector for VOR DME approach 36 right.\nB: The weather is deteriorating and below landing minimum, ask for ILS approach 36 left.",
+      "audioTextZh": "C: Air Canada 517，预计雷达引导 VOR DME 进近 36R。\nB: 天气恶化并低于着陆最低标准，请求 ILS 进近 36L。",
+      "referenceText": "Expect radar vector for VOR DME approach 36R, request ILS approach 36L due deteriorating weather and below landing minimum, ACA517.",
+      "referenceTextZh": "预计雷达引导 VOR DME 进近 36R，因天气恶化并低于着陆最低标准，请求 ILS 进近 36L，ACA517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/878.mp3"
+    },
+    {
+      "id": "atc-scenario-0050-card-main-864",
+      "taskTitle": "ACA 517-11",
+      "audioText": "C: Air Canada 517, runway 36 left is not available, runway in use 36 right.",
+      "audioTextZh": "C: Air Canada 517，跑道 36L 不可用，使用跑道 36R。",
+      "referenceText": "Roger, runway in use 36R, ACA517.",
+      "referenceTextZh": "收到，使用跑道 36R，ACA517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/879.mp3"
+    },
+    {
+      "id": "atc-scenario-0050-card-main-865",
+      "taskTitle": "ACA 517-12",
+      "audioText": "C: Air Canada 517, you are number 1 to land, there are no speed restrictions in Wuhan terminal area.",
+      "audioTextZh": "C: Air Canada 517，你是第 1 架着陆，Wuhan 终端区无速度限制。",
+      "referenceText": "No speed restrictions, ACA517.",
+      "referenceTextZh": "无速度限制，ACA517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/880.mp3"
+    },
+    {
+      "id": "atc-scenario-0050-card-main-866",
+      "taskTitle": "ACA 517-13",
+      "audioText": "B: You executed a missed approach procedure and try to land on runway 36 right.",
+      "audioTextZh": "B: 你执行复飞程序，并尝试在跑道 36R 着陆。",
+      "referenceText": "Wuhan Tower, ACA517, going around, we will try to land on runway 36R.",
+      "referenceTextZh": "武汉塔台，ACA517，复飞，我们将尝试在跑道 36R 着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/881.mp3"
+    },
+    {
+      "id": "atc-scenario-0050-card-main-867",
+      "taskTitle": "ACA 517-14",
+      "audioText": "C: Air Canada 517, climb to 1200 meters, follow the standard missed approach procedure.",
+      "audioTextZh": "C: Air Canada 517，爬升到 1200 米，执行标准复飞程序。",
+      "referenceText": "Climb to 1200 meters, follow the standard missed approach procedure, ACA517.",
+      "referenceTextZh": "爬升到 1200 米，执行标准复飞程序，ACA517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/882.mp3"
+    },
+    {
+      "id": "atc-scenario-0050-card-main-868",
+      "taskTitle": "ACA 517-15",
+      "audioText": "C: Air Canada 517, maintain 1200 meters, expect radar vector ILS approach runway 36 right.",
+      "audioTextZh": "C: Air Canada 517，保持 1200 米，预计雷达引导跑道 36R ILS 进近。",
+      "referenceText": "Maintain 1200 meters, expect radar vector ILS approach runway 36R, ACA517.",
+      "referenceTextZh": "保持 1200 米，预计雷达引导跑道 36R ILS 进近，ACA517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/883.mp3"
+    },
+    {
+      "id": "atc-scenario-0050-card-main-869",
+      "taskTitle": "ACA 517-16",
+      "audioText": "C: Air Canada 517, runway covered with patches of water, breaking action medium.",
+      "audioTextZh": "C: Air Canada 517，跑道有片状积水，刹车效应中等。",
+      "referenceText": "Runway covered with patches of water, breaking action medium, ACA517.",
+      "referenceTextZh": "跑道有片状积水，刹车效应中等，ACA517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/884.mp3"
+    }
+  ]
+}

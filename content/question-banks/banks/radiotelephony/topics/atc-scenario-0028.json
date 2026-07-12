@@ -1,0 +1,143 @@
+{
+  "categoryId": "atc-baw",
+  "id": "atc-scenario-0028",
+  "name": "BAW 931 乘客重病 引擎起火",
+  "declaredCardCount": 15,
+  "cards": [
+    {
+      "id": "atc-scenario-0028-card-main-480",
+      "taskTitle": "BAW 931-1",
+      "audioText": "B: Your call sign is Speedbird 931, you are parking at stand 702, with information Lima, request ATC clearance to London.",
+      "audioTextZh": "你的呼号是Speedbird 931，停在702号机位，已收到通播Lima，申请前往伦敦的空管放行许可。",
+      "referenceText": "Wuhan Delivery, BAW931, stand 702, information L, request ATC clearance to London.",
+      "referenceTextZh": "武汉放行，BAW931，702号机位，通播L，申请前往伦敦的空管放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/495.mp3"
+    },
+    {
+      "id": "atc-scenario-0028-card-main-481",
+      "taskTitle": "BAW 931-2",
+      "audioText": "C: Speedbird 931, Wuhan Ground, cleared to London via flight planned route, Zulu Foxtrot 05 Delta departure, initial climb to 1500 meters, cruising level 10700 meters, runway in use 18 left, after departure, contact 124.7, squawk 4503.",
+      "audioTextZh": "管制员：Speedbird 931，武汉地面，按计划航路放行至伦敦，ZF 05D离场，初始爬升至1500米，巡航高度10700米，使用跑道18左，离场后联系124.7，squawk 4503。",
+      "referenceText": "Cleared to London via flight planned route, ZF 05D departure, initial climb to 1500 meters, cruising level 10700 meters, runway in use 18L, after departure, contact 124.7, squawk 4503, BAW931.",
+      "referenceTextZh": "按计划航路放行至伦敦，ZF 05D离场，初始爬升至1500米，巡航高度10700米，使用跑道18L，离场后联系124.7，squawk 4503，BAW931。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/496.mp3"
+    },
+    {
+      "id": "atc-scenario-0028-card-main-482",
+      "taskTitle": "BAW 931-3",
+      "audioText": "B: Now you are ready for push back and start up, contact Ground.",
+      "audioTextZh": "现在你已准备好推出和开车，请联系地面。",
+      "referenceText": "Wuhan Ground, BAW931, ready for push back and start up.",
+      "referenceTextZh": "武汉地面，BAW931，准备好推出和开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/497.mp3"
+    },
+    {
+      "id": "atc-scenario-0028-card-main-483",
+      "taskTitle": "BAW 931-4",
+      "audioText": "C: Speedbird 931, Wuhan Ground, push back and start up approved, facing north.",
+      "audioTextZh": "管制员：Speedbird 931，武汉地面，可以推出和开车，机头向北。",
+      "referenceText": "Push back and start up approved, facing north, BAW931.",
+      "referenceTextZh": "可以推出和开车，机头向北，BAW931。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/498.mp3"
+    },
+    {
+      "id": "atc-scenario-0028-card-main-484",
+      "taskTitle": "BAW 931-5",
+      "audioText": "B: Now you have a problem, 1 of your passengers is seriously ill, you inform ATC and request to disembark the passenger, you have to delay the push back due to disembark the passenger.",
+      "audioTextZh": "现在出现问题，一名旅客病情严重。请通知空管并申请让该旅客下机，因此需要推迟推出。",
+      "referenceText": "Wuhan Ground, BAW931, 1 of our passengers is seriously ill, request delay the push back to disembark the passenger.",
+      "referenceTextZh": "武汉地面，BAW931，我们有一名旅客病情严重，申请推迟推出，让该旅客下机。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/499.mp3"
+    },
+    {
+      "id": "atc-scenario-0028-card-main-485",
+      "taskTitle": "BAW 931-6",
+      "audioText": "B: This time, contact your Company to inform this situation, and also request medical assistance.",
+      "audioTextZh": "这次联系公司，告知该情况，并申请医疗协助。",
+      "referenceText": "Dispatch, BAW931, 1 of our passengers is seriously ill, request medical assistance.",
+      "referenceTextZh": "签派，BAW931，我们有一名旅客病情严重，请求医疗协助。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/500.mp3"
+    },
+    {
+      "id": "atc-scenario-0028-card-main-486",
+      "taskTitle": "BAW 931-7",
+      "audioText": "B: Now you have disembark this passenger, request taxi.",
+      "audioTextZh": "现在该旅客已下机，申请滑行。",
+      "referenceText": "Wuhan Ground, BAW931, we have disembarked this passenger, request taxi.",
+      "referenceTextZh": "武汉地面，BAW931，该旅客已下机，申请滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/501.mp3"
+    },
+    {
+      "id": "atc-scenario-0028-card-main-487",
+      "taskTitle": "BAW 931-8",
+      "audioText": "C: Speedbird 931, taxi to the holding point of runway 18 left via taxiway Alpha 7 and Alpha, hold short of Alpha 5.",
+      "audioTextZh": "管制员：Speedbird 931，经滑行道A7和A滑行至18左跑道等待点，A5外等待。",
+      "referenceText": "Taxi to the holding point of runway 18L via taxiway A7 and A, hold short of A5, BAW931.",
+      "referenceTextZh": "经滑行道A7和A滑行至18L跑道等待点，A5外等待，BAW931。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/502.mp3"
+    },
+    {
+      "id": "atc-scenario-0028-card-main-488",
+      "taskTitle": "BAW 931-9",
+      "audioText": "C: Speedbird 931, follow company Boeing 777, continue taxi.",
+      "audioTextZh": "管制员：Speedbird 931，跟随同公司Boeing 777，继续滑行。",
+      "referenceText": "Follow company B777, continue taxi, BAW931.",
+      "referenceTextZh": "跟随同公司B777，继续滑行，BAW931。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/503.mp3"
+    },
+    {
+      "id": "atc-scenario-0028-card-main-489",
+      "taskTitle": "BAW 931-10",
+      "audioText": "C: Speedbird 931, give way to the Airbus 320 coming from left to right, when the traffic is clear, continue taxi.",
+      "audioTextZh": "管制员：Speedbird 931，让行从左向右的Airbus 320，冲突解除后继续滑行。",
+      "referenceText": "Traffic in sight, when the traffic is clear, continue taxi, BAW931.",
+      "referenceTextZh": "看到冲突飞机，冲突解除后继续滑行，BAW931。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/504.mp3"
+    },
+    {
+      "id": "atc-scenario-0028-card-main-490",
+      "taskTitle": "BAW 931-11",
+      "audioText": "B: Now you are ready for departure, contact Wuhan Tower.",
+      "audioTextZh": "现在你已准备好离场，请联系武汉塔台。",
+      "referenceText": "Wuhan Tower, BAW931, ready for departure.",
+      "referenceTextZh": "武汉塔台，BAW931，准备好离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/505.mp3"
+    },
+    {
+      "id": "atc-scenario-0028-card-main-491",
+      "taskTitle": "BAW 931-12",
+      "audioText": "C: Speedbird 931, line up and wait, runway 18 left.",
+      "audioTextZh": "管制员：Speedbird 931，18左跑道进跑道等待。",
+      "referenceText": "Line up and wait, runway 18L, BAW931.",
+      "referenceTextZh": "18L跑道进跑道等待，BAW931。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/506.mp3"
+    },
+    {
+      "id": "atc-scenario-0028-card-main-492",
+      "taskTitle": "BAW 931-13",
+      "audioText": "C: Speedbird 931, cleared for takeoff 18 left, surface wind 160, 3 meters per second.",
+      "audioTextZh": "管制员：Speedbird 931，18左跑道可以起飞，地面风160度，3米/秒。",
+      "referenceText": "Cleared for takeoff runway 18L, BAW931.",
+      "referenceTextZh": "18L跑道可以起飞，BAW931。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/507.mp3"
+    },
+    {
+      "id": "atc-scenario-0028-card-main-493",
+      "taskTitle": "BAW 931-14",
+      "audioText": "B: During takeoff roll, your right engine suddenly got fire, you have to abort takeoff, report ATC this situation.",
+      "audioTextZh": "起飞滑跑过程中，右发突然起火，你必须中断起飞，请向空管报告情况。",
+      "referenceText": "Wuhan Tower, BAW931, takeoff aborted due right engine fire.",
+      "referenceTextZh": "武汉塔台，BAW931，因右发起火，中断起飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/508.mp3"
+    },
+    {
+      "id": "atc-scenario-0028-card-main-494",
+      "taskTitle": "BAW 931-15",
+      "audioText": "B: The fire cannot be extinguished, inform this to ATC, this is a Distress call, also you want to carry out evacuation and request emergency equipment.",
+      "audioTextZh": "火情无法扑灭，请通知空管。这是遇险呼叫，同时你希望实施撤离并申请应急设备。",
+      "referenceText": "MAYDAY MAYDAY MAYDAY, Wuhan Tower, BAW931, the fire cannot be extinguished, we are evacuating, request emergency equipment.",
+      "referenceTextZh": "MAYDAY MAYDAY MAYDAY，武汉塔台，BAW931，火情无法扑灭，我们正在撤离，申请应急设备。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/509.mp3"
+    }
+  ]
+}

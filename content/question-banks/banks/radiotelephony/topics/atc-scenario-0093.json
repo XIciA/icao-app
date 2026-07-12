@@ -1,0 +1,170 @@
+{
+  "categoryId": "atc-ces",
+  "id": "atc-scenario-0093",
+  "name": "CES 728 强积冰 进近灯暗",
+  "declaredCardCount": 18,
+  "cards": [
+    {
+      "id": "atc-scenario-0093-card-main-1598",
+      "taskTitle": "CES 728-1",
+      "audioText": "B: Your call sign is China Eastern 728, you are parking at gate 212, you have received information Whiskey, ask Wuhan Delivery for ATC clearance to Guangzhou.",
+      "audioTextZh": "B：你的呼号是 China Eastern 728，停在 212 号登机口，已收到通播 Whiskey，向武汉放行请求飞往广州的 ATC 放行许可。",
+      "referenceText": "Wuhan Delivery, CES728, gate 212, information W, request ATC clearance to Guangzhou.",
+      "referenceTextZh": "武汉放行，CES728，212 号登机口，通播 W，请求飞往广州的 ATC 放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1724.mp3"
+    },
+    {
+      "id": "atc-scenario-0093-card-main-1599",
+      "taskTitle": "CES 728-2",
+      "audioText": "C: China Eastern 728, cleared to Guangzhou via fight planned route, departure runway 36 right, Lima Kilo Oscar 02 departure, initially climb 1200 meters, cruising level 9800 meters, when airborne, contact 119.6, squawk 3615.",
+      "audioTextZh": "C：China Eastern 728，许可飞往广州，按飞行计划航路，离场跑道 36R，Lima Kilo Oscar 02 离场，起始爬升 1200 米，巡航高度 9800 米，离地后联系 119.6，应答机 3615。",
+      "referenceText": "Cleared to Guangzhou via fight planned route, departure runway 36R, LKO 02 departure, initially climb 1200 meters, cruising level 9800 meters, when airborne, contact 119.6, squawk 3615, CES728.",
+      "referenceTextZh": "许可飞往广州，按飞行计划航路，离场跑道 36R，LKO 02 离场，起始爬升 1200 米，巡航高度 9800 米，离地后联系 119.6，应答机 3615，CES728。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1725.mp3"
+    },
+    {
+      "id": "atc-scenario-0093-card-main-1600",
+      "taskTitle": "CES 728-3",
+      "audioText": "B: Now you have been pushed back with engines running, request taxi instructions.",
+      "audioTextZh": "B：现在你已推出，发动机运转，请求滑行指令。",
+      "referenceText": "Wuhan Ground, CES728, request taxi.",
+      "referenceTextZh": "武汉地面，CES728，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1726.mp3"
+    },
+    {
+      "id": "atc-scenario-0093-card-main-1601",
+      "taskTitle": "CES 728-4",
+      "audioText": "C: China Eastern 728, taxi to holding point runway 36 right via taxiway Zulu 4, Alpha 3 and Alpha.",
+      "audioTextZh": "C：China Eastern 728，经滑行道 Zulu 4、Alpha 3 和 Alpha 滑行至跑道 36R 等待点。",
+      "referenceText": "Taxi to holding point runway 36R via taxiway Z4, A3 and A, CES728.",
+      "referenceTextZh": "经滑行道 Z4、A3 和 A 滑行至跑道 36R 等待点，CES728。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1727.mp3"
+    },
+    {
+      "id": "atc-scenario-0093-card-main-1602",
+      "taskTitle": "CES 728-5",
+      "audioText": "C: China Eastern 728, give way to Air China Airbus 319 on Alpha 7, you are number 2 for departure.",
+      "audioTextZh": "C：China Eastern 728，避让 Alpha 7 上的 Air China Airbus 319，你是第 2 架离场。",
+      "referenceText": "Roger, traffic in sight, CES728.",
+      "referenceTextZh": "收到，看到飞机，CES728。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1728.mp3"
+    },
+    {
+      "id": "atc-scenario-0093-card-main-1603",
+      "taskTitle": "CES 728-6",
+      "audioText": "B: Now you are at holding point runway 36 right, contact Tower for takeoff clearance.",
+      "audioTextZh": "B：现在你在跑道 36R 等待点，联系塔台请求起飞许可。",
+      "referenceText": "Wuhan Tower, CES728, holding point runway 36R, ready for departure.",
+      "referenceTextZh": "武汉塔台，CES728，跑道 36R 等待点，准备好离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1729.mp3"
+    },
+    {
+      "id": "atc-scenario-0093-card-main-1604",
+      "taskTitle": "CES 728-7",
+      "audioText": "C: China Eastern 728, line up and wait, expect 1 minute delay, there will be a helicopter crossing the runway from left to right.",
+      "audioTextZh": "C：China Eastern 728，进跑道等待，预计延误 1 分钟，将有直升机从左至右穿越跑道。",
+      "referenceText": "Line up and wait, roger, CES728.",
+      "referenceTextZh": "进跑道等待，收到，CES728。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1730.mp3"
+    },
+    {
+      "id": "atc-scenario-0093-card-main-1605",
+      "taskTitle": "CES 728-8",
+      "audioText": "C: China Eastern 728, wind 010 degrees, 2 meters per second, cleared for takeoff, caution storm approaching north of the airport.",
+      "audioTextZh": "C：China Eastern 728，风 010 度，2 米/秒，可以起飞，注意机场北侧有风暴接近。",
+      "referenceText": "Cleared for takeoff runway 36R, roger, thanks, CES728.",
+      "referenceTextZh": "跑道 36R 可以起飞，收到，谢谢，CES728。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1731.mp3"
+    },
+    {
+      "id": "atc-scenario-0093-card-main-1606",
+      "taskTitle": "CES 728-9",
+      "audioText": "B: It's much later in the flight, you are at cruising level, ask Wuhan Control if 10400 meters is available, and if there is any turbulence reported by preceding aircraft on that level.",
+      "audioTextZh": "B：飞行后段，你在巡航高度，询问武汉管制 10400 米是否可用，以及前机是否报告该高度有颠簸。",
+      "referenceText": "Wuhan Control, CES728, is 10400 meters available? is there any turbulence reported by preceding aircraft at 10400 meters?",
+      "referenceTextZh": "武汉管制，CES728，10400 米是否可用？前机是否报告 10400 米有颠簸？",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1732.mp3"
+    },
+    {
+      "id": "atc-scenario-0093-card-main-1607",
+      "taskTitle": "CES 728-10",
+      "audioText": "C: China Eastern 728, 10400 meters is available. There is no turbulence report at 10400 meters.\nB: Tell the controller you want to climb to 10400 meters.",
+      "audioTextZh": "C：China Eastern 728，10400 米可用。10400 米没有颠簸报告。\nB：告诉管制员你想爬升至 10400 米。",
+      "referenceText": "Request climb to 10400 meters, CES728.",
+      "referenceTextZh": "请求爬升至 10400 米，CES728。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1733.mp3"
+    },
+    {
+      "id": "atc-scenario-0093-card-main-1608",
+      "taskTitle": "CES 728-11",
+      "audioText": "B: Now you are in Guangzhou Control, cruising at 10400 meters because you are encountering severe icing, you want to descend to a lower level.",
+      "audioTextZh": "B：现在你在广州管制区，由于在 10400 米遭遇严重结冰，你想下降至较低高度。",
+      "referenceText": "Guangzhou Control, CES728, we are encountering severe icing at 10400 meters, request descend to a lower level.",
+      "referenceTextZh": "广州管制，CES728，我们在 10400 米遭遇严重结冰，请求下降至较低高度。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1734.mp3"
+    },
+    {
+      "id": "atc-scenario-0093-card-main-1609",
+      "taskTitle": "CES 728-12",
+      "audioText": "C: China Eastern 728, descend to and maintain 4200 meters, maintain high speed.",
+      "audioTextZh": "C：China Eastern 728，下降并保持 4200 米，保持大速度。",
+      "referenceText": "Descend to and maintain 4200 meters, maintain high speed, CES728.",
+      "referenceTextZh": "下降并保持 4200 米，保持大速度，CES728。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1735.mp3"
+    },
+    {
+      "id": "atc-scenario-0093-card-main-1610",
+      "taskTitle": "CES 728-13",
+      "audioText": "B: You are now with Guangzhou Approach, you want to maintain high speed as long as possible to avoid ice accumulation, tell ATC.",
+      "audioTextZh": "B：你现在与广州进近联系，你想尽可能长时间保持大速度以避免积冰，告诉 ATC。",
+      "referenceText": "Guangzhou Approach, CES728, request maintain high speed to avoid ice accumulation",
+      "referenceTextZh": "广州进近，CES728，请求保持大速度以避免积冰。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1736.mp3"
+    },
+    {
+      "id": "atc-scenario-0093-card-main-1611",
+      "taskTitle": "CES 728-14",
+      "audioText": "C: China Eastern 728, no speed restrictions.",
+      "audioTextZh": "C：China Eastern 728，无速度限制。",
+      "referenceText": "No speed restrictions, CES728.",
+      "referenceTextZh": "无速度限制，CES728。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1737.mp3"
+    },
+    {
+      "id": "atc-scenario-0093-card-main-1612",
+      "taskTitle": "CES 728-15",
+      "audioText": "B: While on final approach, you notice the approach lights are 2 dim, ask the controller to increase the intensity of the approach lights.",
+      "audioTextZh": "B：在最后进近时，你注意到进近灯太暗，请求管制员增加进近灯亮度。",
+      "referenceText": "Guangzhou Tower, CES728, the approach lights are 2 dim, request brighten the approach lights.",
+      "referenceTextZh": "广州塔台，CES728，进近灯太暗，请求调亮进近灯。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1738.mp3"
+    },
+    {
+      "id": "atc-scenario-0093-card-main-1613",
+      "taskTitle": "CES 728-16",
+      "audioText": "C: China Eastern 728, roger, the approach flights will be turned up shortly, cleared to land runway 20 left, surface wind calm, caution runway is wet, breaking action medium.",
+      "audioTextZh": "C：China Eastern 728，收到，进近灯很快会调亮，跑道 20L 可以落地，地面风静，注意跑道湿，刹车效应中等。",
+      "referenceText": "Roger, thanks, cleared to land runway 20L, CES728.",
+      "referenceTextZh": "收到，谢谢，跑道 20L 可以落地，CES728。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1739.mp3"
+    },
+    {
+      "id": "atc-scenario-0093-card-main-1614",
+      "taskTitle": "CES 728-17",
+      "audioText": "B: After landing, you have difficulty in taxing in poor visibility, contact Guangzhou Ground for a follow-me car.",
+      "audioTextZh": "B：落地后，你在低能见度下滑行困难，联系广州地面请求引导车。",
+      "referenceText": "Guangzhou Ground, CES728, we have difficulty in taxing in poor visibility, request a follow-me car.",
+      "referenceTextZh": "广州地面，CES728，我们在低能见度下滑行困难，请求引导车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1740.mp3"
+    },
+    {
+      "id": "atc-scenario-0093-card-main-1615",
+      "taskTitle": "CES 728-18",
+      "audioText": "C: China Eastern 728, the follow-me car will come soon.",
+      "audioTextZh": "C：China Eastern 728，引导车很快会来。",
+      "referenceText": "Roger, thanks, CES728.",
+      "referenceTextZh": "收到，谢谢，CES728。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1741.mp3"
+    }
+  ]
+}

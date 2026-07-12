@@ -1,0 +1,64 @@
+{
+  "categoryId": "opi-category-01",
+  "id": "opi-topic-0115",
+  "name": "不利天气",
+  "declaredCardCount": 8,
+  "cards": [
+    {
+      "id": "opi-extra-085",
+      "taskTitle": "气象-不利天气-1",
+      "audioText": "How do you make weather analysis before departure?",
+      "audioTextZh": "起飞前你们如何进行天气分析？",
+      "referenceText": "We will make good pre - flight preparation. Before departure, listen to the ATIS and check the weather forecast to make a weather analysis. Because there are some adverse weather conditions, such as thunderstorms (TS), lightning strikes, icing, wind shear (WS), and so on. They are very dangerous for flight safety. For example, if we encounter icing during flight, it will degrade the aircraft performance. It will block the pitot tube and there will be abnormal airspeed or altitude indication in the cockpit. If ice builds up on the wings, it will decrease the lift and increase the drag. We should try our best to avoid icing.\n我们会做好飞行前准备。起飞前，收听自动终端情报服务（ATIS）并查看天气预报来进行天气分析。因为存在一些恶劣天气状况，比如雷暴（TS）、雷击、积冰、风切变（WS）等等。这些对飞行安全极为危险。例如，若飞行中遭遇积冰，会降低飞机性能。积冰会堵塞空速管，驾驶舱里的空速或高度指示会出现异常。要是机翼上积冰，会减少升力、增加阻力。我们应尽力避开积冰 。\n\nI first collect weather data from ATIS, ATC, and NOTAM. Then I analyze key factors like thunderstorms, wind shear, icing, and low visibility. I discuss potential weather hazards with the crew during preflight briefing and adjust the flight plan, such as choosing alternate airports or changing takeoff runways if needed.\n首先从ATIS、空管和NOTAM收集天气数据，重点分析雷暴、风切变、积冰、低能见度等关键因素；在飞行前简报中与机组讨论潜在天气风险，必要时调整飞行计划，如选择备降机场或更换起飞跑道。"
+    },
+    {
+      "id": "opi-extra-086",
+      "taskTitle": "气象-不利天气-2",
+      "audioText": "Why weather is a major factor concerning flight safety? Should pilot realize the importance of understanding adverse weather? Why?",
+      "audioTextZh": "为何天气是关乎飞行安全的主要因素？飞行员是否应认识到了解恶劣天气的重要性？为什么？",
+      "referenceText": "Yes, adverse weather is a threat to flight safety. Because there are some adverse weather conditions, such as thunderstorms (TS), lightning strikes, icing, wind shear (WS), and so on. They are very dangerous for flight safety. For example, if we encounter icing during flight, it will degrade the aircraft performance. It will block the pitot tube and there will be abnormal airspeed or altitude indication in the cockpit. If ice builds up on the wings, it will decrease the lift and increase the drag. We should try our best to avoid icing. 翻译：是的，恶劣天气对飞行安全构成威胁。因为存在如雷暴（TS）、雷击、积冰、风切变（WS）等恶劣天气状况，它们对飞行安全极为危险。例如，飞行中遭遇积冰会降低飞机性能，堵塞空速管，使驾驶舱空速或高度指示异常；机翼积冰会减少升力、增加阻力，所以我们应尽力避开积冰 。"
+    },
+    {
+      "id": "opi-extra-087",
+      "taskTitle": "气象-不利天气-3",
+      "audioText": "Besides CB,turbulence,are there any other adverse weather conditions that could affect our flight safety? If yes,please describe it in detail.",
+      "audioTextZh": "除了积雨云（CB）、颠簸，还有其他会影响飞行安全的恶劣天气状况吗？如果有，请详细描述。",
+      "referenceText": "Yes, there are some adverse weather conditions, such as thunderstorms (TS), lightning strikes, icing, wind shear (WS), and so on. They are very dangerous for flight safety. For example, if we encounter WS during flight, it can make the aircraft lose airspeed and altitude quickly. Our aircraft will be difficult to control, even stall or crash. It is very dangerous.\n有，存在如雷暴（TS）、雷击、积冰、风切变（WS）等恶劣天气状况，它们对飞行安全极为危险。例如，飞行中遭遇风切变（WS），会使飞机迅速损失空速和高度，飞机将难以操控，甚至失速或坠毁，非常危险 。\n\nOther dangerous bad weather includes clear air turbulence (CAT), microburst, severe icing, and low visibility. CAT is unpredictable, microburst causes sudden altitude loss, severe icing disrupts aerodynamics, and low visibility increases runway incursion/ground collision risks, all endangering flight safety.\n其他危险天气包括晴空颠簸（CAT）、微下击暴流、强积冰和低能见度。晴空颠簸难以预测，微下击暴流导致高度骤降，强积冰破坏气动性能，低能见度增加跑道入侵和地面相撞风险，均严重危及飞行安全。"
+    },
+    {
+      "id": "opi-extra-088",
+      "taskTitle": "气象-不利天气-4",
+      "audioText": "Which weather condition do you think is the most dangerous to flight safety?",
+      "audioTextZh": "你认为哪种天气状况对飞行安全最危险？",
+      "referenceText": "I think wind shear (WS) is the most dangerous to flight safety. Because if we encounter wind shear (WS) during flight, it can make the aircraft lose airspeed and altitude quickly. Our aircraft will be difficult to control, even stall or crash. It is very dangerous.\n我认为风切变（WS，wind shear ）对飞行安全最危险。因为若飞行中遭遇风切变（WS ），它会使飞机迅速损失空速和高度，飞机将难以操控，甚至失速或坠毁，非常危险 。"
+    },
+    {
+      "id": "opi-extra-089",
+      "taskTitle": "气象-不利天气-5",
+      "audioText": "What are your suggestions about reducing risks and incidents caused by dangerous weather?",
+      "audioTextZh": "对于降低由危险天气引发的风险和事故，你有哪些建议？",
+      "referenceText": "准备 + 沟通 + 分工 + 设备（Preparation + Communication + Division of Labor + Equipment） 。\n（可进一步细化为：\nPreparation (thorough pre - flight weather analysis, contingency planning), Communication (real - time weather updates sharing among crew),\nDivision of Labor (clear roles for monitoring and responding to weather threats), Equipment (relying on advanced weather detection tools) ，从飞行前准备、机组沟通、职责分工、设备运用四个维度应对危险天气风险"
+    },
+    {
+      "id": "opi-extra-090",
+      "taskTitle": "气象-不利天气-6",
+      "audioText": "How do you know the weather information\nbefore departure?",
+      "audioTextZh": "起飞前,你如何获取天气信息?",
+      "referenceText": "Before departure, I obtain weather information from multiple sources: NOTAM, ATIS broadcasts, ATC briefings, METAR reports, and pilot reports (PIREP). I also check weather data for the departure airport, en-route, and destination airport through the dispatching office to ensure comprehensive preparation.\n起飞前，我通过多种渠道获取天气信息：航行通告（NOTAM）、自动终端情报服务（ATIS）广播、空管简报、机场天气报告（METAR）以及飞行员报告（PIREP）。同时通过签派部门查询起降机场、航路及目的地机场的天气数据，确保准备全面。"
+    },
+    {
+      "id": "opi-extra-091",
+      "taskTitle": "气象-不利天气-7",
+      "audioText": "Based on your experience, can you\ntell me what weather do you think\nis the worst or the most dangerous?",
+      "audioTextZh": "根据你的经验,你觉得最坏的或者最危\n险的天气是什么?",
+      "referenceText": "In my opinion, thunderstorms with cumulonimbus clouds (CB) are the most dangerous. They bring multiple hazards: lightning strike, severe turbulence, icing, hail, and wind shear. These can cause structural damage, system failure, loss of control, and even crash, posing comprehensive threats to flight safety.\n依我经验，伴随积雨云（CB）的雷暴是最危险的天气。它伴随雷击、强颠簸、积冰、冰雹和风切变等多种风险，可能造成结构损伤、系统失效、飞机失控甚至坠毁，对飞行安全构成全面威胁。"
+    },
+    {
+      "id": "opi-extra-092",
+      "taskTitle": "气象-不利天气-8",
+      "audioText": "Have you ever experienced such\nbad weather in your career?",
+      "audioTextZh": "在你的职业生涯中,遭遇这样的坏天气\n吗?",
+      "referenceText": "Yes, I encountered a thunderstorm when flying from XX to XX last year. The aircraft faced severe turbulence and lightning flashes. I followed SOP, monitored weather radar, requested deviation from ATC, and maintained stable control. We avoided the core area and landed safely without damage or injuries.\n遇到过。去年从XX飞往XX时，我遭遇了雷暴天气，飞机遭遇强颠簸并出现闪电。我遵循标准操作程序，监控气象雷达，向空管申请偏离航线，保持稳定控制，最终避开雷暴核心区域，安全着陆且无人员伤亡和设备损坏。"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "categoryId": "opi-category-05",
+  "id": "opi-topic-0092",
+  "name": "旅客异常情况处置",
+  "declaredCardCount": 7,
+  "cards": [
+    {
+      "id": "opi-extra-003",
+      "taskTitle": "运行-旅客异常情况处置-1",
+      "audioText": "get anxious during long delay",
+      "referenceText": "First of all, I will make a PA to explain the reason for delay/diversion. Secondly, I will ask cabin crew to provide some food and drinks. At last, I will keep informing the PAX of the latest flight information.\n首先，我会进行广播（PA ），解释延误 / 备降的原因。其次，我会让客舱乘务员提供一些食物和饮品。最后，我会持续向乘客（PAX ）通报最新的航班信息 。"
+    },
+    {
+      "id": "opi-extra-004",
+      "taskTitle": "运行-旅客异常情况处置-2",
+      "audioText": "complain about the diversion",
+      "referenceText": "First of all, I will make a PA to explain the reason for delay/diversion. Secondly, I will ask cabin crew to provide some food and drinks. At last, I will keep informing the PAX of the latest flight information.\n首先，我会进行广播，解释延误 / 备降的原因；其次，我会安排客舱乘务员提供餐食和饮品；最后，我会持续向乘客通报最新的航班信息 。"
+    },
+    {
+      "id": "opi-extra-005",
+      "taskTitle": "运行-旅客异常情况处置-3",
+      "audioText": "PAX get ill feel uncomfortable/suffer from heart attack/get injured during turbulence",
+      "referenceText": "First of all, I will ask the cabin crew to give them first aid and take good care of him. Secondly, I will advise ATC of our situation, if necessary, I will request divert to the nearest suitable airport and medical assistance.\n首先，我会让客舱乘务员对其进行急救并悉心照料；其次，我会将情况告知空中交通管制（ATC），如有必要，我会申请备降最近的合适机场并请求医疗援助 。"
+    },
+    {
+      "id": "opi-extra-006",
+      "taskTitle": "运行-旅客异常情况处置-4",
+      "audioText": "drunk(unruly) PAX on board in flight",
+      "referenceText": "I will ask the air marshal to keep him away from other PAX. If he is being unruly, I will let the air marshal restrain him and monitor him.\n我会让空警将其与其他乘客隔离开。若他行为不端，我会让空警对其进行约束并监视 。"
+    },
+    {
+      "id": "opi-extra-007",
+      "taskTitle": "运行-旅客异常情况处置-5",
+      "audioText": "fight between the PAX",
+      "referenceText": "I will ask the cabin crew to communicate with them to stop the fight. If they don't listen and keep fighting, I will ask the air marshal to restrain them. After landing, I will request the airport police to take them away.\n我会让客舱乘务员沟通，让他们停止斗殴。若不听劝阻继续斗殴，我会让空警约束他们。着陆后，我会要求机场警方将他们带走 。"
+    },
+    {
+      "id": "opi-extra-008",
+      "taskTitle": "运行-旅客异常情况处置-6",
+      "audioText": "refuse to check his oversized baggage/turn off his mobile",
+      "referenceText": "We will tell him that checking the baggage/turning off his mobile is for flight safety. If he keeps refusing to check his oversized baggage/turn off his mobile, I will force him to check the baggage/turn off his mobile phone. As a captain, I can refuse him boarding.\n我们会告知他，托运行李 / 关闭手机是为了飞行安全。若他持续拒绝托运超大行李 / 关闭手机，我会强制他托运行李 / 关闭手机。作为机长，我可拒绝其登机 。"
+    },
+    {
+      "id": "opi-extra-011",
+      "taskTitle": "运行-旅客异常情况处置-7",
+      "audioText": "If there is a drunken passenger quarreling with one of the flight attendant in the cabin, what should you do as a captain?",
+      "audioTextZh": "如果有一名醉酒乘客在客舱和一名乘务人员发生争吵,作为机长,你会这么做?",
+      "referenceText": "As captain, I will focus on aircraft control first. Instruct air marshals and cabin crew to separate the drunk passenger, calm him down, and prevent him from disturbing others or damaging equipment. If the situation escalates, report to ATC, request priority landing, and arrange for police assistance upon arrival to ensure cabin order and flight safety.\n作为机长，首先专注于航空器操纵；指示空保和乘务员分隔醉酒乘客，安抚其情绪，阻止其干扰他人或损坏设备；若事态升级，向空管报告，请求优先落地，落地后安排警方协助处置，确保客舱秩序和飞行安全。"
+    }
+  ]
+}

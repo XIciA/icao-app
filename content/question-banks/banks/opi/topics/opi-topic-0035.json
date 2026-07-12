@@ -1,0 +1,78 @@
+{
+  "categoryId": "opi-category-06",
+  "id": "opi-topic-0035",
+  "name": "液压系统",
+  "declaredCardCount": 10,
+  "cards": [
+    {
+      "id": "opi-core-472",
+      "taskTitle": "飞机系统-液压系统-1",
+      "audioText": "Is the hydraulic system important to flight operations? What are the functions of the hydraulic system?",
+      "audioTextZh": "液压系统对飞行操作重要吗？液压系统的功能是什么？",
+      "referenceText": "（1）Yes, hydraulic system is one of the most important part of the aircraft. Hydraulic system controls landing gear, flaps, brakes, primary flight control surfaces and so on.\n重要，液压系统是飞机最重要的系统之一。它控制起落架、襟翼、刹车、主飞行操纵面等。\n（2）Hydraulic system is mainly used to provide hydraulic power/pressure to operate/control aircraft units such as landing gear, flaps, brakes, steering and so on.\n液压系统主要用来提供液压动力操纵飞机组件，比如起落架，襟翼，刹车，转向等等。\n（3） Hydraulic systems provide pressure to operate flight control surfaces (rudder, elevator, aileron), extend/retract landing gear, control wheel brakes and nose wheel steering, actuate flaps, slats, thrust reversers, and spoilers. They are critical for aircraft control and maneuverability.\n液压系统提供压力以操纵飞行操纵面方向舵、升降舵、副翼、收放起落架、控制机轮刹车和前轮转向，还能驱动襟翼、缝翼、反推装置及扰流板，是飞机控制和机动能力的关键系统。"
+    },
+    {
+      "id": "opi-core-473",
+      "taskTitle": "飞机系统-液压系统-2",
+      "audioText": "What are the consequences of the hydraulic system failure during flight?",
+      "audioTextZh": "飞行中液压系统失效会产生哪些后果？",
+      "referenceText": "(1)If we encounter hydraulic system failure during flight, we may can't extend the landing gear. Can't apply the flaps and brakes. Can't use the primary flight control surfaces.\n若飞行中遭遇液压系统失效，可能无法放下起落架，无法操作襟翼和刹车，无法使用主飞行操纵面。\n(2)There are some possible consequences of hydraulic system failure. For example, if the hydraulic system fails during landing, the landing gears can’t be extended, we may have to make a belly landing. Besides, we can’t extend the flaps, the landing speed will be higher and the landing distance will be longer.\n液压系统失效有一些可能的后果。例如，若着陆时液压系统失效，起落架无法放下，可能得机腹着陆。此外，无法放下襟翼，着陆速度会更高，着陆距离会更长 。"
+    },
+    {
+      "id": "opi-core-474",
+      "taskTitle": "飞机系统-液压系统-3",
+      "audioText": "How many hydraulic systems do your aircraft have?",
+      "audioTextZh": "你的飞机有几个液压系统",
+      "referenceText": "（1） I fly the DA-40, which has only one hydraulic system mainly used to control the main gear brakes. Larger civil aircraft like the B737 and A320 are equipped with three hydraulic systems (B737: A, B, Standby; A320: Blue, Green, Yellow) for redundancy to ensure flight safety.\n我驾驶的DA-40仅有一套液压系统，主要用于控制主起落架刹车。B737、A320等大型民航客机则配备三套液压系统B737：A、B、备用系统；A320：蓝、绿、黄系统，通过冗余设计保障飞行安全。\n（2）I fly C172, there is no hydraulic system But I know there are three hydraulic systems in Airbus, blue system, yellow system and green system\n我飞 C172，它没有液压系统；但我知道空客有 3 个液压系统，蓝色、黄色和绿色系统 。"
+    },
+    {
+      "id": "opi-core-475",
+      "taskTitle": "飞机系统-液压系统-4",
+      "audioText": "What will you do if one of your hydraulic systems failed?",
+      "audioTextZh": "若你的其中一个液压系统失效，你会怎么做？",
+      "referenceText": "I fly DA - 40 for flight training. It is a small and light single - engine land aircraft. It only has one hydraulic system. If we encounter hydraulic system failure, the first priority is to keep control of the aircraft, maintain the airspeed, altitude and attitude of the aircraft. Next, we will advise ATC of our situation, perform the checklist, try to solve the problem. If the problem cannot be solved, we will follow the Standard Operating Procedure (SOP) and request to return to land or divert to the nearest suitable airport. In case of brake failure (since our hydraulic system controls the brakes), we have to request a longer runway to use for landing. After landing, we will ask ground mechanics to check the aircraft.\n我飞 DA - 40 进行飞行训练，它是小型轻型单发陆上飞机，我们只有 1 个液压系统。若遭遇液压系统失效，首要任务是保持对飞机的控制，维持飞机的空速、高度和姿态。接下来，我们会向空中交通管制（ATC）报告情况，执行检查单，尝试解决问题。若问题无法解决，我们会遵循标准操作程序（SOP），申请返航着陆或改航至最近的合适机场。由于我们的液压系统控制刹车，刹车失效时，我们得申请更长的跑道用于着陆。着陆后，我们会要求地面机械师检查飞机。"
+    },
+    {
+      "id": "opi-core-476",
+      "taskTitle": "飞机系统-液压系统-5",
+      "audioText": "What's the function of hydraulic system?",
+      "audioTextZh": "液压系统的功能是什么？",
+      "referenceText": "The hydraulic system is used to provide hydraulic power/pressure to operate/control aircraft units such as landing gear, flaps, brakes, steering (转向装置) and so on.\n液压系统用于提供液压动力 / 压力，以操作 / 控制飞机部件，如起落架、襟翼、刹车、转向装置等 。"
+    },
+    {
+      "id": "opi-core-477",
+      "taskTitle": "飞机系统-液压系统-6",
+      "audioText": "Which aircraft units are related to hydraulic system?",
+      "audioTextZh": "哪些飞机部件与液压系统相关？",
+      "referenceText": "There are many aircraft units driven by the hydraulic system, such as landing gear, nose wheel steering, brakes and flight control surfaces (ailerons, elevators, rudder, flaps, slats).\n有许多飞机部件由液压系统驱动，比如起落架、前轮转向装置、刹车以及飞行操纵面（副翼、升降舵、方向舵、襟翼、缝翼 ） 。"
+    },
+    {
+      "id": "opi-core-478",
+      "taskTitle": "飞机系统-液压系统-7",
+      "audioText": "What are the possible consequences of hydraulic failure?",
+      "audioTextZh": "液压系统失效可能产生哪些后果？",
+      "referenceText": "There are many aircraft units operated by the hydraulic system. If there is a hydraulic system failure, these units may not function properly. For example, during landing, the landing gears can’t be extended, and we may have to perform a belly landing. Besides, we can’t extend the flaps, so the landing speed will be higher and the landing distance will be longer.\n有许多飞机部件由液压系统驱动。若液压系统失效，这些部件可能无法工作。例如，着陆时，起落架无法放下，可能得机腹着陆。此外，无法放下襟翼，着陆速度会更高，着陆距离会更长 。"
+    },
+    {
+      "id": "opi-core-479",
+      "taskTitle": "飞机系统-液压系统-8",
+      "audioText": "If one of the hydraulic systems fails, will it affect flight safety?",
+      "audioTextZh": "如果其中一套液压系统失效，会影响飞行安全吗？",
+      "referenceText": "As I know, there are three hydraulic systems in Airbus A320 / Boeing B737. If one of them fails, we can switch to another working hydraulic system. It can also provide hydraulic power, so it won't affect flight safety.\n据我所知，空客320/波音737有三套液压系统，如果其中一套失效，我们可以切换到其他工作的液压系统，他们仍然可用提供液压动力，所以不会影响飞行安全。"
+    },
+    {
+      "id": "opi-core-480",
+      "taskTitle": "飞机系统-液压系统-9",
+      "audioText": "If there is hydraulic fluid leak, what will you do?",
+      "audioTextZh": "若出现液压油泄漏，你会怎么做？",
+      "referenceText": "If there is hydraulic fluid leak before flight, we will report it to maintenance personnel for check. If there is hydraulic fluid leak during flight, we will report the situation to ATC and request an emergency landing, then we will follow the checklist to check the aircraft units such as landing gear, flaps, brakes and steering.\n如果飞行前液压油泄漏，我们将报告机务检查。如果飞行中液压油泄漏，我们将报告管制我们的情况，请求紧急着陆，然后我们将执行检查单，检查飞机组件，比如起落架，襟翼，刹车，转向等。\n\nFirst, follow SOP and execute the hydraulic leakage checklist. Check fluid quantity and identify the leak source. Report to ATC, monitor aircraft control and performance closely. If pressure drops significantly, request diversion to the nearest suitable airport with a long runway. Prepare for emergency landing and evacuation if necessary.\n首先遵循标准操作程序（SOP）执行液压泄漏检查单，检查油量并确认泄漏源；向空管报告情况，密切监控飞机操纵性和性能；若压力大幅下降，请求改航至最近的合适机场（优先选择长跑道）；必要时准备紧急着陆和撤离。"
+    },
+    {
+      "id": "opi-core-481",
+      "taskTitle": "飞机系统-液压系统-10",
+      "audioText": "Will hydraulic fluid leakage affect flight safety?",
+      "audioTextZh": "液压油泄漏会影响飞行安全吗?",
+      "referenceText": "Yes, hydraulic fluid leakage is hazardous. It can reduce hydraulic pressure, leading to partial or complete loss of control over flight control surfaces, landing gear, brakes, or thrust reversers. Severe leakage may cause aircraft uncontrollability, runway overrun, or structural damage, endangering flight safety.\n会，液压油泄漏具有危险性。它会降低液压压力，导致飞行操纵面、起落架、刹车或反推装置部分或完全失控；严重泄漏可能造成飞机失控、跑道冲出或结构损伤，威胁飞行安全。"
+    }
+  ]
+}

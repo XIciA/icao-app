@@ -1,0 +1,215 @@
+{
+  "categoryId": "atc-ces",
+  "id": "atc-scenario-0098",
+  "name": "CES 5118 加餐水 前机堵滑行道",
+  "declaredCardCount": 23,
+  "cards": [
+    {
+      "id": "atc-scenario-0098-card-main-1687",
+      "taskTitle": "CES 5118-1",
+      "audioText": "B: Your call sign is China Eastern 5118, from Wuhan to Beijing, parking at gate 223, when you are ready request ATC clearance.",
+      "audioTextZh": "B：你的呼号是 China Eastern 5118，从武汉飞往北京，停在 223 号登机口，准备好时请求 ATC 放行许可。",
+      "referenceText": "Wuhan Delivery, CES5118, gate 223, request ATC clearance.",
+      "referenceTextZh": "武汉放行，CES5118，223 号登机口，请求 ATC 放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1813.mp3"
+    },
+    {
+      "id": "atc-scenario-0098-card-main-1688",
+      "taskTitle": "CES 5118-2",
+      "audioText": "C: China Eastern 5118, stand by, I will check your flight plan.",
+      "audioTextZh": "C：China Eastern 5118，等待，我检查你的飞行计划。",
+      "referenceText": "Stand by, CES5118.",
+      "referenceTextZh": "等待，CES5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1814.mp3"
+    },
+    {
+      "id": "atc-scenario-0098-card-main-1689",
+      "taskTitle": "CES 5118-3",
+      "audioText": "B: All flight attendants told you passengers have boarded, all cargo doors are closed, now report ready for clearance.",
+      "audioTextZh": "B：所有乘务员告诉你旅客已登机，所有货舱门已关闭，现在报告准备好接收放行许可。",
+      "referenceText": "Wuhan Delivery, CES5118, gate 223, ready to copy ATC clearance to Beijing.",
+      "referenceTextZh": "武汉放行，CES5118，223 号登机口，准备好抄收飞往北京的 ATC 放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1815.mp3"
+    },
+    {
+      "id": "atc-scenario-0098-card-main-1690",
+      "taskTitle": "CES 5118-4",
+      "audioText": "C: China Eastern 5118, is cleared to Beijing, cruising level 10700 meters, runway 18 left, Zulu Foxtrot 11 departure, initially 900 meters, departure frequency 120.6, squawk 3021.",
+      "audioTextZh": "C：China Eastern 5118，许可飞往北京，巡航高度 10700 米，跑道 18L，Zulu Foxtrot 11 离场，起始 900 米，离场频率 120.6，应答机 3021。",
+      "referenceText": "Cleared to Beijing, cruising level 10700 meters, runway 18L, ZF 11 departure, initially 900 meters, departure frequency 120.6, squawk 3021, CES5118.",
+      "referenceTextZh": "许可飞往北京，巡航高度 10700 米，跑道 18L，ZF 11 离场，起始 900 米，离场频率 120.6，应答机 3021，CES5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1816.mp3"
+    },
+    {
+      "id": "atc-scenario-0098-card-main-1691",
+      "taskTitle": "CES 5118-5",
+      "audioText": "C: China Eastern 5118, read back correct, remain this frequency, call you back.",
+      "audioTextZh": "C：China Eastern 5118，复诵正确，保持本频率，稍后呼叫你。",
+      "referenceText": "Remain this frequency, CES5118.",
+      "referenceTextZh": "保持本频率，CES5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1817.mp3"
+    },
+    {
+      "id": "atc-scenario-0098-card-main-1692",
+      "taskTitle": "CES 5118-6",
+      "audioText": "B: 5 minutes later, no call from Delivery, ask about the duration and reason of the delay.",
+      "audioTextZh": "B：5 分钟后，放行没有呼叫，询问延误时长和原因。",
+      "referenceText": "Wuhan Delivery, CES5118, what's the delay like and what's the reason for the delay ?",
+      "referenceTextZh": "武汉放行，CES5118，延误情况如何，延误原因是什么？",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1818.mp3"
+    },
+    {
+      "id": "atc-scenario-0098-card-main-1693",
+      "taskTitle": "CES 5118-7",
+      "audioText": "C: China Eastern 5118, due to thunderstorm activity, flow control is now ineffect, expect 8 minutes separation between each aircraft going the same direction.",
+      "audioTextZh": "C：China Eastern 5118，由于雷暴活动，流量控制现已生效，预计同方向每架飞机间隔 8 分钟。",
+      "referenceText": "Roger, CES5118.",
+      "referenceTextZh": "收到，CES5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1819.mp3"
+    },
+    {
+      "id": "atc-scenario-0098-card-main-1694",
+      "taskTitle": "CES 5118-8",
+      "audioText": "B: Heavy rain is starting to fall, accompanied with lightning and thunder.\nC: All the aircraft on my frequency, airport will temporarily close, thunderstorms on final, expect delay until the weather improves, squawk ident if you copy this message.",
+      "audioTextZh": "B：大雨开始落下，并伴随闪电和雷声。\nC：我频率上的所有飞机，机场将临时关闭，五边有雷暴，预计延误至天气好转，如收到此信息请应答机识别。",
+      "referenceText": "Roger, squawk ident, CES5118.",
+      "referenceTextZh": "收到，应答机识别，CES5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1820.mp3"
+    },
+    {
+      "id": "atc-scenario-0098-card-main-1695",
+      "taskTitle": "CES 5118-9",
+      "audioText": "B: 1 hour later, the weather is getting better and the airport is open, now ask for your departure sequence.",
+      "audioTextZh": "B：1 小时后，天气好转，机场开放，现在询问你的离场顺序。",
+      "referenceText": "Wuhan Delivery, CES5118, request departure sequence.",
+      "referenceTextZh": "武汉放行，CES5118，请求离场顺序。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1821.mp3"
+    },
+    {
+      "id": "atc-scenario-0098-card-main-1696",
+      "taskTitle": "CES 5118-10",
+      "audioText": "C: China Eastern 5118, you are currently number 1 in your direction, expect about 20 minutes delay, contact Ground on 121.8.",
+      "audioTextZh": "C：China Eastern 5118，你当前在你方向上排第 1，预计约 20 分钟延误，联系地面 121.8。",
+      "referenceText": "Roger, 121.8, CES5118.",
+      "referenceTextZh": "收到，121.8，CES5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1822.mp3"
+    },
+    {
+      "id": "atc-scenario-0098-card-main-1697",
+      "taskTitle": "CES 5118-11",
+      "audioText": "B: Inform Ground that you are ready for push back and start.",
+      "audioTextZh": "B：通知地面你准备好推出和开车。",
+      "referenceText": "Wuhan Ground, CES5118, ready for push back and start up.",
+      "referenceTextZh": "武汉地面，CES5118，准备好推出和开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1823.mp3"
+    },
+    {
+      "id": "atc-scenario-0098-card-main-1698",
+      "taskTitle": "CES 5118-12",
+      "audioText": "C: China Eastern 5118, push back approved, facing north.",
+      "audioTextZh": "C：China Eastern 5118，同意推出，机头朝北。",
+      "referenceText": "Push back approved, facing north, CES5118.",
+      "referenceTextZh": "同意推出，机头朝北，CES5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1824.mp3"
+    },
+    {
+      "id": "atc-scenario-0098-card-main-1699",
+      "taskTitle": "CES 5118-13",
+      "audioText": "B: You realize that the tug is not in position yet, advise Ground control you need another 5 minutes to be ready.",
+      "audioTextZh": "B：你意识到拖车还未到位，告知地面管制你还需要 5 分钟准备。",
+      "referenceText": "Wuhan Ground, CES5118, tug is not in position, request 5 minutes to be ready.",
+      "referenceTextZh": "武汉地面，CES5118，拖车未到位，请求 5 分钟准备。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1825.mp3"
+    },
+    {
+      "id": "atc-scenario-0098-card-main-1700",
+      "taskTitle": "CES 5118-14",
+      "audioText": "C: China Eastern 5118, roger, stand by for push, I will call you back.",
+      "audioTextZh": "C：China Eastern 5118，收到，等待推出，我稍后呼叫你。",
+      "referenceText": "Stand by, CES5118.",
+      "referenceTextZh": "等待，CES5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1826.mp3"
+    },
+    {
+      "id": "atc-scenario-0098-card-main-1701",
+      "taskTitle": "CES 5118-15",
+      "audioText": "C: China Eastern 5118, are you fully ready now?we have a slot time for departure in 10 minutes.\nB: You need to open the cabin door to add passenger food and drinks due to the long delay, advise Ground you will need another 5 minutes for catering.",
+      "audioTextZh": "C：China Eastern 5118，你现在完全准备好了吗？我们有一个 10 分钟后离场的时隙。\nB：由于长时间延误，你需要打开客舱门添加旅客餐食和饮料，告知地面你还需要 5 分钟配餐。",
+      "referenceText": "We need to open the cabin door to add passenger's food and drinks due long delay, we need another 5 minutes for catering, CES5118.",
+      "referenceTextZh": "由于长时间延误，我们需要打开客舱门添加旅客餐食和饮料，我们需要另外 5 分钟配餐，CES5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1827.mp3"
+    },
+    {
+      "id": "atc-scenario-0098-card-main-1702",
+      "taskTitle": "CES 5118-16",
+      "audioText": "C: China Eastern 5118, roger, report ready.\nB: 5 minutes later, catering completed, call ready.",
+      "audioTextZh": "C：China Eastern 5118，收到，报告准备好。\nB：5 分钟后，配餐完成，呼叫准备好。",
+      "referenceText": "Wuhan Ground, CES5118, catering completed, ready for pushback.",
+      "referenceTextZh": "武汉地面，CES5118，配餐完成，准备好推出。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1828.mp3"
+    },
+    {
+      "id": "atc-scenario-0098-card-main-1703",
+      "taskTitle": "CES 5118-17",
+      "audioText": "C: Push back approved until abeam gate 221, do not block gate 222, there is incoming traffic to that gate.",
+      "audioTextZh": "C：同意推出至正对 221 号登机口，不要阻挡 222 号登机口，有进港飞机要去该登机口。",
+      "referenceText": "Push back approved until abeam gate 221, don't block gate 222, CES5118.",
+      "referenceTextZh": "同意推出至正对 221 号登机口，不要阻挡 222 号登机口，CES5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1829.mp3"
+    },
+    {
+      "id": "atc-scenario-0098-card-main-1704",
+      "taskTitle": "CES 5118-18",
+      "audioText": "B: Engine start completed, now request taxi.",
+      "audioTextZh": "B：发动机启动完成，现在请求滑行。",
+      "referenceText": "Wuhan Ground, CES5118, startup completed, request taxi.",
+      "referenceTextZh": "武汉地面，CES5118，开车完成，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1830.mp3"
+    },
+    {
+      "id": "atc-scenario-0098-card-main-1705",
+      "taskTitle": "CES 5118-19",
+      "audioText": "C: China Eastern 5118, taxi via Mike, Alpha, hold short of Echo 1.",
+      "audioTextZh": "C：China Eastern 5118，经 Mike、Alpha 滑行，Echo 1 外等待。",
+      "referenceText": "Taxi via M, A, hold short of E1, CES5118.",
+      "referenceTextZh": "经 M、A 滑行，E1 外等待，CES5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1831.mp3"
+    },
+    {
+      "id": "atc-scenario-0098-card-main-1706",
+      "taskTitle": "CES 5118-20",
+      "audioText": "C: Can you accept Echo 1 intersection for departure?Takeoff roll distance available 3300 meters.\nB: Tell the Tower you can accept.",
+      "audioTextZh": "C：你能接受 Echo 1 交叉口离场吗？可用起飞滑跑距离 3300 米。\nB：告诉塔台你可以接受。",
+      "referenceText": "Affirm, we can accept intersection departure from E1, CES5118.",
+      "referenceTextZh": "可以，我们可以接受 E1 交叉口离场，CES5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1832.mp3"
+    },
+    {
+      "id": "atc-scenario-0098-card-main-1707",
+      "taskTitle": "CES 5118-21",
+      "audioText": "C: China Eastern 5118, roger, line up and wait via taxiway Echo 1.\nB: Report to the Tower that the aircraft in front of you is blocking Echo 1.",
+      "audioTextZh": "C：China Eastern 5118，收到，经 Echo 1 滑行道进跑道等待。\nB：向塔台报告你前方的飞机阻挡 Echo 1。",
+      "referenceText": "Negative, the aircraft in front of us is blocking E1, CES5118.",
+      "referenceTextZh": "不能，前方飞机阻挡 E1，CES5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1833.mp3"
+    },
+    {
+      "id": "atc-scenario-0098-card-main-1708",
+      "taskTitle": "CES 5118-22",
+      "audioText": "C: China Eastern 5118, roger, break! break! China Southern 328, taxi forward to be clear of Echo 1.\nB: The aircraft moved, you are able to continue taxi and line up.",
+      "audioTextZh": "C：China Eastern 5118，收到，break！break！China Southern 328，向前滑行以让开 Echo 1。\nB：该飞机移动后，你可以继续滑行并进跑道。",
+      "referenceText": "Wuhan Tower, CES5118, traffic is clear, we are able to continue taxi and line up.",
+      "referenceTextZh": "武汉塔台，CES5118，交通已脱离，我们可以继续滑行并进跑道。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1834.mp3"
+    },
+    {
+      "id": "atc-scenario-0098-card-main-1709",
+      "taskTitle": "CES 5118-23",
+      "audioText": "C: China Eastern 5118, cleared for takeoff, runway 18 left, initially maintain runway heading, climb to 1500 meters.",
+      "audioTextZh": "C：China Eastern 5118，可以起飞，跑道 18L，起始保持跑道航向，爬升至 1500 米。",
+      "referenceText": "Cleared for takeoff, runway 18L, initially maintain runway heading, climb to 1500 meters, CES5118.",
+      "referenceTextZh": "可以起飞，跑道 18L，起始保持跑道航向，爬升至 1500 米，CES5118。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1835.mp3"
+    }
+  ]
+}

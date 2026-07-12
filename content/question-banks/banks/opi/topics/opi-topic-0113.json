@@ -1,0 +1,50 @@
+{
+  "categoryId": "opi-category-03",
+  "id": "opi-topic-0113",
+  "name": "EFIS",
+  "declaredCardCount": 6,
+  "cards": [
+    {
+      "id": "opi-extra-075",
+      "taskTitle": "缩略词-EFIS-1",
+      "audioText": "What is  EFIS？",
+      "audioTextZh": "什么是电子飞行仪表系统（EFIS）？",
+      "referenceText": "EFIS stands for Electronic Flight Instrument System. It consists of left-and-right-side Primary Flight Display (PFD) and Multi-function Display (MFD) screens. The EFIS displays all information about the aircraft's situation, position and progress. It indicates important information on one display, EFIS reduces pilot's workload.\nEFIS 是电子飞行仪表系统（Electronic Flight Instrument System ）的缩写。它由左右两侧的主飞行显示器（PFD）和多功能显示器（MFD）屏幕组成。EFIS 显示关于飞机状态、位置和飞行进程的所有信息。它能在一个显示器上呈现重要信息，减轻飞行员的工作负担 。\n\nEFIS stands for Electronic Flight Instrument System, including PFD (Primary Flight Display) and MFD (Multi-Function Display). PFD shows key flight data (airspeed, attitude, altitude, heading). MFD displays navigation information, weather radar, TCAS, and EGPWS data, integrating critical information for pilots.\n电子飞行仪表系统（EFIS）包含主飞行显示器（PFD）和多功能显示器（MFD）。主飞行显示器（PFD）显示空速、姿态、高度、航向等关键飞行数据；多功能显示器（MFD）展示导航信息、气象雷达、空中防撞系统（TCAS）及增强型近地警告系统（EGPWS）数据，为飞行员整合关键信息。"
+    },
+    {
+      "id": "opi-extra-076",
+      "taskTitle": "缩略词-EFIS-2",
+      "audioText": "Is your aircraft equipped with EFIS?",
+      "audioTextZh": "你的飞机配备电子飞行仪表系统（EFIS）了吗？",
+      "referenceText": "Yes.\n配备了。"
+    },
+    {
+      "id": "opi-extra-077",
+      "taskTitle": "缩略词-EFIS-3",
+      "audioText": "Can you introduce EFIS to me?",
+      "audioTextZh": "你能给我介绍一下电子飞行仪表系统（EFIS）吗？",
+      "referenceText": "On our DA-40 aircraft, we have an EFIS. We use the G1000 system which includes a PFD and MFD to display flight information.\n在我们的 DA - 40 飞机上，配备了电子飞行仪表系统（EFIS）。我们采用 G1000 系统，该系统包含主飞行显示器（PFD）和多功能显示器（MFD），用于显示飞行信息 。"
+    },
+    {
+      "id": "opi-extra-078",
+      "taskTitle": "缩略词-EFIS-4",
+      "audioText": "Compare the digital displays in the cockpit with the traditional analog instruments, which do you prefer? Why?",
+      "audioTextZh": "对比驾驶舱内的数字显示器和传统模拟仪表，你更喜欢哪种？为什么？",
+      "referenceText": "I prefer the digital displays. It is very convenient to use because it indicates all the important information on one display, and it can reduce pilots' workload.\n我更喜欢数字显示器。它使用起来非常方便，因为能在一个显示器上显示所有重要信息，而且可以减轻飞行员的工作负担 。"
+    },
+    {
+      "id": "opi-extra-079",
+      "taskTitle": "缩略词-EFIS-5",
+      "audioText": "Do you know EFIS?",
+      "audioTextZh": "你了解电子飞行仪表系统（EFIS）吗？",
+      "referenceText": "Yes, EFIS is short for Electronic Flight Instrument System.\n了解，EFIS 是电子飞行仪表系统（Electronic Flight Instrument System ）的缩写 。"
+    },
+    {
+      "id": "opi-extra-080",
+      "taskTitle": "缩略词-EFIS-6",
+      "audioText": "What is the use of EFIS? What are the advantages of EFIS?",
+      "audioTextZh": "电子飞行仪表系统（EFIS）的用途是什么？它有哪些优势？",
+      "referenceText": "EFIS consists of PFD and MFD. PFD is used to display important flight information such as attitude, altitude, airspeed, heading, vertical speed and yaw. MFD is used to display navigation information, weather information, and so on. They can enhance the aircraft's operational efficiency, reduce workload, and improve flight safety.\n电子飞行仪表系统（EFIS）由主飞行显示器（PFD）和多功能显示器（MFD）组成。主飞行显示器（PFD）用于显示姿态、高度、空速、航向、垂直速度和偏航角等重要飞行信息。多功能显示器（MFD）用于显示导航信息、气象信息等。它们能够提升飞机的运行效率，减轻工作负担，并且改善飞行安全状况 。\n\n EFIS offers clear, integrated display of multiple flight data, reducing pilot workload and information searching time. It has high precision, stable performance, and automatic alerts for abnormalities. It also supports data sharing with other systems (GPS, HUD), enhancing situational awareness and operational safety.\n电子飞行仪表系统（EFIS）能清晰整合显示多种飞行数据，降低飞行员工作负荷和信息查找时间；精度高、性能稳定，可自动预警异常情况；还支持与全球定位系统（GPS）、平视显示器（HUD）等其他系统共享数据，提升情景意识和运行安全性。"
+    }
+  ]
+}

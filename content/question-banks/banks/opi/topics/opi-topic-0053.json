@@ -1,0 +1,64 @@
+{
+  "categoryId": "opi-category-03",
+  "id": "opi-topic-0053",
+  "name": "HUD",
+  "declaredCardCount": 8,
+  "cards": [
+    {
+      "id": "opi-core-613",
+      "taskTitle": "缩略词-HUD-1",
+      "audioText": "1. What is HUD?",
+      "audioTextZh": "什么是平视显示器（HUD）？",
+      "referenceText": "HUD stands for Head - up Display. It is an advanced cockpit device. To prevent pilots from having to look down (which can cause loss of situational awareness), HUD was developed. It provides essential flight information such as heading, airspeed, altitude, and position.\n平视显示器（HUD）全称为 Head - up Display 。它是驾驶舱内的一种先进设备。为避免飞行员出现低头看仪表的情况（进而导致态势感知缺失），平视显示器应运而生。它可提供航向、空速、高度、位置等关键飞行信息 。\n\nHUD stands for Head-up Display, projecting flight data onto a transparent screen in the pilot’s line of sight. Pilots can get information like heading, airspeed, altitude, attitude, glide slope, and runway guidance. It allows pilots to monitor data while observing the outside, enhancing situational awareness.\n抬头显示（HUD）是将飞行数据投射到飞行员视野前方透明屏幕的设备。飞行员可从中获取航向、空速、高度、姿态、下滑道及跑道引导等信息，能在观察外界的同时监控数据，提升情景意识。"
+    },
+    {
+      "id": "opi-core-614",
+      "taskTitle": "缩略词-HUD-2",
+      "audioText": "Can HUD be used to lower the landing minimum?",
+      "audioTextZh": "平视显示器（HUD）可用于降低着陆最低标准吗？",
+      "referenceText": "Yes, but I’m not familiar with the specific standards. Our aircraft isn’t equipped with it. I only know it’s an advanced system.\n可以，但我不清楚具体标准。我们的飞机没配备这种设备，只知道它是一种先进系统 。\n\nYes, HUD can lower the landing minimum. By integrating runway guidance, localizer, and flight data, it provides clear visual references even in low visibility. Combined with ILS and advanced airport facilities, it enables safe landings at lower RVR (for example RVR 150m), improving flight regularity.\n是的，抬头显示（HUD）可以降低着陆最低标准。它整合跑道引导、航向台和飞行数据，即使在低能见度下也能提供清晰的视觉参考；与仪表着陆系统（ILS）和先进机场设施配合，可实现更低跑道视程（如150米）下的安全着陆，提升航班正常性。"
+    },
+    {
+      "id": "opi-core-615",
+      "taskTitle": "缩略词-HUD-3",
+      "audioText": "Besides HUD, do you know any other minimally equipped landing facilities?",
+      "audioTextZh": "除平视显示器（HUD）外，你还了解其他简易配备的着陆辅助设施吗？",
+      "referenceText": "There are various landing aids, such as landing lights, runway lights, radar, VOR stations, and DME stations.\n有多种着陆辅助设施，比如着陆灯、跑道灯、雷达、甚高频全向信标（VOR）台、测距仪（DME）台 。\n\nYes, other  landing equipment includes ILS (provides horizontal/vertical guidance), PAPI (indicates approach path), runway centerline/edge lights (enhances visibility), and EGPWS (prevents terrain collision). These equipment ensure safe landings by supplementing guidance, visibility, and safety warnings.\n知道，其他着陆设备包括仪表着陆系统（ILS，提供水平/垂直引导）、精密进近航道指示器（PAPI，指示进近航道）、跑道中心线/边灯（提升能见度）以及增强型近地警告系统（EGPWS，预防撞地）。这些设备通过补充引导、能见度和安全警告保障着陆安全。"
+    },
+    {
+      "id": "opi-core-616",
+      "taskTitle": "缩略词-HUD-4",
+      "audioText": "When will pilots use HUD?",
+      "audioTextZh": "飞行员何时使用 HUD？",
+      "referenceText": "Pilots often use HUD for takeoff and landing.\n常用于起飞和着陆阶段。"
+    },
+    {
+      "id": "opi-core-617",
+      "taskTitle": "缩略词-HUD-5",
+      "audioText": "What are the advantages of using HUD?",
+      "audioTextZh": "使用 HUD 有哪些优势？",
+      "referenceText": "By using HUD, pilots can get the important instrument readings without looking down, so they can scan the outside environment at the same time. This can improve pilot’s situational awareness and ensure flight safety.\n飞行员无需低头即可获取重要仪表数据，同时可观察外界环境，能提升情景意识，保障飞行安全。"
+    },
+    {
+      "id": "opi-core-618",
+      "taskTitle": "缩略词-HUD-6",
+      "audioText": "What kinds of training you need to\ncomplete before using the HUD in flight?",
+      "audioTextZh": "飞行中使用 HUD 前，需完成哪些培训？",
+      "referenceText": "According to the regulation, pilots need to take both ground training and flight trainings before using HUD.\n根据法规要求，需完成地面培训和飞行培训。"
+    },
+    {
+      "id": "opi-core-619",
+      "taskTitle": "缩略词-HUD-7",
+      "audioText": "What are the advantages of using HUD in heavy fog weather?",
+      "audioTextZh": "在浓雾天气下,使用HUD的优势是什么?",
+      "referenceText": "Using HUD in heavy fog offers advantages: integrating flight data (airspeed, altitude) with real-world view, reducing head-down time; providing virtual runway/navigation guidance, enhancing situational awareness; lowering landing minima; and improving approach stability, helping pilots align runways accurately despite low visibility.\n浓雾天气下使用平视显示器（HUD）的优势包括：将飞行数据（空速、高度）与实景融合，减少低头看仪表时间；提供虚拟跑道/导航引导，提升情景意识；降低着陆最低标准；增强进近稳定性，帮助飞行员在低能见度下精准对准跑道。"
+    },
+    {
+      "id": "opi-core-620",
+      "taskTitle": "缩略词-HUD-8",
+      "audioText": "Do you think HUD operations in adverse weather will be a trend in the future?",
+      "audioTextZh": "你认为不利天气下HUD运行会变成一种趋势吗?",
+      "referenceText": "Yes, HUD operations in adverse weather will be a future trend. HUD enhances safety by improving situational awareness and reducing human error in low visibility, turbulence, or heavy rain. With aviation technology development, more airlines will equip HUD to improve operational reliability and reduce delays caused by bad weather.\n是的，不利天气下的平视显示器（HUD）运行将成为未来趋势。HUD在低能见度、颠簸或暴雨等天气中能提升情景意识、减少人为差错，增强安全性。随着航空技术发展，更多航空公司会配备HUD，以提高运行可靠性并减少恶劣天气导致的延误。"
+    }
+  ]
+}

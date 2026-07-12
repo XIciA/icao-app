@@ -1,0 +1,64 @@
+{
+  "categoryId": "opi-category-05",
+  "id": "opi-topic-0085",
+  "name": "无线电检查",
+  "declaredCardCount": 8,
+  "cards": [
+    {
+      "id": "opi-core-851",
+      "taskTitle": "运行-无线电检查-1",
+      "audioText": "Do you often carry out radio check with ATC in flight? Usually when do you need to carry out the radio check?",
+      "audioTextZh": "飞行中你会经常与空中交通管制（ATC）进行无线电检查吗？通常在什么情况下需要进行无线电检查？",
+      "referenceText": "Yes, sometimes we carry out radio checks with ATC in flight. Normally, before pushback and start - up, and when we first contact ATC, we conduct radio checks.\n是的，飞行中我们有时会与空中交通管制（ATC）进行无线电检查。一般来说，在推出、启动前，以及首次与 ATC 建立联系时，我们会进行无线电检查 。"
+    },
+    {
+      "id": "opi-core-852",
+      "taskTitle": "运行-无线电检查-2",
+      "audioText": "How do you carry out the radio check? Would you please give me a detailed explanation?",
+      "audioTextZh": "你们如何进行无线电检查？能否详细说明一下流程？",
+      "referenceText": "(1) First of all, I will check that the earphone and microphone are working properly. Then I will set the correct frequency and ask the controller, “12345. How do you read me?” We will make sure we hear each other loud and clear.\n首先，我会检查耳机和麦克风工作是否正常。随后设置正确频率，并向管制员呼叫：“12345，你听我信号如何？” 我们要确保双方能清晰、响亮地听到彼此声音。\n (2) When we are required to check the radios, we will follow the procedure as follows: “Wuhan Ground, CCA, radio check on [frequency]. How do you read me?” We will repeat the procedure until the communication is loud and clear.\n当需要进行无线电检查时，我们会按如下流程操作：“武汉地面，中国国际航空（CCA），在 [频率] 上进行无线电检查，你听我信号如何？” 我们会重复该流程，直至通信清晰、响亮 。"
+    },
+    {
+      "id": "opi-core-853",
+      "taskTitle": "运行-无线电检查-3",
+      "audioText": "When do you need to have radio check in your flight?",
+      "audioTextZh": "飞行中你们在什么情况下需要进行无线电检查？",
+      "referenceText": "When we have initial contact with ATC, we will conduct a radio check with ATC. Besides, if the readability is below standard, we will check the radios.\n当我们与空中交通管制（ATC）首次建立联系时，会与 ATC 进行无线电检查。此外，若通信清晰度未达标准，我们也会检查无线电设备 。\n\nA radio check is needed during initial contact with ATC on the ground if signal quality is poor, before key flight phases (e.g., takeoff, approach), or when communication is unclear, ensuring reliable interaction with ATC throughout the flight.\n在地面初次联系空管且信号质量不佳时、关键飞行阶段（如起飞、进近）前，或通信不清晰时，需要进行无线电检查，确保飞行全程与空管的通信可靠。"
+    },
+    {
+      "id": "opi-core-854",
+      "taskTitle": "运行-无线电检查-4",
+      "audioText": "Have you ever encountered radio failure?",
+      "audioTextZh": "你曾遇到过无线电故障吗？",
+      "referenceText": "No, I have never encountered radio failure.\n没有，我从未遇到过无线电故障。"
+    },
+    {
+      "id": "opi-core-855",
+      "taskTitle": "运行-无线电检查-5",
+      "audioText": "What would you do if you had radio failure? What is your company's procedures regarding failure?",
+      "audioTextZh": "若遇到无线电故障，你会如何处理？贵公司针对（无线电 ）故障的处置程序是怎样的？",
+      "referenceText": "First, we will squawk 7600 to indicate we have a communication failure. Second, we should follow the last instruction given by ATC. Third, we will follow the SOP (Standard Operating Procedure), recycle the radios and re - establish communication with ATC. If possible, we may switch to the emergency frequency.\n首先，我们会设置应答机编码 7600，表明出现通信故障。其次，遵循空中交通管制（ATC）给出的最后一条指令。第三，按照标准操作程序（SOP），重启无线电设备并重新与 ATC 建立通信。如有可能，我们会切换到应急频率 。\n\nThe procedures include: squawking 7600 to indicate communication failure; following the last ATC instruction and flight plan; attempting to re-establish communication by recycling radios or switching to emergency frequency 121.5; performing blind transmission and position reports; and considering landing as soon as practical based on aircraft and airport conditions.\n应对流程包括：应答机编码7600示意通信失效；遵循空管最后指令和飞行计划；通过重启无线电或切换至应急频率121.5尝试重建通信；进行盲目发射和位置报告；根据飞机及机场情况考虑尽快落地（非紧急情况下）。"
+    },
+    {
+      "id": "opi-core-856",
+      "taskTitle": "运行-无线电检查-6",
+      "audioText": "During flight operations, who is responsible for radiotelephony (RTF) communication with ATC?",
+      "audioTextZh": "飞行操作期间，谁负责与空中交通管制（ATC）进行无线电电话（RTF）通信？",
+      "referenceText": "During flight, the pilot not flying (PNF) is responsible for radiotelephony (RTF) communication with ATC.\n飞行期间，不操纵飞机的飞行员（PNF，Pilot Not Flying ）负责与空中交通管制（ATC）进行无线电电话（RTF）通信 。\n\nAccording to SOP, the First Officer (FO) handles radiotelephony communication with ATC during ground operations, while the Pilot Monitoring (PM/PNF) takes charge during flight. This division ensures the Pilot Flying (PF) can focus on aircraft control, optimizing workload distribution.\n根据标准操作程序（SOP），地面运行时由副驾驶（FO）负责与空管的无线电通话，飞行中由监控飞行员（PM/PNF）负责。这种分工能让操纵飞行员（PF）专注于飞机控制，优化工作负荷分配。"
+    },
+    {
+      "id": "opi-core-857",
+      "taskTitle": "运行-无线电检查-7",
+      "audioText": "What does \"I read you five\" mean?\n“",
+      "audioTextZh": "我听你5个”是什么意思？",
+      "referenceText": "It means the radio signal is perfectly clear. In aviation radiotelephony, “I read you five” indicates the highest readability level (5), meaning the transmission is loud, clear, and free of interference.\n意思是无线电信号完全清晰。在航空无线电通话中，“I read you five”表示信号清晰度达到最高等级（5级），即传输声音洪亮、清晰且无干扰。"
+    },
+    {
+      "id": "opi-core-858",
+      "taskTitle": "运行-无线电检查-8",
+      "audioText": "What do you do when the radio is unstable?",
+      "audioTextZh": "当无线电不稳定时,你会怎么处置?",
+      "referenceText": "First, I will check the radio equipment and antenna for malfunctions. Then, switch to an alternate frequency or adjust the radio settings. If communication is still poor, use standard phraseology to communicate briefly, request radar vectors from ATC, and squawk 7600 if necessary. Maintain situational awareness and prepare to divert if communication fails completely.\n首先检查无线电设备和天线是否故障，切换至备用频率或调整设备设置；若通信仍不佳，使用标准术语简洁沟通，向空管请求雷达引导，必要时应答机编码7600；保持情景意识，若通信完全失效，准备改航备降。"
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "categoryId": "atc-csn",
+  "id": "atc-scenario-0075",
+  "name": "CSN 557 左主起落架未收回 液压系统漏油",
+  "declaredCardCount": 18,
+  "cards": [
+    {
+      "id": "atc-scenario-0075-card-main-1282",
+      "taskTitle": "CSN 557-1",
+      "audioText": "B: Your call sign is China Southern 557, you are flying from Wuhan to Rome, you are taxiing southbound on taxiway Charlie to holding point runway 36 left, contact Wuhan Tower.",
+      "audioTextZh": "B：你的呼号是 China Southern 557，从武汉飞往罗马，你正在 Charlie 滑行道向南滑行至跑道 36L 等待点，联系武汉塔台。",
+      "referenceText": "Wuhan Tower, CSN557, taxiing on taxiway C to holding point runway 36L.",
+      "referenceTextZh": "武汉塔台，CSN557，在 C 滑行道滑行至跑道 36L 等待点。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1358.mp3"
+    },
+    {
+      "id": "atc-scenario-0075-card-main-1283",
+      "taskTitle": "CSN 557-2",
+      "audioText": "C: China Southern 557, line up runway 36 left.",
+      "audioTextZh": "C：China Southern 557，进入跑道 36L。",
+      "referenceText": "Line up runway 36L, CSN557.",
+      "referenceTextZh": "进入跑道 36L，CSN557。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1359.mp3"
+    },
+    {
+      "id": "atc-scenario-0075-card-main-1284",
+      "taskTitle": "CSN 557-3",
+      "audioText": "C: China Southern 557, wind calm, contact Approach on 119.25 when airborne, cleared for takeoff runway 36 left.",
+      "audioTextZh": "C：China Southern 557，风静，离地后联系进近 119.25，跑道 36L 可以起飞。",
+      "referenceText": "119.25, cleared for takeoff runway 36L, CSN557.",
+      "referenceTextZh": "119.25，跑道 36L 可以起飞，CSN557。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1360.mp3"
+    },
+    {
+      "id": "atc-scenario-0075-card-main-1285",
+      "taskTitle": "CSN 557-4",
+      "audioText": "B: After airborne, you have an undercarriage warning, your left main gear has not fully retracted, call Wuhan Approach and request maintain 1200 meters and speed 180 knots.",
+      "audioTextZh": "B：离地后，你有起落架警告，左主起落架未完全收上，呼叫武汉进近并请求保持 1200 米、速度 180 节。",
+      "referenceText": "Wuhan Approach, CSN557, we have an undercarriage warning, our left main gear has not fully retracted, request maintain 1200 meters and speed 180 knots.",
+      "referenceTextZh": "武汉进近，CSN557，我们有起落架警告，左主起落架未完全收上，请求保持 1200 米、速度 180 节。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1361.mp3"
+    },
+    {
+      "id": "atc-scenario-0075-card-main-1286",
+      "taskTitle": "CSN 557-5",
+      "audioText": "C: China Southern 557, climb and maintain 1200 meters, speed 180 knots approved, advise intentions when able.",
+      "audioTextZh": "C：China Southern 557，爬升并保持 1200 米，速度 180 节同意，能够时告知意图。",
+      "referenceText": "Climb and maintain 1200 meters, speed 180 knots approved, CSN557.",
+      "referenceTextZh": "爬升并保持 1200 米，速度 180 节同意，CSN557。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1362.mp3"
+    },
+    {
+      "id": "atc-scenario-0075-card-main-1287",
+      "taskTitle": "CSN 557-6",
+      "audioText": "B: After performing the checklist, you still can't verify the landing gear position, tell Wuhan Approach you want to return to Wuhan Airport and fly a low pass over airfield for visual inspection.",
+      "audioTextZh": "B：完成检查单后，你仍无法确认起落架位置，告诉武汉进近你想返回武汉机场，并在机场上空低通场进行目视检查。",
+      "referenceText": "Wuhan Approach, CSN557, we can't verify the landing gear position, request return to Wuhan Airport and request a low pass over airfield for visual inspection.",
+      "referenceTextZh": "武汉进近，CSN557，我们无法确认起落架位置，请求返回武汉机场，并请求在机场上空低通场进行目视检查。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1363.mp3"
+    },
+    {
+      "id": "atc-scenario-0075-card-main-1288",
+      "taskTitle": "CSN 557-7",
+      "audioText": "C: China Southern 557, turn right, track direct to Delta Alpha NDB, descend to 900 meters, follow published procedure, cleared ILS approach 36 right.",
+      "audioTextZh": "C：China Southern 557，右转，直飞 Delta Alpha NDB，下降至 900 米，按公布程序，许可 ILS 进近跑道 36R。",
+      "referenceText": "Turn right, track direct to DA NDB, descend to 900 meters, follow published procedure, cleared ILS approach 36R, CSN557.",
+      "referenceTextZh": "右转，直飞 DA NDB，下降至 900 米，按公布程序，许可 ILS 进近跑道 36R，CSN557。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1364.mp3"
+    },
+    {
+      "id": "atc-scenario-0075-card-main-1289",
+      "taskTitle": "CSN 557-8",
+      "audioText": "C: China Southern 557, you are 10 miles from touchdown, contact Wuhan Tower 118.5.",
+      "audioTextZh": "C：China Southern 557，你距接地点 10 海里，联系武汉塔台118.5。",
+      "referenceText": "118.5, CSN557.",
+      "referenceTextZh": "118.5，CSN557。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1365.mp3"
+    },
+    {
+      "id": "atc-scenario-0075-card-main-1290",
+      "taskTitle": "CSN 557-9",
+      "audioText": "B: Call tower and tell them you are established on ILS runway 36 right, you are ready for low pass.",
+      "audioTextZh": "B：呼叫塔台并告诉他们你已建立 ILS 跑道 36R，准备低通场。",
+      "referenceText": "Wuhan Tower, CSN557, established on ILS runway 36R, ready for low pass.",
+      "referenceTextZh": "武汉塔台，CSN557，已建立 ILS 跑道 36R，准备低通场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1366.mp3"
+    },
+    {
+      "id": "atc-scenario-0075-card-main-1291",
+      "taskTitle": "CSN 557-10",
+      "audioText": "C: China Southern 557, wind calm, cleared low pass runway 36 right, not below 100 meters above the runway.",
+      "audioTextZh": "C：China Southern 557，风静，跑道 36R 低通场许可，不低于跑道上方 100 米。",
+      "referenceText": "Cleared low pass runway 36R, not below 100 meters above the runway, CSN557.",
+      "referenceTextZh": "跑道 36R 低通场许可，不低于跑道上方 100 米，CSN557。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1367.mp3"
+    },
+    {
+      "id": "atc-scenario-0075-card-main-1292",
+      "taskTitle": "CSN 557-11",
+      "audioText": "C: China Southern 557, after low pass, maintain runway heading, climb to 900 meters.",
+      "audioTextZh": "C：China Southern 557，低通场后，保持跑道航向，爬升至 900 米。",
+      "referenceText": "After low pass, maintain runway heading, climb to 900 meters, CSN557.",
+      "referenceTextZh": "低通场后，保持跑道航向，爬升至 900 米，CSN557。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1368.mp3"
+    },
+    {
+      "id": "atc-scenario-0075-card-main-1293",
+      "taskTitle": "CSN 557-12",
+      "audioText": "C: China Southern 557, we have a good look at your undercarriage, your left main landing gear is stuck halfway, it is not in the extended position, advise intention.\nB: Tell Tower you want to perform hold near the airport.",
+      "audioTextZh": "C：China Southern 557，我们看清了你的起落架，你的左主起落架卡在半程，未在放下位置，告知意图。\nB：告诉塔台你想在机场附近等待。",
+      "referenceText": "Roger, request hold near the airport, CSN557.",
+      "referenceTextZh": "收到，请求在机场附近等待，CSN557。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1369.mp3"
+    },
+    {
+      "id": "atc-scenario-0075-card-main-1294",
+      "taskTitle": "CSN 557-13",
+      "audioText": "C: China Southern 557, turn left, direct to Delta Alpha, climb to 1200 meters, contact Wuhan Approach on 119.25.",
+      "audioTextZh": "C：China Southern 557，左转，直飞 Delta Alpha，爬升至 1200 米，联系武汉进近119.25。",
+      "referenceText": "Turn left, direct to DA, climb to 1200 meters, contact Wuhan Approach on 119.25, CSN557.",
+      "referenceTextZh": "左转，直飞 DA，爬升至 1200 米，联系武汉进近119.25，CSN557。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1370.mp3"
+    },
+    {
+      "id": "atc-scenario-0075-card-main-1295",
+      "taskTitle": "CSN 557-14",
+      "audioText": "B: Now you are tracking direct to Delta Alpha, maintaining 1200 meters, call Wuhan Approach and request holding instructions.",
+      "audioTextZh": "B：现在你正直飞 Delta Alpha，保持 1200 米，呼叫武汉进近并请求等待指令。",
+      "referenceText": "Wuhan Approach, CSN557, tracking direct to DA, maintaining 1200 meters, request holding instructions.",
+      "referenceTextZh": "武汉进近，CSN557，正直飞 DA，保持 1200 米，请求等待指令。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1371.mp3"
+    },
+    {
+      "id": "atc-scenario-0075-card-main-1296",
+      "taskTitle": "CSN 557-15",
+      "audioText": "C: China Southern 557, Wuhan Approach, radar contact, hold at Delta Alpha NDB as published, expect further clearance at 50, report entering the hold.",
+      "audioTextZh": "C：China Southern 557，武汉进近，雷达识别，在 Delta Alpha NDB 按公布程序等待，预计进一步许可 50，报告进入等待。",
+      "referenceText": "Hold at DA NDB as published, CSN557.",
+      "referenceTextZh": "在 DA NDB 按公布程序等待，CSN557。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1372.mp3"
+    },
+    {
+      "id": "atc-scenario-0075-card-main-1297",
+      "taskTitle": "CSN 557-16",
+      "audioText": "B: During hold, another warning is triggered, 1 of the hydraulic systems is leaking fluid slowly, this is an Urgency call, you want to dump fuel and return for emergency landing.",
+      "audioTextZh": "B：等待中，另一个警告触发，1 套液压系统缓慢漏油，这是紧急情况呼叫，你想放油并返回紧急着陆。",
+      "referenceText": "PANPAN PANPAN PANPAN, Wuhan Approach, CSN557, 1 of the hydraulic systems is leaking fluid slowly, request dump fuel and return for emergency landing.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，武汉进近，CSN557，1 套液压系统缓慢漏油，请求放油并返回紧急着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1373.mp3"
+    },
+    {
+      "id": "atc-scenario-0075-card-main-1298",
+      "taskTitle": "CSN 557-17",
+      "audioText": "C: China Southern 557, roger PAN, climb to and maintain 3000 meters, turn left heading 310, radar vector to dump fuel, we will have emergency services ready and foam the runway slowly.",
+      "audioTextZh": "C：China Southern 557，收到 PAN，爬升并保持 3000 米，左转航向 310，雷达引导航空放油，我们将准备好应急服务并缓慢给跑道铺泡沫。",
+      "referenceText": "Climb to and maintain 3000 meters, turn left heading 310, radar vector to dump fuel, roger, thanks, CSN557.",
+      "referenceTextZh": "爬升并保持 3000 米，左转航向 310，雷达引导航空放油，收到，谢谢，CSN557。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1374.mp3"
+    },
+    {
+      "id": "atc-scenario-0075-card-main-1299",
+      "taskTitle": "CSN 557-18",
+      "audioText": "B: After emergency landing at runway 36 right, the aircraft is still intact, you want to make an emergency evacuation.",
+      "audioTextZh": "B：在跑道 36R 紧急着陆后，飞机仍保持完整，你想进行紧急撤离。",
+      "referenceText": "Wuhan Tower, CSN557, the aircraft is still intact, request emergency evacuation.",
+      "referenceTextZh": "武汉塔台，CSN557，飞机仍保持完整，请求紧急撤离。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1375.mp3"
+    }
+  ]
+}

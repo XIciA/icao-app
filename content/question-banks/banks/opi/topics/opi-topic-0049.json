@@ -1,0 +1,57 @@
+{
+  "categoryId": "opi-category-05",
+  "id": "opi-topic-0049",
+  "name": "着陆重量",
+  "declaredCardCount": 7,
+  "cards": [
+    {
+      "id": "opi-core-583",
+      "taskTitle": "运行-着陆重量-1",
+      "audioText": "What are the consequences of overweight landing?",
+      "audioTextZh": "超重着陆会产生哪些后果？",
+      "referenceText": "If we make an overweight landing, we may run off the runway. This is very dangerous and could even cause structural damage or passenger injuries.\n如果进行超重着陆，飞机可能会冲出跑道。这十分危险，甚至可能造成飞机结构损坏或乘客受伤 。"
+    },
+    {
+      "id": "opi-core-584",
+      "taskTitle": "运行-着陆重量-2",
+      "audioText": "If you made hard landing how would you explain this to your boss?",
+      "audioTextZh": "如果发生重着陆，你会如何向你的上司解释？",
+      "referenceText": "I would explain the reasons for the hard landing in detail, including factors like adverse weather conditions, unexpected runway changes, or aircraft system responses. I’d also sincerely apologize, take responsibility, and outline specific improvement measures—such as additional training on landing techniques or preflight risk assessments—to ensure it doesn’t happen again.\n我会详细说明重着陆的原因，包括恶劣天气状况、突发的跑道变化或飞机系统反应等因素。我还会诚恳道歉、承担责任，并列出具体的改进措施 —— 比如接受额外的着陆技术培训或加强飞行前风险评估 —— 以确保此类情况不再发生。"
+    },
+    {
+      "id": "opi-core-585",
+      "taskTitle": "运行-着陆重量-3",
+      "audioText": "Under what circumstances will pilot make overweight landing?",
+      "audioTextZh": "在什么情况下飞行员会进行超重着陆",
+      "referenceText": "For example, if we encounter engine fire after takeoff, we must land as soon as possible. But we cannot dump fuel and we don't have time to burn fuel, we have to make overweight landing.\n例如，若起飞后遭遇发动机起火，我们必须尽快着陆。要是既无法放油，又没时间消耗燃油，就只能进行超重着陆 。"
+    },
+    {
+      "id": "opi-core-586",
+      "taskTitle": "运行-着陆重量-4",
+      "audioText": "Do you know the maximum landing weight of the\naircraft you are flying?",
+      "audioTextZh": "你知道所驾驶飞机的最大着陆重量吗？",
+      "referenceText": "Yes, I fly a 320, the maximum landing weight is 64500kg kilogram.\n知道。我驾驶 A320，其最大着陆重量为 64500 千克。"
+    },
+    {
+      "id": "opi-core-587",
+      "taskTitle": "运行-着陆重量-5",
+      "audioText": "What are the ways for pilots to reduce landing weight\nin flight?",
+      "audioTextZh": "飞行中，飞行员可通过哪些方式降低着陆重量？",
+      "referenceText": "First, we can enter a holding pattern to burn fuel to reduce the weight. Second, we can dump some fuel to reduce the weight.\n一是进入等待程序消耗燃油以减重；二是进行空中放油减重。"
+    },
+    {
+      "id": "opi-core-588",
+      "taskTitle": "运行-着陆重量-6",
+      "audioText": "After you make an overweight landing,\nwill you submit report to your company?\nAnd what would you report?",
+      "audioTextZh": "执行超重着陆后，是否会向公司提交报告？需报告哪些内容？",
+      "referenceText": "Yes, I will hand in a written report to our company. I will explain the reason for overweight landing and what we have done to ensure flight safety.\n会提交书面报告。报告中需说明超重着陆的原因及为保障飞行安全所采取的措施。"
+    },
+    {
+      "id": "opi-core-589",
+      "taskTitle": "运行-着陆重量-7",
+      "audioText": "What are the factors of overweight or heavy landing?",
+      "audioTextZh": "什么因素会导致重着陆?",
+      "referenceText": "Factors include unstable approach, excessive landing speed, improper flare technique, tailwind, poor runway braking action, overweight aircraft, and mishandling of crosswinds.\n因素包括不稳定进近、着陆速度过大、拉平技巧不当、顺风、跑道刹车性能差、飞机超重以及侧风处置不当。"
+    }
+  ]
+}

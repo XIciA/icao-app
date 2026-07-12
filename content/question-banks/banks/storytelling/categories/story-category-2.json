@@ -1,0 +1,10 @@
+{
+  "id": "story-category-2",
+  "name": "管制ICAO",
+  "declaredTopicCount": 2,
+  "declaredCardCount": 104,
+  "topicIds": [
+    "story-atc-required",
+    "story-atc-basic"
+  ]
+}

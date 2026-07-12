@@ -1,0 +1,161 @@
+{
+  "categoryId": "atc-qfa",
+  "id": "atc-scenario-0006",
+  "name": "QFA 701 前轮转向失效 PAPI灯暗",
+  "declaredCardCount": 17,
+  "cards": [
+    {
+      "id": "atc-scenario-0006-card-main-095",
+      "taskTitle": "QFA 701-1",
+      "audioText": "B: Your call sigh is Qantas 701, flying from Sydney to Wuhan, you are cruising at 10700 meters and squawking 3211, you are now entering Wuhan Control area, make an initial contact with Wuhan Control.",
+      "audioTextZh": "B：你的呼号是 Qantas 701，从悉尼飞往武汉，巡航高度 10700 米，应答机 3211，现在进入武汉管制区，与武汉管制首次联系。",
+      "referenceText": "Wuhan Control, QFA701, cruising at 10700 meters, squawking 3211.",
+      "referenceTextZh": "武汉管制，QFA701，巡航高度 10700 米，应答机 3211。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/095.mp3"
+    },
+    {
+      "id": "atc-scenario-0006-card-main-096",
+      "taskTitle": "QFA 701-2",
+      "audioText": "C: Qantas 701, radar contact, maintain 10700 meters.",
+      "audioTextZh": "C：Qantas 701，雷达识别，保持 10700 米。",
+      "referenceText": "Maintain 10700 meters, QFA701.",
+      "referenceTextZh": "保持 10700 米，QFA701。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/096.mp3"
+    },
+    {
+      "id": "atc-scenario-0006-card-main-097",
+      "taskTitle": "QFA 701-3",
+      "audioText": "B: There is a thunderstorm buildup near Lima Kilo Oscar, asked how the preceding aircraft avoided the weather.",
+      "audioTextZh": "B：Lima Kilo Oscar 附近有雷暴发展，询问前机如何避开天气。",
+      "referenceText": "Wuhan Control, QFA701, there is a thunderstorm buildup near LKO, how did the preceding aircraft avoid the weather ?",
+      "referenceTextZh": "武汉管制，QFA701，LKO 附近有雷暴发展，前机如何避开天气？",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/097.mp3"
+    },
+    {
+      "id": "atc-scenario-0006-card-main-098",
+      "taskTitle": "QFA 701-4",
+      "audioText": "B: Tell Wuhan Control you want to deviate 20 miles to the east to avoid weather.",
+      "audioTextZh": "B：告诉武汉管制你想向东偏航 20 海里以避开天气。",
+      "referenceText": "Wuhan Control, QFA701, request deviate 20 miles to the east to avoid weather.",
+      "referenceTextZh": "武汉管制，QFA701，请求向东偏航 20 海里以避开天气。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/098.mp3"
+    },
+    {
+      "id": "atc-scenario-0006-card-main-099",
+      "taskTitle": "QFA 701-5",
+      "audioText": "B: You are approaching the top of decent point but there are CBs at lower level, ask Wuhan Control to delay your descent.",
+      "audioTextZh": "B：你正接近下降顶点，但低高度有 CB，请求武汉管制延迟下降。",
+      "referenceText": "Wuhan Control, QFA701, request delay descent due CBs at lower level.",
+      "referenceTextZh": "武汉管制，QFA701，因低高度有 CB，请求延迟下降。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/099.mp3"
+    },
+    {
+      "id": "atc-scenario-0006-card-main-100",
+      "taskTitle": "QFA 701-6",
+      "audioText": "B: There are thunderstorms sources the south of the airport, arrival through Lima Kilo Oscar is difficult, ask Wuhan Control for an approach from the North and use Zulu Foxtrot arrivals.",
+      "audioTextZh": "B：机场南侧有雷暴，难以经 Lima Kilo Oscar 进场，请求武汉管制从北侧进近并使用 Zulu Foxtrot 进场。",
+      "referenceText": "Wuhan Control, QFA701, request approach from the north and ZF arrival due thunderstorm.",
+      "referenceTextZh": "武汉管制，QFA701，因雷暴，请求从北侧进近并使用 ZF 进场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/100.mp3"
+    },
+    {
+      "id": "atc-scenario-0006-card-main-101",
+      "taskTitle": "QFA 701-7",
+      "audioText": "C: Qantas 701, turn right heading 020, expect Zulu Foxtrot 02 arrival.",
+      "audioTextZh": "C：Qantas 701，右转航向 020，预期 Zulu Foxtrot 02 进场。",
+      "referenceText": "Turn right heading 020, expect ZF 02 arrival, QFA701.",
+      "referenceTextZh": "右转航向 020，预期 ZF 02 进场，QFA701。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/101.mp3"
+    },
+    {
+      "id": "atc-scenario-0006-card-main-102",
+      "taskTitle": "QFA 701-8",
+      "audioText": "B: There is a small cumulonimbus in front of you, request maneuver to the right within 2 miles.",
+      "audioTextZh": "B：你前方有一小块积雨云，请求向右机动，范围 2 海里内。",
+      "referenceText": "Wuhan Control, QFA701, request maneuver to the right within 2 miles due a small CB.",
+      "referenceTextZh": "武汉管制，QFA701，因一小块 CB，请求向右机动，范围 2 海里内。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/102.mp3"
+    },
+    {
+      "id": "atc-scenario-0006-card-main-103",
+      "taskTitle": "QFA 701-9",
+      "audioText": "B: During descent, your nose wheel steering failed, informed Wuhan Approach of the situation and tell him that you will stop on the runway after landing.",
+      "audioTextZh": "B：下降过程中，你的前轮转弯失效，通知武汉进近情况，并告诉他你将在落地后停在跑道上。",
+      "referenceText": "Wuhan Approach, QFA701, our nose wheel steering failed, we will stop on the runway after landing.",
+      "referenceTextZh": "武汉进近，QFA701，我们的前轮转弯失效，落地后将停在跑道上。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/103.mp3"
+    },
+    {
+      "id": "atc-scenario-0006-card-main-104",
+      "taskTitle": "QFA 701-10",
+      "audioText": "B: You are told to use the runway 22 VOR DME approach, but the weather is deteriorating, ask Wuhan Tower for an ILS approach runway 18 left.",
+      "audioTextZh": "B：你被告知使用跑道 22 VOR DME 进近，但天气正在变差，向武汉塔台请求跑道 18 左 ILS 进近。",
+      "referenceText": "Wuhan Tower, QFA701, request ILS approach runway 18L due deteriorating weather.",
+      "referenceTextZh": "武汉塔台，QFA701，因天气变差，请求跑道 18L ILS 进近。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/104.mp3"
+    },
+    {
+      "id": "atc-scenario-0006-card-main-105",
+      "taskTitle": "QFA 701-11",
+      "audioText": "C: Qantas 701, ILS approach runway 18 left is approved.",
+      "audioTextZh": "C：Qantas 701，跑道 18 左 ILS 进近批准。",
+      "referenceText": "Cleared ILS approach runway 18L, QFA701.",
+      "referenceTextZh": "许可跑道 18L ILS 进近，QFA701。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/105.mp3"
+    },
+    {
+      "id": "atc-scenario-0006-card-main-106",
+      "taskTitle": "QFA 701-12",
+      "audioText": "B: The approach lights are not bright enough, asked Tower to increase the brightness of the approach lights.",
+      "audioTextZh": "B：进近灯不够亮，请塔台提高进近灯亮度。",
+      "referenceText": "Wuhan Tower, QFA701, the approach lights are not bright enough, request brighten up the approach lights.",
+      "referenceTextZh": "武汉塔台，QFA701，进近灯不够亮，请求调亮进近灯。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/106.mp3"
+    },
+    {
+      "id": "atc-scenario-0006-card-main-107",
+      "taskTitle": "QFA 701-13",
+      "audioText": "B: You executed missed approach because of poor visibility, inform Tower.",
+      "audioTextZh": "B：你因能见度差执行复飞，通知塔台。",
+      "referenceText": "Wuhan Tower, QFA701, going around due poor visibility.",
+      "referenceTextZh": "武汉塔台，QFA701，因能见度差，正在复飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/107.mp3"
+    },
+    {
+      "id": "atc-scenario-0006-card-main-108",
+      "taskTitle": "QFA 701-14",
+      "audioText": "C: Qantas 701, roger, follow the standard missed approach procedure.",
+      "audioTextZh": "C：Qantas 701，收到，执行标准复飞程序。",
+      "referenceText": "Follow the standard missed approach procedure, QFA701.",
+      "referenceTextZh": "执行标准复飞程序，QFA701。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/108.mp3"
+    },
+    {
+      "id": "atc-scenario-0006-card-main-109",
+      "taskTitle": "QFA 701-15",
+      "audioText": "B: The visibility has improved, expect radar vectors for another approach.",
+      "audioTextZh": "B：能见度已改善，预期雷达引导再次进近。",
+      "referenceText": "Wuhan Approach, QFA701, the visibility has improved, expect radar vectors for another approach.",
+      "referenceTextZh": "武汉进近，QFA701，能见度已改善，预期雷达引导再次进近。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/109.mp3"
+    },
+    {
+      "id": "atc-scenario-0006-card-main-110",
+      "taskTitle": "QFA 701-16",
+      "audioText": "C: Qantas 701, turn right heading 090, cleared for ILS approach runway 18 left.",
+      "audioTextZh": "C：Qantas 701，右转航向 090，许可跑道 18 左 ILS 进近。",
+      "referenceText": "Turn right heading 090, cleared for ILS approach runway 18L, QFA701.",
+      "referenceTextZh": "右转航向 090，许可跑道 18L ILS 进近，QFA701。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/110.mp3"
+    },
+    {
+      "id": "atc-scenario-0006-card-main-111",
+      "taskTitle": "QFA 701-17",
+      "audioText": "B: You have landed at Wuhan Airport, but the tow truck is not in position, ask for a tug.",
+      "audioTextZh": "B：你已在武汉机场着陆，但拖车未就位，请求牵引车。",
+      "referenceText": "Wuhan Ground, QFA701, the tow truck is not in position, request a tug.",
+      "referenceTextZh": "武汉地面，QFA701，拖车未就位，请求牵引车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/111.mp3"
+    }
+  ]
+}

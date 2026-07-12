@@ -1,0 +1,152 @@
+{
+  "categoryId": "atc-ces",
+  "id": "atc-scenario-0099",
+  "name": "CES 5277 襟翼卡阻 无法完全放下",
+  "declaredCardCount": 16,
+  "cards": [
+    {
+      "id": "atc-scenario-0099-card-main-1710",
+      "taskTitle": "CES 5277-1",
+      "audioText": "B: Your call sign is China Eastern 277, you are parking at gate 213, you have received information Mike, request ATC clearance to London Heathrow from Wuhan Delivery.",
+      "audioTextZh": "B：你的呼号是 China Eastern 277，停在 213 号登机口，已收到通播 Mike，向武汉放行请求飞往伦敦希思罗的 ATC 放行许可。",
+      "referenceText": "Wuhan Delivery, CES5277, gate 213, information M, request ATC clearance to London Heathrow.",
+      "referenceTextZh": "武汉放行，CES5277，213 号登机口，通播 M，请求飞往伦敦希思罗的 ATC 放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1836.mp3"
+    },
+    {
+      "id": "atc-scenario-0099-card-main-1711",
+      "taskTitle": "CES 5277-2",
+      "audioText": "C: China Eastern 277, cleared to London Heathrow via flight planned route, departure runway 04, initial climb 2700 meters, Lima Kilo Oscar 02 departure, cruising level 8400 meters, squawk 2512.",
+      "audioTextZh": "C：China Eastern 277，许可飞往伦敦希思罗，按飞行计划航路，离场跑道 04，起始爬升 2700 米，Lima Kilo Oscar 02 离场，巡航高度 8400 米，应答机 2512。",
+      "referenceText": "Cleared to London Heathrow via flight planned route, departure runway 04, initial climb 2700 meters, LKO 02 departure, cruising level 8400 meters, squawk 2512, CES5277.",
+      "referenceTextZh": "许可飞往伦敦希思罗，按飞行计划航路，离场跑道 04，起始爬升 2700 米，LKO 02 离场，巡航高度 8400 米，应答机 2512，CES5277。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1837.mp3"
+    },
+    {
+      "id": "atc-scenario-0099-card-main-1712",
+      "taskTitle": "CES 5277-3",
+      "audioText": "B: Now you are ready for taxi, contact Wuhan Ground.",
+      "audioTextZh": "B：现在你准备好滑行，联系武汉地面。",
+      "referenceText": "Wuhan Ground, CES5277, request taxi.",
+      "referenceTextZh": "武汉地面，CES5277，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1838.mp3"
+    },
+    {
+      "id": "atc-scenario-0099-card-main-1713",
+      "taskTitle": "CES 5277-4",
+      "audioText": "C: China Eastern 277, taxi to holding point runway 04 via taxiway Alpha 4, Echo 2, hold short of runway 36 right.",
+      "audioTextZh": "C：China Eastern 277，经滑行道 Alpha 4、Echo 2 滑行至跑道 04 等待点，跑道 36R 外等待。",
+      "referenceText": "Taxi to holding point runway 04 via taxiway A4, E2, hold short of runway 36R, CES5277.",
+      "referenceTextZh": "经滑行道 A4、E2 滑行至跑道 04 等待点，跑道 36R 外等待，CES5277。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1839.mp3"
+    },
+    {
+      "id": "atc-scenario-0099-card-main-1714",
+      "taskTitle": "CES 5277-5",
+      "audioText": "B: Now you are holding short of runway 36 right, contact the controller to request cross the runway 36 right.",
+      "audioTextZh": "B：现在你在跑道 36R 外等待，联系管制员请求穿越跑道 36R。",
+      "referenceText": "Wuhan Tower, CES5277, holding short of runway 36R, request cross the runway 36R.",
+      "referenceTextZh": "武汉塔台，CES5277，跑道 36R 外等待，请求穿越跑道 36R。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1840.mp3"
+    },
+    {
+      "id": "atc-scenario-0099-card-main-1715",
+      "taskTitle": "CES 5277-6",
+      "audioText": "C: China Eastern 277, expedite cross runway 36 right, report vacated.",
+      "audioTextZh": "C：China Eastern 277，快速穿越跑道 36R，报告脱离。",
+      "referenceText": "Expedite cross runway 36R, report vacated, CES5277.",
+      "referenceTextZh": "快速穿越跑道 36R，报告脱离，CES5277。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1841.mp3"
+    },
+    {
+      "id": "atc-scenario-0099-card-main-1716",
+      "taskTitle": "CES 5277-7",
+      "audioText": "B: Now you have exited runway 36 right, report it to Wuhan Tower.",
+      "audioTextZh": "B：现在你已脱离跑道 36R，向武汉塔台报告。",
+      "referenceText": "Wuhan Tower, CES5277, runway 36R vacated.",
+      "referenceTextZh": "武汉塔台，CES5277，跑道 36R 已脱离。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1842.mp3"
+    },
+    {
+      "id": "atc-scenario-0099-card-main-1717",
+      "taskTitle": "CES 5277-8",
+      "audioText": "B: Now you are holding short of runway 04, you are ready for departure.",
+      "audioTextZh": "B：现在你在跑道 04 外等待，准备好离场。",
+      "referenceText": "Wuhan Tower, CES5277, holding short of runway 04, ready for departure.",
+      "referenceTextZh": "武汉塔台，CES5277，跑道 04 外等待，准备好离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1843.mp3"
+    },
+    {
+      "id": "atc-scenario-0099-card-main-1718",
+      "taskTitle": "CES 5277-9",
+      "audioText": "C: China Eastern 277, after departure, climb straight ahead until 600 meters, follow SID, direct to Lima Kilo Oscar, contact Wuhan Departure 120.2, cleared for takeoff runway 04.",
+      "audioTextZh": "C：China Eastern 277，离场后直线爬升至 600 米，执行 SID，直飞 Lima Kilo Oscar，联系武汉离场 120.2，跑道 04 可以起飞。",
+      "referenceText": "After departure, climb straight ahead until 600 meters, follow SID, direct to LKO, contact Wuhan Departure 120.2, cleared for takeoff runway 04, CES5277.",
+      "referenceTextZh": "离场后直线爬升至 600 米，执行 SID，直飞 LKO，联系武汉离场 120.2，跑道 04 可以起飞，CES5277。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1844.mp3"
+    },
+    {
+      "id": "atc-scenario-0099-card-main-1719",
+      "taskTitle": "CES 5277-10",
+      "audioText": "B: After takeoff, your flaps seem to be jammed, report the situation to Wuhan Approach and request hold for further check.",
+      "audioTextZh": "B：起飞后，你的襟翼似乎卡住，向武汉进近报告情况并请求等待以进一步检查。",
+      "referenceText": "Wuhan Approach, CES5277, our flaps seem to be jammed, request hold for further check.",
+      "referenceTextZh": "武汉进近，CES5277，我们的襟翼似乎卡住，请求等待以进一步检查。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1845.mp3"
+    },
+    {
+      "id": "atc-scenario-0099-card-main-1720",
+      "taskTitle": "CES 5277-11",
+      "audioText": "C: China Eastern 277, roger, turn right, direct to Lima Kilo Oscar, hold at Lima Kilo Oscar VOR 210 radio, hold at 3300 meters, inbound track 280 degrees, left hand pattern, outbound time 1 minute.",
+      "audioTextZh": "C：China Eastern 277，收到，右转，直飞 Lima Kilo Oscar，在 Lima Kilo Oscar VOR 210 径向等待，等待高度 3300 米，入航航迹 280 度，左等待，出航时间 1 分钟。",
+      "referenceText": "Turn right, direct to LKO, hold at LKO VOR 210 radio, hold at 3300 meters, inbound track 280 degrees, left hand pattern, outbound time 1 minute, CES5277.",
+      "referenceTextZh": "右转，直飞 LKO，在 LKO VOR 210 径向等待，等待高度 3300 米，入航航迹 280 度，左等待，出航时间 1 分钟，CES5277。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1846.mp3"
+    },
+    {
+      "id": "atc-scenario-0099-card-main-1721",
+      "taskTitle": "CES 5277-12",
+      "audioText": "B: After performing the checklist, the flap problem can't be solved, report it to Wuhan Approach and request return to land.",
+      "audioTextZh": "B：完成检查单后，襟翼问题无法解决，向武汉进近报告并请求返回着陆。",
+      "referenceText": "Wuhan Approach, CES5277, the flap problem can't be solved, request return to land.",
+      "referenceTextZh": "武汉进近，CES5277，襟翼问题无法解决，请求返回着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1847.mp3"
+    },
+    {
+      "id": "atc-scenario-0099-card-main-1722",
+      "taskTitle": "CES 5277-13",
+      "audioText": "C: China Eastern 277, turn right heading 340, follow Lima Kilo Oscar 03 Alpha arrival, expect ILS approach runway 04.",
+      "audioTextZh": "C：China Eastern 277，右转航向 340，执行 Lima Kilo Oscar 03 Alpha 进场，预计 ILS 进近跑道 04。",
+      "referenceText": "Turn right heading 340, follow LKO 03A arrival, expect ILS approach runway 04, CES5277.",
+      "referenceTextZh": "右转航向 340，执行 LKO 03A 进场，预计 ILS 进近跑道 04，CES5277。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1848.mp3"
+    },
+    {
+      "id": "atc-scenario-0099-card-main-1723",
+      "taskTitle": "CES 5277-14",
+      "audioText": "B: You can't fully extend the flaps, tell Wuhan Tower that you need to land on the longest runway.",
+      "audioTextZh": "B：你无法完全放出襟翼，告诉武汉塔台你需要在最长跑道上着陆。",
+      "referenceText": "Wuhan Tower, CES5277, we can't fully extend the flaps, request the longest runway for landing.",
+      "referenceTextZh": "武汉塔台，CES5277，我们无法完全放出襟翼，请求最长跑道着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1849.mp3"
+    },
+    {
+      "id": "atc-scenario-0099-card-main-1724",
+      "taskTitle": "CES 5277-15",
+      "audioText": "C: China Eastern 277, turn right heading 030 to join right hand downwind runway 04.",
+      "audioTextZh": "C：China Eastern 277，右转航向 030，加入跑道 04 右三边。",
+      "referenceText": "Turn right heading 030 to join right hand downwind runway 04, CES5277.",
+      "referenceTextZh": "右转航向 030，加入跑道 04 右三边，CES5277。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1850.mp3"
+    },
+    {
+      "id": "atc-scenario-0099-card-main-1725",
+      "taskTitle": "CES 5277-16",
+      "audioText": "C: China Eastern 277, cleared to land, runway 04.",
+      "audioTextZh": "C：China Eastern 277，可以落地，跑道 04。",
+      "referenceText": "Cleared to land, runway 04, CES5277.",
+      "referenceTextZh": "可以落地，跑道 04，CES5277。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1851.mp3"
+    }
+  ]
+}

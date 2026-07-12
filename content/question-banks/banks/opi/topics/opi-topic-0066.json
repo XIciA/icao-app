@@ -1,0 +1,50 @@
+{
+  "categoryId": "opi-category-04",
+  "id": "opi-topic-0066",
+  "name": "人为因素与人为差错",
+  "declaredCardCount": 6,
+  "cards": [
+    {
+      "id": "opi-core-707",
+      "taskTitle": "人的因素-人为因素与人为差错-1",
+      "audioText": "Do you think human error is a major factor concerning flight safety? Why do you think so?\nDo you think human factors are important to flight safety? Why?\nCan you give me some examples of human errors which can largely endanger flight safety?",
+      "audioTextZh": "你认为人为差错是影响飞行安全的主要因素吗？为什么这么认为？\n你认为人为因素对飞行安全重要吗？为什么？\n你能举出一些可能严重危及飞行安全的人为差错例子吗？",
+      "referenceText": "Yes, I think so. Common human errors endangering flight safety include:\n是的，我认为是这样。威胁飞行安全的典型人为差错有：\n\nViolating Standard Operating Procedures (SOPs)\n违反标准操作程序（SOP）\nE.g., skipping pre - flight checklist items, or deviating from established takeoff/landing procedures —— such lapses can directly trigger critical failures.\n（例如：跳过飞行前检查单项目、偏离既定起降程序，这类疏漏可能直接引发重大故障 。）\nImpaired Performance Due to Health Issues\n健康问题导致操作能力下降\nE.g., fatigue from insufficient rest, or hidden illnesses affecting judgment —— pilots in such states struggle to respond to emergencies rationally.\n（例如：休息不足引发的疲劳、或未察觉疾病影响判断，处于这类状态的飞行员难以理性应对突发状况 。）\nNon - Standard Radio Communications\n无线电通话未使用标准用语\nE.g., ambiguous phraseology causing misinterpretations between pilots and air traffic control —— a key factor in mid - air collision risks.\n（例如：模糊表述让飞行员与空管产生误解，是空中相撞风险的重要诱因 。）\nThe Tenerife Airport Disaster (1977)\n特内里费机场空难（1977 年）\nA catastrophic Boeing 747 collision caused by layered human errors: miscommunication between crews and ATC, flawed decision - making under pressure, and visual misjudgments in poor weather. It stands as a pivotal case highlighting how human factors cascade into disasters.\n（因多重人为差错叠加导致的波音 747 相撞惨剧：机组与空管沟通失误、压力下决策失当、恶劣天气中视觉误判。这起事故是展现人为因素如何层层传导引发灾难的关键案例 。）"
+    },
+    {
+      "id": "opi-core-708",
+      "taskTitle": "人的因素-人为因素与人为差错-2",
+      "audioText": "What can we do to reduce the human errors in flight operation to minimum?\n（",
+      "audioTextZh": "我们能采取哪些措施，将飞行操作中的人为差错降至最低？ ）",
+      "referenceText": "Strictly follow SOP and checklists, conduct regular simulator and recurrent training, enhance CRM (communication/cooperation), maintain good situation awareness, get sufficient rest to avoid fatigue, and conduct cross-checks among crew members.\n严格遵守标准操作程序SOP和检查单，定期进行模拟机和复训，强化机组资源管理沟通/协作，保持良好情景意识，充分休息避免疲劳，并进行机组间交叉检查。"
+    },
+    {
+      "id": "opi-core-709",
+      "taskTitle": "人的因素-人为因素与人为差错-3",
+      "audioText": "Do you think human error is a major factor concerning flight safety?",
+      "audioTextZh": "你认为人为差错是影响飞行安全的主要因素吗？",
+      "referenceText": "Yes, I believe human error is a major factor affecting flight safety. As far as I know, approximately 80% of aviation accidents are caused by human errors.\n是的，我认为人为差错是影响飞行安全的主要因素。据我所知，约 80% 的航空事故是由人为差错导致的 。\n\n Yes, human error is a major factor. Statistics show about 80% of aviation accidents are related to human factors, such as poor communication, non-compliance with SOP, lack of situation awareness, and improper decision-making.\n是的，人为失误是主要因素。数据显示约80%的航空事故与人为因素相关，如沟通不畅、不遵守标准操作程序、情景意识不足和决策不当。"
+    },
+    {
+      "id": "opi-core-710",
+      "taskTitle": "人的因素-人为因素与人为差错-4",
+      "audioText": "Can you give me some examples which human errors can largely endanger the flight safety?",
+      "audioTextZh": "你能举一些人为差错可能严重危及飞行安全的例子吗？",
+      "referenceText": "Yes, I’ve heard of accidents where human errors seriously endangered flight safety. For example, there was an incident where smoke emerged from the air - conditioning system. The pilots mistakenly believed it was caused by the right engine and shut down the right engine — which was the only one still working. Although the aircraft managed to land without engine power, the pilots were responsible for the accident.\n\n是的，我了解过一些因人为差错严重危及飞行安全的事故。比如，曾发生过一起事件：空调系统冒出烟雾，飞行员误判为右发动机故障，关闭了当时唯一在工作的右发动机。尽管飞机最终在失去发动机动力的情况下迫降，但飞行员仍需为这起事故负责 。"
+    },
+    {
+      "id": "opi-core-711",
+      "taskTitle": "人的因素-人为因素与人为差错-5",
+      "audioText": "What can we do to reduce human errors into minimum in flight operation?",
+      "audioTextZh": "在飞行操作中，我们能采取哪些措施将人为差错降至最低？",
+      "referenceText": "We can take several measures to minimize human errors during flight operations. First, we work as a team to divide tasks and cross - check each other’s work. Second, we maintain effective communication and cooperation to ensure flight safety.\n\n我们可通过这些措施将飞行操作中的人为差错降至最低：一是以团队协作模式分工，并交叉核验彼此工作；二是保持高效沟通与配合，保障飞行安全 。"
+    },
+    {
+      "id": "opi-core-712",
+      "taskTitle": "人的因素-人为因素与人为差错-6",
+      "audioText": "What can pilots do to increase the safety margin?",
+      "audioTextZh": "飞行员可采取哪些措施提高安全裕度？",
+      "referenceText": "We can do many things to increase the safety margin while flying. First, we will work as a team to share the tasks and cross check each other's work. Second, we will keep good communication and cooperation with each other to ensure the flight safety.\nPilots can take several measures to increase the safety margin during flight. First, we work as a team to divide tasks and cross - check each other’s work. Second, we maintain effective communication and cooperation to ensure flight safety.\n\n飞行员可通过这些方式提升飞行中的安全裕度：一是以团队协作模式分工，并交叉核验彼此工作；二是保持高效沟通与配合，保障飞行安全 。"
+    }
+  ]
+}

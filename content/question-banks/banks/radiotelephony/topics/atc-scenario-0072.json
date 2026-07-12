@@ -1,0 +1,179 @@
+{
+  "categoryId": "atc-csn",
+  "id": "atc-scenario-0072",
+  "name": "CSN 342 炸弹电话 复飞",
+  "declaredCardCount": 19,
+  "cards": [
+    {
+      "id": "atc-scenario-0072-card-main-1232",
+      "taskTitle": "CSN 342-1",
+      "audioText": "B: Your call sign is China Southern 342, you are just over Zulu Foxtrot and maintaining 4500 meters, you are about to enter the Area control airspace. Make an initial contact with Wuhan Control.",
+      "audioTextZh": "B: 你的呼号是 China Southern 342，刚过 Zulu Foxtrot，保持 4500 米，即将进入区域管制空域。与 武汉管制 建立初始联系。",
+      "referenceText": "Wuhan Control, CSN342, over ZF, maintaining 4500 meters.",
+      "referenceTextZh": "武汉管制，CSN342，过 ZF，保持 4500 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1308.mp3"
+    },
+    {
+      "id": "atc-scenario-0072-card-main-1233",
+      "taskTitle": "CSN 342-2",
+      "audioText": "B: Ask Wuhan Control for 8900 meters.",
+      "audioTextZh": "B: 向武汉管制请求 8900 米。",
+      "referenceText": "Wuhan Control, CSN342, request climb to 8900 meters.",
+      "referenceTextZh": "武汉管制，CSN342，请求爬升到 8900 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1309.mp3"
+    },
+    {
+      "id": "atc-scenario-0072-card-main-1234",
+      "taskTitle": "CSN 342-3",
+      "audioText": "C: China Southern 342, Wuhan Control, radar contact, climb to 7500 meters, expect 8900 meters at time 16.",
+      "audioTextZh": "C: China Southern 342，武汉管制，雷达识别，爬升到 7500 米，预计 16 分给 8900 米。",
+      "referenceText": "Climb to 7500 meters, CSN342.",
+      "referenceTextZh": "爬升到 7500 米，CSN342。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1310.mp3"
+    },
+    {
+      "id": "atc-scenario-0072-card-main-1235",
+      "taskTitle": "CSN 342-4",
+      "audioText": "B: Inform the controller that you have encountered a severe clear air turbulence, and ask for 8900 meters.",
+      "audioTextZh": "B: 通知管制员你遭遇严重晴空颠簸，并请求 8900 米。",
+      "referenceText": "Wuhan Control, CSN342, we have encountered a severe clear air turbulence, request 8900 meters.",
+      "referenceTextZh": "武汉管制，CSN342，我们遭遇严重晴空颠簸，请求 8900 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1311.mp3"
+    },
+    {
+      "id": "atc-scenario-0072-card-main-1236",
+      "taskTitle": "CSN 342-5",
+      "audioText": "C: Roger, China Southern 342, climb to 8900 meters.",
+      "audioTextZh": "C: 收到，China Southern 342，爬升到 8900 米。",
+      "referenceText": "Climb to 8900 meters, CSN342.",
+      "referenceTextZh": "爬升到 8900 米，CSN342。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1312.mp3"
+    },
+    {
+      "id": "atc-scenario-0072-card-main-1237",
+      "taskTitle": "CSN 342-6",
+      "audioText": "C: China Southern 342, Wuhan Control, is there any damage to the aircraft of passenger injuries?\nB: Tell the controller that there isn't any aircraft damage, and the purser told you that passengers are OK.",
+      "audioTextZh": "C: China Southern 342，武汉管制，飞机是否受损或旅客受伤？\nB: 告诉管制员飞机没有受损，乘务长告诉你旅客都没事。",
+      "referenceText": "There isn't any damage to the aircraft, and the purser reported that the passengers are just fine, CSN342.",
+      "referenceTextZh": "飞机没有受损，乘务长报告旅客都没事，CSN342。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1313.mp3"
+    },
+    {
+      "id": "atc-scenario-0072-card-main-1238",
+      "taskTitle": "CSN 342-7",
+      "audioText": "B: Inform Wuhan Control that you have just received an anonymous call saying there is a bomb on board your aircraft.",
+      "audioTextZh": "B: 通知 武汉管制，你刚收到匿名电话称飞机上有炸弹。",
+      "referenceText": "Wuhan Control, CSN342, we have just received an anonymous calls saying there is a bomb on board our aircraft.",
+      "referenceTextZh": "武汉管制，CSN342，我们刚收到匿名电话称我们飞机上有炸弹。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1314.mp3"
+    },
+    {
+      "id": "atc-scenario-0072-card-main-1239",
+      "taskTitle": "CSN 342-8",
+      "audioText": "C: Roger, China Southern 342, report your intentions.\nB: Tell the controller that you wish to land at Wuhan Airport.",
+      "audioTextZh": "C: 收到，China Southern 342，报告你的意图。\nB: 告诉管制员你希望在 Wuhan Airport 着陆。",
+      "referenceText": "Request to land at Wuhan Airport, CSN342.",
+      "referenceTextZh": "请求在 Wuhan Airport 着陆，CSN342。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1315.mp3"
+    },
+    {
+      "id": "atc-scenario-0072-card-main-1240",
+      "taskTitle": "CSN 342-9",
+      "audioText": "C: China Southern 342, roger, turn left direct to Zulu Foxtrot and descend to 4800 meters.",
+      "audioTextZh": "C: China Southern 342，收到，左转直飞 Zulu Foxtrot，下降到 4800 米。",
+      "referenceText": "Turn left direct to ZF and descend to 4800 meters, CSN342.",
+      "referenceTextZh": "左转直飞 ZF，下降到 4800 米，CSN342。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1316.mp3"
+    },
+    {
+      "id": "atc-scenario-0072-card-main-1241",
+      "taskTitle": "CSN 342-10",
+      "audioText": "C: China Southern 342, do you need any assistance?\nB: Inform the controller that you need a bomb disposal squad upon landing, and you will use the emergency sliders to deplane the passengers.",
+      "audioTextZh": "C: China Southern 342，你需要什么援助？\nB: 通知管制员着陆时需要排爆小组，并将使用应急滑梯让旅客下机。",
+      "referenceText": "We will use the emergency sliders for evacuation, request a bomb disposal squad on arrival, CSN342.",
+      "referenceTextZh": "我们将使用应急滑梯撤离，请求到达时提供排爆小组，CSN342。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1317.mp3"
+    },
+    {
+      "id": "atc-scenario-0072-card-main-1242",
+      "taskTitle": "CSN 342-11",
+      "audioText": "C: China Southern 342, maintain 4800 meters, contact Wuhan Approach on 118.9.",
+      "audioTextZh": "C: China Southern 342，保持 4800 米，联系武汉进近118.9。",
+      "referenceText": "Maintain 4800 meters, 118.9, CSN342.",
+      "referenceTextZh": "保持 4800 米，118.9，CSN342。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1318.mp3"
+    },
+    {
+      "id": "atc-scenario-0072-card-main-1243",
+      "taskTitle": "CSN 342-12",
+      "audioText": "B: Make an initial contact with Wuhan Approach, inform the controller that you have received an anonymous call saying there is a bomb on board your aircraft, and you are returning to Wuhan.",
+      "audioTextZh": "B: 与 武汉进近 建立初始联系，通知管制员你收到匿名电话称飞机上有炸弹，并且正在返回 Wuhan。",
+      "referenceText": "Wuhan Approach, CSN342, maintaining 4800 meters, over ZF, we have received an anonymous call saying there is a bomb on board our aircraft, and we are turning back to land at Wuhan Airport.",
+      "referenceTextZh": "武汉进近，CSN342，保持 4800 米，过 ZF，我们收到匿名电话称飞机上有炸弹，正在返回 Wuhan Airport 着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1319.mp3"
+    },
+    {
+      "id": "atc-scenario-0072-card-main-1244",
+      "taskTitle": "CSN 342-13",
+      "audioText": "C: China Southern 342, Wuhan Approach, radar contact, follow Zulu Foxtrot 1 Alpha arrival, descend to 2700 meters on QNH 1017, information Charlie.",
+      "audioTextZh": "C: China Southern 342，武汉进近，雷达识别，执行 Zulu Foxtrot 1 Alpha 进场，按 QNH 1017 下降到 2700 米，信息 Charlie。",
+      "referenceText": "Follow ZF 1A arrival, descend to 2700 meters on QNH 1017, information C, CSN342.",
+      "referenceTextZh": "执行 ZF 1A 进场，按 QNH 1017 下降到 2700 米，信息 C，CSN342。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1320.mp3"
+    },
+    {
+      "id": "atc-scenario-0072-card-main-1245",
+      "taskTitle": "CSN 342-14",
+      "audioText": "C: China Southern 342, descend to 900 meters, expect ILS approach runway 36 right.",
+      "audioTextZh": "C: China Southern 342，下降到 900 米，预计跑道 36R ILS 进近。",
+      "referenceText": "Descend to 900 meters, expect ILS approach runway 36R, CSN342.",
+      "referenceTextZh": "下降到 900 米，预计跑道 36R ILS 进近，CSN342。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1321.mp3"
+    },
+    {
+      "id": "atc-scenario-0072-card-main-1246",
+      "taskTitle": "CSN 342-15",
+      "audioText": "C: China Southern 342, reduce speed to 200 knots, turn right heading 330.",
+      "audioTextZh": "C: China Southern 342，减速到 200 节，右转航向 330。",
+      "referenceText": "Reduce speed to 200 knots, turn right heading 330, CSN342.",
+      "referenceTextZh": "减速到 200 节，右转航向 330，CSN342。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1322.mp3"
+    },
+    {
+      "id": "atc-scenario-0072-card-main-1247",
+      "taskTitle": "CSN 342-16",
+      "audioText": "C: China Southern 342, intercept the localizer for runway 36 right, report established.",
+      "audioTextZh": "C: China Southern 342，切入跑道 36R 航向道，建立后报告。",
+      "referenceText": "Intercept the localizer for runway 36R, report established, CSN342.",
+      "referenceTextZh": "切入跑道 36R 航向道，建立后报告，CSN342。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1323.mp3"
+    },
+    {
+      "id": "atc-scenario-0072-card-main-1248",
+      "taskTitle": "CSN 342-17",
+      "audioText": "B: Inform the controller that you have captured the signal of the localizer.",
+      "audioTextZh": "B: 通知管制员你已截获航向道信号。",
+      "referenceText": "Wuhan Approach, CSN342, ILS established.",
+      "referenceTextZh": "武汉进近，CSN342，ILS 已建立。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1324.mp3"
+    },
+    {
+      "id": "atc-scenario-0072-card-main-1249",
+      "taskTitle": "CSN 342-18",
+      "audioText": "C: Roger, China Southern 342, cleared ILS approach runway 36 right, 13 miles from touchdown, radar service terminated, contact Wuhan Tower on 124.35.",
+      "audioTextZh": "C: 收到，China Southern 342，可以跑道 36R ILS 进近，距接地点 13 海里，雷达服务终止，联系武汉塔台124.35。",
+      "referenceText": "Cleared ILS approach runway 36R, 124.35, CSN342.",
+      "referenceTextZh": "可以跑道 36R ILS 进近，124.35，CSN342。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1325.mp3"
+    },
+    {
+      "id": "atc-scenario-0072-card-main-1250",
+      "taskTitle": "CSN 342-19",
+      "audioText": "B: Later, you cannot see the runway at decision altitude during approach, inform Tower controller that you need to make another approach.",
+      "audioTextZh": "B: 稍后，进近中在决断高度看不到跑道，通知塔台管制员你需要再进近一次。",
+      "referenceText": "Wuhan Tower, CSN342, no contact at minimum, going around.",
+      "referenceTextZh": "武汉塔台，CSN342，最低标准高度无目视，复飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1326.mp3"
+    }
+  ]
+}

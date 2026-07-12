@@ -1,0 +1,92 @@
+{
+  "categoryId": "opi-category-01",
+  "id": "opi-topic-0001",
+  "name": "雷击",
+  "declaredCardCount": 12,
+  "cards": [
+    {
+      "id": "opi-core-001",
+      "taskTitle": "气象-雷击-1",
+      "audioText": "Have you ever encountered a lightning strike during flight?",
+      "audioTextZh": "你在飞行中遇到过雷击吗？",
+      "referenceText": "（1）No, I have never encountered a lightning strike because we always take flight training in good weather conditions. 不，我从来没有遇到过雷击，因为我们总是在良好的天气条件下进行飞行训练。\n\n（2）No, I have never encountered a lightning strike during flight. But I know a lightning strike is dangerous, so we should avoid lightning strikes during flight. 不，我在飞行中从未遇到过雷击，但我知道雷击很危险，所以我们应该在飞行中避免雷击。"
+    },
+    {
+      "id": "opi-core-002",
+      "taskTitle": "气象-雷击-2",
+      "audioText": "In what kind of weather conditions does lightning strike most likely to occur?",
+      "audioTextZh": "在什么样的天气条件下最有可能发生雷击？",
+      "referenceText": "（1）Based on my knowledge, if we encounter a thunderstorm, we may encounter a lightning strike.\n据我所知，如果我们遇到雷暴，我们可能会遇到雷击。\n（2）Lightning strike is most likely to occur/happen in CBs or thunderstorms.\n雷击最可能发生在积雨云或雷暴中。\n（3）Lightning strikes are most likely to occur in thunderstorms and cumulonimbus clouds (CBs) with strong convective currents. They can also happen in snowstorms, dust storms, or near erupting volcanoes. Summer is the peak season due to unstable atmospheric conditions that cause charge imbalances in clouds.\n雷击最易发生在有强对流气流的雷暴和积雨云（CB）天气中，也可能出现在暴风雪、沙尘暴或火山喷发附近。夏季是高发季节，此时大气条件不稳定，易导致云层中电荷失衡。"
+    },
+    {
+      "id": "opi-core-003",
+      "taskTitle": "气象-雷击-3",
+      "audioText": "Why do you think lightning strike is dangerous to flight safety?",
+      "audioTextZh": "为什么你认为雷击对飞行安全有危险？",
+      "referenceText": "（1）Lightning strike really put a threat on flight safety. If we encounter a lightning strike. We will hear the loud bang and see the flash. It may make the aircraft difficulty to control, influence the electrical system, cause structural damage and passenger injury. we should try our best to avoid lightning strike.\n雷击确实对飞行安全构成了威胁。如果我们遭遇雷击。我们会听到砰的一声，看到闪光。这可能会使飞机难以控制，影响电气系统，造成结构损坏和乘客受伤。我们应该尽力避免雷击。\n（2）Lightning strike is dangerous to flight safety.\nFirst, it may cause structural damage to aircraft such as fuselage, wings and electronic equipment.\nSecond, it may cause electrical failure.\nThird, it may cause communication and navigation failure.\n雷击对飞行安全来说很危险。第一，雷击可能导致飞机结构损坏，比如机身，机翼和电子设备；第二，雷击可能导致电气失效；第三，雷击可能导致通讯失效和导航失效。"
+    },
+    {
+      "id": "opi-core-004",
+      "taskTitle": "气象-雷击-4",
+      "audioText": "If your aircraft encounter a lightning strike during the flight. What will you do?",
+      "audioTextZh": "如果你的飞机在飞行中遭遇雷击。你会怎么做？",
+      "referenceText": "（1）First of all, I will calm down and have a good control of the aircraft, maintain the aircraft altitude, airspeed and attitude. Secondly, I will strictly follow the SOP. at the same time, I will advise ATC of our situation, request to deviate to avoid bad weather. If there is structural damage or passenger injury, I will request a priority landing.首先，我会冷静下来，很好地控制飞机，保持飞机的高度、空速和姿态。其次，我将严格遵守SOP。同时，我将向空中交通管制部门报告我们的情况，要求偏离以避免恶劣天气。如果有结构损坏或乘客受伤，我将要求优先降落。\n（2）If we encounter lightning strike,\nfirst, we will report our situation to ATC and request change the course/route to avoid lightning strike.\nsecond, we will check if there is any structural damage on board.\nIf there is any damage to the aircraft, we will request emergency landing and emergency services.\nIf there is no damage to the aircraft, we will continue our flight.\n如果我们遭遇雷击，我们将报告管制我们的情况，请求改变航道避开雷击；然后，我们将检查机上是否有损坏。如果飞机有损坏，我们将请求紧急着陆，请求紧急服务。如果飞机无损坏，我们将继续飞行。\n（3）If encountering a lightning strike, I first maintain aircraft control and follow SOPs to execute the checklist. I check for structural or system damage, such as navigation failures. I report the situation to ATC and request diversion to an alternate airport if damage is severe. I also request maintenance inspection after landing.\n遭遇雷击后，首先保持飞机控制，遵循标准操作程序（SOP）执行检查单；检查飞机是否有结构或系统损伤（如导航失效）；向空管报告情况，若损伤严重则申请改航至备降机场；落地后请求维修检查。"
+    },
+    {
+      "id": "opi-core-005",
+      "taskTitle": "气象-雷击-5",
+      "audioText": "How could we avoid the lightning strike? What are the measures that a pilot should take to avoid windshear?",
+      "audioTextZh": "我们怎样才能避免雷击？飞行员应该采取哪些措施来避免风切变？",
+      "referenceText": "(1)First of all, we should make a full preflight preparation. Before departure, listen to the ATIS and check weather forecast to make a weather analysis. Second, we should always have a good communication with ATC to know the weather on route. Thirdly we should have a good task sharing in the cockpit. The PF should control the aircraft. The PM should monitor the instruments and systems, pay close attention to the outside to visual check the adverse weather. At last, the aircraft should be equipped with advanced equipment such as weather radar to avoid thunderstorm.\n首先，我们应该做好充分的飞行前准备。出发前，收听ATIS并查看天气预报，进行天气分析。其次，我们应该始终与空中交通管制部门保持良好的沟通，了解沿途的天气情况。第三，我们应该在驾驶舱内进行良好的任务分担。PF应该控制飞机。项目经理应监控仪器和系统，密切关注外界，目视检查恶劣天气。最后，飞机应配备气象雷达等先进设备，以避免雷暴。\n(2)First, we can get the weather information before flight and during flight to avoid flying into to CB or thunderstorm Second, if we encounter lightning strike during flight, we will change the route/course to avoid the lightning strike\n 首先，我们可以在飞行前和飞行中获取天气信息，以避免飞入CB或雷暴。其次，如果我们在飞行中遇到雷击，我们将改变路线/航向以避免雷击。\n（3）To avoid lightning strikes, preflight I check weather reports and request delays or runway changes if lightning is near the airport. During flight, I monitor the weather radar closely and request deviation from ATC if lightning is detected ahead. I also avoid flying near CBs and thunderstorm areas.\n避免雷击的措施：起飞前检查天气报告，若机场附近有雷电，申请延误或更换跑道；飞行中密切监控气象雷达，发现前方有雷电时向空管申请偏离航线；同时避开积雨云和雷暴区域飞行。"
+    },
+    {
+      "id": "opi-core-006",
+      "taskTitle": "气象-雷击-6",
+      "audioText": "How does lightning strike threaten/affect flight safety?",
+      "audioTextZh": "雷击如何威胁/影响飞行安全？",
+      "referenceText": "Lightning strike is dangerous to flight safety. First, it may cause structural damage to aircraft such as fuselage, wings and electronic equipment. Second, it may cause electrical failure. Third, it may cause communication and navigation failure.\n雷击对飞行安全构成威胁。首先，它可能会对飞机的机身、机翼和电子设备等结构造成损坏。其次，它可能会导致电气故障。第三，它可能会导致通信和导航故障。\n\nLightning strikes can cause structural damage to the aircraft, such as cracking windshields or damaging control surfaces. Internally, they may lead to system failures, including electrical shorts, navigation/communication malfunctions, or electrical fires. Severe strikes can even ignite fuel tanks, endangering flight safety.\n雷击会对飞机造成结构损伤，如风挡破裂、操纵面损坏；内部可能导致系统失效，包括电路短路、导航/通讯故障或电气火灾。严重雷击甚至可能引燃燃油箱，危及飞行安全。"
+    },
+    {
+      "id": "opi-core-007",
+      "taskTitle": "气象-雷击-7",
+      "audioText": "What damages does lightening bring to the aircraft?",
+      "audioTextZh": "闪电会给飞机带来什么损害？",
+      "referenceText": "First, lightning strike may cause damage to the aircraft such as fuselage, wings and electronic equipment. Second, lightning strike may cause communication and navigation failure.\n首先，雷击可能会对飞机机身、机翼和电子设备等造成损坏。其次，雷击可能会导致通信和导航故障。"
+    },
+    {
+      "id": "opi-core-008",
+      "taskTitle": "气象-雷击-8",
+      "audioText": "In what weather condition is lightning strike most likely to happened/occur?",
+      "audioTextZh": "在什么天气条件下最有可能发生雷击？",
+      "referenceText": "Lightning strike is most likely to occur in thunderstorm or CB\n雷击最有可能发生在雷暴或CB中"
+    },
+    {
+      "id": "opi-core-009",
+      "taskTitle": "气象-雷击-9",
+      "audioText": "What would you do if you encounter lightning strike?",
+      "audioTextZh": "如果你遇到雷击，你会怎么做？",
+      "referenceText": "If we encounter lightning strike, we will report our situation to ATC and request change the course/route to avoid lightning strike. Then we will check if there is any damage on board If there is any damage to the aircraft, we will request emergency landing and emergency services. If there is no damage to the aircraft, we will continue our flight\n如果我们遇到雷击，我们将向ATC报告我们的情况，并要求改变航向/路线以避免雷击。然后我们将检查飞机上是否有任何损坏。如果飞机有任何损坏，我们将请求紧急降落和紧急服务。如果飞机没有损坏，我们将继续飞行"
+    },
+    {
+      "id": "opi-core-010",
+      "taskTitle": "气象-雷击-10",
+      "audioText": "How can pilots reduce the danger of encountering lightning strike?",
+      "audioTextZh": "飞行员如何降低遭遇雷击的危险？",
+      "referenceText": "First, we can get the weather information before flight and during flight to avoid flying into to CB or thunderstorm. Second, if we encounter lightning strike during flight, we will change the route/course to avoid the lightning strike.\n首先，我们可以在飞行前和飞行中获取天气信息，以避免飞入CB或雷暴。其次，如果我们在飞行中遇到雷击，我们会改变路线/航向以避免雷击。"
+    },
+    {
+      "id": "opi-core-011",
+      "taskTitle": "气象-雷击-11",
+      "audioText": "What is your suggestion to reduce incidents caused by lightning strike?",
+      "audioTextZh": "你有什么建议来减少雷击事件？",
+      "referenceText": "First, we can get the weather information before flight and during flight to avoid flying into to CB or thunderstorm. Second, if we encounter lightning strike during flight, we will change the route/course to avoid the lightning strike.\n首先，我们可以在飞行前和飞行中获取天气信息，以避免飞入CB或雷暴。其次，如果我们在飞行中遇到雷击，我们会改变路线/航向以避免雷击。"
+    },
+    {
+      "id": "opi-core-012",
+      "taskTitle": "气象-雷击-12",
+      "audioText": "In which phase does lightning strike usually occur?",
+      "audioTextZh": "通常在飞行的哪个时期可能会遭到雷击?",
+      "referenceText": "Lightning strike usually occurs during cruise phase (high altitude with CB/thunderstorms) and climb/descent phases when passing through convective clouds. Takeoff/landing phases are less likely but possible if the airport is in a thunderstorm area. It is more frequent in areas with strong atmospheric convection.\n雷击通常发生在巡航阶段（高空积雨云/雷暴区域）以及爬升/下降阶段（穿越对流云时）。起飞/着陆阶段可能性较低，但如果机场处于雷暴区域也可能发生，在大气对流强烈的区域更为频繁。"
+    }
+  ]
+}

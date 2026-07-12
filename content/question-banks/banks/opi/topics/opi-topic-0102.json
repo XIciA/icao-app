@@ -1,0 +1,120 @@
+{
+  "categoryId": "opi-category-05",
+  "id": "opi-topic-0102",
+  "name": "飞行前准备",
+  "declaredCardCount": 16,
+  "cards": [
+    {
+      "id": "opi-extra-014",
+      "taskTitle": "运行-飞行前准备-1",
+      "audioText": "Assume you will fly tomorrow, will you make any preparations today?",
+      "audioTextZh": "假设明天飞行，今天会做准备吗",
+      "referenceText": "Yes, I will. Today I’ll check the planned route, weather forecasts, and NOTAM for departure, destination, and alternate airports. I’ll review airport charts and emergency procedures, ensure my licenses and documents are valid, and get adequate rest to stay alert for tomorrow’s flight.\n会的。今天我会核查计划航线、起飞机场、目的地机场及备降机场的天气预报和航行通告，复习机场航图和应急程序，确认执照和相关文件有效，并保证充足休息，为明天的飞行保持良好状态。"
+    },
+    {
+      "id": "opi-extra-016",
+      "taskTitle": "运行-飞行前准备-2",
+      "audioText": "How could you prepare for your flight the day before?",
+      "audioTextZh": "明天飞 今天做什么",
+      "referenceText": "If I will fly tomorrow, I will make some preparations today, for example, have a good rest, familiarize myself with the airport information, familiarize myself with the procedures of the training subject, check the weather forecast and so on.\n若明天飞行，我今天会做些准备，比如好好休息、熟悉机场信息、熟悉训练科目的程序、查看天气预报"
+    },
+    {
+      "id": "opi-extra-018",
+      "taskTitle": "运行-飞行前准备-3",
+      "audioText": "What do you do during your preflight preparations?",
+      "audioTextZh": "飞行前准备阶段会做些什么",
+      "referenceText": "There are many things we often do during preflight preparation. First, we will get the weather information and airport information such as departure airport, destination airport and alternate airport. Second, we will check fuel consumption, weight and balance and flight plan. Third, we will make preflight briefing. Fourth, we will make preflight inspection to ensure the aircraft meets MEL requirements.\n飞行前准备阶段我们通常会做很多事。首先，获取天气信息和机场信息，比如起飞机场、目的地机场和备降机场；其次，检查燃油消耗、重量与平衡以及飞行计划；第三，进行飞行前简报；第四，开展飞行前检查，确保飞机符合最低设备清单（MEL）要求"
+    },
+    {
+      "id": "opi-extra-020",
+      "taskTitle": "运行-飞行前准备-4",
+      "audioText": "What are your procedures?",
+      "audioTextZh": "你的流程步骤是怎样的",
+      "referenceText": "First of all, I will check the weather information to make sure the weather is OK for our flight training. Secondly, I will have a pre-flight briefing with my flight instructor to familiar with the procedures of the training subject. Thirdly, I will make sure I bring all the flight manuals and flight papers on board. Finally, I will have a careful walk around check. At last, I will use the IMSAFE checklist to make sure myself is fit for flying.\nFirst of all, I will check the weather information to make sure the weather is OK for our flight training. Secondly, I will have a pre-flight briefing with my flight instructor to familiarize myself with the procedures of the training subject. Thirdly, I will make sure I bring all the flight manuals and flight papers on board. Fourthly, I will have a careful walk around check. Finally, I will use the IMSAFE checklist to make sure myself is fit for flying.\n首先，我会查看天气信息，确保天气适合飞行训练；其次，与飞行教员进行飞行前简报，熟悉训练科目的流程；第三，确认携带所有飞行手册和飞行文件登机；第四，进行仔细的绕机检查；最后，使用 IMSAFE 检查表，确保自己身体适合飞行"
+    },
+    {
+      "id": "opi-extra-029",
+      "taskTitle": "运行-飞行前准备-5",
+      "audioText": "How long does your preflight preparation last?",
+      "audioTextZh": "你们的飞行前准备要持续多久",
+      "referenceText": "Our preflight preparation often lasts for one or two hours. Sometimes it may last one day.\n我们的飞行前准备通常持续一到两个小时，有时可能会持续一天"
+    },
+    {
+      "id": "opi-extra-030",
+      "taskTitle": "运行-飞行前准备-6",
+      "audioText": "What is the primary purpose of flight planning?",
+      "audioTextZh": "飞行计划的主要目的是什么",
+      "referenceText": "The primary purpose of preflight planning is to make good preflight preparation and ensure flight safety. As we know, many accidents were caused by bad preflight preparation.\n飞行前计划的主要目的是做好飞行前准备并确保飞行安全。众所周知，许多事故是由不良的飞行前准备导致的\n\nThe primary purpose is to ensure flight safety and efficiency. It involves planning the optimal route, calculating fuel requirements, confirming alternate airports, assessing weather and airspace conditions, and arranging crew tasks, minimizing risks and ensuring the flight proceeds smoothly as scheduled.\n主要目的是保障飞行安全与效率。它包括规划最优航线、计算燃油需求、确认备降机场、评估天气和空域状况、安排机组分工，最大限度降低风险，确保航班按计划顺利进行。"
+    },
+    {
+      "id": "opi-extra-032",
+      "taskTitle": "运行-飞行前准备-7",
+      "audioText": "What should a pilot do in preflight preparation?",
+      "audioTextZh": "飞行员在飞行前准备阶段应做些什么",
+      "referenceText": "There are many things we often do during preflight preparation. First, we will get the weather information and airport information such as departure airport, destination airport and alternate airport. Second, we will check fuel consumption, weight and balance and flight plan. Third, we will make preflight briefing. Fourth, we will make preflight inspection to ensure the aircraft meets MEL requirements.\n飞行前准备阶段我们通常会做很多事。首先，获取天气信息和机场信息，比如起飞机场、目的地机场和备降机场；其次，检查燃油消耗、重量与平衡以及飞行计划；第三，进行飞行前简报；第四，开展飞行前检查，确保飞机符合最低设备清单（MEL）要求"
+    },
+    {
+      "id": "opi-extra-033",
+      "taskTitle": "运行-飞行前准备-8",
+      "audioText": "Do you use computer in preflight preparation?",
+      "audioTextZh": "飞行前准备时会使用电脑吗",
+      "referenceText": "Yes, we use a computer in preflight preparation to get some important information, such as weather information, flight plan and so on.\n会，飞行前准备时我们用电脑获取重要信息，比如天气信息、飞行计划等"
+    },
+    {
+      "id": "opi-extra-035",
+      "taskTitle": "运行-飞行前准备-9",
+      "audioText": "Suppose you fly tomorrow, will you prepare for the flight today? How?",
+      "audioTextZh": "假设明天飞行，今天会为飞行做准备吗？如何准备",
+      "referenceText": "Yes, if we fly tomorrow, we will make preflight preparation today. First, we will get weather information and airport information. Second, we will get the information about the performance of the aircraft such as weight and balance, fuel consumption and so on.\n会，若明天飞行，今天会做飞行前准备。首先，获取天气信息和机场信息；其次，了解飞机性能相关信息，比如重量与平衡、燃油消耗等\n\nYes, I will. Today I’ll check the planned route, weather forecasts, and NOTAM for departure, destination, and alternate airports. I’ll review airport charts and emergency procedures, ensure my licenses and documents are valid, and get adequate rest to stay alert for tomorrow’s flight.\n会的。今天我会核查计划航线、起飞机场、目的地机场及备降机场的天气预报和航行通告，复习机场航图和应急程序，确认执照和相关文件有效，并保证充足休息，为明天的飞行保持良好状态。"
+    },
+    {
+      "id": "opi-extra-037",
+      "taskTitle": "运行-飞行前准备-10",
+      "audioText": "What do you do in the briefing room before flying?",
+      "audioTextZh": "飞行前在讲评室会做些什么",
+      "referenceText": "We will have a safety briefing with the cabin crew in the briefing room before flying. First, we will discuss the weather information. Second, we will keep in mind our duties and responsibilities during the flight. Third, we will discuss the possible abnormal or emergency situations and procedures.\n飞行前我们会在讲评室与客舱乘务组进行安全简报。首先，讨论天气信息；其次，牢记飞行期间的职责；第三，讨论可能出现的异常或紧急情况及处置程序。\n\nIn the briefing room, we collect documents like flight plans, NOTAM, and weather reports from dispatchers. The captain leads the briefing, discussing route details, weather conditions, alternate airports, emergency procedures, and task sharing, ensuring all crew members are well-informed and prepared for the flight.\n在讲评室，我们从签派人员处领取飞行计划、航行通告、天气报告等文件。机长主持讲评，讨论航线细节、天气状况、备降机场、应急程序和任务分工，确保全体机组人员充分了解情况并为飞行做好准备。"
+    },
+    {
+      "id": "opi-extra-039",
+      "taskTitle": "运行-飞行前准备-11",
+      "audioText": "Do you think captain briefing with cabin crew should be mandatory?",
+      "audioTextZh": "你认为机长与客舱乘务组的讲评是否应作为强制要求",
+      "referenceText": "Yes, I think the captain's briefing with the cabin crew should be mandatory. We will have a safety briefing with the cabin crew in the briefing room before flying. First, we will discuss the weather information. Second, we will keep in mind our duties and responsibilities during the flight. Third, we will discuss the possible abnormal or emergency situations and procedures.\n是的，我认为机长与客舱乘务组的讲评应作为强制要求。飞行前我们会在讲评室与客舱乘务组进行安全讲评。首先，讨论天气信息；其次，牢记飞行期间的职责；第三，讨论可能出现的异常或紧急情况及处置程序"
+    },
+    {
+      "id": "opi-extra-041",
+      "taskTitle": "运行-飞行前准备-12",
+      "audioText": "What information should you get before departure?",
+      "audioTextZh": "起飞前应获取哪些信息",
+      "referenceText": "Before departure, we should get some important information such as weather information, airport information, aircraft performance, and our flight plan and so on.\n起飞前，我们应获取一些重要信息，比如天气信息、机场信息、飞机性能以及飞行计划等"
+    },
+    {
+      "id": "opi-extra-045",
+      "taskTitle": "运行-飞行前准备-13",
+      "audioText": "Have you ever found any abnormal situation in your preflight check?",
+      "audioTextZh": "你在飞行前检查中发现过异常情况吗",
+      "referenceText": "No, I have never found an abnormal situation in preflight check. But if I find some problems with the aircraft, I will report them to the mechanics for maintenance check.\n没有，我在飞行前检查中从未发现过异常情况。但如果发现飞机有问题，我会报告给机械师进行维修检查"
+    },
+    {
+      "id": "opi-extra-050",
+      "taskTitle": "运行-飞行前准备-14",
+      "audioText": "What is the preflight check?",
+      "audioTextZh": "什么是飞行前检查?",
+      "referenceText": "Preflight check is a mandatory procedure before flight, including walk-around inspection of the aircraft’s exterior (wings, engines, landing gear, etc.) and cockpit inspection (instruments, systems, documents). It aims to identify potential malfunctions and ensure the aircraft meets airworthiness standards for safe flight.\n飞行前检查是飞行前的强制性程序，包括对飞机外部机翼、发动机、起落架等的绕机检查和驾驶舱仪表、系统、文件的内部检查。目的是排查潜在故障，确保飞机符合适航标准，保障飞行安全。"
+    },
+    {
+      "id": "opi-extra-051",
+      "taskTitle": "运行-飞行前准备-15",
+      "audioText": "Do you brief your cabin crew members in\nthe preflight preparation?",
+      "audioTextZh": "在飞行前的准备工作中,你是否向乘务人员做过飞行前讲评?",
+      "referenceText": "Yes, I do. During the preflight briefing, I share flight information such as route, weather, and potential risks with cabin crew. We discuss emergency procedures, task division, and communication protocols, enhancing cooperation and ensuring smooth response to any unexpected situations during flight.\n是的。飞行前讲评时，我会向乘务人员分享航线、天气、潜在风险等飞行信息，共同讨论应急程序、任务分工和沟通规范，提升协作效率，确保飞行中应对突发情况时能顺畅配合。"
+    },
+    {
+      "id": "opi-extra-054",
+      "taskTitle": "运行-飞行前准备-16",
+      "audioText": "What will the cabin crew do before departure?",
+      "audioTextZh": "空乘在起飞前会做什么?",
+      "referenceText": "Cabin crew will have a safety briefing with pilots, check emergency equipment, verify passenger boarding passes, ensure cabin order, demonstrate safety procedures (e.g., seat belt use), and inspect cabin facilities to confirm they are in normal working condition.\n空乘会与飞行员进行安全简报，检查应急设备，核验乘客登机牌，维护客舱秩序，演示安全操作如安全带使用方法，并检查客舱设施确保其正常工作。"
+    }
+  ]
+}

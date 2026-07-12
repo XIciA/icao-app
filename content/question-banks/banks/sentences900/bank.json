@@ -1,0 +1,46 @@
+{
+  "id": "sentences900",
+  "title": "900 句",
+  "nameEn": "900 Sentences",
+  "description": "发音 结构 流利度",
+  "summary": "3 等级 / 900 句",
+  "enabled": true,
+  "statusLabel": "可练习",
+  "icon": "sentences",
+  "declaredTopicCount": 3,
+  "declaredCardCount": 900,
+  "categoryUnit": "等级",
+  "topicUnit": "等级",
+  "cardUnit": "句",
+  "study": {
+    "interaction": "speaking",
+    "tools": {
+      "recorder": true,
+      "choices": false,
+      "notes": true,
+      "dictionary": true,
+      "highlights": true,
+      "tags": true
+    },
+    "audioTitlePattern": "card-title",
+    "consoleTabs": [
+      "mine",
+      "notes"
+    ],
+    "copy": {
+      "transcriptLabel": "音频原文",
+      "referenceLabel": "参考答案"
+    }
+  },
+  "capabilities": {
+    "audioMode": "file",
+    "reviewMode": "exact-match",
+    "radioEligible": true,
+    "mockExamEligible": true
+  },
+  "categoryIds": [
+    "sentence900-3级",
+    "sentence900-4级",
+    "sentence900-5级"
+  ]
+}

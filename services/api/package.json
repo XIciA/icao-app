@@ -1,0 +1,41 @@
+{
+  "name": "@icao/api",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "check": "node --check scripts/migrate.mjs && node --check scripts/import-content.mjs && node --check scripts/verify-live.mjs && pnpm typecheck && pnpm lint && pnpm test && pnpm build",
+    "dev": "tsx watch src/main.ts",
+    "lint": "eslint .",
+    "migration:apply": "node scripts/migrate.mjs",
+    "migration:check": "DATABASE_URL=postgresql://postgres:check@127.0.0.1:5432/postgres drizzle-kit check",
+    "migration:generate": "DATABASE_URL=postgresql://postgres:generate@127.0.0.1:5432/postgres drizzle-kit generate",
+    "start": "node dist/main.js",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@icao/contracts": "workspace:*",
+    "@nestjs/common": "11.1.28",
+    "@nestjs/core": "11.1.28",
+    "@nestjs/platform-fastify": "11.1.28",
+    "@supabase/supabase-js": "2.110.2",
+    "drizzle-orm": "0.45.2",
+    "fastify": "5.10.0",
+    "postgres": "3.4.9",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.4",
+    "@nestjs/testing": "11.1.28",
+    "@types/node": "24.13.3",
+    "drizzle-kit": "0.31.10",
+    "eslint": "9.39.4",
+    "tsx": "4.23.0",
+    "typescript": "~5.9.2",
+    "typescript-eslint": "8.63.0",
+    "vitest": "4.1.10"
+  }
+}

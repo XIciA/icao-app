@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "icao-question-bank-topic",
+  "type": "object",
+  "required": ["id", "categoryId", "name", "declaredCardCount", "cards"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "categoryId": { "type": "string", "minLength": 1 },
+    "name": { "type": "string", "minLength": 1 },
+    "declaredCardCount": { "type": "integer", "minimum": 0 },
+    "cards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "taskTitle", "audioText"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "taskTitle": { "type": "string", "minLength": 1 },
+          "audioText": { "type": "string", "minLength": 1 },
+          "audio": { "type": "string" },
+          "choices": { "type": "array", "items": { "type": "string" } },
+          "correctChoiceIndex": { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  }
+}

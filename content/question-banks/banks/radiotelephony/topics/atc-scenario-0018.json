@@ -1,0 +1,206 @@
+{
+  "categoryId": "atc-afr",
+  "id": "atc-scenario-0018",
+  "name": "AFR 126 前轮转弯失效",
+  "declaredCardCount": 22,
+  "cards": [
+    {
+      "id": "atc-scenario-0018-card-main-297",
+      "taskTitle": "AFR 126-1",
+      "audioText": "B: Your call sign is Air France 126, destination Beijing, 8900 meters maintaining, over Tango Mike Romeo, Tango Zulu Hotel 10, squawk 6021, now contact  Beijing Control.",
+      "audioTextZh": "你的呼号是Air France 126，目的地北京，保持8900米，过TMR，TZH 10，squawk 6021，现在联系北京管制。",
+      "referenceText": "Beijing Control, AFR126, 8900m maintaining, over TMR, TZH 10, squawk 6021.",
+      "referenceTextZh": "北京管制，AFR126，保持8900米，过TMR，TZH 10，squawk 6021。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/312.mp3"
+    },
+    {
+      "id": "atc-scenario-0018-card-main-298",
+      "taskTitle": "AFR 126-2",
+      "audioText": "C: Air France 126, Beijing Control, squawk 6021, radar contact, negative short cut, over fly Tango Zulu Hotel due to Air Force activity.",
+      "audioTextZh": "管制员：Air France 126，北京管制，squawk 6021，雷达联系。因空军活动，不能直飞，需飞越TZH。",
+      "referenceText": "Radar contact, over fly TZH due to Air Force movement, AFR126.",
+      "referenceTextZh": "雷达联系，因空军活动飞越TZH，AFR126。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/313.mp3"
+    },
+    {
+      "id": "atc-scenario-0018-card-main-299",
+      "taskTitle": "AFR 126-3",
+      "audioText": "B: Ask the controller which runway is in use.",
+      "audioTextZh": "询问管制员当前使用跑道。",
+      "referenceText": "Beijing Control, AFR126, request runway in use.",
+      "referenceTextZh": "北京管制，AFR126，请问使用跑道。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/314.mp3"
+    },
+    {
+      "id": "atc-scenario-0018-card-main-300",
+      "taskTitle": "AFR 126-4",
+      "audioText": "C: Air France 126, expect Kilo Mike 01 arrival, runway in use 36 left.",
+      "audioTextZh": "管制员：Air France 126，预计KM01进场，使用跑道36左。",
+      "referenceText": "Expect KM01 arrival, runway 36L, AFR126.",
+      "referenceTextZh": "预计KM01进场，使用跑道36L，AFR126。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/315.mp3"
+    },
+    {
+      "id": "atc-scenario-0018-card-main-301",
+      "taskTitle": "AFR 126-5",
+      "audioText": "B: Ask whether you can use Kilo Mike 03 arrival and land on runway 01.",
+      "audioTextZh": "询问是否可以使用KM03进场并在01跑道落地。",
+      "referenceText": "If available, request KM03 arrival, land on runway 01, AFR126.",
+      "referenceTextZh": "如可用，申请KM03进场，01跑道落地，AFR126。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/316.mp3"
+    },
+    {
+      "id": "atc-scenario-0018-card-main-302",
+      "taskTitle": "AFR 126-6",
+      "audioText": "C: Air France 126, after Kilo Mike, you can request Beijing Approach for change of runway.",
+      "audioTextZh": "管制员：Air France 126，过KM后可以向北京进近申请更换跑道。",
+      "referenceText": "After KM, request change runway, AFR126.",
+      "referenceTextZh": "过KM后申请更换跑道，AFR126。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/317.mp3"
+    },
+    {
+      "id": "atc-scenario-0018-card-main-303",
+      "taskTitle": "AFR 126-7",
+      "audioText": "C: Air France 126, descend to and maintain 4500 meters over Kilo Mike.",
+      "audioTextZh": "管制员：Air France 126，过KM下降并保持4500米。",
+      "referenceText": "Descend to and maintain 4500 meters over KM, AFR126.",
+      "referenceTextZh": "过KM下降并保持4500米，AFR126。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/318.mp3"
+    },
+    {
+      "id": "atc-scenario-0018-card-main-304",
+      "taskTitle": "AFR 126-8",
+      "audioText": "C: Air France 126, contact Beijing Approach 119.7, good day.",
+      "audioTextZh": "管制员：Air France 126，联系北京进近119.7，再见。",
+      "referenceText": "119.7, good day, AFR126.",
+      "referenceTextZh": "119.7，再见，AFR126。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/319.mp3"
+    },
+    {
+      "id": "atc-scenario-0018-card-main-305",
+      "taskTitle": "AFR 126-9",
+      "audioText": "B: Over Kilo Mike, maintaining 4500 meters, contact Beijing Approach and request runway 01, Kilo Mike 03 arrival.",
+      "audioTextZh": "过KM，保持4500米，联系北京进近并申请01跑道、KM03进场。",
+      "referenceText": "Beijing Approach, AFR126, over KM, 4500 meters maintaining, request runway 01 KM03 arrival.",
+      "referenceTextZh": "北京进近，AFR126，过KM，保持4500米，申请01跑道KM03进场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/320.mp3"
+    },
+    {
+      "id": "atc-scenario-0018-card-main-306",
+      "taskTitle": "AFR 126-10",
+      "audioText": "C: Air France 126, negative due to spacing, Kilo Mike 01 arrival, runway in use 36 left, information Alpha.",
+      "audioTextZh": "管制员：Air France 126，因间隔原因不能同意。执行KM01进场，使用跑道36左，通播Alpha。",
+      "referenceText": "KM01 arrival, runway in use 36L, information A, AFR126.",
+      "referenceTextZh": "KM01进场，使用跑道36L，通播A，AFR126。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/321.mp3"
+    },
+    {
+      "id": "atc-scenario-0018-card-main-307",
+      "taskTitle": "AFR 126-11",
+      "audioText": "B: Tell the controller that your flap has some problem.",
+      "audioTextZh": "告诉管制员你的襟翼有故障。",
+      "referenceText": "Beijing Control, AFR126, we're having trouble with our flaps.",
+      "referenceTextZh": "北京管制，AFR126，我们襟翼有故障。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/322.mp3"
+    },
+    {
+      "id": "atc-scenario-0018-card-main-308",
+      "taskTitle": "AFR 126-12",
+      "audioText": "C: Air France 126, roger, say intention.\nB: You have to hold for a check.",
+      "audioTextZh": "管制员：Air France 126，收到，报告意图。你需要等待检查。",
+      "referenceText": "Request holing for a check, AFR126.",
+      "referenceTextZh": "申请等待检查，AFR126。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/323.mp3"
+    },
+    {
+      "id": "atc-scenario-0018-card-main-309",
+      "taskTitle": "AFR 126-13",
+      "audioText": "C: Air France 126, descend to and maintain 3000 meters on QNH 1012, turn left direct to Hotel Uniform Romeo, hold as published.",
+      "audioTextZh": "管制员：Air France 126，按QNH 1012下降并保持3000米，左转直飞HUR，按公布程序等待。",
+      "referenceText": "Descend to and maintain 3000 meters on QNH 1012, turn left direct to HUR, hold as published, AFR126.",
+      "referenceTextZh": "按QNH 1012下降并保持3000米，左转直飞HUR，按公布程序等待，AFR126。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/324.mp3"
+    },
+    {
+      "id": "atc-scenario-0018-card-main-310",
+      "taskTitle": "AFR 126-14",
+      "audioText": "B: Operations are now normal, request landing.",
+      "audioTextZh": "操作已恢复正常，申请落地。",
+      "referenceText": "Beijing Approach, AFR126, operations are now normal, request landing.",
+      "referenceTextZh": "北京进近，AFR126，操作已恢复正常，申请落地。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/325.mp3"
+    },
+    {
+      "id": "atc-scenario-0018-card-main-311",
+      "taskTitle": "AFR 126-15",
+      "audioText": "C: Air France 126, Beijing Approach, continue holding, runway is being cleaned due thick snow, landing action poor.",
+      "audioTextZh": "管制员：Air France 126，北京进近，继续等待。因大雪，跑道正在清扫，着陆性能差。",
+      "referenceText": "Holding position, AFR126.",
+      "referenceTextZh": "保持等待，AFR126。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/326.mp3"
+    },
+    {
+      "id": "atc-scenario-0018-card-main-312",
+      "taskTitle": "AFR 126-16",
+      "audioText": "B: There is something wrong with the nose wheel steering system, request a tug after landing.",
+      "audioTextZh": "前轮转弯系统故障，申请落地后牵引车。",
+      "referenceText": "Beijing Approach, AFR126, request a tug after landing, our nose wheel steering system failed.",
+      "referenceTextZh": "北京进近，AFR126，前轮转弯系统失效，申请落地后牵引车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/327.mp3"
+    },
+    {
+      "id": "atc-scenario-0018-card-main-313",
+      "taskTitle": "AFR 126-17",
+      "audioText": "C: Roger, Air France 126, is there anything else abnormal?\nB: Other systems normal, ask the  controller how long the delay is.",
+      "audioTextZh": "管制员：收到，Air France 126，还有其他异常吗？\n其他系统正常，询问管制员延误多久。",
+      "referenceText": "Negative, other systems normal, how long is the delay? AFR126.",
+      "referenceTextZh": "没有，其他系统正常，请问延误多久？AFR126。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/328.mp3"
+    },
+    {
+      "id": "atc-scenario-0018-card-main-314",
+      "taskTitle": "AFR 126-18",
+      "audioText": "C: Air France 126, snow is getting heavier, you have to hold about 1 hour.\nB: The remaining fuel can hold for half hour, you have to request diversion.",
+      "audioTextZh": "管制员：Air France 126，雪越来越大，你们需要等待约1小时。剩余油量只能等待半小时，你必须申请备降。",
+      "referenceText": "Our endurance is 30 minutes, request  diversion, AFR126.",
+      "referenceTextZh": "我们续航时间30分钟，申请备降，AFR126。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/329.mp3"
+    },
+    {
+      "id": "atc-scenario-0018-card-main-315",
+      "taskTitle": "AFR 126-19",
+      "audioText": "C: Air France 126, stand by.\nB: Your fuel temperature indicates\nabnormal, you can only hold 10 minutes, request divert to Dalian airport.",
+      "audioTextZh": "管制员：Air France 126，请稍等。你的燃油温度指示异常，只能再等待10分钟，申请备降大连机场。",
+      "referenceText": "Beijing Approach, AFR126, our fuel temperature indicates abnormal,  endurance only 10 minutes, request divert to Dalian airport.",
+      "referenceTextZh": "北京进近，AFR126，我们燃油温度指示异常，续航只剩10分钟，申请备降大连机场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/330.mp3"
+    },
+    {
+      "id": "atc-scenario-0018-card-main-316",
+      "taskTitle": "AFR 126-20",
+      "audioText": "C: Standby 1, we will ask Air Force to use a temporary route.",
+      "audioTextZh": "管制员：请稍等，我们将向空军申请使用临时航路。",
+      "referenceText": "Roger, AFR126.",
+      "referenceTextZh": "收到，AFR126。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/331.mp3"
+    },
+    {
+      "id": "atc-scenario-0018-card-main-317",
+      "taskTitle": "AFR 126-21",
+      "audioText": "C: Air France 126, climb to and maintain 8100 meters on standard.",
+      "audioTextZh": "管制员：Air France 126，按标准气压爬升并保持8100米。",
+      "referenceText": "Climb to and maintain 8100 meters on standard, AFR126.",
+      "referenceTextZh": "按标准气压爬升并保持8100米，AFR126。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/332.mp3"
+    },
+    {
+      "id": "atc-scenario-0018-card-main-318",
+      "taskTitle": "AFR 126-22",
+      "audioText": "C: Air France 126, direct to Dalian airport, contact Beijing Control 120.35.",
+      "audioTextZh": "管制员：Air France 126，直飞大连机场，联系北京管制120.35。",
+      "referenceText": "Direct to Dalian airport, 120.35, AFR126.",
+      "referenceTextZh": "直飞大连机场，120.35，AFR126。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/333.mp3"
+    }
+  ]
+}

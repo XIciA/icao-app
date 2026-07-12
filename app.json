@@ -10,7 +10,10 @@
     "ios": {
       "icon": "./assets/expo.icon",
       "supportsTablet": false,
-      "bundleIdentifier": "com.anonymous.icao-app"
+      "bundleIdentifier": "com.anonymous.icao-app",
+      "config": {
+        "usesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -40,6 +43,7 @@
       ],
       "expo-audio",
       "expo-sqlite",
+      "expo-secure-store",
       "expo-asset"
     ],
     "experiments": {

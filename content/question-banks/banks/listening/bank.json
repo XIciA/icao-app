@@ -1,0 +1,47 @@
+{
+  "id": "listening",
+  "title": "听力",
+  "nameEn": "Listening",
+  "description": "理解能力",
+  "summary": "4 题组 / 631 题",
+  "enabled": true,
+  "statusLabel": "可练习",
+  "icon": "headphones",
+  "declaredTopicCount": 4,
+  "declaredCardCount": 631,
+  "categoryUnit": "分类",
+  "topicUnit": "题组",
+  "cardUnit": "题",
+  "study": {
+    "interaction": "choices",
+    "tools": {
+      "recorder": false,
+      "choices": true,
+      "notes": true,
+      "dictionary": true,
+      "highlights": true,
+      "tags": true
+    },
+    "audioTitlePattern": "card-title",
+    "consoleTabs": [
+      "notes"
+    ],
+    "showChoicePrompt": false,
+    "copy": {
+      "transcriptLabel": "音频原文",
+      "referenceLabel": "参考答案"
+    }
+  },
+  "capabilities": {
+    "audioMode": "file",
+    "reviewMode": "none",
+    "radioEligible": true,
+    "mockExamEligible": true
+  },
+  "categoryIds": [
+    "listening-category-01",
+    "listening-category-02",
+    "listening-category-03",
+    "listening-category-04"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "categoryId": "opi-category-02",
+  "id": "opi-topic-0120",
+  "name": "失速警告",
+  "declaredCardCount": 5,
+  "cards": [
+    {
+      "id": "opi-extra-116",
+      "taskTitle": "特情-失速警告-1",
+      "audioText": "Do you have a stall warning on your aircraft?",
+      "audioTextZh": "你们的飞机上有失速警告装置吗？",
+      "referenceText": "Yes, we have a stall warning. It includes a warning horn and a voice warning.\n有，我们飞机上有失速警告装置，它包含警告喇叭和语音警告 。"
+    },
+    {
+      "id": "opi-extra-117",
+      "taskTitle": "特情-失速警告-2",
+      "audioText": "What may cause aircraft stall?",
+      "audioTextZh": "哪些情况可能导致飞机失速？",
+      "referenceText": "There are some reasons for a stall. For example, strong low - level windshear, severe icing, overcontrol, or when the aircraft exceeds the critical angle of attack, it stalls.\n飞机失速有多种原因，比如强低空风切变、严重积冰、操纵过量，或者当飞机超过临界迎角时，就会失速 。"
+    },
+    {
+      "id": "opi-extra-118",
+      "taskTitle": "特情-失速警告-3",
+      "audioText": "How to recover from a stall? What are the stall recovery procedure?",
+      "audioTextZh": "如何从失速中改出？失速改出程序是怎样的？",
+      "referenceText": "If we encounter a stall, we should push the control column forward and increase engine power.\n若遭遇失速，我们应向前推杆并增加发动机推力 。"
+    },
+    {
+      "id": "opi-extra-119",
+      "taskTitle": "特情-失速警告-4",
+      "audioText": "Do you think stall is dangerous? Why?",
+      "audioTextZh": "你认为失速是否危险？为什么？",
+      "referenceText": "Yes, stall is very dangerous. First, stall can make our aircraft lose control and altitude rapidly. Especially during takeoff and landing, we may not have enough altitude to recover from stall, the aircraft might crash into terrain.\n是的，失速非常危险。首先，失速会导致飞机快速失控和掉高度；尤其在起飞和着陆阶段，可能没有足够高度改出失速，飞机可能撞地。"
+    },
+    {
+      "id": "opi-extra-120",
+      "taskTitle": "特情-失速警告-5",
+      "audioText": "What can a pilot do to prevent a stall?",
+      "audioTextZh": "飞行员可采取哪些措施预防失速？",
+      "referenceText": "Each airplane has a critical angle of attack, if we exceed the critical angle of attack, we will stall. As a result, to prevent a stall, first, pilot should maintain a suitable angle of attack, do not exceed the critical angle of attack; second, we should keep good balance; third, before flight we should get weather information, do not fly into bad weather.\n每架飞机都有临界迎角，超过临界迎角就会失速。因此，预防失速的措施包括：一是保持合适迎角，不超过临界迎角；二是保持飞机良好平衡；三是飞行前获取气象信息，避免飞入恶劣天气区域。"
+    }
+  ]
+}

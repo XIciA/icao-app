@@ -1,0 +1,29 @@
+{
+  "categoryId": "opi-category-05",
+  "id": "opi-topic-0087",
+  "name": "旅客广播",
+  "declaredCardCount": 3,
+  "cards": [
+    {
+      "id": "opi-core-862",
+      "taskTitle": "运行-旅客广播-1",
+      "audioText": "Under what circumstances should the flight crew make a PA?",
+      "audioTextZh": "飞行机组人员应在何种情况下进行广播（PA，Public Address 的缩写 ）？",
+      "referenceText": "There are some reasons for making a PA. For example, if we execute an emergency evacuation, the Captain should make a PA to tell passengers to calm down and follow the cabin crew's instructions for evacuation.\n翻译：进行广播有一些原因。例如，若我们要执行紧急撤离，机长应进行广播，告知乘客冷静下来，并听从客舱机组人员的撤离指令 。"
+    },
+    {
+      "id": "opi-core-863",
+      "taskTitle": "运行-旅客广播-2",
+      "audioText": "If your captain or first officer is incapacitated in flight, will you make a PA?",
+      "audioTextZh": "若飞行中机长或副驾驶失能，你会进行广播（PA）吗？",
+      "referenceText": "If the captain or first officer is incapacitated in flight, we won't make a PA because it may make the passengers in the cabin panic and out of control.\n翻译：如果机长或副驾飞行中失能，我们不会做乘客广播，因为这会使客舱乘客恐慌、失控。"
+    },
+    {
+      "id": "opi-core-864",
+      "taskTitle": "运行-旅客广播-3",
+      "audioText": "How will you tell the cabin crew in this situation?",
+      "audioTextZh": "在这种情况下，你如何告诉空乘？",
+      "referenceText": "If the captain or first officer is incapacitated in flight, I will take the control of the aircraft and use the interphone to tell the cabin crew to offer first aid to him or her. Then I will report our situation to ATC and request land at the nearest suitable airport and medical services upon arrival.\n翻译：如果机长或副驾飞行中失能，我会操纵好飞机，使用内话系统告诉空乘，给他或她提供急救。然后，我会报告管制，请求最近合适机场着陆，请求医疗服务到场。"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "categoryId": "opi-category-03",
+  "id": "opi-topic-0147",
+  "name": "VASI",
+  "declaredCardCount": 4,
+  "cards": [
+    {
+      "id": "opi-extra-369",
+      "taskTitle": "缩略词-VASI-1",
+      "audioText": "What is VASI? How does it help a pilot during landing?",
+      "audioTextZh": "什么是 VASI？它在着陆过程中如何帮助飞行员？",
+      "referenceText": "VASI stands for Visual Approach Slope Indicator. It is a light system installed beside the runway. It helps pilots maintain the correct descent path during visual approach. Typically, VASI shows red and white lights. If the pilot sees white over white, the aircraft is too high. Red over red means too low. Red over white indicates the correct glide slope. This system is very useful at night or in poor visibility. Pilots should not rely on VASI alone, but use it together with the PAPI and instrument indications. Knowing how to read VASI improves landing safety significantly.\nVASI 是目视进近坡度指示器的缩写。它是安装在跑道旁边的一种灯光系统，帮助飞行员在目视进近过程中保持正确的下滑路径。通常，VASI 显示红白灯光。如果飞行员看到上白下白，说明飞机过高；上红下红表示过低；上红下白表示下滑道正确。这个系统在夜间或能见度较差时非常有用。飞行员不应单独依赖 VASI，而应与 PAPI 和仪表指示配合使用。理解如何判读 VASI 能显著提高着陆安全。"
+    },
+    {
+      "id": "opi-extra-370",
+      "taskTitle": "缩略词-VASI-2",
+      "audioText": "What is the difference between VASI and PAPI?\nVASI",
+      "audioTextZh": "和 PAPI 有什么区别？",
+      "referenceText": "VASI and PAPI both provide glide slope guidance, but they work differently. VASI usually has two or three light bars. It shows only one combination of red and white for the correct path. PAPI usually has four lights in a row. It gives more precise guidance because the number of red and white lights changes gradually. For example, two red and two white means on path; three red and one white means slightly low. PAPI is more common at modern airports because it is easier to see from a distance and requires less maintenance. Many airports are replacing VASI with PAPI. Pilots should know how to interpret both systems.\nVASI 和 PAPI 都提供下滑坡度引导，但工作原理不同。VASI 通常有两到三排灯光，正确路径只显示一种红白组合。PAPI 通常有四个并排的灯，能提供更精确的引导，因为红白灯数量会逐渐变化。例如，两红两白表示在正确路径上；三红一白表示略低。PAPI 在现代机场更常见，因为从远处更容易看到且维护需求更低。许多机场正用 PAPI 取代 VASI。飞行员应了解如何判读这两种系统。"
+    },
+    {
+      "id": "opi-extra-371",
+      "taskTitle": "缩略词-VASI-3",
+      "audioText": "What should a pilot do if the VASI lights are not working during a night approach?",
+      "audioTextZh": "如果在夜间进近时 VASI 灯不工作，飞行员应该怎么办？",
+      "referenceText": "If VASI is not working, the pilot should not rely on it. First, check NOTAMs before flight to see if VASI is reported unserviceable. During approach, use other references such as PAPI if available, ILS glide slope, or radar altimeter readings. The pilot can also use the runway edge lights and threshold lights to judge the descent path. If no visual glide path guidance exists, fly a standard 3-degree descent using vertical speed and ground speed calculations. For example, 300 feet per minute descent for 60 knots groundspeed. If conditions become unsafe, consider a go-around and request an instrument approach instead. Safety is more important than using any single visual aid.\n如果 VASI 不工作，飞行员不应依赖它。首先，飞行前检查航行通告确认 VASI 是否报告故障。进近时使用其他参考，如可用的 PAPI、ILS 下滑道或无线电高度表读数。飞行员还可使用跑道边灯和入口灯来判断下滑路径。如果没有目视下滑道引导，使用垂直速度和地速计算标准的 3 度下降。例如，地速 60 节时下降率 300 英尺每分钟。如果情况不安全，考虑复飞并请求仪表进近。安全比使用任何单一的目视辅助设备更重要。"
+    },
+    {
+      "id": "opi-extra-372",
+      "taskTitle": "缩略词-VASI-4",
+      "audioText": "At night, you see red over red on VASI. What does this mean? What action should you take?",
+      "audioTextZh": "夜间你在 VASI 上看到上红下红。这意味着什么？你应该采取什么行动？",
+      "referenceText": "Red over red on VASI means the aircraft is below the correct glide slope, which is too low. This is dangerous because the aircraft may hit obstacles such as trees, antennas, or terrain before the runway threshold. The pilot should immediately increase power and pitch up gently to climb back to the correct path. Continue climbing until the lights change to red over white, which indicates the correct glide slope. Do not make a sudden pull-up as it may cause a stall or overshoot. If the aircraft is extremely low, a go-around is the safest option. Never continue a descent when VASI shows red over red.\nVASI 上红下红意味着飞机低于正确的下滑坡度，即太低了。这是危险的，因为飞机可能在跑道入口前撞到障碍物，如树木、天线或地形。飞行员应立即增加推力并轻轻抬升机头以爬升回正确路径。继续爬升直到灯光变为上红下白，即正确下滑坡度。不要突然拉起，可能导致失速或冲出。如果飞机极低，复飞是最安全的选择。当 VASI 显示上红下红时，绝不要继续下降。"
+    }
+  ]
+}

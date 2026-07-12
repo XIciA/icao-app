@@ -1,0 +1,161 @@
+{
+  "categoryId": "atc-cca",
+  "id": "atc-scenario-0055",
+  "name": "CCA 878 乘客心脏病 一发脱离",
+  "declaredCardCount": 17,
+  "cards": [
+    {
+      "id": "atc-scenario-0055-card-main-937",
+      "taskTitle": "CCA 878-1",
+      "audioText": "B: Tell the Tower you are ready to taxi.",
+      "audioTextZh": "B: 告诉 塔台 你准备滑行。",
+      "referenceText": "Sanya Tower, CCA878, ready to taxi.",
+      "referenceTextZh": "三亚塔台，CCA878，准备滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/982.mp3"
+    },
+    {
+      "id": "atc-scenario-0055-card-main-938",
+      "taskTitle": "CCA 878-2",
+      "audioText": "C: Air China 878, taxi to holding point of runway 08 via taxiway Echo 2 and Alpha.",
+      "audioTextZh": "C: Air China 878，经滑行道 Echo 2 和 Alpha 滑行至跑道 08 等待点。",
+      "referenceText": "Taxi to holding point of runway 08 via taxiway E2 and A, CCA878.",
+      "referenceTextZh": "经滑行道 E2 和 A 滑行至跑道 08 等待点，CCA878。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/983.mp3"
+    },
+    {
+      "id": "atc-scenario-0055-card-main-939",
+      "taskTitle": "CCA 878-3",
+      "audioText": "B: As you are taxing, the purser calls you on the intercom, you have a passenger who have become very ill and you must return to the gate, tell air traffic controllers this.",
+      "audioTextZh": "B: 滑行时，乘务长通过内话呼叫你，有一名旅客病情很重，你必须返回登机口，把这件事告诉空中交通管制员。",
+      "referenceText": "Sanya Tower, CCA878, we have a passenger who have become very ill and we have to return to the gate.",
+      "referenceTextZh": "三亚塔台，CCA878，我们有一名旅客病情很重，必须返回登机口。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/984.mp3"
+    },
+    {
+      "id": "atc-scenario-0055-card-main-940",
+      "taskTitle": "CCA 878-4",
+      "audioText": "C: Air China 878, roger, continue taxi via Alpha, cleared to enter the runway, then exit left via Echo, continue to gate 7.",
+      "audioTextZh": "C: Air China 878，收到，继续经 Alpha 滑行，可以进入跑道，然后经 Echo 左转脱离，继续到 7 号登机口。",
+      "referenceText": "Continue taxi via A, cleared to enter the runway, then exit left via E, continue to gate 7, CCA878.",
+      "referenceTextZh": "继续经 A 滑行，可以进入跑道，然后经 E 左转脱离，继续到 7 号登机口，CCA878。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/985.mp3"
+    },
+    {
+      "id": "atc-scenario-0055-card-main-941",
+      "taskTitle": "CCA 878-5",
+      "audioText": "C: Air China 878, can you tell us the exact problem the passenger has.\nB: Tell air traffic control the passenger has suffered a heart attack and you were treating him with oxygen.",
+      "audioTextZh": "C: Air China 878，能告诉我们旅客的具体问题吗？\nB: 告诉空中交通管制，旅客心脏病发作，你们正在给他吸氧。",
+      "referenceText": "The passenger has suffered a heart attack and we are treating him with oxygen, CCA878.",
+      "referenceTextZh": "该旅客心脏病发作，我们正在给他吸氧，CCA878。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/986.mp3"
+    },
+    {
+      "id": "atc-scenario-0055-card-main-942",
+      "taskTitle": "CCA 878-6",
+      "audioText": "B: It is now thirty minutes later in the day, the sick passenger has disembarked and you were at the holding point for runway 08, tell the Tower you are ready to takeoff.",
+      "audioTextZh": "B: 现在是当天 30 分钟后，患病旅客已下机，你在跑道 08 等待点，告诉 塔台 你准备起飞。",
+      "referenceText": "Sanya Tower, CCA878, hold at holding point runway 08, ready for departure.",
+      "referenceTextZh": "三亚塔台，CCA878，在跑道 08 等待点等待，准备离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/987.mp3"
+    },
+    {
+      "id": "atc-scenario-0055-card-main-943",
+      "taskTitle": "CCA 878-7",
+      "audioText": "C: Air China 878, line up and wait.",
+      "audioTextZh": "C: Air China 878，进跑道等待。",
+      "referenceText": "Line up and wait, CCA878.",
+      "referenceTextZh": "进跑道等待，CCA878。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/988.mp3"
+    },
+    {
+      "id": "atc-scenario-0055-card-main-944",
+      "taskTitle": "CCA 878-8",
+      "audioText": "C: Air China 878, hold position for 5 minutes due flow control.",
+      "audioTextZh": "C: Air China 878，由于流量控制，原地等待 5 分钟。",
+      "referenceText": "Hold position, CCA878.",
+      "referenceTextZh": "原地等待，CCA878。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/989.mp3"
+    },
+    {
+      "id": "atc-scenario-0055-card-main-945",
+      "taskTitle": "CCA 878-9",
+      "audioText": "C: Air China 878, after departure, maintain runway heading and climb 900 meters, cleared for takeoff, runway 08, surface wind calm.",
+      "audioTextZh": "C: Air China 878，离场后保持跑道航向并爬升 900 米，跑道 08 可以起飞，地面风静风。",
+      "referenceText": "After departure, maintain runway heading and climb 900 meters, cleared for takeoff, runway 08, CCA878.",
+      "referenceTextZh": "离场后保持跑道航向并爬升 900 米，跑道 08 可以起飞，CCA878。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/990.mp3"
+    },
+    {
+      "id": "atc-scenario-0055-card-main-946",
+      "taskTitle": "CCA 878-10",
+      "audioText": "B: It is now later in the flight and you are experiencing some light turbulence, request a higher level.",
+      "audioTextZh": "B: 现在飞行后段，你正在经历轻度颠簸，请求更高高度。",
+      "referenceText": "Sanya Control, CCA878, we are experiencing light turbulence, request a higher level.",
+      "referenceTextZh": "三亚管制，CCA878，我们正在经历轻度颠簸，请求更高高度。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/991.mp3"
+    },
+    {
+      "id": "atc-scenario-0055-card-main-947",
+      "taskTitle": "CCA 878-11",
+      "audioText": "C: Air China 878, climb and maintain 10100 meters.",
+      "audioTextZh": "C: Air China 878，爬升并保持 10100 米。",
+      "referenceText": "Climb and maintain 10100 meters, CCA878.",
+      "referenceTextZh": "爬升并保持 10100 米，CCA878。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/992.mp3"
+    },
+    {
+      "id": "atc-scenario-0055-card-main-948",
+      "taskTitle": "CCA 878-12",
+      "audioText": "B: You reach 10100 meters, but the turbulence is now worse and is now class to severe, ask to climb to 10700 meters.",
+      "audioTextZh": "B: 你到达 10100 米，但颠簸现在更严重，已接近严重，请求爬升到 10700 米。",
+      "referenceText": "Sanya Control, CCA878, request climb to 10700 meters due severe turbulence.",
+      "referenceTextZh": "三亚管制，CCA878，因严重颠簸请求爬升到 10700 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/993.mp3"
+    },
+    {
+      "id": "atc-scenario-0055-card-main-949",
+      "taskTitle": "CCA 878-13",
+      "audioText": "C: 10700 meters not available, we can give you a lower level if you require.\nB: Tell the controller you require a lower level.",
+      "audioTextZh": "C: 10700 米不可用，如需要，我们可以给你较低高度。\nB: 告诉管制员你需要较低高度。",
+      "referenceText": "Roger, request a lower level, CCA878.",
+      "referenceTextZh": "收到，请求较低高度，CCA878。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/994.mp3"
+    },
+    {
+      "id": "atc-scenario-0055-card-main-950",
+      "taskTitle": "CCA 878-14",
+      "audioText": "B: Suddenly, 1 of your engines separates, tell air traffic control this and say you would like to descend to 8100 meters and divert to Shanghai, this is a Distress call.",
+      "audioTextZh": "B: 突然，你的一台发动机脱落，告诉空中交通管制，并说你想下降到 8100 米并改航 Shanghai，这是遇险呼叫。",
+      "referenceText": "MAYDAY MAYDAY MAYDAY, Sanya Control, CCA878, 1 of our engines separated, request descend to 8100 meters and divert to Shanghai.",
+      "referenceTextZh": "MAYDAY MAYDAY MAYDAY，三亚管制，CCA878，我们一台发动机脱落，请求下降到 8100 米并改航 Shanghai。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/995.mp3"
+    },
+    {
+      "id": "atc-scenario-0055-card-main-951",
+      "taskTitle": "CCA 878-15",
+      "audioText": "C: Air China 878, roger MAYDAY, turn left heading 230, and descent to 8100 meters.",
+      "audioTextZh": "C: Air China 878，收到 MAYDAY，左转航向 230，下降到 8100 米。",
+      "referenceText": "Turn left heading 230, and descent to 8100 meters, CCA878.",
+      "referenceTextZh": "左转航向 230，下降到 8100 米，CCA878。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/996.mp3"
+    },
+    {
+      "id": "atc-scenario-0055-card-main-952",
+      "taskTitle": "CCA 878-16",
+      "audioText": "C: Air China 878, all runway is will be available at Shanghai Pudong for you, surface wind calm.",
+      "audioTextZh": "C: Air China 878，Shanghai Pudong 所有跑道都将可供你使用，地面风静风。",
+      "referenceText": "Roger, thanks, CCA878.",
+      "referenceTextZh": "收到，谢谢，CCA878。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/997.mp3"
+    },
+    {
+      "id": "atc-scenario-0055-card-main-953",
+      "taskTitle": "CCA 878-17",
+      "audioText": "C: Air China 878, descend to 3300 meters, flight direct DUMET.",
+      "audioTextZh": "C: Air China 878，下降到 3300 米，直飞 DUMET。",
+      "referenceText": "Descend to 3300 meters, flight direct DUMET, CCA878.",
+      "referenceTextZh": "下降到 3300 米，直飞 DUMET，CCA878。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/998.mp3"
+    }
+  ]
+}

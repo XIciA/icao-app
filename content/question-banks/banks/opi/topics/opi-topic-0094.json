@@ -1,0 +1,113 @@
+{
+  "categoryId": "opi-category-05",
+  "id": "opi-topic-0094",
+  "name": "备降与改航",
+  "declaredCardCount": 15,
+  "cards": [
+    {
+      "id": "opi-extra-013",
+      "taskTitle": "运行-备降与改航-1",
+      "audioText": "Do you have any alternate airport planned for each flight?",
+      "audioTextZh": "每次飞行是否规划了备降机场？",
+      "referenceText": "1）Yes, we have. When we fly traffic circuit, we don't plan an alternate airport. When we take cross - country training, we will plan the departure alternate airport, the en - route alternate airport and the destination alternate airport.\n有。进行起落航线飞行时，我们不规划备降机场；进行跨区域训练飞行时，我们会规划起飞备降机场、航路备降机场和目的地备降机场 。\n（2）Yes, we should plan the alternate airport before each flight because we may encounter emergency situations such as bad weather, mechanical problems or medical emergencies during flight and we have to divert.\n是，每次飞行前都应规划备降机场，因为飞行中可能遇到恶劣天气、机械故障或医疗紧急情况等，需要备降 。\n（3）Yes. According to CAAC regulations, alternate airports must be planned for IFR flights. For my cross-country training, we also designate en-route alternates considering fuel endurance, weather, runway conditions and emergency services.\n是的。根据中国民航局规定，仪表飞行规则（IFR）飞行必须规划备降机场。在我的转场训练中，我们也会根据燃油续航能力、天气、跑道条件和应急服务规划航线备降机场。"
+    },
+    {
+      "id": "opi-extra-015",
+      "taskTitle": "运行-备降与改航-2",
+      "audioText": "What are some possible reasons for diversion?\nWhat may be the possible cause of diversion?",
+      "audioTextZh": "改航的可能原因有哪些？哪些情况会导致改航？",
+      "referenceText": "（1）There are some reasons for diversion. For example, mechanical failure, aircraft system failure, adverse weather, passenger illness and so on.\n改航有多种原因，比如机械故障、飞机系统故障、恶劣天气、乘客突发疾病等 。\n（2）There are many situations in which we will divert. First, if the weather at the destination is below minima, we have to divert to our alternate airport. Second, if we encounter mechanical problems such as electrical failure, we have to divert to the nearest suitable airport. Third, if there is a medical emergency on board, we will divert to the nearest suitable airport.\n存在多种需改航的情况。一是目的地天气低于最低标准，需备降至备降机场；二是遇到如电气故障等机械问题，需备降至最近的合适机场；三是机上有医疗紧急情况，需备降至最近的合适机场 。\n（3）Diversion reasons include aircraft issues (system failure, structural damage, fire, depressurization), crew/passenger problems (medical emergency, bomb threat, hijack), and destination issues (bad weather, military activities, low visibility).\n改航原因包括飞机问题（系统故障、结构损伤、火情、失压）、机组/乘客问题（医疗紧急情况、炸弹威胁、劫持）以及目的地问题（恶劣天气、军事活动、低能见度）。"
+    },
+    {
+      "id": "opi-extra-017",
+      "taskTitle": "运行-备降与改航-3",
+      "audioText": "Who do you need to contact in case of diversion?",
+      "audioTextZh": "改航时需要联系谁？",
+      "referenceText": "In case of diversion, I need to contact my company and then contact ATC.\n改航时，我需要联系所属公司，之后联系空中交通管制（ATC） 。\n\nI will first inform the flight crew, then contact ATC to report the situation and request clearance/guidance. I will also communicate with the company dispatcher to update the flight plan and coordinate with the alternate airport.\n我会首先通知机组人员，然后联系空管报告情况并请求许可/引导，同时与公司签派员沟通更新飞行计划，协调备降机场相关事宜。"
+    },
+    {
+      "id": "opi-extra-019",
+      "taskTitle": "运行-备降与改航-4",
+      "audioText": "When making a decision to divert, if you have different opinion from your captain, what will you do?",
+      "audioTextZh": "决定备降时，若与机长意见不同，你会怎么做？",
+      "referenceText": "First of all, I will have communication with him again to exchange ideas. Secondly, I will suggest following the SOP (Standard Operating Procedure) and company policy. At last, if the captain insists on his opinion, I will follow him, because he is the pilot - in - command.\n首先，我会再次与他沟通交流想法；其次，我会建议遵循标准操作程序（SOP）和公司政策；最后，若机长坚持其意见，我会听从他，因为他是飞行指挥官（机长） 。"
+    },
+    {
+      "id": "opi-extra-021",
+      "taskTitle": "运行-备降与改航-5",
+      "audioText": "Have you ever had any experience with diversion? If yes, please describe it.",
+      "audioTextZh": "你有过备降经历吗？若有，请描述一下。",
+      "referenceText": "No, I have never experienced diversion.\n没有，我从未经历过备降。"
+    },
+    {
+      "id": "opi-extra-023",
+      "taskTitle": "运行-备降与改航-6",
+      "audioText": "What information do you need to know about your alternate airport before diversion?",
+      "audioTextZh": "备降前需了解备降机场哪些信息",
+      "referenceText": "Before diversion, I need to know a lot of information about the alternate airport such as the weather at the alternate airport, the facilities and assistance the alternate airport can provide, the runway length and runway condition and so on.\n备降前，我需了解备降机场的诸多信息，比如备降机场的天气、其可提供的设施与协助、跑道长度及跑道状况等"
+    },
+    {
+      "id": "opi-extra-025",
+      "taskTitle": "运行-备降与改航-7",
+      "audioText": "What kinds of support do you usually need from ATC if you want to make diversion?",
+      "audioTextZh": "若要备降 通常需要空中交通管制（ATC）提供哪些支持",
+      "referenceText": "I need to contact ATC to know the weather en route and the weather at the alternate airport, the facilities and assistance the alternate airport can provide. What's more, I need to know the Minimum Safe Altitude en route from ATC.\n我需要联系 ATC 了解航路天气、备降机场天气、备降机场可提供的设施与协助 此外 还需从 ATC 获取航路最低安全高度"
+    },
+    {
+      "id": "opi-extra-028",
+      "taskTitle": "运行-备降与改航-8",
+      "audioText": "What factors will you consider when you decide to divert or return?",
+      "audioTextZh": "决定备降或返航时，会考虑哪些因素？",
+      "referenceText": "There are many factors we will consider if we decide to divert. For example, fuel endurance, weather en - route and weather at the alternate airport, the facilities and assistance the alternate airport can provide, the Minimum Safe Altitude en route and so on. If I decide to return, I will consider the aircraft weight. In order to make a normal weight landing, we may need to dump fuel.\n决定备降时，会考虑诸多因素，比如燃油续航能力、航路天气及备降机场天气、备降机场可提供的设施与协助、航路最低安全高度等。若决定返航，会考虑飞机重量，为实现正常重量着陆，可能需要放油。\n\nFirst, confirm fuel endurance and select the best alternate. Second, report to ATC, request clearance and alternate airport info (weather, runway, ATIS). Third, make a PA to inform passengers/crew and prepare for landing. Finally, contact the dispatcher to update the situation.\n首先，确认燃油续航能力并选择最优备降机场；其次，向空管报告，请求改航许可及备降机场信息（天气、跑道、自动终端情报服务）；第三，通过广播告知乘客和机组，做好着陆准备；最后，联系签派员更新情况。"
+    },
+    {
+      "id": "opi-extra-031",
+      "taskTitle": "运行-备降与改航-9",
+      "audioText": "Have you ever experienced diversion?",
+      "audioTextZh": "你有过备降经历吗？",
+      "referenceText": "Yes, I have ever diverted from my flight plan. Once, we flew from…, there was a thunderstorm over…, we had to divert to….\n有，我曾偏离飞行计划备降过。有一次，我们从…… 起飞，…… 上空出现雷暴，我们不得不备降到……"
+    },
+    {
+      "id": "opi-extra-034",
+      "taskTitle": "运行-备降与改航-10",
+      "audioText": "What considerations will you have when choosing an alternate airport?",
+      "audioTextZh": "选择备降机场时，会考虑哪些因素？",
+      "referenceText": "There are many factors we will consider when choosing the alternate airport, such as the weather information and runway conditions of the alternate airport, fuel endurance, ground services and so on.\n选择备降机场时，我们会考虑诸多因素，比如备降机场的天气信息、跑道状况、燃油续航能力、地面服务等 。"
+    },
+    {
+      "id": "opi-extra-036",
+      "taskTitle": "运行-备降与改航-11",
+      "audioText": "Before diversion, what information should you know about the alternate airport?",
+      "audioTextZh": "备降前，应了解备降机场的哪些信息？",
+      "referenceText": "Before diversion, we should know some information about the alternate airport, such as its runway conditions, weather conditions and ground services.\n备降前，应了解备降机场的一些信息，比如跑道状况、天气条件以及地面服务 。"
+    },
+    {
+      "id": "opi-extra-038",
+      "taskTitle": "运行-备降与改航-12",
+      "audioText": "If you have decided to make a diversion, what preparations do you need to make?",
+      "audioTextZh": "若决定备降，需做哪些准备工作",
+      "referenceText": "If we have decided to make a diversion, we will make some preparations for it. First, we will report our situation and intention to ATC and request to divert to our alternate airport. Second, we will get the weather information and runway conditions at our alternate airport. Third, we will change our flight plan in the FMS. Fourth, we will make a PA to inform the cabin crew and passengers that we will divert to our alternate airport.\n若决定备降，我们会做些准备工作。首先，向 ATC 报告情况与意图，申请备降至备降机场；其次，获取备降机场的天气信息和跑道状况；第三，在飞行管理系统（FMS）中更改飞行计划；第四，进行广播（PA），告知客舱乘务组和乘客我们将备降至备降机场"
+    },
+    {
+      "id": "opi-extra-040",
+      "taskTitle": "运行-备降与改航-13",
+      "audioText": "what assistance can ATC offer to you if you decide to divert？",
+      "audioTextZh": "若决定备降，ATC 能提供哪些协助？",
+      "referenceText": "If we decide to divert, the ATC can offer us the weather information, runway conditions and ground services at the alternate airport.\n若决定备降，ATC 能为我们提供备降机场的天气信息、跑道状况及地面服务 。"
+    },
+    {
+      "id": "opi-extra-042",
+      "taskTitle": "运行-备降与改航-14",
+      "audioText": "Suppose you want to divert to the nearest airport due mechanic problem and there are two airports in the vicinity, which one do you prefer to Choose, a bigger, international airport or a smaller airport?",
+      "audioTextZh": "假设因机械故障需备降最近机场，附近有两座机场，你倾向选大型国际机场还是小型机场",
+      "referenceText": "I prefer to divert to a bigger international airport, because we can get better ground services and maintenance services at the bigger international airport.\n我倾向备降大型国际机场，因为在那里能获得更优质的地面服务和维修服务。\n\nI will choose the bigger international airport. It has better emergency services (fire/medical), longer runways, more maintenance support, and sufficient ground facilities—critical for handling mechanical issues and ensuring safe landing/evacuation if needed.\n我会选择大型国际机场。它具备更完善的应急服务（消防、医疗）、更长的跑道、更充足的维修支持以及完备的地面设施，这对于处理机械故障并在必要时确保安全着陆/撤离至关重要。"
+    },
+    {
+      "id": "opi-extra-044",
+      "taskTitle": "运行-备降与改航-15",
+      "audioText": "If some passengers complain about the diversion, what should you do as a captain?",
+      "audioTextZh": "如果有乘客抱怨备降,作为机长,你会怎么做?",
+      "referenceText": "If some passengers complain about the diversion, as a captain, first, I will make a PA to inform the passengers about the reason for diversion. Second, I will ask the cabin crew to offer the passengers more drinks to calm the passengers down.\n如果有乘客抱怨备降,作为机长，首先会进行广播（PA），向乘客说明备降原因；其次，会让客舱乘务组为乘客提供更多饮品，安抚乘客情绪。\n\nAs captain, I will ask cabin crew to explain the reason (for example safety concerns) patiently, provide timely updates, offer basic services (food/drinks), and emphasize that diversion prioritizes their safety. Maintain calm communication to ease anxiety.\n作为机长，我会让客舱乘务员耐心解释备降原因（如安全考量），及时更新航班动态，提供基础服务（餐饮），并强调备降是以乘客安全为首要原则，通过平和沟通缓解焦虑情绪。"
+    }
+  ]
+}

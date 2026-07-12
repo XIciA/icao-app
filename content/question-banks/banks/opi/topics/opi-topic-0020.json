@@ -1,0 +1,28 @@
+{
+  "categoryId": "opi-category-03",
+  "id": "opi-topic-0020",
+  "name": "QAR",
+  "declaredCardCount": 3,
+  "cards": [
+    {
+      "id": "opi-core-310",
+      "taskTitle": "缩略词-QAR-1",
+      "audioText": "What is QAR?",
+      "referenceText": "QAR stands for quick access recorder. It can record the flight data, such as the airspeed, altitude, heading, position and so on. It's always used for training, investigation, and improving pilot skills, but we don't have it on our aircraft, so I don't know much about it.\n\nQAR 是快速存取记录器（quick access recorder ）的缩写。它能够记录飞行数据，比如空速、高度、航向、位置等。它常被用于训练、调查以及提升飞行员技能，但我们的飞机上没有配备，所以我对它了解不多 。"
+    },
+    {
+      "id": "opi-core-311",
+      "taskTitle": "缩略词-QAR-2",
+      "audioText": "Can you tell us some examples or items in QAR?",
+      "audioTextZh": "你能给我们讲讲快速存取记录器（QAR）中的一些示例或项目（内容）吗？",
+      "referenceText": "Yes. QAR is used to monitor and record some important items about the aircraft performance during flight such as aircraft system conditions, engine parameters, flight control parameters and so on.\n\n可以，飞行中，QAR用来监控和记录飞机性能相关的重要内容，比如飞机系统状况，发动机参数、飞行操纵参数等。"
+    },
+    {
+      "id": "opi-core-312",
+      "taskTitle": "缩略词-QAR-3",
+      "audioText": "Do you think the QAR is not properly\nused by companies? Why?",
+      "audioTextZh": "你认为部分公司对 QAR 的使用是否存在不当？为什么？",
+      "referenceText": "I fly C172, there is no QAR in our aircraft. But I know some companies may not review the data recorded by QAR, and the pilot’s problem and the aircraft maintenance problem will not be discovered.\n我驾驶的 C172 未配备 QAR，但我了解到部分公司可能不审查 QAR 记录的数据，导致飞行员操作中的问题以及飞机维护隐患无法被及时发现。"
+    }
+  ]
+}

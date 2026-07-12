@@ -32,8 +32,14 @@ coverage/
 *.pem
 
 # local env files
+.env
+.env.*
+!.env.example
+!*.env.example
 .env*.local
 infra/runtime/.env
+infra/**/.env
+services/**/.env
 
 # typescript
 *.tsbuildinfo

@@ -9,6 +9,12 @@ const reviewByBank: Record<QuestionBankDataset['id'], StudyBehavior['reviewKind'
 };
 
 export function getStudyBehavior(dataset: QuestionBankDataset): StudyBehavior {
+  const configuredReview = dataset.capabilities?.reviewMode;
+  const reviewKind = configuredReview === 'grammar'
+    ? 'grammar-placeholder'
+    : configuredReview === 'expression-analysis'
+      ? 'opi-placeholder'
+      : configuredReview ?? reviewByBank[dataset.id];
   return {
     taskKind: dataset.study.interaction === 'choices' ? 'choices' : 'recording',
     recordingMode: dataset.study.interaction === 'retell' ? 'retell' : dataset.study.tools.recorder ? 'speaking' : undefined,
@@ -17,8 +23,8 @@ export function getStudyBehavior(dataset: QuestionBankDataset): StudyBehavior {
       if (tab === 'notes') return dataset.study.tools.notes;
       return true;
     }),
-    reviewKind: reviewByBank[dataset.id],
-    generatedAudio: dataset.id === 'opi',
+    reviewKind,
+    generatedAudio: dataset.capabilities?.audioMode === 'generated' || (!dataset.capabilities && dataset.id === 'opi'),
     transcriptLabel: dataset.study.copy.transcriptLabel,
     referenceLabel: dataset.study.copy.referenceLabel,
   };

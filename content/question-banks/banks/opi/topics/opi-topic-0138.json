@@ -1,0 +1,29 @@
+{
+  "categoryId": "opi-category-06",
+  "id": "opi-topic-0138",
+  "name": "刹车系统",
+  "declaredCardCount": 3,
+  "cards": [
+    {
+      "id": "opi-extra-323",
+      "taskTitle": "飞机系统-刹车系统-1",
+      "audioText": "Please introduce the aircraft brake system.",
+      "audioTextZh": "请介绍飞机刹车系统。",
+      "referenceText": "I fly C172. Each main landing gear has disc brakes and it’s powered by hydraulic power. It’s controlled by the rudder pedal.\n我驾驶 C172。该机每个主起落架均配备盘式刹车，由液压驱动，通过方向舵踏板控制。"
+    },
+    {
+      "id": "opi-extra-324",
+      "taskTitle": "飞机系统-刹车系统-2",
+      "audioText": "What can you do if you lose your brake system?",
+      "audioTextZh": "若刹车系统失效，你会怎么做？",
+      "referenceText": "If I find this problem before takeoff, I will report to the mechanics and ask them to fix it. If the brake system is inoperative before landing, I will report to ATC and request the longest runway for landing. After touchdown, I will use maximum thrust reverser and spoilers to stop the aircraft.\n若起飞前发现问题，会向机械师报告并要求维修；若着陆前刹车系统失效，会向空管报告并申请最长跑道着陆；接地后，使用最大反推和减速板使飞机停稳。"
+    },
+    {
+      "id": "opi-extra-325",
+      "taskTitle": "飞机系统-刹车系统-3",
+      "audioText": "Will you takeoff or land on a runway\nwhen the braking action is poor?",
+      "audioTextZh": "刹车效果不佳时，是否会在该跑道起飞或着陆？",
+      "referenceText": "I will check whether the runway is long enough for takeoff or landing. If not, I will delay takeoff or land.\n会检查跑道长度是否满足起飞或着陆需求；若不满足，将延迟起飞或着陆。"
+    }
+  ]
+}

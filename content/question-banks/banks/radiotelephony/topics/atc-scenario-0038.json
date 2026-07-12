@@ -1,0 +1,152 @@
+{
+  "categoryId": "atc-ual",
+  "id": "atc-scenario-0038",
+  "name": "UAL 219 中度晴空颠簸",
+  "declaredCardCount": 16,
+  "cards": [
+    {
+      "id": "atc-scenario-0038-card-main-646",
+      "taskTitle": "UAL 219-1",
+      "audioText": "B: Your call sign is United 219, from New York to Wuhan, you are maintaining 11000 meters, over OBLIK, squawk number is 3566, call Wuhan Control.",
+      "audioTextZh": "B：你的呼号是 United 219，从纽约飞往武汉，保持 11000 米，飞越 OBLIK，应答机 3566，呼叫武汉管制。",
+      "referenceText": "Wuhan Control, UAL219, maintaining 11000 meters, over OBLIK, squawking 3566.",
+      "referenceTextZh": "武汉管制，UAL219，保持 11000 米，飞越 OBLIK，应答机 3566。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/661.mp3"
+    },
+    {
+      "id": "atc-scenario-0038-card-main-647",
+      "taskTitle": "UAL 219-2",
+      "audioText": "C: United 219, Wuhan Control, radar contact, descend and maintain 9200 meters, expedite descent until passing 9800 meters due crossing traffic.",
+      "audioTextZh": "C：United 219，武汉管制，雷达识别，下降并保持 9200 米，因穿越冲突航空器，通过 9800 米前加快下降。",
+      "referenceText": "Descend and maintain 9200 meters, expedite descent until passing 9800 meters, UAL219.",
+      "referenceTextZh": "下降并保持 9200 米，通过 9800 米前加快下降，UAL219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/662.mp3"
+    },
+    {
+      "id": "atc-scenario-0038-card-main-648",
+      "taskTitle": "UAL 219-3",
+      "audioText": "B: Now you are maintaining 9200 meters, you are experiencing moderate clear air turbulence, inform ATC this situation and request further descent to 8400 meters.",
+      "audioTextZh": "B：你现在保持 9200 米，遭遇中度晴空颠簸，告知 ATC 并请求继续下降至 8400 米。",
+      "referenceText": "Wuhan Control, UAL219, maintaining 9200 meters, we are experiencing moderate clear air turbulence, further descent to 8400 meters.",
+      "referenceTextZh": "武汉管制，UAL219，保持 9200 米，我们遭遇中度晴空颠簸，请求继续下降至 8400 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/663.mp3"
+    },
+    {
+      "id": "atc-scenario-0038-card-main-649",
+      "taskTitle": "UAL 219-4",
+      "audioText": "C: United 219, continue descent to and maintain 8400 meters, report reaching.",
+      "audioTextZh": "C：United 219，继续下降并保持 8400 米，到达后报告。",
+      "referenceText": "Continue descent to and maintain 8400 meters, report reaching, UAL219.",
+      "referenceTextZh": "继续下降并保持 8400 米，到达后报告，UAL219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/664.mp3"
+    },
+    {
+      "id": "atc-scenario-0038-card-main-650",
+      "taskTitle": "UAL 219-5",
+      "audioText": "B: TCAS shows a fast moving aircraft at 9 o'clock, check with Wuhan Control if it is a conflicting traffic.",
+      "audioTextZh": "B：TCAS 显示 9 点钟方向有一架快速移动的航空器，向武汉管制确认是否为冲突航空器。",
+      "referenceText": "Wuhan Control, UAL219, TCAS shows a fast moving aircraft at 9 o'clock, confirm it is a conflicting traffic.",
+      "referenceTextZh": "武汉管制，UAL219，TCAS 显示 9 点钟方向有一架快速移动航空器，请确认是否为冲突航空器。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/665.mp3"
+    },
+    {
+      "id": "atc-scenario-0038-card-main-651",
+      "taskTitle": "UAL 219-6",
+      "audioText": "C: United 219, negative, the aircraft is a military aircraft flying parallel to your current track and will overtake you shortly, report clear of traffic.",
+      "audioTextZh": "C：United 219，不是，该机为军机，与你当前航迹平行飞行，将很快超越你，脱离冲突后报告。",
+      "referenceText": "Roger, report clear of traffic, UAL219.",
+      "referenceTextZh": "收到，脱离冲突后报告，UAL219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/666.mp3"
+    },
+    {
+      "id": "atc-scenario-0038-card-main-652",
+      "taskTitle": "UAL 219-7",
+      "audioText": "B: Now that aircraft has passed you,  report it to ATC.",
+      "audioTextZh": "B：现在该机已超过你，向 ATC 报告。",
+      "referenceText": "Wuhan Control, UAL219, clear of traffic.",
+      "referenceTextZh": "武汉管制，UAL219，已脱离冲突。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/667.mp3"
+    },
+    {
+      "id": "atc-scenario-0038-card-main-653",
+      "taskTitle": "UAL 219-8",
+      "audioText": "C: United 219, reduce to minimum speed, track direct to Zulu Foxtrot, expect Zulu Foxtrot 03 arrival runway 36 right.",
+      "audioTextZh": "C：United 219，减至最小速度，直飞 Zulu Foxtrot，预计 Zulu Foxtrot 03 进场跑道 36 右。",
+      "referenceText": "Reduce to minimum speed, track direct to ZF, expect ZF 03 arrival runway 36R, UAL219.",
+      "referenceTextZh": "减至最小速度，直飞 ZF，预计 ZF 03 进场跑道 36R，UAL219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/668.mp3"
+    },
+    {
+      "id": "atc-scenario-0038-card-main-654",
+      "taskTitle": "UAL 219-9",
+      "audioText": "C: United 219, continue descent to and maintain 4200 meters.",
+      "audioTextZh": "C：United 219，继续下降并保持 4200 米。",
+      "referenceText": "Continue descent to and maintain 4200 meters, UAL219.",
+      "referenceTextZh": "继续下降并保持 4200 米，UAL219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/669.mp3"
+    },
+    {
+      "id": "atc-scenario-0038-card-main-655",
+      "taskTitle": "UAL 219-10",
+      "audioText": "B: You are now levelling at 4200 meters and approaching Zulu Foxtrot, information Alpha received, make an initial contact with Wuhan Approach.",
+      "audioTextZh": "B：你现在在 4200 米改平并接近 Zulu Foxtrot，已收到通播 Alpha，首次联系武汉进近。",
+      "referenceText": "Wuhan Approach, UAL219, maintaining 4200 meters, approaching ZF, information A.",
+      "referenceTextZh": "武汉进近，UAL219，保持 4200 米，接近 ZF，收到通播 A。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/670.mp3"
+    },
+    {
+      "id": "atc-scenario-0038-card-main-656",
+      "taskTitle": "UAL 219-11",
+      "audioText": "B: Now you have established ILS approach runway 36 right, contact Wuhan Tower.",
+      "audioTextZh": "B：你现在已建立跑道 36 右 ILS 进近，联系武汉塔台。",
+      "referenceText": "Wuhan Tower, UAL219, established ILS approach runway 36R.",
+      "referenceTextZh": "武汉塔台，UAL219，已建立跑道 36R ILS 进近。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/671.mp3"
+    },
+    {
+      "id": "atc-scenario-0038-card-main-657",
+      "taskTitle": "UAL 219-12",
+      "audioText": "C: United 219, continue approach runway 36 right.",
+      "audioTextZh": "C：United 219，继续进近跑道 36 右。",
+      "referenceText": "Continue approach runway 36R, UAL219.",
+      "referenceTextZh": "继续进近跑道 36R，UAL219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/672.mp3"
+    },
+    {
+      "id": "atc-scenario-0038-card-main-658",
+      "taskTitle": "UAL 219-13",
+      "audioText": "C: All stations ! All stations ! Be advised runway 36 right is closed due to an unserviceable aircraft occupying the runway. Break, Break, United 219, flying heading 360, climb to and maintain 1500 meters.",
+      "audioTextZh": "C：各机注意！各机注意！跑道 36 右因故障航空器占用关闭。Break，Break，United 219，飞航向 360，爬升并保持 1500 米。",
+      "referenceText": "Roger, flying heading 360, climb to and maintain 1500 meters, UAL219.",
+      "referenceTextZh": "收到，飞航向 360，爬升并保持 1500 米，UAL219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/673.mp3"
+    },
+    {
+      "id": "atc-scenario-0038-card-main-659",
+      "taskTitle": "UAL 219-14",
+      "audioText": "C: United 219, turn right heading 170, expect radar vectors for VOR DME approach runways 04.",
+      "audioTextZh": "C：United 219，右转航向 170，预计雷达引导 VOR DME 进近跑道 04。",
+      "referenceText": "Turn right heading 170, expect radar vectors for VOR DME approach runways 04, UAL219.",
+      "referenceTextZh": "右转航向 170，预计雷达引导 VOR DME 进近跑道 04，UAL219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/674.mp3"
+    },
+    {
+      "id": "atc-scenario-0038-card-main-660",
+      "taskTitle": "UAL 219-15",
+      "audioText": "C: United 219, turn right heading 310, cleared for VOR DME approach runway 04, report inbound.",
+      "audioTextZh": "C：United 219，右转航向 310，可以 VOR DME 进近跑道 04，向台时报告。",
+      "referenceText": "Turn right heading 310, cleared for VOR DME approach runway 04, report inbound, UAL219.",
+      "referenceTextZh": "右转航向 310，可以 VOR DME 进近跑道 04，向台时报告，UAL219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/675.mp3"
+    },
+    {
+      "id": "atc-scenario-0038-card-main-661",
+      "taskTitle": "UAL 219-16",
+      "audioText": "B: Now you are inbound course for runway 04, contact Wuhan Tower.",
+      "audioTextZh": "B：你现在在跑道 04 向台航道上，联系武汉塔台。",
+      "referenceText": "Wuhan Tower, UAL219, inbound runway 04.",
+      "referenceTextZh": "武汉塔台，UAL219，跑道 04 向台。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/676.mp3"
+    }
+  ]
+}

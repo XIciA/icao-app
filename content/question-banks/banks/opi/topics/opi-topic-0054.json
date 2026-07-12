@@ -1,0 +1,29 @@
+{
+  "categoryId": "opi-category-03",
+  "id": "opi-topic-0054",
+  "name": "EFB",
+  "declaredCardCount": 3,
+  "cards": [
+    {
+      "id": "opi-core-621",
+      "taskTitle": "缩略词-EFB-1",
+      "audioText": "What is EFB？",
+      "audioTextZh": "什么是电子飞行包（EFB）？",
+      "referenceText": "EFB stands for Electronic Flight Bag. Pilots use an electronic device like an iPad to familiarize themselves with airports and procedures.\n电子飞行包（EFB）全称为 Electronic Flight Bag 。飞行员会使用类似 iPad 的电子设备，来熟悉机场信息和操作程序 。\n\nEFB stands for Electronic Flight Bag, a digital device storing manuals, charts, flight plans, and NOTAMs. Its usages include preflight preparation (checking weather and airport data), in-flight reference (accessing SOPs and QRH), and data recording, replacing paper documents for convenience and efficiency.\n电子飞行包（EFB）是存储手册、航图、飞行计划和航行通告（NOTAM）的数字化设备。其用途包括飞行前准备（查阅天气和机场数据）、飞行中参考（调取标准操作程序（SOP）和快速检查单（QRH））及数据记录，替代纸质文档，兼具便捷性与高效性。"
+    },
+    {
+      "id": "opi-core-622",
+      "taskTitle": "缩略词-EFB-2",
+      "audioText": "Do you often use EFB in daily flight operations?",
+      "audioTextZh": "你经常在飞行运行中使用EFB吗？",
+      "referenceText": "Yes, we often use EFB (Electronic Flight Bag) in flight operations. We can get some important information from EFB to ensure the safety and efficiency of the flight.\n是的，我们在飞行运行中经常使用EFB（电子飞行包）。我们可以从EFB中获得一些重要信息，确保飞行安全高效运行"
+    },
+    {
+      "id": "opi-core-623",
+      "taskTitle": "缩略词-EFB-3",
+      "audioText": "What EFB applications do you use most during pre flight preparation?",
+      "audioTextZh": "飞行前准备时，你们经常使用哪些EFB应用程序？",
+      "referenceText": "There are some EFB applications we often use during preflight preparation such as weather information, airport information, flight planned route, aeronautical charts, aircraft performance and so on.\n在飞行前准备时，我们经常使用一些EFB应用程序，比如，天气信息，机场信息，飞行计划航路，航图，飞机性能等等\n\nDuring preflight preparation, I use EFB applications to check flight plans, weather forecasts (ATIS, METAR), NOTAMs, airport charts, and loading sheets. I also access aircraft performance data and MEL to confirm airworthiness, ensuring comprehensive preparation for the flight.\n飞行前准备阶段，我会使用电子飞行包（EFB）程序查阅飞行计划、天气预报（自动终端情报服务（ATIS）、航空天气报告（METAR））、航行通告（NOTAM）、机场航图和载重平衡单；还会调取飞机性能数据和最低设备清单（MEL）确认适航状态，为飞行做好全面准备。"
+    }
+  ]
+}

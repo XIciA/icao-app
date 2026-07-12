@@ -1,0 +1,204 @@
+{
+  "categoryId": "opi-category-07",
+  "id": "opi-topic-0123",
+  "name": "基本情况",
+  "declaredCardCount": 28,
+  "cards": [
+    {
+      "id": "opi-extra-146",
+      "taskTitle": "其它-基本情况-1",
+      "audioText": "What's your current position?/Would you please introduce your working/study background.",
+      "audioTextZh": "你的现任职位是什么？/ 能否请你介绍一下你的工作 / 学习背景？",
+      "referenceText": "示例 1（工作背景 ）：I'm a pilot trainee. I've been studying flight theory and practical skills at flight school for [X] years, and now I'm preparing for formal flight operations.\n我是一名飞行学员。我已在飞行学校学习飞行理论和实操技能 [X] 年，目前正为正式飞行任务做准备。\n示例 2（学习背景 ）：I'm a student majoring in Aeronautical Engineering. I study courses like Aircraft Design, Aerodynamics, and Aviation Safety at the university, aiming to contribute to the aviation industry in the future.\n我是航空工程专业的学生。我在大学学习飞机设计、空气动力学、航空安全等课程，期望未来为航空业做贡献。"
+    },
+    {
+      "id": "opi-extra-147",
+      "taskTitle": "其它-基本情况-2",
+      "audioText": "Are you a captain or first officer?",
+      "audioTextZh": "你是机长还是副驾驶？",
+      "referenceText": "示例 1：I'm a first officer. I'm gaining experience and working towards becoming a captain in the future.\n我是副驾驶。我正在积累经验，期望未来成为一名机长。\n\n示例 2：I'm a captain. I'm responsible for leading the flight crew and ensuring the safety of every flight.\n我是机长。我负责带领飞行机组，保障每次飞行的安全。"
+    },
+    {
+      "id": "opi-extra-148",
+      "taskTitle": "其它-基本情况-3",
+      "audioText": "How many flying hours have you flown/built up/had/accumulated?",
+      "audioTextZh": "你已经积累了多少飞行小时数？",
+      "referenceText": "I have accumulated [X] flying hours. Through these hours, I've gained rich experience in different flight scenarios.\n我已积累了 [X] 个飞行小时数。通过这些时长，我在不同飞行场景中积累了丰富经验。\nUp to now, I have accumulated more than 150 flight hours, including local circuit training, cross-country training and instrument flight training, which have continuously improved my flying skills and emergency response capabilities.\n到目前为止，我已经积累了150多个飞行小时，包括本场起落训练、转场训练和仪表飞行训练等，这些飞行经历让我的飞行技能和应急处置能力不断提升。"
+    },
+    {
+      "id": "opi-extra-149",
+      "taskTitle": "其它-基本情况-4",
+      "audioText": "What type of aircraft are you flying now?/Do you like it?/Why?",
+      "audioTextZh": "你现在驾驶的是什么型号的飞机？/ 你喜欢它吗？/ 为什么？",
+      "referenceText": "Yes, I like it. Because it is the first aircraft I fly. What's more, it has good performance and it is easy to control.\n是的，我喜欢它。因为这是我驾驶的第一架飞机。而且，它性能不错，也容易操控。"
+    },
+    {
+      "id": "opi-extra-150",
+      "taskTitle": "其它-基本情况-5",
+      "audioText": "In which airline are you working for?",
+      "audioTextZh": "你在哪家航空公司工作？",
+      "referenceText": "Now I am a student pilot. In the future I will work for Kunming Airlines.\n目前我是一名飞行学员。未来我会在昆明航空工作。\nI am currently a student pilot and have not yet officially joined any airline. I am actively preparing for various assessments and examinations, hoping to join a reputable airline in the future and embark on my career as a professional pilot.\n我目前还是一名飞行学员，尚未正式加入任何航空公司。我正在积极准备各项考核和考试，希望未来能够加入一家知名的航空公司，开启我的职业飞行员生涯。"
+    },
+    {
+      "id": "opi-extra-151",
+      "taskTitle": "其它-基本情况-6",
+      "audioText": "What type of aircraft have you flown?",
+      "audioTextZh": "你飞过哪些型号的飞机？",
+      "referenceText": "I have flown Cessna 172, DA - 40, Citation, King Air, Hawker - 800.\n我飞过塞斯纳 172、钻石 DA - 40、赛斯纳 Citation（奖状系列 ）、比奇空中国王、豪客 800 这些机型。"
+    },
+    {
+      "id": "opi-extra-152",
+      "taskTitle": "其它-基本情况-7",
+      "audioText": "How many years have you been a pilot?/How many years have you worked for your company?",
+      "audioTextZh": "你当飞行员多少年了？/ 你在这家公司工作多少年了？",
+      "referenceText": "About 2 years.\n大概 2 年了。"
+    },
+    {
+      "id": "opi-extra-153",
+      "taskTitle": "其它-基本情况-8",
+      "audioText": "How many type ratings have you ever had?",
+      "audioTextZh": "你曾获得过多少种型别等级（资格）？",
+      "referenceText": "I have flown da 40, da 42. It is a single engine land a/c, da 42 is a multi-engine high performance a/c.\n我飞过钻石 DA40、钻石 DA42 。DA40 是单发陆地飞机，DA42 是多发高性能飞机"
+    },
+    {
+      "id": "opi-extra-154",
+      "taskTitle": "其它-基本情况-9",
+      "audioText": "When/where did you take the high performance training? What type of aircraft did you fly during the high performance training?",
+      "audioTextZh": "你何时 / 何地参加的高性能飞行训练？在高性能飞行训练期间，你驾驶的是什么型号的飞机？",
+      "referenceText": "I have not taken this training yet. Now I still take flight training in the flight school. I fly DA - 40 for flight training.\n我还未参加过这项训练。目前我仍在飞行学校进行飞行训练，训练时驾驶的是 DA - 40 飞机。"
+    },
+    {
+      "id": "opi-extra-155",
+      "taskTitle": "其它-基本情况-10",
+      "audioText": "Do you like your company logo?",
+      "audioTextZh": "你喜欢你公司的标志吗？",
+      "referenceText": "Yes, I like it. Our company logo is a shape of Dove, it also looks like a beautiful cloud. It means freedom, peace, lucky and happiness. It is beautiful.\n是的，我喜欢。我们公司的标志是鸽子的形状，看起来也像一朵漂亮的云。它象征着自由、和平、幸运和幸福。它很美。"
+    },
+    {
+      "id": "opi-extra-156",
+      "taskTitle": "其它-基本情况-11",
+      "audioText": "Where do you come from?/Where is your hometown?/Can you say something about your hometown? Could you introduce some good places?/What's your favorite city?",
+      "audioTextZh": "你来自哪里？/ 你的家乡是哪里？/ 能讲讲你的家乡吗？可以介绍些好地方吗？/ 你最喜欢的城市是哪个？",
+      "referenceText": "I think my hometown is a good place. My hometown is Xi'an in Shaanxi province. It is located in the north of China.\n我觉得我的家乡是个好地方。我的家乡是陕西省的西安，它位于中国北方。"
+    },
+    {
+      "id": "opi-extra-157",
+      "taskTitle": "其它-基本情况-12",
+      "audioText": "Where are you living now?/How is the traffic there?",
+      "audioTextZh": "你现在住在哪里？/ 那里的交通情况怎么样？",
+      "referenceText": "Now I'm living in Xi'an. The traffic is busy, there is a traffic jam. Maybe because it is a big city.\n我现在住在西安。交通很繁忙，会有堵车情况。可能因为它是一座大城市吧。"
+    },
+    {
+      "id": "opi-extra-158",
+      "taskTitle": "其它-基本情况-13",
+      "audioText": "Which one do you like better, your hometown or the city you're living now?",
+      "audioTextZh": "你更喜欢哪个，你的家乡还是你现在居住的城市？",
+      "referenceText": "I love my hometown. Because I grew up there and I'm familiar with everything there. Besides, my family still stay in my hometown.\n我热爱我的家乡。因为我在那里长大，对那里的一切都很熟悉。此外，我的家人仍留在我的家乡。"
+    },
+    {
+      "id": "opi-extra-159",
+      "taskTitle": "其它-基本情况-14",
+      "audioText": "Where did you receive your high\nperformance flight training?",
+      "audioTextZh": "你在哪里接受的高性能飞行训练？",
+      "referenceText": "I received high performance flight training at [name of flight school/training center], which included theoretical courses, simulator training, and actual flight practice.\n我在[飞行学校/训练中心名称]接受了高性能飞行训练，包括理论课程、模拟机训练和实际飞行练习。"
+    },
+    {
+      "id": "opi-extra-160",
+      "taskTitle": "其它-基本情况-15",
+      "audioText": "What type of aircraft did you fly\nduring high performance training?",
+      "audioTextZh": "你在高性能飞行训练中驾驶的是哪种机型？",
+      "referenceText": "During high performance training, I flew  [name of aircraft]， which is a single-propeller training aircraft suitable for mastering high-performance flight skills.\n高性能飞行训练期间，我驾驶的是[飞机名称]，这是一款适用于掌握高性能飞行技能的单螺旋桨训练机。"
+    },
+    {
+      "id": "opi-extra-161",
+      "taskTitle": "其它-基本情况-16",
+      "audioText": "How many flying hours did you\naccumulate during high performance\ntraining?",
+      "audioTextZh": "你在高性能飞行训练中积累了多少飞行小时？",
+      "referenceText": "I accumulated [X] flying hours during high performance training, covering key training subjects such as takeoff, landing, and emergency disposal.\n我在高性能飞行训练期间积累了[X]飞行小时，涵盖起飞、着陆、应急处置等关键训练科目。"
+    },
+    {
+      "id": "opi-extra-162",
+      "taskTitle": "其它-基本情况-17",
+      "audioText": "Are you a student pilot or a first\nofficer?",
+      "audioTextZh": "你是飞行学员还是副驾驶?",
+      "referenceText": "I am a student pilot currently undergoing flight training.我是一名正在接受飞行训练的飞行学员。"
+    },
+    {
+      "id": "opi-extra-163",
+      "taskTitle": "其它-基本情况-18",
+      "audioText": "Where is your hometown? What is\nyour hometown famous for?",
+      "audioTextZh": "你的家乡在哪里?你的家乡以什么闻\n名?",
+      "referenceText": "My hometown is Chengdu, Sichuan Province. It is famous for delicious Sichuan cuisine like hot pot and mapo tofu, as well as iconic attractions such as Chengdu Research Base of Giant Panda Breeding.我的家乡在四川省成都市。它以火锅、麻婆豆腐等美味的川菜，以及成都大熊猫繁育研究基地等标志性景点而闻名。"
+    },
+    {
+      "id": "opi-extra-164",
+      "taskTitle": "其它-基本情况-19",
+      "audioText": "What's the weather like in your\nhometown?",
+      "audioTextZh": "你家乡的天气如何?",
+      "referenceText": "The weather in my hometown is mild and humid. Summers are not extremely hot and winters are relatively warm, with abundant rainfall mainly in summer and autumn.我家乡的天气温和湿润。夏季不太炎热，冬季相对温暖，降水主要集中在夏秋季。"
+    },
+    {
+      "id": "opi-extra-165",
+      "taskTitle": "其它-基本情况-20",
+      "audioText": "Could you please make a comparison\nbetween your hometown and the city\nyou live?",
+      "audioTextZh": "你可以比较下你的家乡和你现在居住的\n城市吗?",
+      "referenceText": "My hometown is a laid-back city with a strong cultural atmosphere and slow pace of life, while the city I live in now is a bustling aviation hub with faster work rhythm and more convenient transportation networks, especially in terms of air travel.我的家乡是一座悠闲的城市，文化氛围浓厚，生活节奏缓慢；而我现在居住的城市是繁忙的航空枢纽，工作节奏更快，交通网络更便捷，尤其是航空出行方面。"
+    },
+    {
+      "id": "opi-extra-166",
+      "taskTitle": "其它-基本情况-21",
+      "audioText": "Can you name some interesting\nplaces in your hometown?",
+      "audioTextZh": "你能说出你家乡一些有趣的地方吗?",
+      "referenceText": "Interesting places in my hometown include Chengdu Research Base of Giant Panda Breeding, where you can see cute giant pandas; Jinli Ancient Street, which showcases traditional Sichuan customs; and Dujiangyan Irrigation System, a world cultural heritage with brilliant ancient engineering.我家乡有趣的地方有成都大熊猫繁育研究基地，在那里可以看到可爱的大熊猫；锦里古街，展现了四川传统民俗；还有都江堰水利工程，一项有着辉煌古代工程技术的世界文化遗产。"
+    },
+    {
+      "id": "opi-extra-167",
+      "taskTitle": "其它-基本情况-22",
+      "audioText": "What's your favorite means of\ntransportation?",
+      "audioTextZh": "你最喜欢的交通方式是什么?",
+      "referenceText": "My favorite means of transportation is by air. It is fast and efficient, especially for long-distance travel, and it also allows me to experience the charm of aviation firsthand.我最喜欢的交通方式是飞机。它快捷高效，尤其是长途旅行时，还能让我亲身感受航空的魅力。"
+    },
+    {
+      "id": "opi-extra-168",
+      "taskTitle": "其它-基本情况-23",
+      "audioText": "Do you think purchasing a car is\nnecessary in your hometown?",
+      "audioTextZh": "你觉得在你的家乡有必要买车吗?",
+      "referenceText": "I think it depends on personal needs. For families living in suburban areas or with frequent travel needs to remote places, a car is more convenient; but for those living in the downtown with convenient public transportation, purchasing a car may not be necessary.\n我觉得这取决于个人需求。对于居住在郊区或经常需要前往偏远地区的家庭来说，汽车会更方便；但对于居住在市中心、公共交通便利的人来说，买车可能就不是必需的。"
+    },
+    {
+      "id": "opi-extra-169",
+      "taskTitle": "其它-基本情况-24",
+      "audioText": "Have you ever been abroad?\nWhich place do you want to visit\nmost?",
+      "audioTextZh": "你出过国吗?你最想去的是什么地方?",
+      "referenceText": "No, I haven't been abroad yet. The place I want to visit most is the United States, as it has many world-renowned aviation museums and advanced aviation training institutions, which I hope to visit to learn about advanced aviation technology and concepts.\n我还没有出过国。我最想去的地方是美国，因为那里有许多世界著名的航空博物馆和先进的航空培训机构，希望能去学习了解先进的航空技术和理念。"
+    },
+    {
+      "id": "opi-extra-170",
+      "taskTitle": "其它-基本情况-25",
+      "audioText": "Have you ever flown the\ninternational flight?",
+      "audioTextZh": "你飞过国际航班吗?",
+      "referenceText": "No, I haven't flown an international flight yet. At present, my flight experience is mainly focused on domestic training flights. However, I have learned relevant knowledge about international flight operations during theoretical study, and I look forward to having the opportunity to fly international routes and accumulate relevant experience after becoming a professional pilot.\n我还没有飞过国际航班。目前我的飞行经历主要集中在国内的训练飞行。不过在理论学习中，我已经学习了国际航班运行的相关知识，期待成为职业飞行员后，有机会执飞国际航线，积累相关经验。"
+    },
+    {
+      "id": "opi-extra-171",
+      "taskTitle": "其它-基本情况-26",
+      "audioText": "Does your company have any international routes?",
+      "audioTextZh": "你们公司有任何国际航线吗?",
+      "referenceText": "Yes, my company operates several international routes connecting major cities worldwide. These routes require compliance with international aviation regulations, proficiency in English radio communication, and familiarity with foreign airport procedures and weather characteristics.\n是的，我们公司运营多条连接全球主要城市的国际航线。这些航线要求遵守国际民航规则，熟练掌握英语无线电通讯，并熟悉境外机场的运行程序和气象特点。"
+    },
+    {
+      "id": "opi-extra-172",
+      "taskTitle": "其它-基本情况-27",
+      "audioText": "Which do you prefer, the international routes or domestic routes?",
+      "audioTextZh": "你更喜欢哪一个,国际航线还是国内航线?",
+      "referenceText": "I appreciate both. International routes offer opportunities to experience different cultures and aviation environments, while domestic routes have more familiar procedures and stable weather. Regardless, I strictly follow SOP to ensure flight safety.\n两者我都很认可。国际航线能让人体验不同的文化和航空环境，而国内航线的运行程序更熟悉、气象条件更稳定。无论哪种航线，我都会严格遵循标准操作程序（SOP）确保飞行安全。"
+    },
+    {
+      "id": "opi-extra-173",
+      "taskTitle": "其它-基本情况-28",
+      "audioText": "Do you prefer long haul routes or short haul routes?",
+      "audioTextZh": "你是喜欢长航线还是短航线?",
+      "referenceText": "I don’t have a strong preference. Long-haul routes require better physical fitness and fatigue management, while short-haul routes demand quick adaptation to frequent takeoffs and landings. Both help improve skills, and I focus on safe operation in all scenarios.\n我没有强烈的偏好。长航线需要更好的体能和疲劳管理能力，而短航线要求快速适应频繁的起降。两种航线都能提升飞行技能，我会专注于在所有场景下安全运行。"
+    }
+  ]
+}

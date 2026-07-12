@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "icao-question-bank-category",
+  "type": "object",
+  "required": ["id", "name", "declaredTopicCount", "declaredCardCount", "topicIds"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "name": { "type": "string", "minLength": 1 },
+    "declaredTopicCount": { "type": "integer", "minimum": 0 },
+    "declaredCardCount": { "type": "integer", "minimum": 0 },
+    "topicIds": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true }
+  }
+}

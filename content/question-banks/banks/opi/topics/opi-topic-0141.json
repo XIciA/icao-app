@@ -1,0 +1,22 @@
+{
+  "categoryId": "opi-category-05",
+  "id": "opi-topic-0141",
+  "name": "高度偏差",
+  "declaredCardCount": 2,
+  "cards": [
+    {
+      "id": "opi-extra-332",
+      "taskTitle": "运行-高度偏差-1",
+      "audioText": "Could you please name a few of major factors that\nmay cause altitude deviation?",
+      "audioTextZh": "请列举几个可能导致高度偏差的主要因素？",
+      "referenceText": "There are some factors that may cause altitude deviation, such as severe turbulence, wrong altitude setting and altimeter malfunction, misunderstanding of ATC’s instruction and so on.\n包括强湍流、高度设置错误及高度表故障、对空管指令的误解等。"
+    },
+    {
+      "id": "opi-extra-333",
+      "taskTitle": "运行-高度偏差-2",
+      "audioText": "What could a pilot do to avoid altitude deviation?",
+      "audioTextZh": "飞行员可采取哪些措施避免高度偏差？",
+      "referenceText": "Well. First, before flight, pilot should get the weather information to avoid get into the turbulent area. Second, if we have any doubt with ATC’s instruction, we should confirm with ATC immediately. Third, during flight, both pilots should cross check their altimeters.\n一是飞行前获取气象信息，避免飞入湍流区域；二是若对空管指令有疑问，立即向空管确认；三是飞行中，两名飞行员需交叉检查高度表。"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "categoryId": "opi-category-02",
+  "id": "opi-topic-0014",
+  "name": "鸟击",
+  "declaredCardCount": 15,
+  "cards": [
+    {
+      "id": "opi-core-217",
+      "taskTitle": "特情-鸟击-1",
+      "audioText": "Have you ever encountered a bird strike?",
+      "audioTextZh": "你遇到过鸟击吗？",
+      "referenceText": "I have never encountered a bird strike. But I heard one. Last time I watched a movie called Sully. It is a story about a bird strike. Captain Sully encountered bird strike after takeoff. Both engines failed. Finally, he made a successful ditching on the river. He is a hero.\n我从未遇到过鸟击。但我听到了一个。上次我看的电影叫萨利机长。这是一个关于鸟击的故事。机长萨利在起飞后遭遇了鸟击。两个引擎都失灵了。最后，他成功地在河上迫降。他是个英雄。"
+    },
+    {
+      "id": "opi-core-218",
+      "taskTitle": "特情-鸟击-2",
+      "audioText": "When is an aircraft most likely to encounter a bird strike? why?",
+      "audioTextZh": "飞机什么时候最有可能遭遇鸟击？为什么?",
+      "referenceText": "During takeoff and landing the aircraft most likely to encounter bird strike. Because bird and foreign object always active at a lower level.\n飞机在起飞和降落时最容易遭遇鸟击。因为鸟和异物总是活跃在较低的高度。"
+    },
+    {
+      "id": "opi-core-219",
+      "taskTitle": "特情-鸟击-3",
+      "audioText": "Before takeoff from an airport, where do you get information about bird activity?",
+      "audioTextZh": "在从机场起飞之前，你从哪里得到关于鸟类活动的信息？",
+      "referenceText": "Before takeoff from an airport. We can listen to the ATIS and contact the controller to know the bird information. We can also visual check the airport if there is activity.\n从机场起飞前。我们可以收听ATIS并联系管制员了解鸟类信息。我们也可以目视检查机场是否有鸟类活动。"
+    },
+    {
+      "id": "opi-core-220",
+      "taskTitle": "特情-鸟击-4",
+      "audioText": "How do birds strike threaten flight safety?",
+      "audioTextZh": "鸟类撞击如何威胁飞行安全？",
+      "referenceText": "Bird strike really put a threat on flight safety. If the birds are ingested into the engine. It can make the engine damage even cause engine flame out or engine failure. If the birds hit on the windshield, the windshield will be broken. Even make the flight crew injured.\n鸟撞确实对飞行安全造成了威胁。如果鸟被吸入发动机。它可以使发动机损坏，甚至引起发动机熄火或发动机故障。如果鸟撞在挡风玻璃上，挡风玻璃就会碎。甚至使机组人员受伤。"
+    },
+    {
+      "id": "opi-core-221",
+      "taskTitle": "特情-鸟击-5",
+      "audioText": "What measures could be taken to prevent bird strikes?",
+      "audioTextZh": "可以采取什么措施来防止鸟撞？",
+      "referenceText": "First of all, we should make a good pre - flight preparation. Before departure, listen to the ATIS to know the bird activity. Secondly, we should always have a good communication with ATC to know the latest information. Thirdly, we should have a good task - sharing in the cockpit. The PF should control the aircraft. The PM should monitor the instruments and systems, pay close attention to outside to visual check the birds. At last, the aircraft should be equipped with advanced equipment to detect birds.\n首先，我们应该做好飞行前的准备工作。出发前，收听ATIS，了解鸟类活动情况。其次，我们应该经常与ATC保持良好的沟通，了解最新的信息。第三，做好驾驶舱任务分配。PF应该控制飞机。PM应监控仪器和系统，密切关注外部目视检查鸟类。最后，飞机应该配备先进的设备来探测鸟类。\n\nPreflight, pilots collect bird info from ATIS, ATC and PIREPs, change runway or delay if needed. Inflight, maintain visual scan and go around if birds are spotted. Airports manage habitats, use bird-scaring devices like distress signals or pyrotechnics, and coordinate with local authorities to reduce bird attractants.\n飞行前，飞行员从自动终端情报服务（ATIS）、空管（ATC）和飞行员报告（PIREPs）收集鸟类活动信息，必要时更换跑道或延误起飞；飞行中，保持目视观察，发现鸟类时及时复飞。机场通过栖息地管理、使用鸟类遇险信号或烟火等驱鸟设备，以及与当地部门协调减少鸟类吸引源来防范鸟击。"
+    },
+    {
+      "id": "opi-core-222",
+      "taskTitle": "特情-鸟击-6",
+      "audioText": "If the aircraft ingests some foreign object during take off rolling, what would you do?",
+      "audioTextZh": "如果在起飞滑跑过程中飞机吸入外来物，你会怎么做？",
+      "referenceText": "If the aircraft ingests some foreign object during takeoff rolling, we will abort takeoff immediately if the aircraft speed is before V1. If the aircraft speed passes V1, we must go on with takeoff, then advise ATC of our situation and request to land as soon as possible to check the damage.\n若在起飞滑跑过程中飞机吸入外来物，飞机速度未到 V1 时，会立即中断起飞；若速度超过 V1，就继续完成起飞，随后把情况告知空管，请求尽快着陆检查损伤 。"
+    },
+    {
+      "id": "opi-core-223",
+      "taskTitle": "特情-鸟击-7",
+      "audioText": "If bird ingestion happens to you during your initial climb, how will you deal with the situation?",
+      "audioTextZh": "如果在初始爬升阶段遭遇鸟击，你将如何处置？",
+      "referenceText": "If I encounter bird ingestion during initial climb. First of all, I will calm down and try my best to control the aircraft, try to maintain the airspeed, altitude and attitude. Secondly, I will follow the SOP and perform the checklist. At last, I will advise ATC of our situation, request come back to land or land at the nearest suitable airport.\n如果在初始爬升阶段遭遇鸟击：首先，我会保持冷静并尽力控制飞机，努力维持空速、高度和姿态；其次，遵循标准操作程序（SOP ），执行检查单；最后，将情况告知空管，申请返航着陆或在最近合适机场降落 。\n\nIf the engine ingests a bird during initial climb, I will: maintain aircraft control first, monitor engine parameters (EGT, N1, vibration) closely; follow SOP and execute the engine malfunction checklist; report to ATC, describe the situation and aircraft status; if engine performance degrades significantly, request diversion to the nearest suitable airport; and prepare for emergency landing if necessary.\n若初始爬升阶段发动机吸入鸟，我会：首先保持飞机操控，密切监控发动机参数（排气温度、风扇转速、振动）；遵循标准操作程序（SOP），执行发动机故障检查单；向空管报告，说明情况和飞机状态；若发动机性能显著下降，请求改航至最近的合适机场；必要时准备紧急着陆。"
+    },
+    {
+      "id": "opi-core-224",
+      "taskTitle": "特情-鸟击-8",
+      "audioText": "Do you feel prepared to deal with bird strike?",
+      "audioTextZh": "你准备好应对鸟击了吗？",
+      "referenceText": "I have never encountered a bird strike during flight. But I feel prepared, because I know the procedures to avoid it and to deal with it.\n我从未在飞行中遭遇过鸟击，但我已做好应对准备，因为我清楚相关的预防和处置程序。"
+    },
+    {
+      "id": "opi-core-225",
+      "taskTitle": "特情-鸟击-9",
+      "audioText": "If the aircraft engine ingest foreign object, will it endanger flight safety?",
+      "audioTextZh": "如果飞机发动机吸入外来物，是否会影响飞行安全？",
+      "referenceText": "Foreign object strike really put a threat on flight safety. If the foreign object ingest into the engine, it can make the engine damage, even cause engine flame out or engine failure.\n外来物撞击确实会对飞行安全构成威胁。如果外来物被吸入发动机，可能导致发动机受损，甚至引发发动机停车或故障。"
+    },
+    {
+      "id": "opi-core-226",
+      "taskTitle": "特情-鸟击-10",
+      "audioText": "During which phases of flight is engine ingestion most likely to occur? Why?",
+      "audioTextZh": "发动机吸入外来物最可能发生在飞行的哪些阶段？原因是什么？",
+      "referenceText": "During takeoff and landing, the aircraft most likely to encounter engine ingestion. Because birds and foreign object always active at lower level.\n在起飞和着陆阶段，飞机最容易发生发动机吸入异物的情况。这是因为鸟类和外来物通常在低空活动频繁。"
+    },
+    {
+      "id": "opi-core-227",
+      "taskTitle": "特情-鸟击-11",
+      "audioText": "At which flight phase are you most likely to encounter bird strike? When are you most likely to encounter bird strike?",
+      "audioTextZh": "您最可能在哪个飞行阶段遭遇鸟击？何时发生鸟击的风险最高？",
+      "referenceText": "We are most likely to encounter bird strike during takeoff and landing.\n我们最可能在起飞和着陆阶段遭遇鸟击"
+    },
+    {
+      "id": "opi-core-228",
+      "taskTitle": "特情-鸟击-12",
+      "audioText": "Why is bird strike a threat to flight safety?",
+      "audioTextZh": "为什么鸟击会威胁飞行安全？",
+      "referenceText": "Bird strike is very dangerous to flight safety First, bird strike may cause structural damage to the aircraft such as nose, windshields and engines Second, bird strike may cause engine problems such as engine flameout, engine failure, engine surge and so on\n鸟击对飞行安全极具威胁。首先，鸟击可能导致飞机结构损坏，如机头、风挡和发动机受损；其次，鸟击可能引发发动机故障，包括停车、失效、喘振等问题"
+    },
+    {
+      "id": "opi-core-229",
+      "taskTitle": "特情-鸟击-13",
+      "audioText": "What measures can be taken to avoid bird strike? Do you feel prepared of bird strike?",
+      "audioTextZh": "如何避免鸟击？您是否做好应对鸟击的准备？",
+      "referenceText": "There are many things we can do to avoid bird strike. First, we can get information about bird activity from other pilot reports (PIREP) and ATC alerting services. Second, if there is bird activity along our flight path, we can request to change our flight path, delay our approach or delay our departure. Third, the airport management department may dispel the birds in the vicinity of the airport.\n我们可以采取多种措施避免鸟击：首先，从其他飞行员报告（PIREP ）和空管警戒服务获取鸟类活动信息；其次，若飞行路径上有鸟类活动，可申请更改飞行路径、延迟进近或推迟起飞；第三，机场管理部门可驱散机场附近的鸟类 。\n I feel well - prepared for bird strikes as we've trained and know these procedures.\n我觉得自己应对鸟击准备充分，因为我们接受过相关训练，知晓这些程序 。"
+    },
+    {
+      "id": "opi-core-230",
+      "taskTitle": "特情-鸟击-14",
+      "audioText": "Who is responsible for dispelling birds in the vicinity of airports?",
+      "audioTextZh": "机场周边驱鸟工作的责任主体是谁？",
+      "referenceText": "I think the airport management department is responsible for dispelling the birds in the vicinity of airports. If bird activities are reported, the bird dispelling car can be sent out to drive the birds away。\n我认为机场管理部门负责驱散机场附近的鸟类。若接到鸟类活动报告，可派出驱鸟车驱赶鸟类 。"
+    },
+    {
+      "id": "opi-core-231",
+      "taskTitle": "特情-鸟击-15",
+      "audioText": "Where can you get the information relating to bird activity?",
+      "audioTextZh": "哪里可以获得与鸟类活动相关的信息？",
+      "referenceText": "We can get the information about bird activity from ATC, ATIS and other pilot reports\n我们可以从空中交通管制（ATC）、自动终端情报服务（ATIS）以及其他飞行员报告中获取鸟类活动的信息。"
+    }
+  ]
+}

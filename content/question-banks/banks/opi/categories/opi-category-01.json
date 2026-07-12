@@ -1,0 +1,20 @@
+{
+  "id": "opi-category-01",
+  "name": "气象",
+  "declaredTopicCount": 12,
+  "declaredCardCount": 141,
+  "topicIds": [
+    "opi-topic-0001",
+    "opi-topic-0002",
+    "opi-topic-0003",
+    "opi-topic-0021",
+    "opi-topic-0028",
+    "opi-topic-0037",
+    "opi-topic-0044",
+    "opi-topic-0080",
+    "opi-topic-0090",
+    "opi-topic-0115",
+    "opi-topic-0134",
+    "opi-topic-0140"
+  ]
+}

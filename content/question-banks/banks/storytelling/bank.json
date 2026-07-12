@@ -1,0 +1,46 @@
+{
+  "id": "storytelling",
+  "title": "故事复诵",
+  "nameEn": "Story Retelling",
+  "description": "发音 结构 词汇 流利度 理解能力",
+  "summary": "4 子库 / 296 卡",
+  "enabled": true,
+  "statusLabel": "可练习",
+  "icon": "story",
+  "declaredTopicCount": 4,
+  "declaredCardCount": 296,
+  "categoryUnit": "方向",
+  "topicUnit": "子库",
+  "cardUnit": "卡",
+  "study": {
+    "interaction": "retell",
+    "tools": {
+      "recorder": true,
+      "choices": false,
+      "notes": true,
+      "dictionary": true,
+      "highlights": true,
+      "tags": true
+    },
+    "audioTitlePattern": "card-title",
+    "consoleTabs": [
+      "mine",
+      "reference",
+      "notes"
+    ],
+    "copy": {
+      "transcriptLabel": "音频原文",
+      "referenceLabel": "参考答案"
+    }
+  },
+  "capabilities": {
+    "audioMode": "file",
+    "reviewMode": "grammar",
+    "radioEligible": true,
+    "mockExamEligible": true
+  },
+  "categoryIds": [
+    "story-category-1",
+    "story-category-2"
+  ]
+}

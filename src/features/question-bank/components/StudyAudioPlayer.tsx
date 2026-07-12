@@ -20,6 +20,7 @@ export function StudyAudioPlayer({
   playbackKey,
   autoPlayRequest = 0,
   tagColors = [],
+  resolving = false,
 }: {
   uri?: string;
   label: string;
@@ -27,6 +28,7 @@ export function StudyAudioPlayer({
   playbackKey: string;
   autoPlayRequest?: number;
   tagColors?: string[];
+  resolving?: boolean;
 }) {
   const player = useAudioPlayer(null, { updateInterval: 250, preferredForwardBufferDuration: 10 });
   const status = useAudioPlayerStatus(player);
@@ -110,7 +112,12 @@ export function StudyAudioPlayer({
         {tagColors.length ? <View accessibilityLabel={`已添加${tagColors.length}个标签`} style={styles.tagDots}>{tagColors.map((color, index) => <View key={`${color}-${index}`} style={[styles.tagDot, { backgroundColor: color }, index ? styles.tagDotOverlap : null]} />)}</View> : null}
       </View>
 
-      {!uri && generatedAudio ? (
+      {!uri && resolving ? (
+        <View style={styles.generated}>
+          <ActivityIndicator color={colors.primary} size="small" />
+          <View style={styles.errorCopy}><AppText variant="button">正在获取音频…</AppText><AppText variant="caption">文字学习内容已经可用。</AppText></View>
+        </View>
+      ) : !uri && generatedAudio ? (
         <View style={styles.generated}>
           <Headphones color={colors.primary} size={18} />
           <View style={styles.errorCopy}>

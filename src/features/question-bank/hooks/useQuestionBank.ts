@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { embeddedQuestionBankRepository } from '../data/repository';
+import { loadQuestionBank, type QuestionBankSource } from '../data/repository';
 import type { QuestionBankDataset, QuestionBankId } from '../types';
 
 type State =
   | { status: 'loading'; data?: undefined; error?: undefined }
-  | { status: 'ready'; data: QuestionBankDataset; error?: undefined }
+  | { status: 'ready'; data: QuestionBankDataset; source: QuestionBankSource; warning?: string; error?: undefined }
   | { status: 'error'; data?: undefined; error: Error };
 
 export function useQuestionBank(bankId: QuestionBankId | undefined) {
@@ -23,11 +23,10 @@ export function useQuestionBank(bankId: QuestionBankId | undefined) {
       };
     }
 
-    void embeddedQuestionBankRepository
-      .getDataset(bankId)
-      .then((data) => {
+    void loadQuestionBank(bankId)
+      .then((result) => {
         if (!active) return;
-        setState(data ? { status: 'ready', data } : { status: 'error', error: new Error('question_bank_not_found') });
+        setState(result ? { status: 'ready', data: result.dataset, source: result.source, warning: result.warning } : { status: 'error', error: new Error('question_bank_not_found') });
       })
       .catch((error: unknown) => {
         if (active) setState({ status: 'error', error: error instanceof Error ? error : new Error('question_bank_load_failed') });

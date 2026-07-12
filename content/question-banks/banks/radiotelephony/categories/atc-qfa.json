@@ -1,0 +1,14 @@
+{
+  "id": "atc-qfa",
+  "name": "QFA",
+  "declaredTopicCount": 6,
+  "declaredCardCount": 111,
+  "topicIds": [
+    "atc-scenario-0001",
+    "atc-scenario-0002",
+    "atc-scenario-0003",
+    "atc-scenario-0004",
+    "atc-scenario-0005",
+    "atc-scenario-0006"
+  ]
+}

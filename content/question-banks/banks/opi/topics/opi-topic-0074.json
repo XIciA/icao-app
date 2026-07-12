@@ -1,0 +1,36 @@
+{
+  "categoryId": "opi-category-04",
+  "id": "opi-topic-0074",
+  "name": "飞行作风",
+  "declaredCardCount": 4,
+  "cards": [
+    {
+      "id": "opi-core-751",
+      "taskTitle": "人的因素-飞行作风-1",
+      "audioText": "What's your opinion on flight discipline? How to develop good flight discipline?",
+      "audioTextZh": "你对飞行纪律有什么看法？如何培养良好的飞行纪律？",
+      "referenceText": "A pilot must have rich aeronautical knowledge, good flight techniques and strong flight discipline to ensure flight safety. Because the pilot controls the aircraft and is responsible for all passengers and crew members on board. Pilots should follow regulations and SOPs (Standard Operating Procedures). They should have good task sharing in the cockpit, avoid smoking in the cockpit, and refrain from consuming alcohol before flights to ensure flight safety.\n飞行员必须具备丰富的航空知识、娴熟的飞行技能以及严格的飞行纪律，才能保障飞行安全。因为飞行员操控着飞机，要对机上所有乘客和机组人员负责。飞行员应遵守规章制度和标准操作程序（SOPs ）。在驾驶舱内要做好任务分工，不在驾驶舱吸烟，飞行前不饮酒，以此确保飞行安全 。"
+    },
+    {
+      "id": "opi-core-752",
+      "taskTitle": "人的因素-飞行作风-2",
+      "audioText": "How can flight discipline affect flight safety?",
+      "audioTextZh": "飞行纪律会如何影响飞行安全？",
+      "referenceText": "If pilots don’t follow regulations and SOPs (Standard Operating Procedures), they may forget procedures and make mistakes. If they smoke in the cockpit or consume alcohol before flights, they may lose situational awareness and make poor decisions. This is very dangerous for flight safety.\n若飞行员不遵守规章制度和标准操作程序（SOPs ），可能会遗忘操作流程并出现失误。要是他们在驾驶舱吸烟，或飞行前饮酒，就可能丧失情景意识，做出错误决策。这对飞行安全极为危险 。"
+    },
+    {
+      "id": "opi-core-753",
+      "taskTitle": "人的因素-飞行作风-3",
+      "audioText": "How can pilots develop a good flight discipline?",
+      "audioTextZh": "飞行员应如何培养良好的飞行纪律？",
+      "referenceText": "To develop a good flight discipline, we must have a good attitude. We should respect for life, respect for rules, and respect for responsibility, we can also improve our working conduct and safeguard the bottom line.\n培养良好的飞行纪律，首先要树立正确态度：尊重生命、敬畏规则、坚守责任；同时还要规范工作行为，严守安全底线。"
+    },
+    {
+      "id": "opi-core-754",
+      "taskTitle": "人的因素-飞行作风-4",
+      "audioText": "Could you talk about the flight\ndisciplines in your flight school or\nyour company?",
+      "audioTextZh": "能谈一谈你们航校或者你们公司的飞行纪律/作风情况吗?",
+      "referenceText": "The flight discipline in our flight school is very strict, emphasizing the importance of safety and standardization. First of all, we must strictly abide by the flight schedule and training arrangements, and are not allowed to be late or absent without reason. Secondly, during flight training, we must strictly follow the instructor's instructions and standard operating procedures (SOP) to ensure flight safety. In addition, we must maintain a good professional attitude, adhere to the principles of honesty and trustworthiness, and not take any risky flying behaviors. At the same time, the school also pays attention to cultivating our team cooperation spirit and situational awareness, requiring us to maintain effective communication and cooperation with instructors and classmates during the flight process. These strict flight disciplines and good work styles are crucial to ensuring flight safety and improving professional quality.我们航校的飞行纪律非常严格，强调安全和规范的重要性。首先，我们必须严格遵守飞行日程和训练安排，不得无故迟到、缺席。其次，在飞行训练过程中，必须严格遵循教员的指令和标准操作程序SOP，确保飞行安全。此外，我们还要保持良好的职业态度，秉持诚实守信的原则，不进行任何冒险的飞行行为。同时，学校也注重培养我们的团队协作精神和情景意识，要求我们在飞行过程中与教员、同学保持有效的沟通与配合。这些严格的飞行纪律和良好的作风，对于保障飞行安全、提升专业素养至关重要。"
+    }
+  ]
+}

@@ -13,6 +13,10 @@
     "android:prebuild": "./scripts/with-android-env.sh expo prebuild --platform android --clean",
     "android:emulator": "./scripts/start-android-emulator.sh",
     "assets:serve": "./scripts/serve-design-assets.sh",
+    "content:extract": "node tools/question-bank-content.mjs extract",
+    "content:build": "node tools/question-bank-content.mjs build",
+    "content:check": "node tools/question-bank-content.mjs check",
+    "content:check:full": "node tools/question-bank-content.mjs check --full",
     "ios": "expo run:ios",
     "ios:prebuild": "expo prebuild --platform ios --clean",
     "prebuild": "expo prebuild --clean",
@@ -20,15 +24,24 @@
     "lint": "expo lint",
     "test": "jest --runInBand",
     "test:watch": "jest --watch",
-    "check": "pnpm typecheck && pnpm lint && pnpm test",
+    "check:app": "pnpm typecheck && pnpm lint && pnpm test",
+    "check:contracts": "pnpm --filter @icao/contracts check",
+    "check:api": "pnpm --filter @icao/contracts build && pnpm --filter @icao/api check",
+    "check": "pnpm content:check && pnpm check:app && pnpm check:contracts && pnpm check:api",
+    "api:dev": "pnpm --filter @icao/contracts build && pnpm --filter @icao/api dev",
+    "api:migration:apply": "pnpm --filter @icao/api migration:apply",
+    "api:migration:generate": "pnpm --filter @icao/api migration:generate",
+    "api:migration:check": "pnpm --filter @icao/api migration:check",
     "doctor": "pnpm dlx expo-doctor@latest"
   },
   "dependencies": {
     "@expo-google-fonts/geist": "0.4.2",
     "@expo-google-fonts/geist-mono": "0.4.2",
+    "@icao/contracts": "workspace:*",
     "@react-navigation/bottom-tabs": "^7.15.5",
     "@react-navigation/elements": "^2.9.10",
     "@react-navigation/native": "^7.1.33",
+    "@supabase/supabase-js": "2.110.2",
     "expo": "~55.0.27",
     "expo-asset": "~55.0.17",
     "expo-audio": "~55.0.15",
@@ -41,6 +54,7 @@
     "expo-linking": "~55.0.16",
     "expo-network": "~55.0.15",
     "expo-router": "~55.0.16",
+    "expo-secure-store": "~55.0.15",
     "expo-splash-screen": "~55.0.22",
     "expo-sqlite": "~55.0.17",
     "expo-status-bar": "~55.0.6",
@@ -72,6 +86,10 @@
   },
   "jest": {
     "preset": "jest-expo",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/services/"
+    ],
     "transformIgnorePatterns": [
       "node_modules/(?!(.pnpm|(jest-)?react-native|@react-native(-community)?|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@sentry/react-native|native-base|react-native-svg))"
     ]

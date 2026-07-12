@@ -1,0 +1,179 @@
+{
+  "categoryId": "atc-aca",
+  "id": "atc-scenario-0046",
+  "name": "ACA 219 询问天气 能见差复飞",
+  "declaredCardCount": 19,
+  "cards": [
+    {
+      "id": "atc-scenario-0046-card-main-779",
+      "taskTitle": "ACA 219-1",
+      "audioText": "B: Your call sign is Air Canada 219, from Vancouver to Wuhan, you are maintaining 11000 meters, over OBLIK, squawking 3555, make an initial contact with Wuhan Control.",
+      "audioTextZh": "B: 你的呼号是 Air Canada 219，从 Vancouver 到 Wuhan，保持 11000 米，过 OBLIK，应答机 3555，与 武汉管制 建立初始联系。",
+      "referenceText": "Wuhan Control, ACA219, maintaining 11000 meters, over OBLIK, squawking 3555.",
+      "referenceTextZh": "武汉管制，ACA219，保持 11000 米，过 OBLIK，应答机 3555。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/794.mp3"
+    },
+    {
+      "id": "atc-scenario-0046-card-main-780",
+      "taskTitle": "ACA 219-2",
+      "audioText": "C: Air Canada 219, reduce speed to mach 0.75 due flow control.",
+      "audioTextZh": "C: Air Canada 219，由于流量控制，减速到马赫 0.75。",
+      "referenceText": "Reduce speed to M.75, ACA219.",
+      "referenceTextZh": "减速到 M.75，ACA219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/795.mp3"
+    },
+    {
+      "id": "atc-scenario-0046-card-main-781",
+      "taskTitle": "ACA 219-3",
+      "audioText": "C: Air Canada 219, descend to 9200 meters, reduce speed to less than 270 knots until advised.",
+      "audioTextZh": "C: Air Canada 219，下降到 9200 米，减速到 270 节以下，直到通知。",
+      "referenceText": "Descend to 9200 meters, reduce speed to less than 270 knots until advised, ACA219.",
+      "referenceTextZh": "下降到 9200 米，减速到 270 节以下，直到通知，ACA219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/796.mp3"
+    },
+    {
+      "id": "atc-scenario-0046-card-main-782",
+      "taskTitle": "ACA 219-4",
+      "audioText": "B: During descent, your TCAS indicates there is a converging traffic at your 2 o'clock, below, climbing, confirm with Wuhan Control if it is in conflict with you.",
+      "audioTextZh": "B: 下降过程中，你的 TCAS 显示 2 点钟方向有交叉交通，在下方，正在爬升，向武汉管制确认是否与你冲突。",
+      "referenceText": "Wuhan Control, ACA219, our TCAS indicates there is a converging traffic at our 2 o'clock, below, climbing, is it in conflict with us ?",
+      "referenceTextZh": "武汉管制，ACA219，我们的 TCAS 显示 2 点钟方向有交叉交通，在我们下方，正在爬升，是否与我们冲突？",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/797.mp3"
+    },
+    {
+      "id": "atc-scenario-0046-card-main-783",
+      "taskTitle": "ACA 219-5",
+      "audioText": "C: Air Canada 219, negative, the aircraft is climbing to 8900 meters, it will cross behind your shortly.",
+      "audioTextZh": "C: Air Canada 219，否，该飞机正在爬升到 8900 米，很快将在你后方穿越。",
+      "referenceText": "Roger, ACA219.",
+      "referenceTextZh": "收到，ACA219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/798.mp3"
+    },
+    {
+      "id": "atc-scenario-0046-card-main-784",
+      "taskTitle": "ACA 219-6",
+      "audioText": "B: You have just received the latest ATIS, saying the visibility at Wuhan is low, you want to know if your alternate airport Changsha is available for diversion.",
+      "audioTextZh": "B: 你刚收到最新 ATIS，说 Wuhan 能见度低，你想知道备降机场 Changsha 是否可用于改航。",
+      "referenceText": "Wuhan Control, ACA219, the latest ATIS says the visibility at Wuhan is low, is Changsha available for diversion ?",
+      "referenceTextZh": "武汉管制，ACA219，最新 ATIS 说 Wuhan 能见度低，Changsha 是否可用于改航？",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/799.mp3"
+    },
+    {
+      "id": "atc-scenario-0046-card-main-785",
+      "taskTitle": "ACA 219-7",
+      "audioText": "C: Air Canada 219, Changsha Airport is available, confirm you are diverting to Changsha?\nB: Tell the controller you are not diverting to Changsha at the moment, and you still want to fly to Wuhan.",
+      "audioTextZh": "C: Air Canada 219，Changsha Airport 可用，确认你要改航 Changsha？\nB: 告诉管制员目前不改航 Changsha，仍想飞往 Wuhan。",
+      "referenceText": "We won't divert at the moment, we still want to fly to Wuhan, ACA219.",
+      "referenceTextZh": "我们目前不改航，仍想飞往 Wuhan，ACA219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/800.mp3"
+    },
+    {
+      "id": "atc-scenario-0046-card-main-786",
+      "taskTitle": "ACA 219-8",
+      "audioText": "C: Air Canada 219, roger, track direct to Zulu Foxtrot, follow Zulu Foxtrot 2 Alpha arrival, expect ILS approach runway 36 right.",
+      "audioTextZh": "C: Air Canada 219，收到，直飞 Zulu Foxtrot，执行 Zulu Foxtrot 2 Alpha 进场，预计跑道 36R ILS 进近。",
+      "referenceText": "Track direct to ZF, follow ZF2A arrival, expect ILS approach runway 36R, ACA219.",
+      "referenceTextZh": "直飞 ZF，执行 ZF2A 进场，预计跑道 36R ILS 进近，ACA219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/801.mp3"
+    },
+    {
+      "id": "atc-scenario-0046-card-main-787",
+      "taskTitle": "ACA 219-9",
+      "audioText": "C: Air Canada 219, descend and maintain 4200 meters, reduce speed to minimum clean speed.",
+      "audioTextZh": "C: Air Canada 219，下降并保持 4200 米，减速到最小光洁速度。",
+      "referenceText": "Descend and maintain 4200 meters, reduce speed to minimum clean speed, ACA219.",
+      "referenceTextZh": "下降并保持 4200 米，减速到最小光洁速度，ACA219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/802.mp3"
+    },
+    {
+      "id": "atc-scenario-0046-card-main-788",
+      "taskTitle": "ACA 219-10",
+      "audioText": "C: Air Canada 219, contact Wuhan Tower 119.6.",
+      "audioTextZh": "C: Air Canada 219，联系武汉塔台119.6。",
+      "referenceText": "119.6, ACA219.",
+      "referenceTextZh": "119.6，ACA219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/803.mp3"
+    },
+    {
+      "id": "atc-scenario-0046-card-main-789",
+      "taskTitle": "ACA 219-11",
+      "audioText": "B: Now you are established on ILS approach runway 36 right, you are 15 miles from touchdown, contact Wuhan Tower.",
+      "audioTextZh": "B: 现在你已建立跑道 36R ILS 进近，距接地点 15 海里，联系武汉塔台。",
+      "referenceText": "Wuhan Tower, ACA219, established on ILS approach runway 36R, 15 miles from touchdown.",
+      "referenceTextZh": "武汉塔台，ACA219，已建立跑道 36R ILS 进近，距接地点 15 海里。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/804.mp3"
+    },
+    {
+      "id": "atc-scenario-0046-card-main-790",
+      "taskTitle": "ACA 219-12",
+      "audioText": "C: Air Canada 219, roger, surface wind calm, RVR touchdown 550 meters, midpoint 600 meters, rollout 500 meters, continue approach runway 36 right.",
+      "audioTextZh": "C: Air Canada 219，收到，地面风静风，RVR 接地点 550 米，中段 600 米，停止端 500 米，继续进近跑道 36R。",
+      "referenceText": "Roger, continue approach runway 36R, ACA219.",
+      "referenceTextZh": "收到，继续进近跑道 36R，ACA219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/805.mp3"
+    },
+    {
+      "id": "atc-scenario-0046-card-main-791",
+      "taskTitle": "ACA 219-13",
+      "audioText": "B: Now you are 10 miles from touchdown, ask Wuhan Tower for the cloud information.",
+      "audioTextZh": "B: 现在你距接地点 10 海里，向武汉塔台询问云况信息。",
+      "referenceText": "Wuhan Tower, ACA219, 10 miles from touchdown, request cloud information.",
+      "referenceTextZh": "武汉塔台，ACA219，距接地点 10 海里，请求云况信息。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/806.mp3"
+    },
+    {
+      "id": "atc-scenario-0046-card-main-792",
+      "taskTitle": "ACA 219-14",
+      "audioText": "C: Air Canada 219, cloud broken 700 meters, cleared to land runway 36 right.",
+      "audioTextZh": "C: Air Canada 219，疏云 700 米，可以着陆跑道 36R。",
+      "referenceText": "Cloud broken 700 meters, cleared to land runway 36R, ACA219.",
+      "referenceTextZh": "疏云 700 米，可以着陆跑道 36R，ACA219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/807.mp3"
+    },
+    {
+      "id": "atc-scenario-0046-card-main-793",
+      "taskTitle": "ACA 219-15",
+      "audioText": "B: At the minimum, you are unable to see approach lights, you are carrying out a missed approach, advice Tower.",
+      "audioTextZh": "B: 在最低标准高度，你看不到进近灯，正在执行复飞，通知塔台。",
+      "referenceText": "Wuhan Tower, ACA219, we are unable to see approach lights at minimum, going around.\n         (no contact at the minimum)",
+      "referenceTextZh": "武汉塔台，ACA219，我们在最低标准高度看不到进近灯，复飞。\n         （最低标准高度无目视）",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/808.mp3"
+    },
+    {
+      "id": "atc-scenario-0046-card-main-794",
+      "taskTitle": "ACA 219-16",
+      "audioText": "C: Air Canada 219,roger, follow the standard missed approach procedure, advice intentions when able.",
+      "audioTextZh": "C: Air Canada 219，收到，执行标准复飞程序，可以时报告意图。",
+      "referenceText": "Follow the standard missed approach procedure, ACA219.",
+      "referenceTextZh": "执行标准复飞程序，ACA219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/809.mp3"
+    },
+    {
+      "id": "atc-scenario-0046-card-main-795",
+      "taskTitle": "ACA 219-17",
+      "audioText": "B: Now you are climbing to missed approach altitude, you decide to divert to Changsha Airport, informe Tower.",
+      "audioTextZh": "B: 现在你正在爬升到复飞高度，决定改航 Changsha Airport，通知塔台。",
+      "referenceText": "Wuhan Tower, ACA219, request divert to Changsha Airport.",
+      "referenceTextZh": "武汉塔台，ACA219，请求改航 Changsha Airport。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/810.mp3"
+    },
+    {
+      "id": "atc-scenario-0046-card-main-796",
+      "taskTitle": "ACA 219-18",
+      "audioText": "C: Air Canada 219, roger, turn right, direct to Lima Kilo Oscar, climb to and maintain 2400 meters.",
+      "audioTextZh": "C: Air Canada 219，收到，右转，直飞 Lima Kilo Oscar，爬升并保持 2400 米。",
+      "referenceText": "Turn right, direct to LKO, climb to and maintain 2400 meters, ACA219.",
+      "referenceTextZh": "右转，直飞 LKO，爬升并保持 2400 米，ACA219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/811.mp3"
+    },
+    {
+      "id": "atc-scenario-0046-card-main-797",
+      "taskTitle": "ACA 219-19",
+      "audioText": "C: Air Canada 219, contact Wuhan Departure on 120.4.",
+      "audioTextZh": "C: Air Canada 219，联系 Wuhan Departure 120.4。",
+      "referenceText": "120.4, ACA219.",
+      "referenceTextZh": "120.4，ACA219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/812.mp3"
+    }
+  ]
+}

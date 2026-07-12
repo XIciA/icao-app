@@ -1,0 +1,188 @@
+{
+  "categoryId": "atc-qfa",
+  "id": "atc-scenario-0001",
+  "name": "QFA 432 沙暴 1发,2发失效",
+  "declaredCardCount": 20,
+  "cards": [
+    {
+      "id": "atc-scenario-0001-card-main-001",
+      "taskTitle": "QFA 432-1",
+      "audioText": "B: Your call sign is Qantas 432, you are parking at gate 24, you have got information Hotel, ask Shanghai Delivery for ATC clearance to Beijing.",
+      "audioTextZh": "B：你的呼号是 Qantas 432，停在 24 号登机口，已收到 Hotel 情报，向上海放行申请前往北京的 ATC 放行许可。",
+      "referenceText": "Shanghai Delivery, QFA432, gate 24, information H, request ATC clearance to Beijing.",
+      "referenceTextZh": "上海放行，QFA432，24 号登机口，收到 H 情报，申请前往北京的 ATC 放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/001.mp3"
+    },
+    {
+      "id": "atc-scenario-0001-card-main-002",
+      "taskTitle": "QFA 432-2",
+      "audioText": "C: Qantas 432, cleared to Beijing via flight planned route, runway in use runway 26, Hotel Zulu 01 departure, initial climb to 600 meters on QNH, after departure, contact 128.75, squawk 3421.",
+      "audioTextZh": "C：Qantas 432，许可按飞行计划航路飞往北京，使用跑道 26，Hotel Zulu 01 离场，QNH 上初始爬升至 600 米，离场后联系 128.75，应答机 3421。",
+      "referenceText": "Cleared to Beijing via flight planned route, runway in use runway 26, HZ 01 departure, initial climb to 600 meters on QNH, after departure, contact 128.75, squawk 3421, QFA432.",
+      "referenceTextZh": "许可按飞行计划航路飞往北京，使用跑道 26，HZ 01 离场，QNH 上初始爬升至 600 米，离场后联系 128.75，应答机 3421，QFA432。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/002.mp3"
+    },
+    {
+      "id": "atc-scenario-0001-card-main-003",
+      "taskTitle": "QFA 432-3",
+      "audioText": "C: Qantas 432, read back correct, report when ready for push back and start up.",
+      "audioTextZh": "C：Qantas 432，复诵正确，准备好推出和开车时报告。",
+      "referenceText": "Wilco, QFA432.",
+      "referenceTextZh": "照办，QFA432。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/003.mp3"
+    },
+    {
+      "id": "atc-scenario-0001-card-main-004",
+      "taskTitle": "QFA 432-4",
+      "audioText": "B: Now you are ready for push back and start up.",
+      "audioTextZh": "B：现在你已准备好推出和开车。",
+      "referenceText": "Shanghai Ground, QFA432, ready for push back and start up.",
+      "referenceTextZh": "上海地面，QFA432，准备好推出和开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/004.mp3"
+    },
+    {
+      "id": "atc-scenario-0001-card-main-005",
+      "taskTitle": "QFA 432-5",
+      "audioText": "C: Qantas 432, push back and start up approved.",
+      "audioTextZh": "C：Qantas 432，推出和开车批准。",
+      "referenceText": "Push back and start up approved, QFA432.",
+      "referenceTextZh": "推出和开车批准，QFA432。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/005.mp3"
+    },
+    {
+      "id": "atc-scenario-0001-card-main-006",
+      "taskTitle": "QFA 432-6",
+      "audioText": "B: Now you are ready to taxi.",
+      "audioTextZh": "B：现在你已准备好滑行。",
+      "referenceText": "Shanghai Ground, QFA432, request taxi.",
+      "referenceTextZh": "上海地面，QFA432，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/006.mp3"
+    },
+    {
+      "id": "atc-scenario-0001-card-main-007",
+      "taskTitle": "QFA 432-7",
+      "audioText": "C: Qantas 432, taxi via taxiway Foxtrot, Charlie 1 and Bravo to holding point runway 26. Caution! working progress at the end of gate 319.",
+      "audioTextZh": "C：Qantas 432，经 Foxtrot、Charlie 1 和 Bravo 滑行道滑行至跑道 26 等待点。注意！319 号登机口末端有施工。",
+      "referenceText": "Taxi via taxiway F, C1 and B to holding point runway 26, roger, thanks, QFA432.",
+      "referenceTextZh": "经 F、C1 和 B 滑行道滑行至跑道 26 等待点，收到，谢谢，QFA432。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/007.mp3"
+    },
+    {
+      "id": "atc-scenario-0001-card-main-008",
+      "taskTitle": "QFA 432-8",
+      "audioText": "B: As you are taxing, you noticed some smoke coming from APU on Boeing 747 ahead of you, report this to ATC.",
+      "audioTextZh": "B：滑行时，你注意到前方 Boeing 747 的 APU 冒烟，向 ATC 报告。",
+      "referenceText": "Shanghai Ground, QFA432, we notice some smoke coming from APU on B747 ahead of us.",
+      "referenceTextZh": "上海地面，QFA432，我们注意到前方 B747 的 APU 冒烟。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/008.mp3"
+    },
+    {
+      "id": "atc-scenario-0001-card-main-009",
+      "taskTitle": "QFA 432-9",
+      "audioText": "B: Now you are holding point runway 26, tell ATC you are ready to takeoff.",
+      "audioTextZh": "B：现在你在跑道 26 等待点，告诉 ATC 你准备好起飞。",
+      "referenceText": "Shanghai Tower, QFA432, holding point runway 26, ready for departure.",
+      "referenceTextZh": "上海塔台，QFA432，跑道 26 等待点，准备好离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/009.mp3"
+    },
+    {
+      "id": "atc-scenario-0001-card-main-010",
+      "taskTitle": "QFA 432-10",
+      "audioText": "C: Qantas 432, behind landing traffic, line up behind.",
+      "audioTextZh": "C：Qantas 432，在落地航空器之后，跟随其后进跑道。",
+      "referenceText": "Behind landing traffic, line up behind, QFA432.",
+      "referenceTextZh": "在落地航空器之后，跟随其后进跑道，QFA432。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/010.mp3"
+    },
+    {
+      "id": "atc-scenario-0001-card-main-011",
+      "taskTitle": "QFA 432-11",
+      "audioText": "B: Now you are reaching 5100 meters, contact Beijing Approach and request further descent.",
+      "audioTextZh": "B：现在你正到达 5100 米，联系北京进近并请求继续下降。",
+      "referenceText": "Beijing Approach, QFA432, reaching 5100 meters, request further descent.",
+      "referenceTextZh": "北京进近，QFA432，正到达 5100 米，请求继续下降。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/011.mp3"
+    },
+    {
+      "id": "atc-scenario-0001-card-main-012",
+      "taskTitle": "QFA 432-12",
+      "audioText": "C: Qantas 432, descend and maintain 3300 meters on QNH 1031.",
+      "audioTextZh": "C：Qantas 432，下降并保持 QNH 1031 上 3300 米。",
+      "referenceText": "Descend and maintain 3300 meters on QNH 1031, QFA432.",
+      "referenceTextZh": "下降并保持 QNH 1031 上 3300 米，QFA432。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/012.mp3"
+    },
+    {
+      "id": "atc-scenario-0001-card-main-013",
+      "taskTitle": "QFA 432-13",
+      "audioText": "B: Now you are maintaining 3300 meters, request further descent.",
+      "audioTextZh": "B：现在你保持 3300 米，请求继续下降。",
+      "referenceText": "Beijing Approach, QFA432, maintaining 3300 meters, request further descent.",
+      "referenceTextZh": "北京进近，QFA432，保持 3300 米，请求继续下降。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/013.mp3"
+    },
+    {
+      "id": "atc-scenario-0001-card-main-014",
+      "taskTitle": "QFA 432-14",
+      "audioText": "C: Qantas 432, maintain 3300 meters, opposite traffic at 2 o'clock 10 miles, report clear of traffic.",
+      "audioTextZh": "C：Qantas 432，保持 3300 米，相对飞行航空器在 2 点钟方向 10 海里，脱离冲突后报告。",
+      "referenceText": "Maintain 3300 meters, wilco, QFA432.",
+      "referenceTextZh": "保持 3300 米，照办，QFA432。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/014.mp3"
+    },
+    {
+      "id": "atc-scenario-0001-card-main-015",
+      "taskTitle": "QFA 432-15",
+      "audioText": "B: Tell the controller you are clear of traffic and request fly lower.",
+      "audioTextZh": "B：告诉管制员你已脱离该航空器，并请求下降。",
+      "referenceText": "Beijing Approach, QFA432, clear of traffic, request descent.",
+      "referenceTextZh": "北京进近，QFA432，已脱离航空器，请求下降。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/015.mp3"
+    },
+    {
+      "id": "atc-scenario-0001-card-main-016",
+      "taskTitle": "QFA 432-16",
+      "audioText": "B: You are cleared to 1200 meters, the sky is turning dark, the visibility is deteriorating, you suspect a sandstorm, tell Beijing Approach the situation and ask ATC if there is sandstorm forecast.",
+      "audioTextZh": "B：你已获准下降至 1200 米，天空变暗，能见度变差，你怀疑有沙尘暴，告诉北京进近情况，并询问 ATC 是否有沙尘暴预报。",
+      "referenceText": "Beijing Approach, QFA432, descending to 1200 meters, the sky is turning dark, the visibility is deteriorating, we suspect a sandstorm, is there sandstorm forecast ?",
+      "referenceTextZh": "北京进近，QFA432，正下降至 1200 米，天空变暗，能见度变差，我们怀疑有沙尘暴，是否有沙尘暴预报？",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/016.mp3"
+    },
+    {
+      "id": "atc-scenario-0001-card-main-017",
+      "taskTitle": "QFA 432-17",
+      "audioText": "B: The sandstorm is severe and the visibility is very poor, inform ATC the situation, ask to climb to a higher level to get above the sandstorm.",
+      "audioTextZh": "B：沙尘暴严重，能见度很差，通知 ATC 情况，请求爬升到更高高度以避开沙尘暴上方。",
+      "referenceText": "Beijing Approach, QFA432, the sandstorm is severe and the visibility is very poor, request climb to a higher level.",
+      "referenceTextZh": "北京进近，QFA432，沙尘暴严重，能见度很差，请求爬升到更高高度。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/017.mp3"
+    },
+    {
+      "id": "atc-scenario-0001-card-main-018",
+      "taskTitle": "QFA 432-18",
+      "audioText": "C: Qantas 432, climb to 2100 meters, turn right heading 230.",
+      "audioTextZh": "C：Qantas 432，爬升至 2100 米，右转航向 230。",
+      "referenceText": "Climb to 2100 meters, turn right heading 230, QFA432.",
+      "referenceTextZh": "爬升至 2100 米，右转航向 230，QFA432。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/018.mp3"
+    },
+    {
+      "id": "atc-scenario-0001-card-main-019",
+      "taskTitle": "QFA 432-19",
+      "audioText": "B: Your aircraft is Boeing 747, suddenly, number 1 number 2 engines have failed due to sandstorm, report it to Beijing Approach, ask if weather is clear in Beijing and request radar vector to Beijing for priority landing.",
+      "audioTextZh": "B：你的飞机是 Boeing 747，突然，1 号和 2 号发动机因沙尘暴失效，向北京进近报告，请问北京天气是否晴朗，并请求雷达引导前往北京优先着陆。",
+      "referenceText": "PANPAN PANPAN PANPAN, Beijing Approach, QFA432, No.1 and No.2 engines have failed due to sandstorm, request radar vector to Beijing for priority landing. Is weather in Beijing clear?",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，北京进近，QFA432，1 号和 2 号发动机因沙尘暴失效，请求雷达引导前往北京优先着陆。北京天气晴朗吗？",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/019.mp3"
+    },
+    {
+      "id": "atc-scenario-0001-card-main-020",
+      "taskTitle": "QFA 432-20",
+      "audioText": "C: Qantas 432, turn right heading 250, the weather in Beijing is clear.",
+      "audioTextZh": "C：Qantas 432，右转航向 250，北京天气晴朗。",
+      "referenceText": "Roger, turn right heading 250, QFA432.",
+      "referenceTextZh": "收到，右转航向 250，QFA432。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/020.mp3"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "categoryId": "opi-category-05",
+  "id": "opi-topic-0118",
+  "name": "不稳定进近",
+  "declaredCardCount": 4,
+  "cards": [
+    {
+      "id": "opi-extra-108",
+      "taskTitle": "运行-不稳定进近-1",
+      "audioText": "What is unstable approach?",
+      "audioTextZh": "什么是不稳定进近？",
+      "referenceText": "For example, if the ILS signal is unstable, or if during the approach we exceed the vertical deviation limit, or we have a lateral deviation exceedance. This situation is called an unstable approach. If we have an unstable approach, we must go around.\n例如，若仪表着陆系统（ILS）信号不稳定，或者进近过程中我们超出垂直偏差限制，又或者出现横向偏差超限。这种情况就称为不稳定进近。若发生不稳定进近，我们必须复飞 。"
+    },
+    {
+      "id": "opi-extra-109",
+      "taskTitle": "运行-不稳定进近-2",
+      "audioText": "If the aircraft is above the glide slope one\ndot below 1000 ft, does the pilot need to\ngo around?",
+      "audioTextZh": "若飞机在 1000 英尺以下时，下滑道偏离超过 1 个点，飞行员是否需要复飞？",
+      "referenceText": "Yes, under this situation, the pilot has made unstable approach and need to go around.\n是的，此情况属于不稳定进近，需执行复飞。\n\nNot necessarily. The pilot can attempt to correct gently if the deviation is controllable, speed is normal, and runway is visible. If correction fails or other unsafe conditions exist (e.g., low visibility), go around immediately.\n不一定。如果偏差可控、速度正常且能看到跑道，飞行员可尝试温和修正；若修正无效或存在其他不安全因素（如低能见度），需立即复飞。"
+    },
+    {
+      "id": "opi-extra-110",
+      "taskTitle": "运行-不稳定进近-3",
+      "audioText": "What are the reasons of glide-slope deviation?",
+      "audioTextZh": "下滑道偏离的原因有哪些?",
+      "referenceText": "Main reasons include wind shear, downdraft, improper pilot maneuver (for example incorrect pitch or thrust), navigation aid inaccuracy, aircraft performance issues, and misalignment with the approach path. Adverse weather and high workload can also contribute.\n下滑道偏离的主要原因包括风切变、下沉气流、飞行员操纵不当（如俯仰或推力控制错误）、导航设备精度问题、飞机性能异常以及未对准进近航道。恶劣天气和高工作负荷也可能导致该情况。"
+    },
+    {
+      "id": "opi-extra-111",
+      "taskTitle": "运行-不稳定进近-4",
+      "audioText": "If you encounter glide-slope deviation, what should you do?",
+      "audioTextZh": "如果你遇到了下滑道偏离,你会怎么做?",
+      "referenceText": "I will first monitor airspeed, attitude, and thrust, then make gentle adjustments to correct the deviation. If deviation exceeds limits or can’t be corrected promptly, I will follow SOP to initiate a go-around, report to ATC, and prepare for another approach.\n我会首先监控空速、姿态和推力，然后进行柔和调整以修正偏离。如果偏离超出限制或无法及时修正，将遵循标准操作程序（SOP）执行复飞，向空管报告，并准备再次进近。"
+    }
+  ]
+}

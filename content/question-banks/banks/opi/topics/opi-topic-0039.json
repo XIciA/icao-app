@@ -1,0 +1,22 @@
+{
+  "categoryId": "opi-category-03",
+  "id": "opi-topic-0039",
+  "name": "GNSS",
+  "declaredCardCount": 2,
+  "cards": [
+    {
+      "id": "opi-core-513",
+      "taskTitle": "缩略词-GNSS-1",
+      "audioText": "What is GNSS",
+      "audioTextZh": "什么是 GNSS？",
+      "referenceText": "GNSS stands for Global Navigation Satellite System. GNSS is a large navigation system family. It includes GPS (from the United States), GLONASS (from Russia), Beidou (from China), and Galileo (from Europe). GNSS is more accurate, more reliable, and safer.\nGNSS 是全球导航卫星系统（Global Navigation Satellite System ）的缩写。它是一个庞大的导航系统家族，涵盖美国的 GPS、俄罗斯的 GLONASS、中国的北斗（Beidou）以及欧洲的伽利略（Galileo）系统。GNSS 具备更高的精度、可靠性与安全性 。"
+    },
+    {
+      "id": "opi-core-514",
+      "taskTitle": "缩略词-GNSS-2",
+      "audioText": "What are included in GNSS?\n\nGNSS",
+      "audioTextZh": "包括哪些？",
+      "referenceText": "GNSS includes the GPS (Global Positioning System) of the United States, GLONASS (Global Navigation Satellite System) of Russia, Galileo of Europe, the Beidou Navigation System of China, and some other satellite systems.\nGNSS包括美国的全球定位系统（GPS）、俄罗斯格拉斯(GLONASS)、欧洲伽利略(Galeo)、中国北斗系统和其他卫星系统。"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "categoryId": "opi-category-03",
+  "id": "opi-topic-0082",
+  "name": "NOTAM",
+  "declaredCardCount": 1,
+  "cards": [
+    {
+      "id": "opi-core-834",
+      "taskTitle": "缩略词-NOTAM-1",
+      "audioText": "What are the differences between NOTAM and SNOWTAM?\nNOTAM",
+      "audioTextZh": "和 SNOWTAM 有什么区别？",
+      "referenceText": "NOTAM and SNOWTAM are both notices to pilots, but they serve different purposes. NOTAM is a general notice that informs pilots of changes in aviation facilities, services, procedures, or hazards such as runway closures, navigation aid outages, or airspace restrictions. SNOWTAM is a specific type of NOTAM that provides information about snow, ice, and slush conditions on runways, taxiways, and aprons. It includes contamination, friction coefficient, and braking action. All SNOWTAMs are NOTAMs, but not all NOTAMs are SNOWTAMs. Both are essential for safety.\nNOTAM 与 SNOWTAM 均为飞行员通告，但用途不同。NOTAM 是通用通告，发布设施、服务、程序、危险变化，如跑道关闭、导航设备失效、空域限制等。SNOWTAM 是专项 NOTAM，专门发布跑道、滑行道、机坪的雪、冰、雪水状况，包含污染程度、摩擦系数、刹车效应等。冬季运行必须查阅 SNOWTAM。所有 SNOWTAM 都是 NOTAM，但 NOTAM 不一定是 SNOWTAM，两者均为安全必需。"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "id": "atc-csn",
+  "name": "CSN",
+  "declaredTopicCount": 21,
+  "declaredCardCount": 368,
+  "topicIds": [
+    "atc-scenario-0071",
+    "atc-scenario-0072",
+    "atc-scenario-0073",
+    "atc-scenario-0074",
+    "atc-scenario-0075",
+    "atc-scenario-0076",
+    "atc-scenario-0077",
+    "atc-scenario-0078",
+    "atc-scenario-0079",
+    "atc-scenario-0080",
+    "atc-scenario-0081",
+    "atc-scenario-0082",
+    "atc-scenario-0083",
+    "atc-scenario-0084",
+    "atc-scenario-0085",
+    "atc-scenario-0086",
+    "atc-scenario-0087",
+    "atc-scenario-0088",
+    "atc-scenario-0102",
+    "atc-scenario-0104",
+    "atc-scenario-0105"
+  ]
+}

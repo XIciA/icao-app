@@ -1,0 +1,161 @@
+{
+  "categoryId": "atc-cca",
+  "id": "atc-scenario-0067",
+  "name": "CCA 1089 慢释压 有乘客昏迷",
+  "declaredCardCount": 17,
+  "cards": [
+    {
+      "id": "atc-scenario-0067-card-main-1144",
+      "taskTitle": "CCA 1089-1",
+      "audioText": "B: You are currently at gate 325, with information Uniform copied, the time is 7 AM, request ATC clearance to Sanya.",
+      "audioTextZh": "B: 你当前在 325 号登机口，已收到信息 Uniform，时间是早上 7 点，请求前往 Sanya 的 ATC 许可。",
+      "referenceText": "Beijing Delivery, CCA1089, gate 325, information U, request ATC clearance to Sanya.",
+      "referenceTextZh": "北京放行，CCA1089，325 号登机口，信息 U，请求前往 Sanya 的 ATC 许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1189.mp3"
+    },
+    {
+      "id": "atc-scenario-0067-card-main-1145",
+      "taskTitle": "CCA 1089-2",
+      "audioText": "C: Air China 1089, Beijing Delivery, cleared to Sanya via flight planned route, runway in use 36 right, follow RENOB 31 departure, initial climb to 1200 meters, QNH 1022, after departure, contact 120.6, squawk 1212.",
+      "audioTextZh": "C: Air China 1089，北京放行，可以按计划航路前往 Sanya，使用跑道 36R，执行 RENOB 31 离场，初始爬升到 1200 米，QNH 1022，离场后联系 120.6，应答机 1212。",
+      "referenceText": "Cleared to Sanya via flight planned route, runway in use 36R, follow RENOB 31 departure, initial climb to 1200 meters, QNH 1022, after departure, contact 120.6, squawk 1212, CCA1089.",
+      "referenceTextZh": "可以按计划航路前往 Sanya，使用跑道 36R，执行 RENOB 31 离场，初始爬升到 1200 米，QNH 1022，离场后联系 120.6，应答机 1212，CCA1089。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1190.mp3"
+    },
+    {
+      "id": "atc-scenario-0067-card-main-1146",
+      "taskTitle": "CCA 1089-3",
+      "audioText": "C: Air China 1089, read back correct, when ready for push back and start up, contact Ground on 121.75.",
+      "audioTextZh": "C: Air China 1089，复诵正确，准备推出和开车时联系 地面 121.75。",
+      "referenceText": "121.75, CCA1089.",
+      "referenceTextZh": "121.75，CCA1089。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1191.mp3"
+    },
+    {
+      "id": "atc-scenario-0067-card-main-1147",
+      "taskTitle": "CCA 1089-4",
+      "audioText": "B: Tell Ground you are ready for push back and start up.",
+      "audioTextZh": "B: 告诉 地面 你准备推出和开车。",
+      "referenceText": "Beijing Ground, CCA1089, ready for push back and start up.",
+      "referenceTextZh": "北京地面，CCA1089，准备推出和开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1192.mp3"
+    },
+    {
+      "id": "atc-scenario-0067-card-main-1148",
+      "taskTitle": "CCA 1089-5",
+      "audioText": "C: Air China 1089, Beijing Ground, good morning, departure time is 30, push back and start up at your own discretion.",
+      "audioTextZh": "C: Air China 1089，北京地面，早上好，离场时间 30，自行决定推出和开车。",
+      "referenceText": "Departure time is 30, push back and start up at own discretion, CCA1089.",
+      "referenceTextZh": "离场时间 30，自行决定推出和开车，CCA1089。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1193.mp3"
+    },
+    {
+      "id": "atc-scenario-0067-card-main-1149",
+      "taskTitle": "CCA 1089-6",
+      "audioText": "B: You have been pushed back and started your engines, tell the controller you are ready to taxi.",
+      "audioTextZh": "B: 你已推出并起动发动机，告诉管制员你准备滑行。",
+      "referenceText": "Beijing Ground, CCA1089, ready to taxi.",
+      "referenceTextZh": "北京地面，CCA1089，准备滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1194.mp3"
+    },
+    {
+      "id": "atc-scenario-0067-card-main-1150",
+      "taskTitle": "CCA 1089-7",
+      "audioText": "C: Air China 1089, taxi to the holding point of runway 36 right via taxiway Golf 1 and Echo 1.",
+      "audioTextZh": "C: Air China 1089，经滑行道 Golf 1 和 Echo 1 滑行至跑道 36R 等待点。",
+      "referenceText": "Taxi to holding point runway 36R via taxiway G1 and E1, CCA1089.",
+      "referenceTextZh": "经滑行道 G1 和 E1 滑行至跑道 36R 等待点，CCA1089。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1195.mp3"
+    },
+    {
+      "id": "atc-scenario-0067-card-main-1151",
+      "taskTitle": "CCA 1089-8",
+      "audioText": "B: Tell the controller that China Southern aircraft is now clear and you want to continue to taxi.",
+      "audioTextZh": "B: 告诉管制员 China Southern 航空器现在已离开，你想继续滑行。",
+      "referenceText": "Beijing Ground, CCA1089, clear of traffic, request continue taxi.",
+      "referenceTextZh": "北京地面，CCA1089，脱离交通，请求继续滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1196.mp3"
+    },
+    {
+      "id": "atc-scenario-0067-card-main-1152",
+      "taskTitle": "CCA 1089-9",
+      "audioText": "C: Air China 1089, taxi to the holding point of runway 36 right via taxiway Golf 1 and Echo 1.",
+      "audioTextZh": "C: Air China 1089，经滑行道 Golf 1 和 Echo 1 滑行至跑道 36R 等待点。",
+      "referenceText": "Taxi to holding point of runway 36R via taxiway G1 and E1, CCA1089.",
+      "referenceTextZh": "经滑行道 G1 和 E1 滑行至跑道 36R 等待点，CCA1089。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1197.mp3"
+    },
+    {
+      "id": "atc-scenario-0067-card-main-1153",
+      "taskTitle": "CCA 1089-10",
+      "audioText": "B: You are now at the holding point of runway 36 right, you've already contacted Tower, now tell the Tower you are ready to takeoff.",
+      "audioTextZh": "B: 现在你在跑道 36R 等待点，已联系 塔台，现在告诉 塔台 你准备起飞。",
+      "referenceText": "Beijing Tower, CCA1089, hold at holding point runway 36R, ready for departure.",
+      "referenceTextZh": "北京塔台，CCA1089，在跑道 36R 等待点等待，准备离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1198.mp3"
+    },
+    {
+      "id": "atc-scenario-0067-card-main-1154",
+      "taskTitle": "CCA 1089-11",
+      "audioText": "B: You are now twenty minutes into the flight and you are cruising at 6000 meters, ask climb to a higher level.",
+      "audioTextZh": "B: 现在飞行 20 分钟后，你以 6000 米巡航，请求爬升到更高高度。",
+      "referenceText": "Beijing Control, CCA1089, cruising at 6000 meters, request a higher level.",
+      "referenceTextZh": "北京管制，CCA1089，6000 米巡航，请求更高高度。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1199.mp3"
+    },
+    {
+      "id": "atc-scenario-0067-card-main-1155",
+      "taskTitle": "CCA 1089-12",
+      "audioText": "B: As you were climbing, suddenly the cabin altitude warning horn sounds and you are slowly losing cabin pressure, tell the controller the due to depressurization, you're initiating an emergency descent. You do not consider this to be a Distress or Urgency situation.",
+      "audioTextZh": "B: 爬升时，客舱高度警告喇叭突然响起，客舱正在缓慢失压，告诉管制员由于失压，你正在开始紧急下降。你不认为这是遇险或紧急情况。",
+      "referenceText": "Beijing Control, CCA1089, the cabin altitude warning horns, we are slowly losing cabin pressure, emergency descent due to depressurization.",
+      "referenceTextZh": "北京管制，CCA1089，客舱高度警告喇叭响起，我们正在缓慢失压，因失压紧急下降。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1200.mp3"
+    },
+    {
+      "id": "atc-scenario-0067-card-main-1156",
+      "taskTitle": "CCA 1089-13",
+      "audioText": "C: Roger, Air China 1089, fly heading 230 degrees.\nB: Reply to the controller and request QNH.",
+      "audioTextZh": "C: 收到，Air China 1089，飞航向 230 度。\nB: 回复管制员并请求 QNH。",
+      "referenceText": "Fly heading 230, request QNH, CCA1089.",
+      "referenceTextZh": "飞航向 230，请求 QNH，CCA1089。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1201.mp3"
+    },
+    {
+      "id": "atc-scenario-0067-card-main-1157",
+      "taskTitle": "CCA 1089-14",
+      "audioText": "C: Air China 1089, QNH is 1020, what level do you require?\nB: Reply to the transmission, tell the controller you will descend to 3000 metres on QNH.",
+      "audioTextZh": "C: Air China 1089，QNH 是 1020，你需要什么高度？\nB: 回复电台，告诉管制员你将按 QNH 下降到 3000 米。",
+      "referenceText": "QNH 1020, request descend to 3000 meters on QNH, CCA1089.",
+      "referenceTextZh": "QNH 1020，请求按 QNH 下降到 3000 米，CCA1089。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1202.mp3"
+    },
+    {
+      "id": "atc-scenario-0067-card-main-1158",
+      "taskTitle": "CCA 1089-15",
+      "audioText": "C: Air China 1089, roger, descend to 3000 meters on QNH 1020, report passing 5400 meters.",
+      "audioTextZh": "C: Air China 1089，收到，按 QNH 1020 下降到 3000 米，通过 5400 米报告。",
+      "referenceText": "Descend to 3000 meters on QNH 1020, report passing 5400 meters, CCA1089.",
+      "referenceTextZh": "按 QNH 1020 下降到 3000 米，通过 5400 米报告，CCA1089。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1203.mp3"
+    },
+    {
+      "id": "atc-scenario-0067-card-main-1159",
+      "taskTitle": "CCA 1089-16",
+      "audioText": "C: Air China 1089, are you declaring an Emergency? are there any injuries on board?\nB: Tell the controller that you now consider it an Emergency, because you have several unconscious passengers, also report passing 5400 meters.",
+      "audioTextZh": "C: Air China 1089，你是否宣布紧急情况？机上有伤员吗？\nB: 告诉管制员你现在认为这是紧急情况，因为有数名旅客失去意识，同时报告通过 5400 米。",
+      "referenceText": "MAYDAY MAYDAY MAYDAY, Beijing Control, CCA1089, we have several unconscious passengers, passing 5400 meters.",
+      "referenceTextZh": "MAYDAY MAYDAY MAYDAY，北京管制，CCA1089，我们有数名旅客失去意识，正在通过 5400 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1204.mp3"
+    },
+    {
+      "id": "atc-scenario-0067-card-main-1160",
+      "taskTitle": "CCA 1089-17",
+      "audioText": "B: You are now level of 3000 metres and are considering diverting to Hangzhou, ask for the weather at Hangzhou Airport.",
+      "audioTextZh": "B: 你现在在 3000 米平飞，正在考虑改航 Hangzhou，询问 Hangzhou Airport 天气。",
+      "referenceText": "Beijing Control, CCA1089, level at 3000 meters, request divert to Hangzhou and weather at Hangzhou Airport.",
+      "referenceTextZh": "北京管制，CCA1089，3000 米平飞，请求改航 Hangzhou，并请求 Hangzhou Airport 天气。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1205.mp3"
+    }
+  ]
+}

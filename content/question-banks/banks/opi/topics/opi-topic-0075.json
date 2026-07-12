@@ -1,0 +1,29 @@
+{
+  "categoryId": "opi-category-05",
+  "id": "opi-topic-0075",
+  "name": "等待程序",
+  "declaredCardCount": 3,
+  "cards": [
+    {
+      "id": "opi-core-755",
+      "taskTitle": "运行-等待程序-1",
+      "audioText": "If ATC asks you to hold at aholding fix, what'll you do?",
+      "audioTextZh": "若空中交通管制（ATC）要求你在等待点等待，你会怎么做？",
+      "referenceText": "I will follow the controller’s instructions to enter the hold. At the same time, I will confirm the holding altitude, the inbound track, left or right pattern, and outbound time.\n我会遵照管制员的指令进入等待程序。同时，确认等待高度、入航航迹、向左或向右的等待航线模式，以及出航时间 。"
+    },
+    {
+      "id": "opi-core-756",
+      "taskTitle": "运行-等待程序-2",
+      "audioText": "If you need to join a holding pattern, what information do you need?",
+      "audioTextZh": "若你需要加入等待航线，需要了解哪些信息？",
+      "referenceText": "I will advise ATC of our situation and request to join the holding pattern. I will confirm the holding fix, holding altitude, inbound track, left or right - hand pattern, and outbound time.\n我会将我方情况告知空中交通管制（ATC）并申请加入等待航线。随后，确认等待点、等待高度、入航航迹、左向或右向等待航线模式，以及出航时间 。"
+    },
+    {
+      "id": "opi-core-757",
+      "taskTitle": "运行-等待程序-3",
+      "audioText": "If ATC request you to hold at a significant\nfix, and what should you do?",
+      "audioTextZh": "若空管要求在重要定位点等待，你会怎么做？",
+      "referenceText": "We need to confirm with ATC, ask ATC the reasons for holding, how long is the holding. If we are required to hold more than 20 minutes, we need to check fuel endurance.\n需向空管确认等待原因和等待时长；若要求等待超过 20 分钟，需检查燃油续航能力。"
+    }
+  ]
+}

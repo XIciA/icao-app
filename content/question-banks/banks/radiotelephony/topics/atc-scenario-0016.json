@@ -1,0 +1,170 @@
+{
+  "categoryId": "atc-afr",
+  "id": "atc-scenario-0016",
+  "name": "AFR 782 厕所冒烟 作PA 乘客烟熏",
+  "declaredCardCount": 18,
+  "cards": [
+    {
+      "id": "atc-scenario-0016-card-main-261",
+      "taskTitle": "AFR 782-1",
+      "audioText": "B: You are the pilot of Air France 782 which is bound for Wuhan, you have just been handed over from Guangzhou Control, you are over DAPRO at time 35 and your level is 9500 meters, call Wuhan Control.",
+      "audioTextZh": "你是飞往武汉的Air France 782，刚由广州管制移交，35分过DAPRO，高度9500米，请呼叫武汉管制。",
+      "referenceText": "Wuhan Control, AFR782, over DAPRO at 35, maintain 9500 meters.",
+      "referenceTextZh": "武汉管制，AFR782，35分过DAPRO，保持9500米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/276.mp3"
+    },
+    {
+      "id": "atc-scenario-0016-card-main-262",
+      "taskTitle": "AFR 782-2",
+      "audioText": "C: Air France 782, Wuhan Control, radar identified, descend to 5100 meters before reaching Lima Kilo Oscar.",
+      "audioTextZh": "管制员：Air France 782，武汉管制，雷达识别，在到达LKO前下降至5100米。",
+      "referenceText": "Descend to 5100 meters before LKO, AFR782.",
+      "referenceTextZh": "到LKO前下降至5100米，AFR782。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/277.mp3"
+    },
+    {
+      "id": "atc-scenario-0016-card-main-263",
+      "taskTitle": "AFR 782-3",
+      "audioText": "B: Now you are over Lima Kilo Oscar at 5100 meters, you have copied the latest ATIS Kilo, call Wuhan Approach control.",
+      "audioTextZh": "现在你在LKO上空，高度5100米，已收到最新通播Kilo，请呼叫武汉进近。",
+      "referenceText": "Wuhan Approach, AFR782, maintaining 5100 meters, over LKO, information K.",
+      "referenceTextZh": "武汉进近，AFR782，保持5100米，过LKO，通播K。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/278.mp3"
+    },
+    {
+      "id": "atc-scenario-0016-card-main-264",
+      "taskTitle": "AFR 782-4",
+      "audioText": "C: Air France 782, Wuhan Approach, radar contact, follow Lima Kilo Oscar 1 Alpha arrival, descend and maintain 3300 meters on QNH 1004.",
+      "audioTextZh": "管制员：Air France 782，武汉进近，雷达联系，执行LKO 1A进场，按QNH 1004下降并保持3300米。",
+      "referenceText": "Follow LKO 1A arrival, descend and maintain 3300 meters on QNH 1004, AFR782.",
+      "referenceTextZh": "执行LKO 1A进场，按QNH 1004下降并保持3300米，AFR782。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/279.mp3"
+    },
+    {
+      "id": "atc-scenario-0016-card-main-265",
+      "taskTitle": "AFR 782-5",
+      "audioText": "B: You've received a report from the flight attendant saying that there is smoke coming from the lavatory, you think it may develop into fire, so you declare distress to the ATC.",
+      "audioTextZh": "乘务员报告洗手间有烟，你认为可能发展成火情，因此向空管宣布遇险。",
+      "referenceText": "MAYDAY MAYDAY MAYDAY, Wuhan Approach, AFR782, there is smoke coming from the lavatory, request priority landing and emergency services.",
+      "referenceTextZh": "MAYDAY MAYDAY MAYDAY，武汉进近，AFR782，洗手间有烟，申请优先落地和应急保障。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/280.mp3"
+    },
+    {
+      "id": "atc-scenario-0016-card-main-266",
+      "taskTitle": "AFR 782-6",
+      "audioText": "C: Air France 782, Wuhan Approach, roger MAYDAY, turn right heading 040, descend to 2100 meters, radar vector to ILS approach runway 36 right, you have first priority.",
+      "audioTextZh": "管制员：Air France 782，武汉进近，收到遇险信号，右转航向040，下降至2100米，雷达引导ILS进近36右跑道，你享有第一优先。",
+      "referenceText": "Turn right heading 040, descend to 2100 meters, radar vector to ILS approach runway 36R, AFR782.",
+      "referenceTextZh": "右转航向040，下降至2100米，雷达引导ILS进近36R，AFR782。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/281.mp3"
+    },
+    {
+      "id": "atc-scenario-0016-card-main-267",
+      "taskTitle": "AFR 782-7",
+      "audioText": "B: As the captain of the flight, you may want to make a passenger address. The PA may include: don't be panic, remain seated, the flight crew are experienced, ATC assistance is available to us, etc.",
+      "audioTextZh": "作为机长，你可以向旅客广播。内容可包括：不要惊慌、保持就座、机组经验丰富、空管正在提供协助等。",
+      "referenceText": "Ladies and gentlemen, this is your captain speaking, fasten your seatbelt and remain seated. Don't worry. Believe us, we are a very experienced flight crew, and we can control this situation, and air controller is ready to help us.",
+      "referenceTextZh": "女士们、先生们，我是机长。请系好安全带并保持就座。请不要担心，相信我们，机组经验丰富，能够控制当前情况，空管也已准备好协助我们。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/282.mp3"
+    },
+    {
+      "id": "atc-scenario-0016-card-main-268",
+      "taskTitle": "AFR 782-8",
+      "audioText": "C: Air France 782, Wuhan Approach, what is the situation on board now ? keep us advised.\nB: You are grateful for the reminding, report to ATC that more smoke accumulated in the passenger cabin and the passengers are coughing hard.",
+      "audioTextZh": "管制员：Air France 782，武汉进近，目前机上情况如何？请随时通报。感谢提醒，并向空管报告客舱内烟雾越来越浓，旅客咳嗽严重。",
+      "referenceText": "Roger, the smoke is becoming more and more dense in the passenger cabin and the passengers are coughing more and more, AFR782.",
+      "referenceTextZh": "收到，客舱内烟雾越来越浓，旅客咳嗽越来越严重，AFR782。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/283.mp3"
+    },
+    {
+      "id": "atc-scenario-0016-card-main-269",
+      "taskTitle": "AFR 782-9",
+      "audioText": "C: Air France 782, Wuhan Approach, continue to descend to 1200 meters on QNH 1005, fire service and ambulance will be with you upon your landing.\nB: You are required to readback the clearance and show your gratitude.",
+      "audioTextZh": "管制员：Air France 782，武汉进近，按QNH 1005继续下降至1200米，消防和救护车将在你落地时待命。请复诵许可并表示感谢。",
+      "referenceText": "Continue to descend to 1200 meters on QNH 1005, thank you very much, AFR782.",
+      "referenceTextZh": "按QNH 1005继续下降至1200米，非常感谢，AFR782。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/284.mp3"
+    },
+    {
+      "id": "atc-scenario-0016-card-main-270",
+      "taskTitle": "AFR 782-10",
+      "audioText": "B: Now you report to ATC that you have already removed the dense smoke, 2 aged people and 1 baby are nearly suffocated, others are not seriously harmed.",
+      "audioTextZh": "现在向空管报告，你们已经排除了浓烟，但两名老人和一名婴儿接近窒息，其他人没有严重受伤。",
+      "referenceText": "Wuhan Approach, AFR782, we have removed the dense smoke, but 2 aged people and 1 baby are nearly suffocated, others are not seriously harmed.",
+      "referenceTextZh": "武汉进近，AFR782，我们已排除浓烟，但两名老人和一名婴儿接近窒息，其他人没有严重受伤。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/285.mp3"
+    },
+    {
+      "id": "atc-scenario-0016-card-main-271",
+      "taskTitle": "AFR 782-11",
+      "audioText": "C: Roger, we'll relay this information to the parties concerned.\nC: Air France 782, descend to 900 meters, expect ILS approach runway 36 right, you are Number 1.",
+      "audioTextZh": "管制员：收到，我们会把信息转告相关单位。管制员：Air France 782，下降至900米，预计ILS进近36右跑道，你是第一架。",
+      "referenceText": "Descend to 900 meters, expect ILS approach runway 36R, AFR782.",
+      "referenceTextZh": "下降至900米，预计ILS进近36R，AFR782。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/286.mp3"
+    },
+    {
+      "id": "atc-scenario-0016-card-main-272",
+      "taskTitle": "AFR 782-12",
+      "audioText": "B: You are fully established on the ILS runway 36 right and your position is 12 Kilometers from touchdown, call Wuhan Approach.",
+      "audioTextZh": "你已完全建立36右跑道ILS，距离接地点12公里，请呼叫武汉进近。",
+      "referenceText": "Wuhan Approach, AFR782, established on the ILS runway 36R, 12 km from touchdown.",
+      "referenceTextZh": "武汉进近，AFR782，已建立36R ILS，距接地点12公里。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/287.mp3"
+    },
+    {
+      "id": "atc-scenario-0016-card-main-273",
+      "taskTitle": "AFR 782-13",
+      "audioText": "C: Air France 782, continue approach and contact Tower 118.6, good day.",
+      "audioTextZh": "管制员：Air France 782，继续进近，联系塔台118.6，再见。",
+      "referenceText": "Continue approach, 118.6, AFR782.",
+      "referenceTextZh": "继续进近，118.6，AFR782。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/288.mp3"
+    },
+    {
+      "id": "atc-scenario-0016-card-main-274",
+      "taskTitle": "AFR 782-14",
+      "audioText": "B: Now contact Wuhan Tower, report to ATC that you are 11 Kilometers from touchdown on final, and you are emergency landing aircraft.",
+      "audioTextZh": "现在联系武汉塔台，向空管报告你在五边，距接地点11公里，并且是紧急落地航空器。",
+      "referenceText": "Wuhan Tower, AFR782, 11 km on final, we have declared emergency.",
+      "referenceTextZh": "武汉塔台，AFR782，五边11公里，我们已宣布紧急情况。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/289.mp3"
+    },
+    {
+      "id": "atc-scenario-0016-card-main-275",
+      "taskTitle": "AFR 782-15",
+      "audioText": "C: Air France 782, radar identified, continue ILS approach runway 36 right, you are Number 1, report outer marker.",
+      "audioTextZh": "管制员：Air France 782，雷达识别，继续ILS进近36右跑道，你是第一架，报告外指点标。",
+      "referenceText": "Continue ILS approach runway 36R, report outer marker, AFR782.",
+      "referenceTextZh": "继续ILS进近36R，报告外指点标，AFR782。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/290.mp3"
+    },
+    {
+      "id": "atc-scenario-0016-card-main-276",
+      "taskTitle": "AFR 782-16",
+      "audioText": "B: Now you're over outer marker, call Wuhan Tower.",
+      "audioTextZh": "现在你飞越外指点标，请呼叫武汉塔台。",
+      "referenceText": "Wuhan Tower, AFR782, over outer marker.",
+      "referenceTextZh": "武汉塔台，AFR782，飞越外指点标。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/291.mp3"
+    },
+    {
+      "id": "atc-scenario-0016-card-main-277",
+      "taskTitle": "AFR 782-17",
+      "audioText": "C: Air France 782, cleared to land runway 36 right, wind 340 degrees at 9 meters per second, QNH 1005.",
+      "audioTextZh": "管制员：Air France 782，可以36右跑道落地，风向340度，风速9米/秒，QNH 1005。",
+      "referenceText": "Cleared to land runway 36R, QNH 1005, AFR782.",
+      "referenceTextZh": "可以36R落地，QNH 1005，AFR782。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/292.mp3"
+    },
+    {
+      "id": "atc-scenario-0016-card-main-278",
+      "taskTitle": "AFR 782-18",
+      "audioText": "C: Air France 782, taxi to Number 5 Apron via taxiway Echo 3, Alpha, Alpha 8, the fire services and medical teams are waiting for you on the Apron.\nB: You are required to readback the clearance and show your gratitude.",
+      "audioTextZh": "管制员：Air France 782，经滑行道E3、A、A8滑行至5号机坪，消防和医疗队已在机坪等待。请复诵许可并表示感谢。",
+      "referenceText": "Taxi to No.5 Apron via taxiway E3, A, A8, thank you very much, AFR782.",
+      "referenceTextZh": "经滑行道E3、A、A8滑行至5号机坪，非常感谢，AFR782。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/293.mp3"
+    }
+  ]
+}

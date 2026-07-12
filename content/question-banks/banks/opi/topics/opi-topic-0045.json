@@ -1,0 +1,98 @@
+{
+  "categoryId": "opi-category-05",
+  "id": "opi-topic-0045",
+  "name": "延误与流控",
+  "declaredCardCount": 13,
+  "cards": [
+    {
+      "id": "opi-core-554",
+      "taskTitle": "运行-延误与流控-1",
+      "audioText": "Have you ever experienced long delays before? If yes, would you tell me what had happened?",
+      "audioTextZh": "你之前经历过长时间延误吗？如果有，能讲讲发生了什么事吗？",
+      "referenceText": "(1) Yes. I have encountered a long delay as a passenger. Last time I took a flight from Yichang to Haikou, the flight was delayed for 2 hours due to flow control.\n有过。我作为乘客时遭遇过长时间延误。上次我乘坐从宜昌到海口的航班，因流量控制，航班延误了 2 小时。\n(2) Yes, I have experienced long delays during a flight. Once, I flew from…to…, there was a thunderstorm at the destination airport…, and we were delayed for about half an hour.\n有，我在飞行中经历过长时间延误。有一次，我执行从…… 到…… 的飞行任务，目的地机场出现雷暴……，我们延误了约半小时 。"
+    },
+    {
+      "id": "opi-core-555",
+      "taskTitle": "运行-延误与流控-2",
+      "audioText": "What are the possible causes of delays?",
+      "referenceText": "（1）There are some reasons for delays, for example, adverse weather, air traffic congestion, military activities, flow control, and so on.\n航班延误有一些原因，比如恶劣天气、空中交通拥堵、军事活动、流量管制等等 。\n（2）There are many possible reasons for delays. First, bad weather may cause delays. For example, if there is a thunderstorm near the airport, we have to delay our departure or approach. Second, if there is a mechanical problem, we will be delayed. Third, if there is flow control or a VIP flight, we will be delayed. Fourth, if there is an emergency aircraft ahead of us, we have to give way/priority to it and will be delayed.\n航班延误有诸多可能原因。首先，恶劣天气可能导致延误，比如机场附近有雷暴时，我们就得推迟起飞或进近。其次，若飞机存在机械故障，会造成延误。第三，出现流量管制或要客航班时，会产生延误。第四，若前方有紧急航班，我们需为其让行 / 优先保障，进而导致延误 。\n（3）Main causes include adverse weather, air traffic flow control, military activities, ground services (de-icing/refueling/cargo loading), aircraft malfunctions, pilot's inadequate preparation, and passenger-related issues (slow boarding/security checks).\n主要原因包括恶劣天气、空中交通流量控制、军事活动、地面服务（除冰、加油、货物装载）、飞机故障、飞行员准备不足以及乘客相关问题（登机/安检缓慢）。"
+    },
+    {
+      "id": "opi-core-556",
+      "taskTitle": "运行-延误与流控-3",
+      "audioText": "Do long delays occur more frequently at big airport? Why?",
+      "audioTextZh": "大型机场的长时间延误发生得更频繁吗？为什么？",
+      "referenceText": "Yes, long delays often occur at big airports. Because there are more aircraft, more passengers, and more procedures at big airports.\n是的，大型机场常出现长时间延误。因为大型机场的飞机更多、乘客更多，且运行流程更繁杂 。"
+    },
+    {
+      "id": "opi-core-557",
+      "taskTitle": "运行-延误与流控-4",
+      "audioText": "What are your suggestions for reducing delays?",
+      "audioTextZh": "对于减少航班延误，你有哪些建议？",
+      "referenceText": "In my opinion, as pilots, we should make thorough preflight preparations to familiarize ourselves with the airport and procedures. For air traffic controllers, they should communicate timely with pilots. For airlines, they should optimize flight scheduling to reduce delays. For airport staff, they should cooperate well with pilots. For the government, it should build more airports and make full use of airspace to reduce delays.\n在我看来，作为飞行员，我们应做好充分的飞行前准备，熟悉机场和操作流程。对于空中交通管制员，他们应及时与飞行员沟通。对于航空公司，应优化航班调度以减少延误。对于机场工作人员，要与飞行员做好协作。对于政府部门，应修建更多机场并充分利用空域来减少延误 。"
+    },
+    {
+      "id": "opi-core-558",
+      "taskTitle": "运行-延误与流控-5",
+      "audioText": "What do you think about airlines compensating passengers after long delays?",
+      "audioTextZh": "你如何看待航空公司在长时间延误后对乘客进行补偿这件事？",
+      "referenceText": "I think it depends on different situations. There are many reasons for delays, for example, adverse weather, air traffic congestion, military activities, flow control, and so on. If the delay is really caused by the airline’s fault, they should compensate passengers. If the delay is caused by natural reasons such as adverse weather, it is not necessary to compensate passengers.\n我认为这要视不同情况而定。航班延误有诸多原因，比如恶劣天气、空中交通拥堵、军事活动、流量管制等等。若延误确实是航空公司过错导致的，就应补偿乘客。要是延误由恶劣天气等自然原因造成，就没必要补偿乘客 。"
+    },
+    {
+      "id": "opi-core-559",
+      "taskTitle": "运行-延误与流控-6",
+      "audioText": "In your opinion, what could the airlines' or the airport personnel do to reduce the chances of flight delays?\nIn your opinion, what could the airline and the airport personnel do to reduce delay?",
+      "audioTextZh": "在你看来，航空公司或机场工作人员可以采取哪些措施来降低航班延误的概率？\n在你看来，航空公司和机场工作人员能做些什么来减少延误？",
+      "referenceText": "For the airline, it should optimize flight scheduling to reduce delays. For the airport staff, they should cooperate well with pilots.\n对于航空公司而言，应优化航班调度以减少延误。对于机场工作人员，要与飞行员做好协作 。\n\nMeasures include improving ATC/ground staff efficiency, optimizing flight routes (e.g., RNAV/CDFA), enhancing airport facilities, pilot's better preflight preparation and skill training, strengthening communication between ATC and pilots, and timely weather updates.\n措施包括提高空管/地面人员工作效率、优化飞行航线（如区域导航/连续下降最后进近）、完善机场设施、飞行员做好飞行前准备并提升技能、加强空管与飞行员的沟通，以及及时更新天气信息。\n\nThere are many measures that can be taken to reduce delays. First, airlines can make thorough preflight preparations to reduce delays caused by mechanical problems or adverse weather. Second, the government can open more airspace to civil aircraft. Third, RVSM (Reduced Vertical Separation Minimum) can be implemented to increase airspace capacity.\n有很多措施可用于减少延误。首先，航空公司可做好充分的飞行前准备，降低因机械故障或恶劣天气导致的延误。其次，政府可开放更多空域给民用航空。第三，可实施最小垂直间隔（RVSM）程序来提升空域容量 。"
+    },
+    {
+      "id": "opi-core-560",
+      "taskTitle": "运行-延误与流控-7",
+      "audioText": "What may cause flow control?",
+      "audioTextZh": "哪些情况可能导致流量管制？",
+      "referenceText": "There are many reasons for flow control. First, bad weather such as thunderstorms may cause flow control. Second, military activities may cause flow control. Third, VIP flights or emergencies may cause flow control.\n流量管制的成因有很多。首先，雷暴等恶劣天气可能引发流量管制。其次，军事活动可能导致流量管制。第三，要客航班或紧急情况可能造成流量管制 。"
+    },
+    {
+      "id": "opi-core-561",
+      "taskTitle": "运行-延误与流控-8",
+      "audioText": "In what airports are you most likely to encounter flow control?",
+      "audioTextZh": "在哪些机场你最可能遇到流量管制？",
+      "referenceText": "We are most likely to encounter flow control at major international airports such as Beijing Capital International Airport and Shanghai Hongqiao International Airport, because a large number of aircraft take off and land there every day.\n我们最可能在大型国际机场遇到流量管制，比如北京首都国际机场、上海虹桥国际机场，因为这些机场每天有大量飞机起降 。\n\n Large international airports, airports with complex weather or frequent military activities, busy hub airports with heavy traffic, and airports facing unexpected disruptions (e.g., delays, runway issues) are most prone to flow control.\n大型国际机场、天气复杂或军事活动频繁的机场、交通繁忙的枢纽机场以及遭遇突发干扰如延误、跑道问题的机场最容易遭遇流控。"
+    },
+    {
+      "id": "opi-core-562",
+      "taskTitle": "运行-延误与流控-9",
+      "audioText": "What can be done to reduce flow control?",
+      "audioTextZh": "可以采取哪些措施来减少流量管制？",
+      "referenceText": "There are many measures we can take to reduce flow control. First, we can maintain good communication and cooperation to mitigate flow control. Second, we can implement RVSM (Reduced Vertical Separation Minimum) to increase airspace capacity and reduce flow control. Third, we can adopt more advanced ATC (Air Traffic Control) systems, equipment, or procedures to cut down on flow control.\n我们可以采取诸多措施来减少流量管制。首先，保持良好的沟通与协作，以缓解流量管制。其次，实施最小垂直间隔（RVSM）程序，提升空域容量，减少流量管制。第三，采用更先进的空中交通管制（ATC）系统、设备或程序，降低流量管制发生概率 。\n\nOptimize flight routes and navigation methods (e.g., RNAV), improve ATC work efficiency, enhance cooperation between airlines and ATC, update airport facilities, apply advanced approach procedures, and strengthen weather forecasting and traffic management.\n优化飞行航线和导航方式如区域导航RNAV、提高空管工作效率、加强航空公司与空管的协作、更新机场设施、采用先进进近程序、强化天气预报和交通管控。"
+    },
+    {
+      "id": "opi-core-563",
+      "taskTitle": "运行-延误与流控-10",
+      "audioText": "If your passengers have boarded, yet your aircraft has been delayed for more than one hour, what are you going to do?",
+      "audioTextZh": "若乘客已登机，但飞机延误超一小时，你会怎么做？",
+      "referenceText": "As a captain, I will make a PA announcement to calm the passengers and inform them of the reason for the delay. Additionally, I will instruct the cabin crew to provide more meals and drinks to the passengers and assist in keeping them calm.\n作为机长，我会进行广播安抚乘客，并告知他们延误原因。此外，我会指示客舱乘务组为乘客提供更多餐食和饮品，协助安抚乘客情绪 。\n\nI will coordinate with cabin crew to keep passengers informed of the delay reason and latest updates, offer food/drinks, maintain cabin order, and communicate with ATC/dispatcher to accelerate the departure. Ensure passengers' basic needs are met to ease dissatisfaction.\n我会协调客舱乘务员向乘客告知延误原因及最新动态，提供餐饮服务，维持客舱秩序，并与空管/签派员沟通加快起飞进度，确保乘客基本需求得到满足，缓解不满情绪。"
+    },
+    {
+      "id": "opi-core-564",
+      "taskTitle": "运行-延误与流控-11",
+      "audioText": "What do you think of the policy that airlines compensate passengers after long delays?",
+      "audioTextZh": "你如何看待航空公司在长时间延误后对乘客进行补偿的政策？",
+      "referenceText": "Compensation is reasonable if the delay is due to airline factors (mechanical issues, poor management). But it’s unnecessary for force majeure (bad weather, military activities). Airlines can offer cash, accommodation, or alternative flights to minimize passenger losses.\n如果延误是由航空公司因素导致（机械故障、管理不善），补偿是合理的；但对于不可抗力因素（恶劣天气、军事活动），则无需补偿。航空公司可提供现金、住宿或改签服务，以减少乘客损失。"
+    },
+    {
+      "id": "opi-core-565",
+      "taskTitle": "运行-延误与流控-12",
+      "audioText": "Have you ever encountered delays more than one hour?",
+      "audioTextZh": "你经历过延误超过一小时吗?",
+      "referenceText": "Yes. Last year, when flying to Singapore Changi Airport, we held en-route due to bad weather, resulting in a one-hour delay. Also, during training at Yichang Airport, ground congestion caused a two-hour delay for our training flight.\n经历过。去年飞往新加坡樟宜机场时，因天气原因我们在空中等待，导致延误一小时；此外，在宜昌机场训练时，地面交通拥堵导致我们的训练航班延误两小时。"
+    },
+    {
+      "id": "opi-core-566",
+      "taskTitle": "运行-延误与流控-13",
+      "audioText": "Do you think more delays happened in large airport or small airport and why?",
+      "audioTextZh": "你觉得大机场延误的多还是小机场延误的多?为什么?",
+      "referenceText": "More delays occur in large airports. They have more aircraft, congested airspace, longer taxiways, heavy ATC workload, massive passenger/baggage handling, and more VIP flights, leading to frequent flow control.\n大机场的延误更多。大机场飞机数量多、空域拥挤、滑行道长、空管工作负荷大、旅客与行李处理量庞大，且VIP航班较多，因此流量控制更为频繁。"
+    }
+  ]
+}

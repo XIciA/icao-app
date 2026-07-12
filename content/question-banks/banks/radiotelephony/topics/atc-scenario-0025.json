@@ -1,0 +1,170 @@
+{
+  "categoryId": "atc-baw",
+  "id": "atc-scenario-0025",
+  "name": "BAW 038 FOD 续航30分",
+  "declaredCardCount": 18,
+  "cards": [
+    {
+      "id": "atc-scenario-0025-card-main-427",
+      "taskTitle": "BAW 038-1",
+      "audioText": "B: Your call sign is Speedbird 038, from Beijing to London, passing 1200 metres, climbing to 1800 metres, now contact Beijing Departure .",
+      "audioTextZh": "你的呼号是Speedbird 038，从北京飞往伦敦，正在通过1200米爬升至1800米，现在联系北京离场。",
+      "referenceText": "Beijing Departure, BAW038, passing 1200 metres, climbing to 1800 metres.",
+      "referenceTextZh": "北京离场，BAW038，正在通过1200米爬升至1800米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/442.mp3"
+    },
+    {
+      "id": "atc-scenario-0025-card-main-428",
+      "taskTitle": "BAW 038-2",
+      "audioText": "C: Speedbird 038, Beijing Departure, identified, climb to 6000 metres on standard.",
+      "audioTextZh": "管制员：Speedbird 038，北京离场，雷达识别，按标准气压爬升至6000米。",
+      "referenceText": "Climb to 6000 metres on standard, BAW038.",
+      "referenceTextZh": "按标准气压爬升至6000米，BAW038。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/443.mp3"
+    },
+    {
+      "id": "atc-scenario-0025-card-main-429",
+      "taskTitle": "BAW 038-3",
+      "audioText": "B: The aircraft ingested something, request descent to 3000 metres.",
+      "audioTextZh": "飞机吸入异物，申请下降至3000米。",
+      "referenceText": "Beijing Departure, BAW038, foreign object ingestion, request descent to 3000 meters.",
+      "referenceTextZh": "北京离场，BAW038，飞机吸入异物，申请下降至3000米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/444.mp3"
+    },
+    {
+      "id": "atc-scenario-0025-card-main-430",
+      "taskTitle": "BAW 038-4",
+      "audioText": "C: Speedbird 038, roger, descend to 3000 metres on QNH 1011.",
+      "audioTextZh": "管制员：Speedbird 038，收到，按QNH 1011下降至3000米。",
+      "referenceText": "Descend to 3000 metres on QNH 1011, BAW038.",
+      "referenceTextZh": "按QNH 1011下降至3000米，BAW038。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/445.mp3"
+    },
+    {
+      "id": "atc-scenario-0025-card-main-431",
+      "taskTitle": "BAW 038-5",
+      "audioText": "C: Speedbird 038, Beijing Departure, report intention.\nB: Your turbine blades appear to be broken, request return to Beijing airport.",
+      "audioTextZh": "管制员：Speedbird 038，北京离场，报告意图。你的涡轮叶片似乎损坏，申请返回北京机场。",
+      "referenceText": "Beijing Departure, BAW038, request return to Beijing airport, our turbine blades appear to be broken.",
+      "referenceTextZh": "北京离场，BAW038，申请返回北京机场，我们的涡轮叶片似乎损坏。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/446.mp3"
+    },
+    {
+      "id": "atc-scenario-0025-card-main-432",
+      "taskTitle": "BAW 038-6",
+      "audioText": "C: Speedbird 038, roger, turn right heading 180, information India, radar vector for landing.",
+      "audioTextZh": "管制员：Speedbird 038，收到，右转航向180，通播India，雷达引导落地。",
+      "referenceText": "Turn right heading 180, BAW038.",
+      "referenceTextZh": "右转航向180，BAW038。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/447.mp3"
+    },
+    {
+      "id": "atc-scenario-0025-card-main-433",
+      "taskTitle": "BAW 038-7",
+      "audioText": "C: Speedbird 038, report current situation.\nB: Tell the controller that the port engine flamed out and you should land as soon as possible.",
+      "audioTextZh": "管制员：Speedbird 038，报告当前情况。告诉管制员左发熄火，你需要尽快落地。",
+      "referenceText": "Beijing Departure, our port engine flames out, request priority landing, BAW038.",
+      "referenceTextZh": "北京离场，我们左发熄火，申请优先落地，BAW038。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/448.mp3"
+    },
+    {
+      "id": "atc-scenario-0025-card-main-434",
+      "taskTitle": "BAW 038-8",
+      "audioText": "C: Speedbird 038, roger, can you execute normal landing? do you require fuel dumping?\nB: You can land normally and no need for fuel dumping.",
+      "audioTextZh": "管制员：Speedbird 038，收到，能否正常着陆？是否需要放油？\n你可以正常着陆，不需要放油。",
+      "referenceText": "We can make a normal landing without dumping fuel, BAW038.",
+      "referenceTextZh": "我们可以正常着陆，不需要放油，BAW038。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/449.mp3"
+    },
+    {
+      "id": "atc-scenario-0025-card-main-435",
+      "taskTitle": "BAW 038-9",
+      "audioText": "B: 2 minutes later. Tell the controller the fuel passage is blocked, only the auxiliary fuel tank is available, request priority landing.",
+      "audioTextZh": "2分钟后，告诉管制员燃油通路堵塞，只有辅助油箱可用，申请优先落地。",
+      "referenceText": "Beijing Control, BAW038, fuel passage is blocked, now only the auxiliary fuel tank is operative, request priority landing.",
+      "referenceTextZh": "北京管制，BAW038，燃油通路堵塞，目前只有辅助油箱可用，申请优先落地。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/450.mp3"
+    },
+    {
+      "id": "atc-scenario-0025-card-main-436",
+      "taskTitle": "BAW 038-10",
+      "audioText": "C: Speedbird 038, Beijing roger, report endurance.\nB: Tell Control that your endurance is 30 minutes.",
+      "audioTextZh": "管制员：Speedbird 038，北京收到，报告续航时间。告诉管制你的续航时间为30分钟。",
+      "referenceText": "Endurance 30 minutes, BAW038.",
+      "referenceTextZh": "续航时间30分钟，BAW038。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/451.mp3"
+    },
+    {
+      "id": "atc-scenario-0025-card-main-437",
+      "taskTitle": "BAW 038-11",
+      "audioText": "C: Speedbird 038, roger, turn right heading 300, expect runway 01, caution surface wind 240, 12 metres per second, gusting to 18 metres per second.",
+      "audioTextZh": "管制员：Speedbird 038，收到，右转航向300，预计01跑道。注意地面风240度，12米/秒，阵风18米/秒。",
+      "referenceText": "Turn right heading 300, expect runway 01, BAW038.",
+      "referenceTextZh": "右转航向300，预计01跑道，BAW038。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/452.mp3"
+    },
+    {
+      "id": "atc-scenario-0025-card-main-438",
+      "taskTitle": "BAW 038-12",
+      "audioText": "C:Speedbird 038, turn right heading 340, report established localizer.",
+      "audioTextZh": "管制员：Speedbird 038，右转航向340，建立航向道后报告。",
+      "referenceText": "Turn right heading 340, report established localizer, BAW038.",
+      "referenceTextZh": "右转航向340，建立航向道后报告，BAW038。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/453.mp3"
+    },
+    {
+      "id": "atc-scenario-0025-card-main-439",
+      "taskTitle": "BAW 038-13",
+      "audioText": "B: You have established localizer.",
+      "audioTextZh": "你已建立航向道。",
+      "referenceText": "Beijing Approach, BAW038, established localizer.",
+      "referenceTextZh": "北京进近，BAW038，已建立航向道。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/454.mp3"
+    },
+    {
+      "id": "atc-scenario-0025-card-main-440",
+      "taskTitle": "BAW 038-14",
+      "audioText": "C: Speedbird 038, continue approach, contact Beijing Tower 118.1, I will advise them of your problem.",
+      "audioTextZh": "管制员：Speedbird 038，继续进近，联系北京塔台118.1，我会告知他们你的问题。",
+      "referenceText": "118.1, thanks, BAW038.",
+      "referenceTextZh": "118.1，谢谢，BAW038。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/455.mp3"
+    },
+    {
+      "id": "atc-scenario-0025-card-main-441",
+      "taskTitle": "BAW 038-15",
+      "audioText": "B: You have established ILS.",
+      "audioTextZh": "你已建立ILS。",
+      "referenceText": "Beijing Tower, BAW038, established ILS.",
+      "referenceTextZh": "北京塔台，BAW038，已建立ILS。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/456.mp3"
+    },
+    {
+      "id": "atc-scenario-0025-card-main-442",
+      "taskTitle": "BAW 038-16",
+      "audioText": "C: Speedbird 038, Beijing Tower, continue approach, report outer marker, caution surface wind 240, 12 meters per second, gusting to 18 meters per second.",
+      "audioTextZh": "管制员：Speedbird 038，北京塔台，继续进近，报告外指点标。注意地面风240度，12米/秒，阵风18米/秒。",
+      "referenceText": "Continue approach, report outer marker, BAW038.",
+      "referenceTextZh": "继续进近，报告外指点标，BAW038。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/457.mp3"
+    },
+    {
+      "id": "atc-scenario-0025-card-main-443",
+      "taskTitle": "BAW 038-17",
+      "audioText": "B: Over outer marker.",
+      "audioTextZh": "飞越外指点标。",
+      "referenceText": "Beijing Tower, BAW038, outer marker.",
+      "referenceTextZh": "北京塔台，BAW038，外指点标。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/458.mp3"
+    },
+    {
+      "id": "atc-scenario-0025-card-main-444",
+      "taskTitle": "BAW 038-18",
+      "audioText": "C: Speedbird 038, cleared to land runway 01, wind 240, 12 meters per second, report vacated.",
+      "audioTextZh": "管制员：Speedbird 038，可以01跑道落地，风240度，12米/秒，脱离后报告。",
+      "referenceText": "Cleared to land runway 01, report vacated, BAW038.",
+      "referenceTextZh": "可以01跑道落地，脱离后报告，BAW038。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/459.mp3"
+    }
+  ]
+}

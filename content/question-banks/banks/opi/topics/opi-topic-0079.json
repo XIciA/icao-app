@@ -1,0 +1,197 @@
+{
+  "categoryId": "opi-category-02",
+  "id": "opi-topic-0079",
+  "name": "水上迫降",
+  "declaredCardCount": 27,
+  "cards": [
+    {
+      "id": "opi-core-786",
+      "taskTitle": "特情-水上迫降-1",
+      "audioText": "What situations lead to a ditching?",
+      "audioTextZh": "哪些情况导致水上迫降？",
+      "referenceText": "Fuel exhaustion, engine failure, severe structural damage, or being unable to reach a suitable runway due to emergencies like extreme weather might force a ditching. For example, if both engines fail over water with no nearby airports, pilots have to ditch. 燃油耗尽、发动机故障、严重结构损坏，或因极端天气等紧急情况无法抵达合适跑道时，可能需水上迫降。比如双发在水上空域失效且无临近机场，飞行员就会选择迫降水面。"
+    },
+    {
+      "id": "opi-core-787",
+      "taskTitle": "特情-水上迫降-2",
+      "audioText": "What preparations do you make before a ditching?",
+      "audioTextZh": "水上迫降前你会做哪些准备？",
+      "referenceText": "First, alert passengers and crew via PA, instructing them to adopt brace positions. Then, check and arm life rafts, ensure life vests are properly worn, and confirm communication systems with the crew. Also, brief passengers on evacuation procedures. 首先通过广播警示乘客与机组，指导采取防冲击姿势。接着检查并启用救生筏，确保救生衣正确穿戴，与机组确认通讯系统，同时向乘客讲解撤离流程。\n\nBefore ditching, I will: declare emergency to ATC, request rescue support; dump fuel to reduce weight and fire risk; configure the aircraft (flaps, landing gear up); inform passengers to put on life vests, brace for impact, and prepare evacuation; select a calm water area; and maintain stable flight for a smooth touchdown.\n水上迫降前，我会：向空管宣布紧急状态，请求救援支援；放油减重以降低起火风险；配置飞机状态（放下襟翼、收起起落架）；告知乘客穿上救生衣、做好冲击防护并准备撤离；选择平静水域；保持稳定飞行，确保平稳触水。"
+    },
+    {
+      "id": "opi-core-788",
+      "taskTitle": "特情-水上迫降-3",
+      "audioText": "How to determine the best ditching direction?",
+      "audioTextZh": "如何判断最佳的水上迫降方向？",
+      "referenceText": "Pilots consider wind direction, wave patterns, and try to land parallel to waves (not directly into them) to reduce impact. Calm water areas and avoiding strong currents or debris are key—using onboard sensors and visual observation to choose the safest path. 飞行员参考风向、浪形，尽量平行于波浪降落（而非迎浪）以减小冲击。优先选平静水域，避开强流与杂物，借助机载传感器和目视观察，选定最安全路径。"
+    },
+    {
+      "id": "opi-core-789",
+      "taskTitle": "特情-水上迫降-4",
+      "audioText": "How to organize passenger evacuation after ditching?",
+      "audioTextZh": "水上迫降后如何组织乘客撤离？",
+      "referenceText": "Once the aircraft stabilizes, crew open exits, deploy life rafts, and guide passengers to board rafts in order. They check for injuries, assign roles (e.g., raft leaders), and ensure everyone leaves the aircraft before it sinks—keeping calm and following emergency protocols. 飞机稳定后，机组打开出口、投放救生筏，有序引导乘客登筏。检查伤情、分配职责（如筏上负责人），确保乘客在飞机下沉前全部撤离，全程保持冷静、严格执行应急程序。"
+    },
+    {
+      "id": "opi-core-790",
+      "taskTitle": "特情-水上迫降-5",
+      "audioText": "How to ensure navigation accuracy during long-overwater flights?",
+      "audioTextZh": "长距离水上飞行时如何确保导航精度？",
+      "referenceText": "Use a combination of GPS, inertial navigation systems (INS), and satellite-based augmentation systems. Cross-check with visual references (if possible) and maintain communication with air traffic control for position updates—regularly calibrating equipment to minimize errors. 结合 GPS、惯性导航（INS）与卫星增强系统，条件允许时目视交叉验证，保持与空管通讯更新位置，定期校准设备以降低误差，保障长航时水上飞行的导航精度。"
+    },
+    {
+      "id": "opi-core-791",
+      "taskTitle": "特情-水上迫降-6",
+      "audioText": "How to operate communication devices during overwater flights?",
+      "audioTextZh": "水上飞行期间通讯设备如何操作？",
+      "referenceText": "Keep radios (like VHF/HF) on designated frequencies, monitor distress channels (e.g., 121.5 MHz), and perform regular check-ins with ATC. Ensure backup systems (e.g., satellite phones) are ready—test equipment pre-flight and follow standard communication protocols. 保持甚高频 / 高频电台在指定频率，监听遇险频道（如 121.5MHz），定期与空管通联。备好备份系统（如卫星电话），飞行前测试设备，严格遵循标准通讯流程操作。"
+    },
+    {
+      "id": "opi-core-792",
+      "taskTitle": "特情-水上迫降-7",
+      "audioText": "What if communication devices fail over water?",
+      "audioTextZh": "水上飞行时通讯设备失效如何处理？",
+      "referenceText": "Switch to backup systems (satellite, emergency beacons like ELT). Use visual signals (e.g., flares, wing rocking) if near other aircraft/ships. Maintain a holding pattern if possible, and try to reach the nearest airport or safe zone while troubleshooting the equipment. 切换至备份系统（卫星、应急信标如 ELT）。若临近其他飞机 / 船舶，用视觉信号（如 flares、机翼摇晃）示意。条件允许则保持盘旋，排查设备故障同时，向最近机场或安全区域返航。"
+    },
+    {
+      "id": "opi-core-793",
+      "taskTitle": "特情-水上迫降-8",
+      "audioText": "What’s the role of HF radio in overwater flights? HF",
+      "audioTextZh": "无线电在水上飞行中的作用是什么？",
+      "referenceText": "HF radio enables long-range communication beyond VHF limits, crucial for contacting ATC or rescue centers over vast oceans. It transmits distress signals, weather updates, and position reports when satellite coverage is limited—serving as a key backup for global overwater links. 高频无线电突破甚高频通讯距离限制，在远洋飞行中用于联络空管 / 救援中心。卫星覆盖不足时，可发送遇险信号、气象更新与位置报告，是全球水上飞行的关键备份通讯手段。"
+    },
+    {
+      "id": "opi-core-794",
+      "taskTitle": "特情-水上迫降-9",
+      "audioText": "What special requirements for life-saving equipment in overwater flights?",
+      "audioTextZh": "水上飞行对救生设备有哪些特殊要求？",
+      "referenceText": "Life rafts must be sea-worthy, equipped with survival kits (water, food, flares), and enough for all passengers/crew. Life vests need to keep unconscious people afloat, and emergency beacons (ELT/EPIRB) must work in water—regularly inspected and certified for marine use. 救生筏需具备适航性，配生存包（水、食物、flares）且数量满足全机人员。救生衣要能托浮失去意识者，应急信标（ELT/EPIRB）需适配水上环境，定期检查、通过海事认证。"
+    },
+    {
+      "id": "opi-core-795",
+      "taskTitle": "特情-水上迫降-10",
+      "audioText": "How to calculate extra fuel for overwater flights?",
+      "audioTextZh": "如何计算水上飞行的额外燃油需求？",
+      "referenceText": "Pilots add contingency fuel for factors like headwinds, holding patterns, or potential diversions. Use formulas considering flight time, fuel burn rates, and reserve requirements (e.g., 30-60 minutes extra) based on regulations—cross-checking with weather forecasts and route distances. 飞行员针对逆风、盘旋等待、备降等情况加储备油。依据飞行时长、油耗率、法规要求（如额外 30-60 分钟油量），结合气象预报与航线距离，用公式计算并交叉验证额外燃油。"
+    },
+    {
+      "id": "opi-core-796",
+      "taskTitle": "特情-水上迫降-11",
+      "audioText": "Any special considerations for ELT in overwater flights? ELT",
+      "audioTextZh": "设备在水上飞行中有何特殊考虑？",
+      "referenceText": "ELT (Emergency Locator Transmitter) must be water-activated or manually deployable, sending distress signals to satellites/rescue centers. Ensure it’s mounted to float free if the aircraft sinks, and test its functionality pre-flight—critical for rapid rescue coordination over water. 应急定位发射器（ELT）需具备水激活或手动触发功能，向卫星 / 救援中心发遇险信号。要确保飞机沉没时它能脱离漂浮，飞行前测试性能，这对水上救援协同至关重要。"
+    },
+    {
+      "id": "opi-core-797",
+      "taskTitle": "特情-水上迫降-12",
+      "audioText": "How to get weather info for transoceanic flight routes?",
+      "audioTextZh": "如何获取跨洋飞行航路上的气象信息？",
+      "referenceText": "Pilots use onboard weather radars, receive updates via HF/VHF datalink from ATC or satellite-based services. They also pre-flight check long-range forecasts from meteorological centers, monitoring tropical storms or jet streams that might affect the route. 飞行员通过机载气象雷达、HF/VHF 数据链（从空管或卫星服务）接收更新，飞行前从气象中心获取远程预报，重点监控可能影响航线的热带风暴、急流等天气系统。"
+    },
+    {
+      "id": "opi-core-798",
+      "taskTitle": "特情-水上迫降-13",
+      "audioText": "What special risks come with bad weather in overwater flights?",
+      "audioTextZh": "水上飞行遇到恶劣天气有哪些特殊风险？",
+      "referenceText": "Severe turbulence can damage the aircraft or injure passengers; thunderstorms bring lightning and hail, risking electrical/structural damage. Low visibility (fog, heavy rain) hinders navigation, and strong winds/waves make ditching more dangerous—pilots must avoid or navigate carefully using radar and weather data. 强颠簸可能损伤飞机、致乘客受伤；雷暴伴随闪电、冰雹，威胁电气与结构安全。低能见度（雾、暴雨）干扰导航，大风大浪让迫降风险陡增，飞行员需借雷达和气象数据规避或谨慎穿越。"
+    },
+    {
+      "id": "opi-core-799",
+      "taskTitle": "特情-水上迫降-14",
+      "audioText": "How to handle passengers with special needs during overwater evacuation?",
+      "audioTextZh": "水上撤离时如何处理特殊需求乘客？",
+      "referenceText": "Prioritize assisting disabled passengers, pregnant women, and children. Assign crew or trained volunteers to guide them to rafts, ensure life vests are properly fitted, and provide physical support during evacuation. 优先协助残疾乘客、孕妇和儿童。指派机组或受过训练的志愿者引导其登筏，确保救生衣正确穿戴，并在撤离过程中提供身体支持。"
+    },
+    {
+      "id": "opi-core-800",
+      "taskTitle": "特情-水上迫降-15",
+      "audioText": "What are the critical points for ditching in icy water?",
+      "audioTextZh": "在结冰水域水上迫降的关键点是什么？",
+      "referenceText": "Avoid landing on thin ice. Prioritize calm water areas near ice floes for stability. Instruct passengers to keep limbs covered to prevent hypothermia, and secure rafts to ice surfaces if possible. 避免在薄冰上降落。优先选择浮冰附近的平静水域以保持稳定。指导乘客遮盖肢体以防失温，如有可能将救生筏固定在冰面。"
+    },
+    {
+      "id": "opi-core-801",
+      "taskTitle": "特情-水上迫降-16",
+      "audioText": "What are the post-ditching communication priorities?",
+      "audioTextZh": "水上迫降后的通讯优先级是什么？",
+      "referenceText": "1. Activate emergency beacons immediately; 2. Use satellite phones to contact rescue coordination centers; 3. Broadcast MAYDAY messages on international distress frequencies; 4. Confirm survivor status and injury severity. 1. 立即激活应急信标；2. 用卫星电话联系救援协调中心；3. 在国际遇险频率上发送 MAYDAY 信号；4. 确认幸存者状态和伤情。"
+    },
+    {
+      "id": "opi-core-802",
+      "taskTitle": "特情-水上迫降-17",
+      "audioText": "How do flight crews ensure efficient communication and cooperation during overwater flights?",
+      "audioTextZh": "在水上飞行期间，机组之间如何确保高效的沟通与协作？",
+      "referenceText": "Flight crews ensure efficient communication and cooperation by establishing clear communication protocols before takeoff, conducting regular briefings during the flight, and defining each crew member's roles and responsibilities. They use standard phraseology and make full use of communication equipment to exchange information in a timely manner, especially when facing potential emergencies. For example, the captain takes the lead in decision - making, while the first officer and other crew members provide necessary support and feedback based on their duties. 机组通过在起飞前建立清晰的通讯协议、飞行期间进行定期简报以及明确每个机组成员的角色和职责来确保高效的沟通与协作。他们使用标准用语，并充分利用通讯设备及时交换信息，尤其是在面临潜在紧急情况时。例如，机长主导决策，副驾驶和其他机组成员根据各自职责提供必要的支持和反馈。"
+    },
+    {
+      "id": "opi-core-803",
+      "taskTitle": "特情-水上迫降-18",
+      "audioText": "When an emergency occurs during overwater flight, how should the flight crew quickly establish a unified decision - making mechanism?",
+      "audioTextZh": "当水上飞行出现紧急情况，机组应如何快速建立统一的决策机制？",
+      "referenceText": "When an emergency occurs, the flight crew should quickly establish a unified decision - making mechanism by following the pre - defined emergency procedures. The captain, as the commander, takes overall responsibility and makes decisions. Other crew members provide relevant information and suggestions based on their observations and expertise. They communicate effectively to ensure that all decisions are made in a coordinated manner, considering factors such as the aircraft's condition, passenger safety, and the surrounding environment. 当出现紧急情况时，机组应按照预先制定的应急程序快速建立统一的决策机制。机长作为指挥官，承担总体责任并做出决策。其他机组成员根据自己的观察和专业知识提供相关信息和建议。他们进行有效沟通，确保所有决策都能综合考虑飞机状况、乘客安全和周围环境等因素，以协调一致的方式做出。"
+    },
+    {
+      "id": "opi-core-804",
+      "taskTitle": "特情-水上迫降-19",
+      "audioText": "In addition to routine pre - flight checks, what specific inspection items are required for overwater flights?",
+      "audioTextZh": "除了常规的飞行前检查，水上飞行还需要额外进行哪些特定的检查项目？",
+      "referenceText": "In addition to routine pre - flight checks, specific inspection items required for overwater flights include checking the functionality of life rafts, emergency locator transmitters (ELTs), life vests, and other water survival equipment. The aircraft's ability to seal against water ingress and the condition of windows and doors for water - tightness are also inspected. Moreover, the fuel system is checked to ensure there are no leaks that could be hazardous over water. 除了常规的飞行前检查，水上飞行需要额外检查的特定项目包括检查救生筏、应急定位发射器（ELTs）、救生衣和其他水上生存设备的功能。还会检查飞机的防水密封能力以及门窗的水密状况。此外，燃油系统也会被检查，以确保没有可能在水上造成危险的泄漏。"
+    },
+    {
+      "id": "opi-core-805",
+      "taskTitle": "特情-水上迫降-20",
+      "audioText": "What factors need to be particularly considered in the route planning of overwater flights?",
+      "audioTextZh": "水上飞行的航线规划需要特别考虑哪些因素？",
+      "referenceText": "When planning routes for overwater flights, factors that need to be particularly considered include weather conditions over the ocean (such as storms, wind patterns, and temperature), the location of suitable alternate airports or landing sites in case of emergency, the coverage of air traffic control and communication systems along the route, and the distance to the nearest search and rescue facilities. The availability of accurate navigation aids and the potential for icing or turbulence in the flight altitude range are also important. 在规划水上飞行的航线时，需要特别考虑的因素包括海洋上的天气状况（如风暴、风向模式和温度）、紧急情况下合适的备降机场或着陆点的位置、航路上空中交通管制和通讯系统的覆盖范围，以及到最近的搜救设施的距离。准确导航设备的可用性以及飞行高度范围内结冰或颠簸的可能性也很重要。"
+    },
+    {
+      "id": "opi-core-806",
+      "taskTitle": "特情-水上迫降-21",
+      "audioText": "If communication is lost with the outside world after ditching, what measures should the flight crew take to increase the chances of being rescued?",
+      "audioTextZh": "如果水上迫降后，飞机与外界失去通讯，机组应采取哪些措施来增加获救的机会？",
+      "referenceText": "If communication is lost after ditching, the flight crew should take several measures to increase the chances of being rescued. They should deploy emergency locator transmitters (ELTs) to send distress signals. Use visual signals such as flares, smoke signals, or reflective mirrors to attract attention. Gather passengers in life rafts and keep them together in a visible area, using sea anchors to stay in a relatively stable position. Also, try to make use of any available navigation equipment or natural landmarks to determine the position and wait for rescue. 如果水上迫降后与外界失去通讯，机组应采取一些措施来增加获救的机会。他们应部署应急定位发射器（ELTs）发送遇险信号。使用 flares、烟雾信号或反光镜等视觉信号来吸引注意。将乘客聚集在救生筏上，并将他们聚集在可见区域，使用海锚保持相对稳定的位置。此外，尽量利用任何可用的导航设备或自然地标来确定位置并等待救援。"
+    },
+    {
+      "id": "opi-core-807",
+      "taskTitle": "特情-水上迫降-22",
+      "audioText": "Can you fly over water?",
+      "audioTextZh": "你能执行水上飞行任务吗？",
+      "referenceText": "No. I’m not qualified for over water flight.\n不能，我没有水上飞行资质。"
+    },
+    {
+      "id": "opi-core-808",
+      "taskTitle": "特情-水上迫降-23",
+      "audioText": "What is the difference between flying\nover water and flying over land?",
+      "audioTextZh": "水上飞行与陆地飞行有何区别？",
+      "referenceText": "The airplane flying over water needs to be installed with extra equipment such as life vest and life raft. And there is little visual reference when flying over water. As a result, pilots may have visual illusion. In case of emergency, it is difficult to find an airport for landing and sometimes pilots need to ditch.\n执行水上飞行的飞机需额外配备救生衣、救生筏等设备；水上飞行时，目视参考物极少，飞行员可能产生视觉错觉；遇到紧急情况时，难以找到机场着陆，有时需进行水上迫降。\n\nDifferences include: emergency options (forced landing on land vs. ditching on water); navigation (more dependent on GNSS over water due to few landmarks); rescue difficulty (slower over water); weather (more turbulence/fog over water); and preparation (extra life-saving equipment and ditching training for over-water flights).\n跨水飞行与跨陆地飞行的区别包括：紧急处置选项（陆上可迫降，水上需水上迫降）；导航方式（水上地标少，更依赖全球导航卫星系统（GNSS））；救援难度（水上救援更缓慢）；天气状况（水上易出现颠簸/雾）；准备工作（跨水飞行需额外救生设备和水上迫降训练）。"
+    },
+    {
+      "id": "opi-core-809",
+      "taskTitle": "特情-水上迫降-24",
+      "audioText": "What is the possible threat of flying over water?",
+      "audioTextZh": "水上飞行可能面临哪些威胁？",
+      "referenceText": "There is little visual reference when flying over water. As a result, pilots may have visual illusion. In case of emergency, it is difficult to find an airport for landing and sometimes pilots need to ditch.\n水上飞行时目视参考物极少，可能导致飞行员产生视觉错觉；遇到紧急情况时，难以找到机场着陆，有时需进行水上迫降。"
+    },
+    {
+      "id": "opi-core-810",
+      "taskTitle": "特情-水上迫降-25",
+      "audioText": "Which do you think is more dangerous, ditching or forced landing?",
+      "audioTextZh": "你认为哪一更危险?水上迫降或者陆上迫降?",
+      "referenceText": "Ditching is more dangerous than forced landing. Open water has no stable surface, increasing risks of capsizing, flooding, or passenger hypothermia. Forced landing on land (for example, flat terrain) offers more stable conditions and easier rescue. Both require precise control and emergency preparation to maximize survival chances.\n水上迫降比陆上迫降更危险。开阔水域没有稳定的着陆面，增加了飞机倾覆、进水或乘客体温过低的风险；陆上迫降（如平坦地形）条件更稳定，救援也更便捷。两种情况都需要精准操控和应急准备，以最大化生存概率。"
+    },
+    {
+      "id": "opi-core-811",
+      "taskTitle": "特情-水上迫降-26",
+      "audioText": "Through the flight plan, you learned that your flight mission is related to flying over water, what will you do to prepare?",
+      "audioTextZh": "通过飞行计划,你了解到飞行任务和跨水飞行有关,你会做什么准备?",
+      "referenceText": "For over-water flight, I will: check life-saving equipment (life vests, rafts); review ditching and evacuation procedures; confirm alternate airports and rescue routes; ensure sufficient fuel and reserve; check weather (turbulence, thunderstorms); brief passengers on safety precautions; and verify GNSS and communication systems are functional.\n针对跨水飞行任务，我会：检查救生设备（救生衣、救生筏）；复习水上迫降和撤离程序；确认备降机场和救援路线；确保燃油充足及备用油量；检查天气（颠簸、雷暴）；向乘客宣讲安全注意事项；核实全球导航卫星系统（GNSS）和通讯系统正常工作。"
+    },
+    {
+      "id": "opi-core-812",
+      "taskTitle": "特情-水上迫降-27",
+      "audioText": "What would you do if you encountered abnormal situation while you were flying over water?",
+      "audioTextZh": "如果跨水飞行遇到特情,你会怎么处置?",
+      "referenceText": "If encountering an abnormal situation over water, I will: maintain aircraft control first; declare emergency to ATC, report position and situation; assess the issue (such as, engine failure, depressurization); execute corresponding procedures (ditching if necessary); inform passengers and cabin crew to prepare for evacuation; and coordinate with rescue teams for timely assistance.\n跨水飞行遇到特情时，我会：首先保持飞机操控；向空管宣布紧急状态，报告位置和情况；评估故障类型（如发动机失效、释压）；执行相应程序（必要时水上迫降）；告知乘客和客舱机组准备撤离；与救援团队协调，争取及时支援。"
+    }
+  ]
+}

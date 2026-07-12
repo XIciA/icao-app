@@ -1,0 +1,36 @@
+{
+  "categoryId": "opi-category-04",
+  "id": "opi-topic-0071",
+  "name": "情景意识",
+  "declaredCardCount": 4,
+  "cards": [
+    {
+      "id": "opi-core-737",
+      "taskTitle": "人的因素-情景意识-1",
+      "audioText": "What is SA?",
+      "audioTextZh": "什么是情景意识（SA）？",
+      "referenceText": "Situational awareness is an important part of CRM. CRM emphasizes teamwork, communication, decision - making and maintaining situational awareness. Maintaining situational awareness means that we always know what is going on around us. We should always maintain situational awareness to ensure flight safety.\n情景意识是机组资源管理（CRM）的重要组成部分。机组资源管理强调团队协作、沟通、决策制定以及保持情景意识。保持情景意识意味着我们要时刻知晓周边正在发生的情况。我们应始终保持情景意识，以确保飞行安全 。"
+    },
+    {
+      "id": "opi-core-738",
+      "taskTitle": "人的因素-情景意识-2",
+      "audioText": "How can loss of situational awareness affect flight safety?",
+      "audioTextZh": "情景意识丧失会对飞行安全产生怎样的影响？",
+      "referenceText": "If a pilot loses situational awareness, he may not follow SOPs (Standard Operating Procedures). He may forget procedures and make mistakes. This is very dangerous for flight safety.\n若飞行员丧失情景意识，可能不会遵循标准操作程序（SOPs ）。他可能会忘记操作流程并出现失误，这对飞行安全而言十分危险 。"
+    },
+    {
+      "id": "opi-core-739",
+      "taskTitle": "人的因素-情景意识-3",
+      "audioText": "Would you give some suggestions to pilots to improve their situational awareness?",
+      "audioTextZh": "你能给飞行员一些提升情景意识的建议吗？",
+      "referenceText": "Pilots should monitor frequency during flight. If there is no transmission received for 15 minutes, pilots must contact ATC and do radio check. Pilot should strictly follow SOP and do the cross check.\n飞行员在飞行中应持续监听无线电频率。若 15 分钟内未接收到任何通信，必须联系 ATC 并进行无线电检查。此外，飞行员应严格遵守标准作业程序（SOP），并执行交叉检查。"
+    },
+    {
+      "id": "opi-core-740",
+      "taskTitle": "人的因素-情景意识-4",
+      "audioText": "What is the definition of situational awareness?",
+      "audioTextZh": "情景意识的定义是什么？",
+      "referenceText": "Situational awareness means knowing what is happening around you and understanding what it means for your flight. It includes perception of environmental elements, comprehension of their meaning, and projection of future status. For pilots, it covers aircraft position, weather, traffic, fuel, and system status. Good SA helps anticipate problems and make timely decisions. Loss of SA may lead to accidents like CFIT or runway incursions. Pilots maintain SA by monitoring instruments, communicating with ATC, scanning outside, and avoiding distractions.\n情景意识是指知晓周围发生的情况，并理解其对航班的意义，包含感知、理解与预测未来状态三层含义。对飞行员而言，包括飞机位置、天气、交通、燃油、系统状态等。良好的情景意识能提前预判问题、及时决策；丧失情景意识可能导致可控飞行撞地、跑道入侵等事故。飞行员通过持续监控仪表、与空管沟通、外部观察、避免分心来保持情景意识。"
+    }
+  ]
+}

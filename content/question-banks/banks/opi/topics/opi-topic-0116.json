@@ -1,0 +1,22 @@
+{
+  "categoryId": "opi-category-05",
+  "id": "opi-topic-0116",
+  "name": "重心",
+  "declaredCardCount": 2,
+  "cards": [
+    {
+      "id": "opi-extra-093",
+      "taskTitle": "运行-重心-1",
+      "audioText": "What may affect the take - off center of gravity?",
+      "audioTextZh": "哪些因素可能影响起飞时的重心？",
+      "referenceText": "There are some factors that affect the takeoff center of gravity, for example, fuel, passenger and baggage distribution, cargo, and so on.\n有一些因素会影响起飞时的重心，比如燃油、乘客与行李分布、货物等等 。"
+    },
+    {
+      "id": "opi-extra-094",
+      "taskTitle": "运行-重心-2",
+      "audioText": "What are the consequences if the center of gravity position is too forward?",
+      "audioTextZh": "如果重心位置过于靠前，会有哪些后果？",
+      "referenceText": "（1）If the center of gravity position is too forward, when we reach the rotate speed, it is hard to rotate and become airborne, and may even result in a tail strike.\n如果重心位置过于靠前，当达到抬轮速度时，难以抬轮和升空，甚至可能导致擦尾。\n（2）If the CG is too far forward, the aircraft is difficult to lift off and takeoff rolling distance will be increased. It will also consume more fuel during cruise. But the advantage is that the stability is increased.\n飞机会难以离地，起飞滑跑距离增加；巡航阶段燃油消耗也会增多；但优势是飞机稳定性会提升。"
+    }
+  ]
+}

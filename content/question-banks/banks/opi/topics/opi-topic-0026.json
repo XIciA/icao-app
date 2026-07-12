@@ -1,0 +1,57 @@
+{
+  "categoryId": "opi-category-02",
+  "id": "opi-topic-0026",
+  "name": "外来物吸入",
+  "declaredCardCount": 7,
+  "cards": [
+    {
+      "id": "opi-core-412",
+      "taskTitle": "特情-外来物吸入-1",
+      "audioText": "What will happen if the engine encounters the foreign objects?",
+      "audioTextZh": "如果发动机吸入异物，会发生什么情况？",
+      "referenceText": "If the engine encounters the foreign object ingestion, it may cause engine vibration, engine failure or engine flameout. Besides, it may cause damage to the engine.\n如果发动机吸入异物，可能会导致发动机振动、发动机失效或发动机熄火。此外，还可能对发动机造成损坏 。\n\nIngesting foreign objects can damage engine blades, cowling, and internal components, leading to reduced thrust, vibration, surge, flame-out, or even engine disintegration. It endangers flight safety, especially during takeoff when engines operate at maximum power.\n吸入外物会损坏发动机叶片、整流罩和内部部件，导致推力下降、振动、喘振、熄火甚至发动机解体。这会危及飞行安全，尤其在起飞阶段发动机以最大功率运行时风险更高。"
+    },
+    {
+      "id": "opi-core-413",
+      "taskTitle": "特情-外来物吸入-2",
+      "audioText": "If one of your engines ingests foreign objects during takeoff, what procedures should you follow?",
+      "audioTextZh": "如果起飞期间你的一台发动机吸入异物，你应遵循什么程序？",
+      "referenceText": "If one of our engines ingests foreign objects before V1, we will reject/abort takeoff and report it to the mechanics for check. If the speed is greater than V1, we will continue takeoff and return for landing.\n如果我们的一台发动机在 V1 速度之前吸入异物，我们将中断起飞，并报告给机务进行检查。如果速度大于 V1，我们将继续起飞，然后返场着陆 。"
+    },
+    {
+      "id": "opi-core-414",
+      "taskTitle": "特情-外来物吸入-3",
+      "audioText": "What should you do if the engine ingests foreign objects during takeoff rolling/initial climb/flight?",
+      "audioTextZh": "若发动机在起飞滑跑、初始爬升或飞行过程中吸入异物，你应采取什么措施？",
+      "referenceText": "If one of our engines ingests foreign objects during takeoff rolling before V1, we will reject/abort takeoff and report it to the mechanics for check .If the speed is greater than V1, we will continue takeoff and return for landing. If the engine ingests foreign objects during initial climb, we will report our situation to ATC and request dump fuel and return to land. If the engine ingests foreign objects during flight, we will divert to the nearest suitable airport\n若我们的一台发动机在起飞滑跑阶段、V1 速度之前吸入异物，我们将中断起飞，并报告给机务进行检查。若速度超过 V1，我们会继续起飞，之后返场着陆。若发动机在初始爬升阶段吸入异物，我们会向空中交通管制（ATC）报告情况，申请放油并返场着陆。若发动机在飞行过程中吸入异物，我们会改道前往最近的合适机场 。"
+    },
+    {
+      "id": "opi-core-415",
+      "taskTitle": "特情-外来物吸入-4",
+      "audioText": "What should you do if the engine ingests foreign object during initial climb?",
+      "audioTextZh": "如果发动机在初始爬升阶段吸入外物,你会怎么做?",
+      "referenceText": "I will continue climbing to a safe altitude, monitor engine parameters (such as thrust, vibration, EGT), follow SOP to check for damage, report to ATC, and decide to continue flight or divert to the nearest airport based on the engine condition.\n我会继续爬升至安全高度，监控发动机参数推力、振动、排气温度，遵循标准操作程序检查是否存在损坏，向空管报告，并根据发动机状况决定继续飞行或备降到最近机场。"
+    },
+    {
+      "id": "opi-core-416",
+      "taskTitle": "特情-外来物吸入-5",
+      "audioText": "What can be done to prevent foreign object damage from happening?",
+      "audioTextZh": "可以采取什么措施防止外物损伤再次发生?",
+      "referenceText": "Pilots should visually check the ground and sky preflight, report debris to ATC, and delay takeoff if needed. Airports must keep runways/taxiways clean and disperse birds. Passengers should not toss objects. Enhanced simulator training improves pilots’ handling skills.\n飞行员飞行前应目视检查地面和天空，向空管报告杂物，必要时延迟起飞。机场需保持跑道/滑行道清洁并驱散鸟类。乘客不应抛掷物品。加强模拟机训练可提升飞行员处置能力。"
+    },
+    {
+      "id": "opi-core-417",
+      "taskTitle": "特情-外来物吸入-6",
+      "audioText": "What do you know about FOI?",
+      "audioTextZh": "你知道什么是FOI吗?",
+      "referenceText": "FOI stands for Foreign Object Ingestion. It refers to aircraft engines ingesting foreign objects like birds, debris, or FOD during flight or ground operations. FOI can damage engine blades, cause flame-out, vibration, or even engine failure, posing severe threats to flight safety, especially during takeoff.\nFOI是外物吸入（Foreign Object Ingestion）的缩写，指飞机发动机在飞行或地面运行时吸入鸟类、碎片、外物损伤（FOD）等异物。外物吸入会损坏发动机叶片，导致发动机熄火、振动甚至失效，对飞行安全构成严重威胁，尤其在起飞阶段。"
+    },
+    {
+      "id": "opi-core-418",
+      "taskTitle": "特情-外来物吸入-7",
+      "audioText": "If you find some foreign objects on the runway when you are preparing for departure, what should you do?",
+      "audioTextZh": "当你在准备起飞时发现跑道上有异物,你会怎么做?",
+      "referenceText": "I will immediately report the foreign objects and their positions to ATC, request to delay takeoff or change to another runway. I will not proceed with takeoff until ATC confirms the runway is cleared. This avoids FOD damage to engines, landing gear, or other aircraft components, ensuring flight safety.\n我会立即向空管报告异物及其位置，请求延误起飞或更换至其他跑道。在空管确认跑道已清理完毕前，不会执行起飞操作。此举可避免外物损伤（FOD）对发动机、起落架或飞机其他部件造成损坏，保障飞行安全。"
+    }
+  ]
+}

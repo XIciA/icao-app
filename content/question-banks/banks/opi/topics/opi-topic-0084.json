@@ -1,0 +1,29 @@
+{
+  "categoryId": "opi-category-07",
+  "id": "opi-topic-0084",
+  "name": "当前位置与工作背景",
+  "declaredCardCount": 3,
+  "cards": [
+    {
+      "id": "opi-core-848",
+      "taskTitle": "其它-当前位置与工作背景-1",
+      "audioText": "What's your position? / Would you please introduce your work background?",
+      "audioTextZh": "你的职位是什么？/ 能否介绍一下你的工作背景？",
+      "referenceText": "I am a student pilot. I take flight training at Jiutian Flight School. I fly the DA - 40 for flight training. I have built up 100 flying hours. Now I only have my private pilot license.\n我是一名飞行学员，在九天飞行学校接受飞行训练，驾驶 DA - 40 进行飞行训练，已积累 100 个飞行小时，目前仅持有私人飞行员执照 。"
+    },
+    {
+      "id": "opi-core-849",
+      "taskTitle": "其它-当前位置与工作背景-2",
+      "audioText": "What type of aircraft are you flying now? / How many type ratings have you had?",
+      "audioTextZh": "你目前驾驶的是哪种机型？/ 你已获得多少种机型等级资质？",
+      "referenceText": "I am a student pilot. I take flight training at Jiutian Flight School. I fly the DA - 40 for flight training. I have built up 100 flying hours. Now I only hold my private pilot license.\n我是一名飞行学员，在九天飞行学校接受飞行训练，驾驶 DA - 40 开展飞行训练，已积累 100 个飞行小时，目前仅持有私人飞行员执照 。"
+    },
+    {
+      "id": "opi-core-850",
+      "taskTitle": "其它-当前位置与工作背景-3",
+      "audioText": "When/ Where did you take the transition training? What type of aircraft did you fly in The transition training? High performance training?",
+      "audioTextZh": "你何时 / 何地进行的转机型训练？转机型训练中你驾驶的是哪种机型？高性能训练（相关情况）呢？",
+      "referenceText": "I have not taken the transition training yet. Now I take flight training at Jiutian Flight School. I fly the DA - 40 for flight training. I have built up 100 flying hours. Now I only hold my private pilot license.\n我尚未进行转机型训练。目前我在九天飞行学校接受飞行训练，驾驶 DA - 40 开展飞行训练，已积累 100 个飞行小时，现在仅持有私人飞行员执照 。"
+    }
+  ]
+}

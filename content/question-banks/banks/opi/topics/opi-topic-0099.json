@@ -1,0 +1,85 @@
+{
+  "categoryId": "opi-category-05",
+  "id": "opi-topic-0099",
+  "name": "绕机检查",
+  "declaredCardCount": 11,
+  "cards": [
+    {
+      "id": "opi-extra-022",
+      "taskTitle": "运行-绕机检查-1",
+      "audioText": "Whose responsibility is it to perform the walk-around inspection for every flight?",
+      "audioTextZh": "每次飞行，绕机检查由谁负责",
+      "referenceText": "Generally speaking, the captain is responsible for walk-around inspection. Usually, the first officer will conduct the walk-around inspection.\n一般来说，机长负责绕机检查，通常由副驾驶执行绕机检查。\n\nAccording to flight regulations and SOP, the pilot-in-command (captain) is primarily responsible for the walk around inspection. As a student pilot, I perform it under the supervision and confirmation of my flight instructor to ensure the aircraft’s airworthiness.\n根据飞行法规和标准操作程序，机长是执行绕机检查的主要责任人。作为飞行学员，我会在飞行教员的监督和确认下执行该检查，以确保飞机具备适航条件。"
+    },
+    {
+      "id": "opi-extra-024",
+      "taskTitle": "运行-绕机检查-2",
+      "audioText": "Is there a specific route for a walk-around inspection? What is it? What is the purpose of it?",
+      "audioTextZh": "绕机检查有特定路线吗？路线是怎样的？其目的是什么？",
+      "referenceText": "Yes, there is. We often check the aircraft from left to right, from the nose to the tail. We follow this route to make sure every part is checked.\n 有，我们通常从左到右、从机头到机尾检查飞机，遵循此路线以确保检查到每个部位。\n\nYes, there is. We follow a specific clockwise route starting from the left forward cabin door. The purpose is to avoid missing any inspection points, reduce human errors, improve work efficiency, and ensure all critical parts of the aircraft are thoroughly checked for flight safety.\n有特定路线。我们从左前舱门开始，按照顺时针方向进行检查。这样做是为了避免遗漏检查点，减少人为失误，提高工作效率，确保飞机所有关键部位都得到全面检查，保障飞行安全。"
+    },
+    {
+      "id": "opi-extra-026",
+      "taskTitle": "运行-绕机检查-3",
+      "audioText": "Which parts do you think need to be checked carefully? And why?",
+      "audioTextZh": "你认为哪些部位需要仔细检查？原因是什么",
+      "referenceText": "(1) I think every part should be checked carefully, such as engine, landing gear, wings and so on, they are all very important for flight safety.\n 我认为每个部位都应仔细检查，比如发动机、起落架、机翼等，它们对飞行安全都至关重要\n(2)During walk-around inspection, we will check the aircraft units such as the nose, the engines, the landing gear, the flight control surfaces, pitot tubes and so on.\n绕机检查时，我们会检查飞机部件，如机头、发动机、起落架、飞行操纵面、空速管等"
+    },
+    {
+      "id": "opi-extra-027",
+      "taskTitle": "运行-绕机检查-4",
+      "audioText": "When you are performing the walk-around inspection in an extremely cold weather, are there anything needed to be more careful about?",
+      "audioTextZh": "在极寒天气进行绕机检查时，有哪些方面需要格外留意",
+      "referenceText": "(1)If we are performing the walk-around inspection in extremely cold weather, we should be careful about icing. For example, if the pitot tube is blocked by ice, the indication in the cockpit will be inaccurate; if ice builds up on the wings, it will degrade the aircraft performance and decrease lift. Icing is dangerous for flight safety.\n若在极寒天气进行绕机检查，需留意结冰情况。比如，空速管被冰堵塞，驾驶舱指示会不准确；机翼结冰会降低飞机性能、减少升力，结冰对飞行安全存在危险\n(2)When conducting a walk-around inspection in extremely cold winter weather, we will check the airframe to see if there is ice accumulation and check the pitot tubes to see if they are blocked by ice.\n在极寒冬季进行绕机检查时，我们会检查机身是否积冰，检查空速管是否被冰堵塞"
+    },
+    {
+      "id": "opi-extra-043",
+      "taskTitle": "运行-绕机检查-5",
+      "audioText": "Do you think walk-around inspection is very important?",
+      "audioTextZh": "你认为绕机检查重要吗",
+      "referenceText": "Yes, I think walk-around inspection is very important. During walk-around inspection, we will check the engines and pitot tubes to see if there is any foreign object in them. We will check the flight control surfaces to see if they are clean. We will check the fuel to see if it is clean. Before flight, we should conduct a thorough walk-around inspection to ensure the aircraft meets MEL requirements.\n是的，我认为绕机检查非常重要。绕机检查时，我们会检查发动机和空速管，查看内部是否有异物；检查飞行操纵面是否洁净；检查燃油是否洁净。飞行前，应进行全面的绕机检查，确保飞机符合最低设备清单（MEL）要求"
+    },
+    {
+      "id": "opi-extra-046",
+      "taskTitle": "运行-绕机检查-6",
+      "audioText": "Who is responsible for walk-around inspection?",
+      "audioTextZh": "绕机检查由谁负责",
+      "referenceText": "Generally speaking, the captain is responsible for walk-around inspection. Usually, the first officer will conduct the walk-around inspection.\n一般来说，机长负责绕机检查，通常由副驾驶执行绕机检查。\n\nAccording to flight regulations and SOP, the pilot-in-command (captain) is primarily responsible for the walk around inspection. As a student pilot, I perform it under the supervision and confirmation of my flight instructor to ensure the aircraft’s airworthiness.\n根据飞行法规和标准操作程序，机长是执行绕机检查的主要责任人。作为飞行学员，我会在飞行教员的监督和确认下执行该检查，以确保飞机具备适航条件。"
+    },
+    {
+      "id": "opi-extra-047",
+      "taskTitle": "运行-绕机检查-7",
+      "audioText": "What is the route for walk-around inspection?",
+      "audioTextZh": "绕机检查的路线是怎样的",
+      "referenceText": "During walk-around inspection, we will begin with the nose, then we will walk from the right of the aircraft to the left of the aircraft and end with the nose.\n绕机检查时，我们从机头开始，沿飞机右侧走到左侧，最后回到机头结束"
+    },
+    {
+      "id": "opi-extra-048",
+      "taskTitle": "运行-绕机检查-8",
+      "audioText": "Which parts need to be checked during walk-around inspection?",
+      "audioTextZh": "绕机检查期间需检查哪些部位",
+      "referenceText": "During walk-around inspection, we will check the aircraft components such as the nose, the engines, the landing gear, the flight control surfaces, pitot tubes and so on.\n绕机检查期间，我们会检查飞机部件，如机头、发动机、起落架、飞行操纵面、空速管等"
+    },
+    {
+      "id": "opi-extra-049",
+      "taskTitle": "运行-绕机检查-9",
+      "audioText": "What should you pay attention to when having walk-around inspection in extremely cold winter weather?",
+      "audioTextZh": "极寒冬季进行绕机检查时，应留意什么",
+      "referenceText": "When having walk-around inspection in extremely cold winter weather, we will check the airframe to see if there is ice accumulation and check the pitot tubes to see if they are blocked by ice.\n极寒冬季进行绕机检查时，我们会检查机身是否积冰，检查空速管是否被冰堵塞"
+    },
+    {
+      "id": "opi-extra-052",
+      "taskTitle": "运行-绕机检查-10",
+      "audioText": "What's your opinion about walk\naround check?\nDo you think it is necessary?",
+      "audioTextZh": "你如何看待绕机检查?你觉得它重要吗?",
+      "referenceText": "Walk around check is extremely necessary and a key part of SOP. It helps identify potential issues like fuel leaks, ice accumulation, structural damage, or foreign object damage on the aircraft exterior. Skipping it may lead to in-flight malfunctions, so it’s critical for flight safety.\n绕机检查非常必要，是标准操作程序的关键部分。它能排查飞机外部的燃油泄漏、积冰、结构损伤、外物损伤等潜在问题，若省略可能导致飞行中出现故障，对飞行安全至关重要。"
+    },
+    {
+      "id": "opi-extra-053",
+      "taskTitle": "运行-绕机检查-11",
+      "audioText": "If you find aircraft problems during walk around check, what should you do?",
+      "audioTextZh": "如果你在绕机检查时发现飞机存在问题,你会怎么做?",
+      "referenceText": "I will immediately report the problem to maintenance staff/engineers and check the MEL (Minimum Equipment List). If the issue is MEL-approved, I can proceed with the flight; otherwise, I will request to change the aircraft or cancel the flight to ensure flight safety.\n我会立即向机务人员/工程师报告该问题，并查阅最低设备清单MEL。若问题在MEL允许范围内，可继续执行飞行；反之，则申请更换飞机或取消飞行，确保飞行安全。"
+    }
+  ]
+}

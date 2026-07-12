@@ -1,0 +1,143 @@
+{
+  "categoryId": "atc-sia",
+  "id": "atc-scenario-0101",
+  "name": "SIA 544 客舱广播",
+  "declaredCardCount": 15,
+  "cards": [
+    {
+      "id": "atc-scenario-0101-card-main-1742",
+      "taskTitle": "SIA 544-1",
+      "audioText": "B: Your call sign is Singapore 544. Now you are on the way taxiing to the holding point.",
+      "audioTextZh": "B：你的呼号是 Singapore 544。现在你正在滑行前往等待点。",
+      "referenceText": "Ground, SIA544, we are on the way taxiing to the holding point.",
+      "referenceTextZh": "地面，SIA544，我们正在滑行前往等待点。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/242.mp3"
+    },
+    {
+      "id": "atc-scenario-0101-card-main-1743",
+      "taskTitle": "SIA 544-2",
+      "audioText": "C: Singapore 544, frozen icy patches on your taxiway, I suggest turning right and using taxiway Golf instead.",
+      "audioTextZh": "C：Singapore 544，你的滑行道上有结冰斑块，我建议右转改用 Golf 滑行道。",
+      "referenceText": "Roger, thanks, we will turn right to taxiway G, SIA544.",
+      "referenceTextZh": "收到，谢谢，我们将右转至 G 滑行道，SIA544。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/243.mp3"
+    },
+    {
+      "id": "atc-scenario-0101-card-main-1744",
+      "taskTitle": "SIA 544-3",
+      "audioText": "C: Singapore 544, go beyond Airbus 320 on your left, then turn right.\nB: Read back theinstruction. Then tell the controller an aircraft is approaching to you from the opposite direction",
+      "audioTextZh": "C：Singapore 544，越过你左侧的 Airbus 320，然后右转。\nB：复诵指令。然后告诉管制员有一架飞机从相反方向接近你。",
+      "referenceText": "Go beyond A320 on the left, then turn right, an aircraft is approaching to us from the opposite direction, SIA544.",
+      "referenceTextZh": "越过左侧 A320，然后右转，有一架飞机从相反方向接近我们，SIA544。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/244.mp3"
+    },
+    {
+      "id": "atc-scenario-0101-card-main-1745",
+      "taskTitle": "SIA 544-4",
+      "audioText": "C: Singapore 544, disregard the traffic, Boeing 737, he is on his way to the parking stand after you.",
+      "audioTextZh": "C：Singapore 544，不用管那架飞机，Boeing 737，他在你之后前往停机位。",
+      "referenceText": "Roger, SIA544.",
+      "referenceTextZh": "收到，SIA544。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/245.mp3"
+    },
+    {
+      "id": "atc-scenario-0101-card-main-1746",
+      "taskTitle": "SIA 544-5",
+      "audioText": "B: Call Ground and ask if the Ground controller may ask the Airbus 320 to pull in to further left, you want to pass it due your slot time will be expired at 30.",
+      "audioTextZh": "B：呼叫地面，询问地面管制员是否可以让 Airbus 320 再向左靠一些，你想通过，因为你的时隙将在 30 过期。",
+      "referenceText": "Ground, SIA544, please ask the A320 to pull in to the left so that we can pass it, our slot time will expire at 30.",
+      "referenceTextZh": "地面，SIA544，请让 A320 向左靠一些，以便我们通过，我们的时隙将在 30 过期。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/246.mp3"
+    },
+    {
+      "id": "atc-scenario-0101-card-main-1747",
+      "taskTitle": "SIA 544-6",
+      "audioText": "C: Singapore 544, your airplane has been impounded by the airport authorities.\nB: You ask the reason.",
+      "audioTextZh": "C：Singapore 544，你的飞机已被机场当局扣押。\nB：你询问原因。",
+      "referenceText": "Ground, SIA544, why has our airplane been impounded?",
+      "referenceTextZh": "地面，SIA544，为什么我们的飞机被扣押？",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/247.mp3"
+    },
+    {
+      "id": "atc-scenario-0101-card-main-1748",
+      "taskTitle": "SIA 544-7",
+      "audioText": "C: I don’t know the exact reason. The only thing I know is that you have not been cleared by Customs.\nB: You tell the controller that you have the clearance sheet together with a waybill.",
+      "audioTextZh": "C：我不知道确切原因。我只知道你们还没有获得海关放行。\nB：你告诉管制员你有放行单和运单。",
+      "referenceText": "Ground, SIA544, we have a clearance sheet together with a waybill right here with us.",
+      "referenceTextZh": "地面，SIA544，我们这里有放行单和运单。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/248.mp3"
+    },
+    {
+      "id": "atc-scenario-0101-card-main-1749",
+      "taskTitle": "SIA 544-8",
+      "audioText": "C: It is not an ATC matter. I am only passing the message.\nB: You ask the controller to help you find the reason.",
+      "audioTextZh": "C：这不是 ATC 事务。我只是转达信息。\nB：你请管制员帮你查明原因。",
+      "referenceText": "Ground, SIA544, will you please do us a favor by asking them the reason?",
+      "referenceTextZh": "地面，SIA544，能否请你帮我们询问他们原因？",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/249.mp3"
+    },
+    {
+      "id": "atc-scenario-0101-card-main-1750",
+      "taskTitle": "SIA 544-9",
+      "audioText": "C: Singapore 544, I have just received the airport authority information that there is a suspected person, perhaps a criminal with a bomb aboard your aircraft.\nB: Ask the control what you should do.",
+      "audioTextZh": "C：Singapore 544，我刚收到机场当局信息，你的飞机上有一名可疑人员，可能是一名带有炸弹的罪犯。\nB：询问管制你应该怎么做。",
+      "referenceText": "Ground, SIA544, what should we do?",
+      "referenceTextZh": "地面，SIA544，我们应该怎么做？",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/250.mp3"
+    },
+    {
+      "id": "atc-scenario-0101-card-main-1751",
+      "taskTitle": "SIA 544-10",
+      "audioText": "C: Singapore 544, tell the passengers that there is a technical problem. You have to return to the remote apron for repairing.\nB: You make a captain announcement.",
+      "audioTextZh": "C: Singapore 544，告诉旅客飞机有技术问题。你们必须返回远机位维修。\nB: 你进行机长广播。",
+      "referenceText": "Ladies and gentlemen, your captain speaking, I am sorry to tell you we have to return to the terminal due to the technical problem of the aircraft. Please take your seats and fasten your seatbelts. Thank you for your cooperation.",
+      "referenceTextZh": "女士们，先生们，我是机长。很抱歉通知大家，由于飞机技术问题，我们必须返回航站楼。请各位就座并系好安全带。感谢您的配合。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/251.mp3"
+    },
+    {
+      "id": "atc-scenario-0101-card-main-1752",
+      "taskTitle": "SIA 544-11",
+      "audioText": "C: Singapore 544, enter the runway and expedite taxiing on the runway. Exit the runway via Echo 4.",
+      "audioTextZh": "C: Singapore 544，进入跑道并在跑道上加速滑行。经 Echo 4 脱离跑道。",
+      "referenceText": "Enter the runway and expedite taxiing on the runway. Exit the runway via E4, SIA544.",
+      "referenceTextZh": "进入跑道并在跑道上加速滑行。经 E4 脱离跑道，SIA544。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/252.mp3"
+    },
+    {
+      "id": "atc-scenario-0101-card-main-1753",
+      "taskTitle": "SIA 544-12",
+      "audioText": "B: You contact Ground and report you have vacated the runway 36 right via Echo 4.",
+      "audioTextZh": "B: 联系地面，报告你们已通过 Echo 4 脱离跑道 36 right。",
+      "referenceText": "Ground, SIA544, we have vacated the runway 36 right via E4.",
+      "referenceTextZh": "地面，SIA544，我们已通过 E4 脱离跑道 36 right。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/253.mp3"
+    },
+    {
+      "id": "atc-scenario-0101-card-main-1754",
+      "taskTitle": "SIA 544-13",
+      "audioText": "C: Singapore 544, take taxiway Alpha 8, direct to apron No.5.",
+      "audioTextZh": "C: Singapore 544，走滑行道 Alpha 8，直达 5 号机坪。",
+      "referenceText": "Taxiway A8, direct to apron No.5, SIA544.",
+      "referenceTextZh": "滑行道 A8，直达 5 号机坪，SIA544。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/254.mp3"
+    },
+    {
+      "id": "atc-scenario-0101-card-main-1755",
+      "taskTitle": "SIA 544-14",
+      "audioText": "B: Report you have reached Apron No.5.",
+      "audioTextZh": "B: 报告你们已到达 5 号机坪。",
+      "referenceText": "Ground, SIA544, we have reached Apron No.5.",
+      "referenceTextZh": "地面，SIA544，我们已到达 5 号机坪。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/255.mp3"
+    },
+    {
+      "id": "atc-scenario-0101-card-main-1756",
+      "taskTitle": "SIA 544-15",
+      "audioText": "C: Singapore 544, wait there. Don’t let the passengers get off the aircraft. The policemen will be on the scene in a minute.",
+      "audioTextZh": "C: Singapore 544，在那里等待。不要让旅客下机。警察一分钟后到现场。",
+      "referenceText": "Roger, SIA544.",
+      "referenceTextZh": "收到，SIA544。",
+      "audio": "/question-bank-assets/audio/radiotelephony/main/256.mp3"
+    }
+  ]
+}
