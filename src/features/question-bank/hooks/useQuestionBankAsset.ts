@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { resolveQuestionBankAsset, resolveRemoteQuestionBankAsset } from '../platform/resource-service';
 
 export function useQuestionBankAsset(path?: string) {
   const [state, setState] = useState<{ uri?: string; resolving: boolean }>({ uri: resolveQuestionBankAsset(path), resolving: Boolean(path) });
+  const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
     let active = true;
@@ -13,7 +14,7 @@ export function useQuestionBankAsset(path?: string) {
       setState({ uri: undefined, resolving: false });
       return () => { active = false; };
     }
-    void resolveRemoteQuestionBankAsset(path)
+    void resolveRemoteQuestionBankAsset(path, { forceRefresh: attempt > 0 })
       .then((remote) => {
         if (active) setState({ uri: remote ?? local, resolving: false });
       })
@@ -21,7 +22,8 @@ export function useQuestionBankAsset(path?: string) {
         if (active) setState({ uri: local, resolving: false });
       });
     return () => { active = false; };
-  }, [path]);
+  }, [attempt, path]);
 
-  return state;
+  const retry = useCallback(() => setAttempt((current) => current + 1), []);
+  return { ...state, retry };
 }

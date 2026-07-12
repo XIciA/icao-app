@@ -5,6 +5,7 @@ import { ActivityIndicator, AppState, LayoutChangeEvent, Pressable, StyleSheet, 
 
 import { AppText } from '@/components/ui';
 import { colors, fonts, radii, spacing } from '@/theme';
+import { useAudioLoadTimeout } from '../hooks/useAudioLoadTimeout';
 
 const speeds = [0.75, 1, 1.25, 1.5];
 
@@ -21,6 +22,7 @@ export function StudyAudioPlayer({
   autoPlayRequest = 0,
   tagColors = [],
   resolving = false,
+  onRetry,
 }: {
   uri?: string;
   label: string;
@@ -29,6 +31,7 @@ export function StudyAudioPlayer({
   autoPlayRequest?: number;
   tagColors?: string[];
   resolving?: boolean;
+  onRetry?: () => void;
 }) {
   const player = useAudioPlayer(null, { updateInterval: 250, preferredForwardBufferDuration: 10 });
   const status = useAudioPlayerStatus(player);
@@ -37,6 +40,12 @@ export function StudyAudioPlayer({
   const pendingAutoPlayRef = useRef(false);
   const appStateRef = useRef<'active' | 'background' | 'inactive' | 'unknown' | 'extension'>('active');
   const [trackWidth, setTrackWidth] = useState(0);
+  const loadTimeout = useAudioLoadTimeout({
+    sourceKey: playbackKey,
+    uri,
+    isLoaded: status.isLoaded,
+    hasError: status.playbackState === 'error',
+  });
 
   useEffect(() => {
     void setAudioModeAsync({ playsInSilentMode: true, shouldPlayInBackground: false });
@@ -69,6 +78,12 @@ export function StudyAudioPlayer({
     return () => subscription.remove();
   }, [player]);
 
+  useEffect(() => {
+    if (!loadTimeout.timedOut) return;
+    pendingAutoPlayRef.current = false;
+    player.pause();
+  }, [loadTimeout.timedOut, player]);
+
   function toggle() {
     if (!uri) return;
     if (status.playing) player.pause();
@@ -87,6 +102,8 @@ export function StudyAudioPlayer({
 
   function retry() {
     if (!uri) return;
+    loadTimeout.retry();
+    onRetry?.();
     pendingAutoPlayRef.current = true;
     player.replace(uri);
     player.setPlaybackRate(speeds[speedIndex]);
@@ -125,12 +142,12 @@ export function StudyAudioPlayer({
             <AppText variant="caption">OPI 题目按既定方向使用生成语音，本阶段不捆绑本地问题音频。</AppText>
           </View>
         </View>
-      ) : !uri || status.playbackState === 'error' ? (
+      ) : !uri || loadTimeout.timedOut || status.playbackState === 'error' ? (
         <View style={styles.error}>
           <AlertCircle color={colors.destructive} size={18} />
           <View style={styles.errorCopy}>
-            <AppText variant="button">音频加载失败</AppText>
-            <AppText variant="caption">原文与题目仍可继续学习。</AppText>
+            <AppText variant="button">{loadTimeout.timedOut ? '音频加载超时' : '音频加载失败'}</AppText>
+            <AppText variant="caption">{loadTimeout.timedOut ? '连接可能已中断；重试会重新获取音频地址。' : '原文与题目仍可继续学习。'}</AppText>
           </View>
           {uri ? (
             <Pressable accessibilityLabel="重试音频" onPress={retry} style={styles.retry}>
@@ -143,11 +160,11 @@ export function StudyAudioPlayer({
         <View style={styles.playerRow}>
           <Pressable
             accessibilityLabel={status.playing ? '暂停' : '播放'}
-            disabled={!status.isLoaded && status.isBuffering}
+            disabled={!status.isLoaded}
             onPress={toggle}
             style={({ pressed }) => [styles.play, pressed ? styles.pressed : null]}
           >
-            {!status.isLoaded && status.isBuffering ? (
+            {!status.isLoaded ? (
               <ActivityIndicator color={colors.primaryForeground} size="small" />
             ) : status.playing ? (
               <Pause color={colors.primaryForeground} fill={colors.primaryForeground} size={18} />

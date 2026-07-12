@@ -1,4 +1,4 @@
-import { render, waitFor } from '@testing-library/react-native';
+import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { AppState } from 'react-native';
 
 import { StudyAudioPlayer } from '../components/StudyAudioPlayer';
@@ -41,6 +41,7 @@ describe('StudyAudioPlayer', () => {
   });
 
   afterEach(() => {
+    jest.useRealTimers();
     jest.restoreAllMocks();
   });
 
@@ -78,5 +79,28 @@ describe('StudyAudioPlayer', () => {
     );
 
     expect(mockPlayer.play).not.toHaveBeenCalled();
+  });
+
+  it('turns endless buffering into a retryable timeout state', async () => {
+    jest.useFakeTimers();
+    const onRetry = jest.fn();
+    const screen = await render(
+      <StudyAudioPlayer label="Sentence3" onRetry={onRetry} playbackKey="card-3" uri="https://example.test/card-3.mp3" />,
+    );
+
+    await screen.rerender(
+      <StudyAudioPlayer label="Sentence3" onRetry={onRetry} playbackKey="card-3" uri="https://example.test/card-3.mp3" />,
+    );
+    expect(jest.getTimerCount()).toBeGreaterThan(0);
+    await act(async () => {
+      jest.runOnlyPendingTimers();
+      await Promise.resolve();
+    });
+    expect(screen.getByText('音频加载超时')).toBeTruthy();
+    expect(screen.getByText('连接可能已中断；重试会重新获取音频地址。')).toBeTruthy();
+
+    fireEvent.press(screen.getByLabelText('重试音频'));
+    expect(onRetry).toHaveBeenCalledTimes(1);
+    expect(mockPlayer.replace).toHaveBeenCalledTimes(2);
   });
 });

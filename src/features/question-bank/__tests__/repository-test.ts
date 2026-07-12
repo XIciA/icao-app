@@ -7,16 +7,20 @@ jest.mock('expo-sqlite/kv-store', () => ({
 }));
 
 import { embeddedQuestionBankRepository, getEmbeddedQuestionBankIds, loadQuestionBank } from '../data/repository';
+import { resolveRemoteQuestionBankAsset } from '../platform/resource-service';
 import audioIndex from '../data/audio-index.json';
 
 describe('embeddedQuestionBankRepository', () => {
   const originalApiUrl = process.env.EXPO_PUBLIC_ICAO_API_URL;
+  const originalSupabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL;
 
   afterEach(() => {
     mockStorageValues.clear();
     jest.restoreAllMocks();
     if (originalApiUrl === undefined) delete process.env.EXPO_PUBLIC_ICAO_API_URL;
     else process.env.EXPO_PUBLIC_ICAO_API_URL = originalApiUrl;
+    if (originalSupabaseUrl === undefined) delete process.env.EXPO_PUBLIC_SUPABASE_URL;
+    else process.env.EXPO_PUBLIC_SUPABASE_URL = originalSupabaseUrl;
   });
 
   it('keeps the canonical five-bank registry intact', () => {
@@ -89,5 +93,25 @@ describe('embeddedQuestionBankRepository', () => {
 
     const result = await loadQuestionBank('opi');
     expect(result).toMatchObject({ source: 'embedded', warning: 'question_bank_remote_unavailable', dataset: { id: 'opi' } });
+  });
+
+  it('rewrites a cached signed URL to the current tunnel origin', async () => {
+    const path = '/question-bank-assets/audio/listening/main/001.mp3';
+    process.env.EXPO_PUBLIC_ICAO_API_URL = 'http://192.168.1.2:3101';
+    process.env.EXPO_PUBLIC_SUPABASE_URL = 'http://192.168.1.2:8000';
+    mockStorageValues.set(`icao.content.v1.resource.${encodeURIComponent(path)}`, JSON.stringify({
+      publicPath: path,
+      objectKey: 'v1/audio/listening/main/001.mp3',
+      checksum: 'test',
+      sizeBytes: 1,
+      mimeType: 'audio/mpeg',
+      url: 'http://127.0.0.1:8000/storage/v1/object/sign/question-bank-assets/v1/audio/listening/main/001.mp3?token=signed',
+      expiresIn: 900,
+      expiresAt: Date.now() + 600_000,
+    }));
+
+    await expect(resolveRemoteQuestionBankAsset(path)).resolves.toBe(
+      'http://192.168.1.2:8000/storage/v1/object/sign/question-bank-assets/v1/audio/listening/main/001.mp3?token=signed',
+    );
   });
 });

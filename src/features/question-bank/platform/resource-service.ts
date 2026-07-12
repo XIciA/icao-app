@@ -51,14 +51,14 @@ export function clientVisibleResourceUrl(url: string) {
   }
 }
 
-export async function resolveRemoteQuestionBankAsset(path: string) {
+export async function resolveRemoteQuestionBankAsset(path: string, { forceRefresh = false }: { forceRefresh?: boolean } = {}) {
   if (!getApiBaseUrl()) return undefined;
   const key = resourceCacheKey(path);
   const cachedValue = await Storage.getItem(key);
-  if (cachedValue) {
+  if (cachedValue && !forceRefresh) {
     try {
       const cached = JSON.parse(cachedValue) as CachedResource;
-      if (cached.publicPath === path && cached.expiresAt > Date.now() + 30_000) return cached.url;
+      if (cached.publicPath === path && cached.expiresAt > Date.now() + 30_000) return clientVisibleResourceUrl(cached.url);
     } catch {
       // Ignore invalid cache and fetch a fresh signed URL.
     }
