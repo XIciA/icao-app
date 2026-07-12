@@ -150,7 +150,7 @@ export function useStudySession({
   }, [behavior.workbenchTabs, collapseAnswers, revealCurrent, revealed]);
 
   const setToolMode = useCallback((mode?: StudyToolMode) => {
-    setToolModeState((current) => current === mode ? undefined : mode);
+    setToolModeState(mode);
     if (mode === 'highlight' && !revealed) revealCurrent(false);
   }, [revealCurrent, revealed]);
 

@@ -1,10 +1,10 @@
 import { BadRequestException, HttpException, Injectable } from '@nestjs/common';
 import { createHash } from 'node:crypto';
-import { and, eq, gt, sql } from 'drizzle-orm';
+import { and, eq, gt } from 'drizzle-orm';
 import type { AiConsent, GrammarReviewRequest, GrammarReviewResult, OpiAnalysisResult, PolishRequest, PolishResult, WordLookupRequest, WordLookupResult } from '@icao/contracts';
 
 import { DatabaseService } from '../database/database.service';
-import { aiConsents, aiQuotaBuckets, aiUsageLogs, aiWordCache } from '../database/schema';
+import { aiConsents, aiUsageLogs, aiWordCache } from '../database/schema';
 import { AiAssetsService } from './ai-assets.service';
 import { AiProviderService, type ProviderMeta } from './ai-provider.service';
 import { grammarResultSchema, polishResultSchema, wordLookupResultSchema } from './ai.schemas';
@@ -20,60 +20,35 @@ type UsageCapability = 'word_lookup' | 'transcribe' | 'grammar_review' | 'polish
 
 @Injectable()
 export class AiService {
-  private readonly recentRequests = new Map<string, number[]>();
-  private readonly activeAsrUsers = new Set<string>();
+  private readonly guestWordCache = new Map<string, WordLookupResult>();
   constructor(
     private readonly database: DatabaseService,
     private readonly assets: AiAssetsService,
     private readonly provider: AiProviderService,
   ) {}
 
-  async acceptConsent(userId: string, policyVersion: string): Promise<AiConsent> {
+  async acceptConsent(userId: string | undefined, policyVersion: string): Promise<AiConsent> {
     const now = new Date();
-    await this.database.db.insert(aiConsents).values({ userId, policyVersion, acceptedAt: now, updatedAt: now })
-      .onConflictDoUpdate({ target: aiConsents.userId, set: { policyVersion, acceptedAt: now, updatedAt: now } });
+    if (userId) {
+      await this.database.db.insert(aiConsents).values({ userId, policyVersion, acceptedAt: now, updatedAt: now })
+        .onConflictDoUpdate({ target: aiConsents.userId, set: { policyVersion, acceptedAt: now, updatedAt: now } });
+    }
     return { policyVersion, acceptedAt: now.toISOString() };
   }
 
-  async revokeConsent(userId: string) {
-    await this.database.db.delete(aiConsents).where(eq(aiConsents.userId, userId));
+  async revokeConsent(userId: string | undefined) {
+    if (userId) await this.database.db.delete(aiConsents).where(eq(aiConsents.userId, userId));
     return { revoked: true as const };
   }
 
-  private async requireConsent(userId: string) {
+  private async requireConsent(userId: string | undefined) {
+    if (!userId) return;
     const [consent] = await this.database.db.select().from(aiConsents).where(eq(aiConsents.userId, userId)).limit(1);
     if (!consent) throw new HttpException('ai_consent_required', 428);
   }
 
-  private async checkQuota(userId: string, units: number) {
-    const bucketDate = new Date().toISOString().slice(0, 10);
-    const [bucket] = await this.database.db.select().from(aiQuotaBuckets).where(and(eq(aiQuotaBuckets.userId, userId), eq(aiQuotaBuckets.bucketDate, bucketDate))).limit(1);
-    if ((bucket?.usedUnits ?? 0) + units > this.provider.dailyQuotaUnits()) throw new HttpException('ai_quota_limited', 429);
-  }
-
-  private checkRate(userId: string) {
-    const now = Date.now();
-    const recent = (this.recentRequests.get(userId) ?? []).filter((value) => now - value < 60_000);
-    if (recent.length >= 10) throw new HttpException('ai_rate_limited', 429);
-    recent.push(now);
-    this.recentRequests.set(userId, recent);
-  }
-
-  private async consumeQuota(userId: string, units: number) {
-    const bucketDate = new Date().toISOString().slice(0, 10);
-    await this.database.db.transaction(async (tx) => {
-      const [bucket] = await tx.insert(aiQuotaBuckets).values({ userId, bucketDate, usedUnits: units })
-        .onConflictDoUpdate({
-          target: [aiQuotaBuckets.userId, aiQuotaBuckets.bucketDate],
-          set: { usedUnits: sql`${aiQuotaBuckets.usedUnits} + ${units}`, updatedAt: new Date() },
-        }).returning({ usedUnits: aiQuotaBuckets.usedUnits });
-      const limit = this.provider.dailyQuotaUnits();
-      if (!bucket || bucket.usedUnits > limit) throw new HttpException('ai_quota_limited', 429);
-    });
-  }
-
   private async logUsage(input: {
-    userId: string; requestId: string; capability: UsageCapability; status: string; model: string;
+    userId?: string; requestId: string; capability: UsageCapability; status: string; model: string;
     promptVersion: string; latencyMs: number; quotaUnits: number; meta?: ProviderMeta;
   }) {
     await this.database.db.insert(aiUsageLogs).values({
@@ -93,15 +68,12 @@ export class AiService {
   }
 
   private async run<T>(input: {
-    userId: string; requestId: string; capability: UsageCapability; model: string; promptVersion: string; units: number;
+    userId?: string; requestId: string; capability: UsageCapability; model: string; promptVersion: string; units: number;
     action: () => Promise<{ data: T; meta: ProviderMeta }>;
   }): Promise<T> {
     const started = Date.now();
     try {
-      this.checkRate(input.userId);
-      await this.checkQuota(input.userId, input.units);
       const result = await input.action();
-      await this.consumeQuota(input.userId, input.units);
       await this.logUsage({ ...input, status: 'success', latencyMs: Date.now() - started, quotaUnits: input.units, meta: result.meta });
       return result.data;
     } catch (error) {
@@ -110,14 +82,19 @@ export class AiService {
     }
   }
 
-  async wordLookup(userId: string, requestId: string, input: WordLookupRequest, signal?: AbortSignal): Promise<WordLookupResult> {
+  async wordLookup(userId: string | undefined, requestId: string, input: WordLookupRequest, signal?: AbortSignal): Promise<WordLookupResult> {
     await this.requireConsent(userId);
     const normalized = JSON.stringify({ module: input.module, word: input.word.toLocaleLowerCase(), sentence: input.sentence.replace(/\s+/g, ' ').trim(), promptVersion: PROMPTS.word, model: this.provider.textModel() });
     const queryHash = createHash('sha256').update(normalized).digest('hex');
-    const [cached] = await this.database.db.select().from(aiWordCache).where(and(
-      eq(aiWordCache.userId, userId), eq(aiWordCache.queryHash, queryHash), gt(aiWordCache.expiresAt, new Date()),
-    )).limit(1);
-    if (cached) return { ...(cached.result as Omit<WordLookupResult, 'cached'>), cached: true };
+    if (userId) {
+      const [cached] = await this.database.db.select().from(aiWordCache).where(and(
+        eq(aiWordCache.userId, userId), eq(aiWordCache.queryHash, queryHash), gt(aiWordCache.expiresAt, new Date()),
+      )).limit(1);
+      if (cached) return { ...(cached.result as Omit<WordLookupResult, 'cached'>), cached: true };
+    } else {
+      const cached = this.guestWordCache.get(queryHash);
+      if (cached) return { ...cached, cached: true };
+    }
 
     const rules = await this.assets.promptRules('word', [input.word, input.sentence]);
     const result = await this.run({
@@ -129,31 +106,26 @@ export class AiService {
       },
     });
     const response = { word: input.word, ...result, promptVersion: PROMPTS.word, cached: false } satisfies WordLookupResult;
-    await this.database.db.insert(aiWordCache).values({
-      userId, queryHash, result: { ...response, cached: undefined }, expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
-    }).onConflictDoUpdate({ target: [aiWordCache.userId, aiWordCache.queryHash], set: { result: { ...response, cached: undefined }, expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000) } });
+    if (userId) {
+      await this.database.db.insert(aiWordCache).values({
+        userId, queryHash, result: { ...response, cached: undefined }, expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+      }).onConflictDoUpdate({ target: [aiWordCache.userId, aiWordCache.queryHash], set: { result: { ...response, cached: undefined }, expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000) } });
+    } else {
+      this.guestWordCache.set(queryHash, response);
+    }
     return response;
   }
 
-  async transcribe(userId: string, requestId: string, audio: Buffer, mimeType: string, signal?: AbortSignal) {
+  async transcribe(userId: string | undefined, requestId: string, audio: Buffer, mimeType: string, signal?: AbortSignal) {
     await this.requireConsent(userId);
     if (!audio.length || audio.length > 8 * 1024 * 1024) throw new BadRequestException('invalid_audio');
-    if (this.activeAsrUsers.has(userId)) {
-      await this.logUsage({ userId, requestId, capability: 'transcribe', status: 'limited', model: this.provider.asrModel(), promptVersion: PROMPTS.transcribe, latencyMs: 0, quotaUnits: 0 });
-      throw new HttpException('ai_asr_concurrency_limited', 429);
-    }
-    this.activeAsrUsers.add(userId);
-    try {
-      return await this.run({
-        userId, requestId, capability: 'transcribe', model: this.provider.asrModel(), promptVersion: PROMPTS.transcribe, units: 3,
-        action: () => this.provider.transcribe(audio, mimeType, signal),
-      });
-    } finally {
-      this.activeAsrUsers.delete(userId);
-    }
+    return this.run({
+      userId, requestId, capability: 'transcribe', model: this.provider.asrModel(), promptVersion: PROMPTS.transcribe, units: 3,
+      action: () => this.provider.transcribe(audio, mimeType, signal),
+    });
   }
 
-  private async grammar(userId: string, requestId: string, input: GrammarReviewRequest, signal?: AbortSignal): Promise<GrammarReviewResult> {
+  private async grammar(userId: string | undefined, requestId: string, input: GrammarReviewRequest, signal?: AbortSignal): Promise<GrammarReviewResult> {
     const rules = await this.assets.promptRules('grammar', [input.transcript, input.questionText]);
     const result = await this.run({
       userId, requestId, capability: 'grammar_review', model: this.provider.textModel(), promptVersion: PROMPTS.grammar, units: 2,
@@ -165,12 +137,12 @@ export class AiService {
     return { ...result, promptVersion: PROMPTS.grammar };
   }
 
-  async grammarReview(userId: string, requestId: string, input: GrammarReviewRequest, signal?: AbortSignal) {
+  async grammarReview(userId: string | undefined, requestId: string, input: GrammarReviewRequest, signal?: AbortSignal) {
     await this.requireConsent(userId);
     return this.grammar(userId, requestId, input, signal);
   }
 
-  async opiAnalysis(userId: string, requestId: string, input: GrammarReviewRequest, signal?: AbortSignal): Promise<OpiAnalysisResult> {
+  async opiAnalysis(userId: string | undefined, requestId: string, input: GrammarReviewRequest, signal?: AbortSignal): Promise<OpiAnalysisResult> {
     await this.requireConsent(userId);
     if (input.module !== 'opi') throw new BadRequestException('invalid_ai_module');
     const grammar = await this.grammar(userId, `${requestId}:grammar`, input, signal);
@@ -185,7 +157,7 @@ export class AiService {
     return { grammar, ...polished, polishPromptVersion: PROMPTS.polish };
   }
 
-  async polish(userId: string, requestId: string, input: PolishRequest, signal?: AbortSignal): Promise<PolishResult> {
+  async polish(userId: string | undefined, requestId: string, input: PolishRequest, signal?: AbortSignal): Promise<PolishResult> {
     await this.requireConsent(userId);
     const rules = await this.assets.promptRules('polish', [input.correctedText ?? input.transcript, input.questionText]);
     const result = await this.run({

@@ -95,7 +95,7 @@ export const aiConsents = pgTable('ai_consents', {
 
 export const aiUsageLogs = pgTable('ai_usage_logs', {
   id: uuid('id').defaultRandom().primaryKey(),
-  userId: uuid('user_id').notNull(),
+  userId: uuid('user_id'),
   requestId: text('request_id').notNull(),
   capability: text('capability').notNull(),
   status: text('status').notNull(),

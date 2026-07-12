@@ -13,7 +13,6 @@ const schema = z.object({
   DASHSCOPE_BASE_URL: z.string().url().default('https://dashscope.aliyuncs.com/compatible-mode/v1'),
   AI_TEXT_MODEL: z.string().min(1).default('qwen-turbo'),
   AI_ASR_MODEL: z.string().min(1).default('qwen3-asr-flash'),
-  AI_DAILY_QUOTA_UNITS: z.coerce.number().int().min(1).default(100),
 });
 
 export type ApiConfig = {
@@ -29,7 +28,6 @@ export type ApiConfig = {
   dashscopeBaseUrl: string;
   aiTextModel: string;
   aiAsrModel: string;
-  aiDailyQuotaUnits: number;
 };
 
 export const API_CONFIG = Symbol('API_CONFIG');
@@ -54,6 +52,5 @@ export function loadConfig(environment: NodeJS.ProcessEnv = process.env): ApiCon
     dashscopeBaseUrl: parsed.data.DASHSCOPE_BASE_URL,
     aiTextModel: parsed.data.AI_TEXT_MODEL,
     aiAsrModel: parsed.data.AI_ASR_MODEL,
-    aiDailyQuotaUnits: parsed.data.AI_DAILY_QUOTA_UNITS,
   };
 }

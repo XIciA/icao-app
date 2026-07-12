@@ -29,6 +29,13 @@
       "when": 1783836466229,
       "tag": "0003_handy_venom",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1783846246008,
+      "tag": "0004_workable_the_hand",
+      "breakpoints": true
     }
   ]
 }

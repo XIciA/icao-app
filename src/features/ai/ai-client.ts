@@ -42,12 +42,13 @@ export async function transcribeRecording(uri: string, signal?: AbortSignal) {
   const baseUrl = getApiBaseUrl();
   if (!baseUrl) throw new Error('api_not_configured');
   const token = await apiAccessToken();
-  if (!token) throw new Error('missing_bearer_token');
   const file = new File(uri);
   const form = new FormData();
   form.append('audio', file);
+  const headers: Record<string, string> = { accept: 'application/json' };
+  if (token) headers.authorization = `Bearer ${token}`;
   const response = await expoFetch(`${baseUrl}/v1/ai/transcribe`, {
-    method: 'POST', headers: { accept: 'application/json', authorization: `Bearer ${token}` }, body: form, signal,
+    method: 'POST', headers, body: form, signal,
   });
   const payload = await response.json() as { data?: TranscribeResult; error?: { code?: string } };
   if (!response.ok || !payload.data) throw new Error(payload.error?.code ?? `api_http_${response.status}`);

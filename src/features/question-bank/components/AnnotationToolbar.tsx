@@ -80,16 +80,16 @@ export function AnnotationToolbar({
     const next = !dictionaryMode;
     setTagsOpen(false);
     closeCreator();
-    onDictionaryModeChange(next);
     if (next) onHighlightModeChange(false);
+    onDictionaryModeChange(next);
   }
 
   function toggleHighlightMode() {
     const next = !highlightMode;
     setTagsOpen(false);
     closeCreator();
-    onHighlightModeChange(next);
     if (next) onDictionaryModeChange(false);
+    onHighlightModeChange(next);
   }
 
   function toggleTags() {

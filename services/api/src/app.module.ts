@@ -3,6 +3,7 @@ import { Module } from '@nestjs/common';
 import { AUTH_VERIFIER } from './auth/auth.types';
 import { MeController } from './auth/me.controller';
 import { RequireAuthGuard } from './auth/require-auth.guard';
+import { OptionalAuthGuard } from './auth/optional-auth.guard';
 import { SupabaseAuthVerifier } from './auth/supabase-auth.verifier';
 import { API_CONFIG, loadConfig } from './config';
 import { DatabaseService } from './database/database.service';
@@ -26,6 +27,7 @@ import { AiService } from './ai/ai.service';
     SupabaseAuthVerifier,
     { provide: AUTH_VERIFIER, useExisting: SupabaseAuthVerifier },
     RequireAuthGuard,
+    OptionalAuthGuard,
     QuestionBankService,
     ResourceService,
     SyncService,

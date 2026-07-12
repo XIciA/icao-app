@@ -1,4 +1,5 @@
-import { fireEvent, render } from '@testing-library/react-native';
+import { fireEvent, render, waitFor } from '@testing-library/react-native';
+import { useState } from 'react';
 
 import { DEFAULT_ANNOTATION_HIGHLIGHTS, DEFAULT_ANNOTATION_TAGS } from '../annotations/types';
 import { AnnotationToolbar } from '../components/AnnotationToolbar';
@@ -11,6 +12,30 @@ jest.mock('lucide-react-native', () => {
 });
 
 describe('annotation study controls', () => {
+  function StatefulToolbar() {
+    const [mode, setMode] = useState<'dictionary' | 'highlight'>();
+    return (
+      <AnnotationToolbar
+        activeHighlightId="green"
+        dictionaryMode={mode === 'dictionary'}
+        highlightDefinitions={DEFAULT_ANNOTATION_HIGHLIGHTS}
+        highlightMode={mode === 'highlight'}
+        onCreateHighlight={jest.fn()}
+        onCreateTag={jest.fn()}
+        onDictionaryModeChange={(value) => setMode(value ? 'dictionary' : undefined)}
+        onHighlightChange={jest.fn()}
+        onHighlightModeChange={(value) => setMode(value ? 'highlight' : undefined)}
+        onTagToggle={jest.fn()}
+        resetToken="card-stateful"
+        selectedTags={[]}
+        showDictionary
+        showHighlights
+        showTags={false}
+        tagDefinitions={DEFAULT_ANNOTATION_TAGS}
+      />
+    );
+  }
+
   it('returns word and sentence context for a highlight action', async () => {
     const onHighlight = jest.fn();
     const screen = await render(
@@ -55,5 +80,15 @@ describe('annotation study controls', () => {
     fireEvent.press(screen.getByLabelText('打开标签面板'));
     expect(onHighlightModeChange).toHaveBeenCalledWith(false);
     expect(screen.getByLabelText('新建标注定义')).toBeTruthy();
+  });
+
+  it('keeps the newly selected dictionary or highlight mode active', async () => {
+    const screen = await render(<StatefulToolbar />);
+
+    fireEvent.press(screen.getByLabelText('开启查词模式'));
+    await waitFor(() => expect(screen.getByLabelText('关闭查词模式')).toBeTruthy());
+
+    fireEvent.press(screen.getByLabelText('开启高亮模式'));
+    await waitFor(() => expect(screen.getByLabelText('关闭高亮模式')).toBeTruthy());
   });
 });

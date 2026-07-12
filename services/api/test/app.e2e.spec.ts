@@ -73,6 +73,23 @@ describe('API foundation', () => {
     await app.close();
   });
 
+  it('allows guest AI requests while rejecting an invalid supplied token', async () => {
+    const app = await testApp();
+    const payload = { accepted: true, policyVersion: 'ai-learning-privacy-v1' };
+    const guest = await app.inject({ method: 'POST', url: '/v1/ai/consent', payload });
+    const invalid = await app.inject({
+      method: 'POST',
+      url: '/v1/ai/consent',
+      headers: { authorization: 'Bearer invalid' },
+      payload,
+    });
+    expect(guest.statusCode).toBe(201);
+    expect(guest.json().data.policyVersion).toBe('ai-learning-privacy-v1');
+    expect(invalid.statusCode).toBe(401);
+    expect(invalid.json().error.code).toBe('invalid_access_token');
+    await app.close();
+  });
+
   it('protects sync routes and rejects malformed sync input before database access', async () => {
     const app = await testApp();
     const missing = await app.inject({ method: 'GET', url: '/v1/sync/pull?cursor=0' });

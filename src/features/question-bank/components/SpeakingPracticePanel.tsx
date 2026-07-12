@@ -9,6 +9,7 @@ import {
   useAudioRecorder,
   useAudioRecorderState,
 } from 'expo-audio';
+import { File } from 'expo-file-system';
 import { Mic, Pause, Play, RotateCcw, ShieldAlert, Square } from 'lucide-react-native';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, Pressable, StyleSheet, View } from 'react-native';
@@ -38,6 +39,52 @@ const VOICE_RECORDING_OPTIONS = {
   },
 };
 
+const MIN_RECORDING_DURATION_MS = 400;
+const MIN_RECORDING_BYTES = 10_000;
+const PCM_BYTES_PER_MILLISECOND = 32;
+const FILE_SETTLE_INTERVAL_MS = 100;
+const PLAYBACK_LOAD_TIMEOUT_MS = 4_000;
+const AUDIO_ROUTE_SETTLE_MS = 180;
+
+type RecordingPhase = 'idle' | 'preparing' | 'recording' | 'finalizing' | 'validating' | 'ready' | 'error';
+
+function wait(milliseconds: number) {
+  return new Promise<void>((resolve) => setTimeout(resolve, milliseconds));
+}
+
+function deleteLocalRecording(uri?: string) {
+  if (!uri) return;
+  try {
+    const file = new File(uri);
+    if (file.exists) file.delete();
+  } catch {
+    // Cache cleanup is best-effort; a native player may still be releasing the file.
+  }
+}
+
+async function settledRecordingSize(uri: string) {
+  let previous = -1;
+  let stableReads = 0;
+  let current = 0;
+  for (let attempt = 0; attempt < 8; attempt += 1) {
+    await wait(FILE_SETTLE_INTERVAL_MS);
+    const file = new File(uri);
+    if (!file.exists) return 0;
+    current = file.size;
+    if (current > 0 && current === previous) stableReads += 1;
+    else stableReads = 0;
+    if (stableReads >= 2) return current;
+    previous = current;
+  }
+  return current;
+}
+
+function minimumExpectedBytes(reportedDurationMillis: number) {
+  // iOS PCM is about 32 bytes/ms. Requiring only 20% leaves room for platform
+  // encoders while still rejecting 4 KB headers and 0.09-second priming files.
+  return Math.max(MIN_RECORDING_BYTES, Math.round(reportedDurationMillis * PCM_BYTES_PER_MILLISECOND * 0.2));
+}
+
 function formatDuration(milliseconds: number) {
   const seconds = Math.max(0, Math.floor(milliseconds / 1000));
   return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
@@ -56,35 +103,98 @@ export function SpeakingPracticePanel({
 }) {
   const recorder = useAudioRecorder(VOICE_RECORDING_OPTIONS);
   const recorderState = useAudioRecorderState(recorder, 200);
-  // Recreate the native player from the finished file instead of replacing a
-  // null source. This avoids a race on iOS between recorder teardown and a
-  // player that is asked to play before its local file has loaded.
-  const playback = useAudioPlayer(recording?.uri ?? null, { updateInterval: 200 });
+  const [candidate, setCandidate] = useState<LocalRecordingState>();
+  const playbackUri = candidate?.uri ?? recording?.uri;
+  // The source is supplied exactly once. useAudioPlayer recreates and releases
+  // the native player when this URI changes; calling replace() as well races it.
+  const playback = useAudioPlayer(playbackUri ?? null, { updateInterval: 100 });
   const playbackStatus = useAudioPlayerStatus(playback);
+  const playbackStatusRef = useRef(playbackStatus);
   const [permissionDenied, setPermissionDenied] = useState(false);
   const [error, setError] = useState<string>();
+  const [phase, setPhase] = useState<RecordingPhase>(recording ? 'ready' : 'idle');
   const startPromise = useRef<Promise<void> | null>(null);
+  const stopPromise = useRef<Promise<void> | null>(null);
   const startGeneration = useRef(0);
+  const pressHeld = useRef(false);
+  const resolvedCandidate = useRef<string | undefined>(undefined);
+  const phaseRef = useRef<RecordingPhase>(phase);
+
+  playbackStatusRef.current = playbackStatus;
+  phaseRef.current = phase;
 
   const restorePlaybackMode = useCallback(async () => {
     await setAudioModeAsync({ allowsRecording: false, interruptionMode: 'doNotMix', playsInSilentMode: true, shouldPlayInBackground: false, shouldRouteThroughEarpiece: false });
   }, []);
 
   const cancelRecording = useCallback(async () => {
+    pressHeld.current = false;
     startGeneration.current += 1;
+    const interrupted = recorder.isRecording || ['preparing', 'recording', 'finalizing', 'validating'].includes(phaseRef.current);
     try {
       if (recorder.isRecording) await recorder.stop();
     } catch {
       // The recorder may already have been interrupted by the OS.
     } finally {
       await restorePlaybackMode().catch(() => undefined);
+      if (interrupted) {
+        deleteLocalRecording(recorder.uri ?? undefined);
+        setCandidate(undefined);
+        setPhase('idle');
+      }
     }
   }, [recorder, restorePlaybackMode]);
 
   useEffect(() => {
+    if (candidate) return;
+    if (recording) setPhase('ready');
+    else setPhase((current) => current === 'ready' ? 'idle' : current);
+  }, [candidate, recording]);
+
+  const rejectRecording = useCallback((uri: string, message: string) => {
+    resolvedCandidate.current = uri;
     playback.pause();
-    if (recording?.uri) playback.replace(recording.uri);
-  }, [playback, recording?.uri]);
+    setCandidate(undefined);
+    onClear();
+    setPhase('error');
+    setError(message);
+    setTimeout(() => deleteLocalRecording(uri), 0);
+  }, [onClear, playback]);
+
+  useEffect(() => {
+    if (!candidate || resolvedCandidate.current === candidate.uri) return;
+    if (playbackStatus.playbackState === 'failed') {
+      rejectRecording(candidate.uri, '录音文件无法读取，请重新录制。');
+      return;
+    }
+    if (!playbackStatus.isLoaded) return;
+    const actualDurationMillis = Math.round(playbackStatus.duration * 1000);
+    if (actualDurationMillis < MIN_RECORDING_DURATION_MS) {
+      rejectRecording(candidate.uri, '没有采集到有效录音内容，请重新录制。');
+      return;
+    }
+    resolvedCandidate.current = candidate.uri;
+    onRecorded({ uri: candidate.uri, durationMillis: actualDurationMillis });
+    setCandidate(undefined);
+    setError(undefined);
+    setPhase('ready');
+  }, [candidate, onRecorded, playbackStatus.duration, playbackStatus.isLoaded, playbackStatus.playbackState, rejectRecording]);
+
+  useEffect(() => {
+    if (!playbackUri) return;
+    const timeout = setTimeout(() => {
+      if (playbackStatusRef.current.isLoaded) return;
+      if (candidate) rejectRecording(playbackUri, '录音文件加载超时，请重新录制。');
+      else {
+        playback.pause();
+        onClear();
+        setPhase('error');
+        setError('本地录音已失效，请重新录制。');
+        setTimeout(() => deleteLocalRecording(playbackUri), 0);
+      }
+    }, PLAYBACK_LOAD_TIMEOUT_MS);
+    return () => clearTimeout(timeout);
+  }, [candidate, onClear, playback, playbackUri, rejectRecording]);
 
   useEffect(() => {
     const subscription = AppState.addEventListener('change', (state) => {
@@ -99,33 +209,33 @@ export function SpeakingPracticePanel({
   async function startRecording() {
     const generation = startGeneration.current + 1;
     startGeneration.current = generation;
+    setPhase('preparing');
     setError(undefined);
     const permission = await requestRecordingPermissionsAsync();
-    if (generation !== startGeneration.current) return;
+    if (generation !== startGeneration.current || !pressHeld.current) {
+      setPhase(recording ? 'ready' : 'idle');
+      return;
+    }
     if (!permission.granted) {
       setPermissionDenied(true);
+      setPhase('error');
       return;
     }
     setPermissionDenied(false);
     try {
       playback.pause();
+      const previousUri = recording?.uri;
       await setAudioModeAsync({ allowsRecording: true, playsInSilentMode: true, shouldPlayInBackground: false, shouldRouteThroughEarpiece: false });
-      if (generation !== startGeneration.current) {
+      await wait(AUDIO_ROUTE_SETTLE_MS);
+      if (generation !== startGeneration.current || !pressHeld.current) {
         await restorePlaybackMode().catch(() => undefined);
+        setPhase('idle');
         return;
       }
       await recorder.prepareToRecordAsync();
-      if (generation !== startGeneration.current) {
+      if (generation !== startGeneration.current || !pressHeld.current) {
         await restorePlaybackMode().catch(() => undefined);
-        return;
-      }
-      const availableInputs = recorder.getAvailableInputs();
-      const builtInMicrophone = availableInputs.find((input) =>
-        /built.?in|microphonebuiltin/i.test(`${input.name} ${input.type}`),
-      );
-      if (builtInMicrophone) recorder.setInput(builtInMicrophone.uid);
-      if (generation !== startGeneration.current) {
-        await restorePlaybackMode().catch(() => undefined);
+        setPhase('idle');
         return;
       }
       recorder.record();
@@ -133,36 +243,54 @@ export function SpeakingPracticePanel({
         throw new Error('Native audio recorder did not start');
       }
       onClear();
+      setCandidate(undefined);
+      if (previousUri) setTimeout(() => deleteLocalRecording(previousUri), 0);
+      setPhase('recording');
     } catch {
       await restorePlaybackMode().catch(() => undefined);
+      deleteLocalRecording(recorder.uri ?? undefined);
+      setPhase('error');
       setError('录音启动失败，请稍后重试。');
     }
   }
 
-  async function stopRecording() {
-    try {
-      // The hook update can lag one render behind the native recorder on a
-      // physical iPhone. Capture the recorder's own clock before stopping,
-      // then reconcile it with its final native status.
-      const durationBeforeStop = Math.max(
-        recorderState.durationMillis,
-        Math.round(recorder.currentTime * 1000),
-      );
-      await recorder.stop();
-      const finalStatus = recorder.getStatus();
-      const duration = Math.max(durationBeforeStop, finalStatus.durationMillis);
-      const savedUri = finalStatus.url ?? recorder.uri;
-      if (savedUri && duration >= 250) {
-        onRecorded({ uri: savedUri, durationMillis: duration });
-      } else {
+  function stopRecording() {
+    if (stopPromise.current) return stopPromise.current;
+    const operation = (async () => {
+      setPhase('finalizing');
+      let savedUri: string | undefined;
+      try {
+        // The hook update can lag one render behind the native recorder on a
+        // physical iPhone. Capture the recorder's own clock before stopping,
+        // then reconcile it with its final native status.
+        const durationBeforeStop = Math.max(
+          recorderState.durationMillis,
+          Math.round(recorder.currentTime * 1000),
+        );
+        await recorder.stop();
+        const finalStatus = recorder.getStatus();
+        const duration = Math.max(durationBeforeStop, finalStatus.durationMillis);
+        savedUri = finalStatus.url ?? recorder.uri ?? undefined;
+        await restorePlaybackMode().catch(() => undefined);
+        if (!savedUri || duration < MIN_RECORDING_DURATION_MS) throw new Error('recording_too_short');
+
+        setPhase('validating');
+        const fileSize = await settledRecordingSize(savedUri);
+        if (fileSize < minimumExpectedBytes(duration)) throw new Error('recording_file_incomplete');
+
+        resolvedCandidate.current = undefined;
+        setCandidate({ uri: savedUri, durationMillis: duration });
+      } catch {
+        await restorePlaybackMode().catch(() => undefined);
+        if (savedUri) deleteLocalRecording(savedUri);
         onClear();
-        setError('没有采集到录音内容，请确认麦克风未被占用后重新录制。');
+        setCandidate(undefined);
+        setPhase('error');
+        setError('没有生成有效录音文件，请重新录制。');
       }
-    } catch {
-      setError('录音保存失败，请重新录制。');
-    } finally {
-      await restorePlaybackMode().catch(() => undefined);
-    }
+    })().finally(() => { stopPromise.current = null; });
+    stopPromise.current = operation;
+    return operation;
   }
 
   async function togglePlayback() {
@@ -193,9 +321,25 @@ export function SpeakingPracticePanel({
 
   function resetRecording() {
     playback.pause();
+    const previousUri = recording?.uri;
     onClear();
+    setCandidate(undefined);
+    setPhase('idle');
     setError(undefined);
+    if (previousUri) setTimeout(() => deleteLocalRecording(previousUri), 0);
   }
+
+  const isRecording = phase === 'recording';
+  const isBusy = phase === 'preparing' || phase === 'finalizing' || phase === 'validating';
+  const recordLabel = phase === 'preparing'
+    ? '正在准备录音…'
+    : phase === 'finalizing'
+      ? '正在保存录音…'
+      : phase === 'validating'
+        ? '正在校验录音…'
+        : isRecording
+          ? '松开结束'
+          : '按住说话';
 
   if (permissionDenied) {
     return (
@@ -213,14 +357,22 @@ export function SpeakingPracticePanel({
   return (
     <View style={styles.root}>
       <Pressable
-        accessibilityLabel={recorderState.isRecording ? '松开结束录音' : mode === 'retell' ? '按住开始复述' : '按住说话'}
-        onPressIn={() => { startPromise.current = startRecording(); }}
-        onPressOut={() => { void (async () => { await startPromise.current; if (recorder.isRecording) await stopRecording(); })(); }}
-        style={[styles.recordButton, recorderState.isRecording ? styles.recording : null]}
+        accessibilityLabel={isRecording ? '松开结束录音' : mode === 'retell' ? '按住开始复述' : '按住说话'}
+        disabled={isBusy}
+        onPressIn={() => {
+          pressHeld.current = true;
+          startPromise.current = startRecording();
+        }}
+        onPressOut={() => {
+          pressHeld.current = false;
+          void (async () => { await startPromise.current; if (recorder.isRecording) await stopRecording(); })();
+        }}
+        style={[styles.recordButton, isRecording ? styles.recording : null, isBusy ? styles.recordButtonBusy : null]}
       >
-        {recorderState.isRecording ? <Square color={colors.primaryForeground} fill={colors.primaryForeground} size={17} /> : <Mic color={colors.primaryForeground} size={18} />}
-        <AppText color={colors.primaryForeground} variant="button">{recorderState.isRecording ? '松开结束' : '按住说话'}</AppText>
+        {isRecording ? <Square color={colors.primaryForeground} fill={colors.primaryForeground} size={17} /> : <Mic color={colors.primaryForeground} size={18} />}
+        <AppText color={colors.primaryForeground} variant="button">{recordLabel}</AppText>
       </Pressable>
+      <AppText color={colors.mutedForeground} variant="micro">松开结束录音后将自动提交 AI 转写；原始音频不会进入学习记录或长期保存在服务器。</AppText>
 
       {recording ? <View style={styles.console}>
         <View style={styles.status}><AppText variant="caption">录音已保存在本机临时目录</AppText><AppText style={styles.duration} variant="micro">{formatDuration(recording.durationMillis)}</AppText></View>
@@ -238,6 +390,7 @@ export function SpeakingPracticePanel({
         </Pressable>
       ) : null}
       {recording && !playbackStatus.isLoaded ? <AppText variant="caption">正在准备本地录音回放…</AppText> : null}
+      {phase === 'validating' ? <AppText variant="caption">正在校验录音文件与实际时长…</AppText> : null}
       {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
     </View>
   );
@@ -247,6 +400,7 @@ const styles = StyleSheet.create({
   root: { gap: spacing[2] },
   console: { alignItems: 'center', flexDirection: 'row', gap: spacing[3] },
   recordButton: { alignItems: 'center', backgroundColor: colors.primary, borderRadius: radii.full, flexDirection: 'row', gap: spacing[2], height: 48, justifyContent: 'center', width: '100%' },
+  recordButtonBusy: { opacity: 0.7 },
   recording: { backgroundColor: colors.destructive },
   status: { flex: 1 },
   duration: { fontFamily: fonts.monoRegular, marginTop: spacing[1] },

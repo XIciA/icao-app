@@ -74,7 +74,6 @@ export class AiProviderService {
 
   textModel() { return this.config.aiTextModel; }
   asrModel() { return this.config.aiAsrModel; }
-  dailyQuotaUnits() { return this.config.aiDailyQuotaUnits; }
 }
 
 function normalizeTranscript(value: string) {

@@ -37,9 +37,12 @@ function Harness({ store }: { store: LearningStore }) {
       <Text>{`visited:${session.visitedIndexes.size}`}</Text>
       <Text>{`completed:${session.completedCardIds.size}`}</Text>
       <Text>{`revealed:${session.revealed}`}</Text>
+      <Text>{`tool:${session.toolMode ?? 'none'}`}</Text>
       <Pressable accessibilityLabel="next" onPress={() => session.goTo(1)} />
       <Pressable accessibilityLabel="previous" onPress={() => session.goTo(0)} />
       <Pressable accessibilityLabel="answer" onPress={session.toggleAnswers} />
+      <Pressable accessibilityLabel="dictionary" onPress={() => session.setToolMode('dictionary')} />
+      <Pressable accessibilityLabel="clear-tool" onPress={() => session.setToolMode(undefined)} />
     </View>
   );
 }
@@ -62,5 +65,14 @@ describe('useStudySession', () => {
     await fireEvent.press(screen.getByLabelText('previous'));
     await waitFor(() => expect(screen.getByText('completed:2')).toBeTruthy());
     expect(screen.getByText('revealed:true')).toBeTruthy();
+  });
+
+  it('sets and clears a tool mode without toggling a different callback back off', async () => {
+    const screen = await render(<Harness store={createStore()} />);
+    await waitFor(() => expect(screen.getByText('tool:none')).toBeTruthy());
+    fireEvent.press(screen.getByLabelText('dictionary'));
+    await waitFor(() => expect(screen.getByText('tool:dictionary')).toBeTruthy());
+    fireEvent.press(screen.getByLabelText('clear-tool'));
+    await waitFor(() => expect(screen.getByText('tool:none')).toBeTruthy());
   });
 });

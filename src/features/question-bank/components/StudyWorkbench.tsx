@@ -1,6 +1,6 @@
 import type { GrammarReviewResult, OpiAnalysisResult } from '@icao/contracts';
 import { Check, Eraser, Mic, NotebookPen, Save, Sparkles } from 'lucide-react-native';
-import { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { PanResponder, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
 import { acceptAiConsent, grammarReview, hasAiConsent, polishExpression, transcribeRecording } from '@/features/ai/ai-client';
@@ -31,6 +31,7 @@ type Props = {
   answerText: string;
   questionText: string;
   reviewKind: StudyReviewKind;
+  recordingKey?: string;
   recordingUri?: string;
   referenceContent: ReactNode;
   noteText: string;
@@ -43,7 +44,7 @@ type Props = {
 };
 
 export function StudyWorkbench(props: Props) {
-  const { activeTab, answerText, bankId, bankTitle, cardKey, categoryTitle, noteText, onAnswerChange, onFeedback, onNoteChange, onRetrySave, onTabChange, questionText, recordingUri, referenceContent, referenceLabel, reviewKind, saveError, tabs, topicTitle } = props;
+  const { activeTab, answerText, bankId, bankTitle, cardKey, categoryTitle, noteText, onAnswerChange, onFeedback, onNoteChange, onRetrySave, onTabChange, questionText, recordingKey, recordingUri, referenceContent, referenceLabel, reviewKind, saveError, tabs, topicTitle } = props;
   const [rawTranscript, setRawTranscript] = useState<string>();
   const [grammar, setGrammar] = useState<GrammarReviewResult>();
   const [opi, setOpi] = useState<OpiAnalysisResult>();
@@ -53,6 +54,7 @@ export function StudyWorkbench(props: Props) {
   const [saved, setSaved] = useState(false);
   const [consented, setConsented] = useState(false);
   const activeRequest = useRef<AbortController | undefined>(undefined);
+  const lastAutoTranscribeKey = useRef<string | undefined>(undefined);
   const activeIndex = Math.max(0, tabs.indexOf(activeTab));
   const panResponder = useMemo(() => PanResponder.create({
     onMoveShouldSetPanResponder: (_, gesture) => Math.abs(gesture.dx) > 18 && Math.abs(gesture.dx) > Math.abs(gesture.dy),
@@ -69,13 +71,13 @@ export function StudyWorkbench(props: Props) {
   useEffect(() => { void hasAiConsent().then(setConsented); }, []);
   useEffect(() => { setSaved(false); }, [answerText, grammar, opi]);
 
-  async function ensureConsent() {
+  const ensureConsent = useCallback(async () => {
     if (consented) return;
     await acceptAiConsent();
     setConsented(true);
-  }
+  }, [consented]);
 
-  async function transcribe() {
+  const transcribe = useCallback(async () => {
     if (!recordingUri) return;
     setBusy('transcribe'); setError(undefined);
     const controller = new AbortController(); activeRequest.current = controller;
@@ -85,9 +87,15 @@ export function StudyWorkbench(props: Props) {
       setRawTranscript(result.rawTranscript);
       onAnswerChange(result.transcript);
       setGrammar(undefined); setOpi(undefined); setMatchMessage(undefined);
-    } catch { setError(controller.signal.aborted ? '已取消转写，录音和当前文本仍保留。' : '语音转写失败，请检查网络、登录状态或重新录音后重试。'); }
+    } catch { setError(controller.signal.aborted ? '已取消转写，录音和当前文本仍保留。' : '语音转写失败，请检查网络或重新录音后重试。'); }
     finally { if (activeRequest.current === controller) activeRequest.current = undefined; setBusy(undefined); }
-  }
+  }, [ensureConsent, onAnswerChange, recordingUri]);
+
+  useEffect(() => {
+    if (!recordingKey || !recordingUri || lastAutoTranscribeKey.current === recordingKey) return;
+    lastAutoTranscribeKey.current = recordingKey;
+    void transcribe();
+  }, [recordingKey, recordingUri, transcribe]);
 
   async function reviewAnswer() {
     if (!answerText.trim()) return;

@@ -27,7 +27,7 @@ function assert(value, message) {
 async function api(path, accessToken, init = {}) {
   const headers = new Headers(init.headers);
   headers.set('accept', 'application/json');
-  headers.set('authorization', `Bearer ${accessToken}`);
+  if (accessToken) headers.set('authorization', `Bearer ${accessToken}`);
   if (init.body && !(init.body instanceof FormData)) headers.set('content-type', 'application/json');
   const response = await fetch(`${apiBase}${path}`, { ...init, headers });
   const body = await response.json();
@@ -36,6 +36,24 @@ async function api(path, accessToken, init = {}) {
 }
 
 try {
+  const guestAudio = await readFile(audioFile);
+  await api('/v1/ai/consent', undefined, { method: 'POST', body: JSON.stringify({ accepted: true, policyVersion: 'ai-learning-privacy-v1' }) });
+  const guestLookupInput = { module: 'opi', questionId: 'guest-opi', word: 'fuel', sentence: 'Can you tell me the fuel quantity your type of aircraft can carry?' };
+  const guestLookup = await api('/v1/ai/word-lookup', undefined, { method: 'POST', body: JSON.stringify(guestLookupInput) });
+  assert(guestLookup.definition && guestLookup.sentenceMeaning, 'guest_word_lookup_invalid');
+  const guestCached = await api('/v1/ai/word-lookup', undefined, { method: 'POST', body: JSON.stringify(guestLookupInput) });
+  assert(guestCached.cached === true, 'guest_word_lookup_cache_miss');
+  const guestForm = new FormData();
+  guestForm.append('audio', new File([guestAudio], 'guest-sample.mp3', { type: 'audio/mpeg' }));
+  const guestTranscript = await api('/v1/ai/transcribe', undefined, { method: 'POST', body: guestForm });
+  assert(guestTranscript.rawTranscript && guestTranscript.transcript, 'guest_transcribe_invalid');
+  const guestGrammar = await api('/v1/ai/grammar-review', undefined, { method: 'POST', body: JSON.stringify({ module: 'opi', questionId: 'guest-grammar', questionText: 'Describe your aircraft fuel capacity.', transcript: 'My aircraft carry much fuel.' }) });
+  assert(guestGrammar.correctedText && Array.isArray(guestGrammar.issues), 'guest_grammar_invalid');
+  const guestOpi = await api('/v1/ai/opi-analysis', undefined, { method: 'POST', body: JSON.stringify({ module: 'opi', questionId: 'guest-analysis', questionText: 'What would you do in severe turbulence?', transcript: 'I slow down and tell ATC.' }) });
+  assert(guestOpi.grammar?.correctedText && guestOpi.polishedText, 'guest_opi_invalid');
+  const guestUsage = await database`select capability, status from ai_usage_logs where user_id is null order by created_at desc limit 5`;
+  assert(guestUsage.length === 5 && guestUsage.every((row) => row.status === 'success'), 'guest_usage_logs_invalid');
+
   const signup = await auth.auth.signUp({ email, password });
   if (signup.error) throw signup.error;
   assert(signup.data.session && signup.data.user?.id, 'signup_failed');
@@ -71,9 +89,9 @@ try {
   assert(usage.every((row) => row.status === 'success'), 'usage_log_status');
   assert(new Set(usage.map((row) => row.capability)).size === 4, 'usage_log_capabilities');
   const quota = await database`select used_units from ai_quota_buckets where user_id = ${userId}`;
-  assert(quota[0]?.used_units === 12, 'quota_total_or_cached_lookup_charge');
+  assert(quota.length === 0, 'usage_limit_should_be_disabled');
 
-  console.log(JSON.stringify({ wordLookup: 'real-ok', cacheWithoutCharge: 'ok', transcribe: 'real-ok', grammar: 'real-ok', standalonePolish: 'real-ok', opiGrammarAndPolish: 'real-ok', usageLogs: usage.length, quotaUnits: quota[0].used_units }));
+  console.log(JSON.stringify({ guest: 'word-transcribe-grammar-opi-real-ok', guestUsageLogs: guestUsage.length, authenticated: 'all-real-ok', cacheWithoutCharge: 'ok', usageLogs: usage.length, usageLimits: 'disabled' }));
 } finally {
   if (userId) {
     const deletion = await admin.auth.admin.deleteUser(userId);
