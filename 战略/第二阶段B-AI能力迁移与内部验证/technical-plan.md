@@ -1,6 +1,6 @@
 # 第二阶段 B 技术方案：AI 能力迁移与内部验证
 
-状态：待确认
+状态：已确认
 
 更新日期：2026-07-12
 
@@ -120,4 +120,3 @@ React Native 学习卡
 - Expo SDK 55 FileSystem：https://docs.expo.dev/versions/v55.0.0/sdk/filesystem/
 - 阿里云百炼 ASR：https://help.aliyun.com/zh/model-studio/asr-model/
 - 阿里云百炼结构化输出：https://help.aliyun.com/zh/model-studio/qwen-structured-output
-

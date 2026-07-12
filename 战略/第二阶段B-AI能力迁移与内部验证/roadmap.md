@@ -1,12 +1,12 @@
 # 第二阶段 B 路线图：AI 能力迁移与内部验证
 
-状态：待确认
+状态：已完成
 
 更新日期：2026-07-12
 
 ## 1. 路线图定位
 
-本路线图承接已确认的 `requirements.md`、待确认的 `technical-plan.md` 和已完成的 `technical-audit.md`。路线图确认后，按 `docs/bigandsmall-workflows/orchestration-loop.md` 进入小流程。
+本路线图承接已确认的 `requirements.md`、`technical-plan.md` 和已完成的 `technical-audit.md`，已按 `docs/bigandsmall-workflows/orchestration-loop.md` 完成 B0 至 B8。
 
 所有阶段保持 Web/设计仓库只读，不覆盖第二阶段 A 的认证、题库、资源和同步成果，不开发评测/模型调试工具。
 
@@ -156,4 +156,3 @@
 - 用户确认 `technical-plan.md` 和本 `roadmap.md`。
 - 当前工作区的文档改动归属清楚，不存在与 AI 写入范围冲突的未提交改动。
 - 确认后从 B0 自动执行；除密钥失效/账号未开通、成本或数据风险扩大、需要改变已确认需求外，不重复请求人工确认。
-

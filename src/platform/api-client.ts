@@ -18,12 +18,16 @@ export async function apiFetch(path: string, init: RequestInit = {}) {
   headers.set('accept', 'application/json');
   if (token) headers.set('authorization', `Bearer ${token}`);
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 15_000);
+  const timeout = setTimeout(() => controller.abort(), 45_000);
   try {
     return await fetch(`${baseUrl}${path}`, { ...init, headers, signal: init.signal ?? controller.signal });
   } finally {
     clearTimeout(timeout);
   }
+}
+
+export async function apiAccessToken() {
+  return accessTokenProvider?.();
 }
 
 export async function apiRequest<T>(path: string, init: RequestInit = {}) {

@@ -1,4 +1,5 @@
 import { usePreventRemove } from '@react-navigation/native';
+import type { WordLookupResult } from '@icao/contracts';
 import { useRouter } from 'expo-router';
 import { Check, ChevronLeft, ChevronRight, Flag, Grid3X3, Languages, WifiOff } from 'lucide-react-native';
 import { useEffect, useMemo, useState } from 'react';
@@ -8,6 +9,7 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import { CenteredState } from '@/components/states/CenteredState';
 import { AppText, BottomSheet, Button } from '@/components/ui';
 import { colors, fonts, radii, spacing } from '@/theme';
+import { acceptAiConsent, hasAiConsent, wordLookup } from '@/features/ai/ai-client';
 
 import { useQuestionAnnotations } from '../annotations/use-question-annotations';
 import type { AnnotationTextBlockId } from '../annotations/types';
@@ -37,6 +39,10 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
   const [connectivity, setConnectivity] = useState<Connectivity>('unknown');
   const [activeHighlightId, setActiveHighlightId] = useState('green');
   const [lookup, setLookup] = useState<LookupRequest>();
+  const [lookupResult, setLookupResult] = useState<WordLookupResult>();
+  const [lookupBusy, setLookupBusy] = useState(false);
+  const [lookupError, setLookupError] = useState<string>();
+  const [aiConsented, setAiConsented] = useState(false);
   const [finishError, setFinishError] = useState<string>();
   const card = session.card;
   const audioAsset = useQuestionBankAsset(card?.audio);
@@ -51,6 +57,34 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
     const unsubscribe = subscribeConnectivity(setConnectivity);
     return () => { active = false; unsubscribe(); };
   }, []);
+
+  useEffect(() => { void hasAiConsent().then(setAiConsented); }, []);
+
+  useEffect(() => {
+    setLookupResult(undefined);
+    setLookupError(undefined);
+  }, [lookup?.sentence, lookup?.word]);
+
+  async function runLookup() {
+    if (!lookup || !card) return;
+    setLookupBusy(true);
+    setLookupError(undefined);
+    try {
+      if (!aiConsented) {
+        await acceptAiConsent();
+        setAiConsented(true);
+      }
+      const module = dataset.id === 'sentences900' ? 'sentence900'
+        : dataset.id === 'radiotelephony' ? 'atc'
+          : dataset.id === 'storytelling' ? 'story'
+            : dataset.id;
+      setLookupResult(await wordLookup({ module, questionId: card.id, word: lookup.word, sentence: lookup.sentence }));
+    } catch {
+      setLookupError('AI 查词暂时失败，请检查网络或登录状态后重试。');
+    } finally {
+      setLookupBusy(false);
+    }
+  }
 
   const selectedTagColors = useMemo(() => (annotations.entry?.tagIds ?? []).flatMap((id) => {
     const definition = annotations.tagDefinitions.find((item) => item.id === id);
@@ -122,7 +156,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
       </View>
 
       <View style={styles.body}>
-        <StudyCardStack compact={session.behavior.taskKind === 'choices'} onCollapse={session.collapseAnswers} onReveal={() => session.revealCurrent(true)} primary={<View style={styles.primaryContent}><StudyAudioPlayer autoPlayRequest={session.playRequestToken} generatedAudio={session.behavior.generatedAudio && !card.audio} label={card.taskTitle} onRetry={audioAsset.retry} playbackKey={card.id} resolving={audioAsset.resolving} tagColors={selectedTagColors} uri={audioAsset.uri} /><View style={styles.divider} /><StudyTaskRenderer behavior={session.behavior} card={card} onChoose={session.chooseOption} onClearRecording={session.clearRecording} onRecorded={session.recordAnswer} recording={session.recording} revealed={session.revealed} selectedChoiceIndex={session.cardState?.selectedChoiceIndex} /></View>} revealed={session.revealed} transcript={transcript} workbench={<StudyWorkbench activeTab={session.activeTab} answerText={session.answerText} cardKey={card.id} noteText={entry?.note ?? ''} onAnswerChange={session.updateAnswer} onFeedback={session.markFeedback} onNoteChange={(note) => { void annotations.saveNote(note); }} onRetrySave={() => { void annotations.retrySave(); }} onTabChange={session.setActiveTab} questionText={card.audioText} referenceContent={referenceContent} referenceLabel={session.behavior.referenceLabel} reviewKind={session.behavior.reviewKind} saveError={annotations.saveErrorMessage} tabs={session.behavior.workbenchTabs} />} />
+        <StudyCardStack compact={session.behavior.taskKind === 'choices'} onCollapse={session.collapseAnswers} onReveal={() => session.revealCurrent(true)} primary={<View style={styles.primaryContent}><StudyAudioPlayer autoPlayRequest={session.playRequestToken} generatedAudio={session.behavior.generatedAudio && !card.audio} label={card.taskTitle} onRetry={audioAsset.retry} playbackKey={card.id} resolving={audioAsset.resolving} tagColors={selectedTagColors} uri={audioAsset.uri} /><View style={styles.divider} /><StudyTaskRenderer behavior={session.behavior} card={card} onChoose={session.chooseOption} onClearRecording={session.clearRecording} onRecorded={session.recordAnswer} recording={session.recording} revealed={session.revealed} selectedChoiceIndex={session.cardState?.selectedChoiceIndex} /></View>} revealed={session.revealed} transcript={transcript} workbench={<StudyWorkbench activeTab={session.activeTab} answerText={session.answerText} bankId={dataset.id} bankTitle={dataset.title} cardKey={card.id} categoryTitle={category.name} noteText={entry?.note ?? ''} onAnswerChange={session.updateAnswer} onFeedback={session.markFeedback} onNoteChange={(note) => { void annotations.saveNote(note); }} onRetrySave={() => { void annotations.retrySave(); }} onTabChange={session.setActiveTab} questionText={card.audioText} recordingUri={session.recording?.uri} referenceContent={referenceContent} referenceLabel={session.behavior.referenceLabel} reviewKind={session.behavior.reviewKind} saveError={annotations.saveErrorMessage} tabs={session.behavior.workbenchTabs} topicTitle={topic.name} />} />
       </View>
 
       <View style={[styles.footer, { paddingBottom: Math.max(insets.bottom, spacing[2]) }]}>
@@ -133,11 +167,11 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
 
       <AnswerCardSheet current={session.currentIndex} onClose={() => setAnswerCardVisible(false)} onSelect={(index) => { session.goTo(index); setAnswerCardVisible(false); }} total={topic.cards.length} visible={answerCardVisible} visited={session.visitedIndexes} />
       <BottomSheet accessibilityLabel="结束本次学习" onClose={() => setExitVisible(false)} visible={exitVisible}><View style={styles.sheetContent}><AppText style={styles.center} variant="sectionTitle">结束本次学习？</AppText><AppText style={styles.center}>结束后将生成学习报告，你的标注和笔记会继续保留。</AppText><View style={styles.exitProgress}><AppText variant="caption">当前完成</AppText><AppText style={styles.counter} variant="button">{session.completedCardIds.size} / {topic.cards.length}</AppText></View>{finishError ? <AppText color={colors.destructive} style={styles.center} variant="caption">{finishError}</AppText> : null}<Button onPress={() => setExitVisible(false)} size="lg">继续学习</Button><Button onPress={() => void finish('abort')} size="lg" variant="outline">结束并查看报告</Button></View></BottomSheet>
-      <BottomSheet accessibilityLabel="上下文查词" onClose={() => setLookup(undefined)} visible={Boolean(lookup)}><View style={styles.sheetContent}><AppText color={colors.primary} variant="micro">AI 查词 · 功能待接入</AppText><AppText variant="pageTitle">{lookup?.word}</AppText><AppText variant="caption">{dataset.title} · {card.taskTitle} · {lookup?.blockLabel}</AppText><View style={styles.lookupSentence}><AppText>{lookup?.sentence}</AppText></View><AppText>上下文已完整保留；本阶段不调用真实AI释义服务。</AppText><Button onPress={() => setLookup(undefined)} size="lg">返回学习</Button></View></BottomSheet>
+      <BottomSheet accessibilityLabel="上下文查词" onClose={() => setLookup(undefined)} visible={Boolean(lookup)}><View style={styles.sheetContent}><AppText color={colors.primary} variant="micro">AI 查词</AppText><AppText variant="pageTitle">{lookup?.word}</AppText><AppText variant="caption">{dataset.title} · {card.taskTitle} · {lookup?.blockLabel}</AppText><View style={styles.lookupSentence}><AppText>{lookup?.sentence}</AppText></View>{lookupResult ? <><View style={styles.lookupResult}><AppText variant="button">释义</AppText><AppText>{lookupResult.definition}</AppText></View><View style={styles.lookupResult}><AppText variant="button">本句理解</AppText><AppText>{lookupResult.sentenceMeaning}</AppText></View><AppText color={colors.mutedForeground} variant="micro">{lookupResult.cached ? '已复用相同查询，不重复扣额度' : 'AI 生成内容，请结合原句学习'}</AppText></> : <><AppText variant="caption">查询会发送所选词与当前句子，不上传录音，也不会进入个人学习记录。</AppText>{lookupError ? <AppText color={colors.destructive} variant="caption">{lookupError}</AppText> : null}<Button disabled={lookupBusy} onPress={() => void runLookup()} size="lg">{lookupBusy ? '正在查询…' : aiConsented ? '查询释义' : '同意 AI 处理并查询'}</Button></>}<Button onPress={() => setLookup(undefined)} size="lg" variant="outline">返回学习</Button></View></BottomSheet>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  root: { backgroundColor: colors.background, flex: 1 }, state: { alignItems: 'center', backgroundColor: colors.background, flex: 1, justifyContent: 'center' }, topBar: { alignItems: 'center', flexDirection: 'row', minHeight: 46, paddingHorizontal: spacing[3] }, circleButton: { alignItems: 'center', borderRadius: radii.full, height: 38, justifyContent: 'center', width: 38 }, topSpacer: { flex: 1 }, counterButton: { alignItems: 'center', backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 34, paddingHorizontal: spacing[3] }, counter: { fontFamily: fonts.monoRegular }, offline: { alignItems: 'center', backgroundColor: colors.secondary, flexDirection: 'row', gap: spacing[2], marginHorizontal: spacing[5], padding: spacing[2] }, offlineCopy: { flex: 1 }, tools: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[2], paddingHorizontal: spacing[5], paddingVertical: spacing[2] }, answerTool: { alignItems: 'center', backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 30, paddingHorizontal: spacing[3] }, toolActive: { backgroundColor: colors.primary06, borderColor: colors.primary }, body: { flex: 1, minHeight: 0, paddingHorizontal: spacing[5], paddingTop: spacing[1] }, primaryContent: { gap: spacing[2.5] }, divider: { backgroundColor: colors.border, height: StyleSheet.hairlineWidth }, cardScroll: { gap: spacing[2], paddingBottom: spacing[2] }, sectionTitle: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] }, translation: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth, color: colors.mutedForeground, marginTop: spacing[2], paddingTop: spacing[2] }, referenceContent: { gap: spacing[2] }, footer: { alignItems: 'center', flexDirection: 'row', gap: spacing[2], justifyContent: 'space-between', paddingHorizontal: spacing[5], paddingTop: spacing[2] }, sheetContent: { gap: spacing[3], paddingBottom: spacing[3] }, center: { textAlign: 'center' }, exitProgress: { alignItems: 'center', backgroundColor: colors.secondary, borderRadius: radii.xl, flexDirection: 'row', justifyContent: 'space-between', padding: spacing[4] }, lookupSentence: { backgroundColor: colors.secondary, borderRadius: radii.xl, padding: spacing[3] },
+  root: { backgroundColor: colors.background, flex: 1 }, state: { alignItems: 'center', backgroundColor: colors.background, flex: 1, justifyContent: 'center' }, topBar: { alignItems: 'center', flexDirection: 'row', minHeight: 46, paddingHorizontal: spacing[3] }, circleButton: { alignItems: 'center', borderRadius: radii.full, height: 38, justifyContent: 'center', width: 38 }, topSpacer: { flex: 1 }, counterButton: { alignItems: 'center', backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 34, paddingHorizontal: spacing[3] }, counter: { fontFamily: fonts.monoRegular }, offline: { alignItems: 'center', backgroundColor: colors.secondary, flexDirection: 'row', gap: spacing[2], marginHorizontal: spacing[5], padding: spacing[2] }, offlineCopy: { flex: 1 }, tools: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[2], paddingHorizontal: spacing[5], paddingVertical: spacing[2] }, answerTool: { alignItems: 'center', backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 30, paddingHorizontal: spacing[3] }, toolActive: { backgroundColor: colors.primary06, borderColor: colors.primary }, body: { flex: 1, minHeight: 0, paddingHorizontal: spacing[5], paddingTop: spacing[1] }, primaryContent: { gap: spacing[2.5] }, divider: { backgroundColor: colors.border, height: StyleSheet.hairlineWidth }, cardScroll: { gap: spacing[2], paddingBottom: spacing[2] }, sectionTitle: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] }, translation: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth, color: colors.mutedForeground, marginTop: spacing[2], paddingTop: spacing[2] }, referenceContent: { gap: spacing[2] }, footer: { alignItems: 'center', flexDirection: 'row', gap: spacing[2], justifyContent: 'space-between', paddingHorizontal: spacing[5], paddingTop: spacing[2] }, sheetContent: { gap: spacing[3], paddingBottom: spacing[3] }, center: { textAlign: 'center' }, exitProgress: { alignItems: 'center', backgroundColor: colors.secondary, borderRadius: radii.xl, flexDirection: 'row', justifyContent: 'space-between', padding: spacing[4] }, lookupSentence: { backgroundColor: colors.secondary, borderRadius: radii.xl, padding: spacing[3] }, lookupResult: { backgroundColor: colors.secondary, borderRadius: radii.xl, gap: spacing[1], padding: spacing[3] },
 });

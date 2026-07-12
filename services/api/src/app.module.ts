@@ -13,9 +13,13 @@ import { ResourceController } from './resource/resource.controller';
 import { ResourceService } from './resource/resource.service';
 import { SyncController } from './sync/sync.controller';
 import { SyncService } from './sync/sync.service';
+import { AiController } from './ai/ai.controller';
+import { AiAssetsService } from './ai/ai-assets.service';
+import { AiProviderService } from './ai/ai-provider.service';
+import { AiService } from './ai/ai.service';
 
 @Module({
-  controllers: [HealthController, MeController, QuestionBankController, ResourceController, SyncController],
+  controllers: [HealthController, MeController, QuestionBankController, ResourceController, SyncController, AiController],
   providers: [
     { provide: API_CONFIG, useFactory: () => loadConfig() },
     DatabaseService,
@@ -25,6 +29,9 @@ import { SyncService } from './sync/sync.service';
     QuestionBankService,
     ResourceService,
     SyncService,
+    AiAssetsService,
+    AiProviderService,
+    AiService,
   ],
 })
 export class AppModule {}

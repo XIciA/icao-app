@@ -6,6 +6,7 @@ import { ActivityIndicator, Modal, Pressable, StyleSheet, Switch, View } from 'r
 import { TopBar } from '@/components/navigation/TopBar';
 import { AppText, BottomSheet, Button, Card, Screen, Tag, TextField } from '@/components/ui';
 import { useAuth } from '@/features/auth/AuthProvider';
+import { hasAiConsent, withdrawAiConsent } from '@/features/ai/ai-client';
 import { readAnnotationStore } from '@/features/question-bank/annotations/annotation-store';
 import { sqliteLearningStore } from '@/features/question-bank/platform/learning-store';
 import { bindLearningSync, getLearningSyncStatus, inspectLearningSyncBinding, runLearningSync, type LearningSyncStatus } from '@/features/sync/learning-sync';
@@ -51,6 +52,16 @@ function SettingsPage() {
   const [notify, setNotify] = useState(false);
   const [confirm, setConfirm] = useState(false);
   const [signOutError, setSignOutError] = useState('');
+  const [aiConsent, setAiConsent] = useState(false);
+  useEffect(() => { void hasAiConsent().then(setAiConsent); }, []);
+  async function revokeAi() {
+    try {
+      await withdrawAiConsent();
+      setAiConsent(false);
+    } catch {
+      setSignOutError('AI 数据处理同意撤回失败，请登录并稍后重试');
+    }
+  }
   async function signOut() {
     try {
       await auth.signOut();
@@ -60,7 +71,7 @@ function SettingsPage() {
       setSignOutError('退出失败，请稍后重试');
     }
   }
-  return <Page title="设置"><View style={styles.content}><Section title="账号"><Row icon={Shield} label="账号安全" hint="邮箱、密码" first onPress={() => router.push('/account/security')} /><Row icon={Bell} label="消息通知" value={notify ? '已开启' : '未开启'} trailing={<Switch value={notify} onValueChange={setNotify} />} /></Section><Section title="通用"><Row icon={Cloud} label="学习数据同步" value="待绑定" first onPress={() => router.push('/account/sync')} /><Row icon={Languages} label="语言" value="简体中文" /><Row icon={RefreshCcw} label="深色模式" value="跟随系统" /><Row icon={Trash2} label="清理缓存" value="12.6 MB" /></Section><Section title="支持"><Row icon={Info} label="帮助中心" first onPress={() => router.push('/info/help')} /><Row icon={Info} label="关于飞猪 ICAO" value="v1.0.0" onPress={() => router.push('/info/about')} /></Section>{signOutError ? <AppText color={colors.destructive} variant="caption">{signOutError}</AppText> : null}<Button disabled={!auth.session} leading={<LogOut color={colors.destructive} size={16} />} onPress={() => setConfirm(true)} variant="outline">退出登录</Button><AppText style={styles.center} variant="micro">© 2026 飞猪 ICAO</AppText></View><LogoutDialog visible={confirm} onCancel={() => setConfirm(false)} onConfirm={() => { void signOut(); }} /></Page>;
+  return <Page title="设置"><View style={styles.content}><Section title="账号"><Row icon={Shield} label="账号安全" hint="邮箱、密码" first onPress={() => router.push('/account/security')} /><Row icon={Bell} label="消息通知" value={notify ? '已开启' : '未开启'} trailing={<Switch value={notify} onValueChange={setNotify} />} /></Section><Section title="AI 与隐私"><Row icon={Shield} label={aiConsent ? '撤回 AI 数据处理同意' : 'AI 数据处理同意'} hint={aiConsent ? '撤回后仍可使用录音、回放和非 AI 学习功能' : '首次使用 AI 功能时由你明确确认'} value={aiConsent ? '已同意' : '未同意'} first onPress={aiConsent ? () => { void revokeAi(); } : undefined} /></Section><Section title="通用"><Row icon={Cloud} label="学习数据同步" value="待绑定" first onPress={() => router.push('/account/sync')} /><Row icon={Languages} label="语言" value="简体中文" /><Row icon={RefreshCcw} label="深色模式" value="跟随系统" /><Row icon={Trash2} label="清理缓存" value="12.6 MB" /></Section><Section title="支持"><Row icon={Info} label="帮助中心" first onPress={() => router.push('/info/help')} /><Row icon={Info} label="关于飞猪 ICAO" value="v1.0.0" onPress={() => router.push('/info/about')} /></Section>{signOutError ? <AppText color={colors.destructive} variant="caption">{signOutError}</AppText> : null}<Button disabled={!auth.session} leading={<LogOut color={colors.destructive} size={16} />} onPress={() => setConfirm(true)} variant="outline">退出登录</Button><AppText style={styles.center} variant="micro">© 2026 飞猪 ICAO</AppText></View><LogoutDialog visible={confirm} onCancel={() => setConfirm(false)} onConfirm={() => { void signOut(); }} /></Page>;
 }
 
 type SyncPhase = 'idle' | 'syncing' | 'success';

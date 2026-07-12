@@ -1,4 +1,4 @@
-import { Clock3, History, Target } from 'lucide-react-native';
+import { Clock3, History, Sparkles, Target } from 'lucide-react-native';
 import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
@@ -32,15 +32,15 @@ export function LearningRecordsScreen() {
               <View style={styles.icon}><History color={colors.primary} size={18} /></View>
               <View style={styles.copy}>
                 <AppText variant="cardTitle">{record.bankTitle} · {record.categoryTitle}</AppText>
-                <AppText variant="caption">{record.topicTitle}</AppText>
+                <AppText variant="caption">{record.recordType === 'ai_result' ? `AI 学习结果 · ${record.topicTitle}` : record.topicTitle}</AppText>
               </View>
-              <Tag tone={record.reason === 'complete' ? 'primary' : 'accent'}>{record.reason === 'complete' ? '已完成' : '中途结束'}</Tag>
+              <Tag tone={record.reason === 'complete' ? 'primary' : 'accent'}>{record.recordType === 'ai_result' ? '已保存' : record.reason === 'complete' ? '已完成' : '中途结束'}</Tag>
             </View>
             <View style={styles.metrics}>
-              <View style={styles.metric}><Target color={colors.primary} size={14} /><AppText variant="micro">{record.completedCount}/{record.totalCount}</AppText></View>
-              <View style={styles.metric}><Clock3 color={colors.primary} size={14} /><AppText variant="micro">{duration(record.durationSeconds)}</AppText></View>
+              {record.recordType === 'ai_result' ? <View style={styles.metric}><Sparkles color={colors.primary} size={14} /><AppText variant="micro">转写 / 纠错结果</AppText></View> : <><View style={styles.metric}><Target color={colors.primary} size={14} /><AppText variant="micro">{record.completedCount}/{record.totalCount}</AppText></View><View style={styles.metric}><Clock3 color={colors.primary} size={14} /><AppText variant="micro">{duration(record.durationSeconds)}</AppText></View></>}
               <AppText style={styles.date} variant="micro">{new Date(record.createdAt).toLocaleString('zh-CN')}</AppText>
             </View>
+            {record.recordType === 'ai_result' && record.aiResult ? <View style={styles.aiResult}><AppText variant="button">我的回答</AppText><AppText>{record.aiResult.transcript}</AppText>{record.aiResult.grammar ? <><AppText variant="button">语法反馈</AppText><AppText variant="caption">{record.aiResult.grammar.overallFeedbackZh}</AppText><AppText>{record.aiResult.grammar.correctedText}</AppText></> : null}{record.aiResult.polishedText ? <><AppText variant="button">润色表达</AppText><AppText>{record.aiResult.polishedText}</AppText></> : null}</View> : null}
           </Card>
         )) : records ? (
           <Card style={styles.empty}><History color={colors.mutedForeground} size={28} /><AppText variant="cardTitle">还没有学习记录</AppText><AppText>完成或中途结束一次学习后会显示在这里。</AppText></Card>
@@ -62,4 +62,5 @@ const styles = StyleSheet.create({
   metric: { alignItems: 'center', flexDirection: 'row', gap: spacing[1] },
   date: { color: colors.mutedForeground, flex: 1, fontFamily: fonts.monoRegular, textAlign: 'right' },
   empty: { alignItems: 'center', gap: spacing[2], paddingVertical: spacing[6] },
+  aiResult: { backgroundColor: colors.secondary, borderRadius: 14, gap: spacing[2], padding: spacing[3] },
 });

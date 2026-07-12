@@ -9,6 +9,11 @@ const schema = z.object({
   SUPABASE_PUBLIC_URL: z.string().url(),
   SUPABASE_SECRET_KEY: z.string().min(20),
   SUPABASE_URL: z.string().url(),
+  DASHSCOPE_API_KEY: z.string().min(10).optional(),
+  DASHSCOPE_BASE_URL: z.string().url().default('https://dashscope.aliyuncs.com/compatible-mode/v1'),
+  AI_TEXT_MODEL: z.string().min(1).default('qwen-turbo'),
+  AI_ASR_MODEL: z.string().min(1).default('qwen3-asr-flash'),
+  AI_DAILY_QUOTA_UNITS: z.coerce.number().int().min(1).default(100),
 });
 
 export type ApiConfig = {
@@ -20,6 +25,11 @@ export type ApiConfig = {
   supabasePublicUrl: string;
   supabaseSecretKey: string;
   supabaseUrl: string;
+  dashscopeApiKey?: string;
+  dashscopeBaseUrl: string;
+  aiTextModel: string;
+  aiAsrModel: string;
+  aiDailyQuotaUnits: number;
 };
 
 export const API_CONFIG = Symbol('API_CONFIG');
@@ -40,5 +50,10 @@ export function loadConfig(environment: NodeJS.ProcessEnv = process.env): ApiCon
     supabasePublicUrl: parsed.data.SUPABASE_PUBLIC_URL,
     supabaseSecretKey: parsed.data.SUPABASE_SECRET_KEY,
     supabaseUrl: parsed.data.SUPABASE_URL,
+    dashscopeApiKey: parsed.data.DASHSCOPE_API_KEY,
+    dashscopeBaseUrl: parsed.data.DASHSCOPE_BASE_URL,
+    aiTextModel: parsed.data.AI_TEXT_MODEL,
+    aiAsrModel: parsed.data.AI_ASR_MODEL,
+    aiDailyQuotaUnits: parsed.data.AI_DAILY_QUOTA_UNITS,
   };
 }

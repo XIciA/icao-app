@@ -85,3 +85,49 @@ export const syncChanges = pgTable('sync_changes', {
 }, (table) => [
   index('sync_changes_user_sequence').on(table.userId, table.sequence),
 ]);
+
+export const aiConsents = pgTable('ai_consents', {
+  userId: uuid('user_id').primaryKey(),
+  policyVersion: text('policy_version').notNull(),
+  acceptedAt: timestamp('accepted_at', { withTimezone: true }).defaultNow().notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+});
+
+export const aiUsageLogs = pgTable('ai_usage_logs', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  userId: uuid('user_id').notNull(),
+  requestId: text('request_id').notNull(),
+  capability: text('capability').notNull(),
+  status: text('status').notNull(),
+  model: text('model').notNull(),
+  promptVersion: text('prompt_version').notNull(),
+  latencyMs: integer('latency_ms').notNull(),
+  quotaUnits: integer('quota_units').default(0).notNull(),
+  inputTokens: integer('input_tokens'),
+  outputTokens: integer('output_tokens'),
+  costMicrounits: bigint('cost_microunits', { mode: 'number' }),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  index('ai_usage_user_created').on(table.userId, table.createdAt),
+  uniqueIndex('ai_usage_request_capability').on(table.requestId, table.capability),
+]);
+
+export const aiQuotaBuckets = pgTable('ai_quota_buckets', {
+  userId: uuid('user_id').notNull(),
+  bucketDate: text('bucket_date').notNull(),
+  usedUnits: integer('used_units').default(0).notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  primaryKey({ columns: [table.userId, table.bucketDate] }),
+]);
+
+export const aiWordCache = pgTable('ai_word_cache', {
+  userId: uuid('user_id').notNull(),
+  queryHash: text('query_hash').notNull(),
+  result: jsonb('result').notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+}, (table) => [
+  primaryKey({ columns: [table.userId, table.queryHash] }),
+  index('ai_word_cache_expiry').on(table.expiresAt),
+]);

@@ -3,17 +3,17 @@ import type { QuestionBankDataset, StudyBehavior } from '../types';
 const reviewByBank: Record<QuestionBankDataset['id'], StudyBehavior['reviewKind']> = {
   listening: 'none',
   sentences900: 'exact-match',
-  radiotelephony: 'grammar-placeholder',
-  opi: 'opi-placeholder',
-  storytelling: 'grammar-placeholder',
+  radiotelephony: 'grammar',
+  opi: 'opi-analysis',
+  storytelling: 'grammar',
 };
 
 export function getStudyBehavior(dataset: QuestionBankDataset): StudyBehavior {
   const configuredReview = dataset.capabilities?.reviewMode;
   const reviewKind = configuredReview === 'grammar'
-    ? 'grammar-placeholder'
+    ? 'grammar'
     : configuredReview === 'expression-analysis'
-      ? 'opi-placeholder'
+      ? 'opi-analysis'
       : configuredReview ?? reviewByBank[dataset.id];
   return {
     taskKind: dataset.study.interaction === 'choices' ? 'choices' : 'recording',

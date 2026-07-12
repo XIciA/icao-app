@@ -4,7 +4,7 @@ export type QuestionBankIconKey = 'headphones' | 'sentences' | 'radioTower' | 'm
 export type StudyInteraction = 'speaking' | 'choices' | 'retell';
 export type StudyConsoleTab = 'mine' | 'reference' | 'notes';
 export type StudyToolMode = 'dictionary' | 'highlight' | 'tags';
-export type StudyReviewKind = 'none' | 'exact-match' | 'grammar-placeholder' | 'opi-placeholder';
+export type StudyReviewKind = 'none' | 'exact-match' | 'grammar' | 'opi-analysis';
 
 export type StudyToolConfig = {
   recorder: boolean;
@@ -112,6 +112,14 @@ export type LearningRecord = {
   durationSeconds: number;
   reason: 'abort' | 'complete';
   createdAt: string;
+  recordType?: 'session' | 'ai_result';
+  aiResult?: {
+    questionId: string;
+    rawTranscript?: string;
+    transcript: string;
+    grammar?: { overallFeedbackZh: string; correctedText: string; issues: string[] };
+    polishedText?: string;
+  };
 };
 
 export type StudyBehavior = {

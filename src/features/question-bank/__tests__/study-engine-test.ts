@@ -38,7 +38,7 @@ describe('shared study engine', () => {
     const behaviors = datasets.map(getStudyBehavior);
     expect(behaviors.map((item) => item.taskKind)).toEqual(['choices', 'recording', 'recording', 'recording', 'recording']);
     expect(behaviors[1].reviewKind).toBe('exact-match');
-    expect(behaviors[3].reviewKind).toBe('opi-placeholder');
+    expect(behaviors[3].reviewKind).toBe('opi-analysis');
     expect(behaviors[4].recordingMode).toBe('retell');
   });
 
@@ -50,7 +50,7 @@ describe('shared study engine', () => {
     expect(Object.keys(behaviors).sort()).toEqual(['listening', 'opi', 'radiotelephony', 'sentences900', 'storytelling']);
     expect(behaviors.listening.taskKind).toBe('choices');
     expect(behaviors.sentences900.workbenchTabs).toEqual(['mine', 'notes']);
-    expect(behaviors.radiotelephony.reviewKind).toBe('grammar-placeholder');
+    expect(behaviors.radiotelephony.reviewKind).toBe('grammar');
     expect(behaviors.opi.generatedAudio).toBe(true);
     expect(behaviors.storytelling.recordingMode).toBe('retell');
   });
