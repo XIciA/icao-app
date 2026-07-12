@@ -13,7 +13,7 @@ const PROMPTS = {
   word: 'word-lookup-v1',
   grammar: 'grammar-review-v1',
   polish: 'polish-v1',
-  transcribe: 'transcribe-hints-v1',
+  transcribe: 'transcribe-hints:v1',
 } as const;
 
 type UsageCapability = 'word_lookup' | 'transcribe' | 'grammar_review' | 'polish';

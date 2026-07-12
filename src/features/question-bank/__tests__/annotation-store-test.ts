@@ -1,4 +1,5 @@
 import Storage from 'expo-sqlite/kv-store';
+import { act, renderHook, waitFor } from '@testing-library/react-native';
 
 import {
   ANNOTATION_STORAGE_KEY,
@@ -10,6 +11,7 @@ import {
   updateAnnotationStore,
 } from '../annotations/annotation-store';
 import { questionBankCardTargetKey } from '../annotations/card-index';
+import { useQuestionAnnotations } from '../annotations/use-question-annotations';
 import { sqliteLearningStore } from '../platform/learning-store';
 
 jest.mock('expo-sqlite/kv-store', () => {
@@ -113,5 +115,35 @@ describe('annotation store', () => {
     await Promise.all([first, second]);
     const result = await readAnnotationStore();
     expect(result.entries[questionBankCardTargetKey(target)]).toMatchObject({ note: 'A', tagIds: ['good'] });
+  });
+
+  it('applies and removes a word range in one annotation update', async () => {
+    jest.mocked(sqliteLearningStore.getTopicStates).mockResolvedValue({});
+    const hook = await renderHook(() => useQuestionAnnotations(target));
+    await waitFor(() => expect(hook.result.current.hydrated).toBe(true));
+
+    await act(async () => {
+      await hook.result.current.applyHighlightRange({
+        action: 'apply',
+        blockId: 'question',
+        colorId: 'yellow',
+        startWordIndex: 1,
+        endWordIndex: 3,
+        sourceText: 'One two three four five.',
+      });
+    });
+    expect(hook.result.current.entry?.highlights.map((item) => [item.wordIndex, item.quote])).toEqual([[1, 'two'], [2, 'three'], [3, 'four']]);
+
+    await act(async () => {
+      await hook.result.current.applyHighlightRange({
+        action: 'remove',
+        blockId: 'question',
+        colorId: 'yellow',
+        startWordIndex: 2,
+        endWordIndex: 3,
+        sourceText: 'One two three four five.',
+      });
+    });
+    expect(hook.result.current.entry?.highlights.map((item) => item.wordIndex)).toEqual([1]);
   });
 });

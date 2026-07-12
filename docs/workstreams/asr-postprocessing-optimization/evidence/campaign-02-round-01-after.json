@@ -1,0 +1,2911 @@
+{
+  "equivalent": {
+    "improved": 0,
+    "postWer": 0.0755939524838013,
+    "rawWer": 0.0755939524838013,
+    "unchanged": 59,
+    "worsened": 0
+  },
+  "generatedAt": "2026-07-12T15:12:24.501Z",
+  "label": "after",
+  "round": 1,
+  "samples": [
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/158.mp3",
+      "expectedText": "Request Takeoff Runway Available (TORA) from intersection C2.",
+      "id": "sentence900-main-158",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/158.mp3",
+      "targeted": true,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 8,
+        "wer": 0.375
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 8,
+        "wer": 0.375
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 8,
+        "wer": 0.375
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 8,
+        "wer": 0.375
+      },
+      "rawTranscript": "Request takeoff runway available from intersection Charlie two.",
+      "transcript": "Request takeoff runway available from intersection Charlie two.",
+      "transformations": []
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/004.mp3",
+      "expectedText": "Maintaining FL90 over WXJ.",
+      "id": "sentence900-main-004",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/004.mp3",
+      "targeted": true,
+      "equivalentPost": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 4,
+        "wer": 0
+      },
+      "equivalentRaw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 4,
+        "wer": 0
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 4,
+        "wer": 0
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 8,
+        "wordCount": 4,
+        "wer": 2
+      },
+      "rawTranscript": "Maintaining flight level nine zero over whiskey x ray juliet.",
+      "transcript": "Maintaining FL90 over WXJ.",
+      "transformations": [
+        {
+          "after": "Maintaining FL90 over whiskey x ray juliet.",
+          "before": "Maintaining flight level nine zero over whiskey x ray juliet.",
+          "risk": "context-required",
+          "ruleId": "FL-001"
+        },
+        {
+          "after": "Maintaining FL90 over WXJ.",
+          "before": "Maintaining FL90 over whiskey x ray juliet.",
+          "risk": "context-required",
+          "ruleId": "WAYPOINT-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/286.mp3",
+      "expectedText": "Re-enter ADS-B aircraft identification.",
+      "id": "sentence900-main-286",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/286.mp3",
+      "targeted": true,
+      "equivalentPost": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 6,
+        "wer": 0
+      },
+      "equivalentRaw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 6,
+        "wer": 0
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 6,
+        "wer": 0
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 6,
+        "wer": 0.3333333333333333
+      },
+      "rawTranscript": "Re-enter ADSB aircraft identification.",
+      "transcript": "Re-enter ADS-B aircraft identification.",
+      "transformations": [
+        {
+          "after": "Re-enter ADS-B aircraft identification.",
+          "before": "Re-enter ADSB aircraft identification.",
+          "risk": "safe",
+          "ruleId": "ABBR-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/026.mp3",
+      "expectedText": "Leaving FL200, climbing to FL280.",
+      "id": "sentence900-main-026",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/026.mp3",
+      "targeted": true,
+      "equivalentPost": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 5,
+        "wer": 0
+      },
+      "equivalentRaw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 5,
+        "wer": 0
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 5,
+        "wer": 0
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 10,
+        "wordCount": 5,
+        "wer": 2
+      },
+      "rawTranscript": "Leaving flight level two zero zero, climbing to flight level two eight zero.",
+      "transcript": "Leaving FL200, climbing to FL280.",
+      "transformations": [
+        {
+          "after": "Leaving FL200, climbing to FL280.",
+          "before": "Leaving flight level two zero zero, climbing to flight level two eight zero.",
+          "risk": "context-required",
+          "ruleId": "FL-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/632.mp3",
+      "expectedText": "We have to recalibrate our instruments. Request to level off and maintain heading.",
+      "id": "sentence900-main-632",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/632.mp3",
+      "targeted": true,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 13,
+        "wer": 0.07692307692307693
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 13,
+        "wer": 0.07692307692307693
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 13,
+        "wer": 0.07692307692307693
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 13,
+        "wer": 0.07692307692307693
+      },
+      "rawTranscript": "We have to calibrate our instruments. Request to level off and maintain heading.",
+      "transcript": "We have to calibrate our instruments. Request to level off and maintain heading.",
+      "transformations": []
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/604.mp3",
+      "expectedText": "About twenty passengers and crew members were injured during the TCAS maneuver. Request diversion and medical assistance on arrival.",
+      "id": "sentence900-main-604",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/604.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 19,
+        "wer": 0
+      },
+      "equivalentRaw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 19,
+        "wer": 0
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 19,
+        "wer": 0
+      },
+      "raw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 19,
+        "wer": 0
+      },
+      "rawTranscript": "About twenty passengers and crew members were injured during the TCAS maneuver. Request diversion and medical assistance on arrival.",
+      "transcript": "About twenty passengers and crew members were injured during the TCAS maneuver. Request diversion and medical assistance on arrival.",
+      "transformations": []
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/837.mp3",
+      "expectedText": "We are unsure of our position due to navigation failure. If any station can hear me, please respond.",
+      "id": "sentence900-main-837",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/837.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 18,
+        "wer": 0
+      },
+      "equivalentRaw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 18,
+        "wer": 0
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 18,
+        "wer": 0
+      },
+      "raw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 18,
+        "wer": 0
+      },
+      "rawTranscript": "We are unsure of our position due to navigation failure. If any station can hear me, please respond.",
+      "transcript": "We are unsure of our position due to navigation failure. If any station can hear me, please respond.",
+      "transformations": []
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/442.mp3",
+      "expectedText": "We have only one air conditioning pack operational. Request a new cruising level below FL300.",
+      "id": "sentence900-main-442",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/442.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 15,
+        "wer": 0.13333333333333333
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 15,
+        "wer": 0.13333333333333333
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 15,
+        "wer": 0.13333333333333333
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 7,
+        "wordCount": 15,
+        "wer": 0.4666666666666667
+      },
+      "rawTranscript": "We have only one air conditioning pack operational. Request new cruising altitude level below flight level three zero zero.",
+      "transcript": "We have only one air conditioning pack operational. Request new cruising altitude level below FL300.",
+      "transformations": [
+        {
+          "after": "We have only one air conditioning pack operational. Request new cruising altitude level below FL300.",
+          "before": "We have only one air conditioning pack operational. Request new cruising altitude level below flight level three zero zero.",
+          "risk": "context-required",
+          "ruleId": "FL-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/101.mp3",
+      "expectedText": "You are unreadable.",
+      "id": "sentence900-main-101",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/101.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 3,
+        "wer": 0
+      },
+      "equivalentRaw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 3,
+        "wer": 0
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 3,
+        "wer": 0
+      },
+      "raw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 3,
+        "wer": 0
+      },
+      "rawTranscript": "You are unreadable.",
+      "transcript": "You are unreadable.",
+      "transformations": []
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/061.mp3",
+      "expectedText": "Revised slot time at 56.",
+      "id": "sentence900-main-061",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/061.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 5,
+        "wer": 0.2
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 5,
+        "wer": 0.2
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 5,
+        "wer": 0.2
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 5,
+        "wer": 0.6
+      },
+      "rawTranscript": "Revise slot time at five six.",
+      "transcript": "Revise slot time at 56.",
+      "transformations": [
+        {
+          "after": "Revise slot time at 56.",
+          "before": "Revise slot time at five six.",
+          "risk": "context-required",
+          "ruleId": "TIME-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/255.mp3",
+      "expectedText": "Maintain 180 knots until 8 miles from touchdown.",
+      "id": "sentence900-main-255",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/255.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 8,
+        "wer": 0
+      },
+      "equivalentRaw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 8,
+        "wer": 0
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 8,
+        "wer": 0
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 4,
+        "wordCount": 8,
+        "wer": 0.5
+      },
+      "rawTranscript": "Maintain one eight zero knots until eight miles from touchdown.",
+      "transcript": "Maintain 180 knots until 8 miles from touchdown.",
+      "transformations": [
+        {
+          "after": "Maintain 180 knots until 8 miles from touchdown.",
+          "before": "Maintain one eight zero knots until eight miles from touchdown.",
+          "risk": "context-required",
+          "ruleId": "ALTITUDE-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/630.mp3",
+      "expectedText": "Our inertial reference system has failed, unable GPS approach. Request ILS or VOR approach.",
+      "id": "sentence900-main-630",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/630.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 14,
+        "wer": 0
+      },
+      "equivalentRaw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 14,
+        "wer": 0
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 14,
+        "wer": 0
+      },
+      "raw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 14,
+        "wer": 0
+      },
+      "rawTranscript": "Our inertial reference system has failed. Unable GPS approach, request ILS or VOR approach.",
+      "transcript": "Our inertial reference system has failed. Unable GPS approach, request ILS or VOR approach.",
+      "transformations": []
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/173.mp3",
+      "expectedText": "Continue approach Runway 25.",
+      "id": "sentence900-main-173",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/173.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 4,
+        "wer": 0
+      },
+      "equivalentRaw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 4,
+        "wer": 0
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 4,
+        "wer": 0
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 4,
+        "wer": 0.5
+      },
+      "rawTranscript": "Continue approach runway two five.",
+      "transcript": "Continue approach runway 25.",
+      "transformations": [
+        {
+          "after": "Continue approach runway 25.",
+          "before": "Continue approach runway two five.",
+          "risk": "context-required",
+          "ruleId": "RUNWAY-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/278.mp3",
+      "expectedText": "Confirm ILS frequency for Runway 17L.",
+      "id": "sentence900-main-278",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/278.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 6,
+        "wer": 0
+      },
+      "equivalentRaw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 6,
+        "wer": 0
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 6,
+        "wer": 0
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 6,
+        "wer": 0.5
+      },
+      "rawTranscript": "Confirm ILS frequency for runway one seven left.",
+      "transcript": "Confirm ILS frequency for runway 17L.",
+      "transformations": [
+        {
+          "after": "Confirm ILS frequency for runway 17L.",
+          "before": "Confirm ILS frequency for runway one seven left.",
+          "risk": "context-required",
+          "ruleId": "RUNWAY-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/050.mp3",
+      "expectedText": "Request frequency change.",
+      "id": "sentence900-main-050",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/050.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 3,
+        "wer": 0
+      },
+      "equivalentRaw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 3,
+        "wer": 0
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 3,
+        "wer": 0
+      },
+      "raw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 3,
+        "wer": 0
+      },
+      "rawTranscript": "Request frequency change.",
+      "transcript": "Request frequency change.",
+      "transformations": []
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/499.mp3",
+      "expectedText": "We have an electrical failure.",
+      "id": "sentence900-main-499",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/499.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 5,
+        "wer": 0
+      },
+      "equivalentRaw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 5,
+        "wer": 0
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 5,
+        "wer": 0
+      },
+      "raw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 5,
+        "wer": 0
+      },
+      "rawTranscript": "We have an electrical failure.",
+      "transcript": "We have an electrical failure.",
+      "transformations": []
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/447.mp3",
+      "expectedText": "We have unusual smell from air conditioning packs. Request stop climb at 7000 feet.",
+      "id": "sentence900-main-447",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/447.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 14,
+        "wer": 0
+      },
+      "equivalentRaw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 14,
+        "wer": 0
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 14,
+        "wer": 0
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 14,
+        "wer": 0.14285714285714285
+      },
+      "rawTranscript": "We have unusual smell from air conditioning packs. Request stop climb at seven thousand feet.",
+      "transcript": "We have unusual smell from air conditioning packs. Request stop climb at 7000 feet.",
+      "transformations": [
+        {
+          "after": "We have unusual smell from air conditioning packs. Request stop climb at 7000 feet.",
+          "before": "We have unusual smell from air conditioning packs. Request stop climb at seven thousand feet.",
+          "risk": "context-required",
+          "ruleId": "ALTITUDE-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/472.mp3",
+      "expectedText": "The approach lights for Runway 36L are a bit different from those shown on the airport diagram.",
+      "id": "sentence900-main-472",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/472.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 17,
+        "wer": 0.058823529411764705
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 17,
+        "wer": 0.058823529411764705
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 17,
+        "wer": 0.058823529411764705
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 4,
+        "wordCount": 17,
+        "wer": 0.23529411764705882
+      },
+      "rawTranscript": "The approach light for runway three six left are a bit different from those shown on the airport diagram.",
+      "transcript": "The approach light for runway 36L are a bit different from those shown on the airport diagram.",
+      "transformations": [
+        {
+          "after": "The approach light for runway 36L are a bit different from those shown on the airport diagram.",
+          "before": "The approach light for runway three six left are a bit different from those shown on the airport diagram.",
+          "risk": "context-required",
+          "ruleId": "RUNWAY-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/671.mp3",
+      "expectedText": "We have an abnormal noise coming from one of our cabin doors. Request rapid descent to 5000 feet.",
+      "id": "sentence900-main-671",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/671.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 18,
+        "wer": 0
+      },
+      "equivalentRaw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 18,
+        "wer": 0
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 18,
+        "wer": 0
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 18,
+        "wer": 0.1111111111111111
+      },
+      "rawTranscript": "We have an abnormal noise coming from one of our cabin doors. Request rapid descent to five thousand feet.",
+      "transcript": "We have an abnormal noise coming from one of our cabin doors. Request rapid descent to 5000 feet.",
+      "transformations": [
+        {
+          "after": "We have an abnormal noise coming from one of our cabin doors. Request rapid descent to 5000 feet.",
+          "before": "We have an abnormal noise coming from one of our cabin doors. Request rapid descent to five thousand feet.",
+          "risk": "context-required",
+          "ruleId": "ALTITUDE-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/343.mp3",
+      "expectedText": "Climb to FL 210, cross AU at FL100 or below.",
+      "id": "sentence900-main-343",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/343.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 9,
+        "wer": 0
+      },
+      "equivalentRaw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 9,
+        "wer": 0
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 10,
+        "wer": 0.2
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 12,
+        "wordCount": 10,
+        "wer": 1.2
+      },
+      "rawTranscript": "Climb to flight level two one zero, cross Alpha Uniform at flight level one zero zero or below.",
+      "transcript": "Climb to FL210, cross AU at FL100 or below.",
+      "transformations": [
+        {
+          "after": "Climb to FL210, cross Alpha Uniform at FL100 or below.",
+          "before": "Climb to flight level two one zero, cross Alpha Uniform at flight level one zero zero or below.",
+          "risk": "context-required",
+          "ruleId": "FL-001"
+        },
+        {
+          "after": "Climb to FL210, cross AU at FL100 or below.",
+          "before": "Climb to FL210, cross Alpha Uniform at FL100 or below.",
+          "risk": "context-required",
+          "ruleId": "WAYPOINT-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/558.mp3",
+      "expectedText": "P：Wuhan Control, Singapore 9040, we have an indication of severe weather, request offset, 30 kilometers to the right. C：Singapore 9040, negative due to the restricted area. You can only deviate to the left.\nQuestion: Why did the controller refuse the pilot's request?",
+      "id": "listening-main-558",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/558.mp3",
+      "targeted": true,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 44,
+        "wer": 0.022727272727272728
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 44,
+        "wer": 0.022727272727272728
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 45,
+        "wer": 0.044444444444444446
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 12,
+        "wordCount": 45,
+        "wer": 0.26666666666666666
+      },
+      "rawTranscript": "Wuhan Control, Singapore nine or four zero, we have an indication of severe weather. Request offset three zero kilometers to the right. Singapore nine or four zero, negative due to the restricted area. You can only deviate to the left. Question: Why did the controller refuse the pilot's request?",
+      "transcript": "Wuhan Control, Singapore 9040, we have an indication of severe weather. Request offset 30 kilometers to the right. Singapore 9040, negative due to the restricted area. You can only deviate to the left. Question: Why did the controller refuse the pilot's request?",
+      "transformations": [
+        {
+          "after": "Wuhan Control, Singapore nine or four zero, we have an indication of severe weather. Request offset 30 kilometers to the right. Singapore nine or four zero, negative due to the restricted area. You can only deviate to the left. Question: Why did the controller refuse the pilot's request?",
+          "before": "Wuhan Control, Singapore nine or four zero, we have an indication of severe weather. Request offset three zero kilometers to the right. Singapore nine or four zero, negative due to the restricted area. You can only deviate to the left. Question: Why did the controller refuse the pilot's request?",
+          "risk": "context-required",
+          "ruleId": "ALTITUDE-001"
+        },
+        {
+          "after": "Wuhan Control, Singapore 9040, we have an indication of severe weather. Request offset 30 kilometers to the right. Singapore 9040, negative due to the restricted area. You can only deviate to the left. Question: Why did the controller refuse the pilot's request?",
+          "before": "Wuhan Control, Singapore nine or four zero, we have an indication of severe weather. Request offset 30 kilometers to the right. Singapore nine or four zero, negative due to the restricted area. You can only deviate to the left. Question: Why did the controller refuse the pilot's request?",
+          "risk": "context-required",
+          "ruleId": "CALLSIGN-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/017.mp3",
+      "expectedText": "CTL: Air china 981, stop immediately, I say again, stop now. flames coming from right main gear. PIL: stopping, 981. CTL: 981, fire engines and ambulance will be available in a few minutes.\nQuestion: What happened?",
+      "id": "listening-main-017",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/017.mp3",
+      "targeted": true,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 7,
+        "wordCount": 35,
+        "wer": 0.2
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 7,
+        "wordCount": 35,
+        "wer": 0.2
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 8,
+        "wordCount": 36,
+        "wer": 0.2222222222222222
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 11,
+        "wordCount": 36,
+        "wer": 0.3055555555555556
+      },
+      "rawTranscript": "Air China nine a one, stop immediately. I say again, stop now. Flames coming from right main gear. Stopping nine eight one. Nine eight one, fire engines and ambulance will be available in a few minutes. Question, what happened?",
+      "transcript": "Air China 981, stop immediately. I say again, stop now. Flames coming from right main gear. Stopping nine eight one. Nine eight one, fire engines and ambulance will be available in a few minutes. Question, what happened?",
+      "transformations": [
+        {
+          "after": "Air China 981, stop immediately. I say again, stop now. Flames coming from right main gear. Stopping nine eight one. Nine eight one, fire engines and ambulance will be available in a few minutes. Question, what happened?",
+          "before": "Air China nine a one, stop immediately. I say again, stop now. Flames coming from right main gear. Stopping nine eight one. Nine eight one, fire engines and ambulance will be available in a few minutes. Question, what happened?",
+          "risk": "context-required",
+          "ruleId": "CALLSIGN-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/568.mp3",
+      "expectedText": "Heavy aircraft are not to be given clearance or instructions that would require the use of more than normal power for taxiing or for entry onto the runway. Heavy aircraft, when at the holding point, are not to be cleared for an immediate takeoff.\nQuestion: which category of aircraft can be cleared to take off immediately?",
+      "id": "listening-main-568",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/568.mp3",
+      "targeted": true,
+      "equivalentPost": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 56,
+        "wer": 0
+      },
+      "equivalentRaw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 56,
+        "wer": 0
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 56,
+        "wer": 0
+      },
+      "raw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 56,
+        "wer": 0
+      },
+      "rawTranscript": "Heavy aircraft are not to be given clearance or instructions that would require the use of more than normal power for taxiing or for entry onto the runway. Heavy aircraft, when at the holding point, are not to be cleared for an immediate takeoff. Question: Which category of aircraft can be cleared to take off immediately?",
+      "transcript": "Heavy aircraft are not to be given clearance or instructions that would require the use of more than normal power for taxiing or for entry onto the runway. Heavy aircraft, when at the holding point, are not to be cleared for an immediate takeoff. Question: Which category of aircraft can be cleared to take off immediately?",
+      "transformations": []
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/273.mp3",
+      "expectedText": "C: NWA 40 heavy, moderate turbulence reported ahead above FL 380. Would you like a lower altitude? P: roger, is FL360 available, NWA40 heavy.\nQuestion: Where is the reported turbulence?",
+      "id": "listening-main-273",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/273.mp3",
+      "targeted": true,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 8,
+        "wordCount": 28,
+        "wer": 0.2857142857142857
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 8,
+        "wordCount": 28,
+        "wer": 0.2857142857142857
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 11,
+        "wordCount": 30,
+        "wer": 0.36666666666666664
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 18,
+        "wordCount": 30,
+        "wer": 0.6
+      },
+      "rawTranscript": "Northwest fourteen heavy, moderate turbulence is reported ahead above flight level three eight zero. Would you like a lower altitude? Roger, flight level three six zero available. Northwest fourteen heavy. Where is the reported turbulence?",
+      "transcript": "Northwest 14 heavy, moderate turbulence is reported ahead above FL380. Would you like a lower altitude? Roger, FL360 available. Northwest 14 heavy. Where is the reported turbulence?",
+      "transformations": [
+        {
+          "after": "Northwest fourteen heavy, moderate turbulence is reported ahead above FL380. Would you like a lower altitude? Roger, FL360 available. Northwest fourteen heavy. Where is the reported turbulence?",
+          "before": "Northwest fourteen heavy, moderate turbulence is reported ahead above flight level three eight zero. Would you like a lower altitude? Roger, flight level three six zero available. Northwest fourteen heavy. Where is the reported turbulence?",
+          "risk": "context-required",
+          "ruleId": "FL-001"
+        },
+        {
+          "after": "Northwest 14 heavy, moderate turbulence is reported ahead above FL380. Would you like a lower altitude? Roger, FL360 available. Northwest 14 heavy. Where is the reported turbulence?",
+          "before": "Northwest fourteen heavy, moderate turbulence is reported ahead above FL380. Would you like a lower altitude? Roger, FL360 available. Northwest fourteen heavy. Where is the reported turbulence?",
+          "risk": "context-required",
+          "ruleId": "CALLSIGN-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/172.mp3",
+      "expectedText": "P: Ground control, CSN378. C: CSN378, Ground, go ahead. P: Our APU malfunctioned, request start No 2 engine at the bay, CSN378.\nQuestion: What did CSN378 request?",
+      "id": "listening-main-172",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/172.mp3",
+      "targeted": true,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 7,
+        "wordCount": 34,
+        "wer": 0.20588235294117646
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 7,
+        "wordCount": 34,
+        "wer": 0.20588235294117646
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 19,
+        "wordCount": 27,
+        "wer": 0.7037037037037037
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 27,
+        "wordCount": 27,
+        "wer": 1
+      },
+      "rawTranscript": "Ground Control, China Southern Three Seven Eight. China Southern Three Seven Eight, ground, go ahead. R A P U malfunctioned, request start number two engine at the bay, China Southern Three Seventy Eight. Question: What did China Southern Three Seven Eight request?",
+      "transcript": "Ground Control, China Southern 378. China Southern 378, ground, go ahead. R A P U malfunctioned, request start number two engine at the bay, China Southern 378. Question: What did China Southern 378 request?",
+      "transformations": [
+        {
+          "after": "Ground Control, China Southern 378. China Southern 378, ground, go ahead. R A P U malfunctioned, request start number two engine at the bay, China Southern 378. Question: What did China Southern 378 request?",
+          "before": "Ground Control, China Southern Three Seven Eight. China Southern Three Seven Eight, ground, go ahead. R A P U malfunctioned, request start number two engine at the bay, China Southern Three Seventy Eight. Question: What did China Southern Three Seven Eight request?",
+          "risk": "context-required",
+          "ruleId": "CALLSIGN-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/105.mp3",
+      "expectedText": "The flight crew was told to abort the takeoff because the Airport radar system detected a target at the departure end of runway 25.\nQuestion: What was the flight crew told?",
+      "id": "listening-main-105",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/105.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 31,
+        "wer": 0
+      },
+      "equivalentRaw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 31,
+        "wer": 0
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 31,
+        "wer": 0
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 31,
+        "wer": 0.06451612903225806
+      },
+      "rawTranscript": "The flight crew was told to abort the takeoff because the airport radar system detected a target at the departure end of runway two five. Question: What was the flight crew told?",
+      "transcript": "The flight crew was told to abort the takeoff because the airport radar system detected a target at the departure end of runway 25. Question: What was the flight crew told?",
+      "transformations": [
+        {
+          "after": "The flight crew was told to abort the takeoff because the airport radar system detected a target at the departure end of runway 25. Question: What was the flight crew told?",
+          "before": "The flight crew was told to abort the takeoff because the airport radar system detected a target at the departure end of runway two five. Question: What was the flight crew told?",
+          "risk": "context-required",
+          "ruleId": "RUNWAY-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/246.mp3",
+      "expectedText": "Federal regulations specify when you must use supplemental oxygen. if you are pilot flying at cruising a1titudeof 12,000ft, you should consult the regulations. As a general rule, consider using supplemental oxygen Over 10,000ft during the day and 5,000ft at night.\nQuestion: When, generally speaking,should supplemental oxygen be used?",
+      "id": "listening-main-246",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/246.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 22,
+        "wordCount": 52,
+        "wer": 0.4230769230769231
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 22,
+        "wordCount": 52,
+        "wer": 0.4230769230769231
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 22,
+        "wordCount": 52,
+        "wer": 0.4230769230769231
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 25,
+        "wordCount": 52,
+        "wer": 0.4807692307692308
+      },
+      "rawTranscript": "Federal regulations specify when you must use supplemental oxygen. If you are planning a flight with a cruise altitude over twelve thousand feet, you should consult these regulations. As a general rule, consider using supplemental oxygen when you fly above ten thousand feet during the day or above five thousand feet at night. When, generally speaking, should supplemental oxygen be used?",
+      "review": {
+        "status": "text-error",
+        "note": "答案含 a1titudeof 等损坏文本，且主体句与音频内容明显不一致。"
+      },
+      "transcript": "Federal regulations specify when you must use supplemental oxygen. If you are planning a flight with a cruise altitude over 12000 feet, you should consult these regulations. As a general rule, consider using supplemental oxygen when you fly above 10000 feet during the day or above 5000 feet at night. When, generally speaking, should supplemental oxygen be used?",
+      "transformations": [
+        {
+          "after": "Federal regulations specify when you must use supplemental oxygen. If you are planning a flight with a cruise altitude over 12000 feet, you should consult these regulations. As a general rule, consider using supplemental oxygen when you fly above 10000 feet during the day or above 5000 feet at night. When, generally speaking, should supplemental oxygen be used?",
+          "before": "Federal regulations specify when you must use supplemental oxygen. If you are planning a flight with a cruise altitude over twelve thousand feet, you should consult these regulations. As a general rule, consider using supplemental oxygen when you fly above ten thousand feet during the day or above five thousand feet at night. When, generally speaking, should supplemental oxygen be used?",
+          "risk": "context-required",
+          "ruleId": "ALTITUDE-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/516.mp3",
+      "expectedText": "P：Wuhan approach, TWA 368. We have to come back. We nearly stalled during the climb out. Cargo shifted in the front hold. C：TWA 368, Roger, turn left heading 270.\nQuestion: Why did TWA 368 return?",
+      "id": "listening-main-516",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/516.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 36,
+        "wer": 0.027777777777777776
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 36,
+        "wer": 0.027777777777777776
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 37,
+        "wer": 0.05405405405405406
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 37,
+        "wer": 0.05405405405405406
+      },
+      "rawTranscript": "Wuhan Approach, TWA 368. We have to come back. We nearly stalled during the climb-out. Cargo shifted in the front hold. TWA 368, Roger. Turn left heading 270. Question: Why did TWA 368 return?",
+      "transcript": "Wuhan Approach, TWA 368. We have to come back. We nearly stalled during the climb-out. Cargo shifted in the front hold. TWA 368, Roger. Turn left heading 270. Question: Why did TWA 368 return?",
+      "transformations": []
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/235.mp3",
+      "expectedText": "C: NWA 142, cleared visual approach runway 19L, maintain visual separation with Air China 737 ahead on short final landing on parallel runway. Confirm you have it in sight.\nQuestion: Where is the other aircraft?",
+      "id": "listening-main-235",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/235.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 7,
+        "wordCount": 34,
+        "wer": 0.20588235294117646
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 7,
+        "wordCount": 34,
+        "wer": 0.20588235294117646
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 8,
+        "wordCount": 35,
+        "wer": 0.22857142857142856
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 8,
+        "wordCount": 35,
+        "wer": 0.22857142857142856
+      },
+      "rawTranscript": "Northwest 142, cleared for visual approach runway 19 left. Maintain visual separation with the Air China 737 ahead on short final landing on the parallel runway. Confirm you have it in sight. Where is the other aircraft?",
+      "transcript": "Northwest 142, cleared for visual approach runway 19 left. Maintain visual separation with the Air China 737 ahead on short final landing on the parallel runway. Confirm you have it in sight. Where is the other aircraft?",
+      "transformations": []
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/295.mp3",
+      "expectedText": "C: CCA101, due to traffic congestion, make a 360 turn left at your present position.\nQuestion: What is the aircraft expected to do?",
+      "id": "listening-main-295",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/295.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 24,
+        "wer": 0.041666666666666664
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 24,
+        "wer": 0.041666666666666664
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 4,
+        "wordCount": 23,
+        "wer": 0.17391304347826086
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 8,
+        "wordCount": 23,
+        "wer": 0.34782608695652173
+      },
+      "rawTranscript": "Air China one zero one, due to traffic congestion, make a three sixty turn left at your present position. What is the aircraft expected to do?",
+      "transcript": "Air China 101, due to traffic congestion, make a 360 turn left at your present position. What is the aircraft expected to do?",
+      "transformations": [
+        {
+          "after": "Air China 101, due to traffic congestion, make a three sixty turn left at your present position. What is the aircraft expected to do?",
+          "before": "Air China one zero one, due to traffic congestion, make a three sixty turn left at your present position. What is the aircraft expected to do?",
+          "risk": "context-required",
+          "ruleId": "CALLSIGN-001"
+        },
+        {
+          "after": "Air China 101, due to traffic congestion, make a 360 turn left at your present position. What is the aircraft expected to do?",
+          "before": "Air China 101, due to traffic congestion, make a three sixty turn left at your present position. What is the aircraft expected to do?",
+          "risk": "context-required",
+          "ruleId": "MANEUVER-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/586.mp3",
+      "expectedText": "Flying in severe turbulence should be avoided if at all possible. On the weather radar, the most intense areas are displayed in red, less in amber, and lowest intensity green. Turbulence is displayed in magenta, when the radar detects a horizontal flow of precipitation with velocities of five or more meters per second toward or away from the radar antenna, that target display becomes magenta.\nQuestion: When will magenta display on radar?",
+      "id": "listening-main-586",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/586.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 72,
+        "wer": 0
+      },
+      "equivalentRaw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 72,
+        "wer": 0
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 72,
+        "wer": 0
+      },
+      "raw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 72,
+        "wer": 0
+      },
+      "rawTranscript": "Flying in severe turbulence should be avoided if at all possible. On the weather radar, the most intense areas are displayed in red, less in amber and lowest intensity green. Turbulence is displayed in magenta. When the radar detects a horizontal flow of precipitation with velocities of five or more meters per second toward or away from the radar antenna, that target display becomes magenta. Question: When will magenta display on radar?",
+      "transcript": "Flying in severe turbulence should be avoided if at all possible. On the weather radar, the most intense areas are displayed in red, less in amber and lowest intensity green. Turbulence is displayed in magenta. When the radar detects a horizontal flow of precipitation with velocities of five or more meters per second toward or away from the radar antenna, that target display becomes magenta. Question: When will magenta display on radar?",
+      "transformations": []
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/095.mp3",
+      "expectedText": "Captain: Look, there is a vehicle ahead, it looks like a follow-me-van. Did you requset it from the controller? For the time being, we don't need it and we can handle the situation. FO: No. I guess other aircraft need it. The dense fog today is a big problem for all aircraft .\nQuestion: What does the first speaker imply?",
+      "id": "listening-main-095",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/095.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 4,
+        "wordCount": 61,
+        "wer": 0.06557377049180328
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 4,
+        "wordCount": 61,
+        "wer": 0.06557377049180328
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 5,
+        "wordCount": 62,
+        "wer": 0.08064516129032258
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 5,
+        "wordCount": 62,
+        "wer": 0.08064516129032258
+      },
+      "rawTranscript": "Look, there's a vehicle ahead. It looks like a follow-me van. Did you request it from the controller? For the time being, we don't need it and we can handle this situation. No, I guess other aircraft need it. The dense fog today is a big problem for all aircraft. Question: What does the first speaker imply?",
+      "transcript": "Look, there's a vehicle ahead. It looks like a follow-me van. Did you request it from the controller? For the time being, we don't need it and we can handle this situation. No, I guess other aircraft need it. The dense fog today is a big problem for all aircraft. Question: What does the first speaker imply?",
+      "transformations": []
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/352.mp3",
+      "expectedText": "C: BAW480, flames coming out from your No. 3 engine on takeoff, please advise. P: Roger, declaring an emergency, request immediate return, BAW480.\nQuestion: Why are they declaring an emergency?",
+      "id": "listening-main-352",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/352.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 5,
+        "wordCount": 31,
+        "wer": 0.16129032258064516
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 5,
+        "wordCount": 31,
+        "wer": 0.16129032258064516
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 8,
+        "wordCount": 30,
+        "wer": 0.26666666666666666
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 12,
+        "wordCount": 30,
+        "wer": 0.4
+      },
+      "rawTranscript": "Speedbird four eight zero, flames coming from your number three engine on takeoff, please advise. Roger, declaring an emergency, request immediate return, Speedbird four eight zero. Why are they declaring an emergency?",
+      "transcript": "Speedbird 480, flames coming from your number three engine on takeoff, please advise. Roger, declaring an emergency, request immediate return, Speedbird 480. Why are they declaring an emergency?",
+      "transformations": [
+        {
+          "after": "Speedbird 480, flames coming from your number three engine on takeoff, please advise. Roger, declaring an emergency, request immediate return, Speedbird 480. Why are they declaring an emergency?",
+          "before": "Speedbird four eight zero, flames coming from your number three engine on takeoff, please advise. Roger, declaring an emergency, request immediate return, Speedbird four eight zero. Why are they declaring an emergency?",
+          "risk": "context-required",
+          "ruleId": "CALLSIGN-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/011.mp3",
+      "expectedText": "PIL: Tower, CSN3308, holding short of runway 36 right. CTL: CSN3308, line up after the landing 747, number two for departure. PIL: Roger, looking for traffic, traffic in sight. CSN3308.\nQuestion: What is the pilot doing?",
+      "id": "listening-main-011",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/011.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 7,
+        "wordCount": 41,
+        "wer": 0.17073170731707318
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 7,
+        "wordCount": 41,
+        "wer": 0.17073170731707318
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 15,
+        "wordCount": 36,
+        "wer": 0.4166666666666667
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 25,
+        "wordCount": 36,
+        "wer": 0.6944444444444444
+      },
+      "rawTranscript": "Tower, China Southern three three zero eight, holding short of runway three six right. China Southern three three zero eight, line up after the landing seven four seven, number two for departure. Roger. Looking for traffic. Traffic in sight, China Southern three three zero eight. Question, what is the pilot doing?",
+      "transcript": "Tower, China Southern 3308, holding short of runway 36R. China Southern 3308, line up after the landing seven four seven, number two for departure. Roger. Looking for traffic. Traffic in sight, China Southern 3308. Question, what is the pilot doing?",
+      "transformations": [
+        {
+          "after": "Tower, China Southern three three zero eight, holding short of runway 36R. China Southern three three zero eight, line up after the landing seven four seven, number two for departure. Roger. Looking for traffic. Traffic in sight, China Southern three three zero eight. Question, what is the pilot doing?",
+          "before": "Tower, China Southern three three zero eight, holding short of runway three six right. China Southern three three zero eight, line up after the landing seven four seven, number two for departure. Roger. Looking for traffic. Traffic in sight, China Southern three three zero eight. Question, what is the pilot doing?",
+          "risk": "context-required",
+          "ruleId": "RUNWAY-001"
+        },
+        {
+          "after": "Tower, China Southern 3308, holding short of runway 36R. China Southern 3308, line up after the landing seven four seven, number two for departure. Roger. Looking for traffic. Traffic in sight, China Southern 3308. Question, what is the pilot doing?",
+          "before": "Tower, China Southern three three zero eight, holding short of runway 36R. China Southern three three zero eight, line up after the landing seven four seven, number two for departure. Roger. Looking for traffic. Traffic in sight, China Southern three three zero eight. Question, what is the pilot doing?",
+          "risk": "context-required",
+          "ruleId": "CALLSIGN-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/473.mp3",
+      "expectedText": "C：KLM 567, you are still gaining on the traffic ahead. Reduce speed to 140 KTS. P：We can't reduce to that, 567. C：Roger, in that case, I am breaking off this approach. Turn right heading 340 for delaying action.\nQuestion: what will the pilot do?",
+      "id": "listening-main-473",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/473.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 47,
+        "wer": 0.06382978723404255
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 47,
+        "wer": 0.06382978723404255
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 4,
+        "wordCount": 48,
+        "wer": 0.08333333333333333
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 7,
+        "wordCount": 48,
+        "wer": 0.14583333333333334
+      },
+      "rawTranscript": "KLM 567, you are still gaining on the traffic ahead. Reduce speed to 140 knots. We can't reduce to that, 567. Roger, in that case, I am breaking off this approach. Turn right heading three four zero for delaying action. Question: What will the pilot do?",
+      "transcript": "KLM 567, you are still gaining on the traffic ahead. Reduce speed to 140 knots. We can't reduce to that, 567. Roger, in that case, I am breaking off this approach. Turn right heading 340 for delaying action. Question: What will the pilot do?",
+      "transformations": [
+        {
+          "after": "KLM 567, you are still gaining on the traffic ahead. Reduce speed to 140 knots. We can't reduce to that, 567. Roger, in that case, I am breaking off this approach. Turn right heading 340 for delaying action. Question: What will the pilot do?",
+          "before": "KLM 567, you are still gaining on the traffic ahead. Reduce speed to 140 knots. We can't reduce to that, 567. Roger, in that case, I am breaking off this approach. Turn right heading three four zero for delaying action. Question: What will the pilot do?",
+          "risk": "context-required",
+          "ruleId": "HEADING-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/279.mp3",
+      "expectedText": "P: MAYDAY, MAYDAY, MAYDAY, Beijing Control, SIA442, B777, fire in the rear toilet, descending 3600m, request emergency landing at Beijing Airport, position 50 miles west of Beijing, heading 060. C: SIA442, roger MAYDAY,  break break, all stations on 126.3 stop transmitting MAYDAY.\nQuestion: What is the position of SIA442?",
+      "id": "listening-main-279",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/279.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 6,
+        "wordCount": 52,
+        "wer": 0.11538461538461539
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 6,
+        "wordCount": 52,
+        "wer": 0.11538461538461539
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 12,
+        "wordCount": 50,
+        "wer": 0.24
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 32,
+        "wordCount": 50,
+        "wer": 0.64
+      },
+      "rawTranscript": "Mayday, mayday, mayday. Beijing control, Singapore four four two, Boeing triple seven, fire in the rear toilet, descending, three thousand six hundred meters. Request emergency landing at Beijing airport, position five zero miles west of Beijing, heading zero six zero. Singapore four four two, Roger mayday. Break, break, all stations on one two six decimal three, stop transmitting, mayday. What is the position of Singapore four four two?",
+      "transcript": "Mayday, mayday, mayday. Beijing control, Singapore 442, Boeing 777, fire in the rear toilet, descending, 3600 meters. Request emergency landing at Beijing airport, position 50 miles west of Beijing, heading 060. Singapore 442, Roger mayday. Break, break, all stations on 126.3, stop transmitting, mayday. What is the position of Singapore 442?",
+      "transformations": [
+        {
+          "after": "Mayday, mayday, mayday. Beijing control, Singapore four four two, Boeing triple seven, fire in the rear toilet, descending, three thousand six hundred meters. Request emergency landing at Beijing airport, position five zero miles west of Beijing, heading 060. Singapore four four two, Roger mayday. Break, break, all stations on one two six decimal three, stop transmitting, mayday. What is the position of Singapore four four two?",
+          "before": "Mayday, mayday, mayday. Beijing control, Singapore four four two, Boeing triple seven, fire in the rear toilet, descending, three thousand six hundred meters. Request emergency landing at Beijing airport, position five zero miles west of Beijing, heading zero six zero. Singapore four four two, Roger mayday. Break, break, all stations on one two six decimal three, stop transmitting, mayday. What is the position of Singapore four four two?",
+          "risk": "context-required",
+          "ruleId": "HEADING-001"
+        },
+        {
+          "after": "Mayday, mayday, mayday. Beijing control, Singapore four four two, Boeing triple seven, fire in the rear toilet, descending, three thousand six hundred meters. Request emergency landing at Beijing airport, position five zero miles west of Beijing, heading 060. Singapore four four two, Roger mayday. Break, break, all stations on 126.3, stop transmitting, mayday. What is the position of Singapore four four two?",
+          "before": "Mayday, mayday, mayday. Beijing control, Singapore four four two, Boeing triple seven, fire in the rear toilet, descending, three thousand six hundred meters. Request emergency landing at Beijing airport, position five zero miles west of Beijing, heading 060. Singapore four four two, Roger mayday. Break, break, all stations on one two six decimal three, stop transmitting, mayday. What is the position of Singapore four four two?",
+          "risk": "context-required",
+          "ruleId": "FREQ-001"
+        },
+        {
+          "after": "Mayday, mayday, mayday. Beijing control, Singapore four four two, Boeing triple seven, fire in the rear toilet, descending, 3600 meters. Request emergency landing at Beijing airport, position 50 miles west of Beijing, heading 060. Singapore four four two, Roger mayday. Break, break, all stations on 126.3, stop transmitting, mayday. What is the position of Singapore four four two?",
+          "before": "Mayday, mayday, mayday. Beijing control, Singapore four four two, Boeing triple seven, fire in the rear toilet, descending, three thousand six hundred meters. Request emergency landing at Beijing airport, position five zero miles west of Beijing, heading 060. Singapore four four two, Roger mayday. Break, break, all stations on 126.3, stop transmitting, mayday. What is the position of Singapore four four two?",
+          "risk": "context-required",
+          "ruleId": "ALTITUDE-001"
+        },
+        {
+          "after": "Mayday, mayday, mayday. Beijing control, Singapore 442, Boeing triple seven, fire in the rear toilet, descending, 3600 meters. Request emergency landing at Beijing airport, position 50 miles west of Beijing, heading 060. Singapore 442, Roger mayday. Break, break, all stations on 126.3, stop transmitting, mayday. What is the position of Singapore 442?",
+          "before": "Mayday, mayday, mayday. Beijing control, Singapore four four two, Boeing triple seven, fire in the rear toilet, descending, 3600 meters. Request emergency landing at Beijing airport, position 50 miles west of Beijing, heading 060. Singapore four four two, Roger mayday. Break, break, all stations on 126.3, stop transmitting, mayday. What is the position of Singapore four four two?",
+          "risk": "context-required",
+          "ruleId": "CALLSIGN-001"
+        },
+        {
+          "after": "Mayday, mayday, mayday. Beijing control, Singapore 442, Boeing 777, fire in the rear toilet, descending, 3600 meters. Request emergency landing at Beijing airport, position 50 miles west of Beijing, heading 060. Singapore 442, Roger mayday. Break, break, all stations on 126.3, stop transmitting, mayday. What is the position of Singapore 442?",
+          "before": "Mayday, mayday, mayday. Beijing control, Singapore 442, Boeing triple seven, fire in the rear toilet, descending, 3600 meters. Request emergency landing at Beijing airport, position 50 miles west of Beijing, heading 060. Singapore 442, Roger mayday. Break, break, all stations on 126.3, stop transmitting, mayday. What is the position of Singapore 442?",
+          "risk": "context-required",
+          "ruleId": "AIRCRAFT-002"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/041.mp3",
+      "expectedText": "Ground, CES5056, we found some mistakes with takeoff center of gravity and zero fuel center of gravity when we were checking the loading sheet. Would you recheck it and correct the mistakes?\nQuestion: What do you learn from the statement?",
+      "id": "listening-main-041",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/041.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 42,
+        "wer": 0.047619047619047616
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 42,
+        "wer": 0.047619047619047616
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 5,
+        "wordCount": 40,
+        "wer": 0.125
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 8,
+        "wordCount": 40,
+        "wer": 0.2
+      },
+      "rawTranscript": "Ground, China Eastern five zero five six. We found some mistakes with the takeoff center of gravity and zero fuel center of gravity when we were checking the load sheet. Would you recheck it and correct the mistakes? Question: What do you learn from the statement?",
+      "transcript": "Ground, China Eastern 5056. We found some mistakes with the takeoff center of gravity and zero fuel center of gravity when we were checking the load sheet. Would you recheck it and correct the mistakes? Question: What do you learn from the statement?",
+      "transformations": [
+        {
+          "after": "Ground, China Eastern 5056. We found some mistakes with the takeoff center of gravity and zero fuel center of gravity when we were checking the load sheet. Would you recheck it and correct the mistakes? Question: What do you learn from the statement?",
+          "before": "Ground, China Eastern five zero five six. We found some mistakes with the takeoff center of gravity and zero fuel center of gravity when we were checking the load sheet. Would you recheck it and correct the mistakes? Question: What do you learn from the statement?",
+          "risk": "context-required",
+          "ruleId": "CALLSIGN-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/201.mp3",
+      "expectedText": "ice, snow and frost must be removed before a flight because they can seriously affect takeoff distance and climb out performance.\nQuestion: What type of weather conditions are described in the statement?",
+      "id": "listening-main-201",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/201.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 32,
+        "wer": 0.03125
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 32,
+        "wer": 0.03125
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 32,
+        "wer": 0.03125
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 32,
+        "wer": 0.03125
+      },
+      "rawTranscript": "Ice, snow and frost must be removed before a flight because they can seriously affect takeoff distance and climb out performance. What type of weather conditions are described in the statement?",
+      "transcript": "Ice, snow and frost must be removed before a flight because they can seriously affect takeoff distance and climb out performance. What type of weather conditions are described in the statement?",
+      "transformations": []
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/230.mp3",
+      "expectedText": "P1: Did you hear of the accident that occurred in France? P2: No, what about it? P1: The air crash of the helicopter caused a local forest fire, but fortunately, it was extinguished quickly. The air crash resulted in losses of three lives.\nQuestion: What were the consequences of the air crash?",
+      "id": "listening-main-230",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/230.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 7,
+        "wordCount": 52,
+        "wer": 0.1346153846153846
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 7,
+        "wordCount": 52,
+        "wer": 0.1346153846153846
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 7,
+        "wordCount": 52,
+        "wer": 0.1346153846153846
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 7,
+        "wordCount": 52,
+        "wer": 0.1346153846153846
+      },
+      "rawTranscript": "Did you hear of the accident that occurred recently in France? No, what about it? The air crash of a helicopter caused a local forest fire, but fortunately it was extinguished quickly. The air crash resulted in the loss of three lives. Question: What were the consequences of the air crash?",
+      "transcript": "Did you hear of the accident that occurred recently in France? No, what about it? The air crash of a helicopter caused a local forest fire, but fortunately it was extinguished quickly. The air crash resulted in the loss of three lives. Question: What were the consequences of the air crash?",
+      "transformations": []
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/008.mp3",
+      "expectedText": "P：Air China One Zero One, we are now 4800 meters, passing Whiskey Zulu Foxtrot, information Echo received. C：Air China One Zero One, radar contact, descend to 3000 meters, turn right heading 040, radar vectored ILS approach runway 36 Right.\nQuestion: What are the controller's instructions on new altitude, flight heading, and runway in use?",
+      "id": "listening-main-008",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/008.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 4,
+        "wordCount": 50,
+        "wer": 0.08
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 4,
+        "wordCount": 50,
+        "wer": 0.08
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 15,
+        "wordCount": 57,
+        "wer": 0.2631578947368421
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 14,
+        "wordCount": 57,
+        "wer": 0.24561403508771928
+      },
+      "rawTranscript": "Air China one zero one, we are now four thousand eight hundred meters, passing Whiskey Zulu Foxtrot. Information Echo received. Air China one zero one, radar contact. Descend to three thousand meters, turn right heading zero four zero, radar vectoring, ILS approach runway three six right. Question: What are the controller's instructions on new altitude, flight heading, and runway in use?",
+      "transcript": "Air China 101, we are now 4800 meters, passing WZF. information E received. Air China 101, radar contact. Descend to 3000 meters, turn right heading 040, radar vectoring, ILS approach runway 36R. Question: What are the controller's instructions on new altitude, flight heading, and runway in use?",
+      "transformations": [
+        {
+          "after": "Air China one zero one, we are now four thousand eight hundred meters, passing Whiskey Zulu Foxtrot. Information Echo received. Air China one zero one, radar contact. Descend to three thousand meters, turn right heading zero four zero, radar vectoring, ILS approach runway 36R. Question: What are the controller's instructions on new altitude, flight heading, and runway in use?",
+          "before": "Air China one zero one, we are now four thousand eight hundred meters, passing Whiskey Zulu Foxtrot. Information Echo received. Air China one zero one, radar contact. Descend to three thousand meters, turn right heading zero four zero, radar vectoring, ILS approach runway three six right. Question: What are the controller's instructions on new altitude, flight heading, and runway in use?",
+          "risk": "context-required",
+          "ruleId": "RUNWAY-001"
+        },
+        {
+          "after": "Air China one zero one, we are now four thousand eight hundred meters, passing Whiskey Zulu Foxtrot. Information Echo received. Air China one zero one, radar contact. Descend to three thousand meters, turn right heading 040, radar vectoring, ILS approach runway 36R. Question: What are the controller's instructions on new altitude, flight heading, and runway in use?",
+          "before": "Air China one zero one, we are now four thousand eight hundred meters, passing Whiskey Zulu Foxtrot. Information Echo received. Air China one zero one, radar contact. Descend to three thousand meters, turn right heading zero four zero, radar vectoring, ILS approach runway 36R. Question: What are the controller's instructions on new altitude, flight heading, and runway in use?",
+          "risk": "context-required",
+          "ruleId": "HEADING-001"
+        },
+        {
+          "after": "Air China one zero one, we are now 4800 meters, passing Whiskey Zulu Foxtrot. Information Echo received. Air China one zero one, radar contact. Descend to 3000 meters, turn right heading 040, radar vectoring, ILS approach runway 36R. Question: What are the controller's instructions on new altitude, flight heading, and runway in use?",
+          "before": "Air China one zero one, we are now four thousand eight hundred meters, passing Whiskey Zulu Foxtrot. Information Echo received. Air China one zero one, radar contact. Descend to three thousand meters, turn right heading 040, radar vectoring, ILS approach runway 36R. Question: What are the controller's instructions on new altitude, flight heading, and runway in use?",
+          "risk": "context-required",
+          "ruleId": "ALTITUDE-001"
+        },
+        {
+          "after": "Air China 101, we are now 4800 meters, passing Whiskey Zulu Foxtrot. Information Echo received. Air China 101, radar contact. Descend to 3000 meters, turn right heading 040, radar vectoring, ILS approach runway 36R. Question: What are the controller's instructions on new altitude, flight heading, and runway in use?",
+          "before": "Air China one zero one, we are now 4800 meters, passing Whiskey Zulu Foxtrot. Information Echo received. Air China one zero one, radar contact. Descend to 3000 meters, turn right heading 040, radar vectoring, ILS approach runway 36R. Question: What are the controller's instructions on new altitude, flight heading, and runway in use?",
+          "risk": "context-required",
+          "ruleId": "CALLSIGN-001"
+        },
+        {
+          "after": "Air China 101, we are now 4800 meters, passing Whiskey Zulu Foxtrot. information E received. Air China 101, radar contact. Descend to 3000 meters, turn right heading 040, radar vectoring, ILS approach runway 36R. Question: What are the controller's instructions on new altitude, flight heading, and runway in use?",
+          "before": "Air China 101, we are now 4800 meters, passing Whiskey Zulu Foxtrot. Information Echo received. Air China 101, radar contact. Descend to 3000 meters, turn right heading 040, radar vectoring, ILS approach runway 36R. Question: What are the controller's instructions on new altitude, flight heading, and runway in use?",
+          "risk": "context-required",
+          "ruleId": "POSITION-001"
+        },
+        {
+          "after": "Air China 101, we are now 4800 meters, passing WZF. information E received. Air China 101, radar contact. Descend to 3000 meters, turn right heading 040, radar vectoring, ILS approach runway 36R. Question: What are the controller's instructions on new altitude, flight heading, and runway in use?",
+          "before": "Air China 101, we are now 4800 meters, passing Whiskey Zulu Foxtrot. information E received. Air China 101, radar contact. Descend to 3000 meters, turn right heading 040, radar vectoring, ILS approach runway 36R. Question: What are the controller's instructions on new altitude, flight heading, and runway in use?",
+          "risk": "context-required",
+          "ruleId": "WAYPOINT-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1363.mp3",
+      "expectedText": "C: China southern 310, hold short of runway 36 right, expect 15 minutes delay due thunderstorms in the vicinity of the airport.",
+      "id": "atc-scenario-0079-card-main-1363",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/1363.mp3",
+      "targeted": true,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 21,
+        "wer": 0.09523809523809523
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 21,
+        "wer": 0.09523809523809523
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 22,
+        "wer": 0.13636363636363635
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 8,
+        "wordCount": 22,
+        "wer": 0.36363636363636365
+      },
+      "rawTranscript": "China Southern Tree One Zero, hold short of runway Tree Six Right. Expect one five minutes delay due thunderstorms in the vicinity of the airport.",
+      "transcript": "China Southern 310, hold short of runway 36R. Expect 15 minutes delay due thunderstorms in the vicinity of the airport.",
+      "transformations": [
+        {
+          "after": "China Southern Tree One Zero, hold short of runway 36R. Expect one five minutes delay due thunderstorms in the vicinity of the airport.",
+          "before": "China Southern Tree One Zero, hold short of runway Tree Six Right. Expect one five minutes delay due thunderstorms in the vicinity of the airport.",
+          "risk": "context-required",
+          "ruleId": "RUNWAY-001"
+        },
+        {
+          "after": "China Southern Tree One Zero, hold short of runway 36R. Expect 15 minutes delay due thunderstorms in the vicinity of the airport.",
+          "before": "China Southern Tree One Zero, hold short of runway 36R. Expect one five minutes delay due thunderstorms in the vicinity of the airport.",
+          "risk": "context-required",
+          "ruleId": "ALTITUDE-001"
+        },
+        {
+          "after": "China Southern 310, hold short of runway 36R. Expect 15 minutes delay due thunderstorms in the vicinity of the airport.",
+          "before": "China Southern Tree One Zero, hold short of runway 36R. Expect 15 minutes delay due thunderstorms in the vicinity of the airport.",
+          "risk": "context-required",
+          "ruleId": "CALLSIGN-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1783.mp3",
+      "expectedText": "B: Your call sign is China Southern 303, now call Guangzhou Control and tell him you’ve just passed 3600 meters.",
+      "id": "atc-scenario-0104-card-main-1783",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/1783.mp3",
+      "targeted": true,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 4,
+        "wordCount": 20,
+        "wer": 0.2
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 4,
+        "wordCount": 20,
+        "wer": 0.2
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 5,
+        "wordCount": 21,
+        "wer": 0.23809523809523808
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 9,
+        "wordCount": 21,
+        "wer": 0.42857142857142855
+      },
+      "rawTranscript": "Your call sign is China Southern Three Zero Tree. Now call Guangzhou Control and tell him you've just passed Tree Tao Sand six hundred meters.",
+      "transcript": "Your call sign is China Southern 303. Now call Guangzhou Control and tell him you've just passed Tree Tao Sand 600 meters.",
+      "transformations": [
+        {
+          "after": "Your call sign is China Southern Three Zero Tree. Now call Guangzhou Control and tell him you've just passed Tree Tao Sand 600 meters.",
+          "before": "Your call sign is China Southern Three Zero Tree. Now call Guangzhou Control and tell him you've just passed Tree Tao Sand six hundred meters.",
+          "risk": "context-required",
+          "ruleId": "ALTITUDE-001"
+        },
+        {
+          "after": "Your call sign is China Southern 303. Now call Guangzhou Control and tell him you've just passed Tree Tao Sand 600 meters.",
+          "before": "Your call sign is China Southern Three Zero Tree. Now call Guangzhou Control and tell him you've just passed Tree Tao Sand 600 meters.",
+          "risk": "context-required",
+          "ruleId": "CALLSIGN-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1676.mp3",
+      "expectedText": "B: Now you want to verify the wind data, ask ATC to give detailed wind information.",
+      "id": "atc-scenario-0097-card-main-1676",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/1676.mp3",
+      "targeted": true,
+      "equivalentPost": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 15,
+        "wer": 0
+      },
+      "equivalentRaw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 15,
+        "wer": 0
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 16,
+        "wer": 0.0625
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 16,
+        "wer": 0.0625
+      },
+      "rawTranscript": "Now you want to verify the wind data, ask ATC to give detailed wind information.",
+      "transcript": "Now you want to verify the wind data, ask ATC to give detailed wind information.",
+      "transformations": []
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/729.mp3",
+      "expectedText": "C: KLM 88, Departure, cleared visual approach runway 18 left. Caution, runway is wet, braking action medium.",
+      "id": "atc-scenario-0042-card-main-729",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/729.mp3",
+      "targeted": true,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 16,
+        "wer": 0.125
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 16,
+        "wer": 0.125
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 17,
+        "wer": 0.17647058823529413
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 5,
+        "wordCount": 17,
+        "wer": 0.29411764705882354
+      },
+      "rawTranscript": "KLM Eight Eight, departure, cleared visual approach runway one eight left. Caution, runway is wet, braking action medium.",
+      "transcript": "KLM 88, departure, cleared visual approach runway 18L. Caution, runway is wet, braking action medium.",
+      "transformations": [
+        {
+          "after": "KLM Eight Eight, departure, cleared visual approach runway 18L. Caution, runway is wet, braking action medium.",
+          "before": "KLM Eight Eight, departure, cleared visual approach runway one eight left. Caution, runway is wet, braking action medium.",
+          "risk": "context-required",
+          "ruleId": "RUNWAY-001"
+        },
+        {
+          "after": "KLM 88, departure, cleared visual approach runway 18L. Caution, runway is wet, braking action medium.",
+          "before": "KLM Eight Eight, departure, cleared visual approach runway 18L. Caution, runway is wet, braking action medium.",
+          "risk": "context-required",
+          "ruleId": "CALLSIGN-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/516.mp3",
+      "expectedText": "B: Now you are at holding point runway 04, you notice the wind sock shows strong wind, contact Wuhan Tower and check the wind.",
+      "id": "atc-scenario-0030-card-main-516",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/516.mp3",
+      "targeted": true,
+      "equivalentPost": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 23,
+        "wer": 0
+      },
+      "equivalentRaw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 23,
+        "wer": 0
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 24,
+        "wer": 0.041666666666666664
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 24,
+        "wer": 0.125
+      },
+      "rawTranscript": "Now you are at holding point runway zero four. You notice the wind sock shows strong wind. Contact Wuhan Tower and check the wind.",
+      "transcript": "Now you are at holding point runway 04. You notice the wind sock shows strong wind. Contact Wuhan Tower and check the wind.",
+      "transformations": [
+        {
+          "after": "Now you are at holding point runway 04. You notice the wind sock shows strong wind. Contact Wuhan Tower and check the wind.",
+          "before": "Now you are at holding point runway zero four. You notice the wind sock shows strong wind. Contact Wuhan Tower and check the wind.",
+          "risk": "context-required",
+          "ruleId": "RUNWAY-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1583.mp3",
+      "expectedText": "C: China Eastern 565, after company Airbus 340 is clear, push back and start up approved, facing west.",
+      "id": "atc-scenario-0092-card-main-1583",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/1583.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 4,
+        "wordCount": 17,
+        "wer": 0.23529411764705882
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 4,
+        "wordCount": 17,
+        "wer": 0.23529411764705882
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 5,
+        "wordCount": 18,
+        "wer": 0.2777777777777778
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 11,
+        "wordCount": 18,
+        "wer": 0.6111111111111112
+      },
+      "rawTranscript": "China Eastern five six five, after company Airbus three four zero is clear, pushback and startup approved, facing west.",
+      "transcript": "China Eastern 565, after company Airbus 340 is clear, pushback and startup approved, facing west.",
+      "transformations": [
+        {
+          "after": "China Eastern 565, after company Airbus three four zero is clear, pushback and startup approved, facing west.",
+          "before": "China Eastern five six five, after company Airbus three four zero is clear, pushback and startup approved, facing west.",
+          "risk": "context-required",
+          "ruleId": "CALLSIGN-001"
+        },
+        {
+          "after": "China Eastern 565, after company Airbus 340 is clear, pushback and startup approved, facing west.",
+          "before": "China Eastern 565, after company Airbus three four zero is clear, pushback and startup approved, facing west.",
+          "risk": "context-required",
+          "ruleId": "AIRCRAFT-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1706.mp3",
+      "expectedText": "C: Can you accept Echo 1 intersection for departure?Takeoff roll distance available 3300 meters.\nB: Tell the Tower you can accept.",
+      "id": "atc-scenario-0098-card-main-1706",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/1706.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 20,
+        "wer": 0.05
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 20,
+        "wer": 0.05
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 22,
+        "wer": 0.13636363636363635
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 7,
+        "wordCount": 22,
+        "wer": 0.3181818181818182
+      },
+      "rawTranscript": "Can you accept Echo One intersection for departure? Takeoff roll distance available three thousand three hundred meters. Tell the tower you can accept.",
+      "transcript": "Can you accept Echo One intersection for departure? Takeoff roll distance available 3300 meters. Tell the tower you can accept.",
+      "transformations": [
+        {
+          "after": "Can you accept Echo One intersection for departure? Takeoff roll distance available 3300 meters. Tell the tower you can accept.",
+          "before": "Can you accept Echo One intersection for departure? Takeoff roll distance available three thousand three hundred meters. Tell the tower you can accept.",
+          "risk": "context-required",
+          "ruleId": "ALTITUDE-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1296.mp3",
+      "expectedText": "C: China Southern 557, Wuhan Approach, radar contact, hold at Delta Alpha NDB as published, expect further clearance at 50, report entering the hold.",
+      "id": "atc-scenario-0075-card-main-1296",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/1296.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 22,
+        "wer": 0
+      },
+      "equivalentRaw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 22,
+        "wer": 0
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 24,
+        "wer": 0.125
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 6,
+        "wordCount": 24,
+        "wer": 0.25
+      },
+      "rawTranscript": "China Southern five five seven, Wuhan Approach, radar contact. Hold at delta alpha ndb as published. Expect further clearance at five zero. Report entering the hold.",
+      "transcript": "China Southern 557, Wuhan Approach, radar contact. Hold at DA NDB as published. Expect further clearance at 50. Report entering the hold.",
+      "transformations": [
+        {
+          "after": "China Southern five five seven, Wuhan Approach, radar contact. Hold at delta alpha NDB as published. Expect further clearance at five zero. Report entering the hold.",
+          "before": "China Southern five five seven, Wuhan Approach, radar contact. Hold at delta alpha ndb as published. Expect further clearance at five zero. Report entering the hold.",
+          "risk": "safe",
+          "ruleId": "ABBR-001"
+        },
+        {
+          "after": "China Southern 557, Wuhan Approach, radar contact. Hold at delta alpha NDB as published. Expect further clearance at five zero. Report entering the hold.",
+          "before": "China Southern five five seven, Wuhan Approach, radar contact. Hold at delta alpha NDB as published. Expect further clearance at five zero. Report entering the hold.",
+          "risk": "context-required",
+          "ruleId": "CALLSIGN-001"
+        },
+        {
+          "after": "China Southern 557, Wuhan Approach, radar contact. Hold at DA NDB as published. Expect further clearance at five zero. Report entering the hold.",
+          "before": "China Southern 557, Wuhan Approach, radar contact. Hold at delta alpha NDB as published. Expect further clearance at five zero. Report entering the hold.",
+          "risk": "context-required",
+          "ruleId": "NAVAID-001"
+        },
+        {
+          "after": "China Southern 557, Wuhan Approach, radar contact. Hold at DA NDB as published. Expect further clearance at 50. Report entering the hold.",
+          "before": "China Southern 557, Wuhan Approach, radar contact. Hold at DA NDB as published. Expect further clearance at five zero. Report entering the hold.",
+          "risk": "context-required",
+          "ruleId": "TIME-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1235.mp3",
+      "expectedText": "B: Inform the controller that you have encountered a severe clear air turbulence, and ask for 8900 meters.",
+      "id": "atc-scenario-0072-card-main-1235",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/1235.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 17,
+        "wer": 0
+      },
+      "equivalentRaw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 17,
+        "wer": 0
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 18,
+        "wer": 0.05555555555555555
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 5,
+        "wordCount": 18,
+        "wer": 0.2777777777777778
+      },
+      "rawTranscript": "Inform the controller that you have encountered a severe clear air turbulence and ask for eight thousand nine hundred meters.",
+      "transcript": "Inform the controller that you have encountered a severe clear air turbulence and ask for 8900 meters.",
+      "transformations": [
+        {
+          "after": "Inform the controller that you have encountered a severe clear air turbulence and ask for 8900 meters.",
+          "before": "Inform the controller that you have encountered a severe clear air turbulence and ask for eight thousand nine hundred meters.",
+          "risk": "context-required",
+          "ruleId": "ALTITUDE-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/989.mp3",
+      "expectedText": "C: Air China 101, turn left heading 240.",
+      "id": "atc-scenario-0057-card-main-989",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/989.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 7,
+        "wer": 0
+      },
+      "equivalentRaw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 7,
+        "wer": 0
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 8,
+        "wer": 0.125
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 7,
+        "wordCount": 8,
+        "wer": 0.875
+      },
+      "rawTranscript": "Air China one zero one, turn left heading two four zero.",
+      "transcript": "Air China 101, turn left heading 240.",
+      "transformations": [
+        {
+          "after": "Air China one zero one, turn left heading 240.",
+          "before": "Air China one zero one, turn left heading two four zero.",
+          "risk": "context-required",
+          "ruleId": "HEADING-001"
+        },
+        {
+          "after": "Air China 101, turn left heading 240.",
+          "before": "Air China one zero one, turn left heading 240.",
+          "risk": "context-required",
+          "ruleId": "CALLSIGN-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/507.mp3",
+      "expectedText": "C: Speedbird 141, this is Beijing Approach, descend to 1800 meters on QNH 1011, expect runway 36 left.",
+      "id": "atc-scenario-0029-card-main-507",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/507.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 17,
+        "wer": 0.17647058823529413
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 17,
+        "wer": 0.17647058823529413
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 4,
+        "wordCount": 18,
+        "wer": 0.2222222222222222
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 14,
+        "wordCount": 18,
+        "wer": 0.7777777777777778
+      },
+      "rawTranscript": "Speedbird one five one, this is Beijing Approach. Descend to one thousand eight hundred meters on QNH one zero one one. Expect runway three six left.",
+      "transcript": "Speedbird 151, this is Beijing Approach. Descend to 1800 meters on QNH 1011. Expect runway 36L.",
+      "transformations": [
+        {
+          "after": "Speedbird one five one, this is Beijing Approach. Descend to one thousand eight hundred meters on QNH 1011. Expect runway three six left.",
+          "before": "Speedbird one five one, this is Beijing Approach. Descend to one thousand eight hundred meters on QNH one zero one one. Expect runway three six left.",
+          "risk": "context-required",
+          "ruleId": "PRESSURE-001"
+        },
+        {
+          "after": "Speedbird one five one, this is Beijing Approach. Descend to one thousand eight hundred meters on QNH 1011. Expect runway 36L.",
+          "before": "Speedbird one five one, this is Beijing Approach. Descend to one thousand eight hundred meters on QNH 1011. Expect runway three six left.",
+          "risk": "context-required",
+          "ruleId": "RUNWAY-001"
+        },
+        {
+          "after": "Speedbird one five one, this is Beijing Approach. Descend to 1800 meters on QNH 1011. Expect runway 36L.",
+          "before": "Speedbird one five one, this is Beijing Approach. Descend to one thousand eight hundred meters on QNH 1011. Expect runway 36L.",
+          "risk": "context-required",
+          "ruleId": "ALTITUDE-001"
+        },
+        {
+          "after": "Speedbird 151, this is Beijing Approach. Descend to 1800 meters on QNH 1011. Expect runway 36L.",
+          "before": "Speedbird one five one, this is Beijing Approach. Descend to 1800 meters on QNH 1011. Expect runway 36L.",
+          "risk": "context-required",
+          "ruleId": "CALLSIGN-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/350.mp3",
+      "expectedText": "B: You are experiencing moderate icing while maintaining 6000 meters, request higher level and state the reason.",
+      "id": "atc-scenario-0020-card-main-350",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/350.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 16,
+        "wer": 0
+      },
+      "equivalentRaw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 16,
+        "wer": 0
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 17,
+        "wer": 0.058823529411764705
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 17,
+        "wer": 0.17647058823529413
+      },
+      "rawTranscript": "You are experiencing moderate icing while maintaining six thousand meters. Request higher level and state the reason.",
+      "transcript": "You are experiencing moderate icing while maintaining 6000 meters. Request higher level and state the reason.",
+      "transformations": [
+        {
+          "after": "You are experiencing moderate icing while maintaining 6000 meters. Request higher level and state the reason.",
+          "before": "You are experiencing moderate icing while maintaining six thousand meters. Request higher level and state the reason.",
+          "risk": "context-required",
+          "ruleId": "ALTITUDE-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/746.mp3",
+      "expectedText": "B: You call sign is Japan Air 220, from Shanghai to Hongkong, you have intercepted an Urgency call from Air China 105, Air China 105 was transmitting blind due to receiver failure, he intended to request priority landing at Xiamen, relay the message to Xiamen Approach.",
+      "id": "atc-scenario-0044-card-main-746",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/746.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 45,
+        "wer": 0.044444444444444446
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 45,
+        "wer": 0.044444444444444446
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 46,
+        "wer": 0.06521739130434782
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 12,
+        "wordCount": 46,
+        "wer": 0.2608695652173913
+      },
+      "rawTranscript": "You call sign is Japan Air Two Two Zero, from Shanghai to Hong Kong. You have intercepted an urgency call from Air China One Zero Five. Air China One Zero Five was transmitting blind due to receiver failure. He intended to request priority landing at Xiamen. Relay the message to Xiamen Approach.",
+      "transcript": "You call sign is Japan Air 220, from Shanghai to Hong Kong. You have intercepted an urgency call from Air China 105. Air China 105 was transmitting blind due to receiver failure. He intended to request priority landing at Xiamen. Relay the message to Xiamen Approach.",
+      "transformations": [
+        {
+          "after": "You call sign is Japan Air 220, from Shanghai to Hong Kong. You have intercepted an urgency call from Air China 105. Air China 105 was transmitting blind due to receiver failure. He intended to request priority landing at Xiamen. Relay the message to Xiamen Approach.",
+          "before": "You call sign is Japan Air Two Two Zero, from Shanghai to Hong Kong. You have intercepted an urgency call from Air China One Zero Five. Air China One Zero Five was transmitting blind due to receiver failure. He intended to request priority landing at Xiamen. Relay the message to Xiamen Approach.",
+          "risk": "context-required",
+          "ruleId": "CALLSIGN-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/946.mp3",
+      "expectedText": "B: It is now later in the flight and you are experiencing some light turbulence, request a higher level.",
+      "id": "atc-scenario-0055-card-main-946",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/946.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 18,
+        "wer": 0
+      },
+      "equivalentRaw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 18,
+        "wer": 0
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 19,
+        "wer": 0.05263157894736842
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 19,
+        "wer": 0.05263157894736842
+      },
+      "rawTranscript": "It is now later in the flight and you are experiencing some light turbulence. Request a higher level.",
+      "transcript": "It is now later in the flight and you are experiencing some light turbulence. Request a higher level.",
+      "transformations": []
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1758.mp3",
+      "expectedText": "C: China Southern 426, taxi to holding point of runway 36 right via Yankee 1 and Charlie 1.",
+      "id": "atc-scenario-0102-card-main-1758",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/1758.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 17,
+        "wer": 0.11764705882352941
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 17,
+        "wer": 0.11764705882352941
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 18,
+        "wer": 0.16666666666666666
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 8,
+        "wordCount": 18,
+        "wer": 0.4444444444444444
+      },
+      "rawTranscript": "China Southern Four Two Six, taxi to holding point of Runway Three Six Right via Yankee One and Charlie One.",
+      "transcript": "China Southern 426, taxi to holding point of runway 36R via Yankee 1 and Charlie 1.",
+      "transformations": [
+        {
+          "after": "China Southern Four Two Six, taxi to holding point of runway 36R via Yankee One and Charlie One.",
+          "before": "China Southern Four Two Six, taxi to holding point of Runway Three Six Right via Yankee One and Charlie One.",
+          "risk": "context-required",
+          "ruleId": "RUNWAY-001"
+        },
+        {
+          "after": "China Southern 426, taxi to holding point of runway 36R via Yankee One and Charlie One.",
+          "before": "China Southern Four Two Six, taxi to holding point of runway 36R via Yankee One and Charlie One.",
+          "risk": "context-required",
+          "ruleId": "CALLSIGN-001"
+        },
+        {
+          "after": "China Southern 426, taxi to holding point of runway 36R via Yankee 1 and Charlie 1.",
+          "before": "China Southern 426, taxi to holding point of runway 36R via Yankee One and Charlie One.",
+          "risk": "context-required",
+          "ruleId": "POSITION-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1154.mp3",
+      "expectedText": "B: You are now twenty minutes into the flight and you are cruising at 6000 meters, ask climb to a higher level.",
+      "id": "atc-scenario-0067-card-main-1154",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/1154.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 21,
+        "wer": 0.047619047619047616
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 21,
+        "wer": 0.047619047619047616
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 22,
+        "wer": 0.13636363636363635
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 4,
+        "wordCount": 22,
+        "wer": 0.18181818181818182
+      },
+      "rawTranscript": "You are now twenty minutes into the flight and you are cruising at six thousand meters. Asked climb to a higher level.",
+      "transcript": "You are now 20 minutes into the flight and you are cruising at 6000 meters. Asked climb to a higher level.",
+      "transformations": [
+        {
+          "after": "You are now 20 minutes into the flight and you are cruising at 6000 meters. Asked climb to a higher level.",
+          "before": "You are now twenty minutes into the flight and you are cruising at six thousand meters. Asked climb to a higher level.",
+          "risk": "context-required",
+          "ruleId": "ALTITUDE-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/368.mp3",
+      "expectedText": "B: During approach, you find your flaps are jammed, tell Wuhan Approach you want to terminate the approach and hold at Whiskey Hotel Alpha for trouble-shooting.",
+      "id": "atc-scenario-0021-card-main-368",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/368.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 26,
+        "wer": 0.07692307692307693
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 26,
+        "wer": 0.07692307692307693
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 27,
+        "wer": 0.1111111111111111
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 27,
+        "wer": 0.1111111111111111
+      },
+      "rawTranscript": "During approach, you find your flaps are jammed. Tell Wuhan Approach you want to terminate the approach and hold at Whiskey Hotel Alpha for troubleshooting.",
+      "transcript": "During approach, you find your flaps are jammed. Tell Wuhan Approach you want to terminate the approach and hold at Whiskey Hotel Alpha for troubleshooting.",
+      "transformations": []
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/544.mp3",
+      "expectedText": "B: The weather is deteriorating and below your landing minima, you executed a missed approach, advised Tower.",
+      "id": "atc-scenario-0031-card-main-544",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/544.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 16,
+        "wer": 0.0625
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 16,
+        "wer": 0.0625
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 17,
+        "wer": 0.11764705882352941
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 17,
+        "wer": 0.11764705882352941
+      },
+      "rawTranscript": "The weather is deteriorating and below your landing minima. You executed a missed approach. Advise tower.",
+      "transcript": "The weather is deteriorating and below your landing minima. You executed a missed approach. Advise tower.",
+      "transformations": []
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/926.mp3",
+      "expectedText": "B: Your call sign is Air China 425, stand 08, from Wuhan to Tokyo, information Kilo received, request ATC clearance to Tokyo.",
+      "id": "atc-scenario-0054-card-main-926",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/926.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 21,
+        "wer": 0
+      },
+      "equivalentRaw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 21,
+        "wer": 0
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 22,
+        "wer": 0.09090909090909091
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 6,
+        "wordCount": 22,
+        "wer": 0.2727272727272727
+      },
+      "rawTranscript": "Your call sign is Air China four two five, stand zero eight, from Wuhan to Tokyo. Information kilo received. Request ATC clearance to Tokyo.",
+      "transcript": "Your call sign is Air China 425, stand 08, from Wuhan to Tokyo. information K received. Request ATC clearance to Tokyo.",
+      "transformations": [
+        {
+          "after": "Your call sign is Air China 425, stand zero eight, from Wuhan to Tokyo. Information kilo received. Request ATC clearance to Tokyo.",
+          "before": "Your call sign is Air China four two five, stand zero eight, from Wuhan to Tokyo. Information kilo received. Request ATC clearance to Tokyo.",
+          "risk": "context-required",
+          "ruleId": "CALLSIGN-001"
+        },
+        {
+          "after": "Your call sign is Air China 425, stand 08, from Wuhan to Tokyo. information K received. Request ATC clearance to Tokyo.",
+          "before": "Your call sign is Air China 425, stand zero eight, from Wuhan to Tokyo. Information kilo received. Request ATC clearance to Tokyo.",
+          "risk": "context-required",
+          "ruleId": "POSITION-001"
+        }
+      ]
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1170.mp3",
+      "expectedText": "C: Air China 301, runway 36 right, cleared for immediate takeoff, surface wind 340 degrees, 2 meters per second.",
+      "id": "atc-scenario-0068-card-main-1170",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/1170.mp3",
+      "targeted": false,
+      "equivalentPost": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 18,
+        "wer": 0.1111111111111111
+      },
+      "equivalentRaw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 18,
+        "wer": 0.1111111111111111
+      },
+      "normalizationVersion": "aviation-normalization:v2",
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 19,
+        "wer": 0.15789473684210525
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 10,
+        "wordCount": 19,
+        "wer": 0.5263157894736842
+      },
+      "rawTranscript": "Air China Three Zero One, runway Three Six Right, cleared for immediate takeoff. Surface wind Three Four Zero degrees, two meters per second.",
+      "transcript": "Air China 301, runway 36R, cleared for immediate takeoff. Surface wind 340 degrees, 2 meters per second.",
+      "transformations": [
+        {
+          "after": "Air China Three Zero One, runway 36R, cleared for immediate takeoff. Surface wind Three Four Zero degrees, two meters per second.",
+          "before": "Air China Three Zero One, runway Three Six Right, cleared for immediate takeoff. Surface wind Three Four Zero degrees, two meters per second.",
+          "risk": "context-required",
+          "ruleId": "RUNWAY-001"
+        },
+        {
+          "after": "Air China Three Zero One, runway 36R, cleared for immediate takeoff. Surface wind 340 degrees, 2 meters per second.",
+          "before": "Air China Three Zero One, runway 36R, cleared for immediate takeoff. Surface wind Three Four Zero degrees, two meters per second.",
+          "risk": "context-required",
+          "ruleId": "ALTITUDE-001"
+        },
+        {
+          "after": "Air China 301, runway 36R, cleared for immediate takeoff. Surface wind 340 degrees, 2 meters per second.",
+          "before": "Air China Three Zero One, runway 36R, cleared for immediate takeoff. Surface wind 340 degrees, 2 meters per second.",
+          "risk": "context-required",
+          "ruleId": "CALLSIGN-001"
+        }
+      ]
+    }
+  ],
+  "surface": {
+    "excluded": 1,
+    "improved": 39,
+    "postContentExact": 17,
+    "postStrictExact": 11,
+    "postWer": 0.1327182398864443,
+    "rawContentExact": 8,
+    "rawStrictExact": 5,
+    "rawWer": 0.27466288147622425,
+    "sampleCount": 59,
+    "totalSampleCount": 60,
+    "unchanged": 19,
+    "worsened": 1
+  }
+}

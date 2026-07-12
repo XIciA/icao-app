@@ -5,6 +5,7 @@ import { Stack, SplashScreen, type ErrorBoundaryProps } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { CenteredState } from '@/components/states/CenteredState';
@@ -30,33 +31,35 @@ export default function RootLayout() {
   if (!fontsLoaded && !fontError) return <GlobalLoadingScreen />;
 
   return (
-    <SafeAreaProvider>
-      <AuthProvider>
-        <StatusBar backgroundColor={colors.background} style="dark" />
-        <Stack
-          screenOptions={{
-            animation: 'slide_from_right',
-            animationDuration: 220,
-            contentStyle: { backgroundColor: colors.background },
-            fullScreenGestureEnabled: true,
-            gestureEnabled: true,
-            headerShown: false,
-          }}
-        >
-          <Stack.Screen name="(tabs)" options={{ animation: 'fade' }} />
-          <Stack.Screen name="detail/[slug]" />
-          <Stack.Screen name="question-bank/[bankId]/index" />
-          <Stack.Screen name="question-bank/[bankId]/study/[categoryId]/[topicId]" />
-          <Stack.Screen name="learning-records" />
-          <Stack.Screen name="annotations" />
-          <Stack.Screen name="content/[slug]" />
-          <Stack.Screen name="auth/[slug]" />
-          <Stack.Screen name="account/[slug]" />
-          <Stack.Screen name="info/[slug]" />
-          <Stack.Screen name="state/[slug]" />
-        </Stack>
-      </AuthProvider>
-    </SafeAreaProvider>
+    <GestureHandlerRootView style={styles.root}>
+      <SafeAreaProvider>
+        <AuthProvider>
+          <StatusBar backgroundColor={colors.background} style="dark" />
+          <Stack
+            screenOptions={{
+              animation: 'slide_from_right',
+              animationDuration: 220,
+              contentStyle: { backgroundColor: colors.background },
+              fullScreenGestureEnabled: true,
+              gestureEnabled: true,
+              headerShown: false,
+            }}
+          >
+            <Stack.Screen name="(tabs)" options={{ animation: 'fade' }} />
+            <Stack.Screen name="detail/[slug]" />
+            <Stack.Screen name="question-bank/[bankId]/index" />
+            <Stack.Screen name="question-bank/[bankId]/study/[categoryId]/[topicId]" />
+            <Stack.Screen name="learning-records" />
+            <Stack.Screen name="annotations" />
+            <Stack.Screen name="content/[slug]" />
+            <Stack.Screen name="auth/[slug]" />
+            <Stack.Screen name="account/[slug]" />
+            <Stack.Screen name="info/[slug]" />
+            <Stack.Screen name="state/[slug]" />
+          </Stack>
+        </AuthProvider>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 }
 
@@ -77,5 +80,6 @@ export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
 }
 
 const styles = StyleSheet.create({
+  root: { flex: 1 },
   errorRoot: { backgroundColor: colors.background, flex: 1 },
 });

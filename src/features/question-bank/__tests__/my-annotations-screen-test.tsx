@@ -59,6 +59,16 @@ jest.mock('../annotations/use-question-annotations', () => ({
           note: '复习雷击通话',
           updatedAt: '2026-07-12T00:00:00.000Z',
         },
+        sentenceEntry: {
+          bankId: 'sentences900',
+          categoryId: 'sentence900-3级',
+          topicId: 'sentence900-3级-main',
+          cardId: 'sentence900-main-001',
+          tagIds: ['good', 'confused'],
+          highlights: [],
+          note: '',
+          updatedAt: '2026-07-12T01:00:00.000Z',
+        },
       },
     },
     tagDefinitions: DEFAULT_ANNOTATION_TAGS,
@@ -75,14 +85,34 @@ describe('<MyAnnotationsScreen />', () => {
   it('separates annotation kinds, filters by color, and routes to the exact card', async () => {
     const screen = await render(<MyAnnotationsScreen />);
     expect(screen.getByText('我的标注')).toBeTruthy();
+    expect(screen.getByText('全部题库')).toBeTruthy();
     expect(screen.getByText(/United Airlines 919/)).toBeTruthy();
+    expect(screen.getByText('Maintaining FL310.')).toBeTruthy();
+    expect(screen.getByLabelText('已添加2个标签：好题、不懂')).toBeTruthy();
 
     await fireEvent.press(screen.getByText(/United Airlines 919/));
     expect(mockPush).toHaveBeenCalledWith(expect.objectContaining({ params: expect.objectContaining({ cardId: 'listening-main-001', returnTo: 'annotations' }) }));
 
     await fireEvent.press(screen.getByText('高亮'));
-    expect(screen.getByText('United Airlines 919 was struck by lightning.')).toBeTruthy();
-    await fireEvent.press(screen.getByLabelText('筛选颜色 red'));
+    expect(screen.getByLabelText('高亮词：Airlines')).toBeTruthy();
+    expect(screen.queryByLabelText('高亮词：United')).toBeNull();
+    expect(screen.getByText('重点')).toBeTruthy();
+    expect(screen.getByText('记忆')).toBeTruthy();
+    expect(screen.getByText('难点')).toBeTruthy();
+    await fireEvent.press(screen.getByLabelText('筛选难点'));
     expect(screen.getByText('没有匹配该颜色的高亮')).toBeTruthy();
+  });
+
+  it('can narrow the default all-bank view to one question bank', async () => {
+    const screen = await render(<MyAnnotationsScreen />);
+    expect(screen.getByText('Maintaining FL310.')).toBeTruthy();
+    expect(screen.getByText(/United Airlines 919/)).toBeTruthy();
+
+    await fireEvent.press(screen.getByLabelText('切换题库'));
+    await fireEvent.press(screen.getByText('听力'));
+
+    expect(screen.queryByText('Maintaining FL310.')).toBeNull();
+    expect(screen.getByText(/United Airlines 919/)).toBeTruthy();
+    expect(screen.getByText('本机数据 · 当前题库')).toBeTruthy();
   });
 });

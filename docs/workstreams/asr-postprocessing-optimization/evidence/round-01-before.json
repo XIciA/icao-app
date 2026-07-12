@@ -1,0 +1,739 @@
+{
+  "generatedAt": "2026-07-12T14:36:32.711Z",
+  "label": "before",
+  "round": 1,
+  "samples": [
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/506.mp3",
+      "expectedText": "We are operating with only the emergency generator. Request track direct to final, Runway 26.",
+      "id": "sentence900-main-506",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/506.mp3",
+      "targeted": true,
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 15,
+        "wer": 0.13333333333333333
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 4,
+        "wordCount": 15,
+        "wer": 0.26666666666666666
+      },
+      "rawTranscript": "We are operating only the emergency generator. Request track to direct to final, runway two six.",
+      "transcript": "We are operating only the emergency generator. Request track to direct to final, runway 26."
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/099.mp3",
+      "expectedText": "Radio check on 118.3.",
+      "id": "sentence900-main-099",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/099.mp3",
+      "targeted": true,
+      "post": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 5,
+        "wer": 0
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 5,
+        "wordCount": 5,
+        "wer": 1
+      },
+      "rawTranscript": "Radio check on one one eight decimal three.",
+      "transcript": "Radio check on 118.3."
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/337.mp3",
+      "expectedText": "Maintain own separation and VMC, descend to FL50.",
+      "id": "sentence900-main-337",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/337.mp3",
+      "targeted": true,
+      "post": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 8,
+        "wer": 0
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 4,
+        "wordCount": 8,
+        "wer": 0.5
+      },
+      "rawTranscript": "Maintain own separation and VMC, descend to flight level five zero.",
+      "transcript": "Maintain own separation and VMC, descend to FL50."
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/282.mp3",
+      "expectedText": "Transponder unserviceable.",
+      "id": "sentence900-main-282",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/282.mp3",
+      "targeted": false,
+      "post": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 2,
+        "wer": 0
+      },
+      "raw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 2,
+        "wer": 0
+      },
+      "rawTranscript": "Transponder unserviceable.",
+      "transcript": "Transponder unserviceable."
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/738.mp3",
+      "expectedText": "Roger heavy rain. Request to terminate our approach.",
+      "id": "sentence900-main-738",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/738.mp3",
+      "targeted": false,
+      "post": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 8,
+        "wer": 0
+      },
+      "raw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 8,
+        "wer": 0
+      },
+      "rawTranscript": "Roger, heavy rain. Request to terminate our approach.",
+      "transcript": "Roger, heavy rain. Request to terminate our approach."
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/168.mp3",
+      "expectedText": "Extend downwind, Number Two, airbus 320 in sight.",
+      "id": "sentence900-main-168",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/168.mp3",
+      "targeted": false,
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 8,
+        "wer": 0.375
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 8,
+        "wer": 0.375
+      },
+      "rawTranscript": "Extend downwind, number two Airbus three two zero in sight.",
+      "transcript": "Extend downwind, number two Airbus three two zero in sight."
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/667.mp3",
+      "expectedText": "We are at bay15. We have an APU fire. Request fire services.",
+      "id": "sentence900-main-667",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/667.mp3",
+      "targeted": false,
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 12,
+        "wer": 0.25
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 12,
+        "wer": 0.25
+      },
+      "rawTranscript": "We are at bay one five. We have an APU fire. Request fire services.",
+      "transcript": "We are at bay one five. We have an APU fire. Request fire services."
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/327.mp3",
+      "expectedText": "Surveillance radar approach Runway 27, maintaining 2200 feet.",
+      "id": "sentence900-main-327",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/327.mp3",
+      "targeted": false,
+      "post": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 8,
+        "wer": 0
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 6,
+        "wordCount": 8,
+        "wer": 0.75
+      },
+      "rawTranscript": "Surveillance radar approach runway two seven, maintaining two thousand two hundred feet.",
+      "transcript": "Surveillance radar approach runway 27, maintaining 2200 feet."
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/226.mp3",
+      "expectedText": "Confirm identification lost.",
+      "id": "sentence900-main-226",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/226.mp3",
+      "targeted": false,
+      "post": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 3,
+        "wer": 0
+      },
+      "raw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordErrors": 0,
+        "wordCount": 3,
+        "wer": 0
+      },
+      "rawTranscript": "Confirm identification lost.",
+      "transcript": "Confirm identification lost."
+    },
+    {
+      "audio": "/question-bank-assets/audio/sentence900/main/418.mp3",
+      "expectedText": "Descending to FL60, maintain VMC FL90 to FL70, report traffic in sight at FL80.",
+      "id": "sentence900-main-418",
+      "module": "sentences900",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/sentence900/main/418.mp3",
+      "targeted": false,
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 2,
+        "wordCount": 14,
+        "wer": 0.14285714285714285
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 16,
+        "wordCount": 14,
+        "wer": 1.1428571428571428
+      },
+      "rawTranscript": "Descending to flight level six zero, maintain VMC. Flight level niner zero to flight level seven zero, report traffic in sight at flight level eight zero.",
+      "transcript": "Descending to FL60, maintain VMC. FL902 FL70, report traffic in sight at FL80."
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/624.mp3",
+      "expectedText": "All stations, Windshear warning. Arriving Boeing 737 reported moderate windshear on approach runway 36 Right at 2120. Height of windshear layer 120 meters.\nQuestion: who reported windshear?",
+      "id": "listening-main-624",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/624.mp3",
+      "targeted": true,
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 23,
+        "wordCount": 27,
+        "wer": 0.8518518518518519
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 23,
+        "wordCount": 27,
+        "wer": 0.8518518518518519
+      },
+      "rawTranscript": "All stations, wind shear warning. Arriving Boeing seven hundred and thirty-seven reported moderate wind shear on approach runway three six right at two one two zero. Height of wind shear layer one hundred and twenty meters. Question: Who reported wind shear?",
+      "transcript": "All stations, wind shear warning. Arriving Boeing seven hundred and thirty-seven reported moderate wind shear on approach runway 36R at two one two zero. Height of wind shear layer one hundred and twenty meters. Question: Who reported wind shear?"
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/449.mp3",
+      "expectedText": "P: Tower, AFR2136, going around, we encountered severe wake turbulence during approach.\nQuestion: What caused the turbulence during the approach?",
+      "id": "listening-main-449",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/449.mp3",
+      "targeted": true,
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 9,
+        "wordCount": 20,
+        "wer": 0.45
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 9,
+        "wordCount": 20,
+        "wer": 0.45
+      },
+      "rawTranscript": "Tower Air France two one three six, going around. We encountered severe wake turbulence during the approach. What caused the turbulence during the approach?",
+      "transcript": "Tower Air France two one three six, going around. We encountered severe wake turbulence during the approach. What caused the turbulence during the approach?"
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/493.mp3",
+      "expectedText": "KLM 991, BlueYard approach, we've just received an anonymous call saying there's a bomb on board your aircraft. Come back immediately to BlueYard airport.\nQuestion: what happened?",
+      "id": "listening-main-493",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/493.mp3",
+      "targeted": true,
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 4,
+        "wordCount": 29,
+        "wer": 0.13793103448275862
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 4,
+        "wordCount": 29,
+        "wer": 0.13793103448275862
+      },
+      "rawTranscript": "KLM 991, Blue Yacht Approach. We've just received an anonymous call saying there's a bomb on board your aircraft. Come back immediately to Blue Yacht Airport. Question: What happened?",
+      "transcript": "KLM 991, Blue Yacht Approach. We've just received an anonymous call saying there's a bomb on board your aircraft. Come back immediately to Blue Yacht Airport. Question: What happened?"
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/607.mp3",
+      "expectedText": "Northwest 281, we have an electrical failure. We intend to return to the airport, but we have to down 40 tons of fuel first.\nQuestion: what is the crew intention?",
+      "id": "listening-main-607",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/607.mp3",
+      "targeted": false,
+      "post": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 30,
+        "wer": 0
+      },
+      "raw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 30,
+        "wer": 0
+      },
+      "rawTranscript": "Northwest 281, we have an electrical failure. We intend to return to the airport, but we have to down 40 tons of fuel first. Question: What is the crew intention?",
+      "transcript": "Northwest 281, we have an electrical failure. We intend to return to the airport, but we have to down 40 tons of fuel first. Question: What is the crew intention?"
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/029.mp3",
+      "expectedText": "QFA564, we have got a suspected cholera patient on board. Request necessary services on landing.\nQuestion: What might be needed on landing?",
+      "id": "listening-main-029",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/029.mp3",
+      "targeted": false,
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 4,
+        "wordCount": 22,
+        "wer": 0.18181818181818182
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 4,
+        "wordCount": 22,
+        "wer": 0.18181818181818182
+      },
+      "rawTranscript": "Qantas five six four, we have got a suspected cholera patient on board. Request necessary services on landing. Question, what might be needed on landing?",
+      "transcript": "Qantas five six four, we have got a suspected cholera patient on board. Request necessary services on landing. Question, what might be needed on landing?"
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/525.mp3",
+      "expectedText": "UK uses report established on the localizer, instead of ICAO phrase, cleared ILS approach. Once established, you will be given clearance, descend on the ILS. This descent instruction ensures that descent is initiated Only when the aircraft is clear of other traffic patterns, such as adjacent aerodromes procedures. In a busy RTF environment, the phraseology may just be, when established on the localizer, descend on the ILS.\nQuestion: when can a pilot flying in the UK airspace descend?",
+      "id": "listening-main-525",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/525.mp3",
+      "targeted": false,
+      "post": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 78,
+        "wer": 0
+      },
+      "raw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordErrors": 0,
+        "wordCount": 78,
+        "wer": 0
+      },
+      "rawTranscript": "UK uses report established on the localizer, instead of ICAO phrase cleared ILS approach. Once established, you will be given clearance descend on the ILS. This descent instruction ensures that descent is initiated only when the aircraft is clear of other traffic patterns, such as adjacent aerodromes procedures. In a busy RTF environment, the phraseology may just be when established on the localizer descend on the ILS. Question: When can a pilot flying in the UK airspace descend?",
+      "transcript": "UK uses report established on the localizer, instead of ICAO phrase cleared ILS approach. Once established, you will be given clearance descend on the ILS. This descent instruction ensures that descent is initiated only when the aircraft is clear of other traffic patterns, such as adjacent aerodromes procedures. In a busy RTF environment, the phraseology may just be when established on the localizer descend on the ILS. Question: When can a pilot flying in the UK airspace descend?"
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/004.mp3",
+      "expectedText": "A controller instructed Air China One Zero One to leave 9500 meters for 8900 meters. He then found his instruction was not correct, and changed the instruction by asking Air China One Zero One descending to 9200 meters.\nQuestion: Which word can be used to express the controller's meaning?",
+      "id": "listening-main-004",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/004.mp3",
+      "targeted": false,
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 15,
+        "wordCount": 50,
+        "wer": 0.3
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 15,
+        "wordCount": 50,
+        "wer": 0.3
+      },
+      "rawTranscript": "A controller instructed Air China one zero one to leave nine thousand five hundred metres for eight thousand nine hundred metres. He then found his instruction was not correct and changed the instruction by asking Air China one zero one descending to nine thousand two hundred metres. Question: Which word can be used to express the controller's meaning?",
+      "transcript": "A controller instructed Air China one zero one to leave nine thousand five hundred metres for eight thousand nine hundred metres. He then found his instruction was not correct and changed the instruction by asking Air China one zero one descending to nine thousand two hundred metres. Question: Which word can be used to express the controller's meaning?"
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/357.mp3",
+      "expectedText": "P: Ground, AFR121, stand Z4, Information F, ready for pushback and startup. C: AFR121, the blue tug for pushback has malfunctioned. I am sending another tug, stand by. P: Wilco, AFR121.\nQuestion: Why does the controller ask AFR121 to wait?",
+      "id": "listening-main-357",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/357.mp3",
+      "targeted": false,
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 41,
+        "wordCount": 40,
+        "wer": 1.025
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 39,
+        "wordCount": 40,
+        "wer": 0.975
+      },
+      "rawTranscript": "Ground, Air France one two one, stand Zulu four, information Foxtrot, ready for pushback and startup. Air France one two one, the tug Alpha Blue which was assigned to push you back has some malfunction. I am working on sending another tug, standby. Wilco, Air France one two one. Why does the controller ask Air France one two one to wait?",
+      "transcript": "Ground, Air France one two one, stand Zulu four, information Foxtrot, ready for pushback and start up. Air France one two one, the tug Alpha Blue which was assigned to push you back has some malfunction. I am working on sending another tug, standby. Wilco, Air France one two one. Why does the controller ask Air France one two one to wait?"
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/058.mp3",
+      "expectedText": "P: Ground, BAW141, we have to taxi back to the terminal because our EGT is too high, close to the limit. C: BAW141, can you manage to taxi under your own power. P: I’d better shut down the engine and wait for a tug. C：BAW141, wait there and I will contact a tug driver. A tug will reach you soon.\nQuestion: What is the problem?",
+      "id": "listening-main-058",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/058.mp3",
+      "targeted": false,
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 14,
+        "wordCount": 67,
+        "wer": 0.208955223880597
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 14,
+        "wordCount": 67,
+        "wer": 0.208955223880597
+      },
+      "rawTranscript": "Ground, Speedbird one four one. We have to taxi back to the terminal because our EGT is too high, close to the limit. Speedbird one four one, can you manage to taxi under your own power? I'd better shut down the engine and wait for a tug. Speedbird one four one, wait there and I will contact a tug driver. A tug will reach you soon. Question: What is the problem?",
+      "transcript": "Ground, Speedbird one four one. We have to taxi back to the terminal because our EGT is too high, close to the limit. Speedbird one four one, can you manage to taxi under your own power? I'd better shut down the engine and wait for a tug. Speedbird one four one, wait there and I will contact a tug driver. A tug will reach you soon. Question: What is the problem?"
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/631.mp3",
+      "expectedText": "PANPAN, PANPAN, PANPAN, Wuhan Control, Korean Air 9082, I have a passenger with serious asthma on board, and he is having difficulty breathing, and is in a very critical condition.\nQuestion: what happened on board?",
+      "id": "listening-main-631",
+      "module": "listening",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/631.mp3",
+      "targeted": false,
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 10,
+        "wordCount": 35,
+        "wer": 0.2857142857142857
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 10,
+        "wordCount": 35,
+        "wer": 0.2857142857142857
+      },
+      "rawTranscript": "Pan pan pan pan pan pan, Wuhan Control, Korean Air nine or eight two. I have a passenger with serious asthma on board, and he is having difficulty breathing and is in a very critical condition. Question: What happened on board?",
+      "transcript": "pan-pan pan-pan pan-pan, Wuhan Control, Korean Air nine or eight two. I have a passenger with serious asthma on board, and he is having difficulty breathing and is in a very critical condition. Question: What happened on board?"
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/774.mp3",
+      "expectedText": "C: Air Canada 121, confirm you are overshooting.",
+      "id": "atc-scenario-0045-card-main-774",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/774.mp3",
+      "targeted": true,
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 4,
+        "wordCount": 8,
+        "wer": 0.5
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 4,
+        "wordCount": 8,
+        "wer": 0.5
+      },
+      "rawTranscript": "Air Canada One Two One, confirm you are overshooting.",
+      "transcript": "Air Canada One Two One, confirm you are overshooting."
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1479.mp3",
+      "expectedText": "B: Your call sign is China Southern 235, a flight from Beijing to Shanghai Hongqiao, you are parking at 217, you have got information Golf, contact Beijing Delivery and request ATC clearance.",
+      "id": "atc-scenario-0086-card-main-1479",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/1479.mp3",
+      "targeted": true,
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 8,
+        "wordCount": 32,
+        "wer": 0.25
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 8,
+        "wordCount": 32,
+        "wer": 0.25
+      },
+      "rawTranscript": "Your call sign is China Southern Two Three Five, a flight from Beijing to Shanghai Hongqiao. You are parking at Two One Seven. You have got information Gulf. Contact Beijing Delivery and request ATC clearance.",
+      "transcript": "Your call sign is China Southern Two Three Five, a flight from Beijing to Shanghai Hongqiao. You are parking at Two One Seven. You have got information Gulf. Contact Beijing Delivery and request ATC clearance."
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/947.mp3",
+      "expectedText": "C: Air China 878, climb and maintain 10100 meters.",
+      "id": "atc-scenario-0055-card-main-947",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/947.mp3",
+      "targeted": true,
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 9,
+        "wordCount": 9,
+        "wer": 1
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 9,
+        "wordCount": 9,
+        "wer": 1
+      },
+      "rawTranscript": "Air China eight seven eight, climb and maintain one zero thousand one hundred meters.",
+      "transcript": "Air China eight seven eight, climb and maintain one zero thousand one hundred meters."
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/538.mp3",
+      "expectedText": "C: Speedbird 352, descend and maintain 4200 meters, reduce speed to minimum clean speed.",
+      "id": "atc-scenario-0031-card-main-538",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/538.mp3",
+      "targeted": false,
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 7,
+        "wordCount": 14,
+        "wer": 0.5
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 7,
+        "wordCount": 14,
+        "wer": 0.5
+      },
+      "rawTranscript": "Speedbird three five two, descend and maintain FL two hundred meters, reduce speed to minimum clean speed.",
+      "transcript": "Speedbird three five two, descend and maintain FL two hundred meters, reduce speed to minimum clean speed."
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/724.mp3",
+      "expectedText": "C: KLM 88, Shanghai Departure, radar contact, climb to 3000 meters on QNH 1012.",
+      "id": "atc-scenario-0042-card-main-724",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/724.mp3",
+      "targeted": false,
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 5,
+        "wordCount": 14,
+        "wer": 0.35714285714285715
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 9,
+        "wordCount": 14,
+        "wer": 0.6428571428571429
+      },
+      "rawTranscript": "KLM Eight Eight, Shanghai departure, radar contact. Climb to three thousand meters on QNH one zero one two.",
+      "transcript": "KLM Eight Eight, Shanghai departure, radar contact. Climb to three thousand meters on QNH 1012."
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/071.mp3",
+      "expectedText": "C: Qantas 029, follow the Boeing 737.",
+      "id": "atc-scenario-0004-card-main-071",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/071.mp3",
+      "targeted": false,
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 7,
+        "wordCount": 7,
+        "wer": 1
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 7,
+        "wordCount": 7,
+        "wer": 1
+      },
+      "rawTranscript": "Qantas zero two niner, follow the Boeing seven three seven.",
+      "transcript": "Qantas zero two niner, follow the Boeing seven three seven."
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1834.mp3",
+      "expectedText": "C: Air Canada 412, what's your intention?\nB: You want priority landing and medical assistance.",
+      "id": "atc-scenario-0106-card-main-1834",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/1834.mp3",
+      "targeted": false,
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 5,
+        "wordCount": 16,
+        "wer": 0.3125
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 5,
+        "wordCount": 16,
+        "wer": 0.3125
+      },
+      "rawTranscript": "Air Canada Power One Two, what's your intention? You want priority landing and medical assistance.",
+      "transcript": "Air Canada Power One Two, what's your intention? You want priority landing and medical assistance."
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1654.mp3",
+      "expectedText": "C: China Eastern 102, roger, turn left heading 300, radar vector for landing.",
+      "id": "atc-scenario-0096-card-main-1654",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/1654.mp3",
+      "targeted": false,
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 4,
+        "wordCount": 13,
+        "wer": 0.3076923076923077
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 7,
+        "wordCount": 13,
+        "wer": 0.5384615384615384
+      },
+      "rawTranscript": "China Eastern one zero two, Roger. Turn left heading three zero zero, radar vector for landing.",
+      "transcript": "China Eastern one zero two, Roger. Turn left heading 300, radar vector for landing."
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/772.mp3",
+      "expectedText": "B: You tell controller you're overshooting, your altitude is too high.",
+      "id": "atc-scenario-0045-card-main-772",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/772.mp3",
+      "targeted": false,
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 12,
+        "wer": 0.08333333333333333
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 1,
+        "wordCount": 12,
+        "wer": 0.08333333333333333
+      },
+      "rawTranscript": "You tell controller you're overshooting, your altitude is too high.",
+      "transcript": "You tell controller you're overshooting, your altitude is too high."
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/104.mp3",
+      "expectedText": "B: You are told to use the runway 22 VOR DME approach, but the weather is deteriorating, ask Wuhan Tower for an ILS approach runway 18 left.",
+      "id": "atc-scenario-0006-card-main-104",
+      "module": "radiotelephony",
+      "sourcePath": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/atc/main/104.mp3",
+      "targeted": false,
+      "post": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 3,
+        "wordCount": 27,
+        "wer": 0.1111111111111111
+      },
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordErrors": 5,
+        "wordCount": 27,
+        "wer": 0.18518518518518517
+      },
+      "rawTranscript": "You are told to use the runway two two VOR DME approach, but the weather is deteriorating. Ask Wuhan Tower for an ILS approach runway one eight left.",
+      "transcript": "You are told to use the runway 22 VOR DME approach, but the weather is deteriorating. Ask Wuhan Tower for an ILS approach runway 18L."
+    }
+  ],
+  "summary": {
+    "improved": 8,
+    "postContentExact": 8,
+    "postStrictExact": 4,
+    "postWer": 0.2890995260663507,
+    "rawContentExact": 5,
+    "rawStrictExact": 2,
+    "rawWer": 0.34913112164297,
+    "sampleCount": 30,
+    "unchanged": 21,
+    "worsened": 1
+  }
+}

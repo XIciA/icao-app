@@ -71,7 +71,7 @@ try {
   const form = new FormData();
   form.append('audio', new File([audio], 'sample.mp3', { type: 'audio/mpeg' }));
   const transcript = await api('/v1/ai/transcribe', token, { method: 'POST', body: form });
-  assert(transcript.rawTranscript && transcript.transcript && transcript.hintsVersion === 'transcribe-hints-v1', 'transcribe_invalid');
+  assert(transcript.rawTranscript && transcript.transcript && transcript.hintsVersion === 'transcribe-hints:v1', 'transcribe_invalid');
 
   const grammarInput = { module: 'atc', questionId: 'verify-atc', questionText: 'Report established on the localizer.', transcript: 'We is established on localizer.' };
   const grammar = await api('/v1/ai/grammar-review', token, { method: 'POST', body: JSON.stringify(grammarInput) });

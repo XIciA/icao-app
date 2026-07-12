@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   number: { alignItems: 'center', aspectRatio: 1, backgroundColor: colors.background, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, justifyContent: 'center', position: 'relative', width: '17%' },
   numberCurrent: { backgroundColor: colors.primary, borderColor: colors.primary },
   numberVisited: { backgroundColor: colors.primary10, borderColor: colors.primary20 },
-  numberText: { fontFamily: fonts.monoRegular },
+  numberText: { fontFamily: fonts.monoRegular, includeFontPadding: false, textAlign: 'center', textAlignVertical: 'center', width: '100%' },
   check: { position: 'absolute', right: 4, top: 4 },
   pressed: { opacity: 0.75, transform: [{ scale: 0.95 }] },
 });

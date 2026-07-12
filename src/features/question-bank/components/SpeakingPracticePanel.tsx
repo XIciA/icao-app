@@ -372,7 +372,6 @@ export function SpeakingPracticePanel({
         {isRecording ? <Square color={colors.primaryForeground} fill={colors.primaryForeground} size={17} /> : <Mic color={colors.primaryForeground} size={18} />}
         <AppText color={colors.primaryForeground} variant="button">{recordLabel}</AppText>
       </Pressable>
-      <AppText color={colors.mutedForeground} variant="micro">松开结束录音后将自动提交 AI 转写；原始音频不会进入学习记录或长期保存在服务器。</AppText>
 
       {recording ? <View style={styles.console}>
         <View style={styles.status}><AppText variant="caption">录音已保存在本机临时目录</AppText><AppText style={styles.duration} variant="micro">{formatDuration(recording.durationMillis)}</AppText></View>

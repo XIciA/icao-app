@@ -2,6 +2,7 @@ import { Inject, Injectable, ServiceUnavailableException } from '@nestjs/common'
 import type { TranscribeResult } from '@icao/contracts';
 
 import { API_CONFIG, type ApiConfig } from '../config';
+import { normalizeAviationTranscript } from './aviation-transcript-normalization';
 
 type Completion = {
   choices?: Array<{ message?: { content?: unknown } }>;
@@ -67,20 +68,11 @@ export class AiProviderService {
     const rawTranscript = typeof content === 'string' ? content.trim() : '';
     if (!rawTranscript) throw new ServiceUnavailableException('ai_invalid_response');
     return {
-      data: { rawTranscript, transcript: normalizeTranscript(rawTranscript), hintsVersion: 'transcribe-hints-v1' },
+      data: { rawTranscript, transcript: normalizeAviationTranscript(rawTranscript), hintsVersion: 'transcribe-hints:v1' },
       meta: { inputTokens: payload.usage?.prompt_tokens, outputTokens: payload.usage?.completion_tokens },
     };
   }
 
   textModel() { return this.config.aiTextModel; }
   asrModel() { return this.config.aiAsrModel; }
-}
-
-function normalizeTranscript(value: string) {
-  return value
-    .replace(/\b([0-9])\s+decimal\s+([0-9])\s+([0-9])\b/gi, '$1 decimal $2$3')
-    .replace(/\bflight\s+level\s+([0-9])\s+([0-9])\s+([0-9])\b/gi, 'flight level $1$2$3')
-    .replace(/\s+([,.;?!])/g, '$1')
-    .replace(/\s+/g, ' ')
-    .trim();
 }

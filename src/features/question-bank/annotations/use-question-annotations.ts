@@ -11,7 +11,7 @@ import {
   subscribeAnnotationStore,
   updateAnnotationStore,
 } from './annotation-store';
-import { contentFingerprint } from './text';
+import { contentFingerprint, sentenceAround, tokenizeStudyText } from './text';
 import type {
   AnnotationTextBlockId,
   AnnotationToneKey,
@@ -106,6 +106,33 @@ export function useQuestionAnnotations(target?: QuestionBankCardTarget) {
     };
   }), [updateEntry]);
 
+  const applyHighlightRange = useCallback((value: {
+    action: 'apply' | 'remove';
+    blockId: AnnotationTextBlockId;
+    colorId: string;
+    endWordIndex: number;
+    sourceText: string;
+    startWordIndex: number;
+  }) => updateEntry((current) => {
+    const start = Math.min(value.startWordIndex, value.endWordIndex);
+    const end = Math.max(value.startWordIndex, value.endWordIndex);
+    const selected = tokenizeStudyText(value.sourceText).filter((token) => !token.whitespace && token.wordIndex! >= start && token.wordIndex! <= end);
+    const rest = current.highlights.filter((item) => item.blockId !== value.blockId || item.wordIndex < start || item.wordIndex > end);
+    if (value.action === 'remove') return { ...current, highlights: rest };
+    const fingerprint = contentFingerprint(value.sourceText);
+    return {
+      ...current,
+      highlights: [...rest, ...selected.map((token) => ({
+        blockId: value.blockId,
+        wordIndex: token.wordIndex!,
+        colorId: value.colorId,
+        quote: token.text,
+        sentence: sentenceAround(value.sourceText, token.start, token.end),
+        contentFingerprint: fingerprint,
+      }))],
+    };
+  }), [updateEntry]);
+
   const addTagDefinition = useCallback(async (label: string, color: AnnotationToneKey) => {
     const id = createAnnotationDefinitionId('tag');
     const next = await persist((current) => ({ ...current, tagDefinitions: [...current.tagDefinitions, { id, label: label.trim().slice(0, 8), color, builtIn: false }] }));
@@ -133,6 +160,7 @@ export function useQuestionAnnotations(target?: QuestionBankCardTarget) {
   return {
     addHighlightDefinition,
     addTagDefinition,
+    applyHighlightRange,
     entry,
     hydrated,
     highlightDefinitions: store.highlightDefinitions,

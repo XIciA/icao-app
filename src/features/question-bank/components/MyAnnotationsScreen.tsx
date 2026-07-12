@@ -1,18 +1,21 @@
 import { useFocusEffect, useRouter } from 'expo-router';
 import { BookOpenText, Check, ChevronDown, ChevronRight, Headphones, Highlighter, MessageSquareQuote, Mic2, NotebookPen, RadioTower, Search, Tag as TagIcon, type LucideIcon } from 'lucide-react-native';
 import { useCallback, useMemo, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { AppText, BottomSheet, Button, Card, Screen } from '@/components/ui';
 import { colors, fonts, radii, shadows, spacing } from '@/theme';
 
 import { getEmbeddedQuestionBanks } from '../data/repository';
 import type { QuestionBankDataset, QuestionBankId } from '../types';
+import { annotationHighlightBackgrounds, annotationToneColors } from '../annotations/colors';
 import { getQuestionBankCardReference, getQuestionBankCardSource, questionBankCardTargetKey } from '../annotations/card-index';
+import { sentenceWordRangeAt, tokenizeStudyText } from '../annotations/text';
 import { useQuestionAnnotations } from '../annotations/use-question-annotations';
 import type { AnnotationDefinition, AnnotationToneKey, QuestionAnnotationEntry } from '../annotations/types';
 
 type AnnotationSegment = 'tags' | 'highlights' | 'notes';
+type BankFilter = QuestionBankId | 'all';
 
 const bankIcons: Record<QuestionBankDataset['icon'], LucideIcon> = {
   headphones: Headphones,
@@ -20,13 +23,6 @@ const bankIcons: Record<QuestionBankDataset['icon'], LucideIcon> = {
   radioTower: RadioTower,
   mic: Mic2,
   story: BookOpenText,
-};
-
-const toneColors: Record<AnnotationToneKey, string> = {
-  green: '#45A26B',
-  yellow: '#D6A72D',
-  red: '#D94A53',
-  blue: colors.primary,
 };
 
 const segments: { id: AnnotationSegment; label: string; icon: LucideIcon }[] = [
@@ -39,11 +35,11 @@ export function MyAnnotationsScreen() {
   const router = useRouter();
   const annotations = useQuestionAnnotations();
   const banks = getEmbeddedQuestionBanks();
-  const [bankId, setBankId] = useState<QuestionBankId>('listening');
+  const [bankId, setBankId] = useState<BankFilter>('all');
   const [segment, setSegment] = useState<AnnotationSegment>('tags');
   const [colorFilter, setColorFilter] = useState<AnnotationToneKey[]>([]);
   const [switcherVisible, setSwitcherVisible] = useState(false);
-  const bank = banks.find((item) => item.id === bankId) ?? banks[0];
+  const bank = bankId === 'all' ? undefined : banks.find((item) => item.id === bankId);
   const refreshAnnotations = annotations.refresh;
 
   useFocusEffect(useCallback(() => {
@@ -55,7 +51,7 @@ export function MyAnnotationsScreen() {
   const selectedColors = useMemo(() => new Set(colorFilter), [colorFilter]);
 
   const bankEntries = useMemo(() => Object.values(annotations.store.entries)
-    .filter((entry) => entry.bankId === bankId)
+    .filter((entry) => bankId === 'all' || entry.bankId === bankId)
     .sort((left, right) => Date.parse(right.updatedAt) - Date.parse(left.updatedAt)), [annotations.store.entries, bankId]);
   const tagEntries = useMemo(() => bankEntries.filter((entry) => entry.tagIds.length > 0), [bankEntries]);
   const highlightEntries = useMemo(() => bankEntries.filter((entry) => entry.highlights.length > 0), [bankEntries]);
@@ -70,11 +66,20 @@ export function MyAnnotationsScreen() {
     return definition ? selectedColors.has(definition.color) : false;
   })), [highlightDefinitionMap, highlightEntries, selectedColors]);
 
-  const colorOptions = useMemo<AnnotationToneKey[]>(() => {
-    if (segment === 'tags') return ['green', 'yellow', 'red', 'blue'];
-    if (segment === 'highlights') return Array.from(new Set(annotations.highlightDefinitions.map((definition) => definition.color)));
-    return [];
-  }, [annotations.highlightDefinitions, segment]);
+  const colorOptions = useMemo(() => {
+    if (segment === 'notes') return [];
+    const definitions = segment === 'tags' ? annotations.tagDefinitions : annotations.highlightDefinitions;
+    const labelsByColor = new Map<AnnotationToneKey, string[]>();
+    definitions.forEach((definition) => {
+      const labels = labelsByColor.get(definition.color) ?? [];
+      if (!labels.includes(definition.label)) labels.push(definition.label);
+      labelsByColor.set(definition.color, labels);
+    });
+    return (['green', 'yellow', 'red', 'blue'] as AnnotationToneKey[]).flatMap((tone) => {
+      const labels = labelsByColor.get(tone);
+      return labels?.length ? [{ tone, label: labels.join(' / ') }] : [];
+    });
+  }, [annotations.highlightDefinitions, annotations.tagDefinitions, segment]);
 
   function countForSegment(value: AnnotationSegment) {
     if (value === 'tags') return tagEntries.length;
@@ -82,7 +87,7 @@ export function MyAnnotationsScreen() {
     return noteEntries.length;
   }
 
-  function chooseBank(value: QuestionBankId) {
+  function chooseBank(value: BankFilter) {
     setBankId(value);
     setColorFilter([]);
     setSwitcherVisible(false);
@@ -105,7 +110,7 @@ export function MyAnnotationsScreen() {
     });
   }
 
-  const ActiveBankIcon = bankIcons[bank.icon];
+  const ActiveBankIcon = bank ? bankIcons[bank.icon] : BookOpenText;
   const visibleEntries = segment === 'tags' ? visibleTagEntries : segment === 'highlights' ? visibleHighlightEntries : noteEntries;
 
   return (
@@ -116,7 +121,7 @@ export function MyAnnotationsScreen() {
         </Pressable>
         <Pressable accessibilityLabel="切换题库" onPress={() => setSwitcherVisible(true)} style={styles.moduleButton}>
           <View style={styles.moduleIcon}><ActiveBankIcon color={colors.primary} size={20} /></View>
-          <AppText style={styles.moduleTitle} variant="sectionTitle">{bank.title}</AppText>
+          <AppText style={styles.moduleTitle} variant="sectionTitle">{bank?.title ?? '全部题库'}</AppText>
           <ChevronDown color={colors.mutedForeground} size={16} />
         </Pressable>
         <View style={styles.headerButton} />
@@ -125,9 +130,9 @@ export function MyAnnotationsScreen() {
       <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
         <View style={styles.titleRow}>
           <AppText style={styles.pageTitle} variant="pageTitle">我的标注</AppText>
-          <AppText color={colors.primary} variant="micro">本机数据 · 仅本题库</AppText>
+          <AppText color={colors.primary} variant="micro">本机数据 · {bankId === 'all' ? '全部题库' : '当前题库'}</AppText>
         </View>
-        <AppText variant="caption">集中查看你在当前题库打的标签、高亮与笔记。</AppText>
+        <AppText variant="caption">集中查看你在{bankId === 'all' ? '全部题库' : '当前题库'}打的标签、高亮与笔记。</AppText>
 
         <View style={styles.segmented}>
           {segments.map((item) => {
@@ -148,11 +153,12 @@ export function MyAnnotationsScreen() {
             <Pressable accessibilityState={{ selected: colorFilter.length === 0 }} onPress={() => setColorFilter([])} style={[styles.allFilter, colorFilter.length === 0 ? styles.filterActive : null]}>
               <AppText color={colorFilter.length === 0 ? colors.primary : colors.mutedForeground} variant="button">全部</AppText>
             </Pressable>
-            {colorOptions.map((tone) => {
-              const active = selectedColors.has(tone);
+            {colorOptions.map((option) => {
+              const active = selectedColors.has(option.tone);
               return (
-                <Pressable accessibilityLabel={`筛选颜色 ${tone}`} accessibilityState={{ selected: active }} key={tone} onPress={() => toggleColor(tone)} style={[styles.colorFilter, active ? styles.filterActive : null]}>
-                  <View style={[styles.filterDot, { backgroundColor: toneColors[tone] }]} />
+                <Pressable accessibilityLabel={`筛选${option.label}`} accessibilityState={{ selected: active }} key={option.tone} onPress={() => toggleColor(option.tone)} style={[styles.colorFilter, active ? styles.filterActive : null]}>
+                  <View style={[styles.filterDot, { backgroundColor: annotationToneColors[option.tone] }]} />
+                  <AppText color={active ? colors.primary : colors.foreground} variant="button">{option.label}</AppText>
                 </Pressable>
               );
             })}
@@ -167,12 +173,17 @@ export function MyAnnotationsScreen() {
             {segment === 'highlights' ? visibleHighlightEntries.map((entry) => <HighlightRow colorFilter={selectedColors} definitions={highlightDefinitionMap} entry={entry} key={questionBankCardTargetKey(entry)} onPress={() => openEntry(entry)} />) : null}
             {segment === 'notes' ? noteEntries.map((entry) => <NoteRow entry={entry} key={questionBankCardTargetKey(entry)} onPress={() => openEntry(entry)} />) : null}
           </View>
-        ) : <EmptyState filtered={colorFilter.length > 0} segment={segment} />}
+        ) : <EmptyState allBanks={bankId === 'all'} filtered={colorFilter.length > 0} segment={segment} />}
       </ScrollView>
 
       <BottomSheet accessibilityLabel="切换题库" onClose={() => setSwitcherVisible(false)} visible={switcherVisible}>
         <View style={styles.switcherContent}>
           <AppText variant="sectionTitle">切换题库</AppText>
+          <Pressable onPress={() => chooseBank('all')} style={[styles.switcherRow, bankId === 'all' ? styles.switcherActive : null]}>
+            <View style={styles.switcherIcon}><BookOpenText color={colors.primary} size={19} /></View>
+            <View style={styles.switcherCopy}><AppText variant="button">全部题库</AppText><AppText numberOfLines={1} variant="micro">汇总五套题库的标注与笔记</AppText></View>
+            {bankId === 'all' ? <Check color={colors.primary} size={17} /> : <ChevronRight color={colors.mutedForeground} size={17} />}
+          </Pressable>
           {banks.map((item) => {
             const Icon = bankIcons[item.icon];
             const active = item.id === bankId;
@@ -191,14 +202,16 @@ export function MyAnnotationsScreen() {
 }
 
 function TagRow({ definitions, entry, onPress }: { definitions: Map<string, AnnotationDefinition>; entry: QuestionAnnotationEntry; onPress: () => void }) {
-  const available = Boolean(getQuestionBankCardReference(entry));
+  const reference = getQuestionBankCardReference(entry);
+  const available = Boolean(reference);
   const tags = entry.tagIds.flatMap((id) => definitions.get(id) ? [definitions.get(id)!] : []);
   return (
     <Pressable accessibilityRole="button" disabled={!available} onPress={onPress} style={({ pressed }) => [styles.rowCard, pressed ? styles.pressed : null, !available ? styles.unavailable : null]}>
       <View style={styles.rowCopy}>
         <AppText numberOfLines={2}>{getQuestionBankCardSource(entry)}</AppText>
-        <View style={styles.definitionList}>{tags.map((tag) => <View key={tag.id} style={styles.definitionPill}><View style={[styles.smallDot, { backgroundColor: toneColors[tag.color] }]} /><AppText variant="micro">{tag.label}</AppText></View>)}</View>
+        <AppText variant="micro">{reference?.bankTitle ?? '原题内容已更新或不可用'} · {tags.map((tag) => tag.label).join('、')}</AppText>
       </View>
+      <View accessibilityLabel={`已添加${tags.length}个标签：${tags.map((tag) => tag.label).join('、')}`} style={styles.dotStack}>{tags.map((tag, index) => <View key={tag.id} style={[styles.stackDot, { backgroundColor: annotationToneColors[tag.color] }, index ? styles.stackDotOverlap : null]} />)}</View>
       {available ? <ChevronRight color={colors.mutedForeground} size={20} /> : null}
     </Pressable>
   );
@@ -212,21 +225,51 @@ function HighlightRow({ colorFilter, definitions, entry, onPress }: { colorFilte
     return definition ? colorFilter.has(definition.color) : false;
   });
   const first = visible[0] ?? entry.highlights[0];
-  const firstDefinition = definitions.get(first.colorId);
   const uniqueDefinitions = Array.from(new Map(visible.flatMap((highlight) => {
     const definition = definitions.get(highlight.colorId);
     return definition ? [[definition.id, definition] as const] : [];
   })).values());
   const reference = getQuestionBankCardReference(entry);
+  const sourceText = first.blockId === 'question' ? reference?.card.audioText ?? '' : reference?.card.referenceText ?? '';
+  const sentenceRange = sentenceWordRangeAt(sourceText, first.wordIndex);
+  const shownIndexes = sentenceRange ? new Set(visible.filter((highlight) => highlight.blockId === first.blockId && highlight.wordIndex >= sentenceRange.startWordIndex && highlight.wordIndex <= sentenceRange.endWordIndex).map((highlight) => highlight.wordIndex)) : new Set<number>();
+  const otherCount = visible.filter((highlight) => !shownIndexes.has(highlight.wordIndex) || highlight.blockId !== first.blockId).length;
   return (
     <Pressable accessibilityRole="button" disabled={!available} onPress={onPress} style={({ pressed }) => [styles.rowCard, pressed ? styles.pressed : null, !available ? styles.unavailable : null]}>
-      <View style={styles.dotStack}>{uniqueDefinitions.map((definition, index) => <View key={definition.id} style={[styles.stackDot, { backgroundColor: toneColors[definition.color], marginLeft: index ? -4 : 0 }]} />)}</View>
+      <View style={styles.dotStack}>{uniqueDefinitions.map((definition, index) => <View key={definition.id} style={[styles.stackDot, { backgroundColor: annotationToneColors[definition.color] }, index ? styles.stackDotOverlap : null]} />)}</View>
       <View style={styles.rowCopy}>
-        <AppText numberOfLines={3} style={{ textDecorationColor: toneColors[firstDefinition?.color ?? 'green'], textDecorationLine: 'underline' }}>{first.sentence || first.quote || getQuestionBankCardSource(entry)}</AppText>
-        <AppText variant="micro">{reference?.card.taskTitle ?? '原题内容已更新或不可用'} · {uniqueDefinitions.map((item) => item.label).join('、')}</AppText>
+        <HighlightSentence definitions={definitions} fallback={first.sentence || first.quote || getQuestionBankCardSource(entry)} highlights={visible} sourceText={sourceText} target={first} />
+        <AppText variant="micro">{reference?.card.taskTitle ?? '原题内容已更新或不可用'} · {uniqueDefinitions.map((item) => item.label).join('、')}{otherCount ? ` · 另有 ${otherCount} 处高亮` : ''}</AppText>
       </View>
       {available ? <ChevronRight color={colors.mutedForeground} size={20} /> : null}
     </Pressable>
+  );
+}
+
+function HighlightSentence({ definitions, fallback, highlights, sourceText, target }: {
+  definitions: Map<string, AnnotationDefinition>;
+  fallback: string;
+  highlights: QuestionAnnotationEntry['highlights'];
+  sourceText: string;
+  target: QuestionAnnotationEntry['highlights'][number];
+}) {
+  const range = sentenceWordRangeAt(sourceText, target.wordIndex);
+  if (!range) return <AppText numberOfLines={3}>{fallback}</AppText>;
+  const active = new Map(highlights.filter((highlight) => highlight.blockId === target.blockId).map((highlight) => [highlight.wordIndex, highlight]));
+  const words = tokenizeStudyText(sourceText).filter((token) => !token.whitespace);
+  const first = words.find((token) => token.wordIndex === range.startWordIndex);
+  const last = words.find((token) => token.wordIndex === range.endWordIndex);
+  if (!first || !last) return <AppText numberOfLines={3}>{fallback}</AppText>;
+  const tokens = tokenizeStudyText(sourceText).filter((token) => token.start >= first.start && token.end <= last.end);
+  return (
+    <AppText numberOfLines={3}>
+      {tokens.map((token, index) => {
+        if (token.whitespace) return <Text key={`space-${index}`}>{token.text}</Text>;
+        const highlight = active.get(token.wordIndex!);
+        const tone = highlight ? definitions.get(highlight.colorId)?.color ?? 'green' : undefined;
+        return <Text accessibilityLabel={highlight ? `高亮词：${token.text}` : undefined} key={`word-${token.wordIndex}`} style={tone ? { backgroundColor: annotationHighlightBackgrounds[tone] } : undefined}>{token.text}</Text>;
+      })}
+    </AppText>
   );
 }
 
@@ -255,9 +298,9 @@ function LoadingState() {
   return <StateCard description="正在读取本机标注…" icon={Search} title="正在汇总" />;
 }
 
-function EmptyState({ filtered, segment }: { filtered: boolean; segment: AnnotationSegment }) {
+function EmptyState({ allBanks, filtered, segment }: { allBanks: boolean; filtered: boolean; segment: AnnotationSegment }) {
   const label = segment === 'tags' ? '标签' : segment === 'highlights' ? '高亮' : '笔记';
-  return <StateCard description={filtered ? '试试切换或清除颜色筛选。' : `在做题时给题目添加${label}，就会汇总到这里。`} icon={Search} title={filtered ? `没有匹配该颜色的${label}` : `这个题库还没有${label}`} />;
+  return <StateCard description={filtered ? '试试切换或清除颜色筛选。' : `在做题时给题目添加${label}，就会汇总到这里。`} icon={Search} title={filtered ? `没有匹配该颜色的${label}` : `${allBanks ? '全部题库' : '这个题库'}还没有${label}`} />;
 }
 
 function StateCard({ action, description, icon: Icon, title }: { action?: React.ReactNode; description: string; icon: LucideIcon; title: string }) {
@@ -290,17 +333,15 @@ const styles = StyleSheet.create({
   countText: { fontFamily: fonts.monoRegular },
   filters: { alignItems: 'center', flexDirection: 'row', flexWrap: 'wrap', gap: spacing[2], marginTop: spacing[3] },
   allFilter: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, justifyContent: 'center', minHeight: 34, paddingHorizontal: spacing[3] },
-  colorFilter: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, height: 34, justifyContent: 'center', width: 44 },
+  colorFilter: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 34, paddingHorizontal: spacing[3] },
   filterActive: { backgroundColor: colors.primary06, borderColor: colors.primary },
   filterDot: { borderRadius: radii.full, height: 14, width: 14 },
   list: { gap: spacing[2.5], marginTop: spacing[4] },
   rowCard: { alignItems: 'center', backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.xxl, borderWidth: 1, flexDirection: 'row', gap: spacing[3], minHeight: 82, padding: spacing[4], ...shadows.card },
   rowCopy: { flex: 1, gap: spacing[2] },
-  definitionList: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing[1.5] },
-  definitionPill: { alignItems: 'center', backgroundColor: colors.secondary, borderRadius: radii.full, flexDirection: 'row', gap: spacing[1], paddingHorizontal: spacing[2], paddingVertical: spacing[1] },
-  smallDot: { borderRadius: radii.full, height: 7, width: 7 },
-  dotStack: { flexDirection: 'row' },
-  stackDot: { borderColor: colors.card, borderRadius: radii.full, borderWidth: 1, height: 12, width: 12 },
+  dotStack: { alignItems: 'center', flexDirection: 'row', paddingRight: 2 },
+  stackDot: { borderColor: colors.card, borderRadius: radii.full, borderWidth: 2, height: 13, width: 13 },
+  stackDotOverlap: { marginLeft: -5 },
   noteIcon: { alignItems: 'center', backgroundColor: colors.primary08, borderRadius: radii.lg, height: 34, justifyContent: 'center', width: 34 },
   pressed: { opacity: 0.8, transform: [{ scale: 0.98 }] },
   unavailable: { opacity: 0.58 },

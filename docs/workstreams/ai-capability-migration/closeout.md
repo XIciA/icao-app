@@ -28,3 +28,12 @@ http://localhost:3000
 ```
 
 当前项目已迁入 `.env.local`，AI key 内容不写入文档。
+
+## 2026-07-12 ASR 运行时补充收口
+
+- 已补齐此前只存在于内容资产和上游参考代码中的航空转写归一化运行时逻辑。
+- `rawTranscript` 保持供应商原文，`transcript` 使用 `transcribe-hints:v1` 的保守航空规则处理。
+- 已覆盖 FL、ICAO 数字、跑道、航向、气压、应答机、频率、高度、航空缩写和受限 ICAO 拼读组合。
+- 普通单词、无明确上下文的数字和学习者语法错误保持不变。
+- DashScope 自定义 hotwords 仍未接入，不能把内容资产中的 hotwords 列表标记为 provider 已启用。
+- `pnpm --filter @icao/api check` 与 `pnpm check` 均通过。

@@ -1,0 +1,26 @@
+{
+  "listening-main-584": {
+    "status": "text-error",
+    "note": "答案中的 Max top 5, 7000 断句和数值格式明显损坏；音频转写指向 max top 57,000。"
+  },
+  "listening-main-329": {
+    "status": "text-error",
+    "note": "答案写 visibility 2 miles with light wind，语义不成立；音频为 light rain。"
+  },
+  "listening-main-141": {
+    "status": "text-error",
+    "note": "答案写 divert to pick up an additional flight，语义不成立；音频为 additional freight。"
+  },
+  "listening-main-409": {
+    "status": "suspect",
+    "note": "答案为 noticed hydraulic fluid，ASR 为 smelled hydraulic fluid；需人工听音确认，不据此增加规则。"
+  },
+  "listening-main-377": {
+    "status": "suspect",
+    "note": "答案呼号 952，ASR 在多处稳定输出 9052；需人工听音确认。"
+  },
+  "atc-scenario-0010-card-main-177": {
+    "status": "suspect",
+    "note": "答案呼号 497，ASR 输出 Power Nine or Seven，可能实际为 4907；需人工听音确认。"
+  }
+}

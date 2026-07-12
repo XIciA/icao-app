@@ -1,0 +1,106 @@
+{
+  "listening-main-246": {
+    "status": "text-error",
+    "note": "答案含 a1titudeof 等损坏文本，且主体句与音频内容明显不一致。"
+  },
+  "listening-main-623": {
+    "status": "text-error",
+    "note": "答案把航空术语 radial 多次写成 radio；音频和语境均明确为 042 radial。"
+  },
+  "listening-main-273": {
+    "status": "suspect",
+    "note": "答案呼号 NWA40，ASR 重复输出 Northwest 14；需人工听音确认。"
+  },
+  "listening-main-277": {
+    "status": "text-error",
+    "note": "同一答案先写 ACA3428、后写 ACA3248，呼号内部矛盾。"
+  },
+  "listening-main-198": {
+    "status": "suspect",
+    "note": "答案航向230，ASR输出320；需要人工听音确认。"
+  },
+  "atc-scenario-0065-card-main-1132": {
+    "status": "suspect",
+    "note": "答案呼号983，ASR输出 nine or eight tree；or 是零还是误插入需人工听音。"
+  },
+  "listening-main-267": {
+    "status": "text-error",
+    "note": "答案将 computer equipment or fuel 错写为 computer equipment failure，破坏三要素列举。"
+  },
+  "listening-main-269": {
+    "status": "suspect",
+    "note": "答案与ASR在多处为系统性改写而非局部识别差异，需听音确认文本版本。"
+  },
+  "listening-main-214": {
+    "status": "suspect",
+    "note": "答案NWA14，ASR重复输出Northwest140，需人工听音确认。"
+  },
+  "sentence900-main-298": {
+    "status": "text-error",
+    "note": "答案截断在 Runway，缺少音频中明确读出的24。"
+  },
+  "listening-main-501": {
+    "status": "text-error",
+    "note": "答案含 recovers / entire conditions 等明显损坏词组；ASR输出为连贯的 walk-around checklist 内容。"
+  },
+  "listening-main-265": {
+    "status": "text-error",
+    "note": "答案混入 (=significant/important) ) 编辑标记，不是音频内容。"
+  },
+  "listening-main-244": {
+    "status": "text-error",
+    "note": "答案末段 loaded or unloaded shifted 结构损坏；ASR输出为完整并列结构。"
+  },
+  "listening-main-380": {
+    "status": "suspect",
+    "note": "答案呼号NWA987，ASR全文重复Northwest9087，需人工听音。"
+  },
+  "listening-main-379": {
+    "status": "suspect",
+    "note": "答案one minute，ASR为one zero minutes，需人工听音确认。"
+  },
+  "listening-main-266": {
+    "status": "text-error",
+    "note": "答案将 carbon fiber / regional planes 错写为 cargo / original planes，多处内容损坏。"
+  },
+  "listening-main-210": {
+    "status": "text-error",
+    "note": "答案开头 Climbing in ETOPS 与语义不符；音频为 Planning an ETOPS flight。"
+  },
+  "sentence900-main-720": {
+    "status": "audio-text-mismatch",
+    "note": "答案为雷暴持续40分钟并请求备降，音频实际为FL380爬升中抖振并停止爬升，完全错配。"
+  },
+  "listening-main-594": {
+    "status": "text-error",
+    "note": "答案仅保留飞行员首句，音频还包含完整管制回复，参考文本明显截断。"
+  },
+  "listening-main-036": {
+    "status": "suspect",
+    "note": "答案SAS996，ASR全文重复Scandinavian9906，需人工听音。"
+  },
+  "listening-main-434": {
+    "status": "suspect",
+    "note": "答案跑道26L，ASR为36L，需人工听音。"
+  },
+  "listening-main-220": {
+    "status": "text-error",
+    "note": "答案Arch County / Vortex与音频Orange County / VORTAC差异明显，参考文本损坏。"
+  },
+  "listening-main-001": {
+    "status": "suspect",
+    "note": "答案United Airlines919，ASR为9019，需人工听音。"
+  },
+  "listening-main-306": {
+    "status": "text-error",
+    "note": "音频末尾还有乘客被带走并继续行程的完整内容，答案文本提前截断。"
+  },
+  "listening-main-249": {
+    "status": "text-error",
+    "note": "答案含 percent of drugs / landing areas 等大段损坏文本；音频为完整的 depressants 说明。"
+  },
+  "listening-main-326": {
+    "status": "suspect",
+    "note": "答案Tristar Airlines，ASR为Transworld Airlines，需人工听音确认。"
+  }
+}

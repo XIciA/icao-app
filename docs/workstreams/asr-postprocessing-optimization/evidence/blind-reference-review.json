@@ -1,0 +1,22 @@
+{
+  "listening-main-443": {
+    "status": "text-error",
+    "note": "答案句 careful plan of pressure / or apply uneven pressure 语法和内容明显损坏；ASR 输出为完整、连贯的制动方向控制说明。"
+  },
+  "listening-main-402": {
+    "status": "text-error",
+    "note": "答案将 aircraft was half full 错写为 aircraft had a problem，丢失调整座位所需的载荷信息。"
+  },
+  "listening-main-285": {
+    "status": "text-error",
+    "note": "答案包含 will ... of them，占位符未补全；ASR 输出为 lengthen the life of them。"
+  },
+  "listening-main-356": {
+    "status": "suspect",
+    "note": "答案呼号 United 94，ASR 在全文稳定输出 United 904；需要人工听音确认。"
+  },
+  "listening-main-311": {
+    "status": "suspect",
+    "note": "答案呼号 CCA980，ASR 两次输出 Air China 9980，开头另有异常词；需要人工听音确认。"
+  }
+}

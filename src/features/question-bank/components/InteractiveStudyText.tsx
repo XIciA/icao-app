@@ -1,73 +1,155 @@
-import { StyleSheet, Text } from 'react-native';
+import { Fragment, useCallback, useMemo, useRef, useState } from 'react';
+import type { LayoutRectangle } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 
-import { colors, fonts } from '@/theme';
+import { colors, fonts, spacing } from '@/theme';
 
-import { sentenceAround } from '../annotations/text';
+import { annotationHighlightBackgrounds } from '../annotations/colors';
+import { sentenceAround, tokenizeStudyText } from '../annotations/text';
 import type { AnnotationDefinition, AnnotationHighlight, AnnotationTextBlockId, AnnotationToneKey } from '../annotations/types';
 
-const tones: Record<AnnotationToneKey, string> = {
-  green: '#45A26B',
-  yellow: '#D6A72D',
-  red: '#D94A53',
-  blue: colors.primary,
+type DragSelection = {
+  action: 'apply' | 'remove';
+  endWordIndex: number;
+  startWordIndex: number;
 };
 
 export function InteractiveStudyText({
+  activeHighlightId,
   blockId,
   definitions,
   dictionaryMode,
   highlightMode,
   highlights,
+  lookupEnabled,
   onHighlight,
+  onHighlightRange,
   onLookup,
   text,
 }: {
+  activeHighlightId: string;
   blockId: AnnotationTextBlockId;
   definitions: AnnotationDefinition[];
   dictionaryMode: boolean;
   highlightMode: boolean;
   highlights: AnnotationHighlight[];
+  lookupEnabled: boolean;
   onHighlight: (value: { blockId: AnnotationTextBlockId; wordIndex: number; quote: string; sentence: string; sourceText: string }) => void;
+  onHighlightRange: (value: { action: 'apply' | 'remove'; blockId: AnnotationTextBlockId; endWordIndex: number; sourceText: string; startWordIndex: number }) => void;
   onLookup: (value: { word: string; sentence: string }) => void;
   text: string;
 }) {
-  let wordIndex = -1;
-  let cursor = 0;
-  const definitionMap = new Map(definitions.map((definition) => [definition.id, definition]));
+  const tokens = useMemo(() => tokenizeStudyText(text), [text]);
+  const definitionMap = useMemo(() => new Map(definitions.map((definition) => [definition.id, definition])), [definitions]);
+  const boxesRef = useRef(new Map<number, LayoutRectangle>());
+  const dragRef = useRef<DragSelection | undefined>(undefined);
+  const [dragSelection, setDragSelection] = useState<DragSelection>();
+
+  const wordAt = useCallback((x: number, y: number) => {
+    for (const [wordIndex, box] of boxesRef.current) {
+      if (x >= box.x - 3 && x <= box.x + box.width + 3 && y >= box.y - 3 && y <= box.y + box.height + 3) return wordIndex;
+    }
+    return undefined;
+  }, []);
+
+  const beginDrag = useCallback((x: number, y: number) => {
+    const wordIndex = wordAt(x, y);
+    if (wordIndex === undefined) return;
+    const existing = highlights.find((item) => item.blockId === blockId && item.wordIndex === wordIndex);
+    const next: DragSelection = {
+      action: existing?.colorId === activeHighlightId ? 'remove' : 'apply',
+      endWordIndex: wordIndex,
+      startWordIndex: wordIndex,
+    };
+    dragRef.current = next;
+    setDragSelection(next);
+  }, [activeHighlightId, blockId, highlights, wordAt]);
+
+  const updateDrag = useCallback((x: number, y: number) => {
+    const current = dragRef.current;
+    const wordIndex = wordAt(x, y);
+    if (!current || wordIndex === undefined || wordIndex === current.endWordIndex) return;
+    const next = { ...current, endWordIndex: wordIndex };
+    dragRef.current = next;
+    setDragSelection(next);
+  }, [wordAt]);
+
+  const commitDrag = useCallback(() => {
+    const current = dragRef.current;
+    if (!current) return;
+    onHighlightRange({ ...current, blockId, sourceText: text });
+  }, [blockId, onHighlightRange, text]);
+
+  const clearDrag = useCallback(() => {
+    dragRef.current = undefined;
+    setDragSelection(undefined);
+  }, []);
+
+  const dragGesture = useMemo(() => Gesture.Pan()
+    .enabled(highlightMode)
+    .activateAfterLongPress(220)
+    .onStart((event) => beginDrag(event.x, event.y))
+    .onUpdate((event) => updateDrag(event.x, event.y))
+    .onEnd(commitDrag)
+    .onFinalize(clearDrag)
+    .runOnJS(true), [beginDrag, clearDrag, commitDrag, highlightMode, updateDrag]);
+
+  const previewStart = dragSelection ? Math.min(dragSelection.startWordIndex, dragSelection.endWordIndex) : -1;
+  const previewEnd = dragSelection ? Math.max(dragSelection.startWordIndex, dragSelection.endWordIndex) : -1;
+  const activeTone = definitionMap.get(activeHighlightId)?.color ?? 'green';
 
   return (
-    <Text style={styles.text}>
-      {text.split(/(\s+)/).map((part, tokenIndex) => {
-        const start = cursor;
-        const end = start + part.length;
-        cursor = end;
-        if (/^\s+$/.test(part)) return <Text key={`${tokenIndex}-space`}>{part}</Text>;
-        wordIndex += 1;
-        const index = wordIndex;
-        const active = highlights.find((item) => item.blockId === blockId && item.wordIndex === index);
-        const tone = active ? definitionMap.get(active.colorId)?.color ?? 'green' : undefined;
-        return (
-          <Text
-            accessibilityLabel={dictionaryMode ? `查词：${part}` : highlightMode ? `${active ? '更新或取消' : '添加'}高亮：${part}` : undefined}
-            key={`${tokenIndex}-${part}`}
-            onPress={dictionaryMode ? () => onLookup({
-              word: part.replace(/^[^\p{L}]+|[^\p{L}]+$/gu, ''),
-              sentence: sentenceAround(text, start, end),
-            }) : highlightMode ? () => onHighlight({
-              blockId,
-              wordIndex: index,
-              quote: part,
-              sentence: sentenceAround(text, start, end),
-              sourceText: text,
-            }) : undefined}
-            style={active ? { textDecorationColor: tones[tone ?? 'green'], textDecorationLine: 'underline', textDecorationStyle: 'solid' } : undefined}
-          >
-            {part}
-          </Text>
-        );
-      })}
-    </Text>
+    <GestureDetector gesture={dragGesture}>
+      <View collapsable={false} style={styles.textFlow}>
+        {tokens.map((token, tokenIndex) => {
+          if (token.whitespace) return null;
+          const index = token.wordIndex!;
+          const active = highlights.find((item) => item.blockId === blockId && item.wordIndex === index);
+          const activeToneForWord = active ? definitionMap.get(active.colorId)?.color ?? 'green' : undefined;
+          const previewed = index >= previewStart && index <= previewEnd;
+          const tone = previewed && dragSelection?.action === 'apply' ? activeTone : activeToneForWord;
+          const backgroundColor = previewed && dragSelection?.action === 'remove'
+            ? colors.secondary
+            : tone ? annotationHighlightBackgrounds[tone as AnnotationToneKey] : undefined;
+          const trailingWhitespace = tokens[tokenIndex + 1]?.whitespace ? tokens[tokenIndex + 1].text : '';
+          const lineBreaks = trailingWhitespace.match(/\n/g)?.length ?? 0;
+          const lookupAllowed = lookupEnabled && !highlightMode;
+          return (
+            <Fragment key={`${index}-${token.text}`}>
+              <Text
+                accessibilityLabel={dictionaryMode ? `查词：${token.text}` : highlightMode ? `${active ? '更新或取消' : '添加'}高亮：${token.text}` : lookupAllowed ? `长按查词：${token.text}` : undefined}
+                onLayout={(event) => boxesRef.current.set(index, event.nativeEvent.layout)}
+                onLongPress={lookupAllowed ? () => onLookup({
+                  word: token.text.replace(/^[^\p{L}]+|[^\p{L}]+$/gu, ''),
+                  sentence: sentenceAround(text, token.start, token.end),
+                }) : undefined}
+                onPress={dictionaryMode && !highlightMode ? () => onLookup({
+                  word: token.text.replace(/^[^\p{L}]+|[^\p{L}]+$/gu, ''),
+                  sentence: sentenceAround(text, token.start, token.end),
+                }) : highlightMode ? () => onHighlight({
+                  blockId,
+                  wordIndex: index,
+                  quote: token.text,
+                  sentence: sentenceAround(text, token.start, token.end),
+                  sourceText: text,
+                }) : undefined}
+                style={[styles.word, lineBreaks ? null : styles.wordSpacing, backgroundColor ? { backgroundColor } : null]}
+              >
+                {token.text}
+              </Text>
+              {lineBreaks ? <View style={[styles.lineBreak, lineBreaks > 1 ? { height: (lineBreaks - 1) * 25 } : null]} /> : null}
+            </Fragment>
+          );
+        })}
+      </View>
+    </GestureDetector>
   );
 }
 
-const styles = StyleSheet.create({ text: { color: colors.foreground, fontFamily: fonts.sansRegular, fontSize: 15, lineHeight: 25 } });
+const styles = StyleSheet.create({
+  lineBreak: { flexBasis: '100%', height: 0 },
+  textFlow: { alignItems: 'baseline', flexDirection: 'row', flexWrap: 'wrap' },
+  word: { color: colors.foreground, fontFamily: fonts.sansRegular, fontSize: 15, lineHeight: 25 },
+  wordSpacing: { marginRight: spacing[1] },
+});

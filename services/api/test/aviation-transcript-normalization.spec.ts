@@ -1,0 +1,228 @@
+import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import type { ApiConfig } from '../src/config';
+import { AiProviderService } from '../src/ai/ai-provider.service';
+import { normalizeAviationTranscript, normalizeAviationTranscriptDetailed } from '../src/ai/aviation-transcript-normalization';
+
+describe('normalizeAviationTranscript', () => {
+  it.each([
+    ['qnh one zero one three', 'QNH 1013'],
+    ['q and h one zero one three', 'QNH 1013'],
+    ['QFE one zero zero seven', 'QFE 1007'],
+    ['QNH two niner niner two', 'QNH 29.92'],
+    ['fl two niner zero', 'FL290'],
+    ['flight level two niner zero', 'FL290'],
+    ['flight level tree fife zero', 'FL350'],
+    ['flight level niner zero to flight level seven zero', 'FL90 to FL70'],
+    ['fl 290', 'FL290'],
+    ['runway two seven', 'runway 27'],
+    ['runway two seven left', 'runway 27L'],
+    ['runway zero niner right', 'runway 09R'],
+    ['runway one eight centre', 'runway 18C'],
+    ['heading one eight zero', 'heading 180'],
+    ['squawk seven five zero zero', 'squawk 7500'],
+    ['contact tower one two three decimal four five', 'contact tower 123.45'],
+    ['monitor guard one two one point fife', 'monitor guard 121.5'],
+    ['cruising level three fife zero', 'cruising level 350'],
+    ['three thousand five hundred feet', '3500 feet'],
+    ['two thousand feet', '2000 feet'],
+    ['nine thousand five hundred metres', '9500 meters'],
+    ['one two thousand meters', '12000 meters'],
+    ['turn left thirty degrees', 'turn left 30 degrees'],
+    ['within one hundred miles', 'within 100 miles'],
+    ['Air China one zero two, turn left', 'Air China 102, turn left'],
+    ['Singapore five fower fower, enter the runway', 'Singapore 544, enter the runway'],
+    ['Air China three six at, roger', 'Air China 368, roger'],
+    ['Korean Air nine oh eight two', 'Korean Air 9082'],
+    ['Air France eight nine or six', 'Air France 896'],
+    ['Singapore power nine or seven', 'Singapore 497'],
+    ['Air Canada power one two', 'Air Canada 412'],
+    ['United eight zero five', 'United 805'],
+    ['Air China nine a one, stop immediately', 'Air China 981, stop immediately'],
+    ['China Southern three seventy eight', 'China Southern 378'],
+    ['Great Wall five four six', 'Great Wall 546'],
+    ['Japan Airlines seven eight five', 'Japan Airlines 785'],
+    ['Pacific two eight, fuel leak', 'Pacific 28, fuel leak'],
+    ['Southwest three tree four tree, oil pressure low', 'Southwest 3343, oil pressure low'],
+    ['Air Canada three, four, two, eight have intercepted', 'Air Canada 3428 have intercepted'],
+    ['Boeing seven hundred and thirty-seven', 'Boeing 737'],
+    ['bay one five', 'bay 15'],
+    ['parking at Two One Seven', 'parking at 217'],
+    ['gate Kilo One Zero', 'gate K10'],
+    ['stand Zulu four', 'stand Z4'],
+    ['exit the runway via Echo fower', 'exit the runway via Echo 4'],
+    ['hold short of Charlie power', 'hold short of Charlie 4'],
+    ['information Foxtrot received', 'information F received'],
+    ['information X ray received', 'information X received'],
+    ['accept intersection departure from Charlie Two', 'accept intersection departure from C2'],
+    ['proceed direct to Zulu Foxtrot', 'proceed direct to ZF'],
+    ['estimating Papa November Oscar at four six', 'estimating PNO at four six'],
+    ['Lima Victor NDB one one two three', 'LV NDB 1123'],
+    ['then Tango five to gate two one one', 'then Tango 5 to gate 211'],
+    ['holding point Foxtrot One runway one niner', 'holding point F1 runway 19'],
+    ['rapid exit Juliet Five', 'rapid exit J5'],
+    ['position one zero miles northeast of Lima November', 'position 10 miles northeast of LN'],
+    ['maintaining flight level nine zero over Whiskey X Ray Juliet', 'maintaining FL90 over WXJ'],
+    ['cross Alpha Uniform at flight level one zero zero', 'cross AU at FL100'],
+    ['Whiskey Uniform Hotel next', 'WUH next'],
+    ['depart route Alpha five nine three', 'depart route A593'],
+    ['between Papa Bravo and Mike Bravo', 'between PB and MB'],
+    ['position five zero miles east of Bravo Kilo', 'position 50 miles east of BK'],
+    ['one aircraft to depart from Alpha Two', 'one aircraft to depart from A2'],
+    ['cross airway Romeo three four three', 'cross airway R343'],
+    ['ready to join Romeo three four three', 'ready to join R343'],
+    ['report Delta Sierra Golf', 'report DSG'],
+    ['bravo two VOR', 'B2 VOR'],
+    ['x-ray seven NDB', 'X7 NDB'],
+    ['alpha one RNAV departure', 'A1 RNAV Departure'],
+    ['charlie two departure', 'C2 Departure'],
+    ['atc reported ads b failure', 'ATC reported ADS-B failure'],
+    ['pan pan we have engine failure', 'pan-pan we have engine failure'],
+    ['may day engine failure', 'mayday engine failure'],
+    ['roger pan, say intention', 'roger PAN, say intention'],
+    ['clear of C B', 'clear of CB'],
+    ['maintain Mach decimal seven five', 'maintain Mach 0.75'],
+    ['departure time is one six one zero', 'departure time is 1610'],
+    ['estimating LKO at time one three', 'estimating LKO at time 13'],
+    ['expect further clearance at five five', 'expect further clearance at 55'],
+    ['revised slot time at five six', 'revised slot time at 56'],
+    ['make a three sixty turn left', 'make a 360 turn left'],
+    ['Boeing triple seven', 'Boeing 777'],
+    ['via Yankee one and Charlie one', 'via Yankee 1 and Charlie 1'],
+    ['taxi via taxiway Alpha seven', 'taxi via taxiway Alpha 7'],
+    ['push back onto Zulu Flower', 'push back onto Zulu 4'],
+    ['holding point three six right', 'holding point 36R'],
+    ['zero four two radial', '042 radial'],
+    ['inbound track two two two', 'inbound track 222'],
+    ['B T M and B C F fire extinguishers', 'BTM and BCF fire extinguishers'],
+    ['nine or hundred meters', '900 meters'],
+    ['request clearance to Dos Sun direct', 'request clearance to DOSSON direct'],
+    ['cleared to Bicol course', 'cleared to BEKOL course'],
+    ['position oblique at zero six four six', 'position OBLIK at 0646'],
+    ['stand by one', 'standby 1'],
+    ['cross BKM VOR at four tree or later', 'cross BKM VOR at 43 or later'],
+    ['overhead B call', 'overhead BEKOL'],
+    ['KLM made eight', 'KLM 88'],
+    ['Southern tree zero two, taxi via Charlie', 'Southern 302, taxi via Charlie'],
+    ['Korean two three six and Eastern seven seven seven', 'Korean 236 and Eastern 777'],
+    ['Delta tree tree five, request priority', 'Delta 335, request priority'],
+    ['Japan seven eight one, stop descent', 'Japan 781, stop descent'],
+    ['Dragonair three zero five, request low pass', 'Dragonair 305, request low pass'],
+    ['United Airlines nine one nine, returning', 'United Airlines 919, returning'],
+    ['Windor six seven one, flight level three five zero', 'Windar 671, FL350'],
+    ['runway in use one eight left', 'runway in use 18L'],
+    ['follow Zulu Foxtrot one Alpha arrival', 'follow ZF1A Arrival'],
+    ['Enable RVS M due turbulence', 'Unable RVSM due turbulence'],
+    ['expect descent after Alpha Kilo', 'expect descent after AK'],
+    ['at zero eight zero zero flight level three nine zero', 'at 0800 FL390'],
+    ['between two five and three zero miles DME', 'between 25 and 30 miles DME'],
+    ['between eight hundred and four hundred feet', 'between 800 and 400 feet'],
+    ['intersection Echo five', 'intersection E5'],
+    ['you hear it as one two zero decimal zero', 'you hear it as 120.0'],
+    ['nine thousand or hundred meters', '900 meters'],
+    ['overhead Gulf Charlie Foxtrot', 'overhead GCF'],
+    ['BOBEX zero three departure', 'BOBAK03 Departure'],
+    ['on taxiing Whiskey Papa', 'on taxiway WP'],
+    ['contact Beijing Control one two zero decimal three five', 'contact Beijing Control 120.35'],
+    ['contact Beijing Approach one one niner decimal two five', 'contact Beijing Approach 119.25'],
+    ['Faur Tau Sen two hundred meters', '4200 meters'],
+    ['Fauvret Au Sen two hundred meters', '4200 meters'],
+    ['clear to Lima Hotel Romeo', 'clear to LHR'],
+    ['hold at Lima Hotel Romeo as published', 'hold at LHR as published'],
+    ['level at Papa Lima Tango', 'level at PLT'],
+    ['reach three one zero within four minutes', 'reach 310 within 4 minutes'],
+    ['surface wind two six zero, six kts', 'surface wind 260, 6 knots'],
+    ["C Bee's in front of you", 'CBs in front of you'],
+    ['Air China nine or eight two instructed to hold', 'Air China 982 instructed to hold'],
+    ['climb to nine or thousand feet', 'climb to 9000 feet'],
+    ['Sail cow code Echo Foxtrot Foxtrot Golf, request Sail cow check', 'SELCAL code EFFG, request SELCAL check'],
+    ['ICAO Category 3A limitations', 'ICAO CAT IIIA limitations'],
+    ['Category 3A approach', 'CAT IIIA approach'],
+    ['bulletin Alpha zero zero one one', 'bulletin Alpha 0011'],
+    ['we squawked seven seven zero zero', 'we squawked 7700'],
+    ['position northwest of X-ray Sierra Hotel', 'position northwest of XSH'],
+    ['one five kilometers from Yankee India Hotel', '15 kilometers from YIH'],
+    ['contact approach one two five day simo six five', 'contact approach 125.65'],
+    ['return to Raxbury', 'return to Rexburg'],
+    ['Niner Tau Sen two hundred meters', '9200 meters'],
+    ['position five zero four zero south', 'position 5040 south'],
+    ['route Lima, three one', 'route L31'],
+    ['altimeter setting two niner niner one', 'altimeter setting 29.91'],
+    ['ADS-B receiver one zero nine zero data link', 'ADS-B receiver 1090 data link'],
+    ['Note to say glide slope unserviceable', 'NOTAM says glide slope unserviceable'],
+    ['taxiway Zulu, Foxtail, Alpha', 'taxiway Zulu 4, Alpha'],
+    ['rejoin the Alpha One before BKM VOR', 'rejoin the A1 before BKM VOR'],
+    ['B two four, request startup', 'Bay24, request start-up'],
+    ['at three two, altitude three hundred meters', 'at 32, altitude 300 meters'],
+    ['  ATC  ,   cleared us to land  ', 'ATC, cleared us to land'],
+  ])('normalizes %j conservatively', (input, expected) => {
+    expect(normalizeAviationTranscript(input)).toBe(expected);
+  });
+
+  it.each([
+    'I has turbulence',
+    'I meet thunderstorm',
+    'request deviation',
+    'We go around because runway not clear',
+    'mayday engine failure',
+    'hotel golf india zulu',
+    'one two three',
+    'taxiway alfa',
+    'power one two',
+    'we arrived at eight',
+    'choose one or two',
+    'we did not have time to request descent',
+    'it will take a long time to get to the gate',
+    'proceed to Zulu Foxtrot',
+  ])('preserves learner wording and ambiguous context: %j', (input) => {
+    expect(normalizeAviationTranscript(input)).toBe(input);
+  });
+
+  it('is idempotent and reports applied rules', () => {
+    const first = normalizeAviationTranscriptDetailed('  Air China one zero two at flight level niner zero  ');
+    const second = normalizeAviationTranscriptDetailed(first.transcript);
+
+    expect(first.transcript).toBe('Air China 102 at FL90');
+    expect(first.transformations.map((item) => item.ruleId)).toEqual(expect.arrayContaining(['TXT-001', 'FL-001', 'CALLSIGN-001']));
+    expect(second.transcript).toBe(first.transcript);
+    expect(second.transformations).toEqual([]);
+  });
+});
+
+describe('AiProviderService transcribe result', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it('preserves the raw transcript and returns the canonical hints version', async () => {
+    vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify({
+      choices: [{ message: { content: 'I has turbulence at flight level two niner zero' } }],
+    }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    })));
+
+    const config: ApiConfig = {
+      databaseUrl: 'postgresql://postgres:test@127.0.0.1:5432/postgres',
+      host: '127.0.0.1',
+      nodeEnv: 'test',
+      port: 3101,
+      supabasePublishableKey: 'test-publishable-key-that-is-long-enough',
+      supabasePublicUrl: 'http://127.0.0.1:8000',
+      supabaseSecretKey: 'test-secret-key-that-is-long-enough',
+      supabaseUrl: 'http://127.0.0.1:8000',
+      dashscopeApiKey: 'test-dashscope-key',
+      dashscopeBaseUrl: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
+      aiTextModel: 'qwen-turbo',
+      aiAsrModel: 'qwen3-asr-flash',
+    };
+
+    const result = await new AiProviderService(config).transcribe(Buffer.from('audio'), 'audio/wav');
+
+    expect(result.data).toEqual({
+      rawTranscript: 'I has turbulence at flight level two niner zero',
+      transcript: 'I has turbulence at FL290',
+      hintsVersion: 'transcribe-hints:v1',
+    });
+  });
+});

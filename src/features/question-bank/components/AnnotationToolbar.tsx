@@ -116,7 +116,7 @@ export function AnnotationToolbar({
         {showHighlights ? (
           <Pressable accessibilityLabel={highlightMode ? '关闭高亮模式' : '开启高亮模式'} onPress={toggleHighlightMode} style={[styles.tool, highlightMode ? styles.toolActive : null]}>
             <Highlighter color={highlightMode ? colors.primary : colors.mutedForeground} size={14} />
-            <AppText color={highlightMode ? colors.primary : colors.mutedForeground} variant="caption">划线</AppText>
+            <AppText color={highlightMode ? colors.primary : colors.mutedForeground} variant="caption">高亮</AppText>
           </Pressable>
         ) : null}
         {showTags ? (
@@ -138,6 +138,7 @@ export function AnnotationToolbar({
       {highlightMode ? (
         <ToolOptions
           definitions={highlightDefinitions}
+          hint="轻点单词，或按住后拖动高亮"
           onCreate={() => setCreator('highlight')}
           onSelect={onHighlightChange}
           selectedIds={[activeHighlightId]}
@@ -173,14 +174,16 @@ export function AnnotationToolbar({
   );
 }
 
-function ToolOptions({ definitions, onCreate, onSelect, selectedIds }: {
+function ToolOptions({ definitions, hint, onCreate, onSelect, selectedIds }: {
   definitions: AnnotationDefinition[];
+  hint?: string;
   onCreate: () => void;
   onSelect: (id: string) => void;
   selectedIds: string[];
 }) {
   return (
     <View style={styles.section}>
+      {hint ? <AppText color={colors.mutedForeground} variant="micro">{hint}</AppText> : null}
       <View style={styles.options}>
         {definitions.map((definition) => {
           const selected = selectedIds.includes(definition.id);
@@ -206,7 +209,7 @@ function ToolOptions({ definitions, onCreate, onSelect, selectedIds }: {
 const styles = StyleSheet.create({
   root: { flex: 1, gap: spacing[2] },
   toolbar: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing[2] },
-  section: { backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.xl, borderWidth: 1, padding: spacing[2] },
+  section: { backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.xl, borderWidth: 1, gap: spacing[2], padding: spacing[2] },
   options: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing[2] },
   pill: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 30, paddingHorizontal: spacing[2.5] },
   pillSelected: { backgroundColor: colors.primary06, borderColor: colors.primary },

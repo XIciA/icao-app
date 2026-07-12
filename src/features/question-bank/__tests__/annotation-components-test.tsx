@@ -1,5 +1,6 @@
 import { fireEvent, render, waitFor } from '@testing-library/react-native';
 import { useState } from 'react';
+import { StyleSheet } from 'react-native';
 
 import { DEFAULT_ANNOTATION_HIGHLIGHTS, DEFAULT_ANNOTATION_TAGS } from '../annotations/types';
 import { AnnotationToolbar } from '../components/AnnotationToolbar';
@@ -40,18 +41,67 @@ describe('annotation study controls', () => {
     const onHighlight = jest.fn();
     const screen = await render(
       <InteractiveStudyText
+        activeHighlightId="green"
         blockId="question"
         definitions={DEFAULT_ANNOTATION_HIGHLIGHTS}
         dictionaryMode={false}
         highlightMode
         highlights={[]}
+        lookupEnabled
         onHighlight={onHighlight}
+        onHighlightRange={jest.fn()}
         onLookup={jest.fn()}
         text="One two. Three four?"
       />,
     );
     fireEvent.press(screen.getByLabelText('添加高亮：two.'));
     expect(onHighlight).toHaveBeenCalledWith(expect.objectContaining({ wordIndex: 1, quote: 'two.', sentence: 'One two.' }));
+  });
+
+  it('looks up a word on long press without enabling dictionary mode', async () => {
+    const onLookup = jest.fn();
+    const screen = await render(
+      <InteractiveStudyText
+        activeHighlightId="green"
+        blockId="question"
+        definitions={DEFAULT_ANNOTATION_HIGHLIGHTS}
+        dictionaryMode={false}
+        highlightMode={false}
+        highlights={[]}
+        lookupEnabled
+        onHighlight={jest.fn()}
+        onHighlightRange={jest.fn()}
+        onLookup={onLookup}
+        text="Request deviation to avoid weather."
+      />,
+    );
+
+    fireEvent(screen.getByLabelText('长按查词：deviation'), 'longPress');
+    expect(onLookup).toHaveBeenCalledWith({ word: 'deviation', sentence: 'Request deviation to avoid weather.' });
+  });
+
+  it('uses a highlighter background and disables lookup while highlight mode is active', async () => {
+    const onLookup = jest.fn();
+    const screen = await render(
+      <InteractiveStudyText
+        activeHighlightId="yellow"
+        blockId="question"
+        definitions={DEFAULT_ANNOTATION_HIGHLIGHTS}
+        dictionaryMode={false}
+        highlightMode
+        highlights={[{ blockId: 'question', wordIndex: 1, colorId: 'yellow', quote: 'two.', sentence: 'One two.', contentFingerprint: 'abc' }]}
+        lookupEnabled
+        onHighlight={jest.fn()}
+        onHighlightRange={jest.fn()}
+        onLookup={onLookup}
+        text="One two. Three four?"
+      />,
+    );
+
+    const highlighted = screen.getByLabelText('更新或取消高亮：two.');
+    expect(StyleSheet.flatten(highlighted.props.style).backgroundColor).toBe('rgba(214, 167, 45, 0.28)');
+    fireEvent(highlighted, 'longPress');
+    expect(onLookup).not.toHaveBeenCalled();
   });
 
   it('closes highlight mode when the tag panel opens and exposes custom creation', async () => {
