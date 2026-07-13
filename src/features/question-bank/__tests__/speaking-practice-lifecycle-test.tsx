@@ -89,11 +89,14 @@ describe('SpeakingPracticePanel lifecycle', () => {
 
   it('cancels a permission-pending start when the component unmounts', async () => {
     const permission = deferred<{ granted: boolean }>();
+    const onInteractionChange = jest.fn();
     mockPermissionPromise = permission.promise;
-    const screen = await render(<SpeakingPracticePanel mode="speaking" onClear={jest.fn()} onRecorded={jest.fn()} />);
+    const screen = await render(<SpeakingPracticePanel mode="speaking" onClear={jest.fn()} onInteractionChange={onInteractionChange} onRecorded={jest.fn()} />);
 
     await fireEvent(screen.getByLabelText('按住说话'), 'pressIn');
+    expect(onInteractionChange).toHaveBeenLastCalledWith(true);
     await screen.unmount();
+    expect(onInteractionChange).toHaveBeenLastCalledWith(false);
     permission.resolve({ granted: true });
     await permission.promise;
     await Promise.resolve();
@@ -127,10 +130,11 @@ describe('SpeakingPracticePanel lifecycle', () => {
 
   it('publishes a recording only after file and player duration validation', async () => {
     const onRecorded = jest.fn();
+    const onInteractionChange = jest.fn();
     mockRecorder.currentTime = 3;
     mockRecorder.uri = 'file:///valid.wav';
     mockRecorder.getStatus.mockReturnValue({ durationMillis: 3_000, url: 'file:///valid.wav' });
-    const screen = await render(<SpeakingPracticePanel mode="speaking" onClear={jest.fn()} onRecorded={onRecorded} />);
+    const screen = await render(<SpeakingPracticePanel mode="speaking" onClear={jest.fn()} onInteractionChange={onInteractionChange} onRecorded={onRecorded} />);
 
     await waitFor(() => expect(screen.getByLabelText('按住说话')).toBeTruthy());
     await act(async () => {
@@ -138,6 +142,7 @@ describe('SpeakingPracticePanel lifecycle', () => {
       await pause(220);
     });
     await waitFor(() => expect(mockRecorder.record).toHaveBeenCalled());
+    expect(onInteractionChange).toHaveBeenLastCalledWith(true);
     expect(mockRecorder.setInput).not.toHaveBeenCalled();
     await act(async () => {
       fireEvent(screen.getByLabelText('松开结束录音'), 'pressOut');
@@ -145,11 +150,13 @@ describe('SpeakingPracticePanel lifecycle', () => {
     });
     await waitFor(() => expect(screen.getByText('正在校验录音文件与实际时长…')).toBeTruthy());
     expect(onRecorded).not.toHaveBeenCalled();
+    expect(onInteractionChange).toHaveBeenLastCalledWith(true);
 
     mockPlaybackStatus = { ...mockPlaybackStatus, duration: 2.8, isLoaded: true, playbackState: 'readyToPlay' };
-    await screen.rerender(<SpeakingPracticePanel mode="speaking" onClear={jest.fn()} onRecorded={onRecorded} />);
+    await screen.rerender(<SpeakingPracticePanel mode="speaking" onClear={jest.fn()} onInteractionChange={onInteractionChange} onRecorded={onRecorded} />);
 
     await waitFor(() => expect(onRecorded).toHaveBeenCalledWith({ uri: 'file:///valid.wav', durationMillis: 2_800 }));
+    await waitFor(() => expect(onInteractionChange).toHaveBeenLastCalledWith(false));
     await screen.unmount();
   });
 

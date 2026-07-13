@@ -12,6 +12,8 @@ const embeddedAudioIndexPath = join(root, 'src/features/question-bank/data/audio
 const outputRoot = join(root, 'dist/question-bank-release');
 const audioRoot = resolve(process.env.QUESTION_BANK_AUDIO_ROOT ?? '/Users/zhouyide/Desktop/icao设计稿/public/question-bank-assets/audio');
 const localAudioOverlayRoot = join(resourcesRoot, 'audio');
+const localResourceOverlayRoot = join(resourcesRoot, 'files');
+const allowedResourceMimeTypes = new Set(['audio/mpeg', 'image/jpeg', 'image/png']);
 
 const bankCapabilities = {
   listening: { audioMode: 'file', reviewMode: 'none', radioEligible: true, mockExamEligible: true },
@@ -47,6 +49,8 @@ function fileChecksum(path) {
 }
 
 function resourceFilePath(sourceRelativePath) {
+  const localResourcePath = join(localResourceOverlayRoot, sourceRelativePath);
+  if (existsSync(localResourcePath)) return localResourcePath;
   const relativePath = sourceRelativePath.replace(/^audio\//, '');
   const localOverlayPath = join(localAudioOverlayRoot, relativePath);
   return existsSync(localOverlayPath) ? localOverlayPath : join(audioRoot, relativePath);
@@ -92,6 +96,7 @@ function validate({ registry, banks, resources }, { full = false } = {}) {
   const topicIds = new Set();
   const cardIds = new Set();
   const referencedAudio = new Set();
+  const referencedImages = new Set();
   let categoryCount = 0;
   let topicCount = 0;
   let cardCount = 0;
@@ -118,8 +123,17 @@ function validate({ registry, banks, resources }, { full = false } = {}) {
         for (const card of topic.cards) {
           assertString(card.id, `${bank.id}/${topic.id}.card.id`);
           assertString(card.taskTitle, `${bank.id}/${topic.id}/${card.id}.taskTitle`);
-          assertString(card.audioText, `${bank.id}/${topic.id}/${card.id}.audioText`);
           assertUnique(cardIds, card.id, `${bank.id}/${category.id}/${topic.id}/${card.id}`);
+          if (card.kind === 'image') {
+            assertString(card.image, `${bank.id}/${topic.id}/${card.id}.image`);
+            assertString(card.imageAlt, `${bank.id}/${topic.id}/${card.id}.imageAlt`);
+            if (card.audioText !== undefined || card.audio !== undefined || card.referenceText !== undefined || card.referenceTextZh !== undefined || card.choices !== undefined) fail(`invalid_image_card_fields:${card.id}`);
+            referencedImages.add(card.image);
+          } else {
+            if (card.kind !== undefined && card.kind !== 'text') fail(`unsupported_card_kind:${card.id}`);
+            assertString(card.audioText, `${bank.id}/${topic.id}/${card.id}.audioText`);
+            if (card.image !== undefined || card.imageAlt !== undefined) fail(`invalid_text_card_fields:${card.id}`);
+          }
           if (card.choices) {
             if (!Array.isArray(card.choices) || card.choices.length < 2) fail(`invalid_choices:${card.id}`);
             if (!Number.isInteger(card.correctChoiceIndex) || card.correctChoiceIndex < 0 || card.correctChoiceIndex >= card.choices.length) fail(`invalid_correct_choice:${card.id}`);
@@ -145,6 +159,10 @@ function validate({ registry, banks, resources }, { full = false } = {}) {
     assertUnique(objectKeys, file.objectKey, file.objectKey);
     assertUnique(publicPaths, file.publicPath, file.publicPath);
     if (!bankIds.has(file.bankId)) fail(`resource_bank_missing:${file.objectKey}`);
+    if (!allowedResourceMimeTypes.has(file.mimeType)) fail(`resource_mime_type:${file.objectKey}`);
+    if (file.publicPath !== `/question-bank-assets/${file.sourceRelativePath}`) fail(`resource_public_path:${file.objectKey}`);
+    if (file.mimeType === 'audio/mpeg' && !file.sourceRelativePath.startsWith('audio/')) fail(`resource_audio_path:${file.objectKey}`);
+    if (file.mimeType.startsWith('image/') && !file.sourceRelativePath.startsWith('images/')) fail(`resource_image_path:${file.objectKey}`);
     if (!/^[a-f0-9]{64}$/.test(file.checksum)) fail(`resource_checksum:${file.objectKey}`);
     const localPath = resourceFilePath(file.sourceRelativePath);
     if (!existsSync(localPath)) fail(`resource_file_missing:${file.sourceRelativePath}`);
@@ -154,6 +172,7 @@ function validate({ registry, banks, resources }, { full = false } = {}) {
     resourceBytes += size;
   }
   for (const path of referencedAudio) if (!publicPaths.has(path)) fail(`card_resource_missing:${path}`);
+  for (const path of referencedImages) if (!publicPaths.has(path)) fail(`card_resource_missing:${path}`);
 
   return {
     banks: bankIds.size,
@@ -161,6 +180,7 @@ function validate({ registry, banks, resources }, { full = false } = {}) {
     topics: topicCount,
     cards: cardCount,
     referencedAudio: referencedAudio.size,
+    referencedImages: referencedImages.size,
     resources: resources.files.length,
     resourceBytes,
   };

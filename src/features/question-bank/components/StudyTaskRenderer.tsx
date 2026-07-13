@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { View } from 'react-native';
+import type { GestureType } from 'react-native-gesture-handler';
 
 import type { LocalRecordingState } from '../hooks/useStudySession';
 import type { QuestionBankCard, StudyBehavior } from '../types';
@@ -15,6 +16,8 @@ export function StudyTaskRenderer({
   onChoose,
   onClearRecording,
   onRecorded,
+  onInteractionChange,
+  interactionGesture,
 }: {
   behavior: StudyBehavior;
   card: QuestionBankCard;
@@ -24,6 +27,8 @@ export function StudyTaskRenderer({
   onChoose: (index: number) => void;
   onClearRecording: () => void;
   onRecorded: (recording: LocalRecordingState) => void;
+  onInteractionChange?: (active: boolean) => void;
+  interactionGesture?: GestureType;
 }) {
   if (behavior.taskKind === 'choices') {
     return card.choices?.length ? (
@@ -40,7 +45,9 @@ export function StudyTaskRenderer({
   return (
     <SpeakingPracticePanel
       mode={behavior.recordingMode ?? 'speaking'}
+      interactionGesture={interactionGesture}
       onClear={onClearRecording}
+      onInteractionChange={onInteractionChange}
       onRecorded={onRecorded}
       recording={recording}
     />

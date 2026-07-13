@@ -1,0 +1,51 @@
+{
+  "categoryId": "opi-category-08",
+  "id": "opi-image-topic-011",
+  "name": "尾部发动机火警",
+  "declaredCardCount": 5,
+  "cards": [
+    {
+      "id": "opi-image-011-image",
+      "kind": "image",
+      "taskTitle": "图片观察",
+      "image": "/question-bank-assets/images/opi/image-questions/image-topic-011.jpg",
+      "imageAlt": "尾部发动机火警航空场景图片"
+    },
+    {
+      "id": "opi-image-011-q01",
+      "taskTitle": "图片题-011-01",
+      "audioText": "Please describe the scene shown in this picture.",
+      "audioTextZh": "请描述图片中显示的场景。",
+      "referenceText": "In this picture, I can see a situation related to Tail engine fire. The key points are smoke, fire spread, system damage, passenger panic, and possible evacuation. It is important for the crew to recognize the risk early, keep good communication, and follow standard operating procedures.",
+      "referenceTextZh": "在这张图片中，我看到的是与尾部发动机火警有关的情况。关键点包括烟雾、火势蔓延、系统损伤、旅客恐慌以及可能需要撤离。机组应及早识别风险，保持良好沟通，并按照标准操作程序处置。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-011-q01.mp3"
+    },
+    {
+      "id": "opi-image-011-q02",
+      "taskTitle": "图片题-011-02",
+      "audioText": "What potential risks will tail engine fire bring to the aircraft and passengers?",
+      "audioTextZh": "尾部发动机起火会给飞机和旅客带来哪些潜在风险？",
+      "referenceText": "The main risks are smoke, fire spread, system damage, passenger panic, and possible evacuation. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+      "referenceTextZh": "主要风险包括烟雾、火势蔓延、系统损伤、旅客恐慌以及可能需要撤离。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-011-q02.mp3"
+    },
+    {
+      "id": "opi-image-011-q03",
+      "taskTitle": "图片题-011-03",
+      "audioText": "As the pilot in command, how will you handle this situation?",
+      "audioTextZh": "作为机长，你会如何处理这种情况？",
+      "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
+      "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-011-q03.mp3"
+    },
+    {
+      "id": "opi-image-011-q04",
+      "taskTitle": "图片题-011-04",
+      "audioText": "What measures can help reduce the risk of engine fire during flight?",
+      "audioTextZh": "哪些措施可以帮助降低飞行中发动机火警的风险？",
+      "referenceText": "The main risks are smoke, fire spread, system damage, passenger panic, and possible evacuation. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+      "referenceTextZh": "主要风险包括烟雾、火势蔓延、系统损伤、旅客恐慌以及可能需要撤离。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-011-q04.mp3"
+    }
+  ]
+}

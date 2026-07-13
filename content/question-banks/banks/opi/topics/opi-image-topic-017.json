@@ -1,0 +1,42 @@
+{
+  "categoryId": "opi-category-08",
+  "id": "opi-image-topic-017",
+  "name": "水上迫降",
+  "declaredCardCount": 4,
+  "cards": [
+    {
+      "id": "opi-image-017-image",
+      "kind": "image",
+      "taskTitle": "图片观察",
+      "image": "/question-bank-assets/images/opi/image-questions/image-topic-017.jpg",
+      "imageAlt": "水上迫降航空场景图片"
+    },
+    {
+      "id": "opi-image-017-q01",
+      "taskTitle": "图片题-017-01",
+      "audioText": "What kinds of serious failures may force a large jet airliner to ditch on the sea?",
+      "audioTextZh": "哪些严重故障可能迫使大型喷气客机在海上迫降？",
+      "referenceText": "This situation is related to Sea ditching. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
+      "referenceTextZh": "这种情况与水上迫降有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-017-q01.mp3"
+    },
+    {
+      "id": "opi-image-017-q02",
+      "taskTitle": "图片题-017-02",
+      "audioText": "As captain, if all engines fail over water, what full set of procedures will you follow to complete a safe ditching?",
+      "audioTextZh": "作为机长，如果在水面上空所有发动机失效，你会遵循哪些完整程序完成安全迫降？",
+      "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
+      "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-017-q02.mp3"
+    },
+    {
+      "id": "opi-image-017-q03",
+      "taskTitle": "图片题-017-03",
+      "audioText": "After successfully ditching on the sea, what evacuation steps should the flight crew carry out immediately?",
+      "audioTextZh": "成功水上迫降后，机组应立即执行哪些撤离步骤？",
+      "referenceText": "This situation is related to Sea ditching. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
+      "referenceTextZh": "这种情况与水上迫降有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-017-q03.mp3"
+    }
+  ]
+}

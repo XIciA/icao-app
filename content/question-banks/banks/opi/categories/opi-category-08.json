@@ -1,0 +1,31 @@
+{
+  "id": "opi-category-08",
+  "name": "图片题",
+  "declaredTopicCount": 23,
+  "declaredCardCount": 87,
+  "topicIds": [
+    "opi-image-topic-001",
+    "opi-image-topic-002",
+    "opi-image-topic-003",
+    "opi-image-topic-004",
+    "opi-image-topic-005",
+    "opi-image-topic-006",
+    "opi-image-topic-007",
+    "opi-image-topic-008",
+    "opi-image-topic-009",
+    "opi-image-topic-010",
+    "opi-image-topic-011",
+    "opi-image-topic-012",
+    "opi-image-topic-013",
+    "opi-image-topic-014",
+    "opi-image-topic-015",
+    "opi-image-topic-016",
+    "opi-image-topic-017",
+    "opi-image-topic-018",
+    "opi-image-topic-019",
+    "opi-image-topic-020",
+    "opi-image-topic-021",
+    "opi-image-topic-022",
+    "opi-image-topic-023"
+  ]
+}

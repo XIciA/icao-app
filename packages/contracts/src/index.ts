@@ -58,6 +58,51 @@ export type ResolvedResource = {
   expiresIn: number;
 };
 
+export type VocabularyBookId = 'preview' | 'icao4' | 'icao5';
+
+export type VocabularyWord = {
+  id: string;
+  bookId: VocabularyBookId;
+  level: 1 | 2 | 3;
+  word: string;
+  meaning: string;
+  example: string;
+  exampleTranslation: string;
+  source: {
+    name: string;
+    rowIndex: number;
+    sourceNo: string | number;
+  };
+};
+
+export type VocabularyBook = {
+  id: VocabularyBookId;
+  level: 1 | 2 | 3;
+  name: string;
+  description: string;
+  words: VocabularyWord[];
+};
+
+export type VocabularyDataset = {
+  schemaVersion: 1;
+  version: number;
+  source: {
+    name: string;
+    generatedAt: string;
+    sourceRows: number;
+    validRows: number;
+    ignoredRows: number;
+    invalidRows: number;
+  };
+  books: VocabularyBook[];
+};
+
+export type VocabularyRelease = {
+  version: number;
+  checksum: string;
+  dataset: VocabularyDataset;
+};
+
 export type SyncCardState = {
   visited: boolean;
   completed: boolean;

@@ -1,0 +1,33 @@
+{
+  "categoryId": "opi-category-08",
+  "id": "opi-image-topic-008",
+  "name": "模拟机训练",
+  "declaredCardCount": 3,
+  "cards": [
+    {
+      "id": "opi-image-008-image",
+      "kind": "image",
+      "taskTitle": "图片观察",
+      "image": "/question-bank-assets/images/opi/image-questions/image-topic-008.jpg",
+      "imageAlt": "模拟机训练航空场景图片"
+    },
+    {
+      "id": "opi-image-008-q01",
+      "taskTitle": "图片题-008-01",
+      "audioText": "Please describe what you can see in this picture",
+      "audioTextZh": "请描述你在这张图片中看到的内容。",
+      "referenceText": "In this picture, I can see a situation related to Simulator training. The key points are safe practice of abnormal procedures, crew coordination, decision making, and instrument skills. It is important for the crew to recognize the risk early, keep good communication, and follow standard operating procedures.",
+      "referenceTextZh": "在这张图片中，我看到的是与模拟机训练有关的情况。关键点包括安全练习非正常程序、机组配合、决策能力和仪表技能。机组应及早识别风险，保持良好沟通，并按照标准操作程序处置。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-008-q01.mp3"
+    },
+    {
+      "id": "opi-image-008-q02",
+      "taskTitle": "图片题-008-02",
+      "audioText": "What are the benefits of simulator training?",
+      "audioTextZh": "模拟机训练有哪些好处？",
+      "referenceText": "The main benefit is improved situational awareness. Compared with the older method, it gives pilots clearer information, better monitoring, and more time to make safe decisions.",
+      "referenceTextZh": "主要好处是提升态势感知。与较旧的方式相比，它能给飞行员更清晰的信息、更好的监控能力，并为安全决策争取更多时间。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-008-q02.mp3"
+    }
+  ]
+}

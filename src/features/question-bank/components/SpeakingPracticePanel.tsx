@@ -13,6 +13,7 @@ import { File } from 'expo-file-system';
 import { Mic, Pause, Play, RotateCcw, ShieldAlert, Square } from 'lucide-react-native';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, Pressable, StyleSheet, View } from 'react-native';
+import { GestureDetector, type GestureType } from 'react-native-gesture-handler';
 
 import { AppText, Button } from '@/components/ui';
 import { colors, fonts, radii, spacing } from '@/theme';
@@ -95,11 +96,15 @@ export function SpeakingPracticePanel({
   recording,
   onClear,
   onRecorded,
+  onInteractionChange,
+  interactionGesture,
 }: {
   mode: 'speaking' | 'retell';
   recording?: LocalRecordingState;
   onClear: () => void;
   onRecorded: (recording: LocalRecordingState) => void;
+  onInteractionChange?: (active: boolean) => void;
+  interactionGesture?: GestureType;
 }) {
   const recorder = useAudioRecorder(VOICE_RECORDING_OPTIONS);
   const recorderState = useAudioRecorderState(recorder, 200);
@@ -119,9 +124,16 @@ export function SpeakingPracticePanel({
   const pressHeld = useRef(false);
   const resolvedCandidate = useRef<string | undefined>(undefined);
   const phaseRef = useRef<RecordingPhase>(phase);
+  const interactionActive = ['preparing', 'recording', 'finalizing', 'validating'].includes(phase);
 
   playbackStatusRef.current = playbackStatus;
   phaseRef.current = phase;
+
+  useEffect(() => {
+    onInteractionChange?.(interactionActive);
+  }, [interactionActive, onInteractionChange]);
+
+  useEffect(() => () => onInteractionChange?.(false), [onInteractionChange]);
 
   const restorePlaybackMode = useCallback(async () => {
     await setAudioModeAsync({ allowsRecording: false, interruptionMode: 'doNotMix', playsInSilentMode: true, shouldPlayInBackground: false, shouldRouteThroughEarpiece: false });
@@ -340,6 +352,25 @@ export function SpeakingPracticePanel({
         : isRecording
           ? '松开结束'
           : '按住说话';
+  const recordButton = (
+    <Pressable
+      accessibilityLabel={isRecording ? '松开结束录音' : mode === 'retell' ? '按住开始复述' : '按住说话'}
+      disabled={isBusy}
+      onPressIn={() => {
+        onInteractionChange?.(true);
+        pressHeld.current = true;
+        startPromise.current = startRecording();
+      }}
+      onPressOut={() => {
+        pressHeld.current = false;
+        void (async () => { await startPromise.current; if (recorder.isRecording) await stopRecording(); })();
+      }}
+      style={[styles.recordButton, isRecording ? styles.recording : null, isBusy ? styles.recordButtonBusy : null]}
+    >
+      {isRecording ? <Square color={colors.primaryForeground} fill={colors.primaryForeground} size={17} /> : <Mic color={colors.primaryForeground} size={18} />}
+      <AppText color={colors.primaryForeground} variant="button">{recordLabel}</AppText>
+    </Pressable>
+  );
 
   if (permissionDenied) {
     return (
@@ -356,22 +387,7 @@ export function SpeakingPracticePanel({
 
   return (
     <View style={styles.root}>
-      <Pressable
-        accessibilityLabel={isRecording ? '松开结束录音' : mode === 'retell' ? '按住开始复述' : '按住说话'}
-        disabled={isBusy}
-        onPressIn={() => {
-          pressHeld.current = true;
-          startPromise.current = startRecording();
-        }}
-        onPressOut={() => {
-          pressHeld.current = false;
-          void (async () => { await startPromise.current; if (recorder.isRecording) await stopRecording(); })();
-        }}
-        style={[styles.recordButton, isRecording ? styles.recording : null, isBusy ? styles.recordButtonBusy : null]}
-      >
-        {isRecording ? <Square color={colors.primaryForeground} fill={colors.primaryForeground} size={17} /> : <Mic color={colors.primaryForeground} size={18} />}
-        <AppText color={colors.primaryForeground} variant="button">{recordLabel}</AppText>
-      </Pressable>
+      {interactionGesture ? <GestureDetector gesture={interactionGesture}>{recordButton}</GestureDetector> : recordButton}
 
       {recording ? <View style={styles.console}>
         <View style={styles.status}><AppText variant="caption">录音已保存在本机临时目录</AppText><AppText style={styles.duration} variant="micro">{formatDuration(recording.durationMillis)}</AppText></View>

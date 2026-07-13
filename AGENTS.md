@@ -41,6 +41,19 @@ phase logs, and closeout records belong in this repository.
 - UI work requires rendered checks against the design baseline; a successful build alone
   is not visual acceptance.
 
+## App display version
+
+- Every task that changes repository files must finish by updating
+  `src/config/app-version.ts` to the final modification time in the `Asia/Shanghai`
+  timezone, using the exact format `vYYYY.MM.DD.HHmm`.
+- Update the display version after the final intended code or document edit. If later fixes
+  change repository files, refresh the timestamp again before delivery.
+- All user-visible version text under “我的” and “关于飞猪 ICAO” must read the shared
+  `APP_DISPLAY_VERSION` value instead of hard-coding independent versions. This display
+  timestamp does not replace the native release versions in `app.json` or `package.json`.
+- Every final task report that includes repository changes must state the resulting display
+  version explicitly.
+
 ## Runtime deployment and acceptance
 
 - Treat the repository as the single source of truth, but distinguish local code from the

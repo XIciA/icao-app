@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   primaryCollapsed: { marginBottom: spacing[8] },
   transcript: { backgroundColor: colors.secondary, borderColor: colors.border, borderRadius: radii.xxl, borderWidth: 1, padding: spacing[4], zIndex: 2 },
   workbench: { backgroundColor: colors.card, borderColor: colors.primary20, borderRadius: radii.xxl, borderWidth: 1, zIndex: 1, ...shadows.card },
-  collapsedLayers: { bottom: spacing[1], height: 58, left: 0, position: 'absolute', right: 0 },
-  collapsedTranscript: { backgroundColor: colors.secondary, borderColor: colors.border, borderRadius: radii.xxl, borderWidth: 1, bottom: spacing[2], height: 50, left: spacing[1], position: 'absolute', right: spacing[1], ...shadows.card },
-  collapsedWorkbench: { backgroundColor: colors.card, borderColor: colors.primary20, borderRadius: radii.xxl, borderWidth: 1, bottom: 0, height: 42, left: spacing[2], position: 'absolute', right: spacing[2], ...shadows.card },
+  collapsedLayers: { bottom: 0, height: spacing[12] + spacing[3], left: 0, position: 'absolute', right: 0 },
+  collapsedTranscript: { backgroundColor: colors.secondary, borderColor: colors.border, borderRadius: radii.xxl, borderWidth: 1, bottom: spacing[3], height: spacing[12], left: spacing[1], position: 'absolute', right: spacing[1], zIndex: 2, ...shadows.card },
+  collapsedWorkbench: { backgroundColor: colors.card, borderColor: colors.primary20, borderRadius: radii.xxl, borderWidth: 1, bottom: 0, height: spacing[12], left: spacing[2], position: 'absolute', right: spacing[2], zIndex: 1, ...shadows.card },
 });

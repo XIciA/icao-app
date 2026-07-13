@@ -1,0 +1,42 @@
+{
+  "categoryId": "opi-category-08",
+  "id": "opi-image-topic-003",
+  "name": "夜间跑道起飞",
+  "declaredCardCount": 4,
+  "cards": [
+    {
+      "id": "opi-image-003-image",
+      "kind": "image",
+      "taskTitle": "图片观察",
+      "image": "/question-bank-assets/images/opi/image-questions/image-topic-003.jpg",
+      "imageAlt": "夜间跑道起飞航空场景图片"
+    },
+    {
+      "id": "opi-image-003-q01",
+      "taskTitle": "图片题-003-01",
+      "audioText": "What preparations should be done before taking off from this runway at night?",
+      "audioTextZh": "夜间从这条跑道起飞前应做哪些准备？",
+      "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
+      "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-003-q01.mp3"
+    },
+    {
+      "id": "opi-image-003-q02",
+      "taskTitle": "图片题-003-02",
+      "audioText": "What potential risks might there be during night take - off from this view?",
+      "audioTextZh": "从这个视角看，夜间起飞可能有哪些潜在风险？",
+      "referenceText": "The main risks are runway lights, correct performance calculation, departure briefing, and careful monitoring of runway alignment. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+      "referenceTextZh": "主要风险包括检查跑道灯光、核实性能计算、完成离场简令并仔细监控跑道方向。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-003-q02.mp3"
+    },
+    {
+      "id": "opi-image-003-q03",
+      "taskTitle": "图片题-003-03",
+      "audioText": "What other runway lighting facilities do you know?",
+      "audioTextZh": "你还知道哪些其他跑道灯光设施？",
+      "referenceText": "This situation is related to Night runway takeoff. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
+      "referenceTextZh": "这种情况与夜间跑道起飞有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-003-q03.mp3"
+    }
+  ]
+}

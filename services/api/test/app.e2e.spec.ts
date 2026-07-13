@@ -105,18 +105,32 @@ describe('API foundation', () => {
     await app.close();
   });
 
-  it('requires authentication for question banks, resources and AI', async () => {
+  it('requires authentication for question banks, vocabulary, resources and AI', async () => {
     const app = await testApp();
     const payload = { accepted: true, policyVersion: 'ai-learning-privacy-v1' };
     const responses = await Promise.all([
       app.inject({ method: 'GET', url: '/v1/question-banks' }),
+      app.inject({ method: 'GET', url: '/v1/vocabulary' }),
       app.inject({ method: 'GET', url: '/v1/resources/resolve?path=/question-bank-assets/test.mp3' }),
       app.inject({ method: 'POST', url: '/v1/ai/consent', payload }),
     ]);
-    expect(responses.map((response) => response.statusCode)).toEqual([401, 401, 401]);
+    expect(responses.map((response) => response.statusCode)).toEqual([401, 401, 401, 401]);
     expect(responses.map((response) => response.json().error.code)).toEqual([
-      'missing_bearer_token', 'missing_bearer_token', 'missing_bearer_token',
+      'missing_bearer_token', 'missing_bearer_token', 'missing_bearer_token', 'missing_bearer_token',
     ]);
+    await app.close();
+  });
+
+  it('serves the authenticated vocabulary release with ETag caching', async () => {
+    const app = await testApp();
+    const headers = { authorization: 'Bearer valid-token' };
+    const response = await app.inject({ method: 'GET', url: '/v1/vocabulary', headers });
+    expect(response.statusCode).toBe(200);
+    expect(response.json().data.dataset.books.map((book: { words: unknown[] }) => book.words.length)).toEqual([360, 372, 106]);
+    const etag = response.headers.etag;
+    expect(etag).toMatch(/^"[a-f0-9]{64}"$/);
+    const cached = await app.inject({ method: 'GET', url: '/v1/vocabulary', headers: { ...headers, 'if-none-match': etag! } });
+    expect(cached.statusCode).toBe(304);
     await app.close();
   });
 

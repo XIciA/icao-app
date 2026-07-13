@@ -11,16 +11,45 @@
     "cards": {
       "type": "array",
       "items": {
-        "type": "object",
-        "required": ["id", "taskTitle", "audioText"],
-        "properties": {
-          "id": { "type": "string", "minLength": 1 },
-          "taskTitle": { "type": "string", "minLength": 1 },
-          "audioText": { "type": "string", "minLength": 1 },
-          "audio": { "type": "string" },
-          "choices": { "type": "array", "items": { "type": "string" } },
-          "correctChoiceIndex": { "type": "integer", "minimum": 0 }
-        }
+        "oneOf": [
+          {
+            "type": "object",
+            "required": ["id", "taskTitle", "audioText"],
+            "properties": {
+              "id": { "type": "string", "minLength": 1 },
+              "kind": { "enum": ["text"] },
+              "taskTitle": { "type": "string", "minLength": 1 },
+              "audioText": { "type": "string", "minLength": 1 },
+              "audioTextZh": { "type": "string" },
+              "referenceText": { "type": "string" },
+              "referenceTextZh": { "type": "string" },
+              "audio": { "type": "string", "minLength": 1 },
+              "choices": { "type": "array", "items": { "type": "string" } },
+              "correctChoiceIndex": { "type": "integer", "minimum": 0 }
+            },
+            "not": { "anyOf": [{ "required": ["image"] }, { "required": ["imageAlt"] }] }
+          },
+          {
+            "type": "object",
+            "required": ["id", "kind", "taskTitle", "image", "imageAlt"],
+            "properties": {
+              "id": { "type": "string", "minLength": 1 },
+              "kind": { "const": "image" },
+              "taskTitle": { "type": "string", "minLength": 1 },
+              "image": { "type": "string", "minLength": 1 },
+              "imageAlt": { "type": "string", "minLength": 1 }
+            },
+            "not": {
+              "anyOf": [
+                { "required": ["audioText"] },
+                { "required": ["audio"] },
+                { "required": ["choices"] },
+                { "required": ["referenceText"] },
+                { "required": ["referenceTextZh"] }
+              ]
+            }
+          }
+        ]
       }
     }
   }

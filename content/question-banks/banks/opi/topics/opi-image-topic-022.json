@@ -1,0 +1,42 @@
+{
+  "categoryId": "opi-category-08",
+  "id": "opi-image-topic-022",
+  "name": "山区夜间进近",
+  "declaredCardCount": 4,
+  "cards": [
+    {
+      "id": "opi-image-022-image",
+      "kind": "image",
+      "taskTitle": "图片观察",
+      "image": "/question-bank-assets/images/opi/image-questions/image-topic-022.jpg",
+      "imageAlt": "山区夜间进近航空场景图片"
+    },
+    {
+      "id": "opi-image-022-q01",
+      "taskTitle": "图片题-022-01",
+      "audioText": "What weather conditions will further reduce visibility during night landing on such terrain airports?",
+      "audioTextZh": "在这类地形机场夜间着陆时，哪些天气条件会进一步降低能见度？",
+      "referenceText": "This situation is related to Night terrain approach. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
+      "referenceTextZh": "这种情况与山区夜间进近有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-022-q01.mp3"
+    },
+    {
+      "id": "opi-image-022-q02",
+      "taskTitle": "图片题-022-02",
+      "audioText": "What are the functions of the runway lights?",
+      "audioTextZh": "跑道灯光有哪些功能？",
+      "referenceText": "The main benefit is improved situational awareness. Compared with the older method, it gives pilots clearer information, better monitoring, and more time to make safe decisions.",
+      "referenceTextZh": "主要好处是提升态势感知。与较旧的方式相比，它能给飞行员更清晰的信息、更好的监控能力，并为安全决策争取更多时间。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-022-q02.mp3"
+    },
+    {
+      "id": "opi-image-022-q03",
+      "taskTitle": "图片题-022-03",
+      "audioText": "What pre-descent briefings help pilot handle night approach risks",
+      "audioTextZh": "下降前哪些简令有助于飞行员处理夜间进近风险？",
+      "referenceText": "The main risks are low cloud, rain, fog, terrain shadow, and limited visual references. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+      "referenceTextZh": "主要风险包括低云、降雨、雾、地形阴影以及目视参照有限。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-022-q03.mp3"
+    }
+  ]
+}

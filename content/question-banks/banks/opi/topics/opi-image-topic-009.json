@@ -1,0 +1,33 @@
+{
+  "categoryId": "opi-category-08",
+  "id": "opi-image-topic-009",
+  "name": "传统仪表驾驶舱",
+  "declaredCardCount": 3,
+  "cards": [
+    {
+      "id": "opi-image-009-image",
+      "kind": "image",
+      "taskTitle": "图片观察",
+      "image": "/question-bank-assets/images/opi/image-questions/image-topic-009.jpg",
+      "imageAlt": "传统仪表驾驶舱航空场景图片"
+    },
+    {
+      "id": "opi-image-009-q01",
+      "taskTitle": "图片题-009-01",
+      "audioText": "What are the differences between these traditional aircraft instruments and modern advanced flight instrument cockpits?",
+      "audioTextZh": "这些传统飞机仪表与现代先进飞行仪表驾驶舱有什么区别？",
+      "referenceText": "The main benefit is improved situational awareness. Compared with the older method, it gives pilots clearer information, better monitoring, and more time to make safe decisions.",
+      "referenceTextZh": "主要好处是提升态势感知。与较旧的方式相比，它能给飞行员更清晰的信息、更好的监控能力，并为安全决策争取更多时间。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-009-q01.mp3"
+    },
+    {
+      "id": "opi-image-009-q02",
+      "taskTitle": "图片题-009-02",
+      "audioText": "What challenges do pilots face when operating aircraft with these traditional instruments?",
+      "audioTextZh": "飞行员操作这些传统仪表飞机时会面临哪些挑战？",
+      "referenceText": "The main risks are higher scan workload, less integrated information, and greater dependence on manual cross-checking. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+      "referenceTextZh": "主要风险包括扫视负荷更高、信息整合程度更低并且更依赖人工交叉检查。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-009-q02.mp3"
+    }
+  ]
+}

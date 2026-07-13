@@ -16,6 +16,9 @@ import { z } from 'zod';
 
 import { DatabaseService } from '../database/database.service';
 import { learningRecords, profiles, syncChanges, syncMutations, userCardStates, userDocuments } from '../database/schema';
+import { mergeVocabularyDocuments, vocabularyDocumentSchema } from './vocabulary-document';
+
+const VOCABULARY_DOCUMENT_KEY = 'vocabulary';
 
 const stateSchema = z.object({
   visited: z.boolean(),
@@ -237,6 +240,9 @@ export class SyncService {
     userId: string,
     mutation: DocumentMutation,
   ): Promise<SyncPushResult> {
+    if (mutation.payload.documentKey === VOCABULARY_DOCUMENT_KEY) {
+      return this.applyVocabularyDocument(tx, userId, mutation);
+    }
     const target = and(
       eq(userDocuments.userId, userId),
       eq(userDocuments.documentKey, mutation.payload.documentKey),
@@ -272,6 +278,52 @@ export class SyncService {
       version: mutation.payload.version,
     });
     return { mutationId: mutation.mutationId, status: 'accepted', authoritative: payload };
+  }
+
+  private async applyVocabularyDocument(
+    tx: Parameters<Parameters<typeof this.database.db.transaction>[0]>[0],
+    userId: string,
+    mutation: DocumentMutation,
+  ): Promise<SyncPushResult> {
+    const incoming = vocabularyDocumentSchema.safeParse(mutation.payload.document);
+    if (!incoming.success) throw new BadRequestException('invalid_vocabulary_document');
+    const target = and(
+      eq(userDocuments.userId, userId),
+      eq(userDocuments.documentKey, VOCABULARY_DOCUMENT_KEY),
+    );
+    const [current] = await tx.select().from(userDocuments).where(target).limit(1);
+    const document = current
+      ? mergeVocabularyDocuments(current.payload, incoming.data)
+      : incoming.data;
+    const version = current ? Math.max(current.version + 1, mutation.payload.version) : mutation.payload.version;
+    const updatedAt = new Date(document.updatedAt);
+    const values = {
+      userId,
+      documentKey: VOCABULARY_DOCUMENT_KEY,
+      payload: document,
+      version,
+      updatedAt,
+    };
+    if (current) await tx.update(userDocuments).set(values).where(target);
+    else await tx.insert(userDocuments).values(values);
+    const payload = {
+      documentKey: VOCABULARY_DOCUMENT_KEY,
+      document,
+      version,
+      updatedAt: updatedAt.toISOString(),
+    };
+    await tx.insert(syncChanges).values({
+      userId,
+      kind: mutation.kind,
+      entityKey: VOCABULARY_DOCUMENT_KEY,
+      payload,
+      version,
+    });
+    return {
+      mutationId: mutation.mutationId,
+      status: current && mutation.payload.version <= current.version ? 'conflict' : 'accepted',
+      authoritative: payload,
+    };
   }
 
   async pull(userId: string, rawCursor?: string): Promise<SyncPullResponse> {

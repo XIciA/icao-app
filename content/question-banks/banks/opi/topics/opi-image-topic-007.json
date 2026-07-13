@@ -1,0 +1,42 @@
+{
+  "categoryId": "opi-category-08",
+  "id": "opi-image-topic-007",
+  "name": "高高原机场",
+  "declaredCardCount": 4,
+  "cards": [
+    {
+      "id": "opi-image-007-image",
+      "kind": "image",
+      "taskTitle": "图片观察",
+      "image": "/question-bank-assets/images/opi/image-questions/image-topic-007.jpg",
+      "imageAlt": "高高原机场航空场景图片"
+    },
+    {
+      "id": "opi-image-007-q01",
+      "taskTitle": "图片题-007-01",
+      "audioText": "What is the high - elevation airport?",
+      "audioTextZh": "什么是高高原机场？",
+      "referenceText": "A high-elevation airport is an airport located at a high altitude above sea level. Because the air is thinner, aircraft performance, approach planning, and landing distance must be checked very carefully.",
+      "referenceTextZh": "高高原机场是指海拔较高的机场。由于空气稀薄，必须非常仔细地检查飞机性能、进近计划和着陆距离。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-007-q01.mp3"
+    },
+    {
+      "id": "opi-image-007-q02",
+      "taskTitle": "图片题-007-02",
+      "audioText": "If you are a pilot and need to land at this high - elevation airport, how will you do to make sure the flight safety?",
+      "audioTextZh": "如果你是飞行员，需要在这个高高原机场着陆，你会怎样确保飞行安全？",
+      "referenceText": "A high-elevation airport is an airport located at a high altitude above sea level. Because the air is thinner, aircraft performance, approach planning, and landing distance must be checked very carefully.",
+      "referenceTextZh": "高高原机场是指海拔较高的机场。由于空气稀薄，必须非常仔细地检查飞机性能、进近计划和着陆距离。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-007-q02.mp3"
+    },
+    {
+      "id": "opi-image-007-q03",
+      "taskTitle": "图片题-007-03",
+      "audioText": "What challenges does flying face at high - elevation airports?",
+      "audioTextZh": "在高高原机场飞行会面临哪些挑战？",
+      "referenceText": "The main risks are thin air, longer landing distance, reduced engine performance, and terrain restrictions. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+      "referenceTextZh": "主要风险包括空气稀薄、着陆距离增加、发动机性能降低以及地形限制。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-007-q03.mp3"
+    }
+  ]
+}

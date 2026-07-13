@@ -42,7 +42,7 @@ export default function RootLayout() {
   );
 }
 
-function AppStack() {
+export function AppStack() {
   const auth = useAuth();
   const pathname = usePathname();
 
@@ -65,8 +65,8 @@ function AppStack() {
               headerShown: false,
             }}
           >
+            <Stack.Screen name="index" options={{ animation: 'fade', gestureEnabled: false }} />
             <Stack.Protected guard={!auth.session}>
-              <Stack.Screen name="index" options={{ animation: 'fade', gestureEnabled: false }} />
               <Stack.Screen name="auth/[slug]" options={{ gestureEnabled: false }} />
             </Stack.Protected>
             <Stack.Screen name="auth/callback" options={{ gestureEnabled: false }} />
@@ -76,7 +76,10 @@ function AppStack() {
               <Stack.Screen name="(tabs)" options={{ animation: 'fade', fullScreenGestureEnabled: false, gestureEnabled: false }} />
               <Stack.Screen name="detail/[slug]" />
               <Stack.Screen name="question-bank/[bankId]/index" />
-              <Stack.Screen name="question-bank/[bankId]/study/[categoryId]/[topicId]" />
+              <Stack.Screen
+                name="question-bank/[bankId]/study/[categoryId]/[topicId]"
+                options={{ fullScreenGestureEnabled: false, gestureEnabled: false }}
+              />
               <Stack.Screen name="learning-records" />
               <Stack.Screen name="annotations" />
               <Stack.Screen name="content/[slug]" />

@@ -1,0 +1,33 @@
+{
+  "categoryId": "opi-category-08",
+  "id": "opi-image-topic-001",
+  "name": "夜航驾驶舱",
+  "declaredCardCount": 3,
+  "cards": [
+    {
+      "id": "opi-image-001-image",
+      "kind": "image",
+      "taskTitle": "图片观察",
+      "image": "/question-bank-assets/images/opi/image-questions/image-topic-001.jpg",
+      "imageAlt": "夜航驾驶舱航空场景图片"
+    },
+    {
+      "id": "opi-image-001-q01",
+      "taskTitle": "图片题-001-01",
+      "audioText": "What hazards do we have during night flying?",
+      "audioTextZh": "夜间飞行有哪些危险？",
+      "referenceText": "The main risks are reduced visibility, cockpit workload, spatial disorientation, and difficulty judging terrain or clouds. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+      "referenceTextZh": "主要风险包括能见度降低、驾驶舱工作负荷增加、空间定向困难以及地形和云的判断变难。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-001-q01.mp3"
+    },
+    {
+      "id": "opi-image-001-q02",
+      "taskTitle": "图片题-001-02",
+      "audioText": "What preparations will you make before a night flight?",
+      "audioTextZh": "夜航前你会做哪些准备？",
+      "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
+      "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-001-q02.mp3"
+    }
+  ]
+}

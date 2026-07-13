@@ -1,0 +1,33 @@
+{
+  "categoryId": "opi-category-08",
+  "id": "opi-image-topic-013",
+  "name": "外来物损伤",
+  "declaredCardCount": 3,
+  "cards": [
+    {
+      "id": "opi-image-013-image",
+      "kind": "image",
+      "taskTitle": "图片观察",
+      "image": "/question-bank-assets/images/opi/image-questions/image-topic-013.jpg",
+      "imageAlt": "外来物损伤航空场景图片"
+    },
+    {
+      "id": "opi-image-013-q01",
+      "taskTitle": "图片题-013-01",
+      "audioText": "What do you know about FOD?",
+      "audioTextZh": "你对外来物损伤了解多少？",
+      "referenceText": "FOD means foreign object debris or foreign object damage. It can damage tires, engines, and aircraft structures, so ramp inspection and runway cleaning are very important.",
+      "referenceTextZh": "FOD 指外来物或外来物损伤。它可能损坏轮胎、发动机和飞机结构，因此机坪检查和跑道清理非常重要。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-013-q01.mp3"
+    },
+    {
+      "id": "opi-image-013-q02",
+      "taskTitle": "图片题-013-02",
+      "audioText": "What measures can prevent foreign object ingestion into aircraft engines?",
+      "audioTextZh": "哪些措施可以防止外来物被吸入飞机发动机？",
+      "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
+      "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-013-q02.mp3"
+    }
+  ]
+}

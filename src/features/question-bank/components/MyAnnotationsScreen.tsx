@@ -261,10 +261,20 @@ function HighlightSentence({ definitions, fallback, highlights, sourceText, targ
   const last = words.find((token) => token.wordIndex === range.endWordIndex);
   if (!first || !last) return <AppText numberOfLines={3}>{fallback}</AppText>;
   const tokens = tokenizeStudyText(sourceText).filter((token) => token.start >= first.start && token.end <= last.end);
+  const toneForWord = (wordIndex?: number) => {
+    if (wordIndex === undefined) return undefined;
+    const highlight = active.get(wordIndex);
+    return highlight ? definitions.get(highlight.colorId)?.color ?? 'green' : undefined;
+  };
   return (
     <AppText numberOfLines={3}>
       {tokens.map((token, index) => {
-        if (token.whitespace) return <Text key={`space-${index}`}>{token.text}</Text>;
+        if (token.whitespace) {
+          const previousTone = toneForWord(tokens[index - 1]?.wordIndex);
+          const nextTone = toneForWord(tokens[index + 1]?.wordIndex);
+          const connectedTone = !token.text.includes('\n') && previousTone && previousTone === nextTone ? previousTone : undefined;
+          return <Text key={`space-${index}`} style={connectedTone ? { backgroundColor: annotationHighlightBackgrounds[connectedTone] } : undefined}>{token.text}</Text>;
+        }
         const highlight = active.get(token.wordIndex!);
         const tone = highlight ? definitions.get(highlight.colorId)?.color ?? 'green' : undefined;
         return <Text accessibilityLabel={highlight ? `高亮词：${token.text}` : undefined} key={`word-${token.wordIndex}`} style={tone ? { backgroundColor: annotationHighlightBackgrounds[tone] } : undefined}>{token.text}</Text>;

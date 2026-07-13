@@ -19,11 +19,14 @@ jest.mock('@/platform/api-client', () => ({ apiRequest: (...args: unknown[]) => 
 
 import { getEmbeddedQuestionBanks } from '@/features/question-bank/data/repository';
 import type { CardLearningState } from '@/features/question-bank/types';
+import { VOCABULARY_STORAGE_KEY } from '@/features/vocabulary/persistence';
+import type { VocabularyState } from '@/features/vocabulary/types';
 
 import {
   archiveAndBindEmptyLearningSync,
   bindLearningSync,
   enqueueCardState,
+  enqueueVocabularyDocument,
   getLearningSyncStatus,
   inspectLearningSyncBinding,
   resetLearningSyncForTests,
@@ -38,6 +41,11 @@ const state: CardLearningState = {
   completed: true,
   note: '',
   updatedAt: '2026-07-12T00:00:00.000Z',
+};
+const vocabularyState: VocabularyState = {
+  schemaVersion: 1,
+  words: { 'preview-0001': { status: 'known', favorite: false, updatedAt: '2026-07-13T00:00:00.000Z' } },
+  updatedAt: '2026-07-13T00:00:00.000Z',
 };
 
 describe('learning sync', () => {
@@ -73,6 +81,20 @@ describe('learning sync', () => {
 
     await expect(runLearningSync('user-1')).rejects.toThrow('network_unavailable');
     expect(await getLearningSyncStatus()).toMatchObject({ pendingCount: 1, lastError: 'network_unavailable' });
+  });
+
+  it('treats vocabulary progress as personal data and collapses rapid document updates', async () => {
+    mockValues.set(VOCABULARY_STORAGE_KEY, JSON.stringify(vocabularyState));
+    expect(await inspectLearningSyncBinding('user-1')).toMatchObject({ hasLocalData: true, needsConfirmation: true });
+    mockValues.set('icao.learning.v3.sync.meta', JSON.stringify({ schemaVersion: 3, boundUserId: 'user-1', cursor: 0, versions: {} }));
+
+    await enqueueVocabularyDocument(vocabularyState);
+    await enqueueVocabularyDocument({ ...vocabularyState, words: { ...vocabularyState.words, 'preview-0002': { status: 'vague', favorite: true, updatedAt: '2026-07-13T00:01:00.000Z' } }, updatedAt: '2026-07-13T00:01:00.000Z' });
+
+    expect(await getLearningSyncStatus()).toMatchObject({ pendingCount: 1 });
+    const outbox = JSON.parse(mockValues.get('icao.learning.v3.sync.outbox') ?? '[]') as { kind: string; payload: { documentKey: string; document: VocabularyState } }[];
+    expect(outbox).toHaveLength(1);
+    expect(outbox[0]).toMatchObject({ kind: 'document', payload: { documentKey: 'vocabulary', document: { words: { 'preview-0002': { status: 'vague', favorite: true } } } } });
   });
 
   it('archives unowned data and starts the account from cloud state', async () => {

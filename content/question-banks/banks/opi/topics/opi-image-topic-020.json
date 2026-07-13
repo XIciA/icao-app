@@ -1,0 +1,42 @@
+{
+  "categoryId": "opi-category-08",
+  "id": "opi-image-topic-020",
+  "name": "积雪和结冰污染",
+  "declaredCardCount": 4,
+  "cards": [
+    {
+      "id": "opi-image-020-image",
+      "kind": "image",
+      "taskTitle": "图片观察",
+      "image": "/question-bank-assets/images/opi/image-questions/image-topic-020.jpg",
+      "imageAlt": "积雪和结冰污染航空场景图片"
+    },
+    {
+      "id": "opi-image-020-q01",
+      "taskTitle": "图片题-020-01",
+      "audioText": "What risks will snow and ice on aircraft surfaces bring to flight safety?",
+      "audioTextZh": "飞机表面积雪和结冰会给飞行安全带来哪些风险？",
+      "referenceText": "The main risks are loss of lift, higher drag, inaccurate airspeed indications, and possible control difficulty. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+      "referenceTextZh": "主要风险包括升力损失、阻力增大、空速指示不准以及可能操纵困难。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-020-q01.mp3"
+    },
+    {
+      "id": "opi-image-020-q02",
+      "taskTitle": "图片题-020-02",
+      "audioText": "How can ice contamination on wings affect the flight safety?",
+      "audioTextZh": "机翼冰污染会如何影响飞行安全？",
+      "referenceText": "This situation is related to Snow and ice contamination. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
+      "referenceTextZh": "这种情况与积雪和结冰污染有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-020-q02.mp3"
+    },
+    {
+      "id": "opi-image-020-q03",
+      "taskTitle": "图片题-020-03",
+      "audioText": "Under that situation,what should pilots do to make sure the flight safety?",
+      "audioTextZh": "在这种情况下，飞行员应做什么来确保飞行安全？",
+      "referenceText": "This situation is related to Snow and ice contamination. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
+      "referenceTextZh": "这种情况与积雪和结冰污染有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-020-q03.mp3"
+    }
+  ]
+}

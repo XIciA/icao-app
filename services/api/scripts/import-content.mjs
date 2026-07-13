@@ -9,8 +9,10 @@ const databaseUrl = process.env.DATABASE_URL;
 const supabaseUrl = process.env.SUPABASE_URL;
 const secretKey = process.env.SUPABASE_SECRET_KEY;
 const releaseDir = resolve(process.env.RELEASE_DIR ?? '/release');
-const audioRoot = resolve(process.env.AUDIO_ROOT ?? '/audio');
+const resourceRoot = process.env.RESOURCE_ROOT ? resolve(process.env.RESOURCE_ROOT) : undefined;
+const legacyAudioRoot = resolve(process.env.AUDIO_ROOT ?? '/audio');
 const bucket = 'question-bank-assets';
+const allowedMimeTypes = new Set(['audio/mpeg', 'image/jpeg', 'image/png']);
 
 if (!databaseUrl) throw new Error('missing_DATABASE_URL');
 if (!supabaseUrl) throw new Error('missing_SUPABASE_URL');
@@ -43,8 +45,13 @@ const pending = resources.files.filter((file) => {
 for (let index = 0; index < pending.length; index += 6) {
   const batch = pending.slice(index, index + 6);
   await Promise.all(batch.map(async (file) => {
-    const sourceRelativePath = file.publicPath.replace(/^\/question-bank-assets\/audio\//, '');
-    const bytes = readFileSync(join(audioRoot, sourceRelativePath));
+    if (!allowedMimeTypes.has(file.mimeType)) throw new Error(`unsupported_resource_mime:${file.objectKey}:${file.mimeType}`);
+    const sourceRelativePath = file.publicPath.replace(/^\/question-bank-assets\//, '');
+    if (sourceRelativePath === file.publicPath) throw new Error(`invalid_resource_public_path:${file.objectKey}`);
+    const sourcePath = resourceRoot
+      ? join(resourceRoot, sourceRelativePath)
+      : join(legacyAudioRoot, sourceRelativePath.replace(/^audio\//, ''));
+    const bytes = readFileSync(sourcePath);
     const checksum = createHash('sha256').update(bytes).digest('hex');
     if (checksum !== file.checksum) throw new Error(`source_checksum_mismatch:${file.objectKey}`);
     const { error } = await supabase.storage.from(bucket).upload(file.objectKey, bytes, { contentType: file.mimeType, upsert: false });

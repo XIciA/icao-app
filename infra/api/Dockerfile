@@ -12,6 +12,7 @@ RUN pnpm install --frozen-lockfile --filter @icao/api...
 
 COPY packages/contracts packages/contracts
 COPY services/api services/api
+COPY content/vocabulary content/vocabulary
 
 RUN pnpm --filter @icao/contracts build && pnpm --filter @icao/api build
 

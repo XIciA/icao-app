@@ -1,0 +1,33 @@
+{
+  "categoryId": "opi-category-08",
+  "id": "opi-image-topic-014",
+  "name": "现代玻璃驾驶舱",
+  "declaredCardCount": 3,
+  "cards": [
+    {
+      "id": "opi-image-014-image",
+      "kind": "image",
+      "taskTitle": "图片观察",
+      "image": "/question-bank-assets/images/opi/image-questions/image-topic-014.jpg",
+      "imageAlt": "现代玻璃驾驶舱航空场景图片"
+    },
+    {
+      "id": "opi-image-014-q01",
+      "taskTitle": "图片题-014-01",
+      "audioText": "What are the main advantages of that cockpits compared with the traditional instrument cockpits?",
+      "audioTextZh": "与传统仪表驾驶舱相比，这类驾驶舱的主要优势是什么？",
+      "referenceText": "The main benefit is improved situational awareness. Compared with the older method, it gives pilots clearer information, better monitoring, and more time to make safe decisions.",
+      "referenceTextZh": "主要好处是提升态势感知。与较旧的方式相比，它能给飞行员更清晰的信息、更好的监控能力，并为安全决策争取更多时间。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-014-q01.mp3"
+    },
+    {
+      "id": "opi-image-014-q02",
+      "taskTitle": "图片题-014-02",
+      "audioText": "How do multiple display screens help pilots during flight?",
+      "audioTextZh": "多个显示屏如何在飞行中帮助飞行员？",
+      "referenceText": "This situation is related to Modern glass cockpit. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
+      "referenceTextZh": "这种情况与现代玻璃驾驶舱有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-014-q02.mp3"
+    }
+  ]
+}

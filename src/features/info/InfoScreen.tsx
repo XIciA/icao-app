@@ -5,6 +5,7 @@ import { Pressable, StyleSheet, View } from 'react-native';
 
 import { TopBar } from '@/components/navigation/TopBar';
 import { AppText, Button, Card, Screen, TextField } from '@/components/ui';
+import { APP_DISPLAY_VERSION } from '@/config/app-version';
 import { colors, radii, spacing } from '@/theme';
 
 type InfoSlug = 'hub' | 'help' | 'feedback' | 'about' | 'agreement' | 'privacy';
@@ -24,7 +25,7 @@ function Page({ title, children, scroll = true }: { title: string; children: Rea
 
 function InfoHub() {
   const router = useRouter();
-  return <Page title="信息与帮助"><View style={styles.content}><Section title="帮助"><Row icon={HelpCircle} label="帮助与反馈" hint="常见问题与意见反馈" first onPress={() => router.push('/info/help')} /><Row icon={Info} label="关于 ICAO 学习" hint="版本 3.2.0" onPress={() => router.push('/info/about')} /></Section><Section title="法律条款"><Row icon={FileText} label="用户协议" first onPress={() => router.push('/info/agreement')} /><Row icon={ShieldCheck} label="隐私政策" onPress={() => router.push('/info/privacy')} /></Section></View></Page>;
+  return <Page title="信息与帮助"><View style={styles.content}><Section title="帮助"><Row icon={HelpCircle} label="帮助与反馈" hint="常见问题与意见反馈" first onPress={() => router.push('/info/help')} /><Row icon={Info} label="关于 ICAO 学习" hint={`版本 ${APP_DISPLAY_VERSION}`} onPress={() => router.push('/info/about')} /></Section><Section title="法律条款"><Row icon={FileText} label="用户协议" first onPress={() => router.push('/info/agreement')} /><Row icon={ShieldCheck} label="隐私政策" onPress={() => router.push('/info/privacy')} /></Section></View></Page>;
 }
 
 function HelpPage() {
@@ -47,7 +48,7 @@ function FeedbackPage() {
 
 function AboutPage() {
   const router = useRouter();
-  return <Page title="关于"><View style={styles.aboutHero}><View style={styles.logo}><Upload color={colors.primaryForeground} size={28} style={{ transform: [{ rotate: '-45deg' }] }} /></View><AppText variant="sectionTitle">ICAO 学习</AppText><AppText variant="caption">航空英语 · 陆空通话备考助手</AppText><View style={styles.versionPill}><AppText variant="micro">版本 3.2.0 (Build 320)</AppText></View></View><View style={styles.content}><Section><Row icon={RefreshCcw} label="检查更新" value="已是最新版本" first /><Row icon={Star} label="给我们评分" hint="去应用商店支持我们" onPress={() => undefined} /><Row icon={Upload} label="分享给朋友" onPress={() => undefined} /></Section><Section><Row icon={FileText} label="用户协议" first onPress={() => router.push('/info/agreement')} /><Row icon={ShieldCheck} label="隐私政策" onPress={() => router.push('/info/privacy')} /></Section><AppText style={styles.copyright} variant="micro">Copyright © 2026 ICAO 学习{`\n`}All rights reserved · 京 ICP 备 00000000 号</AppText></View></Page>;
+  return <Page title="关于"><View style={styles.aboutHero}><View style={styles.logo}><Upload color={colors.primaryForeground} size={28} style={{ transform: [{ rotate: '-45deg' }] }} /></View><AppText variant="sectionTitle">ICAO 学习</AppText><AppText variant="caption">航空英语 · 陆空通话备考助手</AppText><View style={styles.versionPill}><AppText variant="micro">版本 {APP_DISPLAY_VERSION}</AppText></View></View><View style={styles.content}><Section><Row icon={RefreshCcw} label="检查更新" value="已是最新版本" first /><Row icon={Star} label="给我们评分" hint="去应用商店支持我们" onPress={() => undefined} /><Row icon={Upload} label="分享给朋友" onPress={() => undefined} /></Section><Section><Row icon={FileText} label="用户协议" first onPress={() => router.push('/info/agreement')} /><Row icon={ShieldCheck} label="隐私政策" onPress={() => router.push('/info/privacy')} /></Section><AppText style={styles.copyright} variant="micro">Copyright © 2026 ICAO 学习{`\n`}All rights reserved · 京 ICP 备 00000000 号</AppText></View></Page>;
 }
 
 function LegalPage({ page }: { page: 'agreement' | 'privacy' }) {

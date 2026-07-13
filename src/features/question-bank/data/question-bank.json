@@ -33482,12 +33482,12 @@
     "title": "OPI",
     "nameEn": "Oral Proficiency Interview",
     "description": "发音 结构 词汇 流利度 理解能力 应对能力",
-    "summary": "121 话题 / 1269 卡",
+    "summary": "144 话题 / 1356 卡",
     "enabled": true,
     "statusLabel": "可练习",
     "icon": "mic",
-    "declaredTopicCount": 121,
-    "declaredCardCount": 1269,
+    "declaredTopicCount": 144,
+    "declaredCardCount": 1356,
     "categoryUnit": "分类",
     "topicUnit": "话题",
     "cardUnit": "卡",
@@ -43274,6 +43274,935 @@
                 "audioText": "Do you like shopping online/surfing on Internet? Which website do you usually visit?/Why?",
                 "audioTextZh": "你喜欢网购 / 上网冲浪吗？你常访问哪个网站？/ 为什么？",
                 "referenceText": "Yes, I like shopping online. I often visit Taobao. Because the goods are cheap and cheerful. What's more, the transportation is very fast.\n是的，我喜欢网购。我常逛淘宝。因为商品物美价廉，而且物流也很快。\nMy favorite website is the official website of CAAC (Civil Aviation Administration of China). It provides authoritative aviation regulations, safety notices, and industry updates. As a pilot, it helps me stay compliant with rules and grasp the latest policies, which is crucial for professional development and flight safety.\n我最喜欢的网址是中国民用航空局（CAAC）的官方网站。它提供权威的航空法规、安全通告和行业动态。作为飞行员，这有助于我遵守规则、掌握最新政策，对职业发展和飞行安全至关重要。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "opi-category-08",
+        "name": "图片题",
+        "declaredTopicCount": 23,
+        "declaredCardCount": 87,
+        "topics": [
+          {
+            "categoryId": "opi-category-08",
+            "id": "opi-image-topic-001",
+            "name": "夜航驾驶舱",
+            "declaredCardCount": 3,
+            "cards": [
+              {
+                "id": "opi-image-001-image",
+                "kind": "image",
+                "taskTitle": "图片观察",
+                "image": "/question-bank-assets/images/opi/image-questions/image-topic-001.jpg",
+                "imageAlt": "夜航驾驶舱航空场景图片"
+              },
+              {
+                "id": "opi-image-001-q01",
+                "taskTitle": "图片题-001-01",
+                "audioText": "What hazards do we have during night flying?",
+                "audioTextZh": "夜间飞行有哪些危险？",
+                "referenceText": "The main risks are reduced visibility, cockpit workload, spatial disorientation, and difficulty judging terrain or clouds. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+                "referenceTextZh": "主要风险包括能见度降低、驾驶舱工作负荷增加、空间定向困难以及地形和云的判断变难。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-001-q01.mp3"
+              },
+              {
+                "id": "opi-image-001-q02",
+                "taskTitle": "图片题-001-02",
+                "audioText": "What preparations will you make before a night flight?",
+                "audioTextZh": "夜航前你会做哪些准备？",
+                "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
+                "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-001-q02.mp3"
+              }
+            ]
+          },
+          {
+            "categoryId": "opi-category-08",
+            "id": "opi-image-topic-002",
+            "name": "机翼积冰",
+            "declaredCardCount": 4,
+            "cards": [
+              {
+                "id": "opi-image-002-image",
+                "kind": "image",
+                "taskTitle": "图片观察",
+                "image": "/question-bank-assets/images/opi/image-questions/image-topic-002.jpg",
+                "imageAlt": "机翼积冰航空场景图片"
+              },
+              {
+                "id": "opi-image-002-q01",
+                "taskTitle": "图片题-002-01",
+                "audioText": "Please describe what you can see in this picture",
+                "audioTextZh": "请描述你在这张图片中看到的内容。",
+                "referenceText": "In this picture, I can see a situation related to Wing ice contamination. The key points are loss of lift, increased drag, higher stall speed, and possible control problems. It is important for the crew to recognize the risk early, keep good communication, and follow standard operating procedures.",
+                "referenceTextZh": "在这张图片中，我看到的是与机翼积冰有关的情况。关键点包括升力下降、阻力增加、失速速度提高以及可能的操纵困难。机组应及早识别风险，保持良好沟通，并按照标准操作程序处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-002-q01.mp3"
+              },
+              {
+                "id": "opi-image-002-q02",
+                "taskTitle": "图片题-002-02",
+                "audioText": "What risks will ice on the wing surface bring to flight safety?",
+                "audioTextZh": "机翼表面积冰会给飞行安全带来哪些风险？",
+                "referenceText": "The main risks are loss of lift, increased drag, higher stall speed, and possible control problems. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+                "referenceTextZh": "主要风险包括升力下降、阻力增加、失速速度提高以及可能的操纵困难。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-002-q02.mp3"
+              },
+              {
+                "id": "opi-image-002-q03",
+                "taskTitle": "图片题-002-03",
+                "audioText": "What should you do if you find ice or frost on the wing before departure?",
+                "audioTextZh": "如果离场前发现机翼上有冰或霜，你应该怎么做？",
+                "referenceText": "This situation is related to Wing ice contamination. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
+                "referenceTextZh": "这种情况与机翼积冰有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-002-q03.mp3"
+              }
+            ]
+          },
+          {
+            "categoryId": "opi-category-08",
+            "id": "opi-image-topic-003",
+            "name": "夜间跑道起飞",
+            "declaredCardCount": 4,
+            "cards": [
+              {
+                "id": "opi-image-003-image",
+                "kind": "image",
+                "taskTitle": "图片观察",
+                "image": "/question-bank-assets/images/opi/image-questions/image-topic-003.jpg",
+                "imageAlt": "夜间跑道起飞航空场景图片"
+              },
+              {
+                "id": "opi-image-003-q01",
+                "taskTitle": "图片题-003-01",
+                "audioText": "What preparations should be done before taking off from this runway at night?",
+                "audioTextZh": "夜间从这条跑道起飞前应做哪些准备？",
+                "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
+                "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-003-q01.mp3"
+              },
+              {
+                "id": "opi-image-003-q02",
+                "taskTitle": "图片题-003-02",
+                "audioText": "What potential risks might there be during night take - off from this view?",
+                "audioTextZh": "从这个视角看，夜间起飞可能有哪些潜在风险？",
+                "referenceText": "The main risks are runway lights, correct performance calculation, departure briefing, and careful monitoring of runway alignment. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+                "referenceTextZh": "主要风险包括检查跑道灯光、核实性能计算、完成离场简令并仔细监控跑道方向。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-003-q02.mp3"
+              },
+              {
+                "id": "opi-image-003-q03",
+                "taskTitle": "图片题-003-03",
+                "audioText": "What other runway lighting facilities do you know?",
+                "audioTextZh": "你还知道哪些其他跑道灯光设施？",
+                "referenceText": "This situation is related to Night runway takeoff. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
+                "referenceTextZh": "这种情况与夜间跑道起飞有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-003-q03.mp3"
+              }
+            ]
+          },
+          {
+            "categoryId": "opi-category-08",
+            "id": "opi-image-topic-004",
+            "name": "飞机接近风险",
+            "declaredCardCount": 3,
+            "cards": [
+              {
+                "id": "opi-image-004-image",
+                "kind": "image",
+                "taskTitle": "图片观察",
+                "image": "/question-bank-assets/images/opi/image-questions/image-topic-004.jpg",
+                "imageAlt": "飞机接近风险航空场景图片"
+              },
+              {
+                "id": "opi-image-004-q01",
+                "taskTitle": "图片题-004-01",
+                "audioText": "If you are the captain, what should you do when encountering a situation where these two aircraft seem to be in close proximity?",
+                "audioTextZh": "如果你是机长，遇到两架飞机看起来距离很近的情况时应该怎么做？",
+                "referenceText": "In this picture, I can see a situation related to Aircraft proximity. The key points are loss of separation, wake turbulence, runway incursion, and misunderstanding of ATC instructions. It is important for the crew to recognize the risk early, keep good communication, and follow standard operating procedures.",
+                "referenceTextZh": "在这张图片中，我看到的是与飞机接近风险有关的情况。关键点包括间隔丧失、尾流影响、跑道侵入以及误解管制指令。机组应及早识别风险，保持良好沟通，并按照标准操作程序处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-004-q01.mp3"
+              },
+              {
+                "id": "opi-image-004-q02",
+                "taskTitle": "图片题-004-02",
+                "audioText": "What factors may cause that situations?",
+                "audioTextZh": "哪些因素可能导致这种情况？",
+                "referenceText": "Possible factors include loss of separation, wake turbulence, runway incursion, and misunderstanding of ATC instructions. Human factors, weather, aircraft condition, airport environment, and communication problems may also contribute to the situation.",
+                "referenceTextZh": "可能因素包括间隔丧失、尾流影响、跑道侵入以及误解管制指令。人的因素、天气、飞机状态、机场环境以及沟通问题也可能共同导致这种情况。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-004-q02.mp3"
+              }
+            ]
+          },
+          {
+            "categoryId": "opi-category-08",
+            "id": "opi-image-topic-005",
+            "name": "起落架异常",
+            "declaredCardCount": 2,
+            "cards": [
+              {
+                "id": "opi-image-005-image",
+                "kind": "image",
+                "taskTitle": "图片观察",
+                "image": "/question-bank-assets/images/opi/image-questions/image-topic-005.jpg",
+                "imageAlt": "起落架异常航空场景图片"
+              },
+              {
+                "id": "opi-image-005-q01",
+                "taskTitle": "图片题-005-01",
+                "audioText": "Is the landing gear of this aircraft retracted on the ground? What could be the possible reasons and consequences?",
+                "audioTextZh": "这架飞机的起落架是否在地面收起？可能的原因和后果是什么？",
+                "referenceText": "The main risks are mechanical failure, unsafe gear indication, maintenance error, and serious structural damage. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+                "referenceTextZh": "主要风险包括机械故障、不安全起落架指示、维修差错以及严重结构损伤。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-005-q01.mp3"
+              }
+            ]
+          },
+          {
+            "categoryId": "opi-category-08",
+            "id": "opi-image-topic-006",
+            "name": "冬季起飞前运行",
+            "declaredCardCount": 4,
+            "cards": [
+              {
+                "id": "opi-image-006-image",
+                "kind": "image",
+                "taskTitle": "图片观察",
+                "image": "/question-bank-assets/images/opi/image-questions/image-topic-006.jpg",
+                "imageAlt": "冬季起飞前运行航空场景图片"
+              },
+              {
+                "id": "opi-image-006-q01",
+                "taskTitle": "图片题-006-01",
+                "audioText": "What flight pre - takeoff preparations should you make if you encounter this situation?",
+                "audioTextZh": "遇到这种情况时，起飞前你应做哪些飞行准备？",
+                "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
+                "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-006-q01.mp3"
+              },
+              {
+                "id": "opi-image-006-q02",
+                "taskTitle": "图片题-006-02",
+                "audioText": "What challenges will pilots face in such weather conditions?",
+                "audioTextZh": "在这种天气条件下飞行员会面临哪些挑战？",
+                "referenceText": "The main risks are contaminated surfaces, low visibility, reduced braking action, and de-icing requirements. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+                "referenceTextZh": "主要风险包括道面污染、低能见度、刹车效应降低以及除冰需求。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-006-q02.mp3"
+              },
+              {
+                "id": "opi-image-006-q03",
+                "taskTitle": "图片题-006-03",
+                "audioText": "How should pilots prepare to avoid such situations?",
+                "audioTextZh": "飞行员应如何准备以避免这种情况？",
+                "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
+                "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-006-q03.mp3"
+              }
+            ]
+          },
+          {
+            "categoryId": "opi-category-08",
+            "id": "opi-image-topic-007",
+            "name": "高高原机场",
+            "declaredCardCount": 4,
+            "cards": [
+              {
+                "id": "opi-image-007-image",
+                "kind": "image",
+                "taskTitle": "图片观察",
+                "image": "/question-bank-assets/images/opi/image-questions/image-topic-007.jpg",
+                "imageAlt": "高高原机场航空场景图片"
+              },
+              {
+                "id": "opi-image-007-q01",
+                "taskTitle": "图片题-007-01",
+                "audioText": "What is the high - elevation airport?",
+                "audioTextZh": "什么是高高原机场？",
+                "referenceText": "A high-elevation airport is an airport located at a high altitude above sea level. Because the air is thinner, aircraft performance, approach planning, and landing distance must be checked very carefully.",
+                "referenceTextZh": "高高原机场是指海拔较高的机场。由于空气稀薄，必须非常仔细地检查飞机性能、进近计划和着陆距离。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-007-q01.mp3"
+              },
+              {
+                "id": "opi-image-007-q02",
+                "taskTitle": "图片题-007-02",
+                "audioText": "If you are a pilot and need to land at this high - elevation airport, how will you do to make sure the flight safety?",
+                "audioTextZh": "如果你是飞行员，需要在这个高高原机场着陆，你会怎样确保飞行安全？",
+                "referenceText": "A high-elevation airport is an airport located at a high altitude above sea level. Because the air is thinner, aircraft performance, approach planning, and landing distance must be checked very carefully.",
+                "referenceTextZh": "高高原机场是指海拔较高的机场。由于空气稀薄，必须非常仔细地检查飞机性能、进近计划和着陆距离。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-007-q02.mp3"
+              },
+              {
+                "id": "opi-image-007-q03",
+                "taskTitle": "图片题-007-03",
+                "audioText": "What challenges does flying face at high - elevation airports?",
+                "audioTextZh": "在高高原机场飞行会面临哪些挑战？",
+                "referenceText": "The main risks are thin air, longer landing distance, reduced engine performance, and terrain restrictions. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+                "referenceTextZh": "主要风险包括空气稀薄、着陆距离增加、发动机性能降低以及地形限制。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-007-q03.mp3"
+              }
+            ]
+          },
+          {
+            "categoryId": "opi-category-08",
+            "id": "opi-image-topic-008",
+            "name": "模拟机训练",
+            "declaredCardCount": 3,
+            "cards": [
+              {
+                "id": "opi-image-008-image",
+                "kind": "image",
+                "taskTitle": "图片观察",
+                "image": "/question-bank-assets/images/opi/image-questions/image-topic-008.jpg",
+                "imageAlt": "模拟机训练航空场景图片"
+              },
+              {
+                "id": "opi-image-008-q01",
+                "taskTitle": "图片题-008-01",
+                "audioText": "Please describe what you can see in this picture",
+                "audioTextZh": "请描述你在这张图片中看到的内容。",
+                "referenceText": "In this picture, I can see a situation related to Simulator training. The key points are safe practice of abnormal procedures, crew coordination, decision making, and instrument skills. It is important for the crew to recognize the risk early, keep good communication, and follow standard operating procedures.",
+                "referenceTextZh": "在这张图片中，我看到的是与模拟机训练有关的情况。关键点包括安全练习非正常程序、机组配合、决策能力和仪表技能。机组应及早识别风险，保持良好沟通，并按照标准操作程序处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-008-q01.mp3"
+              },
+              {
+                "id": "opi-image-008-q02",
+                "taskTitle": "图片题-008-02",
+                "audioText": "What are the benefits of simulator training?",
+                "audioTextZh": "模拟机训练有哪些好处？",
+                "referenceText": "The main benefit is improved situational awareness. Compared with the older method, it gives pilots clearer information, better monitoring, and more time to make safe decisions.",
+                "referenceTextZh": "主要好处是提升态势感知。与较旧的方式相比，它能给飞行员更清晰的信息、更好的监控能力，并为安全决策争取更多时间。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-008-q02.mp3"
+              }
+            ]
+          },
+          {
+            "categoryId": "opi-category-08",
+            "id": "opi-image-topic-009",
+            "name": "传统仪表驾驶舱",
+            "declaredCardCount": 3,
+            "cards": [
+              {
+                "id": "opi-image-009-image",
+                "kind": "image",
+                "taskTitle": "图片观察",
+                "image": "/question-bank-assets/images/opi/image-questions/image-topic-009.jpg",
+                "imageAlt": "传统仪表驾驶舱航空场景图片"
+              },
+              {
+                "id": "opi-image-009-q01",
+                "taskTitle": "图片题-009-01",
+                "audioText": "What are the differences between these traditional aircraft instruments and modern advanced flight instrument cockpits?",
+                "audioTextZh": "这些传统飞机仪表与现代先进飞行仪表驾驶舱有什么区别？",
+                "referenceText": "The main benefit is improved situational awareness. Compared with the older method, it gives pilots clearer information, better monitoring, and more time to make safe decisions.",
+                "referenceTextZh": "主要好处是提升态势感知。与较旧的方式相比，它能给飞行员更清晰的信息、更好的监控能力，并为安全决策争取更多时间。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-009-q01.mp3"
+              },
+              {
+                "id": "opi-image-009-q02",
+                "taskTitle": "图片题-009-02",
+                "audioText": "What challenges do pilots face when operating aircraft with these traditional instruments?",
+                "audioTextZh": "飞行员操作这些传统仪表飞机时会面临哪些挑战？",
+                "referenceText": "The main risks are higher scan workload, less integrated information, and greater dependence on manual cross-checking. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+                "referenceTextZh": "主要风险包括扫视负荷更高、信息整合程度更低并且更依赖人工交叉检查。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-009-q02.mp3"
+              }
+            ]
+          },
+          {
+            "categoryId": "opi-category-08",
+            "id": "opi-image-topic-010",
+            "name": "发动机整流罩损伤",
+            "declaredCardCount": 4,
+            "cards": [
+              {
+                "id": "opi-image-010-image",
+                "kind": "image",
+                "taskTitle": "图片观察",
+                "image": "/question-bank-assets/images/opi/image-questions/image-topic-010.jpg",
+                "imageAlt": "发动机整流罩损伤航空场景图片"
+              },
+              {
+                "id": "opi-image-010-q01",
+                "taskTitle": "图片题-010-01",
+                "audioText": "What happen of that AC?",
+                "audioTextZh": "这架飞机发生了什么情况？",
+                "referenceText": "In this picture, I can see a situation related to Engine cowling damage. The key points are engine vibration, possible debris, performance loss, and the risk of further structural damage. It is important for the crew to recognize the risk early, keep good communication, and follow standard operating procedures.",
+                "referenceTextZh": "在这张图片中，我看到的是与发动机整流罩损伤有关的情况。关键点包括发动机振动、可能的碎片、性能损失以及进一步结构损伤风险。机组应及早识别风险，保持良好沟通，并按照标准操作程序处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-010-q01.mp3"
+              },
+              {
+                "id": "opi-image-010-q02",
+                "taskTitle": "图片题-010-02",
+                "audioText": "If you encounter such engine damage during cruise flight, what operational steps will you take as a pilot?",
+                "audioTextZh": "如果巡航中遇到这种发动机损伤，作为飞行员你会采取哪些操作步骤？",
+                "referenceText": "The main risks are engine vibration, possible debris, performance loss, and the risk of further structural damage. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+                "referenceTextZh": "主要风险包括发动机振动、可能的碎片、性能损失以及进一步结构损伤风险。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-010-q02.mp3"
+              },
+              {
+                "id": "opi-image-010-q03",
+                "taskTitle": "图片题-010-03",
+                "audioText": "What inspections should be carried out to prevent similar engine outer cover failures?",
+                "audioTextZh": "为防止类似发动机外罩故障，应进行哪些检查？",
+                "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
+                "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-010-q03.mp3"
+              }
+            ]
+          },
+          {
+            "categoryId": "opi-category-08",
+            "id": "opi-image-topic-011",
+            "name": "尾部发动机火警",
+            "declaredCardCount": 5,
+            "cards": [
+              {
+                "id": "opi-image-011-image",
+                "kind": "image",
+                "taskTitle": "图片观察",
+                "image": "/question-bank-assets/images/opi/image-questions/image-topic-011.jpg",
+                "imageAlt": "尾部发动机火警航空场景图片"
+              },
+              {
+                "id": "opi-image-011-q01",
+                "taskTitle": "图片题-011-01",
+                "audioText": "Please describe the scene shown in this picture.",
+                "audioTextZh": "请描述图片中显示的场景。",
+                "referenceText": "In this picture, I can see a situation related to Tail engine fire. The key points are smoke, fire spread, system damage, passenger panic, and possible evacuation. It is important for the crew to recognize the risk early, keep good communication, and follow standard operating procedures.",
+                "referenceTextZh": "在这张图片中，我看到的是与尾部发动机火警有关的情况。关键点包括烟雾、火势蔓延、系统损伤、旅客恐慌以及可能需要撤离。机组应及早识别风险，保持良好沟通，并按照标准操作程序处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-011-q01.mp3"
+              },
+              {
+                "id": "opi-image-011-q02",
+                "taskTitle": "图片题-011-02",
+                "audioText": "What potential risks will tail engine fire bring to the aircraft and passengers?",
+                "audioTextZh": "尾部发动机起火会给飞机和旅客带来哪些潜在风险？",
+                "referenceText": "The main risks are smoke, fire spread, system damage, passenger panic, and possible evacuation. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+                "referenceTextZh": "主要风险包括烟雾、火势蔓延、系统损伤、旅客恐慌以及可能需要撤离。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-011-q02.mp3"
+              },
+              {
+                "id": "opi-image-011-q03",
+                "taskTitle": "图片题-011-03",
+                "audioText": "As the pilot in command, how will you handle this situation?",
+                "audioTextZh": "作为机长，你会如何处理这种情况？",
+                "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
+                "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-011-q03.mp3"
+              },
+              {
+                "id": "opi-image-011-q04",
+                "taskTitle": "图片题-011-04",
+                "audioText": "What measures can help reduce the risk of engine fire during flight?",
+                "audioTextZh": "哪些措施可以帮助降低飞行中发动机火警的风险？",
+                "referenceText": "The main risks are smoke, fire spread, system damage, passenger panic, and possible evacuation. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+                "referenceTextZh": "主要风险包括烟雾、火势蔓延、系统损伤、旅客恐慌以及可能需要撤离。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-011-q04.mp3"
+              }
+            ]
+          },
+          {
+            "categoryId": "opi-category-08",
+            "id": "opi-image-topic-012",
+            "name": "滑行道起飞排队",
+            "declaredCardCount": 5,
+            "cards": [
+              {
+                "id": "opi-image-012-image",
+                "kind": "image",
+                "taskTitle": "图片观察",
+                "image": "/question-bank-assets/images/opi/image-questions/image-topic-012.jpg",
+                "imageAlt": "滑行道起飞排队航空场景图片"
+              },
+              {
+                "id": "opi-image-012-q01",
+                "taskTitle": "图片题-012-01",
+                "audioText": "Please describe what you observe in this picture.",
+                "audioTextZh": "请描述你在图片中观察到的内容。",
+                "referenceText": "In this picture, I can see a situation related to Taxiway departure queue. The key points are fuel burn, brake heating, congestion, FOD exposure, and increased crew workload. It is important for the crew to recognize the risk early, keep good communication, and follow standard operating procedures.",
+                "referenceTextZh": "在这张图片中，我看到的是与滑行道起飞排队有关的情况。关键点包括耗油增加、刹车升温、地面拥堵、外来物暴露以及机组工作负荷增加。机组应及早识别风险，保持良好沟通，并按照标准操作程序处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-012-q01.mp3"
+              },
+              {
+                "id": "opi-image-012-q02",
+                "taskTitle": "图片题-012-02",
+                "audioText": "What are the possible causes of aircraft queuing on taxiways before takeoff?",
+                "audioTextZh": "飞机起飞前在滑行道排队可能有哪些原因？",
+                "referenceText": "Possible factors include fuel burn, brake heating, congestion, FOD exposure, and increased crew workload. Human factors, weather, aircraft condition, airport environment, and communication problems may also contribute to the situation.",
+                "referenceTextZh": "可能因素包括耗油增加、刹车升温、地面拥堵、外来物暴露以及机组工作负荷增加。人的因素、天气、飞机状态、机场环境以及沟通问题也可能共同导致这种情况。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-012-q02.mp3"
+              },
+              {
+                "id": "opi-image-012-q03",
+                "taskTitle": "图片题-012-03",
+                "audioText": "What risks may exist during long-time taxi waiting on the airport surface?",
+                "audioTextZh": "在机场地面长时间滑行等待可能有哪些风险？",
+                "referenceText": "The main risks are fuel burn, brake heating, congestion, FOD exposure, and increased crew workload. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+                "referenceTextZh": "主要风险包括耗油增加、刹车升温、地面拥堵、外来物暴露以及机组工作负荷增加。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-012-q03.mp3"
+              },
+              {
+                "id": "opi-image-012-q04",
+                "taskTitle": "图片题-012-04",
+                "audioText": "How to avoid this situation?",
+                "audioTextZh": "如何避免这种情况？",
+                "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
+                "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-012-q04.mp3"
+              }
+            ]
+          },
+          {
+            "categoryId": "opi-category-08",
+            "id": "opi-image-topic-013",
+            "name": "外来物损伤",
+            "declaredCardCount": 3,
+            "cards": [
+              {
+                "id": "opi-image-013-image",
+                "kind": "image",
+                "taskTitle": "图片观察",
+                "image": "/question-bank-assets/images/opi/image-questions/image-topic-013.jpg",
+                "imageAlt": "外来物损伤航空场景图片"
+              },
+              {
+                "id": "opi-image-013-q01",
+                "taskTitle": "图片题-013-01",
+                "audioText": "What do you know about FOD?",
+                "audioTextZh": "你对外来物损伤了解多少？",
+                "referenceText": "FOD means foreign object debris or foreign object damage. It can damage tires, engines, and aircraft structures, so ramp inspection and runway cleaning are very important.",
+                "referenceTextZh": "FOD 指外来物或外来物损伤。它可能损坏轮胎、发动机和飞机结构，因此机坪检查和跑道清理非常重要。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-013-q01.mp3"
+              },
+              {
+                "id": "opi-image-013-q02",
+                "taskTitle": "图片题-013-02",
+                "audioText": "What measures can prevent foreign object ingestion into aircraft engines?",
+                "audioTextZh": "哪些措施可以防止外来物被吸入飞机发动机？",
+                "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
+                "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-013-q02.mp3"
+              }
+            ]
+          },
+          {
+            "categoryId": "opi-category-08",
+            "id": "opi-image-topic-014",
+            "name": "现代玻璃驾驶舱",
+            "declaredCardCount": 3,
+            "cards": [
+              {
+                "id": "opi-image-014-image",
+                "kind": "image",
+                "taskTitle": "图片观察",
+                "image": "/question-bank-assets/images/opi/image-questions/image-topic-014.jpg",
+                "imageAlt": "现代玻璃驾驶舱航空场景图片"
+              },
+              {
+                "id": "opi-image-014-q01",
+                "taskTitle": "图片题-014-01",
+                "audioText": "What are the main advantages of that cockpits compared with the traditional instrument cockpits?",
+                "audioTextZh": "与传统仪表驾驶舱相比，这类驾驶舱的主要优势是什么？",
+                "referenceText": "The main benefit is improved situational awareness. Compared with the older method, it gives pilots clearer information, better monitoring, and more time to make safe decisions.",
+                "referenceTextZh": "主要好处是提升态势感知。与较旧的方式相比，它能给飞行员更清晰的信息、更好的监控能力，并为安全决策争取更多时间。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-014-q01.mp3"
+              },
+              {
+                "id": "opi-image-014-q02",
+                "taskTitle": "图片题-014-02",
+                "audioText": "How do multiple display screens help pilots during flight?",
+                "audioTextZh": "多个显示屏如何在飞行中帮助飞行员？",
+                "referenceText": "This situation is related to Modern glass cockpit. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
+                "referenceTextZh": "这种情况与现代玻璃驾驶舱有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-014-q02.mp3"
+              }
+            ]
+          },
+          {
+            "categoryId": "opi-category-08",
+            "id": "opi-image-topic-015",
+            "name": "强侧风着陆",
+            "declaredCardCount": 4,
+            "cards": [
+              {
+                "id": "opi-image-015-image",
+                "kind": "image",
+                "taskTitle": "图片观察",
+                "image": "/question-bank-assets/images/opi/image-questions/image-topic-015.jpg",
+                "imageAlt": "强侧风着陆航空场景图片"
+              },
+              {
+                "id": "opi-image-015-q01",
+                "taskTitle": "图片题-015-01",
+                "audioText": "What damages may strong crosswinds cause to the aircraft during landing?",
+                "audioTextZh": "强侧风着陆可能对飞机造成哪些损伤？",
+                "referenceText": "The main risks are drift, runway excursion, hard landing, wingtip or engine pod strike, and loss of control. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+                "referenceTextZh": "主要风险包括偏流、冲出跑道、重着陆、翼尖或发动机吊舱擦地以及失控。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-015-q01.mp3"
+              },
+              {
+                "id": "opi-image-015-q02",
+                "taskTitle": "图片题-015-02",
+                "audioText": "As the captain, if you receive reports of strong crosswind before starting the approach, what measures will you take to ensure flight safety?",
+                "audioTextZh": "作为机长，如果进近前收到强侧风报告，你会采取哪些措施确保飞行安全？",
+                "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
+                "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-015-q02.mp3"
+              },
+              {
+                "id": "opi-image-015-q03",
+                "taskTitle": "图片题-015-03",
+                "audioText": "If you encounter strong crosswind during approach, how will you handle it to ensure flight safety",
+                "audioTextZh": "如果进近中遇到强侧风，你会如何处置以确保飞行安全？",
+                "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
+                "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-015-q03.mp3"
+              }
+            ]
+          },
+          {
+            "categoryId": "opi-category-08",
+            "id": "opi-image-topic-016",
+            "name": "跑道发动机火警",
+            "declaredCardCount": 5,
+            "cards": [
+              {
+                "id": "opi-image-016-image",
+                "kind": "image",
+                "taskTitle": "图片观察",
+                "image": "/question-bank-assets/images/opi/image-questions/image-topic-016.jpg",
+                "imageAlt": "跑道发动机火警航空场景图片"
+              },
+              {
+                "id": "opi-image-016-q01",
+                "taskTitle": "图片题-016-01",
+                "audioText": "What common factors may cause an engine fire on the runway?",
+                "audioTextZh": "哪些常见因素可能导致跑道上发动机起火？",
+                "referenceText": "Possible factors include fuel leakage, overheating, smoke, evacuation risk, and possible runway closure. Human factors, weather, aircraft condition, airport environment, and communication problems may also contribute to the situation.",
+                "referenceTextZh": "可能因素包括燃油泄漏、过热、烟雾、撤离风险以及可能导致跑道关闭。人的因素、天气、飞机状态、机场环境以及沟通问题也可能共同导致这种情况。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-016-q01.mp3"
+              },
+              {
+                "id": "opi-image-016-q02",
+                "taskTitle": "图片题-016-02",
+                "audioText": "What serious risks will taxiing engine fire bring to the aircraft and passengers?",
+                "audioTextZh": "滑行中发动机起火会给飞机和旅客带来哪些严重风险？",
+                "referenceText": "The main risks are fuel leakage, overheating, smoke, evacuation risk, and possible runway closure. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+                "referenceTextZh": "主要风险包括燃油泄漏、过热、烟雾、撤离风险以及可能导致跑道关闭。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-016-q02.mp3"
+              },
+              {
+                "id": "opi-image-016-q03",
+                "taskTitle": "图片题-016-03",
+                "audioText": "What pre-flight inspections can reduce the probability of ground engine fire?",
+                "audioTextZh": "哪些飞行前检查可以降低地面发动机火警概率？",
+                "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
+                "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-016-q03.mp3"
+              },
+              {
+                "id": "opi-image-016-q04",
+                "taskTitle": "图片题-016-04",
+                "audioText": "As the captain, if you spot engine fire during takeoff , what immediate actions will you take to guarantee flight safety?",
+                "audioTextZh": "作为机长，如果起飞时发现发动机火警，你会立即采取哪些行动确保飞行安全？",
+                "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
+                "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-016-q04.mp3"
+              }
+            ]
+          },
+          {
+            "categoryId": "opi-category-08",
+            "id": "opi-image-topic-017",
+            "name": "水上迫降",
+            "declaredCardCount": 4,
+            "cards": [
+              {
+                "id": "opi-image-017-image",
+                "kind": "image",
+                "taskTitle": "图片观察",
+                "image": "/question-bank-assets/images/opi/image-questions/image-topic-017.jpg",
+                "imageAlt": "水上迫降航空场景图片"
+              },
+              {
+                "id": "opi-image-017-q01",
+                "taskTitle": "图片题-017-01",
+                "audioText": "What kinds of serious failures may force a large jet airliner to ditch on the sea?",
+                "audioTextZh": "哪些严重故障可能迫使大型喷气客机在海上迫降？",
+                "referenceText": "This situation is related to Sea ditching. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
+                "referenceTextZh": "这种情况与水上迫降有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-017-q01.mp3"
+              },
+              {
+                "id": "opi-image-017-q02",
+                "taskTitle": "图片题-017-02",
+                "audioText": "As captain, if all engines fail over water, what full set of procedures will you follow to complete a safe ditching?",
+                "audioTextZh": "作为机长，如果在水面上空所有发动机失效，你会遵循哪些完整程序完成安全迫降？",
+                "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
+                "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-017-q02.mp3"
+              },
+              {
+                "id": "opi-image-017-q03",
+                "taskTitle": "图片题-017-03",
+                "audioText": "After successfully ditching on the sea, what evacuation steps should the flight crew carry out immediately?",
+                "audioTextZh": "成功水上迫降后，机组应立即执行哪些撤离步骤？",
+                "referenceText": "This situation is related to Sea ditching. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
+                "referenceTextZh": "这种情况与水上迫降有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-017-q03.mp3"
+              }
+            ]
+          },
+          {
+            "categoryId": "opi-category-08",
+            "id": "opi-image-topic-018",
+            "name": "擦尾风险",
+            "declaredCardCount": 5,
+            "cards": [
+              {
+                "id": "opi-image-018-image",
+                "kind": "image",
+                "taskTitle": "图片观察",
+                "image": "/question-bank-assets/images/opi/image-questions/image-topic-018.jpg",
+                "imageAlt": "擦尾风险航空场景图片"
+              },
+              {
+                "id": "opi-image-018-q01",
+                "taskTitle": "图片题-018-01",
+                "audioText": "Please describe what you observe in this picture.",
+                "audioTextZh": "请描述你在图片中观察到的内容。",
+                "referenceText": "In this picture, I can see a situation related to Tail strike risk. The key points are high takeoff weight, wrong rotation technique, aft center of gravity, and performance miscalculation. It is important for the crew to recognize the risk early, keep good communication, and follow standard operating procedures.",
+                "referenceTextZh": "在这张图片中，我看到的是与擦尾风险有关的情况。关键点包括起飞重量大、抬轮技术不当、重心偏后以及性能计算错误。机组应及早识别风险，保持良好沟通，并按照标准操作程序处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-018-q01.mp3"
+              },
+              {
+                "id": "opi-image-018-q02",
+                "taskTitle": "图片题-018-02",
+                "audioText": "Why can high takeoff weight increase the risk of that situation?",
+                "audioTextZh": "为什么大起飞重量会增加这种情况的风险？",
+                "referenceText": "The main risks are high takeoff weight, wrong rotation technique, aft center of gravity, and performance miscalculation. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+                "referenceTextZh": "主要风险包括起飞重量大、抬轮技术不当、重心偏后以及性能计算错误。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-018-q02.mp3"
+              },
+              {
+                "id": "opi-image-018-q03",
+                "taskTitle": "图片题-018-03",
+                "audioText": "How to avoid that situation?",
+                "audioTextZh": "如何避免这种情况？",
+                "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
+                "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-018-q03.mp3"
+              },
+              {
+                "id": "opi-image-018-q04",
+                "taskTitle": "图片题-018-04",
+                "audioText": "What factors may cause that situation?",
+                "audioTextZh": "哪些因素可能导致这种情况？",
+                "referenceText": "Possible factors include high takeoff weight, wrong rotation technique, aft center of gravity, and performance miscalculation. Human factors, weather, aircraft condition, airport environment, and communication problems may also contribute to the situation.",
+                "referenceTextZh": "可能因素包括起飞重量大、抬轮技术不当、重心偏后以及性能计算错误。人的因素、天气、飞机状态、机场环境以及沟通问题也可能共同导致这种情况。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-018-q04.mp3"
+              }
+            ]
+          },
+          {
+            "categoryId": "opi-category-08",
+            "id": "opi-image-topic-019",
+            "name": "地面保障事故",
+            "declaredCardCount": 3,
+            "cards": [
+              {
+                "id": "opi-image-019-image",
+                "kind": "image",
+                "taskTitle": "图片观察",
+                "image": "/question-bank-assets/images/opi/image-questions/image-topic-019.jpg",
+                "imageAlt": "地面保障事故航空场景图片"
+              },
+              {
+                "id": "opi-image-019-q01",
+                "taskTitle": "图片题-019-01",
+                "audioText": "What factors may lead to that situation?",
+                "audioTextZh": "哪些因素可能导致这种情况？",
+                "referenceText": "Possible factors include poor communication, unsafe equipment positioning, weak marshalling, and ramp congestion. Human factors, weather, aircraft condition, airport environment, and communication problems may also contribute to the situation.",
+                "referenceTextZh": "可能因素包括沟通不畅、设备停放不安全、引导不足以及机坪拥堵。人的因素、天气、飞机状态、机场环境以及沟通问题也可能共同导致这种情况。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-019-q01.mp3"
+              },
+              {
+                "id": "opi-image-019-q02",
+                "taskTitle": "图片题-019-02",
+                "audioText": "How to avoid such accidents from happening?",
+                "audioTextZh": "如何避免此类事故发生？",
+                "referenceText": "In this picture, I can see a situation related to Ground service accident. The key points are poor communication, unsafe equipment positioning, weak marshalling, and ramp congestion. It is important for the crew to recognize the risk early, keep good communication, and follow standard operating procedures.",
+                "referenceTextZh": "在这张图片中，我看到的是与地面保障事故有关的情况。关键点包括沟通不畅、设备停放不安全、引导不足以及机坪拥堵。机组应及早识别风险，保持良好沟通，并按照标准操作程序处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-019-q02.mp3"
+              }
+            ]
+          },
+          {
+            "categoryId": "opi-category-08",
+            "id": "opi-image-topic-020",
+            "name": "积雪和结冰污染",
+            "declaredCardCount": 4,
+            "cards": [
+              {
+                "id": "opi-image-020-image",
+                "kind": "image",
+                "taskTitle": "图片观察",
+                "image": "/question-bank-assets/images/opi/image-questions/image-topic-020.jpg",
+                "imageAlt": "积雪和结冰污染航空场景图片"
+              },
+              {
+                "id": "opi-image-020-q01",
+                "taskTitle": "图片题-020-01",
+                "audioText": "What risks will snow and ice on aircraft surfaces bring to flight safety?",
+                "audioTextZh": "飞机表面积雪和结冰会给飞行安全带来哪些风险？",
+                "referenceText": "The main risks are loss of lift, higher drag, inaccurate airspeed indications, and possible control difficulty. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+                "referenceTextZh": "主要风险包括升力损失、阻力增大、空速指示不准以及可能操纵困难。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-020-q01.mp3"
+              },
+              {
+                "id": "opi-image-020-q02",
+                "taskTitle": "图片题-020-02",
+                "audioText": "How can ice contamination on wings affect the flight safety?",
+                "audioTextZh": "机翼冰污染会如何影响飞行安全？",
+                "referenceText": "This situation is related to Snow and ice contamination. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
+                "referenceTextZh": "这种情况与积雪和结冰污染有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-020-q02.mp3"
+              },
+              {
+                "id": "opi-image-020-q03",
+                "taskTitle": "图片题-020-03",
+                "audioText": "Under that situation,what should pilots do to make sure the flight safety?",
+                "audioTextZh": "在这种情况下，飞行员应做什么来确保飞行安全？",
+                "referenceText": "This situation is related to Snow and ice contamination. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
+                "referenceTextZh": "这种情况与积雪和结冰污染有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-020-q03.mp3"
+              }
+            ]
+          },
+          {
+            "categoryId": "opi-category-08",
+            "id": "opi-image-topic-021",
+            "name": "鸟击",
+            "declaredCardCount": 4,
+            "cards": [
+              {
+                "id": "opi-image-021-image",
+                "kind": "image",
+                "taskTitle": "图片观察",
+                "image": "/question-bank-assets/images/opi/image-questions/image-topic-021.jpg",
+                "imageAlt": "鸟击航空场景图片"
+              },
+              {
+                "id": "opi-image-021-q01",
+                "taskTitle": "图片题-021-01",
+                "audioText": "Please describe what you can observe in this photograph.",
+                "audioTextZh": "请描述你在这张照片中能观察到的内容。",
+                "referenceText": "In this picture, I can see a situation related to Bird strike. The key points are bird strike, volcanic ash, hail, severe turbulence, or foreign object ingestion in flight. It is important for the crew to recognize the risk early, keep good communication, and follow standard operating procedures.",
+                "referenceTextZh": "在这张图片中，我看到的是与鸟击有关的情况。关键点包括鸟击、火山灰、冰雹、严重颠簸或空中外来物吸入。机组应及早识别风险，保持良好沟通，并按照标准操作程序处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-021-q01.mp3"
+              },
+              {
+                "id": "opi-image-021-q02",
+                "taskTitle": "图片题-021-02",
+                "audioText": "As captain,if you encounter that situation,how will you handle it?",
+                "audioTextZh": "作为机长，如果遇到这种情况，你会如何处置？",
+                "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
+                "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-021-q02.mp3"
+              },
+              {
+                "id": "opi-image-021-q03",
+                "taskTitle": "图片题-021-03",
+                "audioText": "What external factors in the air can trigger that situation?",
+                "audioTextZh": "空中哪些外部因素可能触发这种情况？",
+                "referenceText": "Possible factors include bird strike, volcanic ash, hail, severe turbulence, or foreign object ingestion in flight. Human factors, weather, aircraft condition, airport environment, and communication problems may also contribute to the situation.",
+                "referenceTextZh": "可能因素包括鸟击、火山灰、冰雹、严重颠簸或空中外来物吸入。人的因素、天气、飞机状态、机场环境以及沟通问题也可能共同导致这种情况。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-021-q03.mp3"
+              }
+            ]
+          },
+          {
+            "categoryId": "opi-category-08",
+            "id": "opi-image-topic-022",
+            "name": "山区夜间进近",
+            "declaredCardCount": 4,
+            "cards": [
+              {
+                "id": "opi-image-022-image",
+                "kind": "image",
+                "taskTitle": "图片观察",
+                "image": "/question-bank-assets/images/opi/image-questions/image-topic-022.jpg",
+                "imageAlt": "山区夜间进近航空场景图片"
+              },
+              {
+                "id": "opi-image-022-q01",
+                "taskTitle": "图片题-022-01",
+                "audioText": "What weather conditions will further reduce visibility during night landing on such terrain airports?",
+                "audioTextZh": "在这类地形机场夜间着陆时，哪些天气条件会进一步降低能见度？",
+                "referenceText": "This situation is related to Night terrain approach. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
+                "referenceTextZh": "这种情况与山区夜间进近有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-022-q01.mp3"
+              },
+              {
+                "id": "opi-image-022-q02",
+                "taskTitle": "图片题-022-02",
+                "audioText": "What are the functions of the runway lights?",
+                "audioTextZh": "跑道灯光有哪些功能？",
+                "referenceText": "The main benefit is improved situational awareness. Compared with the older method, it gives pilots clearer information, better monitoring, and more time to make safe decisions.",
+                "referenceTextZh": "主要好处是提升态势感知。与较旧的方式相比，它能给飞行员更清晰的信息、更好的监控能力，并为安全决策争取更多时间。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-022-q02.mp3"
+              },
+              {
+                "id": "opi-image-022-q03",
+                "taskTitle": "图片题-022-03",
+                "audioText": "What pre-descent briefings help pilot handle night approach risks",
+                "audioTextZh": "下降前哪些简令有助于飞行员处理夜间进近风险？",
+                "referenceText": "The main risks are low cloud, rain, fog, terrain shadow, and limited visual references. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+                "referenceTextZh": "主要风险包括低云、降雨、雾、地形阴影以及目视参照有限。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-022-q03.mp3"
+              }
+            ]
+          },
+          {
+            "categoryId": "opi-category-08",
+            "id": "opi-image-topic-023",
+            "name": "地面火灾应急",
+            "declaredCardCount": 4,
+            "cards": [
+              {
+                "id": "opi-image-023-image",
+                "kind": "image",
+                "taskTitle": "图片观察",
+                "image": "/question-bank-assets/images/opi/image-questions/image-topic-023.jpg",
+                "imageAlt": "地面火灾应急航空场景图片"
+              },
+              {
+                "id": "opi-image-023-q01",
+                "taskTitle": "图片题-023-01",
+                "audioText": "Please describe the emergency scene you see in this picture.",
+                "audioTextZh": "请描述你在图片中看到的紧急场景。",
+                "referenceText": "In this picture, I can see a situation related to Ground fire emergency. The key points are fuel, hot brakes, leaking fluids, ground equipment, and delayed emergency response. It is important for the crew to recognize the risk early, keep good communication, and follow standard operating procedures.",
+                "referenceTextZh": "在这张图片中，我看到的是与地面火灾应急有关的情况。关键点包括燃油、热刹车、液体泄漏、地面设备以及应急响应延迟。机组应及早识别风险，保持良好沟通，并按照标准操作程序处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-023-q01.mp3"
+              },
+              {
+                "id": "opi-image-023-q02",
+                "taskTitle": "图片题-023-02",
+                "audioText": "What factors increase the risk of that situation",
+                "audioTextZh": "哪些因素会增加这种情况的风险？",
+                "referenceText": "The main risks are fuel, hot brakes, leaking fluids, ground equipment, and delayed emergency response. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+                "referenceTextZh": "主要风险包括燃油、热刹车、液体泄漏、地面设备以及应急响应延迟。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-023-q02.mp3"
+              },
+              {
+                "id": "opi-image-023-q03",
+                "taskTitle": "图片题-023-03",
+                "audioText": "If you operate an aircraft parked near this malfunctioning burning aircraft, what actions will you take to stay safe?",
+                "audioTextZh": "如果你操作的飞机停在这架故障起火飞机附近，你会采取哪些行动保证安全？",
+                "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
+                "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
+                "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-023-q03.mp3"
               }
             ]
           }

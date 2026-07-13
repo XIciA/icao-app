@@ -31,9 +31,13 @@ export type QuestionBankCapabilities = {
   mockExamEligible: boolean;
 };
 
-export type QuestionBankCard = {
+type QuestionBankCardBase = {
   id: string;
   taskTitle: string;
+};
+
+export type QuestionBankTextCard = QuestionBankCardBase & {
+  kind?: 'text';
   audioText: string;
   audioTextZh?: string;
   referenceText?: string;
@@ -42,6 +46,21 @@ export type QuestionBankCard = {
   choices?: string[];
   correctChoiceIndex?: number;
 };
+
+export type QuestionBankImageCard = QuestionBankCardBase & {
+  kind: 'image';
+  image: string;
+  imageAlt: string;
+  audioText?: never;
+  audioTextZh?: never;
+  audio?: never;
+  choices?: never;
+  correctChoiceIndex?: never;
+  referenceText?: never;
+  referenceTextZh?: never;
+};
+
+export type QuestionBankCard = QuestionBankTextCard | QuestionBankImageCard;
 
 export type QuestionBankTopic = {
   id: string;

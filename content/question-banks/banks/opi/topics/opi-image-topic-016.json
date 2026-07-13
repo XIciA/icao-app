@@ -1,0 +1,51 @@
+{
+  "categoryId": "opi-category-08",
+  "id": "opi-image-topic-016",
+  "name": "跑道发动机火警",
+  "declaredCardCount": 5,
+  "cards": [
+    {
+      "id": "opi-image-016-image",
+      "kind": "image",
+      "taskTitle": "图片观察",
+      "image": "/question-bank-assets/images/opi/image-questions/image-topic-016.jpg",
+      "imageAlt": "跑道发动机火警航空场景图片"
+    },
+    {
+      "id": "opi-image-016-q01",
+      "taskTitle": "图片题-016-01",
+      "audioText": "What common factors may cause an engine fire on the runway?",
+      "audioTextZh": "哪些常见因素可能导致跑道上发动机起火？",
+      "referenceText": "Possible factors include fuel leakage, overheating, smoke, evacuation risk, and possible runway closure. Human factors, weather, aircraft condition, airport environment, and communication problems may also contribute to the situation.",
+      "referenceTextZh": "可能因素包括燃油泄漏、过热、烟雾、撤离风险以及可能导致跑道关闭。人的因素、天气、飞机状态、机场环境以及沟通问题也可能共同导致这种情况。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-016-q01.mp3"
+    },
+    {
+      "id": "opi-image-016-q02",
+      "taskTitle": "图片题-016-02",
+      "audioText": "What serious risks will taxiing engine fire bring to the aircraft and passengers?",
+      "audioTextZh": "滑行中发动机起火会给飞机和旅客带来哪些严重风险？",
+      "referenceText": "The main risks are fuel leakage, overheating, smoke, evacuation risk, and possible runway closure. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+      "referenceTextZh": "主要风险包括燃油泄漏、过热、烟雾、撤离风险以及可能导致跑道关闭。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-016-q02.mp3"
+    },
+    {
+      "id": "opi-image-016-q03",
+      "taskTitle": "图片题-016-03",
+      "audioText": "What pre-flight inspections can reduce the probability of ground engine fire?",
+      "audioTextZh": "哪些飞行前检查可以降低地面发动机火警概率？",
+      "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
+      "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-016-q03.mp3"
+    },
+    {
+      "id": "opi-image-016-q04",
+      "taskTitle": "图片题-016-04",
+      "audioText": "As the captain, if you spot engine fire during takeoff , what immediate actions will you take to guarantee flight safety?",
+      "audioTextZh": "作为机长，如果起飞时发现发动机火警，你会立即采取哪些行动确保飞行安全？",
+      "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
+      "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-016-q04.mp3"
+    }
+  ]
+}

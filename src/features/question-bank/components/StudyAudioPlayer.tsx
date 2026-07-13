@@ -2,6 +2,7 @@ import { setAudioModeAsync, useAudioPlayer, useAudioPlayerStatus } from 'expo-au
 import { AlertCircle, Headphones, Pause, Play, RotateCcw } from 'lucide-react-native';
 import { useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, AppState, LayoutChangeEvent, Pressable, StyleSheet, View } from 'react-native';
+import { GestureDetector, type GestureType } from 'react-native-gesture-handler';
 
 import { AppText } from '@/components/ui';
 import { colors, fonts, radii, spacing } from '@/theme';
@@ -23,6 +24,8 @@ export function StudyAudioPlayer({
   tagColors = [],
   resolving = false,
   onRetry,
+  onSeekInteractionChange,
+  seekGesture,
 }: {
   uri?: string;
   label: string;
@@ -32,6 +35,8 @@ export function StudyAudioPlayer({
   tagColors?: string[];
   resolving?: boolean;
   onRetry?: () => void;
+  onSeekInteractionChange?: (active: boolean) => void;
+  seekGesture?: GestureType;
 }) {
   const player = useAudioPlayer(null, { updateInterval: 250, preferredForwardBufferDuration: 10 });
   const status = useAudioPlayerStatus(player);
@@ -120,6 +125,32 @@ export function StudyAudioPlayer({
   }
 
   const progress = status.duration ? Math.min(100, (status.currentTime / status.duration) * 100) : 0;
+  const progressControl = (
+    <Pressable
+      accessibilityActions={[{ name: 'increment', label: '快进' }, { name: 'decrement', label: '后退' }]}
+      accessibilityLabel="播放进度"
+      accessibilityRole="adjustable"
+      accessibilityValue={{
+        max: Math.max(0, Math.round(status.duration)),
+        min: 0,
+        now: Math.max(0, Math.round(status.currentTime)),
+        text: `${formatTime(status.currentTime)} / ${formatTime(status.duration)}`,
+      }}
+      onAccessibilityAction={(event) => {
+        const delta = event.nativeEvent.actionName === 'increment' ? 5 : -5;
+        void player.seekTo(Math.max(0, Math.min(status.duration, status.currentTime + delta)));
+      }}
+      onLayout={onTrackLayout}
+      onPress={(event) => seekFromLocation(event.nativeEvent.locationX)}
+      onPressIn={() => onSeekInteractionChange?.(true)}
+      onPressOut={() => onSeekInteractionChange?.(false)}
+      style={styles.track}
+    >
+      <View style={styles.trackBase} />
+      <View style={[styles.fill, { width: `${progress}%` }]} />
+      <View style={[styles.thumb, { left: `${progress}%` }]} />
+    </Pressable>
+  );
 
   return (
     <View style={styles.root}>
@@ -173,22 +204,7 @@ export function StudyAudioPlayer({
             )}
           </Pressable>
           <View style={styles.timeline}>
-            <Pressable
-              accessibilityActions={[{ name: 'increment', label: '快进' }, { name: 'decrement', label: '后退' }]}
-              accessibilityLabel="播放进度"
-              accessibilityRole="adjustable"
-              onAccessibilityAction={(event) => {
-                const delta = event.nativeEvent.actionName === 'increment' ? 5 : -5;
-                void player.seekTo(Math.max(0, Math.min(status.duration, status.currentTime + delta)));
-              }}
-              onLayout={onTrackLayout}
-              onPress={(event) => seekFromLocation(event.nativeEvent.locationX)}
-              style={styles.track}
-            >
-              <View style={styles.trackBase} />
-              <View style={[styles.fill, { width: `${progress}%` }]} />
-              <View style={[styles.thumb, { left: `${progress}%` }]} />
-            </Pressable>
+            {seekGesture ? <GestureDetector gesture={seekGesture}>{progressControl}</GestureDetector> : progressControl}
             <View style={styles.timeRow}>
               <AppText style={styles.time} variant="micro">{formatTime(status.currentTime)}</AppText>
               <AppText style={styles.time} variant="micro">{formatTime(status.duration)}</AppText>

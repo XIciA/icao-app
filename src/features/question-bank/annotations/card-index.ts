@@ -50,5 +50,5 @@ export function findQuestionBankCardReference(topicId: string, cardId: string) {
 export function getQuestionBankCardSource(target: QuestionBankCardTarget) {
   const reference = getQuestionBankCardReference(target);
   if (!reference) return '原题内容已更新或不可用';
-  return reference.card.audioText.trim() || reference.card.taskTitle;
+  return reference.card.audioText?.trim() || reference.card.taskTitle;
 }

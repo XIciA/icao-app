@@ -1,0 +1,42 @@
+{
+  "categoryId": "opi-category-08",
+  "id": "opi-image-topic-002",
+  "name": "机翼积冰",
+  "declaredCardCount": 4,
+  "cards": [
+    {
+      "id": "opi-image-002-image",
+      "kind": "image",
+      "taskTitle": "图片观察",
+      "image": "/question-bank-assets/images/opi/image-questions/image-topic-002.jpg",
+      "imageAlt": "机翼积冰航空场景图片"
+    },
+    {
+      "id": "opi-image-002-q01",
+      "taskTitle": "图片题-002-01",
+      "audioText": "Please describe what you can see in this picture",
+      "audioTextZh": "请描述你在这张图片中看到的内容。",
+      "referenceText": "In this picture, I can see a situation related to Wing ice contamination. The key points are loss of lift, increased drag, higher stall speed, and possible control problems. It is important for the crew to recognize the risk early, keep good communication, and follow standard operating procedures.",
+      "referenceTextZh": "在这张图片中，我看到的是与机翼积冰有关的情况。关键点包括升力下降、阻力增加、失速速度提高以及可能的操纵困难。机组应及早识别风险，保持良好沟通，并按照标准操作程序处置。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-002-q01.mp3"
+    },
+    {
+      "id": "opi-image-002-q02",
+      "taskTitle": "图片题-002-02",
+      "audioText": "What risks will ice on the wing surface bring to flight safety?",
+      "audioTextZh": "机翼表面积冰会给飞行安全带来哪些风险？",
+      "referenceText": "The main risks are loss of lift, increased drag, higher stall speed, and possible control problems. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+      "referenceTextZh": "主要风险包括升力下降、阻力增加、失速速度提高以及可能的操纵困难。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-002-q02.mp3"
+    },
+    {
+      "id": "opi-image-002-q03",
+      "taskTitle": "图片题-002-03",
+      "audioText": "What should you do if you find ice or frost on the wing before departure?",
+      "audioTextZh": "如果离场前发现机翼上有冰或霜，你应该怎么做？",
+      "referenceText": "This situation is related to Wing ice contamination. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
+      "referenceTextZh": "这种情况与机翼积冰有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-002-q03.mp3"
+    }
+  ]
+}

@@ -37,6 +37,7 @@ describe('<QuestionBankTab />', () => {
     expect(screen.getByText('900 句')).toBeTruthy();
     expect(screen.getByText('陆空通话')).toBeTruthy();
     expect(screen.getByText('OPI')).toBeTruthy();
+    expect(screen.queryByText('可练习')).toBeNull();
     expect(screen.queryByText('故事复诵')).toBeNull();
 
     await fireEvent.press(screen.getByLabelText('选择备考课程'));

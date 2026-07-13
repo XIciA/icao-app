@@ -1,11 +1,14 @@
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { useState } from 'react';
+import { State } from 'react-native-gesture-handler';
+import { fireGestureHandler, getByGestureTestId } from 'react-native-gesture-handler/jest-utils';
 
 import { QuestionBankStudyScreen } from '../components/QuestionBankStudyScreen';
 import { useStudySession } from '../hooks/useStudySession';
 import type { LearningRecord, QuestionBankCategory, QuestionBankDataset, QuestionBankTopic } from '../types';
 
 const mockFinish = jest.fn();
+const mockGoTo = jest.fn();
 let mockPreventRemoveHandler: (() => void) | undefined;
 
 jest.mock('@react-navigation/native', () => ({
@@ -76,7 +79,10 @@ const topic: QuestionBankTopic = {
   id: 'topic',
   name: 'Topic',
   declaredCardCount: 1,
-  cards: [{ id: 'card', taskTitle: 'Card', audioText: 'Question' }],
+  cards: [
+    { id: 'card', taskTitle: 'Card', audioText: 'Question' },
+    { id: 'card-2', taskTitle: 'Card 2', audioText: 'Question 2' },
+  ],
 };
 const category: QuestionBankCategory = { id: 'category', name: 'Category', declaredTopicCount: 1, declaredCardCount: 1, topics: [topic] };
 const dataset: QuestionBankDataset = {
@@ -91,6 +97,7 @@ function report(reason: 'abort' | 'complete'): LearningRecord {
 describe('study exit flow', () => {
   beforeEach(() => {
     mockFinish.mockReset();
+    mockGoTo.mockReset();
     mockPreventRemoveHandler = undefined;
     (useStudySession as jest.Mock).mockImplementation(() => {
       const [studyReport, setStudyReport] = useState<LearningRecord>();
@@ -112,7 +119,7 @@ describe('study exit flow', () => {
           mockFinish(reason);
           setStudyReport(report(reason));
         },
-        goTo: jest.fn(), toggleAnswers: jest.fn(), setToolMode: jest.fn(), collapseAnswers: jest.fn(), revealCurrent: jest.fn(), chooseOption: jest.fn(), clearRecording: jest.fn(), recordAnswer: jest.fn(), updateAnswer: jest.fn(), markFeedback: jest.fn(), setActiveTab: jest.fn(), markCompleted: jest.fn(),
+        goTo: mockGoTo, toggleAnswers: jest.fn(), setToolMode: jest.fn(), collapseAnswers: jest.fn(), revealCurrent: jest.fn(), chooseOption: jest.fn(), clearRecording: jest.fn(), recordAnswer: jest.fn(), updateAnswer: jest.fn(), markFeedback: jest.fn(), setActiveTab: jest.fn(), markCompleted: jest.fn(),
       };
     });
   });
@@ -135,5 +142,36 @@ describe('study exit flow', () => {
 
     await waitFor(() => expect(screen.getByText('report:abort')).toBeTruthy());
     expect(mockFinish).toHaveBeenCalledWith('abort');
+  });
+
+  it('swipes left to the next question without invoking the exit flow', async () => {
+    await render(<QuestionBankStudyScreen category={category} dataset={dataset} topic={topic} />);
+
+    await act(async () => {
+      fireGestureHandler(getByGestureTestId('study-question-swipe'), [
+        { state: State.BEGAN, translationX: 0, translationY: 0, velocityX: 0 },
+        { state: State.ACTIVE, translationX: -40, translationY: 3, velocityX: -300 },
+        { state: State.END, translationX: -80, translationY: 3, velocityX: -300 },
+      ]);
+    });
+
+    expect(mockGoTo).toHaveBeenCalledWith(1);
+    expect(mockFinish).not.toHaveBeenCalled();
+  });
+
+  it('keeps a right swipe on the first question inside the study screen', async () => {
+    const screen = await render(<QuestionBankStudyScreen category={category} dataset={dataset} topic={topic} />);
+
+    await act(async () => {
+      fireGestureHandler(getByGestureTestId('study-question-swipe'), [
+        { state: State.BEGAN, translationX: 0, translationY: 0, velocityX: 0 },
+        { state: State.ACTIVE, translationX: 40, translationY: 3, velocityX: 300 },
+        { state: State.END, translationX: 80, translationY: 3, velocityX: 300 },
+      ]);
+    });
+
+    expect(mockGoTo).not.toHaveBeenCalled();
+    expect(mockFinish).not.toHaveBeenCalled();
+    expect(screen.getByText('已经是第一题')).toBeTruthy();
   });
 });

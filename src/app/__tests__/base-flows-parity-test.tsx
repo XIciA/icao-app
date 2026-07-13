@@ -2,6 +2,7 @@ import { render } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { AccountScreen } from '@/features/account/AccountScreen';
+import { APP_DISPLAY_VERSION } from '@/config/app-version';
 import { InfoScreen } from '@/features/info/InfoScreen';
 import { SystemStateScreen } from '@/features/states/SystemStateScreen';
 
@@ -16,6 +17,11 @@ jest.mock('lucide-react-native', () => {
 jest.mock('expo-audio', () => ({
   getRecordingPermissionsAsync: jest.fn(async () => ({ granted: false })),
   requestRecordingPermissionsAsync: jest.fn(async () => ({ granted: false })),
+}));
+
+jest.mock('@/features/ai/ai-client', () => ({
+  hasAiConsent: jest.fn().mockResolvedValue(false),
+  withdrawAiConsent: jest.fn().mockResolvedValue(undefined),
 }));
 
 jest.mock('expo-router', () => ({
@@ -42,6 +48,18 @@ describe('base flow parity screens', () => {
     expect(screen.getByText('信息与帮助')).toBeTruthy();
     expect(screen.getByText('帮助与反馈')).toBeTruthy();
     expect(screen.getByText('法律条款')).toBeTruthy();
+  });
+
+  it('shows the shared task timestamp version in settings', async () => {
+    mockSlug = 'settings';
+    const screen = await render(withSafeArea(<AccountScreen />));
+    expect(screen.getByText(APP_DISPLAY_VERSION)).toBeTruthy();
+  });
+
+  it('shows the shared task timestamp version on the about page', async () => {
+    mockSlug = 'about';
+    const screen = await render(withSafeArea(<InfoScreen />));
+    expect(screen.getByText(`版本 ${APP_DISPLAY_VERSION}`)).toBeTruthy();
   });
 
   it('lists permission and failure states from the state hub', async () => {

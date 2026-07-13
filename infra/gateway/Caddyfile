@@ -1,0 +1,22 @@
+{
+	admin 127.0.0.1:2019
+}
+
+(icao_security_headers) {
+	header {
+		-Server
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "no-referrer"
+	}
+}
+
+api.feizhuicao.com {
+	import icao_security_headers
+	reverse_proxy 127.0.0.1:3101
+}
+
+cloud.feizhuicao.com {
+	import icao_security_headers
+	reverse_proxy 127.0.0.1:8000
+}

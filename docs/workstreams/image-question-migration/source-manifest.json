@@ -1,0 +1,1145 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "project": "feizhuicu",
+    "dataFile": "public/data/question-bank/mini-v1/opi/topics.json",
+    "category": "图片题"
+  },
+  "target": {
+    "bankId": "opi",
+    "categoryId": "opi-category-08",
+    "releaseVersion": 2
+  },
+  "counts": {
+    "topics": 23,
+    "imageCards": 23,
+    "questionCards": 64,
+    "cards": 87,
+    "resources": 87
+  },
+  "filledQuestionTranslations": [
+    {
+      "cardId": "opi-image-003-q03",
+      "translation": "你还知道哪些其他跑道灯光设施？"
+    },
+    {
+      "cardId": "opi-image-018-q03",
+      "translation": "如何避免这种情况？"
+    }
+  ],
+  "topics": [
+    {
+      "sourceTopicId": "opi-image-topic-001",
+      "targetTopicId": "opi-image-topic-001",
+      "title": "夜航驾驶舱",
+      "displayOrder": 1,
+      "image": {
+        "sourceRelativePath": "opi/image-questions/image-topic-001.jpg",
+        "targetPublicPath": "/question-bank-assets/images/opi/image-questions/image-topic-001.jpg",
+        "objectKey": "v2/images/opi/image-questions/image-topic-001.jpg",
+        "sizeBytes": 304040,
+        "checksum": "a04082e2aa5dbcab371fa3c166e390b0965023a25dbb4ad37dbd5b541f500fbe"
+      },
+      "questions": [
+        {
+          "sourceId": "opi-image-001-q01",
+          "targetCardId": "opi-image-001-q01",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-001-q01.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-001-q01.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-001-q01.mp3",
+            "sizeBytes": 17765,
+            "checksum": "de40f2cabaf049ba9818f5ac2c7bf9985d732e642b89200c7d574973e126a05b"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-001-q02",
+          "targetCardId": "opi-image-001-q02",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-001-q02.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-001-q02.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-001-q02.mp3",
+            "sizeBytes": 21510,
+            "checksum": "343aa710a0fb07911956be369f0a12d7cfe0549764d7a7ea2f3cab733a46a8a1"
+          },
+          "filledQuestionTranslation": false
+        }
+      ]
+    },
+    {
+      "sourceTopicId": "opi-image-topic-002",
+      "targetTopicId": "opi-image-topic-002",
+      "title": "机翼积冰",
+      "displayOrder": 2,
+      "image": {
+        "sourceRelativePath": "opi/image-questions/image-topic-002.jpg",
+        "targetPublicPath": "/question-bank-assets/images/opi/image-questions/image-topic-002.jpg",
+        "objectKey": "v2/images/opi/image-questions/image-topic-002.jpg",
+        "sizeBytes": 415283,
+        "checksum": "075f983ae87d212138310be98339ab81cd73d1bf58302479e1f9331bed00ab09"
+      },
+      "questions": [
+        {
+          "sourceId": "opi-image-002-q01",
+          "targetCardId": "opi-image-002-q01",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-002-q01.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-002-q01.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-002-q01.mp3",
+            "sizeBytes": 19666,
+            "checksum": "27647bb4716b8fd0be902089a764c25a6b72b285ecdf312f5fe82237cf9b3fca"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-002-q02",
+          "targetCardId": "opi-image-002-q02",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-002-q02.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-002-q02.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-002-q02.mp3",
+            "sizeBytes": 24815,
+            "checksum": "e833c397b380eb14986ed261903c942d74210a1bfbb86192a68e20f2748d9e7b"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-002-q03",
+          "targetCardId": "opi-image-002-q03",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-002-q03.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-002-q03.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-002-q03.mp3",
+            "sizeBytes": 28586,
+            "checksum": "4ed09db656328b4f45730dc9f18084f21dbe0197b3de4fc60ac787467316ac3c"
+          },
+          "filledQuestionTranslation": false
+        }
+      ]
+    },
+    {
+      "sourceTopicId": "opi-image-topic-003",
+      "targetTopicId": "opi-image-topic-003",
+      "title": "夜间跑道起飞",
+      "displayOrder": 3,
+      "image": {
+        "sourceRelativePath": "opi/image-questions/image-topic-003.jpg",
+        "targetPublicPath": "/question-bank-assets/images/opi/image-questions/image-topic-003.jpg",
+        "objectKey": "v2/images/opi/image-questions/image-topic-003.jpg",
+        "sizeBytes": 369738,
+        "checksum": "79149aaebebfca3d7498cbc0ee255ba5cfefe7d2f1cfccd51a0184c596594d8e"
+      },
+      "questions": [
+        {
+          "sourceId": "opi-image-003-q01",
+          "targetCardId": "opi-image-003-q01",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-003-q01.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-003-q01.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-003-q01.mp3",
+            "sizeBytes": 29811,
+            "checksum": "c1a4f31d92998d2f3c8f8718950b79923d8486ba36bb2deaa686ed2c96285b21"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-003-q02",
+          "targetCardId": "opi-image-003-q02",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-003-q02.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-003-q02.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-003-q02.mp3",
+            "sizeBytes": 28614,
+            "checksum": "9778ef8c94c4b66dbeb58da88d5a4f5e8dd2d83035edc75f03a7dba255183157"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-003-q03",
+          "targetCardId": "opi-image-003-q03",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-003-q03.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-003-q03.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-003-q03.mp3",
+            "sizeBytes": 20599,
+            "checksum": "b7684d44fcac9f36b57c4acfad55509f21d4c184db7700ef63e7c033152f6c91"
+          },
+          "filledQuestionTranslation": true
+        }
+      ]
+    },
+    {
+      "sourceTopicId": "opi-image-topic-004",
+      "targetTopicId": "opi-image-topic-004",
+      "title": "飞机接近风险",
+      "displayOrder": 4,
+      "image": {
+        "sourceRelativePath": "opi/image-questions/image-topic-004.jpg",
+        "targetPublicPath": "/question-bank-assets/images/opi/image-questions/image-topic-004.jpg",
+        "objectKey": "v2/images/opi/image-questions/image-topic-004.jpg",
+        "sizeBytes": 394428,
+        "checksum": "1bf93ea9061b3bb4fd2535b49b853cebce1b77e086a0201d8d421906d807f1a0"
+      },
+      "questions": [
+        {
+          "sourceId": "opi-image-004-q01",
+          "targetCardId": "opi-image-004-q01",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-004-q01.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-004-q01.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-004-q01.mp3",
+            "sizeBytes": 50447,
+            "checksum": "2e973209a5101db3f219ad84431145c23908aa4440217925fac725f91709a1c5"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-004-q02",
+          "targetCardId": "opi-image-004-q02",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-004-q02.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-004-q02.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-004-q02.mp3",
+            "sizeBytes": 18912,
+            "checksum": "51e7ed35c318f226ca473bbccfbd94a415e746c5d7792d35372c9eab6cc60b4d"
+          },
+          "filledQuestionTranslation": false
+        }
+      ]
+    },
+    {
+      "sourceTopicId": "opi-image-topic-005",
+      "targetTopicId": "opi-image-topic-005",
+      "title": "起落架异常",
+      "displayOrder": 5,
+      "image": {
+        "sourceRelativePath": "opi/image-questions/image-topic-005.jpg",
+        "targetPublicPath": "/question-bank-assets/images/opi/image-questions/image-topic-005.jpg",
+        "objectKey": "v2/images/opi/image-questions/image-topic-005.jpg",
+        "sizeBytes": 512334,
+        "checksum": "c9bf143af58cc9b8bc22d288e094f7897ecf008540245cf5eeaf481c40e2cef9"
+      },
+      "questions": [
+        {
+          "sourceId": "opi-image-005-q01",
+          "targetCardId": "opi-image-005-q01",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-005-q01.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-005-q01.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-005-q01.mp3",
+            "sizeBytes": 46048,
+            "checksum": "038fd2a9a8691cc91f93f59c62f60595f9a73a818ce5caeedb6ad45a29c82485"
+          },
+          "filledQuestionTranslation": false
+        }
+      ]
+    },
+    {
+      "sourceTopicId": "opi-image-topic-006",
+      "targetTopicId": "opi-image-topic-006",
+      "title": "冬季起飞前运行",
+      "displayOrder": 6,
+      "image": {
+        "sourceRelativePath": "opi/image-questions/image-topic-006.jpg",
+        "targetPublicPath": "/question-bank-assets/images/opi/image-questions/image-topic-006.jpg",
+        "objectKey": "v2/images/opi/image-questions/image-topic-006.jpg",
+        "sizeBytes": 566054,
+        "checksum": "59af5c4ade73e19523ff1e87f23ae7e2ed574b71c66fba94110ba8ef2fd42815"
+      },
+      "questions": [
+        {
+          "sourceId": "opi-image-006-q01",
+          "targetCardId": "opi-image-006-q01",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-006-q01.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-006-q01.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-006-q01.mp3",
+            "sizeBytes": 36477,
+            "checksum": "f77bf1d25e0cb37b1778ed5e598d06b49ee1c3f21ca51a4aaec85c57fc884c99"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-006-q02",
+          "targetCardId": "opi-image-006-q02",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-006-q02.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-006-q02.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-006-q02.mp3",
+            "sizeBytes": 25914,
+            "checksum": "fac13e5d534ce4d04723b0e3cea65e13f0e87d360cc6d6864ba5df3aede2f712"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-006-q03",
+          "targetCardId": "opi-image-006-q03",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-006-q03.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-006-q03.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-006-q03.mp3",
+            "sizeBytes": 24870,
+            "checksum": "33e9169587df715e90e81b0f2d926709bfdabe1a702a46f979e26a5352f9e904"
+          },
+          "filledQuestionTranslation": false
+        }
+      ]
+    },
+    {
+      "sourceTopicId": "opi-image-topic-007",
+      "targetTopicId": "opi-image-topic-007",
+      "title": "高高原机场",
+      "displayOrder": 7,
+      "image": {
+        "sourceRelativePath": "opi/image-questions/image-topic-007.jpg",
+        "targetPublicPath": "/question-bank-assets/images/opi/image-questions/image-topic-007.jpg",
+        "objectKey": "v2/images/opi/image-questions/image-topic-007.jpg",
+        "sizeBytes": 639495,
+        "checksum": "e69029545b36a829c5429bdce2ff6a38cf882f6b594f8ab7c65a90abfed46351"
+      },
+      "questions": [
+        {
+          "sourceId": "opi-image-007-q01",
+          "targetCardId": "opi-image-007-q01",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-007-q01.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-007-q01.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-007-q01.mp3",
+            "sizeBytes": 17065,
+            "checksum": "8377eb75e113ab6d7a0e270ebae48ba9f71d2fcd8dbebef3f1f763712004f826"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-007-q02",
+          "targetCardId": "opi-image-007-q02",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-007-q02.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-007-q02.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-007-q02.mp3",
+            "sizeBytes": 46071,
+            "checksum": "64f45022306731b2c632285ff30e10b494e9a733b349f210f9a43d0a2850b87a"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-007-q03",
+          "targetCardId": "opi-image-007-q03",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-007-q03.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-007-q03.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-007-q03.mp3",
+            "sizeBytes": 28898,
+            "checksum": "0527abcd1a999a980d25c2282ed3af54edf9aef94f79c4b1981e6b038113f5dc"
+          },
+          "filledQuestionTranslation": false
+        }
+      ]
+    },
+    {
+      "sourceTopicId": "opi-image-topic-008",
+      "targetTopicId": "opi-image-topic-008",
+      "title": "模拟机训练",
+      "displayOrder": 8,
+      "image": {
+        "sourceRelativePath": "opi/image-questions/image-topic-008.jpg",
+        "targetPublicPath": "/question-bank-assets/images/opi/image-questions/image-topic-008.jpg",
+        "objectKey": "v2/images/opi/image-questions/image-topic-008.jpg",
+        "sizeBytes": 460362,
+        "checksum": "007a740504df8627767a2695ba2cb5694df41efba1649db164bfb535f9954a1d"
+      },
+      "questions": [
+        {
+          "sourceId": "opi-image-008-q01",
+          "targetCardId": "opi-image-008-q01",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-008-q01.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-008-q01.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-008-q01.mp3",
+            "sizeBytes": 19463,
+            "checksum": "fcd3296773bd35c5fd2d8d58f53bab602c6e4d4bb721908d1533fd5d0416af0e"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-008-q02",
+          "targetCardId": "opi-image-008-q02",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-008-q02.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-008-q02.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-008-q02.mp3",
+            "sizeBytes": 17813,
+            "checksum": "7d5133e8b8b2e027422bf52a2be81c193af3cf0ae8becab017e444fa00e6eeb0"
+          },
+          "filledQuestionTranslation": false
+        }
+      ]
+    },
+    {
+      "sourceTopicId": "opi-image-topic-009",
+      "targetTopicId": "opi-image-topic-009",
+      "title": "传统仪表驾驶舱",
+      "displayOrder": 9,
+      "image": {
+        "sourceRelativePath": "opi/image-questions/image-topic-009.jpg",
+        "targetPublicPath": "/question-bank-assets/images/opi/image-questions/image-topic-009.jpg",
+        "objectKey": "v2/images/opi/image-questions/image-topic-009.jpg",
+        "sizeBytes": 665204,
+        "checksum": "3eaffba35c0628e86e7e689fe01bd2199105199a92d1267870b87621887e26ad"
+      },
+      "questions": [
+        {
+          "sourceId": "opi-image-009-q01",
+          "targetCardId": "opi-image-009-q01",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-009-q01.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-009-q01.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-009-q01.mp3",
+            "sizeBytes": 48191,
+            "checksum": "a9b69bce1ea57dec5fd2d45432cad306d170053903854f5221b0dbab6cff9f33"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-009-q02",
+          "targetCardId": "opi-image-009-q02",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-009-q02.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-009-q02.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-009-q02.mp3",
+            "sizeBytes": 38510,
+            "checksum": "a61137567af47a087c6e5393deb656319dd6f88d556dfa59910aef04bdc7cebc"
+          },
+          "filledQuestionTranslation": false
+        }
+      ]
+    },
+    {
+      "sourceTopicId": "opi-image-topic-010",
+      "targetTopicId": "opi-image-topic-010",
+      "title": "发动机整流罩损伤",
+      "displayOrder": 10,
+      "image": {
+        "sourceRelativePath": "opi/image-questions/image-topic-010.jpg",
+        "targetPublicPath": "/question-bank-assets/images/opi/image-questions/image-topic-010.jpg",
+        "objectKey": "v2/images/opi/image-questions/image-topic-010.jpg",
+        "sizeBytes": 564213,
+        "checksum": "1b5397aa594394399135f7ccc3c0a4deaeb3fa887544e8b7ad30d0b91d49698e"
+      },
+      "questions": [
+        {
+          "sourceId": "opi-image-010-q01",
+          "targetCardId": "opi-image-010-q01",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-010-q01.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-010-q01.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-010-q01.mp3",
+            "sizeBytes": 11210,
+            "checksum": "6204561b3f4128e3594aff5d3d9a649e4aa8db57a7330205c72b870d3e6bf956"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-010-q02",
+          "targetCardId": "opi-image-010-q02",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-010-q02.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-010-q02.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-010-q02.mp3",
+            "sizeBytes": 43919,
+            "checksum": "797d2a28ccfcf56826840fc25efe074cadf8eb8e82395c374a04e5b674d2bfa9"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-010-q03",
+          "targetCardId": "opi-image-010-q03",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-010-q03.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-010-q03.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-010-q03.mp3",
+            "sizeBytes": 35724,
+            "checksum": "fb8a4b88b4e251c4f74c97b5d5aff8c9e0c32ad0bb129e515c9656bceb71774e"
+          },
+          "filledQuestionTranslation": false
+        }
+      ]
+    },
+    {
+      "sourceTopicId": "opi-image-topic-011",
+      "targetTopicId": "opi-image-topic-011",
+      "title": "尾部发动机火警",
+      "displayOrder": 11,
+      "image": {
+        "sourceRelativePath": "opi/image-questions/image-topic-011.jpg",
+        "targetPublicPath": "/question-bank-assets/images/opi/image-questions/image-topic-011.jpg",
+        "objectKey": "v2/images/opi/image-questions/image-topic-011.jpg",
+        "sizeBytes": 315126,
+        "checksum": "789d9e524c68ce0848777423e1b88c1f6d8fc66ece3503dab6eae6cd50339418"
+      },
+      "questions": [
+        {
+          "sourceId": "opi-image-011-q01",
+          "targetCardId": "opi-image-011-q01",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-011-q01.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-011-q01.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-011-q01.mp3",
+            "sizeBytes": 18547,
+            "checksum": "99bb68fb4bbcf568c8bf01549e8d68640515c6ba8f44c92c31502062d0459c87"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-011-q02",
+          "targetCardId": "opi-image-011-q02",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-011-q02.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-011-q02.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-011-q02.mp3",
+            "sizeBytes": 33689,
+            "checksum": "42d696b0f530502bcee7fb5866ea21f34e7e708ae917e92ce21e0d32dad9bd1f"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-011-q03",
+          "targetCardId": "opi-image-011-q03",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-011-q03.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-011-q03.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-011-q03.mp3",
+            "sizeBytes": 26018,
+            "checksum": "e2daff21e2723da0681860ea0307c2ebf3abe30efe82237882ddabb3ae349499"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-011-q04",
+          "targetCardId": "opi-image-011-q04",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-011-q04.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-011-q04.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-011-q04.mp3",
+            "sizeBytes": 28227,
+            "checksum": "cf2736f2f05ddad8c50a2f15d491da496a1aff5e6c97f1d61ddec0318848771f"
+          },
+          "filledQuestionTranslation": false
+        }
+      ]
+    },
+    {
+      "sourceTopicId": "opi-image-topic-012",
+      "targetTopicId": "opi-image-topic-012",
+      "title": "滑行道起飞排队",
+      "displayOrder": 12,
+      "image": {
+        "sourceRelativePath": "opi/image-questions/image-topic-012.jpg",
+        "targetPublicPath": "/question-bank-assets/images/opi/image-questions/image-topic-012.jpg",
+        "objectKey": "v2/images/opi/image-questions/image-topic-012.jpg",
+        "sizeBytes": 410177,
+        "checksum": "066869e9ef9ef7a43a165ba442e7f317bae8dcb91fa94d1649e850039316e02e"
+      },
+      "questions": [
+        {
+          "sourceId": "opi-image-012-q01",
+          "targetCardId": "opi-image-012-q01",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-012-q01.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-012-q01.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-012-q01.mp3",
+            "sizeBytes": 18757,
+            "checksum": "e5045dceec2317d5937543de5467dc06b6fe5db78d6b9420e5c2d9a28e1bbc9c"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-012-q02",
+          "targetCardId": "opi-image-012-q02",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-012-q02.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-012-q02.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-012-q02.mp3",
+            "sizeBytes": 33722,
+            "checksum": "7ddc69816647a2b84cdb5c11fc4903e05cb216828b2aa8210c2e8087a1cbbb3c"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-012-q03",
+          "targetCardId": "opi-image-012-q03",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-012-q03.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-012-q03.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-012-q03.mp3",
+            "sizeBytes": 34219,
+            "checksum": "e10bfc1d307ec424cb4a75f2022e87c39db60a2e395fbd5f4dea70e7fc46ba13"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-012-q04",
+          "targetCardId": "opi-image-012-q04",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-012-q04.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-012-q04.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-012-q04.mp3",
+            "sizeBytes": 13889,
+            "checksum": "ad291b6c0e0b0dac182b2bc0b74d15407f569c07fe6ea90535d53a199b549eaa"
+          },
+          "filledQuestionTranslation": false
+        }
+      ]
+    },
+    {
+      "sourceTopicId": "opi-image-topic-013",
+      "targetTopicId": "opi-image-topic-013",
+      "title": "外来物损伤",
+      "displayOrder": 13,
+      "image": {
+        "sourceRelativePath": "opi/image-questions/image-topic-013.jpg",
+        "targetPublicPath": "/question-bank-assets/images/opi/image-questions/image-topic-013.jpg",
+        "objectKey": "v2/images/opi/image-questions/image-topic-013.jpg",
+        "sizeBytes": 476972,
+        "checksum": "a315a0f9554ce16e2b1330a69fc78acfefbcdba09edf88ea4880c34f2965ea44"
+      },
+      "questions": [
+        {
+          "sourceId": "opi-image-013-q01",
+          "targetCardId": "opi-image-013-q01",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-013-q01.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-013-q01.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-013-q01.mp3",
+            "sizeBytes": 11490,
+            "checksum": "33eec3e9b96e465d3d2be46a44e016b945dd9d5a9f647e0c159c683e6b08cac7"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-013-q02",
+          "targetCardId": "opi-image-013-q02",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-013-q02.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-013-q02.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-013-q02.mp3",
+            "sizeBytes": 31764,
+            "checksum": "7d9783c44c1e2a04f2fb00e533e9df3f743d279a33b43912411445777a1b6a4d"
+          },
+          "filledQuestionTranslation": false
+        }
+      ]
+    },
+    {
+      "sourceTopicId": "opi-image-topic-014",
+      "targetTopicId": "opi-image-topic-014",
+      "title": "现代玻璃驾驶舱",
+      "displayOrder": 14,
+      "image": {
+        "sourceRelativePath": "opi/image-questions/image-topic-014.jpg",
+        "targetPublicPath": "/question-bank-assets/images/opi/image-questions/image-topic-014.jpg",
+        "objectKey": "v2/images/opi/image-questions/image-topic-014.jpg",
+        "sizeBytes": 481582,
+        "checksum": "6c0144d50331e997797fd9c2a370c2618831b998f536176c147b87ed13380827"
+      },
+      "questions": [
+        {
+          "sourceId": "opi-image-014-q01",
+          "targetCardId": "opi-image-014-q01",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-014-q01.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-014-q01.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-014-q01.mp3",
+            "sizeBytes": 37053,
+            "checksum": "9464bc9489b680451956fc5369b9808584d9b0485fb5e48db16544a6c30e2dba"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-014-q02",
+          "targetCardId": "opi-image-014-q02",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-014-q02.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-014-q02.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-014-q02.mp3",
+            "sizeBytes": 25729,
+            "checksum": "1637f75a94f5d1222c754647ef37f6d2fd7e2655fdd4ba29d00a60a5fa59c057"
+          },
+          "filledQuestionTranslation": false
+        }
+      ]
+    },
+    {
+      "sourceTopicId": "opi-image-topic-015",
+      "targetTopicId": "opi-image-topic-015",
+      "title": "强侧风着陆",
+      "displayOrder": 15,
+      "image": {
+        "sourceRelativePath": "opi/image-questions/image-topic-015.jpg",
+        "targetPublicPath": "/question-bank-assets/images/opi/image-questions/image-topic-015.jpg",
+        "objectKey": "v2/images/opi/image-questions/image-topic-015.jpg",
+        "sizeBytes": 577457,
+        "checksum": "10b4d6baa92bce784038d21dcd9749990248c05f60598cd4d94c020a070e2948"
+      },
+      "questions": [
+        {
+          "sourceId": "opi-image-015-q01",
+          "targetCardId": "opi-image-015-q01",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-015-q01.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-015-q01.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-015-q01.mp3",
+            "sizeBytes": 30254,
+            "checksum": "a491091e5c588d67723f178f26530f66d2249760c96f3eabaf5569ba69698a50"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-015-q02",
+          "targetCardId": "opi-image-015-q02",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-015-q02.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-015-q02.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-015-q02.mp3",
+            "sizeBytes": 57863,
+            "checksum": "9527ad4b6ead4c55abf590676402585c11df767e187ae821552d3437ccc8aa79"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-015-q03",
+          "targetCardId": "opi-image-015-q03",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-015-q03.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-015-q03.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-015-q03.mp3",
+            "sizeBytes": 40975,
+            "checksum": "f9500e0fdbfe3145985d957fb9bf047966b26457f5bddcf26ab4a07d48877d3e"
+          },
+          "filledQuestionTranslation": false
+        }
+      ]
+    },
+    {
+      "sourceTopicId": "opi-image-topic-016",
+      "targetTopicId": "opi-image-topic-016",
+      "title": "跑道发动机火警",
+      "displayOrder": 16,
+      "image": {
+        "sourceRelativePath": "opi/image-questions/image-topic-016.jpg",
+        "targetPublicPath": "/question-bank-assets/images/opi/image-questions/image-topic-016.jpg",
+        "objectKey": "v2/images/opi/image-questions/image-topic-016.jpg",
+        "sizeBytes": 530409,
+        "checksum": "4cace3d007b920bcf00266f88efc596ec8782e0a241c9a765049d6b8a584d0b5"
+      },
+      "questions": [
+        {
+          "sourceId": "opi-image-016-q01",
+          "targetCardId": "opi-image-016-q01",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-016-q01.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-016-q01.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-016-q01.mp3",
+            "sizeBytes": 24867,
+            "checksum": "47262e36d7d7573732bfecb1acdacf27b634ebe06b350439826bf28f839145ac"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-016-q02",
+          "targetCardId": "opi-image-016-q02",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-016-q02.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-016-q02.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-016-q02.mp3",
+            "sizeBytes": 35983,
+            "checksum": "dd151da02800cc9eda70835666c27f506adc36d18dd5433ee48818440f20b59b"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-016-q03",
+          "targetCardId": "opi-image-016-q03",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-016-q03.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-016-q03.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-016-q03.mp3",
+            "sizeBytes": 32443,
+            "checksum": "f17b1090f519bf7f5b03a080dc4cc0293020872380c8d30f6ab4efdaf08cf123"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-016-q04",
+          "targetCardId": "opi-image-016-q04",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-016-q04.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-016-q04.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-016-q04.mp3",
+            "sizeBytes": 50209,
+            "checksum": "8b0d9bd16b37c25b8cf65cf23a26cb7fdee9cb37f843d4524d79602d213638b6"
+          },
+          "filledQuestionTranslation": false
+        }
+      ]
+    },
+    {
+      "sourceTopicId": "opi-image-topic-017",
+      "targetTopicId": "opi-image-topic-017",
+      "title": "水上迫降",
+      "displayOrder": 17,
+      "image": {
+        "sourceRelativePath": "opi/image-questions/image-topic-017.jpg",
+        "targetPublicPath": "/question-bank-assets/images/opi/image-questions/image-topic-017.jpg",
+        "objectKey": "v2/images/opi/image-questions/image-topic-017.jpg",
+        "sizeBytes": 642299,
+        "checksum": "d11fa14ac3dd98842715d566456a547878ae6789203d9c00b9517601e8b314f3"
+      },
+      "questions": [
+        {
+          "sourceId": "opi-image-017-q01",
+          "targetCardId": "opi-image-017-q01",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-017-q01.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-017-q01.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-017-q01.mp3",
+            "sizeBytes": 34777,
+            "checksum": "4ca8d3aa2798fc7f663d3d87e79d80ad10b61393b15bf6f32389d039d33ae952"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-017-q02",
+          "targetCardId": "opi-image-017-q02",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-017-q02.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-017-q02.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-017-q02.mp3",
+            "sizeBytes": 47453,
+            "checksum": "b372b3d23948987af9efc6805fc63281b4ea163d1a0b35b5cccda741f06ef315"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-017-q03",
+          "targetCardId": "opi-image-017-q03",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-017-q03.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-017-q03.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-017-q03.mp3",
+            "sizeBytes": 45144,
+            "checksum": "4d8379a6e226b97f9d7b221b56e9e1b2a4c61de87fcc32bc614759cbafd0b901"
+          },
+          "filledQuestionTranslation": false
+        }
+      ]
+    },
+    {
+      "sourceTopicId": "opi-image-topic-018",
+      "targetTopicId": "opi-image-topic-018",
+      "title": "擦尾风险",
+      "displayOrder": 18,
+      "image": {
+        "sourceRelativePath": "opi/image-questions/image-topic-018.jpg",
+        "targetPublicPath": "/question-bank-assets/images/opi/image-questions/image-topic-018.jpg",
+        "objectKey": "v2/images/opi/image-questions/image-topic-018.jpg",
+        "sizeBytes": 499010,
+        "checksum": "f4b14c577b348996c3229979dfb2de30cd902cac4fa9a08e7d4bbc3d1b3e0749"
+      },
+      "questions": [
+        {
+          "sourceId": "opi-image-018-q01",
+          "targetCardId": "opi-image-018-q01",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-018-q01.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-018-q01.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-018-q01.mp3",
+            "sizeBytes": 18757,
+            "checksum": "e5045dceec2317d5937543de5467dc06b6fe5db78d6b9420e5c2d9a28e1bbc9c"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-018-q02",
+          "targetCardId": "opi-image-018-q02",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-018-q02.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-018-q02.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-018-q02.mp3",
+            "sizeBytes": 26639,
+            "checksum": "21d21b65a6a0acc95a219ed741a771911132b84c36e02ef1fa13587ed67fec03"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-018-q03",
+          "targetCardId": "opi-image-018-q03",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-018-q03.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-018-q03.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-018-q03.mp3",
+            "sizeBytes": 14070,
+            "checksum": "e5509084d4ff5a231378d98d89f8807b4ca0b17ad763b779f3467c10e0cc069a"
+          },
+          "filledQuestionTranslation": true
+        },
+        {
+          "sourceId": "opi-image-018-q04",
+          "targetCardId": "opi-image-018-q04",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-018-q04.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-018-q04.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-018-q04.mp3",
+            "sizeBytes": 17923,
+            "checksum": "068041ca53d5d8475f07016a850176d0cac351573c8b76edd99cdc05aa380e6d"
+          },
+          "filledQuestionTranslation": false
+        }
+      ]
+    },
+    {
+      "sourceTopicId": "opi-image-topic-019",
+      "targetTopicId": "opi-image-topic-019",
+      "title": "地面保障事故",
+      "displayOrder": 19,
+      "image": {
+        "sourceRelativePath": "opi/image-questions/image-topic-019.jpg",
+        "targetPublicPath": "/question-bank-assets/images/opi/image-questions/image-topic-019.jpg",
+        "objectKey": "v2/images/opi/image-questions/image-topic-019.jpg",
+        "sizeBytes": 458923,
+        "checksum": "1a1f1f3be0d0bbe74c89c317c58e7d0785c965ef81dad3b27c9ca2452869637c"
+      },
+      "questions": [
+        {
+          "sourceId": "opi-image-019-q01",
+          "targetCardId": "opi-image-019-q01",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-019-q01.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-019-q01.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-019-q01.mp3",
+            "sizeBytes": 18003,
+            "checksum": "09f9fa60fcdc4ae69462a92beada5851cdae8892ecbb26a02dae7c93cd46d961"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-019-q02",
+          "targetCardId": "opi-image-019-q02",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-019-q02.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-019-q02.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-019-q02.mp3",
+            "sizeBytes": 18938,
+            "checksum": "c58e0b3b07190ef4df336089d3b9e73ccec56505a5a4b8131f180a1402d94e33"
+          },
+          "filledQuestionTranslation": false
+        }
+      ]
+    },
+    {
+      "sourceTopicId": "opi-image-topic-020",
+      "targetTopicId": "opi-image-topic-020",
+      "title": "积雪和结冰污染",
+      "displayOrder": 20,
+      "image": {
+        "sourceRelativePath": "opi/image-questions/image-topic-020.jpg",
+        "targetPublicPath": "/question-bank-assets/images/opi/image-questions/image-topic-020.jpg",
+        "objectKey": "v2/images/opi/image-questions/image-topic-020.jpg",
+        "sizeBytes": 678090,
+        "checksum": "64ee44a9025e65bb4b02f99d51384c35d874f12e33944990323c757a6d2633f4"
+      },
+      "questions": [
+        {
+          "sourceId": "opi-image-020-q01",
+          "targetCardId": "opi-image-020-q01",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-020-q01.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-020-q01.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-020-q01.mp3",
+            "sizeBytes": 31790,
+            "checksum": "bba17b4331a0b5471626758539bc687fe82608299e3bd2dc4d02ce78da86222e"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-020-q02",
+          "targetCardId": "opi-image-020-q02",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-020-q02.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-020-q02.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-020-q02.mp3",
+            "sizeBytes": 26278,
+            "checksum": "90281e16b3d653fbefbf4dda2f737cc570e351ea40604ceb69846230a32b4bc6"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-020-q03",
+          "targetCardId": "opi-image-020-q03",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-020-q03.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-020-q03.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-020-q03.mp3",
+            "sizeBytes": 32263,
+            "checksum": "11c17309e82860007da62bb9744d163ace4e77f01372197b8c6b1fef9c0ee773"
+          },
+          "filledQuestionTranslation": false
+        }
+      ]
+    },
+    {
+      "sourceTopicId": "opi-image-topic-021",
+      "targetTopicId": "opi-image-topic-021",
+      "title": "鸟击",
+      "displayOrder": 21,
+      "image": {
+        "sourceRelativePath": "opi/image-questions/image-topic-021.jpg",
+        "targetPublicPath": "/question-bank-assets/images/opi/image-questions/image-topic-021.jpg",
+        "objectKey": "v2/images/opi/image-questions/image-topic-021.jpg",
+        "sizeBytes": 316864,
+        "checksum": "fe349eb9f57b4e9d08cac901dcab370f1ce50715dfc1e413d05a5f5f235ae410"
+      },
+      "questions": [
+        {
+          "sourceId": "opi-image-021-q01",
+          "targetCardId": "opi-image-021-q01",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-021-q01.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-021-q01.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-021-q01.mp3",
+            "sizeBytes": 22090,
+            "checksum": "a304a47cdfbb84ab9ba49b0ce95783ce9f126515062bdec30a8a023703d432fd"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-021-q02",
+          "targetCardId": "opi-image-021-q02",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-021-q02.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-021-q02.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-021-q02.mp3",
+            "sizeBytes": 30490,
+            "checksum": "462e2b30a38c1bb8cda97a1008e9986a8db66902a484ce00c430915141179538"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-021-q03",
+          "targetCardId": "opi-image-021-q03",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-021-q03.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-021-q03.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-021-q03.mp3",
+            "sizeBytes": 26353,
+            "checksum": "aebcdecdcc4263135830e2e195543708f595815e7565106ab9c619d51279f3ae"
+          },
+          "filledQuestionTranslation": false
+        }
+      ]
+    },
+    {
+      "sourceTopicId": "opi-image-topic-022",
+      "targetTopicId": "opi-image-topic-022",
+      "title": "山区夜间进近",
+      "displayOrder": 22,
+      "image": {
+        "sourceRelativePath": "opi/image-questions/image-topic-022.jpg",
+        "targetPublicPath": "/question-bank-assets/images/opi/image-questions/image-topic-022.jpg",
+        "objectKey": "v2/images/opi/image-questions/image-topic-022.jpg",
+        "sizeBytes": 347871,
+        "checksum": "9c88ae8641fe32eeb188398424025ae761529996d2770cb238185582e53d7e8f"
+      },
+      "questions": [
+        {
+          "sourceId": "opi-image-022-q01",
+          "targetCardId": "opi-image-022-q01",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-022-q01.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-022-q01.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-022-q01.mp3",
+            "sizeBytes": 40873,
+            "checksum": "2f68cbd120d93d71c5a4bbad79003d5057fdecf7770e402003d6388582777472"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-022-q02",
+          "targetCardId": "opi-image-022-q02",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-022-q02.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-022-q02.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-022-q02.mp3",
+            "sizeBytes": 16569,
+            "checksum": "6a2e8bf5b3769e4ef864ef68f3287fcea3fb70fbc3b92e7c0e8ab7d48ceb5092"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-022-q03",
+          "targetCardId": "opi-image-022-q03",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-022-q03.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-022-q03.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-022-q03.mp3",
+            "sizeBytes": 27497,
+            "checksum": "b7e56992cb32768e9cdbe44d328fb8c2c02f6c48bfbaacd7d2ee3b30dd75de6c"
+          },
+          "filledQuestionTranslation": false
+        }
+      ]
+    },
+    {
+      "sourceTopicId": "opi-image-topic-023",
+      "targetTopicId": "opi-image-topic-023",
+      "title": "地面火灾应急",
+      "displayOrder": 23,
+      "image": {
+        "sourceRelativePath": "opi/image-questions/image-topic-023.jpg",
+        "targetPublicPath": "/question-bank-assets/images/opi/image-questions/image-topic-023.jpg",
+        "objectKey": "v2/images/opi/image-questions/image-topic-023.jpg",
+        "sizeBytes": 514746,
+        "checksum": "0be907d411674e3d549aec254f95844eca850f9f477833f8f8c97cf696c7d677"
+      },
+      "questions": [
+        {
+          "sourceId": "opi-image-023-q01",
+          "targetCardId": "opi-image-023-q01",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-023-q01.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-023-q01.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-023-q01.mp3",
+            "sizeBytes": 23672,
+            "checksum": "e3ab8f91609b45926ad79490c7a067b5f9e09489fb6b75b928b3d5c667ad93cd"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-023-q02",
+          "targetCardId": "opi-image-023-q02",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-023-q02.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-023-q02.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-023-q02.mp3",
+            "sizeBytes": 21568,
+            "checksum": "c1c3dfa33a4ed15e3702c2f7b2c8c86e83abc908a2d41992a50d8766da7af2c6"
+          },
+          "filledQuestionTranslation": false
+        },
+        {
+          "sourceId": "opi-image-023-q03",
+          "targetCardId": "opi-image-023-q03",
+          "audio": {
+            "sourceRelativePath": "opi/image-questions/audio/image-topic-023-q03.mp3",
+            "targetPublicPath": "/question-bank-assets/audio/opi/image-questions/image-topic-023-q03.mp3",
+            "objectKey": "v2/audio/opi/image-questions/image-topic-023-q03.mp3",
+            "sizeBytes": 46904,
+            "checksum": "221340798ee0d7349303ea005b1f2b2dceab6c524dedf502807d041768157dad"
+          },
+          "filledQuestionTranslation": false
+        }
+      ]
+    }
+  ]
+}

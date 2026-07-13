@@ -1,0 +1,51 @@
+{
+  "categoryId": "opi-category-08",
+  "id": "opi-image-topic-012",
+  "name": "滑行道起飞排队",
+  "declaredCardCount": 5,
+  "cards": [
+    {
+      "id": "opi-image-012-image",
+      "kind": "image",
+      "taskTitle": "图片观察",
+      "image": "/question-bank-assets/images/opi/image-questions/image-topic-012.jpg",
+      "imageAlt": "滑行道起飞排队航空场景图片"
+    },
+    {
+      "id": "opi-image-012-q01",
+      "taskTitle": "图片题-012-01",
+      "audioText": "Please describe what you observe in this picture.",
+      "audioTextZh": "请描述你在图片中观察到的内容。",
+      "referenceText": "In this picture, I can see a situation related to Taxiway departure queue. The key points are fuel burn, brake heating, congestion, FOD exposure, and increased crew workload. It is important for the crew to recognize the risk early, keep good communication, and follow standard operating procedures.",
+      "referenceTextZh": "在这张图片中，我看到的是与滑行道起飞排队有关的情况。关键点包括耗油增加、刹车升温、地面拥堵、外来物暴露以及机组工作负荷增加。机组应及早识别风险，保持良好沟通，并按照标准操作程序处置。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-012-q01.mp3"
+    },
+    {
+      "id": "opi-image-012-q02",
+      "taskTitle": "图片题-012-02",
+      "audioText": "What are the possible causes of aircraft queuing on taxiways before takeoff?",
+      "audioTextZh": "飞机起飞前在滑行道排队可能有哪些原因？",
+      "referenceText": "Possible factors include fuel burn, brake heating, congestion, FOD exposure, and increased crew workload. Human factors, weather, aircraft condition, airport environment, and communication problems may also contribute to the situation.",
+      "referenceTextZh": "可能因素包括耗油增加、刹车升温、地面拥堵、外来物暴露以及机组工作负荷增加。人的因素、天气、飞机状态、机场环境以及沟通问题也可能共同导致这种情况。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-012-q02.mp3"
+    },
+    {
+      "id": "opi-image-012-q03",
+      "taskTitle": "图片题-012-03",
+      "audioText": "What risks may exist during long-time taxi waiting on the airport surface?",
+      "audioTextZh": "在机场地面长时间滑行等待可能有哪些风险？",
+      "referenceText": "The main risks are fuel burn, brake heating, congestion, FOD exposure, and increased crew workload. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
+      "referenceTextZh": "主要风险包括耗油增加、刹车升温、地面拥堵、外来物暴露以及机组工作负荷增加。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-012-q03.mp3"
+    },
+    {
+      "id": "opi-image-012-q04",
+      "taskTitle": "图片题-012-04",
+      "audioText": "How to avoid this situation?",
+      "audioTextZh": "如何避免这种情况？",
+      "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
+      "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
+      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-012-q04.mp3"
+    }
+  ]
+}

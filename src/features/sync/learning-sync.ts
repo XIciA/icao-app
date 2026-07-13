@@ -14,6 +14,15 @@ import { findQuestionBankCardReference } from '@/features/question-bank/annotati
 import { createEmptyAnnotationStore, replaceAnnotationStoreFromSync } from '@/features/question-bank/annotations/annotation-store';
 import type { QuestionBankAnnotationStore } from '@/features/question-bank/annotations/types';
 import type { CardLearningState, LearningRecord } from '@/features/question-bank/types';
+import {
+  createEmptyVocabularyState,
+  hasVocabularyData,
+  normalizeVocabularyState,
+  replaceVocabularyStateFromSync,
+  VOCABULARY_DOCUMENT_KEY,
+  VOCABULARY_STORAGE_KEY,
+} from '@/features/vocabulary/persistence';
+import type { VocabularyState } from '@/features/vocabulary/types';
 
 const META_KEY = 'icao.learning.v3.sync.meta';
 const OUTBOX_KEY = 'icao.learning.v3.sync.outbox';
@@ -91,7 +100,7 @@ function hasAnnotationData(value: QuestionBankAnnotationStore) {
 
 async function localDataSnapshot() {
   const keys = (await Storage.getAllKeys()).filter((key) => key.startsWith(TOPIC_PREFIX) || key.startsWith(LEGACY_TOPIC_PREFIX));
-  const values = await Storage.multiGet([...keys, RECORDS_KEY, ANNOTATIONS_KEY]);
+  const values = await Storage.multiGet([...keys, RECORDS_KEY, ANNOTATIONS_KEY, VOCABULARY_STORAGE_KEY]);
   return Object.fromEntries(values.filter(([, value]) => value !== null)) as Record<string, string>;
 }
 
@@ -100,7 +109,8 @@ export async function inspectLearningSyncBinding(userId: string) {
   const hasTopicState = Object.entries(snapshot).some(([key, value]) => key.startsWith(TOPIC_PREFIX) && Object.keys(parseJson(value, {})).length > 0);
   const hasRecords = parseJson<unknown[]>(snapshot[RECORDS_KEY] ?? null, []).length > 0;
   const annotations = parseJson<QuestionBankAnnotationStore | undefined>(snapshot[ANNOTATIONS_KEY] ?? null, undefined);
-  const hasLocalData = hasTopicState || hasRecords || Boolean(annotations && hasAnnotationData(annotations));
+  const vocabulary = normalizeVocabularyState(parseJson<unknown>(snapshot[VOCABULARY_STORAGE_KEY] ?? null, undefined));
+  const hasLocalData = hasTopicState || hasRecords || Boolean(annotations && hasAnnotationData(annotations)) || hasVocabularyData(vocabulary);
   return {
     alreadyBound: meta.boundUserId === userId,
     boundToAnotherUser: Boolean(meta.boundUserId && meta.boundUserId !== userId),
@@ -164,6 +174,20 @@ export async function bindLearningSync(userId: string, mode: 'upload-local' | 'c
         },
       });
     }
+    const vocabulary = normalizeVocabularyState(parseJson<unknown>(snapshot[VOCABULARY_STORAGE_KEY] ?? null, undefined));
+    if (hasVocabularyData(vocabulary)) {
+      versions[`document:${VOCABULARY_DOCUMENT_KEY}`] = 1;
+      mutations.push({
+        mutationId: `bind:${userId}:document:${VOCABULARY_DOCUMENT_KEY}:v1`,
+        kind: 'document',
+        payload: {
+          documentKey: VOCABULARY_DOCUMENT_KEY,
+          document: vocabulary as unknown as Record<string, unknown>,
+          version: 1,
+          updatedAt: vocabulary.updatedAt,
+        },
+      });
+    }
   }
 
   const meta: SyncMeta = { schemaVersion: 3, boundUserId: userId, cursor: 0, versions };
@@ -185,13 +209,14 @@ async function activePersonalKeys() {
     || key.startsWith(MIGRATION_PREFIX)
     || key.startsWith(SNAPSHOT_PREFIX)
     || key.startsWith('icao.ai.consent.')
-    || [META_KEY, OUTBOX_KEY, RECORDS_KEY, ANNOTATIONS_KEY].includes(key));
+    || [META_KEY, OUTBOX_KEY, RECORDS_KEY, ANNOTATIONS_KEY, VOCABULARY_STORAGE_KEY].includes(key));
 }
 
 async function clearActiveLearningData({ keepSnapshots }: { keepSnapshots: boolean }) {
   const keys = await activePersonalKeys();
   await Storage.multiRemove(keepSnapshots ? keys.filter((key) => !key.startsWith(SNAPSHOT_PREFIX)) : keys);
   await replaceAnnotationStoreFromSync(createEmptyAnnotationStore());
+  await replaceVocabularyStateFromSync(createEmptyVocabularyState());
 }
 
 export async function archiveAndBindEmptyLearningSync(userId: string) {
@@ -257,6 +282,30 @@ export async function enqueueAnnotationStore(store: QuestionBankAnnotationStore)
   scheduleLearningSync();
 }
 
+export async function enqueueVocabularyDocument(state: VocabularyState) {
+  await queuedUpdate((meta, outbox) => {
+    if (!meta.boundUserId) return;
+    const versionKey = `document:${VOCABULARY_DOCUMENT_KEY}`;
+    const version = (meta.versions[versionKey] ?? 0) + 1;
+    meta.versions[versionKey] = version;
+    for (let index = outbox.length - 1; index >= 0; index -= 1) {
+      const item = outbox[index];
+      if (item?.kind === 'document' && item.payload.documentKey === VOCABULARY_DOCUMENT_KEY) outbox.splice(index, 1);
+    }
+    outbox.push({
+      mutationId: mutationId(`${versionKey}:v${version}`),
+      kind: 'document',
+      payload: {
+        documentKey: VOCABULARY_DOCUMENT_KEY,
+        document: state as unknown as Record<string, unknown>,
+        version,
+        updatedAt: state.updatedAt,
+      },
+    });
+  });
+  scheduleLearningSync();
+}
+
 async function applyChange(change: SyncChange, meta: SyncMeta) {
   if (change.kind === 'card_state') {
     const payload = change.payload as unknown as CardStateMutation['payload'];
@@ -278,6 +327,10 @@ async function applyChange(change: SyncChange, meta: SyncMeta) {
     if (payload.documentKey === 'annotations') {
       await replaceAnnotationStoreFromSync(payload.document);
       meta.versions['document:annotations'] = Math.max(meta.versions['document:annotations'] ?? 0, payload.version);
+    } else if (payload.documentKey === VOCABULARY_DOCUMENT_KEY) {
+      await replaceVocabularyStateFromSync(payload.document);
+      const versionKey = `document:${VOCABULARY_DOCUMENT_KEY}`;
+      meta.versions[versionKey] = Math.max(meta.versions[versionKey] ?? 0, payload.version);
     }
   }
 }

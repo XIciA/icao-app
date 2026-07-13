@@ -6,6 +6,13 @@
 cd /Users/zhouyide/Desktop/icao-app
 ```
 
+pnpm ios:standalone
+会重新：
+用最新代码生成 Release 包；
+注入当前公网 HTTPS 地址；
+覆盖安装到同一个 iPhone；
+自动启动新版 App。
+
 ## 最常用
 
 | 使用场景 | 命令 |
@@ -14,6 +21,10 @@ cd /Users/zhouyide/Desktop/icao-app
 | iPhone 首次安装或原生重编译 | `pnpm exec expo run:ios --device` |
 | iPhone 日常调试，仅启动 Metro | `pnpm start` |
 | 完整项目检查 | `pnpm check` |
+
+杀进程
+lsof -tiTCP:8081 -sTCP:LISTEN | xargs kill
+pnpm ios:phase2a
 
 ## iOS 模拟器
 

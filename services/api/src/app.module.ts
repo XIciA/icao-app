@@ -20,9 +20,11 @@ import { AiController } from './ai/ai.controller';
 import { AiAssetsService } from './ai/ai-assets.service';
 import { AiProviderService } from './ai/ai-provider.service';
 import { AiService } from './ai/ai.service';
+import { VocabularyController } from './vocabulary/vocabulary.controller';
+import { VocabularyService } from './vocabulary/vocabulary.service';
 
 @Module({
-  controllers: [HealthController, MeController, AccountController, QuestionBankController, ResourceController, SyncController, AiController],
+  controllers: [HealthController, MeController, AccountController, QuestionBankController, ResourceController, SyncController, AiController, VocabularyController],
   providers: [
     { provide: API_CONFIG, useFactory: () => loadConfig() },
     DatabaseService,
@@ -37,6 +39,7 @@ import { AiService } from './ai/ai.service';
     AiAssetsService,
     AiProviderService,
     AiService,
+    VocabularyService,
   ],
 })
 export class AppModule {}

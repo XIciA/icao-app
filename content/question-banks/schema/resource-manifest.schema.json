@@ -17,7 +17,7 @@
           "sourceRelativePath": { "type": "string", "minLength": 1 },
           "publicPath": { "type": "string", "minLength": 1 },
           "sizeBytes": { "type": "integer", "minimum": 1 },
-          "mimeType": { "const": "audio/mpeg" },
+          "mimeType": { "enum": ["audio/mpeg", "image/jpeg", "image/png"] },
           "checksum": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
           "status": { "enum": ["ready", "missing", "disabled"] }
         }

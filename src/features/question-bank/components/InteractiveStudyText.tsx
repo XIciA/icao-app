@@ -42,6 +42,7 @@ export function InteractiveStudyText({
 }) {
   const tokens = useMemo(() => tokenizeStudyText(text), [text]);
   const definitionMap = useMemo(() => new Map(definitions.map((definition) => [definition.id, definition])), [definitions]);
+  const highlightMap = useMemo(() => new Map(highlights.filter((item) => item.blockId === blockId).map((item) => [item.wordIndex, item])), [blockId, highlights]);
   const boxesRef = useRef(new Map<number, LayoutRectangle>());
   const dragRef = useRef<DragSelection | undefined>(undefined);
   const [dragSelection, setDragSelection] = useState<DragSelection>();
@@ -98,6 +99,13 @@ export function InteractiveStudyText({
   const previewStart = dragSelection ? Math.min(dragSelection.startWordIndex, dragSelection.endWordIndex) : -1;
   const previewEnd = dragSelection ? Math.max(dragSelection.startWordIndex, dragSelection.endWordIndex) : -1;
   const activeTone = definitionMap.get(activeHighlightId)?.color ?? 'green';
+  const toneForWord = (wordIndex: number) => {
+    const previewed = wordIndex >= previewStart && wordIndex <= previewEnd;
+    if (previewed && dragSelection?.action === 'remove') return undefined;
+    if (previewed && dragSelection?.action === 'apply') return activeTone;
+    const highlight = highlightMap.get(wordIndex);
+    return highlight ? definitionMap.get(highlight.colorId)?.color ?? 'green' : undefined;
+  };
 
   return (
     <GestureDetector gesture={dragGesture}>
@@ -105,15 +113,16 @@ export function InteractiveStudyText({
         {tokens.map((token, tokenIndex) => {
           if (token.whitespace) return null;
           const index = token.wordIndex!;
-          const active = highlights.find((item) => item.blockId === blockId && item.wordIndex === index);
-          const activeToneForWord = active ? definitionMap.get(active.colorId)?.color ?? 'green' : undefined;
+          const active = highlightMap.get(index);
           const previewed = index >= previewStart && index <= previewEnd;
-          const tone = previewed && dragSelection?.action === 'apply' ? activeTone : activeToneForWord;
+          const tone = toneForWord(index);
           const backgroundColor = previewed && dragSelection?.action === 'remove'
             ? colors.secondary
             : tone ? annotationHighlightBackgrounds[tone as AnnotationToneKey] : undefined;
           const trailingWhitespace = tokens[tokenIndex + 1]?.whitespace ? tokens[tokenIndex + 1].text : '';
           const lineBreaks = trailingWhitespace.match(/\n/g)?.length ?? 0;
+          const nextToken = trailingWhitespace ? tokens[tokenIndex + 2] : tokens[tokenIndex + 1];
+          const connectsToNext = Boolean(tone && trailingWhitespace && !lineBreaks && nextToken?.wordIndex !== undefined && toneForWord(nextToken.wordIndex) === tone);
           const lookupAllowed = lookupEnabled && !highlightMode;
           return (
             <Fragment key={`${index}-${token.text}`}>
@@ -134,7 +143,7 @@ export function InteractiveStudyText({
                   sentence: sentenceAround(text, token.start, token.end),
                   sourceText: text,
                 }) : undefined}
-                style={[styles.word, lineBreaks ? null : styles.wordSpacing, backgroundColor ? { backgroundColor } : null]}
+                style={[styles.word, lineBreaks ? null : connectsToNext ? styles.connectedWord : styles.wordSpacing, backgroundColor ? { backgroundColor } : null]}
               >
                 {token.text}
               </Text>
@@ -148,6 +157,7 @@ export function InteractiveStudyText({
 }
 
 const styles = StyleSheet.create({
+  connectedWord: { paddingRight: spacing[1] },
   lineBreak: { flexBasis: '100%', height: 0 },
   textFlow: { alignItems: 'baseline', flexDirection: 'row', flexWrap: 'wrap' },
   word: { color: colors.foreground, fontFamily: fonts.sansRegular, fontSize: 15, lineHeight: 25 },

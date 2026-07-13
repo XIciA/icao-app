@@ -1,5 +1,6 @@
 import { render, waitFor } from '@testing-library/react-native';
 import { useState } from 'react';
+import { Gesture } from 'react-native-gesture-handler';
 
 import { StudyWorkbench } from '@/features/question-bank/components/StudyWorkbench';
 
@@ -22,7 +23,7 @@ jest.mock('@/features/ai/ai-client', () => ({
 jest.mock('lucide-react-native', () => {
   const { View } = jest.requireActual('react-native');
   const Icon = (props: object) => <View {...props} />;
-  return { Check: Icon, Eraser: Icon, Mic: Icon, NotebookPen: Icon, Save: Icon, Sparkles: Icon };
+  return { Check: Icon, Eraser: Icon, Mic: Icon, NotebookPen: Icon, Pencil: Icon, Save: Icon, Sparkles: Icon };
 });
 
 describe('AI speaking workbench', () => {
@@ -44,6 +45,7 @@ describe('AI speaking workbench', () => {
           categoryTitle="运行"
           noteText=""
           onAnswerChange={(text) => { onAnswerChange(text); setAnswerText(text); }}
+          onEditingTabChange={jest.fn()}
           onFeedback={jest.fn()}
           onNoteChange={jest.fn()}
           onRetrySave={jest.fn()}
@@ -54,6 +56,7 @@ describe('AI speaking workbench', () => {
           referenceContent={null}
           referenceLabel="参考答案"
           reviewKind="opi-analysis"
+          swipeGesture={Gesture.Pan().enabled(false)}
           tabs={['mine']}
           topicTitle="燃油"
         />
@@ -66,7 +69,8 @@ describe('AI speaking workbench', () => {
     await waitFor(() => expect(mockHasAiConsent).toHaveBeenCalledTimes(1));
     await waitFor(() => expect(mockTranscribeRecording).toHaveBeenCalledTimes(1));
     await waitFor(() => expect(onAnswerChange).toHaveBeenCalledWith('normalized aviation transcript'));
-    await waitFor(() => expect(screen.getByLabelText('我的回答').props.value).toBe('normalized aviation transcript'));
+    await waitFor(() => expect(screen.getByText('normalized aviation transcript')).toBeTruthy());
+    expect(screen.queryByLabelText('我的回答')).toBeNull();
     expect(screen.queryByText('转写录音')).toBeNull();
     expect(screen.queryByText('原始识别文本（只读）')).toBeNull();
     expect(screen.queryByText('raw aviation transcript')).toBeNull();

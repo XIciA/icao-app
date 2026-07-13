@@ -15,16 +15,17 @@ jest.mock('lucide-react-native', () => {
 describe('annotation study controls', () => {
   function StatefulToolbar() {
     const [mode, setMode] = useState<'dictionary' | 'highlight'>();
+    const [highlightId, setHighlightId] = useState('green');
     return (
       <AnnotationToolbar
-        activeHighlightId="green"
+        activeHighlightId={highlightId}
         dictionaryMode={mode === 'dictionary'}
         highlightDefinitions={DEFAULT_ANNOTATION_HIGHLIGHTS}
         highlightMode={mode === 'highlight'}
         onCreateHighlight={jest.fn()}
         onCreateTag={jest.fn()}
         onDictionaryModeChange={(value) => setMode(value ? 'dictionary' : undefined)}
-        onHighlightChange={jest.fn()}
+        onHighlightChange={setHighlightId}
         onHighlightModeChange={(value) => setMode(value ? 'highlight' : undefined)}
         onTagToggle={jest.fn()}
         resetToken="card-stateful"
@@ -99,9 +100,36 @@ describe('annotation study controls', () => {
     );
 
     const highlighted = screen.getByLabelText('更新或取消高亮：two.');
-    expect(StyleSheet.flatten(highlighted.props.style).backgroundColor).toBe('rgba(214, 167, 45, 0.28)');
+    expect(StyleSheet.flatten(highlighted.props.style).backgroundColor).toBe('rgba(242, 201, 76, 0.38)');
     fireEvent(highlighted, 'longPress');
     expect(onLookup).not.toHaveBeenCalled();
+  });
+
+  it('fills the space between adjacent highlights that use the same color', async () => {
+    const screen = await render(
+      <InteractiveStudyText
+        activeHighlightId="green"
+        blockId="question"
+        definitions={DEFAULT_ANNOTATION_HIGHLIGHTS}
+        dictionaryMode={false}
+        highlightMode
+        highlights={[
+          { blockId: 'question', wordIndex: 0, colorId: 'green', quote: 'One', sentence: 'One two.', contentFingerprint: 'abc' },
+          { blockId: 'question', wordIndex: 1, colorId: 'green', quote: 'two.', sentence: 'One two.', contentFingerprint: 'abc' },
+        ]}
+        lookupEnabled
+        onHighlight={jest.fn()}
+        onHighlightRange={jest.fn()}
+        onLookup={jest.fn()}
+        text="One two. Three four?"
+      />,
+    );
+
+    const first = StyleSheet.flatten(screen.getByLabelText('更新或取消高亮：One').props.style);
+    const second = StyleSheet.flatten(screen.getByLabelText('更新或取消高亮：two.').props.style);
+    expect(first.paddingRight).toBe(4);
+    expect(first.marginRight).toBeUndefined();
+    expect(second.marginRight).toBe(4);
   });
 
   it('closes highlight mode when the tag panel opens and exposes custom creation', async () => {
@@ -129,7 +157,7 @@ describe('annotation study controls', () => {
     );
     fireEvent.press(screen.getByLabelText('打开标签面板'));
     expect(onHighlightModeChange).toHaveBeenCalledWith(false);
-    expect(screen.getByLabelText('新建标注定义')).toBeTruthy();
+    await waitFor(() => expect(screen.getByLabelText('新建标注定义')).toBeTruthy());
   });
 
   it('keeps the newly selected dictionary or highlight mode active', async () => {
@@ -139,6 +167,14 @@ describe('annotation study controls', () => {
     await waitFor(() => expect(screen.getByLabelText('关闭查词模式')).toBeTruthy());
 
     fireEvent.press(screen.getByLabelText('开启高亮模式'));
-    await waitFor(() => expect(screen.getByLabelText('关闭高亮模式')).toBeTruthy());
+    await waitFor(() => expect(screen.getByTestId('annotation-picker-panel')).toBeTruthy());
+    expect(StyleSheet.flatten(screen.getByTestId('annotation-picker-panel').props.style).position).toBe('absolute');
+
+    fireEvent.press(screen.getByLabelText('使用重点高亮'));
+    await waitFor(() => expect(screen.getByTestId('highlight-mode-status')).toBeTruthy());
+    expect(screen.getByLabelText('调整高亮颜色')).toBeTruthy();
+
+    fireEvent.press(screen.getByLabelText('结束高亮模式'));
+    await waitFor(() => expect(screen.getByLabelText('开启高亮模式')).toBeTruthy());
   });
 });
