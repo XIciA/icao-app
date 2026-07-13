@@ -20,6 +20,7 @@
     "content:audio:audit": "node tools/question-bank-audio-mapping-audit.mjs audit",
     "content:audio:apply": "node tools/question-bank-audio-mapping-audit.mjs apply",
     "content:audio:verify": "node tools/question-bank-audio-mapping-audit.mjs verify",
+    "content:audio:verify:live": "node tools/question-bank-live-verify.mjs",
     "ai:assets:check": "node tools/ai-assets.mjs check",
     "ai:assets:snapshot": "node tools/ai-assets.mjs snapshot",
     "ios": "expo run:ios",
