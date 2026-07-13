@@ -10,7 +10,7 @@
       "audioText": "C：Air China Four One Zero Six, expedite climb to 9800 meters, report Hotel Zulu. P：Unable to accept 9800 meters, due weight, Air China Four One Zero Six.\nQuestion: what does the controller mean?",
       "audioTextZh": "管制员：国航4106，加速爬升至9800米，过HZ报告。\n飞行员：国航4106，因重量原因无法接受9800米。\n问题：管制员是什么意思？",
       "referenceText": "正确答案：A. Is_suing a further climb instruction",
-      "audio": "/question-bank-assets/audio/listening/main/456.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/006.mp3",
       "choices": [
         "Is_suing a further climb instruction",
         "Complaining about the weight of the flight",
@@ -25,7 +25,7 @@
       "audioText": "P：Delta three zero three, we'll have to go back to the maintenance apron to check our flight controls. We found the rudder pedals are a bit tight. C：Delta three zero three, Roger, taxi to stand one two. We'll contact maintenance department.\nQuestion: what is the problem?",
       "audioTextZh": "飞行员：达美303，我们需要返回维修停机坪检查飞行操纵系统，发现方向舵踏板有点紧。\n管制员：达美303，收到，滑行到12号停机位，我们会联系维修部门。\n问题：是什么问题？",
       "referenceText": "正确答案：A. The rudder pedals are jammed",
-      "audio": "/question-bank-assets/audio/listening/main/457.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/007.mp3",
       "choices": [
         "The rudder pedals are jammed",
         "The rudder controls are loose",
@@ -40,7 +40,7 @@
       "audioText": "C：China Southern 345, your departure time is 1610. Is that correct? P：Affirm, that is our planned departure. C：I will call you 15 minutes before start up.\nQuestion: when will the pilot contact ATC?",
       "audioTextZh": "管制员：中国南方航空345，你的起飞时间是16:10，对吗？\n飞行员：确认，这是我们计划的起飞时间。\n管制员：我会在启动前15分钟呼叫你。\n问题：飞行员何时会联系空管？",
       "referenceText": "正确答案：D. Fifteen minutes before start-up",
-      "audio": "/question-bank-assets/audio/listening/main/458.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/010.mp3",
       "choices": [
         "Fifty minutes before start-up",
         "Fifty minutes before departure",
@@ -55,7 +55,7 @@
       "audioText": "P: Hong Kong approach, China Southern 305, what are the delays like? We’ve been holding for over 50 minutes? C: 305, expect another 10 minutes delay due ground accident.\nQuestion: What is the total waiting time for the crew?",
       "audioTextZh": "飞行员：香港进近，南方航空305，延误情况怎么样？我们已经等待了50多分钟。管制员：305，由于地面事故，预计还要再延误10分钟。\n问题：机组总共要等待多长时间？",
       "referenceText": "正确答案：D. 60 minutes",
-      "audio": "/question-bank-assets/audio/listening/main/459.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/014.mp3",
       "choices": [
         "50 minutes",
         "10 minutes",
@@ -70,7 +70,7 @@
       "audioText": "PIL: CSN5402 holding point 22, request line up and immediate takeoff. CTL: CSN 5402 hold short of runway, line up after the landing Airbus on final.\nQuestion: What will the pilot of CSN 5402 do ?",
       "audioTextZh": "飞行员：CSN5402，在22跑道等待点，请求进跑道并立即起飞。管制员：CSN5402，在跑道外等待，五边上的空客飞机着陆后进跑道。\n问题：CSN5402的飞行员将做什么？",
       "referenceText": "正确答案：A. After the Airbus on final, line up",
-      "audio": "/question-bank-assets/audio/listening/main/460.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/015.mp3",
       "choices": [
         "After the Airbus on final, line up",
         "Before the Airbus, line up",
@@ -85,7 +85,7 @@
       "audioText": "PIL: Wuhan Approach, HAD306, we have just found a note on board saying a bomb has been planted in the hold, request landing priority and emergency assistance. APP: HDA306, Wuhan Approach, roger, descend to 900 m, fly heading 050.\nQuestion: What happened on board?",
       "audioTextZh": "飞行员：武汉进近，HAD306，我们刚在机上发现一张纸条，上面说货舱里被安放了炸弹，请求优先着陆和紧急援助。进近：HDA306，武汉进近，收到，下降至900米，航向050。\n问题：机上发生了什么？",
       "referenceText": "正确答案：B. There is a bomb threat on board",
-      "audio": "/question-bank-assets/audio/listening/main/461.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/016.mp3",
       "choices": [
         "A passenger on board is very sick",
         "There is a bomb threat on board",
@@ -100,7 +100,7 @@
       "audioText": "CTL: Air china 981, stop immediately, I say again, stop now. flames coming from right main gear. PIL: stopping, 981. CTL: 981, fire engines and ambulance will be available in a few minutes.\nQuestion: What happened?",
       "audioTextZh": "管制员：中国国际航空981，立即停止，我再说一遍，马上停止。右主起落架冒出火焰。飞行员：正在停止，981。管制员：981，消防车和救护车将在几分钟内到达。\n问题：发生了什么？",
       "referenceText": "正确答案：B. Undercarriage fire",
-      "audio": "/question-bank-assets/audio/listening/main/462.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/017.mp3",
       "choices": [
         "Engine fire",
         "Undercarriage fire",
@@ -115,7 +115,7 @@
       "audioText": "P: Tower, SIA895, we missed the outer marker and going around, can you check the outer marker at you end before we make another attempt to land. C: SIA895, roger, standard procedure. C: SIA895, the outer marker operations normal.\nQuestion: What is the pilot’s request?",
       "audioTextZh": "飞行员：塔台，SIA895，我们飞越了外指点标但没有收到信号，正在复飞。在我们再次尝试着陆前，请检查你方的外指点标。管制员：SIA895，收到，按标准程序。管制员：SIA895，外指点标工作正常。\n问题：飞行员提出了什么请求？",
       "referenceText": "正确答案：A. Examine the outer marker",
-      "audio": "/question-bank-assets/audio/listening/main/463.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/019.mp3",
       "choices": [
         "Examine the outer marker",
         "Receive the outer marker",
@@ -130,7 +130,7 @@
       "audioText": "P: Wuhan Approach, Air Canada 226, fire now under control, cancel distress. C: Roger, Air Canada 226. Break, all stations, distress cancelled.\nQuestion: What are they talking about?",
       "audioTextZh": "飞行员：武汉进近，加拿大航空226，火势现已得到控制，取消遇险状态。管制员：收到，加拿大航空226。各台注意，遇险状态取消。\n问题：他们在谈论什么？",
       "referenceText": "正确答案：B. Cancellation of distress",
-      "audio": "/question-bank-assets/audio/listening/main/464.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/020.mp3",
       "choices": [
         "Distress traffic",
         "Cancellation of distress",
@@ -145,7 +145,7 @@
       "audioText": "CTL: CCA4106, line up after the landing airbus. Call me when ready for departure. PIL: Traffic in sight, CCA4106.\nQuestion: What should the pilot do right now?",
       "audioTextZh": "管制员：CCA4106，在着陆的空客飞机之后进跑道。准备好起飞时呼叫我。飞行员：已看到相关航空器，CCA4106。\n问题：飞行员现在应该做什么？",
       "referenceText": "正确答案：A. Hold his position",
-      "audio": "/question-bank-assets/audio/listening/main/465.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/023.mp3",
       "choices": [
         "Hold his position",
         "Line up",
@@ -160,7 +160,7 @@
       "audioText": "C: CES 5401, maintain 8400m to HG unless otherwise instructed. P: CES 5401, maintain 8400m to HG.\nQuestion: What does the controller mean?",
       "audioTextZh": "管制员：CES 5401，除非另有指示，保持8400米至HG。飞行员：CES 5401，保持8400米至HG。\n问题：管制员是什么意思？",
       "referenceText": "正确答案：C. There is a little possibility for level change",
-      "audio": "/question-bank-assets/audio/listening/main/466.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/026.mp3",
       "choices": [
         "There is no possibility for level change",
         "There is much possibility for level change",
@@ -175,7 +175,7 @@
       "audioText": "CTL: UAL982, climb 7,200 m on standard and maintain, report passing 6,600. PIL: Roger, climb to 7,200 m and call passing 6,600, UAL982\nQuestion: What does the controller mean?",
       "audioTextZh": "管制员：UAL982，按标准爬升至7200米并保持，飞越6600米时报告。飞行员：收到，爬升至7200米，飞越6600米时呼叫，UAL982。\n问题：管制员是什么意思？",
       "referenceText": "正确答案：C. Climb on QNE",
-      "audio": "/question-bank-assets/audio/listening/main/467.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/027.mp3",
       "choices": [
         "Expedite climb to 7,200 m",
         "Climb and hold on standard pattern",
@@ -190,7 +190,7 @@
       "audioText": "P: Approach,NWA205, maintaining 4,800 meters, C: NWA205, roger, squawk 4207, reduce speed 250 knots, report DSG.\nQuestion: What information are included in the controller’s instructions?",
       "audioTextZh": "飞行员：进近，NWA205，保持4800米。管制员：NWA205，收到，应答机编码4207，减速至250节，飞越DSG时报告。\n问题：管制员的指令中包含哪些信息？",
       "referenceText": "正确答案：A. 4207, 250, DSG",
-      "audio": "/question-bank-assets/audio/listening/main/468.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/028.mp3",
       "choices": [
         "4207, 250, DSG",
         "4207, 250, DXG",
@@ -205,7 +205,7 @@
       "audioText": "C: CSN5265, pull in to the left, there is an B747 overtaking you on the right. P: Roger, traffic in sight, CSN 5265. Question What will the pilot do?",
       "audioTextZh": "管制员：CSN5265，向左靠，一架B747正从你右侧超越。飞行员：收到，已看到相关航空器，CSN5265。\n问题：飞行员将做什么？",
       "referenceText": "正确答案：C. Give way to the B747",
-      "audio": "/question-bank-assets/audio/listening/main/469.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/030.mp3",
       "choices": [
         "Pull in to the right",
         "Backtrack to the left",
@@ -220,7 +220,7 @@
       "audioText": "P: Ground, CCA981, request to depart as soon as possible. We are delivering live sea food. C: CCA981, I am trying to give you clearance quickly, but quite a few aircraft have queued up. Call you back.\nQuestion: What is the pilot going to do?",
       "audioTextZh": "飞行员：地面，CCA981，请求尽快离场。我们正在运送鲜活海鲜。管制员：CCA981，我正在尽快为你发布许可，但已有不少飞机排队，稍后再呼叫你。\n问题：飞行员打算做什么？",
       "referenceText": "正确答案：A. Wait for a while",
-      "audio": "/question-bank-assets/audio/listening/main/470.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/034.mp3",
       "choices": [
         "Wait for a while",
         "Wait for a long time",
@@ -235,7 +235,7 @@
       "audioText": "P: MAYDAY, MAYDAY, MAYDAY, BAW303, left engine on fire. Emergency slides are released, request fire services and first aid. C: BAW303, roger mayday, airport emergency assistance services will be notified.\nQuestion: What has the crew done already?",
       "audioTextZh": "飞行员：MAYDAY，MAYDAY，MAYDAY，BAW303，左发动机着火。应急滑梯已经放出，请求消防服务和急救。管制员：BAW303，收到MAYDAY，将通知机场应急救援部门。\n问题：机组已经做了什么？",
       "referenceText": "正确答案：C. Begun the evacuation procedures",
-      "audio": "/question-bank-assets/audio/listening/main/471.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/040.mp3",
       "choices": [
         "Put out the fire",
         "Sent out the emergency services",
@@ -250,7 +250,7 @@
       "audioText": "PIL: Ground, UAL 982, stopping at C5 intersection. I have malfunction with my nose gear steering. Request assistance. CTL: UAL 982, roger. I will send a tug right away.\nQuestion: What is the pilot’s problem?",
       "audioTextZh": "飞行员：地面，UAL 982，停在C5交叉口。我的前轮转弯系统发生故障，请求援助。管制员：UAL 982，收到，我会立即派一辆牵引车。\n问题：飞行员遇到了什么问题？",
       "referenceText": "正确答案：D. His nose gear is broken down",
-      "audio": "/question-bank-assets/audio/listening/main/472.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/046.mp3",
       "choices": [
         "He needs a tug to pushback",
         "He needs a tug to get him back",
@@ -265,7 +265,7 @@
       "audioText": "CTL: AFR188, for identification, turn left heading 270 and then turn right heading 360. PIL: Left turn 270 and right for 360, AFR188.\nQuestion: Why does AFR188 instruct to make this maneuver?",
       "audioTextZh": "管制员：AFR188，为雷达识别，左转航向270，然后右转航向360。飞行员：左转270，然后右转360，AFR188。\n问题：为什么AFR188被指示进行这一机动？",
       "referenceText": "正确答案：C. The controller tries to find the aircraft on radar",
-      "audio": "/question-bank-assets/audio/listening/main/473.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/047.mp3",
       "choices": [
         "The aircraft is detouring",
         "The aircraft is checking heading",
@@ -280,7 +280,7 @@
       "audioText": "C: CCA101, you’re 12 kilometers from touchdown, radar service terminated, continue ILS approach, contact Tower on 118.1, Good day. P: Contact Tower, 118.1 CCA101.\nQuestion: At what position is the aircraft asked to change frequency to Tower?",
       "audioTextZh": "管制员：CCA101，你距接地点12公里，雷达服务终止，继续ILS进近，在118.1联系塔台，再见。飞行员：118.1联系塔台，CCA101。\n问题：飞机在什么位置被要求换频联系塔台？",
       "referenceText": "正确答案：C. On final and 12 km from touchdown",
-      "audio": "/question-bank-assets/audio/listening/main/474.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/048.mp3",
       "choices": [
         "10 km on final",
         "20 km from touchdown",
@@ -295,7 +295,7 @@
       "audioText": "C: CCA101 hold on your present position, there is an aircraft being towed behind you. P: Holding.CCA101.\nQuestion: What is the meaning of the controller’s instruction to CCA101?",
       "audioTextZh": "管制员：CCA101，在当前位置等待，你后方有一架正在被拖行的飞机。飞行员：等待，CCA101。\n问题：管制员给CCA101的指令是什么意思？",
       "referenceText": "正确答案：D. Stay where it is",
-      "audio": "/question-bank-assets/audio/listening/main/475.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/049.mp3",
       "choices": [
         "Aircraft is towed",
         "Aircraft is passing behind",
@@ -310,7 +310,7 @@
       "audioText": "C: AFR188, continue approach, traffic departing and one ahead to land. Report 4 miles final. P: Wilco, AFR188.\nQuestion: What does the controller’s message mean?",
       "audioTextZh": "管制员：AFR188，继续进近，有一架航空器正在起飞，前方还有一架航空器着陆。4海里五边时报告。飞行员：照办，AFR188。\n问题：管制员的信息是什么意思？",
       "referenceText": "正确答案：C. The aircraft continues the approach",
-      "audio": "/question-bank-assets/audio/listening/main/476.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/050.mp3",
       "choices": [
         "The aircraft is number one to land",
         "The aircraft cannot continue to approach",
@@ -325,7 +325,7 @@
       "audioText": "PIL: Wuhan control, CES5321, 12,000m, 4 minutes to boundary. CTL: CES5321, maintain altitude and heading, contact 125.6. Good day.\nQuestion: What is going on?",
       "audioTextZh": "飞行员：武汉管制，CES5321，高度12000米，距边界4分钟。管制员：CES5321，保持高度和航向，联系125.6，再见。\n问题：正在进行什么操作？",
       "referenceText": "正确答案：C. The pilot is going to be handed over to next controller",
-      "audio": "/question-bank-assets/audio/listening/main/477.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/057.mp3",
       "choices": [
         "The pilot is establishing communication with Wuhan",
         "The controller is telling the pilot his frequency",
@@ -340,7 +340,7 @@
       "audioText": "PIL: Departure, this is CCA4106, 1,800 m, climbing. I’ve got a malfunction indication on my air-conditioning system, I’ve turned back. CTL: CCA4106, roger Turn left heading 110, and maintain present altitude.\nQuestion: What happened to the aircraft?",
       "audioTextZh": "飞行员：离场，这里是CCA4106，高度1800米，正在爬升。我的空调系统出现故障指示，已经返航。管制员：CCA4106，收到，左转航向110，并保持当前高度。\n问题：飞机发生了什么？",
       "referenceText": "正确答案：C. The aircraft has a malfunction in the air-conditioning system",
-      "audio": "/question-bank-assets/audio/listening/main/478.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/060.mp3",
       "choices": [
         "The aircraft can not climb",
         "The aircraft has a malfunction in indicating system",
@@ -355,7 +355,7 @@
       "audioText": "CTL: CES5402, are you ready for start? PIL: CES5402, negative due to delay of catering.\nQuestion: What is the reason for the delay?",
       "audioTextZh": "管制员：CES5402，你准备好启动了吗？飞行员：CES5402，没有，由于配餐延误。\n问题：延误的原因是什么？",
       "referenceText": "正确答案：B. Meals delay",
-      "audio": "/question-bank-assets/audio/listening/main/479.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/067.mp3",
       "choices": [
         "Operational delay",
         "Meals delay",
@@ -370,7 +370,7 @@
       "audioText": "P: Control, CES5321, we have a problem with our starboard engine; the EGT is a little bit too high. C: Roger, CES5321, what is your intention?\nQuestion: Which engine has a problem?",
       "audioTextZh": "飞行员：管制，CES5321，我们的右发动机有问题，排气温度有些过高。管制员：收到，CES5321，你们的意图是什么？\n问题：哪台发动机有问题？",
       "referenceText": "正确答案：B. Right engine",
-      "audio": "/question-bank-assets/audio/listening/main/480.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/069.mp3",
       "choices": [
         "Left engine",
         "Right engine",
@@ -385,7 +385,7 @@
       "audioText": "CTL: CCA 101, traffic, 9 o’clock 8 kilometers, westbound B737, 600 meters below, fast moving. PIL: CCA 101 looking.\nQuestion: How could the pilot find the aircraft?",
       "audioTextZh": "管制员：CCA 101，相关航空器在你9点钟方向、距离8公里，是一架向西飞行的B737，比你低600米，速度较快。飞行员：CCA 101，正在寻找。\n问题：飞行员应如何找到该飞机？",
       "referenceText": "正确答案：D. Look left downward",
-      "audio": "/question-bank-assets/audio/listening/main/481.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/070.mp3",
       "choices": [
         "Look right downward",
         "Look left upward",
@@ -400,7 +400,7 @@
       "audioText": "PIL: Tower, SIA223, we’re returning to the airport. We cannot retract the landing gear. CTL: SIA223, roger, turn left heading 360, join downwind runway 27, you are number one.\nQuestion: What is happening with SIA223?",
       "audioTextZh": "飞行员：塔台，SIA223，我们正在返场，起落架无法收起。管制员：SIA223，收到，左转航向360，加入27跑道三边，你是第一架。\n问题：SIA223发生了什么？",
       "referenceText": "正确答案：D. Returning due to undercarriage problem",
-      "audio": "/question-bank-assets/audio/listening/main/482.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/071.mp3",
       "choices": [
         "Joining traffic pattern",
         "Requesting return to airport",
@@ -415,7 +415,7 @@
       "audioText": "C:  CCA101, you are approaching the boundary. P:  Roger. I’ll call you back C:  CCA101, your ATC clearance will be suspended at the boundary. Contact next controller for further clearance.\nQuestion: What can you learn from the controller’s instruction?",
       "audioTextZh": "管制员：CCA101，你正在接近管制区边界。飞行员：收到，我稍后再呼叫你。管制员：CCA101，你的空中交通管制许可将在边界处暂停。联系下一管制单位以获得进一步许可。\n问题：从管制员的指令中你能了解到什么？",
       "referenceText": "正确答案：C. ATC will stop giving clearance at the boundary",
-      "audio": "/question-bank-assets/audio/listening/main/483.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/072.mp3",
       "choices": [
         "ATC will speak clearance at the boundary",
         "ATC will cancel clearance at the boundary",
@@ -430,7 +430,7 @@
       "audioText": "PIL: Wuhan control, CES5321, 12,000m, 4 minutes to the boundary. CTL: CES5321, maintain level and heading, contact 125.6. Good day.\nQuestion: What is going on?",
       "audioTextZh": "飞行员：武汉管制，CES5321，高度12000米，距边界4分钟。管制员：CES5321，保持高度和航向，联系125.6，再见。\n问题：正在进行什么操作？",
       "referenceText": "正确答案：C. The flight is going to be handed over to next controller",
-      "audio": "/question-bank-assets/audio/listening/main/484.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/086.mp3",
       "choices": [
         "The pilot is establishing communication with Wuhan",
         "The controller tells the pilot his frequency",
@@ -445,7 +445,7 @@
       "audioText": "P: Wuhan Tower, BAW 303, ready to start. C: BAW 303, Wuhan Tower, your slot time is 35, start up at your own discretion. P: Roger, I will start up at 30, BAW 303.\nQuestion: How long will the flight be delayed?",
       "audioTextZh": "飞行员：武汉塔台，BAW 303，准备启动。管制员：BAW 303，武汉塔台，你的时隙时间是35分，自行决定启动时间。飞行员：收到，我将在30分启动，BAW 303。\n问题：该航班将延误多长时间？",
       "referenceText": "正确答案：D. Not mentioned",
-      "audio": "/question-bank-assets/audio/listening/main/485.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/088.mp3",
       "choices": [
         "Five minutes",
         "Thirty minutes",
@@ -460,7 +460,7 @@
       "audioText": "PIL:  Ground, CCA101 is at D38, the south ramp, ready for taxi. CTL: CCA101, taxi with caution, taxiway K is flooded, braking action is medium to poor.\nQuestion: Why did the controller ask the pilot to be cautious during taxiing?",
       "audioTextZh": "飞行员：地面，CCA101在南机坪D38，准备滑行。管制员：CCA101，小心滑行，K滑行道积水，刹车效应为中等至差。\n问题：管制员为什么要求飞行员滑行时小心？",
       "referenceText": "正确答案：C. The taxiway is covered with standing water",
-      "audio": "/question-bank-assets/audio/listening/main/486.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/089.mp3",
       "choices": [
         "The taxiway is covered with flood",
         "The taxiway is covered with fog",
@@ -475,7 +475,7 @@
       "audioText": "PIL: Wuhan Approach, NW808, could you turn up the approach lights? CTL: NW808, I am sorry, they are already at maximum.\nQuestion: What is the pilot request?",
       "audioTextZh": "飞行员：武汉进近，NW808，能否调亮进近灯？管制员：NW808，很抱歉，已经调到最亮了。\n问题：飞行员提出了什么请求？",
       "referenceText": "正确答案：C. To brighten the approach lights",
-      "audio": "/question-bank-assets/audio/listening/main/487.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/090.mp3",
       "choices": [
         "To turn on the approach lights",
         "To turn off the approach lights",
@@ -490,7 +490,7 @@
       "audioText": "CTL: AFR188, via taxiway E to C4 intersection and proceed to holding point runway 34 right, caution, personnel and equipment working adjacent to C4. PIL: C4 intersection to runway 34, AFR188.\nQuestion: What does the controller mean?",
       "audioTextZh": "管制员：AFR188，经E滑行道至C4交叉口，然后前往34R跑道等待点。注意，C4附近有人员和设备正在作业。飞行员：经C4交叉口至34跑道，AFR188。\n问题：管制员是什么意思？",
       "referenceText": "正确答案：D. Work in progress near taxiway",
-      "audio": "/question-bank-assets/audio/listening/main/488.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/091.mp3",
       "choices": [
         "The taxiway is not in use",
         "Hold short of runway",
@@ -505,7 +505,7 @@
       "audioText": "P: GWL546, please brighten up the approach lights, they look dim. C: GWL 546, they are already on maximum setting, cleared to land. P: Cleared to land, GWL 546.\nQuestion: What is the weather probably like?",
       "audioTextZh": "飞行员：GWL546，请调亮进近灯，它们看起来很暗。管制员：GWL 546，进近灯已经调到最大亮度，许可着陆。飞行员：许可着陆，GWL 546。\n问题：天气可能怎么样？",
       "referenceText": "正确答案：B. Dark",
-      "audio": "/question-bank-assets/audio/listening/main/489.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/092.mp3",
       "choices": [
         "clear",
         "Dark",
@@ -520,7 +520,7 @@
       "audioText": "CTL: Mayday, mayday, mayday, Wuhan control, this is UAL982, my elevator is jammed in up position and I can not control my attitude, nor can I close my throttle. PIL: UAL982, roger mayday. What is your intention?\nQuestion: Which are involved in the problem?",
       "audioTextZh": "飞行员：MAYDAY，MAYDAY，MAYDAY，武汉管制，这里是UAL982，我的升降舵卡在上偏位置，无法控制飞机姿态，也无法收回油门。管制员：UAL982，收到MAYDAY。你们的意图是什么？\n问题：哪些部件出现了问题？",
       "referenceText": "正确答案：C. Throttle, elevator, attitude",
-      "audio": "/question-bank-assets/audio/listening/main/490.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/096.mp3",
       "choices": [
         "Rudder, elevator",
         "Elevator, throttle",
@@ -535,7 +535,7 @@
       "audioText": "C: AFR334, negative to start up. We had an emergency this morning. There is foam on the runway and it is being cleaned up at the moment. P: Will it be reopened shortly? C: Perhaps in 15 minutes, I will call you back.\nQuestion: Why can’t the pilot start up?",
       "audioTextZh": "管制员：AFR334，不同意启动。今天早上发生了一起紧急情况，跑道上有泡沫，目前正在清理。飞行员：很快会重新开放吗？管制员：可能15分钟后，我会再次呼叫你。\n问题：飞行员为什么不能启动？",
       "referenceText": "正确答案：D. All of above",
-      "audio": "/question-bank-assets/audio/listening/main/491.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/098.mp3",
       "choices": [
         "The runway is being foamed",
         "An emergency is not completed",
@@ -550,7 +550,7 @@
       "audioText": "CTL: BAW141, what is your intention? PIL: We would like to execute fuel jettison procedure before the approach. CTL: BAW141, turn right heading 350 to HID hold as published.\nQuestion: What does the pilot intend to do?",
       "audioTextZh": "管制员：BAW141，你们的意图是什么？飞行员：我们希望在进近前实施放油程序。管制员：BAW141，右转航向350，按公布程序在HID等待。\n问题：飞行员打算做什么？",
       "referenceText": "正确答案：B. To dump fuel before approach",
-      "audio": "/question-bank-assets/audio/listening/main/492.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/100.mp3",
       "choices": [
         "To hold before approach",
         "To dump fuel before approach",
@@ -565,7 +565,7 @@
       "audioText": "P: Approach, CCA987, we are returning to the airport, we cannot reset takeoff configuration warning. C: CCA987, turn right heading 350, report over HG.\nQuestion: What problem did the crew have?",
       "audioTextZh": "飞行员：进近，CCA987，我们正在返场，无法复位起飞构型警告。管制员：CCA987，右转航向350，飞越HG时报告。\n问题：机组遇到了什么问题？",
       "referenceText": "正确答案：A. Malfunction waning was unable to be cancelled",
-      "audio": "/question-bank-assets/audio/listening/main/493.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/106.mp3",
       "choices": [
         "Malfunction waning was unable to be cancelled",
         "They could not reset electrical circuit",
@@ -580,7 +580,7 @@
       "audioText": "C: CES583, maintain flight level 330 to HG unless otherwise instructed. P: Wilco, CES583.\nQuestion: What does the controller mean?",
       "audioTextZh": "管制员：CES583，除非另有指示，保持飞行高度层330至HG。飞行员：照办，CES583。\n问题：管制员是什么意思？",
       "referenceText": "正确答案：D. There is a possibility of level change",
-      "audio": "/question-bank-assets/audio/listening/main/494.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/107.mp3",
       "choices": [
         "Flight level 330 must be changed",
         "Flight level 330 is available",
@@ -595,7 +595,7 @@
       "audioText": "P: Control, we are leaving FL250 for 200. C: BAW141, your transmission is partly broken. Understand leaving flight level 240. P: Negative. We’re leaving 250.\nQuestion: What happened?",
       "audioTextZh": "飞行员：管制，我们正在离开FL250，下降至FL200。管制员：BAW141，你的发射断断续续。我理解为离开FL240。飞行员：不对，我们正在离开FL250。\n问题：发生了什么？",
       "referenceText": "正确答案：D. The transmission was interrupted",
-      "audio": "/question-bank-assets/audio/listening/main/495.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/108.mp3",
       "choices": [
         "The transmission was entirely blocked",
         "The pilot made a mistake in transmitting",
@@ -610,7 +610,7 @@
       "audioText": "C: BAW808, radar can’t observe you due to ground clutters, will advise you when contact regained, resume own navigation to Penton intersection.\nQuestion: What happened at that moment?",
       "audioTextZh": "管制员：BAW808，由于地面杂波，雷达无法观察到你。重新建立雷达联系时会通知你，恢复自主领航直飞Penton交叉点。\n问题：当时发生了什么？",
       "referenceText": "正确答案：B. Radar contact lost",
-      "audio": "/question-bank-assets/audio/listening/main/496.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/109.mp3",
       "choices": [
         "Radar vector was ended",
         "Radar contact lost",
@@ -625,7 +625,7 @@
       "audioText": "PIL: Control, CES5321, 12,000m, 4 minutes to boundary. CTL: CES5321, maintaining level and heading, contact 125.6.\nQuestion: What was going on?",
       "audioTextZh": "飞行员：管制，CES5321，高度12000米，距边界4分钟。管制员：CES5321，保持高度和航向，联系125.6。\n问题：当时正在进行什么操作？",
       "referenceText": "正确答案：A. The flight was going to be handed over to next controller",
-      "audio": "/question-bank-assets/audio/listening/main/497.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/110.mp3",
       "choices": [
         "The flight was going to be handed over to next controller",
         "The pilot had established communication with Wuhan",
@@ -640,7 +640,7 @@
       "audioText": "P: SIA303, we have just been struck by lightning and we’ll have to go back to the apron to check our electrics and make sure there’s no damage to the airframe. C: SIA303, roger. Do you require any airport services?\nQuestion: What does the controller mean?",
       "audioTextZh": "飞行员：SIA303，我们刚遭到雷击，必须返回机坪检查电气系统，并确认机体没有损伤。管制员：SIA303，收到。你们需要任何机场服务吗？\n问题：管制员是什么意思？",
       "referenceText": "正确答案：B. Ready to help to the flight",
-      "audio": "/question-bank-assets/audio/listening/main/498.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/119.mp3",
       "choices": [
         "The crew could fix it by themselves",
         "Ready to help to the flight",
@@ -655,7 +655,7 @@
       "audioText": "P: Ground, AFR336, we've missed the intersection for right turn, request follow-me car. C: AFR336, hold position there, I will send a van out for you.\nQuestion: What happened with AFR336?",
       "audioTextZh": "飞行员：地面，AFR336，我们错过了右转道口，请求引导车。\n管制员：AFR336，在原地等待，我会派一辆车过去引导你。\n问题：AFR336发生了什么情况？",
       "referenceText": "正确答案：C. It has gone beyond the intersection.",
-      "audio": "/question-bank-assets/audio/listening/main/499.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/131.mp3",
       "choices": [
         "It has turned right.",
         "It has turned left.",
@@ -670,7 +670,7 @@
       "audioText": "P: Tower, CSN348, ready for approach. C: CSN348, roger. Exit hold and proceed direct to IKUBA, cleared IKUBA01A, runway 04. P: Exit hold and proceed direct to IKUBA, cleared IKUBA01A, runway 04, CSN348.\nQuestion: What should CSN348 do?",
       "audioTextZh": "飞行员：塔台，CSN348，已准备好进近。\n管制员：CSN348，收到。离开等待，直飞IKUBA，允许执行IKUBA01A进场，使用04号跑道。\n飞行员：离开等待，直飞IKUBA，执行IKUBA01A进场，使用04号跑道，CSN348。\n问题：CSN348应该做什么？",
       "referenceText": "正确答案：A. Exit the hold, fly to IKUBA.",
-      "audio": "/question-bank-assets/audio/listening/main/500.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/132.mp3",
       "choices": [
         "Exit the hold, fly to IKUBA.",
         "Perform a hold at IKUBA.",
@@ -685,7 +685,7 @@
       "audioText": "C: BAW315, hold short of runway, you are No. 2 for departure, after the B747.\nQuestion: What is the departure sequence for BAW315?",
       "audioTextZh": "管制员：BAW315，在跑道外等待。你是第二个离场，在那架波音747之后起飞。\n问题：BAW315的离场顺序是什么？",
       "referenceText": "正确答案：C. After the Boeing 747.",
-      "audio": "/question-bank-assets/audio/listening/main/501.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/133.mp3",
       "choices": [
         "Before the Airbus 320.",
         "After DC-9.",
@@ -700,7 +700,7 @@
       "audioText": "P: Beijing Tower, CSN302, no contact at minima, going around. C: CSN302, standard procedure.\nQuestion: What is the reason for going around?",
       "audioTextZh": "飞行员：北京塔台，CSN302，在最低标准高度仍未建立目视，正在复飞。\n管制员：CSN302，按标准程序执行。\n问题：复飞的原因是什么？",
       "referenceText": "正确答案：A. Poor visibility.",
-      "audio": "/question-bank-assets/audio/listening/main/502.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/134.mp3",
       "choices": [
         "Poor visibility.",
         "Ceiling variable.",
@@ -715,7 +715,7 @@
       "audioText": "C: SIA223, hold short of next intersection, give way to Blue B767 coming from left.\nQuestion: To which aircraft should SIA223 give way?",
       "audioTextZh": "管制员：SIA223，在下一个交叉口外等待，避让从左侧驶来的蓝色波音767。\n问题：SIA223应该给哪架飞机让路？",
       "referenceText": "正确答案：A. Blue B767 coming from left",
-      "audio": "/question-bank-assets/audio/listening/main/503.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/135.mp3",
       "choices": [
         "Blue B767 coming from left",
         "Blue B767 coming from right",
@@ -730,7 +730,7 @@
       "audioText": "P: CCA750, we have a pressurization problem and need to descend to 5100m immediately. C: CCA750, unable to descend due to high terrain. For descent, turn right 060 degrees, expect descent clearance in 10km.\nQuestion: Why are they unable to descend immediately?",
       "audioTextZh": "飞行员：CCA750，我们出现增压问题，需要立即下降至5,100米。\n管制员：CCA750，由于前方地形较高，暂时无法下降。为准备下降，右转航向060度，预计10公里后获得下降许可。\n问题：他们为什么不能立即下降？",
       "referenceText": "正确答案：B. Unable due to high ground",
-      "audio": "/question-bank-assets/audio/listening/main/504.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/136.mp3",
       "choices": [
         "Unable due to traffic",
         "Unable due to high ground",
@@ -745,7 +745,7 @@
       "audioText": "P: BAW725, we are returning to land, we seem to have a nose wheel well fire, request priority landing and emergency services. C: BAW725, call you back. C: BAW725, No. 1 to land, emergency services will be ready upon landing.\nQuestion: What's the problem with the aircraft?",
       "audioTextZh": "飞行员：BAW725，我们正在返场着陆，前起落架舱似乎起火，请求优先着陆和应急服务。\n管制员：BAW725，稍后呼叫你。\n管制员：BAW725，你是第一架着陆，飞机落地时应急服务人员会准备就绪。\n问题：飞机出了什么问题？",
       "referenceText": "正确答案：A. Fire in the nose wheel well",
-      "audio": "/question-bank-assets/audio/listening/main/505.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/139.mp3",
       "choices": [
         "Fire in the nose wheel well",
         "Fire in the cargo hold",
@@ -760,7 +760,7 @@
       "audioText": "P: Tower, this is BAW233, we are ready for departure on runway 29L. C: BAW233, your transmission is cutting in and out. Check your mike button and call back.\nQuestion: What was the problem in the transmission?",
       "audioTextZh": "飞行员：塔台，这里是BAW233，我们已准备好从29L跑道离场。\n管制员：BAW233，你的通话时断时续，请检查麦克风按钮后重新呼叫。\n问题：无线电通话出了什么问题？",
       "referenceText": "正确答案：D. Intermittent",
-      "audio": "/question-bank-assets/audio/listening/main/506.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/151.mp3",
       "choices": [
         "Faint",
         "Low",
@@ -775,7 +775,7 @@
       "audioText": "C: SIA122, you are No. 1 to land, continue to descend to 3000ft, speed at your own discretion.\nQuestion: Who decides the approach speed?",
       "audioTextZh": "管制员：SIA122，你是第一架着陆，继续下降至3,000英尺，速度由机组自行决定。\n问题：谁决定进近速度？",
       "referenceText": "正确答案：A. the flying crew",
-      "audio": "/question-bank-assets/audio/listening/main/507.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/152.mp3",
       "choices": [
         "the flying crew",
         "the autopilot",
@@ -790,7 +790,7 @@
       "audioText": "P: PAN PAN, PAN PAN, PAN PAN, Guangzhou Control, CSN6359, one engine was shut down due to surge, request divert to Shenzhen. C: CSN6359, cleared to Shenzhen.\nQuestion: Why did CSN6359 request divert to Shenzhen?",
       "audioTextZh": "飞行员：PAN PAN，PAN PAN，PAN PAN，广州区调，CSN6359，一台发动机因喘振已经关车，请求改航深圳。\n管制员：CSN6359，允许飞往深圳。\n问题：CSN6359为什么请求改航深圳？",
       "referenceText": "正确答案：B. Engine failed due to vibration.",
-      "audio": "/question-bank-assets/audio/listening/main/508.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/153.mp3",
       "choices": [
         "Engine failed due to fuel problem.",
         "Engine failed due to vibration.",
@@ -805,7 +805,7 @@
       "audioText": "C: SIA512, give way to Eastern 777 on taxiway WP passing left to right.\nQuestion: What is SIA512 required to do?",
       "audioTextZh": "管制员：SIA512，避让在WP滑行道上从左向右通过的东航波音777。\n问题：SIA512需要做什么？",
       "referenceText": "正确答案：B. To let the Eastern 777 pass.",
-      "audio": "/question-bank-assets/audio/listening/main/509.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/155.mp3",
       "choices": [
         "To pass left to right.",
         "To let the Eastern 777 pass.",
@@ -820,7 +820,7 @@
       "audioText": "C: NWA48, descend to FL290 now for crossing traffic, be level at FL290 in two minutes or less. P: Roger, descend to FL290 in two minutes or less for crossing traffic, leaving FL330 now.\nQuestion: How much do they have to descend?",
       "audioTextZh": "管制员：NWA48，由于有穿越冲突飞机，立即下降至FL290，并在两分钟以内于FL290改平。\n飞行员：收到，为避让穿越飞机，两分钟以内下降至FL290，现在离开FL330。\n问题：他们需要下降多少高度？",
       "referenceText": "正确答案：C. 4000 feet",
-      "audio": "/question-bank-assets/audio/listening/main/510.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/156.mp3",
       "choices": [
         "1000 meters",
         "2 minutes or less",
@@ -835,7 +835,7 @@
       "audioText": "P: CSN309, we have indication of weather about 40km ahead of us, request turn right to go around it. C: CSN309, negative due prohibited area. Turn left 30 degrees and track out 35km, report clear of buildup.\nQuestion: What does the controller ask the pilot to do?",
       "audioTextZh": "飞行员：CSN309，我们显示前方约40公里有天气，请求右转绕飞。\n管制员：CSN309，由于有禁区，不能批准。左转30度，向外飞35公里，脱离云体后报告。\n问题：管制员要求飞行员做什么？",
       "referenceText": "正确答案：C. Turn left 30 degrees.",
-      "audio": "/question-bank-assets/audio/listening/main/511.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/159.mp3",
       "choices": [
         "Turn right 35 degrees.",
         "Turn right 40 degrees.",
@@ -850,7 +850,7 @@
       "audioText": "P: Approach, CCA001, we've not received ILS, confirm it is transmitting. C: CCA001, previous aircraft reported ILS is OK. I can continue to give you vectors to final. P: Affirm, radar vectors to final, CCA001.\nQuestion: Which statement best describes the situation?",
       "audioTextZh": "飞行员：进近，CCA001，我们没有收到ILS信号，请确认系统是否正在发射。\n管制员：CCA001，前机报告ILS正常。我可以继续雷达引导你到最后进近。\n飞行员：可以，雷达引导至最后进近，CCA001。\n问题：哪项陈述最符合当前情况？",
       "referenceText": "正确答案：D. Approach will guide them to final.",
-      "audio": "/question-bank-assets/audio/listening/main/512.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/160.mp3",
       "choices": [
         "The NDB is out of service.",
         "They will change to a different runway.",
@@ -865,7 +865,7 @@
       "audioText": "C: CES 5402, Wuhan Approach, low altitude (level) warning, check your altitude on QNH1012, the minimum safe altitude is 900m. P: Wilco, 5402.\nQuestion: what happened?",
       "audioTextZh": "管制员：CES5402，武汉进近，低高度警告。请按QNH1012检查高度，最低安全高度为900米。\n飞行员：照办，5402。\n问题：发生了什么情况？",
       "referenceText": "正确答案：D. Low level warning",
-      "audio": "/question-bank-assets/audio/listening/main/513.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/171.mp3",
       "choices": [
         "QNH failure warning",
         "Altimeter failure warning",
@@ -880,7 +880,7 @@
       "audioText": "P: Ground control, CSN378. C: CSN378, Ground, go ahead. P: Our APU malfunctioned, request start No 2 engine at the bay, CSN378.\nQuestion: What did CSN378 request?",
       "audioTextZh": "飞行员：地面管制，CSN378。\n管制员：CSN378，地面，请讲。\n飞行员：我们的APU发生故障，请求在机位启动2号发动机，CSN378。\n问题：CSN378请求做什么？",
       "referenceText": "正确答案：B. Start an engine.",
-      "audio": "/question-bank-assets/audio/listening/main/514.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/172.mp3",
       "choices": [
         "Start APU.",
         "Start an engine.",
@@ -895,7 +895,7 @@
       "audioText": "C: Turn left 30 degrees, when completing the turn, expect a traffic at your 2 o’clock, climbing, at 1000ft or below.\nQuestion: When will the traffic be at 2 o’clock?",
       "audioTextZh": "管制员：左转30度，完成转弯后，预计在你两点钟方向有一架正在爬升的飞机，高度为1,000英尺或以下。\n问题：该飞机什么时候会出现在两点钟方向？",
       "referenceText": "正确答案：D. After the turn",
-      "audio": "/question-bank-assets/audio/listening/main/515.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/174.mp3",
       "choices": [
         "Before the turn",
         "As the traffic climbs",
@@ -910,7 +910,7 @@
       "audioText": "C: AFR765, reply not received, if you read, turn left heading 040 degrees, I say again, turn left heading 040 degrees.\nQuestion: What problem might Air France have?",
       "audioTextZh": "管制员：AFR765，未收到你的回答。如果你能听到，左转航向040度。再说一遍，左转航向040度。\n问题：法航飞机可能出现了什么问题？",
       "referenceText": "正确答案：D. Transmitter failure",
-      "audio": "/question-bank-assets/audio/listening/main/516.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/175.mp3",
       "choices": [
         "Low on fuel",
         "Compass error",
@@ -925,7 +925,7 @@
       "audioText": "C: UAL755, ceiling 250 ft, variable, visibility, 2200m in fog, advise go around. P: UAL 755. P: UAL755, no contact at minima,overshooting.\nQuestion: What is the reason for advised going around?",
       "audioTextZh": "管制员：UAL755，云底高度250英尺、变化不定，雾中能见度2,200米，建议复飞。\n飞行员：UAL755。\n飞行员：UAL755，在最低标准高度未建立目视，正在复飞。\n问题：管制员建议复飞的原因是什么？",
       "referenceText": "正确答案：C. Ceiling.",
-      "audio": "/question-bank-assets/audio/listening/main/517.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/180.mp3",
       "choices": [
         "Crosswind.",
         "Gear problem.",
@@ -940,7 +940,7 @@
       "audioText": "C: Qantas541, you are cleared to 8100m. P: We only filed for 7500m, but 8100m is fine if you prefer that altitude.\nQuestion: What was the meaning of the pilot's response?",
       "audioTextZh": "管制员：Qantas541，允许爬升至8,100米。\n飞行员：我们的飞行计划只申请了7,500米，不过如果你希望我们使用8,100米，我们也可以接受。\n问题：飞行员的回答是什么意思？",
       "referenceText": "正确答案：B. They accepted 8100.",
-      "audio": "/question-bank-assets/audio/listening/main/518.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/191.mp3",
       "choices": [
         "They accepted 7500 but not 8100.",
         "They accepted 8100.",
@@ -955,7 +955,7 @@
       "audioText": "C: Wuhan Ground, CCA101, request tow, B737 from stand M5 to maintenance apron due to nose gear jammed. P: tow approved via taxiway M to maintenance apron.\nQuestion: What is the problem with the aircraft?",
       "audioTextZh": "飞行员：武汉地面，CCA101，请求拖飞机。由于前起落架卡住，请将这架波音737从M5机位拖至维修机坪。\n管制员：同意拖行，经M滑行道前往维修机坪。\n问题：这架飞机出了什么问题？",
       "referenceText": "正确答案：A. Nose gear can't be moved.",
-      "audio": "/question-bank-assets/audio/listening/main/519.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/192.mp3",
       "choices": [
         "Nose gear can't be moved.",
         "Nose gear has bogged down.",
@@ -970,7 +970,7 @@
       "audioText": "P: Departure, AFR456, we are coming back due to cracked windscreen caused by bird strike during departure. C: AFR456, roger, join right downwind.\nQuestion: Why did AFR return?",
       "audioTextZh": "飞行员：离场，AFR456。我们在起飞过程中遭遇鸟击，风挡出现裂纹，因此正在返航。\n管制员：AFR456，收到，加入右三边。\n问题：AFR为什么返航？",
       "referenceText": "正确答案：C. Windscreen broken.",
-      "audio": "/question-bank-assets/audio/listening/main/520.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/194.mp3",
       "choices": [
         "Bird cracked.",
         "Wind-shear.",
@@ -985,7 +985,7 @@
       "audioText": "C: NWA 898, cleared to Beijing via A1 and 6000m, WeKing 4 departure, squawk 5501, eh, correction, standby squawk.\nQuestion: What transponder code should Northwest 898 set?",
       "audioTextZh": "管制员：NWA898，允许经A1飞往北京，爬升至6,000米，执行WeKing 4离场，应答机编码5501。呃，更正，应答机编码稍后通知。\n问题：西北航空898应该设置什么应答机编码？",
       "referenceText": "正确答案：C. Squawk not available yet.",
-      "audio": "/question-bank-assets/audio/listening/main/521.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/195.mp3",
       "choices": [
         "5510",
         "5505",
@@ -1000,7 +1000,7 @@
       "audioText": "C: CES147, do you want medical personnel to meet at the gate or at the taxiway you exit the runway? P: CES147, we will exit via N, we'd like better the medical personnel wait there.\nQuestion: Where does China Eastern147 want the medical personnel to meet them?",
       "audioTextZh": "管制员：CES147，你们希望医务人员在登机口等候，还是在你们脱离跑道的滑行道上等候？\n飞行员：CES147，我们将经N滑行道脱离，希望医务人员在那里等候。\n问题：东航147希望医务人员在哪里接应？",
       "referenceText": "正确答案：D. On taxiway November.",
-      "audio": "/question-bank-assets/audio/listening/main/522.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/196.mp3",
       "choices": [
         "At the end of the runway.",
         "At the gate.",
@@ -1015,7 +1015,7 @@
       "audioText": "P: We can't get to de-icing pad on time,so for cooperation, we got a new slot time. C: Ok, I will see and put you a new departure slot.\nQuestion: Why do they need to get a new departure slot?",
       "audioTextZh": "飞行员：我们无法按时到达除冰坪，因此经过协调，我们获得了新的时隙时间。\n管制员：好的，我查看一下，并为你安排一个新的离场时隙。\n问题：他们为什么需要获得新的离场时隙？",
       "referenceText": "正确答案：C. Delayed in reaching de-icing pad.",
-      "audio": "/question-bank-assets/audio/listening/main/523.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/211.mp3",
       "choices": [
         "Taxi way blocked.",
         "No de-icing equipment.",
@@ -1030,7 +1030,7 @@
       "audioText": "C: CCA1141, vacate runway via taxiway A4,caution, much trench on right side, correction, much trench on the left side of A4.\nQuestion: What does the controller mean?",
       "audioTextZh": "管制员：CCA1141，经A4滑行道脱离跑道。注意，右侧有一道大沟；更正，A4滑行道左侧有一道大沟。\n问题：管制员是什么意思？",
       "referenceText": "正确答案：A. A trench is on the left side of taxiway.",
-      "audio": "/question-bank-assets/audio/listening/main/524.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/212.mp3",
       "choices": [
         "A trench is on the left side of taxiway.",
         "Work in progress next to the apron.",
@@ -1045,7 +1045,7 @@
       "audioText": "C: CCA981, take first right, then T5, P to Gate 212. P: T5, P to Gate 212, CCA981.\nQuestion: When did this conversation take place?",
       "audioTextZh": "管制员：CCA981，在第一个道口右转，然后经T5、P滑行道前往212号登机口。\n飞行员：经T5、P滑行道前往212号登机口，CCA981。\n问题：这段对话发生在什么时候？",
       "referenceText": "正确答案：D. During taxi in.",
-      "audio": "/question-bank-assets/audio/listening/main/525.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/213.mp3",
       "choices": [
         "Before landing.",
         "During taxi out.",
@@ -1060,7 +1060,7 @@
       "audioText": "C: CCA1365, Beijing Delivery, cancel clearance due military activity in progress, expect new clearance in 20 minutes.\nQuestion: What should CCA1365 expect in 20 minutes?",
       "audioTextZh": "管制员：CCA1365，北京放行，由于军事活动正在进行，取消放行许可，预计20分钟后获得新的放行许可。\n问题：CCA1365在20分钟后应预计获得什么？",
       "referenceText": "正确答案：D. New clearance.",
-      "audio": "/question-bank-assets/audio/listening/main/526.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/215.mp3",
       "choices": [
         "Different STAR.",
         "Change of gate.",
@@ -1075,7 +1075,7 @@
       "audioText": "P: ACA 177, we've been experiencing severe turbulence at this flight level. Could we have a slightly lower level? C: ACA177, stand by. P: roger, ACA177, if not available, we also accept higher level. ACA177, climb to FL370.\nQuestion: Why does the pilot want to change flight level?",
       "audioTextZh": "飞行员：ACA177，我们在当前飞行高度层一直遭遇严重颠簸。可以给我们一个稍低的高度层吗？\n管制员：ACA177，稍等。\n飞行员：收到，ACA177。如果没有较低高度层，我们也可以接受较高的高度层。\n管制员：ACA177，爬升至FL370。\n问题：飞行员为什么希望改变飞行高度层？",
       "referenceText": "正确答案：B. Present level is too turbulent.",
-      "audio": "/question-bank-assets/audio/listening/main/527.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/216.mp3",
       "choices": [
         "Present level is too high.",
         "Present level is too turbulent.",
@@ -1090,7 +1090,7 @@
       "audioText": "C: ATC clears NWA 146 flight planned track to destination Arch County Standard Vortex 1 departure, runway23R, Squawk 2512. call radar 125.6 when airborne.\nQuestion: What is the squawk code(=squawk/SSR code)?",
       "audioTextZh": "管制员：空中交通管制许可NWA146按飞行计划航路飞往目的地，执行Arch County Standard Vortex 1离场，使用23R跑道，应答机编码2512。离地后在125.6联系雷达管制。\n问题：应答机编码是多少？",
       "referenceText": "正确答案：C. 2512",
-      "audio": "/question-bank-assets/audio/listening/main/528.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/220.mp3",
       "choices": [
         "2315",
         "1461",
@@ -1105,7 +1105,7 @@
       "audioText": "C: Traffic will you be your 1 o'clock restricted to 12000ft when she completes the turn.\nQuestion: When will the traffic be at one o'clock?",
       "audioTextZh": "管制员：该飞机完成转弯后，会出现在你一点钟方向，高度限制在12,000英尺。\n问题：该飞机什么时候会出现在一点钟方向？",
       "referenceText": "正确答案：A. After the turn",
-      "audio": "/question-bank-assets/audio/listening/main/529.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/221.mp3",
       "choices": [
         "After the turn",
         "Before the turn.",
@@ -1120,7 +1120,7 @@
       "audioText": "C: SIA919, Beijing Center, turn left heading 220, opposite direction traffic Airbus at FL330.\nQuestion: What altitude is the opposite direction traffic flying at?",
       "audioTextZh": "管制员：SIA919，北京区调，左转航向220度，相反方向有一架空客飞机在FL330飞行。\n问题：相反方向的飞机正在什么高度飞行？",
       "referenceText": "正确答案：A. FL 330.",
-      "audio": "/question-bank-assets/audio/listening/main/530.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/231.mp3",
       "choices": [
         "FL 330.",
         "FL 190.",
@@ -1135,7 +1135,7 @@
       "audioText": "C: CCA1, heavy, cleared to land runway 19R, do you overtake EJR on your right? Confirm you have it in sight.\nQuestion: Where is the other aircraft?",
       "audioTextZh": "管制员：CCA1，重型，允许在19R跑道着陆。你们正在超越右侧的EJR飞机，确认已经看到该机。\n问题：另一架飞机在哪里？",
       "referenceText": "正确答案：B. Ahead and on the right.",
-      "audio": "/question-bank-assets/audio/listening/main/531.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/232.mp3",
       "choices": [
         "Behind and on the right.",
         "Ahead and on the right.",
@@ -1150,7 +1150,7 @@
       "audioText": "C: CES5632, at time 50, departing  B757 reported windshear at 800ft, airspeed loss 20 knots, strong right drift.\nQuestion: What danger might the pilot encounter?",
       "audioTextZh": "管制员：CES5632，50分时，一架离场的波音757报告在800英尺遭遇风切变，空速损失20节，并出现强烈右偏。\n问题：飞行员可能会遇到什么危险？",
       "referenceText": "正确答案：A. Sudden loss of airspeed.",
-      "audio": "/question-bank-assets/audio/listening/main/532.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/233.mp3",
       "choices": [
         "Sudden loss of airspeed.",
         "Strong left drift.",
@@ -1165,7 +1165,7 @@
       "audioText": "C: CES345, your departure time is14:00, is that correct? P: Affirmative, that is planned departure, I will call you fifteen minutes before startup.\nQuestion: When will the pilot contact ATC?",
       "audioTextZh": "管制员：CES345，你们的离场时间是14:00，对吗？\n飞行员：是的，那是计划离场时间。我会在启动发动机前15分钟呼叫你。\n问题：飞行员什么时候会联系空中交通管制？",
       "referenceText": "正确答案：B. Fifteen minutes before start-up",
-      "audio": "/question-bank-assets/audio/listening/main/533.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/234.mp3",
       "choices": [
         "Fifteen minutes before departure",
         "Fifteen minutes before start-up",
@@ -1180,7 +1180,7 @@
       "audioText": "C: NWA 142, cleared visual approach runway 19L, maintain visual separation with Air China 737 ahead on short final landing on parallel runway. Confirm you have it in sight.\nQuestion: Where is the other aircraft?",
       "audioTextZh": "管制员：NWA142，允许目视进近19L跑道。与前方在平行跑道短五边着陆的国航波音737保持目视间隔，确认已经看到该机。\n问题：另一架飞机在哪里？",
       "referenceText": "正确答案：A. Ahead for R/W 19 R.",
-      "audio": "/question-bank-assets/audio/listening/main/534.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/235.mp3",
       "choices": [
         "Ahead for R/W 19 R.",
         "Ahead for R/W 19 L.",
@@ -1195,7 +1195,7 @@
       "audioText": "C: UAL347, descend immediately due to traffic,a B737 is closing on you. P: Control, UAL347, our resolution (TCAS RA) advises us direct to climb to avoid the traffic. The traffic ahead is descending.\nQuestion: What happened?",
       "audioTextZh": "管制员：UAL347，由于有冲突飞机，立即下降，一架波音737正在接近你们。\n飞行员：管制，UAL347，我们的TCAS决断咨询指令我们立即爬升以避让。前方冲突飞机正在下降。\n问题：发生了什么情况？",
       "referenceText": "正确答案：A. TCAS indication went against ATC instruction.",
-      "audio": "/question-bank-assets/audio/listening/main/535.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/238.mp3",
       "choices": [
         "TCAS indication went against ATC instruction.",
         "RA instructed UAL347 to descend.",
@@ -1210,7 +1210,7 @@
       "audioText": "C: UAL895, be advised runway 23L ILS out of service, expect VOR approach runway 16, circle to land runway 23R, surface wind 250, gusting 15 knots, ceiling 250 broken. P; UAL 895, roger. VOR approach runway 16, circle to land runway 23R\nQuestion: Which approach can the crew expect?",
       "audioTextZh": "管制员：UAL895，注意，23L跑道ILS停止使用。预计对16号跑道实施VOR进近，随后盘旋在23R跑道着陆。地面风向250度，阵风15节，云底250英尺，多云。\n飞行员：UAL895，收到。VOR进近16号跑道，盘旋在23R跑道着陆。\n问题：机组预计可以实施哪种进近？",
       "referenceText": "正确答案：C. VOR approach RW 16.",
-      "audio": "/question-bank-assets/audio/listening/main/536.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/239.mp3",
       "choices": [
         "VOR approach RW 23R.",
         "RW 23L ILS.",
@@ -1225,7 +1225,7 @@
       "audioText": "C: SIA786, Wuhan Approach, cleared ILS approach 04 followed by circling to land runway 22.\nQuestion: Which runway should Singapore 786 land on?",
       "audioTextZh": "管制员：SIA786，武汉进近，允许对04号跑道实施ILS进近，随后盘旋在22号跑道着陆。\n问题：新航786应该在哪条跑道着陆？",
       "referenceText": "正确答案：B. Runway 22",
-      "audio": "/question-bank-assets/audio/listening/main/537.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/251.mp3",
       "choices": [
         "Runway 04",
         "Runway 22",
@@ -1240,7 +1240,7 @@
       "audioText": "P: CCA981, after S, continue onto K, hold short of runway 27, request full length departure from runway 27,CCA981. C: CCA981, roger, taxi via J and hold short of runway 27.\nQuestion: What has CCA981requested?",
       "audioTextZh": "飞行员：CCA981，经过S后继续进入K滑行道，在27号跑道外等待；请求从27号跑道全跑道起飞，CCA981。\n管制员：CCA981，收到，经J滑行道滑行，在27号跑道外等待。\n问题：CCA981提出了什么请求？",
       "referenceText": "正确答案：B. A full runway departure.",
-      "audio": "/question-bank-assets/audio/listening/main/538.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/252.mp3",
       "choices": [
         "A different runway.",
         "A full runway departure.",
@@ -1255,7 +1255,7 @@
       "audioText": "C: CSN3342，don't park your aircraft there, the nose of the aircraft should be facing away from the hangar.\nQuestion: What does the speaker mean?",
       "audioTextZh": "管制员：CSN3342，不要把飞机停在那里，机头应该背向机库。\n问题：说话人是什么意思？",
       "referenceText": "正确答案：C. The aircraft parked in a wrong position.",
-      "audio": "/question-bank-assets/audio/listening/main/539.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/253.mp3",
       "choices": [
         "The aircraft was in a correct position.",
         "The aircraft was outside the ramp.",
@@ -1270,7 +1270,7 @@
       "audioText": "C: CCA412, heavy, cleared for takeoff runway 23L, wind 220 at 15 knots.\nQuestion: Which runway is Air China412 using to take off?",
       "audioTextZh": "管制员：CCA412，重型，允许从23L跑道起飞，风向220度，风速15节。\n问题：国航412使用哪条跑道起飞？",
       "referenceText": "正确答案：D. 23 left.",
-      "audio": "/question-bank-assets/audio/listening/main/540.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/254.mp3",
       "choices": [
         "15 left.",
         "23 right.",
@@ -1285,7 +1285,7 @@
       "audioText": "C: BAW725, hold short of runway 35L, you are No 2 for departure after the B737.\nQuestion: Where is BAW725 expected to be?",
       "audioTextZh": "管制员：BAW725，在35L跑道外等待。你是第二个离场，在那架波音737之后起飞。\n问题：预计BAW725应位于哪里？",
       "referenceText": "正确答案：A. Holding position",
-      "audio": "/question-bank-assets/audio/listening/main/541.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/255.mp3",
       "choices": [
         "Holding position",
         "Take-off position",
@@ -1300,7 +1300,7 @@
       "audioText": "P: Center, CES16, we need to turn left 30 degrees due to weather. C: CES16, unable due to traffic. Can you accept 20 degrees right? P: Affirm, we can accept 20 degrees right. Heading 090 degree, CES16.\nQuestion: Which course change is refused by the controller?",
       "audioTextZh": "飞行员：区调，CES16，由于天气原因，我们需要左偏30度。\n管制员：CES16，由于有冲突飞机，无法批准。你们能接受右偏20度吗？\n飞行员：可以，我们能接受右偏20度，航向090度，CES16。\n问题：管制员拒绝了哪项航向改变请求？",
       "referenceText": "正确答案：D. 30 degrees left",
-      "audio": "/question-bank-assets/audio/listening/main/542.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/259.mp3",
       "choices": [
         "20 degrees right",
         "due to weather",
@@ -1315,7 +1315,7 @@
       "audioText": "C: Qantas 501, hold short of runway16, give way to landing traffic, contact tower on 124.95.\nQuestion: Why does Tower ask Qantas 501 to hold short?",
       "audioTextZh": "管制员：Qantas501，在16号跑道外等待，避让着陆飞机，在124.95联系塔台。\n问题：塔台为什么要求Qantas501在跑道外等待？",
       "referenceText": "正确答案：B. Landing traffic on R/W 16",
-      "audio": "/question-bank-assets/audio/listening/main/543.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/271.mp3",
       "choices": [
         "Aircraft taking off on R/W 16",
         "Landing traffic on R/W 16",
@@ -1330,7 +1330,7 @@
       "audioText": "C: BAW7421, RVR runway 27 touchdown 200m, midpoint 300m, stop end 1000m.\nQuestion: What type of problem will the landing aircraft have?",
       "audioTextZh": "管制员：BAW7421，27号跑道跑道视程：接地区200米，中间段300米，停止端1,000米。\n问题：着陆飞机会遇到哪类问题？",
       "referenceText": "正确答案：A. Poor visibility",
-      "audio": "/question-bank-assets/audio/listening/main/544.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/272.mp3",
       "choices": [
         "Poor visibility",
         "Wind changing from 200 to 300",
@@ -1345,7 +1345,7 @@
       "audioText": "C: NWA 40 heavy, moderate turbulence reported ahead above FL 380. Would you like a lower altitude? P: roger, is FL360 available, NWA40 heavy.\nQuestion: Where is the reported turbulence?",
       "audioTextZh": "管制员：NWA40，重型，前方FL380以上报告有中度颠簸。你们需要较低高度吗？\n飞行员：收到，FL360可用吗？NWA40，重型。\n问题：报告的颠簸位于哪里？",
       "referenceText": "正确答案：B. Ahead and above FL 380.",
-      "audio": "/question-bank-assets/audio/listening/main/545.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/273.mp3",
       "choices": [
         "At FL 360 or below.",
         "Ahead and above FL 380.",
@@ -1360,7 +1360,7 @@
       "audioText": "C: AFR215, FL310 is not available at the moment. The alternative is FL350, advise.\nQuestion: Which statement is true?",
       "audioTextZh": "管制员：AFR215，目前FL310不可用，可选择FL350，请告知。\n问题：哪项说法正确？",
       "referenceText": "正确答案：A. FL350 is now available.",
-      "audio": "/question-bank-assets/audio/listening/main/546.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/274.mp3",
       "choices": [
         "FL350 is now available.",
         "FL310 and FL350 are not available.",
@@ -1375,7 +1375,7 @@
       "audioText": "C: NWA 152, Turn left heading 050, traffic will be at your 1 o'clock when she completes the turn.\nQuestion: When will the traffic be at 1 o'clock?",
       "audioTextZh": "管制员：NWA152，左转航向050度。完成转弯后，冲突飞机会出现在你一点钟方向。\n问题：冲突飞机什么时候会出现在一点钟方向？",
       "referenceText": "正确答案：B. After completing the turn.",
-      "audio": "/question-bank-assets/audio/listening/main/547.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/275.mp3",
       "choices": [
         "Immediately.",
         "After completing the turn.",
@@ -1390,7 +1390,7 @@
       "audioText": "C: United 889, expect lower altitude until the climbing aircraft has passed, confirm you are leveling at 11,500m.\nQuestion: What altitude does the controller think United 889 is at right now?",
       "audioTextZh": "管制员：United889，在那架爬升飞机通过前，预计保持较低高度。确认你正在11,500米改平。\n问题：管制员认为United889目前处于什么高度？",
       "referenceText": "正确答案：B. Maintaining 11,500 m.",
-      "audio": "/question-bank-assets/audio/listening/main/548.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/291.mp3",
       "choices": [
         "Climbing to 11,500 m.",
         "Maintaining 11,500 m.",
@@ -1405,7 +1405,7 @@
       "audioText": "C: CCA173, climb straight ahead until passing 900m before turning right, cleared for takeoff, wind 340 degrees.\nQuestion: What does the controller ask the pilot to do?",
       "audioTextZh": "管制员：CCA173，保持直线爬升，通过900米后再右转。允许起飞，风向340度。\n问题：管制员要求飞行员做什么？",
       "referenceText": "正确答案：A. To turn right after 900m.",
-      "audio": "/question-bank-assets/audio/listening/main/549.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/292.mp3",
       "choices": [
         "To turn right after 900m.",
         "To descend to 900m.",
@@ -1420,7 +1420,7 @@
       "audioText": "P: MAYDAY, MAYDAY, MAYDAY, AFR214, we have fire in the rear toilet, descending to FL40, request emergency landing, position 45 miles northwest of ..., heading 150. C: AFR214, roger MAYDAY. Break, break, all stations, stop transmitting, MAYDAY.\nQuestion: What is the current situation of the aircraft?",
       "audioTextZh": "飞行员：MAYDAY，MAYDAY，MAYDAY，AFR214，后部洗手间起火，正在下降至FL40，请求紧急着陆。位置在……西北45海里，航向150度。\n管制员：AFR214，收到MAYDAY。各台注意，停止发射，保持无线电静默，MAYDAY。\n问题：飞机当前处于什么情况？",
       "referenceText": "正确答案：C. Distress",
-      "audio": "/question-bank-assets/audio/listening/main/550.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/293.mp3",
       "choices": [
         "Urgency",
         "Normal landing",
@@ -1435,7 +1435,7 @@
       "audioText": "C: CCA101, due to traffic congestion, make a 360 turn left at your present position.\nQuestion: What is the aircraft expected to do?",
       "audioTextZh": "管制员：CCA101，由于空中交通拥堵，在当前位置左转盘旋一周。\n问题：预计飞机要做什么？",
       "referenceText": "正确答案：D. To lose time",
-      "audio": "/question-bank-assets/audio/listening/main/551.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/295.mp3",
       "choices": [
         "To turn left at 36",
         "To speed up",
@@ -1450,7 +1450,7 @@
       "audioText": "P: Melbourne Tower, Qantas344, hold at holding point of runway 29, ready for departure. C: Qantas344, hold at holding point for a few minutes, the runway is still blocked by a Cessna.\nQuestion: Why does the controller ask the pilot to hold?",
       "audioTextZh": "飞行员：墨尔本塔台，Qantas344，在29号跑道等待点等待，已准备好离场。\n管制员：Qantas344，在等待点再等几分钟，跑道仍被一架塞斯纳飞机占用。\n问题：管制员为什么要求飞行员等待？",
       "referenceText": "正确答案：B. Because an aircraft blocked the runway",
-      "audio": "/question-bank-assets/audio/listening/main/552.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/299.mp3",
       "choices": [
         "Because there is an airplane on final",
         "Because an aircraft blocked the runway",
@@ -1465,7 +1465,7 @@
       "audioText": "P: Control, CCA980, confirm holding instruction. C: CCA980, hold at N VOR/DME 120 radial, inbound track 220, right hand turn.\nQuestion: What is the inbound track?",
       "audioTextZh": "飞行员：区调，CCA980，请证实等待指令。\n管制员：CCA980，在N VOR/DME的120度径向线上等待，向台航迹220度，右转。\n问题：向台航迹是多少？",
       "referenceText": "正确答案：C. 220",
-      "audio": "/question-bank-assets/audio/listening/main/553.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/311.mp3",
       "choices": [
         "12",
         "120",
@@ -1480,7 +1480,7 @@
       "audioText": "C: UAL321, caution, unknown balloon over right turning base of runway 36 at time 32, altitude 300m, moving northbound 40km per hour.\nQuestion: Why should United321 keep a good lookout?",
       "audioTextZh": "管制员：UAL321，注意，32分时在36号跑道右转四边上空发现不明气球，高度300米，正以每小时40公里向北移动。\n问题：United321为什么要加强观察？",
       "referenceText": "正确答案：A. There is a balloon near the runway.",
-      "audio": "/question-bank-assets/audio/listening/main/554.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/312.mp3",
       "choices": [
         "There is a balloon near the runway.",
         "He is 40 KM per hour too fast.",
@@ -1495,7 +1495,7 @@
       "audioText": "C: AFR133, SIA Ground, take the first left, then contact Ground 121.6.\nQuestion: What radio frequency is ground control on?",
       "audioTextZh": "管制员：AFR133，新加坡地面，在第一个道口左转，然后在121.6联系地面管制。\n问题：地面管制使用什么无线电频率？",
       "referenceText": "正确答案：D. 121.6",
-      "audio": "/question-bank-assets/audio/listening/main/555.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/313.mp3",
       "choices": [
         "133.6",
         "131.2",
@@ -1510,7 +1510,7 @@
       "audioText": "C: CSN230, expedite descent to 6000m, upon reaching, turn left 30 degrees, traffic 12 o'clock 10 miles, opposite direction, United B737 climbing to your altitude.\nQuestion: What is the relative motion of the traffic?",
       "audioTextZh": "管制员：CSN230，加速下降至6,000米，到达后左转30度。冲突飞机位于十二点钟方向10海里，相向飞行，是一架正爬升至你高度的联合航空波音737。\n问题：冲突飞机的相对运动方向是什么？",
       "referenceText": "正确答案：C. Opposite direction, below and climbing.",
-      "audio": "/question-bank-assets/audio/listening/main/556.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/314.mp3",
       "choices": [
         "Turn left 30 degrees.",
         "12 o'clock, 10 miles.",
@@ -1525,7 +1525,7 @@
       "audioText": "C: SIA146, cleared to taxi to runway 10 via V1 and V2, be advised low visibility procedures are in force, RVR runway 10 is 250m, mid point 220, stop end 200m.\nQuestion: What is mid-point RVR?",
       "audioTextZh": "管制员：SIA146，允许经V1和V2滑行至10号跑道。注意，低能见度程序正在实施；10号跑道跑道视程为250米，中间段220米，停止端200米。\n问题：中间段跑道视程是多少？",
       "referenceText": "正确答案：A. 220 metres",
-      "audio": "/question-bank-assets/audio/listening/main/557.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/315.mp3",
       "choices": [
         "220 metres",
         "146 metres",
@@ -1540,7 +1540,7 @@
       "audioText": "C: CCA981, Wuhan Tower, radar shows you are 200 feet above glide slope. P: Tower, CCA981, roger, we've just lost glide slope indication on the instrument, we are going around as published.\nQuestion: What type of approach was CCA981 flying before the missed approach?",
       "audioTextZh": "管制员：CCA981，武汉塔台，雷达显示你们高于下滑道200英尺。\n飞行员：塔台，CCA981，收到。我们的仪表刚刚失去下滑道指示，正在按公布程序复飞。\n问题：CCA981复飞前实施的是什么进近？",
       "referenceText": "正确答案：A. ILS",
-      "audio": "/question-bank-assets/audio/listening/main/558.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/320.mp3",
       "choices": [
         "ILS",
         "LOC",
@@ -1555,7 +1555,7 @@
       "audioText": "C: UAL243, descend and maintain FL240. P: Control, can we have that at pilot's discretion?\nQuestion: What was the pilot's intention under this situation?",
       "audioTextZh": "管制员：UAL243，下降至FL240并保持。\n飞行员：区调，可以由机组自行决定何时开始下降吗？\n问题：在这种情况下，飞行员的意图是什么？",
       "referenceText": "正确答案：D. To decide when to descend by himself.",
-      "audio": "/question-bank-assets/audio/listening/main/559.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/332.mp3",
       "choices": [
         "To continue descent by ATC instruction.",
         "To decide how to fly by himself.",
@@ -1570,7 +1570,7 @@
       "audioText": "C: CSN302, turn right heading 040, descend to 900 meters, QFE 1002.\nQuestion: Which of the following is true?",
       "audioTextZh": "管制员：CSN302，右转航向040，下降至900米，场压（QFE）1002。\n问题：下列哪一项是正确的？",
       "referenceText": "正确答案：A. Descend to 900 m.",
-      "audio": "/question-bank-assets/audio/listening/main/560.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/333.mp3",
       "choices": [
         "Descend to 900 m.",
         "Heading 030.",
@@ -1585,7 +1585,7 @@
       "audioText": "P: Delivery, CCA334. Confirm after departure, heading south. C: Negative, for your information, a glider is over south field.\nQuestion: Why did the controller deny the pilot's confirmation?",
       "audioTextZh": "飞行员：放行，CCA334，请确认离场后向南飞行。\n管制员：不对。提醒你，机场南侧上空有一架滑翔机。\n问题：管制员为什么否定飞行员的确认？",
       "referenceText": "正确答案：B. Flying activity is in the southfield.",
-      "audio": "/question-bank-assets/audio/listening/main/561.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/334.mp3",
       "choices": [
         "The controller wants the pilot to fly east.",
         "Flying activity is in the southfield.",
@@ -1600,7 +1600,7 @@
       "audioText": "P: Departure, AFR486, reaching 3000ft. C: AFR486, climb to 9000ft, expedite climb until passing 5000ft, report 7000ft.\nQuestion: In which section of altitude should AFR486 speed up the climb?",
       "audioTextZh": "飞行员：离场，AFR486，正到达3,000英尺。\n管制员：AFR486，爬升至9,000英尺，在通过5,000英尺前加速爬升，7,000英尺时报告。\n问题：AFR486应在哪一段高度加速爬升？",
       "referenceText": "正确答案：B. 3000 to 5000 feet.",
-      "audio": "/question-bank-assets/audio/listening/main/562.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/335.mp3",
       "choices": [
         "7000 to 9000 feet.",
         "3000 to 5000 feet.",
@@ -1615,7 +1615,7 @@
       "audioText": "P: UAL655, we have serious fuel leak, we are returning. C: UAL655, descend to 3300m. P: Leaving 5400m for 3300m, UAL655. C: UAL655, do you require emergency services on landing? P: Affirm, UAL655.\nQuestion: What is the problem with the aircraft?",
       "audioTextZh": "飞行员：UAL655，我们发生严重燃油泄漏，正在返航。\n管制员：UAL655，下降至3,300米。\n飞行员：离开5,400米下降至3,300米，UAL655。\n管制员：UAL655，着陆时需要应急服务吗？\n飞行员：需要，UAL655。\n问题：飞机出了什么问题？",
       "referenceText": "正确答案：A. Fuel leak",
-      "audio": "/question-bank-assets/audio/listening/main/563.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/338.mp3",
       "choices": [
         "Fuel leak",
         "Lack of fuel",
@@ -1630,7 +1630,7 @@
       "audioText": "P: United350, we can't hold any longer, we have a seriously ill passenger on board. C: United350, leave the holding pattern, fly heading 050. P: Heading 050, United350. Request first aid upon landing. C: Roger, United350.\nQuestion: What will be the immediate need after landing?",
       "audioTextZh": "飞行员：United350，我们无法继续等待，机上有一名病情严重的乘客。\n管制员：United350，离开等待，航向050度。\n飞行员：航向050度，United350。请求着陆后立即提供急救。\n管制员：收到，United350。\n问题：着陆后最迫切需要什么？",
       "referenceText": "正确答案：C. Medical service",
-      "audio": "/question-bank-assets/audio/listening/main/564.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/339.mp3",
       "choices": [
         "A follow-me car",
         "A shuttle bus",
@@ -1645,7 +1645,7 @@
       "audioText": "P: Wuhan Approach, AFR132, 25km south of Wuhan, northbound, 2100m. C: AFR132, say your intentions.\nQuestion: What does the controller mean?",
       "audioTextZh": "飞行员：武汉进近，AFR132，位于武汉以南25公里，向北飞行，高度2,100米。\n管制员：AFR132，请告知你的意图。\n问题：管制员是什么意思？",
       "referenceText": "正确答案：B. To know what the pilot wants to do next.",
-      "audio": "/question-bank-assets/audio/listening/main/565.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/351.mp3",
       "choices": [
         "To check the pilot's position.",
         "To know what the pilot wants to do next.",
@@ -1660,7 +1660,7 @@
       "audioText": "C: BAW480, flames coming out from your No. 3 engine on takeoff, please advise. P: Roger, declaring an emergency, request immediate return, BAW480.\nQuestion: Why are they declaring an emergency?",
       "audioTextZh": "管制员：BAW480，你们起飞时3号发动机有火焰冒出，请告知意图。\n飞行员：收到，宣布紧急情况，请求立即返场，BAW480。\n问题：他们为什么宣布紧急情况？",
       "referenceText": "正确答案：C. engine fire",
-      "audio": "/question-bank-assets/audio/listening/main/566.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/352.mp3",
       "choices": [
         "warning light indication",
         "missed approach",
@@ -1675,7 +1675,7 @@
       "audioText": "P: Ground, AFR121, stand Z4, Information F, ready for pushback and startup. C: AFR121, the blue tug for pushback has malfunctioned. I am sending another tug, stand by. P: Wilco, AFR121.\nQuestion: Why does the controller ask AFR121 to wait?",
       "audioTextZh": "飞行员：地面，AFR121，Z4机位，通播F，已准备好推出开车。\n管制员：AFR121，执行推出的蓝色拖车发生故障，我正在派另一辆拖车，稍等。\n飞行员：照办，AFR121。\n问题：管制员为什么要求AFR121等待？",
       "referenceText": "正确答案：A. Tug has broken down",
-      "audio": "/question-bank-assets/audio/listening/main/567.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/357.mp3",
       "choices": [
         "Tug has broken down",
         "Tow bar broken",
@@ -1690,7 +1690,7 @@
       "audioText": "C: BAW726, expedite descent to and maintain 3000ft on QNH1012, join right downwind runway 21L.\nQuestion: Which level should the aircraft descend to and maintain?",
       "audioTextZh": "管制员：BAW726，按QNH1012加速下降至3,000英尺并保持，加入21L跑道右三边。\n问题：飞机应下降至并保持什么高度？",
       "referenceText": "正确答案：D. 3,000 feet on QNH1012",
-      "audio": "/question-bank-assets/audio/listening/main/568.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/371.mp3",
       "choices": [
         "3,000 feet on QNH1021",
         "2,000 feet on QNH1021",
@@ -1705,7 +1705,7 @@
       "audioText": "C: ACA503, taxi with caution, the previous pilot reported there were iced ruts and ridges on the taxiway.\nQuestion: What does the controller ask the pilot to do?",
       "audioTextZh": "管制员：ACA503，小心滑行，前机飞行员报告滑行道上有结冰的车辙和冰脊。\n问题：管制员要求飞行员做什么？",
       "referenceText": "正确答案：C. To taxi on the taxiway carefully.",
-      "audio": "/question-bank-assets/audio/listening/main/569.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/372.mp3",
       "choices": [
         "To report the condition of the previous traffic.",
         "To move the ice from the runway.",
@@ -1720,7 +1720,7 @@
       "audioText": "C: BAW204, taxi to holding point of runway 27 via taxiway F, J and G. P: F, J, G to holding point runway 27, BAW204.\nQuestion: What is the taxi route?",
       "audioTextZh": "管制员：BAW204，经F、J和G滑行道滑行至27号跑道等待点。\n飞行员：经F、J、G滑行道前往27号跑道等待点，BAW204。\n问题：滑行路线是什么？",
       "referenceText": "正确答案：C. F, J and G",
-      "audio": "/question-bank-assets/audio/listening/main/570.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/374.mp3",
       "choices": [
         "J, G and E",
         "E, H and G",
@@ -1735,7 +1735,7 @@
       "audioText": "C: AFR765, reply not received, if you read, turn left heading 040, I say again, turn left heading 040.\nQuestion: What problem might Air France have?",
       "audioTextZh": "管制员：AFR765，未收到回答。如果你能听到，左转航向040度。再说一遍，左转航向040度。\n问题：法航飞机可能遇到了什么问题？",
       "referenceText": "正确答案：A. Transmitter failure",
-      "audio": "/question-bank-assets/audio/listening/main/571.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/375.mp3",
       "choices": [
         "Transmitter failure",
         "Low on fuel",
@@ -1750,7 +1750,7 @@
       "audioText": "C: BAW505, after departure, contact departure on 119.7, cleared for takeoff runway 25L, wind calm.\nQuestion: Which runway is the runway in use?",
       "audioTextZh": "管制员：BAW505，离场后在119.7联系离场管制，允许从25L跑道起飞，静风。\n问题：当前使用哪条跑道？",
       "referenceText": "正确答案：B. Runway 25L",
-      "audio": "/question-bank-assets/audio/listening/main/572.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/391.mp3",
       "choices": [
         "Runway 05R",
         "Runway 25L",
@@ -1765,7 +1765,7 @@
       "audioText": "C: CCA785, left on F, right on E, hold short of E4.\nQuestion: What are they going to do at E4?",
       "audioTextZh": "管制员：CCA785，在F滑行道左转，在E滑行道右转，在E4外等待。\n问题：他们到达E4时要做什么？",
       "referenceText": "正确答案：A. stop and wait",
-      "audio": "/question-bank-assets/audio/listening/main/573.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/392.mp3",
       "choices": [
         "stop and wait",
         "position and hold",
@@ -1780,7 +1780,7 @@
       "audioText": "C: CCA985, the weather is deteriorating, RVR runway 13 is now only 600m.\nQuestion: What do you learn from the statement?",
       "audioTextZh": "管制员：CCA985，天气正在恶化，13号跑道的跑道视程现在只有600米。\n问题：从这段通话中可以得知什么？",
       "referenceText": "正确答案：D. Visibility is reducing.",
-      "audio": "/question-bank-assets/audio/listening/main/574.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/393.mp3",
       "choices": [
         "The runway direction changed.",
         "RVR increased.",
@@ -1795,7 +1795,7 @@
       "audioText": "P: Tower, CCA101, can we take the second right? C: CCA101, negative, backtrack and exit the runway on the first left turnoff, there are workmen on the second right.\nQuestion: Why did CCA101 have to backtrack?",
       "audioTextZh": "飞行员：塔台，CCA101，我们可以从第二个右侧道口脱离吗？\n管制员：CCA101，不可以。调头滑行，从第一个左侧脱离道离开跑道，第二个右侧道口有施工人员。\n问题：CCA101为什么必须调头滑行？",
       "referenceText": "正确答案：D. Workmen on the right second",
-      "audio": "/question-bank-assets/audio/listening/main/575.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/394.mp3",
       "choices": [
         "The pilot on the first left",
         "Workmen on the first left",
@@ -1810,7 +1810,7 @@
       "audioText": "C: United655, hold short of T5, give way to Airbus taxiing in for parking.\nQuestion: What does the controller ask the pilot to do?",
       "audioTextZh": "管制员：United655，在T5外等待，避让那架正滑入停机位的空客飞机。\n问题：管制员要求飞行员做什么？",
       "referenceText": "正确答案：A. To hold at a holding point.",
-      "audio": "/question-bank-assets/audio/listening/main/576.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/395.mp3",
       "choices": [
         "To hold at a holding point.",
         "To taxi in for parking.",
@@ -1825,7 +1825,7 @@
       "audioText": "C: NWA482, descend to FL290 now for crossing traffic, be level at FL290 in two minutes or less. P: Roger, descend to FL290 in two minutes or less for crossing traffic, leaving FL330 now, NWA482.\nQuestion: When should they begin their descent?",
       "audioTextZh": "管制员：NWA482，为避让穿越冲突飞机，立即下降至FL290，并在两分钟以内于FL290改平。\n飞行员：收到，为避让穿越飞机，两分钟以内下降至FL290，现在离开FL330，NWA482。\n问题：他们应该什么时候开始下降？",
       "referenceText": "正确答案：B. Immediately",
-      "audio": "/question-bank-assets/audio/listening/main/577.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/397.mp3",
       "choices": [
         "FL 330",
         "Immediately",
@@ -1840,7 +1840,7 @@
       "audioText": "P: Wuhan Control, request go around the CB from the right. C: CCA101, negative due to prohibited area. Turn left 40 degrees, track out 30km, report clear of CB.\nQuestion: Why was CCA101 not allowed to turn to the left?",
       "audioTextZh": "飞行员：武汉区调，请求从右侧绕飞积雨云。\n管制员：CCA101，由于有禁区，不能批准。左转40度，向外飞30公里，脱离积雨云后报告。\n问题：为什么不允许CCA101左转？",
       "referenceText": "正确答案：A. Forbidden area",
-      "audio": "/question-bank-assets/audio/listening/main/578.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/399.mp3",
       "choices": [
         "Forbidden area",
         "Helicopter training area",
@@ -1855,7 +1855,7 @@
       "audioText": "C: Air China7634, overhead BEKOL, maintaining 1500m, entering the hold.\nQuestion: What action is Air China7634 about to commence?",
       "audioTextZh": "管制员：Air China7634，飞越BEKOL，保持1,500米，正在进入等待。\n问题：Air China7634即将开始什么动作？",
       "referenceText": "正确答案：D. Fly a holding pattern",
-      "audio": "/question-bank-assets/audio/listening/main/579.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/411.mp3",
       "choices": [
         "Descend to 1500 meters",
         "Fly direct to BEKOL",
@@ -1870,7 +1870,7 @@
       "audioText": "C: United889, when clear of crossing traffic, turn left heading 150, confirm your level 1500.\nQuestion: When should they make the turn?",
       "audioTextZh": "管制员：United889，脱离穿越冲突飞机后，左转航向150度。确认你的高度为1,500。\n问题：他们应该什么时候转弯？",
       "referenceText": "正确答案：D. when clear of crossing traffic",
-      "audio": "/question-bank-assets/audio/listening/main/580.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/412.mp3",
       "choices": [
         "heading 050 degrees",
         "maintaining 1,500 m",
@@ -1885,7 +1885,7 @@
       "audioText": "C: CCA705, climb at pilot's discretion to 8000m, maintain heading 150 until advised. P: Leaving 6000m for 8000m, will advise, CCA705.\nQuestion: What is their present altitude?",
       "audioTextZh": "管制员：CCA705，可自行决定爬升时机，爬升至8,000米；保持航向150度，直至另行通知。\n飞行员：离开6,000米爬升至8,000米，将报告，CCA705。\n问题：他们当前的高度是多少？",
       "referenceText": "正确答案：A. 6000 m",
-      "audio": "/question-bank-assets/audio/listening/main/581.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/413.mp3",
       "choices": [
         "6000 m",
         "climb at pilot discretion",
@@ -1900,7 +1900,7 @@
       "audioText": "C: CCA982, 22km from touchdown, turn right heading 330, cleared for ILS runway 36L, report established.\nQuestion: Which of the following information is not true?",
       "audioTextZh": "管制员：CCA982，距接地点22公里，右转航向330度，允许对36L跑道实施ILS进近，建立后报告。\n问题：下列哪项信息不正确？",
       "referenceText": "正确答案：C. Cleared for IGS runway 36L.",
-      "audio": "/question-bank-assets/audio/listening/main/582.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/415.mp3",
       "choices": [
         "Turn right heading 330.",
         "Report established.",
@@ -1915,7 +1915,7 @@
       "audioText": "M1: Captain, the panel shows the aft cargo door was open. M2: Roger, check the cabin. M1: The cabin pressure is normal. M2: It might be a false indication. It happened last time. Report that to ATC.\nQuestion: What had happened?",
       "audioTextZh": "男1：机长，面板显示后货舱门开着。\n男2：收到，检查客舱。\n男1：客舱压力正常。\n男2：可能是虚假指示，上次也发生过。把情况报告给空中交通管制。\n问题：发生了什么情况？",
       "referenceText": "正确答案：C. There was a possible false indication.",
-      "audio": "/question-bank-assets/audio/listening/main/583.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/418.mp3",
       "choices": [
         "ATC gave wrong instructions.",
         "They had lost some cargo.",
@@ -1930,7 +1930,7 @@
       "audioText": "C: CCA981, windshear warning, strong low-level windshear observed in the vicinity of Beijing Airport at 1400 hours, what's your intention? P: We'd like to delay our approach 30 minutes, CCA981.\nQuestion: Why do they want to delay their approach?",
       "audioTextZh": "管制员：CCA981，风切变警告。14:00在北京机场附近观测到强烈低空风切变，请告知意图。\n飞行员：我们希望将进近推迟30分钟，CCA981。\n问题：他们为什么希望推迟进近？",
       "referenceText": "正确答案：C. Because of wind condition.",
-      "audio": "/question-bank-assets/audio/listening/main/584.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/420.mp3",
       "choices": [
         "Because of poor visibility.",
         "Because of severe turbulence.",
@@ -1945,7 +1945,7 @@
       "audioText": "C: Remain in your present position, there is a towed aircraft passing behind.\nQuestion: What is the meaning of the controller's instruction?",
       "audioTextZh": "管制员：保持在当前位置，后方有一架正在被拖行的飞机通过。\n问题：管制员的指令是什么意思？",
       "referenceText": "正确答案：D. Hold position",
-      "audio": "/question-bank-assets/audio/listening/main/585.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/426.mp3",
       "choices": [
         "Aircraft is passing behind",
         "Aircraft is towed",
@@ -1960,7 +1960,7 @@
       "audioText": "P: MD-11 on final in sight, BAW315. C: BAW315, line up after the landing MD-11.\nQuestion: What is BAW315 going to do?",
       "audioTextZh": "飞行员：已经看到最后进近的MD-11，BAW315。\n管制员：BAW315，在那架MD-11着陆后进入跑道对正。\n问题：BAW315将要做什么？",
       "referenceText": "正确答案：D. To line up after MD-11.",
-      "audio": "/question-bank-assets/audio/listening/main/586.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/431.mp3",
       "choices": [
         "To depart after MD-11.",
         "To go round MD-11.",
@@ -1975,7 +1975,7 @@
       "audioText": "P: Tianjin Tower, CCA996, we've found some rubber on the runway. Have you had any reports that aircraft has just departed from the runway recently? C: CCA996, negative, you are the first report.\nQuestion: What did the pilot report?",
       "audioTextZh": "飞行员：天津塔台，CCA996，我们发现跑道上有一些橡胶碎片。最近是否有飞机从该跑道离场并报告过情况？\n管制员：CCA996，没有，你们是第一个报告。\n问题：飞行员报告了什么？",
       "referenceText": "正确答案：B. Rubber on the runway",
-      "audio": "/question-bank-assets/audio/listening/main/587.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/432.mp3",
       "choices": [
         "Metal on the runway",
         "Rubber on the runway",
@@ -1990,7 +1990,7 @@
       "audioText": "C: ACA130, taxi straight ahead, A320 coming from the right will give way to you at the intersection.\nQuestion: Which aircraft will give way to ACA130?",
       "audioTextZh": "管制员：ACA130，直线滑行，从右侧驶来的空客A320将在交叉口给你让路。\n问题：哪架飞机会给ACA130让路？",
       "referenceText": "正确答案：D. A320 on the right.",
-      "audio": "/question-bank-assets/audio/listening/main/588.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/433.mp3",
       "choices": [
         "A330 on the left.",
         "A320 on the left.",
@@ -2005,7 +2005,7 @@
       "audioText": "C: UAL223, RVR runway 26L touchdown 600m, midpoint 850m, stop end missing. P: UAL223.\nQuestion: What is the best RVR?",
       "audioTextZh": "管制员：UAL223，26L跑道跑道视程：接地区600米，中间段850米，停止端数据缺失。\n飞行员：UAL223。\n问题：最好的跑道视程数值是多少？",
       "referenceText": "正确答案：B. midpoint",
-      "audio": "/question-bank-assets/audio/listening/main/589.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/434.mp3",
       "choices": [
         "Roll out",
         "midpoint",
@@ -2020,7 +2020,7 @@
       "audioText": "C: CCA151, severe turbulence was reported at FL290 over DAH. P: Roger, request alter the route because we have some problem with our yaw damper.\nQuestion: What does the pilot want to do?",
       "audioTextZh": "管制员：CCA151，DAH上空FL290报告有严重颠簸。\n飞行员：收到。由于我们的偏航阻尼器出现问题，请求改变航路。\n问题：飞行员想做什么？",
       "referenceText": "正确答案：A. To use alternate route",
-      "audio": "/question-bank-assets/audio/listening/main/590.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/435.mp3",
       "choices": [
         "To use alternate route",
         "To report severe turbulence",
@@ -2035,7 +2035,7 @@
       "audioText": "C: CCA785, behind departing AFR74, cross runway 14L behind, turn right on C, hold short of runway 14R.\nQuestion: What are they going to do when they reach runway 14L?",
       "audioTextZh": "管制员：CCA785，在离场的AFR74之后穿越14L跑道，在C滑行道右转，在14R跑道外等待。\n问题：他们到达14L跑道时要做什么？",
       "referenceText": "正确答案：C. Cross the RW behind Air France 74.",
-      "audio": "/question-bank-assets/audio/listening/main/591.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/436.mp3",
       "choices": [
         "Cross RW 14L without delay.",
         "Position and hold.",
@@ -2050,7 +2050,7 @@
       "audioText": "C: SAS996, for identification, turn left heading 270, then turn right 360. P: Roger, left 270, then right 360, SAS996.\nQuestion: What is going on?",
       "audioTextZh": "管制员：SAS996，为进行雷达识别，左转航向270度，然后右转航向360度。\n飞行员：收到，左转270度，然后右转360度，SAS996。\n问题：正在进行什么操作？",
       "referenceText": "正确答案：C. The controller is trying to find the aircraft on radar",
-      "audio": "/question-bank-assets/audio/listening/main/592.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/437.mp3",
       "choices": [
         "The aircraft is checking heading",
         "The aircraft is detouring",
@@ -2065,7 +2065,7 @@
       "audioText": "C: CCA101, backtrack on runway 11R, then take the first convenient left to vacate the runway.\nQuestion: On which runway should the aircraft backtrack?",
       "audioTextZh": "管制员：CCA101，在11R跑道上调头滑行，然后从第一个方便的左侧道口脱离跑道。\n问题：飞机应该在哪条跑道上调头滑行？",
       "referenceText": "正确答案：A. Runway 11R",
-      "audio": "/question-bank-assets/audio/listening/main/593.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/439.mp3",
       "choices": [
         "Runway 11R",
         "Runway 10R",
@@ -2080,7 +2080,7 @@
       "audioText": "C: BAW505, your slot time is 1250, correction 1205, start up at own discretion.\nQuestion: When is the aircraft expected to depart?",
       "audioTextZh": "管制员：BAW505，你们的时隙时间是12:50；更正，12:05。可自行决定启动发动机。\n问题：预计飞机什么时候离场？",
       "referenceText": "正确答案：A. 12:05",
-      "audio": "/question-bank-assets/audio/listening/main/594.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/447.mp3",
       "choices": [
         "12:05",
         "21:05",
@@ -2095,7 +2095,7 @@
       "audioText": "C: BAW 141, avoid taxiing over the broken surface. It's likely to cause bumps.\nQuestion: What does the speaker mean?",
       "audioTextZh": "管制员：BAW141，避免从破损道面上滑过，那里可能会造成颠簸。\n问题：说话人是什么意思？",
       "referenceText": "正确答案：D. The surface is damaged",
-      "audio": "/question-bank-assets/audio/listening/main/595.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/450.mp3",
       "choices": [
         "The aircraft is broken",
         "The taxiing is bumpy",
@@ -2110,7 +2110,7 @@
       "audioText": "C: BAW480, smoke coming out from your left main gear during takeoff, please advise your intention. P: roger, stand by, will advise, BAW480.\nQuestion: What information did the controller give to Speedbird 480?",
       "audioTextZh": "管制员：BAW480，你们起飞时左主起落架有烟冒出，请告知意图。\n飞行员：收到，稍等，随后告知，BAW480。\n问题：管制员向Speedbird 480提供了什么信息？",
       "referenceText": "正确答案：C. Smoke from the main gear.",
-      "audio": "/question-bank-assets/audio/listening/main/596.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/456.mp3",
       "choices": [
         "Left engine fire.",
         "Left gear failed to retract.",
@@ -2125,7 +2125,7 @@
       "audioText": "P: Beijing Tower, CSN311, ILS approach runway 36L. C: CSN311, continue approach, maintain 170 knots until 7 DME. P: continue approach, speed 170 knots until 7 DME, CSN311.\nQuestion: What was the controller's instruction?",
       "audioTextZh": "飞行员：北京塔台，CSN311，ILS进近36L跑道。\n管制员：CSN311，继续进近，在距离台7海里前保持170节。\n飞行员：继续进近，在距离台7海里前保持170节，CSN311。\n问题：管制员发布了什么指令？",
       "referenceText": "正确答案：C. Maintain 170 knots until 7 DME.",
-      "audio": "/question-bank-assets/audio/listening/main/597.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/457.mp3",
       "choices": [
         "Fly heading 170.",
         "Cleared to land runway 36L.",
@@ -2140,7 +2140,7 @@
       "audioText": "P: 2507 request touch and go. C: 2507, negative due traffic congestion. Make a full stop. Clear to land runway 36L.\nQuestion: what is the pilot's intention?",
       "audioTextZh": "飞行员（P）2507请求低空通场并连续起飞。\n管制员（C）:2507，不行，因为交通拥堵。做全停着陆。可以在36左跑道着陆。\n问题：飞行员的意图是什么？",
       "referenceText": "正确答案：A. To takeoff right after landing.",
-      "audio": "/question-bank-assets/audio/listening/main/598.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/471.mp3",
       "choices": [
         "To takeoff right after landing.",
         "To make a full stop.",
@@ -2155,7 +2155,7 @@
       "audioText": "C:Eastern 668, ready to depart the fix for landing, expect a normal landing. C:Eastern 668, turn left heading 350 for a right base, runway 18L. P:Left heading 350, Eastern 668.\nQuestion: what might Eastern 668 be doing when this conversation is going on?",
       "audioTextZh": "管制员（C）：东方航空668，准备离开定位点降落，预计正常降落。\n管制员（C）：东方航空668，左转航向350度进入右起落航线，跑道18左。\n飞行员（P）：左转航向350度，东方航空668。\n问题：在这段对话进行时，东方航空668可能在做什么？",
       "referenceText": "正确答案：B. Making a procedure turn.",
-      "audio": "/question-bank-assets/audio/listening/main/599.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/472.mp3",
       "choices": [
         "Ready to takeoff.",
         "Making a procedure turn.",
@@ -2170,7 +2170,7 @@
       "audioText": "C：KLM 567, you are still gaining on the traffic ahead. Reduce speed to 140 KTS. P：We can't reduce to that, 567. C：Roger, in that case, I am breaking off this approach. Turn right heading 340 for delaying action.\nQuestion: what will the pilot do?",
       "audioTextZh": "管制员（C）：荷兰皇家航空 567，你正逐渐靠近前方的飞机。将速度降至140节。\n飞行员（P）：567，我们无法降至那个速度。\n管制员（C）：收到，既然这样，中断进近。右转，航向340度，进行延误操作。\n问题：飞行员将会怎么做？",
       "referenceText": "正确答案：B. To wait for a while before approach.",
-      "audio": "/question-bank-assets/audio/listening/main/600.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/473.mp3",
       "choices": [
         "To continue with the approach.",
         "To wait for a while before approach.",
@@ -2185,7 +2185,7 @@
       "audioText": "C：China Southern 331, if you can read, turn left heading 310. C：Break break, Air China 103. We have lost contact with the converging traffic. Turn right heading 360 for separation. P：Right heading 360, Air China 103.\nQuestion: Why did the controller instruct Air China 103 to change heading?",
       "audioTextZh": "管制员：中国南方331，如你能收到，左转航向310。\n管制员：中国国际103。我们与冲突的航空器失去联系。右转航向360以保持间隔。\n飞行员：右转航向360，中国国际103。\n问题：为什么管制员指示中国国际103改变航向？",
       "referenceText": "正确答案：A. For traffic avoidance.",
-      "audio": "/question-bank-assets/audio/listening/main/601.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/474.mp3",
       "choices": [
         "For traffic avoidance.",
         "For communication faiure.",
@@ -2200,7 +2200,7 @@
       "audioText": "P：Wuhan approach, northwest 108, over Delta Alpha Airport in sight, request visual approach, runway 36 left. C：Northwest 108, negative due emergency traffic on the ground, continue ILS approach, report outer marker.\nQuestion: Why use the ILS approach ?",
       "audioTextZh": "飞行员（P）：西北108，正接近武汉进近，可见德尔塔阿尔法机场，请求目视进近，36左跑道。\n管制员（C）：西北108，由于地面有紧急交通，目视进近不可行，继续仪表着陆系统（ILS）进近，外指点标报。\n问题：为什么进行仪表着陆？",
       "referenceText": "正确答案：C. Emergency traffic is on the ground.",
-      "audio": "/question-bank-assets/audio/listening/main/602.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/475.mp3",
       "choices": [
         "Visibility is low.",
         "Runway 36L is not available.",
@@ -2215,7 +2215,7 @@
       "audioText": "P：Wuhan approach, Air France 188, over Rune Factories, Information Echo. Good morning. C：Air France 188, Wuhan approach, radar contact. Glide path runway 36 right is inoperative. Expect ILS approach runway 36 left for landing.\nQuestion: what is a reason for using runway 36 left?",
       "audioTextZh": "飞行员（P）：武汉进近，法航188，飞越符文工厂（Rune Factories），已收到Echo情报。早上好。\n管制员（C）：法航188，武汉进近，雷达已识别。36右跑道下滑道故障。预计使用36左跑道仪表着陆系统（ILS）进近着陆。\n问题：使用36左跑道的原因是什么？",
       "referenceText": "正确答案：C. Runway 36R glide path is out of order.",
-      "audio": "/question-bank-assets/audio/listening/main/603.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/476.mp3",
       "choices": [
         "Runway 36L glide path is out of service.",
         "Runway 36L is closed due to snow removal.",
@@ -2230,7 +2230,7 @@
       "audioText": "P: Alaska 304, ML in 2 minutes. C: Alaska 304, proceed to GC and hold at FL150 due to traffic congestion. P: Standard pattern GC, FL150, Alaska 304.\nQuestion: Why is the pilot required to hold?",
       "audioTextZh": "飞行员：Alaska 304，预计2分钟到达ML。管制员：Alaska 304，由于交通拥堵，前往GC并在FL150等待。飞行员：按标准等待航线飞往GC，FL150，Alaska 304。\n问题：为什么要求飞行员等待？",
       "referenceText": "正确答案：B. Crowded flight path.",
-      "audio": "/question-bank-assets/audio/listening/main/604.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/489.mp3",
       "choices": [
         "Collision danger.",
         "Crowded flight path.",
@@ -2245,7 +2245,7 @@
       "audioText": "P：Northwest five four six, please brighten up the approach lights. They look dim. C：Northwest five four six, they are already on maximum setting. Cleared to land. P：Cleared to land, five four six.\nQuestion: what is the weather probably like?",
       "audioTextZh": "飞行员（P）：西北航空546，麻烦把进近灯调亮些。看起来很暗。\n管制员（C）：西北航空546，进近灯已经设置到最亮了。可以着陆。\n飞行员（P）：西北航空546，明白，可以着陆。\n问题：天气可能是什么样的？",
       "referenceText": "正确答案：B. Dark.",
-      "audio": "/question-bank-assets/audio/listening/main/605.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/490.mp3",
       "choices": [
         "Clear.",
         "Dark.",
@@ -2260,7 +2260,7 @@
       "audioText": "C: Southern 302, for your information, taxi via Charlie; centerline lighting is unserviceable. P: Roger, 302.\nQuestion: What do you learn from the exchange between the pilot and the controller?",
       "audioTextZh": "管制员：Southern 302，提醒你，经C滑行道滑行；滑行道中线灯不工作。飞行员：收到，302。\n问题：从飞行员与管制员的通话中可以了解到什么？",
       "referenceText": "正确答案：C. The taxiway centerline lighting is not available.",
-      "audio": "/question-bank-assets/audio/listening/main/606.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/492.mp3",
       "choices": [
         "There is a danger of lightening.",
         "The information broadcast is not serviceable.",
@@ -2275,7 +2275,7 @@
       "audioText": "P：PANPAN PANPAN PANPAN, Wuhan approach, China Eastern 141, we have no fuel on board, due long time holding, request priority landing. C：China Eastern 141, Roger that, radar vector for ILS approach runway 18 left.\nQuestion: Why did the crew declare urgency?",
       "audioTextZh": "飞行员（P）：PANPAN PANPAN PANPAN（紧急情况但非遇险），武汉进近，中国东方航空141，因长时间等待，机上燃油已耗尽，请求优先着陆。\n管制员（C）：中国东方航空141，收到，雷达引导至18左跑道仪表着陆系统（ILS）进近。\n问题：机组为何宣布紧急情况？",
       "referenceText": "正确答案：A. Due fuel shortage.",
-      "audio": "/question-bank-assets/audio/listening/main/607.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/494.mp3",
       "choices": [
         "Due fuel shortage.",
         "Due serious fuel leakage.",
@@ -2290,7 +2290,7 @@
       "audioText": "P：Wuhan approach, Japan Airline 121, we have to come back. Right engine ingested a bird during climbing. We have already shut down the affected engine. C：Japan Airline 121, turn right heading 030, descend to and maintain 1800 meters on QNH.\nQuestion: what's the crew's intention?",
       "audioTextZh": "飞行员（P）：武汉进近，日本航空公司121，我们需返航。右发动机在爬升过程中吸入鸟类，已关闭受影响发动机。\n管制员（C）：日本航空公司121，右转航向030，按QNH（场面气压）下降并保持1800米。\n问题：机组信息的意图是什么？",
       "referenceText": "正确答案：A. To return to land.",
-      "audio": "/question-bank-assets/audio/listening/main/608.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/495.mp3",
       "choices": [
         "To return to land.",
         "To make a forced landing.",
@@ -2305,7 +2305,7 @@
       "audioText": "C：Air France 214, ILS approach is not available due to antenna problem. Cleared VOR approach runway 36L, no delay expected. P：Roger, VOR approach runway 36L, Air France 214.\nQuestion: what makes ILS approach unserviceable?",
       "audioTextZh": "管制员（C）：法航214，因天线故障，仪表着陆系统（ILS）进近不可用。允许使用甚高频全向信标（VOR）进近36左跑道，预计无延误。\n飞行员（P）：收到，法航214使用VOR进近36左跑道。\n问题：什么原因导致ILS进近无法使用？",
       "referenceText": "正确答案：C. Antenna problem.",
-      "audio": "/question-bank-assets/audio/listening/main/609.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/497.mp3",
       "choices": [
         "Approach lights failure.",
         "Glide path malfunction.",
@@ -2320,7 +2320,7 @@
       "audioText": "P：Wuhan approach, KLM 256. We have difficulty in maintaining straight course. Our plane tends to drift to the left. We are coming back. C：KLM 256, join downwind runway 18 left, you are number one.\nQuestion: what happened to KLM 256?",
       "audioTextZh": "飞行员（P）：武汉进近，荷兰皇家航空256。我们难以保持直线航向，飞机有向左偏航的趋势，我们正在返航。\n管制员（C）：荷兰皇家航空256，加入18左跑道下风边，你第一。\n问题：荷兰皇家航空256发生了什么？",
       "referenceText": "正确答案：B. KLM 256  has a control problem.",
-      "audio": "/question-bank-assets/audio/listening/main/610.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/498.mp3",
       "choices": [
         "KLM 256 has a CG problem.",
         "KLM 256  has a control problem.",
@@ -2335,7 +2335,7 @@
       "audioText": "C：Japan Air 728, can you make a slot time of 52 minutes? P：Negative, we now have a catering delay. Put me back fifteen past the hour, Japan Air 728. C：Roger, 728, let me know when you are ready.\nQuestion: why does the pilot want to delay?",
       "audioTextZh": "管制员（C）：日本航空728，你能在52分离场吗？\n飞行员（P）：不行，我们现在因餐饮服务（准备）延误了。请把我们安排到整点过15分钟，日本航空728。\n管制员（C）：收到，728，你准备好时告知我。\n问题：为什么飞行员想要延误？",
       "referenceText": "正确答案：B. Due to food loading",
-      "audio": "/question-bank-assets/audio/listening/main/611.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/510.mp3",
       "choices": [
         "Plan delay.",
         "Due to food loading",
@@ -2350,7 +2350,7 @@
       "audioText": "P：Guangzhou tower, China Southern 304, flaps and slats are jammed, we can't extend beyond 15, request divert to Zhuhai airport which has a longer runway. C：China Southern 304, cleared to Zhuhai, I'll inform Zhuhai you have a Configuration problem.\nQuestion: what is the problem of China Southern 304?",
       "audioTextZh": "飞行员（P）：广州塔台，中国南方航空304，襟翼和缝翼卡住了，我们无法将其展开超过15，请求改航至跑道更长的珠海机场。\n管制员（C）：中国南方航空304，准许改航至珠海，我会告知珠海你们存在构型问题。\n问题：中国南方航空304遇到了什么问题？",
       "referenceText": "正确答案：D. Improper configuration problem",
-      "audio": "/question-bank-assets/audio/listening/main/612.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/512.mp3",
       "choices": [
         "Traffic problem",
         "Runway is not long enough",
@@ -2365,7 +2365,7 @@
       "audioText": "P：Shanghai Approach, Eastern 456, request priority landing. We got a passenger on board who feels difficulty in breathing. C：Eastern 456, down to 3000 feet, straight in approach runway 18R, first to land.\nQuestion: what might be the problem?",
       "audioTextZh": "飞行员（P）：上海进近，东方航空456，请求优先着陆。我们机上有一名乘客呼吸困难。\n管制员（C）：东方航空456，下降至3000英尺，直线进近18右跑道，优先着陆。\n问题：可能出了什么问题？",
       "referenceText": "正确答案：B. There is a patient with severe asthma.",
-      "audio": "/question-bank-assets/audio/listening/main/613.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/513.mp3",
       "choices": [
         "There is a patient with severe diarrhea.",
         "There is a patient with severe asthma.",
@@ -2380,7 +2380,7 @@
       "audioText": "P：Wuhan approach, Delta 335, we are returning due to burst tire during gear retraction. Request priority landing. C：Delta 335, Roger, radar vector for ILS approach runway 18 left, you are number one.\nQuestion: What's the problem of Delta 335?",
       "audioTextZh": "飞行员（P）：武汉进近，达美航空335，因收轮时轮胎爆裂需返航，请求优先着陆。\n管制员（C）：D335，收到，雷达引导至18左跑道仪表着陆系统（ILS）进近，你第一。\n问题：达美航空335的问题是什么？",
       "referenceText": "正确答案：C. Tyre blownout.",
-      "audio": "/question-bank-assets/audio/listening/main/614.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/515.mp3",
       "choices": [
         "Gears can't be retracted.",
         "Nose gear was jammed.",
@@ -2395,7 +2395,7 @@
       "audioText": "P：Wuhan approach, TWA 368. We have to come back. We nearly stalled during the climb out. Cargo shifted in the front hold. C：TWA 368, Roger, turn left heading 270.\nQuestion: Why did TWA 368 return?",
       "audioTextZh": "飞行员（P）：武汉进近，环球航空368，我们需返航。爬升时险些失速，前货舱货物发生移位。\n管制员（C）：环球航空368，收到，左转航向270。\n问题：环球航空368为何返航？",
       "referenceText": "正确答案：D. Loading problem.",
-      "audio": "/question-bank-assets/audio/listening/main/615.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/516.mp3",
       "choices": [
         "Bird strike.",
         "Weight Problem.",
@@ -2410,7 +2410,7 @@
       "audioText": "P：Wuhan delivery, Air France 123, ready to copy ATC clearance. C：Air France 123, standby. We have not received your flight plan yet. Let me check and call you later.\nQuestion: What problem does Air France 123 have?",
       "audioTextZh": "飞行员（P）：武汉放行，法航123，准备接收空管放行指令。\n管制员（C）：法航123，请稍候。我们尚未收到你的飞行计划，我核查后稍后联系你。\n问题：法航123遇到什么问题？",
       "referenceText": "正确答案：B. Flight plan not received by Delivery.",
-      "audio": "/question-bank-assets/audio/listening/main/616.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/518.mp3",
       "choices": [
         "Unable to copy ATC clearance.",
         "Flight plan not received by Delivery.",
@@ -2425,7 +2425,7 @@
       "audioText": "P：Wuhan ground, Air France 321, radio check on 121 decimal 3. How do you read? C：Station calling ground, say again your call sign. Your transmission is jammed. Check your transmitter.\nQuestion: What are the pilot and controller doing?",
       "audioTextZh": "飞行员（P）：武汉地面，法航321，在121.3（频率）进行无线电检查。你听到的效果如何？\n管制员（C）：呼叫地面的电台，重复你的呼号。你的信号受干扰。检查你的发射机。\n问题：飞行员和管制员分别在做什么？",
       "referenceText": "正确答案：A. Radio check.",
-      "audio": "/question-bank-assets/audio/listening/main/617.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/535.mp3",
       "choices": [
         "Radio check.",
         "Transmitter check.",
@@ -2440,7 +2440,7 @@
       "audioText": "P：Ground, Air France 213. Passenger boarding is taking a longer time than before. It has not been completed yet. Please delay our departure time until 0850. C：Air France 213, Roger. Call back when you're ready.\nQuestion: What happened to Air France 213?",
       "audioTextZh": "飞行员（P）：地面，法航213。旅客登机时间比以往更长，尚未完成。请将我们的起飞时间推迟至08:50。\n管制员（C）：法航213，收到。准备好后回电。\n问题：法航213发生了什么？",
       "referenceText": "正确答案：B. They have a slow boarding.",
-      "audio": "/question-bank-assets/audio/listening/main/618.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/536.mp3",
       "choices": [
         "They need a quick departure.",
         "They have a slow boarding.",
@@ -2455,7 +2455,7 @@
       "audioText": "C：France 321, your company dispatcher advised us that there was an error in your load sheet. Please call the dispatcher. P：Roger, thanks. Air France 321.\nQuestion: What does the pilot need to call the dispatcher?",
       "audioTextZh": "管制员（C）：法航321，你公司签派员告知我们，你的载重表存在错误，请联系签派员。\n飞行员（P）：收到，谢谢。法航321。\n问题：飞行员为何需要联系签派员？",
       "referenceText": "正确答案：C. Because of the loading sheet error.",
-      "audio": "/question-bank-assets/audio/listening/main/619.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/537.mp3",
       "choices": [
         "Due to ATC reason.",
         "Because of the company regulations.",
@@ -2470,7 +2470,7 @@
       "audioText": "P：Delivery, Air France 131, five minutes before start, request ATC clearance. C：Air France 131, standby. There's an error in your flight plan, the reporting office says you haven't filed the alternate.\nQuestion: Why is the aircraft asked to stand by?",
       "audioTextZh": "飞行员（P）：放行，法航131，预计5分钟后启动发动机，请求空中交通管制许可。\n管制员（C）：法航131，稍等。你的飞行计划存在错误，报告部门称你未提交备降场信息。\n问题：飞机为何被要求等待？",
       "referenceText": "正确答案：C. Because they did not file the alternate.",
-      "audio": "/question-bank-assets/audio/listening/main/620.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/538.mp3",
       "choices": [
         "Because it is 5 minutes before start.",
         "Because Delivery is not ready.",
@@ -2485,7 +2485,7 @@
       "audioText": "P：Ground, Northwest 146, we can't start up due flat batteries. Would you check with ground services for us, and see if we can use a GPU? C：Northwest 146, stand by, I will inform them.\nQuestion: what does the crew want?",
       "audioTextZh": "飞行员（P）：地勤，西北航空146，由于电池电量不足，我们无法启动（飞机）。你能帮我们联系一下地勤服务人员，看看我们能否使用地面电源设备（GPU）吗？\n管制员（C）：西北航空146，稍等，我会通知他们。\n问题：机组人员想要什么？",
       "referenceText": "正确答案：B. To start up with ground power.",
-      "audio": "/question-bank-assets/audio/listening/main/621.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/549.mp3",
       "choices": [
         "Ground stuff to check their batteries.",
         "To start up with ground power.",
@@ -2500,7 +2500,7 @@
       "audioText": "P：Control, Southwest 3343, oil pressure dangerously low on the number two engine. Can we proceed Portland direct? C：Affirm, proceed to Tacoma direct at flight level one three zero.\nQuestion: what happened?",
       "audioTextZh": "飞行员（P）：管制员，西南航空3343号航班，2号发动机油压低至危险水平。我们能直飞波特兰吗？\n管制员（C）：可以，以飞行高度层130直飞塔科马。\n问题：发生了什么事？",
       "referenceText": "正确答案：A. low oil pressure.",
-      "audio": "/question-bank-assets/audio/listening/main/622.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/551.mp3",
       "choices": [
         "low oil pressure.",
         "Low fuel pressure.",
@@ -2515,7 +2515,7 @@
       "audioText": "P：Pacific 28, fuel leak on the left wing, coming back. Request clearance to Dosson direct. C：Cleared to Dosson, FL150.\nQuestion: what is the problem?",
       "audioTextZh": "飞行员（P）：太平洋航空28号航班，左翼燃油泄漏，准备返航。请求直飞Dosson。\n管制员（C）：准许直飞多森，飞行高度层150。\n问题：出现了什么问题？",
       "referenceText": "正确答案：B. Fuel leakage.",
-      "audio": "/question-bank-assets/audio/listening/main/623.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/552.mp3",
       "choices": [
         "oil leakage.",
         "Fuel leakage.",
@@ -2530,7 +2530,7 @@
       "audioText": "P：Wuhan approach, Air Canada 196. We are returning due to burst tire during gear retraction. Request priority landing. C：Air Canada 196, Roger, radar vectors, expect ILS approach runway 32, you are number one.\nQuestion: What is the problem of Air Canada 196?",
       "audioTextZh": "飞行员：武汉进近，这里是加拿大航空196。由于收轮时轮胎爆裂，我们正在返航。请求优先着陆。\n管制员：加拿大航空196，收到。雷达引导，预计使用32号跑道仪表着陆系统进近，你是第一顺位。\n问题：加拿大航空196遇到了什么问题？",
       "referenceText": "正确答案：C. Tyres blew out.",
-      "audio": "/question-bank-assets/audio/listening/main/624.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/554.mp3",
       "choices": [
         "Gears can't be retracted.",
         "Gears were jammed.",
@@ -2545,7 +2545,7 @@
       "audioText": "C：Lufthansa 117, unknown traffic, 3:00, 15 kilometers, westbound, Airbus 320, 7800 meters, descending. P：Looking out, Lufthansa 117.\nQuestion: where is the traffic?",
       "audioTextZh": "管制员（C）：汉莎117，不明航空器，方位3点钟方向，距离15公里，向西飞行，空客320，高度7800米，正在下降。\n飞行员（P）：观察中，汉莎117。\n问题：目标机在哪里？",
       "referenceText": "正确答案：D. 3 o'clock, 15 kilometers, 7800m.",
-      "audio": "/question-bank-assets/audio/listening/main/625.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/555.mp3",
       "choices": [
         "2 o'clock, 15 miles, 7800m.",
         "3 o'clock, 10 miles, westbound.",
@@ -2560,7 +2560,7 @@
       "audioText": "C：China Eastern 5581, Beijing ground, continue stand by for push back. A special fly is taxiing in. P：Roger, standing by, China Eastern 5581.\nQuestion: Why was China Eastern 5581 delayed for push back?",
       "audioTextZh": "管制员（C）：东航5581，北京地面，继续等待推出。有一架专机正在滑行。\n飞行员（P）：收到，等待中，东航5581。\n问题：为什么东航5581航班在推出时被延误了？",
       "referenceText": "正确答案：B. A special aircraft was taxiing in.",
-      "audio": "/question-bank-assets/audio/listening/main/626.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/571.mp3",
       "choices": [
         "Special work was progressing.",
         "A special aircraft was taxiing in.",
@@ -2575,7 +2575,7 @@
       "audioText": "P：Wuhan ground, Air China 151, gate 10, request push back and start up. C：Air China 151, standby. Your slot time is not determined due to flow control. Call you back.\nQuestion: why did the Controller refuse Air China 151's request？",
       "audioTextZh": "飞行员（P）：武汉地面，国航151，10号登机口，请求推出和启动发动机。\n管制员（C）：国航151，稍等。因流量控制，你的离场时间尚未确定。等会儿通知你。\n问题：管制员为何拒绝国航151的请求？",
       "referenceText": "正确答案：C. Slot time not determined.",
-      "audio": "/question-bank-assets/audio/listening/main/627.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/574.mp3",
       "choices": [
         "Slot time has passed.",
         "Passengers got injured.",
@@ -2590,7 +2590,7 @@
       "audioText": "P：Air Canada 760, request holding procedure. C：Air Canada 760, hold over Enshi NDB 4200 meters, inbound track 250, left hand pattern, outbound time one minute.\nQuestion: What is the out bound track of the holding pattern?",
       "audioTextZh": "飞行员（P）：加拿大航空760，请求等待程序。\n管制员（C）：加拿大航空760，在恩施导航台上空等待，高度4200米，向台航迹250，左等待航线，出航时间1分钟。\n问题：等待航线的出航航迹是多少？",
       "referenceText": "正确答案：C. 070.",
-      "audio": "/question-bank-assets/audio/listening/main/628.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/576.mp3",
       "choices": [
         "110.",
         "250.",
@@ -2605,7 +2605,7 @@
       "audioText": "In order to reduce RTF communication, a pilot will make a position report only on first transfer of communication from another area control center, on reaching the limit of the ATC clearance, and when instructed by ATC.\nQuestion: When will a pilot make a position report?",
       "audioTextZh": "为了减少无线电通话（RTF）通信，飞行员仅在从另一个区域管制中心首次转接通信时、达到空中交通管制许可的限制时以及在收到空中交通管制的指示时，才会进行位置报告。\n问题：飞行员在什么时候会进行位置报告？",
       "referenceText": "正确答案：D. All above.",
-      "audio": "/question-bank-assets/audio/listening/main/629.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/602.mp3",
       "choices": [
         "Transfer of communication.",
         "Reaching the limit of ATC clearance.",
@@ -2620,7 +2620,7 @@
       "audioText": "P：Shanghai Control, Singapore Airlines 235, Boeing 777, hold over ZMK VOR, outbound leg, turn inbound. C：Singapore 235, Shanghai Control, continue hold ZMK, delay not determined.\nQuestion: When will Singapore Airlines 235 make approach?",
       "audioTextZh": "飞行员（P）：上海管制，新加坡航空235，机型波音777，在ZMK VOR等待，出航航段，转向进近航段。\n管制员（C）：新加坡航空235，上海管制，继续ZMK等待，延误时间未确定。\n问题：新加坡航空235什么时候进近？",
       "referenceText": "正确答案：D. Delay not determined.",
-      "audio": "/question-bank-assets/audio/listening/main/630.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/608.mp3",
       "choices": [
         "After passing ZMK.",
         "Immediately.",
@@ -2635,7 +2635,7 @@
       "audioText": "P：Hong Kong Tower, Air France 985, long final. C：Air France 985, Hong Kong Tower, number 2, wind come. P：Number 2, Air France 985.\nQuestion: what is the landing sequence for Air France 985?",
       "audioTextZh": "飞行员（P）：香港塔台，法航985，长五边。\n管制员（C）：法航985，香港塔台，（你是）第二个（降落），风向来了。\n飞行员（P）：明白是第二个（降落），法航985。\n问题：法航985的降落顺序是什么？",
       "referenceText": "正确答案：B. Number two to land.",
-      "audio": "/question-bank-assets/audio/listening/main/631.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/609.mp3",
       "choices": [
         "Number one to land.",
         "Number two to land.",
@@ -2650,7 +2650,7 @@
       "audioText": "P: Guangzhou, China Southern three zero four, flaps and slats are jammed. We can't extend beyond one five. Request divert to Zhuhai airport, which has a longer runway. C: China Southern three zero four, clear to Zhuhai. I'll inform Zhuhai you have a configuration problem.\nQuestion: what does the crew intend to do?",
       "audioTextZh": "飞行员（P）：广州，中国南方304，襟翼和缝翼卡阻，无法放出超过15度。请求备降珠海机场，因其跑道更长。\n管制员（C）：中国南方304，允许备降珠海。我将通知珠海你存在构型问题。\n问题：机组打算做什么？",
       "referenceText": "正确答案：A. To divert to Zhuhai.",
-      "audio": "/question-bank-assets/audio/listening/main/632.mp3",
+      "audio": "/question-bank-assets/audio/listening/main/618.mp3",
       "choices": [
         "To divert to Zhuhai.",
         "To make a high speed approach.",

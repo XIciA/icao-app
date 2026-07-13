@@ -11,7 +11,7 @@
       "audioTextZh": "你的呼号是Speedbird 120，在WXI上空保持11000米，squawk 4521，首次联系郑州管制。",
       "referenceText": "Zhengzhou Control, BAW120, maintaining 11000 meters, over WXI, squawking 4521.",
       "referenceTextZh": "郑州管制，BAW120，保持11000米，过WXI，squawk 4521。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/460.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/445.mp3"
     },
     {
       "id": "atc-scenario-0026-card-main-446",
@@ -20,7 +20,7 @@
       "audioTextZh": "管制员：Speedbird 120，郑州管制，雷达识别，下降并保持9200米。你希望保持当前高度，过AKOMA后再下降。",
       "referenceText": "Request maintain present level and expect descent after passing AKOMA, BAW120.",
       "referenceTextZh": "申请保持当前高度，过AKOMA后再下降，BAW120。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/461.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/446.mp3"
     },
     {
       "id": "atc-scenario-0026-card-main-447",
@@ -29,7 +29,7 @@
       "audioTextZh": "管制员：Speedbird 120，你可以现在下降且无速度限制，或保持11000米并飞航向260五分钟，你选择哪一个？\n告诉管制员你选择下降至9200米。",
       "referenceText": "We prefer to descend to 9200 meters, BAW120.",
       "referenceTextZh": "我们选择下降至9200米，BAW120。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/462.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/447.mp3"
     },
     {
       "id": "atc-scenario-0026-card-main-448",
@@ -38,7 +38,7 @@
       "audioTextZh": "管制员：Speedbird 120，以每分钟2000英尺下降率下降至9200米，向右偏置3海里。",
       "referenceText": "Descend to 9200 meters at 2000 feet per minute, offset 3 miles right, BAW120.",
       "referenceTextZh": "以每分钟2000英尺下降率下降至9200米，向右偏置3海里，BAW120。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/463.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/448.mp3"
     },
     {
       "id": "atc-scenario-0026-card-main-449",
@@ -47,7 +47,7 @@
       "audioTextZh": "现在你在9200米结冰条件下飞行，仪表显示皮托管加温系统失效，空速指示似乎不准确。向郑州管制报告，并申请下降到较低高度以避开结冰。",
       "referenceText": "Zhengzhou Control, BAW120, we have encountered severe icing at 9200 meters and our pitot tube heating system failed, our air speed indications appear to be inaccurate, request descent to lower level to avoid icing.",
       "referenceTextZh": "郑州管制，BAW120，我们在9200米遇到严重结冰，皮托管加温系统失效，空速指示似乎不准确，申请下降到较低高度以避开结冰。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/464.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/449.mp3"
     },
     {
       "id": "atc-scenario-0026-card-main-450",
@@ -56,7 +56,7 @@
       "audioTextZh": "管制员：Speedbird 120，下降至7800米，取消偏置，直飞AKOMA，因流量管制减至最小光洁速度。",
       "referenceText": "Descend to 7800 meters, cancel offset, direct to AKOMA, reduce to minimum clean speed, BAW120.",
       "referenceTextZh": "下降至7800米，取消偏置，直飞AKOMA，减至最小光洁速度，BAW120。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/465.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/450.mp3"
     },
     {
       "id": "atc-scenario-0026-card-main-451",
@@ -65,7 +65,7 @@
       "audioTextZh": "管制员：Speedbird 120，速度限制取消，下降并保持6600米，联系武汉管制119.7。",
       "referenceText": "Descend to and maintain 6600 meters, contact Wuhan Control on 119.7, BAW120.",
       "referenceTextZh": "下降并保持6600米，联系武汉管制119.7，BAW120。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/466.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/451.mp3"
     },
     {
       "id": "atc-scenario-0026-card-main-452",
@@ -74,7 +74,7 @@
       "audioTextZh": "你正离开7200米下降至6600米，squawk 4521，联系武汉管制。",
       "referenceText": "Wuhan Control, BAW120, leaving 7200 meters for 6600 meters, squawking 4521.",
       "referenceTextZh": "武汉管制，BAW120，离开7200米下降至6600米，squawk 4521。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/467.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/452.mp3"
     },
     {
       "id": "atc-scenario-0026-card-main-453",
@@ -83,7 +83,7 @@
       "audioTextZh": "现在你保持4800米，已收到通播India，联系武汉进近。",
       "referenceText": "Wuhan Approach, BAW120, maintaining 4800 meters, information I.",
       "referenceTextZh": "武汉进近，BAW120，保持4800米，通播I。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/468.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/453.mp3"
     },
     {
       "id": "atc-scenario-0026-card-main-454",
@@ -92,7 +92,7 @@
       "audioTextZh": "管制员：Speedbird 120，执行ZF 12进场，预计ILS进近18右跑道。",
       "referenceText": "Follow ZF 12 arrival, expect ILS approach runway 18R, BAW120.",
       "referenceTextZh": "执行ZF 12进场，预计ILS进近18R，BAW120。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/469.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/454.mp3"
     },
     {
       "id": "atc-scenario-0026-card-main-455",
@@ -101,7 +101,7 @@
       "audioTextZh": "现在你已截获18右跑道航向道，距接地点10海里。",
       "referenceText": "Wuhan Tower, BAW120, established on the localizer runway 18R, 10 miles from touchdown.",
       "referenceTextZh": "武汉塔台，BAW120，已建立18R航向道，距接地点10海里。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/470.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/455.mp3"
     },
     {
       "id": "atc-scenario-0026-card-main-456",
@@ -110,7 +110,7 @@
       "audioTextZh": "管制员：Speedbird 120，风220度，10米/秒，阵风15米/秒，可以18右跑道落地。",
       "referenceText": "Cleared to land runway 18R, BAW120.",
       "referenceTextZh": "可以18R落地，BAW120。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/471.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/456.mp3"
     },
     {
       "id": "atc-scenario-0026-card-main-457",
@@ -119,7 +119,7 @@
       "audioTextZh": "短五边遇到强风切变，你复飞了，请向武汉塔台报告。",
       "referenceText": "Wuhan Tower, BAW120, strong wind shear on short final, going around.",
       "referenceTextZh": "武汉塔台，BAW120，短五边遇到强风切变，正在复飞。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/472.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/457.mp3"
     },
     {
       "id": "atc-scenario-0026-card-main-458",
@@ -128,7 +128,7 @@
       "audioTextZh": "管制员：Speedbird 120，执行标准复飞程序，爬升至1800米。",
       "referenceText": "Follow standard missed approach procedure, climb to 1800 meters, BAW120.",
       "referenceTextZh": "执行标准复飞程序，爬升至1800米，BAW120。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/473.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/458.mp3"
     },
     {
       "id": "atc-scenario-0026-card-main-459",
@@ -137,7 +137,7 @@
       "audioTextZh": "向武汉进近申请ILS进近22跑道。",
       "referenceText": "Wuhan Approach, BAW120, request ILS approach runway 22.",
       "referenceTextZh": "武汉进近，BAW120，申请ILS进近22跑道。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/474.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/459.mp3"
     },
     {
       "id": "atc-scenario-0026-card-main-460",
@@ -146,7 +146,7 @@
       "audioTextZh": "管制员：Speedbird 120，联系武汉塔台120.45。",
       "referenceText": "120.45, BAW120.",
       "referenceTextZh": "120.45，BAW120。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/475.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/460.mp3"
     }
   ]
 }

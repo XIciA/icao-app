@@ -11,7 +11,7 @@
       "audioTextZh": "B: 你停在 Delta 3 机位，已收听 ATIS 信息 Papa，请向北京放行请求 ATC 许可。",
       "referenceText": "Beijing Delivery, CCA124, stand D3, information P, request ATC clearance to London.",
       "referenceTextZh": "北京放行，CCA124，D3 机位，信息 P，请求前往 London 的 ATC 许可。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/999.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/954.mp3"
     },
     {
       "id": "atc-scenario-0056-card-main-955",
@@ -20,7 +20,7 @@
       "audioTextZh": "C: Air China 124，可以按计划航路前往 London，巡航高度 10400 米，初始爬升 900 米按 1023，执行 Victor Yankee Kilo 05 Delta 离场，联系 120.6，应答机 4523。",
       "referenceText": "Cleared to London via flight planned route, cruising level 10400 meters, initial climb 900 meters on 1023, follow VYK 05D departure, contact 120.6, squawk 4523, CCA124.",
       "referenceTextZh": "可以按计划航路前往 London，巡航高度 10400 米，初始爬升 900 米按 1023，执行 VYK 05D 离场，联系 120.6，应答机 4523，CCA124。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1000.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/955.mp3"
     },
     {
       "id": "atc-scenario-0056-card-main-956",
@@ -29,7 +29,7 @@
       "audioTextZh": "B: 你现在准备推出和开车，联系 ATC。",
       "referenceText": "Beijing Ground, CCA124, ready for pushback and startup.",
       "referenceTextZh": "北京地面，CCA124，准备推出和开车。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1001.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/956.mp3"
     },
     {
       "id": "atc-scenario-0056-card-main-957",
@@ -38,7 +38,7 @@
       "audioTextZh": "C: Air China 124，推出批准，机头朝东，自行决定开车，准备滑行时报告。",
       "referenceText": "Push back approved, facing east, start up at own discretion, CCA124.",
       "referenceTextZh": "推出批准，机头朝东，自行决定开车，CCA124。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1002.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/957.mp3"
     },
     {
       "id": "atc-scenario-0056-card-main-958",
@@ -47,7 +47,7 @@
       "audioTextZh": "B: 现在你准备滑行，呼叫 ATC。",
       "referenceText": "Beijing Ground, CCA124, ready to taxi.",
       "referenceTextZh": "北京地面，CCA124，准备滑行。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1003.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/958.mp3"
     },
     {
       "id": "atc-scenario-0056-card-main-959",
@@ -56,7 +56,7 @@
       "audioTextZh": "C: Air China 124，经 Zulu 6 和 Foxtrot 滑行至跑道 36R 等待点，注意滑行道 Zulu 3 和 Zulu 6 交叉口有施工。",
       "referenceText": "Roger, taxi via Z6 and F to holding point runway 36R, CCA124.",
       "referenceTextZh": "收到，经 Z6 和 F 滑行至跑道 36R 等待点，CCA124。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1004.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/959.mp3"
     },
     {
       "id": "atc-scenario-0056-card-main-960",
@@ -65,7 +65,7 @@
       "audioTextZh": "B: 一辆穿越滑行道 Foxtrot 的地面车辆突然出现在你前方，靠近 Zulu 3 和 Zulu 6 交叉口，你差点撞上，向管制员通报。",
       "referenceText": "Beijing Ground, CCA124, a ground vehicle crossing taxiway F, suddenly appears in front of me near the intersection of Z3 and Z6, we nearly hit it.",
       "referenceTextZh": "北京地面，CCA124，一辆穿越滑行道 F 的地面车辆突然出现在我前方，靠近 Z3 和 Z6 交叉口，我们差点撞上。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1005.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/960.mp3"
     },
     {
       "id": "atc-scenario-0056-card-main-961",
@@ -74,7 +74,7 @@
       "audioTextZh": "C: Air China 124，是的，那是一辆在线车辆，呃刚获知它是去处理受伤工人的救护车，你的飞机一切正常吗？\nB: 告诉管制员你使用最大刹车停住飞机，但乘务员没有给你任何受伤报告。",
       "referenceText": "We applied maximum brake to stop the airplane, but there was no injury report, CCA124.",
       "referenceTextZh": "我们使用最大刹车停住飞机，但没有受伤报告，CCA124。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1006.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/961.mp3"
     },
     {
       "id": "atc-scenario-0056-card-main-962",
@@ -83,7 +83,7 @@
       "audioTextZh": "C: Air China 124，继续滑行至跑道 36R 等待点。",
       "referenceText": "Continue taxi to the holding point of runway 36R, CCA124.",
       "referenceTextZh": "继续滑行至跑道 36R 等待点，CCA124。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1007.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/962.mp3"
     },
     {
       "id": "atc-scenario-0056-card-main-963",
@@ -92,7 +92,7 @@
       "audioTextZh": "C: Air China 124，地面，联系 Beijing 118.7，再见。",
       "referenceText": "118.7, good day, CCA124.",
       "referenceTextZh": "118.7，再见，CCA124。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1008.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/963.mp3"
     },
     {
       "id": "atc-scenario-0056-card-main-964",
@@ -101,7 +101,7 @@
       "audioTextZh": "B: 联系 塔台，告诉他们你接近滑行终点的等待点，现在准备起飞。",
       "referenceText": "Beijing Tower, CCA124, we are approaching the holding point of runway 36R, ready for departure.",
       "referenceTextZh": "北京塔台，CCA124，我们正接近跑道 36R 等待点，准备离场。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1009.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/964.mp3"
     },
     {
       "id": "atc-scenario-0056-card-main-965",
@@ -110,7 +110,7 @@
       "audioTextZh": "C: Air China 124，收到，进跑道等待。",
       "referenceText": "Line up and wait, CCA124.",
       "referenceTextZh": "进跑道等待，CCA124。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1010.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/965.mp3"
     },
     {
       "id": "atc-scenario-0056-card-main-966",
@@ -119,7 +119,7 @@
       "audioTextZh": "B: 现在你准备起飞，呼叫 塔台。",
       "referenceText": "Beijing Tower, CCA124, ready for departure.",
       "referenceTextZh": "北京塔台，CCA124，准备离场。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1011.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/966.mp3"
     },
     {
       "id": "atc-scenario-0056-card-main-967",
@@ -128,7 +128,7 @@
       "audioTextZh": "C: Air China 124，可以起飞，风 340，7 米/秒。",
       "referenceText": "Cleared for takeoff, CCA124.",
       "referenceTextZh": "可以起飞，CCA124。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1012.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/967.mp3"
     },
     {
       "id": "atc-scenario-0056-card-main-968",
@@ -137,7 +137,7 @@
       "audioTextZh": "C: Air China 124，继续 Victor Yankee Kilo 05 Delta 离场，联系 Departure 120.6，再见。",
       "referenceText": "Continue VYK 05D departure, contact Departure on 120.6, good bye, CCA124.",
       "referenceTextZh": "继续 VYK 05D 离场，联系 Departure 120.6，再见，CCA124。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1013.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/968.mp3"
     },
     {
       "id": "atc-scenario-0056-card-main-969",
@@ -146,7 +146,7 @@
       "audioTextZh": "B: 你穿过一群鸟，呼叫 Beijing Departure 并告诉他们你起飞时可能撞鸟，左发 EGT 较高，想在 Charlie Delta Yankee 等待以进行检查。",
       "referenceText": "Beijing Departure, CCA124, we fly through a flock of birds, maybe we hit a bird during takeoff, the left engine EGT is higher, request hold at CDY for check.",
       "referenceTextZh": "Beijing Departure，CCA124，我们穿过一群鸟，起飞时可能撞鸟，左发 EGT 较高，请求在 CDY 等待检查。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1014.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/969.mp3"
     },
     {
       "id": "atc-scenario-0056-card-main-970",
@@ -155,7 +155,7 @@
       "audioTextZh": "C: Air China 124，按 QNH 1023 继续爬升到 900 米，右转，直飞 Charlie Delta Yankee，并在 Charlie Delta Yankee 900 米等待。",
       "referenceText": "Climb to 900 meters on QNH 1023, turn right direct to CDY and hold at CDY at 900 meters, CCA124.",
       "referenceTextZh": "按 QNH 1023 爬升到 900 米，右转直飞 CDY，并在 CDY 900 米等待，CCA124。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1015.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/970.mp3"
     },
     {
       "id": "atc-scenario-0056-card-main-971",
@@ -164,7 +164,7 @@
       "audioTextZh": "B: 通知管制员你现在右发熄火，希望放油后返回 Beijing，这是紧急呼叫。",
       "referenceText": "PANPAN PANPAN PANPAN, Beijing Departure, CCA124, right engine flame out, request return to Beijing after dump fuel.",
       "referenceTextZh": "PANPAN PANPAN PANPAN，Beijing Departure，CCA124，右发熄火，请求放油后返回 Beijing。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1016.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/971.mp3"
     },
     {
       "id": "atc-scenario-0056-card-main-972",
@@ -173,7 +173,7 @@
       "audioTextZh": "C: Air China 124，收到 PAN，按 QNH 保持 900 米，左转航向 020 度，雷达引导至放油区。",
       "referenceText": "Maintain 900 meters on QNH, turn left heading 020 degrees, CCA124.",
       "referenceTextZh": "按 QNH 保持 900 米，左转航向 020 度，CCA124。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1017.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/972.mp3"
     },
     {
       "id": "atc-scenario-0056-card-main-973",
@@ -182,7 +182,7 @@
       "audioTextZh": "B: 你已到达放油区并完成放油，通知管制员放油完成，请求雷达引导返回 Beijing。",
       "referenceText": "Beijing Departure, CCA124, fuel dumping completed, request radar vector back to Beijing.",
       "referenceTextZh": "Beijing Departure，CCA124，放油完成，请求雷达引导返回 Beijing。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1018.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/973.mp3"
     }
   ]
 }

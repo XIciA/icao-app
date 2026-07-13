@@ -11,7 +11,7 @@
       "audioTextZh": "B: 你的呼号是 China Southern 230。飞机刚在 Baiyun Airport 跑道 02 right 落地。\nC: China Southern 230，在跑道上反向滑行，经 Alpha 5 脱离跑道。",
       "referenceText": "Backtrack the runway, vacate the runway via A5, CSN230.",
       "referenceTextZh": "在跑道上反向滑行，经 A5 脱离跑道，CSN230。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1637.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1803.mp3"
     },
     {
       "id": "atc-scenario-0105-card-main-1804",
@@ -20,7 +20,7 @@
       "audioTextZh": "C: China Southern 230，能见度 300 meters，低能见度程序生效，谨慎滑行。",
       "referenceText": "Roger, thanks, CSN230.",
       "referenceTextZh": "收到，谢谢，CSN230。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1638.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1804.mp3"
     },
     {
       "id": "atc-scenario-0105-card-main-1805",
@@ -29,7 +29,7 @@
       "audioTextZh": "C: China Southern 230，加速脱离跑道，短五边有活动。联系白云地面120.2。",
       "referenceText": "Expedite vacating runway, 120.2, CSN230.",
       "referenceTextZh": "加速脱离跑道，120.2，CSN230。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1639.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1805.mp3"
     },
     {
       "id": "atc-scenario-0105-card-main-1806",
@@ -38,7 +38,7 @@
       "audioTextZh": "B: 现在联系白云地面，告诉他你已脱离跑道。",
       "referenceText": "Baiyun Ground, CSN230, runway vacated.",
       "referenceTextZh": "白云地面，CSN230，跑道已脱离。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1640.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1806.mp3"
     },
     {
       "id": "atc-scenario-0105-card-main-1807",
@@ -47,7 +47,7 @@
       "audioTextZh": "C: China Southern 230，经滑行道 Alpha 5、Alpha、Golf、Echo 和 Quebec 到 35 号机位。",
       "referenceText": "A5, A, G, E and Q to stand 35, CSN230.",
       "referenceTextZh": "经 A5、A、G、E 和 Q 到 35 号机位，CSN230。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1641.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1807.mp3"
     },
     {
       "id": "atc-scenario-0105-card-main-1808",
@@ -56,7 +56,7 @@
       "audioTextZh": "B: 你发现滑行道灯很暗，请求调亮。",
       "referenceText": "Baiyun Ground, CSN230, can you turn up the taxiway lighting? It’s really dim.",
       "referenceTextZh": "白云地面，CSN230，能否调亮滑行道灯？灯光真的很暗。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1642.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1808.mp3"
     },
     {
       "id": "atc-scenario-0105-card-main-1809",
@@ -65,7 +65,7 @@
       "audioTextZh": "C: China Southern 230，已经是最大设置。谨慎滑行。\nB: 告诉管制员你需要详细指令。",
       "referenceText": "Roger, request detailed taxi instruction, CSN230.",
       "referenceTextZh": "收到，请求详细滑行指令，CSN230。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1643.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1809.mp3"
     },
     {
       "id": "atc-scenario-0105-card-main-1810",
@@ -74,7 +74,7 @@
       "audioTextZh": "C: China Southern 230，直行滑行，我会持续给你提示。",
       "referenceText": "Taxi straight ahead, CSN230.",
       "referenceTextZh": "直行滑行，CSN230。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1644.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1810.mp3"
     },
     {
       "id": "atc-scenario-0105-card-main-1811",
@@ -83,7 +83,7 @@
       "audioTextZh": "C: China Southern 230，给你右侧离场飞机让路，看到后报告。\nB: 告诉他你没有看到该飞机。",
       "referenceText": "Negative contact, CSN230.",
       "referenceTextZh": "未看到，CSN230。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1645.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1811.mp3"
     },
     {
       "id": "atc-scenario-0105-card-main-1812",
@@ -92,7 +92,7 @@
       "audioTextZh": "C: China Southern 230，在当前位置等待。飞机正从右向左穿越。",
       "referenceText": "Hold at present position, CSN230.",
       "referenceTextZh": "在当前位置等待，CSN230。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1646.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1812.mp3"
     },
     {
       "id": "atc-scenario-0105-card-main-1813",
@@ -101,7 +101,7 @@
       "audioTextZh": "C: China Southern 230，继续滑行，Alpha 是你左侧第一条滑行道。",
       "referenceText": "Left turn at first intersection, CSN230.",
       "referenceTextZh": "在第一个交叉口左转，CSN230。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1647.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1813.mp3"
     },
     {
       "id": "atc-scenario-0105-card-main-1814",
@@ -110,7 +110,7 @@
       "audioTextZh": "C: China Southern 230，沿滑行道 Alpha 到下一个交叉口，然后右转。",
       "referenceText": "Follow taxiway Alpha, turn right at next intersection, CSN 230.",
       "referenceTextZh": "沿滑行道 Alpha，下一交叉口右转，CSN230。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1648.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1814.mp3"
     },
     {
       "id": "atc-scenario-0105-card-main-1815",
@@ -119,7 +119,7 @@
       "audioTextZh": "C: China Southern 230，你转错了。现在你在 Echo Charlie 上。\nB: 向管制员道歉，并问他下一步该怎么办。",
       "referenceText": "Sorry for that. Request further instruction, CSN230.",
       "referenceTextZh": "对此抱歉。请求进一步指令，CSN230。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1649.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1815.mp3"
     },
     {
       "id": "atc-scenario-0105-card-main-1816",
@@ -128,7 +128,7 @@
       "audioTextZh": "C: 嗯，China Southern 230，继续滑行。到达货运机坪后右转 180。确认你有足够空间完成。",
       "referenceText": "Roger, Cargo Apron, then right 180, CSN230.",
       "referenceTextZh": "收到，货运机坪，然后右转 180，CSN230。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1650.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1816.mp3"
     },
     {
       "id": "atc-scenario-0105-card-main-1817",
@@ -137,7 +137,7 @@
       "audioTextZh": "B: 告诉他你已经完成 180。",
       "referenceText": "Baiyun Ground, CSN230, backtrack completed.",
       "referenceTextZh": "白云地面，CSN230，反向滑行完成。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1651.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1817.mp3"
     },
     {
       "id": "atc-scenario-0105-card-main-1818",
@@ -146,7 +146,7 @@
       "audioTextZh": "C: China Southern 230，经原路线向东滑行。除非我呼叫你，不要转弯。",
       "referenceText": "Eastward via previous route, straight ahead, CSN230.",
       "referenceTextZh": "经原路线向东，直行，CSN230。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1652.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1818.mp3"
     },
     {
       "id": "atc-scenario-0105-card-main-1819",
@@ -155,7 +155,7 @@
       "audioTextZh": "C: China Southern 230，现在右转上滑行道 Quebec。注意，滑行道湿滑。",
       "referenceText": "Turn right onto taxiway Q, CSN230.",
       "referenceTextZh": "右转上滑行道 Q，CSN230。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1653.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1819.mp3"
     },
     {
       "id": "atc-scenario-0105-card-main-1820",
@@ -164,7 +164,7 @@
       "audioTextZh": "B: 你的右主起落架滑出滑行道。请求拖车。",
       "referenceText": "Baiyun Ground, CSN230, our right main gear skidded off the taxiway. Request a tug.",
       "referenceTextZh": "白云地面，CSN230，我们的右主起落架滑出滑行道。请求拖车。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1654.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1820.mp3"
     },
     {
       "id": "atc-scenario-0105-card-main-1821",
@@ -173,7 +173,7 @@
       "audioTextZh": "C: China Southern 230，收到。稍等。",
       "referenceText": "Roger, thanks, CSN230.",
       "referenceTextZh": "收到，谢谢，CSN230。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1655.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1821.mp3"
     }
   ]
 }

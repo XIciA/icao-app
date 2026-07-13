@@ -11,7 +11,7 @@
       "audioTextZh": "B: 你的呼号是 Air China 725，停在 812，已收到信息 Yankee，目的地 Beijing，向武汉放行请求 ATC 许可。",
       "referenceText": "Wuhan Delivery, CCA725, gate 812, information Y, request ATC clearance to Beijing.",
       "referenceTextZh": "武汉放行，CCA725，812 号登机口，信息 Y，请求前往 Beijing 的 ATC 许可。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1074.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1029.mp3"
     },
     {
       "id": "atc-scenario-0060-card-main-1030",
@@ -20,7 +20,7 @@
       "audioTextZh": "C: Air China 725，可以按计划航路前往 Beijing，离场跑道 36R，Zulu Foxtrot 01 离场，初始爬升 1500 米，巡航高度 10700 米，离场后联系 119.7，应答机 4721。",
       "referenceText": "Cleared to Beijing via flight planned route, departure runway 36R, ZF 01 departure, initially climb 1500 meters, cruising level 10700 meters, after departure, contact 119.7, squawk 4721, CCA725.",
       "referenceTextZh": "可以按计划航路前往 Beijing，离场跑道 36R，ZF 01 离场，初始爬升 1500 米，巡航高度 10700 米，离场后联系 119.7，应答机 4721，CCA725。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1075.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1030.mp3"
     },
     {
       "id": "atc-scenario-0060-card-main-1031",
@@ -29,7 +29,7 @@
       "audioTextZh": "B: 联系 放行，告诉他们你因停机位置想使用跑道 36L。",
       "referenceText": "Wuhan Delivery, CCA725, request runway 36L due parking position.",
       "referenceTextZh": "武汉放行，CCA725，因停机位置请求跑道 36L。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1076.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1031.mp3"
     },
     {
       "id": "atc-scenario-0060-card-main-1032",
@@ -38,7 +38,7 @@
       "audioTextZh": "C: Air China 725，跑道 36L 因除胶不可用，使用跑道 36R。",
       "referenceText": "Roger, runway in use 36R, CCA725.",
       "referenceTextZh": "收到，使用跑道 36R，CCA725。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1077.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1032.mp3"
     },
     {
       "id": "atc-scenario-0060-card-main-1033",
@@ -47,7 +47,7 @@
       "audioTextZh": "B: 开车时，一台发动机起动机失效，联系 地面请求在当前位置等待以执行应急程序。",
       "referenceText": "Wuhan Ground, CCA725, 1 of the engine starters failed, request hold at present position to carry out emergency procedure.",
       "referenceTextZh": "武汉地面，CCA725，一台发动机起动机失效，请求在当前位置等待以执行应急程序。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1078.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1033.mp3"
     },
     {
       "id": "atc-scenario-0060-card-main-1034",
@@ -56,7 +56,7 @@
       "audioTextZh": "B: 现在你已解决问题，正在跑道 36R 等待点等待，准备起飞。",
       "referenceText": "Wuhan Tower, CCA725, holding at holding point runway 36R, ready for departure.",
       "referenceTextZh": "武汉塔台，CCA725，在跑道 36R 等待点等待，准备离场。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1079.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1034.mp3"
     },
     {
       "id": "atc-scenario-0060-card-main-1035",
@@ -65,7 +65,7 @@
       "audioTextZh": "B: 初始爬升期间，机上一名老妇人心脏病发作，这是紧急呼叫，告诉管制员你想返回机场，并请求优先着陆和医疗援助。",
       "referenceText": "PANPAN PANPAN PANPAN, Wuhan Departure, CCA725, an old lady suffered from a heart attack, request return to Wuhan for priority landing and medical assistance.",
       "referenceTextZh": "PANPAN PANPAN PANPAN，Wuhan Departure，CCA725，一名老妇人心脏病发作，请求返回 Wuhan 优先着陆并提供医疗援助。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1080.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1035.mp3"
     },
     {
       "id": "atc-scenario-0060-card-main-1036",
@@ -74,7 +74,7 @@
       "audioTextZh": "C: Air China 725，收到 PAN，右转，直飞 Zulu Foxtrot，按 QNH 1011 下降并保持 3000 米，Zulu Foxtrot 02 进场，预计 ILS 进近 36L。",
       "referenceText": "Turn right, direct to ZF, descend and maintain 3000 meters on QNH 1011, ZF 02 arrival, expect ILS approach 36L, CCA725.",
       "referenceTextZh": "右转，直飞 ZF，按 QNH 1011 下降并保持 3000 米，ZF 02 进场，预计 ILS 进近 36L，CCA725。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1081.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1036.mp3"
     },
     {
       "id": "atc-scenario-0060-card-main-1037",
@@ -83,7 +83,7 @@
       "audioTextZh": "C: Air China 725，下降并保持 2100 米。\nB: 复诵并请求 QNH。",
       "referenceText": "Descend and maintain 2100 meters, request QNH, CCA725.",
       "referenceTextZh": "下降并保持 2100 米，请求 QNH，CCA725。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1082.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1037.mp3"
     },
     {
       "id": "atc-scenario-0060-card-main-1038",
@@ -92,7 +92,7 @@
       "audioTextZh": "C: Air China 725，QNH 1019，更正，1009。",
       "referenceText": "QNH 1009, CCA725.",
       "referenceTextZh": "QNH 1009，CCA725。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1083.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1038.mp3"
     },
     {
       "id": "atc-scenario-0060-card-main-1039",
@@ -101,7 +101,7 @@
       "audioTextZh": "C: Air China 725，跑道 36L 可以着陆，地面风 340，5 米/秒。",
       "referenceText": "Cleared to land 36L, CCA725.",
       "referenceTextZh": "跑道 36L 可以着陆，CCA725。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1084.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1039.mp3"
     },
     {
       "id": "atc-scenario-0060-card-main-1040",
@@ -110,7 +110,7 @@
       "audioTextZh": "B: 着陆后，你的前轮转弯故障，无法脱离 36L，向武汉塔台报告。",
       "referenceText": "Wuhan Tower, CCA725, our nose wheel steering has malfunctioned, unable to vacate 36L.",
       "referenceTextZh": "武汉塔台，CCA725，我们的前轮转弯故障，无法脱离 36L。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1085.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1040.mp3"
     },
     {
       "id": "atc-scenario-0060-card-main-1041",
@@ -119,7 +119,7 @@
       "audioTextZh": "C: Air China 725，你需要什么援助？\nB: 告诉管制员你需要拖车把你拖回航站楼。",
       "referenceText": "Wuhan Tower, CCA725, request a tug to tow us to the terminal.",
       "referenceTextZh": "武汉塔台，CCA725，请求拖车把我们拖到航站楼。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1086.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1041.mp3"
     },
     {
       "id": "atc-scenario-0060-card-main-1042",
@@ -128,7 +128,7 @@
       "audioTextZh": "C: Air China 725，拖车将在 5 分钟内到达。",
       "referenceText": "Roger, thanks, CCA725.",
       "referenceTextZh": "收到，谢谢，CCA725。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1087.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1042.mp3"
     },
     {
       "id": "atc-scenario-0060-card-main-1043",
@@ -137,7 +137,7 @@
       "audioTextZh": "B: 现在这位女士情况正在恶化，你向管制员确认登机口医疗服务是否准备好。",
       "referenceText": "Wuhan Ground, CCA725, the lady's condition is deteriorating, is medical service ready at the gate ?",
       "referenceTextZh": "武汉地面，CCA725，这位女士情况正在恶化，登机口医疗服务准备好了吗？",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1088.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1043.mp3"
     },
     {
       "id": "atc-scenario-0060-card-main-1044",
@@ -146,7 +146,7 @@
       "audioTextZh": "C: Air China 725，是的，救护车和医疗服务已在登机口准备好。",
       "referenceText": "Roger, thanks, CCA725.",
       "referenceTextZh": "收到，谢谢，CCA725。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1089.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1044.mp3"
     }
   ]
 }

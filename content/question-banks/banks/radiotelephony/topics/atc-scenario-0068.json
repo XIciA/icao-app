@@ -11,7 +11,7 @@
       "audioTextZh": "B: 你的呼号是 Air China 301，从 Beijing 到 Guangzhou，停在 215 号登机口，准备推出和开车，联系北京地面。",
       "referenceText": "Beijing Ground, CCA1301, gate 215, request push back and start up.",
       "referenceTextZh": "北京地面，CCA1301，215 号登机口，请求推出和开车。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1206.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1161.mp3"
     },
     {
       "id": "atc-scenario-0068-card-main-1162",
@@ -20,7 +20,7 @@
       "audioTextZh": "C: Air China 301，北京地面，推出和开车批准，机头朝西。",
       "referenceText": "Push back and start up approved, facing west, CCA1301.",
       "referenceTextZh": "推出和开车批准，机头朝西，CCA1301。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1207.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1162.mp3"
     },
     {
       "id": "atc-scenario-0068-card-main-1163",
@@ -29,7 +29,7 @@
       "audioTextZh": "B: 现在你已完成推出和开车，准备滑行。",
       "referenceText": "Beijing Ground, CCA1301, push back and start up completed, request taxi.",
       "referenceTextZh": "北京地面，CCA1301，推出和开车完成，请求滑行。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1208.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1163.mp3"
     },
     {
       "id": "atc-scenario-0068-card-main-1164",
@@ -38,7 +38,7 @@
       "audioTextZh": "C: Air China 301，北京地面，经滑行道 Yankee 4 和 Golf 2 滑行，在 Hotel 前等待。",
       "referenceText": "Taxi via taxiway Y4 and G2, hold short of H, CCA1301.",
       "referenceTextZh": "经滑行道 Y4 和 G2 滑行，在 H 前等待，CCA1301。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1209.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1164.mp3"
     },
     {
       "id": "atc-scenario-0068-card-main-1165",
@@ -47,7 +47,7 @@
       "audioTextZh": "B: 滑行期间，你注意到前方 Airbus 330 右发漏液，向北京地面报告。",
       "referenceText": "Beijing Ground, CCA1301, the A330 ahead is leaking fluid from the right engine.",
       "referenceTextZh": "北京地面，CCA1301，前方 A330 右发漏液。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1210.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1165.mp3"
     },
     {
       "id": "atc-scenario-0068-card-main-1166",
@@ -56,7 +56,7 @@
       "audioTextZh": "C: 收到，谢谢，Air China 301，继续滑行。\nB: 告诉管制员你无法滑行，因为发现滑行道表面被泄漏液体污染。",
       "referenceText": "We are unable to taxi, the taxiway surface is contaminated with leaking fluid, CCA1301.",
       "referenceTextZh": "我们无法滑行，滑行道表面被泄漏液体污染，CCA1301。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1211.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1166.mp3"
     },
     {
       "id": "atc-scenario-0068-card-main-1167",
@@ -65,7 +65,7 @@
       "audioTextZh": "C: Air China 301，收到，左转，经 Yankee 1 滑行，然后左转，经 Yankee 2 滑行。",
       "referenceText": "Turn left, taxi via Y1, then turn left, taxi via Y2, CCA1301.",
       "referenceTextZh": "左转，经 Y1 滑行，然后左转，经 Y2 滑行，CCA1301。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1212.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1167.mp3"
     },
     {
       "id": "atc-scenario-0068-card-main-1168",
@@ -74,7 +74,7 @@
       "audioTextZh": "B: 现在你在跑道 36R 等待点，准备离场，联系北京塔台。",
       "referenceText": "Beijing Tower, CCA1301, holding point runway 36R, ready for departure.",
       "referenceTextZh": "北京塔台，CCA1301，跑道 36R 等待点，准备离场。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1213.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1168.mp3"
     },
     {
       "id": "atc-scenario-0068-card-main-1169",
@@ -83,7 +83,7 @@
       "audioTextZh": "C: Air China 301，进跑道，准备立即离场。",
       "referenceText": "Line up and be ready for immediate departure, CCA1301.",
       "referenceTextZh": "进跑道，准备立即离场，CCA1301。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1214.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1169.mp3"
     },
     {
       "id": "atc-scenario-0068-card-main-1170",
@@ -92,7 +92,7 @@
       "audioTextZh": "C: Air China 301，跑道 36R，可以立即起飞，地面风 340 度，2 米/秒。",
       "referenceText": "Runway 36R, cleared for immediate takeoff, CCA1301.",
       "referenceTextZh": "跑道 36R，可以立即起飞，CCA1301。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1215.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1170.mp3"
     },
     {
       "id": "atc-scenario-0068-card-main-1171",
@@ -101,7 +101,7 @@
       "audioTextZh": "C: Air China 301，立即停止！我再说一遍！立即停止！\nB: 告诉管制员你使用最大刹车，正在跑道上停止。",
       "referenceText": "Beijing Tower, CCA1301, we used the maximum breaks and we are stopping on the runway.",
       "referenceTextZh": "北京塔台，CCA1301，我们使用最大刹车，正在跑道上停止。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1216.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1171.mp3"
     },
     {
       "id": "atc-scenario-0068-card-main-1172",
@@ -110,7 +110,7 @@
       "audioTextZh": "C: Air China 301，经 Echo 2 脱离跑道。",
       "referenceText": "Vacate runway via E2, CCA1301.",
       "referenceTextZh": "经 E2 脱离跑道，CCA1301。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1217.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1172.mp3"
     },
     {
       "id": "atc-scenario-0068-card-main-1173",
@@ -119,7 +119,7 @@
       "audioTextZh": "B: 现在你已通过 Echo 2 脱离跑道 36R，并询问 北京塔台 中断起飞的原因。",
       "referenceText": "Beijing Tower, CCA1301, runway 36R vacated via E2, confirm the reasons for rejected takeoff.",
       "referenceTextZh": "北京塔台，CCA1301，已通过 E2 脱离跑道 36R，确认中断起飞原因。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1218.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1173.mp3"
     },
     {
       "id": "atc-scenario-0068-card-main-1174",
@@ -128,7 +128,7 @@
       "audioTextZh": "C: Air China 301，短五边上的着陆航空器刚复飞。",
       "referenceText": "Roger, CCA1301.",
       "referenceTextZh": "收到，CCA1301。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1219.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1174.mp3"
     },
     {
       "id": "atc-scenario-0068-card-main-1175",
@@ -137,7 +137,7 @@
       "audioTextZh": "B: 现在你发现刹车过热，告诉管制员你需要 2 分钟冷却刹车。",
       "referenceText": "Beijing Tower, CCA1301, our brakes are overheating, we need 2 minutes to cool the brakes.",
       "referenceTextZh": "北京塔台，CCA1301，我们刹车过热，需要 2 分钟冷却刹车。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1220.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1175.mp3"
     },
     {
       "id": "atc-scenario-0068-card-main-1176",
@@ -146,7 +146,7 @@
       "audioTextZh": "C: Air China 301，你需要什么援助？\nB: 告诉管制员你需要地面服务冷却机轮。",
       "referenceText": "Request ground services to cool the wheels, CCA1301.",
       "referenceTextZh": "请求地面服务冷却机轮，CCA1301。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1221.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1176.mp3"
     },
     {
       "id": "atc-scenario-0068-card-main-1177",
@@ -155,7 +155,7 @@
       "audioTextZh": "C: Air China 301，还需要什么？\nB: 告诉管制员你一个前轮轮胎泄气，必须在当前位置等待维修检查。",
       "referenceText": "1 of our nose wheel tires was deflated, we have to hold at present position for maintenance inspection, CCA1301.",
       "referenceTextZh": "我们一个前轮轮胎泄气，必须在当前位置等待维修检查，CCA1301。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1222.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1177.mp3"
     },
     {
       "id": "atc-scenario-0068-card-main-1178",
@@ -164,7 +164,7 @@
       "audioTextZh": "B: 检查后，维修人员告诉你停车刹车卡滞，向管制员报告。",
       "referenceText": "Beijing Tower, CCA1301, our parking breaks have seized.",
       "referenceTextZh": "北京塔台，CCA1301，我们的停车刹车卡滞。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1223.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1178.mp3"
     },
     {
       "id": "atc-scenario-0068-card-main-1179",
@@ -173,7 +173,7 @@
       "audioTextZh": "C: Air China 301，你需要什么援助？\nB: 告诉管制员你需要拖车把你拖回维修机坪。",
       "referenceText": "Request a tug to tow us back to the maintenance apron, CCA1301.",
       "referenceTextZh": "请求拖车把我们拖回维修机坪，CCA1301。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1224.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1179.mp3"
     },
     {
       "id": "atc-scenario-0068-card-main-1180",
@@ -182,7 +182,7 @@
       "audioTextZh": "C: Air China 301，原地等待，拖车很快到。",
       "referenceText": "Holding, roger, thanks, CCA1301.",
       "referenceTextZh": "等待，收到，谢谢，CCA1301。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1225.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1180.mp3"
     }
   ]
 }

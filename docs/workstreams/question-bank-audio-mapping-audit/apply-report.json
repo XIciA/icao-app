@@ -1,0 +1,102 @@
+{
+  "appliedAt": "2026-07-13T07:09:22.788Z",
+  "before": {
+    "affectedLocalAudioCards": 3269,
+    "auditedLocalAudioCards": 3678,
+    "byBank": {
+      "listening": {
+        "cards": 631,
+        "pathAligned": 2,
+        "statusCounts": {
+          "correct": 2,
+          "mismatch": 629
+        }
+      },
+      "sentences900": {
+        "cards": 900,
+        "pathAligned": 17,
+        "statusCounts": {
+          "correct": 17,
+          "mismatch": 883
+        }
+      },
+      "radiotelephony": {
+        "cards": 1851,
+        "pathAligned": 241,
+        "statusCounts": {
+          "correct": 241,
+          "mismatch": 1610
+        }
+      },
+      "storytelling": {
+        "cards": 296,
+        "pathAligned": 149,
+        "statusCounts": {
+          "correct": 149,
+          "mismatch": 147
+        }
+      },
+      "opi": {
+        "cards": 1269,
+        "pathAligned": 0,
+        "statusCounts": {
+          "generated-audio": 1269
+        }
+      }
+    },
+    "currentCardCount": 4947,
+    "stableIdOnlyMappings": 37
+  },
+  "after": {
+    "affectedLocalAudioCards": 0,
+    "auditedLocalAudioCards": 3678,
+    "byBank": {
+      "listening": {
+        "cards": 631,
+        "pathAligned": 631,
+        "statusCounts": {
+          "correct": 631
+        }
+      },
+      "sentences900": {
+        "cards": 900,
+        "pathAligned": 900,
+        "statusCounts": {
+          "correct": 900
+        }
+      },
+      "radiotelephony": {
+        "cards": 1851,
+        "pathAligned": 1851,
+        "statusCounts": {
+          "correct": 1851
+        }
+      },
+      "storytelling": {
+        "cards": 296,
+        "pathAligned": 296,
+        "statusCounts": {
+          "correct": 296
+        }
+      },
+      "opi": {
+        "cards": 1269,
+        "pathAligned": 0,
+        "statusCounts": {
+          "generated-audio": 1269
+        }
+      }
+    },
+    "currentCardCount": 4947,
+    "stableIdOnlyMappings": 37
+  },
+  "changedAudioFields": 3269,
+  "embeddedNonAudioDigest": "2cc0aeb5414593cc414be41c596138c5748d94448e01064f8d528b87d13aee16",
+  "resourcePatch": {
+    "checksum": "a0722b82f2d5a22cba9a0fad0f8b7f06d98eab8d596691eedcbde6e74f20067f",
+    "publicPath": "/question-bank-assets/audio/listening/main/454.mp3",
+    "sizeBytes": 128300
+  },
+  "sourceNonAudioDigest": "988e467e85fecd2e0732f83f64c4c681fd2e9006dea70e913ebcffcf89d4801b",
+  "sourceEmbeddedCardsCompared": 3678
+}

@@ -11,7 +11,7 @@
       "audioTextZh": "B：你停在停机坪，准备滑行，请求滑行许可。",
       "referenceText": "Ground, UAL122, request taxi.",
       "referenceTextZh": "地面，UAL122，请求滑行。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/708.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/693.mp3"
     },
     {
       "id": "atc-scenario-0041-card-main-694",
@@ -20,7 +20,7 @@
       "audioTextZh": "C：United 122，等待，正在除雪。",
       "referenceText": "Stand by, UAL122.",
       "referenceTextZh": "等待，UAL122。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/709.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/694.mp3"
     },
     {
       "id": "atc-scenario-0041-card-main-695",
@@ -29,7 +29,7 @@
       "audioTextZh": "C：United 122，经滑行道 Bravo 2、Bravo 和 Echo 3 滑行至跑道 34 等待点。",
       "referenceText": "Taxi via taxiway B2, B and E3 to holding point runway 34, UAL122.",
       "referenceTextZh": "经滑行道 B2、B 和 E3 滑行至跑道 34 等待点，UAL122。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/710.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/695.mp3"
     },
     {
       "id": "atc-scenario-0041-card-main-696",
@@ -38,7 +38,7 @@
       "audioTextZh": "B：呼叫塔台，报告准备离场。",
       "referenceText": "Tower, UAL122, ready for departure.",
       "referenceTextZh": "塔台，UAL122，准备离场。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/711.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/696.mp3"
     },
     {
       "id": "atc-scenario-0041-card-main-697",
@@ -47,7 +47,7 @@
       "audioTextZh": "C：United 122，进跑道，准备立即离场。",
       "referenceText": "Line up, UAL122.",
       "referenceTextZh": "进跑道，UAL122。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/712.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/697.mp3"
     },
     {
       "id": "atc-scenario-0041-card-main-698",
@@ -56,7 +56,7 @@
       "audioTextZh": "C：United 122，可以起飞，离地后报告。",
       "referenceText": "Cleared for takeoff, report airborne, UAL122.",
       "referenceTextZh": "可以起飞，离地后报告，UAL122。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/713.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/698.mp3"
     },
     {
       "id": "atc-scenario-0041-card-main-699",
@@ -65,7 +65,7 @@
       "audioTextZh": "B：你现在 1000 英尺，联系离场。",
       "referenceText": "Departure, UAL122, 1000 feet climbing.",
       "referenceTextZh": "离场，UAL122，通过 1000 英尺爬升中。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/714.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/699.mp3"
     },
     {
       "id": "atc-scenario-0041-card-main-700",
@@ -74,7 +74,7 @@
       "audioTextZh": "C：United 122，离场，执行 Golf Juliet 2 Delta 离场，3000 英尺前预计无进一步指令，过 3000 英尺后加入计划航路。",
       "referenceText": "Follow GJ 2D departure, expect no further instruction until 3000 feet, after 3000 feet, join planned route, UAL122.",
       "referenceTextZh": "执行 GJ 2D 离场，3000 英尺前预计无进一步指令，过 3000 英尺后加入计划航路，UAL122。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/715.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/700.mp3"
     },
     {
       "id": "atc-scenario-0041-card-main-701",
@@ -83,7 +83,7 @@
       "audioTextZh": "C：United 122，加快爬升以保持间隔，2 点钟方向有汇聚航空器，脱离冲突后报告。",
       "referenceText": "Expedite climb to keep separation, report when clear of traffic, UAL122.",
       "referenceTextZh": "加快爬升以保持间隔，脱离冲突后报告，UAL122。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/716.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/701.mp3"
     },
     {
       "id": "atc-scenario-0041-card-main-702",
@@ -92,7 +92,7 @@
       "audioTextZh": "B：告诉管制员你已与该航空器保持安全间隔。",
       "referenceText": "Departure, UAL122, clear of the traffic.",
       "referenceTextZh": "离场，UAL122，已脱离该航空器。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/717.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/702.mp3"
     },
     {
       "id": "atc-scenario-0041-card-main-703",
@@ -101,7 +101,7 @@
       "audioTextZh": "C：United 122，继续爬升至飞行高度层 250，飞往 Hotel Mike，到达飞行高度层 120 时联系管制 122.10。",
       "referenceText": "Continue climbing to FL250, proceed to HM, contact Control on 122.10 when reaching FL120, UAL122.",
       "referenceTextZh": "继续爬升至 FL250，飞往 HM，到达 FL120 时联系管制 122.10，UAL122。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/718.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/703.mp3"
     },
     {
       "id": "atc-scenario-0041-card-main-704",
@@ -110,7 +110,7 @@
       "audioTextZh": "B：你在飞行高度层 120，呼叫管制。",
       "referenceText": "Control, UAL122, reaching FL120.",
       "referenceTextZh": "管制，UAL122，到达 FL120。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/719.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/704.mp3"
     },
     {
       "id": "atc-scenario-0041-card-main-705",
@@ -119,7 +119,7 @@
       "audioTextZh": "C：United 122，你能在航路上消耗时间吗？Oscar Bravo Oscar 机场落地延误。\nB：告诉管制员可以。",
       "referenceText": "Affirm, UAL122.",
       "referenceTextZh": "可以，UAL122。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/720.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/705.mp3"
     },
     {
       "id": "atc-scenario-0041-card-main-706",
@@ -128,7 +128,7 @@
       "audioTextZh": "C：United 122，减速至马赫 0.65，保持飞行高度层 250。",
       "referenceText": "Reduce speed to M.65, maintain FL250, UAL122.",
       "referenceTextZh": "减速至 M.65，保持 FL250，UAL122。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/721.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/706.mp3"
     },
     {
       "id": "atc-scenario-0041-card-main-707",
@@ -137,7 +137,7 @@
       "audioTextZh": "B：告诉管制员你们左发失效。",
       "referenceText": "PANPAN PANPAN PANPAN, Control, UAL122, our port/left engine has failed.",
       "referenceTextZh": "PANPAN PANPAN PANPAN，管制，UAL122，我们左发失效。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/722.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/707.mp3"
     },
     {
       "id": "atc-scenario-0041-card-main-708",
@@ -146,7 +146,7 @@
       "audioTextZh": "C：United 122，收到 PAN 呼叫，报告当前状态。\nB：你已关闭左发，正在按检查单尝试重启。",
       "referenceText": "We have shut down left engine, we are trying to restart it, UAL122.",
       "referenceTextZh": "我们已关闭左发，正在尝试重启，UAL122。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/723.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/708.mp3"
     },
     {
       "id": "atc-scenario-0041-card-main-709",
@@ -155,7 +155,7 @@
       "audioTextZh": "C：United 122，收到。\nB：发动机重启不成功，你希望优先着陆。",
       "referenceText": "Control, UAL122, engine restart are unsuccessful, request priority landing.",
       "referenceTextZh": "管制，UAL122，发动机重启不成功，请求优先着陆。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/724.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/709.mp3"
     },
     {
       "id": "atc-scenario-0041-card-main-710",
@@ -164,7 +164,7 @@
       "audioTextZh": "C：United 122，左转航向 170，下降至 3000 英尺，联系进近 130.6。",
       "referenceText": "Turn left heading 170, descend to 3000 feet, 130.6, UAL122.",
       "referenceTextZh": "左转航向 170，下降至 3000 英尺，130.6，UAL122。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/725.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/710.mp3"
     }
   ]
 }

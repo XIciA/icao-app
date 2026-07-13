@@ -11,7 +11,7 @@
       "audioTextZh": "B：你的呼号是 United 403，在武汉机场，离场前收到客舱报告，机翼有冰雪堆积，联系武汉地面，告知需要在开车前除冰。",
       "referenceText": "Wuhan Ground, UAL403, there is ice and snow buildup on the wings, request de-icing.",
       "referenceTextZh": "武汉地面，UAL403，机翼有冰雪堆积，请求除冰。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/593.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/578.mp3"
     },
     {
       "id": "atc-scenario-0034-card-main-579",
@@ -20,7 +20,7 @@
       "audioTextZh": "C：United 403，你想在哪里除冰？\nB：告诉管制员想在滑行道 Zulu 4 除冰。",
       "referenceText": "Request de-icing on taxiway Z4, UAL403.",
       "referenceTextZh": "请求在滑行道 Z4 除冰，UAL403。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/594.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/579.mp3"
     },
     {
       "id": "atc-scenario-0034-card-main-580",
@@ -29,7 +29,7 @@
       "audioTextZh": "B：告诉地面管制员你已完成除冰，准备滑行。",
       "referenceText": "Wuhan Ground, UAL403, de-icing completed, request taxi.",
       "referenceTextZh": "武汉地面，UAL403，除冰完成，请求滑行。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/595.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/580.mp3"
     },
     {
       "id": "atc-scenario-0034-card-main-581",
@@ -38,7 +38,7 @@
       "audioTextZh": "C：United 403，经滑行道 Zulu 4、Alpha 3 和 Alpha 滑行至跑道 36 右等待点。",
       "referenceText": "Taxi to holding point runway 36R via taxiway Z4, A3 and A, UAL403.",
       "referenceTextZh": "经滑行道 Z4、A3 和 A 滑行至跑道 36R 等待点，UAL403。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/596.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/581.mp3"
     },
     {
       "id": "atc-scenario-0034-card-main-582",
@@ -47,7 +47,7 @@
       "audioTextZh": "B：除冰液有效时间只有 30 分钟，告诉地面管制你需要在 0835 前起飞，并请求从 Zulu 4 交叉口离场。",
       "referenceText": "Wuhan Ground, UAL403, the de-icing fluid is only effective for 30 minutes, we need to takeoff before 0835, request intersection departure from Z4.",
       "referenceTextZh": "武汉地面，UAL403，除冰液有效时间只有 30 分钟，我们需要在 0835 前起飞，请求从 Z4 交叉口离场。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/597.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/582.mp3"
     },
     {
       "id": "atc-scenario-0034-card-main-583",
@@ -56,7 +56,7 @@
       "audioTextZh": "B：你遭遇中度颠簸，向广州管制请求更高高度。",
       "referenceText": "Guangzhou Control, UAL403, we have encountered moderate turbulence, request a higher level.",
       "referenceTextZh": "广州管制，UAL403，我们遭遇中度颠簸，请求更高高度。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/598.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/583.mp3"
     },
     {
       "id": "atc-scenario-0034-card-main-584",
@@ -65,7 +65,7 @@
       "audioTextZh": "C：United 403，10700 米和 11300 米都可用，你偏好哪一个？\nB：告诉管制员你想爬升至 10700 米。",
       "referenceText": "Request climb to 10700 meters, UAL403.",
       "referenceTextZh": "请求爬升至 10700 米，UAL403。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/599.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/584.mp3"
     },
     {
       "id": "atc-scenario-0034-card-main-585",
@@ -74,7 +74,7 @@
       "audioTextZh": "C：United 403，雷达显示你略高于指定高度，请检查高度。\nB：告诉管制员你正在遭遇颠簸。",
       "referenceText": "Guangzhou Control, UAL403, we are running into some turbulence.",
       "referenceTextZh": "广州管制，UAL403，我们正在遭遇颠簸。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/600.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/585.mp3"
     },
     {
       "id": "atc-scenario-0034-card-main-586",
@@ -83,7 +83,7 @@
       "audioTextZh": "B：询问广州管制，前机是否报告 11300 米有颠簸。",
       "referenceText": "Guangzhou Control, UAL403, is there any turbulence reported from preceding aircraft at 11300 meters ?",
       "referenceTextZh": "广州管制，UAL403，前机是否报告 11300 米有颠簸？",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/601.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/586.mp3"
     },
     {
       "id": "atc-scenario-0034-card-main-587",
@@ -92,7 +92,7 @@
       "audioTextZh": "C：United 403，11300 米没有颠簸报告。\nB：告诉管制员因颠簸请求爬升至 11300 米。",
       "referenceText": "Roger, request climb to 11300 meters due turbulence, UAL403.",
       "referenceTextZh": "收到，因颠簸请求爬升至 11300 米，UAL403。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/602.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/587.mp3"
     },
     {
       "id": "atc-scenario-0034-card-main-588",
@@ -101,7 +101,7 @@
       "audioTextZh": "C：United 403，爬升并保持 11300 米。",
       "referenceText": "Climb and maintain 11300 meters, UAL403.",
       "referenceTextZh": "爬升并保持 11300 米，UAL403。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/603.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/588.mp3"
     },
     {
       "id": "atc-scenario-0034-card-main-589",
@@ -110,7 +110,7 @@
       "audioTextZh": "B：告诉广州管制，因为着陆重量超过最大着陆重量，请求提前下降，并请求现在开始下降。",
       "referenceText": "Guangzhou Control, UAL403, request earlier descent due our landing weight exceeds maximum landing weight.",
       "referenceTextZh": "广州管制，UAL403，因着陆重量超过最大着陆重量，请求提前下降。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/604.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/589.mp3"
     },
     {
       "id": "atc-scenario-0034-card-main-590",
@@ -119,7 +119,7 @@
       "audioTextZh": "C：United 403，下降至 4500 米，在 ATAGA 前达到 4500 米，自主决定开始下降。",
       "referenceText": "Descend to 4500 meters, reach 4500 meters before ATAGA, start descent at own discretion, UAL403.",
       "referenceTextZh": "下降至 4500 米，在 ATAGA 前达到 4500 米，自主决定开始下降，UAL403。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/605.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/590.mp3"
     },
     {
       "id": "atc-scenario-0034-card-main-591",
@@ -128,7 +128,7 @@
       "audioTextZh": "B：前方有雷暴迹象，联系广州管制，请求向右偏航 10 海里避让天气。",
       "referenceText": "Guangzhou Control, UAL403, request offset 10 miles right due CB ahead.",
       "referenceTextZh": "广州管制，UAL403，前方有 CB，请求向右偏航 10 海里。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/606.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/591.mp3"
     },
     {
       "id": "atc-scenario-0034-card-main-592",
@@ -137,7 +137,7 @@
       "audioTextZh": "C：United 403，同意向右 10 海里，脱离天气后报告。",
       "referenceText": "10 miles right approved, report clear of weather, UAL403.",
       "referenceTextZh": "同意向右 10 海里，脱离天气后报告，UAL403。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/607.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/592.mp3"
     },
     {
       "id": "atc-scenario-0034-card-main-593",
@@ -146,7 +146,7 @@
       "audioTextZh": "B：你现在已脱离天气，向广州管制报告并请求直飞 Tango Oscar November。",
       "referenceText": "Guangzhou Control, UAL403, clear of whether, request direct to TON.",
       "referenceTextZh": "广州管制，UAL403，已脱离天气，请求直飞 TON。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/608.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/593.mp3"
     }
   ]
 }

@@ -11,7 +11,7 @@
       "audioTextZh": "B：你的呼号是 China Southern 817，在 213 号登机口，已收到通播 Golf，向武汉放行请求飞往广州的 ATC 放行许可。",
       "referenceText": "Wuhan Delivery, CSN817, gate 213, information G, request ATC clearance to Guangzhou.",
       "referenceTextZh": "武汉放行，CSN817，213 号登机口，通播 G，请求飞往广州的 ATC 放行许可。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1343.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1267.mp3"
     },
     {
       "id": "atc-scenario-0074-card-main-1268",
@@ -20,7 +20,7 @@
       "audioTextZh": "C：China Southern 817，武汉放行，许可飞往广州，按飞行计划航路，离场跑道 36R，Lima Kilo Oscar 01 离场，起始爬升至 1200 米，巡航高度 8400 米，离场后联系 119.7，应答机 3115。",
       "referenceText": "Cleared to Guangzhou via flight planned route, departure runway 36R, LKO 01 departure, initial climb to 1200 meters, cruising level 8400 meters, after departure, contact 119.7, squawk 3115, CSN817.",
       "referenceTextZh": "许可飞往广州，按飞行计划航路，离场跑道 36R，LKO 01 离场，起始爬升至 1200 米，巡航高度 8400 米，离场后联系 119.7，应答机 3115，CSN817。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1344.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1268.mp3"
     },
     {
       "id": "atc-scenario-0074-card-main-1269",
@@ -29,7 +29,7 @@
       "audioTextZh": "B：现在你已完成推出并已开车，联系武汉地面获取滑行指令。",
       "referenceText": "Wuhan Ground, CSN817, push backand start up completed, request taxi.",
       "referenceTextZh": "武汉地面，CSN817，推出和开车完成，请求滑行。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1345.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1269.mp3"
     },
     {
       "id": "atc-scenario-0074-card-main-1270",
@@ -38,7 +38,7 @@
       "audioTextZh": "C：China Southern 817，经滑行道 Zulu 4、Alpha 3 和 Alpha 滑行至跑道 36R 等待点。",
       "referenceText": "Taxi to holding point runway 36R via taxiway Z4, A3 and A, CSN817.",
       "referenceTextZh": "经滑行道 Z4、A3 和 A 滑行至跑道 36R 等待点，CSN817。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1346.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1270.mp3"
     },
     {
       "id": "atc-scenario-0074-card-main-1271",
@@ -47,7 +47,7 @@
       "audioTextZh": "C：China Southern 817，谨慎滑行，Alpha 滑行道以东有人和设备作业。",
       "referenceText": "Roger, CSN817.",
       "referenceTextZh": "收到，CSN817。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1347.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1271.mp3"
     },
     {
       "id": "atc-scenario-0074-card-main-1272",
@@ -56,7 +56,7 @@
       "audioTextZh": "B：刚离地后，你在 200 米至 400 米之间遭遇强风切变，向武汉进近报告。",
       "referenceText": "Wuhan Approach, CSN817, we encountered strong wind shear between 200 meters and 400 meters.",
       "referenceTextZh": "武汉进近，CSN817，我们在 200 米至 400 米之间遭遇强风切变。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1348.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1272.mp3"
     },
     {
       "id": "atc-scenario-0074-card-main-1273",
@@ -65,7 +65,7 @@
       "audioTextZh": "B：现在你在 8400 米巡航，接近 DAPRO，与广州管制首次联系。",
       "referenceText": "Guangzhou Control, CSN817, maintaining 8400 meters, approaching DAPRO.",
       "referenceTextZh": "广州管制，CSN817，保持 8400 米，接近 DAPRO。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1349.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1273.mp3"
     },
     {
       "id": "atc-scenario-0074-card-main-1274",
@@ -74,7 +74,7 @@
       "audioTextZh": "C：China Southern 817，广州管制，雷达识别，省略位置报告。",
       "referenceText": "Omit position reports, CSN817.",
       "referenceTextZh": "省略位置报告，CSN817。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1350.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1274.mp3"
     },
     {
       "id": "atc-scenario-0074-card-main-1275",
@@ -83,7 +83,7 @@
       "audioTextZh": "B：你下降至 4200 米时，执行了 TCAS RA 爬升机动，向管制员报告情况。",
       "referenceText": "Guangzhou Approach, CSN817, descending to 4200 meters, TCAS climbing.",
       "referenceTextZh": "广州进近，CSN817，下降至 4200 米，TCAS 爬升。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1351.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1275.mp3"
     },
     {
       "id": "atc-scenario-0074-card-main-1276",
@@ -92,7 +92,7 @@
       "audioTextZh": "B：现在冲突飞机已脱离，恢复下降，向管制员报告情况。",
       "referenceText": "Guangzhou Approach, CSN817, clear of traffic, resume descent.",
       "referenceTextZh": "广州进近，CSN817，冲突已解除，恢复下降。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1352.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1276.mp3"
     },
     {
       "id": "atc-scenario-0074-card-main-1277",
@@ -101,7 +101,7 @@
       "audioTextZh": "C：China Southern 817，继续下降至 3600 米。",
       "referenceText": "Continue descent to 3600 meters, CSN817.",
       "referenceTextZh": "继续下降至 3600 米，CSN817。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1353.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1277.mp3"
     },
     {
       "id": "atc-scenario-0074-card-main-1278",
@@ -110,7 +110,7 @@
       "audioTextZh": "B：现在你已建立 ILS 进近跑道 36R，告诉管制员你看不到 PAPI 灯。",
       "referenceText": "Guangzhou Tower, CSN817, established on ILS approach runway 36R, we can't see the PAPI lights.",
       "referenceTextZh": "广州塔台，CSN817，已建立 ILS 进近跑道 36R，我们看不到 PAPI 灯。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1354.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1278.mp3"
     },
     {
       "id": "atc-scenario-0074-card-main-1279",
@@ -119,7 +119,7 @@
       "audioTextZh": "C：China Southern 817，跑道 36R 可以落地，PAPI 不工作。",
       "referenceText": "Roger, cleared to land runway 36R, CSN817.",
       "referenceTextZh": "收到，跑道 36R 可以落地，CSN817。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1355.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1279.mp3"
     },
     {
       "id": "atc-scenario-0074-card-main-1280",
@@ -128,7 +128,7 @@
       "audioTextZh": "B：落地后，由于浓雾，你看不清滑行道，向塔台请求引导车滑行。",
       "referenceText": "Guangzhou Tower, CSN817, due to the thick fog, we can't find the taxiway clearly, request a follow-me car.",
       "referenceTextZh": "广州塔台，CSN817，由于浓雾，我们看不清滑行道，请求引导车。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1356.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1280.mp3"
     },
     {
       "id": "atc-scenario-0074-card-main-1281",
@@ -137,7 +137,7 @@
       "audioTextZh": "C：China Southern 817，引导车将在 Alpha 滑行道上等你。",
       "referenceText": "Roger, thanks, CSN817.",
       "referenceTextZh": "收到，谢谢，CSN817。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1357.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1281.mp3"
     }
   ]
 }

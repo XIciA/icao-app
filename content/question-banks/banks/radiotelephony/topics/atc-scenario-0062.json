@@ -11,7 +11,7 @@
       "audioTextZh": "B: 你的呼号是 Air China 976，停在 26 号登机口，已收到信息 Papa，向武汉放行请求前往 Beijing 的 ATC 许可。",
       "referenceText": "Wuhan Delivery, CCA976, gate 26, information P, request ATC clearance to Beijing.",
       "referenceTextZh": "武汉放行，CCA976，26 号登机口，信息 P，请求前往 Beijing 的 ATC 许可。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1107.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1062.mp3"
     },
     {
       "id": "atc-scenario-0062-card-main-1063",
@@ -20,7 +20,7 @@
       "audioTextZh": "C: Air China 976，可以按计划航路前往 Beijing，Zulu Foxtrot 01 离场，初始高度 2700 米，巡航高度 8100 米，离场后联系 125.9，应答机 6563，使用跑道 04。",
       "referenceText": "Cleared to Beijing via flight planned route, ZF 01 departure, initial altitude 2700 meters, cruising level 8100 meters, after departure, contact 125.9, squawk 6563, runway in use 04, CCA976.",
       "referenceTextZh": "可以按计划航路前往 Beijing，ZF 01 离场，初始高度 2700 米，巡航高度 8100 米，离场后联系 125.9，应答机 6563，使用跑道 04，CCA976。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1108.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1063.mp3"
     },
     {
       "id": "atc-scenario-0062-card-main-1064",
@@ -29,7 +29,7 @@
       "audioTextZh": "C: Air China 976，推出批准，准备滑行时报告。",
       "referenceText": "Push back approved, CCA976.",
       "referenceTextZh": "推出批准，CCA976。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1109.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1064.mp3"
     },
     {
       "id": "atc-scenario-0062-card-main-1065",
@@ -38,7 +38,7 @@
       "audioTextZh": "B: 现在你准备滑行，联系武汉地面。",
       "referenceText": "Wuhan Ground, CCA976, request taxi.",
       "referenceTextZh": "武汉地面，CCA976，请求滑行。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1110.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1065.mp3"
     },
     {
       "id": "atc-scenario-0062-card-main-1066",
@@ -47,7 +47,7 @@
       "audioTextZh": "C: Air China 976，滑行道 Alpha 上有一架故障 Boeing 737，跟随 Alpha 9 上的引导车，在跑道 04 前等待。",
       "referenceText": "Roger, follow the follow-me car on A9, hold short of runway 04, CCA976.",
       "referenceTextZh": "收到，跟随 A9 上的引导车，在跑道 04 前等待，CCA976。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1111.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1066.mp3"
     },
     {
       "id": "atc-scenario-0062-card-main-1067",
@@ -56,7 +56,7 @@
       "audioTextZh": "C: Air China 976，在跑道 04 前等待。",
       "referenceText": "Hold short of runway 04, CCA976.",
       "referenceTextZh": "在跑道 04 前等待，CCA976。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1112.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1067.mp3"
     },
     {
       "id": "atc-scenario-0062-card-main-1068",
@@ -65,7 +65,7 @@
       "audioTextZh": "C: Air China 976，联系武汉塔台118.2。",
       "referenceText": "118.2, CCA976.",
       "referenceTextZh": "118.2，CCA976。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1113.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1068.mp3"
     },
     {
       "id": "atc-scenario-0062-card-main-1069",
@@ -74,7 +74,7 @@
       "audioTextZh": "B: 现在你准备离场，联系武汉塔台。",
       "referenceText": "Wuhan Tower, CCA976, ready for departure.",
       "referenceTextZh": "武汉塔台，CCA976，准备离场。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1114.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1069.mp3"
     },
     {
       "id": "atc-scenario-0062-card-main-1070",
@@ -83,7 +83,7 @@
       "audioTextZh": "C: Air China 976，11 公里五边有交通，风静，跑道 04 可以立即起飞。",
       "referenceText": "Roger, cleared for immediate takeoff runway 04, CCA976.",
       "referenceTextZh": "收到，跑道 04 可以立即起飞，CCA976。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1115.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1070.mp3"
     },
     {
       "id": "atc-scenario-0062-card-main-1071",
@@ -92,7 +92,7 @@
       "audioTextZh": "B: 当你加推力时，听到主警告警报，告诉 武汉塔台 你正在中止。",
       "referenceText": "Wuhan Tower, CCA976, stopping due to master warning.",
       "referenceTextZh": "武汉塔台，CCA976，因主警告中止起飞。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1116.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1071.mp3"
     },
     {
       "id": "atc-scenario-0062-card-main-1072",
@@ -101,7 +101,7 @@
       "audioTextZh": "C: Air China 976，加快滑行并在 Foxtrot 脱离，脱离跑道后联系 地面。",
       "referenceText": "Expedite taxi and vacated at F, contact Ground when clear of runway, CCA976.",
       "referenceTextZh": "加快滑行并在 F 脱离，脱离跑道后联系 地面，CCA976。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1117.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1072.mp3"
     },
     {
       "id": "atc-scenario-0062-card-main-1073",
@@ -110,7 +110,7 @@
       "audioTextZh": "B: 告诉 地面 你已在 Foxtrot 脱离跑道 04，并因襟翼设置不正确不得不中止起飞。",
       "referenceText": "Wuhan Ground, CCA976, runway vacated at F, we had to abort takeoff due to incorrect flap setting.",
       "referenceTextZh": "武汉地面，CCA976，已在 F 脱离跑道，我们因襟翼设置不正确不得不中止起飞。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1118.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1073.mp3"
     },
     {
       "id": "atc-scenario-0062-card-main-1074",
@@ -119,7 +119,7 @@
       "audioTextZh": "B: 现在你准备离场，联系武汉塔台。",
       "referenceText": "Wuhan Tower, CCA976, ready for departure.",
       "referenceTextZh": "武汉塔台，CCA976，准备离场。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1119.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1074.mp3"
     },
     {
       "id": "atc-scenario-0062-card-main-1075",
@@ -128,7 +128,7 @@
       "audioTextZh": "C: Air China 976，进入跑道 04。",
       "referenceText": "Line up runway 04, CCA976.",
       "referenceTextZh": "进入跑道 04，CCA976。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1120.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1075.mp3"
     },
     {
       "id": "atc-scenario-0062-card-main-1076",
@@ -137,7 +137,7 @@
       "audioTextZh": "C: Air China 976，取消 SID，保持跑道航向到 1500 米，直飞 Zulu Foxtrot，跑道 04，可以起飞。",
       "referenceText": "Cancel SID, maintain runway heading to 1500 meters, track direct to ZF, runway 04, cleared for takeoff, CCA976.",
       "referenceTextZh": "取消 SID，保持跑道航向到 1500 米，直飞 ZF，跑道 04，可以起飞，CCA976。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1121.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1076.mp3"
     },
     {
       "id": "atc-scenario-0062-card-main-1077",
@@ -146,7 +146,7 @@
       "audioTextZh": "B: 初始爬升期间，你有烟雾警告，向 Wuhan Departure 报告并请求立即返回跑道 04 优先着陆，这是遇险呼叫。",
       "referenceText": "MAYDAY MAYDAY MAYDAY, Wuhan Departure, CCA976, we have a smoke warning, request immediate return for priority landing runway 04.",
       "referenceTextZh": "MAYDAY MAYDAY MAYDAY，Wuhan Departure，CCA976，我们有烟雾警告，请求立即返回跑道 04 优先着陆。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1122.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1077.mp3"
     },
     {
       "id": "atc-scenario-0062-card-main-1078",
@@ -155,7 +155,7 @@
       "audioTextZh": "C: Air China 976，爬升到 900 米，右转航向 070，预计雷达引导 ILS 跑道 04。",
       "referenceText": "Climb to 900 meters, turn right heading 070, expect radar vector ILS runway 04, CCA976.",
       "referenceTextZh": "爬升到 900 米，右转航向 070，预计雷达引导 ILS 跑道 04，CCA976。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1123.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1078.mp3"
     },
     {
       "id": "atc-scenario-0062-card-main-1079",
@@ -164,7 +164,7 @@
       "audioTextZh": "B: 现在烟源无法确定且变得难以忍受，通知 武汉塔台 你希望左转，并在最近可用跑道 22 着陆，这是遇险呼叫。",
       "referenceText": "Mayday MAYDAY MAYDAY, Wuhan Tower, CCA976, the source of smoke can't be detected and is becoming unbearable, request turn left to make a landing on the nearest available runway 22.",
       "referenceTextZh": "MAYDAY MAYDAY MAYDAY，武汉塔台，CCA976，烟源无法确定且变得难以忍受，请求左转在最近可用跑道 22 着陆。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1124.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1079.mp3"
     },
     {
       "id": "atc-scenario-0062-card-main-1080",
@@ -173,7 +173,7 @@
       "audioTextZh": "C: Air China 976，左转航向 310，雷达引导目视进近跑道 22。",
       "referenceText": "Turn left heading 310, radar vector for a visual approach runway 22, CCA976.",
       "referenceTextZh": "左转航向 310，雷达引导目视进近跑道 22，CCA976。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1125.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1080.mp3"
     }
   ]
 }

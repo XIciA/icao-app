@@ -11,7 +11,7 @@
       "audioTextZh": "你的呼号是Speedbird 203，刚过ZF。管制员：Speedbird 203，武汉进近，爬升保持4800米，联系武汉管制118.1。",
       "referenceText": "Climb to maintain 4800 meters, 118.1, BAW203.",
       "referenceTextZh": "爬升保持4800米，118.1，BAW203。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/476.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/461.mp3"
     },
     {
       "id": "atc-scenario-0027-card-main-462",
@@ -20,7 +20,7 @@
       "audioTextZh": "首次联系武汉管制，申请8900米。",
       "referenceText": "Wuhan Control, BAW203, maintaining 4800 meters, request climb to 8900 meters.",
       "referenceTextZh": "武汉管制，BAW203，保持4800米，申请爬升至8900米。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/477.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/462.mp3"
     },
     {
       "id": "atc-scenario-0027-card-main-463",
@@ -29,7 +29,7 @@
       "audioTextZh": "管制员：Speedbird 203，武汉管制，雷达联系，爬升至7500米，预计16分给8900米。",
       "referenceText": "Climb to 7500 meters, BAW203.",
       "referenceTextZh": "爬升至7500米，BAW203。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/478.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/463.mp3"
     },
     {
       "id": "atc-scenario-0027-card-main-464",
@@ -38,7 +38,7 @@
       "audioTextZh": "告知管制员你遇到严重晴空颠簸，并申请8900米。",
       "referenceText": "Wuhan Control, BAW203, we have encountered severe clear air turbulence, request 8900 meters.",
       "referenceTextZh": "武汉管制，BAW203，我们遇到严重晴空颠簸，申请8900米。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/479.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/464.mp3"
     },
     {
       "id": "atc-scenario-0027-card-main-465",
@@ -47,7 +47,7 @@
       "audioTextZh": "管制员：收到，Speedbird 203，爬升至8900米。",
       "referenceText": "Climb to 8900 meters, BAW203.",
       "referenceTextZh": "爬升至8900米，BAW203。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/480.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/465.mp3"
     },
     {
       "id": "atc-scenario-0027-card-main-466",
@@ -56,7 +56,7 @@
       "audioTextZh": "管制员：Speedbird 203，武汉管制，飞机是否受损，是否有旅客受伤？\n告诉管制员飞机没有受损，乘务长报告旅客都没事。",
       "referenceText": "There isn't any damage to the aircraft and the purser reported that the passengers are just fine, BAW203.",
       "referenceTextZh": "飞机没有受损，乘务长报告旅客情况都正常，BAW203。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/481.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/466.mp3"
     },
     {
       "id": "atc-scenario-0027-card-main-467",
@@ -65,7 +65,7 @@
       "audioTextZh": "通知武汉管制，你刚得知一名老年旅客严重受伤。",
       "referenceText": "Wuhan Control, BAW203, we have just told that an old passenger has been seriously injured.",
       "referenceTextZh": "武汉管制，BAW203，我们刚得知一名老年旅客严重受伤。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/482.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/467.mp3"
     },
     {
       "id": "atc-scenario-0027-card-main-468",
@@ -74,7 +74,7 @@
       "audioTextZh": "管制员：Speedbird 203，收到，报告意图。告诉管制员你希望在武汉机场落地。",
       "referenceText": "We would like to land at Wuhan Airport, BAW203.",
       "referenceTextZh": "我们希望在武汉机场落地，BAW203。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/483.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/468.mp3"
     },
     {
       "id": "atc-scenario-0027-card-main-469",
@@ -83,7 +83,7 @@
       "audioTextZh": "管制员：Speedbird 203，左转直飞ZF，下降至5100米。",
       "referenceText": "Turn left direct to ZF, descend to 5100 meters, BAW203.",
       "referenceTextZh": "左转直飞ZF，下降至5100米，BAW203。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/484.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/469.mp3"
     },
     {
       "id": "atc-scenario-0027-card-main-470",
@@ -92,7 +92,7 @@
       "audioTextZh": "管制员：Speedbird 203，是否需要任何协助？\n告知管制员到达后需要救护车和急救。",
       "referenceText": "We will need an ambulance and first aid on arrival, BAW203.",
       "referenceTextZh": "到达后我们需要救护车和急救，BAW203。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/485.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/470.mp3"
     },
     {
       "id": "atc-scenario-0027-card-main-471",
@@ -101,7 +101,7 @@
       "audioTextZh": "管制员：Speedbird 203，保持5100米，联系武汉进近118.9。",
       "referenceText": "Maintain 5100 meters, 118.9, BAW203.",
       "referenceTextZh": "保持5100米，118.9，BAW203。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/486.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/471.mp3"
     },
     {
       "id": "atc-scenario-0027-card-main-472",
@@ -110,7 +110,7 @@
       "audioTextZh": "首次联系武汉进近，告知管制员机上有受伤旅客。",
       "referenceText": "Wuhan Approach, BAW203, maintaining 5100 meters, over ZF, we have an injured passenger on board.",
       "referenceTextZh": "武汉进近，BAW203，保持5100米，过ZF，机上有一名受伤旅客。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/487.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/472.mp3"
     },
     {
       "id": "atc-scenario-0027-card-main-473",
@@ -119,7 +119,7 @@
       "audioTextZh": "管制员：Speedbird 203，武汉进近，雷达联系，执行ZF 1A进场，按QNH 1017下降至2700米，通播Charlie。请复诵管制指令，并告知管制员已收到通播。",
       "referenceText": "Follow ZF 1A arrival, descend to 2700 meters on QNH 1017, we have received Information C, BAW203.",
       "referenceTextZh": "执行ZF 1A进场，按QNH 1017下降至2700米，已收到通播C，BAW203。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/488.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/473.mp3"
     },
     {
       "id": "atc-scenario-0027-card-main-474",
@@ -128,7 +128,7 @@
       "audioTextZh": "管制员：Speedbird 203，下降至900米，预计ILS进近36右跑道。请复诵管制指令，并告诉管制员该旅客已经死亡。",
       "referenceText": "Descend to 900 meters, expect ILS approach runway 36R, the old passenger has died, BAW203.",
       "referenceTextZh": "下降至900米，预计ILS进近36R，那名老年旅客已经死亡，BAW203。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/489.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/474.mp3"
     },
     {
       "id": "atc-scenario-0027-card-main-475",
@@ -137,7 +137,7 @@
       "audioTextZh": "管制员：Speedbird 203，收到，减速至200节，左转航向030。",
       "referenceText": "Reduce speed to 200 knots, turn left heading 030, BAW203.",
       "referenceTextZh": "减速至200节，左转航向030，BAW203。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/490.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/475.mp3"
     },
     {
       "id": "atc-scenario-0027-card-main-476",
@@ -146,7 +146,7 @@
       "audioTextZh": "管制员：Speedbird 203，截获36右跑道航向道，建立后报告。",
       "referenceText": "Intercept the localizer of runway 36R, report established, BAW203.",
       "referenceTextZh": "截获36R航向道，建立后报告，BAW203。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/491.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/476.mp3"
     },
     {
       "id": "atc-scenario-0027-card-main-477",
@@ -155,7 +155,7 @@
       "audioTextZh": "通知管制员，你已截获航向道。",
       "referenceText": "Wuhan Approach, BAW203, ILS established.",
       "referenceTextZh": "武汉进近，BAW203，ILS已建立。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/492.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/477.mp3"
     },
     {
       "id": "atc-scenario-0027-card-main-478",
@@ -164,7 +164,7 @@
       "audioTextZh": "管制员：收到，可以ILS进近36右跑道，距接地点13公里，雷达服务终止，联系武汉塔台124.35。",
       "referenceText": "Cleared ILS approach runway 36R, 124.35, BAW203.",
       "referenceTextZh": "可以ILS进近36R，124.35，BAW203。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/493.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/478.mp3"
     },
     {
       "id": "atc-scenario-0027-card-main-479",
@@ -173,7 +173,7 @@
       "audioTextZh": "稍后，进近至决断高度时你看不到跑道，通知塔台管制员你需要再次进近。",
       "referenceText": "Wuhan Tower, BAW203, no contact at minimum, going around.",
       "referenceTextZh": "武汉塔台，BAW203，最低标准无目视，正在复飞。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/494.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/479.mp3"
     }
   ]
 }

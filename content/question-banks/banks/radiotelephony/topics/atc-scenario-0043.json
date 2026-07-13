@@ -11,7 +11,7 @@
       "audioTextZh": "B：你的呼号是 Japan Air 602，从东京飞往武汉，现在飞越 DAPRO，保持 10100 米，首次联系武汉管制。",
       "referenceText": "Wuhan Control, JAL602, over DAPRO, maintaining 10100 meters.",
       "referenceTextZh": "武汉管制，JAL602，飞越 DAPRO，保持 10100 米。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/746.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/731.mp3"
     },
     {
       "id": "atc-scenario-0043-card-main-732",
@@ -20,7 +20,7 @@
       "audioTextZh": "B：你现在雷达屏幕显示前方 50 公里有雷暴，请求 ATC 许可向右偏航 5 海里。",
       "referenceText": "Wuhan Control, JAL602, we have an indication of a thunderstorm 50 km ahead, request offset 5 miles to the right.",
       "referenceTextZh": "武汉管制，JAL602，我们显示前方 50 公里有雷暴，请求向右偏航 5 海里。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/747.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/732.mp3"
     },
     {
       "id": "atc-scenario-0043-card-main-733",
@@ -29,7 +29,7 @@
       "audioTextZh": "C：Japan Air 602，同意向右偏航 5 海里。",
       "referenceText": "Offset 5 miles to the right approved, JAL602.",
       "referenceTextZh": "同意向右偏航 5 海里，JAL602。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/748.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/733.mp3"
     },
     {
       "id": "atc-scenario-0043-card-main-734",
@@ -38,7 +38,7 @@
       "audioTextZh": "B：随后你发现前方有更多雷暴，请求爬升至 10700 米。",
       "referenceText": "Wuhan Control, JAL602, request climb to 10700 meters due weather.",
       "referenceTextZh": "武汉管制，JAL602，因天气请求爬升至 10700 米。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/749.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/734.mp3"
     },
     {
       "id": "atc-scenario-0043-card-main-735",
@@ -47,7 +47,7 @@
       "audioTextZh": "C：Japan Air 602，目前因军事活动，10700 米不可用，可以接受 11300 米吗？\nB：告诉管制员因性能原因无法爬升至 11300 米。",
       "referenceText": "Wuhan Control, JAL602, negative/unable due performance.",
       "referenceTextZh": "武汉管制，JAL602，不能接受，因性能原因无法爬升。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/750.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/735.mp3"
     },
     {
       "id": "atc-scenario-0043-card-main-736",
@@ -56,7 +56,7 @@
       "audioTextZh": "C：Japan Air 602，保持 10100 米。",
       "referenceText": "Maintain 10100 meters, JAL602.",
       "referenceTextZh": "保持 10100 米，JAL602。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/751.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/736.mp3"
     },
     {
       "id": "atc-scenario-0043-card-main-737",
@@ -65,7 +65,7 @@
       "audioTextZh": "B：为避让雷暴，你请求右转航向 240，并保持该航向 50 海里。",
       "referenceText": "Wuhan Control, JAL602, request turn right heading 240 and maintain this heading for 50 miles to avoid thunderstorm.",
       "referenceTextZh": "武汉管制，JAL602，为避让雷暴，请求右转航向 240 并保持该航向 50 海里。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/752.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/737.mp3"
     },
     {
       "id": "atc-scenario-0043-card-main-738",
@@ -74,7 +74,7 @@
       "audioTextZh": "C：Japan Air 602，不可以，航向 240 因限制区不可用，左侧偏航可用，报告意图。\nB：告诉管制员你想左转航向 080。",
       "referenceText": "Wuhan Control, JAL602, roger, request turn left heading 080.",
       "referenceTextZh": "武汉管制，JAL602，收到，请求左转航向 080。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/753.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/738.mp3"
     },
     {
       "id": "atc-scenario-0043-card-main-739",
@@ -83,7 +83,7 @@
       "audioTextZh": "C：Japan Air 602，同意左转航向 080，脱离天气后报告。",
       "referenceText": "Turn left heading 080 approved, report clear of weather, JAL602.",
       "referenceTextZh": "同意左转航向 080，脱离天气后报告，JAL602。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/754.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/739.mp3"
     },
     {
       "id": "atc-scenario-0043-card-main-740",
@@ -92,7 +92,7 @@
       "audioTextZh": "C：Japan Air 602，你想沿该航向飞多少海里？\nB：告诉管制员 50 海里足够。",
       "referenceText": "50 miles is enough, JAL602.",
       "referenceTextZh": "50 海里足够，JAL602。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/755.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/740.mp3"
     },
     {
       "id": "atc-scenario-0043-card-main-741",
@@ -101,7 +101,7 @@
       "audioTextZh": "B：你现在已脱离天气，通知武汉管制，并请求直飞 Zulu Foxtrot 和下降。",
       "referenceText": "Wuhan Control, JAL602, clear of weather, request direct to ZF and descent.",
       "referenceTextZh": "武汉管制，JAL602，已脱离天气，请求直飞 ZF 并下降。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/756.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/741.mp3"
     },
     {
       "id": "atc-scenario-0043-card-main-742",
@@ -110,7 +110,7 @@
       "audioTextZh": "C：Japan Air 602，直飞 Zulu Foxtrot，下降并保持 6000 米。",
       "referenceText": "Direct to ZF, descend and maintain 6000 meters, JAL602.",
       "referenceTextZh": "直飞 ZF，下降并保持 6000 米，JAL602。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/757.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/742.mp3"
     },
     {
       "id": "atc-scenario-0043-card-main-743",
@@ -119,7 +119,7 @@
       "audioTextZh": "B：你现在看到前方有 CB，想向右机动 2 海里。",
       "referenceText": "Wuhan Control, JAL602, request maneuver 2 miles to the right due to CBs ahead.",
       "referenceTextZh": "武汉管制，JAL602，前方有 CB，请求向右机动 2 海里。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/758.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/743.mp3"
     },
     {
       "id": "atc-scenario-0043-card-main-744",
@@ -128,7 +128,7 @@
       "audioTextZh": "B：机动过程中，一位老太太在客舱摔倒受伤，可能骨折，向武汉进近报告情况并请求优先着陆。",
       "referenceText": "Wuhan Approach, JAL602, an old lady fell in the cabin and was injured, she might be suffering from bone fracture, request priority landing.",
       "referenceTextZh": "武汉进近，JAL602，一位老太太在客舱摔倒受伤，可能骨折，请求优先着陆。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/759.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/744.mp3"
     },
     {
       "id": "atc-scenario-0043-card-main-745",
@@ -137,7 +137,7 @@
       "audioTextZh": "C：Japan Air 602，收到，你是第一架，预计雷达引导，落地后需要医疗协助吗？\nB：告诉管制员需要医疗协助，并将打开后客舱门，用担架让病患下机。",
       "referenceText": "Wuhan Approach, JAL602, request medical assistance and open the rear cabin door to deplane the sick passenger by a stretcher.",
       "referenceTextZh": "武汉进近，JAL602，请求医疗协助，并打开后客舱门，用担架让病患下机。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/760.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/745.mp3"
     }
   ]
 }

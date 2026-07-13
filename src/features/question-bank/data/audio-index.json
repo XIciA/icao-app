@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-10T02:51:15.189Z",
+  "generatedAt": "2026-07-13T07:09:20.615Z",
   "sourceRoot": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank",
   "publicRoot": "/question-bank-assets/audio",
   "notes": {
@@ -4542,6 +4542,16 @@
           "source": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/453.mp3",
           "extension": "mp3",
           "sizeBytes": 232172
+        },
+        {
+          "module": "listening",
+          "group": "main",
+          "order": 454,
+          "sourceOrder": 454,
+          "file": "/question-bank-assets/audio/listening/main/454.mp3",
+          "source": "/Users/zhouyide/Desktop/icao项目/feizhuicu/public/question-bank/listening/main/454.mp3",
+          "extension": "mp3",
+          "sizeBytes": 128300
         },
         {
           "module": "listening",
@@ -38975,7 +38985,7 @@
     }
   },
   "totals": {
-    "files": 3894,
-    "sizeBytes": 579146043
+    "files": 3895,
+    "sizeBytes": 579274343
   }
 }

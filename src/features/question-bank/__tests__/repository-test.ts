@@ -66,10 +66,23 @@ describe('embeddedQuestionBankRepository', () => {
 
     const banks = getEmbeddedQuestionBankIds().map((id) => embeddedQuestionBankRepository.getDataset(id));
     return Promise.all(banks).then((datasets) => {
-      const cards = datasets.flatMap((dataset) => dataset?.categories.flatMap((category) => category.topics.flatMap((topic) => topic.cards)) ?? []);
+      const cards = datasets.flatMap((dataset) => dataset?.categories.flatMap((category) => category.topics.flatMap((topic) => topic.cards.map((card) => ({ bankId: dataset.id, card })))) ?? []);
       expect(datasets.map((dataset) => dataset?.declaredCardCount)).toEqual([631, 900, 1851, 1269, 296]);
       expect(cards).toHaveLength(4947);
-      expect(cards.filter((card) => card.audio && !files.has(card.audio))).toEqual([]);
+      expect(cards.filter(({ card }) => card.audio && !files.has(card.audio))).toEqual([]);
+
+      const expectedAudio = (bankId: string, cardId: string) => {
+        if (bankId === 'listening') return `/question-bank-assets/audio/listening/main/${cardId.slice(-3)}.mp3`;
+        if (bankId === 'sentences900') return `/question-bank-assets/audio/sentence900/main/${cardId.slice(-3)}.mp3`;
+        if (bankId === 'radiotelephony') return `/question-bank-assets/audio/radiotelephony/main/${cardId.split('-').at(-1)}.mp3`;
+        const match = cardId.match(/^story-(koala|kongguan|wing)-(\d{3})$/);
+        return match ? `/question-bank-assets/audio/storytelling/${match[1]}/${match[2]}.mp3` : undefined;
+      };
+      expect(cards.filter(({ bankId, card }) => bankId === 'opi' ? Boolean(card.audio) : card.audio !== expectedAudio(bankId, card.id))).toEqual([]);
+      expect(audioIndex.modules.listening.main).toEqual(expect.arrayContaining([
+        expect.objectContaining({ file: '/question-bank-assets/audio/listening/main/454.mp3', sizeBytes: 128300 }),
+        expect.objectContaining({ file: '/question-bank-assets/audio/listening/main/595.mp3', sizeBytes: 404780 }),
+      ]));
     });
   });
 

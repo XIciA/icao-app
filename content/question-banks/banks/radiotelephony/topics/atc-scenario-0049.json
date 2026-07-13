@@ -11,7 +11,7 @@
       "audioTextZh": "B: 你的呼号是 Air Canada 452，在 203 号机位，从 Wuhan 到 Tokyo，刚得知机上有非法偷渡者，必须由警方带走，联系武汉地面请求延迟推出。",
       "referenceText": "Wuhan Ground, ACA452, stand 203, request delay the push back due an illegal stowaway must be taken away by police.",
       "referenceTextZh": "武汉地面，ACA452，203 号机位，由于一名非法偷渡者必须由警方带走，请求延迟推出。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/852.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/837.mp3"
     },
     {
       "id": "atc-scenario-0049-card-main-838",
@@ -20,7 +20,7 @@
       "audioTextZh": "C: Air Canada 452，准备推出和开车时报告机上人数。",
       "referenceText": "Wilco, ACA452.",
       "referenceTextZh": "照办，ACA452。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/853.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/838.mp3"
     },
     {
       "id": "atc-scenario-0049-card-main-839",
@@ -29,7 +29,7 @@
       "audioTextZh": "B: 现在告诉地面管制员你准备推出和开车，机上人数 235。",
       "referenceText": "Wuhan Ground, ACA452, request push back and start up, POB235.",
       "referenceTextZh": "武汉地面，ACA452，请求推出和开车，机上人数 235。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/854.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/839.mp3"
     },
     {
       "id": "atc-scenario-0049-card-main-840",
@@ -38,7 +38,7 @@
       "audioTextZh": "C: Air Canada 452，推出和开车批准，机头朝西。",
       "referenceText": "Push back and start up approved, facing west, ACA452.",
       "referenceTextZh": "推出和开车批准，机头朝西，ACA452。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/855.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/840.mp3"
     },
     {
       "id": "atc-scenario-0049-card-main-841",
@@ -47,7 +47,7 @@
       "audioTextZh": "B: 滑行期间，由于沙尘暴能见度变差，告诉管制员你将原地等待，直到能见度好转。",
       "referenceText": "Wuhan Ground, ACA452, the visibility is getting worse due to dust storm, request hold position until visibility gets better.",
       "referenceTextZh": "武汉地面，ACA452，由于沙尘暴能见度变差，请求原地等待，直到能见度好转。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/856.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/841.mp3"
     },
     {
       "id": "atc-scenario-0049-card-main-842",
@@ -56,7 +56,7 @@
       "audioTextZh": "C: Air Canada 452，现在能见度 1000 米，继续经滑行道 Zulu 4 和 Charlie 滑行至跑道 18R 等待点，联系武汉塔台124.35。",
       "referenceText": "Roger, continue taxi to holding point runway 18R via taxiway Z4 and C, 124.35, ACA452.",
       "referenceTextZh": "收到，继续经滑行道 Z4 和 C 滑行至跑道 18R 等待点，124.35，ACA452。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/857.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/842.mp3"
     },
     {
       "id": "atc-scenario-0049-card-main-843",
@@ -65,7 +65,7 @@
       "audioTextZh": "B: 现在你在跑道 18R 等待点，告诉塔台你准备起飞。",
       "referenceText": "Wuhan Tower, ACA452, holding point runway 18R, ready for departure.",
       "referenceTextZh": "武汉塔台，ACA452，跑道 18R 等待点，准备离场。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/858.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/843.mp3"
     },
     {
       "id": "atc-scenario-0049-card-main-844",
@@ -74,7 +74,7 @@
       "audioTextZh": "C: Air Canada 452，离地后联系 119.35，执行减噪程序，跑道 18R 可以起飞。",
       "referenceText": "When airborne, contact 119.35, follow the abatement procedure, cleared for takeoff runway 18R, ACA452.",
       "referenceTextZh": "离地后联系 119.35，执行减噪程序，跑道 18R 可以起飞，ACA452。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/859.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/844.mp3"
     },
     {
       "id": "atc-scenario-0049-card-main-845",
@@ -83,7 +83,7 @@
       "audioTextZh": "B: 起飞爬升期间，你遭遇前机尾流，联系 Wuhan Departure 请求右转避让。",
       "referenceText": "Wuhan Departure, ACA452, we encountered wake turbulence from the preceding aircraft, request turn right to avoid it.",
       "referenceTextZh": "Wuhan Departure，ACA452，我们遭遇前机尾流，请求右转避让。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/860.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/845.mp3"
     },
     {
       "id": "atc-scenario-0049-card-main-846",
@@ -92,7 +92,7 @@
       "audioTextZh": "C: Air Canada 452，Wuhan Departure，右转，直飞 Zulu Foxtrot，爬升并保持 3300 米。",
       "referenceText": "Turn right, direct to ZF, climb to and maintain 3300 meters, ACA452.",
       "referenceTextZh": "右转，直飞 ZF，爬升并保持 3300 米，ACA452。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/861.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/846.mp3"
     },
     {
       "id": "atc-scenario-0049-card-main-847",
@@ -101,7 +101,7 @@
       "audioTextZh": "B: 你正在 10700 米改平，机载导航计算机失效，正在用原始数据飞行，向武汉管制说明情况并请求雷达引导。",
       "referenceText": "Wuhan Control, ACA452, levelling at 10700 meters, our onboard navigation computers failed, we are flying with raw data, request radar vectors.",
       "referenceTextZh": "武汉管制，ACA452，正在 10700 米改平，我们的机载导航计算机失效，正在用原始数据飞行，请求雷达引导。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/862.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/847.mp3"
     },
     {
       "id": "atc-scenario-0049-card-main-848",
@@ -110,7 +110,7 @@
       "audioTextZh": "C: Air Canada 452，机上情况如何？\nB: 告诉管制员你需要 1 分钟执行检查单，稍后通知。",
       "referenceText": "Wuhan Control, ACA452, we need 1 minute to perform the checklist and will advise.",
       "referenceTextZh": "武汉管制，ACA452，我们需要 1 分钟执行检查单，稍后通知。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/863.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/848.mp3"
     },
     {
       "id": "atc-scenario-0049-card-main-849",
@@ -119,7 +119,7 @@
       "audioTextZh": "C: Air Canada 452，保持当前高度，左转航向 010，如不能保持 RVSM，请随时告知。",
       "referenceText": "Maintain present level, turn left heading 010, ACA452.",
       "referenceTextZh": "保持当前高度，左转航向 010，ACA452。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/864.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/849.mp3"
     },
     {
       "id": "atc-scenario-0049-card-main-850",
@@ -128,7 +128,7 @@
       "audioTextZh": "B: 完成检查单后，故障无法解决，自动驾驶失效，由于设备原因无法 RVSM，向武汉管制通报情况。",
       "referenceText": "Wuhan Control, ACA452, the malfunction can't be solved and our autopilot failed, unable RVSM due equipment.",
       "referenceTextZh": "武汉管制，ACA452，故障无法解决，我们的自动驾驶失效，由于设备原因无法 RVSM。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/865.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/850.mp3"
     },
     {
       "id": "atc-scenario-0049-card-main-851",
@@ -137,7 +137,7 @@
       "audioTextZh": "C: Air Canada 452，右转航向 040，下降到 8100 米。",
       "referenceText": "Turn right heading 040, descend to 8100 meters, ACA452.",
       "referenceTextZh": "右转航向 040，下降到 8100 米，ACA452。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/866.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/851.mp3"
     },
     {
       "id": "atc-scenario-0049-card-main-852",
@@ -146,7 +146,7 @@
       "audioTextZh": "C: Air Canada 452，可以时报告意图。\nB: 告诉管制你将保持 8100 米并改航 Beijing。",
       "referenceText": "Wuhan Control, ACA452, request maintain 8100 meters and divert to Beijing.",
       "referenceTextZh": "武汉管制，ACA452，请求保持 8100 米并改航 Beijing。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/867.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/852.mp3"
     },
     {
       "id": "atc-scenario-0049-card-main-853",
@@ -155,7 +155,7 @@
       "audioTextZh": "C: Air Canada 452，收到，联系郑州管制119.35。",
       "referenceText": "119.35, ACA452.",
       "referenceTextZh": "119.35，ACA452。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/868.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/853.mp3"
     }
   ]
 }

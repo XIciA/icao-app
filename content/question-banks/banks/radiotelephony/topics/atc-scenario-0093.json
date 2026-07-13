@@ -11,7 +11,7 @@
       "audioTextZh": "B：你的呼号是 China Eastern 728，停在 212 号登机口，已收到通播 Whiskey，向武汉放行请求飞往广州的 ATC 放行许可。",
       "referenceText": "Wuhan Delivery, CES728, gate 212, information W, request ATC clearance to Guangzhou.",
       "referenceTextZh": "武汉放行，CES728，212 号登机口，通播 W，请求飞往广州的 ATC 放行许可。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1724.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1598.mp3"
     },
     {
       "id": "atc-scenario-0093-card-main-1599",
@@ -20,7 +20,7 @@
       "audioTextZh": "C：China Eastern 728，许可飞往广州，按飞行计划航路，离场跑道 36R，Lima Kilo Oscar 02 离场，起始爬升 1200 米，巡航高度 9800 米，离地后联系 119.6，应答机 3615。",
       "referenceText": "Cleared to Guangzhou via fight planned route, departure runway 36R, LKO 02 departure, initially climb 1200 meters, cruising level 9800 meters, when airborne, contact 119.6, squawk 3615, CES728.",
       "referenceTextZh": "许可飞往广州，按飞行计划航路，离场跑道 36R，LKO 02 离场，起始爬升 1200 米，巡航高度 9800 米，离地后联系 119.6，应答机 3615，CES728。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1725.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1599.mp3"
     },
     {
       "id": "atc-scenario-0093-card-main-1600",
@@ -29,7 +29,7 @@
       "audioTextZh": "B：现在你已推出，发动机运转，请求滑行指令。",
       "referenceText": "Wuhan Ground, CES728, request taxi.",
       "referenceTextZh": "武汉地面，CES728，请求滑行。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1726.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1600.mp3"
     },
     {
       "id": "atc-scenario-0093-card-main-1601",
@@ -38,7 +38,7 @@
       "audioTextZh": "C：China Eastern 728，经滑行道 Zulu 4、Alpha 3 和 Alpha 滑行至跑道 36R 等待点。",
       "referenceText": "Taxi to holding point runway 36R via taxiway Z4, A3 and A, CES728.",
       "referenceTextZh": "经滑行道 Z4、A3 和 A 滑行至跑道 36R 等待点，CES728。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1727.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1601.mp3"
     },
     {
       "id": "atc-scenario-0093-card-main-1602",
@@ -47,7 +47,7 @@
       "audioTextZh": "C：China Eastern 728，避让 Alpha 7 上的 Air China Airbus 319，你是第 2 架离场。",
       "referenceText": "Roger, traffic in sight, CES728.",
       "referenceTextZh": "收到，看到飞机，CES728。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1728.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1602.mp3"
     },
     {
       "id": "atc-scenario-0093-card-main-1603",
@@ -56,7 +56,7 @@
       "audioTextZh": "B：现在你在跑道 36R 等待点，联系塔台请求起飞许可。",
       "referenceText": "Wuhan Tower, CES728, holding point runway 36R, ready for departure.",
       "referenceTextZh": "武汉塔台，CES728，跑道 36R 等待点，准备好离场。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1729.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1603.mp3"
     },
     {
       "id": "atc-scenario-0093-card-main-1604",
@@ -65,7 +65,7 @@
       "audioTextZh": "C：China Eastern 728，进跑道等待，预计延误 1 分钟，将有直升机从左至右穿越跑道。",
       "referenceText": "Line up and wait, roger, CES728.",
       "referenceTextZh": "进跑道等待，收到，CES728。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1730.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1604.mp3"
     },
     {
       "id": "atc-scenario-0093-card-main-1605",
@@ -74,7 +74,7 @@
       "audioTextZh": "C：China Eastern 728，风 010 度，2 米/秒，可以起飞，注意机场北侧有风暴接近。",
       "referenceText": "Cleared for takeoff runway 36R, roger, thanks, CES728.",
       "referenceTextZh": "跑道 36R 可以起飞，收到，谢谢，CES728。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1731.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1605.mp3"
     },
     {
       "id": "atc-scenario-0093-card-main-1606",
@@ -83,7 +83,7 @@
       "audioTextZh": "B：飞行后段，你在巡航高度，询问武汉管制 10400 米是否可用，以及前机是否报告该高度有颠簸。",
       "referenceText": "Wuhan Control, CES728, is 10400 meters available? is there any turbulence reported by preceding aircraft at 10400 meters?",
       "referenceTextZh": "武汉管制，CES728，10400 米是否可用？前机是否报告 10400 米有颠簸？",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1732.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1606.mp3"
     },
     {
       "id": "atc-scenario-0093-card-main-1607",
@@ -92,7 +92,7 @@
       "audioTextZh": "C：China Eastern 728，10400 米可用。10400 米没有颠簸报告。\nB：告诉管制员你想爬升至 10400 米。",
       "referenceText": "Request climb to 10400 meters, CES728.",
       "referenceTextZh": "请求爬升至 10400 米，CES728。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1733.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1607.mp3"
     },
     {
       "id": "atc-scenario-0093-card-main-1608",
@@ -101,7 +101,7 @@
       "audioTextZh": "B：现在你在广州管制区，由于在 10400 米遭遇严重结冰，你想下降至较低高度。",
       "referenceText": "Guangzhou Control, CES728, we are encountering severe icing at 10400 meters, request descend to a lower level.",
       "referenceTextZh": "广州管制，CES728，我们在 10400 米遭遇严重结冰，请求下降至较低高度。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1734.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1608.mp3"
     },
     {
       "id": "atc-scenario-0093-card-main-1609",
@@ -110,7 +110,7 @@
       "audioTextZh": "C：China Eastern 728，下降并保持 4200 米，保持大速度。",
       "referenceText": "Descend to and maintain 4200 meters, maintain high speed, CES728.",
       "referenceTextZh": "下降并保持 4200 米，保持大速度，CES728。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1735.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1609.mp3"
     },
     {
       "id": "atc-scenario-0093-card-main-1610",
@@ -119,7 +119,7 @@
       "audioTextZh": "B：你现在与广州进近联系，你想尽可能长时间保持大速度以避免积冰，告诉 ATC。",
       "referenceText": "Guangzhou Approach, CES728, request maintain high speed to avoid ice accumulation",
       "referenceTextZh": "广州进近，CES728，请求保持大速度以避免积冰。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1736.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1610.mp3"
     },
     {
       "id": "atc-scenario-0093-card-main-1611",
@@ -128,7 +128,7 @@
       "audioTextZh": "C：China Eastern 728，无速度限制。",
       "referenceText": "No speed restrictions, CES728.",
       "referenceTextZh": "无速度限制，CES728。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1737.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1611.mp3"
     },
     {
       "id": "atc-scenario-0093-card-main-1612",
@@ -137,7 +137,7 @@
       "audioTextZh": "B：在最后进近时，你注意到进近灯太暗，请求管制员增加进近灯亮度。",
       "referenceText": "Guangzhou Tower, CES728, the approach lights are 2 dim, request brighten the approach lights.",
       "referenceTextZh": "广州塔台，CES728，进近灯太暗，请求调亮进近灯。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1738.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1612.mp3"
     },
     {
       "id": "atc-scenario-0093-card-main-1613",
@@ -146,7 +146,7 @@
       "audioTextZh": "C：China Eastern 728，收到，进近灯很快会调亮，跑道 20L 可以落地，地面风静，注意跑道湿，刹车效应中等。",
       "referenceText": "Roger, thanks, cleared to land runway 20L, CES728.",
       "referenceTextZh": "收到，谢谢，跑道 20L 可以落地，CES728。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1739.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1613.mp3"
     },
     {
       "id": "atc-scenario-0093-card-main-1614",
@@ -155,7 +155,7 @@
       "audioTextZh": "B：落地后，你在低能见度下滑行困难，联系广州地面请求引导车。",
       "referenceText": "Guangzhou Ground, CES728, we have difficulty in taxing in poor visibility, request a follow-me car.",
       "referenceTextZh": "广州地面，CES728，我们在低能见度下滑行困难，请求引导车。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1740.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1614.mp3"
     },
     {
       "id": "atc-scenario-0093-card-main-1615",
@@ -164,7 +164,7 @@
       "audioTextZh": "C：China Eastern 728，引导车很快会来。",
       "referenceText": "Roger, thanks, CES728.",
       "referenceTextZh": "收到，谢谢，CES728。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1741.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1615.mp3"
     }
   ]
 }

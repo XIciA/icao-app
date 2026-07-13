@@ -11,7 +11,7 @@
       "audioTextZh": "B：你的呼号是 China Southern 302，在 235 号停机位，准备好推出，联系广州地面。",
       "referenceText": "Guangzhou Ground, CSN9302, bay 235, ready for push back.",
       "referenceTextZh": "广州地面，CSN9302，235 号机位，准备好推出。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1587.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1511.mp3"
     },
     {
       "id": "atc-scenario-0088-card-main-1512",
@@ -20,7 +20,7 @@
       "audioTextZh": "C：China Southern 302，等待，预计延误 20 分钟，雷暴正接近机场，多架飞机因等待天气好转而等待。",
       "referenceText": "Roger, stand by, CSN9302.",
       "referenceTextZh": "收到，等待，CSN9302。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1588.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1512.mp3"
     },
     {
       "id": "atc-scenario-0088-card-main-1513",
@@ -29,7 +29,7 @@
       "audioTextZh": "C：China Southern 302，报告拖车准备好。\nB：告诉管制员拖车已到位，你准备好推出。",
       "referenceText": "The tug is ready and we are ready for push back, CSN9302.",
       "referenceTextZh": "拖车已准备好，我们准备好推出，CSN9302。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1589.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1513.mp3"
     },
     {
       "id": "atc-scenario-0088-card-main-1514",
@@ -38,7 +38,7 @@
       "audioTextZh": "C：China Southern 302，同意推出，机头朝东，跑道 19，等待开车。",
       "referenceText": "Push back approved, facing east, runway 19, stand by for start up, CSN9302.",
       "referenceTextZh": "同意推出，机头朝东，跑道 19，等待开车，CSN9302。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1590.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1514.mp3"
     },
     {
       "id": "atc-scenario-0088-card-main-1515",
@@ -47,7 +47,7 @@
       "audioTextZh": "B：现在你已等待开车许可约 15 分钟，联系广州地面请求开车。",
       "referenceText": "Guangzhou Ground, CSN9302, we have been waiting for about 15 minutes, request start up.",
       "referenceTextZh": "广州地面，CSN9302，我们已等待约 15 分钟，请求开车。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1591.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1515.mp3"
     },
     {
       "id": "atc-scenario-0088-card-main-1516",
@@ -56,7 +56,7 @@
       "audioTextZh": "C：China Southern 302，预计 49 离场，自行决定开车，QNH 1008，准备滑行时报告。",
       "referenceText": "Expect departure at 49, start up at own discretion, QNH 1008, CSN9302.",
       "referenceTextZh": "预计 49 离场，自行决定开车，QNH 1008，CSN9302。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1592.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1516.mp3"
     },
     {
       "id": "atc-scenario-0088-card-main-1517",
@@ -65,7 +65,7 @@
       "audioTextZh": "B：现在你准备好滑行。",
       "referenceText": "Guangzhou Ground, CSN9302, request taxi.",
       "referenceTextZh": "广州地面，CSN9302，请求滑行。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1593.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1517.mp3"
     },
     {
       "id": "atc-scenario-0088-card-main-1518",
@@ -74,7 +74,7 @@
       "audioTextZh": "C：China Southern 302，经 Juliette、Delta、Tango 3 和 Tango 4 滑行至跑道 19 等待点。",
       "referenceText": "Taxi via J, D, T3 and T4 to holding point runway 19, CSN9302.",
       "referenceTextZh": "经 J、D、T3 和 T4 滑行至跑道 19 等待点，CSN9302。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1594.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1518.mp3"
     },
     {
       "id": "atc-scenario-0088-card-main-1519",
@@ -83,7 +83,7 @@
       "audioTextZh": "C：China Southern 302，Tango 3 外等待，避让从右至左穿越的 Airbus 320。",
       "referenceText": "Hold short of T3, give way to A320, CSN9302.",
       "referenceTextZh": "T3 外等待，避让 A320，CSN9302。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1595.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1519.mp3"
     },
     {
       "id": "atc-scenario-0088-card-main-1520",
@@ -92,7 +92,7 @@
       "audioTextZh": "C：China Southern 302，交通已脱离，继续经 Delta、Tango 3 和 Tango 4 滑行至跑道 19 等待点。",
       "referenceText": "Roger, continue taxi via D, T3 and T4 to holding point runway 19, CSN9302.",
       "referenceTextZh": "收到，继续经 D、T3 和 T4 滑行至跑道 19 等待点，CSN9302。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1596.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1520.mp3"
     },
     {
       "id": "atc-scenario-0088-card-main-1521",
@@ -101,7 +101,7 @@
       "audioTextZh": "B：现在你在 Foxtrot 1、跑道 19 等待点，完全准备好，联系广州塔台。",
       "referenceText": "Guangzhou Tower, CSN9302, holding point F1, runway 19, fully ready.",
       "referenceTextZh": "广州塔台，CSN9302，F1 等待点，跑道 19，完全准备好。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1597.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1521.mp3"
     },
     {
       "id": "atc-scenario-0088-card-main-1522",
@@ -110,7 +110,7 @@
       "audioTextZh": "C：China Southern 302，跑道 19 进跑道等待，注意跑道 19 离场端雷暴正在发展。\nB：复诵 ATC 许可并因天气请求离地后右转。",
       "referenceText": "Line up and wait runway 19, request right turn when airborne due weather, CSN9302.",
       "referenceTextZh": "跑道 19 进跑道等待，因天气请求离地后右转，CSN9302。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1598.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1522.mp3"
     },
     {
       "id": "atc-scenario-0088-card-main-1523",
@@ -119,7 +119,7 @@
       "audioTextZh": "C：China Southern 302，右转航向 120，直飞 Lima Mike November，跑道 19 可以起飞，地面风 180 度，5 米/秒。",
       "referenceText": "Turn right heading 120, direct to LMN, runway 19, cleared for takeoff, CSN9302.",
       "referenceTextZh": "右转航向 120，直飞 LMN，跑道 19 可以起飞，CSN9302。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1599.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1523.mp3"
     },
     {
       "id": "atc-scenario-0088-card-main-1524",
@@ -128,7 +128,7 @@
       "audioTextZh": "B：现在你已离地，保持 2100 米，航向 120，联系广州进近。",
       "referenceText": "Guangzhou Approach, CSN9302, airborne, maintaining 2100 meters, heading 120.",
       "referenceTextZh": "广州进近，CSN9302，已离地，保持 2100 米，航向 120。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1600.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1524.mp3"
     },
     {
       "id": "atc-scenario-0088-card-main-1525",
@@ -137,7 +137,7 @@
       "audioTextZh": "C：China Southern 302，QNH 1008 爬升至 2700 米。",
       "referenceText": "Climb to 2700 meters on QNH 1008, CSN9302.",
       "referenceTextZh": "QNH 1008 爬升至 2700 米，CSN9302。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1601.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1525.mp3"
     },
     {
       "id": "atc-scenario-0088-card-main-1526",
@@ -146,7 +146,7 @@
       "audioTextZh": "B：爬升中，你突然被外来物击中，可能是冰雹撞击，仪表指示不正确，向广州进近报告并请求返回着陆。",
       "referenceText": "Guangzhou Approach, CSN9302, we have been struck by foreign object, possibly hail strike, our instruments are indicating incorrectly, request return to land.",
       "referenceTextZh": "广州进近，CSN9302，我们被外来物击中，可能是冰雹撞击，仪表指示不正确，请求返回着陆。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1602.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1526.mp3"
     },
     {
       "id": "atc-scenario-0088-card-main-1527",
@@ -155,7 +155,7 @@
       "audioTextZh": "C：China Southern 302，收到，下降至 1500 米，预计雷达引导至跑道 19 五边。",
       "referenceText": "Descend to 1500 meters, expect radar vector for final runway 19, CSN9302.",
       "referenceTextZh": "下降至 1500 米，预计雷达引导至跑道 19 五边，CSN9302。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1603.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1527.mp3"
     },
     {
       "id": "atc-scenario-0088-card-main-1528",
@@ -164,7 +164,7 @@
       "audioTextZh": "C：China Southern 302，联系广州塔台118.5。",
       "referenceText": "118.5, CSN9302.",
       "referenceTextZh": "118.5，CSN9302。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1604.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1528.mp3"
     },
     {
       "id": "atc-scenario-0088-card-main-1529",
@@ -173,7 +173,7 @@
       "audioTextZh": "C：China Southern 302，跑道 19，可以落地。",
       "referenceText": "Runway 19, cleared to land, CSN9302.",
       "referenceTextZh": "跑道 19，可以落地，CSN9302。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1605.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1529.mp3"
     }
   ]
 }

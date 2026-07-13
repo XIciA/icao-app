@@ -11,7 +11,7 @@
       "audioTextZh": "B：你的呼号是 China Eastern 232，从武汉飞往新加坡，正在 Charlie 滑行道向南滑行至跑道 36L 等待点，呼叫武汉塔台请求起飞许可。",
       "referenceText": "Wuhan Tower, CES232, taxiing Southbound on taxiway C to holding point runway 36L, request takeoff clearance.",
       "referenceTextZh": "武汉塔台，CES232，正在 C 滑行道向南滑行至跑道 36L 等待点，请求起飞许可。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1676.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1550.mp3"
     },
     {
       "id": "atc-scenario-0090-card-main-1551",
@@ -20,7 +20,7 @@
       "audioTextZh": "C：China Eastern 232，武汉塔台，跑道 36L 进跑道等待。",
       "referenceText": "Line up and wait runway 36L, CES232.",
       "referenceTextZh": "跑道 36L 进跑道等待，CES232。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1677.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1551.mp3"
     },
     {
       "id": "atc-scenario-0090-card-main-1552",
@@ -29,7 +29,7 @@
       "audioTextZh": "C：China Eastern 232，风静，跑道 36L 可以起飞，离地后联系武汉离场 118.25。",
       "referenceText": "Cleared for takeoff runway 36L, 118.25, CES232.",
       "referenceTextZh": "跑道 36L 可以起飞，118.25，CES232。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1678.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1552.mp3"
     },
     {
       "id": "atc-scenario-0090-card-main-1553",
@@ -38,7 +38,7 @@
       "audioTextZh": "B：离地后，你有起落架警告，指示显示右主起落架未收上，呼叫武汉进近并请求保持 1500 米、速度 200 节。",
       "referenceText": "Wuhan Approach, CES232, we have an undercarriage warning, our right main gear has not been retracted, request maintain 1500m and speed 200kts.",
       "referenceTextZh": "武汉进近，CES232，我们有起落架警告，右主起落架未收上，请求保持 1500 米、速度 200 节。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1679.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1553.mp3"
     },
     {
       "id": "atc-scenario-0090-card-main-1554",
@@ -47,7 +47,7 @@
       "audioTextZh": "C：China Eastern 232，武汉进近，收到，爬升并保持 1500 米，速度 200 节同意，能够时告知意图。",
       "referenceText": "Climb and maintain 1500m, speed 200 knots, CES232.",
       "referenceTextZh": "爬升并保持 1500 米，速度 200 节，CES232。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1680.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1554.mp3"
     },
     {
       "id": "atc-scenario-0090-card-main-1555",
@@ -56,7 +56,7 @@
       "audioTextZh": "B：完成非正常检查单后，你仍无法确认起落架位置，告诉武汉进近你想返回武汉机场，并在跑道上方低通场目视检查。",
       "referenceText": "Wuhan Approach, CES232, we cannot confirm the landing gear position, request return to Wuhan Airport and make a low-pass over the runway for visual check.",
       "referenceTextZh": "武汉进近，CES232，我们无法确认起落架位置，请求返回武汉机场，并在跑道上方低通场目视检查。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1681.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1555.mp3"
     },
     {
       "id": "atc-scenario-0090-card-main-1556",
@@ -65,7 +65,7 @@
       "audioTextZh": "C：China Eastern 232，右转直飞 Echo Bravo NDB，下降并保持 1200 米，按公布程序，许可 ILS 进近跑道 36R。",
       "referenceText": "Turn right track direct to EB NDB, descend and maintain 1200m, follow the published procedure, cleared for ILS approach runway 36R, CES232.",
       "referenceTextZh": "右转直飞 EB NDB，下降并保持 1200 米，按公布程序，许可 ILS 进近跑道 36R，CES232。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1682.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1556.mp3"
     },
     {
       "id": "atc-scenario-0090-card-main-1557",
@@ -74,7 +74,7 @@
       "audioTextZh": "C：China Eastern 232，你距接地点 11 海里，联系武汉塔台118.5。",
       "referenceText": "11 miles from touchdown, 118.5, CES232.",
       "referenceTextZh": "距接地点 11 海里，118.5，CES232。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1683.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1557.mp3"
     },
     {
       "id": "atc-scenario-0090-card-main-1558",
@@ -83,7 +83,7 @@
       "audioTextZh": "B：呼叫武汉塔台并告诉管制员你已建立 ILS 跑道 36R，准备低通场。",
       "referenceText": "Wuhan Tower, CES232, established ILS runway 36R, ready for low-pass.",
       "referenceTextZh": "武汉塔台，CES232，已建立 ILS 跑道 36R，准备低通场。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1684.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1558.mp3"
     },
     {
       "id": "atc-scenario-0090-card-main-1559",
@@ -92,7 +92,7 @@
       "audioTextZh": "C：China Eastern 232，风静，跑道 36R 低通场许可，不低于跑道上方 200 米。",
       "referenceText": "Cleared low-pass runway 36R, not below 200m above the runway, CES232.",
       "referenceTextZh": "跑道 36R 低通场许可，不低于跑道上方 200 米，CES232。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1685.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1559.mp3"
     },
     {
       "id": "atc-scenario-0090-card-main-1560",
@@ -101,7 +101,7 @@
       "audioTextZh": "C：China Eastern 232，低通场后，保持跑道航向，爬升至 1200 米。",
       "referenceText": "After low-pass, maintain runway heading, climb to 1200m, CES232.",
       "referenceTextZh": "低通场后，保持跑道航向，爬升至 1200 米，CES232。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1686.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1560.mp3"
     },
     {
       "id": "atc-scenario-0090-card-main-1561",
@@ -110,7 +110,7 @@
       "audioTextZh": "C：China Eastern 232，我们已看清你的起落架，你的右主起落架似乎在放下位置，告知意图。\nB：告诉武汉塔台指示仍显示右起落架未锁定，你想在 Whiskey Hotel Alpha 上空按公布程序等待。",
       "referenceText": "Wuhan Tower, CES232, the indication still shows right landing gear unlocked, request hold over WHA as published.",
       "referenceTextZh": "武汉塔台，CES232，指示仍显示右起落架未锁定，请求在 WHA 按公布程序等待。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1687.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1561.mp3"
     },
     {
       "id": "atc-scenario-0090-card-main-1562",
@@ -119,7 +119,7 @@
       "audioTextZh": "C：China Eastern 232，左转直飞 Delta Alpha，爬升并保持 1500 米，联系武汉进近119.225。",
       "referenceText": "Turn left proceed direct to DA, climb and maintain 1500m, 119.225, CES232.",
       "referenceTextZh": "左转直飞 DA，爬升并保持 1500 米，119.225，CES232。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1688.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1562.mp3"
     },
     {
       "id": "atc-scenario-0090-card-main-1563",
@@ -128,7 +128,7 @@
       "audioTextZh": "B：你正直飞 Delta Alpha，保持 1500 米，呼叫武汉进近并请求等待指令。",
       "referenceText": "Wuhan Approach, CES232, tracking direct to DA, maintaining 1500m, request holding instructions.",
       "referenceTextZh": "武汉进近，CES232，正直飞 DA，保持 1500 米，请求等待指令。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1689.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1563.mp3"
     },
     {
       "id": "atc-scenario-0090-card-main-1564",
@@ -137,7 +137,7 @@
       "audioTextZh": "C：China Eastern 232，武汉进近，雷达识别，在 Delta Alpha 按公布程序等待，预计进一步许可时间 30，报告进入等待。",
       "referenceText": "Hold at DA as published, expect further clearance at time 30, report entering the hold, CES232.",
       "referenceTextZh": "在 DA 按公布程序等待，预计进一步许可时间 30，报告进入等待，CES232。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1690.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1564.mp3"
     }
   ]
 }

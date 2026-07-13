@@ -11,6 +11,7 @@ const embeddedPath = join(root, 'src/features/question-bank/data/question-bank.j
 const embeddedAudioIndexPath = join(root, 'src/features/question-bank/data/audio-index.json');
 const outputRoot = join(root, 'dist/question-bank-release');
 const audioRoot = resolve(process.env.QUESTION_BANK_AUDIO_ROOT ?? '/Users/zhouyide/Desktop/icao设计稿/public/question-bank-assets/audio');
+const localAudioOverlayRoot = join(resourcesRoot, 'audio');
 
 const bankCapabilities = {
   listening: { audioMode: 'file', reviewMode: 'none', radioEligible: true, mockExamEligible: true },
@@ -43,6 +44,12 @@ function checksum(value) {
 
 function fileChecksum(path) {
   return checksum(readFileSync(path));
+}
+
+function resourceFilePath(sourceRelativePath) {
+  const relativePath = sourceRelativePath.replace(/^audio\//, '');
+  const localOverlayPath = join(localAudioOverlayRoot, relativePath);
+  return existsSync(localOverlayPath) ? localOverlayPath : join(audioRoot, relativePath);
 }
 
 function assertString(value, field) {
@@ -139,7 +146,7 @@ function validate({ registry, banks, resources }, { full = false } = {}) {
     assertUnique(publicPaths, file.publicPath, file.publicPath);
     if (!bankIds.has(file.bankId)) fail(`resource_bank_missing:${file.objectKey}`);
     if (!/^[a-f0-9]{64}$/.test(file.checksum)) fail(`resource_checksum:${file.objectKey}`);
-    const localPath = join(audioRoot, file.sourceRelativePath.replace(/^audio\//, ''));
+    const localPath = resourceFilePath(file.sourceRelativePath);
     if (!existsSync(localPath)) fail(`resource_file_missing:${file.sourceRelativePath}`);
     const size = statSync(localPath).size;
     if (size !== file.sizeBytes) fail(`resource_size_mismatch:${file.objectKey}`);
@@ -200,7 +207,7 @@ function extract({ force = false } = {}) {
       for (const entry of entries) {
         const publicPath = entry.file;
         const sourceRelativePath = publicPath.replace(/^\/question-bank-assets\//, '');
-        const localPath = join(audioRoot, sourceRelativePath.replace(/^audio\//, ''));
+        const localPath = resourceFilePath(sourceRelativePath);
         if (!existsSync(localPath)) fail(`extract_resource_missing:${sourceRelativePath}`);
         files.push({
           objectKey: `v1/${sourceRelativePath}`,

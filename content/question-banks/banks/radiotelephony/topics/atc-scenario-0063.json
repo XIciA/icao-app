@@ -11,7 +11,7 @@
       "audioTextZh": "B: 你的呼号是 Air China 937，停在 213 号登机口，已收到信息 November，呼叫 武汉放行请求前往 Amsterdam 的 ATC 许可。",
       "referenceText": "Wuhan Delivery, CCA937, gate 213, information N, request ATC clearance to Amsterdam.",
       "referenceTextZh": "武汉放行，CCA937，213 号登机口，信息 N，请求前往 Amsterdam 的 ATC 许可。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1126.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1081.mp3"
     },
     {
       "id": "atc-scenario-0063-card-main-1082",
@@ -20,7 +20,7 @@
       "audioTextZh": "C: Air China 937，武汉放行，可以按计划航路前往 Amsterdam，执行 Zulu Foxtrot 12 离场，巡航高度 9500 米，初始爬升 1500 米，离场后联系 125.65，应答机 3251，使用跑道 18L。",
       "referenceText": "Cleared to Amsterdam via flight planned route, follow ZF12 departure, cruising level 9500 meters, initially climb 1500 meters, after departure, contact 125.65, squawk 3251, runway in use 18L, CCA937.",
       "referenceTextZh": "可以按计划航路前往 Amsterdam，执行 ZF12 离场，巡航高度 9500 米，初始爬升 1500 米，离场后联系 125.65，应答机 3251，使用跑道 18L，CCA937。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1127.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1082.mp3"
     },
     {
       "id": "atc-scenario-0063-card-main-1083",
@@ -29,7 +29,7 @@
       "audioTextZh": "C: Air China 937，由于临时离场限制，预计放行时刻 20，准备推出和开车时报告。",
       "referenceText": "Roger, expect slot time 20, CCA937.",
       "referenceTextZh": "收到，预计放行时刻 20，CCA937。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1128.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1083.mp3"
     },
     {
       "id": "atc-scenario-0063-card-main-1084",
@@ -38,7 +38,7 @@
       "audioTextZh": "B: 告诉管制员有 2 名旅客缺失，行李已从飞机上卸下，装载单已修改，联系管制员报告情况并说明准备推出。",
       "referenceText": "Wuhan Ground, CCA937, there are 2 passengers missing, the bags have removed, the loading sheet is amended, ready for push.",
       "referenceTextZh": "武汉地面，CCA937，有 2 名旅客缺失，行李已卸下，装载单已修改，准备推出。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1129.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1084.mp3"
     },
     {
       "id": "atc-scenario-0063-card-main-1085",
@@ -47,7 +47,7 @@
       "audioTextZh": "C: Air China 937，放行时刻限制取消，联系 地面 121.75。",
       "referenceText": "121.75, CCA937.",
       "referenceTextZh": "121.75，CCA937。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1130.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1085.mp3"
     },
     {
       "id": "atc-scenario-0063-card-main-1086",
@@ -56,7 +56,7 @@
       "audioTextZh": "B: 告诉管制员你已起动发动机，请求滑行指令。",
       "referenceText": "Wuhan Ground, CCA937, request taxi.",
       "referenceTextZh": "武汉地面，CCA937，请求滑行。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1131.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1086.mp3"
     },
     {
       "id": "atc-scenario-0063-card-main-1087",
@@ -65,7 +65,7 @@
       "audioTextZh": "C: Air China 937，经滑行道 Zulu 4、Alpha 2、Alpha 滑行至跑道 18L 等待点，在 Echo 1 前等待。",
       "referenceText": "Taxi to holding point runway 18L via the taxiway Z4, A2, A, hold short of E1, CCA937.",
       "referenceTextZh": "经滑行道 Z4、A2、A 滑行至跑道 18L 等待点，在 E1 前等待，CCA937。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1132.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1087.mp3"
     },
     {
       "id": "atc-scenario-0063-card-main-1088",
@@ -74,7 +74,7 @@
       "audioTextZh": "B: 公司通知你，地面服务人员在缺失旅客行李卸载程序中出错，你必须滑回登机口。",
       "referenceText": "Wuhan Ground, CCA937, our company has advised the ground service personnel have made a mistake during the baggage removal procedure of missing passenger, request taxi back to the gate.",
       "referenceTextZh": "武汉地面，CCA937，公司通知我们地面服务人员在缺失旅客行李卸载程序中出错，请求滑回登机口。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1133.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1088.mp3"
     },
     {
       "id": "atc-scenario-0063-card-main-1089",
@@ -83,7 +83,7 @@
       "audioTextZh": "C: Air China 937，经滑行道 Mike、Mike 3、Zulu 4 滑行至 213 号登机口。",
       "referenceText": "Taxi to gate 213 via taxiway M, M3, Z4, CCA937.",
       "referenceTextZh": "经滑行道 M、M3、Z4 滑行至 213 号登机口，CCA937。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1134.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1089.mp3"
     },
     {
       "id": "atc-scenario-0063-card-main-1090",
@@ -92,7 +92,7 @@
       "audioTextZh": "B: 现在行李问题已解决，你请求推出和开车。",
       "referenceText": "Wuhan Ground, CCA937, ready for push back and start up.",
       "referenceTextZh": "武汉地面，CCA937，准备推出和开车。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1135.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1090.mp3"
     },
     {
       "id": "atc-scenario-0063-card-main-1091",
@@ -101,7 +101,7 @@
       "audioTextZh": "C: Air China 937，冷锋正向机场推进，预计改用跑道 04，等待新的离场许可，推出和开车批准。",
       "referenceText": "Roger, expect runway 04, push back and start up approved, CCA937.",
       "referenceTextZh": "收到，预计跑道 04，推出和开车批准，CCA937。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1136.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1091.mp3"
     },
     {
       "id": "atc-scenario-0063-card-main-1092",
@@ -110,7 +110,7 @@
       "audioTextZh": "C: Air China 937，重新许可前往 Amsterdam，执行 Zulu Foxtrot 01 离场，跑道 04，初始爬升 1500 米，其余不变。\nB: 复诵指令并告知你准备滑行。",
       "referenceText": "Follow ZF01 departure, runway 04, initially climb 1500 meters, rest unchanged, request taxi, CCA937.",
       "referenceTextZh": "执行 ZF01 离场，跑道 04，初始爬升 1500 米，其余不变，请求滑行，CCA937。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1137.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1092.mp3"
     },
     {
       "id": "atc-scenario-0063-card-main-1093",
@@ -119,7 +119,7 @@
       "audioTextZh": "B: 现在你正常抬轮，报告已离地，通过 900 米，爬升到 1500 米，并请求取消 SID，联系 Wuhan Departure。",
       "referenceText": "Wuhan Departure, CCA937, airborne, passing 900 meters, climbing to 1500 meters, request cancel SID.",
       "referenceTextZh": "Wuhan Departure，CCA937，已离地，通过 900 米，爬升到 1500 米，请求取消 SID。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1138.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1093.mp3"
     },
     {
       "id": "atc-scenario-0063-card-main-1094",
@@ -128,7 +128,7 @@
       "audioTextZh": "C: Air China 937，Wuhan Departure，雷达识别，取消 SID，飞往 Zulu Foxtrot，爬升并保持 4500 米。",
       "referenceText": "Cancel SID, proceed to ZF, climb and maintain 4500 meters, CCA937.",
       "referenceTextZh": "取消 SID，飞往 ZF，爬升并保持 4500 米，CCA937。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1139.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1094.mp3"
     },
     {
       "id": "atc-scenario-0063-card-main-1095",
@@ -137,7 +137,7 @@
       "audioTextZh": "B: 2 号发动机出现间歇性噪声，作为预防措施，你想终止飞行并返回，通知 Wuhan Departure 并请求在 2700 米改平。",
       "referenceText": "Wuhan Departure, CCA937, the No.2 engine produced intermittent noises, request level off at 2700 meters and return to land at Wuhan Airport.",
       "referenceTextZh": "Wuhan Departure，CCA937，2 号发动机出现间歇性噪声，请求在 2700 米改平并返回 Wuhan Airport 着陆。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1140.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1095.mp3"
     },
     {
       "id": "atc-scenario-0063-card-main-1096",
@@ -146,7 +146,7 @@
       "audioTextZh": "C: Air China 937，爬升并保持 2700 米，左转航向 220，雷达引导跑道 04 ILS 进近。",
       "referenceText": "Climb and maintain 2700 meters, turn left heading 220, radar vector for ILS approach runway 04, CCA937.",
       "referenceTextZh": "爬升并保持 2700 米，左转航向 220，雷达引导跑道 04 ILS 进近，CCA937。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1141.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1096.mp3"
     },
     {
       "id": "atc-scenario-0063-card-main-1097",
@@ -155,7 +155,7 @@
       "audioTextZh": "B: 为了减重到最大着陆重量，你请求 15 分钟放油。",
       "referenceText": "Wuhan Approach, CCA937, request 15 minutes for fuel dumping to reduce weight to maximum landing weight.",
       "referenceTextZh": "武汉进近，CCA937，请求 15 分钟放油，以减重到最大着陆重量。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1142.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1097.mp3"
     },
     {
       "id": "atc-scenario-0063-card-main-1098",
@@ -164,7 +164,7 @@
       "audioTextZh": "C: Air China 937，等待，继续当前航向。",
       "referenceText": "Stand by, continue present heading, CCA937.",
       "referenceTextZh": "等待，继续当前航向，CCA937。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1143.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1098.mp3"
     }
   ]
 }

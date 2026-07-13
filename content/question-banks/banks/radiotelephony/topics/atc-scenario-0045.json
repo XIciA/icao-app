@@ -11,7 +11,7 @@
       "audioTextZh": "B: 你的呼号是 Air Canada 121，距接地点 6 海里，燃油警告灯亮，呼叫 武汉进近请求 ILS 进近和优先着陆。",
       "referenceText": "Wuhan Approach, ACA121, our fuel warning light is on, request ILS approach and priority landing.",
       "referenceTextZh": "武汉进近，ACA121，我们的燃油警告灯亮，请求 ILS 进近和优先着陆。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/776.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/761.mp3"
     },
     {
       "id": "atc-scenario-0045-card-main-762",
@@ -20,7 +20,7 @@
       "audioTextZh": "C: Air Canada 121，武汉进近，收到，可以跑道 36R ILS 进近，右转航向 300 加入五边，你距接地点 5.5 海里。",
       "referenceText": "Cleared ILS runway 36R and turn right heading 300 to final, ACA121.",
       "referenceTextZh": "可以跑道 36R ILS 进近，右转航向 300 加入五边，ACA121。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/777.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/762.mp3"
     },
     {
       "id": "atc-scenario-0045-card-main-763",
@@ -29,7 +29,7 @@
       "audioTextZh": "C: Air Canada 121，右转至 310 切入航向道，联系塔台 118.7，再见。",
       "referenceText": "Turn right to 310 to intercept the localizer, 118.7, good day, ACA121.",
       "referenceTextZh": "右转至 310 切入航向道，118.7，再见，ACA121。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/778.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/763.mp3"
     },
     {
       "id": "atc-scenario-0045-card-main-764",
@@ -38,7 +38,7 @@
       "audioTextZh": "B: 联系武汉塔台，你正接近 Alpha Kilo Oscar，保持 1100 米。",
       "referenceText": "Wuhan Tower, ACA121 is approaching AKO, level at 1100m.",
       "referenceTextZh": "武汉塔台，ACA121 正接近 AKO，保持 1100 米。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/779.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/764.mp3"
     },
     {
       "id": "atc-scenario-0045-card-main-765",
@@ -47,7 +47,7 @@
       "audioTextZh": "C: Air Canada 121，通知你，跑道末端附近正在进行灯光维护。\nB: 你询问 ILS II 类是否可用。",
       "referenceText": "Wuhan Tower, ACA121, ILS category II is available?",
       "referenceTextZh": "武汉塔台，ACA121，ILS II 类可用吗？",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/780.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/765.mp3"
     },
     {
       "id": "atc-scenario-0045-card-main-766",
@@ -56,7 +56,7 @@
       "audioTextZh": "C: Air Canada 121，由于中线灯不工作，ILS II 类不可用，ILS I 类最低标准有效。\nB: 复诵灯光系统信息。",
       "referenceText": "ILS category II is unserviceable, ILS category I minimum is effective, ACA121.",
       "referenceTextZh": "ILS II 类不可用，ILS I 类最低标准有效，ACA121。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/781.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/766.mp3"
     },
     {
       "id": "atc-scenario-0045-card-main-767",
@@ -65,7 +65,7 @@
       "audioTextZh": "C: Air Canada 121，跑道有片状结冰，刹车效应差。\nB: 复诵跑道状况。",
       "referenceText": "Runway is covered with patches of ice, braking action poor, ACA121.",
       "referenceTextZh": "跑道有片状结冰，刹车效应差，ACA121。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/782.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/767.mp3"
     },
     {
       "id": "atc-scenario-0045-card-main-768",
@@ -74,7 +74,7 @@
       "audioTextZh": "B: 你请求把进近灯调暗到 3 级，从你的飞机看太亮。",
       "referenceText": "Wuhan Tower, ACA121, please dim the approach light to grade 3, they look 2 bright from here.",
       "referenceTextZh": "武汉塔台，ACA121，请把进近灯调暗到 3 级，从这里看太亮。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/783.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/768.mp3"
     },
     {
       "id": "atc-scenario-0045-card-main-769",
@@ -83,7 +83,7 @@
       "audioTextZh": "C: 收到。Air Canada 121，检查起落架放下，可以着陆。",
       "referenceText": "Cleared to land, ACA121.",
       "referenceTextZh": "可以着陆，ACA121。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/784.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/769.mp3"
     },
     {
       "id": "atc-scenario-0045-card-main-770",
@@ -92,7 +92,7 @@
       "audioTextZh": "B: 你有 3 个绿灯，PAPI 看起来有点低，但实际上飞机在下滑道上方。向塔台报告。\n\n\n（PAPI：精密进近航径指示器）",
       "referenceText": "Wuhan Tower, ACA121, we have 3 green lights on, the PAPI appears a little bit low but we are high on the glide path.",
       "referenceTextZh": "武汉塔台，ACA121，我们有 3 个绿灯，PAPI 看起来有点低，但我们在下滑道上方。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/785.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/770.mp3"
     },
     {
       "id": "atc-scenario-0045-card-main-771",
@@ -101,7 +101,7 @@
       "audioTextZh": "C: Air Canada 121，观察整个机场，调整下降率。",
       "referenceText": "Look into a whole airfield and adjust the descent rate, ACA121.",
       "referenceTextZh": "观察整个机场，调整下降率，ACA121。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/786.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/771.mp3"
     },
     {
       "id": "atc-scenario-0045-card-main-772",
@@ -110,7 +110,7 @@
       "audioTextZh": "B: 告诉管制员你复飞了，高度太高。",
       "referenceText": "Wuhan Tower, ACA121, we are too high, going around.",
       "referenceTextZh": "武汉塔台，ACA121，我们太高，复飞。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/787.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/772.mp3"
     },
     {
       "id": "atc-scenario-0045-card-main-773",
@@ -119,7 +119,7 @@
       "audioTextZh": "C: Air Canada 121，在等待区检查飞机状态，联系 Departure 119.9。",
       "referenceText": "Wilco, 119.9, ACA121.",
       "referenceTextZh": "照办，119.9，ACA121。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/788.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/773.mp3"
     },
     {
       "id": "atc-scenario-0045-card-main-774",
@@ -128,7 +128,7 @@
       "audioTextZh": "C: Air Canada 121，确认你正在复飞。",
       "referenceText": "Affirm, we are going around, ACA121.",
       "referenceTextZh": "是的，我们正在复飞，ACA121。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/789.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/774.mp3"
     },
     {
       "id": "atc-scenario-0045-card-main-775",
@@ -137,7 +137,7 @@
       "audioTextZh": "C: 收到，先生，请问你的意图？\nB: 告诉 Departure 你想盘旋回来在跑道 36R 再次着陆。",
       "referenceText": "Wuhan Departure, ACA121, we would like to circle back for another landing on runway 36R.",
       "referenceTextZh": "Wuhan Departure，ACA121，我们想盘旋回来在跑道 36R 再次着陆。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/790.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/775.mp3"
     },
     {
       "id": "atc-scenario-0045-card-main-776",
@@ -146,7 +146,7 @@
       "audioTextZh": "C: Air Canada 121，很抱歉通知你，跑道 36R 关闭，跑道上有片状积雪和大量碎片。改用跑道 04，飞航向 134 切入跑道 04 航向道。",
       "referenceText": "Runway 04, heading 134 to intercept localizer of runway04, ACA121.",
       "referenceTextZh": "跑道 04，航向 134 切入跑道 04 航向道，ACA121。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/791.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/776.mp3"
     },
     {
       "id": "atc-scenario-0045-card-main-777",
@@ -155,7 +155,7 @@
       "audioTextZh": "C: Air Canada 121，风为西北风约 10 到 15，左转航向 070，按 QNH 1001 下降到 1200 米。",
       "referenceText": "Turn left heading 070 and descend to 1200m on QNH 1001, ACA121.",
       "referenceTextZh": "左转航向 070，按 QNH 1001 下降到 1200 米，ACA121。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/792.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/777.mp3"
     },
     {
       "id": "atc-scenario-0045-card-main-778",
@@ -164,7 +164,7 @@
       "audioTextZh": "C: Air Canada 121，请问你的飞机状态？\nB: 告诉管制员飞机状态良好，但这次你没有足够燃油再次复飞，希望这次成功着陆。",
       "referenceText": "My aircraft is in good condition, but I don't have enough fuel for another missed approach, I must make it this time, ACA121.",
       "referenceTextZh": "我的飞机状态良好，但我没有足够燃油再次复飞，这次必须落地，ACA121。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/793.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/778.mp3"
     }
   ]
 }

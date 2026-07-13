@@ -11,7 +11,7 @@
       "audioTextZh": "B: 你在 Beijing Airport，呼号 Air China 101，飞机上有积冰，想在开车前除冰。联系北京地面请求除冰服务。",
       "referenceText": "Beijing Ground, CCA101, there's ice accumulated on our plane, request de-icing service.",
       "referenceTextZh": "北京地面，CCA101，我们飞机上有积冰，请求除冰服务。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1179.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1134.mp3"
     },
     {
       "id": "atc-scenario-0066-card-main-1135",
@@ -20,7 +20,7 @@
       "audioTextZh": "C: Air China 101，北京地面，你想在哪里除冰？\nB: 告诉 地面 你想在滑行道 Delta 7 除冰。",
       "referenceText": "Request to de-ice on taxiway D7, CCA101.",
       "referenceTextZh": "请求在滑行道 D7 除冰，CCA101。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1180.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1135.mp3"
     },
     {
       "id": "atc-scenario-0066-card-main-1136",
@@ -29,7 +29,7 @@
       "audioTextZh": "B: 通知 地面，在 Delta 7 除冰完成，准备滑行。",
       "referenceText": "Beijing Ground, CCA101, de-icing completed on D7, ready to taxi.",
       "referenceTextZh": "北京地面，CCA101，D7 除冰完成，准备滑行。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1181.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1136.mp3"
     },
     {
       "id": "atc-scenario-0066-card-main-1137",
@@ -38,7 +38,7 @@
       "audioTextZh": "C: Air China 101，经 Whiskey 2、Zulu 4 和 Bravo 滑行至跑道 36R 等待点，注意，滑行道有片状结冰。",
       "referenceText": "Taxi to holding point runway 36R via W2, Z4 and B, roger, thanks, CCA101.",
       "referenceTextZh": "经 W2、Z4 和 B 滑行至跑道 36R 等待点，收到，谢谢，CCA101。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1182.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1137.mp3"
     },
     {
       "id": "atc-scenario-0066-card-main-1138",
@@ -47,7 +47,7 @@
       "audioTextZh": "B: 你的除冰液只有效 30 分钟，告诉 地面 你需要在 0900 前起飞，并请求从 Zulu 4 交叉口离场。",
       "referenceText": "Beijing Ground, CCA101, our de-icing fluid is only effective for 30 minutes, we need to take off before 0900, request intersection departure from Z4.",
       "referenceTextZh": "北京地面，CCA101，我们的除冰液只有效 30 分钟，需要在 0900 前起飞，请求从 Z4 交叉口离场。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1183.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1138.mp3"
     },
     {
       "id": "atc-scenario-0066-card-main-1139",
@@ -56,7 +56,7 @@
       "audioTextZh": "C: Air China 101，因排序原因不批准，继续经 Whiskey 2、Zulu 4 和 Bravo 滑行至跑道 36R 等待点。",
       "referenceText": "Roger, continue taxi to holding point runway 36R via W2, Z4 and B, CCA101.",
       "referenceTextZh": "收到，继续经 W2、Z4 和 B 滑行至跑道 36R 等待点，CCA101。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1184.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1139.mp3"
     },
     {
       "id": "atc-scenario-0066-card-main-1140",
@@ -65,7 +65,7 @@
       "audioTextZh": "C: Air China 101，立即停止，一辆配餐车刚撞到了你飞机的一台发动机。\nB: 询问 地面 是哪台发动机。",
       "referenceText": "Roger，Which engine has been knocked ? CCA101.",
       "referenceTextZh": "收到，哪台发动机被撞？CCA101。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1185.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1140.mp3"
     },
     {
       "id": "atc-scenario-0066-card-main-1141",
@@ -74,7 +74,7 @@
       "audioTextZh": "C: 4 号，右外侧发动机。\nB: 告诉管制员你必须关停全部 4 台发动机，并释放 4 号发动机灭火瓶。",
       "referenceText": "Beijing Ground, CCA101, we have to shut down all 4 engines and discharge fire extinguishers of engine No.4.",
       "referenceTextZh": "北京地面，CCA101，我们必须关停全部 4 台发动机，并释放 4 号发动机灭火瓶。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1186.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1141.mp3"
     },
     {
       "id": "atc-scenario-0066-card-main-1142",
@@ -83,7 +83,7 @@
       "audioTextZh": "C: 收到，Air China 101，我会派消防队。",
       "referenceText": "Roger, thanks, CCA101.",
       "referenceTextZh": "收到，谢谢，CCA101。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1187.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1142.mp3"
     },
     {
       "id": "atc-scenario-0066-card-main-1143",
@@ -92,7 +92,7 @@
       "audioTextZh": "B: 火无法扑灭，向 ATC 通知，这是遇险呼叫，同时你想进行撤离并请求应急设备。",
       "referenceText": "MAYDAY MAYDAY MAYDAY, Beijing Ground, CCA101, the fire cannot be extinguished, we are evacuating, request emergency equipment.",
       "referenceTextZh": "MAYDAY MAYDAY MAYDAY，北京地面，CCA101，火无法扑灭，我们正在撤离，请求应急设备。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1188.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1143.mp3"
     }
   ]
 }

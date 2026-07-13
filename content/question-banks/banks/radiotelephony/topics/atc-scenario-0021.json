@@ -11,7 +11,7 @@
       "audioTextZh": "你的呼号是Air France 675，从广州飞往武汉，刚由广州管制移交至武汉管制，过DAPRO，保持10100米。",
       "referenceText": "Wuhan Control, AFR675, over DAPRO, maintaining 10100 meters.",
       "referenceTextZh": "武汉管制，AFR675，过DAPRO，保持10100米。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/373.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/358.mp3"
     },
     {
       "id": "atc-scenario-0021-card-main-359",
@@ -20,7 +20,7 @@
       "audioTextZh": "管制员：Air France 675，免报位置。",
       "referenceText": "Omit position reports, AFR675.",
       "referenceTextZh": "免报位置，AFR675。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/374.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/359.mp3"
     },
     {
       "id": "atc-scenario-0021-card-main-360",
@@ -29,7 +29,7 @@
       "audioTextZh": "你的气象雷达显示前方有积雨云，请向武汉管制报告情况，并申请向西偏航20海里。",
       "referenceText": "Wuhan Control, AFR675, our weather radar indicates there is a cumulonimbus ahead, request 20 miles deviation to the west.",
       "referenceTextZh": "武汉管制，AFR675，我们气象雷达显示前方有积雨云，申请向西偏航20海里。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/375.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/360.mp3"
     },
     {
       "id": "atc-scenario-0021-card-main-361",
@@ -38,7 +38,7 @@
       "audioTextZh": "管制员：Air France 675，因禁区不能同意。",
       "referenceText": "Roger, AFR675.",
       "referenceTextZh": "收到，AFR675。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/376.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/361.mp3"
     },
     {
       "id": "atc-scenario-0021-card-main-362",
@@ -47,7 +47,7 @@
       "audioTextZh": "现在你发现导航性能下降，请向空管报告，并请他们核实你的飞行航迹。",
       "referenceText": "Wuhan Control, AFR675, the navigation performance has been downgraded, request verify our flight track.",
       "referenceTextZh": "武汉管制，AFR675，导航性能下降，请核实我们的飞行航迹。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/377.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/362.mp3"
     },
     {
       "id": "atc-scenario-0021-card-main-363",
@@ -56,7 +56,7 @@
       "audioTextZh": "管制员：Air France 675，你仍在航迹上。",
       "referenceText": "Roger, AFR675.",
       "referenceTextZh": "收到，AFR675。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/378.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/363.mp3"
     },
     {
       "id": "atc-scenario-0021-card-main-364",
@@ -65,7 +65,7 @@
       "audioTextZh": "你的气象雷达失效，请告诉武汉管制你希望备降武汉机场。",
       "referenceText": "Wuhan Control, AFR675, our weather radar has failed, request divert to Wuhan Airport.",
       "referenceTextZh": "武汉管制，AFR675，我们气象雷达失效，申请备降武汉机场。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/379.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/364.mp3"
     },
     {
       "id": "atc-scenario-0021-card-main-365",
@@ -74,7 +74,7 @@
       "audioTextZh": "管制员：Air France 675，左转直飞WHA，下降至5100米。",
       "referenceText": "Turn left, direct to WHA, descend to 5100 meters, AFR675.",
       "referenceTextZh": "左转直飞WHA，下降至5100米，AFR675。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/380.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/365.mp3"
     },
     {
       "id": "atc-scenario-0021-card-main-366",
@@ -83,7 +83,7 @@
       "audioTextZh": "向武汉管制询问武汉当前天气信息。",
       "referenceText": "Wuhan Control, AFR675, request the current weather information at Wuhan.",
       "referenceTextZh": "武汉管制，AFR675，请求武汉当前天气信息。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/381.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/366.mp3"
     },
     {
       "id": "atc-scenario-0021-card-main-367",
@@ -92,7 +92,7 @@
       "audioTextZh": "管制员：Air France 675，武汉天气良好。",
       "referenceText": "Roger, AFR675.",
       "referenceTextZh": "收到，AFR675。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/382.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/367.mp3"
     },
     {
       "id": "atc-scenario-0021-card-main-368",
@@ -101,7 +101,7 @@
       "audioTextZh": "进近过程中，你发现襟翼卡阻，请告诉武汉进近你希望终止进近，并在WHA等待排故。",
       "referenceText": "Wuhan Approach, AFR675, our flaps are jammed, request terminate the approach and hold at WHA for trouble-shooting.",
       "referenceTextZh": "武汉进近，AFR675，我们襟翼卡阻，申请终止进近并在WHA等待排故。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/383.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/368.mp3"
     },
     {
       "id": "atc-scenario-0021-card-main-369",
@@ -110,7 +110,7 @@
       "audioTextZh": "管制员：Air France 675，直飞WHA，爬升并保持900米，按公布程序等待。",
       "referenceText": "Direct to WHA, climb and maintain 900 meters, hold as published, AFR675.",
       "referenceTextZh": "直飞WHA，爬升并保持900米，按公布程序等待，AFR675。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/384.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/369.mp3"
     },
     {
       "id": "atc-scenario-0021-card-main-370",
@@ -119,7 +119,7 @@
       "audioTextZh": "完成检查单后，襟翼仍然卡阻。告诉武汉进近你打算在最长跑道落地，因为无襟翼着陆会导致接地速度很高。",
       "referenceText": "Wuhan Approach, AFR675, our flaps are still jammed, request land at the longest runway due the touchdown speed will be very high due flapless landing.",
       "referenceTextZh": "武汉进近，AFR675，我们襟翼仍然卡阻；由于无襟翼着陆接地速度会很高，申请使用最长跑道落地。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/385.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/370.mp3"
     },
     {
       "id": "atc-scenario-0021-card-main-371",
@@ -128,7 +128,7 @@
       "audioTextZh": "管制员：Air France 675，可以ILS进近36右跑道。请复诵空管指令，并询问36右跑道刹车效应。",
       "referenceText": "Wuhan Approach, AFR675, cleared for ILS approach runway 36R, request the breaking action of runway 36R.",
       "referenceTextZh": "武汉进近，AFR675，可以ILS进近36R，请问36R刹车效应。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/386.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/371.mp3"
     },
     {
       "id": "atc-scenario-0021-card-main-372",
@@ -137,7 +137,7 @@
       "audioTextZh": "管制员：Air France 675，36右跑道刹车效应好。",
       "referenceText": "Breaking action runway 36R good, AFR675.",
       "referenceTextZh": "36R刹车效应好，AFR675。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/387.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/372.mp3"
     },
     {
       "id": "atc-scenario-0021-card-main-373",
@@ -146,7 +146,7 @@
       "audioTextZh": "落地后你冲出跑道，前轮陷住，请向武汉地面报告并申请应急援助。",
       "referenceText": "Wuhan Ground, AFR675, we have skidded off the runway after landing, our nose wheel was bogged, request emergency assistance.",
       "referenceTextZh": "武汉地面，AFR675，我们落地后冲出跑道，前轮陷住，申请应急援助。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/388.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/373.mp3"
     },
     {
       "id": "atc-scenario-0021-card-main-374",
@@ -155,7 +155,7 @@
       "audioTextZh": "管制员：Air France 675，牵引车正在赶来。",
       "referenceText": "Roger, AFR675.",
       "referenceTextZh": "收到，AFR675。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/389.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/374.mp3"
     }
   ]
 }

@@ -11,7 +11,7 @@
       "audioTextZh": "你的呼号是Air France 101，目的地巴黎，准备从北京机场301号登机口出发。现在呼叫北京放行，申请空管放行许可。",
       "referenceText": "Beijing Delivery, AFR101, Gate 301, request ATC clearance to Paris.",
       "referenceTextZh": "北京放行，AFR101，301号登机口，申请前往巴黎的空管放行许可。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/334.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/319.mp3"
     },
     {
       "id": "atc-scenario-0019-card-main-320",
@@ -20,7 +20,7 @@
       "audioTextZh": "管制员：Air France 101，按计划航路放行至巴黎，初始爬升至6600米，RENOB 32离场，航路中申请改平10400米，squawk 1725，36右跑道，离场频率127.75。",
       "referenceText": "Cleared to Paris via flight planned route, initially climb to 6600 meters, RENOB 32 departure, request level change for 10400 meters en route, squawk 1725, runway 36R, departure frequency 127.75, AFR101.",
       "referenceTextZh": "按计划航路放行至巴黎，初始爬升至6600米，RENOB 32离场，航路中申请改平10400米，squawk 1725，36R跑道，离场频率127.75，AFR101。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/335.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/320.mp3"
     },
     {
       "id": "atc-scenario-0019-card-main-321",
@@ -29,7 +29,7 @@
       "audioTextZh": "管制员：Air France 101，正确，联系地面121.9申请推出和开车。",
       "referenceText": "121.9, AFR101.",
       "referenceTextZh": "121.9，AFR101。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/336.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/321.mp3"
     },
     {
       "id": "atc-scenario-0019-card-main-322",
@@ -38,7 +38,7 @@
       "audioTextZh": "联系地面121.9申请推出和开车。",
       "referenceText": "Beijing Ground, AFR101, Gate 301, request pushback and startup.",
       "referenceTextZh": "北京地面，AFR101，301号登机口，申请推出和开车。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/337.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/322.mp3"
     },
     {
       "id": "atc-scenario-0019-card-main-323",
@@ -47,7 +47,7 @@
       "audioTextZh": "管制员：Air France 101，北京地面，推出稍有延误，一架Airbus 340正进302号登机口。",
       "referenceText": "Roger, stand by, AFR101.",
       "referenceTextZh": "收到，等待，AFR101。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/338.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/323.mp3"
     },
     {
       "id": "atc-scenario-0019-card-main-324",
@@ -56,7 +56,7 @@
       "audioTextZh": "管制员：Air France 101，可以推出。询问空管推出方向。",
       "referenceText": "Roger, in which direction should we pushback? AFR101.",
       "referenceTextZh": "收到，请问推出方向？AFR101。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/339.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/324.mp3"
     },
     {
       "id": "atc-scenario-0019-card-main-325",
@@ -65,7 +65,7 @@
       "audioTextZh": "管制员：Air France 101，抱歉，可以推出和开车，机头向东。",
       "referenceText": "Pushback and startup approved, facing east, AFR101.",
       "referenceTextZh": "可以推出和开车，机头向东，AFR101。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/340.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/325.mp3"
     },
     {
       "id": "atc-scenario-0019-card-main-326",
@@ -74,7 +74,7 @@
       "audioTextZh": "所有发动机已启动，各项检查正常，已收到通播Golf，向北京地面申请滑行。",
       "referenceText": "Beijing Ground, AFR101, information G, ready for taxi.",
       "referenceTextZh": "北京地面，AFR101，通播G，准备好滑行。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/341.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/326.mp3"
     },
     {
       "id": "atc-scenario-0019-card-main-327",
@@ -83,7 +83,7 @@
       "audioTextZh": "管制员：Air France 101，通播已变为Hotel，可从Hotel交叉口离场。报告已收到Hotel，但因航程较短，希望改用01跑道。",
       "referenceText": "Roger, information H received, request runway 01 for a short course, AFR101.",
       "referenceTextZh": "收到，已收到通播H，申请01跑道，因航程较短，AFR101。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/342.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/327.mp3"
     },
     {
       "id": "atc-scenario-0019-card-main-328",
@@ -92,7 +92,7 @@
       "audioTextZh": "管制员：Air France 101，收到。一架Boeing 737从左侧进近303号登机口，待该机通过后，经Bravo和Delta滑行，01跑道外等待。你从通播Hotel获知Bravo关闭。",
       "referenceText": "Indications say that taxiway B is closed, confirm taxi via Bravo, AFR101.",
       "referenceTextZh": "通播显示滑行道B关闭，请确认是否经Bravo滑行，AFR101。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/343.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/328.mp3"
     },
     {
       "id": "atc-scenario-0019-card-main-329",
@@ -101,7 +101,7 @@
       "audioTextZh": "管制员：Air France 101，更正，经Mike和Delta滑行，01跑道外等待。",
       "referenceText": "Taxi via Mike and Delta, hold short of runway 01, AFR101.",
       "referenceTextZh": "经Mike和Delta滑行，01跑道外等待，AFR101。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/344.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/329.mp3"
     },
     {
       "id": "atc-scenario-0019-card-main-330",
@@ -110,7 +110,7 @@
       "audioTextZh": "现在你已离地。联系北京离场，报告正在通过1200米爬升至1800米。",
       "referenceText": "Beijing Departure, AFR101, passing 1200 meters and climbing to 1800 meters.",
       "referenceTextZh": "北京离场，AFR101，正在通过1200米爬升至1800米。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/345.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/330.mp3"
     },
     {
       "id": "atc-scenario-0019-card-main-331",
@@ -119,7 +119,7 @@
       "audioTextZh": "管制员：Air France 101，北京离场，雷达识别，按标准气压爬升至6000米。",
       "referenceText": "Climb to 6000 meters on standard, AFR101.",
       "referenceTextZh": "按标准气压爬升至6000米，AFR101。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/346.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/331.mp3"
     },
     {
       "id": "atc-scenario-0019-card-main-332",
@@ -128,7 +128,7 @@
       "audioTextZh": "乘务员报告一名男子身上携带爆炸物并试图引爆。请求紧急下降至3000米。",
       "referenceText": "MAYDAY MAYDAY MAYDAY, Beijing Departure, AFR101, flight attendant reports that there is a man carrying explosives on his body and attempting to detonate them, request descent to 3000 meters.",
       "referenceTextZh": "MAYDAY MAYDAY MAYDAY，北京离场，AFR101，乘务员报告一名男子身上携带爆炸物并试图引爆，申请下降至3000米。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/347.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/332.mp3"
     },
     {
       "id": "atc-scenario-0019-card-main-333",
@@ -137,7 +137,7 @@
       "audioTextZh": "管制员：Air France 101，收到，按QNH 1011下降至3000米，报告续航时间。请复诵并报告还能等待2小时。",
       "referenceText": "Descend to 3000 meters on QNH 1011, endurance 0200, AFR101.",
       "referenceTextZh": "按QNH 1011下降至3000米，续航0200，AFR101。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/348.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/333.mp3"
     },
     {
       "id": "atc-scenario-0019-card-main-334",
@@ -146,7 +146,7 @@
       "audioTextZh": "管制员：Air France 101，立即备降通州。申请雷达引导至通州。",
       "referenceText": "Beijing Approach, AFR101, request reader vector to Tongzhou.",
       "referenceTextZh": "北京进近，AFR101，申请雷达引导至通州。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/349.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/334.mp3"
     },
     {
       "id": "atc-scenario-0019-card-main-335",
@@ -155,7 +155,7 @@
       "audioTextZh": "管制员：Air France 101，右转航向180，保持3000米。条件允许时报告机上当前情况。请复诵，并报告危险男子仍在挣扎，已伤及两名旅客。",
       "referenceText": "Turn right heading 180, maintain 3000 metres, the dangerous man is still struggling and has hurt 2 passengers, AFR101.",
       "referenceTextZh": "右转航向180，保持3000米，危险男子仍在挣扎，已伤及两名旅客，AFR101。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/350.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/335.mp3"
     },
     {
       "id": "atc-scenario-0019-card-main-336",
@@ -164,7 +164,7 @@
       "audioTextZh": "管制员：Air France 101，收到，报告意图。告诉空管该男子已被控制，两名旅客情况危急，申请返回北京机场并优先落地。",
       "referenceText": "The man is under control, request return to Beijing airport and priority landing, 2 passengers are in dangerous situation, Request medical assistance on arrival, AFR101.",
       "referenceTextZh": "该男子已被控制，申请返回北京机场并优先落地，两名旅客情况危急，请求到达后医疗协助，AFR101。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/351.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/336.mp3"
     },
     {
       "id": "atc-scenario-0019-card-main-337",
@@ -173,7 +173,7 @@
       "audioTextZh": "管制员：Air France 101，收到。可以18右跑道落地，你是第一架。警方和医疗保障将在到达时待命。",
       "referenceText": "Cleared runway 18R, thanks, AFR101.",
       "referenceTextZh": "可以18R落地，谢谢，AFR101。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/352.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/337.mp3"
     }
   ]
 }

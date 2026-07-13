@@ -128,3815 +128,3815 @@
       "taskTitle": "Sentence19",
       "audioText": "Descend to 3000 feet, information P is current.",
       "audioTextZh": "下降到3000英尺，最新通播P",
-      "audio": "/question-bank-assets/audio/sentence900/main/018.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/019.mp3"
     },
     {
       "id": "sentence900-main-020",
       "taskTitle": "Sentence20",
       "audioText": "Expedite descent to FL180.",
       "audioTextZh": "加速下降到高度层180",
-      "audio": "/question-bank-assets/audio/sentence900/main/019.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/020.mp3"
     },
     {
       "id": "sentence900-main-021",
       "taskTitle": "Sentence21",
       "audioText": "Expedite climb to FL190.",
       "audioTextZh": "加速爬升到高度层190",
-      "audio": "/question-bank-assets/audio/sentence900/main/020.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/021.mp3"
     },
     {
       "id": "sentence900-main-022",
       "taskTitle": "Sentence22",
       "audioText": "Climb to FL280 expedite until passing FL180.",
       "audioTextZh": "爬升到高度层280，快速爬升，直到通过高度层180",
-      "audio": "/question-bank-assets/audio/sentence900/main/021.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/022.mp3"
     },
     {
       "id": "sentence900-main-023",
       "taskTitle": "Sentence23",
       "audioText": "Unable to expedite climb due weight.",
       "audioTextZh": "重量原因不能快速爬升",
-      "audio": "/question-bank-assets/audio/sentence900/main/022.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/023.mp3"
     },
     {
       "id": "sentence900-main-024",
       "taskTitle": "Sentence24",
       "audioText": "Descending immediately to FL200 due traffic.",
       "audioTextZh": "由于冲突飞机，立即下降到高度层200",
-      "audio": "/question-bank-assets/audio/sentence900/main/023.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/024.mp3"
     },
     {
       "id": "sentence900-main-025",
       "taskTitle": "Sentence25",
       "audioText": "When ready, climb to FL280, report leaving FL200.",
       "audioTextZh": "准备好时，爬升到高度层280，离开高度层200时报",
-      "audio": "/question-bank-assets/audio/sentence900/main/024.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/025.mp3"
     },
     {
       "id": "sentence900-main-026",
       "taskTitle": "Sentence26",
       "audioText": "Leaving FL200, climbing to FL280.",
       "audioTextZh": "离开高度层200，爬升到高度层280",
-      "audio": "/question-bank-assets/audio/sentence900/main/025.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/026.mp3"
     },
     {
       "id": "sentence900-main-027",
       "taskTitle": "Sentence27",
       "audioText": "Maintaining own separation and VMC, descending to FL80.",
       "audioTextZh": "自己保持间隔和目视气象条件，下降到高度层80",
-      "audio": "/question-bank-assets/audio/sentence900/main/026.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/027.mp3"
     },
     {
       "id": "sentence900-main-028",
       "taskTitle": "Sentence28",
       "audioText": "Reaching 8000 feet, request further climb.",
       "audioTextZh": "到达8000英尺，请求进一步爬升",
-      "audio": "/question-bank-assets/audio/sentence900/main/027.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/028.mp3"
     },
     {
       "id": "sentence900-main-029",
       "taskTitle": "Sentence29",
       "audioText": "Cancel SID, track direct to LLK, climb to and maintain FL110.",
       "audioTextZh": "取消标准仪表离场，直飞LLK，爬升并保持高度层110。",
-      "audio": "/question-bank-assets/audio/sentence900/main/028.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/029.mp3"
     },
     {
       "id": "sentence900-main-030",
       "taskTitle": "Sentence30",
       "audioText": "Experiencing icing condition. Request further descent.",
       "audioTextZh": "遭遇结冰，请求进一步下降",
-      "audio": "/question-bank-assets/audio/sentence900/main/029.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/030.mp3"
     },
     {
       "id": "sentence900-main-031",
       "taskTitle": "Sentence31",
       "audioText": "Icing condition encountered. Request further climb.",
       "audioTextZh": "遭遇结冰，请求进一步爬升",
-      "audio": "/question-bank-assets/audio/sentence900/main/030.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/031.mp3"
     },
     {
       "id": "sentence900-main-032",
       "taskTitle": "Sentence32",
       "audioText": "Experiencing severe turbulence. Request further descent.",
       "audioTextZh": "遭遇严重颠簸,请求进一步下降",
-      "audio": "/question-bank-assets/audio/sentence900/main/031.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/032.mp3"
     },
     {
       "id": "sentence900-main-033",
       "taskTitle": "Sentence33",
       "audioText": "Reduce speed to Mach decimal 76.",
       "audioTextZh": "减速到马赫数.76",
-      "audio": "/question-bank-assets/audio/sentence900/main/032.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/033.mp3"
     },
     {
       "id": "sentence900-main-034",
       "taskTitle": "Sentence34",
       "audioText": "Maintain Mach point 84 or greater.",
       "audioTextZh": "保持马赫数.84或以上",
-      "audio": "/question-bank-assets/audio/sentence900/main/033.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/034.mp3"
     },
     {
       "id": "sentence900-main-035",
       "taskTitle": "Sentence35",
       "audioText": "Maintain Mach point 80 or less.",
       "audioTextZh": "保持马赫数.80或以下",
-      "audio": "/question-bank-assets/audio/sentence900/main/034.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/035.mp3"
     },
     {
       "id": "sentence900-main-036",
       "taskTitle": "Sentence36",
       "audioText": "Maintain present speed.",
       "audioTextZh": "保持当前速度",
-      "audio": "/question-bank-assets/audio/sentence900/main/035.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/036.mp3"
     },
     {
       "id": "sentence900-main-037",
       "taskTitle": "Sentence37",
       "audioText": "Maintain 250 knots or greater.",
       "audioTextZh": "保持250节或以上",
-      "audio": "/question-bank-assets/audio/sentence900/main/036.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/037.mp3"
     },
     {
       "id": "sentence900-main-038",
       "taskTitle": "Sentence38",
       "audioText": "Reduce to minimum clean speed.",
       "audioTextZh": "减小到最小光洁速度",
-      "audio": "/question-bank-assets/audio/sentence900/main/037.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/038.mp3"
     },
     {
       "id": "sentence900-main-039",
       "taskTitle": "Sentence39",
       "audioText": "Reduce to minimum approach speed.",
       "audioTextZh": "减小到最小近进速度",
-      "audio": "/question-bank-assets/audio/sentence900/main/038.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/039.mp3"
     },
     {
       "id": "sentence900-main-040",
       "taskTitle": "Sentence40",
       "audioText": "Maintain 160 knots until 4 miles final.",
       "audioTextZh": "保持160节直到五边4海里",
-      "audio": "/question-bank-assets/audio/sentence900/main/039.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/040.mp3"
     },
     {
       "id": "sentence900-main-041",
       "taskTitle": "Sentence41",
       "audioText": "Maintain 160 knots until outer marker.",
       "audioTextZh": "保持160节直到外指点标",
-      "audio": "/question-bank-assets/audio/sentence900/main/040.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/041.mp3"
     },
     {
       "id": "sentence900-main-042",
       "taskTitle": "Sentence42",
       "audioText": "Descend to FL120, on speed conversion, 250 knots.",
       "audioTextZh": "下降到高度层120，调速到250节",
-      "audio": "/question-bank-assets/audio/sentence900/main/041.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/042.mp3"
     },
     {
       "id": "sentence900-main-043",
       "taskTitle": "Sentence43",
       "audioText": "Cancel speed restriction, continue descent to 7000 feet.",
       "audioTextZh": "取消速度限制，继续下降到7000英尺",
-      "audio": "/question-bank-assets/audio/sentence900/main/042.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/043.mp3"
     },
     {
       "id": "sentence900-main-044",
       "taskTitle": "Sentence44",
       "audioText": "LMN-02 Departure, passing 2500 feet climbing to 9000 feet.",
       "audioTextZh": "LMN-02离场，通过2500英尺，继续爬升到9000英尺",
-      "audio": "/question-bank-assets/audio/sentence900/main/043.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/044.mp3"
     },
     {
       "id": "sentence900-main-045",
       "taskTitle": "Sentence45",
       "audioText": "Maintaining FL350, cleared to destination, flight planned route.",
       "audioTextZh": "保持高度层350，可以按计划航路飞往目的地机场",
-      "audio": "/question-bank-assets/audio/sentence900/main/044.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/045.mp3"
     },
     {
       "id": "sentence900-main-046",
       "taskTitle": "Sentence46",
       "audioText": "Request radar vectors for visual approach Runway 22.",
       "audioTextZh": "请求雷达引导目视近进跑道22",
-      "audio": "/question-bank-assets/audio/sentence900/main/045.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/046.mp3"
     },
     {
       "id": "sentence900-main-047",
       "taskTitle": "Sentence47",
       "audioText": "Request join downwind Runway 31.",
       "audioTextZh": "请求加入跑道31三边",
-      "audio": "/question-bank-assets/audio/sentence900/main/046.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/047.mp3"
     },
     {
       "id": "sentence900-main-048",
       "taskTitle": "Sentence48",
       "audioText": "Request taxi to holding point Runway 13.",
       "audioTextZh": "请求滑行到跑道 13 等待点",
-      "audio": "/question-bank-assets/audio/sentence900/main/047.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/048.mp3"
     },
     {
       "id": "sentence900-main-049",
       "taskTitle": "Sentence49",
       "audioText": "Request taxi to south maintenance ramp.",
       "audioTextZh": "请求滑行到南维修机坪",
-      "audio": "/question-bank-assets/audio/sentence900/main/048.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/049.mp3"
     },
     {
       "id": "sentence900-main-050",
       "taskTitle": "Sentence50",
       "audioText": "Request frequency change.",
       "audioTextZh": "请求切换频率",
-      "audio": "/question-bank-assets/audio/sentence900/main/049.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/050.mp3"
     },
     {
       "id": "sentence900-main-051",
       "taskTitle": "Sentence51",
       "audioText": "15NM to HRB, FL290, tracking to JMU, squawking 6543.",
       "audioTextZh": "距HRB 15海里，高度层290，直飞JMU，应答机6543",
-      "audio": "/question-bank-assets/audio/sentence900/main/050.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/051.mp3"
     },
     {
       "id": "sentence900-main-052",
       "taskTitle": "Sentence52",
       "audioText": "Contact Control on 118.9.",
       "audioTextZh": "联系区调 118.9",
-      "audio": "/question-bank-assets/audio/sentence900/main/051.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/052.mp3"
     },
     {
       "id": "sentence900-main-053",
       "taskTitle": "Sentence53",
       "audioText": "Position OBLIK at 0646, maintaining FL310, estimating ZF 0658, WUH next.",
       "audioTextZh": "当前位置OBLIK，时间0646，保持高度层310，预达ZF时间0658，下一位置WUH",
-      "audio": "/question-bank-assets/audio/sentence900/main/052.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/053.mp3"
     },
     {
       "id": "sentence900-main-054",
       "taskTitle": "Sentence54",
       "audioText": "Next report at WXA.",
       "audioTextZh": "下一报告点WXA",
-      "audio": "/question-bank-assets/audio/sentence900/main/053.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/054.mp3"
     },
     {
       "id": "sentence900-main-055",
       "taskTitle": "Sentence55",
       "audioText": "Omit position reports.",
       "audioTextZh": "省略位置报",
-      "audio": "/question-bank-assets/audio/sentence900/main/054.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/055.mp3"
     },
     {
       "id": "sentence900-main-056",
       "taskTitle": "Sentence56",
       "audioText": "Omit position reports on this frequency.",
       "audioTextZh": "本频率省略位置报",
-      "audio": "/question-bank-assets/audio/sentence900/main/055.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/056.mp3"
     },
     {
       "id": "sentence900-main-057",
       "taskTitle": "Sentence57",
       "audioText": "Resume position reporting.",
       "audioTextZh": "恢复位置报",
-      "audio": "/question-bank-assets/audio/sentence900/main/056.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/057.mp3"
     },
     {
       "id": "sentence900-main-058",
       "taskTitle": "Sentence58",
       "audioText": "Delay not determined due runway obstruction.",
       "audioTextZh": "由于跑道障碍物，延误待定",
-      "audio": "/question-bank-assets/audio/sentence900/main/057.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/058.mp3"
     },
     {
       "id": "sentence900-main-059",
       "taskTitle": "Sentence59",
       "audioText": "Approach time not determined due weather.",
       "audioTextZh": "由于天气，近进时间待定",
-      "audio": "/question-bank-assets/audio/sentence900/main/058.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/059.mp3"
     },
     {
       "id": "sentence900-main-060",
       "taskTitle": "Sentence60",
       "audioText": "Slot time not determined due flow control.",
       "audioTextZh": "由于流控，离场时间待定",
-      "audio": "/question-bank-assets/audio/sentence900/main/059.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/060.mp3"
     },
     {
       "id": "sentence900-main-061",
       "taskTitle": "Sentence61",
       "audioText": "Revised slot time at 56.",
       "audioTextZh": "修订后的离场时隙为56分。",
-      "audio": "/question-bank-assets/audio/sentence900/main/060.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/061.mp3"
     },
     {
       "id": "sentence900-main-062",
       "taskTitle": "Sentence62",
       "audioText": "Expect hold at HUR VOR for 10 minutes due traffic.",
       "audioTextZh": "由于冲突飞机，预计在HUR VOR等待10分钟",
-      "audio": "/question-bank-assets/audio/sentence900/main/061.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/062.mp3"
     },
     {
       "id": "sentence900-main-063",
       "taskTitle": "Sentence63",
       "audioText": "Expected approach time 44.",
       "audioTextZh": "预计近进时间44分",
-      "audio": "/question-bank-assets/audio/sentence900/main/062.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/063.mp3"
     },
     {
       "id": "sentence900-main-064",
       "taskTitle": "Sentence64",
       "audioText": "Revised expected approach time 54.",
       "audioTextZh": "最新预计近进时间54分",
-      "audio": "/question-bank-assets/audio/sentence900/main/063.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/064.mp3"
     },
     {
       "id": "sentence900-main-065",
       "taskTitle": "Sentence65",
       "audioText": "No delay expected.",
       "audioTextZh": "预计无延误",
-      "audio": "/question-bank-assets/audio/sentence900/main/064.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/065.mp3"
     },
     {
       "id": "sentence900-main-066",
       "taskTitle": "Sentence66",
       "audioText": "Delay not determined, numerous aircraft holding for weather improvement.",
       "audioTextZh": "延误不确定，很多飞机在等待天气好转",
-      "audio": "/question-bank-assets/audio/sentence900/main/065.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/066.mp3"
     },
     {
       "id": "sentence900-main-069",
       "taskTitle": "Sentence69",
       "audioText": "Ready for approach.",
       "audioTextZh": "准备好近进",
-      "audio": "/question-bank-assets/audio/sentence900/main/066.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/069.mp3"
     },
     {
       "id": "sentence900-main-070",
       "taskTitle": "Sentence70",
       "audioText": "Request leave the holding pattern.",
       "audioTextZh": "请求离开等待航线。",
-      "audio": "/question-bank-assets/audio/sentence900/main/067.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/070.mp3"
     },
     {
       "id": "sentence900-main-072",
       "taskTitle": "Sentence72",
       "audioText": "Leave JFK VOR heading 210.",
       "audioTextZh": "离开JFK VOR，航向210",
-      "audio": "/question-bank-assets/audio/sentence900/main/068.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/072.mp3"
     },
     {
       "id": "sentence900-main-076",
       "taskTitle": "Sentence76",
       "audioText": "Information P received, stand 03, ready to copy ATC clearance.",
       "audioTextZh": "通播P收到，停机位03，准备好抄收ATC许可",
-      "audio": "/question-bank-assets/audio/sentence900/main/069.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/076.mp3"
     },
     {
       "id": "sentence900-main-077",
       "taskTitle": "Sentence77",
       "audioText": "Gate 26, request clearance to London with information F.",
       "audioTextZh": "停机位26，请求去往伦敦的放行许可，通播F收到",
-      "audio": "/question-bank-assets/audio/sentence900/main/070.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/077.mp3"
     },
     {
       "id": "sentence900-main-084",
       "taskTitle": "Sentence84",
       "audioText": "Recleared to destination via B213, WHA, R343, rest of route unchanged.",
       "audioTextZh": "重新允许经B213，WHA、R343飞往目的地，其余航路不变",
-      "audio": "/question-bank-assets/audio/sentence900/main/071.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/084.mp3"
     },
     {
       "id": "sentence900-main-086",
       "taskTitle": "Sentence86",
       "audioText": "Gate15, information C, ready to copy ATC clearance.",
       "audioTextZh": "停机位15，通播C，准备好抄收放行许可",
-      "audio": "/question-bank-assets/audio/sentence900/main/072.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/086.mp3"
     },
     {
       "id": "sentence900-main-088",
       "taskTitle": "Sentence88",
       "audioText": "Say again all after 3000 feet.",
       "audioTextZh": "再说一遍3000英尺之后的所有内容",
-      "audio": "/question-bank-assets/audio/sentence900/main/073.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/088.mp3"
     },
     {
       "id": "sentence900-main-089",
       "taskTitle": "Sentence89",
       "audioText": "Say again all before departure frequency.",
       "audioTextZh": "再说一遍离场频率之前的所有内容",
-      "audio": "/question-bank-assets/audio/sentence900/main/074.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/089.mp3"
     },
     {
       "id": "sentence900-main-090",
       "taskTitle": "Sentence90",
       "audioText": "Say again the initial altitude.",
       "audioTextZh": "再说一遍起始高度",
-      "audio": "/question-bank-assets/audio/sentence900/main/075.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/090.mp3"
     },
     {
       "id": "sentence900-main-091",
       "taskTitle": "Sentence91",
       "audioText": "Unable to cross LX FL150 due weight, maintaining FL130.",
       "audioTextZh": "由于重量原因，不能在高度层150通过LX，保持高度层130",
-      "audio": "/question-bank-assets/audio/sentence900/main/076.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/091.mp3"
     },
     {
       "id": "sentence900-main-092",
       "taskTitle": "Sentence92",
       "audioText": "Destination Beijing, request departure information.",
       "audioTextZh": "目的地北京，请求离场信息",
-      "audio": "/question-bank-assets/audio/sentence900/main/077.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/092.mp3"
     },
     {
       "id": "sentence900-main-093",
       "taskTitle": "Sentence93",
       "audioText": "Bay24, request start-up.",
       "audioTextZh": "停机位24，请求开车",
-      "audio": "/question-bank-assets/audio/sentence900/main/078.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/093.mp3"
     },
     {
       "id": "sentence900-main-094",
       "taskTitle": "Sentence94",
       "audioText": "Start up approved, QNH 29.91.",
       "audioTextZh": "可以开车，修正海压29.91",
-      "audio": "/question-bank-assets/audio/sentence900/main/079.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/094.mp3"
     },
     {
       "id": "sentence900-main-095",
       "taskTitle": "Sentence95",
       "audioText": "Start up approved, altimeter setting 29.91.",
       "audioTextZh": "可以开车，高度表设置29.91",
-      "audio": "/question-bank-assets/audio/sentence900/main/080.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/095.mp3"
     },
     {
       "id": "sentence900-main-096",
       "taskTitle": "Sentence96",
       "audioText": "Start up at 35, QNH 997.",
       "audioTextZh": "35分开车，修正海压997",
-      "audio": "/question-bank-assets/audio/sentence900/main/081.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/096.mp3"
     },
     {
       "id": "sentence900-main-097",
       "taskTitle": "Sentence97",
       "audioText": "Expect start up at 35, QNH 1030.",
       "audioTextZh": "预计35分开车，修正海压1030",
-      "audio": "/question-bank-assets/audio/sentence900/main/082.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/097.mp3"
     },
     {
       "id": "sentence900-main-098",
       "taskTitle": "Sentence98",
       "audioText": "Expect departure at 49, start up at own discretion, QNH 1004.",
       "audioTextZh": "预计 49 分离场，开车时间自行掌握，修正海压 1004",
-      "audio": "/question-bank-assets/audio/sentence900/main/083.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/098.mp3"
     },
     {
       "id": "sentence900-main-099",
       "taskTitle": "Sentence99",
       "audioText": "Radio check on 118.3.",
       "audioTextZh": "118.3 校波",
-      "audio": "/question-bank-assets/audio/sentence900/main/084.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/099.mp3"
     },
     {
       "id": "sentence900-main-100",
       "taskTitle": "Sentence100",
       "audioText": "I read you 5.",
       "audioTextZh": "我听你5个",
-      "audio": "/question-bank-assets/audio/sentence900/main/085.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/100.mp3"
     },
     {
       "id": "sentence900-main-101",
       "taskTitle": "Sentence101",
       "audioText": "You are unreadable.",
       "audioTextZh": "无法听清",
-      "audio": "/question-bank-assets/audio/sentence900/main/086.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/101.mp3"
     },
     {
       "id": "sentence900-main-102",
       "taskTitle": "Sentence102",
       "audioText": "Can you speak slower?",
       "audioTextZh": "你能说慢点吗？",
-      "audio": "/question-bank-assets/audio/sentence900/main/087.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/102.mp3"
     },
     {
       "id": "sentence900-main-103",
       "taskTitle": "Sentence103",
       "audioText": "How do you read?",
       "audioTextZh": "你听我声音怎样？",
-      "audio": "/question-bank-assets/audio/sentence900/main/088.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/103.mp3"
     },
     {
       "id": "sentence900-main-104",
       "taskTitle": "Sentence104",
       "audioText": "QNH 997, I say again, QNH 997.",
       "audioTextZh": "修正海压 997，我再说一遍，修正海压 997",
-      "audio": "/question-bank-assets/audio/sentence900/main/089.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/104.mp3"
     },
     {
       "id": "sentence900-main-105",
       "taskTitle": "Sentence105",
       "audioText": "Stand 27, request pushback.",
       "audioTextZh": "停机位27，请求推出",
-      "audio": "/question-bank-assets/audio/sentence900/main/090.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/105.mp3"
     },
     {
       "id": "sentence900-main-106",
       "taskTitle": "Sentence106",
       "audioText": "Pushback approved, Runway 31.",
       "audioTextZh": "可以推出，跑道31",
-      "audio": "/question-bank-assets/audio/sentence900/main/091.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/106.mp3"
     },
     {
       "id": "sentence900-main-107",
       "taskTitle": "Sentence107",
       "audioText": "Stand by pushback.",
       "audioTextZh": "稍等推出",
-      "audio": "/question-bank-assets/audio/sentence900/main/092.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/107.mp3"
     },
     {
       "id": "sentence900-main-108",
       "taskTitle": "Sentence108",
       "audioText": "Pushback at own discretion.",
       "audioTextZh": "推出时间自行掌握",
-      "audio": "/question-bank-assets/audio/sentence900/main/093.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/108.mp3"
     },
     {
       "id": "sentence900-main-109",
       "taskTitle": "Sentence109",
       "audioText": "Pushback approved, long pushback.",
       "audioTextZh": "可以推出，多推点",
-      "audio": "/question-bank-assets/audio/sentence900/main/094.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/109.mp3"
     },
     {
       "id": "sentence900-main-110",
       "taskTitle": "Sentence110",
       "audioText": "Pushback to taxiway A approved.",
       "audioTextZh": "可以推出到滑行道A",
-      "audio": "/question-bank-assets/audio/sentence900/main/095.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/110.mp3"
     },
     {
       "id": "sentence900-main-111",
       "taskTitle": "Sentence111",
       "audioText": "Pushback approved, facing west.",
       "audioTextZh": "可以推出，机头朝西",
-      "audio": "/question-bank-assets/audio/sentence900/main/096.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/111.mp3"
     },
     {
       "id": "sentence900-main-112",
       "taskTitle": "Sentence112",
       "audioText": "Cancel pushback, we have maintenance problem.",
       "audioTextZh": "取消推出，我们出现问题需要维修",
-      "audio": "/question-bank-assets/audio/sentence900/main/097.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/112.mp3"
     },
     {
       "id": "sentence900-main-113",
       "taskTitle": "Sentence113",
       "audioText": "Ground, Cockpit. Ready for pushback.",
       "audioTextZh": "地面，驾驶舱，准备好推出",
-      "audio": "/question-bank-assets/audio/sentence900/main/098.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/113.mp3"
     },
     {
       "id": "sentence900-main-114",
       "taskTitle": "Sentence114",
       "audioText": "Brakes released.",
       "audioTextZh": "刹车释放了",
-      "audio": "/question-bank-assets/audio/sentence900/main/099.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/114.mp3"
     },
     {
       "id": "sentence900-main-115",
       "taskTitle": "Sentence115",
       "audioText": "Starting Number One.",
       "audioTextZh": "启动一发",
-      "audio": "/question-bank-assets/audio/sentence900/main/100.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/115.mp3"
     },
     {
       "id": "sentence900-main-116",
       "taskTitle": "Sentence116",
       "audioText": "Brakes set, disconnect.",
       "audioTextZh": "刹车刹住，断开",
-      "audio": "/question-bank-assets/audio/sentence900/main/101.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/116.mp3"
     },
     {
       "id": "sentence900-main-117",
       "taskTitle": "Sentence117",
       "audioText": "Request taxi.",
       "audioTextZh": "请求滑出",
-      "audio": "/question-bank-assets/audio/sentence900/main/102.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/117.mp3"
     },
     {
       "id": "sentence900-main-118",
       "taskTitle": "Sentence118",
       "audioText": "Taxi via taxiway C to holding point Runway 24.",
       "audioTextZh": "经由滑行道 C 滑至跑道 24 等待点",
-      "audio": "/question-bank-assets/audio/sentence900/main/103.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/118.mp3"
     },
     {
       "id": "sentence900-main-119",
       "taskTitle": "Sentence119",
       "audioText": "Taxi to holding point Runway 24, traffic in sight.",
       "audioTextZh": "滑到跑道 24 等待点，看见飞机了",
-      "audio": "/question-bank-assets/audio/sentence900/main/104.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/119.mp3"
     },
     {
       "id": "sentence900-main-120",
       "taskTitle": "Sentence120",
       "audioText": "Request taxi back for maintenance purpose.",
       "audioTextZh": "请求滑回以便维修",
-      "audio": "/question-bank-assets/audio/sentence900/main/105.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/120.mp3"
     },
     {
       "id": "sentence900-main-121",
       "taskTitle": "Sentence121",
       "audioText": "Negative. We need 10 minutes to cool the brakes.",
       "audioTextZh": "不行，我们需要 10 分钟冷却刹车",
-      "audio": "/question-bank-assets/audio/sentence900/main/106.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/121.mp3"
     },
     {
       "id": "sentence900-main-122",
       "taskTitle": "Sentence122",
       "audioText": "Approaching holding point, request crossing Runway 24.",
       "audioTextZh": "接近等待点，请求穿越跑道24",
-      "audio": "/question-bank-assets/audio/sentence900/main/107.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/122.mp3"
     },
     {
       "id": "sentence900-main-123",
       "taskTitle": "Sentence123",
       "audioText": "Hold short of Runway 24.",
       "audioTextZh": "跑道24外等待",
-      "audio": "/question-bank-assets/audio/sentence900/main/108.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/123.mp3"
     },
     {
       "id": "sentence900-main-124",
       "taskTitle": "Sentence124",
       "audioText": "Holding, traffic in sight.",
       "audioTextZh": "等待，看见飞机",
-      "audio": "/question-bank-assets/audio/sentence900/main/109.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/124.mp3"
     },
     {
       "id": "sentence900-main-125",
       "taskTitle": "Sentence125",
       "audioText": "Cross Runway 24, report runway vacated.",
       "audioTextZh": "穿越跑道 24，脱离跑道报",
-      "audio": "/question-bank-assets/audio/sentence900/main/110.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/125.mp3"
     },
     {
       "id": "sentence900-main-126",
       "taskTitle": "Sentence126",
       "audioText": "Unable to vacate via A2, request full length of runway.",
       "audioTextZh": "不能经滑行道 A2 脱离，请求全跑道",
-      "audio": "/question-bank-assets/audio/sentence900/main/111.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/126.mp3"
     },
     {
       "id": "sentence900-main-127",
       "taskTitle": "Sentence127",
       "audioText": "Crossing Runway 24, wilco.",
       "audioTextZh": "穿越跑道24，照办",
-      "audio": "/question-bank-assets/audio/sentence900/main/112.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/127.mp3"
     },
     {
       "id": "sentence900-main-128",
       "taskTitle": "Sentence128",
       "audioText": "Runway vacated.",
       "audioTextZh": "跑道脱离",
-      "audio": "/question-bank-assets/audio/sentence900/main/113.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/128.mp3"
     },
     {
       "id": "sentence900-main-129",
       "taskTitle": "Sentence129",
       "audioText": "Giving way to B747 passing from left to right.",
       "audioTextZh": "给从左向右通过的波音747让道",
-      "audio": "/question-bank-assets/audio/sentence900/main/114.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/129.mp3"
     },
     {
       "id": "sentence900-main-130",
       "taskTitle": "Sentence130",
       "audioText": "Follow the greens to holding point Runway 05R.",
       "audioTextZh": "沿绿灯滑到跑道 05 右等待点",
-      "audio": "/question-bank-assets/audio/sentence900/main/115.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/130.mp3"
     },
     {
       "id": "sentence900-main-131",
       "taskTitle": "Sentence131",
       "audioText": "Cross red stop-bar at A1, we understand stop-bar unserviceable.",
       "audioTextZh": "在 A1 处穿过红色停止灯，我们明白它不工作了",
-      "audio": "/question-bank-assets/audio/sentence900/main/116.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/131.mp3"
     },
     {
       "id": "sentence900-main-132",
       "taskTitle": "Sentence132",
       "audioText": "After landing Airbus320, cross Runway 24, report vacated.",
       "audioTextZh": "空客 320 落地后，穿越跑道 24，脱离报",
-      "audio": "/question-bank-assets/audio/sentence900/main/117.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/132.mp3"
     },
     {
       "id": "sentence900-main-133",
       "taskTitle": "Sentence133",
       "audioText": "Taxi to holding point C3, Runway 36.",
       "audioTextZh": "滑到跑道 36 等待点 C3",
-      "audio": "/question-bank-assets/audio/sentence900/main/118.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/133.mp3"
     },
     {
       "id": "sentence900-main-135",
       "taskTitle": "Sentence135",
       "audioText": "Ready for departure.",
       "audioTextZh": "准备好离场",
-      "audio": "/question-bank-assets/audio/sentence900/main/119.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/135.mp3"
     },
     {
       "id": "sentence900-main-136",
       "taskTitle": "Sentence136",
       "audioText": "After departure, climb straight ahead until 3000 feet.",
       "audioTextZh": "起飞后，径直爬升至3000英尺",
-      "audio": "/question-bank-assets/audio/sentence900/main/120.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/136.mp3"
     },
     {
       "id": "sentence900-main-137",
       "taskTitle": "Sentence137",
       "audioText": "Cancel SID, maintain runway heading.",
       "audioTextZh": "取消SID，保持跑道航向",
-      "audio": "/question-bank-assets/audio/sentence900/main/121.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/137.mp3"
     },
     {
       "id": "sentence900-main-138",
       "taskTitle": "Sentence138",
       "audioText": "Lining up Runway 01C.",
       "audioTextZh": "上跑道 01C",
-      "audio": "/question-bank-assets/audio/sentence900/main/122.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/138.mp3"
     },
     {
       "id": "sentence900-main-139",
       "taskTitle": "Sentence139",
       "audioText": "Ready for immediate departure.",
       "audioTextZh": "准备好马上起飞",
-      "audio": "/question-bank-assets/audio/sentence900/main/123.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/139.mp3"
     },
     {
       "id": "sentence900-main-140",
       "taskTitle": "Sentence140",
       "audioText": "Cleared for immediate takeoff.",
       "audioTextZh": "可以马上起飞",
-      "audio": "/question-bank-assets/audio/sentence900/main/124.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/140.mp3"
     },
     {
       "id": "sentence900-main-141",
       "taskTitle": "Sentence141",
       "audioText": "Runway 06, cleared for takeoff. Report airborne.",
       "audioTextZh": "跑道06，可以起飞，离地报",
-      "audio": "/question-bank-assets/audio/sentence900/main/125.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/141.mp3"
     },
     {
       "id": "sentence900-main-142",
       "taskTitle": "Sentence142",
       "audioText": "Cleared for takeoff, Runway 06, wilco.",
       "audioTextZh": "可以起飞，跑道 06，照办",
-      "audio": "/question-bank-assets/audio/sentence900/main/126.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/142.mp3"
     },
     {
       "id": "sentence900-main-143",
       "taskTitle": "Sentence143",
       "audioText": "Airborne, passing 500 feet for 4000 feet.",
       "audioTextZh": "离地，通过500英尺，继续向4000英尺爬升",
-      "audio": "/question-bank-assets/audio/sentence900/main/127.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/143.mp3"
     },
     {
       "id": "sentence900-main-144",
       "taskTitle": "Sentence144",
       "audioText": "The airbus on final in sight.",
       "audioTextZh": "看见五边空客飞机",
-      "audio": "/question-bank-assets/audio/sentence900/main/128.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/144.mp3"
     },
     {
       "id": "sentence900-main-145",
       "taskTitle": "Sentence145",
       "audioText": "Behind Airbus on short final, line up behind.",
       "audioTextZh": "短五边空客飞机落地之后，上跑道",
-      "audio": "/question-bank-assets/audio/sentence900/main/129.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/145.mp3"
     },
     {
       "id": "sentence900-main-146",
       "taskTitle": "Sentence146",
       "audioText": "After departure, turn left heading 190, Runway 24R, cleared for takeoff.",
       "audioTextZh": "离场后，左转航向 190，跑道 24 右，可以起飞",
-      "audio": "/question-bank-assets/audio/sentence900/main/130.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/146.mp3"
     },
     {
       "id": "sentence900-main-147",
       "taskTitle": "Sentence147",
       "audioText": "Request right turn when airborne due weather.",
       "audioTextZh": "天气原因，请求离地后右转",
-      "audio": "/question-bank-assets/audio/sentence900/main/131.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/147.mp3"
     },
     {
       "id": "sentence900-main-148",
       "taskTitle": "Sentence148",
       "audioText": "Take off immediately or hold short of runway.",
       "audioTextZh": "立即起飞还是跑道外等待",
-      "audio": "/question-bank-assets/audio/sentence900/main/132.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/148.mp3"
     },
     {
       "id": "sentence900-main-149",
       "taskTitle": "Sentence149",
       "audioText": "Take off immediately or vacate runway.",
       "audioTextZh": "立即起飞还是脱离跑道",
-      "audio": "/question-bank-assets/audio/sentence900/main/133.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/149.mp3"
     },
     {
       "id": "sentence900-main-150",
       "taskTitle": "Sentence150",
       "audioText": "Hold position, cancel takeoff, I say again, cancel takeoff.",
       "audioTextZh": "原地等待，取消起飞，我再说一遍，取消起飞",
-      "audio": "/question-bank-assets/audio/sentence900/main/134.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/150.mp3"
     },
     {
       "id": "sentence900-main-151",
       "taskTitle": "Sentence151",
       "audioText": "Holding position.",
       "audioTextZh": "原地等待",
-      "audio": "/question-bank-assets/audio/sentence900/main/135.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/151.mp3"
     },
     {
       "id": "sentence900-main-152",
       "taskTitle": "Sentence152",
       "audioText": "Stopping! Engine fire.",
       "audioTextZh": "中断起飞，发动机起火了",
-      "audio": "/question-bank-assets/audio/sentence900/main/136.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/152.mp3"
     },
     {
       "id": "sentence900-main-153",
       "taskTitle": "Sentence153",
       "audioText": "Request return to ramp.",
       "audioTextZh": "请求滑回机坪",
-      "audio": "/question-bank-assets/audio/sentence900/main/137.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/153.mp3"
     },
     {
       "id": "sentence900-main-154",
       "taskTitle": "Sentence154",
       "audioText": "Tire burst, possible evacuation on runway.",
       "audioTextZh": "爆胎了，可能要在跑道上撤离",
-      "audio": "/question-bank-assets/audio/sentence900/main/138.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/154.mp3"
     },
     {
       "id": "sentence900-main-155",
       "taskTitle": "Sentence155",
       "audioText": "Negative intersection departure due performance.",
       "audioTextZh": "由于性能限制，无法（接受）短跑道起飞",
-      "audio": "/question-bank-assets/audio/sentence900/main/139.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/155.mp3"
     },
     {
       "id": "sentence900-main-156",
       "taskTitle": "Sentence156",
       "audioText": "Affirm. We can accept intersection departure from C2.",
       "audioTextZh": "可以，我们接受C2短跑道起飞",
-      "audio": "/question-bank-assets/audio/sentence900/main/140.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/156.mp3"
     },
     {
       "id": "sentence900-main-157",
       "taskTitle": "Sentence157",
       "audioText": "Request intersection departure from C2.",
       "audioTextZh": "请求从C2短跑道起飞",
-      "audio": "/question-bank-assets/audio/sentence900/main/141.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/157.mp3"
     },
     {
       "id": "sentence900-main-158",
       "taskTitle": "Sentence158",
       "audioText": "Request Takeoff Runway Available (TORA) from intersection C2.",
       "audioTextZh": "请问从C2 起飞的可用跑道长度",
-      "audio": "/question-bank-assets/audio/sentence900/main/142.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/158.mp3"
     },
     {
       "id": "sentence900-main-159",
       "taskTitle": "Sentence159",
       "audioText": "Request Accelerate-Stop Distance Available (ASDA) from intersection D1.",
       "audioTextZh": "请问从 D1 短跑道起飞的可用加速停止距离",
-      "audio": "/question-bank-assets/audio/sentence900/main/143.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/159.mp3"
     },
     {
       "id": "sentence900-main-160",
       "taskTitle": "Sentence160",
       "audioText": "Request Takeoff Distance Available (TODA) from intersection E3.",
       "audioTextZh": "请问从E3短跑道起飞的可用起飞距离",
-      "audio": "/question-bank-assets/audio/sentence900/main/144.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/160.mp3"
     },
     {
       "id": "sentence900-main-161",
       "taskTitle": "Sentence161",
       "audioText": "Line up and wait. Understand one aircraft to depart from A2.",
       "audioTextZh": "上跑道等待，明白有飞机从A2离场",
-      "audio": "/question-bank-assets/audio/sentence900/main/145.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/161.mp3"
     },
     {
       "id": "sentence900-main-162",
       "taskTitle": "Sentence162",
       "audioText": "Taxi via A2, backtrack and line-up Runway 18.",
       "audioTextZh": "经 A2 滑行，180 度调头，上跑道 18",
-      "audio": "/question-bank-assets/audio/sentence900/main/146.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/162.mp3"
     },
     {
       "id": "sentence900-main-163",
       "taskTitle": "Sentence163",
       "audioText": "Airbus 330 heavy, 8000 feet, Information X.",
       "audioTextZh": "空客330，重型机，8000英尺，通播X",
-      "audio": "/question-bank-assets/audio/sentence900/main/147.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/163.mp3"
     },
     {
       "id": "sentence900-main-164",
       "taskTitle": "Sentence164",
       "audioText": "Join right-hand downwind, Runway 34.",
       "audioTextZh": "加入跑道34右三边",
-      "audio": "/question-bank-assets/audio/sentence900/main/148.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/164.mp3"
     },
     {
       "id": "sentence900-main-165",
       "taskTitle": "Sentence165",
       "audioText": "Number Two, follow airbus 330 on base.",
       "audioTextZh": "第二个落地，跟在四边的空客330后边",
-      "audio": "/question-bank-assets/audio/sentence900/main/149.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/165.mp3"
     },
     {
       "id": "sentence900-main-166",
       "taskTitle": "Sentence166",
       "audioText": "Number Two, traffic in sight.",
       "audioTextZh": "第二个落地，看到飞机",
-      "audio": "/question-bank-assets/audio/sentence900/main/150.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/166.mp3"
     },
     {
       "id": "sentence900-main-167",
       "taskTitle": "Sentence167",
       "audioText": "Straight-in visual approach, Runway 34.",
       "audioTextZh": "直接目视近进，跑道34",
-      "audio": "/question-bank-assets/audio/sentence900/main/151.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/167.mp3"
     },
     {
       "id": "sentence900-main-168",
       "taskTitle": "Sentence168",
       "audioText": "Extend downwind, Number Two, airbus 320 in sight.",
       "audioTextZh": "延长三边，第二个落地，看见空客320",
-      "audio": "/question-bank-assets/audio/sentence900/main/152.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/168.mp3"
     },
     {
       "id": "sentence900-main-169",
       "taskTitle": "Sentence169",
       "audioText": "Orbit right. Number Two.",
       "audioTextZh": "右转一圈，第二个落地",
-      "audio": "/question-bank-assets/audio/sentence900/main/153.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/169.mp3"
     },
     {
       "id": "sentence900-main-170",
       "taskTitle": "Sentence170",
       "audioText": "Number Two, follow airbus 320 ahead.",
       "audioTextZh": "第二个落地，跟在前方的空客320后边",
-      "audio": "/question-bank-assets/audio/sentence900/main/154.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/170.mp3"
     },
     {
       "id": "sentence900-main-171",
       "taskTitle": "Sentence171",
       "audioText": "Make a short approach.",
       "audioTextZh": "短五边近进",
-      "audio": "/question-bank-assets/audio/sentence900/main/155.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/171.mp3"
     },
     {
       "id": "sentence900-main-172",
       "taskTitle": "Sentence172",
       "audioText": "Long final, airfield in sight.",
       "audioTextZh": "长五边，看见机场",
-      "audio": "/question-bank-assets/audio/sentence900/main/156.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/172.mp3"
     },
     {
       "id": "sentence900-main-173",
       "taskTitle": "Sentence173",
       "audioText": "Continue approach Runway 25.",
       "audioTextZh": "继续近进跑道25",
-      "audio": "/question-bank-assets/audio/sentence900/main/157.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/173.mp3"
     },
     {
       "id": "sentence900-main-174",
       "taskTitle": "Sentence174",
       "audioText": "Runway 27, cleared to land.",
       "audioTextZh": "跑道27，可以落地",
-      "audio": "/question-bank-assets/audio/sentence900/main/158.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/174.mp3"
     },
     {
       "id": "sentence900-main-175",
       "taskTitle": "Sentence175",
       "audioText": "Short final, request wind check.",
       "audioTextZh": "短五边，请问风向风速",
-      "audio": "/question-bank-assets/audio/sentence900/main/159.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/175.mp3"
     },
     {
       "id": "sentence900-main-176",
       "taskTitle": "Sentence176",
       "audioText": "Request low pass due unsafe landing gear indication.",
       "audioTextZh": "起落架不安全指示，请求低空通场",
-      "audio": "/question-bank-assets/audio/sentence900/main/160.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/176.mp3"
     },
     {
       "id": "sentence900-main-177",
       "taskTitle": "Sentence177",
       "audioText": "Low pass approved Runway 27, not below 500 feet.",
       "audioTextZh": "可以低空通场跑道27，高度不低于500英尺",
-      "audio": "/question-bank-assets/audio/sentence900/main/161.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/177.mp3"
     },
     {
       "id": "sentence900-main-178",
       "taskTitle": "Sentence178",
       "audioText": "Landing clearance canceled. Continue approach.",
       "audioTextZh": "取消落地许可，继续近进",
-      "audio": "/question-bank-assets/audio/sentence900/main/162.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/178.mp3"
     },
     {
       "id": "sentence900-main-179",
       "taskTitle": "Sentence179",
       "audioText": "Behind the Boeing737, cleared to land.",
       "audioTextZh": "跟在波音737后边，可以落地",
-      "audio": "/question-bank-assets/audio/sentence900/main/163.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/179.mp3"
     },
     {
       "id": "sentence900-main-180",
       "taskTitle": "Sentence180",
       "audioText": "Request low approach.",
       "audioTextZh": "请求低空近进",
-      "audio": "/question-bank-assets/audio/sentence900/main/164.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/180.mp3"
     },
     {
       "id": "sentence900-main-181",
       "taskTitle": "Sentence181",
       "audioText": "Runway not in sight, going around.",
       "audioTextZh": "跑道不可见，复飞",
-      "audio": "/question-bank-assets/audio/sentence900/main/165.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/181.mp3"
     },
     {
       "id": "sentence900-main-182",
       "taskTitle": "Sentence182",
       "audioText": "No contact at minimum, going around.",
       "audioTextZh": "最低高度，跑道不可见，复飞",
-      "audio": "/question-bank-assets/audio/sentence900/main/166.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/182.mp3"
     },
     {
       "id": "sentence900-main-183",
       "taskTitle": "Sentence183",
       "audioText": "Wind shear, going around.",
       "audioTextZh": "风切变，复飞",
-      "audio": "/question-bank-assets/audio/sentence900/main/167.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/183.mp3"
     },
     {
       "id": "sentence900-main-184",
       "taskTitle": "Sentence184",
       "audioText": "Going around, localizer fluctuation.",
       "audioTextZh": "复飞，航向道波动",
-      "audio": "/question-bank-assets/audio/sentence900/main/168.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/184.mp3"
     },
     {
       "id": "sentence900-main-185",
       "taskTitle": "Sentence185",
       "audioText": "Follow the standard missed approach procedure, climbing to 3000 feet.",
       "audioTextZh": "按标准复飞程序，爬升到3000英尺",
-      "audio": "/question-bank-assets/audio/sentence900/main/169.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/185.mp3"
     },
     {
       "id": "sentence900-main-186",
       "taskTitle": "Sentence186",
       "audioText": "Take first right. When vacated, contact Ground 118.35.",
       "audioTextZh": "第一个道口右转，脱离跑道后，联系地面118.35",
-      "audio": "/question-bank-assets/audio/sentence900/main/170.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/186.mp3"
     },
     {
       "id": "sentence900-main-187",
       "taskTitle": "Sentence187",
       "audioText": "After vacated contact Ground 121.6.",
       "audioTextZh": "脱离后联系地面121.6",
-      "audio": "/question-bank-assets/audio/sentence900/main/171.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/187.mp3"
     },
     {
       "id": "sentence900-main-188",
       "taskTitle": "Sentence188",
       "audioText": "Taxi to Stand 27 via Taxiway A.",
       "audioTextZh": "经滑行道A，滑行到停机位27",
-      "audio": "/question-bank-assets/audio/sentence900/main/172.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/188.mp3"
     },
     {
       "id": "sentence900-main-189",
       "taskTitle": "Sentence189",
       "audioText": "Taxi to the end of Runway.",
       "audioTextZh": "滑到跑道末端",
-      "audio": "/question-bank-assets/audio/sentence900/main/173.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/189.mp3"
     },
     {
       "id": "sentence900-main-190",
       "taskTitle": "Sentence190",
       "audioText": "Confirm construction work adjacent to Gate 37.",
       "audioTextZh": "证实停机位37附近正在施工",
-      "audio": "/question-bank-assets/audio/sentence900/main/174.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/190.mp3"
     },
     {
       "id": "sentence900-main-191",
       "taskTitle": "Sentence191",
       "audioText": "Confirm centerline taxiway lighting unserviceable.",
       "audioTextZh": "证实中线滑行灯不工作",
-      "audio": "/question-bank-assets/audio/sentence900/main/175.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/191.mp3"
     },
     {
       "id": "sentence900-main-192",
       "taskTitle": "Sentence192",
       "audioText": "Confirm PAPI light unserviceable.",
       "audioTextZh": "证实PAPI灯不工作",
-      "audio": "/question-bank-assets/audio/sentence900/main/176.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/192.mp3"
     },
     {
       "id": "sentence900-main-193",
       "taskTitle": "Sentence193",
       "audioText": "The Runway light is too bright. Request dim it.",
       "audioTextZh": "跑道灯太亮，请调暗一些",
-      "audio": "/question-bank-assets/audio/sentence900/main/177.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/193.mp3"
     },
     {
       "id": "sentence900-main-194",
       "taskTitle": "Sentence194",
       "audioText": "Flock of birds 3 miles final.",
       "audioTextZh": "五边3海里处有鸟群活动",
-      "audio": "/question-bank-assets/audio/sentence900/main/178.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/194.mp3"
     },
     {
       "id": "sentence900-main-195",
       "taskTitle": "Sentence195",
       "audioText": "Runway covered with patches of water, braking action medium.",
       "audioTextZh": "大片水覆盖跑道，刹车效应中等",
-      "audio": "/question-bank-assets/audio/sentence900/main/179.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/195.mp3"
     },
     {
       "id": "sentence900-main-196",
       "taskTitle": "Sentence196",
       "audioText": "Confirm airport rescue and fire facilities category.",
       "audioTextZh": "证实机场救援和防火设备等级",
-      "audio": "/question-bank-assets/audio/sentence900/main/180.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/196.mp3"
     },
     {
       "id": "sentence900-main-197",
       "taskTitle": "Sentence197",
       "audioText": "Is the weather improving or deteriorating?",
       "audioTextZh": "天气是在好转还是在恶化？",
-      "audio": "/question-bank-assets/audio/sentence900/main/181.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/197.mp3"
     },
     {
       "id": "sentence900-main-199",
       "taskTitle": "Sentence199",
       "audioText": "Confirm current RVR less than 400 meters.",
       "audioTextZh": "证实当前跑道视程小于400米",
-      "audio": "/question-bank-assets/audio/sentence900/main/182.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/199.mp3"
     },
     {
       "id": "sentence900-main-200",
       "taskTitle": "Sentence200",
       "audioText": "Confirm visibility more than 1000 meters.",
       "audioTextZh": "证实能见度大于1000米",
-      "audio": "/question-bank-assets/audio/sentence900/main/183.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/200.mp3"
     },
     {
       "id": "sentence900-main-201",
       "taskTitle": "Sentence201",
       "audioText": "Is mid-point RVR available?",
       "audioTextZh": "有中间段RVR吗？",
-      "audio": "/question-bank-assets/audio/sentence900/main/184.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/201.mp3"
     },
     {
       "id": "sentence900-main-202",
       "taskTitle": "Sentence202",
       "audioText": "Confirm RVR Runway 27.",
       "audioTextZh": "证实跑道27跑道视程",
-      "audio": "/question-bank-assets/audio/sentence900/main/185.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/202.mp3"
     },
     {
       "id": "sentence900-main-203",
       "taskTitle": "Sentence203",
       "audioText": "RVR Runway 27 is 600 meters.",
       "audioTextZh": "跑道27跑道视程为600米",
-      "audio": "/question-bank-assets/audio/sentence900/main/186.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/203.mp3"
     },
     {
       "id": "sentence900-main-204",
       "taskTitle": "Sentence204",
       "audioText": "Confirm touchdown RVR greater than 350 meters.",
       "audioTextZh": "证实接地点跑道视程大于350米",
-      "audio": "/question-bank-assets/audio/sentence900/main/187.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/204.mp3"
     },
     {
       "id": "sentence900-main-205",
       "taskTitle": "Sentence205",
       "audioText": "Confirm stop-end RVR 150 meters.",
       "audioTextZh": "证实停止端跑道视程为150米",
-      "audio": "/question-bank-assets/audio/sentence900/main/188.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/205.mp3"
     },
     {
       "id": "sentence900-main-206",
       "taskTitle": "Sentence206",
       "audioText": "Confirm midpoint RVR more than 550 meters.",
       "audioTextZh": "证实中间段 RVR 大于 550 米",
-      "audio": "/question-bank-assets/audio/sentence900/main/189.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/206.mp3"
     },
     {
       "id": "sentence900-main-207",
       "taskTitle": "Sentence207",
       "audioText": "Confirm threshold Runway 27 displaced.",
       "audioTextZh": "证实跑道27入口内移",
-      "audio": "/question-bank-assets/audio/sentence900/main/190.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/207.mp3"
     },
     {
       "id": "sentence900-main-208",
       "taskTitle": "Sentence208",
       "audioText": "The runway surface is damp. Braking action good.",
       "audioTextZh": "跑道道面潮湿，刹车效应好",
-      "audio": "/question-bank-assets/audio/sentence900/main/191.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/208.mp3"
     },
     {
       "id": "sentence900-main-209",
       "taskTitle": "Sentence209",
       "audioText": "Confirm the reason for our flight suspension.",
       "audioTextZh": "证实一下航班暂停的原因",
-      "audio": "/question-bank-assets/audio/sentence900/main/192.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/209.mp3"
     },
     {
       "id": "sentence900-main-210",
       "taskTitle": "Sentence210",
       "audioText": "Confirm our flight has been suspended due bio-hazards at destination.",
       "audioTextZh": "证实一下航班暂停是因为目的地机场生化物品泄露",
-      "audio": "/question-bank-assets/audio/sentence900/main/193.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/210.mp3"
     },
     {
       "id": "sentence900-main-211",
       "taskTitle": "Sentence211",
       "audioText": "Confirm the reason for impounding our aircraft.",
       "audioTextZh": "证实扣押我们飞机的原因",
-      "audio": "/question-bank-assets/audio/sentence900/main/194.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/211.mp3"
     },
     {
       "id": "sentence900-main-212",
       "taskTitle": "Sentence212",
       "audioText": "Tow approved via A to remote apron.",
       "audioTextZh": "可以经滑行道A拖至远机坪",
-      "audio": "/question-bank-assets/audio/sentence900/main/195.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/212.mp3"
     },
     {
       "id": "sentence900-main-213",
       "taskTitle": "Sentence213",
       "audioText": "Request de-icing.",
       "audioTextZh": "请求除冰",
-      "audio": "/question-bank-assets/audio/sentence900/main/196.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/213.mp3"
     },
     {
       "id": "sentence900-main-214",
       "taskTitle": "Sentence214",
       "audioText": "Request frost removal only at the gate.",
       "audioTextZh": "请求只在停机位除霜",
-      "audio": "/question-bank-assets/audio/sentence900/main/197.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/214.mp3"
     },
     {
       "id": "sentence900-main-215",
       "taskTitle": "Sentence215",
       "audioText": "De-icing completed. Request taxi.",
       "audioTextZh": "除冰完成，请求滑行",
-      "audio": "/question-bank-assets/audio/sentence900/main/198.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/215.mp3"
     },
     {
       "id": "sentence900-main-216",
       "taskTitle": "Sentence216",
       "audioText": "Request start engine at the gate.",
       "audioTextZh": "请求在停机位开车",
-      "audio": "/question-bank-assets/audio/sentence900/main/199.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/216.mp3"
     },
     {
       "id": "sentence900-main-217",
       "taskTitle": "Sentence217",
       "audioText": "Request time check.",
       "audioTextZh": "请求校时",
-      "audio": "/question-bank-assets/audio/sentence900/main/200.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/217.mp3"
     },
     {
       "id": "sentence900-main-218",
       "taskTitle": "Sentence218",
       "audioText": "Request backtrack.",
       "audioTextZh": "请求调头",
-      "audio": "/question-bank-assets/audio/sentence900/main/201.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/218.mp3"
     },
     {
       "id": "sentence900-main-219",
       "taskTitle": "Sentence219",
       "audioText": "Unable BK-1A Departure due performance. Request BK-1B.",
       "audioTextZh": "性能原因，不能BK-1A离场，请求BK-1B离场",
-      "audio": "/question-bank-assets/audio/sentence900/main/202.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/219.mp3"
     },
     {
       "id": "sentence900-main-220",
       "taskTitle": "Sentence220",
       "audioText": "Request departure instruction.",
       "audioTextZh": "请求离场指令",
-      "audio": "/question-bank-assets/audio/sentence900/main/203.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/220.mp3"
     },
     {
       "id": "sentence900-main-221",
       "taskTitle": "Sentence221",
       "audioText": "When airborne, track extended center-line, cleared for takeoff, Runway 18.",
       "audioTextZh": "离地后，保持跑道中心延长线方向，可以起飞，跑道18",
-      "audio": "/question-bank-assets/audio/sentence900/main/204.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/221.mp3"
     },
     {
       "id": "sentence900-main-222",
       "taskTitle": "Sentence222",
       "audioText": "Contact Arrival 118.050.",
       "audioTextZh": "联系近进 118.050",
-      "audio": "/question-bank-assets/audio/sentence900/main/205.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/222.mp3"
     },
     {
       "id": "sentence900-main-223",
       "taskTitle": "Sentence223",
       "audioText": "Request remote apron for maintenance purpose.",
       "audioTextZh": "因维修需要，请求远机坪。",
-      "audio": "/question-bank-assets/audio/sentence900/main/206.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/223.mp3"
     },
     {
       "id": "sentence900-main-224",
       "taskTitle": "Sentence224",
       "audioText": "Continue present heading.",
       "audioTextZh": "继续当前航向",
-      "audio": "/question-bank-assets/audio/sentence900/main/207.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/224.mp3"
     },
     {
       "id": "sentence900-main-225",
       "taskTitle": "Sentence225",
       "audioText": "Resume own navigation to BK.",
       "audioTextZh": "恢复自主导航至BK",
-      "audio": "/question-bank-assets/audio/sentence900/main/208.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/225.mp3"
     },
     {
       "id": "sentence900-main-226",
       "taskTitle": "Sentence226",
       "audioText": "Confirm identification lost.",
       "audioTextZh": "证实识别失去",
-      "audio": "/question-bank-assets/audio/sentence900/main/209.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/226.mp3"
     },
     {
       "id": "sentence900-main-227",
       "taskTitle": "Sentence227",
       "audioText": "Identified, position 50 miles east of BK.",
       "audioTextZh": "已识别，位置BK以东50海里",
-      "audio": "/question-bank-assets/audio/sentence900/main/210.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/227.mp3"
     },
     {
       "id": "sentence900-main-228",
       "taskTitle": "Sentence228",
       "audioText": "30 miles from touchdown, contact Approach 118.1.",
       "audioTextZh": "离接地点30海里，联系近进118.1",
-      "audio": "/question-bank-assets/audio/sentence900/main/211.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/228.mp3"
     },
     {
       "id": "sentence900-main-229",
       "taskTitle": "Sentence229",
       "audioText": "Three sixty turn left.",
       "audioTextZh": "左转360度",
-      "audio": "/question-bank-assets/audio/sentence900/main/212.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/229.mp3"
     },
     {
       "id": "sentence900-main-230",
       "taskTitle": "Sentence230",
       "audioText": "Orbit left for delay.",
       "audioTextZh": "延误，左转一圈",
-      "audio": "/question-bank-assets/audio/sentence900/main/213.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/230.mp3"
     },
     {
       "id": "sentence900-main-231",
       "taskTitle": "Sentence231",
       "audioText": "Looking out.",
       "audioTextZh": "正在寻找",
-      "audio": "/question-bank-assets/audio/sentence900/main/214.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/231.mp3"
     },
     {
       "id": "sentence900-main-232",
       "taskTitle": "Sentence232",
       "audioText": "Traffic in sight.",
       "audioTextZh": "看见飞机",
-      "audio": "/question-bank-assets/audio/sentence900/main/215.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/232.mp3"
     },
     {
       "id": "sentence900-main-233",
       "taskTitle": "Sentence233",
       "audioText": "Negative contact due IMC.",
       "audioTextZh": "由于仪表气象条件，不能看见",
-      "audio": "/question-bank-assets/audio/sentence900/main/216.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/233.mp3"
     },
     {
       "id": "sentence900-main-234",
       "taskTitle": "Sentence234",
       "audioText": "Traffic passed and clear.",
       "audioTextZh": "冲突飞机已通过，无影响",
-      "audio": "/question-bank-assets/audio/sentence900/main/217.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/234.mp3"
     },
     {
       "id": "sentence900-main-235",
       "taskTitle": "Sentence235",
       "audioText": "Squawk 7563.",
       "audioTextZh": "应答机7563",
-      "audio": "/question-bank-assets/audio/sentence900/main/218.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/235.mp3"
     },
     {
       "id": "sentence900-main-236",
       "taskTitle": "Sentence236",
       "audioText": "Reset squawk 5101.",
       "audioTextZh": "重置应答机5101",
-      "audio": "/question-bank-assets/audio/sentence900/main/219.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/236.mp3"
     },
     {
       "id": "sentence900-main-237",
       "taskTitle": "Sentence237",
       "audioText": "Squawk ident.",
       "audioTextZh": "应答机识别",
-      "audio": "/question-bank-assets/audio/sentence900/main/220.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/237.mp3"
     },
     {
       "id": "sentence900-main-238",
       "taskTitle": "Sentence238",
       "audioText": "Squawk standby.",
       "audioTextZh": "应答机待命（模式）",
-      "audio": "/question-bank-assets/audio/sentence900/main/221.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/238.mp3"
     },
     {
       "id": "sentence900-main-239",
       "taskTitle": "Sentence239",
       "audioText": "Squawk Charlie and code 5120.",
       "audioTextZh": "应答机C模式，编码5120",
-      "audio": "/question-bank-assets/audio/sentence900/main/222.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/239.mp3"
     },
     {
       "id": "sentence900-main-240",
       "taskTitle": "Sentence240",
       "audioText": "Stopping squawk Charlie.",
       "audioTextZh": "停止应答机C模式",
-      "audio": "/question-bank-assets/audio/sentence900/main/223.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/240.mp3"
     },
     {
       "id": "sentence900-main-241",
       "taskTitle": "Sentence241",
       "audioText": "Affirm squawk 7500.",
       "audioTextZh": "证实应答机7500",
-      "audio": "/question-bank-assets/audio/sentence900/main/224.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/241.mp3"
     },
     {
       "id": "sentence900-main-242",
       "taskTitle": "Sentence242",
       "audioText": "Altimeter 1003 8000ft.",
       "audioTextZh": "高度表1003，高度8000英尺",
-      "audio": "/question-bank-assets/audio/sentence900/main/225.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/242.mp3"
     },
     {
       "id": "sentence900-main-243",
       "taskTitle": "Sentence243",
       "audioText": "Negative squawk ident due transponder failure.",
       "audioTextZh": "应答机失效，无法应答机识别",
-      "audio": "/question-bank-assets/audio/sentence900/main/226.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/243.mp3"
     },
     {
       "id": "sentence900-main-244",
       "taskTitle": "Sentence244",
       "audioText": "Turn right heading 340.",
       "audioTextZh": "右转航向340",
-      "audio": "/question-bank-assets/audio/sentence900/main/227.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/244.mp3"
     },
     {
       "id": "sentence900-main-245",
       "taskTitle": "Sentence245",
       "audioText": "Turn right 20 degrees.",
       "audioTextZh": "右转20度",
-      "audio": "/question-bank-assets/audio/sentence900/main/228.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/245.mp3"
     },
     {
       "id": "sentence900-main-246",
       "taskTitle": "Sentence246",
       "audioText": "Leave BK heading 190.",
       "audioTextZh": "离开BK，航向190",
-      "audio": "/question-bank-assets/audio/sentence900/main/229.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/246.mp3"
     },
     {
       "id": "sentence900-main-247",
       "taskTitle": "Sentence247",
       "audioText": "Fly heading 285.",
       "audioTextZh": "飞航向285",
-      "audio": "/question-bank-assets/audio/sentence900/main/230.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/247.mp3"
     },
     {
       "id": "sentence900-main-248",
       "taskTitle": "Sentence248",
       "audioText": "Stop turn heading 070.",
       "audioTextZh": "停止转弯，航向070",
-      "audio": "/question-bank-assets/audio/sentence900/main/231.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/248.mp3"
     },
     {
       "id": "sentence900-main-249",
       "taskTitle": "Sentence249",
       "audioText": "Request heading 180 due weather.",
       "audioTextZh": "天气原因，请求航向180",
-      "audio": "/question-bank-assets/audio/sentence900/main/232.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/249.mp3"
     },
     {
       "id": "sentence900-main-250",
       "taskTitle": "Sentence250",
       "audioText": "Confirm danger area 113 active.",
       "audioTextZh": "证实危险区域 113 有活动",
-      "audio": "/question-bank-assets/audio/sentence900/main/233.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/250.mp3"
     },
     {
       "id": "sentence900-main-252",
       "taskTitle": "Sentence252",
       "audioText": "50 miles right of track approved, when able, proceed direct TB.",
       "audioTextZh": "可以右偏 50 海里，如可以，直飞 TB",
-      "audio": "/question-bank-assets/audio/sentence900/main/234.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/252.mp3"
     },
     {
       "id": "sentence900-main-253",
       "taskTitle": "Sentence253",
       "audioText": "Indicated speed 270 knots.",
       "audioTextZh": "指示空速270节",
-      "audio": "/question-bank-assets/audio/sentence900/main/235.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/253.mp3"
     },
     {
       "id": "sentence900-main-254",
       "taskTitle": "Sentence254",
       "audioText": "Maintain 300 knots or less.",
       "audioTextZh": "保持300节或以下",
-      "audio": "/question-bank-assets/audio/sentence900/main/236.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/254.mp3"
     },
     {
       "id": "sentence900-main-255",
       "taskTitle": "Sentence255",
       "audioText": "Maintain 180 knots until 8 miles from touchdown.",
       "audioTextZh": "保持180节直到离接地点8海里",
-      "audio": "/question-bank-assets/audio/sentence900/main/237.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/255.mp3"
     },
     {
       "id": "sentence900-main-256",
       "taskTitle": "Sentence256",
       "audioText": "Maintain Mach decimal 82, transition speed 310 knots.",
       "audioTextZh": "保持马赫数.82，过渡速度310节",
-      "audio": "/question-bank-assets/audio/sentence900/main/238.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/256.mp3"
     },
     {
       "id": "sentence900-main-257",
       "taskTitle": "Sentence257",
       "audioText": "Maintain speed 280 knots or greater for separation.",
       "audioTextZh": "因间隔，保持速度280节或以上",
-      "audio": "/question-bank-assets/audio/sentence900/main/239.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/257.mp3"
     },
     {
       "id": "sentence900-main-258",
       "taskTitle": "Sentence258",
       "audioText": "Cross CK at 35 or later.",
       "audioTextZh": "35分或之后穿越CK台",
-      "audio": "/question-bank-assets/audio/sentence900/main/240.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/258.mp3"
     },
     {
       "id": "sentence900-main-259",
       "taskTitle": "Sentence259",
       "audioText": "Cross DG at 24 or earlier.",
       "audioTextZh": "24分或之前穿越DG台",
-      "audio": "/question-bank-assets/audio/sentence900/main/241.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/259.mp3"
     },
     {
       "id": "sentence900-main-260",
       "taskTitle": "Sentence260",
       "audioText": "Do not exceed 280 knots.",
       "audioTextZh": "不要超过280节",
-      "audio": "/question-bank-assets/audio/sentence900/main/242.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/260.mp3"
     },
     {
       "id": "sentence900-main-261",
       "taskTitle": "Sentence261",
       "audioText": "Reduce speed to 240 knots.",
       "audioTextZh": "减速到240节",
-      "audio": "/question-bank-assets/audio/sentence900/main/243.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/261.mp3"
     },
     {
       "id": "sentence900-main-262",
       "taskTitle": "Sentence262",
       "audioText": "Increase speed to 300 knots or greater.",
       "audioTextZh": "加速到300节或以上",
-      "audio": "/question-bank-assets/audio/sentence900/main/244.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/262.mp3"
     },
     {
       "id": "sentence900-main-263",
       "taskTitle": "Sentence263",
       "audioText": "Increase speed by 10 knots.",
       "audioTextZh": "增加速度10节",
-      "audio": "/question-bank-assets/audio/sentence900/main/245.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/263.mp3"
     },
     {
       "id": "sentence900-main-264",
       "taskTitle": "Sentence264",
       "audioText": "Resume normal speed.",
       "audioTextZh": "恢复正常速度",
-      "audio": "/question-bank-assets/audio/sentence900/main/246.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/264.mp3"
     },
     {
       "id": "sentence900-main-265",
       "taskTitle": "Sentence265",
       "audioText": "No speed restrictions.",
       "audioTextZh": "没有速度限制",
-      "audio": "/question-bank-assets/audio/sentence900/main/247.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/265.mp3"
     },
     {
       "id": "sentence900-main-266",
       "taskTitle": "Sentence266",
       "audioText": "Request speed 200 knots due configuration.",
       "audioTextZh": "由于构型原因，请求速度200节",
-      "audio": "/question-bank-assets/audio/sentence900/main/248.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/266.mp3"
     },
     {
       "id": "sentence900-main-267",
       "taskTitle": "Sentence267",
       "audioText": "Request speed 250 knots due turbulence.",
       "audioTextZh": "因为颠簸,请求速度 250 节",
-      "audio": "/question-bank-assets/audio/sentence900/main/249.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/267.mp3"
     },
     {
       "id": "sentence900-main-268",
       "taskTitle": "Sentence268",
       "audioText": "Omit position reports until LN.",
       "audioTextZh": "LN前省略位置报",
-      "audio": "/question-bank-assets/audio/sentence900/main/250.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/268.mp3"
     },
     {
       "id": "sentence900-main-269",
       "taskTitle": "Sentence269",
       "audioText": "Next report at IP.",
       "audioTextZh": "下一报告点IP",
-      "audio": "/question-bank-assets/audio/sentence900/main/251.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/269.mp3"
     },
     {
       "id": "sentence900-main-270",
       "taskTitle": "Sentence270",
       "audioText": "Report required only at boundary.",
       "audioTextZh": "只要求在移交点报告",
-      "audio": "/question-bank-assets/audio/sentence900/main/252.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/270.mp3"
     },
     {
       "id": "sentence900-main-272",
       "taskTitle": "Sentence272",
       "audioText": "Traffic indication at our 1 o’clock, 4 miles, same altitude, converging.",
       "audioTextZh": "冲突飞机显示，1点钟方位，4海里处，同高度，正在汇聚",
-      "audio": "/question-bank-assets/audio/sentence900/main/253.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/272.mp3"
     },
     {
       "id": "sentence900-main-273",
       "taskTitle": "Sentence273",
       "audioText": "Request vectors.",
       "audioTextZh": "请求引导",
-      "audio": "/question-bank-assets/audio/sentence900/main/254.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/273.mp3"
     },
     {
       "id": "sentence900-main-274",
       "taskTitle": "Sentence274",
       "audioText": "Unable to receive transmission on that frequency.",
       "audioTextZh": "无法在该频率接收发送信息。",
-      "audio": "/question-bank-assets/audio/sentence900/main/255.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/274.mp3"
     },
     {
       "id": "sentence900-main-275",
       "taskTitle": "Sentence275",
       "audioText": "Request 15 miles final.",
       "audioTextZh": "请求15海里五边。",
-      "audio": "/question-bank-assets/audio/sentence900/main/256.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/275.mp3"
     },
     {
       "id": "sentence900-main-276",
       "taskTitle": "Sentence276",
       "audioText": "Maintain 3000 feet until glide path interception.",
       "audioTextZh": "保持高度3000英尺，直到截获下滑道",
-      "audio": "/question-bank-assets/audio/sentence900/main/257.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/276.mp3"
     },
     {
       "id": "sentence900-main-277",
       "taskTitle": "Sentence277",
       "audioText": "NOTAM says glide slope for Runway15 is unserviceable, confirm.",
       "audioTextZh": "航行通告表明跑道15下滑道不工作，证实",
-      "audio": "/question-bank-assets/audio/sentence900/main/258.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/277.mp3"
     },
     {
       "id": "sentence900-main-278",
       "taskTitle": "Sentence278",
       "audioText": "Confirm ILS frequency for Runway 17L.",
       "audioTextZh": "证实跑道17左ILS频率",
-      "audio": "/question-bank-assets/audio/sentence900/main/259.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/278.mp3"
     },
     {
       "id": "sentence900-main-279",
       "taskTitle": "Sentence279",
       "audioText": "In case of going around, turn left heading 210.",
       "audioTextZh": "如果复飞，左转航向210。",
-      "audio": "/question-bank-assets/audio/sentence900/main/260.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/279.mp3"
     },
     {
       "id": "sentence900-main-280",
       "taskTitle": "Sentence280",
       "audioText": "Advise transponder capability.",
       "audioTextZh": "请告知应答机可用模式",
-      "audio": "/question-bank-assets/audio/sentence900/main/261.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/280.mp3"
     },
     {
       "id": "sentence900-main-281",
       "taskTitle": "Sentence281",
       "audioText": "Transponder Charlie.",
       "audioTextZh": "应答机C模式",
-      "audio": "/question-bank-assets/audio/sentence900/main/262.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/281.mp3"
     },
     {
       "id": "sentence900-main-282",
       "taskTitle": "Sentence282",
       "audioText": "Transponder unserviceable.",
       "audioTextZh": "应答机失效",
-      "audio": "/question-bank-assets/audio/sentence900/main/263.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/282.mp3"
     },
     {
       "id": "sentence900-main-283",
       "taskTitle": "Sentence283",
       "audioText": "ADS-B transmitter 1090 (ten-ninety) data link.",
       "audioTextZh": "ADS-B发射机1090数据链",
-      "audio": "/question-bank-assets/audio/sentence900/main/264.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/283.mp3"
     },
     {
       "id": "sentence900-main-284",
       "taskTitle": "Sentence284",
       "audioText": "ADS-B receiver 1090 (ten-ninety) data link.",
       "audioTextZh": "ADS-B接收机1090数据链",
-      "audio": "/question-bank-assets/audio/sentence900/main/265.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/284.mp3"
     },
     {
       "id": "sentence900-main-285",
       "taskTitle": "Sentence285",
       "audioText": "Negative ADS-B.",
       "audioTextZh": "无法ADS-B",
-      "audio": "/question-bank-assets/audio/sentence900/main/266.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/285.mp3"
     },
     {
       "id": "sentence900-main-286",
       "taskTitle": "Sentence286",
       "audioText": "Re-enter ADS-B aircraft identification.",
       "audioTextZh": "重新输入ADS-B飞机识别码",
-      "audio": "/question-bank-assets/audio/sentence900/main/267.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/286.mp3"
     },
     {
       "id": "sentence900-main-287",
       "taskTitle": "Sentence287",
       "audioText": "Stop ADS-B transmission.",
       "audioTextZh": "停止ADS-B发射",
-      "audio": "/question-bank-assets/audio/sentence900/main/268.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/287.mp3"
     },
     {
       "id": "sentence900-main-288",
       "taskTitle": "Sentence288",
       "audioText": "Stop squawk transmit ADS-B only.",
       "audioTextZh": "停止应答机，只用ADS-B发报",
-      "audio": "/question-bank-assets/audio/sentence900/main/269.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/288.mp3"
     },
     {
       "id": "sentence900-main-289",
       "taskTitle": "Sentence289",
       "audioText": "Fly no further west of your current position.",
       "audioTextZh": "不要再往当前位置西飞了",
-      "audio": "/question-bank-assets/audio/sentence900/main/270.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/289.mp3"
     },
     {
       "id": "sentence900-main-290",
       "taskTitle": "Sentence290",
       "audioText": "Unable identify the waypoint, request radar vectors.",
       "audioTextZh": "不能识别航路点，请求雷达引导",
-      "audio": "/question-bank-assets/audio/sentence900/main/271.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/290.mp3"
     },
     {
       "id": "sentence900-main-291",
       "taskTitle": "Sentence291",
       "audioText": "Right heading 120, my own terrain clearance.",
       "audioTextZh": "右转航向120，自行避让地形",
-      "audio": "/question-bank-assets/audio/sentence900/main/272.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/291.mp3"
     },
     {
       "id": "sentence900-main-292",
       "taskTitle": "Sentence292",
       "audioText": "Heading 120, correction, 140.",
       "audioTextZh": "航向 120，更正，140",
-      "audio": "/question-bank-assets/audio/sentence900/main/273.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/292.mp3"
     },
     {
       "id": "sentence900-main-294",
       "taskTitle": "Sentence294",
       "audioText": "Confirm we are still above your minimum vectoring altitude.",
       "audioTextZh": "证实我们仍然高于你们最低引导高度",
-      "audio": "/question-bank-assets/audio/sentence900/main/274.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/294.mp3"
     },
     {
       "id": "sentence900-main-295",
       "taskTitle": "Sentence295",
       "audioText": "Right heading 040 until passing FL70 then direct to BK.",
       "audioTextZh": "右转航向040，直到通过高度层70，然后直飞BK。",
-      "audio": "/question-bank-assets/audio/sentence900/main/275.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/295.mp3"
     },
     {
       "id": "sentence900-main-296",
       "taskTitle": "Sentence296",
       "audioText": "Direct to JO, descend to FL50.",
       "audioTextZh": "直飞JO，下降到高度层50",
-      "audio": "/question-bank-assets/audio/sentence900/main/276.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/296.mp3"
     },
     {
       "id": "sentence900-main-297",
       "taskTitle": "Sentence297",
       "audioText": "Passing FL70.",
       "audioTextZh": "通过高度层70",
-      "audio": "/question-bank-assets/audio/sentence900/main/277.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/297.mp3"
     },
     {
       "id": "sentence900-main-298",
       "taskTitle": "Sentence298",
       "audioText": "Descending to 4000 feet QNH1005, expect ILS approach Runway",
       "audioTextZh": "下降到4000英尺，修正海压1005，预计ILS近进跑道。",
-      "audio": "/question-bank-assets/audio/sentence900/main/278.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/298.mp3"
     },
     {
       "id": "sentence900-main-299",
       "taskTitle": "Sentence299",
       "audioText": "Request straight-in ILS approach Runway 24.",
       "audioTextZh": "请求直接ILS近进，跑道24",
-      "audio": "/question-bank-assets/audio/sentence900/main/279.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/299.mp3"
     },
     {
       "id": "sentence900-main-300",
       "taskTitle": "Sentence300",
       "audioText": "Cleared straight-in ILS approach Runway 24, descend to 3000 feet, QNH1011.",
       "audioTextZh": "可以直接ILS近进，跑道24，下降到3000英尺，修正海压1011。（3-4",
-      "audio": "/question-bank-assets/audio/sentence900/main/280.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/300.mp3"
     },
     {
       "id": "sentence900-main-301",
       "taskTitle": "Sentence301",
       "audioText": "Airfield in sight, request visual approach.",
       "audioTextZh": "看见机场，请求目视近进",
-      "audio": "/question-bank-assets/audio/sentence900/main/281.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/301.mp3"
     },
     {
       "id": "sentence900-main-302",
       "taskTitle": "Sentence302",
       "audioText": "When established on the localizer, descend on the glide path.",
       "audioTextZh": "建立航向道后，沿下滑道下降",
-      "audio": "/question-bank-assets/audio/sentence900/main/282.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/302.mp3"
     },
     {
       "id": "sentence900-main-303",
       "taskTitle": "Sentence303",
       "audioText": "Established on the localizer.",
       "audioTextZh": "建立航向道",
-      "audio": "/question-bank-assets/audio/sentence900/main/283.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/303.mp3"
     },
     {
       "id": "sentence900-main-304",
       "taskTitle": "Sentence304",
       "audioText": "Fully established Runway 24.",
       "audioTextZh": "完全建立（盲降）跑道24",
-      "audio": "/question-bank-assets/audio/sentence900/main/284.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/304.mp3"
     },
     {
       "id": "sentence900-main-305",
       "taskTitle": "Sentence305",
       "audioText": "Cleared VOR-DME approach Runway 24, descending to 3000 feet QNH1007.",
       "audioTextZh": "可以VOR/DME近进，跑道24，下降到3000英尺，修正海压1007。（3-4",
-      "audio": "/question-bank-assets/audio/sentence900/main/285.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/305.mp3"
     },
     {
       "id": "sentence900-main-306",
       "taskTitle": "Sentence306",
       "audioText": "Runway in sight.",
       "audioTextZh": "看见跑道",
-      "audio": "/question-bank-assets/audio/sentence900/main/286.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/306.mp3"
     },
     {
       "id": "sentence900-main-307",
       "taskTitle": "Sentence307",
       "audioText": "Number One, contact Tower 118.7.",
       "audioTextZh": "第一个（落地），联系塔台 118.7",
-      "audio": "/question-bank-assets/audio/sentence900/main/287.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/307.mp3"
     },
     {
       "id": "sentence900-main-308",
       "taskTitle": "Sentence308",
       "audioText": "Passing outer marker.",
       "audioTextZh": "通过外指点标",
-      "audio": "/question-bank-assets/audio/sentence900/main/288.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/308.mp3"
     },
     {
       "id": "sentence900-main-309",
       "taskTitle": "Sentence309",
       "audioText": "Report MQR outbound.",
       "audioTextZh": "MQR背台报",
-      "audio": "/question-bank-assets/audio/sentence900/main/289.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/309.mp3"
     },
     {
       "id": "sentence900-main-310",
       "taskTitle": "Sentence310",
       "audioText": "Procedure turn completed, localizer established.",
       "audioTextZh": "程序转弯完成，航向道建立",
-      "audio": "/question-bank-assets/audio/sentence900/main/290.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/310.mp3"
     },
     {
       "id": "sentence900-main-311",
       "taskTitle": "Sentence311",
       "audioText": "Request visual approach.",
       "audioTextZh": "请求目视近进",
-      "audio": "/question-bank-assets/audio/sentence900/main/291.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/311.mp3"
     },
     {
       "id": "sentence900-main-312",
       "taskTitle": "Sentence312",
       "audioText": "Cleared visual approach Runway 24.",
       "audioTextZh": "可以目视近进，跑道24",
-      "audio": "/question-bank-assets/audio/sentence900/main/292.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/312.mp3"
     },
     {
       "id": "sentence900-main-313",
       "taskTitle": "Sentence313",
       "audioText": "Request holding instructions.",
       "audioTextZh": "请求等待指令",
-      "audio": "/question-bank-assets/audio/sentence900/main/293.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/313.mp3"
     },
     {
       "id": "sentence900-main-315",
       "taskTitle": "Sentence315",
       "audioText": "Request holding procedure.",
       "audioTextZh": "请求等待程序",
-      "audio": "/question-bank-assets/audio/sentence900/main/294.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/315.mp3"
     },
     {
       "id": "sentence900-main-318",
       "taskTitle": "Sentence318",
       "audioText": "Overhead YV, maintaining 3000 feet, entering hold.",
       "audioTextZh": "飞越YV，保持3000英尺，进入等待",
-      "audio": "/question-bank-assets/audio/sentence900/main/295.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/318.mp3"
     },
     {
       "id": "sentence900-main-319",
       "taskTitle": "Sentence319",
       "audioText": "Leaving BKM VOR heading 110.",
       "audioTextZh": "离开BKM VOR台，航向110",
-      "audio": "/question-bank-assets/audio/sentence900/main/296.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/319.mp3"
     },
     {
       "id": "sentence900-main-320",
       "taskTitle": "Sentence320",
       "audioText": "Leaving FL60, descending to 2500 feet, QNH1008.",
       "audioTextZh": "离开高度层60，下降到2500英尺，修正海压1008",
-      "audio": "/question-bank-assets/audio/sentence900/main/297.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/320.mp3"
     },
     {
       "id": "sentence900-main-321",
       "taskTitle": "Sentence321",
       "audioText": "Position 10 miles north east of LN.",
       "audioTextZh": "当前位置LN东北方向10海里",
-      "audio": "/question-bank-assets/audio/sentence900/main/298.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/321.mp3"
     },
     {
       "id": "sentence900-main-322",
       "taskTitle": "Sentence322",
       "audioText": "Turn right heading180 for base leg.",
       "audioTextZh": "右转航向180，加入四边",
-      "audio": "/question-bank-assets/audio/sentence900/main/299.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/322.mp3"
     },
     {
       "id": "sentence900-main-324",
       "taskTitle": "Sentence324",
       "audioText": "No ATC speed restrictions. Contact Tower 118.9.",
       "audioTextZh": "没有 ATC 速度限制，联系塔台 118.9",
-      "audio": "/question-bank-assets/audio/sentence900/main/300.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/324.mp3"
     },
     {
       "id": "sentence900-main-325",
       "taskTitle": "Sentence325",
       "audioText": "Three sixty turn left for delay.",
       "audioTextZh": "由于延误，左转360度",
-      "audio": "/question-bank-assets/audio/sentence900/main/301.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/325.mp3"
     },
     {
       "id": "sentence900-main-326",
       "taskTitle": "Sentence326",
       "audioText": "Continue present heading, expect through the localizer for spacing.",
       "audioTextZh": "继续当前航向，，预计穿过航向道保持间隔",
-      "audio": "/question-bank-assets/audio/sentence900/main/302.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/326.mp3"
     },
     {
       "id": "sentence900-main-327",
       "taskTitle": "Sentence327",
       "audioText": "Surveillance radar approach Runway 27, maintaining 2200 feet.",
       "audioTextZh": "监视雷达近进，跑道27，保持2200英尺",
-      "audio": "/question-bank-assets/audio/sentence900/main/303.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/327.mp3"
     },
     {
       "id": "sentence900-main-328",
       "taskTitle": "Sentence328",
       "audioText": "QNH1003, threshold elevation 196 feet.",
       "audioTextZh": "修正海压1003，入口标高196英尺",
-      "audio": "/question-bank-assets/audio/sentence900/main/304.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/328.mp3"
     },
     {
       "id": "sentence900-main-329",
       "taskTitle": "Sentence329",
       "audioText": "Precision radar approach Runway 27 heading 260, descending to 2500 feet, QNH1014.",
       "audioTextZh": "精密雷达近进跑道27，航向260，下降到2500英尺，修正海压1014",
-      "audio": "/question-bank-assets/audio/sentence900/main/305.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/329.mp3"
     },
     {
       "id": "sentence900-main-330",
       "taskTitle": "Sentence330",
       "audioText": "Cleared to JEMMY via BK 1A Arrival.",
       "audioTextZh": "经BK 1A进场，可以飞往JEMMY。",
-      "audio": "/question-bank-assets/audio/sentence900/main/306.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/330.mp3"
     },
     {
       "id": "sentence900-main-331",
       "taskTitle": "Sentence331",
       "audioText": "Descend to reach 5000 feet by BK.",
       "audioTextZh": "BK前下降到5000英尺",
-      "audio": "/question-bank-assets/audio/sentence900/main/307.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/331.mp3"
     },
     {
       "id": "sentence900-main-332",
       "taskTitle": "Sentence332",
       "audioText": "When ready, descend to FL200. Report leaving FL300.",
       "audioTextZh": "准备好，下降到高度层200，离开高度层300报告",
-      "audio": "/question-bank-assets/audio/sentence900/main/308.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/332.mp3"
     },
     {
       "id": "sentence900-main-333",
       "taskTitle": "Sentence333",
       "audioText": "Descend immediately FL250.",
       "audioTextZh": "立即下降到高度层250",
-      "audio": "/question-bank-assets/audio/sentence900/main/309.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/333.mp3"
     },
     {
       "id": "sentence900-main-334",
       "taskTitle": "Sentence334",
       "audioText": "Descend to altitude 12000 feet QNH 1000.",
       "audioTextZh": "下降到高度12000英尺，修正海压1000",
-      "audio": "/question-bank-assets/audio/sentence900/main/310.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/334.mp3"
     },
     {
       "id": "sentence900-main-335",
       "taskTitle": "Sentence335",
       "audioText": "Descend to height 2000 feet QFE 997 hectopascals.",
       "audioTextZh": "下降到场压高2000英尺，场压997百帕",
-      "audio": "/question-bank-assets/audio/sentence900/main/311.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/335.mp3"
     },
     {
       "id": "sentence900-main-336",
       "taskTitle": "Sentence336",
       "audioText": "Descend to 8000 feet at 1000 feet per minute or greater.",
       "audioTextZh": "下降到8000英尺，下降率保持或大于每分钟1000英尺",
-      "audio": "/question-bank-assets/audio/sentence900/main/312.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/336.mp3"
     },
     {
       "id": "sentence900-main-337",
       "taskTitle": "Sentence337",
       "audioText": "Maintain own separation and VMC, descend to FL50.",
       "audioTextZh": "自己保持间隔和目视气象条件，下降到高度层50",
-      "audio": "/question-bank-assets/audio/sentence900/main/313.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/337.mp3"
     },
     {
       "id": "sentence900-main-338",
       "taskTitle": "Sentence338",
       "audioText": "Increasing rate of climb.",
       "audioTextZh": "增加爬升率",
-      "audio": "/question-bank-assets/audio/sentence900/main/314.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/338.mp3"
     },
     {
       "id": "sentence900-main-339",
       "taskTitle": "Sentence339",
       "audioText": "Unable expedite climb due weight.",
       "audioTextZh": "由于重量，不能快速爬升",
-      "audio": "/question-bank-assets/audio/sentence900/main/315.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/339.mp3"
     },
     {
       "id": "sentence900-main-340",
       "taskTitle": "Sentence340",
       "audioText": "Climb to 6000 feet, follow KODAP 01 Departure.",
       "audioTextZh": "爬升到6000英尺，按KODAP-01号离场",
-      "audio": "/question-bank-assets/audio/sentence900/main/316.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/340.mp3"
     },
     {
       "id": "sentence900-main-341",
       "taskTitle": "Sentence341",
       "audioText": "Passing altitude 2300 feet, climbing to FL80.",
       "audioTextZh": "过高度2300英尺，爬升到高度层80",
-      "audio": "/question-bank-assets/audio/sentence900/main/317.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/341.mp3"
     },
     {
       "id": "sentence900-main-342",
       "taskTitle": "Sentence342",
       "audioText": "Climb to FL210, level restrictions of KODAP 01 Departure canceled.",
       "audioTextZh": "爬升到高度层210，取消KODAP-01号离场高度限制",
-      "audio": "/question-bank-assets/audio/sentence900/main/318.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/342.mp3"
     },
     {
       "id": "sentence900-main-343",
       "taskTitle": "Sentence343",
       "audioText": "Climb to FL 210, cross AU at FL100 or below.",
       "audioTextZh": "爬升到高度层210，飞越AU时不高于高度层100",
-      "audio": "/question-bank-assets/audio/sentence900/main/319.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/343.mp3"
     },
     {
       "id": "sentence900-main-344",
       "taskTitle": "Sentence344",
       "audioText": "Climb to FL290, level at time 55.",
       "audioTextZh": "爬升到高度层290，55分改平",
-      "audio": "/question-bank-assets/audio/sentence900/main/320.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/344.mp3"
     },
     {
       "id": "sentence900-main-345",
       "taskTitle": "Sentence345",
       "audioText": "Unable FL390 by boundary, request FL330.",
       "audioTextZh": "移交点之前不能到达高度层 390，请求高度层 330",
-      "audio": "/question-bank-assets/audio/sentence900/main/321.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/345.mp3"
     },
     {
       "id": "sentence900-main-346",
       "taskTitle": "Sentence346",
       "audioText": "Descend to FL100, cross YU FL150 or above.",
       "audioTextZh": "下降到高度层100，穿越YU时不低于高度层150",
-      "audio": "/question-bank-assets/audio/sentence900/main/322.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/346.mp3"
     },
     {
       "id": "sentence900-main-347",
       "taskTitle": "Sentence347",
       "audioText": "After passing North Cross, descend to FL150.",
       "audioTextZh": "过North Cross后，下降到高度层150",
-      "audio": "/question-bank-assets/audio/sentence900/main/323.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/347.mp3"
     },
     {
       "id": "sentence900-main-348",
       "taskTitle": "Sentence348",
       "audioText": "We are far above profile. Request holding.",
       "audioTextZh": "我们远高于（飞行）剖面，请求等待",
-      "audio": "/question-bank-assets/audio/sentence900/main/324.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/348.mp3"
     },
     {
       "id": "sentence900-main-349",
       "taskTitle": "Sentence349",
       "audioText": "Stop descent at 5000 feet.",
       "audioTextZh": "5000英尺停止下降",
-      "audio": "/question-bank-assets/audio/sentence900/main/325.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/349.mp3"
     },
     {
       "id": "sentence900-main-350",
       "taskTitle": "Sentence350",
       "audioText": "Expedite descent until passing FL80.",
       "audioTextZh": "加速下降通过高度层80",
-      "audio": "/question-bank-assets/audio/sentence900/main/326.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/350.mp3"
     },
     {
       "id": "sentence900-main-351",
       "taskTitle": "Sentence351",
       "audioText": "Expect descent after AK.",
       "audioTextZh": "预计过AK后下降",
-      "audio": "/question-bank-assets/audio/sentence900/main/327.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/351.mp3"
     },
     {
       "id": "sentence900-main-352",
       "taskTitle": "Sentence352",
       "audioText": "Continue approach Runway 36R, maintain visual separation with preceding traffic.",
       "audioTextZh": "继续近进36右跑道，与前机保持目视间隔。",
-      "audio": "/question-bank-assets/audio/sentence900/main/328.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/352.mp3"
     },
     {
       "id": "sentence900-main-353",
       "taskTitle": "Sentence353",
       "audioText": "Contact Control 80 miles after BK.",
       "audioTextZh": "过BK 80 海里处联系区调",
-      "audio": "/question-bank-assets/audio/sentence900/main/329.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/353.mp3"
     },
     {
       "id": "sentence900-main-354",
       "taskTitle": "Sentence354",
       "audioText": "Request change to London Control.",
       "audioTextZh": "请求切换到伦敦管制频率",
-      "audio": "/question-bank-assets/audio/sentence900/main/330.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/354.mp3"
     },
     {
       "id": "sentence900-main-355",
       "taskTitle": "Sentence355",
       "audioText": "Monitor Tower 118.1.",
       "audioTextZh": "守听塔台频率118.1",
-      "audio": "/question-bank-assets/audio/sentence900/main/331.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/355.mp3"
     },
     {
       "id": "sentence900-main-356",
       "taskTitle": "Sentence356",
       "audioText": "Remain this frequency.",
       "audioTextZh": "本频率长守",
-      "audio": "/question-bank-assets/audio/sentence900/main/332.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/356.mp3"
     },
     {
       "id": "sentence900-main-357",
       "taskTitle": "Sentence357",
       "audioText": "We can see the approach lights at 200 feet.",
       "audioTextZh": "200英尺，我们能看到近进灯",
-      "audio": "/question-bank-assets/audio/sentence900/main/333.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/357.mp3"
     },
     {
       "id": "sentence900-main-358",
       "taskTitle": "Sentence358",
       "audioText": "Cleared VOR approach Runway 36, followed by circling to Runway 18.",
       "audioTextZh": "可以VOR近进36号跑道，随后盘旋至18号跑道。",
-      "audio": "/question-bank-assets/audio/sentence900/main/334.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/358.mp3"
     },
     {
       "id": "sentence900-main-359",
       "taskTitle": "Sentence359",
       "audioText": "Expect commencing approach at time 50.",
       "audioTextZh": "预计开始近进时间50分",
-      "audio": "/question-bank-assets/audio/sentence900/main/335.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/359.mp3"
     },
     {
       "id": "sentence900-main-360",
       "taskTitle": "Sentence360",
       "audioText": "Unable circling approach due company policy. Request diversion.",
       "audioTextZh": "由于公司政策，不能盘旋近进，请求备降",
-      "audio": "/question-bank-assets/audio/sentence900/main/336.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/360.mp3"
     },
     {
       "id": "sentence900-main-361",
       "taskTitle": "Sentence361",
       "audioText": "Request RNAV approach.",
       "audioTextZh": "请求RNAV近进",
-      "audio": "/question-bank-assets/audio/sentence900/main/337.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/361.mp3"
     },
     {
       "id": "sentence900-main-362",
       "taskTitle": "Sentence362",
       "audioText": "RNAV approach not available due FMS database. Request VOR approach.",
       "audioTextZh": "由于FMS 数据库原因，RNAV 不可用，请求VOR近进",
-      "audio": "/question-bank-assets/audio/sentence900/main/338.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/362.mp3"
     },
     {
       "id": "sentence900-main-363",
       "taskTitle": "Sentence363",
       "audioText": "Cleared for LDA approach Runway 24.",
       "audioTextZh": "可以LDA近进跑道24",
-      "audio": "/question-bank-assets/audio/sentence900/main/339.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/363.mp3"
     },
     {
       "id": "sentence900-main-364",
       "taskTitle": "Sentence364",
       "audioText": "Unable RNAV due equipment, request conventional arrival.",
       "audioTextZh": "设备原因，无法RNAV近进，请求传统方式近进",
-      "audio": "/question-bank-assets/audio/sentence900/main/340.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/364.mp3"
     },
     {
       "id": "sentence900-main-365",
       "taskTitle": "Sentence365",
       "audioText": "Unable RNAV, loss of RAIM, request NDB approach",
       "audioTextZh": "RAIM丢失，无法RNAV近进，请求NDB近进",
-      "audio": "/question-bank-assets/audio/sentence900/main/341.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/365.mp3"
     },
     {
       "id": "sentence900-main-366",
       "taskTitle": "Sentence366",
       "audioText": "GPS primary lost, going around.",
       "audioTextZh": "失去GPS主要功能，复飞了",
-      "audio": "/question-bank-assets/audio/sentence900/main/342.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/366.mp3"
     },
     {
       "id": "sentence900-main-367",
       "taskTitle": "Sentence367",
       "audioText": "RAIM alert, going around.",
       "audioTextZh": "RAIM警告，复飞了",
-      "audio": "/question-bank-assets/audio/sentence900/main/343.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/367.mp3"
     },
     {
       "id": "sentence900-main-368",
       "taskTitle": "Sentence368",
       "audioText": "Negative RNAV.",
       "audioTextZh": "不能RNAV近进",
-      "audio": "/question-bank-assets/audio/sentence900/main/344.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/368.mp3"
     },
     {
       "id": "sentence900-main-369",
       "taskTitle": "Sentence369",
       "audioText": "Proceed to AK, hold as published, expect approach clearance at 30.",
       "audioTextZh": "直飞AK，按公布程序等待，预计近进许可30分",
-      "audio": "/question-bank-assets/audio/sentence900/main/345.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/369.mp3"
     },
     {
       "id": "sentence900-main-370",
       "taskTitle": "Sentence370",
       "audioText": "Request hold for weather improvement, visibility below company minima.",
       "audioTextZh": "请求等待天气好转，能见度低于公司最低要求",
-      "audio": "/question-bank-assets/audio/sentence900/main/346.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/370.mp3"
     },
     {
       "id": "sentence900-main-372",
       "taskTitle": "Sentence372",
       "audioText": "Holding northwest of W VOR FL120, what is the delay for approach?",
       "audioTextZh": "W VOR台西北等待，高度层120，请问近进延误情况",
-      "audio": "/question-bank-assets/audio/sentence900/main/347.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/372.mp3"
     },
     {
       "id": "sentence900-main-373",
       "taskTitle": "Sentence373",
       "audioText": "Request to extend the holding pattern for accomplishing the checklist.",
       "audioTextZh": "请求延长等待，完成检查单",
-      "audio": "/question-bank-assets/audio/sentence900/main/348.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/373.mp3"
     },
     {
       "id": "sentence900-main-374",
       "taskTitle": "Sentence374",
       "audioText": "Request extended holding to burn fuel to reduce the weight.",
       "audioTextZh": "请求延长等待耗油，减轻（飞机）重量",
-      "audio": "/question-bank-assets/audio/sentence900/main/349.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/374.mp3"
     },
     {
       "id": "sentence900-main-375",
       "taskTitle": "Sentence375",
       "audioText": "Cleared for CAT II ILS approach Runway 24.",
       "audioTextZh": "可以执行24号跑道II类ILS近进。",
-      "audio": "/question-bank-assets/audio/sentence900/main/350.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/375.mp3"
     },
     {
       "id": "sentence900-main-376",
       "taskTitle": "Sentence376",
       "audioText": "Join right hand downwind, visual approach Runway 24.",
       "audioTextZh": "加入右三边，目视近进24号跑道。",
-      "audio": "/question-bank-assets/audio/sentence900/main/351.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/376.mp3"
     },
     {
       "id": "sentence900-main-377",
       "taskTitle": "Sentence377",
       "audioText": "Continue approach, prepare for possible go around.",
       "audioTextZh": "继续近进，准备可能复飞。",
-      "audio": "/question-bank-assets/audio/sentence900/main/352.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/377.mp3"
     },
     {
       "id": "sentence900-main-378",
       "taskTitle": "Sentence378",
       "audioText": "Disregard. We made the wrong transmission.",
       "audioTextZh": "指令作废，我们报错了",
-      "audio": "/question-bank-assets/audio/sentence900/main/353.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/378.mp3"
     },
     {
       "id": "sentence900-main-379",
       "taskTitle": "Sentence379",
       "audioText": "Roger, request continue approach.",
       "audioTextZh": "明白，请求继续近进",
-      "audio": "/question-bank-assets/audio/sentence900/main/354.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/379.mp3"
     },
     {
       "id": "sentence900-main-380",
       "taskTitle": "Sentence380",
       "audioText": "Stand by. We are carrying out procedures.",
       "audioTextZh": "稍等，我们正在执行程序",
-      "audio": "/question-bank-assets/audio/sentence900/main/355.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/380.mp3"
     },
     {
       "id": "sentence900-main-381",
       "taskTitle": "Sentence381",
       "audioText": "Wilco, words twice.",
       "audioTextZh": "照办，发送两遍",
-      "audio": "/question-bank-assets/audio/sentence900/main/356.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/381.mp3"
     },
     {
       "id": "sentence900-main-382",
       "taskTitle": "Sentence382",
       "audioText": "Maintaining FL350, expect descent after BKM VOR.",
       "audioTextZh": "保持高度层350，预计过BKM VOR台后下降",
-      "audio": "/question-bank-assets/audio/sentence900/main/357.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/382.mp3"
     },
     {
       "id": "sentence900-main-385",
       "taskTitle": "Sentence385",
       "audioText": "Continue climb to FL 290, cross BKM VOR not above FL 230.",
       "audioTextZh": "继续爬升到高度层290，飞越BKM VOR台，不高于高度层230。（3-4",
-      "audio": "/question-bank-assets/audio/sentence900/main/358.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/385.mp3"
     },
     {
       "id": "sentence900-main-386",
       "taskTitle": "Sentence386",
       "audioText": "Negative, unable cross BKM VOR at or above FL230 due performance.",
       "audioTextZh": "不行，由于性能，不能在高度层230或以上，穿越BKM VOR台. （3-4",
-      "audio": "/question-bank-assets/audio/sentence900/main/359.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/386.mp3"
     },
     {
       "id": "sentence900-main-387",
       "taskTitle": "Sentence387",
       "audioText": "Maintaining FL310 until advised.",
       "audioTextZh": "保持高度层310，等待进一步通知。",
-      "audio": "/question-bank-assets/audio/sentence900/main/360.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/387.mp3"
     },
     {
       "id": "sentence900-main-388",
       "taskTitle": "Sentence388",
       "audioText": "Descend to FL170, cross BKM VOR at or above FL210.",
       "audioTextZh": "下降到高度层170，穿越BKM VOR台时，（高度）在高度层210或以上",
-      "audio": "/question-bank-assets/audio/sentence900/main/361.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/388.mp3"
     },
     {
       "id": "sentence900-main-389",
       "taskTitle": "Sentence389",
       "audioText": "Affirm, cross BKM VOR at or above FL190",
       "audioTextZh": "可以，穿越BKM VOR台时（高度）高于高度层190",
-      "audio": "/question-bank-assets/audio/sentence900/main/362.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/389.mp3"
     },
     {
       "id": "sentence900-main-390",
       "taskTitle": "Sentence390",
       "audioText": "Negative, unable to cross BKM VOR below FL170.",
       "audioTextZh": "不行，不能在低于高度层170时穿越BKM VOR台",
-      "audio": "/question-bank-assets/audio/sentence900/main/363.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/390.mp3"
     },
     {
       "id": "sentence900-main-391",
       "taskTitle": "Sentence391",
       "audioText": "Affirm, cross BKM VOR at or before 55",
       "audioTextZh": "可以，在55分或之前，穿越BKM VOR台",
-      "audio": "/question-bank-assets/audio/sentence900/main/364.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/391.mp3"
     },
     {
       "id": "sentence900-main-392",
       "taskTitle": "Sentence392",
       "audioText": "Negative, unable to cross BKM VOR at 43 or later.",
       "audioTextZh": "不行，不能在43分或之后，穿越BKM VOR台",
-      "audio": "/question-bank-assets/audio/sentence900/main/365.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/392.mp3"
     },
     {
       "id": "sentence900-main-393",
       "taskTitle": "Sentence393",
       "audioText": "Request lose time en route due landing delay at destination airport.",
       "audioTextZh": "由于目的地机场着陆有延误，请求航路上消耗时间",
-      "audio": "/question-bank-assets/audio/sentence900/main/366.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/393.mp3"
     },
     {
       "id": "sentence900-main-394",
       "taskTitle": "Sentence394",
       "audioText": "Request lose time en route to finish the checklist.",
       "audioTextZh": "请求航路消耗时间以完成检查单",
-      "audio": "/question-bank-assets/audio/sentence900/main/367.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/394.mp3"
     },
     {
       "id": "sentence900-main-395",
       "taskTitle": "Sentence395",
       "audioText": "Request parallel offset from current track due weather ahead.",
       "audioTextZh": "由于前方天气，请求平行偏置当前航迹",
-      "audio": "/question-bank-assets/audio/sentence900/main/368.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/395.mp3"
     },
     {
       "id": "sentence900-main-396",
       "taskTitle": "Sentence396",
       "audioText": "Request parallel offset from current airway for 30 minutes due icing condition.",
       "audioTextZh": "由于结冰，请求从当前航路平行偏置 30 分钟",
-      "audio": "/question-bank-assets/audio/sentence900/main/369.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/396.mp3"
     },
     {
       "id": "sentence900-main-397",
       "taskTitle": "Sentence397",
       "audioText": "Proceed offset 10 miles right of track until abeam BKM VOR.",
       "audioTextZh": "在BKM VOR正侧方前，沿航迹右偏10海里飞行。",
-      "audio": "/question-bank-assets/audio/sentence900/main/370.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/397.mp3"
     },
     {
       "id": "sentence900-main-398",
       "taskTitle": "Sentence398",
       "audioText": "Cleared offset 25 miles left of track for 30 minutes.",
       "audioTextZh": "允许向航迹左侧偏置25海里，持续30分钟。",
-      "audio": "/question-bank-assets/audio/sentence900/main/371.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/398.mp3"
     },
     {
       "id": "sentence900-main-399",
       "taskTitle": "Sentence399",
       "audioText": "Offset canceled, turn right to rejoin the A1 before BKM VOR.",
       "audioTextZh": "偏置取消，BKM VOR台前右转，重新加入航路A1",
-      "audio": "/question-bank-assets/audio/sentence900/main/372.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/399.mp3"
     },
     {
       "id": "sentence900-main-400",
       "taskTitle": "Sentence400",
       "audioText": "Clear of weather, request to resume flight route.",
       "audioTextZh": "已脱离天气，请求回到飞行航路",
-      "audio": "/question-bank-assets/audio/sentence900/main/373.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/400.mp3"
     },
     {
       "id": "sentence900-main-402",
       "taskTitle": "Sentence402",
       "audioText": "Estimating crossing LV NDB 1123.",
       "audioTextZh": "预计1123分飞越LV NDB台",
-      "audio": "/question-bank-assets/audio/sentence900/main/374.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/402.mp3"
     },
     {
       "id": "sentence900-main-404",
       "taskTitle": "Sentence404",
       "audioText": "BKM 47, FL170 descending to FL120, abeam NLD VOR at 55.",
       "audioTextZh": "BKM 47分，高度层170，下降到高度层120，55分正切NLD VOR台",
-      "audio": "/question-bank-assets/audio/sentence900/main/375.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/404.mp3"
     },
     {
       "id": "sentence900-main-405",
       "taskTitle": "Sentence405",
       "audioText": "Report 25 miles from BKM VOR.",
       "audioTextZh": "距离BKM VOR台25海里报",
-      "audio": "/question-bank-assets/audio/sentence900/main/376.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/405.mp3"
     },
     {
       "id": "sentence900-main-406",
       "taskTitle": "Sentence406",
       "audioText": "Report 34 miles from Top of Descent.",
       "audioTextZh": "距离下降顶点34海里报",
-      "audio": "/question-bank-assets/audio/sentence900/main/377.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/406.mp3"
     },
     {
       "id": "sentence900-main-407",
       "taskTitle": "Sentence407",
       "audioText": "Report crossing 270 radial BKM VOR.",
       "audioTextZh": "过BKM VOR台径向线270报",
-      "audio": "/question-bank-assets/audio/sentence900/main/378.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/407.mp3"
     },
     {
       "id": "sentence900-main-408",
       "taskTitle": "Sentence408",
       "audioText": "Report 28 miles DME 210 radial BKM VOR.",
       "audioTextZh": "BKM VOR台210度径向线28海里报",
-      "audio": "/question-bank-assets/audio/sentence900/main/379.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/408.mp3"
     },
     {
       "id": "sentence900-main-409",
       "taskTitle": "Sentence409",
       "audioText": "Climb to FL220, report passing FL170.",
       "audioTextZh": "爬升到高度层220，通过高度层170报",
-      "audio": "/question-bank-assets/audio/sentence900/main/380.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/409.mp3"
     },
     {
       "id": "sentence900-main-410",
       "taskTitle": "Sentence410",
       "audioText": "Descending immediately to FL190.",
       "audioTextZh": "立即下降到高度层190",
-      "audio": "/question-bank-assets/audio/sentence900/main/381.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/410.mp3"
     },
     {
       "id": "sentence900-main-411",
       "taskTitle": "Sentence411",
       "audioText": "Leaving FL220 for FL190.",
       "audioTextZh": "离开高度层220，下降到高度层190",
-      "audio": "/question-bank-assets/audio/sentence900/main/382.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/411.mp3"
     },
     {
       "id": "sentence900-main-413",
       "taskTitle": "Sentence413",
       "audioText": "Remain outside controlled airspace, expect joining clearance at time 55.",
       "audioTextZh": "保持在管制空域外，预计55分获得加入许可。",
-      "audio": "/question-bank-assets/audio/sentence900/main/383.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/413.mp3"
     },
     {
       "id": "sentence900-main-414",
       "taskTitle": "Sentence414",
       "audioText": "Request to leave controlled airspace by descent.",
       "audioTextZh": "请求下降离开管制空域",
-      "audio": "/question-bank-assets/audio/sentence900/main/384.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/414.mp3"
     },
     {
       "id": "sentence900-main-415",
       "taskTitle": "Sentence415",
       "audioText": "Request to leave controlled airspace by climb.",
       "audioTextZh": "请求爬升离开管制空域",
-      "audio": "/question-bank-assets/audio/sentence900/main/385.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/415.mp3"
     },
     {
       "id": "sentence900-main-416",
       "taskTitle": "Sentence416",
       "audioText": "Descending to 5000 feet QNH 1014, report passing 7000 feet.",
       "audioTextZh": "下降到5000英尺，修正海压1014，过7000英尺报",
-      "audio": "/question-bank-assets/audio/sentence900/main/386.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/416.mp3"
     },
     {
       "id": "sentence900-main-417",
       "taskTitle": "Sentence417",
       "audioText": "Request VMC descent to FL60.",
       "audioTextZh": "请求目视气象条件下降到高度层60",
-      "audio": "/question-bank-assets/audio/sentence900/main/387.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/417.mp3"
     },
     {
       "id": "sentence900-main-419",
       "taskTitle": "Sentence419",
       "audioText": "Request join airway A1 at DAPRO.",
       "audioTextZh": "请求在DAPRO加入航路A1",
-      "audio": "/question-bank-assets/audio/sentence900/main/388.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/419.mp3"
     },
     {
       "id": "sentence900-main-421",
       "taskTitle": "Sentence421",
       "audioText": "Remain outside controlled airspace, expect further clearance at 55.",
       "audioTextZh": "继续在管制空域外，预计进一步许可55分",
-      "audio": "/question-bank-assets/audio/sentence900/main/389.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/421.mp3"
     },
     {
       "id": "sentence900-main-422",
       "taskTitle": "Sentence422",
       "audioText": "If FL240 not available, we accept FL220.",
       "audioTextZh": "如果高度层240不可用，我们接受高度层220。",
-      "audio": "/question-bank-assets/audio/sentence900/main/390.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/422.mp3"
     },
     {
       "id": "sentence900-main-424",
       "taskTitle": "Sentence424",
       "audioText": "Confirm we are under radar control.",
       "audioTextZh": "证实我们受雷达管制",
-      "audio": "/question-bank-assets/audio/sentence900/main/391.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/424.mp3"
     },
     {
       "id": "sentence900-main-425",
       "taskTitle": "Sentence425",
       "audioText": "Confirm radar service is terminated.",
       "audioTextZh": "证实雷达服务终止",
-      "audio": "/question-bank-assets/audio/sentence900/main/392.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/425.mp3"
     },
     {
       "id": "sentence900-main-427",
       "taskTitle": "Sentence427",
       "audioText": "Confirm radar control is resumed.",
       "audioTextZh": "证实雷达管制恢复",
-      "audio": "/question-bank-assets/audio/sentence900/main/393.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/427.mp3"
     },
     {
       "id": "sentence900-main-429",
       "taskTitle": "Sentence429",
       "audioText": "Affirm RVSM.",
       "audioTextZh": "可以RVSM",
-      "audio": "/question-bank-assets/audio/sentence900/main/394.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/429.mp3"
     },
     {
       "id": "sentence900-main-430",
       "taskTitle": "Sentence430",
       "audioText": "Negative RVSM due equipment downgraded.",
       "audioTextZh": "设备降级，无法RVSM",
-      "audio": "/question-bank-assets/audio/sentence900/main/395.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/430.mp3"
     },
     {
       "id": "sentence900-main-431",
       "taskTitle": "Sentence431",
       "audioText": "Request clearance into RVSM airspace.",
       "audioTextZh": "请求进入RVSM空域许可",
-      "audio": "/question-bank-assets/audio/sentence900/main/396.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/431.mp3"
     },
     {
       "id": "sentence900-main-432",
       "taskTitle": "Sentence432",
       "audioText": "Unable RVSM due turbulence.",
       "audioTextZh": "因为颠簸,无法 RVSM",
-      "audio": "/question-bank-assets/audio/sentence900/main/397.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/432.mp3"
     },
     {
       "id": "sentence900-main-433",
       "taskTitle": "Sentence433",
       "audioText": "Ready to resume RVSM.",
       "audioTextZh": "准备好恢复RVSM",
-      "audio": "/question-bank-assets/audio/sentence900/main/398.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/433.mp3"
     },
     {
       "id": "sentence900-main-436",
       "taskTitle": "Sentence436",
       "audioText": "At 144E (east) squawk 2000.",
       "audioTextZh": "东经144 度，应答机2000",
-      "audio": "/question-bank-assets/audio/sentence900/main/399.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/436.mp3"
     },
     {
       "id": "sentence900-main-437",
       "taskTitle": "Sentence437",
       "audioText": "CPDLC connected.",
       "audioTextZh": "CPDLC已连接",
-      "audio": "/question-bank-assets/audio/sentence900/main/400.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/437.mp3"
     },
     {
       "id": "sentence900-main-438",
       "taskTitle": "Sentence438",
       "audioText": "Continue CPDLC make position report via CPDLC.",
       "audioTextZh": "继续CPDLC，通过CPDLC位置报告",
-      "audio": "/question-bank-assets/audio/sentence900/main/401.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/438.mp3"
     },
     {
       "id": "sentence900-main-439",
       "taskTitle": "Sentence439",
       "audioText": "SELCAL CODE EFFG, request SELCAL check.",
       "audioTextZh": "SELCALL代码EFFG，请求SELCALL检查",
-      "audio": "/question-bank-assets/audio/sentence900/main/402.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/439.mp3"
     },
     {
       "id": "sentence900-main-440",
       "taskTitle": "Sentence440",
       "audioText": "CPDLC unserviceable, request to revert to voice communication.",
       "audioTextZh": "CPDLC 故障，请求切换到语音通讯",
-      "audio": "/question-bank-assets/audio/sentence900/main/403.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/440.mp3"
     },
     {
       "id": "sentence900-main-441",
       "taskTitle": "Sentence441",
       "audioText": "The air conditioning system has malfunctioned.",
       "audioTextZh": "空调系统故障",
-      "audio": "/question-bank-assets/audio/sentence900/main/404.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/441.mp3"
     },
     {
       "id": "sentence900-main-448",
       "taskTitle": "Sentence448",
       "audioText": "Many passengers are suffering from smoke inhalation. Request medical assistance on arrival.",
       "audioTextZh": "许多乘客吸入烟尘，请求到达时医疗救助",
-      "audio": "/question-bank-assets/audio/sentence900/main/405.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/448.mp3"
     },
     {
       "id": "sentence900-main-449",
       "taskTitle": "Sentence449",
       "audioText": "Our pressurization system has malfunctioned.",
       "audioTextZh": "我们增压系统失效",
-      "audio": "/question-bank-assets/audio/sentence900/main/406.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/449.mp3"
     },
     {
       "id": "sentence900-main-450",
       "taskTitle": "Sentence450",
       "audioText": "We have difficulty in controlling the cabin pressure.",
       "audioTextZh": "我们座舱压力控制有问题",
-      "audio": "/question-bank-assets/audio/sentence900/main/407.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/450.mp3"
     },
     {
       "id": "sentence900-main-451",
       "taskTitle": "Sentence451",
       "audioText": "We have a cabin altitude problem.",
       "audioTextZh": "我们遇到座舱高度问题",
-      "audio": "/question-bank-assets/audio/sentence900/main/408.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/451.mp3"
     },
     {
       "id": "sentence900-main-452",
       "taskTitle": "Sentence452",
       "audioText": "Our cabin rate of climb has red-lined. Request immediate descent.",
       "audioTextZh": "我们座舱爬升率已经达到红线，请求立即下降",
-      "audio": "/question-bank-assets/audio/sentence900/main/409.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/452.mp3"
     },
     {
       "id": "sentence900-main-453",
       "taskTitle": "Sentence453",
       "audioText": "We have a slow cabin decompression. Request immediate descent.",
       "audioTextZh": "我们客舱慢失压，请求马上下降",
-      "audio": "/question-bank-assets/audio/sentence900/main/410.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/453.mp3"
     },
     {
       "id": "sentence900-main-455",
       "taskTitle": "Sentence455",
       "audioText": "We are now depressurized and will fly a more shallow descent profile.",
       "audioTextZh": "我们现在失压了，我们需要更平缓的下降剖面",
-      "audio": "/question-bank-assets/audio/sentence900/main/411.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/455.mp3"
     },
     {
       "id": "sentence900-main-458",
       "taskTitle": "Sentence458",
       "audioText": "We have a problem with the avionics ventilation system.",
       "audioTextZh": "我们电子设备通风系统有问题",
-      "audio": "/question-bank-assets/audio/sentence900/main/412.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/458.mp3"
     },
     {
       "id": "sentence900-main-460",
       "taskTitle": "Sentence460",
       "audioText": "The avionics ventilation is unserviceable. Request diversion to the closest suitable airport.",
       "audioTextZh": "电子设备通风不可用，请求备降到最近合适机场",
-      "audio": "/question-bank-assets/audio/sentence900/main/413.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/460.mp3"
     },
     {
       "id": "sentence900-main-461",
       "taskTitle": "Sentence461",
       "audioText": "We have severe vibration coming from the avionics ventilation fan.",
       "audioTextZh": "我们电子设备通风风扇严重抖振",
-      "audio": "/question-bank-assets/audio/sentence900/main/414.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/461.mp3"
     },
     {
       "id": "sentence900-main-462",
       "taskTitle": "Sentence462",
       "audioText": "There are unusual noises coming from the avionics bay.",
       "audioTextZh": "电子设备舱出现异常噪音",
-      "audio": "/question-bank-assets/audio/sentence900/main/415.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/462.mp3"
     },
     {
       "id": "sentence900-main-463",
       "taskTitle": "Sentence463",
       "audioText": "Our FMS has malfunctioned. Request radar vectors.",
       "audioTextZh": "我们 FMS 故障，请求雷达引导",
-      "audio": "/question-bank-assets/audio/sentence900/main/416.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/463.mp3"
     },
     {
       "id": "sentence900-main-464",
       "taskTitle": "Sentence464",
       "audioText": "Request further climb due wind-shear.",
       "audioTextZh": "风切变，请求进一步爬升",
-      "audio": "/question-bank-assets/audio/sentence900/main/417.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/464.mp3"
     },
     {
       "id": "sentence900-main-465",
       "taskTitle": "Sentence465",
       "audioText": "Unable to maintain altitude, request leaving RVSM airspace.",
       "audioTextZh": "不能保持高度，请求离开RVSM空域",
-      "audio": "/question-bank-assets/audio/sentence900/main/418.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/465.mp3"
     },
     {
       "id": "sentence900-main-466",
       "taskTitle": "Sentence466",
       "audioText": "We cannot make RNP approach due equipment.",
       "audioTextZh": "由于设备原因，我们无法 RNP 近进",
-      "audio": "/question-bank-assets/audio/sentence900/main/419.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/466.mp3"
     },
     {
       "id": "sentence900-main-467",
       "taskTitle": "Sentence467",
       "audioText": "Our navigation accuracy is low. Request to climb to minimum safe altitude.",
       "audioTextZh": "我们导航精度低，请求爬升到最低安全高度",
-      "audio": "/question-bank-assets/audio/sentence900/main/420.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/467.mp3"
     },
     {
       "id": "sentence900-main-473",
       "taskTitle": "Sentence473",
       "audioText": "The flight path is unstable. Going around.",
       "audioTextZh": "（下降）飞行轨迹不稳定，复飞",
-      "audio": "/question-bank-assets/audio/sentence900/main/421.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/473.mp3"
     },
     {
       "id": "sentence900-main-474",
       "taskTitle": "Sentence474",
       "audioText": "We made a missed approach due to unstable ILS signals.",
       "audioTextZh": "由于ILS信号不稳定，我们复飞了",
-      "audio": "/question-bank-assets/audio/sentence900/main/422.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/474.mp3"
     },
     {
       "id": "sentence900-main-477",
       "taskTitle": "Sentence477",
       "audioText": "We have lost our flight plan after a flight management computer reset.",
       "audioTextZh": "飞行管理计算机重置后，我们飞行计划丢了",
-      "audio": "/question-bank-assets/audio/sentence900/main/423.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/477.mp3"
     },
     {
       "id": "sentence900-main-482",
       "taskTitle": "Sentence482",
       "audioText": "We do not meet GPS approach requirement due to flight crew qualifications.",
       "audioTextZh": "由于飞行机组资质，我们无法满足 GPS 近进要求",
-      "audio": "/question-bank-assets/audio/sentence900/main/424.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/482.mp3"
     },
     {
       "id": "sentence900-main-483",
       "taskTitle": "Sentence483",
       "audioText": "Our Airline policy does not allow us to perform CAT IIIC approach.",
       "audioTextZh": "航空公司政策不允许我们执行IIIC类近进",
-      "audio": "/question-bank-assets/audio/sentence900/main/425.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/483.mp3"
     },
     {
       "id": "sentence900-main-484",
       "taskTitle": "Sentence484",
       "audioText": "Our operations manual forbids this procedure.",
       "audioTextZh": "我们的运行手册禁止此程序",
-      "audio": "/question-bank-assets/audio/sentence900/main/426.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/484.mp3"
     },
     {
       "id": "sentence900-main-485",
       "taskTitle": "Sentence485",
       "audioText": "Our Aviation Authority does not permit this procedure.",
       "audioTextZh": "航空当局不允许此程序",
-      "audio": "/question-bank-assets/audio/sentence900/main/427.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/485.mp3"
     },
     {
       "id": "sentence900-main-486",
       "taskTitle": "Sentence486",
       "audioText": "We are unable to conform to the noise abatement procedure due performance.",
       "audioTextZh": "由于性能，我们不能遵守降噪程序",
-      "audio": "/question-bank-assets/audio/sentence900/main/428.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/486.mp3"
     },
     {
       "id": "sentence900-main-489",
       "taskTitle": "Sentence489",
       "audioText": "All stations, transmitting blind due to receiver failure.",
       "audioTextZh": "所有单位，接收机失效，盲发",
-      "audio": "/question-bank-assets/audio/sentence900/main/429.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/489.mp3"
     },
     {
       "id": "sentence900-main-491",
       "taskTitle": "Sentence491",
       "audioText": "Our SELCAL has malfunctioned. We will continue monitoring your frequency.",
       "audioTextZh": "我们选择呼叫故障，我们将继续监听你的频率",
-      "audio": "/question-bank-assets/audio/sentence900/main/430.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/491.mp3"
     },
     {
       "id": "sentence900-main-492",
       "taskTitle": "Sentence492",
       "audioText": "We are receiving an ELT signal on 121.5.",
       "audioTextZh": "我们在 121.5 上收到 ELT 信号",
-      "audio": "/question-bank-assets/audio/sentence900/main/431.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/492.mp3"
     },
     {
       "id": "sentence900-main-493",
       "taskTitle": "Sentence493",
       "audioText": "We are picking up a broadcast signal on 121.5.",
       "audioTextZh": "我们在 121.5 上收听播报信号",
-      "audio": "/question-bank-assets/audio/sentence900/main/432.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/493.mp3"
     },
     {
       "id": "sentence900-main-494",
       "taskTitle": "Sentence494",
       "audioText": "Our satellite phone is unserviceable. We are unable to call company operations.",
       "audioTextZh": "我们卫星电话失效，无法跟公司运行部联系",
-      "audio": "/question-bank-assets/audio/sentence900/main/433.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/494.mp3"
     },
     {
       "id": "sentence900-main-495",
       "taskTitle": "Sentence495",
       "audioText": "Our data-link has malfunctioned. Request re-release the flight plan by voice.",
       "audioTextZh": "我们数据链故障，请求用语音重新发布飞行计划",
-      "audio": "/question-bank-assets/audio/sentence900/main/434.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/495.mp3"
     },
     {
       "id": "sentence900-main-496",
       "taskTitle": "Sentence496",
       "audioText": "Our data-link has malfunctioned. Request ATC clearance by voice.",
       "audioTextZh": "我们数据链故障，请求语音放行许可",
-      "audio": "/question-bank-assets/audio/sentence900/main/435.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/496.mp3"
     },
     {
       "id": "sentence900-main-497",
       "taskTitle": "Sentence497",
       "audioText": "My apologies, I wasn’t aware the boom mike was transmitting.",
       "audioTextZh": "很抱歉，我们没有注意到麦克风在发射信息",
-      "audio": "/question-bank-assets/audio/sentence900/main/436.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/497.mp3"
     },
     {
       "id": "sentence900-main-498",
       "taskTitle": "Sentence498",
       "audioText": "Sorry for blocking the frequency due microphone jammed.",
       "audioTextZh": "很抱歉，由于麦克风卡阻堵塞频率",
-      "audio": "/question-bank-assets/audio/sentence900/main/437.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/498.mp3"
     },
     {
       "id": "sentence900-main-499",
       "taskTitle": "Sentence499",
       "audioText": "We have an electrical failure.",
       "audioTextZh": "我们电气系统失效",
-      "audio": "/question-bank-assets/audio/sentence900/main/438.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/499.mp3"
     },
     {
       "id": "sentence900-main-501",
       "taskTitle": "Sentence501",
       "audioText": "Request diversion to the nearest suitable airport due AC BUS failure.",
       "audioTextZh": "因为交流电汇流条失效，请求备降到最近合适机场",
-      "audio": "/question-bank-assets/audio/sentence900/main/439.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/501.mp3"
     },
     {
       "id": "sentence900-main-502",
       "taskTitle": "Sentence502",
       "audioText": "We are not supplying power to our DC BUS. Request priority landing.",
       "audioTextZh": "我们无法给直流电汇流条供电，请求优先着陆",
-      "audio": "/question-bank-assets/audio/sentence900/main/440.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/502.mp3"
     },
     {
       "id": "sentence900-main-503",
       "taskTitle": "Sentence503",
       "audioText": "We have a problem with the aircraft battery. Request priority landing.",
       "audioTextZh": "我们飞机蓄电瓶有问题，请求优先着陆",
-      "audio": "/question-bank-assets/audio/sentence900/main/441.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/503.mp3"
     },
     {
       "id": "sentence900-main-514",
       "taskTitle": "Sentence514",
       "audioText": "We have had a bird strike. Our windshield has cracked.",
       "audioTextZh": "我们遭遇鸟击，风挡出现裂痕",
-      "audio": "/question-bank-assets/audio/sentence900/main/442.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/514.mp3"
     },
     {
       "id": "sentence900-main-522",
       "taskTitle": "Sentence522",
       "audioText": "The APU is still on fire. We are evacuating. Request emergency services.",
       "audioTextZh": "APU仍在着火，我们正在紧急疏散，请求紧急服务",
-      "audio": "/question-bank-assets/audio/sentence900/main/443.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/522.mp3"
     },
     {
       "id": "sentence900-main-528",
       "taskTitle": "Sentence528",
       "audioText": "Request descent to 10000 feet to ventilate the aircraft due smoke.",
       "audioTextZh": "由于烟雾，请求下降到10000英尺，使飞机通风",
-      "audio": "/question-bank-assets/audio/sentence900/main/444.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/528.mp3"
     },
     {
       "id": "sentence900-main-530",
       "taskTitle": "Sentence530",
       "audioText": "We are having flight control problems.",
       "audioTextZh": "我们飞行控制有问题",
-      "audio": "/question-bank-assets/audio/sentence900/main/445.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/530.mp3"
     },
     {
       "id": "sentence900-main-535",
       "taskTitle": "Sentence535",
       "audioText": "We cannot fully extend the flaps. Request the longest runway for landing.",
       "audioTextZh": "我们无法完全放出襟翼。请求最长跑道落地。",
-      "audio": "/question-bank-assets/audio/sentence900/main/446.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/535.mp3"
     },
     {
       "id": "sentence900-main-543",
       "taskTitle": "Sentence543",
       "audioText": "Some of our fuel pumps have low pressure. Request descent.",
       "audioTextZh": "我们一些燃油泵出现低压，请求下降",
-      "audio": "/question-bank-assets/audio/sentence900/main/447.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/543.mp3"
     },
     {
       "id": "sentence900-main-545",
       "taskTitle": "Sentence545",
       "audioText": "We are leaking fuel slowly. Request diversion.",
       "audioTextZh": "我们燃油慢速泄露，请求备降",
-      "audio": "/question-bank-assets/audio/sentence900/main/448.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/545.mp3"
     },
     {
       "id": "sentence900-main-558",
       "taskTitle": "Sentence558",
       "audioText": "Request climb for dumping fuel and vectors to the fuel dump zone.",
       "audioTextZh": "请求爬升高度放油，请求雷达引导到放油区",
-      "audio": "/question-bank-assets/audio/sentence900/main/449.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/558.mp3"
     },
     {
       "id": "sentence900-main-562",
       "taskTitle": "Sentence562",
       "audioText": "Our left engine failed due to fuel starvation.",
       "audioTextZh": "我们燃油耗竭，左发失效",
-      "audio": "/question-bank-assets/audio/sentence900/main/450.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/562.mp3"
     },
     {
       "id": "sentence900-main-564",
       "taskTitle": "Sentence564",
       "audioText": "We suspect there is contamination in our fuel tanks.",
       "audioTextZh": "我们怀疑燃油油箱有污染物",
-      "audio": "/question-bank-assets/audio/sentence900/main/451.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/564.mp3"
     },
     {
       "id": "sentence900-main-565",
       "taskTitle": "Sentence565",
       "audioText": "One of our hydraulic systems has exceeded temperature limits.",
       "audioTextZh": "一个液压系统超温",
-      "audio": "/question-bank-assets/audio/sentence900/main/452.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/565.mp3"
     },
     {
       "id": "sentence900-main-566",
       "taskTitle": "Sentence566",
       "audioText": "We have shut down one of the hydraulic systems.",
       "audioTextZh": "我们已经关掉了其中一个液压系统",
-      "audio": "/question-bank-assets/audio/sentence900/main/453.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/566.mp3"
     },
     {
       "id": "sentence900-main-567",
       "taskTitle": "Sentence567",
       "audioText": "The backup hydraulic system is operational but we still want to divert.",
       "audioTextZh": "备用液压系统在工作，但我们仍想备降",
-      "audio": "/question-bank-assets/audio/sentence900/main/454.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/567.mp3"
     },
     {
       "id": "sentence900-main-570",
       "taskTitle": "Sentence570",
       "audioText": "Two of our hydraulic systems have failed. Request immediate diversion.",
       "audioTextZh": "两个液压系统失效，请示立即备降",
-      "audio": "/question-bank-assets/audio/sentence900/main/455.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/570.mp3"
     },
     {
       "id": "sentence900-main-581",
       "taskTitle": "Sentence581",
       "audioText": "I had to abort takeoff because I didn’t receive any airspeed indication.",
       "audioTextZh": "因为我没有看到任何空速指示，我不得不中断起飞",
-      "audio": "/question-bank-assets/audio/sentence900/main/456.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/581.mp3"
     },
     {
       "id": "sentence900-main-587",
       "taskTitle": "Sentence587",
       "audioText": "We made the go around due to navigation accuracy downgrade.",
       "audioTextZh": "因为导航精度降级，我们复飞了",
-      "audio": "/question-bank-assets/audio/sentence900/main/457.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/587.mp3"
     },
     {
       "id": "sentence900-main-588",
       "taskTitle": "Sentence588",
       "audioText": "We made the go around due to FMS position error.",
       "audioTextZh": "因为飞行管理系统位置误差，我们复飞了",
-      "audio": "/question-bank-assets/audio/sentence900/main/458.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/588.mp3"
     },
     {
       "id": "sentence900-main-590",
       "taskTitle": "Sentence590",
       "audioText": "We made the go around due to GPS error.",
       "audioTextZh": "因为GPS误差，我们复飞了",
-      "audio": "/question-bank-assets/audio/sentence900/main/459.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/590.mp3"
     },
     {
       "id": "sentence900-main-591",
       "taskTitle": "Sentence591",
       "audioText": "We made the go around due to lateral deviation exceedance.",
       "audioTextZh": "因为横向偏离超限，我们复飞了",
-      "audio": "/question-bank-assets/audio/sentence900/main/460.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/591.mp3"
     },
     {
       "id": "sentence900-main-592",
       "taskTitle": "Sentence592",
       "audioText": "We made the go around due to CDU failure.",
       "audioTextZh": "因为CDU失效，我们复飞了",
-      "audio": "/question-bank-assets/audio/sentence900/main/461.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/592.mp3"
     },
     {
       "id": "sentence900-main-593",
       "taskTitle": "Sentence593",
       "audioText": "We made the go around because we exceeded the vertical deviation limit.",
       "audioTextZh": "因为我们超出了纵向偏离限制，我们复飞了",
-      "audio": "/question-bank-assets/audio/sentence900/main/462.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/593.mp3"
     },
     {
       "id": "sentence900-main-594",
       "taskTitle": "Sentence594",
       "audioText": "We no longer have altitude warning. Request leaving RVSM airspace.",
       "audioTextZh": "我们不再有高度警告，请求离开RVSM空域",
-      "audio": "/question-bank-assets/audio/sentence900/main/463.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/594.mp3"
     },
     {
       "id": "sentence900-main-596",
       "taskTitle": "Sentence596",
       "audioText": "Our landing capability has degraded. Request terminate our approach.",
       "audioTextZh": "着陆性能下降，请求终止近进",
-      "audio": "/question-bank-assets/audio/sentence900/main/464.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/596.mp3"
     },
     {
       "id": "sentence900-main-598",
       "taskTitle": "Sentence598",
       "audioText": "We performed the go-around because we had a ground proximity warning.",
       "audioTextZh": "因为我们收到近地警告，我们复飞了",
-      "audio": "/question-bank-assets/audio/sentence900/main/465.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/598.mp3"
     },
     {
       "id": "sentence900-main-602",
       "taskTitle": "Sentence602",
       "audioText": "Unable, TCAS RA.",
       "audioTextZh": "不能，TCAS RA",
-      "audio": "/question-bank-assets/audio/sentence900/main/466.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/602.mp3"
     },
     {
       "id": "sentence900-main-603",
       "taskTitle": "Sentence603",
       "audioText": "We are clear of conflict. Request further instructions.",
       "audioTextZh": "我们解除冲突了，请求进一步指令",
-      "audio": "/question-bank-assets/audio/sentence900/main/467.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/603.mp3"
     },
     {
       "id": "sentence900-main-606",
       "taskTitle": "Sentence606",
       "audioText": "Our engine parameters are unstable. Request stop climb at FL220.",
       "audioTextZh": "我们发动机参数不稳定，请求在高度层220时停止爬升",
-      "audio": "/question-bank-assets/audio/sentence900/main/468.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/606.mp3"
     },
     {
       "id": "sentence900-main-610",
       "taskTitle": "Sentence610",
       "audioText": "We are reading high engine vibration. Request to delay takeoff.",
       "audioTextZh": "发动机读数（显示）剧烈抖振，请求推迟起飞",
-      "audio": "/question-bank-assets/audio/sentence900/main/469.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/610.mp3"
     },
     {
       "id": "sentence900-main-611",
       "taskTitle": "Sentence611",
       "audioText": "Cabin altitude is increasing abnormally. Request to level off.",
       "audioTextZh": "客舱高度异常增加，请求改平飞",
-      "audio": "/question-bank-assets/audio/sentence900/main/470.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/611.mp3"
     },
     {
       "id": "sentence900-main-612",
       "taskTitle": "Sentence612",
       "audioText": "Our instruments indicate excessive high cabin altitude.",
       "audioTextZh": "我们仪表显示客舱高度过高",
-      "audio": "/question-bank-assets/audio/sentence900/main/471.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/612.mp3"
     },
     {
       "id": "sentence900-main-613",
       "taskTitle": "Sentence613",
       "audioText": "Our instrument indicates abnormal cabin pressure differential.",
       "audioTextZh": "我们仪表显示不正常的客舱压差",
-      "audio": "/question-bank-assets/audio/sentence900/main/472.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/613.mp3"
     },
     {
       "id": "sentence900-main-615",
       "taskTitle": "Sentence615",
       "audioText": "Cockpit oxygen cylinder pressure is low. Request to return for landing.",
       "audioTextZh": "驾驶舱氧气瓶压力低，请求返场着陆",
-      "audio": "/question-bank-assets/audio/sentence900/main/473.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/615.mp3"
     },
     {
       "id": "sentence900-main-623",
       "taskTitle": "Sentence623",
       "audioText": "We cannot extend the left landing gear. Request foaming the runway.",
       "audioTextZh": "我们不能放出左起落架，请求在跑道上喷洒泡沫",
-      "audio": "/question-bank-assets/audio/sentence900/main/474.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/623.mp3"
     },
     {
       "id": "sentence900-main-624",
       "taskTitle": "Sentence624",
       "audioText": "Request diversion to a nearby airport with foaming capability.",
       "audioTextZh": "请求备降到附近一个能够喷洒泡沫的机场",
-      "audio": "/question-bank-assets/audio/sentence900/main/475.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/624.mp3"
     },
     {
       "id": "sentence900-main-627",
       "taskTitle": "Sentence627",
       "audioText": "I think we blew a nose wheel tyre. Request holding position.",
       "audioTextZh": "我想我们前轮爆胎了，请求原地等待",
-      "audio": "/question-bank-assets/audio/sentence900/main/476.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/627.mp3"
     },
     {
       "id": "sentence900-main-628",
       "taskTitle": "Sentence628",
       "audioText": "We no longer have airspeed and altitude on our primary displays.",
       "audioTextZh": "我们主显示器不再有空速和高度显示",
-      "audio": "/question-bank-assets/audio/sentence900/main/477.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/628.mp3"
     },
     {
       "id": "sentence900-main-629",
       "taskTitle": "Sentence629",
       "audioText": "We have errors with our navigation. Request radar monitoring.",
       "audioTextZh": "我们的导航有误差。请求雷达监控。",
-      "audio": "/question-bank-assets/audio/sentence900/main/478.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/629.mp3"
     },
     {
       "id": "sentence900-main-631",
       "taskTitle": "Sentence631",
       "audioText": "We made the go around because the GPWS warning was triggered.",
       "audioTextZh": "因为近地警告被触发，我们复飞了",
-      "audio": "/question-bank-assets/audio/sentence900/main/479.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/631.mp3"
     },
     {
       "id": "sentence900-main-633",
       "taskTitle": "Sentence633",
       "audioText": "Our ADS-B transmitter appears to be malfunctioning. Terminating further ADS-B transmissions.",
       "audioTextZh": "我们 ADS-B 似乎有故障，中止继续 ADS-B 传送",
-      "audio": "/question-bank-assets/audio/sentence900/main/480.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/633.mp3"
     },
     {
       "id": "sentence900-main-634",
       "taskTitle": "Sentence634",
       "audioText": "ADS-B equipment degradation, will advise when able to resume operations.",
       "audioTextZh": "ADS-B 性能下降，能恢复运转时告知你",
-      "audio": "/question-bank-assets/audio/sentence900/main/481.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/634.mp3"
     },
     {
       "id": "sentence900-main-635",
       "taskTitle": "Sentence635",
       "audioText": "GPS unreliable, terminating ADS-B transmissions.",
       "audioTextZh": "GPS 不可靠，中止 ADS-B 传送",
-      "audio": "/question-bank-assets/audio/sentence900/main/482.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/635.mp3"
     },
     {
       "id": "sentence900-main-636",
       "taskTitle": "Sentence636",
       "audioText": "Our ADS-B has malfunctioned. Is there any weather advisory at our destination?",
       "audioTextZh": "我们ADS-B发报机已故障，有目的地机场的气象报吗？",
-      "audio": "/question-bank-assets/audio/sentence900/main/483.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/636.mp3"
     },
     {
       "id": "sentence900-main-637",
       "taskTitle": "Sentence637",
       "audioText": "We made an overshoot because our ADS-B indicated a possible runway incursion.",
       "audioTextZh": "我们 ADS-B 显示可能有跑道入侵，我们复飞了",
-      "audio": "/question-bank-assets/audio/sentence900/main/484.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/637.mp3"
     },
     {
       "id": "sentence900-main-640",
       "taskTitle": "Sentence640",
       "audioText": "Our airspeed is unreliable. Request radar vectors for long final.",
       "audioTextZh": "我们空速不可靠，请求雷达引导到长五边",
-      "audio": "/question-bank-assets/audio/sentence900/main/485.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/640.mp3"
     },
     {
       "id": "sentence900-main-641",
       "taskTitle": "Sentence641",
       "audioText": "We made the go-around because the radio altimeter triggered flare mode.",
       "audioTextZh": "因为无线电高度表触发了拉平模式，我们复飞了",
-      "audio": "/question-bank-assets/audio/sentence900/main/486.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/641.mp3"
     },
     {
       "id": "sentence900-main-652",
       "taskTitle": "Sentence652",
       "audioText": "Many passengers have suffered from smoke inhalation. Request medical services.",
       "audioTextZh": "许多乘客已经吸入了烟雾，请求医疗服务",
-      "audio": "/question-bank-assets/audio/sentence900/main/487.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/652.mp3"
     },
     {
       "id": "sentence900-main-657",
       "taskTitle": "Sentence657",
       "audioText": "We are expediting descent to enable a windmill startup. Request further descent.",
       "audioTextZh": "为了能够风转启动发动机，我们正在加速下降，请求进一步下降",
-      "audio": "/question-bank-assets/audio/sentence900/main/488.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/657.mp3"
     },
     {
       "id": "sentence900-main-662",
       "taskTitle": "Sentence662",
       "audioText": "CPDLC has malfunctioned. We are reverting to voice communication.",
       "audioTextZh": "CPDLC 发生故障，我们正在转换到语音通讯",
-      "audio": "/question-bank-assets/audio/sentence900/main/489.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/662.mp3"
     },
     {
       "id": "sentence900-main-664",
       "taskTitle": "Sentence664",
       "audioText": "CPDLC terminated due to failure, reverting to voice communication.",
       "audioTextZh": "由于故障，终止CPDLC，恢复语音通信",
-      "audio": "/question-bank-assets/audio/sentence900/main/490.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/664.mp3"
     },
     {
       "id": "sentence900-main-667",
       "taskTitle": "Sentence667",
       "audioText": "We are at bay15. We have an APU fire. Request fire services.",
       "audioTextZh": "我们在停机位 15，有 APU 火警，请求消防服务",
-      "audio": "/question-bank-assets/audio/sentence900/main/491.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/667.mp3"
     },
     {
       "id": "sentence900-main-677",
       "taskTitle": "Sentence677",
       "audioText": "The windshield is cracked on the outside. Request descent.",
       "audioTextZh": "风挡外层裂了，请求下降",
-      "audio": "/question-bank-assets/audio/sentence900/main/492.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/677.mp3"
     },
     {
       "id": "sentence900-main-683",
       "taskTitle": "Sentence683",
       "audioText": "We aborted takeoff due loss of engine oil pressure.",
       "audioTextZh": "由于发动机失去了滑油压力，我们中断起飞了",
-      "audio": "/question-bank-assets/audio/sentence900/main/493.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/683.mp3"
     },
     {
       "id": "sentence900-main-684",
       "taskTitle": "Sentence684",
       "audioText": "We have an engine oil leak. Request diversion.",
       "audioTextZh": "我们发动机滑油泄露，请求备降",
-      "audio": "/question-bank-assets/audio/sentence900/main/494.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/684.mp3"
     },
     {
       "id": "sentence900-main-686",
       "taskTitle": "Sentence686",
       "audioText": "Engine Number One has a temperature problem. Request holding to perform checklist.",
       "audioTextZh": "一发温度有问题，请求等待完成检查单",
-      "audio": "/question-bank-assets/audio/sentence900/main/495.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/686.mp3"
     },
     {
       "id": "sentence900-main-698",
       "taskTitle": "Sentence698",
       "audioText": "We heard an explosion from the cabin. Request to stop climb.",
       "audioTextZh": "客舱传来爆炸声，请求停止爬升",
-      "audio": "/question-bank-assets/audio/sentence900/main/496.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/698.mp3"
     },
     {
       "id": "sentence900-main-702",
       "taskTitle": "Sentence702",
       "audioText": "We are encountering moderate icing. Request immediate descent.",
       "audioTextZh": "我们遭遇中度结冰，请求马上下降",
-      "audio": "/question-bank-assets/audio/sentence900/main/497.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/702.mp3"
     },
     {
       "id": "sentence900-main-704",
       "taskTitle": "Sentence704",
       "audioText": "We are on emergency descent due severe icing.",
       "audioTextZh": "由于严重结冰，我们正在紧急下降",
-      "audio": "/question-bank-assets/audio/sentence900/main/498.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/704.mp3"
     },
     {
       "id": "sentence900-main-706",
       "taskTitle": "Sentence706",
       "audioText": "Rime ice was reported by previous aircraft during approach.",
       "audioTextZh": "前机报告，在近进时遇到毛冰",
-      "audio": "/question-bank-assets/audio/sentence900/main/499.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/706.mp3"
     },
     {
       "id": "sentence900-main-709",
       "taskTitle": "Sentence709",
       "audioText": "We have a “Wind-shear Ahead” warning. Request to delay our approach.",
       "audioTextZh": "我们出现了“前方风切变”警告，请求推迟近进",
-      "audio": "/question-bank-assets/audio/sentence900/main/500.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/709.mp3"
     },
     {
       "id": "sentence900-main-710",
       "taskTitle": "Sentence710",
       "audioText": "We made the go around due to wind-shear warning.",
       "audioTextZh": "风切变警告，我们复飞了",
-      "audio": "/question-bank-assets/audio/sentence900/main/501.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/710.mp3"
     },
     {
       "id": "sentence900-main-719",
       "taskTitle": "Sentence719",
       "audioText": "We won’t have to deviate if you allow us to climb to FL430.",
       "audioTextZh": "如果允许我们爬升到高度层430，就不必偏航。",
-      "audio": "/question-bank-assets/audio/sentence900/main/502.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/719.mp3"
     },
     {
       "id": "sentence900-main-721",
       "taskTitle": "Sentence721",
       "audioText": "We have encountered severe clear air turbulence. Request immediate descent.",
       "audioTextZh": "我们遭遇严重晴空颠簸。请求立即下降。",
-      "audio": "/question-bank-assets/audio/sentence900/main/503.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/721.mp3"
     },
     {
       "id": "sentence900-main-722",
       "taskTitle": "Sentence722",
       "audioText": "Request a general heading of 050 due to multiple cells ahead.",
       "audioTextZh": "由于前方有多个雷暴单体，请求大致航向050",
-      "audio": "/question-bank-assets/audio/sentence900/main/504.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/722.mp3"
     },
     {
       "id": "sentence900-main-738",
       "taskTitle": "Sentence738",
       "audioText": "Roger heavy rain. Request to terminate our approach.",
       "audioTextZh": "明白，大雨。请求终止我们的近进",
-      "audio": "/question-bank-assets/audio/sentence900/main/505.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/738.mp3"
     },
     {
       "id": "sentence900-main-753",
       "taskTitle": "Sentence753",
       "audioText": "Request immediate one eighty turn to the right due volcanic ash.",
       "audioTextZh": "由于火山灰，请求立即 180 度右转",
-      "audio": "/question-bank-assets/audio/sentence900/main/506.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/753.mp3"
     },
     {
       "id": "sentence900-main-757",
       "taskTitle": "Sentence757",
       "audioText": "There are red lights ahead of us. Confirm taxi instructions.",
       "audioTextZh": "前方有红灯，证实滑行指令",
-      "audio": "/question-bank-assets/audio/sentence900/main/507.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/757.mp3"
     },
     {
       "id": "sentence900-main-758",
       "taskTitle": "Sentence758",
       "audioText": "There is an obstruction ahead. Confirm taxi instructions.",
       "audioTextZh": "前方有障碍物，证实滑行指令",
-      "audio": "/question-bank-assets/audio/sentence900/main/508.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/758.mp3"
     },
     {
       "id": "sentence900-main-774",
       "taskTitle": "Sentence774",
       "audioText": "We have a suspicious bag on board. Request bomb squad.",
       "audioTextZh": "机上有可疑箱包，请求拆弹小组",
-      "audio": "/question-bank-assets/audio/sentence900/main/509.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/774.mp3"
     },
     {
       "id": "sentence900-main-775",
       "taskTitle": "Sentence775",
       "audioText": "The passengers are evacuating. The bomb is still on board.",
       "audioTextZh": "乘客正在撤离，炸弹还在飞机上",
-      "audio": "/question-bank-assets/audio/sentence900/main/510.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/775.mp3"
     },
     {
       "id": "sentence900-main-777",
       "taskTitle": "Sentence777",
       "audioText": "Request a remote apron for parking our aircraft due bomb on board.",
       "audioTextZh": "机上有炸弹，请求远机坪停机位",
-      "audio": "/question-bank-assets/audio/sentence900/main/511.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/777.mp3"
     },
     {
       "id": "sentence900-main-783",
       "taskTitle": "Sentence783",
       "audioText": "Request a large airspace to maneuver due flight control problems.",
       "audioTextZh": "由于飞行控制问题，请求大空域机动",
-      "audio": "/question-bank-assets/audio/sentence900/main/512.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/783.mp3"
     },
     {
       "id": "sentence900-main-788",
       "taskTitle": "Sentence788",
       "audioText": "Unable visual approach due company policy. Request radar vectors.",
       "audioTextZh": "由于公司政策，不能目视近进，请求雷达引导",
-      "audio": "/question-bank-assets/audio/sentence900/main/513.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/788.mp3"
     },
     {
       "id": "sentence900-main-789",
       "taskTitle": "Sentence789",
       "audioText": "Unable circling approach due company policy. Request diversion.",
       "audioTextZh": "由于公司政策，不能盘旋近进，请求备降",
-      "audio": "/question-bank-assets/audio/sentence900/main/514.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/789.mp3"
     },
     {
       "id": "sentence900-main-790",
       "taskTitle": "Sentence790",
       "audioText": "Are we being vectored too close to the parallel aircraft?",
       "audioTextZh": "我们是否被引导太靠近平行飞机了？",
-      "audio": "/question-bank-assets/audio/sentence900/main/515.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/790.mp3"
     },
     {
       "id": "sentence900-main-791",
       "taskTitle": "Sentence791",
       "audioText": "Is the preceding aircraft crossing our altitude?",
       "audioTextZh": "前机是否正在穿越我们的高度？",
-      "audio": "/question-bank-assets/audio/sentence900/main/516.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/791.mp3"
     },
     {
       "id": "sentence900-main-793",
       "taskTitle": "Sentence793",
       "audioText": "I see wildfire at my 10 o’clock, about 8 miles.",
       "audioTextZh": "我在10点钟方向、大约8海里处看到了野火",
-      "audio": "/question-bank-assets/audio/sentence900/main/517.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/793.mp3"
     },
     {
       "id": "sentence900-main-797",
       "taskTitle": "Sentence797",
       "audioText": "Request offset 10 miles left to avoid the reported strong downdraft.",
       "audioTextZh": "请求左偏10海里，避开报告的强下降气流",
-      "audio": "/question-bank-assets/audio/sentence900/main/518.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/797.mp3"
     },
     {
       "id": "sentence900-main-800",
       "taskTitle": "Sentence800",
       "audioText": "Request immediate one-eighty turn to the right due to possible hail ahead.",
       "audioTextZh": "前方可能有冰雹，请求立即向右做180度转弯。",
-      "audio": "/question-bank-assets/audio/sentence900/main/519.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/800.mp3"
     },
     {
       "id": "sentence900-main-824",
       "taskTitle": "Sentence824",
       "audioText": "Some of the hijackers are carrying sharp protruding weapons.",
       "audioTextZh": "几个劫机犯拿着锋利、尖锐武器",
-      "audio": "/question-bank-assets/audio/sentence900/main/520.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/824.mp3"
     },
     {
       "id": "sentence900-main-826",
       "taskTitle": "Sentence826",
       "audioText": "Terrorists started to injure passengers.",
       "audioTextZh": "恐怖分子开始伤害乘客",
-      "audio": "/question-bank-assets/audio/sentence900/main/521.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/826.mp3"
     },
     {
       "id": "sentence900-main-828",
       "taskTitle": "Sentence828",
       "audioText": "Terrorists are threatening to start killing passengers and the crew.",
       "audioTextZh": "恐怖分子威胁要杀死乘客和机组",
-      "audio": "/question-bank-assets/audio/sentence900/main/522.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/828.mp3"
     },
     {
       "id": "sentence900-main-830",
       "taskTitle": "Sentence830",
       "audioText": "A suspicious suitcase was found during the cabin inspection.",
       "audioTextZh": "客舱检查中发现了一个可疑箱包",
-      "audio": "/question-bank-assets/audio/sentence900/main/523.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/830.mp3"
     },
     {
       "id": "sentence900-main-831",
       "taskTitle": "Sentence831",
       "audioText": "The air marshal is searching the aircraft interior for any suspicious articles.",
       "audioTextZh": "安全员正在搜查飞机里的任何可疑物品",
-      "audio": "/question-bank-assets/audio/sentence900/main/524.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/831.mp3"
     },
     {
       "id": "sentence900-main-833",
       "taskTitle": "Sentence833",
       "audioText": "What do the bomb-disposal experts suggest we do?",
       "audioTextZh": "拆弹专家建议我们做什么？",
-      "audio": "/question-bank-assets/audio/sentence900/main/525.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/833.mp3"
     },
     {
       "id": "sentence900-main-834",
       "taskTitle": "Sentence834",
       "audioText": "The cabin crew reports a passenger is behaving strangely.",
       "audioTextZh": "客舱人员报告，一名乘客行为怪异",
-      "audio": "/question-bank-assets/audio/sentence900/main/526.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/834.mp3"
     },
     {
       "id": "sentence900-main-840",
       "taskTitle": "Sentence840",
       "audioText": "We have navigation map drift. Request climb to MEA.",
       "audioTextZh": "导航地图漂移。请求爬升到最低航路高度。",
-      "audio": "/question-bank-assets/audio/sentence900/main/527.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/840.mp3"
     },
     {
       "id": "sentence900-main-844",
       "taskTitle": "Sentence844",
       "audioText": "The cabin crew have used up all the portable extinguishers. Request diversion.",
       "audioTextZh": "客舱人员已用完了手提灭火瓶，请求备降",
-      "audio": "/question-bank-assets/audio/sentence900/main/528.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/844.mp3"
     },
     {
       "id": "sentence900-main-846",
       "taskTitle": "Sentence846",
       "audioText": "We almost had a mid-air collision with another aircraft.",
       "audioTextZh": "我们差一点与另一架飞机空中相撞",
-      "audio": "/question-bank-assets/audio/sentence900/main/529.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/846.mp3"
     },
     {
       "id": "sentence900-main-847",
       "taskTitle": "Sentence847",
       "audioText": "The conflicting traffic is military. Request avoiding action.",
       "audioTextZh": "冲突飞机是军用飞机，请求避让措施",
-      "audio": "/question-bank-assets/audio/sentence900/main/530.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/847.mp3"
     },
     {
       "id": "sentence900-main-848",
       "taskTitle": "Sentence848",
       "audioText": "Does the flight path of the unknown aircraft converge with ours?",
       "audioTextZh": "不明飞机的飞行路径和我们的飞行路径汇聚吗？",
-      "audio": "/question-bank-assets/audio/sentence900/main/531.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/848.mp3"
     },
     {
       "id": "sentence900-main-849",
       "taskTitle": "Sentence849",
       "audioText": "The conflicting traffic is gray, possibly a military aircraft.",
       "audioTextZh": "冲突飞机是灰色的，可能是军用飞机",
-      "audio": "/question-bank-assets/audio/sentence900/main/532.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/849.mp3"
     },
     {
       "id": "sentence900-main-850",
       "taskTitle": "Sentence850",
       "audioText": "We have traffic indication at 2 o’clock, 300 feet above our level.",
       "audioTextZh": "我们有冲突飞机显示，2点钟方位，我们当前以上300英尺",
-      "audio": "/question-bank-assets/audio/sentence900/main/533.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/850.mp3"
     },
     {
       "id": "sentence900-main-852",
       "taskTitle": "Sentence852",
       "audioText": "We have a possible traffic conflict ahead. Request radar vectors for avoidance.",
       "audioTextZh": "我们前方可能有冲突飞机，请求雷达引导避让",
-      "audio": "/question-bank-assets/audio/sentence900/main/534.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/852.mp3"
     },
     {
       "id": "sentence900-main-853",
       "taskTitle": "Sentence853",
       "audioText": "Request right turn for traffic avoidance.",
       "audioTextZh": "请求右转避让冲突飞机",
-      "audio": "/question-bank-assets/audio/sentence900/main/535.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/853.mp3"
     },
     {
       "id": "sentence900-main-854",
       "taskTitle": "Sentence854",
       "audioText": "Unable to comply, TCAS RA.",
       "audioTextZh": "不能照办，遵守TCAS RA通告",
-      "audio": "/question-bank-assets/audio/sentence900/main/536.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/854.mp3"
     },
     {
       "id": "sentence900-main-856",
       "taskTitle": "Sentence856",
       "audioText": "Clear of conflict, request further instructions.",
       "audioTextZh": "冲突解除，请求进一步指令",
-      "audio": "/question-bank-assets/audio/sentence900/main/537.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/856.mp3"
     },
     {
       "id": "sentence900-main-857",
       "taskTitle": "Sentence857",
       "audioText": "We have injuries resulting from our TCAS maneuver. Request ambulance on arrival.",
       "audioTextZh": "TCAS机动导致部分乘客受伤，请求救护车到场",
-      "audio": "/question-bank-assets/audio/sentence900/main/538.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/857.mp3"
     },
     {
       "id": "sentence900-main-859",
       "taskTitle": "Sentence859",
       "audioText": "Some passengers were injured because their seatbelts weren’t fastened.",
       "audioTextZh": "一些乘客受伤是因为他们没有系安全带",
-      "audio": "/question-bank-assets/audio/sentence900/main/539.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/859.mp3"
     },
     {
       "id": "sentence900-main-860",
       "taskTitle": "Sentence860",
       "audioText": "Some passengers have been scalded by hot drinks.",
       "audioTextZh": "一些乘客被热饮烫伤了",
-      "audio": "/question-bank-assets/audio/sentence900/main/540.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/860.mp3"
     },
     {
       "id": "sentence900-main-862",
       "taskTitle": "Sentence862",
       "audioText": "We overran the runway end. We are evacuating. Request emergency services.",
       "audioTextZh": "我们冲出了跑道头，正在撤离，请求紧急服务",
-      "audio": "/question-bank-assets/audio/sentence900/main/541.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/862.mp3"
     },
     {
       "id": "sentence900-main-864",
       "taskTitle": "Sentence864",
       "audioText": "We will reach our minimum fuel if we are delayed any further.",
       "audioTextZh": "如果进一步延误，我们将达到最低燃油量",
-      "audio": "/question-bank-assets/audio/sentence900/main/542.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/864.mp3"
     },
     {
       "id": "sentence900-main-867",
       "taskTitle": "Sentence867",
       "audioText": "We are declaring fuel emergency. Request priority landing Runway 03R.",
       "audioTextZh": "我们宣布燃油紧急状况，请求优先着陆跑道03右",
-      "audio": "/question-bank-assets/audio/sentence900/main/543.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/867.mp3"
     },
     {
       "id": "sentence900-main-870",
       "taskTitle": "Sentence870",
       "audioText": "The military aircraft is commanding us to land at the airfield below.",
       "audioTextZh": "军用飞机正在命令我们在下面的机场着陆",
-      "audio": "/question-bank-assets/audio/sentence900/main/544.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/870.mp3"
     },
     {
       "id": "sentence900-main-872",
       "taskTitle": "Sentence872",
       "audioText": "We are being escorted towards the national boundary by two military aircraft.",
       "audioTextZh": "我们正在被两架军用飞机护送到国境线",
-      "audio": "/question-bank-assets/audio/sentence900/main/545.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/872.mp3"
     },
     {
       "id": "sentence900-main-875",
       "taskTitle": "Sentence875",
       "audioText": "A crew member is incapacitated. Request diversion and medical assistance.",
       "audioTextZh": "一名机组成员失能，请求备降和医疗救助",
-      "audio": "/question-bank-assets/audio/sentence900/main/546.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/875.mp3"
     },
     {
       "id": "sentence900-main-878",
       "taskTitle": "Sentence878",
       "audioText": "Confirm we have enough separation from preceding aircraft.",
       "audioTextZh": "证实我们与前机有足够间隔。",
-      "audio": "/question-bank-assets/audio/sentence900/main/547.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/878.mp3"
     },
     {
       "id": "sentence900-main-879",
       "taskTitle": "Sentence879",
       "audioText": "Unable to expedite climb due performance.",
       "audioTextZh": "由于性能，不能快速爬升",
-      "audio": "/question-bank-assets/audio/sentence900/main/548.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/879.mp3"
     },
     {
       "id": "sentence900-main-880",
       "taskTitle": "Sentence880",
       "audioText": "Negative contact due visibility.",
       "audioTextZh": "由于能见度，不能看见（机场或飞机等）",
-      "audio": "/question-bank-assets/audio/sentence900/main/549.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/880.mp3"
     },
     {
       "id": "sentence900-main-881",
       "taskTitle": "Sentence881",
       "audioText": "Unable, we are in IMC.",
       "audioTextZh": "不能，我们处于仪表天气条件",
-      "audio": "/question-bank-assets/audio/sentence900/main/550.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/881.mp3"
     },
     {
       "id": "sentence900-main-882",
       "taskTitle": "Sentence882",
       "audioText": "Unable, we are only authorized during daytime VMC.",
       "audioTextZh": "不能，我们只有白天目视气象条件的资格",
-      "audio": "/question-bank-assets/audio/sentence900/main/551.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/882.mp3"
     },
     {
       "id": "sentence900-main-883",
       "taskTitle": "Sentence883",
       "audioText": "Unable noise abatement due company policy.",
       "audioTextZh": "由于公司政策，不能执行减噪程序",
-      "audio": "/question-bank-assets/audio/sentence900/main/552.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/883.mp3"
     },
     {
       "id": "sentence900-main-884",
       "taskTitle": "Sentence884",
       "audioText": "Did the previous controller tell you about our problem during radar handoff?",
       "audioTextZh": "雷达移交时，前一位管制员是否告诉你我们的故障？",
-      "audio": "/question-bank-assets/audio/sentence900/main/553.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/884.mp3"
     },
     {
       "id": "sentence900-main-885",
       "taskTitle": "Sentence885",
       "audioText": "Is there a frequency change at this compulsory reporting point?",
       "audioTextZh": "在此强制报告点有频率变换吗？",
-      "audio": "/question-bank-assets/audio/sentence900/main/554.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/885.mp3"
     },
     {
       "id": "sentence900-main-888",
       "taskTitle": "Sentence888",
       "audioText": "Request runway change for departure due high crosswind.",
       "audioTextZh": "由于大侧风，请求更换跑道离场",
-      "audio": "/question-bank-assets/audio/sentence900/main/555.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/888.mp3"
     },
     {
       "id": "sentence900-main-889",
       "taskTitle": "Sentence889",
       "audioText": "Request delay the approach due tail wind beyond limits.",
       "audioTextZh": "由于顺风超限，请求推迟近进",
-      "audio": "/question-bank-assets/audio/sentence900/main/556.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/889.mp3"
     },
     {
       "id": "sentence900-main-890",
       "taskTitle": "Sentence890",
       "audioText": "Request holding instructions due weather near the runway threshold.",
       "audioTextZh": "由于跑道入口附近有（雷暴）天气，请求等待指令",
-      "audio": "/question-bank-assets/audio/sentence900/main/557.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/890.mp3"
     },
     {
       "id": "sentence900-main-893",
       "taskTitle": "Sentence893",
       "audioText": "We had to overshoot because of wake turbulence.",
       "audioTextZh": "因为尾流，我们不得不复飞",
-      "audio": "/question-bank-assets/audio/sentence900/main/558.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/893.mp3"
     },
     {
       "id": "sentence900-main-895",
       "taskTitle": "Sentence895",
       "audioText": "Unable CAT II approach due crew qualification.",
       "audioTextZh": "由于机组资质，不能II类ILS近进",
-      "audio": "/question-bank-assets/audio/sentence900/main/559.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/895.mp3"
     },
     {
       "id": "sentence900-main-896",
       "taskTitle": "Sentence896",
       "audioText": "Transmission blocked, say again.",
       "audioTextZh": "发送信息受到干扰了，再说一遍",
-      "audio": "/question-bank-assets/audio/sentence900/main/560.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/896.mp3"
     },
     {
       "id": "sentence900-main-897",
       "taskTitle": "Sentence897",
       "audioText": "Standby, high pilot workload.",
       "audioTextZh": "稍等，飞行员工作负荷大",
-      "audio": "/question-bank-assets/audio/sentence900/main/561.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/897.mp3"
     },
     {
       "id": "sentence900-main-900",
       "taskTitle": "Sentence900",
       "audioText": "We had to go around due to unstable approach.",
       "audioTextZh": "因为不稳定近进，我们不得不复飞",
-      "audio": "/question-bank-assets/audio/sentence900/main/562.mp3"
+      "audio": "/question-bank-assets/audio/sentence900/main/900.mp3"
     }
   ]
 }

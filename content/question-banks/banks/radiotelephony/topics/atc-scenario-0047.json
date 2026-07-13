@@ -11,7 +11,7 @@
       "audioTextZh": "B: 你的呼号是 Air Canada 331，从 Wuhan 到 Vancouver，推出和开车已完成，准备滑行，联系武汉地面请求滑行指令。",
       "referenceText": "Wuhan Ground, ACA331, request taxi.",
       "referenceTextZh": "武汉地面，ACA331，请求滑行。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/813.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/798.mp3"
     },
     {
       "id": "atc-scenario-0047-card-main-799",
@@ -20,7 +20,7 @@
       "audioTextZh": "C: Air Canada 331，经滑行道 Alpha 7、Alpha、Zulu 4 和 Charlie 滑行至跑道 18R 等待点。",
       "referenceText": "Taxi to holding point runway 18R via taxiway A7, A, Z4 and C, ACA331.",
       "referenceTextZh": "经滑行道 A7、A、Z4 和 C 滑行至跑道 18R 等待点，ACA331。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/814.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/799.mp3"
     },
     {
       "id": "atc-scenario-0047-card-main-800",
@@ -29,7 +29,7 @@
       "audioTextZh": "C: Air Canada 331，跟随 Mike 上的 Airbus 319 到跑道 18R 等待点。",
       "referenceText": "Follow A319 on M to holding point runway 18R, ACA331.",
       "referenceTextZh": "跟随 M 上的 A319 到跑道 18R 等待点，ACA331。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/815.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/800.mp3"
     },
     {
       "id": "atc-scenario-0047-card-main-801",
@@ -38,7 +38,7 @@
       "audioTextZh": "C: Air Canada 331，跑道 18R 因跑道上有故障航空器关闭，将你的 ATC 许可改为跑道 18L，Zulu Foxtrot 12 离场，其余不变。",
       "referenceText": "Roger, runway 18L, ZF12 departure, the rest unchanged, ACA331.",
       "referenceTextZh": "收到，跑道 18L，ZF12 离场，其余不变，ACA331。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/816.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/801.mp3"
     },
     {
       "id": "atc-scenario-0047-card-main-802",
@@ -47,7 +47,7 @@
       "audioTextZh": "C: Air Canada 331，从 Charlie 3 进入跑道 18R，经 Charlie 4 脱离跑道，报告脱离。",
       "referenceText": "Enter runway 18R from C3, vacate runway via C4, report vacated, ACA331.",
       "referenceTextZh": "从 C3 进入跑道 18R，经 C4 脱离跑道，报告脱离，ACA331。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/817.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/802.mp3"
     },
     {
       "id": "atc-scenario-0047-card-main-803",
@@ -56,7 +56,7 @@
       "audioTextZh": "B: 现在你已通过 Charlie 4 脱离跑道 18R，联系武汉地面。",
       "referenceText": "Wuhan Ground, ACA331, runway 18R vacated via C4.",
       "referenceTextZh": "武汉地面，ACA331，已通过 C4 脱离跑道 18R。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/818.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/803.mp3"
     },
     {
       "id": "atc-scenario-0047-card-main-804",
@@ -65,7 +65,7 @@
       "audioTextZh": "C: Air Canada 331，继续经滑行道 Mike、Alpha 和 Alpha 1 滑行至 18L 等待点。",
       "referenceText": "Continue taxi to holding point 18L via taxiway M, A and A1, ACA331.",
       "referenceTextZh": "继续经滑行道 M、A 和 A1 滑行至 18L 等待点，ACA331。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/819.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/804.mp3"
     },
     {
       "id": "atc-scenario-0047-card-main-805",
@@ -74,7 +74,7 @@
       "audioTextZh": "B: 现在你已离地，爬升到 1800 米，看到一架直升机在 10 点钟方向上方，正接近你的飞机，通知 Wuhan Departure 并请求右转避让该交通。",
       "referenceText": "Wuhan Departure, ACA331, airborne, climbing to 1800 meters, we see a helicopter 10 o'clock above, closing, request right turn to avoid it.",
       "referenceTextZh": "Wuhan Departure，ACA331，已离地，爬升到 1800 米，我们看到一架直升机在 10 点钟方向上方，正在接近，请求右转避让。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/820.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/805.mp3"
     },
     {
       "id": "atc-scenario-0047-card-main-806",
@@ -83,7 +83,7 @@
       "audioTextZh": "C: Air Canada 331，右转航向 240，加快爬升到 2400 米，与直升机保持目视间隔。",
       "referenceText": "Turn right heading 240, expedite climb to 2400 meters, maintain visual separation with the helicopter, ACA331.",
       "referenceTextZh": "右转航向 240，加快爬升到 2400 米，与直升机保持目视间隔，ACA331。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/821.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/806.mp3"
     },
     {
       "id": "atc-scenario-0047-card-main-807",
@@ -92,7 +92,7 @@
       "audioTextZh": "C: Air Canada 331，交通解除后，直飞 Zulu Foxtrot，恢复自主导航，爬升并保持 5100 米。",
       "referenceText": "After traffic is clear, track direct to ZF, resume own navigation, climb and maintain 5100 meters, ACA331.",
       "referenceTextZh": "交通解除后，直飞 ZF，恢复自主导航，爬升并保持 5100 米，ACA331。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/822.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/807.mp3"
     },
     {
       "id": "atc-scenario-0047-card-main-808",
@@ -101,7 +101,7 @@
       "audioTextZh": "B: 现在你保持 9500 米，过 OBLIK，应答机 5655，联系郑州管制。",
       "referenceText": "Zhengzhou Control, ACA331, maintaining 9500 meters, over OBLIK, squawking 5655.",
       "referenceTextZh": "郑州管制，ACA331，保持 9500 米，过 OBLIK，应答机 5655。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/823.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/808.mp3"
     },
     {
       "id": "atc-scenario-0047-card-main-809",
@@ -110,7 +110,7 @@
       "audioTextZh": "C: Air Canada 331，郑州管制，雷达识别，爬升并保持 10100 米。",
       "referenceText": "Climb and maintain 10100 meters, ACA331.",
       "referenceTextZh": "爬升并保持 10100 米，ACA331。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/824.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/809.mp3"
     },
     {
       "id": "atc-scenario-0047-card-main-810",
@@ -119,7 +119,7 @@
       "audioTextZh": "B: 突然，客舱乘务员报告后客舱有有毒烟雾，你决定为排烟加快下降，向郑州管制发出遇险呼叫并请求在 3000 米改平。",
       "referenceText": "MAYDAY MAYDAY MAYDAY, Zhengzhou Control, ACA331, the cabin crew report there are toxic fumes in rear cabin, request expedite descent to 3000 meters for smoke removal.",
       "referenceTextZh": "MAYDAY MAYDAY MAYDAY，郑州管制，ACA331，客舱乘务员报告后客舱有有毒烟雾，请求加快下降到 3000 米以排烟。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/825.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/810.mp3"
     },
     {
       "id": "atc-scenario-0047-card-main-811",
@@ -128,7 +128,7 @@
       "audioTextZh": "C: Air Canada 331，收到 MAYDAY，右转航向 030，按 QNH 1008 下降到 3000 米，可以时报告意图。",
       "referenceText": "Turn right heading 030, descend to 3000 meters on QNH 1008, ACA331.",
       "referenceTextZh": "右转航向 030，按 QNH 1008 下降到 3000 米，ACA331。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/826.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/811.mp3"
     },
     {
       "id": "atc-scenario-0047-card-main-812",
@@ -137,7 +137,7 @@
       "audioTextZh": "B: 客舱检查后，告诉 郑州管制，有毒烟雾可能由货舱危险品泄漏引起。",
       "referenceText": "Zhengzhou Control, ACA331, the toxic fume might be caused by dangerous goods leaking in the cargo hold.",
       "referenceTextZh": "郑州管制，ACA331，有毒烟雾可能由货舱危险品泄漏引起。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/827.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/812.mp3"
     },
     {
       "id": "atc-scenario-0047-card-main-813",
@@ -146,7 +146,7 @@
       "audioTextZh": "B: 数名旅客受到有毒烟雾严重影响并失去意识，向郑州管制说明情况并请求改航 Zhengzhou。",
       "referenceText": "Zhengzhou Control, ACA331, several passengers have been seriously affected by the toxic fume and become unconscious, request divert to Zhengzhou.",
       "referenceTextZh": "郑州管制，ACA331，数名旅客受到有毒烟雾严重影响并失去意识，请求改航 Zhengzhou。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/828.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/813.mp3"
     },
     {
       "id": "atc-scenario-0047-card-main-814",
@@ -155,7 +155,7 @@
       "audioTextZh": "C: Air Canada 331，郑州管制，收到，左转航向 360，联系郑州进近120.35。",
       "referenceText": "Turn left heading 360, 120.35, ACA331.",
       "referenceTextZh": "左转航向 360，120.35，ACA331。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/829.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/814.mp3"
     },
     {
       "id": "atc-scenario-0047-card-main-815",
@@ -164,7 +164,7 @@
       "audioTextZh": "C: Air Canada 331，郑州进近，雷达识别，直飞 Charlie Golf Oscar，下降到 3000 米，预计雷达引导 ILS 跑道 12。",
       "referenceText": "Track direct to CGO, descend to 3000 meters, expect radar vector ILS runway 12, ACA331.",
       "referenceTextZh": "直飞 CGO，下降到 3000 米，预计雷达引导 ILS 跑道 12，ACA331。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/830.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/815.mp3"
     },
     {
       "id": "atc-scenario-0047-card-main-816",
@@ -173,7 +173,7 @@
       "audioTextZh": "C: Air Canada 331，你需要什么援助？\nB: 告诉 郑州进近 你需要救护车和危险品专家。",
       "referenceText": "Request an ambulance and dangerous goods specialists, ACA331.",
       "referenceTextZh": "请求救护车和危险品专家，ACA331。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/831.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/816.mp3"
     }
   ]
 }

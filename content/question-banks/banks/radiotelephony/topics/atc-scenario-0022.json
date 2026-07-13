@@ -11,7 +11,7 @@
       "audioTextZh": "你的呼号是Air France 896，从巴黎飞往武汉，当前高度11300米，接近XIY，请呼叫西安管制。",
       "referenceText": "Xi'an Control, AFR896, maintaining 11300 meters,approaching XIY.",
       "referenceTextZh": "西安管制，AFR896，保持11300米，接近XIY。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/390.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/375.mp3"
     },
     {
       "id": "atc-scenario-0022-card-main-376",
@@ -20,7 +20,7 @@
       "audioTextZh": "向西安管制询问前机在10700米是否报告过颠簸。",
       "referenceText": "Xi'an Control, AFR896, is there any turbulence reported by preceding aircraft at 10700 meters ?",
       "referenceTextZh": "西安管制，AFR896，请问前机在10700米是否报告过颠簸？",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/391.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/376.mp3"
     },
     {
       "id": "atc-scenario-0022-card-main-377",
@@ -29,7 +29,7 @@
       "audioTextZh": "管制员：Air France 896，你是我扇区内第一架航空器，这里没有报告。告诉管制员你希望下降至10700米。",
       "referenceText": "Roger, request descend to 10700 meters, AFR896.",
       "referenceTextZh": "收到，申请下降至10700米，AFR896。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/392.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/377.mp3"
     },
     {
       "id": "atc-scenario-0022-card-main-378",
@@ -38,7 +38,7 @@
       "audioTextZh": "管制员：Air France 896，下降并保持10700米。",
       "referenceText": "Descend and maintain 10700 meters, AFR896.",
       "referenceTextZh": "下降并保持10700米，AFR896。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/393.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/378.mp3"
     },
     {
       "id": "atc-scenario-0022-card-main-379",
@@ -47,7 +47,7 @@
       "audioTextZh": "你在10700米遇到严重颠簸，皮托静压加温功能故障，希望回到11300米以避开颠簸和结冰区域。这是紧急呼叫。",
       "referenceText": "PANPAN PANPAN PANPAN, Xi'an Control, AFR896, we are experiencing severe turbulence at 10700 meters, the pitot static heating feature has malfunctioned, request fly back to 11300 meters to avoid turbulence and ice area.",
       "referenceTextZh": "PANPAN PANPAN PANPAN，西安管制，AFR896，我们在10700米遇到严重颠簸，皮托静压加温故障，申请回到11300米以避开颠簸和结冰区域。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/394.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/379.mp3"
     },
     {
       "id": "atc-scenario-0022-card-main-380",
@@ -56,7 +56,7 @@
       "audioTextZh": "管制员：Air France 896，爬升并保持11300米。",
       "referenceText": "Climb and maintain 11300 meters, AFR896.",
       "referenceTextZh": "爬升并保持11300米，AFR896。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/395.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/380.mp3"
     },
     {
       "id": "atc-scenario-0022-card-main-381",
@@ -65,7 +65,7 @@
       "audioTextZh": "管制员：Air France 896，联系郑州管制132.35。",
       "referenceText": "132.35, AFR896.",
       "referenceTextZh": "132.35，AFR896。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/396.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/381.mp3"
     },
     {
       "id": "atc-scenario-0022-card-main-382",
@@ -74,7 +74,7 @@
       "audioTextZh": "管制员：Air France 896，雷达联系，直飞ZHO，下降至11000米。",
       "referenceText": "Direct to ZHO, descend to 11000 meters, AFR896.",
       "referenceTextZh": "直飞ZHO，下降至11000米，AFR896。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/397.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/382.mp3"
     },
     {
       "id": "atc-scenario-0022-card-main-383",
@@ -83,7 +83,7 @@
       "audioTextZh": "因结冰申请爬升至11600米。",
       "referenceText": "Zhengzhou Control, AFR896, request climb to 11600 meters due icing.",
       "referenceTextZh": "郑州管制，AFR896，因结冰申请爬升至11600米。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/398.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/383.mp3"
     },
     {
       "id": "atc-scenario-0022-card-main-384",
@@ -92,7 +92,7 @@
       "audioTextZh": "管制员：Air France 896，爬升至11600米。",
       "referenceText": "Climb to 11600 meters, AFR896.",
       "referenceTextZh": "爬升至11600米，AFR896。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/399.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/384.mp3"
     },
     {
       "id": "atc-scenario-0022-card-main-385",
@@ -101,7 +101,7 @@
       "audioTextZh": "你已与武汉管制建立联系，开始为36右跑道下降。下降过程中，空速和高度读数异常，可能由结冰堵塞造成，请向武汉管制说明情况。这是紧急呼叫。",
       "referenceText": "PANPAN PANPAN PANPAN, Wuhan Control, AFR896,our airspeed and altitude readings are abnormal, possibly due to ice blockage.",
       "referenceTextZh": "PANPAN PANPAN PANPAN，武汉管制，AFR896，我们的空速和高度读数异常，可能由结冰堵塞造成。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/400.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/385.mp3"
     },
     {
       "id": "atc-scenario-0022-card-main-386",
@@ -110,7 +110,7 @@
       "audioTextZh": "管制员：Air France 896，右转航向240。",
       "referenceText": "Turn right heading 240, AFR896.",
       "referenceTextZh": "右转航向240，AFR896。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/401.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/386.mp3"
     },
     {
       "id": "atc-scenario-0022-card-main-387",
@@ -119,7 +119,7 @@
       "audioTextZh": "管制员：Air France 896，报告意图。告诉管制员，与气压高度指示相比，你的GPS高度和地速不准确，但仍能保持稳定飞行，申请下降脱离结冰区域。",
       "referenceText": "Wuhan Control, AFR896, our GPS altitude and groundspeed is not accurate, but we can still maintain a stable flight, request descend to leave icing area.",
       "referenceTextZh": "武汉管制，AFR896，我们的GPS高度和地速不准确，但仍能保持稳定飞行，申请下降脱离结冰区域。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/402.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/387.mp3"
     },
     {
       "id": "atc-scenario-0022-card-main-388",
@@ -128,7 +128,7 @@
       "audioTextZh": "管制员：Air France 896，下降至3600米。",
       "referenceText": "Descend to 3600 meters, AFR896.",
       "referenceTextZh": "下降至3600米，AFR896。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/403.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/388.mp3"
     },
     {
       "id": "atc-scenario-0022-card-main-389",
@@ -137,7 +137,7 @@
       "audioTextZh": "管制员：Air France 896，雷达显示你在4800米，你当前GPS高度是多少？\n告诉管制员GPS高度为3600米，并申请下降至1800米。",
       "referenceText": "Our GPS altitude is 3600 meters, request descend to 1800 meters, AFR896.",
       "referenceTextZh": "我们的GPS高度是3600米，申请下降至1800米，AFR896。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/404.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/389.mp3"
     },
     {
       "id": "atc-scenario-0022-card-main-390",
@@ -146,7 +146,7 @@
       "audioTextZh": "管制员：Air France 896，另一架航空器提供了气压高度与GPS高度差异的信息。我给他3000米，他报告的GPS高度是3600米。确认收到，并申请继续下降以离开结冰区域。",
       "referenceText": "Wuhan Approach, AFR896, roger, request further descent and leave icing area.",
       "referenceTextZh": "武汉进近，AFR896，收到，申请继续下降并脱离结冰区域。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/405.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/390.mp3"
     },
     {
       "id": "atc-scenario-0022-card-main-391",
@@ -155,7 +155,7 @@
       "audioTextZh": "管制员：Air France 896，联系塔台124.35，我们已通知他们你的高度表误差。",
       "referenceText": "124.35, roger, thanks, AFR896.",
       "referenceTextZh": "124.35，收到，谢谢，AFR896。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/406.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/391.mp3"
     },
     {
       "id": "atc-scenario-0022-card-main-392",
@@ -164,7 +164,7 @@
       "audioTextZh": "你已离开结冰区域，仪表恢复正常，请向武汉塔台报告。",
       "referenceText": "Wuhan Tower, AFR896, we left the icing area and our instruments have returned to normal.",
       "referenceTextZh": "武汉塔台，AFR896，我们已离开结冰区域，仪表已恢复正常。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/407.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/392.mp3"
     },
     {
       "id": "atc-scenario-0022-card-main-393",
@@ -173,7 +173,7 @@
       "audioTextZh": "你已建立36右跑道ILS。",
       "referenceText": "Wuhan Tower, AFR896, established on the ILS runway 36R.",
       "referenceTextZh": "武汉塔台，AFR896，已建立36R ILS。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/408.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/393.mp3"
     },
     {
       "id": "atc-scenario-0022-card-main-394",
@@ -182,7 +182,7 @@
       "audioTextZh": "管制员：Air France 896，静风，36右跑道，可以落地。",
       "referenceText": "Runway 36R, cleared to land, AFR896.",
       "referenceTextZh": "36R跑道，可以落地，AFR896。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/409.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/394.mp3"
     }
   ]
 }

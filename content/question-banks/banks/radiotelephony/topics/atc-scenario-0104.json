@@ -11,7 +11,7 @@
       "audioTextZh": "B: 你的呼号是 China Southern 303，现在呼叫 广州管制，告诉他你刚通过 3600 meters。",
       "referenceText": "Guangzhou Control, CSN303, passing 3600 meters.",
       "referenceTextZh": "广州管制，CSN303，正在通过 3600 meters。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1617.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1783.mp3"
     },
     {
       "id": "atc-scenario-0104-card-main-1784",
@@ -20,7 +20,7 @@
       "audioTextZh": "C: China Southern 303，收到，按 QNH 1014 继续爬升到 4200 meters。",
       "referenceText": "Continue climbing to 4200 meters, QNH1014, CSN303.",
       "referenceTextZh": "继续爬升到 4200 meters，QNH1014，CSN303。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1618.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1784.mp3"
     },
     {
       "id": "atc-scenario-0104-card-main-1785",
@@ -29,7 +29,7 @@
       "audioTextZh": "B: 你发现逐渐积冰。你认为可能是除冰设备故障造成。要求下降到结冰层以下。",
       "referenceText": "Guangzhou Control, CSN303, we are getting a gradual ice build-up as a result of suspected deicing equipment failure. We require descent to below the freezing level.",
       "referenceTextZh": "广州管制，CSN303，我们出现逐渐积冰，怀疑由除冰设备故障导致。我们要求下降到结冰层以下。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1619.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1785.mp3"
     },
     {
       "id": "atc-scenario-0104-card-main-1786",
@@ -38,7 +38,7 @@
       "audioTextZh": "C: China Southern 303，收到，下降 3000 meters，QNH 1014。",
       "referenceText": "Descend to 3000 meters, QNH1014, CSN303.",
       "referenceTextZh": "下降到 3000 meters，QNH1014，CSN303。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1620.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1786.mp3"
     },
     {
       "id": "atc-scenario-0104-card-main-1787",
@@ -47,7 +47,7 @@
       "audioTextZh": "C: China Southern 303，如需更低请告诉我，目前是否存在紧急情况？\nB: 你回答当前高度可以，但除冰系统仍不工作。紧急情况仍然存在。",
       "referenceText": "Guangzhou Control, CSN303, that should be sufficiently low enough, but the de-ice system still refuses working. I mean that emergency conditions do exist.",
       "referenceTextZh": "广州管制，CSN303，这个高度应该足够低，但除冰系统仍不工作。我的意思是紧急情况确实存在。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1621.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1787.mp3"
     },
     {
       "id": "atc-scenario-0104-card-main-1788",
@@ -56,7 +56,7 @@
       "audioTextZh": "C: 收到，China Southern 303。\nB: 告诉管制员你打算放油 15 分钟，然后返场落地。",
       "referenceText": "Guangzhou Control, CSN303, we will require a return to the field and an extra 15 minutes en-route for fuel dumping.",
       "referenceTextZh": "广州管制，CSN303，我们需要返场，并在航路上额外 15 分钟放油。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1622.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1788.mp3"
     },
     {
       "id": "atc-scenario-0104-card-main-1789",
@@ -65,7 +65,7 @@
       "audioTextZh": "C: China Southern 303，明白，右转航向 330，预计跑道 02 left。",
       "referenceText": "Turn right heading 330, expect runway 02L, CSN303.",
       "referenceTextZh": "右转航向 330，预计跑道 02L，CSN303。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1623.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1789.mp3"
     },
     {
       "id": "atc-scenario-0104-card-main-1790",
@@ -74,7 +74,7 @@
       "audioTextZh": "C: China Southern 303，你预计进近和着陆正常吗？\nB: 肯定回答。",
       "referenceText": "Affirm, CSN303.",
       "referenceTextZh": "肯定，CSN303。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1624.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1790.mp3"
     },
     {
       "id": "atc-scenario-0104-card-main-1791",
@@ -83,7 +83,7 @@
       "audioTextZh": "C: China Southern 303，从当前位置左盘旋，可以大范围盘旋，批准放油，完成后报告。\nB: 复诵并告诉管制员你们正在开始放油。",
       "referenceText": "Left hand orbits, we’re commencing the fuel dump this time, CSN303.",
       "referenceTextZh": "左盘旋，我们现在开始放油，CSN303。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1625.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1791.mp3"
     },
     {
       "id": "atc-scenario-0104-card-main-1792",
@@ -92,7 +92,7 @@
       "audioTextZh": "B: 告诉管制员放油完成，并请求进一步许可。",
       "referenceText": "Guangzhou Control, CSN303, we’ve completed the fuel dump and request a further clearance.",
       "referenceTextZh": "广州管制，CSN303，我们已完成放油，请求进一步许可。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1626.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1792.mp3"
     },
     {
       "id": "atc-scenario-0104-card-main-1793",
@@ -101,7 +101,7 @@
       "audioTextZh": "C: China Southern 303，收到，飞航向 320，联系进近 130.0。\nB: 复诵，但你不确定进近频率。你听成了 120.0。",
       "referenceText": "Vacating the orbit, flying heading 320, confirm Approach frequency is 120.0, CSN303.",
       "referenceTextZh": "脱离盘旋，飞航向 320，请确认进近频率是 120.0，CSN303。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1627.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1793.mp3"
     },
     {
       "id": "atc-scenario-0104-card-main-1794",
@@ -110,7 +110,7 @@
       "audioTextZh": "C: China Southern 303，否定，联系进近 130.0。",
       "referenceText": "Roger, Approach 130.0, CSN303.",
       "referenceTextZh": "收到，进近 130.0，CSN303。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1628.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1794.mp3"
     },
     {
       "id": "atc-scenario-0104-card-main-1795",
@@ -119,7 +119,7 @@
       "audioTextZh": "B: 联系白云进近，告诉他你已收到信息 Golf。",
       "referenceText": "Baiyun Approach, CSN303, received information Golf.",
       "referenceTextZh": "白云进近，CSN303，已收到信息 Golf。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1629.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1795.mp3"
     },
     {
       "id": "atc-scenario-0104-card-main-1796",
@@ -128,7 +128,7 @@
       "audioTextZh": "C: China Southern 303，进近，按 QNH 1014 下降到 1200 meters，跑道 02 left 左航线，距接地点 20 miles。",
       "referenceText": "Descend to 1200 meters on QNH1014, CSN303.",
       "referenceTextZh": "按 QNH1014 下降到 1200 meters，CSN303。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1630.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1796.mp3"
     },
     {
       "id": "atc-scenario-0104-card-main-1797",
@@ -137,7 +137,7 @@
       "audioTextZh": "B: 报告你因先前积冰问题出现襟翼放出故障，可能是微动开关故障。你将进行无襟翼着陆。",
       "referenceText": "PANPAN, PANPAN, PANPAN, Baiyun Approach, CSN303, we have a flap extension due to prior icing issue; perhaps a micro-switch malfunction, request flapless landing.",
       "referenceTextZh": "PANPAN，PANPAN，PANPAN，白云进近，CSN303，由于先前积冰问题，我们有襟翼放出故障，可能是微动开关故障，请求无襟翼着陆。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1631.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1797.mp3"
     },
     {
       "id": "atc-scenario-0104-card-main-1798",
@@ -146,7 +146,7 @@
       "audioTextZh": "C: China Southern 303，收到，改用跑道 02 right，该跑道长 200 meters。右转航向 200 加入下风边，现在距接地点 10 miles，保持 1200 meters。",
       "referenceText": "Runway 02 right, right turn, heading 200 and maintain 1200 meters, CSN303.",
       "referenceTextZh": "跑道 02 right，右转，航向 200，保持 1200 meters，CSN303。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1632.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1798.mp3"
     },
     {
       "id": "atc-scenario-0104-card-main-1799",
@@ -155,7 +155,7 @@
       "audioTextZh": "C: China Southern 303，联系白云塔台118.1。我们已将你的情况通知塔台。",
       "referenceText": "118.1, CSN303.",
       "referenceTextZh": "118.1，CSN303。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1633.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1799.mp3"
     },
     {
       "id": "atc-scenario-0104-card-main-1800",
@@ -164,7 +164,7 @@
       "audioTextZh": "B: 现在联系白云塔台。",
       "referenceText": "Baiyun Tower, CSN303, maintain 1200m, left downwind for runway 02R.",
       "referenceTextZh": "白云塔台，CSN303，保持 1200m，跑道 02R 左下风。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1634.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1800.mp3"
     },
     {
       "id": "atc-scenario-0104-card-main-1801",
@@ -173,7 +173,7 @@
       "audioTextZh": "C: China Southern 303，收到，按 QNH 继续下降到 900 meters，你是 1 号。",
       "referenceText": "Descend to 900m on QNH, NO.1, CSN303.",
       "referenceTextZh": "下降到 900m，按 QNH，1 号，CSN303。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1635.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1801.mp3"
     },
     {
       "id": "atc-scenario-0104-card-main-1802",
@@ -182,7 +182,7 @@
       "audioTextZh": "C: China Southern 303，按你的需要延长下风边，自行决定左转加入基线。注意速度！",
       "referenceText": "Roger, CSN303.",
       "referenceTextZh": "收到，CSN303。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/1636.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1802.mp3"
     }
   ]
 }

@@ -11,7 +11,7 @@
       "audioTextZh": "B: 你的呼号是 Air Canada 123。飞机停在机坪，你已准备好取得 ATC 许可。现在联系放行申请 ATC 许可。",
       "referenceText": "Delivery, ACA123, request ATC clearance.",
       "referenceTextZh": "放行，ACA123，请求 ATC 许可。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/917.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1838.mp3"
     },
     {
       "id": "atc-scenario-0107-card-main-1839",
@@ -20,7 +20,7 @@
       "audioTextZh": "C: Air Canada 123，许可按飞行计划航路飞往北京，巡航高度 10200 meters，Delta 06 离场，squawk 2315。",
       "referenceText": "Cleared to Beijing via flight planned route, cruise level 10200 meters, D06 departure, squawk 2315, ACA123.",
       "referenceTextZh": "许可按飞行计划航路飞往北京，巡航高度 10200 meters，D06 离场，squawk 2315，ACA123。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/918.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1839.mp3"
     },
     {
       "id": "atc-scenario-0107-card-main-1840",
@@ -29,7 +29,7 @@
       "audioTextZh": "B: 告诉管制员原直飞北京的航班已被修改。",
       "referenceText": "Delivery, ACA123, I have been told that the flight to Beijing has been revised.",
       "referenceTextZh": "放行，ACA123，我被告知飞往北京的航班已修改。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/919.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1840.mp3"
     },
     {
       "id": "atc-scenario-0107-card-main-1841",
@@ -38,7 +38,7 @@
       "audioTextZh": "C: Air Canada 123，抱歉，我还没有收到你的最新飞行计划。稍等，我会再呼叫你。",
       "referenceText": "Roger, ACA123.",
       "referenceTextZh": "收到，ACA123。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/920.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1841.mp3"
     },
     {
       "id": "atc-scenario-0107-card-main-1842",
@@ -47,7 +47,7 @@
       "audioTextZh": "C: Air Canada 123，你的飞行计划已修改，你将改航到 Charlie Oscar Golf 接载一些货物和中转旅客，是这样吗？\nB: 告诉管制员是。",
       "referenceText": "Affirm, that is correct, ACA123.",
       "referenceTextZh": "肯定，正确，ACA123。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/921.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1842.mp3"
     },
     {
       "id": "atc-scenario-0107-card-main-1843",
@@ -56,7 +56,7 @@
       "audioTextZh": "C: Air Canada 123，你收到离场信息了吗？\nB: 你已收到信息 Kilo，但不知道当前信息代码。你询问。",
       "referenceText": "We have received Information K. What is the current information ? ACA123.",
       "referenceTextZh": "我们已收到信息 K。当前信息是什么？ACA123。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/922.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1843.mp3"
     },
     {
       "id": "atc-scenario-0107-card-main-1844",
@@ -65,7 +65,7 @@
       "audioTextZh": "C: 信息 Kilo 已失效，当前为信息 Lima。\nB: 告诉管制员你将抄收当前 ATIS。",
       "referenceText": "Thank you. We are going to copy the information data right away, ACA123.",
       "referenceTextZh": "谢谢。我们马上抄收信息数据，ACA123。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/923.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1844.mp3"
     },
     {
       "id": "atc-scenario-0107-card-main-1845",
@@ -74,7 +74,7 @@
       "audioTextZh": "B: 联系地面管制员，告诉他你们必须延误离场约 10 分钟，通往卫星厅的自动步道工作不正常。",
       "referenceText": "Ground, ACA123, the moving walkway to our satellite has some problem. We have to delay our departure for about 10 minutes.",
       "referenceTextZh": "地面，ACA123，我们卫星厅的自动步道有问题。我们必须延误离场约 10 分钟。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/924.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1845.mp3"
     },
     {
       "id": "atc-scenario-0107-card-main-1846",
@@ -83,7 +83,7 @@
       "audioTextZh": "C: Air Canada 123，如果你赶不上这个时刻，预计会延误 1 小时。\nB: 告诉管制员自动步道已经修好。所有旅客几分钟内会上机，但由于一台老式装载机，行李装载太慢，你请求管制员通知地服并尽快派一台新装载机。",
       "referenceText": "Ground, ACA123, the moving jet-way has been fixed. All the passengers will finish boarding in a couple of minutes, but luggage loading has not completed due a slow moving loader, please inform the ground handling to send another 1 as quickly as possible.",
       "referenceTextZh": "地面，ACA123，自动步道已经修好。所有旅客几分钟内完成登机，但由于装载机移动慢，行李装载尚未完成，请通知地服尽快再派一台。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/925.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1846.mp3"
     },
     {
       "id": "atc-scenario-0107-card-main-1847",
@@ -92,7 +92,7 @@
       "audioTextZh": "C: Air Canada 123，抱歉，现在没有可用装载机。\nB: 你想知道是否会延误 1 小时。",
       "referenceText": "Ground, ACA123, do you mean that we will have a delay of an hour if we don't depart on time?",
       "referenceTextZh": "地面，ACA123，你的意思是如果我们不能准时离场，就会延误 1 小时吗？",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/926.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1847.mp3"
     },
     {
       "id": "atc-scenario-0107-card-main-1848",
@@ -101,7 +101,7 @@
       "audioTextZh": "C: 肯定。抱歉，目前没有备用装载机。\nB: 联系地面管制员，告诉他你已准备好开车。",
       "referenceText": "Ground, ACA123, ready for start up.",
       "referenceTextZh": "地面，ACA123，准备好开车。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/927.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1848.mp3"
     },
     {
       "id": "atc-scenario-0107-card-main-1849",
@@ -110,7 +110,7 @@
       "audioTextZh": "C: Air Canada 123，批准开车。\nB: 告诉管制员地面机务发现 1 号发动机漏油。",
       "referenceText": "Ground, ACA123, the ground mechanic has found that No.1 engine is leaking.",
       "referenceTextZh": "地面，ACA123，地面机务发现 1 号发动机漏油。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/928.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1849.mp3"
     },
     {
       "id": "atc-scenario-0107-card-main-1850",
@@ -119,7 +119,7 @@
       "audioTextZh": "C: 漏油严重吗？你的意图是什么？\nB: 告诉管制员右发燃油管路轻微泄漏。你不确定是否能继续飞行。你将联系公司签派。",
       "referenceText": "The starboard engine fuel line has been leaking slightly. I’m not sure if our flight will continue or not. I’ll consult with our company dispatcher, ACA123.",
       "referenceTextZh": "右发燃油管路轻微泄漏。我不确定我们的航班是否会继续。我会咨询公司签派，ACA123。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/929.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1850.mp3"
     },
     {
       "id": "atc-scenario-0107-card-main-1851",
@@ -128,7 +128,7 @@
       "audioTextZh": "C: Air Canada 123，你的许可届时会过期，准备好后我会给你新的时刻。\nB: 告诉管制员你的航班必须取消。",
       "referenceText": "Ground, ACA123, we have to cancel our flight.",
       "referenceTextZh": "地面，ACA123，我们必须取消航班。",
-      "audio": "/question-bank-assets/audio/radiotelephony/main/930.mp3"
+      "audio": "/question-bank-assets/audio/radiotelephony/main/1851.mp3"
     }
   ]
 }
