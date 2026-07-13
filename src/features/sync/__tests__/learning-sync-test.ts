@@ -21,6 +21,7 @@ import { getEmbeddedQuestionBanks } from '@/features/question-bank/data/reposito
 import type { CardLearningState } from '@/features/question-bank/types';
 
 import {
+  archiveAndBindEmptyLearningSync,
   bindLearningSync,
   enqueueCardState,
   getLearningSyncStatus,
@@ -72,5 +73,18 @@ describe('learning sync', () => {
 
     await expect(runLearningSync('user-1')).rejects.toThrow('network_unavailable');
     expect(await getLearningSyncStatus()).toMatchObject({ pendingCount: 1, lastError: 'network_unavailable' });
+  });
+
+  it('archives unowned data and starts the account from cloud state', async () => {
+    mockValues.set(`icao.learning.v2.topic.${topic.id}`, JSON.stringify({ [card.id]: state }));
+    mockValues.set('icao.learning.v1.records', JSON.stringify([{ id: 'legacy-record' }]));
+    mockApiRequest.mockResolvedValue({ changes: [], cursor: 0, hasMore: false });
+
+    const status = await archiveAndBindEmptyLearningSync('user-2');
+
+    expect(status).toMatchObject({ boundUserId: 'user-2', pendingCount: 0 });
+    expect(mockValues.has(`icao.learning.v2.topic.${topic.id}`)).toBe(false);
+    expect(mockValues.has('icao.learning.v1.records')).toBe(false);
+    expect(Array.from(mockValues.keys()).some((key) => key.startsWith('icao.learning.v3.prebind.archive.'))).toBe(true);
   });
 });

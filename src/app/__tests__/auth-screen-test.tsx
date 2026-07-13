@@ -25,7 +25,8 @@ describe('<LoginScreen />', () => {
     expect(screen.getByText('欢迎回来')).toBeTruthy();
     expect(screen.getByText('登录以继续你的 ICAO 备考进度')).toBeTruthy();
     expect(screen.getByText('当前受控内测仅开放邮箱密码登录。')).toBeTruthy();
-    expect(screen.getByText('登录状态安全保存在本机；内测阶段暂不提供找回密码。')).toBeTruthy();
+    expect(screen.getByText('登录状态安全保存在本机')).toBeTruthy();
+    expect(screen.getByText('忘记密码')).toBeTruthy();
     expect(screen.getByText('立即注册')).toBeTruthy();
   });
 });

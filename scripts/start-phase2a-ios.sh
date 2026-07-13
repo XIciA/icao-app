@@ -10,6 +10,7 @@ SSH_KEY=${ICAO_ECS_SSH_KEY:-$HOME/.ssh/icao_app_codex}
 API_PORT=${ICAO_API_PORT:-3101}
 SUPABASE_PORT=${ICAO_SUPABASE_PORT:-8000}
 METRO_PORT=${ICAO_METRO_PORT:-8081}
+MAILPIT_PORT=${ICAO_MAILPIT_PORT:-8025}
 TUNNEL_PID=
 
 cleanup() {
@@ -32,7 +33,7 @@ if [ -z "$HOST_IP" ]; then
   exit 1
 fi
 
-for port in "$API_PORT" "$SUPABASE_PORT"; do
+for port in "$API_PORT" "$SUPABASE_PORT" "$MAILPIT_PORT"; do
   if nc -z "$HOST_IP" "$port" >/dev/null 2>&1; then
     echo "Local endpoint $HOST_IP:$port is already in use. Stop the old tunnel first." >&2
     exit 1
@@ -52,6 +53,7 @@ ssh -N \
   -o ServerAliveCountMax=3 \
   -L "$HOST_IP:$API_PORT:127.0.0.1:3101" \
   -L "$HOST_IP:$SUPABASE_PORT:127.0.0.1:8000" \
+  -L "127.0.0.1:$MAILPIT_PORT:127.0.0.1:8025" \
   "$ECS_USER@$ECS_HOST" &
 TUNNEL_PID=$!
 
@@ -90,6 +92,7 @@ export EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY="$PUBLISHABLE_KEY"
 
 echo "API: $EXPO_PUBLIC_ICAO_API_URL"
 echo "Supabase: $EXPO_PUBLIC_SUPABASE_URL"
+echo "Mailpit: http://127.0.0.1:$MAILPIT_PORT"
 echo 'The publishable key was loaded from ECS without writing it to the repository.'
 
 cd "$PROJECT_ROOT"

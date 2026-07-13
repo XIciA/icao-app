@@ -6,6 +6,14 @@ export const profiles = pgTable('profiles', {
   updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
 });
 
+export const accountSessionRevocations = pgTable('account_session_revocations', {
+  sessionId: uuid('session_id').primaryKey(),
+  userId: uuid('user_id').notNull(),
+  revokedAt: timestamp('revoked_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  index('account_session_revocations_user').on(table.userId),
+]);
+
 export const questionBankReleases = pgTable('question_bank_releases', {
   id: uuid('id').defaultRandom().primaryKey(),
   bankId: text('bank_id').notNull(),
@@ -95,7 +103,7 @@ export const aiConsents = pgTable('ai_consents', {
 
 export const aiUsageLogs = pgTable('ai_usage_logs', {
   id: uuid('id').defaultRandom().primaryKey(),
-  userId: uuid('user_id'),
+  userId: uuid('user_id').notNull(),
   requestId: text('request_id').notNull(),
   capability: text('capability').notNull(),
   status: text('status').notNull(),

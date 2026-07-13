@@ -1,10 +1,14 @@
 import { Inject, Injectable, UnauthorizedException, type CanActivate, type ExecutionContext } from '@nestjs/common';
 
 import { AUTH_VERIFIER, type AuthenticatedRequest, type AuthVerifier } from './auth.types';
+import { SessionSecurityService } from './session-security.service';
 
 @Injectable()
 export class RequireAuthGuard implements CanActivate {
-  constructor(@Inject(AUTH_VERIFIER) private readonly verifier: AuthVerifier) {}
+  constructor(
+    @Inject(AUTH_VERIFIER) private readonly verifier: AuthVerifier,
+    private readonly sessions: SessionSecurityService,
+  ) {}
 
   async canActivate(context: ExecutionContext) {
     const request = context.switchToHttp().getRequest<AuthenticatedRequest>();
@@ -14,7 +18,10 @@ export class RequireAuthGuard implements CanActivate {
 
     const token = authorization.slice('Bearer '.length).trim();
     if (!token) throw new UnauthorizedException('missing_bearer_token');
-    request.user = await this.verifier.verify(token);
+    const auth = await this.verifier.verify(token);
+    await this.sessions.assertActive(auth);
+    request.auth = auth;
+    request.user = auth.user;
     return true;
   }
 }

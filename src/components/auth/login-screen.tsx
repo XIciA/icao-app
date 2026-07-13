@@ -1,4 +1,4 @@
-import { useRouter } from 'expo-router';
+import { type Href, useRouter } from 'expo-router';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
@@ -16,12 +16,12 @@ export function LoginScreen() {
   const [submitting, setSubmitting] = useState(false);
 
   async function submit() {
-    if (!/^\S+@\S+\.\S+$/.test(account.trim()) || password.length < 6) { setError('请输入有效邮箱和至少 6 位密码'); return; }
+    if (!/^\S+@\S+\.\S+$/.test(account.trim()) || password.length < 8) { setError('请输入有效邮箱和至少 8 位密码'); return; }
     setError('');
     setSubmitting(true);
     try {
       await auth.signIn(account, password);
-      router.replace('/(tabs)/profile');
+      router.replace((auth.consumePendingPath() ?? '/(tabs)') as Href);
     } catch (value) {
       const code = value instanceof Error ? value.message : 'auth_failed';
       setError(code === 'invalid_email_or_password' ? '邮箱或密码错误' : code === 'auth_not_configured' ? '登录服务尚未配置' : '登录失败，请稍后重试');
@@ -36,7 +36,7 @@ export function LoginScreen() {
       <View style={styles.form}>
         <AuthField keyboardType="email-address" label="邮箱" onChangeText={setAccount} placeholder="请输入邮箱" value={account} />
         <PasswordField label="密码" onChangeText={setPassword} placeholder="请输入密码" value={password} />
-        <AppText variant="micro">登录状态安全保存在本机；内测阶段暂不提供找回密码。</AppText>
+        <View style={styles.passwordHelp}><AppText variant="micro">登录状态安全保存在本机</AppText><TextLink label="忘记密码" onPress={() => router.push('/auth/forgot-password')} /></View>
         {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
         <Button disabled={submitting} onPress={() => void submit()} size="lg">{submitting ? '登录中…' : '登录'}</Button>
       </View>
@@ -51,6 +51,7 @@ export function LoginScreen() {
 
 const styles = StyleSheet.create({
   form: { gap: spacing[4], marginTop: spacing[8] },
+  passwordHelp: { alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' },
   scopeNote: { marginTop: spacing[6], textAlign: 'center' },
   bottomLink: { alignItems: 'center', flexDirection: 'row', justifyContent: 'center', marginTop: 'auto', paddingBottom: spacing[3], paddingTop: spacing[8] },
 });

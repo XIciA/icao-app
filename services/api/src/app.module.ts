@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
 
 import { AUTH_VERIFIER } from './auth/auth.types';
+import { AccountController } from './account/account.controller';
+import { AccountService } from './account/account.service';
 import { MeController } from './auth/me.controller';
 import { RequireAuthGuard } from './auth/require-auth.guard';
-import { OptionalAuthGuard } from './auth/optional-auth.guard';
+import { SessionSecurityService } from './auth/session-security.service';
 import { SupabaseAuthVerifier } from './auth/supabase-auth.verifier';
 import { API_CONFIG, loadConfig } from './config';
 import { DatabaseService } from './database/database.service';
@@ -20,14 +22,15 @@ import { AiProviderService } from './ai/ai-provider.service';
 import { AiService } from './ai/ai.service';
 
 @Module({
-  controllers: [HealthController, MeController, QuestionBankController, ResourceController, SyncController, AiController],
+  controllers: [HealthController, MeController, AccountController, QuestionBankController, ResourceController, SyncController, AiController],
   providers: [
     { provide: API_CONFIG, useFactory: () => loadConfig() },
     DatabaseService,
     SupabaseAuthVerifier,
     { provide: AUTH_VERIFIER, useExisting: SupabaseAuthVerifier },
+    SessionSecurityService,
     RequireAuthGuard,
-    OptionalAuthGuard,
+    AccountService,
     QuestionBankService,
     ResourceService,
     SyncService,

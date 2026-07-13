@@ -6,6 +6,7 @@ import { StyleSheet, View } from 'react-native';
 import { AppText, Button } from '@/components/ui';
 import { colors, spacing } from '@/theme';
 import { useAuth } from '@/features/auth/AuthProvider';
+import { isValidPassword } from '@/features/auth/auth-service';
 import { AuthShell, AuthHeading, AuthField, PasswordField, Checkbox, TextLink } from './auth-ui';
 
 export function RegisterScreen() {
@@ -17,7 +18,7 @@ export function RegisterScreen() {
   const [agree, setAgree] = useState(false);
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
-  const ready = agree && /^\S+@\S+\.\S+$/.test(email.trim()) && password.length >= 6 && password === confirm;
+  const ready = agree && /^\S+@\S+\.\S+$/.test(email.trim()) && isValidPassword(password) && password === confirm;
 
   async function submit() {
     if (!ready) return;
@@ -39,12 +40,12 @@ export function RegisterScreen() {
       <AuthHeading title="创建账号" subtitle="使用邮箱建立内测账号并同步学习数据" />
       <View style={styles.form}>
         <AuthField icon={Mail} keyboardType="email-address" label="邮箱" onChangeText={setEmail} placeholder="请输入邮箱" value={email} />
-        <PasswordField label="设置密码" onChangeText={setPassword} placeholder="8-20 位，含字母和数字" value={password} />
+        <PasswordField label="设置密码" onChangeText={setPassword} placeholder="8-64 位，含字母和数字" value={password} />
         <PasswordField label="确认密码" onChangeText={setConfirm} placeholder="请再次输入密码" value={confirm} />
         <View style={styles.agreement}>
           <Checkbox checked={agree} label="我已阅读并同意" onPress={() => setAgree(!agree)} />
-          <TextLink label="《用户协议》" onPress={() => router.push('/info/agreement')} />
-          <TextLink label="《隐私政策》" onPress={() => router.push('/info/privacy')} />
+          <TextLink label="《用户协议》" onPress={() => router.push('/legal/agreement')} />
+          <TextLink label="《隐私政策》" onPress={() => router.push('/legal/privacy')} />
         </View>
         {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
         <Button disabled={!ready || submitting} onPress={() => void submit()} size="lg">{submitting ? '注册中…' : '注册'}</Button>

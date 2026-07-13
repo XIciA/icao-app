@@ -1,11 +1,13 @@
-import { Controller, Get, Headers, Param, Req, Res } from '@nestjs/common';
+import { Controller, Get, Headers, Param, Req, Res, UseGuards } from '@nestjs/common';
 import type { ApiSuccessEnvelope, QuestionBankRelease, QuestionBankReleaseSummary } from '@icao/contracts';
 import type { FastifyReply } from 'fastify';
 
 import type { AuthenticatedRequest } from '../auth/auth.types';
+import { RequireAuthGuard } from '../auth/require-auth.guard';
 import { QuestionBankService } from './question-bank.service';
 
 @Controller('v1/question-banks')
+@UseGuards(RequireAuthGuard)
 export class QuestionBankController {
   constructor(private readonly questionBanks: QuestionBankService) {}
 

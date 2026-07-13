@@ -31,9 +31,9 @@ function LegalLinks() {
   return (
     <View style={styles.legal}>
       <AppText variant="micro">登录即代表同意 </AppText>
-      <TextLink label="《用户协议》" onPress={() => router.push('/info/agreement')} />
+      <TextLink label="《用户协议》" onPress={() => router.push('/legal/agreement')} />
       <AppText variant="micro"> 与 </AppText>
-      <TextLink label="《隐私政策》" onPress={() => router.push('/info/privacy')} />
+      <TextLink label="《隐私政策》" onPress={() => router.push('/legal/privacy')} />
     </View>
   );
 }

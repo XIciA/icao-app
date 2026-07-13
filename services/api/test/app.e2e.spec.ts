@@ -1,11 +1,12 @@
 import { UnauthorizedException } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { FastifyAdapter, type NestFastifyApplication } from '@nestjs/platform-fastify';
-import type { AuthenticatedUser } from '@icao/contracts';
 import { describe, expect, it } from 'vitest';
 
 import { AppModule } from '../src/app.module';
-import { AUTH_VERIFIER, type AuthVerifier } from '../src/auth/auth.types';
+import { AccountService } from '../src/account/account.service';
+import { AUTH_VERIFIER, type AuthVerifier, type VerifiedAuthSession } from '../src/auth/auth.types';
+import { SessionSecurityService } from '../src/auth/session-security.service';
 import { loadConfig } from '../src/config';
 import { DatabaseService } from '../src/database/database.service';
 import { HttpErrorFilter } from '../src/http-error.filter';
@@ -18,18 +19,27 @@ process.env.SUPABASE_PUBLIC_URL = 'http://127.0.0.1:8000';
 process.env.SUPABASE_SECRET_KEY = 'test-secret-key-that-is-long-enough';
 
 class FakeAuthVerifier implements AuthVerifier {
-  async verify(token: string): Promise<AuthenticatedUser> {
+  async verify(token: string): Promise<VerifiedAuthSession> {
     if (token !== 'valid-token') throw new UnauthorizedException('invalid_access_token');
-    return { id: '00000000-0000-4000-8000-000000000001', email: 'tester@example.com' };
+    return {
+      accessToken: token,
+      issuedAt: 1,
+      sessionId: '00000000-0000-4000-8000-000000000002',
+      user: { id: '00000000-0000-4000-8000-000000000001', email: 'tester@example.com' },
+    };
   }
 }
 
-async function testApp() {
+async function testApp({ revoked = false }: { revoked?: boolean } = {}) {
   const module = await Test.createTestingModule({ imports: [AppModule] })
     .overrideProvider(DatabaseService)
     .useValue({ ping: async () => undefined })
     .overrideProvider(AUTH_VERIFIER)
     .useValue(new FakeAuthVerifier())
+    .overrideProvider(SessionSecurityService)
+    .useValue({ assertActive: async () => { if (revoked) throw new UnauthorizedException('session_revoked'); }, revokeAll: async () => undefined })
+    .overrideProvider(AccountService)
+    .useValue({ revokeAll: async () => ({ revoked: true }), deleteAccount: async () => undefined })
     .compile();
   const app = module.createNestApplication<NestFastifyApplication>(new FastifyAdapter({ logger: false }));
   app.useGlobalFilters(new HttpErrorFilter());
@@ -73,20 +83,40 @@ describe('API foundation', () => {
     await app.close();
   });
 
-  it('allows guest AI requests while rejecting an invalid supplied token', async () => {
+  it('rejects a server-revoked session immediately', async () => {
+    const app = await testApp({ revoked: true });
+    const response = await app.inject({ method: 'GET', url: '/v1/me', headers: { authorization: 'Bearer valid-token' } });
+    expect(response.statusCode).toBe(401);
+    expect(response.json().error.code).toBe('session_revoked');
+    await app.close();
+  });
+
+  it('supports global session revocation and validated account deletion', async () => {
+    const app = await testApp();
+    const headers = { authorization: 'Bearer valid-token' };
+    const revoked = await app.inject({ method: 'POST', url: '/v1/account/sessions/revoke-all', headers });
+    const invalidDeletion = await app.inject({ method: 'DELETE', url: '/v1/account', headers, payload: { currentPassword: 'short', confirmation: '注销账号' } });
+    const deleted = await app.inject({ method: 'DELETE', url: '/v1/account', headers, payload: { currentPassword: 'Password123', confirmation: '注销账号' } });
+    expect(revoked.statusCode).toBe(201);
+    expect(revoked.json()).toEqual({ revoked: true });
+    expect(invalidDeletion.statusCode).toBe(400);
+    expect(invalidDeletion.json().error.code).toBe('invalid_account_deletion');
+    expect(deleted.statusCode).toBe(204);
+    await app.close();
+  });
+
+  it('requires authentication for question banks, resources and AI', async () => {
     const app = await testApp();
     const payload = { accepted: true, policyVersion: 'ai-learning-privacy-v1' };
-    const guest = await app.inject({ method: 'POST', url: '/v1/ai/consent', payload });
-    const invalid = await app.inject({
-      method: 'POST',
-      url: '/v1/ai/consent',
-      headers: { authorization: 'Bearer invalid' },
-      payload,
-    });
-    expect(guest.statusCode).toBe(201);
-    expect(guest.json().data.policyVersion).toBe('ai-learning-privacy-v1');
-    expect(invalid.statusCode).toBe(401);
-    expect(invalid.json().error.code).toBe('invalid_access_token');
+    const responses = await Promise.all([
+      app.inject({ method: 'GET', url: '/v1/question-banks' }),
+      app.inject({ method: 'GET', url: '/v1/resources/resolve?path=/question-bank-assets/test.mp3' }),
+      app.inject({ method: 'POST', url: '/v1/ai/consent', payload }),
+    ]);
+    expect(responses.map((response) => response.statusCode)).toEqual([401, 401, 401]);
+    expect(responses.map((response) => response.json().error.code)).toEqual([
+      'missing_bearer_token', 'missing_bearer_token', 'missing_bearer_token',
+    ]);
     await app.close();
   });
 

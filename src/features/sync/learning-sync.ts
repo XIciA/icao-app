@@ -11,12 +11,15 @@ import Storage from 'expo-sqlite/kv-store';
 
 import { apiRequest } from '@/platform/api-client';
 import { findQuestionBankCardReference } from '@/features/question-bank/annotations/card-index';
+import { createEmptyAnnotationStore, replaceAnnotationStoreFromSync } from '@/features/question-bank/annotations/annotation-store';
 import type { QuestionBankAnnotationStore } from '@/features/question-bank/annotations/types';
 import type { CardLearningState, LearningRecord } from '@/features/question-bank/types';
 
 const META_KEY = 'icao.learning.v3.sync.meta';
 const OUTBOX_KEY = 'icao.learning.v3.sync.outbox';
+const LEGACY_TOPIC_PREFIX = 'icao.learning.v1.topic.';
 const TOPIC_PREFIX = 'icao.learning.v2.topic.';
+const MIGRATION_PREFIX = 'icao.learning.v2.migrated.';
 const RECORDS_KEY = 'icao.learning.v1.records';
 const ANNOTATIONS_KEY = 'icao.annotations.v1';
 const SNAPSHOT_PREFIX = 'icao.learning.v3.prebind.';
@@ -87,7 +90,7 @@ function hasAnnotationData(value: QuestionBankAnnotationStore) {
 }
 
 async function localDataSnapshot() {
-  const keys = (await Storage.getAllKeys()).filter((key) => key.startsWith(TOPIC_PREFIX));
+  const keys = (await Storage.getAllKeys()).filter((key) => key.startsWith(TOPIC_PREFIX) || key.startsWith(LEGACY_TOPIC_PREFIX));
   const values = await Storage.multiGet([...keys, RECORDS_KEY, ANNOTATIONS_KEY]);
   return Object.fromEntries(values.filter(([, value]) => value !== null)) as Record<string, string>;
 }
@@ -114,9 +117,13 @@ export async function bindLearningSync(userId: string, mode: 'upload-local' | 'c
   const mutations: SyncMutation[] = [];
   const versions: Record<string, number> = {};
   if (mode === 'upload-local') {
+    const currentTopics = new Set(Object.keys(snapshot)
+      .filter((key) => key.startsWith(TOPIC_PREFIX))
+      .map((key) => key.slice(TOPIC_PREFIX.length)));
     for (const [key, raw] of Object.entries(snapshot)) {
-      if (!key.startsWith(TOPIC_PREFIX)) continue;
-      const topicId = key.slice(TOPIC_PREFIX.length);
+      if (!key.startsWith(TOPIC_PREFIX) && !key.startsWith(LEGACY_TOPIC_PREFIX)) continue;
+      const topicId = key.slice(key.startsWith(TOPIC_PREFIX) ? TOPIC_PREFIX.length : LEGACY_TOPIC_PREFIX.length);
+      if (key.startsWith(LEGACY_TOPIC_PREFIX) && currentTopics.has(topicId)) continue;
       const states = parseJson<Record<string, CardLearningState>>(raw, {});
       for (const [cardId, state] of Object.entries(states)) {
         const reference = findQuestionBankCardReference(topicId, cardId);
@@ -169,6 +176,33 @@ export async function bindEmptyLearningSync(userId: string) {
   if (inspection.alreadyBound) return runLearningSync(userId);
   if (inspection.needsConfirmation) throw new Error('local_data_confirmation_required');
   return bindLearningSync(userId, 'cloud-only');
+}
+
+async function activePersonalKeys() {
+  return (await Storage.getAllKeys()).filter((key) =>
+    key.startsWith(LEGACY_TOPIC_PREFIX)
+    || key.startsWith(TOPIC_PREFIX)
+    || key.startsWith(MIGRATION_PREFIX)
+    || key.startsWith(SNAPSHOT_PREFIX)
+    || key.startsWith('icao.ai.consent.')
+    || [META_KEY, OUTBOX_KEY, RECORDS_KEY, ANNOTATIONS_KEY].includes(key));
+}
+
+async function clearActiveLearningData({ keepSnapshots }: { keepSnapshots: boolean }) {
+  const keys = await activePersonalKeys();
+  await Storage.multiRemove(keepSnapshots ? keys.filter((key) => !key.startsWith(SNAPSHOT_PREFIX)) : keys);
+  await replaceAnnotationStoreFromSync(createEmptyAnnotationStore());
+}
+
+export async function archiveAndBindEmptyLearningSync(userId: string) {
+  const snapshot = await localDataSnapshot();
+  await Storage.setItem(`${SNAPSHOT_PREFIX}archive.${Date.now()}`, JSON.stringify(snapshot));
+  await clearActiveLearningData({ keepSnapshots: true });
+  return bindLearningSync(userId, 'cloud-only');
+}
+
+export async function clearPersonalLearningData() {
+  await clearActiveLearningData({ keepSnapshots: false });
 }
 
 export async function enqueueCardState(topicId: string, cardId: string, state: CardLearningState) {
@@ -242,7 +276,6 @@ async function applyChange(change: SyncChange, meta: SyncMeta) {
   } else if (change.kind === 'document') {
     const payload = change.payload as unknown as DocumentMutation['payload'];
     if (payload.documentKey === 'annotations') {
-      const { replaceAnnotationStoreFromSync } = await import('@/features/question-bank/annotations/annotation-store');
       await replaceAnnotationStoreFromSync(payload.document);
       meta.versions['document:annotations'] = Math.max(meta.versions['document:annotations'] ?? 0, payload.version);
     }

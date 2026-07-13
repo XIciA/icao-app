@@ -1,4 +1,5 @@
 import { createClient, type Session, type SupabaseClient } from '@supabase/supabase-js';
+import * as Linking from 'expo-linking';
 
 import { secureSessionStorage } from './secure-session-storage';
 
@@ -11,13 +12,27 @@ export type AppSession = {
 
 export type AuthService = {
   getSession(): Promise<AppSession | undefined>;
+  refreshSession(): Promise<AppSession | undefined>;
   signInWithEmail(email: string, password: string): Promise<AppSession>;
   signUpWithEmail(email: string, password: string): Promise<AppSession>;
-  signOut(): Promise<void>;
+  changePassword(email: string, currentPassword: string, newPassword: string): Promise<AppSession>;
+  requestEmailChange(email: string, currentPassword: string, newEmail: string): Promise<void>;
+  requestPasswordReset(email: string): Promise<void>;
+  exchangeEmailCode(code: string): Promise<AppSession>;
+  setRecoveryPassword(password: string): Promise<AppSession>;
+  signOut(scope?: 'local' | 'global' | 'others'): Promise<void>;
   onSessionChange(listener: (session: AppSession | undefined) => void): () => void;
   startAutoRefresh(): void;
   stopAutoRefresh(): void;
 };
+
+export function isValidPassword(value: string) {
+  return value.length >= 8 && value.length <= 64 && /[A-Za-z]/.test(value) && /\d/.test(value);
+}
+
+function emailRedirect(flow: 'email-change' | 'recovery') {
+  return Linking.createURL('auth/callback', { queryParams: { flow } });
+}
 
 function appSession(session: Session | null): AppSession | undefined {
   if (!session) return undefined;
@@ -47,6 +62,12 @@ class SupabaseEmailAuthService implements AuthService {
     return appSession(data.session);
   }
 
+  async refreshSession() {
+    const { data, error } = await this.client.auth.refreshSession();
+    if (error) throw authError(error);
+    return appSession(data.session);
+  }
+
   async signInWithEmail(email: string, password: string) {
     const { data, error } = await this.client.auth.signInWithPassword({ email: email.trim().toLowerCase(), password });
     if (error || !data.session) throw authError(error);
@@ -59,8 +80,46 @@ class SupabaseEmailAuthService implements AuthService {
     return appSession(data.session)!;
   }
 
-  async signOut() {
-    const { error } = await this.client.auth.signOut({ scope: 'local' });
+
+  async changePassword(email: string, currentPassword: string, newPassword: string) {
+    const signedIn = await this.signInWithEmail(email, currentPassword);
+    const { data, error } = await this.client.auth.updateUser({ password: newPassword });
+    if (error || !data.user) throw authError(error);
+    return (await this.getSession()) ?? signedIn;
+  }
+
+  async requestEmailChange(email: string, currentPassword: string, newEmail: string) {
+    await this.signInWithEmail(email, currentPassword);
+    const { error } = await this.client.auth.updateUser(
+      { email: newEmail.trim().toLowerCase() },
+      { emailRedirectTo: emailRedirect('email-change') },
+    );
+    if (error) throw authError(error);
+  }
+
+  async requestPasswordReset(email: string) {
+    const { error } = await this.client.auth.resetPasswordForEmail(email.trim().toLowerCase(), {
+      redirectTo: emailRedirect('recovery'),
+    });
+    if (error) throw authError(error);
+  }
+
+  async exchangeEmailCode(code: string) {
+    const { data, error } = await this.client.auth.exchangeCodeForSession(code);
+    if (error || !data.session) throw authError(error);
+    return appSession(data.session)!;
+  }
+
+  async setRecoveryPassword(password: string) {
+    const { error } = await this.client.auth.updateUser({ password });
+    if (error) throw authError(error);
+    const session = await this.getSession();
+    if (!session) throw new Error('auth_failed');
+    return session;
+  }
+
+  async signOut(scope: 'local' | 'global' | 'others' = 'local') {
+    const { error } = await this.client.auth.signOut({ scope });
     if (error) throw authError(error);
   }
 
@@ -89,6 +148,7 @@ export function getAuthService() {
     auth: {
       autoRefreshToken: true,
       detectSessionInUrl: false,
+      flowType: 'pkce',
       persistSession: true,
       storage: secureSessionStorage,
     },

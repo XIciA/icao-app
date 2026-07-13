@@ -1,4 +1,12 @@
 services:
+  auth:
+    depends_on:
+      mailpit:
+        condition: service_started
+    environment:
+      GOTRUE_MAILER_SECURE_EMAIL_CHANGE_ENABLED: "true"
+      GOTRUE_SMTP_MAX_FREQUENCY: 1s
+
   kong:
     ports: !override
       - 127.0.0.1:${KONG_HTTP_PORT}:8000/tcp
@@ -14,3 +22,12 @@ services:
 
   functions:
     profiles: [disabled]
+
+  mailpit:
+    image: ghcr.io/axllent/mailpit:v1.30.4
+    container_name: supabase-mailpit
+    restart: unless-stopped
+    environment:
+      MP_MAX_MESSAGES: 200
+    ports:
+      - 127.0.0.1:${MAILPIT_HTTP_PORT:-8025}:8025

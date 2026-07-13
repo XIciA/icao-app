@@ -1,42 +1,81 @@
-import { createContext, type ReactNode, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, type ReactNode, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { AppState, Modal, StyleSheet, View } from 'react-native';
 
 import { AppText, Button } from '@/components/ui';
-import { setApiAccessTokenProvider } from '@/platform/api-client';
-import { bindEmptyLearningSync, bindLearningSync, inspectLearningSyncBinding, runLearningSync } from '@/features/sync/learning-sync';
+import { apiFetch, apiRequest, setApiAccessTokenProvider, setApiAuthRecovery } from '@/platform/api-client';
+import { archiveAndBindEmptyLearningSync, bindEmptyLearningSync, bindLearningSync, clearPersonalLearningData, inspectLearningSyncBinding, runLearningSync } from '@/features/sync/learning-sync';
 import { colors, radii, spacing } from '@/theme';
 
 import { getAuthService, type AppSession } from './auth-service';
 
 type AuthContextValue = {
   configured: boolean;
+  accountReady: boolean;
   restoring: boolean;
   session?: AppSession;
+  consumePendingPath(): string | undefined;
+  rememberPendingPath(path: string): void;
   signIn(email: string, password: string): Promise<void>;
   signUp(email: string, password: string): Promise<void>;
   signOut(): Promise<void>;
+  signOutAll(): Promise<void>;
+  changePassword(currentPassword: string, newPassword: string): Promise<void>;
+  requestEmailChange(currentPassword: string, newEmail: string): Promise<void>;
+  requestPasswordReset(email: string): Promise<void>;
+  exchangeEmailCode(code: string): Promise<void>;
+  completeRecovery(password: string): Promise<void>;
+  deleteAccount(currentPassword: string): Promise<void>;
 };
 
 const unavailable = async () => { throw new Error('auth_not_configured'); };
-const AuthContext = createContext<AuthContextValue>({ configured: false, restoring: false, signIn: unavailable, signUp: unavailable, signOut: unavailable });
+const AuthContext = createContext<AuthContextValue>({
+  configured: false,
+  accountReady: false,
+  restoring: false,
+  consumePendingPath: () => undefined,
+  rememberPendingPath: () => undefined,
+  signIn: unavailable,
+  signUp: unavailable,
+  signOut: unavailable,
+  signOutAll: unavailable,
+  changePassword: unavailable,
+  requestEmailChange: unavailable,
+  requestPasswordReset: unavailable,
+  exchangeEmailCode: unavailable,
+  completeRecovery: unavailable,
+  deleteAccount: unavailable,
+});
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const service = useMemo(() => getAuthService(), []);
   const [restoring, setRestoring] = useState(Boolean(service));
   const [session, setSession] = useState<AppSession>();
+  const [accountReady, setAccountReady] = useState(false);
   const [bindingPrompt, setBindingPrompt] = useState(false);
   const [binding, setBinding] = useState(false);
   const [bindingError, setBindingError] = useState('');
-  const [dismissedUserId, setDismissedUserId] = useState<string>();
+  const [pendingPath, setPendingPath] = useState<string>();
 
   useEffect(() => {
     if (!service) return;
     let active = true;
     setApiAccessTokenProvider(async () => (await service.getSession())?.accessToken);
+    setApiAuthRecovery({
+      refresh: async () => {
+        const next = await service.refreshSession();
+        setSession(next);
+        return next?.accessToken;
+      },
+      onInvalidated: async () => {
+        await service.signOut('local').catch(() => undefined);
+        setSession(undefined);
+        setAccountReady(false);
+      },
+    });
     const unsubscribe = service.onSessionChange((next) => {
       if (active) {
         setSession(next);
-        if (!next) setDismissedUserId(undefined);
+        if (!next) setAccountReady(false);
       }
     });
     void service.getSession().then((next) => { if (active) setSession(next); }).finally(() => { if (active) setRestoring(false); });
@@ -53,26 +92,34 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       appState.remove();
       service.stopAutoRefresh();
       setApiAccessTokenProvider(undefined);
+      setApiAuthRecovery(undefined);
     };
   }, [service]);
 
   useEffect(() => {
     const userId = session?.user.id;
-    if (!userId || dismissedUserId === userId) {
+    if (!userId) {
       setBindingPrompt(false);
+      setAccountReady(false);
       return;
     }
     let active = true;
     void inspectLearningSyncBinding(userId).then(async (inspection) => {
       if (!active) return;
-      if (inspection.needsConfirmation) setBindingPrompt(true);
+      if (inspection.needsConfirmation) {
+        setAccountReady(false);
+        setBindingPrompt(true);
+      }
       else {
         await bindEmptyLearningSync(userId);
-        if (active) setBindingPrompt(false);
+        if (active) {
+          setBindingPrompt(false);
+          setAccountReady(true);
+        }
       }
-    }).catch(() => undefined);
+    }).catch(() => { if (active) setAccountReady(false); });
     return () => { active = false; };
-  }, [dismissedUserId, session?.user.id]);
+  }, [session?.user.id]);
 
   async function confirmBinding() {
     const userId = session?.user.id;
@@ -82,6 +129,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       await bindLearningSync(userId, 'upload-local');
       setBindingPrompt(false);
+      setAccountReady(true);
     } catch {
       setBindingError('绑定或首次同步失败，本机数据仍保留，可稍后重试。');
     } finally {
@@ -89,16 +137,75 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  async function archiveBinding() {
+    const userId = session?.user.id;
+    if (!userId) return;
+    setBinding(true);
+    setBindingError('');
+    try {
+      await archiveAndBindEmptyLearningSync(userId);
+      setBindingPrompt(false);
+      setAccountReady(true);
+    } catch {
+      setBindingError('本机归档或云端初始化失败，原数据仍保留，请稍后重试。');
+    } finally {
+      setBinding(false);
+    }
+  }
+
+  const revokeAllAndClear = useCallback(async () => {
+    await apiRequest<{ revoked: true }>('/v1/account/sessions/revoke-all', { method: 'POST' });
+    await service?.signOut('local').catch(() => undefined);
+    setSession(undefined);
+    setAccountReady(false);
+  }, [service]);
+
   const value = useMemo<AuthContextValue>(() => ({
     configured: Boolean(service),
+    accountReady,
     restoring,
     session,
-    async signIn(email, password) { if (!service) return unavailable(); setSession(await service.signInWithEmail(email, password)); },
-    async signUp(email, password) { if (!service) return unavailable(); setSession(await service.signUpWithEmail(email, password)); },
-    async signOut() { if (!service) return unavailable(); await service.signOut(); setSession(undefined); setDismissedUserId(undefined); },
-  }), [restoring, service, session]);
+    consumePendingPath() { const value = pendingPath; setPendingPath(undefined); return value; },
+    rememberPendingPath(path) { if (!path.startsWith('/auth/') && !path.startsWith('/legal/')) setPendingPath(path); },
+    async signIn(email, password) { if (!service) return unavailable(); setAccountReady(false); setSession(await service.signInWithEmail(email, password)); },
+    async signUp(email, password) { if (!service) return unavailable(); setAccountReady(false); setSession(await service.signUpWithEmail(email, password)); },
+    async signOut() { if (!service) return unavailable(); await service.signOut('local'); setSession(undefined); setAccountReady(false); },
+    async signOutAll() { if (!service) return unavailable(); await revokeAllAndClear(); },
+    async changePassword(currentPassword, newPassword) {
+      if (!service || !session?.user.email) return unavailable();
+      setSession(await service.changePassword(session.user.email, currentPassword, newPassword));
+      await revokeAllAndClear();
+    },
+    async requestEmailChange(currentPassword, newEmail) {
+      if (!service || !session?.user.email) return unavailable();
+      await service.requestEmailChange(session.user.email, currentPassword, newEmail);
+    },
+    async requestPasswordReset(email) { if (!service) return unavailable(); await service.requestPasswordReset(email); },
+    async exchangeEmailCode(code) { if (!service) return unavailable(); setSession(await service.exchangeEmailCode(code)); },
+    async completeRecovery(password) {
+      if (!service) return unavailable();
+      setSession(await service.setRecoveryPassword(password));
+      await revokeAllAndClear();
+    },
+    async deleteAccount(currentPassword) {
+      if (!service) return unavailable();
+      const response = await apiFetch('/v1/account', {
+        method: 'DELETE',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ currentPassword, confirmation: '注销账号' }),
+      });
+      if (!response.ok) {
+        const body = await response.json().catch(() => undefined) as { error?: { code?: string } } | undefined;
+        throw new Error(body?.error?.code ?? `api_http_${response.status}`);
+      }
+      await service.signOut('local').catch(() => undefined);
+      await clearPersonalLearningData();
+      setSession(undefined);
+      setAccountReady(false);
+    },
+  }), [accountReady, pendingPath, restoring, revokeAllAndClear, service, session]);
 
-  return <AuthContext.Provider value={value}>{children}<Modal animationType="fade" transparent visible={bindingPrompt}><View style={styles.overlay}><View style={styles.dialog}><AppText variant="sectionTitle">确认本机学习数据归属</AppText><AppText>此设备已有未归属的学习数据。确认后会先保留快照，再合并到当前邮箱账号；不会静默覆盖或删除本机数据。</AppText>{bindingError ? <AppText color={colors.destructive} variant="caption">{bindingError}</AppText> : null}<Button disabled={binding} onPress={() => void confirmBinding()}>{binding ? '正在绑定…' : '归入当前账号并同步'}</Button><Button disabled={binding} onPress={() => { setDismissedUserId(session?.user.id); setBindingPrompt(false); }} variant="outline">暂不启用同步</Button></View></View></Modal></AuthContext.Provider>;
+  return <AuthContext.Provider value={value}>{children}<Modal animationType="fade" onRequestClose={() => undefined} transparent visible={bindingPrompt}><View style={styles.overlay}><View style={styles.dialog}><AppText variant="sectionTitle">选择本机学习数据归属</AppText><AppText>此设备已有旧版或其他账号的本机数据。继续前必须选择合并到当前账号，或保存本地归档并从当前账号的云端数据开始。</AppText>{bindingError ? <AppText color={colors.destructive} variant="caption">{bindingError}</AppText> : null}<Button disabled={binding} onPress={() => void confirmBinding()}>{binding ? '正在处理…' : '合并到当前账号并同步'}</Button><Button disabled={binding} onPress={() => void archiveBinding()} variant="outline">本地归档并从云端开始</Button></View></View></Modal></AuthContext.Provider>;
 }
 
 const styles = StyleSheet.create({

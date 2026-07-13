@@ -40,3 +40,24 @@ phase logs, and closeout records belong in this repository.
 - Review Git diff and generated files before each stage checkpoint.
 - UI work requires rendered checks against the design baseline; a successful build alone
   is not visual acceptance.
+
+## Runtime deployment and acceptance
+
+- Treat the repository as the single source of truth, but distinguish local code from the
+  version currently running on ECS.
+- Changes under `services/api` are not complete for simulator, physical-device, or integrated
+  testing until the intended clean version is deployed to ECS, the API container is restarted,
+  `/health/ready` passes, and the changed live endpoint is verified with a representative request.
+- ECS deployment is the default final step after an authorized `services/api` change unless the
+  user explicitly limits the task to local work. Never deploy unrelated dirty-worktree changes;
+  build from the intended commit or an explicitly reviewed file set and preserve a rollback image
+  and source backup.
+- React Native JavaScript and TypeScript UI changes normally use Metro and do not require ECS
+  deployment. Native dependency, Expo plugin, permission, or native configuration changes require
+  a rebuilt Development Build.
+- Database schema or migration changes are not covered by ordinary API deployment. They require
+  a database backup, explicit migration review, execution, and post-migration verification.
+- Never copy secrets into the repository, deployment archive, logs, or chat. Keep runtime secrets
+  in the existing protected ECS environment files.
+- Follow `docs/deployment-and-runtime-rules.md` for the runtime map, deployment evidence, and
+  rollback requirements.

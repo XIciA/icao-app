@@ -4,6 +4,8 @@
 
 更新日期：2026-07-12
 
+> 2026-07-13：游客与可选鉴权运行结论已被第二阶段 C 取代。当前 App 和 AI API 均要求邮箱账号登录；下文保留为第二阶段 B 的历史执行记录。
+
 ## 1. 路线图定位
 
 本路线图承接已确认的 `requirements.md`、`technical-plan.md` 和已完成的 `technical-audit.md`，已按 `docs/bigandsmall-workflows/orchestration-loop.md` 完成 B0 至 B8。

@@ -19,6 +19,13 @@ export type AuthenticatedUser = {
   email?: string;
 };
 
+export type RevokeAllSessionsResponse = { revoked: true };
+
+export type DeleteAccountRequest = {
+  currentPassword: string;
+  confirmation: '注销账号';
+};
+
 export type HealthStatus = {
   service: 'icao-api';
   status: 'ok';

@@ -8,7 +8,7 @@ import { DatabaseService } from '../database/database.service';
 import { resourceObjects } from '../database/schema';
 
 const BUCKET = 'question-bank-assets';
-const EXPIRES_IN_SECONDS = 15 * 60;
+const EXPIRES_IN_SECONDS = 5 * 60;
 
 @Injectable()
 export class ResourceService {

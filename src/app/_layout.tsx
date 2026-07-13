@@ -1,7 +1,7 @@
 import { Geist_400Regular, Geist_500Medium, Geist_600SemiBold } from '@expo-google-fonts/geist';
 import { GeistMono_400Regular } from '@expo-google-fonts/geist-mono';
 import { useFonts } from 'expo-font';
-import { Stack, SplashScreen, type ErrorBoundaryProps } from 'expo-router';
+import { Stack, SplashScreen, usePathname, type ErrorBoundaryProps } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -10,7 +10,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { CenteredState } from '@/components/states/CenteredState';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
-import { AuthProvider } from '@/features/auth/AuthProvider';
+import { AuthProvider, useAuth } from '@/features/auth/AuthProvider';
 import { colors } from '@/theme';
 
 SplashScreen.preventAutoHideAsync().catch(() => undefined);
@@ -35,7 +35,27 @@ export default function RootLayout() {
       <SafeAreaProvider>
         <AuthProvider>
           <StatusBar backgroundColor={colors.background} style="dark" />
-          <Stack
+          <AppStack />
+        </AuthProvider>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
+  );
+}
+
+function AppStack() {
+  const auth = useAuth();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (!auth.restoring && !auth.session && pathname && pathname !== '/' && !pathname.startsWith('/auth/') && !pathname.startsWith('/legal/')) {
+      auth.rememberPendingPath(pathname);
+    }
+  }, [auth, pathname]);
+
+  if (auth.restoring) return <GlobalLoadingScreen />;
+
+  return (
+    <Stack
             screenOptions={{
               animation: 'slide_from_right',
               animationDuration: 220,
@@ -45,21 +65,26 @@ export default function RootLayout() {
               headerShown: false,
             }}
           >
-            <Stack.Screen name="(tabs)" options={{ animation: 'fade' }} />
-            <Stack.Screen name="detail/[slug]" />
-            <Stack.Screen name="question-bank/[bankId]/index" />
-            <Stack.Screen name="question-bank/[bankId]/study/[categoryId]/[topicId]" />
-            <Stack.Screen name="learning-records" />
-            <Stack.Screen name="annotations" />
-            <Stack.Screen name="content/[slug]" />
-            <Stack.Screen name="auth/[slug]" />
-            <Stack.Screen name="account/[slug]" />
-            <Stack.Screen name="info/[slug]" />
-            <Stack.Screen name="state/[slug]" />
+            <Stack.Protected guard={!auth.session}>
+              <Stack.Screen name="index" options={{ animation: 'fade', gestureEnabled: false }} />
+              <Stack.Screen name="auth/[slug]" options={{ gestureEnabled: false }} />
+            </Stack.Protected>
+            <Stack.Screen name="auth/callback" options={{ gestureEnabled: false }} />
+            <Stack.Screen name="auth/recovery" options={{ gestureEnabled: false }} />
+            <Stack.Screen name="legal/[slug]" />
+            <Stack.Protected guard={Boolean(auth.session)}>
+              <Stack.Screen name="(tabs)" options={{ animation: 'fade', fullScreenGestureEnabled: false, gestureEnabled: false }} />
+              <Stack.Screen name="detail/[slug]" />
+              <Stack.Screen name="question-bank/[bankId]/index" />
+              <Stack.Screen name="question-bank/[bankId]/study/[categoryId]/[topicId]" />
+              <Stack.Screen name="learning-records" />
+              <Stack.Screen name="annotations" />
+              <Stack.Screen name="content/[slug]" />
+              <Stack.Screen name="account/[slug]" />
+              <Stack.Screen name="info/[slug]" />
+              <Stack.Screen name="state/[slug]" />
+            </Stack.Protected>
           </Stack>
-        </AuthProvider>
-      </SafeAreaProvider>
-    </GestureHandlerRootView>
   );
 }
 
