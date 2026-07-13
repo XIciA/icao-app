@@ -34,7 +34,7 @@
     {
       "id": "atc-scenario-0002-card-main-024",
       "taskTitle": "QFA 160-4",
-      "audioText": "C: Qantas 160, Zhengzhou Control, you can expect further climb after passing Zulu Hotel Oscar, but for now, continue descend and maintain 9200 meters, reduced to minimum speed due to temporary airways restriction.",
+      "audioText": "C: Qantas 160, Zhengzhou Control, you can expect further climb after passing Zulu Hotel Oscar, but for now, continue descent to 9200 meters, reduced to minimum speed due to temporary airways restriction.",
       "audioTextZh": "C：Qantas 160，郑州管制，飞越 Zulu Hotel Oscar 后可预期继续爬升，但现在继续下降并保持 9200 米，因临时航路限制减至最小速度。",
       "referenceText": "Roger, expect further climb after passing ZHO, continue descend and maintain 9200 meters, reduced to minimum speed, QFA160.",
       "referenceTextZh": "收到，飞越 ZHO 后预期继续爬升，继续下降并保持 9200 米，减至最小速度，QFA160。",
@@ -151,7 +151,7 @@
     {
       "id": "atc-scenario-0002-card-main-037",
       "taskTitle": "QFA 160-17",
-      "audioText": "C: Qantas 160, Wuhan approach, radar contact, information Bravo is current, follow Zulu Foxtrot 01 Alpha arrival, expect ILS approach runway 36 right.",
+      "audioText": "C: Qantas 160, Wuhan Approach, radar contact, information Bravo is current, follow Zulu Foxtrot 01 Alpha arrival, expect ILS approach runway 36R.",
       "audioTextZh": "C：Qantas 160，武汉进近，雷达识别，Bravo 情报有效，执行 Zulu Foxtrot 01 Alpha 进场，预期 ILS 进近跑道 36 右。",
       "referenceText": "Follow ZF 01A arrival, expect ILS approach runway 36R, QFA160.",
       "referenceTextZh": "执行 ZF 01A 进场，预期 ILS 进近跑道 36R，QFA160。",

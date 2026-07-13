@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0085-card-main-1459",
       "taskTitle": "CSN 3102-2",
-      "audioText": "C: China southern 102, push back and start up approved, facing west.",
+      "audioText": "C: China Southern 102, push back and start up approved, facing west.",
       "audioTextZh": "C：China Southern 102，同意推出和开车，机头朝西。",
       "referenceText": "Push back and start up approved, facing west, CSN3102.",
       "referenceTextZh": "同意推出和开车，机头朝西，CSN3102。",
@@ -25,7 +25,7 @@
     {
       "id": "atc-scenario-0085-card-main-1460",
       "taskTitle": "CSN 3102-3",
-      "audioText": "C: China southern 102, stand by, expect 30 minutes delay, lightning and thunder were reported in the vicinity of the airport.",
+      "audioText": "C: China Southern 102, stand by, expect 30 minutes delay, lightning and thunder were reported in the vicinity of the airport.",
       "audioTextZh": "C：China Southern 102，等待，因机场附近报告闪电和雷声，预计延误 30 分钟。",
       "referenceText": "Roger, stand by, CSN3102.",
       "referenceTextZh": "收到，等待，CSN3102。",
@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0085-card-main-1465",
       "taskTitle": "CSN 3102-8",
-      "audioText": "C: China southern 102, line up and wait runway 19, expect 30 minutes delay.",
+      "audioText": "C: China Southern 102, line up and wait runway 19, expect 30 minutes delay.",
       "audioTextZh": "C：China Southern 102，进入跑道 19 等待，预计延误 30 分钟。",
       "referenceText": "Line up and wait runway 19, CSN3102.",
       "referenceTextZh": "进入跑道 19 等待，CSN3102。",
@@ -115,7 +115,7 @@
     {
       "id": "atc-scenario-0085-card-main-1470",
       "taskTitle": "CSN 3102-13",
-      "audioText": "C: China southern 102, climb to 3000 meters on standard.",
+      "audioText": "C: China Southern 102, climb to 3000 meters on standard.",
       "audioTextZh": "C：China Southern 102，标准气压爬升至 3000 米。",
       "referenceText": "Climb to 3000 meters on standard, CSN3102.",
       "referenceTextZh": "标准气压爬升至 3000 米，CSN3102。",
@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0085-card-main-1472",
       "taskTitle": "CSN 3102-15",
-      "audioText": "C: China southern 102, what assistance do you need ?\nB: Tell the controller you need medical services upon landing.",
+      "audioText": "C: China Southern 102, what assistance do you need?\nB: Tell the controller you need medical services upon landing.",
       "audioTextZh": "C：China Southern 102，你需要什么协助？\nB：告诉管制员落地后你需要医疗服务。",
       "referenceText": "Request medical services upon landing, CSN3102.",
       "referenceTextZh": "请求落地后医疗服务，CSN3102。",
@@ -142,7 +142,7 @@
     {
       "id": "atc-scenario-0085-card-main-1473",
       "taskTitle": "CSN 3102-16",
-      "audioText": "C: China southern 102, medical services will be ready upon landing.",
+      "audioText": "C: China Southern 102, medical services will be ready upon landing.",
       "audioTextZh": "C：China Southern 102，医疗服务将在落地后准备好。",
       "referenceText": "Roger, thanks, CSN3102.",
       "referenceTextZh": "收到，谢谢，CSN3102。",
@@ -160,7 +160,7 @@
     {
       "id": "atc-scenario-0085-card-main-1475",
       "taskTitle": "CSN 3102-18",
-      "audioText": "C: China southern 102, cleared for ILS approach runway 19, report established.",
+      "audioText": "C: China Southern 102, cleared for ILS approach runway 19, report established.",
       "audioTextZh": "C：China Southern 102，许可 ILS 进近跑道 19，报告建立。",
       "referenceText": "Cleared for ILS approach runway 19, report established, CSN3102.",
       "referenceTextZh": "许可 ILS 进近跑道 19，报告建立，CSN3102。",

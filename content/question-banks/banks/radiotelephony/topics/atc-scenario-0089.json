@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0089-card-main-1531",
       "taskTitle": "CES 556-2",
-      "audioText": "C: China Eastern 556, direct to Tango Oscar Lima, reduce speed to mach 0.79.",
+      "audioText": "C: China Eastern 556, direct to Tango Oscar Lima, reduce speed to Mach 0.79.",
       "audioTextZh": "C：China Eastern 556，直飞 Tango Oscar Lima，减速至马赫 0.79。",
       "referenceText": "Direct to TOL, reduce speed to M.79, CES556.",
       "referenceTextZh": "直飞 TOL，减速至 M.79，CES556。",
@@ -61,7 +61,7 @@
     {
       "id": "atc-scenario-0089-card-main-1536",
       "taskTitle": "CES 556-7",
-      "audioText": "C: China Eastern 556, maintain 11600 meters due to airspace congestion, reduce speed to mach 0.75.",
+      "audioText": "C: China Eastern 556, maintain 11600 meters due to airspace congestion, reduce speed to Mach 0.75.",
       "audioTextZh": "C：China Eastern 556，因空域拥挤，保持 11600 米，减速至马赫 0.75。",
       "referenceText": "Maintain 11600 meters, reduce speed to M.75, CES556.",
       "referenceTextZh": "保持 11600 米，减速至 M.75，CES556。",
@@ -97,7 +97,7 @@
     {
       "id": "atc-scenario-0089-card-main-1540",
       "taskTitle": "CES 556-11",
-      "audioText": "C: China Eastern 556, due to temporary airspace restriction is effective immediately, after passing X-Ray Sierra Hotel, follow Zulu Foxtrot 03 Alpha arrival, expect ILS approach runway 36 right.",
+      "audioText": "C: China Eastern 556, due to temporary airspace restriction is effective immediately, after passing X-Ray Sierra Hotel, follow Zulu Foxtrot 03 Alpha arrival, expect ILS approach runway 36R.",
       "audioTextZh": "C：China Eastern 556，因临时空域限制立即生效，过 X-Ray Sierra Hotel 后，执行 Zulu Foxtrot 03 Alpha 进场，预计 ILS 进近跑道 36R。",
       "referenceText": "After passing XSH, follow ZF 03A arrival, expect ILS approach runway 36R, CES556.",
       "referenceTextZh": "过 XSH 后，执行 ZF 03A 进场，预计 ILS 进近跑道 36R，CES556。",
@@ -142,7 +142,7 @@
     {
       "id": "atc-scenario-0089-card-main-1545",
       "taskTitle": "CES 556-16",
-      "audioText": "C: China Eastern 556, turn left heading 220, expect radar vectors for ILS approach runway 36 right.",
+      "audioText": "C: China Eastern 556, turn left heading 220, expect radar vectors for ILS approach runway 36R.",
       "audioTextZh": "C：China Eastern 556，左转航向 220，预计雷达引导 ILS 进近跑道 36R。",
       "referenceText": "Turn left heading 220, expect radar vectors for ILS approach runway 36R, CES556.",
       "referenceTextZh": "左转航向 220，预计雷达引导 ILS 进近跑道 36R，CES556。",
@@ -151,7 +151,7 @@
     {
       "id": "atc-scenario-0089-card-main-1546",
       "taskTitle": "CES 556-17",
-      "audioText": "C: China Eastern 556, turn right heading 330, descend to 900 meters, cleared for ILS approach runway 36 right.",
+      "audioText": "C: China Eastern 556, turn right heading 330, descend to 900 meters, cleared for ILS approach runway 36R.",
       "audioTextZh": "C：China Eastern 556，右转航向 330，下降至 900 米，许可 ILS 进近跑道 36R。",
       "referenceText": "Turn right heading 330, descend to 900 meters, cleared for ILS approach runway 36R, CES556.",
       "referenceTextZh": "右转航向 330，下降至 900 米，许可 ILS 进近跑道 36R，CES556。",

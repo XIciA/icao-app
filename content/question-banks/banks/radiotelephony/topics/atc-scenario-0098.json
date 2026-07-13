@@ -34,7 +34,7 @@
     {
       "id": "atc-scenario-0098-card-main-1690",
       "taskTitle": "CES 5118-4",
-      "audioText": "C: China Eastern 5118, is cleared to Beijing, cruising level 10700 meters, runway 18 left, Zulu Foxtrot 11 departure, initially 900 meters, departure frequency 120.6, squawk 3021.",
+      "audioText": "C: China Eastern 5118, is cleared to Beijing, cruising level 10700 meters, runway 18L, Zulu Foxtrot 11 departure, initially 900 meters, departure frequency 120.6, squawk 3021.",
       "audioTextZh": "C：China Eastern 5118，许可飞往北京，巡航高度 10700 米，跑道 18L，Zulu Foxtrot 11 离场，起始 900 米，离场频率 120.6，应答机 3021。",
       "referenceText": "Cleared to Beijing, cruising level 10700 meters, runway 18L, ZF 11 departure, initially 900 meters, departure frequency 120.6, squawk 3021, CES5118.",
       "referenceTextZh": "许可飞往北京，巡航高度 10700 米，跑道 18L，ZF 11 离场，起始 900 米，离场频率 120.6，应答机 3021，CES5118。",
@@ -61,7 +61,7 @@
     {
       "id": "atc-scenario-0098-card-main-1693",
       "taskTitle": "CES 5118-7",
-      "audioText": "C: China Eastern 5118, due to thunderstorm activity, flow control is now ineffect, expect 8 minutes separation between each aircraft going the same direction.",
+      "audioText": "C: China Eastern 5118, due to thunderstorm activity, flow control is now in effect, expect 8 minutes separation between each aircraft going the same direction.",
       "audioTextZh": "C：China Eastern 5118，由于雷暴活动，流量控制现已生效，预计同方向每架飞机间隔 8 分钟。",
       "referenceText": "Roger, CES5118.",
       "referenceTextZh": "收到，CES5118。",
@@ -205,7 +205,7 @@
     {
       "id": "atc-scenario-0098-card-main-1709",
       "taskTitle": "CES 5118-23",
-      "audioText": "C: China Eastern 5118, cleared for takeoff, runway 18 left, initially maintain runway heading, climb to 1500 meters.",
+      "audioText": "C: China Eastern 5118, cleared for takeoff, runway 18L, initially maintain runway heading, climb to 1500 meters.",
       "audioTextZh": "C：China Eastern 5118，可以起飞，跑道 18L，起始保持跑道航向，爬升至 1500 米。",
       "referenceText": "Cleared for takeoff, runway 18L, initially maintain runway heading, climb to 1500 meters, CES5118.",
       "referenceTextZh": "可以起飞，跑道 18L，起始保持跑道航向，爬升至 1500 米，CES5118。",

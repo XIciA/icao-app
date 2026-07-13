@@ -7,7 +7,7 @@
     {
       "id": "atc-scenario-0096-card-main-1646",
       "taskTitle": "CES 5102-1",
-      "audioText": "B: Your call sign is China Eastern 102, destination Beijing, 4800 metres maintaining, estimating DOGAR 05, information Foxtrot, now contact Beijing Approach.",
+      "audioText": "B: Your call sign is China Eastern 102, destination Beijing, 4800 meters maintaining, estimating DOGAR 05, information Foxtrot, now contact Beijing Approach.",
       "audioTextZh": "B：你的呼号是 China Eastern 102，目的地北京，保持 4800 米，预计 DOGAR 05，通播 Foxtrot，现在联系北京进近。",
       "referenceText": "Beijing Approach, CES5102, 4800 metres maintaining, estimating DOGAR 05, information F.",
       "referenceTextZh": "北京进近，CES5102，保持 4800 米，预计 DOGAR 05，通播 F。",
@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0096-card-main-1647",
       "taskTitle": "CES 5102-2",
-      "audioText": "C: China Eastern 102, Beijing Approach, DOGAR 03 arrival, expect ILS approach runway 01, maintain 4800 metres.",
+      "audioText": "C: China Eastern 102, Beijing Approach, DOGAR 03 arrival, expect ILS approach runway 01, maintain 4800 meters.",
       "audioTextZh": "C：China Eastern 102，北京进近，DOGAR 03 进场，预计 ILS 进近跑道 01，保持 4800 米。",
       "referenceText": "DOGAR 03 arrival, expect ILS approach runway 01, maintain 4800 metres, CES5102.",
       "referenceTextZh": "DOGAR 03 进场，预计 ILS 进近跑道 01，保持 4800 米，CES5102。",
@@ -34,7 +34,7 @@
     {
       "id": "atc-scenario-0096-card-main-1649",
       "taskTitle": "CES 5102-4",
-      "audioText": "C: China Eastern 102, descend to and maintain 2100 metres on QNH 1012.",
+      "audioText": "C: China Eastern 102, descend to and maintain 2100 meters on QNH 1012.",
       "audioTextZh": "C：China Eastern 102，QNH 1012 下降并保持 2100 米。",
       "referenceText": "Descend to and maintain 2100 metres on QNH 1012, CES5102.",
       "referenceTextZh": "QNH 1012 下降并保持 2100 米，CES5102。",
@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0096-card-main-1653",
       "taskTitle": "CES 5102-8",
-      "audioText": "C: China Eastern 102, roger, you are number 1, doctor and ambulance will be ready on arrival.\nB: Request change runway 36 right to save time.",
+      "audioText": "C: China Eastern 102, roger, you are number 1, doctor and ambulance will be ready on arrival.\nB: Request change runway 36R to save time.",
       "audioTextZh": "C：China Eastern 102，收到，你是第 1 架，医生和救护车将在抵达时准备好。\nB：请求改用跑道 36R 以节省时间。",
       "referenceText": "Request runway change to 36R to save time, CES5102.",
       "referenceTextZh": "请求改用跑道 36R 以节省时间，CES5102。",
@@ -97,7 +97,7 @@
     {
       "id": "atc-scenario-0096-card-main-1656",
       "taskTitle": "CES 5102-11",
-      "audioText": "C: China Eastern 102, descend to and maintain 900 metres, turn right heading 330, report established on localizer.",
+      "audioText": "C: China Eastern 102, descend to and maintain 900 meters, turn right heading 330, report established on localizer.",
       "audioTextZh": "C：China Eastern 102，下降并保持 900 米，右转航向 330，报告建立航向道。",
       "referenceText": "Descend to and maintain 900 metres, turn right heading 330, report established on the localizer, CES5102.",
       "referenceTextZh": "下降并保持 900 米，右转航向 330，报告建立航向道，CES5102。",
@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0096-card-main-1657",
       "taskTitle": "CES 5102-12",
-      "audioText": "B: Report established on localizer 5 miles final runway 36 right.",
+      "audioText": "B: Report established on localizer 5 miles final runway 36R.",
       "audioTextZh": "B：报告已建立跑道 36R 五边 5 海里航向道。",
       "referenceText": "Beijing Approach, CES5102, established on localizer 5 miles final runway 36R.",
       "referenceTextZh": "北京进近，CES5102，已建立跑道 36R 五边 5 海里航向道。",
@@ -160,7 +160,7 @@
     {
       "id": "atc-scenario-0096-card-main-1663",
       "taskTitle": "CES 5102-18",
-      "audioText": "C: China Eastern 102, cleared to land runway 36 right, surface wind 160, 7 metres per second, report vacated.",
+      "audioText": "C: China Eastern 102, cleared to land runway 36R, surface wind 160, 7 meters per second, report vacated.",
       "audioTextZh": "C：China Eastern 102，跑道 36R 可以落地，地面风 160，7 米/秒，报告脱离。",
       "referenceText": "Cleared to land runway 36R, report vacated, CES5102.",
       "referenceTextZh": "跑道 36R 可以落地，报告脱离，CES5102。",

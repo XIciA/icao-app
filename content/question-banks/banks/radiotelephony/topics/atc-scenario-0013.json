@@ -79,7 +79,7 @@
     {
       "id": "atc-scenario-0013-card-main-223",
       "taskTitle": "SIA 308-9",
-      "audioText": "B: Now you are en route Germany, Rhein Radar Control, you are cruising at flight level 360, make an initial contact with Rhein Radar Control.",
+      "audioText": "B: Now you are en route Germany, Rhein Radar Control, you are cruising at FL360, make an initial contact with Rhein Radar Control.",
       "audioTextZh": "B：现在你在前往德国航路上，莱茵雷达管制，巡航高度 FL360，与 莱茵雷达管制 首次联系。",
       "referenceText": "Rhein Radar, SIA308, en route, cruising at FL360.",
       "referenceTextZh": "Rhein Radar，SIA308，航路中，巡航高度 FL360。",
@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0013-card-main-224",
       "taskTitle": "SIA 308-10",
-      "audioText": "C: Singapore 308, maintain flight level 360, offset 3 miles right of track due weather ahead.",
+      "audioText": "C: Singapore 308, maintain FL360, offset 3 miles right of track due weather ahead.",
       "audioTextZh": "C：Singapore 308，保持 FL360，因前方天气，航迹右侧偏置 3 海里。",
       "referenceText": "Maintain FL360, offset 3 miles right of track, SIA308.",
       "referenceTextZh": "保持 FL360，航迹右侧偏置 3 海里，SIA308。",
@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0013-card-main-226",
       "taskTitle": "SIA 308-12",
-      "audioText": "C: Singapore 308, roger MAYDAY, descend to and maintain flight level 100, keep us advised the situation on board and your intention.\nB: Read back the instructions and tell the controller you are working the checklist and will advise.",
+      "audioText": "C: Singapore 308, roger MAYDAY, descend to and maintain FL100, keep us advised the situation on board and your intention.\nB: Read back the instructions and tell the controller you are working the checklist and will advise.",
       "audioTextZh": "C：Singapore 308，收到 MAYDAY，下降并保持 FL100，持续告知机上情况和你的意图。\nB：复诵指令并告诉管制员你正在执行检查单，将会通知。",
       "referenceText": "Descend to and maintain FL100, we are working the checklist and will advise, SIA308.",
       "referenceTextZh": "下降并保持 FL100，我们正在执行检查单，将会通知，SIA308。",
@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0013-card-main-229",
       "taskTitle": "SIA 308-15",
-      "audioText": "C: Singapore 308, descend to and maintain 6000 feet, cleared for ILS approach runway 08 left.",
+      "audioText": "C: Singapore 308, descend to and maintain 6000 feet, cleared for ILS approach runway 08L.",
       "audioTextZh": "C：Singapore 308，下降并保持 6000 英尺，许可跑道 08 左 ILS 进近。",
       "referenceText": "Descend to and maintain 6000 feet, cleared for ILS approach runway 08L, SIA308.",
       "referenceTextZh": "下降并保持 6000 英尺，许可跑道 08L ILS 进近，SIA308。",
@@ -142,7 +142,7 @@
     {
       "id": "atc-scenario-0013-card-main-230",
       "taskTitle": "SIA 308-16",
-      "audioText": "B: Now you have landed on runway 08 left, but you missed the first rapid exit, report it to Paris Tower and request vacate via the second rapid exit.",
+      "audioText": "B: Now you have landed on runway 08L, but you missed the first rapid exit, report it to Paris Tower and request vacate via the second rapid exit.",
       "audioTextZh": "B：现在你已在跑道 08 左落地，但错过了第一个快速出口，向巴黎塔台报告，并请求经第二个快速出口脱离。",
       "referenceText": "Paris Tower, SIA308, we have missed the first rapid exit, request vacate via the second rapid exit.",
       "referenceTextZh": "巴黎塔台，SIA308，我们错过了第一个快速出口，请求经第二个快速出口脱离。",

@@ -52,7 +52,7 @@
     {
       "id": "atc-scenario-0104-card-main-1788",
       "taskTitle": "CSN 303-6",
-      "audioText": "C:  Roger, China Southern 303.\nB: Tell the controller you intend to dump fuel for 15 minutes then return to land.",
+      "audioText": "C: Roger, China Southern 303.\nB: Tell the controller you intend to dump fuel for 15 minutes then return to land.",
       "audioTextZh": "C: 收到，China Southern 303。\nB: 告诉管制员你打算放油 15 分钟，然后返场落地。",
       "referenceText": "Guangzhou Control, CSN303, we will require a return to the field and an extra 15 minutes en-route for fuel dumping.",
       "referenceTextZh": "广州管制，CSN303，我们需要返场，并在航路上额外 15 分钟放油。",
@@ -61,7 +61,7 @@
     {
       "id": "atc-scenario-0104-card-main-1789",
       "taskTitle": "CSN 303-7",
-      "audioText": "C: China Southern 303, understand, turn right heading 330, expect Runway 02 left.",
+      "audioText": "C: China Southern 303, understand, turn right heading 330, expect runway 02L.",
       "audioTextZh": "C: China Southern 303，明白，右转航向 330，预计跑道 02 left。",
       "referenceText": "Turn right heading 330, expect runway 02L, CSN303.",
       "referenceTextZh": "右转航向 330，预计跑道 02L，CSN303。",
@@ -124,7 +124,7 @@
     {
       "id": "atc-scenario-0104-card-main-1796",
       "taskTitle": "CSN 303-14",
-      "audioText": "C: China Southern 303, Approach, descend to 1200 meters on QNH 1014, Left pattern Runway 02 left, 20 miles to run.",
+      "audioText": "C: China Southern 303, Approach, descend to 1200 meters on QNH 1014, Left pattern runway 02L, 20 miles to run.",
       "audioTextZh": "C: China Southern 303，进近，按 QNH 1014 下降到 1200 meters，跑道 02 left 左航线，距接地点 20 miles。",
       "referenceText": "Descend to 1200 meters on QNH1014, CSN303.",
       "referenceTextZh": "按 QNH1014 下降到 1200 meters，CSN303。",
@@ -142,7 +142,7 @@
     {
       "id": "atc-scenario-0104-card-main-1798",
       "taskTitle": "CSN 303-16",
-      "audioText": "C: China Southern 303, roger, change of Runway 02 right, which is 200 meters longer. Turn right heading 200 for downwind, now with 10 miles to touchdown, maintain 1200 meters.",
+      "audioText": "C: China Southern 303, roger, change of runway 02R, which is 200 meters longer. Turn right heading 200 for downwind, now with 10 miles to touchdown, maintain 1200 meters.",
       "audioTextZh": "C: China Southern 303，收到，改用跑道 02 right，该跑道长 200 meters。右转航向 200 加入下风边，现在距接地点 10 miles，保持 1200 meters。",
       "referenceText": "Runway 02 right, right turn, heading 200 and maintain 1200 meters, CSN303.",
       "referenceTextZh": "跑道 02 right，右转，航向 200，保持 1200 meters，CSN303。",
@@ -169,7 +169,7 @@
     {
       "id": "atc-scenario-0104-card-main-1801",
       "taskTitle": "CSN 303-19",
-      "audioText": "C: China Southern 303, roger, continue descend to 900 meters on QNH, you are NO.1.",
+      "audioText": "C: China Southern 303, roger, continue descent to 900 meters on QNH, you are NO.1.",
       "audioTextZh": "C: China Southern 303，收到，按 QNH 继续下降到 900 meters，你是 1 号。",
       "referenceText": "Descend to 900m on QNH, NO.1, CSN303.",
       "referenceTextZh": "下降到 900m，按 QNH，1 号，CSN303。",
@@ -178,7 +178,7 @@
     {
       "id": "atc-scenario-0104-card-main-1802",
       "taskTitle": "CSN 303-20",
-      "audioText": "C: China Southern 303, extend downwind as you wish, turn left at your own discretion to join base. Mind your speed !",
+      "audioText": "C: China Southern 303, extend downwind as you wish, turn left at your own discretion to join base. Mind your speed!",
       "audioTextZh": "C: China Southern 303，按你的需要延长下风边，自行决定左转加入基线。注意速度！",
       "referenceText": "Roger, CSN303.",
       "referenceTextZh": "收到，CSN303。",

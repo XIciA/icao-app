@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0095-card-main-1632",
       "taskTitle": "CES 2151-2",
-      "audioText": "C: China Eastern 151, Wuhan Delivery, information Sierra is valid, cleared to Shanghai Hongqiao via flight planned route, runway 36 right, initial climb to 1800 meters, Zulu Foxtrot 01 departure, cruising level 10100 meters, after departure, contact 123.4, squawk 4125.",
+      "audioText": "C: China Eastern 151, Wuhan Delivery, information Sierra is valid, cleared to Shanghai Hongqiao via flight planned route, runway 36R, initial climb to 1800 meters, Zulu Foxtrot 01 departure, cruising level 10100 meters, after departure, contact 123.4, squawk 4125.",
       "audioTextZh": "C：China Eastern 151，武汉放行，通播 Sierra 有效，许可飞往上海虹桥，按飞行计划航路，跑道 36R，起始爬升至 1800 米，Zulu Foxtrot 01 离场，巡航高度 10100 米，离场后联系 123.4，应答机 4125。",
       "referenceText": "Information Sierra is valid, cleared to Shanghai Hongqiao via flight planned route, runway 36R, initial climb to 1800 meters, ZF 01 departure, cruising level 10100 meters, after departure, contact 123.4, squawk 4125, CES2151.",
       "referenceTextZh": "通播 Sierra 有效，许可飞往上海虹桥，按飞行计划航路，跑道 36R，起始爬升至 1800 米，ZF 01 离场，巡航高度 10100 米，离场后联系 123.4，应答机 4125，CES2151。",
@@ -61,7 +61,7 @@
     {
       "id": "atc-scenario-0095-card-main-1637",
       "taskTitle": "CES 2151-7",
-      "audioText": "C: China Eastern 151, taxi via taxiway Zulu 4, Alpha 3 and Alpha to holding point runway 36 right.",
+      "audioText": "C: China Eastern 151, taxi via taxiway Zulu 4, Alpha 3 and Alpha to holding point runway 36R.",
       "audioTextZh": "C：China Eastern 151，经滑行道 Zulu 4、Alpha 3 和 Alpha 滑行至跑道 36R 等待点。",
       "referenceText": "Taxi via taxiway Z4, A3 and A to holding point runway 36R, CES2151.",
       "referenceTextZh": "经滑行道 Z4、A3 和 A 滑行至跑道 36R 等待点，CES2151。",
@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0095-card-main-1638",
       "taskTitle": "CES 2151-8",
-      "audioText": "C: China Eastern 151, hold short of Alpha 7, give way to Airbus 320 coming from your right, when traffic is clear, continue taxi via taxiway Alpha to holding point runway 36 right.",
+      "audioText": "C: China Eastern 151, hold short of Alpha 7, give way to Airbus 320 coming from your right, when traffic is clear, continue taxi via taxiway Alpha to holding point runway 36R.",
       "audioTextZh": "C：China Eastern 151，Alpha 7 外等待，避让从你右侧来的 Airbus 320，交通脱离后继续经滑行道 Alpha 滑行至跑道 36R 等待点。",
       "referenceText": "Hold short of A7, traffic in sight, when traffic is clear, continue taxi via taxiway A to holding point runway 36R, CES2151.",
       "referenceTextZh": "A7 外等待，看到飞机，交通脱离后继续经滑行道 A 滑行至跑道 36R 等待点，CES2151。",
@@ -79,7 +79,7 @@
     {
       "id": "atc-scenario-0095-card-main-1639",
       "taskTitle": "CES 2151-9",
-      "audioText": "B: Now you are at holding point runway 36 right, the wind sock shows there is strong tailwind, report it to Wuhan Tower and check the wind.",
+      "audioText": "B: Now you are at holding point runway 36R, the wind sock shows there is strong tailwind, report it to Wuhan Tower and check the wind.",
       "audioTextZh": "B：现在你在跑道 36R 等待点，风向袋显示有强顺风，向武汉塔台报告并核实风。",
       "referenceText": "Wuhan Tower, CES2151, holding point runway 36R, the wind sock shows there is strong tailwind, request wind check.",
       "referenceTextZh": "武汉塔台，CES2151，跑道 36R 等待点，风向袋显示有强顺风，请求风检查。",
@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0095-card-main-1640",
       "taskTitle": "CES 2151-10",
-      "audioText": "C: China Eastern 151, wind 200 degrees, 8 meters per second.\nB: The tail wind exceeds your takeoff limit, contact Tower to change to runway 18 left and state the reason.",
+      "audioText": "C: China Eastern 151, wind 200 degrees, 8 meters per second.\nB: The tail wind exceeds your takeoff limit, contact Tower to change to runway 18L and state the reason.",
       "audioTextZh": "C：China Eastern 151，风 200 度，8 米/秒。\nB：顺风超过你的起飞限制，联系塔台改用跑道 18L 并说明原因。",
       "referenceText": "Wuhan Tower, CES2151, the tail wind exceeds our takeoff limit, request change to runway 18L.",
       "referenceTextZh": "武汉塔台，CES2151，顺风超过我们的起飞限制，请求改用跑道 18L。",
@@ -97,7 +97,7 @@
     {
       "id": "atc-scenario-0095-card-main-1641",
       "taskTitle": "CES 2151-11",
-      "audioText": "B: Now you are airborne from runway 18 left, you encountered a bird strike during the initial climb, 1 of your engines failed, inform the situation to Wuhan Approach and tell the controller you intend to return to land at Wuhan Airport.",
+      "audioText": "B: Now you are airborne from runway 18L, you encountered a bird strike during the initial climb, 1 of your engines failed, inform the situation to Wuhan Approach and tell the controller you intend to return to land at Wuhan Airport.",
       "audioTextZh": "B：现在你从跑道 18L 离地，初始爬升中遭遇鸟击，1 台发动机失效，向武汉进近通报情况并告诉管制员你打算返回武汉机场着陆。",
       "referenceText": "PANPAN PANPAN PANPAN, Wuhan Approach, CES2151, we encountered a bird strike during initial climb, 1 of our engines failed, request return to land at Wuhan Airport.",
       "referenceTextZh": "PANPAN PANPAN PANPAN，武汉进近，CES2151，我们在初始爬升中遭遇鸟击，1 台发动机失效，请求返回武汉机场着陆。",
@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0095-card-main-1642",
       "taskTitle": "CES 2151-12",
-      "audioText": "C: China Eastern 151, climb and maintain 600 meters, turn right to join downwind and cleared for ILS runway 36 right.",
+      "audioText": "C: China Eastern 151, climb and maintain 600 meters, turn right to join downwind and cleared for ILS runway 36R.",
       "audioTextZh": "C：China Eastern 151，爬升并保持 600 米，右转加入三边，许可 ILS 跑道 36R。",
       "referenceText": "Climb and maintain 600 meters, turn right to join downwind and cleared for ILS runway 36R, CES2151.",
       "referenceTextZh": "爬升并保持 600 米，右转加入三边，许可 ILS 跑道 36R，CES2151。",
@@ -115,7 +115,7 @@
     {
       "id": "atc-scenario-0095-card-main-1643",
       "taskTitle": "CES 2151-13",
-      "audioText": "B: Because of strong tailwind, you want to change to runway 18 left.",
+      "audioText": "B: Because of strong tailwind, you want to change to runway 18L.",
       "audioTextZh": "B：由于强顺风，你想改用跑道 18L。",
       "referenceText": "Wuhan Approach, CES2151, request change to runway 18L due strong tailwind.",
       "referenceTextZh": "武汉进近，CES2151，因强顺风，请求改用跑道 18L。",
@@ -124,7 +124,7 @@
     {
       "id": "atc-scenario-0095-card-main-1644",
       "taskTitle": "CES 2151-14",
-      "audioText": "C: China Eastern 151, change to runway 18 left is approved, maintain 600 meters, turn right, direct to Whiskey Hotel Alpha, contact Wuhan Approach 121.7.",
+      "audioText": "C: China Eastern 151, change to runway 18L is approved, maintain 600 meters, turn right, direct to Whiskey Hotel Alpha, contact Wuhan Approach 121.7.",
       "audioTextZh": "C：China Eastern 151，同意改用跑道 18L，保持 600 米，右转，直飞 Whiskey Hotel Alpha，联系武汉进近121.7。",
       "referenceText": "Change to runway 18L is approved, maintain 600 meters, turn right, direct to WHA, 121.7, CES2151.",
       "referenceTextZh": "同意改用跑道 18L，保持 600 米，右转，直飞 WHA，121.7，CES2151。",
@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0095-card-main-1645",
       "taskTitle": "CES 2151-15",
-      "audioText": "C: China Eastern 151, climb to and maintain 900 meters, after Whiskey Hotel Alpha, fly heading 360, expect radar vector for ILS approach runway 18 left.",
+      "audioText": "C: China Eastern 151, climb to and maintain 900 meters, after Whiskey Hotel Alpha, fly heading 360, expect radar vector for ILS approach runway 18L.",
       "audioTextZh": "C：China Eastern 151，爬升并保持 900 米，过 Whiskey Hotel Alpha 后，飞航向 360，预计雷达引导 ILS 进近跑道 18L。",
       "referenceText": "Climb to and maintain 900 meters, after WHA, fly heading 360, expect radar vector for ILS approach runway 18L, CES2151.",
       "referenceTextZh": "爬升并保持 900 米，过 WHA 后，飞航向 360，预计雷达引导 ILS 进近跑道 18L，CES2151。",

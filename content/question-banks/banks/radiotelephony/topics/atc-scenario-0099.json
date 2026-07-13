@@ -34,7 +34,7 @@
     {
       "id": "atc-scenario-0099-card-main-1713",
       "taskTitle": "CES 5277-4",
-      "audioText": "C: China Eastern 277, taxi to holding point runway 04 via taxiway Alpha 4, Echo 2, hold short of runway 36 right.",
+      "audioText": "C: China Eastern 277, taxi to holding point runway 04 via taxiway Alpha 4, Echo 2, hold short of runway 36R.",
       "audioTextZh": "C：China Eastern 277，经滑行道 Alpha 4、Echo 2 滑行至跑道 04 等待点，跑道 36R 外等待。",
       "referenceText": "Taxi to holding point runway 04 via taxiway A4, E2, hold short of runway 36R, CES5277.",
       "referenceTextZh": "经滑行道 A4、E2 滑行至跑道 04 等待点，跑道 36R 外等待，CES5277。",
@@ -43,7 +43,7 @@
     {
       "id": "atc-scenario-0099-card-main-1714",
       "taskTitle": "CES 5277-5",
-      "audioText": "B: Now you are holding short of runway 36 right, contact the controller to request cross the runway 36 right.",
+      "audioText": "B: Now you are holding short of runway 36R, contact the controller to request cross the runway 36R.",
       "audioTextZh": "B：现在你在跑道 36R 外等待，联系管制员请求穿越跑道 36R。",
       "referenceText": "Wuhan Tower, CES5277, holding short of runway 36R, request cross the runway 36R.",
       "referenceTextZh": "武汉塔台，CES5277，跑道 36R 外等待，请求穿越跑道 36R。",
@@ -52,7 +52,7 @@
     {
       "id": "atc-scenario-0099-card-main-1715",
       "taskTitle": "CES 5277-6",
-      "audioText": "C: China Eastern 277, expedite cross runway 36 right, report vacated.",
+      "audioText": "C: China Eastern 277, expedite cross runway 36R, report vacated.",
       "audioTextZh": "C：China Eastern 277，快速穿越跑道 36R，报告脱离。",
       "referenceText": "Expedite cross runway 36R, report vacated, CES5277.",
       "referenceTextZh": "快速穿越跑道 36R，报告脱离，CES5277。",
@@ -61,7 +61,7 @@
     {
       "id": "atc-scenario-0099-card-main-1716",
       "taskTitle": "CES 5277-7",
-      "audioText": "B: Now you have exited runway 36 right, report it to Wuhan Tower.",
+      "audioText": "B: Now you have exited runway 36R, report it to Wuhan Tower.",
       "audioTextZh": "B：现在你已脱离跑道 36R，向武汉塔台报告。",
       "referenceText": "Wuhan Tower, CES5277, runway 36R vacated.",
       "referenceTextZh": "武汉塔台，CES5277，跑道 36R 已脱离。",

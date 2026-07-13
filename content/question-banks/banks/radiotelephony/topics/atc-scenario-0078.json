@@ -79,7 +79,7 @@
     {
       "id": "atc-scenario-0078-card-main-1341",
       "taskTitle": "CSN 3109-9",
-      "audioText": "C: China southern 109, roger, turn right heading 340, direct to Victor Yankee Kilo, descend to and maintain 5100 meters.",
+      "audioText": "C: China Southern 109, roger, turn right heading 340, direct to Victor Yankee Kilo, descend to and maintain 5100 meters.",
       "audioTextZh": "C：China Southern 109，收到，右转航向 340，直飞 Victor Yankee Kilo，下降并保持 5100 米。",
       "referenceText": "Turn right heading 340, direct to VYK, descend to and maintain 5100 meters, CSN3109.",
       "referenceTextZh": "右转航向 340，直飞 VYK，下降并保持 5100 米，CSN3109。",
@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0078-card-main-1344",
       "taskTitle": "CSN 3109-12",
-      "audioText": "C: China Southern 109, Beijing Approach, radar contact, follow Victor Yankee Kilo 05 arrival, expect radar vectors for ILS approach runway 36 right.",
+      "audioText": "C: China Southern 109, Beijing Approach, radar contact, follow Victor Yankee Kilo 05 arrival, expect radar vectors for ILS approach runway 36R.",
       "audioTextZh": "C：China Southern 109，北京进近，雷达识别，执行 Victor Yankee Kilo 05 进场，预计雷达引导 ILS 进近跑道 36R。",
       "referenceText": "Follow VYK 05 arrival, expect radar vectors for ILS approach runway 36R, CSN3109.",
       "referenceTextZh": "执行 VYK 05 进场，预计雷达引导 ILS 进近跑道 36R，CSN3109。",
@@ -124,7 +124,7 @@
     {
       "id": "atc-scenario-0078-card-main-1346",
       "taskTitle": "CSN 3109-14",
-      "audioText": "C: China southern 109, runway 36 right, cleared to land, surface wind 350, 3 meters per second.",
+      "audioText": "C: China Southern 109, runway 36R, cleared to land, surface wind 350, 3 meters per second.",
       "audioTextZh": "C：China Southern 109，跑道 36R，可以落地，地面风 350，3 米/秒。",
       "referenceText": "Runway 36R, cleared to land, CSN3109.",
       "referenceTextZh": "跑道 36R，可以落地，CSN3109。",

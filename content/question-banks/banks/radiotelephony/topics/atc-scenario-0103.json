@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0103-card-main-1769",
       "taskTitle": "CCA 102-2",
-      "audioText": "C: Air China 102, Wuhan Approach is with you. Have you got the current ATIS？\nB: You give an affirmative reply and report that you have received information Lima.",
+      "audioText": "C: Air China 102, Wuhan Approach is with you. Have you got the current ATIS?\nB: You give an affirmative reply and report that you have received information Lima.",
       "audioTextZh": "C: Air China 102，武汉进近 收到。你们收到当前 ATIS 了吗？\nB: 你肯定回答并报告已收到信息 Lima。",
       "referenceText": "Affirm, information L, CCA102.",
       "referenceTextZh": "肯定，信息 L，CCA102。",
@@ -61,7 +61,7 @@
     {
       "id": "atc-scenario-0103-card-main-1774",
       "taskTitle": "CCA 102-7",
-      "audioText": "C: Affirm. Maintenance is available at this airport. I will continue to give you instructions and give you all the important information. Are you able to maintain 4200 meters ?\nB: Tell the controller you could.",
+      "audioText": "C: Affirm. Maintenance is available at this airport. I will continue to give you instructions and give you all the important information. Are you able to maintain 4200 meters?\nB: Tell the controller you could.",
       "audioTextZh": "C: 肯定。本机场有维修。我会继续给你指令并提供所有重要信息。你能保持 4200 meters 吗？\nB: 告诉管制员可以。",
       "referenceText": "Affirm, we can maintain 4200 meters, CCA102.",
       "referenceTextZh": "肯定，我们可以保持 4200 meters，CCA102。",
@@ -79,7 +79,7 @@
     {
       "id": "atc-scenario-0103-card-main-1776",
       "taskTitle": "CCA 102-9",
-      "audioText": "C: Air China 102, descend to 900 meters on QNH 1012, cleared ILS approach runway 18 right.",
+      "audioText": "C: Air China 102, descend to 900 meters on QNH 1012, cleared ILS approach runway 18R.",
       "audioTextZh": "C: Air China 102，按 QNH 1012 下降到 900 meters，许可 ILS 进近跑道 18 right。",
       "referenceText": "Descend to 900 meters on QNH1012, ILS approach runway 18 right, CCA102.",
       "referenceTextZh": "按 QNH1012 下降到 900 meters，ILS 进近跑道 18 right，CCA102。",
@@ -124,7 +124,7 @@
     {
       "id": "atc-scenario-0103-card-main-1781",
       "taskTitle": "CCA 102-14",
-      "audioText": "C: Air China 102, visibility is 8 miles, wind 270 at 10 knots, QNH 1013, landing runway 18 right.",
+      "audioText": "C: Air China 102, visibility is 8 miles, wind 270 at 10 knots, QNH 1013, landing runway 18R.",
       "audioTextZh": "C: Air China 102，能见度 8 miles，风 270 度 10 knots，QNH 1013，落地跑道 18 right。",
       "referenceText": "QNH1013, landing runway 18 right, CCA102.",
       "referenceTextZh": "QNH1013，落地跑道 18 right，CCA102。",

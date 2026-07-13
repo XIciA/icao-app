@@ -25,7 +25,7 @@
     {
       "id": "atc-scenario-0081-card-main-1389",
       "taskTitle": "CSN 7353-3",
-      "audioText": "C: China southern 353, cleared to Los Angeles via flight planned route, runway 36 right, Lima Kilo Oscar 01 Delta departure, initial climb 1200 meters, cruising level 8900 meters, departure frequency 119.7, squawk 2515.",
+      "audioText": "C: China Southern 353, cleared to Los Angeles via flight planned route, runway 36R, Lima Kilo Oscar 01 Delta departure, initial climb 1200 meters, cruising level 8900 meters, departure frequency 119.7, squawk 2515.",
       "audioTextZh": "C：China Southern 353，许可飞往洛杉矶，按飞行计划航路，跑道 36R，Lima Kilo Oscar 01 Delta 离场，起始爬升 1200 米，巡航高度 8900 米，离场频率 119.7，应答机 2515。",
       "referenceText": "Cleared to Los Angeles via flight planned route, runway 36R, LKO 01D departure, initial climb 1200 meters, cruising level 8900 meters, departure frequency 119.7, squawk 2515, CSN7353.",
       "referenceTextZh": "许可飞往洛杉矶，按飞行计划航路，跑道 36R，LKO 01D 离场，起始爬升 1200 米，巡航高度 8900 米，离场频率 119.7，应答机 2515，CSN7353。",
@@ -34,7 +34,7 @@
     {
       "id": "atc-scenario-0081-card-main-1390",
       "taskTitle": "CSN 7353-4",
-      "audioText": "C: China southern 353, expect 15 minutes delay, the airport is temporarily closed due heavy fog, call you back.",
+      "audioText": "C: China Southern 353, expect 15 minutes delay, the airport is temporarily closed due heavy fog, call you back.",
       "audioTextZh": "C：China Southern 353，预计延误 15 分钟，机场因大雾临时关闭，稍后呼叫你。",
       "referenceText": "Roger, expect 15 minutes delay, CSN7353.",
       "referenceTextZh": "收到，预计延误 15 分钟，CSN7353。",
@@ -52,7 +52,7 @@
     {
       "id": "atc-scenario-0081-card-main-1392",
       "taskTitle": "CSN 7353-6",
-      "audioText": "C: China southern 353, after traffic taxing behind is clear, push back and start up approved, pushed back onto taxiway Zulu 4, abeam gate 232, facing east.",
+      "audioText": "C: China Southern 353, after traffic taxiing behind is clear, push back and start up approved, pushed back onto taxiway Zulu 4, abeam gate 232, facing east.",
       "audioTextZh": "C：China Southern 353，后方滑行飞机脱离后，同意推出和开车，推出至滑行道 Zulu 4，正对 232 号登机口，机头朝东。",
       "referenceText": "After traffic taxing behind is clear, push back and start up approved, pushed back onto taxiway Z4, abeam gate 232, facing east, CSN7353.",
       "referenceTextZh": "后方滑行飞机脱离后，同意推出和开车，推出至滑行道 Z4，正对 232 号登机口，机头朝东，CSN7353。",
@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0081-card-main-1394",
       "taskTitle": "CSN 7353-8",
-      "audioText": "C: China southern 353, taxi via taxiway Zulu 4, Alpha 3 and Alpha to holding point runway 36 right.",
+      "audioText": "C: China Southern 353, taxi via taxiway Zulu 4, Alpha 3 and Alpha to holding point runway 36R.",
       "audioTextZh": "C：China Southern 353，经滑行道 Zulu 4、Alpha 3 和 Alpha 滑行至跑道 36R 等待点。",
       "referenceText": "Taxi via taxiway Z4, A3 and A to holding point runway 36R, CSN7353.",
       "referenceTextZh": "经滑行道 Z4、A3 和 A 滑行至跑道 36R 等待点，CSN7353。",
@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0081-card-main-1396",
       "taskTitle": "CSN 7353-10",
-      "audioText": "C: China southern 353, the visibility is improving, continue taxi to holding point runway 36 right via taxiway Alpha 3 and Alpha.",
+      "audioText": "C: China Southern 353, the visibility is improving, continue taxi to holding point runway 36R via taxiway Alpha 3 and Alpha.",
       "audioTextZh": "C：China Southern 353，能见度正在好转，继续经滑行道 Alpha 3 和 Alpha 滑行至跑道 36R 等待点。",
       "referenceText": "Roger, continue taxi to holding point runway 36R via taxiway A3 and A, CSN7353.",
       "referenceTextZh": "收到，继续经滑行道 A3 和 A 滑行至跑道 36R 等待点，CSN7353。",
@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0081-card-main-1398",
       "taskTitle": "CSN 7353-12",
-      "audioText": "B: Now you are at holding point runway 36 right, you are ready for departure, contact Wuhan Tower.",
+      "audioText": "B: Now you are at holding point runway 36R, you are ready for departure, contact Wuhan Tower.",
       "audioTextZh": "B：现在你在跑道 36R 等待点，准备好离场，联系武汉塔台。",
       "referenceText": "Wuhan Tower, CSN7353, holding point runway 36R, ready for departure.",
       "referenceTextZh": "武汉塔台，CSN7353，跑道 36R 等待点，准备好离场。",
@@ -115,7 +115,7 @@
     {
       "id": "atc-scenario-0081-card-main-1399",
       "taskTitle": "CSN 7353-13",
-      "audioText": "C: China Southern 353, runway 36 right, cleared for takeoff, when airborne, contact 119.7.",
+      "audioText": "C: China Southern 353, runway 36R, cleared for takeoff, when airborne, contact 119.7.",
       "audioTextZh": "C：China Southern 353，跑道 36R，可以起飞，离地后联系 119.7。",
       "referenceText": "Runway 36R, cleared for takeoff, when airborne, contact 119.7, CSN7353.",
       "referenceTextZh": "跑道 36R，可以起飞，离地后联系 119.7，CSN7353。",
@@ -142,7 +142,7 @@
     {
       "id": "atc-scenario-0081-card-main-1402",
       "taskTitle": "CSN 7353-16",
-      "audioText": "C: China southern 353, continue climb to 8900 meters, report passing 6000 meters.",
+      "audioText": "C: China Southern 353, continue climb to 8900 meters, report passing 6000 meters.",
       "audioTextZh": "C：China Southern 353，继续爬升至 8900 米，报告通过 6000 米。",
       "referenceText": "Continue climb to 8900 meters, report passing 6000 meters, CSN7353.",
       "referenceTextZh": "继续爬升至 8900 米，报告通过 6000 米，CSN7353。",

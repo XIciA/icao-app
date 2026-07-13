@@ -43,7 +43,7 @@
     {
       "id": "atc-scenario-0068-card-main-1165",
       "taskTitle": "CCA 1301-5",
-      "audioText": "B: During taxing, you notice the Airbus 3 thirty in front of you is leaking fluid from the right engine, report it to Beijing Ground.",
+      "audioText": "B: During taxiing, you notice the Airbus 330 in front of you is leaking fluid from the right engine, report it to Beijing Ground.",
       "audioTextZh": "B: 滑行期间，你注意到前方 Airbus 330 右发漏液，向北京地面报告。",
       "referenceText": "Beijing Ground, CCA1301, the A330 ahead is leaking fluid from the right engine.",
       "referenceTextZh": "北京地面，CCA1301，前方 A330 右发漏液。",
@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0068-card-main-1168",
       "taskTitle": "CCA 1301-8",
-      "audioText": "B: Now you are at holding point runway 36 right, you are ready for departure, contact Beijing Tower.",
+      "audioText": "B: Now you are at holding point runway 36R, you are ready for departure, contact Beijing Tower.",
       "audioTextZh": "B: 现在你在跑道 36R 等待点，准备离场，联系北京塔台。",
       "referenceText": "Beijing Tower, CCA1301, holding point runway 36R, ready for departure.",
       "referenceTextZh": "北京塔台，CCA1301，跑道 36R 等待点，准备离场。",
@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0068-card-main-1170",
       "taskTitle": "CCA 1301-10",
-      "audioText": "C: Air China 301, runway 36 right, cleared for immediate takeoff, surface wind 340 degrees, 2 meters per second.",
+      "audioText": "C: Air China 301, runway 36R, cleared for immediate takeoff, surface wind 340 degrees, 2 meters per second.",
       "audioTextZh": "C: Air China 301，跑道 36R，可以立即起飞，地面风 340 度，2 米/秒。",
       "referenceText": "Runway 36R, cleared for immediate takeoff, CCA1301.",
       "referenceTextZh": "跑道 36R，可以立即起飞，CCA1301。",
@@ -97,7 +97,7 @@
     {
       "id": "atc-scenario-0068-card-main-1171",
       "taskTitle": "CCA 1301-11",
-      "audioText": "C: Air China 301, stop immediately ! I say again! stop immediately !\nB: Tell the controller you use the maximum breaks and you are stopping on the runway.",
+      "audioText": "C: Air China 301, stop immediately! I say again! stop immediately!\nB: Tell the controller you use the maximum brakes and you are stopping on the runway.",
       "audioTextZh": "C: Air China 301，立即停止！我再说一遍！立即停止！\nB: 告诉管制员你使用最大刹车，正在跑道上停止。",
       "referenceText": "Beijing Tower, CCA1301, we used the maximum breaks and we are stopping on the runway.",
       "referenceTextZh": "北京塔台，CCA1301，我们使用最大刹车，正在跑道上停止。",
@@ -115,7 +115,7 @@
     {
       "id": "atc-scenario-0068-card-main-1173",
       "taskTitle": "CCA 1301-13",
-      "audioText": "B: Now you have vacated runway 36 right via Echo 2 and ask Beijing Tower the reasons for rejected takeoff.",
+      "audioText": "B: Now you have vacated runway 36R via Echo 2 and ask Beijing Tower the reasons for rejected takeoff.",
       "audioTextZh": "B: 现在你已通过 Echo 2 脱离跑道 36R，并询问 北京塔台 中断起飞的原因。",
       "referenceText": "Beijing Tower, CCA1301, runway 36R vacated via E2, confirm the reasons for rejected takeoff.",
       "referenceTextZh": "北京塔台，CCA1301，已通过 E2 脱离跑道 36R，确认中断起飞原因。",
@@ -160,7 +160,7 @@
     {
       "id": "atc-scenario-0068-card-main-1178",
       "taskTitle": "CCA 1301-18",
-      "audioText": "B: After the check, the maintenance staff told you that your parking breaks have seized, report it to the controller.",
+      "audioText": "B: After the check, the maintenance staff told you that your parking brakes have seized, report it to the controller.",
       "audioTextZh": "B: 检查后，维修人员告诉你停车刹车卡滞，向管制员报告。",
       "referenceText": "Beijing Tower, CCA1301, our parking breaks have seized.",
       "referenceTextZh": "北京塔台，CCA1301，我们的停车刹车卡滞。",

@@ -79,7 +79,7 @@
     {
       "id": "atc-scenario-0033-card-main-570",
       "taskTitle": "UAL 221-9",
-      "audioText": "C: United 221, maintain 10400 meters due airspace congestion, reduce speed to mach 0.75.",
+      "audioText": "C: United 221, maintain 10400 meters due airspace congestion, reduce speed to Mach 0.75.",
       "audioTextZh": "C：United 221，因空域拥挤，保持 10400 米，减速至马赫 0.75。",
       "referenceText": "Maintain 10400 meters, reduce speed to M.75, UAL221.",
       "referenceTextZh": "保持 10400 米，减速至 M.75，UAL221。",
@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0033-card-main-576",
       "taskTitle": "UAL 221-15",
-      "audioText": "C: United 221, turn left heading 220, expect radar vectors for ILS approach runway 36 right.",
+      "audioText": "C: United 221, turn left heading 220, expect radar vectors for ILS approach runway 36R.",
       "audioTextZh": "C：United 221，左转航向 220，预计雷达引导 ILS 进近跑道 36 右。",
       "referenceText": "Turn left heading 220, expect radar vectors for ILS approach runway 36R, UAL221.",
       "referenceTextZh": "左转航向 220，预计雷达引导 ILS 进近跑道 36R，UAL221。",
@@ -142,7 +142,7 @@
     {
       "id": "atc-scenario-0033-card-main-577",
       "taskTitle": "UAL 221-16",
-      "audioText": "C: United 221, turn right heading 330, descend to 900 meters, cleared for ILS approach runway 36 right.",
+      "audioText": "C: United 221, turn right heading 330, descend to 900 meters, cleared for ILS approach runway 36R.",
       "audioTextZh": "C：United 221，右转航向 330，下降至 900 米，可以 ILS 进近跑道 36 右。",
       "referenceText": "Turn right heading 330, descend to 900 meters, cleared for ILS approach runway 36R, UAL221.",
       "referenceTextZh": "右转航向 330，下降至 900 米，可以 ILS 进近跑道 36R，UAL221。",

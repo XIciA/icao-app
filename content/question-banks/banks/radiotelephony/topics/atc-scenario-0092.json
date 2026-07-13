@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0092-card-main-1581",
       "taskTitle": "CES 565-2",
-      "audioText": "C: China Eastern 565, cleared to Los Angeles via flight planned route, Zulu Foxtrot 01 departure, runway in use 36 left, initial climb 1500 meters, cruising level 10100 meters, squawk 5655.",
+      "audioText": "C: China Eastern 565, cleared to Los Angeles via flight planned route, Zulu Foxtrot 01 departure, runway in use 36L, initial climb 1500 meters, cruising level 10100 meters, squawk 5655.",
       "audioTextZh": "C：China Eastern 565，许可飞往洛杉矶，按飞行计划航路，Zulu Foxtrot 01 离场，使用跑道 36L，起始爬升 1500 米，巡航高度 10100 米，应答机 5655。",
       "referenceText": "Cleared to Los Angeles via flight planned route, ZF 01 departure, runway in use 36L, initial climb 1500 meters, cruising level 10100 meters, squawk 5655, CES565.",
       "referenceTextZh": "许可飞往洛杉矶，按飞行计划航路，ZF 01 离场，使用跑道 36L，起始爬升 1500 米，巡航高度 10100 米，应答机 5655，CES565。",
@@ -61,7 +61,7 @@
     {
       "id": "atc-scenario-0092-card-main-1586",
       "taskTitle": "CES 565-7",
-      "audioText": "B: Now you are at holding point runway 36 left, you are ready for departure, contact Wuhan Tower.",
+      "audioText": "B: Now you are at holding point runway 36L, you are ready for departure, contact Wuhan Tower.",
       "audioTextZh": "B：现在你在跑道 36L 等待点，准备好离场，联系武汉塔台。",
       "referenceText": "Wuhan Tower, CES565, holding point runway 36L, ready for departure.",
       "referenceTextZh": "武汉塔台，CES565，跑道 36L 等待点，准备好离场。",
@@ -79,7 +79,7 @@
     {
       "id": "atc-scenario-0092-card-main-1588",
       "taskTitle": "CES 565-9",
-      "audioText": "C: China Eastern 565, wind 350 degrees, 2 meters per second, cleared for takeoff runway 36 left, after departure, contact Wuhan Departure 125.35.",
+      "audioText": "C: China Eastern 565, wind 350 degrees, 2 meters per second, cleared for takeoff runway 36L, after departure, contact Wuhan Departure 125.35.",
       "audioTextZh": "C：China Eastern 565，风 350 度，2 米/秒，跑道 36L 可以起飞，离场后联系武汉离场 125.35。",
       "referenceText": "Cleared for takeoff runway 36L, after departure, contact Wuhan Departure 125.35, CES565.",
       "referenceTextZh": "跑道 36L 可以起飞，离场后联系武汉离场 125.35，CES565。",
@@ -151,7 +151,7 @@
     {
       "id": "atc-scenario-0092-card-main-1596",
       "taskTitle": "CES 565-17",
-      "audioText": "B: During approach, your slats can't be extended, request the longer runway 36 right and state the reason.",
+      "audioText": "B: During approach, your slats can't be extended, request the longer runway 36R and state the reason.",
       "audioTextZh": "B：进近中，你的缝翼无法放出，请求较长的跑道 36R 并说明原因。",
       "referenceText": "Wuhan Approach, CES565, our slats can't be extended, request the longer runway 36R.",
       "referenceTextZh": "武汉进近，CES565，我们的缝翼无法放出，请求较长的跑道 36R。",
@@ -160,7 +160,7 @@
     {
       "id": "atc-scenario-0092-card-main-1597",
       "taskTitle": "CES 565-18",
-      "audioText": "C: China Eastern 565, change runway 36 right, continue present heading, descend to 900 meters.",
+      "audioText": "C: China Eastern 565, change runway 36R, continue present heading, descend to 900 meters.",
       "audioTextZh": "C：China Eastern 565，改用跑道 36R，继续当前航向，下降至 900 米。",
       "referenceText": "Runway 36R, continue present heading, descend to 900 meters, CES565.",
       "referenceTextZh": "跑道 36R，继续当前航向，下降至 900 米，CES565。",

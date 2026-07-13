@@ -52,7 +52,7 @@
     {
       "id": "atc-scenario-0049-card-main-842",
       "taskTitle": "ACA 452-6",
-      "audioText": "C: Air Canada 452, the visibility now is 1000 meters, continue taxi to holding point runway 18 right via taxiway Zulu 4 and Charlie, contact Wuhan Tower 124.35.",
+      "audioText": "C: Air Canada 452, the visibility now is 1000 meters, continue taxi to holding point runway 18R via taxiway Zulu 4 and Charlie, contact Wuhan Tower 124.35.",
       "audioTextZh": "C: Air Canada 452，现在能见度 1000 米，继续经滑行道 Zulu 4 和 Charlie 滑行至跑道 18R 等待点，联系武汉塔台124.35。",
       "referenceText": "Roger, continue taxi to holding point runway 18R via taxiway Z4 and C, 124.35, ACA452.",
       "referenceTextZh": "收到，继续经滑行道 Z4 和 C 滑行至跑道 18R 等待点，124.35，ACA452。",
@@ -61,7 +61,7 @@
     {
       "id": "atc-scenario-0049-card-main-843",
       "taskTitle": "ACA 452-7",
-      "audioText": "B: Now you are at holding point runway 18 right, tell the Tower you are ready for takeoff.",
+      "audioText": "B: Now you are at holding point runway 18R, tell the Tower you are ready for takeoff.",
       "audioTextZh": "B: 现在你在跑道 18R 等待点，告诉塔台你准备起飞。",
       "referenceText": "Wuhan Tower, ACA452, holding point runway 18R, ready for departure.",
       "referenceTextZh": "武汉塔台，ACA452，跑道 18R 等待点，准备离场。",
@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0049-card-main-844",
       "taskTitle": "ACA 452-8",
-      "audioText": "C: Air Canada 452, when airborne, contact 119.35, follow the abatement procedure, cleared for takeoff runway 18 right.",
+      "audioText": "C: Air Canada 452, when airborne, contact 119.35, follow the abatement procedure, cleared for takeoff runway 18R.",
       "audioTextZh": "C: Air Canada 452，离地后联系 119.35，执行减噪程序，跑道 18R 可以起飞。",
       "referenceText": "When airborne, contact 119.35, follow the abatement procedure, cleared for takeoff runway 18R, ACA452.",
       "referenceTextZh": "离地后联系 119.35，执行减噪程序，跑道 18R 可以起飞，ACA452。",
@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0049-card-main-848",
       "taskTitle": "ACA 452-12",
-      "audioText": "C: Air Canada 452, what's the situation like on board ?\nB: Tell the controller you need 1 minute to perform the checklist and will advise.",
+      "audioText": "C: Air Canada 452, what's the situation like on board?\nB: Tell the controller you need 1 minute to perform the checklist and will advise.",
       "audioTextZh": "C: Air Canada 452，机上情况如何？\nB: 告诉管制员你需要 1 分钟执行检查单，稍后通知。",
       "referenceText": "Wuhan Control, ACA452, we need 1 minute to perform the checklist and will advise.",
       "referenceTextZh": "武汉管制，ACA452，我们需要 1 分钟执行检查单，稍后通知。",

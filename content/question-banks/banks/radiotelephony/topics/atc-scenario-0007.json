@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0007-card-main-113",
       "taskTitle": "SIA 852-2",
-      "audioText": "C: Singapore 852, cleared to Singapore via flight planned route, follow Zulu Foxtrot 03 departure, initial climb to 1800 meters, cruising level 10400 meters, runway 18 left, departure frequency 124.7, squawk 4615.",
+      "audioText": "C: Singapore 852, cleared to Singapore via flight planned route, follow Zulu Foxtrot 03 departure, initial climb to 1800 meters, cruising level 10400 meters, runway 18L, departure frequency 124.7, squawk 4615.",
       "audioTextZh": "C：Singapore 852，许可按飞行计划航路飞往新加坡，执行 Zulu Foxtrot 03 离场，初始爬升至 1800 米，巡航高度 10400 米，跑道 18 左，离场频率 124.7，应答机 4615。",
       "referenceText": "Cleared to Singapore via flight planned route, follow ZF03 departure, initial climb to 1800 meters, cruising level 10400 meters, runway 18L, departure frequency 124.7, squawk 4615, SIA852.",
       "referenceTextZh": "许可按飞行计划航路飞往新加坡，执行 ZF03 离场，初始爬升至 1800 米，巡航高度 10400 米，跑道 18L，离场频率 124.7，应答机 4615，SIA852。",
@@ -52,7 +52,7 @@
     {
       "id": "atc-scenario-0007-card-main-117",
       "taskTitle": "SIA 852-6",
-      "audioText": "C: Singapore 852, roger, intersection departure from Echo 2 is approved, taxi to Echo 2 via Alpha 6, Alpha 2, hold short of runway 18 left.",
+      "audioText": "C: Singapore 852, roger, intersection departure from Echo 2 is approved, taxi to Echo 2 via Alpha 6, Alpha 2, hold short of runway 18L.",
       "audioTextZh": "C：Singapore 852，收到，Echo 2 交叉口离场批准，经 Alpha 6、Alpha 2 滑行至 Echo 2，跑道 18 左外等待。",
       "referenceText": "Intersection departure from E2 is approved, taxi to E2 via A6, A2, hold short of runway 18L, SIA852.",
       "referenceTextZh": "E2 交叉口离场批准，经 A6、A2 滑行至 E2，跑道 18L 外等待，SIA852。",
@@ -61,7 +61,7 @@
     {
       "id": "atc-scenario-0007-card-main-118",
       "taskTitle": "SIA 852-7",
-      "audioText": "B: During taxing you find a vehicle broken down on taxiway Alpha, you have stopped the aircraft, inform ATC about the situation and request airport services to tow away the vehicle.",
+      "audioText": "B: During taxiing you find a vehicle broken down on taxiway Alpha, you have stopped the aircraft, inform ATC about the situation and request airport services to tow away the vehicle.",
       "audioTextZh": "B：滑行期间，你发现一辆车在 Alpha 滑行道上故障，你已停止飞机，通知 ATC 情况，并请求机场服务将车辆拖走。",
       "referenceText": "Wuhan Ground, SIA852, a vehicle has broken down on taxiway A, we have to stop our aircraft and request airport service to tow the vehicle away.",
       "referenceTextZh": "武汉地面，SIA852，一辆车在 A 滑行道上故障，我们必须停止飞机，请求机场服务将车辆拖走。",
@@ -79,7 +79,7 @@
     {
       "id": "atc-scenario-0007-card-main-120",
       "taskTitle": "SIA 852-9",
-      "audioText": "B: You are now holding short of runway 18 left on Echo 2, request departure.",
+      "audioText": "B: You are now holding short of runway 18L on Echo 2, request departure.",
       "audioTextZh": "B：现在你在 Echo 2 上跑道 18 左外等待，请求离场。",
       "referenceText": "Wuhan Tower, SIA852, holding short of runway 18L on E2, ready for departure.",
       "referenceTextZh": "武汉塔台，SIA852，在 E2 上跑道 18L 外等待，准备好离场。",
@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0007-card-main-121",
       "taskTitle": "SIA 852-10",
-      "audioText": "C: Singapore 852, cleared for takeoff runway 18 left.",
+      "audioText": "C: Singapore 852, cleared for takeoff runway 18L.",
       "audioTextZh": "C：Singapore 852，跑道 18 左可以起飞。",
       "referenceText": "Cleared for takeoff, runway 18L, SIA852.",
       "referenceTextZh": "可以起飞，跑道 18L，SIA852。",

@@ -43,7 +43,7 @@
     {
       "id": "atc-scenario-0070-card-main-1200",
       "taskTitle": "CCA 1368-5",
-      "audioText": "C: Air China 368, orbit right from present position until advised, runway 18 left is not available now.",
+      "audioText": "C: Air China 368, orbit right from present position until advised, runway 18L is not available now.",
       "audioTextZh": "C: Air China 368，从当前位置右盘旋，直到通知，跑道 18L 现在不可用。",
       "referenceText": "Roger, orbit right from present position until advised, CCA1368.",
       "referenceTextZh": "收到，从当前位置右盘旋，直到通知，CCA1368。",
@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0070-card-main-1210",
       "taskTitle": "CCA 1368-15",
-      "audioText": "B: Now you have landed on runway 01, you find the runway surface is slippery, the breaking action is medium, report it to Beijing Tower.",
+      "audioText": "B: Now you have landed on runway 01, you find the runway surface is slippery, the braking action is medium, report it to Beijing Tower.",
       "audioTextZh": "B: 现在你已在跑道 01 着陆，发现跑道表面湿滑，刹车效应中等，向北京塔台报告。",
       "referenceText": "Beijing Tower, CCA1368, the runway surface is slippery, the breaking action is medium.",
       "referenceTextZh": "北京塔台，CCA1368，跑道表面湿滑，刹车效应中等。",

@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0034-card-main-579",
       "taskTitle": "UAL 403-2",
-      "audioText": "C: United 403, where do you want to de-icing ?\nB: Tell the controller you want to de-icing on taxiway Zulu 4.",
+      "audioText": "C: United 403, where do you want to de-ice?\nB: Tell the controller you want to de-ice on taxiway Zulu 4.",
       "audioTextZh": "C：United 403，你想在哪里除冰？\nB：告诉管制员想在滑行道 Zulu 4 除冰。",
       "referenceText": "Request de-icing on taxiway Z4, UAL403.",
       "referenceTextZh": "请求在滑行道 Z4 除冰，UAL403。",
@@ -34,7 +34,7 @@
     {
       "id": "atc-scenario-0034-card-main-581",
       "taskTitle": "UAL 403-4",
-      "audioText": "C: United 403, taxi to holding point runway 36 right via taxiway Zulu 4, Alpha 3 and Alpha.",
+      "audioText": "C: United 403, taxi to holding point runway 36R via taxiway Zulu 4, Alpha 3 and Alpha.",
       "audioTextZh": "C：United 403，经滑行道 Zulu 4、Alpha 3 和 Alpha 滑行至跑道 36 右等待点。",
       "referenceText": "Taxi to holding point runway 36R via taxiway Z4, A3 and A, UAL403.",
       "referenceTextZh": "经滑行道 Z4、A3 和 A 滑行至跑道 36R 等待点，UAL403。",

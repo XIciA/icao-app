@@ -1,0 +1,340 @@
+{
+  "generatedAt": "2026-07-13T04:22:37.459Z",
+  "samples": [
+    {
+      "audio": "/question-bank-assets/audio/listening/main/001.mp3",
+      "audioText": "United Airlines 919, we've just been struck by lightning, and we'll have to go back to the ramp to check our electrics, and make sure there is no damage on the fuselage.\nQuestion: what will the crew do?",
+      "bankId": "listening",
+      "categoryId": "listening-category-01",
+      "durationSeconds": 19.08,
+      "id": "listening-main-001",
+      "index": 1,
+      "localAudioPath": "/Users/zhouyide/Desktop/icao设计稿/public/question-bank-assets/audio/listening/main/001.mp3",
+      "taskTitle": "10s航空英语-1",
+      "topicId": "listening-topic-01",
+      "averageLogprob": -0.22150225388376335,
+      "comparison": {
+        "contentExact": false,
+        "errors": 1,
+        "referenceWords": 40,
+        "wer": 0.025
+      },
+      "status": "minor-difference",
+      "whisperText": "United Airlines, 9019er, we've just been struck by lightning and we'll have to go back to the ramp to check our electrics and make sure there is no damage on the fuselage. Question, what will the crew do?"
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/002.mp3",
+      "audioText": "China Eastern 5152 returned to the airport after taking off from Beijing, because a passenger was found not on board while the luggage was on the airplane.\nQuestion: what happened to China Eastern 5152?",
+      "bankId": "listening",
+      "categoryId": "listening-category-01",
+      "durationSeconds": 20.88,
+      "id": "listening-main-002",
+      "index": 2,
+      "localAudioPath": "/Users/zhouyide/Desktop/icao设计稿/public/question-bank-assets/audio/listening/main/002.mp3",
+      "taskTitle": "10s航空英语-2",
+      "topicId": "listening-topic-01",
+      "averageLogprob": -0.10762388809867528,
+      "comparison": {
+        "contentExact": true,
+        "errors": 0,
+        "referenceWords": 34,
+        "wer": 0
+      },
+      "status": "same-content",
+      "whisperText": "China Eastern 5152 returned to the airport after taking off from Beijing because a passenger was found not on board while the luggage was on the airplane. Question. What happened to China Eastern 5152?"
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/003.mp3",
+      "audioText": "Shortly after the engine lost power, its speed decreased to about 1000 to 1100 RPM. The pilot pushed the throttle forward, but obtained no response from the engine.\nQuestion: what is the reason for no response from the engine?",
+      "bankId": "listening",
+      "categoryId": "listening-category-01",
+      "durationSeconds": 30.36,
+      "id": "listening-main-005",
+      "index": 3,
+      "localAudioPath": "/Users/zhouyide/Desktop/icao设计稿/public/question-bank-assets/audio/listening/main/003.mp3",
+      "taskTitle": "10s航空英语-3",
+      "topicId": "listening-topic-01",
+      "averageLogprob": -0.47488661516583636,
+      "comparison": {
+        "contentExact": false,
+        "errors": 60,
+        "referenceWords": 39,
+        "wer": 1.5384615384615385
+      },
+      "status": "review",
+      "whisperText": "3. Tower, Dragonair 305, we cannot extend the nose gear due to a hydraulic problem. Request making a low pass for a visual check. Dragonair 305, make a low pass not below 45 meters over the runway 36. Question. What is the level for low pass? Question. What is the level for low pass? Question. What is the level for low pass? Question. What is the level for low pass?"
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/004.mp3",
+      "audioText": "They said that most passengers of the 737-400 were held up due to a woman getting stuck in the aircraft door while trying to exit the plane!\nQuestion: What had happened?",
+      "bankId": "listening",
+      "categoryId": "listening-category-01",
+      "durationSeconds": 28.296,
+      "id": "listening-main-021",
+      "index": 4,
+      "localAudioPath": "/Users/zhouyide/Desktop/icao设计稿/public/question-bank-assets/audio/listening/main/004.mp3",
+      "taskTitle": "10s航空英语-4",
+      "topicId": "listening-topic-01",
+      "averageLogprob": -0.16044117155529203,
+      "comparison": {
+        "contentExact": false,
+        "errors": 46,
+        "referenceWords": 32,
+        "wer": 1.4375
+      },
+      "status": "review",
+      "whisperText": "A controller instructed Air China 101 to leave 9,500 metres for 8,900 metres. He then found his instruction was not correct and changed the instruction by asking Air China 101 descending to 9,200 metres. Question. Which word can be used to express the controller's meaning?"
+    },
+    {
+      "audio": "/question-bank-assets/audio/listening/main/005.mp3",
+      "audioText": "2. CES 554, turn right heading 350, R30 route unavailable due military operations, call you back.\nQuestion: Why did the controller ask the pilot to change the heading?",
+      "bankId": "listening",
+      "categoryId": "listening-category-01",
+      "durationSeconds": 22.92,
+      "id": "listening-main-022",
+      "index": 5,
+      "localAudioPath": "/Users/zhouyide/Desktop/icao设计稿/public/question-bank-assets/audio/listening/main/005.mp3",
+      "taskTitle": "10s航空英语-5",
+      "topicId": "listening-topic-01",
+      "averageLogprob": -0.1690826416015625,
+      "comparison": {
+        "contentExact": false,
+        "errors": 38,
+        "referenceWords": 28,
+        "wer": 1.3571428571428572
+      },
+      "status": "review",
+      "whisperText": "Shortly after the engine lost power, its speed decreased to about 1,000 to 1,100 rpm. The pilot pushed the throttle forward but obtained no response from the engine. Question. What is the reason for no response from the engine?"
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/001.mp3",
+      "audioText": "B: Your call sign is Qantas 432, you are parking at gate 24, you have got information Hotel, ask Shanghai Delivery for ATC clearance to Beijing.",
+      "bankId": "radiotelephony",
+      "categoryId": "atc-qfa",
+      "durationSeconds": 14.832,
+      "id": "atc-scenario-0001-card-main-001",
+      "index": 1,
+      "localAudioPath": "/Users/zhouyide/Desktop/icao设计稿/public/question-bank-assets/audio/radiotelephony/main/001.mp3",
+      "taskTitle": "QFA 432-1",
+      "topicId": "atc-scenario-0001",
+      "averageLogprob": -0.21307830377058548,
+      "comparison": {
+        "contentExact": false,
+        "errors": 6,
+        "referenceWords": 26,
+        "wer": 0.23076923076923078
+      },
+      "status": "review",
+      "whisperText": "Your call sign is Qantas Fowr Tree 2, you are parking at Gate 2 Fowr, you have got information hotel, ask Shanghai Delivery for ATC clearance to Beijing."
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/002.mp3",
+      "audioText": "C: Qantas 432, cleared to Beijing via flight planned route, runway in use runway 26, Hotel Zulu 01 departure, initial climb to 600 meters on QNH, after departure, contact 128.75, squawk 3421.",
+      "bankId": "radiotelephony",
+      "categoryId": "atc-qfa",
+      "durationSeconds": 21.312,
+      "id": "atc-scenario-0001-card-main-002",
+      "index": 2,
+      "localAudioPath": "/Users/zhouyide/Desktop/icao设计稿/public/question-bank-assets/audio/radiotelephony/main/002.mp3",
+      "taskTitle": "QFA 432-2",
+      "topicId": "atc-scenario-0001",
+      "averageLogprob": -0.25488151065886966,
+      "comparison": {
+        "contentExact": false,
+        "errors": 11,
+        "referenceWords": 33,
+        "wer": 0.3333333333333333
+      },
+      "status": "review",
+      "whisperText": "Qantas Fowler Tree 2, cleared to Beijing via flight plan route, runway in use runway 26, Hotel Zulu 01 departure, initial climb to 600 meters on Q&H, after departure, contact 128 Decimul 75, Squawk Tree Fowler 21."
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/003.mp3",
+      "audioText": "C: Qantas 432, read back correct, report when ready for push back and start up.",
+      "bankId": "radiotelephony",
+      "categoryId": "atc-qfa",
+      "durationSeconds": 9.624,
+      "id": "atc-scenario-0001-card-main-003",
+      "index": 3,
+      "localAudioPath": "/Users/zhouyide/Desktop/icao设计稿/public/question-bank-assets/audio/radiotelephony/main/003.mp3",
+      "taskTitle": "QFA 432-3",
+      "topicId": "atc-scenario-0001",
+      "averageLogprob": -0.4525403542952104,
+      "comparison": {
+        "contentExact": false,
+        "errors": 8,
+        "referenceWords": 15,
+        "wer": 0.5333333333333333
+      },
+      "status": "review",
+      "whisperText": "Qantas flower tree 2, read back correct. Report when ready for pushback and startup."
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/004.mp3",
+      "audioText": "B: Now you are ready for push back and start up.",
+      "bankId": "radiotelephony",
+      "categoryId": "atc-qfa",
+      "durationSeconds": 6.888,
+      "id": "atc-scenario-0001-card-main-004",
+      "index": 4,
+      "localAudioPath": "/Users/zhouyide/Desktop/icao设计稿/public/question-bank-assets/audio/radiotelephony/main/004.mp3",
+      "taskTitle": "QFA 432-4",
+      "topicId": "atc-scenario-0001",
+      "averageLogprob": -0.3295800004686628,
+      "comparison": {
+        "contentExact": false,
+        "errors": 1,
+        "referenceWords": 11,
+        "wer": 0.09090909090909091
+      },
+      "status": "review",
+      "whisperText": "Now you are ready for push back and start up."
+    },
+    {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/005.mp3",
+      "audioText": "C: Qantas 432, push back and start up approved.",
+      "bankId": "radiotelephony",
+      "categoryId": "atc-qfa",
+      "durationSeconds": 7.728,
+      "id": "atc-scenario-0001-card-main-005",
+      "index": 5,
+      "localAudioPath": "/Users/zhouyide/Desktop/icao设计稿/public/question-bank-assets/audio/radiotelephony/main/005.mp3",
+      "taskTitle": "QFA 432-5",
+      "topicId": "atc-scenario-0001",
+      "averageLogprob": -0.49813026189804077,
+      "comparison": {
+        "contentExact": false,
+        "errors": 4,
+        "referenceWords": 9,
+        "wer": 0.4444444444444444
+      },
+      "status": "review",
+      "whisperText": "Qantas flower tree 2, push back and start up approved."
+    },
+    {
+      "audio": "/question-bank-assets/audio/storytelling/wing/001.mp3",
+      "audioText": "AFR123 crashed at Singapore Changi Airport during takeoff.The tower controller instructed the crew to takeoff on Runway 02L,but the crew lined up runway 02R and began their takeoff rolling.The aircraft overran the runway and crashed.Crew members and 110 passengers were killed,and the co-pilot was badly wounded. According to the investigation,there were three reasons for the accidents.First\nof all,the crew didn't use effective methods to verify their position.Secondly,\nthe crew forgot to check whether they were on the correct runway or not.Finally, the crew members'idle chatting during the taxi resulted the loss of situation\nawareness.\n\nAFR123",
+      "bankId": "storytelling",
+      "categoryId": "story-category-1",
+      "durationSeconds": 58.248,
+      "id": "story-wing-001",
+      "index": 1,
+      "localAudioPath": "/Users/zhouyide/Desktop/icao设计稿/public/question-bank-assets/audio/storytelling/wing/001.mp3",
+      "taskTitle": "飞行ICAO-必做题库-1",
+      "topicId": "story-flight-required",
+      "averageLogprob": -0.15021396654018707,
+      "comparison": {
+        "contentExact": false,
+        "errors": 9,
+        "referenceWords": 108,
+        "wer": 0.08333333333333333
+      },
+      "status": "review",
+      "whisperText": "France 123 crashed at Singapore Changi Airport during takeoff. The tower controller instructed the crew to take off on runway 02 left, but the crew lined up runway 02 right and began their takeoff rolling. The aircraft overran the runway and crashed. Crew members and 110 passengers were killed, and the co-pilot was badly wounded. According to the investigation, there were three reasons for the accidents. First of all, the crew didn't use effective methods to verify their position. Secondly, the crew forgot to check whether they were on the correct runway or not. Finally, the crew members' idle chatting during the taxi resulted the loss of situation awareness."
+    },
+    {
+      "audio": "/question-bank-assets/audio/storytelling/wing/002.mp3",
+      "audioText": "An A320 collided with a B737 during taxi.The right ailerons of B737 was severely damaged but A320 only had minor damage on left wing.Luckily,there were no injuries.\nAfter receiving taxi instruction,the A320 began to pass the B737 from the right side. The captain of A320 thought they had enough room.But unfortunately,two aircraft collided together.Both captains reported the collision immediately.Because the\nBoeing aircraft was damaged seriously,fuel leakage was reported and fire services were required.Fortunately,the fuel leak didn't develop into fire.The crew of the Boeing\naircraft complained that they just parked stationary with the parking brakes when they were hit.",
+      "bankId": "storytelling",
+      "categoryId": "story-category-1",
+      "durationSeconds": 68.928,
+      "id": "story-wing-002",
+      "index": 2,
+      "localAudioPath": "/Users/zhouyide/Desktop/icao设计稿/public/question-bank-assets/audio/storytelling/wing/002.mp3",
+      "taskTitle": "飞行ICAO-必做题库-2",
+      "topicId": "story-flight-required",
+      "averageLogprob": -0.11165931103634355,
+      "comparison": {
+        "contentExact": false,
+        "errors": 28,
+        "referenceWords": 111,
+        "wer": 0.25225225225225223
+      },
+      "status": "review",
+      "whisperText": "an airbus tree 2-0 collided with a boeing 7 tree 7 during taxi the right ailerons of boeing 7 tree 7 was severely damaged but airbus tree 2-0 only had minor damage on left wing luckily there were no injuries after receiving taxi instruction the airbus tree 2-0 began to pass the boeing seven tree seven from the right side the captain of airbus tree two zero thought they had enough room but unfortunately two aircraft collided together both captains reported the collision immediately because the boeing aircraft was damaged seriously fuel leakage was reported and fire services were required fortunately the fuel leak didn't develop into fire The crew of the Boeing aircraft complained that they just parked stationary with the parking brakes when they were hit."
+    },
+    {
+      "audio": "/question-bank-assets/audio/storytelling/wing/003.mp3",
+      "audioText": "A pilot of Air China airline told us an event with landing gear problem.After normal\npush-back,start-up and taxi,he requested takeoff.However,he was instructed to\nhold short of the runway in order to give way to ACA702 on final.ACA702 declared\nemergency because of landing gear problem.ACA702 asked for a low pass.The\ncontroller verified the landing gear was still in up position.Then ACA702 requested a touch and go to jar the jammed gear.Unfortunately,the landing gear still couldn't be extended.So,ACA702 had to make a belly landing on a foamed runway.There were no casualties except some minor injuries.",
+      "bankId": "storytelling",
+      "categoryId": "story-category-1",
+      "durationSeconds": 61.152,
+      "id": "story-wing-003",
+      "index": 3,
+      "localAudioPath": "/Users/zhouyide/Desktop/icao设计稿/public/question-bank-assets/audio/storytelling/wing/003.mp3",
+      "taskTitle": "飞行ICAO-必做题库-3",
+      "topicId": "story-flight-required",
+      "averageLogprob": -0.104296389520312,
+      "comparison": {
+        "contentExact": false,
+        "errors": 19,
+        "referenceWords": 110,
+        "wer": 0.17272727272727273
+      },
+      "status": "review",
+      "whisperText": "a pilot of air china airline told us an event with landing gear problem after normal pushback startup and taxi he requested takeoff however he was instructed to hold short of the runway in order to give way to air canada 702 on final air canada 702 declared emergency because of landing gear problem air canada 702 asked for a low pass the controller verified the landing gear was still in up position then air canada 702 requested a touch and go to jar the jammed gear unfortunately the landing gear still couldn't be extended so air canada 702 had to make a belly landing on a foamed runway there were no casualties except some minor injuries."
+    },
+    {
+      "audio": "/question-bank-assets/audio/storytelling/wing/004.mp3",
+      "audioText": "When the pilot initially contacted the tower controller,he was told the Runway Visual Range was 500m.The pilot executed a missed approach because of no contact at\nminima.Then,he was given radar vectors for a second ILS approach.In the second\napproach,the controller issued landing clearance at outer marker.One minute later,the controller observed the airplane was leaving the glide path on the radar display and\nissued missed approach instructions again.There was no further reply from the pilot. The airplane impacted a building and crashed.\nAccording to the investigation,the poor visibility made the pilot nervous and he misunderstood the missed approach instructions and made a wrong turn.\n(113 words)",
+      "bankId": "storytelling",
+      "categoryId": "story-category-1",
+      "durationSeconds": 61.08,
+      "id": "story-wing-004",
+      "index": 4,
+      "localAudioPath": "/Users/zhouyide/Desktop/icao设计稿/public/question-bank-assets/audio/storytelling/wing/004.mp3",
+      "taskTitle": "飞行ICAO-必做题库-4",
+      "topicId": "story-flight-required",
+      "averageLogprob": -0.17995746944682714,
+      "comparison": {
+        "contentExact": false,
+        "errors": 4,
+        "referenceWords": 115,
+        "wer": 0.034782608695652174
+      },
+      "status": "minor-difference",
+      "whisperText": "when the pilot initially contacted the tower controller he was told the runway visual range was 500 meters the pilot executed a missed approach because of no contact at minima then he was given radar vectors for a second ils approach in the second approach the controller issued landing clearance at outer marker one minute later the controller observed the airplane was leaving the glide path on the radar display and issued missed approach instructions again there was no further reply from the pilot the airplane impacted a building and crashed according to the investigation the poor visibility made the pilot nervous and he misunderstood the missed approach instructions and made a wrong turn You"
+    },
+    {
+      "audio": "/question-bank-assets/audio/storytelling/wing/005.mp3",
+      "audioText": "A Delta Airline aircraft departed from Shanghai to Seoul.It carried 256 passengers\nand 13 crew members on board.During takeoff rolling,an unknown foreign object\nwas sucked into port engine and the engine fire warning light illuminated.Then the flight crew declared an emergency right after airborne and completed the emergency checklist procedure.Through good communication,the controller understood the\nflight crew wanted to return to land.But the pilot had to dump fuel before landing because the aircraft was overweight to land.So the controller vectored the aircraft to the dumping area.After circling over the sea and dumping fuel for almost one hour, the plane returned to land safely\n(112 words)",
+      "bankId": "storytelling",
+      "categoryId": "story-category-1",
+      "durationSeconds": 58.08,
+      "id": "story-wing-005",
+      "index": 5,
+      "localAudioPath": "/Users/zhouyide/Desktop/icao设计稿/public/question-bank-assets/audio/storytelling/wing/005.mp3",
+      "taskTitle": "飞行ICAO-必做题库-5",
+      "topicId": "story-flight-required",
+      "averageLogprob": -0.18883218412338718,
+      "comparison": {
+        "contentExact": false,
+        "errors": 2,
+        "referenceWords": 114,
+        "wer": 0.017543859649122806
+      },
+      "status": "minor-difference",
+      "whisperText": "a delta airline aircraft departed from shanghai to seoul it carried 256 passengers and 13 crew members on board during takeoff rolling an unknown foreign object was sucked into port engine and the engine fire warning light illuminated then the flight crew declared an emergency right after airborne and completed the emergency checklist procedure through good communication the controller understood the flight crew wanted to return to land but the pilot had to dump fuel before landing because the aircraft was overweight to land so the controller vectored the aircraft to the dumping area after circling over the sea and dumping fuel for almost one hour the plane returned to land safely Okay."
+    }
+  ],
+  "summary": {
+    "listening": {
+      "averageWer": 0.8716208791208793,
+      "minorDifference": 1,
+      "review": 3,
+      "sameContent": 1
+    },
+    "radiotelephony": {
+      "averageWer": 0.32655788655788653,
+      "minorDifference": 0,
+      "review": 5,
+      "sameContent": 0
+    },
+    "storytelling": {
+      "averageWer": 0.11212786533152666,
+      "minorDifference": 2,
+      "review": 3,
+      "sameContent": 0
+    }
+  }
+}

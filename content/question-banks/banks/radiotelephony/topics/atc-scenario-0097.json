@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0097-card-main-1675",
       "taskTitle": "CES 5325-12",
-      "audioText": "C: China Eastern 325, roger MAYDAY, the center controller as told us your situation, you will have the top priority. Descend to 1200 meters on QNH 1008, expect ILS approach runway 36 right, you are number 1.",
+      "audioText": "C: China Eastern 325, roger MAYDAY, the center controller as told us your situation, you will have the top priority. Descend to 1200 meters on QNH 1008, expect ILS approach runway 36R, you are number 1.",
       "audioTextZh": "C：China Eastern 325，收到 MAYDAY，管制中心已告诉我们你的情况，你将有最高优先级。QNH 1008 下降至 1200 米，预计 ILS 进近跑道 36R，你是第 1 架。",
       "referenceText": "Descend to 1200 meters on QNH 1008, ILS approach runway 36R, No.1, CES5325.",
       "referenceTextZh": "QNH 1008 下降至 1200 米，ILS 进近跑道 36R，第 1 架，CES5325。",
@@ -151,7 +151,7 @@
     {
       "id": "atc-scenario-0097-card-main-1680",
       "taskTitle": "CES 5325-17",
-      "audioText": "B: Now, you have fully established on the ILS runway 36 right, call Wuhan Approach.",
+      "audioText": "B: Now, you have fully established on the ILS runway 36R, call Wuhan Approach.",
       "audioTextZh": "B：现在你已完全建立跑道 36R ILS，呼叫武汉进近。",
       "referenceText": "Wuhan Approach, CES5325, established on the ILS runway 36R.",
       "referenceTextZh": "武汉进近，CES5325，已建立跑道 36R ILS。",
@@ -178,7 +178,7 @@
     {
       "id": "atc-scenario-0097-card-main-1683",
       "taskTitle": "CES 5325-20",
-      "audioText": "C: China Eastern 325, radar identified, continue ILS approach runway 36 right, you are No.1, report the outer marker.",
+      "audioText": "C: China Eastern 325, radar identified, continue ILS approach runway 36R, you are No.1, report the outer marker.",
       "audioTextZh": "C：China Eastern 325，雷达识别，继续 ILS 进近跑道 36R，你是第 1 架，报告外指点标。",
       "referenceText": "Continue ILS approach runway 36R, we are No.1, report the outer marker, CES5325.",
       "referenceTextZh": "继续 ILS 进近跑道 36R，我们是第 1 架，报告外指点标，CES5325。",
@@ -196,7 +196,7 @@
     {
       "id": "atc-scenario-0097-card-main-1685",
       "taskTitle": "CES 5325-22",
-      "audioText": "C: China Eastern 325, cleared land runway 36 right, wind 300 degrees at 12 meters per second, QNH 1008.",
+      "audioText": "C: China Eastern 325, cleared land runway 36R, wind 300 degrees at 12 meters per second, QNH 1008.",
       "audioTextZh": "C：China Eastern 325，跑道 36R 可以落地，风 300 度，12 米/秒，QNH 1008。",
       "referenceText": "Cleared to land runway 36R, QNH 1008, CES5325.",
       "referenceTextZh": "跑道 36R 可以落地，QNH 1008，CES5325。",

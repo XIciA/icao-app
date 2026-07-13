@@ -1,0 +1,588 @@
+{
+  "collectedAt": "2026-07-13T04:20:43.393Z",
+  "model": "turbo",
+  "schemaVersion": 1,
+  "transcripts": {
+    "listening-main-001": {
+      "audio": "/question-bank-assets/audio/listening/main/001.mp3",
+      "language": "en",
+      "segments": [
+        {
+          "avgLogprob": -0.22150225388376335,
+          "end": 7.82,
+          "noSpeechProb": 2.4274375912125556e-12,
+          "start": 0,
+          "text": "United Airlines, 9019er, we've just been struck by lightning and we'll have to go back to"
+        },
+        {
+          "avgLogprob": -0.22150225388376335,
+          "end": 12.72,
+          "noSpeechProb": 2.4274375912125556e-12,
+          "start": 7.82,
+          "text": "the ramp to check our electrics and make sure there is no damage on the fuselage."
+        },
+        {
+          "avgLogprob": -0.22150225388376335,
+          "end": 15.780000000000001,
+          "noSpeechProb": 2.4274375912125556e-12,
+          "start": 12.72,
+          "text": "Question, what will the crew do?"
+        }
+      ],
+      "text": "United Airlines, 9019er, we've just been struck by lightning and we'll have to go back to the ramp to check our electrics and make sure there is no damage on the fuselage. Question, what will the crew do?"
+    },
+    "listening-main-002": {
+      "audio": "/question-bank-assets/audio/listening/main/002.mp3",
+      "language": "en",
+      "segments": [
+        {
+          "avgLogprob": -0.10762388809867528,
+          "end": 10.06,
+          "noSpeechProb": 6.05251363351017e-13,
+          "start": 0,
+          "text": "China Eastern 5152 returned to the airport after taking off from Beijing because a passenger was found not on board while the luggage was on the airplane."
+        },
+        {
+          "avgLogprob": -0.10762388809867528,
+          "end": 16.62,
+          "noSpeechProb": 6.05251363351017e-13,
+          "start": 11.14,
+          "text": "Question. What happened to China Eastern 5152?"
+        }
+      ],
+      "text": "China Eastern 5152 returned to the airport after taking off from Beijing because a passenger was found not on board while the luggage was on the airplane. Question. What happened to China Eastern 5152?"
+    },
+    "listening-main-005": {
+      "audio": "/question-bank-assets/audio/listening/main/003.mp3",
+      "language": "en",
+      "segments": [
+        {
+          "avgLogprob": -0.18955787260140947,
+          "end": 12,
+          "noSpeechProb": 7.283051657418216e-13,
+          "start": 0,
+          "text": "3. Tower, Dragonair 305, we cannot extend the nose gear due to a hydraulic problem. Request making a low pass for a visual check."
+        },
+        {
+          "avgLogprob": -0.18955787260140947,
+          "end": 22,
+          "noSpeechProb": 7.283051657418216e-13,
+          "start": 12,
+          "text": "Dragonair 305, make a low pass not below 45 meters over the runway 36."
+        },
+        {
+          "avgLogprob": -0.18955787260140947,
+          "end": 27.22,
+          "noSpeechProb": 7.283051657418216e-13,
+          "start": 22,
+          "text": "Question. What is the level for low pass?"
+        },
+        {
+          "avgLogprob": -0.7602153577302632,
+          "end": 36.2,
+          "noSpeechProb": 8.126807386765744e-12,
+          "start": 30,
+          "text": "Question. What is the level for low pass?"
+        },
+        {
+          "avgLogprob": -0.7602153577302632,
+          "end": 43.26,
+          "noSpeechProb": 8.126807386765744e-12,
+          "start": 36.2,
+          "text": "Question. What is the level for low pass?"
+        },
+        {
+          "avgLogprob": -0.7602153577302632,
+          "end": 51.84,
+          "noSpeechProb": 8.126807386765744e-12,
+          "start": 43.26,
+          "text": "Question. What is the level for low pass?"
+        }
+      ],
+      "text": "3. Tower, Dragonair 305, we cannot extend the nose gear due to a hydraulic problem. Request making a low pass for a visual check. Dragonair 305, make a low pass not below 45 meters over the runway 36. Question. What is the level for low pass? Question. What is the level for low pass? Question. What is the level for low pass? Question. What is the level for low pass?"
+    },
+    "listening-main-021": {
+      "audio": "/question-bank-assets/audio/listening/main/004.mp3",
+      "language": "en",
+      "segments": [
+        {
+          "avgLogprob": -0.16044117155529203,
+          "end": 8.1,
+          "noSpeechProb": 9.325767155038411e-13,
+          "start": 0,
+          "text": "A controller instructed Air China 101 to leave 9,500 metres for 8,900 metres."
+        },
+        {
+          "avgLogprob": -0.16044117155529203,
+          "end": 18.64,
+          "noSpeechProb": 9.325767155038411e-13,
+          "start": 8.1,
+          "text": "He then found his instruction was not correct and changed the instruction by asking Air China 101 descending to 9,200 metres."
+        },
+        {
+          "avgLogprob": -0.16044117155529203,
+          "end": 24.7,
+          "noSpeechProb": 9.325767155038411e-13,
+          "start": 20.02,
+          "text": "Question. Which word can be used to express the controller's meaning?"
+        }
+      ],
+      "text": "A controller instructed Air China 101 to leave 9,500 metres for 8,900 metres. He then found his instruction was not correct and changed the instruction by asking Air China 101 descending to 9,200 metres. Question. Which word can be used to express the controller's meaning?"
+    },
+    "listening-main-022": {
+      "audio": "/question-bank-assets/audio/listening/main/005.mp3",
+      "language": "en",
+      "segments": [
+        {
+          "avgLogprob": -0.1690826416015625,
+          "end": 8.18,
+          "noSpeechProb": 4.820025129893823e-13,
+          "start": 0,
+          "text": "Shortly after the engine lost power, its speed decreased to about 1,000 to 1,100 rpm."
+        },
+        {
+          "avgLogprob": -0.1690826416015625,
+          "end": 13.24,
+          "noSpeechProb": 4.820025129893823e-13,
+          "start": 8.94,
+          "text": "The pilot pushed the throttle forward but obtained no response from the engine."
+        },
+        {
+          "avgLogprob": -0.1690826416015625,
+          "end": 18.98,
+          "noSpeechProb": 4.820025129893823e-13,
+          "start": 14.36,
+          "text": "Question. What is the reason for no response from the engine?"
+        }
+      ],
+      "text": "Shortly after the engine lost power, its speed decreased to about 1,000 to 1,100 rpm. The pilot pushed the throttle forward but obtained no response from the engine. Question. What is the reason for no response from the engine?"
+    },
+    "atc-scenario-0001-card-main-001": {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/001.mp3",
+      "language": "en",
+      "segments": [
+        {
+          "avgLogprob": -0.21307830377058548,
+          "end": 5.5600000000000005,
+          "noSpeechProb": 3.3567289572933312e-12,
+          "start": 0.6,
+          "text": "Your call sign is Qantas Fowr Tree 2, you are parking at Gate 2 Fowr,"
+        },
+        {
+          "avgLogprob": -0.21307830377058548,
+          "end": 10.98,
+          "noSpeechProb": 3.3567289572933312e-12,
+          "start": 5.82,
+          "text": "you have got information hotel, ask Shanghai Delivery for ATC clearance to Beijing."
+        }
+      ],
+      "text": "Your call sign is Qantas Fowr Tree 2, you are parking at Gate 2 Fowr, you have got information hotel, ask Shanghai Delivery for ATC clearance to Beijing."
+    },
+    "atc-scenario-0001-card-main-002": {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/002.mp3",
+      "language": "en",
+      "segments": [
+        {
+          "avgLogprob": -0.25488151065886966,
+          "end": 6.36,
+          "noSpeechProb": 2.21105460329607e-11,
+          "start": 0.3,
+          "text": "Qantas Fowler Tree 2, cleared to Beijing via flight plan route, runway in use runway 26,"
+        },
+        {
+          "avgLogprob": -0.25488151065886966,
+          "end": 12.620000000000001,
+          "noSpeechProb": 2.21105460329607e-11,
+          "start": 6.84,
+          "text": "Hotel Zulu 01 departure, initial climb to 600 meters on Q&H, after departure,"
+        },
+        {
+          "avgLogprob": -0.25488151065886966,
+          "end": 17.38,
+          "noSpeechProb": 2.21105460329607e-11,
+          "start": 13.16,
+          "text": "contact 128 Decimul 75, Squawk Tree Fowler 21."
+        }
+      ],
+      "text": "Qantas Fowler Tree 2, cleared to Beijing via flight plan route, runway in use runway 26, Hotel Zulu 01 departure, initial climb to 600 meters on Q&H, after departure, contact 128 Decimul 75, Squawk Tree Fowler 21."
+    },
+    "atc-scenario-0001-card-main-003": {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/003.mp3",
+      "language": "en",
+      "segments": [
+        {
+          "avgLogprob": -0.4525403542952104,
+          "end": 7,
+          "noSpeechProb": 7.385103813206673e-13,
+          "start": 0,
+          "text": "Qantas flower tree 2, read back correct. Report when ready for pushback and startup."
+        }
+      ],
+      "text": "Qantas flower tree 2, read back correct. Report when ready for pushback and startup."
+    },
+    "atc-scenario-0001-card-main-004": {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/004.mp3",
+      "language": "en",
+      "segments": [
+        {
+          "avgLogprob": -0.3295800004686628,
+          "end": 3.04,
+          "noSpeechProb": 3.5398761829771863e-13,
+          "start": 0,
+          "text": "Now you are ready for push back and start up."
+        }
+      ],
+      "text": "Now you are ready for push back and start up."
+    },
+    "atc-scenario-0001-card-main-005": {
+      "audio": "/question-bank-assets/audio/radiotelephony/main/005.mp3",
+      "language": "en",
+      "segments": [
+        {
+          "avgLogprob": -0.49813026189804077,
+          "end": 7.68,
+          "noSpeechProb": 3.84654439376797e-13,
+          "start": 0,
+          "text": "Qantas flower tree 2, push back and start up approved."
+        }
+      ],
+      "text": "Qantas flower tree 2, push back and start up approved."
+    },
+    "story-wing-001": {
+      "audio": "/question-bank-assets/audio/storytelling/wing/001.mp3",
+      "language": "en",
+      "segments": [
+        {
+          "avgLogprob": -0.15211066007614135,
+          "end": 7,
+          "noSpeechProb": 5.997002894275738e-11,
+          "start": 0,
+          "text": "France 123 crashed at Singapore Changi Airport during takeoff."
+        },
+        {
+          "avgLogprob": -0.15211066007614135,
+          "end": 12,
+          "noSpeechProb": 5.997002894275738e-11,
+          "start": 7,
+          "text": "The tower controller instructed the crew to take off on runway 02 left,"
+        },
+        {
+          "avgLogprob": -0.15211066007614135,
+          "end": 19,
+          "noSpeechProb": 5.997002894275738e-11,
+          "start": 12,
+          "text": "but the crew lined up runway 02 right and began their takeoff rolling."
+        },
+        {
+          "avgLogprob": -0.15211066007614135,
+          "end": 23,
+          "noSpeechProb": 5.997002894275738e-11,
+          "start": 19,
+          "text": "The aircraft overran the runway and crashed."
+        },
+        {
+          "avgLogprob": -0.15211066007614135,
+          "end": 29,
+          "noSpeechProb": 5.997002894275738e-11,
+          "start": 23,
+          "text": "Crew members and 110 passengers were killed, and the co-pilot was badly wounded."
+        },
+        {
+          "avgLogprob": -0.14784309962024428,
+          "end": 34.34,
+          "noSpeechProb": 6.415525055647464e-11,
+          "start": 29.64,
+          "text": "According to the investigation, there were three reasons for the accidents."
+        },
+        {
+          "avgLogprob": -0.14784309962024428,
+          "end": 40.620000000000005,
+          "noSpeechProb": 6.415525055647464e-11,
+          "start": 35.26,
+          "text": "First of all, the crew didn't use effective methods to verify their position."
+        },
+        {
+          "avgLogprob": -0.14784309962024428,
+          "end": 47.18,
+          "noSpeechProb": 6.415525055647464e-11,
+          "start": 42.14,
+          "text": "Secondly, the crew forgot to check whether they were on the correct runway or not."
+        },
+        {
+          "avgLogprob": -0.14784309962024428,
+          "end": 54.019999999999996,
+          "noSpeechProb": 6.415525055647464e-11,
+          "start": 48.120000000000005,
+          "text": "Finally, the crew members' idle chatting during the taxi resulted the loss of situation awareness."
+        }
+      ],
+      "text": "France 123 crashed at Singapore Changi Airport during takeoff. The tower controller instructed the crew to take off on runway 02 left, but the crew lined up runway 02 right and began their takeoff rolling. The aircraft overran the runway and crashed. Crew members and 110 passengers were killed, and the co-pilot was badly wounded. According to the investigation, there were three reasons for the accidents. First of all, the crew didn't use effective methods to verify their position. Secondly, the crew forgot to check whether they were on the correct runway or not. Finally, the crew members' idle chatting during the taxi resulted the loss of situation awareness."
+    },
+    "story-wing-002": {
+      "audio": "/question-bank-assets/audio/storytelling/wing/002.mp3",
+      "language": "en",
+      "segments": [
+        {
+          "avgLogprob": -0.09958094044735558,
+          "end": 11.46,
+          "noSpeechProb": 3.0367465486680345e-11,
+          "start": 0,
+          "text": "an airbus tree 2-0 collided with a boeing 7 tree 7 during taxi the right ailerons of boeing 7 tree"
+        },
+        {
+          "avgLogprob": -0.09958094044735558,
+          "end": 20.400000000000002,
+          "noSpeechProb": 3.0367465486680345e-11,
+          "start": 11.46,
+          "text": "7 was severely damaged but airbus tree 2-0 only had minor damage on left wing luckily there were"
+        },
+        {
+          "avgLogprob": -0.09958094044735558,
+          "end": 28.42,
+          "noSpeechProb": 3.0367465486680345e-11,
+          "start": 20.400000000000002,
+          "text": "no injuries after receiving taxi instruction the airbus tree 2-0 began to pass the boeing"
+        },
+        {
+          "avgLogprob": -0.10790331704275949,
+          "end": 34.58,
+          "noSpeechProb": 2.0994478724944976e-11,
+          "start": 28.42,
+          "text": "seven tree seven from the right side the captain of airbus tree two zero thought they had enough"
+        },
+        {
+          "avgLogprob": -0.10790331704275949,
+          "end": 42.38,
+          "noSpeechProb": 2.0994478724944976e-11,
+          "start": 34.58,
+          "text": "room but unfortunately two aircraft collided together both captains reported the collision"
+        },
+        {
+          "avgLogprob": -0.10790331704275949,
+          "end": 49.1,
+          "noSpeechProb": 2.0994478724944976e-11,
+          "start": 42.38,
+          "text": "immediately because the boeing aircraft was damaged seriously fuel leakage was reported"
+        },
+        {
+          "avgLogprob": -0.10790331704275949,
+          "end": 56.82000000000001,
+          "noSpeechProb": 2.0994478724944976e-11,
+          "start": 49.1,
+          "text": "and fire services were required fortunately the fuel leak didn't develop into fire"
+        },
+        {
+          "avgLogprob": -0.16291839877764383,
+          "end": 64.44,
+          "noSpeechProb": 1.130978991015219e-11,
+          "start": 56.82,
+          "text": "The crew of the Boeing aircraft complained that they just parked stationary with the parking brakes when they were hit."
+        }
+      ],
+      "text": "an airbus tree 2-0 collided with a boeing 7 tree 7 during taxi the right ailerons of boeing 7 tree 7 was severely damaged but airbus tree 2-0 only had minor damage on left wing luckily there were no injuries after receiving taxi instruction the airbus tree 2-0 began to pass the boeing seven tree seven from the right side the captain of airbus tree two zero thought they had enough room but unfortunately two aircraft collided together both captains reported the collision immediately because the boeing aircraft was damaged seriously fuel leakage was reported and fire services were required fortunately the fuel leak didn't develop into fire The crew of the Boeing aircraft complained that they just parked stationary with the parking brakes when they were hit."
+    },
+    "story-wing-003": {
+      "audio": "/question-bank-assets/audio/storytelling/wing/003.mp3",
+      "language": "en",
+      "segments": [
+        {
+          "avgLogprob": -0.10494560491843302,
+          "end": 6.16,
+          "noSpeechProb": 1.188145554165132e-10,
+          "start": 0,
+          "text": "a pilot of air china airline told us an event with landing gear problem"
+        },
+        {
+          "avgLogprob": -0.10494560491843302,
+          "end": 15.06,
+          "noSpeechProb": 1.188145554165132e-10,
+          "start": 6.16,
+          "text": "after normal pushback startup and taxi he requested takeoff however he was instructed"
+        },
+        {
+          "avgLogprob": -0.10494560491843302,
+          "end": 23.36,
+          "noSpeechProb": 1.188145554165132e-10,
+          "start": 15.06,
+          "text": "to hold short of the runway in order to give way to air canada 702 on final air canada 702"
+        },
+        {
+          "avgLogprob": -0.06186988493975471,
+          "end": 30.84,
+          "noSpeechProb": 5.388486965657302e-12,
+          "start": 23.36,
+          "text": "declared emergency because of landing gear problem air canada 702 asked for a low pass"
+        },
+        {
+          "avgLogprob": -0.06186988493975471,
+          "end": 38.82,
+          "noSpeechProb": 5.388486965657302e-12,
+          "start": 30.84,
+          "text": "the controller verified the landing gear was still in up position then air canada 702 requested a"
+        },
+        {
+          "avgLogprob": -0.06186988493975471,
+          "end": 44.84,
+          "noSpeechProb": 5.388486965657302e-12,
+          "start": 38.82,
+          "text": "touch and go to jar the jammed gear unfortunately the landing gear still couldn't be extended"
+        },
+        {
+          "avgLogprob": -0.06186988493975471,
+          "end": 52.92,
+          "noSpeechProb": 5.388486965657302e-12,
+          "start": 44.84,
+          "text": "so air canada 702 had to make a belly landing on a foamed runway there were no casualties"
+        },
+        {
+          "avgLogprob": -0.2720547616481781,
+          "end": 54.88,
+          "noSpeechProb": 4.1657823024454643e-11,
+          "start": 52.92,
+          "text": "except some minor injuries."
+        }
+      ],
+      "text": "a pilot of air china airline told us an event with landing gear problem after normal pushback startup and taxi he requested takeoff however he was instructed to hold short of the runway in order to give way to air canada 702 on final air canada 702 declared emergency because of landing gear problem air canada 702 asked for a low pass the controller verified the landing gear was still in up position then air canada 702 requested a touch and go to jar the jammed gear unfortunately the landing gear still couldn't be extended so air canada 702 had to make a belly landing on a foamed runway there were no casualties except some minor injuries."
+    },
+    "story-wing-004": {
+      "audio": "/question-bank-assets/audio/storytelling/wing/004.mp3",
+      "language": "en",
+      "segments": [
+        {
+          "avgLogprob": -0.08860711256663005,
+          "end": 8.4,
+          "noSpeechProb": 1.0632647540198548e-10,
+          "start": 0,
+          "text": "when the pilot initially contacted the tower controller he was told the runway visual range"
+        },
+        {
+          "avgLogprob": -0.08860711256663005,
+          "end": 14.8,
+          "noSpeechProb": 1.0632647540198548e-10,
+          "start": 8.4,
+          "text": "was 500 meters the pilot executed a missed approach because of no contact at minima"
+        },
+        {
+          "avgLogprob": -0.08860711256663005,
+          "end": 23.22,
+          "noSpeechProb": 1.0632647540198548e-10,
+          "start": 14.8,
+          "text": "then he was given radar vectors for a second ils approach in the second approach the controller"
+        },
+        {
+          "avgLogprob": -0.08860711256663005,
+          "end": 29.92,
+          "noSpeechProb": 1.0632647540198548e-10,
+          "start": 23.22,
+          "text": "issued landing clearance at outer marker one minute later the controller observed the airplane"
+        },
+        {
+          "avgLogprob": -0.10267584554610713,
+          "end": 36.24,
+          "noSpeechProb": 4.231000272358898e-10,
+          "start": 29.92,
+          "text": "was leaving the glide path on the radar display and issued missed approach instructions again"
+        },
+        {
+          "avgLogprob": -0.10267584554610713,
+          "end": 43.28,
+          "noSpeechProb": 4.231000272358898e-10,
+          "start": 37.68,
+          "text": "there was no further reply from the pilot the airplane impacted a building and crashed"
+        },
+        {
+          "avgLogprob": -0.10267584554610713,
+          "end": 49.6,
+          "noSpeechProb": 4.231000272358898e-10,
+          "start": 44.64,
+          "text": "according to the investigation the poor visibility made the pilot nervous"
+        },
+        {
+          "avgLogprob": -0.10267584554610713,
+          "end": 58.56,
+          "noSpeechProb": 4.231000272358898e-10,
+          "start": 50.160000000000004,
+          "text": "and he misunderstood the missed approach instructions and made a wrong turn"
+        },
+        {
+          "avgLogprob": -0.8544853925704956,
+          "end": 61.92,
+          "noSpeechProb": 1.252516979022289e-10,
+          "start": 59.92,
+          "text": "You"
+        }
+      ],
+      "text": "when the pilot initially contacted the tower controller he was told the runway visual range was 500 meters the pilot executed a missed approach because of no contact at minima then he was given radar vectors for a second ils approach in the second approach the controller issued landing clearance at outer marker one minute later the controller observed the airplane was leaving the glide path on the radar display and issued missed approach instructions again there was no further reply from the pilot the airplane impacted a building and crashed according to the investigation the poor visibility made the pilot nervous and he misunderstood the missed approach instructions and made a wrong turn You"
+    },
+    "story-wing-005": {
+      "audio": "/question-bank-assets/audio/storytelling/wing/005.mp3",
+      "language": "en",
+      "segments": [
+        {
+          "avgLogprob": -0.10432801527135513,
+          "end": 10.28,
+          "noSpeechProb": 1.6202333918968748e-10,
+          "start": 0,
+          "text": "a delta airline aircraft departed from shanghai to seoul it carried 256 passengers and 13 crew"
+        },
+        {
+          "avgLogprob": -0.10432801527135513,
+          "end": 17.02,
+          "noSpeechProb": 1.6202333918968748e-10,
+          "start": 10.28,
+          "text": "members on board during takeoff rolling an unknown foreign object was sucked into port"
+        },
+        {
+          "avgLogprob": -0.10432801527135513,
+          "end": 23.18,
+          "noSpeechProb": 1.6202333918968748e-10,
+          "start": 17.02,
+          "text": "engine and the engine fire warning light illuminated then the flight crew declared"
+        },
+        {
+          "avgLogprob": -0.10432801527135513,
+          "end": 28.580000000000002,
+          "noSpeechProb": 1.6202333918968748e-10,
+          "start": 23.18,
+          "text": "an emergency right after airborne and completed the emergency checklist procedure"
+        },
+        {
+          "avgLogprob": -0.08938959954490125,
+          "end": 34.739999999999995,
+          "noSpeechProb": 2.145905328432285e-11,
+          "start": 28.58,
+          "text": "through good communication the controller understood the flight crew wanted to return"
+        },
+        {
+          "avgLogprob": -0.08938959954490125,
+          "end": 42.08,
+          "noSpeechProb": 2.145905328432285e-11,
+          "start": 34.739999999999995,
+          "text": "to land but the pilot had to dump fuel before landing because the aircraft was overweight to"
+        },
+        {
+          "avgLogprob": -0.08938959954490125,
+          "end": 49.28,
+          "noSpeechProb": 2.145905328432285e-11,
+          "start": 42.08,
+          "text": "land so the controller vectored the aircraft to the dumping area after circling over the"
+        },
+        {
+          "avgLogprob": -0.08938959954490125,
+          "end": 54.44,
+          "noSpeechProb": 2.145905328432285e-11,
+          "start": 49.28,
+          "text": "sea and dumping fuel for almost one hour the plane returned to land safely"
+        },
+        {
+          "avgLogprob": -0.924619197845459,
+          "end": 55.44,
+          "noSpeechProb": 1.640408225922485e-10,
+          "start": 54.44,
+          "text": "Okay."
+        }
+      ],
+      "text": "a delta airline aircraft departed from shanghai to seoul it carried 256 passengers and 13 crew members on board during takeoff rolling an unknown foreign object was sucked into port engine and the engine fire warning light illuminated then the flight crew declared an emergency right after airborne and completed the emergency checklist procedure through good communication the controller understood the flight crew wanted to return to land but the pilot had to dump fuel before landing because the aircraft was overweight to land so the controller vectored the aircraft to the dumping area after circling over the sea and dumping fuel for almost one hour the plane returned to land safely Okay."
+    }
+  }
+}

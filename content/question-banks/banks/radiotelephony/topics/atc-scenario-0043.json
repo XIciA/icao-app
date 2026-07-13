@@ -43,7 +43,7 @@
     {
       "id": "atc-scenario-0043-card-main-735",
       "taskTitle": "JAL 602-5",
-      "audioText": "C: Japan Air 602, 10700 meters not available due to military activity at the moment, can you accept 11300 meters ?\nB: Tell the controller you are unable to climb to 11300 meters due performance.",
+      "audioText": "C: Japan Air 602, 10700 meters not available due to military activity at the moment, can you accept 11300 meters?\nB: Tell the controller you are unable to climb to 11300 meters due performance.",
       "audioTextZh": "C：Japan Air 602，目前因军事活动，10700 米不可用，可以接受 11300 米吗？\nB：告诉管制员因性能原因无法爬升至 11300 米。",
       "referenceText": "Wuhan Control, JAL602, negative/unable due performance.",
       "referenceTextZh": "武汉管制，JAL602，不能接受，因性能原因无法爬升。",
@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0043-card-main-745",
       "taskTitle": "JAL 602-15",
-      "audioText": "C: Japan Air 602, roger, you are number 1, expect radar vectors, do you require any medical assistance on arrival ?\nB: Tell the controller you need medical assistance, and you will open the rear cabin door to deplane the sick passenger by a stretcher.",
+      "audioText": "C: Japan Air 602, roger, you are number 1, expect radar vectors, do you require any medical assistance on arrival?\nB: Tell the controller you need medical assistance, and you will open the rear cabin door to deplane the sick passenger by a stretcher.",
       "audioTextZh": "C：Japan Air 602，收到，你是第一架，预计雷达引导，落地后需要医疗协助吗？\nB：告诉管制员需要医疗协助，并将打开后客舱门，用担架让病患下机。",
       "referenceText": "Wuhan Approach, JAL602, request medical assistance and open the rear cabin door to deplane the sick passenger by a stretcher.",
       "referenceTextZh": "武汉进近，JAL602，请求医疗协助，并打开后客舱门，用担架让病患下机。",

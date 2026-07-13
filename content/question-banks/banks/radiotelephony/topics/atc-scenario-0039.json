@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0039-card-main-671",
       "taskTitle": "UAL 835-10",
-      "audioText": "C: United 835, radar contact, turn right, direct to X-Ray Sierra Hotel, expect X-Ray Sierra Hotel 03 Alpha arrival and radar vector for ILS approach runway 36 right.",
+      "audioText": "C: United 835, radar contact, turn right, direct to X-Ray Sierra Hotel, expect X-Ray Sierra Hotel 03 Alpha arrival and radar vector for ILS approach runway 36R.",
       "audioTextZh": "C：United 835，雷达识别，右转直飞 X-Ray Sierra Hotel，预计 X-Ray Sierra Hotel 03 Alpha 进场，并雷达引导 ILS 进近跑道 36 右。",
       "referenceText": "Turn right, direct to XSH, expect XSH 03A arrival and radar vector for ILS approach runway 36R, UAL835.",
       "referenceTextZh": "右转直飞 XSH，预计 XSH 03A 进场并雷达引导 ILS 进近跑道 36R，UAL835。",
@@ -124,7 +124,7 @@
     {
       "id": "atc-scenario-0039-card-main-675",
       "taskTitle": "UAL 835-14",
-      "audioText": "C: United 835, cleared ILS approach runway 36 right, report established.",
+      "audioText": "C: United 835, cleared ILS approach runway 36R, report established.",
       "audioTextZh": "C：United 835，可以 ILS 进近跑道 36 右，建立后报告。",
       "referenceText": "Cleared ILS approach runway 36R, report established, UAL835.",
       "referenceTextZh": "可以 ILS 进近跑道 36R，建立后报告，UAL835。",
@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0039-card-main-676",
       "taskTitle": "UAL 835-15",
-      "audioText": "B: Now you have established on ILS runway 36 right, report it to Wuhan Tower.",
+      "audioText": "B: Now you have established on ILS runway 36R, report it to Wuhan Tower.",
       "audioTextZh": "B：你现在已建立跑道 36 右 ILS，向武汉塔台报告。",
       "referenceText": "Wuhan Tower, UAL835, established on ILS runway 36R.",
       "referenceTextZh": "武汉塔台，UAL835，已建立跑道 36R ILS。",
@@ -142,7 +142,7 @@
     {
       "id": "atc-scenario-0039-card-main-677",
       "taskTitle": "UAL 835-16",
-      "audioText": "C: United 835, runway 36 right, cleared to land.",
+      "audioText": "C: United 835, runway 36R, cleared to land.",
       "audioTextZh": "C：United 835，跑道 36 右，可以落地。",
       "referenceText": "Runway 36R, cleared to land, UAL835.",
       "referenceTextZh": "跑道 36R，可以落地，UAL835。",

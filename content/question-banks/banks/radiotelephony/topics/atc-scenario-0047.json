@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0047-card-main-799",
       "taskTitle": "ACA 331-2",
-      "audioText": "C: Air Canada 331, taxi to holding point runway 18 right via taxiway Alpha 7, Alpha, Zulu 4 and Charlie.",
+      "audioText": "C: Air Canada 331, taxi to holding point runway 18R via taxiway Alpha 7, Alpha, Zulu 4 and Charlie.",
       "audioTextZh": "C: Air Canada 331，经滑行道 Alpha 7、Alpha、Zulu 4 和 Charlie 滑行至跑道 18R 等待点。",
       "referenceText": "Taxi to holding point runway 18R via taxiway A7, A, Z4 and C, ACA331.",
       "referenceTextZh": "经滑行道 A7、A、Z4 和 C 滑行至跑道 18R 等待点，ACA331。",
@@ -25,7 +25,7 @@
     {
       "id": "atc-scenario-0047-card-main-800",
       "taskTitle": "ACA 331-3",
-      "audioText": "C: Air Canada 331, follow Airbus 319 on Mike to holding point runway 18 right.",
+      "audioText": "C: Air Canada 331, follow Airbus 319 on Mike to holding point runway 18R.",
       "audioTextZh": "C: Air Canada 331，跟随 Mike 上的 Airbus 319 到跑道 18R 等待点。",
       "referenceText": "Follow A319 on M to holding point runway 18R, ACA331.",
       "referenceTextZh": "跟随 M 上的 A319 到跑道 18R 等待点，ACA331。",
@@ -34,7 +34,7 @@
     {
       "id": "atc-scenario-0047-card-main-801",
       "taskTitle": "ACA 331-4",
-      "audioText": "C: Air Canada 331, runway 18 right is closed due to disabled aircraft on the runway, change your ATC clearance to runway 18 left, Zulu Foxtrot 12 departure, the rest unchanged.",
+      "audioText": "C: Air Canada 331, runway 18R is closed due to disabled aircraft on the runway, change your ATC clearance to runway 18L, Zulu Foxtrot 12 departure, the rest unchanged.",
       "audioTextZh": "C: Air Canada 331，跑道 18R 因跑道上有故障航空器关闭，将你的 ATC 许可改为跑道 18L，Zulu Foxtrot 12 离场，其余不变。",
       "referenceText": "Roger, runway 18L, ZF12 departure, the rest unchanged, ACA331.",
       "referenceTextZh": "收到，跑道 18L，ZF12 离场，其余不变，ACA331。",
@@ -43,7 +43,7 @@
     {
       "id": "atc-scenario-0047-card-main-802",
       "taskTitle": "ACA 331-5",
-      "audioText": "C: Air Canada 331, enter runway 18 right from Charlie 3, vacate runway via Charlie 4, report vacated.",
+      "audioText": "C: Air Canada 331, enter runway 18R from Charlie 3, vacate runway via Charlie 4, report vacated.",
       "audioTextZh": "C: Air Canada 331，从 Charlie 3 进入跑道 18R，经 Charlie 4 脱离跑道，报告脱离。",
       "referenceText": "Enter runway 18R from C3, vacate runway via C4, report vacated, ACA331.",
       "referenceTextZh": "从 C3 进入跑道 18R，经 C4 脱离跑道，报告脱离，ACA331。",
@@ -52,7 +52,7 @@
     {
       "id": "atc-scenario-0047-card-main-803",
       "taskTitle": "ACA 331-6",
-      "audioText": "B: Now you have exited the runway 18 right via Charlie 4, contact Wuhan Ground.",
+      "audioText": "B: Now you have exited the runway 18R via Charlie 4, contact Wuhan Ground.",
       "audioTextZh": "B: 现在你已通过 Charlie 4 脱离跑道 18R，联系武汉地面。",
       "referenceText": "Wuhan Ground, ACA331, runway 18R vacated via C4.",
       "referenceTextZh": "武汉地面，ACA331，已通过 C4 脱离跑道 18R。",
@@ -142,7 +142,7 @@
     {
       "id": "atc-scenario-0047-card-main-813",
       "taskTitle": "ACA 331-16",
-      "audioText": "B: Several passengers have been seriously affected by the toxic fume and become unconscious, tell Zhengzhou Control the situation and request divert to Zhengzhou.",
+      "audioText": "B: Several passengers have been seriously affected by the toxic fume and become unconscious, tell Zhengzhou Control the situation and request diversion to Zhengzhou.",
       "audioTextZh": "B: 数名旅客受到有毒烟雾严重影响并失去意识，向郑州管制说明情况并请求改航 Zhengzhou。",
       "referenceText": "Zhengzhou Control, ACA331, several passengers have been seriously affected by the toxic fume and become unconscious, request divert to Zhengzhou.",
       "referenceTextZh": "郑州管制，ACA331，数名旅客受到有毒烟雾严重影响并失去意识，请求改航 Zhengzhou。",
@@ -169,7 +169,7 @@
     {
       "id": "atc-scenario-0047-card-main-816",
       "taskTitle": "ACA 331-19",
-      "audioText": "C: Air Canada 331, what assistance do you need ?\nB: Tell Zhengzhou Approach you need an ambulance and dangerous goods specialists.",
+      "audioText": "C: Air Canada 331, what assistance do you need?\nB: Tell Zhengzhou Approach you need an ambulance and dangerous goods specialists.",
       "audioTextZh": "C: Air Canada 331，你需要什么援助？\nB: 告诉 郑州进近 你需要救护车和危险品专家。",
       "referenceText": "Request an ambulance and dangerous goods specialists, ACA331.",
       "referenceTextZh": "请求救护车和危险品专家，ACA331。",

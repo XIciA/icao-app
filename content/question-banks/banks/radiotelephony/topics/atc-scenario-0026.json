@@ -25,7 +25,7 @@
     {
       "id": "atc-scenario-0026-card-main-447",
       "taskTitle": "BAW 120-3",
-      "audioText": "C: Speedbird 120, you can either descend now without speed restrictions or maintain 11000 meters and fly heading 260 for 5 minutes, which do you prefer ?\nB: Tell the controller you prefer to descend to 9200 meters.",
+      "audioText": "C: Speedbird 120, you can either descend now without speed restrictions or maintain 11000 meters and fly heading 260 for 5 minutes, which do you prefer?\nB: Tell the controller you prefer to descend to 9200 meters.",
       "audioTextZh": "管制员：Speedbird 120，你可以现在下降且无速度限制，或保持11000米并飞航向260五分钟，你选择哪一个？\n告诉管制员你选择下降至9200米。",
       "referenceText": "We prefer to descend to 9200 meters, BAW120.",
       "referenceTextZh": "我们选择下降至9200米，BAW120。",
@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0026-card-main-454",
       "taskTitle": "BAW 120-10",
-      "audioText": "C: Speedbird 120, follow Zulu Foxtrot 12 arrival, expect ILS approach runway 18 right.",
+      "audioText": "C: Speedbird 120, follow Zulu Foxtrot 12 arrival, expect ILS approach runway 18R.",
       "audioTextZh": "管制员：Speedbird 120，执行ZF 12进场，预计ILS进近18右跑道。",
       "referenceText": "Follow ZF 12 arrival, expect ILS approach runway 18R, BAW120.",
       "referenceTextZh": "执行ZF 12进场，预计ILS进近18R，BAW120。",
@@ -97,7 +97,7 @@
     {
       "id": "atc-scenario-0026-card-main-455",
       "taskTitle": "BAW 120-11",
-      "audioText": "B: Now you have intercepted the localizer runway 18 right, you are 10 miles from touchdown.",
+      "audioText": "B: Now you have intercepted the localizer runway 18R, you are 10 miles from touchdown.",
       "audioTextZh": "现在你已截获18右跑道航向道，距接地点10海里。",
       "referenceText": "Wuhan Tower, BAW120, established on the localizer runway 18R, 10 miles from touchdown.",
       "referenceTextZh": "武汉塔台，BAW120，已建立18R航向道，距接地点10海里。",
@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0026-card-main-456",
       "taskTitle": "BAW 120-12",
-      "audioText": "C: Speedbird 120, wind 220, 10 meters per second, gusting to 15, cleared to land runway 18 right.",
+      "audioText": "C: Speedbird 120, wind 220, 10 meters per second, gusting to 15, cleared to land runway 18R.",
       "audioTextZh": "管制员：Speedbird 120，风220度，10米/秒，阵风15米/秒，可以18右跑道落地。",
       "referenceText": "Cleared to land runway 18R, BAW120.",
       "referenceTextZh": "可以18R落地，BAW120。",

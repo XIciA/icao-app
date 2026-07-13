@@ -97,7 +97,7 @@
     {
       "id": "atc-scenario-0029-card-main-505",
       "taskTitle": "BAW 141-11",
-      "audioText": "C: Speedbird 141, Beijing roger, when ready, advice intension.\nB: You lost directional indication, if weather permits, request navigation assistance to Beijing airport",
+      "audioText": "C: Speedbird 141, Beijing roger, when ready, advise intention.\nB: You lost directional indication, if weather permits, request navigation assistance to Beijing airport",
       "audioTextZh": "C：Speedbird 141，北京收到，准备好后报告意图。\nB：你失去方向指示，如天气允许，请求导航协助飞往北京机场。",
       "referenceText": "Beijing Control, BAW141, if weather permits, request navigation assistance due directional indication failure.",
       "referenceTextZh": "北京管制，BAW141，如天气允许，因方向指示故障，请求导航协助。",
@@ -115,7 +115,7 @@
     {
       "id": "atc-scenario-0029-card-main-507",
       "taskTitle": "BAW 141-13",
-      "audioText": "C: Speedbird 141, this is Beijing Approach, descend to 1800 meters on QNH 1011, expect runway 36 left.",
+      "audioText": "C: Speedbird 141, this is Beijing Approach, descend to 1800 meters on QNH 1011, expect runway 36L.",
       "audioTextZh": "C：Speedbird 141，这里是北京进近，按 QNH 1011 下降至 1800 米，预计使用跑道 36 左。",
       "referenceText": "Descend to 1800 meters on QNH 1011, expect runway 36L, BAW141.",
       "referenceTextZh": "按 QNH 1011 下降至 1800 米，预计跑道 36L，BAW141。",
@@ -124,7 +124,7 @@
     {
       "id": "atc-scenario-0029-card-main-508",
       "taskTitle": "BAW 141-14",
-      "audioText": "C: Speedbird 141, you are 15 miles to touchdown on runway 36 left, descend to 900 meters.",
+      "audioText": "C: Speedbird 141, you are 15 miles to touchdown on runway 36L, descend to 900 meters.",
       "audioTextZh": "C：Speedbird 141，距跑道 36 左接地点 15 海里，下降至 900 米。",
       "referenceText": "Descend to 900 meters, BAW141.",
       "referenceTextZh": "下降至 900 米，BAW141。",
@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0029-card-main-509",
       "taskTitle": "BAW 141-15",
-      "audioText": "C: Speedbird 141, position 10 miles northeast of the field, 3 miles north of the extended center line of runway 36 left, a correcting heading won't be necessary, descend to 600 meters, report visual.",
+      "audioText": "C: Speedbird 141, position 10 miles northeast of the field, 3 miles north of the extended center line of runway 36L, a correcting heading won't be necessary, descend to 600 meters, report visual.",
       "audioTextZh": "C：Speedbird 141，位置在机场东北 10 海里、跑道 36 左延长中心线以北 3 海里，无需修正航向，下降至 600 米，看到地面后报告。",
       "referenceText": "Roger, descend to 600 meters, report visual, BAW141.",
       "referenceTextZh": "收到，下降至 600 米，看到地面后报告，BAW141。",
@@ -151,7 +151,7 @@
     {
       "id": "atc-scenario-0029-card-main-511",
       "taskTitle": "BAW 141-17",
-      "audioText": "C: Speedbird 141, roger, cleared visual approach, join final for runway 36 left, you are number 1, contact Tower 118.1.",
+      "audioText": "C: Speedbird 141, roger, cleared visual approach, join final for runway 36L, you are number 1, contact Tower 118.1.",
       "audioTextZh": "C：Speedbird 141，收到，可以目视进近，加入跑道 36 左最后进近，你是第一架，联系塔台 118.1。",
       "referenceText": "Cleared visual approach, join final for runway 36L, 118.1, BAW141.",
       "referenceTextZh": "可以目视进近，加入跑道 36L 最后进近，118.1，BAW141。",

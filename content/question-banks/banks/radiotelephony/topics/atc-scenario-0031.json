@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0031-card-main-530",
       "taskTitle": "BAW 2352-2",
-      "audioText": "C: Speedbird 352, Wuhan control, radar contact, descend and maintain 10400 meters.",
+      "audioText": "C: Speedbird 352, Wuhan Control, radar contact, descend and maintain 10400 meters.",
       "audioTextZh": "C：Speedbird 352，武汉管制，雷达识别，下降并保持 10400 米。",
       "referenceText": "Descend and maintain 10400 meters, BAW2352.",
       "referenceTextZh": "下降并保持 10400 米，BAW2352。",
@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0031-card-main-536",
       "taskTitle": "BAW 2352-8",
-      "audioText": "C: Speedbird 352, Hefei Airport is available, confirm you are diverting to Hefei ?\nB: Tell the controller you are not diverting to Hefei at the moment, and you still want to fly to Wuhan.",
+      "audioText": "C: Speedbird 352, Hefei Airport is available, confirm you are diverting to Hefei?\nB: Tell the controller you are not diverting to Hefei at the moment, and you still want to fly to Wuhan.",
       "audioTextZh": "C：Speedbird 352，合肥机场可用，确认你们备降合肥吗？\nB：告诉管制员目前不备降合肥，仍希望飞往武汉。",
       "referenceText": "We are not diverting to Hefei now, we still want to fly to Wuhan, BAW2352.",
       "referenceTextZh": "我们目前不备降合肥，仍希望飞往武汉，BAW2352。",
@@ -79,7 +79,7 @@
     {
       "id": "atc-scenario-0031-card-main-537",
       "taskTitle": "BAW 2352-9",
-      "audioText": "C: Speedbird 352, roger, track direct to Zulu Foxtrot, follow Zulu Foxtrot 2 Alpha arrival, expect ILS approach runway 36 right.",
+      "audioText": "C: Speedbird 352, roger, track direct to Zulu Foxtrot, follow Zulu Foxtrot 2 Alpha arrival, expect ILS approach runway 36R.",
       "audioTextZh": "C：Speedbird 352，收到，直飞 Zulu Foxtrot，执行 Zulu Foxtrot 2 Alpha 进场，预计 ILS 进近跑道 36 右。",
       "referenceText": "Track direct to ZF, follow ZF2A arrival, expect ILS approach runway 36R, BAW2352.",
       "referenceTextZh": "直飞 ZF，执行 ZF2A 进场，预计 ILS 进近跑道 36R，BAW2352。",
@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0031-card-main-540",
       "taskTitle": "BAW 2352-12",
-      "audioText": "B: Now you are established on ILS approach runway 36 right, you are 15 miles from touchdown, contact Wuhan Tower.",
+      "audioText": "B: Now you are established on ILS approach runway 36R, you are 15 miles from touchdown, contact Wuhan Tower.",
       "audioTextZh": "B：你现在已建立跑道 36 右 ILS 进近，距接地点 15 海里，联系武汉塔台。",
       "referenceText": "Wuhan Tower, BAW2352, established ILS approach runway 36R, 15 miles from touchdown.",
       "referenceTextZh": "武汉塔台，BAW2352，已建立跑道 36R ILS 进近，距接地点 15 海里。",
@@ -115,7 +115,7 @@
     {
       "id": "atc-scenario-0031-card-main-541",
       "taskTitle": "BAW 2352-13",
-      "audioText": "C: Speedbird 352, roger, surface wind calm, RVR touchdown 550 meters, midpoint 600 meters, rollout 500 meters, continue approach runway 36 right.",
+      "audioText": "C: Speedbird 352, roger, surface wind calm, RVR touchdown 550 meters, midpoint 600 meters, rollout 500 meters, continue approach runway 36R.",
       "audioTextZh": "C：Speedbird 352，收到，地面风静风，RVR 接地点 550 米、中段 600 米、末端 500 米，继续进近跑道 36 右。",
       "referenceText": "Roger, continue approach runway 36R, BAW2352.",
       "referenceTextZh": "收到，继续进近跑道 36R，BAW2352。",
@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0031-card-main-543",
       "taskTitle": "BAW 2352-15",
-      "audioText": "C: Speedbird 352, cloud broken 700 metres, cleared to land runway 36 right.",
+      "audioText": "C: Speedbird 352, cloud broken 700 meters, cleared to land runway 36R.",
       "audioTextZh": "C：Speedbird 352，疏云 700 米，可以落地跑道 36 右。",
       "referenceText": "Cloud broken 700 metres, cleared to land runway 36R, BAW2352.",
       "referenceTextZh": "疏云 700 米，可以落地跑道 36R，BAW2352。",

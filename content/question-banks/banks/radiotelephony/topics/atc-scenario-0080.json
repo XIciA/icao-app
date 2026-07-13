@@ -7,7 +7,7 @@
     {
       "id": "atc-scenario-0080-card-main-1366",
       "taskTitle": "CSN 6202-1",
-      "audioText": "B: Your call sign is China southern 202, destination Harbin. You just departed from Beijing airport at 23. You are passing 1200 meters and want to climb to 1800 meters, contact Beijing Departure.",
+      "audioText": "B: Your call sign is China Southern 202, destination Harbin. You just departed from Beijing airport at 23. You are passing 1200 meters and want to climb to 1800 meters, contact Beijing Departure.",
       "audioTextZh": "B：你的呼号是 China Southern 202，目的地哈尔滨。你 23 从北京机场刚起飞，正通过 1200 米，想爬升至 1800 米，联系北京离场。",
       "referenceText": "Beijing Departure, CSN6202, from Beijing to Harbin, airborne 23, passing 1200 meters, request climb to 1800 meters.",
       "referenceTextZh": "北京离场，CSN6202，从北京飞往哈尔滨，23 离地，通过 1200 米，请求爬升至 1800 米。",
@@ -97,7 +97,7 @@
     {
       "id": "atc-scenario-0080-card-main-1376",
       "taskTitle": "CSN 6202-11",
-      "audioText": "C: China Southern 202, roger,  descend to 6300 meters, report when require lower, do emergency conditions exist?\nB: Tell the controller this level should be sufficient and emergency conditions do not exist.",
+      "audioText": "C: China Southern 202, roger, descend to 6300 meters, report when require lower, do emergency conditions exist?\nB: Tell the controller this level should be sufficient and emergency conditions do not exist.",
       "audioTextZh": "C：China Southern 202，收到，下降至 6300 米，需要更低高度时报告，是否存在紧急情况？\nB：告诉管制员该高度应足够，且不存在紧急情况。",
       "referenceText": "Descend to 6300 meters, it should be low enough and no emergency conditions exists, CSN6202.",
       "referenceTextZh": "下降至 6300 米，应该足够低，没有紧急情况，CSN6202。",
@@ -151,7 +151,7 @@
     {
       "id": "atc-scenario-0080-card-main-1382",
       "taskTitle": "CSN 6202-17",
-      "audioText": "C: China Southern 202, Beijing Approach, roger, do you require any other assistance?\nB: Tell Approach you have a micro-switch malfunction and will conduct a flapless landing and request runway 36 right.",
+      "audioText": "C: China Southern 202, Beijing Approach, roger, do you require any other assistance?\nB: Tell Approach you have a micro-switch malfunction and will conduct a flapless landing and request runway 36R.",
       "audioTextZh": "C：China Southern 202，北京进近，收到，你需要其他协助吗？\nB：告诉进近你有微动开关故障，将执行无襟翼着陆，并请求跑道 36R。",
       "referenceText": "Beijing Approach, CSN6202, we have a micro-switch malfunction and will conduct a flapless landing and request runway 36R.",
       "referenceTextZh": "北京进近，CSN6202，我们有微动开关故障，将执行无襟翼着陆，请求跑道 36R。",
@@ -160,7 +160,7 @@
     {
       "id": "atc-scenario-0080-card-main-1383",
       "taskTitle": "CSN 6202-18",
-      "audioText": "C: China Southern 202, roger, change of runway 36 right, turn left heading 090, descend to and maintain 2700 meters on QNH 1013, information Charlie.",
+      "audioText": "C: China Southern 202, roger, change of runway 36R, turn left heading 090, descend to and maintain 2700 meters on QNH 1013, information Charlie.",
       "audioTextZh": "C：China Southern 202，改用跑道 36R，左转航向 090，QNH 1013 下降并保持 2700 米，通播 Charlie。",
       "referenceText": "Runway 36R, turn left heading 090, descend to and maintain 2700 meters on QNH 1013, information C, CSN6202.",
       "referenceTextZh": "跑道 36R，左转航向 090，QNH 1013 下降并保持 2700 米，通播 C，CSN6202。",

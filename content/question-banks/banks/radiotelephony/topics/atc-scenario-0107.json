@@ -7,7 +7,7 @@
     {
       "id": "atc-scenario-0107-card-main-1838",
       "taskTitle": "ACA 123-1",
-      "audioText": "B: Your call sigh is Air Canada 123. The aircraft is parking on the apron and you are ready for ATC clearance. Now contact Delivery for ATC clearance.",
+      "audioText": "B: Your call sign is Air Canada 123. The aircraft is parking on the apron and you are ready for ATC clearance. Now contact Delivery for ATC clearance.",
       "audioTextZh": "B: 你的呼号是 Air Canada 123。飞机停在机坪，你已准备好取得 ATC 许可。现在联系放行申请 ATC 许可。",
       "referenceText": "Delivery, ACA123, request ATC clearance.",
       "referenceTextZh": "放行，ACA123，请求 ATC 许可。",

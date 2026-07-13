@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0060-card-main-1030",
       "taskTitle": "CCA 725-2",
-      "audioText": "C: Air China 725, cleared to Beijing via flight planned route, departure runway 36 right, Zulu Foxtrot 01 departure, initially climb 1500 meters, cruising level 10700 meters, after departure, contact 119.7, squawk 4721.",
+      "audioText": "C: Air China 725, cleared to Beijing via flight planned route, departure runway 36R, Zulu Foxtrot 01 departure, initial climb 1500 meters, cruising level 10700 meters, after departure, contact 119.7, squawk 4721.",
       "audioTextZh": "C: Air China 725，可以按计划航路前往 Beijing，离场跑道 36R，Zulu Foxtrot 01 离场，初始爬升 1500 米，巡航高度 10700 米，离场后联系 119.7，应答机 4721。",
       "referenceText": "Cleared to Beijing via flight planned route, departure runway 36R, ZF 01 departure, initially climb 1500 meters, cruising level 10700 meters, after departure, contact 119.7, squawk 4721, CCA725.",
       "referenceTextZh": "可以按计划航路前往 Beijing，离场跑道 36R，ZF 01 离场，初始爬升 1500 米，巡航高度 10700 米，离场后联系 119.7，应答机 4721，CCA725。",
@@ -25,7 +25,7 @@
     {
       "id": "atc-scenario-0060-card-main-1031",
       "taskTitle": "CCA 725-3",
-      "audioText": "B: Contact Delivery to tell them you want to use runway 36 left due parking position.",
+      "audioText": "B: Contact Delivery to tell them you want to use runway 36L due parking position.",
       "audioTextZh": "B: 联系 放行，告诉他们你因停机位置想使用跑道 36L。",
       "referenceText": "Wuhan Delivery, CCA725, request runway 36L due parking position.",
       "referenceTextZh": "武汉放行，CCA725，因停机位置请求跑道 36L。",
@@ -34,7 +34,7 @@
     {
       "id": "atc-scenario-0060-card-main-1032",
       "taskTitle": "CCA 725-4",
-      "audioText": "C: Air China 725, runway 36 left is not available due rubber removal, runway in use 36 right.",
+      "audioText": "C: Air China 725, runway 36L is not available due rubber removal, runway in use 36R.",
       "audioTextZh": "C: Air China 725，跑道 36L 因除胶不可用，使用跑道 36R。",
       "referenceText": "Roger, runway in use 36R, CCA725.",
       "referenceTextZh": "收到，使用跑道 36R，CCA725。",
@@ -52,7 +52,7 @@
     {
       "id": "atc-scenario-0060-card-main-1034",
       "taskTitle": "CCA 725-6",
-      "audioText": "B: Now you have solved the problem, you are holding at holding point runway 36 right, you are ready to takeoff.",
+      "audioText": "B: Now you have solved the problem, you are holding at holding point runway 36R, you are ready for takeoff.",
       "audioTextZh": "B: 现在你已解决问题，正在跑道 36R 等待点等待，准备起飞。",
       "referenceText": "Wuhan Tower, CCA725, holding at holding point runway 36R, ready for departure.",
       "referenceTextZh": "武汉塔台，CCA725，在跑道 36R 等待点等待，准备离场。",
@@ -115,7 +115,7 @@
     {
       "id": "atc-scenario-0060-card-main-1041",
       "taskTitle": "CCA 725-13",
-      "audioText": "C: Air China 725, what assistance do you need ?\nB: Tell the controller you need a tug to tow you back to the terminal.",
+      "audioText": "C: Air China 725, what assistance do you need?\nB: Tell the controller you need a tug to tow you back to the terminal.",
       "audioTextZh": "C: Air China 725，你需要什么援助？\nB: 告诉管制员你需要拖车把你拖回航站楼。",
       "referenceText": "Wuhan Tower, CCA725, request a tug to tow us to the terminal.",
       "referenceTextZh": "武汉塔台，CCA725，请求拖车把我们拖到航站楼。",

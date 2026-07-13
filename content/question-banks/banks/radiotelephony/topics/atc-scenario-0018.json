@@ -7,7 +7,7 @@
     {
       "id": "atc-scenario-0018-card-main-297",
       "taskTitle": "AFR 126-1",
-      "audioText": "B: Your call sign is Air France 126, destination Beijing, 8900 meters maintaining, over Tango Mike Romeo, Tango Zulu Hotel 10, squawk 6021, now contact  Beijing Control.",
+      "audioText": "B: Your call sign is Air France 126, destination Beijing, 8900 meters maintaining, over Tango Mike Romeo, Tango Zulu Hotel 10, squawk 6021, now contact Beijing Control.",
       "audioTextZh": "你的呼号是Air France 126，目的地北京，保持8900米，过TMR，TZH 10，squawk 6021，现在联系北京管制。",
       "referenceText": "Beijing Control, AFR126, 8900m maintaining, over TMR, TZH 10, squawk 6021.",
       "referenceTextZh": "北京管制，AFR126，保持8900米，过TMR，TZH 10，squawk 6021。",
@@ -34,7 +34,7 @@
     {
       "id": "atc-scenario-0018-card-main-300",
       "taskTitle": "AFR 126-4",
-      "audioText": "C: Air France 126, expect Kilo Mike 01 arrival, runway in use 36 left.",
+      "audioText": "C: Air France 126, expect Kilo Mike 01 arrival, runway in use 36L.",
       "audioTextZh": "管制员：Air France 126，预计KM01进场，使用跑道36左。",
       "referenceText": "Expect KM01 arrival, runway 36L, AFR126.",
       "referenceTextZh": "预计KM01进场，使用跑道36L，AFR126。",
@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0018-card-main-306",
       "taskTitle": "AFR 126-10",
-      "audioText": "C: Air France 126, negative due to spacing, Kilo Mike 01 arrival, runway in use 36 left, information Alpha.",
+      "audioText": "C: Air France 126, negative due to spacing, Kilo Mike 01 arrival, runway in use 36L, information Alpha.",
       "audioTextZh": "管制员：Air France 126，因间隔原因不能同意。执行KM01进场，使用跑道36左，通播Alpha。",
       "referenceText": "KM01 arrival, runway in use 36L, information A, AFR126.",
       "referenceTextZh": "KM01进场，使用跑道36L，通播A，AFR126。",
@@ -151,7 +151,7 @@
     {
       "id": "atc-scenario-0018-card-main-313",
       "taskTitle": "AFR 126-17",
-      "audioText": "C: Roger, Air France 126, is there anything else abnormal?\nB: Other systems normal, ask the  controller how long the delay is.",
+      "audioText": "C: Roger, Air France 126, is there anything else abnormal?\nB: Other systems normal, ask the controller how long the delay is.",
       "audioTextZh": "管制员：收到，Air France 126，还有其他异常吗？\n其他系统正常，询问管制员延误多久。",
       "referenceText": "Negative, other systems normal, how long is the delay? AFR126.",
       "referenceTextZh": "没有，其他系统正常，请问延误多久？AFR126。",
@@ -169,7 +169,7 @@
     {
       "id": "atc-scenario-0018-card-main-315",
       "taskTitle": "AFR 126-19",
-      "audioText": "C: Air France 126, stand by.\nB: Your fuel temperature indicates\nabnormal, you can only hold 10 minutes, request divert to Dalian airport.",
+      "audioText": "C: Air France 126, stand by.\nB: Your fuel temperature indicates\nabnormal, you can only hold 10 minutes, request diversion to Dalian airport.",
       "audioTextZh": "管制员：Air France 126，请稍等。你的燃油温度指示异常，只能再等待10分钟，申请备降大连机场。",
       "referenceText": "Beijing Approach, AFR126, our fuel temperature indicates abnormal,  endurance only 10 minutes, request divert to Dalian airport.",
       "referenceTextZh": "北京进近，AFR126，我们燃油温度指示异常，续航只剩10分钟，申请备降大连机场。",

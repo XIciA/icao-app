@@ -7,7 +7,7 @@
     {
       "id": "atc-scenario-0071-card-main-1212",
       "taskTitle": "CSN 542-1",
-      "audioText": "B: Your callsigh is China Southern 542, from Chengdu to Shanghai, you are at gate Kilo 10 with information Bravo, request clearance from Chengdu Delivery.",
+      "audioText": "B: Your call sign is China Southern 542, from Chengdu to Shanghai, you are at gate Kilo 10 with information Bravo, request clearance from Chengdu Delivery.",
       "audioTextZh": "B: 你的呼号是 China Southern 542，从 Chengdu 到 Shanghai，位于 Kilo 10 登机口，收到信息 Bravo，向成都放行请求许可。",
       "referenceText": "Chengdu Delivery, CSN542, Gate K10, information B, request ATC clearance.",
       "referenceTextZh": "成都放行，CSN542，K10 登机口，信息 B，请求 ATC 许可。",
@@ -124,7 +124,7 @@
     {
       "id": "atc-scenario-0071-card-main-1225",
       "taskTitle": "CSN 542-14",
-      "audioText": "B: As you are climbing you notice a large unmanned balloon, your position is 4 miles North of the airfield and current height is 2000 metres, report this to ATC.",
+      "audioText": "B: As you are climbing you notice a large unmanned balloon, your position is 4 miles North of the airfield and current height is 2000 meters, report this to ATC.",
       "audioTextZh": "B: 爬升时你发现一个大型无人气球，你的位置在机场以北 4 海里，当前高度 2000 米，向 ATC 报告。",
       "referenceText": "Chengdu Departure, CSN542, we notice a large balloon, position North of airfield 4 miles 2000 meters.",
       "referenceTextZh": "Chengdu Departure，CSN542，我们发现一个大型气球，位置机场以北 4 海里，2000 米。",

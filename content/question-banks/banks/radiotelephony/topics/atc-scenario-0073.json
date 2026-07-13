@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0073-card-main-1252",
       "taskTitle": "CSN 319-2",
-      "audioText": "C: China Southern 319, cleared to Guangzhou via flight planned route, departure runway 36 right, follow Lima Kilo Oscar 01 departure, initially climb to 1200 meters, cruising level 9800 meters, when airborne, contact 119.7, squawk 2515.",
+      "audioText": "C: China Southern 319, cleared to Guangzhou via flight planned route, departure runway 36R, follow Lima Kilo Oscar 01 departure, initial climb 1200 meters, cruising level 9800 meters, when airborne, contact 119.7, squawk 2515.",
       "audioTextZh": "C：China Southern 319，许可飞往广州，按飞行计划航路，离场跑道 36R，执行 Lima Kilo Oscar 01 离场，起始爬升至 1200 米，巡航高度 9800 米，离地后联系 119.7，应答机 2515。",
       "referenceText": "Cleared to Guangzhou via flight planned route, departure runway 36R, follow LKO 01 departure, initially climb to 1200 meters, cruising level 9800 meters, when airborne, contact 119.7, squawk 2515, CSN319.",
       "referenceTextZh": "许可飞往广州，按飞行计划航路，离场跑道 36R，执行 LKO 01 离场，起始爬升至 1200 米，巡航高度 9800 米，离地后联系 119.7，应答机 2515，CSN319。",
@@ -61,7 +61,7 @@
     {
       "id": "atc-scenario-0073-card-main-1257",
       "taskTitle": "CSN 319-7",
-      "audioText": "C: China Southern 319, taxi to holding point runway 36 right via taxiway Zulu 4, Alpha 3 and Alpha, hold short of runway 36 right.",
+      "audioText": "C: China Southern 319, taxi to holding point runway 36R via taxiway Zulu 4, Alpha 3 and Alpha, hold short of runway 36R.",
       "audioTextZh": "C：China Southern 319，经滑行道 Zulu 4、Alpha 3 和 Alpha 滑行至跑道 36R 等待点，跑道 36R 外等待。",
       "referenceText": "Taxi to holding point runway 36R via taxiway Z4, A3 and A, hold short of runway 36R, CSN319.",
       "referenceTextZh": "经滑行道 Z4、A3 和 A 滑行至跑道 36R 等待点，跑道 36R 外等待，CSN319。",
@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0073-card-main-1258",
       "taskTitle": "CSN 319-8",
-      "audioText": "B: Now you are at holding point runway 36 right, you are ready for takeoff, contact Tower.",
+      "audioText": "B: Now you are at holding point runway 36R, you are ready for takeoff, contact Tower.",
       "audioTextZh": "B：现在你在跑道 36R 等待点，准备好起飞，联系塔台。",
       "referenceText": "Wuhan Tower, CSN319, holding point runway 36R, ready for departure.",
       "referenceTextZh": "武汉塔台，CSN319，跑道 36R 等待点，准备好离场。",
@@ -79,7 +79,7 @@
     {
       "id": "atc-scenario-0073-card-main-1259",
       "taskTitle": "CSN 319-9",
-      "audioText": "C: China Southern 319, behind Boeing 737 on final, line up runway 36 right.",
+      "audioText": "C: China Southern 319, behind Boeing 737 on final, line up runway 36R.",
       "audioTextZh": "C：China Southern 319，在五边 Boeing 737 后，进入跑道 36R。",
       "referenceText": "Behind B737 on final, line up runway 36R, CSN319.",
       "referenceTextZh": "在五边 B737 后，进入跑道 36R，CSN319。",
@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0073-card-main-1265",
       "taskTitle": "CSN 319-15",
-      "audioText": "C: China Southern 319, roger PAN, maintain 3900 meters, turn left, direct to Lima Kilo Oscar, Lima Kilo Oscar 02 arrival, expect ILS approach runway 36 right.",
+      "audioText": "C: China Southern 319, roger PAN, maintain 3900 meters, turn left, direct to Lima Kilo Oscar, Lima Kilo Oscar 02 arrival, expect ILS approach runway 36R.",
       "audioTextZh": "C：China Southern 319，收到 PAN，保持 3900 米，左转，直飞 Lima Kilo Oscar，Lima Kilo Oscar 02 进场，预计 ILS 进近跑道 36R。",
       "referenceText": "Maintain 3900 meters, turn left, direct to LKO, LKO 02 arrival, expect ILS approach runway 36R, CSN319.",
       "referenceTextZh": "保持 3900 米，左转，直飞 LKO，LKO 02 进场，预计 ILS 进近跑道 36R，CSN319。",

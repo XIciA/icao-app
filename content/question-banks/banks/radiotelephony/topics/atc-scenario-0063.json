@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0063-card-main-1082",
       "taskTitle": "CCA 937-2",
-      "audioText": "C: Air China 937, Wuhan Delivery, cleared to Amsterdam via flight planned route, follow Zulu Foxtrot 12 departure, cruising level 9500 meters, initially climb 1500 meters, after departure, contact 125.65, squawk 3251, runway in use 18 left.",
+      "audioText": "C: Air China 937, Wuhan Delivery, cleared to Amsterdam via flight planned route, follow Zulu Foxtrot 12 departure, cruising level 9500 meters, initial climb 1500 meters, after departure, contact 125.65, squawk 3251, runway in use 18L.",
       "audioTextZh": "C: Air China 937，武汉放行，可以按计划航路前往 Amsterdam，执行 Zulu Foxtrot 12 离场，巡航高度 9500 米，初始爬升 1500 米，离场后联系 125.65，应答机 3251，使用跑道 18L。",
       "referenceText": "Cleared to Amsterdam via flight planned route, follow ZF12 departure, cruising level 9500 meters, initially climb 1500 meters, after departure, contact 125.65, squawk 3251, runway in use 18L, CCA937.",
       "referenceTextZh": "可以按计划航路前往 Amsterdam，执行 ZF12 离场，巡航高度 9500 米，初始爬升 1500 米，离场后联系 125.65，应答机 3251，使用跑道 18L，CCA937。",
@@ -61,7 +61,7 @@
     {
       "id": "atc-scenario-0063-card-main-1087",
       "taskTitle": "CCA 937-7",
-      "audioText": "C: Air China 937, taxi to holding point runway 18 left via the taxiway Zulu 4, Alpha 2, Alpha, hold short of Echo 1.",
+      "audioText": "C: Air China 937, taxi to holding point runway 18L via the taxiway Zulu 4, Alpha 2, Alpha, hold short of Echo 1.",
       "audioTextZh": "C: Air China 937，经滑行道 Zulu 4、Alpha 2、Alpha 滑行至跑道 18L 等待点，在 Echo 1 前等待。",
       "referenceText": "Taxi to holding point runway 18L via the taxiway Z4, A2, A, hold short of E1, CCA937.",
       "referenceTextZh": "经滑行道 Z4、A2、A 滑行至跑道 18L 等待点，在 E1 前等待，CCA937。",
@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0063-card-main-1092",
       "taskTitle": "CCA 937-12",
-      "audioText": "C: Air China 937, recleared to Amsterdam, follow Zulu Foxtrot 01 departure, runway 04, initially climb 1500 meters, rest unchanged.\nB: Read back the instructions and advice you are ready for taxi.",
+      "audioText": "C: Air China 937, recleared to Amsterdam, follow Zulu Foxtrot 01 departure, runway 04, initial climb 1500 meters, rest unchanged.\nB: Read back the instructions and advise you are ready for taxi.",
       "audioTextZh": "C: Air China 937，重新许可前往 Amsterdam，执行 Zulu Foxtrot 01 离场，跑道 04，初始爬升 1500 米，其余不变。\nB: 复诵指令并告知你准备滑行。",
       "referenceText": "Follow ZF01 departure, runway 04, initially climb 1500 meters, rest unchanged, request taxi, CCA937.",
       "referenceTextZh": "执行 ZF01 离场，跑道 04，初始爬升 1500 米，其余不变，请求滑行，CCA937。",

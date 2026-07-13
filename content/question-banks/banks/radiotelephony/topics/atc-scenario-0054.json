@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0054-card-main-927",
       "taskTitle": "CCA 425-2",
-      "audioText": "C: Air China 425, cleared to Tokyo via flight planned route, Lima Kilo Oscar 01 departure, climb and maintain 1500 meters initially, cruising level 10100 meters, runway 36 right, contact departure on 119.7, squawk 6325.",
+      "audioText": "C: Air China 425, cleared to Tokyo via flight planned route, Lima Kilo Oscar 01 departure, climb and maintain 1500 meters initially, cruising level 10100 meters, runway 36R, contact departure on 119.7, squawk 6325.",
       "audioTextZh": "C: Air China 425，可以按计划航路前往 Tokyo，Lima Kilo Oscar 01 离场，初始爬升并保持 1500 米，巡航高度 10100 米，跑道 36R，联系离场 119.7，应答机 6325。",
       "referenceText": "Cleared to Tokyo via flight planned route, LKO 01 departure, climb and maintain 1500m initially, cruising level 10100m, runway 36R, contact departure on 119.7, squawk 6325, CCA425.",
       "referenceTextZh": "可以按计划航路前往 Tokyo，LKO 01 离场，初始爬升并保持 1500 米，巡航高度 10100 米，跑道 36R，联系离场 119.7，应答机 6325，CCA425。",
@@ -61,7 +61,7 @@
     {
       "id": "atc-scenario-0054-card-main-932",
       "taskTitle": "CCA 425-7",
-      "audioText": "B: The tailwind exceeds your takeoff limit, contact Tower to change to runway 18 left and state the reason.",
+      "audioText": "B: The tailwind exceeds your takeoff limit, contact Tower to change to runway 18L and state the reason.",
       "audioTextZh": "B: 顺风超过你的起飞限制，联系 塔台请求改用跑道 18L 并说明原因。",
       "referenceText": "Wuhan Tower, CCA425, the tailwind exceeds our takeoff limit, request change to runway 18L.",
       "referenceTextZh": "武汉塔台，CCA425，顺风超过我们的起飞限制，请求改用跑道 18L。",
@@ -97,7 +97,7 @@
     {
       "id": "atc-scenario-0054-card-main-936",
       "taskTitle": "CCA 425-11",
-      "audioText": "B: Your No.1 engine restarted , tell ATC you decide to continue to the destination, request their approval.",
+      "audioText": "B: Your No.1 engine restarted, tell ATC you decide to continue to the destination, request their approval.",
       "audioTextZh": "B: 你的 1 号发动机重启成功，告诉 ATC 你决定继续飞往目的地，请求批准。",
       "referenceText": "Wuhan Control, CCA425, our No.1 engine restarted, request continue to Tokyo.",
       "referenceTextZh": "武汉管制，CCA425，我们的 1 号发动机已重启，请求继续飞往 Tokyo。",

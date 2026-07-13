@@ -25,7 +25,7 @@
     {
       "id": "atc-scenario-0101-card-main-1744",
       "taskTitle": "SIA 544-3",
-      "audioText": "C: Singapore 544, go beyond Airbus 320 on your left, then turn right.\nB: Read back theinstruction. Then tell the controller an aircraft is approaching to you from the opposite direction",
+      "audioText": "C: Singapore 544, go beyond Airbus 320 on your left, then turn right.\nB: Read back the instruction. Then tell the controller an aircraft is approaching to you from the opposite direction",
       "audioTextZh": "C：Singapore 544，越过你左侧的 Airbus 320，然后右转。\nB：复诵指令。然后告诉管制员有一架飞机从相反方向接近你。",
       "referenceText": "Go beyond A320 on the left, then turn right, an aircraft is approaching to us from the opposite direction, SIA544.",
       "referenceTextZh": "越过左侧 A320，然后右转，有一架飞机从相反方向接近我们，SIA544。",
@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0101-card-main-1753",
       "taskTitle": "SIA 544-12",
-      "audioText": "B: You contact Ground and report you have vacated the runway 36 right via Echo 4.",
+      "audioText": "B: You contact Ground and report you have vacated the runway 36R via Echo 4.",
       "audioTextZh": "B: 联系地面，报告你们已通过 Echo 4 脱离跑道 36 right。",
       "referenceText": "Ground, SIA544, we have vacated the runway 36 right via E4.",
       "referenceTextZh": "地面，SIA544，我们已通过 E4 脱离跑道 36 right。",

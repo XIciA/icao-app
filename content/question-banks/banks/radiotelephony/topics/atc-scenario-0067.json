@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0067-card-main-1145",
       "taskTitle": "CCA 1089-2",
-      "audioText": "C: Air China 1089, Beijing Delivery, cleared to Sanya via flight planned route, runway in use 36 right, follow RENOB 31 departure, initial climb to 1200 meters, QNH 1022, after departure, contact 120.6, squawk 1212.",
+      "audioText": "C: Air China 1089, Beijing Delivery, cleared to Sanya via flight planned route, runway in use 36R, follow RENOB 31 departure, initial climb to 1200 meters, QNH 1022, after departure, contact 120.6, squawk 1212.",
       "audioTextZh": "C: Air China 1089，北京放行，可以按计划航路前往 Sanya，使用跑道 36R，执行 RENOB 31 离场，初始爬升到 1200 米，QNH 1022，离场后联系 120.6，应答机 1212。",
       "referenceText": "Cleared to Sanya via flight planned route, runway in use 36R, follow RENOB 31 departure, initial climb to 1200 meters, QNH 1022, after departure, contact 120.6, squawk 1212, CCA1089.",
       "referenceTextZh": "可以按计划航路前往 Sanya，使用跑道 36R，执行 RENOB 31 离场，初始爬升到 1200 米，QNH 1022，离场后联系 120.6，应答机 1212，CCA1089。",
@@ -61,7 +61,7 @@
     {
       "id": "atc-scenario-0067-card-main-1150",
       "taskTitle": "CCA 1089-7",
-      "audioText": "C: Air China 1089, taxi to the holding point of runway 36 right via taxiway Golf 1 and Echo 1.",
+      "audioText": "C: Air China 1089, taxi to the holding point of runway 36R via taxiway Golf 1 and Echo 1.",
       "audioTextZh": "C: Air China 1089，经滑行道 Golf 1 和 Echo 1 滑行至跑道 36R 等待点。",
       "referenceText": "Taxi to holding point runway 36R via taxiway G1 and E1, CCA1089.",
       "referenceTextZh": "经滑行道 G1 和 E1 滑行至跑道 36R 等待点，CCA1089。",
@@ -79,7 +79,7 @@
     {
       "id": "atc-scenario-0067-card-main-1152",
       "taskTitle": "CCA 1089-9",
-      "audioText": "C: Air China 1089, taxi to the holding point of runway 36 right via taxiway Golf 1 and Echo 1.",
+      "audioText": "C: Air China 1089, taxi to the holding point of runway 36R via taxiway Golf 1 and Echo 1.",
       "audioTextZh": "C: Air China 1089，经滑行道 Golf 1 和 Echo 1 滑行至跑道 36R 等待点。",
       "referenceText": "Taxi to holding point of runway 36R via taxiway G1 and E1, CCA1089.",
       "referenceTextZh": "经滑行道 G1 和 E1 滑行至跑道 36R 等待点，CCA1089。",
@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0067-card-main-1153",
       "taskTitle": "CCA 1089-10",
-      "audioText": "B: You are now at the holding point of runway 36 right, you've already contacted Tower, now tell the Tower you are ready to takeoff.",
+      "audioText": "B: You are now at the holding point of runway 36R, you've already contacted Tower, now tell the Tower you are ready for takeoff.",
       "audioTextZh": "B: 现在你在跑道 36R 等待点，已联系 塔台，现在告诉 塔台 你准备起飞。",
       "referenceText": "Beijing Tower, CCA1089, hold at holding point runway 36R, ready for departure.",
       "referenceTextZh": "北京塔台，CCA1089，在跑道 36R 等待点等待，准备离场。",
@@ -124,7 +124,7 @@
     {
       "id": "atc-scenario-0067-card-main-1157",
       "taskTitle": "CCA 1089-14",
-      "audioText": "C: Air China 1089, QNH is 1020, what level do you require?\nB: Reply to the transmission, tell the controller you will descend to 3000 metres on QNH.",
+      "audioText": "C: Air China 1089, QNH is 1020, what level do you require?\nB: Reply to the transmission, tell the controller you will descend to 3000 meters on QNH.",
       "audioTextZh": "C: Air China 1089，QNH 是 1020，你需要什么高度？\nB: 回复电台，告诉管制员你将按 QNH 下降到 3000 米。",
       "referenceText": "QNH 1020, request descend to 3000 meters on QNH, CCA1089.",
       "referenceTextZh": "QNH 1020，请求按 QNH 下降到 3000 米，CCA1089。",
@@ -151,7 +151,7 @@
     {
       "id": "atc-scenario-0067-card-main-1160",
       "taskTitle": "CCA 1089-17",
-      "audioText": "B: You are now level of 3000 metres and are considering diverting to Hangzhou, ask for the weather at Hangzhou Airport.",
+      "audioText": "B: You are now level of 3000 meters and are considering diverting to Hangzhou, ask for the weather at Hangzhou Airport.",
       "audioTextZh": "B: 你现在在 3000 米平飞，正在考虑改航 Hangzhou，询问 Hangzhou Airport 天气。",
       "referenceText": "Beijing Control, CCA1089, level at 3000 meters, request divert to Hangzhou and weather at Hangzhou Airport.",
       "referenceTextZh": "北京管制，CCA1089，3000 米平飞，请求改航 Hangzhou，并请求 Hangzhou Airport 天气。",

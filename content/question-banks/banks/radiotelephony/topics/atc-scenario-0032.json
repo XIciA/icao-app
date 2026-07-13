@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0032-card-main-557",
       "taskTitle": "BAW 871-10",
-      "audioText": "C: Speedbird 871, roger your PAN, turn right heading 240, intercept Lima Kilo Oscar 030 radio inbound, climb to 3300 meters.",
+      "audioText": "C: Speedbird 871, roger your PAN, turn right heading 240, intercept Lima Kilo Oscar 030 radial inbound, climb to 3300 meters.",
       "audioTextZh": "C：Speedbird 871，收到 PAN，右转航向 240，切入 Lima Kilo Oscar 030 径向线向台，爬升至 3300 米。",
       "referenceText": "Turn right heading 240, intercept LKO 030 radio inbound, climb to 3300m, BAW871.",
       "referenceTextZh": "右转航向 240，切入 LKO 030 径向线向台，爬升至 3300 米，BAW871。",
@@ -97,7 +97,7 @@
     {
       "id": "atc-scenario-0032-card-main-558",
       "taskTitle": "BAW 871-11",
-      "audioText": "C: Speedbird 871, after Lima Kilo Oscar , turn right heading 220, maintain 3300 meters, report over Lima Kilo Oscar.",
+      "audioText": "C: Speedbird 871, after Lima Kilo Oscar, turn right heading 220, maintain 3300 meters, report over Lima Kilo Oscar.",
       "audioTextZh": "C：Speedbird 871，过 Lima Kilo Oscar 后右转航向 220，保持 3300 米，飞越 Lima Kilo Oscar 报告。",
       "referenceText": "After LKO, turn right heading 220, maintaining 3300m, report over LKO, BAW871.",
       "referenceTextZh": "过 LKO 后右转航向 220，保持 3300 米，飞越 LKO 报告，BAW871。",
@@ -115,7 +115,7 @@
     {
       "id": "atc-scenario-0032-card-main-560",
       "taskTitle": "BAW 871-13",
-      "audioText": "C: Speedbird 871 ,turn right direct to Delta Alpha, descend to 2100 meters, QNH 1015, expect runway 22.",
+      "audioText": "C: Speedbird 871, turn right direct to Delta Alpha, descend to 2100 meters, QNH 1015, expect runway 22.",
       "audioTextZh": "C：Speedbird 871，右转直飞 Delta Alpha，下降至 2100 米，QNH 1015，预计跑道 22。",
       "referenceText": "Turn right direct to DA, descend to 2100m, QNH 1015, expect runway 22, BAW871.",
       "referenceTextZh": "右转直飞 DA，下降至 2100 米，QNH 1015，预计跑道 22，BAW871。",

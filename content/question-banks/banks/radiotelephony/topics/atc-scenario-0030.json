@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0030-card-main-513",
       "taskTitle": "BAW 817-2",
-      "audioText": "C: Speedbird 817, what type of aircraft is it ?\nB: Tell the controller its Airbus 330.",
+      "audioText": "C: Speedbird 817, what type of aircraft is it?\nB: Tell the controller its Airbus 330.",
       "audioTextZh": "C：Speedbird 817，机型是什么？\nB：告诉管制员是 Airbus 330。",
       "referenceText": "It's A330, BAW817.",
       "referenceTextZh": "机型 A330，BAW817。",
@@ -79,7 +79,7 @@
     {
       "id": "atc-scenario-0030-card-main-520",
       "taskTitle": "BAW 817-9",
-      "audioText": "C: Speedbird 817, turn right, heading 240 to intercept Lima Kilo Oscar 030 radio inbound, climb to 3300 meters.",
+      "audioText": "C: Speedbird 817, turn right, heading 240 to intercept Lima Kilo Oscar 030 radial inbound, climb to 3300 meters.",
       "audioTextZh": "C：Speedbird 817，右转航向 240，切入 Lima Kilo Oscar 030 径向线向台，爬升至 3300 米。",
       "referenceText": "Turn right, heading 240 to intercept LKO 030 radio inbound, climb to 3300 meters, BAW817.",
       "referenceTextZh": "右转航向 240，切入 LKO 030 径向线向台，爬升至 3300 米，BAW817。",
@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0030-card-main-523",
       "taskTitle": "BAW 817-12",
-      "audioText": "C: Speedbird 817, how long do you need to dump fuel ?\nB: Tell the controller you need approximately 25 minutes.",
+      "audioText": "C: Speedbird 817, how long do you need to dump fuel?\nB: Tell the controller you need approximately 25 minutes.",
       "audioTextZh": "C：Speedbird 817，你需要多长时间放油？\nB：告诉管制员大约需要 25 分钟。",
       "referenceText": "Wuhan Approach, BAW817, we need approximately 25 minutes.",
       "referenceTextZh": "武汉进近，BAW817，我们大约需要 25 分钟。",

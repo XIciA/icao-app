@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0004-card-main-059",
       "taskTitle": "QFA 029-2",
-      "audioText": "C: Qantas 029, Beijing Delivery, cleared to Dubai, via flight planned route, initially climb to 6600 meters, RENOB 32 departure, request level change for 11000 meters en route, squawk 1725, runway 36 right, departure frequency 127.75.",
+      "audioText": "C: Qantas 029, Beijing Delivery, cleared to Dubai, via flight planned route, initial climb 6600 meters, RENOB 32 departure, request level change for 11000 meters en route, squawk 1725, runway 36R, departure frequency 127.75.",
       "audioTextZh": "C：Qantas 029，北京放行，许可飞往迪拜，按飞行计划航路，初始爬升至 6600 米，RENOB 32 离场，航路中请求高度改变至 11000 米，应答机 1725，跑道 36 右，离场频率 127.75。",
       "referenceText": "Cleared to Dubai, via flight planned route, initially climb to 6600 meters, RENOB 32 departure, request level change for 11000 meters en route, squawk 1725, runway 36R, departure frequency 127.75, QFA029.",
       "referenceTextZh": "许可飞往迪拜，按飞行计划航路，初始爬升至 6600 米，RENOB 32 离场，航路中请求高度改变至 11000 米，应答机 1725，跑道 36R，离场频率 127.75，QFA029。",

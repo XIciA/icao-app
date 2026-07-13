@@ -7,7 +7,7 @@
     {
       "id": "atc-scenario-0015-card-main-242",
       "taskTitle": "AFR 113-1",
-      "audioText": "B: Your call sigh is Air France 113, you're holding at holding point Echo 1, runway 04, you are fully ready.",
+      "audioText": "B: Your call sign is Air France 113, you're holding at holding point Echo 1, runway 04, you are fully ready.",
       "audioTextZh": "B：你的呼号是 Air France 113，你在 Echo 1 等待点，跑道 04，已完全准备好。",
       "referenceText": "Wuhan Tower, AFR113, holding at holding point E1, runway 04, ready for departure.",
       "referenceTextZh": "武汉塔台，AFR113，在 E1 等待点，跑道 04，准备好离场。",
@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0015-card-main-256",
       "taskTitle": "AFR 113-15",
-      "audioText": "C: Air France 113, current information is Tango, descend to 900 meters, expect radar vectors for ILS runway 36 left.\nB: Read back and ask to use runway 36 right to land due to performance limitations.",
+      "audioText": "C: Air France 113, current information is Tango, descend to 900 meters, expect radar vectors for ILS runway 36L.\nB: Read back and ask to use runway 36R to land due to performance limitations.",
       "audioTextZh": "管制员：Air France 113，当前通播为Tango，下降至900米，预计雷达引导ILS进近36左跑道。请复诵，并因性能限制申请使用36右跑道落地。",
       "referenceText": "Information T, descend to 900 meters, expect radar vectors for ILS runway 36L, request runway 36R due performance, AFR113.",
       "referenceTextZh": "通播T，下降至900米，预计雷达引导ILS进近36L；因性能限制申请36R，AFR113。",
@@ -142,7 +142,7 @@
     {
       "id": "atc-scenario-0015-card-main-257",
       "taskTitle": "AFR 113-16",
-      "audioText": "C: Air France 113, change landing runway 36 right.\nB: You have just got the information from the cabin that 1 of your passengers suffered a stroke during the incident, informed the controller and ask for ambulance after landing.",
+      "audioText": "C: Air France 113, change landing runway 36R.\nB: You have just got the information from the cabin that 1 of your passengers suffered a stroke during the incident, informed the controller and ask for ambulance after landing.",
       "audioTextZh": "管制员：Air France 113，改为36右跑道落地。你刚从客舱获知，一名旅客在事件中突发中风，请通知管制员并申请落地后救护车保障。",
       "referenceText": "Wuhan Approach, AFR113, 1 of our passengers suffered stroke, request ambulance after landing.",
       "referenceTextZh": "武汉进近，AFR113，我们有一名旅客中风，申请落地后救护车保障。",
@@ -151,7 +151,7 @@
     {
       "id": "atc-scenario-0015-card-main-258",
       "taskTitle": "AFR 113-17",
-      "audioText": "C: Roger, Air France 113, we will notify airport medical assistance, now turn left heading 330, descend to 600 meters, cleared ILS approach runway 36 right.",
+      "audioText": "C: Roger, Air France 113, we will notify airport medical assistance, now turn left heading 330, descend to 600 meters, cleared ILS approach runway 36R.",
       "audioTextZh": "管制员：收到，Air France 113，我们会通知机场医疗保障。现在左转航向330，下降至600米，可以ILS进近36右跑道。",
       "referenceText": "Roger, thanks, turn left heading 330, descend to 600 meters, cleared ILS approach runway 36R, AFR113.",
       "referenceTextZh": "收到，谢谢，左转航向330，下降至600米，可以ILS进近36R，AFR113。",
@@ -160,7 +160,7 @@
     {
       "id": "atc-scenario-0015-card-main-259",
       "taskTitle": "AFR 113-18",
-      "audioText": "B: Report that you have intercepted the localizer for runway 36 right.",
+      "audioText": "B: Report that you have intercepted the localizer for runway 36R.",
       "audioTextZh": "报告你已截获36右跑道航向道。",
       "referenceText": "Wuhan Approach, AFR113, established on the localizer runway 36R.",
       "referenceTextZh": "武汉进近，AFR113，已建立36R航向道。",

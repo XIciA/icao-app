@@ -160,7 +160,7 @@
     {
       "id": "atc-scenario-0058-card-main-1011",
       "taskTitle": "CCA 512-18",
-      "audioText": "B: You have established on ILS approach runway 36 right, contact Wuhan Tower.",
+      "audioText": "B: You have established on ILS approach runway 36R, contact Wuhan Tower.",
       "audioTextZh": "B: 你已建立跑道 36R ILS 进近，联系武汉塔台。",
       "referenceText": "Wuhan Tower, CCA512, established on ILS approach runway 36R.",
       "referenceTextZh": "武汉塔台，CCA512，已建立跑道 36R ILS 进近。",

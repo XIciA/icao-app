@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0102-card-main-1758",
       "taskTitle": "CSN 3426-2",
-      "audioText": "C: China Southern 426, taxi to holding point of runway 36 right via Yankee 1 and Charlie 1.",
+      "audioText": "C: China Southern 426, taxi to holding point of runway 36R via Yankee 1 and Charlie 1.",
       "audioTextZh": "C: China Southern 426，经 Yankee 1 和 Charlie 1 滑行至跑道 36 right 等待点。",
       "referenceText": "Taxi to holding point of runway 36R via Y1 and C1, CSN3426.",
       "referenceTextZh": "经 Y1 和 C1 滑行至跑道 36R 等待点，CSN3426。",
@@ -52,7 +52,7 @@
     {
       "id": "atc-scenario-0102-card-main-1762",
       "taskTitle": "CSN 3426-6",
-      "audioText": "C: China Southern 426, taxi to holding point of runway 36 right via Yankee 1 and Charlie 1.",
+      "audioText": "C: China Southern 426, taxi to holding point of runway 36R via Yankee 1 and Charlie 1.",
       "audioTextZh": "C: China Southern 426，经 Yankee 1 和 Charlie 1 滑行至跑道 36 right 等待点。",
       "referenceText": "Taxi to holding point of runway 36R via Y1 and C1, CSN3426.",
       "referenceTextZh": "经 Y1 和 C1 滑行至跑道 36R 等待点，CSN3426。",
@@ -79,7 +79,7 @@
     {
       "id": "atc-scenario-0102-card-main-1765",
       "taskTitle": "CSN 3426-9",
-      "audioText": "B: Your aircraft left wingtip collided with left stabilizer of Airbus 330 during taxing, report it to the controller and ask for assistance.",
+      "audioText": "B: Your aircraft left wingtip collided with left stabilizer of Airbus 330 during taxiing, report it to the controller and ask for assistance.",
       "audioTextZh": "B: 你机左翼尖在滑行中与 Airbus 330 左平尾相撞，向管制员报告并请求协助。",
       "referenceText": "Beijing East Ground, CSN3426, our aircraft left wingtip collided with left stabilizer of A330, request airport assistance.",
       "referenceTextZh": "北京东地面，CSN3426，我机左翼尖与 A330 左平尾相撞，请求机场协助。",

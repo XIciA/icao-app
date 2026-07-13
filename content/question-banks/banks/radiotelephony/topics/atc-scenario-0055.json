@@ -25,7 +25,7 @@
     {
       "id": "atc-scenario-0055-card-main-939",
       "taskTitle": "CCA 878-3",
-      "audioText": "B: As you are taxing, the purser calls you on the intercom, you have a passenger who have become very ill and you must return to the gate, tell air traffic controllers this.",
+      "audioText": "B: As you are taxiing, the purser calls you on the intercom, you have a passenger who have become very ill and you must return to the gate, tell air traffic controllers this.",
       "audioTextZh": "B: 滑行时，乘务长通过内话呼叫你，有一名旅客病情很重，你必须返回登机口，把这件事告诉空中交通管制员。",
       "referenceText": "Sanya Tower, CCA878, we have a passenger who have become very ill and we have to return to the gate.",
       "referenceTextZh": "三亚塔台，CCA878，我们有一名旅客病情很重，必须返回登机口。",
@@ -52,7 +52,7 @@
     {
       "id": "atc-scenario-0055-card-main-942",
       "taskTitle": "CCA 878-6",
-      "audioText": "B: It is now thirty minutes later in the day, the sick passenger has disembarked and you were at the holding point for runway 08, tell the Tower you are ready to takeoff.",
+      "audioText": "B: It is now thirty minutes later in the day, the sick passenger has disembarked and you were at the holding point for runway 08, tell the Tower you are ready for takeoff.",
       "audioTextZh": "B: 现在是当天 30 分钟后，患病旅客已下机，你在跑道 08 等待点，告诉 塔台 你准备起飞。",
       "referenceText": "Sanya Tower, CCA878, hold at holding point runway 08, ready for departure.",
       "referenceTextZh": "三亚塔台，CCA878，在跑道 08 等待点等待，准备离场。",

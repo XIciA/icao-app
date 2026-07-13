@@ -7,7 +7,7 @@
     {
       "id": "atc-scenario-0044-card-main-746",
       "taskTitle": "JAL 220-1",
-      "audioText": "B: You call sign is Japan Air 220, from Shanghai to Hongkong, you have intercepted an Urgency call from Air China 105, Air China 105 was transmitting blind due to receiver failure, he intended to request priority landing at Xiamen, relay the message to Xiamen Approach.",
+      "audioText": "B: Your call sign is Japan Air 220, from Shanghai to Hongkong, you have intercepted an Urgency call from Air China 105, Air China 105 was transmitting blind due to receiver failure, he intended to request priority landing at Xiamen, relay the message to Xiamen Approach.",
       "audioTextZh": "B：你的呼号是 Japan Air 220，从上海飞往香港，你截收到 Air China 105 的紧急呼叫，Air China 105 因接收机故障正在盲发，意图请求在厦门优先着陆，将该信息转报给厦门进近。",
       "referenceText": "PANPAN PANPAN PANPAN, Xiamen Approach, JAL220, we have intercepted an Urgency call from CCA105, CCA105 was transmitting blind due to receiver failure, request priority landing at Xiamen.",
       "referenceTextZh": "PANPAN PANPAN PANPAN，厦门进近，JAL220，我们截收到 CCA105 的紧急呼叫，CCA105 因接收机故障正在盲发，请求在厦门优先着陆。",
@@ -34,7 +34,7 @@
     {
       "id": "atc-scenario-0044-card-main-749",
       "taskTitle": "JAL 220-4",
-      "audioText": "B: Now you are maintaining flight level 320, you are over FISHA, your transponder code is 3062, make an initial contact with Hongkong Center.",
+      "audioText": "B: Now you are maintaining FL320, you are over FISHA, your transponder code is 3062, make an initial contact with Hongkong Center.",
       "audioTextZh": "B：你现在保持飞行高度层 320，飞越 FISHA，应答机代码 3062，首次联系香港管制。",
       "referenceText": "Hongkong Center, JAL220, maintaining FL320, over FISHA, squawking 3062.",
       "referenceTextZh": "香港管制，JAL220，保持 FL320，飞越 FISHA，应答机 3062。",
@@ -43,7 +43,7 @@
     {
       "id": "atc-scenario-0044-card-main-750",
       "taskTitle": "JAL 220-5",
-      "audioText": "B: Suddenly, you encountered foreign object ingestion, possibly volcanic ash, your starboard engine is overheating, you ask Hongkong Center for emergency descent to flight level 220 and radar vectors to Hongkong for priority landing.",
+      "audioText": "B: Suddenly, you encountered foreign object ingestion, possibly volcanic ash, your starboard engine is overheating, you ask Hongkong Center for emergency descent to FL220 and radar vectors to Hongkong for priority landing.",
       "audioTextZh": "B：突然遭遇外来物吸入，可能是火山灰，右发过热，你向香港管制请求紧急下降至飞行高度层 220，并请求雷达引导至香港优先着陆。",
       "referenceText": "Hongkong Center, JAL220, we encountered foreign object ingestion, possibly volcanic ash, our starboard engine is overheating, request emergency descent to FL220 and radar vectors to Hongkong for priority landing.",
       "referenceTextZh": "香港管制，JAL220，我们遭遇外来物吸入，可能是火山灰，右发过热，请求紧急下降至 FL220，并雷达引导至香港优先着陆。",
@@ -52,7 +52,7 @@
     {
       "id": "atc-scenario-0044-card-main-751",
       "taskTitle": "JAL 220-6",
-      "audioText": "C: Japan Air 220, roger, flight level 220 is not available due to traffic, maintain flight level 320, turn right, direct to Tango Delta, contact Hongkong Approach on 123.8.",
+      "audioText": "C: Japan Air 220, roger, FL220 is not available due to traffic, maintain FL320, turn right, direct to Tango Delta, contact Hongkong Approach on 123.8.",
       "audioTextZh": "C: Japan Air 220，收到，由于交通原因，飞行高度层 220 不可用，保持飞行高度层 320，右转，直飞 Tango Delta，联系香港进近123.8。",
       "referenceText": "Maintain FL320, turn right, direct to TD, 123.8, JAL220.",
       "referenceTextZh": "保持 FL320，右转，直飞 TD，123.8，JAL220。",
@@ -61,7 +61,7 @@
     {
       "id": "atc-scenario-0044-card-main-752",
       "taskTitle": "JAL 220-7",
-      "audioText": "B: Now you are 5 miles south of Tango Delta VOR, state your situation to Hongkong Approach and ask for straight in ILS approach runway 07 left and priority landing.",
+      "audioText": "B: Now you are 5 miles south of Tango Delta VOR, state your situation to Hongkong Approach and ask for straight in ILS approach runway 07L and priority landing.",
       "audioTextZh": "B: 现在你在 Tango Delta VOR 以南 5 海里，向香港进近说明情况，并请求跑道 07L 直线 ILS 进近和优先着陆。",
       "referenceText": "Hongkong Approach, JAL220, 5 miles south of Tango Delta VOR, we encountered foreign object ingestion, possibly volcanic ash, request straight in ILS approach runway 07L and priority landing.",
       "referenceTextZh": "香港进近，JAL220，在 Tango Delta VOR 以南 5 海里，我们遭遇外来物吸入，可能是火山灰，请求跑道 07L 直线 ILS 进近和优先着陆。",
@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0044-card-main-753",
       "taskTitle": "JAL 220-8",
-      "audioText": "C: Japan Air 220, Hongkong Approach, turn right heading 240 to intercept Tango Delta VOR 030 radial inbound, descend to flight level 110.",
+      "audioText": "C: Japan Air 220, Hongkong Approach, turn right heading 240 to intercept Tango Delta VOR 030 radial inbound, descend to FL110.",
       "audioTextZh": "C: Japan Air 220，香港进近，右转航向 240，切入 Tango Delta VOR 030 径向线向台，下降到飞行高度层 110。",
       "referenceText": "Turn right heading 240 to intercept TD VOR 030 radial inbound, descend to FL110, JAL220.",
       "referenceTextZh": "右转航向 240，切入 TD VOR 030 径向线向台，下降到 FL110，JAL220。",
@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0044-card-main-755",
       "taskTitle": "JAL 220-10",
-      "audioText": "C: Japan Air 220, cleared straight in ILS approach runway 07 left, you are number 1 to land.",
+      "audioText": "C: Japan Air 220, cleared straight in ILS approach runway 07L, you are number 1 to land.",
       "audioTextZh": "C: Japan Air 220，可以跑道 07L 直线 ILS 进近，你是第 1 架着陆。",
       "referenceText": "Cleared straight in ILS approach runway 07L, JAL220.",
       "referenceTextZh": "可以跑道 07L 直线 ILS 进近，JAL220。",
@@ -124,7 +124,7 @@
     {
       "id": "atc-scenario-0044-card-main-759",
       "taskTitle": "JAL 220-14",
-      "audioText": "C: Japan Air 220, Hongkong Ground, roger, do you need any other service ?\nB: Tell the controller you need a tow truck to tow you to the apron.",
+      "audioText": "C: Japan Air 220, Hongkong Ground, roger, do you need any other service?\nB: Tell the controller you need a tow truck to tow you to the apron.",
       "audioTextZh": "C: Japan Air 220，香港地面，收到，还需要其他服务吗？\nB: 告诉管制员你需要拖车把你拖到停机坪。",
       "referenceText": "Affirm, request a tow truck to tow us to the apron, JAL220.",
       "referenceTextZh": "是的，请求拖车把我们拖到停机坪，JAL220。",
@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0044-card-main-760",
       "taskTitle": "JAL 220-15",
-      "audioText": "C: Japan Air 220, roger, do you need medical assistance at the ramp ?\nB: Tell the controller you need medical assistance at the ramp.",
+      "audioText": "C: Japan Air 220, roger, do you need medical assistance at the ramp?\nB: Tell the controller you need medical assistance at the ramp.",
       "audioTextZh": "C: Japan Air 220，收到，你在停机坪需要医疗援助吗？\nB: 告诉管制员你在停机坪需要医疗援助。",
       "referenceText": "Affirm, request need medical assistance at the ramp, JAL220.",
       "referenceTextZh": "是的，请求在停机坪提供医疗援助，JAL220。",

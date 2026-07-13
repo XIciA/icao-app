@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0061-card-main-1046",
       "taskTitle": "CCA 985-2",
-      "audioText": "C: Air China 985, Wuhan Delivery, cleared to Frankfurt via flight planned route, runway 04, follow Zulu Foxtrot 01 departure, initially climb to 1500 meters on QNH, cruising level 9500 meters, departure frequency 119.35.",
+      "audioText": "C: Air China 985, Wuhan Delivery, cleared to Frankfurt via flight planned route, runway 04, follow Zulu Foxtrot 01 departure, initial climb 1500 meters on QNH, cruising level 9500 meters, departure frequency 119.35.",
       "audioTextZh": "C: Air China 985，武汉放行，可以按计划航路前往 Frankfurt，跑道 04，执行 Zulu Foxtrot 01 离场，按 QNH 初始爬升到 1500 米，巡航高度 9500 米，离场频率 119.35。",
       "referenceText": "Cleared to Frankfurt via flight planned route, runway 04,  follow ZF 01 departure, initially climb to 1500 meters on QNH, cruising level 9500 meters, departure frequency 119.35, CCA985.",
       "referenceTextZh": "可以按计划航路前往 Frankfurt，跑道 04，执行 ZF 01 离场，按 QNH 初始爬升到 1500 米，巡航高度 9500 米，离场频率 119.35，CCA985。",
@@ -34,7 +34,7 @@
     {
       "id": "atc-scenario-0061-card-main-1048",
       "taskTitle": "CCA 985-4",
-      "audioText": "B: During push back, you have a small avionics problem, you wish to remain on taxiway Zulu 4 for approximately 5 minutes, informe Wuhan Ground.",
+      "audioText": "B: During push back, you have a small avionics problem, you wish to remain on taxiway Zulu 4 for approximately 5 minutes, inform Wuhan Ground.",
       "audioTextZh": "B: 推出期间，你有一个小的航电问题，希望在滑行道 Zulu 4 上停留约 5 分钟，通知 武汉地面。",
       "referenceText": "Wuhan Ground, CCA985, request remain on taxiway Z4 due small avionics problem.",
       "referenceTextZh": "武汉地面，CCA985，因小的航电问题，请求停留在滑行道 Z4。",
@@ -142,7 +142,7 @@
     {
       "id": "atc-scenario-0061-card-main-1060",
       "taskTitle": "CCA 985-16",
-      "audioText": "C: Air China 985, maintaine 600 meters, turn right to join downwind runway 04, report turning base.",
+      "audioText": "C: Air China 985, maintain 600 meters, turn right to join downwind runway 04, report turning base.",
       "audioTextZh": "C: Air China 985，保持 600 米，右转加入跑道 04 下风，转基线时报告。",
       "referenceText": "Maintain 600 meters, turn right to join downwind runway 04, report turning base, CCA985.",
       "referenceTextZh": "保持 600 米，右转加入跑道 04 下风，转基线时报告，CCA985。",

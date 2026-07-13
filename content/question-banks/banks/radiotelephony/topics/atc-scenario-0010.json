@@ -52,7 +52,7 @@
     {
       "id": "atc-scenario-0010-card-main-166",
       "taskTitle": "SIA 497-6",
-      "audioText": "C: Singapore 497, taxi to holding point runway 36 right via Zulu 4 and Alpha, hold short of Echo 7.",
+      "audioText": "C: Singapore 497, taxi to holding point runway 36R via Zulu 4 and Alpha, hold short of Echo 7.",
       "audioTextZh": "C：Singapore 497，经 Zulu 4 和 Alpha 滑行至跑道 36 右等待点，Echo 7 外等待。",
       "referenceText": "Taxi to holding point runway 36R via Z4 and A, hold short of E7, SIA497.",
       "referenceTextZh": "经 Z4 和 A 滑行至跑道 36R 等待点，E7 外等待，SIA497。",
@@ -61,7 +61,7 @@
     {
       "id": "atc-scenario-0010-card-main-167",
       "taskTitle": "SIA 497-7",
-      "audioText": "B: Contact Wuhan Tower and request intersection departure Echo 5 runway 36 right.",
+      "audioText": "B: Contact Wuhan Tower and request intersection departure Echo 5 runway 36R.",
       "audioTextZh": "B：联系武汉塔台，请求跑道 36 右 Echo 5 交叉口离场。",
       "referenceText": "Wuhan Tower, SIA497, request intersection departure E5 runway 36R.",
       "referenceTextZh": "武汉塔台，SIA497，请求跑道 36R E5 交叉口离场。",
@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0010-card-main-168",
       "taskTitle": "SIA 497-8",
-      "audioText": "C: Singapore 497, negative due sequencing, continue to holding point runway 36 right, hold short of Echo 7.",
+      "audioText": "C: Singapore 497, negative due sequencing, continue to holding point runway 36R, hold short of Echo 7.",
       "audioTextZh": "C：Singapore 497，因排序否决，继续滑行至跑道 36 右等待点，Echo 7 外等待。",
       "referenceText": "Roger, continue to holding point runway 36R, hold short of E7, SIA497.",
       "referenceTextZh": "收到，继续滑行至跑道 36R 等待点，E7 外等待，SIA497。",
@@ -79,7 +79,7 @@
     {
       "id": "atc-scenario-0010-card-main-169",
       "taskTitle": "SIA 497-9",
-      "audioText": "C: Singapore 497, cleared for takeoff runway 36 right, surface wind 350, 5 knots.",
+      "audioText": "C: Singapore 497, cleared for takeoff runway 36R, surface wind 350, 5 knots.",
       "audioTextZh": "C：Singapore 497，跑道 36 右可以起飞，地面风 350，5 节。",
       "referenceText": "Cleared for takeoff runway 36R, SIA497.",
       "referenceTextZh": "跑道 36R 可以起飞，SIA497。",
@@ -160,7 +160,7 @@
     {
       "id": "atc-scenario-0010-card-main-178",
       "taskTitle": "SIA 497-18",
-      "audioText": "C: Singapore 497, you are number 1 to land, cleared ILS approach runway 18 left, report established.",
+      "audioText": "C: Singapore 497, you are number 1 to land, cleared ILS approach runway 18L, report established.",
       "audioTextZh": "C：Singapore 497，你是第一架落地，许可跑道 18 左 ILS 进近，建立后报告。",
       "referenceText": "Cleared ILS approach runway 18L, report established, SIA497.",
       "referenceTextZh": "许可跑道 18L ILS 进近，建立后报告，SIA497。",

@@ -43,7 +43,7 @@
     {
       "id": "atc-scenario-0062-card-main-1066",
       "taskTitle": "CCA 976-5",
-      "audioText": "C: Air China 976, there is a desabled Boeing 737 on the taxiway Alpha, follow the follow-me car on Alpha 9, hold short of runway 04.",
+      "audioText": "C: Air China 976, there is a disabled Boeing 737 on the taxiway Alpha, follow the follow-me car on Alpha 9, hold short of runway 04.",
       "audioTextZh": "C: Air China 976，滑行道 Alpha 上有一架故障 Boeing 737，跟随 Alpha 9 上的引导车，在跑道 04 前等待。",
       "referenceText": "Roger, follow the follow-me car on A9, hold short of runway 04, CCA976.",
       "referenceTextZh": "收到，跟随 A9 上的引导车，在跑道 04 前等待，CCA976。",

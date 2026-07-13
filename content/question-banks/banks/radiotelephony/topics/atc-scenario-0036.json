@@ -52,7 +52,7 @@
     {
       "id": "atc-scenario-0036-card-main-617",
       "taskTitle": "UAL 182-6",
-      "audioText": "B: Now you are in London Control area, flight level 350, you encountered volcanic ash, tell ATC the situation and request descent, call London Control.",
+      "audioText": "B: Now you are in London Control area, FL350, you encountered volcanic ash, tell ATC the situation and request descent, call London Control.",
       "audioTextZh": "B：你现在在伦敦管制区，飞行高度层 350，遭遇火山灰，向 ATC 报告情况并请求下降，呼叫伦敦管制。",
       "referenceText": "London Control, UAL182, we encountered volcanic ash at FL350, request descent.",
       "referenceTextZh": "伦敦管制，UAL182，我们在 FL350 遭遇火山灰，请求下降。",
@@ -61,7 +61,7 @@
     {
       "id": "atc-scenario-0036-card-main-618",
       "taskTitle": "UAL 182-7",
-      "audioText": "C: United 182, turn right heading 300, descend to flight level 290.",
+      "audioText": "C: United 182, turn right heading 300, descend to FL290.",
       "audioTextZh": "C：United 182，右转航向 300，下降至飞行高度层 290。",
       "referenceText": "Turn right heading 300, descend to FL290, UAL182.",
       "referenceTextZh": "右转航向 300，下降至 FL290，UAL182。",
@@ -151,7 +151,7 @@
     {
       "id": "atc-scenario-0036-card-main-628",
       "taskTitle": "UAL 182-17",
-      "audioText": "C: United 182, roger your situation, runaway is at your 2 o'clock, 10 miles, report airfield in sight.\nB: Tell ATC you see the airport.",
+      "audioText": "C: United 182, roger your situation, runway is at your 2 o'clock, 10 miles, report airfield in sight.\nB: Tell ATC you see the airport.",
       "audioTextZh": "C：United 182，收到你的情况，跑道在你 2 点钟方向 10 海里，看到机场后报告。\nB：告诉 ATC 你看到机场。",
       "referenceText": "Approach, UAL182, airfield in sight.",
       "referenceTextZh": "进近，UAL182，已看到机场。",

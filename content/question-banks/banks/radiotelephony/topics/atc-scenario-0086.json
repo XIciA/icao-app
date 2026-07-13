@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0086-card-main-1480",
       "taskTitle": "CSN 3235-2",
-      "audioText": "C: China Southern 235, Beijing Delivery, cleared to Shanghai Hongqiao via flight planned route, departure runway 08 left, Lima Mike November 41 departure, initial climb 1500 meters, cruising level 9200 meters, after departure, contact 119.8, squawk 3223.",
+      "audioText": "C: China Southern 235, Beijing Delivery, cleared to Shanghai Hongqiao via flight planned route, departure runway 08L, Lima Mike November 41 departure, initial climb 1500 meters, cruising level 9200 meters, after departure, contact 119.8, squawk 3223.",
       "audioTextZh": "C：China Southern 235，北京放行，许可飞往上海虹桥，按飞行计划航路，离场跑道 08L，Lima Mike November 41 离场，起始爬升 1500 米，巡航高度 9200 米，离场后联系 119.8，应答机 3223。",
       "referenceText": "Cleared to Shanghai Hongqiao via flight planned route, departure runway 08L, LMN 41 departure, initial climb 1500 meters, cruising level 9200 meters, after departure, contact 119.8, squawk 3223, CSN3235.",
       "referenceTextZh": "许可飞往上海虹桥，按飞行计划航路，离场跑道 08L，LMN 41 离场，起始爬升 1500 米，巡航高度 9200 米，离场后联系 119.8，应答机 3223，CSN3235。",
@@ -34,7 +34,7 @@
     {
       "id": "atc-scenario-0086-card-main-1482",
       "taskTitle": "CSN 3235-4",
-      "audioText": "C: China southern 235, the airway restriction has been cancelled, report ready for start up.",
+      "audioText": "C: China Southern 235, the airway restriction has been cancelled, report ready for start up.",
       "audioTextZh": "C：China Southern 235，航路限制已取消，报告准备好开车。",
       "referenceText": "Roger, report ready for start up, CSN3235.",
       "referenceTextZh": "收到，报告准备好开车，CSN3235。",
@@ -52,7 +52,7 @@
     {
       "id": "atc-scenario-0086-card-main-1484",
       "taskTitle": "CSN 3235-6",
-      "audioText": "C: China southern 235, start up approved.",
+      "audioText": "C: China Southern 235, start up approved.",
       "audioTextZh": "C：China Southern 235，同意开车。",
       "referenceText": "Start up approved, CSN3235.",
       "referenceTextZh": "同意开车，CSN3235。",
@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0086-card-main-1486",
       "taskTitle": "CSN 3235-8",
-      "audioText": "C: China southern 235, push back approved, facing south.",
+      "audioText": "C: China Southern 235, push back approved, facing south.",
       "audioTextZh": "C：China Southern 235，同意推出，机头朝南。",
       "referenceText": "Push back approved, facing south, CSN3235.",
       "referenceTextZh": "同意推出，机头朝南，CSN3235。",
@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0086-card-main-1488",
       "taskTitle": "CSN 3235-10",
-      "audioText": "C: China Southern 235, taxi via taxiway Tango 4, Delta and Alpha to holding point runway 08 left.",
+      "audioText": "C: China Southern 235, taxi via taxiway Tango 4, Delta and Alpha to holding point runway 08L.",
       "audioTextZh": "C：China Southern 235，经滑行道 Tango 4、Delta 和 Alpha 滑行至跑道 08L 等待点。",
       "referenceText": "Taxi via taxiway T4, D and A to holding point runway 08L, CSN3235.",
       "referenceTextZh": "经滑行道 T4、D 和 A 滑行至跑道 08L 等待点，CSN3235。",
@@ -97,7 +97,7 @@
     {
       "id": "atc-scenario-0086-card-main-1489",
       "taskTitle": "CSN 3235-11",
-      "audioText": "B: Now you are holding short of runway 08 left, you are ready for departure, contact Beijing Tower.",
+      "audioText": "B: Now you are holding short of runway 08L, you are ready for departure, contact Beijing Tower.",
       "audioTextZh": "B：现在你在跑道 08L 外等待，准备好离场，联系北京塔台。",
       "referenceText": "Beijing Tower, CSN3235, holding short of runway 08L, ready for departure.",
       "referenceTextZh": "北京塔台，CSN3235，跑道 08L 外等待，准备好离场。",
@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0086-card-main-1490",
       "taskTitle": "CSN 3235-12",
-      "audioText": "C: China Southern 235, line up runway 08 left and cleared for takeoff, caution strong wind shear at the departure end of the runway.",
+      "audioText": "C: China Southern 235, line up runway 08L and cleared for takeoff, caution strong wind shear at the departure end of the runway.",
       "audioTextZh": "C：China Southern 235，进入跑道 08L 并可以起飞，注意跑道离场端有强风切变。",
       "referenceText": "Line up runway 08L and cleared for takeoff, roger, thanks, CSN3235.",
       "referenceTextZh": "进入跑道 08L 并可以起飞，收到，谢谢，CSN3235。",
@@ -124,7 +124,7 @@
     {
       "id": "atc-scenario-0086-card-main-1492",
       "taskTitle": "CSN 3235-14",
-      "audioText": "C: China southern 235, roger, climb to 4200 meters, resume own navigation to Lima Mike November.",
+      "audioText": "C: China Southern 235, roger, climb to 4200 meters, resume own navigation to Lima Mike November.",
       "audioTextZh": "C：China Southern 235，收到，爬升至 4200 米，恢复自主导航至 Lima Mike November。",
       "referenceText": "Climb to 4200 meters, resume own navigation to LMN, CSN3235.",
       "referenceTextZh": "爬升至 4200 米，恢复自主导航至 LMN，CSN3235。",

@@ -61,7 +61,7 @@
     {
       "id": "atc-scenario-0001-card-main-007",
       "taskTitle": "QFA 432-7",
-      "audioText": "C: Qantas 432, taxi via taxiway Foxtrot, Charlie 1 and Bravo to holding point runway 26. Caution! working progress at the end of gate 319.",
+      "audioText": "C: Qantas 432, taxi via taxiway Foxtrot, Charlie 1 and Bravo to holding point runway 26. Caution! work in progress at the end of gate 319.",
       "audioTextZh": "C：Qantas 432，经 Foxtrot、Charlie 1 和 Bravo 滑行道滑行至跑道 26 等待点。注意！319 号登机口末端有施工。",
       "referenceText": "Taxi via taxiway F, C1 and B to holding point runway 26, roger, thanks, QFA432.",
       "referenceTextZh": "经 F、C1 和 B 滑行道滑行至跑道 26 等待点，收到，谢谢，QFA432。",
@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0001-card-main-008",
       "taskTitle": "QFA 432-8",
-      "audioText": "B: As you are taxing, you noticed some smoke coming from APU on Boeing 747 ahead of you, report this to ATC.",
+      "audioText": "B: As you are taxiing, you noticed some smoke coming from APU on Boeing 747 ahead of you, report this to ATC.",
       "audioTextZh": "B：滑行时，你注意到前方 Boeing 747 的 APU 冒烟，向 ATC 报告。",
       "referenceText": "Shanghai Ground, QFA432, we notice some smoke coming from APU on B747 ahead of us.",
       "referenceTextZh": "上海地面，QFA432，我们注意到前方 B747 的 APU 冒烟。",
@@ -79,7 +79,7 @@
     {
       "id": "atc-scenario-0001-card-main-009",
       "taskTitle": "QFA 432-9",
-      "audioText": "B: Now you are holding point runway 26, tell ATC you are ready to takeoff.",
+      "audioText": "B: Now you are holding point runway 26, tell ATC you are ready for takeoff.",
       "audioTextZh": "B：现在你在跑道 26 等待点，告诉 ATC 你准备好起飞。",
       "referenceText": "Shanghai Tower, QFA432, holding point runway 26, ready for departure.",
       "referenceTextZh": "上海塔台，QFA432，跑道 26 等待点，准备好离场。",
@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0001-card-main-015",
       "taskTitle": "QFA 432-15",
-      "audioText": "B: Tell the controller you are clear of traffic and request fly lower.",
+      "audioText": "B: Tell the controller you are clear of traffic and request further descent.",
       "audioTextZh": "B：告诉管制员你已脱离该航空器，并请求下降。",
       "referenceText": "Beijing Approach, QFA432, clear of traffic, request descent.",
       "referenceTextZh": "北京进近，QFA432，已脱离航空器，请求下降。",

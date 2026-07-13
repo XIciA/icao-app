@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0037-card-main-631",
       "taskTitle": "UAL 805-2",
-      "audioText": "C: United 805, radar contact, offset 3 miles right of track, reduce speed to mach 0.75 due to Wuhan Control restrictions.",
+      "audioText": "C: United 805, radar contact, offset 3 miles right of track, reduce speed to Mach 0.75 due to Wuhan Control restrictions.",
       "audioTextZh": "C：United 805，雷达识别，向航迹右侧偏置 3 海里，因武汉管制限制，减速至马赫 0.75。",
       "referenceText": "Offset 3 miles right of track, reduce speed to M.75, UAL805.",
       "referenceTextZh": "向航迹右侧偏置 3 海里，减速至 M.75，UAL805。",
@@ -43,7 +43,7 @@
     {
       "id": "atc-scenario-0037-card-main-634",
       "taskTitle": "UAL 805-5",
-      "audioText": "C: United 805, reduce speed to mach 0.72.\nB: Advice Zhengzhou Control mach 0.72 is not acceptable, it's too low for your aircraft.",
+      "audioText": "C: United 805, reduce speed to Mach 0.72.\nB: Advise Zhengzhou Control Mach 0.72 is not acceptable, it's too low for your aircraft.",
       "audioTextZh": "C：United 805，减速至马赫 0.72。\nB：告知郑州管制 M.72 不能接受，对你们飞机来说太低。",
       "referenceText": "Negative, unable M.72, it's too low for our aircraft, UAL805.",
       "referenceTextZh": "不能接受，无法保持 M.72，对我们飞机来说太低，UAL805。",
@@ -52,7 +52,7 @@
     {
       "id": "atc-scenario-0037-card-main-635",
       "taskTitle": "UAL 805-6",
-      "audioText": "C: United 805, Zhengzhou Control, maintain mach 0.75, we are limiting the number of aircraft flying through Wuhan Control area due to Wuhan radar failure.",
+      "audioText": "C: United 805, Zhengzhou Control, maintain Mach 0.75, we are limiting the number of aircraft flying through Wuhan Control area due to Wuhan radar failure.",
       "audioTextZh": "C：United 805，郑州管制，保持马赫 0.75，因武汉雷达故障，我们正在限制飞越武汉管制区的飞机数量。",
       "referenceText": "Roger, maintain M.75, UAL805.",
       "referenceTextZh": "收到，保持 M.75，UAL805。",
@@ -61,7 +61,7 @@
     {
       "id": "atc-scenario-0037-card-main-636",
       "taskTitle": "UAL 805-7",
-      "audioText": "C: United 805, what is your estimated time for OBLIK ?\nB: Inform Zhengzhou Control your estimated time for OBLIK is 0638 Zulu.",
+      "audioText": "C: United 805, what is your estimated time for OBLIK?\nB: Inform Zhengzhou Control your estimated time for OBLIK is 0638 Zulu.",
       "audioTextZh": "C：United 805，你预计到达 OBLIK 的时间是多少？\nB：告知郑州管制预计 0638Z 到达 OBLIK。",
       "referenceText": "Estimating OBLIK 0638Z, UAL805",
       "referenceTextZh": "预计 OBLIK 0638Z，UAL805。",
@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0037-card-main-639",
       "taskTitle": "UAL 805-10",
-      "audioText": "C: United 805, nagative direct to OBLIK, turn left heading 130 to intercept Amber 461.",
+      "audioText": "C: United 805, negative direct to OBLIK, turn left heading 130 to intercept Amber 461.",
       "audioTextZh": "C：United 805，不能直飞 OBLIK，左转航向 130，切入 Amber 461。",
       "referenceText": "Turn left heading 130 to intercept A461, UAL805.",
       "referenceTextZh": "左转航向 130，切入 A461，UAL805。",

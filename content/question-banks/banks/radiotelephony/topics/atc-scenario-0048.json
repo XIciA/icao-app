@@ -25,7 +25,7 @@
     {
       "id": "atc-scenario-0048-card-main-819",
       "taskTitle": "ACA 909-3",
-      "audioText": "B: You just reached 1 taosand 800 meters and you got some moderate chop at the level, inform the controller about that and request 4500 meters.",
+      "audioText": "B: You just reached 1800 meters and you got some moderate chop at the level, inform the controller about that and request 4500 meters.",
       "audioTextZh": "B: 你刚到达 1800 米，在该高度遇到中度颠簸，通知管制员并请求 4500 米。",
       "referenceText": "Wuhan Approach, ACA909, maintaining 1800 meters, we have encountered moderate turbulence, request 4500 meters.",
       "referenceTextZh": "武汉进近，ACA909，保持 1800 米，我们遇到中度颠簸，请求 4500 米。",
@@ -124,7 +124,7 @@
     {
       "id": "atc-scenario-0048-card-main-830",
       "taskTitle": "ACA 909-14",
-      "audioText": "C: Air Canada 909, Wuhan Control, roger PANPAN, turn right direct to Zulu Foxtrot, and descend to 4200 meters.",
+      "audioText": "C: Air Canada 909, Wuhan Control, roger PAN PAN, turn right direct to Zulu Foxtrot, and descend to 4200 meters.",
       "audioTextZh": "C: Air Canada 909，武汉管制，收到 PANPAN，右转直飞 Zulu Foxtrot，下降到 4200 米。",
       "referenceText": "Turn right direct to ZF, descend to 4200 meters, ACA909.",
       "referenceTextZh": "右转直飞 ZF，下降到 4200 米，ACA909。",
@@ -160,7 +160,7 @@
     {
       "id": "atc-scenario-0048-card-main-834",
       "taskTitle": "ACA 909-18",
-      "audioText": "C: Air Canada 909, Wuhan Approach, roger, radar contact, follow Zulu Foxtrot 1 Alpha arrival and descend to 1800 meters on QNH 1013, information Delta is valid.\nB: Readback the controller's instruction and ask the detail of Information Delta, because you could not receive the Information on the radio.",
+      "audioText": "C: Air Canada 909, Wuhan Approach, roger, radar contact, follow Zulu Foxtrot 1 Alpha arrival and descend to 1800 meters on QNH 1013, information Delta is valid.\nB: Read back the controller's instruction and ask the detail of Information Delta, because you could not receive the Information on the radio.",
       "audioTextZh": "C: Air Canada 909，武汉进近，收到，雷达识别，执行 Zulu Foxtrot 1 Alpha 进场，按 QNH 1013 下降到 1800 米，信息 Delta 有效。\nB: 复诵管制员指令，并询问信息 Delta 的详情，因为你无法通过无线电接收该信息。",
       "referenceText": "Follow ZF 1A arrival, descend to 1800 meters on QNH 1013, can you repeat the ATIS ? being unable to pick up on the radio.",
       "referenceTextZh": "执行 ZF 1A 进场，按 QNH 1013 下降到 1800 米，请重复 ATIS？无线电无法收到。",
@@ -169,7 +169,7 @@
     {
       "id": "atc-scenario-0048-card-main-835",
       "taskTitle": "ACA 909-19",
-      "audioText": "C: Air Canada 909, Approach, surface wind 350 degrees at 3 meters per second, visibility 8 Kilometers, ILS approach runway in use 36 right, QNH 1013 hectopascal.",
+      "audioText": "C: Air Canada 909, Approach, surface wind 350 degrees at 3 meters per second, visibility 8 Kilometers, ILS approach runway in use 36R, QNH 1013 hectopascal.",
       "audioTextZh": "C: Air Canada 909，进近，地面风 350 度 3 米/秒，能见度 8 公里，使用跑道 36R ILS 进近，QNH 1013 百帕。",
       "referenceText": "ILS approach runway 36R, QNH 1013 hpa, ACA909.",
       "referenceTextZh": "跑道 36R ILS 进近，QNH 1013 hpa，ACA909。",
@@ -178,7 +178,7 @@
     {
       "id": "atc-scenario-0048-card-main-836",
       "taskTitle": "ACA 909-20",
-      "audioText": "B: Inform the controller that you want to land at the runway 18 left visually to save time.",
+      "audioText": "B: Inform the controller that you want to land at the runway 18L visually to save time.",
       "audioTextZh": "B: 通知管制员你想目视降落跑道 18L 以节省时间。",
       "referenceText": "Wuhan Approach, ACA909, request to make a visual approach for runway 18L to save time.",
       "referenceTextZh": "武汉进近，ACA909，请求目视进近跑道 18L 以节省时间。",

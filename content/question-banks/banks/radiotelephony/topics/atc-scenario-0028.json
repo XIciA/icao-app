@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0028-card-main-481",
       "taskTitle": "BAW 931-2",
-      "audioText": "C: Speedbird 931, Wuhan Ground, cleared to London via flight planned route, Zulu Foxtrot 05 Delta departure, initial climb to 1500 meters, cruising level 10700 meters, runway in use 18 left, after departure, contact 124.7, squawk 4503.",
+      "audioText": "C: Speedbird 931, Wuhan Ground, cleared to London via flight planned route, Zulu Foxtrot 05 Delta departure, initial climb to 1500 meters, cruising level 10700 meters, runway in use 18L, after departure, contact 124.7, squawk 4503.",
       "audioTextZh": "管制员：Speedbird 931，武汉地面，按计划航路放行至伦敦，ZF 05D离场，初始爬升至1500米，巡航高度10700米，使用跑道18左，离场后联系124.7，squawk 4503。",
       "referenceText": "Cleared to London via flight planned route, ZF 05D departure, initial climb to 1500 meters, cruising level 10700 meters, runway in use 18L, after departure, contact 124.7, squawk 4503, BAW931.",
       "referenceTextZh": "按计划航路放行至伦敦，ZF 05D离场，初始爬升至1500米，巡航高度10700米，使用跑道18L，离场后联系124.7，squawk 4503，BAW931。",
@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0028-card-main-487",
       "taskTitle": "BAW 931-8",
-      "audioText": "C: Speedbird 931, taxi to the holding point of runway 18 left via taxiway Alpha 7 and Alpha, hold short of Alpha 5.",
+      "audioText": "C: Speedbird 931, taxi to the holding point of runway 18L via taxiway Alpha 7 and Alpha, hold short of Alpha 5.",
       "audioTextZh": "管制员：Speedbird 931，经滑行道A7和A滑行至18左跑道等待点，A5外等待。",
       "referenceText": "Taxi to the holding point of runway 18L via taxiway A7 and A, hold short of A5, BAW931.",
       "referenceTextZh": "经滑行道A7和A滑行至18L跑道等待点，A5外等待，BAW931。",
@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0028-card-main-491",
       "taskTitle": "BAW 931-12",
-      "audioText": "C: Speedbird 931, line up and wait, runway 18 left.",
+      "audioText": "C: Speedbird 931, line up and wait, runway 18L.",
       "audioTextZh": "管制员：Speedbird 931，18左跑道进跑道等待。",
       "referenceText": "Line up and wait, runway 18L, BAW931.",
       "referenceTextZh": "18L跑道进跑道等待，BAW931。",

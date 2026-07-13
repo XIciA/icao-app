@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0022-card-main-376",
       "taskTitle": "AFR 896-2",
-      "audioText": "B: You check with Xi'an Control if there is any turbulence reported by preceding aircraft at 10700 meters ?",
+      "audioText": "B: You check with Xi'an Control if there is any turbulence reported by preceding aircraft at 10700 meters?",
       "audioTextZh": "向西安管制询问前机在10700米是否报告过颠簸。",
       "referenceText": "Xi'an Control, AFR896, is there any turbulence reported by preceding aircraft at 10700 meters ?",
       "referenceTextZh": "西安管制，AFR896，请问前机在10700米是否报告过颠簸？",
@@ -97,7 +97,7 @@
     {
       "id": "atc-scenario-0022-card-main-385",
       "taskTitle": "AFR 896-11",
-      "audioText": "B: You have established contact with Wuhan Control, initiated descend for runway 36 right, during descending, airspeed and altitude readings are abnormal, possibly due to ice blockage, advice Wuhan Control this situation. This is an Urgent call.",
+      "audioText": "B: You have established contact with Wuhan Control, initiated descent for runway 36R, during descent, airspeed and altitude readings are abnormal, possibly due to ice blockage, advise Wuhan Control this situation. This is an Urgent call.",
       "audioTextZh": "你已与武汉管制建立联系，开始为36右跑道下降。下降过程中，空速和高度读数异常，可能由结冰堵塞造成，请向武汉管制说明情况。这是紧急呼叫。",
       "referenceText": "PANPAN PANPAN PANPAN, Wuhan Control, AFR896,our airspeed and altitude readings are abnormal, possibly due to ice blockage.",
       "referenceTextZh": "PANPAN PANPAN PANPAN，武汉管制，AFR896，我们的空速和高度读数异常，可能由结冰堵塞造成。",
@@ -169,7 +169,7 @@
     {
       "id": "atc-scenario-0022-card-main-393",
       "taskTitle": "AFR 896-19",
-      "audioText": "B: You have established on the ILS runway 36 right.",
+      "audioText": "B: You have established on the ILS runway 36R.",
       "audioTextZh": "你已建立36右跑道ILS。",
       "referenceText": "Wuhan Tower, AFR896, established on the ILS runway 36R.",
       "referenceTextZh": "武汉塔台，AFR896，已建立36R ILS。",
@@ -178,7 +178,7 @@
     {
       "id": "atc-scenario-0022-card-main-394",
       "taskTitle": "AFR 896-20",
-      "audioText": "C: Air France 896, wind calm, runway 36 right, cleared to land.",
+      "audioText": "C: Air France 896, wind calm, runway 36R, cleared to land.",
       "audioTextZh": "管制员：Air France 896，静风，36右跑道，可以落地。",
       "referenceText": "Runway 36R, cleared to land, AFR896.",
       "referenceTextZh": "36R跑道，可以落地，AFR896。",

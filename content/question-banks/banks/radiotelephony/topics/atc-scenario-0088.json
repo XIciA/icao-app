@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0088-card-main-1518",
       "taskTitle": "CSN 9302-8",
-      "audioText": "C: China southern 302, taxi via Juliette, Delta, Tango 3 and Tango 4 to holding point runway 19.",
+      "audioText": "C: China Southern 302, taxi via Juliette, Delta, Tango 3 and Tango 4 to holding point runway 19.",
       "audioTextZh": "C：China Southern 302，经 Juliette、Delta、Tango 3 和 Tango 4 滑行至跑道 19 等待点。",
       "referenceText": "Taxi via J, D, T3 and T4 to holding point runway 19, CSN9302.",
       "referenceTextZh": "经 J、D、T3 和 T4 滑行至跑道 19 等待点，CSN9302。",
@@ -160,7 +160,7 @@
     {
       "id": "atc-scenario-0088-card-main-1528",
       "taskTitle": "CSN 9302-18",
-      "audioText": "C: China southern 302, contact Guangzhou Tower on 118.5.",
+      "audioText": "C: China Southern 302, contact Guangzhou Tower on 118.5.",
       "audioTextZh": "C：China Southern 302，联系广州塔台118.5。",
       "referenceText": "118.5, CSN9302.",
       "referenceTextZh": "118.5，CSN9302。",

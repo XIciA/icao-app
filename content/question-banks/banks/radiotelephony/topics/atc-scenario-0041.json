@@ -97,7 +97,7 @@
     {
       "id": "atc-scenario-0041-card-main-703",
       "taskTitle": "UAL 122-11",
-      "audioText": "C: United 122, continue climbing to flight level 250, proceed to Hotel Mike, contact Control on 122.10 when reaching flight level 120.",
+      "audioText": "C: United 122, continue climbing to FL250, proceed to Hotel Mike, contact Control on 122.10 when reaching FL120.",
       "audioTextZh": "C：United 122，继续爬升至飞行高度层 250，飞往 Hotel Mike，到达飞行高度层 120 时联系管制 122.10。",
       "referenceText": "Continue climbing to FL250, proceed to HM, contact Control on 122.10 when reaching FL120, UAL122.",
       "referenceTextZh": "继续爬升至 FL250，飞往 HM，到达 FL120 时联系管制 122.10，UAL122。",
@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0041-card-main-704",
       "taskTitle": "UAL 122-12",
-      "audioText": "B: You are at flight level 120, call Control.",
+      "audioText": "B: You are at FL120, call Control.",
       "audioTextZh": "B：你在飞行高度层 120，呼叫管制。",
       "referenceText": "Control, UAL122, reaching FL120.",
       "referenceTextZh": "管制，UAL122，到达 FL120。",
@@ -115,7 +115,7 @@
     {
       "id": "atc-scenario-0041-card-main-705",
       "taskTitle": "UAL 122-13",
-      "audioText": "C: United 122, can you lose time on route ? Landing delays at Oscar Bravo Oscar Airport.\nB: Tell the controller that you can.",
+      "audioText": "C: United 122, can you lose time on route? Landing delays at Oscar Bravo Oscar Airport.\nB: Tell the controller that you can.",
       "audioTextZh": "C：United 122，你能在航路上消耗时间吗？Oscar Bravo Oscar 机场落地延误。\nB：告诉管制员可以。",
       "referenceText": "Affirm, UAL122.",
       "referenceTextZh": "可以，UAL122。",
@@ -124,7 +124,7 @@
     {
       "id": "atc-scenario-0041-card-main-706",
       "taskTitle": "UAL 122-14",
-      "audioText": "C: United 122, reduce your speed to mach point 65, maintain flight level 250.",
+      "audioText": "C: United 122, reduce your speed to Mach point 65, maintain FL250.",
       "audioTextZh": "C：United 122，减速至马赫 0.65，保持飞行高度层 250。",
       "referenceText": "Reduce speed to M.65, maintain FL250, UAL122.",
       "referenceTextZh": "减速至 M.65，保持 FL250，UAL122。",

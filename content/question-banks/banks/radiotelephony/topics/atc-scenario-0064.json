@@ -61,7 +61,7 @@
     {
       "id": "atc-scenario-0064-card-main-1105",
       "taskTitle": "CCA 321-7",
-      "audioText": "C: Air China 321, follow Zulu Foxtrot 02 Alpha arrival, descend to 4200 meters, expect radar vector for ILS approach runway 36 right.",
+      "audioText": "C: Air China 321, follow Zulu Foxtrot 02 Alpha arrival, descend to 4200 meters, expect radar vector for ILS approach runway 36R.",
       "audioTextZh": "C: Air China 321，执行 Zulu Foxtrot 02 Alpha 进场，下降到 4200 米，预计雷达引导跑道 36R ILS 进近。",
       "referenceText": "Follow ZF 02A arrival, descend to 4200 meters, expect radar vector for ILS approach runway 36R, CCA321.",
       "referenceTextZh": "执行 ZF 02A 进场，下降到 4200 米，预计雷达引导跑道 36R ILS 进近，CCA321。",
@@ -79,7 +79,7 @@
     {
       "id": "atc-scenario-0064-card-main-1107",
       "taskTitle": "CCA 321-9",
-      "audioText": "C: Air China 321, descend to 900 meters, turn right heading 330, cleared ILS approach runway 36 right, report established.",
+      "audioText": "C: Air China 321, descend to 900 meters, turn right heading 330, cleared ILS approach runway 36R, report established.",
       "audioTextZh": "C: Air China 321，下降到 900 米，右转航向 330，可以跑道 36R ILS 进近，建立后报告。",
       "referenceText": "Descend to 900 meters, turn right heading 330, cleared ILS approach runway 36R, report established, CCA321.",
       "referenceTextZh": "下降到 900 米，右转航向 330，可以跑道 36R ILS 进近，建立后报告，CCA321。",
@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0064-card-main-1108",
       "taskTitle": "CCA 321-10",
-      "audioText": "B: Now you have established on ILS approach runway 36 right, contact Wuhan Tower.",
+      "audioText": "B: Now you have established on ILS approach runway 36R, contact Wuhan Tower.",
       "audioTextZh": "B: 现在你已建立跑道 36R ILS 进近，联系武汉塔台。",
       "referenceText": "Wuhan Tower, CCA321, established on ILS approach runway 36R.",
       "referenceTextZh": "武汉塔台，CCA321，已建立跑道 36R ILS 进近。",
@@ -97,7 +97,7 @@
     {
       "id": "atc-scenario-0064-card-main-1109",
       "taskTitle": "CCA 321-11",
-      "audioText": "C: Air China 321, continue approach runway 36 right, surface wind 350 degrees, 3 meters per second.",
+      "audioText": "C: Air China 321, continue approach runway 36R, surface wind 350 degrees, 3 meters per second.",
       "audioTextZh": "C: Air China 321，继续进近跑道 36R，地面风 350 度，3 米/秒。",
       "referenceText": "Continue approach runway 36R, CCA321.",
       "referenceTextZh": "继续进近跑道 36R，CCA321。",
@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0064-card-main-1110",
       "taskTitle": "CCA 321-12",
-      "audioText": "C: Air China 321, runway 36 right, cleared to land, surface wind 340 degrees, 3 meters per second.",
+      "audioText": "C: Air China 321, runway 36R, cleared to land, surface wind 340 degrees, 3 meters per second.",
       "audioTextZh": "C: Air China 321，跑道 36R，可以着陆，地面风 340 度，3 米/秒。",
       "referenceText": "Runway 36R, cleared to land, CCA321.",
       "referenceTextZh": "跑道 36R，可以着陆，CCA321。",
@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0064-card-main-1113",
       "taskTitle": "CCA 321-15",
-      "audioText": "B: Now you have vacated the runway 36 right, tell the controller you need a follow-me car.",
+      "audioText": "B: Now you have vacated the runway 36R, tell the controller you need a follow-me car.",
       "audioTextZh": "B: 现在你已脱离跑道 36R，告诉管制员你需要引导车。",
       "referenceText": "Wuhan Ground, CCA321, runway 36R vacated, request a follow-me car.",
       "referenceTextZh": "武汉地面，CCA321，已脱离跑道 36R，请求引导车。",

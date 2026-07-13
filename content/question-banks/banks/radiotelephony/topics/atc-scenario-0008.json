@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0008-card-main-128",
       "taskTitle": "SIA 123-2",
-      "audioText": "C: Singapore 123, cleared to Singapore via flight planned route, Lima killer Oscars 01 departure, initial climb to 1800 meters, cruising level 10400 meters, runaway 36 right, contact Departure on 119.7, squawk 6325.",
+      "audioText": "C: Singapore 123, cleared to Singapore via flight planned route, Lima Kilo Oscar 01 departure, initial climb to 1800 meters, cruising level 10400 meters, runway 36R, contact Departure on 119.7, squawk 6325.",
       "audioTextZh": "C：Singapore 123，许可按飞行计划航路飞往新加坡，Lima Kilo Oscar 01 离场，初始爬升至 1800 米，巡航高度 10400 米，跑道 36 右，联系离场 119.7，应答机 6325。",
       "referenceText": "Cleared to Singapore via flight planned route, LKO 01 departure, initial climb to 1800 meters, cruising level 10400 meters, runaway 36R, contact Departure on 119.7, squawk 6325, SIA123.",
       "referenceTextZh": "许可按飞行计划航路飞往新加坡，LKO 01 离场，初始爬升至 1800 米，巡航高度 10400 米，跑道 36R，联系离场 119.7，应答机 6325，SIA123。",
@@ -52,7 +52,7 @@
     {
       "id": "atc-scenario-0008-card-main-132",
       "taskTitle": "SIA 123-6",
-      "audioText": "B: While taxing, you notice the wind sock shows a strong tailwind, contact Tower to check the wind.",
+      "audioText": "B: While taxiing, you notice the wind sock shows a strong tailwind, contact Tower to check the wind.",
       "audioTextZh": "B：滑行时，你注意到风向袋显示强顺风，联系塔台检查风。",
       "referenceText": "Wuhan Tower, SIA123, wind sock shows strong tailwind, request wind check.",
       "referenceTextZh": "武汉塔台，SIA123，风向袋显示强顺风，请求风向风速检查。",
@@ -61,7 +61,7 @@
     {
       "id": "atc-scenario-0008-card-main-133",
       "taskTitle": "SIA 123-7",
-      "audioText": "C: Singapore 123, surface wind 220 degrees, 8 meters per second.\nB: The tailwind exceeds your takeoff limit, contact Tower to change to runway 18 left and state the reason.",
+      "audioText": "C: Singapore 123, surface wind 220 degrees, 8 meters per second.\nB: The tailwind exceeds your takeoff limit, contact Tower to change to runway 18L and state the reason.",
       "audioTextZh": "C：Singapore 123，地面风 220 度，8 米/秒。\nB：顺风超过你的起飞限制，联系塔台改用跑道 18 左并说明原因。",
       "referenceText": "The tailwind exceeds our takeoff limit, request change to runway 18L, SIA123.",
       "referenceTextZh": "顺风超过我们的起飞限制，请求改用跑道 18L，SIA123。",
@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0008-card-main-134",
       "taskTitle": "SIA 123-8",
-      "audioText": "B: You have departed from runway 18 left, shortly after lift off you encountered a bird strike, your right engine has failed, make an Emergency call, request to maintain runway heading.",
+      "audioText": "B: You have departed from runway 18L, shortly after lift off you encountered a bird strike, your right engine has failed, make an Emergency call, request to maintain runway heading.",
       "audioTextZh": "B：你已从跑道 18 左离场，起飞后不久遭遇鸟击，右发失效，发出紧急呼叫，请求保持跑道航向。",
       "referenceText": "PANPAN PANPAN PANPAN, Wuhan Tower, SIA123, we encountered bird strike, right engine failed, request maintain runway heading.",
       "referenceTextZh": "PANPAN PANPAN PANPAN，武汉塔台，SIA123，我们遭遇鸟击，右发失效，请求保持跑道航向。",
@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0008-card-main-136",
       "taskTitle": "SIA 123-10",
-      "audioText": "C: Singapore 123, roger, turn right heading 240 to intercept Lima Kilo Oscar VOR 030 radio inbound, climb to 3000 meters.",
+      "audioText": "C: Singapore 123, roger, turn right heading 240 to intercept Lima Kilo Oscar VOR 030 radial inbound, climb to 3000 meters.",
       "audioTextZh": "C：Singapore 123，收到，右转航向 240，截获 LKO VOR 030 径向线入航，爬升至 3000 米。",
       "referenceText": "Turn right heading 240 to intercept LKO VOR 030 radio inbound, climb to 3000 meters, SIA123.",
       "referenceTextZh": "右转航向 240，截获 LKO VOR 030 径向线入航，爬升至 3000 米，SIA123。",

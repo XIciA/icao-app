@@ -142,7 +142,7 @@
     {
       "id": "atc-scenario-0042-card-main-726",
       "taskTitle": "KLM 88-16",
-      "audioText": "C: KLM 88, Departure, roger PAN, descend to 1200 meters, expect ILS approach runway 36 right.",
+      "audioText": "C: KLM 88, Departure, roger PAN, descend to 1200 meters, expect ILS approach runway 36R.",
       "audioTextZh": "C：KLM 88，离场，收到 PAN，下降至 1200 米，预计 ILS 进近跑道 36 右。",
       "referenceText": "Descend to 1200 meters, expect ILS approach runway 36R, KLM88.",
       "referenceTextZh": "下降至 1200 米，预计 ILS 进近跑道 36R，KLM88。",
@@ -160,7 +160,7 @@
     {
       "id": "atc-scenario-0042-card-main-728",
       "taskTitle": "KLM 88-18",
-      "audioText": "C: KLM 88, roger, follow the published missed approach procedure, climb to 1200 meters, if able, advise further intentions.\nB: Read back the instruction and tell the controller that you want to circle to runaway 18 left for visual approach.",
+      "audioText": "C: KLM 88, roger, follow the published missed approach procedure, climb to 1200 meters, if able, advise further intentions.\nB: Read back the instruction and tell the controller that you want to circle to runway 18L for visual approach.",
       "audioTextZh": "C：KLM 88，收到，执行公布复飞程序，爬升至 1200 米，如可以，报告后续意图。\nB：复诵指令，并告诉管制员你想盘旋至跑道 18 左目视进近。",
       "referenceText": "Follow the published missed approach procedure, climb to 1200 meters, request circle to runaway 18L for visual approach, KLM88.",
       "referenceTextZh": "执行公布复飞程序，爬升至 1200 米，请求盘旋至跑道 18L 目视进近，KLM88。",
@@ -169,7 +169,7 @@
     {
       "id": "atc-scenario-0042-card-main-729",
       "taskTitle": "KLM 88-19",
-      "audioText": "C: KLM 88, Departure, cleared visual approach runway 18 left. Caution, runway is wet, braking action medium.",
+      "audioText": "C: KLM 88, Departure, cleared visual approach runway 18L. Caution, runway is wet, braking action medium.",
       "audioTextZh": "C：KLM 88，离场，可以目视进近跑道 18 左。注意跑道湿，刹车效应中等。",
       "referenceText": "Cleared visual approach runway 18L, KLM88.",
       "referenceTextZh": "可以目视进近跑道 18L，KLM88。",
@@ -178,7 +178,7 @@
     {
       "id": "atc-scenario-0042-card-main-730",
       "taskTitle": "KLM 88-20",
-      "audioText": "B: After landing, the runway is slippery, you skidded off runway 18 left, ask Tower for a tug and passenger stairs.",
+      "audioText": "B: After landing, the runway is slippery, you skidded off runway 18L, ask Tower for a tug and passenger stairs.",
       "audioTextZh": "B：落地后跑道湿滑，你滑出跑道 18 左，向塔台请求拖车和客梯车。",
       "referenceText": "Shanghai Tower, KLM88, the runway is slippery, we skidded off runway 18L, request a tug and passenger stairs.",
       "referenceTextZh": "上海塔台，KLM88，跑道湿滑，我们滑出跑道 18L，请求拖车和客梯车。",

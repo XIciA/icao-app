@@ -43,7 +43,7 @@
     {
       "id": "atc-scenario-0100-card-main-1730",
       "taskTitle": "CCA 102-5",
-      "audioText": "C: Air China 102, turn left proceed to Hotel Golf, make straight in ILS approach runway 18 left.",
+      "audioText": "C: Air China 102, turn left proceed to Hotel Golf, make straight in ILS approach runway 18L.",
       "audioTextZh": "C：Air China 102，左转前往 Hotel Golf，执行跑道 18L 直线 ILS 进近。",
       "referenceText": "Turn left proceed to HG, make straight in ILS approach runway 18 left, CCA102.",
       "referenceTextZh": "左转前往 HG，执行跑道 18L 直线 ILS 进近，CCA102。",
@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0100-card-main-1737",
       "taskTitle": "CCA 102-12",
-      "audioText": "C: Air China 102, roger. We will spray foam around the touch down.\nB: You ask how long will foam-spay last.",
+      "audioText": "C: Air China 102, roger. We will spray foam around the touch down.\nB: You ask how long will foam spray last.",
       "audioTextZh": "C：Air China 102，收到。我们将在接地区周围喷洒泡沫。\nB：你询问泡沫喷洒将持续多久。",
       "referenceText": "Wuhan Tower, CCA102, how long will foam spray last?",
       "referenceTextZh": "武汉塔台，CCA102，泡沫喷洒会持续多久？",
@@ -124,7 +124,7 @@
     {
       "id": "atc-scenario-0100-card-main-1739",
       "taskTitle": "CCA 102-14",
-      "audioText": "C: Air China 102, cleared to land runway 18 left, wind 120, 10 knots.\nB: You confirm with the controller if the landing runway is 18 Left.",
+      "audioText": "C: Air China 102, cleared to land runway 18L, wind 120, 10 knots.\nB: You confirm with the controller if the landing runway is 18 Left.",
       "audioTextZh": "C：Air China 102，跑道 18L 可以落地，风 120，10 节。\nB：你向管制员确认落地跑道是否为 18L。",
       "referenceText": "Wuhan Tower, CCA102, confirm landing runway is 18 left.",
       "referenceTextZh": "武汉塔台，CCA102，确认落地跑道是 18L。",
@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0100-card-main-1740",
       "taskTitle": "CCA 102-15",
-      "audioText": "C: Correct, Air China 102, landing runway 18 left, report runway in sight.\nB: You have runway in sight, report to Tower.",
+      "audioText": "C: Correct, Air China 102, landing runway 18L, report runway in sight.\nB: You have runway in sight, report to Tower.",
       "audioTextZh": "C：正确，Air China 102，落地跑道 18L，报告看到跑道。\nB：你看到跑道，向塔台报告。",
       "referenceText": "Wuhan Tower, CCA102, runway in sight.",
       "referenceTextZh": "武汉塔台，CCA102，看到跑道。",

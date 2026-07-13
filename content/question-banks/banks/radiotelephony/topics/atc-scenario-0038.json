@@ -61,7 +61,7 @@
     {
       "id": "atc-scenario-0038-card-main-652",
       "taskTitle": "UAL 219-7",
-      "audioText": "B: Now that aircraft has passed you,  report it to ATC.",
+      "audioText": "B: Now that aircraft has passed you, report it to ATC.",
       "audioTextZh": "B：现在该机已超过你，向 ATC 报告。",
       "referenceText": "Wuhan Control, UAL219, clear of traffic.",
       "referenceTextZh": "武汉管制，UAL219，已脱离冲突。",
@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0038-card-main-653",
       "taskTitle": "UAL 219-8",
-      "audioText": "C: United 219, reduce to minimum speed, track direct to Zulu Foxtrot, expect Zulu Foxtrot 03 arrival runway 36 right.",
+      "audioText": "C: United 219, reduce to minimum speed, track direct to Zulu Foxtrot, expect Zulu Foxtrot 03 arrival runway 36R.",
       "audioTextZh": "C：United 219，减至最小速度，直飞 Zulu Foxtrot，预计 Zulu Foxtrot 03 进场跑道 36 右。",
       "referenceText": "Reduce to minimum speed, track direct to ZF, expect ZF 03 arrival runway 36R, UAL219.",
       "referenceTextZh": "减至最小速度，直飞 ZF，预计 ZF 03 进场跑道 36R，UAL219。",
@@ -97,7 +97,7 @@
     {
       "id": "atc-scenario-0038-card-main-656",
       "taskTitle": "UAL 219-11",
-      "audioText": "B: Now you have established ILS approach runway 36 right, contact Wuhan Tower.",
+      "audioText": "B: Now you have established ILS approach runway 36R, contact Wuhan Tower.",
       "audioTextZh": "B：你现在已建立跑道 36 右 ILS 进近，联系武汉塔台。",
       "referenceText": "Wuhan Tower, UAL219, established ILS approach runway 36R.",
       "referenceTextZh": "武汉塔台，UAL219，已建立跑道 36R ILS 进近。",
@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0038-card-main-657",
       "taskTitle": "UAL 219-12",
-      "audioText": "C: United 219, continue approach runway 36 right.",
+      "audioText": "C: United 219, continue approach runway 36R.",
       "audioTextZh": "C：United 219，继续进近跑道 36 右。",
       "referenceText": "Continue approach runway 36R, UAL219.",
       "referenceTextZh": "继续进近跑道 36R，UAL219。",
@@ -115,7 +115,7 @@
     {
       "id": "atc-scenario-0038-card-main-658",
       "taskTitle": "UAL 219-13",
-      "audioText": "C: All stations ! All stations ! Be advised runway 36 right is closed due to an unserviceable aircraft occupying the runway. Break, Break, United 219, flying heading 360, climb to and maintain 1500 meters.",
+      "audioText": "C: All stations! All stations! Be advised runway 36R is closed due to an unserviceable aircraft occupying the runway. Break, Break, United 219, flying heading 360, climb to and maintain 1500 meters.",
       "audioTextZh": "C：各机注意！各机注意！跑道 36 右因故障航空器占用关闭。Break，Break，United 219，飞航向 360，爬升并保持 1500 米。",
       "referenceText": "Roger, flying heading 360, climb to and maintain 1500 meters, UAL219.",
       "referenceTextZh": "收到，飞航向 360，爬升并保持 1500 米，UAL219。",

@@ -7,7 +7,7 @@
     {
       "id": "atc-scenario-0075-card-main-1282",
       "taskTitle": "CSN 557-1",
-      "audioText": "B: Your call sign is China Southern 557, you are flying from Wuhan to Rome, you are taxiing southbound on taxiway Charlie to holding point runway 36 left, contact Wuhan Tower.",
+      "audioText": "B: Your call sign is China Southern 557, you are flying from Wuhan to Rome, you are taxiing southbound on taxiway Charlie to holding point runway 36L, contact Wuhan Tower.",
       "audioTextZh": "B：你的呼号是 China Southern 557，从武汉飞往罗马，你正在 Charlie 滑行道向南滑行至跑道 36L 等待点，联系武汉塔台。",
       "referenceText": "Wuhan Tower, CSN557, taxiing on taxiway C to holding point runway 36L.",
       "referenceTextZh": "武汉塔台，CSN557，在 C 滑行道滑行至跑道 36L 等待点。",
@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0075-card-main-1283",
       "taskTitle": "CSN 557-2",
-      "audioText": "C: China Southern 557, line up runway 36 left.",
+      "audioText": "C: China Southern 557, line up runway 36L.",
       "audioTextZh": "C：China Southern 557，进入跑道 36L。",
       "referenceText": "Line up runway 36L, CSN557.",
       "referenceTextZh": "进入跑道 36L，CSN557。",
@@ -25,7 +25,7 @@
     {
       "id": "atc-scenario-0075-card-main-1284",
       "taskTitle": "CSN 557-3",
-      "audioText": "C: China Southern 557, wind calm, contact Approach on 119.25 when airborne, cleared for takeoff runway 36 left.",
+      "audioText": "C: China Southern 557, wind calm, contact Approach on 119.25 when airborne, cleared for takeoff runway 36L.",
       "audioTextZh": "C：China Southern 557，风静，离地后联系进近 119.25，跑道 36L 可以起飞。",
       "referenceText": "119.25, cleared for takeoff runway 36L, CSN557.",
       "referenceTextZh": "119.25，跑道 36L 可以起飞，CSN557。",
@@ -79,7 +79,7 @@
     {
       "id": "atc-scenario-0075-card-main-1290",
       "taskTitle": "CSN 557-9",
-      "audioText": "B: Call tower and tell them you are established on ILS runway 36 right, you are ready for low pass.",
+      "audioText": "B: Call tower and tell them you are established on ILS runway 36R, you are ready for low pass.",
       "audioTextZh": "B：呼叫塔台并告诉他们你已建立 ILS 跑道 36R，准备低通场。",
       "referenceText": "Wuhan Tower, CSN557, established on ILS runway 36R, ready for low pass.",
       "referenceTextZh": "武汉塔台，CSN557，已建立 ILS 跑道 36R，准备低通场。",
@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0075-card-main-1291",
       "taskTitle": "CSN 557-10",
-      "audioText": "C: China Southern 557, wind calm, cleared low pass runway 36 right, not below 100 meters above the runway.",
+      "audioText": "C: China Southern 557, wind calm, cleared low pass runway 36R, not below 100 meters above the runway.",
       "audioTextZh": "C：China Southern 557，风静，跑道 36R 低通场许可，不低于跑道上方 100 米。",
       "referenceText": "Cleared low pass runway 36R, not below 100 meters above the runway, CSN557.",
       "referenceTextZh": "跑道 36R 低通场许可，不低于跑道上方 100 米，CSN557。",
@@ -160,7 +160,7 @@
     {
       "id": "atc-scenario-0075-card-main-1299",
       "taskTitle": "CSN 557-18",
-      "audioText": "B: After emergency landing at runway 36 right, the aircraft is still intact, you want to make an emergency evacuation.",
+      "audioText": "B: After emergency landing at runway 36R, the aircraft is still intact, you want to make an emergency evacuation.",
       "audioTextZh": "B：在跑道 36R 紧急着陆后，飞机仍保持完整，你想进行紧急撤离。",
       "referenceText": "Wuhan Tower, CSN557, the aircraft is still intact, request emergency evacuation.",
       "referenceTextZh": "武汉塔台，CSN557，飞机仍保持完整，请求紧急撤离。",

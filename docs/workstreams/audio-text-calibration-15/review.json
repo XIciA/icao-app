@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-07-13T12:21:52+08:00",
+  "scope": "Each bank's first five cards in current question-bank order",
+  "policy": "Compare the linked local audio with current audioText; Whisper is evidence, not ground truth.",
+  "items": [
+    {
+      "id": "listening-main-001",
+      "decision": "current-more-reasonable",
+      "note": "内容一致；Whisper 将航班号 919 误写为 9019er，当前原文更合理。"
+    },
+    {
+      "id": "listening-main-002",
+      "decision": "equivalent",
+      "note": "正文和问题一致，仅标点不同。"
+    },
+    {
+      "id": "listening-main-005",
+      "decision": "linked-audio-mismatch",
+      "note": "当前链接的 main/003.mp3 实际是旧资源 20s陆空通话-1；Whisper 与该音频一致，但该音频不属于本卡。该卡对应的旧资源 10s航空英语-3 位于 main/005.mp3。"
+    },
+    {
+      "id": "listening-main-021",
+      "decision": "linked-audio-mismatch",
+      "note": "当前链接的 main/004.mp3 实际是旧资源 20s航空英语-1；Whisper 与该音频一致，但该音频不属于本卡。该卡对应的旧资源 10s航空英语-4 位于 main/021.mp3。"
+    },
+    {
+      "id": "listening-main-022",
+      "decision": "linked-audio-mismatch",
+      "note": "当前链接的 main/005.mp3 实际是旧资源 10s航空英语-3，即上一张抽样卡的正文。该卡对应的旧资源 10s航空英语-5 位于 main/022.mp3。"
+    },
+    {
+      "id": "atc-scenario-0001-card-main-001",
+      "decision": "equivalent-canonicalization",
+      "note": "音频使用 ICAO 读法 Qantas four three two、gate two four；当前原文用 432、24，更适合产品展示。B: 是未播出的角色标签。"
+    },
+    {
+      "id": "atc-scenario-0001-card-main-002",
+      "decision": "current-more-reasonable",
+      "note": "主要差异是数字与 ICAO 读法。Whisper 将 QNH 听成 Q&H，并误写若干数字词；当前规范化原文更合理。flight planned/flight plan 仍可在精校时复听。"
+    },
+    {
+      "id": "atc-scenario-0001-card-main-003",
+      "decision": "current-more-reasonable",
+      "note": "正文一致；Whisper 将 four 听成 flower。当前 432 更合理，C: 是未播出的角色标签。"
+    },
+    {
+      "id": "atc-scenario-0001-card-main-004",
+      "decision": "equivalent",
+      "note": "播出正文完全一致；当前额外包含未播出的 B: 角色标签。"
+    },
+    {
+      "id": "atc-scenario-0001-card-main-005",
+      "decision": "current-more-reasonable",
+      "note": "正文一致；Whisper 将 four 听成 flower。当前 432 更合理，C: 是未播出的角色标签。"
+    },
+    {
+      "id": "story-wing-001",
+      "decision": "equivalent-canonicalization",
+      "note": "正文一致；音频读作 France 123、runway zero two left/right，当前用 AFR123、02L/02R。当前更适合规范展示，但末尾单独 AFR123 不是播出正文。"
+    },
+    {
+      "id": "story-wing-002",
+      "decision": "current-more-reasonable",
+      "note": "正文一致；Whisper 主要按读音输出 aircraft tree two zero 等形式。第二次本地解码已排除第一次尾部 Thank you 幻觉。"
+    },
+    {
+      "id": "story-wing-003",
+      "decision": "equivalent-canonicalization",
+      "note": "正文一致；音频读作 Air Canada 702，当前用 ACA702，属于口语与规范缩写差异。"
+    },
+    {
+      "id": "story-wing-004",
+      "decision": "current-more-reasonable",
+      "note": "正文一致；Whisper 尾部多出 You，属于模型残留。当前末尾 (113 words) 是未播出的统计信息，不属于音频原文。"
+    },
+    {
+      "id": "story-wing-005",
+      "decision": "current-more-reasonable",
+      "note": "正文一致；第二次本地解码仅在尾部多出 Okay，属于模型残留。当前末尾 (112 words) 是未播出的统计信息。"
+    }
+  ],
+  "summary": {
+    "currentMoreReasonable": 7,
+    "equivalent": 2,
+    "equivalentCanonicalization": 3,
+    "linkedAudioMismatch": 3,
+    "whisperMoreReasonableAsFinalText": 0
+  }
+}

@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0035-card-main-601",
       "taskTitle": "UAL 831-8",
-      "audioText": "B: During climb, the purser tells you a passenger has heard abnormal noises from the rear cabin, you decide to level off at 2700 meters, advice Wuhan Departure your intention to level off due possible problem in the cabin.",
+      "audioText": "B: During climb, the purser tells you a passenger has heard abnormal noises from the rear cabin, you decide to level off at 2700 meters, advise Wuhan Departure your intention to level off due possible problem in the cabin.",
       "audioTextZh": "B：爬升过程中，乘务长告诉你有旅客听到后客舱异常声响，你决定在 2700 米改平，向武汉离场说明因客舱可能存在问题，请求在 2700 米改平。",
       "referenceText": "Wuhan Departure, UAL831, a passenger has heard abnormal noises from the rear cabin, request level off at 2700 meters due possible cabin problem.",
       "referenceTextZh": "武汉离场，UAL831，有旅客听到后客舱异常声响，因客舱可能存在问题，请求在 2700 米改平。",
@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0035-card-main-603",
       "taskTitle": "UAL 831-10",
-      "audioText": "B: The aircraft is leveling, no 1 else can confirm the noise that the particular passenger heard, you check all the instruments are indicating normally, you decide to continue the flight and request for a higher level, call Wuhan Departure.",
+      "audioText": "B: The aircraft is leveling, no one else can confirm the noise that the particular passenger heard, you check all the instruments are indicating normally, you decide to continue the flight and request a higher level, call Wuhan Departure.",
       "audioTextZh": "B：飞机已改平，没有其他人能确认该旅客听到的声音，各仪表指示正常，你决定继续飞行并请求更高高度，呼叫武汉离场。",
       "referenceText": "Wuhan Departure, UAL831, all the instruments are indicating normally, request continue the flight and request a higher level.",
       "referenceTextZh": "武汉离场，UAL831，各仪表指示正常，请求继续飞行并请求更高高度。",
@@ -151,7 +151,7 @@
     {
       "id": "atc-scenario-0035-card-main-610",
       "taskTitle": "UAL 831-17",
-      "audioText": "C: United 831, the closest airport is Nanjing Airport, current visibility is marginal, I have to check if they can accommodate an aircraft of your size. Hongqiao and Pudong Airport has longer runway and can definitely accommodate your aircraft, advise your intention ?\nB: Ask radar vector to Shanghai Hongqiao or Pudong Airport which has a better visibility.",
+      "audioText": "C: United 831, the closest airport is Nanjing Airport, current visibility is marginal, I have to check if they can accommodate an aircraft of your size. Hongqiao and Pudong Airport has longer runway and can definitely accommodate your aircraft, advise your intention?\nB: Ask radar vector to Shanghai Hongqiao or Pudong Airport which has a better visibility.",
       "audioTextZh": "C：United 831，最近的机场是南京机场，当前能见度临界，我需要确认他们能否接收你们这种机型。虹桥和浦东机场跑道更长，肯定可以接收，请报告意图。\nB：请求雷达引导至上海虹桥或浦东机场，选择能见度较好的机场。",
       "referenceText": "Request radar vector to Shanghai Hongqiao or Pudong Airport which has a better visibility, UAL831.",
       "referenceTextZh": "请求雷达引导至上海虹桥或浦东机场，选择能见度较好的机场，UAL831。",

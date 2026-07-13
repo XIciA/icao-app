@@ -52,7 +52,7 @@
     {
       "id": "atc-scenario-0053-card-main-907",
       "taskTitle": "CCA 105-6",
-      "audioText": "C: Air China 105, taxi via taxiway Alpha 7 and Alpha to holding point of runway 36 right.",
+      "audioText": "C: Air China 105, taxi via taxiway Alpha 7 and Alpha to holding point of runway 36R.",
       "audioTextZh": "C: Air China 105，经滑行道 Alpha 7 和 Alpha 滑行至跑道 36R 等待点。",
       "referenceText": "Taxi via taxiway A7 and A to holding point of runway 36R, CCA105.",
       "referenceTextZh": "经滑行道 A7 和 A 滑行至跑道 36R 等待点，CCA105。",
@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0053-card-main-909",
       "taskTitle": "CCA 105-8",
-      "audioText": "B: Later, you are approaching the active runway 36 right, ask the Tower controller for permission to enter the runway.",
+      "audioText": "B: Later, you are approaching the active runway 36R, ask the Tower controller for permission to enter the runway.",
       "audioTextZh": "B: 稍后，你接近使用中的跑道 36R，向塔台管制员请求进入跑道许可。",
       "referenceText": "Wuhan Tower, CCA105, approaching runway 36R, request line up.",
       "referenceTextZh": "武汉塔台，CCA105，接近跑道 36R，请求进跑道。",
@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0053-card-main-911",
       "taskTitle": "CCA 105-10",
-      "audioText": "C: Air China 105, cleared for take off runway 36 right.",
+      "audioText": "C: Air China 105, cleared for take off runway 36R.",
       "audioTextZh": "C: Air China 105，跑道 36R 可以起飞。",
       "referenceText": "Cleared for take off runway 36R, CCA105.",
       "referenceTextZh": "跑道 36R 可以起飞，CCA105。",
@@ -115,7 +115,7 @@
     {
       "id": "atc-scenario-0053-card-main-914",
       "taskTitle": "CCA 105-13",
-      "audioText": "C: Air China 105, roger, do you want to hold and have a check ?\nB: Tell the controller that you do want to hold and check.",
+      "audioText": "C: Air China 105, roger, do you want to hold and have a check?\nB: Tell the controller that you do want to hold and check.",
       "audioTextZh": "C: Air China 105，收到，你想等待并检查吗？\nB: 告诉管制员你确实想等待并检查。",
       "referenceText": "Affirm, CCA105.",
       "referenceTextZh": "是的，CCA105。",
@@ -160,7 +160,7 @@
     {
       "id": "atc-scenario-0053-card-main-919",
       "taskTitle": "CCA 105-18",
-      "audioText": "C: Air China 105, descend to 900 meters, turn right heading 290, radar vector for ILS approach runway 36 left.",
+      "audioText": "C: Air China 105, descend to 900 meters, turn right heading 290, radar vector for ILS approach runway 36L.",
       "audioTextZh": "C: Air China 105，下降到 900 米，右转航向 290，雷达引导跑道 36L ILS 进近。",
       "referenceText": "Descend to 900 meters, turn right heading 290, radar vector for ILS approach runway 36L, CCA105.",
       "referenceTextZh": "下降到 900 米，右转航向 290，雷达引导跑道 36L ILS 进近，CCA105。",
@@ -196,7 +196,7 @@
     {
       "id": "atc-scenario-0053-card-main-923",
       "taskTitle": "CCA 105-22",
-      "audioText": "C: Air China 105, turn left heading 330 to intercept the localizer for runway 36 left, report established.",
+      "audioText": "C: Air China 105, turn left heading 330 to intercept the localizer for runway 36L, report established.",
       "audioTextZh": "C: Air China 105，左转航向 330 切入跑道 36L 航向道，建立后报告。",
       "referenceText": "Turn left heading 330 to intercept the localizer for runway 36L, report established, CCA105.",
       "referenceTextZh": "左转航向 330 切入跑道 36L 航向道，建立后报告，CCA105。",
@@ -214,7 +214,7 @@
     {
       "id": "atc-scenario-0053-card-main-925",
       "taskTitle": "CCA 105-24",
-      "audioText": "C: Roger, Air China 105, cleared ILS approach runway 36 left, 13 miles from touchdown, radar service terminated, contact Wuhan Tower on 124.35.",
+      "audioText": "C: Roger, Air China 105, cleared ILS approach runway 36L, 13 miles from touchdown, radar service terminated, contact Wuhan Tower on 124.35.",
       "audioTextZh": "C: 收到，Air China 105，可以跑道 36L ILS 进近，距接地点 13 海里，雷达服务终止，联系武汉塔台124.35。",
       "referenceText": "Cleared ILS approach runway 36L, 124.35, CCA105.",
       "referenceTextZh": "可以跑道 36L ILS 进近，124.35，CCA105。",

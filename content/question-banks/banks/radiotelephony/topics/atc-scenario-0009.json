@@ -7,7 +7,7 @@
     {
       "id": "atc-scenario-0009-card-main-143",
       "taskTitle": "SIA 101-1",
-      "audioText": "B: You are encountering severe icing at flight level 390 and want lower.",
+      "audioText": "B: You are encountering severe icing at FL390 and want lower.",
       "audioTextZh": "B：你在 FL390 遭遇严重结冰，想要更低高度。",
       "referenceText": "HongKong Control, SIA101, we are\nencountering severe icing at FL390, request descent.",
       "referenceTextZh": "香港管制，SIA101，我们在 FL390 遭遇严重结冰，请求下降。",
@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0009-card-main-144",
       "taskTitle": "SIA 101-2",
-      "audioText": "C: Singapore 101, descend to flight level 310, reach 310 within 4 minutes.",
+      "audioText": "C: Singapore 101, descend to FL310, reach 310 within 4 minutes.",
       "audioTextZh": "C：Singapore 101，下降至 FL310，4 分钟内到达 310。",
       "referenceText": "Descend to FL310, reach FL310 within 4 minutes, SIA101.",
       "referenceTextZh": "下降至 FL310，4 分钟内到达 FL310，SIA101。",
@@ -52,7 +52,7 @@
     {
       "id": "atc-scenario-0009-card-main-148",
       "taskTitle": "SIA 101-6",
-      "audioText": "C: Singapore 101, continue descent to flight level 250.",
+      "audioText": "C: Singapore 101, continue descent to FL250.",
       "audioTextZh": "C：Singapore 101，继续下降至 FL250。",
       "referenceText": "Continue descent to FL250, SIA101.",
       "referenceTextZh": "继续下降至 FL250，SIA101。",
@@ -79,7 +79,7 @@
     {
       "id": "atc-scenario-0009-card-main-151",
       "taskTitle": "SIA 101-9",
-      "audioText": "C: Singapore 101, roger your MAYDAY, fly heading 010 and descend to flight level 110.",
+      "audioText": "C: Singapore 101, roger your MAYDAY, fly heading 010 and descend to FL110.",
       "audioTextZh": "C：Singapore 101，收到你的 MAYDAY，飞航向 010，下降至 FL110。",
       "referenceText": "Fly heading 010 and descend to FL110, SIA101.",
       "referenceTextZh": "飞航向 010，下降至 FL110，SIA101。",

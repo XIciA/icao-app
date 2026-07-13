@@ -124,7 +124,7 @@
     {
       "id": "atc-scenario-0082-card-main-1416",
       "taskTitle": "CSN 3112-14",
-      "audioText": "B: Now you are over LADIX, maintaining 6000 metres, you have received information Lima, contact Beijing Approach.",
+      "audioText": "B: Now you are over LADIX, maintaining 6000 meters, you have received information Lima, contact Beijing Approach.",
       "audioTextZh": "B：现在你在 LADIX 上空，保持 6000 米，已收到通播 Lima，联系北京进近。",
       "referenceText": "Beijing Approach, CSN3112, over LADIX, maintaining 6000 meters, information L.",
       "referenceTextZh": "北京进近，CSN3112，LADIX 上空，保持 6000 米，通播 L。",
@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0082-card-main-1417",
       "taskTitle": "CSN 3112-15",
-      "audioText": "C: China 7112, Beijing Approach, radar contact, descent to 4200 meters, expect radar vector ILS approach runway 36 right.",
+      "audioText": "C: China 7112, Beijing Approach, radar contact, descent to 4200 meters, expect radar vector ILS approach runway 36R.",
       "audioTextZh": "C：China 7112，北京进近，雷达识别，下降至 4200 米，预计雷达引导 ILS 进近跑道 36R。",
       "referenceText": "Descent to 4200 meters, expect radar vector ILS approach runway 36R, CSN3112.",
       "referenceTextZh": "下降至 4200 米，预计雷达引导 ILS 进近跑道 36R，CSN3112。",
@@ -142,7 +142,7 @@
     {
       "id": "atc-scenario-0082-card-main-1418",
       "taskTitle": "CSN 3112-16",
-      "audioText": "C: China 7112, are you declaring fuel emergency ?\nB: Tell the controller that you are declaring fuel emergency and request priority landing runway 36 right.",
+      "audioText": "C: China 7112, are you declaring fuel emergency?\nB: Tell the controller that you are declaring fuel emergency and request priority landing runway 36R.",
       "audioTextZh": "C：China 7112，你是否宣布燃油紧急情况？\nB：告诉管制员你宣布燃油紧急情况，并请求跑道 36R 优先着陆。",
       "referenceText": "We are declaring fuel emergency and request priority landing runway 36R, CSN3112.",
       "referenceTextZh": "我们宣布燃油紧急情况，请求跑道 36R 优先着陆，CSN3112。",
@@ -151,7 +151,7 @@
     {
       "id": "atc-scenario-0082-card-main-1419",
       "taskTitle": "CSN 3112-17",
-      "audioText": "C: China Southern 112, roger, you are number 1 to land, cleared straight in ILS approach runway 36 right, report established.",
+      "audioText": "C: China Southern 112, roger, you are number 1 to land, cleared straight in ILS approach runway 36R, report established.",
       "audioTextZh": "C：China Southern 112，收到，你是落地第 1 架，许可直线 ILS 进近跑道 36R，报告建立。",
       "referenceText": "Cleared straight in ILS approach runway 36R, report established, CSN3112.",
       "referenceTextZh": "许可直线 ILS 进近跑道 36R，报告建立，CSN3112。",
@@ -160,7 +160,7 @@
     {
       "id": "atc-scenario-0082-card-main-1420",
       "taskTitle": "CSN 3112-18",
-      "audioText": "B: Now you have established on ILS approach runway 36 right, contact Beijing Tower.",
+      "audioText": "B: Now you have established on ILS approach runway 36R, contact Beijing Tower.",
       "audioTextZh": "B：现在你已建立 ILS 进近跑道 36R，联系北京塔台。",
       "referenceText": "Beijing Tower, CSN3112, established on ILS approach runway 36R.",
       "referenceTextZh": "北京塔台，CSN3112，已建立 ILS 进近跑道 36R。",
@@ -169,7 +169,7 @@
     {
       "id": "atc-scenario-0082-card-main-1421",
       "taskTitle": "CSN 3112-19",
-      "audioText": "C: China Southern 112, Beijing Tower, runway 36 right, clear to land.",
+      "audioText": "C: China Southern 112, Beijing Tower, runway 36R, clear to land.",
       "audioTextZh": "C：China Southern 112，北京塔台，跑道 36R，可以落地。",
       "referenceText": "Runway 36R, clear to land, CSN3112.",
       "referenceTextZh": "跑道 36R，可以落地，CSN3112。",

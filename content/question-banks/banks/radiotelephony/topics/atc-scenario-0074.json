@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0074-card-main-1268",
       "taskTitle": "CSN 817-2",
-      "audioText": "C: China Southern 817, Wuhan Delivery, cleared to Guangzhou via flight planned route, departure runway 36 right, Lima Kilo Oscar 01 departure, initial climb to 1200 meters, cruising level 8400 meters, after departure, contact 119.7, squawk 3115.",
+      "audioText": "C: China Southern 817, Wuhan Delivery, cleared to Guangzhou via flight planned route, departure runway 36R, Lima Kilo Oscar 01 departure, initial climb to 1200 meters, cruising level 8400 meters, after departure, contact 119.7, squawk 3115.",
       "audioTextZh": "C：China Southern 817，武汉放行，许可飞往广州，按飞行计划航路，离场跑道 36R，Lima Kilo Oscar 01 离场，起始爬升至 1200 米，巡航高度 8400 米，离场后联系 119.7，应答机 3115。",
       "referenceText": "Cleared to Guangzhou via flight planned route, departure runway 36R, LKO 01 departure, initial climb to 1200 meters, cruising level 8400 meters, after departure, contact 119.7, squawk 3115, CSN817.",
       "referenceTextZh": "许可飞往广州，按飞行计划航路，离场跑道 36R，LKO 01 离场，起始爬升至 1200 米，巡航高度 8400 米，离场后联系 119.7，应答机 3115，CSN817。",
@@ -34,7 +34,7 @@
     {
       "id": "atc-scenario-0074-card-main-1270",
       "taskTitle": "CSN 817-4",
-      "audioText": "C: China Southern 817, taxi to holding point runway 36 right via taxiway Zulu 4, Alpha 3 and Alpha.",
+      "audioText": "C: China Southern 817, taxi to holding point runway 36R via taxiway Zulu 4, Alpha 3 and Alpha.",
       "audioTextZh": "C：China Southern 817，经滑行道 Zulu 4、Alpha 3 和 Alpha 滑行至跑道 36R 等待点。",
       "referenceText": "Taxi to holding point runway 36R via taxiway Z4, A3 and A, CSN817.",
       "referenceTextZh": "经滑行道 Z4、A3 和 A 滑行至跑道 36R 等待点，CSN817。",
@@ -43,7 +43,7 @@
     {
       "id": "atc-scenario-0074-card-main-1271",
       "taskTitle": "CSN 817-5",
-      "audioText": "C: China southern 817, taxi with caution, men and equipment operating east of taxiway Alpha.",
+      "audioText": "C: China Southern 817, taxi with caution, men and equipment operating east of taxiway Alpha.",
       "audioTextZh": "C：China Southern 817，谨慎滑行，Alpha 滑行道以东有人和设备作业。",
       "referenceText": "Roger, CSN817.",
       "referenceTextZh": "收到，CSN817。",
@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0074-card-main-1274",
       "taskTitle": "CSN 817-8",
-      "audioText": "C: China southern 817, Guangzhou Control, radar identified, omit position reports.",
+      "audioText": "C: China Southern 817, Guangzhou Control, radar identified, omit position reports.",
       "audioTextZh": "C：China Southern 817，广州管制，雷达识别，省略位置报告。",
       "referenceText": "Omit position reports, CSN817.",
       "referenceTextZh": "省略位置报告，CSN817。",
@@ -97,7 +97,7 @@
     {
       "id": "atc-scenario-0074-card-main-1277",
       "taskTitle": "CSN 817-11",
-      "audioText": "C: China southern 817, continue descent to 3600 meters.",
+      "audioText": "C: China Southern 817, continue descent to 3600 meters.",
       "audioTextZh": "C：China Southern 817，继续下降至 3600 米。",
       "referenceText": "Continue descent to 3600 meters, CSN817.",
       "referenceTextZh": "继续下降至 3600 米，CSN817。",
@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0074-card-main-1278",
       "taskTitle": "CSN 817-12",
-      "audioText": "B: Now you are established on ILS approach runway 36 right, tell the controller you can't see the PAPI lights.",
+      "audioText": "B: Now you are established on ILS approach runway 36R, tell the controller you can't see the PAPI lights.",
       "audioTextZh": "B：现在你已建立 ILS 进近跑道 36R，告诉管制员你看不到 PAPI 灯。",
       "referenceText": "Guangzhou Tower, CSN817, established on ILS approach runway 36R, we can't see the PAPI lights.",
       "referenceTextZh": "广州塔台，CSN817，已建立 ILS 进近跑道 36R，我们看不到 PAPI 灯。",
@@ -115,7 +115,7 @@
     {
       "id": "atc-scenario-0074-card-main-1279",
       "taskTitle": "CSN 817-13",
-      "audioText": "C: China Southern 817, cleared to land runway 36 right, the PAPI is out of service.",
+      "audioText": "C: China Southern 817, cleared to land runway 36R, the PAPI is out of service.",
       "audioTextZh": "C：China Southern 817，跑道 36R 可以落地，PAPI 不工作。",
       "referenceText": "Roger, cleared to land runway 36R, CSN817.",
       "referenceTextZh": "收到，跑道 36R 可以落地，CSN817。",

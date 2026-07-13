@@ -7,7 +7,7 @@
     {
       "id": "atc-scenario-0065-card-main-1116",
       "taskTitle": "CCA 983-1",
-      "audioText": "B: Your callsign is Air China 983, from Los Angeles to Beijing, DABMA 30, level 9800 metres, SABEN 45, contact Beijing Control.",
+      "audioText": "B: Your callsign is Air China 983, from Los Angeles to Beijing, DABMA 30, level 9800 meters, SABEN 45, contact Beijing Control.",
       "audioTextZh": "B: 你的呼号是 Air China 983，从 Los Angeles 到 Beijing，DABMA 30，保持 9800 米，SABEN 45，联系北京管制。",
       "referenceText": "Beijing Control, CCA983, from Los Angeles to Beijing, DABMA 30, maintaining 9800 metres, SABEM 45.",
       "referenceTextZh": "北京管制，CCA983，从 Los Angeles 到 Beijing，DABMA 30，保持 9800 米，SABEM 45。",
@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0065-card-main-1117",
       "taskTitle": "CCA 983-2",
-      "audioText": "C: Air China 983, Beijing control,  confirm squawk 1230.\nB: Your squawk is 1232.",
+      "audioText": "C: Air China 983, Beijing Control, confirm squawk 1230.\nB: Your squawk is 1232.",
       "audioTextZh": "C: Air China 983，北京管制，确认应答机 1230。\nB: 你的应答机是 1232。",
       "referenceText": "Negative, squawk is 1232, CCA983.",
       "referenceTextZh": "否，应答机是 1232，CCA983。",
@@ -151,7 +151,7 @@
     {
       "id": "atc-scenario-0065-card-main-1132",
       "taskTitle": "CCA 983-17",
-      "audioText": "C: Air China 983, cleared to land runway 01, runway is covered with patches of ice, breaking action poor, use caution.\nB: Read back and ask the Tower whether the preceding aircraft can land normally.",
+      "audioText": "C: Air China 983, cleared to land runway 01, runway is covered with patches of ice, braking action poor, use caution.\nB: Read back and ask the Tower whether the preceding aircraft can land normally.",
       "audioTextZh": "C: Air China 983，跑道 01 可以着陆，跑道有片状结冰，刹车效应差，注意。\nB: 复诵并询问 塔台 前机是否能正常着陆。",
       "referenceText": "Runway is covered with patches of ice, braking action poor, did the preceding aircraft land normally? CCA983.",
       "referenceTextZh": "跑道有片状结冰，刹车效应差，前机是否正常着陆？CCA983。",

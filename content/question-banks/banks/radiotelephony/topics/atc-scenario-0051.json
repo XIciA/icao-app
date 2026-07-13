@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0051-card-main-884",
       "taskTitle": "ACA 521-15",
-      "audioText": "C: Air Canada 521, roger PANPAN, turn left heading 220, direct to Zulu Foxtrot, descend to 3300 meters, you are number 1.",
+      "audioText": "C: Air Canada 521, roger PAN PAN, turn left heading 220, direct to Zulu Foxtrot, descend to 3300 meters, you are number 1.",
       "audioTextZh": "C: Air Canada 521，收到 PANPAN，左转航向 220，直飞 Zulu Foxtrot，下降到 3300 米，你是第 1 架。",
       "referenceText": "Turn left heading 220, direct to ZF, descend to 3300 meters, ACA521.",
       "referenceTextZh": "左转航向 220，直飞 ZF，下降到 3300 米，ACA521。",
@@ -142,7 +142,7 @@
     {
       "id": "atc-scenario-0051-card-main-885",
       "taskTitle": "ACA 521-16",
-      "audioText": "C: Air Canada 521, what assistance do you need ?\nB: Tell the controller you need an ambulance and a physician.",
+      "audioText": "C: Air Canada 521, what assistance do you need?\nB: Tell the controller you need an ambulance and a physician.",
       "audioTextZh": "C: Air Canada 521，你需要什么援助？\nB: 告诉管制员你需要救护车和医生。",
       "referenceText": "Request an ambulance and a physician, ACA521.",
       "referenceTextZh": "请求救护车和医生，ACA521。",

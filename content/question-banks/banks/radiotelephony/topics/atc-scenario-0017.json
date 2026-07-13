@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0017-card-main-290",
       "taskTitle": "AFR 941-12",
-      "audioText": "C: Air France 941, roger PAN, turn left heading 060, descend to 900 meters, cleared ILS approach runway 36 left.",
+      "audioText": "C: Air France 941, roger PAN, turn left heading 060, descend to 900 meters, cleared ILS approach runway 36L.",
       "audioTextZh": "管制员：Air France 941，收到紧急信号，左转航向060，下降至900米，可以ILS进近36左跑道。",
       "referenceText": "Turn left heading 060, descend to 900 meters, cleared ILS approach runway 36L, AFR941.",
       "referenceTextZh": "左转航向060，下降至900米，可以ILS进近36L，AFR941。",
@@ -142,7 +142,7 @@
     {
       "id": "atc-scenario-0017-card-main-294",
       "taskTitle": "AFR 941-16",
-      "audioText": "C: Air France 941, turn left heading 030 to intercept the localizer for runway 36 left.",
+      "audioText": "C: Air France 941, turn left heading 030 to intercept the localizer for runway 36L.",
       "audioTextZh": "管制员：Air France 941，左转航向030，截获36左跑道航向道。",
       "referenceText": "Turn left heading 030 to intercept the localizer for runway 36L, AFR941.",
       "referenceTextZh": "左转航向030，截获36L航向道，AFR941。",
@@ -151,7 +151,7 @@
     {
       "id": "atc-scenario-0017-card-main-295",
       "taskTitle": "AFR 941-17",
-      "audioText": "B: Report you have established localizer runway 36 left.",
+      "audioText": "B: Report you have established localizer runway 36L.",
       "audioTextZh": "报告你已建立36左跑道航向道。",
       "referenceText": "Wuhan Tower, AFR941, established localizer runway 36L.",
       "referenceTextZh": "武汉塔台，AFR941，已建立36L航向道。",

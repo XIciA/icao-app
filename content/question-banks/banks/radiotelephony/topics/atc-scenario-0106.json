@@ -7,7 +7,7 @@
     {
       "id": "atc-scenario-0106-card-main-1822",
       "taskTitle": "ACA 412-1",
-      "audioText": "B: You are over Tango Oscar Golf at 35, flight level 210, you want to descend to flight level 170, report to Guangzhou Control.",
+      "audioText": "B: You are over Tango Oscar Golf at 35, FL210, you want to descend to FL170, report to Guangzhou Control.",
       "audioTextZh": "B: 你在 Tango Oscar Golf 上空 35，飞行高度层 210，想下降到飞行高度层 170，向广州管制报告。",
       "referenceText": "Guangzhou Control, ACA412, over TOG at 35, FL210, request descend to FL170.",
       "referenceTextZh": "广州管制，ACA412，在 TOG 上空 35，FL210，请求下降到 FL170。",
@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0106-card-main-1823",
       "taskTitle": "ACA 412-2",
-      "audioText": "C: Air Canada 412, can you make flight level 190 by Tango Uniform X-Ray ?\nB: You want flight level 170 because the turbulence is likely to get worse further along the route.",
+      "audioText": "C: Air Canada 412, can you make FL190 by Tango Uniform X-Ray?\nB: You want FL170 because the turbulence is likely to get worse further along the route.",
       "audioTextZh": "C: Air Canada 412，你能在 Tango Uniform X-Ray 前达到飞行高度层 190 吗？\nB: 你想要飞行高度层 170，因为航路前方乱流可能会加重。",
       "referenceText": "That can't be sure, the turbulence is likely to get worse further along the route, FL170 is preferable, ACA412.",
       "referenceTextZh": "无法确定，航路前方乱流可能会加重，FL170 更合适，ACA412。",
@@ -34,7 +34,7 @@
     {
       "id": "atc-scenario-0106-card-main-1825",
       "taskTitle": "ACA 412-4",
-      "audioText": "C: Air Canada 412, your request to Tango Uniform X-Ray flight level 170 has been approved, at the same time, remain on 215 radial Golf India Lima VOR.",
+      "audioText": "C: Air Canada 412, your request to Tango Uniform X-Ray FL170 has been approved, at the same time, remain on 215 radial Golf India Lima VOR.",
       "audioTextZh": "C: Air Canada 412，你到 Tango Uniform X-Ray 飞行高度层 170 的请求已获批准，同时保持在 Golf India Lima VOR 215 径向线上。",
       "referenceText": "Cross TUX FL170, remain on 215 radial GIL VOR, ACA412.",
       "referenceTextZh": "通过 TUX 时 FL170，保持在 GIL VOR 215 径向线上，ACA412。",
@@ -79,7 +79,7 @@
     {
       "id": "atc-scenario-0106-card-main-1830",
       "taskTitle": "ACA 412-9",
-      "audioText": "C: There is only 15 miles for you to go if you want to detour from the left due resticted area.\nB: You need 20 miles.",
+      "audioText": "C: There is only 15 miles for you to go if you want to detour from the left due restricted area.\nB: You need 20 miles.",
       "audioTextZh": "C: 由于限制区，如果你想从左侧绕飞，只有 15 miles 可用。\nB: 你需要 20 miles。",
       "referenceText": "I need at least 20 miles on the left side, 15 miles is not enough, ACA412.",
       "referenceTextZh": "左侧我至少需要 20 miles，15 miles 不够，ACA412。",

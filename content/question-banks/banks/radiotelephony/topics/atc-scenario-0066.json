@@ -34,7 +34,7 @@
     {
       "id": "atc-scenario-0066-card-main-1137",
       "taskTitle": "CCA 101-4",
-      "audioText": "C: Air China 101, taxi to holding point runway 36 right via Whiskey 2, Zulu 4 and Bravo, caution, taxiway is covered with ice patches.",
+      "audioText": "C: Air China 101, taxi to holding point runway 36R via Whiskey 2, Zulu 4 and Bravo, caution, taxiway is covered with ice patches.",
       "audioTextZh": "C: Air China 101，经 Whiskey 2、Zulu 4 和 Bravo 滑行至跑道 36R 等待点，注意，滑行道有片状结冰。",
       "referenceText": "Taxi to holding point runway 36R via W2, Z4 and B, roger, thanks, CCA101.",
       "referenceTextZh": "经 W2、Z4 和 B 滑行至跑道 36R 等待点，收到，谢谢，CCA101。",
@@ -52,7 +52,7 @@
     {
       "id": "atc-scenario-0066-card-main-1139",
       "taskTitle": "CCA 101-6",
-      "audioText": "C: Air China 101, negative due sequencing, continue taxi to holding point runway 36 right via Whiskey 2, Zulu 4 and Bravo.",
+      "audioText": "C: Air China 101, negative due sequencing, continue taxi to holding point runway 36R via Whiskey 2, Zulu 4 and Bravo.",
       "audioTextZh": "C: Air China 101，因排序原因不批准，继续经 Whiskey 2、Zulu 4 和 Bravo 滑行至跑道 36R 等待点。",
       "referenceText": "Roger, continue taxi to holding point runway 36R via W2, Z4 and B, CCA101.",
       "referenceTextZh": "收到，继续经 W2、Z4 和 B 滑行至跑道 36R 等待点，CCA101。",

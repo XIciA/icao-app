@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0059-card-main-1013",
       "taskTitle": "CCA 527-2",
-      "audioText": "C: Air China 527, Wuhan Delivery, cleared to Guangzhou via flight planned route, departure runway 36 right, Lima Kilo Oscar 01 departure, initial climb 1200 meters, cruising level 10400 meters, departure frequency 119.7, squawk 3515.",
+      "audioText": "C: Air China 527, Wuhan Delivery, cleared to Guangzhou via flight planned route, departure runway 36R, Lima Kilo Oscar 01 departure, initial climb 1200 meters, cruising level 10400 meters, departure frequency 119.7, squawk 3515.",
       "audioTextZh": "C: Air China 527，武汉放行，可以按计划航路前往 Guangzhou，离场跑道 36R，Lima Kilo Oscar 01 离场，初始爬升 1200 米，巡航高度 10400 米，离场频率 119.7，应答机 3515。",
       "referenceText": "Cleared to Guangzhou via flight planned route, departure runway 36R, LKO 01 departure, initial climb 1200 meters, cruising level 10400 meters, departure frequency 119.7, squawk 3515, CCA527.",
       "referenceTextZh": "可以按计划航路前往 Guangzhou，离场跑道 36R，LKO 01 离场，初始爬升 1200 米，巡航高度 10400 米，离场频率 119.7，应答机 3515，CCA527。",
@@ -34,7 +34,7 @@
     {
       "id": "atc-scenario-0059-card-main-1015",
       "taskTitle": "CCA 527-4",
-      "audioText": "C: Air China 527, taxi via taxiway Zulu 4, Alpha 3 and Alpha to holding point runway 36 right.",
+      "audioText": "C: Air China 527, taxi via taxiway Zulu 4, Alpha 3 and Alpha to holding point runway 36R.",
       "audioTextZh": "C: Air China 527，经滑行道 Zulu 4、Alpha 3 和 Alpha 滑行至跑道 36R 等待点。",
       "referenceText": "Taxi via taxiway Z4, A3 and A to holding point runway 36R, CCA527.",
       "referenceTextZh": "经滑行道 Z4、A3 和 A 滑行至跑道 36R 等待点，CCA527。",
@@ -52,7 +52,7 @@
     {
       "id": "atc-scenario-0059-card-main-1017",
       "taskTitle": "CCA 527-6",
-      "audioText": "B: Now you are at threshold of runway 36 right, you are ready for departure.",
+      "audioText": "B: Now you are at threshold of runway 36R, you are ready for departure.",
       "audioTextZh": "B: 现在你在跑道 36R 入口，准备离场。",
       "referenceText": "Wuhan Tower, CCA527, holding point runway 36R, ready for departure.",
       "referenceTextZh": "武汉塔台，CCA527，跑道 36R 等待点，准备离场。",
@@ -61,7 +61,7 @@
     {
       "id": "atc-scenario-0059-card-main-1018",
       "taskTitle": "CCA 527-7",
-      "audioText": "C: Air China 527, cleared for takeoff runway 36 right, surface wind 350, 5 meters per second.",
+      "audioText": "C: Air China 527, cleared for takeoff runway 36R, surface wind 350, 5 meters per second.",
       "audioTextZh": "C: Air China 527，跑道 36R 可以起飞，地面风 350，5 米/秒。",
       "referenceText": "Roger, cleared for takeoff runway 36R, CCA527.",
       "referenceTextZh": "收到，跑道 36R 可以起飞，CCA527。",
@@ -124,7 +124,7 @@
     {
       "id": "atc-scenario-0059-card-main-1025",
       "taskTitle": "CCA 527-14",
-      "audioText": "B: Now you are established with Guangzhou Approach, your assigned landing runway is 02 right, you want to land runway 02 left due performance.",
+      "audioText": "B: Now you are established with Guangzhou Approach, your assigned landing runway is 02 right, you want to land runway 02L due performance.",
       "audioTextZh": "B: 现在你已与 广州进近 建立联系，指定着陆跑道为 02R，由于性能原因你想落跑道 02L。",
       "referenceText": "Guangzhou Approach, CCA527, request runway 02L due performance.",
       "referenceTextZh": "广州进近，CCA527，因性能原因请求跑道 02L。",
@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0059-card-main-1026",
       "taskTitle": "CCA 527-15",
-      "audioText": "C: Air China 527, runway 02 left is not available due runway inspection, runway in use 02 right.",
+      "audioText": "C: Air China 527, runway 02L is not available due runway inspection, runway in use 02R.",
       "audioTextZh": "C: Air China 527，跑道 02L 因跑道检查不可用，使用跑道 02R。",
       "referenceText": "Roger, runway 02R, CCA527.",
       "referenceTextZh": "收到，跑道 02R，CCA527。",
@@ -142,7 +142,7 @@
     {
       "id": "atc-scenario-0059-card-main-1027",
       "taskTitle": "CCA 527-16",
-      "audioText": "B: You have established on the localizer runway 02 right, contact Tower.",
+      "audioText": "B: You have established on the localizer runway 02R, contact Tower.",
       "audioTextZh": "B: 你已建立跑道 02R 航向道，联系 塔台。",
       "referenceText": "Guangzhou Tower, CCA527, established on the localizer runway 02R.",
       "referenceTextZh": "广州塔台，CCA527，已建立跑道 02R 航向道。",

@@ -34,7 +34,7 @@
     {
       "id": "atc-scenario-0027-card-main-464",
       "taskTitle": "BAW 203-4",
-      "audioText": "B: Inform the controller that you have encountered severe clear air turbulence ,and ask for 8900 meters.",
+      "audioText": "B: Inform the controller that you have encountered severe clear air turbulence, and ask for 8900 meters.",
       "audioTextZh": "告知管制员你遇到严重晴空颠簸，并申请8900米。",
       "referenceText": "Wuhan Control, BAW203, we have encountered severe clear air turbulence, request 8900 meters.",
       "referenceTextZh": "武汉管制，BAW203，我们遇到严重晴空颠簸，申请8900米。",
@@ -52,7 +52,7 @@
     {
       "id": "atc-scenario-0027-card-main-466",
       "taskTitle": "BAW 203-6",
-      "audioText": "C: Speedbird 203, Wuhan Control, is there any damage to the aircraft or are there any passengers injured ?\nB: Tell the controller that there isn't any aircraft damage, and the purser told you that passengers are OK.",
+      "audioText": "C: Speedbird 203, Wuhan Control, is there any damage to the aircraft or are there any passengers injured?\nB: Tell the controller that there isn't any aircraft damage, and the purser told you that passengers are OK.",
       "audioTextZh": "管制员：Speedbird 203，武汉管制，飞机是否受损，是否有旅客受伤？\n告诉管制员飞机没有受损，乘务长报告旅客都没事。",
       "referenceText": "There isn't any damage to the aircraft and the purser reported that the passengers are just fine, BAW203.",
       "referenceTextZh": "飞机没有受损，乘务长报告旅客情况都正常，BAW203。",
@@ -115,7 +115,7 @@
     {
       "id": "atc-scenario-0027-card-main-473",
       "taskTitle": "BAW 203-13",
-      "audioText": "C: Speedbird 203, Wuhan Approach, radar contact, follow Zulu Foxtrot 1 Alpha arrival, descend to 2700 meters on QNH 1017, information Charlie.\nB: Readback the controller's instruction and inform controller that you have received the Information.",
+      "audioText": "C: Speedbird 203, Wuhan Approach, radar contact, follow Zulu Foxtrot 1 Alpha arrival, descend to 2700 meters on QNH 1017, information Charlie.\nB: Read back the controller's instruction and inform controller that you have received the Information.",
       "audioTextZh": "管制员：Speedbird 203，武汉进近，雷达联系，执行ZF 1A进场，按QNH 1017下降至2700米，通播Charlie。请复诵管制指令，并告知管制员已收到通播。",
       "referenceText": "Follow ZF 1A arrival, descend to 2700 meters on QNH 1017, we have received Information C, BAW203.",
       "referenceTextZh": "执行ZF 1A进场，按QNH 1017下降至2700米，已收到通播C，BAW203。",
@@ -124,7 +124,7 @@
     {
       "id": "atc-scenario-0027-card-main-474",
       "taskTitle": "BAW 203-14",
-      "audioText": "C: Speedbird 203, descend to 900 meters, expect ILS approach runway 36 right.\nB: Readback the controller's instruction and tell the controller that the passenger has died.",
+      "audioText": "C: Speedbird 203, descend to 900 meters, expect ILS approach runway 36R.\nB: Read back the controller's instruction and tell the controller that the passenger has died.",
       "audioTextZh": "管制员：Speedbird 203，下降至900米，预计ILS进近36右跑道。请复诵管制指令，并告诉管制员该旅客已经死亡。",
       "referenceText": "Descend to 900 meters, expect ILS approach runway 36R, the old passenger has died, BAW203.",
       "referenceTextZh": "下降至900米，预计ILS进近36R，那名老年旅客已经死亡，BAW203。",
@@ -142,7 +142,7 @@
     {
       "id": "atc-scenario-0027-card-main-476",
       "taskTitle": "BAW 203-16",
-      "audioText": "C: Speedbird 203, intercept the localizer of runway 36 right, report established.",
+      "audioText": "C: Speedbird 203, intercept the localizer of runway 36R, report established.",
       "audioTextZh": "管制员：Speedbird 203，截获36右跑道航向道，建立后报告。",
       "referenceText": "Intercept the localizer of runway 36R, report established, BAW203.",
       "referenceTextZh": "截获36R航向道，建立后报告，BAW203。",
@@ -160,7 +160,7 @@
     {
       "id": "atc-scenario-0027-card-main-478",
       "taskTitle": "BAW 203-18",
-      "audioText": "C: Roger, cleared ILS approach runway 36 right, 13 kilometers from touchdown, radar service terminated, contact Wuhan Tower on 124.35.",
+      "audioText": "C: Roger, cleared ILS approach runway 36R, 13 kilometers from touchdown, radar service terminated, contact Wuhan Tower on 124.35.",
       "audioTextZh": "管制员：收到，可以ILS进近36右跑道，距接地点13公里，雷达服务终止，联系武汉塔台124.35。",
       "referenceText": "Cleared ILS approach runway 36R, 124.35, BAW203.",
       "referenceTextZh": "可以ILS进近36R，124.35，BAW203。",

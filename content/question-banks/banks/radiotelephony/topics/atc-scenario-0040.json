@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0040-card-main-679",
       "taskTitle": "UAL 811-2",
-      "audioText": "C: United 811, roger PANPAN,  break, break, Air France 103, you are number 1 to land, the medical service will be ready for you.\nB: You relay the message to Air France 103.",
+      "audioText": "C: United 811, roger PAN PAN, break, break, Air France 103, you are number 1 to land, the medical service will be ready for you.\nB: You relay the message to Air France 103.",
       "audioTextZh": "C：United 811，收到 PANPAN，Break，Break，Air France 103，你是第一架落地，医疗服务将为你准备好。\nB：你将该信息转报给 Air France 103。",
       "referenceText": "AFR103, UAL811, you are No.1 to land, the medical service will be ready for you.",
       "referenceTextZh": "AFR103，UAL811，你是第一架落地，医疗服务将为你准备好。",
@@ -25,7 +25,7 @@
     {
       "id": "atc-scenario-0040-card-main-680",
       "taskTitle": "UAL 811-3",
-      "audioText": "C: United 811, offset 3 miles right of track, reduce speed to mach 0.75 due radar failure.",
+      "audioText": "C: United 811, offset 3 miles right of track, reduce speed to Mach 0.75 due radar failure.",
       "audioTextZh": "C：United 811，因雷达故障，向航迹右侧偏置 3 海里，减速至马赫 0.75。",
       "referenceText": "Offset 3 miles right of track, reduce speed to M.75, UAL811.",
       "referenceTextZh": "向航迹右侧偏置 3 海里，减速至 M.75，UAL811。",
@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0040-card-main-685",
       "taskTitle": "UAL 811-8",
-      "audioText": "C: United 811, reduce speed to mach 0.72.\nB: Advice Zhengzhou Control 0.72 is not acceptable, it's too low for your aircraft.",
+      "audioText": "C: United 811, reduce speed to Mach 0.72.\nB: Advise Zhengzhou Control 0.72 is not acceptable, it's too low for your aircraft.",
       "audioTextZh": "C：United 811，减速至马赫 0.72。\nB：告知郑州管制 M.72 不能接受，对你们飞机来说太低。",
       "referenceText": "Negative, M.72 is too low for our aircraft, UAL811.",
       "referenceTextZh": "不能接受，M.72 对我们飞机来说太低，UAL811。",
@@ -79,7 +79,7 @@
     {
       "id": "atc-scenario-0040-card-main-686",
       "taskTitle": "UAL 811-9",
-      "audioText": "C: United 811, maintain mach 0.75, we are limiting the number of aircraft flying through Wuhan Control area due to Wuhan radar failure.",
+      "audioText": "C: United 811, maintain Mach 0.75, we are limiting the number of aircraft flying through Wuhan Control area due to Wuhan radar failure.",
       "audioTextZh": "C：United 811，保持马赫 0.75，因武汉雷达故障，我们正在限制飞越武汉管制区的飞机数量。",
       "referenceText": "Maintain M.75, UAL811.",
       "referenceTextZh": "保持 M.75，UAL811。",
@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0040-card-main-687",
       "taskTitle": "UAL 811-10",
-      "audioText": "C: United 811, what is your estimated time for OBLIK ?\nB: Inform Zhengzhou Control your estimated time for OBLIK is 1152 Zulu time.",
+      "audioText": "C: United 811, what is your estimated time for OBLIK?\nB: Inform Zhengzhou Control your estimated time for OBLIK is 1152 Zulu time.",
       "audioTextZh": "C：United 811，你预计到达 OBLIK 的时间是多少？\nB：告知郑州管制预计 1152Z 到达 OBLIK。",
       "referenceText": "Estimating OBLIK 1152Z, UAL811.",
       "referenceTextZh": "预计 OBLIK 1152Z，UAL811。",

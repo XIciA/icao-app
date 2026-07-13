@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0083-card-main-1423",
       "taskTitle": "CSN 3102-2",
-      "audioText": "C: China Southern 102, push back and start up approved, runway 19 right, QNH 1014.",
+      "audioText": "C: China Southern 102, push back and start up approved, runway 19R, QNH 1014.",
       "audioTextZh": "C：China Southern 102，同意推出和开车，跑道 19R，QNH 1014。",
       "referenceText": "Push back and start up approved, runway 19right, QNH 1014, CSN3102.",
       "referenceTextZh": "同意推出和开车，跑道 19R，QNH 1014，CSN3102。",
@@ -43,7 +43,7 @@
     {
       "id": "atc-scenario-0083-card-main-1426",
       "taskTitle": "CSN 3102-5",
-      "audioText": "C: China Southern 102, taxi to holding point runway 19 right via taxiway Zulu 18, Mike 5, hold short of Foxtrot.",
+      "audioText": "C: China Southern 102, taxi to holding point runway 19R via taxiway Zulu 18, Mike 5, hold short of Foxtrot.",
       "audioTextZh": "C：China Southern 102，经滑行道 Zulu 18、Mike 5 滑行至跑道 19R 等待点，Foxtrot 外等待。",
       "referenceText": "Taxi to holding point runway 19R via taxiway Z18, M5, hold short of F, CSN3102.",
       "referenceTextZh": "经滑行道 Z18、M5 滑行至跑道 19R 等待点，F 外等待，CSN3102。",
@@ -79,7 +79,7 @@
     {
       "id": "atc-scenario-0083-card-main-1430",
       "taskTitle": "CSN 3102-9",
-      "audioText": "C: China Southern 102, de-ice  on taxiway Zulu 4.\nB: Tell Beijing Ground the de-icing fluid is only effective for 30 minutes and your slot time is 35.",
+      "audioText": "C: China Southern 102, de-ice on taxiway Zulu 4.\nB: Tell Beijing Ground the de-icing fluid is only effective for 30 minutes and your slot time is 35.",
       "audioTextZh": "C：China Southern 102，在滑行道 Zulu 4 除冰。\nB：告诉北京地面除冰液只有效 30 分钟，你的时隙是 35。",
       "referenceText": "Beijing Ground, CSN3102, the de-icing fluid is only effective for 30 minutes and our slot time 35.",
       "referenceTextZh": "北京地面，CSN3102，除冰液只有效 30 分钟，我们的时隙是 35。",
@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0083-card-main-1431",
       "taskTitle": "CSN 3102-10",
-      "audioText": "C: China Southern 102, taxi via taxiway Zulu 4 and Foxtrot to holding point runway 19 right.",
+      "audioText": "C: China Southern 102, taxi via taxiway Zulu 4 and Foxtrot to holding point runway 19R.",
       "audioTextZh": "C：China Southern 102，经滑行道 Zulu 4 和 Foxtrot 滑行至跑道 19R 等待点。",
       "referenceText": "Taxi via taxiway Z4 and F to holding point runway 19R, CSN3102.",
       "referenceTextZh": "经滑行道 Z4 和 F 滑行至跑道 19R 等待点，CSN3102。",
@@ -142,7 +142,7 @@
     {
       "id": "atc-scenario-0083-card-main-1437",
       "taskTitle": "CSN 3102-16",
-      "audioText": "C: China Southern 102, roger PANPAN, climb to and maintain 3000 meters.",
+      "audioText": "C: China Southern 102, roger PAN PAN, climb to and maintain 3000 meters.",
       "audioTextZh": "C：China Southern 102，收到 PANPAN，爬升并保持 3000 米。",
       "referenceText": "Climb to and maintain 3000 meters, CSN3102.",
       "referenceTextZh": "爬升并保持 3000 米，CSN3102。",

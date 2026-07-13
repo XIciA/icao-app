@@ -124,7 +124,7 @@
     {
       "id": "atc-scenario-0021-card-main-371",
       "taskTitle": "AFR 675-14",
-      "audioText": "C: Air France 675, cleared for ILS approach runway 36 right.\nB:  Readback the ATC instructions and ask the controller the breaking action of runway 36 right.",
+      "audioText": "C: Air France 675, cleared for ILS approach runway 36R.\nB: Read back the ATC instructions and ask the controller the braking action of runway 36R.",
       "audioTextZh": "管制员：Air France 675，可以ILS进近36右跑道。请复诵空管指令，并询问36右跑道刹车效应。",
       "referenceText": "Wuhan Approach, AFR675, cleared for ILS approach runway 36R, request the breaking action of runway 36R.",
       "referenceTextZh": "武汉进近，AFR675，可以ILS进近36R，请问36R刹车效应。",
@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0021-card-main-372",
       "taskTitle": "AFR 675-15",
-      "audioText": "C: Air France 675, breaking action runway 36 right good.",
+      "audioText": "C: Air France 675, braking action runway 36R good.",
       "audioTextZh": "管制员：Air France 675，36右跑道刹车效应好。",
       "referenceText": "Breaking action runway 36R good, AFR675.",
       "referenceTextZh": "36R刹车效应好，AFR675。",

@@ -52,7 +52,7 @@
     {
       "id": "atc-scenario-0056-card-main-959",
       "taskTitle": "CCA 124-6",
-      "audioText": "C: Air China 124, taxi via Zulu 6 and Foxtrot to the holding point runway 36 right, caution working progress on the intersection of taxiway Zulu 3 and Zulu 6.",
+      "audioText": "C: Air China 124, taxi via Zulu 6 and Foxtrot to the holding point runway 36R, caution work in progress on the intersection of taxiway Zulu 3 and Zulu 6.",
       "audioTextZh": "C: Air China 124，经 Zulu 6 和 Foxtrot 滑行至跑道 36R 等待点，注意滑行道 Zulu 3 和 Zulu 6 交叉口有施工。",
       "referenceText": "Roger, taxi via Z6 and F to holding point runway 36R, CCA124.",
       "referenceTextZh": "收到，经 Z6 和 F 滑行至跑道 36R 等待点，CCA124。",
@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0056-card-main-961",
       "taskTitle": "CCA 124-8",
-      "audioText": "C: Air China 124, yeah, it's an online vehicle, um just been informed that it was an ambulance attending an injured workman, is everything okay with your aircraft ?\nB: Tell the controller that you applied maximum brake to stop the airplane, but the flight attendant has not given you any injury reports.",
+      "audioText": "C: Air China 124, yeah, it's an online vehicle, um just been informed that it was an ambulance attending an injured workman, is everything okay with your aircraft?\nB: Tell the controller that you applied maximum brake to stop the airplane, but the flight attendant has not given you any injury reports.",
       "audioTextZh": "C: Air China 124，是的，那是一辆在线车辆，呃刚获知它是去处理受伤工人的救护车，你的飞机一切正常吗？\nB: 告诉管制员你使用最大刹车停住飞机，但乘务员没有给你任何受伤报告。",
       "referenceText": "We applied maximum brake to stop the airplane, but there was no injury report, CCA124.",
       "referenceTextZh": "我们使用最大刹车停住飞机，但没有受伤报告，CCA124。",
@@ -79,7 +79,7 @@
     {
       "id": "atc-scenario-0056-card-main-962",
       "taskTitle": "CCA 124-9",
-      "audioText": "C: Air China 124, continue taxi to the holding point of runway 36 right.",
+      "audioText": "C: Air China 124, continue taxi to the holding point of runway 36R.",
       "audioTextZh": "C: Air China 124，继续滑行至跑道 36R 等待点。",
       "referenceText": "Continue taxi to the holding point of runway 36R, CCA124.",
       "referenceTextZh": "继续滑行至跑道 36R 等待点，CCA124。",
@@ -97,7 +97,7 @@
     {
       "id": "atc-scenario-0056-card-main-964",
       "taskTitle": "CCA 124-11",
-      "audioText": "B: Contact the Tower and tell them you are approaching the end of your taxi at the holding point, and you are now ready to takeoff.",
+      "audioText": "B: Contact the Tower and tell them you are approaching the end of your taxi at the holding point, and you are now ready for takeoff.",
       "audioTextZh": "B: 联系 塔台，告诉他们你接近滑行终点的等待点，现在准备起飞。",
       "referenceText": "Beijing Tower, CCA124, we are approaching the holding point of runway 36R, ready for departure.",
       "referenceTextZh": "北京塔台，CCA124，我们正接近跑道 36R 等待点，准备离场。",

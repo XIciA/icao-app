@@ -7,7 +7,7 @@
     {
       "id": "atc-scenario-0057-card-main-974",
       "taskTitle": "CCA 101-1",
-      "audioText": "B: Your call sign is Air China 101 and you are at Wuhan Airport, you are now taxing on taxiway Alpha 3 to taxiway Alpha.",
+      "audioText": "B: Your call sign is Air China 101 and you are at Wuhan Airport, you are now taxiing on taxiway Alpha 3 to taxiway Alpha.",
       "audioTextZh": "B: 你的呼号是 Air China 101，位于 Wuhan Airport，现在正在从滑行道 Alpha 3 滑向滑行道 Alpha。",
       "referenceText": "Wuhan Ground, CCA101, taxiing from taxiway A3 to A.",
       "referenceTextZh": "武汉地面，CCA101，正从滑行道 A3 滑向 A。",
@@ -43,7 +43,7 @@
     {
       "id": "atc-scenario-0057-card-main-978",
       "taskTitle": "CCA 101-5",
-      "audioText": "B: You are approaching the holding point of runway 36 right, contact Wuhan Tower.",
+      "audioText": "B: You are approaching the holding point of runway 36R, contact Wuhan Tower.",
       "audioTextZh": "B: 你正接近跑道 36R 等待点，联系武汉塔台。",
       "referenceText": "Wuhan Tower, CCA101, approaching the holding point of runway 36R.",
       "referenceTextZh": "武汉塔台，CCA101，接近跑道 36R 等待点。",
@@ -160,7 +160,7 @@
     {
       "id": "atc-scenario-0057-card-main-991",
       "taskTitle": "CCA 101-18",
-      "audioText": "C: Roger, what is the problem?\nB:  Tell the controller you have a conflicting traffic, it's Boeing 757, at about 2 o'clock from right to left.",
+      "audioText": "C: Roger, what is the problem?\nB: Tell the controller you have a conflicting traffic, it's Boeing 757, at about 2 o'clock from right to left.",
       "audioTextZh": "C: 收到，是什么问题？\nB: 告诉管制员你有冲突交通，是 Boeing 757，约在 2 点钟方向从右向左。",
       "referenceText": "We have a conflicting traffic, it's B757, at about 2 o'clock from right to left, CCA101.",
       "referenceTextZh": "我们有冲突交通，是 B757，约在 2 点钟方向从右向左，CCA101。",
@@ -178,7 +178,7 @@
     {
       "id": "atc-scenario-0057-card-main-993",
       "taskTitle": "CCA 101-20",
-      "audioText": "C: Air China 101, turn left heading 070, this will lead you ILS approach runway 36 right, report established.",
+      "audioText": "C: Air China 101, turn left heading 070, this will lead you ILS approach runway 36R, report established.",
       "audioTextZh": "C: Air China 101，左转航向 070，这将引导你进行跑道 36R ILS 进近，建立后报告。",
       "referenceText": "Turn left heading 070, ILS approach runway 36R, report established, CCA101.",
       "referenceTextZh": "左转航向 070，跑道 36R ILS 进近，建立后报告，CCA101。",

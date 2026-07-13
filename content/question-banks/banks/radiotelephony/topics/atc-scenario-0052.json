@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0052-card-main-887",
       "taskTitle": "CCA 101-2",
-      "audioText": "C: Air China 101, cleared to HongKong via flight planned route, runway 36 left, RENOB 02 departure, initial altitude 900 meters, expect en-route altitude 10 minutes after departure, departure frequency 119.65. Call me ready for pushback and startup.",
+      "audioText": "C: Air China 101, cleared to HongKong via flight planned route, runway 36L, RENOB 02 departure, initial altitude 900 meters, expect en-route altitude 10 minutes after departure, departure frequency 119.65. Call me ready for pushback and startup.",
       "audioTextZh": "C: Air China 101，可以按计划航路前往 HongKong，跑道 36L，RENOB 02 离场，初始高度 900 米，预计离场后 10 分钟给途中高度，离场频率 119.65。准备推出和开车时呼叫我。",
       "referenceText": "Cleared to HongKong via flight planned route, runway 36L, RENOB 02 departure, initial altitude 900m, expect en-route altitude 10min after departure, departure frequency 119.65, CCA101.",
       "referenceTextZh": "可以按计划航路前往 HongKong，跑道 36L，RENOB 02 离场，初始高度 900 米，预计离场后 10 分钟给途中高度，离场频率 119.65，CCA101。",
@@ -25,7 +25,7 @@
     {
       "id": "atc-scenario-0052-card-main-888",
       "taskTitle": "CCA 101-3",
-      "audioText": "B: You are now at the holding point of runway 36 right.\nC: Air China 101, behind the departing Airbus 330, cross runway 36 right behind, then taxi via Echo and hold short of runway 36 left.",
+      "audioText": "B: You are now at the holding point of runway 36R.\nC: Air China 101, behind the departing Airbus 330, cross runway 36R behind, then taxi via Echo and hold short of runway 36L.",
       "audioTextZh": "B: 你现在在跑道 36R 等待点。\nC: Air China 101，在离场 Airbus 330 后面，跟在其后穿越跑道 36R，然后经 Echo 滑行并在跑道 36L 前等待。",
       "referenceText": "Behind A330, cross runway 36R behind, taxi via E and hold short of runway 36L, CCA101.",
       "referenceTextZh": "跟在 A330 后面，在其后穿越跑道 36R，经 E 滑行并在跑道 36L 前等待，CCA101。",
@@ -61,7 +61,7 @@
     {
       "id": "atc-scenario-0052-card-main-892",
       "taskTitle": "CCA 101-7",
-      "audioText": "B: Several minutes later.\nC: Air China 101, Ground, the safety officer confirms the taxiway is now clear, continue on Echo and hold short of runway 36 left.",
+      "audioText": "B: Several minutes later.\nC: Air China 101, Ground, the safety officer confirms the taxiway is now clear, continue on Echo and hold short of runway 36L.",
       "audioTextZh": "B: 几分钟后。\nC: Air China 101，地面，安全员确认滑行道现在已清空，继续在 Echo 上滑行并在跑道 36L 前等待。",
       "referenceText": "Roger, continue on E and hold short of runway 36L, CCA101.",
       "referenceTextZh": "收到，继续在 E 上滑行并在跑道 36L 前等待，CCA101。",
@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0052-card-main-893",
       "taskTitle": "CCA 101-8",
-      "audioText": "B: You are now at the holding point of runway 36 left, tell ATC that you are ready for takeoff.",
+      "audioText": "B: You are now at the holding point of runway 36L, tell ATC that you are ready for takeoff.",
       "audioTextZh": "B: 你现在在跑道 36L 等待点，告诉 ATC 你准备起飞。",
       "referenceText": "Beijing Tower, CCA101, holding point of runway 36L, ready for departure.",
       "referenceTextZh": "北京塔台，CCA101，跑道 36L 等待点，准备离场。",
@@ -142,7 +142,7 @@
     {
       "id": "atc-scenario-0052-card-main-901",
       "taskTitle": "CCA 101-16",
-      "audioText": "C: Air China 101, roger Mayday, turn right heading 260, this will take you direct to HongKong, the weather at HongKong Airport is clear.",
+      "audioText": "C: Air China 101, roger MAYDAY, turn right heading 260, this will take you direct to HongKong, the weather at HongKong Airport is clear.",
       "audioTextZh": "C: Air China 101，收到 Mayday，右转航向 260，这将使你直飞 HongKong，HongKong Airport 天气晴好。",
       "referenceText": "Turn right heading 260, roger, CCA101.",
       "referenceTextZh": "右转航向 260，收到，CCA101。",

@@ -124,7 +124,7 @@
     {
       "id": "atc-scenario-0072-card-main-1245",
       "taskTitle": "CSN 342-14",
-      "audioText": "C: China Southern 342, descend to 900 meters, expect ILS approach runway 36 right.",
+      "audioText": "C: China Southern 342, descend to 900 meters, expect ILS approach runway 36R.",
       "audioTextZh": "C: China Southern 342，下降到 900 米，预计跑道 36R ILS 进近。",
       "referenceText": "Descend to 900 meters, expect ILS approach runway 36R, CSN342.",
       "referenceTextZh": "下降到 900 米，预计跑道 36R ILS 进近，CSN342。",
@@ -142,7 +142,7 @@
     {
       "id": "atc-scenario-0072-card-main-1247",
       "taskTitle": "CSN 342-16",
-      "audioText": "C: China Southern 342, intercept the localizer for runway 36 right, report established.",
+      "audioText": "C: China Southern 342, intercept the localizer for runway 36R, report established.",
       "audioTextZh": "C: China Southern 342，切入跑道 36R 航向道，建立后报告。",
       "referenceText": "Intercept the localizer for runway 36R, report established, CSN342.",
       "referenceTextZh": "切入跑道 36R 航向道，建立后报告，CSN342。",
@@ -160,7 +160,7 @@
     {
       "id": "atc-scenario-0072-card-main-1249",
       "taskTitle": "CSN 342-18",
-      "audioText": "C: Roger, China Southern 342, cleared ILS approach runway 36 right, 13 miles from touchdown, radar service terminated, contact Wuhan Tower on 124.35.",
+      "audioText": "C: Roger, China Southern 342, cleared ILS approach runway 36R, 13 miles from touchdown, radar service terminated, contact Wuhan Tower on 124.35.",
       "audioTextZh": "C: 收到，China Southern 342，可以跑道 36R ILS 进近，距接地点 13 海里，雷达服务终止，联系武汉塔台124.35。",
       "referenceText": "Cleared ILS approach runway 36R, 124.35, CSN342.",
       "referenceTextZh": "可以跑道 36R ILS 进近，124.35，CSN342。",

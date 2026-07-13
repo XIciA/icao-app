@@ -52,7 +52,7 @@
     {
       "id": "atc-scenario-0016-card-main-266",
       "taskTitle": "AFR 782-6",
-      "audioText": "C: Air France 782, Wuhan Approach, roger MAYDAY, turn right heading 040, descend to 2100 meters, radar vector to ILS approach runway 36 right, you have first priority.",
+      "audioText": "C: Air France 782, Wuhan Approach, roger MAYDAY, turn right heading 040, descend to 2100 meters, radar vector to ILS approach runway 36R, you have first priority.",
       "audioTextZh": "管制员：Air France 782，武汉进近，收到遇险信号，右转航向040，下降至2100米，雷达引导ILS进近36右跑道，你享有第一优先。",
       "referenceText": "Turn right heading 040, descend to 2100 meters, radar vector to ILS approach runway 36R, AFR782.",
       "referenceTextZh": "右转航向040，下降至2100米，雷达引导ILS进近36R，AFR782。",
@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0016-card-main-268",
       "taskTitle": "AFR 782-8",
-      "audioText": "C: Air France 782, Wuhan Approach, what is the situation on board now ? keep us advised.\nB: You are grateful for the reminding, report to ATC that more smoke accumulated in the passenger cabin and the passengers are coughing hard.",
+      "audioText": "C: Air France 782, Wuhan Approach, what is the situation on board now? keep us advised.\nB: You are grateful for the reminding, report to ATC that more smoke accumulated in the passenger cabin and the passengers are coughing hard.",
       "audioTextZh": "管制员：Air France 782，武汉进近，目前机上情况如何？请随时通报。感谢提醒，并向空管报告客舱内烟雾越来越浓，旅客咳嗽严重。",
       "referenceText": "Roger, the smoke is becoming more and more dense in the passenger cabin and the passengers are coughing more and more, AFR782.",
       "referenceTextZh": "收到，客舱内烟雾越来越浓，旅客咳嗽越来越严重，AFR782。",
@@ -79,7 +79,7 @@
     {
       "id": "atc-scenario-0016-card-main-269",
       "taskTitle": "AFR 782-9",
-      "audioText": "C: Air France 782, Wuhan Approach, continue to descend to 1200 meters on QNH 1005, fire service and ambulance will be with you upon your landing.\nB: You are required to readback the clearance and show your gratitude.",
+      "audioText": "C: Air France 782, Wuhan Approach, continue to descend to 1200 meters on QNH 1005, fire service and ambulance will be with you upon your landing.\nB: You are required to read back the clearance and show your gratitude.",
       "audioTextZh": "管制员：Air France 782，武汉进近，按QNH 1005继续下降至1200米，消防和救护车将在你落地时待命。请复诵许可并表示感谢。",
       "referenceText": "Continue to descend to 1200 meters on QNH 1005, thank you very much, AFR782.",
       "referenceTextZh": "按QNH 1005继续下降至1200米，非常感谢，AFR782。",
@@ -97,7 +97,7 @@
     {
       "id": "atc-scenario-0016-card-main-271",
       "taskTitle": "AFR 782-11",
-      "audioText": "C: Roger, we'll relay this information to the parties concerned.\nC: Air France 782, descend to 900 meters, expect ILS approach runway 36 right, you are Number 1.",
+      "audioText": "C: Roger, we'll relay this information to the parties concerned.\nC: Air France 782, descend to 900 meters, expect ILS approach runway 36R, you are Number 1.",
       "audioTextZh": "管制员：收到，我们会把信息转告相关单位。管制员：Air France 782，下降至900米，预计ILS进近36右跑道，你是第一架。",
       "referenceText": "Descend to 900 meters, expect ILS approach runway 36R, AFR782.",
       "referenceTextZh": "下降至900米，预计ILS进近36R，AFR782。",
@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0016-card-main-272",
       "taskTitle": "AFR 782-12",
-      "audioText": "B: You are fully established on the ILS runway 36 right and your position is 12 Kilometers from touchdown, call Wuhan Approach.",
+      "audioText": "B: You are fully established on the ILS runway 36R and your position is 12 Kilometers from touchdown, call Wuhan Approach.",
       "audioTextZh": "你已完全建立36右跑道ILS，距离接地点12公里，请呼叫武汉进近。",
       "referenceText": "Wuhan Approach, AFR782, established on the ILS runway 36R, 12 km from touchdown.",
       "referenceTextZh": "武汉进近，AFR782，已建立36R ILS，距接地点12公里。",
@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0016-card-main-275",
       "taskTitle": "AFR 782-15",
-      "audioText": "C: Air France 782, radar identified, continue ILS approach runway 36 right, you are Number 1, report outer marker.",
+      "audioText": "C: Air France 782, radar identified, continue ILS approach runway 36R, you are Number 1, report outer marker.",
       "audioTextZh": "管制员：Air France 782，雷达识别，继续ILS进近36右跑道，你是第一架，报告外指点标。",
       "referenceText": "Continue ILS approach runway 36R, report outer marker, AFR782.",
       "referenceTextZh": "继续ILS进近36R，报告外指点标，AFR782。",
@@ -151,7 +151,7 @@
     {
       "id": "atc-scenario-0016-card-main-277",
       "taskTitle": "AFR 782-17",
-      "audioText": "C: Air France 782, cleared to land runway 36 right, wind 340 degrees at 9 meters per second, QNH 1005.",
+      "audioText": "C: Air France 782, cleared to land runway 36R, wind 340 degrees at 9 meters per second, QNH 1005.",
       "audioTextZh": "管制员：Air France 782，可以36右跑道落地，风向340度，风速9米/秒，QNH 1005。",
       "referenceText": "Cleared to land runway 36R, QNH 1005, AFR782.",
       "referenceTextZh": "可以36R落地，QNH 1005，AFR782。",
@@ -160,7 +160,7 @@
     {
       "id": "atc-scenario-0016-card-main-278",
       "taskTitle": "AFR 782-18",
-      "audioText": "C: Air France 782, taxi to Number 5 Apron via taxiway Echo 3, Alpha, Alpha 8, the fire services and medical teams are waiting for you on the Apron.\nB: You are required to readback the clearance and show your gratitude.",
+      "audioText": "C: Air France 782, taxi to Number 5 Apron via taxiway Echo 3, Alpha, Alpha 8, the fire services and medical teams are waiting for you on the Apron.\nB: You are required to read back the clearance and show your gratitude.",
       "audioTextZh": "管制员：Air France 782，经滑行道E3、A、A8滑行至5号机坪，消防和医疗队已在机坪等待。请复诵许可并表示感谢。",
       "referenceText": "Taxi to No.5 Apron via taxiway E3, A, A8, thank you very much, AFR782.",
       "referenceTextZh": "经滑行道E3、A、A8滑行至5号机坪，非常感谢，AFR782。",

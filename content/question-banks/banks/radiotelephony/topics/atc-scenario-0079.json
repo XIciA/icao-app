@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0079-card-main-1350",
       "taskTitle": "CSN 1310-2",
-      "audioText": "C: China southern 310, Beijing Delivery, cleared to Guangzhou via flight planned route, BOBAK 03 departure, departure runway 36 right, initial climb 1800 meters, cruising level 9500 meters, squawk 2536.",
+      "audioText": "C: China Southern 310, Beijing Delivery, cleared to Guangzhou via flight planned route, BOBAK 03 departure, departure runway 36R, initial climb 1800 meters, cruising level 9500 meters, squawk 2536.",
       "audioTextZh": "C：China Southern 310，北京放行，许可飞往广州，按飞行计划航路，BOBAK 03 离场，离场跑道 36R，起始爬升 1800 米，巡航高度 9500 米，应答机 2536。",
       "referenceText": "Cleared to Guangzhou via flight planned route, BOBAK 03 departure, departure runway 36R, initial climb 1800 meters, cruising level 9500 meters, squawk 2536, CSN1310.",
       "referenceTextZh": "许可飞往广州，按飞行计划航路，BOBAK 03 离场，离场跑道 36R，起始爬升 1800 米，巡航高度 9500 米，应答机 2536，CSN1310。",
@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0079-card-main-1358",
       "taskTitle": "CSN 1310-10",
-      "audioText": "C: China southern 310, taxi to holding point runway 36 right via taxiway Zulu 4, Zulu 3, Tango 5, Delta 6.",
+      "audioText": "C: China Southern 310, taxi to holding point runway 36R via taxiway Zulu 4, Zulu 3, Tango 5, Delta 6.",
       "audioTextZh": "C：China Southern 310，经滑行道 Zulu 4、Zulu 3、Tango 5、Delta 6 滑行至跑道 36R 等待点。",
       "referenceText": "Taxi to holding point runway 36R via taxiway Z4, Z3, T5, D6, CSN1310.",
       "referenceTextZh": "经滑行道 Z4、Z3、T5、D6 滑行至跑道 36R 等待点，CSN1310。",
@@ -115,7 +115,7 @@
     {
       "id": "atc-scenario-0079-card-main-1361",
       "taskTitle": "CSN 1310-13",
-      "audioText": "C: China Southern 310, negative intersection departure due sequencing, continue taxi to holding point runway 36 right via taxiway Tango 5 and Delta 6.",
+      "audioText": "C: China Southern 310, negative intersection departure due sequencing, continue taxi to holding point runway 36R via taxiway Tango 5 and Delta 6.",
       "audioTextZh": "C：China Southern 310，因排序不能同意交叉口离场，继续经滑行道 Tango 5 和 Delta 6 滑行至跑道 36R 等待点。",
       "referenceText": "Roger, continue taxi to holding point runway 36R via taxiway T5 and D6, CSN1310.",
       "referenceTextZh": "收到，继续经滑行道 T5 和 D6 滑行至跑道 36R 等待点，CSN1310。",
@@ -124,7 +124,7 @@
     {
       "id": "atc-scenario-0079-card-main-1362",
       "taskTitle": "CSN 1310-14",
-      "audioText": "B: Now you are at holding point runway 36 right, you are ready for takeoff, contact Beijing Tower.",
+      "audioText": "B: Now you are at holding point runway 36R, you are ready for takeoff, contact Beijing Tower.",
       "audioTextZh": "B：现在你在跑道 36R 等待点，准备好起飞，联系北京塔台。",
       "referenceText": "Beijing Tower, CSN1310, holding point runway 36R, ready for departure.",
       "referenceTextZh": "北京塔台，CSN1310，跑道 36R 等待点，准备好离场。",
@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0079-card-main-1363",
       "taskTitle": "CSN 1310-15",
-      "audioText": "C: China southern 310, hold short of runway 36 right, expect 15 minutes delay due thunderstorms in the vicinity of the airport.",
+      "audioText": "C: China Southern 310, hold short of runway 36R, expect 15 minutes delay due thunderstorms in the vicinity of the airport.",
       "audioTextZh": "C：China Southern 310，跑道 36R 外等待，因机场附近雷暴预计延误 15 分钟。",
       "referenceText": "Roger, hold short of runway 36R, CSN1310.",
       "referenceTextZh": "收到，跑道 36R 外等待，CSN1310。",
@@ -142,7 +142,7 @@
     {
       "id": "atc-scenario-0079-card-main-1364",
       "taskTitle": "CSN 1310-16",
-      "audioText": "C: China Southern 310, runway 36 right, line up and cleared for takeoff, surface wind 350 degrees, 3 meters per second.",
+      "audioText": "C: China Southern 310, runway 36R, line up and cleared for takeoff, surface wind 350 degrees, 3 meters per second.",
       "audioTextZh": "C：China Southern 310，跑道 36R，进跑道并可以起飞，地面风 350 度，3 米/秒。",
       "referenceText": "Runway 36R, line up and cleared for takeoff, CSN1310.",
       "referenceTextZh": "跑道 36R，进跑道并可以起飞，CSN1310。",

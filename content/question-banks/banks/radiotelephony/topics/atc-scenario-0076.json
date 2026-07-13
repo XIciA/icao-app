@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0076-card-main-1309",
       "taskTitle": "CSN 371-10",
-      "audioText": "B: During taxi an auto brake caution message is displayed on the aircraft warning system, so you stop taxiing, advice Ground.",
+      "audioText": "B: During taxi an auto brake caution message is displayed on the aircraft warning system, so you stop taxiing, advise Ground.",
       "audioTextZh": "B：滑行中飞机警告系统显示自动刹车警戒信息，所以你停止滑行，告知地面。",
       "referenceText": "Wuhan Ground, CSN371, we have an auto brake caution message, we stopped taxiing.",
       "referenceTextZh": "武汉地面，CSN371，我们有自动刹车警戒信息，我们已停止滑行。",
@@ -97,7 +97,7 @@
     {
       "id": "atc-scenario-0076-card-main-1310",
       "taskTitle": "CSN 371-11",
-      "audioText": "C: China southern 371, roger, hold at present position, advise your intention when able.\nB: Tell the controller you are still able to taxi, but you need 5 minutes to deal with the problem, ask to hold at the convenient position.",
+      "audioText": "C: China Southern 371, roger, hold at present position, advise your intention when able.\nB: Tell the controller you are still able to taxi, but you need 5 minutes to deal with the problem, ask to hold at the convenient position.",
       "audioTextZh": "C：China Southern 371，收到，在当前位置等待，能够时告知意图。\nB：告诉管制员你仍能滑行，但需要 5 分钟处理问题，请求在方便位置等待。",
       "referenceText": "Wuhan Ground, CSN371, we are still able to taxi, but we need 5 minutes to deal with the problem, request hold at the convenient position.",
       "referenceTextZh": "武汉地面，CSN371，我们仍能滑行，但需要 5 分钟处理问题，请求在方便位置等待。",
@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0076-card-main-1314",
       "taskTitle": "CSN 371-15",
-      "audioText": "C: China Southern 371, maintaine 9500 meters, report Victor Yankee Kilo.",
+      "audioText": "C: China Southern 371, maintain 9500 meters, report Victor Yankee Kilo.",
       "audioTextZh": "C：China Southern 371，保持 9500 米，报告 Victor Yankee Kilo。",
       "referenceText": "Maintain 9500 meters, report VYK, CSN371.",
       "referenceTextZh": "保持 9500 米，报告 VYK，CSN371。",
@@ -160,7 +160,7 @@
     {
       "id": "atc-scenario-0076-card-main-1317",
       "taskTitle": "CSN 371-18",
-      "audioText": "C: China Southern 371, due separation, maintain not greater than mach 0.80.",
+      "audioText": "C: China Southern 371, due separation, maintain not greater than Mach 0.80.",
       "audioTextZh": "C：China Southern 371，因间隔，保持不大于马赫 0.80。",
       "referenceText": "Maintain not greater than M.80, CSN371.",
       "referenceTextZh": "保持不大于 M.80，CSN371。",

@@ -25,7 +25,7 @@
     {
       "id": "atc-scenario-0003-card-main-041",
       "taskTitle": "QFA 923-3",
-      "audioText": "C: Qantas 923, cleared to Los Angeles via flight planned route, runway 36 right, Lima Kilo Oscar 01 departure, initial climb 1500 meters, cruising level 9800 meters, after departure, contact 119.7, squawk 2515.",
+      "audioText": "C: Qantas 923, cleared to Los Angeles via flight planned route, runway 36R, Lima Kilo Oscar 01 departure, initial climb 1500 meters, cruising level 9800 meters, after departure, contact 119.7, squawk 2515.",
       "audioTextZh": "C：Qantas 923，许可按飞行计划航路飞往洛杉矶，跑道 36 右，Lima Kilo Oscar 01 离场，初始爬升 1500 米，巡航高度 9800 米，离场后联系 119.7，应答机 2515。",
       "referenceText": "Cleared to Los Angeles via flight planned route, runway 36R, LKO 01 departure, initial climb 1500 meters, cruising level 9800 meters, after departure, contact 119.7, squawk 2515, QFA923.",
       "referenceTextZh": "许可按飞行计划航路飞往洛杉矶，跑道 36R，LKO 01 离场，初始爬升 1500 米，巡航高度 9800 米，离场后联系 119.7，应答机 2515，QFA923。",
@@ -79,7 +79,7 @@
     {
       "id": "atc-scenario-0003-card-main-047",
       "taskTitle": "QFA 923-9",
-      "audioText": "C: Qantas 923, taxi via taxiway Zulu 4, Alpha 3 and Alpha to holding point runway 36 right.",
+      "audioText": "C: Qantas 923, taxi via taxiway Zulu 4, Alpha 3 and Alpha to holding point runway 36R.",
       "audioTextZh": "C：Qantas 923，经 Zulu 4、Alpha 3 和 Alpha 滑行道滑行至跑道 36 右等待点。",
       "referenceText": "Taxi via taxiway Z4, A3 and A to holding point runway 36R, QFA923.",
       "referenceTextZh": "经 Z4、A3 和 A 滑行道滑行至跑道 36R 等待点，QFA923。",
@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0003-card-main-048",
       "taskTitle": "QFA 923-10",
-      "audioText": "B: As you are taxing on taxiway Alpha 3, you notice several baggage are scattered on Alpha 3, about 400 meters ahead of your aircraft, tell Ground control why you have stopped taxing and ask ground services to retrieve the baggage.",
+      "audioText": "B: As you are taxiing on taxiway Alpha 3, you notice several baggage are scattered on Alpha 3, about 400 meters ahead of your aircraft, tell Ground control why you have stopped taxiing and ask ground services to retrieve the baggage.",
       "audioTextZh": "B：当你在 Alpha 3 滑行道滑行时，注意到数件行李散落在 Alpha 3，约在飞机前方 400 米处。告诉地面管制你为何停止滑行，并请求地面服务取回行李。",
       "referenceText": "Wuhan Ground, QFA923, we notice several baggage are scattered on A3, about 400 meters ahead, we have stopped taxiing, request ground services to retrieve/remove the baggage.",
       "referenceTextZh": "武汉地面，QFA923，我们注意到数件行李散落在 A3，约前方 400 米，我们已停止滑行，请求地面服务取回/移除行李。",
@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0003-card-main-050",
       "taskTitle": "QFA 923-12",
-      "audioText": "C: Qantas 923, taxiway Alpha 3 is clear, expedite taxi via taxiway Alpha 3 and Alpha to holding point runway 36 right.",
+      "audioText": "C: Qantas 923, taxiway Alpha 3 is clear, expedite taxi via taxiway Alpha 3 and Alpha to holding point runway 36R.",
       "audioTextZh": "C：Qantas 923，Alpha 3 滑行道已畅通，经 Alpha 3 和 Alpha 滑行道加速滑行至跑道 36 右等待点。",
       "referenceText": "Roger, expedite taxi via taxiway A3 and A to holding point runway 36R, QFA923.",
       "referenceTextZh": "收到，经 A3 和 A 滑行道加速滑行至跑道 36R 等待点，QFA923。",
@@ -142,7 +142,7 @@
     {
       "id": "atc-scenario-0003-card-main-054",
       "taskTitle": "QFA 923-16",
-      "audioText": "C: Qantas 923, climb and maintain 4500 meters, turn left, track direct to Lima Kilo Oscar, expect Lima Kilo Oscar 02 Alpha arrival, ILS approach runway 36 right.",
+      "audioText": "C: Qantas 923, climb and maintain 4500 meters, turn left, track direct to Lima Kilo Oscar, expect Lima Kilo Oscar 02 Alpha arrival, ILS approach runway 36R.",
       "audioTextZh": "C：Qantas 923，爬升并保持 4500 米，左转，直飞 Lima Kilo Oscar，预期 Lima Kilo Oscar 02 Alpha 进场，ILS 进近跑道 36 右。",
       "referenceText": "Climb and maintain 4500 meters, turn left, track direct to LKO, expect LKO 02A arrival, ILS approach runway 36R, QFA923.",
       "referenceTextZh": "爬升并保持 4500 米，左转，直飞 LKO，预期 LKO 02A 进场，ILS 进近跑道 36R，QFA923。",

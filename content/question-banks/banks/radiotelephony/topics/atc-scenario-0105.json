@@ -7,7 +7,7 @@
     {
       "id": "atc-scenario-0105-card-main-1803",
       "taskTitle": "CSN 230-1",
-      "audioText": "B: Your call sign is China Southern 230. The aircraft has just landed on runway 02 right of Baiyun Airport.\nC: China Southern 230, backtrack the runway, vacate the runway via Alpha 5.",
+      "audioText": "B: Your call sign is China Southern 230. The aircraft has just landed on runway 02R of Baiyun Airport.\nC: China Southern 230, backtrack the runway, vacate the runway via Alpha 5.",
       "audioTextZh": "B: 你的呼号是 China Southern 230。飞机刚在 Baiyun Airport 跑道 02 right 落地。\nC: China Southern 230，在跑道上反向滑行，经 Alpha 5 脱离跑道。",
       "referenceText": "Backtrack the runway, vacate the runway via A5, CSN230.",
       "referenceTextZh": "在跑道上反向滑行，经 A5 脱离跑道，CSN230。",

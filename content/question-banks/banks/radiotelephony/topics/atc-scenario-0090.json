@@ -7,7 +7,7 @@
     {
       "id": "atc-scenario-0090-card-main-1550",
       "taskTitle": "CES 232-1",
-      "audioText": "B: Your call sign is China Eastern 232, from Wuhan to Singapore, you are taxiing Southbound on taxiway Charlie to holding point runway 36 left, call Wuhan Tower for takeoff clearance.",
+      "audioText": "B: Your call sign is China Eastern 232, from Wuhan to Singapore, you are taxiing Southbound on taxiway Charlie to holding point runway 36L, call Wuhan Tower for takeoff clearance.",
       "audioTextZh": "B：你的呼号是 China Eastern 232，从武汉飞往新加坡，正在 Charlie 滑行道向南滑行至跑道 36L 等待点，呼叫武汉塔台请求起飞许可。",
       "referenceText": "Wuhan Tower, CES232, taxiing Southbound on taxiway C to holding point runway 36L, request takeoff clearance.",
       "referenceTextZh": "武汉塔台，CES232，正在 C 滑行道向南滑行至跑道 36L 等待点，请求起飞许可。",
@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0090-card-main-1551",
       "taskTitle": "CES 232-2",
-      "audioText": "C: China Eastern 232, Wuhan Tower, line up and wait runway 36 left.",
+      "audioText": "C: China Eastern 232, Wuhan Tower, line up and wait runway 36L.",
       "audioTextZh": "C：China Eastern 232，武汉塔台，跑道 36L 进跑道等待。",
       "referenceText": "Line up and wait runway 36L, CES232.",
       "referenceTextZh": "跑道 36L 进跑道等待，CES232。",
@@ -25,7 +25,7 @@
     {
       "id": "atc-scenario-0090-card-main-1552",
       "taskTitle": "CES 232-3",
-      "audioText": "C: China Eastern 232, wind calm, cleared for takeoff runway 36 left, contact Wuhan Departure 118.25 when airborne.",
+      "audioText": "C: China Eastern 232, wind calm, cleared for takeoff runway 36L, contact Wuhan Departure 118.25 when airborne.",
       "audioTextZh": "C：China Eastern 232，风静，跑道 36L 可以起飞，离地后联系武汉离场 118.25。",
       "referenceText": "Cleared for takeoff runway 36L, 118.25, CES232.",
       "referenceTextZh": "跑道 36L 可以起飞，118.25，CES232。",
@@ -61,7 +61,7 @@
     {
       "id": "atc-scenario-0090-card-main-1556",
       "taskTitle": "CES 232-7",
-      "audioText": "C: China Eastern 232, turn right track direct to Echo Bravo NDB, descend and maintain 1200 meters, follow the published procedure, cleared for ILS approach runway 36 right.",
+      "audioText": "C: China Eastern 232, turn right track direct to Echo Bravo NDB, descend and maintain 1200 meters, follow the published procedure, cleared for ILS approach runway 36R.",
       "audioTextZh": "C：China Eastern 232，右转直飞 Echo Bravo NDB，下降并保持 1200 米，按公布程序，许可 ILS 进近跑道 36R。",
       "referenceText": "Turn right track direct to EB NDB, descend and maintain 1200m, follow the published procedure, cleared for ILS approach runway 36R, CES232.",
       "referenceTextZh": "右转直飞 EB NDB，下降并保持 1200 米，按公布程序，许可 ILS 进近跑道 36R，CES232。",
@@ -79,7 +79,7 @@
     {
       "id": "atc-scenario-0090-card-main-1558",
       "taskTitle": "CES 232-9",
-      "audioText": "B: Call Wuhan Tower and tell the controller you have established ILS runway 36 right and you are ready for the low-pass.",
+      "audioText": "B: Call Wuhan Tower and tell the controller you have established ILS runway 36R and you are ready for the low-pass.",
       "audioTextZh": "B：呼叫武汉塔台并告诉管制员你已建立 ILS 跑道 36R，准备低通场。",
       "referenceText": "Wuhan Tower, CES232, established ILS runway 36R, ready for low-pass.",
       "referenceTextZh": "武汉塔台，CES232，已建立 ILS 跑道 36R，准备低通场。",
@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0090-card-main-1559",
       "taskTitle": "CES 232-10",
-      "audioText": "C: China Eastern 232, wind calm, cleared low-pass runway 36 right, not below 200 meters above the runway.",
+      "audioText": "C: China Eastern 232, wind calm, cleared low-pass runway 36R, not below 200 meters above the runway.",
       "audioTextZh": "C：China Eastern 232，风静，跑道 36R 低通场许可，不低于跑道上方 200 米。",
       "referenceText": "Cleared low-pass runway 36R, not below 200m above the runway, CES232.",
       "referenceTextZh": "跑道 36R 低通场许可，不低于跑道上方 200 米，CES232。",

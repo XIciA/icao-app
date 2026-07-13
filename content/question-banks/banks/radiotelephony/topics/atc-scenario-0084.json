@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0084-card-main-1450",
       "taskTitle": "CSN 3001-10",
-      "audioText": "C: China Southern 001, Wuhan Control, radar contact, continue descend and maintain 6300 meters, turn right, direct to Zulu Foxtrot.",
+      "audioText": "C: China Southern 001, Wuhan Control, radar contact, continue descent to 6300 meters, turn right, direct to Zulu Foxtrot.",
       "audioTextZh": "C：China Southern 001，武汉管制，雷达识别，继续下降并保持 6300 米，右转，直飞 Zulu Foxtrot。",
       "referenceText": "Continue descend and maintain 6300 meters, turn right, direct to ZF, CSN3001.",
       "referenceTextZh": "继续下降并保持 6300 米，右转，直飞 ZF，CSN3001。",
@@ -115,7 +115,7 @@
     {
       "id": "atc-scenario-0084-card-main-1453",
       "taskTitle": "CSN 3001-13",
-      "audioText": "C: China Southern 001, Wuhan Approach, roger, do you require any emergency services ?\nB: Tell Wuhan Approach you need ambulance and first aid upon arrival.",
+      "audioText": "C: China Southern 001, Wuhan Approach, roger, do you require any emergency services?\nB: Tell Wuhan Approach you need ambulance and first aid upon arrival.",
       "audioTextZh": "C：China Southern 001，武汉进近，收到，你需要任何应急服务吗？\nB：告诉武汉进近你抵达时需要救护车和急救。",
       "referenceText": "Request ambulance and first aid upon arrival, CSN3001.",
       "referenceTextZh": "请求抵达时救护车和急救，CSN3001。",
@@ -124,7 +124,7 @@
     {
       "id": "atc-scenario-0084-card-main-1454",
       "taskTitle": "CSN 3001-14",
-      "audioText": "C: China Southern 001, we will relay your message to the related parties, you are number 1, now turn left heading 120, descend and maintain 1500 meters, cleared for ILS approach runway 36 right.",
+      "audioText": "C: China Southern 001, we will relay your message to the related parties, you are number 1, now turn left heading 120, descend and maintain 1500 meters, cleared for ILS approach runway 36R.",
       "audioTextZh": "C：China Southern 001，我们会把你的信息转告相关单位，你是第 1 架，现在左转航向 120，下降并保持 1500 米，许可 ILS 进近跑道 36R。",
       "referenceText": "Turn left heading 120, descend and maintain 1500 meters, cleared for ILS approach runway 36R, CSN3001.",
       "referenceTextZh": "左转航向 120，下降并保持 1500 米，许可 ILS 进近跑道 36R，CSN3001。",
@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0084-card-main-1455",
       "taskTitle": "CSN 3001-15",
-      "audioText": "C: China Southern 001, runway 36 right, cleared to land, the ambulance will be ready near the runway.",
+      "audioText": "C: China Southern 001, runway 36R, cleared to land, the ambulance will be ready near the runway.",
       "audioTextZh": "C：China Southern 001，跑道 36R，可以落地，救护车将在跑道附近准备好。",
       "referenceText": "Runway 36R, cleared to land, CSN3001.",
       "referenceTextZh": "跑道 36R，可以落地，CSN3001。",

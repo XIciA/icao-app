@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0050-card-main-861",
       "taskTitle": "ACA 517-8",
-      "audioText": "B: Advice Wuhan Control you want to divert to Wuhan and track direct to Whiskey Hotel Alpha and descend to lower levels.",
+      "audioText": "B: Advise Wuhan Control you want to divert to Wuhan and track direct to Whiskey Hotel Alpha and descend to lower levels.",
       "audioTextZh": "B: 通知 武汉管制 你想改航 Wuhan，直飞 Whiskey Hotel Alpha 并下降到较低高度。",
       "referenceText": "Wuhan Control, ACA517, request divert to Wuhan and track direct to WHA and descend to lower levels.",
       "referenceTextZh": "武汉管制，ACA517，请求改航 Wuhan，直飞 WHA，并下降到较低高度。",
@@ -97,7 +97,7 @@
     {
       "id": "atc-scenario-0050-card-main-864",
       "taskTitle": "ACA 517-11",
-      "audioText": "C: Air Canada 517, runway 36 left is not available, runway in use 36 right.",
+      "audioText": "C: Air Canada 517, runway 36L is not available, runway in use 36R.",
       "audioTextZh": "C: Air Canada 517，跑道 36L 不可用，使用跑道 36R。",
       "referenceText": "Roger, runway in use 36R, ACA517.",
       "referenceTextZh": "收到，使用跑道 36R，ACA517。",
@@ -115,7 +115,7 @@
     {
       "id": "atc-scenario-0050-card-main-866",
       "taskTitle": "ACA 517-13",
-      "audioText": "B: You executed a missed approach procedure and try to land on runway 36 right.",
+      "audioText": "B: You executed a missed approach procedure and try to land on runway 36R.",
       "audioTextZh": "B: 你执行复飞程序，并尝试在跑道 36R 着陆。",
       "referenceText": "Wuhan Tower, ACA517, going around, we will try to land on runway 36R.",
       "referenceTextZh": "武汉塔台，ACA517，复飞，我们将尝试在跑道 36R 着陆。",
@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0050-card-main-868",
       "taskTitle": "ACA 517-15",
-      "audioText": "C: Air Canada 517, maintain 1200 meters, expect radar vector ILS approach runway 36 right.",
+      "audioText": "C: Air Canada 517, maintain 1200 meters, expect radar vector ILS approach runway 36R.",
       "audioTextZh": "C: Air Canada 517，保持 1200 米，预计雷达引导跑道 36R ILS 进近。",
       "referenceText": "Maintain 1200 meters, expect radar vector ILS approach runway 36R, ACA517.",
       "referenceTextZh": "保持 1200 米，预计雷达引导跑道 36R ILS 进近，ACA517。",
@@ -142,7 +142,7 @@
     {
       "id": "atc-scenario-0050-card-main-869",
       "taskTitle": "ACA 517-16",
-      "audioText": "C: Air Canada 517, runway covered with patches of water, breaking action medium.",
+      "audioText": "C: Air Canada 517, runway covered with patches of water, braking action medium.",
       "audioTextZh": "C: Air Canada 517，跑道有片状积水，刹车效应中等。",
       "referenceText": "Runway covered with patches of water, breaking action medium, ACA517.",
       "referenceTextZh": "跑道有片状积水，刹车效应中等，ACA517。",

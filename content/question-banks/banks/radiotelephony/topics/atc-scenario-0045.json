@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0045-card-main-762",
       "taskTitle": "ACA 121-2",
-      "audioText": "C: Air Canada 121, Wuhan Approach, roger, cleared ILS approach runway 36 right and turn right heading 300 to final, you are 5 and half miles from touch down.",
+      "audioText": "C: Air Canada 121, Wuhan Approach, roger, cleared ILS approach runway 36R and turn right heading 300 to final, you are 5 and half miles from touch down.",
       "audioTextZh": "C: Air Canada 121，武汉进近，收到，可以跑道 36R ILS 进近，右转航向 300 加入五边，你距接地点 5.5 海里。",
       "referenceText": "Cleared ILS runway 36R and turn right heading 300 to final, ACA121.",
       "referenceTextZh": "可以跑道 36R ILS 进近，右转航向 300 加入五边，ACA121。",
@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0045-card-main-775",
       "taskTitle": "ACA 121-15",
-      "audioText": "C: Roger, sir, what's your intention, please ?\nB: Tell Departure you want to circle back for another landing on runway 36 right.",
+      "audioText": "C: Roger, sir, what's your intention, please?\nB: Tell Departure you want to circle back for another landing on runway 36R.",
       "audioTextZh": "C: 收到，先生，请问你的意图？\nB: 告诉 Departure 你想盘旋回来在跑道 36R 再次着陆。",
       "referenceText": "Wuhan Departure, ACA121, we would like to circle back for another landing on runway 36R.",
       "referenceTextZh": "Wuhan Departure，ACA121，我们想盘旋回来在跑道 36R 再次着陆。",
@@ -142,7 +142,7 @@
     {
       "id": "atc-scenario-0045-card-main-776",
       "taskTitle": "ACA 121-16",
-      "audioText": "C: Air Canada 121, I am sorry to inform you that runway 36 right is closed, there are patches of snow and much debris on the runway. Use runway 04 instead, fly heading 134 to intercept Localizer of runway 04.",
+      "audioText": "C: Air Canada 121, I am sorry to inform you that runway 36R is closed, there are patches of snow and much debris on the runway. Use runway 04 instead, fly heading 134 to intercept Localizer of runway 04.",
       "audioTextZh": "C: Air Canada 121，很抱歉通知你，跑道 36R 关闭，跑道上有片状积雪和大量碎片。改用跑道 04，飞航向 134 切入跑道 04 航向道。",
       "referenceText": "Runway 04, heading 134 to intercept localizer of runway04, ACA121.",
       "referenceTextZh": "跑道 04，航向 134 切入跑道 04 航向道，ACA121。",

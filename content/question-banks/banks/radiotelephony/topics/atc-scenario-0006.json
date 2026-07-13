@@ -7,7 +7,7 @@
     {
       "id": "atc-scenario-0006-card-main-095",
       "taskTitle": "QFA 701-1",
-      "audioText": "B: Your call sigh is Qantas 701, flying from Sydney to Wuhan, you are cruising at 10700 meters and squawking 3211, you are now entering Wuhan Control area, make an initial contact with Wuhan Control.",
+      "audioText": "B: Your call sign is Qantas 701, flying from Sydney to Wuhan, you are cruising at 10700 meters and squawking 3211, you are now entering Wuhan Control area, make an initial contact with Wuhan Control.",
       "audioTextZh": "B：你的呼号是 Qantas 701，从悉尼飞往武汉，巡航高度 10700 米，应答机 3211，现在进入武汉管制区，与武汉管制首次联系。",
       "referenceText": "Wuhan Control, QFA701, cruising at 10700 meters, squawking 3211.",
       "referenceTextZh": "武汉管制，QFA701，巡航高度 10700 米，应答机 3211。",
@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0006-card-main-104",
       "taskTitle": "QFA 701-10",
-      "audioText": "B: You are told to use the runway 22 VOR DME approach, but the weather is deteriorating, ask Wuhan Tower for an ILS approach runway 18 left.",
+      "audioText": "B: You are told to use the runway 22 VOR DME approach, but the weather is deteriorating, ask Wuhan Tower for an ILS approach runway 18L.",
       "audioTextZh": "B：你被告知使用跑道 22 VOR DME 进近，但天气正在变差，向武汉塔台请求跑道 18 左 ILS 进近。",
       "referenceText": "Wuhan Tower, QFA701, request ILS approach runway 18L due deteriorating weather.",
       "referenceTextZh": "武汉塔台，QFA701，因天气变差，请求跑道 18L ILS 进近。",
@@ -97,7 +97,7 @@
     {
       "id": "atc-scenario-0006-card-main-105",
       "taskTitle": "QFA 701-11",
-      "audioText": "C: Qantas 701, ILS approach runway 18 left is approved.",
+      "audioText": "C: Qantas 701, ILS approach runway 18L is approved.",
       "audioTextZh": "C：Qantas 701，跑道 18 左 ILS 进近批准。",
       "referenceText": "Cleared ILS approach runway 18L, QFA701.",
       "referenceTextZh": "许可跑道 18L ILS 进近，QFA701。",
@@ -142,7 +142,7 @@
     {
       "id": "atc-scenario-0006-card-main-110",
       "taskTitle": "QFA 701-16",
-      "audioText": "C: Qantas 701, turn right heading 090, cleared for ILS approach runway 18 left.",
+      "audioText": "C: Qantas 701, turn right heading 090, cleared for ILS approach runway 18L.",
       "audioTextZh": "C：Qantas 701，右转航向 090，许可跑道 18 左 ILS 进近。",
       "referenceText": "Turn right heading 090, cleared for ILS approach runway 18L, QFA701.",
       "referenceTextZh": "右转航向 090，许可跑道 18L ILS 进近，QFA701。",

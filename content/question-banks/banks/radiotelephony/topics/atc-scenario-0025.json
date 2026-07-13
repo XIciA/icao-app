@@ -7,7 +7,7 @@
     {
       "id": "atc-scenario-0025-card-main-427",
       "taskTitle": "BAW 038-1",
-      "audioText": "B: Your call sign is Speedbird 038, from Beijing to London, passing 1200 metres, climbing to 1800 metres, now contact Beijing Departure .",
+      "audioText": "B: Your call sign is Speedbird 038, from Beijing to London, passing 1200 meters, climbing to 1800 meters, now contact Beijing Departure.",
       "audioTextZh": "你的呼号是Speedbird 038，从北京飞往伦敦，正在通过1200米爬升至1800米，现在联系北京离场。",
       "referenceText": "Beijing Departure, BAW038, passing 1200 metres, climbing to 1800 metres.",
       "referenceTextZh": "北京离场，BAW038，正在通过1200米爬升至1800米。",
@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0025-card-main-428",
       "taskTitle": "BAW 038-2",
-      "audioText": "C: Speedbird 038, Beijing Departure, identified, climb to 6000 metres on standard.",
+      "audioText": "C: Speedbird 038, Beijing Departure, identified, climb to 6000 meters on standard.",
       "audioTextZh": "管制员：Speedbird 038，北京离场，雷达识别，按标准气压爬升至6000米。",
       "referenceText": "Climb to 6000 metres on standard, BAW038.",
       "referenceTextZh": "按标准气压爬升至6000米，BAW038。",
@@ -25,7 +25,7 @@
     {
       "id": "atc-scenario-0025-card-main-429",
       "taskTitle": "BAW 038-3",
-      "audioText": "B: The aircraft ingested something, request descent to 3000 metres.",
+      "audioText": "B: The aircraft ingested something, request descent to 3000 meters.",
       "audioTextZh": "飞机吸入异物，申请下降至3000米。",
       "referenceText": "Beijing Departure, BAW038, foreign object ingestion, request descent to 3000 meters.",
       "referenceTextZh": "北京离场，BAW038，飞机吸入异物，申请下降至3000米。",
@@ -34,7 +34,7 @@
     {
       "id": "atc-scenario-0025-card-main-430",
       "taskTitle": "BAW 038-4",
-      "audioText": "C: Speedbird 038, roger, descend to 3000 metres on QNH 1011.",
+      "audioText": "C: Speedbird 038, roger, descend to 3000 meters on QNH 1011.",
       "audioTextZh": "管制员：Speedbird 038，收到，按QNH 1011下降至3000米。",
       "referenceText": "Descend to 3000 metres on QNH 1011, BAW038.",
       "referenceTextZh": "按QNH 1011下降至3000米，BAW038。",
@@ -97,7 +97,7 @@
     {
       "id": "atc-scenario-0025-card-main-437",
       "taskTitle": "BAW 038-11",
-      "audioText": "C: Speedbird 038, roger, turn right heading 300, expect runway 01, caution surface wind 240, 12 metres per second, gusting to 18 metres per second.",
+      "audioText": "C: Speedbird 038, roger, turn right heading 300, expect runway 01, caution surface wind 240, 12 meters per second, gusting to 18 meters per second.",
       "audioTextZh": "管制员：Speedbird 038，收到，右转航向300，预计01跑道。注意地面风240度，12米/秒，阵风18米/秒。",
       "referenceText": "Turn right heading 300, expect runway 01, BAW038.",
       "referenceTextZh": "右转航向300，预计01跑道，BAW038。",

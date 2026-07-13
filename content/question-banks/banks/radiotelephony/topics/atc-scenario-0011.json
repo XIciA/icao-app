@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0011-card-main-180",
       "taskTitle": "SIA 323-2",
-      "audioText": "C: Singapore 323, Wuhan Delivery, cleared to Singapore via flight planned route, departure runway 36 right, follow Lima Kilo Oscar 01 departure, initial climb 1800 meters, cruising level 10400 meters, departure frequency 119.7, squawk 3763.",
+      "audioText": "C: Singapore 323, Wuhan Delivery, cleared to Singapore via flight planned route, departure runway 36R, follow Lima Kilo Oscar 01 departure, initial climb 1800 meters, cruising level 10400 meters, departure frequency 119.7, squawk 3763.",
       "audioTextZh": "C：Singapore 323，武汉放行，许可按飞行计划航路飞往新加坡，离场跑道 36 右，执行 Lima Kilo Oscar 01 离场，初始爬升 1800 米，巡航高度 10400 米，离场频率 119.7，应答机 3763。",
       "referenceText": "Cleared to Singapore via flight planned route, departure runway 36R, follow LKO 01 departure, initial climb 1800m, cruising level 10400m, departure frequency 119.7, squawk 3763, SIA323.",
       "referenceTextZh": "许可按飞行计划航路飞往新加坡，离场跑道 36R，执行 LKO 01 离场，初始爬升 1800 米，巡航高度 10400 米，离场频率 119.7，应答机 3763，SIA323。",
@@ -52,7 +52,7 @@
     {
       "id": "atc-scenario-0011-card-main-184",
       "taskTitle": "SIA 323-6",
-      "audioText": "C: Singapore 323, taxi via taxiway Zulu 4, Alpha 3 and Alpha to holding point runway 36 right.",
+      "audioText": "C: Singapore 323, taxi via taxiway Zulu 4, Alpha 3 and Alpha to holding point runway 36R.",
       "audioTextZh": "C：Singapore 323，经 Zulu 4、Alpha 3 和 Alpha 滑行道滑行至跑道 36 右等待点。",
       "referenceText": "Taxi via taxiway Z4, A3 and A to holding point runway 36R, SIA323.",
       "referenceTextZh": "经 Z4、A3 和 A 滑行道滑行至跑道 36R 等待点，SIA323。",
@@ -79,7 +79,7 @@
     {
       "id": "atc-scenario-0011-card-main-187",
       "taskTitle": "SIA 323-9",
-      "audioText": "B: Now you are at holding point runway 36 right, you notice the wind sock shows strong tailwind, ask Wuhan Tower to check the wind.",
+      "audioText": "B: Now you are at holding point runway 36R, you notice the wind sock shows strong tailwind, ask Wuhan Tower to check the wind.",
       "audioTextZh": "B：现在你在跑道 36 右等待点，注意到风向袋显示强顺风，请武汉塔台检查风。",
       "referenceText": "Wuhan Tower, SIA323, holding point runway 36R, the wind sock shows strong tailwind, request wind check.",
       "referenceTextZh": "武汉塔台，SIA323，跑道 36R 等待点，风向袋显示强顺风，请求风向风速检查。",
@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0011-card-main-188",
       "taskTitle": "SIA 323-10",
-      "audioText": "C: Singapore 323, wind 200 degrees, 8 meters per second.\nB: The tailwind exceeds your takeoff limit, ask Wuhan Tower to change to runway 18 left for departure.",
+      "audioText": "C: Singapore 323, wind 200 degrees, 8 meters per second.\nB: The tailwind exceeds your takeoff limit, ask Wuhan Tower to change to runway 18L for departure.",
       "audioTextZh": "C：Singapore 323，风 200 度，8 米/秒。\nB：顺风超过你的起飞限制，请武汉塔台改用跑道 18 左离场。",
       "referenceText": "Roger, the tailwind exceeds our takeoff limit, request change to runway 18L, SIA323.",
       "referenceTextZh": "收到，顺风超过我们的起飞限制，请求改用跑道 18L，SIA323。",
@@ -97,7 +97,7 @@
     {
       "id": "atc-scenario-0011-card-main-189",
       "taskTitle": "SIA 323-11",
-      "audioText": "C: Singapore 323, taxi via Alpha, Alpha 3, Tango and November to runway 18 left.",
+      "audioText": "C: Singapore 323, taxi via Alpha, Alpha 3, Tango and November to runway 18L.",
       "audioTextZh": "C：Singapore 323，经 Alpha、Alpha 3、Tango 和 November 滑行至跑道 18 左。",
       "referenceText": "Taxi via A, A3, T and N to runway 18L, SIA323.",
       "referenceTextZh": "经 A、A3、T 和 N 滑行至跑道 18L，SIA323。",
@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0011-card-main-190",
       "taskTitle": "SIA 323-12",
-      "audioText": "B: Now you are holding short of runway 18 left, you are ready for departure.",
+      "audioText": "B: Now you are holding short of runway 18L, you are ready for departure.",
       "audioTextZh": "B：现在你在跑道 18 左外等待，准备好离场。",
       "referenceText": "Wuhan Tower, SIA323, holding short of runway 18L, ready for departure.",
       "referenceTextZh": "武汉塔台，SIA323，跑道 18L 外等待，准备好离场。",
@@ -160,7 +160,7 @@
     {
       "id": "atc-scenario-0011-card-main-196",
       "taskTitle": "SIA 323-18",
-      "audioText": "C: Singapore 323, turn left, direct to Lima Kilo Oscar, expect ILS approach runway 36 right.",
+      "audioText": "C: Singapore 323, turn left, direct to Lima Kilo Oscar, expect ILS approach runway 36R.",
       "audioTextZh": "C：Singapore 323，左转，直飞 Lima Kilo Oscar，预期跑道 36 右 ILS 进近。",
       "referenceText": "Turn left, direct to LKO, expect ILS approach runway 36R, SIA323.",
       "referenceTextZh": "左转，直飞 LKO，预期跑道 36R ILS 进近，SIA323。",

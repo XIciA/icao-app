@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0077-card-main-1319",
       "taskTitle": "CSN 3102-2",
-      "audioText": "C: China Southern 102, cleared to Guangzhou via flight planned route, runway in use 36 right, Lima Kilo Oscar 02 departure, initial altitude 1200 meters, cruising level 10400 meters, departure frequency 119.75, squawk 2736.",
+      "audioText": "C: China Southern 102, cleared to Guangzhou via flight planned route, runway in use 36R, Lima Kilo Oscar 02 departure, initial altitude 1200 meters, cruising level 10400 meters, departure frequency 119.75, squawk 2736.",
       "audioTextZh": "C：China Southern 102，许可飞往广州，按飞行计划航路，使用跑道 36R，Lima Kilo Oscar 02 离场，起始高度 1200 米，巡航高度 10400 米，离场频率 119.75，应答机 2736。",
       "referenceText": "Cleared to Guangzhou via flight planned route, runway in use 36R, LKO 02 departure, initial altitude 1200 meters, cruising level 10400 meters, departure frequency 119.75, squawk 2736, CSN3102.",
       "referenceTextZh": "许可飞往广州，按飞行计划航路，使用跑道 36R，LKO 02 离场，起始高度 1200 米，巡航高度 10400 米，离场频率 119.75，应答机 2736，CSN3102。",
@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0077-card-main-1325",
       "taskTitle": "CSN 3102-8",
-      "audioText": "C: China southern 102, taxi to holding point runway 36 right via taxiway Zulu 4, Alpha 3 and Alpha.",
+      "audioText": "C: China Southern 102, taxi to holding point runway 36R via taxiway Zulu 4, Alpha 3 and Alpha.",
       "audioTextZh": "C：China Southern 102，经滑行道 Zulu 4、Alpha 3 和 Alpha 滑行至跑道 36R 等待点。",
       "referenceText": "Taxi to holding point runway 36R via taxiway Z4, A3 and A, CSN3102.",
       "referenceTextZh": "经滑行道 Z4、A3 和 A 滑行至跑道 36R 等待点，CSN3102。",
@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0077-card-main-1329",
       "taskTitle": "CSN 3102-12",
-      "audioText": "B: Now you are approaching holding point runway 36 right, contact Wuhan Tower and tell the controller you are ready for takeoff.",
+      "audioText": "B: Now you are approaching holding point runway 36R, contact Wuhan Tower and tell the controller you are ready for takeoff.",
       "audioTextZh": "B：现在你正接近跑道 36R 等待点，联系武汉塔台并告诉管制员你准备好起飞。",
       "referenceText": "Wuhan Tower, CSN3102, approaching holding point runway 36R, ready for departure.",
       "referenceTextZh": "武汉塔台，CSN3102，接近跑道 36R 等待点，准备好离场。",
@@ -115,7 +115,7 @@
     {
       "id": "atc-scenario-0077-card-main-1330",
       "taskTitle": "CSN 3102-13",
-      "audioText": "C: China Southern 102, hold short of runway 36 right, expect 15 minutes delay due thunderstorm approaching the upwind of runway 36 right.",
+      "audioText": "C: China Southern 102, hold short of runway 36R, expect 15 minutes delay due thunderstorm approaching the upwind of runway 36R.",
       "audioTextZh": "C：China Southern 102，跑道 36R 外等待，因雷暴接近跑道 36R 上风边，预计延误 15 分钟。",
       "referenceText": "Roger, hold short of runway 36R, CSN3102.",
       "referenceTextZh": "收到，跑道 36R 外等待，CSN3102。",
@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0077-card-main-1332",
       "taskTitle": "CSN 3102-15",
-      "audioText": "C: China Southern 102, enter runway 36 right, vacate runway via Alpha 2, then Tango 5 to gate 211.",
+      "audioText": "C: China Southern 102, enter runway 36R, vacate runway via Alpha 2, then Tango 5 to gate 211.",
       "audioTextZh": "C：China Southern 102，进入跑道 36R，经 Alpha 2 脱离跑道，然后经 Tango 5 到 211 号登机口。",
       "referenceText": "Enter runway 36R, vacate runway via A2, then T5 to gate 211, CSN3102.",
       "referenceTextZh": "进入跑道 36R，经 A2 脱离跑道，然后经 T5 到 211 号登机口，CSN3102。",

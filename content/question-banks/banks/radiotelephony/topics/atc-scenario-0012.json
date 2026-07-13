@@ -52,7 +52,7 @@
     {
       "id": "atc-scenario-0012-card-main-202",
       "taskTitle": "SIA 615-6",
-      "audioText": "C: Singapore 615, taxi to holding point runway 36 right via taxiway Zulu 4, Alpha 3 and Alpha.",
+      "audioText": "C: Singapore 615, taxi to holding point runway 36R via taxiway Zulu 4, Alpha 3 and Alpha.",
       "audioTextZh": "C：Singapore 615，经 Zulu 4、Alpha 3 和 Alpha 滑行道滑行至跑道 36 右等待点。",
       "referenceText": "Taxi to holding point runway 36R via taxiway Z4, A3 and A, SIA615.",
       "referenceTextZh": "经 Z4、A3 和 A 滑行道滑行至跑道 36R 等待点，SIA615。",
@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0012-card-main-206",
       "taskTitle": "SIA 615-10",
-      "audioText": "B: Now you are at holding point runway  36 right, you are ready for departure, contact Wuhan Tower.",
+      "audioText": "B: Now you are at holding point runway 36R, you are ready for departure, contact Wuhan Tower.",
       "audioTextZh": "B：现在你在跑道 36 右等待点，准备好离场，联系武汉塔台。",
       "referenceText": "Wuhan Tower, SIA615, holding point runway 36R, ready for departure.",
       "referenceTextZh": "武汉塔台，SIA615，跑道 36R 等待点，准备好离场。",
@@ -97,7 +97,7 @@
     {
       "id": "atc-scenario-0012-card-main-207",
       "taskTitle": "SIA 615-11",
-      "audioText": "C: Singapore 615, cleared for takeoff runway 36 right, caution birds on the vicinity of airport.",
+      "audioText": "C: Singapore 615, cleared for takeoff runway 36R, caution birds on the vicinity of airport.",
       "audioTextZh": "C：Singapore 615，跑道 36 右可以起飞，注意机场附近有鸟。",
       "referenceText": "Cleared for takeoff runway 36R, roger, thanks, SIA615.",
       "referenceTextZh": "跑道 36R 可以起飞，收到，谢谢，SIA615。",

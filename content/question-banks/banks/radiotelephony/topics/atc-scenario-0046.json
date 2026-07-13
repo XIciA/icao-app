@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0046-card-main-780",
       "taskTitle": "ACA 219-2",
-      "audioText": "C: Air Canada 219, reduce speed to mach 0.75 due flow control.",
+      "audioText": "C: Air Canada 219, reduce speed to Mach 0.75 due flow control.",
       "audioTextZh": "C: Air Canada 219，由于流量控制，减速到马赫 0.75。",
       "referenceText": "Reduce speed to M.75, ACA219.",
       "referenceTextZh": "减速到 M.75，ACA219。",
@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0046-card-main-786",
       "taskTitle": "ACA 219-8",
-      "audioText": "C: Air Canada 219, roger, track direct to Zulu Foxtrot, follow Zulu Foxtrot 2 Alpha arrival, expect ILS approach runway 36 right.",
+      "audioText": "C: Air Canada 219, roger, track direct to Zulu Foxtrot, follow Zulu Foxtrot 2 Alpha arrival, expect ILS approach runway 36R.",
       "audioTextZh": "C: Air Canada 219，收到，直飞 Zulu Foxtrot，执行 Zulu Foxtrot 2 Alpha 进场，预计跑道 36R ILS 进近。",
       "referenceText": "Track direct to ZF, follow ZF2A arrival, expect ILS approach runway 36R, ACA219.",
       "referenceTextZh": "直飞 ZF，执行 ZF2A 进场，预计跑道 36R ILS 进近，ACA219。",
@@ -97,7 +97,7 @@
     {
       "id": "atc-scenario-0046-card-main-789",
       "taskTitle": "ACA 219-11",
-      "audioText": "B: Now you are established on ILS approach runway 36 right, you are 15 miles from touchdown, contact Wuhan Tower.",
+      "audioText": "B: Now you are established on ILS approach runway 36R, you are 15 miles from touchdown, contact Wuhan Tower.",
       "audioTextZh": "B: 现在你已建立跑道 36R ILS 进近，距接地点 15 海里，联系武汉塔台。",
       "referenceText": "Wuhan Tower, ACA219, established on ILS approach runway 36R, 15 miles from touchdown.",
       "referenceTextZh": "武汉塔台，ACA219，已建立跑道 36R ILS 进近，距接地点 15 海里。",
@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0046-card-main-790",
       "taskTitle": "ACA 219-12",
-      "audioText": "C: Air Canada 219, roger, surface wind calm, RVR touchdown 550 meters, midpoint 600 meters, rollout 500 meters, continue approach runway 36 right.",
+      "audioText": "C: Air Canada 219, roger, surface wind calm, RVR touchdown 550 meters, midpoint 600 meters, rollout 500 meters, continue approach runway 36R.",
       "audioTextZh": "C: Air Canada 219，收到，地面风静风，RVR 接地点 550 米，中段 600 米，停止端 500 米，继续进近跑道 36R。",
       "referenceText": "Roger, continue approach runway 36R, ACA219.",
       "referenceTextZh": "收到，继续进近跑道 36R，ACA219。",
@@ -124,7 +124,7 @@
     {
       "id": "atc-scenario-0046-card-main-792",
       "taskTitle": "ACA 219-14",
-      "audioText": "C: Air Canada 219, cloud broken 700 meters, cleared to land runway 36 right.",
+      "audioText": "C: Air Canada 219, cloud broken 700 meters, cleared to land runway 36R.",
       "audioTextZh": "C: Air Canada 219，疏云 700 米，可以着陆跑道 36R。",
       "referenceText": "Cloud broken 700 meters, cleared to land runway 36R, ACA219.",
       "referenceTextZh": "疏云 700 米，可以着陆跑道 36R，ACA219。",
@@ -133,7 +133,7 @@
     {
       "id": "atc-scenario-0046-card-main-793",
       "taskTitle": "ACA 219-15",
-      "audioText": "B: At the minimum, you are unable to see approach lights, you are carrying out a missed approach, advice Tower.",
+      "audioText": "B: At the minimum, you are unable to see approach lights, you are carrying out a missed approach, advise Tower.",
       "audioTextZh": "B: 在最低标准高度，你看不到进近灯，正在执行复飞，通知塔台。",
       "referenceText": "Wuhan Tower, ACA219, we are unable to see approach lights at minimum, going around.\n         (no contact at the minimum)",
       "referenceTextZh": "武汉塔台，ACA219，我们在最低标准高度看不到进近灯，复飞。\n         （最低标准高度无目视）",
@@ -142,7 +142,7 @@
     {
       "id": "atc-scenario-0046-card-main-794",
       "taskTitle": "ACA 219-16",
-      "audioText": "C: Air Canada 219,roger, follow the standard missed approach procedure, advice intentions when able.",
+      "audioText": "C: Air Canada 219, roger, follow the standard missed approach procedure, advise intentions when able.",
       "audioTextZh": "C: Air Canada 219，收到，执行标准复飞程序，可以时报告意图。",
       "referenceText": "Follow the standard missed approach procedure, ACA219.",
       "referenceTextZh": "执行标准复飞程序，ACA219。",
@@ -151,7 +151,7 @@
     {
       "id": "atc-scenario-0046-card-main-795",
       "taskTitle": "ACA 219-17",
-      "audioText": "B: Now you are climbing to missed approach altitude, you decide to divert to Changsha Airport, informe Tower.",
+      "audioText": "B: Now you are climbing to missed approach altitude, you decide to divert to Changsha Airport, inform Tower.",
       "audioTextZh": "B: 现在你正在爬升到复飞高度，决定改航 Changsha Airport，通知塔台。",
       "referenceText": "Wuhan Tower, ACA219, request divert to Changsha Airport.",
       "referenceTextZh": "武汉塔台，ACA219，请求改航 Changsha Airport。",

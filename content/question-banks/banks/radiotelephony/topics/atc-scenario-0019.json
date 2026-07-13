@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0019-card-main-320",
       "taskTitle": "AFR 101-2",
-      "audioText": "C: Air France 101, cleared to Paris via flight planned route, initially climb to 6600 meters, RENOB 32 departure, request level change for 10400 meters en route, squawk 1725, runway 36 right, departure frequency 127.75.",
+      "audioText": "C: Air France 101, cleared to Paris via flight planned route, initial climb 6600 meters, RENOB 32 departure, request level change for 10400 meters en route, squawk 1725, runway 36R, departure frequency 127.75.",
       "audioTextZh": "管制员：Air France 101，按计划航路放行至巴黎，初始爬升至6600米，RENOB 32离场，航路中申请改平10400米，squawk 1725，36右跑道，离场频率127.75。",
       "referenceText": "Cleared to Paris via flight planned route, initially climb to 6600 meters, RENOB 32 departure, request level change for 10400 meters en route, squawk 1725, runway 36R, departure frequency 127.75, AFR101.",
       "referenceTextZh": "按计划航路放行至巴黎，初始爬升至6600米，RENOB 32离场，航路中申请改平10400米，squawk 1725，36R跑道，离场频率127.75，AFR101。",
@@ -151,7 +151,7 @@
     {
       "id": "atc-scenario-0019-card-main-335",
       "taskTitle": "AFR 101-17",
-      "audioText": "C: Air france 101, turn right heading 180, maintain 3000 metres. When able, report current conditions on board.\nB: Read back and then give a report that the dangerous man is still struggling and has hurt 2 passengers.",
+      "audioText": "C: Air France 101, turn right heading 180, maintain 3000 meters. When able, report current conditions on board.\nB: Read back and then give a report that the dangerous man is still struggling and has hurt 2 passengers.",
       "audioTextZh": "管制员：Air France 101，右转航向180，保持3000米。条件允许时报告机上当前情况。请复诵，并报告危险男子仍在挣扎，已伤及两名旅客。",
       "referenceText": "Turn right heading 180, maintain 3000 metres, the dangerous man is still struggling and has hurt 2 passengers, AFR101.",
       "referenceTextZh": "右转航向180，保持3000米，危险男子仍在挣扎，已伤及两名旅客，AFR101。",
@@ -169,7 +169,7 @@
     {
       "id": "atc-scenario-0019-card-main-337",
       "taskTitle": "AFR 101-19",
-      "audioText": "C: Air France 101, roger. Cleared runway 18 right, you are number 1. Police officers and medical services will be ready on arrival.",
+      "audioText": "C: Air France 101, roger. Cleared runway 18R, you are number 1. Police officers and medical services will be ready on arrival.",
       "audioTextZh": "管制员：Air France 101，收到。可以18右跑道落地，你是第一架。警方和医疗保障将在到达时待命。",
       "referenceText": "Cleared runway 18R, thanks, AFR101.",
       "referenceTextZh": "可以18R落地，谢谢，AFR101。",
