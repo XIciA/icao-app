@@ -7,19 +7,19 @@
     {
       "id": "atc-scenario-0103-card-main-1768",
       "taskTitle": "CCA 102-1",
-      "audioText": "B: Your call sign is Air China 102, now call Wuhan Approach and report you are 10 miles north of Hekou, you are continuing approaching.",
-      "audioTextZh": "B: 你的呼号是 Air China 102，现在呼叫 武汉进近，报告你在 Hekou 以北 10 miles，继续进近。",
-      "referenceText": "Wuhan Approach, CCA102, we are 10 miles north of Hekou.",
-      "referenceTextZh": "武汉进近，CCA102，我们在 Hekou 以北 10 miles。",
+      "audioText": "B: Your call sign is CCA 102, now call Wuhan Approach and report you are 10 miles north of Hekou, you are continuing approaching.",
+      "audioTextZh": "B: 你的呼号是 CCA 102，现在呼叫 武汉进近，报告你在 Hekou 以北 10 miles，继续进近。",
+      "referenceText": "Wuhan Approach, CCA 102, we are 10 miles north of Hekou.",
+      "referenceTextZh": "武汉进近，CCA 102，我们在 Hekou 以北 10 miles。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1768.mp3"
     },
     {
       "id": "atc-scenario-0103-card-main-1769",
       "taskTitle": "CCA 102-2",
-      "audioText": "C: Air China 102, Wuhan Approach is with you. Have you got the current ATIS?\nB: You give an affirmative reply and report that you have received information Lima.",
-      "audioTextZh": "C: Air China 102，武汉进近 收到。你们收到当前 ATIS 了吗？\nB: 你肯定回答并报告已收到信息 Lima。",
-      "referenceText": "Affirm, information L, CCA102.",
-      "referenceTextZh": "肯定，信息 L，CCA102。",
+      "audioText": "C: CCA 102, Wuhan Approach is with you. Have you got the current ATIS?\nB: You give an affirmative reply and report that you have received information L.",
+      "audioTextZh": "C: CCA 102，武汉进近 收到。你们收到当前 ATIS 了吗？\nB: 你肯定回答并报告已收到信息 L。",
+      "referenceText": "Affirm, information L, CCA 102.",
+      "referenceTextZh": "肯定，信息 L，CCA 102。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1769.mp3"
     },
     {
@@ -27,26 +27,26 @@
       "taskTitle": "CCA 102-3",
       "audioText": "B: Suddenly you find a sharp drop in RPM, report you have a trouble with starboard engine.",
       "audioTextZh": "B: 突然你发现 RPM 急剧下降，报告右发有故障。",
-      "referenceText": "Wuhan Approach, CCA102, we have a trouble with right engine, RPM has dropped rapidly.",
-      "referenceTextZh": "武汉进近，CCA102，我们右发有故障，RPM 快速下降。",
+      "referenceText": "Wuhan Approach, CCA 102, we have a trouble with right engine, RPM has dropped rapidly.",
+      "referenceTextZh": "武汉进近，CCA 102，我们右发有故障，RPM 快速下降。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1770.mp3"
     },
     {
       "id": "atc-scenario-0103-card-main-1771",
       "taskTitle": "CCA 102-4",
-      "audioText": "C: Air China 102, what is your intention?\nB: Tell the controller you intend to land with radar vector.",
-      "audioTextZh": "C: Air China 102，你的意图是什么？\nB: 告诉管制员你打算接受雷达引导落地。",
-      "referenceText": "Wuhan Approach, CCA102, we would like radar vector to land at Wuhan Airport.",
-      "referenceTextZh": "武汉进近，CCA102，我们希望雷达引导到武汉机场落地。",
+      "audioText": "C: CCA 102, what is your intention?\nB: Tell the controller you intend to land with radar vector.",
+      "audioTextZh": "C: CCA 102，你的意图是什么？\nB: 告诉管制员你打算接受雷达引导落地。",
+      "referenceText": "Wuhan Approach, CCA 102, we would like radar vector to land at Wuhan Airport.",
+      "referenceTextZh": "武汉进近，CCA 102，我们希望雷达引导到武汉机场落地。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1771.mp3"
     },
     {
       "id": "atc-scenario-0103-card-main-1772",
       "taskTitle": "CCA 102-5",
-      "audioText": "C: Air China 102, continue on your present heading, radar will vector you to ILS approach.",
-      "audioTextZh": "C: Air China 102，保持当前航向，雷达将引导你做 ILS 进近。",
-      "referenceText": "Continue present heading, radar vector to ILS approach, CCA102.",
-      "referenceTextZh": "保持当前航向，雷达引导 ILS 进近，CCA102。",
+      "audioText": "C: CCA 102, continue on your present heading, radar will vector you to ILS approach.",
+      "audioTextZh": "C: CCA 102，保持当前航向，雷达将引导你做 ILS 进近。",
+      "referenceText": "Continue present heading, radar vector to ILS approach, CCA 102.",
+      "referenceTextZh": "保持当前航向，雷达引导 ILS 进近，CCA 102。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1772.mp3"
     },
     {
@@ -54,8 +54,8 @@
       "taskTitle": "CCA 102-6",
       "audioText": "B: Ask if you could get any airport assistance there, your engine needs maintenance.",
       "audioTextZh": "B: 询问那里是否有机场协助，你们的发动机需要维修。",
-      "referenceText": "Wuhan Approach, CCA102, could I get any airport assistance there? Our engine needs some maintenance.",
-      "referenceTextZh": "武汉进近，CCA102，那里能提供机场协助吗？我们的发动机需要维修。",
+      "referenceText": "Wuhan Approach, CCA 102, could I get any airport assistance there? Our engine needs some maintenance.",
+      "referenceTextZh": "武汉进近，CCA 102，那里能提供机场协助吗？我们的发动机需要维修。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1773.mp3"
     },
     {
@@ -63,8 +63,8 @@
       "taskTitle": "CCA 102-7",
       "audioText": "C: Affirm. Maintenance is available at this airport. I will continue to give you instructions and give you all the important information. Are you able to maintain 4200 meters?\nB: Tell the controller you could.",
       "audioTextZh": "C: 肯定。本机场有维修。我会继续给你指令并提供所有重要信息。你能保持 4200 meters 吗？\nB: 告诉管制员可以。",
-      "referenceText": "Affirm, we can maintain 4200 meters, CCA102.",
-      "referenceTextZh": "肯定，我们可以保持 4200 meters，CCA102。",
+      "referenceText": "Affirm, we can maintain 4200 meters, CCA 102.",
+      "referenceTextZh": "肯定，我们可以保持 4200 meters，CCA 102。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1774.mp3"
     },
     {
@@ -72,26 +72,26 @@
       "taskTitle": "CCA 102-8",
       "audioText": "B: 15 minutes later, you have established localizer, report to the controller.",
       "audioTextZh": "B: 15 分钟后，你已建立航向道，向管制员报告。",
-      "referenceText": "Wuhan Approach, CCA102, established on localizer.",
-      "referenceTextZh": "武汉进近，CCA102，已建立航向道。",
+      "referenceText": "Wuhan Approach, CCA 102, established on localizer.",
+      "referenceTextZh": "武汉进近，CCA 102，已建立航向道。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1775.mp3"
     },
     {
       "id": "atc-scenario-0103-card-main-1776",
       "taskTitle": "CCA 102-9",
-      "audioText": "C: Air China 102, descend to 900 meters on QNH 1012, cleared ILS approach runway 18R.",
-      "audioTextZh": "C: Air China 102，按 QNH 1012 下降到 900 meters，许可 ILS 进近跑道 18 right。",
-      "referenceText": "Descend to 900 meters on QNH1012, ILS approach runway 18 right, CCA102.",
-      "referenceTextZh": "按 QNH1012 下降到 900 meters，ILS 进近跑道 18 right，CCA102。",
+      "audioText": "C: CCA 102, descend to 900 meters on QNH 1012, cleared ILS approach Runway 18R.",
+      "audioTextZh": "C: CCA 102，按 QNH 1012 下降到 900 meters，许可 ILS 进近跑道 18 right。",
+      "referenceText": "Descend to 900 meters on QNH1012, ILS approach Runway 18 right, CCA 102.",
+      "referenceTextZh": "按 QNH1012 下降到 900 meters，ILS 进近跑道 18 right，CCA 102。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1776.mp3"
     },
     {
       "id": "atc-scenario-0103-card-main-1777",
       "taskTitle": "CCA 102-10",
-      "audioText": "C: Air China 102, contact Wuhan Tower 124.35.",
-      "audioTextZh": "C: Air China 102，联系武汉塔台124.35。",
-      "referenceText": "124.35, CCA102.",
-      "referenceTextZh": "124.35，CCA102。",
+      "audioText": "C: CCA 102, contact Wuhan Tower 124.35.",
+      "audioTextZh": "C: CCA 102，联系武汉塔台124.35。",
+      "referenceText": "124.35, CCA 102.",
+      "referenceTextZh": "124.35，CCA 102。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1777.mp3"
     },
     {
@@ -99,35 +99,35 @@
       "taskTitle": "CCA 102-11",
       "audioText": "B: Contact Tower and report you had bird strike.",
       "audioTextZh": "B: 联系塔台并报告你们遭遇鸟击。",
-      "referenceText": "Wuhan Tower, CCA102, we had bird strike.",
-      "referenceTextZh": "武汉塔台，CCA102，我们遭遇鸟击。",
+      "referenceText": "Wuhan Tower, CCA 102, we had bird strike.",
+      "referenceTextZh": "武汉塔台，CCA 102，我们遭遇鸟击。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1778.mp3"
     },
     {
       "id": "atc-scenario-0103-card-main-1779",
       "taskTitle": "CCA 102-12",
-      "audioText": "C: Air China 102, report your intention.\nB: You request to reduce speed to minimum approach speed. You also report that No.1 left windshield is cracked. The inner glass pane become broken.",
-      "audioTextZh": "C: Air China 102，报告你的意图。\nB: 你请求减速到最小进近速度。你还报告 1 号左风挡有裂纹，内层玻璃破裂。",
-      "referenceText": "We would like to reduce speed to minimum approach speed. No.1 left windshield is cracked. The inner glass pane become broken, CCA102.",
-      "referenceTextZh": "我们希望减速到最小进近速度。1 号左风挡有裂纹，内层玻璃破裂，CCA102。",
+      "audioText": "C: CCA 102, report your intention.\nB: You request to reduce speed to minimum approach speed. You also report that No.1 left windshield is cracked. The inner glass pane become broken.",
+      "audioTextZh": "C: CCA 102，报告你的意图。\nB: 你请求减速到最小进近速度。你还报告 1 号左风挡有裂纹，内层玻璃破裂。",
+      "referenceText": "We would like to reduce speed to minimum approach speed. No.1 left windshield is cracked. The inner glass pane become broken, CCA 102.",
+      "referenceTextZh": "我们希望减速到最小进近速度。1 号左风挡有裂纹，内层玻璃破裂，CCA 102。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1779.mp3"
     },
     {
       "id": "atc-scenario-0103-card-main-1780",
       "taskTitle": "CCA 102-13",
-      "audioText": "C: Air China 102, reduce to minimum approach speed. Report runway in sight.",
-      "audioTextZh": "C: Air China 102，减到最小进近速度。看到跑道报告。",
-      "referenceText": "Reduce to minimum approach speed, wilco, CCA102.",
-      "referenceTextZh": "减到最小进近速度，照办，CCA102。",
+      "audioText": "C: CCA 102, reduce to minimum approach speed. Report runway in sight.",
+      "audioTextZh": "C: CCA 102，减到最小进近速度。看到跑道报告。",
+      "referenceText": "Reduce to minimum approach speed, wilco, CCA 102.",
+      "referenceTextZh": "减到最小进近速度，照办，CCA 102。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1780.mp3"
     },
     {
       "id": "atc-scenario-0103-card-main-1781",
       "taskTitle": "CCA 102-14",
-      "audioText": "C: Air China 102, visibility is 8 miles, wind 270 at 10 knots, QNH 1013, landing runway 18R.",
-      "audioTextZh": "C: Air China 102，能见度 8 miles，风 270 度 10 knots，QNH 1013，落地跑道 18 right。",
-      "referenceText": "QNH1013, landing runway 18 right, CCA102.",
-      "referenceTextZh": "QNH1013，落地跑道 18 right，CCA102。",
+      "audioText": "C: CCA 102, visibility is 8 miles, wind 270 at 10 knots, QNH 1013, landing Runway 18R.",
+      "audioTextZh": "C: CCA 102，能见度 8 miles，风 270 度 10 knots，QNH 1013，落地跑道 18 right。",
+      "referenceText": "QNH1013, landing Runway 18 right, CCA 102.",
+      "referenceTextZh": "QNH1013，落地跑道 18 right，CCA 102。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1781.mp3"
     },
     {
@@ -135,8 +135,8 @@
       "taskTitle": "CCA 102-15",
       "audioText": "B: You have runway in sight, report it to Tower.",
       "audioTextZh": "B: 你已看到跑道，向塔台报告。",
-      "referenceText": "Wuhan Tower, CCA102, runway in sight.",
-      "referenceTextZh": "武汉塔台，CCA102，看到跑道。",
+      "referenceText": "Wuhan Tower, CCA 102, runway in sight.",
+      "referenceTextZh": "武汉塔台，CCA 102，看到跑道。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1782.mp3"
     }
   ]

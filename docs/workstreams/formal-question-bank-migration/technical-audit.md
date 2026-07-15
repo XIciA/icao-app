@@ -32,7 +32,7 @@
 ## 已具备基础
 
 - 本项目已经完成题库模块统一维护方向。
-- 数据结构文档 `docs/question-bank-study-structure.md` 已明确学习页显示规则。
+- 数据结构文档 `docs/product/question-bank-study-structure.md` 已明确学习页显示规则。
 - 源项目已有真实题库文本，可用脚本抽取。
 
 ## 主要缺口

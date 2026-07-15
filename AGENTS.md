@@ -34,6 +34,16 @@ phase logs, and closeout records belong in this repository.
   before using or changing Expo APIs.
 - Use pnpm and the versions locked by this repository.
 - Work in the current roadmap stage only, in the smallest independently verifiable loop.
+- Before adding feature-specific data, state, resource loading, playback, persistence, or UI
+  infrastructure, first audit the repository for an existing shared source of truth and reusable
+  implementation. Prefer extending shared question-bank data, metadata indexes, asset resolution,
+  audio coordination, storage, and UI primitives over copying them into an isolated feature.
+- Do not create parallel copies of question-bank content, audio mappings, duration metadata,
+  subtitle text, playback state, or resource-resolution logic. A separate implementation is
+  allowed only when the existing abstraction cannot satisfy the product behavior; record that
+  limitation and the new ownership boundary in the relevant technical or closeout document.
+- Stage reviews must identify which existing shared modules and assets were reused, and verify
+  that the change did not introduce a second source of truth or competing lifecycle owner.
 - Do not revert unrelated changes. Do not commit secrets, certificates, local environment
   files, or signing material.
 - After TypeScript or React Native changes, run `pnpm check` and the relevant native build.
@@ -72,5 +82,5 @@ phase logs, and closeout records belong in this repository.
   a database backup, explicit migration review, execution, and post-migration verification.
 - Never copy secrets into the repository, deployment archive, logs, or chat. Keep runtime secrets
   in the existing protected ECS environment files.
-- Follow `docs/deployment-and-runtime-rules.md` for the runtime map, deployment evidence, and
+- Follow `docs/operations/deployment-and-runtime-rules.md` for the runtime map, deployment evidence, and
   rollback requirements.

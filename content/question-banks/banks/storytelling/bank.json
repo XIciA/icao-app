@@ -25,7 +25,6 @@
     "audioTitlePattern": "card-title",
     "consoleTabs": [
       "mine",
-      "reference",
       "notes"
     ],
     "copy": {

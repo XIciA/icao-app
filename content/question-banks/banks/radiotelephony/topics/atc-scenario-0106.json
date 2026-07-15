@@ -7,37 +7,37 @@
     {
       "id": "atc-scenario-0106-card-main-1822",
       "taskTitle": "ACA 412-1",
-      "audioText": "B: You are over Tango Oscar Golf at 35, FL210, you want to descend to FL170, report to Guangzhou Control.",
-      "audioTextZh": "B: 你在 Tango Oscar Golf 上空 35，飞行高度层 210，想下降到飞行高度层 170，向广州管制报告。",
-      "referenceText": "Guangzhou Control, ACA412, over TOG at 35, FL210, request descend to FL170.",
-      "referenceTextZh": "广州管制，ACA412，在 TOG 上空 35，FL210，请求下降到 FL170。",
+      "audioText": "B: You are over TOG at 35, FL210, you want to descend to FL170, report to Guangzhou Control.",
+      "audioTextZh": "B: 你在 TOG 上空 35，飞行高度层 210，想下降到飞行高度层 170，向广州管制报告。",
+      "referenceText": "Guangzhou Control, ACA 412, over TOG at 35, FL210, request descend to FL170.",
+      "referenceTextZh": "广州管制，ACA 412，在 TOG 上空 35，FL210，请求下降到 FL170。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1822.mp3"
     },
     {
       "id": "atc-scenario-0106-card-main-1823",
       "taskTitle": "ACA 412-2",
-      "audioText": "C: Air Canada 412, can you make FL190 by Tango Uniform X-Ray?\nB: You want FL170 because the turbulence is likely to get worse further along the route.",
-      "audioTextZh": "C: Air Canada 412，你能在 Tango Uniform X-Ray 前达到飞行高度层 190 吗？\nB: 你想要飞行高度层 170，因为航路前方乱流可能会加重。",
-      "referenceText": "That can't be sure, the turbulence is likely to get worse further along the route, FL170 is preferable, ACA412.",
-      "referenceTextZh": "无法确定，航路前方乱流可能会加重，FL170 更合适，ACA412。",
+      "audioText": "C: ACA 412, can you make FL190 by TUX?\nB: You want FL170 because the turbulence is likely to get worse further along the route.",
+      "audioTextZh": "C: ACA 412，你能在 TUX 前达到飞行高度层 190 吗？\nB: 你想要飞行高度层 170，因为航路前方乱流可能会加重。",
+      "referenceText": "That can't be sure, the turbulence is likely to get worse further along the route, FL170 is preferable, ACA 412.",
+      "referenceTextZh": "无法确定，航路前方乱流可能会加重，FL170 更合适，ACA 412。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1823.mp3"
     },
     {
       "id": "atc-scenario-0106-card-main-1824",
       "taskTitle": "ACA 412-3",
-      "audioText": "C: Air Canada 412, we have to coordinate.",
-      "audioTextZh": "C: Air Canada 412，我们必须协调。",
-      "referenceText": "Stand by, ACA412.",
-      "referenceTextZh": "等待，ACA412。",
+      "audioText": "C: ACA 412, we have to coordinate.",
+      "audioTextZh": "C: ACA 412，我们必须协调。",
+      "referenceText": "Stand by, ACA 412.",
+      "referenceTextZh": "等待，ACA 412。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1824.mp3"
     },
     {
       "id": "atc-scenario-0106-card-main-1825",
       "taskTitle": "ACA 412-4",
-      "audioText": "C: Air Canada 412, your request to Tango Uniform X-Ray FL170 has been approved, at the same time, remain on 215 radial Golf India Lima VOR.",
-      "audioTextZh": "C: Air Canada 412，你到 Tango Uniform X-Ray 飞行高度层 170 的请求已获批准，同时保持在 Golf India Lima VOR 215 径向线上。",
-      "referenceText": "Cross TUX FL170, remain on 215 radial GIL VOR, ACA412.",
-      "referenceTextZh": "通过 TUX 时 FL170，保持在 GIL VOR 215 径向线上，ACA412。",
+      "audioText": "C: ACA 412, your request to TUX FL170 has been approved, at the same time, remain on 215 radial GIL VOR.",
+      "audioTextZh": "C: ACA 412，你到 TUX 飞行高度层 170 的请求已获批准，同时保持在 GIL VOR 215 径向线上。",
+      "referenceText": "Cross TUX FL170, remain on 215 radial GIL VOR, ACA 412.",
+      "referenceTextZh": "通过 TUX 时 FL170，保持在 GIL VOR 215 径向线上，ACA 412。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1825.mp3"
     },
     {
@@ -45,8 +45,8 @@
       "taskTitle": "ACA 412-5",
       "audioText": "B: You want to put off the descent, call Control.",
       "audioTextZh": "B: 你想推迟下降，呼叫管制。",
-      "referenceText": "Guangzhou Control, ACA412, request to delay the descent.",
-      "referenceTextZh": "广州管制，ACA412，请求延迟下降。",
+      "referenceText": "Guangzhou Control, ACA 412, request to delay the descent.",
+      "referenceTextZh": "广州管制，ACA 412，请求延迟下降。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1826.mp3"
     },
     {
@@ -54,8 +54,8 @@
       "taskTitle": "ACA 412-6",
       "audioText": "C: Descend immediately due traffic.\nB: You tell the controller that you will run into CBs if you descend right now.",
       "audioTextZh": "C: 因活动立即下降。\nB: 告诉管制员如果现在下降，你们会进入 CB。",
-      "referenceText": "The thunderstorm will be encountered if we decide right now, ACA412.",
-      "referenceTextZh": "如果我们现在下降，会遭遇雷暴，ACA412。",
+      "referenceText": "The thunderstorm will be encountered if we decide right now, ACA 412.",
+      "referenceTextZh": "如果我们现在下降，会遭遇雷暴，ACA 412。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1827.mp3"
     },
     {
@@ -63,8 +63,8 @@
       "taskTitle": "ACA 412-7",
       "audioText": "C: Turn right heading 120 to detour the CBs.",
       "audioTextZh": "C: 右转航向 120 绕飞 CB。",
-      "referenceText": "Turn right heading 120, ACA412.",
-      "referenceTextZh": "右转航向 120，ACA412。",
+      "referenceText": "Turn right heading 120, ACA 412.",
+      "referenceTextZh": "右转航向 120，ACA 412。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1828.mp3"
     },
     {
@@ -72,8 +72,8 @@
       "taskTitle": "ACA 412-8",
       "audioText": "B: You tell the controller that you will check out more than 30 miles if you go round the CBs from the right. You ask the permission of a left sight.",
       "audioTextZh": "B: 告诉管制员，如果从右侧绕飞 CB，会偏出超过 30 miles。你请求从左侧绕飞许可。",
-      "referenceText": "Guangzhou Control, ACA412, if we go around the CBs from the right, we have to track out more than 30 miles. How about the left side turning?",
-      "referenceTextZh": "广州管制，ACA412，如果我们从右侧绕飞 CB，必须偏出超过 30 miles。能否从左侧转弯？",
+      "referenceText": "Guangzhou Control, ACA 412, if we go around the CBs from the right, we have to track out more than 30 miles. How about the left side turning?",
+      "referenceTextZh": "广州管制，ACA 412，如果我们从右侧绕飞 CB，必须偏出超过 30 miles。能否从左侧转弯？",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1829.mp3"
     },
     {
@@ -81,8 +81,8 @@
       "taskTitle": "ACA 412-9",
       "audioText": "C: There is only 15 miles for you to go if you want to detour from the left due restricted area.\nB: You need 20 miles.",
       "audioTextZh": "C: 由于限制区，如果你想从左侧绕飞，只有 15 miles 可用。\nB: 你需要 20 miles。",
-      "referenceText": "I need at least 20 miles on the left side, 15 miles is not enough, ACA412.",
-      "referenceTextZh": "左侧我至少需要 20 miles，15 miles 不够，ACA412。",
+      "referenceText": "I need at least 20 miles on the left side, 15 miles is not enough, ACA 412.",
+      "referenceTextZh": "左侧我至少需要 20 miles，15 miles 不够，ACA 412。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1830.mp3"
     },
     {
@@ -90,8 +90,8 @@
       "taskTitle": "ACA 412-10",
       "audioText": "C: I will contact with the military, standby.",
       "audioTextZh": "C: 我会联系军方，等待。",
-      "referenceText": "Stand by, thank you, ACA412.",
-      "referenceTextZh": "等待，谢谢，ACA412。",
+      "referenceText": "Stand by, thank you, ACA 412.",
+      "referenceTextZh": "等待，谢谢，ACA 412。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1831.mp3"
     },
     {
@@ -99,35 +99,35 @@
       "taskTitle": "ACA 412-11",
       "audioText": "C: No reply from the military, what do you prefer?\nB: You intend to go round the CBs from the left.",
       "audioTextZh": "C: 军方没有回复，你更倾向哪种？\nB: 你打算从左侧绕飞 CB。",
-      "referenceText": "We would like to circumnavigate the thunderstorm from the left, ACA412.",
-      "referenceTextZh": "我们希望从左侧绕飞雷暴，ACA412。",
+      "referenceText": "We would like to circumnavigate the thunderstorm from the left, ACA 412.",
+      "referenceTextZh": "我们希望从左侧绕飞雷暴，ACA 412。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1832.mp3"
     },
     {
       "id": "atc-scenario-0106-card-main-1833",
       "taskTitle": "ACA 412-12",
-      "audioText": "C: Air Canada 412, cleared to detour the thunderstorm from the left.\nB: You ran into severe turbulence in CBs, some persons injured.",
-      "audioTextZh": "C: Air Canada 412，许可从左侧绕飞雷暴。\nB: 你进入 CB 遭遇严重乱流，有人受伤。",
-      "referenceText": "Guangzhou Control, ACA412, we have encountered the CBs with severe turbulence, some persons injured.",
-      "referenceTextZh": "广州管制，ACA412，我们遭遇 CB 和严重乱流，有人受伤。",
+      "audioText": "C: ACA 412, cleared to detour the thunderstorm from the left.\nB: You ran into severe turbulence in CBs, some persons injured.",
+      "audioTextZh": "C: ACA 412，许可从左侧绕飞雷暴。\nB: 你进入 CB 遭遇严重乱流，有人受伤。",
+      "referenceText": "Guangzhou Control, ACA 412, we have encountered the CBs with severe turbulence, some persons injured.",
+      "referenceTextZh": "广州管制，ACA 412，我们遭遇 CB 和严重乱流，有人受伤。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1833.mp3"
     },
     {
       "id": "atc-scenario-0106-card-main-1834",
       "taskTitle": "ACA 412-13",
-      "audioText": "C: Air Canada 412, what's your intention?\nB: You want priority landing and medical assistance.",
-      "audioTextZh": "C: Air Canada 412，你的意图是什么？\nB: 你想优先落地并需要医疗协助。",
-      "referenceText": "Request priority landing and medical assistance, ACA412.",
-      "referenceTextZh": "请求优先落地和医疗协助，ACA412。",
+      "audioText": "C: ACA 412, what's your intention?\nB: You want priority landing and medical assistance.",
+      "audioTextZh": "C: ACA 412，你的意图是什么？\nB: 你想优先落地并需要医疗协助。",
+      "referenceText": "Request priority landing and medical assistance, ACA 412.",
+      "referenceTextZh": "请求优先落地和医疗协助，ACA 412。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1834.mp3"
     },
     {
       "id": "atc-scenario-0106-card-main-1835",
       "taskTitle": "ACA 412-14",
-      "audioText": "C: Air Canada 412, emergency services will be notified. Ambulance will be there waiting for you.",
-      "audioTextZh": "C: Air Canada 412，将通知应急服务。救护车会在那里等你。",
-      "referenceText": "Roger, thanks, ACA412.",
-      "referenceTextZh": "收到，谢谢，ACA412。",
+      "audioText": "C: ACA 412, emergency services will be notified. Ambulance will be there waiting for you.",
+      "audioTextZh": "C: ACA 412，将通知应急服务。救护车会在那里等你。",
+      "referenceText": "Roger, thanks, ACA 412.",
+      "referenceTextZh": "收到，谢谢，ACA 412。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1835.mp3"
     },
     {
@@ -135,17 +135,17 @@
       "taskTitle": "ACA 412-15",
       "audioText": "B: Declare Urgency due to port inboard engine flamed out resulting from water ingestion, you are suffering a steep left turn.",
       "audioTextZh": "B: 因吸水导致左内侧发动机熄火宣布紧急状态，你们正经历急剧左转。",
-      "referenceText": "PANPAN PANPAN PANPAN, Guangzhou Control, ACA412, port inboard engine flamed out resulting from water ingestion, we are suffering a steep left turn.",
-      "referenceTextZh": "PANPAN PANPAN PANPAN，广州管制，ACA412，左内侧发动机因吸水熄火，我们正在急剧左转。",
+      "referenceText": "PANPAN PANPAN PANPAN, Guangzhou Control, ACA 412, port inboard engine flamed out resulting from water ingestion, we are suffering a steep left turn.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，广州管制，ACA 412，左内侧发动机因吸水熄火，我们正在急剧左转。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1836.mp3"
     },
     {
       "id": "atc-scenario-0106-card-main-1837",
       "taskTitle": "ACA 412-16",
-      "audioText": "C: Air Canada 412, roger PAN, report your intention if available.\nB: You want emergency landing.",
-      "audioTextZh": "C: Air Canada 412，收到 PAN，如可能报告你的意图。\nB: 你想紧急着陆。",
-      "referenceText": "Guangzhou Control, ACA412, request emergency landing.",
-      "referenceTextZh": "广州管制，ACA412，请求紧急着陆。",
+      "audioText": "C: ACA 412, roger PAN, report your intention if available.\nB: You want emergency landing.",
+      "audioTextZh": "C: ACA 412，收到 PAN，如可能报告你的意图。\nB: 你想紧急着陆。",
+      "referenceText": "Guangzhou Control, ACA 412, request emergency landing.",
+      "referenceTextZh": "广州管制，ACA 412，请求紧急着陆。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1837.mp3"
     }
   ]

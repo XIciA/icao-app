@@ -33,13 +33,18 @@ export function ChoiceList({ choices, correctChoiceIndex, selectedChoiceIndex, s
               pressed ? styles.pressed : null,
             ]}
           >
-            <View style={[styles.letter, selected ? styles.letterSelected : null]}>
-              <AppText color={selected ? colors.primaryForeground : colors.mutedForeground} variant="button">
+            <View testID={`choice-letter-${index}`} style={[
+              styles.letter,
+              selected ? styles.letterSelected : null,
+              correct ? styles.letterCorrect : null,
+              incorrect ? styles.letterIncorrect : null,
+            ]}>
+              <AppText color={correct || incorrect || selected ? colors.primaryForeground : colors.mutedForeground} variant="button">
                 {String.fromCharCode(65 + index)}
               </AppText>
             </View>
             <AppText color={colors.foreground} style={styles.copy}>{choice}</AppText>
-            {correct ? <Check accessibilityLabel="正确答案" color={colors.primary} size={18} /> : null}
+            {correct ? <Check accessibilityLabel="正确答案" color={colors.answerCorrect} size={18} /> : null}
             {incorrect ? <X accessibilityLabel="错误答案" color={colors.destructive} size={18} /> : null}
           </Pressable>
         );
@@ -52,10 +57,12 @@ const styles = StyleSheet.create({
   list: { gap: spacing[2] },
   choice: { alignItems: 'center', backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[2], minHeight: 46, paddingHorizontal: spacing[4], paddingVertical: spacing[2] },
   selected: { borderColor: colors.primary },
-  correct: { backgroundColor: colors.primary06, borderColor: colors.primary },
+  correct: { backgroundColor: colors.answerCorrectBackground, borderColor: colors.answerCorrectBorder },
   incorrect: { backgroundColor: 'rgba(219,43,51,0.06)', borderColor: 'rgba(219,43,51,0.45)' },
   letter: { alignItems: 'center', borderRadius: radii.full, height: 24, justifyContent: 'center', width: 24 },
   letterSelected: { backgroundColor: colors.primary },
+  letterCorrect: { backgroundColor: colors.answerCorrect },
+  letterIncorrect: { backgroundColor: colors.destructive },
   copy: { flex: 1 },
   pressed: { opacity: 0.75 },
 });

@@ -1,4 +1,4 @@
-import type { PropsWithChildren } from 'react';
+import type { PropsWithChildren, ReactNode } from 'react';
 import {
   KeyboardAvoidingView,
   Platform,
@@ -18,6 +18,7 @@ type Props = PropsWithChildren<{
   bottomInset?: boolean;
   contentStyle?: ViewStyle;
   scrollProps?: ScrollViewProps;
+  background?: ReactNode;
 }>;
 
 export function Screen({
@@ -27,6 +28,7 @@ export function Screen({
   bottomInset = false,
   contentStyle,
   scrollProps,
+  background,
 }: Props) {
   const content = scroll ? (
     <ScrollView
@@ -45,6 +47,7 @@ export function Screen({
 
   return (
     <SafeAreaView edges={['top']} style={styles.safeArea}>
+      {background ? <View pointerEvents="none" style={StyleSheet.absoluteFill}>{background}</View> : null}
       {keyboard ? (
         <KeyboardAvoidingView
           behavior={Platform.select({ ios: 'padding', android: undefined })}

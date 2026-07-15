@@ -7,28 +7,28 @@
     {
       "id": "atc-scenario-0031-card-main-529",
       "taskTitle": "BAW 2352-1",
-      "audioText": "B: Your call sign is Speedbird 352, you are maintaining 11000 meters, over X-Ray India Alpha, squawking 3567, make an initial contact with Wuhan Control.",
-      "audioTextZh": "B：你的呼号是 Speedbird 352，保持 11000 米，飞越 X-Ray India Alpha，应答机 3567，首次联系武汉管制。",
-      "referenceText": "Wuhan Control, BAW2352, maintaining 11000 meters, over XIA, squawking 3567.",
-      "referenceTextZh": "武汉管制，BAW2352，保持 11000 米，飞越 XIA，应答机 3567。",
+      "audioText": "B: Your call sign is BAW 352, you are maintaining 11000 meters, over XIA, squawking 3567, make an initial contact with Wuhan Control.",
+      "audioTextZh": "B：你的呼号是 BAW 352，保持 11000 米，飞越 XIA，应答机 3567，首次联系武汉管制。",
+      "referenceText": "Wuhan Control, BAW 2352, maintaining 11000 meters, over XIA, squawking 3567.",
+      "referenceTextZh": "武汉管制，BAW 2352，保持 11000 米，飞越 XIA，应答机 3567。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/529.mp3"
     },
     {
       "id": "atc-scenario-0031-card-main-530",
       "taskTitle": "BAW 2352-2",
-      "audioText": "C: Speedbird 352, Wuhan Control, radar contact, descend and maintain 10400 meters.",
-      "audioTextZh": "C：Speedbird 352，武汉管制，雷达识别，下降并保持 10400 米。",
-      "referenceText": "Descend and maintain 10400 meters, BAW2352.",
-      "referenceTextZh": "下降并保持 10400 米，BAW2352。",
+      "audioText": "C: BAW 352, Wuhan Control, radar contact, descend and maintain 10400 meters.",
+      "audioTextZh": "C：BAW 352，武汉管制，雷达识别，下降并保持 10400 米。",
+      "referenceText": "Descend and maintain 10400 meters, BAW 2352.",
+      "referenceTextZh": "下降并保持 10400 米，BAW 2352。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/530.mp3"
     },
     {
       "id": "atc-scenario-0031-card-main-531",
       "taskTitle": "BAW 2352-3",
-      "audioText": "C: Speedbird 352, Wuhan Control, descend to 9200 meters, reduced speed to 270 knots until advised.",
-      "audioTextZh": "C：Speedbird 352，武汉管制，下降至 9200 米，减速至 270 节，保持至另行通知。",
-      "referenceText": "Descend to 9200 meters, reduce speed to 270 knots until advised, BAW2352.",
-      "referenceTextZh": "下降至 9200 米，减速至 270 节，保持至另行通知，BAW2352。",
+      "audioText": "C: BAW 352, Wuhan Control, descend to 9200 meters, reduced speed to 270 knots until advised.",
+      "audioTextZh": "C：BAW 352，武汉管制，下降至 9200 米，减速至 270 节，保持至另行通知。",
+      "referenceText": "Descend to 9200 meters, reduce speed to 270 knots until advised, BAW 2352.",
+      "referenceTextZh": "下降至 9200 米，减速至 270 节，保持至另行通知，BAW 2352。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/531.mp3"
     },
     {
@@ -36,17 +36,17 @@
       "taskTitle": "BAW 2352-4",
       "audioText": "B: Your weather radar observed there was a cumulonimbus ahead, contact Wuhan Control and request offset 25 miles left of track for 30 minutes.",
       "audioTextZh": "B：气象雷达显示前方有积雨云，联系武汉管制，请求向航迹左侧偏航 25 海里，持续 30 分钟。",
-      "referenceText": "Wuhan Control, BAW2352, request offset 25 miles left of track for 30 minutes due CB ahead.",
-      "referenceTextZh": "武汉管制，BAW2352，前方有 CB，请求向航迹左侧偏航 25 海里，持续 30 分钟。",
+      "referenceText": "Wuhan Control, BAW 2352, request offset 25 miles left of track for 30 minutes due CB ahead.",
+      "referenceTextZh": "武汉管制，BAW 2352，前方有 CB，请求向航迹左侧偏航 25 海里，持续 30 分钟。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/532.mp3"
     },
     {
       "id": "atc-scenario-0031-card-main-533",
       "taskTitle": "BAW 2352-5",
-      "audioText": "C: Speedbird 352, cleared offset 25 miles left of track for 30 minutes, report clear of CB.",
-      "audioTextZh": "C：Speedbird 352，可以向航迹左侧偏航 25 海里，持续 30 分钟，脱离 CB 后报告。",
-      "referenceText": "Cleared offset 25 miles left of track for 30 minutes, report clear of CB, BAW2352.",
-      "referenceTextZh": "可以向航迹左侧偏航 25 海里，持续 30 分钟，脱离 CB 后报告，BAW2352。",
+      "audioText": "C: BAW 352, cleared offset 25 miles left of track for 30 minutes, report clear of CB.",
+      "audioTextZh": "C：BAW 352，可以向航迹左侧偏航 25 海里，持续 30 分钟，脱离 CB 后报告。",
+      "referenceText": "Cleared offset 25 miles left of track for 30 minutes, report clear of CB, BAW 2352.",
+      "referenceTextZh": "可以向航迹左侧偏航 25 海里，持续 30 分钟，脱离 CB 后报告，BAW 2352。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/533.mp3"
     },
     {
@@ -54,8 +54,8 @@
       "taskTitle": "BAW 2352-6",
       "audioText": "B: Now you are clear of CB, ask Wuhan Control to resume flight route.",
       "audioTextZh": "B：你现在已脱离 CB，请求武汉管制恢复航路飞行。",
-      "referenceText": "Wuhan Control, BAW2352, clear of CB, request resume flight route.",
-      "referenceTextZh": "武汉管制，BAW2352，已脱离 CB，请求恢复航路。",
+      "referenceText": "Wuhan Control, BAW 2352, clear of CB, request resume flight route.",
+      "referenceTextZh": "武汉管制，BAW 2352，已脱离 CB，请求恢复航路。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/534.mp3"
     },
     {
@@ -63,62 +63,62 @@
       "taskTitle": "BAW 2352-7",
       "audioText": "B: You have received the latest ATIS, saying that the visibility of Wuhan is low, ask Wuhan Approach if your alternate airport Hefei is available for diversion.",
       "audioTextZh": "B：你已收到最新 ATIS，显示武汉能见度低，询问武汉进近备降场合肥是否可用。",
-      "referenceText": "Wuhan Approach, BAW2352, the latest ATIS, saying that the visibility of Wuhan is low, is our alternate airport Hefei is available for diversion ?",
-      "referenceTextZh": "武汉进近，BAW2352，最新 ATIS 显示武汉能见度低，请问我们的备降场合肥是否可用于备降？",
+      "referenceText": "Wuhan Approach, BAW 2352, the latest ATIS, saying that the visibility of Wuhan is low, is our alternate airport Hefei is available for diversion ?",
+      "referenceTextZh": "武汉进近，BAW 2352，最新 ATIS 显示武汉能见度低，请问我们的备降场合肥是否可用于备降？",
       "audio": "/question-bank-assets/audio/radiotelephony/main/535.mp3"
     },
     {
       "id": "atc-scenario-0031-card-main-536",
       "taskTitle": "BAW 2352-8",
-      "audioText": "C: Speedbird 352, Hefei Airport is available, confirm you are diverting to Hefei?\nB: Tell the controller you are not diverting to Hefei at the moment, and you still want to fly to Wuhan.",
-      "audioTextZh": "C：Speedbird 352，合肥机场可用，确认你们备降合肥吗？\nB：告诉管制员目前不备降合肥，仍希望飞往武汉。",
-      "referenceText": "We are not diverting to Hefei now, we still want to fly to Wuhan, BAW2352.",
-      "referenceTextZh": "我们目前不备降合肥，仍希望飞往武汉，BAW2352。",
+      "audioText": "C: BAW 352, Hefei Airport is available, confirm you are diverting to Hefei?\nB: Tell the controller you are not diverting to Hefei at the moment, and you still want to fly to Wuhan.",
+      "audioTextZh": "C：BAW 352，合肥机场可用，确认你们备降合肥吗？\nB：告诉管制员目前不备降合肥，仍希望飞往武汉。",
+      "referenceText": "We are not diverting to Hefei now, we still want to fly to Wuhan, BAW 2352.",
+      "referenceTextZh": "我们目前不备降合肥，仍希望飞往武汉，BAW 2352。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/536.mp3"
     },
     {
       "id": "atc-scenario-0031-card-main-537",
       "taskTitle": "BAW 2352-9",
-      "audioText": "C: Speedbird 352, roger, track direct to Zulu Foxtrot, follow Zulu Foxtrot 2 Alpha arrival, expect ILS approach runway 36R.",
-      "audioTextZh": "C：Speedbird 352，收到，直飞 Zulu Foxtrot，执行 Zulu Foxtrot 2 Alpha 进场，预计 ILS 进近跑道 36 右。",
-      "referenceText": "Track direct to ZF, follow ZF2A arrival, expect ILS approach runway 36R, BAW2352.",
-      "referenceTextZh": "直飞 ZF，执行 ZF2A 进场，预计 ILS 进近跑道 36R，BAW2352。",
+      "audioText": "C: BAW 352, roger, track direct to ZF, follow ZF-2A arrival, expect ILS approach Runway 36R.",
+      "audioTextZh": "C：BAW 352，收到，直飞 ZF，执行 ZF-2A 进场，预计 ILS 进近跑道 36 右。",
+      "referenceText": "Track direct to ZF, follow ZF-2A arrival, expect ILS approach Runway 36R, BAW 2352.",
+      "referenceTextZh": "直飞 ZF，执行 ZF-2A 进场，预计 ILS 进近跑道 36R，BAW 2352。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/537.mp3"
     },
     {
       "id": "atc-scenario-0031-card-main-538",
       "taskTitle": "BAW 2352-10",
-      "audioText": "C: Speedbird 352, descend and maintain 4200 meters, reduce speed to minimum clean speed.",
-      "audioTextZh": "C：Speedbird 352，下降并保持 4200 米，减速至最低光洁速度。",
-      "referenceText": "Descend and maintain 4200 meters, reduce speed to minimum clean speed, BAW2352.",
-      "referenceTextZh": "下降并保持 4200 米，减速至最低光洁速度，BAW2352。",
+      "audioText": "C: BAW 352, descend and maintain 4200 meters, reduce speed to minimum clean speed.",
+      "audioTextZh": "C：BAW 352，下降并保持 4200 米，减速至最低光洁速度。",
+      "referenceText": "Descend and maintain 4200 meters, reduce speed to minimum clean speed, BAW 2352.",
+      "referenceTextZh": "下降并保持 4200 米，减速至最低光洁速度，BAW 2352。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/538.mp3"
     },
     {
       "id": "atc-scenario-0031-card-main-539",
       "taskTitle": "BAW 2352-11",
-      "audioText": "C: Speedbird 352, contact Wuhan Tower 119.6.",
-      "audioTextZh": "C：Speedbird 352，联系武汉塔台119.6。",
-      "referenceText": "119.6, BAW2352.",
-      "referenceTextZh": "119.6，BAW2352。",
+      "audioText": "C: BAW 352, contact Wuhan Tower 119.6.",
+      "audioTextZh": "C：BAW 352，联系武汉塔台119.6。",
+      "referenceText": "119.6, BAW 2352.",
+      "referenceTextZh": "119.6，BAW 2352。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/539.mp3"
     },
     {
       "id": "atc-scenario-0031-card-main-540",
       "taskTitle": "BAW 2352-12",
-      "audioText": "B: Now you are established on ILS approach runway 36R, you are 15 miles from touchdown, contact Wuhan Tower.",
+      "audioText": "B: Now you are established on ILS approach Runway 36R, you are 15 miles from touchdown, contact Wuhan Tower.",
       "audioTextZh": "B：你现在已建立跑道 36 右 ILS 进近，距接地点 15 海里，联系武汉塔台。",
-      "referenceText": "Wuhan Tower, BAW2352, established ILS approach runway 36R, 15 miles from touchdown.",
-      "referenceTextZh": "武汉塔台，BAW2352，已建立跑道 36R ILS 进近，距接地点 15 海里。",
+      "referenceText": "Wuhan Tower, BAW 2352, established ILS approach Runway 36R, 15 miles from touchdown.",
+      "referenceTextZh": "武汉塔台，BAW 2352，已建立跑道 36R ILS 进近，距接地点 15 海里。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/540.mp3"
     },
     {
       "id": "atc-scenario-0031-card-main-541",
       "taskTitle": "BAW 2352-13",
-      "audioText": "C: Speedbird 352, roger, surface wind calm, RVR touchdown 550 meters, midpoint 600 meters, rollout 500 meters, continue approach runway 36R.",
-      "audioTextZh": "C：Speedbird 352，收到，地面风静风，RVR 接地点 550 米、中段 600 米、末端 500 米，继续进近跑道 36 右。",
-      "referenceText": "Roger, continue approach runway 36R, BAW2352.",
-      "referenceTextZh": "收到，继续进近跑道 36R，BAW2352。",
+      "audioText": "C: BAW 352, roger, surface wind calm, RVR touchdown 550 meters, midpoint 600 meters, rollout 500 meters, continue approach Runway 36R.",
+      "audioTextZh": "C：BAW 352，收到，地面风静风，RVR 接地点 550 米、中段 600 米、末端 500 米，继续进近跑道 36 右。",
+      "referenceText": "Roger, continue approach Runway 36R, BAW 2352.",
+      "referenceTextZh": "收到，继续进近跑道 36R，BAW 2352。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/541.mp3"
     },
     {
@@ -126,17 +126,17 @@
       "taskTitle": "BAW 2352-14",
       "audioText": "B: Now you are 10 miles from touchdown, ask Wuhan Tower for the cloud information.",
       "audioTextZh": "B：你现在距接地点 10 海里，向武汉塔台询问云况。",
-      "referenceText": "Wuhan Tower, BAW2352, 10 miles from touchdown, request cloud information.",
-      "referenceTextZh": "武汉塔台，BAW2352，距接地点 10 海里，请求云况信息。",
+      "referenceText": "Wuhan Tower, BAW 2352, 10 miles from touchdown, request cloud information.",
+      "referenceTextZh": "武汉塔台，BAW 2352，距接地点 10 海里，请求云况信息。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/542.mp3"
     },
     {
       "id": "atc-scenario-0031-card-main-543",
       "taskTitle": "BAW 2352-15",
-      "audioText": "C: Speedbird 352, cloud broken 700 meters, cleared to land runway 36R.",
-      "audioTextZh": "C：Speedbird 352，疏云 700 米，可以落地跑道 36 右。",
-      "referenceText": "Cloud broken 700 metres, cleared to land runway 36R, BAW2352.",
-      "referenceTextZh": "疏云 700 米，可以落地跑道 36R，BAW2352。",
+      "audioText": "C: BAW 352, cloud broken 700 meters, cleared to land Runway 36R.",
+      "audioTextZh": "C：BAW 352，疏云 700 米，可以落地跑道 36 右。",
+      "referenceText": "Cloud broken 700 metres, cleared to land Runway 36R, BAW 2352.",
+      "referenceTextZh": "疏云 700 米，可以落地跑道 36R，BAW 2352。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/543.mp3"
     },
     {
@@ -144,17 +144,17 @@
       "taskTitle": "BAW 2352-16",
       "audioText": "B: The weather is deteriorating and below your landing minima, you executed a missed approach, advised Tower.",
       "audioTextZh": "B：天气正在恶化并低于你的着陆最低标准，你执行复飞，通知塔台。",
-      "referenceText": "Wuhan Tower, BAW2352, the weather is deteriorating and below our landing minima, going around.",
-      "referenceTextZh": "武汉塔台，BAW2352，天气正在恶化并低于我们的着陆最低标准，正在复飞。",
+      "referenceText": "Wuhan Tower, BAW 2352, the weather is deteriorating and below our landing minima, going around.",
+      "referenceTextZh": "武汉塔台，BAW 2352，天气正在恶化并低于我们的着陆最低标准，正在复飞。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/544.mp3"
     },
     {
       "id": "atc-scenario-0031-card-main-545",
       "taskTitle": "BAW 2352-17",
-      "audioText": "C: Speedbird 352, roger, follow the standard missed approach procedure, advise intentions when able.",
-      "audioTextZh": "C：Speedbird 352，收到，执行标准复飞程序，条件允许时报告意图。",
-      "referenceText": "Follow the standard missed approach procedure, BAW2352.",
-      "referenceTextZh": "执行标准复飞程序，BAW2352。",
+      "audioText": "C: BAW 352, roger, follow the standard missed approach procedure, advise intentions when able.",
+      "audioTextZh": "C：BAW 352，收到，执行标准复飞程序，条件允许时报告意图。",
+      "referenceText": "Follow the standard missed approach procedure, BAW 2352.",
+      "referenceTextZh": "执行标准复飞程序，BAW 2352。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/545.mp3"
     },
     {
@@ -162,17 +162,17 @@
       "taskTitle": "BAW 2352-18",
       "audioText": "B: Now you are climbing to missed approach altitude, you decide to divert to Hefei Airport, informed Tower.",
       "audioTextZh": "B：你现在爬升至复飞高度，决定备降合肥机场，通知塔台。",
-      "referenceText": "Wuhan Tower, BAW2352, request divert to Hefei Airport.",
-      "referenceTextZh": "武汉塔台，BAW2352，请求备降合肥机场。",
+      "referenceText": "Wuhan Tower, BAW 2352, request divert to Hefei Airport.",
+      "referenceTextZh": "武汉塔台，BAW 2352，请求备降合肥机场。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/546.mp3"
     },
     {
       "id": "atc-scenario-0031-card-main-547",
       "taskTitle": "BAW 2352-19",
-      "audioText": "C: Speedbird 352, roger, turn right, direct to Lima Kilo Oscar, climb to and maintain 2400 meters.",
-      "audioTextZh": "C：Speedbird 352，收到，右转直飞 Lima Kilo Oscar，爬升并保持 2400 米。",
-      "referenceText": "Turn right, direct to LKO, climb to and maintain 2400 meters, BAW2352.",
-      "referenceTextZh": "右转直飞 LKO，爬升并保持 2400 米，BAW2352。",
+      "audioText": "C: BAW 352, roger, turn right, direct to LKO, climb to and maintain 2400 meters.",
+      "audioTextZh": "C：BAW 352，收到，右转直飞 LKO，爬升并保持 2400 米。",
+      "referenceText": "Turn right, direct to LKO, climb to and maintain 2400 meters, BAW 2352.",
+      "referenceTextZh": "右转直飞 LKO，爬升并保持 2400 米，BAW 2352。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/547.mp3"
     }
   ]

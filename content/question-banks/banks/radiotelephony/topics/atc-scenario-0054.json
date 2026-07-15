@@ -7,19 +7,19 @@
     {
       "id": "atc-scenario-0054-card-main-926",
       "taskTitle": "CCA 425-1",
-      "audioText": "B: Your call sign is Air China 425, stand 08, from Wuhan to Tokyo, information Kilo received, request ATC clearance to Tokyo.",
-      "audioTextZh": "B: 你的呼号是 Air China 425，08 号机位，从 Wuhan 到 Tokyo，已收到信息 Kilo，请求前往 Tokyo 的 ATC 许可。",
-      "referenceText": "Wuhan Delivery, CCA425, stand 08, information K, request ATC clearance to Tokyo.",
-      "referenceTextZh": "武汉放行，CCA425，08 号机位，信息 K，请求前往 Tokyo 的 ATC 许可。",
+      "audioText": "B: Your call sign is CCA 425, stand 08, from Wuhan to Tokyo, information K received, request ATC clearance to Tokyo.",
+      "audioTextZh": "B: 你的呼号是 CCA 425，08 号机位，从 Wuhan 到 Tokyo，已收到信息 K，请求前往 Tokyo 的 ATC 许可。",
+      "referenceText": "Wuhan Delivery, CCA 425, stand 08, information K, request ATC clearance to Tokyo.",
+      "referenceTextZh": "武汉放行，CCA 425，08 号机位，信息 K，请求前往 Tokyo 的 ATC 许可。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/926.mp3"
     },
     {
       "id": "atc-scenario-0054-card-main-927",
       "taskTitle": "CCA 425-2",
-      "audioText": "C: Air China 425, cleared to Tokyo via flight planned route, Lima Kilo Oscar 01 departure, climb and maintain 1500 meters initially, cruising level 10100 meters, runway 36R, contact departure on 119.7, squawk 6325.",
-      "audioTextZh": "C: Air China 425，可以按计划航路前往 Tokyo，Lima Kilo Oscar 01 离场，初始爬升并保持 1500 米，巡航高度 10100 米，跑道 36R，联系离场 119.7，应答机 6325。",
-      "referenceText": "Cleared to Tokyo via flight planned route, LKO 01 departure, climb and maintain 1500m initially, cruising level 10100m, runway 36R, contact departure on 119.7, squawk 6325, CCA425.",
-      "referenceTextZh": "可以按计划航路前往 Tokyo，LKO 01 离场，初始爬升并保持 1500 米，巡航高度 10100 米，跑道 36R，联系离场 119.7，应答机 6325，CCA425。",
+      "audioText": "C: CCA 425, cleared to Tokyo via flight planned route, LKO-01 departure, climb and maintain 1500 meters initially, cruising level 10100 meters, Runway 36R, contact departure on 119.7, squawk 6325.",
+      "audioTextZh": "C: CCA 425，可以按计划航路前往 Tokyo，LKO-01 离场，初始爬升并保持 1500 米，巡航高度 10100 米，跑道 36R，联系离场 119.7，应答机 6325。",
+      "referenceText": "Cleared to Tokyo via flight planned route, LKO-01 departure, climb and maintain 1500m initially, cruising level 10100m, Runway 36R, contact departure on 119.7, squawk 6325, CCA 425.",
+      "referenceTextZh": "可以按计划航路前往 Tokyo，LKO-01 离场，初始爬升并保持 1500 米，巡航高度 10100 米，跑道 36R，联系离场 119.7，应答机 6325，CCA 425。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/927.mp3"
     },
     {
@@ -27,17 +27,17 @@
       "taskTitle": "CCA 425-3",
       "audioText": "B: You are now ready, contact Ground to request push back and start up.",
       "audioTextZh": "B: 你现在准备好，联系 地面请求推出和开车。",
-      "referenceText": "Wuhan Ground, CCA425, request push back and start up.",
-      "referenceTextZh": "武汉地面，CCA425，请求推出和开车。",
+      "referenceText": "Wuhan Ground, CCA 425, request push back and start up.",
+      "referenceTextZh": "武汉地面，CCA 425，请求推出和开车。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/928.mp3"
     },
     {
       "id": "atc-scenario-0054-card-main-929",
       "taskTitle": "CCA 425-4",
-      "audioText": "C: Air China 425, push back and start up approved, facing East.",
-      "audioTextZh": "C: Air China 425，推出和开车批准，机头朝东。",
-      "referenceText": "Push back and start up approved, facing East, CCA425.",
-      "referenceTextZh": "推出和开车批准，机头朝东，CCA425。",
+      "audioText": "C: CCA 425, push back and start up approved, facing East.",
+      "audioTextZh": "C: CCA 425，推出和开车批准，机头朝东。",
+      "referenceText": "Push back and start up approved, facing East, CCA 425.",
+      "referenceTextZh": "推出和开车批准，机头朝东，CCA 425。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/929.mp3"
     },
     {
@@ -45,26 +45,26 @@
       "taskTitle": "CCA 425-5",
       "audioText": "B: While taxiing, you noticed the wind sock shows a strong tailwind, contact Tower to check the wind.",
       "audioTextZh": "B: 滑行时，你注意到风袋显示强顺风，联系 塔台 检查风。",
-      "referenceText": "Wuhan Tower, CCA425, request wind check.",
-      "referenceTextZh": "武汉塔台，CCA425，请求检查风。",
+      "referenceText": "Wuhan Tower, CCA 425, request wind check.",
+      "referenceTextZh": "武汉塔台，CCA 425，请求检查风。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/930.mp3"
     },
     {
       "id": "atc-scenario-0054-card-main-931",
       "taskTitle": "CCA 425-6",
-      "audioText": "C: Air China 425, surface wind 220 degrees, 8 meters per second.",
-      "audioTextZh": "C: Air China 425，地面风 220 度，8 米/秒。",
-      "referenceText": "Roger, thanks, CCA425.",
-      "referenceTextZh": "收到，谢谢，CCA425。",
+      "audioText": "C: CCA 425, surface wind 220 degrees, 8 meters per second.",
+      "audioTextZh": "C: CCA 425，地面风 220 度，8 米/秒。",
+      "referenceText": "Roger, thanks, CCA 425.",
+      "referenceTextZh": "收到，谢谢，CCA 425。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/931.mp3"
     },
     {
       "id": "atc-scenario-0054-card-main-932",
       "taskTitle": "CCA 425-7",
-      "audioText": "B: The tailwind exceeds your takeoff limit, contact Tower to change to runway 18L and state the reason.",
+      "audioText": "B: The tailwind exceeds your takeoff limit, contact Tower to change to Runway 18L and state the reason.",
       "audioTextZh": "B: 顺风超过你的起飞限制，联系 塔台请求改用跑道 18L 并说明原因。",
-      "referenceText": "Wuhan Tower, CCA425, the tailwind exceeds our takeoff limit, request change to runway 18L.",
-      "referenceTextZh": "武汉塔台，CCA425，顺风超过我们的起飞限制，请求改用跑道 18L。",
+      "referenceText": "Wuhan Tower, CCA 425, the tailwind exceeds our takeoff limit, request change to Runway 18L.",
+      "referenceTextZh": "武汉塔台，CCA 425，顺风超过我们的起飞限制，请求改用跑道 18L。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/932.mp3"
     },
     {
@@ -72,17 +72,17 @@
       "taskTitle": "CCA 425-8",
       "audioText": "B: You are now at cruising level 10100 meters, few minutes later, you find out you have flown into volcanic ash cloud, No.1 engine has stalled and then flamed out. Make an urgency call, state your situation and request return to Wuhan Airport.",
       "audioTextZh": "B: 你现在在巡航高度 10100 米，几分钟后发现飞入火山灰云，1 号发动机喘振后熄火。发出紧急呼叫，说明情况并请求返回 Wuhan Airport。",
-      "referenceText": "PANPAN PANPAN PANPAN, Wuhan Control, CCA425, we have flown into volcanic ash cloud, No.1 engine has stalled and then flamed out, request return to Wuhan Airport.",
-      "referenceTextZh": "PANPAN PANPAN PANPAN，武汉管制，CCA425，我们飞入火山灰云，1 号发动机喘振后熄火，请求返回 Wuhan Airport。",
+      "referenceText": "PANPAN PANPAN PANPAN, Wuhan Control, CCA 425, we have flown into volcanic ash cloud, No.1 engine has stalled and then flamed out, request return to Wuhan Airport.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，武汉管制，CCA 425，我们飞入火山灰云，1 号发动机喘振后熄火，请求返回 Wuhan Airport。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/933.mp3"
     },
     {
       "id": "atc-scenario-0054-card-main-934",
       "taskTitle": "CCA 425-9",
-      "audioText": "C: Air China 425, roger your PAN, turn left heading 060, descend and maintain 4200 meters, wait for further instructions.",
-      "audioTextZh": "C: Air China 425，收到你的 PAN，左转航向 060，下降并保持 4200 米，等待进一步指令。",
-      "referenceText": "Turn left heading 060, descend and maintain 4200m, CCA425.",
-      "referenceTextZh": "左转航向 060，下降并保持 4200 米，CCA425。",
+      "audioText": "C: CCA 425, roger your PAN, turn left heading 060, descend and maintain 4200 meters, wait for further instructions.",
+      "audioTextZh": "C: CCA 425，收到你的 PAN，左转航向 060，下降并保持 4200 米，等待进一步指令。",
+      "referenceText": "Turn left heading 060, descend and maintain 4200m, CCA 425.",
+      "referenceTextZh": "左转航向 060，下降并保持 4200 米，CCA 425。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/934.mp3"
     },
     {
@@ -90,8 +90,8 @@
       "taskTitle": "CCA 425-10",
       "audioText": "B: You are leveling off at 4200 meters, you find out everything is clear, you decide to restart the No.1 engine, tell ATC your decision.",
       "audioTextZh": "B: 你正在 4200 米改平，发现一切正常，决定重启 1 号发动机，告诉 ATC 你的决定。",
-      "referenceText": "Wuhan Control, CCA425, maintain 4200m, everything is clear, we decide to restart the No.1 engine.",
-      "referenceTextZh": "武汉管制，CCA425，保持 4200 米，一切正常，我们决定重启 1 号发动机。",
+      "referenceText": "Wuhan Control, CCA 425, maintain 4200m, everything is clear, we decide to restart the No.1 engine.",
+      "referenceTextZh": "武汉管制，CCA 425，保持 4200 米，一切正常，我们决定重启 1 号发动机。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/935.mp3"
     },
     {
@@ -99,8 +99,8 @@
       "taskTitle": "CCA 425-11",
       "audioText": "B: Your No.1 engine restarted, tell ATC you decide to continue to the destination, request their approval.",
       "audioTextZh": "B: 你的 1 号发动机重启成功，告诉 ATC 你决定继续飞往目的地，请求批准。",
-      "referenceText": "Wuhan Control, CCA425, our No.1 engine restarted, request continue to Tokyo.",
-      "referenceTextZh": "武汉管制，CCA425，我们的 1 号发动机已重启，请求继续飞往 Tokyo。",
+      "referenceText": "Wuhan Control, CCA 425, our No.1 engine restarted, request continue to Tokyo.",
+      "referenceTextZh": "武汉管制，CCA 425，我们的 1 号发动机已重启，请求继续飞往 Tokyo。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/936.mp3"
     }
   ]

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "releaseVersion": 4,
+  "releasedAt": "2026-07-15T13:20:10.000Z",
+  "banks": [
+    {
+      "id": "listening",
+      "version": 4,
+      "file": "banks/listening.json",
+      "checksum": "9ea06930c0a5c663ebd2aa5a12a4e8a56fd114495a8b55e34b7b6b068f07e803",
+      "categories": 4,
+      "topics": 4,
+      "cards": 631
+    }
+  ],
+  "resources": {
+    "version": 2,
+    "file": "resources/manifest.json",
+    "checksum": "4ff864f73e104925ad3eb399013a13653e525bcf17e3de7d008a9b0a8462b902",
+    "files": 0,
+    "sizeBytes": 0
+  }
+}

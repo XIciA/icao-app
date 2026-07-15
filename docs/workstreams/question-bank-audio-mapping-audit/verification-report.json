@@ -32,17 +32,18 @@
         }
       },
       "opi": {
-        "cards": 1269,
+        "cards": 1356,
         "pathAligned": 0,
         "statusCounts": {
-          "generated-audio": 1269
+          "generated-audio": 1292,
+          "unexpected-opi-audio": 64
         }
       }
     },
-    "currentCardCount": 4947,
+    "currentCardCount": 5034,
     "stableIdOnlyMappings": 37
   },
-  "generatedAt": "2026-07-13T07:10:39.216Z",
+  "generatedAt": "2026-07-15T14:17:39.796Z",
   "roots": {
     "canonicalAudioRoot": "/Users/zhouyide/Desktop/icao设计稿/public/question-bank-assets/audio",
     "embeddedPath": "/Users/zhouyide/Desktop/icao-app/src/features/question-bank/data/question-bank.json",

@@ -8,7 +8,7 @@ const datasets: QuestionBankDataset[] = [
   ['sentences900', 'speaking', ['mine', 'notes']],
   ['radiotelephony', 'speaking', ['mine', 'reference', 'notes']],
   ['opi', 'speaking', ['mine', 'reference', 'notes']],
-  ['storytelling', 'retell', ['mine', 'reference', 'notes']],
+  ['storytelling', 'retell', ['mine', 'notes']],
 ].map(([id, interaction, consoleTabs]) => ({
   id,
   title: id,
@@ -49,10 +49,27 @@ describe('shared study engine', () => {
 
     expect(Object.keys(behaviors).sort()).toEqual(['listening', 'opi', 'radiotelephony', 'sentences900', 'storytelling']);
     expect(behaviors.listening.taskKind).toBe('choices');
-    expect(behaviors.sentences900.workbenchTabs).toEqual(['mine', 'notes']);
+    expect([
+      behaviors.listening.workbenchTabs,
+      behaviors.sentences900.workbenchTabs,
+      behaviors.radiotelephony.workbenchTabs,
+      behaviors.opi.workbenchTabs,
+      behaviors.storytelling.workbenchTabs,
+    ]).toEqual([
+      ['notes'],
+      ['mine', 'notes'],
+      ['mine', 'reference', 'notes'],
+      ['mine', 'reference', 'notes'],
+      ['mine', 'notes'],
+    ]);
     expect(behaviors.radiotelephony.reviewKind).toBe('grammar');
     expect(behaviors.opi.generatedAudio).toBe(true);
     expect(behaviors.storytelling.recordingMode).toBe('retell');
+
+    const storytelling = getEmbeddedQuestionBanks().find((dataset) => dataset.id === 'storytelling');
+    const storytellingCards = storytelling?.categories.flatMap((category) => category.topics).flatMap((topic) => topic.cards) ?? [];
+    expect(storytellingCards).toHaveLength(296);
+    expect(storytellingCards.every((card) => !Object.hasOwn(card, 'referenceText'))).toBe(true);
   });
 
   it('does not migrate visit-only legacy state as completed', () => {

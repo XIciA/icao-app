@@ -116,8 +116,10 @@ export type CardLearningState = {
 };
 
 export type LearningRecord = {
-  schemaVersion?: 1 | 2;
+  schemaVersion?: 1 | 2 | 3;
   id: string;
+  sessionId?: string;
+  cardId?: string;
   bankId: QuestionBankId;
   bankTitle: string;
   categoryTitle: string;
@@ -131,6 +133,7 @@ export type LearningRecord = {
   durationSeconds: number;
   reason: 'abort' | 'complete';
   createdAt: string;
+  updatedAt?: string;
   recordType?: 'session' | 'ai_result';
   aiResult?: {
     questionId: string;

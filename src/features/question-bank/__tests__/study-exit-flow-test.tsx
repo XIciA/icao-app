@@ -9,6 +9,7 @@ import type { LearningRecord, QuestionBankCategory, QuestionBankDataset, Questio
 
 const mockFinish = jest.fn();
 const mockGoTo = jest.fn();
+const mockFlush = jest.fn(async () => true);
 let mockPreventRemoveHandler: (() => void) | undefined;
 
 jest.mock('@react-navigation/native', () => ({
@@ -34,8 +35,8 @@ jest.mock('@/components/ui', () => {
   return {
     AppText: ({ children }: { children: React.ReactNode }) => <MockText>{children}</MockText>,
     BottomSheet: ({ children, visible }: { children: React.ReactNode; visible: boolean }) => visible ? <MockView>{children}</MockView> : null,
-    Button: ({ children, disabled, onPress }: { children: React.ReactNode; disabled?: boolean; onPress?: () => void }) => (
-      <MockPressable accessibilityLabel={typeof children === 'string' ? children : undefined} disabled={disabled} onPress={onPress}><MockView>{MockChildren.map(children, (child: React.ReactNode) => typeof child === 'string' ? <MockText>{child}</MockText> : child)}</MockView></MockPressable>
+    Button: ({ accessibilityLabel, children, disabled, onPress }: { accessibilityLabel?: string; children: React.ReactNode; disabled?: boolean; onPress?: () => void }) => (
+      <MockPressable accessibilityLabel={accessibilityLabel ?? (typeof children === 'string' ? children : undefined)} disabled={disabled} onPress={onPress}><MockView>{MockChildren.map(children, (child: React.ReactNode) => typeof child === 'string' ? <MockText>{child}</MockText> : child)}</MockView></MockPressable>
     ),
   };
 });
@@ -61,15 +62,30 @@ jest.mock('../platform/network-service', () => ({
 }));
 jest.mock('@/features/ai/ai-client', () => ({ hasAiConsent: async () => false }));
 jest.mock('../components/AnnotationToolbar', () => ({ AnnotationToolbar: () => null }));
-jest.mock('../components/AnswerCardSheet', () => ({ AnswerCardSheet: () => null }));
+jest.mock('../components/AnswerCardSheet', () => {
+  const { Pressable: MockPressable, Text: MockText, View: MockView } = jest.requireActual('react-native');
+  return {
+    AnswerCardSheet: ({ onSelect, visible }: { onSelect: (index: number) => void; visible: boolean }) => visible ? (
+      <MockView><MockPressable accessibilityLabel="答题卡选择第2题" onPress={() => onSelect(1)}><MockText>第2题</MockText></MockPressable></MockView>
+    ) : null,
+  };
+});
 jest.mock('../components/InteractiveStudyText', () => ({ InteractiveStudyText: () => null }));
 jest.mock('../components/StudyAudioPlayer', () => ({ StudyAudioPlayer: () => null }));
 jest.mock('../components/StudyCardStack', () => {
   const { View: MockView } = jest.requireActual('react-native');
-  return { StudyCardStack: () => <MockView /> };
+  return { StudyCardStack: ({ workbench }: { workbench: React.ReactNode }) => <MockView>{workbench}</MockView> };
 });
 jest.mock('../components/StudyTaskRenderer', () => ({ StudyTaskRenderer: () => null }));
-jest.mock('../components/StudyWorkbench', () => ({ StudyWorkbench: () => null }));
+jest.mock('../components/StudyWorkbench', () => {
+  const { forwardRef: mockForwardRef, useImperativeHandle: mockUseImperativeHandle } = jest.requireActual('react');
+  return {
+    StudyWorkbench: mockForwardRef((_props: object, ref: React.ForwardedRef<{ flushAutoSave: () => Promise<boolean> }>) => {
+      mockUseImperativeHandle(ref, () => ({ flushAutoSave: mockFlush }));
+      return null;
+    }),
+  };
+});
 jest.mock('../components/StudyReport', () => {
   const { Text: MockText } = jest.requireActual('react-native');
   return { StudyReport: ({ record }: { record: LearningRecord }) => <MockText>{`report:${record.reason}`}</MockText> };
@@ -98,6 +114,7 @@ describe('study exit flow', () => {
   beforeEach(() => {
     mockFinish.mockReset();
     mockGoTo.mockReset();
+    mockFlush.mockReset().mockResolvedValue(true);
     mockPreventRemoveHandler = undefined;
     (useStudySession as jest.Mock).mockImplementation(() => {
       const [studyReport, setStudyReport] = useState<LearningRecord>();
@@ -132,6 +149,7 @@ describe('study exit flow', () => {
 
     await waitFor(() => expect(screen.getByText('report:abort')).toBeTruthy());
     expect(mockFinish).toHaveBeenCalledWith('abort');
+    expect(mockFlush).toHaveBeenCalledTimes(1);
     expect(screen.queryByText('结束本次学习？')).toBeNull();
   });
 
@@ -142,6 +160,7 @@ describe('study exit flow', () => {
 
     await waitFor(() => expect(screen.getByText('report:abort')).toBeTruthy());
     expect(mockFinish).toHaveBeenCalledWith('abort');
+    expect(mockFlush).toHaveBeenCalledTimes(1);
   });
 
   it('swipes left to the next question without invoking the exit flow', async () => {
@@ -156,6 +175,7 @@ describe('study exit flow', () => {
     });
 
     expect(mockGoTo).toHaveBeenCalledWith(1);
+    expect(mockFlush).toHaveBeenCalledTimes(1);
     expect(mockFinish).not.toHaveBeenCalled();
   });
 
@@ -173,5 +193,51 @@ describe('study exit flow', () => {
     expect(mockGoTo).not.toHaveBeenCalled();
     expect(mockFinish).not.toHaveBeenCalled();
     expect(screen.getByText('已经是第一题')).toBeTruthy();
+  });
+
+  it('rebounds after a short drag without changing the question', async () => {
+    await render(<QuestionBankStudyScreen category={category} dataset={dataset} topic={topic} />);
+
+    await act(async () => {
+      fireGestureHandler(getByGestureTestId('study-question-swipe'), [
+        { state: State.BEGAN, translationX: 0, translationY: 0, velocityX: 0 },
+        { state: State.ACTIVE, translationX: -18, translationY: 2, velocityX: -260 },
+        { state: State.END, translationX: -18, translationY: 2, velocityX: -260 },
+      ]);
+    });
+
+    expect(mockGoTo).not.toHaveBeenCalled();
+    expect(mockFlush).not.toHaveBeenCalled();
+  });
+
+  it('uses the same navigation path for the footer and answer card', async () => {
+    const screen = await render(<QuestionBankStudyScreen category={category} dataset={dataset} topic={topic} />);
+
+    await act(async () => { fireEvent.press(screen.getByLabelText('下一题')); });
+    expect(mockGoTo).toHaveBeenLastCalledWith(1);
+    expect(mockFlush).toHaveBeenCalledTimes(1);
+
+    mockGoTo.mockClear();
+    mockFlush.mockClear();
+    await act(async () => { fireEvent.press(screen.getByLabelText('打开答题卡')); });
+    await act(async () => { fireEvent.press(screen.getByLabelText('答题卡选择第2题')); });
+    expect(mockGoTo).toHaveBeenLastCalledWith(1);
+    expect(mockFlush).toHaveBeenCalledTimes(1);
+  });
+
+  it('keeps the current card visible when automatic saving fails', async () => {
+    mockFlush.mockResolvedValue(false);
+    const screen = await render(<QuestionBankStudyScreen category={category} dataset={dataset} topic={topic} />);
+
+    await act(async () => {
+      fireGestureHandler(getByGestureTestId('study-question-swipe'), [
+        { state: State.BEGAN, translationX: 0, translationY: 0, velocityX: 0 },
+        { state: State.ACTIVE, translationX: -40, translationY: 3, velocityX: -300 },
+        { state: State.END, translationX: -80, translationY: 3, velocityX: -300 },
+      ]);
+    });
+
+    expect(mockGoTo).not.toHaveBeenCalled();
+    expect(screen.getByText('回答自动保存失败，请重试后继续。')).toBeTruthy();
   });
 });

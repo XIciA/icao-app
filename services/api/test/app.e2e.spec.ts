@@ -148,11 +148,26 @@ describe('API foundation', () => {
       headers: { authorization: 'Bearer valid-token' },
       payload: { mutations: [{ kind: 'card_state' }] },
     });
+    const mismatchedPull = await app.inject({
+      method: 'GET',
+      url: '/v1/sync/pull?cursor=0&ownerUserId=00000000-0000-4000-8000-000000000099',
+      headers: { authorization: 'Bearer valid-token' },
+    });
+    const mismatchedPush = await app.inject({
+      method: 'POST',
+      url: '/v1/sync/push',
+      headers: { authorization: 'Bearer valid-token' },
+      payload: { ownerUserId: '00000000-0000-4000-8000-000000000099', mutations: [] },
+    });
     expect(missing.statusCode).toBe(401);
     expect(invalidCursor.statusCode).toBe(400);
     expect(invalidCursor.json().error.code).toBe('invalid_sync_cursor');
     expect(invalidPush.statusCode).toBe(400);
     expect(invalidPush.json().error.code).toBe('invalid_sync_payload');
+    expect(mismatchedPull.statusCode).toBe(409);
+    expect(mismatchedPull.json().error.code).toBe('sync_user_mismatch');
+    expect(mismatchedPush.statusCode).toBe(409);
+    expect(mismatchedPush.json().error.code).toBe('sync_user_mismatch');
     await app.close();
   });
 });

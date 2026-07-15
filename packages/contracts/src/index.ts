@@ -140,6 +140,8 @@ export type LearningRecordMutation = {
     recordId: string;
     record: Record<string, unknown>;
     occurredAt: string;
+    version?: number;
+    updatedAt?: string;
   };
 };
 
@@ -156,7 +158,7 @@ export type DocumentMutation = {
 
 export type SyncMutation = CardStateMutation | LearningRecordMutation | DocumentMutation;
 
-export type SyncPushRequest = { mutations: SyncMutation[] };
+export type SyncPushRequest = { ownerUserId?: string; mutations: SyncMutation[] };
 
 export type SyncPushResult = {
   mutationId: string;
@@ -168,6 +170,9 @@ export type SyncPushResult = {
     state?: SyncCardState;
     documentKey?: string;
     document?: Record<string, unknown>;
+    recordId?: string;
+    record?: Record<string, unknown>;
+    occurredAt?: string;
     version: number;
     updatedAt: string;
   };

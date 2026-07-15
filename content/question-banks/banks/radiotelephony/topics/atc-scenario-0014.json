@@ -7,46 +7,46 @@
     {
       "id": "atc-scenario-0014-card-main-232",
       "taskTitle": "SIA 1334-1",
-      "audioText": "B: Your call sign is Singapore 334 from Chengdu to Beijing, you are at stand 34, information India received, request ATC clearance.",
-      "audioTextZh": "B：你的呼号是 Singapore 334，从成都飞往北京，在 34 号机位，已收到 India 情报，请求 ATC 放行许可。",
-      "referenceText": "Chengdu Delivery, SIA1334, stand 34, information I, request ATC clearance to Beijing.",
-      "referenceTextZh": "成都放行，SIA1334，34 号机位，收到 I 情报，申请前往北京的 ATC 放行许可。",
+      "audioText": "B: Your call sign is SIA 334 from Chengdu to Beijing, you are at stand 34, information I received, request ATC clearance.",
+      "audioTextZh": "B：你的呼号是 SIA 334，从成都飞往北京，在 34 号机位，已收到 I 情报，请求 ATC 放行许可。",
+      "referenceText": "Chengdu Delivery, SIA 1334, stand 34, information I, request ATC clearance to Beijing.",
+      "referenceTextZh": "成都放行，SIA 1334，34 号机位，收到 I 情报，申请前往北京的 ATC 放行许可。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/232.mp3"
     },
     {
       "id": "atc-scenario-0014-card-main-233",
       "taskTitle": "SIA 1334-2",
-      "audioText": "C: Singapore 334, stand by, I am going to check your flight plan.",
-      "audioTextZh": "C：Singapore 334，等待，我将检查你的飞行计划。",
-      "referenceText": "Stand by, SIA1334.",
-      "referenceTextZh": "等待，SIA1334。",
+      "audioText": "C: SIA 334, stand by, I am going to check your flight plan.",
+      "audioTextZh": "C：SIA 334，等待，我将检查你的飞行计划。",
+      "referenceText": "Stand by, SIA 1334.",
+      "referenceTextZh": "等待，SIA 1334。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/233.mp3"
     },
     {
       "id": "atc-scenario-0014-card-main-234",
       "taskTitle": "SIA 1334-3",
-      "audioText": "C: Singapore 334, Delivery, cleared to Beijing as filed, fight level #%$@*^#....\nB: The ATC clearance has been disturbed, inform ATC and request repeat the clearance.",
-      "audioTextZh": "C：Singapore 334，放行，许可按提交飞行计划飞往北京，高度 #%$@*^#……\nB：ATC 放行许可受到干扰，通知 ATC 并请求重复放行许可。",
-      "referenceText": "Chengdu Delivery, SIA1334, the ATC clearance has been disturbed, request repeat the clearance.",
-      "referenceTextZh": "成都放行，SIA1334，ATC 放行许可受到干扰，请求重复放行许可。",
+      "audioText": "C: SIA 334, Delivery, cleared to Beijing as filed, fight level #%$@*^#....\nB: The ATC clearance has been disturbed, inform ATC and request repeat the clearance.",
+      "audioTextZh": "C：SIA 334，放行，许可按提交飞行计划飞往北京，高度 #%$@*^#……\nB：ATC 放行许可受到干扰，通知 ATC 并请求重复放行许可。",
+      "referenceText": "Chengdu Delivery, SIA 1334, the ATC clearance has been disturbed, request repeat the clearance.",
+      "referenceTextZh": "成都放行，SIA 1334，ATC 放行许可受到干扰，请求重复放行许可。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/234.mp3"
     },
     {
       "id": "atc-scenario-0014-card-main-235",
       "taskTitle": "SIA 1334-4",
-      "audioText": "C: Singapore 334 is cleared to Beijing as filed, 10700 meters, Delta 06 departure, runway 12, runway heading until passing 3000 meters before turning right, squawk 4562.",
-      "audioTextZh": "C：Singapore 334，许可按提交飞行计划飞往北京，10700 米，Delta 06 离场，跑道 12，保持跑道航向直到通过 3000 米后再右转，应答机 4562。",
-      "referenceText": "Cleared to Beijing as filed, 10700m, D06 departure, runway 12, runway heading until passing 3000m before turning right, squawk 4562, SIA1334.",
-      "referenceTextZh": "许可按提交飞行计划飞往北京，10700 米，D06 离场，跑道 12，保持跑道航向直到通过 3000 米后再右转，应答机 4562，SIA1334。",
+      "audioText": "C: SIA 334 is cleared to Beijing as filed, 10700 meters, D06 departure, Runway 12, runway heading until passing 3000 meters before turning right, squawk 4562.",
+      "audioTextZh": "C：SIA 334，许可按提交飞行计划飞往北京，10700 米，D06 离场，跑道 12，保持跑道航向直到通过 3000 米后再右转，应答机 4562。",
+      "referenceText": "Cleared to Beijing as filed, 10700m, D06 departure, Runway 12, runway heading until passing 3000m before turning right, squawk 4562, SIA 1334.",
+      "referenceTextZh": "许可按提交飞行计划飞往北京，10700 米，D06 离场，跑道 12，保持跑道航向直到通过 3000 米后再右转，应答机 4562，SIA 1334。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/235.mp3"
     },
     {
       "id": "atc-scenario-0014-card-main-236",
       "taskTitle": "SIA 1334-5",
-      "audioText": "C: Singapore 334, readback correct, when ready for push back and start up, contact Ground 118.9.",
-      "audioTextZh": "C：Singapore 334，复诵正确，准备好推出和开车时联系地面 118.9。",
-      "referenceText": "118.9, SIA1334.",
-      "referenceTextZh": "118.9，SIA1334。",
+      "audioText": "C: SIA 334, readback correct, when ready for push back and start up, contact Ground 118.9.",
+      "audioTextZh": "C：SIA 334，复诵正确，准备好推出和开车时联系地面 118.9。",
+      "referenceText": "118.9, SIA 1334.",
+      "referenceTextZh": "118.9，SIA 1334。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/236.mp3"
     },
     {
@@ -54,26 +54,26 @@
       "taskTitle": "SIA 1334-6",
       "audioText": "B: Before being pushed back, the chief purser calls you that the general declaration form is not on board, inform ATC the situation and request delay the push.",
       "audioTextZh": "B：推出前，乘务长通知你总申报单不在机上，通知 ATC 情况并请求延迟推出。",
-      "referenceText": "Chengdu Ground, SIA1334, the chief purser reports that the general declaration form is not on board, request delay the push.",
-      "referenceTextZh": "成都地面，SIA1334，乘务长报告总申报单不在机上，请求延迟推出。",
+      "referenceText": "Chengdu Ground, SIA 1334, the chief purser reports that the general declaration form is not on board, request delay the push.",
+      "referenceTextZh": "成都地面，SIA 1334，乘务长报告总申报单不在机上，请求延迟推出。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/237.mp3"
     },
     {
       "id": "atc-scenario-0014-card-main-238",
       "taskTitle": "SIA 1334-7",
-      "audioText": "C: Singapore 334, roger, call me back when ready.",
-      "audioTextZh": "C：Singapore 334，收到，准备好时再叫我。",
-      "referenceText": "Roger, thanks, SIA1334.",
-      "referenceTextZh": "收到，谢谢，SIA1334。",
+      "audioText": "C: SIA 334, roger, call me back when ready.",
+      "audioTextZh": "C：SIA 334，收到，准备好时再叫我。",
+      "referenceText": "Roger, thanks, SIA 1334.",
+      "referenceTextZh": "收到，谢谢，SIA 1334。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/238.mp3"
     },
     {
       "id": "atc-scenario-0014-card-main-239",
       "taskTitle": "SIA 1334-8",
-      "audioText": "C: Singapore 334, are you fully ready now? Your slot is 0310.\nB: You need to open the cabin door for the release documents, advise Ground you will need another 5 minutes.",
-      "audioTextZh": "C：Singapore 334，你们现在完全准备好了吗？你的时隙是 0310。\nB：你需要打开客舱门取放行文件，告知地面还需要 5 分钟。",
-      "referenceText": "Chengdu Ground, SIA1334, we need to open the cabin door for the release documents, request another 5min.",
-      "referenceTextZh": "成都地面，SIA1334，我们需要打开客舱门取放行文件，请求再给 5 分钟。",
+      "audioText": "C: SIA 334, are you fully ready now? Your slot is 0310.\nB: You need to open the cabin door for the release documents, advise Ground you will need another 5 minutes.",
+      "audioTextZh": "C：SIA 334，你们现在完全准备好了吗？你的时隙是 0310。\nB：你需要打开客舱门取放行文件，告知地面还需要 5 分钟。",
+      "referenceText": "Chengdu Ground, SIA 1334, we need to open the cabin door for the release documents, request another 5min.",
+      "referenceTextZh": "成都地面，SIA 1334，我们需要打开客舱门取放行文件，请求再给 5 分钟。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/239.mp3"
     },
     {
@@ -81,17 +81,17 @@
       "taskTitle": "SIA 1334-9",
       "audioText": "B: Later, the release documents are fully ready, call Ground you are ready.",
       "audioTextZh": "B：稍后，放行文件全部准备好，呼叫地面你已准备好。",
-      "referenceText": "Chengdu Ground, SIA1334, ready for pushback and startup.",
-      "referenceTextZh": "成都地面，SIA1334，准备好推出和开车。",
+      "referenceText": "Chengdu Ground, SIA 1334, ready for pushback and startup.",
+      "referenceTextZh": "成都地面，SIA 1334，准备好推出和开车。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/240.mp3"
     },
     {
       "id": "atc-scenario-0014-card-main-241",
       "taskTitle": "SIA 1334-10",
-      "audioText": "C: Singapore 334, push back and startup approved until abeam gate 33, do not block gate 35, there is incoming traffic to the gate.",
-      "audioTextZh": "C：Singapore 334，推出和开车批准，推出至正对 33 号登机口，不得阻挡 35 号登机口，有进港航空器要进该登机口。",
-      "referenceText": "Push back and startup approved until abeam gate 33, do not block gate35, SIA1334.",
-      "referenceTextZh": "推出和开车批准，推出至正对 33 号登机口，不得阻挡 35 号登机口，SIA1334。",
+      "audioText": "C: SIA 334, push back and startup approved until abeam gate 33, do not block gate 35, there is incoming traffic to the gate.",
+      "audioTextZh": "C：SIA 334，推出和开车批准，推出至正对 33 号登机口，不得阻挡 35 号登机口，有进港航空器要进该登机口。",
+      "referenceText": "Push back and startup approved until abeam gate 33, do not block gate35, SIA 1334.",
+      "referenceTextZh": "推出和开车批准，推出至正对 33 号登机口，不得阻挡 35 号登机口，SIA 1334。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/241.mp3"
     }
   ]

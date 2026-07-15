@@ -3,12 +3,11 @@ import Storage from 'expo-sqlite/kv-store';
 import { enqueueCardState, enqueueLearningRecord } from '@/features/sync/learning-sync';
 
 import type { CardLearningState, LearningRecord, QuestionBankCard, QuestionBankTopic } from '../types';
+import { getLearningRecords, resetLearningRecordStorageForTests, upsertLearningRecord } from './learning-record-storage';
 
 const LEGACY_TOPIC_PREFIX = 'icao.learning.v1.topic.';
 const TOPIC_PREFIX = 'icao.learning.v2.topic.';
 const MIGRATION_PREFIX = 'icao.learning.v2.migrated.';
-const RECORDS_KEY = 'icao.learning.v1.records';
-const MAX_RECORDS = 100;
 const topicWriteQueues = new Map<string, Promise<void>>();
 
 export type LearningStore = {
@@ -111,12 +110,11 @@ export const sqliteLearningStore: LearningStore = {
     return readTopicStates(topic.id);
   },
   async addRecord(record) {
-    const current = await this.getRecords();
-    await Storage.setItem(RECORDS_KEY, JSON.stringify([record, ...current].slice(0, MAX_RECORDS)));
+    await upsertLearningRecord(record);
     await enqueueLearningRecord(record);
   },
   async getRecords() {
-    return parseJson<LearningRecord[]>(await Storage.getItem(RECORDS_KEY), []);
+    return getLearningRecords();
   },
 };
 
@@ -126,4 +124,5 @@ export function completedCards(cards: QuestionBankCard[], states: Record<string,
 
 export function resetLearningStoreForTests() {
   topicWriteQueues.clear();
+  resetLearningRecordStorageForTests();
 }

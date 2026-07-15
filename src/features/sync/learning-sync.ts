@@ -13,6 +13,12 @@ import { apiRequest } from '@/platform/api-client';
 import { findQuestionBankCardReference } from '@/features/question-bank/annotations/card-index';
 import { createEmptyAnnotationStore, replaceAnnotationStoreFromSync } from '@/features/question-bank/annotations/annotation-store';
 import type { QuestionBankAnnotationStore } from '@/features/question-bank/annotations/types';
+import {
+  clearLearningRecords,
+  getLearningRecords,
+  LEARNING_RECORDS_KEY,
+  upsertLearningRecord,
+} from '@/features/question-bank/platform/learning-record-storage';
 import type { CardLearningState, LearningRecord } from '@/features/question-bank/types';
 import {
   createEmptyVocabularyState,
@@ -29,10 +35,8 @@ const OUTBOX_KEY = 'icao.learning.v3.sync.outbox';
 const LEGACY_TOPIC_PREFIX = 'icao.learning.v1.topic.';
 const TOPIC_PREFIX = 'icao.learning.v2.topic.';
 const MIGRATION_PREFIX = 'icao.learning.v2.migrated.';
-const RECORDS_KEY = 'icao.learning.v1.records';
 const ANNOTATIONS_KEY = 'icao.annotations.v1';
 const SNAPSHOT_PREFIX = 'icao.learning.v3.prebind.';
-const MAX_RECORDS = 100;
 
 type SyncMeta = {
   schemaVersion: 3;
@@ -53,7 +57,26 @@ export type LearningSyncStatus = {
 
 let writeQueue = Promise.resolve();
 let running: Promise<LearningSyncStatus> | undefined;
+let runningUserId: string | undefined;
 let retryTimer: ReturnType<typeof setTimeout> | undefined;
+let activeUserId: string | undefined;
+let identityEpoch = 0;
+
+class SyncIdentityChangedError extends Error {}
+
+function assertSyncIdentity(userId: string, epoch: number) {
+  if (identityEpoch !== epoch || (activeUserId !== undefined && activeUserId !== userId)) {
+    throw new SyncIdentityChangedError('sync_identity_changed');
+  }
+}
+
+export function setLearningSyncActiveUser(userId?: string) {
+  if (activeUserId === userId) return;
+  activeUserId = userId;
+  identityEpoch += 1;
+  if (retryTimer) clearTimeout(retryTimer);
+  retryTimer = undefined;
+}
 
 function parseJson<T>(raw: string | null, fallback: T): T {
   if (!raw) return fallback;
@@ -80,6 +103,10 @@ function cardVersionKey(bankId: string, topicId: string, cardId: string) {
   return `card:${bankId}:${topicId}:${cardId}`;
 }
 
+function recordVersionKey(recordId: string) {
+  return `record:${recordId}`;
+}
+
 async function queuedUpdate(updater: (meta: SyncMeta, outbox: SyncMutation[]) => Promise<void> | void) {
   const next = writeQueue.catch(() => undefined).then(async () => {
     const meta = await readMeta();
@@ -92,6 +119,22 @@ async function queuedUpdate(updater: (meta: SyncMeta, outbox: SyncMutation[]) =>
   await next;
 }
 
+async function replaceQueuedSyncState(meta: SyncMeta, outbox: SyncMutation[]) {
+  const next = writeQueue.catch(() => undefined).then(() => Storage.multiSet([
+    [META_KEY, JSON.stringify(meta)],
+    [OUTBOX_KEY, JSON.stringify(outbox)],
+  ]));
+  writeQueue = next;
+  await next;
+}
+
+function mergeSyncProgress(target: SyncMeta, source: SyncMeta) {
+  target.cursor = Math.max(target.cursor, source.cursor);
+  for (const [key, version] of Object.entries(source.versions)) {
+    target.versions[key] = Math.max(target.versions[key] ?? 0, version);
+  }
+}
+
 function hasAnnotationData(value: QuestionBankAnnotationStore) {
   return Object.keys(value.entries ?? {}).length > 0
     || value.tagDefinitions.some((item) => !item.builtIn)
@@ -100,14 +143,19 @@ function hasAnnotationData(value: QuestionBankAnnotationStore) {
 
 async function localDataSnapshot() {
   const keys = (await Storage.getAllKeys()).filter((key) => key.startsWith(TOPIC_PREFIX) || key.startsWith(LEGACY_TOPIC_PREFIX));
-  const values = await Storage.multiGet([...keys, RECORDS_KEY, ANNOTATIONS_KEY, VOCABULARY_STORAGE_KEY]);
-  return Object.fromEntries(values.filter(([, value]) => value !== null)) as Record<string, string>;
+  const [values, records] = await Promise.all([
+    Storage.multiGet([...keys, ANNOTATIONS_KEY, VOCABULARY_STORAGE_KEY]),
+    getLearningRecords(),
+  ]);
+  const snapshot = Object.fromEntries(values.filter(([, value]) => value !== null)) as Record<string, string>;
+  if (records.length) snapshot[LEARNING_RECORDS_KEY] = JSON.stringify(records);
+  return snapshot;
 }
 
 export async function inspectLearningSyncBinding(userId: string) {
   const [meta, snapshot] = await Promise.all([readMeta(), localDataSnapshot()]);
   const hasTopicState = Object.entries(snapshot).some(([key, value]) => key.startsWith(TOPIC_PREFIX) && Object.keys(parseJson(value, {})).length > 0);
-  const hasRecords = parseJson<unknown[]>(snapshot[RECORDS_KEY] ?? null, []).length > 0;
+  const hasRecords = parseJson<unknown[]>(snapshot[LEARNING_RECORDS_KEY] ?? null, []).length > 0;
   const annotations = parseJson<QuestionBankAnnotationStore | undefined>(snapshot[ANNOTATIONS_KEY] ?? null, undefined);
   const vocabulary = normalizeVocabularyState(parseJson<unknown>(snapshot[VOCABULARY_STORAGE_KEY] ?? null, undefined));
   const hasLocalData = hasTopicState || hasRecords || Boolean(annotations && hasAnnotationData(annotations)) || hasVocabularyData(vocabulary);
@@ -120,6 +168,8 @@ export async function inspectLearningSyncBinding(userId: string) {
 }
 
 export async function bindLearningSync(userId: string, mode: 'upload-local' | 'cloud-only') {
+  if (activeUserId !== undefined && activeUserId !== userId) throw new Error('sync_user_mismatch');
+  if (running) await running.catch(() => undefined);
   const snapshot = await localDataSnapshot();
   const snapshotKey = `${SNAPSHOT_PREFIX}${userId}.${Date.now()}`;
   await Storage.setItem(snapshotKey, JSON.stringify(snapshot));
@@ -154,12 +204,22 @@ export async function bindLearningSync(userId: string, mode: 'upload-local' | 'c
         });
       }
     }
-    const records = parseJson<LearningRecord[]>(snapshot[RECORDS_KEY] ?? null, []);
-    records.forEach((record) => mutations.push({
-      mutationId: `bind:${userId}:record:${record.id}`,
-      kind: 'learning_record',
-      payload: { recordId: record.id, record: record as unknown as Record<string, unknown>, occurredAt: record.createdAt },
-    }));
+    const records = parseJson<LearningRecord[]>(snapshot[LEARNING_RECORDS_KEY] ?? null, []);
+    records.forEach((record) => {
+      const versionKey = recordVersionKey(record.id);
+      versions[versionKey] = 1;
+      mutations.push({
+        mutationId: mutationId(`bind:${versionKey}:v1`),
+        kind: 'learning_record',
+        payload: {
+          recordId: record.id,
+          record: record as unknown as Record<string, unknown>,
+          occurredAt: record.createdAt,
+          version: 1,
+          updatedAt: record.updatedAt ?? record.createdAt,
+        },
+      });
+    });
     const annotations = parseJson<QuestionBankAnnotationStore | undefined>(snapshot[ANNOTATIONS_KEY] ?? null, undefined);
     if (annotations && hasAnnotationData(annotations)) {
       versions['document:annotations'] = 1;
@@ -191,7 +251,7 @@ export async function bindLearningSync(userId: string, mode: 'upload-local' | 'c
   }
 
   const meta: SyncMeta = { schemaVersion: 3, boundUserId: userId, cursor: 0, versions };
-  await Storage.multiSet([[META_KEY, JSON.stringify(meta)], [OUTBOX_KEY, JSON.stringify(mutations)]]);
+  await replaceQueuedSyncState(meta, mutations);
   return runLearningSync(userId);
 }
 
@@ -209,12 +269,18 @@ async function activePersonalKeys() {
     || key.startsWith(MIGRATION_PREFIX)
     || key.startsWith(SNAPSHOT_PREFIX)
     || key.startsWith('icao.ai.consent.')
-    || [META_KEY, OUTBOX_KEY, RECORDS_KEY, ANNOTATIONS_KEY, VOCABULARY_STORAGE_KEY].includes(key));
+    || [META_KEY, OUTBOX_KEY, LEARNING_RECORDS_KEY, ANNOTATIONS_KEY, VOCABULARY_STORAGE_KEY].includes(key));
 }
 
 async function clearActiveLearningData({ keepSnapshots }: { keepSnapshots: boolean }) {
+  if (running) await running.catch(() => undefined);
   const keys = await activePersonalKeys();
-  await Storage.multiRemove(keepSnapshots ? keys.filter((key) => !key.startsWith(SNAPSHOT_PREFIX)) : keys);
+  const keysToRemove = (keepSnapshots ? keys.filter((key) => !key.startsWith(SNAPSHOT_PREFIX)) : keys)
+    .filter((key) => key !== LEARNING_RECORDS_KEY);
+  const next = writeQueue.catch(() => undefined).then(() => Storage.multiRemove(keysToRemove));
+  writeQueue = next;
+  await next;
+  await clearLearningRecords();
   await replaceAnnotationStoreFromSync(createEmptyAnnotationStore());
   await replaceVocabularyStateFromSync(createEmptyVocabularyState());
 }
@@ -251,12 +317,25 @@ export async function enqueueCardState(topicId: string, cardId: string, state: C
 export async function enqueueLearningRecord(record: LearningRecord) {
   await queuedUpdate((meta, outbox) => {
     if (!meta.boundUserId) return;
+    const versionKey = recordVersionKey(record.id);
+    const version = (meta.versions[versionKey] ?? 0) + 1;
+    meta.versions[versionKey] = version;
+    for (let index = outbox.length - 1; index >= 0; index -= 1) {
+      const item = outbox[index];
+      if (item?.kind === 'learning_record' && item.payload.recordId === record.id) outbox.splice(index, 1);
+    }
     const mutation: LearningRecordMutation = {
-      mutationId: `record:${record.id}`,
+      mutationId: mutationId(`${versionKey}:v${version}`),
       kind: 'learning_record',
-      payload: { recordId: record.id, record: record as unknown as Record<string, unknown>, occurredAt: record.createdAt },
+      payload: {
+        recordId: record.id,
+        record: record as unknown as Record<string, unknown>,
+        occurredAt: record.createdAt,
+        version,
+        updatedAt: record.updatedAt ?? record.createdAt,
+      },
     };
-    if (!outbox.some((item) => item.mutationId === mutation.mutationId)) outbox.push(mutation);
+    outbox.push(mutation);
   });
   scheduleLearningSync();
 }
@@ -309,27 +388,30 @@ export async function enqueueVocabularyDocument(state: VocabularyState) {
 async function applyChange(change: SyncChange, meta: SyncMeta) {
   if (change.kind === 'card_state') {
     const payload = change.payload as unknown as CardStateMutation['payload'];
+    const versionKey = cardVersionKey(payload.bankId, payload.topicId, payload.cardId);
+    if (payload.version < (meta.versions[versionKey] ?? 0)) return;
     const key = `${TOPIC_PREFIX}${payload.topicId}`;
     const states = parseJson<Record<string, CardLearningState>>(await Storage.getItem(key), {});
     states[payload.cardId] = payload.state;
     await Storage.setItem(key, JSON.stringify(states));
-    meta.versions[cardVersionKey(payload.bankId, payload.topicId, payload.cardId)] = Math.max(
-      meta.versions[cardVersionKey(payload.bankId, payload.topicId, payload.cardId)] ?? 0,
-      payload.version,
-    );
+    meta.versions[versionKey] = Math.max(meta.versions[versionKey] ?? 0, payload.version);
   } else if (change.kind === 'learning_record') {
     const payload = change.payload as unknown as LearningRecordMutation['payload'];
-    const records = parseJson<LearningRecord[]>(await Storage.getItem(RECORDS_KEY), []);
+    const version = payload.version ?? 1;
+    const versionKey = recordVersionKey(payload.recordId);
+    if (version < (meta.versions[versionKey] ?? 0)) return;
     const incoming = payload.record as unknown as LearningRecord;
-    await Storage.setItem(RECORDS_KEY, JSON.stringify([incoming, ...records.filter((record) => record.id !== payload.recordId)].slice(0, MAX_RECORDS)));
+    await upsertLearningRecord(incoming);
+    meta.versions[versionKey] = Math.max(meta.versions[versionKey] ?? 0, version);
   } else if (change.kind === 'document') {
     const payload = change.payload as unknown as DocumentMutation['payload'];
+    const versionKey = `document:${payload.documentKey}`;
+    if (payload.version < (meta.versions[versionKey] ?? 0)) return;
     if (payload.documentKey === 'annotations') {
       await replaceAnnotationStoreFromSync(payload.document);
-      meta.versions['document:annotations'] = Math.max(meta.versions['document:annotations'] ?? 0, payload.version);
+      meta.versions[versionKey] = Math.max(meta.versions[versionKey] ?? 0, payload.version);
     } else if (payload.documentKey === VOCABULARY_DOCUMENT_KEY) {
       await replaceVocabularyStateFromSync(payload.document);
-      const versionKey = `document:${VOCABULARY_DOCUMENT_KEY}`;
       meta.versions[versionKey] = Math.max(meta.versions[versionKey] ?? 0, payload.version);
     }
   }
@@ -347,6 +429,21 @@ async function applyAuthoritative(result: SyncPushResponse['results'][number], m
       version: value.version,
       changedAt: value.updatedAt,
     }, meta);
+  } else if (value.recordId && value.record && value.occurredAt) {
+    await applyChange({
+      cursor: meta.cursor,
+      kind: 'learning_record',
+      entityKey: value.recordId,
+      payload: {
+        recordId: value.recordId,
+        record: value.record,
+        occurredAt: value.occurredAt,
+        version: value.version,
+        updatedAt: value.updatedAt,
+      },
+      version: value.version,
+      changedAt: value.updatedAt,
+    }, meta);
   } else if (value.documentKey && value.document) {
     await applyChange({
       cursor: meta.cursor,
@@ -360,49 +457,117 @@ async function applyAuthoritative(result: SyncPushResponse['results'][number], m
 }
 
 export async function runLearningSync(userId?: string): Promise<LearningSyncStatus> {
-  if (running) return running;
-  running = (async () => {
+  const expectedUserId = userId ?? activeUserId;
+  if (!expectedUserId || (activeUserId !== undefined && activeUserId !== expectedUserId)) return getLearningSyncStatus();
+  if (running) {
+    if (runningUserId === expectedUserId) return running;
+    await running.catch(() => undefined);
+    return runLearningSync(expectedUserId);
+  }
+  const epoch = identityEpoch;
+  const operation = (async () => {
     await writeQueue.catch(() => undefined);
+    assertSyncIdentity(expectedUserId, epoch);
     const meta = await readMeta();
-    if (!meta.boundUserId || (userId && meta.boundUserId !== userId)) return getLearningSyncStatus();
-    let outbox = await readOutbox();
+    if (meta.boundUserId !== expectedUserId) return getLearningSyncStatus();
     try {
-      while (outbox.length) {
-        const batch = outbox.slice(0, 50);
-        const response = await apiRequest<SyncPushResponse>('/v1/sync/push', {
-          method: 'POST',
-          headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({ mutations: batch }),
-        });
-        for (const result of response.results) await applyAuthoritative(result, meta);
-        const processed = new Set(response.results.map((result) => result.mutationId));
-        outbox = outbox.filter((mutation) => !processed.has(mutation.mutationId));
-        await Storage.setItem(OUTBOX_KEY, JSON.stringify(outbox));
-      }
+      while (true) {
+        while (true) {
+          await writeQueue.catch(() => undefined);
+          assertSyncIdentity(expectedUserId, epoch);
+          mergeSyncProgress(meta, await readMeta());
+          const outbox = await readOutbox();
+          if (!outbox.length) break;
+          const batch = outbox.slice(0, 50);
+          const response = await apiRequest<SyncPushResponse>('/v1/sync/push', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ ownerUserId: expectedUserId, mutations: batch }),
+          });
+          assertSyncIdentity(expectedUserId, epoch);
+          await writeQueue.catch(() => undefined);
+          assertSyncIdentity(expectedUserId, epoch);
+          mergeSyncProgress(meta, await readMeta());
+          for (const result of response.results) {
+            assertSyncIdentity(expectedUserId, epoch);
+            await applyAuthoritative(result, meta);
+          }
+          const processed = new Set(response.results.map((result) => result.mutationId));
+          await queuedUpdate((latestMeta, latestOutbox) => {
+            assertSyncIdentity(expectedUserId, epoch);
+            mergeSyncProgress(latestMeta, meta);
+            for (let index = latestOutbox.length - 1; index >= 0; index -= 1) {
+              if (processed.has(latestOutbox[index]!.mutationId)) latestOutbox.splice(index, 1);
+            }
+          });
+        }
 
-      let hasMore = true;
-      while (hasMore) {
-        const response = await apiRequest<SyncPullResponse>(`/v1/sync/pull?cursor=${meta.cursor}`);
-        for (const change of response.changes) await applyChange(change, meta);
-        meta.cursor = response.cursor;
-        hasMore = response.hasMore;
+        let hasMore = true;
+        while (hasMore) {
+          await writeQueue.catch(() => undefined);
+          assertSyncIdentity(expectedUserId, epoch);
+          mergeSyncProgress(meta, await readMeta());
+          const response = await apiRequest<SyncPullResponse>(`/v1/sync/pull?cursor=${meta.cursor}&ownerUserId=${encodeURIComponent(expectedUserId)}`);
+          assertSyncIdentity(expectedUserId, epoch);
+          await writeQueue.catch(() => undefined);
+          assertSyncIdentity(expectedUserId, epoch);
+          mergeSyncProgress(meta, await readMeta());
+          for (const change of response.changes) {
+            assertSyncIdentity(expectedUserId, epoch);
+            await applyChange(change, meta);
+          }
+          meta.cursor = Math.max(meta.cursor, response.cursor);
+          hasMore = response.hasMore;
+          await queuedUpdate((latestMeta) => {
+            assertSyncIdentity(expectedUserId, epoch);
+            mergeSyncProgress(latestMeta, meta);
+          });
+        }
+
+        await writeQueue.catch(() => undefined);
+        assertSyncIdentity(expectedUserId, epoch);
+        if ((await readOutbox()).length === 0) break;
       }
-      meta.lastSyncedAt = new Date().toISOString();
-      delete meta.lastError;
-      await Storage.setItem(META_KEY, JSON.stringify(meta));
+      await queuedUpdate((latestMeta) => {
+        assertSyncIdentity(expectedUserId, epoch);
+        mergeSyncProgress(latestMeta, meta);
+        latestMeta.lastSyncedAt = new Date().toISOString();
+        delete latestMeta.lastError;
+      });
       return getLearningSyncStatus();
     } catch (error) {
-      meta.lastError = error instanceof Error ? error.message : 'sync_failed';
-      await Storage.setItem(META_KEY, JSON.stringify(meta));
+      if (error instanceof SyncIdentityChangedError) return getLearningSyncStatus();
+      await queuedUpdate((latestMeta) => {
+        assertSyncIdentity(expectedUserId, epoch);
+        mergeSyncProgress(latestMeta, meta);
+        latestMeta.lastError = error instanceof Error ? error.message : 'sync_failed';
+      });
       throw error;
     }
   })();
-  try { return await running; } finally { running = undefined; }
+  running = operation;
+  runningUserId = expectedUserId;
+  try {
+    return await operation;
+  } finally {
+    if (running === operation) {
+      running = undefined;
+      runningUserId = undefined;
+    }
+  }
 }
 
 export function scheduleLearningSync() {
   if (retryTimer) clearTimeout(retryTimer);
-  retryTimer = setTimeout(() => { retryTimer = undefined; void runLearningSync().catch(() => undefined); }, 800);
+  const userId = activeUserId;
+  if (!userId) {
+    retryTimer = undefined;
+    return;
+  }
+  retryTimer = setTimeout(() => {
+    retryTimer = undefined;
+    if (activeUserId === userId) void runLearningSync(userId).catch(() => undefined);
+  }, 800);
 }
 
 export async function getLearningSyncStatus(): Promise<LearningSyncStatus> {
@@ -420,6 +585,9 @@ export async function getLearningSyncStatus(): Promise<LearningSyncStatus> {
 export function resetLearningSyncForTests() {
   writeQueue = Promise.resolve();
   running = undefined;
+  runningUserId = undefined;
+  activeUserId = undefined;
+  identityEpoch += 1;
   if (retryTimer) clearTimeout(retryTimer);
   retryTimer = undefined;
 }

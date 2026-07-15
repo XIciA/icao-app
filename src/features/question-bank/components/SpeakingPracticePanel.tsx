@@ -10,14 +10,15 @@ import {
   useAudioRecorderState,
 } from 'expo-audio';
 import { File } from 'expo-file-system';
-import { Mic, Pause, Play, RotateCcw, ShieldAlert, Square } from 'lucide-react-native';
+import { Mic, Pause, Play, RotateCcw, ShieldAlert, Square, X } from 'lucide-react-native';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, Pressable, StyleSheet, View } from 'react-native';
 import { GestureDetector, type GestureType } from 'react-native-gesture-handler';
 
 import { AppText, Button } from '@/components/ui';
-import { colors, fonts, radii, spacing } from '@/theme';
+import { colors, fonts, radii, shadows, spacing } from '@/theme';
 import type { LocalRecordingState } from '../hooks/useStudySession';
+import { AudioTimeline } from './AudioTimeline';
 
 // Use uncompressed PCM on iOS. On the physical iPhone/iOS 26.5 validation
 // device, AVAudioRecorder's AAC encoder reports that it is recording but only
@@ -98,6 +99,10 @@ export function SpeakingPracticePanel({
   onRecorded,
   onInteractionChange,
   interactionGesture,
+  blockedExternalGesture,
+  previewPauseRequest = 0,
+  onPreviewPlaybackStart,
+  onRecordingIntent,
 }: {
   mode: 'speaking' | 'retell';
   recording?: LocalRecordingState;
@@ -105,6 +110,10 @@ export function SpeakingPracticePanel({
   onRecorded: (recording: LocalRecordingState) => void;
   onInteractionChange?: (active: boolean) => void;
   interactionGesture?: GestureType;
+  blockedExternalGesture?: GestureType;
+  previewPauseRequest?: number;
+  onPreviewPlaybackStart?: () => void;
+  onRecordingIntent?: () => void;
 }) {
   const recorder = useAudioRecorder(VOICE_RECORDING_OPTIONS);
   const recorderState = useAudioRecorderState(recorder, 200);
@@ -118,16 +127,34 @@ export function SpeakingPracticePanel({
   const [permissionDenied, setPermissionDenied] = useState(false);
   const [error, setError] = useState<string>();
   const [phase, setPhase] = useState<RecordingPhase>(recording ? 'ready' : 'idle');
+  const [replacementMode, setReplacementMode] = useState(false);
   const startPromise = useRef<Promise<void> | null>(null);
   const stopPromise = useRef<Promise<void> | null>(null);
   const startGeneration = useRef(0);
   const pressHeld = useRef(false);
   const resolvedCandidate = useRef<string | undefined>(undefined);
+  const replacementTargetUri = useRef<string | undefined>(undefined);
+  const resumePreviewAfterScrub = useRef(false);
   const phaseRef = useRef<RecordingPhase>(phase);
+  const recordingRef = useRef(recording);
   const interactionActive = ['preparing', 'recording', 'finalizing', 'validating'].includes(phase);
 
   playbackStatusRef.current = playbackStatus;
   phaseRef.current = phase;
+  recordingRef.current = recording;
+
+  const deleteUncommittedRecording = useCallback((uri?: string) => {
+    if (!uri || uri === recordingRef.current?.uri || uri === replacementTargetUri.current) return;
+    deleteLocalRecording(uri);
+  }, []);
+
+  const discardRecorderUri = useCallback(() => {
+    try {
+      deleteUncommittedRecording(recorder.uri ?? undefined);
+    } catch {
+      // The native recorder may already be released during cleanup.
+    }
+  }, [deleteUncommittedRecording, recorder]);
 
   useEffect(() => {
     onInteractionChange?.(interactionActive);
@@ -142,61 +169,86 @@ export function SpeakingPracticePanel({
   const cancelRecording = useCallback(async () => {
     pressHeld.current = false;
     startGeneration.current += 1;
-    const interrupted = recorder.isRecording || ['preparing', 'recording', 'finalizing', 'validating'].includes(phaseRef.current);
+    let nativeRecorderActive = false;
     try {
-      if (recorder.isRecording) await recorder.stop();
+      nativeRecorderActive = recorder.isRecording;
+    } catch {
+      // Fast Refresh can release the native shared object before React cleanup.
+    }
+    const interrupted = nativeRecorderActive || ['preparing', 'recording', 'finalizing', 'validating'].includes(phaseRef.current);
+    try {
+      if (nativeRecorderActive) await recorder.stop();
     } catch {
       // The recorder may already have been interrupted by the OS.
     } finally {
+      try {
+        playback.pause();
+      } catch {
+        // The playback shared object can already be released during unmount.
+      }
+      resumePreviewAfterScrub.current = false;
       await restorePlaybackMode().catch(() => undefined);
       if (interrupted) {
-        deleteLocalRecording(recorder.uri ?? undefined);
+        discardRecorderUri();
         setCandidate(undefined);
-        setPhase('idle');
+        if (recordingRef.current) {
+          replacementTargetUri.current = undefined;
+          setReplacementMode(false);
+          setPhase('ready');
+          setError(undefined);
+        } else {
+          setPhase('idle');
+        }
       }
     }
-  }, [recorder, restorePlaybackMode]);
+  }, [discardRecorderUri, playback, recorder, restorePlaybackMode]);
 
   useEffect(() => {
-    if (candidate) return;
-    if (recording) setPhase('ready');
-    else setPhase((current) => current === 'ready' ? 'idle' : current);
-  }, [candidate, recording]);
+    if (previewPauseRequest <= 0) return;
+    resumePreviewAfterScrub.current = false;
+    playback.pause();
+  }, [playback, previewPauseRequest]);
 
-  const rejectRecording = useCallback((uri: string, message: string) => {
+  const rejectCandidate = useCallback((uri: string, message: string) => {
+    const preservingExistingRecording = Boolean(replacementTargetUri.current && recordingRef.current);
     resolvedCandidate.current = uri;
     playback.pause();
     setCandidate(undefined);
-    onClear();
-    setPhase('error');
-    setError(message);
-    setTimeout(() => deleteLocalRecording(uri), 0);
-  }, [onClear, playback]);
+    replacementTargetUri.current = undefined;
+    setReplacementMode(false);
+    setPhase(preservingExistingRecording ? 'ready' : 'error');
+    setError(preservingExistingRecording ? '新录音无效，已保留原录音。' : message);
+    setTimeout(() => deleteUncommittedRecording(uri), 0);
+  }, [deleteUncommittedRecording, playback]);
 
   useEffect(() => {
     if (!candidate || resolvedCandidate.current === candidate.uri) return;
-    if (playbackStatus.playbackState === 'failed') {
-      rejectRecording(candidate.uri, '录音文件无法读取，请重新录制。');
+    if (playbackStatus.playbackState === 'error') {
+      rejectCandidate(candidate.uri, '录音文件无法读取，请重新录制。');
       return;
     }
     if (!playbackStatus.isLoaded) return;
     const actualDurationMillis = Math.round(playbackStatus.duration * 1000);
     if (actualDurationMillis < MIN_RECORDING_DURATION_MS) {
-      rejectRecording(candidate.uri, '没有采集到有效录音内容，请重新录制。');
+      rejectCandidate(candidate.uri, '没有采集到有效录音内容，请重新录制。');
       return;
     }
     resolvedCandidate.current = candidate.uri;
+    const previousUri = replacementTargetUri.current;
     onRecorded({ uri: candidate.uri, durationMillis: actualDurationMillis });
     setCandidate(undefined);
+    replacementTargetUri.current = undefined;
+    setReplacementMode(false);
     setError(undefined);
     setPhase('ready');
-  }, [candidate, onRecorded, playbackStatus.duration, playbackStatus.isLoaded, playbackStatus.playbackState, rejectRecording]);
+    if (previousUri && previousUri !== candidate.uri) setTimeout(() => deleteLocalRecording(previousUri), 0);
+  }, [candidate, onRecorded, playbackStatus.duration, playbackStatus.isLoaded, playbackStatus.playbackState, rejectCandidate]);
 
   useEffect(() => {
     if (!playbackUri) return;
     const timeout = setTimeout(() => {
       if (playbackStatusRef.current.isLoaded) return;
-      if (candidate) rejectRecording(playbackUri, '录音文件加载超时，请重新录制。');
+      if (candidate) rejectCandidate(playbackUri, '录音文件加载超时，请重新录制。');
       else {
         playback.pause();
         onClear();
@@ -206,7 +258,7 @@ export function SpeakingPracticePanel({
       }
     }, PLAYBACK_LOAD_TIMEOUT_MS);
     return () => clearTimeout(timeout);
-  }, [candidate, onClear, playback, playbackUri, rejectRecording]);
+  }, [candidate, onClear, playback, playbackUri, rejectCandidate]);
 
   useEffect(() => {
     const subscription = AppState.addEventListener('change', (state) => {
@@ -225,44 +277,50 @@ export function SpeakingPracticePanel({
     setError(undefined);
     const permission = await requestRecordingPermissionsAsync();
     if (generation !== startGeneration.current || !pressHeld.current) {
-      setPhase(recording ? 'ready' : 'idle');
+      setPhase(replacementMode ? 'idle' : recording ? 'ready' : 'idle');
       return;
     }
     if (!permission.granted) {
       setPermissionDenied(true);
-      setPhase('error');
+      const preservingExistingRecording = Boolean(replacementTargetUri.current && recordingRef.current);
+      replacementTargetUri.current = undefined;
+      setReplacementMode(false);
+      setPhase(preservingExistingRecording ? 'ready' : 'error');
+      setError(preservingExistingRecording ? '未获得麦克风权限，已保留原录音。' : '需要麦克风权限才能录音。');
       return;
     }
     setPermissionDenied(false);
     try {
       playback.pause();
-      const previousUri = recording?.uri;
       await setAudioModeAsync({ allowsRecording: true, playsInSilentMode: true, shouldPlayInBackground: false, shouldRouteThroughEarpiece: false });
       await wait(AUDIO_ROUTE_SETTLE_MS);
       if (generation !== startGeneration.current || !pressHeld.current) {
         await restorePlaybackMode().catch(() => undefined);
-        setPhase('idle');
+        discardRecorderUri();
+        setPhase(replacementMode ? 'idle' : recording ? 'ready' : 'idle');
         return;
       }
       await recorder.prepareToRecordAsync();
       if (generation !== startGeneration.current || !pressHeld.current) {
         await restorePlaybackMode().catch(() => undefined);
-        setPhase('idle');
+        discardRecorderUri();
+        setPhase(replacementMode ? 'idle' : recording ? 'ready' : 'idle');
         return;
       }
       recorder.record();
       if (!recorder.isRecording) {
         throw new Error('Native audio recorder did not start');
       }
-      onClear();
       setCandidate(undefined);
-      if (previousUri) setTimeout(() => deleteLocalRecording(previousUri), 0);
       setPhase('recording');
     } catch {
       await restorePlaybackMode().catch(() => undefined);
-      deleteLocalRecording(recorder.uri ?? undefined);
-      setPhase('error');
-      setError('录音启动失败，请稍后重试。');
+      discardRecorderUri();
+      const preservingExistingRecording = Boolean(replacementTargetUri.current && recordingRef.current);
+      replacementTargetUri.current = undefined;
+      setReplacementMode(false);
+      setPhase(preservingExistingRecording ? 'ready' : 'error');
+      setError(preservingExistingRecording ? '重录启动失败，已保留原录音。' : '录音启动失败，请稍后重试。');
     }
   }
 
@@ -294,11 +352,13 @@ export function SpeakingPracticePanel({
         setCandidate({ uri: savedUri, durationMillis: duration });
       } catch {
         await restorePlaybackMode().catch(() => undefined);
-        if (savedUri) deleteLocalRecording(savedUri);
-        onClear();
+        if (savedUri) deleteUncommittedRecording(savedUri);
         setCandidate(undefined);
-        setPhase('error');
-        setError('没有生成有效录音文件，请重新录制。');
+        const preservingExistingRecording = Boolean(replacementTargetUri.current && recordingRef.current);
+        replacementTargetUri.current = undefined;
+        setReplacementMode(false);
+        setPhase(preservingExistingRecording ? 'ready' : 'error');
+        setError(preservingExistingRecording ? '没有生成有效的新录音，已保留原录音。' : '没有生成有效录音文件，请重新录制。');
       }
     })().finally(() => { stopPromise.current = null; });
     stopPromise.current = operation;
@@ -320,6 +380,7 @@ export function SpeakingPracticePanel({
       if (playbackStatus.didJustFinish || playbackStatus.currentTime >= playbackStatus.duration) {
         await playback.seekTo(0);
       }
+      onPreviewPlaybackStart?.();
       playback.play();
     } catch {
       setError('录音回放失败，请重新录制。');
@@ -331,35 +392,78 @@ export function SpeakingPracticePanel({
     setPermissionDenied(!permission.granted);
   }
 
-  function resetRecording() {
+  function beginReplacement() {
+    if (!recording) return;
     playback.pause();
-    const previousUri = recording?.uri;
-    onClear();
-    setCandidate(undefined);
-    setPhase('idle');
+    resumePreviewAfterScrub.current = false;
+    replacementTargetUri.current = recording.uri;
+    setReplacementMode(true);
     setError(undefined);
-    if (previousUri) setTimeout(() => deleteLocalRecording(previousUri), 0);
+    setPhase('idle');
+  }
+
+  function cancelReplacement() {
+    playback.pause();
+    resumePreviewAfterScrub.current = false;
+    replacementTargetUri.current = undefined;
+    setCandidate(undefined);
+    setReplacementMode(false);
+    setError(undefined);
+    setPhase(recording ? 'ready' : 'idle');
+  }
+
+  function beginPreviewScrub() {
+    resumePreviewAfterScrub.current = playbackStatus.playing;
+    if (playbackStatus.playing) playback.pause();
+  }
+
+  async function finishPreviewScrub(nextPosition: number) {
+    const shouldResume = resumePreviewAfterScrub.current;
+    resumePreviewAfterScrub.current = false;
+    await playback.seekTo(nextPosition);
+    if (!shouldResume || AppState.currentState !== 'active') return;
+    onPreviewPlaybackStart?.();
+    playback.play();
+  }
+
+  function cancelPreviewScrub() {
+    const shouldResume = resumePreviewAfterScrub.current;
+    resumePreviewAfterScrub.current = false;
+    if (!shouldResume || AppState.currentState !== 'active') return;
+    onPreviewPlaybackStart?.();
+    playback.play();
   }
 
   const isRecording = phase === 'recording';
   const isBusy = phase === 'preparing' || phase === 'finalizing' || phase === 'validating';
   const recordLabel = phase === 'preparing'
-    ? '正在准备录音…'
-    : phase === 'finalizing'
+    ? '正在准备麦克风…'
+    : phase === 'finalizing' || phase === 'validating'
       ? '正在保存录音…'
-      : phase === 'validating'
-        ? '正在校验录音…'
-        : isRecording
-          ? '松开结束'
+      : isRecording
+        ? `松开结束 · ${formatDuration(recorderState.durationMillis)}`
+        : replacementMode
+          ? '按住重录'
           : '按住说话';
+  const recordAccessibilityLabel = isRecording
+    ? '松开结束录音'
+    : replacementMode
+      ? '按住重新录音'
+      : mode === 'retell'
+        ? '按住开始复述'
+        : '按住说话';
   const recordButton = (
     <Pressable
-      accessibilityLabel={isRecording ? '松开结束录音' : mode === 'retell' ? '按住开始复述' : '按住说话'}
+      accessibilityLabel={recordAccessibilityLabel}
       disabled={isBusy}
       onPressIn={() => {
+        playback.pause();
+        resumePreviewAfterScrub.current = false;
+        if (replacementMode && !replacementTargetUri.current) replacementTargetUri.current = recording?.uri;
+        onRecordingIntent?.();
         onInteractionChange?.(true);
         pressHeld.current = true;
-        startPromise.current = startRecording();
+        startPromise.current = wait(0).then(startRecording);
       }}
       onPressOut={() => {
         pressHeld.current = false;
@@ -372,40 +476,72 @@ export function SpeakingPracticePanel({
     </Pressable>
   );
 
-  if (permissionDenied) {
+  if (permissionDenied && (!recording || replacementMode)) {
     return (
       <View style={styles.permission}>
         <ShieldAlert color={colors.accent} size={21} />
         <View style={styles.permissionCopy}>
           <AppText variant="button">需要麦克风权限</AppText>
           <AppText variant="caption">允许后即可录制；题目、原文和参考答案仍可正常学习。</AppText>
+          <View style={styles.permissionActions}>
+            <Button onPress={() => void retryPermission()} size="sm" variant="outline">重试</Button>
+            {replacementMode ? <Button onPress={cancelReplacement} size="sm" variant="ghost">保留原录音</Button> : null}
+          </View>
         </View>
-        <Button onPress={() => void retryPermission()} size="sm" variant="outline">重试</Button>
       </View>
     );
   }
 
+  const showResultCard = Boolean(recording && !replacementMode && !candidate && !isBusy && !isRecording);
+
   return (
     <View style={styles.root}>
-      {interactionGesture ? <GestureDetector gesture={interactionGesture}>{recordButton}</GestureDetector> : recordButton}
+      {!showResultCard ? (interactionGesture ? <GestureDetector gesture={interactionGesture}>{recordButton}</GestureDetector> : recordButton) : null}
 
-      {recording ? <View style={styles.console}>
-        <View style={styles.status}><AppText variant="caption">录音已保存在本机临时目录</AppText><AppText style={styles.duration} variant="micro">{formatDuration(recording.durationMillis)}</AppText></View>
-        {recording ? (
-          <Pressable accessibilityLabel={playbackStatus.playing ? '暂停我的录音' : '播放我的录音'} disabled={!playbackStatus.isLoaded} onPress={() => void togglePlayback()} style={[styles.playbackButton, !playbackStatus.isLoaded ? styles.playbackPending : null]}>
-            {playbackStatus.playing ? <Pause color={colors.primary} size={18} /> : <Play color={colors.primary} fill={colors.primary} size={18} />}
+      {replacementMode && !isRecording && !isBusy ? (
+        <View style={styles.replacementNote}>
+          <AppText style={styles.replacementCopy} variant="caption">原录音会保留至新录音成功</AppText>
+          <Pressable accessibilityLabel="取消重新录音" onPress={cancelReplacement} style={styles.cancelReplacement}>
+            <X color={colors.mutedForeground} size={14} />
+            <AppText variant="caption">取消</AppText>
           </Pressable>
-        ) : null}
-      </View> : null}
-
-      {recording && !recorderState.isRecording ? (
-        <Pressable accessibilityLabel="重新录音" onPress={resetRecording} style={styles.retry}>
-          <RotateCcw color={colors.mutedForeground} size={14} />
-          <AppText variant="caption">重新录音</AppText>
-        </Pressable>
+        </View>
       ) : null}
-      {recording && !playbackStatus.isLoaded ? <AppText variant="caption">正在准备本地录音回放…</AppText> : null}
-      {phase === 'validating' ? <AppText variant="caption">正在校验录音文件与实际时长…</AppText> : null}
+
+      {showResultCard && recording ? (
+        <View style={styles.resultCard}>
+          <View style={styles.resultHeader}>
+            <View style={styles.resultTitle}>
+              <Mic color={colors.primary} size={16} />
+              <AppText variant="button">我的录音</AppText>
+              <AppText style={styles.duration} variant="micro">{formatDuration(recording.durationMillis)}</AppText>
+            </View>
+            <Pressable accessibilityLabel="重新录音" onPress={beginReplacement} style={styles.rerecordButton}>
+              <RotateCcw color={colors.mutedForeground} size={14} />
+              <AppText variant="caption">重录</AppText>
+            </Pressable>
+          </View>
+          <View style={styles.playbackRow}>
+            <Pressable accessibilityLabel={playbackStatus.playing ? '暂停我的录音' : '播放我的录音'} disabled={!playbackStatus.isLoaded} onPress={() => void togglePlayback()} style={[styles.playbackButton, !playbackStatus.isLoaded ? styles.playbackPending : null]}>
+              {playbackStatus.playing ? <Pause color={colors.primary} size={17} /> : <Play color={colors.primary} fill={colors.primary} size={17} />}
+            </Pressable>
+            <AudioTimeline
+              accessibilityLabel="我的录音播放进度"
+              blockedExternalGesture={blockedExternalGesture}
+              disabled={!playbackStatus.isLoaded}
+              duration={playbackStatus.duration || recording.durationMillis / 1000}
+              onInteractionChange={onInteractionChange}
+              onScrubCancel={cancelPreviewScrub}
+              onScrubEnd={finishPreviewScrub}
+              onScrubStart={beginPreviewScrub}
+              position={playbackStatus.currentTime}
+              testID="recording-audio-timeline"
+            />
+          </View>
+          {!playbackStatus.isLoaded ? <AppText variant="caption">正在准备录音回放…</AppText> : null}
+        </View>
+      ) : null}
+
       {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
     </View>
   );
@@ -413,15 +549,21 @@ export function SpeakingPracticePanel({
 
 const styles = StyleSheet.create({
   root: { gap: spacing[2] },
-  console: { alignItems: 'center', flexDirection: 'row', gap: spacing[3] },
   recordButton: { alignItems: 'center', backgroundColor: colors.primary, borderRadius: radii.full, flexDirection: 'row', gap: spacing[2], height: 48, justifyContent: 'center', width: '100%' },
   recordButtonBusy: { opacity: 0.7 },
   recording: { backgroundColor: colors.destructive },
-  status: { flex: 1 },
-  duration: { fontFamily: fonts.monoRegular, marginTop: spacing[1] },
-  playbackButton: { alignItems: 'center', backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, height: 40, justifyContent: 'center', width: 40 },
+  resultCard: { backgroundColor: colors.secondary, borderColor: colors.border, borderRadius: radii.xl, borderWidth: 1, gap: spacing[2], padding: spacing[3], ...shadows.card },
+  resultHeader: { alignItems: 'center', flexDirection: 'row', gap: spacing[2], justifyContent: 'space-between' },
+  resultTitle: { alignItems: 'center', flex: 1, flexDirection: 'row', gap: spacing[1.5] },
+  duration: { color: colors.mutedForeground, fontFamily: fonts.monoRegular },
+  playbackRow: { alignItems: 'center', flexDirection: 'row', gap: spacing[3] },
+  playbackButton: { alignItems: 'center', backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, height: 42, justifyContent: 'center', width: 42 },
   playbackPending: { opacity: 0.45 },
-  retry: { alignItems: 'center', alignSelf: 'flex-start', flexDirection: 'row', gap: spacing[1.5] },
+  rerecordButton: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 36, paddingHorizontal: spacing[2.5] },
+  replacementNote: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] },
+  replacementCopy: { flex: 1 },
+  cancelReplacement: { alignItems: 'center', flexDirection: 'row', gap: spacing[1], minHeight: 36, paddingHorizontal: spacing[2] },
   permission: { alignItems: 'flex-start', backgroundColor: 'rgba(183,118,16,0.08)', borderRadius: radii.xl, flexDirection: 'row', gap: spacing[2.5], padding: spacing[3] },
   permissionCopy: { flex: 1 },
+  permissionActions: { flexDirection: 'row', gap: spacing[2], marginTop: spacing[2] },
 });

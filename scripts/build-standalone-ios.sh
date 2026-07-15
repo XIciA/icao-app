@@ -16,6 +16,7 @@ DERIVED_DATA=${ICAO_IOS_DERIVED_DATA:-$HOME/Library/Developer/Xcode/DerivedData/
 API_URL=${EXPO_PUBLIC_ICAO_API_URL:-https://api.feizhuicao.com}
 SUPABASE_URL=${EXPO_PUBLIC_SUPABASE_URL:-https://cloud.feizhuicao.com}
 PUBLISHABLE_KEY=${EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY:-}
+NODE_BINARY=${NODE_BINARY:-$(command -v node)}
 
 require_https_url() {
   name=$1
@@ -39,6 +40,38 @@ require_https_url() {
   fi
 }
 
+check_https_endpoint() {
+  label=$1
+  url=$2
+  api_key=$3
+
+  CHECK_LABEL=$label CHECK_URL=$url CHECK_APIKEY=$api_key "$NODE_BINARY" <<'NODE'
+const controller = new AbortController();
+const timeout = setTimeout(() => controller.abort(), 10_000);
+
+void (async () => {
+  try {
+    const apiKey = process.env.CHECK_APIKEY;
+    const response = await fetch(process.env.CHECK_URL, {
+      headers: apiKey ? { apikey: apiKey } : undefined,
+      signal: controller.signal,
+    });
+
+    if (!response.ok) {
+      throw new Error(`${process.env.CHECK_LABEL} responded with HTTP ${response.status}.`);
+    }
+  } catch (error) {
+    console.error(
+      `${process.env.CHECK_LABEL} HTTPS check failed: ${error instanceof Error ? error.message : String(error)}`,
+    );
+    process.exitCode = 1;
+  } finally {
+    clearTimeout(timeout);
+  }
+})();
+NODE
+}
+
 require_https_url EXPO_PUBLIC_ICAO_API_URL "$API_URL"
 require_https_url EXPO_PUBLIC_SUPABASE_URL "$SUPABASE_URL"
 
@@ -59,14 +92,13 @@ if [ -z "$PUBLISHABLE_KEY" ]; then
 fi
 
 echo 'Checking the public standalone runtime...'
-curl -fsS --max-time 10 "$API_URL/health/ready" >/dev/null
-curl -fsS --max-time 10 -H "apikey: $PUBLISHABLE_KEY" \
-  "$SUPABASE_URL/auth/v1/settings" >/dev/null
+check_https_endpoint ICAO_API "$API_URL/health/ready" ''
+check_https_endpoint SUPABASE_AUTH "$SUPABASE_URL/auth/v1/settings" "$PUBLISHABLE_KEY"
 
 export EXPO_PUBLIC_ICAO_API_URL=$API_URL
 export EXPO_PUBLIC_SUPABASE_URL=$SUPABASE_URL
 export EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY=$PUBLISHABLE_KEY
-export NODE_BINARY=${NODE_BINARY:-$(command -v node)}
+export NODE_BINARY
 
 echo "API: $EXPO_PUBLIC_ICAO_API_URL"
 echo "Supabase: $EXPO_PUBLIC_SUPABASE_URL"

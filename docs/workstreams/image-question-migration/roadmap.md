@@ -13,7 +13,7 @@
 - 项目 `AGENTS.md`；
 - 总战略与架构决策；
 - 当前题库云端接入、资源发布和同步 contract；
-- `docs/deployment-and-runtime-rules.md`；
+- `docs/operations/deployment-and-runtime-rules.md`；
 - 设计仓库只读、`feizhuicu` 仅取用图片题所需资源的边界。
 
 ## 2. 阶段总览

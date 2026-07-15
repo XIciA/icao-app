@@ -1,7 +1,8 @@
 import Storage from 'expo-sqlite/kv-store';
 
 import { resetLearningStoreForTests, sqliteLearningStore } from '../platform/learning-store';
-import type { QuestionBankTopic } from '../types';
+import { getLearningRecords, upsertLearningRecord } from '../platform/learning-record-storage';
+import type { LearningRecord, QuestionBankTopic } from '../types';
 
 let mockLegacyReadGate: Promise<void> | undefined;
 
@@ -27,6 +28,28 @@ const topic: QuestionBankTopic = {
     { id: 'current', taskTitle: 'Current', audioText: 'Current' },
   ],
 };
+
+function learningRecord(id: string, transcript: string): LearningRecord {
+  return {
+    schemaVersion: 3,
+    id,
+    sessionId: 'study-session',
+    cardId: 'card-1',
+    bankId: 'opi',
+    bankTitle: 'OPI',
+    categoryTitle: '运行',
+    topicTitle: '燃油',
+    completedCount: 1,
+    totalCount: 1,
+    correctCount: 0,
+    durationSeconds: 5,
+    reason: 'complete',
+    createdAt: '2026-07-15T00:00:00.000Z',
+    updatedAt: '2026-07-15T00:00:01.000Z',
+    recordType: 'ai_result',
+    aiResult: { questionId: 'card-1', transcript },
+  };
+}
 
 describe('learning store migration', () => {
   beforeEach(async () => {
@@ -76,5 +99,32 @@ describe('learning store migration', () => {
     const stored = JSON.parse((await Storage.getItem(currentKey)) ?? '{}');
     expect(stored.legacy).toMatchObject({ completed: true, recorded: true });
     expect(stored.current).toMatchObject({ completed: true, note: 'saved while migrating' });
+  });
+
+  it('serializes learning-record upserts and keeps only the latest value for one stable id', async () => {
+    await Promise.all([
+      upsertLearningRecord(learningRecord('answer-1', 'first')),
+      upsertLearningRecord(learningRecord('answer-1', 'latest')),
+    ]);
+
+    expect(await getLearningRecords()).toEqual([
+      expect.objectContaining({ id: 'answer-1', aiResult: expect.objectContaining({ transcript: 'latest' }) }),
+    ]);
+  });
+
+  it('keeps the same card from different study sessions as separate history records', async () => {
+    await upsertLearningRecord(learningRecord('session-a-card-1', 'first session'));
+    await upsertLearningRecord({ ...learningRecord('session-b-card-1', 'second session'), sessionId: 'study-session-b' });
+
+    expect((await getLearningRecords()).map((record) => record.id)).toEqual(['session-b-card-1', 'session-a-card-1']);
+  });
+
+  it('keeps session summaries when the separate AI-result limit is reached', async () => {
+    await upsertLearningRecord({ ...learningRecord('session-summary', 'session'), recordType: 'session' });
+    await Promise.all(Array.from({ length: 101 }, (_, index) => upsertLearningRecord(learningRecord(`answer-${index}`, `${index}`))));
+
+    const records = await getLearningRecords();
+    expect(records.filter((record) => record.recordType === 'ai_result')).toHaveLength(100);
+    expect(records).toContainEqual(expect.objectContaining({ id: 'session-summary', recordType: 'session' }));
   });
 });

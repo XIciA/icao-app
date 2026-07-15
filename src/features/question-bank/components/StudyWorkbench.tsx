@@ -1,27 +1,44 @@
 import type { GrammarReviewResult, OpiAnalysisResult } from '@icao/contracts';
-import { Check, Eraser, Mic, NotebookPen, Pencil, Save, Sparkles } from 'lucide-react-native';
-import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import {
+  forwardRef,
+  type ReactNode,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react';
 import { Keyboard, Pressable, StyleSheet, TextInput, View } from 'react-native';
 import { GestureDetector, type GestureType } from 'react-native-gesture-handler';
 
+import { AppText } from '@/components/ui';
 import { acceptAiConsent, grammarReview, hasAiConsent, polishExpression, transcribeRecording } from '@/features/ai/ai-client';
 import { exactMatch } from '@/features/ai/exact-match';
-import { AppText, Button } from '@/components/ui';
 import { colors, radii, spacing } from '@/theme';
 
-import { sqliteLearningStore } from '../platform/learning-store';
-import type { QuestionBankId, StudyConsoleTab, StudyReviewKind } from '../types';
+import { sqliteLearningStore, type LearningStore } from '../platform/learning-store';
+import type { LearningRecord, QuestionBankId, StudyConsoleTab, StudyReviewKind } from '../types';
 
 const labels: Record<StudyConsoleTab, string> = { mine: '我的回答', reference: '参考答案', notes: '笔记' };
+const AUTO_SAVE_DELAY_MS = 600;
 
-function stableResultId(cardKey: string, value: string) {
+function stableResultId(sessionId: string, cardKey: string) {
   let hash = 2166136261;
+  const value = `${sessionId}:${cardKey}`;
   for (let index = 0; index < value.length; index += 1) hash = Math.imul(hash ^ value.charCodeAt(index), 16777619);
-  return `ai-${cardKey}-${(hash >>> 0).toString(36)}`;
+  return `ai-${sessionId}-${(hash >>> 0).toString(36)}`;
 }
+
+type AutoSaveSnapshot = {
+  cardKey: string;
+  fingerprint: string;
+  record: Omit<LearningRecord, 'updatedAt'>;
+};
 
 type Props = {
   cardKey: string;
+  sessionId: string;
+  sessionStartedAt: string;
   bankId: QuestionBankId;
   bankTitle: string;
   categoryTitle: string;
@@ -34,42 +51,197 @@ type Props = {
   reviewKind: StudyReviewKind;
   recordingKey?: string;
   recordingUri?: string;
+  transcriptionAttempted?: boolean;
   referenceContent: ReactNode;
   noteText: string;
   saveError?: string;
   editingTab?: 'mine' | 'notes';
   swipeGesture: GestureType;
+  learningStore?: Pick<LearningStore, 'addRecord'>;
   onTabChange: (tab: StudyConsoleTab) => void;
   onEditingTabChange: (tab?: 'mine' | 'notes') => void;
   onAnswerChange: (text: string) => void;
   onNoteChange: (text: string) => void;
   onRetrySave: () => void;
   onFeedback: () => void;
+  onTranscriptionAttempted?: (recordingKey: string) => void;
 };
 
-export function StudyWorkbench(props: Props) {
-  const { activeTab, answerText, bankId, bankTitle, cardKey, categoryTitle, editingTab, noteText, onAnswerChange, onEditingTabChange, onFeedback, onNoteChange, onRetrySave, onTabChange, questionText, recordingKey, recordingUri, referenceContent, referenceLabel, reviewKind, saveError, swipeGesture, tabs, topicTitle } = props;
+export type StudyWorkbenchHandle = {
+  flushAutoSave: () => Promise<boolean>;
+};
+
+export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function StudyWorkbench(props, ref) {
+  const {
+    activeTab,
+    answerText,
+    bankId,
+    bankTitle,
+    cardKey,
+    categoryTitle,
+    editingTab,
+    learningStore = sqliteLearningStore,
+    noteText,
+    onAnswerChange,
+    onEditingTabChange,
+    onFeedback,
+    onNoteChange,
+    onRetrySave,
+    onTabChange,
+    onTranscriptionAttempted,
+    questionText,
+    recordingKey,
+    recordingUri,
+    transcriptionAttempted,
+    referenceContent,
+    referenceLabel,
+    reviewKind,
+    saveError,
+    sessionId,
+    sessionStartedAt,
+    swipeGesture,
+    tabs,
+    topicTitle,
+  } = props;
   const [rawTranscript, setRawTranscript] = useState<string>();
   const [grammar, setGrammar] = useState<GrammarReviewResult>();
   const [opi, setOpi] = useState<OpiAnalysisResult>();
   const [matchMessage, setMatchMessage] = useState<string>();
-  const [busy, setBusy] = useState<'transcribe' | 'review' | 'save'>();
+  const [busy, setBusy] = useState<'transcribe' | 'review'>();
   const [error, setError] = useState<string>();
-  const [saved, setSaved] = useState(false);
+  const [failedAction, setFailedAction] = useState<'transcribe' | 'review'>();
+  const [autoSaveError, setAutoSaveError] = useState<string>();
   const [consented, setConsented] = useState(false);
   const [answerInputHeight, setAnswerInputHeight] = useState(92);
   const [noteInputHeight, setNoteInputHeight] = useState(92);
+  const [saveRevision, setSaveRevision] = useState(0);
   const activeRequest = useRef<AbortController | undefined>(undefined);
   const lastAutoTranscribeKey = useRef<string | undefined>(undefined);
   const answerInputRef = useRef<TextInput>(null);
   const noteInputRef = useRef<TextInput>(null);
+  const currentCardKey = useRef(cardKey);
+  const dirty = useRef(false);
+  const latestSnapshot = useRef<AutoSaveSnapshot | undefined>(undefined);
+  const lastSavedFingerprints = useRef(new Map<string, string>());
+  const saveQueue = useRef<Promise<void>>(Promise.resolve());
+
+  currentCardKey.current = cardKey;
+
+  const resultId = stableResultId(sessionId, cardKey);
+  const fingerprint = JSON.stringify({
+    answerText,
+    grammar,
+    matchMessage,
+    polishedText: opi?.polishedText,
+    rawTranscript,
+  });
+  latestSnapshot.current = {
+    cardKey,
+    fingerprint,
+    record: {
+      schemaVersion: 3,
+      id: resultId,
+      sessionId,
+      cardId: cardKey,
+      bankId,
+      bankTitle,
+      categoryTitle,
+      topicTitle,
+      completedCount: 1,
+      totalCount: 1,
+      correctCount: 0,
+      feedbackCount: grammar || opi || matchMessage ? 1 : 0,
+      durationSeconds: Math.max(0, Math.round((Date.now() - Date.parse(sessionStartedAt)) / 1000)),
+      reason: 'complete',
+      createdAt: sessionStartedAt,
+      recordType: 'ai_result',
+      aiResult: {
+        questionId: cardKey,
+        rawTranscript,
+        transcript: answerText,
+        grammar: grammar ? {
+          overallFeedbackZh: grammar.overallFeedbackZh,
+          correctedText: grammar.correctedText,
+          issues: grammar.issues,
+        } : undefined,
+        polishedText: opi?.polishedText,
+      },
+    },
+  };
+
+  const markDirty = useCallback(() => {
+    dirty.current = true;
+    setAutoSaveError(undefined);
+    setSaveRevision((value) => value + 1);
+  }, []);
+
+  const persistCurrent = useCallback(() => {
+    const saveLatest = async () => {
+      while (true) {
+        const snapshot = latestSnapshot.current;
+        if (!dirty.current || !snapshot) return true;
+        if (lastSavedFingerprints.current.get(snapshot.record.id) === snapshot.fingerprint) {
+          dirty.current = false;
+          return true;
+        }
+
+        const savedFingerprint = snapshot.fingerprint;
+        try {
+          await learningStore.addRecord({ ...snapshot.record, updatedAt: new Date().toISOString() });
+          lastSavedFingerprints.current.set(snapshot.record.id, savedFingerprint);
+          if (latestSnapshot.current?.cardKey === snapshot.cardKey && latestSnapshot.current.fingerprint === savedFingerprint) {
+            dirty.current = false;
+            setAutoSaveError(undefined);
+            return true;
+          }
+        } catch {
+          lastSavedFingerprints.current.delete(snapshot.record.id);
+          if (currentCardKey.current === snapshot.cardKey) setAutoSaveError('自动保存失败');
+          return false;
+        }
+      }
+    };
+    const operation = saveQueue.current.then(saveLatest, saveLatest);
+    saveQueue.current = operation.then(() => undefined, () => undefined);
+    return operation;
+  }, [learningStore]);
+
+  const flushAutoSave = useCallback(async () => {
+    activeRequest.current?.abort();
+    return persistCurrent();
+  }, [persistCurrent]);
+
+  useImperativeHandle(ref, () => ({ flushAutoSave }), [flushAutoSave]);
 
   useEffect(() => {
-    setRawTranscript(undefined); setGrammar(undefined); setOpi(undefined); setMatchMessage(undefined); setError(undefined); setSaved(false);
-    setAnswerInputHeight(92); setNoteInputHeight(92);
+    const controller = activeRequest.current;
+    if (controller) controller.abort();
+    setRawTranscript(undefined);
+    setGrammar(undefined);
+    setOpi(undefined);
+    setMatchMessage(undefined);
+    setError(undefined);
+    setFailedAction(undefined);
+    setAutoSaveError(undefined);
+    setBusy(undefined);
+    setAnswerInputHeight(92);
+    setNoteInputHeight(92);
+    dirty.current = false;
   }, [cardKey]);
+
+  useEffect(() => () => {
+    const controller = activeRequest.current;
+    activeRequest.current = undefined;
+    controller?.abort();
+  }, []);
+
   useEffect(() => { void hasAiConsent().then(setConsented); }, []);
-  useEffect(() => { setSaved(false); }, [answerText, grammar, opi]);
+
+  useEffect(() => {
+    if (!dirty.current || saveRevision === 0) return;
+    const timeout = setTimeout(() => { void persistCurrent(); }, AUTO_SAVE_DELAY_MS);
+    return () => clearTimeout(timeout);
+  }, [persistCurrent, saveRevision]);
 
   const ensureConsent = useCallback(async () => {
     if (consented) return;
@@ -77,36 +249,67 @@ export function StudyWorkbench(props: Props) {
     setConsented(true);
   }, [consented]);
 
+  const changeAnswer = useCallback((text: string) => {
+    setGrammar(undefined);
+    setOpi(undefined);
+    setMatchMessage(undefined);
+    onAnswerChange(text);
+    markDirty();
+  }, [markDirty, onAnswerChange]);
+
   const transcribe = useCallback(async () => {
     if (!recordingUri) return;
-    setBusy('transcribe'); setError(undefined);
-    const controller = new AbortController(); activeRequest.current = controller;
+    const requestCardKey = cardKey;
+    if (recordingKey) onTranscriptionAttempted?.(recordingKey);
+    activeRequest.current?.abort();
+    setBusy('transcribe');
+    setError(undefined);
+    setFailedAction(undefined);
+    const controller = new AbortController();
+    activeRequest.current = controller;
     try {
       await ensureConsent();
       const result = await transcribeRecording(recordingUri, controller.signal);
+      if (controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
       setRawTranscript(result.rawTranscript);
-      onAnswerChange(result.transcript);
-      setGrammar(undefined); setOpi(undefined); setMatchMessage(undefined);
-    } catch { setError(controller.signal.aborted ? '已取消转写，录音和当前文本仍保留。' : '语音转写失败，请检查网络或重新录音后重试。'); }
-    finally { if (activeRequest.current === controller) activeRequest.current = undefined; setBusy(undefined); }
-  }, [ensureConsent, onAnswerChange, recordingUri]);
+      changeAnswer(result.transcript);
+    } catch {
+      if (activeRequest.current === controller && currentCardKey.current === requestCardKey) {
+        setFailedAction('transcribe');
+        setError(controller.signal.aborted ? '已取消转写' : '语音转写失败，请检查网络后重试。');
+      }
+    } finally {
+      if (activeRequest.current === controller) {
+        activeRequest.current = undefined;
+        if (currentCardKey.current === requestCardKey) setBusy(undefined);
+      }
+    }
+  }, [cardKey, changeAnswer, ensureConsent, onTranscriptionAttempted, recordingKey, recordingUri]);
 
   useEffect(() => {
-    if (!recordingKey || !recordingUri || lastAutoTranscribeKey.current === recordingKey) return;
+    if (!recordingKey || !recordingUri || transcriptionAttempted || lastAutoTranscribeKey.current === recordingKey) return;
     lastAutoTranscribeKey.current = recordingKey;
     void transcribe();
-  }, [recordingKey, recordingUri, transcribe]);
+  }, [recordingKey, recordingUri, transcribe, transcriptionAttempted]);
 
   async function reviewAnswer() {
     if (!answerText.trim()) return;
-    setBusy('review'); setError(undefined); onFeedback();
-    const controller = new AbortController(); activeRequest.current = controller;
+    const requestCardKey = cardKey;
+    activeRequest.current?.abort();
+    setBusy('review');
+    setError(undefined);
+    setFailedAction(undefined);
+    onFeedback();
+    const controller = new AbortController();
+    activeRequest.current = controller;
     try {
       if (reviewKind === 'exact-match') {
         const result = exactMatch(questionText, answerText);
+        if (activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
         setMatchMessage(result.exact
           ? '与原文逐词一致。'
           : `发现差异：缺失 ${result.summary.missing}、多余 ${result.summary.extra}、替换 ${result.summary.replace}、顺序 ${result.summary.order}。`);
+        markDirty();
         return;
       }
       await ensureConsent();
@@ -114,65 +317,45 @@ export function StudyWorkbench(props: Props) {
       const input = { module, questionId: cardKey, questionText, transcript: answerText } as const;
       if (reviewKind === 'opi-analysis') {
         const grammarResult = grammar ?? await grammarReview(input, controller.signal);
+        if (controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
         setGrammar(grammarResult);
+        markDirty();
         const polished = await polishExpression({ ...input, module: 'opi', correctedText: grammarResult.correctedText }, controller.signal);
+        if (controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
         setOpi({ grammar: grammarResult, polishedText: polished.polishedText, polishPromptVersion: polished.promptVersion });
+        markDirty();
       } else {
-        setGrammar(await grammarReview(input, controller.signal)); setOpi(undefined);
+        const result = await grammarReview(input, controller.signal);
+        if (controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
+        setGrammar(result);
+        setOpi(undefined);
+        markDirty();
       }
-    } catch { setError(controller.signal.aborted ? '已取消分析，当前转写和已完成结果仍保留。' : 'AI 分析暂时失败，请稍后重试。'); }
-    finally { if (activeRequest.current === controller) activeRequest.current = undefined; setBusy(undefined); }
-  }
-
-  async function saveAiResult() {
-    if (!answerText.trim()) return;
-    setBusy('save'); setError(undefined);
-    try {
-      await sqliteLearningStore.addRecord({
-        schemaVersion: 2,
-        id: stableResultId(cardKey, JSON.stringify({ answerText, grammar, polishedText: opi?.polishedText })),
-        bankId,
-        bankTitle,
-        categoryTitle,
-        topicTitle,
-        completedCount: 1,
-        totalCount: 1,
-        correctCount: 0,
-        feedbackCount: grammar || opi || matchMessage ? 1 : 0,
-        durationSeconds: 0,
-        reason: 'complete',
-        createdAt: new Date().toISOString(),
-        recordType: 'ai_result',
-        aiResult: {
-          questionId: cardKey,
-          rawTranscript,
-          transcript: answerText,
-          grammar: grammar ? { overallFeedbackZh: grammar.overallFeedbackZh, correctedText: grammar.correctedText, issues: grammar.issues } : undefined,
-          polishedText: opi?.polishedText,
-        },
-      });
-      setSaved(true);
-    } catch { setError('学习结果保存失败，请重试。'); }
-    finally { setBusy(undefined); }
+    } catch {
+      if (activeRequest.current === controller && currentCardKey.current === requestCardKey) {
+        setFailedAction('review');
+        setError(controller.signal.aborted ? '已取消分析' : 'AI 分析暂时失败，请稍后重试。');
+      }
+    } finally {
+      if (activeRequest.current === controller) {
+        activeRequest.current = undefined;
+        if (currentCardKey.current === requestCardKey) setBusy(undefined);
+      }
+    }
   }
 
   const title = activeTab === 'reference' ? referenceLabel : labels[activeTab];
   const reviewLabel = reviewKind === 'exact-match' ? '对比原文' : reviewKind === 'opi-analysis' ? '分析表达' : '检查语法';
   const editableTab = activeTab === 'mine' || activeTab === 'notes' ? activeTab : undefined;
   const editing = Boolean(editableTab && editingTab === editableTab);
-  const editableValue = activeTab === 'mine' ? answerText : noteText;
-  const editLabel = editing ? '完成' : editableValue.trim() ? '编辑' : activeTab === 'mine' ? '手动输入' : '添加笔记';
-  const editAccessibilityLabel = editing
-    ? `完成${title}`
-    : editableValue.trim()
-      ? `编辑${title}`
-      : activeTab === 'mine' ? '手动输入我的回答' : '添加笔记';
+  const editAccessibilityLabel = editing ? `完成${title}` : `编辑${title}`;
 
   function finishEditing() {
     answerInputRef.current?.blur();
     noteInputRef.current?.blur();
     Keyboard.dismiss();
     onEditingTabChange(undefined);
+    if (activeTab === 'mine') void persistCurrent();
   }
 
   function selectTab(tab: StudyConsoleTab) {
@@ -180,42 +363,78 @@ export function StudyWorkbench(props: Props) {
     onTabChange(tab);
   }
 
+  const aiBusy = busy === 'transcribe' || busy === 'review';
+  const showRetry = activeTab === 'mine' ? Boolean(autoSaveError) : activeTab === 'notes' ? Boolean(saveError) : false;
+
   return (
     <GestureDetector gesture={swipeGesture}>
       <View>
-        <View style={styles.header}>
-          <View style={styles.titleRow}>{activeTab === 'mine' ? <Mic color={colors.primary} size={16} /> : activeTab === 'notes' ? <NotebookPen color={colors.primary} size={16} /> : <Check color={colors.primary} size={16} />}<AppText color={colors.primary} variant="button">{title}</AppText></View>
-          <View style={styles.headerActions}>
-            {activeTab === 'mine' && answerText && !editing ? <Pressable accessibilityLabel="清空我的回答" accessibilityRole="button" hitSlop={8} onPress={() => onAnswerChange('')} style={styles.smallAction}><Eraser color={colors.mutedForeground} size={13} /><AppText variant="micro">清空</AppText></Pressable> : null}
-            {editableTab ? <Pressable accessibilityLabel={editAccessibilityLabel} accessibilityRole="button" hitSlop={8} onPress={() => editing ? finishEditing() : onEditingTabChange(editableTab)} style={[styles.smallAction, styles.editAction]}>{editing ? <Check color={colors.primary} size={13} /> : <Pencil color={colors.primary} size={13} />}<AppText color={colors.primary} variant="micro">{editLabel}</AppText></Pressable> : null}
-          </View>
+        <View style={styles.header} testID="study-workbench-header">
+          <AppText variant="button">{title}</AppText>
+          {editableTab && !aiBusy ? (
+            <Pressable
+              accessibilityLabel={editAccessibilityLabel}
+              accessibilityRole="button"
+              hitSlop={4}
+              onPress={() => editing ? finishEditing() : onEditingTabChange(editableTab)}
+              style={({ pressed }) => [styles.headerAction, pressed ? styles.pressed : null]}
+              testID="study-workbench-primary-action"
+            >
+              <AppText color={colors.primary} variant="micro">{editing ? '完成' : '编辑'}</AppText>
+            </Pressable>
+          ) : null}
         </View>
-
-        {tabs.length > 1 ? <View accessibilityLabel="学习控制台栏目" accessibilityRole="tablist" style={styles.segmented}>{tabs.map((tab) => {
-          const active = tab === activeTab;
-          const label = tab === 'reference' ? referenceLabel : labels[tab];
-          return <Pressable accessibilityLabel={`切换到${label}`} accessibilityRole="tab" accessibilityState={{ selected: active }} key={tab} onPress={() => selectTab(tab)} style={[styles.segment, active ? styles.segmentActive : null]}><AppText color={active ? colors.foreground : colors.mutedForeground} variant="micro">{label}</AppText></Pressable>;
-        })}</View> : null}
 
         <View style={styles.content} testID="study-workbench-content">
           {activeTab === 'mine' ? <View style={styles.panel}>
-            {recordingUri && !consented ? <AppText variant="micro">录音仅用于本次转写；服务端不长期保存原始音频。</AppText> : null}
-            {editing ? <TextInput accessibilityLabel="我的回答" autoFocus multiline onBlur={() => onEditingTabChange(undefined)} onChangeText={onAnswerChange} onContentSizeChange={({ nativeEvent }) => setAnswerInputHeight(Math.max(92, Math.ceil(nativeEvent.contentSize.height)))} placeholder={busy === 'transcribe' ? '正在自动转写录音…' : '录音转写后可编辑，也可以直接输入回答…'} placeholderTextColor={colors.mutedForeground} ref={answerInputRef} scrollEnabled={false} style={[styles.input, { height: answerInputHeight }]} textAlignVertical="top" value={answerText} /> : <View accessibilityLabel="我的回答内容" style={[styles.input, styles.readOnlyInput]}><AppText color={answerText ? colors.foreground : colors.mutedForeground}>{answerText || (busy === 'transcribe' ? '正在自动转写录音…' : '录音转写结果会显示在这里。如需键入，请点击“手动输入”。')}</AppText></View>}
-            {reviewKind !== 'none' ? <Button disabled={!answerText.trim() || Boolean(busy)} leading={<Sparkles color={answerText.trim() ? colors.foreground : colors.mutedForeground} size={14} />} onPress={() => void reviewAnswer()} size="sm" variant="outline">{busy === 'review' ? '正在分析…' : reviewLabel}</Button> : null}
+            {recordingUri && !consented ? <AppText variant="micro">录音仅用于本次转写。</AppText> : null}
+            {editing ? <TextInput accessibilityLabel="我的回答" autoFocus multiline onBlur={() => { onEditingTabChange(undefined); void persistCurrent(); }} onChangeText={changeAnswer} onContentSizeChange={({ nativeEvent }) => setAnswerInputHeight(Math.max(92, Math.ceil(nativeEvent.contentSize.height)))} placeholder={busy === 'transcribe' ? '正在转写…' : '输入回答'} placeholderTextColor={colors.mutedForeground} ref={answerInputRef} scrollEnabled={false} style={[styles.input, { height: answerInputHeight }]} textAlignVertical="top" value={answerText} /> : <View accessibilityLabel="我的回答内容" style={[styles.input, styles.readOnlyInput]}><AppText color={answerText ? colors.foreground : colors.mutedForeground}>{answerText || (busy === 'transcribe' ? '正在转写…' : '暂无回答')}</AppText></View>}
             {matchMessage ? <View style={styles.feedback}><AppText variant="caption">{matchMessage}</AppText><AppText variant="button">正确原文</AppText><AppText>{questionText}</AppText></View> : null}
             {grammar ? <View style={styles.feedback}><AppText variant="button">语法反馈</AppText><AppText variant="caption">{grammar.overallFeedbackZh}</AppText><AppText variant="button">修改后表达</AppText><AppText>{grammar.correctedText}</AppText>{grammar.issues.map((issue, index) => <View key={`${issue}-${index}`} style={styles.issue}><AppText variant="caption">{issue}</AppText></View>)}</View> : null}
             {opi ? <View style={styles.feedback}><AppText variant="button">更自然的民航口语表达</AppText><AppText>{opi.polishedText}</AppText></View> : null}
             {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
-            {busy === 'transcribe' || busy === 'review' ? <Button onPress={() => activeRequest.current?.abort()} size="sm" variant="outline">取消当前 AI 操作</Button> : null}
-            {answerText.trim() ? <Button disabled={Boolean(busy) || saved} leading={<Save color={saved ? colors.mutedForeground : colors.primaryForeground} size={14} />} onPress={() => void saveAiResult()} size="sm">{saved ? '已保存到学习记录' : busy === 'save' ? '正在保存…' : '保存到学习记录'}</Button> : null}
-            <AppText color={colors.mutedForeground} variant="micro">只有点击“保存到学习记录”后，当前转写、纠错和润色结果才会保存并参与账号同步。</AppText>
-          </View> : activeTab === 'reference' ? referenceContent : <View style={styles.panel}>{editing ? <TextInput accessibilityLabel="学习笔记" autoFocus multiline onBlur={() => onEditingTabChange(undefined)} onChangeText={onNoteChange} onContentSizeChange={({ nativeEvent }) => setNoteInputHeight(Math.max(92, Math.ceil(nativeEvent.contentSize.height)))} placeholder="记生词、要点、易错表达…" placeholderTextColor={colors.mutedForeground} ref={noteInputRef} scrollEnabled={false} style={[styles.input, { height: noteInputHeight }]} textAlignVertical="top" value={noteText} /> : <View accessibilityLabel="学习笔记内容" style={[styles.input, styles.readOnlyInput]}><AppText color={noteText ? colors.foreground : colors.mutedForeground}>{noteText || '笔记区域默认不会弹出键盘。如需记录，请点击“添加笔记”。'}</AppText></View>}{saveError ? <View style={styles.errorRow}><AppText color={colors.destructive} style={styles.flex} variant="micro">{saveError}</AppText><Pressable onPress={onRetrySave}><AppText color={colors.destructive} variant="micro">重试</AppText></Pressable></View> : <AppText color={colors.primary} variant="micro">已保存到本机并进入同步队列</AppText>}</View>}
+            {autoSaveError ? <AppText accessibilityLiveRegion="assertive" color={colors.destructive} variant="micro">{autoSaveError}</AppText> : null}
+          </View> : activeTab === 'reference' ? referenceContent : <View style={styles.panel}>
+            {editing ? <TextInput accessibilityLabel="学习笔记" autoFocus multiline onBlur={() => onEditingTabChange(undefined)} onChangeText={onNoteChange} onContentSizeChange={({ nativeEvent }) => setNoteInputHeight(Math.max(92, Math.ceil(nativeEvent.contentSize.height)))} placeholder="记录要点" placeholderTextColor={colors.mutedForeground} ref={noteInputRef} scrollEnabled={false} style={[styles.input, { height: noteInputHeight }]} textAlignVertical="top" value={noteText} /> : <View accessibilityLabel="学习笔记内容" style={[styles.input, styles.readOnlyInput]}><AppText color={noteText ? colors.foreground : colors.mutedForeground}>{noteText || '暂无笔记'}</AppText></View>}
+            {saveError ? <AppText accessibilityLiveRegion="assertive" color={colors.destructive} variant="micro">{saveError}</AppText> : null}
+          </View>}
+        </View>
+
+        <View style={styles.footer} testID="study-workbench-footer">
+          {tabs.length > 1 ? <View accessibilityLabel="学习控制台栏目" accessibilityRole="tablist" style={styles.dots}>{tabs.map((tab) => {
+            const active = tab === activeTab;
+            const label = tab === 'reference' ? referenceLabel : labels[tab];
+            return <Pressable accessibilityLabel={`切换到${label}`} accessibilityRole="tab" accessibilityState={{ selected: active }} hitSlop={8} key={tab} onPress={() => selectTab(tab)} style={styles.dotTarget} testID={`study-workbench-tab-${tab}`}><View style={[styles.dot, active ? styles.dotActive : null]} testID={`study-workbench-tab-indicator-${tab}`} /></Pressable>;
+          })}</View> : <View />}
+          <View style={styles.actions}>
+            {showRetry ? <Pressable accessibilityLabel="重试保存" accessibilityRole="button" onPress={() => activeTab === 'mine' ? void persistCurrent() : onRetrySave()} style={styles.action}><AppText color={colors.destructive} variant="micro">重试</AppText></Pressable> : null}
+            {aiBusy ? <Pressable accessibilityLabel="取消当前 AI 操作" accessibilityRole="button" onPress={() => activeRequest.current?.abort()} style={styles.action}><AppText color={colors.mutedForeground} variant="micro">取消</AppText></Pressable> : null}
+            {activeTab === 'mine' && (failedAction === 'transcribe' || (transcriptionAttempted && !answerText.trim())) && recordingUri && !aiBusy ? <Pressable accessibilityLabel="重试语音转写" accessibilityRole="button" onPress={() => void transcribe()} style={styles.action}><AppText color={colors.primary} variant="micro">重试转写</AppText></Pressable> : null}
+            {activeTab === 'mine' && reviewKind !== 'none' && !editing && !aiBusy ? <Pressable accessibilityLabel={reviewLabel} accessibilityRole="button" accessibilityState={{ disabled: !answerText.trim() }} disabled={!answerText.trim()} onPress={() => void reviewAnswer()} style={[styles.action, styles.reviewAction, !answerText.trim() ? styles.disabled : null]}><AppText color={answerText.trim() ? colors.primary : colors.mutedForeground} variant="micro">{reviewLabel}</AppText></Pressable> : null}
+          </View>
         </View>
       </View>
     </GestureDetector>
   );
-}
+});
 
 const styles = StyleSheet.create({
-  header: { alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between', minHeight: 48, paddingHorizontal: spacing[4], paddingTop: spacing[2] }, titleRow: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] }, headerActions: { alignItems: 'center', flexDirection: 'row', gap: spacing[1.5] }, smallAction: { alignItems: 'center', backgroundColor: colors.secondary, borderRadius: radii.full, flexDirection: 'row', gap: spacing[1], minHeight: 30, paddingHorizontal: spacing[2.5], paddingVertical: spacing[1.5] }, editAction: { backgroundColor: colors.primary06 }, segmented: { backgroundColor: colors.secondary, borderRadius: radii.full, flexDirection: 'row', gap: spacing[1], marginBottom: spacing[3], marginHorizontal: spacing[4], padding: spacing[1] }, segment: { alignItems: 'center', borderColor: 'transparent', borderRadius: radii.full, borderWidth: 1, flex: 1, justifyContent: 'center', minHeight: 44, paddingHorizontal: spacing[2] }, segmentActive: { backgroundColor: colors.card, borderColor: colors.border }, content: { paddingBottom: spacing[3], paddingHorizontal: spacing[4] }, panel: { gap: spacing[2] }, input: { backgroundColor: colors.secondary, borderColor: colors.border, borderRadius: radii.xl, borderWidth: 1, color: colors.foreground, minHeight: 92, padding: spacing[3] }, readOnlyInput: { justifyContent: 'center' }, feedback: { backgroundColor: colors.primary06, borderColor: colors.primary20, borderRadius: radii.lg, borderWidth: 1, gap: spacing[2], padding: spacing[3] }, issue: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth, gap: spacing[1], paddingTop: spacing[2] }, errorRow: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] }, flex: { flex: 1 },
+  header: { alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between', minHeight: 52, paddingHorizontal: spacing[4], paddingTop: spacing[3] },
+  headerAction: { alignItems: 'center', backgroundColor: colors.primary06, borderColor: colors.primary20, borderRadius: radii.full, borderWidth: 1, justifyContent: 'center', minHeight: 36, minWidth: 52, paddingHorizontal: spacing[3] },
+  content: { paddingHorizontal: spacing[4] },
+  panel: { gap: spacing[2] },
+  input: { backgroundColor: colors.secondary, borderColor: colors.border, borderRadius: radii.xl, borderWidth: 1, color: colors.foreground, minHeight: 92, padding: spacing[3] },
+  readOnlyInput: { justifyContent: 'center' },
+  feedback: { backgroundColor: colors.primary06, borderColor: colors.primary20, borderRadius: radii.lg, borderWidth: 1, gap: spacing[2], padding: spacing[3] },
+  issue: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth, gap: spacing[1], paddingTop: spacing[2] },
+  footer: { alignItems: 'flex-end', flexDirection: 'row', justifyContent: 'space-between', minHeight: 48, paddingBottom: spacing[2], paddingHorizontal: spacing[3], paddingTop: spacing[1] },
+  dots: { alignItems: 'center', backgroundColor: colors.secondary, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', height: 30, paddingHorizontal: spacing[1] },
+  dotTarget: { alignItems: 'center', height: 28, justifyContent: 'center', width: 28 },
+  dot: { backgroundColor: colors.mutedForeground, borderRadius: radii.full, height: 5, opacity: 0.32, width: 5 },
+  dotActive: { backgroundColor: colors.primary, height: 6, opacity: 1, width: 16 },
+  actions: { alignItems: 'center', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'flex-end' },
+  action: { alignItems: 'center', borderRadius: radii.full, justifyContent: 'center', minHeight: 44, paddingHorizontal: spacing[2.5] },
+  reviewAction: { backgroundColor: colors.primary06 },
+  pressed: { opacity: 0.72 },
+  disabled: { opacity: 0.55 },
 });

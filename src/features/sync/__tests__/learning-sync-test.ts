@@ -18,7 +18,7 @@ jest.mock('expo-sqlite/kv-store', () => ({
 jest.mock('@/platform/api-client', () => ({ apiRequest: (...args: unknown[]) => mockApiRequest(...args) }));
 
 import { getEmbeddedQuestionBanks } from '@/features/question-bank/data/repository';
-import type { CardLearningState } from '@/features/question-bank/types';
+import type { CardLearningState, LearningRecord } from '@/features/question-bank/types';
 import { VOCABULARY_STORAGE_KEY } from '@/features/vocabulary/persistence';
 import type { VocabularyState } from '@/features/vocabulary/types';
 
@@ -26,11 +26,13 @@ import {
   archiveAndBindEmptyLearningSync,
   bindLearningSync,
   enqueueCardState,
+  enqueueLearningRecord,
   enqueueVocabularyDocument,
   getLearningSyncStatus,
   inspectLearningSyncBinding,
   resetLearningSyncForTests,
   runLearningSync,
+  setLearningSyncActiveUser,
 } from '../learning-sync';
 
 const bank = getEmbeddedQuestionBanks()[0]!;
@@ -47,6 +49,28 @@ const vocabularyState: VocabularyState = {
   words: { 'preview-0001': { status: 'known', favorite: false, updatedAt: '2026-07-13T00:00:00.000Z' } },
   updatedAt: '2026-07-13T00:00:00.000Z',
 };
+
+function learningRecord(transcript: string, updatedAt: string): LearningRecord {
+  return {
+    schemaVersion: 3,
+    id: 'study-session-card-1',
+    sessionId: 'study-session',
+    cardId: card.id,
+    bankId: bank.id,
+    bankTitle: bank.title,
+    categoryTitle: bank.categories[0]!.name,
+    topicTitle: topic.name,
+    completedCount: 1,
+    totalCount: 1,
+    correctCount: 0,
+    durationSeconds: 5,
+    reason: 'complete',
+    createdAt: '2026-07-15T00:00:00.000Z',
+    updatedAt,
+    recordType: 'ai_result',
+    aiResult: { questionId: card.id, transcript },
+  };
+}
 
 describe('learning sync', () => {
   beforeEach(() => {
@@ -95,6 +119,98 @@ describe('learning sync', () => {
     const outbox = JSON.parse(mockValues.get('icao.learning.v3.sync.outbox') ?? '[]') as { kind: string; payload: { documentKey: string; document: VocabularyState } }[];
     expect(outbox).toHaveLength(1);
     expect(outbox[0]).toMatchObject({ kind: 'document', payload: { documentKey: 'vocabulary', document: { words: { 'preview-0002': { status: 'vague', favorite: true } } } } });
+  });
+
+  it('collapses rapid answer saves into one latest version', async () => {
+    mockValues.set('icao.learning.v3.sync.meta', JSON.stringify({ schemaVersion: 3, boundUserId: 'user-1', cursor: 0, versions: {} }));
+
+    await enqueueLearningRecord(learningRecord('first', '2026-07-15T00:00:01.000Z'));
+    await enqueueLearningRecord(learningRecord('latest', '2026-07-15T00:00:02.000Z'));
+
+    expect(await getLearningSyncStatus()).toMatchObject({ pendingCount: 1 });
+    const outbox = JSON.parse(mockValues.get('icao.learning.v3.sync.outbox') ?? '[]') as { payload: { record: LearningRecord; version: number } }[];
+    expect(outbox).toHaveLength(1);
+    expect(outbox[0]).toMatchObject({ payload: { version: 2, record: { aiResult: { transcript: 'latest' } } } });
+  });
+
+  it('does not lose a newer answer enqueued while an older push is in flight', async () => {
+    mockValues.set('icao.learning.v3.sync.meta', JSON.stringify({ schemaVersion: 3, boundUserId: 'user-1', cursor: 0, versions: {} }));
+    await enqueueLearningRecord(learningRecord('first', '2026-07-15T00:00:01.000Z'));
+    let releaseFirstPush!: () => void;
+    let signalFirstPush!: () => void;
+    const firstPushStarted = new Promise<void>((resolve) => { signalFirstPush = resolve; });
+    const firstPushGate = new Promise<void>((resolve) => { releaseFirstPush = resolve; });
+    const pushedTranscripts: string[] = [];
+    let pushCount = 0;
+    mockApiRequest.mockImplementation(async (path: string, init?: RequestInit) => {
+      if (path === '/v1/sync/push') {
+        pushCount += 1;
+        const body = JSON.parse(String(init?.body)) as { mutations: { mutationId: string; payload: { record: LearningRecord } }[] };
+        pushedTranscripts.push(body.mutations[0]!.payload.record.aiResult!.transcript);
+        if (pushCount === 1) {
+          signalFirstPush();
+          await firstPushGate;
+        }
+        return { cursor: pushCount, results: body.mutations.map((mutation) => ({ mutationId: mutation.mutationId, status: 'accepted' })) };
+      }
+      return { changes: [], cursor: pushCount, hasMore: false };
+    });
+
+    const sync = runLearningSync('user-1');
+    await firstPushStarted;
+    await enqueueLearningRecord(learningRecord('latest', '2026-07-15T00:00:02.000Z'));
+    releaseFirstPush();
+    await sync;
+
+    expect(pushedTranscripts).toEqual(['first', 'latest']);
+    expect(await getLearningSyncStatus()).toMatchObject({ pendingCount: 0, cursor: 2 });
+  });
+
+  it('never sends a bound account outbox with a different active account', async () => {
+    mockValues.set('icao.learning.v3.sync.meta', JSON.stringify({ schemaVersion: 3, boundUserId: 'user-1', cursor: 0, versions: {} }));
+    setLearningSyncActiveUser('user-1');
+    await enqueueLearningRecord(learningRecord('private answer', '2026-07-15T00:00:01.000Z'));
+
+    setLearningSyncActiveUser('user-2');
+    await runLearningSync();
+
+    expect(mockApiRequest).not.toHaveBeenCalled();
+    expect(await getLearningSyncStatus()).toMatchObject({ boundUserId: 'user-1', pendingCount: 1 });
+  });
+
+  it('pushes an answer enqueued while pull is in flight before the run completes', async () => {
+    mockValues.set('icao.learning.v3.sync.meta', JSON.stringify({ schemaVersion: 3, boundUserId: 'user-1', cursor: 0, versions: {} }));
+    setLearningSyncActiveUser('user-1');
+    let releaseFirstPull!: () => void;
+    let signalFirstPull!: () => void;
+    const firstPullStarted = new Promise<void>((resolve) => { signalFirstPull = resolve; });
+    const firstPullGate = new Promise<void>((resolve) => { releaseFirstPull = resolve; });
+    let pullCount = 0;
+    let pushCount = 0;
+    mockApiRequest.mockImplementation(async (path: string, init?: RequestInit) => {
+      if (path === '/v1/sync/push') {
+        pushCount += 1;
+        const body = JSON.parse(String(init?.body)) as { ownerUserId: string; mutations: { mutationId: string }[] };
+        expect(body.ownerUserId).toBe('user-1');
+        return { cursor: 1, results: body.mutations.map((mutation) => ({ mutationId: mutation.mutationId, status: 'accepted' })) };
+      }
+      pullCount += 1;
+      if (pullCount === 1) {
+        signalFirstPull();
+        await firstPullGate;
+      }
+      return { changes: [], cursor: pushCount, hasMore: false };
+    });
+
+    const sync = runLearningSync('user-1');
+    await firstPullStarted;
+    await enqueueLearningRecord(learningRecord('during pull', '2026-07-15T00:00:01.000Z'));
+    releaseFirstPull();
+    await sync;
+
+    expect(pushCount).toBe(1);
+    expect(pullCount).toBe(2);
+    expect(await getLearningSyncStatus()).toMatchObject({ pendingCount: 0, cursor: 1 });
   });
 
   it('archives unowned data and starts the account from cloud state', async () => {

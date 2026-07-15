@@ -52,6 +52,9 @@ export function useStudySession({
   const behavior = useMemo(() => getStudyBehavior(dataset), [dataset]);
   const startingIndex = Math.max(0, initialCardId ? topic.cards.findIndex((item) => item.id === initialCardId) : 0);
   const startedAt = useRef(Date.now());
+  const sessionId = useRef(`study-${startedAt.current.toString(36)}-${Math.random().toString(36).slice(2, 8)}`).current;
+  const sessionStartedAt = useRef(new Date(startedAt.current).toISOString()).current;
+  const finishedAt = useRef<string | undefined>(undefined);
   const [states, setStates] = useState<Record<string, CardLearningState>>({});
   const statesRef = useRef(states);
   const [hydrated, setHydrated] = useState(false);
@@ -67,8 +70,9 @@ export function useStudySession({
   const [toolMode, setToolModeState] = useState<StudyToolMode>();
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [recordings, setRecordings] = useState<Record<string, LocalRecordingState>>({});
+  const [attemptedTranscriptionKeys, setAttemptedTranscriptionKeys] = useState<Set<string>>(() => new Set());
   const [feedbackCardIds, setFeedbackCardIds] = useState<Set<string>>(() => new Set());
-  const [playRequestToken, setPlayRequestToken] = useState(0);
+  const [playRequestToken, setPlayRequestToken] = useState(1);
   const [report, setReport] = useState<LearningRecord>();
 
   statesRef.current = states;
@@ -190,6 +194,10 @@ export function useStudySession({
     });
   }, [card]);
 
+  const markTranscriptionAttempted = useCallback((recordingKey: string) => {
+    setAttemptedTranscriptionKeys((current) => new Set(current).add(recordingKey));
+  }, []);
+
   const updateAnswer = useCallback((text: string) => {
     if (!card) return;
     setAnswers((current) => ({ ...current, [card.id]: text }));
@@ -217,9 +225,12 @@ export function useStudySession({
       (count, item) => count + (sessionCardIds.has(item.id) && statesRef.current[item.id]?.selectedChoiceIndex === item.correctChoiceIndex ? 1 : 0),
       0,
     );
+    const updatedAt = new Date().toISOString();
+    finishedAt.current ??= updatedAt;
     const nextReport: LearningRecord = {
-      schemaVersion: 2,
-      id: `learning-${Date.now()}`,
+      schemaVersion: 3,
+      id: `session-${sessionId}`,
+      sessionId,
       bankId: dataset.id,
       bankTitle: dataset.title,
       categoryTitle: category.name,
@@ -232,15 +243,19 @@ export function useStudySession({
       feedbackCount: feedbackCardIds.size,
       durationSeconds: Math.max(1, Math.round((Date.now() - startedAt.current) / 1000)),
       reason,
-      createdAt: new Date().toISOString(),
+      createdAt: finishedAt.current,
+      updatedAt,
+      recordType: 'session',
     };
     await store.addRecord(nextReport);
     setReport(nextReport);
     return nextReport;
-  }, [category.name, completedCardIds.size, dataset.id, dataset.title, feedbackCardIds.size, store, topic.cards, topic.name, visitedIndexes]);
+  }, [category.name, completedCardIds.size, dataset.id, dataset.title, feedbackCardIds.size, sessionId, store, topic.cards, topic.name, visitedIndexes]);
 
   return {
     behavior,
+    sessionId,
+    sessionStartedAt,
     hydrated,
     loadError,
     retryHydration: () => setLoadAttempt((current) => current + 1),
@@ -260,6 +275,8 @@ export function useStudySession({
     answerText: card ? answers[card.id] ?? '' : '',
     recordings,
     recording: card ? recordings[card.id] : undefined,
+    attemptedTranscriptionKeys,
+    markTranscriptionAttempted,
     playRequestToken,
     report,
     saveFailure,

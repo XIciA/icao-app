@@ -56,6 +56,7 @@ export const learningRecords = pgTable('learning_records', {
   clientRecordId: text('client_record_id').notNull(),
   payload: jsonb('payload').notNull(),
   occurredAt: timestamp('occurred_at', { withTimezone: true }).notNull(),
+  version: integer('version').default(1).notNull(),
   updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
 }, (table) => [
   uniqueIndex('learning_record_user_client').on(table.userId, table.clientRecordId),

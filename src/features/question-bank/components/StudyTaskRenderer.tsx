@@ -18,6 +18,10 @@ export function StudyTaskRenderer({
   onRecorded,
   onInteractionChange,
   interactionGesture,
+  blockedExternalGesture,
+  previewPauseRequest,
+  onPreviewPlaybackStart,
+  onRecordingIntent,
 }: {
   behavior: StudyBehavior;
   card: QuestionBankCard;
@@ -29,6 +33,10 @@ export function StudyTaskRenderer({
   onRecorded: (recording: LocalRecordingState) => void;
   onInteractionChange?: (active: boolean) => void;
   interactionGesture?: GestureType;
+  blockedExternalGesture?: GestureType;
+  previewPauseRequest?: number;
+  onPreviewPlaybackStart?: () => void;
+  onRecordingIntent?: () => void;
 }) {
   if (behavior.taskKind === 'choices') {
     return card.choices?.length ? (
@@ -44,11 +52,15 @@ export function StudyTaskRenderer({
 
   return (
     <SpeakingPracticePanel
+      blockedExternalGesture={blockedExternalGesture}
       mode={behavior.recordingMode ?? 'speaking'}
       interactionGesture={interactionGesture}
       onClear={onClearRecording}
       onInteractionChange={onInteractionChange}
+      onPreviewPlaybackStart={onPreviewPlaybackStart}
+      onRecordingIntent={onRecordingIntent}
       onRecorded={onRecorded}
+      previewPauseRequest={previewPauseRequest}
       recording={recording}
     />
   );

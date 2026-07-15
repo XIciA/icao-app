@@ -3,7 +3,7 @@ import { AppState, Modal, StyleSheet, View } from 'react-native';
 
 import { AppText, Button } from '@/components/ui';
 import { apiFetch, apiRequest, setApiAccessTokenProvider, setApiAuthRecovery } from '@/platform/api-client';
-import { archiveAndBindEmptyLearningSync, bindEmptyLearningSync, bindLearningSync, clearPersonalLearningData, inspectLearningSyncBinding, runLearningSync } from '@/features/sync/learning-sync';
+import { archiveAndBindEmptyLearningSync, bindEmptyLearningSync, bindLearningSync, clearPersonalLearningData, inspectLearningSyncBinding, runLearningSync, setLearningSyncActiveUser } from '@/features/sync/learning-sync';
 import { colors, radii, spacing } from '@/theme';
 
 import { getAuthService, type AppSession } from './auth-service';
@@ -63,10 +63,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setApiAuthRecovery({
       refresh: async () => {
         const next = await service.refreshSession();
+        setLearningSyncActiveUser(next?.user.id);
         setSession(next);
         return next?.accessToken;
       },
       onInvalidated: async () => {
+        setLearningSyncActiveUser(undefined);
         await service.signOut('local').catch(() => undefined);
         setSession(undefined);
         setAccountReady(false);
@@ -74,11 +76,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     });
     const unsubscribe = service.onSessionChange((next) => {
       if (active) {
+        setLearningSyncActiveUser(next?.user.id);
         setSession(next);
         if (!next) setAccountReady(false);
       }
     });
-    void service.getSession().then((next) => { if (active) setSession(next); }).finally(() => { if (active) setRestoring(false); });
+    void service.getSession().then((next) => {
+      if (active) {
+        setLearningSyncActiveUser(next?.user.id);
+        setSession(next);
+      }
+    }).finally(() => { if (active) setRestoring(false); });
     if (AppState.currentState === 'active') service.startAutoRefresh();
     const appState = AppState.addEventListener('change', (state) => {
       if (state === 'active') {
@@ -91,10 +99,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       unsubscribe();
       appState.remove();
       service.stopAutoRefresh();
+      setLearningSyncActiveUser(undefined);
       setApiAccessTokenProvider(undefined);
       setApiAuthRecovery(undefined);
     };
   }, [service]);
+
+  useEffect(() => {
+    setLearningSyncActiveUser(session?.user.id);
+  }, [session?.user.id]);
 
   useEffect(() => {
     const userId = session?.user.id;

@@ -1,4 +1,4 @@
-import { fireEvent, render, waitFor } from '@testing-library/react-native';
+import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { Pressable, Text, View } from 'react-native';
 
 import { useStudySession } from '../hooks/useStudySession';
@@ -38,11 +38,13 @@ function Harness({ store }: { store: LearningStore }) {
       <Text>{`completed:${session.completedCardIds.size}`}</Text>
       <Text>{`revealed:${session.revealed}`}</Text>
       <Text>{`tool:${session.toolMode ?? 'none'}`}</Text>
+      <Text>{`play-request:${session.playRequestToken}`}</Text>
       <Pressable accessibilityLabel="next" onPress={() => session.goTo(1)} />
       <Pressable accessibilityLabel="previous" onPress={() => session.goTo(0)} />
       <Pressable accessibilityLabel="answer" onPress={session.toggleAnswers} />
       <Pressable accessibilityLabel="dictionary" onPress={() => session.setToolMode('dictionary')} />
       <Pressable accessibilityLabel="clear-tool" onPress={() => session.setToolMode(undefined)} />
+      <Pressable accessibilityLabel="finish" onPress={() => { void session.finish('complete').catch(() => undefined); }} />
     </View>
   );
 }
@@ -67,6 +69,17 @@ describe('useStudySession', () => {
     expect(screen.getByText('revealed:true')).toBeTruthy();
   });
 
+  it('requests autoplay on the first card and after every successful navigation', async () => {
+    const screen = await render(<Harness store={createStore()} />);
+    await waitFor(() => expect(screen.getByText('play-request:1')).toBeTruthy());
+
+    fireEvent.press(screen.getByLabelText('next'));
+    await waitFor(() => expect(screen.getByText('play-request:2')).toBeTruthy());
+
+    fireEvent.press(screen.getByLabelText('previous'));
+    await waitFor(() => expect(screen.getByText('play-request:3')).toBeTruthy());
+  });
+
   it('sets and clears a tool mode without toggling a different callback back off', async () => {
     const screen = await render(<Harness store={createStore()} />);
     await waitFor(() => expect(screen.getByText('tool:none')).toBeTruthy());
@@ -74,5 +87,22 @@ describe('useStudySession', () => {
     await waitFor(() => expect(screen.getByText('tool:dictionary')).toBeTruthy());
     fireEvent.press(screen.getByLabelText('clear-tool'));
     await waitFor(() => expect(screen.getByText('tool:none')).toBeTruthy());
+  });
+
+  it('reuses one stable session report id when finishing is retried', async () => {
+    const store = createStore();
+    (store.addRecord as jest.Mock).mockRejectedValueOnce(new Error('sync_failed')).mockResolvedValueOnce(undefined);
+    const screen = await render(<Harness store={store} />);
+    await waitFor(() => expect(screen.getByText('index:0')).toBeTruthy());
+
+    await act(async () => { fireEvent.press(screen.getByLabelText('finish')); await Promise.resolve(); });
+    await waitFor(() => expect(store.addRecord).toHaveBeenCalledTimes(1));
+    await act(async () => { fireEvent.press(screen.getByLabelText('finish')); await Promise.resolve(); });
+    await waitFor(() => expect(store.addRecord).toHaveBeenCalledTimes(2));
+
+    const first = (store.addRecord as jest.Mock).mock.calls[0][0];
+    const second = (store.addRecord as jest.Mock).mock.calls[1][0];
+    expect(first.id).toBe(second.id);
+    expect(second).toMatchObject({ schemaVersion: 3, recordType: 'session', sessionId: expect.any(String) });
   });
 });

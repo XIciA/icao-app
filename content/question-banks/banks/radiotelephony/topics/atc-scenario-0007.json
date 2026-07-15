@@ -7,19 +7,19 @@
     {
       "id": "atc-scenario-0007-card-main-112",
       "taskTitle": "SIA 852-1",
-      "audioText": "B: Your call sign is Singapore 852, you are at Wuhan Airport, stand 7, received ATIS Mike, request ATC clearance to Singapore.",
-      "audioTextZh": "B：你的呼号是 Singapore 852，在武汉机场 7 号机位，已收到 ATIS Mike，请求前往新加坡的 ATC 放行许可。",
-      "referenceText": "Wuhan Delivery, SIA852, stand 7, information M, request clearance to Singapore.",
-      "referenceTextZh": "武汉放行，SIA852，7 号机位，收到 M 情报，申请前往新加坡的放行许可。",
+      "audioText": "B: Your call sign is SIA 852, you are at Wuhan Airport, stand 7, received ATIS M, request ATC clearance to Singapore.",
+      "audioTextZh": "B：你的呼号是 SIA 852，在武汉机场 7 号机位，已收到 ATIS M，请求前往新加坡的 ATC 放行许可。",
+      "referenceText": "Wuhan Delivery, SIA 852, stand 7, information M, request clearance to Singapore.",
+      "referenceTextZh": "武汉放行，SIA 852，7 号机位，收到 M 情报，申请前往新加坡的放行许可。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/112.mp3"
     },
     {
       "id": "atc-scenario-0007-card-main-113",
       "taskTitle": "SIA 852-2",
-      "audioText": "C: Singapore 852, cleared to Singapore via flight planned route, follow Zulu Foxtrot 03 departure, initial climb to 1800 meters, cruising level 10400 meters, runway 18L, departure frequency 124.7, squawk 4615.",
-      "audioTextZh": "C：Singapore 852，许可按飞行计划航路飞往新加坡，执行 Zulu Foxtrot 03 离场，初始爬升至 1800 米，巡航高度 10400 米，跑道 18 左，离场频率 124.7，应答机 4615。",
-      "referenceText": "Cleared to Singapore via flight planned route, follow ZF03 departure, initial climb to 1800 meters, cruising level 10400 meters, runway 18L, departure frequency 124.7, squawk 4615, SIA852.",
-      "referenceTextZh": "许可按飞行计划航路飞往新加坡，执行 ZF03 离场，初始爬升至 1800 米，巡航高度 10400 米，跑道 18L，离场频率 124.7，应答机 4615，SIA852。",
+      "audioText": "C: SIA 852, cleared to Singapore via flight planned route, follow ZF-03 departure, initial climb to 1800 meters, cruising level 10400 meters, Runway 18L, departure frequency 124.7, squawk 4615.",
+      "audioTextZh": "C：SIA 852，许可按飞行计划航路飞往新加坡，执行 ZF-03 离场，初始爬升至 1800 米，巡航高度 10400 米，跑道 18 左，离场频率 124.7，应答机 4615。",
+      "referenceText": "Cleared to Singapore via flight planned route, follow ZF-03 departure, initial climb to 1800 meters, cruising level 10400 meters, Runway 18L, departure frequency 124.7, squawk 4615, SIA 852.",
+      "referenceTextZh": "许可按飞行计划航路飞往新加坡，执行 ZF-03 离场，初始爬升至 1800 米，巡航高度 10400 米，跑道 18L，离场频率 124.7，应答机 4615，SIA 852。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/113.mp3"
     },
     {
@@ -27,71 +27,71 @@
       "taskTitle": "SIA 852-3",
       "audioText": "B: Now you are ready for push back and start up, contact Wuhan Ground.",
       "audioTextZh": "B：现在你准备好推出和开车，联系武汉地面。",
-      "referenceText": "Wuhan Ground, SIA852, ready for push back and start up.",
-      "referenceTextZh": "武汉地面，SIA852，准备好推出和开车。",
+      "referenceText": "Wuhan Ground, SIA 852, ready for push back and start up.",
+      "referenceTextZh": "武汉地面，SIA 852，准备好推出和开车。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/114.mp3"
     },
     {
       "id": "atc-scenario-0007-card-main-115",
       "taskTitle": "SIA 852-4",
-      "audioText": "C: Singapore 852, push back and start up at your own discretion.",
-      "audioTextZh": "C：Singapore 852，自行决定推出和开车。",
-      "referenceText": "Push back and start up at our own discretion, SIA852.",
-      "referenceTextZh": "自行决定推出和开车，SIA852。",
+      "audioText": "C: SIA 852, push back and start up at your own discretion.",
+      "audioTextZh": "C：SIA 852，自行决定推出和开车。",
+      "referenceText": "Push back and start up at our own discretion, SIA 852.",
+      "referenceTextZh": "自行决定推出和开车，SIA 852。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/115.mp3"
     },
     {
       "id": "atc-scenario-0007-card-main-116",
       "taskTitle": "SIA 852-5",
-      "audioText": "B: You have completed the push back and start up procedures. You decide to make an intersection departure from Echo 2, contact Ground to request intersection departure from Echo 2.",
-      "audioTextZh": "B：你已完成推出和开车程序。你决定从 Echo 2 交叉口离场，联系地面请求从 Echo 2 交叉口离场。",
-      "referenceText": "Wuhan Ground, SIA852, push back and start up completed, request intersection departure from E2.",
-      "referenceTextZh": "武汉地面，SIA852，推出和开车完成，请求从 E2 交叉口离场。",
+      "audioText": "B: You have completed the push back and start up procedures. You decide to make an intersection departure from E2, contact Ground to request intersection departure from E2.",
+      "audioTextZh": "B：你已完成推出和开车程序。你决定从 E2 交叉口离场，联系地面请求从 E2 交叉口离场。",
+      "referenceText": "Wuhan Ground, SIA 852, push back and start up completed, request intersection departure from E2.",
+      "referenceTextZh": "武汉地面，SIA 852，推出和开车完成，请求从 E2 交叉口离场。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/116.mp3"
     },
     {
       "id": "atc-scenario-0007-card-main-117",
       "taskTitle": "SIA 852-6",
-      "audioText": "C: Singapore 852, roger, intersection departure from Echo 2 is approved, taxi to Echo 2 via Alpha 6, Alpha 2, hold short of runway 18L.",
-      "audioTextZh": "C：Singapore 852，收到，Echo 2 交叉口离场批准，经 Alpha 6、Alpha 2 滑行至 Echo 2，跑道 18 左外等待。",
-      "referenceText": "Intersection departure from E2 is approved, taxi to E2 via A6, A2, hold short of runway 18L, SIA852.",
-      "referenceTextZh": "E2 交叉口离场批准，经 A6、A2 滑行至 E2，跑道 18L 外等待，SIA852。",
+      "audioText": "C: SIA 852, roger, intersection departure from E2 is approved, taxi to E2 via A6, A2, hold short of Runway 18L.",
+      "audioTextZh": "C：SIA 852，收到，E2 交叉口离场批准，经 A6、A2 滑行至 E2，跑道 18 左外等待。",
+      "referenceText": "Intersection departure from E2 is approved, taxi to E2 via A6, A2, hold short of Runway 18L, SIA 852.",
+      "referenceTextZh": "E2 交叉口离场批准，经 A6、A2 滑行至 E2，跑道 18L 外等待，SIA 852。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/117.mp3"
     },
     {
       "id": "atc-scenario-0007-card-main-118",
       "taskTitle": "SIA 852-7",
-      "audioText": "B: During taxiing you find a vehicle broken down on taxiway Alpha, you have stopped the aircraft, inform ATC about the situation and request airport services to tow away the vehicle.",
-      "audioTextZh": "B：滑行期间，你发现一辆车在 Alpha 滑行道上故障，你已停止飞机，通知 ATC 情况，并请求机场服务将车辆拖走。",
-      "referenceText": "Wuhan Ground, SIA852, a vehicle has broken down on taxiway A, we have to stop our aircraft and request airport service to tow the vehicle away.",
-      "referenceTextZh": "武汉地面，SIA852，一辆车在 A 滑行道上故障，我们必须停止飞机，请求机场服务将车辆拖走。",
+      "audioText": "B: During taxiing you find a vehicle broken down on taxiway A, you have stopped the aircraft, inform ATC about the situation and request airport services to tow away the vehicle.",
+      "audioTextZh": "B：滑行期间，你发现一辆车在 A 滑行道上故障，你已停止飞机，通知 ATC 情况，并请求机场服务将车辆拖走。",
+      "referenceText": "Wuhan Ground, SIA 852, a vehicle has broken down on taxiway A, we have to stop our aircraft and request airport service to tow the vehicle away.",
+      "referenceTextZh": "武汉地面，SIA 852，一辆车在 A 滑行道上故障，我们必须停止飞机，请求机场服务将车辆拖走。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/118.mp3"
     },
     {
       "id": "atc-scenario-0007-card-main-119",
       "taskTitle": "SIA 852-8",
-      "audioText": "C: Singapore 852, roger, hold at present position, RAM services will be assume in a few minutes.",
-      "audioTextZh": "C：Singapore 852，收到，在当前位置等待，RAM 服务几分钟后会处理。",
-      "referenceText": "Hold at present position, roger, SIA852.",
-      "referenceTextZh": "在当前位置等待，收到，SIA852。",
+      "audioText": "C: SIA 852, roger, hold at present position, RAM services will be assume in a few minutes.",
+      "audioTextZh": "C：SIA 852，收到，在当前位置等待，RAM 服务几分钟后会处理。",
+      "referenceText": "Hold at present position, roger, SIA 852.",
+      "referenceTextZh": "在当前位置等待，收到，SIA 852。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/119.mp3"
     },
     {
       "id": "atc-scenario-0007-card-main-120",
       "taskTitle": "SIA 852-9",
-      "audioText": "B: You are now holding short of runway 18L on Echo 2, request departure.",
-      "audioTextZh": "B：现在你在 Echo 2 上跑道 18 左外等待，请求离场。",
-      "referenceText": "Wuhan Tower, SIA852, holding short of runway 18L on E2, ready for departure.",
-      "referenceTextZh": "武汉塔台，SIA852，在 E2 上跑道 18L 外等待，准备好离场。",
+      "audioText": "B: You are now holding short of Runway 18L on E2, request departure.",
+      "audioTextZh": "B：现在你在 E2 上跑道 18 左外等待，请求离场。",
+      "referenceText": "Wuhan Tower, SIA 852, holding short of Runway 18L on E2, ready for departure.",
+      "referenceTextZh": "武汉塔台，SIA 852，在 E2 上跑道 18L 外等待，准备好离场。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/120.mp3"
     },
     {
       "id": "atc-scenario-0007-card-main-121",
       "taskTitle": "SIA 852-10",
-      "audioText": "C: Singapore 852, cleared for takeoff runway 18L.",
-      "audioTextZh": "C：Singapore 852，跑道 18 左可以起飞。",
-      "referenceText": "Cleared for takeoff, runway 18L, SIA852.",
-      "referenceTextZh": "可以起飞，跑道 18L，SIA852。",
+      "audioText": "C: SIA 852, cleared for takeoff Runway 18L.",
+      "audioTextZh": "C：SIA 852，跑道 18 左可以起飞。",
+      "referenceText": "Cleared for takeoff, Runway 18L, SIA 852.",
+      "referenceTextZh": "可以起飞，跑道 18L，SIA 852。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/121.mp3"
     },
     {
@@ -99,8 +99,8 @@
       "taskTitle": "SIA 852-11",
       "audioText": "B: During the takeoff role, your nose will run over a sharp object on the runway surface and the nose wheel tire burst, you aborted the takeoff, notify Wuhan Tower.",
       "audioTextZh": "B：起飞滑跑期间，你的前轮压过跑道表面的尖锐物，前轮轮胎爆胎，你中断起飞，通知武汉塔台。",
-      "referenceText": "Wuhan Tower, SIA852, our nose wheel has run over a sharp object on the runway, the tire got burst, we aborted takeoff.",
-      "referenceTextZh": "武汉塔台，SIA852，我们的前轮压过跑道上的尖锐物，轮胎爆胎，我们中断起飞。",
+      "referenceText": "Wuhan Tower, SIA 852, our nose wheel has run over a sharp object on the runway, the tire got burst, we aborted takeoff.",
+      "referenceTextZh": "武汉塔台，SIA 852，我们的前轮压过跑道上的尖锐物，轮胎爆胎，我们中断起飞。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/122.mp3"
     },
     {
@@ -108,26 +108,26 @@
       "taskTitle": "SIA 852-12",
       "audioText": "B: Inform ATC about the situation and request fire trucks and maintenance.",
       "audioTextZh": "B：通知 ATC 情况，并请求消防车和维修。",
-      "referenceText": "Wuhan Ground, SIA852, we have run over a sharp object, and our nose wheel tire got burst, request fire service and maintenance.",
-      "referenceTextZh": "武汉地面，SIA852，我们压过尖锐物，前轮轮胎爆胎，请求消防和维修。",
+      "referenceText": "Wuhan Ground, SIA 852, we have run over a sharp object, and our nose wheel tire got burst, request fire service and maintenance.",
+      "referenceTextZh": "武汉地面，SIA 852，我们压过尖锐物，前轮轮胎爆胎，请求消防和维修。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/123.mp3"
     },
     {
       "id": "atc-scenario-0007-card-main-124",
       "taskTitle": "SIA 852-13",
-      "audioText": "C: Singapore 852, roger, do you require anything else?\nB: Tell the ATC that you require a tug to tow your aircraft back to the apron after inspection.",
-      "audioTextZh": "C：Singapore 852，收到，你还需要其他什么吗？\nB：告诉 ATC 检查后你需要牵引车将飞机拖回停机坪。",
-      "referenceText": "Affirm, request a tug to tow us back to the apron after inspection, SIA852.",
-      "referenceTextZh": "肯定，请求检查后用牵引车将我们拖回停机坪，SIA852。",
+      "audioText": "C: SIA 852, roger, do you require anything else?\nB: Tell the ATC that you require a tug to tow your aircraft back to the apron after inspection.",
+      "audioTextZh": "C：SIA 852，收到，你还需要其他什么吗？\nB：告诉 ATC 检查后你需要牵引车将飞机拖回停机坪。",
+      "referenceText": "Affirm, request a tug to tow us back to the apron after inspection, SIA 852.",
+      "referenceTextZh": "肯定，请求检查后用牵引车将我们拖回停机坪，SIA 852。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/124.mp3"
     },
     {
       "id": "atc-scenario-0007-card-main-125",
       "taskTitle": "SIA 852-14",
-      "audioText": "C: Singapore 852, tug is on the way.",
-      "audioTextZh": "C：Singapore 852，牵引车正在路上。",
-      "referenceText": "Roger, thanks, SIA852.",
-      "referenceTextZh": "收到，谢谢，SIA852。",
+      "audioText": "C: SIA 852, tug is on the way.",
+      "audioTextZh": "C：SIA 852，牵引车正在路上。",
+      "referenceText": "Roger, thanks, SIA 852.",
+      "referenceTextZh": "收到，谢谢，SIA 852。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/125.mp3"
     },
     {
@@ -135,8 +135,8 @@
       "taskTitle": "SIA 852-15",
       "audioText": "B: Request passenger stairs and shuttle bus to be ready at the apron.",
       "audioTextZh": "B：请求客梯和摆渡车在停机坪准备好。",
-      "referenceText": "Wuhan Ground, SIA852, request passenger stairs and shuttle bus to be ready at the apron.",
-      "referenceTextZh": "武汉地面，SIA852，请求客梯和摆渡车在停机坪准备好。",
+      "referenceText": "Wuhan Ground, SIA 852, request passenger stairs and shuttle bus to be ready at the apron.",
+      "referenceTextZh": "武汉地面，SIA 852，请求客梯和摆渡车在停机坪准备好。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/126.mp3"
     }
   ]

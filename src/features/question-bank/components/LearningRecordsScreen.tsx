@@ -23,7 +23,7 @@ export function LearningRecordsScreen() {
       <View style={styles.header}>
         <AppText color={colors.primary} variant="micro">LOCAL HISTORY</AppText>
         <AppText variant="pageTitle">最近学习</AppText>
-        <AppText>当前展示保存在本机的最近 100 条学习记录。</AppText>
+        <AppText>学习记录保存在本机。</AppText>
       </View>
       <View style={styles.list}>
         {records?.length ? records.map((record) => (
@@ -32,12 +32,12 @@ export function LearningRecordsScreen() {
               <View style={styles.icon}><History color={colors.primary} size={18} /></View>
               <View style={styles.copy}>
                 <AppText variant="cardTitle">{record.bankTitle} · {record.categoryTitle}</AppText>
-                <AppText variant="caption">{record.recordType === 'ai_result' ? `AI 学习结果 · ${record.topicTitle}` : record.topicTitle}</AppText>
+                <AppText variant="caption">{record.recordType === 'ai_result' ? `我的回答 · ${record.topicTitle}` : record.topicTitle}</AppText>
               </View>
               <Tag tone={record.reason === 'complete' ? 'primary' : 'accent'}>{record.recordType === 'ai_result' ? '已保存' : record.reason === 'complete' ? '已完成' : '中途结束'}</Tag>
             </View>
             <View style={styles.metrics}>
-              {record.recordType === 'ai_result' ? <View style={styles.metric}><Sparkles color={colors.primary} size={14} /><AppText variant="micro">转写 / 纠错结果</AppText></View> : <><View style={styles.metric}><Target color={colors.primary} size={14} /><AppText variant="micro">{record.completedCount}/{record.totalCount}</AppText></View><View style={styles.metric}><Clock3 color={colors.primary} size={14} /><AppText variant="micro">{duration(record.durationSeconds)}</AppText></View></>}
+              {record.recordType === 'ai_result' ? <View style={styles.metric}><Sparkles color={colors.primary} size={14} /><AppText variant="micro">回答与反馈</AppText></View> : <><View style={styles.metric}><Target color={colors.primary} size={14} /><AppText variant="micro">{record.completedCount}/{record.totalCount}</AppText></View><View style={styles.metric}><Clock3 color={colors.primary} size={14} /><AppText variant="micro">{duration(record.durationSeconds)}</AppText></View></>}
               <AppText style={styles.date} variant="micro">{new Date(record.createdAt).toLocaleString('zh-CN')}</AppText>
             </View>
             {record.recordType === 'ai_result' && record.aiResult ? <View style={styles.aiResult}><AppText variant="button">我的回答</AppText><AppText>{record.aiResult.transcript}</AppText>{record.aiResult.grammar ? <><AppText variant="button">语法反馈</AppText><AppText variant="caption">{record.aiResult.grammar.overallFeedbackZh}</AppText><AppText>{record.aiResult.grammar.correctedText}</AppText></> : null}{record.aiResult.polishedText ? <><AppText variant="button">润色表达</AppText><AppText>{record.aiResult.polishedText}</AppText></> : null}</View> : null}

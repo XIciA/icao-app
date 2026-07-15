@@ -66,33 +66,40 @@ try {
     },
   };
   stateMutation.payload.state.updatedAt = stateMutation.payload.updatedAt;
+  const recordId = `record-${suffix}`;
+  const recordMutation = {
+    mutationId: `verify-record-${suffix}-v1`,
+    kind: 'learning_record',
+    payload: {
+      recordId,
+      record: { id: recordId, reason: 'complete', aiResult: { transcript: 'session-a' } },
+      occurredAt: new Date().toISOString(),
+    },
+  };
   const mutations = [
     stateMutation,
-    {
-      mutationId: `verify-record-${suffix}`,
-      kind: 'learning_record',
-      payload: { recordId: `record-${suffix}`, record: { id: `record-${suffix}`, reason: 'complete' }, occurredAt: new Date().toISOString() },
-    },
+    recordMutation,
     {
       mutationId: `verify-document-${suffix}-v1`,
       kind: 'document',
       payload: { documentKey: 'annotations', document: { version: 1, entries: { sample: { note: 'session-a' } } }, version: 1, updatedAt: new Date().toISOString() },
     },
   ];
-  const firstPush = await api('/v1/sync/push', firstToken, { method: 'POST', body: JSON.stringify({ mutations }) });
+  const firstPush = await api('/v1/sync/push', firstToken, { method: 'POST', body: JSON.stringify({ ownerUserId: userId, mutations }) });
   assert(firstPush.results.every((result) => result.status === 'accepted'), 'first_push_not_accepted');
-  const duplicate = await api('/v1/sync/push', firstToken, { method: 'POST', body: JSON.stringify({ mutations }) });
+  assert(firstPush.results[1]?.authoritative?.version === 1, 'legacy_record_was_not_treated_as_v1');
+  const duplicate = await api('/v1/sync/push', firstToken, { method: 'POST', body: JSON.stringify({ ownerUserId: userId, mutations }) });
   assert(duplicate.results.every((result) => result.status === 'duplicate'), 'duplicate_push_not_idempotent');
 
   const stale = structuredClone(stateMutation);
   stale.mutationId = `verify-card-${suffix}-stale`;
   stale.payload.state.completed = false;
   stale.payload.state.note = 'must-not-overwrite';
-  const stalePush = await api('/v1/sync/push', secondToken, { method: 'POST', body: JSON.stringify({ mutations: [stale] }) });
+  const stalePush = await api('/v1/sync/push', secondToken, { method: 'POST', body: JSON.stringify({ ownerUserId: userId, mutations: [stale] }) });
   assert(stalePush.results[0]?.status === 'conflict', 'stale_version_not_rejected');
   assert(stalePush.results[0]?.authoritative?.state?.note === 'session-a', 'stale_version_overwrote_newer_state');
 
-  const secondPull = await api('/v1/sync/pull?cursor=0', secondToken);
+  const secondPull = await api(`/v1/sync/pull?cursor=0&ownerUserId=${encodeURIComponent(userId)}`, secondToken);
   assert(secondPull.changes.length === 3, 'second_session_restore_change_count');
   assert(new Set(secondPull.changes.map((change) => change.kind)).size === 3, 'second_session_restore_kinds');
 
@@ -102,15 +109,39 @@ try {
   newer.payload.updatedAt = new Date(Date.now() + 1_000).toISOString();
   newer.payload.state.updatedAt = newer.payload.updatedAt;
   newer.payload.state.note = 'session-b';
-  const secondPush = await api('/v1/sync/push', secondToken, { method: 'POST', body: JSON.stringify({ mutations: [newer] }) });
-  assert(secondPush.results[0]?.status === 'accepted', 'newer_version_not_accepted');
-  const firstPull = await api(`/v1/sync/pull?cursor=${secondPull.cursor}`, firstToken);
-  assert(firstPull.changes.length === 1 && firstPull.changes[0].payload.state.note === 'session-b', 'first_session_did_not_restore_second_change');
+  const recordV2 = structuredClone(recordMutation);
+  recordV2.mutationId = `verify-record-${suffix}-v2`;
+  recordV2.payload.version = 2;
+  recordV2.payload.updatedAt = new Date(Date.now() + 1_000).toISOString();
+  recordV2.payload.record.aiResult.transcript = 'session-b-latest';
+  const secondPush = await api('/v1/sync/push', secondToken, { method: 'POST', body: JSON.stringify({ ownerUserId: userId, mutations: [newer, recordV2] }) });
+  assert(secondPush.results.every((result) => result.status === 'accepted'), 'newer_versions_not_accepted');
+  assert(secondPush.results[1]?.authoritative?.version === 2, 'record_v2_authoritative_version');
+  assert(secondPush.results[1]?.authoritative?.record?.aiResult?.transcript === 'session-b-latest', 'record_v2_authoritative_content');
+
+  const staleRecord = structuredClone(recordMutation);
+  staleRecord.mutationId = `verify-record-${suffix}-stale`;
+  staleRecord.payload.version = 1;
+  staleRecord.payload.updatedAt = new Date(Date.now() + 2_000).toISOString();
+  staleRecord.payload.record.aiResult.transcript = 'must-not-overwrite';
+  const staleRecordPush = await api('/v1/sync/push', firstToken, { method: 'POST', body: JSON.stringify({ ownerUserId: userId, mutations: [staleRecord] }) });
+  assert(staleRecordPush.results[0]?.status === 'conflict', 'stale_record_version_not_rejected');
+  assert(staleRecordPush.results[0]?.authoritative?.version === 2, 'stale_record_authoritative_version');
+  assert(staleRecordPush.results[0]?.authoritative?.record?.aiResult?.transcript === 'session-b-latest', 'stale_record_overwrote_newer_answer');
+
+  const recordDuplicate = await api('/v1/sync/push', secondToken, { method: 'POST', body: JSON.stringify({ ownerUserId: userId, mutations: [recordV2] }) });
+  assert(recordDuplicate.results[0]?.status === 'duplicate', 'record_v2_retry_not_idempotent');
+  const firstPull = await api(`/v1/sync/pull?cursor=${secondPull.cursor}&ownerUserId=${encodeURIComponent(userId)}`, firstToken);
+  const cardChange = firstPull.changes.find((change) => change.kind === 'card_state');
+  const recordChange = firstPull.changes.find((change) => change.kind === 'learning_record');
+  assert(firstPull.changes.length === 2 && cardChange?.payload.state.note === 'session-b', 'first_session_did_not_restore_second_card_change');
+  assert(recordChange?.payload?.version === 2 && recordChange?.payload?.record?.aiResult?.transcript === 'session-b-latest', 'first_session_did_not_restore_record_v2');
 
   console.log(JSON.stringify({
     auth: 'signup-login-wrong-password-session-restore-ok',
     duplicate: 'ok',
     staleConflict: 'ok',
+    recordUpdate: 'v1-v2-stale-pull-ok',
     crossSessionChanges: secondPull.changes.length,
     incrementalChanges: firstPull.changes.length,
     ...(keepTestUser ? { testUserId: userId } : {}),

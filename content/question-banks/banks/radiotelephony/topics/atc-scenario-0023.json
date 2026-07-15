@@ -7,19 +7,19 @@
     {
       "id": "atc-scenario-0023-card-main-395",
       "taskTitle": "AFR 332-1",
-      "audioText": "B: Your call sign is Air France 332, a flight from Wuhan to Paris, you are at stand 223, ask Wuhan Ground for push back and start up instructions.",
-      "audioTextZh": "你的呼号是Air France 332，从武汉飞往巴黎，停在223号机位，向武汉地面申请推出和开车指令。",
-      "referenceText": "Wuhan Ground, AFR332, stand 223, request push back and start up.",
-      "referenceTextZh": "武汉地面，AFR332，223号机位，申请推出和开车。",
+      "audioText": "B: Your call sign is AFR 332, a flight from Wuhan to Paris, you are at stand 223, ask Wuhan Ground for push back and start up instructions.",
+      "audioTextZh": "你的呼号是AFR 332，从武汉飞往巴黎，停在223号机位，向武汉地面申请推出和开车指令。",
+      "referenceText": "Wuhan Ground, AFR 332, stand 223, request push back and start up.",
+      "referenceTextZh": "武汉地面，AFR 332，223号机位，申请推出和开车。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/395.mp3"
     },
     {
       "id": "atc-scenario-0023-card-main-396",
       "taskTitle": "AFR 332-2",
-      "audioText": "C: Air France 332, Wuhan Ground, push back and start up approved, long push back.",
-      "audioTextZh": "管制员：Air France 332，武汉地面，可以推出和开车，长推出。",
-      "referenceText": "Push back and start up approved, long push back, AFR332.",
-      "referenceTextZh": "可以推出和开车，长推出，AFR332。",
+      "audioText": "C: AFR 332, Wuhan Ground, push back and start up approved, long push back.",
+      "audioTextZh": "管制员：AFR 332，武汉地面，可以推出和开车，长推出。",
+      "referenceText": "Push back and start up approved, long push back, AFR 332.",
+      "referenceTextZh": "可以推出和开车，长推出，AFR 332。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/396.mp3"
     },
     {
@@ -27,17 +27,17 @@
       "taskTitle": "AFR 332-3",
       "audioText": "B: You realize the tow truck is not in position yet, request a tug.",
       "audioTextZh": "你发现牵引车还未就位，申请牵引车。",
-      "referenceText": "Wuhan Ground, AFR332, the tow truck is not in position, request a tug.",
-      "referenceTextZh": "武汉地面，AFR332，牵引车尚未就位，申请牵引车。",
+      "referenceText": "Wuhan Ground, AFR 332, the tow truck is not in position, request a tug.",
+      "referenceTextZh": "武汉地面，AFR 332，牵引车尚未就位，申请牵引车。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/397.mp3"
     },
     {
       "id": "atc-scenario-0023-card-main-398",
       "taskTitle": "AFR 332-4",
-      "audioText": "C: Air France 332, the tug is on the way.",
-      "audioTextZh": "管制员：Air France 332，牵引车正在赶来。",
-      "referenceText": "Roger, thanks, AFR332.",
-      "referenceTextZh": "收到，谢谢，AFR332。",
+      "audioText": "C: AFR 332, the tug is on the way.",
+      "audioTextZh": "管制员：AFR 332，牵引车正在赶来。",
+      "referenceText": "Roger, thanks, AFR 332.",
+      "referenceTextZh": "收到，谢谢，AFR 332。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/398.mp3"
     },
     {
@@ -45,53 +45,53 @@
       "taskTitle": "AFR 332-5",
       "audioText": "B: Now you have completed push back and start up procedures, you are ready for taxi.",
       "audioTextZh": "现在你已完成推出和开车程序，准备好滑行。",
-      "referenceText": "Wuhan Ground, AFR332, push back and start up completed, request taxi.",
-      "referenceTextZh": "武汉地面，AFR332，推出和开车已完成，申请滑行。",
+      "referenceText": "Wuhan Ground, AFR 332, push back and start up completed, request taxi.",
+      "referenceTextZh": "武汉地面，AFR 332，推出和开车已完成，申请滑行。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/399.mp3"
     },
     {
       "id": "atc-scenario-0023-card-main-400",
       "taskTitle": "AFR 332-6",
-      "audioText": "C: Air France 332, taxi via taxiway Alpha 3, Alpha and Echo 5 to holding point runway 22, taxi with caution, the taxiway is slippery due to heavy rain.",
-      "audioTextZh": "管制员：Air France 332，经滑行道A3、A和E5滑行至22跑道等待点，谨慎滑行，因大雨滑行道湿滑。",
-      "referenceText": "Taxi via taxiway A3, A and E5 to holding point runway 22, roger, thanks, AFR332.",
-      "referenceTextZh": "经滑行道A3、A和E5滑行至22跑道等待点，收到，谢谢，AFR332。",
+      "audioText": "C: AFR 332, taxi via taxiway A3, A and E5 to holding point Runway 22, taxi with caution, the taxiway is slippery due to heavy rain.",
+      "audioTextZh": "管制员：AFR 332，经滑行道A3、A和E5滑行至22跑道等待点，谨慎滑行，因大雨滑行道湿滑。",
+      "referenceText": "Taxi via taxiway A3, A and E5 to holding point Runway 22, roger, thanks, AFR 332.",
+      "referenceTextZh": "经滑行道A3、A和E5滑行至22跑道等待点，收到，谢谢，AFR 332。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/400.mp3"
     },
     {
       "id": "atc-scenario-0023-card-main-401",
       "taskTitle": "AFR 332-7",
-      "audioText": "B: Now you have reached the holding point runway 22, contact Wuhan Tower and request line up instructions.",
+      "audioText": "B: Now you have reached the holding point Runway 22, contact Wuhan Tower and request line up instructions.",
       "audioTextZh": "现在你已到达22跑道等待点，联系武汉塔台并申请进跑道指令。",
-      "referenceText": "Wuhan Tower, AFR332, reaching holding point runway 22, request line up.",
-      "referenceTextZh": "武汉塔台，AFR332，到达22跑道等待点，申请进跑道。",
+      "referenceText": "Wuhan Tower, AFR 332, reaching holding point Runway 22, request line up.",
+      "referenceTextZh": "武汉塔台，AFR 332，到达22跑道等待点，申请进跑道。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/401.mp3"
     },
     {
       "id": "atc-scenario-0023-card-main-402",
       "taskTitle": "AFR 332-8",
-      "audioText": "C: Air France 332, behind the landing Airbus 330, line up behind.",
-      "audioTextZh": "管制员：Air France 332，在落地的Airbus 330后进跑道，跟随其后。",
-      "referenceText": "Behind the landing A330, line up behind, AFR332.",
-      "referenceTextZh": "在落地的A330后进跑道，跟随其后，AFR332。",
+      "audioText": "C: AFR 332, behind the landing Airbus 330, line up behind.",
+      "audioTextZh": "管制员：AFR 332，在落地的Airbus 330后进跑道，跟随其后。",
+      "referenceText": "Behind the landing A330, line up behind, AFR 332.",
+      "referenceTextZh": "在落地的A330后进跑道，跟随其后，AFR 332。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/402.mp3"
     },
     {
       "id": "atc-scenario-0023-card-main-403",
       "taskTitle": "AFR 332-9",
-      "audioText": "C: Air France 332, follow Zulu Foxtrot 01 departure, maintain runway heading until 1200 meters, contact Wuhan Departure on 124.25, cleared for takeoff runway 22, wind 200 degrees, 8 meters per second.",
-      "audioTextZh": "管制员：Air France 332，执行ZF 01离场，保持跑道航向至1200米，联系武汉离场124.25，22跑道可以起飞，风向200度，风速8米/秒。",
-      "referenceText": "Follow ZF 01 departure, maintain runway heading until 1200 meters, contact Wuhan Departure on 124.25, cleared for takeoff runway 22, AFR332.",
-      "referenceTextZh": "执行ZF 01离场，保持跑道航向至1200米，联系武汉离场124.25，22跑道可以起飞，AFR332。",
+      "audioText": "C: AFR 332, follow ZF-01 departure, maintain runway heading until 1200 meters, contact Wuhan Departure on 124.25, cleared for takeoff Runway 22, wind 200 degrees, 8 meters per second.",
+      "audioTextZh": "管制员：AFR 332，执行ZF-01 离场，保持跑道航向至1200米，联系武汉离场124.25，22跑道可以起飞，风向200度，风速8米/秒。",
+      "referenceText": "Follow ZF-01 departure, maintain runway heading until 1200 meters, contact Wuhan Departure on 124.25, cleared for takeoff Runway 22, AFR 332.",
+      "referenceTextZh": "执行ZF-01 离场，保持跑道航向至1200米，联系武汉离场124.25，22跑道可以起飞，AFR 332。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/403.mp3"
     },
     {
       "id": "atc-scenario-0023-card-main-404",
       "taskTitle": "AFR 332-10",
-      "audioText": "C: Air France 332, Wuhan Departure, when passing Hotel Golf, turn left heading 220, then direct to Zulu Foxtrot.",
-      "audioTextZh": "管制员：Air France 332，武汉离场，过HG后左转航向220，然后直飞ZF。",
-      "referenceText": "When passing HG, turn left heading 220, then direct to ZF, AFR332.",
-      "referenceTextZh": "过HG后左转航向220，然后直飞ZF，AFR332。",
+      "audioText": "C: AFR 332, Wuhan Departure, when passing HG, turn left heading 220, then direct to ZF.",
+      "audioTextZh": "管制员：AFR 332，武汉离场，过HG后左转航向220，然后直飞ZF。",
+      "referenceText": "When passing HG, turn left heading 220, then direct to ZF, AFR 332.",
+      "referenceTextZh": "过HG后左转航向220，然后直飞ZF，AFR 332。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/404.mp3"
     },
     {
@@ -99,17 +99,17 @@
       "taskTitle": "AFR 332-11",
       "audioText": "B: Now you are at 3600 meters, you smelled something unusual in the cockpit, but you haven't found out the source of the smell, report this situation to Wuhan Departure and request hold for doing the checklist.",
       "audioTextZh": "现在你在3600米，驾驶舱闻到异常气味，但尚未找到气味来源。向武汉离场报告情况，并申请等待以执行检查单。",
-      "referenceText": "Wuhan Departure, AFR332, we smelled something unusual in the cockpit, but we haven't found out the source of the smell, request hold for doing the checklist.",
-      "referenceTextZh": "武汉离场，AFR332，我们在驾驶舱闻到异常气味，但尚未找到来源，申请等待执行检查单。",
+      "referenceText": "Wuhan Departure, AFR 332, we smelled something unusual in the cockpit, but we haven't found out the source of the smell, request hold for doing the checklist.",
+      "referenceTextZh": "武汉离场，AFR 332，我们在驾驶舱闻到异常气味，但尚未找到来源，申请等待执行检查单。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/405.mp3"
     },
     {
       "id": "atc-scenario-0023-card-main-406",
       "taskTitle": "AFR 332-12",
-      "audioText": "C: Air France 332, turn right, direct to Zulu Foxtrot, hold at Zulu Foxtrot as published.",
-      "audioTextZh": "管制员：Air France 332，右转直飞ZF，在ZF按公布程序等待。",
-      "referenceText": "Turn right, direct to ZF, hold at ZF as published, AFR332.",
-      "referenceTextZh": "右转直飞ZF，在ZF按公布程序等待，AFR332。",
+      "audioText": "C: AFR 332, turn right, direct to ZF, hold at ZF as published.",
+      "audioTextZh": "管制员：AFR 332，右转直飞ZF，在ZF按公布程序等待。",
+      "referenceText": "Turn right, direct to ZF, hold at ZF as published, AFR 332.",
+      "referenceTextZh": "右转直飞ZF，在ZF按公布程序等待，AFR 332。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/406.mp3"
     },
     {
@@ -117,26 +117,26 @@
       "taskTitle": "AFR 332-13",
       "audioText": "B: As you perform the checklist, there is dense smoke in the cockpit, contact Wuhan Departure and make a Distress call for priority landing at Wuhan Airport.",
       "audioTextZh": "执行检查单时，驾驶舱出现浓烟，请联系武汉离场并宣布遇险，申请优先返回武汉机场落地。",
-      "referenceText": "MAYDAY MAYDAY MAYDAY, Wuhan Departure, AFR332, there is dense smoke in the cockpit, request priority landing at Wuhan Airport.",
-      "referenceTextZh": "MAYDAY MAYDAY MAYDAY，武汉离场，AFR332，驾驶舱出现浓烟，申请优先返回武汉机场落地。",
+      "referenceText": "MAYDAY MAYDAY MAYDAY, Wuhan Departure, AFR 332, there is dense smoke in the cockpit, request priority landing at Wuhan Airport.",
+      "referenceTextZh": "MAYDAY MAYDAY MAYDAY，武汉离场，AFR 332，驾驶舱出现浓烟，申请优先返回武汉机场落地。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/407.mp3"
     },
     {
       "id": "atc-scenario-0023-card-main-408",
       "taskTitle": "AFR 332-14",
-      "audioText": "C: Air France 332, roger MAYDAY, follow Zulu Foxtrot 01 arrival, descend to 1800 meters, when able, report passengers on board.\nB: Read back the instructions and tell the controller that you have 220 passengers on board.",
-      "audioTextZh": "管制员：Air France 332，收到遇险信号，执行ZF 01进场，下降至1800米，条件允许时报告机上人数。请复诵指令，并告诉管制员机上有220名旅客。",
-      "referenceText": "Follow ZF 01 arrival, descend to 1800 meters, POB 220, AFR332.",
-      "referenceTextZh": "执行ZF 01进场，下降至1800米，机上人数220，AFR332。",
+      "audioText": "C: AFR 332, roger MAYDAY, follow ZF-01 arrival, descend to 1800 meters, when able, report passengers on board.\nB: Read back the instructions and tell the controller that you have 220 passengers on board.",
+      "audioTextZh": "管制员：AFR 332，收到遇险信号，执行ZF-01 进场，下降至1800米，条件允许时报告机上人数。请复诵指令，并告诉管制员机上有220名旅客。",
+      "referenceText": "Follow ZF-01 arrival, descend to 1800 meters, POB 220, AFR 332.",
+      "referenceTextZh": "执行ZF-01 进场，下降至1800米，机上人数220，AFR 332。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/408.mp3"
     },
     {
       "id": "atc-scenario-0023-card-main-409",
       "taskTitle": "AFR 332-15",
-      "audioText": "C: Air France 332, descend and maintain 600 meters, turn right to join downwind runway 22, report when turning base.",
-      "audioTextZh": "管制员：Air France 332，下降并保持600米，右转加入22跑道三边，转四边时报告。",
-      "referenceText": "Descend and maintain 600 meters, turn right to join downwind runway 22, report when turning base, AFR332.",
-      "referenceTextZh": "下降并保持600米，右转加入22跑道三边，转四边时报告，AFR332。",
+      "audioText": "C: AFR 332, descend and maintain 600 meters, turn right to join downwind Runway 22, report when turning base.",
+      "audioTextZh": "管制员：AFR 332，下降并保持600米，右转加入22跑道三边，转四边时报告。",
+      "referenceText": "Descend and maintain 600 meters, turn right to join downwind Runway 22, report when turning base, AFR 332.",
+      "referenceTextZh": "下降并保持600米，右转加入22跑道三边，转四边时报告，AFR 332。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/409.mp3"
     },
     {
@@ -144,8 +144,8 @@
       "taskTitle": "AFR 332-16",
       "audioText": "B: The smoke situation can't be controlled, request emergency services upon arrival.",
       "audioTextZh": "烟雾情况无法控制，申请到达后应急保障。",
-      "referenceText": "Wuhan Tower, AFR332, the smoke situation can't be controlled, request emergency services upon arrival.",
-      "referenceTextZh": "武汉塔台，AFR332，烟雾无法控制，申请到达后应急保障。",
+      "referenceText": "Wuhan Tower, AFR 332, the smoke situation can't be controlled, request emergency services upon arrival.",
+      "referenceTextZh": "武汉塔台，AFR 332，烟雾无法控制，申请到达后应急保障。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/410.mp3"
     }
   ]

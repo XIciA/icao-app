@@ -41,3 +41,8 @@ native Development Build also needs to be rebuilt.
 Do not use plain `pnpm ios` to verify cloud audio or account sync: without the public
 runtime variables it only has the local asset fallback, which requires
 `pnpm assets:serve` on port 3100.
+
+## Documentation
+
+Project rules, product references, development guides, execution evidence, and historical
+workstreams are indexed in [`docs/README.md`](docs/README.md).

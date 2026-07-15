@@ -21,8 +21,9 @@ export class SyncController {
   @Get('pull')
   async pull(
     @Query('cursor') cursor: string | undefined,
+    @Query('ownerUserId') ownerUserId: string | undefined,
     @Req() request: AuthenticatedRequest,
   ): Promise<ApiSuccessEnvelope<SyncPullResponse>> {
-    return { requestId: request.id, data: await this.sync.pull(request.user!.id, cursor) };
+    return { requestId: request.id, data: await this.sync.pull(request.user!.id, cursor, ownerUserId) };
   }
 }

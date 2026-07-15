@@ -117,7 +117,7 @@ AI 查词的界面展示和输出效果必须与 `feizhuicu` 保持一致：
 
 ## 界面状态要求
 
-AI 界面必须延续 `docs/ui-style-guide.md` 的移动学习 App 气质，优先补齐这些状态：
+AI 界面必须延续 `docs/design/ui-style-guide.md` 的移动学习 App 气质，优先补齐这些状态：
 
 - 查词加载、成功、失败
 - 录音中、转写中、转写失败

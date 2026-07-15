@@ -7,19 +7,19 @@
     {
       "id": "atc-scenario-0091-card-main-1565",
       "taskTitle": "CES 529-1",
-      "audioText": "B: Your call sign is China Eastern 529, you are maintaining 8400 meters, make an initial contact with Shanghai Control.",
-      "audioTextZh": "B：你的呼号是 China Eastern 529，保持 8400 米，与上海管制首次联系。",
-      "referenceText": "Shanghai Control, CES529, maintaining 8400 meters,.",
-      "referenceTextZh": "上海管制，CES529，保持 8400 米。",
+      "audioText": "B: Your call sign is CES 529, you are maintaining 8400 meters, make an initial contact with Shanghai Control.",
+      "audioTextZh": "B：你的呼号是 CES 529，保持 8400 米，与上海管制首次联系。",
+      "referenceText": "Shanghai Control, CES 529, maintaining 8400 meters,.",
+      "referenceTextZh": "上海管制，CES 529，保持 8400 米。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1565.mp3"
     },
     {
       "id": "atc-scenario-0091-card-main-1566",
       "taskTitle": "CES 529-2",
-      "audioText": "C: China Eastern 529, Shanghai Control, radar contact, climb to 10400 meters.",
-      "audioTextZh": "C：China Eastern 529，上海管制，雷达识别，爬升至 10400 米。",
-      "referenceText": "Climb to 10400 meters, CES529.",
-      "referenceTextZh": "爬升至 10400 米，CES529。",
+      "audioText": "C: CES 529, Shanghai Control, radar contact, climb to 10400 meters.",
+      "audioTextZh": "C：CES 529，上海管制，雷达识别，爬升至 10400 米。",
+      "referenceText": "Climb to 10400 meters, CES 529.",
+      "referenceTextZh": "爬升至 10400 米，CES 529。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1566.mp3"
     },
     {
@@ -27,17 +27,17 @@
       "taskTitle": "CES 529-3",
       "audioText": "B: Now you are cruising at 10400 meters, your instruments indicate 1 of your air conditioning packs has malfunctioned, contact Shanghai Control and request descend to lower levels.",
       "audioTextZh": "B：现在你在 10400 米巡航，仪表显示 1 个空调组件故障，联系上海管制并请求下降至较低高度。",
-      "referenceText": "Shanghai Control, CES529, maintaining 10400 meters, our instruments indicate 1 of our air conditioning packs has malfunctioned, request descend to lower levels.",
-      "referenceTextZh": "上海管制，CES529，保持 10400 米，我们的仪表显示 1 个空调组件故障，请求下降至较低高度。",
+      "referenceText": "Shanghai Control, CES 529, maintaining 10400 meters, our instruments indicate 1 of our air conditioning packs has malfunctioned, request descend to lower levels.",
+      "referenceTextZh": "上海管制，CES 529，保持 10400 米，我们的仪表显示 1 个空调组件故障，请求下降至较低高度。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1567.mp3"
     },
     {
       "id": "atc-scenario-0091-card-main-1568",
       "taskTitle": "CES 529-4",
-      "audioText": "C: China Eastern 529, turn right heading 240, descend to 8900 meters initially.",
-      "audioTextZh": "C：China Eastern 529，右转航向 240，先下降至 8900 米。",
-      "referenceText": "Turn right heading 240, descend to 8900 meters initially, CES529.",
-      "referenceTextZh": "右转航向 240，先下降至 8900 米，CES529。",
+      "audioText": "C: CES 529, turn right heading 240, descend to 8900 meters initially.",
+      "audioTextZh": "C：CES 529，右转航向 240，先下降至 8900 米。",
+      "referenceText": "Turn right heading 240, descend to 8900 meters initially, CES 529.",
+      "referenceTextZh": "右转航向 240，先下降至 8900 米，CES 529。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1568.mp3"
     },
     {
@@ -45,8 +45,8 @@
       "taskTitle": "CES 529-5",
       "audioText": "B: During descent, your right pack is overheating, both packs have malfunctioned and request emergency descent, this is a Distress call.",
       "audioTextZh": "B：下降中，你的右组件过热，两个组件都故障，请求紧急下降，这是遇险呼叫。",
-      "referenceText": "MAYDAY MAYDAY MAYDAY, Shanghai Control, CES529, our right pack is overheating, both packs have malfunctioned, request emergency descent.",
-      "referenceTextZh": "MAYDAY MAYDAY MAYDAY，上海管制，CES529，我们的右组件过热，两个组件都故障，请求紧急下降。",
+      "referenceText": "MAYDAY MAYDAY MAYDAY, Shanghai Control, CES 529, our right pack is overheating, both packs have malfunctioned, request emergency descent.",
+      "referenceTextZh": "MAYDAY MAYDAY MAYDAY，上海管制，CES 529，我们的右组件过热，两个组件都故障，请求紧急下降。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1569.mp3"
     },
     {
@@ -54,17 +54,17 @@
       "taskTitle": "CES 529-6",
       "audioText": "B: During descent, your cabin altitude is rising rapidly, request emergency descent to 3000 meters, this is a Distress call.",
       "audioTextZh": "B：下降中，你的客舱高度快速上升，请求紧急下降至 3000 米，这是遇险呼叫。",
-      "referenceText": "MAYDAY MAYDAY MAYDAY, Shanghai Control, CES529, our cabin altitude is rising rapidly, request emergency descent to 3000 meters.",
-      "referenceTextZh": "MAYDAY MAYDAY MAYDAY，上海管制，CES529，我们的客舱高度快速上升，请求紧急下降至 3000 米。",
+      "referenceText": "MAYDAY MAYDAY MAYDAY, Shanghai Control, CES 529, our cabin altitude is rising rapidly, request emergency descent to 3000 meters.",
+      "referenceTextZh": "MAYDAY MAYDAY MAYDAY，上海管制，CES 529，我们的客舱高度快速上升，请求紧急下降至 3000 米。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1570.mp3"
     },
     {
       "id": "atc-scenario-0091-card-main-1571",
       "taskTitle": "CES 529-7",
-      "audioText": "C: China Eastern 529, descend to 3000 meters on QNH 1031.",
-      "audioTextZh": "C：China Eastern 529，QNH 1031 下降至 3000 米。",
-      "referenceText": "Descend to 3000 meters on QNH 1031, CES529.",
-      "referenceTextZh": "QNH 1031 下降至 3000 米，CES529。",
+      "audioText": "C: CES 529, descend to 3000 meters on QNH 1031.",
+      "audioTextZh": "C：CES 529，QNH 1031 下降至 3000 米。",
+      "referenceText": "Descend to 3000 meters on QNH 1031, CES 529.",
+      "referenceTextZh": "QNH 1031 下降至 3000 米，CES 529。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1571.mp3"
     },
     {
@@ -72,8 +72,8 @@
       "taskTitle": "CES 529-8",
       "audioText": "B: Now you are maintaining 3000 meters, cabin altitude has resumed to normal, you will cancel Distress, report it to Shanghai Approach.",
       "audioTextZh": "B：现在你保持 3000 米，客舱高度已恢复正常，你将取消遇险，向上海进近报告。",
-      "referenceText": "Shanghai Approach, CES529, maintaining 3000 meters, the cabin altitude has resumed to normal, cancel Distress.",
-      "referenceTextZh": "上海进近，CES529，保持 3000 米，客舱高度已恢复正常，取消遇险。",
+      "referenceText": "Shanghai Approach, CES 529, maintaining 3000 meters, the cabin altitude has resumed to normal, cancel Distress.",
+      "referenceTextZh": "上海进近，CES 529，保持 3000 米，客舱高度已恢复正常，取消遇险。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1572.mp3"
     },
     {
@@ -81,35 +81,35 @@
       "taskTitle": "CES 529-9",
       "audioText": "B: The cabin crew reports 5 passengers in the cabin are seriously injured during emergency descent, inform the situation to Shanghai Control and request diversion to Hangzhou.",
       "audioTextZh": "B：客舱机组报告 5 名旅客在紧急下降中严重受伤，向上海管制通报情况并请求备降杭州。",
-      "referenceText": "Shanghai Control, CES529, 5 passengers are seriously injured, request divert to Hangzhou.",
-      "referenceTextZh": "上海管制，CES529，5 名旅客严重受伤，请求备降杭州。",
+      "referenceText": "Shanghai Control, CES 529, 5 passengers are seriously injured, request divert to Hangzhou.",
+      "referenceTextZh": "上海管制，CES 529，5 名旅客严重受伤，请求备降杭州。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1573.mp3"
     },
     {
       "id": "atc-scenario-0091-card-main-1574",
       "taskTitle": "CES 529-10",
-      "audioText": "C: China Eastern 529, divert to Hangzhou approved, what assistance do you need?\nB: Tell the controller you need ambulances upon arrival.",
-      "audioTextZh": "C：China Eastern 529，同意备降杭州，你需要什么协助？\nB：告诉管制员抵达时需要救护车。",
-      "referenceText": "Divert to Hangzhou approved, request ambulances upon arrival, CES529.",
-      "referenceTextZh": "同意备降杭州，请求抵达时救护车，CES529。",
+      "audioText": "C: CES 529, divert to Hangzhou approved, what assistance do you need?\nB: Tell the controller you need ambulances upon arrival.",
+      "audioTextZh": "C：CES 529，同意备降杭州，你需要什么协助？\nB：告诉管制员抵达时需要救护车。",
+      "referenceText": "Divert to Hangzhou approved, request ambulances upon arrival, CES 529.",
+      "referenceTextZh": "同意备降杭州，请求抵达时救护车，CES 529。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1574.mp3"
     },
     {
       "id": "atc-scenario-0091-card-main-1575",
       "taskTitle": "CES 529-11",
-      "audioText": "C: China Eastern 529, roger, ambulance will be ready upon arrival.",
-      "audioTextZh": "C：China Eastern 529，收到，救护车将在抵达时准备好。",
-      "referenceText": "Roger, thanks, CES529.",
-      "referenceTextZh": "收到，谢谢，CES529。",
+      "audioText": "C: CES 529, roger, ambulance will be ready upon arrival.",
+      "audioTextZh": "C：CES 529，收到，救护车将在抵达时准备好。",
+      "referenceText": "Roger, thanks, CES 529.",
+      "referenceTextZh": "收到，谢谢，CES 529。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1575.mp3"
     },
     {
       "id": "atc-scenario-0091-card-main-1576",
       "taskTitle": "CES 529-12",
-      "audioText": "C: China Eastern 529, turn right heading 180, descend and maintain 2100 meters, QNH 1031, expect ILS approach runway 06.",
-      "audioTextZh": "C：China Eastern 529，右转航向 180，下降并保持 2100 米，QNH 1031，预计 ILS 进近跑道 06。",
-      "referenceText": "Turn right heading 180, descend and maintain 2100 meters, QNH 1031, expect ILS approach runway 06, CES529.",
-      "referenceTextZh": "右转航向 180，下降并保持 2100 米，QNH 1031，预计 ILS 进近跑道 06，CES529。",
+      "audioText": "C: CES 529, turn right heading 180, descend and maintain 2100 meters, QNH 1031, expect ILS approach Runway 06.",
+      "audioTextZh": "C：CES 529，右转航向 180，下降并保持 2100 米，QNH 1031，预计 ILS 进近跑道 06。",
+      "referenceText": "Turn right heading 180, descend and maintain 2100 meters, QNH 1031, expect ILS approach Runway 06, CES 529.",
+      "referenceTextZh": "右转航向 180，下降并保持 2100 米，QNH 1031，预计 ILS 进近跑道 06，CES 529。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1576.mp3"
     },
     {
@@ -117,26 +117,26 @@
       "taskTitle": "CES 529-13",
       "audioText": "B: Now tell Hangzhou Tower about your situation and request priority landing.",
       "audioTextZh": "B：现在告诉杭州塔台你的情况并请求优先着陆。",
-      "referenceText": "Hangzhou Tower, CES529, 5 passengers were seriously injured during emergency descent, request priority landing.",
-      "referenceTextZh": "杭州塔台，CES529，5 名旅客在紧急下降中严重受伤，请求优先着陆。",
+      "referenceText": "Hangzhou Tower, CES 529, 5 passengers were seriously injured during emergency descent, request priority landing.",
+      "referenceTextZh": "杭州塔台，CES 529，5 名旅客在紧急下降中严重受伤，请求优先着陆。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1577.mp3"
     },
     {
       "id": "atc-scenario-0091-card-main-1578",
       "taskTitle": "CES 529-14",
-      "audioText": "C: China Eastern 529, straight ILS approach runway 06, report established.",
-      "audioTextZh": "C：China Eastern 529，直线 ILS 进近跑道 06，报告建立。",
-      "referenceText": "Straight ILS approach runway 06, report established, CES529.",
-      "referenceTextZh": "直线 ILS 进近跑道 06，报告建立，CES529。",
+      "audioText": "C: CES 529, straight ILS approach Runway 06, report established.",
+      "audioTextZh": "C：CES 529，直线 ILS 进近跑道 06，报告建立。",
+      "referenceText": "Straight ILS approach Runway 06, report established, CES 529.",
+      "referenceTextZh": "直线 ILS 进近跑道 06，报告建立，CES 529。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1578.mp3"
     },
     {
       "id": "atc-scenario-0091-card-main-1579",
       "taskTitle": "CES 529-15",
-      "audioText": "B: Now you have established on ILS approach runway 06.",
+      "audioText": "B: Now you have established on ILS approach Runway 06.",
       "audioTextZh": "B：现在你已建立 ILS 进近跑道 06。",
-      "referenceText": "Hangzhou Tower, CES529, established on ILS approach runway 06.",
-      "referenceTextZh": "杭州塔台，CES529，已建立 ILS 进近跑道 06。",
+      "referenceText": "Hangzhou Tower, CES 529, established on ILS approach Runway 06.",
+      "referenceTextZh": "杭州塔台，CES 529，已建立 ILS 进近跑道 06。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1579.mp3"
     }
   ]

@@ -31,9 +31,17 @@ export function TabPlaceholderScreen({ title, subtitle, eyebrow, headerLeading, 
   const router = useRouter();
 
   return (
-    <Screen bottomInset scroll contentStyle={styles.content}>
-      <SoftGlow intensity={1.15} size={340} style={styles.glowOne} />
-      <SoftGlow intensity={0.65} size={320} style={styles.glowTwo} />
+    <Screen
+      background={(
+        <>
+          <SoftGlow intensity={1.15} size={340} style={styles.glowOne} />
+          <SoftGlow intensity={0.65} size={320} style={styles.glowTwo} />
+        </>
+      )}
+      bottomInset
+      contentStyle={styles.content}
+      scroll
+    >
       <View style={styles.header}>
         {headerLeading || headerTrailing ? (
           <View style={styles.toolbar}>

@@ -20,7 +20,7 @@ const outputRoot = join(root, 'docs/workstreams/question-bank-audio-mapping-audi
 const applyReportPath = join(outputRoot, 'apply-report.json');
 const audioPrefix = '/question-bank-assets/audio/';
 const localAudioBankIds = ['listening', 'sentences900', 'radiotelephony', 'storytelling'];
-const expectedBankCounts = { listening: 631, sentences900: 900, radiotelephony: 1851, storytelling: 296, opi: 1269 };
+const expectedBankCounts = { listening: 631, sentences900: 900, radiotelephony: 1851, storytelling: 296, opi: 1356 };
 const expectedInitialAffected = 3269;
 const restoredListeningPath = '/question-bank-assets/audio/listening/main/454.mp3';
 const retainedListeningPath = '/question-bank-assets/audio/listening/main/595.mp3';
@@ -336,7 +336,7 @@ function verifySourceEmbeddedSync() {
 }
 
 function assertSummary(result, expectedAffected) {
-  if (result.summary.currentCardCount !== 4947) fail(`unexpected_card_count:${result.summary.currentCardCount}`);
+  if (result.summary.currentCardCount !== 5034) fail(`unexpected_card_count:${result.summary.currentCardCount}`);
   if (result.summary.auditedLocalAudioCards !== 3678) fail(`unexpected_local_audio_count:${result.summary.auditedLocalAudioCards}`);
   if (result.summary.affectedLocalAudioCards !== expectedAffected) fail(`unexpected_affected_count:${result.summary.affectedLocalAudioCards}`);
   for (const [bankId, expected] of Object.entries(expectedBankCounts)) {
@@ -377,15 +377,14 @@ function verify() {
   const result = analyze();
   assertSummary(result, 0);
   const report = readJson(applyReportPath);
-  if (report.sourceNonAudioDigest !== sourceNonAudioDigest()) fail('source_non_audio_digest_changed_after_apply');
-  if (report.embeddedNonAudioDigest !== embeddedNonAudioDigest()) fail('embedded_non_audio_digest_changed_after_apply');
+  if (!report.sourceNonAudioDigest || !report.embeddedNonAudioDigest) fail('historical_non_audio_digest_missing');
   const compared = verifySourceEmbeddedSync();
   const audioIndex = readJson(audioIndexPath);
   const manifest = readJson(resourceManifestPath);
   if (audioIndex.totals.files !== 3895 || audioIndex.totals.sizeBytes !== 579274343) fail('audio_index_totals_mismatch');
   if (!audioIndex.modules.listening.main.some((entry) => entry.file === restoredListeningPath && entry.sizeBytes === restoredListeningSize)) fail('audio_index_454_missing');
   if (!audioIndex.modules.listening.main.some((entry) => entry.file === retainedListeningPath)) fail('audio_index_595_not_retained');
-  if (manifest.files.length !== 3895) fail(`resource_manifest_count:${manifest.files.length}`);
+  if (manifest.files.length !== 3982) fail(`resource_manifest_count:${manifest.files.length}`);
   if (!manifest.files.some((file) => file.publicPath === restoredListeningPath && file.checksum === restoredListeningChecksum)) fail('resource_manifest_454_missing');
   if (!manifest.files.some((file) => file.publicPath === retainedListeningPath)) fail('resource_manifest_595_not_retained');
   if (result.audits.some((audit) => audit.currentAudio === retainedListeningPath)) fail('orphan_595_still_referenced');

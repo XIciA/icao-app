@@ -11,7 +11,7 @@ import type {
   SyncPushResult,
 } from '@icao/contracts';
 import { createHash } from 'node:crypto';
-import { and, asc, desc, eq, gt } from 'drizzle-orm';
+import { and, asc, desc, eq, gt, lt } from 'drizzle-orm';
 import { z } from 'zod';
 
 import { DatabaseService } from '../database/database.service';
@@ -57,6 +57,8 @@ const recordMutationSchema = z.object({
     recordId: z.string().min(1).max(200),
     record: z.record(z.string(), z.unknown()),
     occurredAt: z.string().datetime(),
+    version: z.number().int().positive().optional(),
+    updatedAt: z.string().datetime().optional(),
   }),
 });
 
@@ -72,6 +74,7 @@ const documentMutationSchema = z.object({
 });
 
 const pushSchema = z.object({
+  ownerUserId: z.string().uuid().optional(),
   mutations: z.array(z.discriminatedUnion('kind', [cardMutationSchema, recordMutationSchema, documentMutationSchema])).max(100),
 });
 
@@ -90,6 +93,7 @@ export class SyncService {
   async push(userId: string, raw: SyncPushRequest): Promise<SyncPushResponse> {
     const parsed = pushSchema.safeParse(raw);
     if (!parsed.success) throw new BadRequestException('invalid_sync_payload');
+    if (parsed.data.ownerUserId && parsed.data.ownerUserId !== userId) throw new ConflictException('sync_user_mismatch');
 
     const results = await this.database.db.transaction(async (tx) => {
       await tx.insert(profiles).values({ userId }).onConflictDoNothing();
@@ -218,21 +222,71 @@ export class SyncService {
     userId: string,
     mutation: LearningRecordMutation,
   ): Promise<SyncPushResult> {
-    const inserted = await tx.insert(learningRecords).values({
+    const target = and(
+      eq(learningRecords.userId, userId),
+      eq(learningRecords.clientRecordId, mutation.payload.recordId),
+    );
+    const version = mutation.payload.version ?? 1;
+    const occurredAt = new Date(mutation.payload.occurredAt);
+    const updatedAt = new Date(mutation.payload.updatedAt ?? mutation.payload.occurredAt);
+    const values = {
       userId,
       clientRecordId: mutation.payload.recordId,
       payload: mutation.payload.record,
-      occurredAt: new Date(mutation.payload.occurredAt),
-    }).onConflictDoNothing().returning({ id: learningRecords.id });
-    if (inserted.length === 0) return { mutationId: mutation.mutationId, status: 'duplicate' };
+      occurredAt,
+      version,
+      updatedAt,
+    };
+    const [applied] = await tx.insert(learningRecords).values(values).onConflictDoUpdate({
+      target: [learningRecords.userId, learningRecords.clientRecordId],
+      set: {
+        payload: values.payload,
+        occurredAt: values.occurredAt,
+        version: values.version,
+        updatedAt: values.updatedAt,
+      },
+      setWhere: lt(learningRecords.version, version),
+    }).returning();
+    if (!applied) {
+      const [current] = await tx.select().from(learningRecords).where(target).limit(1);
+      if (!current) throw new ConflictException('learning_record_conflict');
+      return {
+        mutationId: mutation.mutationId,
+        status: 'conflict',
+        authoritative: {
+          recordId: current.clientRecordId,
+          record: current.payload as Record<string, unknown>,
+          occurredAt: current.occurredAt.toISOString(),
+          version: current.version,
+          updatedAt: current.updatedAt.toISOString(),
+        },
+      };
+    }
+    const payload = {
+      recordId: applied.clientRecordId,
+      record: applied.payload as Record<string, unknown>,
+      occurredAt: applied.occurredAt.toISOString(),
+      version: applied.version,
+      updatedAt: applied.updatedAt.toISOString(),
+    };
     await tx.insert(syncChanges).values({
       userId,
       kind: mutation.kind,
-      entityKey: mutation.payload.recordId,
-      payload: mutation.payload,
-      version: 1,
+      entityKey: applied.clientRecordId,
+      payload,
+      version: applied.version,
     });
-    return { mutationId: mutation.mutationId, status: 'accepted' };
+    return {
+      mutationId: mutation.mutationId,
+      status: 'accepted',
+      authoritative: {
+        recordId: applied.clientRecordId,
+        record: applied.payload as Record<string, unknown>,
+        occurredAt: applied.occurredAt.toISOString(),
+        version: applied.version,
+        updatedAt: applied.updatedAt.toISOString(),
+      },
+    };
   }
 
   private async applyDocument(
@@ -326,7 +380,8 @@ export class SyncService {
     };
   }
 
-  async pull(userId: string, rawCursor?: string): Promise<SyncPullResponse> {
+  async pull(userId: string, rawCursor?: string, ownerUserId?: string): Promise<SyncPullResponse> {
+    if (ownerUserId && ownerUserId !== userId) throw new ConflictException('sync_user_mismatch');
     const cursor = rawCursor === undefined ? 0 : Number(rawCursor);
     if (!Number.isSafeInteger(cursor) || cursor < 0) throw new BadRequestException('invalid_sync_cursor');
     const limit = 200;

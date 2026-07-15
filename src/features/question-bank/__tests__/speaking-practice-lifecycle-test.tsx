@@ -61,9 +61,10 @@ jest.mock('expo-audio', () => ({
 
 jest.mock('expo-file-system', () => ({
   File: class MockFile {
+    constructor(readonly mockUri: string) {}
     exists = mockFileExists;
     get size() { return mockFileSize; }
-    delete() { mockDeleteFile(); }
+    delete() { mockDeleteFile(this.mockUri); }
   },
 }));
 
@@ -148,7 +149,7 @@ describe('SpeakingPracticePanel lifecycle', () => {
       fireEvent(screen.getByLabelText('松开结束录音'), 'pressOut');
       await pause(350);
     });
-    await waitFor(() => expect(screen.getByText('正在校验录音文件与实际时长…')).toBeTruthy());
+    await waitFor(() => expect(screen.getByText('正在保存录音…')).toBeTruthy());
     expect(onRecorded).not.toHaveBeenCalled();
     expect(onInteractionChange).toHaveBeenLastCalledWith(true);
 
@@ -181,6 +182,97 @@ describe('SpeakingPracticePanel lifecycle', () => {
     await waitFor(() => expect(screen.getByText('没有生成有效录音文件，请重新录制。')).toBeTruthy());
     expect(onRecorded).not.toHaveBeenCalled();
     expect(mockDeleteFile).toHaveBeenCalled();
+    await screen.unmount();
+  });
+
+  it('pauses preview on request and restarts completed playback from zero', async () => {
+    const recording = { uri: 'file:///saved.wav', durationMillis: 2_000 };
+    const onPreviewPlaybackStart = jest.fn();
+    mockPlaybackStatus = { currentTime: 2, didJustFinish: true, duration: 2, isLoaded: true, playbackState: 'readyToPlay', playing: false };
+    const screen = await render(
+      <SpeakingPracticePanel mode="speaking" onClear={jest.fn()} onPreviewPlaybackStart={onPreviewPlaybackStart} onRecorded={jest.fn()} previewPauseRequest={0} recording={recording} />,
+    );
+    mockPlayback.pause.mockClear();
+    mockPlayback.play.mockClear();
+    mockPlayback.seekTo.mockClear();
+
+    fireEvent.press(screen.getByLabelText('播放我的录音'));
+    await waitFor(() => expect(mockPlayback.seekTo).toHaveBeenCalledWith(0));
+    expect(onPreviewPlaybackStart).toHaveBeenCalledTimes(1);
+    expect(mockPlayback.play).toHaveBeenCalledTimes(1);
+    expect(mockPlayback.seekTo.mock.invocationCallOrder[0]).toBeLessThan(mockPlayback.play.mock.invocationCallOrder[0]);
+
+    await screen.rerender(
+      <SpeakingPracticePanel mode="speaking" onClear={jest.fn()} onPreviewPlaybackStart={onPreviewPlaybackStart} onRecorded={jest.fn()} previewPauseRequest={1} recording={recording} />,
+    );
+    expect(mockPlayback.pause).toHaveBeenCalledTimes(1);
+    await screen.unmount();
+  });
+
+  it('keeps the original recording until a replacement passes validation', async () => {
+    const onClear = jest.fn();
+    const onRecorded = jest.fn();
+    const original = { uri: 'file:///original.wav', durationMillis: 2_000 };
+    mockPlaybackStatus = { currentTime: 0, didJustFinish: false, duration: 2, isLoaded: true, playbackState: 'readyToPlay', playing: false };
+    const screen = await render(<SpeakingPracticePanel mode="speaking" onClear={onClear} onRecorded={onRecorded} recording={original} />);
+
+    fireEvent.press(screen.getByLabelText('重新录音'));
+    await waitFor(() => expect(screen.getByText('原录音会保留至新录音成功')).toBeTruthy());
+    expect(mockDeleteFile).not.toHaveBeenCalledWith(original.uri);
+    expect(onClear).not.toHaveBeenCalled();
+
+    mockRecorder.currentTime = 3;
+    mockRecorder.uri = 'file:///replacement.wav';
+    mockRecorder.getStatus.mockReturnValue({ durationMillis: 3_000, url: 'file:///replacement.wav' });
+    await act(async () => {
+      fireEvent(screen.getByLabelText('按住重新录音'), 'pressIn');
+      await pause(220);
+    });
+    await waitFor(() => expect(mockRecorder.record).toHaveBeenCalled());
+    mockPlaybackStatus = { currentTime: 0, didJustFinish: false, duration: 0, isLoaded: false, playbackState: 'loading', playing: false };
+    await act(async () => {
+      fireEvent(screen.getByLabelText('松开结束录音'), 'pressOut');
+      await pause(350);
+    });
+
+    expect(onRecorded).not.toHaveBeenCalled();
+    expect(mockDeleteFile).not.toHaveBeenCalledWith(original.uri);
+    mockPlaybackStatus = { ...mockPlaybackStatus, duration: 2.8, isLoaded: true, playbackState: 'readyToPlay' };
+    await screen.rerender(<SpeakingPracticePanel mode="speaking" onClear={onClear} onRecorded={onRecorded} recording={original} />);
+
+    await waitFor(() => expect(onRecorded).toHaveBeenCalledWith({ uri: 'file:///replacement.wav', durationMillis: 2_800 }));
+    await waitFor(() => expect(mockDeleteFile).toHaveBeenCalledWith(original.uri));
+    expect(onClear).not.toHaveBeenCalled();
+    await screen.unmount();
+  });
+
+  it('restores the original card when a replacement file is invalid', async () => {
+    const onClear = jest.fn();
+    const original = { uri: 'file:///original.wav', durationMillis: 2_000 };
+    mockPlaybackStatus = { currentTime: 0, didJustFinish: false, duration: 2, isLoaded: true, playbackState: 'readyToPlay', playing: false };
+    const screen = await render(<SpeakingPracticePanel mode="speaking" onClear={onClear} onRecorded={jest.fn()} recording={original} />);
+
+    fireEvent.press(screen.getByLabelText('重新录音'));
+    await waitFor(() => expect(screen.getByLabelText('按住重新录音')).toBeTruthy());
+    mockFileSize = 4_096;
+    mockRecorder.currentTime = 3;
+    mockRecorder.uri = 'file:///invalid-replacement.wav';
+    mockRecorder.getStatus.mockReturnValue({ durationMillis: 3_000, url: 'file:///invalid-replacement.wav' });
+    await act(async () => {
+      fireEvent(screen.getByLabelText('按住重新录音'), 'pressIn');
+      await pause(220);
+    });
+    await waitFor(() => expect(mockRecorder.record).toHaveBeenCalled());
+    await act(async () => {
+      fireEvent(screen.getByLabelText('松开结束录音'), 'pressOut');
+      await pause(350);
+    });
+
+    await waitFor(() => expect(screen.getByLabelText('重新录音')).toBeTruthy());
+    expect(screen.getByText('没有生成有效的新录音，已保留原录音。')).toBeTruthy();
+    expect(mockDeleteFile).toHaveBeenCalledWith('file:///invalid-replacement.wav');
+    expect(mockDeleteFile).not.toHaveBeenCalledWith(original.uri);
+    expect(onClear).not.toHaveBeenCalled();
     await screen.unmount();
   });
 });
