@@ -1,5 +1,9 @@
 # 随身听播放系统阶段日志
 
+> 2026-07-16 架构勘误：阶段 3/7 中的 `AudioSessionCoordinator` 是历史实现，现已删除并迁移到
+> `AudioSessionOrchestrator`。历史验收结论保留，后续音频变更必须遵循
+> `docs/guides/audio-lifecycle-and-change-rules.md`。
+
 状态：已完成
 
 更新时间：2026-07-16
@@ -100,3 +104,27 @@
 - Expo Doctor 17/19：其目录元数据仍将 Track Player 标记为未声明支持 New Architecture；当前双端原生编译使用兼容层通过，但保留为后续升级观察项。另有仓库现存 Expo patch 版本提示，本轮不跨范围升级。
 
 真机锁屏/控制中心属于发布前人工验收项，不以模拟器或编译结果冒充。当前已配对 iPhone 显示离线，无法在本轮完成真实锁屏面板验收。
+
+## 阶段 8：方案 1 UI 与原生播放间隔
+
+状态：实现完成；自动化、资源打包与双端原生构建通过，真机媒体面板和受保护页面视觉人工验收待补
+
+- 抽取 `QuestionBankSwitcherHeader`，题库目录、我的标注和随身听复用同一头部、选中态、图标尺寸、底部抽屉与无障碍交互。
+- 随身听改为“呼吸留白”方案：移除标题分割线、大封面、重复元信息、常驻答案卡片和文字式学习按钮；题名成为唯一题目信息与精确学习入口。
+- 字幕关闭显示轻量波形，播放时克制呼吸、暂停/等待静止并遵循系统减少动态；英文/中英字幕使用无边框滚动文本。
+- 控件统一为 40/20 顶部操作、56/24 主播放、44/22 切题与 18 二级图标；新增 0–30 秒整数间隔抽屉和快捷值。
+- 新增经 `ffprobe` 验证为 30.000 秒的本地静音 WAV。0 秒保持旧原生队列，间隔大于 0 时由 Track Player service seek 静音轨道并用原生媒体时钟等待。
+- Provider 新增 `intervalSeconds`、`intervalRemaining`、`waitingForNext` 与 `setIntervalSeconds`，快照升级 schema 2 且兼容 schema 1。
+- 等待中暂停/继续、手动跳过、三模式后续替换、间隔重置、内容倍速恢复和静音异常跳过均在唯一 Provider/service 中处理。
+
+复用审查：继续复用 `RadioPlayerProvider`、Track Player、`AudioSessionOrchestrator`、共享题库 repository、资源 resolver、`AudioTimeline`、主题令牌和 `BottomSheet`；未新增 player、session owner、题库副本、字幕副本、时长副本或 URL resolver。
+
+验证记录：
+
+- 相关回归为 8 个 Jest 套件、38 项测试；覆盖旧 0 秒路径、1/5/30 秒 seek、三种模式队列策略、远程上一首/下一首、倍速恢复、旧快照迁移、无边框字幕/波形、间隔快捷值、共享题库切换与精确学习入口。
+- 最终 `pnpm check` 全链路通过：内容 5 bank / 7,133 cards / 6,081 resources，词汇 3 books / 838 words，发布配置、`check:audio`、TypeScript、ESLint、App 43 suites / 201 tests、contracts、API 3 files / 176 tests 与 API build 全部通过。
+- `ffprobe` 确认 `radio-interval-silence-30s.wav` 为 30.000000 秒、480,078 bytes；iOS/Android `expo export` 均把该文件收集为生产资源。
+- Android `./scripts/with-android-env.sh ./android/gradlew -p android :app:assembleDebug` 成功（531 tasks）；iOS 对指定 Simulator 的 clean DerivedData `xcodebuild` 成功并生成 `ICAO.app`。
+- iOS App 已安装并启动于 375 和 390 宽模拟器，但两台均无登录会话，只能到受保护路由前的登录页；没有把登录页截图冒充随身听视觉验收。430 宽、各播放状态和弹层仍需有可用登录会话后补做真实渲染对比。
+- `pnpm audio:e2e:ios` 与 `pnpm audio:e2e:android` 已真实执行，但本机缺少 Maestro，均在测试前置条件停止，因此没有生成虚假指纹。当前无 Android 设备；iPhone 虽显示已配对可用，锁屏/控制中心仍需要登录、播放和人工观察，未记为通过。
+- 本阶段未修改 `services/api`、数据库或 ECS；无部署与迁移项。

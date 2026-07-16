@@ -19,6 +19,7 @@ jest.mock('lucide-react-native', () => {
   const { View } = jest.requireActual('react-native');
   const Icon = (props: object) => <View {...props} />;
   return {
+    ArrowLeft: Icon,
     BookOpenText: Icon,
     Check: Icon,
     ChevronDown: Icon,

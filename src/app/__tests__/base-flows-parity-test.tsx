@@ -14,9 +14,9 @@ jest.mock('lucide-react-native', () => {
   return new Proxy({}, { get: () => Icon });
 });
 
-jest.mock('expo-audio', () => ({
-  getRecordingPermissionsAsync: jest.fn(async () => ({ granted: false })),
-  requestRecordingPermissionsAsync: jest.fn(async () => ({ granted: false })),
+jest.mock('@/features/question-bank/recording/expo-recorder-adapter', () => ({
+  getMicrophonePermission: jest.fn(async () => ({ granted: false })),
+  requestMicrophonePermission: jest.fn(async () => ({ granted: false })),
 }));
 
 jest.mock('@/features/ai/ai-client', () => ({

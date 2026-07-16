@@ -8,18 +8,20 @@ import {
   useRef,
   useState,
 } from 'react';
+import { BookOpenCheck, MessageSquareText, NotebookPen } from 'lucide-react-native';
 import { Keyboard, Pressable, StyleSheet, TextInput, View } from 'react-native';
 import { GestureDetector, type GestureType } from 'react-native-gesture-handler';
 
 import { AppText } from '@/components/ui';
 import { acceptAiConsent, grammarReview, hasAiConsent, polishExpression, transcribeRecording } from '@/features/ai/ai-client';
 import { exactMatch } from '@/features/ai/exact-match';
+import { emitAudioDiagnostic } from '@/platform/audio/audio-diagnostics';
 import { colors, radii, spacing } from '@/theme';
 
 import { sqliteLearningStore, type LearningStore } from '../platform/learning-store';
 import type { LearningRecord, QuestionBankId, StudyConsoleTab, StudyReviewKind } from '../types';
 
-const labels: Record<StudyConsoleTab, string> = { mine: '我的回答', reference: '参考答案', notes: '笔记' };
+const labels: Record<StudyConsoleTab, string> = { mine: '我的回答', reference: '参考答案', notes: '我的笔记' };
 const AUTO_SAVE_DELAY_MS = 600;
 
 function stableResultId(sessionId: string, cardKey: string) {
@@ -253,6 +255,8 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     setGrammar(undefined);
     setOpi(undefined);
     setMatchMessage(undefined);
+    setError(undefined);
+    setFailedAction(undefined);
     onAnswerChange(text);
     markDirty();
   }, [markDirty, onAnswerChange]);
@@ -273,10 +277,16 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
       if (controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
       setRawTranscript(result.rawTranscript);
       changeAnswer(result.transcript);
+      emitAudioDiagnostic({ code: 'transcription_completed', level: 'info', scope: 'transcription' });
     } catch {
       if (activeRequest.current === controller && currentCardKey.current === requestCardKey) {
         setFailedAction('transcribe');
         setError(controller.signal.aborted ? '已取消转写' : '语音转写失败，请检查网络后重试。');
+        emitAudioDiagnostic({
+          code: controller.signal.aborted ? 'transcription_cancelled' : 'transcription_failed',
+          level: controller.signal.aborted ? 'info' : 'error',
+          scope: 'transcription',
+        });
       }
     } finally {
       if (activeRequest.current === controller) {
@@ -345,7 +355,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   }
 
   const title = activeTab === 'reference' ? referenceLabel : labels[activeTab];
-  const reviewLabel = reviewKind === 'exact-match' ? '对比原文' : reviewKind === 'opi-analysis' ? '分析表达' : '检查语法';
+  const reviewLabel = '分析表达';
   const editableTab = activeTab === 'mine' || activeTab === 'notes' ? activeTab : undefined;
   const editing = Boolean(editableTab && editingTab === editableTab);
   const editAccessibilityLabel = editing ? `完成${title}` : `编辑${title}`;
@@ -367,12 +377,22 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   const showRetry = activeTab === 'mine' ? Boolean(autoSaveError) : activeTab === 'notes' ? Boolean(saveError) : false;
   const showReviewAction = activeTab === 'mine' && reviewKind !== 'none';
   const reviewDisabled = !answerText.trim() || editing || aiBusy;
+  const reviewError = failedAction === 'review' ? error : undefined;
+  const transcriptionError = failedAction === 'transcribe' ? error : undefined;
+  const aiPrimaryText = opi?.polishedText || grammar?.correctedText || (matchMessage ? questionText : undefined);
+  const aiExplanation = matchMessage ?? (grammar
+    ? [grammar.overallFeedbackZh, ...grammar.issues].map((item) => item.trim()).filter(Boolean).join('\n')
+    : undefined);
+  const showAiRegion = busy === 'review' || Boolean(reviewError || aiPrimaryText || aiExplanation);
 
   return (
     <GestureDetector gesture={swipeGesture}>
       <View>
         <View style={styles.header} testID="study-workbench-header">
-          <AppText variant="button">{title}</AppText>
+          <View style={styles.headerTitle}>
+            {activeTab === 'mine' ? <MessageSquareText color={colors.mutedForeground} size={15} testID="study-workbench-title-icon-mine" /> : activeTab === 'reference' ? <BookOpenCheck color={colors.mutedForeground} size={15} testID="study-workbench-title-icon-reference" /> : <NotebookPen color={colors.mutedForeground} size={15} testID="study-workbench-title-icon-notes" />}
+            <AppText numberOfLines={1} style={styles.headerTitleText} variant="button">{title}</AppText>
+          </View>
           {editableTab ? <View style={styles.headerActions}>
             {showReviewAction ? <Pressable
               accessibilityLabel={reviewLabel}
@@ -381,10 +401,10 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
               disabled={reviewDisabled}
               hitSlop={4}
               onPress={() => void reviewAnswer()}
-              style={({ pressed }) => [styles.headerAction, pressed && !reviewDisabled ? styles.pressed : null, reviewDisabled ? styles.headerActionDisabled : null]}
+              style={({ pressed }) => [styles.reviewAction, pressed && !reviewDisabled ? styles.pressed : null, reviewDisabled ? styles.headerActionDisabled : null]}
               testID="study-workbench-review-action"
             >
-              <AppText color={reviewDisabled ? colors.mutedForeground : colors.primary} variant="micro">{reviewLabel}</AppText>
+              <AppText color={reviewDisabled ? colors.mutedForeground : colors.primary} variant="caption">{reviewLabel}</AppText>
             </Pressable> : null}
             <Pressable
               accessibilityLabel={editAccessibilityLabel}
@@ -393,25 +413,33 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
               disabled={aiBusy}
               hitSlop={4}
               onPress={() => editing ? finishEditing() : onEditingTabChange(editableTab)}
-              style={({ pressed }) => [styles.headerAction, pressed && !aiBusy ? styles.pressed : null, aiBusy ? styles.headerActionDisabled : null]}
+              style={({ pressed }) => [styles.editAction, pressed && !aiBusy ? styles.pressed : null, aiBusy ? styles.headerActionDisabled : null]}
               testID="study-workbench-primary-action"
             >
-              <AppText color={aiBusy ? colors.mutedForeground : colors.primary} variant="micro">{editing ? '完成' : '编辑'}</AppText>
+              <AppText color={aiBusy ? colors.mutedForeground : colors.primary} variant="caption">{editing ? '完成' : '编辑'}</AppText>
             </Pressable>
           </View> : null}
         </View>
 
         <View style={styles.content} testID="study-workbench-content">
-          {activeTab === 'mine' ? <View style={styles.panel}>
-            {recordingUri && !consented ? <AppText variant="micro">录音仅用于本次转写。</AppText> : null}
-            {editing ? <TextInput accessibilityLabel="我的回答" autoFocus multiline onBlur={() => { onEditingTabChange(undefined); void persistCurrent(); }} onChangeText={changeAnswer} onContentSizeChange={({ nativeEvent }) => setAnswerInputHeight(Math.max(92, Math.ceil(nativeEvent.contentSize.height)))} placeholder={busy === 'transcribe' ? '正在转写…' : '输入回答'} placeholderTextColor={colors.mutedForeground} ref={answerInputRef} scrollEnabled={false} style={[styles.input, styles.editingInput, { height: answerInputHeight }]} textAlignVertical="top" value={answerText} /> : <View accessibilityLabel="我的回答内容" style={[styles.input, styles.readOnlyInput]}><AppText color={answerText ? colors.foreground : colors.mutedForeground}>{answerText || (busy === 'transcribe' ? '正在转写…' : '暂无回答')}</AppText></View>}
-            {matchMessage ? <View style={styles.feedback}><AppText variant="caption">{matchMessage}</AppText><AppText variant="button">正确原文</AppText><AppText>{questionText}</AppText></View> : null}
-            {grammar ? <View style={styles.feedback}><AppText variant="button">语法反馈</AppText><AppText variant="caption">{grammar.overallFeedbackZh}</AppText><AppText variant="button">修改后表达</AppText><AppText>{grammar.correctedText}</AppText>{grammar.issues.map((issue, index) => <View key={`${issue}-${index}`} style={styles.issue}><AppText variant="caption">{issue}</AppText></View>)}</View> : null}
-            {opi ? <View style={styles.feedback}><AppText variant="button">更自然的民航口语表达</AppText><AppText>{opi.polishedText}</AppText></View> : null}
-            {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
-            {autoSaveError ? <AppText accessibilityLiveRegion="assertive" color={colors.destructive} variant="micro">{autoSaveError}</AppText> : null}
-          </View> : activeTab === 'reference' ? referenceContent : <View style={styles.panel}>
-            {editing ? <TextInput accessibilityLabel="学习笔记" autoFocus multiline onBlur={() => onEditingTabChange(undefined)} onChangeText={onNoteChange} onContentSizeChange={({ nativeEvent }) => setNoteInputHeight(Math.max(92, Math.ceil(nativeEvent.contentSize.height)))} placeholder="记录要点" placeholderTextColor={colors.mutedForeground} ref={noteInputRef} scrollEnabled={false} style={[styles.input, styles.editingInput, { height: noteInputHeight }]} textAlignVertical="top" value={noteText} /> : <View accessibilityLabel="学习笔记内容" style={[styles.input, styles.readOnlyInput]}><AppText color={noteText ? colors.foreground : colors.mutedForeground}>{noteText || '暂无笔记'}</AppText></View>}
+          {activeTab === 'mine' ? <View>
+            <View style={styles.responseSection}>
+              {recordingUri && !consented ? <AppText variant="micro">录音仅用于本次转写。</AppText> : null}
+              {editing ? <TextInput accessibilityLabel="我的回答" autoFocus multiline onBlur={() => { onEditingTabChange(undefined); void persistCurrent(); }} onChangeText={changeAnswer} onContentSizeChange={({ nativeEvent }) => setAnswerInputHeight(Math.max(92, Math.ceil(nativeEvent.contentSize.height)))} placeholder={busy === 'transcribe' ? '正在转写…' : '输入回答'} placeholderTextColor={colors.mutedForeground} ref={answerInputRef} scrollEnabled={false} style={[styles.input, { height: answerInputHeight }]} textAlignVertical="top" value={answerText} /> : <View accessibilityLabel="我的回答内容" style={styles.input}><AppText color={answerText ? colors.foreground : colors.mutedForeground}>{answerText || (busy === 'transcribe' ? '正在转写…' : '录音或编辑后，回答会显示在这里')}</AppText></View>}
+              {transcriptionError ? <AppText color={colors.destructive} variant="caption">{transcriptionError}</AppText> : null}
+              {autoSaveError ? <AppText accessibilityLiveRegion="assertive" color={colors.destructive} variant="micro">{autoSaveError}</AppText> : null}
+            </View>
+            {showAiRegion ? <View style={styles.aiRegion} testID="study-workbench-ai-region">
+              {busy === 'review' ? <AppText color={colors.mutedForeground}>正在分析表达…</AppText> : reviewError ? <>
+                <AppText accessibilityLiveRegion="assertive" color={colors.destructive}>{reviewError}</AppText>
+                <Pressable accessibilityLabel="重试分析表达" accessibilityRole="button" onPress={() => void reviewAnswer()} style={({ pressed }) => [styles.aiRetry, pressed ? styles.pressed : null]} testID="study-workbench-ai-retry"><AppText color={colors.primary} variant="caption">重试</AppText></Pressable>
+              </> : <>
+                {aiPrimaryText ? <AppText style={styles.aiPrimaryText} testID="study-workbench-ai-primary" variant="button">{aiPrimaryText}</AppText> : null}
+                {aiExplanation ? <><View style={styles.aiDivider} testID="study-workbench-ai-divider" /><AppText color={colors.mutedForeground} style={styles.aiExplanation} testID="study-workbench-ai-explanation">{aiExplanation}</AppText></> : null}
+              </>}
+            </View> : null}
+          </View> : activeTab === 'reference' ? <View style={styles.referenceSection}>{referenceContent}</View> : <View style={styles.responseSection}>
+            {editing ? <TextInput accessibilityLabel="我的笔记" autoFocus multiline onBlur={() => onEditingTabChange(undefined)} onChangeText={onNoteChange} onContentSizeChange={({ nativeEvent }) => setNoteInputHeight(Math.max(92, Math.ceil(nativeEvent.contentSize.height)))} placeholder="记录要点" placeholderTextColor={colors.mutedForeground} ref={noteInputRef} scrollEnabled={false} style={[styles.input, { height: noteInputHeight }]} textAlignVertical="top" value={noteText} /> : <View accessibilityLabel="我的笔记内容" style={styles.input}><AppText color={noteText ? colors.foreground : colors.mutedForeground}>{noteText || '记录这道题的关键词、易错点或复盘想法'}</AppText></View>}
             {saveError ? <AppText accessibilityLiveRegion="assertive" color={colors.destructive} variant="micro">{saveError}</AppText> : null}
           </View>}
         </View>
@@ -434,17 +462,22 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
 });
 
 const styles = StyleSheet.create({
-  header: { alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between', minHeight: 52, paddingHorizontal: spacing[4], paddingTop: spacing[3] },
-  headerActions: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] },
-  headerAction: { alignItems: 'center', backgroundColor: colors.primary06, borderColor: colors.primary20, borderRadius: radii.full, borderWidth: 1, justifyContent: 'center', minHeight: 36, minWidth: 52, paddingHorizontal: spacing[3] },
+  header: { alignItems: 'center', flexDirection: 'row', gap: spacing[2], justifyContent: 'space-between', minHeight: 52, paddingHorizontal: spacing[4], paddingTop: spacing[3] },
+  headerTitle: { alignItems: 'center', flex: 1, flexDirection: 'row', gap: spacing[2], minWidth: 0 },
+  headerTitleText: { flexShrink: 1 },
+  headerActions: { alignItems: 'center', flexDirection: 'row', flexShrink: 0, gap: spacing[1.5] },
+  reviewAction: { alignItems: 'center', backgroundColor: 'transparent', borderColor: colors.primary20, borderRadius: radii.full, borderWidth: 1, justifyContent: 'center', minHeight: 36, paddingHorizontal: spacing[3] },
+  editAction: { alignItems: 'center', backgroundColor: 'transparent', borderRadius: radii.full, borderWidth: 0, justifyContent: 'center', minHeight: 36, minWidth: 40, paddingHorizontal: spacing[2] },
   headerActionDisabled: { opacity: 0.45 },
-  content: { paddingHorizontal: spacing[4] },
-  panel: { gap: spacing[2] },
-  input: { backgroundColor: 'transparent', borderRadius: 0, borderWidth: 0, color: colors.foreground, minHeight: 92, paddingHorizontal: spacing[2], paddingVertical: spacing[3] },
-  editingInput: { backgroundColor: colors.primary06 },
-  readOnlyInput: { justifyContent: 'center' },
-  feedback: { backgroundColor: colors.primary06, borderColor: colors.primary20, borderRadius: radii.lg, borderWidth: 1, gap: spacing[2], padding: spacing[3] },
-  issue: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth, gap: spacing[1], paddingTop: spacing[2] },
+  content: { paddingHorizontal: 0 },
+  responseSection: { gap: spacing[2], paddingHorizontal: spacing[4], paddingVertical: spacing[2] },
+  referenceSection: { paddingHorizontal: spacing[4], paddingVertical: spacing[2] },
+  input: { backgroundColor: 'transparent', borderRadius: 0, borderWidth: 0, color: colors.foreground, minHeight: 92, paddingHorizontal: 0, paddingVertical: spacing[2] },
+  aiRegion: { backgroundColor: colors.primary06, borderRadius: 0, borderWidth: 0, gap: spacing[3], paddingHorizontal: spacing[4], paddingVertical: spacing[5], width: '100%' },
+  aiPrimaryText: { lineHeight: 24 },
+  aiDivider: { backgroundColor: colors.primary20, height: StyleSheet.hairlineWidth, width: '100%' },
+  aiExplanation: { lineHeight: 22 },
+  aiRetry: { alignItems: 'center', alignSelf: 'flex-start', borderRadius: radii.full, justifyContent: 'center', minHeight: 36, paddingHorizontal: spacing[2] },
   footer: { alignItems: 'flex-end', flexDirection: 'row', justifyContent: 'space-between', minHeight: 40, paddingBottom: spacing[2], paddingHorizontal: spacing[3], paddingTop: spacing[1] },
   dots: { alignItems: 'center', backgroundColor: 'transparent', borderWidth: 0, flexDirection: 'row', height: 28 },
   dotTarget: { alignItems: 'center', height: 28, justifyContent: 'center', width: 18 },

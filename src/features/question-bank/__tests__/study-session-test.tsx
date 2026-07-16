@@ -3,7 +3,19 @@ import { Pressable, Text, View } from 'react-native';
 
 import { useStudySession } from '../hooks/useStudySession';
 import type { LearningStore } from '../platform/learning-store';
+import type { RecordingAsset } from '../recording/types';
 import type { QuestionBankCategory, QuestionBankDataset, QuestionBankTopic } from '../types';
+
+jest.mock('../recording/recording-repository', () => ({
+  recordingRepository: {
+    cleanupSession: jest.fn(),
+    discard: jest.fn(),
+  },
+}));
+
+const { recordingRepository: mockRecordingRepository } = jest.requireMock('../recording/recording-repository') as {
+  recordingRepository: { cleanupSession: jest.Mock; discard: jest.Mock };
+};
 
 const topic: QuestionBankTopic = {
   id: 'topic', name: 'Topic', declaredCardCount: 2,
@@ -17,6 +29,19 @@ const dataset: QuestionBankDataset = {
   id: 'sentences900', title: '900句', nameEn: 'Sentences', description: '', summary: '', enabled: true, statusLabel: '', icon: 'sentences', declaredTopicCount: 1, declaredCardCount: 2, categoryUnit: '类', topicUnit: '组', cardUnit: '句', categories: [category],
   study: { interaction: 'speaking', tools: { recorder: true, choices: false, notes: true, dictionary: true, highlights: true, tags: true }, copy: { transcriptLabel: '音频原文', referenceLabel: '参考答案' }, audioTitlePattern: 'card-title', consoleTabs: ['mine', 'notes'] },
 };
+
+function recording(id: string): RecordingAsset {
+  return {
+    id,
+    sessionId: 'test-session',
+    cardId: 'a',
+    uri: `file:///recordings/${id}.wav`,
+    format: 'wav',
+    durationMillis: 1_200,
+    byteSize: 32_044,
+    createdAt: '2026-07-16T00:00:00.000Z',
+  };
+}
 
 function createStore(): LearningStore {
   return {
@@ -37,6 +62,8 @@ function Harness({ store }: { store: LearningStore }) {
       <Text>{`visited:${session.visitedIndexes.size}`}</Text>
       <Text>{`completed:${session.completedCardIds.size}`}</Text>
       <Text>{`revealed:${session.revealed}`}</Text>
+      <Text>{`active-tab:${session.activeTab}`}</Text>
+      <Text>{`recording:${session.recording?.id ?? 'none'}`}</Text>
       <Text>{`tool:${session.toolMode ?? 'none'}`}</Text>
       <Text>{`play-request:${session.playRequestToken}`}</Text>
       <Pressable accessibilityLabel="next" onPress={() => session.goTo(1)} />
@@ -45,11 +72,18 @@ function Harness({ store }: { store: LearningStore }) {
       <Pressable accessibilityLabel="dictionary" onPress={() => session.setToolMode('dictionary')} />
       <Pressable accessibilityLabel="clear-tool" onPress={() => session.setToolMode(undefined)} />
       <Pressable accessibilityLabel="finish" onPress={() => { void session.finish('complete').catch(() => undefined); }} />
+      <Pressable accessibilityLabel="record" onPress={() => session.recordAnswer(recording('asset-1'))} />
+      <Pressable accessibilityLabel="replace-recording" onPress={() => session.recordAnswer(recording('asset-2'))} />
+      <Pressable accessibilityLabel="clear-recording" onPress={session.clearRecording} />
     </View>
   );
 }
 
 describe('useStudySession', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('keeps visits separate from completion and carries auto reveal across navigation', async () => {
     const store = createStore();
     const screen = await render(<Harness store={store} />);
@@ -104,5 +138,26 @@ describe('useStudySession', () => {
     const second = (store.addRecord as jest.Mock).mock.calls[1][0];
     expect(first.id).toBe(second.id);
     expect(second).toMatchObject({ schemaVersion: 3, recordType: 'session', sessionId: expect.any(String) });
+  });
+
+  it('publishes a committed recording before independent consumers and atomically replaces it', async () => {
+    const screen = await render(<Harness store={createStore()} />);
+    await waitFor(() => expect(screen.getByText('recording:none')).toBeTruthy());
+
+    fireEvent.press(screen.getByLabelText('record'));
+    await waitFor(() => expect(screen.getByText('recording:asset-1')).toBeTruthy());
+    expect(screen.getByText('revealed:true')).toBeTruthy();
+    expect(screen.getByText('active-tab:mine')).toBeTruthy();
+    expect(screen.getByText('completed:1')).toBeTruthy();
+    expect(mockRecordingRepository.discard).not.toHaveBeenCalled();
+
+    fireEvent.press(screen.getByLabelText('replace-recording'));
+    await waitFor(() => expect(screen.getByText('recording:asset-2')).toBeTruthy());
+    expect(mockRecordingRepository.discard).toHaveBeenCalledTimes(1);
+    expect(mockRecordingRepository.discard).toHaveBeenCalledWith(expect.objectContaining({ id: 'asset-1' }));
+
+    fireEvent.press(screen.getByLabelText('clear-recording'));
+    await waitFor(() => expect(screen.getByText('recording:none')).toBeTruthy());
+    expect(mockRecordingRepository.discard).toHaveBeenCalledWith(expect.objectContaining({ id: 'asset-2' }));
   });
 });

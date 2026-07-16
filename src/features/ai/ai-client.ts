@@ -6,8 +6,10 @@ import { apiAccessToken, apiRequest, getApiBaseUrl, recoverApiUnauthorized } fro
 const POLICY_VERSION = 'ai-learning-privacy-v1';
 const CONSENT_KEY = `icao.ai.consent.${POLICY_VERSION}`;
 const lookupCache = new Map<string, WordLookupResult>();
+const AUDIO_E2E_ENABLED = __DEV__ && process.env.EXPO_PUBLIC_ICAO_AUDIO_E2E === '1';
 
 export async function hasAiConsent() {
+  if (AUDIO_E2E_ENABLED) return true;
   return (await Storage.getItem(CONSENT_KEY)) === 'accepted';
 }
 
@@ -38,6 +40,14 @@ export async function wordLookup(input: WordLookupRequest) {
 }
 
 export async function transcribeRecording(uri: string, signal?: AbortSignal) {
+  if (AUDIO_E2E_ENABLED) {
+    if (signal?.aborted) throw new Error('request_aborted');
+    return {
+      rawTranscript: 'audio lifecycle test transcript',
+      transcript: 'Audio lifecycle test transcript.',
+      hintsVersion: 'local-e2e-v1',
+    } satisfies TranscribeResult;
+  }
   const [{ File }, { fetch: expoFetch }] = await Promise.all([import('expo-file-system'), import('expo/fetch')]);
   const baseUrl = getApiBaseUrl();
   if (!baseUrl) throw new Error('api_not_configured');

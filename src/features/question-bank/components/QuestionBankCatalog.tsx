@@ -1,16 +1,17 @@
 import { useRouter } from 'expo-router';
 import { BookOpenText, Check, ChevronDown, ChevronRight, CloudLightning, Cog, Compass, Headphones, Library, MessageSquareQuote, Mic2, RadioTower, UserRound, Wrench, type LucideIcon } from 'lucide-react-native';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { AppText, BottomSheet, Card, Screen } from '@/components/ui';
+import { AppText, Card, Screen } from '@/components/ui';
 import { SoftGlow } from '@/components/visual/SoftGlow';
 import { colors, fonts, radii, shadows, spacing } from '@/theme';
 
 import { completedCards, sqliteLearningStore } from '../platform/learning-store';
 import { getEmbeddedQuestionBanks } from '../data/repository';
 import type { QuestionBankCategory, QuestionBankDataset } from '../types';
+import { QuestionBankSwitcherHeader } from './QuestionBankSwitcherHeader';
 
 const icons: LucideIcon[] = [CloudLightning, Cog, RadioTower, Wrench];
 const bankIcons: Record<QuestionBankDataset['icon'], LucideIcon> = {
@@ -27,7 +28,12 @@ export function QuestionBankCatalog({ dataset }: { dataset: QuestionBankDataset 
   const router = useRouter();
   const [expanded, setExpanded] = useState<string>();
   const [progress, setProgress] = useState<ProgressMap>({});
-  const [switcherVisible, setSwitcherVisible] = useState(false);
+  const switcherItems = useMemo(() => getEmbeddedQuestionBanks().map((item) => ({
+    icon: bankIcons[item.icon],
+    label: item.title,
+    summary: `${item.categories.length} ${item.categoryUnit} / ${item.declaredCardCount} ${item.cardUnit}`,
+    value: item.id,
+  })), []);
 
   useEffect(() => {
     let active = true;
@@ -55,17 +61,12 @@ export function QuestionBankCatalog({ dataset }: { dataset: QuestionBankDataset 
   return (
     <Screen contentStyle={styles.screen}>
       <SoftGlow intensity={0.75} size={360} style={styles.glow} />
-      <View style={styles.header}>
-        <Pressable accessibilityLabel="返回" onPress={() => router.back()} style={styles.headerButton}>
-          <ChevronRight color={colors.foreground} size={22} style={styles.backIcon} />
-        </Pressable>
-        <Pressable accessibilityLabel="切换题库" onPress={() => setSwitcherVisible(true)} style={styles.moduleButton}>
-          <View style={styles.moduleIcon}>{(() => { const Icon = bankIcons[dataset.icon]; return <Icon color={colors.primary} size={19} />; })()}</View>
-          <AppText variant="sectionTitle">{dataset.title}</AppText>
-          <ChevronDown color={colors.mutedForeground} size={16} />
-        </Pressable>
-        <View style={styles.headerButton} />
-      </View>
+      <QuestionBankSwitcherHeader
+        items={switcherItems}
+        onBack={() => router.back()}
+        onSelect={(nextBankId) => router.replace({ pathname: '/question-bank/[bankId]', params: { bankId: nextBankId } })}
+        value={dataset.id}
+      />
 
       <View style={styles.scrollFrame}>
         <ScrollView contentContainerStyle={styles.list} showsVerticalScrollIndicator={false}>
@@ -141,20 +142,6 @@ export function QuestionBankCatalog({ dataset }: { dataset: QuestionBankDataset 
         </ScrollView>
       </View>
       <CatalogBottomNav onNavigate={(route) => router.replace(route)} />
-      <BottomSheet accessibilityLabel="切换题库" onClose={() => setSwitcherVisible(false)} visible={switcherVisible}>
-        <View style={styles.switcherContent}>
-          <AppText variant="sectionTitle">切换题库</AppText>
-          {getEmbeddedQuestionBanks().map((item) => {
-            const Icon = bankIcons[item.icon];
-            const active = item.id === dataset.id;
-            return <Pressable key={item.id} onPress={() => { setSwitcherVisible(false); router.replace({ pathname: '/question-bank/[bankId]', params: { bankId: item.id } }); }} style={[styles.switcherRow, active ? styles.switcherActive : null]}>
-              <View style={styles.categoryIcon}><Icon color={colors.primary} size={19} /></View>
-              <AppText style={styles.switcherCopy} variant="button">{item.title}</AppText>
-              {active ? <Check color={colors.primary} size={17} /> : <ChevronRight color={colors.mutedForeground} size={17} />}
-            </Pressable>;
-          })}
-        </View>
-      </BottomSheet>
     </Screen>
   );
 }
@@ -171,11 +158,6 @@ function CatalogBottomNav({ onNavigate }: { onNavigate: (route: '/(tabs)' | '/(t
 const styles = StyleSheet.create({
   screen: { paddingHorizontal: 0 },
   glow: { left: 8, top: -230 },
-  header: { alignItems: 'center', flexDirection: 'row', minHeight: 64, paddingHorizontal: spacing[4] },
-  headerButton: { alignItems: 'center', height: 40, justifyContent: 'center', width: 40 },
-  backIcon: { transform: [{ rotate: '180deg' }] },
-  moduleButton: { alignItems: 'center', flex: 1, flexDirection: 'row', gap: spacing[2], justifyContent: 'center' },
-  moduleIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.full, height: 36, justifyContent: 'center', width: 36 },
   scrollFrame: { flex: 1 },
   list: { gap: spacing[3], paddingBottom: 112, paddingHorizontal: spacing[5], paddingTop: spacing[3] },
   category: { padding: 0, ...shadows.card },
@@ -201,8 +183,4 @@ const styles = StyleSheet.create({
   navItem: { alignItems: 'center', borderRadius: radii.full, flexDirection: 'row', gap: spacing[1.5], height: 40, paddingHorizontal: spacing[4] },
   navActive: { backgroundColor: colors.primary10 },
   navIcon: { alignItems: 'center', height: 40, justifyContent: 'center', width: 44 },
-  switcherContent: { gap: spacing[2], paddingBottom: spacing[4] },
-  switcherRow: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.xl, borderWidth: 1, flexDirection: 'row', gap: spacing[3], minHeight: 60, padding: spacing[3] },
-  switcherActive: { backgroundColor: colors.primary06, borderColor: colors.primary20 },
-  switcherCopy: { flex: 1 },
 });

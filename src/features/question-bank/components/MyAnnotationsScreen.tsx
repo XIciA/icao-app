@@ -1,9 +1,9 @@
 import { useFocusEffect, useRouter } from 'expo-router';
-import { BookOpenText, Check, ChevronDown, ChevronRight, Headphones, Highlighter, MessageSquareQuote, Mic2, NotebookPen, RadioTower, Search, Tag as TagIcon, type LucideIcon } from 'lucide-react-native';
+import { BookOpenText, ChevronRight, Headphones, Highlighter, MessageSquareQuote, Mic2, NotebookPen, RadioTower, Search, Tag as TagIcon, type LucideIcon } from 'lucide-react-native';
 import { useCallback, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import { AppText, BottomSheet, Button, Card, Screen } from '@/components/ui';
+import { AppText, Button, Card, Screen } from '@/components/ui';
 import { colors, fonts, radii, shadows, spacing } from '@/theme';
 
 import { getEmbeddedQuestionBanks } from '../data/repository';
@@ -13,6 +13,7 @@ import { getQuestionBankCardReference, getQuestionBankCardSource, questionBankCa
 import { sentenceWordRangeAt, tokenizeStudyText } from '../annotations/text';
 import { useQuestionAnnotations } from '../annotations/use-question-annotations';
 import type { AnnotationDefinition, AnnotationToneKey, QuestionAnnotationEntry } from '../annotations/types';
+import { QuestionBankSwitcherHeader } from './QuestionBankSwitcherHeader';
 
 type AnnotationSegment = 'tags' | 'highlights' | 'notes';
 type BankFilter = QuestionBankId | 'all';
@@ -34,12 +35,14 @@ const segments: { id: AnnotationSegment; label: string; icon: LucideIcon }[] = [
 export function MyAnnotationsScreen() {
   const router = useRouter();
   const annotations = useQuestionAnnotations();
-  const banks = getEmbeddedQuestionBanks();
+  const banks = useMemo(getEmbeddedQuestionBanks, []);
   const [bankId, setBankId] = useState<BankFilter>('all');
   const [segment, setSegment] = useState<AnnotationSegment>('tags');
   const [colorFilter, setColorFilter] = useState<AnnotationToneKey[]>([]);
-  const [switcherVisible, setSwitcherVisible] = useState(false);
-  const bank = bankId === 'all' ? undefined : banks.find((item) => item.id === bankId);
+  const switcherItems = useMemo(() => [
+    { icon: BookOpenText, label: '全部题库', summary: '汇总五套题库的标注与笔记', value: 'all' as const },
+    ...banks.map((item) => ({ icon: bankIcons[item.icon], label: item.title, summary: item.summary, value: item.id })),
+  ], [banks]);
   const refreshAnnotations = annotations.refresh;
 
   useFocusEffect(useCallback(() => {
@@ -90,7 +93,6 @@ export function MyAnnotationsScreen() {
   function chooseBank(value: BankFilter) {
     setBankId(value);
     setColorFilter([]);
-    setSwitcherVisible(false);
   }
 
   function chooseSegment(value: AnnotationSegment) {
@@ -110,22 +112,11 @@ export function MyAnnotationsScreen() {
     });
   }
 
-  const ActiveBankIcon = bank ? bankIcons[bank.icon] : BookOpenText;
   const visibleEntries = segment === 'tags' ? visibleTagEntries : segment === 'highlights' ? visibleHighlightEntries : noteEntries;
 
   return (
     <Screen contentStyle={styles.screen}>
-      <View style={styles.header}>
-        <Pressable accessibilityLabel="返回" onPress={() => router.back()} style={styles.headerButton}>
-          <ChevronRight color={colors.foreground} size={22} style={styles.backIcon} />
-        </Pressable>
-        <Pressable accessibilityLabel="切换题库" onPress={() => setSwitcherVisible(true)} style={styles.moduleButton}>
-          <View style={styles.moduleIcon}><ActiveBankIcon color={colors.primary} size={20} /></View>
-          <AppText style={styles.moduleTitle} variant="sectionTitle">{bank?.title ?? '全部题库'}</AppText>
-          <ChevronDown color={colors.mutedForeground} size={16} />
-        </Pressable>
-        <View style={styles.headerButton} />
-      </View>
+      <QuestionBankSwitcherHeader items={switcherItems} onBack={() => router.back()} onSelect={chooseBank} value={bankId} />
 
       <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
         <View style={styles.titleRow}>
@@ -176,27 +167,6 @@ export function MyAnnotationsScreen() {
         ) : <EmptyState allBanks={bankId === 'all'} filtered={colorFilter.length > 0} segment={segment} />}
       </ScrollView>
 
-      <BottomSheet accessibilityLabel="切换题库" onClose={() => setSwitcherVisible(false)} visible={switcherVisible}>
-        <View style={styles.switcherContent}>
-          <AppText variant="sectionTitle">切换题库</AppText>
-          <Pressable onPress={() => chooseBank('all')} style={[styles.switcherRow, bankId === 'all' ? styles.switcherActive : null]}>
-            <View style={styles.switcherIcon}><BookOpenText color={colors.primary} size={19} /></View>
-            <View style={styles.switcherCopy}><AppText variant="button">全部题库</AppText><AppText numberOfLines={1} variant="micro">汇总五套题库的标注与笔记</AppText></View>
-            {bankId === 'all' ? <Check color={colors.primary} size={17} /> : <ChevronRight color={colors.mutedForeground} size={17} />}
-          </Pressable>
-          {banks.map((item) => {
-            const Icon = bankIcons[item.icon];
-            const active = item.id === bankId;
-            return (
-              <Pressable key={item.id} onPress={() => chooseBank(item.id)} style={[styles.switcherRow, active ? styles.switcherActive : null]}>
-                <View style={styles.switcherIcon}><Icon color={colors.primary} size={19} /></View>
-                <View style={styles.switcherCopy}><AppText variant="button">{item.title}</AppText><AppText numberOfLines={1} variant="micro">{item.summary}</AppText></View>
-                {active ? <Check color={colors.primary} size={17} /> : <ChevronRight color={colors.mutedForeground} size={17} />}
-              </Pressable>
-            );
-          })}
-        </View>
-      </BottomSheet>
     </Screen>
   );
 }
@@ -326,12 +296,6 @@ function StateCard({ action, description, icon: Icon, title }: { action?: React.
 
 const styles = StyleSheet.create({
   screen: { paddingHorizontal: 0 },
-  header: { alignItems: 'center', borderBottomColor: colors.border, borderBottomWidth: StyleSheet.hairlineWidth, flexDirection: 'row', minHeight: 64, paddingHorizontal: spacing[3] },
-  headerButton: { alignItems: 'center', height: 40, justifyContent: 'center', width: 40 },
-  backIcon: { transform: [{ rotate: '180deg' }] },
-  moduleButton: { alignItems: 'center', flex: 1, flexDirection: 'row', gap: spacing[2], justifyContent: 'center' },
-  moduleIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.full, height: 38, justifyContent: 'center', width: 38 },
-  moduleTitle: { fontFamily: fonts.serifSemibold },
   scroll: { flexGrow: 1, paddingBottom: spacing[8], paddingHorizontal: spacing[5], paddingTop: spacing[4] },
   titleRow: { alignItems: 'baseline', flexDirection: 'row', justifyContent: 'space-between' },
   pageTitle: { fontFamily: fonts.serifSemibold },
@@ -358,9 +322,4 @@ const styles = StyleSheet.create({
   stateCard: { alignItems: 'center', borderStyle: 'dashed', gap: spacing[3], marginTop: spacing[8], paddingHorizontal: spacing[6], paddingVertical: spacing[8] },
   stateIcon: { alignItems: 'center', backgroundColor: colors.secondary, borderRadius: radii.full, height: 54, justifyContent: 'center', width: 54 },
   stateDescription: { maxWidth: 260, textAlign: 'center' },
-  switcherContent: { gap: spacing[2], paddingBottom: spacing[4] },
-  switcherRow: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.xl, borderWidth: 1, flexDirection: 'row', gap: spacing[3], minHeight: 60, padding: spacing[3] },
-  switcherActive: { backgroundColor: colors.primary06, borderColor: colors.primary20 },
-  switcherIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.lg, height: 36, justifyContent: 'center', width: 36 },
-  switcherCopy: { flex: 1 },
 });

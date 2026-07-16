@@ -3,6 +3,7 @@ import { createRef, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { Gesture } from 'react-native-gesture-handler';
 
+import { grammarReview, polishExpression } from '@/features/ai/ai-client';
 import { colors } from '@/theme';
 
 import { StudyWorkbench, type StudyWorkbenchHandle } from '../components/StudyWorkbench';
@@ -18,8 +19,11 @@ jest.mock('@/features/ai/ai-client', () => ({
 jest.mock('lucide-react-native', () => {
   const { View } = jest.requireActual('react-native');
   const Icon = (props: object) => <View {...props} />;
-  return { Check: Icon, Eraser: Icon, Mic: Icon, NotebookPen: Icon, Pencil: Icon, Save: Icon, Sparkles: Icon };
+  return { BookOpenCheck: Icon, Check: Icon, Eraser: Icon, MessageSquareText: Icon, Mic: Icon, NotebookPen: Icon, Pencil: Icon, Save: Icon, Sparkles: Icon };
 });
+
+const mockGrammarReview = jest.mocked(grammarReview);
+const mockPolishExpression = jest.mocked(polishExpression);
 
 const baseProps = {
   answerText: '',
@@ -46,6 +50,10 @@ const baseProps = {
 };
 
 describe('study workbench natural layout', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('grows the answer input with its content without creating a nested scroll view', async () => {
     const screen = await render(<StudyWorkbench {...baseProps} activeTab="mine" editingTab="mine" tabs={['mine']} />);
     const input = screen.getByLabelText('我的回答');
@@ -60,14 +68,14 @@ describe('study workbench natural layout', () => {
 
   it('grows the notes input with its content without creating a nested scroll view', async () => {
     const screen = await render(<StudyWorkbench {...baseProps} activeTab="notes" editingTab="notes" tabs={['notes']} />);
-    const input = screen.getByLabelText('学习笔记');
+    const input = screen.getByLabelText('我的笔记');
 
     expect(screen.getByTestId('study-workbench-content').props.scrollEnabled).toBeUndefined();
     expect(input.props.scrollEnabled).toBe(false);
 
     fireEvent(input, 'contentSizeChange', { nativeEvent: { contentSize: { height: 156, width: 280 } } });
 
-    await waitFor(() => expect(StyleSheet.flatten(screen.getByLabelText('学习笔记').props.style).height).toBe(156));
+    await waitFor(() => expect(StyleSheet.flatten(screen.getByLabelText('我的笔记').props.style).height).toBe(156));
   });
 
   it('keeps answer content read-only until the explicit edit action is pressed', async () => {
@@ -84,11 +92,27 @@ describe('study workbench natural layout', () => {
   it('keeps note content read-only until the explicit edit action is pressed', async () => {
     const onEditingTabChange = jest.fn();
     const screen = await render(<StudyWorkbench {...baseProps} activeTab="notes" onEditingTabChange={onEditingTabChange} tabs={['mine', 'notes']} />);
-    expect(screen.queryByLabelText('学习笔记')).toBeNull();
-    expect(screen.getByLabelText('学习笔记内容')).toBeTruthy();
+    expect(screen.queryByLabelText('我的笔记')).toBeNull();
+    expect(screen.getByLabelText('我的笔记内容')).toBeTruthy();
 
-    fireEvent.press(screen.getByLabelText('编辑笔记'));
+    fireEvent.press(screen.getByLabelText('编辑我的笔记'));
     expect(onEditingTabChange).toHaveBeenCalledWith('notes');
+  });
+
+  it('uses the approved icon and title for each reusable console section', async () => {
+    const answerScreen = await render(<StudyWorkbench {...baseProps} activeTab="mine" tabs={['mine', 'reference', 'notes']} />);
+    expect(answerScreen.getByText('我的回答')).toBeTruthy();
+    expect(answerScreen.getByTestId('study-workbench-title-icon-mine')).toBeTruthy();
+    await answerScreen.unmount();
+
+    const referenceScreen = await render(<StudyWorkbench {...baseProps} activeTab="reference" tabs={['mine', 'reference', 'notes']} />);
+    expect(referenceScreen.getByText('参考答案')).toBeTruthy();
+    expect(referenceScreen.getByTestId('study-workbench-title-icon-reference')).toBeTruthy();
+    await referenceScreen.unmount();
+
+    const noteScreen = await render(<StudyWorkbench {...baseProps} activeTab="notes" tabs={['mine', 'reference', 'notes']} />);
+    expect(noteScreen.getByText('我的笔记')).toBeTruthy();
+    expect(noteScreen.getByTestId('study-workbench-title-icon-notes')).toBeTruthy();
   });
 
   it('removes nested surfaces from read-only answer and note content', async () => {
@@ -101,25 +125,25 @@ describe('study workbench natural layout', () => {
     await answerScreen.unmount();
 
     const noteScreen = await render(<StudyWorkbench {...baseProps} activeTab="notes" tabs={['mine', 'notes']} />);
-    expect(StyleSheet.flatten(noteScreen.getByLabelText('学习笔记内容').props.style)).toMatchObject({
+    expect(StyleSheet.flatten(noteScreen.getByLabelText('我的笔记内容').props.style)).toMatchObject({
       backgroundColor: 'transparent',
       borderRadius: 0,
       borderWidth: 0,
     });
   });
 
-  it('uses only a light focus tint while answer and note content is being edited', async () => {
+  it('keeps answer and note editing transparent without introducing a nested surface', async () => {
     const answerScreen = await render(<StudyWorkbench {...baseProps} activeTab="mine" editingTab="mine" tabs={['mine', 'notes']} />);
     expect(StyleSheet.flatten(answerScreen.getByLabelText('我的回答').props.style)).toMatchObject({
-      backgroundColor: colors.primary06,
+      backgroundColor: 'transparent',
       borderRadius: 0,
       borderWidth: 0,
     });
     await answerScreen.unmount();
 
     const noteScreen = await render(<StudyWorkbench {...baseProps} activeTab="notes" editingTab="notes" tabs={['mine', 'notes']} />);
-    expect(StyleSheet.flatten(noteScreen.getByLabelText('学习笔记').props.style)).toMatchObject({
-      backgroundColor: colors.primary06,
+    expect(StyleSheet.flatten(noteScreen.getByLabelText('我的笔记').props.style)).toMatchObject({
+      backgroundColor: 'transparent',
       borderRadius: 0,
       borderWidth: 0,
     });
@@ -133,15 +157,15 @@ describe('study workbench natural layout', () => {
 
     expect(reviewAction.props.accessibilityState).toEqual({ disabled: false });
     expect(StyleSheet.flatten(screen.getByTestId('study-workbench-review-action').props.style)).toMatchObject({
-      backgroundColor: colors.primary06,
+      backgroundColor: 'transparent',
       borderColor: colors.primary20,
       borderRadius: 999,
       minHeight: 36,
     });
     expect(StyleSheet.flatten(screen.getByTestId('study-workbench-primary-action').props.style)).toMatchObject({
-      backgroundColor: colors.primary06,
-      borderColor: colors.primary20,
+      backgroundColor: 'transparent',
       borderRadius: 999,
+      borderWidth: 0,
       minHeight: 36,
     });
     expect(editAction).toBeTruthy();
@@ -161,8 +185,91 @@ describe('study workbench natural layout', () => {
 
   it('keeps the notes header limited to the edit action', async () => {
     const screen = await render(<StudyWorkbench {...baseProps} activeTab="notes" tabs={['mine', 'notes']} />);
-    expect(within(screen.getByTestId('study-workbench-header')).getByLabelText('编辑笔记')).toBeTruthy();
+    expect(within(screen.getByTestId('study-workbench-header')).getByLabelText('编辑我的笔记')).toBeTruthy();
     expect(within(screen.getByTestId('study-workbench-header')).queryByLabelText('分析表达')).toBeNull();
+  });
+
+  it('uses instructional empty states without rendering an AI placeholder', async () => {
+    const answerScreen = await render(<StudyWorkbench {...baseProps} activeTab="mine" tabs={['mine', 'notes']} />);
+    expect(answerScreen.getByText('录音或编辑后，回答会显示在这里')).toBeTruthy();
+    expect(answerScreen.queryByText('暂无回答')).toBeNull();
+    expect(answerScreen.queryByTestId('study-workbench-ai-region')).toBeNull();
+    await answerScreen.unmount();
+
+    const noteScreen = await render(<StudyWorkbench {...baseProps} activeTab="notes" tabs={['mine', 'notes']} />);
+    expect(noteScreen.getByText('记录这道题的关键词、易错点或复盘想法')).toBeTruthy();
+    expect(noteScreen.queryByText('暂无笔记')).toBeNull();
+  });
+
+  it('shows the correct original and exact-match summary in one flat blue AI region', async () => {
+    const screen = await render(<StudyWorkbench {...baseProps} activeTab="mine" answerText="Different answer" questionText="The correct original." reviewKind="exact-match" tabs={['mine', 'notes']} />);
+
+    await act(async () => { fireEvent.press(screen.getByLabelText('分析表达')); });
+
+    await waitFor(() => expect(screen.getByTestId('study-workbench-ai-primary').props.children).toBe('The correct original.'));
+    const regionStyle = StyleSheet.flatten(screen.getByTestId('study-workbench-ai-region').props.style);
+    expect(regionStyle).toMatchObject({ backgroundColor: colors.primary06, borderRadius: 0, borderWidth: 0, width: '100%' });
+    expect(screen.getAllByTestId('study-workbench-ai-region')).toHaveLength(1);
+    expect(screen.getByTestId('study-workbench-ai-explanation').props.children).toContain('发现差异');
+    expect(StyleSheet.flatten(screen.getByTestId('study-workbench-ai-divider').props.style).backgroundColor).toBe(colors.primary20);
+    expect(screen.queryByText('正确原文')).toBeNull();
+    expect(screen.queryByText('语法反馈')).toBeNull();
+    expect(screen.queryByText('修改后表达')).toBeNull();
+    expect(screen.queryByText('更自然的民航口语表达')).toBeNull();
+  });
+
+  it('uses corrected grammar as the primary output and merges feedback with issues', async () => {
+    mockGrammarReview.mockResolvedValueOnce({
+      correctedText: 'The crew should request an amended heading.',
+      issues: ['Use amended heading in radiotelephony.'],
+      overallFeedbackZh: '表达清楚，可进一步贴近陆空通话语境。',
+      promptVersion: 'grammar:v1',
+    });
+    const screen = await render(<StudyWorkbench {...baseProps} activeTab="mine" answerText="The crew request new heading." reviewKind="grammar" tabs={['mine', 'notes']} />);
+
+    await act(async () => { fireEvent.press(screen.getByLabelText('分析表达')); });
+
+    await waitFor(() => expect(screen.getByTestId('study-workbench-ai-primary').props.children).toBe('The crew should request an amended heading.'));
+    expect(screen.getByTestId('study-workbench-ai-explanation').props.children).toBe('表达清楚，可进一步贴近陆空通话语境。\nUse amended heading in radiotelephony.');
+    expect(screen.getAllByTestId('study-workbench-ai-region')).toHaveLength(1);
+  });
+
+  it('gives polished OPI text priority over corrected grammar without splitting the AI output', async () => {
+    mockGrammarReview.mockResolvedValueOnce({
+      correctedText: 'The corrected grammar output.',
+      issues: ['One concise issue.'],
+      overallFeedbackZh: '整体反馈。',
+      promptVersion: 'grammar:v1',
+    });
+    mockPolishExpression.mockResolvedValueOnce({ polishedText: 'The polished OPI output.', promptVersion: 'polish:v1' });
+    const screen = await render(<StudyWorkbench {...baseProps} activeTab="mine" answerText="My draft answer." tabs={['mine', 'reference', 'notes']} />);
+
+    await act(async () => { fireEvent.press(screen.getByLabelText('分析表达')); });
+
+    await waitFor(() => expect(screen.getByTestId('study-workbench-ai-primary').props.children).toBe('The polished OPI output.'));
+    expect(screen.queryByText('The corrected grammar output.')).toBeNull();
+    expect(screen.getByTestId('study-workbench-ai-explanation').props.children).toBe('整体反馈。\nOne concise issue.');
+    expect(screen.getAllByTestId('study-workbench-ai-region')).toHaveLength(1);
+  });
+
+  it('keeps analysis progress and retryable errors inside the same blue region', async () => {
+    let rejectReview!: (reason: Error) => void;
+    mockGrammarReview.mockImplementationOnce(() => new Promise((_, reject) => { rejectReview = reject; }));
+    const screen = await render(<StudyWorkbench {...baseProps} activeTab="mine" answerText="Answer ready for review." reviewKind="grammar" tabs={['mine', 'notes']} />);
+
+    await act(async () => { fireEvent.press(screen.getByLabelText('分析表达')); });
+    await waitFor(() => expect(screen.getByText('正在分析表达…')).toBeTruthy());
+    expect(screen.getAllByTestId('study-workbench-ai-region')).toHaveLength(1);
+
+    await act(async () => { rejectReview(new Error('offline')); });
+    await waitFor(() => expect(screen.getByText('AI 分析暂时失败，请稍后重试。')).toBeTruthy());
+    expect(screen.getByLabelText('重试分析表达')).toBeTruthy();
+    expect(screen.getAllByTestId('study-workbench-ai-region')).toHaveLength(1);
+
+    mockGrammarReview.mockResolvedValueOnce({ correctedText: 'Retry succeeded.', issues: [], overallFeedbackZh: '已完成。', promptVersion: 'grammar:v1' });
+    await act(async () => { fireEvent.press(screen.getByLabelText('重试分析表达')); });
+    await waitFor(() => expect(screen.getByTestId('study-workbench-ai-primary').props.children).toBe('Retry succeeded.'));
+    expect(screen.queryByText('AI 分析暂时失败，请稍后重试。')).toBeNull();
   });
 
   it('uses compact dots for multi-section navigation and keeps the active state accessible', async () => {

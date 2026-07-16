@@ -2,6 +2,11 @@
 
 set -eu
 
+if [ "${EXPO_PUBLIC_ICAO_AUDIO_E2E:-0}" = '1' ]; then
+  echo 'EXPO_PUBLIC_ICAO_AUDIO_E2E is forbidden in Android Release builds.' >&2
+  exit 1
+fi
+
 SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 PROJECT_ROOT=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)
 . "$SCRIPT_DIR/lib/release-common.sh"

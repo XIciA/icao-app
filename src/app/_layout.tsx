@@ -13,6 +13,7 @@ import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { AuthProvider, useAuth } from '@/features/auth/AuthProvider';
 import { RadioMiniPlayer } from '@/features/radio-player/RadioMiniPlayer';
 import { RadioPlayerProvider } from '@/features/radio-player/RadioPlayerProvider';
+import { recordingRepository } from '@/features/question-bank/recording/recording-repository';
 import { colors } from '@/theme';
 
 SplashScreen.preventAutoHideAsync().catch(() => undefined);
@@ -29,6 +30,10 @@ export default function RootLayout() {
   useEffect(() => {
     if (fontsLoaded || fontError) SplashScreen.hideAsync().catch(() => undefined);
   }, [fontError, fontsLoaded]);
+
+  useEffect(() => {
+    recordingRepository.cleanupExpired();
+  }, []);
 
   if (!fontsLoaded && !fontError) return <GlobalLoadingScreen />;
 

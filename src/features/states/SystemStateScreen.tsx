@@ -1,4 +1,3 @@
-import { getRecordingPermissionsAsync, requestRecordingPermissionsAsync } from 'expo-audio';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Bell, BookOpen, CalendarClock, ChevronRight, CloudAlert, Construction, Flame, LoaderCircle, Megaphone, Mic, MicOff, Plane, Radio, RefreshCw, RotateCcw, ShieldCheck, WifiOff, Wrench, X } from 'lucide-react-native';
 import { useEffect, useState } from 'react';
@@ -7,6 +6,7 @@ import { ActivityIndicator, Linking, Pressable, StyleSheet, View } from 'react-n
 import { TopBar } from '@/components/navigation/TopBar';
 import { AppText, Button, Card, Screen } from '@/components/ui';
 import { SoftGlow } from '@/components/visual/SoftGlow';
+import { getMicrophonePermission, requestMicrophonePermission } from '@/features/question-bank/recording/expo-recorder-adapter';
 import { colors, radii, spacing } from '@/theme';
 
 type StateSlug = 'gallery' | 'microphone' | 'mic-denied' | 'notifications' | 'offline' | 'load-failed' | 'maintenance' | 'loading';
@@ -32,13 +32,13 @@ function StatePage({ children }: { children: React.ReactNode }) { const router =
 
 function MicrophonePermission() {
   const router = useRouter(); const [allowing, setAllowing] = useState(false);
-  async function allow() { setAllowing(true); await requestRecordingPermissionsAsync(); setAllowing(false); router.back(); }
+  async function allow() { setAllowing(true); await requestMicrophonePermission(); setAllowing(false); router.back(); }
   return <StatePage><View style={styles.permission}><StateHero icon={Mic} /><AppText variant="sectionTitle">开启麦克风权限</AppText><AppText style={styles.center}>口语练习需要录制你的语音。松开按钮后，本次录音会提交至语音服务，并经识别结果填入「我的回答」。</AppText><View style={styles.reasons}><Reason icon={BookOpen} title="按住说话，松开转写" body="录音只在按住期间进行，松开后自动结束。" /><Reason icon={Radio} title="ICAO 英语识别" body="当前为界面演示，真实 ASR 服务待接入。" /><Reason icon={ShieldCheck} title="用途清晰" body="演示录音仅保存在本机应用空间。" /></View></View><View style={styles.footer}><Button disabled={allowing} leading={allowing ? <ActivityIndicator color={colors.primaryForeground} /> : undefined} onPress={() => void allow()} size="lg">{allowing ? '正在请求…' : '允许使用麦克风'}</Button><Button disabled={allowing} onPress={router.back} size="lg" variant="outline">暂不开启</Button></View></StatePage>;
 }
 
 function MicrophoneDenied() {
   const [checking, setChecking] = useState(false);
-  async function retry() { setChecking(true); const result = await getRecordingPermissionsAsync(); setChecking(false); if (!result.granted) await Linking.openSettings(); }
+  async function retry() { setChecking(true); const result = await getMicrophonePermission(); setChecking(false); if (!result.granted) await Linking.openSettings(); }
   return <StatePage><View style={styles.centered}><StateHero icon={MicOff} tone="danger" /><AppText variant="sectionTitle">无法使用麦克风</AppText><AppText style={styles.center}>请在当前设备的应用设置中允许使用麦克风，然后返回这里重新检测。</AppText><Card style={styles.steps}>{['打开当前应用或页面的权限设置', '将「麦克风」改为允许', '返回页面并重新检测'].map((item, index) => <View key={item} style={styles.step}><View style={styles.stepNo}><AppText color={colors.primary} variant="micro">{index + 1}</AppText></View><AppText style={styles.flex}>{item}</AppText></View>)}</Card></View><View style={styles.footer}><Button disabled={checking} leading={<RefreshCw color={colors.primaryForeground} size={16} />} onPress={() => void retry()} size="lg">{checking ? '正在检测…' : '我已开启，重新检测'}</Button><Button onPress={() => void Linking.openSettings()} size="lg" variant="outline">稍后再说</Button></View></StatePage>;
 }
 

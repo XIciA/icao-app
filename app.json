@@ -11,7 +11,7 @@
       "icon": "./assets/expo.icon",
       "supportsTablet": false,
       "bundleIdentifier": "com.anonymous.icao-app",
-      "buildNumber": "3439521",
+      "buildNumber": "3439561",
       "config": {
         "usesNonExemptEncryption": false
       },
@@ -30,7 +30,7 @@
       },
       "predictiveBackGestureEnabled": false,
       "package": "com.feizhuicao.app",
-      "versionCode": 3439521
+      "versionCode": 3439561
     },
     "web": {
       "output": "static",

@@ -24,7 +24,7 @@ jest.mock('@/features/ai/ai-client', () => ({
 jest.mock('lucide-react-native', () => {
   const { View } = jest.requireActual('react-native');
   const Icon = (props: object) => <View {...props} />;
-  return { Check: Icon, Eraser: Icon, Mic: Icon, NotebookPen: Icon, Pencil: Icon, Save: Icon, Sparkles: Icon };
+  return { BookOpenCheck: Icon, Check: Icon, Eraser: Icon, MessageSquareText: Icon, Mic: Icon, NotebookPen: Icon, Pencil: Icon, Save: Icon, Sparkles: Icon };
 });
 
 describe('AI speaking workbench', () => {

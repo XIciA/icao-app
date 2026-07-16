@@ -1,6 +1,6 @@
-import { ensureRadioTrackPlayer, radioPlaybackService, setRadioRemoteHandlers } from '../track-player-runtime';
+import { ensureRadioTrackPlayer, radioPlaybackService, setRadioContentPlaybackRate, setRadioRemoteHandlers } from '../track-player-runtime';
 
-const mockListeners = new Map<string, (...args: never[]) => void>();
+const mockListeners = new Map<string, (...args: unknown[]) => void>();
 const mockSetupPlayer = jest.fn(async (_options: unknown) => undefined);
 const mockUpdateOptions = jest.fn(async (_options: unknown) => undefined);
 const mockPlay = jest.fn(async () => undefined);
@@ -8,15 +8,17 @@ const mockPause = jest.fn(async () => undefined);
 const mockSkipToNext = jest.fn(async (_position: number) => undefined);
 const mockSkipToPrevious = jest.fn(async (_position: number) => undefined);
 const mockSeekTo = jest.fn(async (_position: number) => undefined);
+const mockSetRate = jest.fn(async (_rate: number) => undefined);
 const mockStop = jest.fn(async () => undefined);
 
 jest.mock('react-native-track-player', () => ({
   __esModule: true,
   default: {
-    addEventListener: (event: string, handler: (...args: never[]) => void) => { mockListeners.set(event, handler); },
+    addEventListener: (event: string, handler: (...args: unknown[]) => void) => { mockListeners.set(event, handler); },
     pause: () => mockPause(),
     play: () => mockPlay(),
     seekTo: (position: number) => mockSeekTo(position),
+    setRate: (rate: number) => mockSetRate(rate),
     setupPlayer: (options: unknown) => mockSetupPlayer(options),
     skipToNext: (position: number) => mockSkipToNext(position),
     skipToPrevious: (position: number) => mockSkipToPrevious(position),
@@ -25,7 +27,7 @@ jest.mock('react-native-track-player', () => ({
   },
   AppKilledPlaybackBehavior: { StopPlaybackAndRemoveNotification: 'stop-playback-and-remove-notification' },
   Capability: { Pause: 'pause', Play: 'play', SeekTo: 'seek-to', SkipToNext: 'next', SkipToPrevious: 'previous' },
-  Event: { RemoteNext: 'remote-next', RemotePause: 'remote-pause', RemotePlay: 'remote-play', RemotePrevious: 'remote-previous', RemoteSeek: 'remote-seek', RemoteStop: 'remote-stop' },
+  Event: { PlaybackActiveTrackChanged: 'active-track-changed', RemoteNext: 'remote-next', RemotePause: 'remote-pause', RemotePlay: 'remote-play', RemotePrevious: 'remote-previous', RemoteSeek: 'remote-seek', RemoteStop: 'remote-stop' },
   IOSCategory: { Playback: 'playback' },
   IOSCategoryMode: { SpokenAudio: 'spoken-audio' },
 }));
@@ -67,5 +69,24 @@ describe('radio track-player runtime', () => {
     expect(previous).toHaveBeenCalledTimes(1);
     expect(mockSkipToNext).not.toHaveBeenCalled();
     expect(mockSkipToPrevious).not.toHaveBeenCalled();
+  });
+
+  it('uses the native media clock for a background interval and restores content rate', async () => {
+    setRadioContentPlaybackRate(1.5);
+    await radioPlaybackService();
+
+    mockListeners.get('active-track-changed')?.({
+      track: { radioTrackKind: 'interval', radioIntervalSeconds: 5 },
+    });
+    await Promise.resolve();
+    await Promise.resolve();
+
+    expect(mockSetRate).toHaveBeenCalledWith(1);
+    expect(mockSeekTo).toHaveBeenCalledWith(25);
+
+    mockListeners.get('active-track-changed')?.({ track: { radioTrackKind: 'content' } });
+    await Promise.resolve();
+
+    expect(mockSetRate).toHaveBeenLastCalledWith(1.5);
   });
 });

@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { View } from 'react-native';
 import type { GestureType } from 'react-native-gesture-handler';
 
-import type { LocalRecordingState } from '../hooks/useStudySession';
+import type { RecordingAsset } from '../recording/types';
 import type { QuestionBankCard, StudyBehavior } from '../types';
 import { ChoiceList } from './ChoiceList';
 import { SpeakingPracticePanel } from './SpeakingPracticePanel';
@@ -10,6 +10,7 @@ import { SpeakingPracticePanel } from './SpeakingPracticePanel';
 export function StudyTaskRenderer({
   behavior,
   card,
+  sessionId,
   selectedChoiceIndex,
   revealed,
   recording,
@@ -26,12 +27,13 @@ export function StudyTaskRenderer({
 }: {
   behavior: StudyBehavior;
   card: QuestionBankCard;
+  sessionId: string;
   selectedChoiceIndex?: number;
   revealed: boolean;
-  recording?: LocalRecordingState;
+  recording?: RecordingAsset;
   onChoose: (index: number) => void;
   onClearRecording: () => void;
-  onRecorded: (recording: LocalRecordingState) => void;
+  onRecorded: (recording: RecordingAsset) => void;
   onInteractionChange?: (active: boolean) => void;
   interactionGesture?: GestureType;
   blockedExternalGesture?: GestureType;
@@ -55,6 +57,7 @@ export function StudyTaskRenderer({
   return (
     <SpeakingPracticePanel
       blockedExternalGesture={blockedExternalGesture}
+      cardId={card.id}
       mode={behavior.recordingMode ?? 'speaking'}
       interactionGesture={interactionGesture}
       onClear={onClearRecording}
@@ -64,6 +67,7 @@ export function StudyTaskRenderer({
       onRecorded={onRecorded}
       previewPauseRequest={previewPauseRequest}
       recording={recording}
+      sessionId={sessionId}
       variant={variant}
     />
   );

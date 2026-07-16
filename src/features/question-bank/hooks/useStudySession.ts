@@ -11,11 +11,8 @@ import type {
   StudyToolMode,
 } from '../types';
 import { getStudyBehavior } from '../lib/study-behavior';
-
-export type LocalRecordingState = {
-  uri: string;
-  durationMillis: number;
-};
+import { recordingRepository } from '../recording/recording-repository';
+import type { RecordingAsset } from '../recording/types';
 
 type SaveFailure = { cardId: string; message: string };
 
@@ -69,13 +66,15 @@ export function useStudySession({
   const [activeTab, setActiveTab] = useState<StudyConsoleTab>(() => preferredWorkbenchTab(behavior.workbenchTabs));
   const [toolMode, setToolModeState] = useState<StudyToolMode>();
   const [answers, setAnswers] = useState<Record<string, string>>({});
-  const [recordings, setRecordings] = useState<Record<string, LocalRecordingState>>({});
+  const [recordings, setRecordings] = useState<Record<string, RecordingAsset>>({});
+  const recordingsRef = useRef(recordings);
   const [attemptedTranscriptionKeys, setAttemptedTranscriptionKeys] = useState<Set<string>>(() => new Set());
   const [feedbackCardIds, setFeedbackCardIds] = useState<Set<string>>(() => new Set());
   const [playRequestToken, setPlayRequestToken] = useState(1);
   const [report, setReport] = useState<LearningRecord>();
 
   statesRef.current = states;
+  recordingsRef.current = recordings;
 
   const card = topic.cards[currentIndex];
   const cardState = card ? states[card.id] : undefined;
@@ -176,9 +175,11 @@ export function useStudySession({
     setRevealed(true);
   }, [card, persistCard]);
 
-  const recordAnswer = useCallback((recording: LocalRecordingState) => {
+  const recordAnswer = useCallback((recording: RecordingAsset) => {
     if (!card) return;
+    const previous = recordingsRef.current[card.id];
     setRecordings((current) => ({ ...current, [card.id]: recording }));
+    if (previous && previous.id !== recording.id) recordingRepository.discard(previous);
     persistCard(card.id, { recorded: true, recordingDurationMillis: recording.durationMillis, completed: true });
     setCompletedCardIds((current) => new Set(current).add(card.id));
     setRevealed(true);
@@ -187,11 +188,13 @@ export function useStudySession({
 
   const clearRecording = useCallback(() => {
     if (!card) return;
+    const previous = recordingsRef.current[card.id];
     setRecordings((current) => {
       const next = { ...current };
       delete next[card.id];
       return next;
     });
+    if (previous) recordingRepository.discard(previous);
   }, [card]);
 
   const markTranscriptionAttempted = useCallback((recordingKey: string) => {
@@ -249,8 +252,11 @@ export function useStudySession({
     };
     await store.addRecord(nextReport);
     setReport(nextReport);
+    recordingRepository.cleanupSession(sessionId);
     return nextReport;
   }, [category.name, completedCardIds.size, dataset.id, dataset.title, feedbackCardIds.size, sessionId, store, topic.cards, topic.name, visitedIndexes]);
+
+  useEffect(() => () => recordingRepository.cleanupSession(sessionId), [sessionId]);
 
   return {
     behavior,

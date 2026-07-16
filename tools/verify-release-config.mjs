@@ -26,6 +26,10 @@ const sample = `android {
 const first = plugin.applySigning(sample);
 const second = plugin.applySigning(first);
 
+if (process.env.EXPO_PUBLIC_ICAO_AUDIO_E2E === '1') {
+  throw new Error('The deterministic audio E2E adapter must never be enabled for Release builds.');
+}
+
 if (app.expo.ios.bundleIdentifier !== 'com.anonymous.icao-app') {
   throw new Error('The existing iOS Bundle ID must remain unchanged.');
 }
@@ -45,9 +49,25 @@ if (!first.includes('Missing Android release signing environment')) {
 
 const page = await readFile('infra/download-site/index.html', 'utf8');
 const caddy = await readFile('infra/gateway/Caddyfile', 'utf8');
+const iosRelease = await readFile('scripts/release-ios.sh', 'utf8');
+const androidRelease = await readFile('scripts/release-android.sh', 'utf8');
+const iosStandalone = await readFile('scripts/build-standalone-ios.sh', 'utf8');
+const androidStandalone = await readFile('scripts/build-standalone-android.sh', 'utf8');
 if (!page.includes('noindex, nofollow, noarchive')) throw new Error('Download page noindex meta is missing.');
 if (!caddy.includes('X-Robots-Tag "noindex, nofollow, noarchive"')) {
   throw new Error('Download response noindex header is missing.');
+}
+if (!iosRelease.includes('audio-sensitive-fingerprint.mjs verify ios')) {
+  throw new Error('The iOS release is missing its audio E2E fingerprint gate.');
+}
+if (!androidRelease.includes('audio-sensitive-fingerprint.mjs verify android')) {
+  throw new Error('The Android release is missing its audio E2E fingerprint gate.');
+}
+if (!iosStandalone.includes('EXPO_PUBLIC_ICAO_AUDIO_E2E is forbidden')) {
+  throw new Error('The iOS Release build is missing its deterministic-audio guard.');
+}
+if (!androidStandalone.includes('EXPO_PUBLIC_ICAO_AUDIO_E2E is forbidden')) {
+  throw new Error('The Android Release build is missing its deterministic-audio guard.');
 }
 
 console.log('release configuration verified');

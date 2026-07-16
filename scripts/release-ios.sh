@@ -16,5 +16,6 @@ if [ "${ICAO_RELEASE_ALREADY_PREPARED:-0}" != '1' ]; then
   pnpm check
 fi
 
+node tools/audio-sensitive-fingerprint.mjs verify ios
 pnpm ios:standalone
 echo 'iOS release build and device installation completed independently of Android.'

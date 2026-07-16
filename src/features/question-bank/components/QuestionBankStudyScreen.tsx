@@ -73,7 +73,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
   const bodyScrollRef = useRef<ScrollView>(null);
   const questionOffsetX = useSharedValue(0);
   const card = session.card;
-  const recordingKey = session.recording ? `${session.recording.uri}:${session.recording.durationMillis}` : undefined;
+  const recordingKey = session.recording?.id;
   const imageCard = card?.kind === 'image';
   const audioAsset = useQuestionBankAsset(card?.audio);
   const target = card && !imageCard ? { bankId: dataset.id, categoryId: category.id, topicId: topic.id, cardId: card.id } : undefined;
@@ -437,6 +437,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
       recording={session.recording}
       revealed={session.revealed}
       selectedChoiceIndex={session.cardState?.selectedChoiceIndex}
+      sessionId={session.sessionId}
       variant={integratedRecordingLayout ? 'integrated' : 'default'}
     />
   );

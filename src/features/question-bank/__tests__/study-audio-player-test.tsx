@@ -1,7 +1,11 @@
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { AppState, StyleSheet, View } from 'react-native';
 
+import { audioSessionOrchestrator } from '@/platform/audio';
+
 import { StudyAudioPlayer } from '../components/StudyAudioPlayer';
+
+const mockSetAudioModeAsync = jest.fn(async (_mode: unknown): Promise<void> => undefined);
 
 const mockPlayer = {
   pause: jest.fn(),
@@ -29,7 +33,7 @@ jest.mock('lucide-react-native', () => {
 });
 
 jest.mock('expo-audio', () => ({
-  setAudioModeAsync: jest.fn(async () => undefined),
+  setAudioModeAsync: (mode: unknown) => mockSetAudioModeAsync(mode),
   useAudioPlayer: () => mockPlayer,
   useAudioPlayerStatus: () => mockStatus,
 }));
@@ -37,10 +41,18 @@ jest.mock('expo-audio', () => ({
 describe('StudyAudioPlayer', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    audioSessionOrchestrator.resetForTests();
+    mockSetAudioModeAsync.mockResolvedValue(undefined);
+    mockPlayer.pause.mockImplementation(() => undefined);
+    mockPlayer.play.mockImplementation(() => undefined);
+    mockPlayer.replace.mockImplementation(() => undefined);
+    mockPlayer.seekTo.mockResolvedValue(undefined);
+    mockPlayer.setPlaybackRate.mockImplementation(() => undefined);
     mockStatus = { ...mockStatus, isBuffering: true, isLoaded: false, playbackState: 'loading', playing: false };
   });
 
   afterEach(() => {
+    audioSessionOrchestrator.resetForTests();
     jest.useRealTimers();
     jest.restoreAllMocks();
   });
@@ -113,6 +125,27 @@ describe('StudyAudioPlayer', () => {
     expect(mockPlayer.play).not.toHaveBeenCalled();
   });
 
+  it('drops an acquired autoplay lease when a pause request makes the operation stale', async () => {
+    let finishModeSwitch!: () => void;
+    mockSetAudioModeAsync.mockReturnValueOnce(new Promise<void>((resolve) => { finishModeSwitch = resolve; }));
+    mockStatus = { ...mockStatus, isBuffering: false, isLoaded: true, playbackState: 'readyToPlay', playing: false };
+    const screen = await render(
+      <StudyAudioPlayer autoPlayRequest={1} label="Sentence2" pauseRequest={0} playbackKey="card-stale" uri="https://example.test/card-stale.mp3" />,
+    );
+    await waitFor(() => expect(mockSetAudioModeAsync).toHaveBeenCalledTimes(1));
+
+    await screen.rerender(
+      <StudyAudioPlayer autoPlayRequest={1} label="Sentence2" pauseRequest={1} playbackKey="card-stale" uri="https://example.test/card-stale.mp3" />,
+    );
+    await act(async () => {
+      finishModeSwitch();
+      await Promise.resolve();
+      await Promise.resolve();
+    });
+
+    expect(mockPlayer.play).not.toHaveBeenCalled();
+  });
+
   it('turns endless buffering into a retryable timeout state', async () => {
     jest.useFakeTimers();
     const onRetry = jest.fn();
@@ -148,6 +181,17 @@ describe('StudyAudioPlayer', () => {
     );
 
     expect(mockPlayer.pause).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not crash cleanup when Fast Refresh already released the native player', async () => {
+    mockPlayer.pause.mockImplementation(() => { throw new Error('NativeSharedObjectNotFoundException'); });
+    const screen = await render(
+      <StudyAudioPlayer label="Sentence4" playbackKey="card-fast-refresh" uri="https://example.test/card-fast-refresh.mp3" />,
+    );
+
+    await screen.unmount();
+
+    expect(mockPlayer.pause).toHaveBeenCalled();
   });
 
   it('seeks to the beginning before replaying naturally completed audio', async () => {

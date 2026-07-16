@@ -7,6 +7,10 @@
 ## 1. 方案结论
 
 > 2026-07-16 缺陷修复修订：Expo Audio 的锁屏 options 不能提供独立的上一首/下一首命令，且原实现以单 source 的 JS 结束回调驱动续播，无法满足锁屏自动下一题和单曲循环。本轮已获用户授权，将随身听唯一播放引擎改为 `react-native-track-player@4.1.2`；共享题库、资源解析、音频协调、Provider 状态和 UI contract 不变。本文后续与本修订冲突的 Expo-only 描述，以本修订和阶段 7 记录为准。
+>
+> 2026-07-16 音频生命周期勘误：第 5 节的 `AudioSessionCoordinator` 方案已被后续治本重构取代。
+> 当前实现是带串行队列、超时、独占录音和 token lease 的 `AudioSessionOrchestrator`，完整规则见
+> `docs/guides/audio-lifecycle-and-change-rules.md`；禁止恢复本文的旧接口或双轨兼容层。
 
 在当前 React Native App 内建立一个长期挂载的随身听播放 Provider，由它持有唯一的 Track Player、播放队列、播放模式、当前曲目和持久化状态。全屏播放器、迷你播放器和系统媒体信息只订阅这一份状态，不各自创建播放器。
 
@@ -51,6 +55,16 @@
 - 若题库迁移尚未收口，只先做不重叠的队列/播放纯逻辑和文档，不修改冲突文件。
 
 ## 3. 播放队列模型
+
+### 2026-07-16 UI 与播放间隔增量
+
+- 本地快照升级为 schema 2，并新增 `intervalSeconds`；schema 1 和缺字段快照迁移为 0 秒，其余题库、曲目、位置、模式、字幕和倍速继续恢复。
+- 0 秒继续使用原有“当前内容 → 下一内容”和原生 `RepeatMode.Track`，不插入占位轨道。
+- 1–30 秒使用短原生队列“当前内容 → 30 秒静音占位 → 下一内容”；单曲循环的下一内容仍是当前题。
+- playback service 在静音轨道激活时固定 1× 并 seek 到 `30 - intervalSeconds`，等待由原生媒体时钟完成，不依赖后台可能暂停的 JS timer。
+- 静音轨道沿用当前题锁屏标题、artist 和 album，但以 `radioTrackKind: interval` 与内容轨道区分；Provider 在等待结束前不提交下一题状态。
+- 手动上/下一题不等待；等待中暂停会暂停原生时钟，继续播放会恢复；改模式只替换后续内容，改间隔会重新定位静音轨道，设为 0 会跳过占位。
+- 静音资源加载或播放失败时跳过等待；内容音频失败继续使用原有可重试错误态。
 
 建立与 UI 无关、可单元测试的队列状态机，核心状态包括：
 
@@ -124,6 +138,8 @@ Expo SDK 55 的 `AudioPlaylist` 能提供 gapless 和三种循环档位，但本
 
 ## 6. 后台与锁屏
 
+2026-07-16 增量：播放间隔复用 Track Player playback service 和原生 active-track 事件。静音轨道固定 1×，内容轨道恢复用户倍速；因此前台、后台、锁屏和控制中心共享同一媒体时钟与远程命令，不新增定时器、player 或 session owner。
+
 - `index.js` 在 Expo Router 入口前注册 Track Player playback service；根 Provider 注册与页面按钮共用的 play/pause/seek/previous/next/stop 命令。
 - CNG/Prebuild 生成 iOS audio background mode；Track Player 自身提供 Android media playback foreground service 和媒体通知。`expo-audio` 的后台播放保持关闭，避免第二个后台 service owner；后台录音同样关闭。
 - 原生队列始终至少准备当前曲目与下一曲；顺序/随机自然结束由原生队列过渡，单曲循环使用 `RepeatMode.Track`。
@@ -139,6 +155,7 @@ Expo SDK 55 的 `AudioPlaylist` 能提供 gapless 和三种循环档位，但本
 - 各 bank 最后 track ID；
 - 当前 track ID 和播放位置；
 - 播放模式、字幕模式和倍速；
+- 0–30 秒整数播放间隔；
 - 最后内容 release/version，用于恢复校验。
 
 保存策略：
@@ -150,6 +167,16 @@ Expo SDK 55 的 `AudioPlaylist` 能提供 gapless 和三种循环档位，但本
 - 退出登录停止播放并清除当前会话；是否保留设备偏好按现有账号隔离规则执行，不新增云同步文档。
 
 ## 8. UI 实现方案
+
+### 2026-07-16 方案 1 修订
+
+- 题库目录、我的标注和随身听改用同一个 `QuestionBankSwitcherHeader` 与同一底部切换抽屉，只注入各自的题库项和切换动作。
+- 随身听头部不显示页面标题和明显分割线；返回/队列为 40 点击区与 20 图标，题库图标底盒 38、图标 19、箭头 16。
+- 主体只保留一行可点击题名、题号胶囊和进入箭头；点击先暂停，再携带精确 card ID 进入学习页。
+- 删除大封面、三排重复元信息、文字式“学习本题”和答案卡片；字幕关闭显示不超过 96 宽的轻量波形，字幕开启显示无边框滚动文字。
+- 主播放按钮为 56/24，上下一题为 44 点击区/22 图标；模式、倍速、间隔和字幕使用 18 图标与单行短标签。
+- 新增 0–30 秒、步进 1 秒的播放间隔抽屉，包含 0/3/5/10/15/30 快捷值；复用非破坏扩展后的 `AudioTimeline`。
+- 波形只在实际内容播放时轻微呼吸，暂停和等待时静止，并遵循系统“减少动态效果”。
 
 ### 8.1 全屏播放器
 
@@ -221,5 +248,6 @@ Expo SDK 55 的 `AudioPlaylist` 能提供 gapless 和三种循环档位，但本
 ## 12. 官方依据
 
 - Expo SDK 55 Audio：<https://docs.expo.dev/versions/v55.0.0/sdk/audio/>
+- Expo SDK 55 Asset：<https://docs.expo.dev/versions/v55.0.0/sdk/asset/>
 
-该版本文档确认了 config plugin 后台配置、`shouldPlayInBackground`、Android 锁屏控制要求、`setActiveForLockScreen`、持久播放器责任、`didJustFinish`、`replace`、`seekTo` 和 playlist 循环能力。本方案以仓库锁定的 Expo SDK 55 为边界，不引用其它 SDK 版本行为。
+该版本文档确认了 config plugin 后台配置、`shouldPlayInBackground`、Android 锁屏控制要求、`setActiveForLockScreen`、持久播放器责任、`didJustFinish`、`replace`、`seekTo`、playlist 循环能力，以及静态资源的 `Asset.fromModule`、`downloadAsync`、`localUri`/`uri` 用法。本方案以仓库锁定的 Expo SDK 55 为边界，不引用其它 SDK 版本行为。

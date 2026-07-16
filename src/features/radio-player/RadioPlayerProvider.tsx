@@ -11,11 +11,23 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef, use
 import { AppState } from 'react-native';
 
 import { resolveQuestionBankAsset, resolveRemoteQuestionBankAsset } from '@/features/question-bank/platform/resource-service';
-import { claimAudioSession, registerAudioOwner, releaseAudioSession } from '@/platform/audio-session-coordinator';
+import { audioSessionOrchestrator, type AudioLease } from '@/platform/audio';
 
 import { getEmbeddedRadioCatalogs, loadRadioCatalogs } from './catalog';
+import {
+  clampRadioInterval,
+  createNativeRadioIntervalTrack,
+  ensureRadioIntervalSilenceAsset,
+  getRadioNativeQueueBehavior,
+  isNativeRadioContentTrack,
+  isNativeRadioIntervalTrack,
+  RADIO_INTERVAL_SILENCE_DURATION_SECONDS,
+  radioIntervalStartPosition,
+  type NativeRadioContentTrack,
+} from './native-queue';
 import { nextManualTrack, nextTrack, previousTrack, selectShuffleTrack, type ShuffleState } from './queue';
-import { ensureRadioTrackPlayer, setRadioRemoteHandlers } from './track-player-runtime';
+import { migrateRadioIntervalSeconds } from './radio-snapshot';
+import { ensureRadioTrackPlayer, setRadioContentPlaybackRate, setRadioRemoteHandlers } from './track-player-runtime';
 import type { RadioBankId, RadioCatalog, RadioPlaybackMode, RadioSubtitleMode, RadioTrack } from './types';
 
 const STORAGE_KEY = 'icao.radio-player.v1';
@@ -27,13 +39,14 @@ const radioPlayerEvents: [
 ] = [Event.PlaybackActiveTrackChanged, Event.PlaybackError, Event.PlaybackQueueEnded];
 
 type Snapshot = {
-  schemaVersion: 1;
+  schemaVersion: 1 | 2;
   bankId: RadioBankId;
   trackId: string;
   position: number;
   mode: RadioPlaybackMode;
   subtitleMode: RadioSubtitleMode;
   rate: number;
+  intervalSeconds?: number;
   bankTrackIds: Partial<Record<RadioBankId, string>>;
 };
 
@@ -45,6 +58,9 @@ type RadioContextValue = {
   mode: RadioPlaybackMode;
   subtitleMode: RadioSubtitleMode;
   rate: number;
+  intervalSeconds: number;
+  intervalRemaining: number;
+  waitingForNext: boolean;
   speedOptions: readonly number[];
   playing: boolean;
   loading: boolean;
@@ -65,19 +81,9 @@ type RadioContextValue = {
   setMode: (mode: RadioPlaybackMode) => void;
   setSubtitleMode: (mode: RadioSubtitleMode) => void;
   setRate: (rate: number) => void;
+  setIntervalSeconds: (seconds: number) => void;
   retry: () => void;
   stopAndClear: () => void;
-};
-
-type NativeRadioTrack = {
-  id: string;
-  url: string;
-  title: string;
-  artist: string;
-  album: string;
-  duration: number;
-  radioTrackId: string;
-  radioBankId: RadioBankId;
 };
 
 const RadioContext = createContext<RadioContextValue | undefined>(undefined);
@@ -113,8 +119,10 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
   const [trackId, setTrackId] = useState(embeddedCatalogs[0]?.tracks[0]?.id ?? '');
   const [bankTrackIds, setBankTrackIds] = useState<Partial<Record<RadioBankId, string>>>({});
   const [mode, setModeState] = useState<RadioPlaybackMode>('order');
-  const [subtitleMode, setSubtitleModeState] = useState<RadioSubtitleMode>('bilingual');
+  const [subtitleMode, setSubtitleModeState] = useState<RadioSubtitleMode>('off');
   const [rate, setRateState] = useState(1);
+  const [intervalSeconds, setIntervalSecondsState] = useState(0);
+  const [waitingForNext, setWaitingForNextState] = useState(false);
   const [sourceState, setSourceState] = useState<{ loading: boolean; error?: string }>({ loading: false });
   const [sessionVisible, setSessionVisible] = useState(false);
   const [restored, setRestored] = useState(false);
@@ -128,11 +136,23 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
   const pendingPlay = useRef(false);
   const pendingSeek = useRef(0);
   const nativeTransitionTrackId = useRef<string | undefined>(undefined);
-  const stateRef = useRef({ bankId, trackId, bankTrackIds, catalogs, mode, subtitleMode, rate, position: 0, shuffle });
+  const nativeTrackInstance = useRef(0);
+  const activeNativeContentTrack = useRef<NativeRadioContentTrack | undefined>(undefined);
+  const waitingForNextRef = useRef(false);
+  const audioLease = useRef<AudioLease | undefined>(undefined);
+  const stateRef = useRef({ bankId, trackId, bankTrackIds, catalogs, intervalSeconds, mode, subtitleMode, rate, position: 0, shuffle });
 
   const { catalog: currentCatalog, track: currentTrack } = findTrack(catalogs, bankId, trackId);
   const currentIndex = currentTrack ? currentCatalog?.tracks.findIndex((track) => track.id === currentTrack.id) ?? -1 : -1;
-  const duration = progress.duration || currentTrack?.durationSeconds || 0;
+  const contentDuration = currentTrack?.durationSeconds || 0;
+  const duration = waitingForNext ? contentDuration : progress.duration || contentDuration;
+  const position = waitingForNext ? contentDuration : progress.position;
+  const intervalProgressPosition = waitingForNext && Math.abs(progress.duration - RADIO_INTERVAL_SILENCE_DURATION_SECONDS) < 0.1
+    ? progress.position
+    : radioIntervalStartPosition(intervalSeconds);
+  const intervalRemaining = waitingForNext
+    ? Math.min(intervalSeconds, Math.max(0, Math.ceil(RADIO_INTERVAL_SILENCE_DURATION_SECONDS - intervalProgressPosition)))
+    : 0;
   const playing = playback.state === State.Playing;
   const buffering = playback.state === State.Buffering || playback.state === State.Loading;
   stateRef.current = {
@@ -140,10 +160,11 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     trackId: currentTrack?.id ?? trackId,
     bankTrackIds,
     catalogs,
+    intervalSeconds,
     mode,
     subtitleMode,
     rate,
-    position: progress.position,
+    position,
     shuffle,
   };
 
@@ -151,24 +172,35 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     const current = stateRef.current;
     if (!current.trackId) return Promise.resolve();
     return Storage.setItem(STORAGE_KEY, JSON.stringify({
-      schemaVersion: 1,
+      schemaVersion: 2,
       bankId: current.bankId,
       trackId: current.trackId,
       position: current.position,
       mode: current.mode,
       subtitleMode: current.subtitleMode,
       rate: current.rate,
+      intervalSeconds: current.intervalSeconds,
       bankTrackIds: current.bankTrackIds,
     } satisfies Snapshot));
   }, []);
 
-  const resolveTrack = useCallback(async (track: RadioTrack, forceRefresh = false): Promise<NativeRadioTrack> => {
+  const releaseRadioLease = useCallback(async (lease = audioLease.current) => {
+    if (lease) await audioSessionOrchestrator.release(lease).catch(() => undefined);
+    if (audioLease.current?.token === lease?.token) audioLease.current = undefined;
+  }, []);
+
+  const setWaitingForNext = useCallback((waiting: boolean) => {
+    waitingForNextRef.current = waiting;
+    setWaitingForNextState(waiting);
+  }, []);
+
+  const resolveTrack = useCallback(async (track: RadioTrack, forceRefresh = false): Promise<NativeRadioContentTrack> => {
     const local = resolveQuestionBankAsset(track.audioPath);
     const remote = await resolveRemoteQuestionBankAsset(track.audioPath, { forceRefresh }).catch(() => undefined);
     const uri = remote ?? local;
     if (!uri) throw new Error('resource_unavailable');
     return {
-      id: `radio:${track.bankId}:${track.id}:${generation.current}`,
+      id: `radio:${track.bankId}:${track.id}:${generation.current}:${nativeTrackInstance.current += 1}`,
       url: uri,
       title: track.title,
       artist: '飞猪 ICAO',
@@ -176,6 +208,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
       duration: track.durationSeconds,
       radioTrackId: track.id,
       radioBankId: track.bankId,
+      radioTrackKind: 'content',
     };
   }, []);
 
@@ -188,18 +221,31 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     return catalog.tracks.find((item) => item.id === result.trackId);
   }, []);
 
-  const appendUpcoming = useCallback(async (catalog: RadioCatalog, track: RadioTrack, forceRefresh = false) => {
+  const appendUpcoming = useCallback(async (
+    catalog: RadioCatalog,
+    track: RadioTrack,
+    forceRefresh = false,
+    nativeSource?: NativeRadioContentTrack,
+  ) => {
     const currentMode = stateRef.current.mode;
-    if (currentMode === 'repeatOne' && queuedNextTrackId.current) return;
-    const upcoming = chooseUpcoming(catalog, track, currentMode, stateRef.current.shuffle);
+    const currentInterval = stateRef.current.intervalSeconds;
+    const queueBehavior = getRadioNativeQueueBehavior(currentMode, currentInterval);
+    if (queueBehavior.repeatsCurrentNatively && queuedNextTrackId.current) return;
+    const upcoming = queueBehavior.automaticTarget === 'current'
+      ? track
+      : chooseUpcoming(catalog, track, currentMode, stateRef.current.shuffle);
     if (!upcoming || upcoming.id === queuedNextTrackId.current) return;
-    const queue = await TrackPlayer.getQueue();
-    if (queue.some((item) => item.radioTrackId === upcoming.id)) {
-      queuedNextTrackId.current = upcoming.id;
-      return;
+    const nativeUpcoming = await resolveTrack(upcoming, forceRefresh);
+    if (queueBehavior.includesInterval) {
+      await ensureRadioIntervalSilenceAsset().catch(() => undefined);
+      const source = nativeSource ?? await resolveTrack(track, forceRefresh);
+      await TrackPlayer.add([
+        createNativeRadioIntervalTrack(source, currentInterval, nativeTrackInstance.current += 1),
+        nativeUpcoming,
+      ]);
+    } else {
+      await TrackPlayer.add(nativeUpcoming);
     }
-    const nativeTrack = await resolveTrack(upcoming, forceRefresh);
-    await TrackPlayer.add(nativeTrack);
     queuedNextTrackId.current = upcoming.id;
   }, [chooseUpcoming, resolveTrack]);
 
@@ -209,26 +255,44 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     { autoPlay, forceRefresh = false, position = 0 }: { autoPlay: boolean; forceRefresh?: boolean; position?: number },
   ) => {
     const request = generation.current + 1;
+    let acquiredLease: AudioLease | undefined;
     generation.current = request;
     pendingPlay.current = autoPlay;
     pendingSeek.current = Math.max(0, position);
     preparedTrackId.current = undefined;
     queuedNextTrackId.current = undefined;
+    setWaitingForNext(false);
     setSourceState({ loading: true });
     try {
       const currentMode = stateRef.current.mode;
       const currentRate = stateRef.current.rate;
+      const currentInterval = stateRef.current.intervalSeconds;
+      const queueBehavior = getRadioNativeQueueBehavior(currentMode, currentInterval);
+      setRadioContentPlaybackRate(currentRate);
       await ensureRadioTrackPlayer();
+      const previousLease = audioLease.current;
       await TrackPlayer.pause();
+      await releaseRadioLease(previousLease);
       const nativeTrack = await resolveTrack(track, forceRefresh);
       if (request !== generation.current) return;
-      const upcoming = chooseUpcoming(catalog, track, currentMode, stateRef.current.shuffle);
+      const upcoming = queueBehavior.automaticTarget === 'current'
+        ? track
+        : chooseUpcoming(catalog, track, currentMode, stateRef.current.shuffle);
       const nativeUpcoming = upcoming ? await resolveTrack(upcoming, forceRefresh).catch(() => undefined) : undefined;
       if (request !== generation.current) return;
+      if (queueBehavior.includesInterval) await ensureRadioIntervalSilenceAsset().catch(() => undefined);
       await TrackPlayer.reset();
-      await TrackPlayer.add(nativeUpcoming ? [nativeTrack, nativeUpcoming] : [nativeTrack]);
+      activeNativeContentTrack.current = nativeTrack;
+      const queue = queueBehavior.includesInterval && nativeUpcoming
+        ? [
+          nativeTrack,
+          createNativeRadioIntervalTrack(nativeTrack, currentInterval, nativeTrackInstance.current += 1),
+          nativeUpcoming,
+        ]
+        : nativeUpcoming ? [nativeTrack, nativeUpcoming] : [nativeTrack];
+      await TrackPlayer.add(queue);
       queuedNextTrackId.current = nativeUpcoming && upcoming ? upcoming.id : undefined;
-      await TrackPlayer.setRepeatMode(currentMode === 'repeatOne' ? RepeatMode.Track : RepeatMode.Off);
+      await TrackPlayer.setRepeatMode(queueBehavior.repeatsCurrentNatively ? RepeatMode.Track : RepeatMode.Off);
       await TrackPlayer.setRate(currentRate);
       const seek = Math.min(Math.max(0, pendingSeek.current), Math.max(0, track.durationSeconds - 0.25));
       if (seek > 0) await TrackPlayer.seekTo(seek);
@@ -236,15 +300,21 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
       pendingSeek.current = 0;
       setSourceState({ loading: false });
       if (pendingPlay.current) {
-        await claimAudioSession('radio');
+        acquiredLease = await audioSessionOrchestrator.acquire('radio', 'radio-autoplay');
+        if (request !== generation.current) {
+          await releaseRadioLease(acquiredLease);
+          return;
+        }
+        audioLease.current = acquiredLease;
         await TrackPlayer.play();
       }
     } catch {
+      if (acquiredLease) await releaseRadioLease(acquiredLease);
       if (request !== generation.current) return;
       pendingPlay.current = false;
       setSourceState({ loading: false, error: '音频加载失败，请重试或切换下一首' });
     }
-  }, [chooseUpcoming, resolveTrack]);
+  }, [chooseUpcoming, releaseRadioLease, resolveTrack, setWaitingForNext]);
 
   useEffect(() => {
     void loadRadioCatalogs().then((next) => {
@@ -258,15 +328,16 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
       if (!active || !raw) return;
       try {
         const value = JSON.parse(raw) as Snapshot;
-        if (value.schemaVersion !== 1) return;
+        if (value.schemaVersion !== 1 && value.schemaVersion !== 2) return;
         const { catalog, track } = findTrack(embeddedCatalogs, value.bankId, value.trackId);
         if (!catalog || !track) return;
         setBankId(catalog.bankId);
         setTrackId(track.id);
         setBankTrackIds(value.bankTrackIds ?? {});
         setModeState(['order', 'repeatOne', 'shuffle'].includes(value.mode) ? value.mode : 'order');
-        setSubtitleModeState(['english', 'bilingual', 'off'].includes(value.subtitleMode) ? value.subtitleMode : 'bilingual');
+        setSubtitleModeState(['english', 'bilingual', 'off'].includes(value.subtitleMode) ? value.subtitleMode : 'off');
         setRateState(speedOptions.includes(value.rate as (typeof speedOptions)[number]) ? value.rate : 1);
+        setIntervalSecondsState(migrateRadioIntervalSeconds(value));
         pendingSeek.current = Math.max(0, value.position || 0);
         setShuffle({ history: [track.id], cursor: 0 });
       } catch {
@@ -276,9 +347,12 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     return () => { active = false; };
   }, [embeddedCatalogs]);
 
-  useEffect(() => registerAudioOwner('radio', () => {
-    pendingPlay.current = false;
-    void TrackPlayer.pause();
+  useEffect(() => audioSessionOrchestrator.register('radio', {
+    deactivate: async () => {
+      pendingPlay.current = false;
+      await TrackPlayer.pause();
+      audioLease.current = undefined;
+    },
   }), []);
 
   useEffect(() => {
@@ -294,29 +368,64 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
 
   useTrackPlayerEvents(radioPlayerEvents, (event) => {
     if (event.type === Event.PlaybackError) {
-      pendingPlay.current = false;
-      setSourceState({ loading: false, error: '音频播放失败，请重试或切换下一首' });
+      void TrackPlayer.getActiveTrack().then(async (activeTrack) => {
+        if (waitingForNextRef.current || isNativeRadioIntervalTrack(activeTrack)) {
+          setWaitingForNext(false);
+          try {
+            await TrackPlayer.skipToNext(0);
+            if (pendingPlay.current) await TrackPlayer.play();
+            else await TrackPlayer.pause();
+          } catch {
+            pendingPlay.current = false;
+            await releaseRadioLease();
+            setSourceState({ loading: false, error: '下一首音频暂时无法加载，请重试或手动切换' });
+          }
+          return;
+        }
+        pendingPlay.current = false;
+        await releaseRadioLease();
+        setSourceState({ loading: false, error: '音频播放失败，请重试或切换下一首' });
+      }).catch(() => {
+          pendingPlay.current = false;
+          void releaseRadioLease();
+          setSourceState({ loading: false, error: '音频播放失败，请重试或切换下一首' });
+      });
       return;
     }
     if (event.type === Event.PlaybackQueueEnded) {
       pendingPlay.current = false;
+      void releaseRadioLease();
       setSourceState({ loading: false, error: '下一首音频暂时无法加载，请重试或手动切换' });
       return;
     }
-    const native = event.track as NativeRadioTrack | undefined;
-    if (!native?.radioTrackId || native.radioTrackId === stateRef.current.trackId) return;
+    const native = event.track;
+    if (isNativeRadioIntervalTrack(native)) {
+      setWaitingForNext(true);
+      setSourceState({ loading: false });
+      return;
+    }
+    if (!isNativeRadioContentTrack(native)) return;
+    activeNativeContentTrack.current = native;
+    const transitionedFromInterval = waitingForNextRef.current;
+    setWaitingForNext(false);
     const { catalog, track } = findTrack(stateRef.current.catalogs, native.radioBankId, native.radioTrackId);
     if (!catalog || !track) return;
-    nativeTransitionTrackId.current = track.id;
     preparedTrackId.current = track.id;
+    setSourceState({ loading: false });
+    if (native.radioTrackId === stateRef.current.trackId) {
+      if (transitionedFromInterval) {
+        queuedNextTrackId.current = undefined;
+        void appendUpcoming(catalog, track, false, native).catch(() => undefined);
+      }
+      return;
+    }
     queuedNextTrackId.current = undefined;
-    pendingPlay.current = true;
+    nativeTransitionTrackId.current = track.id;
     setBankId(catalog.bankId);
     setTrackId(track.id);
     setBankTrackIds((current) => ({ ...current, [catalog.bankId]: track.id }));
     setShuffle((current) => selectShuffleTrack(current, track.id));
-    setSourceState({ loading: false });
-    void appendUpcoming(catalog, track).catch(() => undefined);
+    void appendUpcoming(catalog, track, false, native).catch(() => undefined);
   });
 
   const play = useCallback(async () => {
@@ -324,32 +433,41 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     setSessionVisible(true);
     pendingPlay.current = true;
     if (preparedTrackId.current !== currentTrack.id) {
-      await prepareTrack(currentCatalog, currentTrack, { autoPlay: true, position: progress.position });
+      await prepareTrack(currentCatalog, currentTrack, { autoPlay: true, position });
       return;
     }
-    await claimAudioSession('radio');
-    if (playback.state === State.Ended || progress.position >= duration - 0.1) await TrackPlayer.seekTo(0);
-    await TrackPlayer.play();
-  }, [currentCatalog, currentTrack, duration, playback.state, prepareTrack, progress.position]);
+    let lease: AudioLease | undefined;
+    try {
+      lease = await audioSessionOrchestrator.acquire('radio', 'radio-play');
+      audioLease.current = lease;
+      if (!waitingForNextRef.current && (playback.state === State.Ended || position >= duration - 0.1)) await TrackPlayer.seekTo(0);
+      await TrackPlayer.play();
+    } catch {
+      if (lease) await releaseRadioLease(lease);
+      setSourceState({ loading: false, error: '音频播放失败，请重试或切换下一首' });
+    }
+  }, [currentCatalog, currentTrack, duration, playback.state, position, prepareTrack, releaseRadioLease]);
 
   const pause = useCallback(() => {
     pendingPlay.current = false;
-    void TrackPlayer.pause();
+    const lease = audioLease.current;
+    void TrackPlayer.pause().then(() => releaseRadioLease(lease)).catch(() => undefined);
     void saveSnapshot();
-  }, [saveSnapshot]);
+  }, [releaseRadioLease, saveSnapshot]);
 
   const chooseTrack = useCallback((nextTrackId: string, autoPlay = true) => {
     const current = stateRef.current;
     const { catalog, track } = findTrack(current.catalogs, current.bankId, nextTrackId);
     if (!catalog || !track) return;
     pendingPlay.current = autoPlay;
+    setWaitingForNext(false);
     requestedTrackId.current = track.id;
     setTrackId(track.id);
     setBankTrackIds((value) => ({ ...value, [catalog.bankId]: track.id }));
     setShuffle((value) => selectShuffleTrack(value, track.id));
     if (autoPlay) setSessionVisible(true);
     void prepareTrack(catalog, track, { autoPlay });
-  }, [prepareTrack]);
+  }, [prepareTrack, setWaitingForNext]);
 
   const next = useCallback(async (autoPlay = true) => {
     const current = stateRef.current;
@@ -357,15 +475,29 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     if (!catalog || !track) return;
     const result = nextManualTrack(catalog.tracks, track.id, current.mode, current.shuffle);
     if (!result.trackId) return;
-    if (queuedNextTrackId.current === result.trackId) {
+    if (queuedNextTrackId.current === result.trackId && (current.intervalSeconds === 0 || waitingForNextRef.current)) {
       pendingPlay.current = autoPlay;
       setShuffle(result.shuffle);
+      setWaitingForNext(false);
       await TrackPlayer.skipToNext(0);
-      if (autoPlay) await TrackPlayer.play();
+      if (autoPlay) {
+        let lease: AudioLease | undefined;
+        try {
+          lease = await audioSessionOrchestrator.acquire('radio', 'radio-next');
+          audioLease.current = lease;
+          await TrackPlayer.play();
+        } catch {
+          if (lease) await releaseRadioLease(lease);
+          setSourceState({ loading: false, error: '音频播放失败，请重试或切换下一首' });
+        }
+      } else {
+        await TrackPlayer.pause();
+        await releaseRadioLease();
+      }
       return;
     }
     chooseTrack(result.trackId, autoPlay);
-  }, [chooseTrack]);
+  }, [chooseTrack, releaseRadioLease, setWaitingForNext]);
 
   const previous = useCallback(async () => {
     const current = stateRef.current;
@@ -378,6 +510,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
   }, [chooseTrack]);
 
   const seek = useCallback(async (position: number) => {
+    if (waitingForNextRef.current) return;
     await TrackPlayer.seekTo(Math.max(0, Math.min(duration, position)));
   }, [duration]);
 
@@ -386,10 +519,14 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     pendingPlay.current = false;
     preparedTrackId.current = undefined;
     queuedNextTrackId.current = undefined;
-    void TrackPlayer.reset();
-    releaseAudioSession('radio');
+    activeNativeContentTrack.current = undefined;
+    setWaitingForNext(false);
+    const lease = audioLease.current;
+    void TrackPlayer.reset().then(() => releaseRadioLease(lease)).catch(() => {
+      setSourceState({ loading: false, error: '音频停止失败，请稍后重试' });
+    });
     setSessionVisible(false);
-  }, []);
+  }, [releaseRadioLease, setWaitingForNext]);
 
   useEffect(() => {
     setRadioRemoteHandlers({ next: () => next(true), pause, play, previous, seek, stop: stopAndClear });
@@ -402,15 +539,92 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     return () => { clearInterval(interval); subscription.remove(); };
   }, [saveSnapshot, sessionVisible]);
 
+  const replaceWaitingUpcoming = useCallback(async (
+    catalog: RadioCatalog,
+    track: RadioTrack,
+    nextMode: RadioPlaybackMode,
+  ) => {
+    const upcoming = nextMode === 'repeatOne'
+      ? track
+      : chooseUpcoming(catalog, track, nextMode, stateRef.current.shuffle);
+    if (!upcoming) return;
+    const nativeUpcoming = await resolveTrack(upcoming).catch(() => undefined);
+    if (!nativeUpcoming || !waitingForNextRef.current) return;
+    await TrackPlayer.removeUpcomingTracks();
+    await TrackPlayer.add(nativeUpcoming);
+    queuedNextTrackId.current = upcoming.id;
+  }, [chooseUpcoming, resolveTrack]);
+
+  const replacePreparedUpcoming = useCallback(async (
+    catalog: RadioCatalog,
+    track: RadioTrack,
+    nextMode: RadioPlaybackMode,
+    nextInterval: number,
+  ) => {
+    const queueBehavior = getRadioNativeQueueBehavior(nextMode, nextInterval);
+    const upcoming = queueBehavior.automaticTarget === 'current'
+      ? track
+      : chooseUpcoming(catalog, track, nextMode, stateRef.current.shuffle);
+    if (!upcoming) return;
+    const source = activeNativeContentTrack.current ?? await resolveTrack(track);
+    const nativeUpcoming = await resolveTrack(upcoming).catch(() => undefined);
+    if (!nativeUpcoming || waitingForNextRef.current || preparedTrackId.current !== track.id) return;
+    await TrackPlayer.removeUpcomingTracks();
+    await TrackPlayer.setRepeatMode(queueBehavior.repeatsCurrentNatively ? RepeatMode.Track : RepeatMode.Off);
+    if (queueBehavior.includesInterval) {
+      await ensureRadioIntervalSilenceAsset().catch(() => undefined);
+      await TrackPlayer.add([
+        createNativeRadioIntervalTrack(source, nextInterval, nativeTrackInstance.current += 1),
+        nativeUpcoming,
+      ]);
+    } else {
+      await TrackPlayer.add(nativeUpcoming);
+    }
+    queuedNextTrackId.current = upcoming.id;
+  }, [chooseUpcoming, resolveTrack]);
+
   const setMode = useCallback((nextMode: RadioPlaybackMode) => {
     stateRef.current.mode = nextMode;
     setModeState(nextMode);
     const current = stateRef.current;
     const { catalog, track } = findTrack(current.catalogs, current.bankId, current.trackId);
     if (!catalog || !track) return;
-    const shouldPlay = playback.state === State.Playing;
-    void prepareTrack(catalog, track, { autoPlay: shouldPlay, position: progress.position });
-  }, [playback.state, prepareTrack, progress.position]);
+    if (waitingForNextRef.current) {
+      void replaceWaitingUpcoming(catalog, track, nextMode).catch(() => undefined);
+      return;
+    }
+    void replacePreparedUpcoming(catalog, track, nextMode, current.intervalSeconds).catch(() => undefined);
+  }, [replacePreparedUpcoming, replaceWaitingUpcoming]);
+
+  const setRate = useCallback((nextRate: number) => {
+    stateRef.current.rate = nextRate;
+    setRadioContentPlaybackRate(nextRate);
+    setRateState(nextRate);
+    if (!waitingForNextRef.current) void TrackPlayer.setRate(nextRate);
+  }, []);
+
+  const setIntervalSeconds = useCallback((nextValue: number) => {
+    const nextInterval = clampRadioInterval(nextValue);
+    if (nextInterval === stateRef.current.intervalSeconds) return;
+    stateRef.current.intervalSeconds = nextInterval;
+    setIntervalSecondsState(nextInterval);
+    const current = stateRef.current;
+    const { catalog, track } = findTrack(current.catalogs, current.bankId, current.trackId);
+    if (!catalog || !track) return;
+    if (waitingForNextRef.current) {
+      if (nextInterval === 0) {
+        const resume = playback.state === State.Playing;
+        setWaitingForNext(false);
+        void TrackPlayer.skipToNext(0).then(() => resume ? TrackPlayer.play() : TrackPlayer.pause()).catch(() => undefined);
+      } else {
+        void TrackPlayer.setRate(1).then(() => TrackPlayer.seekTo(radioIntervalStartPosition(nextInterval))).catch(() => undefined);
+      }
+      void saveSnapshot();
+      return;
+    }
+    void replacePreparedUpcoming(catalog, track, current.mode, nextInterval).catch(() => undefined);
+    void saveSnapshot();
+  }, [playback.state, replacePreparedUpcoming, saveSnapshot, setWaitingForNext]);
 
   const value = useMemo<RadioContextValue>(() => ({
     catalogs,
@@ -420,12 +634,15 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     mode,
     subtitleMode,
     rate,
+    intervalSeconds,
+    intervalRemaining,
+    waitingForNext,
     speedOptions,
     playing,
     loading: sourceState.loading,
     buffering,
     error: sourceState.error,
-    position: progress.position,
+    position,
     duration,
     sessionVisible,
     activateSession: () => setSessionVisible(true),
@@ -452,12 +669,13 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     selectTrack: chooseTrack,
     setMode,
     setSubtitleMode: setSubtitleModeState,
-    setRate: (nextRate) => { stateRef.current.rate = nextRate; setRateState(nextRate); void TrackPlayer.setRate(nextRate); },
+    setRate,
+    setIntervalSeconds,
     retry: () => {
-      if (currentCatalog && currentTrack) void prepareTrack(currentCatalog, currentTrack, { autoPlay: true, forceRefresh: true, position: progress.position });
+      if (currentCatalog && currentTrack) void prepareTrack(currentCatalog, currentTrack, { autoPlay: true, forceRefresh: true, position });
     },
     stopAndClear,
-  }), [bankTrackIds, buffering, catalogs, chooseTrack, currentCatalog, currentIndex, currentTrack, duration, mode, next, pause, play, playing, prepareTrack, previous, progress.position, rate, seek, sessionVisible, setMode, sourceState.error, sourceState.loading, stopAndClear, subtitleMode]);
+  }), [bankTrackIds, buffering, catalogs, chooseTrack, currentCatalog, currentIndex, currentTrack, duration, intervalRemaining, intervalSeconds, mode, next, pause, play, playing, position, prepareTrack, previous, rate, seek, sessionVisible, setIntervalSeconds, setMode, setRate, sourceState.error, sourceState.loading, stopAndClear, subtitleMode, waitingForNext]);
 
   return <RadioContext.Provider value={value}>{children}</RadioContext.Provider>;
 }

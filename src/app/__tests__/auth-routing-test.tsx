@@ -23,6 +23,7 @@ jest.mock('@/features/auth/AuthProvider', () => ({
 
 jest.mock('@/features/radio-player/RadioMiniPlayer', () => ({ RadioMiniPlayer: () => null }));
 jest.mock('@/features/radio-player/RadioPlayerProvider', () => ({ RadioPlayerProvider: ({ children }: { children: React.ReactNode }) => children }));
+jest.mock('@/features/question-bank/recording/recording-repository', () => ({ recordingRepository: { cleanupExpired: jest.fn() } }));
 
 jest.mock('expo-router', () => {
   const React = jest.requireActual('react');

@@ -6,6 +6,8 @@ import TrackPlayer, {
   IOSCategoryMode,
 } from 'react-native-track-player';
 
+import { isNativeRadioContentTrack, isNativeRadioIntervalTrack, radioIntervalStartPosition } from './native-queue';
+
 type RadioRemoteHandlers = {
   next: () => Promise<void>;
   pause: () => void;
@@ -17,6 +19,11 @@ type RadioRemoteHandlers = {
 
 let setupPromise: Promise<void> | undefined;
 let remoteHandlers: RadioRemoteHandlers | undefined;
+let radioContentPlaybackRate = 1;
+
+export function setRadioContentPlaybackRate(rate: number) {
+  radioContentPlaybackRate = rate;
+}
 
 export function setRadioRemoteHandlers(handlers?: RadioRemoteHandlers) {
   remoteHandlers = handlers;
@@ -69,6 +76,22 @@ async function run(handler: (() => void | Promise<void>) | undefined, fallback: 
 }
 
 export async function radioPlaybackService() {
+  TrackPlayer.addEventListener(Event.PlaybackActiveTrackChanged, ({ track }) => {
+    if (isNativeRadioIntervalTrack(track)) {
+      void TrackPlayer.setRate(1)
+        .then(() => TrackPlayer.seekTo(radioIntervalStartPosition(track.radioIntervalSeconds)))
+        .catch(async () => {
+          try {
+            await TrackPlayer.skipToNext(0);
+            await TrackPlayer.play();
+          } catch {
+            // The provider reports content errors. A broken interval must not stop a prepared next track.
+          }
+        });
+      return;
+    }
+    if (isNativeRadioContentTrack(track)) void TrackPlayer.setRate(radioContentPlaybackRate);
+  });
   TrackPlayer.addEventListener(Event.RemotePlay, () => {
     void run(remoteHandlers?.play, TrackPlayer.play);
   });

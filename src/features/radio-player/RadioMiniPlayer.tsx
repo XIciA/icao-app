@@ -40,7 +40,7 @@ export function RadioMiniPlayer() {
       >
         <View style={styles.icon}><Headphones color={colors.primaryForeground} size={18} /></View>
         <View style={styles.copy}>
-          <AppText color={colors.primary} numberOfLines={1} variant="micro">{track.bankTitle} · 随身听</AppText>
+          <AppText color={colors.primary} numberOfLines={1} variant="micro">{radio.waitingForNext ? `间隔 · ${radio.intervalRemaining}s` : track.bankTitle}</AppText>
           <AppText numberOfLines={1} variant="button">{track.title}</AppText>
         </View>
         <Pressable accessibilityLabel={radio.playing ? '暂停随身听' : '播放随身听'} hitSlop={6} onPress={(event) => { event.stopPropagation(); void radio.toggle(); }} style={styles.action}>

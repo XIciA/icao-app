@@ -59,4 +59,14 @@ describe('AudioTimeline', () => {
 
     expect(onScrubEnd).toHaveBeenCalledWith(3);
   });
+
+  it('supports an explicit integer step and custom interval formatting without changing progress defaults', async () => {
+    const onScrubEnd = jest.fn();
+    const screen = await render(<AudioTimeline accessibilityLabel="播放间隔秒数" duration={30} formatValue={(value) => `${Math.round(value)}秒`} onScrubEnd={onScrubEnd} position={5} showLabels={false} step={1} />);
+
+    fireEvent(screen.getByLabelText('播放间隔秒数'), 'accessibilityAction', { nativeEvent: { actionName: 'increment' } });
+
+    expect(screen.getByLabelText('播放间隔秒数').props.accessibilityValue.text).toBe('5秒 / 30秒');
+    expect(onScrubEnd).toHaveBeenCalledWith(6);
+  });
 });

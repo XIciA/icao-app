@@ -5,6 +5,11 @@ import { RadioPlayerScreen } from '@/features/content/RadioPlayerScreen';
 
 const mockPause = jest.fn();
 const mockPush = jest.fn();
+const mockSetIntervalSeconds = jest.fn();
+let mockSubtitleMode = 'bilingual';
+let mockWaitingForNext = false;
+let mockIntervalSeconds = 0;
+let mockIntervalRemaining = 0;
 
 const mockTrack = {
   id: 'listening-main-001',
@@ -22,7 +27,7 @@ const mockTrack = {
   stableIndex: 0,
 };
 
-jest.mock('expo-router', () => ({ useRouter: () => ({ push: mockPush }) }));
+jest.mock('expo-router', () => ({ useRouter: () => ({ back: jest.fn(), push: mockPush }) }));
 jest.mock('lucide-react-native', () => {
   const { View: MockView } = jest.requireActual('react-native');
   const MockIcon = () => <MockView />;
@@ -35,8 +40,11 @@ jest.mock('@/features/radio-player/RadioPlayerProvider', () => ({
     currentTrack: mockTrack,
     currentIndex: 0,
     mode: 'order',
-    subtitleMode: 'bilingual',
+    subtitleMode: mockSubtitleMode,
     rate: 1,
+    intervalSeconds: mockIntervalSeconds,
+    intervalRemaining: mockIntervalRemaining,
+    waitingForNext: mockWaitingForNext,
     speedOptions: [0.75, 1, 1.25, 1.5],
     playing: true,
     loading: false,
@@ -55,6 +63,7 @@ jest.mock('@/features/radio-player/RadioPlayerProvider', () => ({
     setMode: jest.fn(),
     setSubtitleMode: jest.fn(),
     setRate: jest.fn(),
+    setIntervalSeconds: mockSetIntervalSeconds,
     retry: jest.fn(),
     stopAndClear: jest.fn(),
   }),
@@ -64,6 +73,11 @@ describe('radio learning entry', () => {
   beforeEach(() => {
     mockPause.mockReset();
     mockPush.mockReset();
+    mockSetIntervalSeconds.mockReset();
+    mockSubtitleMode = 'bilingual';
+    mockWaitingForNext = false;
+    mockIntervalSeconds = 0;
+    mockIntervalRemaining = 0;
   });
 
   it('pauses radio and opens the exact source card with a radio return target', async () => {
@@ -73,7 +87,7 @@ describe('radio learning entry', () => {
       </SafeAreaProvider>,
     );
 
-    fireEvent.press(screen.getByText('学习本题'));
+    fireEvent.press(screen.getByLabelText('进入当前题目学习'));
 
     expect(mockPause).toHaveBeenCalledTimes(1);
     expect(mockPush).toHaveBeenCalledWith({
@@ -86,5 +100,25 @@ describe('radio learning entry', () => {
         returnTo: 'radio',
       },
     });
+  });
+
+  it('uses the lightweight waveform while subtitles are off and exposes interval presets', async () => {
+    mockSubtitleMode = 'off';
+    mockWaitingForNext = true;
+    mockIntervalSeconds = 5;
+    mockIntervalRemaining = 3;
+    const screen = await render(
+      <SafeAreaProvider initialMetrics={{ frame: { height: 812, width: 375, x: 0, y: 0 }, insets: { bottom: 34, left: 0, right: 0, top: 47 } }}>
+        <RadioPlayerScreen />
+      </SafeAreaProvider>,
+    );
+
+    expect(screen.getByLabelText('等待下一题，剩余3秒')).toBeTruthy();
+    expect(screen.queryByText('English transcript')).toBeNull();
+
+    await fireEvent.press(screen.getByLabelText('播放间隔：5秒'));
+    await fireEvent.press(screen.getByLabelText('设置播放间隔10秒'));
+
+    expect(mockSetIntervalSeconds).toHaveBeenCalledWith(10);
   });
 });

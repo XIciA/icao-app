@@ -1,0 +1,11 @@
+appId: ${APP_ID}
+---
+- launchApp:
+    clearState: false
+- openLink: "feizhuicao://question-bank/sentences900/study/sentence900-3%E7%BA%A7/sentence900-3%E7%BA%A7-main?cardId=sentence900-main-001"
+- assertVisible: "按住说话"
+- longPressOn: "按住说话"
+- assertVisible: "按住重录"
+- assertVisible: "我的回答"
+- assertVisible: "回放"
+- assertVisible: "Audio lifecycle test transcript."

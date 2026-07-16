@@ -18,22 +18,28 @@ export function AudioTimeline({
   blockedExternalGesture,
   disabled = false,
   duration,
+  formatValue = formatAudioTime,
   onInteractionChange,
   onScrubCancel,
   onScrubEnd,
   onScrubStart,
   position,
+  showLabels = true,
+  step,
   testID = 'audio-timeline',
 }: {
   accessibilityLabel?: string;
   blockedExternalGesture?: GestureType;
   disabled?: boolean;
   duration: number;
+  formatValue?: (value: number) => string;
   onInteractionChange?: (active: boolean) => void;
   onScrubCancel?: () => void;
   onScrubEnd: (position: number) => void | Promise<void>;
   onScrubStart?: () => void;
   position: number;
+  showLabels?: boolean;
+  step?: number;
   testID?: string;
 }) {
   const [displayPosition, setDisplayPosition] = useState(position);
@@ -89,26 +95,32 @@ export function AudioTimeline({
       .failOffsetY([-10, 10])
       .onStart(({ x }) => {
         const ratio = trackWidth.value > 0 ? Math.max(0, Math.min(1, x / trackWidth.value)) : progress.value;
-        progress.value = ratio;
+        const rawPosition = ratio * duration;
+        const nextPosition = step && step > 0 ? Math.round(rawPosition / step) * step : rawPosition;
+        progress.value = duration > 0 ? nextPosition / duration : 0;
         dragging.value = 1;
         lastTextUpdate.value = Date.now();
-        runOnJS(beginScrub)(ratio * duration);
+        runOnJS(beginScrub)(nextPosition);
       })
       .onUpdate(({ x }) => {
         const ratio = trackWidth.value > 0 ? Math.max(0, Math.min(1, x / trackWidth.value)) : progress.value;
-        progress.value = ratio;
+        const rawPosition = ratio * duration;
+        const nextPosition = step && step > 0 ? Math.round(rawPosition / step) * step : rawPosition;
+        progress.value = duration > 0 ? nextPosition / duration : 0;
         const now = Date.now();
         if (now - lastTextUpdate.value >= 50) {
           lastTextUpdate.value = now;
-          runOnJS(reportPreview)(ratio * duration);
+          runOnJS(reportPreview)(nextPosition);
         }
       })
       .onEnd(({ x }, success) => {
         if (!success) return;
         const ratio = trackWidth.value > 0 ? Math.max(0, Math.min(1, x / trackWidth.value)) : progress.value;
-        progress.value = ratio;
+        const rawPosition = ratio * duration;
+        const nextPosition = step && step > 0 ? Math.round(rawPosition / step) * step : rawPosition;
+        progress.value = duration > 0 ? nextPosition / duration : 0;
         dragging.value = 0;
-        runOnJS(finishScrub)(ratio * duration);
+        runOnJS(finishScrub)(nextPosition);
       })
       .onFinalize((_event, success) => {
         if (success || dragging.value === 0) return;
@@ -123,8 +135,10 @@ export function AudioTimeline({
       .onEnd(({ x }, success) => {
         if (!success) return;
         const ratio = trackWidth.value > 0 ? Math.max(0, Math.min(1, x / trackWidth.value)) : progress.value;
-        progress.value = ratio;
-        runOnJS(commitTap)(ratio * duration);
+        const rawPosition = ratio * duration;
+        const nextPosition = step && step > 0 ? Math.round(rawPosition / step) * step : rawPosition;
+        progress.value = duration > 0 ? nextPosition / duration : 0;
+        runOnJS(commitTap)(nextPosition);
       })
       .withTestId(`${testID}-tap`);
     if (blockedExternalGesture) {
@@ -132,7 +146,7 @@ export function AudioTimeline({
       tap.blocksExternalGesture(blockedExternalGesture);
     }
     return Gesture.Race(pan, tap);
-  }, [beginScrub, blockedExternalGesture, cancelScrub, commitTap, disabled, dragging, duration, finishScrub, lastTextUpdate, position, progress, reportPreview, testID, trackWidth]);
+  }, [beginScrub, blockedExternalGesture, cancelScrub, commitTap, disabled, dragging, duration, finishScrub, lastTextUpdate, position, progress, reportPreview, step, testID, trackWidth]);
 
   const fillStyle = useAnimatedStyle(() => ({
     width: Math.max(0, progress.value * trackWidth.value),
@@ -148,7 +162,7 @@ export function AudioTimeline({
     trackWidth.value = event.nativeEvent.layout.width;
   }
 
-  const accessibilityStep = duration <= 30 ? 1 : 5;
+  const accessibilityStep = step && step > 0 ? step : duration <= 30 ? 1 : 5;
 
   return (
     <View style={styles.root}>
@@ -163,7 +177,7 @@ export function AudioTimeline({
             max: Math.max(0, Math.round(duration)),
             min: 0,
             now: Math.max(0, Math.round(displayPosition)),
-            text: `${formatAudioTime(displayPosition)} / ${formatAudioTime(duration)}`,
+            text: `${formatValue(displayPosition)} / ${formatValue(duration)}`,
           }}
           onAccessibilityAction={(event) => {
             if (disabled || !duration) return;
@@ -182,10 +196,10 @@ export function AudioTimeline({
           <Animated.View style={[styles.thumb, thumbStyle]} />
         </Animated.View>
       </GestureDetector>
-      <View style={styles.timeRow}>
-        <AppText style={styles.time} variant="micro">{formatAudioTime(displayPosition)}</AppText>
-        <AppText style={styles.time} variant="micro">{formatAudioTime(duration)}</AppText>
-      </View>
+      {showLabels ? <View style={styles.timeRow}>
+        <AppText style={styles.time} variant="micro">{formatValue(displayPosition)}</AppText>
+        <AppText style={styles.time} variant="micro">{formatValue(duration)}</AppText>
+      </View> : null}
     </View>
   );
 }

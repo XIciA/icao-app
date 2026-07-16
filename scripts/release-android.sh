@@ -36,6 +36,7 @@ git status --short
 pnpm release:prepare
 node tools/create-release-manifest.mjs
 pnpm check
+node tools/audio-sensitive-fingerprint.mjs verify android
 
 CURRENT_API_FINGERPRINT=$(node -p "require('./.generated/release/current-manifest.json').apiFingerprint")
 DEPLOY_API=0

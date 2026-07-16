@@ -6,7 +6,7 @@ import type { GestureType } from 'react-native-gesture-handler';
 
 import { AppText } from '@/components/ui';
 import { colors, fonts, radii, shadows, spacing } from '@/theme';
-import { claimAudioSession, registerAudioOwner } from '@/platform/audio-session-coordinator';
+import { audioSessionOrchestrator, type AudioLease } from '@/platform/audio';
 import { useAudioLoadTimeout } from '../hooks/useAudioLoadTimeout';
 import { AudioTimeline } from './AudioTimeline';
 
@@ -57,6 +57,8 @@ export function StudyAudioPlayer({
   const speedMenuAnchorRef = useRef<{ left: number; top: number } | undefined>(undefined);
   const pendingAutoPlayRef = useRef(false);
   const resumeAfterScrubRef = useRef(false);
+  const audioLease = useRef<AudioLease | undefined>(undefined);
+  const playGeneration = useRef(0);
   const currentAppState = AppState.currentState;
   const appStateRef = useRef<'active' | 'background' | 'inactive' | 'unknown' | 'extension'>(
     typeof currentAppState === 'string' ? currentAppState : 'active',
@@ -71,47 +73,121 @@ export function StudyAudioPlayer({
   const audioFailed = !uri || loadTimeout.timedOut || status.playbackState === 'error';
   const audioControllable = Boolean(uri && status.isLoaded && !loadTimeout.timedOut && status.playbackState !== 'error');
 
-  useEffect(() => registerAudioOwner('study', () => {
-    pendingAutoPlayRef.current = false;
-    resumeAfterScrubRef.current = false;
-    player.pause();
-  }), [player]);
+  const tryPausePlayer = useCallback(() => {
+    try {
+      player.pause();
+      return true;
+    } catch {
+      return false;
+    }
+  }, [player]);
+
+  const trySeekPlayer = useCallback(async (position: number) => {
+    try {
+      await player.seekTo(position);
+      return true;
+    } catch {
+      return false;
+    }
+  }, [player]);
+
+  const tryReplacePlayer = useCallback((source: string) => {
+    try {
+      player.replace(source);
+      return true;
+    } catch {
+      return false;
+    }
+  }, [player]);
+
+  const trySetPlaybackRate = useCallback((rate: number) => {
+    try {
+      player.setPlaybackRate(rate);
+      return true;
+    } catch {
+      return false;
+    }
+  }, [player]);
+
+  const tryPlayPlayer = useCallback(() => {
+    try {
+      player.play();
+      return true;
+    } catch {
+      return false;
+    }
+  }, [player]);
+
+  const releaseAudioLease = useCallback(async (lease = audioLease.current) => {
+    if (lease) await audioSessionOrchestrator.release(lease).catch(() => undefined);
+    if (audioLease.current?.token === lease?.token) audioLease.current = undefined;
+  }, []);
+
+  useEffect(() => audioSessionOrchestrator.register('study', {
+    deactivate: async () => {
+      playGeneration.current += 1;
+      pendingAutoPlayRef.current = false;
+      resumeAfterScrubRef.current = false;
+      if (!tryPausePlayer()) throw new Error('study_player_pause_failed');
+      audioLease.current = undefined;
+    },
+  }), [tryPausePlayer]);
 
   useEffect(() => {
-    player.pause();
+    playGeneration.current += 1;
+    tryPausePlayer();
+    void releaseAudioLease();
     pendingAutoPlayRef.current = false;
     resumeAfterScrubRef.current = false;
     setSpeedMenuPosition(undefined);
     onSeekInteractionChange?.(false);
-    void player.seekTo(0).catch(() => undefined);
+    void trySeekPlayer(0);
     if (!uri) return;
-    player.replace(uri);
-    player.setPlaybackRate(speedRef.current);
+    if (!tryReplacePlayer(uri) || !trySetPlaybackRate(speedRef.current)) {
+      // Status/load timeout owns the visible source error state.
+    }
     pendingAutoPlayRef.current = autoPlayRequest > 0;
-  }, [autoPlayRequest, onSeekInteractionChange, playbackKey, player, uri]);
+  }, [autoPlayRequest, onSeekInteractionChange, playbackKey, releaseAudioLease, tryPausePlayer, tryReplacePlayer, trySeekPlayer, trySetPlaybackRate, uri]);
 
   useEffect(() => {
     if (!pendingAutoPlayRef.current || appStateRef.current !== 'active' || !status.isLoaded || status.playbackState === 'error') return;
     pendingAutoPlayRef.current = false;
-    void claimAudioSession('study').then(() => {
-      onPlaybackStart?.();
-      player.play();
-    });
-  }, [onPlaybackStart, player, status.isLoaded, status.playbackState]);
+    const operationGeneration = playGeneration.current + 1;
+    playGeneration.current = operationGeneration;
+    void (async () => {
+      let lease: AudioLease | undefined;
+      try {
+        lease = await audioSessionOrchestrator.acquire('study', 'study-autoplay');
+        if (operationGeneration !== playGeneration.current || appStateRef.current !== 'active') {
+          await releaseAudioLease(lease);
+          return;
+        }
+        audioLease.current = lease;
+        onPlaybackStart?.();
+        if (!tryPlayPlayer()) throw new Error('study_player_play_failed');
+      } catch {
+        if (lease) await releaseAudioLease(lease);
+      }
+    })();
+  }, [onPlaybackStart, releaseAudioLease, status.isLoaded, status.playbackState, tryPlayPlayer]);
 
   useEffect(() => {
     if (pauseRequest <= 0) return;
+    playGeneration.current += 1;
     pendingAutoPlayRef.current = false;
     resumeAfterScrubRef.current = false;
-    player.pause();
-  }, [pauseRequest, player]);
+    tryPausePlayer();
+    void releaseAudioLease();
+  }, [pauseRequest, releaseAudioLease, tryPausePlayer]);
 
   useEffect(() => {
     if (status.playbackState !== 'error') return;
+    playGeneration.current += 1;
     pendingAutoPlayRef.current = false;
     resumeAfterScrubRef.current = false;
-    player.pause();
-  }, [player, status.playbackState]);
+    tryPausePlayer();
+    void releaseAudioLease();
+  }, [releaseAudioLease, status.playbackState, tryPausePlayer]);
 
   useEffect(() => {
     setSpeedMenuPosition(undefined);
@@ -122,31 +198,64 @@ export function StudyAudioPlayer({
     const subscription = AppState.addEventListener('change', (next) => {
       appStateRef.current = next;
       if (next !== 'active') {
+        playGeneration.current += 1;
         pendingAutoPlayRef.current = false;
         resumeAfterScrubRef.current = false;
         setSpeedMenuPosition(undefined);
         onSeekInteractionChange?.(false);
-        if (player.playing) player.pause();
+        if (player.playing) tryPausePlayer();
+        void releaseAudioLease();
       }
     });
     return () => subscription.remove();
-  }, [onSeekInteractionChange, player]);
+  }, [onSeekInteractionChange, player, releaseAudioLease, tryPausePlayer]);
 
   useEffect(() => {
     if (!loadTimeout.timedOut) return;
+    playGeneration.current += 1;
     pendingAutoPlayRef.current = false;
     resumeAfterScrubRef.current = false;
-    player.pause();
-  }, [loadTimeout.timedOut, player]);
+    tryPausePlayer();
+    void releaseAudioLease();
+  }, [loadTimeout.timedOut, releaseAudioLease, tryPausePlayer]);
+
+  useEffect(() => {
+    if (status.didJustFinish) {
+      playGeneration.current += 1;
+      void releaseAudioLease();
+    }
+  }, [releaseAudioLease, status.didJustFinish]);
+
+  useEffect(() => () => {
+    playGeneration.current += 1;
+    tryPausePlayer();
+    void releaseAudioLease();
+  }, [releaseAudioLease, tryPausePlayer]);
 
   async function toggle() {
     if (!uri) return;
-    if (status.playing) player.pause();
+    if (status.playing) {
+      playGeneration.current += 1;
+      tryPausePlayer();
+      await releaseAudioLease();
+    }
     else {
-      if (status.didJustFinish || (status.duration > 0 && status.currentTime >= status.duration)) await player.seekTo(0);
-      await claimAudioSession('study');
-      onPlaybackStart?.();
-      player.play();
+      if (status.didJustFinish || (status.duration > 0 && status.currentTime >= status.duration)) await trySeekPlayer(0);
+      const operationGeneration = playGeneration.current + 1;
+      playGeneration.current = operationGeneration;
+      let lease: AudioLease | undefined;
+      try {
+        lease = await audioSessionOrchestrator.acquire('study', 'study-play');
+        if (operationGeneration !== playGeneration.current || appStateRef.current !== 'active') {
+          await releaseAudioLease(lease);
+          return;
+        }
+        audioLease.current = lease;
+        onPlaybackStart?.();
+        if (!tryPlayPlayer()) throw new Error('study_player_play_failed');
+      } catch {
+        if (lease) await releaseAudioLease(lease);
+      }
     }
   }
 
@@ -180,7 +289,7 @@ export function StudyAudioPlayer({
   function selectSpeed(index: number) {
     setSpeedIndex(index);
     speedRef.current = speeds[index];
-    player.setPlaybackRate(speeds[index]);
+    trySetPlaybackRate(speeds[index]);
     closeSpeedMenu();
   }
 
@@ -189,33 +298,62 @@ export function StudyAudioPlayer({
     loadTimeout.retry();
     onRetry?.();
     pendingAutoPlayRef.current = true;
-    player.replace(uri);
-    player.setPlaybackRate(speeds[speedIndex]);
+    if (!tryReplacePlayer(uri) || !trySetPlaybackRate(speeds[speedIndex])) {
+      pendingAutoPlayRef.current = false;
+    }
   }
 
   function beginScrub() {
     resumeAfterScrubRef.current = status.playing;
-    if (status.playing) player.pause();
+    if (status.playing) tryPausePlayer();
   }
 
   async function finishScrub(nextPosition: number) {
     const shouldResume = resumeAfterScrubRef.current;
     resumeAfterScrubRef.current = false;
-    await player.seekTo(nextPosition);
+    if (!await trySeekPlayer(nextPosition)) {
+      await releaseAudioLease();
+      return;
+    }
     if (!shouldResume || appStateRef.current !== 'active') return;
-    await claimAudioSession('study');
-    onPlaybackStart?.();
-    player.play();
+    const operationGeneration = playGeneration.current + 1;
+    playGeneration.current = operationGeneration;
+    let lease: AudioLease | undefined;
+    try {
+      lease = await audioSessionOrchestrator.acquire('study', 'study-scrub-resume');
+      if (operationGeneration !== playGeneration.current || appStateRef.current !== 'active') {
+        await releaseAudioLease(lease);
+        return;
+      }
+      audioLease.current = lease;
+      onPlaybackStart?.();
+      if (!tryPlayPlayer()) throw new Error('study_player_play_failed');
+    } catch {
+      if (lease) await releaseAudioLease(lease);
+    }
   }
 
   function cancelScrub() {
     const shouldResume = resumeAfterScrubRef.current;
     resumeAfterScrubRef.current = false;
     if (!shouldResume || appStateRef.current !== 'active') return;
-    void claimAudioSession('study').then(() => {
-      onPlaybackStart?.();
-      player.play();
-    });
+    const operationGeneration = playGeneration.current + 1;
+    playGeneration.current = operationGeneration;
+    void (async () => {
+      let lease: AudioLease | undefined;
+      try {
+        lease = await audioSessionOrchestrator.acquire('study', 'study-scrub-cancel');
+        if (operationGeneration !== playGeneration.current || appStateRef.current !== 'active') {
+          await releaseAudioLease(lease);
+          return;
+        }
+        audioLease.current = lease;
+        onPlaybackStart?.();
+        if (!tryPlayPlayer()) throw new Error('study_player_play_failed');
+      } catch {
+        if (lease) await releaseAudioLease(lease);
+      }
+    })();
   }
 
   const speedControl = (
