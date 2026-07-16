@@ -1,0 +1,170 @@
+{
+  "categoryId": "atc-ces",
+  "id": "atc-scenario-0133",
+  "name": "CES 565 缝翼问题 积冰/防冰 TCAS机动",
+  "declaredCardCount": 18,
+  "cards": [
+    {
+      "id": "atc-scenario-0133-card-main-2289",
+      "taskTitle": "CES 565-1",
+      "audioText": "Your call sign is CES 565, from Wuhan to Los Angeles, you are parking at Gate 227, with information M, request ATC clearance.",
+      "audioTextZh": "你的呼号是 CES 565，从武汉飞往洛杉矶，停在 227 登机口，已收到 M 情报，申请 ATC 放行许可。",
+      "referenceText": "Wuhan Delivery, CES 565, Gate two tgwo seven, information M, request ATC clearance to Los Angeles.",
+      "referenceTextZh": "武汉放行，CES 565，two tgwo seven 登机口，M 情报，申请前往洛杉矶的 ATC 放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-031-ces565-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0133-card-main-2290",
+      "taskTitle": "CES 565-2",
+      "audioText": "CES 565, cleared to Los Angeles via flight planned route, ZF-01 departure, runway in use 36 Left, initial climb 1,500 meters, cruising level 10,100 meters, squawk 5655.",
+      "audioTextZh": "CES 565，许可按飞行计划航路飞往洛杉矶，执行 ZF-01 离场，使用 Runway 36L，初始爬升至 1,500 米，巡航高度 10,100 米，应答机 5655。",
+      "referenceText": "cleared to Los Angeles via flight planned route, ZF-01 departure, runway in use 36 Left, initial climb 1500 meters, cruising level 1100 meters, squawk 5655, CES 565.",
+      "referenceTextZh": "许可按飞行计划航路飞往洛杉矶，执行 ZF-01 离场，使用 Runway 36L，初始爬升至 1500 米，巡航高度 1100 米，应答机 5655，CES 565。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-031-ces565-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0133-card-main-2291",
+      "taskTitle": "CES 565-3",
+      "audioText": "B: You are ready for push back and start up, contact Wuhan Ground.",
+      "audioTextZh": "B：你准备好推出和开车，联系武汉地面。",
+      "referenceText": "Wuhan Ground, CES 565, ready for push back and start up.",
+      "referenceTextZh": "武汉地面，CES 565，准备好推出和开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-031-ces565-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0133-card-main-2292",
+      "taskTitle": "CES 565-4",
+      "audioText": "C: CES 565, after company Airbus 340 is clear, push back and start up approved, facing west.",
+      "audioTextZh": "C：CES 565，同公司 Airbus 340 脱离后，同意推出和开车，机头朝西。",
+      "referenceText": "After company Airbus 340 is clear, push back and start up approved, facing west, CES 565.",
+      "referenceTextZh": "同公司 Airbus 340 脱离后，同意推出和开车，机头朝西，CES 565。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-031-ces565-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0133-card-main-2293",
+      "taskTitle": "CES 565-5",
+      "audioText": "B: Now the push back and start up is completed, ask for taxi instructions.",
+      "audioTextZh": "B：现在推出和开车已完成，请求滑行指令。",
+      "referenceText": "Wuhan Ground, CES 565, push back and start up is completed, request taxi.",
+      "referenceTextZh": "武汉地面，CES 565，推出和开车完成，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-031-ces565-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0133-card-main-2294",
+      "taskTitle": "CES 565-6",
+      "audioText": "CES 565, taxi to holding point 36 Left via taxiway Z4, C and C1.",
+      "audioTextZh": "CES 565，经 Z4、C 和 C1 滑行道滑行至 Runway 36L 等待点。",
+      "referenceText": "taxi to holding point tree six Left via taxiway Z four, C and C one, CES 565.",
+      "referenceTextZh": "经 Z4、C 和 C1 滑行道滑行至 Runway 36L 等待点，CES 565。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-031-ces565-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0133-card-main-2295",
+      "taskTitle": "CES 565-7",
+      "audioText": "now you are at holding point Runway 36L, you are ready for departure, contact Wuhan Tower.",
+      "audioTextZh": "现在你位于 Runway 36L 等待点，已准备好离场，联系武汉塔台。",
+      "referenceText": "Wuhan Tower, CES 565, holding point Runway 36L, ready for departure.",
+      "referenceTextZh": "武汉塔台，CES 565，Runway 36L 等待点，已准备好离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-031-ces565-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0133-card-main-2296",
+      "taskTitle": "CES 565-8",
+      "audioText": "C: CES 565, behind landing Air China Boeing 747 on short final, line up and wait behind.",
+      "audioTextZh": "C：CES 565，在短五边落地的 Air China Boeing 747 后，跟在后面进跑道等待。",
+      "referenceText": "Behind landing Air China B747 on short final, line up and wait behind, CES 565.",
+      "referenceTextZh": "在短五边落地的 Air China B747 后，跟在后面进跑道等待，CES 565。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-031-ces565-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0133-card-main-2297",
+      "taskTitle": "CES 565-9",
+      "audioText": "CES 565, wind 350 degrees 2 meters per second, cleared for takeoff Runway 36L, after departure, contact Wuhan Departure 125.35.",
+      "audioTextZh": "CES 565，风向 350 度，风速 2 米/秒，许可从 Runway 36L 起飞，离场后联系武汉离场 125.35。",
+      "referenceText": "cleared for takeoff Runway 36L, after departure, contact Wuhan Departure 125.35, CES 565.",
+      "referenceTextZh": "许可从 Runway 36L 起飞，离场后联系武汉离场 125.35，CES 565。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-031-ces565-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0133-card-main-2298",
+      "taskTitle": "CES 565-10",
+      "audioText": "B: You are cruising at 3300 meters, you are encountering moderate icing, contact Wuhan Control and ask for a higher level.",
+      "audioTextZh": "B：你在 3300 米巡航，遭遇中度结冰，联系武汉管制并请求更高高度。",
+      "referenceText": "Wuhan Control, CES 565, we are encountering moderate icing at 3300 meters, request a higher level.",
+      "referenceTextZh": "武汉管制，CES 565，我们在 3300 米遭遇中度结冰，请求更高高度。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-031-ces565-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0133-card-main-2299",
+      "taskTitle": "CES 565-11",
+      "audioText": "C: CES 565, climb and maintain 9500 meters.",
+      "audioTextZh": "C：CES 565，爬升并保持 9500 米。",
+      "referenceText": "Climb and maintain 9500 meters, CES 565.",
+      "referenceTextZh": "爬升并保持 9500 米，CES 565。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-031-ces565-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0133-card-main-2300",
+      "taskTitle": "CES 565-12",
+      "audioText": "B: Suddenly, you got a warning, you are leaking the bleed air and the cabin altitude is rising slowly, inform Wuhan Control you want to level off and might expect emergency descent soon.",
+      "audioTextZh": "B：突然你收到警告，正在漏引气，客舱高度缓慢上升，通知武汉管制你想改平，并可能很快需要紧急下降。",
+      "referenceText": "Wuhan Control, CES 565, we have a warning that the bleed air is leaking, the cabin altitude is rising slowly, request level off and emergency descent.",
+      "referenceTextZh": "武汉管制，CES 565，我们有引气泄漏警告，客舱高度缓慢上升，请求改平并紧急下降。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-031-ces565-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0133-card-main-2301",
+      "taskTitle": "CES 565-13",
+      "audioText": "B: The bleed air is no longer supplying and the high cabin altitude warning is triggered, make an Emergency call and tell the controller you want to make an emergency descent to 3000 meters, and request radar vectors.",
+      "audioTextZh": "B：引气不再供应，高客舱高度警告触发，发布紧急呼叫并告诉管制员你想紧急下降至 3000 米，并请求雷达引导。",
+      "referenceText": "PANPAN PANPAN PANPAN, Wuhan Control, CES 565, the high cabin altitude warning is triggered, request emergency descent to 3000 meters and request radar vectors.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，武汉管制，CES 565，高客舱高度警告触发，请求紧急下降至 3000 米并请求雷达引导。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-031-ces565-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0133-card-main-2302",
+      "taskTitle": "CES 565-14",
+      "audioText": "C: CES 565, turn right heading 180, descend to 3000 meters on QNH 1018.",
+      "audioTextZh": "C：CES 565，右转航向 180，QNH 1018 下降至 3000 米。",
+      "referenceText": "Turn right heading 180, descend to 3000 meters on QNH 1018, CES 565.",
+      "referenceTextZh": "右转航向 180，QNH 1018 下降至 3000 米，CES 565。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-031-ces565-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0133-card-main-2303",
+      "taskTitle": "CES 565-15",
+      "audioText": "B: Now you are reaching 3000 meters in icing condition, contact Wuhan Approach and ask for landing information.",
+      "audioTextZh": "B：现在你在结冰条件下到达 3000 米，联系武汉进近并请求落地信息。",
+      "referenceText": "Wuhan Approach, CES 565, reaching 3000 meters in icing condition, request landing information.",
+      "referenceTextZh": "武汉进近，CES 565，在结冰条件下到达 3000 米，请求落地信息。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-031-ces565-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0133-card-main-2304",
+      "taskTitle": "CES 565-16",
+      "audioText": "CES 565, direct to HG, ZF-02 arrival, expect ILS approach 36 Left.",
+      "audioTextZh": "CES 565，直飞 HG，执行 ZF-02 进场，预计 ILS 进近 Runway 36L。",
+      "referenceText": "direct to HG, ZF-02 arrival, expect ILS approach 36 left, CES 565.",
+      "referenceTextZh": "直飞 HG，执行 ZF-02 进场，预计 ILS 进近 Runway 36L，CES 565。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-031-ces565-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0133-card-main-2305",
+      "taskTitle": "CES 565-17",
+      "audioText": "during approach, your slats can't be extended, request the longer Runway 36R and state the reason.",
+      "audioTextZh": "进近期间，你的前缘缝翼无法放出，请求较长的 Runway 36R 并说明原因。",
+      "referenceText": "Wuhan Approach, CES 565, our slats can't be extended, request the longer Runway 36R.",
+      "referenceTextZh": "武汉进近，CES 565，我们的前缘缝翼无法放出，请求较长的 Runway 36R。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-031-ces565-q17.mp3"
+    },
+    {
+      "id": "atc-scenario-0133-card-main-2306",
+      "taskTitle": "CES 565-18",
+      "audioText": "CES 565, change Runway 36R, continue present heading, descend to niner hudnred meters.",
+      "audioTextZh": "CES 565，改用 Runway 36R，保持当前航向，下降至 niner hudnred 米。",
+      "referenceText": "Runway 36R, continue present heading, descend to 900 meters, CES 565.",
+      "referenceTextZh": "Runway 36R，保持当前航向，下降至 900 米，CES 565。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-031-ces565-q18.mp3"
+    }
+  ]
+}

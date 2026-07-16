@@ -16,7 +16,7 @@
 - App 内嵌数据：`src/features/question-bank/data/question-bank.json`。
 - 首轮规则实现：`tools/radiotelephony-text-correction.mjs`。
 - 第二轮增量规则实现：`tools/radiotelephony-text-unification-v2.mjs`。
-- 当前数据基线：1851 张卡片。
+- 第二轮规范化历史基线：1851 张卡片；后续经独立迁移工作流批准的净新增不受该固定总数限制。
 
 本文档第 5.7 节是第二轮增量规则的例外范围。该节同时覆盖 `audioText`、`audioTextZh`、`referenceText`、`referenceTextZh` 四个字段，其余既有规则仍按原范围执行，不因第二轮处理而重新运行。
 

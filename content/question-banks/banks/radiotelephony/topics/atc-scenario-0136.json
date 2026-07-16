@@ -1,0 +1,143 @@
+{
+  "categoryId": "atc-ces",
+  "id": "atc-scenario-0136",
+  "name": "CES 2151 鸟击 TCAS机动 备降/返航",
+  "declaredCardCount": 15,
+  "cards": [
+    {
+      "id": "atc-scenario-0136-card-main-2345",
+      "taskTitle": "CES 2151-1",
+      "audioText": "your call sign is CES 2151, you are at Gate 232, you have got information S, request ATC clearance to Shanghai Hongqiao from Wuhan Delivery.",
+      "audioTextZh": "你的呼号是 CES 2151，位于 232 登机口，已收到 S 情报，向武汉放行申请前往上海虹桥的 ATC 放行许可。",
+      "referenceText": "Wuhan Delivery, CES 2151, Gate 232, information S, request ATC clearance to Shanghai Hongqiao.",
+      "referenceTextZh": "武汉放行，CES 2151，232 登机口，S 情报，申请前往上海虹桥的 ATC 放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-034-ces2151-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0136-card-main-2346",
+      "taskTitle": "CES 2151-2",
+      "audioText": "CES 2151, Wuhan Delivery, information S is valid, cleared to Shanghai Hongqiao via flight planned route, Runway 36R, initial climb to 1800 meters, Z FOXTROT-01 departure, cruising level 10100 meters, after departure contact 123.4, Squawk 4125.",
+      "audioTextZh": "CES 2151，武汉放行，S 情报有效，许可按飞行计划航路飞往上海虹桥，Runway 36R，初始爬升至 1800 米，执行 ZF-01 离场，巡航高度 10100 米，离场后联系 123.4，应答机 4125。",
+      "referenceText": "information S is valid, cleared to Shanghai via flight planned route, Runway 36R, initial climb to 1800 meters, ZF-01 departure, cruising level 1100 meters, after departure, contact 123.4, Squawk 4125, CES 2151.",
+      "referenceTextZh": "S 情报有效，许可按飞行计划航路飞往上海，Runway 36R，初始爬升至 1800 米，执行 ZF-01 离场，巡航高度 1100 米，离场后联系 123.4，应答机 4125，CES 2151。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-034-ces2151-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0136-card-main-2347",
+      "taskTitle": "CES 2151-3",
+      "audioText": "B: Now you are ready for push back and start up, contact Wuhan Ground.",
+      "audioTextZh": "B：现在你准备好推出和开车，联系武汉地面。",
+      "referenceText": "Wuhan Ground, CES 2151, ready for push back and start up.",
+      "referenceTextZh": "武汉地面，CES 2151，准备好推出和开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-034-ces2151-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0136-card-main-2348",
+      "taskTitle": "CES 2151-4",
+      "audioText": "CES 2151, pushback and startup approved, push back to taxiway Z4, facing west.",
+      "audioTextZh": "CES 2151，推出和开车批准，向后推出至 Z4 滑行道，机头朝西。",
+      "referenceText": "pushback and startup approved, push back to taxiway Z four, facing west, CES 2151.",
+      "referenceTextZh": "推出和开车批准，向后推出至 Z4 滑行道，机头朝西，CES 2151。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-034-ces2151-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0136-card-main-2349",
+      "taskTitle": "CES 2151-5",
+      "audioText": "B: While being pushed back, the tow bar was broke and slash bent, report it to Ground controller and request a new tow bar.",
+      "audioTextZh": "B：推出过程中，拖杆断裂并弯曲，向地面管制员报告并请求新的拖杆。",
+      "referenceText": "Wuhan Ground, CES 2151, the tow bar was bent during push back, request a new tow bar.",
+      "referenceTextZh": "武汉地面，CES 2151，推出过程中拖杆弯曲，请求新的拖杆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-034-ces2151-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0136-card-main-2350",
+      "taskTitle": "CES 2151-6",
+      "audioText": "B: Now you have completed push back with engines running on taxiway Z4, ask Ground for taxiing instructions.",
+      "audioTextZh": "B：现在你在滑行道 Z4 已完成推出，发动机运转，向地面请求滑行指令。",
+      "referenceText": "Wuhan Ground, CES 2151, push back and start up completed, taxiway Z4, request taxi.",
+      "referenceTextZh": "武汉地面，CES 2151，推出和开车完成，滑行道 Z4，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-034-ces2151-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0136-card-main-2351",
+      "taskTitle": "CES 2151-7",
+      "audioText": "CES 2151, taxi via taxiway Z4, A3 and A to holding point Runway 36R.",
+      "audioTextZh": "CES 2151，经 Z4、A3 和 A 滑行道滑行至 Runway 36R 等待点。",
+      "referenceText": "taxi via taxiway Z four, A tree and A to holding point Runway 36R, CES 2151.",
+      "referenceTextZh": "经 Z4、A3 和 A 滑行道滑行至 Runway 36R 等待点，CES 2151。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-034-ces2151-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0136-card-main-2352",
+      "taskTitle": "CES 2151-8",
+      "audioText": "CES 2151, hold short of A7, give way to Airbus 320 coming from your right, when traffic is clear, continue taxi via taxiway A to holding point Runway 36R.",
+      "audioTextZh": "CES 2151，在 A7 前等待，给从你右侧驶来的 Airbus 320 让行，相关航空器通过后，经 A 滑行道继续滑行至 Runway 36R 等待点。",
+      "referenceText": "hold short of A seven, traffic in sight, when traffic is clear, continue taxi via taxiway A to holding point Runway 36R, CES 2151.",
+      "referenceTextZh": "在 A7 前等待，已看到相关航空器，相关航空器通过后，经 A 滑行道继续滑行至 Runway 36R 等待点，CES 2151。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-034-ces2151-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0136-card-main-2353",
+      "taskTitle": "CES 2151-9",
+      "audioText": "Now you are at holding point Runway 36R, the wind sock shows there is strong tailwind, report it to Wuhan Tower and check the wind.",
+      "audioTextZh": "现在你位于 Runway 36R 等待点，风向袋显示有强顺风，向武汉塔台报告并核实风况。",
+      "referenceText": "Wuhan Tower, CES 2151, holding point Runway 36R, the wind sock shows there is strong tailwind, request wind check.",
+      "referenceTextZh": "武汉塔台，CES 2151，位于 Runway 36R 等待点，风向袋显示有强顺风，请求核实风况。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-034-ces2151-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0136-card-main-2354",
+      "taskTitle": "CES 2151-10",
+      "audioText": "CES 2151, wind 200 degrees, 8 meters per second.\nthe tailwind exceeds your takeoff limit, contact tower to change to Runway 18L and state the reason.",
+      "audioTextZh": "CES 2151，风向 200 度，风速 8 米/秒。\n顺风超过你的起飞限制，联系塔台请求更换至 Runway 18L 并说明原因。",
+      "referenceText": "Wuhan Tower, CES 2151, request change to Runway 18L due tail wind exceeds takeoff limits. request change to Runway 18L due tail wind exceeds takeoff limits, CES 2151.",
+      "referenceTextZh": "武汉塔台，CES 2151，因顺风超过起飞限制，请求更换至 Runway 18L。因顺风超过起飞限制，请求更换至 Runway 18L，CES 2151。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-034-ces2151-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0136-card-main-2355",
+      "taskTitle": "CES 2151-11",
+      "audioText": "now you are airborne from Runway 18L, you encountered a bird strike during the initial climb, one of your engines failed, inform the situation to Wuhan Approach and tell the controller you intend to return to land at Wuhan Airport.",
+      "audioTextZh": "现在你已从 Runway 18L 离地，在初始爬升期间遭遇鸟击，一台发动机失效，向武汉进近通报情况，并告诉管制员你打算返回武汉机场落地。",
+      "referenceText": "Wuhan Approach, CES 2151, we encountered a bird strike during initial climb, one of the engines failed, request return to land.",
+      "referenceTextZh": "武汉进近，CES 2151，我们在初始爬升期间遭遇鸟击，一台发动机失效，请求返场落地。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-034-ces2151-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0136-card-main-2356",
+      "taskTitle": "CES 2151-12",
+      "audioText": "CES 2151, climb and maintain 600 meters, turn right to join downwind and cleared for ILS Runway 36R.",
+      "audioTextZh": "CES 2151，爬升并保持 600 米，右转加入三边，许可 ILS 进近 Runway 36R。",
+      "referenceText": "climb and maintain 600 meters, turn right to join downwind and cleared for ILS Runway 36R, CES 2151.",
+      "referenceTextZh": "爬升并保持 600 米，右转加入三边，许可 ILS 进近 Runway 36R，CES 2151。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-034-ces2151-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0136-card-main-2357",
+      "taskTitle": "CES 2151-13",
+      "audioText": "Because of strong tailwind, you want to change to Runway 18L.",
+      "audioTextZh": "由于强顺风，你想改用 Runway 18L。",
+      "referenceText": "Wuhan Tower, CES 2151, request change to Runway 18L due strong tailwind.",
+      "referenceTextZh": "武汉塔台，CES 2151，因强顺风请求改用 Runway 18L。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-034-ces2151-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0136-card-main-2358",
+      "taskTitle": "CES 2151-14",
+      "audioText": "CES 2151, change to Runway 18L is approved, maintain 600 meters, turn right direct to WHA, contact Wuhan Approach 121.7.",
+      "audioTextZh": "CES 2151，批准改用 Runway 18L，保持 600 米，右转直飞 WHA，联系武汉进近 121.7。",
+      "referenceText": "change to Runway 18L is approved, maintain 600 meters, turn right, direct to WHA, 121.7, CES 2151.",
+      "referenceTextZh": "批准改用 Runway 18L，保持 600 米，右转，直飞 WHA，121.7，CES 2151。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-034-ces2151-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0136-card-main-2359",
+      "taskTitle": "CES 2151-15",
+      "audioText": "CES 2151, climb to and maintain 900 meters, after WHA, fly heading 360, expect radar vector for ILS approach Runway 18L.",
+      "audioTextZh": "CES 2151，爬升至并保持 900 米，飞越 WHA 后飞航向 360，预计雷达引导 ILS 进近 Runway 18L。",
+      "referenceText": "climb to and maintain 900 meters, after WHA, fly heading 360, expect radar vector for ILS approach Runway 18L, CES 2151.",
+      "referenceTextZh": "爬升至并保持 900 米，飞越 WHA 后飞航向 360，预计雷达引导 ILS 进近 Runway 18L，CES 2151。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-034-ces2151-q15.mp3"
+    }
+  ]
+}

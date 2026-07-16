@@ -1,0 +1,188 @@
+{
+  "categoryId": "atc-ces",
+  "id": "atc-scenario-0135",
+  "name": "CES 556 颠簸 雷暴绕飞 积冰/防冰",
+  "declaredCardCount": 20,
+  "cards": [
+    {
+      "id": "atc-scenario-0135-card-main-2325",
+      "taskTitle": "CES 556-1",
+      "audioText": "B: Your call sign is CES 556, from Seoul to Wuhan, you are maintaining 9200 meters, approaching JTN, squawking 1532, make an initial contact with Shanghai Control.",
+      "audioTextZh": "B：你的呼号是 CES 556，从首尔飞往武汉，保持 9200 米，接近 JTN，应答机 1532，与上海管制首次联系。",
+      "referenceText": "Shanghai Control, CES 556, maintaining 9200 meters, approaching JTN, squawking 1532.",
+      "referenceTextZh": "上海管制，CES 556，保持 9200 米，接近 JTN，应答机 1532。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-033-ces556-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0135-card-main-2326",
+      "taskTitle": "CES 556-2",
+      "audioText": "CES 556, direct to TOL, reduce speed to mach. 79.",
+      "audioTextZh": "CES 556，直飞 TOL，将速度减至 Mach 0.79。",
+      "referenceText": "direct to TOL, reduce speed to mach decimal seven niner, CES 556.",
+      "referenceTextZh": "直飞 TOL，将速度减至 Mach 0.79，CES 556。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-033-ces556-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0135-card-main-2327",
+      "taskTitle": "CES 556-3",
+      "audioText": "Near TOL, you are experiencing moderate to severe clear air turbulence between 6000 meters and 10,400 meters, contact Shanghai Control and request climb.",
+      "audioTextZh": "在 TOL 附近，你在 6000 米至 10,400 米之间遭遇中度至严重晴空颠簸，联系上海管制并请求爬升。",
+      "referenceText": "Shanghai Control, CES 556, we are experiencing moderate to severe clear air turbulence near TOL between 6000 meters and 1400 meters, request climb.",
+      "referenceTextZh": "上海管制，CES 556，我们在 TOL 附近的 6000 米至 1400 米之间遭遇中度至严重晴空颠簸，请求爬升。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-033-ces556-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0135-card-main-2328",
+      "taskTitle": "CES 556-4",
+      "audioText": "CES 556, the alternative level is 11,600 meters, what's your intention?\ntell the controller you can accept 11,600 meters.",
+      "audioTextZh": "CES 556，可用的备选高度为 11,600 米，你的意图是什么？\n告诉管制员你可以接受 11,600 米。",
+      "referenceText": "Shanghai Control, CES 556, we can accept 2600 meters. we can accept 2600 meters, CES 556.",
+      "referenceTextZh": "上海管制，CES 556，我们可以接受 2600 米。我们可以接受 2600 米，CES 556。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-033-ces556-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0135-card-main-2329",
+      "taskTitle": "CES 556-5",
+      "audioText": "CES 556, climb to and maintain 11,600 meters, report reaching.",
+      "audioTextZh": "CES 556，爬升至并保持 11,600 米，到达后报告。",
+      "referenceText": "climb to and maintain 2600 meters, CES 556.",
+      "referenceTextZh": "爬升至并保持 2600 米，CES 556。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-033-ces556-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0135-card-main-2330",
+      "taskTitle": "CES 556-6",
+      "audioText": "B: You receive the report from the cabin that a drunk passenger is behaving irrationally, affecting cabin services and disturbing cabin order, you suspect the higher cabin altitude is making passengers uncomfortable, you want to fly lower levels.",
+      "audioTextZh": "B：你收到客舱报告，一名醉酒旅客行为异常，影响客舱服务并扰乱客舱秩序，你怀疑较高客舱高度让旅客不适，想飞较低高度。",
+      "referenceText": "Shanghai Control, CES 556, a drunk passenger is behaving irrationally, affecting cabin services and disturbing cabin order, we suspect the higher cabin altitude is making passengers uncomfortable, request descent to lower levels.",
+      "referenceTextZh": "上海管制，CES 556，一名醉酒旅客行为异常，影响客舱服务并扰乱客舱秩序，我们怀疑较高客舱高度让旅客不适，请求下降至较低高度。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-033-ces556-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0135-card-main-2331",
+      "taskTitle": "CES 556-7",
+      "audioText": "CES 556, maintain 11,600 meters due to airspace congestion, reduce speed to mach.75.",
+      "audioTextZh": "CES 556，因空域拥堵保持 11,600 米，将速度减至 Mach 0.75。",
+      "referenceText": "maintain 11006 hunderd meters, reduce speed to mach decimal seven five, CES 556.",
+      "referenceTextZh": "保持 11006 hunderd 米，将速度减至 Mach 0.75，CES 556。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-033-ces556-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0135-card-main-2332",
+      "taskTitle": "CES 556-8",
+      "audioText": "C: CES 556, contact Wuhan Control on 128.55.",
+      "audioTextZh": "C：CES 556，联系武汉管制128.55。",
+      "referenceText": "128.55, CES 556.",
+      "referenceTextZh": "128.55，CES 556。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-033-ces556-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0135-card-main-2333",
+      "taskTitle": "CES 556-9",
+      "audioText": "B: The flight attendant reported 2 passengers took out their overhead oxygen masks, they are being closely monitored, report it to Wuhan Control and request descent now.",
+      "audioTextZh": "B：乘务员报告 2 名旅客取出了头顶氧气面罩，他们正被严密监控，向武汉管制报告并请求立即下降。",
+      "referenceText": "Wuhan Control, CES 556, the flight attendant reported 2 passengers took out their overhead oxygen masks, they are being closely monitored, request descent now.",
+      "referenceTextZh": "武汉管制，CES 556，乘务员报告 2 名旅客取出了头顶氧气面罩，他们正被严密监控，请求立即下降。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-033-ces556-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0135-card-main-2334",
+      "taskTitle": "CES 556-10",
+      "audioText": "C: CES 556, descend to 6600 meters and level by XSH.",
+      "audioTextZh": "C：CES 556，下降至 6600 米，并在 XSH 前改平。",
+      "referenceText": "Descend to 6600 meters and level by XSH, CES 556.",
+      "referenceTextZh": "下降至 6600 米，并在 XSH 前改平，CES 556。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-033-ces556-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0135-card-main-2335",
+      "taskTitle": "CES 556-11",
+      "audioText": "CES 556, due to temporary airspace restriction is effective immediately, after passing XSH, direct to ZF, follow ZF03A, expect ILS approach Runway 36R.",
+      "audioTextZh": "CES 556，由于临时空域限制立即生效，飞越 XSH 后直飞 ZF，执行 ZF-03A 进场，预计 ILS 进近 Runway 36R。",
+      "referenceText": "after passing XSH, direct to ZF, follow ZF03 A Arrival, expect ILS approach Runway 36R, CES 556.",
+      "referenceTextZh": "飞越 XSH 后直飞 ZF，执行 ZF-03A 进场，预计 ILS 进近 Runway 36R，CES 556。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-033-ces556-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0135-card-main-2336",
+      "taskTitle": "CES 556-12",
+      "audioText": "CES 556, contact Wuhan Approach 120.4.",
+      "audioTextZh": "CES 556，联系武汉进近 120.4。",
+      "referenceText": "120.4, CES 556.",
+      "referenceTextZh": "120.4，CES 556。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-033-ces556-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0135-card-main-2337",
+      "taskTitle": "CES 556-13",
+      "audioText": "B: Now you are over ZF, maintaining 6600 meters, you have got information O, contact Wuhan Approach.",
+      "audioTextZh": "B：现在你在 ZF 上空，保持 6600 米，已收到通播 O，联系武汉进近。",
+      "referenceText": "Wuhan Approach, CES 556, over ZF, maintaining 6600 meters, information O.",
+      "referenceTextZh": "武汉进近，CES 556，ZF 上空，保持 6600 米，通播 O。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-033-ces556-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0135-card-main-2338",
+      "taskTitle": "CES 556-14",
+      "audioText": "CES 556, Wuhan Approach, radar contact, current information is P, descend and maintain 4,200 meters.",
+      "audioTextZh": "CES 556，武汉进近，雷达识别，当前情报为 P，下降并保持 4,200 米。",
+      "referenceText": "roger, information P, descend and maintain 4200 meters, CES 556.",
+      "referenceTextZh": "收到，P 情报，下降并保持 4200 米，CES 556。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-033-ces556-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0135-card-main-2339",
+      "taskTitle": "CES 556-15",
+      "audioText": "your weather radar observed the cumuliform clouds ahead, contact Wuhan Approach and request turn left and track direct to HG.",
+      "audioTextZh": "你的气象雷达观察到前方有积状云，联系武汉进近，请求左转直飞 HG。",
+      "referenceText": "Wuhan Approach, CES 556, our weather radar observed the cumuliform clouds thunderstorm; CB ahead, request turn left and track direct to HG.",
+      "referenceTextZh": "武汉进近，CES 556，我们的气象雷达观察到前方有积状云雷暴；前方有 CB，请求左转直飞 HG。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-033-ces556-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0135-card-main-2340",
+      "taskTitle": "CES 556-16",
+      "audioText": "CES 556, turn left heading 220, expect radar vectors for ILS approach Runway 36R.",
+      "audioTextZh": "CES 556，左转航向 220，预计雷达引导 ILS 进近 Runway 36R。",
+      "referenceText": "turn left heading 220, expect radar vectors for ILS approach Runway 36R, CES 556.",
+      "referenceTextZh": "左转航向 220，预计雷达引导 ILS 进近 Runway 36R，CES 556。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-033-ces556-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0135-card-main-2341",
+      "taskTitle": "CES 556-17",
+      "audioText": "CES 556, turn right heading 330, descend to 900 meters, cleared for ILS approach Runway 36R.",
+      "audioTextZh": "CES 556，右转航向 330，下降至 900 米，许可 ILS 进近 Runway 36R。",
+      "referenceText": "turn right heading 330, descend to 900 meters, cleared for ILS approach Runway 36R, CES 556.",
+      "referenceTextZh": "右转航向 330，下降至 900 米，许可 ILS 进近 Runway 36R，CES 556。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-033-ces556-q17.mp3"
+    },
+    {
+      "id": "atc-scenario-0135-card-main-2342",
+      "taskTitle": "CES 556-18",
+      "audioText": "B: While intercepting the localizer, 1 drunk passenger discharged the fire extinguisher, the purser make an emergency call said there are still passengers standing in the cabin, inform Wuhan Approach the situation and request terminate approach and proceed to holding area.",
+      "audioTextZh": "B：截获航向道时，1 名醉酒旅客释放了灭火器，乘务长紧急呼叫称客舱仍有旅客站立，通知武汉进近该情况并请求终止进近，前往等待区。",
+      "referenceText": "Wuhan Approach, CES 556, 1 drunk passenger discharged the fire extinguisher, there are still passengers standing in the cabin, request terminate approach and proceed to holding area.",
+      "referenceTextZh": "武汉进近，CES 556，1 名醉酒旅客释放了灭火器，客舱仍有旅客站立，请求终止进近并前往等待区。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-033-ces556-q18.mp3"
+    },
+    {
+      "id": "atc-scenario-0135-card-main-2343",
+      "taskTitle": "CES 556-19",
+      "audioText": "CES 556, turn left, direct to DAL A, climb to 1,200 meters, hold as published, expect further clearance at time 50.",
+      "audioTextZh": "CES 556，左转直飞 DAL A，爬升至 1,200 米，按公布程序等待，预计在时间 50 获得进一步许可。",
+      "referenceText": "turn left, direct to DAL A, climb to 1200 meters, hold as published, expect further clearance at time 50, CES 556.",
+      "referenceTextZh": "左转，直飞 DAL A，爬升至 1200 米，按公布程序等待，预计在时间 50 获得进一步许可，CES 556。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-033-ces556-q19.mp3"
+    },
+    {
+      "id": "atc-scenario-0135-card-main-2344",
+      "taskTitle": "CES 556-20",
+      "audioText": "B: Now the problematic passenger has been properly restrained, advise the Approach controller you are ready to leave the hold.",
+      "audioTextZh": "B：现在问题旅客已被妥善约束，告知进近管制员你准备好离开等待。",
+      "referenceText": "Wuhan Approach, CES 556, the problematic passenger has been properly restrained, request leave the hold.",
+      "referenceTextZh": "武汉进近，CES 556，问题旅客已被妥善约束，请求离开等待。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-033-ces556-q20.mp3"
+    }
+  ]
+}

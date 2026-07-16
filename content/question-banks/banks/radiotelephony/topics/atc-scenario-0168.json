@@ -1,0 +1,170 @@
+{
+  "categoryId": "atc-ual",
+  "id": "atc-scenario-0168",
+  "name": "UAL 831 增压问题 TCAS机动",
+  "declaredCardCount": 18,
+  "cards": [
+    {
+      "id": "atc-scenario-0168-card-main-2898",
+      "taskTitle": "UAL 831-1",
+      "audioText": "B: Your call sign is UAL 831, a flight from Wuhan to San Francisco, you have completed push back and start up, contact Wuhan Ground for taxi instructions.",
+      "audioTextZh": "B：你的呼号是 UAL 831，从武汉飞往旧金山，已完成推出和开车，联系武汉地面获取滑行指令。",
+      "referenceText": "Wuhan Ground, UAL 831, push back and start up completed, request taxi.",
+      "referenceTextZh": "武汉地面，UAL 831，推出开车完成，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-068-ual831-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0168-card-main-2899",
+      "taskTitle": "UAL 831-2",
+      "audioText": "UAL 831, taxi to holding point Runway 04via taxiway F, A7 and A.",
+      "audioTextZh": "UAL 831，经 F、A7 和 A 滑行道滑行至 Runway 04 等待点。",
+      "referenceText": "taxi to holding point Runway 04via taxiway F, A seven and A, UAL 83 one1.",
+      "referenceTextZh": "经 F、A7 和 A 滑行道滑行至 Runway 04 等待点，UAL 831。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-068-ual831-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0168-card-main-2900",
+      "taskTitle": "UAL 831-3",
+      "audioText": "UAL 831, contact Wuhan Tower on 118.65.",
+      "audioTextZh": "UAL 831，联系武汉塔台 118.65。",
+      "referenceText": "118.65, UAL 831.",
+      "referenceTextZh": "118.65，UAL 831。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-068-ual831-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0168-card-main-2901",
+      "taskTitle": "UAL 831-4",
+      "audioText": "B: Now you are at holding point Runway 04, you are ready for departure, contact Wuhan Tower.",
+      "audioTextZh": "B：你现在在跑道 04 等待点，准备离场，联系武汉塔台。",
+      "referenceText": "Wuhan Tower, UAL 831, holding point Runway 04, ready for departure.",
+      "referenceTextZh": "武汉塔台，UAL 831，跑道 04 等待点，准备离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-068-ual831-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0168-card-main-2902",
+      "taskTitle": "UAL 831-5",
+      "audioText": "C: UAL 831, cleared for takeoff Runway 04, surface wind 060, 10 meters per second.",
+      "audioTextZh": "C：UAL 831，跑道 04 可以起飞，地面风 060，10 米/秒。",
+      "referenceText": "Cleared for takeoff Runway 04, UAL 831.",
+      "referenceTextZh": "跑道 04 可以起飞，UAL 831。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-068-ual831-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0168-card-main-2903",
+      "taskTitle": "UAL 831-6",
+      "audioText": "now you are airborne, passing 600 meters, climbing to 1,500 meters, contact Wuhan Departure.",
+      "audioTextZh": "现在你已离地，正通过 600 米，爬升至 1,500 米，联系武汉离场。",
+      "referenceText": "Wuhan Departure, UAL 831, airborne, passing 600 meters, climbing to 1200 meters.",
+      "referenceTextZh": "武汉离场，UAL 831，已离地，正通过 600 米，爬升至 1,200 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-068-ual831-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0168-card-main-2904",
+      "taskTitle": "UAL 831-7",
+      "audioText": "C: UAL 831, cancel SID, direct to HFE, climb to 3900 meters on standard.",
+      "audioTextZh": "C：UAL 831，取消 SID，直飞 HFE，按标准气压爬升至 3900 米。",
+      "referenceText": "Cancel SID, direct to HFE, climb to 3900 meters on standard, UAL 831.",
+      "referenceTextZh": "取消 SID，直飞 HFE，按标准气压爬升至 3900 米，UAL 831。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-068-ual831-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0168-card-main-2905",
+      "taskTitle": "UAL 831-8",
+      "audioText": "during climb, the purser tells you a passenger has heard abnormal noises from the rear cabin, you decide to level off at 2,700 meters, advise Wuhan Departure your intention to level off due possible problem in the cabin.",
+      "audioTextZh": "爬升期间，乘务长告诉你，一名乘客听到后舱传来异常声响。你决定在 2,700 米改平，向武汉离场报告因客舱可能存在问题而准备改平。",
+      "referenceText": "Wuhan Departure, UAL 831, a passenger has heard abnormal noise in rear cabin, request level off at 2700 meters due possible cabin problem.",
+      "referenceTextZh": "武汉离场，UAL 831，一名乘客听到后舱有异常声响，因客舱可能存在问题，请求在 2,700 米改平。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-068-ual831-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0168-card-main-2906",
+      "taskTitle": "UAL 831-9",
+      "audioText": "C: UAL 831, climb to and maintain 2700 meters, advise intention.",
+      "audioTextZh": "C：UAL 831，爬升并保持 2700 米，报告意图。",
+      "referenceText": "Climb to and maintain 2700 meters, UAL 831.",
+      "referenceTextZh": "爬升并保持 2700 米，UAL 831。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-068-ual831-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0168-card-main-2907",
+      "taskTitle": "UAL 831-10",
+      "audioText": "B: The aircraft is leveling, no one else can confirm the noise that the particular passenger heard, you check all the instruments are indicating normally, you decide to continue the flight and request a higher level, call Wuhan Departure.",
+      "audioTextZh": "B：飞机已改平，没有其他人能确认该旅客听到的声音，各仪表指示正常，你决定继续飞行并请求更高高度，呼叫武汉离场。",
+      "referenceText": "Wuhan Departure, UAL 831, all the instruments are indicating normally, request continue the flight and request a higher level.",
+      "referenceTextZh": "武汉离场，UAL 831，各仪表指示正常，请求继续飞行并请求更高高度。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-068-ual831-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0168-card-main-2908",
+      "taskTitle": "UAL 831-11",
+      "audioText": "UAL 831, climb to 4,500 meters on standard, contact Wuhan Control 120.5",
+      "audioTextZh": "UAL 831，按标准气压爬升至 4,500 米，联系武汉管制 120.5。",
+      "referenceText": "climb to 4500 meters on standard, contact Wuhan Control 120.5, UAL 831.",
+      "referenceTextZh": "按标准气压爬升至 4,500 米，联系武汉管制 120.5，UAL 831。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-068-ual831-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0168-card-main-2909",
+      "taskTitle": "UAL 831-12",
+      "audioText": "Now you are maintaining 10,700 meters, over HFE, squawking 5316, make initial contact with Shanghai Control.",
+      "audioTextZh": "现在你正保持 10,700 米，飞越 HFE，应答机 5316，首次联系上海管制。",
+      "referenceText": "Shanghai Control, UAL 831, maintaining 1700 meters, over HFE, squawking 5316.",
+      "referenceTextZh": "上海管制，UAL 831，正保持 1,700 米，飞越 HFE，应答机 5316。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-068-ual831-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0168-card-main-2910",
+      "taskTitle": "UAL 831-13",
+      "audioText": "C: UAL 831, Shanghai Control, radar contact, proceed direct to VMB.",
+      "audioTextZh": "C：UAL 831，上海管制，雷达识别，直飞 VMB。",
+      "referenceText": "Proceed direct to VMB, UAL 831.",
+      "referenceTextZh": "直飞 VMB，UAL 831。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-068-ual831-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0168-card-main-2911",
+      "taskTitle": "UAL 831-14",
+      "audioText": "now you confirm the strange sound from the cabin, your instrument indicates cabin altitude is rising slowly, slow depressurization is suspected, request immediate descent from 10,700 meters to 3,000 meters. This is an urgency call.",
+      "audioTextZh": "现在你确认客舱内有异常声响，仪表显示客舱高度正缓慢上升，怀疑发生缓慢失压，请求立即从 10,700 米下降至 3,000 米。这是一次紧急呼叫。",
+      "referenceText": "PANPAN, PANPAN, PANPAN, Shanghai Control, UAL 831, our instrument indicates cabin altitude is rising slowly, suspect slow cabin depressurization, request immediate descent to 3000 meters.",
+      "referenceTextZh": "PANPAN，PANPAN，PANPAN，上海管制，UAL 831，我们的仪表显示客舱高度正缓慢上升，怀疑客舱缓慢失压，请求立即下降至 3,000 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-068-ual831-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0168-card-main-2912",
+      "taskTitle": "UAL 831-15",
+      "audioText": "C: UAL 831, roger PAN, turn right heading 150, initially descend and maintain 8900 meters.",
+      "audioTextZh": "C：UAL 831，收到 PAN，右转航向 150，先下降并保持 8900 米。",
+      "referenceText": "Turn right heading 150, descend and maintain 8900 meters, UAL 831.",
+      "referenceTextZh": "右转航向 150，下降并保持 8900 米，UAL 831。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-068-ual831-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0168-card-main-2913",
+      "taskTitle": "UAL 831-16",
+      "audioText": "C: UAL 831, turn left heading 210, descend to 3,300 meters.\nB: read back ATC instructions and request the nearest suitable airport for landing.",
+      "audioTextZh": "C： UAL 831，左转航向 210，下降至 3,300 米。\nB： 复诵空中交通管制指令，并请求最近的合适机场落地。",
+      "referenceText": "turn left heading 210, descend to 3300 meters, request the nearest suitable airport for landing, UAL 831.\nor\nturn left heading 210, descend to 3,300 meters, request the nearest suitable airport for landing, UAL 831.",
+      "referenceTextZh": "左转航向 210，下降至 3,300 米，请求最近的合适机场落地，UAL 831。\n或\n左转航向 210，下降至 3,300 米，请求最近的合适机场落地，UAL 831。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-068-ual831-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0168-card-main-2914",
+      "taskTitle": "UAL 831-17",
+      "audioText": "ask radar vector to Shanghai Hongqiao or Pudong Airport, which has a better visibility.",
+      "audioTextZh": "请求雷达引导前往上海虹桥机场或浦东机场，选择能见度较好的机场。",
+      "referenceText": "request radar vector to Shanghai Hongqiao or Pudong Airport, which has a better visibility, UAL 831.",
+      "referenceTextZh": "请求雷达引导前往上海虹桥机场或浦东机场，选择能见度较好的机场，UAL 831。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-068-ual831-q17.mp3"
+    },
+    {
+      "id": "atc-scenario-0168-card-main-2915",
+      "taskTitle": "UAL 831-18",
+      "audioText": "UAL 831, direct to HSH, expect radar vectors to land at Pudong airport, contact Shanghai Approach on 128.35.",
+      "audioTextZh": "UAL 831，直飞 HSH，预计雷达引导在浦东机场落地，联系上海进近 128.35。",
+      "referenceText": "direct to HSH, radar vector to Pudong, 128.35, UAL 831.",
+      "referenceTextZh": "直飞 HSH，雷达引导前往浦东，128.35，UAL 831。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-068-ual831-q18.mp3"
+    }
+  ]
+}

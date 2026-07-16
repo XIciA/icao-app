@@ -1,10 +1,12 @@
 {
   "id": "atc-jal",
   "name": "JAL",
-  "declaredTopicCount": 2,
-  "declaredCardCount": 30,
+  "declaredTopicCount": 4,
+  "declaredCardCount": 60,
   "topicIds": [
     "atc-scenario-0043",
-    "atc-scenario-0044"
+    "atc-scenario-0044",
+    "atc-scenario-0181",
+    "atc-scenario-0182"
   ]
 }

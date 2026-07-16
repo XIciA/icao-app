@@ -1,0 +1,161 @@
+{
+  "categoryId": "atc-baw",
+  "id": "atc-scenario-0126",
+  "name": "BAW 817 鸟击 积冰/防冰 TCAS机动",
+  "declaredCardCount": 17,
+  "cards": [
+    {
+      "id": "atc-scenario-0126-card-main-2169",
+      "taskTitle": "BAW 817-1",
+      "audioText": "B: Your call sign is BAW 817, you are at stand 215, contact Wuhan Ground and request a tug.",
+      "audioTextZh": "B：你的呼号是 BAW 817，停在 215 机位，联系武汉地面，请求拖车。",
+      "referenceText": "Wuhan Ground, BAW 817, stand 215, request a tug.",
+      "referenceTextZh": "武汉地面，BAW 817，215 机位，请求拖车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-023-baw817-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0126-card-main-2170",
+      "taskTitle": "BAW 817-2",
+      "audioText": "Tell the controller it's Airbus 3 30.",
+      "audioTextZh": "告诉管制员，这是 Airbus 330。",
+      "referenceText": "Wuhan Ground, BAW 817, it's Airbus 330. It's Airbus 330, BAW 817",
+      "referenceTextZh": "武汉地面，BAW 817，这是 Airbus 330。这是 Airbus 330，BAW 817。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-023-baw817-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0126-card-main-2171",
+      "taskTitle": "BAW 817-3",
+      "audioText": "C: BAW 817, the tug is on the way.",
+      "audioTextZh": "C：BAW 817，拖车正在过来。",
+      "referenceText": "Roger, thanks, BAW 817.",
+      "referenceTextZh": "收到，谢谢，BAW 817。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-023-baw817-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0126-card-main-2172",
+      "taskTitle": "BAW 817-4",
+      "audioText": "B: Now you are ready for push back and start up, request facing east.",
+      "audioTextZh": "B：你现在准备好推出和开车，请求机头朝东。",
+      "referenceText": "Wuhan Ground, BAW 817, request push back and start up, facing east.",
+      "referenceTextZh": "武汉地面，BAW 817，请求推出开车，机头朝东。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-023-baw817-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0126-card-main-2173",
+      "taskTitle": "BAW 817-5",
+      "audioText": "B: Now you are at holding point Runway 04, you notice the wind sock shows strong wind, contact Wuhan Tower and check the wind.",
+      "audioTextZh": "B：你现在在跑道 04 等待点，发现风向袋显示风较强，联系武汉塔台核实风况。",
+      "referenceText": "Wuhan Tower, BAW 817, holding point Runway 04, the wind sock shows strong wind, request wind check.",
+      "referenceTextZh": "武汉塔台，BAW 817，跑道 04 等待点，风向袋显示风较强，请求风况检查。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-023-baw817-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0126-card-main-2174",
+      "taskTitle": "BAW 817-6",
+      "audioText": "C: BAW 817, wind 200, 8 meters per second.\nB: the tailwind exceeds your takeoff limit, contact Wuhan Tower to change to Runway 22and state the reason.",
+      "audioTextZh": "C： BAW 817，风向 200，风速 8 米/秒。\nB： 顺风超过你的起飞限制，联系武汉塔台请求更换至 Runway 22 并说明原因。",
+      "referenceText": "Wuhan Tower, BAW 817, the tailwind exceeds our takeoff limit, request change to Runway 22. the tailwind exceeds our takeoff limit, request change to Runway 22, BAW 817.",
+      "referenceTextZh": "武汉塔台，BAW 817，顺风超过我们的起飞限制，请求更换至 Runway 22。顺风超过我们的起飞限制，请求更换至 Runway 22，BAW 817。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-023-baw817-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0126-card-main-2175",
+      "taskTitle": "BAW 817-7",
+      "audioText": "B: After departure, you encountered bird strike, left wind shield cracked, this is an Urgency call.",
+      "audioTextZh": "B：离场后你遭遇鸟击，左风挡裂纹，发出紧急呼叫。",
+      "referenceText": "PANPAN PANPAN PANPAN, Wuhan Departure/Approach, BAW 817, we encountered bird strike, left wind shield cracked.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，武汉离场/进近，BAW 817，遭遇鸟击，左风挡裂纹。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-023-baw817-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0126-card-main-2176",
+      "taskTitle": "BAW 817-8",
+      "audioText": "tell the controller you want to dump fuel and return to land.",
+      "audioTextZh": "告诉管制员你想放油并返场落地。",
+      "referenceText": "Wuhan Departure, BAW 817, request dump fuel and return to land. request dump fuel and return to land, BAW 817.",
+      "referenceTextZh": "武汉离场，BAW 817，请求放油并返场落地。请求放油并返场落地，BAW 817。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-023-baw817-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0126-card-main-2177",
+      "taskTitle": "BAW 817-9",
+      "audioText": "BAW 817, turn right heading 240 to intercept LKO030 radial inbound, climb to 3,300 meters.",
+      "audioTextZh": "BAW 817，右转航向 240，切入 LKO030 向台径向线，爬升至 3,300 米。",
+      "referenceText": "turn right heading 240 to intercept LKO030 radial inbound, climb to 3300 meters, BAW 817.",
+      "referenceTextZh": "右转航向 240，切入 LKO030 向台径向线，爬升至 3300 米，BAW 817。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-023-baw817-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0126-card-main-2178",
+      "taskTitle": "BAW 817-10",
+      "audioText": "C: BAW 817, after passing LKO, turn right heading 220, maintain 3300 meters, report over LKO.",
+      "audioTextZh": "C：BAW 817，过 LKO 后右转航向 220，保持 3300 米，飞越 LKO 报告。",
+      "referenceText": "After passing LKO, turn right heading 220, maintain 3300 meters, report over LKO, BAW 817.",
+      "referenceTextZh": "过 LKO 后右转航向 220，保持 3300 米，飞越 LKO 报告，BAW 817。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-023-baw817-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0126-card-main-2179",
+      "taskTitle": "BAW 817-11",
+      "audioText": "B: Now you are over LKO, report it to Wuhan Approach.",
+      "audioTextZh": "B：你现在飞越 LKO，向武汉进近报告。",
+      "referenceText": "Wuhan Approach, BAW 817, over LKO.",
+      "referenceTextZh": "武汉进近，BAW 817，飞越 LKO。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-023-baw817-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0126-card-main-2180",
+      "taskTitle": "BAW 817-12",
+      "audioText": "C: BAW 817, how long do you need to dump fuel?\nB: tell the controller you need approximately 25 minutes.",
+      "audioTextZh": "C： BAW 817，你需要多长时间放油？\nB： 告诉管制员你大约需要 25 分钟。",
+      "referenceText": "BAW 817, we need about 25 minutes. We need about 25 minutes, BAW 817.",
+      "referenceTextZh": "BAW 817，我们大约需要 25 分钟。我们大约需要 25 分钟，BAW 817。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-023-baw817-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0126-card-main-2181",
+      "taskTitle": "BAW 817-13",
+      "audioText": "B: Now you have completed fuel dumping, report it to the controller and request radar vectors for Runway 22.",
+      "audioTextZh": "B：你现在已完成放油，向管制员报告并请求雷达引导至跑道 22。",
+      "referenceText": "Wuhan Approach, BAW 817, fuel dumping completed, request radar vectors for Runway 22.",
+      "referenceTextZh": "武汉进近，BAW 817，放油完成，请求雷达引导至跑道 22。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-023-baw817-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0126-card-main-2182",
+      "taskTitle": "BAW 817-14",
+      "audioText": "C: BAW 817, turn right, direct to DA, descend and maintain 2100 meters on QNH 1015, expect ILS approach Runway 22.",
+      "audioTextZh": "C：BAW 817，右转直飞 DA，按 QNH 1015 下降并保持 2100 米，预计 ILS 进近跑道 22。",
+      "referenceText": "Turn right, direct to DA, descend and maintain 2100 meters on QNH 1015, expect ILS approach Runway 22, BAW 817.",
+      "referenceTextZh": "右转直飞 DA，按 QNH 1015 下降并保持 2100 米，预计 ILS 进近跑道 22，BAW 817。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-023-baw817-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0126-card-main-2183",
+      "taskTitle": "BAW 817-15",
+      "audioText": "B: Now you have established ILS Runway 22, report it to Wuhan Tower.",
+      "audioTextZh": "B：你现在已建立跑道 22 ILS，向武汉塔台报告。",
+      "referenceText": "Wuhan Tower, BAW 817, established ILS Runway 22.",
+      "referenceTextZh": "武汉塔台，BAW 817，已建立跑道 22 ILS。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-023-baw817-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0126-card-main-2184",
+      "taskTitle": "BAW 817-16",
+      "audioText": "B: During landing, you encountered strong wind between 400 meters and the surface, report it to Wuhan Tower.",
+      "audioTextZh": "B：着陆过程中，你在 400 米至地面之间遭遇强风，向武汉塔台报告。",
+      "referenceText": "Wuhan Tower, BAW 817, we encountered strong wind between 400 meters and the surface.",
+      "referenceTextZh": "武汉塔台，BAW 817，我们在 400 米至地面之间遭遇强风。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-023-baw817-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0126-card-main-2185",
+      "taskTitle": "BAW 817-17",
+      "audioText": "B: After landing, you find the APU is inoperative, report this situation to Wuhan Ground and request ground power unit ready at the gate.",
+      "audioTextZh": "B：落地后，你发现 APU 失效，向武汉地面报告并请求到达停机位时准备地面电源车。",
+      "referenceText": "Wuhan Ground, BAW 817, our APU is inoperative, request ground power unit ready at the gate.",
+      "referenceTextZh": "武汉地面，BAW 817，APU 失效，请求到达停机位时准备地面电源车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-023-baw817-q17.mp3"
+    }
+  ]
+}

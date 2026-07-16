@@ -1,0 +1,152 @@
+{
+  "categoryId": "atc-ces",
+  "id": "atc-scenario-0141",
+  "name": "CES 5277 襟翼问题 TCAS机动 备降/返航",
+  "declaredCardCount": 16,
+  "cards": [
+    {
+      "id": "atc-scenario-0141-card-main-2429",
+      "taskTitle": "CES 5277-1",
+      "audioText": "Your call sign is CES 5277, you are parking at gate 213, you have received information F, request ATC clearance to London Heathrow from Wuhan Delivery.",
+      "audioTextZh": "你的呼号是 CES 5277，停在 213 登机口，已收到 F 情报，向武汉放行申请前往伦敦希思罗的 ATC 放行许可。",
+      "referenceText": "Wuhan Delivery, CES 5277, Gate 213, information F, request ATC clearance to London Heathrow.",
+      "referenceTextZh": "武汉放行，CES 5277，213 登机口，F 情报，申请前往伦敦希思罗的 ATC 放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-039-ces5277-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0141-card-main-2430",
+      "taskTitle": "CES 5277-2",
+      "audioText": "CES 5277, cleared to London Heathrow via flight planned route, departure Runway 04, initial climb 2700 meters, LKO-02 departure, cruising level 8400 meters, squawk 2512.",
+      "audioTextZh": "CES 5277，许可按飞行计划航路飞往伦敦希思罗，离场使用 Runway 04，初始爬升至 2700 米，执行 LKO-02 离场，巡航高度 8400 米，应答机 2512。",
+      "referenceText": "cleared to London Heathrow via flight planned route, departure Runway 04, initial climb 2700 meters, LKO-02 departure, cruising level 8400 meters, squawk 2512, CES 5277.",
+      "referenceTextZh": "许可按飞行计划航路飞往伦敦希思罗，离场使用 Runway 04，初始爬升至 2700 米，执行 LKO-02 离场，巡航高度 8400 米，应答机 2512，CES 5277。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-039-ces5277-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0141-card-main-2431",
+      "taskTitle": "CES 5277-3",
+      "audioText": "B: Now you are ready for taxi, contact Wuhan Ground.",
+      "audioTextZh": "B：现在你准备好滑行，联系武汉地面。",
+      "referenceText": "Wuhan Ground, CES 5277, request taxi.",
+      "referenceTextZh": "武汉地面，CES 5277，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-039-ces5277-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0141-card-main-2432",
+      "taskTitle": "CES 5277-4",
+      "audioText": "CES 5277, taxi to holding point Runway 04via taxiway A4, E2, hold short of Runway 36R.",
+      "audioTextZh": "CES 5277，经 A4、E2 滑行道滑行至 Runway 04 等待点，在 Runway 36R 前等待。",
+      "referenceText": "taxi to holding point Runway 04via taxiway A four, E two, hold short of Runway 36R, CES 5277.",
+      "referenceTextZh": "经 A4、E2 滑行道滑行至 Runway 04 等待点，在 Runway 36R 前等待，CES 5277。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-039-ces5277-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0141-card-main-2433",
+      "taskTitle": "CES 5277-5",
+      "audioText": "Now you are holding short of Runway 36R, contact the controller to request cross the Runway 36R.",
+      "audioTextZh": "现在你在 Runway 36R 前等待，联系管制员请求穿越 Runway 36R。",
+      "referenceText": "Wuhan Tower, CES 5277, holding short of Runway 36R, request cross Runway 36R.",
+      "referenceTextZh": "武汉塔台，CES 5277，在 Runway 36R 前等待，请求穿越 Runway 36R。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-039-ces5277-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0141-card-main-2434",
+      "taskTitle": "CES 5277-6",
+      "audioText": "CES 5277, expedite cross Runway 36R, report vacated.",
+      "audioTextZh": "CES 5277，加速穿越 Runway 36R，脱离后报告。",
+      "referenceText": "expedite cross Runway 36R, CES 5277.",
+      "referenceTextZh": "加速穿越 Runway 36R，CES 5277。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-039-ces5277-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0141-card-main-2435",
+      "taskTitle": "CES 5277-7",
+      "audioText": "Now you have exited Runway 36R, report it to Wuhan Tower.",
+      "audioTextZh": "现在你已脱离 Runway 36R，向武汉塔台报告。",
+      "referenceText": "Wuhan Tower, CES 5277, Runway 36R vacated.",
+      "referenceTextZh": "武汉塔台，CES 5277，已脱离 Runway 36R。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-039-ces5277-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0141-card-main-2436",
+      "taskTitle": "CES 5277-8",
+      "audioText": "B: Now you are holding short of Runway 04, you are ready for departure.",
+      "audioTextZh": "B：现在你在跑道 04 外等待，准备好离场。",
+      "referenceText": "Wuhan Tower, CES 5277, holding short of Runway 04, ready for departure.",
+      "referenceTextZh": "武汉塔台，CES 5277，跑道 04 外等待，准备好离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-039-ces5277-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0141-card-main-2437",
+      "taskTitle": "CES 5277-9",
+      "audioText": "CES 5277, after departure, climb straight ahead until 600 meters, follow SID, direct to LKO, contact Wuhan departure 120.2, cleared for takeoff Runway 04.",
+      "audioTextZh": "CES 5277，离场后直线爬升至 600 米，执行 SID，直飞 LKO，联系武汉离场 120.2，许可从 Runway 04 起飞。",
+      "referenceText": "after departure, climb straight ahead until 600 meters, follow SID, direct to LKO, contact Wuhan departure 120.2, cleared for takeoff Runway 04, CES 5277.",
+      "referenceTextZh": "离场后直线爬升至 600 米，执行 SID，直飞 LKO，联系武汉离场 120.2，许可从 Runway 04 起飞，CES 5277。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-039-ces5277-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0141-card-main-2438",
+      "taskTitle": "CES 5277-10",
+      "audioText": "B: After takeoff, your flaps seem to be jammed, report the situation to Wuhan Approach and request hold for further check.",
+      "audioTextZh": "B：起飞后，你的襟翼似乎卡住，向武汉进近报告情况并请求等待以进一步检查。",
+      "referenceText": "Wuhan Approach, CES 5277, our flaps seem to be jammed, request hold for further check.",
+      "referenceTextZh": "武汉进近，CES 5277，我们的襟翼似乎卡住，请求等待以进一步检查。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-039-ces5277-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0141-card-main-2439",
+      "taskTitle": "CES 5277-11",
+      "audioText": "CES 5277, roger, turn right, direct to LKO, hold at LKO VOR, 210 radial, hold at 3,300 meters, inbound track 280 degrees, left hand pattern, outbound time one minute.",
+      "audioTextZh": "CES 5277，收到，右转直飞 LKO，在 LKO VOR 等待，210 径向线，在 3,300 米等待，向台航迹 280 度，左等待，背台时间一分钟。",
+      "referenceText": "turn right, direct to LKO, hold at LKO VOR, 210 radial, hold at 3300 meters, inbound track 280 degrees, left hand pattern, outbound time one minute, CES 5277.",
+      "referenceTextZh": "右转，直飞 LKO，在 LKO VOR 等待，210 径向线，在 3300 米等待，向台航迹 280 度，左等待，背台时间一分钟，CES 5277。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-039-ces5277-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0141-card-main-2440",
+      "taskTitle": "CES 5277-12",
+      "audioText": "B: After performing the checklist, the flap problem can't be solved, report it to Wuhan Approach and request return to land.",
+      "audioTextZh": "B：完成检查单后，襟翼问题无法解决，向武汉进近报告并请求返回着陆。",
+      "referenceText": "Wuhan Approach, CES 5277, the flap problem can't be solved, request return to land.",
+      "referenceTextZh": "武汉进近，CES 5277，襟翼问题无法解决，请求返回着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-039-ces5277-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0141-card-main-2441",
+      "taskTitle": "CES 5277-13",
+      "audioText": "CES 5277, turn right heading 340, follow LKO-03A arrival, expect ILS approach Runway 04.",
+      "audioTextZh": "CES 5277，右转航向 340，执行 LKO-03A 进场，预计 ILS 进近 Runway 04。",
+      "referenceText": "turn right heading 340, follow LKO03 A Arrival, expect ILS approach Runway 04, CES 5277.",
+      "referenceTextZh": "右转航向 340，执行 LKO-03A 进场，预计 ILS 进近 Runway 04，CES 5277。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-039-ces5277-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0141-card-main-2442",
+      "taskTitle": "CES 5277-14",
+      "audioText": "B: You can't fully extend the flaps, tell Wuhan Tower that you need to land on the longest runway.",
+      "audioTextZh": "B：你无法完全放出襟翼，告诉武汉塔台你需要在最长跑道上着陆。",
+      "referenceText": "Wuhan Tower, CES 5277, we can't fully extend the flaps, request the longest runway for landing.",
+      "referenceTextZh": "武汉塔台，CES 5277，我们无法完全放出襟翼，请求最长跑道着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-039-ces5277-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0141-card-main-2443",
+      "taskTitle": "CES 5277-15",
+      "audioText": "CES 5277, turn right heading 030 to join right hand downwind Runway 04.",
+      "audioTextZh": "CES 5277，右转航向 030，加入 Runway 04 右三边。",
+      "referenceText": "turn right heading 030 to join right hand downwind Runway 04, CES 5277.",
+      "referenceTextZh": "右转航向 030，加入 Runway 04 右三边，CES 5277。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-039-ces5277-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0141-card-main-2444",
+      "taskTitle": "CES 5277-16",
+      "audioText": "CES 5277, cleared to land, Runway 04.",
+      "audioTextZh": "CES 5277，许可在 Runway 04 落地。",
+      "referenceText": "cleared to land, Runway 04, CES 5277.",
+      "referenceTextZh": "许可在 Runway 04 落地，CES 5277。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-039-ces5277-q16.mp3"
+    }
+  ]
+}

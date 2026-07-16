@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "ruleVersion": "web-question-bank-final-dedupe-v1.1.0",
+  "generatedAt": "2026-07-15T17:53:57.440Z",
+  "preparedChecksum": "4050a3aecdf07c520938a579b815c3a07af833f3932de8efc763eaed521a1427",
+  "appBaselineRootChecksum": "05df5fe4787c49d5989dbe0587f1d834fe08eab8e3b929a7d4fbd51ea5162932",
+  "total": 1518,
+  "kept": 1409,
+  "excluded": 109,
+  "byKind": {
+    "listening": {
+      "total": 609,
+      "kept": 592,
+      "excluded": 17
+    },
+    "radiotelephony": {
+      "total": 768,
+      "kept": 677,
+      "excluded": 91
+    },
+    "storytelling": {
+      "total": 141,
+      "kept": 140,
+      "excluded": 1
+    }
+  },
+  "recordsChecksum": "8d1cb0bfcad14904961fbb257e504c8b9528f4febd83d6c04786e8406f1d3f67"
+}

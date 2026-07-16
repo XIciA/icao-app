@@ -1,0 +1,161 @@
+{
+  "categoryId": "atc-sia",
+  "id": "atc-scenario-0186",
+  "name": "SIA 223 起落架问题 TCAS机动 复飞",
+  "declaredCardCount": 17,
+  "cards": [
+    {
+      "id": "atc-scenario-0186-card-main-3202",
+      "taskTitle": "SIA 223-1",
+      "audioText": "Your call sign is SIA 223. You have an undercarriage problem, you'd like to go around, inform Wuhan Tower.",
+      "audioTextZh": "你的呼号是 SIA 223。你的起落架出现问题，希望复飞，通知武汉塔台。",
+      "referenceText": "Wuhan Tower, SIA 223, undercarriage problem, go around.",
+      "referenceTextZh": "武汉塔台，SIA 223，起落架出现问题，复飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-088-sia223-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0186-card-main-3203",
+      "taskTitle": "SIA 223-2",
+      "audioText": "SIA 223, climb and maintain 900 meters, turn left heading 330.",
+      "audioTextZh": "SIA 223，爬升至并保持 900 米，左转航向 330。",
+      "referenceText": "climbing to 900 meters, left turn heading 330, SIA 223.",
+      "referenceTextZh": "爬升至 900 米，左转航向 330，SIA 223。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-088-sia223-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0186-card-main-3204",
+      "taskTitle": "SIA 223-3",
+      "audioText": "C: SIA 223, confirm you want to make another approach or join holding pattern?\nB: Tell the controller you will have to hold for a while to sort out the problem.",
+      "audioTextZh": "C： SIA 223，确认你希望再次进近还是加入等待航线？\nB： 告诉管制员，你必须等待一段时间以排除故障。",
+      "referenceText": "request hold, sort out the problem, SIA 223.",
+      "referenceTextZh": "请求等待以排除故障，SIA 223。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-088-sia223-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0186-card-main-3205",
+      "taskTitle": "SIA 223-4",
+      "audioText": "SIA 223, maintain 900 meters, direct to DAL A, contact approach 119.35.",
+      "audioTextZh": "SIA 223，保持 900 米，直飞 DAL A，联系进近 119.35。",
+      "referenceText": "maintain 900 meters, proceed to DAL A and contact approach on 119.35, SIA 223.",
+      "referenceTextZh": "保持 900 米，前往 DAL A，联系进近 119.35，SIA 223。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-088-sia223-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0186-card-main-3206",
+      "taskTitle": "SIA 223-5",
+      "audioText": "now you are on emergency, you are unable to lower the nose gear, report it to Wuhan Approach.",
+      "audioTextZh": "现在你处于紧急状态，无法放下前起落架，向武汉进近报告。",
+      "referenceText": "Wuhan Approach, SIA 223, emergency, unable to lower nose gear.",
+      "referenceTextZh": "武汉进近，SIA 223，紧急情况，无法放下前起落架。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-088-sia223-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0186-card-main-3207",
+      "taskTitle": "SIA 223-6",
+      "audioText": "C: SIA 223, roger, fly heading 080.\nB: read back the instructions and tell the controller you would like to make a low pass for visual check.",
+      "audioTextZh": "C： SIA 223，收到，飞航向 080。\nB： 复诵指令，并告诉管制员你希望实施低空通场，以便进行目视检查。",
+      "referenceText": "heading 080, request low pass for visual check, SIA 223.",
+      "referenceTextZh": "航向 080，请求低空通场进行目视检查，SIA 223。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-088-sia223-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0186-card-main-3208",
+      "taskTitle": "SIA 223-7",
+      "audioText": "SIA 223, cleared low pass left of Runway 36R over the apron, expect Runway 04for emergency landing.",
+      "audioTextZh": "SIA 223，许可在 Runway 36R 左侧、机坪上空实施低空通场，预计使用 Runway 04 紧急着陆。",
+      "referenceText": "cleared low pass on the left side of Runway 36R over the apron, emergency landing Runway 04, SIA 223.",
+      "referenceTextZh": "许可在 Runway 36R 左侧、机坪上空实施低空通场，使用 Runway 04 紧急着陆，SIA 223。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-088-sia223-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0186-card-main-3209",
+      "taskTitle": "SIA 223-8",
+      "audioText": "Tell Wuhan Tower you are turning onto the ILS for a low pass for Runway 36R.",
+      "audioTextZh": "告诉武汉塔台，你正在切入 Runway 36R 的 ILS，以实施低空通场。",
+      "referenceText": "Wuhan Tower, SIA 223, ILS for a low pass Runway 36R.",
+      "referenceTextZh": "武汉塔台，SIA 223，正在切入 Runway 36R 的 ILS，以实施低空通场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-088-sia223-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0186-card-main-3210",
+      "taskTitle": "SIA 223-9",
+      "audioText": "SIA 223, Wuhan tower, report on final approach.",
+      "audioTextZh": "SIA 223，武汉塔台，最后进近时报告。",
+      "referenceText": "wilco, SIA 223.",
+      "referenceTextZh": "照办，SIA 223。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-088-sia223-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0186-card-main-3211",
+      "taskTitle": "SIA 223-10",
+      "audioText": "Now you are on short final.",
+      "audioTextZh": "现在你正在短五边。",
+      "referenceText": "Wuhan Tower, SIA 223, short final.",
+      "referenceTextZh": "武汉塔台，SIA 223，短五边。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-088-sia223-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0186-card-main-3212",
+      "taskTitle": "SIA 223-11",
+      "audioText": "SIA 223, I say again, cleared low pass over the left of Runway 36R, I'll keep you advised.",
+      "audioTextZh": "SIA 223，我再说一遍，许可从 Runway 36R 左侧低空通场，我会随时向你通报。",
+      "referenceText": "roer, cleared low pass on the left hand side of runway, SIA 223.",
+      "referenceTextZh": "收到，许可从跑道左侧低空通场，SIA 223。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-088-sia223-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0186-card-main-3213",
+      "taskTitle": "SIA 223-12",
+      "audioText": "C: SIA 223, the nose wheel doesn't appear to be down, say your intention.\nB: Tell the controller you ask for touch and go and you intend to jar the wheel down.",
+      "audioTextZh": "C： SIA 223，前轮看起来没有放下，报告你的意图。\nB： 告诉管制员你请求接地复飞，并打算通过震动将机轮放下。",
+      "referenceText": "SIA 223, request touch and go, jar down.",
+      "referenceTextZh": "SIA 223，请求接地复飞，尝试通过震动将机轮放下。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-088-sia223-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0186-card-main-3214",
+      "taskTitle": "SIA 223-13",
+      "audioText": "SIA 223, cleared touch and go, heading 330, report established.",
+      "audioTextZh": "SIA 223，许可接地复飞，航向 330，建立后报告。",
+      "referenceText": "cleared touch and go Runway 36R, turn left heading 330, SIA 223.",
+      "referenceTextZh": "许可在 Runway 36R 接地复飞，左转航向 330，SIA 223。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-088-sia223-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0186-card-main-3215",
+      "taskTitle": "SIA 223-14",
+      "audioText": "you are going around, report it to Wuhan Tower.",
+      "audioTextZh": "你正在复飞，向武汉塔台报告。",
+      "referenceText": "SIA 223, going around.",
+      "referenceTextZh": "SIA 223，正在复飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-088-sia223-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0186-card-main-3216",
+      "taskTitle": "SIA 223-15",
+      "audioText": "SIA 223, roger, climb and maintain 600 meters, heading 330.",
+      "audioTextZh": "SIA 223，收到，爬升至并保持 600 米，航向 330。",
+      "referenceText": "left turn heading 330, climb to 600 meters, SIA 223.",
+      "referenceTextZh": "左转航向 330，爬升至 600 米，SIA 223。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-088-sia223-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0186-card-main-3217",
+      "taskTitle": "SIA 223-16",
+      "audioText": "your nose wheel still appears to be jammed, tell the controller you have to make an emergency landing on Runway 04.",
+      "audioTextZh": "你的前轮看起来仍然卡住，告诉管制员你必须在 Runway 04 紧急着陆。",
+      "referenceText": "Wuhan Tower, SIA 223, nose wheel still appears to be jammed, we have to make an emergency landing Runway 04.",
+      "referenceTextZh": "武汉塔台，SIA 223，前轮看起来仍然卡住，我们必须在 Runway 04 紧急着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-088-sia223-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0186-card-main-3218",
+      "taskTitle": "SIA 223-17",
+      "audioText": "SIA 223, cleared for emergency landing on Runway 04, the emergency group is ready.",
+      "audioTextZh": "SIA 223，许可在 Runway 04 紧急着陆，紧急救援组已就位。",
+      "referenceText": "roger, cleared for emergency landing on Runway 04, SIA 223.",
+      "referenceTextZh": "收到，许可在 Runway 04 紧急着陆，SIA 223。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-088-sia223-q17.mp3"
+    }
+  ]
+}

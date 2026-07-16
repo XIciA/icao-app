@@ -1,0 +1,170 @@
+{
+  "categoryId": "atc-afr",
+  "id": "atc-scenario-0162",
+  "name": "AFR 941 发动机失效 TCAS机动 延误/加油",
+  "declaredCardCount": 18,
+  "cards": [
+    {
+      "id": "atc-scenario-0162-card-main-2793",
+      "taskTitle": "AFR 941-1",
+      "audioText": "Your call sign is AFR 941, you are descending through 3900m for 3600 meters.Contact Wuhan approach.",
+      "audioTextZh": "你的呼号是 AFR 941，正通过 3900m 下降至 3600 米。联系武汉进近。",
+      "referenceText": "Approach, AFR 941, 3900, 3600 meters.",
+      "referenceTextZh": "进近，AFR 941，3900，3600 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-062-afr941-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0162-card-main-2794",
+      "taskTitle": "AFR 941-2",
+      "audioText": "AFR 941, Wuhan approach, radar identified, information E is current, descend to and maintain 3000 meterson QNH 1004.",
+      "audioTextZh": "AFR 941，武汉进近，雷达识别，E 情报有效，在 QNH 1004 上下降至并保持 3000 米。",
+      "referenceText": "information E, descend, 3000 meters, QNH, 1004, AFR 941.",
+      "referenceTextZh": "E 情报，下降，3000 米，QNH 1004，AFR 941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-062-afr941-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0162-card-main-2795",
+      "taskTitle": "AFR 941-3",
+      "audioText": "C: AFR 941, descend and maintain 2,400 meters, reduce to minimum clean speed.\nB: Read back the instruction and tell the controller that the clean configuration speed of your aircraft is 200 knots.",
+      "audioTextZh": "C： AFR 941，下降并保持 2,400 米，将速度减至最小光洁构型速度。\nB： 复诵指令，并告诉管制员你的航空器光洁构型速度为 200 节。",
+      "referenceText": "descend and maintain 2400 meters, reduce to minimum clean speed, 200 knots, AFR 941.",
+      "referenceTextZh": "下降并保持 2400 米，将速度减至最小光洁构型速度，200 节，AFR 941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-062-afr941-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0162-card-main-2796",
+      "taskTitle": "AFR 941-4",
+      "audioText": "C: AFR 941, turn right heading 300, you are number 3, 25 miles from touchdown.",
+      "audioTextZh": "管制员：AFR 941，右转航向300，你是第三架，距接地点25海里。",
+      "referenceText": "Turn right heading 300, roger, AFR 941.",
+      "referenceTextZh": "右转航向300，收到，AFR 941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-062-afr941-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0162-card-main-2797",
+      "taskTitle": "AFR 941-5",
+      "audioText": "AFR 941, turn left proceed direct DA, descend to and maintain 2,100 meters.",
+      "audioTextZh": "AFR 941，左转直飞 DA，下降至并保持 2,100 米。",
+      "referenceText": "turn left, direct to DAL A, descend to 2100 meters, AFR 941.",
+      "referenceTextZh": "左转，直飞 DAL A，下降至 2100 米，AFR 941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-062-afr941-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0162-card-main-2798",
+      "taskTitle": "AFR 941-6",
+      "audioText": "C: AFR 941, hold at DA as published.\nB: Read back and ask the reason for holding.",
+      "audioTextZh": "管制员：AFR 941，在DA按公布程序等待。请复诵并询问等待原因。",
+      "referenceText": "Hold at DA as published, what's the reason for holding? AFR 941.",
+      "referenceTextZh": "在DA按公布程序等待，请问等待原因？AFR 941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-062-afr941-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0162-card-main-2799",
+      "taskTitle": "AFR 941-7",
+      "audioText": "C: AFR 941, they are having a runway inspection at the moment, expect to delay more than 15 minutes.\nB: Read back the ATC instruction and report that you are entering the hold.",
+      "audioTextZh": "C： AFR 941，目前正在进行跑道检查，预计延误超过 15 分钟。\nB： 复诵 ATC 指令，并报告你正进入等待。",
+      "referenceText": "roger, (runway inspection, expect delay more than 15 minutes, ) entering the hold, AFR 941.",
+      "referenceTextZh": "收到，（跑道检查，预计延误超过 15 分钟，）正在进入等待，AFR 941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-062-afr941-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0162-card-main-2800",
+      "taskTitle": "AFR 941-8",
+      "audioText": "The EGT of your starboard (=right) engine is fluctuating, state this situation to the controller. Ask to leave the holding pattern right away (=immediately).",
+      "audioTextZh": "你的右发 EGT 正在波动，向管制员说明情况。请求立即离开等待航线。",
+      "referenceText": "Approach, AFR 941, EGT, starboard engine is fluctuating, unstable request leave the holding pattern.",
+      "referenceTextZh": "进近，AFR 941，右发 EGT 波动、不稳定，请求离开等待航线。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-062-afr941-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0162-card-main-2801",
+      "taskTitle": "AFR 941-9",
+      "audioText": "C: AFR 941, roger, stand by, continue your hold, we are changing the landing sequence, expect to call you in 2 min.\nB: The oil pressure of your starboard engine is rapidly decreasing, state this situation to the controller, request immediate exit and request descent.",
+      "audioTextZh": "C： AFR 941，收到，等待，继续等待，我们正在调整落地顺序，预计 2 分钟后呼叫你。\nB： 你的右发滑油压力正在迅速下降，向管制员说明情况，请求立即退出并请求下降。",
+      "referenceText": "oil pressure, starboard engine, rapidly decreasing, request immediate exit, descent, AFR 941",
+      "referenceTextZh": "右发滑油压力正在迅速下降，请求立即退出、下降，AFR 941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-062-afr941-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0162-card-main-2802",
+      "taskTitle": "AFR 941-10",
+      "audioText": "C: AFR 941, standby, traffic at your 3 o'clock position is maintaining 1,800 meters crossing from your right to left, report visual.\nB: Tell the controller you have seen the conflicting aircraft.",
+      "audioTextZh": "C： AFR 941，等待，你 3 点钟方向的航空器正保持 1,800 米，从你的右侧向左侧穿越，看到后报告。\nB： 告诉管制员你已看到冲突航空器。",
+      "referenceText": "traffic in sight, AFR 941.",
+      "referenceTextZh": "已看到相关航空器，AFR 941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-062-afr941-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0162-card-main-2803",
+      "taskTitle": "AFR 941-11",
+      "audioText": "B: Your starboard engine has failed, make an Urgency call and ask for landing priority.",
+      "audioTextZh": "你的右发已经失效，请发出紧急信号并申请优先落地。",
+      "referenceText": "PANPAN PANPAN PANPAN, Wuhan Approach, AFR 941, our starboard engine has failed, request priority landing.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，武汉进近，AFR 941，我们右发失效，申请优先落地。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-062-afr941-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0162-card-main-2804",
+      "taskTitle": "AFR 941-12",
+      "audioText": "AFR 941, roger PAN. Turn left heading 060, descend to 900 meters, cleared ILS approach Runway 36L.",
+      "audioTextZh": "AFR 941，收到 PAN，左转航向 060，下降至 900 米，许可 ILS 进近 Runway 36L。",
+      "referenceText": "Turn left, heading 060, descend to 900 meters, cleared ILS approach Runway 36L, AFR 941.",
+      "referenceTextZh": "左转航向 060，下降至 900 米，许可 ILS 进近 Runway 36L，AFR 941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-062-afr941-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0162-card-main-2805",
+      "taskTitle": "AFR 941-13",
+      "audioText": "C: AFR 941, contact Wuhan Tower, frequency 124.35, goodbye.",
+      "audioTextZh": "管制员：AFR 941，联系武汉塔台，频率124.35，再见。",
+      "referenceText": "124.35, AFR 941.",
+      "referenceTextZh": "124.35，AFR 941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-062-afr941-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0162-card-main-2806",
+      "taskTitle": "AFR 941-14",
+      "audioText": "B: Your heading is 060 and your altitude is 900 meters, contact Wuhan Tower and tell him about the condition of the aircraft.",
+      "audioTextZh": "你当前航向060，高度900米，请联系武汉塔台并说明飞机状况。",
+      "referenceText": "Wuhan Tower, AFR 941, heading 060, 900 meters, our starboard engine has failed, request priority landing.",
+      "referenceTextZh": "武汉塔台，AFR 941，航向060，900米，我们右发失效，申请优先落地。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-062-afr941-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0162-card-main-2807",
+      "taskTitle": "AFR 941-15",
+      "audioText": "C: Roger, AFR 941, maintain present heading.",
+      "audioTextZh": "管制员：收到，AFR 941，保持当前航向。",
+      "referenceText": "Maintain present heading, AFR 941.",
+      "referenceTextZh": "保持当前航向，AFR 941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-062-afr941-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0162-card-main-2808",
+      "taskTitle": "AFR 941-16",
+      "audioText": "AFR 941, turn left heading 030 to intercept the localizer for Runway 36L.",
+      "audioTextZh": "AFR 941，左转航向 030，切入 Runway 36L 航向道。",
+      "referenceText": "turn left heading 030 to intercept the localizer for Runway 36L, AFR 941.",
+      "referenceTextZh": "左转航向 030，切入 Runway 36L 航向道，AFR 941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-062-afr941-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0162-card-main-2809",
+      "taskTitle": "AFR 941-17",
+      "audioText": "Report you have established localizer Runway 36L.",
+      "audioTextZh": "报告你已建立 Runway 36L 航向道。",
+      "referenceText": "Wuhan Tower, AFR 941, established localizer Runway 36L.",
+      "referenceTextZh": "武汉塔台，AFR 941，已建立 Runway 36L 航向道。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-062-afr941-q17.mp3"
+    },
+    {
+      "id": "atc-scenario-0162-card-main-2810",
+      "taskTitle": "AFR 941-18",
+      "audioText": "C: AFR 941, cleared to land.",
+      "audioTextZh": "管制员：AFR 941，可以落地。",
+      "referenceText": "Cleared to land, AFR 941.",
+      "referenceTextZh": "可以落地，AFR 941。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-062-afr941-q18.mp3"
+    }
+  ]
+}

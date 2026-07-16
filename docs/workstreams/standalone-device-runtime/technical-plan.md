@@ -1,8 +1,8 @@
 # 设备独立使用技术方案
 
-状态：iOS 方案已落地，等待断开 Mac 的人工终验（Android 延期）
+状态：双端发布与 Android 下载站方案已确认并实施
 
-更新时间：2026-07-13
+更新时间：2026-07-16
 
 ## 1. 方案结论
 
@@ -13,6 +13,7 @@
 3. iPhone 使用嵌入 JavaScript Bundle 的 Release 配置构建，并继续使用 Apple Development 签名。
 4. Android 使用现有原生工程生成由项目专属密钥签名的 Release APK。
 5. 保留现有 SSH 隧道和 Development Build 工作流，作为开发、排障和公网故障时的回退方式。
+6. `download.feizhuicao.com` 由现有 ECS Caddy 提供静态下载页与 APK，不触碰只读设计仓库或 Vercel 主站。
 
 该方案只改变“手机如何访问现有服务”和“安装包如何构建”，不改变产品功能和项目主体结构。
 
@@ -25,12 +26,13 @@
 
 ## 3. 公网入口方案
 
-一个个人主域名下使用两个子域名：
+一个个人主域名下使用三个子域名：
 
 | 入口 | 目标 | 承载能力 |
 | --- | --- | --- |
 | `api.<临时个人域名>` | ECS `127.0.0.1:3101` | 业务 API、同步、AI、健康检查 |
 | `cloud.<临时个人域名>` | ECS `127.0.0.1:8000` | Supabase Auth、REST、Storage、音频签名地址 |
+| `download.<临时个人域名>` | ECS 只读静态目录 | Android 下载页、`latest.apk`、版本信息 |
 
 推荐在 ECS 安装 Caddy 作为唯一公网反向代理，配置文件纳入仓库的独立基础设施目录。选择 Caddy 的原因是配置量小、自动申请和续期 HTTPS 证书，适合当前单机 MVP 和临时域名阶段。
 
@@ -77,16 +79,31 @@
 
 ## 7. Android Release APK 方案
 
-- 当前 Android 包名作为过渡期包名保留，避免在本任务引入数据命名空间变化；公司正式发布阶段再决定是否更换正式标识。
+- Android 正式包名固定为 `com.feizhuicao.app`；iOS 继续使用 `com.anonymous.icao-app`，不改 iOS Bundle ID。
 - 生成项目专属 Release Keystore，密钥文件和密码只存放在仓库外的受保护位置，并建立加密备份。
-- Gradle 通过仓库外环境变量或用户级 Gradle 配置读取签名信息，不提交密钥和密码。
+- 密钥采用带强随机密码的 PKCS#12，主副本位于本机受保护目录，密码存入 macOS Keychain，加密密钥副本保存到 iCloud Drive。
+- Gradle 通过仓库外环境变量读取签名信息；Expo Prebuild 由本地 Config Plugin 可重复生成 Release 签名配置，不提交密钥和密码。
 - `release` 构建不得继续使用 `debug.keystore`。
 - 每次分发递增 `versionCode`，生成签名后的通用 Release APK、SHA-256 校验值和版本说明。
 - 当前已安装 Debug APK 的设备在首次切换 Release 签名时需要卸载重装；此后的 Release 版本必须支持覆盖升级。
 
-Android 安装包仅通过受控方式发给少量测试者，不建设公开下载站和应用市场流程。
+Android 安装包通过 `https://download.feizhuicao.com` 发给少量测试者。网页无密码但设置 `noindex, nofollow, noarchive`；固定入口 `latest.apk` 指向最新版本，带版本号产物继续保留在服务器但不列在页面。
 
-## 8. ECS 变更与回滚
+## 8. 平台独立发布编排
+
+Android 主命令为 `pnpm release:android`，按以下顺序执行：
+
+1. 首次发布记录当前工作区全部非忽略文件及哈希；已有公开版本时先要求 Git 工作区干净。
+2. 统一更新 App 显示版本、Android `versionCode` 和 iOS `buildNumber`，保持营销版本一致。
+3. 运行 `pnpm check`；通过发布清单中的 API 指纹识别服务端变化。
+4. API 指纹变化时先备份、构建候选镜像、重启、检查 `/health/ready` 并运行真实账号/同步验证；迁移文件变化时自动暂停，禁止顺带迁移数据库。
+5. 构建并核验正式签名 Android APK，检查包名、版本、证书、内嵌公网地址和 SHA-256。
+6. 上传带版本号 APK；Android 自身门禁成功后原子切换公开 `latest.apk` 和 `version.json`。
+7. 从 HTTPS 下载入口复核 `noindex`、文件类型、文件哈希以及 API 健康状态。
+
+iOS 使用 `pnpm release:ios` 单独运行检查与 `pnpm ios:standalone`，保持原 Bundle ID 覆盖安装。`pnpm release:dual` 只按 Android、iOS 顺序调用两个独立流程；iOS 失败不会撤销已上线的 Android。
+
+## 9. ECS 变更与回滚
 
 执行公网配置前必须：
 
@@ -99,7 +116,7 @@ Android 安装包仅通过受控方式发给少量测试者，不建设公开下
 
 回滚时恢复 Supabase/API外部地址和原运行配置，停止公网网关；现有 SSH 隧道测试链路必须仍然可用。
 
-## 9. 验证方案
+## 10. 验证方案
 
 ### 自动验证
 
@@ -117,7 +134,7 @@ Android 安装包仅通过受控方式发给少量测试者，不建设公开下
 - 两端均检查登录、五题库、音频、学习数据、标注、同步、AI、前后台恢复和错误提示。
 - Wi-Fi和蜂窝网络分别完成至少一轮代表性链路。
 
-## 10. 不采用的方案
+## 11. 不采用的方案
 
 - 不把API、Supabase或音频继续通过Mac转发作为独立运行方案。
 - 不把完整音频库打入安装包。
@@ -126,7 +143,7 @@ Android 安装包仅通过受控方式发给少量测试者，不建设公开下
 - 不为了脱离Mac接入TestFlight、App Store、Google Play或完整EAS发布体系。
 - 不在页面或业务数据中硬编码临时个人域名。
 
-## 11. 主要风险与暂停条件
+## 12. 主要风险与暂停条件
 
 - 临时域名不能完成DNS、HTTPS、备案或ECS安全组配置时，暂停公网阶段。
 - 公网开放后发现未鉴权接口、内部管理端口或敏感信息暴露时，立即关闭公网入口并回滚。
@@ -135,6 +152,6 @@ Android 安装包仅通过受控方式发给少量测试者，不建设公开下
 - 若独立运行必须大改App业务结构、迁移数据库或改变账号体系，暂停并返回大流程。
 - 当前工作区已有其他未完成改动；执行时如与目标文件冲突，必须隔离目标提交或明确文件集后继续。
 
-## 12. 方案完成标准
+## 13. 方案完成标准
 
-本方案已经用户确认并按 `roadmap.md` 执行。当前 iOS 自动执行证据记录在 `phase-log.md`；Android 相关阶段按用户要求延期。
+本方案已经用户确认并按 `roadmap.md` 执行。当前 iOS、Android、下载站和双端发布证据记录在 `phase-log.md`。

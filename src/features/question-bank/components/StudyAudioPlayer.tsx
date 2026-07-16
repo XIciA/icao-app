@@ -1,11 +1,12 @@
-import { setAudioModeAsync, useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
+import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import { AlertCircle, Check, Headphones, Pause, Play, RotateCcw } from 'lucide-react-native';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { type ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, AppState, Modal, Pressable, StyleSheet, View, useWindowDimensions } from 'react-native';
 import type { GestureType } from 'react-native-gesture-handler';
 
 import { AppText } from '@/components/ui';
 import { colors, fonts, radii, shadows, spacing } from '@/theme';
+import { claimAudioSession, registerAudioOwner } from '@/platform/audio-session-coordinator';
 import { useAudioLoadTimeout } from '../hooks/useAudioLoadTimeout';
 import { AudioTimeline } from './AudioTimeline';
 
@@ -27,6 +28,8 @@ export function StudyAudioPlayer({
   dismissControlsRequest = 0,
   pauseRequest = 0,
   onPlaybackStart,
+  practiceControls,
+  variant = 'default',
 }: {
   uri?: string;
   label: string;
@@ -41,6 +44,8 @@ export function StudyAudioPlayer({
   dismissControlsRequest?: number;
   pauseRequest?: number;
   onPlaybackStart?: () => void;
+  practiceControls?: ReactNode;
+  variant?: 'default' | 'integrated-recording';
 }) {
   const { height: windowHeight, width: windowWidth } = useWindowDimensions();
   const player = useAudioPlayer(null, { updateInterval: 250, preferredForwardBufferDuration: 10 });
@@ -62,10 +67,15 @@ export function StudyAudioPlayer({
     isLoaded: status.isLoaded,
     hasError: status.playbackState === 'error',
   });
+  const integrated = variant === 'integrated-recording';
+  const audioFailed = !uri || loadTimeout.timedOut || status.playbackState === 'error';
+  const audioControllable = Boolean(uri && status.isLoaded && !loadTimeout.timedOut && status.playbackState !== 'error');
 
-  useEffect(() => {
-    void setAudioModeAsync({ playsInSilentMode: true, shouldPlayInBackground: false });
-  }, []);
+  useEffect(() => registerAudioOwner('study', () => {
+    pendingAutoPlayRef.current = false;
+    resumeAfterScrubRef.current = false;
+    player.pause();
+  }), [player]);
 
   useEffect(() => {
     player.pause();
@@ -83,8 +93,10 @@ export function StudyAudioPlayer({
   useEffect(() => {
     if (!pendingAutoPlayRef.current || appStateRef.current !== 'active' || !status.isLoaded || status.playbackState === 'error') return;
     pendingAutoPlayRef.current = false;
-    onPlaybackStart?.();
-    player.play();
+    void claimAudioSession('study').then(() => {
+      onPlaybackStart?.();
+      player.play();
+    });
   }, [onPlaybackStart, player, status.isLoaded, status.playbackState]);
 
   useEffect(() => {
@@ -132,6 +144,7 @@ export function StudyAudioPlayer({
     if (status.playing) player.pause();
     else {
       if (status.didJustFinish || (status.duration > 0 && status.currentTime >= status.duration)) await player.seekTo(0);
+      await claimAudioSession('study');
       onPlaybackStart?.();
       player.play();
     }
@@ -190,6 +203,7 @@ export function StudyAudioPlayer({
     resumeAfterScrubRef.current = false;
     await player.seekTo(nextPosition);
     if (!shouldResume || appStateRef.current !== 'active') return;
+    await claimAudioSession('study');
     onPlaybackStart?.();
     player.play();
   }
@@ -198,78 +212,172 @@ export function StudyAudioPlayer({
     const shouldResume = resumeAfterScrubRef.current;
     resumeAfterScrubRef.current = false;
     if (!shouldResume || appStateRef.current !== 'active') return;
-    onPlaybackStart?.();
-    player.play();
+    void claimAudioSession('study').then(() => {
+      onPlaybackStart?.();
+      player.play();
+    });
   }
 
-  return (
-    <View style={styles.root}>
-      <View style={styles.labelRow}>
-        <Headphones color={colors.mutedForeground} size={14} />
-        <AppText numberOfLines={1} style={styles.label} variant="caption">{label}</AppText>
-        {tagColors.length ? <View accessibilityLabel={`已添加${tagColors.length}个标签`} style={styles.tagDots}>{tagColors.map((color, index) => <View key={`${color}-${index}`} style={[styles.tagDot, { backgroundColor: color }, index ? styles.tagDotOverlap : null]} />)}</View> : null}
-      </View>
+  const speedControl = (
+    <Pressable
+      accessibilityLabel={`播放速度 ${speeds[speedIndex]} 倍`}
+      accessibilityState={{ disabled: integrated && !audioControllable, expanded: Boolean(speedMenuPosition) }}
+      disabled={integrated && !audioControllable}
+      onLayout={() => measureSpeedButton(false)}
+      onPress={openSpeedMenu}
+      ref={speedButtonRef}
+      style={[styles.speed, integrated ? styles.integratedSpeed : null, integrated && !audioControllable ? styles.controlDisabled : null]}
+    >
+      <AppText style={styles.speedText} variant="caption">{speeds[speedIndex]}x</AppText>
+    </Pressable>
+  );
 
-      {!uri && resolving ? (
-        <View style={styles.generated}>
-          <ActivityIndicator color={colors.primary} size="small" />
-          <View style={styles.errorCopy}><AppText variant="button">正在获取音频…</AppText><AppText variant="caption">文字学习内容已经可用。</AppText></View>
-        </View>
-      ) : !uri && generatedAudio ? (
-        <View style={styles.generated}>
-          <Headphones color={colors.primary} size={18} />
-          <View style={styles.errorCopy}>
-            <AppText variant="button">生成语音预留</AppText>
-            <AppText variant="caption">OPI 题目按既定方向使用生成语音，本阶段不捆绑本地问题音频。</AppText>
+  return (
+    <View style={[styles.root, integrated ? styles.integratedRoot : null]} testID="study-audio-player">
+      {integrated ? (
+        <>
+          <View style={styles.integratedHeader}>
+            <View style={[styles.labelRow, styles.integratedLabelRow]}>
+              <Headphones color={colors.mutedForeground} size={15} />
+              <AppText numberOfLines={1} style={styles.integratedLabel} variant="button">{label}</AppText>
+              {tagColors.length ? <View accessibilityLabel={`已添加${tagColors.length}个标签`} style={styles.tagDots}>{tagColors.map((color, index) => <View key={`${color}-${index}`} style={[styles.tagDot, { backgroundColor: color }, index ? styles.tagDotOverlap : null]} />)}</View> : null}
+            </View>
+            {speedControl}
           </View>
-        </View>
-      ) : !uri || loadTimeout.timedOut || status.playbackState === 'error' ? (
-        <View style={styles.error}>
-          <AlertCircle color={colors.destructive} size={18} />
-          <View style={styles.errorCopy}>
-            <AppText variant="button">{loadTimeout.timedOut ? '音频加载超时' : '音频加载失败'}</AppText>
-            <AppText variant="caption">{loadTimeout.timedOut ? '连接可能已中断；重试会重新获取音频地址。' : '原文与题目仍可继续学习。'}</AppText>
+
+          {!uri && resolving ? (
+            <View style={styles.integratedStatus}>
+              <ActivityIndicator color={colors.primary} size="small" />
+              <View style={styles.errorCopy}><AppText variant="button">正在获取音频…</AppText><AppText variant="caption">文字学习内容已经可用。</AppText></View>
+            </View>
+          ) : !uri && generatedAudio ? (
+            <View style={styles.integratedStatus}>
+              <Headphones color={colors.primary} size={18} />
+              <View style={styles.errorCopy}>
+                <AppText variant="button">生成语音预留</AppText>
+                <AppText variant="caption">OPI 题目按既定方向使用生成语音，本阶段不捆绑本地问题音频。</AppText>
+              </View>
+            </View>
+          ) : audioFailed ? (
+            <View style={styles.integratedStatus}>
+              <AlertCircle color={colors.destructive} size={18} />
+              <View style={styles.errorCopy}>
+                <AppText variant="button">{loadTimeout.timedOut ? '音频加载超时' : '音频加载失败'}</AppText>
+                <AppText variant="caption">{loadTimeout.timedOut ? '连接可能已中断；重试会重新获取音频地址。' : '原文与题目仍可继续学习。'}</AppText>
+              </View>
+              {uri ? (
+                <Pressable accessibilityLabel="重试音频" onPress={retry} style={styles.retry}>
+                  <RotateCcw color={colors.destructive} size={15} />
+                  <AppText color={colors.destructive} variant="caption">重试</AppText>
+                </Pressable>
+              ) : null}
+            </View>
+          ) : (
+            <View style={styles.integratedTimeline}>
+              <AudioTimeline
+                blockedExternalGesture={blockedExternalGesture}
+                disabled={!status.isLoaded}
+                duration={status.duration}
+                onInteractionChange={onSeekInteractionChange}
+                onScrubCancel={cancelScrub}
+                onScrubEnd={finishScrub}
+                onScrubStart={beginScrub}
+                position={status.currentTime}
+                testID="question-audio-timeline"
+              />
+            </View>
+          )}
+
+          <View style={styles.integratedControls} testID="integrated-audio-controls">
+            <View style={styles.sideControl}>
+              <Pressable
+                accessibilityLabel={status.playing ? '暂停' : '播放'}
+                accessibilityState={{ disabled: !audioControllable }}
+                disabled={!audioControllable}
+                onPress={() => void toggle()}
+                style={({ pressed }) => [styles.integratedPlay, !audioControllable ? styles.controlDisabled : null, pressed ? styles.pressed : null]}
+              >
+                {uri && !audioFailed && !status.isLoaded ? (
+                  <ActivityIndicator color={colors.primaryForeground} size="small" />
+                ) : status.playing ? (
+                  <Pause color={colors.primaryForeground} fill={colors.primaryForeground} size={18} />
+                ) : (
+                  <Play color={colors.primaryForeground} fill={colors.primaryForeground} size={18} style={styles.playIcon} />
+                )}
+              </Pressable>
+              <AppText color={audioControllable ? colors.foreground : colors.mutedForeground} variant="micro">{status.playing ? '暂停' : '播放'}</AppText>
+            </View>
+            {practiceControls ? <View style={styles.practiceControls}>{practiceControls}</View> : null}
           </View>
-          {uri ? (
-            <Pressable accessibilityLabel="重试音频" onPress={retry} style={styles.retry}>
-              <RotateCcw color={colors.destructive} size={15} />
-              <AppText color={colors.destructive} variant="caption">重试</AppText>
-            </Pressable>
-          ) : null}
-        </View>
+        </>
       ) : (
-        <View style={styles.playerRow}>
-          <Pressable
-            accessibilityLabel={status.playing ? '暂停' : '播放'}
-            disabled={!status.isLoaded}
-            onPress={() => void toggle()}
-            style={({ pressed }) => [styles.play, pressed ? styles.pressed : null]}
-          >
-            {!status.isLoaded ? (
-              <ActivityIndicator color={colors.primaryForeground} size="small" />
-            ) : status.playing ? (
-              <Pause color={colors.primaryForeground} fill={colors.primaryForeground} size={18} />
-            ) : (
-              <Play color={colors.primaryForeground} fill={colors.primaryForeground} size={18} style={styles.playIcon} />
-            )}
-          </Pressable>
-          <View style={styles.timeline}>
-            <AudioTimeline
-              blockedExternalGesture={blockedExternalGesture}
-              disabled={!status.isLoaded}
-              duration={status.duration}
-              onInteractionChange={onSeekInteractionChange}
-              onScrubCancel={cancelScrub}
-              onScrubEnd={finishScrub}
-              onScrubStart={beginScrub}
-              position={status.currentTime}
-              testID="question-audio-timeline"
-            />
+        <>
+          <View style={styles.labelRow}>
+            <Headphones color={colors.mutedForeground} size={14} />
+            <AppText numberOfLines={1} style={styles.label} variant="caption">{label}</AppText>
+            {tagColors.length ? <View accessibilityLabel={`已添加${tagColors.length}个标签`} style={styles.tagDots}>{tagColors.map((color, index) => <View key={`${color}-${index}`} style={[styles.tagDot, { backgroundColor: color }, index ? styles.tagDotOverlap : null]} />)}</View> : null}
           </View>
-          <Pressable accessibilityLabel={`播放速度 ${speeds[speedIndex]} 倍`} accessibilityState={{ expanded: Boolean(speedMenuPosition) }} onLayout={() => measureSpeedButton(false)} onPress={openSpeedMenu} ref={speedButtonRef} style={styles.speed}>
-            <AppText style={styles.speedText} variant="caption">{speeds[speedIndex]}x</AppText>
-          </Pressable>
-        </View>
+
+          {!uri && resolving ? (
+            <View style={styles.generated}>
+              <ActivityIndicator color={colors.primary} size="small" />
+              <View style={styles.errorCopy}><AppText variant="button">正在获取音频…</AppText><AppText variant="caption">文字学习内容已经可用。</AppText></View>
+            </View>
+          ) : !uri && generatedAudio ? (
+            <View style={styles.generated}>
+              <Headphones color={colors.primary} size={18} />
+              <View style={styles.errorCopy}>
+                <AppText variant="button">生成语音预留</AppText>
+                <AppText variant="caption">OPI 题目按既定方向使用生成语音，本阶段不捆绑本地问题音频。</AppText>
+              </View>
+            </View>
+          ) : audioFailed ? (
+            <View style={styles.error}>
+              <AlertCircle color={colors.destructive} size={18} />
+              <View style={styles.errorCopy}>
+                <AppText variant="button">{loadTimeout.timedOut ? '音频加载超时' : '音频加载失败'}</AppText>
+                <AppText variant="caption">{loadTimeout.timedOut ? '连接可能已中断；重试会重新获取音频地址。' : '原文与题目仍可继续学习。'}</AppText>
+              </View>
+              {uri ? (
+                <Pressable accessibilityLabel="重试音频" onPress={retry} style={styles.retry}>
+                  <RotateCcw color={colors.destructive} size={15} />
+                  <AppText color={colors.destructive} variant="caption">重试</AppText>
+                </Pressable>
+              ) : null}
+            </View>
+          ) : (
+            <View style={styles.playerRow}>
+              <Pressable
+                accessibilityLabel={status.playing ? '暂停' : '播放'}
+                disabled={!status.isLoaded}
+                onPress={() => void toggle()}
+                style={({ pressed }) => [styles.play, pressed ? styles.pressed : null]}
+              >
+                {!status.isLoaded ? (
+                  <ActivityIndicator color={colors.primaryForeground} size="small" />
+                ) : status.playing ? (
+                  <Pause color={colors.primaryForeground} fill={colors.primaryForeground} size={18} />
+                ) : (
+                  <Play color={colors.primaryForeground} fill={colors.primaryForeground} size={18} style={styles.playIcon} />
+                )}
+              </Pressable>
+              <View style={styles.timeline}>
+                <AudioTimeline
+                  blockedExternalGesture={blockedExternalGesture}
+                  disabled={!status.isLoaded}
+                  duration={status.duration}
+                  onInteractionChange={onSeekInteractionChange}
+                  onScrubCancel={cancelScrub}
+                  onScrubEnd={finishScrub}
+                  onScrubStart={beginScrub}
+                  position={status.currentTime}
+                  testID="question-audio-timeline"
+                />
+              </View>
+              {speedControl}
+            </View>
+          )}
+        </>
       )}
 
       <Modal animationType="fade" onRequestClose={closeSpeedMenu} transparent visible={Boolean(speedMenuPosition)}>
@@ -296,6 +404,16 @@ export function StudyAudioPlayer({
 
 const styles = StyleSheet.create({
   root: { alignSelf: 'stretch', backgroundColor: 'rgba(244,242,236,0.55)', borderColor: colors.border, borderRadius: radii.xxl, borderWidth: 1, padding: spacing[3] },
+  integratedRoot: { backgroundColor: 'transparent', borderRadius: 0, borderWidth: 0, gap: spacing[4], padding: 0 },
+  integratedHeader: { alignItems: 'center', flexDirection: 'row', gap: spacing[3] },
+  integratedLabelRow: { flex: 1, marginBottom: 0, minWidth: 0 },
+  integratedLabel: { flex: 1 },
+  integratedTimeline: { minHeight: 52 },
+  integratedControls: { alignItems: 'center', flexDirection: 'row', gap: spacing[3] },
+  sideControl: { alignItems: 'center', gap: spacing[1], width: 44 },
+  integratedPlay: { alignItems: 'center', backgroundColor: colors.primary, borderRadius: radii.full, height: 44, justifyContent: 'center', width: 44 },
+  practiceControls: { flex: 1, minWidth: 0 },
+  integratedStatus: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[2.5], minHeight: 52, paddingVertical: spacing[1] },
   labelRow: { alignItems: 'center', flexDirection: 'row', gap: spacing[1.5], marginBottom: spacing[2] },
   label: { flex: 1, fontFamily: fonts.sansSemibold },
   tagDots: { alignItems: 'center', flexDirection: 'row', paddingRight: 2 },
@@ -306,6 +424,7 @@ const styles = StyleSheet.create({
   playIcon: { marginLeft: 2 },
   timeline: { flex: 1 },
   speed: { backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, paddingHorizontal: spacing[2.5], paddingVertical: spacing[1.5] },
+  integratedSpeed: { minWidth: 52 },
   speedText: { color: colors.foreground, fontFamily: fonts.monoRegular },
   modalLayer: { flex: 1 },
   speedMenu: { backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.xl, borderWidth: 1, padding: spacing[1], position: 'absolute', width: SPEED_MENU_WIDTH, ...shadows.modal },
@@ -316,5 +435,6 @@ const styles = StyleSheet.create({
   generated: { alignItems: 'flex-start', backgroundColor: colors.primary06, borderColor: colors.primary20, borderRadius: radii.xl, borderWidth: 1, flexDirection: 'row', gap: spacing[2.5], padding: spacing[3] },
   errorCopy: { flex: 1 },
   retry: { alignItems: 'center', flexDirection: 'row', gap: spacing[1], padding: spacing[1] },
+  controlDisabled: { opacity: 0.42 },
   pressed: { opacity: 0.75, transform: [{ scale: 0.95 }] },
 });

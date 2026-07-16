@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "status": "web-question-bank-v5-live-verified",
+  "verifiedAt": "2026-07-15T18:13:33.844Z",
+  "health": {
+    "service": "icao-api",
+    "status": "ok",
+    "database": "ok",
+    "apiContainerHealthy": true,
+    "apiContainerRestartCount": 0
+  },
+  "database": {
+    "activeBanks": 5,
+    "readyResources": 5391,
+    "readyV5Resources": 1409,
+    "backupPath": "/opt/icao/backups/postgres/icao-20260715T181056Z.dump",
+    "backupChecksumVerified": true,
+    "restoreListEntries": 604
+  },
+  "banks": {
+    "listening": {
+      "version": 5,
+      "cards": 1223,
+      "topics": 4,
+      "checksum": "6dcce1792d23286fd2943ada8015c4592776ae67474227f1e974f75e46b1d609",
+      "etagNotModifiedStatus": 304
+    },
+    "opi": {
+      "version": 2,
+      "cards": 1356,
+      "topics": 144,
+      "checksum": "454409b93572878093c8f18974e9e1315a427a204d4560bdfceb6af3b1c3119e",
+      "etagNotModifiedStatus": 304
+    },
+    "radiotelephony": {
+      "version": 5,
+      "cards": 2528,
+      "topics": 111,
+      "checksum": "8e428fd5bc5a66de81e914616eb48c28df28cbff53d73821be5ec620e21e0adf",
+      "etagNotModifiedStatus": 304
+    },
+    "sentences900": {
+      "version": 1,
+      "cards": 900,
+      "topics": 3,
+      "checksum": "b5312ac75f8cf3bae53d7d31ebb6531dbfdfa7830ac10da9a7d396349637fa5e",
+      "etagNotModifiedStatus": 304
+    },
+    "storytelling": {
+      "version": 5,
+      "cards": 436,
+      "topics": 4,
+      "checksum": "8a8b1989c7a81c593da3629b46d6172827f51151d4fd623cc21d6fbe339d7349",
+      "etagNotModifiedStatus": 304
+    }
+  },
+  "totalCards": 6443,
+  "representativeCards": [
+    {
+      "bankId": "listening",
+      "id": "listening-main-633",
+      "taskTitle": "10s航空英语-246",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-01-q02.mp3"
+    },
+    {
+      "bankId": "radiotelephony",
+      "id": "atc-scenario-0015-card-main-1855",
+      "taskTitle": "AFR 113-20",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v5/pepec-radiotelephony-001-afr113-q05.mp3"
+    },
+    {
+      "bankId": "storytelling",
+      "id": "story-pepec-0001",
+      "taskTitle": "飞行ICAO-基础题库-148",
+      "audio": "/question-bank-assets/audio/storytelling/web-v5/pepec-story-0001.mp3"
+    }
+  ],
+  "resourceChecks": [
+    {
+      "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-01-q02.mp3",
+      "sizeBytes": 120428,
+      "checksum": "dd99b705fbe47c9d760fce1e45f64ec62c6e909d52f68fc2e107853866f802ef",
+      "downloadStatus": 200,
+      "rangeStatus": 206
+    },
+    {
+      "objectKey": "v5/audio/radiotelephony/web-v5/pepec-radiotelephony-001-afr113-q05.mp3",
+      "sizeBytes": 61100,
+      "checksum": "6bb181a1469ed49777d176f9d05bd66978ee583c056f53ee9db9d2aacc0b05ad",
+      "downloadStatus": 200,
+      "rangeStatus": 206
+    },
+    {
+      "objectKey": "v5/audio/storytelling/web-v5/pepec-story-0001.mp3",
+      "sizeBytes": 198764,
+      "checksum": "1e4ef07e570ec1601c13a14ddbde1397bdebd6a7eaa779a0a76883360342d1b3",
+      "downloadStatus": 200,
+      "rangeStatus": 206
+    },
+    {
+      "objectKey": "v1/audio/listening/main/454.mp3",
+      "sizeBytes": 128300,
+      "checksum": "a0722b82f2d5a22cba9a0fad0f8b7f06d98eab8d596691eedcbde6e74f20067f",
+      "downloadStatus": 200,
+      "rangeStatus": 206
+    }
+  ],
+  "temporaryUserDeleted": true
+}

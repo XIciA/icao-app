@@ -6,6 +6,8 @@ standalone-device runtime:
 - `api.feizhuicao.com` proxies to the host-only API listener on `127.0.0.1:3101`.
 - `cloud.feizhuicao.com` proxies to the host-only Supabase Kong listener on
   `127.0.0.1:8000`.
+- `download.feizhuicao.com` serves the noindex Android download page and APKs
+  from `/opt/icao/runtime/downloads/android`.
 
 The gateway uses host networking so that the Caddy container can reach listeners
 that intentionally remain bound to the ECS loopback interface. Database, Studio,

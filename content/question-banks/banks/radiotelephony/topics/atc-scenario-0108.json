@@ -1,0 +1,179 @@
+{
+  "categoryId": "atc-afr",
+  "id": "atc-scenario-0108",
+  "name": "AFR 113 发动机失效 乘客医疗 TCAS机动",
+  "declaredCardCount": 19,
+  "cards": [
+    {
+      "id": "atc-scenario-0108-card-main-1852",
+      "taskTitle": "AFR 113-1",
+      "audioText": "B: Your call sign is AFR 113, you're holding at holding point E1, Runway 04, you are fully ready.",
+      "audioTextZh": "B：你的呼号是 AFR 113，你在 E1 等待点，跑道 04，已完全准备好。",
+      "referenceText": "Wuhan Tower, AFR 113, holding at holding point E1, Runway 04, ready for departure.",
+      "referenceTextZh": "武汉塔台，AFR 113，在 E1 等待点，跑道 04，准备好离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-001-afr113-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0108-card-main-1853",
+      "taskTitle": "AFR 113-2",
+      "audioText": "C: AFR 113, hold at present position.",
+      "audioTextZh": "C：AFR 113，在当前位置等待。",
+      "referenceText": "Hold at present position, AFR 113.",
+      "referenceTextZh": "在当前位置等待，AFR 113。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-001-afr113-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0108-card-main-1854",
+      "taskTitle": "AFR 113-3",
+      "audioText": "C: AFR 113, hold at present position, do you have the traffic on short final in sight?\nB: Tell the controller yes.",
+      "audioTextZh": "C：AFR 113，在当前位置等待，你看到短五边航空器了吗？\nB：告诉管制员看到了。",
+      "referenceText": "Affirm, traffic in sight, AFR 113.",
+      "referenceTextZh": "肯定，看到航空器，AFR 113。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-001-afr113-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0108-card-main-1855",
+      "taskTitle": "AFR 113-4",
+      "audioText": "C: AFR 113, behind the CES 737 on short final, line up behind.",
+      "audioTextZh": "C：AFR 113，跟在短五边的 CES 737 后面，跟随其后进跑道。",
+      "referenceText": "Behind the CES 737 on short final, line up behind, AFR 113.",
+      "referenceTextZh": "跟在短五边的 CES 737 后面，跟随其后进跑道，AFR 113。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-001-afr113-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0108-card-main-1856",
+      "taskTitle": "AFR 113-5",
+      "audioText": "AFR 113, cleared for takeoff, when airborne, contact departure 120.2",
+      "audioTextZh": "AFR 113，许可起飞，离地后联系离场 120.2。",
+      "referenceText": "cleared for takeoff, 120.2, AFR 113.",
+      "referenceTextZh": "许可起飞，120.2，AFR 113。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-001-afr113-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0108-card-main-1857",
+      "taskTitle": "AFR 113-6",
+      "audioText": "B: You are passing 900 meters, contact Wuhan Departure, ask if you can cancel the SID and proceed to LKO.",
+      "audioTextZh": "B：你正通过 900 米，联系武汉离场，询问是否可以取消 SID 并直飞 LKO。",
+      "referenceText": "Wuhan Departure, AFR 113, passing 900 meters, request cancel the SID and proceed to LKO.",
+      "referenceTextZh": "武汉离场，AFR 113，正通过 900 米，请求取消 SID 并直飞 LKO。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-001-afr113-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0108-card-main-1858",
+      "taskTitle": "AFR 113-7",
+      "audioText": "AFR 113, radar identified, continue climb to 2,400 meters, turn right to LKO.",
+      "audioTextZh": "AFR 113，雷达识别，继续爬升至 2,400 米，右转直飞 LKO。",
+      "referenceText": "continue climb to 2400 meters, turn right, LKO, AFR 113.",
+      "referenceTextZh": "继续爬升至 2400 米，右转，LKO，AFR 113。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-001-afr113-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0108-card-main-1859",
+      "taskTitle": "AFR 113-8",
+      "audioText": "AFR 113, climb to 4500 meters and contact Wuhan control 119.7.",
+      "audioTextZh": "AFR 113，爬升至 4500 米，并联系武汉管制 119.7。",
+      "referenceText": "climb to 4,500 meters; 119.7, AFR 113.",
+      "referenceTextZh": "爬升至 4,500 米；119.7，AFR 113。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-001-afr113-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0108-card-main-1860",
+      "taskTitle": "AFR 113-9",
+      "audioText": "B: Your position is just over LKO, the next waypoint is DAPRO, ETA at time 34, make the standard position report and request climb.",
+      "audioTextZh": "B：你的位置刚好在 LKO 上空，下一个航路点是 DAPRO，预计到达时间 34，做标准位置报告并请求爬升。",
+      "referenceText": "Wuhan Control, AFR 113, over LKO, ETA DAPRO 34, request climb.",
+      "referenceTextZh": "武汉管制，AFR 113，飞越 LKO，预计 DAPRO 34，请求爬升。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-001-afr113-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0108-card-main-1861",
+      "taskTitle": "AFR 113-10",
+      "audioText": "C: AFR 113, climb to 5100 meters, no speed restriction.",
+      "audioTextZh": "管制员：AFR 113，爬升至5100米，无速度限制。",
+      "referenceText": "Climb to 5100 meters, no speed restriction, AFR 113.",
+      "referenceTextZh": "爬升至5100米，无速度限制，AFR 113。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-001-afr113-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0108-card-main-1862",
+      "taskTitle": "AFR 113-11",
+      "audioText": "B: During the climb, your port engine fails, tell the controller this situation and you would like to return to land.",
+      "audioTextZh": "爬升过程中左发失效，请向管制员报告情况并申请返航着陆。",
+      "referenceText": "PANPAN PANPAN PANPAN, Wuhan Control, AFR 113, our port engine fails, request return to land.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，武汉管制，AFR 113，我们左发失效，申请返航着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-001-afr113-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0108-card-main-1863",
+      "taskTitle": "AFR 113-12",
+      "audioText": "C: Roger PAN, AFR 113, descend to 1800 meters, turn right heading 360.",
+      "audioTextZh": "管制员：收到紧急信号，AFR 113，下降至1800米，右转航向360。",
+      "referenceText": "Descend to 1800 meters, turn right heading 360, AFR 113.",
+      "referenceTextZh": "下降至1800米，右转航向360，AFR 113。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-001-afr113-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0108-card-main-1864",
+      "taskTitle": "AFR 113-13",
+      "audioText": "AFR 113, contact approach 119.85.",
+      "audioTextZh": "AFR 113，联系进近 119.85。",
+      "referenceText": "119.85, AFR 113.",
+      "referenceTextZh": "119.85，AFR 113。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-001-afr113-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0108-card-main-1865",
+      "taskTitle": "AFR 113-14",
+      "audioText": "B: Your altitude is 1800 meters, you have information S, contact Approach.",
+      "audioTextZh": "你当前高度1800米，已收到通播S，请联系进近。",
+      "referenceText": "Wuhan Approach, AFR 113, 1800 meters, information S.",
+      "referenceTextZh": "武汉进近，AFR 113，1800米，通播S。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-001-afr113-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0108-card-main-1866",
+      "taskTitle": "AFR 113-15",
+      "audioText": "AFR 113, current information is T, descend to 900 meters, expect radar vectors for ILS Runway 36L.\nB: Read back and ask to use Runway 36R to land due to performance limitations.",
+      "audioTextZh": "AFR 113，当前情报为 T，下降至 900 米，预计雷达引导 ILS 进近 Runway 36L。\nB： 复诵，并因性能限制请求使用 Runway 36R 落地。",
+      "referenceText": "information T, descend to 900 meters; request Runway 36R due performance, AFR 113.",
+      "referenceTextZh": "情报 T，下降至 900 米；因性能限制请求 Runway 36R，AFR 113。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-001-afr113-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0108-card-main-1867",
+      "taskTitle": "AFR 113-16",
+      "audioText": "C: AFR 113, Change landing Runway 36R.\nB: You have just got the information from the cabin that one of your passengers suffered stroke during the incident. Inform the controller and ask for ambulance after landing.",
+      "audioTextZh": "C： AFR 113，更改落地跑道为 Runway 36R。\nB： 你刚刚从客舱获悉，一名乘客在此次事件中突发中风。通知管制员，并请求落地后安排救护车。",
+      "referenceText": "Runway 36R, one of our passengers suffered stroke, request ambulance after landing, AFR 113.",
+      "referenceTextZh": "Runway 36R，我们的一名乘客突发中风，请求落地后安排救护车，AFR 113。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-001-afr113-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0108-card-main-1868",
+      "taskTitle": "AFR 113-17",
+      "audioText": "C: roger AFR 113, we will notify airport medical assistance, now turn left heading 330, descend to 600 meters, cleared ILS approach Runway 36R.",
+      "audioTextZh": "C： 收到，AFR 113，我们将通知机场医疗救助。现在左转航向 330，下降至 600 米，许可 ILS 进近 Runway 36R。",
+      "referenceText": "roger, thanks, turn left heading 330, descend to 600 meters, cleared ILS approach Runway 36R, AFR 113.",
+      "referenceTextZh": "收到，谢谢，左转航向 330，下降至 600 米，许可 ILS 进近 Runway 36R，AFR 113。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-001-afr113-q17.mp3"
+    },
+    {
+      "id": "atc-scenario-0108-card-main-1869",
+      "taskTitle": "AFR 113-18",
+      "audioText": "B: Report that you have intercepted the localizer for RWY 36 right.",
+      "audioTextZh": "B： 报告你已截获 Runway 36R 的航向道。",
+      "referenceText": "Wuhan Approach, AFR 113, established on the localizer Runway 36R.",
+      "referenceTextZh": "武汉进近，AFR 113，已建立在 Runway 36R 航向道上。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-001-afr113-q18.mp3"
+    },
+    {
+      "id": "atc-scenario-0108-card-main-1870",
+      "taskTitle": "AFR 113-19",
+      "audioText": "AFR 113, contact tower 124.35",
+      "audioTextZh": "AFR 113，联系塔台 124.35。",
+      "referenceText": "124.35, AFR 113.",
+      "referenceTextZh": "124.35，AFR 113。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-001-afr113-q19.mp3"
+    }
+  ]
+}

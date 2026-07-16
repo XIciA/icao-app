@@ -1,0 +1,161 @@
+{
+  "categoryId": "atc-cca",
+  "id": "atc-scenario-0152",
+  "name": "CCA 572 雷暴绕飞 TCAS机动",
+  "declaredCardCount": 17,
+  "cards": [
+    {
+      "id": "atc-scenario-0152-card-main-2623",
+      "taskTitle": "CCA 572-1",
+      "audioText": "Your callsign is CCA 572, a flight from Beijing to Wuhan, you are at Gate 305, you have got information D, contact Beijing Delivery and request ATC clearance.",
+      "audioTextZh": "你的呼号是 CCA 572，这是一趟从北京飞往武汉的航班，位于 305 登机口，已收到 D 情报，联系北京放行并申请 ATC 放行许可。",
+      "referenceText": "Beijing Delivery, CCA 572, gate 305, information DAL, request ATC clearance to Wuhan.",
+      "referenceTextZh": "北京放行，CCA 572，305 登机口，DAL 情报，申请前往武汉的 ATC 放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-050-cca572-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0152-card-main-2624",
+      "taskTitle": "CCA 572-2",
+      "audioText": "CCA 572, Beijing Delivery, information DAL is valid, cleared to Wuhan via flight planned route, departure Runway 01, SOSID 21 DAL departure, initial climb 900 meters, cruising level 9200 meters, departure frequency 127.75, squawk 3103.",
+      "audioTextZh": "CCA 572，北京放行，DAL 情报有效，许可按飞行计划航路飞往武汉，离场使用 Runway 01，执行 SOSID-21 DAL 离场，初始爬升至 900 米，巡航高度 9200 米，离场频率 127.75，应答机 3103。",
+      "referenceText": "information DAL, cleared to Wuhan via flight planned route, departure Runway 01, SOSID 21 DAL departure, initial climb 900 meters, cruising level 9200 meters, departure frequency 127.75, squawk 3103, CCA 572.",
+      "referenceTextZh": "DAL 情报，许可按飞行计划航路飞往武汉，离场使用 Runway 01，执行 SOSID-21 DAL 离场，初始爬升至 900 米，巡航高度 9200 米，离场频率 127.75，应答机 3103，CCA 572。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-050-cca572-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0152-card-main-2625",
+      "taskTitle": "CCA 572-3",
+      "audioText": "CCA 572, readback correct, expect slot time 0325, report when ready for pushback and startup.",
+      "audioTextZh": "CCA 572，复诵正确，预计时隙时间 0325，准备好推出和开车时报告。",
+      "referenceText": "Expect slot time 0325, wilco, CCA 572.",
+      "referenceTextZh": "预计时隙时间 0325，照办，CCA 572。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-050-cca572-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0152-card-main-2626",
+      "taskTitle": "CCA 572-4",
+      "audioText": "Now tell the controller that you are ready for pushback and startup.",
+      "audioTextZh": "现在告诉管制员你已准备好推出和开车。",
+      "referenceText": "Beijing Delivery, CCA 572, ready for pushback and startup.",
+      "referenceTextZh": "北京放行，CCA 572，已准备好推出和开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-050-cca572-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0152-card-main-2627",
+      "taskTitle": "CCA 572-5",
+      "audioText": "CCA 572, roger, contact Beijing Apron on 121.95for pushback and startup.",
+      "audioTextZh": "CCA 572，收到，联系北京机坪 121.95，申请推出和开车。",
+      "referenceText": "121.95, CCA 572.",
+      "referenceTextZh": "121.95，CCA 572。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-050-cca572-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0152-card-main-2628",
+      "taskTitle": "CCA 572-6",
+      "audioText": "CCA 572, Beijing Apron, startup and pushback approved, Runway 01, QNH1 0 12.",
+      "audioTextZh": "CCA 572，北京机坪，开车和推出批准，Runway 01，QNH 1012。",
+      "referenceText": "startup and pushback approved, Runway 01, QNH 1012, CCA 572.",
+      "referenceTextZh": "开车和推出批准，Runway 01，QNH 1012，CCA 572。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-050-cca572-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0152-card-main-2629",
+      "taskTitle": "CCA 572-7",
+      "audioText": "Now the pushback and startup have been completed, you are ready for taxi.",
+      "audioTextZh": "现在推出和开车已完成，你已准备好滑行。",
+      "referenceText": "Beijing Apron, CCA 572, pushback and startup completed, request taxi.",
+      "referenceTextZh": "北京机坪，CCA 572，推出和开车已完成，申请滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-050-cca572-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0152-card-main-2630",
+      "taskTitle": "CCA 572-8",
+      "audioText": "CCA 572, taxi via Y4, K and Q zero to holding point Runway 01.",
+      "audioTextZh": "CCA 572，经 Y4、K 和 Q0 滑行至 Runway 01 等待点。",
+      "referenceText": "taxi via Y four, Kolo and Q zero to holding point Runway 01, CCA 572.",
+      "referenceTextZh": "经 Y4、K 和 Q0 滑行至 Runway 01 等待点，CCA 572。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-050-cca572-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0152-card-main-2631",
+      "taskTitle": "CCA 572-9",
+      "audioText": "CCA 572, hold short of holding point 13, give way to inbound traffic taxiing in to gate 301, after traffic is clear, continue taxi via K and Q zero to holding point 01.",
+      "audioTextZh": "CCA 572，在 13 等待点前等待，给正滑入 301 登机口的进港航空器让行，相关航空器通过后，经 K 和 Q0 继续滑行至 Runway 01 等待点。",
+      "referenceText": "hold short of holding point one tree, give way to inbound traffic taxiing in to gate 301, after traffic is clear, continue taxi via K and Q zero to holding point zero one, CCA 572.",
+      "referenceTextZh": "在 13 等待点前等待，给正滑入 301 登机口的进港航空器让行，相关航空器通过后，经 K 和 Q0 继续滑行至 Runway 01 等待点，CCA 572。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-050-cca572-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0152-card-main-2632",
+      "taskTitle": "CCA 572-10",
+      "audioText": "Now you are holding short of Runway 01, you are fully ready, contact Beijing Tower.",
+      "audioTextZh": "现在你在 Runway 01 前等待，已完全准备好，联系北京塔台。",
+      "referenceText": "Beijing Tower, CCA 572, holding short of Runway 01, ready.",
+      "referenceTextZh": "北京塔台，CCA 572，在 Runway 01 前等待，已准备好。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-050-cca572-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0152-card-main-2633",
+      "taskTitle": "CCA 572-11",
+      "audioText": "CCA 572, Runway 01, cleared for immediate takeoff, surface wind 020 degrees, 3 meters per second.",
+      "audioTextZh": "CCA 572，Runway 01，许可立即起飞，地面风向 020 度，风速 3 米/秒。",
+      "referenceText": "Runway 01, cleared for immediate takeoff, CCA 572.",
+      "referenceTextZh": "Runway 01，许可立即起飞，CCA 572。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-050-cca572-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0152-card-main-2634",
+      "taskTitle": "CCA 572-12",
+      "audioText": "Two hours later, you are over HG, your weather radar observed a thunderstorm buildup ahead, contact Wuhan Approach and request 15 miles deviation to the east to avoid it.",
+      "audioTextZh": "两小时后，你位于 HG 上空，气象雷达观察到前方有雷暴发展，联系武汉进近并请求向东偏航 15 英里以避让。",
+      "referenceText": "Wuhan Approach, CCA 572, over HG, thunderstorm ahead, request 15 miles deviation to the east.",
+      "referenceTextZh": "武汉进近，CCA 572，位于 HG 上空，前方有雷暴，请求向东偏航 15 英里。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-050-cca572-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0152-card-main-2635",
+      "taskTitle": "CCA 572-13",
+      "audioText": "CCA 57215 miles deviation to the east approved, when able, proceed direct to WHA.",
+      "audioTextZh": "CCA 572，批准向东偏航 15 英里，可以时直飞 WHA。",
+      "referenceText": "15 miles deviation to the east approved, direct to WHA, CCA 572.",
+      "referenceTextZh": "批准向东偏航 15 英里，直飞 WHA，CCA 572。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-050-cca572-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0152-card-main-2636",
+      "taskTitle": "CCA 572-14",
+      "audioText": "Now you have established ILS Runway 36, report it to Wuhan Tower.",
+      "audioTextZh": "现在你已建立 ILS 进近 Runway 36，向武汉塔台报告。",
+      "referenceText": "Wuhan Tower, CCA 572, established ILS Runway 36.",
+      "referenceTextZh": "武汉塔台，CCA 572，已建立 ILS 进近 Runway 36。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-050-cca572-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0152-card-main-2637",
+      "taskTitle": "CCA 572-15",
+      "audioText": "C: CCA 572, continue approach, surface wind 200 degrees, 10 meters per second.\nB: Because of the strong tailwind, you want to change landing runway to Runway 18.",
+      "audioTextZh": "C： CCA 572，继续进近，地面风向 200 度，风速 10 米/秒。\nB： 因为顺风较强，你想将落地跑道更换为 Runway 18。",
+      "referenceText": "request change to Runway 18due strong tailwind, CCA 572.",
+      "referenceTextZh": "因强顺风请求更换至 Runway 18，CCA 572。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-050-cca572-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0152-card-main-2638",
+      "taskTitle": "CCA 572-16",
+      "audioText": "CCA 572, Runway 18, cleared to land.",
+      "audioTextZh": "CCA 572，Runway 18，许可落地。",
+      "referenceText": "Runway 18, cleared to land, CCA 572.",
+      "referenceTextZh": "Runway 18，许可落地，CCA 572。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-050-cca572-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0152-card-main-2639",
+      "taskTitle": "CCA 572-17",
+      "audioText": "CCA 572, expedite vacate Runway 18, traffic turning base.",
+      "audioTextZh": "CCA 572，加速脱离 Runway 18，有航空器正在转入四边。",
+      "referenceText": "expedite vacate Runway 18, CCA 572.",
+      "referenceTextZh": "加速脱离 Runway 18，CCA 572。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-050-cca572-q17.mp3"
+    }
+  ]
+}

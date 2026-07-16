@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-15T16:41:19.088Z",
+  "ruleVersion": "web-question-bank-audit-v1.8.0",
+  "snapshotRootChecksum": "526c3b6aeabfe33fd588e8d19914f440ed1073446960774a1c529bb610646e2c",
+  "appBaselineRootChecksum": "05df5fe4787c49d5989dbe0587f1d834fe08eab8e3b929a7d4fbd51ea5162932",
+  "total": 2288,
+  "decisions": {
+    "exclude-exact": 414,
+    "borderline-kept": 765,
+    "exclude-high-confidence": 349,
+    "migrate-unique": 753,
+    "exclude-invalid": 7
+  },
+  "byKind": {
+    "listening": {
+      "total": 777,
+      "unique": 447,
+      "borderline": 162,
+      "excluded": 168
+    },
+    "radiotelephony": {
+      "total": 1367,
+      "unique": 166,
+      "borderline": 602,
+      "excluded": 599
+    },
+    "storytelling": {
+      "total": 144,
+      "unique": 140,
+      "borderline": 1,
+      "excluded": 3
+    }
+  },
+  "checkpoints": 11,
+  "decisionsChecksum": "92976e577a61501c020e6f8577df470fd1c6997a1da654c4d1c6fef3312674ff"
+}

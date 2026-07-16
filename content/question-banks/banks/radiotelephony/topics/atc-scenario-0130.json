@@ -1,0 +1,152 @@
+{
+  "categoryId": "atc-aca",
+  "id": "atc-scenario-0130",
+  "name": "ACA 517 发动机失效 颠簸 TCAS机动",
+  "declaredCardCount": 16,
+  "cards": [
+    {
+      "id": "atc-scenario-0130-card-main-2241",
+      "taskTitle": "ACA 517-1",
+      "audioText": "Your call sign is ACA 517, you are maintaining 10,100 meters, approaching DAPRO, squawking 3215, contact Wuhan Control.",
+      "audioTextZh": "你的呼号是 ACA 517，正保持 10,100 米，接近 DAPRO，应答机 3215，联系武汉管制。",
+      "referenceText": "Wuhan Control, ACA 517, maintaining 1100 meters, approaching DAPRO, squawking 3215.",
+      "referenceTextZh": "武汉管制，ACA 517，正保持 1100 米，接近 DAPRO，应答机 3215。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-027-aca517-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0130-card-main-2242",
+      "taskTitle": "ACA 517-2",
+      "audioText": "C: ACA 517, Wuhan Control, radar identified, omit position reports.",
+      "audioTextZh": "C: ACA 517，武汉管制，雷达识别，省略位置报告。",
+      "referenceText": "Omit position reports, ACA 517.",
+      "referenceTextZh": "省略位置报告，ACA 517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-027-aca517-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0130-card-main-2243",
+      "taskTitle": "ACA 517-3",
+      "audioText": "There is moderate turbulence at 10,100 meters, Ask Wuhan Control if there is any turbulence reported at 10,700 meters.",
+      "audioTextZh": "10,100 米有中度颠簸，询问武汉管制 10,700 米是否有颠簸报告。",
+      "referenceText": "Wuhan Control, ACA 517, there is moderate turbulence at 1100 meters, is there any turbulence reported at 1700 meters?",
+      "referenceTextZh": "武汉管制，ACA 517，1100 米有中度颠簸，1700 米是否有颠簸报告？",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-027-aca517-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0130-card-main-2244",
+      "taskTitle": "ACA 517-4",
+      "audioText": "ACA 517, there is no turbulence report at 10,700 meters.\nask to climb to 10,700 meters due moderate turbulence.",
+      "audioTextZh": "ACA 517，10,700 米没有颠簸报告。\n因中度颠簸请求爬升至 10,700 米。",
+      "referenceText": "request climb to 1700 meters due moderate turbulence, ACA 517.",
+      "referenceTextZh": "因中度颠簸请求爬升至 1700 米，ACA 517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-027-aca517-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0130-card-main-2245",
+      "taskTitle": "ACA 517-5",
+      "audioText": "ACA 517, climb to reach 10700 meters within 2 minutes.",
+      "audioTextZh": "ACA 517，在 2 分钟内爬升到达 10700 米。",
+      "referenceText": "climb to reach 1700 within two minutes, ACA 517.",
+      "referenceTextZh": "在两分钟内爬升到达 1700，ACA 517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-027-aca517-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0130-card-main-2246",
+      "taskTitle": "ACA 517-6",
+      "audioText": "when you are at 10,700 meters, your left engine failed, make an urgency call and request turn right and descend to 6,300 meters.",
+      "audioTextZh": "当你位于 10,700 米时，左发失效，发出紧急呼叫并请求右转和下降至 6,300 米。",
+      "referenceText": "PANPAN, PANPAN, PANPAN, Wuhan Control, ACA 517, our left engine failed, request turn right and descend to 6003 meters.",
+      "referenceTextZh": "PANPAN，PANPAN，PANPAN，武汉管制，ACA 517，我们的左发失效，请求右转并下降至 6003 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-027-aca517-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0130-card-main-2247",
+      "taskTitle": "ACA 517-7",
+      "audioText": "C: ACA 517, turn right heading 200, descend and maintain 6300 meters.",
+      "audioTextZh": "C: ACA 517，右转航向 200，下降并保持 6300 米。",
+      "referenceText": "Turn right heading 200, descend and maintain 6300 meters, ACA 517.",
+      "referenceTextZh": "右转航向 200，下降并保持 6300 米，ACA 517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-027-aca517-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0130-card-main-2248",
+      "taskTitle": "ACA 517-8",
+      "audioText": "B: Advise Wuhan Control you want to divert to Wuhan and track direct to WHA and descend to lower levels.",
+      "audioTextZh": "B: 通知 武汉管制 你想改航 Wuhan，直飞 WHA 并下降到较低高度。",
+      "referenceText": "Wuhan Control, ACA 517, request divert to Wuhan and track direct to WHA and descend to lower levels.",
+      "referenceTextZh": "武汉管制，ACA 517，请求改航 Wuhan，直飞 WHA，并下降到较低高度。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-027-aca517-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0130-card-main-2249",
+      "taskTitle": "ACA 517-9",
+      "audioText": "C: ACA 517, turn left, direct to WHA, descend and maintain 2100 meters.",
+      "audioTextZh": "C: ACA 517，左转，直飞 WHA，下降并保持 2100 米。",
+      "referenceText": "Turn left, direct to WHA, descend and maintain 2100 meters, ACA 517.",
+      "referenceTextZh": "左转，直飞 WHA，下降并保持 2100 米，ACA 517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-027-aca517-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0130-card-main-2250",
+      "taskTitle": "ACA 517-10",
+      "audioText": "ACA 517, expect radar vector for VOR/DME approach 36 right.\nthe weather is deteriorating and below landing minimum, ask for ILS approach 36 Left.",
+      "audioTextZh": "ACA 517，预计雷达引导 VOR/DME 进近 Runway 36R。\n天气正在恶化并低于着陆最低标准，请求 ILS 进近 Runway 36L。",
+      "referenceText": "expect radar vector for VOR, DME approach Runway 36R, request ILS approach Runway 36L due deteriorating weather and below landing minima, ACA 517.",
+      "referenceTextZh": "预计雷达引导 VOR、DME 进近 Runway 36R，因天气恶化并低于着陆最低标准，请求 ILS 进近 Runway 36L，ACA 517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-027-aca517-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0130-card-main-2251",
+      "taskTitle": "ACA 517-11",
+      "audioText": "ACA 517, Runway 36L is not available, runway in use 36 right.",
+      "audioTextZh": "ACA 517，Runway 36L 不可用，当前使用 Runway 36R。",
+      "referenceText": "roger, Runway 36R, ACA 517.",
+      "referenceTextZh": "收到，Runway 36R，ACA 517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-027-aca517-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0130-card-main-2252",
+      "taskTitle": "ACA 517-12",
+      "audioText": "C: ACA 517, you are number 1 to land, there are no speed restrictions in Wuhan terminal area.",
+      "audioTextZh": "C: ACA 517，你是第 1 架着陆，Wuhan 终端区无速度限制。",
+      "referenceText": "No speed restrictions, ACA 517.",
+      "referenceTextZh": "无速度限制，ACA 517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-027-aca517-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0130-card-main-2253",
+      "taskTitle": "ACA 517-13",
+      "audioText": "you executed a missed approach procedure and try to land on Runway 36R.",
+      "audioTextZh": "你已执行复飞程序，并尝试在 Runway 36R 落地。",
+      "referenceText": "Wuhan Tower, ACA 517, going around, we will try to land on Runway 36R.",
+      "referenceTextZh": "武汉塔台，ACA 517，正在复飞，我们将尝试在 Runway 36R 落地。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-027-aca517-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0130-card-main-2254",
+      "taskTitle": "ACA 517-14",
+      "audioText": "C: ACA 517, climb to 1200 meters, follow the standard missed approach procedure.",
+      "audioTextZh": "C: ACA 517，爬升到 1200 米，执行标准复飞程序。",
+      "referenceText": "Climb to 1200 meters, follow the standard missed approach procedure, ACA 517.",
+      "referenceTextZh": "爬升到 1200 米，执行标准复飞程序，ACA 517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-027-aca517-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0130-card-main-2255",
+      "taskTitle": "ACA 517-15",
+      "audioText": "ACA 517, maintain 1,200 meters, expect radar vector ILS approach Runway 36R.",
+      "audioTextZh": "ACA 517，保持 1,200 米，预计雷达引导 ILS 进近 Runway 36R。",
+      "referenceText": "maintain 1200 meters, expect radar vector ILS approach Runway 36R, ACA 517.",
+      "referenceTextZh": "保持 1200 米，预计雷达引导 ILS 进近 Runway 36R，ACA 517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-027-aca517-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0130-card-main-2256",
+      "taskTitle": "ACA 517-16",
+      "audioText": "C: ACA 517, runway covered with patches of water, braking action medium.",
+      "audioTextZh": "C: ACA 517，跑道有片状积水，刹车效应中等。",
+      "referenceText": "runway covered with patches of water, breaking action medium, ACA 517.",
+      "referenceTextZh": "跑道有片状积水，刹车效应中等，ACA 517。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-027-aca517-q16.mp3"
+    }
+  ]
+}

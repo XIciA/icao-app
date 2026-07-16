@@ -1,0 +1,179 @@
+{
+  "categoryId": "atc-aca",
+  "id": "atc-scenario-0128",
+  "name": "ACA 219 TCAS机动 复飞 备降/返航",
+  "declaredCardCount": 19,
+  "cards": [
+    {
+      "id": "atc-scenario-0128-card-main-2205",
+      "taskTitle": "ACA 219-1",
+      "audioText": "Your call sign is ACA 219, from Vancouver to Wuhan, you are maintaining 11,000 meters, over OBLIK, squawking 3555, make an initial contact with Wuhan Control.",
+      "audioTextZh": "你的呼号是 ACA 219，从温哥华飞往武汉，正保持 11,000 米，飞越 OBLIK，应答机 3555，与武汉管制首次联系。",
+      "referenceText": "Wuhan Control, ACA 219, maintaining 2000 meters, over OBLIK, squawking 3555.",
+      "referenceTextZh": "武汉管制，ACA 219，正保持 2000 米，飞越 OBLIK，应答机 3555。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-025-aca219-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0128-card-main-2206",
+      "taskTitle": "ACA 219-2",
+      "audioText": "ACA 219, Wuhan Control, radar contact, reduce speed to mach decimal 75 due flow control.",
+      "audioTextZh": "ACA 219，武汉管制，雷达识别，因流量控制将速度减至 Mach 0.75。",
+      "referenceText": "reduce speed to mach decimal seven five, ACA 219.",
+      "referenceTextZh": "将速度减至 Mach 0.75，ACA 219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-025-aca219-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0128-card-main-2207",
+      "taskTitle": "ACA 219-3",
+      "audioText": "C: ACA 219, descend to 9200 meters, reduce speed to less than 270 knots until advised.",
+      "audioTextZh": "C: ACA 219，下降到 9200 米，减速到 270 节以下，直到通知。",
+      "referenceText": "Descend to 9200 meters, reduce speed to less than 270 knots until advised, ACA 219.",
+      "referenceTextZh": "下降到 9200 米，减速到 270 节以下，直到通知，ACA 219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-025-aca219-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0128-card-main-2208",
+      "taskTitle": "ACA 219-4",
+      "audioText": "B: During descent, your TCAS indicates there is a converging traffic at your 2 o'clock, below, climbing, confirm with Wuhan Control if it is in conflict with you.",
+      "audioTextZh": "B: 下降过程中，你的 TCAS 显示 2 点钟方向有交叉交通，在下方，正在爬升，向武汉管制确认是否与你冲突。",
+      "referenceText": "Wuhan Control, ACA 219, our TCAS indicates there is a converging traffic at our 2 o'clock, below, climbing, is it in conflict with us ?",
+      "referenceTextZh": "武汉管制，ACA 219，我们的 TCAS 显示 2 点钟方向有交叉交通，在我们下方，正在爬升，是否与我们冲突？",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-025-aca219-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0128-card-main-2209",
+      "taskTitle": "ACA 219-5",
+      "audioText": "C: ACA 219, negative, the aircraft is climbing to 8900 meters, it will cross behind your shortly.",
+      "audioTextZh": "C: ACA 219，否，该飞机正在爬升到 8900 米，很快将在你后方穿越。",
+      "referenceText": "Roger, ACA 219.",
+      "referenceTextZh": "收到，ACA 219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-025-aca219-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0128-card-main-2210",
+      "taskTitle": "ACA 219-6",
+      "audioText": "B: You have just received the latest ATIS, saying the visibility at Wuhan is low, you want to know if your alternate airport Changsha is available for diversion.",
+      "audioTextZh": "B: 你刚收到最新 ATIS，说 Wuhan 能见度低，你想知道备降机场 Changsha 是否可用于改航。",
+      "referenceText": "Wuhan Control, ACA 219, the latest ATIS says the visibility at Wuhan is low, is Changsha available for diversion ?",
+      "referenceTextZh": "武汉管制，ACA 219，最新 ATIS 说 Wuhan 能见度低，Changsha 是否可用于改航？",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-025-aca219-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0128-card-main-2211",
+      "taskTitle": "ACA 219-7",
+      "audioText": "C: ACA 219, Changsha Airport is available, confirm you are diverting to Changsha?\nB: Tell the controller you are not diverting to Changsha at the moment, and you still want to fly to Wuhan.",
+      "audioTextZh": "C: ACA 219，Changsha Airport 可用，确认你要改航 Changsha？\nB: 告诉管制员目前不改航 Changsha，仍想飞往 Wuhan。",
+      "referenceText": "We won't divert at the moment, we still want to fly to Wuhan, ACA 219.",
+      "referenceTextZh": "我们目前不改航，仍想飞往 Wuhan，ACA 219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-025-aca219-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0128-card-main-2212",
+      "taskTitle": "ACA 219-8",
+      "audioText": "ACA 219, roger, track direct to ZF, follow Z FOXTROT-2A arrival, expect ILS approach Runway 36R.",
+      "audioTextZh": "ACA 219，收到，直飞 ZF，执行 ZF-2A 进场，预计 ILS 进近 Runway 36R。",
+      "referenceText": "track direct to ZF, follow ZF two A Arrival, expect ILS approach Runway 36R, ACA 219.",
+      "referenceTextZh": "直飞 ZF，执行 ZF-2A 进场，预计 ILS 进近 Runway 36R，ACA 219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-025-aca219-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0128-card-main-2213",
+      "taskTitle": "ACA 219-9",
+      "audioText": "C: ACA 219, descend and maintain 4200 meters, reduce speed to minimum clean speed.",
+      "audioTextZh": "C: ACA 219，下降并保持 4200 米，减速到最小光洁速度。",
+      "referenceText": "Descend and maintain 4200 meters, reduce speed to minimum clean speed, ACA 219.",
+      "referenceTextZh": "下降并保持 4200 米，减速到最小光洁速度，ACA 219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-025-aca219-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0128-card-main-2214",
+      "taskTitle": "ACA 219-10",
+      "audioText": "C: ACA 219, contact Wuhan Tower 119.6.",
+      "audioTextZh": "C: ACA 219，联系武汉塔台119.6。",
+      "referenceText": "119.6, ACA 219.",
+      "referenceTextZh": "119.6，ACA 219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-025-aca219-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0128-card-main-2215",
+      "taskTitle": "ACA 219-11",
+      "audioText": "Now you are established on ILS approach Runway 36R, you are 15 miles from touchdown, contact Wuhan Tower.",
+      "audioTextZh": "现在你已建立 ILS 进近 Runway 36R，距接地点 15 英里，联系武汉塔台。",
+      "referenceText": "Wuhan Tower, ACA 219, established ILS Runway 36R, 15 miles from touchdown.",
+      "referenceTextZh": "武汉塔台，ACA 219，已建立 ILS Runway 36R，距接地点 15 英里。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-025-aca219-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0128-card-main-2216",
+      "taskTitle": "ACA 219-12",
+      "audioText": "ACA 219, roger, surface wind calm, RVR touchdown 550m, midpoint 600 meters, rollout 500m, continue approach Runway 36R.",
+      "audioTextZh": "ACA 219，收到，地面静风，RVR 接地区 550m、中段 600 米、滑跑端 500m，继续进近 Runway 36R。",
+      "referenceText": "roger, continue approach Runway 36R, ACA 219.",
+      "referenceTextZh": "收到，继续进近 Runway 36R，ACA 219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-025-aca219-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0128-card-main-2217",
+      "taskTitle": "ACA 219-13",
+      "audioText": "B: Now you are 10 miles from touchdown, ask Wuhan Tower for the cloud information.",
+      "audioTextZh": "B: 现在你距接地点 10 海里，向武汉塔台询问云况信息。",
+      "referenceText": "Wuhan Tower, ACA 219, 10 miles from touchdown, request cloud information.",
+      "referenceTextZh": "武汉塔台，ACA 219，距接地点 10 海里，请求云况信息。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-025-aca219-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0128-card-main-2218",
+      "taskTitle": "ACA 219-14",
+      "audioText": "ACA 219, cloud broken 700m, cleared to land Runway 36R.",
+      "audioTextZh": "ACA 219，碎云 700m，许可在 Runway 36R 落地。",
+      "referenceText": "cloud broken 700 meters, cleared to land Runway 36R, ACA 219.",
+      "referenceTextZh": "碎云 700 米，许可在 Runway 36R 落地，ACA 219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-025-aca219-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0128-card-main-2219",
+      "taskTitle": "ACA 219-15",
+      "audioText": "B: At the minimum, you are unable to see approach lights, you are carrying out a missed approach, advise Tower.",
+      "audioTextZh": "B: 在最低标准高度，你看不到进近灯，正在执行复飞，通知塔台。",
+      "referenceText": "Wuhan Tower, ACA 219, we are unable to see approach lights at minimum, going around.\n         (no contact at the minimum)",
+      "referenceTextZh": "武汉塔台，ACA 219，我们在最低标准高度看不到进近灯，复飞。\n         （最低标准高度无目视）",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-025-aca219-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0128-card-main-2220",
+      "taskTitle": "ACA 219-16",
+      "audioText": "C: ACA 219, roger, follow the standard missed approach procedure, advise intentions when able.",
+      "audioTextZh": "C: ACA 219，收到，执行标准复飞程序，可以时报告意图。",
+      "referenceText": "Follow the standard missed approach procedure, ACA 219.",
+      "referenceTextZh": "执行标准复飞程序，ACA 219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-025-aca219-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0128-card-main-2221",
+      "taskTitle": "ACA 219-17",
+      "audioText": "B: Now you are climbing to missed approach altitude, you decide to divert to Changsha Airport, inform Tower.",
+      "audioTextZh": "B: 现在你正在爬升到复飞高度，决定改航 Changsha Airport，通知塔台。",
+      "referenceText": "Wuhan Tower, ACA 219, request divert to Changsha Airport.",
+      "referenceTextZh": "武汉塔台，ACA 219，请求改航 Changsha Airport。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-025-aca219-q17.mp3"
+    },
+    {
+      "id": "atc-scenario-0128-card-main-2222",
+      "taskTitle": "ACA 219-18",
+      "audioText": "C: ACA 219, roger, turn right, direct to LKO, climb to and maintain 2400 meters.",
+      "audioTextZh": "C: ACA 219，收到，右转，直飞 LKO，爬升并保持 2400 米。",
+      "referenceText": "Turn right, direct to LKO, climb to and maintain 2400 meters, ACA 219.",
+      "referenceTextZh": "右转，直飞 LKO，爬升并保持 2400 米，ACA 219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-025-aca219-q18.mp3"
+    },
+    {
+      "id": "atc-scenario-0128-card-main-2223",
+      "taskTitle": "ACA 219-19",
+      "audioText": "ACA 219, contact Wuhan Departure on 120.4",
+      "audioTextZh": "ACA 219，联系武汉离场 120.4。",
+      "referenceText": "one two zero decimal, ACA 219.",
+      "referenceTextZh": "one two zero decimal，ACA 219。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-025-aca219-q19.mp3"
+    }
+  ]
+}

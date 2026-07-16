@@ -1,0 +1,188 @@
+{
+  "categoryId": "atc-klm",
+  "id": "atc-scenario-0183",
+  "name": "KLM 88 积冰/防冰 TCAS机动 复飞",
+  "declaredCardCount": 20,
+  "cards": [
+    {
+      "id": "atc-scenario-0183-card-main-3146",
+      "taskTitle": "KLM 88-1",
+      "audioText": "B: Your call sign is KLM 88, you are at gate 504, the boarding hasn't been completed and you have catering delay, you have to delay about 15 minutes, contact Shanghai Delivery and request delay the flight until time 25.",
+      "audioTextZh": "B：你的呼号是 KLM 88，在 504 登机口，登机尚未完成且配餐延误，需要延误约 15 分钟，联系上海放行，请求航班延误至 25 分。",
+      "referenceText": "Shanghai Delivery, KLM 88, gate 504, the boarding hasn't been completed and we have catering delay, we have to delay about 15 minutes, request delay the flight until time 25.",
+      "referenceTextZh": "上海放行，KLM 88，504 登机口，登机尚未完成且配餐延误，需要延误约 15 分钟，请求航班延误至 25 分。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-084-klm88-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0183-card-main-3147",
+      "taskTitle": "KLM 88-2",
+      "audioText": "KLM 88, roger, report when ready.",
+      "audioTextZh": "KLM 88，收到，准备好时报告。",
+      "referenceText": "wilco/report when ready, KLM 88.",
+      "referenceTextZh": "照办/准备好时报告，KLM 88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-084-klm88-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0183-card-main-3148",
+      "taskTitle": "KLM 88-3",
+      "audioText": "B: Now you are at gate 504, you have got the information F, you are ready to copy ATC clearance to Amsterdam.",
+      "audioTextZh": "B：你现在在 504 登机口，已收到通播 F，准备抄收飞往阿姆斯特丹的 ATC 放行许可。",
+      "referenceText": "Shanghai Delivery, KLM 88, gate 504, information F, request ATC clearance to Amsterdam.",
+      "referenceTextZh": "上海放行，KLM 88，504 登机口，收到通播 F，请求飞往阿姆斯特丹的 ATC 放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-084-klm88-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0183-card-main-3149",
+      "taskTitle": "KLM 88-4",
+      "audioText": "KLM 88, cleared to destination via flight planned route, departure Runway 34, initial climb 900 meters on QNH, cruising level 10,700 meters, after departure contact 127.35, squawk 7423.",
+      "audioTextZh": "KLM 88，许可按飞行计划航路飞往目的地，离场使用 Runway 34，按 QNH 初始爬升至 900 米，巡航高度 10,700 米，离场后联系 127.35，应答机 7423。",
+      "referenceText": "cleared to destination via flight planned route, departure Runway 34, initial climb 900 meters QNH, cruising level 1700 meters, 127.35, squawk 7423, KLM 88.",
+      "referenceTextZh": "许可按飞行计划航路飞往目的地，离场使用 Runway 34，按 QNH 初始爬升至 900 米，巡航高度 1700 米，127.35，应答机 7423，KLM 88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-084-klm88-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0183-card-main-3150",
+      "taskTitle": "KLM 88-5",
+      "audioText": "B: Now you are ready for push back and start up, contact Shanghai Ground.",
+      "audioTextZh": "B：你现在准备推出和开车，联系上海地面。",
+      "referenceText": "Shanghai Ground, KLM 88, request push back and start up.",
+      "referenceTextZh": "上海地面，KLM 88，请求推出和开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-084-klm88-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0183-card-main-3151",
+      "taskTitle": "KLM 88-6",
+      "audioText": "C: KLM 88, push back and start up approved, facing west.",
+      "audioTextZh": "C：KLM 88，可以推出开车，机头朝西。",
+      "referenceText": "Push back and start up approved, facing west, KLM 88.",
+      "referenceTextZh": "可以推出开车，机头朝西，KLM 88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-084-klm88-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0183-card-main-3152",
+      "taskTitle": "KLM 88-7",
+      "audioText": "B: Now you are ready for taxi.",
+      "audioTextZh": "B：你现在准备滑行。",
+      "referenceText": "Shanghai Ground, KLM 88, request taxi.",
+      "referenceTextZh": "上海地面，KLM 88，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-084-klm88-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0183-card-main-3153",
+      "taskTitle": "KLM 88-8",
+      "audioText": "C: KLM 88, taxi to holding point Runway 34 via taxiway Z, T3, T4 and R.",
+      "audioTextZh": "C：KLM 88，经滑行道 Z、T3、T4 和 R 滑行至跑道 34 等待点。",
+      "referenceText": "Taxi to holding point Runway 34 via taxiway Z, T3, T4 and R, KLM 88.",
+      "referenceTextZh": "经滑行道 Z、T3、T4 和 R 滑行至跑道 34 等待点，KLM 88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-084-klm88-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0183-card-main-3154",
+      "taskTitle": "KLM 88-9",
+      "audioText": "During taxi, you notice an Airbus 3 20 was broken down on taxiway T3, you have stopped your aircraft, contact Shanghai Ground and request further instructions.",
+      "audioTextZh": "滑行期间，你发现一架 Airbus 320 故障停在 T3 滑行道上。你已停住航空器，联系上海地面并请求进一步指令。",
+      "referenceText": "Shanghai Ground, KLM 88, an Airbus 320 was broken down taxiway T tree, we have stopped our aircraft, request further instructions.",
+      "referenceTextZh": "上海地面，KLM 88，一架 Airbus 320 故障停在 T3 滑行道上，我们已停住航空器，请求进一步指令。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-084-klm88-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0183-card-main-3155",
+      "taskTitle": "KLM 88-10",
+      "audioText": "C: KLM 88, hold position, expect delay 5 minutes.",
+      "audioTextZh": "C：KLM 88，保持当前位置，预计延误 5 分钟。",
+      "referenceText": "Roger, hold position, KLM 88.",
+      "referenceTextZh": "收到，保持当前位置，KLM 88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-084-klm88-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0183-card-main-3156",
+      "taskTitle": "KLM 88-11",
+      "audioText": "B: You are at holding point Runway 34, you are ready for departure, contact Shanghai Tower.",
+      "audioTextZh": "B：你在跑道 34 等待点，准备离场，联系上海塔台。",
+      "referenceText": "Shanghai Tower, KLM 88, holding point Runway 34, ready for departure.",
+      "referenceTextZh": "上海塔台，KLM 88，跑道 34 等待点，准备离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-084-klm88-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0183-card-main-3157",
+      "taskTitle": "KLM 88-12",
+      "audioText": "C: KLM 88, Runway 34, cleared for takeoff.",
+      "audioTextZh": "C：KLM 88，跑道 34，可以起飞。",
+      "referenceText": "Runway 34, cleared for takeoff, KLM 88.",
+      "referenceTextZh": "跑道 34，可以起飞，KLM 88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-084-klm88-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0183-card-main-3158",
+      "taskTitle": "KLM 88-13",
+      "audioText": "B: Now you are airborne, passing 600 meters, contact Shanghai Departure.",
+      "audioTextZh": "B：你现在已离地，通过 600 米，联系上海离场。",
+      "referenceText": "Shanghai Departure, KLM 88, airborne, passing 600 meters.",
+      "referenceTextZh": "上海离场，KLM 88，已离地，通过 600 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-084-klm88-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0183-card-main-3159",
+      "taskTitle": "KLM 88-14",
+      "audioText": "C: KLM 88, Shanghai Departure, radar contact, climb to 3000 meters on QNH 1012.",
+      "audioTextZh": "C：KLM 88，上海离场，雷达识别，按 QNH 1012 爬升至 3000 米。",
+      "referenceText": "Climb to 3000 meters on QNH 1012, KLM 88.",
+      "referenceTextZh": "按 QNH 1012 爬升至 3000 米，KLM 88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-084-klm88-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0183-card-main-3160",
+      "taskTitle": "KLM 88-15",
+      "audioText": "B: Now you are climbing to 3000 meters. During climbing, you have got a warning, the indication shows electrical power is low, make an Urgency call to Shanghai Departure and request return for landing.",
+      "audioTextZh": "B：你现在正爬升至 3000 米。爬升过程中出现警告，指示显示电力不足，向上海离场发出紧急呼叫并请求返场着陆。",
+      "referenceText": "PANPAN PANPAN PANPAN, Shanghai Departure, KLM 88, climbing to 3000 meters, our electrical power is low, request return for landing.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，上海离场，KLM 88，正爬升至 3000 米，电力不足，请求返场着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-084-klm88-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0183-card-main-3161",
+      "taskTitle": "KLM 88-16",
+      "audioText": "KLM 88, Departure, roger PAN, descend to 1,200 meters, expect ILS approach Runway 36R.",
+      "audioTextZh": "KLM 88，离场，收到 PAN，下降至 1,200 米，预计 ILS 进近 Runway 36R。",
+      "referenceText": "descend to 1200 meters, expect ILS approach Runway 36R, KLM 88.",
+      "referenceTextZh": "下降至 1200 米，预计 ILS 进近 Runway 36R，KLM 88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-084-klm88-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0183-card-main-3162",
+      "taskTitle": "KLM 88-17",
+      "audioText": "B: During approach, you can't establish a stable approach due to low electrical power, you have made a missed approach, contact Departure.",
+      "audioTextZh": "B：进近过程中，由于电力不足无法建立稳定进近，你已复飞，联系离场。",
+      "referenceText": "Shanghai Departure, KLM 88, we can't establish a stable approach due to low electrical power, going around.",
+      "referenceTextZh": "上海离场，KLM 88，因电力不足无法建立稳定进近，正在复飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-084-klm88-q17.mp3"
+    },
+    {
+      "id": "atc-scenario-0183-card-main-3163",
+      "taskTitle": "KLM 88-18",
+      "audioText": "C: KLM 88, roger, follow the published missed approach procedure, climb to 1,200 meters. If able, advise further intentions.\nB: read back the instruction and tell the controller that you want to circle to Runway 18L for visual approach.",
+      "audioTextZh": "C： KLM 88，收到，执行公布的复飞程序，爬升至 1,200 米。如可以，报告后续意图。\nB： 复诵指令，并告诉管制员你希望盘旋至 Runway 18L 做目视进近。",
+      "referenceText": "follow the published missed approach procedure, climb to 1200 meters, request circle to Runway 18L visual approach, KLM 88.",
+      "referenceTextZh": "执行公布的复飞程序，爬升至 1200 米，请求盘旋至 Runway 18L 做目视进近，KLM 88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-084-klm88-q18.mp3"
+    },
+    {
+      "id": "atc-scenario-0183-card-main-3164",
+      "taskTitle": "KLM 88-19",
+      "audioText": "KLM 88, Departure, cleared visual approach, Runway 18L. Caution, runway is wet, braking action medium.",
+      "audioTextZh": "KLM 88，离场，许可目视进近 Runway 18L。注意，跑道湿滑，刹车效应中等。",
+      "referenceText": "cleared visual approach, Runway 18L, KLM 88.",
+      "referenceTextZh": "许可目视进近 Runway 18L，KLM 88。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-084-klm88-q19.mp3"
+    },
+    {
+      "id": "atc-scenario-0183-card-main-3165",
+      "taskTitle": "KLM 88-20",
+      "audioText": "After landing, the runway is slippery, you skidded off/veered off Runway 18L, ask Tower for a tug and passenger stairs.",
+      "audioTextZh": "着陆后，跑道湿滑，你滑出/偏出 Runway 18L，向塔台请求拖车和客梯车。",
+      "referenceText": "Tower, KLM 88, the runway is slippery, we skidded off Runway 18L, request a tug passenger stairs.",
+      "referenceTextZh": "塔台，KLM 88，跑道湿滑，我们滑出 Runway 18L，请求拖车和客梯车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-084-klm88-q20.mp3"
+    }
+  ]
+}

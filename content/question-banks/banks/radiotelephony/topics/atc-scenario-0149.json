@@ -1,0 +1,188 @@
+{
+  "categoryId": "atc-cca",
+  "id": "atc-scenario-0149",
+  "name": "CCA 3101 起落架问题 刹车问题 积冰/防冰",
+  "declaredCardCount": 20,
+  "cards": [
+    {
+      "id": "atc-scenario-0149-card-main-2570",
+      "taskTitle": "CCA 3101-1",
+      "audioText": "Your call sign is CCA 3101, a flight from Beijing to Guangzhou, you are parking at Gate 215, you are ready for pushback and startup, contact Beijing Ground.",
+      "audioTextZh": "你的呼号是 CCA 3101，这是一趟从北京飞往广州的航班，停在 215 登机口，已准备好推出和开车，联系北京地面。",
+      "referenceText": "Beijing Ground, CCA 3101, Gate 215, request pushback and startup.",
+      "referenceTextZh": "北京地面，CCA 3101，215 登机口，申请推出和开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-047-cca3101-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0149-card-main-2571",
+      "taskTitle": "CCA 3101-2",
+      "audioText": "CCA 3101, Beijing Ground, pushback and startup approved, facing west.",
+      "audioTextZh": "CCA 3101，北京地面，推出和开车批准，机头朝西。",
+      "referenceText": "pushback and startup approved, facing west, CCA 3101.",
+      "referenceTextZh": "推出和开车批准，机头朝西，CCA 3101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-047-cca3101-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0149-card-main-2572",
+      "taskTitle": "CCA 3101-3",
+      "audioText": "Now you have completed pushback and startup, you are ready for taxi.",
+      "audioTextZh": "现在你已完成推出和开车，准备滑行。",
+      "referenceText": "Beijing Ground, CCA 3101, pushback and startup completed, request taxi.",
+      "referenceTextZh": "北京地面，CCA 3101，推出和开车已完成，申请滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-047-cca3101-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0149-card-main-2573",
+      "taskTitle": "CCA 3101-4",
+      "audioText": "CCA 3101, Beijing Ground, taxi via taxiway Y4 and G2, hold short of H.",
+      "audioTextZh": "CCA 3101，北京地面，经 Y4 和 G2 滑行道滑行，在 H 前等待。",
+      "referenceText": "taxi via taxiway Y four and G two, hold short of H, CCA 3101.",
+      "referenceTextZh": "经 Y4 和 G2 滑行道滑行，在 H 前等待，CCA 3101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-047-cca3101-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0149-card-main-2574",
+      "taskTitle": "CCA 3101-5",
+      "audioText": "During taxiing, you notice the Airbus 330 in front of you is leaking fluid from the right engine, report it to Beijing Ground.",
+      "audioTextZh": "滑行期间，你注意到前方 Airbus 330 的右发正在漏液，向北京地面报告。",
+      "referenceText": "Beijing Ground, CCA 3101, the Airbus 330 ahead is leaking fluid from the right engine.",
+      "referenceTextZh": "北京地面，CCA 3101，前方 Airbus 330 的右发正在漏液。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-047-cca3101-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0149-card-main-2575",
+      "taskTitle": "CCA 3101-6",
+      "audioText": "C: roger, thank you. CCA 3101, continue taxi.\nB: tell the controller that you are unable to taxi because you find the taxiway surface is contaminated with leaking fluid.",
+      "audioTextZh": "C： 收到，谢谢。CCA 3101，继续滑行。\nB： 告诉管制员你无法滑行，因为发现滑行道道面被泄漏液体污染。",
+      "referenceText": "we are unable to taxi, the taxiway surface is contaminated with leaking fluid, CCA 3101.",
+      "referenceTextZh": "我们无法滑行，滑行道道面被泄漏液体污染，CCA 3101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-047-cca3101-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0149-card-main-2576",
+      "taskTitle": "CCA 3101-7",
+      "audioText": "CCA 3101, roger, turn left, taxi via Y1, then turn left, taxi via Y2.",
+      "audioTextZh": "CCA 3101，收到，左转，经 Y1 滑行，然后左转，经 Y2 滑行。",
+      "referenceText": "turn left, taxi via Y one, then turn left, taxi via Y two, CCA 3101.",
+      "referenceTextZh": "左转，经 Y1 滑行，然后左转，经 Y2 滑行，CCA 3101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-047-cca3101-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0149-card-main-2577",
+      "taskTitle": "CCA 3101-8",
+      "audioText": "Now you are at holding point Runway 36R, you are ready for departure, contact Beijing Tower.",
+      "audioTextZh": "现在你位于 Runway 36R 等待点，已准备好离场，联系北京塔台。",
+      "referenceText": "Beijing Tower, CCA 3101, holding point Runway 36R, ready for departure.",
+      "referenceTextZh": "北京塔台，CCA 3101，Runway 36R 等待点，已准备好离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-047-cca3101-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0149-card-main-2578",
+      "taskTitle": "CCA 3101-9",
+      "audioText": "CCA 3101, line up and be ready for immediate departure.",
+      "audioTextZh": "CCA 3101，进入跑道，并准备立即离场。",
+      "referenceText": "line up and be ready for immediate departure, CCA 3101.",
+      "referenceTextZh": "进入跑道，并准备立即离场，CCA 3101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-047-cca3101-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0149-card-main-2579",
+      "taskTitle": "CCA 3101-10",
+      "audioText": "CCA 3101, Runway 36R, cleared for immediate takeoff, surface wind 340 degrees, 2 meters per second.",
+      "audioTextZh": "CCA 3101，Runway 36R，许可立即起飞，地面风向 340 度，风速 2 米/秒。",
+      "referenceText": "Runway 36R, cleared for immediate takeoff, CCA 3101.",
+      "referenceTextZh": "Runway 36R，许可立即起飞，CCA 3101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-047-cca3101-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0149-card-main-2580",
+      "taskTitle": "CCA 3101-11",
+      "audioText": "C: CCA 3101, stop immediately, I say again, stop immediately.\nB: tell the controller you used the maximum brakes and you are stopping on the runway.",
+      "audioTextZh": "C： CCA 3101，立即停止，我再说一遍，立即停止。\nB： 告诉管制员你使用了最大刹车，正在跑道上停下。",
+      "referenceText": "Beijing Tower, CCA 3101, we used the maximum brakes, we are stopping on the runway.",
+      "referenceTextZh": "北京塔台，CCA 3101，我们使用了最大刹车，正在跑道上停下。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-047-cca3101-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0149-card-main-2581",
+      "taskTitle": "CCA 3101-12",
+      "audioText": "CCA 3101, vacate runway via E2.",
+      "audioTextZh": "CCA 3101，经 E2 脱离跑道。",
+      "referenceText": "vacate runway via E two, CCA 3101.",
+      "referenceTextZh": "经 E2 脱离跑道，CCA 3101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-047-cca3101-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0149-card-main-2582",
+      "taskTitle": "CCA 3101-13",
+      "audioText": "Now you have vacated Runway 36R via E2 and ask Beijing Tower the reasons for rejected takeoff.",
+      "audioTextZh": "现在你已从 E2 脱离 Runway 36R，询问北京塔台中断起飞的原因。",
+      "referenceText": "Beijing Tower, CCA 3101, Runway 36R vacated via E two, confirm the reasons for rejected takeoff.",
+      "referenceTextZh": "北京塔台，CCA 3101，已从 E2 脱离 Runway 36R，请确认中断起飞的原因。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-047-cca3101-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0149-card-main-2583",
+      "taskTitle": "CCA 3101-14",
+      "audioText": "CCA 3101, the landing aircraft on the short final just made the go around.",
+      "audioTextZh": "CCA 3101，刚才位于短五边的落地航空器复飞了。",
+      "referenceText": "roger, CCA 3101.",
+      "referenceTextZh": "收到，CCA 3101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-047-cca3101-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0149-card-main-2584",
+      "taskTitle": "CCA 3101-15",
+      "audioText": "now you find your brakes are overheating, tell the controller you need two minutes to cool the brakes.",
+      "audioTextZh": "现在你发现刹车过热，告诉管制员你需要两分钟为刹车降温。",
+      "referenceText": "Beijing Tower, CCA 3101, our brakes are overheating, we need two minutes to cool the brakes.",
+      "referenceTextZh": "北京塔台，CCA 3101，我们的刹车过热，需要两分钟为刹车降温。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-047-cca3101-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0149-card-main-2585",
+      "taskTitle": "CCA 3101-16",
+      "audioText": "C: CCA 3101, what assistance do you need?\nB: Tell the controller you need ground services to cool the wheels.",
+      "audioTextZh": "C： CCA 3101，你需要什么协助？\nB： 告诉管制员你需要地面服务为机轮降温。",
+      "referenceText": "request ground services to cool the wheels, CCA 3101.",
+      "referenceTextZh": "请求地面服务为机轮降温，CCA 3101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-047-cca3101-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0149-card-main-2586",
+      "taskTitle": "CCA 3101-17",
+      "audioText": "C: CCA 3101, what else do you need?\nB: tell the controller one of your nose wheel tyres was deflated, you have to hold at present position for maintenance inspection.",
+      "audioTextZh": "C： CCA 3101，你还需要什么？\nB： 告诉管制员你的一个前轮轮胎瘪了，必须在当前位置等待维修检查。",
+      "referenceText": "one of our nose wheel tyres was deflated, we have to hold at present position for maintenance inspection, CCA 3101.",
+      "referenceTextZh": "我们的一个前轮轮胎瘪了，必须在当前位置等待维修检查，CCA 3101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-047-cca3101-q17.mp3"
+    },
+    {
+      "id": "atc-scenario-0149-card-main-2587",
+      "taskTitle": "CCA 3101-18",
+      "audioText": "after the check, the maintenance staff told you that your parking brakes have seized, report it to the controller.",
+      "audioTextZh": "检查后，维修人员告诉你停留刹车已卡死，向管制员报告。",
+      "referenceText": "Beijing Tower, CCA 3101, our parking brakes have seized.",
+      "referenceTextZh": "北京塔台，CCA 3101，我们的停留刹车已卡死。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-047-cca3101-q18.mp3"
+    },
+    {
+      "id": "atc-scenario-0149-card-main-2588",
+      "taskTitle": "CCA 3101-19",
+      "audioText": "C: CCA 3101, what assistance do you require?\nB: tell the controller you need a tug to tow you back to the maintenance apron.",
+      "audioTextZh": "C： CCA 3101，你需要什么协助？\nB： 告诉管制员你需要一辆牵引车将你拖回维修机坪。",
+      "referenceText": "request a tug to tow us back to the maintenance apron, CCA 3101.",
+      "referenceTextZh": "请求一辆牵引车将我们拖回维修机坪，CCA 3101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-047-cca3101-q19.mp3"
+    },
+    {
+      "id": "atc-scenario-0149-card-main-2589",
+      "taskTitle": "CCA 3101-20",
+      "audioText": "CCA 3101, hold position, the tug will come soon.",
+      "audioTextZh": "CCA 3101，保持位置，牵引车很快会来。",
+      "referenceText": "holding, roger, thanks, CCA 3101.",
+      "referenceTextZh": "保持位置，收到，谢谢，CCA 3101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-047-cca3101-q20.mp3"
+    }
+  ]
+}

@@ -275,4 +275,39 @@ describe('SpeakingPracticePanel lifecycle', () => {
     expect(onClear).not.toHaveBeenCalled();
     await screen.unmount();
   });
+
+  it('keeps integrated replay visible but disabled until a recording exists', async () => {
+    const screen = await render(<SpeakingPracticePanel mode="speaking" onClear={jest.fn()} onRecorded={jest.fn()} variant="integrated" />);
+
+    expect(screen.getByLabelText('按住说话')).toBeTruthy();
+    expect(screen.getByLabelText('回放我的录音').props.accessibilityState).toEqual({ disabled: true });
+    expect(screen.getByText('回放')).toBeTruthy();
+  });
+
+  it('enables integrated replay and turns the main action into direct rerecord', async () => {
+    const recording = { uri: 'file:///saved.wav', durationMillis: 2_000 };
+    mockPlaybackStatus = { currentTime: 0, didJustFinish: false, duration: 2, isLoaded: true, playbackState: 'readyToPlay', playing: false };
+    const screen = await render(<SpeakingPracticePanel mode="speaking" onClear={jest.fn()} onRecorded={jest.fn()} recording={recording} variant="integrated" />);
+
+    expect(screen.getByLabelText('按住重新录音')).toBeTruthy();
+    expect(screen.getByText('按住重录')).toBeTruthy();
+    expect(screen.getByLabelText('回放我的录音').props.accessibilityState).toEqual({ disabled: false });
+    fireEvent.press(screen.getByLabelText('回放我的录音'));
+    await waitFor(() => expect(mockPlayback.play).toHaveBeenCalledTimes(1));
+  });
+
+  it('preserves an existing recording when direct integrated rerecord permission fails', async () => {
+    const onClear = jest.fn();
+    const original = { uri: 'file:///original.wav', durationMillis: 2_000 };
+    mockPlaybackStatus = { currentTime: 0, didJustFinish: false, duration: 2, isLoaded: true, playbackState: 'readyToPlay', playing: false };
+    mockPermissionPromise = Promise.resolve({ granted: false });
+    const screen = await render(<SpeakingPracticePanel mode="speaking" onClear={onClear} onRecorded={jest.fn()} recording={original} variant="integrated" />);
+
+    await fireEvent(screen.getByLabelText('按住重新录音'), 'pressIn');
+
+    await waitFor(() => expect(screen.getByText('未获得麦克风权限，已保留原录音。')).toBeTruthy());
+    expect(screen.getByLabelText('回放我的录音').props.accessibilityState).toEqual({ disabled: false });
+    expect(mockDeleteFile).not.toHaveBeenCalledWith(original.uri);
+    expect(onClear).not.toHaveBeenCalled();
+  });
 });

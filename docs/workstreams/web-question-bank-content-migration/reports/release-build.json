@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "status": "incremental-release-built",
+  "releaseVersion": 5,
+  "releaseRoot": ".generated/web-question-bank-content-migration/release-v5",
+  "archivePath": ".generated/web-question-bank-content-migration/web-question-bank-release-v5.tar.gz",
+  "archiveChecksum": "fb4db2ab195d5c6a837056ad831b69a2dc9a93dc0ea33aec3b5c3dd815e61b4f",
+  "archiveSizeBytes": 166270563,
+  "banks": [
+    {
+      "id": "listening",
+      "checksum": "6dcce1792d23286fd2943ada8015c4592776ae67474227f1e974f75e46b1d609",
+      "cards": 1223,
+      "topics": 4
+    },
+    {
+      "id": "radiotelephony",
+      "checksum": "8e428fd5bc5a66de81e914616eb48c28df28cbff53d73821be5ec620e21e0adf",
+      "cards": 2528,
+      "topics": 111
+    },
+    {
+      "id": "storytelling",
+      "checksum": "8a8b1989c7a81c593da3629b46d6172827f51151d4fd623cc21d6fbe339d7349",
+      "cards": 436,
+      "topics": 4
+    }
+  ],
+  "resources": 1409,
+  "resourceBytes": 176605602,
+  "resourceManifestChecksum": "462ba19e2423b5b86545eb81a1dcab09b67399af6b9bf4d28d6a325f378d3984"
+}

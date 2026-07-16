@@ -1,0 +1,179 @@
+{
+  "categoryId": "atc-cca",
+  "id": "atc-scenario-0185",
+  "name": "CCA 321 风挡裂纹 雷暴绕飞 积冰/防冰",
+  "declaredCardCount": 19,
+  "cards": [
+    {
+      "id": "atc-scenario-0185-card-main-3183",
+      "taskTitle": "CCA 321-1",
+      "audioText": "Your call sign is CCA 321, a flight from Beijing to Guangzhou, you are maintaining 11,600 meters, over DAPRO, squawking 3120, make initial contact with Guangzhou Control.",
+      "audioTextZh": "你的呼号是 CCA 321，航班从北京飞往广州，保持 11,600 米，飞越 DAPRO，应答机 3120，首次联系广州管制。",
+      "referenceText": "Control, CCA 321, 11600 meters, DAPRO, squawking 3120.",
+      "referenceTextZh": "管制，CCA 321，11600 米，DAPRO，应答机 3120。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-087-cca321-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0185-card-main-3184",
+      "taskTitle": "CCA 321-2",
+      "audioText": "CCA 321, Guangzhou Control, radar contact, maintain present level, omit position reports.",
+      "audioTextZh": "CCA 321，广州管制，雷达已识别，保持当前高度，取消位置报告。",
+      "referenceText": "maintain present level, omit position reports, CCA 321.",
+      "referenceTextZh": "保持当前高度，取消位置报告，CCA 321。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-087-cca321-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0185-card-main-3185",
+      "taskTitle": "CCA 321-3",
+      "audioText": "your weather radar indicates there is a group of cumulonimbus ahead, contact Guangzhou Control and ask to offset 20 miles to the right and state the reason.",
+      "audioTextZh": "你的气象雷达显示前方有一组积雨云，联系广州管制，请求向右偏置 20 英里并说明原因。",
+      "referenceText": "Control, CCA 321, cumulonimbus, CB request offset 20 miles to the right.",
+      "referenceTextZh": "管制，CCA 321，积雨云，CB，请求向右偏置 20 英里。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-087-cca321-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0185-card-main-3186",
+      "taskTitle": "CCA 321-4",
+      "audioText": "CCA 321, negative due prohibited area.",
+      "audioTextZh": "CCA 321，不行，因禁区限制。",
+      "referenceText": "roger, CCA 321.",
+      "referenceTextZh": "收到，CCA 321。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-087-cca321-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0185-card-main-3187",
+      "taskTitle": "CCA 321-5",
+      "audioText": "ask Guangzhou Control if you can offset 10 miles to the left to avoid the thunderstorm.",
+      "audioTextZh": "询问广州管制，是否可以向左偏置 10 英里以避开雷暴。",
+      "referenceText": "Control, CCA 321, request offset 10 miles to the left.",
+      "referenceTextZh": "广州管制，CCA 321，请求向左偏置 10 英里。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-087-cca321-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0185-card-main-3188",
+      "taskTitle": "CCA 321-6",
+      "audioText": "C: CCA 321, negative due restricted area.\nB: you ask if you can turn left heading 100 and descend to 11000m to avoid the thunderstorms.",
+      "audioTextZh": "C： CCA 321，因限制区，不能批准。\nB： 你询问是否可以左转航向 100，并下降至 11,000 米以避开雷暴。",
+      "referenceText": "Request turn left heading 100, descend to 11000 meters, CCA 321.",
+      "referenceTextZh": "请求左转航向 100，下降至 11,000 米，CCA 321。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-087-cca321-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0185-card-main-3189",
+      "taskTitle": "CCA 321-7",
+      "audioText": "CCA 321, turn left heading 100 approved, descend to and maintain 11,000 meters.",
+      "audioTextZh": "CCA 321，批准左转航向 100，下降至并保持 11,000 米。",
+      "referenceText": "turn left heading 100 approved, descend to and maintain 2000 meters 11000 meters, CCA 321.",
+      "referenceTextZh": "批准左转航向 100，下降至并保持 2,000 米、11,000 米，CCA 321。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-087-cca321-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0185-card-main-3190",
+      "taskTitle": "CCA 321-8",
+      "audioText": "Now you are clear of weather, inform Guangzhou Control and request direct to ZF and descent.",
+      "audioTextZh": "现在你已脱离天气，通知广州管制并请求直飞 ZF 和下降。",
+      "referenceText": "Control, CCA 321, clear of weather, request direct to ZF, descent.",
+      "referenceTextZh": "广州管制，CCA 321，已脱离天气，请求直飞 ZF 并下降。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-087-cca321-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0185-card-main-3191",
+      "taskTitle": "CCA 321-9",
+      "audioText": "CCA 321, direct to ZF, descend to and maintain 9800 meters.",
+      "audioTextZh": "CCA 321，直飞 ZF，下降至并保持 9,800 米。",
+      "referenceText": "direct to ZF, descend to and maintain 9800, CCA 321.",
+      "referenceTextZh": "直飞 ZF，下降至并保持 9,800 米，CCA 321。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-087-cca321-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0185-card-main-3192",
+      "taskTitle": "CCA 321-10",
+      "audioText": "Suddenly your captain got incapacitated, possibly suffered from cardiac arrest, contact Guangzhou Control. This is a distress call.",
+      "audioTextZh": "你的机长突然失能，可能发生心脏骤停，联系广州管制。这是一次遇险呼叫。",
+      "referenceText": "MAYDAY, MAYDAY, MAYDAY, Guangzhou Control, CCA 321, our captain got incapacitated, possibly cardiac arrest.",
+      "referenceTextZh": "MAYDAY，MAYDAY，MAYDAY，广州管制，CCA 321，我们的机长失能，可能发生心脏骤停。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-087-cca321-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0185-card-main-3193",
+      "taskTitle": "CCA 321-11",
+      "audioText": "C: CCA 321, report your current situation and further intention.\nB: Tell Guangzhou Control that the cabin crew offered CPR procedures and first aid to revive the captain, but he has difficulty in breathing, and request priority landing and medical services.",
+      "audioTextZh": "C： CCA 321，报告你当前的情况和进一步意图。\nB： 告诉广州管制，客舱机组对机长实施了心肺复苏和急救，试图使其恢复意识，但他呼吸困难，请求优先着陆和医疗服务。",
+      "referenceText": "the cabin crew offered CPR procedures, first aid, have difficulty in breathing, request priority landing, medical services, CCA 321.",
+      "referenceTextZh": "客舱机组实施了心肺复苏和急救，机长呼吸困难，请求优先着陆和医疗服务，CCA 321。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-087-cca321-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0185-card-main-3194",
+      "taskTitle": "CCA 321-12",
+      "audioText": "CCA 321, turn right, direct to ZF, descend to and maintain 6000 meters.",
+      "audioTextZh": "CCA 321，右转，直飞 ZF，下降至并保持 6,000 米。",
+      "referenceText": "turn right, direct to ZF, descend to and maintain 6000 meters, CCA 321.",
+      "referenceTextZh": "右转，直飞 ZF，下降至并保持 6,000 米，CCA 321。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-087-cca321-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0185-card-main-3195",
+      "taskTitle": "CCA 321-13",
+      "audioText": "B: Now you are over ZF, maintaining 6000 meters, inform your situation to Wuhan Approach and request priority landing and medical services.",
+      "audioTextZh": "B: 现在你在 ZF 上空，保持 6000 米，向武汉进近说明情况并请求优先着陆和医疗服务。",
+      "referenceText": "MAYDAY MAYDAY MAYDAY, Wuhan Approach, CCA 321, over ZF, maintaining 6000 meters, our captain got incapacitated, he is having difficulty in breathing, request priority landing and medical services.",
+      "referenceTextZh": "MAYDAY MAYDAY MAYDAY，武汉进近，CCA 321，过 ZF，保持 6000 米，我们的机长失能，他呼吸困难，请求优先着陆和医疗服务。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-087-cca321-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0185-card-main-3196",
+      "taskTitle": "CCA 321-14",
+      "audioText": "CCA 321, roger MAYDAY, turn right heading 330, cleared ILS approach Runway 36R.",
+      "audioTextZh": "CCA 321，收到 MAYDAY，右转航向 330，许可 ILS 进近 Runway 36R。",
+      "referenceText": "turn right heading 330, cleared ILS Runway 36R, CCA 321.",
+      "referenceTextZh": "右转航向 330，许可 ILS 进近 Runway 36R，CCA 321。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-087-cca321-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0185-card-main-3197",
+      "taskTitle": "CCA 321-15",
+      "audioText": "During approach, you find the ILS signals seem to be unstable and your autopilot has malfunctioned, inform Wuhan Approach.",
+      "audioTextZh": "进近期间，你发现 ILS 信号似乎不稳定，而且自动驾驶发生故障，通知武汉进近。",
+      "referenceText": "Wuhan Approach, CCA 321, ILS signals, unstable, autopilot malfunctioned.",
+      "referenceTextZh": "武汉进近，CCA 321，ILS 信号不稳定，自动驾驶发生故障。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-087-cca321-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0185-card-main-3198",
+      "taskTitle": "CCA 321-16",
+      "audioText": "At minimum altitude, you are unable to see the runway due to low visibility, you decide to divert to Changsha.",
+      "audioTextZh": "在最低高度，由于能见度低，你无法看到跑道，因此决定备降长沙。",
+      "referenceText": "Approach, CCA 321, unable to see the runway, low visibility, request divert to Changsha.",
+      "referenceTextZh": "进近，CCA 321，由于能见度低，无法看到跑道，请求备降长沙。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-087-cca321-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0185-card-main-3199",
+      "taskTitle": "CCA 321-17",
+      "audioText": "During approach, the windshield suddenly had electrical arcing, inform the situation to Wuhan Approach and request delay the approach.",
+      "audioTextZh": "进近期间，风挡突然出现电弧，向武汉进近报告情况并请求推迟进近。",
+      "referenceText": "Approach, CCA 321, windshield had electrical arcing, request delay the approach.",
+      "referenceTextZh": "进近，CCA 321，风挡出现电弧，请求推迟进近。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-087-cca321-q17.mp3"
+    },
+    {
+      "id": "atc-scenario-0185-card-main-3200",
+      "taskTitle": "CCA 321-18",
+      "audioText": "Now you find you have some errors with ILS, report it to Wuhan Approach and request auto-land.",
+      "audioTextZh": "现在你发现 ILS 存在一些误差，向武汉进近报告并请求自动着陆。",
+      "referenceText": "Wuhan Approach, CCA 321, we have some errors with ILS, request auto-land.",
+      "referenceTextZh": "武汉进近，CCA 321，我们的 ILS 存在一些误差，请求自动着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-087-cca321-q18.mp3"
+    },
+    {
+      "id": "atc-scenario-0185-card-main-3201",
+      "taskTitle": "CCA 321-19",
+      "audioText": "After landing, you can't find the taxiway due to shattered wind shield, request a follow-me car.",
+      "audioTextZh": "着陆后，由于风挡破碎，你无法找到滑行道，请求引导车。",
+      "referenceText": "Ground, CCA 321, can't find the taxiway, shattered wind shield, request follow-me car.",
+      "referenceTextZh": "地面，CCA 321，由于风挡破碎，无法找到滑行道，请求引导车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-087-cca321-q19.mp3"
+    }
+  ]
+}

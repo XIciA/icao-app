@@ -1,8 +1,11 @@
-import { createReadStream, statSync } from 'node:fs';
+import { createReadStream, existsSync, statSync } from 'node:fs';
 import { createServer } from 'node:http';
-import { extname, resolve, sep } from 'node:path';
+import { dirname, extname, resolve, sep } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const root = resolve('/Users/zhouyide/Desktop/icao设计稿/public');
+const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const repositoryResourceRoot = resolve(projectRoot, 'content/question-banks/resources/files');
+const designResourceRoot = resolve('/Users/zhouyide/Desktop/icao设计稿/public/question-bank-assets');
 const port = Number(process.env.ICAO_ASSET_PORT ?? 3100);
 const mimeTypes = {
   '.aac': 'audio/aac',
@@ -25,9 +28,22 @@ createServer((request, response) => {
     return;
   }
 
-  const filePath = resolve(root, `.${pathname}`);
-  if (filePath !== root && !filePath.startsWith(`${root}${sep}`)) {
+  const relativePath = pathname.replace(/^\/question-bank-assets\/?/, '');
+  if (relativePath === pathname || !relativePath) {
+    sendError(response, 404, 'Not found');
+    return;
+  }
+  const candidates = [repositoryResourceRoot, designResourceRoot].map((root) => ({
+    root,
+    filePath: resolve(root, relativePath),
+  }));
+  if (candidates.some(({ root, filePath }) => filePath !== root && !filePath.startsWith(`${root}${sep}`))) {
     sendError(response, 403, 'Forbidden');
+    return;
+  }
+  const filePath = candidates.find((candidate) => existsSync(candidate.filePath))?.filePath;
+  if (!filePath) {
+    sendError(response, 404, 'Not found');
     return;
   }
 
@@ -81,5 +97,5 @@ createServer((request, response) => {
     .on('error', () => response.destroy())
     .pipe(response);
 }).listen(port, '0.0.0.0', () => {
-  console.log(`Serving canonical read-only design assets with byte-range support at http://0.0.0.0:${port}`);
+  console.log(`Serving repository and canonical design assets with byte-range support at http://0.0.0.0:${port}`);
 });

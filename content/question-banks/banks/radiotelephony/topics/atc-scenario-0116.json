@@ -1,0 +1,161 @@
+{
+  "categoryId": "atc-csn",
+  "id": "atc-scenario-0116",
+  "name": "CSN 3102 雷暴绕飞 TCAS机动 舱门问题",
+  "declaredCardCount": 17,
+  "cards": [
+    {
+      "id": "atc-scenario-0116-card-main-1997",
+      "taskTitle": "CSN 3102-1",
+      "audioText": "Your callsign is CSN 3102, a flight from Beijing to Guangzhou, you are at Gate 234, you have got information A, request ATC clearance.",
+      "audioTextZh": "你的呼号是 CSN 3102，这是一趟从北京飞往广州的航班，你位于 234 登机口，已收到 A 情报，申请 ATC 放行许可。",
+      "referenceText": "Beijing Delivery, CSN 3102, Gate 234, information A, request ATC clearance to Guangzhou.",
+      "referenceTextZh": "北京放行，CSN 3102，234 登机口，A 情报，申请前往广州的 ATC 放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-012-csn3102-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0116-card-main-1998",
+      "taskTitle": "CSN 3102-2",
+      "audioText": "CSN 3102, cleared to Guangzhou via flight planned route, runway in use 18 Left, RENOB-8 departure, initial altitude 900 meters, request level change en route, departure frequency 126.5, squawk 3113.",
+      "audioTextZh": "CSN 3102，许可按飞行计划航路飞往广州，使用 Runway 18L，RENOB-8 离场，初始高度 900 米，途中申请改变高度，离场频率 126.5，应答机 3113。",
+      "referenceText": "cleared to Guangzhou via flight planned route, runway in use 18 Left, RENOB eight Departure, initial altitude 900 meters, request level change en route, departure frequency 126.5, squawk 3113, CSN 3102.",
+      "referenceTextZh": "许可按飞行计划航路飞往广州，使用 Runway 18L，RENOB-8 离场，初始高度 900 米，途中申请改变高度，离场频率 126.5，应答机 3113，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-012-csn3102-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0116-card-main-1999",
+      "taskTitle": "CSN 3102-3",
+      "audioText": "CSN 3102, readback correct, contact Beijing Ground on 121.95when ready for pushback and startup.",
+      "audioTextZh": "CSN 3102，复诵正确，准备好推出和开车时联系北京地面 121.95。",
+      "referenceText": "121.95, CSN 3102.",
+      "referenceTextZh": "121.95，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-012-csn3102-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0116-card-main-2000",
+      "taskTitle": "CSN 3102-4",
+      "audioText": "all the passengers have boarded, all the cabin doors have been closed, request permission to pushback, contact Beijing Ground.",
+      "audioTextZh": "所有乘客均已登机，所有客舱门均已关闭，联系北京地面申请推出许可。",
+      "referenceText": "Beijing Ground, CSN 3102, request pushback.",
+      "referenceTextZh": "北京地面，CSN 3102，申请推出。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-012-csn3102-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0116-card-main-2001",
+      "taskTitle": "CSN 3102-5",
+      "audioText": "CSN 3102, pushback approved.",
+      "audioTextZh": "CSN 3102，推出批准。",
+      "referenceText": "pushback approved, CSN 3102.",
+      "referenceTextZh": "推出批准，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-012-csn3102-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0116-card-main-2002",
+      "taskTitle": "CSN 3102-6",
+      "audioText": "Now you are ready for startup.",
+      "audioTextZh": "现在你已准备好开车。",
+      "referenceText": "Beijing Ground, CSN 3102, request startup.",
+      "referenceTextZh": "北京地面，CSN 3102，申请开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-012-csn3102-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0116-card-main-2003",
+      "taskTitle": "CSN 3102-7",
+      "audioText": "During engine startup, your Auxilary Power Unit has malfunctioned, ask Beijing Ground to start one engine at the gate.",
+      "audioTextZh": "发动机启动期间，你的辅助动力装置发生故障，请求北京地面允许在登机口启动一台发动机。",
+      "referenceText": "Beijing Ground, CSN 3102, request start one engine at the gate due APU malfunction.",
+      "referenceTextZh": "北京地面，CSN 3102，因 APU 故障，请求在登机口启动一台发动机。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-012-csn3102-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0116-card-main-2004",
+      "taskTitle": "CSN 3102-8",
+      "audioText": "CSN 3102, start one engine at the gate approved, report when ready for taxi.",
+      "audioTextZh": "CSN 3102，允许在登机口启动一台发动机，准备滑行时报告。",
+      "referenceText": "start one engine at the gate approved, wilco, CSN 3102.",
+      "referenceTextZh": "允许在登机口启动一台发动机，照办，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-012-csn3102-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0116-card-main-2005",
+      "taskTitle": "CSN 3102-9",
+      "audioText": "While starting up the engine, you find the EGT exceeds the temperature limits, report it to Beijing Ground.",
+      "audioTextZh": "启动发动机时，你发现 EGT 超过温度限制，向北京地面报告。",
+      "referenceText": "Beijing Ground, CSN 3102, the EGT exceeds the temperature limits.",
+      "referenceTextZh": "北京地面，CSN 3102，EGT 超过温度限制。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-012-csn3102-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0116-card-main-2006",
+      "taskTitle": "CSN 3102-10",
+      "audioText": "B: Now you have started up your engines, you are ready for taxi.",
+      "audioTextZh": "B：现在你已启动发动机，准备好滑行。",
+      "referenceText": "Wuhan Ground, CSN 3102, start up completed, request taxi.",
+      "referenceTextZh": "武汉地面，CSN 3102，开车完成，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-012-csn3102-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0116-card-main-2007",
+      "taskTitle": "CSN 3102-11",
+      "audioText": "CSN 3102, taxi to holding point Runway 18L via taxiway M, Z6, M2 and E8.",
+      "audioTextZh": "CSN 3102，经 M、Z6、M2 和 E8 滑行道滑行至 Runway 18L 等待点。",
+      "referenceText": "taxi to holding point Runway 18L via taxiway M, Z six, M two and E eight, CSN 3102.",
+      "referenceTextZh": "经 M、Z6、M2 和 E8 滑行道滑行至 Runway 18L 等待点，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-012-csn3102-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0116-card-main-2008",
+      "taskTitle": "CSN 3102-12",
+      "audioText": "CSN 3102, taxi to holding point Runway 18L via taxiway M, Z6, M2 and E8.",
+      "audioTextZh": "CSN 3102，经 M、Z6、M2 和 E8 滑行道滑行至 Runway 18L 等待点。",
+      "referenceText": "taxi to holding point Runway 18L via taxiway M, Z six, M two and E eight, CSN 3102.",
+      "referenceTextZh": "经 M、Z6、M2 和 E8 滑行道滑行至 Runway 18L 等待点，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-012-csn3102-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0116-card-main-2009",
+      "taskTitle": "CSN 3102-13",
+      "audioText": "CSN 3102, hold short of taxiway M2, expect 40 minutes delay due departure sequence.",
+      "audioTextZh": "CSN 3102，在 M2 滑行道前等待，因离场排序预计延误 40 分钟。",
+      "referenceText": "holding short of taxiway M two, roger, CSN 3102.",
+      "referenceTextZh": "在 M2 滑行道前等待，收到，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-012-csn3102-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0116-card-main-2010",
+      "taskTitle": "CSN 3102-14",
+      "audioText": "Now you are holding at holding point Runway 18L, there is an indication of thunderstorm on your weather radar, contact Beijing Tower and ask for the revised slot time.",
+      "audioTextZh": "现在你正在 Runway 18L 等待点等待，气象雷达上有雷暴指示，联系北京塔台并询问修订后的时隙时间。",
+      "referenceText": "Beijing Tower, CSN 3102, holding at holding point Runway 18L, there is an indication of thunderstorm on our weather radar, request the revised slot time.",
+      "referenceTextZh": "北京塔台，CSN 3102，正在 Runway 18L 等待点等待，我们的气象雷达上有雷暴指示，请求修订后的时隙时间。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-012-csn3102-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0116-card-main-2011",
+      "taskTitle": "CSN 3102-15",
+      "audioText": "CSN 3102, hold short of Runway 18L, the new slot time is 1615.",
+      "audioTextZh": "CSN 3102，在 Runway 18L 前等待，新的时隙时间是 1615。",
+      "referenceText": "roger, hold short of Runway 18L, CSN 3102.",
+      "referenceTextZh": "收到，在 Runway 18L 前等待，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-012-csn3102-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0116-card-main-2012",
+      "taskTitle": "CSN 3102-16",
+      "audioText": "After a long time delay, you find your fuel endurance is dropping fast, you have to taxi back for refueling the aircraft.",
+      "audioTextZh": "长时间延误后，你发现燃油续航时间正在快速下降，必须滑回为航空器加油。",
+      "referenceText": "Beijing Tower, CSN 3102, our fuel endurance is dropping fast, request taxi back for refueling the aircraft due to long time delay.",
+      "referenceTextZh": "北京塔台，CSN 3102，由于长时间延误，我们的燃油续航时间正在快速下降，请求滑回为航空器加油。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-012-csn3102-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0116-card-main-2013",
+      "taskTitle": "CSN 3102-17",
+      "audioText": "CSN 3102, roger, enter Runway 18L, vacate runway via A9, taxi via taxiway Z2 and Z4 to Gate 234.",
+      "audioTextZh": "CSN 3102，收到，进入 Runway 18L，经 A9 脱离跑道，经 Z2 和 Z4 滑行道滑行至 234 登机口。",
+      "referenceText": "enter Runway 18L, vacate runway via A niner, taxi via taxiway Z two and Z four to Gate 234, CSN 3102.",
+      "referenceTextZh": "进入 Runway 18L，经 A9 脱离跑道，经 Z2 和 Z4 滑行道滑行至 234 登机口，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-012-csn3102-q17.mp3"
+    }
+  ]
+}

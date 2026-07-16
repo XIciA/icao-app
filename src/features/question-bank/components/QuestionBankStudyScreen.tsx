@@ -40,7 +40,7 @@ import { StudyTaskRenderer } from './StudyTaskRenderer';
 import { StudyWorkbench, type StudyWorkbenchHandle } from './StudyWorkbench';
 
 type LookupRequest = { word: string; sentence: string; blockLabel: string };
-type Props = { dataset: QuestionBankDataset; category: QuestionBankCategory; topic: QuestionBankTopic; initialCardId?: string; returnTo?: 'annotations' };
+type Props = { dataset: QuestionBankDataset; category: QuestionBankCategory; topic: QuestionBankTopic; initialCardId?: string; returnTo?: 'annotations' | 'radio' };
 
 export function QuestionBankStudyScreen({ dataset, category, topic, initialCardId, returnTo }: Props) {
   const router = useRouter();
@@ -57,6 +57,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
   const [lookupError, setLookupError] = useState<string>();
   const [aiConsented, setAiConsented] = useState(false);
   const [finishing, setFinishing] = useState(false);
+  const [returningToRadio, setReturningToRadio] = useState(false);
   const [finishError, setFinishError] = useState<string>();
   const [editingWorkbenchTab, setEditingWorkbenchTab] = useState<'mine' | 'notes'>();
   const [swipeBoundaryMessage, setSwipeBoundaryMessage] = useState<string>();
@@ -78,7 +79,11 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
   const target = card && !imageCard ? { bankId: dataset.id, categoryId: category.id, topicId: topic.id, cardId: card.id } : undefined;
   const annotations = useQuestionAnnotations(target);
 
-  usePreventRemove(!session.report, () => { void finish('abort'); });
+  usePreventRemove(!session.report && !returningToRadio, () => { void finish('abort', returnTo === 'radio'); });
+
+  useEffect(() => {
+    if (returningToRadio) router.replace('/content/radio');
+  }, [returningToRadio, router]);
 
   useEffect(() => {
     let active = true;
@@ -365,7 +370,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
     };
   }
 
-  async function finish(reason: 'abort' | 'complete') {
+  async function finish(reason: 'abort' | 'complete', returnDirectlyToRadio = false) {
     if (taskInteractionActive) {
       setFinishError('录音正在保存，请稍候再结束。');
       return;
@@ -385,6 +390,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
       setRecordingPreviewPauseRequest((request) => request + 1);
       setDismissMediaControlsRequest((request) => request + 1);
       await session.finish(reason, sessionAnnotationMetrics());
+      if (returnDirectlyToRadio) setReturningToRadio(true);
     } catch {
       setFinishError('学习报告保存失败，请重试。');
     } finally {
@@ -394,7 +400,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
   }
 
   if (session.report) {
-    return <StudyReport interaction={dataset.study.interaction} noteCount={session.report.noteCount ?? 0} onReturn={() => returnTo === 'annotations' ? router.replace('/annotations') : router.replace({ pathname: '/question-bank/[bankId]', params: { bankId: dataset.id } })} record={session.report} />;
+    return <StudyReport interaction={dataset.study.interaction} noteCount={session.report.noteCount ?? 0} onReturn={() => returnTo === 'annotations' ? router.replace('/annotations') : returnTo === 'radio' ? router.replace('/content/radio') : router.replace({ pathname: '/question-bank/[bankId]', params: { bankId: dataset.id } })} record={session.report} />;
   }
   if (!session.hydrated) return <SafeAreaView style={styles.state}><AppText variant="caption">正在恢复学习进度…</AppText></SafeAreaView>;
   if (session.loadError || !card) return <SafeAreaView style={styles.state}><CenteredState actionLabel="重新加载" description={session.loadError ?? '当前题目不存在，请返回题库后重试。'} onAction={session.retryHydration} title="学习内容加载失败" tone="destructive" /></SafeAreaView>;
@@ -413,11 +419,32 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
       {card.referenceTextZh ? <AppText style={styles.translation}>{card.referenceTextZh}</AppText> : null}
     </View>
   );
+  const integratedRecordingLayout = session.behavior.taskKind === 'recording';
+  const taskContent = (
+    <StudyTaskRenderer
+      behavior={session.behavior}
+      blockedExternalGesture={questionSwipeGesture}
+      card={card}
+      interactionGesture={recordingInteractionGesture}
+      key={card.id}
+      onChoose={session.chooseOption}
+      onClearRecording={session.clearRecording}
+      onInteractionChange={setTaskInteractionActive}
+      onPreviewPlaybackStart={handleRecordingPreviewStart}
+      onRecorded={session.recordAnswer}
+      onRecordingIntent={handleRecordingIntent}
+      previewPauseRequest={recordingPreviewPauseRequest}
+      recording={session.recording}
+      revealed={session.revealed}
+      selectedChoiceIndex={session.cardState?.selectedChoiceIndex}
+      variant={integratedRecordingLayout ? 'integrated' : 'default'}
+    />
+  );
 
   return (
     <SafeAreaView edges={['top']} style={styles.root}>
       <View style={styles.topBar}>
-        <Pressable accessibilityLabel="结束学习并查看报告" disabled={finishing || taskInteractionActive} onPress={() => void finish('abort')} style={styles.circleButton}><ChevronLeft color={colors.foreground} size={21} /></Pressable>
+        <Pressable accessibilityLabel={returnTo === 'radio' ? '保存并返回随身听' : '结束学习并查看报告'} disabled={finishing || taskInteractionActive} onPress={() => void finish('abort', returnTo === 'radio')} style={returnTo === 'radio' ? styles.returnToRadioButton : styles.circleButton}><ChevronLeft color={colors.foreground} size={21} />{returnTo === 'radio' ? <AppText variant="button">返回随身听</AppText> : null}</Pressable>
         <View style={styles.topSpacer} />
         <Pressable accessibilityLabel="打开答题卡" disabled={taskInteractionActive} onPress={() => { finishWorkbenchEditing(); setAnswerCardVisible(true); }} style={styles.counterButton}><Grid3X3 color={colors.mutedForeground} size={15} /><AppText style={styles.counter} variant="button">{session.currentIndex + 1} / {topic.cards.length}</AppText></Pressable>
       </View>
@@ -434,7 +461,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
             {card.kind === 'image' ? (
               <ImageQuestionCard imageAlt={card.imageAlt} imagePath={card.image} onDisplayed={() => session.markCompleted(card.id)} />
             ) : (
-              <StudyCardStack onCollapse={() => { void collapseWorkbench(); }} onReveal={() => session.revealCurrent(true)} primary={<View style={styles.primaryContent}><StudyAudioPlayer autoPlayRequest={session.playRequestToken} blockedExternalGesture={questionSwipeGesture} dismissControlsRequest={dismissMediaControlsRequest} generatedAudio={session.behavior.generatedAudio && !card.audio} label={card.taskTitle} onPlaybackStart={handleQuestionPlaybackStart} onRetry={audioAsset.retry} onSeekInteractionChange={setSeekInteractionActive} pauseRequest={questionAudioPauseRequest} playbackKey={card.id} resolving={audioAsset.resolving} tagColors={selectedTagColors} uri={audioAsset.uri} /><View style={styles.divider} /><StudyTaskRenderer behavior={session.behavior} blockedExternalGesture={questionSwipeGesture} card={card} interactionGesture={recordingInteractionGesture} key={card.id} onChoose={session.chooseOption} onClearRecording={session.clearRecording} onInteractionChange={setTaskInteractionActive} onPreviewPlaybackStart={handleRecordingPreviewStart} onRecorded={session.recordAnswer} onRecordingIntent={handleRecordingIntent} previewPauseRequest={recordingPreviewPauseRequest} recording={session.recording} revealed={session.revealed} selectedChoiceIndex={session.cardState?.selectedChoiceIndex} /></View>} revealed={session.revealed} transcript={transcript} workbench={<StudyWorkbench ref={workbenchRef} activeTab={session.activeTab} answerText={session.answerText} bankId={dataset.id} bankTitle={dataset.title} cardKey={card.id} categoryTitle={category.name} editingTab={editingWorkbenchTab} noteText={entry?.note ?? ''} onAnswerChange={session.updateAnswer} onEditingTabChange={setEditingWorkbenchTab} onFeedback={session.markFeedback} onNoteChange={(note) => { void annotations.saveNote(note); }} onRetrySave={() => { void annotations.retrySave(); }} onTabChange={session.setActiveTab} onTranscriptionAttempted={session.markTranscriptionAttempted} questionText={card.audioText} recordingKey={recordingKey} recordingUri={session.recording?.uri} referenceContent={referenceContent} referenceLabel={session.behavior.referenceLabel} reviewKind={session.behavior.reviewKind} saveError={annotations.saveErrorMessage} sessionId={session.sessionId} sessionStartedAt={session.sessionStartedAt} swipeGesture={workbenchSwipeGesture} tabs={session.behavior.workbenchTabs} topicTitle={topic.name} transcriptionAttempted={Boolean(recordingKey && session.attemptedTranscriptionKeys.has(recordingKey))} />} />
+              <StudyCardStack onCollapse={() => { void collapseWorkbench(); }} onReveal={() => session.revealCurrent(true)} primary={<View style={styles.primaryContent}><StudyAudioPlayer autoPlayRequest={session.playRequestToken} blockedExternalGesture={questionSwipeGesture} dismissControlsRequest={dismissMediaControlsRequest} generatedAudio={session.behavior.generatedAudio && !card.audio} label={card.taskTitle} onPlaybackStart={handleQuestionPlaybackStart} onRetry={audioAsset.retry} onSeekInteractionChange={setSeekInteractionActive} pauseRequest={questionAudioPauseRequest} playbackKey={card.id} practiceControls={integratedRecordingLayout ? taskContent : undefined} resolving={audioAsset.resolving} tagColors={selectedTagColors} uri={audioAsset.uri} variant={integratedRecordingLayout ? 'integrated-recording' : 'default'} />{integratedRecordingLayout ? null : <><View style={styles.divider} />{taskContent}</>}</View>} revealed={session.revealed} transcript={transcript} workbench={<StudyWorkbench ref={workbenchRef} activeTab={session.activeTab} answerText={session.answerText} bankId={dataset.id} bankTitle={dataset.title} cardKey={card.id} categoryTitle={category.name} editingTab={editingWorkbenchTab} noteText={entry?.note ?? ''} onAnswerChange={session.updateAnswer} onEditingTabChange={setEditingWorkbenchTab} onFeedback={session.markFeedback} onNoteChange={(note) => { void annotations.saveNote(note); }} onRetrySave={() => { void annotations.retrySave(); }} onTabChange={session.setActiveTab} onTranscriptionAttempted={session.markTranscriptionAttempted} questionText={card.audioText} recordingKey={recordingKey} recordingUri={session.recording?.uri} referenceContent={referenceContent} referenceLabel={session.behavior.referenceLabel} reviewKind={session.behavior.reviewKind} saveError={annotations.saveErrorMessage} sessionId={session.sessionId} sessionStartedAt={session.sessionStartedAt} swipeGesture={workbenchSwipeGesture} tabs={session.behavior.workbenchTabs} topicTitle={topic.name} transcriptionAttempted={Boolean(recordingKey && session.attemptedTranscriptionKeys.has(recordingKey))} />} />
             )}
           </ScrollView>
           {swipeBoundaryMessage ? <View accessibilityLiveRegion="polite" pointerEvents="none" style={styles.swipeBoundary}><AppText variant="micro">{swipeBoundaryMessage}</AppText></View> : null}
@@ -458,4 +485,5 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
 
 const styles = StyleSheet.create({
   root: { backgroundColor: colors.background, flex: 1, overflow: 'hidden' }, state: { alignItems: 'center', backgroundColor: colors.background, flex: 1, justifyContent: 'center' }, topBar: { alignItems: 'center', flexDirection: 'row', minHeight: 46, paddingHorizontal: spacing[3] }, circleButton: { alignItems: 'center', borderRadius: radii.full, height: 38, justifyContent: 'center', width: 38 }, topSpacer: { flex: 1 }, counterButton: { alignItems: 'center', backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 34, paddingHorizontal: spacing[3] }, counter: { fontFamily: fonts.monoRegular }, offline: { alignItems: 'center', backgroundColor: colors.secondary, flexDirection: 'row', gap: spacing[2], marginHorizontal: spacing[5], padding: spacing[2] }, offlineCopy: { flex: 1 }, tools: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[2], paddingHorizontal: spacing[5], paddingVertical: spacing[2], zIndex: 20 }, answerTool: { alignItems: 'center', backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 30, paddingHorizontal: spacing[3] }, toolActive: { backgroundColor: colors.primary06, borderColor: colors.primary }, bodyGesture: { flex: 1, minHeight: 0 }, body: { flex: 1, minHeight: 0 }, bodyContent: { paddingBottom: spacing[5], paddingHorizontal: spacing[5], paddingTop: spacing[1] }, primaryContent: { gap: spacing[3] }, divider: { backgroundColor: colors.border, height: StyleSheet.hairlineWidth }, cardContent: { gap: spacing[2], paddingBottom: spacing[2] }, sectionTitle: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] }, translation: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth, color: colors.mutedForeground, marginTop: spacing[2], paddingTop: spacing[2] }, referenceContent: { gap: spacing[2] }, swipeBoundary: { alignSelf: 'center', backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, bottom: spacing[3], paddingHorizontal: spacing[3], paddingVertical: spacing[2], position: 'absolute' }, footerShell: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth, gap: spacing[1], paddingTop: spacing[2] }, finishError: { paddingHorizontal: spacing[5], textAlign: 'center' }, footer: { alignItems: 'center', flexDirection: 'row', gap: spacing[2], paddingHorizontal: spacing[5] }, footerPrimary: { flex: 1 }, sheetContent: { gap: spacing[3], paddingBottom: spacing[3] }, lookupSentence: { backgroundColor: colors.secondary, borderRadius: radii.xl, padding: spacing[3] }, lookupResult: { backgroundColor: colors.secondary, borderRadius: radii.xl, gap: spacing[1], padding: spacing[3] },
+  returnToRadioButton: { alignItems: 'center', borderRadius: radii.full, flexDirection: 'row', gap: spacing[1], minHeight: 38, paddingHorizontal: spacing[2] },
 });

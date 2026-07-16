@@ -11,6 +11,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { CenteredState } from '@/components/states/CenteredState';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { AuthProvider, useAuth } from '@/features/auth/AuthProvider';
+import { RadioMiniPlayer } from '@/features/radio-player/RadioMiniPlayer';
+import { RadioPlayerProvider } from '@/features/radio-player/RadioPlayerProvider';
 import { colors } from '@/theme';
 
 SplashScreen.preventAutoHideAsync().catch(() => undefined);
@@ -34,8 +36,13 @@ export default function RootLayout() {
     <GestureHandlerRootView style={styles.root}>
       <SafeAreaProvider>
         <AuthProvider>
-          <StatusBar backgroundColor={colors.background} style="dark" />
-          <AppStack />
+          <RadioPlayerProvider>
+            <View style={styles.root}>
+              <StatusBar backgroundColor={colors.background} style="dark" />
+              <AppStack />
+              <RadioMiniPlayer />
+            </View>
+          </RadioPlayerProvider>
         </AuthProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>

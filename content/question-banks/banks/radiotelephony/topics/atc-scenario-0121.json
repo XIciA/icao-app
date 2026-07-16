@@ -1,0 +1,143 @@
+{
+  "categoryId": "atc-sia",
+  "id": "atc-scenario-0121",
+  "name": "SIA 852 起落架问题 积冰/防冰 TCAS机动",
+  "declaredCardCount": 15,
+  "cards": [
+    {
+      "id": "atc-scenario-0121-card-main-2087",
+      "taskTitle": "SIA 852-1",
+      "audioText": "your call sign is SIA 852, at Wuhan airport, stand 7, you have received information M, request clearance to SIA.",
+      "audioTextZh": "你的呼号是 SIA 852，位于武汉机场 7 号停机位，已收到 M 情报，请求前往 SIA 的放行许可。",
+      "referenceText": "Wuhan Delivery, SIA 852, Stand seven, information M, request clearance to SIA.",
+      "referenceTextZh": "武汉放行，SIA 852，7 号停机位，M 情报，请求前往 SIA 的放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-017-sia852-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0121-card-main-2088",
+      "taskTitle": "SIA 852-2",
+      "audioText": "SIA 852, Wuhan Delivery, cleared to SIA via flight planned route, follow Z Foxtrot03D, initial climb to 1,800 meters, cruising level at 10,400 meters, Runway 18L, departure frequency 124.7, squawk 4615.",
+      "audioTextZh": "SIA 852，武汉放行，许可按飞行计划航路飞往 SIA，执行 ZF-03D 离场，初始爬升至 1,800 米，巡航高度 10,400 米，Runway 18L，离场频率 124.7，应答机 4615。",
+      "referenceText": "cleared to SIA via flight planned route, follow ZF-03 departure, initial climb to 1800 meters, cruising level 1400 meters, Runway 18L, after departure, contact 124.7, squawk 4615, SIA 852.",
+      "referenceTextZh": "许可按飞行计划航路飞往 SIA，执行 ZF-03 离场，初始爬升至 1800 米，巡航高度 1400 米，Runway 18L，离场后联系 124.7，应答机 4615，SIA 852。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-017-sia852-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0121-card-main-2089",
+      "taskTitle": "SIA 852-3",
+      "audioText": "B: Now you are ready for push back and start up, contact Wuhan Ground.",
+      "audioTextZh": "B：现在你准备好推出和开车，联系武汉地面。",
+      "referenceText": "Wuhan Ground, SIA 852, ready for push back and start up.",
+      "referenceTextZh": "武汉地面，SIA 852，准备好推出和开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-017-sia852-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0121-card-main-2090",
+      "taskTitle": "SIA 852-4",
+      "audioText": "C: SIA 852, push back and start up at your own discretion.",
+      "audioTextZh": "C：SIA 852，自行决定推出和开车。",
+      "referenceText": "Push back and start up at our own discretion, SIA 852.",
+      "referenceTextZh": "自行决定推出和开车，SIA 852。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-017-sia852-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0121-card-main-2091",
+      "taskTitle": "SIA 852-5",
+      "audioText": "you have completed pushback and startup procedures, you decided to make an intersection departure from E2, contact Ground to request intersection departure from E2.",
+      "audioTextZh": "你已完成推出和开车程序，决定从 E2 交叉口离场，联系地面请求从 E2 交叉口离场。",
+      "referenceText": "Wuhan Ground, SIA 852, request intersection departure from E two.",
+      "referenceTextZh": "武汉地面，SIA 852，请求从 E2 交叉口离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-017-sia852-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0121-card-main-2092",
+      "taskTitle": "SIA 852-6",
+      "audioText": "SIA 852, Intersection departure from E2 is approved. Taxi to E2 via A6, A, A2, hold short of Runway 18L.",
+      "audioTextZh": "SIA 852，批准从 E2 交叉口离场。经 A6、A、A2 滑行至 E2，在 Runway 18L 前等待。",
+      "referenceText": "Intersection departure from E two is approved. Taxi to E two via A six, A, A two, hold short of Runway 18L, SIA 852.",
+      "referenceTextZh": "批准从 E2 交叉口离场。经 A6、A、A2 滑行至 E2，在 Runway 18L 前等待，SIA 852。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-017-sia852-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0121-card-main-2093",
+      "taskTitle": "SIA 852-7",
+      "audioText": "B: During taxiing you find a vehicle broken down on taxiway A, you have stopped the aircraft, inform ATC about the situation and request airport services to tow away the vehicle.",
+      "audioTextZh": "B：滑行期间，你发现一辆车在 A 滑行道上故障，你已停止飞机，通知 ATC 情况，并请求机场服务将车辆拖走。",
+      "referenceText": "Wuhan Ground, SIA 852, a vehicle has broken down on taxiway A, we have to stop our aircraft and request airport service to tow the vehicle away.",
+      "referenceTextZh": "武汉地面，SIA 852，一辆车在 A 滑行道上故障，我们必须停止飞机，请求机场服务将车辆拖走。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-017-sia852-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0121-card-main-2094",
+      "taskTitle": "SIA 852-8",
+      "audioText": "SIA 852, hold at present position, the ramp services will be there in a few minutes.",
+      "audioTextZh": "SIA 852，在当前位置等待，机坪保障人员将在几分钟后到达。",
+      "referenceText": "hold at present position, roger, SIA 852.",
+      "referenceTextZh": "在当前位置等待，收到，SIA 852。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-017-sia852-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0121-card-main-2095",
+      "taskTitle": "SIA 852-9",
+      "audioText": "Now you are holding short of Runway 18L on E2, request departure.",
+      "audioTextZh": "现在你在 E2 上的 Runway 18L 前等待，请求离场。",
+      "referenceText": "Wuhan Tower, SIA 852, holding short of Runway 18L on E two, ready for departure.",
+      "referenceTextZh": "武汉塔台，SIA 852，在 E2 上的 Runway 18L 前等待，已准备好离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-017-sia852-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0121-card-main-2096",
+      "taskTitle": "SIA 852-10",
+      "audioText": "SIA 852, Cleared for takeoff, Runway 18L.",
+      "audioTextZh": "SIA 852，许可从 Runway 18L 起飞。",
+      "referenceText": "Cleared for takeoff, Runway 18L, SIA 852.",
+      "referenceTextZh": "许可从 Runway 18L 起飞，SIA 852。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-017-sia852-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0121-card-main-2097",
+      "taskTitle": "SIA 852-11",
+      "audioText": "B: During the takeoff role, your nose will run over a sharp object on the runway surface and the nose wheel tire burst, you aborted the takeoff, notify Wuhan Tower.",
+      "audioTextZh": "B：起飞滑跑期间，你的前轮压过跑道表面的尖锐物，前轮轮胎爆胎，你中断起飞，通知武汉塔台。",
+      "referenceText": "Wuhan Tower, SIA 852, our nose wheel has run over a sharp object on the runway, the tire got burst, we aborted takeoff.",
+      "referenceTextZh": "武汉塔台，SIA 852，我们的前轮压过跑道上的尖锐物，轮胎爆胎，我们中断起飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-017-sia852-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0121-card-main-2098",
+      "taskTitle": "SIA 852-12",
+      "audioText": "B: Inform ATC about the situation and request fire trucks and maintenance.",
+      "audioTextZh": "B：通知 ATC 情况，并请求消防车和维修。",
+      "referenceText": "Wuhan Ground, SIA 852, we have run over a sharp object, and our nose wheel tire got burst, request fire service and maintenance.",
+      "referenceTextZh": "武汉地面，SIA 852，我们压过尖锐物，前轮轮胎爆胎，请求消防和维修。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-017-sia852-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0121-card-main-2099",
+      "taskTitle": "SIA 852-13",
+      "audioText": "C: SIA 852, do you need anything else?\nB: Tell ATC that you require a tug to tow your aircraft back to the apron after the inspection.",
+      "audioTextZh": "C： SIA 852，你还需要其他帮助吗？\nB： 告诉 ATC，你需要一辆牵引车在检查后将航空器拖回机坪。",
+      "referenceText": "request a tug to tow us back to the apron, SIA 852. Wuhan Tower, SIA 852, request a tug to tow us back to the apron.",
+      "referenceTextZh": "请求一辆牵引车将我们拖回机坪，SIA 852。武汉塔台，SIA 852，请求一辆牵引车将我们拖回机坪。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-017-sia852-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0121-card-main-2100",
+      "taskTitle": "SIA 852-14",
+      "audioText": "C: SIA 852, tug is on the way.",
+      "audioTextZh": "C：SIA 852，牵引车正在路上。",
+      "referenceText": "Roger, thanks, SIA 852.",
+      "referenceTextZh": "收到，谢谢，SIA 852。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-017-sia852-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0121-card-main-2101",
+      "taskTitle": "SIA 852-15",
+      "audioText": "B: Request passenger stairs and shuttle bus to be ready at the apron.",
+      "audioTextZh": "B：请求客梯和摆渡车在停机坪准备好。",
+      "referenceText": "Wuhan Ground, SIA 852, request passenger stairs and shuttle bus to be ready at the apron.",
+      "referenceTextZh": "武汉地面，SIA 852，请求客梯和摆渡车在停机坪准备好。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-017-sia852-q15.mp3"
+    }
+  ]
+}

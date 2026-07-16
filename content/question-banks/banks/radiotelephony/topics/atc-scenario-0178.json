@@ -1,0 +1,170 @@
+{
+  "categoryId": "atc-qfa",
+  "id": "atc-scenario-0178",
+  "name": "QFA 160 机翼/控制面损坏 燃油紧急 TCAS机动",
+  "declaredCardCount": 18,
+  "cards": [
+    {
+      "id": "atc-scenario-0178-card-main-3063",
+      "taskTitle": "QFA 160-1",
+      "audioText": "Your call sign is QFA 160, a flight from Tokyo to Guangzhou, you are maintaining 11,000 meters, over WXI, your transponder code is 4525, make an initial contact with Zhengzhou Control.",
+      "audioTextZh": "你的呼号是 QFA 160，这是一趟从东京飞往广州的航班，正保持 11,000 米飞越 WXI，应答机代码 4525，首次联系郑州管制。",
+      "referenceText": "Zhengzhou Control, QFA 160, maintaining 2000 meters, over WXI, squawking 4525.",
+      "referenceTextZh": "郑州管制，QFA 160，正保持 2,000 米，飞越 WXI，应答机 4525。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-078-qfa160-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0178-card-main-3064",
+      "taskTitle": "QFA 160-2",
+      "audioText": "QFA 160, Zhengzhou Control, radar contact, descend and maintain 10,400 meters.",
+      "audioTextZh": "QFA 160，郑州管制，雷达识别，下降至并保持 10,400 米。",
+      "referenceText": "descend and maintain 10 thounsand 400 meters, QFA 160.",
+      "referenceTextZh": "下降至并保持 10,400 米，QFA 160。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-078-qfa160-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0178-card-main-3065",
+      "taskTitle": "QFA 160-3",
+      "audioText": "B: You wish to know until what time you can expect high level, ask Zhengzhou Control.",
+      "audioTextZh": "B：你想知道什么时候可以预期高高度，询问郑州管制。",
+      "referenceText": "Zhengzhou Control, QFA 160, until what time we can expect high level ?",
+      "referenceTextZh": "郑州管制，QFA 160，我们什么时候可以预期高高度？",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-078-qfa160-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0178-card-main-3066",
+      "taskTitle": "QFA 160-4",
+      "audioText": "C: QFA 160, Zhengzhou Control, you can expect further climb after passing ZHO, but for now, continue descent to 9200 meters, reduced to minimum speed due to temporary airways restriction.",
+      "audioTextZh": "C：QFA 160，郑州管制，飞越 ZHO 后可预期继续爬升，但现在继续下降并保持 9200 米，因临时航路限制减至最小速度。",
+      "referenceText": "Roger, expect further climb after passing ZHO, continue descend and maintain 9200 meters, reduced to minimum speed, QFA 160.",
+      "referenceTextZh": "收到，飞越 ZHO 后预期继续爬升，继续下降并保持 9200 米，减至最小速度，QFA 160。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-078-qfa160-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0178-card-main-3067",
+      "taskTitle": "QFA 160-5",
+      "audioText": "C: QFA 160, orbit right from present position until further advised.",
+      "audioTextZh": "C：QFA 160，从当前位置右盘旋，直到进一步通知。",
+      "referenceText": "Orbit right from present position until further advised, QFA 160.",
+      "referenceTextZh": "从当前位置右盘旋，直到进一步通知，QFA 160。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-078-qfa160-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0178-card-main-3068",
+      "taskTitle": "QFA 160-6",
+      "audioText": "B: After several orbits, you have calculated that if you hold any longer, the fuel on board will approach the required minimums, inform Zhengzhou Control about your situation.",
+      "audioTextZh": "B：几次盘旋后，你计算出如果继续等待，机上燃油将接近所需最低量，通知郑州管制你的情况。",
+      "referenceText": "Zhengzhou Control, QFA 160, we will reach our minimum fuel if we are delayed any further.",
+      "referenceTextZh": "郑州管制，QFA 160，如果再被延误，我们将达到最低燃油。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-078-qfa160-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0178-card-main-3069",
+      "taskTitle": "QFA 160-7",
+      "audioText": "C: QFA 160, Zhengzhou Control, roger, after this orbit, direct to AKOMA.",
+      "audioTextZh": "C：QFA 160，郑州管制，收到，本次盘旋后，直飞 AKOMA。",
+      "referenceText": "After this orbit, direct to AKOMA, QFA 160.",
+      "referenceTextZh": "本次盘旋后，直飞 AKOMA，QFA 160。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-078-qfa160-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0178-card-main-3070",
+      "taskTitle": "QFA 160-8",
+      "audioText": "B: Now you find you don't have enough fuel to fly to Guangzhou and you decide to divert to Changsha Airport, notify Zhengzhou Control.",
+      "audioTextZh": "B：现在你发现燃油不足以飞往广州，决定备降长沙机场，通知郑州管制。",
+      "referenceText": "Zhengzhou Control, QFA 160, we don't have enough fuel to fly to Guangzhou, request divert to Changsha Airport.",
+      "referenceTextZh": "郑州管制，QFA 160，我们没有足够燃油飞往广州，请求备降长沙机场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-078-qfa160-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0178-card-main-3071",
+      "taskTitle": "QFA 160-9",
+      "audioText": "C: QFA 160, stand by for your request, temporary restriction is now cancelled, resume normal speed, direct to OBLIK.",
+      "audioTextZh": "C：QFA 160，等待你的请求，临时限制现已取消，恢复正常速度，直飞 OBLIK。",
+      "referenceText": "Resume normal speed, direct to OBLIK, QFA 160.",
+      "referenceTextZh": "恢复正常速度，直飞 OBLIK，QFA 160。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-078-qfa160-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0178-card-main-3072",
+      "taskTitle": "QFA 160-10",
+      "audioText": "you have a navigation system problem, your instrument is showing inaccurate position of your aircraft, notify Zhengzhou Control ad ask for radar monitoring.",
+      "audioTextZh": "你的导航系统出现问题，仪表显示的航空器位置不准确，通知郑州管制并请求雷达监控。",
+      "referenceText": "Zhengzhou Control, QFA 160, we have navigation system problem, our aircraft position might be inaccurate, request radar monitoring.",
+      "referenceTextZh": "郑州管制，QFA 160，我们的导航系统出现问题，航空器位置可能不准确，请求雷达监控。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-078-qfa160-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0178-card-main-3073",
+      "taskTitle": "QFA 160-11",
+      "audioText": "C: QFA 160, roger, you are slightly deviating to the left, turn right 5 degrees, contact Wuhan Control on 134.7, request diversion from Wuhan Control.",
+      "audioTextZh": "C：QFA 160，收到，你稍微向左偏航，右转 5 度，联系武汉管制134.7，向武汉管制请求备降。",
+      "referenceText": "Roger, turn right 5 degrees, 134.7, QFA 160.",
+      "referenceTextZh": "收到，右转 5 度，134.7，QFA 160。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-078-qfa160-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0178-card-main-3074",
+      "taskTitle": "QFA 160-12",
+      "audioText": "B: Now you are maintaining 9200 meters, over OBLIK, squawking 4525, contact Wuhan Control.",
+      "audioTextZh": "B：现在你保持 9200 米，飞越 OBLIK，应答机 4525，联系武汉管制。",
+      "referenceText": "Wuhan Control, QFA 160, maintaining 9200 meters, over OBLIK, squawking 4525.",
+      "referenceTextZh": "武汉管制，QFA 160，保持 9200 米，飞越 OBLIK，应答机 4525。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-078-qfa160-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0178-card-main-3075",
+      "taskTitle": "QFA 160-13",
+      "audioText": "C: QFA 160, Wuhan Control, radar contact, I understand you have a navigation problem and fuel shortage, confirm you are diverting to Changsha.\nB: Tell Wuhan Control you are performing the checklist and tell Wuhan Control to stand by.",
+      "audioTextZh": "C：QFA 160，武汉管制，雷达识别，我了解你有导航问题和燃油不足，确认你正在备降长沙。\nB：告诉武汉管制你正在执行检查单，并让武汉管制稍等。",
+      "referenceText": "Wuhan Control, QFA 160, stand by, we are performing the checklist.",
+      "referenceTextZh": "武汉管制，QFA 160，请稍等，我们正在执行检查单。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-078-qfa160-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0178-card-main-3076",
+      "taskTitle": "QFA 160-14",
+      "audioText": "B: Inform Wuhan Control you are flying with basic navigation instruments and you want to change your alternate airport to Wuhan Airport.",
+      "audioTextZh": "B：通知武汉管制你正在使用基本导航仪表飞行，并希望将备降机场改为武汉机场。",
+      "referenceText": "Wuhan Control, QFA 160, we are flying with basic navigation instruments, request divert to Wuhan Airport.",
+      "referenceTextZh": "武汉管制，QFA 160，我们正在使用基本导航仪表飞行，请求备降武汉机场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-078-qfa160-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0178-card-main-3077",
+      "taskTitle": "QFA 160-15",
+      "audioText": "C: QFA 160, roger, divert to Wuhan approved, descend and maintain 4800 meters, contact Wuhan Approach on 120.45 when reaching.",
+      "audioTextZh": "C：QFA 160，收到，备降武汉批准，下降并保持 4800 米，到达时联系武汉进近120.45。",
+      "referenceText": "Divert to Wuhan approved, descend and maintain 4800 meters, 120.45, QFA 160.",
+      "referenceTextZh": "备降武汉批准，下降并保持 4800 米，120.45，QFA 160。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-078-qfa160-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0178-card-main-3078",
+      "taskTitle": "QFA 160-16",
+      "audioText": "B: Now you are reaching 4800 meters, you have got information B, make an initial contact with Wuhan Approach.",
+      "audioTextZh": "B：现在你正到达 4800 米，已收到 B 情报，与武汉进近首次联系。",
+      "referenceText": "Wuhan Approach, QFA 160, reaching 4800 meters, information B.",
+      "referenceTextZh": "武汉进近，QFA 160，正到达 4800 米，收到 B 情报。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-078-qfa160-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0178-card-main-3079",
+      "taskTitle": "QFA 160-17",
+      "audioText": "QFA 160, Wuhan Approach, radar contact, information B is current, follow ZF-01A arrival, expect ILS approach Runway 36R.",
+      "audioTextZh": "QFA 160，武汉进近，雷达识别，当前情报为 B，执行 ZF-01A 进场，预计 ILS 进近 Runway 36R。",
+      "referenceText": "follow Z Foxtrot0 01A Arrival, expect ILS approach Runway 36R, QFA 160.",
+      "referenceTextZh": "执行 ZF-001A 进场，预计 ILS 进近 Runway 36R，QFA 160。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-078-qfa160-q17.mp3"
+    },
+    {
+      "id": "atc-scenario-0178-card-main-3080",
+      "taskTitle": "QFA 160-18",
+      "audioText": "C: QFA 160, are you declaring fuel emergency?\nB: Inform the controller that you still have more than 2 hours fuel endurance and you are not declaring a fuel emergency.",
+      "audioTextZh": "C：QFA 160，你是否宣布燃油紧急？\nB：通知管制员你仍有超过 2 小时续航燃油，并且不宣布燃油紧急。",
+      "referenceText": "Negative, we still have more than 2 hours fuel endurance, QFA 160",
+      "referenceTextZh": "否定，我们仍有超过 2 小时续航燃油，QFA 160。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-078-qfa160-q18.mp3"
+    }
+  ]
+}

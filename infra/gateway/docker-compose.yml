@@ -17,6 +17,7 @@ services:
       - /tmp
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - /opt/icao/runtime/downloads/android:/srv/android-download:ro
       - caddy_data:/data
       - caddy_config:/config
 

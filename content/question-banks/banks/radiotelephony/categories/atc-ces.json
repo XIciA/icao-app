@@ -1,8 +1,8 @@
 {
   "id": "atc-ces",
   "name": "CES",
-  "declaredTopicCount": 11,
-  "declaredCardCount": 196,
+  "declaredTopicCount": 20,
+  "declaredCardCount": 352,
   "topicIds": [
     "atc-scenario-0089",
     "atc-scenario-0090",
@@ -14,6 +14,15 @@
     "atc-scenario-0096",
     "atc-scenario-0097",
     "atc-scenario-0098",
-    "atc-scenario-0099"
+    "atc-scenario-0099",
+    "atc-scenario-0133",
+    "atc-scenario-0134",
+    "atc-scenario-0135",
+    "atc-scenario-0136",
+    "atc-scenario-0137",
+    "atc-scenario-0138",
+    "atc-scenario-0139",
+    "atc-scenario-0140",
+    "atc-scenario-0141"
   ]
 }

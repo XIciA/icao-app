@@ -1,0 +1,188 @@
+{
+  "categoryId": "atc-csn",
+  "id": "atc-scenario-0113",
+  "name": "CSN 542 撞气球 可疑炸弹/无人认领行李 机翼/控制面损坏",
+  "declaredCardCount": 20,
+  "cards": [
+    {
+      "id": "atc-scenario-0113-card-main-1938",
+      "taskTitle": "CSN 542-1",
+      "audioText": "you are at Gate K10 with information B. Request clearance from Chengdu Delivery.",
+      "audioTextZh": "你位于 K10 登机口，已收到 B 情报。向成都放行申请放行许可。",
+      "referenceText": "Chengdu Delivery, CSN 542, gate K10, information B, request ATC clearance.",
+      "referenceTextZh": "成都放行，CSN 542，K10 登机口，B 情报，申请 ATC 放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-009-csn542-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0113-card-main-1939",
+      "taskTitle": "CSN 542-2",
+      "audioText": "CSN 542, Chengdu delivery, good afternoon. Information B is valid. Cleared to destination via flight planned route. Runway 02. After departure turn right direct BHS. Initial climb to 1,200 meterson QNH 1021. After departure contact 125.6.",
+      "audioTextZh": "CSN 542，成都放行，下午好。B 情报有效。许可按飞行计划航路飞往目的地。Runway 02。离场后右转直飞 BHS。在 QNH 1021 上初始爬升至 1,200 米。离场后联系 125.6。",
+      "referenceText": "Information B Cleared to destination via flight planned route. Runway 02. After departure turn right direct BHS. Initial climb to 1200 meters on QNH 1021. 125.6, CSN 542.",
+      "referenceTextZh": "B 情报，许可按飞行计划航路飞往目的地。Runway 02。离场后右转直飞 BHS。在 QNH 1021 上初始爬升至 1200 米。125.6，CSN 542。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-009-csn542-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0113-card-main-1940",
+      "taskTitle": "CSN 542-3",
+      "audioText": "C: CSN 542, read back correct, when ready for push back and start up, contact Ground 121.85.",
+      "audioTextZh": "C: CSN 542，复诵正确，准备推出和开车时联系 地面 121.85。",
+      "referenceText": "121.85, CSN 542.",
+      "referenceTextZh": "121.85，CSN 542。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-009-csn542-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0113-card-main-1941",
+      "taskTitle": "CSN 542-4",
+      "audioText": "B: You are now ready for startup, request push back and permission to start your engines from Chengdu Ground.",
+      "audioTextZh": "B: 你现在准备开车，向成都地面请求推出和开车许可。",
+      "referenceText": "Chengdu Ground, CSN 542, request push back and start up.",
+      "referenceTextZh": "成都地面，CSN 542，请求推出和开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-009-csn542-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0113-card-main-1942",
+      "taskTitle": "CSN 542-5",
+      "audioText": "C: CSN 542, push back and start up approved.",
+      "audioTextZh": "C: CSN 542，推出和开车批准。",
+      "referenceText": "Push back and start up approved, CSN 542.",
+      "referenceTextZh": "推出和开车批准，CSN 542。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-009-csn542-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0113-card-main-1943",
+      "taskTitle": "CSN 542-6",
+      "audioText": "C: CSN 542, we just had reports of a bomb left in your first class passenger section. Please advise your intensions.\nB: acknowledge the transmission and tell the controller you have the crew check the first-class cabin.",
+      "audioTextZh": "C： CSN 542，我们刚刚收到报告，你的头等舱客舱内被放置了一枚炸弹。请告知你的意图。\nB： 确认收到，并告诉管制员你将让机组检查头等舱。",
+      "referenceText": "roger, we will have the crew member check the first-class cabin, CSN 542.",
+      "referenceTextZh": "收到，我们将让一名机组成员检查头等舱，CSN 542。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-009-csn542-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0113-card-main-1944",
+      "taskTitle": "CSN 542-7",
+      "audioText": "B: During the search, the cabin crew find a bag that is not claimed by any passengers, inform Ground about this and tell them that because there are no aircraft around you, you will hold position.",
+      "audioTextZh": "B: 搜查期间，客舱机组发现一个无人认领的包，通知 地面，并告诉他们由于你周围没有飞机，你将原地等待。",
+      "referenceText": "Chengdu Ground, CSN 542, the cabin crew found a bag that is not claimed by any passenger, request hold position due there are no aircraft around us.",
+      "referenceTextZh": "成都地面，CSN 542，客舱机组发现一个无人认领的包，由于我们周围没有飞机，请求原地等待。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-009-csn542-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0113-card-main-1945",
+      "taskTitle": "CSN 542-8",
+      "audioText": "C: Roger, CSN 542, do you need any further assistance?\nB: Tell the controller you will disembark the passengers, and request passenger steps and a bomb squad.",
+      "audioTextZh": "C: 收到，CSN 542，你还需要其他援助吗？\nB: 告诉管制员你将让旅客下机，并请求客梯和排爆小组。",
+      "referenceText": "We will disembark the passengers, request passenger steps and a bomb squad, CSN 542.",
+      "referenceTextZh": "我们将让旅客下机，请求客梯和排爆小组，CSN 542。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-009-csn542-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0113-card-main-1946",
+      "taskTitle": "CSN 542-9",
+      "audioText": "B: It is now later in the day, the suspected bomb was an empty bag, you are at the holding point of Runway 02, tell the traffic controller you are ready for takeoff.",
+      "audioTextZh": "B: 当天稍后，疑似炸弹是一个空包，你在跑道 02 等待点，告诉交通管制员你准备起飞。",
+      "referenceText": "Chengdu Tower, CSN 542, the suspected bomb was an empty bag, holding point of Runway 02, ready for departure.",
+      "referenceTextZh": "成都塔台，CSN 542，疑似炸弹是一个空包，在跑道 02 等待点，准备离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-009-csn542-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0113-card-main-1947",
+      "taskTitle": "CSN 542-10",
+      "audioText": "C: CSN 542, after departure maintain runway heading, cleared for takeoff Runway 02, surface wind 010 at 2 meters per second.",
+      "audioTextZh": "C: CSN 542，离场后保持跑道航向，跑道 02 可以起飞，地面风 010，2 米/秒。",
+      "referenceText": "After departure maintain runway heading, cleared for takeoff Runway 02, CSN 542.",
+      "referenceTextZh": "离场后保持跑道航向，跑道 02 可以起飞，CSN 542。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-009-csn542-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0113-card-main-1948",
+      "taskTitle": "CSN 542-11",
+      "audioText": "C: CSN 542, contact Departure on 125.6.",
+      "audioTextZh": "C: CSN 542，联系 Departure 125.6。",
+      "referenceText": "125.6, CSN 542.",
+      "referenceTextZh": "125.6，CSN 542。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-009-csn542-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0113-card-main-1949",
+      "taskTitle": "CSN 542-12",
+      "audioText": "Contact departure. Your altitude is now passing 200m.",
+      "audioTextZh": "联系离场。你当前高度正通过 200m。",
+      "referenceText": "Chengdu Departure, CSN 542, passing 200m.",
+      "referenceTextZh": "成都离场，CSN 542，正通过 200m。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-009-csn542-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0113-card-main-1950",
+      "taskTitle": "CSN 542-13",
+      "audioText": "C: Good afternoon, CSN 542, maintain runway heading, climb to 3000 meters, be advised we have received some reports of a large unmanned weather balloons in your area.",
+      "audioTextZh": "C: 下午好，CSN 542，保持跑道航向，爬升到 3000 米，通知你，我们收到一些报告称你所在区域有大型无人气象气球。",
+      "referenceText": "Maintain runway heading, climb to 3000 meters, roger, thanks, CSN 542.",
+      "referenceTextZh": "保持跑道航向，爬升到 3000 米，收到，谢谢，CSN 542。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-009-csn542-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0113-card-main-1951",
+      "taskTitle": "CSN 542-14",
+      "audioText": "As you are climbing you notice a large unmanned balloon. Your position is 4 miles north of airfield away, height 2000m. Report this to ATC.",
+      "audioTextZh": "爬升过程中，你发现一个大型无人气球。你的位置在机场以北 4 英里处，高度 2000m。向 ATC 报告。",
+      "referenceText": "Chengdu Departure, CSN 542, we notice a large unmanned balloon north of airfield four miles, 2000 meters.",
+      "referenceTextZh": "成都离场，CSN 542，我们发现一个大型无人气球，位于机场以北四英里，高度 2000 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-009-csn542-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0113-card-main-1952",
+      "taskTitle": "CSN 542-15",
+      "audioText": "B: Before ATC replies, you suddenly hit another balloon you did not see, the aircraft becomes difficult to control and you want to return to land at Chengdu, tell ATC this. This is an Urgency call.",
+      "audioTextZh": "B: 在 ATC 回复前，你突然撞上另一个没看到的气球，飞机变得难以控制，你想返回 Chengdu 着陆，告诉 ATC。这是紧急呼叫。",
+      "referenceText": "PANPAN PANPAN PANPAN, Chengdu Departure, CSN 542, we hit another balloon we did not see, the aircraft becomes difficult to control, request return to land at Chengdu.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，Chengdu Departure，CSN 542，我们撞上另一个未看到的气球，飞机变得难以控制，请求返回 Chengdu 着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-009-csn542-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0113-card-main-1953",
+      "taskTitle": "CSN 542-16",
+      "audioText": "CSN 542, roger Pan, turn left heading 200, descend to 1,200 meters. All Runways available for landing.",
+      "audioTextZh": "CSN 542，收到 PAN，左转航向 200，下降至 1,200 米。所有跑道均可落地。",
+      "referenceText": "turn left heading 200, descend to 1002 hundredmeters, roger, CSN 542.",
+      "referenceTextZh": "左转航向 200，下降至 1002 hundredmeters，收到，CSN 542。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-009-csn542-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0113-card-main-1954",
+      "taskTitle": "CSN 542-17",
+      "audioText": "C: CSN 542, radar vectors are available or you can fly a visual circuit and join left downwind, please advise.\nB: Tell the controller you will join left downwind.",
+      "audioTextZh": "C: CSN 542，可以提供雷达引导，或你可以飞目视起落航线并加入左下风，请告知。\nB: 告诉管制员你将加入左下风。",
+      "referenceText": "Request join left downwind, CSN 542.",
+      "referenceTextZh": "请求加入左下风，CSN 542。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-009-csn542-q17.mp3"
+    },
+    {
+      "id": "atc-scenario-0113-card-main-1955",
+      "taskTitle": "CSN 542-18",
+      "audioText": "C: CSN 542, roger, report downwind and when able can you tell us what is the damage to your aircraft?\nB: Reply to the transmission and tell them you have a large hole in your wing and the control surfaces are damaged.",
+      "audioTextZh": "C: CSN 542，收到，报告下风，可以时告诉我们你的飞机损伤情况。\nB: 回复通话，告诉他们机翼上有一个大洞，操纵面受损。",
+      "referenceText": "We have a large hole in our wing and the control surfaces are damaged, CSN 542.",
+      "referenceTextZh": "我们的机翼上有一个大洞，操纵面受损，CSN 542。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-009-csn542-q18.mp3"
+    },
+    {
+      "id": "atc-scenario-0113-card-main-1956",
+      "taskTitle": "CSN 542-19",
+      "audioText": "Now you are on downwind, report it to ATC.",
+      "audioTextZh": "现在你位于三边，向 ATC 报告。",
+      "referenceText": "Chengdu Tower, CSN 542, downwind.",
+      "referenceTextZh": "成都塔台，CSN 542，三边。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-009-csn542-q19.mp3"
+    },
+    {
+      "id": "atc-scenario-0113-card-main-1957",
+      "taskTitle": "CSN 542-20",
+      "audioText": "C: CSN 542, you are number 1, cleared to land Runway 02, report on final.",
+      "audioTextZh": "C: CSN 542，你是第 1 架，跑道 02 可以着陆，五边报告。",
+      "referenceText": "Cleared to land Runway 02, CSN 542.",
+      "referenceTextZh": "跑道 02 可以着陆，CSN 542。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-009-csn542-q20.mp3"
+    }
+  ]
+}

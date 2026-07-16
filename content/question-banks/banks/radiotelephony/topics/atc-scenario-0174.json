@@ -1,0 +1,152 @@
+{
+  "categoryId": "atc-ual",
+  "id": "atc-scenario-0174",
+  "name": "UAL 221 颠簸 乘客医疗 TCAS机动",
+  "declaredCardCount": 16,
+  "cards": [
+    {
+      "id": "atc-scenario-0174-card-main-2997",
+      "taskTitle": "UAL 221-1",
+      "audioText": "Your call sign is UAL 221, you are maintaining 11,300 meters, over JTN, squawking 5536, make initial contact with Shanghai Control.",
+      "audioTextZh": "你的呼号是 UAL 221，正保持 11,300 米，飞越 JTN，应答机 5536，与上海管制首次联系。",
+      "referenceText": "Shanghai Control, UAL 221, maintaining 2300 meters, over JTN, squawking 5536.",
+      "referenceTextZh": "上海管制，UAL 221，正保持 2300 米，飞越 JTN，应答机 5536。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-074-ual221-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0174-card-main-2998",
+      "taskTitle": "UAL 221-2",
+      "audioText": "UAL 221, fly direct to TOL, maintain mach decimal 83 due separation.",
+      "audioTextZh": "UAL 221，直飞 TOL，因间隔需要保持 Mach 0.83。",
+      "referenceText": "fly direct to TOL, maintain mach decimal eight tree, UAL 221.",
+      "referenceTextZh": "直飞 TOL，保持 Mach 0.83，UAL 221。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-074-ual221-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0174-card-main-2999",
+      "taskTitle": "UAL 221-3",
+      "audioText": "you are encountering severe turbulence at 11,300 meters, contact Shanghai Control and check if any higher level is available.",
+      "audioTextZh": "你在 11,300 米遭遇严重颠簸，联系上海管制并核实是否有任何更高高度可用。",
+      "referenceText": "Shanghai Control, UAL 221, we are encountering severe turbulence at 11 thoudand 300 meters, is higher level available?",
+      "referenceTextZh": "上海管制，UAL 221，我们在 11300 米遭遇严重颠簸，是否有更高高度可用？",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-074-ual221-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0174-card-main-3000",
+      "taskTitle": "UAL 221-4",
+      "audioText": "C: UAL 221, 13100m is available now, say your intention.\nB: tell the controller you are unable to accept 13100m because of performance.",
+      "audioTextZh": "C： UAL 221，13100m 当前可用，请说明你的意图。\nB： 告诉管制员，由于性能原因你无法接受 13100m。",
+      "referenceText": "negative, we are unable to accept 4001 hudnred due performance, UAL 221.",
+      "referenceTextZh": "不行，由于性能原因，我们无法接受 4001 hudnred，UAL 221。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-074-ual221-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0174-card-main-3001",
+      "taskTitle": "UAL 221-5",
+      "audioText": "C: UAL 221, maintain present speed, expect higher level after IKUBA.\nB: tell the controller you are unable to maintain the speed due turbulence and ask to maintain mach decimal 82.",
+      "audioTextZh": "C： UAL 221，保持当前速度，预计飞越 IKUBA 后可使用更高高度。\nB： 告诉管制员由于颠簸你无法保持该速度，并请求保持 Mach 0.82。",
+      "referenceText": "negative mach decimal eight tree due turbulence, request maintain decimal eight two, UAL 221.",
+      "referenceTextZh": "不行，因颠簸无法保持 Mach 0.83，请求保持 Mach 0.82，UAL 221。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-074-ual221-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0174-card-main-3002",
+      "taskTitle": "UAL 221-6",
+      "audioText": "now you are over IKUBA, maintaining 9200m, contact Wuhan Control and request higher level.",
+      "audioTextZh": "现在你飞越 IKUBA，保持 9200m，联系武汉管制并请求更高高度。",
+      "referenceText": "Wuhan Control, UAL 221, over IKUBA, maintaining 9200, request higher level.",
+      "referenceTextZh": "武汉管制，UAL 221，飞越 IKUBA，保持 9200，请求更高高度。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-074-ual221-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0174-card-main-3003",
+      "taskTitle": "UAL 221-7",
+      "audioText": "UAL 221, Wuhan Control, radar contact, climb to and maintain 10400m.",
+      "audioTextZh": "UAL 221，武汉管制，雷达识别，爬升至并保持 10400m。",
+      "referenceText": "climb to and maintain 1400 meters, UAL 221.",
+      "referenceTextZh": "爬升至并保持 1400 米，UAL 221。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-074-ual221-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0174-card-main-3004",
+      "taskTitle": "UAL 221-8",
+      "audioText": "B: Suddenly, 1 of the passengers suffered from heart attack, contact Wuhan Control and request descent to lower level.",
+      "audioTextZh": "B：突然有 1 名旅客心脏病发作，联系武汉管制，请求下降到较低高度。",
+      "referenceText": "Wuhan Control, UAL 221, 1 of the passengers suffered from heart attack, request descent to lower level.",
+      "referenceTextZh": "武汉管制，UAL 221，1 名旅客心脏病发作，请求下降到较低高度。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-074-ual221-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0174-card-main-3005",
+      "taskTitle": "UAL 221-9",
+      "audioText": "UAL 221, maintain 10400m due airspace congestion, reduce speed to mach decimal 75.",
+      "audioTextZh": "UAL 221，因空域拥堵保持 10400m，将速度减至 Mach 0.75。",
+      "referenceText": "Maintain 1400, reduce speed to mach decimal seven five, UAL 221.",
+      "referenceTextZh": "保持 1400，将速度减至 Mach 0.75，UAL 221。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-074-ual221-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0174-card-main-3006",
+      "taskTitle": "UAL 221-10",
+      "audioText": "B: The flight attendant reported that a passenger is feeling uncomfortable, report it to Wuhan Control and request descent.",
+      "audioTextZh": "B：乘务员报告有一名旅客身体不适，向武汉管制报告并请求下降。",
+      "referenceText": "Wuhan Control, UAL 221, the flight attendant reported that a passenger is feeling uncomfortable, request descent.",
+      "referenceTextZh": "武汉管制，UAL 221，乘务员报告有一名旅客身体不适，请求下降。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-074-ual221-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0174-card-main-3007",
+      "taskTitle": "UAL 221-11",
+      "audioText": "UAL 221, descend to 6600m, level at XSH.",
+      "audioTextZh": "UAL 221，下降至 6600m，在 XSH 改平。",
+      "referenceText": "descend to 6600, level at XSH, UAL 221.",
+      "referenceTextZh": "下降至 6600，在 XSH 改平，UAL 221。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-074-ual221-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0174-card-main-3008",
+      "taskTitle": "UAL 221-12",
+      "audioText": "UAL 221, track direct to XSH, follow ZF-3A arrival, expect radar vectors for ILS approach 36R.",
+      "audioTextZh": "UAL 221，直飞 XSH，执行 ZF-3A 进场，预计雷达引导 ILS 进近 Runway 36R。",
+      "referenceText": "track direct to XSH, follow ZF tree A arrival, expect radar vectors for ILS approach 36 right, UAL 221.",
+      "referenceTextZh": "直飞 XSH，执行 ZF-3A 进场，预计雷达引导 ILS 进近 Runway 36R，UAL 221。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-074-ual221-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0174-card-main-3009",
+      "taskTitle": "UAL 221-13",
+      "audioText": "Now you are over ZF, maintaining 6600m, you have got information O, contact Wuhan Approach.",
+      "audioTextZh": "现在你位于 ZF 上空，保持 6600m，已收到 O 情报，联系武汉进近。",
+      "referenceText": "Wuhan Approach, UAL 221, over ZF, maintaining 6600, information O.",
+      "referenceTextZh": "武汉进近，UAL 221，位于 ZF 上空，保持 6600，O 情报。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-074-ual221-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0174-card-main-3010",
+      "taskTitle": "UAL 221-14",
+      "audioText": "UAL 221, Wuhan Approach, radar contact, current information is P, descend and maintain 4200m.",
+      "audioTextZh": "UAL 221，武汉进近，雷达识别，当前情报为 P，下降并保持 4200m。",
+      "referenceText": "Information P, descend to and maintain 4200, UAL 221.",
+      "referenceTextZh": "P 情报，下降至并保持 4200，UAL 221。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-074-ual221-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0174-card-main-3011",
+      "taskTitle": "UAL 221-15",
+      "audioText": "UAL 221, turn left heading 220, expect radar vectors for ILS approach Runway 36R.",
+      "audioTextZh": "UAL 221，左转航向 220，预计雷达引导 ILS 进近 Runway 36R。",
+      "referenceText": "turn left heading 220, expect radar vectors for ILS approach Runway 36R, UAL 221.",
+      "referenceTextZh": "左转航向 220，预计雷达引导 ILS 进近 Runway 36R，UAL 221。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-074-ual221-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0174-card-main-3012",
+      "taskTitle": "UAL 221-16",
+      "audioText": "UAL 221, turn right heading 330, descend to 900m, cleared for ILS approach Runway 36R.",
+      "audioTextZh": "UAL 221，右转航向 330，下降至 900m，许可 ILS 进近 Runway 36R。",
+      "referenceText": "turn right heading 330, descend to 900 meters, cleared for ILS approach Runway 36R, UAL 221.",
+      "referenceTextZh": "右转航向 330，下降至 900 米，许可 ILS 进近 Runway 36R，UAL 221。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-074-ual221-q16.mp3"
+    }
+  ]
+}

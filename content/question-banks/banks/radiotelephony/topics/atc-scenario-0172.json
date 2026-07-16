@@ -1,0 +1,143 @@
+{
+  "categoryId": "atc-ual",
+  "id": "atc-scenario-0172",
+  "name": "UAL 811 颠簸 雷暴绕飞 增压问题",
+  "declaredCardCount": 15,
+  "cards": [
+    {
+      "id": "atc-scenario-0172-card-main-2966",
+      "taskTitle": "UAL 811-1",
+      "audioText": "B: Your call sign is UAL 811, from Los Angeles to Wuhan, you have received an Urgency call from AFR 103, AFR 103 had a pressurization problem and the cabin altitude was rising rapidly, relay the message to Zhengzhou Control.",
+      "audioTextZh": "B：你的呼号是 UAL 811，从洛杉矶飞往武汉，你收到 AFR 103 的紧急呼叫，AFR 103 出现增压问题且客舱高度快速上升，将该信息转报给郑州管制。",
+      "referenceText": "PANPAN PANPAN PANPAN, Zhengzhou Control, UAL 811, we have intercepted an Urgency call from AFR 103, AFR 103 had a pressurization problem and the cabin altitude was rising rapidly.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，郑州管制，UAL 811，我们截收到 AFR 103 的紧急呼叫，AFR 103 出现增压问题，客舱高度快速上升。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-072-ual811-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0172-card-main-2967",
+      "taskTitle": "UAL 811-2",
+      "audioText": "C: UAL 811, roger PANPAN, break, break, AFR 103, descend to 3000 meters on QNH1021.\nB: You relay the message to AFR 103.",
+      "audioTextZh": "C： UAL 811，收到 PANPAN，暂停，暂停，AFR 103，在 QNH 1021 上下降至 3000 米。\nB： 你将该信息转发给 AFR 103。",
+      "referenceText": "AFR 103, UAL 811, roger PANPAN, descend to 3000 meters QNH 1021.",
+      "referenceTextZh": "AFR 103，UAL 811，收到 PANPAN，在 QNH 1021 上下降至 3000 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-072-ual811-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0172-card-main-2968",
+      "taskTitle": "UAL 811-3",
+      "audioText": "UAL 811, offset 3 miles right of track, reduce speed to mach decimal 75 due radar failure.",
+      "audioTextZh": "UAL 811，向航迹右侧偏置 3 英里，因雷达故障将速度减至 Mach 0.75。",
+      "referenceText": "offset tree miles right of track, reduce speed to mach decimal seven five, UAL 811.",
+      "referenceTextZh": "向航迹右侧偏置 3 英里，将速度减至 Mach 0.75，UAL 811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-072-ual811-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0172-card-main-2969",
+      "taskTitle": "UAL 811-4",
+      "audioText": "B: Your weather radar indicates there is a cumulonimbus ahead, request Zhengzhou Control for 20 miles deviation right of track and state the reason.",
+      "audioTextZh": "B：气象雷达显示前方有积雨云，向郑州管制请求向航迹右侧偏航 20 海里，并说明原因。",
+      "referenceText": "Zhengzhou Control, UAL 811, our weather radar indicates there is a cumulonimbus ahead, request 20 miles deviation right of track.",
+      "referenceTextZh": "郑州管制，UAL 811，我们气象雷达显示前方有积雨云，请求向航迹右侧偏航 20 海里。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-072-ual811-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0172-card-main-2970",
+      "taskTitle": "UAL 811-5",
+      "audioText": "C: UAL 811, 20 miles deviation to the right approved, report when clear of weather.",
+      "audioTextZh": "C：UAL 811，同意向右偏航 20 海里，脱离天气后报告。",
+      "referenceText": "20 miles deviation to the right approved, report when clear of weather, UAL 811.",
+      "referenceTextZh": "同意向右偏航 20 海里，脱离天气后报告，UAL 811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-072-ual811-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0172-card-main-2971",
+      "taskTitle": "UAL 811-6",
+      "audioText": "you have encountered severe clear air turbulence between 10,400 meters and 6000 meters, contact Zhengzhou Control and request climb to a higher level.",
+      "audioTextZh": "你在 10,400 米至 6000 米之间遭遇严重晴空颠簸，联系郑州管制并请求爬升至更高高度。",
+      "referenceText": "Zhengzhou Control, UAL 811, we have encountered severe clear air turbulence between 1400 meters and 6000 meters, request climb to a higher level.",
+      "referenceTextZh": "郑州管制，UAL 811，我们在 1400 米至 6000 米之间遭遇严重晴空颠簸，请求爬升至更高高度。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-072-ual811-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0172-card-main-2972",
+      "taskTitle": "UAL 811-7",
+      "audioText": "C: UAL 811, climb to and maintain 11000 meters.",
+      "audioTextZh": "C：UAL 811，爬升并保持 11000 米。",
+      "referenceText": "Climb to and maintain 11000 meters, UAL 811.",
+      "referenceTextZh": "爬升并保持 11000 米，UAL 811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-072-ual811-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0172-card-main-2973",
+      "taskTitle": "UAL 811-8",
+      "audioText": "C: UAL 811, reduce speed to mach decimal 72.\nB: Advise Zhengzhou Control mach decimal 72 is not acceptable, it's too low for your aircraft.",
+      "audioTextZh": "C： UAL 811，将速度减至 Mach 0.72。\nB： 通知郑州管制，Mach 0.72 不可接受，对你的航空器而言太低。",
+      "referenceText": "negative, mach decimal seven two is too low (for our aircraft), UAL 811",
+      "referenceTextZh": "不行，Mach 0.72太低（对我们的航空器而言），UAL 811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-072-ual811-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0172-card-main-2974",
+      "taskTitle": "UAL 811-9",
+      "audioText": "UAL 811, maintain mach decimal 75, we are limiting the number of aircraft flying through Wuhan Control area due to Wuhan radar failure.",
+      "audioTextZh": "UAL 811，保持 Mach 0.75，因武汉雷达故障，我们正在限制飞越武汉管制区的航空器数量。",
+      "referenceText": "maintain mach decimal 75, UAL 811.",
+      "referenceTextZh": "保持 Mach 0.75，UAL 811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-072-ual811-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0172-card-main-2975",
+      "taskTitle": "UAL 811-10",
+      "audioText": "C: UAL 811, what is your estimated time for OBLIK?\nB: Inform Zhengzhou Control your estimated time for OBLIK is 1152Z time.",
+      "audioTextZh": "C：UAL 811，你预计到达 OBLIK 的时间是多少？\nB：告知郑州管制预计 1152Z 到达 OBLIK。",
+      "referenceText": "Estimating OBLIK 1152Z, UAL 811.",
+      "referenceTextZh": "预计 OBLIK 1152Z，UAL 811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-072-ual811-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0172-card-main-2976",
+      "taskTitle": "UAL 811-11",
+      "audioText": "C: UAL 811, make an orbit right, reach OBLIK not earlier than 1200.",
+      "audioTextZh": "C：UAL 811，右盘旋，抵达 OBLIK 不早于 1200。",
+      "referenceText": "Make an orbit right, reach OBLIK not earlier than 1200, UAL 811.",
+      "referenceTextZh": "右盘旋，抵达 OBLIK 不早于 1200，UAL 811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-072-ual811-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0172-card-main-2977",
+      "taskTitle": "UAL 811-12",
+      "audioText": "you are over OBLIK at time 1200Z, maintaining 11,000 meters, you are estimating ZF at time 1230, your next waypoint is WUH, make a standard position report to Wuhan Control.",
+      "audioTextZh": "你在 1200Z 时飞越 OBLIK，保持 11,000 米，预计 1230 时到达 ZF，下一个航路点是 WUH，向武汉管制作标准位置报告。",
+      "referenceText": "Wuhan Control, UAL 811, OBLIK1200Z, 2000 meters, estimating ZF1230 Z, WUH next.",
+      "referenceTextZh": "武汉管制，UAL 811，1200Z 飞越 OBLIK，2000 米，预计 1230Z 到达 ZF，下一个航路点 WUH。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-072-ual811-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0172-card-main-2978",
+      "taskTitle": "UAL 811-13",
+      "audioText": "UAL 811, Wuhan Control, roger, maintain 11,000 meters, report ZF.",
+      "audioTextZh": "UAL 811，武汉管制，收到，保持 11,000 米，到达 ZF 时报告。",
+      "referenceText": "maintain 11,000 meters, UAL 811.",
+      "referenceTextZh": "保持 11,000 米，UAL 811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-072-ual811-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0172-card-main-2979",
+      "taskTitle": "UAL 811-14",
+      "audioText": "C: UAL 811, for identification, reset squawk 3572.",
+      "audioTextZh": "C：UAL 811，为识别，重设应答机 3572。",
+      "referenceText": "Reset squawk 3572, UAL 811.",
+      "referenceTextZh": "重设应答机 3572，UAL 811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-072-ual811-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0172-card-main-2980",
+      "taskTitle": "UAL 811-15",
+      "audioText": "C: UAL 811, radar contact, omit position reports, resume own navigation to ZF.",
+      "audioTextZh": "C：UAL 811，雷达识别，可以省略位置报告，自主导航至 ZF。",
+      "referenceText": "Omit position reports, resume own navigation to ZF, UAL 811.",
+      "referenceTextZh": "省略位置报告，自主导航至 ZF，UAL 811。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-072-ual811-q15.mp3"
+    }
+  ]
+}

@@ -22,6 +22,7 @@ export function StudyTaskRenderer({
   previewPauseRequest,
   onPreviewPlaybackStart,
   onRecordingIntent,
+  variant = 'default',
 }: {
   behavior: StudyBehavior;
   card: QuestionBankCard;
@@ -37,6 +38,7 @@ export function StudyTaskRenderer({
   previewPauseRequest?: number;
   onPreviewPlaybackStart?: () => void;
   onRecordingIntent?: () => void;
+  variant?: 'default' | 'integrated';
 }) {
   if (behavior.taskKind === 'choices') {
     return card.choices?.length ? (
@@ -62,6 +64,7 @@ export function StudyTaskRenderer({
       onRecorded={onRecorded}
       previewPauseRequest={previewPauseRequest}
       recording={recording}
+      variant={variant}
     />
   );
 }

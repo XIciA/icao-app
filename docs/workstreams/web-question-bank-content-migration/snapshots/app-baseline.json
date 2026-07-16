@@ -1,0 +1,1891 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-07-15T16:05:19.048Z",
+  "banks": [
+    {
+      "bankId": "listening",
+      "topics": 4,
+      "cards": 631,
+      "files": [
+        {
+          "path": "content/question-banks/banks/listening/topics/listening-topic-01.json",
+          "id": "listening-topic-01",
+          "categoryId": "listening-category-01",
+          "cards": 245,
+          "sha256": "05a61dfb067b7cd960b1f3d2767e3687b8e249e5b472c6be996b4cc467e1ef66"
+        },
+        {
+          "path": "content/question-banks/banks/listening/topics/listening-topic-02.json",
+          "id": "listening-topic-02",
+          "categoryId": "listening-category-02",
+          "cards": 114,
+          "sha256": "34a0c4fe6eba1a920f750885a94ff56c28f41ed63ed63ef403f1925866ec9e8f"
+        },
+        {
+          "path": "content/question-banks/banks/listening/topics/listening-topic-03.json",
+          "id": "listening-topic-03",
+          "categoryId": "listening-category-03",
+          "cards": 95,
+          "sha256": "17cde8290b7aa8999a8da55bd961351c9764e64930c76c4d9fe151aef3cd956e"
+        },
+        {
+          "path": "content/question-banks/banks/listening/topics/listening-topic-04.json",
+          "id": "listening-topic-04",
+          "categoryId": "listening-category-04",
+          "cards": 177,
+          "sha256": "ef13f4f85ae808469e799e29d8020e0f8d1fe423c387f28f221724edfa0e29bd"
+        }
+      ],
+      "contentChecksum": "4b1d2b26da9257667bb038756504baf490763b218df7be37d15a75656a0b344e"
+    },
+    {
+      "bankId": "radiotelephony",
+      "topics": 107,
+      "cards": 1851,
+      "files": [
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0001.json",
+          "id": "atc-scenario-0001",
+          "categoryId": "atc-qfa",
+          "cards": 20,
+          "sha256": "bfc1100226a35318c161d8d1794888cc2d019ebba5f7373481c175f5b11cff62"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0002.json",
+          "id": "atc-scenario-0002",
+          "categoryId": "atc-qfa",
+          "cards": 18,
+          "sha256": "13c62edbec9fa2fb8feaa09d62d8ea42dab6202efe6396d527388ed7f102e25e"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0003.json",
+          "id": "atc-scenario-0003",
+          "categoryId": "atc-qfa",
+          "cards": 19,
+          "sha256": "db172d64e43ca658dcabc687d93881e2fd35f7bdc7dc7ff23f6620f6017cb711"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0004.json",
+          "id": "atc-scenario-0004",
+          "categoryId": "atc-qfa",
+          "cards": 22,
+          "sha256": "ec86c93bc81e3d76007ddb092628c563e83d4062fd212de9e4d4e1a12c9cfc36"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0005.json",
+          "id": "atc-scenario-0005",
+          "categoryId": "atc-qfa",
+          "cards": 15,
+          "sha256": "22f2b7a01bc9310328ee37a41df87ac4d0174e8f5ef68a797a73a2968f038113"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0006.json",
+          "id": "atc-scenario-0006",
+          "categoryId": "atc-qfa",
+          "cards": 17,
+          "sha256": "a4e5c4fe22eb4ac786a58ce3d9b81a718c2e5448b03a740a41a1583b1ed13e82"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0007.json",
+          "id": "atc-scenario-0007",
+          "categoryId": "atc-sia",
+          "cards": 15,
+          "sha256": "3b34fa5ada8382c750ffa2a19676522b6fc7cff0f1329a792da31d7adcfdef41"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0008.json",
+          "id": "atc-scenario-0008",
+          "categoryId": "atc-sia",
+          "cards": 16,
+          "sha256": "f25649d28ce1e550dc65c25056a9d7819440b27b845da51fd360eaa7ea9bff6f"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0009.json",
+          "id": "atc-scenario-0009",
+          "categoryId": "atc-sia",
+          "cards": 18,
+          "sha256": "e321c7419de1b5941c27d6e97119e8973ce2348a963455330bbe7da3fa9ad312"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0010.json",
+          "id": "atc-scenario-0010",
+          "categoryId": "atc-sia",
+          "cards": 18,
+          "sha256": "68ed1f7850a4ee11984a14c1bf3893bd8eccdce5b5327ba14b3eb18d1b09101a"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0011.json",
+          "id": "atc-scenario-0011",
+          "categoryId": "atc-sia",
+          "cards": 18,
+          "sha256": "561e8fb51e60bb0c868e3fee09a4846274d605a806425eb274ab27a52e0f6495"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0012.json",
+          "id": "atc-scenario-0012",
+          "categoryId": "atc-sia",
+          "cards": 18,
+          "sha256": "56572a5e3c223e258fdadd36a014fb91618568fa61226837a866f84678b8fe27"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0013.json",
+          "id": "atc-scenario-0013",
+          "categoryId": "atc-sia",
+          "cards": 17,
+          "sha256": "5f0fb60eaa7399dc9da5751ea558cc7aa5da8094698df9a57fb49c76066bb920"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0014.json",
+          "id": "atc-scenario-0014",
+          "categoryId": "atc-sia",
+          "cards": 10,
+          "sha256": "30798fba8c965985497a3e9fbb2c3b8feac454f412e8ed124c54db86f725463c"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0015.json",
+          "id": "atc-scenario-0015",
+          "categoryId": "atc-afr",
+          "cards": 19,
+          "sha256": "c0bc9d9a0300fb87f92c5d6beac043322a958be075df5d82fddbb42bb1801ea5"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0016.json",
+          "id": "atc-scenario-0016",
+          "categoryId": "atc-afr",
+          "cards": 18,
+          "sha256": "87d70127b5273fe5410ef606b587fdf7159a8ba116f9412394d3296f765cad75"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0017.json",
+          "id": "atc-scenario-0017",
+          "categoryId": "atc-afr",
+          "cards": 18,
+          "sha256": "d9eb2f7665bfc5b77f358e086ed9ca86b76383cfb468b9d8e8950bec057ee2e4"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0018.json",
+          "id": "atc-scenario-0018",
+          "categoryId": "atc-afr",
+          "cards": 22,
+          "sha256": "a34211fb8dd3594f16eb33eca9d91f2b239060038d8cf234676c9a445712ea6a"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0019.json",
+          "id": "atc-scenario-0019",
+          "categoryId": "atc-afr",
+          "cards": 19,
+          "sha256": "fa23c2fa7c9e67c045c92dcdb220a830513912fcbd8b976e6a3efd7a6ca855f6"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0020.json",
+          "id": "atc-scenario-0020",
+          "categoryId": "atc-afr",
+          "cards": 20,
+          "sha256": "9621e7fd7116e8221e47519d6f1c08a14ab346b356408da516d830842e956877"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0021.json",
+          "id": "atc-scenario-0021",
+          "categoryId": "atc-afr",
+          "cards": 17,
+          "sha256": "f434e01d153f6460379a5b67fad2a6cb361a5b624b40e32849101b37e339353f"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0022.json",
+          "id": "atc-scenario-0022",
+          "categoryId": "atc-afr",
+          "cards": 20,
+          "sha256": "cbca46208c5f405bebe2e58bb02e3550ff7c4d98f85058891fe343d0fe996a79"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0023.json",
+          "id": "atc-scenario-0023",
+          "categoryId": "atc-afr",
+          "cards": 16,
+          "sha256": "574c53e20da5ed02a9d9a58cc31276e17b44cf1ecbdeaf02b25ec43d8cca9437"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0024.json",
+          "id": "atc-scenario-0024",
+          "categoryId": "atc-afr",
+          "cards": 16,
+          "sha256": "57b9419562be1ef3474e1abc639f75ba5559ac1fc9ed0ecefad89fae5f7ece83"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0025.json",
+          "id": "atc-scenario-0025",
+          "categoryId": "atc-baw",
+          "cards": 18,
+          "sha256": "376dd810ef1fe4bf78dbbf57f718d28186e76355ac9acf8ad9e60d2909f954f2"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0026.json",
+          "id": "atc-scenario-0026",
+          "categoryId": "atc-baw",
+          "cards": 16,
+          "sha256": "1b19220443271ef7df48a42eaaf7add5180f27a659dc224e041cf9a7987ae244"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0027.json",
+          "id": "atc-scenario-0027",
+          "categoryId": "atc-baw",
+          "cards": 19,
+          "sha256": "6e349f4d987800655e90f8eefc67cf6ba4873bd53ea4d59935de1e344598da06"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0028.json",
+          "id": "atc-scenario-0028",
+          "categoryId": "atc-baw",
+          "cards": 15,
+          "sha256": "49b7b9d45efbb548984894d4c5113ffb198e6954883efd11a7eaf3709adbea55"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0029.json",
+          "id": "atc-scenario-0029",
+          "categoryId": "atc-baw",
+          "cards": 17,
+          "sha256": "58e5a2165aa6b7439a66382ccaa68038d3550407f1cd34a3a1d157162283352e"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0030.json",
+          "id": "atc-scenario-0030",
+          "categoryId": "atc-baw",
+          "cards": 17,
+          "sha256": "d1a0fb3ba023f62e1b479c70c2ce53aa042132f77f961fbf50324223c3c96f4f"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0031.json",
+          "id": "atc-scenario-0031",
+          "categoryId": "atc-baw",
+          "cards": 19,
+          "sha256": "7b66d9ebb01128990dc3f6170fcd922b7d22f2845c93d24dd03bf2e13aa65c46"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0032.json",
+          "id": "atc-scenario-0032",
+          "categoryId": "atc-baw",
+          "cards": 14,
+          "sha256": "73f70ff13cc641b63ac98a5c1e1507a492cea4c346f415ba88b00536d6a76c47"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0033.json",
+          "id": "atc-scenario-0033",
+          "categoryId": "atc-ual",
+          "cards": 16,
+          "sha256": "2e4c9cdef3493e3a270cfc30c1379c448b29d2a2cb3e2f8b31623ce1d87ba6c9"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0034.json",
+          "id": "atc-scenario-0034",
+          "categoryId": "atc-ual",
+          "cards": 16,
+          "sha256": "31b74e4332aa49707103d490de6641f81ae9f9ba3ac26ef4287b518efff6d28f"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0035.json",
+          "id": "atc-scenario-0035",
+          "categoryId": "atc-ual",
+          "cards": 18,
+          "sha256": "49fc4d2b6a5343f6382cc19a1bcba381ab0f4ccfd4bc4d9a471991e77cd32713"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0036.json",
+          "id": "atc-scenario-0036",
+          "categoryId": "atc-ual",
+          "cards": 18,
+          "sha256": "19ac42956b223e3a81b938f5d170d1e35c922f07353c1a96c260b29209a36b09"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0037.json",
+          "id": "atc-scenario-0037",
+          "categoryId": "atc-ual",
+          "cards": 16,
+          "sha256": "da3f5474649dd630394d2ef09efc1b9f79edd8db3653b0c3cf1af7d8f1757965"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0038.json",
+          "id": "atc-scenario-0038",
+          "categoryId": "atc-ual",
+          "cards": 16,
+          "sha256": "098c959799dd3bd711272822ddabeb12992e5ed11dc291469715f757710c3e28"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0039.json",
+          "id": "atc-scenario-0039",
+          "categoryId": "atc-ual",
+          "cards": 16,
+          "sha256": "342350659c7df3fa1777d15aa56d3ada022452cf5d464804eb03569ec4ebe4ad"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0040.json",
+          "id": "atc-scenario-0040",
+          "categoryId": "atc-ual",
+          "cards": 15,
+          "sha256": "4548ea4c87b760cb9ebcd14c4fb332f38be15f32dfbdaf63d79dfcf44760375e"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0041.json",
+          "id": "atc-scenario-0041",
+          "categoryId": "atc-ual",
+          "cards": 18,
+          "sha256": "a19d00dd236ca044dc1557f877944f7a7d4cb23fd3819a4dc45fb32ff7437c68"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0042.json",
+          "id": "atc-scenario-0042",
+          "categoryId": "atc-klm",
+          "cards": 20,
+          "sha256": "8b6e4a1f4ebfa9bdd43f96a8520b99b803638ef34197ab1f88c5fa5c534d7f65"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0043.json",
+          "id": "atc-scenario-0043",
+          "categoryId": "atc-jal",
+          "cards": 15,
+          "sha256": "83a085daa10c1ac0acf62ebc3922d2ab00f7d17ed5a5ae8b734daf9818102e85"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0044.json",
+          "id": "atc-scenario-0044",
+          "categoryId": "atc-jal",
+          "cards": 15,
+          "sha256": "a1d782b9b59835c69468cc8fc322e34cd7cef8182d26e1d360b668988b0d0c4d"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0045.json",
+          "id": "atc-scenario-0045",
+          "categoryId": "atc-aca",
+          "cards": 18,
+          "sha256": "22e33a155c0d3602ee45d7f52a063df7d82e6a5de3313e5ca784fa377a3bf672"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0046.json",
+          "id": "atc-scenario-0046",
+          "categoryId": "atc-aca",
+          "cards": 19,
+          "sha256": "2a96e80ee71e2774553a0a26986c2639a773059ac5d96e2032116979b7ca2a23"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0047.json",
+          "id": "atc-scenario-0047",
+          "categoryId": "atc-aca",
+          "cards": 19,
+          "sha256": "c325af39655cecd34e2cbd31c53271c0201cea2227a518b308e0f30b2c461f85"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0048.json",
+          "id": "atc-scenario-0048",
+          "categoryId": "atc-aca",
+          "cards": 20,
+          "sha256": "29249ef0352555102e5f358f8ef540f6d135ea92987c37e32c3815efdef6503a"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0049.json",
+          "id": "atc-scenario-0049",
+          "categoryId": "atc-aca",
+          "cards": 17,
+          "sha256": "b548b8730a3e32d1668b7f4c0c326269f9c90a1399ed42e6b3e9a55a11244136"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0050.json",
+          "id": "atc-scenario-0050",
+          "categoryId": "atc-aca",
+          "cards": 16,
+          "sha256": "9d9cf67e802ba3567c1712869000d60cadf6af0b6770c7ec7584f17d0dbe4ea8"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0051.json",
+          "id": "atc-scenario-0051",
+          "categoryId": "atc-aca",
+          "cards": 16,
+          "sha256": "f5852cd7293a851bc1228daa3f91e1c8dd041b7e846b65e648590db8c9691f0a"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0052.json",
+          "id": "atc-scenario-0052",
+          "categoryId": "atc-cca",
+          "cards": 16,
+          "sha256": "308b9a8161ce0d72960ff623496c2f845f0651e9ee69fe240903db4f2b925bde"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0053.json",
+          "id": "atc-scenario-0053",
+          "categoryId": "atc-cca",
+          "cards": 24,
+          "sha256": "dd8818881c8340b3cd9d46143f1868670b7751f04295f9b4eb5895bb8e77f5e1"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0054.json",
+          "id": "atc-scenario-0054",
+          "categoryId": "atc-cca",
+          "cards": 11,
+          "sha256": "5316dce20ea58964cd0265bc826c91170e878249c0351eb69f3aa3acb53b23a2"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0055.json",
+          "id": "atc-scenario-0055",
+          "categoryId": "atc-cca",
+          "cards": 17,
+          "sha256": "0e8c53b6ad2523e7fadb808cfa0304c7de5d4e54143b4730cf56e413a7015570"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0056.json",
+          "id": "atc-scenario-0056",
+          "categoryId": "atc-cca",
+          "cards": 20,
+          "sha256": "0a090b689a5c8666dbec0d69795c4de4cbf762a7bee2a48a4fcaa2f676cf05c9"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0057.json",
+          "id": "atc-scenario-0057",
+          "categoryId": "atc-cca",
+          "cards": 20,
+          "sha256": "027f468a15fa38f0a28a1e32c0c37a524e20cba07600d33b36bc37256a9f67f9"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0058.json",
+          "id": "atc-scenario-0058",
+          "categoryId": "atc-cca",
+          "cards": 18,
+          "sha256": "aa9330c4aaee542e5aee2e05fbc10ba187b28302da6fd68a09a88892e4882430"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0059.json",
+          "id": "atc-scenario-0059",
+          "categoryId": "atc-cca",
+          "cards": 17,
+          "sha256": "966e8ff92a88cdab6dd7b6332e66b1b1980df3df64910a2855f0563cabbadc44"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0060.json",
+          "id": "atc-scenario-0060",
+          "categoryId": "atc-cca",
+          "cards": 16,
+          "sha256": "42009619dc79b51270503e20512747efe631df3d146b2e897813561f9d0123cd"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0061.json",
+          "id": "atc-scenario-0061",
+          "categoryId": "atc-cca",
+          "cards": 17,
+          "sha256": "ca10844cab5e5c4cb0187c9e01b2283185ba43f87807b5b0613f44ef1ebaa8f0"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0062.json",
+          "id": "atc-scenario-0062",
+          "categoryId": "atc-cca",
+          "cards": 19,
+          "sha256": "7e14a173f527fc27f9d3c1e782d0ffb8b702f066ccc69ad61e44e7ec4c92650b"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0063.json",
+          "id": "atc-scenario-0063",
+          "categoryId": "atc-cca",
+          "cards": 18,
+          "sha256": "92fae4f26f1147eb1cd49195c9b2848f9410db5c775d791508b2c1fd97b1b002"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0064.json",
+          "id": "atc-scenario-0064",
+          "categoryId": "atc-cca",
+          "cards": 17,
+          "sha256": "930996152fa46d3fbfd69ef6b6aefb9be5a92384c2919cac5cca82d13f0462c4"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0065.json",
+          "id": "atc-scenario-0065",
+          "categoryId": "atc-cca",
+          "cards": 18,
+          "sha256": "3816a1d61c8a3bc8b4dc9cf5d658b3c0c554a4c38daf911be8f133687149ea1b"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0066.json",
+          "id": "atc-scenario-0066",
+          "categoryId": "atc-cca",
+          "cards": 10,
+          "sha256": "4ed6b275dc27c45488cce8d318086e679b073389a277399aabfd6573c036f0f8"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0067.json",
+          "id": "atc-scenario-0067",
+          "categoryId": "atc-cca",
+          "cards": 17,
+          "sha256": "41dd39b8890e759fcf20f20a3f019d61853ecdbf95485da34ba4e27ea32ae801"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0068.json",
+          "id": "atc-scenario-0068",
+          "categoryId": "atc-cca",
+          "cards": 20,
+          "sha256": "25f9aa8970b13b3e3ae4f5f1d37f991ffb1133f145f161ce3731c0b7de6a9456"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0069.json",
+          "id": "atc-scenario-0069",
+          "categoryId": "atc-cca",
+          "cards": 15,
+          "sha256": "fcbd1e1d1af2887aab8c01c37e8df5cb9e53c6592bdb89e67c5b65adca72ba95"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0070.json",
+          "id": "atc-scenario-0070",
+          "categoryId": "atc-cca",
+          "cards": 16,
+          "sha256": "c42fb0609c21c976260009ec7166289384b91f7e2e7f3f11e9758a480afb97d6"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0071.json",
+          "id": "atc-scenario-0071",
+          "categoryId": "atc-csn",
+          "cards": 20,
+          "sha256": "4eeb34b40672a73134c6ec650a2f76fe1cbb7b5a0702dc89c05ec7db620cc01d"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0072.json",
+          "id": "atc-scenario-0072",
+          "categoryId": "atc-csn",
+          "cards": 19,
+          "sha256": "d8de878d5248a0e16a6540ae6f196a1a40b235481c577047149837cf4acd1b03"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0073.json",
+          "id": "atc-scenario-0073",
+          "categoryId": "atc-csn",
+          "cards": 16,
+          "sha256": "214a390e9e5b2e944577cf648454ac6404ede2c1c6e1efae345bc5e4d58bdb6e"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0074.json",
+          "id": "atc-scenario-0074",
+          "categoryId": "atc-csn",
+          "cards": 15,
+          "sha256": "77838b369526777afebdb55b3221d61e24c15eb2f95921cc4c9799cf5ff857d3"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0075.json",
+          "id": "atc-scenario-0075",
+          "categoryId": "atc-csn",
+          "cards": 18,
+          "sha256": "67344c8275fcdfe230b9ff0036a2c8c371994b202d6577b47d9fefec78d3c418"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0076.json",
+          "id": "atc-scenario-0076",
+          "categoryId": "atc-csn",
+          "cards": 18,
+          "sha256": "1998653813b8de3b79c200a9cc5adeb9aae37c570492505cff348ce326d4f209"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0077.json",
+          "id": "atc-scenario-0077",
+          "categoryId": "atc-csn",
+          "cards": 15,
+          "sha256": "a4ea9ff7bdf5d9ebde266153ba0f955331ebdbd6b5fe1ec03367ec85a34f90d2"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0078.json",
+          "id": "atc-scenario-0078",
+          "categoryId": "atc-csn",
+          "cards": 16,
+          "sha256": "ae7d06d6f6bed6eb9295a646aab24cbe854e1804737bb7d08659133d4c8076c6"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0079.json",
+          "id": "atc-scenario-0079",
+          "categoryId": "atc-csn",
+          "cards": 17,
+          "sha256": "99ee4a15017f28295abf2665bc34b59b88c6513371f0272305929404b2868f9e"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0080.json",
+          "id": "atc-scenario-0080",
+          "categoryId": "atc-csn",
+          "cards": 21,
+          "sha256": "474d484199596a2562bb356b27cfabfe6d24af5deb88b3dc86a9d5c5dc2dc8fa"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0081.json",
+          "id": "atc-scenario-0081",
+          "categoryId": "atc-csn",
+          "cards": 16,
+          "sha256": "1673e20607807f7a41ee56e61db80889d6ea42535194b4fe23e8d4428e1a04a3"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0082.json",
+          "id": "atc-scenario-0082",
+          "categoryId": "atc-csn",
+          "cards": 19,
+          "sha256": "15f82e12f4c926fd62223a7cb843b6d798d37d35b1da7a1bafd0e23f15608e55"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0083.json",
+          "id": "atc-scenario-0083",
+          "categoryId": "atc-csn",
+          "cards": 19,
+          "sha256": "dd90002fe35c8ad2b4e2497921565cc07de7e63db6df6e765a29497829a7ac99"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0084.json",
+          "id": "atc-scenario-0084",
+          "categoryId": "atc-csn",
+          "cards": 17,
+          "sha256": "2f2e4756a4603c9159f5a357ca5d4f7bdf335b870c3ddf67b5a91032978de0ee"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0085.json",
+          "id": "atc-scenario-0085",
+          "categoryId": "atc-csn",
+          "cards": 21,
+          "sha256": "6a3bc67886024c26373ffe36136a28160d2ba0e35fedd2586eb55bc48cd6b9cb"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0086.json",
+          "id": "atc-scenario-0086",
+          "categoryId": "atc-csn",
+          "cards": 15,
+          "sha256": "e64b792adddf68be66ad08d86262b5e6ca7f7e3161c657f7734aa0f82c9aa522"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0087.json",
+          "id": "atc-scenario-0087",
+          "categoryId": "atc-csn",
+          "cards": 17,
+          "sha256": "327de04e5ad12ea78518bba6f1ed16aa11f84f8310ef8ecb36512bb3105c58ae"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0088.json",
+          "id": "atc-scenario-0088",
+          "categoryId": "atc-csn",
+          "cards": 19,
+          "sha256": "cc0e81a30daa891722ca55fd61e70cc169dab3027a4341da5a67f9b93ed27c77"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0089.json",
+          "id": "atc-scenario-0089",
+          "categoryId": "atc-ces",
+          "cards": 20,
+          "sha256": "3a8cc4ce9ffde7fc937aec4906daa4c340ed8d31fc79022a66fb09bbc5b27288"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0090.json",
+          "id": "atc-scenario-0090",
+          "categoryId": "atc-ces",
+          "cards": 15,
+          "sha256": "6028e0ca7bb6ffea6875040fd08ded2e2abe206f94de99e5e362fd4d138ec6aa"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0091.json",
+          "id": "atc-scenario-0091",
+          "categoryId": "atc-ces",
+          "cards": 15,
+          "sha256": "27d77b009a447701dba08a53c0c1eb02b9fb8bcf2b61995d03be83cea37a6c4d"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0092.json",
+          "id": "atc-scenario-0092",
+          "categoryId": "atc-ces",
+          "cards": 18,
+          "sha256": "027410430f09d9c461a119041f1450cc71d8f1202fc1568d22499ee85b2b4b3f"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0093.json",
+          "id": "atc-scenario-0093",
+          "categoryId": "atc-ces",
+          "cards": 18,
+          "sha256": "2070c88226c6d09e97c5579ca8d01de947bd865985b27baac37a0bf7961f1874"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0094.json",
+          "id": "atc-scenario-0094",
+          "categoryId": "atc-ces",
+          "cards": 15,
+          "sha256": "078ff5d2a1213a24e59cd795fec3b80c09c4b1473a490ab0d510f5ad7d70e0c9"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0095.json",
+          "id": "atc-scenario-0095",
+          "categoryId": "atc-ces",
+          "cards": 15,
+          "sha256": "5702d09ff77c7f8aa6a4abdc468139fcd86f1016b147fdbc41e44cb08fbe7150"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0096.json",
+          "id": "atc-scenario-0096",
+          "categoryId": "atc-ces",
+          "cards": 18,
+          "sha256": "0806f2c0d5f9d5d5b5ed1825a9010edf4e7d9f765e37411c42c10574de0bde99"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0097.json",
+          "id": "atc-scenario-0097",
+          "categoryId": "atc-ces",
+          "cards": 23,
+          "sha256": "ef94d6d50e66cc1afeb5973ee267f0a87d51c7a3c06fcebbdfe114bef78cbcff"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0098.json",
+          "id": "atc-scenario-0098",
+          "categoryId": "atc-ces",
+          "cards": 23,
+          "sha256": "63637c66610f1cae38b009120178b7b7af0b18a723912ee17c9f1e2dde3ba7bc"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0099.json",
+          "id": "atc-scenario-0099",
+          "categoryId": "atc-ces",
+          "cards": 16,
+          "sha256": "58e0fff38381445cb8d56863c308833499c709acaa031e372971eb32d2bd22a2"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0100.json",
+          "id": "atc-scenario-0100",
+          "categoryId": "atc-cca",
+          "cards": 16,
+          "sha256": "66ddc9864cae0ab722f86fcd6e485a96cd3e26f4d3ee08fe81d9efdddc3d2f89"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0101.json",
+          "id": "atc-scenario-0101",
+          "categoryId": "atc-sia",
+          "cards": 15,
+          "sha256": "76c2f6607b5b918fcc76c3359f5754ce2e25022cc77606e2de8b8167e493a6a1"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0102.json",
+          "id": "atc-scenario-0102",
+          "categoryId": "atc-csn",
+          "cards": 11,
+          "sha256": "d74d3de44b5aa85819c0035d5f28a0b030948c1acca17e0469a365eee46922e3"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0103.json",
+          "id": "atc-scenario-0103",
+          "categoryId": "atc-cca",
+          "cards": 15,
+          "sha256": "6d12df81bb3a6b9d391ef92a2706f2deafcfb8a1674ef0ecb31ac1f06e32dfc9"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0104.json",
+          "id": "atc-scenario-0104",
+          "categoryId": "atc-csn",
+          "cards": 20,
+          "sha256": "339e2c89c230ccacc3081394edde15941096810820950fa7d203a2ac276c702b"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0105.json",
+          "id": "atc-scenario-0105",
+          "categoryId": "atc-csn",
+          "cards": 19,
+          "sha256": "4a1e0995879c141ddc3a914d74fea99e79a87a16c37c89e64a0b995a1b2cf9cd"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0106.json",
+          "id": "atc-scenario-0106",
+          "categoryId": "atc-aca",
+          "cards": 16,
+          "sha256": "7481739aa1f629adbb478018258d52f87fabbad1c1dde7de5c94a293c6bdf865"
+        },
+        {
+          "path": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0107.json",
+          "id": "atc-scenario-0107",
+          "categoryId": "atc-aca",
+          "cards": 14,
+          "sha256": "7792a7ca956af34bb8aa506b2f450113cb75ed806fc690d84dad9be31fb57388"
+        }
+      ],
+      "contentChecksum": "38bbd2a2071df48496ca8de039eb1dc058297c5cb2e4c5b3f0b127480586ada8"
+    },
+    {
+      "bankId": "storytelling",
+      "topics": 4,
+      "cards": 296,
+      "files": [
+        {
+          "path": "content/question-banks/banks/storytelling/topics/story-atc-basic.json",
+          "id": "story-atc-basic",
+          "categoryId": "story-category-2",
+          "cards": 49,
+          "sha256": "0ced351d648f30943963dd91077cfb26042ddbfbbfd1c09cd6992637832b0830"
+        },
+        {
+          "path": "content/question-banks/banks/storytelling/topics/story-atc-required.json",
+          "id": "story-atc-required",
+          "categoryId": "story-category-2",
+          "cards": 55,
+          "sha256": "8c4ad143af43b45bd79a1156acb34678db3d175d180444ac6535dd1b4c1de896"
+        },
+        {
+          "path": "content/question-banks/banks/storytelling/topics/story-flight-basic.json",
+          "id": "story-flight-basic",
+          "categoryId": "story-category-1",
+          "cards": 147,
+          "sha256": "6761752c5e288debb4c4ba970e26a670c554ecf781f6b8c68d753131362b8f75"
+        },
+        {
+          "path": "content/question-banks/banks/storytelling/topics/story-flight-required.json",
+          "id": "story-flight-required",
+          "categoryId": "story-category-1",
+          "cards": 45,
+          "sha256": "6e2e614b66523837f678b4af36032007e8213e2880336da9428716b31f1d5cc8"
+        }
+      ],
+      "contentChecksum": "6c4a63a364bb6e445f48394d8d256ad1f657ca6c5e9face63086bdf8c2f1d40a"
+    },
+    {
+      "bankId": "opi",
+      "topics": 144,
+      "cards": 1356,
+      "files": [
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-image-topic-001.json",
+          "id": "opi-image-topic-001",
+          "categoryId": "opi-category-08",
+          "cards": 3,
+          "sha256": "049ae9b38abddf15f0cb9f21862e63b020c6c1733433efa2ed9d7e76fc96c12d"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-image-topic-002.json",
+          "id": "opi-image-topic-002",
+          "categoryId": "opi-category-08",
+          "cards": 4,
+          "sha256": "835f2d5b6d350507a1f7fe3f04b90e15ff825da20f8ba549c2c84d15cbd4cbdd"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-image-topic-003.json",
+          "id": "opi-image-topic-003",
+          "categoryId": "opi-category-08",
+          "cards": 4,
+          "sha256": "cbe094220087a72f2c627f5e922067f9a652bca092cb44fc2d09c8ee6498ea0c"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-image-topic-004.json",
+          "id": "opi-image-topic-004",
+          "categoryId": "opi-category-08",
+          "cards": 3,
+          "sha256": "6f580226f10912fe38cf9d90323631567afdeeaff69cc8a5dc73bfe1383830e2"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-image-topic-005.json",
+          "id": "opi-image-topic-005",
+          "categoryId": "opi-category-08",
+          "cards": 2,
+          "sha256": "dee39c4b81485923d1c55baa9032f01cccae48326c4e406464efad0bd1b4d9e2"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-image-topic-006.json",
+          "id": "opi-image-topic-006",
+          "categoryId": "opi-category-08",
+          "cards": 4,
+          "sha256": "18c6d940ae51325eb69aed5922e5d9b07f430f71a8e3c69f28f229aa9b71fba6"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-image-topic-007.json",
+          "id": "opi-image-topic-007",
+          "categoryId": "opi-category-08",
+          "cards": 4,
+          "sha256": "53380242a2cc073085660310af4da821dbb4930bd1712abe3590e08266627412"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-image-topic-008.json",
+          "id": "opi-image-topic-008",
+          "categoryId": "opi-category-08",
+          "cards": 3,
+          "sha256": "8f909428af6de6b20e2ffdca0846643534cdec2fa8db1bf215320737ac044624"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-image-topic-009.json",
+          "id": "opi-image-topic-009",
+          "categoryId": "opi-category-08",
+          "cards": 3,
+          "sha256": "8979e1135f6ff692f178b1c2b2cc7fccce354b6adbc796fae9bf26268650cc0d"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-image-topic-010.json",
+          "id": "opi-image-topic-010",
+          "categoryId": "opi-category-08",
+          "cards": 4,
+          "sha256": "1712a9e73fa7a25a0275ec0c984f9d51ff3fe48a4028cd213eeea7fd53d5b303"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-image-topic-011.json",
+          "id": "opi-image-topic-011",
+          "categoryId": "opi-category-08",
+          "cards": 5,
+          "sha256": "1003de711a01a28c60c09a83a592f0d76239454c5ceee8d6c65ba2e2c3821b83"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-image-topic-012.json",
+          "id": "opi-image-topic-012",
+          "categoryId": "opi-category-08",
+          "cards": 5,
+          "sha256": "bc05362161aa14af5fed6ec2de67b3da26b6e32b33024d104699bc12d91259bf"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-image-topic-013.json",
+          "id": "opi-image-topic-013",
+          "categoryId": "opi-category-08",
+          "cards": 3,
+          "sha256": "31659fb343a3f6e85c4816d910fae78d7041569b7e081f5521e81afa34f8ffef"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-image-topic-014.json",
+          "id": "opi-image-topic-014",
+          "categoryId": "opi-category-08",
+          "cards": 3,
+          "sha256": "55c5d6019dda1430a7a822f53538bceb94eafe8009df26d637ab15b46fe11990"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-image-topic-015.json",
+          "id": "opi-image-topic-015",
+          "categoryId": "opi-category-08",
+          "cards": 4,
+          "sha256": "637061b6e9d5ea6544259dd5488a459ac29d8112ba7ae84613d5c043af826507"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-image-topic-016.json",
+          "id": "opi-image-topic-016",
+          "categoryId": "opi-category-08",
+          "cards": 5,
+          "sha256": "3b374f51b39f7610aef6f0d7954acf52855bc12e3a0cdf9f1cd21d27e827c557"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-image-topic-017.json",
+          "id": "opi-image-topic-017",
+          "categoryId": "opi-category-08",
+          "cards": 4,
+          "sha256": "c4f7587cb2fef7ee2056a5d62aac6aaf880ba784e6a9e4f40f4db037291a71c5"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-image-topic-018.json",
+          "id": "opi-image-topic-018",
+          "categoryId": "opi-category-08",
+          "cards": 5,
+          "sha256": "3a65fadd6a2a72076a303056f33abd39ba170c79e13cc289ddafd9b62dead0ff"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-image-topic-019.json",
+          "id": "opi-image-topic-019",
+          "categoryId": "opi-category-08",
+          "cards": 3,
+          "sha256": "b573f4dbdb5ad16038d35749d41c6d4959387ffe952d17ce4f2999ab7c46bc94"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-image-topic-020.json",
+          "id": "opi-image-topic-020",
+          "categoryId": "opi-category-08",
+          "cards": 4,
+          "sha256": "02463f9f7f4f107178fff2b235542c7ae5b62d1ffd142d418c4921933ee6905e"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-image-topic-021.json",
+          "id": "opi-image-topic-021",
+          "categoryId": "opi-category-08",
+          "cards": 4,
+          "sha256": "e9f0404744124c75c3db99d6099080f1d341ac4ff5cb24661f7d69e5a1b06e2a"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-image-topic-022.json",
+          "id": "opi-image-topic-022",
+          "categoryId": "opi-category-08",
+          "cards": 4,
+          "sha256": "f226cbe766e24f9ba406ea6f585ac609894b421ee236f4f444ddd50c1f86bcff"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-image-topic-023.json",
+          "id": "opi-image-topic-023",
+          "categoryId": "opi-category-08",
+          "cards": 4,
+          "sha256": "bb8d8ea96d3c5a71ca5ad18024b830fe2a35cebca34327adfd5279ee1ed1904c"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0001.json",
+          "id": "opi-topic-0001",
+          "categoryId": "opi-category-01",
+          "cards": 12,
+          "sha256": "154c89023c45ad0c6dc4ac50433765d8054e50a81d9d89090b106d4aa64fb64e"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0002.json",
+          "id": "opi-topic-0002",
+          "categoryId": "opi-category-01",
+          "cards": 21,
+          "sha256": "914a9f6fd67f4f1d60c16e27c5fef23e8d5d27da0b028e48f11c3e347bfb1bcc"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0003.json",
+          "id": "opi-topic-0003",
+          "categoryId": "opi-category-01",
+          "cards": 23,
+          "sha256": "d840d1d64eccf6e25d3b01c38259ebb2499d9cd88a7b8c48a2cb2953bba49e33"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0004.json",
+          "id": "opi-topic-0004",
+          "categoryId": "opi-category-02",
+          "cards": 21,
+          "sha256": "c23a2fee28164cbcb938837eb7cc50fc0ece54c430ef3be9bea45e69d5a06992"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0005.json",
+          "id": "opi-topic-0005",
+          "categoryId": "opi-category-02",
+          "cards": 35,
+          "sha256": "22e6cf3f02f12a6ac7a2407db4bd2eb4adc7877b71f5179129e5c4da76287c10"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0006.json",
+          "id": "opi-topic-0006",
+          "categoryId": "opi-category-03",
+          "cards": 21,
+          "sha256": "107670a1db2321d1bcd53164c3843e2043949b5fe7279008cc264999cc148fbf"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0007.json",
+          "id": "opi-topic-0007",
+          "categoryId": "opi-category-04",
+          "cards": 51,
+          "sha256": "a4f65c0f19aa3e9b5605695a525d069d421990894f321af313391a4240727eb3"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0010.json",
+          "id": "opi-topic-0010",
+          "categoryId": "opi-category-02",
+          "cards": 18,
+          "sha256": "cece7aaca6f4c638076fbe42ace763da7a7ceb56c007f68a89979b035ca312b7"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0014.json",
+          "id": "opi-topic-0014",
+          "categoryId": "opi-category-02",
+          "cards": 15,
+          "sha256": "d423f9dadc5b1dca71a7442146074505bd5d073d08b607373ca9fb3a1883aa1a"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0015.json",
+          "id": "opi-topic-0015",
+          "categoryId": "opi-category-03",
+          "cards": 9,
+          "sha256": "a4e4748f329746041fe7bf8e1ba012ddaaff3d292f90b4c7f8cd6e0d255d5694"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0016.json",
+          "id": "opi-topic-0016",
+          "categoryId": "opi-category-05",
+          "cards": 40,
+          "sha256": "8fd39c16706e6a822edaf9b0ed736a955cf17f7b8b7d12592cc09c0b5c59cae3"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0018.json",
+          "id": "opi-topic-0018",
+          "categoryId": "opi-category-05",
+          "cards": 36,
+          "sha256": "0044b937ab1379317e215d1df19424eb046ffa6e46f833a45b1b85db307651f7"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0019.json",
+          "id": "opi-topic-0019",
+          "categoryId": "opi-category-05",
+          "cards": 7,
+          "sha256": "676228394920f2ce7b6a2d5125bbe44788db668f64cf1c2c2010b32ffdc33dae"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0020.json",
+          "id": "opi-topic-0020",
+          "categoryId": "opi-category-03",
+          "cards": 3,
+          "sha256": "661e46358a6fe16d6f973bd43b990286cca94ccbc9e8e8cfed6d8b1b6640c8fa"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0021.json",
+          "id": "opi-topic-0021",
+          "categoryId": "opi-category-01",
+          "cards": 14,
+          "sha256": "930bb3ea95b69ffe70f9a3955938de8a8f96abd29d3031281d43e1e7b20b6fbb"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0022.json",
+          "id": "opi-topic-0022",
+          "categoryId": "opi-category-06",
+          "cards": 19,
+          "sha256": "90108ec500059b05ed738faaff6fbf9a1c94a14fa63e5af3dacf57095f8e4954"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0023.json",
+          "id": "opi-topic-0023",
+          "categoryId": "opi-category-02",
+          "cards": 15,
+          "sha256": "0df146371e7510a0a106cc10789b77d1a02e658378c59e3f529e931334bf3bb7"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0024.json",
+          "id": "opi-topic-0024",
+          "categoryId": "opi-category-05",
+          "cards": 31,
+          "sha256": "5c61ec09fc5e0cbea8c089cb7ee65617e32efb43c52cf858ba1fc3246df3238e"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0025.json",
+          "id": "opi-topic-0025",
+          "categoryId": "opi-category-05",
+          "cards": 26,
+          "sha256": "38a9e0a12fffe320b178d06f86fd43198b7c56ddb49708f22e773b0de2ff0096"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0026.json",
+          "id": "opi-topic-0026",
+          "categoryId": "opi-category-02",
+          "cards": 7,
+          "sha256": "e07ffa77471c5d4d3f8bda0f73c7b048385a478849240035e94d9ec9a7fe1011"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0027.json",
+          "id": "opi-topic-0027",
+          "categoryId": "opi-category-05",
+          "cards": 10,
+          "sha256": "960fa32a3ffaaf0bef61bb53ab180398a9f81584668463f476169d63b5826cb0"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0028.json",
+          "id": "opi-topic-0028",
+          "categoryId": "opi-category-01",
+          "cards": 14,
+          "sha256": "50dec39483983fb3bcdf465c540d24a0ef0fbe25271ae941b53c102d0dd6ce37"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0029.json",
+          "id": "opi-topic-0029",
+          "categoryId": "opi-category-05",
+          "cards": 5,
+          "sha256": "5130bf4a74f5e3c5ed9d1800ba854930ffa4dbfcc03168105d6734568fce9640"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0030.json",
+          "id": "opi-topic-0030",
+          "categoryId": "opi-category-05",
+          "cards": 9,
+          "sha256": "c2529c5e0da051b1c23ac450f9f9395b8357d60021fae3ad6728086532009b13"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0031.json",
+          "id": "opi-topic-0031",
+          "categoryId": "opi-category-05",
+          "cards": 5,
+          "sha256": "ef2edd96b191eafe9a170ff85f17cf4f6ee628d95dec6511056f63001958808e"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0032.json",
+          "id": "opi-topic-0032",
+          "categoryId": "opi-category-03",
+          "cards": 7,
+          "sha256": "4cf3745e5405a9eda9685cc9210e519c2ac22998f2beab243e44c953c7f64061"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0033.json",
+          "id": "opi-topic-0033",
+          "categoryId": "opi-category-03",
+          "cards": 9,
+          "sha256": "4f16452aa6af62422bbbd1d7c078c853bdae929e83d6202189e2b965d90f16be"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0035.json",
+          "id": "opi-topic-0035",
+          "categoryId": "opi-category-06",
+          "cards": 10,
+          "sha256": "56e073fe04b01694180974ef5839a998c24fbdddde829c3c799ea1e6a9a027eb"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0036.json",
+          "id": "opi-topic-0036",
+          "categoryId": "opi-category-06",
+          "cards": 12,
+          "sha256": "e82bddbd93fee2c695134c1cf7c586ea40a208e75b2e7b14656e0258496e78c7"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0037.json",
+          "id": "opi-topic-0037",
+          "categoryId": "opi-category-01",
+          "cards": 18,
+          "sha256": "89af0c84d9067d14958f291ebe632e0568670538d55d3d82cf5dd7ea363b3f06"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0039.json",
+          "id": "opi-topic-0039",
+          "categoryId": "opi-category-03",
+          "cards": 2,
+          "sha256": "f450148641f92e2ad31a67bc64360a5d188076cbc548965eded50e4c5d1efb2a"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0040.json",
+          "id": "opi-topic-0040",
+          "categoryId": "opi-category-03",
+          "cards": 5,
+          "sha256": "22b22408666f1544d382761e75b0c4830faa4dcecf08d7cf6e95081106720257"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0041.json",
+          "id": "opi-topic-0041",
+          "categoryId": "opi-category-03",
+          "cards": 5,
+          "sha256": "f6d15230ac59ddeb93ed9298022a99dcc04c5f48cb6fa7a5ab4cf5d8ef8b117c"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0042.json",
+          "id": "opi-topic-0042",
+          "categoryId": "opi-category-03",
+          "cards": 4,
+          "sha256": "ab4279c9a2b8662cb781f1e59bec64b9ce57dfd0428e6afbb08f4298013c2e55"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0043.json",
+          "id": "opi-topic-0043",
+          "categoryId": "opi-category-04",
+          "cards": 22,
+          "sha256": "6ae3f4bb409d80cdc923d19fbbacd234a57645e5242826d8775e20138b1990e9"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0044.json",
+          "id": "opi-topic-0044",
+          "categoryId": "opi-category-01",
+          "cards": 11,
+          "sha256": "48a6104f3ccd83e72796e476c5181bee2c5196a6269f1f5b7f9cf1dc948c369f"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0045.json",
+          "id": "opi-topic-0045",
+          "categoryId": "opi-category-05",
+          "cards": 13,
+          "sha256": "adc0dc41ff060428260ed0b3ee54c1868eb4b65ec51cc9c9f0f94694694cb4ee"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0046.json",
+          "id": "opi-topic-0046",
+          "categoryId": "opi-category-07",
+          "cards": 20,
+          "sha256": "95ba5b8ae5b39727f56c59f3b96fdfc5418585b06dd690b8bd15b323680220e9"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0048.json",
+          "id": "opi-topic-0048",
+          "categoryId": "opi-category-05",
+          "cards": 3,
+          "sha256": "81501f59211eebe6703e25aafdd35df1ddaf79c9a2bb0daf0967d540dc3446ad"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0049.json",
+          "id": "opi-topic-0049",
+          "categoryId": "opi-category-05",
+          "cards": 7,
+          "sha256": "e45780047cf1698fba4eda38720256b67be645d8f8ac067cc007221abdb6c021"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0050.json",
+          "id": "opi-topic-0050",
+          "categoryId": "opi-category-05",
+          "cards": 12,
+          "sha256": "11379d049d00ec356ab66f55c75d760cd4e56a9c5808d02a69c197143e9d1307"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0051.json",
+          "id": "opi-topic-0051",
+          "categoryId": "opi-category-05",
+          "cards": 5,
+          "sha256": "135adebcca5e1d74498e0dc2c49c0155f7612a1b43f891a5d35ab36516b9393d"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0052.json",
+          "id": "opi-topic-0052",
+          "categoryId": "opi-category-05",
+          "cards": 6,
+          "sha256": "32c4c83f8545e1e897a4ba805c4f29eb7bb0f8fcd01a87a14ffc32b2caed4121"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0053.json",
+          "id": "opi-topic-0053",
+          "categoryId": "opi-category-03",
+          "cards": 8,
+          "sha256": "6d601af819b0863fd869171eadc8d15caea0318a2031d8070f96f61bdadd074f"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0054.json",
+          "id": "opi-topic-0054",
+          "categoryId": "opi-category-03",
+          "cards": 3,
+          "sha256": "f9f288a4bdaf2be82b6021c4df84f78c2ce30824f94cdf1a012c7bbdb1b0f8f3"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0055.json",
+          "id": "opi-topic-0055",
+          "categoryId": "opi-category-03",
+          "cards": 3,
+          "sha256": "2db23d591100c3e6e2ad2b666a6c441af0be8189374c898b465159bb3eecacf5"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0056.json",
+          "id": "opi-topic-0056",
+          "categoryId": "opi-category-03",
+          "cards": 2,
+          "sha256": "cb5de56433d4f432089600e0b90a91c169b7d7bc9950aebba99b70172d87bead"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0057.json",
+          "id": "opi-topic-0057",
+          "categoryId": "opi-category-03",
+          "cards": 4,
+          "sha256": "467a0bd8144e755f2e08d00681b11b355c5bc296b522c7abe5b34b276abc5a99"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0058.json",
+          "id": "opi-topic-0058",
+          "categoryId": "opi-category-03",
+          "cards": 5,
+          "sha256": "6b905128ca18fc9d007949514e0a6b14eb15cca8a3db34755d19da6bbdc36747"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0059.json",
+          "id": "opi-topic-0059",
+          "categoryId": "opi-category-05",
+          "cards": 3,
+          "sha256": "a4786915505c30b1e545bc2c6503abefbc3a29888cd85e135d7145b0b63dcf0d"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0060.json",
+          "id": "opi-topic-0060",
+          "categoryId": "opi-category-06",
+          "cards": 9,
+          "sha256": "5cbb10c483ad1a8debbed276daf0e961db265e359b27592256b910fa8af36b9f"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0061.json",
+          "id": "opi-topic-0061",
+          "categoryId": "opi-category-04",
+          "cards": 7,
+          "sha256": "daa52f33c4437849612219c0c09573c5cbd6c159e5d30763653e36bc3a020c19"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0062.json",
+          "id": "opi-topic-0062",
+          "categoryId": "opi-category-04",
+          "cards": 7,
+          "sha256": "efbdae98430c67cc9a1265d3cc89e3f96da3fd8188a3d3004218023bdfd9989f"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0063.json",
+          "id": "opi-topic-0063",
+          "categoryId": "opi-category-05",
+          "cards": 19,
+          "sha256": "f7426b21f6285962ae078277cae42bbb8f3696a18607c8ce9235e9db617cee71"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0065.json",
+          "id": "opi-topic-0065",
+          "categoryId": "opi-category-05",
+          "cards": 21,
+          "sha256": "1970c09bfce7dc19e001fa40d5703e363f7161446fb06080695e85d7abd1bb40"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0066.json",
+          "id": "opi-topic-0066",
+          "categoryId": "opi-category-04",
+          "cards": 6,
+          "sha256": "ccb8a95f8467d09e6ceb1dc28f0fa5cce4aa8c6242b7c7cd8b570629655b7d15"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0067.json",
+          "id": "opi-topic-0067",
+          "categoryId": "opi-category-02",
+          "cards": 15,
+          "sha256": "e1f889651779504e159d1fed0e15f5da9b823be10997f96bc1911bc8ac9a29fb"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0068.json",
+          "id": "opi-topic-0068",
+          "categoryId": "opi-category-03",
+          "cards": 3,
+          "sha256": "20a00f8e104075f6923c625943c8bb7225d4c2d14cf9d6a73179982e0074c674"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0069.json",
+          "id": "opi-topic-0069",
+          "categoryId": "opi-category-03",
+          "cards": 5,
+          "sha256": "ecec9b41a192d70266cdc91258da8fbfda572bbb5ccfcd8b9f679283028b3f8b"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0070.json",
+          "id": "opi-topic-0070",
+          "categoryId": "opi-category-02",
+          "cards": 10,
+          "sha256": "018e6e23cc53af0973bb780c939f7fdc284d668d79a61cd25f6c4ec3cf89df64"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0071.json",
+          "id": "opi-topic-0071",
+          "categoryId": "opi-category-04",
+          "cards": 4,
+          "sha256": "01804a997417a0b338f4ffe137a5d5a9af1870439ba885a0af3bbb8706aa682a"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0072.json",
+          "id": "opi-topic-0072",
+          "categoryId": "opi-category-04",
+          "cards": 7,
+          "sha256": "c796674cf37fe06b291318414d1c6342cdd17e499f4075f6ac80afc6a0d072aa"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0073.json",
+          "id": "opi-topic-0073",
+          "categoryId": "opi-category-04",
+          "cards": 3,
+          "sha256": "e2470fae17c002f901efe4a0f84b339a30c5d01170b53c2bc04790cdfaf1449c"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0074.json",
+          "id": "opi-topic-0074",
+          "categoryId": "opi-category-04",
+          "cards": 4,
+          "sha256": "cd659402a9c838fc77f05a4b492b6358e04b088e2f849d58e2edb8d5f5657311"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0075.json",
+          "id": "opi-topic-0075",
+          "categoryId": "opi-category-05",
+          "cards": 3,
+          "sha256": "a25f2a70a83f878c9b9fc9e1383bb603ac08c1c1282c7de8af8f4b776b120e06"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0079.json",
+          "id": "opi-topic-0079",
+          "categoryId": "opi-category-02",
+          "cards": 27,
+          "sha256": "2dde3626aabd98346e581026ca68cc704a5594da0f095d43e12caaa862bbfde5"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0080.json",
+          "id": "opi-topic-0080",
+          "categoryId": "opi-category-01",
+          "cards": 4,
+          "sha256": "9b3b8a13ef4ab90705ee2449e1882bc9660918869cceef2ad1845917155d8d70"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0081.json",
+          "id": "opi-topic-0081",
+          "categoryId": "opi-category-02",
+          "cards": 17,
+          "sha256": "cc23193d110924b601e175f60ade50308a4d6d6f18218a1fadc7b434c6631d39"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0082.json",
+          "id": "opi-topic-0082",
+          "categoryId": "opi-category-03",
+          "cards": 1,
+          "sha256": "d47425c3f4b28d14d0feb98a2fca37a1c5e8f272a54afe321fa9d94be7e995b1"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0083.json",
+          "id": "opi-topic-0083",
+          "categoryId": "opi-category-06",
+          "cards": 13,
+          "sha256": "e01ac043504e5009ac21d90e5ddc3516bf2efef640fd11a0cd9d88afee47b3c8"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0084.json",
+          "id": "opi-topic-0084",
+          "categoryId": "opi-category-07",
+          "cards": 3,
+          "sha256": "af2ce0e40a9dcc517771a2d8bd47511f885142bd14b98d6056100f85f65a20d8"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0085.json",
+          "id": "opi-topic-0085",
+          "categoryId": "opi-category-05",
+          "cards": 8,
+          "sha256": "3b5151469881ac933c7acf2ddb167d5882a71a84a40a6bce67c0aa8550eb8d4f"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0086.json",
+          "id": "opi-topic-0086",
+          "categoryId": "opi-category-02",
+          "cards": 3,
+          "sha256": "69da11dcbc2642a803ecdfaf8a6d2384f570b61a83849e78b8ed06641aac181c"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0087.json",
+          "id": "opi-topic-0087",
+          "categoryId": "opi-category-05",
+          "cards": 3,
+          "sha256": "8aad6a52748c6eadbc0b58b49dd798980b86504443e5b4c235693d332b5ccc52"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0088.json",
+          "id": "opi-topic-0088",
+          "categoryId": "opi-category-06",
+          "cards": 14,
+          "sha256": "207d6f13f8875bf1a60f7540fcd98510e738d8a7ac55214154073aab49b73208"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0089.json",
+          "id": "opi-topic-0089",
+          "categoryId": "opi-category-06",
+          "cards": 11,
+          "sha256": "dd6a90a044f8749b88fedab751a5c481a478b870a16b3e347f425286eaf5750a"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0090.json",
+          "id": "opi-topic-0090",
+          "categoryId": "opi-category-01",
+          "cards": 4,
+          "sha256": "823f8040f7e9540538fc8790376031eb96dfd8e7681890968f8f16a90c979c19"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0092.json",
+          "id": "opi-topic-0092",
+          "categoryId": "opi-category-05",
+          "cards": 7,
+          "sha256": "3f50dea2a68eadc2266924cbeffcb52ac6d51bd3a832692c004fcbf0a49e34c7"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0093.json",
+          "id": "opi-topic-0093",
+          "categoryId": "opi-category-02",
+          "cards": 2,
+          "sha256": "ec851b17dbb6daee871bde95e2466754cf80a75a744d98a71fd215ae5fc033ef"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0094.json",
+          "id": "opi-topic-0094",
+          "categoryId": "opi-category-05",
+          "cards": 15,
+          "sha256": "58e0445ec8c3e6ee2b4772bb8a7982b2ced59f1e9f244c02482d992eca60980e"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0099.json",
+          "id": "opi-topic-0099",
+          "categoryId": "opi-category-05",
+          "cards": 11,
+          "sha256": "58de3ff6ed7facc1ad24fce8b094b8ef34bfb9193cd8c6ec0215ca4317db564b"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0102.json",
+          "id": "opi-topic-0102",
+          "categoryId": "opi-category-05",
+          "cards": 16,
+          "sha256": "517a3fea57574975704a99200340577c0bc7e126692420e1d4ad54c816cdeeef"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0110.json",
+          "id": "opi-topic-0110",
+          "categoryId": "opi-category-02",
+          "cards": 5,
+          "sha256": "4c14db159054a5d414d1913526b489ddedbbfb152b670fcc7ee16c756e26e5a1"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0111.json",
+          "id": "opi-topic-0111",
+          "categoryId": "opi-category-06",
+          "cards": 5,
+          "sha256": "c7c44e224483514f9c2ecc7b1d807e70d3bed673d1c843cb87bf6494d0935e05"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0112.json",
+          "id": "opi-topic-0112",
+          "categoryId": "opi-category-07",
+          "cards": 10,
+          "sha256": "46d3e039fc4d49b31cc16e7ff381c6db636d26bd3cf6b0a6d811d499a151c40c"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0113.json",
+          "id": "opi-topic-0113",
+          "categoryId": "opi-category-03",
+          "cards": 6,
+          "sha256": "d2abd4f59b001d71533d4d7b12da2428676a1dac1e6cc57a868b47a91a1ab209"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0114.json",
+          "id": "opi-topic-0114",
+          "categoryId": "opi-category-05",
+          "cards": 4,
+          "sha256": "aa34ade8195930209c6db02ea6d07fab14cfb2d26c48a1a2b2c0f475b105cf05"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0115.json",
+          "id": "opi-topic-0115",
+          "categoryId": "opi-category-01",
+          "cards": 8,
+          "sha256": "b15b06f8cab3708df7198ebade1bda0962ccf9f73ddea98ebaa0d3f7b93283df"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0116.json",
+          "id": "opi-topic-0116",
+          "categoryId": "opi-category-05",
+          "cards": 2,
+          "sha256": "6cc16e61f3f7adcc03b787b8496e70f11b77208e05edcf19f027add1f3eeee73"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0117.json",
+          "id": "opi-topic-0117",
+          "categoryId": "opi-category-02",
+          "cards": 12,
+          "sha256": "fa2604531744d5f9f75cf921cf0fde9b16fc4580a154689f4e25e10d546e87f3"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0118.json",
+          "id": "opi-topic-0118",
+          "categoryId": "opi-category-05",
+          "cards": 4,
+          "sha256": "1627d09f337555e0e52780332e8550d4f9c27d9c800dd44acef52032fcc94a49"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0119.json",
+          "id": "opi-topic-0119",
+          "categoryId": "opi-category-02",
+          "cards": 4,
+          "sha256": "7b7769e7a372aeb814f7ff8f2f2d65205155ae51008ae936c95b268b01667c30"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0120.json",
+          "id": "opi-topic-0120",
+          "categoryId": "opi-category-02",
+          "cards": 5,
+          "sha256": "ff249d6144d771db0fbc46979bfe22abb62d95f2bb2d9c6e33d5281f8f8f8a11"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0121.json",
+          "id": "opi-topic-0121",
+          "categoryId": "opi-category-07",
+          "cards": 16,
+          "sha256": "11c0c391a6790dbcddb7052a78a9634e031d0cfcf026ef873fe6fb3a2b523edf"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0122.json",
+          "id": "opi-topic-0122",
+          "categoryId": "opi-category-07",
+          "cards": 9,
+          "sha256": "6eb3e2e8099eb9d43e8c0c6c8c5485a21a09bcb9a84af8453d3b54bcdf9b59fd"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0123.json",
+          "id": "opi-topic-0123",
+          "categoryId": "opi-category-07",
+          "cards": 28,
+          "sha256": "bd2e7c390fbf352cd60c7e22bb3776ee98ae37c8ff6e6e85a19dc324943506fe"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0124.json",
+          "id": "opi-topic-0124",
+          "categoryId": "opi-category-07",
+          "cards": 18,
+          "sha256": "c2807c702d1f0ea13476c048bf192580b47ce2dbf1164a9f458adc8f15eebfbf"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0126.json",
+          "id": "opi-topic-0126",
+          "categoryId": "opi-category-06",
+          "cards": 12,
+          "sha256": "03b3e8919946ed42663737ac0863ceb788050d9f67c60164a586a11165680684"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0127.json",
+          "id": "opi-topic-0127",
+          "categoryId": "opi-category-06",
+          "cards": 9,
+          "sha256": "6248159224f5f0739675f6060821501cc8cd8d0230723059eb9722eac89cfd47"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0128.json",
+          "id": "opi-topic-0128",
+          "categoryId": "opi-category-06",
+          "cards": 3,
+          "sha256": "d5a149f09e58fa250b32df075586c652daf31b08b1eb348271481a2ff05c7d13"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0129.json",
+          "id": "opi-topic-0129",
+          "categoryId": "opi-category-06",
+          "cards": 11,
+          "sha256": "d596727da4d1f765cd5baaf4f4c13479776c2efa6ebbe069eebc8aeea72860c2"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0130.json",
+          "id": "opi-topic-0130",
+          "categoryId": "opi-category-04",
+          "cards": 36,
+          "sha256": "a4a5366d34171996ac00ebb54dc657d7b88150d8a01cbbdccc0a942850b765ca"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0131.json",
+          "id": "opi-topic-0131",
+          "categoryId": "opi-category-05",
+          "cards": 2,
+          "sha256": "625d909d12d627d6d629ad8839c69fd7b0320537d994b3c5b3cf46f378624201"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0132.json",
+          "id": "opi-topic-0132",
+          "categoryId": "opi-category-02",
+          "cards": 3,
+          "sha256": "2d625125959c9a61487027373a4f2203523c5b0c5c89081e79f36ee5a75127df"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0133.json",
+          "id": "opi-topic-0133",
+          "categoryId": "opi-category-02",
+          "cards": 10,
+          "sha256": "0a6dc440c8be52ccc6a94cf308d2f213d81e5c60c1118ec7a7e90a28388e5e8e"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0134.json",
+          "id": "opi-topic-0134",
+          "categoryId": "opi-category-01",
+          "cards": 10,
+          "sha256": "db5de1f87bf19c7a6737f8924763d0e016291cdae47435bdaea7165bd1d106fa"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0135.json",
+          "id": "opi-topic-0135",
+          "categoryId": "opi-category-03",
+          "cards": 13,
+          "sha256": "a84c34b9a4b308db47bd2cc385982c5e0e860fd73557179f7d5fd58e8df25e7e"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0136.json",
+          "id": "opi-topic-0136",
+          "categoryId": "opi-category-05",
+          "cards": 3,
+          "sha256": "f25e579c674dd0b6fbb0dab61c8d3b6f0c9cae8a37bed19e5acfcb8ce2812418"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0137.json",
+          "id": "opi-topic-0137",
+          "categoryId": "opi-category-02",
+          "cards": 9,
+          "sha256": "b7ac17cd9dd399b74969db9fc4cbb73f83f76dfb72f73f5973b8eb63bad11651"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0138.json",
+          "id": "opi-topic-0138",
+          "categoryId": "opi-category-06",
+          "cards": 3,
+          "sha256": "9d3bc82df648724481595781826831d49eb276422cba621a8671de0e6b8a6fe2"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0139.json",
+          "id": "opi-topic-0139",
+          "categoryId": "opi-category-06",
+          "cards": 4,
+          "sha256": "612b1b1f8af8b852659e85f06f5da7de6289b6c0e8a3a03c70f06157d859274e"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0140.json",
+          "id": "opi-topic-0140",
+          "categoryId": "opi-category-01",
+          "cards": 2,
+          "sha256": "8967a9afd6e10f0f0dfe560309aa282fbf21d227df8691955b40177182ad9456"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0141.json",
+          "id": "opi-topic-0141",
+          "categoryId": "opi-category-05",
+          "cards": 2,
+          "sha256": "9bcd21c5bd66b2c5384e4a20cddf5519eaca2481a71b5e5e12735de5ad3b58f6"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0142.json",
+          "id": "opi-topic-0142",
+          "categoryId": "opi-category-06",
+          "cards": 4,
+          "sha256": "90f45e4264cd84e2a0d467515ee916902a5e442c038d4790b249085d66004c49"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0143.json",
+          "id": "opi-topic-0143",
+          "categoryId": "opi-category-05",
+          "cards": 6,
+          "sha256": "ef44277afbc188408a88c13dee1667060e816897c19c2bdc25627ff07826744f"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0144.json",
+          "id": "opi-topic-0144",
+          "categoryId": "opi-category-06",
+          "cards": 7,
+          "sha256": "6a64c96e36e3715b9992a20ff97d65227979d910597407508bc079d75ebacff7"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0145.json",
+          "id": "opi-topic-0145",
+          "categoryId": "opi-category-03",
+          "cards": 11,
+          "sha256": "ac23ebd4356da16441fdf1671b5e7fb7670d3beff9e57171f64a91d76420c3e5"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0146.json",
+          "id": "opi-topic-0146",
+          "categoryId": "opi-category-05",
+          "cards": 7,
+          "sha256": "68a15300c3bfc921d556549e7edd6b8ed854ae10b4eb85cfecf48a04ac6fd110"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0147.json",
+          "id": "opi-topic-0147",
+          "categoryId": "opi-category-03",
+          "cards": 4,
+          "sha256": "57005cccd804c76dd0c9210468c8b29c0826491ca3475b8fc97865965aa13792"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0148.json",
+          "id": "opi-topic-0148",
+          "categoryId": "opi-category-06",
+          "cards": 6,
+          "sha256": "d850418b6814ae8a252324bc49c980aec55fb3d379e901fffd228e88e2f073c9"
+        },
+        {
+          "path": "content/question-banks/banks/opi/topics/opi-topic-0149.json",
+          "id": "opi-topic-0149",
+          "categoryId": "opi-category-05",
+          "cards": 8,
+          "sha256": "45dceab257f41a752aec0579d9e2d767766171934bfa0966e83ca6b45b5e3b23"
+        }
+      ],
+      "contentChecksum": "5dfc347a6769d4d5dd00dead469e30c6e982f008cdcc6c38d6f8196ce2d72d2a"
+    },
+    {
+      "bankId": "sentences900",
+      "topics": 3,
+      "cards": 900,
+      "files": [
+        {
+          "path": "content/question-banks/banks/sentences900/topics/sentence900-3级-main.json",
+          "id": "sentence900-3级-main",
+          "categoryId": "sentence900-3级",
+          "cards": 562,
+          "sha256": "db453a3af399fbab12458ebca431373fe305943718c7bcc165a4a74c79ebdc11"
+        },
+        {
+          "path": "content/question-banks/banks/sentences900/topics/sentence900-4级-main.json",
+          "id": "sentence900-4级-main",
+          "categoryId": "sentence900-4级",
+          "cards": 159,
+          "sha256": "d924c5bf1aa4858cbfa6b2ef1dd1363525359e6ac7cb652101b11587cc26173e"
+        },
+        {
+          "path": "content/question-banks/banks/sentences900/topics/sentence900-5级-main.json",
+          "id": "sentence900-5级-main",
+          "categoryId": "sentence900-5级",
+          "cards": 179,
+          "sha256": "578e4b80bfbbdf2febe90f8a23e168727f62fcc4cd93c79c92cb77238049b2e0"
+        }
+      ],
+      "contentChecksum": "937c074208f070eab38589270cf6357c6cd2898c3c29ccd87cee691705ff9750"
+    }
+  ],
+  "embeddedQuestionBank": {
+    "path": "src/features/question-bank/data/question-bank.json",
+    "sha256": "3cebe1f79137016e7a1001bc5dbe901540f6b2f221f7906dff9cf2d8eafdbd06"
+  },
+  "resourceManifest": {
+    "path": "content/question-banks/resources/manifest.source.json",
+    "sha256": "eaa1f133ff43c754b2213637e641821853115e8e79840ec561355525b48285f2",
+    "version": 2,
+    "files": 3982
+  },
+  "rootChecksum": "05df5fe4787c49d5989dbe0587f1d834fe08eab8e3b929a7d4fbd51ea5162932"
+}

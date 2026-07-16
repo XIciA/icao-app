@@ -10,12 +10,14 @@ import type { LearningRecord, QuestionBankCategory, QuestionBankDataset, Questio
 const mockFinish = jest.fn();
 const mockGoTo = jest.fn();
 const mockFlush = jest.fn(async () => true);
+const mockReplace = jest.fn();
 let mockPreventRemoveHandler: (() => void) | undefined;
+let mockTaskKind: 'choices' | 'recording' = 'choices';
 
 jest.mock('@react-navigation/native', () => ({
   usePreventRemove: (_prevent: boolean, handler: () => void) => { mockPreventRemoveHandler = handler; },
 }));
-jest.mock('expo-router', () => ({ useRouter: () => ({ replace: jest.fn() }) }));
+jest.mock('expo-router', () => ({ useRouter: () => ({ replace: mockReplace }) }));
 jest.mock('react-native-safe-area-context', () => {
   const { View: MockView } = jest.requireActual('react-native');
   return { SafeAreaView: ({ children }: { children: React.ReactNode }) => <MockView>{children}</MockView>, useSafeAreaInsets: () => ({ top: 0, right: 0, bottom: 0, left: 0 }) };
@@ -71,12 +73,18 @@ jest.mock('../components/AnswerCardSheet', () => {
   };
 });
 jest.mock('../components/InteractiveStudyText', () => ({ InteractiveStudyText: () => null }));
-jest.mock('../components/StudyAudioPlayer', () => ({ StudyAudioPlayer: () => null }));
+jest.mock('../components/StudyAudioPlayer', () => {
+  const { Text: MockText, View: MockView } = jest.requireActual('react-native');
+  return { StudyAudioPlayer: ({ practiceControls, variant = 'default' }: { practiceControls?: React.ReactNode; variant?: string }) => <MockView><MockText>{`audio-layout:${variant}`}</MockText>{practiceControls}</MockView> };
+});
 jest.mock('../components/StudyCardStack', () => {
   const { View: MockView } = jest.requireActual('react-native');
-  return { StudyCardStack: ({ workbench }: { workbench: React.ReactNode }) => <MockView>{workbench}</MockView> };
+  return { StudyCardStack: ({ primary, workbench }: { primary: React.ReactNode; workbench: React.ReactNode }) => <MockView>{primary}{workbench}</MockView> };
 });
-jest.mock('../components/StudyTaskRenderer', () => ({ StudyTaskRenderer: () => null }));
+jest.mock('../components/StudyTaskRenderer', () => {
+  const { Text: MockText } = jest.requireActual('react-native');
+  return { StudyTaskRenderer: ({ variant = 'default' }: { variant?: string }) => <MockText>{`task-layout:${variant}`}</MockText> };
+});
 jest.mock('../components/StudyWorkbench', () => {
   const { forwardRef: mockForwardRef, useImperativeHandle: mockUseImperativeHandle } = jest.requireActual('react');
   return {
@@ -115,7 +123,9 @@ describe('study exit flow', () => {
     mockFinish.mockReset();
     mockGoTo.mockReset();
     mockFlush.mockReset().mockResolvedValue(true);
+    mockReplace.mockReset();
     mockPreventRemoveHandler = undefined;
+    mockTaskKind = 'choices';
     (useStudySession as jest.Mock).mockImplementation(() => {
       const [studyReport, setStudyReport] = useState<LearningRecord>();
       return {
@@ -123,7 +133,7 @@ describe('study exit flow', () => {
         report: studyReport,
         card: topic.cards[0],
         cardState: undefined,
-        behavior: { taskKind: 'choices', transcriptLabel: '音频原文', referenceLabel: '参考答案', workbenchTabs: ['notes'] },
+        behavior: { taskKind: mockTaskKind, recordingMode: mockTaskKind === 'recording' ? 'speaking' : undefined, transcriptLabel: '音频原文', referenceLabel: '参考答案', workbenchTabs: ['notes'] },
         currentIndex: 0,
         visitedIndexes: new Set([0]),
         completedCardIds: new Set<string>(),
@@ -159,6 +169,16 @@ describe('study exit flow', () => {
     await act(async () => { mockPreventRemoveHandler?.(); });
 
     await waitFor(() => expect(screen.getByText('report:abort')).toBeTruthy());
+    expect(mockFinish).toHaveBeenCalledWith('abort');
+    expect(mockFlush).toHaveBeenCalledTimes(1);
+  });
+
+  it('saves and returns directly to the paused radio session when opened from radio', async () => {
+    const screen = await render(<QuestionBankStudyScreen category={category} dataset={dataset} returnTo="radio" topic={topic} />);
+
+    await act(async () => { fireEvent.press(screen.getByLabelText('保存并返回随身听')); });
+
+    await waitFor(() => expect(mockReplace).toHaveBeenCalledWith('/content/radio'));
     expect(mockFinish).toHaveBeenCalledWith('abort');
     expect(mockFlush).toHaveBeenCalledTimes(1);
   });
@@ -239,5 +259,28 @@ describe('study exit flow', () => {
 
     expect(mockGoTo).not.toHaveBeenCalled();
     expect(screen.getByText('回答自动保存失败，请重试后继续。')).toBeTruthy();
+  });
+
+  it('uses the integrated D layout only for recording tasks', async () => {
+    const listeningScreen = await render(<QuestionBankStudyScreen category={category} dataset={dataset} topic={topic} />);
+    expect(listeningScreen.getByText('audio-layout:default')).toBeTruthy();
+    expect(listeningScreen.getByText('task-layout:default')).toBeTruthy();
+    await listeningScreen.unmount();
+
+    mockTaskKind = 'recording';
+    const speakingDataset: QuestionBankDataset = {
+      ...dataset,
+      id: 'opi',
+      title: 'OPI',
+      study: {
+        ...dataset.study,
+        interaction: 'speaking',
+        tools: { ...dataset.study.tools, choices: false, recorder: true },
+      },
+    };
+    const speakingScreen = await render(<QuestionBankStudyScreen category={category} dataset={speakingDataset} topic={topic} />);
+    expect(speakingScreen.getByText('audio-layout:integrated-recording')).toBeTruthy();
+    expect(speakingScreen.getByText('task-layout:integrated')).toBeTruthy();
+    expect(speakingScreen.queryByText('task-layout:default')).toBeNull();
   });
 });

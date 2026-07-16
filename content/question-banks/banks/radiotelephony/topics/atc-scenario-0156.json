@@ -1,0 +1,152 @@
+{
+  "categoryId": "atc-csn",
+  "id": "atc-scenario-0156",
+  "name": "CSN 7353 TCAS机动 危险品 延误/加油",
+  "declaredCardCount": 16,
+  "cards": [
+    {
+      "id": "atc-scenario-0156-card-main-2687",
+      "taskTitle": "CSN 7353-1",
+      "audioText": "your call sign is CSN 7353, a flight from Wuhan to Los Angeles, the cargo manifest shows that there is forbidden goods on board, report it to company operations and request offload the luggage.\nforbidden goods/prohibited goods",
+      "audioTextZh": "你的呼号是 CSN 7353，这是一趟从武汉飞往洛杉矶的航班，货舱单显示机上有禁运品，向公司运行部门报告并请求卸下行李。\n禁运品/违禁品",
+      "referenceText": "Dispatch, CSN 7353, CSN 353 cargo manifest shows, forbidden goods, request offload the luggage.",
+      "referenceTextZh": "签派，CSN 7353，CSN 353，货舱单显示有禁运品，请求卸下行李。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-055-csn7353-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0156-card-main-2688",
+      "taskTitle": "CSN 7353-2",
+      "audioText": "Now you are at Gate 23, you have got information N, request ATC clearance to Los Angeles from Wuhan Delivery.",
+      "audioTextZh": "现在你位于 23 登机口，已收到 N 情报，向武汉放行申请前往洛杉矶的 ATC 放行许可。",
+      "referenceText": "Delivery, CSN 7353, CSN 353 Gate 23, information N, request ATC clearance, Los Angeles",
+      "referenceTextZh": "放行，CSN 7353，CSN 353，23 登机口，N 情报，申请前往洛杉矶的 ATC 放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-055-csn7353-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0156-card-main-2689",
+      "taskTitle": "CSN 7353-3",
+      "audioText": "CSN 7353, cleared to Los Angeles via flight planned route, Runway 36R, LKO01 DAL Departure, initial climb 1,200 meters, cruising level 8,900 meters, departure frequency 119.7, squawk 2515.",
+      "audioTextZh": "CSN 7353，许可按飞行计划航路飞往洛杉矶，Runway 36R，执行 LKO-01 DAL 离场，初始爬升至 1,200 米，巡航高度 8,900 米，离场频率 119.7，应答机 2515。",
+      "referenceText": "cleared to Los Angeles, flight planned route, Runway 36R, LKO-01 departure, 1200 meters, 8900 meters, 119.7, squawk 2515, CSN 7353 CSN 353.",
+      "referenceTextZh": "许可按飞行计划航路飞往洛杉矶，Runway 36R，执行 LKO-01 离场，初始爬升至 1200 米，巡航高度 8900 米，119.7，应答机 2515，CSN 7353，CSN 353。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-055-csn7353-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0156-card-main-2690",
+      "taskTitle": "CSN 7353-4",
+      "audioText": "CSN 7353, expect 15 minutes delay, the airport is temporarily closed due heavy fog. Call you back.",
+      "audioTextZh": "CSN 7353，预计延误 15 分钟，因大雾机场暂时关闭。稍后呼叫你。",
+      "referenceText": "roger, expect 15 minutes delay, CSN 7353.",
+      "referenceTextZh": "收到，预计延误 15 分钟，CSN 7353。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-055-csn7353-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0156-card-main-2691",
+      "taskTitle": "CSN 7353-5",
+      "audioText": "B: Now you are ready for push back and start up.",
+      "audioTextZh": "B：现在你准备好推出和开车。",
+      "referenceText": "Wuhan Ground, CSN 7353, request push back and start up.",
+      "referenceTextZh": "武汉地面，CSN 7353，请求推出和开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-055-csn7353-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0156-card-main-2692",
+      "taskTitle": "CSN 7353-6",
+      "audioText": "CSN 7353, after traffic taxiing behind is clear, push back and startup approved, push back onto taxiway Z4, abeam Gate 232, facing East.",
+      "audioTextZh": "CSN 7353，后方滑行航空器通过后，推出和开车批准，向后推出至 Z4 滑行道，与 232 登机口平行，机头朝东。",
+      "referenceText": "after traffic is clear, push back and startup approved, push back onto taxiway Z four, abeam Gate 232, facing East, CSN 7353. CSN 353.",
+      "referenceTextZh": "相关航空器通过后，推出和开车批准，向后推出至 Z4 滑行道，与 232 登机口平行，机头朝东，CSN 7353。CSN 353。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-055-csn7353-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0156-card-main-2693",
+      "taskTitle": "CSN 7353-7",
+      "audioText": "B: Now you are on taxiway Z4, you are ready for taxi.",
+      "audioTextZh": "B：现在你在滑行道 Z4，准备好滑行。",
+      "referenceText": "Wuhan Ground, CSN 7353, taxiway Z4, request taxi.",
+      "referenceTextZh": "武汉地面，CSN 7353，滑行道 Z4，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-055-csn7353-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0156-card-main-2694",
+      "taskTitle": "CSN 7353-8",
+      "audioText": "CSN 7353, taxi via taxiway Z4, A3 and A to holding point Runway 36R.",
+      "audioTextZh": "CSN 7353，经 Z4、A3 和 A 滑行道滑行至 Runway 36R 等待点。",
+      "referenceText": "taxi via taxiway Z four, A four and A, holding point Runway 36R, CSN 7353. CSN 353.",
+      "referenceTextZh": "经 Z4、A4 和 A 滑行道滑行至 Runway 36R 等待点，CSN 7353。CSN 353。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-055-csn7353-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0156-card-main-2695",
+      "taskTitle": "CSN 7353-9",
+      "audioText": "during taxi, the visibility is getting worse due to heavy fog, you are unable to taxi, tell the controller that you will hold at present position until visibility gets better.",
+      "audioTextZh": "滑行期间，因大雾能见度持续恶化，你无法滑行，告诉管制员你将在当前位置等待，直至能见度改善。",
+      "referenceText": "Ground, CSN 7353, CSN 353 visibility, getting worse, heavy fog, unable to taxi, request hold at present position, until visibility gets better.",
+      "referenceTextZh": "地面，CSN 7353，CSN 353，能见度因大雾持续恶化，无法滑行，请求在当前位置等待，直至能见度改善。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-055-csn7353-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0156-card-main-2696",
+      "taskTitle": "CSN 7353-10",
+      "audioText": "CSN 7353, the visibility is improving, continue taxi to holding point Runway 36R via taxiway A3 and A.",
+      "audioTextZh": "CSN 7353，能见度正在改善，经 A3 和 A 滑行道继续滑行至 Runway 36R 等待点。",
+      "referenceText": "taxi to holding point Runway 36R via taxiway A tree, A, CSN 7353. CSN 353.",
+      "referenceTextZh": "经 A3 和 A 滑行道滑行至 Runway 36R 等待点，CSN 7353。CSN 353。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-055-csn7353-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0156-card-main-2697",
+      "taskTitle": "CSN 7353-11",
+      "audioText": "CSN 7353, contact Wuhan Tower 124.35.",
+      "audioTextZh": "CSN 7353，联系武汉塔台 124.35。",
+      "referenceText": "124.35, CSN 7353.",
+      "referenceTextZh": "124.35，CSN 7353。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-055-csn7353-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0156-card-main-2698",
+      "taskTitle": "CSN 7353-12",
+      "audioText": "now you are at holding point Runway 36R, you are ready for departure, contact Wuhan Tower.",
+      "audioTextZh": "现在你位于 Runway 36R 等待点，已准备好离场，联系武汉塔台。",
+      "referenceText": "Wuhan Tower, CSN 7353, holding point Runway 36R, ready for departure.",
+      "referenceTextZh": "武汉塔台，CSN 7353，Runway 36R 等待点，已准备好离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-055-csn7353-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0156-card-main-2699",
+      "taskTitle": "CSN 7353-13",
+      "audioText": "CSN 7353, Runway 36R, cleared for takeoff, when airborne, contact 119.7.",
+      "audioTextZh": "CSN 7353，Runway 36R，许可起飞，离地后联系 119.7。",
+      "referenceText": "Runway 36R, cleared for takeoff, 119.7, CSN 7353. CSN 353.",
+      "referenceTextZh": "Runway 36R，许可起飞，119.7，CSN 7353。CSN 353。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-055-csn7353-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0156-card-main-2700",
+      "taskTitle": "CSN 7353-14",
+      "audioText": "B: Now you are airborne, passing 1200 meters, contact Departure.",
+      "audioTextZh": "B：现在你已离地，正通过 1200 米，联系离场。",
+      "referenceText": "Wuhan Departure, CSN 7353, airborne, passing 1200 meters.",
+      "referenceTextZh": "武汉离场，CSN 7353，已离地，通过 1200 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-055-csn7353-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0156-card-main-2701",
+      "taskTitle": "CSN 7353-15",
+      "audioText": "CSN 7353, Wuhan Departure, radar contact, climb to 3,900 meters at 3000 feet per minute or greater.",
+      "audioTextZh": "CSN 7353，武汉离场，雷达识别，以每分钟 3000 英尺或更大的爬升率爬升至 3,900 米。",
+      "referenceText": "climb to 3900 meters, at 3000 feet per minute or greater, CSN 7353. CSN 353.",
+      "referenceTextZh": "以每分钟 3000 英尺或更大的爬升率爬升至 3900 米，CSN 7353。CSN 353。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-055-csn7353-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0156-card-main-2702",
+      "taskTitle": "CSN 7353-16",
+      "audioText": "CSN 7353, continue climb to 8,900 meters, report passing 6,000 meters.",
+      "audioTextZh": "CSN 7353，继续爬升至 8,900 米，通过 6,000 米时报告。",
+      "referenceText": "continue climb to 8900 meters, CSN 7353. CSN 353.",
+      "referenceTextZh": "继续爬升至 8900 米，CSN 7353。CSN 353。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-055-csn7353-q16.mp3"
+    }
+  ]
+}

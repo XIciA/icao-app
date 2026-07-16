@@ -1,0 +1,161 @@
+{
+  "categoryId": "atc-sia",
+  "id": "atc-scenario-0111",
+  "name": "SIA 497 起落架问题 TCAS机动",
+  "declaredCardCount": 17,
+  "cards": [
+    {
+      "id": "atc-scenario-0111-card-main-1903",
+      "taskTitle": "SIA 497-1",
+      "audioText": "B: Your call sign is SIA 497, you are parking at gate 215, you have got information P, request ATC clearance to Singapore.",
+      "audioTextZh": "B：你的呼号是 SIA 497，停在 215 号登机口，已收到 P 情报，请求前往新加坡的 ATC 放行许可。",
+      "referenceText": "Wuhan Delivery, SIA 497, gate 215, information P, request ATC clearance to Singapore.",
+      "referenceTextZh": "武汉放行，SIA 497，215 号登机口，收到 P 情报，申请前往新加坡的 ATC 放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-007-sia497-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0111-card-main-1904",
+      "taskTitle": "SIA 497-2",
+      "audioText": "SIA 497, cleared to SIA via flight planned route. LKO-01 departure, initial altitude 1800 meters, cruising level 10700m. departure frequency 118.9, squawk 2706.",
+      "audioTextZh": "SIA 497，许可按飞行计划航路飞往 SIA。LKO-01 离场，初始高度 1800 米，巡航高度 10700m。离场频率 118.9，应答机 2706。",
+      "referenceText": "cleared to SIA via flight planned route. LKO-01 departure, initial altitude 1800 meters, cruising level 1700 meters. departure frequency 118.9, squawk 2706, SIA 497.",
+      "referenceTextZh": "许可按飞行计划航路飞往 SIA。LKO-01 离场，初始高度 1800 米，巡航高度 1700 米。离场频率 118.9，应答机 2706，SIA 497。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-007-sia497-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0111-card-main-1905",
+      "taskTitle": "SIA 497-3",
+      "audioText": "tell ATC 10700 meters is not acceptable due to heavy weight, request 9500 meters.",
+      "audioTextZh": "告诉 ATC，由于重量大，10700 米不可接受，请求 9500 米。",
+      "referenceText": "Wuhan Delivery, SIA 497, 1700 is not acceptable due to heavy weight, request 9500 meters.",
+      "referenceTextZh": "武汉放行，SIA 497，由于重量大，1700 不可接受，请求 9500 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-007-sia497-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0111-card-main-1906",
+      "taskTitle": "SIA 497-4",
+      "audioText": "C: SIA 497, cleared cruising level 9500 meters.",
+      "audioTextZh": "C：SIA 497，许可巡航高度 9500 米。",
+      "referenceText": "Cleared cruising level 9500 meters, SIA 497.",
+      "referenceTextZh": "许可巡航高度 9500 米，SIA 497。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-007-sia497-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0111-card-main-1907",
+      "taskTitle": "SIA 497-5",
+      "audioText": "B: You are on the taxiway A with engine running, contact Ground.",
+      "audioTextZh": "B：你在 A 滑行道上，发动机运转，联系地面。",
+      "referenceText": "Wuhan Ground, SIA 497, taxiway A, request taxi.",
+      "referenceTextZh": "武汉地面，SIA 497，A 滑行道，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-007-sia497-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0111-card-main-1908",
+      "taskTitle": "SIA 497-6",
+      "audioText": "SIA 497, taxi to holding point Runway 36R via Z4 and A, hold short of E7.",
+      "audioTextZh": "SIA 497，经 Z4 和 A 滑行至 Runway 36R 等待点，在 E7 前等待。",
+      "referenceText": "taxi to holding point Runway 36R via Z four and A, hold short of E seven, SIA 497.",
+      "referenceTextZh": "经 Z4 和 A 滑行至 Runway 36R 等待点，在 E7 前等待，SIA 497。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-007-sia497-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0111-card-main-1909",
+      "taskTitle": "SIA 497-7",
+      "audioText": "Contact Wuhan Tower and request intersection departure E5 Runway 36R.",
+      "audioTextZh": "联系武汉塔台，请求从 E5 交叉口使用 Runway 36R 起飞。",
+      "referenceText": "Wuhan Tower, SIA 497, request intersection departure E five Runway 36R.",
+      "referenceTextZh": "武汉塔台，SIA 497，请求从 E5 交叉口使用 Runway 36R 起飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-007-sia497-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0111-card-main-1910",
+      "taskTitle": "SIA 497-8",
+      "audioText": "SIA 497, Negative due sequencing, continue to holding point Runway 36R, hold short of E7.",
+      "audioTextZh": "SIA 497，不行，因排序需要，继续前往 Runway 36R 等待点，在 E7 前等待。",
+      "referenceText": "roger, continue to holding point Runway 36R, hold short of E seven, SIA 497.",
+      "referenceTextZh": "收到，继续前往 Runway 36R 等待点，在 E7 前等待，SIA 497。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-007-sia497-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0111-card-main-1911",
+      "taskTitle": "SIA 497-9",
+      "audioText": "SIA 497, cleared for takeoff Runway 36R, surface wind 350, five knots.",
+      "audioTextZh": "SIA 497，许可从 Runway 36R 起飞，地面风 350，5 节。",
+      "referenceText": "cleared for takeoff Runway 36R, SIA 497.",
+      "referenceTextZh": "许可从 Runway 36R 起飞，SIA 497。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-007-sia497-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0111-card-main-1912",
+      "taskTitle": "SIA 497-10",
+      "audioText": "SIA 497, contact departure on 118.9.",
+      "audioTextZh": "SIA 497，联系离场 118.9。",
+      "referenceText": "118.9, SIA 497.",
+      "referenceTextZh": "118.9，SIA 497。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-007-sia497-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0111-card-main-1913",
+      "taskTitle": "SIA 497-11",
+      "audioText": "now you are airborne, passing 600m, contact Wuhan Departure.",
+      "audioTextZh": "现在你已离地，正通过 600m，联系武汉离场。",
+      "referenceText": "Wuhan Departure, SIA 497, airborne, passing 600 meters.",
+      "referenceTextZh": "武汉离场，SIA 497，已离地，正通过 600 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-007-sia497-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0111-card-main-1914",
+      "taskTitle": "SIA 497-12",
+      "audioText": "C: SIA 497, Wuhan Departure, radar contact, turn left direct to DA, climb and maintain 3000 meters on QNH 1021.",
+      "audioTextZh": "C：SIA 497，武汉离场，雷达识别，左转直飞 DA，爬升并保持 QNH 1021 上 3000 米。",
+      "referenceText": "Turn left direct to DA, climb and maintain 3000 meters on QNH 1021, SIA 497.",
+      "referenceTextZh": "左转直飞 DA，爬升并保持 QNH 1021 上 3000 米，SIA 497。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-007-sia497-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0111-card-main-1915",
+      "taskTitle": "SIA 497-13",
+      "audioText": "B: Your landing gear can't be extended normally, report this situation to ATC.",
+      "audioTextZh": "B：你的起落架不能正常放下，向 ATC 报告这个情况。",
+      "referenceText": "Singapore Approach, SIA 497, our landing gear can't be extended normally.",
+      "referenceTextZh": "新加坡进近，SIA 497，我们的起落架不能正常放下。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-007-sia497-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0111-card-main-1916",
+      "taskTitle": "SIA 497-14",
+      "audioText": "Tell ATC you want to terminate the approach, maintain 600 meters on runway heading, to complete the abnormal procedures.",
+      "audioTextZh": "告诉 ATC，你想终止进近，在跑道航向上保持 600 米，以完成非正常程序。",
+      "referenceText": "request terminate the approach, maintain 600 meters on runway heading, SIA 497.",
+      "referenceTextZh": "请求终止进近，在跑道航向上保持 600 米，SIA 497。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-007-sia497-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0111-card-main-1917",
+      "taskTitle": "SIA 497-15",
+      "audioText": "B: Your landing gear has been extended manually, but nose wheel steering is lost, request a tug after landing.",
+      "audioTextZh": "B：你的起落架已手动放下，但前轮转弯失效，请求落地后牵引车。",
+      "referenceText": "Singapore Approach, SIA 497, our landing gear has been extended manually, but nose wheel steering is lost, request a tug after landing.",
+      "referenceTextZh": "新加坡进近，SIA 497，我们的起落架已手动放下，但前轮转弯失效，请求落地后牵引车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-007-sia497-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0111-card-main-1918",
+      "taskTitle": "SIA 497-16",
+      "audioText": "roger, SIA 497, the tug will be ready upon landing.",
+      "audioTextZh": "收到，SIA 497，牵引车将在落地时就位。",
+      "referenceText": "SIA 497.",
+      "referenceTextZh": "SIA 497。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-007-sia497-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0111-card-main-1919",
+      "taskTitle": "SIA 497-17",
+      "audioText": "SIA 497, you are No. 1 to land, cleared ILS approach Runway 18L, report established.",
+      "audioTextZh": "SIA 497，你是第一架落地航空器，许可 ILS 进近 Runway 18L，建立后报告。",
+      "referenceText": "cleared ILS approach Runway 18L, report established, SIA 497.",
+      "referenceTextZh": "许可 ILS 进近 Runway 18L，建立后报告，SIA 497。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-007-sia497-q17.mp3"
+    }
+  ]
+}

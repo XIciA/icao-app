@@ -17,6 +17,9 @@ expo-env.d.ts
 *.p12
 *.key
 *.mobileprovision
+*.keystore
+*.pfx
+android-signing.properties
 
 # Metro
 .metro-health-check*
@@ -49,3 +52,6 @@ app-example
 # generated native folders
 /ios
 /android
+
+# large local workflow snapshots and resumable caches
+/.generated/

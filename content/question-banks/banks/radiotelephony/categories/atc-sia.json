@@ -1,8 +1,8 @@
 {
   "id": "atc-sia",
   "name": "SIA",
-  "declaredTopicCount": 9,
-  "declaredCardCount": 145,
+  "declaredTopicCount": 16,
+  "declaredCardCount": 262,
   "topicIds": [
     "atc-scenario-0007",
     "atc-scenario-0008",
@@ -12,6 +12,13 @@
     "atc-scenario-0012",
     "atc-scenario-0013",
     "atc-scenario-0014",
-    "atc-scenario-0101"
+    "atc-scenario-0101",
+    "atc-scenario-0109",
+    "atc-scenario-0111",
+    "atc-scenario-0119",
+    "atc-scenario-0121",
+    "atc-scenario-0122",
+    "atc-scenario-0184",
+    "atc-scenario-0186"
   ]
 }

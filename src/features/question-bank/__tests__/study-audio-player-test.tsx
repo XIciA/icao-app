@@ -1,5 +1,5 @@
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
-import { AppState } from 'react-native';
+import { AppState, StyleSheet, View } from 'react-native';
 
 import { StudyAudioPlayer } from '../components/StudyAudioPlayer';
 
@@ -181,5 +181,45 @@ describe('StudyAudioPlayer', () => {
     expect(screen.getByLabelText('1.5 倍')).toBeTruthy();
     fireEvent.press(screen.getByLabelText('1.25 倍'));
     expect(mockPlayer.setPlaybackRate).toHaveBeenLastCalledWith(1.25);
+  });
+
+  it('renders the recording variant directly on the outer card surface', async () => {
+    mockStatus = { ...mockStatus, currentTime: 2, duration: 8, isBuffering: false, isLoaded: true, playbackState: 'readyToPlay', playing: false };
+    const screen = await render(
+      <StudyAudioPlayer
+        label="图片题-002-01"
+        playbackKey="image-question-2"
+        practiceControls={<View testID="practice-controls" />}
+        uri="https://example.test/image-question-2.mp3"
+        variant="integrated-recording"
+      />,
+    );
+
+    expect(StyleSheet.flatten(screen.getByTestId('study-audio-player').props.style)).toMatchObject({
+      backgroundColor: 'transparent',
+      borderRadius: 0,
+      borderWidth: 0,
+      padding: 0,
+    });
+    expect(StyleSheet.flatten(screen.getByText('图片题-002-01').props.style)).toMatchObject({ fontSize: 14, lineHeight: 20 });
+    expect(screen.getByTestId('integrated-audio-controls')).toBeTruthy();
+    expect(screen.getByTestId('practice-controls')).toBeTruthy();
+    expect(screen.getByLabelText('播放速度 1 倍').props.accessibilityState).toEqual({ disabled: false, expanded: false });
+  });
+
+  it('keeps recording available while integrated question audio is unavailable', async () => {
+    const screen = await render(
+      <StudyAudioPlayer
+        label="Sentence297"
+        playbackKey="missing-audio"
+        practiceControls={<View testID="available-recording-controls" />}
+        variant="integrated-recording"
+      />,
+    );
+
+    expect(screen.getByText('音频加载失败')).toBeTruthy();
+    expect(screen.getByLabelText('播放').props.accessibilityState).toEqual({ disabled: true });
+    expect(screen.getByLabelText('播放速度 1 倍').props.accessibilityState).toEqual({ disabled: true, expanded: false });
+    expect(screen.getByTestId('available-recording-controls')).toBeTruthy();
   });
 });

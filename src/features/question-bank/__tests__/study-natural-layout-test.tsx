@@ -3,6 +3,8 @@ import { createRef, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { Gesture } from 'react-native-gesture-handler';
 
+import { colors } from '@/theme';
+
 import { StudyWorkbench, type StudyWorkbenchHandle } from '../components/StudyWorkbench';
 
 jest.mock('@/features/ai/ai-client', () => ({
@@ -89,11 +91,78 @@ describe('study workbench natural layout', () => {
     expect(onEditingTabChange).toHaveBeenCalledWith('notes');
   });
 
-  it('keeps the primary edit action in the top-right header instead of the bottom controls', async () => {
-    const screen = await render(<StudyWorkbench {...baseProps} activeTab="mine" tabs={['mine', 'reference', 'notes']} />);
+  it('removes nested surfaces from read-only answer and note content', async () => {
+    const answerScreen = await render(<StudyWorkbench {...baseProps} activeTab="mine" tabs={['mine', 'notes']} />);
+    expect(StyleSheet.flatten(answerScreen.getByLabelText('我的回答内容').props.style)).toMatchObject({
+      backgroundColor: 'transparent',
+      borderRadius: 0,
+      borderWidth: 0,
+    });
+    await answerScreen.unmount();
 
-    expect(within(screen.getByTestId('study-workbench-header')).getByLabelText('编辑我的回答')).toBeTruthy();
+    const noteScreen = await render(<StudyWorkbench {...baseProps} activeTab="notes" tabs={['mine', 'notes']} />);
+    expect(StyleSheet.flatten(noteScreen.getByLabelText('学习笔记内容').props.style)).toMatchObject({
+      backgroundColor: 'transparent',
+      borderRadius: 0,
+      borderWidth: 0,
+    });
+  });
+
+  it('uses only a light focus tint while answer and note content is being edited', async () => {
+    const answerScreen = await render(<StudyWorkbench {...baseProps} activeTab="mine" editingTab="mine" tabs={['mine', 'notes']} />);
+    expect(StyleSheet.flatten(answerScreen.getByLabelText('我的回答').props.style)).toMatchObject({
+      backgroundColor: colors.primary06,
+      borderRadius: 0,
+      borderWidth: 0,
+    });
+    await answerScreen.unmount();
+
+    const noteScreen = await render(<StudyWorkbench {...baseProps} activeTab="notes" editingTab="notes" tabs={['mine', 'notes']} />);
+    expect(StyleSheet.flatten(noteScreen.getByLabelText('学习笔记').props.style)).toMatchObject({
+      backgroundColor: colors.primary06,
+      borderRadius: 0,
+      borderWidth: 0,
+    });
+  });
+
+  it('keeps review and edit actions together in the top-right header', async () => {
+    const screen = await render(<StudyWorkbench {...baseProps} activeTab="mine" answerText="ready for analysis" tabs={['mine', 'reference', 'notes']} />);
+    const header = within(screen.getByTestId('study-workbench-header'));
+    const reviewAction = header.getByLabelText('分析表达');
+    const editAction = header.getByLabelText('编辑我的回答');
+
+    expect(reviewAction.props.accessibilityState).toEqual({ disabled: false });
+    expect(StyleSheet.flatten(screen.getByTestId('study-workbench-review-action').props.style)).toMatchObject({
+      backgroundColor: colors.primary06,
+      borderColor: colors.primary20,
+      borderRadius: 999,
+      minHeight: 36,
+    });
+    expect(StyleSheet.flatten(screen.getByTestId('study-workbench-primary-action').props.style)).toMatchObject({
+      backgroundColor: colors.primary06,
+      borderColor: colors.primary20,
+      borderRadius: 999,
+      minHeight: 36,
+    });
+    expect(editAction).toBeTruthy();
+    expect(within(screen.getByTestId('study-workbench-footer')).queryByLabelText('分析表达')).toBeNull();
     expect(within(screen.getByTestId('study-workbench-footer')).queryByLabelText('编辑我的回答')).toBeNull();
+  });
+
+  it('keeps review visible but disabled for an empty or actively edited answer', async () => {
+    const emptyScreen = await render(<StudyWorkbench {...baseProps} activeTab="mine" tabs={['mine', 'notes']} />);
+    expect(emptyScreen.getByLabelText('分析表达').props.accessibilityState).toEqual({ disabled: true });
+    await emptyScreen.unmount();
+
+    const editingScreen = await render(<StudyWorkbench {...baseProps} activeTab="mine" answerText="draft" editingTab="mine" tabs={['mine', 'notes']} />);
+    expect(editingScreen.getByLabelText('分析表达').props.accessibilityState).toEqual({ disabled: true });
+    expect(editingScreen.getByLabelText('完成我的回答')).toBeTruthy();
+  });
+
+  it('keeps the notes header limited to the edit action', async () => {
+    const screen = await render(<StudyWorkbench {...baseProps} activeTab="notes" tabs={['mine', 'notes']} />);
+    expect(within(screen.getByTestId('study-workbench-header')).getByLabelText('编辑笔记')).toBeTruthy();
+    expect(within(screen.getByTestId('study-workbench-header')).queryByLabelText('分析表达')).toBeNull();
   });
 
   it('uses compact dots for multi-section navigation and keeps the active state accessible', async () => {
@@ -104,11 +173,22 @@ describe('study workbench natural layout', () => {
     expect(screen.getByTestId('study-workbench-tab-reference').props.accessibilityState).toEqual({ selected: false });
     expect(screen.getByTestId('study-workbench-tab-notes').props.accessibilityState).toEqual({ selected: false });
     expect(screen.getByTestId('study-workbench-tab-reference').props.hitSlop).toBe(8);
-    expect(StyleSheet.flatten(screen.getByTestId('study-workbench-tab-indicator-mine').props.style)).toMatchObject({ height: 6, width: 16 });
-    expect(StyleSheet.flatten(screen.getByTestId('study-workbench-tab-indicator-reference').props.style)).toMatchObject({ height: 5, width: 5 });
+    expect(StyleSheet.flatten(screen.getByLabelText('学习控制台栏目').props.style)).toMatchObject({ backgroundColor: 'transparent', borderWidth: 0 });
+    expect(StyleSheet.flatten(screen.getByTestId('study-workbench-tab-mine').props.style)).toMatchObject({ height: 28, width: 18 });
+    expect(StyleSheet.flatten(screen.getByTestId('study-workbench-tab-indicator-mine').props.style)).toMatchObject({ height: 4, width: 14 });
+    expect(StyleSheet.flatten(screen.getByTestId('study-workbench-tab-indicator-reference').props.style)).toMatchObject({ height: 4, width: 4 });
 
     fireEvent.press(screen.getByLabelText('切换到参考答案'));
     expect(onTabChange).toHaveBeenCalledWith('reference');
+  });
+
+  it('keeps the compact accessible pagination for a two-section console', async () => {
+    const screen = await render(<StudyWorkbench {...baseProps} activeTab="mine" tabs={['mine', 'notes']} />);
+    expect(screen.getByTestId('study-workbench-tab-mine')).toBeTruthy();
+    expect(screen.getByTestId('study-workbench-tab-notes')).toBeTruthy();
+    expect(screen.queryByTestId('study-workbench-tab-reference')).toBeNull();
+    expect(screen.getByTestId('study-workbench-tab-notes').props.hitSlop).toBe(8);
+    expect(StyleSheet.flatten(screen.getByTestId('study-workbench-tab-notes').props.style)).toMatchObject({ width: 18 });
   });
 
   it('hides dots for a single section and removes the old manual controls', async () => {

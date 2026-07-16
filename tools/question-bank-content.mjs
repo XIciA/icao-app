@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -14,6 +15,7 @@ const audioRoot = resolve(process.env.QUESTION_BANK_AUDIO_ROOT ?? '/Users/zhouyi
 const localAudioOverlayRoot = join(resourcesRoot, 'audio');
 const localResourceOverlayRoot = join(resourcesRoot, 'files');
 const allowedResourceMimeTypes = new Set(['audio/mpeg', 'image/jpeg', 'image/png']);
+const legacyRadioDurationIndexPath = resolve(process.env.QUESTION_BANK_DURATION_INDEX ?? '/Users/zhouyide/Desktop/icao设计稿/lib/question-banks/assets/radio-duration-index.json');
 
 const bankCapabilities = {
   listening: { audioMode: 'file', reviewMode: 'none', radioEligible: true, mockExamEligible: true },
@@ -65,7 +67,7 @@ function assertUnique(set, id, path) {
   set.add(id);
 }
 
-function sourceFilesFor(bankId) {
+function sourceFilesFor(bankId, durationsByPath = new Map()) {
   const bankDir = join(banksRoot, bankId);
   const bank = readJson(join(bankDir, 'bank.json'));
   const categories = bank.categoryIds.map((categoryId) => {
@@ -74,7 +76,14 @@ function sourceFilesFor(bankId) {
       const topic = readJson(join(bankDir, 'topics', `${topicId}.json`));
       if (topic.categoryId !== categoryId) fail(`topic_category_mismatch:${bankId}:${topicId}`);
       const { categoryId: _categoryId, ...runtimeTopic } = topic;
-      return runtimeTopic;
+      return {
+        ...runtimeTopic,
+        cards: runtimeTopic.cards.map((card) => {
+          if (!card.audio) return card;
+          const duration = durationsByPath.get(card.audio);
+          return duration ? { ...card, audioDurationSeconds: duration } : card;
+        }),
+      };
     });
     const { topicIds: _topicIds, ...runtimeCategory } = category;
     return { ...runtimeCategory, topics };
@@ -87,7 +96,9 @@ function loadSources() {
   const registry = readJson(join(contentRoot, 'registry.json'));
   if (registry.schemaVersion !== 1) fail('unsupported_schema_version');
   if (!Number.isInteger(registry.releaseVersion) || registry.releaseVersion < 1) fail('invalid_release_version');
-  return { registry, banks: registry.bankIds.map(sourceFilesFor), resources: readJson(join(resourcesRoot, 'manifest.source.json')) };
+  const resources = readJson(join(resourcesRoot, 'manifest.source.json'));
+  const durationsByPath = new Map(resources.files.filter((file) => file.durationSeconds > 0).map((file) => [file.publicPath, file.durationSeconds]));
+  return { registry, banks: registry.bankIds.map((bankId) => sourceFilesFor(bankId, durationsByPath)), resources };
 }
 
 function validate({ registry, banks, resources }, { full = false } = {}) {
@@ -138,7 +149,10 @@ function validate({ registry, banks, resources }, { full = false } = {}) {
             if (!Array.isArray(card.choices) || card.choices.length < 2) fail(`invalid_choices:${card.id}`);
             if (!Number.isInteger(card.correctChoiceIndex) || card.correctChoiceIndex < 0 || card.correctChoiceIndex >= card.choices.length) fail(`invalid_correct_choice:${card.id}`);
           }
-          if (card.audio) referencedAudio.add(card.audio);
+          if (card.audio) {
+            referencedAudio.add(card.audio);
+            if (bank.capabilities.radioEligible && !(card.audioDurationSeconds > 0)) fail(`radio_duration_missing:${bank.id}:${card.id}`);
+          }
           categoryCards += 1;
           bankCards += 1;
           cardCount += 1;
@@ -163,6 +177,7 @@ function validate({ registry, banks, resources }, { full = false } = {}) {
     if (file.publicPath !== `/question-bank-assets/${file.sourceRelativePath}`) fail(`resource_public_path:${file.objectKey}`);
     if (file.mimeType === 'audio/mpeg' && !file.sourceRelativePath.startsWith('audio/')) fail(`resource_audio_path:${file.objectKey}`);
     if (file.mimeType.startsWith('image/') && !file.sourceRelativePath.startsWith('images/')) fail(`resource_image_path:${file.objectKey}`);
+    if (file.durationSeconds !== undefined && (!(file.durationSeconds > 0) || !Number.isFinite(file.durationSeconds))) fail(`resource_duration:${file.objectKey}`);
     if (!/^[a-f0-9]{64}$/.test(file.checksum)) fail(`resource_checksum:${file.objectKey}`);
     const localPath = resourceFilePath(file.sourceRelativePath);
     if (!existsSync(localPath)) fail(`resource_file_missing:${file.sourceRelativePath}`);
@@ -184,6 +199,53 @@ function validate({ registry, banks, resources }, { full = false } = {}) {
     resources: resources.files.length,
     resourceBytes,
   };
+}
+
+function mediaDuration(path) {
+  const value = execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', path], { encoding: 'utf8' }).trim();
+  const duration = Number(value);
+  if (!(duration > 0) || !Number.isFinite(duration)) fail(`duration_probe_failed:${path}`);
+  return Math.round(duration * 1000) / 1000;
+}
+
+function syncDurations() {
+  const registry = readJson(join(contentRoot, 'registry.json'));
+  const resources = readJson(join(resourcesRoot, 'manifest.source.json'));
+  const eligibleAudioPaths = new Set(
+    registry.bankIds
+      .map((bankId) => sourceFilesFor(bankId))
+      .filter((bank) => bank.capabilities?.radioEligible)
+      .flatMap((bank) => bank.categories.flatMap((category) => category.topics.flatMap((topic) => topic.cards.map((card) => card.audio).filter(Boolean)))),
+  );
+  const legacyDurations = existsSync(legacyRadioDurationIndexPath)
+    ? new Map(readJson(legacyRadioDurationIndexPath).tracks.map((track) => [track.audio, track.duration]))
+    : new Map();
+  let imported = 0;
+  let probed = 0;
+  let preserved = 0;
+  const files = resources.files.map((file) => {
+    if (!eligibleAudioPaths.has(file.publicPath)) return file;
+    if (file.durationSeconds > 0) {
+      preserved += 1;
+      return file;
+    }
+    const legacy = legacyDurations.get(file.publicPath);
+    if (legacy > 0) {
+      imported += 1;
+      return { ...file, durationSeconds: Math.round(legacy * 1000) / 1000 };
+    }
+    probed += 1;
+    return { ...file, durationSeconds: mediaDuration(resourceFilePath(file.sourceRelativePath)) };
+  });
+  const covered = files.filter((file) => eligibleAudioPaths.has(file.publicPath) && file.durationSeconds > 0).length;
+  if (covered !== eligibleAudioPaths.size) fail(`duration_coverage:${covered}/${eligibleAudioPaths.size}`);
+  const changed = imported + probed > 0;
+  writeJson(join(resourcesRoot, 'manifest.source.json'), {
+    ...resources,
+    version: changed ? resources.version + 1 : resources.version,
+    files,
+  });
+  console.log(`content_audio_durations_ok tracks=${eligibleAudioPaths.size} imported=${imported} probed=${probed} preserved=${preserved}`);
 }
 
 function extract({ force = false } = {}) {
@@ -281,18 +343,14 @@ function artifactsFromSources(sources) {
   };
   files.set('manifest.json', jsonBytes(manifest));
 
-  const embeddedById = new Map(readJson(embeddedPath).map((bank) => [bank.id, bank]));
-  const changes = sources.banks.map((bank) => {
-    const { capabilities: _capabilities, ...comparable } = bank;
-    const before = embeddedById.get(bank.id);
-    return { bankId: bank.id, added: before ? 0 : bank.declaredCardCount, removed: 0, modified: before && JSON.stringify(before) === JSON.stringify(comparable) ? 0 : bank.declaredCardCount };
-  });
-  files.set('change-report.json', jsonBytes({ base: 'embedded-phase1', releaseVersion: sources.registry.releaseVersion, changes }));
+  const changes = sources.banks.map((bank) => ({ bankId: bank.id, added: 0, removed: 0, modified: 0 }));
+  files.set('change-report.json', jsonBytes({ base: 'maintenance-source', releaseVersion: sources.registry.releaseVersion, changes }));
   return { files, stats };
 }
 
 function build() {
-  const generated = artifactsFromSources(loadSources());
+  const sources = loadSources();
+  const generated = artifactsFromSources(sources);
   const temporary = `${outputRoot}.tmp`;
   rmSync(temporary, { recursive: true, force: true });
   for (const [path, bytes] of generated.files) {
@@ -302,6 +360,7 @@ function build() {
   }
   rmSync(outputRoot, { recursive: true, force: true });
   renameSync(temporary, outputRoot);
+  writeJson(embeddedPath, sources.banks);
   console.log(`content_built ${JSON.stringify(generated.stats)}`);
 }
 
@@ -328,4 +387,5 @@ const [command, ...args] = process.argv.slice(2);
 if (command === 'extract') extract({ force: args.includes('--force') });
 else if (command === 'build') build();
 else if (command === 'check') check({ full: args.includes('--full') });
-else fail('usage: question-bank-content.mjs <extract|build|check> [--force|--full]');
+else if (command === 'sync-durations') syncDurations();
+else fail('usage: question-bank-content.mjs <extract|build|check|sync-durations> [--force|--full]');

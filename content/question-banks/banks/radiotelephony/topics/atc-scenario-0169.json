@@ -1,0 +1,170 @@
+{
+  "categoryId": "atc-ual",
+  "id": "atc-scenario-0169",
+  "name": "UAL 182 积冰/防冰 TCAS机动",
+  "declaredCardCount": 18,
+  "cards": [
+    {
+      "id": "atc-scenario-0169-card-main-2916",
+      "taskTitle": "UAL 182-1",
+      "audioText": "B: Your aircraft call sign is UAL 182, you are at the holding point of Runway 04, call Wuhan Tower you are ready for takeoff.",
+      "audioTextZh": "B：你的航空器呼号是 UAL 182，在跑道 04 等待点，呼叫武汉塔台，报告准备起飞。",
+      "referenceText": "Wuhan Tower, UAL 182, holding point of Runway 04, ready for departure.",
+      "referenceTextZh": "武汉塔台，UAL 182，跑道 04 等待点，准备离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-069-ual182-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0169-card-main-2917",
+      "taskTitle": "UAL 182-2",
+      "audioText": "UAL 182, behind CSN Boeing 777 on short final, line up behind. Runway 04.",
+      "audioTextZh": "UAL 182，跟在短五边的 CSN Boeing 777 后进入 Runway 04 等待。",
+      "referenceText": "behind CSN 777 on short final, line up behind Runway 04, UAL 182.",
+      "referenceTextZh": "跟在短五边的 CSN 777 后进入 Runway 04 等待，UAL 182。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-069-ual182-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0169-card-main-2918",
+      "taskTitle": "UAL 182-3",
+      "audioText": "C: UAL 182, when airborne, turn right heading 070, climb to 3000 meters, cleared for immediate takeoff Runway 04.",
+      "audioTextZh": "C：UAL 182，离地后右转航向 070，爬升至 3000 米，跑道 04 可以立即起飞。",
+      "referenceText": "When airborne, turn right heading 070, climb to 3000 meters, cleared for immediate takeoff Runway 04, UAL 182.",
+      "referenceTextZh": "离地后右转航向 070，爬升至 3000 米，跑道 04 可以立即起飞，UAL 182。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-069-ual182-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0169-card-main-2919",
+      "taskTitle": "UAL 182-4",
+      "audioText": "B: Now you are airborne and passing 200 meters, call Wuhan Departure.",
+      "audioTextZh": "B：你现在已离地，通过 200 米，呼叫武汉离场。",
+      "referenceText": "Wuhan Departure, UAL 182, airborne, passing 200 meters.",
+      "referenceTextZh": "武汉离场，UAL 182，已离地，通过 200 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-069-ual182-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0169-card-main-2920",
+      "taskTitle": "UAL 182-5",
+      "audioText": "C: UAL 182, after passing 1200 meters, turn left direct to ZF.",
+      "audioTextZh": "C：UAL 182，通过 1200 米后左转直飞 ZF。",
+      "referenceText": "After passing 1200 meters, turn left direct to ZF, UAL 182.",
+      "referenceTextZh": "通过 1200 米后左转直飞 ZF，UAL 182。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-069-ual182-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0169-card-main-2921",
+      "taskTitle": "UAL 182-6",
+      "audioText": "B: Now you are in London Control area, FL350, you encountered volcanic ash, tell ATC the situation and request descent, call London Control.",
+      "audioTextZh": "B：你现在在伦敦管制区，飞行高度层 350，遭遇火山灰，向 ATC 报告情况并请求下降，呼叫伦敦管制。",
+      "referenceText": "London Control, UAL 182, we encountered volcanic ash at FL350, request descent.",
+      "referenceTextZh": "伦敦管制，UAL 182，我们在 FL350 遭遇火山灰，请求下降。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-069-ual182-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0169-card-main-2922",
+      "taskTitle": "UAL 182-7",
+      "audioText": "UAL 182, turn right heading 300, descent to FL290.",
+      "audioTextZh": "UAL 182，右转航向 300，下降至 FL290。",
+      "referenceText": "turn right heading 300, descent to FL290, UAL 182.",
+      "referenceTextZh": "右转航向 300，下降至 FL290，UAL 182。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-069-ual182-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0169-card-main-2923",
+      "taskTitle": "UAL 182-8",
+      "audioText": "B: Tell ATC you are still in volcanic ash area, both engines are vibrating highly, but aircraft can still be controlled.",
+      "audioTextZh": "B：告诉 ATC 你仍在火山灰区域，双发振动严重，但飞机仍可操控。",
+      "referenceText": "London Control, UAL 182, we are still in volcanic ash area, both engines are vibrating highly, but aircraft can still be controlled.",
+      "referenceTextZh": "伦敦管制，UAL 182，我们仍在火山灰区域，双发振动严重，但飞机仍可操控。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-069-ual182-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0169-card-main-2924",
+      "taskTitle": "UAL 182-9",
+      "audioText": "B: During descent, both engines flamed out, make a Distress call and request land at the nearest airport.",
+      "audioTextZh": "B：下降过程中，双发熄火，发出遇险呼叫并请求在最近机场着陆。",
+      "referenceText": "MAYDAY MAYDAY MAYDAY, London Control, UAL 182, both engines flamed out, request land at the nearest airport.",
+      "referenceTextZh": "MAYDAY MAYDAY MAYDAY，伦敦管制，UAL 182，双发熄火，请求在最近机场着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-069-ual182-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0169-card-main-2925",
+      "taskTitle": "UAL 182-10",
+      "audioText": "C: UAL 182, roger MAYDAY, turn right heading 340.",
+      "audioTextZh": "C：UAL 182，收到 MAYDAY，右转航向 340。",
+      "referenceText": "Turn right heading 340, UAL 182.",
+      "referenceTextZh": "右转航向 340，UAL 182。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-069-ual182-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0169-card-main-2926",
+      "taskTitle": "UAL 182-11",
+      "audioText": "B: 1 engine was successfully restarted during descent, tell ATC the situation.",
+      "audioTextZh": "B：下降过程中 1 台发动机成功重启，告诉 ATC 当前情况。",
+      "referenceText": "London Control, UAL 182, 1 engine was successfully restarted during descent.",
+      "referenceTextZh": "伦敦管制，UAL 182，下降过程中 1 台发动机成功重启。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-069-ual182-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0169-card-main-2927",
+      "taskTitle": "UAL 182-12",
+      "audioText": "C: UAL 182, what's your intention?\nB: Tell ATC you still need to land at the nearest airport because the running engine is not stable.",
+      "audioTextZh": "C： UAL 182，你的意图是什么？\nB： 告诉空中交通管制，由于仍在运转的发动机不稳定，你仍需在最近的机场着陆。",
+      "referenceText": "London Control, UAL 182, request land at the nearest airport due the running engine is not stable. request land at the nearest airport due the running engine is not stable, UAL 182",
+      "referenceTextZh": "伦敦管制，UAL 182，由于仍在运转的发动机不稳定，请求在最近的机场着陆。由于仍在运转的发动机不稳定，请求在最近的机场着陆，UAL 182。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-069-ual182-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0169-card-main-2928",
+      "taskTitle": "UAL 182-13",
+      "audioText": "C: UAL 182, continue descent to 9000 feet, expect to land at Beatle airport.\nB: Tell controller you are not familiar with Beatle airport. Request airport information.",
+      "audioTextZh": "C： UAL 182，继续下降至 9,000 英尺，预计在 Beatle Airport 着陆。\nB： 告诉管制员你不熟悉 Beatle Airport，请求机场资料。",
+      "referenceText": "London Control, UAL 182, continue descent to 9000 feet, we are not familiar with Beatle airport. Request airport information. continue descent to 9000 feet, we are not familiar with Beatle airport, UAL 182.",
+      "referenceTextZh": "伦敦管制，UAL 182，继续下降至 9,000 英尺，我们不熟悉 Beatle Airport，请求机场资料。继续下降至 9,000 英尺，我们不熟悉 Beatle Airport，UAL 182。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-069-ual182-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0169-card-main-2929",
+      "taskTitle": "UAL 182-14",
+      "audioText": "Tell ATC you are able to land at this airport.",
+      "audioTextZh": "告诉空中交通管制，你能够在该机场着陆。",
+      "referenceText": "London Control, UAL 182, we are able to land at this airport.",
+      "referenceTextZh": "伦敦管制，UAL 182，我们能够在该机场着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-069-ual182-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0169-card-main-2930",
+      "taskTitle": "UAL 182-15",
+      "audioText": "UAL 182, continue descent to 5000 feet and contact approach 121.3.",
+      "audioTextZh": "UAL 182，继续下降至 5,000 英尺，联系进近 121.3。",
+      "referenceText": "continue descent to 5000 feet and contact approach 121.3, UAL 182.",
+      "referenceTextZh": "继续下降至 5,000 英尺，联系进近 121.3，UAL 182。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-069-ual182-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0169-card-main-2931",
+      "taskTitle": "UAL 182-16",
+      "audioText": "B: Contact Approach, tell them your emergency situation.",
+      "audioTextZh": "B：联系进近，告知他们你的紧急情况。",
+      "referenceText": "Approach, UAL 182, we encountered volcanic ash, both engines flamed out, 1 engine was successfully restarted but not stable.",
+      "referenceTextZh": "进近，UAL 182，我们遭遇火山灰，双发熄火，1 台发动机已成功重启但不稳定。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-069-ual182-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0169-card-main-2932",
+      "taskTitle": "UAL 182-17",
+      "audioText": "C: UAL 182, roger your situation. RWY is at your 2 o'clock, 10 miles, report airfield in sight.\nB: Tell ATC you see the airport.",
+      "audioTextZh": "C： UAL 182，收到你的情况。跑道在你 2 点钟方向、距离 10 英里，看到机场后报告。\nB： 告诉空中交通管制你已看到机场。",
+      "referenceText": "London Approach, UAL 182, airfield in sight. airfield in sight, UAL 182.",
+      "referenceTextZh": "伦敦进近，UAL 182，已看到机场。已看到机场，UAL 182。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-069-ual182-q17.mp3"
+    },
+    {
+      "id": "atc-scenario-0169-card-main-2933",
+      "taskTitle": "UAL 182-18",
+      "audioText": "B: Tell Approach you need emergency services to be ready near the runway.",
+      "audioTextZh": "B：告诉进近你需要应急服务在跑道附近待命。",
+      "referenceText": "Approach, UAL 182, request emergency services to be ready near the runway.",
+      "referenceTextZh": "进近，UAL 182，请求应急服务在跑道附近待命。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-069-ual182-q18.mp3"
+    }
+  ]
+}

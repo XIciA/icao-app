@@ -1,0 +1,152 @@
+{
+  "categoryId": "atc-csn",
+  "id": "atc-scenario-0154",
+  "name": "CSN 319 液压问题 雷暴绕飞 TCAS机动",
+  "declaredCardCount": 16,
+  "cards": [
+    {
+      "id": "atc-scenario-0154-card-main-2655",
+      "taskTitle": "CSN 319-1",
+      "audioText": "B: Your call sign is CSN 319, you are parking at gate 51, you have received information C, from Wuhan to Guangzhou, ask for ATC clearance.",
+      "audioTextZh": "B：你的呼号是 CSN 319，停在 51 号登机口，已收到通播 C，从武汉飞往广州，请求 ATC 放行许可。",
+      "referenceText": "Wuhan Delivery, CSN 319, gate 51, information C, request ATC clearance.",
+      "referenceTextZh": "武汉放行，CSN 319，51 号登机口，通播 C，请求 ATC 放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-052-csn319-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0154-card-main-2656",
+      "taskTitle": "CSN 319-2",
+      "audioText": "CSN 319, cleared to Guangzhou via flight planned route, departure Runway 36R, follow LKO-01 departure, initially climb to 1,200 meters, cruising level 9800 meters, when airborne, contact 119.7, squawk 2515.",
+      "audioTextZh": "CSN 319，许可按飞行计划航路飞往广州，离场使用 Runway 36R，执行 LKO-01 离场，初始爬升至 1,200 米，巡航高度 9800 米，离地后联系 119.7，应答机 2515。",
+      "referenceText": "cleared to Guangzhou via flight planned route, departure Runway 36R, LKO-01 departure, one thousan 200 meters, cruising level niner thousan 800 meters, 119.7, squawk 2515, CSN 319.",
+      "referenceTextZh": "许可按飞行计划航路飞往广州，离场使用 Runway 36R，执行 LKO-01 离场，初始爬升至 1200 米，巡航高度 9800 米，119.7，应答机 2515，CSN 319。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-052-csn319-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0154-card-main-2657",
+      "taskTitle": "CSN 319-3",
+      "audioText": "C: CSN 319, due to military activity, expect 1 hour delay, you are number 5 for departure.",
+      "audioTextZh": "C：CSN 319，因军事活动，预计延误 1 小时，你是第 5 架离场。",
+      "referenceText": "Roger, CSN 319.",
+      "referenceTextZh": "收到，CSN 319。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-052-csn319-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0154-card-main-2658",
+      "taskTitle": "CSN 319-4",
+      "audioText": "B: Now you are ready for push back and start up.",
+      "audioTextZh": "B：现在你已准备好推出和开车。",
+      "referenceText": "Wuhan Ground, CSN 319, ready for push back and start up.",
+      "referenceTextZh": "武汉地面，CSN 319，准备好推出和开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-052-csn319-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0154-card-main-2659",
+      "taskTitle": "CSN 319-5",
+      "audioText": "CSN 319, after Boeing 7 37 behind is clear, push back onto taxiway Z4, abeam gate 213, facing East.",
+      "audioTextZh": "CSN 319，后方的 Boeing 737 通过后，向后推出至 Z4 滑行道，与 213 登机口平行，机头朝东。",
+      "referenceText": "after Boeing 737 is clear, push back onto taxiway Z four, abeam gate 213, facing East, CSN 319.",
+      "referenceTextZh": "Boeing 737 通过后，向后推出至 Z4 滑行道，与 213 登机口平行，机头朝东，CSN 319。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-052-csn319-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0154-card-main-2660",
+      "taskTitle": "CSN 319-6",
+      "audioText": "B: Now you have completed push back and start up, request taxi.",
+      "audioTextZh": "B：现在你已完成推出和开车，请求滑行。",
+      "referenceText": "Wuhan Ground, CSN 319, request taxi.",
+      "referenceTextZh": "武汉地面，CSN 319，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-052-csn319-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0154-card-main-2661",
+      "taskTitle": "CSN 319-7",
+      "audioText": "CSN 319, taxi to holding point Runway 36R via taxiway Z4, A3, A.",
+      "audioTextZh": "CSN 319，经 Z4、A3、A 滑行道滑行至 Runway 36R 等待点。",
+      "referenceText": "taxi to holding point Runway 36R via taxiway Z four, A tree, A, hold short of Runway 36R, CSN 319.",
+      "referenceTextZh": "经 Z4、A3、A 滑行道滑行至 Runway 36R 等待点，在 Runway 36R 前等待，CSN 319。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-052-csn319-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0154-card-main-2662",
+      "taskTitle": "CSN 319-8",
+      "audioText": "now you are at holding point Runway 36R, you are ready for takeoff, contact Tower.",
+      "audioTextZh": "现在你位于 Runway 36R 等待点，已准备好起飞，联系塔台。",
+      "referenceText": "Wuhan Tower, CSN 319, holding at holding point Runway 36R, ready for departure.",
+      "referenceTextZh": "武汉塔台，CSN 319，正在 Runway 36R 等待点等待，已准备好离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-052-csn319-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0154-card-main-2663",
+      "taskTitle": "CSN 319-9",
+      "audioText": "CSN 319, behind Boeing 7 37 on final, line up Runway 36R.",
+      "audioTextZh": "CSN 319，跟随五边上的 Boeing 737，进入 Runway 36R。",
+      "referenceText": "behind Boeing 737 on final, line up Runway 36R, CSN 319.",
+      "referenceTextZh": "跟随五边上的 Boeing 737，进入 Runway 36R，CSN 319。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-052-csn319-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0154-card-main-2664",
+      "taskTitle": "CSN 319-10",
+      "audioText": "B: Now you are passing 900 meters, contact Wuhan Departure.",
+      "audioTextZh": "B：现在你正通过 900 米，联系武汉离场。",
+      "referenceText": "Wuhan Departure, CSN 319, passing 900 meters.",
+      "referenceTextZh": "武汉离场，CSN 319，通过 900 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-052-csn319-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0154-card-main-2665",
+      "taskTitle": "CSN 319-11",
+      "audioText": "C: CSN 319, climb to 3900 meters, expedite climb until passing 2100 meters.",
+      "audioTextZh": "C：CSN 319，爬升至 3900 米，通过 2100 米前加快爬升。",
+      "referenceText": "Climb to 3900 meters, expedite climb until passing 2100 meters, CSN 319.",
+      "referenceTextZh": "爬升至 3900 米，通过 2100 米前加快爬升，CSN 319。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-052-csn319-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0154-card-main-2666",
+      "taskTitle": "CSN 319-12",
+      "audioText": "CSN 319, stop climbing due to converging traffic, level off at 2,700 meters.",
+      "audioTextZh": "CSN 319，因汇聚交通停止爬升，在 2,700 米改平。",
+      "referenceText": "level off at 2700 meters, CSN 319.",
+      "referenceTextZh": "在 2700 米改平，CSN 319。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-052-csn319-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0154-card-main-2667",
+      "taskTitle": "CSN 319-13",
+      "audioText": "C: CSN 319, continue climb to 4500 meters.",
+      "audioTextZh": "C：CSN 319，继续爬升至 4500 米。",
+      "referenceText": "Continue climb to 4500 meters, CSN 319.",
+      "referenceTextZh": "继续爬升至 4500 米，CSN 319。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-052-csn319-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0154-card-main-2668",
+      "taskTitle": "CSN 319-14",
+      "audioText": "during climb, you found one of your hydraulic systems has failed, make an urgency call and tell ATC this situation and ask to level off at 3,900 meters and then return to Wuhan Airport.",
+      "audioTextZh": "爬升期间，你发现一个液压系统失效，发出紧急呼叫，向 ATC 通报情况，并请求在 3,900 米改平，然后返回武汉机场。",
+      "referenceText": "PANPAN, PANPAN, PANPAN, Wuhan Departure, CSN 319, one of our hydraulic systems has failed, request level off at 3900, return to land.",
+      "referenceTextZh": "PANPAN，PANPAN，PANPAN，武汉离场，CSN 319，我们的一个液压系统失效，请求在 3900 改平，返场落地。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-052-csn319-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0154-card-main-2669",
+      "taskTitle": "CSN 319-15",
+      "audioText": "CSN 319, roger PAN, maintain 3,900 meters, turn left, direct to LKO, LKO-02 arrival, expect ILS approach Runway 36R.",
+      "audioTextZh": "CSN 319，收到 PAN，保持 3,900 米，左转直飞 LKO，执行 LKO-02 进场，预计 ILS 进近 Runway 36R。",
+      "referenceText": "maintain 3900 meters, turn left, direct to LKO, LKO-02 arrival, expect ILS approach Runway 36R, CSN 319.",
+      "referenceTextZh": "保持 3900 米，左转直飞 LKO，执行 LKO-02 进场，预计 ILS 进近 Runway 36R，CSN 319。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-052-csn319-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0154-card-main-2670",
+      "taskTitle": "CSN 319-16",
+      "audioText": "B: A thunderstorm was detected near LKO, report it to Wuhan Approach and ask to deviate 20 miles to the left.",
+      "audioTextZh": "B：LKO 附近探测到雷暴，向武汉进近报告并请求向左偏置 20 海里。",
+      "referenceText": "Wuhan Approach, CSN 319, there is a thunderstorm near LKO, request offset 20 miles to the left.",
+      "referenceTextZh": "武汉进近，CSN 319，LKO 附近有雷暴，请求向左偏置 20 海里。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-052-csn319-q16.mp3"
+    }
+  ]
+}

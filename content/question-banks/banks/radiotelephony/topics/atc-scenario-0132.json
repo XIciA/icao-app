@@ -1,0 +1,152 @@
+{
+  "categoryId": "atc-aca",
+  "id": "atc-scenario-0132",
+  "name": "ACA 571 颠簸 雷暴绕飞 TCAS机动",
+  "declaredCardCount": 16,
+  "cards": [
+    {
+      "id": "atc-scenario-0132-card-main-2273",
+      "taskTitle": "ACA 571-1",
+      "audioText": "Your call sign is ACA 571, a flight from Toronto to Wuhan, now you are over OBLIK, maintaining 11000 meters, squawking 2563, contact Wuhan Control.",
+      "audioTextZh": "你的呼号是 ACA 571，这是一趟从多伦多飞往武汉的航班，现在飞越 OBLIK，正保持 11000 米，应答机 2563，联系武汉管制。",
+      "referenceText": "Wuhan Control, ACA 571, over OBLIK, maintaining 2000 meters, squawking 2563.",
+      "referenceTextZh": "武汉管制，ACA 571，飞越 OBLIK，正保持 2000 米，应答机 2563。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-029-aca571-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0132-card-main-2274",
+      "taskTitle": "ACA 571-2",
+      "audioText": "ACA 571, Wuhan Control, radar contact, maintain 11000 meters, offset 3 miles right of track due weather ahead.",
+      "audioTextZh": "ACA 571，武汉管制，雷达识别，保持 11000 米，因前方天气向航迹右侧偏置 3 英里。",
+      "referenceText": "maintain 2000 meters, 11000 meters offset tree miles right of track, ACA 571.",
+      "referenceTextZh": "保持 2000 米，在 11000 米向航迹右侧偏置 3 英里，ACA 571。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-029-aca571-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0132-card-main-2275",
+      "taskTitle": "ACA 571-3",
+      "audioText": "ACA 571, you are deviating too much from the flight path, turn left 30 degrees.\nRead back ATC instructions and tell Wuhan Control you are flying into a group of CBs and show your apologies.",
+      "audioTextZh": "ACA 571，你偏离航路过多，左转 30 度。\n复诵 ATC 指令，并告诉武汉管制你正飞入一组 CB，同时表示歉意。",
+      "referenceText": "turn left 30 degrees, my apologies, we are flying into a group of C Bs, ACA 571.",
+      "referenceTextZh": "左转 30 度，抱歉，我们正飞入一组 CB，ACA 571。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-029-aca571-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0132-card-main-2276",
+      "taskTitle": "ACA 571-4",
+      "audioText": "Now you are experiencing severe clear air turbulence at 11000 meters, contact Wuhan Control and ask if there is any turbulence reported by previous aircraft at other adjacent levels.",
+      "audioTextZh": "现在你在 11000 米遭遇严重晴空颠簸，联系武汉管制，并询问前机是否在其他相邻高度报告过颠簸。",
+      "referenceText": "Wuhan Control, ACA 571, we are experiencing severe clear air turbulence at 2000 meters, 11000 meters is there any turbulence reported by previous aircraft at other adjacent levels?",
+      "referenceTextZh": "武汉管制，ACA 571，我们在 2000 米遭遇严重晴空颠簸，11000 米，前机是否在其他相邻高度报告过颠簸？",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-029-aca571-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0132-card-main-2277",
+      "taskTitle": "ACA 571-5",
+      "audioText": "ACA 571, there is no turbulence report at 11600 meters.\nacknowledge the transmission and tell Wuhan Control you are unable to climb to 11600 meters due performance and ask if the lower levels are available.",
+      "audioTextZh": "ACA 571，11600 米没有颠簸报告。\n确认收到，并告诉武汉管制，由于性能原因你无法爬升至 11600 米，询问较低高度是否可用。",
+      "referenceText": "roger, we are unable to climb to 2600 meters, are lower levels available? ACA 571.",
+      "referenceTextZh": "收到，我们无法爬升至 2600 米，较低高度是否可用？ACA 571。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-029-aca571-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0132-card-main-2278",
+      "taskTitle": "ACA 571-6",
+      "audioText": "ACA 57110400 meters and 9800 meters are both available, which do you prefer?\nTell Wuhan Control you'd like to descend to 9800 meters.",
+      "audioTextZh": "ACA 571，10400 米和 9800 米均可用，你选择哪一个？\n告诉武汉管制你想下降至 9800 米。",
+      "referenceText": "request descend to 9800 meters, ACA 571.",
+      "referenceTextZh": "请求下降至 9800 米，ACA 571。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-029-aca571-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0132-card-main-2279",
+      "taskTitle": "ACA 571-7",
+      "audioText": "ACA 571, descend and maintain 9800 meters, turn left, direct to IKUBA.",
+      "audioTextZh": "ACA 571，下降并保持 9800 米，左转直飞 IKUBA。",
+      "referenceText": "descend and maintain 9800 meters, turn left, direct to IKUBA, ACA 571.",
+      "referenceTextZh": "下降并保持 9800 米，左转直飞 IKUBA，ACA 571。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-029-aca571-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0132-card-main-2280",
+      "taskTitle": "ACA 571-8",
+      "audioText": "Now you are over IKUBA at 15, maintaining 9800 meters, inform Wuhan Control, you have encountered severe turbulence and ask for 8400 meters.",
+      "audioTextZh": "现在你位于 IKUBA 上空，at 15，正保持 9800 米，通知武汉管制你遭遇严重颠簸，并请求 8400 米。",
+      "referenceText": "Wuhan Control, ACA 571, over IKUBA at 15, maintaining 9800 meters, we have encountered severe turbulence, request 8400 meters.",
+      "referenceTextZh": "武汉管制，ACA 571，位于 IKUBA 上空，at 15，正保持 9800 米，我们遭遇严重颠簸，请求 8400 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-029-aca571-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0132-card-main-2281",
+      "taskTitle": "ACA 571-9",
+      "audioText": "ACA 571, roger, descend and maintain 8400 meters.",
+      "audioTextZh": "ACA 571，收到，下降并保持 8400 米。",
+      "referenceText": "descend and maintain 8400 meters, ACA 571.",
+      "referenceTextZh": "下降并保持 8400 米，ACA 571。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-029-aca571-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0132-card-main-2282",
+      "taskTitle": "ACA 571-10",
+      "audioText": "ACA 571, is there any damage to the aircraft or any passenger injuries?\ntell the controller there is no damage to the aircraft and no passenger injuries.",
+      "audioTextZh": "ACA 571，航空器是否有任何损伤，或是否有乘客受伤？\n告诉管制员航空器没有损伤，也没有乘客受伤。",
+      "referenceText": "there is no damage to the aircraft and no passenger injuries, ACA 571.",
+      "referenceTextZh": "航空器没有损伤，也没有乘客受伤，ACA 571。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-029-aca571-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0132-card-main-2283",
+      "taskTitle": "ACA 571-11",
+      "audioText": "ACA 571, descend to and maintain 5400 meters, reach 5400 meters 10 miles before XSH.",
+      "audioTextZh": "ACA 571，下降至并保持 5400 米，在 XSH 前 10 英里到达 5400 米。",
+      "referenceText": "descend to and maintain 5400 meters, reach 5400 meters 10 miles before XSH, ACA 571.",
+      "referenceTextZh": "下降至并保持 5400 米，在 XSH 前 10 英里到达 5400 米，ACA 571。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-029-aca571-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0132-card-main-2284",
+      "taskTitle": "ACA 571-12",
+      "audioText": "Now you are approaching XSH, maintaining 5400 meters, you have got information O, contact Wuhan Approach.",
+      "audioTextZh": "现在你正接近 XSH，保持 5400 米，已收到 O 情报，联系武汉进近。",
+      "referenceText": "Wuhan Approach, ACA 571, approaching XSH, maintaining 5400 meters, information O.",
+      "referenceTextZh": "武汉进近，ACA 571，正接近 XSH，保持 5400 米，O 情报。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-029-aca571-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0132-card-main-2285",
+      "taskTitle": "ACA 571-13",
+      "audioText": "ACA 571, turn right heading 360, descend to and maintain 2400 meters, radar vector for ILS approach Runway 36R.",
+      "audioTextZh": "ACA 571，右转航向 360，下降至并保持 2400 米，雷达引导 ILS 进近 Runway 36R。",
+      "referenceText": "turn right heading 360, descend to and maintain 2400 meters, radar vector for ILS approach Runway 36R, ACA 571.",
+      "referenceTextZh": "右转航向 360，下降至并保持 2400 米，雷达引导 ILS 进近 Runway 36R，ACA 571。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-029-aca571-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0132-card-main-2286",
+      "taskTitle": "ACA 571-14",
+      "audioText": "ACA 571, turn right heading 330, descend to and maintain 900 meters, cleared for ILS approach Runway 36R, report established.",
+      "audioTextZh": "ACA 571，右转航向 330，下降至并保持 900 米，许可 ILS 进近 Runway 36R，建立后报告。",
+      "referenceText": "turn right heading 330, descend to and maintain 900 meters, cleared for ILS approach Runway 36R, report established, ACA 571.",
+      "referenceTextZh": "右转航向 330，下降至并保持 900 米，许可 ILS 进近 Runway 36R，建立后报告，ACA 571。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-029-aca571-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0132-card-main-2287",
+      "taskTitle": "ACA 571-15",
+      "audioText": "Now you are established on the ILS Runway 36R, contact Wuhan Tower.",
+      "audioTextZh": "现在你已建立 ILS 进近 Runway 36R，联系武汉塔台。",
+      "referenceText": "Wuhan Tower, ACA 571, established on the ILS Runway 36R.",
+      "referenceTextZh": "武汉塔台，ACA 571，已建立 ILS 进近 Runway 36R。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-029-aca571-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0132-card-main-2288",
+      "taskTitle": "ACA 571-16",
+      "audioText": "ACA 571, Runway 36R, cleared to land.",
+      "audioTextZh": "ACA 571，Runway 36R，许可落地。",
+      "referenceText": "Runway 36R, cleared to land, ACA 571.",
+      "referenceTextZh": "Runway 36R，许可落地，ACA 571。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-029-aca571-q16.mp3"
+    }
+  ]
+}

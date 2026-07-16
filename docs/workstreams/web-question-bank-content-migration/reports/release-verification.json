@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "status": "incremental-release-verified",
+  "verifiedAt": "2026-07-15T18:18:59.474Z",
+  "releaseVersion": 5,
+  "banks": [
+    {
+      "id": "listening",
+      "cards": 1223,
+      "checksum": "6dcce1792d23286fd2943ada8015c4592776ae67474227f1e974f75e46b1d609"
+    },
+    {
+      "id": "radiotelephony",
+      "cards": 2528,
+      "checksum": "8e428fd5bc5a66de81e914616eb48c28df28cbff53d73821be5ec620e21e0adf"
+    },
+    {
+      "id": "storytelling",
+      "cards": 436,
+      "checksum": "8a8b1989c7a81c593da3629b46d6172827f51151d4fd623cc21d6fbe339d7349"
+    }
+  ],
+  "resources": 1409,
+  "resourceBytes": 176605602,
+  "manifestChecksum": "f8e70fb603660dac4a993cbe9b24c1337fe6849d84f92372150b99573b52d6dc"
+}

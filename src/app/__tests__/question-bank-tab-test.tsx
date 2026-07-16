@@ -34,9 +34,12 @@ describe('<QuestionBankTab />', () => {
 
     expect(screen.getByText('稳步进阶，冲刺目标等级')).toBeTruthy();
     expect(screen.getByText('听力')).toBeTruthy();
+    expect(screen.getByText('4 题组 / 1223 题')).toBeTruthy();
     expect(screen.getByText('900 句')).toBeTruthy();
     expect(screen.getByText('陆空通话')).toBeTruthy();
+    expect(screen.getByText('186 场景 / 3218 卡')).toBeTruthy();
     expect(screen.getByText('OPI')).toBeTruthy();
+    expect(screen.getByText('144 话题 / 1356 卡')).toBeTruthy();
     expect(screen.queryByText('可练习')).toBeNull();
     expect(screen.queryByText('故事复诵')).toBeNull();
 
@@ -44,5 +47,6 @@ describe('<QuestionBankTab />', () => {
     await fireEvent.press(screen.getByLabelText('选择ICAO 5 首考'));
 
     expect(screen.getByText('故事复诵')).toBeTruthy();
+    expect(screen.getByText('4 子库 / 436 卡')).toBeTruthy();
   });
 });

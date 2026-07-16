@@ -1,0 +1,143 @@
+{
+  "categoryId": "atc-afr",
+  "id": "atc-scenario-0167",
+  "name": "AFR 332 烟雾 TCAS机动 备降/返航",
+  "declaredCardCount": 15,
+  "cards": [
+    {
+      "id": "atc-scenario-0167-card-main-2883",
+      "taskTitle": "AFR 332-1",
+      "audioText": "your call sign is AFR 332, a flight from Wuhan to Paris, you are at Gate 305, you have got information L, contact Wuhan Delivery and request ATC clearance.",
+      "audioTextZh": "你的呼号是 AFR 332，这是一趟从武汉飞往巴黎的航班，位于 305 登机口，已收到 L 情报，联系武汉放行并申请 ATC 放行许可。",
+      "referenceText": "Wuhan Delivery, AFR 332, gate 305, information L, request ATC clearance to Paris.",
+      "referenceTextZh": "武汉放行，AFR 332，305 登机口，L 情报，申请前往巴黎的 ATC 放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-067-afr332-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0167-card-main-2884",
+      "taskTitle": "AFR 332-2",
+      "audioText": "C: Station calling Wuhan Delivery, I read you 2.\nB: you find you have some problem with your transmitter, inform Wuhan Delivery of your problem and tell the controller you need maintenance check.",
+      "audioTextZh": "C： 呼叫武汉放行的电台，我听你为 2。\nB： 你发现发射机有问题，向武汉放行报告问题，并告诉管制员你需要维修检查。",
+      "referenceText": "Wuhan Delivery, AFR 332, we have some problem with our transmitter, request maintenance check.",
+      "referenceTextZh": "武汉放行，AFR 332，我们的发射机有问题，请求维修检查。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-067-afr332-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0167-card-main-2885",
+      "taskTitle": "AFR 332-3",
+      "audioText": "Now you have fixed the transmitter problem and you have copied the ATC clearance, you are ready for pushback and startup, contact Wuhan Ground.",
+      "audioTextZh": "现在你已修复发射机问题并抄收 ATC 放行许可，已准备好推出和开车，联系武汉地面。",
+      "referenceText": "Wuhan Ground, AFR 332, request pushback and startup.",
+      "referenceTextZh": "武汉地面，AFR 332，请求推出和开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-067-afr332-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0167-card-main-2886",
+      "taskTitle": "AFR 332-4",
+      "audioText": "AFR 332, recleared to Paris, departure Runway 36R, ZF-12 departure, the rest unchanged, pushback and startup approved, facing north.",
+      "audioTextZh": "AFR 332，重新许可飞往巴黎，离场使用 Runway 36R，执行 ZF-12 离场，其余不变，推出和开车批准，机头朝北。",
+      "referenceText": "recleared to Paris, departure Runway 36R, ZF-12 departure, the rest unchanged, pushback and startup approved, facing north, AFR 332.",
+      "referenceTextZh": "重新许可飞往巴黎，离场使用 Runway 36R，执行 ZF-12 离场，其余不变，推出和开车批准，机头朝北，AFR 332。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-067-afr332-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0167-card-main-2887",
+      "taskTitle": "AFR 332-5",
+      "audioText": "Now you are airborne, you are climbing to 1,800 meters, you observed a drone at your 10 o'clock above, closing to your flight track, report it to Wuhan Departure and request right turn for avoidance.",
+      "audioTextZh": "现在你已离地，正爬升至 1,800 米，观察到一架无人机位于 10 点钟上方，正在接近你的航迹，向武汉离场报告并请求右转避让。",
+      "referenceText": "Wuhan Departure, AFR 332, airborne, climbing to 1800 meters, we observed a drone at our 10 o'clock above, closing to our flight track, request right turn for avoidance.",
+      "referenceTextZh": "武汉离场，AFR 332，已离地，正爬升至 1800 米，我们观察到一架无人机位于 10 点钟上方，正在接近我们的航迹，请求右转避让。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-067-afr332-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0167-card-main-2888",
+      "taskTitle": "AFR 332-6",
+      "audioText": "AFR 332, Wuhan Departure, roger, turn right heading 270, climb to 2,400 meters, maintain visual separation. When able, could you describe the drone in detail?\nB: read back the ATC instructions and tell the controller it's a white drone, crossing from left to right.",
+      "audioTextZh": "AFR 332，武汉离场，收到，右转航向 270，爬升至 2,400 米，保持目视间隔。可以时，请详细描述无人机。\nB： 复诵空中交通管制指令，并告诉管制员这是一架白色无人机，正从左向右穿越。",
+      "referenceText": "turn right heading 270, climb to 2004 hudnred meters, maintain visual separation. It's a white drone, crossing from left right, AFR 332.",
+      "referenceTextZh": "右转航向 270，爬升至 2004 百米，保持目视间隔。这是一架白色无人机，正从左向右穿越，AFR 332。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-067-afr332-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0167-card-main-2889",
+      "taskTitle": "AFR 332-7",
+      "audioText": "Now you are in Paris Control area, the purser reported there are toxic fumes in the rear lavatory, you decide to make an emergency descent for fume removal, make a distress call to Paris Control.",
+      "audioTextZh": "现在你位于巴黎管制区，乘务长报告后卫生间内有有毒烟雾，你决定紧急下降以排烟，向巴黎管制发出遇险呼叫。",
+      "referenceText": "MAYDAY, MAYDAY, MAYDAY, Paris Control, AFR 332, there are toxic fumes in the rear lavatory, request emergency descent for fume removal.",
+      "referenceTextZh": "MAYDAY，MAYDAY，MAYDAY，巴黎管制，AFR 332，后卫生间内有有毒烟雾，请求紧急下降以排烟。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-067-afr332-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0167-card-main-2890",
+      "taskTitle": "AFR 332-8",
+      "audioText": "AFR 332, roger MAYDAY, turn right heading 340, descend to FL290. When able, say further intention.",
+      "audioTextZh": "AFR 332，收到 MAYDAY，右转航向 340，下降至 FL290。可以时，报告进一步意图。",
+      "referenceText": "turn right heading 340, descend to FL290, AFR 332.",
+      "referenceTextZh": "右转航向 340，下降至 FL290，AFR 332。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-067-afr332-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0167-card-main-2891",
+      "taskTitle": "AFR 332-9",
+      "audioText": "Now you have removed the toxic fumes in the rear lavatory, you decide to continue the flight to Paris.",
+      "audioTextZh": "现在你已排除后卫生间内的有毒烟雾，决定继续飞往巴黎。",
+      "referenceText": "Paris Control, AFR 332, we have removed the toxic fumes in the rear lavatory, we decide to continue the flight to Paris.",
+      "referenceTextZh": "巴黎管制，AFR 332，我们已排除后卫生间内的有毒烟雾，决定继续飞往巴黎。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-067-afr332-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0167-card-main-2892",
+      "taskTitle": "AFR 332-10",
+      "audioText": "AFR 332, roger, turn right heading 360, climb to and maintain FL390.",
+      "audioTextZh": "AFR 332，收到，右转航向 360，爬升至并保持 FL390。",
+      "referenceText": "turn right heading 360, climb to and maintain FL390, AFR 332.",
+      "referenceTextZh": "右转航向 360，爬升至并保持 FL390，AFR 332。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-067-afr332-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0167-card-main-2893",
+      "taskTitle": "AFR 332-11",
+      "audioText": "Now you are cruising at FL390, you smelled something unusual in the cockpit, but you haven't found out the source of the smell, report this situation to Paris Control and request hold for trouble shooting.",
+      "audioTextZh": "现在你正以 FL390 巡航，在驾驶舱内闻到异常气味，但尚未查明气味来源，向巴黎管制报告情况并请求进入等待排故。",
+      "referenceText": "Paris Control, AFR 332, we smelled something unusual in the cockpit, but we haven't found out the source of the smell, request hold for trouble shooting.",
+      "referenceTextZh": "巴黎管制，AFR 332，我们在驾驶舱内闻到异常气味，但尚未查明气味来源，请求进入等待排故。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-067-afr332-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0167-card-main-2894",
+      "taskTitle": "AFR 332-12",
+      "audioText": "AFR 332, roger, turn right, direct to CDG, hold at CDG as published.",
+      "audioTextZh": "AFR 332，收到，右转，直飞 CDG，按公布程序在 CDG 等待。",
+      "referenceText": "turn right, direct to C DAL G, hold at C DAL G as published, AFR 332.",
+      "referenceTextZh": "右转，直飞 C DAL G，按公布程序在 C DAL G 等待，AFR 332。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-067-afr332-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0167-card-main-2895",
+      "taskTitle": "AFR 332-13",
+      "audioText": "Now you find there is dense smoke in the cockpit, make a distress call and request divert to the nearest suitable airport.",
+      "audioTextZh": "现在你发现驾驶舱内有浓烟，发出遇险呼叫，并请求备降最近的合适机场。",
+      "referenceText": "MAYDAY, MAYDAY, MAYDAY, Paris Control, AFR 332, there is dense smoke in the cockpit, request divert to the nearest suitable airport.",
+      "referenceTextZh": "MAYDAY，MAYDAY，MAYDAY，巴黎管制，AFR 332，驾驶舱内有浓烟，请求备降最近的合适机场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-067-afr332-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0167-card-main-2896",
+      "taskTitle": "AFR 332-14",
+      "audioText": "C: AFR 332, roger MAYDAY, turn left heading 300, radar vector to Frankfurt airport, when able, report souls on board and fuel endurance.\nB: read back and tell the controller you have 428 passengers and 12 crew members on board and fuel remaining 16000 pounds.",
+      "audioTextZh": "C： AFR 332，收到 MAYDAY，左转航向 300，雷达引导前往法兰克福机场。可以时，报告机上人数和燃油续航时间。\nB： 复诵指令，并告诉管制员机上有 428 名乘客和 12 名机组人员，剩余燃油 16,000 磅。",
+      "referenceText": "turn left heading tree zerozero, radar vector to Frankfurt airport, we have 400 and 28 passengers and 12 crew members on board and fuel remaining 16000 pounds, AFR 332.",
+      "referenceTextZh": "左转航向 300，雷达引导前往法兰克福机场，机上有 428 名乘客和 12 名机组人员，剩余燃油 16,000 磅，AFR 332。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-067-afr332-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0167-card-main-2897",
+      "taskTitle": "AFR 332-15",
+      "audioText": "your company dispatcher just told you that the ground personnels in Frankfurt are on strike, so you decide to continue your flight to Paris.",
+      "audioTextZh": "你的公司签派员刚刚告诉你，法兰克福的地面工作人员正在罢工，因此你决定继续飞往巴黎。",
+      "referenceText": "Paris Control, AFR 332, our company dispatcher just told us that the ground personnels in Frankfurt are on strike, we decide to continue our flight to Paris.",
+      "referenceTextZh": "巴黎管制，AFR 332，我们的公司签派员刚刚告诉我们，法兰克福的地面工作人员正在罢工，我们决定继续飞往巴黎。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-067-afr332-q15.mp3"
+    }
+  ]
+}

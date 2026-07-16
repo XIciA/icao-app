@@ -1,0 +1,179 @@
+{
+  "categoryId": "atc-aca",
+  "id": "atc-scenario-0127",
+  "name": "ACA 331 烟雾 TCAS机动 备降/返航",
+  "declaredCardCount": 19,
+  "cards": [
+    {
+      "id": "atc-scenario-0127-card-main-2186",
+      "taskTitle": "ACA 331-1",
+      "audioText": "B: Your call sign is ACA 331, from Wuhan to Vancouver, push back and start up have been completed, you are ready for taxi, contact Wuhan Ground for taxi instructions.",
+      "audioTextZh": "B: 你的呼号是 ACA 331，从 Wuhan 到 Vancouver，推出和开车已完成，准备滑行，联系武汉地面请求滑行指令。",
+      "referenceText": "Wuhan Ground, ACA 331, request taxi.",
+      "referenceTextZh": "武汉地面，ACA 331，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-024-aca331-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0127-card-main-2187",
+      "taskTitle": "ACA 331-2",
+      "audioText": "ACA 331, taxi to holding point Runway 18R via taxiway A7, A, Z4 and C.",
+      "audioTextZh": "ACA 331，经 A7、A、Z4 和 C 滑行道滑行至 Runway 18R 等待点。",
+      "referenceText": "taxi to holding point Runway 18R via taxiway A seven, A, Z four and C, ACA 331.",
+      "referenceTextZh": "经 A7、A、Z4 和 C 滑行道滑行至 Runway 18R 等待点，ACA 331。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-024-aca331-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0127-card-main-2188",
+      "taskTitle": "ACA 331-3",
+      "audioText": "ACA 331, follow Airbus 319 on M to holding point Runway 18R.",
+      "audioTextZh": "ACA 331，跟随 M 上的 Airbus 319 前往 Runway 18R 等待点。",
+      "referenceText": "follow Airbus 319 on M to holding point Runway 18R, ACA 331.",
+      "referenceTextZh": "跟随 M 上的 Airbus 319 前往 Runway 18R 等待点，ACA 331。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-024-aca331-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0127-card-main-2189",
+      "taskTitle": "ACA 331-4",
+      "audioText": "ACA 331, Runway 18R is closed due to disabled aircraft on the runway, change your ATC clearance to Runway 18L, ZF-12 departure, the rest unchanged.",
+      "audioTextZh": "ACA 331，因 Runway 18R 上有故障航空器，该跑道已关闭，将你的 ATC 放行许可更改为 Runway 18L、ZF-12 离场，其余不变。",
+      "referenceText": "roger, Runway 18L, ZF-12 departure, the rest unchanged, ACA 331.",
+      "referenceTextZh": "收到，Runway 18L，ZF-12 离场，其余不变，ACA 331。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-024-aca331-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0127-card-main-2190",
+      "taskTitle": "ACA 331-5",
+      "audioText": "ACA 331, enter Runway 18R from C3, vacate runway via C4, report vacated.",
+      "audioTextZh": "ACA 331，从 C3 进入 Runway 18R，经 C4 脱离跑道，脱离后报告。",
+      "referenceText": "enter Runway 18R from C tree, vacate runway via C four, report vacated, 331.",
+      "referenceTextZh": "从 C3 进入 Runway 18R，经 C4 脱离跑道，脱离后报告，331。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-024-aca331-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0127-card-main-2191",
+      "taskTitle": "ACA 331-6",
+      "audioText": "now you have exited the Runway 18R via C4, contact Wuhan Ground.",
+      "audioTextZh": "现在你已从 C4 脱离 Runway 18R，联系武汉地面。",
+      "referenceText": "Wuhan Ground, ACA 331, Runway 18R vacated via C4.",
+      "referenceTextZh": "武汉地面，ACA 331，已从 C4 脱离 Runway 18R。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-024-aca331-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0127-card-main-2192",
+      "taskTitle": "ACA 331-7",
+      "audioText": "C: ACA 331, continue taxi to holding point 18 left via taxiway M, A and A1.",
+      "audioTextZh": "C: ACA 331，继续经滑行道 M、A 和 A1 滑行至 18L 等待点。",
+      "referenceText": "Continue taxi to holding point 18L via taxiway M, A and A1, ACA 331.",
+      "referenceTextZh": "继续经滑行道 M、A 和 A1 滑行至 18L 等待点，ACA 331。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-024-aca331-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0127-card-main-2193",
+      "taskTitle": "ACA 331-8",
+      "audioText": "now you are airborne, climbing to 1,800 meters, you see a helicopter 10 o' clock above, it is closing to your aircraft, inform Wuhan Departure and request right turn to avoid the traffic.",
+      "audioTextZh": "现在你已离地，正爬升至 1,800 米，看到一架直升机位于 10 点钟上方，正在接近你的航空器，通知武汉离场并请求右转避让。",
+      "referenceText": "Wuhan Departure, ACA 331, airborne, climbing to 1,800 meters, we see helicopter 10 o' clock above, closing, request right turn to avoid it.",
+      "referenceTextZh": "武汉离场，ACA 331，已离地，正爬升至 1,800 米，我们看到一架直升机位于 10 点钟上方，正在接近，请求右转避让。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-024-aca331-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0127-card-main-2194",
+      "taskTitle": "ACA 331-9",
+      "audioText": "ACA 331, turn right heading 240, expedite climb to 2,400 meters, maintain visual separation with the helicopter.",
+      "audioTextZh": "ACA 331，右转航向 240，加速爬升至 2,400 米，与直升机保持目视间隔。",
+      "referenceText": "turn right heading 240, expedite climb to 2,400 meters, maintain visual separation, ACA 331.",
+      "referenceTextZh": "右转航向 240，加速爬升至 2,400 米，保持目视间隔，ACA 331。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-024-aca331-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0127-card-main-2195",
+      "taskTitle": "ACA 331-10",
+      "audioText": "C: ACA 331, after traffic is clear, track direct to ZF, resume own navigation, climb and maintain 5100 meters.",
+      "audioTextZh": "C: ACA 331，交通解除后，直飞 ZF，恢复自主导航，爬升并保持 5100 米。",
+      "referenceText": "After traffic is clear, track direct to ZF, resume own navigation, climb and maintain 5100 meters, ACA 331.",
+      "referenceTextZh": "交通解除后，直飞 ZF，恢复自主导航，爬升并保持 5100 米，ACA 331。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-024-aca331-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0127-card-main-2196",
+      "taskTitle": "ACA 331-11",
+      "audioText": "B: Now you are maintaining 9500 meters, over OBLIK, squawking 5655, contact Zhengzhou Control.",
+      "audioTextZh": "B: 现在你保持 9500 米，过 OBLIK，应答机 5655，联系郑州管制。",
+      "referenceText": "Zhengzhou Control, ACA 331, maintaining 9500 meters, over OBLIK, squawking 5655.",
+      "referenceTextZh": "郑州管制，ACA 331，保持 9500 米，过 OBLIK，应答机 5655。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-024-aca331-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0127-card-main-2197",
+      "taskTitle": "ACA 331-12",
+      "audioText": "C: ACA 331, Zhengzhou Control, radar contact, climb and maintain 10100 meters.",
+      "audioTextZh": "C: ACA 331，郑州管制，雷达识别，爬升并保持 10100 米。",
+      "referenceText": "Climb and maintain 10100 meters, ACA 331.",
+      "referenceTextZh": "爬升并保持 10100 米，ACA 331。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-024-aca331-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0127-card-main-2198",
+      "taskTitle": "ACA 331-13",
+      "audioText": "suddenly your cabin crew reports there are toxic fumes in rear cabin, you decided to expedite descent for smoke removal. make a distress call to Zhengzhou Control and request to level off at 3000 meters.",
+      "audioTextZh": "客舱机组突然报告后舱有有毒烟雾，你决定加速下降以排烟。向郑州管制发出遇险呼叫，并请求在 3000 米改平。",
+      "referenceText": "MAYDAY, MAYDAY, MAYDAY, Zhengzhou Control, ACA 331, our cabin crew reports there are toxic fumes in rear cabin, request expedite descent for smoke removal, request level off at 3000 meters.",
+      "referenceTextZh": "MAYDAY，MAYDAY，MAYDAY，郑州管制，ACA 331，客舱机组报告后舱有有毒烟雾，请求加速下降以排烟，请求在 3000 米改平。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-024-aca331-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0127-card-main-2199",
+      "taskTitle": "ACA 331-14",
+      "audioText": "C: ACA 331, roger MAYDAY, turn right heading 030, descend to 3000 meters on QNH 1008, advise intentions when able.",
+      "audioTextZh": "C: ACA 331，收到 MAYDAY，右转航向 030，按 QNH 1008 下降到 3000 米，可以时报告意图。",
+      "referenceText": "Turn right heading 030, descend to 3000 meters on QNH 1008, ACA 331.",
+      "referenceTextZh": "右转航向 030，按 QNH 1008 下降到 3000 米，ACA 331。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-024-aca331-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0127-card-main-2200",
+      "taskTitle": "ACA 331-15",
+      "audioText": "B: After cabin check, tell Zhengzhou Control the toxic fume might be caused by dangerous goods leaking in the cargo hold.",
+      "audioTextZh": "B: 客舱检查后，告诉 郑州管制，有毒烟雾可能由货舱危险品泄漏引起。",
+      "referenceText": "Zhengzhou Control, ACA 331, the toxic fume might be caused by dangerous goods leaking in the cargo hold.",
+      "referenceTextZh": "郑州管制，ACA 331，有毒烟雾可能由货舱危险品泄漏引起。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-024-aca331-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0127-card-main-2201",
+      "taskTitle": "ACA 331-16",
+      "audioText": "B: Several passengers have been seriously affected by the toxic fume and become unconscious, tell Zhengzhou Control the situation and request diversion to Zhengzhou.",
+      "audioTextZh": "B: 数名旅客受到有毒烟雾严重影响并失去意识，向郑州管制说明情况并请求改航 Zhengzhou。",
+      "referenceText": "Zhengzhou Control, ACA 331, several passengers have been seriously affected by the toxic fume and become unconscious, request divert to Zhengzhou.",
+      "referenceTextZh": "郑州管制，ACA 331，数名旅客受到有毒烟雾严重影响并失去意识，请求改航 Zhengzhou。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-024-aca331-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0127-card-main-2202",
+      "taskTitle": "ACA 331-17",
+      "audioText": "C: ACA 331, Zhengzhou Control, roger, turn left heading 360, contact Zhengzhou Approach 120.35.",
+      "audioTextZh": "C: ACA 331，郑州管制，收到，左转航向 360，联系郑州进近120.35。",
+      "referenceText": "Turn left heading 360, 120.35, ACA 331.",
+      "referenceTextZh": "左转航向 360，120.35，ACA 331。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-024-aca331-q17.mp3"
+    },
+    {
+      "id": "atc-scenario-0127-card-main-2203",
+      "taskTitle": "ACA 331-18",
+      "audioText": "C: ACA 331, Zhengzhou Approach, radar contact, track direct to CGO, descend to 3000 meters, expect radar vector ILS Runway 12.",
+      "audioTextZh": "C: ACA 331，郑州进近，雷达识别，直飞 CGO，下降到 3000 米，预计雷达引导 ILS 跑道 12。",
+      "referenceText": "Track direct to CGO, descend to 3000 meters, expect radar vector ILS Runway 12, ACA 331.",
+      "referenceTextZh": "直飞 CGO，下降到 3000 米，预计雷达引导 ILS 跑道 12，ACA 331。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-024-aca331-q18.mp3"
+    },
+    {
+      "id": "atc-scenario-0127-card-main-2204",
+      "taskTitle": "ACA 331-19",
+      "audioText": "C: ACA 331, what assistance do you need?\nB: tell Zhengzhou Approach you need ambulance and dangerous goods specialists.",
+      "audioTextZh": "C： ACA 331，你需要什么协助？\nB： 告诉郑州进近，你需要救护车和危险品专家。",
+      "referenceText": "Zhengzhou Approach, ACA 331, request ambulance and dangerous goods specialists.",
+      "referenceTextZh": "郑州进近，ACA 331，请求救护车和危险品专家。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-024-aca331-q19.mp3"
+    }
+  ]
+}

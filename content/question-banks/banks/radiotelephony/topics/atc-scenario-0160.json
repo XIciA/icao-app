@@ -1,0 +1,179 @@
+{
+  "categoryId": "atc-csn",
+  "id": "atc-scenario-0160",
+  "name": "CSN 9302 雷暴绕飞 TCAS机动 备降/返航",
+  "declaredCardCount": 19,
+  "cards": [
+    {
+      "id": "atc-scenario-0160-card-main-2754",
+      "taskTitle": "CSN 9302-1",
+      "audioText": "Your call sign is CSN 9302, you are at parking bay 235, you are ready for pushback, contact Guangzhou Ground.",
+      "audioTextZh": "你的呼号是 CSN 9302，你位于 235 停机位，已准备好推出，联系广州地面。",
+      "referenceText": "Ground, CSN 9302, Bay 235, ready for pushback. I request pushback",
+      "referenceTextZh": "广州地面，CSN 9302，235 停机位，已准备好推出。我请求推出。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-060-csn9302-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0160-card-main-2755",
+      "taskTitle": "CSN 9302-2",
+      "audioText": "CSN 9302, stand by, expect 20 minutes delay, thunderstorm is approaching the airport, numerous aircraft holding for weather improvement.",
+      "audioTextZh": "CSN 9302，等待，预计延误 20 分钟，雷暴正在接近机场，许多航空器正在等待天气改善。",
+      "referenceText": "roger, stand by, CSN 9302.",
+      "referenceTextZh": "收到，等待，CSN 9302。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-060-csn9302-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0160-card-main-2756",
+      "taskTitle": "CSN 9302-3",
+      "audioText": "C: CSN 9302, report tug is ready.\nB: Tell the controller the tug is in position and you are ready for pushback.",
+      "audioTextZh": "C： CSN 9302，报告牵引车是否准备好。\nB： 告诉管制员牵引车已就位，你已准备好推出。",
+      "referenceText": "The tug, ready, ready for pushback request pushback, CSN 9302.",
+      "referenceTextZh": "牵引车已准备好，已准备好推出，请求推出，CSN 9302。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-060-csn9302-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0160-card-main-2757",
+      "taskTitle": "CSN 9302-4",
+      "audioText": "CSN 9302, pushback approved, facing east, Runway 19, stand by for startup.",
+      "audioTextZh": "CSN 9302，推出批准，机头朝东，Runway 19，等待开车。",
+      "referenceText": "pushback approved, facing east, Runway 19, stand by startup, CSN 9302.",
+      "referenceTextZh": "推出批准，机头朝东，Runway 19，等待开车，CSN 9302。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-060-csn9302-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0160-card-main-2758",
+      "taskTitle": "CSN 9302-5",
+      "audioText": "B: Now you have been waiting for the start of clearance for about 15 minutes, contact Guangzhou Ground for start up.",
+      "audioTextZh": "B：现在你已等待开车许可约 15 分钟，联系广州地面请求开车。",
+      "referenceText": "Guangzhou Ground, CSN 9302, we have been waiting for about 15 minutes, request start up.",
+      "referenceTextZh": "广州地面，CSN 9302，我们已等待约 15 分钟，请求开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-060-csn9302-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0160-card-main-2759",
+      "taskTitle": "CSN 9302-6",
+      "audioText": "CSN 9302, expect departure at 49, start up at own discretion, QNH 1008, report when ready for taxi.",
+      "audioTextZh": "CSN 9302，预计 49 时离场，自主决定开车，QNH 1008，准备好滑行时报告。",
+      "referenceText": "start up at own discretion, QNH 1008, CSN 9302.",
+      "referenceTextZh": "自主决定开车，QNH 1008，CSN 9302。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-060-csn9302-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0160-card-main-2760",
+      "taskTitle": "CSN 9302-7",
+      "audioText": "B: Now you are ready for taxi.",
+      "audioTextZh": "B：现在你准备好滑行。",
+      "referenceText": "Guangzhou Ground, CSN 9302, request taxi.",
+      "referenceTextZh": "广州地面，CSN 9302，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-060-csn9302-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0160-card-main-2761",
+      "taskTitle": "CSN 9302-8",
+      "audioText": "CSN 9302, taxi via J, D, T3 and T4 to holding point Runway 19.",
+      "audioTextZh": "CSN 9302，经 J、D、T3 和 T4 滑行至 Runway 19 等待点。",
+      "referenceText": "taxi via J, DAL, T tree, T four, to holding point Runway 19, CSN 9302.",
+      "referenceTextZh": "经 J、DAL、T3、T4 滑行至 Runway 19 等待点，CSN 9302。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-060-csn9302-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0160-card-main-2762",
+      "taskTitle": "CSN 9302-9",
+      "audioText": "CSN 9302, hold short of T3, give way to Airbus 3 20 crossing from right to left.",
+      "audioTextZh": "CSN 9302，在 T3 前等待，给从右向左穿越的 Airbus 320 让行。",
+      "referenceText": "hold short of T3, give way to Airbus 3 20, CSN 3902.",
+      "referenceTextZh": "在 T3 前等待，给 Airbus 320 让行，CSN 3902。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-060-csn9302-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0160-card-main-2763",
+      "taskTitle": "CSN 9302-10",
+      "audioText": "CSN 9302, traffic is clear, continue taxi via D, T3 and T4 to holding point Runway 19.",
+      "audioTextZh": "CSN 9302，相关航空器已通过，经 D、T3 和 T4 继续滑行至 Runway 19 等待点。",
+      "referenceText": "continue taxi via DAL, T tree, T four, holding point Runway 19, CSN 9302.",
+      "referenceTextZh": "经 DAL、T3、T4 继续滑行至 Runway 19 等待点，CSN 9302。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-060-csn9302-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0160-card-main-2764",
+      "taskTitle": "CSN 9302-11",
+      "audioText": "B: Now you are holding point F1, Runway 19, you are fully ready, contact Guangzhou Tower.",
+      "audioTextZh": "B：现在你在 F1、跑道 19 等待点，完全准备好，联系广州塔台。",
+      "referenceText": "Guangzhou Tower, CSN 9302, holding point F1, Runway 19, fully ready.",
+      "referenceTextZh": "广州塔台，CSN 9302，F1 等待点，跑道 19，完全准备好。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-060-csn9302-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0160-card-main-2765",
+      "taskTitle": "CSN 9302-12",
+      "audioText": "C: CSN 9302, line up and wait Runway 19, caution thunderstorm building up at the departure end of Runway 19.\nB: Read back ATC clearance and request right turn when airborne due weather.",
+      "audioTextZh": "C： CSN 9302，进入 Runway 19 等待，注意 Runway 19 离场端有雷暴发展。\nB： 复诵 ATC 许可，并因天气原因请求离地后右转。",
+      "referenceText": "line up and wait Runway 19, request right turn due weather, CSN 9302.",
+      "referenceTextZh": "进入 Runway 19 等待，因天气原因请求右转，CSN 9302。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-060-csn9302-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0160-card-main-2766",
+      "taskTitle": "CSN 9302-13",
+      "audioText": "CSN 9302, turn right heading 120, direct to LMN, Runway 19, cleared for takeoff, surface wind 180 degrees, 5 meters per second.",
+      "audioTextZh": "CSN 9302，右转航向 120，直飞 LMN，Runway 19，许可起飞，地面风向 180 度，风速 5 米/秒。",
+      "referenceText": "turn right heading 120, direct to LM Novenmber, Runway 19, cleared for takeoff, CSN 9302.",
+      "referenceTextZh": "右转航向 120，直飞 LMN，Runway 19，许可起飞，CSN 9302。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-060-csn9302-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0160-card-main-2767",
+      "taskTitle": "CSN 9302-14",
+      "audioText": "B: Now you are airborne, maintaining 2100 meters, heading 120, contact Guangzhou Approach.",
+      "audioTextZh": "B：现在你已离地，保持 2100 米，航向 120，联系广州进近。",
+      "referenceText": "Guangzhou Approach, CSN 9302, airborne, maintaining 2100 meters, heading 120.",
+      "referenceTextZh": "广州进近，CSN 9302，已离地，保持 2100 米，航向 120。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-060-csn9302-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0160-card-main-2768",
+      "taskTitle": "CSN 9302-15",
+      "audioText": "C: CSN 302, climb to 2700 meters on QNH 1008.",
+      "audioTextZh": "C：CSN 302，QNH 1008 爬升至 2700 米。",
+      "referenceText": "Climb to 2700 meters on QNH 1008, CSN 9302.",
+      "referenceTextZh": "QNH 1008 爬升至 2700 米，CSN 9302。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-060-csn9302-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0160-card-main-2769",
+      "taskTitle": "CSN 9302-16",
+      "audioText": "B: During climb, suddenly you have been struck by foreign object, possibly hail strike, your instruments are indicating incorrectly, report it to Guangzhou Approach and request return to land.",
+      "audioTextZh": "B：爬升中，你突然被外来物击中，可能是冰雹撞击，仪表指示不正确，向广州进近报告并请求返回着陆。",
+      "referenceText": "Guangzhou Approach, CSN 9302, we have been struck by foreign object, possibly hail strike, our instruments are indicating incorrectly, request return to land.",
+      "referenceTextZh": "广州进近，CSN 9302，我们被外来物击中，可能是冰雹撞击，仪表指示不正确，请求返回着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-060-csn9302-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0160-card-main-2770",
+      "taskTitle": "CSN 9302-17",
+      "audioText": "CSN 9302, roger, descend to 1500 meters, expect radar vector for final Runway 19.",
+      "audioTextZh": "CSN 9302，收到，下降至 1500 米，预计雷达引导 Runway 19 五边。",
+      "referenceText": "descend to 1500 meters, radar vector for final Runway 19, CSN 9302.",
+      "referenceTextZh": "下降至 1500 米，雷达引导 Runway 19 五边，CSN 9302。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-060-csn9302-q17.mp3"
+    },
+    {
+      "id": "atc-scenario-0160-card-main-2771",
+      "taskTitle": "CSN 9302-18",
+      "audioText": "CSN 9302, contact Guangzhou Tower on 118.5.",
+      "audioTextZh": "CSN 9302，联系广州塔台 118.5。",
+      "referenceText": "118.5, CSN 9302.",
+      "referenceTextZh": "118.5，CSN 9302。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-060-csn9302-q18.mp3"
+    },
+    {
+      "id": "atc-scenario-0160-card-main-2772",
+      "taskTitle": "CSN 9302-19",
+      "audioText": "CSN 9302, Runway 19, cleared to land.",
+      "audioTextZh": "CSN 9302，Runway 19，许可落地。",
+      "referenceText": "Runway 19, cleared to land, CSN 9302.",
+      "referenceTextZh": "Runway 19，许可落地，CSN 9302。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-060-csn9302-q19.mp3"
+    }
+  ]
+}

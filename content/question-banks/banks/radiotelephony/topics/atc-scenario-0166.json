@@ -1,0 +1,188 @@
+{
+  "categoryId": "atc-afr",
+  "id": "atc-scenario-0166",
+  "name": "AFR 101 发动机失效 积冰/防冰 TCAS机动",
+  "declaredCardCount": 20,
+  "cards": [
+    {
+      "id": "atc-scenario-0166-card-main-2863",
+      "taskTitle": "AFR 101-1",
+      "audioText": "B: Your call sign is AFR 101, you are at Wuhan Airport, at Gate 215, information G received, request ATC clearance to Paris.",
+      "audioTextZh": "你的呼号是AFR 101，位于武汉机场215号登机口，已收到通播G，申请前往巴黎的空管放行许可。",
+      "referenceText": "Wuhan Delivery, AFR 101, gate 215, information G, request ATC clearance to Paris.",
+      "referenceTextZh": "武汉放行，AFR 101，215号登机口，通播G，申请前往巴黎的空管放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-066-afr101-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0166-card-main-2864",
+      "taskTitle": "AFR 101-2",
+      "audioText": "AFR 101, cleared to Paris via flight planned route, LKO-01 departure, initial climb to 1,800 meters, cruising level 10,700 meters, Runway 04, contact departure on 119.7, squawk 2521.",
+      "audioTextZh": "AFR 101，许可按飞行计划航路飞往巴黎，执行 LKO-01 离场，初始爬升至 1,800 米，巡航高度 10,700 米，Runway 04，联系离场 119.7，应答机 2521。",
+      "referenceText": "cleared to Paris via flight planned route, LKO-01 departure, initial climb 1800 meters, cruising level 1700 meters, departure Runway 04, after departure, contact 119.7, squawk 2521, AFR 101.",
+      "referenceTextZh": "许可按飞行计划航路飞往巴黎，执行 LKO-01 离场，初始爬升至 1800 米，巡航高度 1700 米，离场使用 Runway 04，离场后联系 119.7，应答机 2521，AFR 101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-066-afr101-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0166-card-main-2865",
+      "taskTitle": "AFR 101-3",
+      "audioText": "You decide that 10700 meters is not acceptable due to heavy weight, ask if 9500 meters is available.",
+      "audioTextZh": "你认为由于重量过大，10700 米不可接受，询问 9500 米是否可用。",
+      "referenceText": "Wuhan Delivery, AFR 101, 1007 hudnred meters is not acceptable due to heavy weight, is 9500 meters available?",
+      "referenceTextZh": "武汉放行，AFR 101，由于重量过大，1007 hudnred 米不可接受，9500 米是否可用？",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-066-afr101-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0166-card-main-2866",
+      "taskTitle": "AFR 101-4",
+      "audioText": "C: AFR 101, cleared cruising level 9500 meters.",
+      "audioTextZh": "管制员：AFR 101，巡航高度改为9500米。",
+      "referenceText": "Cleared cruising level 9500 meters, AFR 101.",
+      "referenceTextZh": "巡航高度9500米，AFR 101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-066-afr101-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0166-card-main-2867",
+      "taskTitle": "AFR 101-5",
+      "audioText": "B: Now you are ready for push back and start up, contact Ground control.",
+      "audioTextZh": "现在你已准备好推出和开车，请联系地面管制。",
+      "referenceText": "Wuhan Ground, AFR 101, request push back and start up.",
+      "referenceTextZh": "武汉地面，AFR 101，申请推出和开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-066-afr101-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0166-card-main-2868",
+      "taskTitle": "AFR 101-6",
+      "audioText": "C: AFR 101, push back and start up approved, facing east.",
+      "audioTextZh": "管制员：AFR 101，可以推出和开车，机头向东。",
+      "referenceText": "Push back and start up approved, facing east, AFR 101.",
+      "referenceTextZh": "可以推出和开车，机头向东，AFR 101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-066-afr101-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0166-card-main-2869",
+      "taskTitle": "AFR 101-7",
+      "audioText": "B: You are now on taxiway Z4 with your engines running, ask Ground control for taxi instructions.",
+      "audioTextZh": "你现在在Z4滑行道，发动机已启动，请向地面管制申请滑行指令。",
+      "referenceText": "Wuhan Ground, AFR 101, taxiway Z4, request taxi.",
+      "referenceTextZh": "武汉地面，AFR 101，Z4滑行道，申请滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-066-afr101-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0166-card-main-2870",
+      "taskTitle": "AFR 101-8",
+      "audioText": "AFR 101, taxi to holding point Runway 04via Z4 and A, hold short of A4.",
+      "audioTextZh": "AFR 101，经 Z4 和 A 滑行至 Runway 04 等待点，在 A4 前等待。",
+      "referenceText": "taxi to holding point Runway 04via taxiway Z four and A, AFR 101.",
+      "referenceTextZh": "经 Z4 和 A 滑行至 Runway 04 等待点，AFR 101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-066-afr101-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0166-card-main-2871",
+      "taskTitle": "AFR 101-9",
+      "audioText": "AFR 101, give way to B737 vacating on E3, when traffic is clear, continue taxi via taxiway A and A9, hold short of Runway 04.",
+      "audioTextZh": "AFR 101，给正在 E3 脱离的 B737 让行，相关航空器通过后，经 A 和 A9 滑行道继续滑行，在 Runway 04 前等待。",
+      "referenceText": "give way to Boeing 737 vacating on E tree, after traffic is clear, continue taxi via taxiway A and A niner, hold short of Runway 04, AFR 101.",
+      "referenceTextZh": "给正在 E3 脱离的 Boeing 737 让行，相关航空器通过后，经 A 和 A9 滑行道继续滑行，在 Runway 04 前等待，AFR 101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-066-afr101-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0166-card-main-2872",
+      "taskTitle": "AFR 101-10",
+      "audioText": "B: Now you are airborne at 600 meters climbing, contact Departure.",
+      "audioTextZh": "现在你已离地，600米爬升中，请联系离场。",
+      "referenceText": "Wuhan Departure, AFR 101, airborne, 600 meters climbing.",
+      "referenceTextZh": "武汉离场，AFR 101，已离地，600米爬升中。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-066-afr101-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0166-card-main-2873",
+      "taskTitle": "AFR 101-11",
+      "audioText": "AFR 101, radar contact, turn left, direct to DAL A, climb to 3000 meters on QNH1015.",
+      "audioTextZh": "AFR 101，雷达识别，左转直飞 DAL A，在 QNH 1015 上爬升至 3000 米。",
+      "referenceText": "turn left, direct to DAL A, climb to 3000 meters QNH 1015, AFR 10 one1.",
+      "referenceTextZh": "左转，直飞 DAL A，在 QNH 1015 上爬升至 3000 米，AFR 101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-066-afr101-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0166-card-main-2874",
+      "taskTitle": "AFR 101-12",
+      "audioText": "AFR 101, climb to 6000 meters, expedite passing 3900m.",
+      "audioTextZh": "AFR 101，爬升至 6000 米，加速爬升直至通过 3900m。",
+      "referenceText": "climb to and maintain 6000 meters, expedite climb until passing 3900, AFR 101.",
+      "referenceTextZh": "爬升并保持 6000 米，加速爬升直至通过 3900，AFR 101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-066-afr101-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0166-card-main-2875",
+      "taskTitle": "AFR 101-13",
+      "audioText": "B: You are experiencing moderate icing while maintaining 6000 meters, request higher level and state the reason.",
+      "audioTextZh": "保持6000米时遇到中度结冰，请申请更高高度并说明原因。",
+      "referenceText": "Wuhan Departure, AFR 101, we are experiencing moderate icing at 6000 meters, request higher level.",
+      "referenceTextZh": "武汉离场，AFR 101，我们在6000米遇到中度结冰，申请更高高度。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-066-afr101-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0166-card-main-2876",
+      "taskTitle": "AFR 101-14",
+      "audioText": "C: AFR 101, negative due traffic, maintain 6000 meters.",
+      "audioTextZh": "管制员：AFR 101，因冲突飞机不能同意，保持6000米。",
+      "referenceText": "Roger, maintain 6000 meters, AFR 101.",
+      "referenceTextZh": "收到，保持6000米，AFR 101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-066-afr101-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0166-card-main-2877",
+      "taskTitle": "AFR 101-15",
+      "audioText": "Suddenly your left engine has failed at 6000 meters, make an urgency call to ATC and request to descend and return to land at Wuhan Airport.",
+      "audioTextZh": "你的左发突然在 6000 米失效，向 ATC 发出紧急呼叫，并请求下降和返回武汉机场落地。",
+      "referenceText": "PANPAN, PANPAN, PANPAN, Wuhan Departure, AFR 101, our left engine failed at 6000 meters, request descent and return to land at Wuhan Airport.",
+      "referenceTextZh": "PANPAN，PANPAN，PANPAN，武汉离场，AFR 101，我们的左发在 6000 米失效，请求下降并返回武汉机场落地。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-066-afr101-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0166-card-main-2878",
+      "taskTitle": "AFR 101-16",
+      "audioText": "AFR 101, roger your PAN call, descend to 4,200 meters, turn left heading 010, expect radar vector to Runway 04.",
+      "audioTextZh": "AFR 101，收到你的 PAN 呼叫，下降至 4,200 米，左转航向 010，预计雷达引导至 Runway 04。",
+      "referenceText": "descend to 4200 meters, turn left heading 010, expect radar vector to Runway 04, AFR 101.",
+      "referenceTextZh": "下降至 4200 米，左转航向 010，预计雷达引导至 Runway 04，AFR 101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-066-afr101-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0166-card-main-2879",
+      "taskTitle": "AFR 101-17",
+      "audioText": "C: AFR 101, continue descent to 3000 meters on QNH 1015.",
+      "audioTextZh": "管制员：AFR 101，按QNH 1015继续下降至3000米。",
+      "referenceText": "Continue descent to 3000 meters on QNH 1015, AFR 101.",
+      "referenceTextZh": "按QNH 1015继续下降至3000米，AFR 101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-066-afr101-q17.mp3"
+    },
+    {
+      "id": "atc-scenario-0166-card-main-2880",
+      "taskTitle": "AFR 101-18",
+      "audioText": "B: Now you have successfully restarted the left engine, but you still decide to return to Wuhan for safety concerns, inform ATC about the current situation and cancel the Urgency call.",
+      "audioTextZh": "现在你已成功重启左发，但出于安全考虑仍决定返回武汉，请告知空管当前情况并取消紧急状态。",
+      "referenceText": "Wuhan Approach, AFR 101, cancel urgency, we have restarted our left engine, but we still want to return to land for safety concerns.",
+      "referenceTextZh": "武汉进近，AFR 101，取消紧急状态，我们已重启左发，但出于安全考虑仍希望返回落地。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-066-afr101-q18.mp3"
+    },
+    {
+      "id": "atc-scenario-0166-card-main-2881",
+      "taskTitle": "AFR 101-19",
+      "audioText": "B: Now you are established on the ILS approach Runway 04, contact Wuhan Tower.",
+      "audioTextZh": "现在你已建立04跑道ILS进近，请联系武汉塔台。",
+      "referenceText": "Wuhan Tower, AFR 101, established on the ILS approach Runway 04.",
+      "referenceTextZh": "武汉塔台，AFR 101，已建立04跑道ILS进近。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-066-afr101-q19.mp3"
+    },
+    {
+      "id": "atc-scenario-0166-card-main-2882",
+      "taskTitle": "AFR 101-20",
+      "audioText": "C: AFR 101, surface wind 070 degrees, 5 meters per second, Runway 04, cleared to land.",
+      "audioTextZh": "管制员：AFR 101，地面风070度，5米/秒，04跑道，可以落地。",
+      "referenceText": "Cleared to land Runway 04, AFR 101.",
+      "referenceTextZh": "可以04跑道落地，AFR 101。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-066-afr101-q20.mp3"
+    }
+  ]
+}

@@ -43,6 +43,7 @@ export type QuestionBankTextCard = QuestionBankCardBase & {
   referenceText?: string;
   referenceTextZh?: string;
   audio?: string;
+  audioDurationSeconds?: number;
   choices?: string[];
   correctChoiceIndex?: number;
 };

@@ -365,37 +365,53 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
 
   const aiBusy = busy === 'transcribe' || busy === 'review';
   const showRetry = activeTab === 'mine' ? Boolean(autoSaveError) : activeTab === 'notes' ? Boolean(saveError) : false;
+  const showReviewAction = activeTab === 'mine' && reviewKind !== 'none';
+  const reviewDisabled = !answerText.trim() || editing || aiBusy;
 
   return (
     <GestureDetector gesture={swipeGesture}>
       <View>
         <View style={styles.header} testID="study-workbench-header">
           <AppText variant="button">{title}</AppText>
-          {editableTab && !aiBusy ? (
+          {editableTab ? <View style={styles.headerActions}>
+            {showReviewAction ? <Pressable
+              accessibilityLabel={reviewLabel}
+              accessibilityRole="button"
+              accessibilityState={{ disabled: reviewDisabled }}
+              disabled={reviewDisabled}
+              hitSlop={4}
+              onPress={() => void reviewAnswer()}
+              style={({ pressed }) => [styles.headerAction, pressed && !reviewDisabled ? styles.pressed : null, reviewDisabled ? styles.headerActionDisabled : null]}
+              testID="study-workbench-review-action"
+            >
+              <AppText color={reviewDisabled ? colors.mutedForeground : colors.primary} variant="micro">{reviewLabel}</AppText>
+            </Pressable> : null}
             <Pressable
               accessibilityLabel={editAccessibilityLabel}
               accessibilityRole="button"
+              accessibilityState={{ disabled: aiBusy }}
+              disabled={aiBusy}
               hitSlop={4}
               onPress={() => editing ? finishEditing() : onEditingTabChange(editableTab)}
-              style={({ pressed }) => [styles.headerAction, pressed ? styles.pressed : null]}
+              style={({ pressed }) => [styles.headerAction, pressed && !aiBusy ? styles.pressed : null, aiBusy ? styles.headerActionDisabled : null]}
               testID="study-workbench-primary-action"
             >
-              <AppText color={colors.primary} variant="micro">{editing ? '完成' : '编辑'}</AppText>
+              <AppText color={aiBusy ? colors.mutedForeground : colors.primary} variant="micro">{editing ? '完成' : '编辑'}</AppText>
             </Pressable>
-          ) : null}
+          </View> : null}
         </View>
 
         <View style={styles.content} testID="study-workbench-content">
           {activeTab === 'mine' ? <View style={styles.panel}>
             {recordingUri && !consented ? <AppText variant="micro">录音仅用于本次转写。</AppText> : null}
-            {editing ? <TextInput accessibilityLabel="我的回答" autoFocus multiline onBlur={() => { onEditingTabChange(undefined); void persistCurrent(); }} onChangeText={changeAnswer} onContentSizeChange={({ nativeEvent }) => setAnswerInputHeight(Math.max(92, Math.ceil(nativeEvent.contentSize.height)))} placeholder={busy === 'transcribe' ? '正在转写…' : '输入回答'} placeholderTextColor={colors.mutedForeground} ref={answerInputRef} scrollEnabled={false} style={[styles.input, { height: answerInputHeight }]} textAlignVertical="top" value={answerText} /> : <View accessibilityLabel="我的回答内容" style={[styles.input, styles.readOnlyInput]}><AppText color={answerText ? colors.foreground : colors.mutedForeground}>{answerText || (busy === 'transcribe' ? '正在转写…' : '暂无回答')}</AppText></View>}
+            {editing ? <TextInput accessibilityLabel="我的回答" autoFocus multiline onBlur={() => { onEditingTabChange(undefined); void persistCurrent(); }} onChangeText={changeAnswer} onContentSizeChange={({ nativeEvent }) => setAnswerInputHeight(Math.max(92, Math.ceil(nativeEvent.contentSize.height)))} placeholder={busy === 'transcribe' ? '正在转写…' : '输入回答'} placeholderTextColor={colors.mutedForeground} ref={answerInputRef} scrollEnabled={false} style={[styles.input, styles.editingInput, { height: answerInputHeight }]} textAlignVertical="top" value={answerText} /> : <View accessibilityLabel="我的回答内容" style={[styles.input, styles.readOnlyInput]}><AppText color={answerText ? colors.foreground : colors.mutedForeground}>{answerText || (busy === 'transcribe' ? '正在转写…' : '暂无回答')}</AppText></View>}
             {matchMessage ? <View style={styles.feedback}><AppText variant="caption">{matchMessage}</AppText><AppText variant="button">正确原文</AppText><AppText>{questionText}</AppText></View> : null}
             {grammar ? <View style={styles.feedback}><AppText variant="button">语法反馈</AppText><AppText variant="caption">{grammar.overallFeedbackZh}</AppText><AppText variant="button">修改后表达</AppText><AppText>{grammar.correctedText}</AppText>{grammar.issues.map((issue, index) => <View key={`${issue}-${index}`} style={styles.issue}><AppText variant="caption">{issue}</AppText></View>)}</View> : null}
             {opi ? <View style={styles.feedback}><AppText variant="button">更自然的民航口语表达</AppText><AppText>{opi.polishedText}</AppText></View> : null}
             {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
             {autoSaveError ? <AppText accessibilityLiveRegion="assertive" color={colors.destructive} variant="micro">{autoSaveError}</AppText> : null}
           </View> : activeTab === 'reference' ? referenceContent : <View style={styles.panel}>
-            {editing ? <TextInput accessibilityLabel="学习笔记" autoFocus multiline onBlur={() => onEditingTabChange(undefined)} onChangeText={onNoteChange} onContentSizeChange={({ nativeEvent }) => setNoteInputHeight(Math.max(92, Math.ceil(nativeEvent.contentSize.height)))} placeholder="记录要点" placeholderTextColor={colors.mutedForeground} ref={noteInputRef} scrollEnabled={false} style={[styles.input, { height: noteInputHeight }]} textAlignVertical="top" value={noteText} /> : <View accessibilityLabel="学习笔记内容" style={[styles.input, styles.readOnlyInput]}><AppText color={noteText ? colors.foreground : colors.mutedForeground}>{noteText || '暂无笔记'}</AppText></View>}
+            {editing ? <TextInput accessibilityLabel="学习笔记" autoFocus multiline onBlur={() => onEditingTabChange(undefined)} onChangeText={onNoteChange} onContentSizeChange={({ nativeEvent }) => setNoteInputHeight(Math.max(92, Math.ceil(nativeEvent.contentSize.height)))} placeholder="记录要点" placeholderTextColor={colors.mutedForeground} ref={noteInputRef} scrollEnabled={false} style={[styles.input, styles.editingInput, { height: noteInputHeight }]} textAlignVertical="top" value={noteText} /> : <View accessibilityLabel="学习笔记内容" style={[styles.input, styles.readOnlyInput]}><AppText color={noteText ? colors.foreground : colors.mutedForeground}>{noteText || '暂无笔记'}</AppText></View>}
             {saveError ? <AppText accessibilityLiveRegion="assertive" color={colors.destructive} variant="micro">{saveError}</AppText> : null}
           </View>}
         </View>
@@ -410,7 +426,6 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
             {showRetry ? <Pressable accessibilityLabel="重试保存" accessibilityRole="button" onPress={() => activeTab === 'mine' ? void persistCurrent() : onRetrySave()} style={styles.action}><AppText color={colors.destructive} variant="micro">重试</AppText></Pressable> : null}
             {aiBusy ? <Pressable accessibilityLabel="取消当前 AI 操作" accessibilityRole="button" onPress={() => activeRequest.current?.abort()} style={styles.action}><AppText color={colors.mutedForeground} variant="micro">取消</AppText></Pressable> : null}
             {activeTab === 'mine' && (failedAction === 'transcribe' || (transcriptionAttempted && !answerText.trim())) && recordingUri && !aiBusy ? <Pressable accessibilityLabel="重试语音转写" accessibilityRole="button" onPress={() => void transcribe()} style={styles.action}><AppText color={colors.primary} variant="micro">重试转写</AppText></Pressable> : null}
-            {activeTab === 'mine' && reviewKind !== 'none' && !editing && !aiBusy ? <Pressable accessibilityLabel={reviewLabel} accessibilityRole="button" accessibilityState={{ disabled: !answerText.trim() }} disabled={!answerText.trim()} onPress={() => void reviewAnswer()} style={[styles.action, styles.reviewAction, !answerText.trim() ? styles.disabled : null]}><AppText color={answerText.trim() ? colors.primary : colors.mutedForeground} variant="micro">{reviewLabel}</AppText></Pressable> : null}
           </View>
         </View>
       </View>
@@ -420,21 +435,22 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
 
 const styles = StyleSheet.create({
   header: { alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between', minHeight: 52, paddingHorizontal: spacing[4], paddingTop: spacing[3] },
+  headerActions: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] },
   headerAction: { alignItems: 'center', backgroundColor: colors.primary06, borderColor: colors.primary20, borderRadius: radii.full, borderWidth: 1, justifyContent: 'center', minHeight: 36, minWidth: 52, paddingHorizontal: spacing[3] },
+  headerActionDisabled: { opacity: 0.45 },
   content: { paddingHorizontal: spacing[4] },
   panel: { gap: spacing[2] },
-  input: { backgroundColor: colors.secondary, borderColor: colors.border, borderRadius: radii.xl, borderWidth: 1, color: colors.foreground, minHeight: 92, padding: spacing[3] },
+  input: { backgroundColor: 'transparent', borderRadius: 0, borderWidth: 0, color: colors.foreground, minHeight: 92, paddingHorizontal: spacing[2], paddingVertical: spacing[3] },
+  editingInput: { backgroundColor: colors.primary06 },
   readOnlyInput: { justifyContent: 'center' },
   feedback: { backgroundColor: colors.primary06, borderColor: colors.primary20, borderRadius: radii.lg, borderWidth: 1, gap: spacing[2], padding: spacing[3] },
   issue: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth, gap: spacing[1], paddingTop: spacing[2] },
-  footer: { alignItems: 'flex-end', flexDirection: 'row', justifyContent: 'space-between', minHeight: 48, paddingBottom: spacing[2], paddingHorizontal: spacing[3], paddingTop: spacing[1] },
-  dots: { alignItems: 'center', backgroundColor: colors.secondary, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', height: 30, paddingHorizontal: spacing[1] },
-  dotTarget: { alignItems: 'center', height: 28, justifyContent: 'center', width: 28 },
-  dot: { backgroundColor: colors.mutedForeground, borderRadius: radii.full, height: 5, opacity: 0.32, width: 5 },
-  dotActive: { backgroundColor: colors.primary, height: 6, opacity: 1, width: 16 },
+  footer: { alignItems: 'flex-end', flexDirection: 'row', justifyContent: 'space-between', minHeight: 40, paddingBottom: spacing[2], paddingHorizontal: spacing[3], paddingTop: spacing[1] },
+  dots: { alignItems: 'center', backgroundColor: 'transparent', borderWidth: 0, flexDirection: 'row', height: 28 },
+  dotTarget: { alignItems: 'center', height: 28, justifyContent: 'center', width: 18 },
+  dot: { backgroundColor: colors.mutedForeground, borderRadius: radii.full, height: 4, opacity: 0.32, width: 4 },
+  dotActive: { backgroundColor: colors.primary, height: 4, opacity: 1, width: 14 },
   actions: { alignItems: 'center', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'flex-end' },
   action: { alignItems: 'center', borderRadius: radii.full, justifyContent: 'center', minHeight: 44, paddingHorizontal: spacing[2.5] },
-  reviewAction: { backgroundColor: colors.primary06 },
   pressed: { opacity: 0.72 },
-  disabled: { opacity: 0.55 },
 });

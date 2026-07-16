@@ -1,0 +1,143 @@
+{
+  "categoryId": "atc-csn",
+  "id": "atc-scenario-0158",
+  "name": "CSN 3235 TCAS机动 导航/自动驾驶问题 舱门问题",
+  "declaredCardCount": 15,
+  "cards": [
+    {
+      "id": "atc-scenario-0158-card-main-2720",
+      "taskTitle": "CSN 3235-1",
+      "audioText": "Your call sign is CSN 3235, a flight from Beijing to Shanghai Hongqiao, you are parking at gate 217, you have got information G, contact Beijing Delivery and request ATC clearance.",
+      "audioTextZh": "你的呼号是 CSN 3235，这是一趟从北京飞往上海虹桥的航班，你停在 217 登机口，已收到 G 情报，联系北京放行并申请 ATC 放行许可。",
+      "referenceText": "Delivery, CSN 3235, gate 215, information G, request ATC clearance, Shanghai.",
+      "referenceTextZh": "北京放行，CSN 3235，215 登机口，G 情报，申请前往上海的 ATC 放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-058-csn3235-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0158-card-main-2721",
+      "taskTitle": "CSN 3235-2",
+      "audioText": "CSN 3235, Beijing Delivery, cleared to Shanghai Hongqiao via flight planned route, departure Runway 08L, LMN-41 departure, initial climb 1,500 meters, cruising level 9200 meters, after departure, contact 119.8, squawk 3223.",
+      "audioTextZh": "CSN 3235，北京放行，许可按飞行计划航路飞往上海虹桥，离场使用 Runway 08L，执行 LMN-41 离场，初始爬升至 1,500 米，巡航高度 9,200 米，离场后联系 119.8，应答机 3223。",
+      "referenceText": "cleared to Shanghai, flight planned route, 08 left, LMN-41 departure, 1500 meters, 9002 hudnred meters, 119.8, squawk 3223, CSN 3235.",
+      "referenceTextZh": "许可按飞行计划航路飞往上海，Runway 08L，LMN-41 离场，1,500 米，9002 百米，119.8，应答机 3223，CSN 3235。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-058-csn3235-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0158-card-main-2722",
+      "taskTitle": "CSN 3235-3",
+      "audioText": "CSN 3235, your slot time is 0800, expect 15 minutes delay due temporary airway restriction.",
+      "audioTextZh": "CSN 3235，你的时隙时间是 0800，因临时航路限制，预计延误 15 分钟。",
+      "referenceText": "roger, slot time 0800, expect 15 minutes delay, CSN 3235.",
+      "referenceTextZh": "收到，时隙时间 0800，预计延误 15 分钟，CSN 3235。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-058-csn3235-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0158-card-main-2723",
+      "taskTitle": "CSN 3235-4",
+      "audioText": "CSN 3235, the airway restriction has been canceled, report ready for startup.",
+      "audioTextZh": "CSN 3235，航路限制已取消，准备好开车时报告。",
+      "referenceText": "roger, report ready for startup, CSN 3235.",
+      "referenceTextZh": "收到，准备好开车时报告，CSN 3235。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-058-csn3235-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0158-card-main-2724",
+      "taskTitle": "CSN 3235-5",
+      "audioText": "All the passengers have boarded the aircraft, all cabin doors have been closed, you are fully ready.",
+      "audioTextZh": "所有乘客均已登机，所有客舱门均已关闭，你已完全准备好。",
+      "referenceText": "Ground, CSN 3235, fully ready.",
+      "referenceTextZh": "北京地面，CSN 3235，已完全准备好。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-058-csn3235-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0158-card-main-2725",
+      "taskTitle": "CSN 3235-6",
+      "audioText": "CSN 3235, startup approved.",
+      "audioTextZh": "CSN 3235，开车批准。",
+      "referenceText": "startup approved, CSN 3235.",
+      "referenceTextZh": "开车批准，CSN 3235。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-058-csn3235-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0158-card-main-2726",
+      "taskTitle": "CSN 3235-7",
+      "audioText": "B: Now you are ready for push back.",
+      "audioTextZh": "B：现在你准备好推出。",
+      "referenceText": "Beijing Ground, CSN 3235, ready for push back.",
+      "referenceTextZh": "北京地面，CSN 3235，准备好推出。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-058-csn3235-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0158-card-main-2727",
+      "taskTitle": "CSN 3235-8",
+      "audioText": "CSN 3235, pushback approved, facing south.",
+      "audioTextZh": "CSN 3235，推出批准，机头朝南。",
+      "referenceText": "pushback approved, facing south, CSN 3235.",
+      "referenceTextZh": "推出批准，机头朝南，CSN 3235。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-058-csn3235-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0158-card-main-2728",
+      "taskTitle": "CSN 3235-9",
+      "audioText": "B: Now you have completed the push back, you are ready for taxi.",
+      "audioTextZh": "B：现在你已完成推出，准备好滑行。",
+      "referenceText": "Beijing Ground, CSN 3235, push back completed, request taxi.",
+      "referenceTextZh": "北京地面，CSN 3235，推出完成，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-058-csn3235-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0158-card-main-2729",
+      "taskTitle": "CSN 3235-10",
+      "audioText": "CSN 3235, taxi via taxiway T4, D and A to holding point Runway 08L.",
+      "audioTextZh": "CSN 3235，经 T4、D 和 A 滑行道滑行至 Runway 08L 等待点。",
+      "referenceText": "taxi via taxiway T four, DAL, A, holding point Runway 08L, CSN 3235.",
+      "referenceTextZh": "经 T4、DAL、A 滑行道滑行至 Runway 08L 等待点，CSN 3235。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-058-csn3235-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0158-card-main-2730",
+      "taskTitle": "CSN 3235-11",
+      "audioText": "Now you are holding short of Runway 08L, you are ready for departure, contact Beijing Tower.",
+      "audioTextZh": "现在你正在 Runway 08L 前等待，已准备好离场，联系北京塔台。",
+      "referenceText": "Tower, CSN 3235, holding short of Runway 08L, ready for departure.",
+      "referenceTextZh": "北京塔台，CSN 3235，正在 Runway 08L 前等待，已准备好离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-058-csn3235-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0158-card-main-2731",
+      "taskTitle": "CSN 3235-12",
+      "audioText": "CSN 3235, line up Runway 08L and cleared for takeoff, caution strong wind shear at the departure end of the runway.",
+      "audioTextZh": "CSN 3235，进入 Runway 08L 等待，许可起飞，注意跑道离场端有强风切变。",
+      "referenceText": "line up Runway 08L, cleared for takeoff, CSN 3235.",
+      "referenceTextZh": "进入 Runway 08L 等待，许可起飞，CSN 3235。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-058-csn3235-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0158-card-main-2732",
+      "taskTitle": "CSN 3235-13",
+      "audioText": "Just after liftoff, you encountered strong wind shear between the surface and 200m, report it to Beijing Departure.",
+      "audioTextZh": "离地后不久，你在地面至 200 米之间遭遇强风切变，向北京离场报告。",
+      "referenceText": "Departure, CSN 3235, we encountered strong wind shear, between the surface and 200 meters.",
+      "referenceTextZh": "北京离场，CSN 3235，我们在地面至 200 米之间遭遇强风切变。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-058-csn3235-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0158-card-main-2733",
+      "taskTitle": "CSN 3235-14",
+      "audioText": "CSN 3235, roger, climb to 4,200 meters, resume own navigation to LMN.",
+      "audioTextZh": "CSN 3235，收到，爬升至 4,200 米，恢复自主领航至 LMN。",
+      "referenceText": "climb to 4200 meters, resume own navigation to LMN, CSN 3235.",
+      "referenceTextZh": "爬升至 4,200 米，恢复自主领航至 LMN，CSN 3235。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-058-csn3235-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0158-card-main-2734",
+      "taskTitle": "CSN 3235-15",
+      "audioText": "CSN 3235, continue climb to 5100 meters, contact Beijing Control on 118.9.",
+      "audioTextZh": "CSN 3235，继续爬升至 5,100 米，联系北京管制 118.9。",
+      "referenceText": "continue climb to 5100 meters, 118.9, CSN 3235.",
+      "referenceTextZh": "继续爬升至 5,100 米，118.9，CSN 3235。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-058-csn3235-q15.mp3"
+    }
+  ]
+}

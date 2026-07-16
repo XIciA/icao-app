@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "status": "formal-candidate-verified",
+  "verifiedAt": "2026-07-15T17:53:58.351Z",
+  "releaseVersion": 5,
+  "totalNewCards": 1409,
+  "byKind": {
+    "listening": 592,
+    "radiotelephony": 677,
+    "storytelling": 140
+  },
+  "finalCounts": {
+    "listening": {
+      "topics": 4,
+      "cards": 1223
+    },
+    "radiotelephony": {
+      "topics": 111,
+      "cards": 2528
+    },
+    "storytelling": {
+      "topics": 4,
+      "cards": 436
+    }
+  },
+  "resources": 5391,
+  "newResources": 1409,
+  "candidateChecksum": "3bb93c42839f942a9f935893ec3bef947856ec9e321309661b6ddb33a268152c"
+}

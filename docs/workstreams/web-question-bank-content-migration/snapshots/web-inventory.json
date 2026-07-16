@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-07-15T16:05:19.013Z",
+  "snapshotRootChecksum": "526c3b6aeabfe33fd588e8d19914f440ed1073446960774a1c529bb610646e2c",
+  "candidates": 2288,
+  "counts": {
+    "listening": 777,
+    "radiotelephony": 1367,
+    "storytelling": 144
+  },
+  "zones": {
+    "banks": 2251,
+    "quarantine": 37
+  },
+  "uniqueSourceIds": 2288,
+  "audioFilesVerified": 2288,
+  "errors": []
+}

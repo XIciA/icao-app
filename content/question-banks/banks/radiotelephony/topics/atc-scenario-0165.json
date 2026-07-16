@@ -1,0 +1,152 @@
+{
+  "categoryId": "atc-afr",
+  "id": "atc-scenario-0165",
+  "name": "AFR 9939 刹车问题 积冰/防冰 TCAS机动",
+  "declaredCardCount": 16,
+  "cards": [
+    {
+      "id": "atc-scenario-0165-card-main-2847",
+      "taskTitle": "AFR 9939-1",
+      "audioText": "B: Your call sign is AFR 939, a flight from Wuhan to Beijing, you are parking at gate 07, you have received information H, request ATC clearance from Wuhan Delivery.",
+      "audioTextZh": "你的呼号是AFR 939，从武汉飞往北京，停在07号登机口，已收到通播H，向武汉放行申请空管放行许可。",
+      "referenceText": "Wuhan Delivery, AFR 9939, gate 07, information H, request ATC clearance to Beijing.",
+      "referenceTextZh": "武汉放行，AFR 9939，07号登机口，通播H，申请前往北京的空管放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-065-afr9939-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0165-card-main-2848",
+      "taskTitle": "AFR 9939-2",
+      "audioText": "AFR 939, cleared to Beijing via flight planned route, departure Runway 18, ZF-02 departure, initial climb 2700 meters, request level change en route, departure frequency 127.35, squawk 2615.",
+      "audioTextZh": "AFR 939，许可按飞行计划航路飞往北京，离场使用 Runway 18，执行 ZF-02 离场，初始爬升至 2700 米，途中申请改变高度，离场频率 127.35，应答机 2615。",
+      "referenceText": "cleared to Beijing via flight planned route, departure Runway 18, ZF-02 departure, initial climb 2700, request level change en route, departure frequency 127.35, squawk 2615, AFR 9939.",
+      "referenceTextZh": "许可按飞行计划航路飞往北京，离场使用 Runway 18，执行 ZF-02 离场，初始爬升至 2700，途中申请改变高度，离场频率 127.35，应答机 2615，AFR 9939。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-065-afr9939-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0165-card-main-2849",
+      "taskTitle": "AFR 9939-3",
+      "audioText": "Now you are ready for pushback and startup, contact Wuhan Ground.",
+      "audioTextZh": "现在你已准备好推出和开车，联系武汉地面。",
+      "referenceText": "Wuhan Ground, AFR 939, request pushback and startup.",
+      "referenceTextZh": "武汉地面，AFR 939，请求推出和开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-065-afr9939-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0165-card-main-2850",
+      "taskTitle": "AFR 9939-4",
+      "audioText": "C: AFR 939, push back and start up approved, facing east.\nB: Tell the controller you have difficulty in starting the engines with strong tailwind, you want to change the push back position in face west.",
+      "audioTextZh": "管制员：AFR 939，可以推出和开车，机头向东。告诉管制员，强顺风下发动机启动有困难，希望改为机头向西的推出位置。",
+      "referenceText": "Push back and start up approved, facing east, but we have difficulty in starting the engines with strong tailwind, request change the push back position in face west, AFR 9939.",
+      "referenceTextZh": "可以推出和开车，机头向东，但强顺风下发动机启动有困难，申请改为机头向西推出，AFR 9939。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-065-afr9939-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0165-card-main-2851",
+      "taskTitle": "AFR 9939-5",
+      "audioText": "Now you have completed pushback and startup procedures, you are ready for taxi, request taxi instructions.",
+      "audioTextZh": "现在你已完成推出和开车程序，准备滑行，请求滑行指令。",
+      "referenceText": "Wuhan Ground, AFR 939, pushback and startup completed, request taxi.",
+      "referenceTextZh": "武汉地面，AFR 939，推出和开车已完成，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-065-afr9939-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0165-card-main-2852",
+      "taskTitle": "AFR 9939-6",
+      "audioText": "C: AFR 939, taxi to holding point Runway 18 via taxiway Z4, A and A1.",
+      "audioTextZh": "管制员：AFR 939，经滑行道Z4、A和A1滑行至18跑道等待点。",
+      "referenceText": "Taxi to holding point Runway 18 via taxiway Z4, A and A1, AFR 9939.",
+      "referenceTextZh": "经滑行道Z4、A和A1滑行至18跑道等待点，AFR 9939。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-065-afr9939-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0165-card-main-2853",
+      "taskTitle": "AFR 9939-7",
+      "audioText": "C: AFR 939, hold at present position, give way to Airbus 320 vacating via E5.",
+      "audioTextZh": "管制员：AFR 939，在当前位置等待，让行经E5脱离的Airbus 320。",
+      "referenceText": "Holding position, traffic in sight, AFR 9939.",
+      "referenceTextZh": "当前位置等待，看到冲突飞机，AFR 9939。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-065-afr9939-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0165-card-main-2854",
+      "taskTitle": "AFR 9939-8",
+      "audioText": "C: AFR 939, traffic is clear, continue taxi via A and A1 to holding point Runway 18.",
+      "audioTextZh": "管制员：AFR 939，冲突已解除，继续经A和A1滑行至18跑道等待点。",
+      "referenceText": "Roger, continue taxi via A and A1 to holding point Runway 18, AFR 9939.",
+      "referenceTextZh": "收到，继续经A和A1滑行至18跑道等待点，AFR 9939。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-065-afr9939-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0165-card-main-2855",
+      "taskTitle": "AFR 9939-9",
+      "audioText": "AFR 939, contact Wuhan Tower on 124.35.",
+      "audioTextZh": "AFR 939，联系武汉塔台 124.35。",
+      "referenceText": "124.35, AFR 939.",
+      "referenceTextZh": "124.35，AFR 939。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-065-afr9939-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0165-card-main-2856",
+      "taskTitle": "AFR 9939-10",
+      "audioText": "B: Now you are at holding point A1, Runway 18, you have completed pre-takeoff checklist, you are ready for takeoff, contact Wuhan Tower.",
+      "audioTextZh": "现在你在A1等待点、18跑道，起飞前检查单已完成，准备好起飞，请联系武汉塔台。",
+      "referenceText": "Wuhan Tower, AFR 9939, holding point A1, Runway 18, ready for departure.",
+      "referenceTextZh": "武汉塔台，AFR 9939，A1等待点，18跑道，准备好离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-065-afr9939-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0165-card-main-2857",
+      "taskTitle": "AFR 9939-11",
+      "audioText": "AFR 939, line up Runway 18.",
+      "audioTextZh": "AFR 939，进入 Runway 18。",
+      "referenceText": "line up Runway 18, AFR 939.",
+      "referenceTextZh": "进入 Runway 18，AFR 939。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-065-afr9939-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0165-card-main-2858",
+      "taskTitle": "AFR 9939-12",
+      "audioText": "AFR 939, cleared for takeoff Runway 18, surface wind calm.",
+      "audioTextZh": "AFR 939，许可从 Runway 18 起飞，地面静风。",
+      "referenceText": "cleared for takeoff Runway 18, AFR 939.",
+      "referenceTextZh": "许可从 Runway 18 起飞，AFR 939。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-065-afr9939-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0165-card-main-2859",
+      "taskTitle": "AFR 9939-13",
+      "audioText": "During takeoff roll, you notice an Airbus 3 20 is crossing your runway, you aborted takeoff, report it to Wuhan Tower.",
+      "audioTextZh": "起飞滑跑期间，你注意到一架 Airbus 320 正在穿越跑道，你中断了起飞，向武汉塔台报告。",
+      "referenceText": "Wuhan Tower, AFR 9939, we aborted takeoff due an Airbus 320 crossing Runway 18.",
+      "referenceTextZh": "武汉塔台，AFR 9939，因一架 Airbus 320 正在穿越 Runway 18，我们中断了起飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-065-afr9939-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0165-card-main-2860",
+      "taskTitle": "AFR 9939-14",
+      "audioText": "C: AFR 939, what is the situation like now?\nB: Tell the controller your brakes have exceeded the temperature limit, and request taxi back to apron to have the plane checked.",
+      "audioTextZh": "管制员：AFR 939，现在情况如何？\n告诉管制员刹车已超过温度限制，并申请滑回机坪检查飞机。",
+      "referenceText": "Our brakes are overheating, request taxi back to apron for check, AFR 9939.",
+      "referenceTextZh": "我们刹车过热，申请滑回机坪检查，AFR 9939。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-065-afr9939-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0165-card-main-2861",
+      "taskTitle": "AFR 9939-15",
+      "audioText": "AFR 939, expedite vacate via E1.",
+      "audioTextZh": "AFR 939，经 E1 加速脱离。",
+      "referenceText": "expedite vacate via E1, AFR 939.",
+      "referenceTextZh": "经 E1 加速脱离，AFR 939。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-065-afr9939-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0165-card-main-2862",
+      "taskTitle": "AFR 9939-16",
+      "audioText": "C: AFR 939, do you need any assistance?\nB: Tell the controller you need stair vehicle to disembark the passengers.",
+      "audioTextZh": "管制员：AFR 939，你需要任何协助吗？\n告诉管制员需要客梯车让旅客下机。",
+      "referenceText": "Affirm, we need stair vehicle to disembark the passengers, AFR 9939.",
+      "referenceTextZh": "需要，我们需要客梯车让旅客下机，AFR 9939。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-065-afr9939-q16.mp3"
+    }
+  ]
+}

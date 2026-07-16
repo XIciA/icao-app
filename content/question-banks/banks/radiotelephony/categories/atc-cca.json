@@ -1,8 +1,8 @@
 {
   "id": "atc-cca",
   "name": "CCA",
-  "declaredTopicCount": 21,
-  "declaredCardCount": 357,
+  "declaredTopicCount": 34,
+  "declaredCardCount": 586,
   "topicIds": [
     "atc-scenario-0052",
     "atc-scenario-0053",
@@ -24,6 +24,19 @@
     "atc-scenario-0069",
     "atc-scenario-0070",
     "atc-scenario-0100",
-    "atc-scenario-0103"
+    "atc-scenario-0103",
+    "atc-scenario-0142",
+    "atc-scenario-0143",
+    "atc-scenario-0144",
+    "atc-scenario-0145",
+    "atc-scenario-0146",
+    "atc-scenario-0147",
+    "atc-scenario-0148",
+    "atc-scenario-0149",
+    "atc-scenario-0150",
+    "atc-scenario-0151",
+    "atc-scenario-0152",
+    "atc-scenario-0153",
+    "atc-scenario-0185"
   ]
 }

@@ -1,8 +1,8 @@
 # 设备独立使用需求
 
-状态：iOS 自动验收已完成，等待断开 Mac 的人工终验（Android 延期）
+状态：Android 小规模分发与双端发布实施中
 
-更新时间：2026-07-13
+更新时间：2026-07-16
 
 ## 1. 核心目标
 
@@ -30,8 +30,17 @@
 ### Android
 
 - 生成可直接安装的 Android Release APK。
-- 支持小规模、受控的安装包分发。
+- 固定正式包名为 `com.feizhuicao.app`，使用项目专属 Release 密钥签名。
+- 通过 `https://download.feizhuicao.com` 无密码、小规模分发。
 - 后续版本能够正常覆盖升级，并保留用户账号和学习数据。
+
+### 平台独立发布
+
+- iOS 必须继续使用现有 Bundle ID `com.anonymous.icao-app`，不能被系统视为另一个 App。
+- Android 使用 `pnpm release:android` 独立检查、构建并更新下载站；iPhone 是否连接不参与 Android 门禁。
+- iOS 使用 `pnpm release:ios` 独立检查、构建并覆盖安装；Android 是否发布不参与 iOS 门禁。
+- `pnpm release:dual` 仅作为“先 Android、后 iOS”的便利入口，后执行的平台失败不得回滚前一个平台。
+- 首次发布以当前工作区为准，记录完整文件清单和 SHA-256；后续发布默认要求 Git 工作区干净。
 
 ### 云端访问
 
@@ -67,6 +76,8 @@
 1. 停止 Mac 上全部 ICAO 开发进程后，iPhone 和 Android App 仍可使用。
 2. Wi-Fi 和蜂窝网络下均能访问登录、API、音频、同步和 AI 服务。
 3. 当前 App 已有功能没有因独立运行改造出现明显回归。
+4. 下载页展示版本号、更新时间、安装包大小、更新说明和 SHA-256。
+5. 下载页同时通过 HTML 与 HTTP 响应声明 `noindex`，首版不增加 App 内更新检查。
 
 ## 6. 本阶段不做
 
@@ -76,6 +87,7 @@
 - 不建设完整离线学习、题库下载或音频包下载。
 - 不迁移到公司域名，只保留未来替换能力。
 - 不把 Android 小规模分发扩大为公开商业发布。
+- 不给下载页增加密码、账号、测试者登记或应用内自动更新。
 
 ## 7. 过渡阶段定位
 
@@ -91,4 +103,4 @@
 2. `technical-audit.md`
 3. `roadmap.md`
 
-当前 iOS 自动执行证据记录在 `phase-log.md`；Android 相关阶段按用户要求延期。
+当前 iOS 自动执行证据和 Android/下载站实施证据统一记录在 `phase-log.md`。

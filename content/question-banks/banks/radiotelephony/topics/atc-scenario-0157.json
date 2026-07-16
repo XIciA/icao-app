@@ -1,0 +1,161 @@
+{
+  "categoryId": "atc-csn",
+  "id": "atc-scenario-0157",
+  "name": "CSN 1310 雷暴绕飞 TCAS机动 延误/加油",
+  "declaredCardCount": 17,
+  "cards": [
+    {
+      "id": "atc-scenario-0157-card-main-2703",
+      "taskTitle": "CSN 1310-1",
+      "audioText": "Your call sign is CSN 1310, performing a flight from Beijing to Guangzhou, you are parking at Gate 221, you have received information B, contact Beijing Delivery and request ATC clearance.",
+      "audioTextZh": "你的呼号是 CSN 1310，正在执行从北京飞往广州的航班，停在 221 登机口，已收到 B 情报，联系北京放行并申请 ATC 放行许可。",
+      "referenceText": "Delivery, CSN 1310, Gate 221, information B, request ATC clearance, Guangzhou.",
+      "referenceTextZh": "放行，CSN 1310，221 登机口，B 情报，申请前往广州的 ATC 放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-056-csn1310-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0157-card-main-2704",
+      "taskTitle": "CSN 1310-2",
+      "audioText": "CSN 1310, Beijing Delivery, cleared to Guangzhou via flight planned route, BOBAK-03 departure, departure Runway 36R, initial climb 1800 meters, cruising level 9500 meters, squawk 2536.\nBOBAK\nVYK\nSOSID\nRENOB\nGUVBA",
+      "audioTextZh": "CSN 1310，北京放行，许可按飞行计划航路飞往广州，执行 BOBAK-03 离场，离场使用 Runway 36R，初始爬升至 1800 米，巡航高度 9500 米，应答机 2536。",
+      "referenceText": "cleared to Guangzhou, BOBAK-03 departure, departure Runway 36R, 1800 meters, 9500 meters, squawk 2536, CSN 3001.",
+      "referenceTextZh": "许可飞往广州，执行 BOBAK-03 离场，离场使用 Runway 36R，初始爬升至 1800 米，巡航高度 9500 米，应答机 2536，CSN 3001。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-056-csn1310-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0157-card-main-2705",
+      "taskTitle": "CSN 1310-3",
+      "audioText": "CSN 1310, expect slot time 0215 due to temporary departure restrictions, report when ready for pushback and startup.",
+      "audioTextZh": "CSN 1310，因临时离场限制，预计时隙时间 0215，准备好推出和开车时报告。",
+      "referenceText": "roger, CSN 1310.",
+      "referenceTextZh": "收到，CSN 1310。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-056-csn1310-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0157-card-main-2706",
+      "taskTitle": "CSN 1310-4",
+      "audioText": "CSN 1310, slot time restriction has canceled, monitor Beijing Ground 121.975.",
+      "audioTextZh": "CSN 1310，时隙限制已取消，监听北京地面 121.975。",
+      "referenceText": "121.975, CSN 1310.",
+      "referenceTextZh": "121.975，CSN 1310。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-056-csn1310-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0157-card-main-2707",
+      "taskTitle": "CSN 1310-5",
+      "audioText": "B: Now you are ready for push back, contact Beijing Ground.",
+      "audioTextZh": "B：现在你准备好推出，联系北京地面。",
+      "referenceText": "Beijing Ground, CSN 1310, request push back.",
+      "referenceTextZh": "北京地面，CSN 1310，请求推出。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-056-csn1310-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0157-card-main-2708",
+      "taskTitle": "CSN 1310-6",
+      "audioText": "CSN 1310, Beijing Ground, pushback approved, facing east.",
+      "audioTextZh": "CSN 1310，北京地面，推出批准，机头朝东。",
+      "referenceText": "pushback approved, facing east, CSN 3001.",
+      "referenceTextZh": "推出批准，机头朝东，CSN 3001。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-056-csn1310-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0157-card-main-2709",
+      "taskTitle": "CSN 1310-7",
+      "audioText": "B: Now you have completed push back, you are on taxiway Z4, you are ready for start up.",
+      "audioTextZh": "B：现在你已完成推出，在滑行道 Z4，准备好开车。",
+      "referenceText": "Beijing Ground, CSN 1310, taxiway Z4, request start up.",
+      "referenceTextZh": "北京地面，CSN 1310，滑行道 Z4，请求开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-056-csn1310-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0157-card-main-2710",
+      "taskTitle": "CSN 1310-8",
+      "audioText": "CSN 1310, your slot time has expired, your new slot time is 0325, start up at own discretion.",
+      "audioTextZh": "CSN 1310，你的时隙时间已失效，新的时隙时间为 0325，自主决定开车。",
+      "referenceText": "slot time, 0325, start up at own discretion, CSN 3001.",
+      "referenceTextZh": "时隙时间 0325，自主决定开车，CSN 3001。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-056-csn1310-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0157-card-main-2711",
+      "taskTitle": "CSN 1310-9",
+      "audioText": "B: Now you have completed startup and before taxiing checklist, you are ready for taxi, contact Beijing Ground for taxiing instructions.",
+      "audioTextZh": "B：现在你已完成开车和滑行前检查单，准备好滑行，联系北京地面获取滑行指令。",
+      "referenceText": "Beijing Ground, CSN 1310, request taxi.",
+      "referenceTextZh": "北京地面，CSN 1310，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-056-csn1310-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0157-card-main-2712",
+      "taskTitle": "CSN 1310-10",
+      "audioText": "CSN 1310, taxi to holding point Runway 36R via taxiway Z4, Z3, T5, D6.",
+      "audioTextZh": "CSN 1310，经 Z4、Z3、T5、D6 滑行道滑行至 Runway 36R 等待点。",
+      "referenceText": "taxi to holding point Runway 36R, taxiway Z four, Z tree, T five, DAL 6, CSN 1310.",
+      "referenceTextZh": "经 Z4、Z3、T5、DAL 6 滑行道滑行至 Runway 36R 等待点，CSN 1310。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-056-csn1310-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0157-card-main-2713",
+      "taskTitle": "CSN 1310-11",
+      "audioText": "CSN 1310, hold short of T5, give way to B747 passing from left to right.",
+      "audioTextZh": "CSN 1310，在 T5 前等待，给从左向右经过的 B747 让行。",
+      "referenceText": "hold short of T five, traffic in sight, CSN 1310.",
+      "referenceTextZh": "在 T5 前等待，已看到相关航空器，CSN 1310。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-056-csn1310-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0157-card-main-2714",
+      "taskTitle": "CSN 1310-12",
+      "audioText": "B: Now the traffic is clear, you decide to make intersection departure from W2, contact Beijing Ground to request intersection departure from W2.",
+      "audioTextZh": "B：现在飞机已脱离，你决定从 W2 交叉口离场，联系北京地面请求从 W2 交叉口离场。",
+      "referenceText": "Beijing Ground, CSN 1310, clear of traffic, request intersection departure from W2.",
+      "referenceTextZh": "北京地面，CSN 1310，飞机已脱离，请求从 W2 交叉口离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-056-csn1310-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0157-card-main-2715",
+      "taskTitle": "CSN 1310-13",
+      "audioText": "CSN 1310, negative intersection departure due sequencing, continue taxi to holding point Runway 36R via taxiway T5 and D6.",
+      "audioTextZh": "CSN 1310，因排序原因不批准交叉口离场，经 T5 和 D6 滑行道继续滑行至 Runway 36R 等待点。",
+      "referenceText": "taxi to holding point Runway 36R, taxiway T five, DAL 6, CSN 1310.",
+      "referenceTextZh": "经 T5、DAL 6 滑行道滑行至 Runway 36R 等待点，CSN 1310。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-056-csn1310-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0157-card-main-2716",
+      "taskTitle": "CSN 1310-14",
+      "audioText": "Now you are at holding point Runway 36R, you are ready for takeoff, contact Beijing Tower.",
+      "audioTextZh": "现在你位于 Runway 36R 等待点，已准备好起飞，联系北京塔台。",
+      "referenceText": "Beijing Tower, CSN 1310, holding point Runway 36R, ready for departure.",
+      "referenceTextZh": "北京塔台，CSN 1310，Runway 36R 等待点，已准备好离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-056-csn1310-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0157-card-main-2717",
+      "taskTitle": "CSN 1310-15",
+      "audioText": "CSN 1310, hold short of Runway 36R, expect 15 minutes delay due thunderstorms in the vicinity of the airport.",
+      "audioTextZh": "CSN 1310，在 Runway 36R 前等待，因机场附近有雷暴，预计延误 15 分钟。",
+      "referenceText": "roger, hold short of Runway 36R, CSN 1310.",
+      "referenceTextZh": "收到，在 Runway 36R 前等待，CSN 1310。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-056-csn1310-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0157-card-main-2718",
+      "taskTitle": "CSN 1310-16",
+      "audioText": "CSN 1310, Runway 36R, line up and cleared for takeoff, surface wind 350 degrees, 3 meters per second.",
+      "audioTextZh": "CSN 1310，进入 Runway 36R 等待，许可起飞，地面风向 350 度，风速 3 米/秒。",
+      "referenceText": "Runway 36R, line up, cleared for takeoff, CSN 1310.",
+      "referenceTextZh": "进入 Runway 36R 等待，许可起飞，CSN 1310。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-056-csn1310-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0157-card-main-2719",
+      "taskTitle": "CSN 1310-17",
+      "audioText": "B: You find you have no enough fuel to the destination due to long ground delay, tell Beijing Tower you have to taxi back to refuel your aircraft.",
+      "audioTextZh": "B：由于长时间地面延误，你发现燃油不足以到达目的地，告诉北京塔台你必须滑回给飞机加油。",
+      "referenceText": "Beijing Tower, CSN 1310, we have no enough fuel to the destination due long ground delay, request taxi back to refuel the aircraft.",
+      "referenceTextZh": "北京塔台，CSN 1310，由于长时间地面延误，我们没有足够燃油到达目的地，请求滑回给飞机加油。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-056-csn1310-q17.mp3"
+    }
+  ]
+}

@@ -17,6 +17,8 @@ API_URL=${EXPO_PUBLIC_ICAO_API_URL:-https://api.feizhuicao.com}
 SUPABASE_URL=${EXPO_PUBLIC_SUPABASE_URL:-https://cloud.feizhuicao.com}
 PUBLISHABLE_KEY=${EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY:-}
 NODE_BINARY=${NODE_BINARY:-$(command -v node)}
+MARKETING_VERSION=$(node -p "require('$PROJECT_ROOT/app.json').expo.version")
+IOS_BUILD_NUMBER=$(node -p "require('$PROJECT_ROOT/app.json').expo.ios.buildNumber || '1'")
 
 require_https_url() {
   name=$1
@@ -113,6 +115,8 @@ xcodebuild \
   -configuration Release \
   -destination "id=$IOS_DEVICE_ID" \
   -derivedDataPath "$DERIVED_DATA" \
+  MARKETING_VERSION="$MARKETING_VERSION" \
+  CURRENT_PROJECT_VERSION="$IOS_BUILD_NUMBER" \
   build
 
 APP_PATH="$DERIVED_DATA/Build/Products/Release-iphoneos/$IOS_PRODUCT_NAME.app"

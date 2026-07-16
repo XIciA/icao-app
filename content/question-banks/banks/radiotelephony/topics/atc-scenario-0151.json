@@ -1,0 +1,152 @@
+{
+  "categoryId": "atc-cca",
+  "id": "atc-scenario-0151",
+  "name": "CCA 1368 雷暴绕飞 TCAS机动 复飞",
+  "declaredCardCount": 16,
+  "cards": [
+    {
+      "id": "atc-scenario-0151-card-main-2607",
+      "taskTitle": "CCA 1368-1",
+      "audioText": "Your call sign is CCA 1368, a flight from Shenzhen to Beijing, your weather radar indicates a squall line near VYK, contact Beijing Approach and request parallel offset 10 miles right of track until PEK VOR.",
+      "audioTextZh": "你的呼号是 CCA 1368，这是一趟从深圳飞往北京的航班，气象雷达显示 VYK 附近有飑线，联系北京进近，请求向航迹右侧平行偏置 10 英里，直至 PEK VOR。",
+      "referenceText": "Beijing Approach, CCA 1368, our weather radar indicates a squall line near VYK, request parallel offset 10 miles right of track until PEK VOR.",
+      "referenceTextZh": "北京进近，CCA 1368，我们的气象雷达显示 VYK 附近有飑线，请求向航迹右侧平行偏置 10 英里，直至 PEK VOR。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-049-cca1368-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0151-card-main-2608",
+      "taskTitle": "CCA 1368-2",
+      "audioText": "CCA 1368, Beijing Approach, radar contact, negative due prohibited area, turn left heading 230, track out 25 miles.",
+      "audioTextZh": "CCA 1368，北京进近，雷达识别，因禁区原因不批准，左转航向 230，沿该航向飞出 25 英里。",
+      "referenceText": "roger, turn left heading 230, track out 25 miles, CCA 1368.",
+      "referenceTextZh": "收到，左转航向 230，沿该航向飞出 25 英里，CCA 1368。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-049-cca1368-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0151-card-main-2609",
+      "taskTitle": "CCA 1368-3",
+      "audioText": "CCA 1368, when clear of weather, fly direct to AA443.",
+      "audioTextZh": "CCA 1368，脱离天气后直飞 AA443。",
+      "referenceText": "when clear of weather, fly direct to AA443, CCA 1368.",
+      "referenceTextZh": "脱离天气后直飞 AA443，CCA 1368。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-049-cca1368-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0151-card-main-2610",
+      "taskTitle": "CCA 1368-4",
+      "audioText": "CCA 1368, turn right, direct to AA443, hold at AA443 as published.",
+      "audioTextZh": "CCA 1368，右转直飞 AA443，按公布程序在 AA443 等待。",
+      "referenceText": "turn right, direct to AA443, hold at AA443 as published, CCA 1368.",
+      "referenceTextZh": "右转，直飞 AA443，按公布程序在 AA443 等待，CCA 1368。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-049-cca1368-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0151-card-main-2611",
+      "taskTitle": "CCA 1368-5",
+      "audioText": "CCA 1368, orbit right from present position until advised, Runway 18L is not available now.",
+      "audioTextZh": "CCA 1368，从当前位置向右盘旋直至通知，Runway 18L 当前不可用。",
+      "referenceText": "roger, orbit right from present position until advised, CCA 1368.",
+      "referenceTextZh": "收到，从当前位置向右盘旋直至通知，CCA 1368。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-049-cca1368-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0151-card-main-2612",
+      "taskTitle": "CCA 1368-6",
+      "audioText": "B: After several orbit, you find the fuel on board will approach the required minimum, report it to Beijing Approach and request leave the hold and request priority landing Runway 01.",
+      "audioTextZh": "B: 经过几圈盘旋后，你发现机上燃油将接近所需最低油量，向北京进近报告，请求离开等待并请求跑道 01 优先着陆。",
+      "referenceText": "Beijing Approach, CCA 1368, the fuel on board will approach the required minimum, request leave the hold and request priority landing Runway 01.",
+      "referenceTextZh": "北京进近，CCA 1368，机上燃油将接近所需最低油量，请求离开等待，并请求跑道 01 优先着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-049-cca1368-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0151-card-main-2613",
+      "taskTitle": "CCA 1368-7",
+      "audioText": "CCA 1368, after this orbit, leave the hold, fly heading 360, direct to LADIX.",
+      "audioTextZh": "CCA 1368，本次盘旋后离开等待，飞航向 360，直飞 LADIX。",
+      "referenceText": "after this orbit, leave the hold, fly heading 360, direct to LADIX, CCA 1368.",
+      "referenceTextZh": "本次盘旋后离开等待，飞航向 360，直飞 LADIX，CCA 1368。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-049-cca1368-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0151-card-main-2614",
+      "taskTitle": "CCA 1368-8",
+      "audioText": "B: Now you are over PEK, maintaining 4200 meters, you have received information S, tell Beijing Approach you are ready for approach.",
+      "audioTextZh": "B: 现在你在 PEK 上空，保持 4200 米，已收到信息 S，告诉 北京进近 你准备进近。",
+      "referenceText": "Beijing Approach, CCA 1368, over PEK, maintaining 4200 meters, information S, ready for approach.",
+      "referenceTextZh": "北京进近，CCA 1368，过 PEK，保持 4200 米，信息 S，准备进近。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-049-cca1368-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0151-card-main-2615",
+      "taskTitle": "CCA 1368-9",
+      "audioText": "CCA 1368, Beijing Approach, follow PEK-05 arrival, descend to 2100 meters on QNH 1008, expect ILS approach Runway 01.",
+      "audioTextZh": "CCA 1368，北京进近，执行 PEK-05 进场，在 QNH 1008 上下降至 2100 米，预计 ILS 进近 Runway 01。",
+      "referenceText": "follow PEK-05 arrival, descend to 2100 meters QNH 1008, expect ILS approach Runway 01, CCA 1368.",
+      "referenceTextZh": "执行 PEK-05 进场，在 QNH 1008 上下降至 2100 米，预计 ILS 进近 Runway 01，CCA 1368。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-049-cca1368-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0151-card-main-2616",
+      "taskTitle": "CCA 1368-10",
+      "audioText": "CCA 1368, descend and maintain 1500 meters, cleared for ILS approach Runway 01, report established.",
+      "audioTextZh": "CCA 1368，下降并保持 1500 米，许可 ILS 进近 Runway 01，建立后报告。",
+      "referenceText": "descend and maintain 1500 meters, cleared for ILS approach Runway 01, CCA 1368.",
+      "referenceTextZh": "下降并保持 1500 米，许可 ILS 进近 Runway 01，CCA 1368。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-049-cca1368-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0151-card-main-2617",
+      "taskTitle": "CCA 1368-11",
+      "audioText": "B: Now you have intercepted the ILS signals of Runway 01, contact Beijing Tower.",
+      "audioTextZh": "B: 现在你已截获跑道 01 的 ILS 信号，联系北京塔台。",
+      "referenceText": "Beijing Tower, CCA 1368, established ILS approach Runway 01.",
+      "referenceTextZh": "北京塔台，CCA 1368，已建立跑道 01 ILS 进近。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-049-cca1368-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0151-card-main-2618",
+      "taskTitle": "CCA 1368-12",
+      "audioText": "CCA 1368, Runway 01, cleared to land.",
+      "audioTextZh": "CCA 1368，Runway 01，许可落地。",
+      "referenceText": "Runway 01, cleared to land, CCA 1368.",
+      "referenceTextZh": "Runway 01，许可落地，CCA 1368。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-049-cca1368-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0151-card-main-2619",
+      "taskTitle": "CCA 1368-13",
+      "audioText": "B: During final approach, an aircraft is crossing Runway 01, you executed a missed approach, report it to Beijing Tower.",
+      "audioTextZh": "B: 最后进近中，一架飞机正在穿越跑道 01，你执行复飞，向北京塔台报告。",
+      "referenceText": "Beijing Tower, CCA 1368, an aircraft is crossing Runway 01, going around.",
+      "referenceTextZh": "北京塔台，CCA 1368，一架飞机正在穿越跑道 01，复飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-049-cca1368-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0151-card-main-2620",
+      "taskTitle": "CCA 1368-14",
+      "audioText": "CCA 1368, climb straight ahead until 230 meters, turn right direct to PEK, hold at PEK at 600 meters.",
+      "audioTextZh": "CCA 1368，直线爬升至 230 米，右转直飞 PEK，在 PEK 以 600 米等待。",
+      "referenceText": "climb straight ahead until 200 and 30 meters, turn right direct to PEK, hold at PEK at 600 meters, CCA 1368.",
+      "referenceTextZh": "直线爬升至 200 和 30 米，右转直飞 PEK，在 PEK 以 600 米等待，CCA 1368。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-049-cca1368-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0151-card-main-2621",
+      "taskTitle": "CCA 1368-15",
+      "audioText": "B: Now you have landed on Runway 01, you find the runway surface is slippery, the braking action is medium, report it to Beijing Tower.",
+      "audioTextZh": "B: 现在你已在跑道 01 着陆，发现跑道表面湿滑，刹车效应中等，向北京塔台报告。",
+      "referenceText": "Beijing Tower, CCA 1368, the runway surface is slippery, the breaking action is medium.",
+      "referenceTextZh": "北京塔台，CCA 1368，跑道表面湿滑，刹车效应中等。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-049-cca1368-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0151-card-main-2622",
+      "taskTitle": "CCA 1368-16",
+      "audioText": "CCA 1368, roger, thanks, vacate Runway 01via rapid exit E2.",
+      "audioTextZh": "CCA 1368，收到，谢谢，经 E2 快速脱离道脱离 Runway 01。",
+      "referenceText": "vacate Runway 01via rapid exit E two, CCA 1368.",
+      "referenceTextZh": "经 E2 快速脱离道脱离 Runway 01，CCA 1368。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-049-cca1368-q16.mp3"
+    }
+  ]
+}

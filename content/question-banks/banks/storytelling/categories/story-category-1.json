@@ -2,7 +2,7 @@
   "id": "story-category-1",
   "name": "飞行ICAO",
   "declaredTopicCount": 2,
-  "declaredCardCount": 192,
+  "declaredCardCount": 332,
   "topicIds": [
     "story-flight-required",
     "story-flight-basic"

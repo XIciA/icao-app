@@ -2,7 +2,7 @@
   "categoryId": "listening-category-04",
   "id": "listening-topic-04",
   "name": "全部题目",
-  "declaredCardCount": 177,
+  "declaredCardCount": 232,
   "cards": [
     {
       "id": "listening-main-006",
@@ -2658,6 +2658,831 @@
         "To land immediately."
       ],
       "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1041",
+      "taskTitle": "10s陆空通话-178",
+      "audioText": "P: Beijing Tower, CSN 302, no contact at minima (=poor visibility), going around.\nC: CSN 302, standard procedure.\nQuestion: What is the reason for going around?",
+      "audioTextZh": "P: 北京塔台，CSN 302，在最低标准处无法建立目视接触，复飞。\nC: CSN 302，按标准程序执行。\n问题：复飞的原因是什么？",
+      "referenceText": "正确答案：A. A. Poor visibility.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-01-q04.mp3",
+      "choices": [
+        "A. Poor visibility.",
+        "B. Ceiling variable.",
+        "C. In fog.",
+        "D. Too low base."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1042",
+      "taskTitle": "10s陆空通话-179",
+      "audioText": "C: CES 5195, go around, follow the localizer, climb to and maintain 2100 meters, the preceding aircraft aborted takeoff.\nP: Going around, CES 5195.\nQuestion: Why was CES 5195 instructed to go around?",
+      "audioTextZh": "C: CES 5195，复飞，沿航向道飞行，爬升并保持2100 meters，前机中断起飞。\nP: 正在复飞，CES 5195。\n问题：为什么指示CES 5195复飞？",
+      "referenceText": "正确答案：B. The preceding aircraft rejected takeoff.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-01-q06.mp3",
+      "choices": [
+        "The preceding aircraft was unable to vacate the runway.",
+        "The preceding aircraft rejected takeoff.",
+        "The localizer was fluctuating.",
+        "The aircraft was too close to the preceding aircraft."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1043",
+      "taskTitle": "10s陆空通话-180",
+      "audioText": "P: Ground, Eva 761, request start engine at the gate due APU malfunction.\nC: Eva 761, start engine at the gate approved, report ready for pushback.\nQuestion: Why did the pilot request start engine at the gate?",
+      "audioTextZh": "P: 地面，EVA 761，由于APU故障，请求在停机位启动发动机。\nC: EVA 761，批准在停机位启动发动机，准备推出时报告。\n问题：飞行员为什么请求在停机位启动发动机？",
+      "referenceText": "正确答案：A. Due to APU failure.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-01-q07.mp3",
+      "choices": [
+        "Due to APU failure.",
+        "Due to APU fire.",
+        "Due to GPU failure.",
+        "Due to CDU failure."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1044",
+      "taskTitle": "10s陆空通话-181",
+      "audioText": "C: CCA 428, expedite climb, terrain ahead, terrain alert, expedite passing 5000 feet, expedite.\nP: expediting, CCA 428.\nQuestion: Why was CCA 428 asked to expedite climb?",
+      "audioTextZh": "C: CCA 428，加速爬升，前方有地形，地形警告，加速通过5000 feet，加速。\nP: 正在加速爬升，CCA 428。\n问题：为什么要求CCA 428加速爬升？",
+      "referenceText": "正确答案：A. Due to terrain alert.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-01-q08.mp3",
+      "choices": [
+        "Due to terrain alert.",
+        "Due to traffic alert.",
+        "Due to weather ahead.",
+        "Due to military activity."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1045",
+      "taskTitle": "10s陆空通话-182",
+      "audioText": "P: Ground, Qatar 274, we are fully ready for pushback and startup.\nC: Qatar 274, roger, stand by, indefinite delay, emergency in progress.\nQuestion: Why was Qatar 274 instructed to stand by?",
+      "audioTextZh": "P: 地面，QTR 274，我们已完全准备好推出和启动。\nC: QTR 274，收到，等待，延误时间未定，正在处置紧急情况。\n问题：为什么指示QTR 274等待？",
+      "referenceText": "正确答案：A. Due emergency in progress.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-01-q09.mp3",
+      "choices": [
+        "Due emergency in progress.",
+        "Due traffic taxiing behind.",
+        "Due tug not in position.",
+        "Due expired slot time."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1046",
+      "taskTitle": "10s陆空通话-183",
+      "audioText": "P: KLM 73 Echo, we have some unruly passengers on board, so we would like to return to the gate, request the police at the gate.\nC: KLM 73 Echo, roger.\nQuestion: Why did KLM 73 Echo request to return to the gate?",
+      "audioTextZh": "P: KLM 73E，机上有一些扰乱秩序的乘客，因此我们希望返回登机口，请求警察在登机口等候。\nC: KLM 73E，收到。\n问题：KLM 73E为什么请求返回登机口？",
+      "referenceText": "正确答案：A. There were some unruly passengers on board.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-01-q10.mp3",
+      "choices": [
+        "There were some unruly passengers on board.",
+        "There was a seriously ill passenger on board.",
+        "There was a seriously injured passenger on board.",
+        "There was an illegal stowaway on board."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1048",
+      "taskTitle": "10s陆空通话-184",
+      "audioText": "P: Wuhan Approach, CES 5325, what's the delay like?\nC: CES 5325, delay not determined due variable visibility, suggest divert to Changsha Airport.\nQuestion: Why did the controller suggest CES 5325 diverting to Changsha?",
+      "audioTextZh": "P: 武汉进近，CES 5325，延误情况如何？\nC: CES 5325，由于能见度变化，延误时间无法确定，建议改航长沙机场。\n问题：管制员为什么建议CES 5325改航长沙？",
+      "referenceText": "正确答案：A. Because delay was not determined due variable visibility.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-01-q12.mp3",
+      "choices": [
+        "Because delay was not determined due variable visibility.",
+        "Because delay was not determined due runway obstruction.",
+        "Because delay was not determined due runway closure.",
+        "Because delay was not determined due variable wind."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1050",
+      "taskTitle": "10s陆空通话-185",
+      "audioText": "C: DAL 303, reduce speed to 140 knots due separation.\nP: negative, our minimum approach speed is 150 knots, DAL 303.\nQuestion: Why was DAL 303 unable to accept 140 knots?",
+      "audioTextZh": "C: DAL 303，由于间隔需要，减速至140 knots。\nP: 无法执行，我们的最低进近速度是150 knots，DAL 303。\n问题：DAL 303为什么无法接受140 knots？",
+      "referenceText": "正确答案：B. Due aircraft performance.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-01-q14.mp3",
+      "choices": [
+        "Due traffic separation.",
+        "Due aircraft performance.",
+        "Due flap problem.",
+        "Due landing weight."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1053",
+      "taskTitle": "10s陆空通话-186",
+      "audioText": "P: Tower, this is BAW 233, we are ready for departure on Runway 29L.\nC: BAW 233, your transmission is cut in and out. Check your mike button and call back.\nQuestion: What was the problem in the transmission?",
+      "audioTextZh": "P: 塔台，BAW 233，我们已准备好从Runway 29L离场。\nC: BAW 233，你的通话时断时续。检查话筒按钮后重新呼叫。\n问题：通话出现了什么问题？",
+      "referenceText": "正确答案：D. Intermittent",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-01-q17.mp3",
+      "choices": [
+        "Faint",
+        "Low",
+        "Jammed",
+        "Intermittent"
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-1057",
+      "taskTitle": "10s陆空通话-187",
+      "audioText": "P: Departure, AFR 456, we are coming back due to cracked windscreen caused by bird strike during departure.\nC: AFR 456, roger, join right downwind.\nQuestion: Why did AFR return?",
+      "audioTextZh": "P: 离场，AFR 456，我们正在返航，因为离场期间鸟击造成风挡破裂。\nC: AFR 456，收到，加入右三边。\n问题：AFR为什么返航？",
+      "referenceText": "正确答案：D. Windscreen cracked.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-02-q06.mp3",
+      "choices": [
+        "Bird cracked.",
+        "Wind-shear.",
+        "bird ingestion",
+        "Windscreen cracked."
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-1059",
+      "taskTitle": "10s陆空通话-188",
+      "audioText": "C: CCA 1141, vacate runway via taxiway A4, caution, much trench on right side, correction, much trench on the left side of A4.\nQuestion: What does the controller mean?",
+      "audioTextZh": "C: CCA 1141，经滑行道A4脱离跑道，注意，A4右侧有沟槽，更正，沟槽在A4左侧。\n问题：管制员是什么意思？",
+      "referenceText": "正确答案：A. A trench is on the left side of taxiway.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-02-q10.mp3",
+      "choices": [
+        "A trench is on the left side of taxiway.",
+        "Work in progress next to the apron.",
+        "The center of the taxiway A4 is damaged.",
+        "The left of the taxiway A4 is damaged."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1060",
+      "taskTitle": "10s陆空通话-189",
+      "audioText": "C: CCA 981, take first left, then T5, P to Gate 212.\nP: T5, P to Gate 212, CCA 981.\nQuestion: When did this conversation take place?",
+      "audioTextZh": "C: CCA 981，第一个路口左转，然后经T5、P滑行至Gate 212。\nP: 经T5、P滑行至Gate 212，CCA 981。\n问题：这段通话发生在什么时候？",
+      "referenceText": "正确答案：D. During taxi in.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-02-q11.mp3",
+      "choices": [
+        "Before landing.",
+        "During taxi out.",
+        "Before takeoff.",
+        "During taxi in."
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-1062",
+      "taskTitle": "10s陆空通话-190",
+      "audioText": "C: QFA 501, hold short of Runway 16, give way to landing traffic, contact tower on 124.95.\nQuestion: Why does Tower ask QFA 501 to hold short?",
+      "audioTextZh": "C: QFA 501，在Runway 16外等待，给着陆航空器让行，在124.95联系塔台。\n问题：塔台为什么要求QFA 501在跑道外等待？",
+      "referenceText": "正确答案：B. Landing traffic on Runway 16",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-03-q06.mp3",
+      "choices": [
+        "Aircraft taking off on Runway 16.",
+        "Landing traffic on Runway 16",
+        "A blocked taxiway.",
+        "Work in Progress"
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1063",
+      "taskTitle": "10s陆空通话-191",
+      "audioText": "C: NWA 40 heavy, moderate turbulence reported ahead above FL 380. Would you like a lower altitude?\nP: roger, is FL360 available, NWA 40 heavy.\nQuestion: Where is the reported turbulence?",
+      "audioTextZh": "C: NWA 40 heavy，前方FL 380以上报告有中度湍流。你是否需要较低高度？\nP: 收到，FL360可用吗？NWA 40 heavy。\n问题：报告的湍流位于哪里？",
+      "referenceText": "正确答案：B. Ahead and above FL 380.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-03-q08.mp3",
+      "choices": [
+        "At FL 360 or below.",
+        "Ahead and above FL 380.",
+        "Request descent to FL 360.",
+        "Ahead and below FL 380."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1064",
+      "taskTitle": "10s陆空通话-192",
+      "audioText": "C: UAL 889, expect lower altitude until the climbing aircraft has passed, confirm you are levelling at 11,500m.\nQuestion: What altitude does the controller think UAL 889 is at right now?",
+      "audioTextZh": "C: UAL 889，在爬升航空器通过前预计使用较低高度，确认你正在11,500m改平。\n问题：管制员认为UAL 889目前位于什么高度？",
+      "referenceText": "正确答案：B. Maintaining 11,500 m.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-03-q11.mp3",
+      "choices": [
+        "Climbing to 11,500 m.",
+        "Maintaining 11,500 m.",
+        "Descending to 11,500 m.",
+        "Leaving 11,500 m."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1067",
+      "taskTitle": "10s陆空通话-193",
+      "audioText": "P: Moscow Approach, CSN 235, overhead GCF, 4500ft on QNH, request joining instructions.\nQuestion: What stage of flight is CSN 235 about to carry out next?",
+      "audioTextZh": "P: 莫斯科进近，CSN 235，飞越GCF，QNH高度4500ft，请求加入指令。\n问题：CSN 235接下来准备进入哪个飞行阶段？",
+      "referenceText": "正确答案：C. Approach",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-03-q14.mp3",
+      "choices": [
+        "Cruise",
+        "Climb",
+        "Approach",
+        "Take off"
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-1069",
+      "taskTitle": "10s陆空通话-194",
+      "audioText": "P: Control, CCA 980, confirm holding instruction.\nC: CCA 980, hold at N VOR/DME 120 radial, inbound track 220, right hand turn.\nQuestion: What is the inbound track?",
+      "audioTextZh": "P: 管制，CCA 980，确认等待指令。\nC: CCA 980，在N VOR/DME的120径向线上等待，向台航迹220，右转。\n问题：向台航迹是多少？",
+      "referenceText": "正确答案：C. 220",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-03-q16.mp3",
+      "choices": [
+        "12",
+        "120",
+        "220",
+        "20"
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-1070",
+      "taskTitle": "10s陆空通话-195",
+      "audioText": "C: UAL 321, caution, unknown balloon over right turning base of Runway 36at 32, altitude 300m moving northbound 40km per hour.\nQuestion: Why should UAL 321 keep a good look out?",
+      "audioTextZh": "C: UAL 321，注意，Runway 36右转基准边上空有不明气球，时间32，高度300m，以40km per hour向北移动。\n问题：UAL 321为什么应保持仔细观察？",
+      "referenceText": "正确答案：A. There is a balloon near the runway.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-03-q17.mp3",
+      "choices": [
+        "There is a balloon near the runway.",
+        "He is 40 KM per hour too fast.",
+        "He is turning base for R/W36.",
+        "His altitude is only 300 meters."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1072",
+      "taskTitle": "10s陆空通话-196",
+      "audioText": "C: CSN 230, expedite descent 6000m, upon reaching, turn left 30 degrees, traffic 12 o'clock 10 miles, opposite direction, United B737 climbing to your altitude.\nQuestion: What is the relative motion of the traffic?",
+      "audioTextZh": "C: CSN 230，加速下降至6000m，到达后左转30度；冲突航空器位于12点钟方向、距离10 miles，相向飞行，是一架正在爬升至你方高度的UAL B737。\n问题：冲突航空器的相对运动是什么？",
+      "referenceText": "正确答案：C. Opposite direction, below and climbing.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-03-q19.mp3",
+      "choices": [
+        "Turn left 30 degrees.",
+        "12 o'clock, 10 miles.",
+        "Opposite direction, below and climbing.",
+        "Opposite direction, above and descending."
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-1075",
+      "taskTitle": "10s陆空通话-197",
+      "audioText": "C: UAL 243, descend and maintain FL240.\nP: Control, can we have that at pilot's discretion.\nQuestion: What was the pilot's intention under this situation?",
+      "audioTextZh": "C: UAL 243，下降并保持FL240。\nP: 管制，我们可以由飞行员自行决定何时下降吗？\n问题：在这种情况下，飞行员的意图是什么？",
+      "referenceText": "正确答案：D. To decide when to descend by himself.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-04-q02.mp3",
+      "choices": [
+        "To continue descent by ATC instruction.",
+        "To decide how to fly by himself.",
+        "To descend immediately.",
+        "To decide when to descend by himself."
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-1076",
+      "taskTitle": "10s陆空通话-198",
+      "audioText": "C: CSN 302, turn right heading 040, descend to 900m QFE 1002.\nQuestion: Which of the following is true?",
+      "audioTextZh": "C: CSN 302，右转航向040，下降至900m，QFE 1002。\n问题：以下哪一项正确？",
+      "referenceText": "正确答案：A. Descend to 900 m.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-04-q03.mp3",
+      "choices": [
+        "Descend to 900 m.",
+        "Heading 030.",
+        "Turn left.",
+        "QFE 1012."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1077",
+      "taskTitle": "10s陆空通话-199",
+      "audioText": "P: Delivery, CCA 334. Confirm after departure, heading south.\nC: Negative, for your information, a glider is over south field.\nQuestion: Why did the controller deny the pilot's confirmation?",
+      "audioTextZh": "P: 放行，CCA 334，确认离场后向南飞。\nC: 不对，提醒你，南部机场上空有一架滑翔机。\n问题：管制员为什么否定飞行员的确认？",
+      "referenceText": "正确答案：B. Flying activity is in the south field.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-04-q04.mp3",
+      "choices": [
+        "The controller wants the pilot to fly east.",
+        "Flying activity is in the south field.",
+        "A glider will land in the south field.",
+        "A glider is hanging in the north field."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1079",
+      "taskTitle": "10s陆空通话-200",
+      "audioText": "P: Wuhan Approach, AFR 132, 25km south of wuhan, northbound, 2100m.\nC: AFR 132, say your intentions.\nQuestion: What does the controller mean?",
+      "audioTextZh": "P: 武汉进近，AFR 132，位于武汉以南25km，向北飞行，高度2100m。\nC: AFR 132，报告你的意图。\n问题：管制员是什么意思？",
+      "referenceText": "正确答案：B. To know what the pilot wants to do next.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-04-q06.mp3",
+      "choices": [
+        "To check the pilot's position.",
+        "To know what the pilot wants to do next.",
+        "To ask the pilot his rating.",
+        "To verify the pilot's original airport."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1080",
+      "taskTitle": "10s陆空通话-201",
+      "audioText": "C: BAW 480, flames coming out from your No. 3 engine on takeoff, please advise.\nP: roger, declaring an emergency, request immediate return, BAW 480.\nQuestion: Why are they declaring an emergency?",
+      "audioTextZh": "C: BAW 480，起飞时你的No. 3发动机有火焰冒出，请报告意图。\nP: 收到，宣布紧急状态，请求立即返航，BAW 480。\n问题：他们为什么宣布紧急状态？",
+      "referenceText": "正确答案：C. Engine fire.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-04-q07.mp3",
+      "choices": [
+        "Warning light indication.",
+        "Missed approach.",
+        "Engine fire.",
+        "Requesting return to airport."
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-1081",
+      "taskTitle": "10s陆空通话-202",
+      "audioText": "P: Ground, CSN 15, on Taxiway N for Runway 27L, we see debris on the left side of runway near the high speed turn off. It appears to be a part of engine cowling.\nQuestion: Where is the debris?",
+      "audioTextZh": "P: 地面，CSN 15，我们正在滑行道N上前往Runway 27L。我们看到跑道左侧靠近快速脱离道处有碎片，看起来像是发动机整流罩的一部分。\n问题：碎片在哪里？",
+      "referenceText": "正确答案：D. On the left side of the runway.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-04-q08.mp3",
+      "choices": [
+        "On taxiway N.",
+        "On the high speed turn off.",
+        "On the right side of the runway.",
+        "On the left side of the runway."
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-1082",
+      "taskTitle": "10s陆空通话-203",
+      "audioText": "P: Guangzhou Departure, CSN 5469, airborne 600m, climbing to 3000m, request heading 290 due weather.\nQuestion: What stage of the flight does the transmission refer to?",
+      "audioTextZh": "P: 广州离场，CSN 5469，离地600m，正在爬升至3000m，由于天气原因请求航向290。\n问题：这段通话指的是哪个飞行阶段？",
+      "referenceText": "正确答案：A. After takeoff.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-04-q09.mp3",
+      "choices": [
+        "After takeoff.",
+        "During the cruise.",
+        "Receiving departure clearance.",
+        "Before landing."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1083",
+      "taskTitle": "10s陆空通话-204",
+      "audioText": "P: Approach, good morning, CCA 512, descending FL200, Squawking 4123.\nQuestion: What is the squawk code of CCA 512?",
+      "audioTextZh": "P: 进近，早上好，CCA 512，正在下降通过FL200，应答机代码4123。\n问题：CCA 512的应答机代码是多少？",
+      "referenceText": "正确答案：B. 4123",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-04-q10.mp3",
+      "choices": [
+        "4213",
+        "4123",
+        "4312",
+        "4321"
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1085",
+      "taskTitle": "10s陆空通话-205",
+      "audioText": "C: ACA 503, taxi with caution, the previous pilot reported there was iced ruts and ridges on taxiway.\nQuestion: What does the controller ask the pilot to do?",
+      "audioTextZh": "C: ACA 503，谨慎滑行，前机飞行员报告滑行道上有冰辙和冰脊。\n问题：管制员要求飞行员做什么？",
+      "referenceText": "正确答案：C. To taxi on the taxiway carefully.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-04-q12.mp3",
+      "choices": [
+        "To report the condition of the previous traffic.",
+        "To move the ice from the runway.",
+        "To taxi on the taxiway carefully.",
+        "To report the runway condition."
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-1087",
+      "taskTitle": "10s陆空通话-206",
+      "audioText": "C: BAW 204, taxi to holding point of Runway 27via taxiway F, J and G.\nP: F, J, G to holding point Runway 27, BAW 204.\nQuestion: What are the taxi route?",
+      "audioTextZh": "C: BAW 204，经滑行道F、J和G滑行至Runway 27等待点。\nP: 经F、J、G滑行至Runway 27等待点，BAW 204。\n问题：滑行路线是什么？",
+      "referenceText": "正确答案：C. F, J and G",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-04-q14.mp3",
+      "choices": [
+        "J, G and E",
+        "E, H and G",
+        "F, J and G",
+        "F, G and J"
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-1090",
+      "taskTitle": "10s陆空通话-207",
+      "audioText": "C: CCA 985, the weather is deteriorating, RVR Runway 13is now only 600m.\nQuestion: What do you learn from the statement?\nA. The runway direction changed.\nB. RVR increased. RVR\nC. The runway is only 600m long.\nD. Visibility is reducing.",
+      "audioTextZh": "C: CCA 985，天气正在恶化，Runway 13的RVR目前仅为600m。\n问题：从这段陈述中可以得知什么？",
+      "referenceText": "正确答案：D. Visibility is reducing.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-04-q18.mp3",
+      "choices": [
+        "The runway direction changed.",
+        "RVR increased.",
+        "The runway is only 600m long.",
+        "Visibility is reducing."
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-1092",
+      "taskTitle": "10s陆空通话-208",
+      "audioText": "C: UAL 655, hold short of T5, give way to Airbus taxiing in for parking.\nQuestion: What does the controller ask the pilot to do?",
+      "audioTextZh": "C: UAL 655，在T5外等待，给正在滑向停机位的Airbus让行。\n问题：管制员要求飞行员做什么？",
+      "referenceText": "正确答案：A. To hold at a holding point.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-04-q20.mp3",
+      "choices": [
+        "To hold at a holding point.",
+        "To taxi in for parking.",
+        "To taxi out for de-icing.",
+        "To give way to MD-11."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1094",
+      "taskTitle": "10s陆空通话-209",
+      "audioText": "C: UAL 889, when clear of crossing traffic, turn left heading 150, confirm your level 1500.\nQuestion: When should they make the turn?",
+      "audioTextZh": "C: UAL 889，避开穿越航空器后，左转航向150，确认你的高度为1500。\n问题：他们应在什么时候转弯？",
+      "referenceText": "正确答案：D. When clear of crossing traffic",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-05-q02.mp3",
+      "choices": [
+        "Heading 050 degrees.",
+        "Maintaining 1,500m.",
+        "To avoid crossing traffic",
+        "When clear of crossing traffic"
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-1095",
+      "taskTitle": "10s陆空通话-210",
+      "audioText": "C: CCA 705, climb at pilot's discretion to 8000m, maintain heading 150 until advised.\nP: leaving 6000m for 8000m, will advise, CCA 705.\nQuestion: What is their present altitude?",
+      "audioTextZh": "C: CCA 705，由飞行员自行决定爬升至8000m，保持航向150直至另行通知。\nP: 离开6000m爬升至8000m，将报告，CCA 705。\n问题：他们目前的高度是多少？",
+      "referenceText": "正确答案：A. 6000m",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-05-q03.mp3",
+      "choices": [
+        "6000m",
+        "Climb at pilot discretion.",
+        "8000m.",
+        "Heading 150 degrees."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1099",
+      "taskTitle": "10s陆空通话-211",
+      "audioText": "P: MD-11 on final in sight, BAW 315.\nC: BAW 315, line up after the landing MD-11.\nQuestion: What is BAW 315 going to do?",
+      "audioTextZh": "P: 已看到最后进近中的MD-11，BAW 315。\nC: BAW 315，在着陆的MD-11之后进入跑道。\n问题：BAW 315准备做什么？",
+      "referenceText": "正确答案：D. To line up after MD-11.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-05-q07.mp3",
+      "choices": [
+        "To depart after MD-11.",
+        "To go round MD-11.",
+        "To land after MD-11.",
+        "To line up after MD-11."
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-1102",
+      "taskTitle": "10s陆空通话-212",
+      "audioText": "C: UAL 223, RVR Runway 26L touchdown 600m, mid point 850m, stop end missing.\nP: UAL 223.\nQuestion: What is the best RVR?",
+      "audioTextZh": "C: UAL 223，Runway 26L的RVR：接地区600m，中间段850m，停止端数据缺失。\nP: UAL 223。\n问题：哪一段的RVR最好？",
+      "referenceText": "正确答案：B. Midpoint",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-05-q10.mp3",
+      "choices": [
+        "Rollout",
+        "Midpoint",
+        "Touchdown",
+        "Stop end"
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1104",
+      "taskTitle": "10s陆空通话-213",
+      "audioText": "C: CCA 785, behind departing AFR 74, cross Runway 14L behind, turn right on C, hold short of Runway 14R.\nQuestion: What are they going to do when they reach RW14L?",
+      "audioTextZh": "C: CCA 785，在离场的AFR 74之后穿越Runway 14L，在C右转，并在Runway 14R外等待。\n问题：到达Runway 14L时，他们准备做什么？",
+      "referenceText": "正确答案：D. Cross the RW behind AFR 74.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-05-q12.mp3",
+      "choices": [
+        "Cross RW14L without delay.",
+        "Position and hold.",
+        "Turn right and backtrack on 14L",
+        "Cross the RW behind AFR 74."
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-1108",
+      "taskTitle": "10s陆空通话-214",
+      "audioText": "Pilot: \"Shanghai Tower, CES 567, radio check on 123.45.\"\nController: \"CES 567, Shanghai Tower, read you 3, your signal is weak. Check your transmitter.\"\nQuestion: What is the controller's response to the pilot's radio check?",
+      "audioTextZh": "Pilot: “上海塔台，CES 567，在123.45进行无线电检查。”\nController: “CES 567，上海塔台，信号强度3，信号较弱。检查你的发射机。”\n问题：管制员如何回复飞行员的无线电检查？",
+      "referenceText": "正确答案：B. The signal is weak",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-05-q16.mp3",
+      "choices": [
+        "The signal is clear.",
+        "The signal is weak",
+        "The frequency is wrong.",
+        "The pilot's call sign is incorrect."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1116",
+      "taskTitle": "10s陆空通话-215",
+      "audioText": "P: Guanghan Tower, B9725, radio check on 118.9, how do you read?\nC: B9725, Guanghan Tower, I read you 1, check your transmitter.\nQuestion: How is the radio signal of B9725?",
+      "audioTextZh": "P: 广汉塔台，B9725，在118.9进行无线电检查，听我的信号如何？\nC: B9725，广汉塔台，信号强度1，检查你的发射机。\n问题：B9725的无线电信号如何？",
+      "referenceText": "正确答案：A. Unreadable.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-06-q04.mp3",
+      "choices": [
+        "Unreadable.",
+        "Perfectly readable.",
+        "Readable but with difficulty.",
+        "Readable now and then."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1117",
+      "taskTitle": "10s陆空通话-216",
+      "audioText": "P: Chengdu Tower, Sichuan 8885, radio check on 119.25, how do you read?\nC: Sichuan 8885, Chengdu Tower, I read you 5.\nQuestion: What's the readability of Sichuan 8885?",
+      "audioTextZh": "P: 成都塔台，Sichuan 8885，在119.25进行无线电检查，听我的信号如何？\nC: Sichuan 8885，成都塔台，信号强度5。\n问题：Sichuan 8885的可读性如何？",
+      "referenceText": "正确答案：B. Perfectly readable.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-06-q05.mp3",
+      "choices": [
+        "Readable.",
+        "Perfectly readable.",
+        "Readable but with difficulty.",
+        "Readable now and then."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1118",
+      "taskTitle": "10s陆空通话-217",
+      "audioText": "P: Beijing Ground, CCA 4014, radio check on 118.6, how do you read?\nC: CCA 4014, Beijing Ground, I read you 3, loud background whistle.\nQuestion: What's the radio signal of CCA 4104 like?",
+      "audioTextZh": "P: 北京地面，CCA 4014，在118.6进行无线电检查，听我的信号如何？\nC: CCA 4014，北京地面，信号强度3，有很响的背景哨声。\n问题：CCA 4104的无线电信号如何？",
+      "referenceText": "正确答案：C. Readable but with difficulty.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-06-q06.mp3",
+      "choices": [
+        "Readable.",
+        "Unreadable.",
+        "Readable but with difficulty.",
+        "Readable now and then."
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-1119",
+      "taskTitle": "10s陆空通话-218",
+      "audioText": "P: Xiamen Approach, Xiamen 8205, radio check on 118.45, how do you read?\nC: Xiamen 8205, Xiamen Approach, I read you 2, you are cut in and out.\nQuestion: What's the readability of Xiamen 8205?",
+      "audioTextZh": "P: 厦门进近，Xiamen 8205，在118.45进行无线电检查，听我的信号如何？\nC: Xiamen 8205，厦门进近，信号强度2，你的信号时断时续。\n问题：Xiamen 8205的可读性如何？",
+      "referenceText": "正确答案：D. Readable now and then.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-06-q07.mp3",
+      "choices": [
+        "Readable.",
+        "Unreadable.",
+        "Readable but with difficulty.",
+        "Readable now and then."
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-1129",
+      "taskTitle": "10s陆空通话-219",
+      "audioText": "CCA 101, hold short of Runway 36, traffic on short final, report have it in sight.\nQuestion: When should the pilot make a report?",
+      "audioTextZh": "CCA 101，在Runway 36外等待，短五边有航空器，看到该航空器后报告。\n问题：飞行员应在什么时候报告？",
+      "referenceText": "正确答案：B. When he sees the traffic on final",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-06-q18.mp3",
+      "choices": [
+        "When he sees the traffic ahead.",
+        "When he sees the traffic on final",
+        "When he holds at holding point",
+        "When he turns off the runway."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1130",
+      "taskTitle": "10s陆空通话-220",
+      "audioText": "CCA 500, Runway 26R RVR, touchdown 600m, mid-point 800m, stop-end 700m.\nQuestion: what is the RVR of the stop end?",
+      "audioTextZh": "CCA 500，Runway 26R的RVR：接地点600m，中间段800m，停止端700m。\n问题：停止端的RVR是多少？",
+      "referenceText": "正确答案：A. 700m",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-06-q19.mp3",
+      "choices": [
+        "700m",
+        "500m",
+        "600m",
+        "800m"
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1134",
+      "taskTitle": "10s陆空通话-221",
+      "audioText": "C: GAF, traffic 10 o'clock, FL270, moving from left to right, 15 miles.\nQuestion: What is the traffic condition?",
+      "audioTextZh": "C: GAF，冲突航空器位于10点钟方向、FL270，正从左向右移动，距离15 miles。\n问题：冲突航空器的情况如何？",
+      "referenceText": "正确答案：A. 15 miles 10 o'clock FL270 moving from left to right.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-07-q03.mp3",
+      "choices": [
+        "15 miles 10 o'clock FL270 moving from left to right.",
+        "15 miles 10 o'clock FL270 moving from right to left.",
+        "15 miles 10 o'clock FL260 moving from left to right.",
+        "15 miles 10 o'clock FL260 moving from right to left."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1137",
+      "taskTitle": "10s陆空通话-222",
+      "audioText": "C: GCD, I read you 3 with loud background whistle.\nQuestion: what is the transmission quality of GCD?",
+      "audioTextZh": "C: GCD，信号强度3，并伴有很响的背景哨声。\n问题：GCD的通话质量如何？",
+      "referenceText": "正确答案：A. Readable but with difficulty",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-07-q06.mp3",
+      "choices": [
+        "Readable but with difficulty",
+        "Perfectly readable",
+        "Unreadable",
+        "Unclear with loud background noise."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1141",
+      "taskTitle": "10s陆空通话-223",
+      "audioText": "BAW 386, backtrack Runway 03, vacate runway via taxiway A1, taxi with caution a tug broke down at next intersection.\nQuestion: Where is the Airbus?",
+      "audioTextZh": "BAW 386，沿Runway 03反向滑行，经滑行道A1脱离跑道，谨慎滑行，下一个交叉口有一辆牵引车发生故障。\n问题：Airbus在哪里？",
+      "referenceText": "正确答案：C. An unserviceable tug is stopping at the next intersection.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-07-q10.mp3",
+      "choices": [
+        "BAW 386 should vacate by the end of Runway 03.",
+        "BAW 386 is broken down at the next intersection.",
+        "An unserviceable tug is stopping at the next intersection.",
+        "BAW 386 blocked the taxiway A1 and needs towing."
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-1142",
+      "taskTitle": "10s陆空通话-224",
+      "audioText": "P: Departure, HDA 613, passing 3000ft.\nC: HDA 613, cancel SID turn right heading 240 to intercept CH 215.\nQuestion: What is the departure route of Dragon air 613?",
+      "audioTextZh": "P: 离场，HDA 613，正通过3000ft。\nC: HDA 613，取消SID，右转航向240，切入CH 215。\n问题：HDA 613的离场航路是什么？",
+      "referenceText": "正确答案：B. Turn right heading 240 to intercept 215 radial.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-07-q11.mp3",
+      "choices": [
+        "Turn left heading 204 to intercept 215 radial.",
+        "Turn right heading 240 to intercept 215 radial.",
+        "Turn right heading 240 to intercept 210 radial.",
+        "Turn right heading 204 to intercept 210 radial."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1144",
+      "taskTitle": "10s陆空通话-225",
+      "audioText": "P: Ground, UAL 048, request start up port outboard for engine check.\nC: UAL 048, startup approved, but set your engine to idle due to noise abatement.\nQuestion: Which engine will be started for check?",
+      "audioTextZh": "P: 地面，UAL 048，请求启动左外侧发动机进行检查。\nC: UAL 048，启动获准，但由于噪声管制，请将发动机设为慢车。\n问题：将启动哪台发动机进行检查？",
+      "referenceText": "正确答案：D. Left outboard engine.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-07-q13.mp3",
+      "choices": [
+        "Left inboard engine.",
+        "Starboard outboard engine.",
+        "Starboard inboard engine.",
+        "Left outboard engine."
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-1146",
+      "taskTitle": "10s陆空通话-226",
+      "audioText": "P: Ground, CCA 101, the tow bar was broken, we are wait for a replacement.\nC: CCA 101, call me back when ready.\nQuestion: What happened to CCA 101?",
+      "audioTextZh": "P: 地面，CCA 101，牵引杆断了，我们正在等待替换件。\nC: CCA 101，准备好后再次呼叫我。\n问题：CCA 101发生了什么？",
+      "referenceText": "正确答案：C. The towbar is broken during pushback.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-07-q15.mp3",
+      "choices": [
+        "No tug is available for them now.",
+        "The tug is broken during pushback.",
+        "The towbar is broken during pushback.",
+        "The engines ingested foreign object during start-up."
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-1147",
+      "taskTitle": "10s陆空通话-227",
+      "audioText": "C: CSN 309, ILS CAT II is unreliable due to inoperative centerline lighting. ILS CAT I minima is in effect.\nP: ILS CAT I minima, CSN 309\nQuestion: What makes ILS category II unreliable?",
+      "audioTextZh": "C: CSN 309，由于跑道中线灯失效，ILS CAT II不可靠，现执行ILS CAT I最低标准。\nP: ILS CAT I最低标准，CSN 309。\n问题：什么原因导致ILS CAT II不可靠？",
+      "referenceText": "正确答案：D. Failing centerline lighting",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-07-q16.mp3",
+      "choices": [
+        "Inoperative sequence flashers",
+        "Cross-bar lights failure",
+        "Unserviceable approach lights",
+        "Failing centerline lighting"
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-1150",
+      "taskTitle": "10s陆空通话-228",
+      "audioText": "P: PANPAN, PANPAN, PANPAN, UAL 521, a passenger is seriously ill, probably a heart attack, request divert to A.\nC: roger, UAL 521, turn left heading 180, I will advise you request medical assistance upon landing.\nQuestion: What happened on board?",
+      "audioTextZh": "P: PANPAN，PANPAN，PANPAN，UAL 521，一名乘客病情严重，可能是心脏病发作，请求改航A机场。\nC: 收到，UAL 521，左转航向180，我会通知落地后提供医疗援助。\n问题：机上发生了什么？",
+      "referenceText": "正确答案：B. A passenger had a heart attack.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-07-q20.mp3",
+      "choices": [
+        "Fire was detected in the rear galley.",
+        "A passenger had a heart attack.",
+        "A pregnant woman is about to give birth.",
+        "One crew member became incapacitated."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1232",
+      "taskTitle": "10s陆空通话-229",
+      "audioText": "P: Wuhan Center, CES 441, request turn left 30 degrees to detour the build-up.\nC: CES 441, negative due military movement, turn right 30 degrees.\nQuestion: Why did the controller not let the crew turn left?",
+      "audioTextZh": "P: 武汉区调，CES 441，请求左转30度绕飞积云堆积区。\nC: CES 441，由于有军事活动，不同意，右转30度。\n问题：管制员为什么不允许机组左转？",
+      "referenceText": "正确答案：B. They would enter military area.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-08-q10.mp3",
+      "choices": [
+        "They would enter a dangerous area.",
+        "They would enter military area.",
+        "They would run into the build-up area.",
+        "They would be hit by a missile."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1233",
+      "taskTitle": "10s陆空通话-230",
+      "audioText": "Wuhan tower, ACA 2056, ready for departure.\nACA 2056, behind Boeing 747 on short final, line up and wait Runway 36R.\nQuestion: What does the controller's instruction reply?",
+      "audioTextZh": "武汉塔台，ACA 2056，已准备好离场。\nACA 2056，跟在短五边的Boeing 747之后，进入Runway 36R等待。\n问题：管制员回复的指令是什么意思？",
+      "referenceText": "正确答案：D. ACA 2056 has to wait for a landing 747 before lining up.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-08-q11.mp3",
+      "choices": [
+        "ACA 2056 can depart immediately.",
+        "ACA 2056 is number two for departure.",
+        "ACA 2056 has to wait for a departing 747 before lining up.",
+        "ACA 2056 has to wait for a landing 747 before lining up."
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-1234",
+      "taskTitle": "10s陆空通话-231",
+      "audioText": "C: Alpha Center, ACA 303, for sequencing, can you reduce to minimum speed? The next sector will advise your descent speed.\nP: affirm, ACA 303.\nQuestion: When will the pilot receive descend speed?",
+      "audioTextZh": "C: Alpha管制，ACA 303，为便于排序，能否减至最小速度？下一管制区将告知你的下降速度。\nP: 是的，ACA 303。\n问题：飞行员何时会收到下降速度指示？",
+      "referenceText": "正确答案：A. When the next controller contacts him.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-08-q12.mp3",
+      "choices": [
+        "When the next controller contacts him.",
+        "From now on.",
+        "After he reduces to minimum speed.",
+        "It was not mentioned."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1235",
+      "taskTitle": "10s陆空通话-232",
+      "audioText": "panpan, panpan, panpan, Hongkong approach CES 141, we have low fuel on board, request landing priority. 15 miles east at FL110..\nQuestion: What can we learn from this statement?",
+      "audioTextZh": "PANPAN，PANPAN，PANPAN，香港进近，CES 141，机上燃油不足，请求优先着陆。当前位置在东侧15英里，FL110。\n问题：我们能从这段通话中了解到什么？",
+      "referenceText": "正确答案：D. CSN 141 had a fuel emergency.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-08-q13.mp3",
+      "choices": [
+        "CES 141 had a fuel leakage.",
+        "CES 141 was west of Hongkong airport.",
+        "CSN 141 wanted to land at the alternate airport.",
+        "CSN 141 had a fuel emergency."
+      ],
+      "correctChoiceIndex": 3
     }
   ]
 }

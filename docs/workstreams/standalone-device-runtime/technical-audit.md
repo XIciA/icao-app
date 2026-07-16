@@ -1,6 +1,6 @@
 # 设备独立使用技术盘点
 
-状态：已完成只读盘点
+状态：保留 2026-07-13 基线；2026-07-16 已补充发布前复核
 
 盘点日期：2026-07-13
 
@@ -183,3 +183,13 @@ Mailpit只绑定ECS本机，当前没有正式SMTP。受控账号注册和登录
 ```
 
 当前没有需要改变总战略或重做App功能的技术阻塞；真正的外部前置条件是临时域名、DNS、备案/安全组和真实Android设备。
+
+## 13. 2026-07-16 发布前复核
+
+- iOS 当前 Bundle ID 仍为 `com.anonymous.icao-app`，本任务禁止更换。
+- Android 原配置仍为 `com.anonymous.icaoapp` 且 Release 使用 Debug 签名；本轮将其一次性切换为 `com.feizhuicao.app` 和项目专属签名。
+- 权威 DNS 已确认 `download.feizhuicao.com` 的 A 记录指向 `47.109.132.161`，TTL 为 600，解析线路为默认。
+- ECS 已运行 Caddy 2.11.4，`api` 与 `cloud` HTTPS 正常；下载站可在同一网关增加只读静态目录，不开放新的内部服务端口。
+- 本机具备 Java 17、Android SDK、`apksigner`、`apkanalyzer`、macOS Keychain 与 iCloud Drive，可安全生成、验证和备份 Release 密钥。
+- 当前 Git 工作区有大量用户未提交改动；用户明确授权 Android 首版按当前工作区构建并记录完整清单和哈希，后续 `pnpm release:android` 默认执行干净工作区门禁。
+- 首版只建设网页下载入口，由测试者自行检查；不实现 App 内更新检查、密码保护或测试者登记。

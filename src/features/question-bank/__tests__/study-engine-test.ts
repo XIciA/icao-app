@@ -68,7 +68,7 @@ describe('shared study engine', () => {
 
     const storytelling = getEmbeddedQuestionBanks().find((dataset) => dataset.id === 'storytelling');
     const storytellingCards = storytelling?.categories.flatMap((category) => category.topics).flatMap((topic) => topic.cards) ?? [];
-    expect(storytellingCards).toHaveLength(296);
+    expect(storytellingCards).toHaveLength(436);
     expect(storytellingCards.every((card) => !Object.hasOwn(card, 'referenceText'))).toBe(true);
   });
 

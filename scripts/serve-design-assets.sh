@@ -10,5 +10,5 @@ if [ ! -d "$DESIGN_PUBLIC/question-bank-assets/audio" ]; then
   exit 1
 fi
 
-echo "Serving canonical read-only design assets at http://0.0.0.0:$PORT"
+echo "Serving repository resources with canonical design fallback at http://0.0.0.0:$PORT"
 ICAO_ASSET_PORT="$PORT" exec node "$(dirname "$0")/serve-design-assets.mjs"

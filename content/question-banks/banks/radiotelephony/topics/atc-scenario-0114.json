@@ -1,0 +1,188 @@
+{
+  "categoryId": "atc-csn",
+  "id": "atc-scenario-0114",
+  "name": "CSN 3102 雷暴绕飞 积冰/防冰 乘客医疗",
+  "declaredCardCount": 20,
+  "cards": [
+    {
+      "id": "atc-scenario-0114-card-main-1958",
+      "taskTitle": "CSN 3102-1",
+      "audioText": "Your callsign is CSN 3102, a flight from Guangzhou to Beijing, you are at Gate 223, contact Guangzhou Ground and request pushback and startup.",
+      "audioTextZh": "你的呼号是 CSN 3102，这是一趟从广州飞往北京的航班，你位于 223 登机口，联系广州地面并申请推出和开车。",
+      "referenceText": "Guangzhou Ground, CSN 3102, Gate 223, request pushback and startup.",
+      "referenceTextZh": "广州地面，CSN 3102，223 登机口，申请推出和开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-010-csn3102-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0114-card-main-1959",
+      "taskTitle": "CSN 3102-2",
+      "audioText": "CSN 3102, pushback and startup approved, facing west.",
+      "audioTextZh": "CSN 3102，推出和开车批准，机头朝西。",
+      "referenceText": "pushback and startup approved, facing west, CSN 3102.",
+      "referenceTextZh": "推出和开车批准，机头朝西，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-010-csn3102-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0114-card-main-1960",
+      "taskTitle": "CSN 3102-3",
+      "audioText": "CSN 3102, stand by, expect 30 minutes, lightning and thunder were reported in the vicinity of the airport.",
+      "audioTextZh": "CSN 3102，等待，预计 30 分钟，机场附近报告有闪电和雷暴。",
+      "referenceText": "roger, stand by, CSN 3102.",
+      "referenceTextZh": "收到，等待，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-010-csn3102-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0114-card-main-1961",
+      "taskTitle": "CSN 3102-4",
+      "audioText": "B: Now you have completed push back and start up, contact Ground and request taxi.",
+      "audioTextZh": "B：现在你已完成推出和开车，联系地面并请求滑行。",
+      "referenceText": "Guangzhou Ground, CSN 3102, push back and start up completed, request taxi.",
+      "referenceTextZh": "广州地面，CSN 3102，推出和开车完成，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-010-csn3102-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0114-card-main-1962",
+      "taskTitle": "CSN 3102-5",
+      "audioText": "CSN 3102, taxi via Juliet1, Z to holding point Runway 19.",
+      "audioTextZh": "CSN 3102，经 J1、Z 滑行至 Runway 19 等待点。",
+      "referenceText": "taxi via J one, Z to holding point Runway 19, CSN 3102.",
+      "referenceTextZh": "经 J1、Z 滑行至 Runway 19 等待点，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-010-csn3102-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0114-card-main-1963",
+      "taskTitle": "CSN 3102-6",
+      "audioText": "B: You are holding at holding point F1 Runway 19, you are ready for departure, contact Guangzhou Tower.",
+      "audioTextZh": "B：你在跑道 19 F1 等待点等待，准备好离场，联系广州塔台。",
+      "referenceText": "Guangzhou Tower, CSN 3102, holding point F1 Runway 19, ready for departure.",
+      "referenceTextZh": "广州塔台，CSN 3102，跑道 19 F1 等待点，准备好离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-010-csn3102-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0114-card-main-1964",
+      "taskTitle": "CSN 3102-7",
+      "audioText": "Weather forecast says the thunderstorm will not improve in about half an hour, one of the passengers is getting anxious. You decide to taxi back to the apron to disembark the passenger.",
+      "audioTextZh": "天气预报称雷暴在大约半小时内不会改善，一名乘客开始焦虑。你决定滑回机坪让该乘客下机。",
+      "referenceText": "Guangzhou Tower, CSN 3102, the thunderstorm will not improve in about half an hour, one of the passenger is getting anxious, request taxi back to the apron to disembark the passenger.",
+      "referenceTextZh": "广州塔台，CSN 3102，雷暴在大约半小时内不会改善，一名乘客开始焦虑，请求滑回机坪让该乘客下机。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-010-csn3102-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0114-card-main-1965",
+      "taskTitle": "CSN 3102-8",
+      "audioText": "CSN 3102, Line up and wait Runway 19, vacate via A2, taxi to gate 223 via taxiway A and Z.",
+      "audioTextZh": "CSN 3102，进入 Runway 19 等待，经 A2 脱离，经 A 和 Z 滑行道滑行至 223 登机口。",
+      "referenceText": "Line up and wait Runway 19, vacate via A two, taxi to gate 223 via taxiway A and Z, CSN 3102.",
+      "referenceTextZh": "进入 Runway 19 等待，经 A2 脱离，经 A 和 Z 滑行道滑行至 223 登机口，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-010-csn3102-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0114-card-main-1966",
+      "taskTitle": "CSN 3102-9",
+      "audioText": "B: Thirty minutes later, the weather is improving, you observed a small cell 3 miles from Runway 19, you ask to turn right heading 120 and climb to 900 meters to avoid it.",
+      "audioTextZh": "B：三十分钟后，天气正在好转，你观察到距跑道 19 三海里有小单体，申请右转航向 120 并爬升至 900 米以避开。",
+      "referenceText": "Guangzhou Tower, CSN 3102, we observed a small cell 3 miles from Runway 19, request turn right heading 120 and climb to 900 meters.",
+      "referenceTextZh": "广州塔台，CSN 3102，我们观察到距跑道 19 三海里有小单体，请求右转航向 120 并爬升至 900 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-010-csn3102-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0114-card-main-1967",
+      "taskTitle": "CSN 3102-10",
+      "audioText": "CSN 3102 when airborne, turn right heading 120, climb to 900 meters, cleared for takeoff Runway 19, contact Departure on 121.95.",
+      "audioTextZh": "CSN 3102，离地后右转航向 120，爬升至 900 米，许可从 Runway 19 起飞，联系离场 121.95。",
+      "referenceText": "when airborne, turn right heading 120, climb to 900 meters, cleared for takeoff Runway 19, 121.95, CSN 3102.",
+      "referenceTextZh": "离地后右转航向 120，爬升至 900 米，许可从 Runway 19 起飞，121.95，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-010-csn3102-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0114-card-main-1968",
+      "taskTitle": "CSN 3102-11",
+      "audioText": "B: Now you are airborne, passing 600 meters, contact Guangzhou Departure.",
+      "audioTextZh": "B：现在你已离地，正通过 600 米，联系广州离场。",
+      "referenceText": "Guangzhou Departure, CSN 3102, airborne, passing 600 meters.",
+      "referenceTextZh": "广州离场，CSN 3102，已离地，通过 600 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-010-csn3102-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0114-card-main-1969",
+      "taskTitle": "CSN 3102-12",
+      "audioText": "CSN 3102, Guangzhou Departure, radar contact, turn right heading 300, climb to 900 meters.",
+      "audioTextZh": "CSN 3102，广州离场，雷达识别，右转航向 300，爬升至 900 米。",
+      "referenceText": "turn right heading 300, climb to 900 meters, CSN 3102.",
+      "referenceTextZh": "右转航向 300，爬升至 900 米，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-010-csn3102-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0114-card-main-1970",
+      "taskTitle": "CSN 3102-13",
+      "audioText": "CSN 3102, climb to 3000 meters on standard.",
+      "audioTextZh": "CSN 3102，按标准气压爬升至 3000 米。",
+      "referenceText": "climb to 3000 meters on standard, CSN 3102.",
+      "referenceTextZh": "按标准气压爬升至 3000 米，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-010-csn3102-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0114-card-main-1971",
+      "taskTitle": "CSN 3102-14",
+      "audioText": "B: During climb, 1 of the passengers was scalded by hot coffee, contact Guangzhou Departure and request return to land.",
+      "audioTextZh": "B：爬升中，1 名旅客被热咖啡烫伤，联系广州离场并请求返回着陆。",
+      "referenceText": "Guangzhou Departure, CSN 3102, 1 of the passengers was scalded by hot coffee, request return to land.",
+      "referenceTextZh": "广州离场，CSN 3102，1 名旅客被热咖啡烫伤，请求返回着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-010-csn3102-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0114-card-main-1972",
+      "taskTitle": "CSN 3102-15",
+      "audioText": "C: CSN 3102, what assistance do you need?\nB: tell the controller you need medical services upon landing.",
+      "audioTextZh": "C： CSN 3102，你需要什么协助？\nB： 告诉管制员你需要落地时提供医疗服务。",
+      "referenceText": "request medical services upon landing, CSN 3102.",
+      "referenceTextZh": "请求落地时提供医疗服务，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-010-csn3102-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0114-card-main-1973",
+      "taskTitle": "CSN 3102-16",
+      "audioText": "CSN 3102, medical services will be ready upon landing.",
+      "audioTextZh": "CSN 3102，医疗服务将在落地时就位。",
+      "referenceText": "roger, thanks, CSN 3102.",
+      "referenceTextZh": "收到，谢谢，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-010-csn3102-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0114-card-main-1974",
+      "taskTitle": "CSN 3102-17",
+      "audioText": "CSN 3102, descend to 2,100 meters, expect radar vector for ILS approach Runway 19.",
+      "audioTextZh": "CSN 3102，下降至 2,100 米，预计雷达引导 ILS 进近 Runway 19。",
+      "referenceText": "descend to 2100 meters, expect radar vector for ILS approach Runway 19, CSN 3102.",
+      "referenceTextZh": "下降至 2100 米，预计雷达引导 ILS 进近 Runway 19，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-010-csn3102-q17.mp3"
+    },
+    {
+      "id": "atc-scenario-0114-card-main-1975",
+      "taskTitle": "CSN 3102-18",
+      "audioText": "CSN 3102, cleared for ILS approach Runway 19, report established.",
+      "audioTextZh": "CSN 3102，许可 ILS 进近 Runway 19，建立后报告。",
+      "referenceText": "cleared for ILS approach Runway 19, CSN 3102.",
+      "referenceTextZh": "许可 ILS 进近 Runway 19，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-010-csn3102-q18.mp3"
+    },
+    {
+      "id": "atc-scenario-0114-card-main-1976",
+      "taskTitle": "CSN 3102-19",
+      "audioText": "now you have established on ILS approach Runway 19.",
+      "audioTextZh": "现在你已建立 ILS 进近 Runway 19。",
+      "referenceText": "Guangzhou Approach, CSN 3102, established ILS approach Runway 19.",
+      "referenceTextZh": "广州进近，CSN 3102，已建立 ILS 进近 Runway 19。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-010-csn3102-q19.mp3"
+    },
+    {
+      "id": "atc-scenario-0114-card-main-1977",
+      "taskTitle": "CSN 3102-20",
+      "audioText": "B: Now you confirm if the medical service will be ready at the gate.",
+      "audioTextZh": "B：现在你确认医疗服务是否会在登机口准备好。",
+      "referenceText": "Guangzhou Tower, CSN 3102, is medical service ready at the gate ?",
+      "referenceTextZh": "广州塔台，CSN 3102，医疗服务是否已在登机口准备好？",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-010-csn3102-q20.mp3"
+    }
+  ]
+}

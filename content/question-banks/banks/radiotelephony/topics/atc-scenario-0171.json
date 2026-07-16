@@ -1,0 +1,152 @@
+{
+  "categoryId": "atc-ual",
+  "id": "atc-scenario-0171",
+  "name": "UAL 805 雷暴绕飞 TCAS机动 导航/自动驾驶问题",
+  "declaredCardCount": 16,
+  "cards": [
+    {
+      "id": "atc-scenario-0171-card-main-2950",
+      "taskTitle": "UAL 805-1",
+      "audioText": "Your call sign is UAL 805 on a flight to Guangzhou, you are approaching WXI, maintaining 11,000 meters, squawking 6527, contact Zhengzhou Control.",
+      "audioTextZh": "你的呼号是 UAL 805，正飞往广州，接近 WXI，保持 11,000 米，应答机 6527，联系郑州管制。",
+      "referenceText": "Zhengzhou Control, UAL 805, approaching WXI, maintaining 2000 meters, squawking 6527.",
+      "referenceTextZh": "郑州管制，UAL 805，接近 WXI，保持 2000 米，应答机 6527。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-071-ual805-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0171-card-main-2951",
+      "taskTitle": "UAL 805-2",
+      "audioText": "UAL 805, radar contact, offset 3 miles right of track, reduce speed to mach decimal 75 due to Wuhan Control restrictions.",
+      "audioTextZh": "UAL 805，雷达识别，向航迹右侧偏置 3 英里，因武汉管制限制将速度减至 Mach 0.75。",
+      "referenceText": "offset tree miles right of track, reduce speed to mach decimal seven five, UAL 805.",
+      "referenceTextZh": "向航迹右侧偏置 3 英里，将速度减至 Mach 0.75，UAL 805。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-071-ual805-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0171-card-main-2952",
+      "taskTitle": "UAL 805-3",
+      "audioText": "B: Your weather radar indicates there is a thunderstorm ahead, request Zhengzhou Control for 20 miles deviation right of track and state the reason.",
+      "audioTextZh": "B：气象雷达显示前方有雷暴，向郑州管制请求向航迹右侧偏航 20 海里，并说明原因。",
+      "referenceText": "Zhengzhou Control, UAL 805, our weather radar indicates there is a thunderstorm ahead, request 20 miles deviation right of track.",
+      "referenceTextZh": "郑州管制，UAL 805，我们气象雷达显示前方有雷暴，请求向航迹右侧偏航 20 海里。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-071-ual805-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0171-card-main-2953",
+      "taskTitle": "UAL 805-4",
+      "audioText": "C: UAL 805, 20 miles deviation to the right approved, report when clear of weather.",
+      "audioTextZh": "C：UAL 805，同意向右偏航 20 海里，脱离天气后报告。",
+      "referenceText": "20 miles deviation to the right approved, report when clear of weather, UAL 805.",
+      "referenceTextZh": "同意向右偏航 20 海里，脱离天气后报告，UAL 805。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-071-ual805-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0171-card-main-2954",
+      "taskTitle": "UAL 805-5",
+      "audioText": "C: UAL 805, reduce speed to mach decimal 72.\nB: Advise Zhengzhou Control mach decimal 72 is not acceptable, it's too low for your aircraft.",
+      "audioTextZh": "C： UAL 805，将速度减至 Mach 0.72。\nB： 通知郑州管制，Mach 0.72 不可接受，对你的航空器而言太低。",
+      "referenceText": "negative, mach decimal seven two is not acceptable due it's too low, UAL 805.",
+      "referenceTextZh": "不行，Mach 0.72不可接受，因为太低，UAL 805。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-071-ual805-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0171-card-main-2955",
+      "taskTitle": "UAL 805-6",
+      "audioText": "UAL 805, Zhengzhou Control, maintain mach decimal 75, we are limiting the number of aircraft flying through Wuhan Control area due to Wuhan radar failure.",
+      "audioTextZh": "UAL 805，郑州管制，保持 Mach 0.75，因武汉雷达故障，我们正在限制飞越武汉管制区的航空器数量。",
+      "referenceText": "roger, maintain mach decimal 75, UAL 805.",
+      "referenceTextZh": "收到，保持 Mach 0.75，UAL 805。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-071-ual805-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0171-card-main-2956",
+      "taskTitle": "UAL 805-7",
+      "audioText": "C: UAL 805, what is your estimated time for OBLIK?\nB: Inform Zhengzhou Control your estimated time for OBLIK is 0638Z.",
+      "audioTextZh": "C：UAL 805，你预计到达 OBLIK 的时间是多少？\nB：告知郑州管制预计 0638Z 到达 OBLIK。",
+      "referenceText": "Estimating OBLIK 0638Z, UAL 805",
+      "referenceTextZh": "预计 OBLIK 0638Z，UAL 805。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-071-ual805-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0171-card-main-2957",
+      "taskTitle": "UAL 805-8",
+      "audioText": "C: UAL 805, make an orbit right, reach OBLIK not earlier than 0646.",
+      "audioTextZh": "C：UAL 805，右盘旋，抵达 OBLIK 不早于 0646。",
+      "referenceText": "Orbit right, reach OBLIK not earlier than 0646, UAL 805.",
+      "referenceTextZh": "右盘旋，抵达 OBLIK 不早于 0646，UAL 805。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-071-ual805-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0171-card-main-2958",
+      "taskTitle": "UAL 805-9",
+      "audioText": "B: Now you have completed the orbit, ask Zhengzhou Control to track direct to OBLIK.",
+      "audioTextZh": "B：你现在已完成盘旋，请求郑州管制直飞 OBLIK。",
+      "referenceText": "Zhengzhou Control, UAL 805, request track direct to OBLIK.",
+      "referenceTextZh": "郑州管制，UAL 805，请求直飞 OBLIK。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-071-ual805-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0171-card-main-2959",
+      "taskTitle": "UAL 805-10",
+      "audioText": "UAL 805, direct to OBLIK, turn left heading 130 to intercept Amber 461.",
+      "audioTextZh": "UAL 805，直飞 OBLIK，左转航向 130，切入 Amber 461。",
+      "referenceText": "direct to OBLIK, turn left heading 130 to intercept Amber 461, UAL 805.",
+      "referenceTextZh": "直飞 OBLIK，左转航向 130，切入 Amber 461，UAL 805。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-071-ual805-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0171-card-main-2960",
+      "taskTitle": "UAL 805-11",
+      "audioText": "UAL 80550 miles to OBLIK, contact Wuhan Control on 118.9.",
+      "audioTextZh": "UAL 805，距 OBLIK 50 英里，联系武汉管制 118.9。",
+      "referenceText": "roger, 118.9, UAL 805.",
+      "referenceTextZh": "收到，118.9，UAL 805。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-071-ual805-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0171-card-main-2961",
+      "taskTitle": "UAL 805-12",
+      "audioText": "you are over OBLIK at time 0646, maintaining 11,000 meters, you are estimating ZF at time 0658, your next waypoint is WUH, make a standard position report to Wuhan Control.",
+      "audioTextZh": "你在 0646 时飞越 OBLIK，保持 11,000 米，预计 0658 时到达 ZF，下一个航路点是 WUH，向武汉管制作标准位置报告。",
+      "referenceText": "Wuhan Control, UAL 805, over OBLIK 0646, 2000 meters, estimating ZF0658, next WUH.",
+      "referenceTextZh": "武汉管制，UAL 805，0646 飞越 OBLIK，2000 米，预计 0658 到达 ZF，下一个航路点 WUH。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-071-ual805-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0171-card-main-2962",
+      "taskTitle": "UAL 805-13",
+      "audioText": "C: UAL 805, roger, maintain 11000 meters, report ZF.",
+      "audioTextZh": "C：UAL 805，收到，保持 11000 米，报告 ZF。",
+      "referenceText": "Maintain 11000 meters, report ZF, UAL 805.",
+      "referenceTextZh": "保持 11000 米，报告 ZF，UAL 805。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-071-ual805-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0171-card-main-2963",
+      "taskTitle": "UAL 805-14",
+      "audioText": "C: UAL 805, radar failure, for identification, reset squawk 3572.",
+      "audioTextZh": "C：UAL 805，雷达故障，为识别，重设应答机 3572。",
+      "referenceText": "Reset squawk 3572, UAL 805.",
+      "referenceTextZh": "重设应答机 3572，UAL 805。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-071-ual805-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0171-card-main-2964",
+      "taskTitle": "UAL 805-15",
+      "audioText": "C: UAL 805, squawk ident.",
+      "audioTextZh": "C：UAL 805，应答机识别。",
+      "referenceText": "Squawk ident, UAL 805.",
+      "referenceTextZh": "应答机识别，UAL 805。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-071-ual805-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0171-card-main-2965",
+      "taskTitle": "UAL 805-16",
+      "audioText": "C: UAL 805, radar identified, resume own navigation, track direct to DAPRO.",
+      "audioTextZh": "C：UAL 805，雷达已识别，恢复自主导航，直飞 DAPRO。",
+      "referenceText": "Resume own navigation, track direct to DAPRO, UAL 805.",
+      "referenceTextZh": "恢复自主导航，直飞 DAPRO，UAL 805。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-071-ual805-q16.mp3"
+    }
+  ]
+}

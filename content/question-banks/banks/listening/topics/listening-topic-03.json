@@ -2,7 +2,7 @@
   "categoryId": "listening-category-03",
   "id": "listening-topic-03",
   "name": "全部题目",
-  "declaredCardCount": 95,
+  "declaredCardCount": 249,
   "cards": [
     {
       "id": "listening-main-004",
@@ -1428,6 +1428,2316 @@
         "135"
       ],
       "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-636",
+      "taskTitle": "20s航空英语-96",
+      "audioText": "When it comes to landing in low visibility, the Instrument Landing System, or ILS, plays a vital role. It helps pilots align the aircraft with the runway and descend safely even when they can't see the runway clearly from the cockpit.\nQuestion: Which instrument is particularly important for pilots when there's low visibility during landing?",
+      "audioTextZh": "在低能见度条件下着陆时，仪表着陆系统（ILS）发挥着至关重要的作用。即使飞行员从驾驶舱无法清楚看到跑道，它也能帮助飞行员使飞机对准跑道并安全下降。\n问题：在低能见度条件下着陆时，哪种仪表对飞行员尤为重要？",
+      "referenceText": "正确答案：C. Instrument Landing System",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-01-q07.mp3",
+      "choices": [
+        "Altimeter",
+        "GPS navigator",
+        "Instrument Landing System",
+        "Airspeed indicator"
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-639",
+      "taskTitle": "20s航空英语-97",
+      "audioText": "Snowstorms can significantly reduce visibility around airports and in the airspace. When there's a snowstorm, pilots often face difficulties in seeing the runway and other navigational markers, which impacts aviation operations.\nQuestion: What is a common cause of low visibility that affects aviation operations?",
+      "audioTextZh": "暴风雪会显著降低机场周边和空域中的能见度。发生暴风雪时，飞行员往往难以看清跑道和其他导航标志，从而影响航空运行。\n问题：影响航空运行的一种常见低能见度成因是什么？",
+      "referenceText": "正确答案：B. Snowstorms",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-01-q10.mp3",
+      "choices": [
+        "Sunny days",
+        "Snowstorms",
+        "Clear nights",
+        "Light breezes"
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-640",
+      "taskTitle": "20s航空英语-98",
+      "audioText": "Small aircraft that don't have the sophisticated avionics found in larger jets struggle more during low visibility. They lack the advanced navigation and landing assistance systems, making it tougher for pilots to operate safely.\nQuestion: For a small aircraft without advanced avionics, why can low visibility be especially dangerous?",
+      "audioTextZh": "没有大型喷气式飞机所配备的复杂航空电子设备的小型飞机，在低能见度条件下面临更多困难。它们缺少先进的导航和着陆辅助系统，使飞行员更难安全运行。\n问题：对于没有先进航空电子设备的小型飞机，为什么低能见度可能格外危险？",
+      "referenceText": "正确答案：B. It lacks proper navigation systems.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-01-q11.mp3",
+      "choices": [
+        "It has a slower speed.",
+        "It lacks proper navigation systems.",
+        "It has a smaller crew.",
+        "It can't fly at high altitudes."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-641",
+      "taskTitle": "20s航空英语-99",
+      "audioText": "When ground-based navigation systems like ILS fail and there's extremely low visibility, pilots depend on the onboard radar to detect other objects and navigate their way, ensuring they stay on the right path and avoid obstacles.\nQuestion: What do pilots rely on mainly for navigation in extremely low visibility if the ground-based systems fail?",
+      "audioTextZh": "当ILS等地基导航系统失效且能见度极低时，飞行员依靠机载雷达探测其他物体并进行导航，以确保保持正确航迹并避开障碍物。\n问题：在能见度极低且地基系统失效时，飞行员主要依靠什么进行导航？",
+      "referenceText": "正确答案：B. Onboard radar",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-01-q12.mp3",
+      "choices": [
+        "Visual landmarks",
+        "Onboard radar",
+        "Instructions from ATC",
+        "Signals from nearby airports"
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-643",
+      "taskTitle": "20s航空英语-100",
+      "audioText": "During low visibility flights, flight attendants usually make an effort to provide passengers with more frequent updates about the flight situation. This helps keep passengers informed and calm during potentially nerve-wracking conditions.\nQuestion: How do flight attendants communicate with passengers differently during low visibility flights?",
+      "audioTextZh": "在低能见度飞行期间，乘务员通常会尽量更频繁地向乘客通报飞行情况。这有助于让乘客了解情况，并在可能令人紧张的条件下保持冷静。\n问题：在低能见度飞行期间，乘务员与乘客沟通的方式有何不同？",
+      "referenceText": "正确答案：B. They provide more frequent updates about the flight situation.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-01-q14.mp3",
+      "choices": [
+        "They use louder voices.",
+        "They provide more frequent updates about the flight situation.",
+        "They only communicate in writing.",
+        "They avoid communicating with passengers."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-644",
+      "taskTitle": "20s航空英语-101",
+      "audioText": "Air traffic control has a crucial role during low visibility. They give pilots detailed navigational instructions, tell them when to ascend, descend, and manage the proper spacing between aircraft to ensure a smooth and safe operation in the airspace.\nQuestion: What is the role of air traffic control in guiding aircraft during low visibility?",
+      "audioTextZh": "空中交通管制在低能见度条件下发挥关键作用。管制员向飞行员提供详细的导航指令，告知其何时爬升、下降，并管理航空器之间的适当间隔，以确保空域运行顺畅、安全。\n问题：空中交通管制在低能见度条件下引导航空器时承担什么作用？",
+      "referenceText": "正确答案：B. They provide detailed navigational instructions and manage the spacing between aircraft.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-01-q15.mp3",
+      "choices": [
+        "They only monitor the aircraft but don't give instructions.",
+        "They provide detailed navigational instructions and manage the spacing between aircraft.",
+        "They ask pilots to make their own decisions without any input.",
+        "They focus on communicating with the airport ground staff only."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-645",
+      "taskTitle": "20s航空英语-102",
+      "audioText": "Pilots and air traffic controllers usually communicate on the frequency of 118.0MHz. This frequency is widely used for various air traffic control communications, including takeoff, landing, and en-route instructions.\nQuestion: What is the most common communication frequency used by pilots and air traffic controllers?",
+      "audioTextZh": "飞行员和空中交通管制员通常使用118.0MHz频率进行通信。该频率广泛用于各种空中交通管制通信，包括起飞、着陆和航路指令。\n问题：飞行员和空中交通管制员最常使用的通信频率是多少？",
+      "referenceText": "正确答案：B. 118.0 MHz",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-01-q16.mp3",
+      "choices": [
+        "121.5 MHz",
+        "118.0 MHz",
+        "123.4 MHz",
+        "135.0 MHz"
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-652",
+      "taskTitle": "20s航空英语-103",
+      "audioText": "If the GPS system fails, pilots can switch to using traditional navigation aids like VOR and NDB. These instruments have been used for decades and can provide reliable navigation information, although they may require more pilot workload and skill.\nQuestion: What should a pilot do if the GPS system fails?",
+      "audioTextZh": "如果GPS系统失效，飞行员可以改用VOR和NDB等传统导航设备。这些设备已使用数十年，能够提供可靠的导航信息，但可能需要飞行员投入更多工作并具备更高技能。\n问题：如果GPS系统失效，飞行员应当怎么做？",
+      "referenceText": "正确答案：B. Switch to using traditional navigation aids",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-02-q03.mp3",
+      "choices": [
+        "Abort the flight immediately.",
+        "Switch to using traditional navigation aids",
+        "Fly randomly until the GPS is restored.",
+        "Depend on the passengers for navigation."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-654",
+      "taskTitle": "20s航空英语-104",
+      "audioText": "The advantage of an inertial navigation system is that it doesn't require any external signals and can operate independently for a period. It uses accelerometers and gyroscopes to calculate the aircraft's position, velocity, and attitude.\nQuestion: What is the advantage of using an inertial navigation system (INS)?",
+      "audioTextZh": "惯性导航系统的优点是不需要任何外部信号，并且可以独立运行一段时间。它使用加速度计和陀螺仪计算航空器的位置、速度和姿态。\n问题：使用惯性导航系统（INS）的优点是什么？",
+      "referenceText": "正确答案：A. It doesn't require any external signals and can operate independently for a period.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-02-q05.mp3",
+      "choices": [
+        "It doesn't require any external signals and can operate independently for a period.",
+        "It has the highest accuracy among all navigation systems.",
+        "It is very cheap to install and maintain.",
+        "It can communicate with other aircraft directly."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-657",
+      "taskTitle": "20s航空英语-105",
+      "audioText": "The flight management system integrates multiple navigation sources like GPS, VOR, and INS. It also automates flight planning and provides guidance to the pilots, making the navigation process more efficient and accurate.\nQuestion: What is the role of the flight management system (FMS) in navigation?",
+      "audioTextZh": "飞行管理系统集成GPS、VOR和INS等多种导航源。它还使飞行计划自动化并向飞行员提供引导，从而提高导航过程的效率和准确性。\n问题：飞行管理系统（FMS）在导航中的作用是什么？",
+      "referenceText": "正确答案：B. It integrates multiple navigation sources and automates flight planning and guidance.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-02-q08.mp3",
+      "choices": [
+        "It only controls the aircraft's engines.",
+        "It integrates multiple navigation sources and automates flight planning and guidance.",
+        "It is used to communicate with other aircraft.",
+        "It stores passenger information."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-658",
+      "taskTitle": "20s航空英语-106",
+      "audioText": "The terrain awareness and warning system warns pilots of potential terrain collisions. It uses database information and sensor data to alert pilots, allowing them to adjust their navigation and avoid flying into mountains or other obstacles.\nQuestion: How does terrain awareness and warning system (TAWS) relate to navigation?",
+      "audioTextZh": "地形感知和警告系统向飞行员警告潜在的地形碰撞风险。它利用数据库信息和传感器数据向飞行员发出警报，使其能够调整导航并避免撞上山体或其他障碍物。\n问题：地形感知和警告系统（TAWS）与导航有何关系？",
+      "referenceText": "正确答案：B. It warns pilots of potential terrain collisions",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-02-q09.mp3",
+      "choices": [
+        "It provides a detailed map of the terrain for sightseeing.",
+        "It warns pilots of potential terrain collisions",
+        "It calculates the best route over mountains.",
+        "It only works when the aircraft is on the ground."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-662",
+      "taskTitle": "20s航空英语-107",
+      "audioText": "As altitude increases, the ambient oxygen concentration decreases. So, the oxygen system has to supply more oxygen to compensate. It adjusts the flow and pressure to ensure that passengers and crew receive an adequate supply of breathable oxygen.\nQuestion: How does altitude affect the operation of the oxygen system?",
+      "audioTextZh": "随着高度增加，环境中的氧气浓度降低。因此，氧气系统必须提供更多氧气进行补偿。它会调节流量和压力，以确保乘客和机组人员获得充足的可呼吸氧气。\n问题：高度如何影响氧气系统的运行？",
+      "referenceText": "正确答案：B. As altitude increases, the oxygen system has to supply more oxygen as the ambient oxygen decreases.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-02-q13.mp3",
+      "choices": [
+        "As altitude increases, the oxygen system works less.",
+        "As altitude increases, the oxygen system has to supply more oxygen as the ambient oxygen decreases.",
+        "Altitude has no significant effect on the oxygen system.",
+        "The oxygen system only works during takeoff and landing."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-678",
+      "taskTitle": "20s航空英语-108",
+      "audioText": "Flight Data Recorder is a device used to record specific aircraft performance parameters such as the aeroplane flight path, speed, attitude, engine power and configuration of lift and drag devices. The purpose of an FDR is to collect and record data from a variety of aircraft sensors onto a medium designed to survive an accident.\nQuestion: Which of the following is not recorded in flight data recorders?",
+      "audioTextZh": "飞行数据记录器是一种用于记录特定航空器性能参数的设备，例如飞机航迹、速度、姿态、发动机功率以及增升和增阻装置的构型。FDR的用途是收集各种航空器传感器的数据，并记录到专为经受事故而设计的介质上。\n问题：以下哪一项不由飞行数据记录器记录？",
+      "referenceText": "正确答案：D. Cockpit voices.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-03-q10.mp3",
+      "choices": [
+        "Flight path.",
+        "Engine parameters.",
+        "Aircraft configuration.",
+        "Cockpit voices."
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-679",
+      "taskTitle": "20s航空英语-109",
+      "audioText": "On January 17, 2023, Scandinavian 305 was climbing out of Runway 31when the crew stopped the climb at FL100 due to being unable to retract the landing gear. The aircraft diverted to the alternate airport for a safe landing on Runway 36.\nQuestion: Why did Scandinavian 305 stop climb at FL100?",
+      "audioTextZh": "2023年1月17日，Scandinavian 305从Runway 31起飞爬升时，因无法收起起落架，机组在FL100停止爬升。航空器改航至备降机场，并在Runway 36安全着陆。\n问题：Scandinavian 305为什么在FL100停止爬升？",
+      "referenceText": "正确答案：A. Because they are unable to retract the landing gear.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-03-q11.mp3",
+      "choices": [
+        "Because they are unable to retract the landing gear.",
+        "Because they are unable to retract the flaps.",
+        "Because they are unable to reduce the cabin pressure.",
+        "Because they are unable to retard the thrust lever."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-681",
+      "taskTitle": "20s航空英语-110",
+      "audioText": "The key to fire prevention is keeping fuel and ignition sources separate. Combustion consists of three elements: oxygen, heat, and fuel. Together, these elements create a chemical chain reaction and result in a fire. The goal of firefighting is to eliminate at least one element from the fire, in order to extinguish it.\nQuestion: What is the key to preventing the fire?",
+      "audioTextZh": "防火的关键是将燃料与点火源隔离。燃烧由三个要素组成：氧气、热量和燃料。这些要素共同引发化学链式反应并造成火灾。灭火的目标是至少消除其中一个要素，从而将火扑灭。\n问题：预防火灾的关键是什么？",
+      "referenceText": "正确答案：A. Separate the fuel and ignition sources.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-03-q13.mp3",
+      "choices": [
+        "Separate the fuel and ignition sources.",
+        "Mix the fuel with the oxygen.",
+        "React between heat and fuel.",
+        "Ignite the oxygen and fuel."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-685",
+      "taskTitle": "20s航空英语-111",
+      "audioText": "P1: John, do you know there is a word that ATC will use to inform the pilot changed the last clearance and the new clearance supersede the preceding clearance.\nP2: Yes, yes, there is.\nQuestion: What word should be used in this situation?",
+      "audioTextZh": "P1: John，你知道ATC会使用哪个词来通知飞行员，上一项许可已经更改，新许可取代之前的许可吗？\nP2: 是的，是的，有这样一个词。\n问题：在这种情况下应当使用哪个词？",
+      "referenceText": "正确答案：B. Reclear",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-04-q03.mp3",
+      "choices": [
+        "Disregard",
+        "Reclear",
+        "Correction",
+        "Say again"
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-686",
+      "taskTitle": "20s航空英语-112",
+      "audioText": "M1: Do you know there is a word the controller will use to inform the pilots to ignore a taxiing clearance issued at the beginning of the transmission?\nM2: Yes, there is an ICAO standard word.\nQuestion: What word should be used in the situation?",
+      "audioTextZh": "M1: 你知道管制员会使用哪个词来通知飞行员忽略在通话开头发布的滑行许可吗？\nM2: 是的，有一个ICAO标准用语。\n问题：在这种情况下应当使用哪个词？",
+      "referenceText": "正确答案：D. Disregard",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-04-q04.mp3",
+      "choices": [
+        "Cancel",
+        "Correction",
+        "Acknowledge",
+        "Disregard"
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-690",
+      "taskTitle": "20s航空英语-113",
+      "audioText": "M1: The wear of carbon brakes is related to more numbers of application and pressure applications.\nM2: Yes, the proper use of carbon brakes will... of them.\nQuestion: What is the main idea of the conversation?",
+      "audioTextZh": "M1: 碳刹车的磨损与使用次数增多及施加压力有关。\nM2: 是的，正确使用碳刹车会……\n问题：这段对话的主要内容是什么？",
+      "referenceText": "正确答案：A. More brakes more wear.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-05-q13.mp3",
+      "choices": [
+        "More brakes more wear.",
+        "More forces, more wear.",
+        "More wind, more wear.",
+        "More pressure, more wear"
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-696",
+      "taskTitle": "20s航空英语-114",
+      "audioText": "The clear ice was found between 0 degree and minus 10 degrees, mixed and clear ice between minus 10 degree to minus 15 degree and rime ice between minus 15 degree and minus 20 degree southeast.\nQuestion: What type of ice is usually found between 0 degrees to minus 10 degrees?",
+      "audioTextZh": "0度至零下10度之间通常出现明冰，零下10度至零下15度之间出现混合冰和明冰，零下15度至零下20度之间出现毛冰。\n问题：0度至零下10度之间通常出现哪种冰？",
+      "referenceText": "正确答案：C. Clear ice.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-06-q04.mp3",
+      "choices": [
+        "Cube ice.",
+        "Rime ice.",
+        "Clear ice.",
+        "Mixed and clear ice."
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-697",
+      "taskTitle": "20s航空英语-115",
+      "audioText": "Singapore Airline 413 is inbound to Beijing Capital, but there was fog at the airport and RVR are below limits for landing, so the aircraft has to hold for improvement of visibility.\nQuestion: Why is SIA 413 holding?",
+      "audioTextZh": "SIA 413正飞往北京首都机场，但机场有雾，RVR低于着陆标准，因此航空器必须等待能见度改善。\n问题：SIA 413为什么等待？",
+      "referenceText": "正确答案：D. Because the RVRs are below limits.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-06-q05.mp3",
+      "choices": [
+        "Because the ILS is out of service.",
+        "Because the aircraft has to dump fuel.",
+        "Because the aircraft has to burn off fuel.",
+        "Because the RVRs are below limits."
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-702",
+      "taskTitle": "20s航空英语-116",
+      "audioText": "Dublin at 0830, wind 280 at 12 knots, visibility 10km plus cloud scattered 2200ft, temperature 12, dew point 6, QNH1002, no sig.\nQuestion: What is the temperature dew point spread?",
+      "audioTextZh": "都柏林0830，风向280度、风速12 knots，能见度10km以上，2200ft有散云，温度12，露点6，QNH1002，无显著变化。\n问题：温度与露点之差是多少？",
+      "referenceText": "正确答案：C. 6",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-06-q16.mp3",
+      "choices": [
+        "10",
+        "12",
+        "6",
+        "8"
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-722",
+      "taskTitle": "20s航空英语-117",
+      "audioText": "Pilots use a variety of communication methods, but during takeoff, the most common one is the VHF radio. It allows for real - time communication with air traffic control towers, ensuring a smooth and safe takeoff process.\nQuestion: Which of the following is a common way for pilots to communicate with air traffic control during takeoff?",
+      "audioTextZh": "飞行员使用多种通信方式，但起飞期间最常用的是VHF无线电。它能够与空中交通管制塔台进行实时通信，确保起飞过程顺畅、安全。\n问题：飞行员起飞期间与空中交通管制通信的一种常用方式是什么？",
+      "referenceText": "正确答案：C. VHF radio.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-08-q10.mp3",
+      "choices": [
+        "Hand-signals",
+        "Morse code.",
+        "VHF radio.",
+        "Satellite phone."
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-723",
+      "taskTitle": "20s航空英语-118",
+      "audioText": "VHF radio communication in aviation can be disrupted by several factors. One of the major ones is strong magnetic field interference. This can come from various sources like solar flares or nearby high-voltage electrical equipment.\nQuestion: What might cause a disruption in aviation communication via VHF radio?",
+      "audioTextZh": "航空VHF无线电通信可能受到多种因素干扰，其中一个主要因素是强磁场干扰。其来源可能包括太阳耀斑或附近的高压电气设备。\n问题：什么可能导致航空VHF无线电通信中断？",
+      "referenceText": "正确答案：B. A strong magnetic field interference.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-08-q11.mp3",
+      "choices": [
+        "High humidity in the cockpit.",
+        "A strong magnetic field interference.",
+        "A low-battery warning in the cockpit lights.",
+        "The pilot's incorrect pronunciation."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-724",
+      "taskTitle": "20s航空英语-119",
+      "audioText": "In international airspace, English is the standard language for communication between aircraft and air traffic control. This universal language helps to avoid misunderstandings and ensures seamless communication across different regions.\"\nQuestion: When an aircraft is in international airspace, what language is typically used for communication with other aircraft and air traffic control?",
+      "audioTextZh": "在国际空域中，英语是航空器与空中交通管制通信的标准语言。这种通用语言有助于避免误解，并确保不同地区之间的通信顺畅。\n问题：航空器位于国际空域时，通常使用哪种语言与其他航空器和空中交通管制通信？",
+      "referenceText": "正确答案：C. English.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-08-q12.mp3",
+      "choices": [
+        "French.",
+        "Spanish.",
+        "English.",
+        "The native language of the pilot."
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-725",
+      "taskTitle": "20s航空英语-120",
+      "audioText": "A transponder is an essential part of aviation communication. It continuously sends information such as the aircraft's identity, altitude, and speed to air traffic control. This data helps air traffic controllers to monitor and manage the flow of air traffic.\nQuestion: What is the function of a transponder in aviation communication?",
+      "audioTextZh": "应答机是航空通信的重要组成部分。它持续向空中交通管制发送航空器识别信息、高度和速度等数据。这些数据有助于空中交通管制员监控和管理空中交通流量。\n问题：应答机在航空通信中有什么功能？",
+      "referenceText": "正确答案：B. It sends information about the aircraft's identity, altitude, and speed to air traffic control.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-08-q13.mp3",
+      "choices": [
+        "It transmits the pilot's voice to air traffic control.",
+        "It sends information about the aircraft's identity, altitude, and speed to air traffic control.",
+        "It receives weather updates for the pilot.",
+        "It is used to play in-flight music for passengers."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-726",
+      "taskTitle": "20s航空英语-121",
+      "audioText": "In the event of losing communication with the main air traffic control frequency, a pilot should switch to an emergency frequency, such as 121.5MHz. This allows them to try and re - establish communication with air traffic control or other aircraft in the vicinity.\nQuestion: If a pilot loses communication with the main air traffic control frequency, what should they do?",
+      "audioTextZh": "如果与空中交通管制主频率失去通信，飞行员应切换至紧急频率，例如121.5MHz。这样可以尝试与空中交通管制或附近其他航空器重新建立通信。\n问题：如果飞行员与空中交通管制主频率失去通信，应当怎么做？",
+      "referenceText": "正确答案：B. Switch to an emergency frequency and attempt to re-establish contact.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-08-q14.mp3",
+      "choices": [
+        "Immediately land the aircraft at the nearest airport.",
+        "Switch to an emergency frequency and attempt to re-establish contact.",
+        "Keep repeating the message on the same frequency.",
+        "Use hand - signals to communicate with other aircraft."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-727",
+      "taskTitle": "20s航空英语-122",
+      "audioText": "An aircraft's data-link communication system is designed to transmit non-voice data. This includes flight plans, updated weather information, and the status of various aircraft systems. It enhances the efficiency and safety of flight operations.\nQuestion: What is the role of an aircraft's data-link communication system?",
+      "audioTextZh": "航空器的数据链通信系统用于传输非话音数据，包括飞行计划、更新的天气信息以及各航空器系统的状态。它能够提高飞行运行的效率和安全性。\n问题：航空器数据链通信系统的作用是什么？",
+      "referenceText": "正确答案：B. It transmits non-voice data.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-08-q15.mp3",
+      "choices": [
+        "It is used for in-flight entertainment systems.",
+        "It transmits non-voice data.",
+        "It controls the aircraft's engine performance.",
+        "It helps the pilot to navigate visually."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-728",
+      "taskTitle": "20s航空英语-123",
+      "audioText": "In a busy airspace, air traffic controllers assign different frequencies to each aircraft. This way, they can communicate with multiple aircraft simultaneously without interference, ensuring the safe and efficient movement of air traffic.\nQuestion: How do air traffic controllers ensure clear communication with multiple aircraft in a busy airspace?",
+      "audioTextZh": "在繁忙空域中，空中交通管制员为每架航空器分配不同频率。这样，他们可以同时与多架航空器通信而不受干扰，确保空中交通安全、高效运行。\n问题：在繁忙空域中，空中交通管制员如何确保与多架航空器进行清晰通信？",
+      "referenceText": "正确答案：B. They assign different frequencies to each aircraft.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-08-q16.mp3",
+      "choices": [
+        "They use a very loud voice.",
+        "They assign different frequencies to each aircraft.",
+        "They communicate with only one aircraft at a time.",
+        "They use hand-signals in addition to radio communication."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-729",
+      "taskTitle": "20s航空英语-124",
+      "audioText": "◦When an aircraft is over the ocean, VHF radio has limited range. In such cases, HF radio is used for long-range communication. HF radio can transmit signals over much longer distances, enabling communication with ground stations and other aircraft far away.\nQuestion: What type of communication equipment is used for long - range communication when an aircraft is over the ocean?",
+      "audioTextZh": "航空器飞越海洋时，VHF无线电的通信距离有限。在这种情况下，使用HF无线电进行远距离通信。HF无线电可以将信号传输到更远的距离，从而与远处的地面台站和其他航空器通信。\n问题：航空器飞越海洋时，使用哪种通信设备进行远距离通信？",
+      "referenceText": "正确答案：B. HF radio.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-08-q17.mp3",
+      "choices": [
+        "VHF radio.",
+        "HF radio.",
+        "UHF radio.",
+        "Bluetooth headset."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-739",
+      "taskTitle": "20s航空英语-125",
+      "audioText": "On July 15, 2025, Easyjet 8520 was on approach to Gatwick's Runway 26L when the crew declared PANPAN reporting a bird strike. The aircraft continued for a safe landing on Runway 26L.\nQuestion: Why did Easyjet 8520 declared PANPAN?",
+      "audioTextZh": "2025年7月15日，Easyjet 8520在向盖特威克机场Runway 26L进近时，机组报告遭遇鸟击并宣布PANPAN。航空器继续在Runway 26L安全着陆。\n问题：Easyjet 8520为什么宣布PANPAN？",
+      "referenceText": "正确答案：A. Due to bird strike.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-09-q14.mp3",
+      "choices": [
+        "Due to bird strike.",
+        "Due to unstable approach.",
+        "Due to engine failure.",
+        "Due to fuel leak."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-740",
+      "taskTitle": "20s航空英语-126",
+      "audioText": "On July 16, 2025, UAL 1316 was climbing out of O'Hare's Runway 22L when the crew stopped the climb at 5000 feet reporting a low oil pressure warning for the right hand engine and returned to Chicago O'Hare for a safe landing on Runway 28C.\nQuestion: Why did UAL 1316 stop climb and return to land?",
+      "audioTextZh": "2025年7月16日，UAL 1316从奥黑尔机场Runway 22L起飞爬升时，机组在5000 feet停止爬升，报告右侧发动机滑油压力低警告，并返回芝加哥奥黑尔机场，在Runway 28C安全着陆。\n问题：UAL 1316为什么停止爬升并返回着陆？",
+      "referenceText": "正确答案：A. Due to low oil pressure warning for starboard engine.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-09-q15.mp3",
+      "choices": [
+        "Due to low oil pressure warning for starboard engine.",
+        "Due to low oil pressure warning for port engine.",
+        "Due to high engine vibration warning for right engine.",
+        "Due to high EGT warning for left engine."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-746",
+      "taskTitle": "20s航空英语-127",
+      "audioText": "Factors such as loss of visibility, unstable approach speed, incorrect configurations, and runway occupancy are all valid safety concerns that justify a go-around. Passenger requests do not constitute a safety issue.\nQuestion: Which of the following factors might not lead to a pilot deciding to go around?",
+      "audioTextZh": "失去目视参考、进近速度不稳定、构型错误和跑道被占用等因素，都是足以支持复飞决定的安全风险。乘客的请求不构成安全问题。\n问题：以下哪个因素可能不会导致飞行员决定复飞？",
+      "referenceText": "正确答案：D. Passenger requests to return.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-10-q01.mp3",
+      "choices": [
+        "Loss of visual contact with the runway.",
+        "Unstable approach speed.",
+        "Incorrect flap configuration.",
+        "Passenger requests to return."
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-747",
+      "taskTitle": "20s航空英语-128",
+      "audioText": "During a go-around, key considerations include obstacle clearance, climb performance, and air traffic separation to ensure the maneuver is safe and efficient. Fuel efficiency and weather forecasts are not immediate concerns during the go-around itself.\nQuestion: According to the statement, which of the following is not the key consideration?",
+      "audioTextZh": "复飞期间的关键考虑因素包括超障、爬升性能和空中交通间隔，以确保该机动安全、高效。燃油效率和天气预报不是复飞过程中的即时关注事项。\n问题：根据这段陈述，以下哪一项不是关键考虑因素？",
+      "referenceText": "正确答案：D. Weather forecast for next day.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-10-q02.mp3",
+      "choices": [
+        "Minimum climb gradient requirements.",
+        "Obstacle clearance.",
+        "Traffic separation from other aircraft.",
+        "Weather forecast for next day."
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-753",
+      "taskTitle": "20s航空英语-129",
+      "audioText": "The captain's primary duty is to ensure the safe operation of the flight and to make critical decisions in emergencies or routine operations. This includes coordination with air traffic control, managing the crew, and monitoring the aircraft systems.\nQuestion: Which of the following best describes the captain's primary responsibility during the flight?",
+      "audioTextZh": "机长的首要职责是确保飞行安全运行，并在紧急情况或日常运行中作出关键决策。这包括与空中交通管制协调、管理机组以及监控航空器系统。\n问题：以下哪一项最能说明机长在飞行期间的首要职责？",
+      "referenceText": "正确答案：B. To oversee all aspects of the flight operation and ensure flight safety.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-10-q08.mp3",
+      "choices": [
+        "To manage the in-flight entertainment system for passenger satisfaction.",
+        "To oversee all aspects of the flight operation and ensure flight safety.",
+        "To assist the cabin crew with meal service.",
+        "To handle the booking of hotel accommodations for the crew after the flight."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-754",
+      "taskTitle": "20s航空英语-130",
+      "audioText": "The cabin crew plays a crucial role in passenger safety during emergencies. Their training enables them to quickly respond to situations like decompression and direct passengers effectively.\nQuestion: In the event of an emergency on board, such as rapid decompression, what is the primary role of the cabin crew?",
+      "audioTextZh": "客舱机组在紧急情况下保障乘客安全方面发挥关键作用。所接受的训练使他们能够迅速应对失压等情况，并有效引导乘客。\n问题：机上发生快速失压等紧急情况时，客舱机组的主要作用是什么？",
+      "referenceText": "正确答案：D. To assist passengers by providing oxygen masks and directing them to follow emergency procedures.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-10-q09.mp3",
+      "choices": [
+        "To remain seated and wait for the pilots' instructions.",
+        "To immediately prepare the aircraft for landing.",
+        "To guide passengers to their assigned seats and provide in-flight meals.",
+        "To assist passengers by providing oxygen masks and directing them to follow emergency procedures."
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-763",
+      "taskTitle": "20s航空英语-131",
+      "audioText": "Air traffic controllers are responsible for managing the movement of aircraft within controlled airspace. During arrival, they guide the aircraft along the correct approach path and assign landing slots.\nQuestion: Which of the following is typically the responsibility of the air traffic controller when coordinating an aircraft's arrival?",
+      "audioTextZh": "空中交通管制员负责管理管制空域内航空器的活动。航空器进场时，他们引导航空器沿正确的进近航迹飞行，并分配着陆时段。\n问题：协调航空器进场时，以下哪一项通常是空中交通管制员的职责？",
+      "referenceText": "正确答案：C. To provide directions for the aircraft to land safely.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-10-q18.mp3",
+      "choices": [
+        "To assist the cabin crew with passenger boarding.",
+        "To manage the aircraft's fuel consumption during the flight.",
+        "To provide directions for the aircraft to land safely.",
+        "To clean the aircraft before the next flight."
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-768",
+      "taskTitle": "20s航空英语-132",
+      "audioText": "Ground staff, especially those working in customer service, are responsible for communicating updates to passengers and organizing rebookings or accommodations in the event of delays.\nQuestion: When a flight is delayed due to bad weather, who is primarily responsible for informing passengers about the situation and arranging alternative plans?",
+      "audioTextZh": "地面工作人员，尤其是从事客户服务的人员，负责在航班延误时向乘客通报最新情况，并安排改签或住宿。\n问题：航班因恶劣天气延误时，谁主要负责向乘客说明情况并安排替代方案？",
+      "referenceText": "正确答案：C. The ground staff",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-11-q03.mp3",
+      "choices": [
+        "The cabin crew",
+        "The co-pilot",
+        "The ground staff",
+        "The maintenance engineer"
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-773",
+      "taskTitle": "20s航空英语-133",
+      "audioText": "The attitude indicator, also known as the artificial horizon, shows the aircraft's orientation in relation to the horizon, which is critical for maintaining controlled flight, especially when visual references are lost.\nQuestion: Which flight instrument provides continuous indication of the aircraft's attitude relative to the natural horizon?",
+      "audioTextZh": "姿态指示器也称人工地平仪，用于显示航空器相对于地平线的姿态。这对于保持可控飞行至关重要，尤其是在失去目视参考时。\n问题：哪种飞行仪表能够连续指示航空器相对于自然地平线的姿态？",
+      "referenceText": "正确答案：C. Attitude Indicator",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-11-q08.mp3",
+      "choices": [
+        "Airspeed Indicator",
+        "Altimeter",
+        "Attitude Indicator",
+        "Vertical Speed Indicator"
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-779",
+      "taskTitle": "20s航空英语-134",
+      "audioText": "Flight Management Systems (FMS) are frequently linked with digital flight instruments to provide unified data about navigation, fuel efficiency, and other operational parameters, improving overall cockpit management.\nQuestion: Which systems are digital instruments in modern cockpits often integrated with for enhanced situational awareness?",
+      "audioTextZh": "飞行管理系统（FMS）经常与数字飞行仪表连接，提供有关导航、燃油效率及其他运行参数的统一数据，从而改善驾驶舱整体管理。\n问题：现代驾驶舱中的数字仪表通常与哪种系统集成，以增强情景意识？",
+      "referenceText": "正确答案：B. Flight Management Systems (FMS)",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-11-q14.mp3",
+      "choices": [
+        "Hydraulic system",
+        "Flight Management Systems (FMS)",
+        "Fuel Injection System",
+        "Engine Cooling System"
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-784",
+      "taskTitle": "20s航空英语-135",
+      "audioText": "The airspeed indicator is available in both analog and digital formats and is a fundamental instrument that shows how fast the aircraft is moving through the air. Its function has remained consistent across technological advancements.\nQuestion: Which of the following flight instruments is commonly found in both analog and digital forms?",
+      "audioTextZh": "空速表有模拟和数字两种形式，是显示航空器相对于空气运动速度的基本仪表。随着技术发展，其功能始终保持一致。\n问题：以下哪种飞行仪表通常既有模拟形式，也有数字形式？",
+      "referenceText": "正确答案：C. Airspeed Indicator",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-11-q19.mp3",
+      "choices": [
+        "Autopilot Controller",
+        "Engine Thrust Monitor",
+        "Airspeed Indicator",
+        "Landing Gear Status Indicator"
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-785",
+      "taskTitle": "20s航空英语-136",
+      "audioText": "Glass cockpits reduce the number of physical instruments and consolidate flight data into digital displays, enabling pilots to process more information efficiently and respond faster to changing flight conditions.\nQuestion: What is the main advantage of using a glass cockpit layout over a traditional six-pack layout?",
+      "audioTextZh": "玻璃驾驶舱减少了实体仪表的数量，并将飞行数据整合到数字显示器上，使飞行员能够更高效地处理更多信息，并更快响应不断变化的飞行条件。\n问题：与传统六仪表布局相比，使用玻璃驾驶舱布局的主要优势是什么？",
+      "referenceText": "正确答案：A. Reduced pilot workload and improved situational awareness",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-11-q20.mp3",
+      "choices": [
+        "Reduced pilot workload and improved situational awareness",
+        "Increased weight savings",
+        "Simpler installation",
+        "Better compatibility with analog systems"
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-789",
+      "taskTitle": "20s航空英语-137",
+      "audioText": "The primary purpose of an SOP in aviation is to define standardized procedures for consistency, efficiency, and safety. This helps reduce errors and ensures that all personnel follow the same protocols.\nQuestion: Which of the following best describes the purpose of a standard operating procedure (SOP) in aviation?",
+      "audioTextZh": "航空中SOP的主要目的是定义标准化程序，以实现一致性、效率和安全。这有助于减少错误，并确保所有人员遵循相同的程序。\n问题：以下哪一项最能说明航空标准操作程序（SOP）的目的？",
+      "referenceText": "正确答案：C. To ensure consistency and safety in the cockpit",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-12-q04.mp3",
+      "choices": [
+        "To provide pilots with weather updates during flight",
+        "To guide maintenance engineers in engine repair",
+        "To ensure consistency and safety in the cockpit",
+        "To document the history of aircraft modifications"
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-790",
+      "taskTitle": "20s航空英语-138",
+      "audioText": "The primary flight control system includes ailerons, elevators, and rudder, which directly control the roll, pitch, and yaw of the aircraft. Flaps are part of the secondary flight control system and are used to increase lift during takeoff and landing.\nQuestion: Which of the following components is NOT part of the primary flight control system in an aircraft?",
+      "audioTextZh": "主飞行操纵系统包括副翼、升降舵和方向舵，分别直接控制航空器的滚转、俯仰和偏航。襟翼属于辅助飞行操纵系统，用于在起飞和着陆期间增加升力。\n问题：以下哪个部件不属于航空器主飞行操纵系统？",
+      "referenceText": "正确答案：D. Flaps.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-12-q05.mp3",
+      "choices": [
+        "Ailerons.",
+        "Elevators.",
+        "Rudder.",
+        "Flaps."
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-797",
+      "taskTitle": "20s航空英语-139",
+      "audioText": "Pilots use clear and standardized verbal communication to declare a 'go around', ensuring that all relevant parties, including air traffic control and nearby aircraft, are immediately aware of the situation.\nQuestion: Which of the following statements best describes the communication protocol used by pilots when declaring a 'go around'?",
+      "audioTextZh": "飞行员使用清晰、标准化的口头通信宣布“go around”，确保空中交通管制和附近航空器等所有相关方立即了解情况。\n问题：以下哪项陈述最能说明飞行员宣布“go around”时使用的通信程序？",
+      "referenceText": "正确答案：A. The pilot says 'Go around, go around! ' over the radio.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-12-q12.mp3",
+      "choices": [
+        "The pilot says 'Go around, go around! ' over the radio.",
+        "The pilot sends a text message to air traffic control.",
+        "The pilot uses hand signals to inform other aircraft.",
+        "The pilot waits until landing to report the issue."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-805",
+      "taskTitle": "20s航空英语-140",
+      "audioText": "In IMC, pilots rely solely on instruments for navigation and orientation. A lack of visual cues can lead to spatial disorientation, which is a major cause of loss of control.\nQuestion: What is a common contributing factor to loss of control in instrument meteorological conditions (IMC)?",
+      "audioTextZh": "在IMC中，飞行员完全依靠仪表进行导航和定向。缺乏目视提示可能导致空间定向障碍，这是造成失控的一个主要原因。\n问题：在仪表气象条件（IMC）下，导致失控的一个常见因素是什么？",
+      "referenceText": "正确答案：B. Spatial disorientation due to lack of visual references.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-12-q20.mp3",
+      "choices": [
+        "High fuel consumption.",
+        "Spatial disorientation due to lack of visual references.",
+        "Excessive cabin pressure.",
+        "Engine overheating."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-825",
+      "taskTitle": "20s航空英语-141",
+      "audioText": "Wake turbulence is primarily caused by wingtip vortices, which form as a result of the pressure difference between the upper and lower surfaces of the wings. These vortices can pose a hazard to smaller aircraft flying in the wake of larger aircraft.\nQuestion: Which of the following is a key factor that contributes to wake turbulence behind an aircraft?",
+      "audioTextZh": "尾流湍流主要由翼尖涡引起。翼尖涡是机翼上下表面压力差的结果，可能对在大型航空器尾流中飞行的小型航空器构成危险。\n问题：以下哪一项是造成航空器后方尾流湍流的关键因素？",
+      "referenceText": "正确答案：B. Wingtip vortices",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-14-q01.mp3",
+      "choices": [
+        "Engine thrust",
+        "Wingtip vortices",
+        "density altitude",
+        "Aircraft speed"
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-826",
+      "taskTitle": "20s航空英语-142",
+      "audioText": "In level, unaccelerated flight, the four fundamental aerodynamic forces (lift, weight, thrust, and drag) are balanced such that lift equals weight and thrust equals drag.\nQuestion: Which of the following statements best describes aerodynamic forces acting on an aircraft in level flight?",
+      "audioTextZh": "在平直、无加速飞行中，四种基本空气动力——升力、重量、推力和阻力——保持平衡，即升力等于重量，推力等于阻力。\n问题：以下哪项陈述最能说明平飞航空器所受的空气动力？",
+      "referenceText": "正确答案：A. Lift equals weight, and thrust equals drag",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-14-q02.mp3",
+      "choices": [
+        "Lift equals weight, and thrust equals drag",
+        "Lift is greater than weight, and thrust is less than drag",
+        "Weight is greater than lift, and drag is less than thrust",
+        "Lift is less than weight, and thrust is greater than drag"
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-859",
+      "taskTitle": "20s航空英语-143",
+      "audioText": "The Flight Management System (FMS) is designed to manage flight plans, calculate optimal routes, and integrate with navigation systems. While autopilot systems assist in flying the aircraft, they do not handle flight plan management.\nQuestion: Which of the following systems is primarily responsible for managing flight plans and navigation data in modern aircraft?",
+      "audioTextZh": "飞行管理系统（FMS）用于管理飞行计划、计算最佳航路并与导航系统集成。自动驾驶系统虽能协助操纵航空器，但不负责管理飞行计划。\n问题：现代航空器中，以下哪个系统主要负责管理飞行计划和导航数据？",
+      "referenceText": "正确答案：A. Flight Management System",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-15-q15.mp3",
+      "choices": [
+        "Flight Management System",
+        "Autopilot System",
+        "Air Data Computer",
+        "Engine Control Unit"
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-861",
+      "taskTitle": "20s航空英语-144",
+      "audioText": "Automation systems in aviation are designed to enhance safety and efficiency by reducing pilot workload through tasks like autopilot, autothrottle, and automated navigation. However, they do not replace the pilot entirely.\nQuestion: Which of the following best describes the role of automation systems in modern aviation?",
+      "audioTextZh": "航空自动化系统通过自动驾驶、自动油门和自动导航等功能处理日常任务，旨在减轻飞行员工作负荷并提高安全性和效率，但不会完全取代飞行员。\n问题：以下哪一项最能说明现代航空中自动化系统的作用？",
+      "referenceText": "正确答案：A. They reduce pilot workload by performing routine tasks such as navigation and autopilot functions",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-15-q17.mp3",
+      "choices": [
+        "They reduce pilot workload by performing routine tasks such as navigation and autopilot functions",
+        "They completely replace human pilots during all phases of flight",
+        "They are only used during emergency situations",
+        "They are primarily used for maintenance diagnostics"
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-863",
+      "taskTitle": "20s航空英语-145",
+      "audioText": "The attitude indicator, also known as the artificial horizon, provides information about the aircraft's pitch and roll relative to the horizon. It is crucial for maintaining proper orientation, especially in instrument meteorological conditions.\nQuestion: In the context of flight instruments, what does the term 'attitude indicator' refer to?",
+      "audioTextZh": "姿态指示器也称人工地平仪，用于提供航空器相对于地平线的俯仰和滚转信息。它对保持正确姿态至关重要，尤其是在仪表气象条件下。\n问题：在飞行仪表语境中，“姿态指示器”指什么？",
+      "referenceText": "正确答案：B. An instrument that displays the aircraft's pitch and roll angles",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-15-q19.mp3",
+      "choices": [
+        "An instrument that shows the aircraft's position relative to the ground",
+        "An instrument that displays the aircraft's pitch and roll angles",
+        "An instrument that measures airspeed",
+        "An instrument that indicates engine performance"
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-867",
+      "taskTitle": "20s航空英语-146",
+      "audioText": "The pitot static tubes supply pressure data to the airspeed indicator, altimeter, and vertical speed indicator. If these tubes become blocked, all three instruments may provide inaccurate readings.\nQuestion: Which of the following flight instruments is not likely to be affected if the pitot static tubes become blocked? ​",
+      "audioTextZh": "皮托静压管向空速表、高度表和垂直速度表提供压力数据。如果这些管路堵塞，这三种仪表都可能提供不准确的读数。\n问题：如果皮托静压管堵塞，以下哪种飞行仪表不太可能受到影响？",
+      "referenceText": "正确答案：D. Heading indicator",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-16-q03.mp3",
+      "choices": [
+        "Airspeed indicator",
+        "Altimeter",
+        "Vertical speed indicator",
+        "Heading indicator"
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-878",
+      "taskTitle": "20s航空英语-147",
+      "audioText": "Modern aircraft integrate the FMS with other avionics systems such as the autopilot, navigation systems, and communication systems to provide a cohesive and efficient flight management solution.\nQuestion: Which of the following best describes the integration of the Flight Management System (FMS) into modern aircraft?",
+      "audioTextZh": "现代航空器将FMS与自动驾驶、导航和通信等其他航空电子系统集成，以提供协调、高效的飞行管理方案。\n问题：以下哪一项最能说明飞行管理系统（FMS）在现代航空器中的集成方式？",
+      "referenceText": "正确答案：A. It is integrated with other avionics systems to provide comprehensive flight management",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-16-q14.mp3",
+      "choices": [
+        "It is integrated with other avionics systems to provide comprehensive flight management",
+        "It operates independently of other aircraft systems",
+        "It is only used in military aircraft",
+        "It is primarily used for training purposes"
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-898",
+      "taskTitle": "20s航空英语-148",
+      "audioText": "If an engine fire is detected on the ground before takeoff, continuing the takeoff would be extremely dangerous. The correct procedures include shutting down the engine, evacuating if necessary, and contacting emergency services.\nQuestion: Which of the following actions should NOT be taken by the flight crew upon detecting an engine fire on the ground before takeoff?",
+      "audioTextZh": "起飞前在地面发现发动机火灾时，继续起飞极其危险。正确程序包括关闭发动机、必要时撤离并联系应急服务部门。\n问题：起飞前在地面发现发动机火灾时，飞行机组不应采取以下哪项行动？",
+      "referenceText": "正确答案：D. Continue with the takeoff procedure",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-17-q14.mp3",
+      "choices": [
+        "Shut down the affected engine",
+        "Evacuate the aircraft immediately",
+        "Inform the ground fire department",
+        "Continue with the takeoff procedure"
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-899",
+      "taskTitle": "20s航空英语-149",
+      "audioText": "Pressurization systems are designed to maintain a comfortable and safe internal pressure within the cabin, typically simulating an altitude between 6,000 and 8,000 feet, even when the aircraft is flying much higher.\nQuestion: Which of the following statements about pressurization systems in commercial aircraft is correct?",
+      "audioTextZh": "增压系统用于在客舱内保持舒适、安全的压力，即使航空器飞行高度高得多，客舱通常也模拟6,000至8,000 feet的高度。\n问题：以下关于商用航空器增压系统的陈述哪一项正确？",
+      "referenceText": "正确答案：C. Pressurization systems regulate the internal cabin pressure to simulate a lower altitude environment for passenger comfort",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-17-q15.mp3",
+      "choices": [
+        "Pressurization systems maintain a constant external pressure equal to sea-level pressure regardless of altitude",
+        "Pressurization systems allow the cabin pressure to decrease as the aircraft climbs to higher altitudes",
+        "Pressurization systems regulate the internal cabin pressure to simulate a lower altitude environment for passenger comfort",
+        "Pressurization systems are only activated when the aircraft reaches an altitude of 30,000 feet or more"
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-925",
+      "taskTitle": "20s航空英语-150",
+      "audioText": "A wingtip vortex is found during takeoff, cruising and landing. When the aircraft fly with ground effect, the ground interferes with the wingtip vortex, which reduces the drag. When the aircraft is flying very near the ground, the vortex strength is much less, therefore, there is a large reduction of drag.\nQuestion: What's the main topic of the statement?",
+      "audioTextZh": "起飞、巡航和着陆期间都会产生翼尖涡。航空器在地面效应中飞行时，地面会干扰翼尖涡，从而减小阻力。航空器非常接近地面时，涡流强度小得多，因此阻力会大幅减小。\n问题：这段陈述的主题是什么？",
+      "referenceText": "正确答案：A. A. Vortex.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-01-q01.mp3",
+      "choices": [
+        "A. Vortex.",
+        "B. Takeoff.",
+        "C. Cruise.",
+        "D. Wing Tips."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-926",
+      "taskTitle": "20s航空英语-151",
+      "audioText": "AFR 145 is currently en route from Paris to London Heathrew. The aircraft is descending to 3000ft and request diverting to TLA. ATC is unable to grant the request due to conflicting traffic at 3000ft.\nQuestion: Why did Air Traffic Control deny the request of AFR 145?",
+      "audioTextZh": "AFR 145目前正在从巴黎飞往伦敦希思罗机场。航空器正下降至3000ft，并申请改航至TLA。由于在3000ft存在冲突航空器，ATC无法批准该请求。\n问题：空中交通管制为什么拒绝AFR 145的请求？",
+      "referenceText": "正确答案：A. A.Conflicting Traffic",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-01-q02.mp3",
+      "choices": [
+        "A.Conflicting Traffic",
+        "B. Military activity",
+        "C. Weather conditions",
+        "D. Weather conditions."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-927",
+      "taskTitle": "20s航空英语-152",
+      "audioText": "There was a very scare accident on the flight to Hawaii. During takeoff, there was dense cloud but no thunder or lightning, but about 20 seconds later, as the plane climbing, there was a tremmendous flash outside the plane and a large bang. Immediately, the engines throttles back and we levelled off. We looked out of the window and the engines were there and there was no fire.\nQuestion: What probably caused the large bang?",
+      "audioTextZh": "飞往夏威夷的航班上发生了一起非常惊险的事故。起飞时有浓云，但没有雷声或闪电；约20秒后，飞机正在爬升时，机外出现一道强烈闪光并伴随一声巨响。发动机随即减小推力，我们改为平飞。我们向窗外看去，发动机仍在，也没有起火。\n问题：巨响可能是什么造成的？",
+      "referenceText": "正确答案：A. A. a fuel tank explosion",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-01-q05.mp3",
+      "choices": [
+        "A. a fuel tank explosion",
+        "B. severe turbulence",
+        "C. a bird strike",
+        "D. a lightning strike"
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-928",
+      "taskTitle": "20s航空英语-153",
+      "audioText": "Thunderstorms are extremely dangerous for aircraft as they can generate severe turbulence and sudden changes in wind speed and direction known as wind shear. These conditions can make it very difficult for pilots to control the aircraft and maintain a safe flight path.\nQuestion: What is a major hazard that thunderstorms pose to aircraft?",
+      "audioTextZh": "雷暴对航空器极其危险，因为它会产生严重湍流，以及称为风切变的风速和风向突然变化。这些情况会使飞行员很难控制航空器并保持安全航迹。\n问题：雷暴会给航空器带来什么主要危险？",
+      "referenceText": "正确答案：B. Severe turbulence and wind shear.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-01-q06.mp3",
+      "choices": [
+        "Mild turbulence only.",
+        "Severe turbulence and wind shear.",
+        "Improved visibility.",
+        "Stable air currents."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-930",
+      "taskTitle": "20s航空英语-154",
+      "audioText": "When a thunderstorm is approaching, airports often temporarily suspend all flight operations. This is to ensure the safety of the aircraft on the ground and in the air, as thunderstorms can bring strong winds, heavy rain, and lightning that can damage the airport infrastructure and endanger the planes.\nQuestion: What might an airport do when a thunderstorm is approaching?",
+      "audioTextZh": "雷暴接近时，机场通常会暂时停止所有飞行运行，以确保地面和空中航空器的安全，因为雷暴可能带来强风、大雨和闪电，损坏机场基础设施并危及飞机。\n问题：雷暴接近时，机场可能采取什么措施？",
+      "referenceText": "正确答案：B. Temporarily suspend all flight operations.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-01-q08.mp3",
+      "choices": [
+        "Increase the number of takeoffs and landings to clear the backlog.",
+        "Temporarily suspend all flight operations.",
+        "Allow only small aircraft to take off and land.",
+        "Ignore the thunderstorm as it won't affect airport operations."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-931",
+      "taskTitle": "20s航空英语-155",
+      "audioText": "Lightning associated with thunderstorms can pose a serious threat to aircraft as it can cause damage to the aircraft's electrical systems. The high voltage discharge can disrupt avionics, navigation equipment, and even cause structural damage in severe cases.\nQuestion: What is the risk of flying near a thunderstorm's lightning?",
+      "audioTextZh": "雷暴伴随的闪电会严重威胁航空器，因为它可能损坏航空器电气系统。高压放电会干扰航空电子设备和导航设备，严重时甚至会造成结构损坏。\n问题：在雷暴闪电附近飞行有什么风险？",
+      "referenceText": "正确答案：B. It can cause damage to the aircraft's electrical systems.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-01-q09.mp3",
+      "choices": [
+        "It has no significant effect on the aircraft.",
+        "It can cause damage to the aircraft's electrical systems.",
+        "It improves the aircraft's radio communication.",
+        "It helps the aircraft gain altitude faster."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-932",
+      "taskTitle": "20s航空英语-156",
+      "audioText": "Thunderstorms disrupt air traffic flow. Flights have to be delayed, rerouted, or held in a holding pattern to avoid flying through the storm. Air traffic control has to carefully manage the situation to ensure the safety and efficient movement of all aircraft in the airspace.\nQuestion: How does a thunderstorm affect the air traffic flow?",
+      "audioTextZh": "雷暴会扰乱空中交通流量。为避开雷暴，航班必须延误、改航或进入等待航线。空中交通管制必须谨慎管理这种情况，以确保空域内所有航空器安全、高效运行。\n问题：雷暴会如何影响空中交通流量？",
+      "referenceText": "正确答案：B. It disrupts the air traffic flow, causing delays and rerouting of flights.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-01-q10.mp3",
+      "choices": [
+        "It speeds up the air traffic flow as pilots fly faster to avoid the storm.",
+        "It disrupts the air traffic flow, causing delays and rerouting of flights.",
+        "It has no impact on air traffic flow as air traffic control can easily manage.",
+        "It makes air traffic flow more organized as all flights follow a set pattern."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-933",
+      "taskTitle": "20s航空英语-157",
+      "audioText": "Pilots are recommended to deviate around the thunderstorm by a significant margin. Flying through or too close to a thunderstorm is extremely hazardous, so they use their radar and flight planning tools to find a safe route around the storm cells.\nQuestion: What is a recommended strategy for pilots to avoid a thunderstorm?",
+      "audioTextZh": "建议飞行员以较大间隔绕飞雷暴。穿越雷暴或飞得过近都极其危险，因此飞行员使用雷达和飞行计划工具寻找绕过雷暴单体的安全航路。\n问题：建议飞行员采用什么策略避开雷暴？",
+      "referenceText": "正确答案：C. Deviate around the thunderstorm by a significant margin.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-01-q11.mp3",
+      "choices": [
+        "Fly directly through the center of the thunderstorm.",
+        "Fly at a lower altitude to go under the thunderstorm.",
+        "Deviate around the thunderstorm by a significant margin.",
+        "Follow the thunderstorm's path to save fuel."
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-936",
+      "taskTitle": "20s航空英语-158",
+      "audioText": "Air traffic control plays a crucial role during thunderstorm activity. They provide pilots with real-time weather updates about the thunderstorm's location, intensity, and movement. They also issue rerouting instructions to help pilots avoid the storm and maintain a safe and orderly flow of air traffic.\nQuestion: What is the role of air traffic control in guiding aircraft during thunderstorm activity?",
+      "audioTextZh": "雷暴活动期间，空中交通管制发挥关键作用。他们向飞行员实时更新雷暴的位置、强度和移动情况，并发布改航指令，帮助飞行员避开雷暴，维持安全、有序的空中交通流量。\n问题：雷暴活动期间，空中交通管制在引导航空器方面发挥什么作用？",
+      "referenceText": "正确答案：B. They provide real-time weather updates and rerouting instructions.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-01-q14.mp3",
+      "choices": [
+        "They let pilots make their own decisions without any guidance.",
+        "They provide real-time weather updates and rerouting instructions.",
+        "They only monitor the aircraft but don't communicate about the thunderstorm.",
+        "They ask pilots to fly closer to the thunderstorm for better airspace utilization."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-938",
+      "taskTitle": "20s航空英语-159",
+      "audioText": "The hydraulic system in an aircraft is essential as it powers the movement of flight control surfaces like the ailerons, elevators, and rudder. Without a properly functioning hydraulic system, the pilot would have difficulty controlling the aircraft's pitch, roll, and yaw.\nQuestion: What is the main function of an aircraft's hydraulic system?",
+      "audioTextZh": "航空器液压系统十分重要，它为副翼、升降舵和方向舵等飞行操纵面的运动提供动力。液压系统不能正常工作时，飞行员将难以控制航空器的俯仰、滚转和偏航。\n问题：航空器液压系统的主要功能是什么？",
+      "referenceText": "正确答案：B. To operate various flight control surfaces.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-01-q16.mp3",
+      "choices": [
+        "To provide oxygen to the cabin.",
+        "To operate various flight control surfaces.",
+        "To cool the engines.",
+        "To generate electrical power."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-941",
+      "taskTitle": "20s航空英语-160",
+      "audioText": "The hydraulic pressure is monitored in the cockpit by a pressure gauge. Pilots regularly check this gauge to ensure that the hydraulic system is operating within the normal pressure range. If the pressure drops below the acceptable level, it indicates a potential problem.\nQuestion: How is the hydraulic pressure monitored in the cockpit?",
+      "audioTextZh": "驾驶舱内通过压力表监控液压压力。飞行员定期检查该仪表，确保液压系统在正常压力范围内工作；压力降至可接受水平以下时，表示可能存在问题。\n问题：驾驶舱内如何监控液压压力？",
+      "referenceText": "正确答案：B. By a pressure gauge.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-01-q19.mp3",
+      "choices": [
+        "By a thermometer.",
+        "By a pressure gauge.",
+        "By a flow meter.",
+        "By a tachometer."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-943",
+      "taskTitle": "20s航空英语-161",
+      "audioText": "Some aircraft have a manual override system as a backup in case of a primary hydraulic system failure. This allows the pilot to manually control certain flight control surfaces, although it requires more physical effort and may have limited functionality compared to the hydraulic system.\nQuestion: What backup systems might an aircraft have in case of a primary hydraulic system failure?",
+      "audioTextZh": "某些航空器配有人工超控系统，作为主液压系统失效时的备用系统。飞行员可借此手动控制部分飞行操纵面，但需要付出更多体力，而且与液压系统相比功能可能有限。\n问题：主液压系统失效时，航空器可能配有什么备用系统？",
+      "referenceText": "正确答案：B. A manual override system.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-02-q01.mp3",
+      "choices": [
+        "A secondary electrical system.",
+        "A manual override system.",
+        "A backup fuel injection system.",
+        "A reserve oxygen supply system."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-945",
+      "taskTitle": "20s航空英语-162",
+      "audioText": "If the hydraulic system completely fails and there is no backup, the flight controls may freeze in the position they were in at the time of failure. This can make it very difficult or impossible for the pilot to control the aircraft's flight path.\nQuestion: What happens to the flight controls if the hydraulic system completely fails and there is no backup?",
+      "audioTextZh": "液压系统完全失效且没有备用系统时，飞行操纵装置可能卡在失效发生时的位置，使飞行员很难甚至无法控制航空器航迹。\n问题：液压系统完全失效且没有备用系统时，飞行操纵装置会怎样？",
+      "referenceText": "正确答案：A. They freeze in the current position.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-02-q03.mp3",
+      "choices": [
+        "They freeze in the current position.",
+        "They automatically return to a neutral position.",
+        "They become extremely sensitive.",
+        "They can only be controlled by the co-pilot."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-947",
+      "taskTitle": "20s航空英语-163",
+      "audioText": "Cold weather can make the hydraulic fluid more viscous. This thicker fluid can slow down the operation of the hydraulic system and affect the response of the flight controls. Special precautions may need to be taken in cold weather to ensure the proper functioning of the hydraulic system.\nQuestion: How does cold weather affect the hydraulic system?",
+      "audioTextZh": "寒冷天气会使液压油黏度增大。较稠的油液会减慢液压系统运行并影响飞行操纵响应，因此在寒冷天气中可能需要采取特别预防措施，以确保液压系统正常工作。\n问题：寒冷天气会如何影响液压系统？",
+      "referenceText": "正确答案：A. It makes the hydraulic fluid more viscous, affecting system performance.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-02-q05.mp3",
+      "choices": [
+        "It makes the hydraulic fluid more viscous, affecting system performance.",
+        "It has no effect on the hydraulic system.",
+        "It causes the hydraulic system to overheat.",
+        "It makes the hydraulic fluid thinner, increasing the risk of leaks."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-953",
+      "taskTitle": "20s航空英语-164",
+      "audioText": "Some aircraft have a manual crank system as a backup in case of a primary landing gear failure. This allows the crew to manually extend the landing gear in an emergency situation, although it requires physical effort and may take longer than the normal hydraulic operation.\nQuestion: What backup systems might an aircraft have in case of a primary landing gear failure?",
+      "audioTextZh": "某些航空器配有手摇曲柄系统，作为主起落架系统失效时的备用系统。机组可在紧急情况下手动放下起落架，但这需要体力操作，所需时间也可能比正常液压操作更长。\n问题：主起落架系统失效时，航空器可能配有什么备用系统？",
+      "referenceText": "正确答案：B. A manual crank system for extending the gear.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-02-q11.mp3",
+      "choices": [
+        "A secondary electrical landing gear system.",
+        "A manual crank system for extending the gear.",
+        "A backup fuel injection system for extra power.",
+        "A reserve oxygen supply system."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-954",
+      "taskTitle": "20s航空英语-165",
+      "audioText": "The landing gear is typically inspected and maintained after a certain number of flight hours, usually around every 100 flight hours. Regular inspections help to identify any potential issues early and ensure the safe operation of the landing gear.\nQuestion: How often is the landing gear inspected and maintained?",
+      "audioTextZh": "起落架通常在达到一定飞行小时数后进行检查和维护，一般约为每100飞行小时。定期检查有助于及早发现潜在问题，并确保起落架安全运行。\n问题：多久检查和维护一次起落架？",
+      "referenceText": "正确答案：B. After every 100 flight hours.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-02-q12.mp3",
+      "choices": [
+        "Every flight.",
+        "After every 100 flight hours.",
+        "Once a year.",
+        "Only when there is a problem."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-958",
+      "taskTitle": "20s航空英语-166",
+      "audioText": "The engine of an aircraft is primarily responsible for generating thrust. This thrust is what propels the aircraft forward through the air, allowing it to take off, maintain flight, and land. Without the engine's thrust, the aircraft would not be able to move effectively in the air.\nQuestion: What is one of the main functions of an aircraft engine?",
+      "audioTextZh": "航空器发动机主要负责产生推力。推力推动航空器在空中向前运动，使其能够起飞、保持飞行并着陆。没有发动机推力，航空器便无法在空中有效运动。\n问题：航空器发动机的一项主要功能是什么？",
+      "referenceText": "正确答案：B. To generate thrust for propulsion.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-02-q16.mp3",
+      "choices": [
+        "To control the aircraft's cabin temperature.",
+        "To generate thrust for propulsion.",
+        "To provide hydraulic pressure.",
+        "To store fuel."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-959",
+      "taskTitle": "20s航空英语-167",
+      "audioText": "If there are unusual vibrations or noises coming from the engine, it could be a sign of an engine malfunction. These vibrations and noises might suggest issues such as a misfiring cylinder, a problem with the engine's rotating parts, or a fault in the fuel or air intake systems.\nQuestion: What might indicate an engine malfunction?",
+      "audioTextZh": "发动机出现异常振动或噪声可能表明发动机发生故障。这些振动和噪声可能意味着气缸失火、发动机转动部件出现问题，或燃油系统、进气系统发生故障。\n问题：什么现象可能表明发动机发生故障？",
+      "referenceText": "正确答案：B. Unusual vibrations or noises from the engine.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-02-q17.mp3",
+      "choices": [
+        "A strange smell in the cabin.",
+        "Unusual vibrations or noises from the engine.",
+        "Dimmed lights in the cockpit.",
+        "A slow response from the flight controls."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-960",
+      "taskTitle": "20s航空英语-168",
+      "audioText": "When one engine fails during flight, the pilot must follow emergency procedures. This includes reducing the aircraft's speed, adjusting the flight controls to maintain balance, and assessing the situation to determine if an emergency landing is necessary. The pilot will also communicate with air traffic control and inform them of the situation.\nQuestion: What should the pilot do if one engine fails during flight?",
+      "audioTextZh": "飞行中一台发动机失效时，飞行员必须遵循应急程序，包括降低航空器速度、调整飞行操纵以保持平衡，并评估是否需要紧急着陆。飞行员还会与空中交通管制通信并通报情况。\n问题：飞行中一台发动机失效时，飞行员应当怎么做？",
+      "referenceText": "正确答案：C. Follow emergency procedures and prepare for an emergency landing if necessary.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-02-q18.mp3",
+      "choices": [
+        "Immediately attempt to restart the failed engine.",
+        "Continue the flight as normal with the remaining engine(s).",
+        "Follow emergency procedures and prepare for an emergency landing if necessary.",
+        "Increase the speed of the aircraft to compensate for the loss."
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-961",
+      "taskTitle": "20s航空英语-169",
+      "audioText": "Engine performance is monitored in the cockpit by a set of gauges and indicators. These show parameters such as engine temperature, oil pressure, fuel flow, and revolutions per minute (RPM). Pilots regularly check these gauges to ensure the engine is operating within normal ranges and to detect any potential issues early.\nQuestion: How is engine performance monitored in the cockpit?",
+      "audioTextZh": "驾驶舱内通过一组仪表和指示器监控发动机性能。它们显示发动机温度、滑油压力、燃油流量和每分钟转数（RPM）等参数。飞行员定期检查这些仪表，确保发动机在正常范围内运行，并及早发现潜在问题。\n问题：驾驶舱内如何监控发动机性能？",
+      "referenceText": "正确答案：B. By a set of gauges and indicators for parameters like temperature, pressure, and RPM.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-02-q19.mp3",
+      "choices": [
+        "By a single gauge that shows overall engine health.",
+        "By a set of gauges and indicators for parameters like temperature, pressure, and RPM.",
+        "By listening to the engine sound only.",
+        "By a system that monitors the color of the engine exhaust."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-962",
+      "taskTitle": "20s航空英语-170",
+      "audioText": "A common cause of engine overheating is a blocked air intake or cooling system. If the air that is supposed to cool the engine is restricted, the engine can quickly build up heat and potentially suffer damage. This could be due to debris, a malfunctioning fan, or a clogged radiator.\nQuestion: What is a common cause of engine overheating?",
+      "audioTextZh": "进气口或冷却系统堵塞是发动机过热的常见原因。用于冷却发动机的空气受到限制时，发动机会迅速积热并可能受损。原因可能是碎屑、风扇故障或散热器堵塞。\n问题：发动机过热的常见原因是什么？",
+      "referenceText": "正确答案：B. A blocked air intake or cooling system.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-02-q20.mp3",
+      "choices": [
+        "Insufficient fuel supply.",
+        "A blocked air intake or cooling system.",
+        "Excessive use of the flaps.",
+        "Flying at too low an altitude."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-963",
+      "taskTitle": "20s航空英语-171",
+      "audioText": "Some aircraft have a ram air turbine. When the main engine fails, the ram air turbine can be deployed and it uses the force of the airstream to generate emergency power. This power can be used to operate essential systems such as the hydraulic and electrical systems to help the pilot control the aircraft during an emergency.\nQuestion: What backup systems might an aircraft have in case of an engine failure?",
+      "audioTextZh": "某些航空器配有冲压空气涡轮。主发动机失效时，可以放出冲压空气涡轮，利用气流作用力产生应急动力。该动力可用于液压和电气系统等关键系统，帮助飞行员在紧急情况下控制航空器。\n问题：发动机失效时，航空器可能配有什么备用系统？",
+      "referenceText": "正确答案：C. A ram air turbine that can generate emergency power.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-03-q01.mp3",
+      "choices": [
+        "A secondary engine that automatically starts.",
+        "An auxiliary power unit (APU) that can provide limited thrust.",
+        "A ram air turbine that can generate emergency power.",
+        "A backup fuel tank that can supply extra fuel to the remaining engine."
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-964",
+      "taskTitle": "20s航空英语-172",
+      "audioText": "Aircraft engines are typically serviced every 1,000 flight hours or a set period of time, whichever comes first. This regular servicing includes inspections, maintenance of components such as the fuel injectors, replacement of filters, and checks of the engine's overall performance to ensure it continues to operate safely and efficiently.\nQuestion: How often is an aircraft engine serviced?",
+      "audioTextZh": "航空器发动机通常每1,000飞行小时或每隔规定时间进行一次维修，以先到者为准。定期维修包括检查、维护喷油器等部件、更换滤清器，以及检查发动机整体性能，确保其继续安全、高效运行。\n问题：航空器发动机多久维修一次？",
+      "referenceText": "正确答案：B. Every 1,000 flight hours or a set period of time, whichever comes first.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-03-q02.mp3",
+      "choices": [
+        "After every flight.",
+        "Every 1,000 flight hours or a set period of time, whichever comes first.",
+        "Once a year.",
+        "Only when there is a problem."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-965",
+      "taskTitle": "20s航空英语-173",
+      "audioText": "If an engine catches fire during flight, the pilot activates the engine fire suppression system. This system discharges chemicals to extinguish the fire. The pilot may also shut down the engine to prevent further damage and reduce the risk of the fire spreading. The cabin crew's handheld fire extinguishers are not designed to handle an engine fire.\nQuestion: What happens if an engine catches fire during flight?",
+      "audioTextZh": "飞行中发动机起火时，飞行员会启动发动机灭火系统，由该系统释放灭火剂将火扑灭。飞行员还可能关闭发动机，以防进一步损坏并降低火势蔓延风险。客舱机组的手提灭火器并非用于处置发动机火灾。\n问题：飞行中发动机起火时会如何处置？",
+      "referenceText": "正确答案：B. The pilot activates the engine fire suppression system and may shut down the engine.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-03-q03.mp3",
+      "choices": [
+        "The fire will extinguish itself automatically.",
+        "The pilot activates the engine fire suppression system and may shut down the engine.",
+        "The aircraft will explode immediately.",
+        "The cabin crew can use handheld fire extinguishers to put it out."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-966",
+      "taskTitle": "20s航空英语-174",
+      "audioText": "The fuel injection system's role is to mix fuel and air in the correct proportions and inject it into the engine cylinders. This precise mixture is crucial for the efficient combustion of fuel, which in turn generates the power needed for the engine to operate and produce thrust.\nQuestion: What is the role of the engine's fuel injection system?",
+      "audioTextZh": "燃油喷射系统的作用是按正确比例混合燃油与空气，并将混合物喷入发动机气缸。精确的混合比对于燃油高效燃烧至关重要，而燃烧会产生发动机运行和提供推力所需的动力。\n问题：发动机燃油喷射系统的作用是什么？",
+      "referenceText": "正确答案：B. To mix fuel and air in the correct proportions and inject it into the engine cylinders.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-03-q04.mp3",
+      "choices": [
+        "To store fuel.",
+        "To mix fuel and air in the correct proportions and inject it into the engine cylinders.",
+        "To pump fuel from the fuel tank to the engine.",
+        "To clean the fuel before it enters the engine."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-967",
+      "taskTitle": "20s航空英语-175",
+      "audioText": "As altitude increases, the air density decreases. This means that there is less oxygen available for combustion in the engine. As a result, engine performance decreases with increasing altitude. Pilots have to adjust the engine settings and may need to use additional systems like turbochargers or superchargers to compensate for the reduced performance.\nQuestion: How does altitude affect an aircraft engine's performance?",
+      "audioTextZh": "随着高度增加，空气密度降低，可供发动机燃烧使用的氧气减少，因此发动机性能会随高度增加而下降。飞行员必须调整发动机设置，并可能需要使用涡轮增压器或机械增压器等附加系统来补偿性能下降。\n问题：高度会如何影响航空器发动机性能？",
+      "referenceText": "正确答案：B. Engine performance decreases with increasing altitude.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-03-q05.mp3",
+      "choices": [
+        "Engine performance improves with increasing altitude.",
+        "Engine performance decreases with increasing altitude.",
+        "Altitude has no significant effect on engine performance.",
+        "Engine performance first improves and then decreases with increasing altitude."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-969",
+      "taskTitle": "20s航空英语-176",
+      "audioText": "If the cabin temperature starts to fluctuate, it could be a sign of an issue with the air conditioning system. It might mean that the system is having trouble regulating the temperature, perhaps due to a malfunctioning thermostat, a leak in the ductwork, or a problem with the cooling or heating components.\nQuestion: What might indicate a problem with the air conditioning system?",
+      "audioTextZh": "客舱温度开始波动可能表明空调系统存在问题，即系统可能难以调节温度。原因可能是恒温器故障、风道泄漏，或制冷、加热部件出现问题。\n问题：什么现象可能表明空调系统存在问题？",
+      "referenceText": "正确答案：B. Fluctuating cabin temperature.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-03-q07.mp3",
+      "choices": [
+        "Unusual noise from the landing gear.",
+        "Fluctuating cabin temperature.",
+        "A bright light on the instrument panel related to the hydraulic system.",
+        "Slow response of the flight controls."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-970",
+      "taskTitle": "20s航空英语-177",
+      "audioText": "If the air conditioning system fails completely, the crew should inform the passengers about the situation and take measures to ensure their safety and comfort. In some cases, depending on the severity and duration of the failure, they may need to land at the nearest airport if it poses a significant risk to the health of the passengers or crew.\nQuestion: What should the crew do if the air conditioning system fails completely?",
+      "audioTextZh": "空调系统完全失效时，机组应向乘客通报情况，并采取措施确保其安全与舒适。某些情况下，根据故障的严重程度和持续时间，如果故障对乘客或机组健康构成重大风险，可能需要在最近的机场着陆。\n问题：空调系统完全失效时，机组应当怎么做？",
+      "referenceText": "正确答案：C. Inform the passengers and make them aware of the situation.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-03-q08.mp3",
+      "choices": [
+        "Ignore it and continue the flight.",
+        "Try to repair it in-flight.",
+        "Inform the passengers and make them aware of the situation.",
+        "Land at the nearest airport as soon as possible."
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-972",
+      "taskTitle": "20s航空英语-178",
+      "audioText": "A common cause of air conditioning system malfunction is clogged air filters. When the filters are dirty or blocked, the air flow is restricted, which can lead to reduced cooling or heating efficiency, and in some cases, cause the system to overwork and potentially fail.\nQuestion: What is a common cause of air conditioning system malfunction?",
+      "audioTextZh": "空气滤清器堵塞是空调系统故障的常见原因。滤清器脏污或堵塞时，气流受到限制，会降低制冷或加热效率；某些情况下，还会使系统过度工作并可能失效。\n问题：空调系统故障的常见原因是什么？",
+      "referenceText": "正确答案：B. Clogged air filters.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-03-q10.mp3",
+      "choices": [
+        "Bird strikes on the windshield.",
+        "Clogged air filters.",
+        "Overloading of the cargo compartment.",
+        "Excessive sunlight exposure."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-973",
+      "taskTitle": "20s航空英语-179",
+      "audioText": "Most commercial aircraft do not have a full backup air conditioning system. However, some may have emergency ventilation systems that can provide a limited amount of fresh air in case of a primary air conditioning system failure to prevent a rapid buildup of carbon dioxide and ensure a minimum level of passenger and crew comfort and safety.\nQuestion: What backup systems might an aircraft have in case of a primary air conditioning system failure?",
+      "audioTextZh": "大多数商用航空器没有完整的备用空调系统。不过，某些航空器可能配有应急通风系统，在主空调系统失效时提供有限的新鲜空气，防止二氧化碳迅速积聚，并为乘客和机组保持最低限度的舒适与安全。\n问题：主空调系统失效时，航空器可能配有什么备用系统？",
+      "referenceText": "正确答案：D. There are usually no backup systems for the air conditioning.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-03-q11.mp3",
+      "choices": [
+        "A secondary electrical generator for the air conditioning.",
+        "A portable air conditioner that can be plugged in.",
+        "A manual fan system.",
+        "There are usually no backup systems for the air conditioning."
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-974",
+      "taskTitle": "20s航空英语-180",
+      "audioText": "The air conditioning system is typically inspected and maintained after a certain number of flight hours, usually around every 100 flight hours. This includes checking the filters, refrigerant levels, and the overall operation of the system to ensure it is working properly and efficiently.\nQuestion: How often is the air conditioning system inspected and maintained?",
+      "audioTextZh": "空调系统通常在达到一定飞行小时数后进行检查和维护，一般约为每100飞行小时。检查内容包括滤清器、制冷剂液位和系统整体运行情况，以确保系统正常、高效工作。\n问题：多久检查和维护一次空调系统？",
+      "referenceText": "正确答案：B. After every 100 flight hours.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-03-q12.mp3",
+      "choices": [
+        "Every flight.",
+        "After every 100 flight hours.",
+        "Once a year.",
+        "Only when there is a problem."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-975",
+      "taskTitle": "20s航空英语-181",
+      "audioText": "If the humidity level in the cabin is not properly controlled by the air conditioning system, the cabin can become too humid. This can lead to condensation on the windows, walls, and other surfaces, which may cause damage to the interior finishes and also create an uncomfortable environment for passengers and crew.\nQuestion: What happens if the humidity level in the cabin is not properly controlled by the air conditioning system?",
+      "audioTextZh": "空调系统未能正确控制客舱湿度时，客舱可能变得过于潮湿，导致窗户、舱壁和其他表面凝结水汽，可能损坏内部饰面，并使乘客和机组感到不适。\n问题：空调系统未能正确控制客舱湿度时会发生什么？",
+      "referenceText": "正确答案：B. The cabin will become too humid, leading to condensation and potential damage to the interior.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-03-q13.mp3",
+      "choices": [
+        "The cabin will become extremely dry, causing discomfort to passengers.",
+        "The cabin will become too humid, leading to condensation and potential damage to the interior.",
+        "The engines will be affected.",
+        "The flight controls will be less responsive."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-977",
+      "taskTitle": "20s航空英语-182",
+      "audioText": "The air conditioning system adds to the overall weight of the aircraft because of the weight of its components such as the compressor, condenser, evaporator, and the refrigerant. However, this weight is accounted for in the aircraft's design and operating calculations to ensure it does not significantly impact performance.\nQuestion: How does the air conditioning system affect the overall weight of the aircraft?",
+      "audioTextZh": "空调系统的压缩机、冷凝器、蒸发器和制冷剂等部件会增加航空器总重量。不过，航空器设计和运行计算已计入这部分重量，以确保其不会显著影响性能。\n问题：空调系统会如何影响航空器总重量？",
+      "referenceText": "正确答案：B. It increases the weight.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-03-q15.mp3",
+      "choices": [
+        "It has no effect on the weight.",
+        "It increases the weight.",
+        "It decreases the weight.",
+        "It only affects the weight during takeoff."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-978",
+      "taskTitle": "20s航空英语-183",
+      "audioText": "Cabin pressurization is crucial in aviation. As the aircraft ascends to high altitudes where the air pressure outside is very low, the pressurization system ensures that the cabin maintains a pressure and an oxygen - rich atmosphere similar to what we experience at a much lower altitude, making it possible for passengers and crew to breathe comfortably.\nQuestion: What is the main purpose of aircraft cabin pressurization?",
+      "audioTextZh": "客舱增压在航空中至关重要。航空器爬升至外界气压很低的高空时，增压系统确保客舱保持类似较低高度的压力和富氧环境，使乘客和机组能够舒适呼吸。\n问题：航空器客舱增压的主要目的是什么？",
+      "referenceText": "正确答案：B. To maintain a breathable atmosphere and comfortable pressure",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-03-q16.mp3",
+      "choices": [
+        "To make the cabin air smell better.",
+        "To maintain a breathable atmosphere and comfortable pressure",
+        "To increase the speed of the aircraft.",
+        "To cool the cabin more effectively."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-979",
+      "taskTitle": "20s航空英语-184",
+      "audioText": "If there's a sudden drop in cabin pressure, usually signaled by an alarm and passengers and crew may feel a change in ear pressure, it's a sign that there might be a problem with the pressurization system. This could be due to a leak, a malfunctioning valve, or an issue with the pressure - controlling components.\nQuestion: What might indicate a problem with the pressurization system?",
+      "audioTextZh": "客舱压力突然下降，通常会触发警报，乘客和机组也可能感觉耳压发生变化，这表明增压系统可能存在问题。原因可能是泄漏、活门故障或压力控制部件出现问题。\n问题：什么现象可能表明增压系统存在问题？",
+      "referenceText": "正确答案：B. A sudden drop in cabin pressure",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-03-q17.mp3",
+      "choices": [
+        "A strange noise from the landing gear.",
+        "A sudden drop in cabin pressure",
+        "A bright light on the instrument panel related to the fuel system.",
+        "Slow response of the flight controls."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-981",
+      "taskTitle": "20s航空英语-185",
+      "audioText": "The cabin pressure is monitored in the cockpit by a pressure gauge that shows the actual cabin pressure and a differential pressure gauge. The differential pressure gauge shows the difference between the cabin pressure and the outside air pressure, which is important for the proper operation of the pressurization system.\nQuestion: How is the cabin pressure monitored in the cockpit?",
+      "audioTextZh": "驾驶舱内通过显示实际客舱压力的压力表和压差表监控客舱压力。压差表显示客舱压力与外界气压之差，这对增压系统正常运行十分重要。\n问题：驾驶舱内如何监控客舱压力？",
+      "referenceText": "正确答案：B. By a pressure gauge that shows the actual cabin pressure and a differential pressure gauge.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-03-q19.mp3",
+      "choices": [
+        "By a single gauge that shows pressurized or not pressurized.",
+        "By a pressure gauge that shows the actual cabin pressure and a differential pressure gauge.",
+        "By listening to the sound of air flowing through the system.",
+        "By a system that monitors the color of the air in the cabin."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-983",
+      "taskTitle": "20s航空英语-186",
+      "audioText": "In case of a primary pressurization system failure, aircraft are equipped with emergency oxygen masks for passengers and crew. These masks provide a short - term supply of oxygen while the pilot takes the necessary steps, such as descending to a lower altitude.\nQuestion: What backup systems might an aircraft have in case of a primary pressurization system failure?",
+      "audioTextZh": "主增压系统失效时，航空器为乘客和机组配有应急氧气面罩。飞行员采取下降到较低高度等必要措施期间，这些面罩会提供短时间的氧气。\n问题：主增压系统失效时，航空器可能配有什么备用系统？",
+      "referenceText": "正确答案：B. Emergency oxygen masks for passengers and crew.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-04-q01.mp3",
+      "choices": [
+        "A secondary pressurization system that automatically takes over.",
+        "Emergency oxygen masks for passengers and crew.",
+        "A manual pump to increase cabin pressure.",
+        "A backup system that changes the shape of the fuselage to maintain pressure."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-984",
+      "taskTitle": "20s航空英语-187",
+      "audioText": "The pressurization system is typically inspected and maintained after a certain number of flight hours, usually around every 100 flight hours. Regular inspections help to identify any potential leaks, valve malfunctions, or other issues that could affect the system's performance.\nQuestion: How often is the pressurization system inspected and maintained?",
+      "audioTextZh": "增压系统通常在达到一定飞行小时数后进行检查和维护，一般约为每100飞行小时。定期检查有助于发现可能影响系统性能的泄漏、活门故障或其他问题。\n问题：多久检查和维护一次增压系统？",
+      "referenceText": "正确答案：B. After every 100 flight hours.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-04-q02.mp3",
+      "choices": [
+        "Every flight.",
+        "After every 100 flight hours.",
+        "Once a year.",
+        "Only when there is a problem."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-985",
+      "taskTitle": "20s航空英语-188",
+      "audioText": "If the pressurization system over - pressurizes the cabin, it can cause structural damage to the aircraft fuselage. The fuselage is designed to withstand a certain range of pressure differences, and exceeding that limit can lead to cracks, bulges, or other forms of damage.\nQuestion: What happens if the pressurization system over - pressurizes the cabin?",
+      "audioTextZh": "增压系统使客舱过度增压时，可能损坏航空器机身结构。机身只能承受一定范围的压差，超过该限值可能导致裂纹、鼓包或其他形式的损坏。\n问题：增压系统使客舱过度增压时会发生什么？",
+      "referenceText": "正确答案：B. It can cause structural damage to the aircraft fuselage.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-04-q03.mp3",
+      "choices": [
+        "The cabin will become more comfortable.",
+        "It can cause structural damage to the aircraft fuselage.",
+        "The engines will run more efficiently.",
+        "The flight controls will be more responsive."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-986",
+      "taskTitle": "20s航空英语-189",
+      "audioText": "The outflow valve in the pressurization system is responsible for releasing air from the cabin to maintain the desired pressure. As the aircraft climbs and the outside air pressure decreases, the outflow valve adjusts to release the right amount of air to keep the cabin pressure at a comfortable and safe level.\nQuestion: What is the role of the outflow valve in the pressurization system?",
+      "audioTextZh": "增压系统中的排气活门负责从客舱排出空气，以保持所需压力。航空器爬升、外界气压降低时，排气活门会进行调节，排出适量空气，使客舱压力保持在舒适、安全的水平。\n问题：排气活门在增压系统中的作用是什么？",
+      "referenceText": "正确答案：B. To release air from the cabin to maintain the desired pressure.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-04-q04.mp3",
+      "choices": [
+        "To pump air into the cabin.",
+        "To release air from the cabin to maintain the desired pressure.",
+        "To clean the air in the cabin.",
+        "To detect leaks in the system."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-987",
+      "taskTitle": "20s航空英语-190",
+      "audioText": "As the altitude of the aircraft increases, the outside air pressure decreases. The pressurization system has to work harder to maintain the cabin pressure at a level that is comfortable and safe for passengers and crew. It constantly adjusts the flow of air in and out of the cabin to achieve this.\nQuestion: How does altitude change affect the operation of the pressurization system?",
+      "audioTextZh": "随着航空器高度增加，外界气压降低。增压系统必须更努力地工作，才能使客舱压力保持在乘客和机组舒适、安全的水平，并不断调节进出客舱的空气流量以实现这一目标。\n问题：高度变化会如何影响增压系统的运行？",
+      "referenceText": "正确答案：B. As altitude increases, the pressurization system has to work harder to maintain the cabin pressure.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-04-q05.mp3",
+      "choices": [
+        "As altitude increases, the pressurization system works less.",
+        "As altitude increases, the pressurization system has to work harder to maintain the cabin pressure.",
+        "Altitude change has no significant effect on the pressurization system.",
+        "The pressurization system only works during takeoff and landing."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-988",
+      "taskTitle": "20s航空英语-191",
+      "audioText": "International flight communication may involve different frequencies and communication protocols due to different airspace regulations. Pilots and air traffic controllers need to be aware of and follow the specific requirements of each country or region they are flying through or operating in.\nQuestion: How does international flight communication differ from domestic flight communication?",
+      "audioTextZh": "由于各空域法规不同，国际飞行通信可能涉及不同频率和通信程序。飞行员和空中交通管制员需要了解并遵守所飞越或运行国家和地区的具体要求。\n问题：国际飞行通信与国内飞行通信有何不同？",
+      "referenceText": "正确答案：C. It may involve different frequencies and communication protocols.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-04-q06.mp3",
+      "choices": [
+        "It uses a completely different language.",
+        "It requires more detailed flight plans.",
+        "It may involve different frequencies and communication protocols.",
+        "It is only done via satellite."
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-989",
+      "taskTitle": "20s航空英语-192",
+      "audioText": "Electrical storms can cause significant interference in aviation communication. The lightning and electromagnetic activity associated with storms can disrupt the radio signals between pilots and air traffic controllers, making it difficult to hear and understand each other clearly.\nQuestion: What might cause interference in aviation communication?",
+      "audioTextZh": "雷电风暴会严重干扰航空通信。风暴伴随的闪电和电磁活动会干扰飞行员与空中交通管制员之间的无线电信号，使双方难以清楚听见并理解对方。\n问题：什么可能干扰航空通信？",
+      "referenceText": "正确答案：B. Electrical storms.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-04-q07.mp3",
+      "choices": [
+        "Clear weather conditions.",
+        "Electrical storms.",
+        "Low altitude flight.",
+        "A fully fueled aircraft."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-990",
+      "taskTitle": "20s航空英语-193",
+      "audioText": "If a pilot loses communication with air traffic control, they should follow the flight plan and attempt to re-establish communication on a different frequency. They may also need to take certain actions depending on the situation, such as squawking a specific transponder code to indicate the communication loss.\nQuestion: What should a pilot do if they lose communication with air traffic control?",
+      "audioTextZh": "飞行员与空中交通管制失去通信时，应遵循飞行计划，并尝试在不同频率上重新建立通信。根据具体情况，还可能需要采取某些措施，例如设置特定应答机代码来表示通信中断。\n问题：飞行员与空中交通管制失去通信时应当怎么做？",
+      "referenceText": "正确答案：B. Follow the flight plan and attempt to re-establish communication on a different frequency.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-04-q08.mp3",
+      "choices": [
+        "Continue flying on the current course and speed without any changes.",
+        "Follow the flight plan and attempt to re-establish communication on a different frequency.",
+        "Land at the nearest airport immediately.",
+        "Increase the altitude until communication is regained."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-992",
+      "taskTitle": "20s航空英语-194",
+      "audioText": "If there is a malfunction in the communication system on an aircraft, the pilot may need to use backup communication systems or procedures. This could include using an emergency radio or following specific protocols to ensure the safety of the flight.\nQuestion: What happens if there is a malfunction in the communication system on an aircraft?",
+      "audioTextZh": "航空器通信系统发生故障时，飞行员可能需要使用备用通信系统或程序，包括使用应急无线电，或遵循特定程序以确保飞行安全。\n问题：航空器通信系统发生故障时会如何处置？",
+      "referenceText": "正确答案：C. The pilot may need to use backup communication systems or procedures.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-04-q10.mp3",
+      "choices": [
+        "The flight is automatically aborted.",
+        "The pilot has to rely on visual signals from the ground.",
+        "The pilot may need to use backup communication systems or procedures.",
+        "The aircraft will continue flying without any communication."
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-993",
+      "taskTitle": "20s航空英语-195",
+      "audioText": "The oxygen system in an aircraft is essential for supplying breathable oxygen to passengers and crew. This is especially important in situations such as cabin depressurization or when flying at high altitudes where the ambient air has a lower oxygen concentration.\nQuestion: What is the main purpose of the oxygen system in an aircraft?",
+      "audioTextZh": "航空器氧气系统对于向乘客和机组提供可呼吸的氧气至关重要，尤其是在客舱失压或高空飞行时，因为此时环境空气中的氧浓度较低。\n问题：航空器氧气系统的主要用途是什么？",
+      "referenceText": "正确答案：B. To supply breathable oxygen to passengers and crew",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-04-q11.mp3",
+      "choices": [
+        "To provide oxygen for engine combustion.",
+        "To supply breathable oxygen to passengers and crew",
+        "To create a pressurized oxygen environment in the cargo hold.",
+        "To cool the cabin air."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-997",
+      "taskTitle": "20s航空英语-196",
+      "audioText": "Some aircraft have emergency oxygen cylinders that can be manually deployed in case of a primary oxygen system failure. These cylinders provide a limited supply of oxygen to tide over the situation until the aircraft can descend to a safer altitude.\nQuestion: What backup systems might an aircraft have in case of a primary oxygen system failure?",
+      "audioTextZh": "某些航空器配有可手动启用的应急氧气瓶，作为主氧气系统失效时的备用系统。这些氧气瓶提供有限的氧气，在航空器下降到更安全高度前帮助应对当前情况。\n问题：主氧气系统失效时，航空器可能配有什么备用系统？",
+      "referenceText": "正确答案：B. Emergency oxygen cylinders that can be manually deployed.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-04-q15.mp3",
+      "choices": [
+        "A secondary oxygen system that automatically takes over.",
+        "Emergency oxygen cylinders that can be manually deployed.",
+        "A system that recycles cabin air to increase oxygen concentration.",
+        "There are usually no backup systems for the oxygen system."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-998",
+      "taskTitle": "20s航空英语-197",
+      "audioText": "The oxygen system is typically inspected and maintained after a certain number of flight hours, usually around every 100 flight hours. This includes checking the integrity of the tubing, the functionality of the regulators, and the oxygen storage containers.\nQuestion: How often is the oxygen system inspected and maintained?",
+      "audioTextZh": "氧气系统通常在达到一定飞行小时数后进行检查和维护，一般约为每100飞行小时，包括检查管路完整性、调节器功能和氧气储存容器。\n问题：多久检查和维护一次氧气系统？",
+      "referenceText": "正确答案：B. After every 100 flight hours.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-04-q16.mp3",
+      "choices": [
+        "Every flight.",
+        "After every 100 flight hours.",
+        "Once a year.",
+        "Only when there is a problem."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-999",
+      "taskTitle": "20s航空英语-198",
+      "audioText": "If the oxygen masks are deployed but the oxygen system is not working properly, the masks will be ineffective and passengers may experience hypoxia. Hypoxia can lead to various symptoms such as dizziness, confusion, and loss of consciousness.\nQuestion: What happens if the oxygen masks are deployed but the oxygen system is not working properly?",
+      "audioTextZh": "氧气面罩已经放下但氧气系统不能正常工作时，面罩将无法发挥作用，乘客可能出现缺氧。缺氧会导致头晕、意识混乱和失去意识等症状。\n问题：氧气面罩已经放下但氧气系统不能正常工作时会发生什么？",
+      "referenceText": "正确答案：B. The masks will be ineffective and passengers may experience hypoxia.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-04-q17.mp3",
+      "choices": [
+        "The masks will still provide some oxygen.",
+        "The masks will be ineffective and passengers may experience hypoxia.",
+        "The masks will automatically activate a backup oxygen source.",
+        "The masks will only provide carbon dioxide."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1000",
+      "taskTitle": "20s航空英语-199",
+      "audioText": "Checking the weather forecast during preflight is vital as it helps determine if the flight can proceed safely. Adverse weather conditions like thunderstorms, strong winds, or low visibility may require the pilot to consider alternate routes, delay the flight, or even cancel it.\nQuestion: What is the importance of checking the weather forecast during preflight?",
+      "audioTextZh": "飞行前检查天气预报至关重要，有助于判断飞行能否安全实施。雷暴、强风或低能见度等不利天气可能要求飞行员考虑替代航路、推迟航班，甚至取消航班。\n问题：飞行前检查天气预报有什么重要意义？",
+      "referenceText": "正确答案：B. To determine if the flight can proceed safely and if any alternate routes or plans are needed.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-04-q18.mp3",
+      "choices": [
+        "To decide what to wear during the flight.",
+        "To determine if the flight can proceed safely and if any alternate routes or plans are needed.",
+        "To know if the airport's coffee shop will be open.",
+        "To see if there will be nice views during the flight."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1002",
+      "taskTitle": "20s航空英语-200",
+      "audioText": "Checking the fuel system during preflight is important to ensure there is sufficient fuel for the planned flight and that the fuel is clean and free of contaminants. Insufficient fuel can lead to an emergency situation mid-flight, and contaminated fuel can cause engine problems.\nQuestion: Why is it important to check the fuel system during preflight?",
+      "audioTextZh": "飞行前检查燃油系统十分重要，以确保计划飞行所需的燃油充足，并且燃油清洁、没有污染物。燃油不足可能在飞行途中引发紧急情况，燃油污染则可能造成发动机问题。\n问题：为什么飞行前检查燃油系统很重要？",
+      "referenceText": "正确答案：B. B.To ensure there is sufficient fuel for the planned flight and that the fuel is clean and free of contaminants.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-04-q20.mp3",
+      "choices": [
+        "To make sure the fuel smells nice.",
+        "B.To ensure there is sufficient fuel for the planned flight and that the fuel is clean and free of contaminants.",
+        "C.To see if the fuel tank is a nice color.",
+        "To check if the fuel cap is shiny."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1003",
+      "taskTitle": "20s航空英语-201",
+      "audioText": "During preflight, communication checks involve testing the radio communication with air traffic control and other relevant frequencies, and ensuring the transponder is working properly. This is essential for maintaining contact with the ground and other aircraft during the flight.\nQuestion: What communication checks are done during preflight?",
+      "audioTextZh": "飞行前通信检查包括测试与空中交通管制以及其他相关频率的无线电通信，并确保应答机正常工作。这对于飞行期间与地面和其他航空器保持联系至关重要。\n问题：飞行前会进行哪些通信检查？",
+      "referenceText": "正确答案：B. Testing if the radio communication and the transponder is working properly.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-05-q01.mp3",
+      "choices": [
+        "Only testing the volume of the radio.",
+        "Testing if the radio communication and the transponder is working properly.",
+        "Checking if the intercom works with the cabin crew's personal phones.",
+        "Testing the public address system for playing music."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1005",
+      "taskTitle": "20s航空英语-202",
+      "audioText": "DLH 2041 was on approach to Munich when the crew reported they could not extend the slats. The aircraft entered a hold while the crew computed their landing performance and prepared for the landing and subsequently landed safely on Runway 26R at a higher than normal speed.\nQuestion: Why did DLH 2041 land at a higher than normal speed?",
+      "audioTextZh": "DLH 2041向慕尼黑进近时，机组报告无法放出缝翼。航空器进入等待，机组计算着陆性能并准备着陆，随后以高于正常值的速度在Runway 26R安全着陆。\n问题：DLH 2041为什么以高于正常值的速度着陆？",
+      "referenceText": "正确答案：B. Due slat problem.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-05-q03.mp3",
+      "choices": [
+        "Due flap problem.",
+        "Due slat problem.",
+        "Due overweight landing.",
+        "Due landing gear problem."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1006",
+      "taskTitle": "20s航空英语-203",
+      "audioText": "Ground Collision is a collision that occurs while an aircraft is taxiing to or from a runway in use, which includes collisions with an aircraft, person, ground vehicle, obstacle, building, structure, etc., but excludes ground collisions resulting from events categorized under runway Excursion, Wildlife Strike, or Ground Handling.\nQuestion: What is the speaker mainly talking about?",
+      "audioTextZh": "地面相撞是指航空器在滑向或滑离使用中的跑道时发生的碰撞，包括与航空器、人员、地面车辆、障碍物、建筑物或构筑物等发生碰撞，但不包括归类为冲出跑道、野生动物撞击或地面保障事件所造成的地面碰撞。\n问题：说话人主要在讲什么？",
+      "referenceText": "正确答案：A. Ground collision.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-05-q05.mp3",
+      "choices": [
+        "Ground collision.",
+        "runway incursion.",
+        "runway excursion.",
+        "Ground handling."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1008",
+      "taskTitle": "20s航空英语-204",
+      "audioText": "As in commercial air transport, among the leading causes of fatal general aviation accidents are loss of control in flight and CFIT. System or component failure, powerplant, system or component failure, non-powerplant, midair collisions and unintended flight into IMC, also are among the top causes of fatal accidents in general aviation.\nQuestion: What are the leading causes of general aviation accidents?",
+      "audioTextZh": "与商业航空运输一样，通用航空致命事故的主要原因包括飞行中失控和CFIT。动力装置系统或部件失效、非动力装置系统或部件失效、空中相撞以及无意飞入IMC，也属于通用航空致命事故的主要原因。\n问题：通用航空事故的主要原因是什么？",
+      "referenceText": "正确答案：D. Loss of control in flight and CFIT.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-05-q07.mp3",
+      "choices": [
+        "System/component failure.",
+        "Collision in the air.",
+        "Unintended flight into IMC.",
+        "Loss of control in flight and CFIT."
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-1009",
+      "taskTitle": "20s航空英语-205",
+      "audioText": "A runway strip including a precision approach runway shall be practically extended from the distance of at least 150 meters from runway centerline with code number 3 or 4 and at least 75 meters with code number 1or 2.\nQuestion: How does the runway strip of a precision runway extend from the runway central line?",
+      "audioTextZh": "包含精密进近跑道的升降带，对于代码编号3或4，应从跑道中心线向外实际延伸至少150 meters；对于代码编号1或2，应至少延伸75 meters。\n问题：精密进近跑道的升降带从跑道中心线向外延伸多远？",
+      "referenceText": "正确答案：B. At least 150m with code number 3 or 4",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-05-q10.mp3",
+      "choices": [
+        "At most 150m with code number 3 or 4",
+        "At least 150m with code number 3 or 4",
+        "At most 75m with code number 1 or 2",
+        "At least 75m with code number 3 or 4"
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1010",
+      "taskTitle": "20s航空英语-206",
+      "audioText": "During the instrument flight, most of your scan time will spent on the attitude indicator, you will realize the instrument flying is much more precise than your visual flying, this is because now you pay more attention to the performance of the instrument when you used to spend time looking out of aircraft.\nQuestion: What is the speaker mainly talking about?",
+      "audioTextZh": "仪表飞行期间，大部分仪表扫描时间会用于姿态指示器。你会发现仪表飞行比目视飞行精确得多，因为你现在更加关注仪表所显示的飞行性能，而过去则把时间用于观察航空器外部。\n问题：说话人主要在讲什么？",
+      "referenceText": "正确答案：A. Attitude indicator.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-05-q19.mp3",
+      "choices": [
+        "Attitude indicator.",
+        "Instrument performance.",
+        "Visual flying.",
+        "Instrument flying."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1011",
+      "taskTitle": "20s航空英语-207",
+      "audioText": "A British Airway B737 skidded off the runway at De Gol airport in Paris, on September 16, 2006 when landing in bad weather. There was no fatality, then passengers and two crew members were injured. The plane received minor structural damage.\nQuestion: How many people died in the accident in Paris?",
+      "audioTextZh": "2006年9月16日，一架BAW B737在恶劣天气中于巴黎戴高乐机场着陆时滑出跑道。事故无人死亡，有乘客和2名机组成员受伤，飞机结构受到轻微损坏。\n问题：巴黎这起事故中有多少人死亡？",
+      "referenceText": "正确答案：A. None",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-06-q03.mp3",
+      "choices": [
+        "None",
+        "12",
+        "Not mentioned",
+        "2"
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1012",
+      "taskTitle": "20s航空英语-208",
+      "audioText": "The controller mistakenly tells the Cessna on the ground rather than one in the air to execute a 360 turn. When he sees the tug not following his instructions, he repeats the command, the pilot on the ground taxies on a circle, I am doing this as far as I can.\nQuestion: Whom did the controller want to execute a 360 turn?",
+      "audioTextZh": "管制员误将执行360度转弯的指令发给地面的一架Cessna，而不是空中的那一架。他看到牵引车没有遵照指令后，又重复了指令；地面飞行员让飞机滑行转圈，并表示自己已经尽力照做。\n问题：管制员原本想让谁执行360度转弯？",
+      "referenceText": "正确答案：D. A Cessna in the air",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-06-q06.mp3",
+      "choices": [
+        "A helicopter in the air.",
+        "A helicopter on the ground.",
+        "A Cessna on the ground.",
+        "A Cessna in the air"
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-1013",
+      "taskTitle": "20s航空英语-209",
+      "audioText": "Precision approach runway CAT III A is minimum operation standard RVR of 200m and no decision height flexible using visually during pilot visual landing extended down to RVR 15m, no decision height available using visually for taxi.\nQuestion: What is the minimum standard for category IIIA operation?",
+      "audioTextZh": "精密进近跑道CAT III A的最低运行标准为RVR 200m且无决断高；飞行员目视着陆时可灵活使用目视参考，最低延伸至RVR 15m；无决断高时可利用目视参考滑行。\n问题：CAT IIIA运行的最低标准是什么？",
+      "referenceText": "正确答案：C. RVR 200m and no decision height",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-06-q10.mp3",
+      "choices": [
+        "RVR 400m and decision height 30m",
+        "RVR 400m and no decision height",
+        "RVR 200m and no decision height",
+        "RVR 200m and decision height 30m"
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-1014",
+      "taskTitle": "20s航空英语-210",
+      "audioText": "Federal regulations specify when you must use supplemental oxygen. if you are pilot flying at cruising a1titude of 12,000ft, you should consult the regulations. As a general rule, consider using supplemental oxygen Over 10,000ft during the day and 5,000ft at night.\nQuestion: When, generally speaking, should supplemental oxygen be used?",
+      "audioTextZh": "联邦法规规定了必须使用补充氧气的时机。如果飞行员在12,000ft巡航高度飞行，应查阅相关法规。通常，白天超过10,000ft、夜间超过5,000ft时应考虑使用补充氧气。\n问题：一般来说，应在什么时候使用补充氧气？",
+      "referenceText": "正确答案：B. Over 10,000ft daytime and 5,000ft at night",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-06-q13.mp3",
+      "choices": [
+        "Over 10,000ft",
+        "Over 10,000ft daytime and 5,000ft at night",
+        "Over 5,000ft",
+        "Over 12,000ft"
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1015",
+      "taskTitle": "20s航空英语-211",
+      "audioText": "A rapid exit taxiway is connected to a runway at an acute angle and designed to allow landing aircraft to turn off the runway at high speed, thereby minimize the runway occupying time so as to increase runway efficiency.\nQuestion: At what angle should the rapid exit taxiway be connected with the runway?",
+      "audioTextZh": "快速脱离滑行道以锐角与跑道相连，使着陆航空器能够高速脱离跑道，从而尽量缩短跑道占用时间，提高跑道效率。\n问题：快速脱离滑行道应以什么角度与跑道相连？",
+      "referenceText": "正确答案：A. Less than 90 degrees.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-06-q15.mp3",
+      "choices": [
+        "Less than 90 degrees.",
+        "More than 90 degrees",
+        "More than 180 degrees",
+        "Less than 180 degrees"
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1016",
+      "taskTitle": "20s航空英语-212",
+      "audioText": "P1: Did you hear what captain Mike said? There was something about the date when the flight plan reports would be chosen.\nP2: Yes, he said we should hand the flight plan report when we finished the...but they must be finished on N13. if not before.\nQuestion: When would the flight plan reports be given to the captain?",
+      "audioTextZh": "P1: 你听到Mike机长说什么了吗？他提到了提交飞行计划报告的日期。\nP2: 是的，他说我们完成……时就应提交飞行计划报告，但最迟必须在N13完成。\n问题：应在什么时候把飞行计划报告交给机长？",
+      "referenceText": "正确答案：A. On or before N13.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-07-q03.mp3",
+      "choices": [
+        "On or before N13.",
+        "On or before N30.",
+        "Not before N30.",
+        "Not before N13."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1017",
+      "taskTitle": "20s航空英语-213",
+      "audioText": "Obstacle clearance is based on aircraft climbing at 200ft per nm crossing the end of runway at 35ft AGL and climbing to 400ft above airport elevation before turning less specified... procedure.\nQuestion: What is the limitation of obstacle clearance when the airplane is crossing the end of the runway?",
+      "audioTextZh": "越障基于航空器以200ft per nm爬升、以35ft AGL越过跑道端，并在转弯前爬升到机场标高以上400ft，除非程序另有规定……\n问题：飞机越过跑道端时的越障限制是多少？",
+      "referenceText": "正确答案：D. 35 feet.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-07-q05.mp3",
+      "choices": [
+        "400 feet.",
+        "425 feet.",
+        "200 feet.",
+        "35 feet."
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-1018",
+      "taskTitle": "20s航空英语-214",
+      "audioText": "Weather information is very important, so pilots often receive weather update. Updated weather information includes wind speed and direction. If the wind direction is changing, the heading is given as a range, such as variable from 150 to 210 degrees. This information is particularly important for taking off and landing.\nQuestion: Besides speed, what other information about wind is particularly important for takeoff and landing?",
+      "audioTextZh": "天气信息十分重要，因此飞行员经常接收天气更新。更新后的天气信息包括风速和风向。风向变化时，会以范围形式给出，例如从150度变到210度。这些信息对起飞和着陆尤其重要。\n问题：除风速外，哪项风的信息对起飞和着陆尤其重要？",
+      "referenceText": "正确答案：A. wind direction",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-07-q06.mp3",
+      "choices": [
+        "wind direction",
+        "unlimited visibility",
+        "weather update",
+        "scattered clouds"
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1019",
+      "taskTitle": "20s航空英语-215",
+      "audioText": "The localizer transmitter is situated at the extended runway centerline beyond the stopend, the localizer being normally found the centerline of runway and extended along descent path 25 miles with 45 ILS channels with frequency range from 108.10 to 119.95 MHZ to provide pilots with course guidance.\nQuestion: What is localizer used for?",
+      "audioTextZh": "航向台发射机位于停止端之外的跑道中心线延长线上；航向道通常沿跑道中心线和下降路径延伸25 miles，设有45个ILS信道，频率范围为108.10至119.95 MHZ，为飞行员提供航道引导。\n问题：航向台用于什么？",
+      "referenceText": "正确答案：A. Horizontal guidance",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-07-q09.mp3",
+      "choices": [
+        "Horizontal guidance",
+        "Vertical guidance",
+        "Longitudinal guidance",
+        "Both longitudinal and lateral guidance"
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1020",
+      "taskTitle": "20s航空英语-216",
+      "audioText": "Most radio carrier manufactures have 360 or 720 channel capacity, a 360 channel radio uses 50KHZ channel spacing between the channels such as 118.05 and 118.10, a 720-channel radio doubles the frequency available by using 25 KHZ channel spacing.\nQuestion: What spacing does a 360-channel radio have between channels?",
+      "audioTextZh": "大多数无线电设备具有360或720个信道容量。360信道无线电使用50KHZ信道间隔，例如118.05与118.10；720信道无线电使用25 KHZ信道间隔，使可用频率数量增加一倍。\n问题：360信道无线电的信道间隔是多少？",
+      "referenceText": "正确答案：A. 50 KHz channel spacing",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-07-q12.mp3",
+      "choices": [
+        "50 KHz channel spacing",
+        "20 KHz channel spacing",
+        "25 KHz channel spacing",
+        "15 KHz channel spacing"
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1021",
+      "taskTitle": "20s航空英语-217",
+      "audioText": "Good morning, ladies and gentlemen, from the flight deck, welcome abroad Tristar airline flight 455 to St Luis, we have leveled off and cruising at 35000ft, we are turning off the fasten the seatbelt signs now but for your safety, please make your seatbelts while in your seat.\nQuestion: Which of the following is flight 455 now doing?",
+      "audioTextZh": "女士们、先生们，早上好。这里是驾驶舱广播，欢迎乘坐飞往圣路易斯的Tristar 455。我们已经改平，正在35000ft巡航。现在将关闭系好安全带指示灯，但为了安全，请在座位上时始终系好安全带。\n问题：455航班现在正在做什么？",
+      "referenceText": "正确答案：A. Cruising.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-07-q13.mp3",
+      "choices": [
+        "Cruising.",
+        "Landing.",
+        "Descending.",
+        "Climbing."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1022",
+      "taskTitle": "20s航空英语-218",
+      "audioText": "The required runway length for take off and landing may vary considerably with the changes of outside air temperature, runway surface, aircraft load and airfield elevation.\nQuestion: According to the statement, which of the following will NOT affect the required runway length for take off and landing?",
+      "audioTextZh": "起飞和着陆所需跑道长度会随外界气温、跑道表面、航空器载荷和机场标高的变化而发生显著改变。\n问题：根据这段陈述，以下哪一项不会影响起飞和着陆所需的跑道长度？",
+      "referenceText": "正确答案：B. Light wind.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-07-q14.mp3",
+      "choices": [
+        "Outside air temperature.",
+        "Light wind.",
+        "runway surface.",
+        "Airfield elevation."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1023",
+      "taskTitle": "20s航空英语-219",
+      "audioText": "Heathrow Information C, cloud scattered at 3000ft, broken at 5000ft, wind 210 at 8 knots visibility 2 miles with light wind. report established on ILS Runway 23.\nQuestion: What is the cloud cover at 5000 ft?",
+      "audioTextZh": "希思罗通播C：3000ft有疏云，5000ft有碎云；风向210度、风速8 knots，能见度2 miles，有微风。建立ILS Runway 23后报告。\n问题：5000 ft高度的云量如何？",
+      "referenceText": "正确答案：A. Broken layer.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-07-q16.mp3",
+      "choices": [
+        "Broken layer.",
+        "Overcast layer.",
+        "No clouds.",
+        "Scattered layer."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1025",
+      "taskTitle": "20s航空英语-220",
+      "audioText": "The passenger of flight from Shanghai to Beijing were angry with the airline, about 20 minutes after takeoff, they had to turn back because air temperature was very hot, the cabin crew had known the air conditioning problem even before takeoff and informed the captain but he decided to take off anyway. After we returned to Beijing, the airline didn't apologize and offer compensation for the delay, which was more than 3 hours delay.\nQuestion: When was the captain informed of the problem?",
+      "audioTextZh": "从上海飞往北京的航班乘客对航空公司非常生气。起飞约20分钟后，他们因客舱温度很高而不得不返航。客舱机组甚至在起飞前就知道空调存在问题，并通知了机长，但机长仍决定起飞。我们返回北京后，航空公司既未道歉，也未对超过3小时的延误提供赔偿。\n问题：机长什么时候获知这一问题？",
+      "referenceText": "正确答案：A. Before takeoff",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-07-q18.mp3",
+      "choices": [
+        "Before takeoff",
+        "About 20 minutes after takeoff",
+        "After the delay",
+        "After returning to the airport"
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1026",
+      "taskTitle": "20s航空英语-221",
+      "audioText": "M1: Have you heard the ATC broadcast RVSM operations will begin in 30 minutes?\nM2: Yes, all aircraft departing from the... China...airspace need to follow the level between 8900m and 12600m in cruising in accordance with China RVSM level allocation.\nQuestion: What was the conversation about?",
+      "audioTextZh": "M1: 你听到ATC广播说RVSM运行将在30分钟后开始了吗？\nM2: 听到了。根据中国RVSM高度层分配，所有从……中国空域离场的航空器在巡航时都需要遵守8900m至12600m之间的高度层。\n问题：这段对话在讨论什么？",
+      "referenceText": "正确答案：B. RVSM Level range",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-07-q20.mp3",
+      "choices": [
+        "RVSM Level instruction",
+        "RVSM Level range",
+        "RVSM level indication",
+        "RVSM Level procedure"
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1027",
+      "taskTitle": "20s航空英语-222",
+      "audioText": "M1: I am planning the flight to Blueyard airport, what is about the weather there?\nM2: captain, the weather is marginal, the thunderstorm may be there, there are some cumulonimbus clouds building, the weather radar shows some cells, a squall line may de developing ahead of the front.\nQuestion: Which of the following words is not involved in the weather?",
+      "audioTextZh": "M1: 我正在计划飞往Blueyard机场，那里的天气怎么样？\nM2: 机长，天气处于临界状态，那里可能有雷暴，正在形成一些积雨云，气象雷达显示有一些雷暴单体，锋面前方可能正在形成一条飑线。\n问题：以下哪个词与天气无关？",
+      "referenceText": "正确答案：B. Quarrel.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-08-q01.mp3",
+      "choices": [
+        "Cells.",
+        "Quarrel.",
+        "CBs.",
+        "Front."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1028",
+      "taskTitle": "20s航空英语-223",
+      "audioText": "A1: There is a height in which the pilot must have runway approach light in sight and continue the descent, If not, he has to initiate a missed approach.\nA1:\nA2: The height is very important for safety.\nA2:\nQuestion: What were the men talking about?",
+      "audioTextZh": "A1: 有一个高度，飞行员必须看到跑道进近灯才能继续下降；否则就必须实施复飞。\nA2: 这个高度对安全非常重要。\n问题：这两个人在谈论什么？",
+      "referenceText": "正确答案：C. Decision height.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-08-q05.mp3",
+      "choices": [
+        "Landing gear extending height.",
+        "Minimum clearance height.",
+        "Decision height.",
+        "Landing height."
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-1029",
+      "taskTitle": "20s航空英语-224",
+      "audioText": "M1: Captain, do you think maintenance check is one of the most important preflight activities?\nM2: Yes, it is. It will show if the airplane's condition is acceptable for flight.\nM1: en, I agree with you. The aircraft maintenance engineers should be licensed by aviation authority to check the engine, airframe, and systems.\nQuestion: What should maintenance engineers do from this conversation?",
+      "audioTextZh": "M1: 机长，你认为维修检查是最重要的飞行前活动之一吗？\nM2: 是的。它会显示飞机状况是否适合飞行。\nM1: 嗯，我同意。航空器维修工程师应取得航空主管部门颁发的执照，以检查发动机、机身和系统。\n问题：根据这段对话，维修工程师应当做什么？",
+      "referenceText": "正确答案：A. Inspect the engine, airframe, and systems",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-08-q06.mp3",
+      "choices": [
+        "Inspect the engine, airframe, and systems",
+        "Consult the engine, airframe, and systems",
+        "Replace the engine, airframe, and systems",
+        "Replace the engine, airframe, and systems"
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1030",
+      "taskTitle": "20s航空英语-225",
+      "audioText": "Feet does not include levels being 1500ft of station elevation, and temperatures are not forecast 3000 feet of level or level 2500 feet of station elevation. Take Denver airport for example since the elevation of Denver is over 5000ft.\nQuestion: Which of the following is the elevation of Denver Airport?",
+      "audioTextZh": "其中不包括距测站标高1500ft以内的高度层；在3000 feet高度层或距测站标高2500 feet以内的高度层不预报温度。以丹佛机场为例，其标高超过5000ft。\n问题：以下哪一项是丹佛机场的标高？",
+      "referenceText": "正确答案：D. 5,000 feet",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-08-q07.mp3",
+      "choices": [
+        "2,500 feet",
+        "3, 000 feet",
+        "1,500 feet",
+        "5,000 feet"
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-1031",
+      "taskTitle": "20s航空英语-226",
+      "audioText": "There was a very scare accident on the flight to Hawaii. During takeoff, there was dense cloud but no thunder or lightning, but about 20 seconds later, as the plane climbing, there was a tremmendous flash outside the plane and a large bang. Immediately, the engines throttles back and we levelled off. We looked out of the window and the engines were there and there was no fire.\nQuestion: What probably caused the large bang?",
+      "audioTextZh": "飞往夏威夷的航班上发生了一起非常惊险的事故。起飞时有浓云，但没有雷声或闪电；约20秒后，飞机正在爬升时，机外出现一道强烈闪光并伴随一声巨响。发动机随即减小推力，我们改为平飞。我们向窗外看去，发动机仍在，也没有起火。\n问题：巨响可能是什么造成的？",
+      "referenceText": "正确答案：D. A lightning strike",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-08-q08.mp3",
+      "choices": [
+        "A fuel tank explosion",
+        "Severe turbulence",
+        "A bird strike",
+        "A lightning strike"
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-1033",
+      "taskTitle": "20s航空英语-227",
+      "audioText": "When the aircraft was at 2000ft, flaps were lowered from 30 to 40. After passing the middle Marker, the airspeed was decreased to 140 knots. At two miles from touchdown, rate of descent varied by at time only by 100ft. In the end, a perfect landing was made because of these conditions.\nQuestion: What was the condition at 2 miles from touchdown?",
+      "audioTextZh": "航空器在2000ft时，襟翼从30放到40。通过中指点标后，空速减至140 knots。距接地点2 miles时，下降率一度仅变化100ft。最终，在这些条件下完成了一次完美着陆。\n问题：距接地点2 miles时的情况是什么？",
+      "referenceText": "正确答案：C. Rate of descent varied within 100 feet.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-08-q11.mp3",
+      "choices": [
+        "Airspeed was approximately 140 knots.",
+        "Flaps were lowered from 30 to 40.",
+        "Rate of descent varied within 100 feet.",
+        "Speed increased to 173 knots."
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-1034",
+      "taskTitle": "20s航空英语-228",
+      "audioText": "Using standard phraseology in aviation communication is of utmost importance. It provides a common language framework for pilots and air traffic control. By following these standardized terms and expressions, the risk of misunderstandings is significantly reduced, enhancing flight safety.\nQuestion: What is the significance of using standard phraseology in aviation communication?",
+      "audioTextZh": "在航空通信中使用标准用语极其重要，它为飞行员和空中交通管制提供共同的语言框架。遵循这些标准化术语和表达，可以显著降低误解风险，提高飞行安全。\n问题：在航空通信中使用标准用语有什么重要意义？",
+      "referenceText": "正确答案：B. It reduces the risk of misunderstandings between pilots and controllers.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-08-q13.mp3",
+      "choices": [
+        "It makes the communication sound more professional.",
+        "It reduces the risk of misunderstandings between pilots and controllers.",
+        "It is a tradition and has no real practical use.",
+        "It helps the pilot to remember the communication steps."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1035",
+      "taskTitle": "20s航空英语-229",
+      "audioText": "In aviation communication, a 'Mayday' call is the highest - level distress signal. It indicates that the aircraft is in a life - threatening emergency situation, such as a fire on board, a major system failure, or a loss of control. All other aircraft and air traffic control must respond immediately to assist.\nQuestion: What does a \"Mayday\" call signify in aviation communication?",
+      "audioTextZh": "在航空通信中，MAYDAY呼叫是最高级别的遇险信号，表示航空器处于威胁生命的紧急情况，例如机上起火、重大系统故障或失控。所有其他航空器和空中交通管制都必须立即响应并提供协助。\n问题：航空通信中的MAYDAY呼叫表示什么？",
+      "referenceText": "正确答案：C. A life-threatening emergency situation.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-08-q14.mp3",
+      "choices": [
+        "A minor technical issue with the aircraft.",
+        "A request for priority landing.",
+        "A life-threatening emergency situation.",
+        "A change in the flight plan."
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-1036",
+      "taskTitle": "20s航空英语-230",
+      "audioText": "Pilot: Hey, do you know how the electrical system in our aircraft works?\nCo-pilot: Well, it's quite complex.The primary source of electrical power is the generators driven by the engines.\nPilot: I see.And what about the auxiliary power unit(APU)?\nCo-pilot: The APU can provide electrical power when the engines aren't running, like during ground operations or as a backup in flight.\nQuestion: What is the primary source of electrical power in the aircraft?",
+      "audioTextZh": "Pilot: 嘿，你知道我们航空器的电气系统如何工作吗？\nCo-pilot: 嗯，它很复杂。主要电源是由发动机驱动的发电机。\nPilot: 明白了。那么辅助动力装置（APU）呢？\nCo-pilot: 发动机不运行时，例如地面运行期间，或在飞行中作为备用电源时，APU可以提供电力。\n问题：航空器的主要电源是什么？",
+      "referenceText": "正确答案：B. The engines.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-08-q15.mp3",
+      "choices": [
+        "The APU.",
+        "The engines.",
+        "The batteries.",
+        "Solar panels."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1037",
+      "taskTitle": "20s航空英语-231",
+      "audioText": "Mechanic: We need to check the electrical system before the flight.\nPilot: Sure, what are we looking for?\nMechanic: Mainly the circuit breakers.If any of them are tripped, it could indicate a fault.\nPilot: And what about the redundancy in the system?\nMechanic: Each critical system has multiple power sources.For example, the Boeing 747-400 can get power from any of its four engines.\nQuestion: Why do they check the circuit breakers in the electrical system?",
+      "audioTextZh": "Mechanic: 我们需要在飞行前检查电气系统。\nPilot: 好的，要检查什么？\nMechanic: 主要检查断路器。如果其中任何一个跳开，可能表明存在故障。\nPilot: 那么系统冗余呢？\nMechanic: 每个关键系统都有多个电源。例如，Boeing 747-400可以由它的四台发动机中的任何一台供电。\n问题：为什么要检查电气系统中的断路器？",
+      "referenceText": "正确答案：B. To identify potential faults.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-08-q16.mp3",
+      "choices": [
+        "To ensure the APU is working.",
+        "To identify potential faults.",
+        "To check the battery charge",
+        "To test the generators"
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1038",
+      "taskTitle": "20s航空英语-232",
+      "audioText": "Instructor: Let's talk about the types of power in an electrical system.There's active power, reactive power, and apparent power.\nStudent: What's the difference between them?\nInstructor: Active power is the power that does actual work, like running motors.Reactive power is associated with energy storage components like capacitors and inductors.Apparent power is the total power supplied by the source.\nQuestion: What is active power in an electrical system?",
+      "audioTextZh": "Instructor: 我们来谈谈电气系统中的功率类型，包括有功功率、无功功率和视在功率。\nStudent: 它们有什么区别？\nInstructor: 有功功率是实际做功的功率，例如驱动电动机。无功功率与电容器和电感器等储能元件有关。视在功率是电源提供的总功率。\n问题：电气系统中的有功功率是什么？",
+      "referenceText": "正确答案：B. Power that does actual work.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-08-q17.mp3",
+      "choices": [
+        "Power that is stored temporarily.",
+        "Power that does actual work.",
+        "The total power supplied by the source.",
+        "Power that oscillates between source and load"
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1039",
+      "taskTitle": "20s航空英语-233",
+      "audioText": "Engineer: The electrical system in modern aircraft uses alternating current(AC)for most applications.\nTechnician: Right.AC has some advantages over direct current(DC), like easier voltage transformation with transformers.\nEngineer: And in AC circuits, the power can be categorized into real, reactive, and apparent power.\nQuestion: Why is AC preferred over DC in aircraft electrical systems?",
+      "audioTextZh": "Engineer: 现代航空器电气系统的大多数应用使用交流电（AC）。\nTechnician: 对。与直流电（DC）相比，AC具有一些优势，例如可以利用变压器更容易地进行电压变换。\nEngineer: 在AC电路中，功率可分为有功功率、无功功率和视在功率。\n问题：为什么航空器电气系统更常使用AC而不是DC？",
+      "referenceText": "正确答案：B. It allows easier voltage transformation.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-08-q18.mp3",
+      "choices": [
+        "It's easier to generate.",
+        "It allows easier voltage transformation.",
+        "It requires less wiring.",
+        "It's more efficient for long distances"
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1040",
+      "taskTitle": "20s航空英语-234",
+      "audioText": "Instructor: Let's talk about the different types of electrical systems in aircraft.\nStudent: Are there any specific systems for emergency situations?\nInstructor: Yes, there are emergency power systems that can provide limited power in case of a total electrical failure.\nStudent: And how do they work?\nInstructor: They usually rely on batteries or a separate generator that can be activated in an emergency.\nQuestion: What is the purpose of emergency power systems in aircraft?",
+      "audioTextZh": "Instructor: 我们来谈谈航空器中的不同电气系统。\nStudent: 是否有专门用于紧急情况的系统？\nInstructor: 有，应急电源系统可以在电气系统完全失效时提供有限电力。\nStudent: 它们如何工作？\nInstructor: 通常依靠电瓶，或依靠可在紧急情况下启动的独立发电机。\n问题：航空器应急电源系统的用途是什么？",
+      "referenceText": "正确答案：B. To provide limited power.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-08-q19.mp3",
+      "choices": [
+        "To provide power for normal operations.",
+        "To provide limited power.",
+        "To replace the APU.",
+        "To increase fuel efficiency"
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1086",
+      "taskTitle": "20s航空英语-235",
+      "audioText": "W: I've been told there are some changes for my departure.\nM: Yes, the change is as follows, climb on runway heading until 6000ft, then turn right to intercept 235 radial of MT VOR.\nQuestion: Which radial must be intercepted?",
+      "audioTextZh": "W: 我被告知离场程序有一些变化。\nM: 是的，变化如下：沿跑道航向爬升至6000ft，然后右转切入MT VOR的235径向线。\n问题：必须切入哪条径向线？",
+      "referenceText": "正确答案：A. 235 radial of MT VOR",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-04-q13.mp3",
+      "choices": [
+        "235 radial of MT VOR",
+        "275 radial of MT VOR",
+        "225 radial of MT VOR",
+        "215 radial of MT VOR"
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1110",
+      "taskTitle": "20s航空英语-236",
+      "audioText": "Controller: \"Guangzhou Tower, EAL 890, radio check please.\"\nPilot: \"Guangzhou Tower, EAL 890, radio check on 119.7. How do you read me now? \"\nController: \"EAL 890, I read you 4, your signal is jammed.\"\nQuestion: What is the issue with the pilot's signal according to the controller?",
+      "audioTextZh": "Controller: “广州塔台，EAL 890，请进行无线电检查。”\nPilot: “广州塔台，EAL 890，在119.7进行无线电检查。现在听我信号如何？”\nController: “EAL 890，信号强度4，你的信号受到干扰。”\n问题：根据管制员的说法，飞行员的信号有什么问题？",
+      "referenceText": "正确答案：B. The signal is jammed.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-05-q18.mp3",
+      "choices": [
+        "The signal is weak.",
+        "The signal is jammed.",
+        "The frequency is incorrect.",
+        "The call sign is incorrect."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1207",
+      "taskTitle": "20s航空英语-237",
+      "audioText": "M1: Captain, the panel shows the aft cargo door was open.\nM2: roger, check the cabin.\nM1: the cabin pressure is normal.\nM2: eh, it might be the false indication. It happened last time, report that to ATC.\nQuestion: What had happened?",
+      "audioTextZh": "M1: 机长，面板显示后货舱门开着。\nM2: 收到，检查客舱。\nM1: 客舱压力正常。\nM2: 嗯，可能是错误指示，上次也发生过，把这个情况报告给空中交通管制。\n问题：发生了什么？",
+      "referenceText": "正确答案：C. They had a false indication.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s04-section-04-q16.mp3",
+      "choices": [
+        "ATC gave wrong instructions.",
+        "They had lost some cargo.",
+        "They had a false indication.",
+        "The aft cargo door was open."
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-1212",
+      "taskTitle": "20s航空英语-238",
+      "audioText": "About 75% of all aviation accidents are caused by human-related factors. Sources of pilots' errors in the IFR environment include misunderstanding a chart, failure to understand a clearance, inability to use equipment properly and lack of co2ordination among crewmembers.\nQuestion: Which of the following is not mentioned?",
+      "audioTextZh": "约75%的航空事故由人为相关因素造成。IFR环境中的飞行员错误来源包括误解航图、未能理解放行许可、无法正确使用设备，以及机组成员之间缺乏协调。\n问题：以下哪一项未被提及？",
+      "referenceText": "正确答案：A. Loss of situational awareness.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-09-q03.mp3",
+      "choices": [
+        "Loss of situational awareness.",
+        "Misunderstanding a chart.",
+        "Failure to use equipment properly.",
+        "Lack of coordination among crewmembers."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1213",
+      "taskTitle": "20s航空英语-239",
+      "audioText": "Traditionally pilot training has emphasized flying skills, knowledge of the airplane, but now it is realized teaching technical skills is not enough. Human elements such as effective communication, decision-making, situational awareness and workload management must play an important role in training pilots.\nQuestion: What does this statement imply?",
+      "audioTextZh": "传统上，飞行员训练一直强调飞行技能和航空器知识，但现在人们认识到，只教授技术技能是不够的。有效沟通、决策、情景意识和工作负荷管理等人为因素必须在飞行员训练中发挥重要作用。\n问题：这段陈述说明了什么？",
+      "referenceText": "正确答案：C. Only teaching technical skills is not enough for pilots' training.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-09-q04.mp3",
+      "choices": [
+        "Teaching technical skills is the most important for pilots' training.",
+        "Human elements play a less important role in pilots' training.",
+        "Only teaching technical skills is not enough for pilots' training.",
+        "Human skills play a more important role in pilots' training."
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-1214",
+      "taskTitle": "20s航空英语-240",
+      "audioText": "The most common reason for a missed approach is low visibility conditions that don't permit you to establish required visual reference. The other reasons include wind shear, sudden runway closure, inoperative airborne or ground navigation equipment or an ATC request.\nQuestion: Which of the following are not the reasons for missed approach?",
+      "audioTextZh": "复飞最常见的原因是低能见度，导致无法建立所需的目视参考。其他原因包括风切变、跑道突然关闭、机载或地面导航设备失效，以及空中交通管制的要求。\n问题：以下哪一项不是复飞的原因？",
+      "referenceText": "正确答案：D. Military activities",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-09-q05.mp3",
+      "choices": [
+        "Low visibility",
+        "Windshear",
+        "Inoperative navigation equipment",
+        "Military activities"
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-1217",
+      "taskTitle": "20s航空英语-241",
+      "audioText": "Dear passengers, due to air traffic control, Flight QFA 123 to Sydney is expected to be delayed for four hours, the airport will provide you with catering and accommodation arrangement, please go to the service desk in the waiting area if you need assistance. Thank you for your understanding and patience.\nQuestion: Why is Qantas expected to be delayed?",
+      "audioTextZh": "各位旅客，由于空中交通管制，飞往Sydney的QFA 123航班预计延误4小时。机场将为你们安排餐饮和住宿，如需帮助，请前往候机区服务台。感谢你们的理解与耐心。\n问题：Qantas航班为什么预计延误？",
+      "referenceText": "正确答案：A. Due to flow control.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-09-q08.mp3",
+      "choices": [
+        "Due to flow control.",
+        "Due to adverse weather.",
+        "Due to military activity.",
+        "Due to mechanical problems"
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1218",
+      "taskTitle": "20s航空英语-242",
+      "audioText": "Traditional analog cockpits typically utilize the 'six pack' layout, which includes the airspeed indicator, altimeter, vertical speed indicator, attitude indicator, heading indicator, and turn coordinator. This layout is a foundational concept in flight instrument design before the advent of digital systems.\nQuestion: Which of the following best describes the layout philosophy used in traditional analog cockpit designs?",
+      "audioTextZh": "传统模拟式驾驶舱通常采用“六大仪表”布局，包括空速表、高度表、升降速度表、姿态指示器、航向指示器和转弯协调仪。在数字系统出现之前，这种布局是飞行仪表设计的基础概念。\n问题：以下哪一项最准确地描述了传统模拟式驾驶舱采用的布局理念？",
+      "referenceText": "正确答案：C. Six Pack Instrument Layout",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-09-q09.mp3",
+      "choices": [
+        "Glass Cockpit Layout",
+        "Glass Cockpit Layout",
+        "Six Pack Instrument Layout",
+        "Digital Dashboard Arrangement"
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-1219",
+      "taskTitle": "20s航空英语-243",
+      "audioText": "A 'glass cockpit' refers to an aircraft cockpit equipped with electronic flight instrument displays (EFIS) instead of traditional mechanical gauges. These systems offer greater functionality, integration, and situational awareness.\nQuestion: What does the term 'glass cockpit' refer to in modern aviation?",
+      "audioTextZh": "“玻璃驾驶舱”是指使用电子飞行仪表显示系统（EFIS）而非传统机械仪表的航空器驾驶舱。这些系统提供更强的功能、集成能力和情景意识。\n问题：现代航空中的“玻璃驾驶舱”指什么？",
+      "referenceText": "正确答案：B. Digital flight displays",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-09-q10.mp3",
+      "choices": [
+        "A cockpit with large windows",
+        "Digital flight displays",
+        "A transparent control panel",
+        "A pilot training technique"
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1220",
+      "taskTitle": "20s航空英语-244",
+      "audioText": "Digital flight instruments allow for centralized processing and display of multiple parameters, offering enhanced situational awareness and reducing pilot workload. They can dynamically reconfigure displays to suit different phases of flight or emergencies.\nQuestion: Which of the following is an advantage of digital flight instruments over analog ones?",
+      "audioTextZh": "数字飞行仪表能够集中处理和显示多个参数，从而增强情景意识并减轻飞行员工作负荷。它们可以根据不同飞行阶段或紧急情况动态重新配置显示内容。\n问题：与模拟仪表相比，数字飞行仪表的优势是什么？",
+      "referenceText": "正确答案：C. Greater data integration and display flexibility",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-09-q11.mp3",
+      "choices": [
+        "More mechanical parts for reliability",
+        "Lower maintenance costs",
+        "Greater data integration and display flexibility",
+        "Less susceptibility to electrical interference"
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-1221",
+      "taskTitle": "20s航空英语-245",
+      "audioText": "Military aircraft cockpits prioritize rapid access to both flight and mission-specific data, as pilots may need to make split-second decisions in high-intensity scenarios. The layout must support quick interpretation of multi-source data.\nQuestion: Which of the following is a key requirement in the layout of flight instruments in a military aircraft cockpit?",
+      "audioTextZh": "军用航空器驾驶舱优先确保快速获取飞行数据和任务专用数据，因为飞行员可能需要在高强度情境中瞬间作出决策。其布局必须支持对多源数据的快速解读。\n问题：军用航空器驾驶舱的飞行仪表布局有哪些关键要求？",
+      "referenceText": "正确答案：C. Rapid access to critical flight and combat data",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-09-q12.mp3",
+      "choices": [
+        "Minimum visibility for stealth purposes",
+        "Maximum integration with weapons systems",
+        "Rapid access to critical flight and combat data",
+        "Use of only digital instruments without analog backups"
+      ],
+      "correctChoiceIndex": 2
+    },
+    {
+      "id": "listening-main-1222",
+      "taskTitle": "20s航空英语-246",
+      "audioText": "The actuator is the component that physically translates the pilot's input or commands from the flight control system into mechanical movement of the control surfaces (e.g., ailerons, elevators). The flight control computer processes data, the sensor array collects information, and the autopilot module manages automated flight.\nQuestion: Which of the following components is primarily responsible for receiving pilot inputs and translating them into control surface movements in a flight control system?",
+      "audioTextZh": "作动器是将飞行员输入或飞行控制系统指令实际转换为操纵面机械运动的部件，例如副翼和升降舵。飞行控制计算机处理数据，传感器阵列收集信息，自动驾驶模块管理自动飞行。\n问题：飞行控制系统中，哪个部件主要负责接收飞行员输入并将其转换为操纵面运动？",
+      "referenceText": "正确答案：B. Actuator.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-09-q13.mp3",
+      "choices": [
+        "Flight control computer.",
+        "Actuator.",
+        "Sensor array.",
+        "Autopilot module."
+      ],
+      "correctChoiceIndex": 1
+    },
+    {
+      "id": "listening-main-1223",
+      "taskTitle": "20s航空英语-247",
+      "audioText": "An engine flameout at high altitude is often caused by fuel starvation, especially if the fuel system is not functioning correctly or there is a blockage in the fuel line. Mechanical failure would more likely involve internal damage to the engine components.\nQuestion: Which of the following is most likely to be caused by fuel starvation rather than mechanical failure?",
+      "audioTextZh": "高空发动机熄火通常由燃油供应中断造成，尤其是在燃油系统工作不正常或燃油管路堵塞时。机械故障则更可能涉及发动机部件的内部损坏。\n问题：以下哪一种情况最可能由燃油供应中断而非机械故障造成？",
+      "referenceText": "正确答案：A. Engine flameout at high altitude.",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-09-q14.mp3",
+      "choices": [
+        "Engine flameout at high altitude.",
+        "Engine fire during taxiing.",
+        "Engine failure during climb.",
+        "Engine shutdown due to overheating."
+      ],
+      "correctChoiceIndex": 0
+    },
+    {
+      "id": "listening-main-1224",
+      "taskTitle": "20s航空英语-248",
+      "audioText": "Engine parameters refer to operational data monitored during flight or maintenance, such as EPR, EGT, oil pressure, and temperature. Fuel tank capacity is not an engine operational parameter but rather a fuel system specification.\nQuestion: Which of the following is NOT considered an engine parameter in aviation maintenance reports?",
+      "audioTextZh": "发动机参数是指飞行或维修期间监控的运行数据，例如EPR、EGT、滑油压力和温度。油箱容量不是发动机运行参数，而是燃油系统技术参数。\n问题：以下哪一项不属于航空维修报告中的发动机参数？",
+      "referenceText": "正确答案：D. Fuel tank capacity",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-09-q15.mp3",
+      "choices": [
+        "Engine pressure ratio (EPR)",
+        "Exhaust gas temperature (EGT)",
+        "Oil pressure and oil temperature",
+        "Fuel tank capacity"
+      ],
+      "correctChoiceIndex": 3
+    },
+    {
+      "id": "listening-main-1225",
+      "taskTitle": "20s航空英语-249",
+      "audioText": "During an engine failure on takeoff, the pilot's first priority is to maintain aircraft control and follow the Quick Reference Handbook (QRH) procedures to ensure safe handling of the situation before attempting any corrective action.\nQuestion: In the event of an engine failure during takeoff, which of the following actions should be prioritized by the pilot?",
+      "audioTextZh": "起飞过程中发动机失效时，飞行员的首要任务是保持对航空器的控制，并遵循快速参考手册（QRH）程序，在尝试任何纠正操作之前确保安全处置该情况。\n问题：起飞过程中发动机失效时，飞行员应优先采取以下哪项行动？",
+      "referenceText": "正确答案：B. Maintain aircraft control and follow the QRH checklist",
+      "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-09-q16.mp3",
+      "choices": [
+        "Immediately shut down the failed engine",
+        "Maintain aircraft control and follow the QRH checklist",
+        "Attempt to restart the failed engine immediately",
+        "Land at the nearest airport regardless of conditions"
+      ],
+      "correctChoiceIndex": 1
     }
   ]
 }

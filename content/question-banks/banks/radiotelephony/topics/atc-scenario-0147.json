@@ -1,0 +1,161 @@
+{
+  "categoryId": "atc-cca",
+  "id": "atc-scenario-0147",
+  "name": "CCA 527 鸟击 雷暴绕飞 TCAS机动",
+  "declaredCardCount": 17,
+  "cards": [
+    {
+      "id": "atc-scenario-0147-card-main-2533",
+      "taskTitle": "CCA 527-1",
+      "audioText": "B: Your call sign is CCA 527, you are at gate 211, you have received ATIS C, your destination is Guangzhou, contact Wuhan Delivery for ATC clearance.",
+      "audioTextZh": "B: 你的呼号是 CCA 527，位于 211 号登机口，已收到 ATIS C，目的地 Guangzhou，联系武汉放行请求 ATC 许可。",
+      "referenceText": "Wuhan Delivery, CCA 527, gate 211, information C, request ATC clearance to Guangzhou.",
+      "referenceTextZh": "武汉放行，CCA 527，211 号登机口，信息 C，请求前往 Guangzhou 的 ATC 许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-045-cca527-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0147-card-main-2534",
+      "taskTitle": "CCA 527-2",
+      "audioText": "CCA 527, Wuhan Delivery, cleared to Guangzhou via flight planned route, departure Runway 36R, LKO01D, initial climb 1,200 meters, cruising level 10,400 meters, departure frequency 119.7, squawk 3515.",
+      "audioTextZh": "CCA 527，武汉放行，许可按飞行计划航路飞往广州，离场使用 Runway 36R，执行 LKO-01D，初始爬升至 1,200 米，巡航高度 10,400 米，离场频率 119.7，应答机 3515。",
+      "referenceText": "cleared to Guangzhou via flight planned route, departure Runway 36R, LKO-01 departure, initial climb 1200 meters, cruising level 10400 meters, departure frequency 119.7, squawk 3515, CCA 527.",
+      "referenceTextZh": "许可按飞行计划航路飞往广州，离场使用 Runway 36R，执行 LKO-01 离场，初始爬升至 1200 米，巡航高度 10400 米，离场频率 119.7，应答机 3515，CCA 527。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-045-cca527-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0147-card-main-2535",
+      "taskTitle": "CCA 527-3",
+      "audioText": "B: Now you are on the taxiway Z4, you are ready for taxi, contact Wuhan Ground and request taxi instructions.",
+      "audioTextZh": "B: 现在你在滑行道 Z4，准备滑行，联系武汉地面请求滑行指令。",
+      "referenceText": "Wuhan Ground, CCA 527, taxiway Z4, request taxi.",
+      "referenceTextZh": "武汉地面，CCA 527，滑行道 Z4，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-045-cca527-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0147-card-main-2536",
+      "taskTitle": "CCA 527-4",
+      "audioText": "CCA 527, taxi via taxiway Z4, A3, and A to holding point Runway 36R.",
+      "audioTextZh": "CCA 527，经 Z4、A3 和 A 滑行道滑行至 Runway 36R 等待点。",
+      "referenceText": "taxi via taxiway Z four, A tree, and A to holding point Runway 36R, CCA 527.",
+      "referenceTextZh": "经 Z4、A3 和 A 滑行道滑行至 Runway 36R 等待点，CCA 527。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-045-cca527-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0147-card-main-2537",
+      "taskTitle": "CCA 527-5",
+      "audioText": "C: CCA 527, follow CSN 737 on A7, you are number 2 for departure.",
+      "audioTextZh": "C: CCA 527，跟随 A7 上的 CSN 737，你是第 2 架离场。",
+      "referenceText": "Roger, follow CSN 737 on A7, CCA 527.",
+      "referenceTextZh": "收到，跟随 A7 上的 CSN 737，CCA 527。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-045-cca527-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0147-card-main-2538",
+      "taskTitle": "CCA 527-6",
+      "audioText": "Now you are at threshold of Runway 36R, ask tower for takeoff clearance.",
+      "audioTextZh": "现在你位于 Runway 36R 入口，向塔台申请起飞许可。",
+      "referenceText": "Wuhan Tower, CCA 527, threshold of Runway 36R, ready for departure.",
+      "referenceTextZh": "武汉塔台，CCA 527，位于 Runway 36R 入口，已准备好离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-045-cca527-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0147-card-main-2539",
+      "taskTitle": "CCA 527-7",
+      "audioText": "CCA 527, cleared for takeoff Runway 36R, caution migrating birds in the vicinity of airfield.",
+      "audioTextZh": "CCA 527，许可从 Runway 36R 起飞，注意机场附近有候鸟。",
+      "referenceText": "roger, cleared for takeoff Runway 36R, CCA 527.",
+      "referenceTextZh": "收到，许可从 Runway 36R 起飞，CCA 527。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-045-cca527-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0147-card-main-2540",
+      "taskTitle": "CCA 527-8",
+      "audioText": "B: After you just takeoff, passing 600 meters, contact Wuhan Departure.",
+      "audioTextZh": "B: 刚起飞后，通过 600 米，联系 Wuhan Departure。",
+      "referenceText": "Wuhan Departure, CCA 527, passing 600 meters.",
+      "referenceTextZh": "Wuhan Departure，CCA 527，通过 600 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-045-cca527-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0147-card-main-2541",
+      "taskTitle": "CCA 527-9",
+      "audioText": "C: CCA 527, Wuhan Departure, radar identified, climb to 3000 meters, expedite climb until passing 2100 meters.",
+      "audioTextZh": "C: CCA 527，Wuhan Departure，雷达识别，爬升到 3000 米，通过 2100 米前加快爬升。",
+      "referenceText": "Climb to 3000 meters, expedite climb until passing 2100 meters, CCA 527.",
+      "referenceTextZh": "爬升到 3000 米，通过 2100 米前加快爬升，CCA 527。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-045-cca527-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0147-card-main-2542",
+      "taskTitle": "CCA 527-10",
+      "audioText": "B: Now you are at cruising level, the thunderstorm is detected in front of you, you want to make a fifteen miles deviation to the east of the current track from Guangzhou Control.",
+      "audioTextZh": "B: 现在你在巡航高度，前方探测到雷暴，你想向广州管制请求偏离当前航迹以东 15 海里。",
+      "referenceText": "Guangzhou Control, CCA 527, our weather radar shows a CB ahead, request 15 miles to the east from current track.",
+      "referenceTextZh": "广州管制，CCA 527，我们的气象雷达显示前方有 CB，请求从当前航迹向东偏置 15 海里。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-045-cca527-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0147-card-main-2543",
+      "taskTitle": "CCA 527-11",
+      "audioText": "C: CCA 527, offset 15 miles to the east approved, when clear of whether, direct to ATAGA.",
+      "audioTextZh": "C: CCA 527，批准向东偏置 15 海里，天气解除后，直飞 ATAGA。",
+      "referenceText": "Offset 15 miles to the east approved, when clear of whether, direct to ATAGA, CCA 527.",
+      "referenceTextZh": "批准向东偏置 15 海里，天气解除后，直飞 ATAGA，CCA 527。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-045-cca527-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0147-card-main-2544",
+      "taskTitle": "CCA 527-12",
+      "audioText": "CCA 527, descend to 4,200 meters when ready, reach 4,200 meters 10 miles before ATAGA.",
+      "audioTextZh": "CCA 527，准备好时下降至 4,200 米，在 ATAGA 前 10 英里到达 4,200 米。",
+      "referenceText": "descend to 4200 meters when ready, reach 4200 meters 10 miles before ATAGA, CCA 527.",
+      "referenceTextZh": "准备好时下降至 4200 米，在 ATAGA 前 10 英里到达 4200 米，CCA 527。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-045-cca527-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0147-card-main-2545",
+      "taskTitle": "CCA 527-13",
+      "audioText": "CCA 527, increase rate of descent to greater than 2000ft/m until passing 5700m.",
+      "audioTextZh": "CCA 527，将下降率增加至大于 2000ft/m，直至通过 5700m。",
+      "referenceText": "increase rate of descent to greater than 2000 feet per minute until passing 5700 meters, CCA 527.",
+      "referenceTextZh": "将下降率增加至大于每分钟 2000 英尺，直至通过 5700 米，CCA 527。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-045-cca527-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0147-card-main-2546",
+      "taskTitle": "CCA 527-14",
+      "audioText": "Now you are established with Guangzhou approach, your assigned landing runway is 02R, you want to land Runway 02L due performance.",
+      "audioTextZh": "现在你已与广州进近建立联系，指定落地跑道为 Runway 02R，出于性能原因希望在 Runway 02L 落地。",
+      "referenceText": "Guangzhou Approach, CCA 527, request Runway 02L due performance.",
+      "referenceTextZh": "广州进近，CCA 527，因性能原因请求 Runway 02L。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-045-cca527-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0147-card-main-2547",
+      "taskTitle": "CCA 527-15",
+      "audioText": "CCA 527, Runway 02L is not available due runway inspection, runway in use 02R.",
+      "audioTextZh": "CCA 527，因跑道检查，Runway 02L 不可用，当前使用 Runway 02R。",
+      "referenceText": "roger, Runway 02R, CCA 527.",
+      "referenceTextZh": "收到，Runway 02R，CCA 527。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-045-cca527-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0147-card-main-2548",
+      "taskTitle": "CCA 527-16",
+      "audioText": "you have established on the localizer Runway 02R, contact Tower.",
+      "audioTextZh": "你已建立在 Runway 02R 航向道上，联系塔台。",
+      "referenceText": "Guangzhou Tower, CCA 527, established Runway 02R.",
+      "referenceTextZh": "广州塔台，CCA 527，已建立 Runway 02R。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-045-cca527-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0147-card-main-2549",
+      "taskTitle": "CCA 527-17",
+      "audioText": "C: CCA 527, cleared to land 02 right, expedite vacating runway after landing.",
+      "audioTextZh": "C: CCA 527，跑道 02R 可以着陆，着陆后加快脱离跑道。",
+      "referenceText": "Cleared to land 02R, expedite vacating runway after landing, CCA 527.",
+      "referenceTextZh": "跑道 02R 可以着陆，着陆后加快脱离跑道，CCA 527。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-045-cca527-q17.mp3"
+    }
+  ]
+}

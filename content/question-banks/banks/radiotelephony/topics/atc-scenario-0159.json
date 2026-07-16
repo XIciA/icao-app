@@ -1,0 +1,179 @@
+{
+  "categoryId": "atc-csn",
+  "id": "atc-scenario-0159",
+  "name": "CSN 3112 燃油紧急 颠簸 雷暴绕飞",
+  "declaredCardCount": 19,
+  "cards": [
+    {
+      "id": "atc-scenario-0159-card-main-2735",
+      "taskTitle": "CSN 3112-1",
+      "audioText": "Your call sign is CSN 3112, a flight from Beijing to Guangzhou, the preceding aircraft reported a squall line 100 miles ahead on the weather radar, contact Beijing Control and request turn right to circumnavigate the weather.",
+      "audioTextZh": "你的呼号是 CSN 3112，这是一趟从北京飞往广州的航班，前机通过气象雷达报告前方 100 英里有飑线，联系北京管制并请求右转绕飞天气。",
+      "referenceText": "Control, CSN 3112, preceding aircraft reported a squall line, 100 miles, request turn right.",
+      "referenceTextZh": "北京管制，CSN 3112，前机报告 100 英里处有飑线，请求右转。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-059-csn3112-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0159-card-main-2736",
+      "taskTitle": "CSN 3112-2",
+      "audioText": "CSN 3112, Beijing Control, negative due prohibited area, turn left 30 degrees, track out 35 kilometers, report clear of CB.",
+      "audioTextZh": "CSN 3112，北京管制，不行，因禁区限制，左转 30 度，偏出航迹 35 公里，脱离 CB 后报告。",
+      "referenceText": "roger, turn left 30 degrees, track out 35 kilometers, CSN 3112.",
+      "referenceTextZh": "收到，左转 30 度，偏出航迹 35 公里，CSN 3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-059-csn3112-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0159-card-main-2737",
+      "taskTitle": "CSN 3112-3",
+      "audioText": "B: Now you are clear of CB and closing back to the course, contact Beijing Control.",
+      "audioTextZh": "B：现在你已脱离 CB，正回到航路，联系北京管制。",
+      "referenceText": "Beijing Control, CSN 3112, clear of CB and closing back to the course.",
+      "referenceTextZh": "北京管制，CSN 3112，已脱离 CB，正回到航路。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-059-csn3112-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0159-card-main-2738",
+      "taskTitle": "CSN 3112-4",
+      "audioText": "C: CSN 3112, the preceding aircraft reported severe turbulence at 10400 meters, 11000 meters is available, what's your intention?\nB: acknowledge the transmission and tell the controller you'd like to climb to 11000 meters.",
+      "audioTextZh": "C： CSN 3112，前机报告在 10,400 米有严重颠簸，11,000 米可用，你的意图是什么？\nB： 复诵该通话，并告诉管制员你希望爬升至 11,000 米。",
+      "referenceText": "request climb to 2000 meters 11000 meters, CSN 3112.",
+      "referenceTextZh": "请求爬升至 2,000 米、11,000 米，CSN 3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-059-csn3112-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0159-card-main-2739",
+      "taskTitle": "CSN 3112-5",
+      "audioText": "CSN 3112, climb to and maintain 11000 meters.",
+      "audioTextZh": "CSN 3112，爬升至并保持 11,000 米。",
+      "referenceText": "climb to and maintain 11000 meters, CSN 3112.",
+      "referenceTextZh": "爬升至并保持 11,000 米，CSN 3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-059-csn3112-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0159-card-main-2740",
+      "taskTitle": "CSN 3112-6",
+      "audioText": "CSN 3112, after passing MUDAM, fly direct to ASAVA.",
+      "audioTextZh": "CSN 3112，飞越 MUDAM 后，直飞 ASAVA。",
+      "referenceText": "after passing MUDAM, fly direct to ASAVA, CSN 3112.",
+      "referenceTextZh": "飞越 MUDAM 后，直飞 ASAVA，CSN 3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-059-csn3112-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0159-card-main-2741",
+      "taskTitle": "CSN 3112-7",
+      "audioText": "CSN 3112, orbit right from present position until advised due weather ahead.",
+      "audioTextZh": "CSN 3112，因前方天气，从当前位置开始向右盘旋，直至另行通知。",
+      "referenceText": "orbit right from present position until advised, CSN 3112.",
+      "referenceTextZh": "从当前位置开始向右盘旋，直至另行通知，CSN 3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-059-csn3112-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0159-card-main-2742",
+      "taskTitle": "CSN 3112-8",
+      "audioText": "B: After several orbits, you find you don't have enough fuel to hold any further, report the situation to Beijing Control.",
+      "audioTextZh": "B：几圈盘旋后，你发现没有足够燃油继续等待，向北京管制报告情况。",
+      "referenceText": "Beijing Control, CSN 3112, we don't have enough fuel to hold any further.",
+      "referenceTextZh": "北京管制，CSN 3112，我们没有足够燃油继续等待。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-059-csn3112-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0159-card-main-2743",
+      "taskTitle": "CSN 3112-9",
+      "audioText": "C: CSN 3112, roger, say your intention.\nB: Tell the controller you require radar vector to Beijing for priority landing.",
+      "audioTextZh": "C： CSN 3112，收到，报告你的意图。\nB： 告诉管制员你需要雷达引导前往北京并优先着陆。",
+      "referenceText": "request radar vector to Beijing, priority landing, CSN 3112.",
+      "referenceTextZh": "请求雷达引导前往北京并优先着陆，CSN 3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-059-csn3112-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0159-card-main-2744",
+      "taskTitle": "CSN 3112-10",
+      "audioText": "CSN 3112, roger, turn left heading 190, fly direct to GUVBA.",
+      "audioTextZh": "CSN 3112，收到，左转航向 190，直飞 GUVBA。",
+      "referenceText": "turn left heading 190, fly direct to GUVBA, CSN 3112.",
+      "referenceTextZh": "左转航向 190，直飞 GUVBA，CSN 3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-059-csn3112-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0159-card-main-2745",
+      "taskTitle": "CSN 3112-11",
+      "audioText": "CSN 3112, turn left heading 150, direct to AA446, hold at AA446 as published due weather.",
+      "audioTextZh": "CSN 3112，左转航向 150，直飞 AA446，因天气按公布程序在 AA446 等待。",
+      "referenceText": "turn left heading 150, direct to AA446, hold at AA446 as published, CSN 3112.",
+      "referenceTextZh": "左转航向 150，直飞 AA446，按公布程序在 AA446 等待，CSN 3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-059-csn3112-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0159-card-main-2746",
+      "taskTitle": "CSN 3112-12",
+      "audioText": "B: You have been holding at AA446 for about 30 minutes, you are reaching the minimum fuel situation, contact Beijing Control and request leave the hold and land as soon as possible.",
+      "audioTextZh": "B：你已在 AA446 等待约 30 分钟，正接近最低燃油状态，联系北京管制并请求离开等待并尽快着陆。",
+      "referenceText": "Beijing Control, CSN 3112, we have been holding at AA446 for about 30 minutes, we are reaching the minimum fuel situation, request leave the hold and land as soon as possible.",
+      "referenceTextZh": "北京管制，CSN 3112，我们已在 AA446 等待约 30 分钟，正接近最低燃油状态，请求离开等待并尽快着陆。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-059-csn3112-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0159-card-main-2747",
+      "taskTitle": "CSN 3112-13",
+      "audioText": "CSN 3112, roger, leave the hold, proceed to LADIX, descend to 6000 meters, contact Beijing Approach on 119.35, we have informed them about your situation.",
+      "audioTextZh": "CSN 3112，收到，退出等待，前往 LADIX，下降至 6,000 米，联系北京进近 119.35，我们已将你的情况通知他们。",
+      "referenceText": "leave the hold, proceed to LADIX, descend to 6000 meters, 119.35, CSN 3112.",
+      "referenceTextZh": "退出等待，前往 LADIX，下降至 6,000 米，119.35，CSN 3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-059-csn3112-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0159-card-main-2748",
+      "taskTitle": "CSN 3112-14",
+      "audioText": "B: Now you are over LADIX, maintaining 6000 meters, you have received information L, contact Beijing Approach.",
+      "audioTextZh": "B：现在你在 LADIX 上空，保持 6000 米，已收到通播 L，联系北京进近。",
+      "referenceText": "Beijing Approach, CSN 3112, over LADIX, maintaining 6000 meters, information L.",
+      "referenceTextZh": "北京进近，CSN 3112，LADIX 上空，保持 6000 米，通播 L。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-059-csn3112-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0159-card-main-2749",
+      "taskTitle": "CSN 3112-15",
+      "audioText": "CSN 3112, Beijing Approach, radar contact, descend to 4,200 meters, expect radar vector ILS approach Runway 36R.",
+      "audioTextZh": "CSN 3112，北京进近，雷达识别，下降至 4,200 米，预计雷达引导 ILS 进近 Runway 36R。",
+      "referenceText": "descend to 4,200 meters, expect radar vector ILS approach Runway 36R, CSN 3112.",
+      "referenceTextZh": "下降至 4,200 米，预计雷达引导 ILS 进近 Runway 36R，CSN 3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-059-csn3112-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0159-card-main-2750",
+      "taskTitle": "CSN 3112-16",
+      "audioText": "C: CSN 3112, are you declaring fuel emergency?\nB: Tell the controller that you are declaring fuel emergency and request priority landing Runway 36R.",
+      "audioTextZh": "C： CSN 3112，你是否宣布燃油紧急状态？\nB： 告诉管制员你宣布燃油紧急状态，并请求优先使用 Runway 36R 着陆。",
+      "referenceText": "affirm, we are declaring fuel emergency, request priority landing Runway 36R, CSN 3112.",
+      "referenceTextZh": "是的，我们宣布燃油紧急状态，请求优先使用 Runway 36R 着陆，CSN 3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-059-csn3112-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0159-card-main-2751",
+      "taskTitle": "CSN 3112-17",
+      "audioText": "CSN 3112, roger, you are number one to land, cleared straight in ILS approach Runway 36R, report established.",
+      "audioTextZh": "CSN 3112，收到，你是第一架落地航空器，许可直线 ILS 进近 Runway 36R，建立后报告。",
+      "referenceText": "cleared straight in ILS approach Runway 36R, roger, thanks, CSN 3112.",
+      "referenceTextZh": "许可直线 ILS 进近 Runway 36R，收到，谢谢，CSN 3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-059-csn3112-q17.mp3"
+    },
+    {
+      "id": "atc-scenario-0159-card-main-2752",
+      "taskTitle": "CSN 3112-18",
+      "audioText": "Now you have established on ILS approach Runway 36R, contact Beijing Tower.",
+      "audioTextZh": "现在你已建立 ILS 进近 Runway 36R，联系北京塔台。",
+      "referenceText": "Beijing Tower, CSN 3112, established on ILS approach Runway 36R.",
+      "referenceTextZh": "北京塔台，CSN 3112，已建立 ILS 进近 Runway 36R。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-059-csn3112-q18.mp3"
+    },
+    {
+      "id": "atc-scenario-0159-card-main-2753",
+      "taskTitle": "CSN 3112-19",
+      "audioText": "CSN 3112, Beijing Tower, Runway 36R, cleared to land.",
+      "audioTextZh": "CSN 3112，北京塔台，Runway 36R，许可着陆。",
+      "referenceText": "Runway 36R, cleared to land, CSN 3112.",
+      "referenceTextZh": "Runway 36R，许可着陆，CSN 3112。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-059-csn3112-q19.mp3"
+    }
+  ]
+}

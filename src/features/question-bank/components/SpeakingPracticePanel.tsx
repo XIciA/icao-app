@@ -3,7 +3,6 @@ import {
   IOSOutputFormat,
   RecordingPresets,
   requestRecordingPermissionsAsync,
-  setAudioModeAsync,
   useAudioPlayer,
   useAudioPlayerStatus,
   useAudioRecorder,
@@ -17,6 +16,7 @@ import { GestureDetector, type GestureType } from 'react-native-gesture-handler'
 
 import { AppText, Button } from '@/components/ui';
 import { colors, fonts, radii, shadows, spacing } from '@/theme';
+import { claimAudioSession, registerAudioOwner, releaseAudioSession } from '@/platform/audio-session-coordinator';
 import type { LocalRecordingState } from '../hooks/useStudySession';
 import { AudioTimeline } from './AudioTimeline';
 
@@ -103,6 +103,7 @@ export function SpeakingPracticePanel({
   previewPauseRequest = 0,
   onPreviewPlaybackStart,
   onRecordingIntent,
+  variant = 'default',
 }: {
   mode: 'speaking' | 'retell';
   recording?: LocalRecordingState;
@@ -114,6 +115,7 @@ export function SpeakingPracticePanel({
   previewPauseRequest?: number;
   onPreviewPlaybackStart?: () => void;
   onRecordingIntent?: () => void;
+  variant?: 'default' | 'integrated';
 }) {
   const recorder = useAudioRecorder(VOICE_RECORDING_OPTIONS);
   const recorderState = useAudioRecorderState(recorder, 200);
@@ -163,8 +165,14 @@ export function SpeakingPracticePanel({
   useEffect(() => () => onInteractionChange?.(false), [onInteractionChange]);
 
   const restorePlaybackMode = useCallback(async () => {
-    await setAudioModeAsync({ allowsRecording: false, interruptionMode: 'doNotMix', playsInSilentMode: true, shouldPlayInBackground: false, shouldRouteThroughEarpiece: false });
+    releaseAudioSession('recording');
+    await claimAudioSession('recordingPlayback');
   }, []);
+
+  useEffect(() => registerAudioOwner('recordingPlayback', () => {
+    resumePreviewAfterScrub.current = false;
+    playback.pause();
+  }), [playback]);
 
   const cancelRecording = useCallback(async () => {
     pressHeld.current = false;
@@ -270,6 +278,16 @@ export function SpeakingPracticePanel({
     };
   }, [cancelRecording]);
 
+  function restoreCancelledStart() {
+    if (variant === 'integrated') {
+      replacementTargetUri.current = undefined;
+      setReplacementMode(false);
+      setPhase(recordingRef.current ? 'ready' : 'idle');
+      return;
+    }
+    setPhase(replacementMode ? 'idle' : recordingRef.current ? 'ready' : 'idle');
+  }
+
   async function startRecording() {
     const generation = startGeneration.current + 1;
     startGeneration.current = generation;
@@ -277,7 +295,7 @@ export function SpeakingPracticePanel({
     setError(undefined);
     const permission = await requestRecordingPermissionsAsync();
     if (generation !== startGeneration.current || !pressHeld.current) {
-      setPhase(replacementMode ? 'idle' : recording ? 'ready' : 'idle');
+      restoreCancelledStart();
       return;
     }
     if (!permission.granted) {
@@ -292,21 +310,22 @@ export function SpeakingPracticePanel({
     setPermissionDenied(false);
     try {
       playback.pause();
-      await setAudioModeAsync({ allowsRecording: true, playsInSilentMode: true, shouldPlayInBackground: false, shouldRouteThroughEarpiece: false });
+      await claimAudioSession('recording');
       await wait(AUDIO_ROUTE_SETTLE_MS);
       if (generation !== startGeneration.current || !pressHeld.current) {
         await restorePlaybackMode().catch(() => undefined);
         discardRecorderUri();
-        setPhase(replacementMode ? 'idle' : recording ? 'ready' : 'idle');
+        restoreCancelledStart();
         return;
       }
       await recorder.prepareToRecordAsync();
       if (generation !== startGeneration.current || !pressHeld.current) {
         await restorePlaybackMode().catch(() => undefined);
         discardRecorderUri();
-        setPhase(replacementMode ? 'idle' : recording ? 'ready' : 'idle');
+        restoreCancelledStart();
         return;
       }
+      if (variant === 'integrated' && replacementTargetUri.current) setReplacementMode(true);
       recorder.record();
       if (!recorder.isRecording) {
         throw new Error('Native audio recorder did not start');
@@ -372,7 +391,7 @@ export function SpeakingPracticePanel({
         playback.pause();
         return;
       }
-      await setAudioModeAsync({ allowsRecording: false, interruptionMode: 'doNotMix', playsInSilentMode: true, shouldPlayInBackground: false, shouldRouteThroughEarpiece: false });
+      await claimAudioSession('recordingPlayback');
       if (!playbackStatus.isLoaded) {
         setError('录音正在准备回放，请稍候再试。');
         return;
@@ -422,6 +441,7 @@ export function SpeakingPracticePanel({
     resumePreviewAfterScrub.current = false;
     await playback.seekTo(nextPosition);
     if (!shouldResume || AppState.currentState !== 'active') return;
+    await claimAudioSession('recordingPlayback');
     onPreviewPlaybackStart?.();
     playback.play();
   }
@@ -430,24 +450,27 @@ export function SpeakingPracticePanel({
     const shouldResume = resumePreviewAfterScrub.current;
     resumePreviewAfterScrub.current = false;
     if (!shouldResume || AppState.currentState !== 'active') return;
-    onPreviewPlaybackStart?.();
-    playback.play();
+    void claimAudioSession('recordingPlayback').then(() => {
+      onPreviewPlaybackStart?.();
+      playback.play();
+    });
   }
 
   const isRecording = phase === 'recording';
   const isBusy = phase === 'preparing' || phase === 'finalizing' || phase === 'validating';
+  const integratedHasRecording = variant === 'integrated' && Boolean(recording && !candidate);
   const recordLabel = phase === 'preparing'
     ? '正在准备麦克风…'
     : phase === 'finalizing' || phase === 'validating'
       ? '正在保存录音…'
       : isRecording
         ? `松开结束 · ${formatDuration(recorderState.durationMillis)}`
-        : replacementMode
+        : replacementMode || integratedHasRecording
           ? '按住重录'
           : '按住说话';
   const recordAccessibilityLabel = isRecording
     ? '松开结束录音'
-    : replacementMode
+    : replacementMode || integratedHasRecording
       ? '按住重新录音'
       : mode === 'retell'
         ? '按住开始复述'
@@ -459,7 +482,8 @@ export function SpeakingPracticePanel({
       onPressIn={() => {
         playback.pause();
         resumePreviewAfterScrub.current = false;
-        if (replacementMode && !replacementTargetUri.current) replacementTargetUri.current = recording?.uri;
+        if (variant === 'integrated' && recording && !replacementTargetUri.current) replacementTargetUri.current = recording.uri;
+        else if (replacementMode && !replacementTargetUri.current) replacementTargetUri.current = recording?.uri;
         onRecordingIntent?.();
         onInteractionChange?.(true);
         pressHeld.current = true;
@@ -469,12 +493,53 @@ export function SpeakingPracticePanel({
         pressHeld.current = false;
         void (async () => { await startPromise.current; if (recorder.isRecording) await stopRecording(); })();
       }}
-      style={[styles.recordButton, isRecording ? styles.recording : null, isBusy ? styles.recordButtonBusy : null]}
+      style={[styles.recordButton, variant === 'integrated' ? styles.integratedRecordButton : null, isRecording ? styles.recording : null, isBusy ? styles.recordButtonBusy : null]}
+      testID={variant === 'integrated' ? 'integrated-record-button' : undefined}
     >
       {isRecording ? <Square color={colors.primaryForeground} fill={colors.primaryForeground} size={17} /> : <Mic color={colors.primaryForeground} size={18} />}
-      <AppText color={colors.primaryForeground} variant="button">{recordLabel}</AppText>
+      <AppText color={colors.primaryForeground} numberOfLines={1} style={variant === 'integrated' ? styles.integratedRecordLabel : null} variant="button">{recordLabel}</AppText>
     </Pressable>
   );
+
+  if (variant === 'integrated') {
+    const playbackDisabled = !recording || !playbackStatus.isLoaded || isRecording || isBusy || replacementMode;
+    return (
+      <View style={styles.integratedRoot} testID="integrated-speaking-practice">
+        <View style={styles.integratedControlRow}>
+          {interactionGesture ? <GestureDetector gesture={interactionGesture}>{recordButton}</GestureDetector> : recordButton}
+          <View style={styles.integratedSideControl}>
+            <Pressable
+              accessibilityLabel={playbackStatus.playing ? '暂停我的录音' : '回放我的录音'}
+              accessibilityState={{ disabled: playbackDisabled }}
+              disabled={playbackDisabled}
+              onPress={() => void togglePlayback()}
+              style={({ pressed }) => [styles.integratedPlaybackButton, playbackDisabled ? styles.playbackPending : null, pressed ? styles.pressed : null]}
+            >
+              {playbackStatus.playing ? (
+                <Pause color={colors.primary} size={17} />
+              ) : (
+                <RotateCcw color={playbackDisabled ? colors.mutedForeground : colors.primary} size={17} />
+              )}
+            </Pressable>
+            <AppText color={playbackDisabled ? colors.mutedForeground : colors.foreground} variant="micro">{playbackStatus.playing ? '暂停' : '回放'}</AppText>
+          </View>
+        </View>
+
+        {permissionDenied && (!recording || replacementMode) ? (
+          <View style={styles.integratedNotice}>
+            <ShieldAlert color={colors.accent} size={18} />
+            <View style={styles.permissionCopy}>
+              <AppText variant="button">需要麦克风权限</AppText>
+              <AppText variant="caption">允许后即可录制；其它学习内容仍可正常使用。</AppText>
+            </View>
+            <Button onPress={() => void retryPermission()} size="sm" variant="outline">重试</Button>
+          </View>
+        ) : null}
+
+        {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
+      </View>
+    );
+  }
 
   if (permissionDenied && (!recording || replacementMode)) {
     return (
@@ -550,6 +615,13 @@ export function SpeakingPracticePanel({
 const styles = StyleSheet.create({
   root: { gap: spacing[2] },
   recordButton: { alignItems: 'center', backgroundColor: colors.primary, borderRadius: radii.full, flexDirection: 'row', gap: spacing[2], height: 48, justifyContent: 'center', width: '100%' },
+  integratedRoot: { flex: 1, gap: spacing[2], minWidth: 0 },
+  integratedControlRow: { alignItems: 'center', flexDirection: 'row', gap: spacing[3] },
+  integratedRecordButton: { flex: 1, minWidth: 0, paddingHorizontal: spacing[3], width: 'auto' },
+  integratedRecordLabel: { flexShrink: 1, textAlign: 'center' },
+  integratedSideControl: { alignItems: 'center', gap: spacing[1], width: 44 },
+  integratedPlaybackButton: { alignItems: 'center', backgroundColor: colors.card, borderColor: colors.primary, borderRadius: radii.full, borderWidth: 1, height: 44, justifyContent: 'center', width: 44 },
+  integratedNotice: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[2], paddingTop: spacing[1] },
   recordButtonBusy: { opacity: 0.7 },
   recording: { backgroundColor: colors.destructive },
   resultCard: { backgroundColor: colors.secondary, borderColor: colors.border, borderRadius: radii.xl, borderWidth: 1, gap: spacing[2], padding: spacing[3], ...shadows.card },
@@ -566,4 +638,5 @@ const styles = StyleSheet.create({
   permission: { alignItems: 'flex-start', backgroundColor: 'rgba(183,118,16,0.08)', borderRadius: radii.xl, flexDirection: 'row', gap: spacing[2.5], padding: spacing[3] },
   permissionCopy: { flex: 1 },
   permissionActions: { flexDirection: 'row', gap: spacing[2], marginTop: spacing[2] },
+  pressed: { opacity: 0.75, transform: [{ scale: 0.95 }] },
 });

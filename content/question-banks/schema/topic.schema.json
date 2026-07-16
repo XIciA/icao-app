@@ -24,6 +24,7 @@
               "referenceText": { "type": "string" },
               "referenceTextZh": { "type": "string" },
               "audio": { "type": "string", "minLength": 1 },
+              "audioDurationSeconds": { "type": "number", "exclusiveMinimum": 0 },
               "choices": { "type": "array", "items": { "type": "string" } },
               "correctChoiceIndex": { "type": "integer", "minimum": 0 }
             },

@@ -1,0 +1,179 @@
+{
+  "categoryId": "atc-csn",
+  "id": "atc-scenario-0115",
+  "name": "CSN 3102 机翼/控制面损坏 积冰/防冰 TCAS机动",
+  "declaredCardCount": 19,
+  "cards": [
+    {
+      "id": "atc-scenario-0115-card-main-1978",
+      "taskTitle": "CSN 3102-1",
+      "audioText": "your call sign is CSN 3102, a flight from Beijing to Guangzhou, you are at gate 211, you are ready for pushback and startup, contact Beijing Apron.",
+      "audioTextZh": "你的呼号是 CSN 3102，这是一趟从北京飞往广州的航班，你位于 211 登机口，已准备好推出和开车，联系北京机坪。",
+      "referenceText": "Apron, CSN 3102, gate 211, ready for pushback and startup.",
+      "referenceTextZh": "机坪，CSN 3102，211 登机口，已准备好推出和开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-011-csn3102-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0115-card-main-1979",
+      "taskTitle": "CSN 3102-2",
+      "audioText": "CSN 3102, pushback and startup approved, Runway 19R, QNH 1014.",
+      "audioTextZh": "CSN 3102，推出和开车批准，Runway 19R，QNH 1014。",
+      "referenceText": "pushback and startup approved, Runway 19R, QNH 1014, CSN 3102.",
+      "referenceTextZh": "推出和开车批准，Runway 19R，QNH 1014，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-011-csn3102-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0115-card-main-1980",
+      "taskTitle": "CSN 3102-3",
+      "audioText": "B: You have completed push back and start up, but the chocks are still in position, inform the controller of the situation and ask ground handling to remove the chocks.",
+      "audioTextZh": "B：你已完成推出和开车，但轮挡仍在位，告知管制员情况并请求地面保障移除轮挡。",
+      "referenceText": "Beijing Apron, CSN 3102, the chocks are still in position, request ground handling to remove the chocks.",
+      "referenceTextZh": "北京机坪，CSN 3102，轮挡仍在位，请求地面保障移除轮挡。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-011-csn3102-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0115-card-main-1981",
+      "taskTitle": "CSN 3102-4",
+      "audioText": "B: Now you are ready for taxi, contact Beijing Apron.",
+      "audioTextZh": "B：现在你准备好滑行，联系北京机坪。",
+      "referenceText": "Beijing Apron, CSN 3102, request taxi.",
+      "referenceTextZh": "北京机坪，CSN 3102，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-011-csn3102-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0115-card-main-1982",
+      "taskTitle": "CSN 3102-5",
+      "audioText": "CSN 3102, taxi to holding point Runway 19R via taxiway Z18, M5, hold short of F.",
+      "audioTextZh": "CSN 3102，经 Z18、M5 滑行道滑行至 Runway 19R 等待点，在 F 前等待。",
+      "referenceText": "taxi to holding point Runway 19R via taxiway Z18, M five, hold short of F, CSN 3102",
+      "referenceTextZh": "经 Z18、M5 滑行道滑行至 Runway 19R 等待点，在 F 前等待，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-011-csn3102-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0115-card-main-1983",
+      "taskTitle": "CSN 3102-6",
+      "audioText": "B: Now you are holding short of taxiway F, contact Beijing Apron.",
+      "audioTextZh": "B：现在你在 F 滑行道外等待，联系北京机坪。",
+      "referenceText": "Beijing Apron, CSN 3102, holding short of taxiway F.",
+      "referenceTextZh": "北京机坪，CSN 3102，在 F 滑行道外等待。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-011-csn3102-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0115-card-main-1984",
+      "taskTitle": "CSN 3102-7",
+      "audioText": "CSN 3102, hold short of F, contact Beijing Ground on 121.95.",
+      "audioTextZh": "CSN 3102，在 F 前等待，联系北京地面 121.95。",
+      "referenceText": "hold short of F, contact Beijing Ground on 121.95, CSN 3102.",
+      "referenceTextZh": "在 F 前等待，联系北京地面 121.95，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-011-csn3102-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0115-card-main-1985",
+      "taskTitle": "CSN 3102-8",
+      "audioText": "B: During taxi, you find there is ice and snow on the aircraft wings, contact Beijing Ground and tell the controller you want to have the ice and snow removed before takeoff.",
+      "audioTextZh": "B：滑行中，你发现机翼上有冰雪，联系北京地面并告诉管制员你想在起飞前除冰雪。",
+      "referenceText": "Beijing Ground, CSN 3102, there is ice and snow on the aircraft wings, request de-icing.",
+      "referenceTextZh": "北京地面，CSN 3102，机翼上有冰雪，请求除冰。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-011-csn3102-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0115-card-main-1986",
+      "taskTitle": "CSN 3102-9",
+      "audioText": "tell Beijing Ground the de-icing fluid is only effective for 30 minutes and your slot time is 35.",
+      "audioTextZh": "告诉北京地面，除冰液仅在 30 分钟内有效，而你的时隙时间是 35。",
+      "referenceText": "Ground, CSN 3102, there is ice and snow on the wings, request de-icing.",
+      "referenceTextZh": "地面，CSN 3102，机翼上有冰雪，请求除冰。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-011-csn3102-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0115-card-main-1987",
+      "taskTitle": "CSN 3102-10",
+      "audioText": "CSN 3102, taxi via taxiway Z4 and F to holding point Runway 19R.",
+      "audioTextZh": "CSN 3102，经 Z4 和 F 滑行道滑行至 Runway 19R 等待点。",
+      "referenceText": "taxi via taxiway Z four and F to holding point Runway 19R, CSN 3102.",
+      "referenceTextZh": "经 Z4 和 F 滑行道滑行至 Runway 19R 等待点，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-011-csn3102-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0115-card-main-1988",
+      "taskTitle": "CSN 3102-11",
+      "audioText": "B: Now you are airborne, you are passing 600 meters, make initial contact with Beijing Departure.",
+      "audioTextZh": "B：现在你已离地，正通过 600 米，与北京离场首次联系。",
+      "referenceText": "Beijing Departure, CSN 3102, airborne, passing 600 meters.",
+      "referenceTextZh": "北京离场，CSN 3102，已离地，通过 600 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-011-csn3102-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0115-card-main-1989",
+      "taskTitle": "CSN 3102-12",
+      "audioText": "CSN 3102, Beijing Departure, radar contact, climb to 1,800 meters on QNH 1014.",
+      "audioTextZh": "CSN 3102，北京离场，雷达识别，在 QNH 1014 上爬升至 1,800 米。",
+      "referenceText": "Climb to 1800 meters on QNH 1014, CSN 3102.",
+      "referenceTextZh": "在 QNH 1014 上爬升至 1800 米，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-011-csn3102-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0115-card-main-1990",
+      "taskTitle": "CSN 3102-13",
+      "audioText": "You are maintaining 1,800 meters, you are encountering severe icing, tell the controller you want a higher level.",
+      "audioTextZh": "你正保持 1,800 米，遭遇严重积冰，告诉管制员你想要更高的高度。",
+      "referenceText": "Departure, CSN 3102, 1,800 meters, we are encountering severe icing, request a higher level.",
+      "referenceTextZh": "离场，CSN 3102，1,800 米，我们正遭遇严重积冰，请求更高的高度。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-011-csn3102-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0115-card-main-1991",
+      "taskTitle": "CSN 3102-14",
+      "audioText": "CSN 3102, negative due traffic, maintain 1,800 meters until advised.",
+      "audioTextZh": "CSN 3102，不行，因交通原因，保持 1,800 米直至通知。",
+      "referenceText": "roger, maintain maintain 1800 meters until advised, CSN 3102.",
+      "referenceTextZh": "收到，保持、保持 1800 米直至通知，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-011-csn3102-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0115-card-main-1992",
+      "taskTitle": "CSN 3102-15",
+      "audioText": "B: Now the icing condition is deteriorating, your left engine anti-ice has failed, make an Urgency call and ask for a higher level to leave icing area.",
+      "audioTextZh": "B：现在结冰情况恶化，你的左发防冰失效，发布紧急情况呼叫，并请求更高高度离开结冰区。",
+      "referenceText": "PANPAN PANPAN PANPAN, Beijing Departure, CSN 3102, the icing condition is deteriorating, our left engine anti-ice has failed, request a higher level to leave icing area.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，北京离场，CSN 3102，结冰情况正在恶化，我们左发防冰失效，请求更高高度离开结冰区。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-011-csn3102-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0115-card-main-1993",
+      "taskTitle": "CSN 3102-16",
+      "audioText": "CSN 3102, roger PANPAN, climb to and maintain 3000 meters.",
+      "audioTextZh": "CSN 3102，收到 PANPAN，爬升至并保持 3000 米。",
+      "referenceText": "climb to and maintain 3000 meters, CSN 3102.",
+      "referenceTextZh": "爬升至并保持 3000 米，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-011-csn3102-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0115-card-main-1994",
+      "taskTitle": "CSN 3102-17",
+      "audioText": "B: Now you have left icing area, tell the controller that you have experienced severe icing between 1800 meters and 2100 meters.",
+      "audioTextZh": "B：现在你已离开结冰区，告诉管制员你在 1800 米至 2100 米之间遭遇严重结冰。",
+      "referenceText": "Beijing Departure, CSN 3102, we have experienced severe icing between 1800 meters and 2100 meters.",
+      "referenceTextZh": "北京离场，CSN 3102，我们在 1800 米至 2100 米之间遭遇严重结冰。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-011-csn3102-q17.mp3"
+    },
+    {
+      "id": "atc-scenario-0115-card-main-1995",
+      "taskTitle": "CSN 3102-18",
+      "audioText": "You confirm with Beijing Departure if you should descend to 900 meters because it is below the minimum safe altitude.",
+      "audioTextZh": "你向北京离场确认是否应下降至 900 米，因为这低于最低安全高度。",
+      "referenceText": "Confirm descend to 900 meters, it is below the minimum safe altitude, CSN 3102.",
+      "referenceTextZh": "确认下降至 900 米，这低于最低安全高度，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-011-csn3102-q18.mp3"
+    },
+    {
+      "id": "atc-scenario-0115-card-main-1996",
+      "taskTitle": "CSN 3102-19",
+      "audioText": "CSN 3102, my apologies, cancel speed restrictions, recleared to descend to 1,500 meters on QNH 1014.",
+      "audioTextZh": "CSN 3102，抱歉，取消速度限制，重新许可在 QNH 1014 上下降至 1,500 米。",
+      "referenceText": "cancel speed restrictions, descend to 1500 meters QNH 1014, CSN 3102.",
+      "referenceTextZh": "取消速度限制，在 QNH 1014 上下降至 1500 米，CSN 3102。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-011-csn3102-q19.mp3"
+    }
+  ]
+}

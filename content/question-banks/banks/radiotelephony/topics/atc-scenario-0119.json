@@ -1,0 +1,170 @@
+{
+  "categoryId": "atc-sia",
+  "id": "atc-scenario-0119",
+  "name": "SIA 615 鸟击 积冰/防冰 烟雾",
+  "declaredCardCount": 18,
+  "cards": [
+    {
+      "id": "atc-scenario-0119-card-main-2049",
+      "taskTitle": "SIA 615-1",
+      "audioText": "B: Your call sign is SIA 615, from Wuhan to Singapore, you are parking at gate 232, you are fully ready for push back and start up.",
+      "audioTextZh": "B：你的呼号是 SIA 615，从武汉飞往新加坡，停在 232 号登机口，已完全准备好推出和开车。",
+      "referenceText": "Wuhan Ground, SIA 615, gate 232, ready for push back and start up.",
+      "referenceTextZh": "武汉地面，SIA 615，232 号登机口，准备好推出和开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-015-sia615-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0119-card-main-2050",
+      "taskTitle": "SIA 615-2",
+      "audioText": "C: SIA 615, push back and start up approved, push back onto taxiway Z4, abeam gate 234.",
+      "audioTextZh": "C：SIA 615，推出和开车批准，推出至 Z4 滑行道，正对 234 号登机口。",
+      "referenceText": "Push back and start up approved, push back onto taxiway Z4, abeam gate 234, SIA 615.",
+      "referenceTextZh": "推出和开车批准，推出至 Z4 滑行道，正对 234 号登机口，SIA 615。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-015-sia615-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0119-card-main-2051",
+      "taskTitle": "SIA 615-3",
+      "audioText": "B: During engine start, you have 1 engine starter failure, you wish to have more time to start the engine on taxiway Z4.",
+      "audioTextZh": "B：发动机启动期间，你有 1 个发动机启动机故障，希望有更多时间在 Z4 滑行道上启动发动机。",
+      "referenceText": "Wuhan Ground, SIA 615, we have 1 engine starter failure, we need more time to start the engine on taxiway Z4.",
+      "referenceTextZh": "武汉地面，SIA 615，我们有 1 个发动机启动机故障，需要更多时间在 Z4 滑行道上启动发动机。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-015-sia615-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0119-card-main-2052",
+      "taskTitle": "SIA 615-4",
+      "audioText": "C: SIA 615, how long do you need?\nB: Tell the controller you need approximately 5 minutes.",
+      "audioTextZh": "C：SIA 615，你需要多长时间？\nB：告诉管制员你大约需要 5 分钟。",
+      "referenceText": "We need approximately 5 minutes, SIA 615.",
+      "referenceTextZh": "我们大约需要 5 分钟，SIA 615。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-015-sia615-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0119-card-main-2053",
+      "taskTitle": "SIA 615-5",
+      "audioText": "B: Now you have completed push back and start up, you are ready for taxi.",
+      "audioTextZh": "B：现在你已完成推出和开车，准备好滑行。",
+      "referenceText": "Wuhan Ground, SIA 615, ready for taxi.",
+      "referenceTextZh": "武汉地面，SIA 615，准备好滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-015-sia615-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0119-card-main-2054",
+      "taskTitle": "SIA 615-6",
+      "audioText": "SIA 615, taxi to holding point Runway 36R via taxiway Z4, A3 and A.",
+      "audioTextZh": "SIA 615，经 Z4、A3 和 A 滑行道滑行至 Runway 36R 等待点。",
+      "referenceText": "taxi to holding point Runway 36R via taxiway Z four, A tree and A, SIA 615.",
+      "referenceTextZh": "经 Z4、A3 和 A 滑行道滑行至 Runway 36R 等待点，SIA 615。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-015-sia615-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0119-card-main-2055",
+      "taskTitle": "SIA 615-7",
+      "audioText": "there is a Boeing 7 37 approaching you on E3, ask the controller who has the right of the way.",
+      "audioTextZh": "一架 Boeing 737 正在 E3 上向你接近，询问管制员谁有优先通行权。",
+      "referenceText": "Wuhan Ground, SIA 615, there is a Boeing 737 approaching us on E tree, who has the right of the way?",
+      "referenceTextZh": "武汉地面，SIA 615，一架 Boeing 737 正在 E3 上向我们接近，谁有优先通行权？",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-015-sia615-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0119-card-main-2056",
+      "taskTitle": "SIA 615-8",
+      "audioText": "SIA 615, hold at present position, give way to Boeing 7 37 from your right, he is No. 1 for departure.",
+      "audioTextZh": "SIA 615，在当前位置等待，给来自你右侧的 Boeing 737 让行，该机离场顺序第一。",
+      "referenceText": "roger, hold at present position, traffic in sight, SIA 615.",
+      "referenceTextZh": "收到，在当前位置等待，已看到相关航空器，SIA 615。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-015-sia615-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0119-card-main-2057",
+      "taskTitle": "SIA 615-9",
+      "audioText": "C: SIA 615, caution work in progress in the vicinity of E3.",
+      "audioTextZh": "C：SIA 615，注意 E3 附近有施工。",
+      "referenceText": "Roger, thanks, SIA 615.",
+      "referenceTextZh": "收到，谢谢，SIA 615。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-015-sia615-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0119-card-main-2058",
+      "taskTitle": "SIA 615-10",
+      "audioText": "Now you are at holding point Runway 36R, you are ready for departure, contact Wuhan Tower.",
+      "audioTextZh": "现在你位于 Runway 36R 等待点，已准备好离场，联系武汉塔台。",
+      "referenceText": "Wuhan Tower, SIA 615, holding point Runway 36R, ready for departure.",
+      "referenceTextZh": "武汉塔台，SIA 615，Runway 36R 等待点，已准备好离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-015-sia615-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0119-card-main-2059",
+      "taskTitle": "SIA 615-11",
+      "audioText": "SIA 615, cleared for takeoff Runway 36R, caution birds on the vicinity of airport.",
+      "audioTextZh": "SIA 615，许可从 Runway 36R 起飞，注意机场附近有鸟群。",
+      "referenceText": "cleared for takeoff Runway 36R, roger, thanks, SIA 615.",
+      "referenceTextZh": "许可从 Runway 36R 起飞，收到，谢谢，SIA 615。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-015-sia615-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0119-card-main-2060",
+      "taskTitle": "SIA 615-12",
+      "audioText": "C: Now you are passing 800 meters, contact Wuhan Approach.",
+      "audioTextZh": "C：现在你正通过 800 米，联系武汉进近。",
+      "referenceText": "Wuhan Approach, SIA 615, passing 800 meters.",
+      "referenceTextZh": "武汉进近，SIA 615，正通过 800 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-015-sia615-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0119-card-main-2061",
+      "taskTitle": "SIA 615-13",
+      "audioText": "C: SIA 615, climb to and maintain 3000 meters on QNH 1016.",
+      "audioTextZh": "C：SIA 615，爬升并保持 QNH 1016 上 3000 米。",
+      "referenceText": "Climb to and maintain 3000 meters on QNH 1016, SIA 615.",
+      "referenceTextZh": "爬升并保持 QNH 1016 上 3000 米，SIA 615。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-015-sia615-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0119-card-main-2062",
+      "taskTitle": "SIA 615-14",
+      "audioText": "B: During cruise, the flight attendant reports there is smoke coming from the air conditioning system in the cabin, make an Urgency call and advise ATC you want to level off at present level.",
+      "audioTextZh": "B：巡航期间，乘务员报告客舱空调系统冒烟，发出紧急呼叫，并告知 ATC 你想在当前高度改平。",
+      "referenceText": "PANPAN PANPAN PANPAN, Wuhan Control, SIA 615, the flight attendant reports there is smoke coming from the air conditioning system in the cabin, request level off at present level.",
+      "referenceTextZh": "PANPAN PANPAN PANPAN，武汉管制，SIA 615，乘务员报告客舱空调系统冒烟，请求在当前高度改平。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-015-sia615-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0119-card-main-2063",
+      "taskTitle": "SIA 615-15",
+      "audioText": "SIA 615, say your further intention?\nthe smoke is removed, you have turned off the air conditioning system, you want radar guidance to return to land at Wuhan Airport.",
+      "audioTextZh": "SIA 615，请说明你的后续意图？\n烟雾已消除，你已关闭空调系统，想请求雷达引导返回武汉机场落地。",
+      "referenceText": "we have removed smoke and turned off the air conditioning system, request radar vectors to return to land at Wuhan Airport, SIA 615.",
+      "referenceTextZh": "我们已消除烟雾并关闭空调系统，请求雷达引导返回武汉机场落地，SIA 615。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-015-sia615-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0119-card-main-2064",
+      "taskTitle": "SIA 615-16",
+      "audioText": "B: You turned off the air conditioning system to avoid high cabin altitude, asked to descend below 3000 meters.",
+      "audioTextZh": "B：你关闭了空调系统，为避免客舱高度过高，请求下降到 3000 米以下。",
+      "referenceText": "Wuhan Control, SIA 615, we have turned off the air conditioning system, request descend below 3000 meters to avoid high cabin altitude.",
+      "referenceTextZh": "武汉管制，SIA 615，我们已关闭空调系统，为避免客舱高度过高，请求下降到 3000 米以下。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-015-sia615-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0119-card-main-2065",
+      "taskTitle": "SIA 615-17",
+      "audioText": "C: SIA 615, descend to 2700 meters.",
+      "audioTextZh": "C：SIA 615，下降至 2700 米。",
+      "referenceText": "Descend to 2700 meters, SIA 615.",
+      "referenceTextZh": "下降至 2700 米，SIA 615。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-015-sia615-q17.mp3"
+    },
+    {
+      "id": "atc-scenario-0119-card-main-2066",
+      "taskTitle": "SIA 615-18",
+      "audioText": "C: SIA 615, do you need any emergency services?\nB: Tell the controller you don't need any emergency services, because there is no damage to the aircraft or no injuries on board.",
+      "audioTextZh": "C：SIA 615，你是否需要任何应急服务？\nB：告诉管制员你不需要任何应急服务，因为飞机没有损伤，机上也没有人员受伤。",
+      "referenceText": "Negative, there is no damage to the aircraft or no injuries on board, SIA 615.",
+      "referenceTextZh": "否定，飞机没有损伤，机上也没有人员受伤，SIA 615。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-015-sia615-q18.mp3"
+    }
+  ]
+}

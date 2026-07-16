@@ -9,9 +9,10 @@ type Props = PropsWithChildren<{
   onClose: () => void;
   accessibilityLabel?: string;
   footer?: ReactNode;
+  scrollable?: boolean;
 }>;
 
-export function BottomSheet({ visible, onClose, children, footer, accessibilityLabel = '底部弹层' }: Props) {
+export function BottomSheet({ visible, onClose, children, footer, scrollable = true, accessibilityLabel = '底部弹层' }: Props) {
   const insets = useSafeAreaInsets();
   const { height } = useWindowDimensions();
 
@@ -22,9 +23,11 @@ export function BottomSheet({ visible, onClose, children, footer, accessibilityL
         <Pressable accessibilityLabel="关闭弹层" onPress={onClose} style={StyleSheet.absoluteFill} />
         <View style={[styles.sheet, { maxHeight: height * 0.92, paddingBottom: Math.max(insets.bottom, spacing[4]) }]}>
           <View style={styles.handle} />
-          <ScrollView style={styles.scrollContent} contentContainerStyle={styles.scrollInner}>
-            {children}
-          </ScrollView>
+          {scrollable ? (
+            <ScrollView style={styles.scrollContent} contentContainerStyle={styles.scrollInner}>{children}</ScrollView>
+          ) : (
+            <View style={[styles.scrollContent, styles.scrollInner]}>{children}</View>
+          )}
           {footer ? <View style={styles.footer}>{footer}</View> : null}
         </View>
       </View>

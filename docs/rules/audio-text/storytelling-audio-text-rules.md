@@ -16,7 +16,7 @@
 - App 内嵌数据：`src/features/question-bank/data/question-bank.json`。
 - 规则实现：`tools/storytelling-text-format-normalization.mjs`。
 - 审计记录：`docs/workstreams/storytelling-text-format-normalization/`。
-- 当前数据基线：296 张卡片。
+- 首轮格式清理历史基线：296 张卡片；后续经独立迁移工作流批准的净新增不受该固定总数限制。
 
 以下内容不属于本文档的处理范围：
 
@@ -141,7 +141,7 @@ pnpm check
 
 验收至少满足：
 
-- 296/296 条 `audioText` 和 `audioTextZh` 均为单段；
+- 首轮历史 296 条及后续批准新增的全部 `audioText` 和 `audioTextZh` 均为单段；
 - 不存在换行、制表符、首尾空白或连续空格；
 - 除逐卡批准删除的首尾标签外，字母、数字和汉字序列不变；
 - 已批准首尾标签全部删除，正文内部航空标识和数字保持不变；

@@ -1,0 +1,188 @@
+{
+  "categoryId": "atc-afr",
+  "id": "atc-scenario-0161",
+  "name": "AFR 896 颠簸 积冰/防冰 TCAS机动",
+  "declaredCardCount": 20,
+  "cards": [
+    {
+      "id": "atc-scenario-0161-card-main-2773",
+      "taskTitle": "AFR 896-1",
+      "audioText": "Your call sign is AFR 896, you are from Paris to Wuhan. You are flying at 11,300 meters, approaching XIY. Call Xi'an Control.",
+      "audioTextZh": "你的呼号是 AFR 896，正从巴黎飞往武汉。你正以 11,300 米飞行，接近 XIY。呼叫西安管制。",
+      "referenceText": "Control, AFR 896, 2300 meters, XIY.",
+      "referenceTextZh": "管制，AFR 896，2300 米，XIY。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-061-afr896-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0161-card-main-2774",
+      "taskTitle": "AFR 896-2",
+      "audioText": "You check with Xi'an Control if there is any turbulence reported by previous aircraft at 10700 meters.",
+      "audioTextZh": "向西安管制核实前机是否在 10700 米报告过颠簸。",
+      "referenceText": "Control, AFR 896, is there any turbulence, reported, 1700 meters?",
+      "referenceTextZh": "管制，AFR 896，1700 米是否有颠簸报告？",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-061-afr896-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0161-card-main-2775",
+      "taskTitle": "AFR 896-3",
+      "audioText": "C: AFR 896, you are the first aircraft in my sector. There is no report here.\nB: Tell the controller you want to descent to 10,700 meters.",
+      "audioTextZh": "C： AFR 896，你是我管制区内的第一架航空器。这里没有报告。\nB： 告诉管制员你想下降至 10,700 米。",
+      "referenceText": "request descend to 1700 meters, AFR 896, .",
+      "referenceTextZh": "请求下降至 1700 米，AFR 896。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-061-afr896-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0161-card-main-2776",
+      "taskTitle": "AFR 896-4",
+      "audioText": "AFR 896, descend and maintain 10,700 meters.",
+      "audioTextZh": "AFR 896，下降并保持 10,700 米。",
+      "referenceText": "Descend and maintain 1700 meters, AFR 896.",
+      "referenceTextZh": "下降并保持 1700 米，AFR 896。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-061-afr896-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0161-card-main-2777",
+      "taskTitle": "AFR 896-5",
+      "audioText": "You are experiencing severe turbulence at 10,700 meters. The pitot static heating feature has malfunctioned. You want to fly back to 11300 meters to avoid turbulence and ice area. This is an urgent call.",
+      "audioTextZh": "你在 10,700 米遭遇严重颠簸。空速管静压加温功能发生故障。你想爬升回 11300 米，以避开颠簸和结冰区。这是紧急呼叫。",
+      "referenceText": "PANPAN, PANPAN, PANPAN, Control, AFR 896, severe turbulence, 1007 hudnred meters, pitot static heating feature malfunctioned, request climb to 2300 meters.",
+      "referenceTextZh": "PANPAN，PANPAN，PANPAN，管制，AFR 896，严重颠簸，1007 hudnred 米，空速管静压加温功能发生故障，请求爬升至 2300 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-061-afr896-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0161-card-main-2778",
+      "taskTitle": "AFR 896-6",
+      "audioText": "AFR 896, climb and maintain 11300 meters.",
+      "audioTextZh": "AFR 896，爬升并保持 11300 米。",
+      "referenceText": "climb and maintain 2300 meters, AFR 896.",
+      "referenceTextZh": "爬升并保持 2300 米，AFR 896。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-061-afr896-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0161-card-main-2779",
+      "taskTitle": "AFR 896-7",
+      "audioText": "AFR 896, Contact Zhengzhou Control on 132.35.",
+      "audioTextZh": "AFR 896，联系郑州管制 132.35。",
+      "referenceText": "132.35, AFR 896.",
+      "referenceTextZh": "132.35，AFR 896。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-061-afr896-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0161-card-main-2780",
+      "taskTitle": "AFR 896-8",
+      "audioText": "AFR 896, radar contact. Direct to ZHO, descend to 11,000 meters.",
+      "audioTextZh": "AFR 896，雷达识别。直飞 ZHO，下降至 11,000 米。",
+      "referenceText": "Direct to ZHO, descend to 2000 meters, AFR 896.",
+      "referenceTextZh": "直飞 ZHO，下降至 2000 米，AFR 896。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-061-afr896-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0161-card-main-2781",
+      "taskTitle": "AFR 896-9",
+      "audioText": "Ask Zhengzhou Control to climb to 11,600 meters due icing.",
+      "audioTextZh": "因积冰向郑州管制请求爬升至 11,600 米。",
+      "referenceText": "Control, AFR 896, request climb to 2600 meters due icing.",
+      "referenceTextZh": "管制，AFR 896，因积冰请求爬升至 2600 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-061-afr896-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0161-card-main-2782",
+      "taskTitle": "AFR 896-10",
+      "audioText": "AFR 896, Climb to 11,600 meters.",
+      "audioTextZh": "AFR 896，爬升至 11,600 米。",
+      "referenceText": "Climb to 2600 meters, AFR 896.",
+      "referenceTextZh": "爬升至 2600 米，AFR 896。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-061-afr896-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0161-card-main-2783",
+      "taskTitle": "AFR 896-11",
+      "audioText": "You have established contact with Wuhan Control, initiated descend for Runway 36R. During descending, airspeed and altitude readings are abnormal, possibly due to ice blockage. advise Wuhan Control this situation. this is an urgent call.",
+      "audioTextZh": "你已与武汉管制建立联系，并开始下降前往 Runway 36R。下降期间，空速和高度读数异常，可能是结冰堵塞所致。向武汉管制通报情况。这是紧急呼叫。",
+      "referenceText": "PANPAN, PANPAN, PANPAN, Control, AFR 896, airspeed and altitude readings, abnormal, due ice blockage.",
+      "referenceTextZh": "PANPAN，PANPAN，PANPAN，管制，AFR 896，空速和高度读数异常，因结冰堵塞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-061-afr896-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0161-card-main-2784",
+      "taskTitle": "AFR 896-12",
+      "audioText": "C: AFR 896, turn right heading 240.",
+      "audioTextZh": "管制员：AFR 896，右转航向240。",
+      "referenceText": "Turn right heading 240, AFR 896.",
+      "referenceTextZh": "右转航向240，AFR 896。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-061-afr896-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0161-card-main-2785",
+      "taskTitle": "AFR 896-13",
+      "audioText": "Tell controller that your GPS altitude and groundspeed is not accurate compared to barometric indications, but you can still maintain a stable flight. request descend to leave icing area.",
+      "audioTextZh": "告诉管制员，与气压指示相比，你的 GPS 高度和地速不准确，但仍能保持稳定飞行。请求下降以离开结冰区。",
+      "referenceText": "AFR 896, our GPS altitude and groundspeed, not accurate, maintain a stable flight, request descent.",
+      "referenceTextZh": "AFR 896，我们的 GPS 高度和地速不准确，能够保持稳定飞行，请求下降。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-061-afr896-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0161-card-main-2786",
+      "taskTitle": "AFR 896-14",
+      "audioText": "C: AFR 896, descend to 3600 meters.",
+      "audioTextZh": "管制员：AFR 896，下降至3600米。",
+      "referenceText": "Descend to 3600 meters, AFR 896.",
+      "referenceTextZh": "下降至3600米，AFR 896。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-061-afr896-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0161-card-main-2787",
+      "taskTitle": "AFR 896-15",
+      "audioText": "C: AFR 896, Radar shows you are at 4800 meters. What's your current GPS altitude?\nB: Tell the controller GPS altitude is 3600 meters, request descend to 1,800 meters.\nP: Wuhan Approach, AFR 896, our GPS altitude is 3600 meters, request descend to 1,800 meters.",
+      "audioTextZh": "C： AFR 896，雷达显示你位于 4800 米。你当前的 GPS 高度是多少？\nB： 告诉管制员 GPS 高度为 3600 米，请求下降至 1,800 米。\nP： 武汉进近，AFR 896，我们的 GPS 高度为 3600 米，请求下降至 1,800 米。",
+      "referenceText": "AFR 896, our GPS altitude is 3600 meters, request descent to 1800 meters.",
+      "referenceTextZh": "AFR 896，我们的 GPS 高度为 3600 米，请求下降至 1800 米。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-061-afr896-q15.mp3"
+    },
+    {
+      "id": "atc-scenario-0161-card-main-2788",
+      "taskTitle": "AFR 896-16",
+      "audioText": "C: AFR 896, Another aircraft has information with regards to the differences between his barometric and GPS altitude. I have him on 3000 meters, his reported GPS is 3600 meters.\nB: acknowledge the transmission and request further descent and leave icing area.",
+      "audioTextZh": "C： AFR 896，另一架航空器提供了其气压高度与 GPS 高度差异的信息。我掌握的该机高度是 3000 米，其报告的 GPS 高度为 3600 米。\nB： 确认收到，并请求进一步下降以离开结冰区。",
+      "referenceText": "request further descent, AFR 896.",
+      "referenceTextZh": "请求进一步下降，AFR 896。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-061-afr896-q16.mp3"
+    },
+    {
+      "id": "atc-scenario-0161-card-main-2789",
+      "taskTitle": "AFR 896-17",
+      "audioText": "C: AFR 896, contact Tower on 124.35, we have informed them your altimeter errors.",
+      "audioTextZh": "管制员：AFR 896，联系塔台124.35，我们已通知他们你的高度表误差。",
+      "referenceText": "124.35, roger, thanks, AFR 896.",
+      "referenceTextZh": "124.35，收到，谢谢，AFR 896。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-061-afr896-q17.mp3"
+    },
+    {
+      "id": "atc-scenario-0161-card-main-2790",
+      "taskTitle": "AFR 896-18",
+      "audioText": "B: You left the icing area and your instruments have returned to normal, report it to Wuhan Tower.",
+      "audioTextZh": "你已离开结冰区域，仪表恢复正常，请向武汉塔台报告。",
+      "referenceText": "Wuhan Tower, AFR 896, we left the icing area and our instruments have returned to normal.",
+      "referenceTextZh": "武汉塔台，AFR 896，我们已离开结冰区域，仪表已恢复正常。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-061-afr896-q18.mp3"
+    },
+    {
+      "id": "atc-scenario-0161-card-main-2791",
+      "taskTitle": "AFR 896-19",
+      "audioText": "You have established on the ILS Runway 36R.",
+      "audioTextZh": "你已建立 ILS 进近 Runway 36R。",
+      "referenceText": "Wuhan Tower, AFR 896, established on the ILS Runway 36R.",
+      "referenceTextZh": "武汉塔台，AFR 896，已建立 ILS 进近 Runway 36R。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-061-afr896-q19.mp3"
+    },
+    {
+      "id": "atc-scenario-0161-card-main-2792",
+      "taskTitle": "AFR 896-20",
+      "audioText": "AFR 896, wind calm Runway 36R, cleared to land.",
+      "audioTextZh": "AFR 896，静风，Runway 36R，许可落地。",
+      "referenceText": "Runway 36R, cleared to land, AFR 896.",
+      "referenceTextZh": "Runway 36R，许可落地，AFR 896。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-061-afr896-q20.mp3"
+    }
+  ]
+}

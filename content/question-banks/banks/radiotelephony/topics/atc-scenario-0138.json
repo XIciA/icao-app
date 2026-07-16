@@ -1,0 +1,143 @@
+{
+  "categoryId": "atc-ces",
+  "id": "atc-scenario-0138",
+  "name": "CES 769 TCAS机动",
+  "declaredCardCount": 15,
+  "cards": [
+    {
+      "id": "atc-scenario-0138-card-main-2384",
+      "taskTitle": "CES 769-1",
+      "audioText": "B: Your call sign is CES 769, a flight from Wuhan to Amsterdam, you are parking at stand 221, you have received information C, request ATC clearance.",
+      "audioTextZh": "B：你的呼号是 CES 769，从武汉飞往阿姆斯特丹，停在 221 号停机位，已收到通播 C，请求 ATC 放行许可。",
+      "referenceText": "Wuhan Delivery, CES 769, stand 221, information C, request ATC clearance to Amsterdam.",
+      "referenceTextZh": "武汉放行，CES 769，221 号停机位，通播 C，请求飞往阿姆斯特丹的 ATC 放行许可。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-036-ces769-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0138-card-main-2385",
+      "taskTitle": "CES 769-2",
+      "audioText": "CES 769, Wuhan Delivery, cleared to Amsterdam via flight planned route, departure Runway 04, initial climb 1,800 meters, HZ-01 departure, cruising level 11,000 meters, departure frequency 119.7, squawk 3562.",
+      "audioTextZh": "CES 769，武汉放行，许可按飞行计划航路飞往阿姆斯特丹，离场使用 Runway 04，初始爬升至 1,800 米，执行 HZ-01 离场，巡航高度 11,000 米，离场频率 119.7，应答机 3562。",
+      "referenceText": "cleared to Amsterdam via flight planned route, departure Runway 04, initial climb 1800 meters, HZ-01 departure, cruising level 2000 meters, 11000 meters departure frequency 119.7, squawk 3562, CES 769.",
+      "referenceTextZh": "许可按飞行计划航路飞往阿姆斯特丹，离场使用 Runway 04，初始爬升至 1800 米，执行 HZ-01 离场，巡航高度 2000 米，11000 米，离场频率 119.7，应答机 3562，CES 769。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-036-ces769-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0138-card-main-2386",
+      "taskTitle": "CES 769-3",
+      "audioText": "B: Now you are ready for push back and start up contact Wuhan Ground.",
+      "audioTextZh": "B：现在你准备好推出和开车，联系武汉地面。",
+      "referenceText": "Wuhan Ground, CES 769, request push back and start up.",
+      "referenceTextZh": "武汉地面，CES 769，请求推出和开车。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-036-ces769-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0138-card-main-2387",
+      "taskTitle": "CES 769-4",
+      "audioText": "C: CES 769, push back and start up approved, long pushed back, facing south.",
+      "audioTextZh": "C：CES 769，同意推出和开车，长推出，机头朝南。",
+      "referenceText": "Push back and start up approved, long pushed back, facing south, CES 769.",
+      "referenceTextZh": "同意推出和开车，长推出，机头朝南，CES 769。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-036-ces769-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0138-card-main-2388",
+      "taskTitle": "CES 769-5",
+      "audioText": "B: Now you have completed push back and start up, you are ready for taxi.",
+      "audioTextZh": "B：现在你已完成推出和开车，准备好滑行。",
+      "referenceText": "Wuhan Ground, CES 769, request taxi.",
+      "referenceTextZh": "武汉地面，CES 769，请求滑行。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-036-ces769-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0138-card-main-2389",
+      "taskTitle": "CES 769-6",
+      "audioText": "C: CES 769, taxi via D, D4, hold short of Runway 36.",
+      "audioTextZh": "C：CES 769，经 D、D4 滑行，跑道 36 外等待。",
+      "referenceText": "Taxi via D, D4, hold short of Runway 36, CES 769.",
+      "referenceTextZh": "经 D、D4 滑行，跑道 36 外等待，CES 769。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-036-ces769-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0138-card-main-2390",
+      "taskTitle": "CES 769-7",
+      "audioText": "B: During taxiing, a passenger opened an emergency exit, inform the controller of this situation and airport security is needed to remove the passenger.",
+      "audioTextZh": "B：滑行中，一名旅客打开了应急出口，通知管制员该情况并需要机场安保带走该旅客。",
+      "referenceText": "Wuhan Ground, CES 769, a passenger opened an emergency exit, request airport security to remove the passenger.",
+      "referenceTextZh": "武汉地面，CES 769，一名旅客打开了应急出口，请求机场安保带走该旅客。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-036-ces769-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0138-card-main-2391",
+      "taskTitle": "CES 769-8",
+      "audioText": "CES 769, recleared to Amsterdam, initial climb 2,100 meters, HZ-02 departure, cruising level 10,400 meters, the rest unchanged.",
+      "audioTextZh": "CES 769，重新许可飞往阿姆斯特丹，初始爬升至 2,100 米，执行 HZ-02 离场，巡航高度 10,400 米，其余不变。",
+      "referenceText": "recleared to Amsterdam, initial climb 2100 meters, HZ-02 departure, cruising level 1400 meters, 10004 hudnred meters the rest unchanged, CES 769.",
+      "referenceTextZh": "重新许可飞往阿姆斯特丹，初始爬升至 2100 米，执行 HZ-02 离场，巡航高度 1400 米，10004 hudnred 米，其余不变，CES 769。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-036-ces769-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0138-card-main-2392",
+      "taskTitle": "CES 769-9",
+      "audioText": "B: Now you are holding at holding point W2 Runway 36, contact Wuhan Tower and ask the permission to cross Runway 36.",
+      "audioTextZh": "B：现在你在跑道 36 W2 等待点等待，联系武汉塔台并请求穿越跑道 36。",
+      "referenceText": "Wuhan Tower, CES 769, holding point W2 runway36, request cross Runway 36.",
+      "referenceTextZh": "武汉塔台，CES 769，跑道 36 W2 等待点，请求穿越跑道 36。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-036-ces769-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0138-card-main-2393",
+      "taskTitle": "CES 769-10",
+      "audioText": "CES 769, expedite cross Runway 36, when vacated, taxi via taxiway Z5, A4 and A, hold short of Runway 04.",
+      "audioTextZh": "CES 769，加速穿越 Runway 36，脱离后经 Z5、A4 和 A 滑行道滑行，在 Runway 04 前等待。",
+      "referenceText": "expedite cross Runway 36, taxi via taxiway Z five, A four and A, hold short of Runway 04, CES 769.",
+      "referenceTextZh": "加速穿越 Runway 36，经 Z5、A4 和 A 滑行道滑行，在 Runway 04 前等待，CES 769。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-036-ces769-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0138-card-main-2394",
+      "taskTitle": "CES 769-11",
+      "audioText": "B: Now you are holding short of Runway 04, you are ready for departure.",
+      "audioTextZh": "B：现在你在跑道 04 外等待，准备好离场。",
+      "referenceText": "Wuhan Tower, CES 769, holding short of Runway 04, ready for departure.",
+      "referenceTextZh": "武汉塔台，CES 769，跑道 04 外等待，准备好离场。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-036-ces769-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0138-card-main-2395",
+      "taskTitle": "CES 769-12",
+      "audioText": "C: CES 769, line up Runway 04.",
+      "audioTextZh": "C：CES 769，进入跑道 04。",
+      "referenceText": "Line up Runway 04, CES 769.",
+      "referenceTextZh": "进入跑道 04，CES 769。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-036-ces769-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0138-card-main-2396",
+      "taskTitle": "CES 769-13",
+      "audioText": "C: CES 769, cleared for takeoff Runway 04, surface wind 020, 2 meters per second.",
+      "audioTextZh": "C：CES 769，跑道 04 可以起飞，地面风 020，2 米/秒。",
+      "referenceText": "Cleared for takeoff Runway 04, CES 769.",
+      "referenceTextZh": "跑道 04 可以起飞，CES 769。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-036-ces769-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0138-card-main-2397",
+      "taskTitle": "CES 769-14",
+      "audioText": "Now you are maintaining 2000 meters, over WXI, squawking 3562, contact Beijing Control.",
+      "audioTextZh": "现在你正保持 2000 米，飞越 WXI，应答机 3562，联系北京管制。",
+      "referenceText": "Beijing Control, CES 769, maintaining 2000 meters, 11000 meters over WXI, squawking 3562.",
+      "referenceTextZh": "北京管制，CES 769，正保持 2000 米，11000 米，飞越 WXI，应答机 3562。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-036-ces769-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0138-card-main-2398",
+      "taskTitle": "CES 769-15",
+      "audioText": "CES 769, increase speed to mach decimal 83 or greater, fly direct to PEK.",
+      "audioTextZh": "CES 769，将速度增加至 Mach 0.83 或更大，直飞 PEK。",
+      "referenceText": "increase speed to mach decimal 83 or greater, fly direct to PEK, CES 769.",
+      "referenceTextZh": "将速度增加至 Mach 0.83 或更大，直飞 PEK，CES 769。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-036-ces769-q15.mp3"
+    }
+  ]
+}

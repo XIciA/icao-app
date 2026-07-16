@@ -1,0 +1,143 @@
+{
+  "categoryId": "atc-qfa",
+  "id": "atc-scenario-0179",
+  "name": "QFA 358 雷暴绕飞 TCAS机动 复飞",
+  "declaredCardCount": 15,
+  "cards": [
+    {
+      "id": "atc-scenario-0179-card-main-3081",
+      "taskTitle": "QFA 358-1",
+      "audioText": "Your call sign is QFA 358, from SIA to Wuhan. You are maintaining 10,100 meters over DAPRO, squawking 3625, contact Wuhan control.",
+      "audioTextZh": "你的呼号是 QFA 358，从 SIA 飞往武汉。你正保持 10,100 米飞越 DAPRO，应答机 3625，联系武汉管制。",
+      "referenceText": "Wuhan Control, QFA 358, maintaining 1100 meters over DAPRO, squawking 3625.",
+      "referenceTextZh": "武汉管制，QFA 358，正保持 1,100 米飞越 DAPRO，应答机 3625。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-079-qfa358-q01.mp3"
+    },
+    {
+      "id": "atc-scenario-0179-card-main-3082",
+      "taskTitle": "QFA 358-2",
+      "audioText": "C: QFA 358, Wuhan Control, radar contact, descend to and maintain 6300 meters at your discretion.",
+      "audioTextZh": "C：QFA 358，武汉管制，雷达识别，可自行决定时机下降并保持 6300 米。",
+      "referenceText": "Descend to and maintain 6300 meters at our discretion, QFA 358.",
+      "referenceTextZh": "自行决定时机下降并保持 6300 米，QFA 358。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-079-qfa358-q02.mp3"
+    },
+    {
+      "id": "atc-scenario-0179-card-main-3083",
+      "taskTitle": "QFA 358-3",
+      "audioText": "B: Your weather radar indicates a large group of CBs, southwest of LKO, request turn right heading 050 to avoid the weather.",
+      "audioTextZh": "B：你的气象雷达显示 LKO 西南有大范围 CB，请求右转航向 050 以避开天气。",
+      "referenceText": "Wuhan Control, QFA 358, our weather radar indicates a large group of CBs, southwest of LKO, request turn right heading 050 to avoid the weather.",
+      "referenceTextZh": "武汉管制，QFA 358，我们的气象雷达显示 LKO 西南有大范围 CB，请求右转航向 050 以避开天气。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-079-qfa358-q03.mp3"
+    },
+    {
+      "id": "atc-scenario-0179-card-main-3084",
+      "taskTitle": "QFA 358-4",
+      "audioText": "C: QFA 358, Negative heading 050 due to restricted area.\nB: Tell Wuhan control you want to fly heading 030 for at least 5 minutes before you can resume course.",
+      "audioTextZh": "C： QFA 358，因限制区，不能使用航向 050。\nB： 告诉武汉管制，你希望保持航向 030 至少 5 分钟，然后才能恢复航路。",
+      "referenceText": "Wuhan Control, QFA 358, request heading 030 for at least five minutes",
+      "referenceTextZh": "武汉管制，QFA 358，请求保持航向 030 至少 5 分钟。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-079-qfa358-q04.mp3"
+    },
+    {
+      "id": "atc-scenario-0179-card-main-3085",
+      "taskTitle": "QFA 358-5",
+      "audioText": "QFA 358, roger, heading 030 is approved, when clear of weather, track direct to LKO.",
+      "audioTextZh": "QFA 358，收到，批准航向 030，脱离天气后直飞 LKO。",
+      "referenceText": "turn right heading 030 is approved, when clear of weather, track direct to LKO, QFA 358.",
+      "referenceTextZh": "批准右转航向 030，脱离天气后直飞 LKO，QFA 358。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-079-qfa358-q05.mp3"
+    },
+    {
+      "id": "atc-scenario-0179-card-main-3086",
+      "taskTitle": "QFA 358-6",
+      "audioText": "C: QFA 358, descend to 5100 meters.",
+      "audioTextZh": "C：QFA 358，下降至 5100 米。",
+      "referenceText": "Descend to 5100 meters, QFA 358.",
+      "referenceTextZh": "下降至 5100 米，QFA 358。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-079-qfa358-q06.mp3"
+    },
+    {
+      "id": "atc-scenario-0179-card-main-3087",
+      "taskTitle": "QFA 358-7",
+      "audioText": "B: You are maintaining 5100 meters, over LKO, ATIS B received, now contact Wuhan Approach.",
+      "audioTextZh": "B：你保持 5100 米，飞越 LKO，已收到 ATIS B，现在联系武汉进近。",
+      "referenceText": "Wuhan Approach, QFA 358, maintaining 5100 meters, over LKO, information B.",
+      "referenceTextZh": "武汉进近，QFA 358，保持 5100 米，飞越 LKO，收到 B 情报。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-079-qfa358-q07.mp3"
+    },
+    {
+      "id": "atc-scenario-0179-card-main-3088",
+      "taskTitle": "QFA 358-8",
+      "audioText": "QFA 358, Wuhan approach, LKO-2A arrival, descent to and maintain 1,200 meters, information C is now current, you are number l.",
+      "audioTextZh": "QFA 358，武汉进近，执行 LKO-2A 进场，下降至并保持 1,200 米，当前情报为 C，你是第一架落地航空器。",
+      "referenceText": "LKO two A arrival, descend to and maintain 1200 meters, information C, QFA 358.",
+      "referenceTextZh": "执行 LKO-2A 进场，下降至并保持 1,200 米，C 情报，QFA 358。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-079-qfa358-q08.mp3"
+    },
+    {
+      "id": "atc-scenario-0179-card-main-3089",
+      "taskTitle": "QFA 358-9",
+      "audioText": "B: Your weather radar has failed during descent, contact Wuhan Approach to request weather information along your route.",
+      "audioTextZh": "B：下降过程中你的气象雷达失效，联系武汉进近，请求航路沿线天气信息。",
+      "referenceText": "Wuhan Approach, QFA 358, our weather radar has failed during descent, request weather information along our route.",
+      "referenceTextZh": "武汉进近，QFA 358，我们的气象雷达在下降过程中失效，请求航路沿线天气信息。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-079-qfa358-q09.mp3"
+    },
+    {
+      "id": "atc-scenario-0179-card-main-3090",
+      "taskTitle": "QFA 358-10",
+      "audioText": "C: QFA 358, roger, our weather radar shows cumulonimbus in the vicinity of DA.",
+      "audioTextZh": "C：QFA 358，收到，我们的气象雷达显示 DA 附近有积雨云。",
+      "referenceText": "Roger, QFA 358.",
+      "referenceTextZh": "收到，QFA 358。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-079-qfa358-q10.mp3"
+    },
+    {
+      "id": "atc-scenario-0179-card-main-3091",
+      "taskTitle": "QFA 358-11",
+      "audioText": "Request Wuhan approach for radar assistance to intercept final course of Runway 36L.",
+      "audioTextZh": "向武汉进近请求雷达引导，以切入 Runway 36L 最后进近航道。",
+      "referenceText": "Wuhan Approach, QFA 358, request radar vectors to intercept final course Runway 36L.",
+      "referenceTextZh": "武汉进近，QFA 358，请求雷达引导切入 Runway 36L 最后进近航道。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-079-qfa358-q11.mp3"
+    },
+    {
+      "id": "atc-scenario-0179-card-main-3092",
+      "taskTitle": "QFA 358-12",
+      "audioText": "C: QFA 358, turn right heading 090, descend to and maintain 900 meters.",
+      "audioTextZh": "C：QFA 358，右转航向 090，下降并保持 900 米。",
+      "referenceText": "Turn right heading 090, descend to and maintain 900 meters, QFA 358.",
+      "referenceTextZh": "右转航向 090，下降并保持 900 米，QFA 358。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-079-qfa358-q12.mp3"
+    },
+    {
+      "id": "atc-scenario-0179-card-main-3093",
+      "taskTitle": "QFA 358-13",
+      "audioText": "QFA 358, turn left heading 030, descend to and maintain 600 meters, cleared to intercept the localizer RWY 36 Left, contact tower124.35.",
+      "audioTextZh": "QFA 358，左转航向 030，下降至并保持 600 米，许可切入 Runway 36L 航向道，联系塔台 124.35。",
+      "referenceText": "turn left heading 030, descend to and maintain 600 meters, cleared to intercept the localizer Runway 36L, 124.35, QFA 358.",
+      "referenceTextZh": "左转航向 030，下降至并保持 600 米，许可切入 Runway 36L 航向道，124.35，QFA 358。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-079-qfa358-q13.mp3"
+    },
+    {
+      "id": "atc-scenario-0179-card-main-3094",
+      "taskTitle": "QFA 358-14",
+      "audioText": "B: You encountered the downdrafts on short final and executed a missed approach, informed Wuhan Tower.",
+      "audioTextZh": "B：你在短五边遭遇下沉气流并执行复飞，通知武汉塔台。",
+      "referenceText": "Wuhan Tower, QFA 358, we encountered the downdrafts on short final, going around.",
+      "referenceTextZh": "武汉塔台，QFA 358，我们在短五边遭遇下沉气流，正在复飞。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-079-qfa358-q14.mp3"
+    },
+    {
+      "id": "atc-scenario-0179-card-main-3095",
+      "taskTitle": "QFA 358-15",
+      "audioText": "QFA 358, roger, when able, Turn right heading 090, climb to 1,500 meters, contact Wuhan approach 119.7.",
+      "audioTextZh": "QFA 358，收到，可以时右转航向 090，爬升至 1,500 米，联系武汉进近 119.7。",
+      "referenceText": "Turn right heading 090, climb to 1,500 meters, contact Wuhan approach 119.7, QFA 358.",
+      "referenceTextZh": "右转航向 090，爬升至 1,500 米，联系武汉进近 119.7，QFA 358。",
+      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-079-qfa358-q15.mp3"
+    }
+  ]
+}

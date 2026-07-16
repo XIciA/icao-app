@@ -16,45 +16,25 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { TabPlaceholderScreen } from '@/components/screens/TabPlaceholderScreen';
 import { AppText } from '@/components/ui';
+import { getEmbeddedQuestionBanks } from '@/features/question-bank/data/repository';
+import type { QuestionBankDataset } from '@/features/question-bank/types';
 import { colors, fonts, radii, shadows, spacing } from '@/theme';
 
-const entries = [
-  {
-    slug: 'listening',
-    title: '听力',
-    description: '理解能力',
-    meta: '4 题组 / 631 题',
-    icon: Headphones,
-  },
-  {
-    slug: 'sentences900',
-    title: '900 句',
-    description: '发音 结构 流利度',
-    meta: '3 等级 / 900 句',
-    icon: MessageSquareQuote,
-  },
-  {
-    slug: 'radiotelephony',
-    title: '陆空通话',
-    description: '结构 词汇 理解能力',
-    meta: '107 场景 / 1851 卡',
-    icon: RadioTower,
-  },
-  {
-    slug: 'opi',
-    title: 'OPI',
-    description: '发音 结构 词汇 流利度 理解能力 应对能力',
-    meta: '121 话题 / 1269 卡',
-    icon: Mic2,
-  },
-  {
-    slug: 'storytelling',
-    title: '故事复诵',
-    description: '发音 结构 词汇 流利度 理解能力',
-    meta: '4 子库 / 296 卡',
-    icon: BookOpenText,
-  },
-];
+const bankIcons: Record<QuestionBankDataset['icon'], typeof Headphones> = {
+  headphones: Headphones,
+  sentences: MessageSquareQuote,
+  radioTower: RadioTower,
+  mic: Mic2,
+  story: BookOpenText,
+};
+
+const entries = getEmbeddedQuestionBanks().map((bank) => ({
+  slug: bank.id,
+  title: bank.title,
+  description: bank.description,
+  meta: bank.summary,
+  icon: bankIcons[bank.icon],
+}));
 
 type Course = {
   id: string;

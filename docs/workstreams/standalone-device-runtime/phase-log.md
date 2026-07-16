@@ -110,3 +110,28 @@ pnpm ios:standalone
 ```
 
 说明：该命令的构建过程需要 Mac 和已连接的 iPhone；安装完成后，App 在本次 Apple Development 签名有效期内不再依赖 Mac。运行时仍需手机联网访问 ECS 公网服务。
+
+## 2026-07-16：Android 小规模分发与双端发布
+
+状态：已授权实施，自动验收结果将在本轮完成后收口
+
+用户确认的不可变边界：
+
+- Android 包名为 `com.feizhuicao.app`。
+- iOS 继续使用当前 `com.anonymous.icao-app`，不得形成第二个 iPhone App。
+- Android Release 密钥由 Codex 在仓库外安全生成，密码保存在 macOS Keychain，允许将密码保护的密钥副本备份到 iCloud Drive。
+- 下载入口为 `download.feizhuicao.com`；无密码，HTML 与 HTTP 均设置 noindex。
+- 网页展示版本号、更新时间、大小、更新说明与 SHA-256；首版不实现 App 内检查更新。
+- 固定下载文件为 `latest.apk`，服务器保留版本化 APK。
+- 首次发布按当前工作区构建并记录完整文件清单及哈希；后续双端发布要求 Git 工作区干净。
+- 2026-07-16 用户进一步确认拆分平台发布：Android 自身检查、必要 API 部署和正式构建成功后即可更新下载站，不再等待 iPhone；iOS 以后通过独立命令覆盖安装。
+
+发布前自动验证：
+
+- `pnpm check` 通过：App 37 套共 144 个测试通过；API 3 个文件共 176 个测试通过；内容、词汇、TypeScript、Lint、Contracts 与 API 构建均通过。
+- 首版工作区清单覆盖 4673 个 Git 跟踪或非忽略文件，记录逐文件 SHA-256、整体工作区指纹和 API 指纹；完整清单只保存在本机生成目录与 ECS 非公开发布审计目录。
+- Android 专属 4096 位 RSA Release 密钥已在仓库外生成，macOS Keychain 密码项、权限为 600 的本机 PKCS#12 和 iCloud Drive 加密备份均存在。
+- Android `assembleRelease` 已完成；APK 包名为 `com.feizhuicao.app`，`versionCode` 与发布元数据一致，APK Signature Scheme v2 验证通过，证书不是 Android Debug，Bundle 包含公网 API/Supabase 地址且不包含回环或私网服务地址。
+- 116 MB 通用 APK 已在 Android 模拟器执行干净安装和冷启动，`MainActivity` 启动状态为 `ok`，React Native `main` 正常运行且无 FATAL EXCEPTION。
+- 首次全量编译遇到一次 Google Maven TLS 中断，重试后依赖下载和构建成功；该网络抖动没有产生或公开失败版本。
+- 下载站与最终 `latest.apk` 由本轮 `pnpm release:android` 独立切换；真实 Android 手机的安装和覆盖升级体验由测试者完成。
