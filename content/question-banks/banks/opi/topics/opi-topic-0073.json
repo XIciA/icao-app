@@ -9,21 +9,24 @@
       "taskTitle": "人的因素-危险态度-1",
       "audioText": "Do you know hazardous attitudes?",
       "audioTextZh": "你了解危险态度（相关知识 ）吗？",
-      "referenceText": "Yes, I know something about hazardous attitudes, for example, anti - authority, macho, resignation, and so on. We must try our best to overcome hazardous attitudes.\n是的，我了解一些危险态度的情况，比如逆反心态、逞能心态、消极顺从心态等等。我们必须尽全力克服危险态度 。\n\nYes.Hazardous attitudes in aviation include anti-authority, macho, impulsivity, invulnerability, and resignation. These attitudes deviate from safety awareness, disrupt crew communication and cooperation, and increase the risk of human errors, endangering flight safety.\n是的。飞行中的危险态度包括反权威、炫耀、冲动、侥幸心理和屈从。这些态度会偏离安全意识，破坏机组沟通与协作，增加人为失误风险，危及飞行安全。"
+      "referenceText": "Yes. Hazardous attitudes in aviation include anti-authority, macho, impulsivity, invulnerability, and resignation. These attitudes deviate from safety awareness, disrupt crew communication and cooperation, and increase the risk of human errors, endangering flight safety.",
+      "referenceTextZh": "是的。飞行中的危险态度包括反权威、炫耀、冲动、侥幸心理和屈从。这些态度会偏离安全意识，破坏机组沟通与协作，增加人为失误风险，危及飞行安全。"
     },
     {
       "id": "opi-core-749",
       "taskTitle": "人的因素-危险态度-2",
       "audioText": "How can hazardous attitudes affect flight safety?",
       "audioTextZh": "危险态度会如何影响飞行安全？",
-      "referenceText": "For example, if the pilot holds an anti - authority attitude, he may think: \"Don't tell me what to do! I'll do it my way!\" He refuses to listen to others' advice or suggestions, or may disregard rules and regulations. He may make mistakes and poor decisions. This is very dangerous for flight safety. The right approach is: \"Follow the rules; they are usually right.\"\n例如，若飞行员抱有逆反心态，他可能会想：“别教我该怎么做！我要按自己的方式来！” 他会拒绝听取他人的意见或建议，甚至可能无视规章制度。这样会导致失误，做出糟糕的决策，对飞行安全极为危险。正确的做法是：“遵守规则，规则通常是合理的。”\n\nHazardous attitudes impair situational awareness, lead to non-compliance with SOP, improper decision-making, and poor crew coordination. For example, anti-authority may cause ignoring regulations, while impulsivity may result in hasty maneuvers, both increasing accident risks.\n危险态度会削弱情景意识，导致不遵守标准操作程序、决策不当和机组协作不良。例如，反权威可能导致无视规章，冲动可能引发仓促操作，均会增加事故风险。"
+      "referenceText": "For example, if the pilot holds an anti-authority attitude, he may think: \"Don't tell me what to do! I'll do it my way! \" He refuses to listen to others' advice or suggestions, or may disregard rules and regulations. He may make mistakes and poor decisions. This is very dangerous for flight safety. The right approach is: \"Follow the rules; they are usually right.",
+      "referenceTextZh": "例如，若飞行员抱有逆反心态，他可能会想：“别教我该怎么做！我要按自己的方式来！” 他会拒绝听取他人的意见或建议，甚至可能无视规章制度。这样会导致失误，做出糟糕的决策，对飞行安全极为危险。正确的做法是：“遵守规则，规则通常是合理的。”。"
     },
     {
       "id": "opi-core-750",
       "taskTitle": "人的因素-危险态度-3",
-      "audioText": "How to avoid the hazards attitudes?",
-      "audioTextZh": "如何避免危险态度?",
-      "referenceText": "Pilots should strictly follow regulations, SOP, and manuals, strengthen CRM training to enhance communication and cooperation. Maintain self-awareness, learn from mistakes, and prioritize flight safety over personal biases to eliminate hazardous attitudes.\n飞行员应严格遵守规章、标准操作程序和手册，加强机组资源管理CRM培训以提升沟通协作能力。保持自我认知，从错误中学习，将飞行安全置于个人偏见之上，从而杜绝危险态度。"
+      "audioText": "How can pilots avoid the hazards attitudes?",
+      "audioTextZh": "如何避免危险态度？",
+      "referenceText": "Pilots should strictly follow regulations, SOP, and manuals, strengthen CRM training to enhance communication and cooperation. Maintain self-awareness, learn from mistakes, and prioritize flight safety over personal biases to eliminate hazardous attitudes.",
+      "referenceTextZh": "飞行员应严格遵守规章、标准操作程序和手册，加强机组资源管理CRM培训以提升沟通协作能力。保持自我认知，从错误中学习，将飞行安全置于个人偏见之上，从而杜绝危险态度。"
     }
   ]
 }

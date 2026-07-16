@@ -9,77 +9,88 @@
       "taskTitle": "飞机系统-导航-1",
       "audioText": "During flight, what navigational aid do you use?",
       "audioTextZh": "飞行中，你们使用哪些助航设施？",
-      "referenceText": "During flight, we often use VOR, NDB, ILS and GPS.\n飞行中，我们常用的助航设施有甚高频全向信标（VOR）、无方向信标（NDB）、仪表着陆系统（ILS）和全球定位系统（GPS）"
+      "referenceText": "During flight, pilots may use several navigation aids, including GNSS or GPS, VOR, DME, ILS, inertial navigation, and the flight management system. The equipment used depends on the aircraft, route, and phase of flight. The crew should cross-check available sources and be ready to use an approved alternative if one system becomes unreliable.",
+      "referenceTextZh": "飞行中，飞行员可能使用多种导航设备，包括 GNSS 或 GPS、VOR、DME、ILS、惯性导航和飞行管理系统。实际使用的设备取决于飞机、航路和飞行阶段。机组应交叉检查可用信息源，并在某个系统不可靠时准备使用经批准的替代方式。"
     },
     {
       "id": "opi-extra-227",
       "taskTitle": "飞机系统-导航-2",
-      "audioText": "What should you do if you got lost in flight?",
+      "audioText": "What should you do if you got lost in-flight?",
       "audioTextZh": "飞行中迷航，应如何处置？",
-      "referenceText": "If we get lost during flight, we will first rely on the basic navigation system to fly. Then, we will report our situation to ATC and request radar vectors. If possible, we will refer to landmarks for verification.\n若飞行中迷航，我们会先依靠基础导航系统保持飞行，随后向空中交通管制（ATC）报告情况并请求雷达引导；条件允许时，会参考地标进行位置确认。"
+      "referenceText": "If we get lost during flight, I would first rely on the basic navigation system to fly. Then, I would report our situation to ATC and request radar vectors. If possible, I would refer to landmarks for verification.",
+      "referenceTextZh": "若飞行中迷航，我们会先依靠基础导航系统保持飞行，随后向空中交通管制（ATC）报告情况并请求雷达引导；条件允许时，会参考地标进行位置确认。"
     },
     {
       "id": "opi-extra-228",
       "taskTitle": "飞机系统-导航-3",
       "audioText": "What navigational equipment might be integrated into the cockpit in the future?",
       "audioTextZh": "未来驾驶舱可能会集成哪些导航设备？",
-      "referenceText": "I think advanced navigation systems may be integrated into future cockpits, such as GPS, RNP (Required Navigation Performance), and RNAV (Area Navigation).\n我认为未来驾驶舱可能会集成先进的导航系统，比如全球定位系统（GPS）、所需导航性能系统（RNP）以及区域导航系统（RNAV） 。"
+      "referenceText": "I think advanced navigation systems may be integrated into future cockpits, such as GPS, RNP (Required Navigation Performance), and RNAV (Area Navigation).",
+      "referenceTextZh": "我认为未来驾驶舱可能会集成先进的导航系统，比如全球定位系统（GPS）、所需导航性能系统（RNP）以及区域导航系统（RNAV）。"
     },
     {
       "id": "opi-extra-229",
       "taskTitle": "飞机系统-导航-4",
-      "audioText": "What are the differences between VOR approach and ILS approach? Which one do you prefer?",
-      "audioTextZh": "甚高频全向信标（VOR）进近和仪表着陆系统（ILS）进近有何区别？你更倾向于哪种？",
-      "referenceText": "VOR approach is a non - precision approach and it can provide only lateral course guidance, while ILS approach is a precision approach and it can provide both lateral and vertical guidance. I prefer ILS approach because it can provide more precise approach guidance.\n甚高频全向信标（VOR）进近属于非精密进近，仅能提供侧向航道引导；而仪表着陆系统（ILS）进近是精密进近，可同时提供侧向和垂直引导。我更倾向于 ILS 进近，因为它能提供更精确的进近引导 。"
+      "audioText": "What are the differences between VOR approach and ILS approach?",
+      "audioTextZh": "甚高频全向信标（VOR）进近和仪表着陆系统（ILS）进近有何区别？",
+      "referenceText": "VOR approach is a non-precision approach and it can provide only lateral course guidance, while ILS approach is a precision approach and it can provide both lateral and vertical guidance. I prefer ILS approach because it can provide more precise approach guidance.",
+      "referenceTextZh": "甚高频全向信标（VOR）进近属于非精密进近，仅能提供侧向航道引导；而仪表着陆系统（ILS）进近是精密进近，可同时提供侧向和垂直引导。我更倾向于 ILS 进近，因为它能提供更精确的进近引导。"
     },
     {
       "id": "opi-extra-230",
       "taskTitle": "飞机系统-导航-5",
       "audioText": "What are the advantages of flying ILS approach compared with VOR approach?",
       "audioTextZh": "相比甚高频全向信标（VOR）进近，仪表着陆系统（ILS）进近有何优势？",
-      "referenceText": "VOR approach is non - precision approach and it can provide only the lateral guidance while ILS approach is precision approach and it can provide both lateral guidance and vertical guidance.\n甚高频全向信标（VOR）进近属于非精密进近，仅能提供横向引导；而仪表着陆系统（ILS）进近是精密进近，可同时提供横向引导和垂直引导 。\n\n ILS is a precision approach, providing both horizontal (localizer) and vertical (glide slope) guidance, with a lower decision altitude (DA) for higher landing accuracy. VOR is a non-precision approach with only horizontal guidance and a higher minimum descent altitude (MDA), making ILS more reliable in low visibility.\nILS是精密进近，可提供水平航向台和垂直下滑道双重引导，决断高度DA更低，着陆精度更高；而VOR是非精密进近，仅提供水平引导，最低下降高度MDA较高，因此ILS在低能见度条件下更可靠。"
+      "referenceText": "ILS is a precision approach, providing both horizontal (localizer) and vertical (glide slope) guidance, with a lower decision altitude (DA) for higher landing accuracy. VOR is a non-precision approach with only horizontal guidance and a higher minimum descent altitude (MDA), making ILS more reliable in low visibility.",
+      "referenceTextZh": "是精密进近，可提供水平航向台和垂直下滑道双重引导，决断高度DA更低，着陆精度更高；而VOR是非精密进近，仅提供水平引导，最低下降高度MDA较高，因此ILS在低能见度条件下更可靠。"
     },
     {
       "id": "opi-extra-231",
       "taskTitle": "飞机系统-导航-6",
       "audioText": "What will you do if you're on board navigational equipment fails during flight?",
       "audioTextZh": "如果机载导航设备在飞行中失效，应如何处置？",
-      "referenceText": "If our onboard navigation equipment has failed during flight, we will fly with basic navigation system, then we will report our situation to ATC and request radar vectors. If possible, we will check the landmarks.\n若飞行中机载导航设备失效，我们会依靠基础导航系统飞行，随后向空中交通管制（ATC）报告情况并请求雷达引导；如有可能，会参考地标来确认位置 。"
+      "referenceText": "If our onboard navigation equipment has failed during flight, I would fly with basic navigation system, then I would report our situation to ATC and request radar vectors. If possible, I would check the landmarks.",
+      "referenceTextZh": "若飞行中机载导航设备失效，我们会依靠基础导航系统飞行，随后向空中交通管制（ATC）报告情况并请求雷达引导；如有可能，会参考地标来确认位置。"
     },
     {
       "id": "opi-extra-232",
       "taskTitle": "飞机系统-导航-7",
       "audioText": "What modern navigation equipment should be integrated into the cockpit in the future?",
       "audioTextZh": "在未来，哪些导航设备应该被集成到现代驾驶舱？",
-      "referenceText": "I think advanced navigation systems should be integrated into future cockpits, such as Beidou Navigation, GPS, RNP (Required Navigation Performance), and RNAV (Area Navigation).\n我认为先进的导航系统应集成到未来驾驶舱中，比如北斗导航、全球定位系统（GPS）、所需导航性能系统（RNP）以及区域导航系统（RNAV） 。"
+      "referenceText": "I think advanced navigation systems should be integrated into future cockpits, such as Beidou Navigation, GPS, RNP (Required Navigation Performance), and RNAV (Area Navigation).",
+      "referenceTextZh": "我认为先进的导航系统应集成到未来驾驶舱中，比如北斗导航、全球定位系统（GPS）、所需导航性能系统（RNP）以及区域导航系统（RNAV）。"
     },
     {
       "id": "opi-extra-233",
       "taskTitle": "飞机系统-导航-8",
-      "audioText": "What are the possible reasons that may lead to disorientation？",
+      "audioText": "What are the possible reasons that may lead to disorientation?",
       "audioTextZh": "哪些原因可能导致迷航？",
-      "referenceText": "There are some possible reasons for disorientation. First, bad weather such as low visibility may cause disorientation. Second, navigation equipment failure may cause disorientation. Besides, there are other reasons for disorientation.\n迷航可能有以下几种原因：首先，低能见度等恶劣天气可能导致迷航；其次，导航设备故障可能导致迷航；此外，还存在其他引发迷航的原因 。"
+      "referenceText": "There are some possible reasons for disorientation. First, bad weather such as low visibility may cause disorientation. Second, navigation equipment failure may cause disorientation. Besides, there are other reasons for disorientation.",
+      "referenceTextZh": "迷航可能有以下几种原因：首先，低能见度等恶劣天气可能导致迷航；其次，导航设备故障可能导致迷航；此外，还存在其他引发迷航的原因。"
     },
     {
       "id": "opi-extra-234",
       "taskTitle": "飞机系统-导航-9",
       "audioText": "What navigation aids are there on your aircraft?",
-      "audioTextZh": "你所飞机型的导航设备有哪些?",
-      "referenceText": "During training, the DA-40 I fly is equipped with navigation aids such as VOR (VHF Omnidirectional Range), NDB (Non-Directional Beacon), DME (Distance Measuring Equipment), ILS (Instrument Landing System), and GPS (Global Positioning System) for precise navigation.\n我驾驶的DA-40在训练中配备的导航设备包括甚高频全向信标VOR、无方向信标NDB、测距仪DME、仪表着陆系统ILS以及全球定位系统GPS，以实现精准导航。"
+      "audioTextZh": "你所飞机型的导航设备有哪些？",
+      "referenceText": "During training, the DA-40 I fly is equipped with navigation aids such as VOR (VHF Omnidirectional Range), NDB (Non-Directional Beacon), DME (Distance Measuring Equipment), ILS (Instrument Landing System), and GPS (Global Positioning System) for precise navigation.",
+      "referenceTextZh": "我驾驶的DA-40在训练中配备的导航设备包括甚高频全向信标VOR、无方向信标NDB、测距仪DME、仪表着陆系统ILS以及全球定位系统GPS，以实现精准导航。"
     },
     {
       "id": "opi-extra-235",
       "taskTitle": "飞机系统-导航-10",
-      "audioText": "Which do you think is more difficult, the ILS approach or the VOR/DME approach?",
-      "audioTextZh": "你认为盲降难还是VOR难?",
-      "referenceText": "VOR/DME approach is more difficult. It’s a non-precision approach with only horizontal guidance, requiring pilots to manually control descent rate and altitude, relying more on situational awareness. ILS provides dual horizontal-vertical guidance, reducing workload and improving landing stability, especially in low visibility.\nVOR/DME进近更难。它是非精密进近，仅提供水平引导，需要飞行员手动控制下降率和高度，对情景意识要求更高；而ILS具备水平和垂直双重引导，降低了操作负荷，着陆稳定性更强，尤其在低能见度下优势明显。"
+      "audioText": "Which do you think is more difficult, the ILS approach or the VOR approach?",
+      "audioTextZh": "你认为盲降难还是VOR难？",
+      "referenceText": "VOR or DME approach is more difficult. It’s a non-precision approach with only horizontal guidance, requiring pilots to manually control descent rate and altitude, relying more on situational awareness. ILS provides dual horizontal-vertical guidance, reducing workload and improving landing stability, especially in low visibility.\nVOR or DME.",
+      "referenceTextZh": "进近更难。它是非精密进近，仅提供水平引导，需要飞行员手动控制下降率和高度，对情景意识要求更高；而ILS具备水平和垂直双重引导，降低了操作负荷，着陆稳定性更强，尤其在低能见度下优势明显。"
     },
     {
       "id": "opi-extra-236",
       "taskTitle": "飞机系统-导航-11",
       "audioText": "If you encounter navigation failure, what should you do?",
-      "audioTextZh": "如果你遇到导航系统故障,你会怎么做?",
-      "referenceText": "Maintain current heading and altitude first. Use backup navigation aids (such as VOR, NDB, DME) or raw data. Report to ATC, request radar vectors to the destination or alternate airport. If total navigation failure occurs, follow the last ATC instruction and flight plan, and land at the nearest visible airport if possible.\n首先保持当前航向和高度；使用备用导航设备（如甚高频全向信标VOR、无方向信标NDB、测距仪DME）或原始数据；向空管报告，请求雷达引导至目的地或备降机场；若完全失去导航，遵循空管最后的指令和飞行计划，尽可能在最近的可见机场着陆。"
+      "audioTextZh": "如果你遇到导航系统故障,你会怎么做？",
+      "referenceText": "Maintain current heading and altitude first. Use backup navigation aids (such as VOR, NDB, DME) or raw data. Report to ATC, request radar vectors to the destination or alternate airport. If total navigation failure occurs, follow the last ATC instruction and flight plan, and land at the nearest visible airport if possible.",
+      "referenceTextZh": "首先保持当前航向和高度；使用备用导航设备（如甚高频全向信标VOR、无方向信标NDB、测距仪DME）或原始数据；向空管报告，请求雷达引导至目的地或备降机场；若完全失去导航，遵循空管最后的指令和飞行计划，尽可能在最近的可见机场着陆。"
     }
   ]
 }

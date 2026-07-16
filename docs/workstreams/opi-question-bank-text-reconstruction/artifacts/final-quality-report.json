@@ -1,0 +1,439 @@
+{
+  "schemaVersion": 1,
+  "status": "text-candidate-complete-environment-acceptance-pending",
+  "baselineDigest": "f0c6cf611cfa21d21ddd5d59def82c0a75e40707e58cd3893090b5d365af2964",
+  "sourceCounts": {
+    "categories": 8,
+    "topics": 144,
+    "cards": 1356,
+    "textCards": 1333,
+    "imageCards": 23,
+    "imageTopicTextCards": 64
+  },
+  "finalCounts": {
+    "categories": 8,
+    "topics": 144,
+    "cards": 1353,
+    "textCards": 1330,
+    "imageCards": 23
+  },
+  "actionCounts": {
+    "keep": 0,
+    "rewrite": 1330,
+    "split": 0,
+    "merge": 3,
+    "move": 0,
+    "delete": 0,
+    "deferred-image-answer": 7
+  },
+  "sourceDecisionCoverage": {
+    "sourceTextCards": 1333,
+    "decidedSourceTextCards": 1333
+  },
+  "fieldCoverage": {
+    "questionEn": 1330,
+    "questionZh": 1330,
+    "answerEn": 1323,
+    "answerZh": 1323
+  },
+  "deferredImageAnswers": [
+    {
+      "cardId": "opi-image-002-q01",
+      "topicId": "opi-image-topic-002",
+      "reason": "The question requires details from the specific image, which is outside this text-only handoff."
+    },
+    {
+      "cardId": "opi-image-008-q01",
+      "topicId": "opi-image-topic-008",
+      "reason": "The question requires details from the specific image, which is outside this text-only handoff."
+    },
+    {
+      "cardId": "opi-image-011-q01",
+      "topicId": "opi-image-topic-011",
+      "reason": "The question requires details from the specific image, which is outside this text-only handoff."
+    },
+    {
+      "cardId": "opi-image-012-q01",
+      "topicId": "opi-image-topic-012",
+      "reason": "The question requires details from the specific image, which is outside this text-only handoff."
+    },
+    {
+      "cardId": "opi-image-018-q01",
+      "topicId": "opi-image-topic-018",
+      "reason": "The question requires details from the specific image, which is outside this text-only handoff."
+    },
+    {
+      "cardId": "opi-image-021-q01",
+      "topicId": "opi-image-topic-021",
+      "reason": "The question requires details from the specific image, which is outside this text-only handoff."
+    },
+    {
+      "cardId": "opi-image-023-q01",
+      "topicId": "opi-image-topic-023",
+      "reason": "The question requires details from the specific image, which is outside this text-only handoff."
+    }
+  ],
+  "criticalUnresolved": [],
+  "factUncertainties": [
+    {
+      "cardId": "opi-core-004",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-017",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-046",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-051",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-495",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-552",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-067",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-068",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-070",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-716",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-731",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-734",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-184",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-185",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-extra-056",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-extra-058",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-extra-116",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-extra-276",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-extra-284",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-extra-314",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-614",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-extra-076",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-533",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-659",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-708",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-711",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-extra-237",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-extra-238",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-extra-257",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-268",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-271",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-301",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-563",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-586",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-extra-312",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-extra-340",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-extra-381",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-324",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-474",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-648",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-core-866",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-extra-206",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-extra-213",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-extra-223",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-extra-234",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-extra-348",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-extra-125",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    },
+    {
+      "cardId": "opi-extra-130",
+      "issue": "Aircraft-, operator-, aerodrome-, or authority-specific value; final answer intentionally uses a general safe formulation or should be checked against the applicable approved source.",
+      "sources": []
+    }
+  ],
+  "officialFactSources": [
+    {
+      "cardId": "opi-core-342",
+      "sources": [
+        {
+          "title": "FAA Runway Incursions",
+          "url": "https://www.faa.gov/airports/runway_safety/resources/runway_incursions"
+        }
+      ]
+    },
+    {
+      "cardId": "opi-core-120",
+      "sources": [
+        {
+          "title": "ICAO Annex 6 — Operation of Aircraft, Part I",
+          "url": "https://www.icao.int/safety/CAPSCA/PublishingImages/Pages/ICAO-SARPs-%28Annexes-and-PANS%29/Annex%206.pdf"
+        },
+        {
+          "title": "EASA Easy Access Rules for Air Operations — Cockpit voice recorder",
+          "url": "https://www.easa.europa.eu/en/document-library/easy-access-rules/online-publications/easy-access-rules-air-operations?erules-id=ERULES-1963177438-14189"
+        }
+      ]
+    },
+    {
+      "cardId": "opi-core-126",
+      "sources": [
+        {
+          "title": "ICAO Annex 6 — Operation of Aircraft, Part I",
+          "url": "https://www.icao.int/safety/CAPSCA/PublishingImages/Pages/ICAO-SARPs-%28Annexes-and-PANS%29/Annex%206.pdf"
+        },
+        {
+          "title": "EASA Easy Access Rules for Air Operations — Cockpit voice recorder",
+          "url": "https://www.easa.europa.eu/en/document-library/easy-access-rules/online-publications/easy-access-rules-air-operations?erules-id=ERULES-1963177438-14189"
+        }
+      ]
+    },
+    {
+      "cardId": "opi-extra-372",
+      "sources": [
+        {
+          "title": "FAA Aeronautical Information Manual — Visual Glideslope Indicators",
+          "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap2_section_1.html"
+        }
+      ]
+    },
+    {
+      "cardId": "opi-core-283",
+      "sources": [
+        {
+          "title": "FAA Aeronautical Information Manual — Minimum Fuel Advisory",
+          "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_5.html"
+        },
+        {
+          "title": "FAA Pilot/Controller Glossary — Minimum Fuel and Mayday",
+          "url": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-m.html"
+        }
+      ]
+    },
+    {
+      "cardId": "opi-core-284",
+      "sources": [
+        {
+          "title": "FAA Aeronautical Information Manual — Minimum Fuel Advisory",
+          "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_5.html"
+        },
+        {
+          "title": "FAA Pilot/Controller Glossary — Minimum Fuel and Mayday",
+          "url": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-m.html"
+        }
+      ]
+    },
+    {
+      "cardId": "opi-core-285",
+      "sources": [
+        {
+          "title": "FAA Aeronautical Information Manual — Minimum Fuel Advisory",
+          "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_5.html"
+        },
+        {
+          "title": "FAA Pilot/Controller Glossary — Minimum Fuel and Mayday",
+          "url": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-m.html"
+        }
+      ]
+    },
+    {
+      "cardId": "opi-core-286",
+      "sources": [
+        {
+          "title": "FAA Aeronautical Information Manual — Minimum Fuel Advisory",
+          "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_5.html"
+        },
+        {
+          "title": "FAA Pilot/Controller Glossary — Minimum Fuel and Mayday",
+          "url": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-m.html"
+        }
+      ]
+    },
+    {
+      "cardId": "opi-core-287",
+      "sources": [
+        {
+          "title": "FAA Aeronautical Information Manual — Minimum Fuel Advisory",
+          "url": "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_5.html"
+        },
+        {
+          "title": "FAA Pilot/Controller Glossary — Minimum Fuel and Mayday",
+          "url": "https://www.faa.gov/air_traffic/publications/atpubs/pcg_html/glossary-m.html"
+        }
+      ]
+    }
+  ],
+  "skippedEnvironmentChecks": [
+    "pnpm content:build",
+    "pnpm content:check",
+    "pnpm content:check:full",
+    "pnpm check",
+    "pnpm ios:*",
+    "pnpm android:*"
+  ],
+  "skippedReason": "缺少完整题库资源和 App 工程依赖，已交由项目负责人接续"
+}

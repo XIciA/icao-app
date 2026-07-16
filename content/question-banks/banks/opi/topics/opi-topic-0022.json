@@ -7,135 +7,154 @@
     {
       "id": "opi-core-318",
       "taskTitle": "飞机系统-发动机滑油-1",
-      "audioText": "What the function of engine oil?",
+      "audioText": "What are the functions of engine oil?",
       "audioTextZh": "发动机滑油（engine oil）的作用是什么？",
-      "referenceText": "It is used to cool the engines and lubricate the engines.\n它用于冷却发动机和润滑发动机 。"
+      "referenceText": "Engine oil lubricates moving parts, helps remove heat, reduces wear, and carries contaminants toward the oil filter. It also supports sealing and corrosion protection in some engine components. Pilots monitor oil pressure, temperature, and quantity because abnormal indications may show a leak or developing engine problem.",
+      "referenceTextZh": "发动机滑油用于润滑运动部件、带走热量、减少磨损，并把污染物带向滑油滤。它还可在部分发动机部件中帮助密封和防腐。飞行员会监控滑油压力、温度和油量，因为异常指示可能意味着泄漏或正在发展的发动机故障。"
     },
     {
       "id": "opi-core-319",
       "taskTitle": "飞机系统-发动机滑油-2",
       "audioText": "What kind of parameters of engine are vital to flight operations?",
-      "audioTextZh": "哪些发动机参数对飞行运行很重要",
-      "referenceText": "There are some important engine parameters such as N1, EGT, N2, FF/FU, oil temperature, oil pressure, oil quantity, and vibration.\n\n有一些重要的发动机参数，比如 N1（风扇转速）、EGT（排气温度 ）、N2（核心机转速 ）、FF/FU（燃油流量 ）、滑油温度、滑油压力、滑油量以及振动值 。"
+      "audioTextZh": "哪些发动机参数对飞行运行很重要？",
+      "referenceText": "There are some important engine parameters such as N1, EGT, N2, FF or FU, oil temperature, oil pressure, oil quantity, and vibration.",
+      "referenceTextZh": "这道题与发动机滑油有关。回答时应说明主要运行考虑因素，识别相关风险，并给出安全、可行的处置思路。具体行动应以飞机检查单、适用程序和实际情况为准。"
     },
     {
       "id": "opi-core-320",
       "taskTitle": "飞机系统-发动机滑油-3",
       "audioText": "What are the differences between piston engine and turbine engine aircraft?",
-      "audioTextZh": "活塞发动机飞机与涡轮发动机飞机有什么区别",
-      "referenceText": "There are some differences between piston engines and turbine engines. Turbine engines use jet fuel while piston engines use avgas. Turbine engines are more powerful, more fuel - efficient and have less vibration than piston engines.\n\n活塞发动机和涡轮发动机存在一些区别。涡轮发动机使用燃油，而活塞发动机使用汽油。相较于活塞发动机，涡轮发动机功率更大、燃油效率更高，且振动更小 。"
+      "audioTextZh": "活塞发动机飞机与涡轮发动机飞机有什么区别？",
+      "referenceText": "There are some differences between piston engines and turbine engines. Turbine engines use jet fuel while piston engines use avgas. Turbine engines are more powerful, more fuel-efficient and have less vibration than piston engines.",
+      "referenceTextZh": "这道题与发动机滑油有关。回答时应说明主要运行考虑因素，识别相关风险，并给出安全、可行的处置思路。具体行动应以飞机检查单、适用程序和实际情况为准。"
     },
     {
       "id": "opi-core-321",
       "taskTitle": "飞机系统-发动机滑油-4",
       "audioText": "What will you do if you encounter detonation of piston engine?",
-      "audioTextZh": "如果你遇到活塞发动机爆震，应该怎么做",
-      "referenceText": "If we encounter the detonation of a piston engine, we will first adjust the mixture control. Then, we will report the situation to ATC and request emergency landing and emergency services.\n如果遇到活塞发动机爆震情况，我们会首先调整混合比控制装置。然后，向空中交通管制（ATC）报告该情况，并申请紧急着陆以及请求应急服务 。"
+      "audioTextZh": "如果你遇到活塞发动机爆震，应该怎么做？",
+      "referenceText": "If we encounter the detonation of a piston engine, I would first adjust the mixture control. Then, I would report the situation to ATC and request priority or emergency handling and emergency services.",
+      "referenceTextZh": "如果遇到活塞发动机爆震情况，我们会首先调整混合比控制装置。然后，向空中交通管制（ATC）报告该情况，并申请紧急着陆以及请求应急服务。"
     },
     {
       "id": "opi-core-322",
       "taskTitle": "飞机系统-发动机滑油-5",
       "audioText": "During cruise, if you notice abnormal engine parameter indication, what will you do?",
-      "audioTextZh": "在巡航时，如果你注意到不正常发动机参数 你应该怎么做",
-      "referenceText": "If we notice abnormal engine parameter indications during cruise, we will follow SOP and QRH to troubleshoot/solve the problem. For example, if the oil temperature is higher than normal, we will monitor other engine parameters, then report it to ATC and request emergency landing at the nearest suitable airport and emergency services.\n\n如果在巡航时注意到发动机参数显示异常，我们会遵循标准操作程序（SOP）和快速参考手册（QRH）排查 / 解决问题。例如，若滑油温度高于正常值，我们会监控其他发动机参数，随后向空中交通管制（ATC）报告情况，并申请在最近的合适机场紧急着陆，同时请求应急服务 。"
+      "audioTextZh": "在巡航时，如果你注意到不正常发动机参数 你应该怎么做？",
+      "referenceText": "If we notice abnormal engine parameter indications during cruise, I would follow SOP and QRH to troubleshoot or solve the problem. For example, if the oil temperature is higher than normal, I would monitor other engine parameters, then report it to ATC and request priority or emergency handling at the nearest suitable airport and emergency services.",
+      "referenceTextZh": "这道题与发动机滑油有关。回答时应说明主要运行考虑因素，识别相关风险，并给出安全、可行的处置思路。具体行动应以飞机检查单、适用程序和实际情况为准。"
     },
     {
       "id": "opi-core-323",
       "taskTitle": "飞机系统-发动机滑油-6",
       "audioText": "What's your engine failure procedure during cruise?",
-      "audioTextZh": "在巡航时发动机失效程序是什么",
-      "referenceText": "If the engine fails during cruise, we will follow these procedures: First, shut down the faulty/affected engine and reduce power to idle. Second, check for any damage to the faulty/affected engine. Third, if there's no damage, consider/perform an engine restart. Finally, report to ATC and request priority landing.\n\n若巡航时发动机失效，我们会按以下程序操作：首先，关闭故障 / 受影响的发动机并将功率减至慢车。其次，检查故障 / 受影响发动机是否有损坏。第三，若发动机无损坏，考虑 / 执行发动机重启。最后，向空中交通管制（ATC）报告并申请优先着陆 。"
+      "audioTextZh": "在巡航时发动机失效程序是什么？",
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. If the engine fails during cruise, I would follow these procedures: First, shut down the faulty or affected engine and reduce power to idle. Second, check for any damage to the faulty or affected engine. Third, if there's no damage, consider or perform an engine restart. Finally, report to ATC and request priority landing.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。这道题与发动机滑油有关。回答时应说明主要运行考虑因素，识别相关风险，并给出安全、可行的处置思路。具体行动应以飞机检查单、适用程序和实际情况为准。"
     },
     {
       "id": "opi-core-324",
       "taskTitle": "飞机系统-发动机滑油-7",
       "audioText": "What kind of engine does your aircraft use?",
-      "audioTextZh": "你所飞的飞机使用什么类型的发动机?",
-      "referenceText": "I fly DA-40, which is equipped with a piston engine . It’s reliable, fuel-efficient at low speeds, suitable for training, with a four-stroke cycle (intake, compression, power, exhaust) to generate thrust.\n我驾驶的DA-40飞机使用活塞发动机。该发动机可靠，低速时燃油效率高，适用于飞行训练，通过四冲程循环进气、压缩、做功、排气产生推力。"
+      "audioTextZh": "你所飞的飞机使用什么类型的发动机？",
+      "referenceText": "I fly DA-40, which is equipped with a piston engine. It’s reliable, fuel-efficient at low speeds, suitable for training, with a four-stroke cycle (intake, compression, power, exhaust) to generate thrust.",
+      "referenceTextZh": "我驾驶的DA-40飞机使用活塞发动机。该发动机可靠，低速时燃油效率高，适用于飞行训练，通过四冲程循环进气、压缩、做功、排气产生推力。"
     },
     {
       "id": "opi-core-325",
       "taskTitle": "飞机系统-发动机滑油-8",
       "audioText": "What are the functions of aircraft engine?",
-      "audioTextZh": "飞机发动机的功能是什么?",
-      "referenceText": "The core function of an aircraft engine is to generate thrust to propel the aircraft forward. It also provides power for auxiliary systems like electrical system, hydraulic system, and air conditioning (via bleed air for large aircraft), ensuring normal flight operations.\n飞机发动机的核心功能是产生推力推动飞机前进，同时为电气系统、液压系统、空调系统大型飞机通过引气等辅助系统提供动力，保障飞行各项操作正常进行。"
+      "audioTextZh": "飞机发动机的功能是什么？",
+      "referenceText": "The core function of an aircraft engine is to generate thrust to propel the aircraft forward. It also provides power for auxiliary systems like electrical system, hydraulic system, and air conditioning (via bleed air for large aircraft), ensuring normal flight operations.",
+      "referenceTextZh": "飞机发动机的核心功能是产生推力推动飞机前进，同时为电气系统、液压系统、空调系统大型飞机通过引气等辅助系统提供动力，保障飞行各项操作正常进行。"
     },
     {
       "id": "opi-core-326",
       "taskTitle": "飞机系统-发动机滑油-9",
       "audioText": "What might be possible causes of engine problems?",
-      "audioTextZh": "造成发动机问题的原因可能是什么?",
-      "referenceText": "Possible causes include bird/debris ingestion, ice accumulation, fuel contamination or leakage, oil leakage, mechanical failures due to poor maintenance, lightning strike, and overheating, which may lead to reduced power, flame-out, or fire.\n可能的原因包括鸟击/外物吸入、积冰、燃油污染或泄漏、滑油泄漏、维护不当导致的机械故障、雷击以及过热，这些均可能导致发动机功率下降、熄火或起火。"
+      "audioTextZh": "造成发动机问题的原因可能是什么？",
+      "referenceText": "Possible causes include bird or debris ingestion, ice accumulation, fuel contamination or leakage, oil leakage, mechanical failures due to poor maintenance, lightning strike, and overheating, which may lead to reduced power, flame-out, or fire.",
+      "referenceTextZh": "可能的原因包括鸟击/外物吸入、积冰、燃油污染或泄漏、滑油泄漏、维护不当导致的机械故障、雷击以及过热，这些均可能导致发动机功率下降、熄火或起火。"
     },
     {
       "id": "opi-core-327",
       "taskTitle": "飞机系统-发动机滑油-10",
-      "audioText": "If you encounter engine problems in flight, what will you do?",
-      "audioTextZh": "如果你在飞行中遇到发动机问题,你会怎么做?",
-      "referenceText": "I will maintain aircraft control, follow SOP and QRH procedures, identify the problem (for example ice ingestion), take corresponding measures (such as anti-ice system, level change), monitor engine parameters, report to ATC, and request diversion or emergency landing if necessary.\n我会保持飞机控制，遵循标准操作程序和快速检查单QRH，识别问题如积冰吸入，采取相应措施如开启防冰系统、改变高度，监控发动机参数，向空管报告，必要时申请备降或紧急着陆。"
+      "audioText": "If you encounter engine problems in-flight, what will you do?",
+      "audioTextZh": "如果你在飞行中遇到发动机问题,你会怎么做？",
+      "referenceText": "I will maintain aircraft control, follow SOP and QRH procedures, identify the problem (for example ice ingestion), take corresponding measures (such as anti-ice system, level change), monitor engine parameters, report to ATC, and request diversion or emergency landing if necessary.",
+      "referenceTextZh": "我会保持飞机控制，遵循标准操作程序和快速检查单QRH，识别问题如积冰吸入，采取相应措施如开启防冰系统、改变高度，监控发动机参数，向空管报告，必要时申请备降或紧急着陆。"
     },
     {
       "id": "opi-core-328",
       "taskTitle": "飞机系统-发动机滑油-11",
       "audioText": "During flight, which engine parameter do you think is the most important? Why?",
-      "audioTextZh": "在飞行中,你觉得发动机的哪个参数是最重要的?",
-      "referenceText": "EGT (Exhaust Gas Temperature) is crucial. It reflects engine combustion efficiency and thermal load. Abnormal EGT may indicate fuel system issues or component damage, helping pilots detect problems early to prevent engine failure.\n排气温度EGT至关重要。它反映发动机燃烧效率和热负荷，EGT异常可能预示燃油系统问题或部件损坏，帮助飞行员及早发现故障，防止发动机失效。"
+      "audioTextZh": "在飞行中,你觉得发动机的哪个参数是最重要的？",
+      "referenceText": "EGT (Exhaust Gas Temperature) is crucial. It reflects engine combustion efficiency and thermal load. Abnormal EGT may indicate fuel system issues or component damage, helping pilots detect problems early to prevent engine failure.",
+      "referenceTextZh": "排气温度EGT至关重要。它反映发动机燃烧效率和热负荷，EGT异常可能预示燃油系统问题或部件损坏，帮助飞行员及早发现故障，防止发动机失效。"
     },
     {
       "id": "opi-core-329",
       "taskTitle": "飞机系统-发动机滑油-12",
       "audioText": "If the EGT parameter is abnormal during flight, what should you do?",
-      "audioTextZh": "在飞行中,如果发动机排气温度不正常,你会怎么做?",
-      "referenceText": "I will first monitor other parameters (N1, N2, oil pressure) to assess severity, reduce thrust if needed, check fuel and ignition systems, report to ATC, and prepare for diversion or emergency landing if EGT remains abnormal to avoid engine damage.\n我会首先监控其他参数N1、N2、滑油压力评估严重程度，必要时减小推力，检查燃油和点火系统，向空管报告，若排气温度持续异常，准备备降或紧急着陆，避免发动机损坏。"
+      "audioTextZh": "在飞行中,如果发动机排气温度不正常,你会怎么做？",
+      "referenceText": "I will first monitor other parameters (N1, N2, oil pressure) to assess severity, reduce thrust if needed, check fuel and ignition systems, report to ATC, and prepare for diversion or emergency landing if EGT remains abnormal to avoid engine damage.",
+      "referenceTextZh": "我会首先监控其他参数N1、N2、滑油压力评估严重程度，必要时减小推力，检查燃油和点火系统，向空管报告，若排气温度持续异常，准备备降或紧急着陆，避免发动机损坏。"
     },
     {
       "id": "opi-core-330",
       "taskTitle": "飞机系统-发动机滑油-13",
-      "audioText": "What do you know about the thrust reverser? What are the functions of the thrust reverser?",
-      "audioTextZh": "你知道飞机发动机上的反推装置吗?发动机反推装置的作用是什么?",
-      "referenceText": "Thrust reverser is a component on aircraft engines. Its main function is to redirect engine exhaust forward during landing, creating reverse thrust to decelerate the aircraft, shorten landing distance, and improve braking efficiency, enhancing landing safety.\n反推装置是飞机发动机上的一个部件，其主要作用是在着陆时将发动机排气向前偏转，产生反向推力使飞机减速，缩短着陆距离，提高刹车效率，提升着陆安全性。"
+      "audioText": "What do you know about the thrust reverser?",
+      "audioTextZh": "你知道飞机发动机上的反推装置吗？",
+      "referenceText": "Thrust reverser is a component on aircraft engines. Its main function is to redirect engine exhaust forward during landing, creating reverse thrust to decelerate the aircraft, shorten landing distance, and improve braking efficiency, enhancing landing safety.",
+      "referenceTextZh": "反推装置是飞机发动机上的一个部件，其主要作用是在着陆时将发动机排气向前偏转，产生反向推力使飞机减速，缩短着陆距离，提高刹车效率，提升着陆安全性。"
     },
     {
       "id": "opi-core-331",
       "taskTitle": "飞机系统-发动机滑油-14",
       "audioText": "What is the procedure for starting the engine?",
-      "audioTextZh": "发动机启动的程序是怎样的?",
-      "referenceText": "For DA-40, the procedure includes: check pre-start conditions (fuel, oil, electrical system), turn on master switch, engage starter, monitor engine parameters (EGT, oil pressure) until stable, and confirm normal operation before taxi.\n以DA-40为例，启动程序包括：检查启动前状态燃油、滑油、电气系统，打开主开关，启动起动机，监控发动机参数排气温度、滑油压力直至稳定，确认运行正常后再滑行。"
+      "audioTextZh": "发动机启动的程序是怎样的？",
+      "referenceText": "For DA-40, the procedure includes: check pre-start conditions (fuel, oil, electrical system), turn on master switch, engage starter, monitor engine parameters (EGT, oil pressure) until stable, and confirm normal operation before taxi.",
+      "referenceTextZh": "以DA-40为例，启动程序包括：检查启动前状态燃油、滑油、电气系统，打开主开关，启动起动机，监控发动机参数排气温度、滑油压力直至稳定，确认运行正常后再滑行。"
     },
     {
       "id": "opi-core-332",
       "taskTitle": "飞机系统-发动机滑油-15",
       "audioText": "What kind of pilot's operating errors can cause engine problems?",
-      "audioTextZh": "飞行员的什么操作失误会导致发动机问题?",
-      "referenceText": "Pilot operating errors causing engine problems include improper throttle control (abrupt changes), ignoring anti-ice activation in icing conditions, exceeding engine temperature/pressure limits, incorrect fuel management (contamination or insufficient supply), and failing to follow startup/shutdown procedures, leading to flameout, surge, or mechanical damage.\n导致发动机问题的飞行员操作失误包括：油门控制不当（急剧增减）、结冰条件下未开启防冰系统、超出发动机温度/压力限制、燃油管理错误（污染或供应不足）、未遵循启动/关闭程序，这些可能引发发动机熄火、喘振或机械损伤。"
+      "audioTextZh": "飞行员的什么操作失误会导致发动机问题？",
+      "referenceText": "Pilot operating errors causing engine problems include improper throttle control (abrupt changes), ignoring anti-ice activation in icing conditions, exceeding engine temperature or pressure limits, incorrect fuel management (contamination or insufficient supply), and failing to follow startup or shutdown procedures, leading to flameout, surge, or mechanical damage.",
+      "referenceTextZh": "导致发动机问题的飞行员操作失误包括：油门控制不当（急剧增减）、结冰条件下未开启防冰系统、超出发动机温度/压力限制、燃油管理错误（污染或供应不足）、未遵循启动/关闭程序，这些可能引发发动机熄火、喘振或机械损伤。"
     },
     {
       "id": "opi-core-333",
       "taskTitle": "飞机系统-发动机滑油-16",
       "audioText": "What do you know about turbofan engine?",
-      "audioTextZh": "你知道涡扇发动机吗?",
-      "referenceText": "Turbofan engines are widely used in commercial airliners. They have a large fan at the front, drawing in air—part flows through the core engine (combustion) and part bypasses it, providing thrust. Advantages include high efficiency, low noise, and strong thrust, suitable for long-haul flights. Key parameters include N1 (fan speed) and EGT (exhaust gas temperature).\n涡扇发动机广泛应用于商用客机，前端有大型风扇，吸入的空气一部分流经核心机（燃烧做功），一部分绕过核心机形成旁路气流，共同产生推力。其优势为效率高、噪音低、推力大，适用于长途飞行，关键参数包括风扇转速（N1）和排气温度（EGT）。"
+      "audioTextZh": "你知道涡扇发动机吗？",
+      "referenceText": "Turbofan engines are widely used in commercial airliners. They have a large fan at the front, drawing in air—part flows through the core engine (combustion) and part bypasses it, providing thrust. Advantages include high efficiency, low noise, and strong thrust, suitable for long-haul flights. Key parameters include N1 (fan speed) and EGT (exhaust gas temperature).",
+      "referenceTextZh": "涡扇发动机广泛应用于商用客机，前端有大型风扇，吸入的空气一部分流经核心机（燃烧做功），一部分绕过核心机形成旁路气流，共同产生推力。其优势为效率高、噪音低、推力大，适用于长途飞行，关键参数包括风扇转速（N1）和排气温度（EGT）。"
     },
     {
       "id": "opi-core-334",
       "taskTitle": "飞机系统-发动机滑油-17",
       "audioText": "What do you know about engine idle, when will the engine be turned into idle conditions?",
-      "audioTextZh": "你知道发动机慢车状态吗?发动机什么时候调至慢车状态?",
-      "referenceText": "Engine idle is a low-power operating state with minimal fuel supply and low rotational speed. Engines are set to idle during ground taxiing, before shutdown, after landing (during rollout), and in some holding phases. It reduces fuel consumption, noise, and wear while maintaining basic power for systems.\n发动机慢车状态是低功率运行状态，燃油供应最少、转速最低。发动机在地面滑行、关闭前、着陆后（滑跑阶段）以及部分等待阶段调至慢车状态，可降低燃油消耗、噪音和磨损，同时为系统维持基础动力。"
+      "audioTextZh": "你知道发动机慢车状态吗？",
+      "referenceText": "Engine idle is a low-power operating state with minimal fuel supply and low rotational speed. Engines are set to idle during ground taxiing, before shutdown, after landing (during rollout), and in some holding phases. It reduces fuel consumption, noise, and wear while maintaining basic power for systems.",
+      "referenceTextZh": "发动机慢车状态是低功率运行状态，燃油供应最少、转速最低。发动机在地面滑行、关闭前、着陆后（滑跑阶段）以及部分等待阶段调至慢车状态，可降低燃油消耗、噪音和磨损，同时为系统维持基础动力。"
     },
     {
       "id": "opi-core-335",
       "taskTitle": "飞机系统-发动机滑油-18",
       "audioText": "If one engine failed during flight, will it threat flight safety?",
-      "audioTextZh": "在飞行中,如果一个发动机失效,会威胁飞行安全吗?",
-      "referenceText": "Yes, it will threaten flight safety, especially for single-engine aircraft (leading to forced landing). For multi-engine aircraft, though redundant, it reduces performance, increases workload, and requires precise control. Pilots must follow SOPs, maintain altitude, and request diversion to the nearest suitable airport promptly.\n会的，这会威胁飞行安全，对于单发飞机尤其严重（可能导致迫降）。对于多发飞机，尽管有冗余设计，但会降低性能、增加工作负荷，需要精准操控。飞行员必须遵循标准操作程序（SOP），保持高度，并及时请求改航至最近的合适机场。"
+      "audioTextZh": "在飞行中,如果一个发动机失效,会威胁飞行安全吗？",
+      "referenceText": "Yes, it will threaten flight safety, especially for single-engine aircraft (leading to forced landing). For multi-engine aircraft, though redundant, it reduces performance, increases workload, and requires precise control. Pilots must follow SOPs, maintain altitude, and request diversion to the nearest suitable airport promptly.",
+      "referenceTextZh": "会的，这会威胁飞行安全，对于单发飞机尤其严重（可能导致迫降）。对于多发飞机，尽管有冗余设计，但会降低性能、增加工作负荷，需要精准操控。飞行员必须遵循标准操作程序（SOP），保持高度，并及时请求改航至最近的合适机场。"
     },
     {
       "id": "opi-core-336",
       "taskTitle": "飞机系统-发动机滑油-19",
-      "audioText": "How to avoid engine problems?",
-      "audioTextZh": "如何防止发动机问题发生?",
-      "referenceText": "To avoid engine problems, pilots conduct thorough preflight inspections, follow maintenance schedules, monitor parameters inflight, avoid adverse weather (icing, bird strike), use clean fuel, and undergo regular simulator training. Airlines ensure proper maintenance and timely component replacement to keep engines reliable.\n防止发动机问题的措施包括：飞行员执行全面的飞行前检查、遵循维护计划、飞行中监控发动机参数、避开恶劣天气（积冰、鸟击）、使用洁净燃油，并接受定期模拟机训练。航空公司需确保妥善维护，及时更换部件，保持发动机可靠性。"
+      "audioText": "How can pilots avoid engine problems?",
+      "audioTextZh": "如何防止发动机问题发生？",
+      "referenceText": "To avoid engine problems, pilots conduct thorough preflight inspections, follow maintenance schedules, monitor parameters inflight, avoid adverse weather (icing, bird strike), use clean fuel, and undergo regular simulator training. Airlines ensure proper maintenance and timely component replacement to keep engines reliable.",
+      "referenceTextZh": "防止发动机问题的措施包括：飞行员执行全面的飞行前检查、遵循维护计划、飞行中监控发动机参数、避开恶劣天气（积冰、鸟击）、使用洁净燃油，并接受定期模拟机训练。航空公司需确保妥善维护，及时更换部件，保持发动机可靠性。"
     }
   ]
 }

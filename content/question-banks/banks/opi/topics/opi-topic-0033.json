@@ -7,65 +7,74 @@
     {
       "id": "opi-core-467",
       "taskTitle": "缩略词-PBN/RNAV/RNP进近-1",
-      "audioText": "What is PBN?\nPBN",
+      "audioText": "What is PBN?",
       "audioTextZh": "是什么？",
-      "referenceText": "PBN stands for performance based navigation. It includes RNAV and RNP. PBN relies on GNSS, which can provide high navigation accuracy. Because of PBN, we can fly from one waypoint to another waypoint directly.\nPBN 代表基于性能的导航（Performance - Based Navigation）。它包含区域导航（RNAV）和所需导航性能（RNP）。PBN 依赖全球导航卫星系统（GNSS），可提供高精度导航。借助 PBN，我们能直接从一个航路点飞往另一个航路点。"
+      "referenceText": "PBN stands for performance based navigation. It includes RNAV and RNP. PBN relies on GNSS, which can provide high navigation accuracy. Because of PBN, pilots can fly from one waypoint to another waypoint directly.",
+      "referenceTextZh": "代表基于性能的导航（Performance - Based Navigation）。它包含区域导航（RNAV）和所需导航性能（RNP）。PBN 依赖全球导航卫星系统（GNSS），可提供高精度导航。借助 PBN，我们能直接从一个航路点飞往另一个航路点。"
     },
     {
       "id": "opi-core-468",
       "taskTitle": "缩略词-PBN/RNAV/RNP进近-2",
-      "audioText": "What is RNP?\nRNP",
+      "audioText": "What is RNP?",
       "audioTextZh": "是什么？",
-      "referenceText": "RNP stands for Required navigation performance. It is a part of PBN. It relies on GNSS, which can provide high navigation accuracy. Because of RNP, we can fly from one waypoint to another waypoint directly.\nRNP 代表所需导航性能（Required Navigation Performance）。它是 PBN（基于性能的导航）的一部分。它依赖全球导航卫星系统（GNSS），可提供高精度导航。借助 RNP，我们能直接从一个航路点飞往另一个航路点。"
+      "referenceText": "RNP stands for Required navigation performance. It is a part of PBN. It relies on GNSS, which can provide high navigation accuracy. Because of RNP, pilots can fly from one waypoint to another waypoint directly.",
+      "referenceTextZh": "代表所需导航性能（Required Navigation Performance）。它是 PBN（基于性能的导航）的一部分。它依赖全球导航卫星系统（GNSS），可提供高精度导航。借助 RNP，我们能直接从一个航路点飞往另一个航路点。"
     },
     {
       "id": "opi-core-469",
       "taskTitle": "缩略词-PBN/RNAV/RNP进近-3",
-      "audioText": "What is RNAV?\nRNAV",
+      "audioText": "What is RNAV?",
       "audioTextZh": "是什么？",
-      "referenceText": "RNAV stands for area navigation. It is a part of PBN. It relies on GNSS, which can provide high navigation accuracy. Because of RNAV, we can fly from one waypoint to another waypoint directly.\nRNAV 代表区域导航（Area Navigation）。它是 PBN（基于性能的导航）的一部分。它依赖全球导航卫星系统（GNSS），可提供高精度导航。借助 RNAV，我们能够直接从一个航路点飞往另一个航路点。"
+      "referenceText": "RNAV stands for area navigation. It is a part of PBN. It relies on GNSS, which can provide high navigation accuracy. Because of RNAV, pilots can fly from one waypoint to another waypoint directly.",
+      "referenceTextZh": "代表区域导航（Area Navigation）。它是 PBN（基于性能的导航）的一部分。它依赖全球导航卫星系统（GNSS），可提供高精度导航。借助 RNAV，我们能够直接从一个航路点飞往另一个航路点。"
     },
     {
       "id": "opi-core-471",
       "taskTitle": "缩略词-PBN/RNAV/RNP进近-4",
-      "audioText": "What's the difference between RNP and RNAV?\nRNP",
+      "audioText": "What's the difference between RNP and RNAV?",
       "audioTextZh": "和 RNAV 的区别是什么？",
-      "referenceText": "RNAV is area navigation. RNAV can only be used en - route and during arrival. As for RNP, not only it can be used en - route and during arrival, but also during final approach and go around.\nRNAV 是区域导航，仅可用于航路阶段和进近阶段。至于 RNP，它不仅可用于航路阶段和进近阶段，还可用于最后进近和复飞阶段。"
+      "referenceText": "RNAV is area navigation. RNAV can only be used en-route and during arrival. As for RNP, not only it can be used en-route and during arrival, but also during final approach and go around.",
+      "referenceTextZh": "是区域导航，仅可用于航路阶段和进近阶段。至于 RNP，它不仅可用于航路阶段和进近阶段，还可用于最后进近和复飞阶段。"
     },
     {
       "id": "opi-core-781",
       "taskTitle": "缩略词-PBN/RNAV/RNP进近-5",
       "audioText": "What is RNP approach?",
-      "audioTextZh": "什么是RNP进近",
-      "referenceText": "（1）RNP stands for Required Navigation Performance. There are two types of RNP approaches: RNP approach and RNP AR approach. Both approaches are similar to RNAV approach, however, RNP approach with the use of various sensors and equipment, achieves far greater accuracy through the use of performance based navigation (PBN) and can therefore be flown to a DA rather than a MDA.\n所需导航性能（RNP）是指所需导航性能这一概念。RNP 进近有两种类型：常规 RNP 进近和需授权的 RNP（RNP AR ）进近。这两种进近方式都与区域导航（RNAV）进近类似。不过，RNP 进近通过运用各类传感器和设备，借助基于性能的导航（PBN）技术，能实现更高的精度，因此飞机可按照该进近程序下降至决断高度（DA），而非最低下降高度（MDA） 。\n（2）RNP stands for required navigation performance. RNP approach uses GNSS as its navigation source. It is quite popular in the airports with complicated terrains. It can provide both lateral and vertical guidance for approach.\nRNP 是所需导航性能（Required Navigation Performance）的缩写。RNP 进近以全球导航卫星系统（GNSS）为导航源，在地形复杂的机场广泛应用，可为进近提供水平和垂直引导。"
+      "audioTextZh": "什么是RNP进近？",
+      "referenceText": "RNP stands for required navigation performance. RNP approach uses GNSS as its navigation source. It is quite popular in the airports with complicated terrains. It can provide both lateral and vertical guidance for approach.",
+      "referenceTextZh": "是所需导航性能（Required Navigation Performance）的缩写。RNP 进近以全球导航卫星系统（GNSS）为导航源，在地形复杂的机场广泛应用，可为进近提供水平和垂直引导。"
     },
     {
       "id": "opi-core-782",
       "taskTitle": "缩略词-PBN/RNAV/RNP进近-6",
       "audioText": "What are the advantages of RNP approach compared with other type of approach?",
       "audioTextZh": "和其他进近方式相比，RNP进近有哪些优势？",
-      "referenceText": "（1）There are many advantages of RNP approach compared with other types of approach. First, the aircraft can maintain a constant angle or CDFA until reaching minima. This has positive benefits to fuel saving, engine life, passenger comfort and situational awareness. Second, it can reduce the flight crew stress. Third, it can minimize the risk of CFIT.\n和其他进近方式相比，RNP进近有很多优势：\n第一，飞机能保持恒定的角度（连续下降最后进近）直到达到最低高度，这有助于省油、发动机寿命、乘客舒适和情景意识；\n第二，可以减轻飞行人员压力；\n第三，可以降低可控撞地（CFIT）风险。\n（2）RNP uses GNSS as its navigation source so it can be used in airports with complicated terrains and airports with no ground navaids. RNP approach can provide both lateral and vertical guidance, it is more accurate than non-precision approach. It can reduce the pilots’ workload, reduce the risk of CFIT and increase the safety margin.\nRNP 以 GNSS 为导航源，可在地形复杂及无地面导航设备的机场使用；能提供水平和垂直引导，精度高于非精密进近；可减轻飞行员工作负荷，降低可控飞行撞地（CFIT）风险，提升安全裕度。"
+      "referenceText": "RNP uses GNSS as its navigation source so it can be used in airports with complicated terrains and airports with no ground navaids. RNP approach can provide both lateral and vertical guidance, it is more accurate than non-precision approach. It can reduce the pilots’ workload, reduce the risk of CFIT and increase the safety margin.",
+      "referenceTextZh": "以 GNSS 为导航源，可在地形复杂及无地面导航设备的机场使用；能提供水平和垂直引导，精度高于非精密进近；可减轻飞行员工作负荷，降低可控飞行撞地（CFIT）风险，提升安全裕度。"
     },
     {
       "id": "opi-core-783",
       "taskTitle": "缩略词-PBN/RNAV/RNP进近-7",
       "audioText": "Why is RNP approach more and more popular?",
       "audioTextZh": "为什么RNP进近越来越受欢迎？",
-      "referenceText": "（1）RNP approach is more and more popular.\n1 RNP approach can provide both lateral navigation (LNAV)/guidance and vertical navigation (LNAV)/guidance.\n2 RNP approach can be used in the airports with complicated terrains such as Linzi Airport.\nRNP进近越来越受欢迎。一方面，RNP进近可以提供水平导航 （LNAV）；另一方面，RNP进近可以提供垂直导航 (VNAV)。此外，RNP进近也可以用于地形复杂的机场。\n（2）Because RNP approach is based on GNSS, it doesn’t rely on ground facilities, so it can reduce cost of the airport and airlines. What’s more, it can be used in the remote airport or airport with complex terrain.\n因为 RNP 进近基于 GNSS，不依赖地面设施，可降低机场和航空公司成本；此外，还可用于偏远机场或地形复杂的机场。"
+      "referenceText": "Because RNP approach is based on GNSS, it doesn’t rely on ground facilities, so it can reduce cost of the airport and airlines. What’s more, it can be used in the remote airport or airport with complex terrain.",
+      "referenceTextZh": "因为 RNP 进近基于 GNSS，不依赖地面设施，可降低机场和航空公司成本；此外，还可用于偏远机场或地形复杂的机场。"
     },
     {
       "id": "opi-core-784",
       "taskTitle": "缩略词-PBN/RNAV/RNP进近-8",
-      "audioText": "What are the significant difference between RNAV area navigation and RNP?\nRNAV",
+      "audioText": "What are the significant difference between RNAV area navigation and RNP?",
       "audioTextZh": "和RNP的明显区别是什么？",
-      "referenceText": "（1）There is a significant difference between RNAV and RNP. RNP is equipped with OPMA equipment while RNAV is not equipped with OPMA equipment.\n 区域导航（RNAV）和所需导航性能（RNP）之间存在明显区别。所需导航性能（RNP）配备了 OPMA 设备，而区域导航（RNAV）未配备 OPMA 设备 。\n（2）RNAV stands for area navigation while RNP stands for required navigation performance. OPMA (on-board performance monitoring and alert) is required in RNP specification but not in RNAV specification.\nRNAV 是区域导航（Area Navigation）的缩写，RNP 是所需导航性能（Required Navigation Performance）的缩写。RNP 规范要求配备机上性能监控与告警系统（OPMA），而 RNAV 规范无此要求。"
+      "referenceText": "RNAV stands for area navigation while RNP stands for required navigation performance. OPMA (on-board performance monitoring and alert) is required in RNP specification but not in RNAV specification.",
+      "referenceTextZh": "是区域导航（Area Navigation）的缩写，RNP 是所需导航性能（Required Navigation Performance）的缩写。RNP 规范要求配备机上性能监控与告警系统（OPMA），而 RNAV 规范无此要求。"
     },
     {
       "id": "opi-core-785",
       "taskTitle": "缩略词-PBN/RNAV/RNP进近-9",
       "audioText": "What are the advantages of modern satellite navigation?",
       "audioTextZh": "现代卫星导航有何优势？",
-      "referenceText": "（1）There are some advantages of modern satellite navigation.\n1 It can provide precise guidance to aircraft worldwide.\n 2 It can provide precise guidance to aircraft in all weather conditions.\n3 It is more accurate than conventional navigation.\n4 It is more reliable than conventional navigation 现代卫星导航有一些优势。\n1 它能够为全球的飞机提供精确制导。\n2 它能够在各种天气条件下为飞机提供精确制导。3  它比传统导航更精确。\n4 它比传统导航更可靠。\n\n（2）There are some advantages of modern navigation. Take GPS for example, first, it can reduce the cost of airlines, because more flexible and direct routes are available. Second, it can be used in the remote areas and other area with no ground navigation equipment. Third, it can reduce the pilot’s workload.\n现代导航有诸多优势，以 GPS 为例：一是可提供更灵活、更直接的航线，降低航空公司成本；二是可在偏远地区及无地面导航设备的区域使用；三是可减轻飞行员工作负荷。"
+      "referenceText": "There are some advantages of modern navigation. Take GPS for example, first, it can reduce the cost of airlines, because more flexible and direct routes are available. Second, it can be used in the remote areas and other area with no ground navigation equipment. Third, it can reduce the pilot’s workload.",
+      "referenceTextZh": "现代导航有诸多优势，以 GPS 为例：一是可提供更灵活、更直接的航线，降低航空公司成本；二是可在偏远地区及无地面导航设备的区域使用；三是可减轻飞行员工作负荷。"
     }
   ]
 }

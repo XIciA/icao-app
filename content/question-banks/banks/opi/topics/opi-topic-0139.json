@@ -7,30 +7,34 @@
     {
       "id": "opi-extra-326",
       "taskTitle": "飞机系统-飞行自动化系统-1",
-      "audioText": "Do you know any automation system in the cockpit?\nPlease name a few of them.",
-      "audioTextZh": "你知道驾驶舱中有哪些自动化系统吗？请列举几个。",
-      "referenceText": "There are some automation systems in the cockpit, such as auto pilot, auto throttle, auto landing system, auto pitch and so on.\n驾驶舱中有多种自动化系统，如自动驾驶仪（Auto Pilot）、自动油门（Auto Throttle）、自动着陆系统（Auto Landing System）、自动俯仰控制（Auto Pitch）等。"
+      "audioText": "Do you know any automation system in the cockpit?",
+      "audioTextZh": "你知道驾驶舱中有哪些自动化系统吗？",
+      "referenceText": "There are some automation systems in the cockpit, such as auto pilot, auto throttle, auto landing system, auto pitch and so on.",
+      "referenceTextZh": "驾驶舱中有多种自动化系统，如自动驾驶仪（Auto Pilot）、自动油门（Auto Throttle）、自动着陆系统（Auto Landing System）、自动俯仰控制（Auto Pitch）等。"
     },
     {
       "id": "opi-extra-327",
       "taskTitle": "飞机系统-飞行自动化系统-2",
       "audioText": "How reliable are those system?",
       "audioTextZh": "这些系统的可靠性如何？",
-      "referenceText": "As far as I know, those systems are very reliable. Because each of them has one or two backup systems. If one system is inoperative, we can switch to another one.\n据我所知，这些系统可靠性很高。因为每个系统都有 1-2 个备份系统，若主系统失效，可切换至备份系统。"
+      "referenceText": "As far as I know, those systems are very reliable. Because each of them has one or two backup systems. If one system is inoperative, pilots can switch to another one.",
+      "referenceTextZh": "据我所知，这些系统可靠性很高。因为每个系统都有 1-2 个备份系统，若主系统失效，可切换至备份系统。"
     },
     {
       "id": "opi-extra-328",
       "taskTitle": "飞机系统-飞行自动化系统-3",
-      "audioText": "What are the advantages and disadvantages of\nflight automation system?",
+      "audioText": "What are the advantages and disadvantages of flight automation system?",
       "audioTextZh": "飞行自动化系统的优缺点是什么？",
-      "referenceText": "It can reduce pilot’s workload, increase the performance of the aircraft, ensure the flight safety. But the pilots may become too dependent on the automation system. Once the automation system is inoperative, pilots may not know how to control the aircraft.\n优点：减轻飞行员工作负荷，提升飞机性能，保障飞行安全；缺点：飞行员可能过度依赖自动化系统，一旦系统失效，可能无法正常操纵飞机。"
+      "referenceText": "It can reduce pilot’s workload, increase the performance of the aircraft, ensure the flight safety. But the pilots may become too dependent on the automation system. Once the automation system is inoperative, pilots may not know how to control the aircraft.",
+      "referenceTextZh": "优点：减轻飞行员工作负荷，提升飞机性能，保障飞行安全；缺点：飞行员可能过度依赖自动化系统，一旦系统失效，可能无法正常操纵飞机。"
     },
     {
       "id": "opi-extra-329",
       "taskTitle": "飞机系统-飞行自动化系统-4",
-      "audioText": "What is the role of a pilot in civil aviation today?\nAre pilots too dependent on automated systems?",
-      "audioTextZh": "如今民航飞行员的角色是什么？飞行员是否过度依赖自动化系统？",
-      "referenceText": "In today’s civil aviation, the pilot is more like a manager. Because the automation system helps the pilots to control the aircraft. Pilots only need to monitor and manage these systems. I think pilot is too dependent on automated systems nowadays.\n如今民航中，飞行员更像 “管理者”—— 自动化系统协助操纵飞机，飞行员仅需监控和管理这些系统。我认为目前飞行员对自动化系统存在过度依赖。"
+      "audioText": "What is the role of a pilot in civil aviation today?",
+      "audioTextZh": "如今民航飞行员的角色是什么？",
+      "referenceText": "In today’s civil aviation, the pilot is more like a manager. Because the automation system helps the pilots to control the aircraft. Pilots only need to monitor and manage these systems. I think pilot is too dependent on automated systems nowadays.",
+      "referenceTextZh": "如今民航中，飞行员更像 “管理者”—— 自动化系统协助操纵飞机，飞行员仅需监控和管理这些系统。我认为目前飞行员对自动化系统存在过度依赖。"
     }
   ]
 }

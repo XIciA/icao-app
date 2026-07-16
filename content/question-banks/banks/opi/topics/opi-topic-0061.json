@@ -9,49 +9,56 @@
       "taskTitle": "人的因素-控酒政策-1",
       "audioText": "What's your company alcohol policy?",
       "audioTextZh": "贵公司的酒精政策是怎样的？",
-      "referenceText": "In accordance with laws and regulations, crew members are prohibited from operating a flight if they have consumed alcohol within 8 hours. Additionally, before each flight, we must undergo an alcohol test and pass it.\n依据法律法规，机组人员若在 8 小时内饮用过酒精类饮品，禁止执行飞行任务。此外，每次飞行前，我们必须进行酒精检测并通过测试 。\n\nBefore each flight, we undergo mandatory alcohol tests using breathalyzers. The results are directly submitted to the authority. Those with blood alcohol content exceeding 0.04% are prohibited from flying and face disciplinary actions, ensuring no intoxicated pilot operates an aircraft.\n每次飞行前，我们需接受强制酒精检测，使用酒精测试仪进行筛查。检测结果直接上报相关部门，血液酒精含量超过0.04%的人员禁止飞行并面临纪律处分，确保无醉酒飞行员执行飞行任务。"
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. Before each flight, we undergo mandatory alcohol tests using breathalyzers. The results are directly submitted to the authority. Those with blood alcohol content exceeding 0.04% are prohibited from flying and face disciplinary actions, ensuring no intoxicated pilot operates an aircraft.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。每次飞行前，我们需接受强制酒精检测，使用酒精测试仪进行筛查。检测结果直接上报相关部门，血液酒精含量超过0.04%的人员禁止飞行并面临纪律处分，确保无醉酒飞行员执行飞行任务。"
     },
     {
       "id": "opi-core-654",
       "taskTitle": "人的因素-控酒政策-2",
       "audioText": "Is it necessary to reduce pilot alcohol Intake?",
       "audioTextZh": "有必要限制飞行员的酒精摄入吗？",
-      "referenceText": "Yes, I think so. Alcohol is detrimental to pilots’ health. If a pilot consumes excessive alcohol, they may struggle to focus on controlling the aircraft, make errors, or forget procedures. This is extremely dangerous.\n有必要。酒精对飞行员的健康有害。如果飞行员过量饮酒，可能难以集中精力操控飞机，出现失误或遗忘操作程序，这非常危险 。"
+      "referenceText": "Yes, I think so. Alcohol is detrimental to pilots’ health. If a pilot consumes excessive alcohol, they may struggle to focus on controlling the aircraft, make errors, or forget procedures. This is extremely dangerous.",
+      "referenceTextZh": "有必要。酒精对飞行员的健康有害。如果飞行员过量饮酒，可能难以集中精力操控飞机，出现失误或遗忘操作程序，这非常危险。"
     },
     {
       "id": "opi-core-655",
       "taskTitle": "人的因素-控酒政策-3",
-      "audioText": "Can you drink alcohol before flight? why?",
-      "audioTextZh": "你可以在飞行前饮酒吗?为什么?",
-      "referenceText": "No, I can’t. Alcohol affects cognitive abilities, reaction speed, and judgment, which are essential for pilot operations. It increases the risk of human errors and endangers flight safety. Additionally, CCAR regulations strictly prohibit drinking 8 hours before flight, with violations leading to severe penalties.\n不可以。酒精会影响认知能力、反应速度和判断力，这些都是飞行员操作的关键能力。它会增加人为失误风险，危及飞行安全。此外，民航法规严格禁止飞行前8小时饮酒，违规将面临严厉处罚。"
+      "audioText": "Can you drink alcohol before flight? Why?",
+      "audioTextZh": "你可以在飞行前饮酒吗？为什么？",
+      "referenceText": "No, I can’t. Alcohol affects cognitive abilities, reaction speed, and judgment, which are essential for pilot operations. It increases the risk of human errors and endangers flight safety. Additionally, CCAR regulations strictly prohibit drinking 8 hours before flight, with violations leading to severe penalties.",
+      "referenceTextZh": "不可以。酒精会影响认知能力、反应速度和判断力，这些都是飞行员操作的关键能力。它会增加人为失误风险，危及飞行安全。此外，民航法规严格禁止飞行前8小时饮酒，违规将面临严厉处罚。"
     },
     {
       "id": "opi-core-656",
       "taskTitle": "人的因素-控酒政策-4",
       "audioText": "What is the regulation like on drinking alcohol?",
       "audioTextZh": "关于饮酒的规定是什么？",
-      "referenceText": "Pilots are not allowed to drink alcohol 8 hours before the flight. And the alcohol content in the blood shall not be more than 0.04%.\n飞行员飞行前 8 小时内禁止饮酒，且血液酒精含量不得超过 0.04%。"
+      "referenceText": "Alcohol limits and required abstinence periods vary by State and operator, so crews must follow the strictest applicable rule. A pilot should never report for duty while impaired, should not rely only on a clock or a legal limit, and should report any fitness concern. The safe principle is to allow adequate time, avoid alcohol before duty, and comply with company and authority requirements.",
+      "referenceTextZh": "酒精限值和禁酒时间因国家和运营人而异，机组必须遵守适用规定中最严格的要求。飞行员绝不能在受到酒精影响时执行任务，也不能只依赖时间或法定限值判断；任何适航值勤疑虑都应报告。安全原则是值勤前留出充分时间、避免饮酒，并遵守公司和监管要求。"
     },
     {
       "id": "opi-core-657",
       "taskTitle": "人的因素-控酒政策-5",
-      "audioText": "Do you have alcohol test for crew\nmembers every flight? What do you think\nabout it?",
-      "audioTextZh": "每次飞行前是否对机组进行酒精测试？你对此有何看法？",
-      "referenceText": "Yes, before each flight, we have alcohol test. I think it’s important for the flight safety.\n是的，每次飞行前都会进行酒精测试。我认为这对飞行安全至关重要。"
+      "audioText": "Do you have alcohol test for crew members every flight, and what do you think about it?",
+      "audioTextZh": "每次飞行前是否对机组进行酒精测试？",
+      "referenceText": "Yes, before each flight, we have alcohol test. I think it’s important for the flight safety.",
+      "referenceTextZh": "是的，每次飞行前都会进行酒精测试。我认为这对飞行安全至关重要。"
     },
     {
       "id": "opi-core-658",
       "taskTitle": "人的因素-控酒政策-6",
-      "audioText": "Why pilots are not allowed to drink\nalcohol before flights?",
-      "audioTextZh": "飞行员在飞行前为什么不允许喝酒?",
-      "referenceText": "Alcohol impairs pilots’ reaction speed, judgment, and concentration, critical for safe flight. It also causes fatigue and dizziness, increasing human errors. CCAR regulations prohibit drinking 8 hours before flight to ensure pilots are in optimal physical and mental condition.\n酒精会损害飞行员的反应速度、判断力和专注力，这些都是安全飞行的关键。它还会导致疲劳、头晕，增加人为失误风险。民航法规禁止飞行前8小时饮酒，以确保飞行员处于最佳身心状态。"
+      "audioText": "Why pilots are not allowed to drink alcohol before flights?",
+      "audioTextZh": "飞行员在飞行前为什么不允许喝酒？",
+      "referenceText": "Alcohol impairs pilots’ reaction speed, judgment, and concentration, critical for safe flight. It also causes fatigue and dizziness, increasing human errors. CCAR regulations prohibit drinking 8 hours before flight to ensure pilots are in optimal physical and mental condition.",
+      "referenceTextZh": "酒精会损害飞行员的反应速度、判断力和专注力，这些都是安全飞行的关键。它还会导致疲劳、头晕，增加人为失误风险。民航法规禁止飞行前8小时饮酒，以确保飞行员处于最佳身心状态。"
     },
     {
       "id": "opi-core-659",
       "taskTitle": "人的因素-控酒政策-7",
-      "audioText": "Why is it necessary to have the\nlimit of the alcohol intake?",
-      "audioTextZh": "为什么限制飞行员的酒精摄入是有必要的?",
-      "referenceText": "Limiting alcohol intake is critical because alcohol impairs pilots’ physical and mental capabilities. It slows reaction, reduces concentration, and distorts judgment, increasing the likelihood of operational errors. This restriction ensures pilots remain alert and competent, safeguarding flight safety for crew and passengers.\n限制酒精摄入至关重要，因为酒精会损害飞行员的身心能力，减缓反应速度、降低专注力并扭曲判断力，增加操作失误的可能性。这一限制能确保飞行员保持警觉和胜任状态，保障机组及乘客的飞行安全。"
+      "audioText": "Why is it necessary to have the limit of the alcohol intake?",
+      "audioTextZh": "为什么限制飞行员的酒精摄入是有必要的？",
+      "referenceText": "Limiting alcohol intake is critical because alcohol impairs pilots’ physical and mental capabilities. It slows reaction, reduces concentration, and distorts judgment, increasing the likelihood of operational errors. This restriction ensures pilots remain alert and competent, safeguarding flight safety for crew and passengers.",
+      "referenceTextZh": "限制酒精摄入至关重要，因为酒精会损害飞行员的身心能力，减缓反应速度、降低专注力并扭曲判断力，增加操作失误的可能性。这一限制能确保飞行员保持警觉和胜任状态，保障机组及乘客的飞行安全。"
     }
   ]
 }

@@ -25,8 +25,8 @@
       "taskTitle": "图片题-014-02",
       "audioText": "How do multiple display screens help pilots during flight?",
       "audioTextZh": "多个显示屏如何在飞行中帮助飞行员？",
-      "referenceText": "This situation is related to Modern glass cockpit. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
-      "referenceTextZh": "这种情况与现代玻璃驾驶舱有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
+      "referenceText": "Multiple displays integrate attitude, airspeed, altitude, navigation, engine, and system information in the pilots’ normal field of view. They improve cross-checking and help the crew identify trends or abnormal indications. Pilots still need disciplined scanning and must know how to manage display or sensor failures.",
+      "referenceTextZh": "多个显示屏可以在飞行员正常视野内综合显示姿态、空速、高度、导航、发动机和系统信息，改善交叉检查，并帮助机组发现趋势或异常指示。飞行员仍需保持规范的仪表扫描，并了解显示器或传感器失效时的处置方法。",
       "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-014-q02.mp3"
     }
   ]

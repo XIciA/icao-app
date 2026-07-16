@@ -7,16 +7,18 @@
     {
       "id": "opi-extra-330",
       "taskTitle": "气象-冬夏季运行-1",
-      "audioText": "When you operate in winter, what should you\nconsider?",
+      "audioText": "When you operate in winter, what should you consider?",
       "audioTextZh": "冬季运行时，需考虑哪些因素？",
-      "referenceText": "There are some factors we should take into consideration when operate in winter. First, before flight, we should get the weather information to check if there is any icing area on our flight planned route. Second, before takeoff, we should make sure there is no ice buildup on the aircraft. Deicing might be required before takeoff. Third, we should pay attention to the runway braking action. It may be poor.\n冬季运行需考虑以下因素：一是飞行前获取气象信息，检查计划航线是否有积冰区域；二是起飞前确保飞机表面无结冰，必要时进行除冰；三是关注跑道刹车效果，冬季刹车效果可能较差。"
+      "referenceText": "There are some factors pilots should take into consideration when operate in winter. First, before flight, pilots should get the weather information to check if there is any icing area on our flight planned route. Second, before takeoff, pilots should make sure there is no ice buildup on the aircraft. Deicing might be required before takeoff. Third, pilots should pay attention to the runway braking action. It may be poor.",
+      "referenceTextZh": "冬季运行需考虑以下因素：一是飞行前获取气象信息，检查计划航线是否有积冰区域；二是起飞前确保飞机表面无结冰，必要时进行除冰；三是关注跑道刹车效果，冬季刹车效果可能较差。"
     },
     {
       "id": "opi-extra-331",
       "taskTitle": "气象-冬夏季运行-2",
-      "audioText": "When you operate in summer, what kind of threat do\nyou face?",
+      "audioText": "When you operate in summer, what kind of threat do you face?",
       "audioTextZh": "夏季运行时，会面临哪些威胁？",
-      "referenceText": "In summer operation, we may face some dangerous weather, such as thunderstorm, heavy rain, lightening strike and so on.\n可能遭遇雷暴、暴雨、雷击等危险天气"
+      "referenceText": "In summer operation, we may face some dangerous weather, such as thunderstorm, heavy rain, lightening strike and so on.",
+      "referenceTextZh": "可能遭遇雷暴、暴雨、雷击等危险天气。"
     }
   ]
 }

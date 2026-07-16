@@ -23,19 +23,19 @@
     {
       "id": "opi-image-020-q02",
       "taskTitle": "图片题-020-02",
-      "audioText": "How can ice contamination on wings affect the flight safety?",
-      "audioTextZh": "机翼冰污染会如何影响飞行安全？",
-      "referenceText": "This situation is related to Snow and ice contamination. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
-      "referenceTextZh": "这种情况与积雪和结冰污染有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
+      "audioText": "How can ice contamination on the wings affect flight safety?",
+      "audioTextZh": "机翼结冰污染会如何影响飞行安全？",
+      "referenceText": "Ice contamination changes the wing shape and surface roughness. It can reduce lift, increase drag and stall speed, impair handling, and create unreliable instrument or control indications. Even a small amount of contamination can significantly reduce the safety margin, especially during takeoff and landing.",
+      "referenceTextZh": "结冰污染会改变机翼外形并增加表面粗糙度，可能降低升力、增加阻力和失速速度、恶化操纵性能，并造成仪表或操纵指示不可靠。即使少量污染也可能显著降低安全裕度，尤其是在起飞和着陆阶段。",
       "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-020-q02.mp3"
     },
     {
       "id": "opi-image-020-q03",
       "taskTitle": "图片题-020-03",
-      "audioText": "Under that situation,what should pilots do to make sure the flight safety?",
-      "audioTextZh": "在这种情况下，飞行员应做什么来确保飞行安全？",
-      "referenceText": "This situation is related to Snow and ice contamination. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
-      "referenceTextZh": "这种情况与积雪和结冰污染有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
+      "audioText": "What should pilots do to ensure safety in this situation?",
+      "audioTextZh": "在这种情况下，飞行员应如何确保飞行安全？",
+      "referenceText": "Pilots should not take off until all critical surfaces are free of prohibited contamination. They should use approved de-icing or anti-icing procedures, respect holdover-time limitations, perform the required checks, and reassess conditions if precipitation continues. If a clean-aircraft condition cannot be confirmed, the departure should be delayed.",
+      "referenceTextZh": "在确认所有关键表面没有禁止的污染前，飞行员不应起飞。机组应采用经批准的除冰或防冰程序，遵守保持时间限制，完成规定检查，并在降水持续时重新评估条件。如果无法确认飞机清洁，应延误离场。",
       "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-020-q03.mp3"
     }
   ]

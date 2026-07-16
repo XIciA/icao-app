@@ -14,10 +14,10 @@
     {
       "id": "opi-image-008-q01",
       "taskTitle": "图片题-008-01",
-      "audioText": "Please describe what you can see in this picture",
+      "audioText": "Please describe what you can see in this picture?",
       "audioTextZh": "请描述你在这张图片中看到的内容。",
-      "referenceText": "In this picture, I can see a situation related to Simulator training. The key points are safe practice of abnormal procedures, crew coordination, decision making, and instrument skills. It is important for the crew to recognize the risk early, keep good communication, and follow standard operating procedures.",
-      "referenceTextZh": "在这张图片中，我看到的是与模拟机训练有关的情况。关键点包括安全练习非正常程序、机组配合、决策能力和仪表技能。机组应及早识别风险，保持良好沟通，并按照标准操作程序处置。",
+      "referenceText": "",
+      "referenceTextZh": "",
       "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-008-q01.mp3"
     },
     {

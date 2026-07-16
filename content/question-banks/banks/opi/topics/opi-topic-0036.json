@@ -9,84 +9,96 @@
       "taskTitle": "飞机系统-起落架-1",
       "audioText": "If your landing gear couldn't be extended during approach, what will you do?",
       "audioTextZh": "进近时若起落架无法放下，你会怎么做？",
-      "referenceText": "If I can't extend the landing gear during approach, first of all, I will request the holding area for check. Secondly, if I am not sure about the landing gear position, I will request a low pass for visual check. Third, if it still can't be extended, I will try manual extension. At last, if it still doesn't work, I will have to perform a belly landing as a last resort.\n若进近时我无法放下起落架，首先，我会申请进入等待空域进行检查。其次，若不确定起落架位置，我会申请低空通场以目视检查。第三，若起落架仍无法放下，我会尝试手动放下。最后，若还是不行，我只能进行机腹着陆。\n\nAbort the approach and enter a holding pattern. Follow SOP and checklist to attempt manual or gravity extension. Conduct a low pass for ground visual confirmation. If extension fails, dump fuel to reduce weight, inform crew and passengers, declare emergency to ATC, and request foam on the runway for belly landing. Prepare for evacuation after landing.\n中断进近并加入等待程序；遵循SOP和检查单尝试手动或重力放轮；低空通场让地面人员目视确认起落架状态；若放轮失败，放油减轻重量，告知机组和乘客，向空管宣布紧急状态，请求跑道喷洒泡沫以准备机腹着陆；落地后准备撤离。"
+      "referenceText": "Abort the approach and enter a holding pattern. Follow SOP and checklist to attempt manual or gravity extension. Conduct a low pass for ground visual confirmation. If extension fails, dump fuel to reduce weight, inform crew and passengers, declare emergency to ATC, and request foam on the runway for belly landing. Prepare for evacuation after landing.",
+      "referenceTextZh": "中断进近并加入等待程序；遵循SOP和检查单尝试手动或重力放轮；低空通场让地面人员目视确认起落架状态；若放轮失败，放油减轻重量，告知机组和乘客，向空管宣布紧急状态，请求跑道喷洒泡沫以准备机腹着陆；落地后准备撤离。"
     },
     {
       "id": "opi-core-483",
       "taskTitle": "飞机系统-起落架-2",
       "audioText": "If you decided to make a belly landing, what preparation should you make before landing?",
       "audioTextZh": "若决定进行机腹着陆，着陆前应做哪些准备？",
-      "referenceText": "If I decide to make a belly landing, first of all, I will inform ATC and request foam to be applied on the runway. I also need fire service and medical assistance. Secondly, I will ask the cabin crew to prepare the passengers for evacuation. At last, I will make a PA to tell the passengers to calm down and follow the cabin crew's instructions for evacuation.\n若我决定进行机腹着陆，首先，我会通知空中交通管制（ATC）并申请在跑道喷洒泡沫。我还需要消防服务和医疗援助。其次，我会让客舱机组人员让乘客做好撤离准备。最后，我会进行广播，告知乘客保持冷静，听从客舱机组人员的撤离指令 。\n\nFirst, dump excess fuel to reduce fire and explosion risks. Declare emergency to ATC, request foam on the runway, fire, and medical services. Inform crew and passengers to fasten seatbelts, brace for impact, and prepare for evacuation. Maintain stable flight attitude, select the longest runway, and ensure landing gear is retracted.\n首先释放多余燃油，降低起火和爆炸风险；向空管宣布紧急状态，请求跑道喷洒泡沫及消防、医疗支援；告知机组和乘客系紧安全带、做好冲击防护并准备撤离；保持稳定飞行姿态，选择最长跑道，确保起落架已收回。"
+      "referenceText": "First, dump excess fuel to reduce fire and explosion risks. Declare emergency to ATC, request foam on the runway, fire, and medical services. Inform crew and passengers to fasten seatbelts, brace for impact, and prepare for evacuation. Maintain stable flight attitude, select the longest runway, and ensure landing gear is retracted.",
+      "referenceTextZh": "首先释放多余燃油，降低起火和爆炸风险；向空管宣布紧急状态，请求跑道喷洒泡沫及消防、医疗支援；告知机组和乘客系紧安全带、做好冲击防护并准备撤离；保持稳定飞行姿态，选择最长跑道，确保起落架已收回。"
     },
     {
       "id": "opi-core-484",
       "taskTitle": "飞机系统-起落架-3",
       "audioText": "Do you think belly landing is safe?",
       "audioTextZh": "你认为机腹着陆安全吗？",
-      "referenceText": "No, I don't think a belly landing is safe. Because during a belly landing, the aircraft is at risk of catching fire. It may damage the aircraft and injure the passengers.\n不，我认为机腹着陆不安全。因为若进行机腹着陆，存在起火风险，可能会损坏飞机并使乘客受伤 。"
+      "referenceText": "No, I don't think a belly landing is safe. Because during a belly landing, the aircraft is at risk of catching fire. It may damage the aircraft and injure the passengers.",
+      "referenceTextZh": "不，我认为机腹着陆不安全。因为若进行机腹着陆，存在起火风险，可能会损坏飞机并使乘客受伤。"
     },
     {
       "id": "opi-core-485",
       "taskTitle": "飞机系统-起落架-4",
       "audioText": "What's the function of the landing gear?",
       "audioTextZh": "起落架的功能是什么？",
-      "referenceText": "The landing gear can support the aircraft on the ground to enable taxiing and steering. What's more, it can absorb shocks during touchdown.起落架可在地面支撑飞机，用于滑行和转向。此外，它能在着陆触地时吸收冲击力 。\nAircraft landing gears have key functions: supporting the aircraft during ground taxi, takeoff roll, and landing; absorbing impact to reduce vibration and improve comfort; enabling steering on the ground; and facilitating braking to stop the aircraft after landing. They ensure stable ground operation and safe takeoff/landing.\n飞机起落架的核心功能包括：在地面滑行、起飞滑跑和着陆时支撑飞机重量；吸收撞击力，减少振动，提升舒适度；实现地面转向；提供刹车功能，使飞机着陆后停止。起落架保障地面运行稳定和起降安全。"
+      "referenceText": "The landing gear can support the aircraft on the ground to enable taxiing and steering. What's more, it can absorb shocks during touchdown.",
+      "referenceTextZh": "起落架可在地面支撑飞机，用于滑行和转向。此外，它能在着陆触地时吸收冲击力。\n飞机起落架的核心功能包括：在地面滑行、起飞滑跑和着陆时支撑飞机重量；吸收撞击力，减少振动，提升舒适度；实现地面转向；提供刹车功能，使飞机着陆后停止。起落架保障地面运行稳定和起降安全。"
     },
     {
       "id": "opi-core-486",
       "taskTitle": "飞机系统-起落架-5",
       "audioText": "If the indication lights are unserviceable, how do you determine whether the LG is down and locked?",
       "audioTextZh": "若指示灯失效，如何确定起落架（LG）已放下并锁定？",
-      "referenceText": "We will advise ATC of our situation and request a low pass to perform a visual check.\n我们会向管制员报告情况，申请低空通场进行目视检查 。"
+      "referenceText": "I would advise ATC of our situation and request a low pass to perform a visual check.",
+      "referenceTextZh": "我们会向管制员报告情况，申请低空通场进行目视检查。"
     },
     {
       "id": "opi-core-487",
       "taskTitle": "飞机系统-起落架-6",
-      "audioText": "What are the procedures of alternate extension system? How does it work?",
-      "audioTextZh": "备用放下系统的操作程序是什么？它如何工作？",
-      "referenceText": "On our DA - 40 aircraft. We have a fixed landing gear. But Based on my knowledge, if we cannot extend the landing gear, we will extend the landing gear manually.\n在我们的 DA - 40 飞机上，起落架是固定不可收放的。但就我的知识而言，若无法放下起落架（注：因 DA - 40 起落架固定，实际场景应是可收放机型的假设 ），我们会手动放下起落架 。"
+      "audioText": "What are the procedures of alternate extension system, and how does it work?",
+      "audioTextZh": "备用放下系统的操作程序是什么，它如何工作？",
+      "referenceText": "On our DA-40 aircraft. We have a fixed landing gear. But Based on my knowledge, if we cannot extend the landing gear, I would extend the landing gear manually.",
+      "referenceTextZh": "在我们的 DA - 40 飞机上，起落架是固定不可收放的。但就我的知识而言，若无法放下起落架（注：因 DA - 40 起落架固定，实际场景应是可收放机型的假设 ），我们会手动放下起落架。"
     },
     {
       "id": "opi-core-488",
       "taskTitle": "飞机系统-起落架-7",
-      "audioText": "Please describe the alternate landing gear extension system and how does the system work",
+      "audioText": "Please describe the alternate landing gear extension system and how does the system work?",
       "audioTextZh": "请描述备用起落架收放系统，以及这个系统如何工作？",
-      "referenceText": "The alternate landing gear extension system is used to extend the landing gear manually if the landing gear can’t be extended hydraulically or electrically. In emergency situations, we can use the alternate landing gear extension system to release the landing gear lock, and the landing gear will extend under gravity.\n备用收放起落架系统在起落架无法液压或电动放下情况下，用来手动放下起落架。在紧急情况下，我们可以使用备用起落架收放系统断开起落架上位锁，起落架会随着重力放下。"
+      "referenceText": "The alternate landing gear extension system is used to extend the landing gear manually if the landing gear can’t be extended hydraulically or electrically. In emergency situations, pilots can use the alternate landing gear extension system to release the landing gear lock, and the landing gear will extend under gravity.",
+      "referenceTextZh": "备用收放起落架系统在起落架无法液压或电动放下情况下，用来手动放下起落架。在紧急情况下，我们可以使用备用起落架收放系统断开起落架上位锁，起落架会随着重力放下。"
     },
     {
       "id": "opi-core-489",
       "taskTitle": "飞机系统-起落架-8",
-      "audioText": "How do you determine if the landing gear is down if the gear indicationlights  is in operative",
+      "audioText": "How do you determine if the landing gear is down if the gear indicationlights is in operative?",
       "audioTextZh": "如果起落架指示灯不工作，你如何判断起落架是否放下？",
-      "referenceText": "If the gear indication lights are inoperative, we will request low pass for visual check if the landing gear is down. Besides, in large aircraft, the warning system such as GPWS or radar altimeter will trigger a warning if the aircraft is close to the ground and the landing gear is not down. Some aircraft can give us voice warning “gear not down”.\n如果起落架指示灯不工作，我们将请求低空通场目视检查起落架是否放下。此外，在大型飞机上，如果飞机靠近地面，但起落架没有放出，警告系统，比如GPWS，雷达高度表会触发警报。一些飞机还会给我们语音警报“起落架没有放下”。"
+      "referenceText": "If the gear indication lights are inoperative, I would request low pass for visual check if the landing gear is down. Besides, in large aircraft, the warning system such as GPWS or radar altimeter will trigger a warning if the aircraft is close to the ground and the landing gear is not down. Some aircraft can give us voice warning “gear not down”.",
+      "referenceTextZh": "如果起落架指示灯不工作，我们将请求低空通场目视检查起落架是否放下。此外，在大型飞机上，如果飞机靠近地面，但起落架没有放出，警告系统，比如GPWS，雷达高度表会触发警报。一些飞机还会给我们语音警报“起落架没有放下”。"
     },
     {
       "id": "opi-core-490",
       "taskTitle": "飞机系统-起落架-9",
       "audioText": "How do you determine whether the landing gears are extended or not?",
-      "audioTextZh": "你如何确定起落架是否放下?",
-      "referenceText": "First, check the landing gear indication lights in the cockpit. If lights are unserviceable, use the alternate indicator or conduct a visual check via cockpit windows. For confirmation, perform a low pass and ask ATC or ground personnel to verify the gear position. Follow SOP for cross-validation to ensure accuracy.\n首先查看驾驶舱内的起落架指示灯；若指示灯失效，使用备用指示器或通过驾驶舱窗户目视检查；如需确认，可低空通场并请求空管或地面人员核实起落架状态；遵循SOP进行交叉验证，确保结果准确。"
+      "audioTextZh": "你如何确定起落架是否放下？",
+      "referenceText": "First, check the landing gear indication lights in the cockpit. If lights are unserviceable, use the alternate indicator or conduct a visual check via cockpit windows. For confirmation, perform a low pass and ask ATC or ground personnel to verify the gear position. Follow SOP for cross-validation to ensure accuracy.",
+      "referenceTextZh": "首先查看驾驶舱内的起落架指示灯；若指示灯失效，使用备用指示器或通过驾驶舱窗户目视检查；如需确认，可低空通场并请求空管或地面人员核实起落架状态；遵循SOP进行交叉验证，确保结果准确。"
     },
     {
       "id": "opi-core-491",
       "taskTitle": "飞机系统-起落架-10",
       "audioText": "What may cause the landing gear problems?",
-      "audioTextZh": "什么会导致飞机起落架问题?",
-      "referenceText": "Landing gear problems may result from hydraulic system failure, electrical malfunction, mechanical wear, improper extension/retraction operation, bird strike, FOD damage, hard landing, or lack of maintenance. These issues can lead to failure to extend/retract, structural damage, or unsafe landing conditions.\n起落架问题可能由液压系统故障、电气故障、机械磨损、收放操作不当、鸟击、外物损伤（FOD）、重着陆或维护不足导致。这些问题会造成起落架收放失效、结构损坏或着陆状态不安全。"
+      "audioTextZh": "什么会导致飞机起落架问题？",
+      "referenceText": "Landing gear problems may result from hydraulic system failure, electrical malfunction, mechanical wear, improper extension or retraction operation, bird strike, FOD damage, hard landing, or lack of maintenance. These issues can lead to failure to extend or retract, structural damage, or unsafe landing conditions.",
+      "referenceTextZh": "起落架问题可能由液压系统故障、电气故障、机械磨损、收放操作不当、鸟击、外物损伤（FOD）、重着陆或维护不足导致。这些问题会造成起落架收放失效、结构损坏或着陆状态不安全。"
     },
     {
       "id": "opi-core-492",
       "taskTitle": "飞机系统-起落架-11",
       "audioText": "During approach and landing phases, when will you extend the landing gear?",
-      "audioTextZh": "在进近和着陆阶段,你什么时候放下起落架?",
-      "referenceText": "During approach and landing, I extend the landing gear at a safe altitude (usually above MDA/DA) and appropriate airspeed, as specified in SOP. Typically, it’s done before entering the final approach fix (FAF) to ensure it’s fully extended and locked before landing, maintaining stable flight.\n在进近和着陆阶段，我会按照标准操作程序（SOP），在安全高度（通常高于最低下降高度/决断高度）和合适空速时放下起落架。通常在进入最后进近定位点（FAF）前完成，确保着陆前起落架完全伸出并锁定，保持飞行稳定。"
+      "audioTextZh": "在进近和着陆阶段,你什么时候放下起落架？",
+      "referenceText": "During approach and landing, I extend the landing gear at a safe altitude (usually above MDA or DA) and appropriate airspeed, as specified in SOP. Typically, it’s done before entering the final approach fix (FAF) to ensure it’s fully extended and locked before landing, maintaining stable flight.",
+      "referenceTextZh": "在进近和着陆阶段，我会按照标准操作程序（SOP），在安全高度（通常高于最低下降高度/决断高度）和合适空速时放下起落架。通常在进入最后进近定位点（FAF）前完成，确保着陆前起落架完全伸出并锁定，保持飞行稳定。"
     },
     {
       "id": "opi-core-493",
       "taskTitle": "飞机系统-起落架-12",
       "audioText": "When do you make a belly landing?",
-      "audioTextZh": "你在什么情况下会进行机腹着陆?",
-      "referenceText": "Belly landing is conducted when the landing gear fails to extend and cannot be repaired inflight (such as, hydraulic malfunction, structural damage). It’s a last resort to avoid crash. Pilots dump fuel, request foam on the runway, and inform passengers to brace for impact before landing.\n机腹着陆通常在起落架无法伸出且飞行中无法修复时（如液压故障、结构损坏）进行，是避免坠毁的最后手段。飞行员会先放油减重，请求机场在跑道喷洒泡沫，并告知乘客做好冲击防护后再进行着陆。"
+      "audioTextZh": "你在什么情况下会进行机腹着陆？",
+      "referenceText": "Belly landing is conducted when the landing gear fails to extend and cannot be repaired inflight (such as, hydraulic malfunction, structural damage). It’s a last resort to avoid crash. Pilots dump fuel, request foam on the runway, and inform passengers to brace for impact before landing.",
+      "referenceTextZh": "机腹着陆通常在起落架无法伸出且飞行中无法修复时（如液压故障、结构损坏）进行，是避免坠毁的最后手段。飞行员会先放油减重，请求机场在跑道喷洒泡沫，并告知乘客做好冲击防护后再进行着陆。"
     }
   ]
 }

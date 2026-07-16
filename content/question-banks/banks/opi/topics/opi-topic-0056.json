@@ -7,16 +7,18 @@
     {
       "id": "opi-core-627",
       "taskTitle": "缩略词-CFIT-1",
-      "audioText": "What is CFIT？",
+      "audioText": "What is CFIT?",
       "audioTextZh": "什么是可控飞行撞地（CFIT）？",
-      "referenceText": "CFIT stands for Controlled Flight Into Terrain. It is extremely dangerous.\n可控飞行撞地（CFIT）的全称是 Controlled Flight Into Terrain ，这种情况极其危险 。"
+      "referenceText": "CFIT stands for Controlled Flight Into Terrain. It is extremely dangerous.",
+      "referenceTextZh": "可控飞行撞地（CFIT）的全称是 Controlled Flight Into Terrain，这种情况极其危险。"
     },
     {
       "id": "opi-core-628",
       "taskTitle": "缩略词-CFIT-2",
-      "audioText": "Why CFIT happens? How to avoid CFIT?",
-      "audioTextZh": "可控飞行撞地（CFIT）为何会发生？如何避免 CFIT？",
-      "referenceText": "There are several reasons for this occurrence. For example, loss of situational awareness, incorrect navigation settings, failure to follow SOPs, pilot fatigue, and so on. Pilots should always adhere to SOPs and conduct cross - checks during flight.\n这类情况的发生有多种原因，比如态势感知缺失、导航设置错误、未遵循标准操作程序（SOPs）、飞行员疲劳等。飞行员在飞行中应始终严格遵守标准操作程序，并进行交叉检查 。"
+      "audioText": "Why CFIT happens?",
+      "audioTextZh": "可控飞行撞地（CFIT）为何会发生？",
+      "referenceText": "There are several reasons for this occurrence. For example, loss of situational awareness, incorrect navigation settings, failure to follow SOPs, pilot fatigue, and so on. Pilots should always adhere to SOPs and conduct cross-checks during flight.",
+      "referenceTextZh": "这类情况的发生有多种原因，比如态势感知缺失、导航设置错误、未遵循标准操作程序（SOPs）、飞行员疲劳等。飞行员在飞行中应始终严格遵守标准操作程序，并进行交叉检查。"
     }
   ]
 }

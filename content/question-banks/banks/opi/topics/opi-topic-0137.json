@@ -7,65 +7,74 @@
     {
       "id": "opi-extra-314",
       "taskTitle": "特情-灭火器-1",
-      "audioText": "How many portable fire extinguishers are\nthere on your aircraft?",
+      "audioText": "How many portable fire extinguishers are there on your aircraft?",
       "audioTextZh": "你的飞机上配备多少个便携式灭火器？",
-      "referenceText": "I fly C172, there is only 1 fire extinguisher on our aircraft.\n我驾驶 C172，该机仅配备 1 个便携式灭火器。"
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. I fly C172, there is only 1 fire extinguisher on our aircraft.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。我驾驶 C172，该机仅配备 1 个便携式灭火器。"
     },
     {
       "id": "opi-extra-315",
       "taskTitle": "特情-灭火器-2",
-      "audioText": "When should we discharge these\n fire extinguishers in flight?",
+      "audioText": "When should we discharge these fire extinguishers in-flight?",
       "audioTextZh": "飞行中何时需使用灭火器灭火？",
-      "referenceText": "In case of smoke or fire, we may discharge them.\n当出现烟雾或火情时。"
+      "referenceText": "A fire extinguisher should be discharged only for the type and location of fire it is designed to fight and in accordance with the applicable checklist. The crew should identify the source, use the correct extinguisher, protect themselves from smoke or fumes, and coordinate the response. Engine fire-extinguishing systems and portable cabin extinguishers have different procedures.",
+      "referenceTextZh": "只有在确认火灾类型和位置与灭火器用途相符，并按照适用检查单时，才应释放灭火剂。机组应识别火源，使用正确的灭火器，防护烟雾或有害气体，并协调处置。发动机灭火系统和客舱便携式灭火器的程序并不相同。"
     },
     {
       "id": "opi-extra-316",
       "taskTitle": "特情-灭火器-3",
-      "audioText": "What are the consequences if the flight\ncrew discharges the fire extinguisher by\n mistake?",
+      "audioText": "What are the consequences if the flight crew discharges the fire extinguisher by mistake?",
       "audioTextZh": "机组误操作使用灭火器会产生什么后果？",
-      "referenceText": "We may have to divert, since there is a regulation about the number of fire extinguishers on the aircraft, if we use any of them, we can’t continue the flight.\n可能需要备降。因为法规对机上灭火器数量有明确要求，若使用了任何一个，航班无法继续执行。\n\nMistaken discharge may reduce or lose fire-fighting capacity for real emergencies. It can also cause temporary poor visibility, respiratory discomfort for crew/passengers, and potential damage to electrical/electronic equipment. For engine fire extinguishers, it may lead to engine power loss.\n误开灭火器可能降低或丧失真实紧急情况下的灭火能力，还可能造成暂时能见度差、机组/乘客呼吸道不适，以及电气/电子设备潜在损坏；若误开发动机灭火器，可能导致发动机动力丧失。"
+      "referenceText": "Mistaken discharge may reduce or lose fire-fighting capacity for real emergencies. It can also cause temporary poor visibility, respiratory discomfort for crew or passengers, and potential damage to electrical or electronic equipment. For engine fire extinguishers, it may lead to engine power loss.",
+      "referenceTextZh": "误开灭火器可能降低或丧失真实紧急情况下的灭火能力，还可能造成暂时能见度差、机组/乘客呼吸道不适，以及电气/电子设备潜在损坏；若误开发动机灭火器，可能导致发动机动力丧失。"
     },
     {
       "id": "opi-extra-317",
       "taskTitle": "特情-灭火器-4",
-      "audioText": "What’s the procedure to discharge the\nfire extinguisher for the engine?",
+      "audioText": "What’s the procedure to discharge the fire extinguisher for the engine?",
       "audioTextZh": "发动机灭火的灭火器使用流程是什么？",
-      "referenceText": "First, pilots should confirm which engine is on fire, then put throttle to idle, cut off the fuel supply, shut down the engine, and then discharge the fire extinguisher.\n首先，确认起火发动机；其次，将该发动机油门置于慢车，切断燃油供应，关闭发动机；最后，使用灭火器灭火。"
+      "referenceText": "First, pilots should confirm which engine is on fire, then put throttle to idle, cut off the fuel supply, shut down the engine, and then discharge the fire extinguisher.",
+      "referenceTextZh": "首先，确认起火发动机；其次，将该发动机油门置于慢车，切断燃油供应，关闭发动机；最后，使用灭火器灭火。"
     },
     {
       "id": "opi-extra-318",
       "taskTitle": "特情-灭火器-5",
       "audioText": "Can you describe the different types of fire extinguishers on board an aircraft?",
       "audioTextZh": "你能描述一下飞机上不同类型的灭火器吗？",
-      "referenceText": "Certainly. There are mainly two types of fire extinguishers we commonly see on board.\nFirst, the water extinguisher. It's usually identified by a red color band or label. It's suitable for Class A fires, involving common combustibles like paper, wood, or textiles.\nSecond, the Halon or Halotron extinguisher. This is the most common one for combating electrical and flammable liquid fires. It has a green color band or label. Since Halon is being phased out, newer aircraft might use Halotron or other clean agents. It's effective on Class B and C fires.\n\n 当然可以。飞机上我们常见的主要有两种灭火器。\n第一种，水基灭火器。 它通常通过红色的色带或标签来识别。它适用于A类火灾，涉及普通可燃物，如纸张、木材或纺织品。\n第二种，哈龙或卤代烃灭火器。 这是用于扑灭电气和易燃液体火灾中最常见的一种。它带有绿色的色带或标签。由于哈龙已被逐步淘汰，较新的飞机可能使用卤代烃或其他洁净剂。它对B类和C类火灾有效。"
+      "referenceText": "Certainly. There are mainly two types of fire extinguishers we commonly see on board. First, the water extinguisher. It's usually identified by a red color band or label. It's suitable for Class A fires, involving common combustibles like paper, wood, or textiles. Second, the Halon or Halotron extinguisher.",
+      "referenceTextZh": "这道题与灭火器有关。回答时应说明主要运行考虑因素，识别相关风险，并给出安全、可行的处置思路。具体行动应以飞机检查单、适用程序和实际情况为准。"
     },
     {
       "id": "opi-extra-319",
       "taskTitle": "特情-灭火器-6",
       "audioText": "What precautions should you take when using a fire extinguisher in the cockpit or cabin?",
       "audioTextZh": "在驾驶舱或客舱使用灭火器时，你应该采取哪些预防措施？",
-      "referenceText": "Several precautions are crucial. First, ensure the area is evacuated as much as possible, and always have a clear escape route behind you. Second, if it's an electrical fire, we should consider shutting off power to that equipment if it's safe to do so. Third, when discharging a Halon extinguisher in a confined space, we should try to avoid breathing the vapors as it can be disorienting. Finally, we must direct the agent at the base of the fire for maximum effectiveness.\n\n 有几项预防措施至关重要。首先，确保该区域人员尽可能疏散，并且你身后始终有清晰的逃生路线。第二，如果是电气火灾，我们应该在安全的情况下考虑切断该设备的电源。第三，在密闭空间（如驾驶舱）释放哈龙灭火器时，应尽量避免吸入气体，因为它可能导致眩晕。最后，我们必须将灭火剂对准火焰的根部以达到最大效果。"
+      "referenceText": "Several precautions are crucial. First, ensure the area is evacuated as much as possible, and always have a clear escape route behind you. Second, if it's an electrical fire, pilots should consider shutting off power to that equipment if it's safe to do so. Third, when discharging a Halon extinguisher in a confined space, pilots should try to avoid breathing the vapors as it can be disorienting. Finally, we must direct the agent at the base of the fire for maximum effectiveness.",
+      "referenceTextZh": "这道题与灭火器有关。回答时应说明主要运行考虑因素，识别相关风险，并给出安全、可行的处置思路。具体行动应以飞机检查单、适用程序和实际情况为准。"
     },
     {
       "id": "opi-extra-320",
       "taskTitle": "特情-灭火器-7",
       "audioText": "If you saw an electrical fire behind a panel in the cockpit, what type of extinguisher would you use and why?",
       "audioTextZh": "如果你在驾驶舱的一个面板后面看到电气火灾，你会使用哪种灭火器，为什么？",
-      "referenceText": "For an electrical fire behind a panel, I would immediately use the clean agent fire extinguisher, which is identified by a green band. This type of extinguisher, often filled with agents like Halotron, is the modern replacement for Halon.\n\nThere are two key reasons for this choice:\n\nIt is non-conductive. The extinguishing agent does not conduct electricity, which eliminates the risk of electrocution to the flight crew or causing further electrical damage.\nIt leaves no residue. After discharging, it dissipates as a gas without leaving any residue. This is crucial for protecting sensitive and expensive avionics equipment from secondary damage.\nUsing a water extinguisher on an electrical fire would be extremely hazardous due to the risk of electrical shock and would certainly cause severe damage to the aircraft's electronic systems.\n\n对于面板后面的电气火灾，我会立即使用洁净剂灭火器，它通过绿色色带来识别。这种灭火器通常填充如卤代烃等介质，是哈龙的现代替代品。\n\n做出这个选择有两个关键原因：\n\n它是非导电的。 灭火剂不导电，这消除了飞行人员触电或造成进一步电气损坏的风险。\n它不留残留物。 喷射后，它会作为气体消散，不留任何残留物。这对于保护敏感且昂贵的航空电子设备免受二次损坏至关重要。\n由于存在触电风险，在电气火灾上使用水基灭火器将极其危险，并且必定会对飞机的电子系统造成严重损坏。"
+      "referenceText": "It is non-conductive. The extinguishing agent does not conduct electricity, which eliminates the risk of electrocution to the flight crew or causing further electrical damage.\nIt leaves no residue. After discharging, it dissipates as a gas without leaving any residue. This is crucial for protecting sensitive and expensive avionics equipment from secondary damage.\nUsing a water extinguisher on an electrical fire would be extremely hazardous due to the risk of electrical shock and would certainly cause severe damage to the aircraft's electronic systems.",
+      "referenceTextZh": "这道题与灭火器有关。回答时应说明主要运行考虑因素，识别相关风险，并给出安全、可行的处置思路。具体行动应以飞机检查单、适用程序和实际情况为准。"
     },
     {
       "id": "opi-extra-321",
       "taskTitle": "特情-灭火器-8",
       "audioText": "What would be your first action upon discovering a fire on board, even before grabbing an extinguisher?",
       "audioTextZh": "在机上发现火灾时，甚至在拿起灭火器之前，你的第一个行动是什么？",
-      "referenceText": "My very first action would be to alert the other crew member by shouting a clear warning, such as 'Fire!'. Then, I would initiate the appropriate emergency memory items or checklist. Communication and coordination are the first and most critical steps in any emergency.\n\n 我的第一个行动是通过发出清晰的警告（例如“着火了！”）来通知其他机组成员。然后，我会启动相应的应急记忆项目或检查单。沟通和协调是在任何紧急情况下的首要且最关键的步骤。"
+      "referenceText": "My very first action would be to alert the other crew member by shouting a clear warning, such as 'Fire!'. Then, I would initiate the appropriate emergency memory items or checklist. Communication and coordination are the first and most critical steps in any emergency.",
+      "referenceTextZh": "这道题与灭火器有关。回答时应说明主要运行考虑因素，识别相关风险，并给出安全、可行的处置思路。具体行动应以飞机检查单、适用程序和实际情况为准。"
     },
     {
       "id": "opi-extra-322",
       "taskTitle": "特情-灭火器-9",
       "audioText": "A passenger's laptop battery is smoking and catching fire. What is your response?",
       "audioTextZh": "一名乘客的笔记本电脑电池正在冒烟并着火。你如何应对？",
-      "referenceText": "For a lithium battery fire, the procedure is specific. I would first put on protective gloves if available. Then, I would use the  extinguisher to try to suppress the flames. However, it's important to know that  may not fully extinguish a lithium battery fire due to thermal runaway. So, the next critical step is to cool the device by dousing it with water or another non-alcoholic liquid if available, and then immerse it completely in a container of water to prevent re-ignition. Throughout this process, I would keep other passengers clear and keep the cockpit informed.\n\n 对于锂电池火灾，程序是特定的。如果可能，我会先戴上防护手套。然后，我会使用灭火器试图压制火焰。然而，重要的是要了解，由于热失控，可能无法完全扑灭锂电池火灾。所以，下一个关键步骤是用水或其他可用的非酒精液体浇淋设备为其降温，然后将其完全浸入盛有水的容器中以防止复燃。在整个过程中，我会让其他乘客远离，并随时向驾驶舱通报情况。"
+      "referenceText": "For a lithium battery fire, the procedure is specific. I would first put on protective gloves if available. Then, I would use the extinguisher to try to suppress the flames. However, it's important to know that may not fully extinguish a lithium battery fire due to thermal runaway. So, the next critical step is to cool the device by dousing it with water or another non-alcoholic liquid if available, and then immerse it completely in a container of water to prevent re-ignition. Throughout this process, I would keep other passengers clear and keep the cockpit informed.",
+      "referenceTextZh": "这道题与灭火器有关。回答时应说明主要运行考虑因素，识别相关风险，并给出安全、可行的处置思路。具体行动应以飞机检查单、适用程序和实际情况为准。"
     }
   ]
 }

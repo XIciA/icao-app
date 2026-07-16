@@ -7,51 +7,58 @@
     {
       "id": "opi-extra-344",
       "taskTitle": "飞机系统-磁罗盘-1",
-      "audioText": "Can you explain in simple terms how a magnetic compass\nworks in an aircraft?",
+      "audioText": "Can you explain in simple terms how a magnetic compass works in an aircraft?",
       "audioTextZh": "请简单解释飞机上的磁罗盘是如何工作的？",
-      "referenceText": "It’s a simple, self-contained instrument. Inside, a magnetized needle or card is suspended so it can rotate freely. This magnet aligns itself with the Earth’s magnetic field lines, pointing toward Magnetic North. The aircraft’s heading is read against a fixed reference mark called the lubber line on the compass case它是一个简单的独立仪表。其内部悬浮着一根磁化指针或罗盘卡，可自由旋转。这块磁铁会与地球磁场线对齐，指向磁北。飞机的航向是通过对照罗盘外壳上一个称为航向标线的固定标记来读取的。"
+      "referenceText": "It’s a simple, self-contained instrument. Inside, a magnetized needle or card is suspended so it can rotate freely. This magnet aligns itself with the Earth’s magnetic field lines, pointing toward Magnetic North. The aircraft’s heading is read against a fixed reference mark called the lubber line on the compass case.",
+      "referenceTextZh": "它是一个简单的独立仪表。其内部悬浮着一根磁化指针或罗盘卡，可自由旋转。这块磁铁会与地球磁场线对齐，指向磁北。飞机的航向是通过对照罗盘外壳上一个称为航向标线的固定标记来读取的。"
     },
     {
       "id": "opi-extra-345",
       "taskTitle": "飞机系统-磁罗盘-2",
-      "audioText": "What is the primary purpose of the\nmagnetic compass, and what is its biggest\nadvantage over gyroscopic instruments?",
-      "audioTextZh": "磁罗\n盘的主要用途是什么？与陀螺仪表相比，它最大\n的优势是什么？",
-      "referenceText": "Its primary purpose is to provide the fundamental reference to magnetic north, serving as the ultimate backup heading source. Its biggest advantage is that it’s completely self-contained, requiring no external power, vacuum, or electrical systems to function. This makes it the most reliable heading indicator during a complete electrical or instrument failure它的主要用途是提供对磁北的根本性参考，作为最终的备用航向源。其最大优势在于它完全独立，不需要任何外部电源、真空或电气系统即可工作。这使其在发生全套电气或仪表系统故障时，成为最可靠的航向指示器。"
+      "audioText": "What is the primary purpose of the magnetic compass, and what is its biggest advantage over gyroscopic instruments?",
+      "audioTextZh": "磁罗盘的主要用途是什么？与陀螺仪表相比，它最大的优势是什么？",
+      "referenceText": "Its primary purpose is to provide the fundamental reference to magnetic north, serving as the ultimate backup heading source. Its biggest advantage is that it’s completely self-contained, requiring no external power, vacuum, or electrical systems to function. This makes it the most reliable heading indicator during a complete electrical or instrument failure.",
+      "referenceTextZh": "它的主要用途是提供对磁北的根本性参考，作为最终的备用航向源。其最大优势在于它完全独立，不需要任何外部电源、真空或电气系统即可工作。这使其在发生全套电气或仪表系统故障时，成为最可靠的航向指示器。"
     },
     {
       "id": "opi-extra-346",
       "taskTitle": "飞机系统-磁罗盘-3",
-      "audioText": "What are the main errors or limitations of\nthe magnetic compass during flight? /\nExplain the acceleration error and turning\nerror.",
-      "audioTextZh": "飞行中磁罗盘的主要误差或限制是什么？/\n请解释加速误差和转弯误差。",
-      "referenceText": "The errors are best remembered by the acronym “ANDS”:\n（1） A - Acceleration/Deceleration Error: In the Northern Hemisphere, accelerating in level flight causes a false turn indication north; deceleration causes a false indication south. (Reversed in the Southern Hemisphere). Most pronounced on east/west headings.\n（2） N - Northerly Turning Error: When turning away from a northerly heading, the compass lags (indicates a turn slower than actual).\n（3） D - Southerly Turning Error: When turning away from a southerly heading, the compass leads (indicates a turn faster than actual).\n（4） S - Oscillation/Swirling Error: Due to magnetic dip, the compass card tilts and swings during bank or pitch changes, making it unstable and hard to read in turbulence or during maneuvers\n\n误差最好用缩写“ANDS”来记忆：\n（1） A - 加速/减速误差：在北半球，平飞加速会导致虚假的向北转弯指示；减速会导致虚假的向南指示。（南半球相反）。在东/西航向中最为明显。\n（2） N - 北向转弯误差：从北向航向开始转弯时，罗盘滞后（指示的转弯速率慢于实际）。\n（3） D - 南向转弯误差：从南向航向开始转弯时，罗盘超前（指示的转弯速率快于实际）。\n（4）S - 摆动/旋转误差：由于磁倾角，罗盘卡在飞机倾斜或俯仰时会倾斜摆动，使其在湍流或机动中不稳定、难以判读。"
+      "audioText": "What are the main errors or limitations of the magnetic compass during flight?",
+      "audioTextZh": "飞行中磁罗盘的主要误差或限制是什么？",
+      "referenceText": "S-Oscillation or Swirling Error: Due to magnetic dip, the compass card tilts and swings during bank or pitch changes, making it unstable and hard to read in turbulence or during maneuvers.",
+      "referenceTextZh": "这道题与磁罗盘有关。回答时应说明主要运行考虑因素，识别相关风险，并给出安全、可行的处置思路。具体行动应以飞机检查单、适用程序和实际情况为准。"
     },
     {
       "id": "opi-extra-347",
       "taskTitle": "飞机系统-磁罗盘-4",
-      "audioText": "Describe the correct procedure for setting\nthe Directional Gyro (DG) from the magnetic\ncompass. Why is this specific procedure\nimportant?",
-      "audioTextZh": "描述使用磁罗盘设定陀螺航向仪的正\n确程序。为什么这一特定程序很重要？",
-      "referenceText": "Procedure:\n（1）Establish steady, wings-level, unaccelerated flight.\n（2）Wait for the compass card to stabilize, then read the current magnetic heading.\n（3）Set the DG’s heading indicator to match that reading.Importance: This procedure is critical to avoid the compass’s inherent errors (acceleration and dip errors). Reading it during any maneuver gives a false reading. Setting the DG with an incorrect value would corrupt your primary heading reference.\n程序：\n（1）建立稳定、机翼水平、无加速的飞行状态。\n（2）等待罗盘卡稳定，然后读取当前磁航向。\n（3）将陀螺航向仪的指示调整到与读取的航向一致。重要性：此程序至关重要，是为了避免罗盘的固有误差（加速误差和倾角误差）。在任何机动中读取它都会得到错误读数。用一个错误的值设定陀螺仪，会污染你的主航向参考。"
+      "audioText": "Describe the correct procedure for setting the Directional Gyro (DG) from the magnetic compass. Why is this specific procedure important?",
+      "audioTextZh": "描述使用磁罗盘设定陀螺航向仪的正确程序。为什么这一特定程序很重要？",
+      "referenceText": "Set the DG’s heading indicator to match that reading. Importance: This procedure is critical to avoid the compass’s inherent errors (acceleration and dip errors). Reading it during any maneuver gives a false reading. Setting the DG with an incorrect value would corrupt your primary heading reference.",
+      "referenceTextZh": "程序：。"
     },
     {
       "id": "opi-extra-348",
       "taskTitle": "飞机系统-磁罗盘-5",
       "audioText": "Do you have any compass on your aircraft?",
-      "audioTextZh": "你知道飞机上的指南针吗?",
-      "referenceText": "Yes, the DA-40 I fly is equipped with a magnetic compass. It’s a basic navigation instrument that indicates aircraft heading using the Earth’s magnetic field, serving as a backup when electronic navigation systems fail.\n是的，我驾驶的DA-40配备了磁罗盘。它是基础导航仪表，利用地磁场指示飞机航向，在电子导航系统失效时可作为备用导航手段。"
+      "audioTextZh": "你知道飞机上的指南针吗？",
+      "referenceText": "Yes, the DA-40 I fly is equipped with a magnetic compass. It’s a basic navigation instrument that indicates aircraft heading using the Earth’s magnetic field, serving as a backup when electronic navigation systems fail.",
+      "referenceTextZh": "是的，我驾驶的DA-40配备了磁罗盘。它是基础导航仪表，利用地磁场指示飞机航向，在电子导航系统失效时可作为备用导航手段。"
     },
     {
       "id": "opi-extra-349",
       "taskTitle": "飞机系统-磁罗盘-6",
       "audioText": "Where is the compass on your plane?",
-      "audioTextZh": "你飞机上的指南针在哪里?",
-      "referenceText": "On the DA-40, the magnetic compass is typically located on the instrument panel, within the pilot’s field of view. This placement allows quick reference during flight, ensuring convenient heading checks and backup navigation.\n在DA-40机型上，磁罗盘通常安装在仪表板上，处于飞行员的视野范围内，便于飞行中快速查看航向，满足航向检查和备用导航的需求。"
+      "audioTextZh": "你飞机上的指南针在哪里？",
+      "referenceText": "On the DA-40, the magnetic compass is typically located on the instrument panel, within the pilot’s field of view. This placement allows quick reference during flight, ensuring convenient heading checks and backup navigation.",
+      "referenceTextZh": "在DA-40机型上，磁罗盘通常安装在仪表板上，处于飞行员的视野范围内，便于飞行中快速查看航向，满足航向检查和备用导航的需求。"
     },
     {
       "id": "opi-extra-350",
       "taskTitle": "飞机系统-磁罗盘-7",
       "audioText": "What functions does the compass have?",
-      "audioTextZh": "指南针的功能是什么?",
-      "referenceText": "The compass primarily indicates the aircraft’s heading relative to magnetic north, providing basic navigation reference. It serves as a backup for electronic navigation systems (e.g., GPS, VOR) in case of malfunctions, ensuring continuous heading monitoring for flight safety.\n指南针的主要功能是指示飞机相对于磁北的航向，提供基础导航参考。在GPS、VOR等电子导航系统故障时，它可作为备用设备，确保航向持续可监控，保障飞行安全。"
+      "audioTextZh": "指南针的功能是什么？",
+      "referenceText": "The compass primarily indicates the aircraft’s heading relative to magnetic north, providing basic navigation reference. It serves as a backup for electronic navigation systems (e. g., GPS, VOR) in case of malfunctions, ensuring continuous heading monitoring for flight safety.",
+      "referenceTextZh": "指南针的主要功能是指示飞机相对于磁北的航向，提供基础导航参考。在GPS、VOR等电子导航系统故障时，它可作为备用设备，确保航向持续可监控，保障飞行安全。"
     }
   ]
 }

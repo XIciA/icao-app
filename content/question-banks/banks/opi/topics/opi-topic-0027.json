@@ -9,70 +9,80 @@
       "taskTitle": "运行-机场安检与航空安保-1",
       "audioText": "What are the purposes of airport security check?",
       "audioTextZh": "机场安检的目的是什么？",
-      "referenceText": "Airport security check is used to prevent the dangerous goods and dangerous people entering the airport and the aircraft and ensure the safety of the airport and the aircraft.\n机场安检用于防止危险物品和危险人员进入机场及航空器，保障机场和航空器的安全 。\n\nThe main purpose of airport security checks is to detect and prevent dangerous goods, weapons, explosives, or other hazardous items from being brought on board. It ensures no threats to flight safety, reduces the cabin crew’s workload, and protects the safety of passengers, crew, and the aircraft.\n机场安检的主要目的是排查并阻止危险品、武器、爆炸物等危险物品被带上飞机，确保无威胁飞行安全的因素存在，减轻乘务员工作负荷，保障乘客、机组及航空器的安全。"
+      "referenceText": "The main purpose of airport security checks is to detect and prevent dangerous goods, weapons, explosives, or other hazardous items from being brought on board. It ensures no threats to flight safety, reduces the cabin crew’s workload, and protects the safety of passengers, crew, and the aircraft.",
+      "referenceTextZh": "机场安检的主要目的是排查并阻止危险品、武器、爆炸物等危险物品被带上飞机，确保无威胁飞行安全的因素存在，减轻乘务员工作负荷，保障乘客、机组及航空器的安全。"
     },
     {
       "id": "opi-core-420",
       "taskTitle": "运行-机场安检与航空安保-2",
-      "audioText": "Do you think if necessary to strengthen /improve airport security check?",
-      "audioTextZh": "你认为有必要加强 / 改进机场安检吗？",
-      "referenceText": "Yes. I think it necessary to strengthen airport security check because airport security check can prevent the dangerous goods and dangerous people entering the airport and the aircraft and ensure the safety of the airport and the aircraft.\n有必要。我认为有必要加强机场安检，因为机场安检能够阻止危险物品和危险人员进入机场及航空器，保障机场和航空器的安全。"
+      "audioText": "Do you think if necessary to improve airport security check?",
+      "audioTextZh": "你认为有必要加强？",
+      "referenceText": "Yes. I think it necessary to strengthen airport security check because airport security check can prevent the dangerous goods and dangerous people entering the airport and the aircraft and ensure the safety of the airport and the aircraft.",
+      "referenceTextZh": "有必要。我认为有必要加强机场安检，因为机场安检能够阻止危险物品和危险人员进入机场及航空器，保障机场和航空器的安全。"
     },
     {
       "id": "opi-core-421",
       "taskTitle": "运行-机场安检与航空安保-3",
-      "audioText": "Do you think security check on the catering staff is necessary",
+      "audioText": "Do you think security check on the catering staff is necessary?",
       "audioTextZh": "你认为对航空配餐人员进行安检有必要吗？",
-      "referenceText": "恩，我认为对配餐人员安检有必要，因为这可以防止危险品和危险人物进入机场和飞机，从而确保飞行安全。"
+      "referenceText": "Yes. Catering staff and supplies can enter security-sensitive areas and the aircraft, so appropriate screening helps prevent prohibited articles or dangerous items from being introduced. The process should follow the airport and operator security programme while treating staff consistently and professionally.",
+      "referenceTextZh": "有必要。配餐人员和物资能够进入安保敏感区域及飞机，因此适当安检有助于防止违禁品或危险物品被带入。安检过程应遵循机场和运营人的安保方案，同时一致、专业地对待工作人员。"
     },
     {
       "id": "opi-core-422",
       "taskTitle": "运行-机场安检与航空安保-4",
-      "audioText": "What can airports and airlines do to improve/strengthen the air security?",
-      "audioTextZh": "机场和航空公司可以采取哪些措施来改善 / 加强航空安全？",
-      "referenceText": "The airport can use/introduce more advanced systems and equipment to improve the airport security check. Besides, the airport management department can offer more training to the staff and improve their knowledge and skills. Airlines can offer more training to the pilots and flight attendants to improve their knowledge and skills of dangerous goods and terrorist attack.\n机场可以采用 / 引入更先进的系统和设备，以改进机场安检工作。此外，机场管理部门可以为员工提供更多培训，提升他们的知识与技能。航空公司可以为飞行员和空乘人员开展更多培训，增强他们在危险物品识别及应对恐怖袭击方面的知识与技能 。\n\nAirports and airlines can adopt advanced security equipment, enhance ground staff training, strengthen cooperation with police and fire departments, improve management systems, and raise security awareness among passengers and staff. Strictly implement security protocols for all personnel and cargo boarding the aircraft.\n机场和航空公司可配备先进安检设备、加强地勤人员培训、深化与公安消防部门的合作、完善管理制度、提升乘客和员工的安全意识；对所有登机人员及货物严格执行安检流程。"
+      "audioText": "What can airports and airlines do to improve the air security?",
+      "audioTextZh": "机场和航空公司可以采取哪些措施来改善？",
+      "referenceText": "Airports and airlines can adopt advanced security equipment, enhance ground staff training, strengthen cooperation with police and fire departments, improve management systems, and raise security awareness among passengers and staff. Strictly implement security protocols for all personnel and cargo boarding the aircraft.",
+      "referenceTextZh": "机场和航空公司可配备先进安检设备、加强地勤人员培训、深化与公安消防部门的合作、完善管理制度、提升乘客和员工的安全意识；对所有登机人员及货物严格执行安检流程。"
     },
     {
       "id": "opi-core-423",
       "taskTitle": "运行-机场安检与航空安保-5",
       "audioText": "Do you think airport security has been improved in the past decade?",
       "audioTextZh": "你认为过去十年机场安检有所改进吗？",
-      "referenceText": "I think the airport security check has been improved in the last decade. First, the passengers and their baggage have to be scanned/checked again and again before boarding the aircraft. Second, more advanced systems and equipment have been used/introduced to improve the airport security check. Third, more rules and regulations have been made to improve the airport security check. For example, the extra lithium battery is not allowed to bring onboard.\n我认为过去十年机场安检有所改进。首先，乘客及其行李在登机前需反复接受扫描 / 检查。其次，更先进的系统和设备已被用于 / 引入以改进机场安检。第三，已制定更多规章制度来完善机场安检。例如，禁止随身携带额外的锂电池 。"
+      "referenceText": "I think the airport security check has been improved in the last decade. First, the passengers and their baggage have to be scanned or checked again and again before boarding the aircraft. Second, more advanced systems and equipment have been used or introduced to improve the airport security check. Third, more rules and regulations have been made to improve the airport security check. For example, the extra lithium battery is not allowed to bring onboard.",
+      "referenceTextZh": "我认为过去十年机场安检有所改进。首先，乘客及其行李在登机前需反复接受扫描 / 检查。其次，更先进的系统和设备已被用于 / 引入以改进机场安检。第三，已制定更多规章制度来完善机场安检。例如，禁止随身携带额外的锂电池。"
     },
     {
       "id": "opi-core-424",
       "taskTitle": "运行-机场安检与航空安保-6",
       "audioText": "With the development of civil aviation, do you have any suggestions for airport management?",
       "audioTextZh": "随着民用航空的发展，你对机场管理有什么建议吗？",
-      "referenceText": "Yes, I have some suggestions for airport management. The airport management department can use/introduce more advanced systems and equipment to improve the airport security check. Besides, the airport management can offer more training to staff and improve their knowledge and skills.\n有，我对机场管理有一些建议。机场管理部门可以采用 / 引入更先进的系统和设备，来改进机场安检工作。此外，机场管理方可以为员工提供更多培训，提升他们的知识与技能 。"
+      "referenceText": "Yes, I have some suggestions for airport management. The airport management department can use or introduce more advanced systems and equipment to improve the airport security check. Besides, the airport management can offer more training to staff and improve their knowledge and skills.",
+      "referenceTextZh": "有，我对机场管理有一些建议。机场管理部门可以采用 / 引入更先进的系统和设备，来改进机场安检工作。此外，机场管理方可以为员工提供更多培训，提升他们的知识与技能。"
     },
     {
       "id": "opi-core-425",
       "taskTitle": "运行-机场安检与航空安保-7",
-      "audioText": "What are your suggestions for improving the AirPort management?",
+      "audioText": "What are your suggestions for improving the airport management?",
       "audioTextZh": "你对改进机场管理有哪些建议？",
-      "referenceText": "I have some suggestions for airport management.\nfirst, The airport  can use/introduce more advanced systems and equipment to improve the airport security check.\nsecond, the airport can offer/provide more training to the staff and improve their knowledge and skills.\n我对机场管理有一些建议。首先，机场可以采用 / 引入更先进的系统和设备，来改进机场安检工作。其次，机场可以为员工提供更多培训，提升他们的知识与技能 。"
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. I have some suggestions for airport management. First, The airport can use or introduce more advanced systems and equipment to improve the airport security check. Second, the airport can offer or provide more training to the staff and improve their knowledge and skills.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。我对机场管理有一些建议。首先，机场可以采用 / 引入更先进的系统和设备，来改进机场安检工作。其次，机场可以为员工提供更多培训，提升他们的知识与技能。"
     },
     {
       "id": "opi-core-426",
       "taskTitle": "运行-机场安检与航空安保-8",
-      "audioText": "what measures can be taken to prevent terrorist attack from happening?",
+      "audioText": "What measures can be taken to prevent terrorist attack from happening?",
       "audioTextZh": "可以采取哪些措施防止恐怖袭击的发生？",
-      "referenceText": "There are many things we can do to prevent terrorist activity(attack) from happening.\nFirst, we can improve airport security check to prevent terrorists and dangerous goods from entering the airport and aircraft.\nSecond, both pilots and cabin crew can improve their skills to fight against/with the terrorists or hijackers.\n可以做很多事情防止恐怖活动发生。第一，我们可以提高机场安保防止恐怖分子和危险品进入机场和飞机；第二，飞行员和客舱人员可以提高反恐或反劫机技能。"
+      "referenceText": "There are many things pilots can do to prevent terrorist activity(attack) from happening. First, pilots can improve airport security check to prevent terrorists and dangerous goods from entering the airport and aircraft. Second, both pilots and cabin crew can improve their skills to fight against or with the terrorists or hijackers.",
+      "referenceTextZh": "可以做很多事情防止恐怖活动发生。第一，我们可以提高机场安保防止恐怖分子和危险品进入机场和飞机；第二，飞行员和客舱人员可以提高反恐或反劫机技能。"
     },
     {
       "id": "opi-core-568",
       "taskTitle": "运行-机场安检与航空安保-9",
-      "audioText": "What can the airport security do to prevent terrorist activities on the aircraft? How to improve airport security check?",
-      "audioTextZh": "机场安检可采取哪些措施防范飞机上的恐怖活动？如何改进机场安检流程？",
-      "referenceText": "They should use more advanced equipment to detect dangerous goods, illegal weapons, and drugs to prevent terrorist activities. Security check staff should receive more training and strictly follow SOPs (Standard Operating Procedures) when conducting security checks.\n他们应使用更先进的设备检测危险物品、非法武器和毒品，以此防范恐怖活动。安检人员应接受更多培训，并严格遵循标准操作程序（SOPs）开展安检工作 。"
+      "audioText": "What can the airport security do to prevent terrorist activities on the aircraft?",
+      "audioTextZh": "机场安检可采取哪些措施防范飞机上的恐怖活动？",
+      "referenceText": "They should use more advanced equipment to detect dangerous goods, illegal weapons, and drugs to prevent terrorist activities. Security check staff should receive more training and strictly follow SOPs (Standard Operating Procedures) when conducting security checks.",
+      "referenceTextZh": "他们应使用更先进的设备检测危险物品、非法武器和毒品，以此防范恐怖活动。安检人员应接受更多培训，并严格遵循标准操作程序（SOPs）开展安检工作。"
     },
     {
       "id": "opi-core-569",
       "taskTitle": "运行-机场安检与航空安保-10",
       "audioText": "Do you think the good security has been improved in the last decade? Why?",
       "audioTextZh": "你认为过去十年机场安检是否有所改进？为什么？",
-      "referenceText": "Yes, I think so. Security check staff have taken more training, and they use advanced equipment to detect dangerous goods, illegal weapons, and drugs. Terrorist activities have become increasingly rare.\n是的，我认为有改进。安检人员接受了更多培训，而且他们使用先进设备检测危险物品、非法武器和毒品。恐怖活动也变得越来越少了 。"
+      "referenceText": "Yes, I think so. Security check staff have taken more training, and they use advanced equipment to detect dangerous goods, illegal weapons, and drugs. Terrorist activities have become increasingly rare.",
+      "referenceTextZh": "是的，我认为有改进。安检人员接受了更多培训，而且他们使用先进设备检测危险物品、非法武器和毒品。恐怖活动也变得越来越少了。"
     }
   ]
 }

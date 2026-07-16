@@ -14,16 +14,16 @@
     {
       "id": "opi-image-023-q01",
       "taskTitle": "图片题-023-01",
-      "audioText": "Please describe the emergency scene you see in this picture.",
+      "audioText": "Please describe the emergency scene you see in this picture?",
       "audioTextZh": "请描述你在图片中看到的紧急场景。",
-      "referenceText": "In this picture, I can see a situation related to Ground fire emergency. The key points are fuel, hot brakes, leaking fluids, ground equipment, and delayed emergency response. It is important for the crew to recognize the risk early, keep good communication, and follow standard operating procedures.",
-      "referenceTextZh": "在这张图片中，我看到的是与地面火灾应急有关的情况。关键点包括燃油、热刹车、液体泄漏、地面设备以及应急响应延迟。机组应及早识别风险，保持良好沟通，并按照标准操作程序处置。",
+      "referenceText": "",
+      "referenceTextZh": "",
       "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-023-q01.mp3"
     },
     {
       "id": "opi-image-023-q02",
       "taskTitle": "图片题-023-02",
-      "audioText": "What factors increase the risk of that situation",
+      "audioText": "What factors increase the risk of that situation?",
       "audioTextZh": "哪些因素会增加这种情况的风险？",
       "referenceText": "The main risks are fuel, hot brakes, leaking fluids, ground equipment, and delayed emergency response. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
       "referenceTextZh": "主要风险包括燃油、热刹车、液体泄漏、地面设备以及应急响应延迟。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",

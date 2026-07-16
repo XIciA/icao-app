@@ -7,100 +7,114 @@
     {
       "id": "opi-core-313",
       "taskTitle": "气象-低能见度与RVR-1",
-      "audioText": "What is RVR？",
+      "audioText": "What is runway visual range (RVR)?",
       "audioTextZh": "什么是 RVR？",
-      "referenceText": "RVR stands for runway visual range. It includes the touchdown RVR, mid-point RVR, stop-end RVR.\nRVR 是跑道视程（runway visual range）的缩写，它包括接地区跑道视程（touchdown RVR）、跑道中点视程（mid - point RVR）、跑道停止端视程（stop - end RVR） 。"
+      "referenceText": "Runway visual range is the distance over which a pilot on the runway centerline can see runway markings or the lights outlining or identifying the runway. It is normally reported for relevant runway zones, such as touchdown, midpoint, and stop end. Crews use RVR with the applicable operating minima to decide whether takeoff, approach, or landing may be continued.",
+      "referenceTextZh": "跑道视程是指位于跑道中心线上的飞行员能够看到跑道标志，或勾画跑道轮廓、标示跑道的灯光的距离。它通常按跑道相关区域报告，例如接地区、中点和停止端。机组结合适用的运行最低标准使用跑道视程，判断能否继续起飞、进近或着陆。"
     },
     {
       "id": "opi-core-314",
       "taskTitle": "气象-低能见度与RVR-2",
       "audioText": "When and where will you obtain RVR?",
       "audioTextZh": "你会在何时、何处获取跑道视程（RVR）信息？",
-      "referenceText": "When the visibility in the airport is less than 1500m, we can get RVR information from the ATIS or the controller.\n当机场能见度小于 1500 米时，我们可从自动终端情报服务（ATIS）或管制员处获取 RVR 信息 。"
+      "referenceText": "When the visibility in the airport is less than 1500m, pilots can get RVR information from the ATIS or ATC.",
+      "referenceTextZh": "当机场能见度小于 1500 米时，我们可从自动终端情报服务（ATIS）或管制员处获取 RVR 信息。"
     },
     {
       "id": "opi-core-315",
       "taskTitle": "气象-低能见度与RVR-3",
       "audioText": "Does your company allow low visibility takeoff?",
       "audioTextZh": "你们公司允许低能见度起飞吗？",
-      "referenceText": "In our flight school, if the visibility is low, or if the visibility is below our minimum, we will wait for weather improvement.\n在我们飞行学校，若能见度低，或能见度低于最低标准，我们会等待天气好转 。"
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. In our flight school, if the visibility is low, or if the visibility is below our minimum, I would wait for weather improvement.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。在我们飞行学校，若能见度低，或能见度低于最低标准，我们会等待天气好转。"
     },
     {
       "id": "opi-core-316",
       "taskTitle": "气象-低能见度与RVR-4",
-      "audioText": "When are low visibility procedures required",
+      "audioText": "When are low visibility procedures required?",
       "audioTextZh": "什么时候需要低能见度程序？",
-      "referenceText": "根据规定，如果能见度低于机场运行最低标准，需要低能见度程序。在这种情况下，管制员会告知飞行员正在实施低能见度程序。"
+      "referenceText": "Low-visibility procedures are used when visibility or cloud conditions fall below locally defined thresholds and normal surface operations need additional protection. The airport and ATC activate them according to published procedures, and crews follow the applicable low-visibility taxi, takeoff, and approach requirements. The exact trigger values vary by aerodrome and authority, so pilots must use current operational information.",
+      "referenceTextZh": "当能见度或云况低于当地规定阈值、正常地面运行需要额外保护时，会实施低能见度程序。机场和空中交通管制部门根据公布程序启动该程序，机组则执行适用的低能见度滑行、起飞和进近要求。具体启动数值因机场和监管体系而异，因此飞行员必须使用最新运行信息。"
     },
     {
       "id": "opi-extra-192",
       "taskTitle": "气象-低能见度与RVR-5",
       "audioText": "What's your company's policy for departing and landing in low visibility conditions?",
       "audioTextZh": "你们公司在低能见度条件下的起降政策是怎样的？",
-      "referenceText": "I’m still a student pilot, so I don’t know the specific policy for departures and landings in low - visibility conditions. But I know the minimum takeoff and landing visibility for a C172 is 1,600 meters.\n我还是一名飞行学员，所以不清楚低能见度条件下降落和起飞的具体政策。但我知道 C172 飞机的最低起降能见度是 1600 米。"
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. I’m still a student pilot, so I don’t know the specific policy for departures and landings in low-visibility conditions. But I know the minimum takeoff and landing visibility for a C172 is 1,600 meters.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。我还是一名飞行学员，所以不清楚低能见度条件下降落和起飞的具体政策。但我知道 C172 飞机的最低起降能见度是 1600 米。"
     },
     {
       "id": "opi-extra-193",
       "taskTitle": "气象-低能见度与RVR-6",
       "audioText": "How can you avoid runway incursion in low visibility?",
       "audioTextZh": "在低能见度条件下，如何避免跑道侵入？",
-      "referenceText": "To avoid runway incursion in low visibility, first, obtain ATC clearance before entering the runway. If in doubt about the clearance, confirm it with ATC. Second, maintain good situational awareness at all times.\n要在低能见度条件下避免跑道侵入，首先，进入跑道前需获得空中交通管制（ATC ）许可。若对许可存疑，应向 ATC 确认。其次，始终保持良好的态势感知。"
+      "referenceText": "To avoid runway incursion in low visibility, first, obtain ATC clearance before entering the runway. If in doubt about the clearance, confirm it with ATC. Second, maintain good situational awareness at all times.",
+      "referenceTextZh": "要在低能见度条件下避免跑道侵入，首先，进入跑道前需获得空中交通管制（ATC ）许可。若对许可存疑，应向 ATC 确认。其次，始终保持良好的态势感知。"
     },
     {
       "id": "opi-extra-194",
       "taskTitle": "气象-低能见度与RVR-7",
       "audioText": "What caution should pilots pay when taxiing on the taxiway in low visibility?",
       "audioTextZh": "在低能见度条件下，飞行员在滑行道滑行时应注意哪些事项？",
-      "referenceText": "When taxiing on the taxiway in low visibility, pilots should maintain good situational awareness, strictly follow ATC instructions, and may request a follow - me car if visibility is extremely poor.\n在低能见度条件下于滑行道滑行时，飞行员应保持良好的态势感知，严格遵循空中交通管制（ATC ）指令，若能见度极差，可申请引导车协助。"
+      "referenceText": "When taxiing on the taxiway in low visibility, pilots should maintain good situational awareness, strictly follow ATC instructions, and may request a follow-me car if visibility is extremely poor.",
+      "referenceTextZh": "在低能见度条件下于滑行道滑行时，飞行员应保持良好的态势感知，严格遵循空中交通管制（ATC ）指令，若能见度极差，可申请引导车协助。"
     },
     {
       "id": "opi-extra-195",
       "taskTitle": "气象-低能见度与RVR-8",
-      "audioText": "How to avoid ground collision in case of low visibility?",
+      "audioText": "How can pilots avoid ground collision in case of low visibility?",
       "audioTextZh": "低能见度条件下，如何避免地面碰撞？",
-      "referenceText": "To avoid ground collisions in low visibility, first, taxi slowly and cautiously. Second, strictly follow ATC instructions and maintain good situational awareness.\n要在低能见度条件下避免地面碰撞，首先，缓慢且谨慎地滑行。其次，严格遵循空中交通管制（ATC ）指令，保持良好的情景意识。\n\nTo avoid ground incidents in low visibility, pilots should follow ATC instructions strictly, read back clearly, taxi slowly, use all lights, monitor frequency and airport charts, request follow-me cars, maintain good cockpit communication, and confirm positions if in doubt. Airports should provide adequate lighting and surface movement radar.\n低能见度下避免地面事件的措施包括：严格遵循空管指令，准确复诵，低速滑行，开启所有灯光，监控频率和机场航图，申请引导车，保持良好驾驶舱沟通，有疑问时确认位置。机场应提供充足照明和场面监视雷达。"
+      "referenceText": "To avoid ground incidents in low visibility, pilots should follow ATC instructions strictly, read back clearly, taxi slowly, use all lights, monitor frequency and airport charts, request follow-me cars, maintain good cockpit communication, and confirm positions if in doubt. Airports should provide adequate lighting and surface movement radar.",
+      "referenceTextZh": "低能见度下避免地面事件的措施包括：严格遵循空管指令，准确复诵，低速滑行，开启所有灯光，监控频率和机场航图，申请引导车，保持良好驾驶舱沟通，有疑问时确认位置。机场应提供充足照明和场面监视雷达。"
     },
     {
       "id": "opi-extra-196",
       "taskTitle": "气象-低能见度与RVR-9",
       "audioText": "In heavy fog, if you miss the correct taxiway, what will you do?",
       "audioTextZh": "大雾中如果错过正确滑行道，你该怎么办？",
-      "referenceText": "If we miss the correct taxiway, we will hold position immediately, then report our situation to ATC and request further instructions. If necessary, we may request a follow - me vehicle.\n若错过正确滑行道，我们会立即原地待命，随后向空中交通管制（ATC）报告情况并请求进一步指令。如有必要，可申请引导车协助"
+      "referenceText": "If we miss the correct taxiway, I would hold position immediately, then report our situation to ATC and request further instructions. If necessary, we may request a follow-me vehicle.",
+      "referenceTextZh": "若错过正确滑行道，我们会立即原地待命，随后向空中交通管制（ATC）报告情况并请求进一步指令。如有必要，可申请引导车协助。"
     },
     {
       "id": "opi-extra-197",
       "taskTitle": "气象-低能见度与RVR-10",
-      "audioText": "What's the policy in low visibility\nsituation?",
-      "audioTextZh": "低能见度的运行政策是什么?",
-      "referenceText": "The low visibility operation (LVO) policy varies by company and airport. During training, if visibility is below 1600m, we suspend training. Civil airports implement LVO when RVR is below 400m, using CAT II/III ILS approach. Pilots must meet qualification requirements, and aircraft need proper equipment. If visibility is below minimum, delay, divert or hold until it improves.\n低能见度运行（LVO）政策因公司和机场而异。飞行训练中，能见度低于1600米时暂停训练；民用机场跑道视程（RVR）低于400米时实施LVO，采用二类/三类仪表着陆系统（ILS）进近；飞行员需具备相应资质，飞机需配备合格设备；能见度低于最低标准时，需延误、改航或等待至天气好转。"
+      "audioText": "What's the policy in low visibility situation?",
+      "audioTextZh": "低能见度的运行政策是什么？",
+      "referenceText": "The low visibility operation (LVO) policy varies by company and airport. During training, if visibility is below 1600m, we suspend training. Civil airports implement LVO when RVR is below 400m, using CAT II or III ILS approach. Pilots must meet qualification requirements, and aircraft need proper equipment. If visibility is below minimum, delay, divert or hold until it improves.",
+      "referenceTextZh": "低能见度运行（LVO）政策因公司和机场而异。飞行训练中，能见度低于1600米时暂停训练；民用机场跑道视程（RVR）低于400米时实施LVO，采用二类/三类仪表着陆系统（ILS）进近；飞行员需具备相应资质，飞机需配备合格设备；能见度低于最低标准时，需延误、改航或等待至天气好转。"
     },
     {
       "id": "opi-extra-198",
       "taskTitle": "气象-低能见度与RVR-11",
-      "audioText": "Can you name some consequences\nof disorientation under low\nvisibility?",
-      "audioTextZh": "你能说出在低能见度下失去方向的后果\n吗?",
-      "referenceText": "Disorientation under low visibility may cause runway incursion, ground collision, wrong taxiway entry, missed approach or go-around. It can lead to unstable landing, runway overrun/veer-off, structural damage, and injuries to crew and passengers. In severe cases, it results in flight accidents endangering flight safety.\n低能见度下失去方向可能导致跑道入侵、地面相撞、误入滑行道、进近失败或复飞；还可能引发不稳定着陆、跑道冲出/偏出、结构损伤，以及机组和乘客受伤，严重时引发飞行事故，危及飞行安全。"
+      "audioText": "Can you name some consequences of disorientation under low visibility?",
+      "audioTextZh": "你能说出在低能见度下失去方向的后果吗？",
+      "referenceText": "Disorientation under low visibility may cause runway incursion, ground collision, wrong taxiway entry, missed approach or go-around. It can lead to unstable landing, runway overrun or veer-off, structural damage, and injuries to crew and passengers. In severe cases, it results in flight accidents endangering flight safety.",
+      "referenceTextZh": "低能见度下失去方向可能导致跑道入侵、地面相撞、误入滑行道、进近失败或复飞；还可能引发不稳定着陆、跑道冲出/偏出、结构损伤，以及机组和乘客受伤，严重时引发飞行事故，危及飞行安全。"
     },
     {
       "id": "opi-extra-199",
       "taskTitle": "气象-低能见度与RVR-12",
-      "audioText": "How can we reduce runway\nincursion during taxi in case of low\nvisibility?",
-      "audioTextZh": "在低能见度下滑行时如何减少跑道入\n侵?",
-      "referenceText": "To reduce runway incursion under low visibility, taxi at low speed, turn on all lights (especially anti-collision lights). Follow ATC instructions strictly, readback clearly and confirm if in doubt. Use airport charts, request follow-me car if needed. Maintain good cockpit communication and situation awareness, monitor frequency closely.\n低能见度下滑行减少跑道入侵的措施：低速滑行，开启所有灯光（尤其是防撞灯）；严格遵循空管指令，清晰复诵，有疑问时及时确认；使用机场航图，必要时申请引导车；保持驾驶舱内良好沟通和情景意识，密切监控通讯频率。"
+      "audioText": "How can we reduce runway incursion during taxi in case of low visibility?",
+      "audioTextZh": "在低能见度下滑行时如何减少跑道入侵？",
+      "referenceText": "To reduce runway incursion under low visibility, taxi at low speed, turn on all lights (especially anti-collision lights). Follow ATC instructions strictly, readback clearly and confirm if in doubt. Use airport charts, request follow-me car if needed. Maintain good cockpit communication and situation awareness, monitor frequency closely.",
+      "referenceTextZh": "低能见度下滑行减少跑道入侵的措施：低速滑行，开启所有灯光（尤其是防撞灯）；严格遵循空管指令，清晰复诵，有疑问时及时确认；使用机场航图，必要时申请引导车；保持驾驶舱内良好沟通和情景意识，密切监控通讯频率。"
     },
     {
       "id": "opi-extra-200",
       "taskTitle": "气象-低能见度与RVR-13",
       "audioText": "What are the possible results if the aircraft operates in low visibility?",
-      "audioTextZh": "在低能见下运行会产生的结果有哪些?",
-      "referenceText": "Operating in low visibility may lead to runway incursion, ground collision, missed taxiways/runways, unstable approach, go-around, delay, or diversion. It reduces situational awareness, increases pilot workload, and raises risks of misjudgment, endangering both ground and flight safety.\n低能见度下运行可能导致跑道入侵、地面相撞、滑错滑行道/跑道、不稳定进近、复飞、延误或备降。低能见度会降低情景意识，增加飞行员工作负荷，提升误判风险，危及地面和飞行安全。"
+      "audioTextZh": "在低能见下运行会产生的结果有哪些？",
+      "referenceText": "Operating in low visibility may lead to runway incursion, ground collision, missed taxiways or runways, unstable approach, go-around, delay, or diversion. It reduces situational awareness, increases pilot workload, and raises risks of misjudgment, endangering both ground and flight safety.",
+      "referenceTextZh": "低能见度下运行可能导致跑道入侵、地面相撞、滑错滑行道/跑道、不稳定进近、复飞、延误或备降。低能见度会降低情景意识，增加飞行员工作负荷，提升误判风险，危及地面和飞行安全。"
     },
     {
       "id": "opi-extra-201",
       "taskTitle": "气象-低能见度与RVR-14",
       "audioText": "If you taxi to the wrong taxiway in low visibility, what should you do?",
-      "audioTextZh": "如果你在低能见度下滑错滑行道,你会怎么做?",
-      "referenceText": "If taxiing to the wrong taxiway in low visibility, I will stop the aircraft immediately, turn on all lights (anti-collision lights), report to ATC with my position, request confirmation and further instructions, and ask for a follow-me car if necessary. I will not proceed without ATC clearance to avoid incidents.\n若在低能见度下滑错滑行道，我会立即停止飞机，打开所有灯光（防撞灯），向空管报告自身位置，请求确认和进一步指令，必要时申请引导车。在未获得空管许可前不会继续滑行，避免发生事故。"
+      "audioTextZh": "如果你在低能见度下滑错滑行道,你会怎么做？",
+      "referenceText": "If taxiing to the wrong taxiway in low visibility, I will stop the aircraft immediately, turn on all lights (anti-collision lights), report to ATC with my position, request confirmation and further instructions, and ask for a follow-me car if necessary. I will not proceed without ATC clearance to avoid incidents.",
+      "referenceTextZh": "若在低能见度下滑错滑行道，我会立即停止飞机，打开所有灯光（防撞灯），向空管报告自身位置，请求确认和进一步指令，必要时申请引导车。在未获得空管许可前不会继续滑行，避免发生事故。"
     }
   ]
 }

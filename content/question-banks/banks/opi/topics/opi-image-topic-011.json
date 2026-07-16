@@ -14,10 +14,10 @@
     {
       "id": "opi-image-011-q01",
       "taskTitle": "图片题-011-01",
-      "audioText": "Please describe the scene shown in this picture.",
+      "audioText": "Please describe the scene shown in this picture?",
       "audioTextZh": "请描述图片中显示的场景。",
-      "referenceText": "In this picture, I can see a situation related to Tail engine fire. The key points are smoke, fire spread, system damage, passenger panic, and possible evacuation. It is important for the crew to recognize the risk early, keep good communication, and follow standard operating procedures.",
-      "referenceTextZh": "在这张图片中，我看到的是与尾部发动机火警有关的情况。关键点包括烟雾、火势蔓延、系统损伤、旅客恐慌以及可能需要撤离。机组应及早识别风险，保持良好沟通，并按照标准操作程序处置。",
+      "referenceText": "",
+      "referenceTextZh": "",
       "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-011-q01.mp3"
     },
     {

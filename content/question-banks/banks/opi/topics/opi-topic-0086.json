@@ -7,23 +7,26 @@
     {
       "id": "opi-core-859",
       "taskTitle": "特情-紧急撤离-1",
-      "audioText": "Under what conditions should be flight crew execute Emergency evacuation?",
+      "audioText": "Under what conditions should a flight crew carry out an emergency evacuation?",
       "audioTextZh": "在何种情况下，飞行机组应执行紧急撤离？",
-      "referenceText": "There are some reasons for emergency evacuation. For example, if we encounter a bomb on board, engine fire, smoke in the cabin, or a belly landing, we will execute an emergency evacuation.\n存在一些需执行紧急撤离的情况。例如，若飞机上遭遇炸弹威胁、发动机起火、客舱冒烟或发生 belly landing（ belly landing ：机腹着陆，也可译为 “Belly landing（无起落架着陆）”  ），我们将执行紧急撤离 。"
+      "referenceText": "There are some reasons for emergency evacuation. For example, if we encounter a bomb on board, engine fire, smoke in the cabin, or a belly landing, I would execute an emergency evacuation.",
+      "referenceTextZh": "存在一些需执行紧急撤离的情况。例如，若飞机上遭遇炸弹威胁、发动机起火、客舱冒烟或发生 belly landing（ belly landing：机腹着陆，也可译为 “Belly landing（无起落架着陆）” ），我们将执行紧急撤离。"
     },
     {
       "id": "opi-core-860",
       "taskTitle": "特情-紧急撤离-2",
       "audioText": "What should the flight crew do when they decide to execute emergency evacuation?",
       "audioTextZh": "飞行机组决定执行紧急撤离时应如何操作？",
-      "referenceText": "First of all, they should cooperate well to complete the checklist. Secondly, they should advise ATC of the situation and request emergency services. Thirdly, cabin crew should follow the captain's instructions, comfort passengers, and prepare them for evacuation. At last, the captain should make a PA announcement to tell passengers to calm down and follow cabin crew instructions for evacuation.\n首先，机组人员应密切配合，完成检查单（ checklist ： 飞行检查单，是航空运行中确保操作规范的重要文件 ）。其次，向空中交通管制（ATC）通报情况并请求紧急服务。第三，客舱乘务员需遵循机长指令，安抚乘客并让他们做好撤离准备。最后，机长应通过广播（PA announcement ： Public Address announcement ，即机上广播 ）告知乘客保持冷静，听从客舱乘务员的撤离指令 。"
+      "referenceText": "First, they should cooperate well to complete the checklist. Second, ly, they should advise ATC of the situation and request emergency services. Third, ly, cabin crew should follow the captain's instructions, comfort passengers, and prepare them for evacuation. At last, the captain should make a PA announcement to tell passengers to calm down and follow cabin crew instructions for evacuation.",
+      "referenceTextZh": "首先，机组人员应密切配合，完成检查单（ checklist： 飞行检查单，是航空运行中确保操作规范的重要文件 ）。其次，向空中交通管制（ATC）通报情况并请求紧急服务。第三，客舱乘务员需遵循机长指令，安抚乘客并让他们做好撤离准备。最后，机长应通过广播（PA announcement： Public Address announcement，即机上广播 ）告知乘客保持冷静，听从客舱乘务员的撤离指令。"
     },
     {
       "id": "opi-core-861",
       "taskTitle": "特情-紧急撤离-3",
       "audioText": "Do you think a good briefing with the cabin crew may improve the chances of a successful evacuation?",
       "audioTextZh": "你认为与客舱机组人员进行一次有效的情况介绍，能否提高成功撤离的几率？",
-      "referenceText": "Yes, I think so. Because a successful evacuation needs good teamwork. A good briefing can let everyone know what they should do during an emergency. During the evacuation, the pilots should cooperate well to complete the checklist. The cabin crew should follow the captain's instructions and they are responsible for comforting the passengers and preparing the passengers for evacuation.\n翻译：是的，我认为可以。因为一次成功的撤离需要良好的团队协作。有效的情况介绍能让每个人都清楚在紧急状况下自己该做什么。在撤离过程中，飞行员们应密切配合完成检查单。客舱机组人员需遵循机长的指令，并且负责安抚乘客，让乘客为撤离做好准备 。"
+      "referenceText": "Yes, I think so. Because a successful evacuation needs good teamwork. A good briefing can let everyone know what they should do during an emergency. During the evacuation, the pilots should cooperate well to complete the checklist. The cabin crew should follow the captain's instructions and they are responsible for comforting the passengers and preparing the passengers for evacuation.",
+      "referenceTextZh": "翻译：是的，我认为可以。因为一次成功的撤离需要良好的团队协作。有效的情况介绍能让每个人都清楚在紧急状况下自己该做什么。在撤离过程中，飞行员们应密切配合完成检查单。客舱机组人员需遵循机长的指令，并且负责安抚乘客，让乘客为撤离做好准备。"
     }
   ]
 }

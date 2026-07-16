@@ -7,30 +7,34 @@
     {
       "id": "opi-extra-112",
       "taskTitle": "特情-烟雾-1",
-      "audioText": "Smoke in the cockpit/flight deck, what will you do?/If there is strange smell in the cockpit, what will you do?",
-      "audioTextZh": "驾驶舱内出现烟雾 / 若驾驶舱有奇怪气味，你会怎么做？",
-      "referenceText": "First of all, I will ask another crew member to check the smoke source. At the same time, we will wear the oxygen mask and smoke goggles in case the smoke is toxic. We will follow the SOP and perform the checklist to try to solve the problem. Then we will advise the controller of our situation and request to descend to ventilate the aircraft due to smoke on board. Finally, we will request to land as soon as possible and request fire services and medical assistance upon arrival.\n首先，我会让另一名机组成员检查烟雾来源。同时，我们会戴上氧气面罩和防烟护目镜，以防烟雾有毒。我们会遵循标准操作程序（SOP），执行检查单尝试解决问题。随后，会将情况告知管制员，请求下降以给因机上烟雾而通风换气。最后，会请求尽快着陆，并在抵达时要求消防和医疗援助 。"
+      "audioText": "Smoke in the flight deck, what will you do?",
+      "audioTextZh": "驾驶舱内出现烟雾，你会怎么做？",
+      "referenceText": "First, I will ask another crew member to check the smoke source. At the same time, I would wear the oxygen mask and smoke goggles in case the smoke is toxic. I would follow the applicable SOP and complete the applicable checklist to try to solve the problem. Then I would advise ATC of our situation and request to descend to ventilate the aircraft due to smoke on board. Finally, I would request to land as soon as possible and request fire services and medical assistance upon arrival.",
+      "referenceTextZh": "首先，我会让另一名机组成员检查烟雾来源。同时，我们会戴上氧气面罩和防烟护目镜，以防烟雾有毒。我们会遵循标准操作程序（SOP），执行检查单尝试解决问题。随后，会将情况告知管制员，请求下降以给因机上烟雾而通风换气。最后，会请求尽快着陆，并在抵达时要求消防和医疗援助。"
     },
     {
       "id": "opi-extra-113",
       "taskTitle": "特情-烟雾-2",
-      "audioText": "Reasons for smoke in the cockpit?",
+      "audioText": "What may cause smoke in the flight deck?",
       "audioTextZh": "驾驶舱出现烟雾的原因有哪些？",
-      "referenceText": "There are some reasons for smoke in the cockpit. For example, electrical system problems, wire wear - out, dangerous goods leakage, and so on.\n驾驶舱出现烟雾有多种原因，比如电气系统故障、导线磨损、危险物品泄漏等等 。"
+      "referenceText": "There are some reasons for smoke in the cockpit. For example, electrical system problems, wire wear-out, dangerous goods leakage, and so on.",
+      "referenceTextZh": "驾驶舱出现烟雾有多种原因，比如电气系统故障、导线磨损、危险物品泄漏等等。"
     },
     {
       "id": "opi-extra-114",
       "taskTitle": "特情-烟雾-3",
       "audioText": "Smoke in the cabin, what will you do?",
       "audioTextZh": "客舱内出现烟雾，你会怎么做？",
-      "referenceText": "First of all, I will ask the cabin crew to check the smoke source. At the same time, we will advise the controller of our situation and request to descend to ventilate the aircraft due to smoke on board. Finally, we will request to land as soon as possible and request fire services and medical assistance upon arrival.\n首先，我会让客舱乘务员检查烟雾来源。同时，我们会将情况告知管制员，请求下降以给因机上烟雾而通风换气。最后，会请求尽快着陆，并在抵达时要求消防和医疗援助 。"
+      "referenceText": "First, I will ask the cabin crew to check the smoke source. At the same time, I would advise ATC of our situation and request to descend to ventilate the aircraft due to smoke on board. Finally, I would request to land as soon as possible and request fire services and medical assistance upon arrival.",
+      "referenceTextZh": "首先，我会让客舱乘务员检查烟雾来源。同时，我们会将情况告知管制员，请求下降以给因机上烟雾而通风换气。最后，会请求尽快着陆，并在抵达时要求消防和医疗援助。"
     },
     {
       "id": "opi-extra-115",
       "taskTitle": "特情-烟雾-4",
-      "audioText": "Have you ever heard any accidents caused by smoke or fire on board? If yes, please tell me what happened. If no, Do you think smoke or fire can cause an accident? Why?",
-      "audioTextZh": "你曾听说过机上因烟雾或火灾引发的事故吗？若有，请讲讲发生了什么。若没有，你认为烟雾或火灾会引发事故吗？为什么？",
-      "referenceText": "I have not heard of any. I think smoke or fire is very dangerous for flight safety. Because they may develop very fast, and it will have serious consequences; the aircraft may be out of control.\n我没听说过这类事故。我认为烟雾或火灾对飞行安全极为危险，因为它们可能蔓延发展得很快，会产生严重后果，飞机可能会失控 。"
+      "audioText": "Have you ever heard any accidents caused by smoke or fire on board?",
+      "audioTextZh": "你曾听说过机上因烟雾或火灾引发的事故吗？",
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. I have not heard of any. I think smoke or fire is very dangerous for flight safety. Because they may develop very fast, and it will have serious consequences; the aircraft may be out of control.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。我没听说过这类事故。我认为烟雾或火灾对飞行安全极为危险，因为它们可能蔓延发展得很快，会产生严重后果，飞机可能会失控。"
     }
   ]
 }

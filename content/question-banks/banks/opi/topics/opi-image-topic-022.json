@@ -14,10 +14,10 @@
     {
       "id": "opi-image-022-q01",
       "taskTitle": "图片题-022-01",
-      "audioText": "What weather conditions will further reduce visibility during night landing on such terrain airports?",
+      "audioText": "What weather conditions can further reduce visibility during a night landing at a terrain-critical airport?",
       "audioTextZh": "在这类地形机场夜间着陆时，哪些天气条件会进一步降低能见度？",
-      "referenceText": "This situation is related to Night terrain approach. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
-      "referenceTextZh": "这种情况与山区夜间进近有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
+      "referenceText": "Fog, low cloud, rain, snow, haze, smoke, and blowing dust can further reduce visibility at night. Mountainous terrain can also create localized cloud and precipitation, while few ground lights may make terrain harder to distinguish. Crews should use current weather, terrain awareness, published procedures, and conservative approach minima.",
+      "referenceTextZh": "雾、低云、雨、雪、霾、烟和扬尘都会在夜间进一步降低能见度。山区地形还可能形成局地云和降水，而地面灯光稀少会使地形更难辨认。机组应利用最新天气、地形感知系统和公布程序，并采用保守的进近最低标准。",
       "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-022-q01.mp3"
     },
     {
@@ -32,7 +32,7 @@
     {
       "id": "opi-image-022-q03",
       "taskTitle": "图片题-022-03",
-      "audioText": "What pre-descent briefings help pilot handle night approach risks",
+      "audioText": "What pre-descent briefings help pilots handle night approach risks?",
       "audioTextZh": "下降前哪些简令有助于飞行员处理夜间进近风险？",
       "referenceText": "The main risks are low cloud, rain, fog, terrain shadow, and limited visual references. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
       "referenceTextZh": "主要风险包括低云、降雨、雾、地形阴影以及目视参照有限。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",

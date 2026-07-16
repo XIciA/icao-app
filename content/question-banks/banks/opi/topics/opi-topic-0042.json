@@ -7,30 +7,34 @@
     {
       "id": "opi-core-525",
       "taskTitle": "缩略词-ATIS-1",
-      "audioText": "What is ATIS?\nWhat is the function of ATIS?\nWhat information is included in ATIS?\nWhen and where will you obtain ATIS?",
-      "audioTextZh": "什么是 ATIS？ATIS 的功能是什么？ATIS 包含哪些信息？你会在何时、何地获取 ATIS？",
-      "referenceText": "ATIS stands for Automatic Terminal Information Service. It helps pilots obtain all information about the departure or arrival airport. It includes useful details such as visibility, wind, temperature, and the active runway, etc. Pilots typically listen to ATIS on the designated frequency before departure or landing.\nATIS 是自动终端情报服务（Automatic Terminal Information Service ）的缩写。它帮助飞行员了解起飞机场或目的地机场的全部信息，涵盖能见度、风向、气温、在用跑道等实用内容。飞行员通常会在起飞或着陆前，通过指定频率收听 ATIS 。\n\nATIS stands for Automatic Terminal Information Service, a service that provides essential operational information for aircraft at an aerodrome, helping pilots prepare for takeoff and landing.\nATIS是自动终端情报服务（Automatic Terminal Information Service）的缩写，为机场航空器提供关键运行信息，帮助飞行员做好起降准备。"
+      "audioText": "What is ATIS, and what are its main functions?",
+      "audioTextZh": "什么是 ATIS？",
+      "referenceText": "ATIS stands for Automatic Terminal Information Service. It helps pilots obtain all information about the departure or arrival airport. It includes useful details such as visibility, wind, temperature, and the active runway, etc. Pilots typically listen to ATIS on the designated frequency before departure or landing.",
+      "referenceTextZh": "是自动终端情报服务（Automatic Terminal Information Service ）的缩写。它帮助飞行员了解起飞机场或目的地机场的全部信息，涵盖能见度、风向、气温、在用跑道等实用内容。飞行员通常会在起飞或着陆前，通过指定频率收听 ATIS。"
     },
     {
       "id": "opi-core-526",
       "taskTitle": "缩略词-ATIS-2",
       "audioText": "What is your ATIS frequency?",
       "audioTextZh": "你们机场的自动终端情报服务（ATIS）频率是多少？",
-      "referenceText": "Our airport is only used for flight training, so we don’t have ATIS.\n我们机场仅用于飞行训练，因此没有 ATIS 。"
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. Our airport is only used for flight training, so we don’t have ATIS.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。我们机场仅用于飞行训练，因此没有 ATIS。"
     },
     {
       "id": "opi-core-527",
       "taskTitle": "缩略词-ATIS-3",
-      "audioText": "Why is it necessary for pilots to listen to ATIS broadcast'?",
+      "audioText": "Why is it necessary for pilots to listen to ATIS broadcast?",
       "audioTextZh": "飞行员为何需要收听自动终端情报服务（ATIS）广播？",
-      "referenceText": "It’s necessary to listen to ATIS because we can obtain important information from it, such as the active runway, approach types, wind information, cloud information, temperature, dew point, QNH, and other alerting information.\n收听 ATIS 很有必要，因为我们能从中获取重要信息，比如在用跑道、进近类型、风况、云况、气温、露点、修正海平面气压（QNH）以及其他告警信息 。\n\nIt’s necessary because ATIS provides critical information for safe takeoff and landing. Included information covers airport name, information code, observation time, active runway, runway condition, surface wind, visibility/RVR, present weather, temperature, dew point, altimeter setting (QNH/QFE), and bird activity alerts.\n收听ATIS很有必要，因为它提供起降安全所需的关键信息。内容包括机场名称、情报代码、观测时间、使用跑道、跑道状况、地面风、能见度/跑道视程（RVR）、现行天气、气温、露点、高度表拨正值（QNH/QFE）以及鸟类活动预警等。"
+      "referenceText": "It’s necessary because ATIS provides critical information for safe takeoff and landing. Included information covers airport name, information code, observation time, active runway, runway condition, surface wind, visibility or RVR, present weather, temperature, dew point, altimeter setting (QNH or QFE), and bird activity alerts.",
+      "referenceTextZh": "收听ATIS很有必要，因为它提供起降安全所需的关键信息。内容包括机场名称、情报代码、观测时间、使用跑道、跑道状况、地面风、能见度/跑道视程（RVR）、现行天气、气温、露点、高度表拨正值（QNH/QFE）以及鸟类活动预警等。"
     },
     {
       "id": "opi-core-528",
       "taskTitle": "缩略词-ATIS-4",
       "audioText": "When do pilots listen to ATIS?",
       "audioTextZh": "飞行员什么时候会收听ATIS？",
-      "referenceText": "Pilots usually listen to ATIS before departure and approach, typically 15 minutes prior to startup and initial descent, to obtain the latest airport and weather information for flight preparation.\n飞行员通常在起飞前和进近时收听ATIS，一般在启动前和初始下降前15分钟，以获取最新的机场和天气信息，为飞行做准备。"
+      "referenceText": "Pilots usually listen to ATIS before departure and approach, typically 15 minutes prior to startup and initial descent, to obtain the latest airport and weather information for flight preparation.",
+      "referenceTextZh": "飞行员通常在起飞前和进近时收听ATIS，一般在启动前和初始下降前15分钟，以获取最新的机场和天气信息，为飞行做准备。"
     }
   ]
 }

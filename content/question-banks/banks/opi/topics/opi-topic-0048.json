@@ -9,21 +9,24 @@
       "taskTitle": "运行-起飞着陆性能-1",
       "audioText": "What may happen if pilot failed to assess the landing performance?",
       "audioTextZh": "若飞行员未能评估着陆性能，可能会发生什么情况？",
-      "referenceText": "If a pilot fails to assess the landing performance, they may not know the runway conditions and runway length. This is very dangerous.\n如果飞行员未能评估着陆性能，他们可能不了解跑道状况和跑道长度，这十分危险 。"
+      "referenceText": "If a pilot fails to assess the landing performance, they may not know the runway conditions and runway length. This is very dangerous.",
+      "referenceTextZh": "如果飞行员未能评估着陆性能，他们可能不了解跑道状况和跑道长度，这十分危险。"
     },
     {
       "id": "opi-core-581",
       "taskTitle": "运行-起飞着陆性能-2",
-      "audioText": "Do you make takeoff/landing assessment for each flight? What factors will you consider when making the performance assessment?",
-      "audioTextZh": "你们会为每个航班做起飞 / 着陆评估吗？进行性能评估时会考虑哪些因素？",
-      "referenceText": "Yes, we have to make takeoff and landing assessments for each flight. We have to consider many factors, such as runway conditions, runway length, braking action, flap position, wind, temperature, and so on.\n会的，我们必须为每个航班做起飞和着陆评估。要考虑诸多因素，比如跑道状况、跑道长度、刹车效能、襟翼位置、风向风力、温度等等 。"
+      "audioText": "Do you make takeoff assessment for each flight?",
+      "audioTextZh": "你们会为每个航班做起飞？",
+      "referenceText": "Yes, we have to make takeoff and landing assessments for each flight. We have to consider many factors, such as runway conditions, runway length, braking action, flap position, wind, temperature, and so on.",
+      "referenceTextZh": "会的，我们必须为每个航班做起飞和着陆评估。要考虑诸多因素，比如跑道状况、跑道长度、刹车效能、襟翼位置、风向风力、温度等等。"
     },
     {
       "id": "opi-core-582",
       "taskTitle": "运行-起飞着陆性能-3",
       "audioText": "What kind of failure will influence the landing performance?",
       "audioTextZh": "哪些故障会影响着陆性能？",
-      "referenceText": "There are many failures that may influence the landing performance. For example, engine failure, hydraulic system failure, jammed flaps, brake malfunction, and so on.\n有很多故障可能会影响着陆性能，比如发动机故障、液压系统故障、襟翼卡阻、刹车故障等等 。"
+      "referenceText": "There are many failures that may influence the landing performance. For example, engine failure, hydraulic system failure, jammed flaps, brake malfunction, and so on.",
+      "referenceTextZh": "有很多故障可能会影响着陆性能，比如发动机故障、液压系统故障、襟翼卡阻、刹车故障等等。"
     }
   ]
 }

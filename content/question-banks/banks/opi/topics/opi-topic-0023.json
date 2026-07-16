@@ -9,105 +9,120 @@
       "taskTitle": "特情-跑道侵入与地面冲突-1",
       "audioText": "If you collide with a ground truck while taxiing, what will you do?",
       "audioTextZh": "若在滑行时与地面车辆相撞，你会怎么做？",
-      "referenceText": "If colliding with a ground truck during taxi, stop immediately. Inform ATC, request ground mechanics to inspect the damage, and cancel the flight if necessary.\n若滑行时与地面车辆相撞，立即停下。告知空中交通管制（ATC），请求机务检查损伤，必要时取消航班 。\n\nImmediately stop the aircraft, set parking brakes, and assess damage. Report the incident to ATC and company dispatch. Inform cabin crew to check for injuries. Request ground maintenance inspection and airport fire/medical assistance if needed. Do not resume taxiing without confirmation of aircraft airworthiness.\n立即停止飞机，设置停留刹车并评估损伤；向空管和公司签派报告事件；通知客舱机组检查人员受伤情况；必要时请求地面维护检查及机场消防/医疗支援；未确认飞机适航前不得恢复滑行。"
+      "referenceText": "Immediately stop the aircraft, set parking brakes, and assess damage. Report the incident to ATC and company dispatch. Inform cabin crew to check for injuries. Request ground maintenance inspection and airport fire or medical assistance if needed. Do not resume taxiing without confirmation of aircraft airworthiness.",
+      "referenceTextZh": "立即停止飞机，设置停留刹车并评估损伤；向空管和公司签派报告事件；通知客舱机组检查人员受伤情况；必要时请求地面维护检查及机场消防/医疗支援；未确认飞机适航前不得恢复滑行。"
     },
     {
       "id": "opi-core-340",
       "taskTitle": "特情-跑道侵入与地面冲突-2",
-      "audioText": "In heavy fog, if you missed the correct taxiway, what will you do? If you missed the rapid exit at an unfamiliar airport, what will you do?",
-      "audioTextZh": "在浓雾中，若错过正确的滑行道，你会怎么做？若在不熟悉的机场错过快速出口，你会怎么做？",
-      "referenceText": "If I missed the correct taxiway in heavy fog,i will stop immediately.Then I will advise ATC of our situation and request ground mechanics to check the damage.If necessary, I may request cancel the flight.\n若在浓雾中错过正确的滑行道，我会立即停下。然后向空中交通管制（ATC）报告我们的情况，请求机务检查损伤。如有必要，我可能会申请取消航班 。"
+      "audioText": "In heavy fog, if you missed the correct taxiway, what will you do?",
+      "audioTextZh": "在浓雾中，若错过正确的滑行道，你会怎么做？",
+      "referenceText": "If I missed the correct taxiway in heavy fog, i will stop immediately. Then I will advise ATC of our situation and request ground mechanics to check the damage. If necessary, I may request cancel the flight.",
+      "referenceTextZh": "若在浓雾中错过正确的滑行道，我会立即停下。然后向空中交通管制（ATC）报告我们的情况，请求机务检查损伤。如有必要，我可能会申请取消航班。"
     },
     {
       "id": "opi-core-341",
       "taskTitle": "特情-跑道侵入与地面冲突-3",
       "audioText": "Have you ever heard any incident or accident of runway incursion?",
       "audioTextZh": "你听说过任何跑道侵入（runway incursion）的事件或事故吗？",
-      "referenceText": "（1）Yes,I heard one. in 1977,there are  two B747s collided with each other on the runway due to heavy fog and misunderstanding.It is the most deadliest accident in  aviation history.\n是的，我听说过一起。1977 年，两架波音 747因浓雾和误解在跑道上相撞。这是航空史上最致命的事故\n（2）Yes, I remembered one incident at Hongqiao Airport, two aircraft, both from China Eastern, almost collided on the runway. A320 was taking off, while another aircraft, an A330 was crossing the runway. Luckily the pilot of A320 made the right decision, he continued takeoff, used the full power and pulled up the aircraft, and the A320 just flew over A330. I think controller should be responsible for this incident, he should not let the aircraft enter the runway when another aircraft is taking off.\n听说过。我记得在虹桥机场发生过一起事件：两架均属于东方航空的飞机在跑道上险些相撞。当时一架 A320 正在起飞，而另一架 A330 则在穿越该跑道。幸运的是，A320 的飞行员做出了正确决策，继续起飞并使用全推力抬升飞机，A320 最终刚好从 A330 上方飞越。我认为空管人员应对此事件负责，在有飞机正在起飞时，不应允许另一架飞机进入跑道。"
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. Yes, I remembered one incident at Hongqiao Airport, two aircraft, both from China Eastern, almost collided on the runway. A320 was taking off, while another aircraft, an A330 was crossing the runway. Luckily the pilot of A320 made the right decision, he continued takeoff, used the full power and pulled up the aircraft, and the A320 just flew over A330. I think controller should be responsible for this incident, he should not let the aircraft enter the runway when another aircraft is taking off.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。听说过。我记得在虹桥机场发生过一起事件：两架均属于东方航空的飞机在跑道上险些相撞。当时一架 A320 正在起飞，而另一架 A330 则在穿越该跑道。幸运的是，A320 的飞行员做出了正确决策，继续起飞并使用全推力抬升飞机，A320 最终刚好从 A330 上方飞越。我认为空管人员应对此事件负责，在有飞机正在起飞时，不应允许另一架飞机进入跑道。"
     },
     {
       "id": "opi-core-342",
       "taskTitle": "特情-跑道侵入与地面冲突-4",
       "audioText": "What's the definition for runway incursion?",
       "audioTextZh": "跑道侵入（runway incursion）的定义是什么？",
-      "referenceText": "For example, if we are taking off on a runway and another aircraft crosses it, that’s a runway incursion\n例如，若我们在跑道上起飞时，另一架飞机穿越该跑道，这就是跑道侵入 。\n\nRunway incursion refers to any incorrect presence of an aircraft, vehicle, person, or animal on the protected area of a runway designated for takeoff or landing without proper clearance, endangering flight safety.\n跑道入侵指未经适当许可，飞机、车辆、人员或动物错误出现在供起飞或着陆的跑道保护区内，威胁飞行安全的情况。"
+      "referenceText": "A runway incursion is an occurrence at an aerodrome involving the incorrect presence of an aircraft, vehicle, or person on the protected area of a surface designated for landing and takeoff. It may create a serious collision risk even when no collision occurs. Clearances, hold-short instructions, markings, lighting, and careful monitoring all help prevent incursions.",
+      "referenceTextZh": "跑道侵入是指在机场内，航空器、车辆或人员错误地出现在供航空器着陆和起飞的受保护道面区域。即使没有发生碰撞，也可能形成严重碰撞风险。清楚的许可、跑道外等待指令、标志、灯光和认真监控都有助于防止跑道侵入。"
     },
     {
       "id": "opi-core-343",
       "taskTitle": "特情-跑道侵入与地面冲突-5",
       "audioText": "What are the reasons for runway incursion?",
       "audioTextZh": "跑道侵入（runway incursion）的原因有哪些？",
-      "referenceText": "There are some reasons for runway incursion, for example, misunderstanding between the pilot and the controller, not use standard words and phrases, low visibility, pilot not familiar with the airport and procedures.\n跑道侵入有一些原因，比如飞行员与管制员之间的误解、未使用标准用语、低能见度、飞行员不熟悉机场及操作程序 。"
+      "referenceText": "There are some reasons for runway incursion, for example, misunderstanding between the pilot and ATC, not use standard words and phrases, low visibility, pilot not familiar with the airport and procedures.",
+      "referenceTextZh": "跑道侵入有一些原因，比如飞行员与管制员之间的误解、未使用标准用语、低能见度、飞行员不熟悉机场及操作程序。"
     },
     {
       "id": "opi-core-344",
       "taskTitle": "特情-跑道侵入与地面冲突-6",
       "audioText": "What may be the possible reasons for ground collisions?",
       "audioTextZh": "地面碰撞（ground collisions）可能的原因有哪些？",
-      "referenceText": "There are some possible reasons for ground accidents. First, bad weather, especially poor visibility may lead to ground accidents. Second, mechanical problem may cause ground accidents. For example, if brakes and steering are inoperative, the aircraft may skid off the taxiway or runway. Third, human errors may cause ground accidents. For example, there may be misunderstanding between the pilots and controllers. Besides, there are some other reasons for ground accidents.\n地面事故存在一些可能的原因。首先，恶劣天气，尤其是能见度不佳，可能引发地面事故。其次，机械故障可能导致地面事故。比如，若刹车和转向装置无法运作，飞机可能滑出滑行道或跑道。第三，人为失误可能引发地面事故。比如，飞行员与管制员之间可能存在误解。此外，还有其他一些导致地面事故的原因 。"
+      "referenceText": "There are some possible reasons for ground accidents. First, bad weather, especially poor visibility may lead to ground accidents. Second, mechanical problem may cause ground accidents. For example, if brakes and steering are inoperative, the aircraft may skid off the taxiway or runway. Third, human errors may cause ground accidents. For example, there may be misunderstanding between the pilots and controllers.",
+      "referenceTextZh": "地面事故存在一些可能的原因。首先，恶劣天气，尤其是能见度不佳，可能引发地面事故。其次，机械故障可能导致地面事故。比如，若刹车和转向装置无法运作，飞机可能滑出滑行道或跑道。第三，人为失误可能引发地面事故。比如，飞行员与管制员之间可能存在误解。此外，还有其他一些导致地面事故的原因。"
     },
     {
       "id": "opi-core-345",
       "taskTitle": "特情-跑道侵入与地面冲突-7",
       "audioText": "How can we prevent ground collisions from happening?",
       "audioTextZh": "我们如何预防地面碰撞的发生呢？",
-      "referenceText": "First, when moving on the ground, we should be careful, especially in bad weather conditions. Second, we should follow ATC instructions and regulation strictly. Third, we should have good situational awareness.\n首先，在地面移动时，我们应保持谨慎，尤其在恶劣天气条件下。其次，我们要严格遵守空中交通管制（ATC）的指令和规定。第三，我们应当具备良好的情景意识 。\n\nPilots should conduct thorough preflight prep, follow ATC instructions strictly, use standard phraseology, taxi slowly (especially in low visibility), and maintain situational awareness. Airports should improve signage/lighting and manage maneuvering areas. ATC should enhance workload management and communication clarity.\n飞行员应做好充分飞行前准备，严格遵循空管指令，使用标准术语，低速滑行（尤其低能见度时）并保持情景意识；机场需完善标识/灯光并管理机动区；空管应加强工作负荷管理并保证通讯清晰。"
+      "referenceText": "Pilots should conduct thorough preflight prep, follow ATC instructions strictly, use standard phraseology, taxi slowly (especially in low visibility), and maintain situational awareness. Airports should improve signage or lighting and manage maneuvering areas. ATC should enhance workload management and communication clarity.",
+      "referenceTextZh": "飞行员应做好充分飞行前准备，严格遵循空管指令，使用标准术语，低速滑行（尤其低能见度时）并保持情景意识；机场需完善标识/灯光并管理机动区；空管应加强工作负荷管理并保证通讯清晰。"
     },
     {
       "id": "opi-core-346",
       "taskTitle": "特情-跑道侵入与地面冲突-8",
       "audioText": "During taxiing, how can you avoid the risks of collisions in heavy fog?",
       "audioTextZh": "在滑行期间，遇到浓雾时，如何规避碰撞风险？",
-      "referenceText": "First, when moving on the ground, we should be careful especially in bad weather conditions. Second, we should follow ATC instructions and regulation strictly. Third, we should have good situational awareness.\n首先，在地面滑行时，我们应保持谨慎，尤其在恶劣天气条件下。其次，我们要严格遵循空中交通管制（ATC）的指令与规定。第三，我们应当具备良好的情景意识。"
+      "referenceText": "First, when moving on the ground, pilots should be careful especially in bad weather conditions. Second, pilots should follow ATC instructions and regulation strictly. Third, pilots should have good situational awareness.",
+      "referenceTextZh": "首先，在地面滑行时，我们应保持谨慎，尤其在恶劣天气条件下。其次，我们要严格遵循空中交通管制（ATC）的指令与规定。第三，我们应当具备良好的情景意识。"
     },
     {
       "id": "opi-core-347",
       "taskTitle": "特情-跑道侵入与地面冲突-9",
       "audioText": "If you collide with a ground truck while taxiing, what should you do?",
       "audioTextZh": "如果在滑行时与地面卡车发生碰撞，你应该怎么做？",
-      "referenceText": "If we collide with a ground truck while taxiing, we will stop the aircraft immediately, then we will report the situation to ATC and request ground services. After that, we will execute emergency evacuation.\n若在滑行时与地面卡车发生碰撞，我们会立即让飞机停下，随后向空中交通管制（ATC，Air Traffic Control ）报告情况并请求地面服务。之后，我们会执行紧急撤离程序 。\n\nImmediately stop the aircraft, set parking brakes, and assess damage. Report the incident to ATC and company dispatch. Inform cabin crew to check for injuries. Request ground maintenance inspection and airport fire/medical assistance if needed. Do not resume taxiing without confirmation of aircraft airworthiness.\n立即停止飞机，设置停留刹车并评估损伤；向空管和公司签派报告事件；通知客舱机组检查人员受伤情况；必要时请求地面维护检查及机场消防/医疗支援；未确认飞机适航前不得恢复滑行。"
+      "referenceText": "Immediately stop the aircraft, set parking brakes, and assess damage. Report the incident to ATC and company dispatch. Inform cabin crew to check for injuries. Request ground maintenance inspection and airport fire or medical assistance if needed. Do not resume taxiing without confirmation of aircraft airworthiness.",
+      "referenceTextZh": "立即停止飞机，设置停留刹车并评估损伤；向空管和公司签派报告事件；通知客舱机组检查人员受伤情况；必要时请求地面维护检查及机场消防/医疗支援；未确认飞机适航前不得恢复滑行。"
     },
     {
       "id": "opi-core-348",
       "taskTitle": "特情-跑道侵入与地面冲突-10",
-      "audioText": "Why does runway incursion happen frequently? What are the possible reasons for runway incursions?",
-      "audioTextZh": "跑道侵入为何频繁发生？跑道侵入可能的原因有哪些？",
-      "referenceText": "There are many possible reasons for runway incursion. First, bad weather such as heavy fog/low visibility may cause runway incursion. Second, misunderstanding between pilots and controllers may cause runway incursion. Third, poor airport management, for example, the ground vehicle enters the runway without ATC clearance, may cause runway incursion.\n跑道侵入可能有多种原因。首先，浓雾、低能见度等恶劣天气可能引发跑道侵入。其次，飞行员与管制员之间的误解可能导致跑道侵入。第三，机场管理不善，比如地面勤车辆未经空中交通管制（ATC ）许可进入跑道，可能引发跑道侵入 。"
+      "audioText": "Why does runway incursion happen frequently?",
+      "audioTextZh": "跑道侵入为何频繁发生？",
+      "referenceText": "There are many possible reasons for runway incursion. First, bad weather such as heavy fog or low visibility may cause runway incursion. Second, misunderstanding between pilots and controllers may cause runway incursion. Third, poor airport management, for example, the ground vehicle enters the runway without ATC clearance, may cause runway incursion.",
+      "referenceTextZh": "跑道侵入可能有多种原因。首先，浓雾、低能见度等恶劣天气可能引发跑道侵入。其次，飞行员与管制员之间的误解可能导致跑道侵入。第三，机场管理不善，比如地面勤车辆未经空中交通管制（ATC ）许可进入跑道，可能引发跑道侵入。"
     },
     {
       "id": "opi-core-349",
       "taskTitle": "特情-跑道侵入与地面冲突-11",
-      "audioText": "what would be the possible consequences of runway incursion?",
+      "audioText": "What would be the possible consequences of runway incursion?",
       "audioTextZh": "跑道侵入可能产生哪些后果？",
-      "referenceText": "There are many possible consequences. First, runway incursion may cause ground collisions and cause structural damage to the aircraft. Second, it may cause long ground delays or holding in the air.\n可能有多种后果。首先，跑道侵入可能引发地面碰撞，对飞机造成结构性损坏。其次，它可能导致长时间的地面延误或空中等待。"
+      "referenceText": "There are many possible consequences. First, runway incursion may cause ground collisions and cause structural damage to the aircraft. Second, it may cause long ground delays or holding in the air.",
+      "referenceTextZh": "可能有多种后果。首先，跑道侵入可能引发地面碰撞，对飞机造成结构性损坏。其次，它可能导致长时间的地面延误或空中等待。"
     },
     {
       "id": "opi-core-350",
       "taskTitle": "特情-跑道侵入与地面冲突-12",
       "audioText": "What can be done to prevent runway incursion happening again?",
       "audioTextZh": "怎样做才能防止跑道侵入再次发生？",
-      "referenceText": "There are many things we can do to prevent runway incursion. First, we should follow ATC instructions. Second, we should have good situational awareness. Third, if there is any doubt about ATC instructions, we should confirm it with ATC immediately. Fourth, we should strengthen airport management.\n有很多可以采取的措施来防止跑道侵入。首先，我们应遵循空中交通管制（ATC）指令。其次，我们要具备良好的情景意识。第三，若对空中交通管制指令有任何疑问，应立即与空中交通管制部门确认。第四，我们应强化机场管理 。\n\nTo prevent runway incursion, pilots should: follow SOP, familiarize with airport charts, use standard RT, read back ATC clearances correctly, confirm positions if unsure, and taxi slowly in low visibility. ATC should improve work efficiency, issue clear instructions, and use surface movement radar. Airports should enhance lighting/markings and install RWSL.\n防止跑道入侵的措施包括：飞行员遵守标准操作程序（SOP）、熟悉机场航图、使用标准无线电通讯（RT）、准确复诵空管许可、有疑问时确认位置、低能见度下低速滑行；空管提高工作效率、发布清晰指令、使用场面监视雷达；机场完善灯光/标识、安装跑道状态灯（RWSL）。"
+      "referenceText": "To prevent runway incursion, pilots should: follow SOP, familiarize with airport charts, use standard RT, read back ATC clearances correctly, confirm positions if unsure, and taxi slowly in low visibility. ATC should improve work efficiency, issue clear instructions, and use surface movement radar. Airports should enhance lighting or markings and install RWSL.",
+      "referenceTextZh": "防止跑道入侵的措施包括：飞行员遵守标准操作程序（SOP）、熟悉机场航图、使用标准无线电通讯（RT）、准确复诵空管许可、有疑问时确认位置、低能见度下低速滑行；空管提高工作效率、发布清晰指令、使用场面监视雷达；机场完善灯光/标识、安装跑道状态灯（RWSL）。"
     },
     {
       "id": "opi-core-351",
       "taskTitle": "特情-跑道侵入与地面冲突-13",
       "audioText": "Who do you think should be responsible for runway incursion?",
       "audioTextZh": "你认为谁应该对跑道侵入负责？",
-      "referenceText": "I think both pilots and controllers should be responsible for runway incursion. If the pilots misunderstood the ATC instruction, the pilots should be responsible for runway incursion. If the controller, gave wrong instruction to the pilots, the controller should be responsible for runway incursion.\n我认为飞行员和管制员都应对跑道侵入负责。如果是飞行员误解了空中交通管制（ATC）指令，那么飞行员应承担责任。如果是管制员向飞行员发出了错误指令，那么管制员应承担责任 。"
+      "referenceText": "I think both pilots and controllers should be responsible for runway incursion. If the pilots misunderstood the ATC instruction, the pilots should be responsible for runway incursion. If ATC, gave wrong instruction to the pilots, ATC should be responsible for runway incursion.",
+      "referenceTextZh": "我认为飞行员和管制员都应对跑道侵入负责。如果是飞行员误解了空中交通管制（ATC）指令，那么飞行员应承担责任。如果是管制员向飞行员发出了错误指令，那么管制员应承担责任。"
     },
     {
       "id": "opi-core-357",
       "taskTitle": "特情-跑道侵入与地面冲突-14",
       "audioText": "What ground conditions will contribute to the ground collision?",
-      "audioTextZh": "什么样的道面情况会造成地面冲突?",
-      "referenceText": "Ground conditions contributing to ground collision include: low visibility (fog, heavy rain) reducing situational awareness; poor runway/taxiway lighting or unclear markings leading to misnavigation; wet/slippery surfaces causing aircraft skidding; debris/FOD on the ground affecting maneuvering; and narrow taxiways increasing collision risks between aircraft/vehicles.\n导致地面冲突的道面情况包括：低能见度（雾、大雨）降低情景意识；跑道/滑行道灯光不足或标识不清导致导航失误；道面湿滑造成飞机侧滑；地面有杂物/外物损伤（FOD）影响操控；滑行道狭窄增加飞机与车辆间的碰撞风险。"
+      "audioTextZh": "什么样的道面情况会造成地面冲突？",
+      "referenceText": "Ground conditions contributing to ground collision include: low visibility (fog, heavy rain) reducing situational awareness; poor runway or taxiway lighting or unclear markings leading to misnavigation; wet or slippery surfaces causing aircraft skidding; debris or FOD on the ground affecting maneuvering; and narrow taxiways increasing collision risks between aircraft or vehicles.",
+      "referenceTextZh": "导致地面冲突的道面情况包括：低能见度（雾、大雨）降低情景意识；跑道/滑行道灯光不足或标识不清导致导航失误；道面湿滑造成飞机侧滑；地面有杂物/外物损伤（FOD）影响操控；滑行道狭窄增加飞机与车辆间的碰撞风险。"
     },
     {
       "id": "opi-core-358",
       "taskTitle": "特情-跑道侵入与地面冲突-15",
       "audioText": "During the taxi, if you are not familiar with the layout of the airport, what should you do?",
-      "audioTextZh": "在滑行阶段,如果你不清楚机场布局,你会怎么做?",
-      "referenceText": "If unfamiliar with the airport layout during taxi, I will: taxi slowly, turn on all lights; monitor ATC instructions closely and read back clearly; refer to airport charts continuously; request progressive taxi instructions or a follow-me car from ATC if needed; confirm positions with ATC when in doubt; and maintain good communication with the crew to avoid mistakes.\n滑行阶段若不清楚机场布局，我会：低速滑行，开启所有灯光；密切监控空管指令并准确复诵；持续查阅机场航图；必要时向空管请求逐步滑行指令或引导车；有疑问时与空管确认位置；与机组保持良好沟通，避免失误。"
+      "audioTextZh": "在滑行阶段,如果你不清楚机场布局,你会怎么做？",
+      "referenceText": "If unfamiliar with the airport layout during taxi, I will: taxi slowly, turn on all lights; monitor ATC instructions closely and read back clearly; refer to airport charts continuously; request progressive taxi instructions or a follow-me car from ATC if needed; confirm positions with ATC when in doubt; and maintain good communication with the crew to avoid mistakes.",
+      "referenceTextZh": "滑行阶段若不清楚机场布局，我会：低速滑行，开启所有灯光；密切监控空管指令并准确复诵；持续查阅机场航图；必要时向空管请求逐步滑行指令或引导车；有疑问时与空管确认位置；与机组保持良好沟通，避免失误。"
     }
   ]
 }

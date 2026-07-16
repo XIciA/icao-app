@@ -7,58 +7,66 @@
     {
       "id": "opi-extra-379",
       "taskTitle": "运行-禁区、危险区、限制区-1",
-      "audioText": "What are prohibited areas, danger areas, and restricted areas? What are the main differences between them?",
-      "audioTextZh": "什么是禁区、危险区和限制区？它们之间的主要区别是什么？",
-      "referenceText": "Prohibited areas are airspace where flight is completely forbidden for security reasons, such as over government buildings or nuclear facilities. Danger areas contain hazardous activities like artillery firing, missile testing, or military exercises that could endanger aircraft. Restricted areas are not entirely forbidden, but entry requires permission from the controlling authority. The main difference is the level of restriction. In prohibited areas, no flight is allowed under any circumstances. In danger areas, flight may be possible when the area is inactive. In restricted areas, you can enter with authorization. Pilot must check NOTAMs and charts to determine the status of these areas before flight.\n禁区是因安全原因完全禁止飞行的空域，例如政府大楼或核设施上空。危险区包含危险活动，如火炮射击、导弹测试或军事演习，可能危及航空器。限制区并非完全禁止，但进入需要得到管制当局的许可。主要区别在于限制程度。禁区内任何情况下都不允许飞行。危险区在不激活时可以飞行。限制区经授权可以进入。飞行员必须在飞行前检查航行通告和航图以确定这些区域的状态。"
+      "audioText": "What are prohibited areas, danger areas, and restricted areas?",
+      "audioTextZh": "什么是禁区、危险区和限制区，它们之间的主要区别是什么？",
+      "referenceText": "Prohibited areas are airspace where flight is completely forbidden for security reasons, such as over government buildings or nuclear facilities. Danger areas contain hazardous activities like artillery firing, missile testing, or military exercises that could endanger aircraft. Restricted areas are not entirely forbidden, but entry requires permission from the controlling authority. The main difference is the level of restriction. In prohibited areas, no flight is allowed under any circumstances. In danger areas, flight may be possible when the area is inactive.",
+      "referenceTextZh": "禁区是因安全原因完全禁止飞行的空域，例如政府大楼或核设施上空。危险区包含危险活动，如火炮射击、导弹测试或军事演习，可能危及航空器。限制区并非完全禁止，但进入需要得到管制当局的许可。主要区别在于限制程度。禁区内任何情况下都不允许飞行。危险区在不激活时可以飞行。限制区经授权可以进入。飞行员必须在飞行前检查航行通告和航图以确定这些区域的状态。"
     },
     {
       "id": "opi-extra-380",
       "taskTitle": "运行-禁区、危险区、限制区-2",
       "audioText": "What are the possible consequences if a pilot flies into a prohibited area, danger area, or restricted area without authorization?",
       "audioTextZh": "如果飞行员未经授权飞入禁区、危险区或限制区，可能产生什么后果？",
-      "referenceText": "The consequences can be serious. First, the pilot may receive a warning or violation from CAAC, leading to license suspension or revocation. Second, the aircraft could be intercepted by military fighters and forced to land. This is dangerous and stressful. Third, if entering an active danger area, the aircraft might be hit by gunfire or explosions. Fourth, the airline may face fines and the pilot could lose their job. Fifth, an investigation will follow, causing delays and legal costs. In short, unauthorized entry risks safety, career, and company reputation. Pilots must always avoid these areas unless properly cleared.\n后果可能很严重。第一，飞行员可能收到局方的警告或违规记录，导致执照暂停或吊销。第二，飞机可能被军用战斗机拦截并被迫降落，这既危险又紧张。第三，如果进入激活的危险区，飞机可能被炮火或爆炸击中。第四，航空公司可能面临罚款，飞行员可能失去工作。第五，随之而来的调查会导致延误和法律费用。简而言之，未经授权的进入会危及安全、职业和公司声誉。飞行员必须始终避开这些区域，除非获得适当许可。"
+      "referenceText": "The consequences can be serious. First, the pilot may receive a warning or violation from CAAC, leading to license suspension or revocation. Second, the aircraft could be intercepted by military fighters and forced to land. This is dangerous and stressful. Third, if entering an active danger area, the aircraft might be hit by gunfire or explosions. Fourth, the airline may face fines and the pilot could lose their job.",
+      "referenceTextZh": "后果可能很严重。第一，飞行员可能收到局方的警告或违规记录，导致执照暂停或吊销。第二，飞机可能被军用战斗机拦截并被迫降落，这既危险又紧张。第三，如果进入激活的危险区，飞机可能被炮火或爆炸击中。第四，航空公司可能面临罚款，飞行员可能失去工作。第五，随之而来的调查会导致延误和法律费用。简而言之，未经授权的进入会危及安全、职业和公司声誉。飞行员必须始终避开这些区域，除非获得适当许可。"
     },
     {
       "id": "opi-extra-381",
       "taskTitle": "运行-禁区、危险区、限制区-3",
       "audioText": "During a flight, you notice your aircraft is approaching a restricted area. What actions should you take?",
       "audioTextZh": "在飞行中，你发现飞机正在接近一个限制区。你应该采取什么行动？",
-      "referenceText": "First, immediately check our position using GPS, VOR, or chart to confirm we are truly approaching the restricted area. Second, contact ATC without delay and inform them of our situation. Request clearance to deviate or enter if necessary. Third, if we cannot contact ATC, take evasive action by turning away from the area. Fourth, advise our crew members and ensure they are aware of the situation. Fifth, record the event in the aircraft logbook after landing. Do not fly into the area without authorization, even if we think it might be inactive. Safety and compliance are our primary responsibilities.\n首先，立即使用 GPS、VOR 或航图确认我们的位置，核实是否确实正在接近限制区。第二，立即联系空管，告知他们，我们的情况。如有必要，请求许可偏航或进入。第三，如果无法联系空管，采取规避行动，转向远离该区域。第四，通知机组其他成员，确保他们了解情况。第五，着陆后在飞机记录本中记录该事件。未经授权不要飞入该区域，即使我们认为它可能未激活。安全和合规是我们的首要责任。"
+      "referenceText": "First, immediately check our position using GPS, VOR, or chart to confirm we are truly approaching the restricted area. Second, contact ATC without delay and inform them of our situation. Request clearance to deviate or enter if necessary. Third, if we cannot contact ATC, take evasive action by turning away from the area. Fourth, advise our crew members and ensure they are aware of the situation. Fifth, record the event in the aircraft logbook after landing.",
+      "referenceTextZh": "首先，立即使用 GPS、VOR 或航图确认我们的位置，核实是否确实正在接近限制区。第二，立即联系空管，告知他们，我们的情况。如有必要，请求许可偏航或进入。第三，如果无法联系空管，采取规避行动，转向远离该区域。第四，通知机组其他成员，确保他们了解情况。第五，着陆后在飞机记录本中记录该事件。未经授权不要飞入该区域，即使我们认为它可能未激活。安全和合规是我们的首要责任。"
     },
     {
       "id": "opi-extra-382",
       "taskTitle": "运行-禁区、危险区、限制区-4",
       "audioText": "How can a pilot obtain information about active prohibited areas, danger areas, and restricted areas before and during a flight?",
       "audioTextZh": "飞行员如何在飞行前和飞行中获得关于禁区、危险区和限制区的激活状态信息？",
-      "referenceText": "Before flight, pilots should check NOTAMs which specifically list active areas and their operating times. They should also study aeronautical charts where these areas are clearly marked. The flight plan briefing from dispatch or AIS includes this information. During flight, pilots can obtain real-time information from ATC, who will advise if an area is active. Some aircraft have data link systems like D-ATIS or FIS-B that provide updates. Onboard navigation systems may also show these areas if the database is current. If uncertain, always ask ATC. Do not rely on memory. Active status can change quickly, so continuous awareness is essential for safe flight operations.\n飞行前，飞行员应检查航行通告，其中会具体列出激活区域及其运行时间。他们还应该研究航图，这些区域在图上清晰标示。来自签派或航情服务的飞行计划简报也包含此信息。飞行中，飞行员可以从空管获得实时信息，空管会告知某区域是否激活。部分飞机有数据链系统如数字式自动航站情报服务或飞行情报服务 - 广播，可提供更新。机载导航系统如果数据库更新，也会显示这些区域。如果不确定，随时询问空管。不要依赖记忆。激活状态可能快速变化，因此持续的情景意识对安全飞行至关重要。"
+      "referenceText": "Before flight, pilots should check NOTAMs which specifically list active areas and their operating times. They should also study aeronautical charts where these areas are clearly marked. The flight plan briefing from dispatch or AIS includes this information. During flight, pilots can obtain real-time information from ATC, who will advise if an area is active. Some aircraft have data link systems like D-ATIS or FIS-B that provide updates. Onboard navigation systems may also show these areas if the database is current.",
+      "referenceTextZh": "飞行前，飞行员应检查航行通告，其中会具体列出激活区域及其运行时间。他们还应该研究航图，这些区域在图上清晰标示。来自签派或航情服务的飞行计划简报也包含此信息。飞行中，飞行员可以从空管获得实时信息，空管会告知某区域是否激活。部分飞机有数据链系统如数字式自动航站情报服务或飞行情报服务 - 广播，可提供更新。机载导航系统如果数据库更新，也会显示这些区域。如果不确定，随时询问空管。不要依赖记忆。激活状态可能快速变化，因此持续的情景意识对安全飞行至关重要。"
     },
     {
       "id": "opi-extra-383",
       "taskTitle": "运行-禁区、危险区、限制区-5",
       "audioText": "If ATC clears you to fly through a danger area that is currently active, should you accept the clearance? Why or why not?",
       "audioTextZh": "如果空管许可你飞过一个当前正处于激活状态的危险区，你是否应该接受该许可？为什么？",
-      "referenceText": "No, you should not accept the clearance. Even if ATC gives permission, the pilot in command has the final authority and responsibility for safety. An active danger area means there is ongoing hazardous activity such as live firing or missile tests. Entering it puts your aircraft at serious risk of being hit. You should politely refuse the clearance and explain your concern. For example, say: “Unable to accept, danger area active.” You may request an alternative routing or a vector around the area. ATC will usually understand and provide another solution. Never compromise safety just because ATC says so. Your primary duty is to protect the lives on board.\n不，你不应该接受该许可。即使空管给了许可，机长仍拥有最终决定权并对安全负责。激活的危险区意味着有持续的危险活动，如实弹射击或导弹测试。进入该区域会使你的飞机面临被击中的严重风险。你应该礼貌地拒绝该许可并解释你的顾虑。例如说：“无法接受，危险区激活。” 你可以请求替代航路或引导绕飞该区域。空管通常会理解并提供其他方案。绝不要仅仅因为空管同意就妥协安全。你的首要职责是保护机上人员的生命。"
+      "referenceText": "No, you should not accept the clearance. Even if ATC gives permission, the pilot in command has the final authority and responsibility for safety. An active danger area means there is ongoing hazardous activity such as live firing or missile tests. Entering it puts your aircraft at serious risk of being hit. You should politely refuse the clearance and explain your concern. For example, say: “Unable to accept, danger area active.",
+      "referenceTextZh": "不，你不应该接受该许可。即使空管给了许可，机长仍拥有最终决定权并对安全负责。激活的危险区意味着有持续的危险活动，如实弹射击或导弹测试。进入该区域会使你的飞机面临被击中的严重风险。你应该礼貌地拒绝该许可并解释你的顾虑。例如说：“无法接受，危险区激活。” 你可以请求替代航路或引导绕飞该区域。空管通常会理解并提供其他方案。绝不要仅仅因为空管同意就妥协安全。你的首要职责是保护机上人员的生命。"
     },
     {
       "id": "opi-extra-384",
       "taskTitle": "运行-禁区、危险区、限制区-6",
-      "audioText": "How are prohibited areas, danger areas, and restricted areas depicted on aeronautical charts? What symbols or labels should a pilot look for?",
-      "audioTextZh": "禁区、危险区和限制区在航图上是如何标示的？飞行员应该注意哪些符号或标注？",
-      "referenceText": "On aeronautical charts, these areas are usually outlined with colored boundaries. Prohibited areas are often shown in red with a label starting with “P” followed by a number, such as P-123. Restricted areas use “R” labels like R-456 and are typically outlined in blue. Danger areas use “D” labels like D-789 and may be shown in magenta or amber. Each area includes a note with vertical limits, such as “SFC - FL150,” and hours of operation. Pilots should also look for a cross‑reference to NOTAMs for activation status. On electronic displays, these areas are often shaded with patterns. Always check the chart legend to confirm the exact meaning of symbols.\n在航图上，这些区域通常用带颜色的边界线标出。禁区常以红色显示，标签以 “P” 开头后跟数字，如 P-123。限制区使用 “R” 标签，如 R-456，通常以蓝色标出。危险区使用 “D” 标签，如 D-789，可能以品红色或琥珀色显示。每个区域都包含一个标注，写明垂直范围，如 “地面至飞行高度层 150”，以及运行时间。飞行员还应注意查找指向航行通告的对照信息以获取激活状态。在电子显示器上，这些区域常以阴影图案填充。务必查看航图图例以确认符号的确切含义。"
+      "audioText": "How are prohibited areas, danger areas, and restricted areas depicted on aeronautical charts?",
+      "audioTextZh": "禁区、危险区和限制区在航图上是如何标示的？",
+      "referenceText": "On aeronautical charts, these areas are usually outlined with colored boundaries. Prohibited areas are often shown in red with a label starting with “P” followed by a number, such as P-123. Restricted areas use “R” labels like R-456 and are typically outlined in blue. Danger areas use “D” labels like D-789 and may be shown in magenta or amber. Each area includes a note with vertical limits, such as “SFC-FL150,” and hours of operation. Pilots should also look for a cross‑reference to NOTAMs for activation status.",
+      "referenceTextZh": "在航图上，这些区域通常用带颜色的边界线标出。禁区常以红色显示，标签以 “P” 开头后跟数字，如 P-123。限制区使用 “R” 标签，如 R-456，通常以蓝色标出。危险区使用 “D” 标签，如 D-789，可能以品红色或琥珀色显示。每个区域都包含一个标注，写明垂直范围，如 “地面至飞行高度层 150”，以及运行时间。飞行员还应注意查找指向航行通告的对照信息以获取激活状态。在电子显示器上，这些区域常以阴影图案填充。务必查看航图图例以确认符号的确切含义。"
     },
     {
       "id": "opi-extra-385",
       "taskTitle": "运行-禁区、危险区、限制区-7",
       "audioText": "If you are the captain and one of your pilots accidentally enters a restricted area due to a navigation error, what should you do immediately after realizing the mistake?",
       "audioTextZh": "如果你是机长，你的一名飞行员因导航失误意外进入了一个限制区，你在意识到错误后应立即采取哪些行动？",
-      "referenceText": "First, take control of the situation immediately. Instruct the pilot to exit the restricted area by the shortest and safest route. Second, contact ATC without delay, report the error, and state your position and intentions. Honesty is critical. Third, advise the crew to remain calm and continue standard duties. Fourth, after exiting, conduct a quick check to ensure no military interception is following. Fifth, upon landing, make a detailed report in the technical logbook and file an incident report with the company. Sixth, cooperate fully with any CAAC investigation. Finally, use this event as a training opportunity to prevent future errors. Never try to cover up the mistake.\n首先，立即掌控局面。指令该飞行员按最短且最安全的路线离开限制区。第二，立即联系空管，报告失误，并说明你的位置和意图。诚实至关重要。第三，告知机组保持冷静，继续执行正常职责。第四，离开后快速确认没有军用拦截机跟随。第五，着陆后在技术记录本中做详细报告，并向公司填报事件报告。第六，全力配合局方的任何调查。最后，将此事作为培训机会，防止未来再次发生失误。绝不要试图掩盖错误。"
+      "referenceText": "First, take control of the situation immediately. Instruct the pilot to exit the restricted area by the shortest and safest route. Second, contact ATC without delay, report the error, and state your position and intentions. Honesty is critical. Third, advise the crew to remain calm and continue standard duties. Fourth, after exiting, conduct a quick check to ensure no military interception is following.",
+      "referenceTextZh": "首先，立即掌控局面。指令该飞行员按最短且最安全的路线离开限制区。第二，立即联系空管，报告失误，并说明你的位置和意图。诚实至关重要。第三，告知机组保持冷静，继续执行正常职责。第四，离开后快速确认没有军用拦截机跟随。第五，着陆后在技术记录本中做详细报告，并向公司填报事件报告。第六，全力配合局方的任何调查。最后，将此事作为培训机会，防止未来再次发生失误。绝不要试图掩盖错误。"
     },
     {
       "id": "opi-extra-386",
       "taskTitle": "运行-禁区、危险区、限制区-8",
       "audioText": "What are the differences between restricted area and forbidden area?",
       "audioTextZh": "限飞区和禁飞区之间有什么区别？",
-      "referenceText": "A restricted area and a forbidden area (prohibited area) are different. A forbidden area, or prohibited area, is airspace where flight is completely banned at all times for security reasons, such as over government buildings, nuclear plants, or military bases. No aircraft may enter without special government permission. A restricted area is airspace where flight is not completely banned, but entry is subject to restrictions. You may enter with authorization from the controlling authority, or when the area is inactive. Pilots must check NOTAMs and charts to identify both areas and always avoid prohibited areas completely.\n限制区与禁飞区（禁区）不同。禁飞区是因安全原因任何时候完全禁止飞行的空域，如政府大楼、核设施、军事基地上空，无特批不得进入。限制区并非完全禁止，经管制当局授权或区域未激活时可以进入。限制区通常用于军事训练、火炮射击、导弹测试等。飞行员必须查阅 NOTAM 和航图，识别两类区域并完全避开禁飞区。"
+      "referenceText": "A restricted area and a forbidden area (prohibited area) are different. A forbidden area, or prohibited area, is airspace where flight is completely banned at all times for security reasons, such as over government buildings, nuclear plants, or military bases. No aircraft may enter without special government permission. A restricted area is airspace where flight is not completely banned, but entry is subject to restrictions. You may enter with authorization from the controlling authority, or when the area is inactive. Pilots must check NOTAMs and charts to identify both areas and always avoid prohibited areas completely.",
+      "referenceTextZh": "限制区与禁飞区（禁区）不同。禁飞区是因安全原因任何时候完全禁止飞行的空域，如政府大楼、核设施、军事基地上空，无特批不得进入。限制区并非完全禁止，经管制当局授权或区域未激活时可以进入。限制区通常用于军事训练、火炮射击、导弹测试等。飞行员必须查阅 NOTAM 和航图，识别两类区域并完全避开禁飞区。"
     }
   ]
 }

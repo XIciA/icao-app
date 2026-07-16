@@ -23,7 +23,7 @@
     {
       "id": "opi-image-003-q02",
       "taskTitle": "图片题-003-02",
-      "audioText": "What potential risks might there be during night take - off from this view?",
+      "audioText": "What potential risks might there be during night takeoff from this view?",
       "audioTextZh": "从这个视角看，夜间起飞可能有哪些潜在风险？",
       "referenceText": "The main risks are runway lights, correct performance calculation, departure briefing, and careful monitoring of runway alignment. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
       "referenceTextZh": "主要风险包括检查跑道灯光、核实性能计算、完成离场简令并仔细监控跑道方向。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
@@ -32,10 +32,10 @@
     {
       "id": "opi-image-003-q03",
       "taskTitle": "图片题-003-03",
-      "audioText": "What other runway lighting facilities do you know?",
+      "audioText": "What other types of runway lighting do you know?",
       "audioTextZh": "你还知道哪些其他跑道灯光设施？",
-      "referenceText": "This situation is related to Night runway takeoff. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
-      "referenceTextZh": "这种情况与夜间跑道起飞有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
+      "referenceText": "Runway lighting may include edge lights, threshold lights, runway-end lights, centerline lights, touchdown-zone lights, and approach-light systems. Taxiway centerline and edge lights also help crews move safely on the ground. The exact installation and light colors depend on the aerodrome and published information.",
+      "referenceTextZh": "跑道灯光可以包括跑道边灯、入口灯、跑道末端灯、中线灯、接地区灯和进近灯光系统。滑行道中线灯和边灯也有助于机组在地面安全运行。具体配置和灯光颜色取决于机场设施及公布资料。",
       "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-003-q03.mp3"
     }
   ]

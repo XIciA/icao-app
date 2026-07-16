@@ -7,86 +7,98 @@
     {
       "id": "opi-extra-202",
       "taskTitle": "飞机系统-飞行操纵系统-1",
-      "audioText": "Can you name some of the control surfaces? Can you tell me something about flight control surfaces?",
-      "audioTextZh": "你能说出些操纵面名称吗？能讲讲飞行操纵面的知识不？",
-      "referenceText": "Yes, flight control surfaces consist of primary flight control surfaces and secondary flight control surfaces. The primary flight control surfaces include ailerons, elevators and rudder. The secondary flight control surfaces include flaps, slats, spoilers and trim tabs.\n可以呀，飞行操纵面分主、辅两类。主操纵面有副翼、升降舵、方向舵；辅助的有襟翼、前缘缝翼、扰流板和配平片 。\n\n Aircraft flight control surfaces include primary and secondary types. Primary ones are elevator (controls pitch), rudder (controls yaw), and aileron (controls roll). Secondary ones include flaps, slats, spoilers, speed brakes, and trim tabs.\n飞机的飞行操纵面分为主操纵面和辅助操纵面。主操纵面包括升降舵控制俯仰、方向舵控制偏航和副翼控制滚转；辅助操纵面包括襟翼、缝翼、扰流板、减速板和调整片等。"
+      "audioText": "Can you name some of the control surfaces?",
+      "audioTextZh": "你能说出些操纵面名称吗？",
+      "referenceText": "Aircraft flight control surfaces include primary and secondary types. Primary ones are elevator (controls pitch), rudder (controls yaw), and aileron (controls roll). Second, ary ones include flaps, slats, spoilers, speed brakes, and trim tabs.",
+      "referenceTextZh": "飞机的飞行操纵面分为主操纵面和辅助操纵面。主操纵面包括升降舵控制俯仰、方向舵控制偏航和副翼控制滚转；辅助操纵面包括襟翼、缝翼、扰流板、减速板和调整片等。"
     },
     {
       "id": "opi-extra-203",
       "taskTitle": "飞机系统-飞行操纵系统-2",
-      "audioText": "What are the positions/locations of them?",
+      "audioText": "What are the positions of them?",
       "audioTextZh": "它们（飞行操纵面）的位置在哪？",
-      "referenceText": "The ailerons and flaps are located on the wings of the aircraft. The elevators and rudder are located on the tail of the aircraft.\n副翼和襟翼在飞机机翼上，升降舵和方向舵在机尾（尾翼部位） 。"
+      "referenceText": "The ailerons and flaps are located on the wings of the aircraft. The elevators and rudder are located on the tail of the aircraft.",
+      "referenceTextZh": "副翼和襟翼在飞机机翼上，升降舵和方向舵在机尾（尾翼部位）。"
     },
     {
       "id": "opi-extra-204",
       "taskTitle": "飞机系统-飞行操纵系统-3",
       "audioText": "What are the functions of those flight control surfaces?",
       "audioTextZh": "那些飞行操纵面的功能是什么？",
-      "referenceText": "The ailerons are used to control the roll. Elevators are used to control the pitch. The rudder is used to control the yaw. The flaps are used to increase the lift during takeoff and increase drag during landing.\n副翼用于控制滚转，升降舵用于控制俯仰，方向舵用于控制偏航，襟翼用于起飞时增加升力、着陆时增加阻力 。\n\n Aircraft have primary and secondary flight control surfaces. Primary ones: Elevator controls pitch, rudder controls yaw, aileron controls roll. Secondary ones: Flaps and slats increase lift and drag for takeoff/landing; spoilers/speed brakes reduce speed; trim tabs adjust aircraft attitude stably.\n飞机有主操纵面和辅助操纵面。主操纵面：升降舵控制俯仰，方向舵控制偏航，副翼控制滚转。辅助操纵面：襟翼和缝翼在起降时增加升力和阻力；扰流板/减速板用于减速；调整片可稳定调整飞机姿态。"
+      "referenceText": "Aircraft have primary and secondary flight control surfaces. Primary ones: Elevator controls pitch, rudder controls yaw, aileron controls roll. Second, ary ones: Flaps and slats increase lift and drag for takeoff or landing; spoilers or speed brakes reduce speed; trim tabs adjust aircraft attitude stably.",
+      "referenceTextZh": "飞机有主操纵面和辅助操纵面。主操纵面：升降舵控制俯仰，方向舵控制偏航，副翼控制滚转。辅助操纵面：襟翼和缝翼在起降时增加升力和阻力；扰流板/减速板用于减速；调整片可稳定调整飞机姿态。"
     },
     {
       "id": "opi-extra-205",
       "taskTitle": "飞机系统-飞行操纵系统-4",
       "audioText": "What precautionary measures can you take to make sure your flight control will be fully functional during flight?",
       "audioTextZh": "为确保飞行中飞行操纵系统完全正常工作，你可采取哪些预防措施？",
-      "referenceText": "In order to ensure the flight controls are fully functional during flight, during preflight inspection, we will walk around the aircraft and check the flight control surfaces. During taxiing, we will complete the taxiing checklist to ensure the flight controls are functional. We will rotate the control wheel to check the ailerons, push and pull the control column to check the elevators and press the pedal to check the rudder.\n为保障飞行时飞行操纵系统全功能可用，预飞检查阶段，我们会绕机检查飞行操纵面；滑行期间，会完成滑行检查单以确认操纵系统状态良好，还会转动驾驶盘检查副翼、推拉驾驶杆检查升降舵、踩踏脚蹬检查方向舵 。"
+      "referenceText": "In order to ensure the flight controls are fully functional during flight, during preflight inspection, I would walk around the aircraft and check the flight control surfaces. During taxiing, I would complete the taxiing checklist to ensure the flight controls are functional. I would rotate the control wheel to check the ailerons, push and pull the control column to check the elevators and press the pedal to check the rudder.",
+      "referenceTextZh": "为保障飞行时飞行操纵系统全功能可用，预飞检查阶段，我们会绕机检查飞行操纵面；滑行期间，会完成滑行检查单以确认操纵系统状态良好，还会转动驾驶盘检查副翼、推拉驾驶杆检查升降舵、踩踏脚蹬检查方向舵。"
     },
     {
       "id": "opi-extra-206",
       "taskTitle": "飞机系统-飞行操纵系统-5",
       "audioText": "What are the basic flight control limitations of your aircraft?",
       "audioTextZh": "你所飞飞机的基本飞行操纵限制有哪些？",
-      "referenceText": "I fly C172. The maximum altitude is 3000meters. The maximum takeoff weight is 1700pounds. The maximum speed is 169 knots.\n翻译：我飞的是 C172，最大飞行高度 3000 米，最大起飞重量 1700 磅，最大飞行速度 169 节 。"
+      "referenceText": "I fly C172. The maximum altitude is 3000meters. The maximum takeoff weight is 1700pounds. The maximum speed is 169 knots.",
+      "referenceTextZh": "翻译：我飞的是 C172，最大飞行高度 3000 米，最大起飞重量 1700 磅，最大飞行速度 169 节。"
     },
     {
       "id": "opi-extra-207",
       "taskTitle": "飞机系统-飞行操纵系统-6",
       "audioText": "What are the possible consequences if flaps are jammed during approach phase?",
       "audioTextZh": "进近阶段若襟翼卡阻，可能产生哪些后果？",
-      "referenceText": "If flaps are jammed during approach, the landing speed will be higher, we will need a longer runway to stop the aircraft, or we will run out of runway.\n进近时襟翼卡阻，着陆速度会增大，飞机需要更长跑道才能停下，否则会冲出跑道 。"
+      "referenceText": "If flaps are jammed during approach, the landing speed will be higher, I would need a longer runway to stop the aircraft, or I would run out of runway.",
+      "referenceTextZh": "进近时襟翼卡阻，着陆速度会增大，飞机需要更长跑道才能停下，否则会冲出跑道。"
     },
     {
       "id": "opi-extra-208",
       "taskTitle": "飞机系统-飞行操纵系统-7",
-      "audioText": "How can you make a successful landing without flaps/flapless landing?",
+      "audioText": "How can you make a successful landing without flaps landing?",
       "audioTextZh": "无襟翼时，如何实现成功着陆（无襟翼着陆）？",
-      "referenceText": "First, we will reduce the weight of the aircraft and reduce the landing speed. Second, we will reduce power to idle. Third, we will use maximum brakes and reverse thrust to stop the aircraft on the runway.\n首先，减轻飞机重量并降低着陆速度；其次，把发动机推力减到慢车；最后，使用最大刹车和反推，让飞机在跑道上停下 。"
+      "referenceText": "First, I would reduce the weight of the aircraft and reduce the landing speed. Second, I would reduce power to idle. Third, I would use maximum brakes and reverse thrust to stop the aircraft on the runway.",
+      "referenceTextZh": "首先，减轻飞机重量并降低着陆速度；其次，把发动机推力减到慢车；最后，使用最大刹车和反推，让飞机在跑道上停下。"
     },
     {
       "id": "opi-extra-209",
       "taskTitle": "飞机系统-飞行操纵系统-8",
-      "audioText": "If the autopilot can't be connected during flight, can you explain the difference in cockpit task-sharing（",
-      "audioTextZh": "驾驶舱任务分工）？\n飞行中若自动驾驶无法衔接，驾驶舱任务分工有何不同，你能说明吗？",
-      "referenceText": "If the autopilot can't be connected during flight, the pilot flying will take the control of the aircraft, the pilot not flying will read out the checklist and monitor the performance of the aircraft.\n飞行中自动驾驶无法衔接时，操纵飞机的飞行员负责控制飞机，不操纵飞机的飞行员负责念检查单并监控飞机状态 。"
+      "audioText": "If the autopilot can't be connected during flight, can you explain the difference in cockpit task-sharing（?",
+      "audioTextZh": "驾驶舱任务分工）？",
+      "referenceText": "If the autopilot can't be connected during flight, the pilot flying will take the control of the aircraft, the pilot not flying will read out the checklist and monitor the performance of the aircraft.",
+      "referenceTextZh": "飞行中自动驾驶无法衔接时，操纵飞机的飞行员负责控制飞机，不操纵飞机的飞行员负责念检查单并监控飞机状态。"
     },
     {
       "id": "opi-extra-210",
       "taskTitle": "飞机系统-飞行操纵系统-9",
       "audioText": "What should you pay attention to when extending or retracting the flaps?",
       "audioTextZh": "收放襟翼时，需要注意什么？",
-      "referenceText": "When extending or retracting the flaps, we should pay attention to - the altitude of the aircraft, - the speed of the aircraft, - the wind condition, - the runway condition and so on.\n收放襟翼时，需关注飞机高度、飞行速度、 wind conditions（ wind speed and direction ）、跑道状况等"
+      "referenceText": "When extending or retracting the flaps, pilots should pay attention to-the altitude of the aircraft, - the speed of the aircraft, - the wind condition, - the runway condition and so on.",
+      "referenceTextZh": "收放襟翼时，需关注飞机高度、飞行速度、 wind conditions（ wind speed and direction ）、跑道状况等。"
     },
     {
       "id": "opi-extra-211",
       "taskTitle": "飞机系统-飞行操纵系统-10",
       "audioText": "What are the standard call out for flaps extension and retraction?",
       "audioTextZh": "襟翼收放的标准喊话流程是怎样的？",
-      "referenceText": "B737\nPF calls \"Flap 1\", PM replies and checks \"altitude good (check altitude below 20000 feet, speed below 230 knots)\", PM sets flap 1.\nPF calls \"Flap 5\", PM replies and checks \"speed below 210 knots\", PM sets Flap 5.\nPF calls \"Flap 15\", PM replies and checks \"speed below 200 knots\", PM sets Flap 15.\nPF calls \"Flap 30\", PM replies and checks \"speed below 175 knots\", PM sets Flap 30.\nPF calls \"Flap 40\", PM replies and checks \"speed below 162 knots\", PM sets Flap 40 (as needed).\n以波音 737 为例\n操纵飞行员（PF）喊 “襟翼 1” ，监控飞行员（PM）回应并检查 “高度合适（确认高度低于 20000 英尺、速度低于 230 节）” ，随后 PM 设置襟翼 1 。\nPF 喊 “襟翼 5” ，PM 回应并检查 “速度低于 210 节” ，然后 PM 设置襟翼 5 。\nPF 喊 “襟翼 15” ，PM 回应并检查 “速度低于 200 节” ，接着 PM 设置襟翼 15 。\nPF 喊 “襟翼 30” ，PM 回应并检查 “速度低于 175 节” ，之后 PM 设置襟翼 30 。\nPF 喊 “襟翼 40” ，PM 回应并检查 “速度低于 162 节” ，按需由 PM 设置襟翼 40 。\n\n（注：以上内容来源于某航空公司 B737 机型标准操作程序 ）"
+      "referenceText": "B737\nPF calls \"Flap 1\", PM replies and checks \"altitude good (check altitude below 20000 feet, speed below 230 knots)\", PM sets flap 1.\nPF calls \"Flap 5\", PM replies and checks \"speed below 210 knots\", PM sets Flap 5.\nPF calls \"Flap 15\", PM replies and checks \"speed below 200 knots\", PM sets Flap 15.\nPF calls \"Flap 30\", PM replies and checks \"speed below 175 knots\", PM sets Flap 30.\nPF calls \"Flap 40\", PM replies and checks \"speed below 162 knots\", PM sets Flap 40 (as needed).",
+      "referenceTextZh": "以波音 737 为例\n操纵飞行员（PF）喊 “襟翼 1”，监控飞行员（PM）回应并检查 “高度合适（确认高度低于 20000 英尺、速度低于 230 节）”，随后 PM 设置襟翼 1。\nPF 喊 “襟翼 5”，PM 回应并检查 “速度低于 210 节”，然后 PM 设置襟翼 5。\nPF 喊 “襟翼 15”，PM 回应并检查 “速度低于 200 节”，接着 PM 设置襟翼 15。\nPF 喊 “襟翼 30”，PM 回应并检查 “速度低于 175 节”，之后 PM 设置襟翼 30。\nPF 喊 “襟翼 40”，PM 回应并检查 “速度低于 162 节”，按需由 PM 设置襟翼 40。"
     },
     {
       "id": "opi-extra-212",
       "taskTitle": "飞机系统-飞行操纵系统-11",
       "audioText": "What may be the consequences if the flaps have been extended above altitude limitations?",
       "audioTextZh": "若襟翼在超出高度限制的情况下放出，可能产生哪些后果？",
-      "referenceText": "If the flaps have been extended above altitude limitations, it may trigger the master warning. Besides, it may cause structural damage to the flaps.\n若襟翼在超出高度限制时放出，可能触发主警告，此外，还可能造成襟翼结构损坏 。"
+      "referenceText": "If the flaps have been extended above altitude limitations, it may trigger the master warning. Besides, it may cause structural damage to the flaps.",
+      "referenceTextZh": "若襟翼在超出高度限制时放出，可能触发主警告，此外，还可能造成襟翼结构损坏。"
     },
     {
       "id": "opi-extra-213",
       "taskTitle": "飞机系统-飞行操纵系统-12",
       "audioText": "Do you use control column or side stick in your aircraft?",
-      "audioTextZh": "你使用操作杆还是侧杆?",
-      "referenceText": "I fly the DA-40, which is equipped with a control column. It’s more intuitive for training, allowing precise control of ailerons and elevators. Larger aircraft like A320 use side sticks to save cockpit space and enhance crew coordination.\n我驾驶的DA-40机型配备的是操作杆，其操作更直观，适合飞行训练，能精准控制副翼和升降舵。A320等大型客机多采用侧杆，可节省驾驶舱空间并提升机组协作效率。"
+      "audioTextZh": "你使用操作杆还是侧杆？",
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. I fly the DA-40, which is equipped with a control column. It’s more intuitive for training, allowing precise control of ailerons and elevators. Larger aircraft like A320 use side sticks to save cockpit space and enhance crew coordination.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。我驾驶的DA-40机型配备的是操作杆，其操作更直观，适合飞行训练，能精准控制副翼和升降舵。A320等大型客机多采用侧杆，可节省驾驶舱空间并提升机组协作效率。"
     }
   ]
 }

@@ -9,49 +9,56 @@
       "taskTitle": "运行-舱单-1",
       "audioText": "Who is responsible for providing the loading sheet to the flight crew?",
       "audioTextZh": "谁负责向飞行机组提供装载单（loading sheet）？",
-      "referenceText": "The dispatcher is responsible for providing the loading sheet to the flight crew.\n签派员（dispatcher）负责向飞行机组提供装载单 。"
+      "referenceText": "The dispatcher is responsible for providing the loading sheet to the flight crew.",
+      "referenceTextZh": "签派员（dispatcher）负责向飞行机组提供装载单。"
     },
     {
       "id": "opi-core-304",
       "taskTitle": "运行-舱单-2",
       "audioText": "What's the use of the loading sheet?",
       "audioTextZh": "装载单（loading sheet）有什么用途？",
-      "referenceText": "（1）Based on my knowledge, the pilot should consider the aircraft weight and balance. The pilot can get the passenger and cargo information from the loading sheet. It can help the pilot to make pre-flight preparation to make sure the aircraft is well-balanced.\n据我所知，飞行员需考虑飞机的重量与平衡。可从装载单获取乘客和货物信息，助力飞行员进行飞行前准备，确保飞机平衡良好。\n（2）Loading sheet is very important. We can get some important information about weight and balance from loading sheet such as persons on board (POB), cargos, fuel quantity, CG and so on.装载单十分重要，能从中获取重量与平衡相关的关键信息，比如机上人员（POB）、货物、燃油量、重心（CG）等 。"
+      "referenceText": "Loading sheet is very important. pilots can get some important information about weight and balance from loading sheet such as persons on board (POB), cargos, fuel quantity, CG and so on.",
+      "referenceTextZh": "装载单十分重要，能从中获取重量与平衡相关的关键信息，比如机上人员（POB）、货物、燃油量、重心（CG）等。"
     },
     {
       "id": "opi-core-305",
       "taskTitle": "运行-舱单-3",
       "audioText": "What information is included in the loading sheet?",
       "audioTextZh": "装载单（loading sheet）包含哪些信息？",
-      "referenceText": "（1）The loading sheet includes a lot of information such as zero fuel weight, CG, POB, fuel on board, take-off weight and so on.\n装载单包含诸多信息，如无燃油重量（zero fuel weight）、重心（CG）、机上人员（POB）、机上燃油量（fuel on board）、起飞重量（take - off weight）等。\n（2）There is some important information include in the loading sheet such as persons on board (POB), cargos, fuel quantity, CG and so on.\n装载单包含一些重要信息，像机上人员（POB）、货物（cargos）、燃油量（fuel quantity）、重心（CG）等 。"
+      "referenceText": "There is some important information include in the loading sheet such as persons on board (POB), cargos, fuel quantity, CG and so on.",
+      "referenceTextZh": "装载单包含一些重要信息，像机上人员（POB）、货物（cargos）、燃油量（fuel quantity）、重心（CG）等。"
     },
     {
       "id": "opi-core-306",
       "taskTitle": "运行-舱单-4",
       "audioText": "Which department is responsible for the provision of the loading sheet?",
       "audioTextZh": "哪个部门负责提供舱单？",
-      "referenceText": "The dispatching office is responsible for providing the loading sheet.\n签派室负责提供舱单。"
+      "referenceText": "The dispatching office is responsible for providing the loading sheet.",
+      "referenceTextZh": "签派室负责提供舱单。"
     },
     {
       "id": "opi-core-307",
       "taskTitle": "运行-舱单-5",
       "audioText": "How do you get the loading sheet?",
       "audioTextZh": "你怎么获取舱单？",
-      "referenceText": "We can get the loading sheet from the flight dispatchers.\n我们可以从签派室获取舱单。"
+      "referenceText": "Pilots can get the loading sheet from the flight dispatchers.",
+      "referenceTextZh": "我们可以从签派室获取舱单。"
     },
     {
       "id": "opi-core-308",
       "taskTitle": "运行-舱单-6",
-      "audioText": "What's the use of loading sheet?What information can you get from the loading sheet?",
-      "audioTextZh": "舱单的用处是什么？我们可以从舱单获取哪些信息？",
-      "referenceText": "Loading sheet is very important. We can get some important information about weight and balance from loading sheet such as persons on board (POB), cargos, fuel quantity, CG and so on.\n舱单非常有用，我们可以从舱单中获取一些关于重量与平衡重要信息，比如机上人员（POB），货物，燃油重量，重心等。"
+      "audioText": "What's the use of loading sheet?",
+      "audioTextZh": "舱单的用处是什么？",
+      "referenceText": "Loading sheet is very important. pilots can get some important information about weight and balance from loading sheet such as persons on board (POB), cargos, fuel quantity, CG and so on.",
+      "referenceTextZh": "舱单非常有用，我们可以从舱单中获取一些关于重量与平衡重要信息，比如机上人员（POB），货物，燃油重量，重心等。"
     },
     {
       "id": "opi-core-309",
       "taskTitle": "运行-舱单-7",
-      "audioText": "What do you know about the loading sheet? What information is included in the loading sheet?",
-      "audioTextZh": "你知道舱单吗?舱单中都有哪些信息?",
-      "referenceText": "A loading sheet is used for weight and balance control. It includes flight number, number of persons on board (POB), cargo/baggage weight, fuel quantity (FOB), center of gravity (CG), and takeoff/landing weight. Pilots use it to calculate takeoff data and ensure aircraft stability.\n舱单用于重量和平衡控制，包含航班号、机上人员数（POB）、货物/行李重量、燃油量（FOB）、重心（CG）以及起飞/着陆重量。飞行员用它计算起飞数据，确保飞机稳定性。"
+      "audioText": "What do you know about the loading sheet?",
+      "audioTextZh": "你知道舱单吗？",
+      "referenceText": "A loading sheet is used for weight and balance control. It includes flight number, number of persons on board (POB), cargo or baggage weight, fuel quantity (FOB), center of gravity (CG), and takeoff or landing weight. Pilots use it to calculate takeoff data and ensure aircraft stability.",
+      "referenceTextZh": "舱单用于重量和平衡控制，包含航班号、机上人员数（POB）、货物/行李重量、燃油量（FOB）、重心（CG）以及起飞/着陆重量。飞行员用它计算起飞数据，确保飞机稳定性。"
     }
   ]
 }

@@ -9,21 +9,24 @@
       "taskTitle": "飞机系统-氧气系统-1",
       "audioText": "Can you introduce oxygen system of your aircraft?",
       "audioTextZh": "你能介绍下你所飞飞机的氧气系统吗？",
-      "referenceText": "I fly the DA-40, an unpressurized aircraft that flies below 3000m, so it has no oxygen supply system. Large aircraft have three oxygen systems: cockpit oxygen masks for crew, cabin passenger oxygen masks (automatically deployed when depressurized), and portable oxygen cylinders for medical emergencies.\n我驾驶的DA-40是非气密式飞机，飞行高度低于3000米，因此无供氧系统。大型飞机的氧气系统分为三类：机组应急氧气面罩、客舱旅客氧气面罩（失压时自动脱落）以及用于医疗急救的手提式氧气瓶。"
+      "referenceText": "I fly the DA-40, an unpressurized aircraft that flies below 3000m, so it has no oxygen supply system. Large aircraft have three oxygen systems: cockpit oxygen masks for crew, cabin passenger oxygen masks (automatically deployed when depressurized), and portable oxygen cylinders for medical emergencies.",
+      "referenceTextZh": "我驾驶的DA-40是非气密式飞机，飞行高度低于3000米，因此无供氧系统。大型飞机的氧气系统分为三类：机组应急氧气面罩、客舱旅客氧气面罩（失压时自动脱落）以及用于医疗急救的手提式氧气瓶。"
     },
     {
       "id": "opi-extra-224",
       "taskTitle": "飞机系统-氧气系统-2",
       "audioText": "When does oxygen mask drop during flight?",
       "audioTextZh": "飞行中氧气面罩会在何种情况下脱落？",
-      "referenceText": "If there is depressurization during flight, the oxygen masks will drop.\n飞行中若出现客舱释压情况，氧气面罩会自动脱落 。\n\nOxygen masks drop automatically when the cabin altitude exceeds a certain threshold (usually 14,000 feet) due to decompression. They can also be deployed manually by the captain if smoke, fire, or hypoxia is detected. For unpressurized aircraft, masks are manually used when needed (e.g., high-altitude flight, medical emergency).\n当失压导致客舱高度超过特定阈值（通常为14,000英尺）时，氧气面罩会自动脱落；若检测到烟雾、火情或缺氧，机长也可手动释放面罩；非增压飞机的氧气面罩则在需要时（如高空飞行、医疗紧急情况）手动使用。"
+      "referenceText": "Oxygen masks drop automatically when the cabin altitude exceeds a certain threshold (usually 14,000 feet) due to decompression. They can also be deployed manually by the captain if smoke, fire, or hypoxia is detected. For unpressurized aircraft, masks are manually used when needed (e. g., high-altitude flight, medical emergency).",
+      "referenceTextZh": "当失压导致客舱高度超过特定阈值（通常为14,000英尺）时，氧气面罩会自动脱落；若检测到烟雾、火情或缺氧，机长也可手动释放面罩；非增压飞机的氧气面罩则在需要时（如高空飞行、医疗紧急情况）手动使用。"
     },
     {
       "id": "opi-extra-225",
       "taskTitle": "飞机系统-氧气系统-3",
       "audioText": "Under what conditions do you use oxygen masks?",
       "audioTextZh": "在哪些情况下，飞行员需使用氧气面罩？",
-      "referenceText": "First, if there is depressurization, we will use oxygen masks. Second, if there is smoke or fire in the cockpit, we will use oxygen masks.\n第一，若出现客舱释压（失压）情况，需使用氧气面罩；第二，若驾驶舱内有烟雾或起火，需使用氧气面罩 。\n\n Oxygen masks are used in situations like cabin depressurization, cockpit fire/smoke (for protection), medical emergencies (aiding sick passengers), operations at high-elevation airports (preventing incapacitation), and air conditioning system failure.\n在客舱失压、驾驶舱起火/有烟雾防护用、医疗紧急情况救助患病乘客、高原机场运行防止失能以及空调系统失效等情况下，需使用氧气面罩。"
+      "referenceText": "Oxygen masks are used in situations like cabin depressurization, cockpit fire or smoke (for protection), medical emergencies (aiding sick passengers), operations at high-elevation airports (preventing incapacitation), and air conditioning system failure.",
+      "referenceTextZh": "在客舱失压、驾驶舱起火/有烟雾防护用、医疗紧急情况救助患病乘客、高原机场运行防止失能以及空调系统失效等情况下，需使用氧气面罩。"
     }
   ]
 }

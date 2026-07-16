@@ -7,51 +7,58 @@
     {
       "id": "opi-core-660",
       "taskTitle": "人的因素-禁烟政策-1",
-      "audioText": "What's your opinion on your company's ban smoke policy?",
-      "audioTextZh": "你对公司的禁烟政策有什么看法？",
-      "referenceText": "Our company policy prohibits pilots from smoking in the cockpit. I believe pilots should not smoke in the cockpit. Crew members should effectively share tasks in the cockpit: the Pilot Flying (PF) controls the aircraft, while the Pilot Monitoring (PM) monitors instruments and systems and remains vigilant about the outside environment.\n我们公司政策禁止飞行员在驾驶舱吸烟。我认为飞行员不应在驾驶舱吸烟。机组人员应在驾驶舱有效分工协作：操纵飞机的飞行员（PF）负责操控飞机，监控飞行员（PM）负责监视仪表和系统，并密切关注外部环境 。"
+      "audioText": "What is your opinion of your company’s no-smoking policy?",
+      "audioTextZh": "你如何看待公司的禁烟政策？",
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. Our company policy prohibits pilots from smoking in the cockpit. I believe pilots should not smoke in the cockpit. Crew members should effectively share tasks in the cockpit: the Pilot Flying (PF) controls the aircraft, while the Pilot Monitoring (PM) monitors instruments and systems and remains vigilant about the outside environment.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。我们公司政策禁止飞行员在驾驶舱吸烟。我认为飞行员不应在驾驶舱吸烟。机组人员应在驾驶舱有效分工协作：操纵飞机的飞行员（PF）负责操控飞机，监控飞行员（PM）负责监视仪表和系统，并密切关注外部环境。"
     },
     {
       "id": "opi-core-661",
       "taskTitle": "人的因素-禁烟政策-2",
-      "audioText": "What are the consequences if the pilot smoke in the cockpit?",
-      "audioTextZh": "飞行员在驾驶舱吸烟会有哪些后果？",
-      "referenceText": "If a pilot smokes in the cockpit, they will face disciplinary action, and in severe cases, may be grounded or have their license revoked.\n若飞行员在驾驶舱吸烟，会面临纪律处分；情节严重的，可能被停飞或吊销执照 。"
+      "audioText": "What consequences could result if a pilot smoked in the cockpit?",
+      "audioTextZh": "飞行员在驾驶舱吸烟可能造成哪些后果？",
+      "referenceText": "If a pilot smokes in the cockpit, they will face disciplinary action, and in severe cases, may be grounded or have their license revoked.",
+      "referenceTextZh": "若飞行员在驾驶舱吸烟，会面临纪律处分；情节严重的，可能被停飞或吊销执照。"
     },
     {
       "id": "opi-core-662",
       "taskTitle": "人的因素-禁烟政策-3",
-      "audioText": "Could you introduce your company’s ban\nsmoking policy?",
-      "audioTextZh": "请介绍贵公司的禁烟政策？",
-      "referenceText": "Smoking is prohibited during flight.\n飞行期间禁止吸烟。"
+      "audioText": "Could you describe your company’s no-smoking policy?",
+      "audioTextZh": "请介绍你所在公司的禁烟政策。",
+      "referenceText": "A safe sample policy is that smoking and the use of prohibited smoking devices are not allowed during flight or in restricted operational areas. The operator should communicate the rule clearly and the crew should address any violation through the applicable cabin and security procedures. A candidate should describe the actual policy of their operator.",
+      "referenceTextZh": "一个稳妥的示范政策是：飞行中以及受限制的运行区域内禁止吸烟和使用被禁止的吸烟装置。运营人应清楚传达规定，机组则应按照适用的客舱和安保程序处理违规行为。考生应说明自己运营人的真实政策。"
     },
     {
       "id": "opi-core-663",
       "taskTitle": "人的因素-禁烟政策-4",
-      "audioText": "Why do you think it is necessary to\nban smoking in the cockpit?",
+      "audioText": "Why do you think it is necessary to ban smoking in the cockpit?",
       "audioTextZh": "你认为驾驶舱内禁烟有必要吗？为什么？",
-      "referenceText": "Smoking may reduce the visibility in the cockpit and sometimes may lead to a fire. It may endanger flight safety. Besides smoking can increase the risk of hypoxia during flight and it is bad for one’s health.\n有必要。吸烟可能降低驾驶舱能见度，有时还会引发火灾，危及飞行安全；此外，飞行中吸烟会增加缺氧风险，且不利于身体健康。"
+      "referenceText": "Smoking may reduce the visibility in the cockpit and sometimes may lead to a fire. It may endanger flight safety. Besides smoking can increase the risk of hypoxia during flight and it is bad for one’s health.",
+      "referenceTextZh": "有必要。吸烟可能降低驾驶舱能见度，有时还会引发火灾，危及飞行安全；此外，飞行中吸烟会增加缺氧风险，且不利于身体健康。"
     },
     {
       "id": "opi-core-664",
       "taskTitle": "人的因素-禁烟政策-5",
       "audioText": "Does your flight instructor smoke?",
-      "audioTextZh": "你的教员吸烟吗?",
-      "referenceText": "No, my flight instructor doesn’t smoke. Smoking harms health and impairs reaction ability, posing risks to flight safety. Civil aviation regulations strictly prohibit smoking before and during flights. My instructor abides by these rules and often emphasizes the importance of healthy habits for pilots.\n我的教员不吸烟。吸烟有害健康，还会降低反应能力，给飞行安全带来隐患。民航法规严格禁止飞行前和飞行中吸烟，我的教员遵守这些规定，并经常强调健康习惯对飞行员的重要性。"
+      "audioTextZh": "你的教员吸烟吗？",
+      "referenceText": "No, my flight instructor doesn’t smoke. Smoking harms health and impairs reaction ability, posing risks to flight safety. Civil aviation regulations strictly prohibit smoking before and during flights. My instructor abides by these rules and often emphasizes the importance of healthy habits for pilots.",
+      "referenceTextZh": "我的教员不吸烟。吸烟有害健康，还会降低反应能力，给飞行安全带来隐患。民航法规严格禁止飞行前和飞行中吸烟，我的教员遵守这些规定，并经常强调健康习惯对飞行员的重要性。"
     },
     {
       "id": "opi-core-665",
       "taskTitle": "人的因素-禁烟政策-6",
       "audioText": "Do you think it is right for pilots to smoke?",
-      "audioTextZh": "你认为飞行员吸烟对吗?",
-      "referenceText": "No, it’s not right. Smoking causes respiratory and cardiovascular diseases, damaging pilots’ physical fitness. It impairs reaction speed and concentration, endangering flight safety. Civil aviation regulations ban smoking before and during flights—violations lead to penalties. For personal and flight safety, pilots must refrain from smoking.\n不对。吸烟会引发呼吸、心血管等疾病，损害飞行员体质；还会降低反应速度和注意力，危及飞行安全。民航法规禁止飞行前和飞行中吸烟，违规会面临处罚。为了个人和飞行安全，飞行员必须杜绝吸烟。"
+      "audioTextZh": "你认为飞行员吸烟对吗？",
+      "referenceText": "No, it’s not right. Smoking causes respiratory and cardiovascular diseases, damaging pilots’ physical fitness. It impairs reaction speed and concentration, endangering flight safety. Civil aviation regulations ban smoking before and during flights—violations lead to penalties. For personal and flight safety, pilots must refrain from smoking.",
+      "referenceTextZh": "不对。吸烟会引发呼吸、心血管等疾病，损害飞行员体质；还会降低反应速度和注意力，危及飞行安全。民航法规禁止飞行前和飞行中吸烟，违规会面临处罚。为了个人和飞行安全，飞行员必须杜绝吸烟。"
     },
     {
       "id": "opi-core-666",
       "taskTitle": "人的因素-禁烟政策-7",
       "audioText": "If the cabin crew reports that there is a passenger smoking on the plane, what should you do?",
-      "audioTextZh": "如果乘务员报告称,飞机上有人吸烟,你会怎么做?",
-      "referenceText": "Smoking is strictly prohibited on aircraft. I will instruct cabin crew to stop the passenger immediately, explain the safety risks (e.g., fire hazard in the cabin or lavatory). If the passenger refuses to comply, record the incident and arrange for airport security to handle it upon arrival to uphold flight safety and discipline.\n飞机上严禁吸烟，我会指示乘务员立即制止该乘客，说明吸烟的安全风险（如客舱或洗手间起火隐患）；若乘客拒不配合，记录事件情况，落地后安排机场安保处置，维护飞行安全和纪律。"
+      "audioTextZh": "如果乘务员报告称,飞机上有人吸烟,你会怎么做？",
+      "referenceText": "Smoking is strictly prohibited on aircraft. I will instruct cabin crew to stop the passenger immediately, explain the safety risks (e. g., fire hazard in the cabin or lavatory). If the passenger refuses to comply, record the incident and arrange for airport security to handle it upon arrival to uphold flight safety and discipline.",
+      "referenceTextZh": "飞机上严禁吸烟，我会指示乘务员立即制止该乘客，说明吸烟的安全风险（如客舱或洗手间起火隐患）；若乘客拒不配合，记录事件情况，落地后安排机场安保处置，维护飞行安全和纪律。"
     }
   ]
 }

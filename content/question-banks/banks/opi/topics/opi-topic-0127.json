@@ -7,65 +7,74 @@
     {
       "id": "opi-extra-214",
       "taskTitle": "飞机系统-发动机问题-1",
-      "audioText": "If the engine disintegrated/separated from aircraft during flight, what will you do?",
-      "audioTextZh": "飞行中若发动机解体 / 与飞机脱离，应如何处置？",
-      "referenceText": "If we encounter this situation, first, we will try our best to keep the control of the aircraft. Second, we will report to ATC and request priority landing and emergency services upon landing.\n若遇此情况，首先全力保持飞机可控；其次向空中交通管制（ATC）报告，申请优先着陆并请求着陆后应急服务 。"
+      "audioText": "If the engine disintegrated from aircraft during flight, what will you do?",
+      "audioTextZh": "飞行中若发动机解体，应如何处置？",
+      "referenceText": "If we encounter this situation, first, I would make every reasonable effort to keep the control of the aircraft. Second, I would report to ATC and request priority landing and emergency services upon landing.",
+      "referenceTextZh": "若遇此情况，首先全力保持飞机可控；其次向空中交通管制（ATC）报告，申请优先着陆并请求着陆后应急服务。"
     },
     {
       "id": "opi-extra-215",
       "taskTitle": "飞机系统-发动机问题-2",
       "audioText": "If you return for landing with an engine on fire, what will you do?",
       "audioTextZh": "若发动机着火需返场着陆，应如何处置？",
-      "referenceText": "If we return for landing with an engine on fire, first, we will report our situation to ATC and request priority landing and emergency services such as fire services, medical services and so on. Second, we will discharge fire bottles to put out the engine fire and shut off the fuel supply to the faulty engine. If necessary, we will shut down the faulty engine After landing, we will execute emergency evacuation.\n若遇发动机着火需返场着陆，首先向空中交通管制（ATC）报告情况，申请优先着陆并请求消防、医疗等应急服务；其次投放灭火瓶扑灭发动机火情，切断故障发动机燃油供应；必要时关闭故障发动机"
+      "referenceText": "If we return for landing with an engine on fire, first, I would report our situation to ATC and request priority landing and emergency services such as fire services, medical services and so on. Second, I would discharge fire bottles to put out the engine fire and shut off the fuel supply to the faulty engine. If necessary, I would shut down the faulty engine After landing, I would execute emergency evacuation.",
+      "referenceTextZh": "若遇发动机着火需返场着陆，首先向空中交通管制（ATC）报告情况，申请优先着陆并请求消防、医疗等应急服务；其次投放灭火瓶扑灭发动机火情，切断故障发动机燃油供应；必要时关闭故障发动机。"
     },
     {
       "id": "opi-extra-216",
       "taskTitle": "飞机系统-发动机问题-3",
-      "audioText": "Have you ever encountered engine problems or malfunctioned? What was the problem?",
-      "audioTextZh": "你是否遇到过发动机故障或异常？具体是什么问题？",
-      "referenceText": "No, I have never encountered engine problems, but I have practiced the engine problems in the simulator such as engine failure, engine flameout, engine fire, engine surge and so on.\n没有，我从未遇到过实际发动机故障，但在模拟机上练习过发动机故障处置，比如发动机失效、熄火、着火、喘振等情况 。"
+      "audioText": "Have you ever encountered engine problems or malfunctioned?",
+      "audioTextZh": "你是否遇到过发动机故障或异常？",
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. No, I have never encountered engine problems, but I have practiced the engine problems in the simulator such as engine failure, engine flameout, engine fire, engine surge and so on.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。没有，我从未遇到过实际发动机故障，但在模拟机上练习过发动机故障处置，比如发动机失效、熄火、着火、喘振等情况。"
     },
     {
       "id": "opi-extra-217",
       "taskTitle": "飞机系统-发动机问题-4",
-      "audioText": "What might be the possible reasons/causes for engine problems?",
+      "audioText": "What might be the possible reasons for engine problems?",
       "audioTextZh": "发动机故障可能由哪些原因导致？",
-      "referenceText": "There are many possible reasons for engine problems, such as mechanical problem of engine itself, foreign object ingestion or foreign object damage, fuel problem, and bad weather conditions.\n发动机故障可能有多种原因，比如发动机自身机械故障、外物吸入或外物损伤、燃油问题，以及恶劣气象条件等 。"
+      "referenceText": "There are many possible reasons for engine problems, such as mechanical problem of engine itself, foreign object ingestion or foreign object damage, fuel problem, and bad weather conditions.",
+      "referenceTextZh": "发动机故障可能有多种原因，比如发动机自身机械故障、外物吸入或外物损伤、燃油问题，以及恶劣气象条件等。"
     },
     {
       "id": "opi-extra-218",
       "taskTitle": "飞机系统-发动机问题-5",
       "audioText": "If you encounter engine problems during flight, what will you do?",
       "audioTextZh": "飞行中遇到发动机故障，应如何处置？",
-      "referenceText": "If we encounter engine problems during flight. First, we will keep the control of the aircraft. Second, we will follow the QRH to complete the checklist. Third, we will report our situation to ATC and request priority landing and emergency services.\n飞行中遇发动机故障，首先保持飞机可控；其次依据快速检查单（QRH）完成检查单流程；最后向空中交通管制（ATC）报告情况，申请优先着陆并请求应急服务 。"
+      "referenceText": "If we encounter engine problems during flight. First, I would keep the control of the aircraft. Second, I would follow the QRH to complete the checklist. Third, I would report our situation to ATC and request priority landing and emergency services.",
+      "referenceTextZh": "飞行中遇发动机故障，首先保持飞机可控；其次依据快速检查单（QRH）完成检查单流程；最后向空中交通管制（ATC）报告情况，申请优先着陆并请求应急服务。"
     },
     {
       "id": "opi-extra-219",
       "taskTitle": "飞机系统-发动机问题-6",
       "audioText": "Have you ever experienced engine out during flight?",
       "audioTextZh": "你飞行中遇到过发动机失效（停车）情况吗？",
-      "referenceText": "No, I have never encountered engine out during flight. But I know how to deal with engine out during flight.\n翻译：没有，我飞行中从未遇到过发动机失效（停车）情况，但我知晓飞行中发动机失效（停车）时的处置方法 。"
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. No, I have never encountered engine out during flight. But I know how to deal with engine out during flight.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。翻译：没有，我飞行中从未遇到过发动机失效（停车）情况，但我知晓飞行中发动机失效（停车）时的处置方法。"
     },
     {
       "id": "opi-extra-220",
       "taskTitle": "飞机系统-发动机问题-7",
       "audioText": "Do you think it is easy for a pilot to fly with engine out?",
       "audioTextZh": "你认为飞行员遇到发动机失效（停车）时，飞行操作容易吗？",
-      "referenceText": "I think it's hard/difficult for a pilot to fly with engine out. If there is engine out, the engine power will be decreased, it's difficult to maintain the control of the aircraft.\n我认为飞行员遇到发动机失效（停车）时，飞行操作很难。因为发动机失效会使动力下降，难以维持飞机的操控状态 。"
+      "referenceText": "I think it's hard or difficult for a pilot to fly with engine out. If there is engine out, the engine power will be decreased, it's difficult to maintain the control of the aircraft.",
+      "referenceTextZh": "我认为飞行员遇到发动机失效（停车）时，飞行操作很难。因为发动机失效会使动力下降，难以维持飞机的操控状态。"
     },
     {
       "id": "opi-extra-221",
       "taskTitle": "飞机系统-发动机问题-8",
-      "audioText": "During cruise, you notice an abnormal engine\nparameter indication, what will you do?",
+      "audioText": "During cruise, you notice an abnormal engine parameter indication, what will you do?",
       "audioTextZh": "巡航阶段发现发动机参数指示异常，你会怎么做？",
-      "referenceText": "If I notice an abnormal engine parameter indication during cruise, first, I will follow the SOP to finish the checklist, second, if the problem can’t be solved, I will report our situation to ATC and request return to land or divert to a suitable airport.\n首先，按照 SOP 完成检查单；若问题无法解决，向空管（ATC）报告情况，申请返航或备降至合适机场。"
+      "referenceText": "If I notice an abnormal engine parameter indication during cruise, first, I will follow the applicable SOP to finish the checklist, second, if the problem can’t be solved, I will report our situation to ATC and request return to land or divert to a suitable airport.",
+      "referenceTextZh": "首先，按照 SOP 完成检查单；若问题无法解决，向空管（ATC）报告情况，申请返航或备降至合适机场。"
     },
     {
       "id": "opi-extra-222",
       "taskTitle": "飞机系统-发动机问题-9",
       "audioText": "What is your engine failure procedure during cruise?",
       "audioTextZh": "巡航阶段发动机失效的处置程序是什么？",
-      "referenceText": "If I have encounter engine failure during cruise, first, I will take control of the aircraft; second, accomplish the checklist, try to restart the engine; third, if the engine cannot be restarted, report our situation and position to ATC and prepare for emergency landing.\n首先，接管飞机操纵；其次，完成检查单，尝试重启发动机；若无法重启，向 ATC 报告情况和位置，准备紧急着陆。"
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. If I have encounter engine failure during cruise, first, I will take control of the aircraft; second, accomplish the checklist, try to restart the engine; third, if the engine cannot be restarted, report our situation and position to ATC and prepare for emergency landing.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。首先，接管飞机操纵；其次，完成检查单，尝试重启发动机；若无法重启，向 ATC 报告情况和位置，准备紧急着陆。"
     }
   ]
 }

@@ -7,184 +7,210 @@
     {
       "id": "opi-core-386",
       "taskTitle": "运行-训练与复训-1",
-      "audioText": "Do you think it is important/necessary to take/this training?",
-      "audioTextZh": "你认为参加这次培训重要 / 有必要吗？",
-      "referenceText": "Yes. It's very important to take this training. After the training, we can familiar with the procedures, practice how to deal with the abnormal/dangerous goods, suspicious articles, hijack situation, improve skills and enrich our knowledge. What's more, we will have a better communication and cooperation between crew members.\n有必要。参加这次培训非常重要。培训后，我们能熟悉流程，练习如何处理异常 / 危险物品、可疑物品、劫机情况，提升技能并丰富知识。而且，机组成员之间能有更好的沟通与协作 。"
+      "audioText": "Do you think it is important to take training?",
+      "audioTextZh": "你认为参加这次培训重要？",
+      "referenceText": "Yes. It's very important to take this training. After the training, pilots can familiar with the procedures, practice how to deal with the abnormal or dangerous goods, suspicious articles, hijack situation, improve skills and enrich our knowledge. What's more, I would have a better communication and cooperation between crew members.",
+      "referenceTextZh": "有必要。参加这次培训非常重要。培训后，我们能熟悉流程，练习如何处理异常 / 危险物品、可疑物品、劫机情况，提升技能并丰富知识。而且，机组成员之间能有更好的沟通与协作。"
     },
     {
       "id": "opi-core-387",
       "taskTitle": "运行-训练与复训-2",
       "audioText": "Where do you have your recurrent training?",
       "audioTextZh": "你在哪里进行复训？",
-      "referenceText": "No, I have not back to the company yet. I have not taken this training yet. Now I still take flight training in the flight school. We have simulator training.\n没，我还没回公司呢。也还没参加过这次培训。目前我仍在飞行学校进行飞行训练，会开展模拟机训练 。"
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. No, I have not back to the company yet. I have not taken this training yet. Now I still take flight training in the flight school. We have simulator training.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。没，我还没回公司呢。也还没参加过这次培训。目前我仍在飞行学校进行飞行训练，会开展模拟机训练。"
     },
     {
       "id": "opi-core-388",
       "taskTitle": "运行-训练与复训-3",
-      "audioText": "How often do you have your recurrent training? How many hours are you required to complete each time?",
-      "audioTextZh": "你多久进行一次复训？每次需要完成多少小时的训练？",
-      "referenceText": "In flight school, I take simulator training once a month. Every time, I take training for 3 hours. It depends on our training subject.\n在飞行学校，我每月进行一次模拟机训练。每次训练时长为 3 小时，具体时长取决于训练科目 。"
+      "audioText": "How often do you have your recurrent training?",
+      "audioTextZh": "你多久进行一次复训？",
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. In flight school, I take simulator training once a month. Every time, I take training for 3 hours. It depends on our training subject.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。在飞行学校，我每月进行一次模拟机训练。每次训练时长为 3 小时，具体时长取决于训练科目。"
     },
     {
       "id": "opi-core-389",
       "taskTitle": "运行-训练与复训-4",
       "audioText": "What training subjects do you review in your recurrent training?",
       "audioTextZh": "你在复训中会复习哪些训练科目？",
-      "referenceText": "We will train all the normal procedures, such as traffic pattern, holding pattern, precision approach and so on. We also train the abnormal situations, such as abort takeoff, engine failure, hydraulic system failure and so on.\n我们会训练所有正常程序，比如起落航线、等待程序、精密进近等等。我们也会训练异常情况，比如中断起飞、发动机故障、液压系统故障等等 。"
+      "referenceText": "I would train all the normal procedures, such as traffic pattern, holding pattern, precision approach and so on. We also train the abnormal situations, such as abort takeoff, engine failure, hydraulic system failure and so on.",
+      "referenceTextZh": "我们会训练所有正常程序，比如起落航线、等待程序、精密进近等等。我们也会训练异常情况，比如中断起飞、发动机故障、液压系统故障等等。"
     },
     {
       "id": "opi-core-390",
       "taskTitle": "运行-训练与复训-5",
       "audioText": "In your opinion, which subject is the most difficult for you to deal with? Why?",
       "audioTextZh": "在你看来，哪个科目对你而言最难处理？为什么？",
-      "referenceText": "I think engine failure is the most difficult for me. Because our DA - 40 is a single engine aircraft. If we lost engine, we lost power. It is very dangerous situation. There are a lot of procedures and it needs quick mind and quick action. The most important is that it is very hard to choose the right time and right place to make forced landing. I'm not so experienced. So I think it is most difficult for me.\n我认为发动机故障对我来说最难。因为我们的 DA - 40 是单发飞机。要是发动机失效，就会失去动力，情况很危险。处理它有很多程序，需要思维敏捷、行动迅速。最重要的是，很难选准迫降的时机和地点。我经验不足，所以觉得这对我来说最难 。"
+      "referenceText": "I think engine failure is the most difficult for me. Because our DA-40 is a single engine aircraft. If we lost engine, we lost power. It is very dangerous situation. There are a lot of procedures and it needs quick mind and quick action. The most important is that it is very hard to choose the right time and right place to make forced landing.",
+      "referenceTextZh": "我认为发动机故障对我来说最难。因为我们的 DA - 40 是单发飞机。要是发动机失效，就会失去动力，情况很危险。处理它有很多程序，需要思维敏捷、行动迅速。最重要的是，很难选准迫降的时机和地点。我经验不足，所以觉得这对我来说最难。"
     },
     {
       "id": "opi-core-391",
       "taskTitle": "运行-训练与复训-6",
       "audioText": "Do you think it's necessary for the pilots to have recurrent training? Why?",
       "audioTextZh": "你认为飞行员进行复训有必要吗？为什么？",
-      "referenceText": "Yes. It's very important to take this training. After the training, we can familiar with the procedures, practice how to deal with the abnormal situation, improve skills and enrich our knowledge. What's more, we will have a better communication and cooperation between crew members.\n有必要。参加复训非常重要。复训后，我们能熟悉流程，练习如何应对异常情况，提升技能并丰富知识。而且，机组成员之间能有更好的沟通与协作 。\n\nPilots need to undergo recurrent training every year for many important reasons. Firstly, flight safety is the top priority of civil aviation. With the passage of time, pilots may forget some operating procedures, emergency disposal methods or professional knowledge. Recurrent training can help them review and consolidate relevant content, ensure that they can proficiently master various skills and knowledge in actual flight and deal with various complex situations. Secondly, aviation technology and regulations are constantly updating and developing. Recurrent training can keep pilots abreast of the latest aviation technologies, operating procedures and regulatory requirements, and adapt to the changes and developments of the aviation industry. In addition, recurrent training can also help pilots find their own weaknesses and deficiencies in flight skills, and conduct targeted training and improvement to continuously improve their professional quality and flight level. Finally, recurrent training is also a mandatory requirement of civil aviation regulations to ensure that each pilot maintains a certain level of professional competence and ensures the safety of civil aviation operations.\n飞行员每年都需要进行复训，原因有很多重要方面。首先，飞行安全是民航的重中之重。随着时间的推移，飞行员可能会忘记一些操作程序、应急处置方法或专业知识，复训可以帮助他们复习和巩固相关内容，确保在实际飞行中能够熟练掌握各项技能和知识，应对各种复杂情况。其次，航空技术和法规在不断更新和发展，复训可以让飞行员及时了解最新的航空技术、操作程序和法规要求，适应航空业的变化和发展。此外，复训还能帮助飞行员发现自己在飞行技能方面的薄弱环节和不足，并进行有针对性的训练和改进，不断提升自身的专业素养和飞行水平。最后，复训也是民航法规的强制性要求，以确保每一位飞行员都能保持一定的专业能力水平，保障民航运行的安全。"
+      "referenceText": "Pilots need to undergo recurrent training every year for many important reasons. First, ly, flight safety is the top priority of civil aviation. With the passage of time, pilots may forget some operating procedures, emergency disposal methods or professional knowledge. Recurrent training can help them review and consolidate relevant content, ensure that they can proficiently master various skills and knowledge in actual flight and deal with various complex situations. Second, ly, aviation technology and regulations are constantly updating and developing. Recurrent training can keep pilots abreast of the latest aviation technologies, operating procedures and regulatory requirements, and adapt to the changes and developments of the aviation industry.",
+      "referenceTextZh": "飞行员每年都需要进行复训，原因有很多重要方面。首先，飞行安全是民航的重中之重。随着时间的推移，飞行员可能会忘记一些操作程序、应急处置方法或专业知识，复训可以帮助他们复习和巩固相关内容，确保在实际飞行中能够熟练掌握各项技能和知识，应对各种复杂情况。其次，航空技术和法规在不断更新和发展，复训可以让飞行员及时了解最新的航空技术、操作程序和法规要求，适应航空业的变化和发展。此外，复训还能帮助飞行员发现自己在飞行技能方面的薄弱环节和不足，并进行有针对性的训练和改进，不断提升自身的专业素养和飞行水平。最后，复训也是民航法规的强制性要求，以确保每一位飞行员都能保持一定的专业能力水平，保障民航运行的安全。"
     },
     {
       "id": "opi-core-392",
       "taskTitle": "运行-训练与复训-7",
       "audioText": "What will you do if you are going to land at an unfamiliar airport?",
       "audioTextZh": "如果你要在不熟悉的机场降落，会怎么做？",
-      "referenceText": "If we fly to an unfamiliar airport, before flight, we will make good preflight preparation to get important information,such as the weather condition, the runway condition, the taxiways and so on. After landing, if necessary, we will request a follow-me car\n若要飞往不熟悉的机场，飞行前我们会做好飞行前准备，获取天气状况、跑道情况、滑行道等重要信息。降落之后，如有需要，我们会申请引导车（follow - me car ）引导 。\n\nI will study airport charts, NOTAM, and ATIS carefully, familiarize with runway conditions, approach procedures, and emergency exits. Communicate with ATC actively, monitor instruments closely, and prepare for possible go-around.\n我会仔细研究机场航图、航行通告和自动终端情报服务，熟悉跑道条件、进近程序和紧急脱离道。积极与空管沟通，密切监控仪表，并做好复飞准备。"
+      "referenceText": "I will study airport charts, NOTAM, and ATIS carefully, familiarize with runway conditions, approach procedures, and emergency exits. Communicate with ATC actively, monitor instruments closely, and prepare for possible go-around.",
+      "referenceTextZh": "我会仔细研究机场航图、航行通告和自动终端情报服务，熟悉跑道条件、进近程序和紧急脱离道。积极与空管沟通，密切监控仪表，并做好复飞准备。"
     },
     {
       "id": "opi-core-393",
       "taskTitle": "运行-训练与复训-8",
       "audioText": "Does your airline provide training about new airport?",
       "audioTextZh": "你们航空公司会提供关于新机场的培训吗？",
-      "referenceText": "Yes, our company provides some training to help pilots be familiar with new airport. First, we can have simulator flight to the new airport. Second, we will fly with experienced pilots to be familiar with the new airport.\n会，我们公司会提供一些培训，帮助飞行员熟悉新机场。首先，我们可以进行飞往新机场的模拟机飞行。其次，会和经验丰富的飞行员一起飞行，以此熟悉新机场 。\n\nYes, the company provides training for unfamiliar airports, including simulator training, theoretical courses on airport procedures and risks, and briefings by experienced pilots. It helps pilots master relevant skills before operation.\n是的，公司会为不熟悉的机场提供训练，包括模拟机训练、关于机场程序和风险的理论课程，以及由资深飞行员进行的专项简报，帮助飞行员在执行航班前掌握相关技能。"
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. Yes, the company provides training for unfamiliar airports, including simulator training, theoretical courses on airport procedures and risks, and briefings by experienced pilots. It helps pilots master relevant skills before operation.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。是的，公司会为不熟悉的机场提供训练，包括模拟机训练、关于机场程序和风险的理论课程，以及由资深飞行员进行的专项简报，帮助飞行员在执行航班前掌握相关技能。"
     },
     {
       "id": "opi-core-394",
       "taskTitle": "运行-训练与复训-9",
       "audioText": "If you are going to land at an unfamiliar airport and you miss the first fast exit, what will you do?",
       "audioTextZh": "如果你要在不熟悉的机场降落，且错过了第一个快速出口，会怎么做？",
-      "referenceText": "After landing on an unfamiliar airport, if we miss the first rapid exit, we will report the situation and request further instruction.\n在不熟悉的机场降落之后，要是若错过了第一个快速出口，我们会报告情况并请求进一步指令 。\n\nI will stop the aircraft immediately, report to ATC, and request to vacate the runway at the next exit. If the next exit is far, I will ask for permission to backtrack from the current position, ensuring no impact on other traffic.\n我会立即停止飞机，向空管报告，并请求从下一个出口脱离跑道。如果下一个出口较远，我会申请从当前位置掉头，确保不影响其他交通运行。"
+      "referenceText": "I will stop the aircraft immediately, report to ATC, and request to vacate the runway at the next exit. If the next exit is far, I will ask for permission to backtrack from the current position, ensuring no impact on other traffic.",
+      "referenceTextZh": "我会立即停止飞机，向空管报告，并请求从下一个出口脱离跑道。如果下一个出口较远，我会申请从当前位置掉头，确保不影响其他交通运行。"
     },
     {
       "id": "opi-core-395",
       "taskTitle": "运行-训练与复训-10",
-      "audioText": "Where/when did you have Your initial flight training？(simulator training/recurrent training/ transition training /type rating)?",
-      "audioTextZh": "你在哪里 / 什么时候进行的初始飞行训练？（模拟机训练 / 复训 / 转机型训练 / 型别等级训练 ）？",
-      "referenceText": "I had my initial training in…Flight College/Sub - college in 201X（年份）\n我在…… 飞行学院 / 分院进行的初始训练，时间是 201X 年（年份 ）\n\nI started my initial flight training in March last year at Zhanghe Airport. The initial training mainly focused on basic flight skills such as takeoff, landing, straight and level flight, and turning, which laid a solid foundation for my subsequent flight training.\n我于去年3月在漳河机场开始了初始飞行训练。初始训练主要围绕起飞、降落、平飞、转弯等基础飞行技能展开，为我后续的飞行训练打下了坚实的基础。"
+      "audioText": "Where did you have Your initial flight training?",
+      "audioTextZh": "你在哪里？",
+      "referenceText": "I started my initial flight training in March last year at Zhanghe Airport. The initial training mainly focused on basic flight skills such as takeoff, landing, straight and level flight, and turning, which laid a solid foundation for my subsequent flight training.",
+      "referenceTextZh": "我于去年3月在漳河机场开始了初始飞行训练。初始训练主要围绕起飞、降落、平飞、转弯等基础飞行技能展开，为我后续的飞行训练打下了坚实的基础。"
     },
     {
       "id": "opi-core-396",
       "taskTitle": "运行-训练与复训-11",
       "audioText": "Could you describe some unforgettable moments of your flight training?",
       "audioTextZh": "你能描述一下飞行训练中一些难忘的时刻吗？",
-      "referenceText": "Yes. My first solo flight was one of the most unforgettable moments of my flight training. That was a sunny day. The visibility was good, Wind was calm. It was good for flying. I flew two traffic patterns and made a successful landing.\n能。我的首次单飞是飞行训练中最难忘的时刻之一。那是个晴天，能见度良好，风也很平稳，很适合飞行。我飞了两个起落航线，并且成功降落了 。"
+      "referenceText": "Yes. My first solo flight was one of the most unforgettable moments of my flight training. That was a sunny day. The visibility was good, Wind was calm. It was good for flying. I flew two traffic patterns and made a successful landing.",
+      "referenceTextZh": "能。我的首次单飞是飞行训练中最难忘的时刻之一。那是个晴天，能见度良好，风也很平稳，很适合飞行。我飞了两个起落航线，并且成功降落了。"
     },
     {
       "id": "opi-core-397",
       "taskTitle": "运行-训练与复训-12",
       "audioText": "What have you learned from your flight instructors?",
       "audioTextZh": "你从飞行教员那里学到了什么？",
-      "referenceText": "I have learned many things from my flight instructor. First, I have learned many flight skills from my flight instructor .second, I have learned how to be a responsible man.\n我从飞行教员那里学到了很多东西。首先，我从教员那里学到了诸多飞行技能。其次，我学会了如何成为一个有责任心的人 。\n\nI have learned a lot from my flight instructor. First of all, I have mastered solid flight skills and professional knowledge, including various flight operation techniques and emergency disposal methods. Secondly, the instructor has always emphasized the importance of flight safety, teaching me to always put safety first, strictly abide by operating procedures, and not take any chances. In addition, the instructor's rigorous work attitude and calm response in the face of emergencies have also influenced me deeply. He taught me to maintain a good psychological quality during the flight, remain calm and rational when encountering problems, and make correct decisions quickly. Finally, the instructor also taught me the importance of teamwork and effective communication, which is crucial for ensuring flight safety.\n我从飞行教员那里学到了很多东西。首先，我掌握了扎实的飞行技能和专业知识，包括各种飞行操作技巧和应急处置方法。其次，教员始终强调飞行安全的重要性，教导我要始终将安全放在首位，严格遵守操作程序，不抱有任何侥幸心理。此外，教员严谨的工作态度和面对突发情况时的沉着应对也深深影响了我。他教会我在飞行过程中要保持良好的心理素质，遇到问题时沉着冷静、理性分析，快速做出正确的决策。最后，教员还教会了我团队协作和有效沟通的重要性，这对于保障飞行安全至关重要。"
+      "referenceText": "I have learned a lot from my flight instructor. First, I have mastered solid flight skills and professional knowledge, including various flight operation techniques and emergency disposal methods. Second, ly, the instructor has always emphasized the importance of flight safety, teaching me to always put safety first, strictly abide by operating procedures, and not take any chances. In addition, the instructor's rigorous work attitude and calm response in the face of emergencies have also influenced me deeply. He taught me to maintain a good psychological quality during the flight, remain calm and rational when encountering problems, and make correct decisions quickly. Finally, the instructor also taught me the importance of teamwork and effective communication, which is crucial for ensuring flight safety.",
+      "referenceTextZh": "我从飞行教员那里学到了很多东西。首先，我掌握了扎实的飞行技能和专业知识，包括各种飞行操作技巧和应急处置方法。其次，教员始终强调飞行安全的重要性，教导我要始终将安全放在首位，严格遵守操作程序，不抱有任何侥幸心理。此外，教员严谨的工作态度和面对突发情况时的沉着应对也深深影响了我。他教会我在飞行过程中要保持良好的心理素质，遇到问题时沉着冷静、理性分析，快速做出正确的决策。最后，教员还教会了我团队协作和有效沟通的重要性，这对于保障飞行安全至关重要。"
     },
     {
       "id": "opi-core-398",
       "taskTitle": "运行-训练与复训-13",
       "audioText": "How many flight hours in total do you have?",
-      "audioTextZh": "你累计总共的飞行时长是多少",
-      "referenceText": "I have flown about 200 hours.\n我已经飞行了大概 200 小时 。"
+      "audioTextZh": "你累计总共的飞行时长是多少？",
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. I have flown about 200 hours.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。我已经飞行了大概 200 小时。"
     },
     {
       "id": "opi-core-399",
       "taskTitle": "运行-训练与复训-14",
-      "audioText": "what subjects were included in your initial flight training?",
+      "audioText": "What subjects were included in your initial flight training?",
       "audioTextZh": "你的初始飞行训练包含哪些科目？",
-      "referenceText": "We have learned many subjects during initial flight training such as local training, cross-country training, high speed approach, staIl, steep turn-and so on.\n在初始飞行训练期间，我们学习了很多科目，比如本场训练、转场训练、高速进近、失速、 steep turn（大坡度转弯）等等 。"
+      "referenceText": "We have learned many subjects during initial flight training such as local training, cross-country training, high speed approach, staIl, steep turn-and so on.",
+      "referenceTextZh": "在初始飞行训练期间，我们学习了很多科目，比如本场训练、转场训练、高速进近、失速、 steep turn（大坡度转弯）等等。"
     },
     {
       "id": "opi-core-400",
       "taskTitle": "运行-训练与复训-15",
       "audioText": "What subjects were the most difficult for you during initial training?",
       "audioTextZh": "在初始训练期间，哪些科目对你来说最难？",
-      "referenceText": "I think staIl was the most difficult for me because it was difficult to control the aircraft and recover from stall. The aircraft may crash onto the ground．\n我认为失速科目对我来说最难，因为很难控制飞机并从失速状态中改出。飞机有可能会坠毁在地面 。"
+      "referenceText": "I think staIl was the most difficult for me because it was difficult to control the aircraft and recover from stall. The aircraft may crash onto the ground．.",
+      "referenceTextZh": "我认为失速科目对我来说最难，因为很难控制飞机并从失速状态中改出。飞机有可能会坠毁在地面。"
     },
     {
       "id": "opi-core-401",
       "taskTitle": "运行-训练与复训-16",
       "audioText": "Can you describe your first solo?",
       "audioTextZh": "你能描述一下你的首次单飞吗？",
-      "referenceText": "My first solo flight was one of the most unforgettable moments of my flight training. That was a sunny day. The visibility was good, Wind was calm. It was good for flying. I flew two traffic patterns and made a successful landing.\n我的首次单飞是我飞行训练中最难忘的时刻之一。那是一个晴天，能见度良好，风很平稳，非常适合飞行。我飞了两个起落航线，并且成功降落了。"
+      "referenceText": "My first solo flight was one of the most unforgettable moments of my flight training. That was a sunny day. The visibility was good, Wind was calm. It was good for flying. I flew two traffic patterns and made a successful landing.",
+      "referenceTextZh": "我的首次单飞是我飞行训练中最难忘的时刻之一。那是一个晴天，能见度良好，风很平稳，非常适合飞行。我飞了两个起落航线，并且成功降落了。"
     },
     {
       "id": "opi-core-402",
       "taskTitle": "运行-训练与复训-17",
       "audioText": "When was your first solo flight?",
-      "audioTextZh": "你的首次单飞是在什么时候",
-      "referenceText": "My first solo flight was on May, the first, 201X\n我的首次单飞是在 201X 年 5 月 1 日 。"
+      "audioTextZh": "你的首次单飞是在什么时候？",
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. My first solo flight was on May, the first, a year that matches the candidate’s experience.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。我的首次单飞是在 符合答题者实际经历的年份 5 月 1 日。"
     },
     {
       "id": "opi-core-403",
       "taskTitle": "运行-训练与复训-18",
-      "audioText": "How was your first solo? Can you say something about it?",
-      "audioTextZh": "你的首次单飞怎么样？能讲讲相关情况吗？",
-      "referenceText": "Yes. My first solo flight was one of the most unforgettable moments of my flight training. That was a sunny day. The visibility was good, Wind was calm. It was good for flying. I flew two traffic patterns and made a successful landing.\n可以。我的首次单飞是飞行训练中最难忘的时刻之一。那天阳光明媚，能见度佳，风力平稳，很适合飞行。我完成了两个起落航线飞行，并且成功着陆。"
+      "audioText": "How was your first solo, and can you say something about it?",
+      "audioTextZh": "你的首次单飞怎么样？",
+      "referenceText": "Yes. My first solo flight was one of the most unforgettable moments of my flight training. That was a sunny day. The visibility was good, Wind was calm. It was good for flying. I flew two traffic patterns and made a successful landing.",
+      "referenceTextZh": "可以。我的首次单飞是飞行训练中最难忘的时刻之一。那天阳光明媚，能见度佳，风力平稳，很适合飞行。我完成了两个起落航线飞行，并且成功着陆。"
     },
     {
       "id": "opi-core-404",
       "taskTitle": "运行-训练与复训-19",
       "audioText": "What did you learn from your first solo flight?",
       "audioTextZh": "你从首次单飞中学到了什么？",
-      "referenceText": "We have learned many things from my first solo flight. First, we should make good preflight preparation to make flight easier and safer. Second, we should follow the checklist and follow SOP to ensure flight safety.\n我从首次单飞中学到了很多东西。首先，我们应做好飞行前准备，让飞行更轻松、安全。其次，要遵循检查单并依照标准操作程序（SOP），保障飞行安全 。"
+      "referenceText": "We have learned many things from my first solo flight. First, pilots should make good preflight preparation to make flight easier and safer. Second, pilots should follow the checklist and follow SOP to ensure flight safety.",
+      "referenceTextZh": "我从首次单飞中学到了很多东西。首先，我们应做好飞行前准备，让飞行更轻松、安全。其次，要遵循检查单并依照标准操作程序（SOP），保障飞行安全。"
     },
     {
       "id": "opi-core-405",
       "taskTitle": "运行-训练与复训-20",
-      "audioText": "When did you get your private/commercial/instrument pilot license?",
-      "audioTextZh": "你什么时候拿到私用 / 商用 / 仪表飞行员执照的？",
-      "referenceText": "I got my private/commercial／instrument pilot license on May,1,201X\n我在 201X 年 5 月 1 日拿到了私用 / 商用 / 仪表飞行员执照 。"
+      "audioText": "When did you get your commercial pilot license?",
+      "audioTextZh": "你什么时候拿到私用？",
+      "referenceText": "I got my private or commercial or instrument pilot license on May,1, a year that matches the candidate’s experience.",
+      "referenceTextZh": "我在 符合答题者实际经历的年份 5 月 1 日拿到了本人实际持有的飞行员执照。"
     },
     {
       "id": "opi-core-406",
       "taskTitle": "运行-训练与复训-21",
       "audioText": "How many hours have you had in the simulator?",
       "audioTextZh": "你在模拟机上累计飞了多少小时？",
-      "referenceText": "I have had about 40 hours in the simulators.\n我在模拟机上大概飞了 40 小时"
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. I have had about 40 hours in the simulators.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。我在模拟机上大概飞了 40 小时。"
     },
     {
       "id": "opi-core-407",
       "taskTitle": "运行-训练与复训-22",
       "audioText": "Why do we need simulator training?",
       "audioTextZh": "我们为什么需要模拟机训练？",
-      "referenceText": "Simulator training is necessary for pilots. In the simulator, we can practice many abnormal situations or emergency situations and how to handle it. It can help to improve our flight skills and flight experience.\n模拟机训练对飞行员而言很有必要。在模拟机上，我们能够演练诸多异常情况或紧急状况，以及学习如何处置这些情况。这有助于提升我们的飞行技能和飞行经验 。\n\nSimulator training is an indispensable part of flight training, and its importance is reflected in many aspects. Firstly, simulator training can provide a safe training environment. It can simulate various complex and dangerous flight scenarios, such as engine failure, hydraulic system failure, severe weather and other emergency situations, allowing pilots to practice handling methods without actual flight risks, avoiding potential safety hazards and economic losses caused by mistakes in actual flight. Secondly, simulator training has high efficiency and repeatability. Pilots can repeatedly practice the same subject until they master the relevant skills, and can adjust the training difficulty and scenario settings according to their own learning progress and weaknesses, which helps to improve the training effect. In addition, simulator training can also save training costs, reduce the wear and tear of real aircraft and fuel consumption. Finally, simulator training can help pilots familiarize themselves with the aircraft's systems and operating procedures, enhance their situational awareness and emergency response capabilities, and lay a solid foundation for actual flight.\n模拟机训练是飞行训练中不可或缺的一部分，其重要性体现在多个方面。首先，模拟机训练能够提供安全的训练环境。它可以模拟各种复杂、危险的飞行场景，如发动机失效、液压系统故障、恶劣天气等应急情况，让飞行员在无实际飞行风险的情况下练习处置方法，避免了在实际飞行中因操作失误而带来的安全隐患和经济损失。其次，模拟机训练具有高效性和可重复性。飞行员可以对同一科目进行反复练习，直到掌握相关技能，并且可以根据自身的学习进度和薄弱环节调整训练难度和场景设置，有助于提高训练效果。此外，模拟机训练还能节省训练成本，减少真实飞机的损耗和燃油消耗。最后，模拟机训练可以帮助飞行员熟悉飞机的系统和操作程序，增强情景意识和应急处置能力，为实际飞行打下坚实的基础。"
+      "referenceText": "Simulator training is an indispensable part of flight training, and its importance is reflected in many aspects. First, ly, simulator training can provide a safe training environment. It can simulate various complex and dangerous flight scenarios, such as engine failure, hydraulic system failure, severe weather and other emergency situations, allowing pilots to practice handling methods without actual flight risks, avoiding potential safety hazards and economic losses caused by mistakes in actual flight. Second, ly, simulator training has high efficiency and repeatability. Pilots can repeatedly practice the same subject until they master the relevant skills, and can adjust the training difficulty and scenario settings according to their own learning progress and weaknesses, which helps to improve the training effect.",
+      "referenceTextZh": "模拟机训练是飞行训练中不可或缺的一部分，其重要性体现在多个方面。首先，模拟机训练能够提供安全的训练环境。它可以模拟各种复杂、危险的飞行场景，如发动机失效、液压系统故障、恶劣天气等应急情况，让飞行员在无实际飞行风险的情况下练习处置方法，避免了在实际飞行中因操作失误而带来的安全隐患和经济损失。其次，模拟机训练具有高效性和可重复性。飞行员可以对同一科目进行反复练习，直到掌握相关技能，并且可以根据自身的学习进度和薄弱环节调整训练难度和场景设置，有助于提高训练效果。此外，模拟机训练还能节省训练成本，减少真实飞机的损耗和燃油消耗。最后，模拟机训练可以帮助飞行员熟悉飞机的系统和操作程序，增强情景意识和应急处置能力，为实际飞行打下坚实的基础。"
     },
     {
       "id": "opi-core-408",
       "taskTitle": "运行-训练与复训-23",
       "audioText": "What subjects can you practice in the simulators?",
       "audioTextZh": "你能在模拟机上练习哪些科目？",
-      "referenceText": "We can practice many subjects in the simulator such as engine failure, engine fire, hydraulic failure, electrical failure, flapless landing and so on.\n我们可以在模拟机上练习很多科目，比如发动机故障、发动机起火、液压系统故障、电气系统故障、无襟翼着陆等等 。"
+      "referenceText": "Pilots can practice many subjects in the simulator such as engine failure, engine fire, hydraulic failure, electrical failure, flapless landing and so on.",
+      "referenceTextZh": "我们可以在模拟机上练习很多科目，比如发动机故障、发动机起火、液压系统故障、电气系统故障、无襟翼着陆等等。"
     },
     {
       "id": "opi-core-409",
       "taskTitle": "运行-训练与复训-24",
-      "audioText": "Have you ever practiced any subject related to the  hydraulic system failure? If yes, how do you handle it in the simulator？",
-      "audioTextZh": "你有没有练习过任何与液压系统故障相关的科目？如果有，在模拟机上你是如何处置的？",
-      "referenceText": "No. we don't have any training related to hydraulic system failure because there is no hydraulic system in C172\n没有。我们没有进行过任何与液压系统故障相关的训练，因为塞斯纳 172（C172）飞机没有液压系统 。\n\nYes, we have special training sessions related to hydraulic system failure in simulator training. When handling hydraulic system failure in the simulator, I first remain calm and quickly confirm the degree and location of the failure through the instrument display and system prompts. Then, I strictly follow the emergency procedures in the Quick Reference Handbook (QRH), immediately reduce the aircraft's speed to the appropriate range to reduce the load on the hydraulic system, and at the same time notify the instructor or other crew members of the failure situation. Next, I use the remaining hydraulic system or backup system (if any) to maintain the aircraft's control, adjust the aircraft's attitude and altitude, and choose a suitable alternate airport for diversion. During the whole process, I keep communicating with the instructor, report the aircraft's status and my handling measures in a timely manner, and make corresponding adjustments according to the instructor's guidance to ensure the safe landing of the aircraft.\n是的，我们在模拟机训练中有专门关于液压系统失效的练习项目。在模拟机中处理液压系统失效时，我首先保持冷静，通过仪表显示和系统提示快速确认失效的程度和部位。然后严格按照快速检查单QRH中的应急程序，立即将飞机速度降低到合适范围，以减轻液压系统的负荷，同时将失效情况告知教员或其他机组人员。接下来，利用剩余的液压系统或备用系统如有维持飞机的操纵，调整飞机的姿态和高度，并选择合适的备降机场进行改航。整个过程中，我与教员保持沟通，及时报告飞机状态和自己的处置措施，并根据教员的指导做出相应调整，确保飞机安全降落。"
+      "audioText": "Have you ever practiced any subject related to the hydraulic system failure, and if yes, how do you handle it in the simulator?",
+      "audioTextZh": "你有没有练习过任何与液压系统故障相关的科目？",
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. Yes, we have special training sessions related to hydraulic system failure in simulator training. When handling hydraulic system failure in the simulator, I first remain calm and quickly confirm the degree and location of the failure through the instrument display and system prompts. Then, I strictly follow the emergency procedures in the Quick Reference Handbook (QRH), immediately reduce the aircraft's speed to the appropriate range to reduce the load on the hydraulic system, and at the same time notify the instructor or other crew members of the failure situation. Next, I use the remaining hydraulic system or backup system (if any) to maintain the aircraft's control, adjust the aircraft's attitude and altitude, and choose a suitable alternate airport for diversion.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。是的，我们在模拟机训练中有专门关于液压系统失效的练习项目。在模拟机中处理液压系统失效时，我首先保持冷静，通过仪表显示和系统提示快速确认失效的程度和部位。然后严格按照快速检查单QRH中的应急程序，立即将飞机速度降低到合适范围，以减轻液压系统的负荷，同时将失效情况告知教员或其他机组人员。接下来，利用剩余的液压系统或备用系统如有维持飞机的操纵，调整飞机的姿态和高度，并选择合适的备降机场进行改航。整个过程中，我与教员保持沟通，及时报告飞机状态和自己的处置措施，并根据教员的指导做出相应调整，确保飞机安全降落。"
     },
     {
       "id": "opi-core-410",
       "taskTitle": "运行-训练与复训-25",
       "audioText": "Do you like simulator training?",
       "audioTextZh": "你喜欢模拟机训练吗？",
-      "referenceText": "Yes, I like simulator training because simulator training can improve our flight skills.\n喜欢，我喜欢模拟机训练，因为它能提升我们的飞行技能 。"
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. Yes, I like simulator training because simulator training can improve our flight skills.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。喜欢，我喜欢模拟机训练，因为它能提升我们的飞行技能。"
     },
     {
       "id": "opi-core-411",
       "taskTitle": "运行-训练与复训-26",
-      "audioText": "What are the unforgettable things\nduring your initial training?",
-      "audioTextZh": "在初始训练期间,有哪些难忘的时刻?",
-      "referenceText": "The most unforgettable moment during my initial training was my first solo flight. Before the flight, I was very nervous, but under the patient guidance and encouragement of the instructor, I gradually calmed down. During the solo flight, I strictly followed the training requirements and successfully completed the takeoff, cruise, landing and other operations. When the plane landed smoothly on the runway, I felt a strong sense of accomplishment and excitement. This experience not only made me more confident in my flying skills, but also made me deeply realize the importance of careful preparation and calm response in flight.\n初始训练期间最难忘的时刻是我的第一次单飞。飞行前，我内心十分紧张，但在教员的耐心指导和鼓励下，我逐渐平静下来。单飞过程中，我严格按照训练要求，成功完成了起飞、巡航、降落等一系列操作。当飞机平稳降落在跑道上时，我心中充满了强烈的成就感和激动之情。这次经历不仅让我对自己的飞行技能更有信心，也让我深刻体会到飞行中细心准备和沉着应对的重要性。"
+      "audioText": "What are the unforgettable things during your initial training?",
+      "audioTextZh": "在初始训练期间,有哪些难忘的时刻？",
+      "referenceText": "The most unforgettable moment during my initial training was my first solo flight. Before the flight, I was very nervous, but under the patient guidance and encouragement of the instructor, I gradually calmed down. During the solo flight, I strictly followed the training requirements and successfully completed the takeoff, cruise, landing and other operations. When the plane landed smoothly on the runway, I felt a strong sense of accomplishment and excitement. This experience not only made me more confident in my flying skills, but also made me deeply realize the importance of careful preparation and calm response in flight.",
+      "referenceTextZh": "初始训练期间最难忘的时刻是我的第一次单飞。飞行前，我内心十分紧张，但在教员的耐心指导和鼓励下，我逐渐平静下来。单飞过程中，我严格按照训练要求，成功完成了起飞、巡航、降落等一系列操作。当飞机平稳降落在跑道上时，我心中充满了强烈的成就感和激动之情。这次经历不仅让我对自己的飞行技能更有信心，也让我深刻体会到飞行中细心准备和沉着应对的重要性。"
     }
   ]
 }

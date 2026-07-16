@@ -7,37 +7,42 @@
     {
       "id": "opi-extra-055",
       "taskTitle": "特情-失控-1",
-      "audioText": "Why aircraft will be out of control?",
-      "audioTextZh": "飞机为何会失控",
-      "referenceText": "There are some reasons for an aircraft to be out of control. If we encounter fire on board, extreme weather such as strong windshear, or exceed aircraft limits, etc., the aircraft may be out of control.\n飞机失控有多种原因。若遭遇机上火灾、强风切变等极端天气，或超出飞机性能限制等情况，飞机就可能失控\n\nPossible reasons include aircraft system failures (such as flight control, hydraulic, or electrical system malfunction), pilot errors (poor skills, lack of situational awareness), and adverse weather (severe icing, turbulence, wind shear, bird strike) that affects aircraft performance and control.\n飞机失控的可能原因包括航空器系统故障（如飞控、液压或电力系统失效）、飞行员人为失误（操作技能不足、情景意识欠缺）以及恶劣天气（严重积冰、颠簸、风切变、鸟击）影响航空器性能和操纵。"
+      "audioText": "Why can an aircraft become uncontrollable?",
+      "audioTextZh": "飞机为何会失控？",
+      "referenceText": "Possible reasons include aircraft system failures (such as flight control, hydraulic, or electrical system malfunction), pilot errors (poor skills, lack of situational awareness), and adverse weather (severe icing, turbulence, wind shear, bird strike) that affects aircraft performance and control.",
+      "referenceTextZh": "飞机失控的可能原因包括航空器系统故障（如飞控、液压或电力系统失效）、飞行员人为失误（操作技能不足、情景意识欠缺）以及恶劣天气（严重积冰、颠簸、风切变、鸟击）影响航空器性能和操纵。"
     },
     {
       "id": "opi-extra-056",
       "taskTitle": "特情-失控-2",
       "audioText": "If your aircraft is out of control during flight, what will you do?",
-      "audioTextZh": "飞行中若飞机失控，你会怎么做",
-      "referenceText": "(1)If our aircraft is out of control during flight, first of all, I will calm down and try my best to control the aircraft, attempting to maintain the airspeed, altitude, and attitude. Secondly, I will follow the memory items and try to recover from the situation. At the same time, I will advise ATC of our situation; if necessary, I will execute a forced landing.\n若飞行中飞机失控，首先我会冷静下来，尽全力控制飞机，尝试维持空速、高度和姿态。其次，我会依照记忆项目，努力从该状况中恢复。同时，我会将情况报告给空中交通管制（ATC）；必要时，我会实施迫降\n\n(2)If the aircraft is out of control during flight, I will try to recover from the loss of control. Then, I will report our situation to ATC, request an emergency landing at the nearest suitable airport, and arrange for emergency services.\n若飞行中飞机失控，我会尝试从失控状态中恢复。随后，我会向空中交通管制（ATC）报告情况，申请在最近的合适机场紧急降落，并协调应急服务\n\n（3）Immediately follow SOP and emergency checklists to regain control. Maintain aircraft attitude, adjust thrust and control surfaces appropriately. If control cannot be restored, declare distress to ATC, request radar vectors to the nearest suitable airport, prepare for forced landing or ditching, and inform crew and passengers to brace for impact and evacuation.\n立即遵循标准操作程序（SOP）和应急检查单尝试重新控制飞机，保持姿态，适当调整推力和操纵面；若无法恢复控制，向空管宣布遇险，请求雷达引导至最近合适机场，准备迫降或水上迫降，告知机组和乘客做好冲击防护及撤离准备。"
+      "audioTextZh": "飞行中若飞机失控，你会怎么做？",
+      "referenceText": "Immediately follow SOP and emergency checklists to regain control. Maintain aircraft attitude, adjust thrust and control surfaces appropriately. If control cannot be restored, declare distress to ATC, request radar vectors to the nearest suitable airport, prepare for forced landing or ditching, and inform crew and passengers to brace for impact and evacuation.",
+      "referenceTextZh": "立即遵循标准操作程序（SOP）和应急检查单尝试重新控制飞机，保持姿态，适当调整推力和操纵面；若无法恢复控制，向空管宣布遇险，请求雷达引导至最近合适机场，准备迫降或水上迫降，告知机组和乘客做好冲击防护及撤离准备。"
     },
     {
       "id": "opi-extra-057",
       "taskTitle": "特情-失控-3",
       "audioText": "What precautionary measures should be taken to ensure the aircraft is fully operational?",
-      "audioTextZh": "应采取哪些预防性措施来确保飞机处于完全适航状态",
-      "referenceText": "I think we should make thorough pre-flight preparations, including a careful pre-flight walk-around check to ensure everything is in order.\n我认为我们应做好全面的飞行前准备，包括仔细进行飞行前绕机检查，确保一切正常"
+      "audioTextZh": "应采取哪些预防性措施来确保飞机处于完全适航状态？",
+      "referenceText": "I think pilots should make thorough pre-flight preparations, including a careful pre-flight walk-around check to ensure everything is in order.",
+      "referenceTextZh": "我认为我们应做好全面的飞行前准备，包括仔细进行飞行前绕机检查，确保一切正常。"
     },
     {
       "id": "opi-extra-058",
       "taskTitle": "特情-失控-4",
       "audioText": "What's the basic limitation of your aircraft?",
-      "audioTextZh": "你的飞机的基本限制有哪些",
-      "referenceText": "I fly the DA-40 for flight training. The maximum takeoff weight of the DA-40 is 1150 kg; the takeoff flap stall speed is 51 knots; the never-exceed speed is 178 knots, and so on.\n我驾驶 DA-40 进行飞行训练。DA-40 的最大起飞重量为 1150 千克；带起飞襟翼的失速速度为 51 节；最大使用速度为 178 节，诸如此类"
+      "audioTextZh": "你的飞机的基本限制有哪些？",
+      "referenceText": "I fly the DA-40 for flight training. The maximum takeoff weight of the DA-40 is 1150 kg; the takeoff flap stall speed is 51 knots; the never-exceed speed is 178 knots, and so on.",
+      "referenceTextZh": "我驾驶 DA-40 进行飞行训练。DA-40 的最大起飞重量为 1150 千克；带起飞襟翼的失速速度为 51 节；最大使用速度为 178 节，诸如此类。"
     },
     {
       "id": "opi-extra-059",
       "taskTitle": "特情-失控-5",
       "audioText": "What are the possible reasons to cause the aircraft out of control?",
-      "audioTextZh": "导致飞机失控的可能原因有哪些",
-      "referenceText": "There are many possible reasons for loss of control. First, significant system failures such as hydraulic failure, engine failure, or flight control failure may cause the aircraft to be out of control. Second, human errors such as flight management errors may cause the aircraft to lose control. Third, adverse weather conditions such as thunderstorms, lightning strikes, or clear-air turbulence may cause loss of control. Besides, there are some other reasons for loss of control.\n飞机失控存在多种可能原因。首先，重大系统故障，如液压系统故障、发动机故障或飞行控制系统故障，可能导致飞机失控。其次，人为失误，如飞行管理失误，可能使飞机失控。第三，恶劣天气条件，如雷暴、雷击或晴空颠簸，可能引发失控。此外，还有其他一些导致失控的原因"
+      "audioTextZh": "导致飞机失控的可能原因有哪些？",
+      "referenceText": "There are many possible reasons for loss of control. First, significant system failures such as hydraulic failure, engine failure, or flight control failure may cause the aircraft to be out of control. Second, human errors such as flight management errors may cause the aircraft to lose control. Third, adverse weather conditions such as thunderstorms, lightning strikes, or clear-air turbulence may cause loss of control. Besides, there are some other reasons for loss of control.",
+      "referenceTextZh": "飞机失控存在多种可能原因。首先，重大系统故障，如液压系统故障、发动机故障或飞行控制系统故障，可能导致飞机失控。其次，人为失误，如飞行管理失误，可能使飞机失控。第三，恶劣天气条件，如雷暴、雷击或晴空颠簸，可能引发失控。此外，还有其他一些导致失控的原因。"
     }
   ]
 }

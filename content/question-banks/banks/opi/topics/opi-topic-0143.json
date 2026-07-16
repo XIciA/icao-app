@@ -9,42 +9,48 @@
       "taskTitle": "运行-无人机-1",
       "audioText": "What are the potential risks that drones pose to manned aircraft?",
       "audioTextZh": "无人机对有人机构成了哪些潜在风险？",
-      "referenceText": "Drones pose several significant risks to manned aviation. The most critical one is the risk of collision, especially during critical phases of flight like take-off and landing. Even a small drone can cause severe damage to an aircraft's windshield, engine, or other critical surfaces due to the high closing speed.\n\nFurthermore, if a drone is ingested into an engine, it could lead to engine failure or fire. Beyond physical damage, a drone sighting can cause workload increase and stress for the flight crew, and may lead to airspace closures or diversions, causing significant disruptions.\n\n无人机对有人机构成了若干重大风险。最关键的是碰撞风险，尤其是在起飞和降落等关键飞行阶段。由于相对速度极高，即使是一个小型无人机也可能对飞机的风挡、发动机或其他关键表面造成严重损坏。\n\n此外，如果无人机被吸入发动机，可能导致发动机故障或起火。除了物理损坏，发现无人机会增加飞行机组的工作负荷和压力，并可能导致空域关闭或改航，造成严重的运行中断。"
+      "referenceText": "Furthermore, if a drone is ingested into an engine, it could lead to engine failure or fire. Beyond physical damage, a drone sighting can cause workload increase and stress for the flight crew, and may lead to airspace closures or diversions, causing significant disruptions.",
+      "referenceTextZh": "这道题与无人机有关。回答时应说明主要运行考虑因素，识别相关风险，并给出安全、可行的处置思路。具体行动应以飞机检查单、适用程序和实际情况为准。"
     },
     {
       "id": "opi-extra-339",
       "taskTitle": "运行-无人机-2",
       "audioText": "How would you identify a drone if you saw one from the cockpit?",
       "audioTextZh": "如果你从驾驶舱看到无人机，如何识别它？",
-      "referenceText": "Identifying a drone can be challenging due to their small size. However, they often have some distinctive features. They are typically very small in size and move at relatively low speeds compared to general aviation aircraft. Many have a multi-rotor design (like quadcopters) and may appear as a small, cross-like or star-like shape.\n\nThey might hover or make unpredictable movements, which is unusual for manned aircraft. Visually, they can be just a small, dark speck in the sky that seems out of place.\n\n由于体积小，识别无人机可能具有挑战性。然而，它们通常具有一些显著特征。它们通常体积非常小，并且与通用航空器相比，以相对较低的速度移动。许多无人机具有多旋翼设计（如四旋翼），可能呈现为一个小的、十字形或星形的物体。\n\n它们可能会悬停或进行不可预测的移动，这对于有人机来说是不寻常的。在视觉上，它们可能只是天空中一个看起来不协调的黑色小点。"
+      "referenceText": "Identifying a drone can be challenging due to their small size. However, they often have some distinctive features. They are typically very small in size and move at relatively low speeds compared to general aviation aircraft. Many have a multi-rotor design (like quadcopters) and may appear as a small, cross-like or star-like shape.",
+      "referenceTextZh": "这道题与无人机有关。回答时应说明主要运行考虑因素，识别相关风险，并给出安全、可行的处置思路。具体行动应以飞机检查单、适用程序和实际情况为准。"
     },
     {
       "id": "opi-extra-340",
       "taskTitle": "运行-无人机-3",
       "audioText": "What is the standard procedure if you spot a drone near your aircraft?",
       "audioTextZh": "如果你在飞机附近发现无人机，标准程序是什么？",
-      "referenceText": "The standard procedure involves several key steps focused on safety and communication.\n\nFirst, I would immediately inform ATC using clear phraseology, such as \"Traffic Alert, [Callsign], we have a drone sighting at our [position/altitude].\" I would provide a description and direction of movement if possible.\n\nSecond, I would assess the situation and consider requesting a deviation from our current flight path to avoid a potential collision, while adhering to ATC instructions.\n\nThird, I would inform the other flight crew members and ensure we all maintain a good visual scan. We would also reference the QRH (Quick Reference Handbook) or company-specific procedures for any additional guidance. The priority is to maintain safe separation and keep ATC fully informed.\n\n标准程序包括几个侧重于安全和沟通的关键步骤。\n\n首先，我会立即通知空管，使用标准用语，例如_\"警报，[呼号]，我们在[位置/高度]发现无人机。\"_ 如果可能，我会提供描述和移动方向。\n\n其次，我会评估情况，并考虑请求偏离当前飞行路径以避免潜在碰撞，同时遵守空管的指令。\n\n第三，我会通知其他飞行机组成员，并确保我们都保持良好的目视观察。我们也会查阅QRH（快速检查单） 或公司特定程序以获取额外指导。优先事项是保持安全间隔并让空管充分了解情况。"
+      "referenceText": "Third, I would inform the other flight crew members and ensure we all maintain a good visual scan. We would also reference the QRH (Quick Reference Handbook) or company-specific procedures for any additional guidance. The priority is to maintain safe separation and keep ATC fully informed.",
+      "referenceTextZh": "这道题与无人机有关。回答时应说明主要运行考虑因素，识别相关风险，并给出安全、可行的处置思路。具体行动应以飞机检查单、适用程序和实际情况为准。"
     },
     {
       "id": "opi-extra-341",
       "taskTitle": "运行-无人机-4",
       "audioText": "What information should you report to ATC when you see a drone?",
       "audioTextZh": "当你看到无人机时，应向空管报告哪些信息？",
-      "referenceText": "When reporting a drone to ATC, I should provide a concise but comprehensive report. Key information includes:\n\n（1）Our callsign and current position/altitude.\n\n（2）Time of the sighting.\n\n（3）The drone's position relative to our aircraft (e.g., off the left wing, 2 o'clock, 1 mile).\n\n（4）The drone's altitude and direction of flight if discernible.\n\n（5）A brief description of the drone (e.g., small, multi-rotor, color).\n\n向空管报告无人机时，我应提供简洁而全面的报告。关键信息包括：\n\n我们的呼号和当前位置/高度。\n\n发现的时间。\n\n无人机相对于我机的位置（例如，左翼外，2点钟方向，1英里）。\n\n无人机的高度和飞行方向（如果能够辨别）。\n\n简要描述无人机（例如，小型、多旋翼、颜色）。"
+      "referenceText": "A brief description of the drone (e. g., small, multi-rotor, color).",
+      "referenceTextZh": "这道题与无人机有关。回答时应说明主要运行考虑因素，识别相关风险，并给出安全、可行的处置思路。具体行动应以飞机检查单、适用程序和实际情况为准。"
     },
     {
       "id": "opi-extra-342",
       "taskTitle": "运行-无人机-5",
       "audioText": "How can pilots help mitigate the risks associated with drone operations?",
       "audioTextZh": "飞行员如何帮助缓解与无人机运行相关的风险？",
-      "referenceText": "Pilots play a crucial role in risk mitigation. Firstly, maintaining a high standard of visual scanning, especially below 10,000 feet and near airports, is essential for early detection.\n\nSecondly, effective and timely communication with ATC is vital. Reporting every sighting helps build situational awareness for controllers and other pilots, and aids authorities in identifying problematic areas.\n\nFinally, staying informed about NOTAMs that mention drone activities in our route and being extra vigilant in those areas is a key proactive measure. Good Crew Resource Management, where both pilots are actively looking for traffic, including drones, is fundamental.\n\n飞行员在风险缓解中扮演着关键角色。首先，保持高标准的目视观察，尤其是在10，000英尺以下和机场附近，对于早期发现至关重要。\n\n其次，与空管进行有效且及时的沟通至关重要。报告每一次发现有助于为管制员和其他飞行员建立情景意识，并协助当局识别问题区域。\n\n最后，及时了解NOTAMs中关于我们航路上无人机活动的信息，并在这些区域格外警惕，是一项关键的主动措施。良好的机组资源管理，即两名飞行员都积极搜寻包括无人机在内的交通，是根本。"
+      "referenceText": "Finally, staying informed about NOTAMs that mention drone activities in our route and being extra vigilant in those areas is a key proactive measure. Good Crew Resource Management, where both pilots are actively looking for traffic, including drones, is fundamental.",
+      "referenceTextZh": "这道题与无人机有关。回答时应说明主要运行考虑因素，识别相关风险，并给出安全、可行的处置思路。具体行动应以飞机检查单、适用程序和实际情况为准。"
     },
     {
       "id": "opi-extra-343",
       "taskTitle": "运行-无人机-6",
       "audioText": "Imagine you are on final approach and you see a drone hovering near the glide path. What would you do?",
       "audioTextZh": "假设你正在五边进近，你看到一个无人机在下滑道附近悬停。你会怎么做？",
-      "referenceText": "This is a high-risk scenario that requires immediate and decisive action.\n\nMy first action would be to execute a go-around immediately. I would simultaneously notify ATC with a clear and urgent call, for example: \"[Tower/Callsign], GO-AROUND! We have a drone on the glide path.\"\n\nDuring the go-around, I would follow the standard procedure and climb as directed. I would then provide ATC with as much detail as possible about the drone's position and appearance. The decision to go-around is critical here because continuing the approach with an obstruction on the glide path poses an unacceptable risk of collision.\n\n 这是一个高风险情景，需要立即采取果断行动。\n\n我的第一个行动是立即执行复飞。同时，我会用清晰紧急的呼叫通知空管，例如：\"[塔台/呼号]，复飞！下滑道上有无人机。\"\n\n在复飞过程中，我会遵循标准程序并按指令爬升。之后，我会向空管提供尽可能详细的无人机位置和外观信息。在此情况下，决定复飞至关重要，因为在下滑道上存在障碍物的情况下继续进近会带来不可接受的碰撞风险。"
+      "referenceText": "During the go-around, I would follow the standard procedure and climb as directed. I would then provide ATC with as much detail as possible about the drone's position and appearance. The decision to go-around is critical here because continuing the approach with an obstruction on the glide path poses an unacceptable risk of collision.",
+      "referenceTextZh": "这道题与无人机有关。回答时应说明主要运行考虑因素，识别相关风险，并给出安全、可行的处置思路。具体行动应以飞机检查单、适用程序和实际情况为准。"
     }
   ]
 }

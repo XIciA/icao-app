@@ -9,126 +9,144 @@
       "taskTitle": "其它-爱好-1",
       "audioText": "What's your hobby?",
       "audioTextZh": "你的爱好是什么？",
-      "referenceText": "示例 1（飞行相关爱好 ）\nI like flying model planes. It helps me understand aircraft better and feels like a mini version of real flight.\n我喜欢飞航模。它能帮我更了解飞机，而且感觉就像真实飞行的迷你版。\n示例 2（通用爱好 ）\nMy hobby is reading books, especially those about aviation history. It broadens my knowledge of the industry.\n我的爱好是读书，尤其是关于航空历史的书。这能拓宽我对这个行业的认知。"
+      "referenceText": "This is a sample answer that should be personalized. For example: “My hobby is hiking. It helps me relax, stay physically active, and take a break from work. I usually go with friends on weekends when the weather is suitable.”.",
+      "referenceTextZh": "这是一个应个性化调整的示范回答。例如：“我的爱好是徒步。它能让我放松、保持身体活力，并暂时从工作中抽离。天气合适时，我通常会在周末和朋友一起去。”。"
     },
     {
       "id": "opi-extra-175",
       "taskTitle": "其它-爱好-2",
       "audioText": "Do you have any hobbies?",
       "audioTextZh": "你有什么爱好吗？",
-      "referenceText": "示例 1（航空关联爱好 ）\nYes, I do. I love flying drones. It lets me experience the fun of flight from a different perspective and practice my control skills.\n有呀，我喜欢飞无人机。它能让我从不同视角体验飞行乐趣，还能练习操控技巧。\n示例 2（通用爱好 ）\nSure! I’m into hiking. It allows me to get close to nature and enjoy beautiful scenery, which relaxes me a lot.\n当然！我喜欢徒步旅行。这能让我亲近自然、欣赏美景，特别放松。"
+      "referenceText": "This is a sample answer that should be personalized. For example: “Yes. I enjoy reading and hiking. Reading helps me keep learning, while hiking helps me stay fit and relax after a busy week.”.",
+      "referenceTextZh": "这是一个应个性化调整的示范回答。例如：“有。我喜欢阅读和徒步。阅读能让我不断学习，徒步则能帮助我保持健康，并在忙碌一周后放松下来。”。"
     },
     {
       "id": "opi-extra-176",
       "taskTitle": "其它-爱好-3",
       "audioText": "What do you like to do if you are not flying?",
       "audioTextZh": "不飞行的时候，你喜欢做什么？",
-      "referenceText": "示例 1（航空关联活动 ）\nI enjoy studying aviation history. Reading stories about early pilots and classic aircrafts helps me appreciate the industry’s development more.\n我喜欢研究航空历史。阅读早期飞行员和经典飞机的故事，能让我更了解这个行业的发展。\n示例 2（日常休闲 ）\nWhen not flying, I like to cook. Trying new recipes and making delicious meals is a relaxing way to spend my time.\n不飞行时，我喜欢做饭。尝试新食谱、做美味菜肴，是很放松的消遣方式。"
+      "referenceText": "This is a sample answer that should be personalized. For example: “When I am not flying, I like to exercise, read, and spend time with my family. These activities help me relax and maintain a healthy balance between work and personal life.”.",
+      "referenceTextZh": "这是一个应个性化调整的示范回答。例如：“不飞行时，我喜欢锻炼、阅读以及陪伴家人。这些活动能帮助我放松，并在工作和个人生活之间保持健康平衡。”。"
     },
     {
       "id": "opi-extra-177",
       "taskTitle": "其它-爱好-4",
-      "audioText": "What do you like to do during spare time/free time?",
+      "audioText": "What do you like to do during spare time time?",
       "audioTextZh": "你在业余时间喜欢做什么？",
-      "referenceText": "I like swimming and running very much. They can train me to have a strong body and have a quick mind.\n我很喜欢游泳和跑步。它们能锻炼我拥有强壮的身体和敏捷的思维。"
+      "referenceText": "I like swimming and running very much. They can train me to have a strong body and have a quick mind.",
+      "referenceTextZh": "我很喜欢游泳和跑步。它们能锻炼我拥有强壮的身体和敏捷的思维。"
     },
     {
       "id": "opi-extra-178",
       "taskTitle": "其它-爱好-5",
       "audioText": "Do you like travelling?",
       "audioTextZh": "你喜欢旅行吗？",
-      "referenceText": "Yes, I like traveling.\n是的，我喜欢旅行。"
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. Yes, I like traveling.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。是的，我喜欢旅行。"
     },
     {
       "id": "opi-extra-179",
       "taskTitle": "其它-爱好-6",
-      "audioText": "Have you ever been abroad?/Have you ever been to any foreign countries?",
-      "audioTextZh": "你出过国吗？/ 你去过哪些外国国家？",
-      "referenceText": "Yes, I have been to Australia, America, Japan and South Africa.\n是的，我去过澳大利亚、美国、日本和南非。"
+      "audioText": "Have you ever been abroad?",
+      "audioTextZh": "你出过国吗？",
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. Yes, I have been to Australia, America, Japan and South Africa.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。是的，我去过澳大利亚、美国、日本和南非。"
     },
     {
       "id": "opi-extra-180",
       "taskTitle": "其它-爱好-7",
       "audioText": "Do you like music?",
       "audioTextZh": "你喜欢音乐吗？",
-      "referenceText": "Yes. I like music.\n是的，我喜欢音乐。"
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. Yes. I like music.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。是的，我喜欢音乐。"
     },
     {
       "id": "opi-extra-181",
       "taskTitle": "其它-爱好-8",
-      "audioText": "Do you like seeing films/watching movies?",
+      "audioText": "Do you like seeing films movies?",
       "audioTextZh": "你喜欢看电影吗？",
-      "referenceText": "Yes, I like watching movies. They let me experience different stories.\n是的，我喜欢看电影。它们能让我体验不同的故事。"
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. Yes, I like watching movies. They let me experience different stories.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。是的，我喜欢看电影。它们能让我体验不同的故事。"
     },
     {
       "id": "opi-extra-182",
       "taskTitle": "其它-爱好-9",
       "audioText": "What type of movie do you like best?",
       "audioTextZh": "你最喜欢哪种类型的电影？",
-      "referenceText": "I like action, comedy, horror, romance, documentaries and cartoons. As long as it’s a good movie, I love it.\n我喜欢动作片、喜剧片、恐怖片、爱情片、纪录片和动画片。只要是好电影，我都喜欢。"
+      "referenceText": "I like action, comedy, horror, romance, documentaries and cartoons. As long as it’s a good movie, I love it.",
+      "referenceTextZh": "我喜欢动作片、喜剧片、恐怖片、爱情片、纪录片和动画片。只要是好电影，我都喜欢。"
     },
     {
       "id": "opi-extra-183",
       "taskTitle": "其它-爱好-10",
       "audioText": "What's your favorite movie?",
       "audioTextZh": "你最喜欢的电影是什么？",
-      "referenceText": "I like Sully very much. It tells the story of Captain Sully’s successful river ditching after a bird strike causes engine failure. He’s a hero.\n我非常喜欢《萨利机长》（Sully ）。它讲述了萨利机长在鸟击导致引擎失效后，成功在河面迫降的故事。他是个英雄。"
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. I like Sully very much. It tells the story of Captain Sully’s successful river ditching after a bird strike causes engine failure. He’s a hero.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。我非常喜欢《萨利机长》（Sully ）。它讲述了萨利机长在鸟击导致引擎失效后，成功在河面迫降的故事。他是个英雄。"
     },
     {
       "id": "opi-extra-184",
       "taskTitle": "其它-爱好-11",
       "audioText": "Who is your favorite movie star?",
       "audioTextZh": "你最喜欢的电影明星是谁？",
-      "referenceText": "I like Tom Cruise. He’s handsome, charming, and amazing in Mission: Impossible.\n我喜欢汤姆・克鲁斯。他帅气迷人，在《碟中谍》里的表现超精彩。"
+      "referenceText": "I like Tom Cruise. He’s handsome, charming, and amazing in Mission: Impossible.",
+      "referenceTextZh": "我喜欢汤姆・克鲁斯。他帅气迷人，在《碟中谍》里的表现超精彩。"
     },
     {
       "id": "opi-extra-185",
       "taskTitle": "其它-爱好-12",
-      "audioText": "Do you like reading?/What's your favorite book?",
-      "audioTextZh": "你喜欢阅读吗？/ 你最喜欢的书是什么",
-      "referenceText": "Yes, I like reading. My favorite book is To Kill a Mockingbird — it’s full of wisdom.\n是的，我喜欢阅读。我最喜欢的书是《杀死一只知更鸟》—— 充满智慧。"
+      "audioText": "Do you like reading?",
+      "audioTextZh": "你喜欢阅读吗？",
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. Yes, I like reading. My favorite book is To Kill a Mockingbird — it’s full of wisdom.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。是的，我喜欢阅读。我最喜欢的书是《杀死一只知更鸟》—— 充满智慧。"
     },
     {
       "id": "opi-extra-186",
       "taskTitle": "其它-爱好-13",
-      "audioText": "Do you like doing sports/outdoor activities? What's your favorite sport? How often do you do sports? Who is your favorite sport star?",
-      "audioTextZh": "你喜欢做运动 / 户外活动吗？你最喜欢的运动是什么？你多久做一次运动？你最喜欢的体育明星是谁？",
-      "referenceText": "Yes, I like sports — swimming and running are my favorites, as they build my strength and sharp mind. I do them daily/twice a week, and I admire Kobe Bryant, though he sadly died in a helicopter crash.\n是的，我喜欢运动 —— 游泳和跑步是我的最爱，因为它们塑造我的力量与敏捷思维。我每天 / 一周做两次，还很敬佩科比・布莱恩特，尽管他不幸在直升机坠毁事故中离世。"
+      "audioText": "Do you like doing sports activities?",
+      "audioTextZh": "你喜欢做运动？",
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. Yes, I like sports — swimming and running are my favorites, as they build my strength and sharp mind. I do them daily or twice a week, and I admire Kobe Bryant, though he sadly died in a helicopter crash.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。是的，我喜欢运动 —— 游泳和跑步是我的最爱，因为它们塑造我的力量与敏捷思维。我每天 / 一周做两次，还很敬佩科比・布莱恩特，尽管他不幸在直升机坠毁事故中离世。"
     },
     {
       "id": "opi-extra-187",
       "taskTitle": "其它-爱好-14",
-      "audioText": "Do you often use computer? Do you think computer has changed people's life?",
-      "audioTextZh": "你经常用电脑吗？你认为电脑改变人们的生活了吗？",
-      "referenceText": "Yes, I often use a computer. It definitely has changed our lives — we now work, watch movies, play games, and search for info daily, making it an essential part of life.\n是的，我经常用电脑。它确实改变了我们的生活 —— 我们现在每天用它工作、看电影、打游戏、查资料，让它成了生活中必不可少的一部分。"
+      "audioText": "Do you often use computer?",
+      "audioTextZh": "你经常用电脑吗？",
+      "referenceText": "Yes, I often use a computer. It definitely has changed our lives — we now work, watch movies, play games, and search for info daily, making it an essential part of life.",
+      "referenceTextZh": "是的，我经常用电脑。它确实改变了我们的生活 —— 我们现在每天用它工作、看电影、打游戏、查资料，让它成了生活中必不可少的一部分。"
     },
     {
       "id": "opi-extra-188",
       "taskTitle": "其它-爱好-15",
-      "audioText": "What type of music do you like best?/What's your favorite music?",
-      "audioTextZh": "你最喜欢哪种音乐类型？/ 你最喜欢的音乐是什么",
-      "referenceText": "I like blues, jazz, pop, light music, folk, and rock. As long as it’s good, I love it.\n我喜欢蓝调、爵士乐、流行乐、轻音乐、民谣和摇滚。只要是好音乐，我都喜欢。\n\nI prefer light music. Its gentle melody and soothing rhythm relax my mind and relieve stress after training. It creates a quiet atmosphere, helping me focus while reading or thinking. Cheerful light music also lifts my mood— it’s perfect for my daily life and study, bringing positive energy.\n我最喜欢轻音乐。它旋律柔和、节奏舒缓，能在训练后放松身心、缓解压力；还能营造安静氛围，帮助我在阅读或思考时集中注意力。欢快的轻音乐还能改善心情，非常适合我的日常生活和学习，带来正能量。"
+      "audioText": "What type of music do you like best?",
+      "audioTextZh": "你最喜欢哪种音乐类型？",
+      "referenceText": "I prefer light music. Its gentle melody and soothing rhythm relax my mind and relieve stress after training. It creates a quiet atmosphere, helping me focus while reading or thinking. Cheerful light music also lifts my mood— it’s perfect for my daily life and study, bringing positive energy.",
+      "referenceTextZh": "我最喜欢轻音乐。它旋律柔和、节奏舒缓，能在训练后放松身心、缓解压力；还能营造安静氛围，帮助我在阅读或思考时集中注意力。欢快的轻音乐还能改善心情，非常适合我的日常生活和学习，带来正能量。"
     },
     {
       "id": "opi-extra-189",
       "taskTitle": "其它-爱好-16",
       "audioText": "Who is your favorite singer?",
       "audioTextZh": "你最喜欢的歌手是谁？",
-      "referenceText": "I like Jay Zhou. I think his music is very touching and beautiful.\n我喜欢周杰伦（Jay Zhou ）。我觉得他的音乐非常动人且美妙。"
+      "referenceText": "I like Jay Zhou. I think his music is very touching and beautiful.",
+      "referenceTextZh": "我喜欢周杰伦（Jay Zhou ）。我觉得他的音乐非常动人且美妙。"
     },
     {
       "id": "opi-extra-190",
       "taskTitle": "其它-爱好-17",
       "audioText": "How often do you go to the cinema?",
       "audioTextZh": "你多久去一次电影院？",
-      "referenceText": "About twice a month.\n大概一个月两次。"
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. About twice a month.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。大概一个月两次。"
     },
     {
       "id": "opi-extra-191",
       "taskTitle": "其它-爱好-18",
-      "audioText": "Do you like shopping online/surfing on Internet? Which website do you usually visit?/Why?",
-      "audioTextZh": "你喜欢网购 / 上网冲浪吗？你常访问哪个网站？/ 为什么？",
-      "referenceText": "Yes, I like shopping online. I often visit Taobao. Because the goods are cheap and cheerful. What's more, the transportation is very fast.\n是的，我喜欢网购。我常逛淘宝。因为商品物美价廉，而且物流也很快。\nMy favorite website is the official website of CAAC (Civil Aviation Administration of China). It provides authoritative aviation regulations, safety notices, and industry updates. As a pilot, it helps me stay compliant with rules and grasp the latest policies, which is crucial for professional development and flight safety.\n我最喜欢的网址是中国民用航空局（CAAC）的官方网站。它提供权威的航空法规、安全通告和行业动态。作为飞行员，这有助于我遵守规则、掌握最新政策，对职业发展和飞行安全至关重要。"
+      "audioText": "Do you like shopping online on Internet?",
+      "audioTextZh": "你喜欢网购？",
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. Yes, I like shopping online. I often visit Taobao. Because the goods are cheap and cheerful. What's more, the transportation is very fast.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。是的，我喜欢网购。我常逛淘宝。因为商品物美价廉，而且物流也很快。\n我最喜欢的网址是中国民用航空局（CAAC）的官方网站。它提供权威的航空法规、安全通告和行业动态。作为飞行员，这有助于我遵守规则、掌握最新政策，对职业发展和飞行安全至关重要。"
     }
   ]
 }

@@ -14,10 +14,10 @@
     {
       "id": "opi-image-017-q01",
       "taskTitle": "图片题-017-01",
-      "audioText": "What kinds of serious failures may force a large jet airliner to ditch on the sea?",
+      "audioText": "What serious failures might force a large jet to ditch at sea?",
       "audioTextZh": "哪些严重故障可能迫使大型喷气客机在海上迫降？",
-      "referenceText": "This situation is related to Sea ditching. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
-      "referenceTextZh": "这种情况与水上迫降有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
+      "referenceText": "A ditching may become necessary after failures that prevent the aircraft from reaching a suitable runway, such as multiple-engine power loss, an uncontrollable fire, severe structural damage, or critical fuel exhaustion. The crew should use every available option to reach land, but if ditching is unavoidable, they should follow the approved procedure and prepare the cabin early.",
+      "referenceTextZh": "当飞机无法到达合适跑道时，某些严重故障可能迫使机组水上迫降，例如多台发动机失去动力、无法控制的火灾、严重结构损伤或关键燃油耗尽。机组应尽一切可能到达陆地；如果水上迫降无法避免，则应执行经批准的程序并尽早准备客舱。",
       "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-017-q01.mp3"
     },
     {
@@ -32,10 +32,10 @@
     {
       "id": "opi-image-017-q03",
       "taskTitle": "图片题-017-03",
-      "audioText": "After successfully ditching on the sea, what evacuation steps should the flight crew carry out immediately?",
+      "audioText": "After a successful ditching, what evacuation steps should the flight crew take immediately?",
       "audioTextZh": "成功水上迫降后，机组应立即执行哪些撤离步骤？",
-      "referenceText": "This situation is related to Sea ditching. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
-      "referenceTextZh": "这种情况与水上迫降有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
+      "referenceText": "After the aircraft stops, the crew should assess external hazards, order the evacuation, and use only safe exits. The cabin crew should direct passengers to leave belongings, put on life jackets as instructed, and move to slides, rafts, or flotation devices. The crew should account for occupants as far as possible, move everyone away from the aircraft, and activate survival and rescue equipment.",
+      "referenceTextZh": "飞机停止后，机组应评估外部危险，下达撤离指令，并只使用安全出口。客舱机组应指挥旅客放弃行李，按指令穿好救生衣，并前往滑梯、救生筏或漂浮设备。机组应在可行范围内清点人员，将所有人转移到远离飞机的位置，并启用生存和救援设备。",
       "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-017-q03.mp3"
     }
   ]

@@ -14,10 +14,10 @@
     {
       "id": "opi-image-012-q01",
       "taskTitle": "图片题-012-01",
-      "audioText": "Please describe what you observe in this picture.",
+      "audioText": "Please describe what you observe in this picture?",
       "audioTextZh": "请描述你在图片中观察到的内容。",
-      "referenceText": "In this picture, I can see a situation related to Taxiway departure queue. The key points are fuel burn, brake heating, congestion, FOD exposure, and increased crew workload. It is important for the crew to recognize the risk early, keep good communication, and follow standard operating procedures.",
-      "referenceTextZh": "在这张图片中，我看到的是与滑行道起飞排队有关的情况。关键点包括耗油增加、刹车升温、地面拥堵、外来物暴露以及机组工作负荷增加。机组应及早识别风险，保持良好沟通，并按照标准操作程序处置。",
+      "referenceText": "",
+      "referenceTextZh": "",
       "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-012-q01.mp3"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "opi-image-012-q04",
       "taskTitle": "图片题-012-04",
-      "audioText": "How to avoid this situation?",
+      "audioText": "How can pilots avoid this situation?",
       "audioTextZh": "如何避免这种情况？",
       "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
       "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",

@@ -9,91 +9,104 @@
       "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-1",
       "audioText": "Can you say something about the traditional analogue instruments in the cockpit?",
       "audioTextZh": "你能讲讲驾驶舱里的传统模拟仪表吗？",
-      "referenceText": "In our cockpit, there are airspeed indicators, attitude indicators, altimeters and so on. Each instrument indicates a single piece of information. For example, an airspeed indicator shows the speed of the aircraft, an attitude indicator displays the attitude of the aircraft, and an altimeter shows the altitude of the aircraft.\n在我们的驾驶舱中，有空速表、姿态指示器、高度表等等。每个仪表显示一项单一信息。例如，空速表显示飞机的速度，姿态指示器显示飞机的姿态，高度表显示飞机的高度 。"
+      "referenceText": "In our cockpit, there are airspeed indicators, attitude indicators, altimeters and so on. Each instrument indicates a single piece of information. For example, an airspeed indicator shows the speed of the aircraft, an attitude indicator displays the attitude of the aircraft, and an altimeter shows the altitude of the aircraft.",
+      "referenceTextZh": "在我们的驾驶舱中，有空速表、姿态指示器、高度表等等。每个仪表显示一项单一信息。例如，空速表显示飞机的速度，姿态指示器显示飞机的姿态，高度表显示飞机的高度。"
     },
     {
       "id": "opi-core-836",
       "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-2",
       "audioText": "What are the advantage and disadvantage of the traditional analogue instruments?",
       "audioTextZh": "传统模拟仪表的优缺点是什么？",
-      "referenceText": "The advantage is that they are relatively accurate and reliable. The indication is very clear. The disadvantage is that they increase the pilot's workload because each instrument indicates a single piece of information.\n优点是它们相对准确且可靠，显示非常清晰。缺点是它们会增加飞行员的工作量，因为每个仪表仅显示一项单一信息 。\n\n Advantages of analog instruments: simple structure, high reliability, low maintenance cost, and no dependence on electricity. Disadvantages: each instrument shows only single data, leading to heavy pilot workload; low precision, slow response, and difficulty in integrating with modern automation systems.\n模拟仪表的优势：结构简单、可靠性高、维护成本低，且不依赖电力。劣势：每个仪表仅显示单一数据，导致飞行员工作负荷大；精度较低、响应缓慢，且难以与现代自动化系统整合。"
+      "referenceText": "Advantages of analog instruments: simple structure, high reliability, low maintenance cost, and no dependence on electricity. Disadvantages: each instrument shows only single data, leading to heavy pilot workload; low precision, slow response, and difficulty in integrating with modern automation systems.",
+      "referenceTextZh": "模拟仪表的优势：结构简单、可靠性高、维护成本低，且不依赖电力。劣势：每个仪表仅显示单一数据，导致飞行员工作负荷大；精度较低、响应缓慢，且难以与现代自动化系统整合。"
     },
     {
       "id": "opi-core-837",
       "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-3",
-      "audioText": "What are the differences between traditional/conventional cockpit and modern/glass cockpit?",
+      "audioText": "What are the differences between traditional cockpit and modern cockpit?",
       "audioTextZh": "传统驾驶舱与现代驾驶舱之间的区别是什么？",
-      "referenceText": "The conventional cockpits are equipped with analog instruments. Each analog instrument shows a single piece of flight information. For example, ADI shows the attitude of the aircraft and the altimeter shows the altitude of the aircraft. The modern cockpits are equipped with digital displays, such as PFD, MFD and ECAM. Each display can display multiple important flight information items. For example, the PFD can display attitude, altitude, airspeed, heading and yaw. MFD can display navigation information and weather conditions.\n传统驾驶舱配备模拟仪表。每个模拟仪表显示一项单一的飞行信息。例如，姿态指引仪（ADI）显示飞机的姿态，高度表显示飞机的高度。现代驾驶舱配备数字显示屏，如主飞行显示器（PFD）、多功能显示器（MFD）和发动机警告及机组警戒系统（ECAM） 。每个显示屏可显示多项重要飞行信息。例如，主飞行显示器（PFD）可显示姿态、高度、空速、航向和偏航信息；多功能显示器（MFD）可显示导航信息和气象条件 。"
+      "referenceText": "The conventional cockpits are equipped with analog instruments. Each analog instrument shows a single piece of flight information. For example, ADI shows the attitude of the aircraft and the altimeter shows the altitude of the aircraft. The modern cockpits are equipped with digital displays, such as PFD, MFD and ECAM. Each display can display multiple important flight information items. For example, the PFD can display attitude, altitude, airspeed, heading and yaw.",
+      "referenceTextZh": "传统驾驶舱配备模拟仪表。每个模拟仪表显示一项单一的飞行信息。例如，姿态指引仪（ADI）显示飞机的姿态，高度表显示飞机的高度。现代驾驶舱配备数字显示屏，如主飞行显示器（PFD）、多功能显示器（MFD）和发动机警告及机组警戒系统（ECAM）。每个显示屏可显示多项重要飞行信息。例如，主飞行显示器（PFD）可显示姿态、高度、空速、航向和偏航信息；多功能显示器（MFD）可显示导航信息和气象条件。"
     },
     {
       "id": "opi-core-838",
       "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-4",
       "audioText": "What are the advantages and disadvantages of analog instruments?",
       "audioTextZh": "模拟仪表的优缺点是什么？",
-      "referenceText": "There are some advantages and disadvantages of analog instruments. Analog instruments are relatively more reliable and they can be used at any time, even in case of electrical failure. However, the accuracy of analog instruments is low and it may take us more time to scan/check the instruments for flight information.\n模拟仪表存在一些优缺点。模拟仪表相对更可靠，且在任何时候都能使用，即便发生电气故障时也是如此。然而，模拟仪表的精度较低，而且我们可能需要花费更多时间扫视 / 查看这些仪表来获取飞行信息 。"
+      "referenceText": "There are some advantages and disadvantages of analog instruments. Analog instruments are relatively more reliable and they can be used at any time, even in case of electrical failure. However, the accuracy of analog instruments is low and it may take us more time to scan or check the instruments for flight information.",
+      "referenceTextZh": "模拟仪表存在一些优缺点。模拟仪表相对更可靠，且在任何时候都能使用，即便发生电气故障时也是如此。然而，模拟仪表的精度较低，而且我们可能需要花费更多时间扫视 / 查看这些仪表来获取飞行信息。"
     },
     {
       "id": "opi-core-839",
       "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-5",
       "audioText": "What are the advantages and disadvantages of digital instruments?",
       "audioTextZh": "数字仪表的优缺点是什么？",
-      "referenceText": "There are advantages and disadvantages of digital instruments. Digital instruments such as PFD (Primary Flight Display) and MFD (Multi - function Display) can present multiple important flight information items on a single display. They can reduce pilots’ workload, enhance situational awareness and contribute to flight safety. However, digital instruments rely heavily on electrical power and are vulnerable to electromagnetic interference, which may cause display malfunctions in extreme cases.\n数字仪表存在优缺点。像主飞行显示器（PFD）和多功能显示器（MFD）这类数字仪表，能在单个显示屏上呈现多项重要飞行信息。它们可减轻飞行员的工作负荷、提升情景意识并有助于保障飞行安全。然而，数字仪表高度依赖电力，且易受电磁干扰，在极端情况下可能会出现显示故障 。\n\nAdvantages of digital instruments: integrate multiple data, high precision, clear display, and automatic warnings. They reduce workload and improve operational efficiency. Disadvantages: high maintenance cost, dependence on electricity, and potential system malfunctions; pilots may over-rely on them, reducing manual operation skills.\n数字仪表的优势：整合多种数据、精度高、显示清晰，且能自动预警，降低工作负荷并提升运行效率。劣势：维护成本高、依赖电力，可能出现系统故障；飞行员可能过度依赖，导致手动操作技能下降。"
+      "referenceText": "There are advantages and disadvantages of digital instruments. Digital instruments such as PFD (Primary Flight Display) and MFD (Multi-function Display) can present multiple important flight information items on a single display. They can reduce pilots’ workload, enhance situational awareness and contribute to flight safety. However, digital instruments rely heavily on electrical power and are vulnerable to electromagnetic interference, which may cause display malfunctions in extreme cases.",
+      "referenceTextZh": "数字仪表存在优缺点。像主飞行显示器（PFD）和多功能显示器（MFD）这类数字仪表，能在单个显示屏上呈现多项重要飞行信息。它们可减轻飞行员的工作负荷、提升情景意识并有助于保障飞行安全。然而，数字仪表高度依赖电力，且易受电磁干扰，在极端情况下可能会出现显示故障。"
     },
     {
       "id": "opi-core-840",
       "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-6",
       "audioText": "What modern equipment do you think should be installed onboard?",
       "audioTextZh": "你认为飞机上应安装哪些现代化设备？",
-      "referenceText": "I think some modern equipment should be installed onboard, such as GPS (Global Positioning System), weather radar, TCAS (Traffic Collision Avoidance System) and so on. GPS can provide us with navigation information. Weather radar can provide us with weather information and TCAS can help us avoid traffic conflicts.\n我认为飞机上应安装一些现代化设备，比如全球定位系统（GPS）、气象雷达、空中交通防撞系统（TCAS）等等。全球定位系统（GPS）能为我们提供导航信息，气象雷达可提供气象信息，而空中交通防撞系统（TCAS）有助于我们避免空中交通冲突 。"
+      "referenceText": "I think some modern equipment should be installed onboard, such as GPS (Global Positioning System), weather radar, TCAS (Traffic Collision Avoidance System) and so on. GPS can provide us with navigation information. Weather radar can provide us with weather information and TCAS can help us avoid traffic conflicts.",
+      "referenceTextZh": "我认为飞机上应安装一些现代化设备，比如全球定位系统（GPS）、气象雷达、空中交通防撞系统（TCAS）等等。全球定位系统（GPS）能为我们提供导航信息，气象雷达可提供气象信息，而空中交通防撞系统（TCAS）有助于我们避免空中交通冲突。"
     },
     {
       "id": "opi-core-841",
       "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-7",
-      "audioText": "Is it a good thing for a modern commercial aircraft to be highly computerized? Do you think highly computerized cockpit can ensure flight safety?",
-      "audioTextZh": "现代商用飞机高度计算机化是件好事吗？你认为高度计算机化的驾驶舱能否确保飞行安全？",
-      "referenceText": "Yes, I think it's a good thing for a modern commercial aircraft to be highly computerized. There are many computers in our cockpit, such as flight management computers, air data computers and so on. They can enhance the aircraft's performance, reduce pilots’ workload, and contribute to making flights easier and safer, thus helping ensure flight safety.\n是的，我认为现代商用飞机高度计算机化是件好事。我们的驾驶舱内有许多计算机，比如飞行管理计算机、大气数据计算机等等。它们能够提升飞机的性能、减轻飞行员的工作负荷，还能有助于让飞行更便捷、更安全，进而助力确保飞行安全 。\n\n Yes, it’s generally a good thing. High computerization reduces pilot workload, improves flight precision and efficiency, and enhances safety via automated monitoring/warnings. However, pilots must maintain manual operation skills to handle system failures, as over-reliance on automation may pose risks.\n总体而言是好事。高度计算机化降低了飞行员工作负荷，提升了飞行精度与效率，并通过自动化监控和预警增强安全性。但飞行员必须保持手动操作技能以应对系统故障，因为过度依赖自动化可能带来风险。"
+      "audioText": "Is it a good thing for a modern commercial aircraft to be highly computerized?",
+      "audioTextZh": "现代商用飞机高度计算机化是件好事吗？",
+      "referenceText": "Yes, it’s generally a good thing. High computerization reduces pilot workload, improves flight precision and efficiency, and enhances safety via automated monitoring or warnings. However, pilots must maintain manual operation skills to handle system failures, as over-reliance on automation may pose risks.",
+      "referenceTextZh": "总体而言是好事。高度计算机化降低了飞行员工作负荷，提升了飞行精度与效率，并通过自动化监控和预警增强安全性。但飞行员必须保持手动操作技能以应对系统故障，因为过度依赖自动化可能带来风险。"
     },
     {
       "id": "opi-core-842",
       "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-8",
       "audioText": "Is there any disadvantage of this computerized tendency?",
       "audioTextZh": "这种计算机化趋势存在弊端吗？",
-      "referenceText": "Of course, there are some disadvantages of this computerized tendency. For example, if there is an electrical failure during flight, the computers may malfunction, which may threaten flight safety.\n当然，这种计算机化趋势存在一些弊端。例如，若飞行过程中出现电气故障，计算机可能会发生故障，这可能会威胁飞行安全 。"
+      "referenceText": "Of course, there are some disadvantages of this computerized tendency. For example, if there is an electrical failure during flight, the computers may malfunction, which may threaten flight safety.",
+      "referenceTextZh": "当然，这种计算机化趋势存在一些弊端。例如，若飞行过程中出现电气故障，计算机可能会发生故障，这可能会威胁飞行安全。"
     },
     {
       "id": "opi-core-843",
       "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-9",
       "audioText": "Do you think modern equipment will benefit flight safety?",
-      "audioTextZh": "你认为现代设备可以使得飞行更安全吗?",
-      "referenceText": "Yes, modern equipment significantly benefits flight safety. It reduces human errors via automation (such as, autopilot, TCAS), enhances situational awareness with EFIS and EGPWS, and enables precise navigation through GPS/RNP. It also provides timely warnings for hazards like wind shear, improving response efficiency and reducing accident risks.\n是的，现代设备极大助力飞行安全。它通过自动驾驶、空中防撞系统（TCAS）等自动化技术减少人为失误，借助电子飞行仪表系统（EFIS）和增强型近地警告系统（EGPWS）提升情景意识，通过全球定位系统（GPS）/所需导航性能（RNP）实现精准导航，还能针对风切变等危险发出及时警告，提升应对效率并降低事故风险。"
+      "audioTextZh": "你认为现代设备可以使得飞行更安全吗？",
+      "referenceText": "Yes, modern equipment significantly benefits flight safety. It reduces human errors via automation (such as, autopilot, TCAS), enhances situational awareness with EFIS and EGPWS, and enables precise navigation through GPS or RNP. It also provides timely warnings for hazards like wind shear, improving response efficiency and reducing accident risks.",
+      "referenceTextZh": "是的，现代设备极大助力飞行安全。它通过自动驾驶、空中防撞系统（TCAS）等自动化技术减少人为失误，借助电子飞行仪表系统（EFIS）和增强型近地警告系统（EGPWS）提升情景意识，通过全球定位系统（GPS）/所需导航性能（RNP）实现精准导航，还能针对风切变等危险发出及时警告，提升应对效率并降低事故风险。"
     },
     {
       "id": "opi-core-844",
       "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-10",
       "audioText": "Compared with conventional cockpit, what are the advantages of modern glass cockpit?",
-      "audioTextZh": "与传统的驾驶舱相比,现代化的驾驶舱有什么优势?",
-      "referenceText": "Modern glass cockpits use digital displays (EFIS, ECAM) to integrate multiple flight data (attitude, altitude, navigation) in one screen, reducing pilot workload. They offer higher precision, automatic warnings for malfunctions, and better compatibility with advanced systems (HUD, TCAS), enhancing operational efficiency and safety.\n现代化玻璃驾驶舱采用电子飞行仪表系统（EFIS）、电子中央飞机监控（ECAM）等数字显示器，将姿态、高度、导航等多种飞行数据整合在同一屏幕，降低飞行员工作负荷；其精度更高，能自动预警故障，且与平视显示器（HUD）、空中防撞系统（TCAS）等先进系统兼容性更好，提升运行效率与安全性。"
+      "audioTextZh": "与传统的驾驶舱相比,现代化的驾驶舱有什么优势？",
+      "referenceText": "Modern glass cockpits use digital displays (EFIS, ECAM) to integrate multiple flight data (attitude, altitude, navigation) in one screen, reducing pilot workload. They offer higher precision, automatic warnings for malfunctions, and better compatibility with advanced systems (HUD, TCAS), enhancing operational efficiency and safety.",
+      "referenceTextZh": "现代化玻璃驾驶舱采用电子飞行仪表系统（EFIS）、电子中央飞机监控（ECAM）等数字显示器，将姿态、高度、导航等多种飞行数据整合在同一屏幕，降低飞行员工作负荷；其精度更高，能自动预警故障，且与平视显示器（HUD）、空中防撞系统（TCAS）等先进系统兼容性更好，提升运行效率与安全性。"
     },
     {
       "id": "opi-core-845",
       "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-11",
       "audioText": "Do you prefer modern cockpit or traditional cockpit? Why?",
-      "audioTextZh": "你喜欢现代驾驶舱还是传统驾驶舱?为什么?",
-      "referenceText": "I prefer modern glass cockpits. They feature digital displays (EFIS, ECAM) that integrate flight data, reducing workload and human errors. They’re more precise and efficient, though traditional analog cockpits are reliable. Modern cockpits better support situational awareness and safe operations.\n我更喜欢现代玻璃驾驶舱。它配备电子飞行仪表系统（EFIS）、电子中央飞机监控系统（ECAM）等数字显示设备，整合飞行数据，降低工作负荷和人为差错，更精准高效。传统模拟驾驶舱虽可靠，但现代驾驶舱更能提升情景意识和运行安全性。"
+      "audioTextZh": "你喜欢现代驾驶舱还是传统驾驶舱？为什么？",
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. I prefer modern glass cockpits. They feature digital displays (EFIS, ECAM) that integrate flight data, reducing workload and human errors. They’re more precise and efficient, though traditional analog cockpits are reliable. Modern cockpits better support situational awareness and safe operations.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。我更喜欢现代玻璃驾驶舱。它配备电子飞行仪表系统（EFIS）、电子中央飞机监控系统（ECAM）等数字显示设备，整合飞行数据，降低工作负荷和人为差错，更精准高效。传统模拟驾驶舱虽可靠，但现代驾驶舱更能提升情景意识和运行安全性。"
     },
     {
       "id": "opi-core-846",
       "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-12",
       "audioText": "What information can you get from PFD?",
-      "audioTextZh": "你可以从主飞行显示器上获得哪些信息?",
-      "referenceText": "PFD (Primary Flight Display) provides key flight information: airspeed, altitude, attitude (pitch/roll), heading, vertical speed, glide slope, localizer, and navigation guidance. It integrates critical data for pilots to monitor flight status in real time.\n主飞行显示器（PFD）提供核心飞行信息，包括空速、高度、姿态（俯仰/倾斜）、航向、垂直速度、下滑道、航向道及导航引导，整合关键数据供飞行员实时监控飞行状态。"
+      "audioTextZh": "你可以从主飞行显示器上获得哪些信息？",
+      "referenceText": "PFD (Primary Flight Display) provides key flight information: airspeed, altitude, attitude (pitch or roll), heading, vertical speed, glide slope, localizer, and navigation guidance. It integrates critical data for pilots to monitor flight status in real time.",
+      "referenceTextZh": "主飞行显示器（PFD）提供核心飞行信息，包括空速、高度、姿态（俯仰/倾斜）、航向、垂直速度、下滑道、航向道及导航引导，整合关键数据供飞行员实时监控飞行状态。"
     },
     {
       "id": "opi-core-847",
       "taskTitle": "飞机系统-模拟/数字仪表与驾驶舱-13",
       "audioText": "How can you sense the surrounding environment in the modern cockpit?",
-      "audioTextZh": "在现代驾驶舱中,你如何感知周围环境?",
-      "referenceText": "In modern cockpits, pilots sense the surrounding environment through multiple ways: visual observation of the sky and terrain; EFIS displaying navigation, weather radar, and terrain data (EGPWS); TCAS for traffic alerts; sensors for wind, temperature, and pressure; and ATC/PIREP reports for real-time airspace and weather updates.\n在现代驾驶舱中，飞行员通过多种方式感知周围环境：目视观察天空和地形；电子飞行仪表系统（EFIS）显示导航、气象雷达及地形数据（增强型近地警告系统）；空中防撞系统（TCAS）提供交通告警；传感器监测风、温度和气压；空管（ATC）/飞行员报告（PIREP）提供实时空域和天气更新。"
+      "audioTextZh": "在现代驾驶舱中,你如何感知周围环境？",
+      "referenceText": "In modern cockpits, pilots sense the surrounding environment through multiple ways: visual observation of the sky and terrain; EFIS displaying navigation, weather radar, and terrain data (EGPWS); TCAS for traffic alerts; sensors for wind, temperature, and pressure; and ATC or PIREP reports for real-time airspace and weather updates.",
+      "referenceTextZh": "在现代驾驶舱中，飞行员通过多种方式感知周围环境：目视观察天空和地形；电子飞行仪表系统（EFIS）显示导航、气象雷达及地形数据（增强型近地警告系统）；空中防撞系统（TCAS）提供交通告警；传感器监测风、温度和气压；空管（ATC）/飞行员报告（PIREP）提供实时空域和天气更新。"
     }
   ]
 }

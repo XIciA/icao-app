@@ -7,254 +7,290 @@
     {
       "id": "opi-extra-237",
       "taskTitle": "人的因素-疲劳与值勤限制-1",
-      "audioText": "Do you think duty time limit is necessary'?",
+      "audioText": "Do you think duty time limit is necessary?",
       "audioTextZh": "你认为执勤时间限制有必要吗？",
-      "referenceText": "Yes, I think duty time limit is necessary. It can ensure flight safety. If we exceed duty time, it may threaten flight safety.\n是的，我认为执勤时间限制有必要。它能保障飞行安全，若超出执勤时间，可能会威胁飞行安全 。"
+      "referenceText": "Yes, I think duty time limit is necessary. It can ensure flight safety. If we exceed duty time, it may threaten flight safety.",
+      "referenceTextZh": "是的，我认为执勤时间限制有必要。它能保障飞行安全，若超出执勤时间，可能会威胁飞行安全。"
     },
     {
       "id": "opi-extra-238",
       "taskTitle": "人的因素-疲劳与值勤限制-2",
       "audioText": "When you approach your duty time limit but you are still flying, does it affect your decision making?",
       "audioTextZh": "当接近执勤时间限制但仍在飞行时，这会影响你的决策吗？",
-      "referenceText": "When we approach our duty time limit and we are still flying, we may feel tired and be slow in making decisions, so it may affect decision - making.\n当接近执勤时间限制且仍在飞行时，我们可能会感到疲惫，做决策的速度也会变慢，所以这可能会影响决策 。"
+      "referenceText": "When we approach our duty time limit and we are still flying, we may feel tired and be slow in making decisions, so it may affect decision-making.",
+      "referenceTextZh": "当接近执勤时间限制且仍在飞行时，我们可能会感到疲惫，做决策的速度也会变慢，所以这可能会影响决策。"
     },
     {
       "id": "opi-extra-239",
       "taskTitle": "人的因素-疲劳与值勤限制-3",
       "audioText": "Do you think pilots in China have enough time to have a rest between flight and why?",
-      "audioTextZh": "你认为中国飞行员在航班间隙有充足休息时间吗？原因是什么？",
-      "referenceText": "Yes, I think pilots in China have enough time to have a rest between flights. According to regulations, to ensure flight safety, we should have at least 8 hours of rest.\n是的，我认为中国飞行员在航班间隙有充足休息时间。依据规定，为保障飞行安全，我们应至少有 8 小时休息时间 。"
+      "audioTextZh": "你认为中国飞行员在航班间隙有充足休息时间吗？",
+      "referenceText": "Yes, I think pilots in China have enough time to have a rest between flights. According to regulations, to ensure flight safety, pilots should have at least 8 hours of rest.",
+      "referenceTextZh": "是的，我认为中国飞行员在航班间隙有充足休息时间。依据规定，为保障飞行安全，我们应至少有 8 小时休息时间。"
     },
     {
       "id": "opi-extra-240",
       "taskTitle": "人的因素-疲劳与值勤限制-4",
       "audioText": "How do you balance rest and work?",
       "audioTextZh": "你如何平衡休息与工作？",
-      "referenceText": "We should keep a good balance between rest and work. Between flights, we should get sufficient rest to stay energetic during each flight.\n我们应当在休息和工作之间保持良好平衡。航班间隙，要通过充足休息，确保在每次飞行时都能保持精力充沛 。"
+      "referenceText": "Pilots should keep a good balance between rest and work. Between flights, pilots should get sufficient rest to stay energetic during each flight.",
+      "referenceTextZh": "我们应当在休息和工作之间保持良好平衡。航班间隙，要通过充足休息，确保在每次飞行时都能保持精力充沛。"
     },
     {
       "id": "opi-extra-241",
       "taskTitle": "人的因素-疲劳与值勤限制-5",
       "audioText": "What types of rest facilities are there for flight crew on modern long-haul aircraft?",
       "audioTextZh": "在现代远程飞机上，为飞行机组提供了哪些类型的休息设施？",
-      "referenceText": "On modern aircraft like the Boeing 787 or Airbus A350, there are dedicated Crew Rest Compartments (CRC). These are typically located above the main cabin and are accessed by a separate staircase. They contain bunks or sleeping berths for pilots and cabin crew to take controlled rest on long flights. Some older aircraft might have curtained-off seats in the cabin designated as crew rest areas.\n在现代飞机上，例如波音787或空客A350，有专门的机组休息舱（CRC）。它们通常位于主客舱上方，通过一个独立的楼梯进入。里面有铺位或卧铺，供飞行员和乘务员在长途飞行中进行可控休息。一些较旧的飞机可能在客舱内有用帘子隔开的座位，被指定为机组休息区。"
+      "referenceText": "On modern aircraft like the Boeing 787 or Airbus A350, there are dedicated Crew Rest Compartments (CRC). These are typically located above the main cabin and are accessed by a separate staircase. They contain bunks or sleeping berths for pilots and cabin crew to take controlled rest on long flights. Some older aircraft might have curtained-off seats in the cabin designated as crew rest areas.",
+      "referenceTextZh": "在现代飞机上，例如波音787或空客A350，有专门的机组休息舱（CRC）。它们通常位于主客舱上方，通过一个独立的楼梯进入。里面有铺位或卧铺，供飞行员和乘务员在长途飞行中进行可控休息。一些较旧的飞机可能在客舱内有用帘子隔开的座位，被指定为机组休息区。"
     },
     {
       "id": "opi-extra-242",
       "taskTitle": "人的因素-疲劳与值勤限制-6",
       "audioText": "You are the captain. A first officer is going to take controlled rest. What procedures would you follow?",
       "audioTextZh": "你是机长。一名副驾驶将要进行可控休息。你会遵循哪些程序？",
-      "referenceText": "(Okay,) This is a formal procedure per our SOPs. First, I'd ensure we are in a stable cruise phase with no immediate threats. Then, we'd brief the resting pilot: confirm rest duration, set alarms, and agree on communication. Before he leaves, we secure the cockpit: both remaining crew are seated, masks are ready. Finally, upon return, a full handover briefing is conducted to ensure he's fully alert and aware of the situation.\n（好的，）这是一个根据我们SOPs的正式程序。首先，我会确保我们处于稳定的巡航阶段，没有即时威胁。然后，我们会与休息的飞行员简报：确认休息时长、设置闹钟并约定通讯方式。在他离开前，我们确保驾驶舱就绪：留守机组都在座位上，氧气面罩准备就绪。最后，在他返回时，进行完整的交接简报，以确保他完全清醒并了解当前状况。"
+      "referenceText": "(Okay,) This is a formal procedure per our SOPs. First, I'd ensure we are in a stable cruise phase with no immediate threats. Then, we'd brief the resting pilot: confirm rest duration, set alarms, and agree on communication. Before he leaves, we secure the cockpit: both remaining crew are seated, masks are ready. Finally, upon return, a full handover briefing is conducted to ensure he's fully alert and aware of the situation.\n（.",
+      "referenceTextZh": "好的，）这是一个根据我们SOPs的正式程序。首先，我会确保我们处于稳定的巡航阶段，没有即时威胁。然后，我们会与休息的飞行员简报：确认休息时长、设置闹钟并约定通讯方式。在他离开前，我们确保驾驶舱就绪：留守机组都在座位上，氧气面罩准备就绪。最后，在他返回时，进行完整的交接简报，以确保他完全清醒并了解当前状况。"
     },
     {
       "id": "opi-extra-243",
       "taskTitle": "人的因素-疲劳与值勤限制-7",
       "audioText": "What safety precautions are linked to using the CRC?",
       "audioTextZh": "使用机组休息舱（CRC）有哪些相关的安全预防措施？",
-      "referenceText": "Safety is key. The CRC has its own smoke detection and fire suppression systems. Resting crew must be briefed on how to use the supplemental oxygen masks inside and the interphone to contact the cockpit. Most critically, the cockpit crew must always be aware of who is in the CRC and ensure the door is properly secured. Procedures must be in place for emergency recall.\n安全是关键。 CRC有它自己的烟雾探测和灭火系统。必须向休息的机组简报如何使用舱内的辅助氧气面罩和内话机与驾驶舱联系。最关键的是，驾驶舱机组必须始终知道谁在CRC内，并确保门已正确锁好。必须有紧急召回的程序。"
+      "referenceText": "Safety is key. The CRC has its own smoke detection and fire suppression systems. Resting crew must be briefed on how to use the supplemental oxygen masks inside and the interphone to contact the cockpit. Most critically, the cockpit crew must always be aware of who is in the CRC and ensure the door is properly secured. Procedures must be in place for emergency recall.",
+      "referenceTextZh": "安全是关键。 CRC有它自己的烟雾探测和灭火系统。必须向休息的机组简报如何使用舱内的辅助氧气面罩和内话机与驾驶舱联系。最关键的是，驾驶舱机组必须始终知道谁在CRC内，并确保门已正确锁好。必须有紧急召回的程序。"
     },
     {
       "id": "opi-extra-244",
       "taskTitle": "人的因素-疲劳与值勤限制-8",
       "audioText": "What would you do if a crew member didn't return from rest on time?",
       "audioTextZh": "如果一名机组人员休息后没有按时返回，你会怎么做？",
-      "referenceText": "This is a non-standard situation. First, I would immediately attempt to contact them via the interphone. If there's no response, I would instruct another cabin crew member to physically check on them in the rest facility. The remaining pilot and I would focus on flying the aircraft and prepare for the possibility of continuing the flight with one pilot unavailable, following the relevant MEL and SOPs for such a scenario.\n这是一个非正常情况。首先，我会立即尝试通过内话机联系他们。如果没有回应，我会指示另一名客舱乘务员去休息设施内亲自查看他们的情况。留守的飞行员和我会专注于操纵飞机，并准备好按照相应的MEL（最低设备清单）和SOPs，在一名飞行员无法工作的情况下继续飞行的可能性。"
+      "referenceText": "This is a non-standard situation. First, I would immediately attempt to contact them via the interphone. If there's no response, I would instruct another cabin crew member to physically check on them in the rest facility. The remaining pilot and I would focus on flying the aircraft and prepare for the possibility of continuing the flight with one pilot unavailable, following the relevant MEL and SOPs for such a scenario.",
+      "referenceTextZh": "这是一个非正常情况。首先，我会立即尝试通过内话机联系他们。如果没有回应，我会指示另一名客舱乘务员去休息设施内亲自查看他们的情况。留守的飞行员和我会专注于操纵飞机，并准备好按照相应的MEL（最低设备清单）和SOPs，在一名飞行员无法工作的情况下继续飞行的可能性。"
     },
     {
       "id": "opi-extra-245",
       "taskTitle": "人的因素-疲劳与值勤限制-9",
       "audioText": "How does fatigue affect a pilot's performance?",
       "audioTextZh": "疲劳如何影响飞行员的表现？",
-      "referenceText": "Fatigue impairs judgment, slows reaction time, and reduces situational awareness. A fatigued pilot might miss checklist items or misunderstand ATC instructions. This increases the risk of errors. In critical phases like approach and landing, even a slight delay in reaction can compromise safety. That's why fatigue is considered a hidden threat in aviation.疲劳会削弱判断力、减慢反应时间、降低情景意识。疲劳的飞行员可能遗漏检查单项目或误解管制指令，这增加了出错风险。在进近和着陆等关键阶段，即使是轻微的反应延迟也可能危及安全。这就是为什么疲劳被视为航空业中的隐形威胁。"
+      "referenceText": "Fatigue impairs judgment, slows reaction time, and reduces situational awareness. A fatigued pilot might miss checklist items or misunderstand ATC instructions. This increases the risk of errors. In critical phases like approach and landing, even a slight delay in reaction can compromise safety. That's why fatigue is considered a hidden threat in aviation.",
+      "referenceTextZh": "疲劳会削弱判断力、减慢反应时间、降低情景意识。疲劳的飞行员可能遗漏检查单项目或误解管制指令，这增加了出错风险。在进近和着陆等关键阶段，即使是轻微的反应延迟也可能危及安全。这就是为什么疲劳被视为航空业中的隐形威胁。"
     },
     {
       "id": "opi-extra-246",
       "taskTitle": "人的因素-疲劳与值勤限制-10",
       "audioText": "What are common causes of fatigue for flight crew?",
       "audioTextZh": "导致飞行机组疲劳的常见原因有哪些？",
-      "referenceText": "Common causes include long duty hours, crossing multiple time zones, and insufficient rest between flights. Early starts or late finishes also disrupt sleep patterns. High workload and stressful weather conditions can accelerate fatigue. Essentially, any factor that disturbs quality sleep contributes to crew fatigue.常见原因包括执勤时间长、穿越多个时区以及航班间休息不足。早出港或晚进港也会打乱睡眠模式。高工作负荷和有压力的天气条件会加速疲劳产生。本质上，任何干扰高质量睡眠的因素都会导致机组疲劳。"
+      "referenceText": "Common causes include long duty hours, crossing multiple time zones, and insufficient rest between flights. Early starts or late finishes also disrupt sleep patterns. High workload and stressful weather conditions can accelerate fatigue. Essentially, any factor that disturbs quality sleep contributes to crew fatigue.",
+      "referenceTextZh": "常见原因包括执勤时间长、穿越多个时区以及航班间休息不足。早出港或晚进港也会打乱睡眠模式。高工作负荷和有压力的天气条件会加速疲劳产生。本质上，任何干扰高质量睡眠的因素都会导致机组疲劳。"
     },
     {
       "id": "opi-extra-247",
       "taskTitle": "人的因素-疲劳与值勤限制-11",
-      "audioText": "Have you ever felt fatigued during a shift? How did you handle it?",
-      "audioTextZh": "你是否曾在执勤中感到疲劳？你是如何处理的？",
-      "referenceText": "Yes, during night freight operations I've experienced fatigue. When it happens, I increase my vigilance, communicate more explicitly with my colleague, and ensure I stay hydrated. If it becomes severe, I would report it to the supervisor. Safety always comes first; pushing through fatigue is never acceptable.是的，在夜间货运飞行中我曾经历过疲劳。当这种情况发生时，我会提高警惕，与同事更明确地沟通，并确保补充水分。如果变得严重，我会向主管报告。安全永远是第一位的；硬撑着疲劳工作绝不可取。"
+      "audioText": "Have you ever felt fatigued during a shift, and how did you handle it?",
+      "audioTextZh": "你是否曾在执勤中感到疲劳？",
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. Yes, during night freight operations I've experienced fatigue. When it happens, I increase my vigilance, communicate more explicitly with my colleague, and ensure I stay hydrated. If it becomes severe, I would report it to the supervisor. Safety always comes first; pushing through fatigue is never acceptable.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。是的，在夜间货运飞行中我曾经历过疲劳。当这种情况发生时，我会提高警惕，与同事更明确地沟通，并确保补充水分。如果变得严重，我会向主管报告。安全永远是第一位的；硬撑着疲劳工作绝不可取。"
     },
     {
       "id": "opi-extra-248",
       "taskTitle": "人的因素-疲劳与值勤限制-12",
       "audioText": "What strategies can airlines use to prevent pilot fatigue?",
       "audioTextZh": "航空公司如何预防飞行员疲劳？",
-      "referenceText": "Airlines should implement Fatigue Risk Management Systems, or FRMS. They need science-based rostering that respects circadian rhythms. Providing quality rest facilities on long flights is essential. Education on sleep hygiene also helps crews manage their rest better. A proactive approach prevents incidents before they happen.航空公司应实施疲劳风险管理体系。他们需要基于科学的排班，尊重昼夜节律。在长途航班上提供高质量的休息设施至关重要。睡眠卫生教育也有助于机组更好地管理休息。主动预防能在事故发生前就避免问题。"
+      "referenceText": "Airlines should implement Fatigue Risk Management Systems, or FRMS. They need science-based rostering that respects circadian rhythms. Providing quality rest facilities on long flights is essential. Education on sleep hygiene also helps crews manage their rest better. A proactive approach prevents incidents before they happen.",
+      "referenceTextZh": "航空公司应实施疲劳风险管理体系。他们需要基于科学的排班，尊重昼夜节律。在长途航班上提供高质量的休息设施至关重要。睡眠卫生教育也有助于机组更好地管理休息。主动预防能在事故发生前就避免问题。"
     },
     {
       "id": "opi-extra-249",
       "taskTitle": "人的因素-疲劳与值勤限制-13",
       "audioText": "Do you think current flight time regulations are sufficient?",
       "audioTextZh": "你认为现行飞行时间限制规定足够吗？",
-      "referenceText": "Regulations provide a minimum safety baseline, but they aren't perfect. Actual fatigue depends on workload, weather, and individual factors. FRMS complements regulations by addressing these variables. So while rules are necessary, they should be part of a broader fatigue management strategy.规定提供了最低安全基准，但并不完美。实际疲劳程度取决于工作负荷、天气和个人因素。疲劳风险管理体系通过处理这些变量来补充规定。所以，虽然规则是必要的，但它们应该是更广泛的疲劳管理策略的一部分。"
+      "referenceText": "Regulations provide a minimum safety baseline, but they aren't perfect. Actual fatigue depends on workload, weather, and individual factors. FRMS complements regulations by addressing these variables. So while rules are necessary, they should be part of a broader fatigue management strategy.",
+      "referenceTextZh": "规定提供了最低安全基准，但并不完美。实际疲劳程度取决于工作负荷、天气和个人因素。疲劳风险管理体系通过处理这些变量来补充规定。所以，虽然规则是必要的，但它们应该是更广泛的疲劳管理策略的一部分。"
     },
     {
       "id": "opi-extra-250",
       "taskTitle": "人的因素-疲劳与值勤限制-14",
       "audioText": "Can fatigue lead to communication problems?",
       "audioTextZh": "疲劳会导致沟通问题吗？",
-      "referenceText": "Absolutely. Fatigue slows mental processing. A tired person may speak too fast, miss radio calls, or misunderstand instructions. This leads to read-back errors. In the cockpit, communication breakdowns between crew members also become more likely. Effective communication requires an alert mind.当然会。疲劳会减慢思维处理速度。疲劳的人可能语速过快、错过无线电呼叫或误解指令，导致复诵错误。在驾驶舱内，机组人员之间的沟通障碍也更可能发生。有效沟通需要警觉的头脑。"
+      "referenceText": "Absolutely. Fatigue slows mental processing. A tired person may speak too fast, miss radio calls, or misunderstand instructions. This leads to read-back errors. In the cockpit, communication breakdowns between crew members also become more likely. Effective communication requires an alert mind.",
+      "referenceTextZh": "当然会。疲劳会减慢思维处理速度。疲劳的人可能语速过快、错过无线电呼叫或误解指令，导致复诵错误。在驾驶舱内，机组人员之间的沟通障碍也更可能发生。有效沟通需要警觉的头脑。"
     },
     {
       "id": "opi-extra-251",
       "taskTitle": "人的因素-疲劳与值勤限制-15",
       "audioText": "How do you distinguish normal tiredness from dangerous fatigue?",
       "audioTextZh": "如何区分正常疲倦和危险疲劳？",
-      "referenceText": "Dangerous fatigue involves microsleeps or losing focus on critical tasks. If you forget ATC instructions or struggle to maintain altitude, that's beyond normal tiredness. It's a state where safety is directly threatened. Recognizing this boundary is crucial for every professional pilot.危险疲劳包括微睡眠或在关键任务上失去注意力。如果你忘记管制指令或难以保持高度，那就超出了正常疲倦。这是一种安全直接受到威胁的状态。认识到这个界限对每位专业飞行员都至关重要。"
+      "referenceText": "Dangerous fatigue involves microsleeps or losing focus on critical tasks. If you forget ATC instructions or struggle to maintain altitude, that's beyond normal tiredness. It's a state where safety is directly threatened. Recognizing this boundary is crucial for every professional pilot.",
+      "referenceTextZh": "危险疲劳包括微睡眠或在关键任务上失去注意力。如果你忘记管制指令或难以保持高度，那就超出了正常疲倦。这是一种安全直接受到威胁的状态。认识到这个界限对每位专业飞行员都至关重要。"
     },
     {
       "id": "opi-extra-252",
       "taskTitle": "人的因素-疲劳与值勤限制-16",
       "audioText": "What is your pre-flight routine to ensure you are well-rested?",
       "audioTextZh": "你飞行前如何确保充分休息？",
-      "referenceText": "I prioritize eight hours of sleep opportunity before a flight. I avoid heavy meals and alcohol the night before. I also disconnect from screens an hour before bed. Arriving at the airport feeling fresh allows me to perform at my best throughout the duty.我优先保证飞行前八小时的睡眠机会。前一晚避免大餐和饮酒。睡前一个小时我也会远离屏幕。精神饱满地到达机场让我能在整个执勤期间发挥最佳状态。"
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. I prioritize eight hours of sleep opportunity before a flight. I avoid heavy meals and alcohol the night before. I also disconnect from screens an hour before bed. Arriving at the airport feeling fresh allows me to perform at my best throughout the duty.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。我优先保证飞行前八小时的睡眠机会。前一晚避免大餐和饮酒。睡前一个小时我也会远离屏幕。精神饱满地到达机场让我能在整个执勤期间发挥最佳状态。"
     },
     {
       "id": "opi-extra-253",
       "taskTitle": "人的因素-疲劳与值勤限制-17",
       "audioText": "How does weather affect fatigue levels?",
       "audioTextZh": "天气如何影响疲劳程度？",
-      "referenceText": "Adverse weather increases workload significantly. Managing thunderstorms, go-arounds, or diversions requires intense concentration. This mental effort accelerates fatigue onset. During night shifts, the combination of darkness and high-stress weather can be particularly draining for any pilot.恶劣天气会显著增加工作负荷。处理雷暴、复飞或备降需要高度集中注意力。这种脑力消耗会加速疲劳产生。在夜班期间，黑暗和高压力天气的结合对任何飞行员来说都尤其消耗精力。"
+      "referenceText": "Adverse weather increases workload significantly. Managing thunderstorms, go-arounds, or diversions requires intense concentration. This mental effort accelerates fatigue onset. During night shifts, the combination of darkness and high-stress weather can be particularly draining for any pilot.",
+      "referenceTextZh": "恶劣天气会显著增加工作负荷。处理雷暴、复飞或备降需要高度集中注意力。这种脑力消耗会加速疲劳产生。在夜班期间，黑暗和高压力天气的结合对任何飞行员来说都尤其消耗精力。"
     },
     {
       "id": "opi-extra-254",
       "taskTitle": "人的因素-疲劳与值勤限制-18",
       "audioText": "If a colleague appears too fatigued to work, what would you do?",
       "audioTextZh": "如果同事看起来太疲劳无法工作，你会怎么做？",
-      "referenceText": "I would speak to them privately and express my concern. I'd encourage them to report their fitness status to the supervisor. In our safety culture, we support each other. Covering for a fatigued colleague endangers everyone. It's our professional duty to speak up.我会私下和他们交谈，表达我的担忧。我会鼓励他们向主管报告自己的身体状况。在我们的安全文化中，我们互相支持。为疲劳的同事打掩护会危及所有人。敢于发声是我们的职业责任。"
+      "referenceText": "I would speak to them privately and express my concern. I'd encourage them to report their fitness status to the supervisor. In our safety culture, we support each other. Covering for a fatigued colleague endangers everyone. It's our professional duty to speak up.",
+      "referenceTextZh": "我会私下和他们交谈，表达我的担忧。我会鼓励他们向主管报告自己的身体状况。在我们的安全文化中，我们互相支持。为疲劳的同事打掩护会危及所有人。敢于发声是我们的职业责任。"
     },
     {
       "id": "opi-extra-255",
       "taskTitle": "人的因素-疲劳与值勤限制-19",
       "audioText": "Why are strict duty time regulations important?",
       "audioTextZh": "严格的执勤时间规定为什么重要？",
-      "referenceText": "Strict regulations prevent cumulative fatigue. They ensure crew members have enough opportunity for restorative rest. This is essential for maintaining alertness throughout a flight. Without these limits, commercial pressure could compromise safety. Regulations protect both crews and passengers.严格的规定可以防止疲劳累积。它们确保机组人员有足够的机会进行恢复性休息。这对于在整个飞行过程中保持警觉至关重要。没有这些限制，商业压力可能会危及安全。规定既保护机组也保护乘客。"
+      "referenceText": "Strict regulations prevent cumulative fatigue. They ensure crew members have enough opportunity for restorative rest. This is essential for maintaining alertness throughout a flight. Without these limits, commercial pressure could compromise safety. Regulations protect both crews and passengers.",
+      "referenceTextZh": "严格的规定可以防止疲劳累积。它们确保机组人员有足够的机会进行恢复性休息。这对于在整个飞行过程中保持警觉至关重要。没有这些限制，商业压力可能会危及安全。规定既保护机组也保护乘客。"
     },
     {
       "id": "opi-extra-256",
       "taskTitle": "人的因素-疲劳与值勤限制-20",
       "audioText": "Have you experienced delays extending your duty time?",
       "audioTextZh": "你经历过延误导致执勤时间延长吗？",
-      "referenceText": "Yes, frequently. When delays push us close to the duty limit, we coordinate with dispatchers and ATC. If the delay is too long, the airline must rearrange crews. Safety cannot be compromised for schedule. We always prioritize compliance over operational pressure.是的，经常遇到。当延误使我们接近执勤期限时，我们会与签派员和管制员协调。如果延误时间过长，航空公司必须重新安排机组人员。安全绝不能为了航班计划而妥协。我们始终将合规置于运行压力之上。"
+      "referenceText": "Yes, frequently. When delays push us close to the duty limit, we coordinate with dispatchers and ATC. If the delay is too long, the airline must rearrange crews. Safety cannot be compromised for schedule. We always prioritize compliance over operational pressure.",
+      "referenceTextZh": "是的，经常遇到。当延误使我们接近执勤期限时，我们会与签派员和管制员协调。如果延误时间过长，航空公司必须重新安排机组人员。安全绝不能为了航班计划而妥协。我们始终将合规置于运行压力之上。"
     },
     {
       "id": "opi-extra-257",
       "taskTitle": "人的因素-疲劳与值勤限制-21",
       "audioText": "What happens if a flight exceeds maximum duty time?",
       "audioTextZh": "如果航班超过最大执勤时间会怎样？",
-      "referenceText": "The flight cannot proceed. The captain must make the decision to cancel or request a fresh crew. Continuing beyond legal limits is never an option. Aviation regulations exist for a reason, and exceeding duty time puts everyone at risk. Schedule pressure never justifies safety compromise.该航班不能继续执行。机长必须做出取消航班或请求新机组的决定。超过法定限制继续飞行绝不可取。航空法规的存在有其原因，超过执勤时间会使所有人面临风险。航班计划压力绝不能成为牺牲安全的理由。"
+      "referenceText": "The flight cannot proceed. The captain must make the decision to cancel or request a fresh crew. Continuing beyond legal limits is never an option. Aviation regulations exist for a reason, and exceeding duty time puts everyone at risk. Schedule pressure never justifies safety compromise.",
+      "referenceTextZh": "该航班不能继续执行。机长必须做出取消航班或请求新机组的决定。超过法定限制继续飞行绝不可取。航空法规的存在有其原因，超过执勤时间会使所有人面临风险。航班计划压力绝不能成为牺牲安全的理由。"
     },
     {
       "id": "opi-extra-258",
       "taskTitle": "人的因素-疲劳与值勤限制-22",
       "audioText": "Do cargo pilots face different duty pressures than passenger pilots?",
       "audioTextZh": "货机飞行员比客机飞行员面临不同的执勤压力吗？",
-      "referenceText": "Yes, cargo operations typically fly at night, which disrupts circadian rhythms. While cargo may have more departure flexibility, the night factor makes fatigue management harder. The body never fully adapts to night work. Both sectors have challenges, but they are different in nature.是的，货运飞行通常在夜间进行，这会打乱昼夜节律。虽然货运在出发时间上可能更灵活，但夜间因素使得疲劳管理更加困难。人体永远无法完全适应夜间工作。两个领域都有挑战，但性质不同。"
+      "referenceText": "Yes, cargo operations typically fly at night, which disrupts circadian rhythms. While cargo may have more departure flexibility, the night factor makes fatigue management harder. The body never fully adapts to night work. Both sectors have challenges, but they are different in nature.",
+      "referenceTextZh": "是的，货运飞行通常在夜间进行，这会打乱昼夜节律。虽然货运在出发时间上可能更灵活，但夜间因素使得疲劳管理更加困难。人体永远无法完全适应夜间工作。两个领域都有挑战，但性质不同。"
     },
     {
       "id": "opi-extra-259",
       "taskTitle": "人的因素-疲劳与值勤限制-23",
       "audioText": "How do you spend time during a long layover?",
       "audioTextZh": "长时间过站停留期间你如何度过？",
-      "referenceText": "I prioritize rest first. I go to the hotel, sleep in a dark quiet environment, and do light exercise to adjust to the local time. Proper layover rest is crucial for the return leg. I avoid heavy meals and alcohol to ensure I'm fit for the next duty.我首先优先考虑休息。我去酒店，在黑暗安静的环境中睡觉，并进行轻微运动以适应当地时间。适当的过站休息对返程航班至关重要。我避免大餐和饮酒，以确保为下一个执勤保持良好状态。"
+      "referenceText": "I prioritize rest first. I go to the hotel, sleep in a dark quiet environment, and do light exercise to adjust to the local time. Proper layover rest is crucial for the return leg. I avoid heavy meals and alcohol to ensure I'm fit for the next duty.",
+      "referenceTextZh": "我首先优先考虑休息。我去酒店，在黑暗安静的环境中睡觉，并进行轻微运动以适应当地时间。适当的过站休息对返程航班至关重要。我避免大餐和饮酒，以确保为下一个执勤保持良好状态。"
     },
     {
       "id": "opi-extra-260",
       "taskTitle": "人的因素-疲劳与值勤限制-24",
       "audioText": "What's the difference between flight time and duty time?",
       "audioTextZh": "飞行时间和执勤时间有什么区别？",
-      "referenceText": "Flight time is strictly from takeoff to landing. Duty time is broader: it includes flight time plus pre-flight briefings, paperwork, and post-flight duties. A pilot may have short flight time but long duty time due to delays. Both are tracked separately for fatigue management.飞行时间严格指从起飞到降落的时间。执勤时间范围更广：它包括飞行时间以及飞行前简报、文书工作和飞行后任务。由于延误，飞行员的飞行时间可能很短，但执勤时间很长。为管理疲劳，两者需要分别追踪。"
+      "referenceText": "Flight time is strictly from takeoff to landing. Duty time is broader: it includes flight time plus pre-flight briefings, paperwork, and post-flight duties. A pilot may have short flight time but long duty time due to delays. Both are tracked separately for fatigue management.",
+      "referenceTextZh": "飞行时间严格指从起飞到降落的时间。执勤时间范围更广：它包括飞行时间以及飞行前简报、文书工作和飞行后任务。由于延误，飞行员的飞行时间可能很短，但执勤时间很长。为管理疲劳，两者需要分别追踪。"
     },
     {
       "id": "opi-extra-261",
       "taskTitle": "人的因素-疲劳与值勤限制-25",
       "audioText": "How does split duty affect rest?",
       "audioTextZh": "拆分执勤如何影响休息？",
-      "referenceText": "Split duty is challenging. It offers a break, but may not allow deep sleep. If you sleep, you might wake with inertia. If you don't, you remain fatigued. Proper rest facilities at airports are essential for split duty to be effective. Otherwise, it offers little benefit.拆分执勤很有挑战性。它提供了休息时间，但可能无法让人进入深度睡眠。如果睡了，可能会带着睡后迟钝醒来；如果不睡，又会保持疲劳。机场的适当休息设施对于拆分执勤的有效性至关重要，否则它带来的好处微乎其微。"
+      "referenceText": "Split duty is challenging. It offers a break, but may not allow deep sleep. If you sleep, you might wake with inertia. If you don't, you remain fatigued. Proper rest facilities at airports are essential for split duty to be effective. Otherwise, it offers little benefit.",
+      "referenceTextZh": "拆分执勤很有挑战性。它提供了休息时间，但可能无法让人进入深度睡眠。如果睡了，可能会带着睡后迟钝醒来；如果不睡，又会保持疲劳。机场的适当休息设施对于拆分执勤的有效性至关重要，否则它带来的好处微乎其微。"
     },
     {
       "id": "opi-extra-262",
       "taskTitle": "人的因素-疲劳与值勤限制-26",
       "audioText": "Are there tools to help manage duty time?",
       "audioTextZh": "有管理执勤时间的工具吗？",
-      "referenceText": "Yes, most airlines use e-logbooks and rostering software. These automatically calculate flight times and predict potential breaches. They help planners and crews manage schedules effectively. Technology supports compliance, but personal responsibility remains essential.是的，大多数航空公司使用电子日志和排班软件。这些工具会自动计算飞行时间并预测可能的违规。它们帮助计划制定者和机组人员有效管理日程。技术支持合规，但个人责任仍然至关重要。"
+      "referenceText": "Yes, most airlines use e-logbooks and rostering software. These automatically calculate flight times and predict potential breaches. They help planners and crews manage schedules effectively. Technology supports compliance, but personal responsibility remains essential.",
+      "referenceTextZh": "是的，大多数航空公司使用电子日志和排班软件。这些工具会自动计算飞行时间并预测可能的违规。它们帮助计划制定者和机组人员有效管理日程。技术支持合规，但个人责任仍然至关重要。"
     },
     {
       "id": "opi-extra-263",
       "taskTitle": "人的因素-疲劳与值勤限制-27",
       "audioText": "How do you feel about standby duties?",
       "audioTextZh": "你对备份执勤怎么看？",
-      "referenceText": "Standby duties are necessary for operational stability. However, they create stress because you must be ready at short notice. It's hard to plan personal activities or get quality rest when on standby. Good rostering should minimize standby and ensure adequate rest afterwards.备份执勤对于运行稳定性是必要的。然而，它会带来压力，因为必须随时待命。当处于备份状态时，很难安排个人活动或获得高质量休息。良好的排班应该尽量减少备份，并确保之后有充足的休息。"
+      "referenceText": "Standby duties are necessary for operational stability. However, they create stress because you must be ready at short notice. It's hard to plan personal activities or get quality rest when on standby. Good rostering should minimize standby and ensure adequate rest afterwards.",
+      "referenceTextZh": "备份执勤对于运行稳定性是必要的。然而，它会带来压力，因为必须随时待命。当处于备份状态时，很难安排个人活动或获得高质量休息。良好的排班应该尽量减少备份，并确保之后有充足的休息。"
     },
     {
       "id": "opi-extra-264",
       "taskTitle": "人的因素-疲劳与值勤限制-28",
       "audioText": "How would you define overwork in aviation?",
       "audioTextZh": "航空领域中如何定义过度工作？",
-      "referenceText": "Overwork is when workload exceeds a person's capacity to perform safely. It involves extended periods of high demand without adequate recovery. Unlike occasional fatigue from one long day, overwork implies sustained excessive demands. This leads to cumulative stress and performance decline over time.过度工作是指工作量超过一个人安全执行任务的能力。它涉及长时间的高要求而没有充分的恢复。不同于偶尔一天长时间工作导致的疲劳，过度工作意味着持续过高的要求。这会导致压力累积和表现随时间下降。"
+      "referenceText": "Overwork is when workload exceeds a person's capacity to perform safely. It involves extended periods of high demand without adequate recovery. Unlike occasional fatigue from one long day, overwork implies sustained excessive demands. This leads to cumulative stress and performance decline over time.",
+      "referenceTextZh": "过度工作是指工作量超过一个人安全执行任务的能力。它涉及长时间的高要求而没有充分的恢复。不同于偶尔一天长时间工作导致的疲劳，过度工作意味着持续过高的要求。这会导致压力累积和表现随时间下降。"
     },
     {
       "id": "opi-extra-265",
       "taskTitle": "人的因素-疲劳与值勤限制-29",
       "audioText": "What are main causes of overwork for aviation professionals?",
       "audioTextZh": "航空专业人员过度工作的主要原因是什么？",
-      "referenceText": "Common causes include short-staffing during peak seasons, irregular shift patterns disrupting sleep, and consecutive long-haul flights without enough rest days. Operational pressures like delays also contribute. When these factors combine, professionals can easily become overworked.常见原因包括旺季人员短缺、扰乱睡眠的不规律班次，以及连续执行长途航班而没有足够的休息日。延误等运行压力也是因素。当这些因素结合在一起时，专业人员很容易变得过度工作。"
+      "referenceText": "Common causes include short-staffing during peak seasons, irregular shift patterns disrupting sleep, and consecutive long-haul flights without enough rest days. Operational pressures like delays also contribute. When these factors combine, professionals can easily become overworked.",
+      "referenceTextZh": "常见原因包括旺季人员短缺、扰乱睡眠的不规律班次，以及连续执行长途航班而没有足够的休息日。延误等运行压力也是因素。当这些因素结合在一起时，专业人员很容易变得过度工作。"
     },
     {
       "id": "opi-extra-266",
       "taskTitle": "人的因素-疲劳与值勤限制-30",
       "audioText": "How does overwork differ from fatigue?",
       "audioTextZh": "过度工作和疲劳有何不同？",
-      "referenceText": "Fatigue is a state of tiredness. Overwork is the cause of that state. You can be fatigued from one bad night's sleep. Overwork means sustained excessive workload over time. Fatigue is the symptom; overwork is the root cause. Both are safety concerns that must be managed.疲劳是一种疲倦状态。过度工作是导致这种状态的原因。你可能因为一晚没睡好而疲劳。过度工作意味着持续一段时间的过量工作负荷。疲劳是症状，过度工作是根本原因。两者都是必须管理的安全问题。"
+      "referenceText": "Fatigue is a state of tiredness. Overwork is the cause of that state. You can be fatigued from one bad night's sleep. Overwork means sustained excessive workload over time. Fatigue is the symptom; overwork is the root cause. Both are safety concerns that must be managed.",
+      "referenceTextZh": "疲劳是一种疲倦状态。过度工作是导致这种状态的原因。你可能因为一晚没睡好而疲劳。过度工作意味着持续一段时间的过量工作负荷。疲劳是症状，过度工作是根本原因。两者都是必须管理的安全问题。"
     },
     {
       "id": "opi-extra-267",
       "taskTitle": "人的因素-疲劳与值勤限制-31",
-      "audioText": "Have you ever felt overworked? How did it affect you?",
-      "audioTextZh": "你是否感到过过度工作？它如何影响你？",
-      "referenceText": "Yes, during peak holiday seasons with major delays. I felt mentally drained and found patience difficult. I had to consciously slow down and double-check everything to avoid errors. Recognizing my own limits was key. I also communicated with my crew to share the workload.是的，在节假日旺季遇到大面积延误时。我感到精神耗尽，发现很难保持耐心。我必须有意识地放慢节奏，仔细检查每一项工作以避免出错。认识到自己的极限是关键。我也与机组人员沟通，分担工作量。"
+      "audioText": "Have you ever felt overworked, and how did it affect you?",
+      "audioTextZh": "你是否感到过过度工作，它如何影响你？",
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. Yes, during peak holiday seasons with major delays. I felt mentally drained and found patience difficult. I had to consciously slow down and double-check everything to avoid errors. Recognizing my own limits was key. I also communicated with my crew to share the workload.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。是的，在节假日旺季遇到大面积延误时。我感到精神耗尽，发现很难保持耐心。我必须有意识地放慢节奏，仔细检查每一项工作以避免出错。认识到自己的极限是关键。我也与机组人员沟通，分担工作量。"
     },
     {
       "id": "opi-extra-268",
       "taskTitle": "人的因素-疲劳与值勤限制-32",
       "audioText": "What are safety risks of a chronically overworked crew?",
       "audioTextZh": "长期过度工作的机组有哪些安全风险？",
-      "referenceText": "Chronically overworked crews make more decision errors. Situational awareness drops. Communication breaks down. They may take shortcuts or miss critical checklist items. Reaction to emergencies slows significantly. These factors together create a serious threat to flight safety.长期过度工作的机组会犯更多决策错误。情景意识下降。沟通不畅。他们可能会走捷径或遗漏关键检查单项目。对紧急情况的反应显著减慢。这些因素共同构成了对飞行安全的严重威胁。"
+      "referenceText": "Chronically overworked crews make more decision errors. Situational awareness drops. Communication breaks down. They may take shortcuts or miss critical checklist items. Reaction to emergencies slows significantly. These factors together create a serious threat to flight safety.",
+      "referenceTextZh": "长期过度工作的机组会犯更多决策错误。情景意识下降。沟通不畅。他们可能会走捷径或遗漏关键检查单项目。对紧急情况的反应显著减慢。这些因素共同构成了对飞行安全的严重威胁。"
     },
     {
       "id": "opi-extra-269",
       "taskTitle": "人的因素-疲劳与值勤限制-33",
       "audioText": "How can airlines prevent employees from becoming overworked?",
       "audioTextZh": "航空公司如何防止员工过度工作？",
-      "referenceText": "Airlines should ensure adequate staffing levels and use data-driven rostering to distribute workload fairly. They must foster a culture where employees feel safe reporting overwork without fear of penalty. Prevention is always better than managing the consequences of overwork.航空公司应确保足够的人员配置水平，并使用数据驱动的排班系统公平分配工作量。他们必须培养一种文化，让员工能够安全地报告过度工作而不必担心受到处罚。预防总是比处理过度工作的后果更好。"
+      "referenceText": "Airlines should ensure adequate staffing levels and use data-driven rostering to distribute workload fairly. They must foster a culture where employees feel safe reporting overwork without fear of penalty. Prevention is always better than managing the consequences of overwork.",
+      "referenceTextZh": "航空公司应确保足够的人员配置水平，并使用数据驱动的排班系统公平分配工作量。他们必须培养一种文化，让员工能够安全地报告过度工作而不必担心受到处罚。预防总是比处理过度工作的后果更好。"
     },
     {
       "id": "opi-extra-270",
       "taskTitle": "人的因素-疲劳与值勤限制-34",
       "audioText": "What personal strategies do you use to cope with high workload?",
       "audioTextZh": "你个人如何应对高工作负荷？",
-      "referenceText": "I prioritize rest between shifts and maintain healthy habits. During high workload, I focus on task prioritization and communicate clearly with colleagues to share the load. After tough periods, I disconnect completely on days off. Recovery is essential for long-term performance.我优先保证轮班间的休息并保持健康习惯。在高工作负荷期间，我专注于任务优先级排序，并与同事清晰沟通以分担工作。在艰难时期过后，我在休息日完全放松。恢复对长期表现至关重要。"
+      "referenceText": "I prioritize rest between shifts and maintain healthy habits. During high workload, I focus on task prioritization and communicate clearly with colleagues to share the load. After tough periods, I disconnect completely on days off. Recovery is essential for long-term performance.",
+      "referenceTextZh": "我优先保证轮班间的休息并保持健康习惯。在高工作负荷期间，我专注于任务优先级排序，并与同事清晰沟通以分担工作。在艰难时期过后，我在休息日完全放松。恢复对长期表现至关重要。"
     },
     {
       "id": "opi-extra-271",
       "taskTitle": "人的因素-疲劳与值勤限制-35",
       "audioText": "Can overwork affect communication between crew?",
       "audioTextZh": "过度工作会影响机组沟通吗？",
-      "referenceText": "Definitely. When overworked, people become irritable and less patient. Communication becomes abrupt or incomplete. Important information may not be shared effectively. This breaks down the teamwork essential for safe operations. Good communication requires mental freshness.当然会。当过度工作时，人们会变得易怒，耐心下降。沟通变得生硬或不完整。重要信息可能无法有效共享。这会破坏安全运行所必需的团队协作。良好沟通需要头脑清醒。"
+      "referenceText": "Definitely. When overworked, people become irritable and less patient. Communication becomes abrupt or incomplete. Important information may not be shared effectively. This breaks down the teamwork essential for safe operations. Good communication requires mental freshness.",
+      "referenceTextZh": "当然会。当过度工作时，人们会变得易怒，耐心下降。沟通变得生硬或不完整。重要信息可能无法有效共享。这会破坏安全运行所必需的团队协作。良好沟通需要头脑清醒。"
     },
     {
       "id": "opi-extra-272",
       "taskTitle": "人的因素-疲劳与值勤限制-36",
       "audioText": "How do you recognize signs of overwork in a colleague?",
       "audioTextZh": "如何识别同事过度工作的迹象？",
-      "referenceText": "Signs include unusual irritability, withdrawal from team discussions, and difficulty concentrating during briefings. Small errors or forgetfulness increase. If I see these signs, I check in with them privately. Looking out for each other is part of our safety culture.迹象包括反常的易怒、退出团队讨论、在简报会上难以集中注意力。小错误或健忘增加。如果我看到这些迹象，我会私下关心他们。互相照看是我们安全文化的一部分。"
+      "referenceText": "Signs include unusual irritability, withdrawal from team discussions, and difficulty concentrating during briefings. Small errors or forgetfulness increase. If I see these signs, I check in with them privately. Looking out for each other is part of our safety culture.",
+      "referenceTextZh": "迹象包括反常的易怒、退出团队讨论、在简报会上难以集中注意力。小错误或健忘增加。如果我看到这些迹象，我会私下关心他们。互相照看是我们安全文化的一部分。"
     }
   ]
 }

@@ -9,91 +9,104 @@
       "taskTitle": "缩略词-EBT-1",
       "audioText": "What is EBT in aviation?",
       "audioTextZh": "民航中的EBT是什么？",
-      "referenceText": "EBT stands for Evidence-Based Training. It's a modern approach to pilot training and assessment that focuses on developing and evaluating a pilot's core competencies in handling complex real-world situations, rather than just testing on isolated maneuvers.\nEBT代表\"基于证据的训练\"。这是一种现代飞行员训练和评估方法，它侧重于培养和评估飞行员处理复杂现实情况的核心能力，而不仅仅是考核孤立的机动动作。\n\nEBT, short for Evidence-Based Training, is an advanced flight training method. It is based on objective data and evidence, such as flight data recorder (FDR) data, quick access recorder (QAR) data, training records and accident/incident analysis results, to identify the training needs and weaknesses of pilots. Unlike traditional training methods that follow fixed training plans, EBT focuses more on the individual differences of pilots, formulates personalized training plans for each pilot, and focuses on improving the core competencies required by pilots, such as situational awareness, decision-making ability, communication and coordination skills and emergency response capabilities. Through continuous collection and analysis of training data, EBT can continuously optimize the training content and methods, improve the effectiveness and pertinence of training, and better help pilots master the necessary skills and abilities to ensure flight safety.\nEBT 是循证训练Evidence-Based Training的缩写，是一种先进的飞行训练方法。它以客观数据和证据为基础，例如飞行数据记录仪FDR数据、快速存取记录器QAR数据、训练记录以及事故/事件分析结果等，来识别飞行员的训练需求和薄弱环节。与传统的按照固定训练计划进行训练的方式不同，EBT 更注重飞行员的个体差异，为每位飞行员制定个性化的训练计划，重点提升飞行员所需的核心胜任能力，如情景意识、决策能力、沟通协作能力和应急处置能力等。通过持续收集和分析训练数据，EBT 能够不断优化训练内容和方法，提高训练的有效性和针对性，更好地帮助飞行员掌握必要的技能和能力，保障飞行安全。"
+      "referenceText": "EBT, short for Evidence-Based Training, is an advanced flight training method. It is based on objective data and evidence, such as flight data recorder (FDR) data, quick access recorder (QAR) data, training records and accident or incident analysis results, to identify the training needs and weaknesses of pilots. Unlike traditional training methods that follow fixed training plans, EBT focuses more on the individual differences of pilots, formulates personalized training plans for each pilot, and focuses on improving the core competencies required by pilots, such as situational awareness, decision-making ability, communication and coordination skills and emergency response capabilities.",
+      "referenceTextZh": "是循证训练Evidence-Based Training的缩写，是一种先进的飞行训练方法。它以客观数据和证据为基础，例如飞行数据记录仪FDR数据、快速存取记录器QAR数据、训练记录以及事故/事件分析结果等，来识别飞行员的训练需求和薄弱环节。与传统的按照固定训练计划进行训练的方式不同，EBT 更注重飞行员的个体差异，为每位飞行员制定个性化的训练计划，重点提升飞行员所需的核心胜任能力，如情景意识、决策能力、沟通协作能力和应急处置能力等。通过持续收集和分析训练数据，EBT 能够不断优化训练内容和方法，提高训练的有效性和针对性，更好地帮助飞行员掌握必要的技能和能力，保障飞行安全。"
     },
     {
       "id": "opi-extra-299",
       "taskTitle": "缩略词-EBT-2",
-      "audioText": "What is the main philosophy behind EBT?\nEBT",
+      "audioText": "What is the main philosophy behind EBT?",
       "audioTextZh": "背后的核心理念是什么？",
-      "referenceText": "The core idea is to move beyond practicing for a fixed list of failures. Instead, EBT aims to build resilient and adaptable pilots who can effectively manage unexpected threats and errors through enhanced decision-making and problem-solving skills.\n核心理念是超越针对固定故障列表的训练。相反，EBT旨在培养有韧性和适应能力的飞行员，使他们能够通过增强的决策和问题解决能力，有效管理意外的威胁和差错。"
+      "referenceText": "The core idea is to move beyond practicing for a fixed list of failures. Instead, EBT aims to build resilient and adaptable pilots who can effectively manage unexpected threats and errors through enhanced decision-making and problem-solving skills.",
+      "referenceTextZh": "核心理念是超越针对固定故障列表的训练。相反，EBT旨在培养有韧性和适应能力的飞行员，使他们能够通过增强的决策和问题解决能力，有效管理意外的威胁和差错。"
     },
     {
       "id": "opi-extra-300",
       "taskTitle": "缩略词-EBT-3",
-      "audioText": "How is EBT different from traditional training?\nEBT",
+      "audioText": "How is EBT different from traditional training?",
       "audioTextZh": "与传统训练有何不同？",
-      "referenceText": "Traditional training often focuses on specific, predetermined failures, which can lead to rote-learning. EBT, however, uses data-driven scenarios to train for non-specific, complex situations that are more representative of actual line operations, emphasizing the \"how\" and \"why\" behind actions.\n传统训练通常侧重于特定的、预设的故障，这可能导致死记硬背。而EBT则使用数据驱动的场景，来训练应对非特定的、复杂的情况，这些情况更能代表实际的航线运行，并强调操作背后的\"方式\"和\"原因\"。"
+      "referenceText": "Traditional training often focuses on specific, predetermined failures, which can lead to rote-learning. EBT, however, uses data-driven scenarios to train for non-specific, complex situations that are more representative of actual line operations, emphasizing the \"how\" and \"why\" behind actions.",
+      "referenceTextZh": "传统训练通常侧重于特定的、预设的故障，这可能导致死记硬背。而EBT则使用数据驱动的场景，来训练应对非特定的、复杂的情况，这些情况更能代表实际的航线运行，并强调操作背后的\"方式\"和\"原因\"。"
     },
     {
       "id": "opi-extra-301",
       "taskTitle": "缩略词-EBT-4",
-      "audioText": "What are the main advantages of EBT?\nEBT",
+      "audioText": "What are the main advantages of EBT?",
       "audioTextZh": "的主要优势是什么？",
-      "referenceText": "The key advantages are: 1) It produces more competent and confident pilots. 2) Training is personalized to address individual weaknesses. 3) It better prepares crews for the unpredictable nature of real flying. 4) It focuses on the most relevant threats based on operational data.\n主要优势有：1) 它能培养出更有能力、更自信的飞行员。2) 训练是个性化的，旨在解决个人的薄弱环节。3) 它能让机组为飞行中不可预测的特性做好更充分的准备。4) 它基于运行数据，专注于最相关的威胁。"
+      "referenceText": "The key advantages are: 1) It produces more competent and confident pilots. 2) Training is personalized to address individual weaknesses. 3) It better prepares crews for the unpredictable nature of real flying. 4) It focuses on the most relevant threats based on operational data.",
+      "referenceTextZh": "主要优势有：1) 它能培养出更有能力、更自信的飞行员。2) 训练是个性化的，旨在解决个人的薄弱环节。3) 它能让机组为飞行中不可预测的特性做好更充分的准备。4) 它基于运行数据，专注于最相关的威胁。"
     },
     {
       "id": "opi-extra-302",
       "taskTitle": "缩略词-EBT-5",
-      "audioText": "What are the 'Core Competencies' in EBT? Can you name a few?\nEBT",
-      "audioTextZh": "中的\"核心能力\"是什么？你能列举几个吗？",
-      "referenceText": "Core Competencies are the fundamental skills and behaviors required for safe and effective operations. Key ones include: Problem-Solving and Decision-Making, Situational Awareness, Workload Management, Leadership and Teamwork, and Communication.\n核心能力是安全有效运行所需的基本技能和行为。关键能力包括：问题解决与决策制定、情景意识、工作负荷管理、领导力与团队协作，以及沟通。"
+      "audioText": "What are the 'Core Competencies' in EBT?",
+      "audioTextZh": "中的\"核心能力\"是什么？",
+      "referenceText": "Core Competencies are the fundamental skills and behaviors required for safe and effective operations. Key ones include: Problem-Solving and Decision-Making, Situational Awareness, Workload Management, Leadership and Teamwork, and Communication.",
+      "referenceTextZh": "核心能力是安全有效运行所需的基本技能和行为。关键能力包括：问题解决与决策制定、情景意识、工作负荷管理、领导力与团队协作，以及沟通。"
     },
     {
       "id": "opi-extra-303",
       "taskTitle": "缩略词-EBT-6",
-      "audioText": "How can EBT benefit you as a pilot?\nEBT",
+      "audioText": "How can EBT benefit you as a pilot?",
       "audioTextZh": "对你作为一名飞行员有何益处？",
-      "referenceText": "EBT benefits me by providing training that is directly relevant to the challenges I might face on the line. The feedback on my core competencies, like how I manage stress or communicate under pressure, is invaluable for my continuous improvement and long-term development.\nEBT通过提供与我可能在航线上面临的挑战直接相关的训练来使我受益。针对我核心能力的反馈，例如我如何管理压力或在压力下沟通，对我持续改进和长远发展是非常宝贵的。"
+      "referenceText": "EBT benefits me by providing training that is directly relevant to the challenges I might face on the line. The feedback on my core competencies, like how I manage stress or communicate under pressure, is invaluable for my continuous improvement and long-term development.",
+      "referenceTextZh": "通过提供与我可能在航线上面临的挑战直接相关的训练来使我受益。针对我核心能力的反馈，例如我如何管理压力或在压力下沟通，对我持续改进和长远发展是非常宝贵的。"
     },
     {
       "id": "opi-extra-304",
       "taskTitle": "缩略词-EBT-7",
       "audioText": "Can you give an example of an EBT-style scenario?",
       "audioTextZh": "你能举一个EBT风格的情景例子吗？",
-      "referenceText": "A classic EBT scenario wouldn't be just an engine failure. Instead, it might involve a combination of factors: you're dealing with a sick passenger, then you receive a conflicting ATC clearance while navigating around weather, all while managing a minor system degradation. This tests multiple competencies at once.\n一个典型的EBT情景不会仅仅是发动机失效。相反，它可能涉及多种因素的组合：你正在处理一名生病的乘客，随后在绕飞天气时收到了一个矛盾的ATC指令，同时还要管理一个轻微的系统性能降级。这能同时测试多种核心能力。"
+      "referenceText": "A classic EBT scenario wouldn't be just an engine failure. Instead, it might involve a combination of factors: you're dealing with a sick passenger, then you receive a conflicting ATC clearance while navigating around weather, all while managing a minor system degradation. This tests multiple competencies at once.",
+      "referenceTextZh": "一个典型的EBT情景不会仅仅是发动机失效。相反，它可能涉及多种因素的组合：你正在处理一名生病的乘客，随后在绕飞天气时收到了一个矛盾的ATC指令，同时还要管理一个轻微的系统性能降级。这能同时测试多种核心能力。"
     },
     {
       "id": "opi-extra-305",
       "taskTitle": "缩略词-EBT-8",
       "audioText": "What does 'Evidence-Based' mean in EBT?",
       "audioTextZh": "在EBT中，\"基于证据\"是什么意思？",
-      "referenceText": "'Evidence-Based' means that the training content and focus areas are not chosen arbitrarily. They are developed by analyzing vast amounts of safety data, incident reports, and normal operations to identify the most common and significant threats and errors that pilots actually encounter.\n\"基于证据\"是指训练内容和重点领域不是随意选择的。它们是通过分析大量的安全数据、事件报告和正常运营，以确定飞行员实际遇到的最常见和最重要的威胁与差错，从而制定出来的。"
+      "referenceText": "'Evidence-Based' means that the training content and focus areas are not chosen arbitrarily. They are developed by analyzing vast amounts of safety data, incident reports, and normal operations to identify the most common and significant threats and errors that pilots actually encounter.\n\".",
+      "referenceTextZh": "基于证据\"是指训练内容和重点领域不是随意选择的。它们是通过分析大量的安全数据、事件报告和正常运营，以确定飞行员实际遇到的最常见和最重要的威胁与差错，从而制定出来的。"
     },
     {
       "id": "opi-extra-306",
       "taskTitle": "缩略词-EBT-9",
       "audioText": "How does assessment work in EBT?",
       "audioTextZh": "在EBT中，评估是如何进行的？",
-      "referenceText": "In EBT, assessment is continuous and integrated into the scenario. The instructor observes how you apply the core competencies throughout the entire session. It's less about \"passing or failing a maneuver\" and more about \"demonstrating effective management of the overall situation.\"\n在EBT中，评估是持续的，并融入到情景中。教员观察你在整个训练过程中如何运用核心能力。它更侧重于\"展示对整体情况的有效管理\"，而不是\"通过或失败某个机动动作\"。"
+      "referenceText": "In EBT, assessment is continuous and integrated into the scenario. The instructor observes how you apply the core competencies throughout the entire session. It's less about \"passing or failing a maneuver\" and more about \"demonstrating effective management of the overall situation.\".",
+      "referenceTextZh": "在EBT中，评估是持续的，并融入到情景中。教员观察你在整个训练过程中如何运用核心能力。它更侧重于\"展示对整体情况的有效管理\"，而不是\"通过或失败某个机动动作\"。"
     },
     {
       "id": "opi-extra-307",
       "taskTitle": "缩略词-EBT-10",
       "audioText": "What is your personal opinion on EBT?",
       "audioTextZh": "你对EBT的个人看法是什么？",
-      "referenceText": "I strongly support the EBT concept. I believe it moves training closer to the reality of the flight deck. It develops not just technical pilots, but thinking aviators who are better equipped to ensure safety when things don't go exactly as planned, which is a crucial skill.\n我非常支持EBT理念。我相信它使训练更贴近飞行运行的现实。它培养的不仅仅是技术型的飞行员，更是有思想的航空人员，他们能更好地在事情未按计划发展时确保安全，这是一项至关重要的技能。"
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. I strongly support the EBT concept. I believe it moves training closer to the reality of the flight deck. It develops not just technical pilots, but thinking aviators who are better equipped to ensure safety when things don't go exactly as planned, which is a crucial skill.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。我非常支持EBT理念。我相信它使训练更贴近飞行运行的现实。它培养的不仅仅是技术型的飞行员，更是有思想的航空人员，他们能更好地在事情未按计划发展时确保安全，这是一项至关重要的技能。"
     },
     {
       "id": "opi-extra-308",
       "taskTitle": "缩略词-EBT-11",
       "audioText": "What topics do you have in the EBT?",
-      "audioTextZh": "在循证训练中,你们有哪些训练主题?",
-      "referenceText": "The training topics in EBT cover a wide range of core competencies required for flight operations, mainly including situational awareness training, which focuses on improving pilots' ability to perceive and understand the flight environment, aircraft status and potential risks; decision-making training, which simulates various complex flight scenarios to exercise pilots' ability to make correct and timely decisions under pressure; communication and coordination training, which enhances the effective communication and cooperation ability between pilots, as well as between pilots and air traffic controllers and cabin crew; emergency response training, which covers various emergency situations such as engine failure, hydraulic system failure, decompression, fire and bird strike, to improve pilots' emergency disposal skills; and human factor training, which helps pilots recognize and overcome the impact of human factors such as fatigue, stress and complacency on flight safety. These training topics are designed based on objective data and evidence to ensure that pilots can effectively improve their comprehensive professional capabilities.\n循证训练中的训练主题涵盖了飞行运行所需的各项核心胜任能力，主要包括情景意识训练，重点提升飞行员对飞行环境、飞机状态和潜在风险的感知与理解能力；决策能力训练，通过模拟各种复杂的飞行场景，锻炼飞行员在压力下做出正确、及时决策的能力；沟通协作训练，增强飞行员之间以及飞行员与空管、乘务员之间的有效沟通与协作能力；应急处置训练，涵盖发动机失效、液压系统故障、失压、起火、鸟击等各种应急情况，提高飞行员的应急处置技能；还有人为因素训练，帮助飞行员认识并克服疲劳、压力、自满等人为因素对飞行安全的影响。这些训练主题都是基于客观数据和证据设计的，确保飞行员能够有效提升综合专业能力。"
+      "audioTextZh": "在循证训练中,你们有哪些训练主题？",
+      "referenceText": "The training topics in EBT cover a wide range of core competencies required for flight operations, mainly including situational awareness training, which focuses on improving pilots' ability to perceive and understand the flight environment, aircraft status and potential risks; decision-making training, which simulates various complex flight scenarios to exercise pilots' ability to make correct and timely decisions under pressure; communication and coordination training, which enhances the effective communication and cooperation ability between pilots, as well as between pilots and air traffic controllers and cabin crew; emergency response training, which covers various emergency situations such as engine failure, hydraulic system failure, decompression, fire and bird strike, to improve pilots' emergency disposal skills; and human factor training, which helps pilots recognize and overcome the impact of human factors such as fatigue, stress and complacency on flight safety.",
+      "referenceTextZh": "循证训练中的训练主题涵盖了飞行运行所需的各项核心胜任能力，主要包括情景意识训练，重点提升飞行员对飞行环境、飞机状态和潜在风险的感知与理解能力；决策能力训练，通过模拟各种复杂的飞行场景，锻炼飞行员在压力下做出正确、及时决策的能力；沟通协作训练，增强飞行员之间以及飞行员与空管、乘务员之间的有效沟通与协作能力；应急处置训练，涵盖发动机失效、液压系统故障、失压、起火、鸟击等各种应急情况，提高飞行员的应急处置技能；还有人为因素训练，帮助飞行员认识并克服疲劳、压力、自满等人为因素对飞行安全的影响。这些训练主题都是基于客观数据和证据设计的，确保飞行员能够有效提升综合专业能力。"
     },
     {
       "id": "opi-extra-309",
       "taskTitle": "缩略词-EBT-12",
       "audioText": "What are the purpose of EBT?",
-      "audioTextZh": "循证训练的目的是什么?",
-      "referenceText": "The main purpose of EBT is to improve the core competencies and flight safety of pilots through a scientific and personalized training method. Firstly, it aims to identify the individual weaknesses and training needs of pilots based on objective data and evidence, and formulate targeted training plans to help pilots make up for their shortcomings and continuously improve their professional skills and abilities. Secondly, EBT focuses on cultivating pilots' comprehensive capabilities such as situational awareness, decision-making ability, communication and coordination skills and emergency response capabilities, which are crucial for dealing with complex and changing flight environments and ensuring flight safety. In addition, EBT also intends to optimize the training resources and improve the training effect and efficiency, avoiding the waste of training resources caused by the one-size-fits-all training method. Finally, through continuous training and improvement, EBT helps to reduce the occurrence of flight accidents and incidents, improve the overall safety level of the aviation industry, and ensure the safety of passengers, crew and aircraft.\n循证训练的主要目的是通过科学、个性化的训练方式，提升飞行员的核心胜任能力和飞行安全水平。首先，它旨在基于客观数据和证据，识别飞行员的个体薄弱环节和训练需求，制定有针对性的训练计划，帮助飞行员弥补不足，不断提升专业技能和能力。其次，循证训练注重培养飞行员的情景意识、决策能力、沟通协作能力和应急处置能力等综合素养，这些能力对于应对复杂多变的飞行环境、保障飞行安全至关重要。此外，循证训练还意在优化训练资源，提高训练效果和效率，避免因“一刀切”的训练方式造成训练资源的浪费。最后，通过持续的训练和改进，循证训练有助于减少飞行事故和事件的发生，提升航空业的整体安全水平，保障旅客、机组人员和飞机的安全。"
+      "audioTextZh": "循证训练的目的是什么？",
+      "referenceText": "The main purpose of EBT is to improve the core competencies and flight safety of pilots through a scientific and personalized training method. First, ly, it aims to identify the individual weaknesses and training needs of pilots based on objective data and evidence, and formulate targeted training plans to help pilots make up for their shortcomings and continuously improve their professional skills and abilities. Second, ly, EBT focuses on cultivating pilots' comprehensive capabilities such as situational awareness, decision-making ability, communication and coordination skills and emergency response capabilities, which are crucial for dealing with complex and changing flight environments and ensuring flight safety.",
+      "referenceTextZh": "循证训练的主要目的是通过科学、个性化的训练方式，提升飞行员的核心胜任能力和飞行安全水平。首先，它旨在基于客观数据和证据，识别飞行员的个体薄弱环节和训练需求，制定有针对性的训练计划，帮助飞行员弥补不足，不断提升专业技能和能力。其次，循证训练注重培养飞行员的情景意识、决策能力、沟通协作能力和应急处置能力等综合素养，这些能力对于应对复杂多变的飞行环境、保障飞行安全至关重要。此外，循证训练还意在优化训练资源，提高训练效果和效率，避免因“一刀切”的训练方式造成训练资源的浪费。最后，通过持续的训练和改进，循证训练有助于减少飞行事故和事件的发生，提升航空业的整体安全水平，保障旅客、机组人员和飞机的安全。"
     },
     {
       "id": "opi-extra-310",
       "taskTitle": "缩略词-EBT-13",
-      "audioText": "What are the advantages of EBT\ncompared to traditional training methods?",
-      "audioTextZh": "相较于传统训练方法,循证训练的优势是什么?",
-      "referenceText": "Compared with traditional training methods, EBT has many obvious advantages. Firstly, EBT is more targeted. Traditional training methods usually adopt a unified training plan for all pilots, ignoring individual differences. While EBT analyzes the training needs and weaknesses of each pilot based on objective data and evidence, and formulates personalized training plans, which can better help pilots make up for their shortcomings and improve training efficiency. Secondly, EBT focuses on practical capabilities. It pays more attention to cultivating pilots' core competencies such as situational awareness, decision-making ability and emergency response capabilities, which are more in line with the actual needs of flight operations. In contrast, traditional training methods may pay more attention to the mastery of theoretical knowledge and basic operating procedures, and the connection with actual flight scenarios is not close enough. Thirdly, EBT has continuous optimization. Through continuous collection and analysis of training data and flight operation data, EBT can continuously adjust and optimize the training content and methods to adapt to the changes and developments of the aviation industry and the individual progress of pilots. Traditional training methods are relatively fixed and difficult to update and adjust in a timely manner. Finally, EBT can improve training efficiency and save training resources. By targeting the weak links of pilots, EBT avoids unnecessary repetitive training, making the training more efficient and reducing the waste of training time and costs.\n相较于传统训练方法，循证训练具有诸多明显优势。首先，循证训练更具针对性。传统训练方法通常对所有飞行员采用统一的训练计划，忽视了个体差异。而循证训练基于客观数据和证据，分析每位飞行员的训练需求和薄弱环节，制定个性化的训练计划，能更好地帮助飞行员弥补不足，提高训练效率。其次，循证训练注重实际能力培养。它更关注飞行员情景意识、决策能力、应急处置能力等核心胜任能力的培养，更符合飞行运行的实际需求。相比之下，传统训练方法可能更注重理论知识和基础操作程序的掌握，与实际飞行场景的结合不够紧密。再次，循证训练具有持续优化性。通过持续收集和分析训练数据及飞行运行数据，循证训练能够不断调整和优化训练内容与方法，以适应航空业的变化发展和飞行员的个体进步。传统训练方法则相对固定，难以及时更新和调整。最后，循证训练能提高训练效率，节约训练资源。通过针对飞行员的薄弱环节进行训练，避免了不必要的重复训练，使训练更具实效性，同时减少了训练时间和成本的浪费。"
+      "audioText": "What are the advantages of EBT compared to traditional training methods?",
+      "audioTextZh": "相较于传统训练方法,循证训练的优势是什么？",
+      "referenceText": "Compared with traditional training methods, EBT has many obvious advantages. First, ly, EBT is more targeted. Traditional training methods usually adopt a unified training plan for all pilots, ignoring individual differences. While EBT analyzes the training needs and weaknesses of each pilot based on objective data and evidence, and formulates personalized training plans, which can better help pilots make up for their shortcomings and improve training efficiency. Second, ly, EBT focuses on practical capabilities. It pays more attention to cultivating pilots' core competencies such as situational awareness, decision-making ability and emergency response capabilities, which are more in line with the actual needs of flight operations.",
+      "referenceTextZh": "相较于传统训练方法，循证训练具有诸多明显优势。首先，循证训练更具针对性。传统训练方法通常对所有飞行员采用统一的训练计划，忽视了个体差异。而循证训练基于客观数据和证据，分析每位飞行员的训练需求和薄弱环节，制定个性化的训练计划，能更好地帮助飞行员弥补不足，提高训练效率。其次，循证训练注重实际能力培养。它更关注飞行员情景意识、决策能力、应急处置能力等核心胜任能力的培养，更符合飞行运行的实际需求。相比之下，传统训练方法可能更注重理论知识和基础操作程序的掌握，与实际飞行场景的结合不够紧密。再次，循证训练具有持续优化性。通过持续收集和分析训练数据及飞行运行数据，循证训练能够不断调整和优化训练内容与方法，以适应航空业的变化发展和飞行员的个体进步。传统训练方法则相对固定，难以及时更新和调整。最后，循证训练能提高训练效率，节约训练资源。通过针对飞行员的薄弱环节进行训练，避免了不必要的重复训练，使训练更具实效性，同时减少了训练时间和成本的浪费。"
     }
   ]
 }

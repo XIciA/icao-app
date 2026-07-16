@@ -9,35 +9,40 @@
       "taskTitle": "运行-复飞-1",
       "audioText": "What may cause pilot go around?",
       "audioTextZh": "哪些情况可能导致飞行员复飞？",
-      "referenceText": "There are some reasons for going around. For example, runway not in sight, no contact at minimum, windshear, localizer fluctuation and so on.\n复飞有一些原因。例如，看不到跑道、在最低标准时未建立有效联系、遭遇风切变、航向台信号波动等等。"
+      "referenceText": "There are some reasons for going around. For example, runway not in sight, no contact at minimum, windshear, localizer fluctuation and so on.",
+      "referenceTextZh": "复飞有一些原因。例如，看不到跑道、在最低标准时未建立有效联系、遭遇风切变、航向台信号波动等等。"
     },
     {
       "id": "opi-core-456",
       "taskTitle": "运行-复飞-2",
       "audioText": "What are you procedures for going around?",
-      "audioTextZh": "你的复飞程序是什么",
-      "referenceText": "Push throttle to TOGA (takeoff/go-around) thrust, retract landing gear, adjust flaps to go-around configuration, pitch up to climb attitude, follow runway heading, climb to designated altitude per missed approach procedure, and report to ATC.\n将油门推至复飞（TOGA）推力，收起起落架，调整襟翼至复飞构型，抬头至爬升姿态，沿跑道航向飞行，按复飞程序爬升至指定高度，并向空管报告。"
+      "audioTextZh": "你的复飞程序是什么？",
+      "referenceText": "Push throttle to TOGA (takeoff or go-around) thrust, retract landing gear, adjust flaps to go-around configuration, pitch up to climb attitude, follow runway heading, climb to designated altitude per missed approach procedure, and report to ATC.",
+      "referenceTextZh": "将油门推至复飞（TOGA）推力，收起起落架，调整襟翼至复飞构型，抬头至爬升姿态，沿跑道航向飞行，按复飞程序爬升至指定高度，并向空管报告。"
     },
     {
       "id": "opi-core-457",
       "taskTitle": "运行-复飞-3",
       "audioText": "When pilots hear \"go around, windshear ahead\" during approach, how do they perform the wind shear recovery maneuvers?",
       "audioTextZh": "进近阶段飞行员听到 “复飞，前方有风切变” 时，如何执行风切变改出机动？",
-      "referenceText": "We will go around immediately. Press TOGA, use full power, pitch up 15 degrees, maintain configuration till recovered from windshear and pay close attention to speed, altitude and vertical speed.\n我们会立即复飞。按压起飞 / 复飞（TOGA）电门，使用全推力，机头向上仰 15 度，保持当前形态直至脱离风切变影响，同时密切关注速度、高度和垂直速度。"
+      "referenceText": "I would go around immediately. Press TOGA, use full power, pitch up 15 degrees, maintain configuration till recovered from windshear and pay close attention to speed, altitude and vertical speed.",
+      "referenceTextZh": "我们会立即复飞。按压起飞 / 复飞（TOGA）电门，使用全推力，机头向上仰 15 度，保持当前形态直至脱离风切变影响，同时密切关注速度、高度和垂直速度。"
     },
     {
       "id": "opi-core-458",
       "taskTitle": "运行-复飞-4",
       "audioText": "In what situation would you decide to go around?",
-      "audioTextZh": "在什么情况下会复飞?",
-      "referenceText": "Go around is required if crosswind/tailwind exceeds limits, unstable approach, high-speed approach, runway incursion, landing gear malfunction, system failure, poor visibility, or ATC instruction.\n当侧风/顺风超过限制、不稳定进近、高速进近、跑道入侵、起落架故障、系统失效、能见度差或收到空管指令时，需执行复飞。"
+      "audioTextZh": "在什么情况下会复飞？",
+      "referenceText": "Go around is required if crosswind or tailwind exceeds limits, unstable approach, high-speed approach, runway incursion, landing gear malfunction, system failure, poor visibility, or ATC instruction.",
+      "referenceTextZh": "当侧风/顺风超过限制、不稳定进近、高速进近、跑道入侵、起落架故障、系统失效、能见度差或收到空管指令时，需执行复飞。"
     },
     {
       "id": "opi-core-459",
       "taskTitle": "运行-复飞-5",
       "audioText": "If the aircraft is above the glide slope one dot blow one thousand feet, does the pilot need to go around?",
-      "audioTextZh": "如果你的飞机在1000英尺以下时,高于下滑道1点,你觉得飞行员需要复飞吗?",
-      "referenceText": "Not necessarily. The pilot can attempt to correct gently if the deviation is controllable, speed is normal, and runway is visible. If correction fails or other unsafe conditions exist (for example low visibility), go around immediately.\n不一定。如果偏差可控、速度正常且能看到跑道，飞行员可尝试温和修正；若修正无效或存在其他不安全因素（如低能见度），需立即复飞。"
+      "audioTextZh": "如果你的飞机在1000英尺以下时,高于下滑道1点,你觉得飞行员需要复飞吗？",
+      "referenceText": "Not necessarily. The pilot can attempt to correct gently if the deviation is controllable, speed is normal, and runway is visible. If correction fails or other unsafe conditions exist (for example low visibility), go around immediately.",
+      "referenceTextZh": "不一定。如果偏差可控、速度正常且能看到跑道，飞行员可尝试温和修正；若修正无效或存在其他不安全因素（如低能见度），需立即复飞。"
     }
   ]
 }

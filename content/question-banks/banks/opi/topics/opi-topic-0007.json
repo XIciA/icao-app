@@ -2,358 +2,407 @@
   "categoryId": "opi-category-04",
   "id": "opi-topic-0007",
   "name": "CRM与机组协作",
-  "declaredCardCount": 51,
+  "declaredCardCount": 50,
   "cards": [
     {
       "id": "opi-core-135",
       "taskTitle": "人的因素-CRM与机组协作-1",
       "audioText": "What's your understanding of CRM?",
-      "audioTextZh": "你对CRM的理解是什么？\nWhat is the definition of CRM?\nCRM（机组资源管理）的定义是什么？",
-      "referenceText": "（1）CRM stands for Crew Resource Management. It emphasizes on the teamwork, communication, decision-making and maintain situational awareness.\nCRM代表机组资源管理。它强调团队合作、沟通、决策和保持态势感知。\n（2）I think CRM is very important. Good CRM can increase our situation awareness, reduce our workload, reduce the human errors and ensure the flight safety. Poor CRM may cause accidents or incidents.\n 我认为CRM非常重要。好的CRM可以提高我们的态势感知，减少我们的工作量，减少人为错误，确保飞行安全。糟糕的CRM可能会导致事故或事件。\n（3） CRM (Crew Resource Management) emphasizes effective communication, cooperation, and teamwork among crew members. It covers task sharing, decision-making, situation awareness, and utilizing all on-board and ground resources to reduce human errors and ensure flight safety.\n机组资源管理CRM强调机组人员之间的有效沟通、协作和团队合作，包括任务分配、决策制定、情景意识以及利用所有机上和地面资源，以减少人为失误并确保飞行安全。\n(4)CRM stands for Crew Resource Management. It is a set of training and procedures to improve teamwork and communication in the cockpit. CRM focuses on using all resources – people, information, equipment – to enhance safety. Key elements: leadership, decision-making, communication, situational awareness, workload management. CRM encourages pilots to speak up, listen to each other, and work as a team. It reduces stress and fatigue effects, prevents errors, and improves emergency handling. CRM has greatly improved global aviation safety.\nCRM 即机组资源管理，是一套提升驾驶舱团队协作与沟通的培训与程序。其核心是利用所有可用资源（人员、信息、设备）提升安全水平，关键要素包括领导力、决策、沟通、情景意识、工作负荷管理。CRM 鼓励飞行员主动指出问题、相互倾听、团队协作，降低压力与疲劳的负面影响，减少差错，提升应急处置能力。自推行以来，CRM 显著提升了全球民航安全水平。"
+      "audioTextZh": "你对CRM的理解是什么？",
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. CRM stands for Crew Resource Management. It is a set of training and procedures to improve teamwork and communication in the cockpit. CRM focuses on using all resources – people, information, equipment – to enhance safety. Key elements: leadership, decision-making, communication, situational awareness, workload management. CRM encourages pilots to speak up, listen to each other, and work as a team. It reduces stress and fatigue effects, prevents errors, and improves emergency handling.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。即机组资源管理，是一套提升驾驶舱团队协作与沟通的培训与程序。其核心是利用所有可用资源（人员、信息、设备）提升安全水平，关键要素包括领导力、决策、沟通、情景意识、工作负荷管理。CRM 鼓励飞行员主动指出问题、相互倾听、团队协作，降低压力与疲劳的负面影响，减少差错，提升应急处置能力。自推行以来，CRM 显著提升了全球民航安全水平。"
     },
     {
       "id": "opi-core-136",
       "taskTitle": "人的因素-CRM与机组协作-2",
-      "audioText": "2. The pilot communicate with ATC",
-      "referenceText": "Good communication between the pilot and ATC is very important for flight safety. They should have good communication. They should use the standard words and phrases, speak clearly and loudly. If they have any problem or in doubt, they should verify. What's more, for flight information and weather information, they should advise each other timely."
+      "audioText": "How should pilots communicate effectively with air traffic controllers?",
+      "audioTextZh": "飞行员应如何与空中交通管制员进行有效沟通？",
+      "referenceText": "Good communication between the pilot and ATC is very important for flight safety. They should have good communication. They should use the standard words and phrases, speak clearly and loudly. If they have any problem or in doubt, they should verify. What's more, for flight information and weather information, they should share information promptly.",
+      "referenceTextZh": "飞行员与空中交通管制员之间的良好沟通对飞行安全非常重要。飞行员应使用标准用语，清楚、简洁地报告信息，并认真监听和正确复诵许可。如果信息不清楚或存在疑问，应立即请求澄清。双方还应及时交换影响飞行的天气、交通和运行信息。"
     },
     {
       "id": "opi-core-137",
       "taskTitle": "人的因素-CRM与机组协作-3",
-      "audioText": "3. The captain communicate with the First Officer",
-      "referenceText": "Good communication between the captain and FO is very important for flight. They should have goodcommunication to exchange the ideas. They should follow the SOP and company policy. At last, if they have different opinions, the FO should follow the captain's instructions, because the captain is the pilot-in-command."
+      "audioText": "How should a captain communicate effectively with the first officer?",
+      "audioTextZh": "机长应如何与副驾驶进行有效沟通？",
+      "referenceText": "Good communication between the captain and FO is very important for flight. They should have good communication to exchange the ideas. They should follow the applicable SOP and company policy. At last, if they have different opinions, the FO should follow the captain's instructions, because the captain is the pilot-in-command.",
+      "referenceTextZh": "机长与副驾驶之间应保持开放、专业的沟通。双方应共享重要信息、交叉检查关键操作，并按照标准操作程序明确分工。如果副驾驶发现风险，应及时、明确地提出；机长则应认真听取意见并作出安全决定。良好的驾驶舱资源管理依赖相互尊重，而不是单向服从。"
     },
     {
       "id": "opi-core-138",
       "taskTitle": "人的因素-CRM与机组协作-4",
-      "audioText": "4. The pilot communicate with the cabin crew",
-      "referenceText": "Good communication between the pilot and CC is very important for flight safety. They should respect each other and respect their opinions. The captain should lead the whole crew to follow the SOP and company policy. The CC should listen to the captain's instructions."
+      "audioText": "How should pilots communicate effectively with the cabin crew?",
+      "audioTextZh": "飞行员应如何与客舱机组进行有效沟通？",
+      "referenceText": "Good communication between the pilot and CC is very important for flight safety. They should respect each other and respect their opinions. The captain should lead the whole crew to follow the applicable SOP and company policy. The CC should listen to the captain's instructions.",
+      "referenceTextZh": "飞行员与客舱机组之间的沟通对正常运行和紧急处置都很重要。双方应在飞行前完成联合简令，并及时交换与安全、天气、旅客和飞机状态有关的信息。出现异常情况时，驾驶舱应给出清楚指令，客舱机组应报告客舱状况并执行相应程序。相互尊重和闭环沟通有助于避免误解。"
     },
     {
       "id": "opi-core-139",
       "taskTitle": "人的因素-CRM与机组协作-5",
-      "audioText": "5. The pilot cooperate with the ATC",
-      "referenceText": "Good cooperation between the pilot and ATC is very important for flight safety. During normal operation, they should have good communication. They should use standard words and phrases, speak clearly and loudly. If they have any problem or in doubt, they should verify. What's more, for flight information and weather information, they should advise each other timely. During abnormal situation, the pilot should advise ATC of the situation, the ATC should provide timely assistance for the pilot."
+      "audioText": "How should pilots cooperate effectively with air traffic controllers?",
+      "audioTextZh": "飞行员应如何与空中交通管制员有效协作？",
+      "referenceText": "Good cooperation between the pilot and ATC is very important for flight safety. During normal operation, they should have good communication. They should use standard words and phrases, speak clearly and loudly. If they have any problem or in doubt, they should verify. What's more, for flight information and weather information, they should share information promptly. During abnormal situation, the pilot should advise ATC of the situation, the ATC should provide timely assistance for the pilot.",
+      "referenceTextZh": "飞行员与空中交通管制员的协作建立在清楚、及时和标准化的通信上。正常运行中，飞行员应准确报告位置和意图，正确复诵许可，并在有疑问时请求澄清。异常情况下，飞行员应尽早说明飞机状态、意图和所需协助，管制员则可提供间隔、优先权和相关信息。双方始终以安全运行为共同目标。"
     },
     {
       "id": "opi-core-146",
       "taskTitle": "人的因素-CRM与机组协作-6",
       "audioText": "Why do you think a pilot should know something about flight attendants working in the cabin?",
       "audioTextZh": "你认为飞行员为什么应该了解在机舱工作的空乘人员？",
-      "referenceText": "Because pilot and CC should cooperate with each other during flight operation. If pilot know something about CC's working, the pilot can help them and give them proper instructions, especially during emergency to ensure flight safety.\n因为飞行员和CC在飞行操作中应该相互配合。如果飞行员知道CC的工作情况，飞行员可以帮助他们并给予他们适当的指示，特别是在紧急情况下，以确保飞行安全。"
+      "referenceText": "Because pilot and CC should cooperate with each other during flight operation. If pilot know something about CC's working, the pilot can help them and give them proper instructions, especially during emergency to ensure flight safety.",
+      "referenceTextZh": "因为飞行员和CC在飞行操作中应该相互配合。如果飞行员知道CC的工作情况，飞行员可以帮助他们并给予他们适当的指示，特别是在紧急情况下，以确保飞行安全。"
     },
     {
       "id": "opi-core-147",
       "taskTitle": "人的因素-CRM与机组协作-7",
-      "audioText": "What does CRM stand for?\nCRM",
+      "audioText": "What does CRM stand for?",
       "audioTextZh": "代表什么？",
-      "referenceText": "CRM stands for Crew Resource Management. CRM is a process using all available resources such as equipment, procedures, and people to achieve a safe and efficient operation of flight.\nCRM代表机组资源管理(Crew Resource Management)。CRM就足利用一切可以利用的资源包括设备，程序和人员等实现安全高效的飞行运行"
+      "referenceText": "CRM stands for Crew Resource Management. CRM is a process using all available resources such as equipment, procedures, and people to achieve a safe and efficient operation of flight.",
+      "referenceTextZh": "代表机组资源管理(Crew Resource Management)。CRM就足利用一切可以利用的资源包括设备，程序和人员等实现安全高效的飞行运行。"
     },
     {
       "id": "opi-core-148",
       "taskTitle": "人的因素-CRM与机组协作-8",
       "audioText": "Can you tell me an example of bad CRM leading to an accident or incident?",
       "audioTextZh": "你能告诉我一个糟糕CRM导致的事故或事故征候吗？",
-      "referenceText": "Yes, I know of accidents caused by poor Crew Resource Management (CRM). For instance, on December 28, 1978, United Airlines Flight 173 had a landing gear issue during approach. The captain fixated on the landing gear problem for an hour and ignored the first officer’s warnings about fuel depletion until the engines flamed out. Eventually, the aircraft crashed.\n是的，我了解因机组资源管理（CRM）不善导致的事故。比如 1978 年 12 月 28 日，联合航空 173 号班机进近时起落架出现故障，机长执着于解决起落架问题长达一小时，无视副驾驶关于燃油耗尽的提醒，直到发动机熄火，最终飞机坠毁 。"
+      "referenceText": "Yes, I know of accidents caused by poor Crew Resource Management (CRM). For instance, on December 28, 1978, United Airlines Flight 173 had a landing gear issue during approach. The captain fixated on the landing gear problem for an hour and ignored the first officer’s warnings about fuel depletion until the engines flamed out. Eventually, the aircraft crashed.",
+      "referenceTextZh": "是的，我了解因机组资源管理（CRM）不善导致的事故。比如 1978 年 12 月 28 日，联合航空 173 号班机进近时起落架出现故障，机长执着于解决起落架问题长达一小时，无视副驾驶关于燃油耗尽的提醒，直到发动机熄火，最终飞机坠毁。"
     },
     {
       "id": "opi-core-149",
       "taskTitle": "人的因素-CRM与机组协作-9",
       "audioText": "What's your suggestion to improve CRM training in your company?",
       "audioTextZh": "为了提高公司CRM训练，你有什么建议？",
-      "referenceText": "There are many things we can do to improve our company CRM training. First, the company can provide more chances of CRM training to pilots such as simulator training. Second, the crew members should work as a team and keep good communication and cooperation with each other to ensure the flight safety.\n我们可以做很多事情提高公司CRM训练。首先，公司可以提供更多的CRM训练，比如模拟机训练。其次，机组人员之间应该团队协作，相互保持良好的沟通与协作，确保飞行安全。"
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. There are many things pilots can do to improve our company CRM training. First, the company can provide more chances of CRM training to pilots such as simulator training. Second, the crew members should work as a team and keep good communication and cooperation with each other to ensure the flight safety.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。我们可以做很多事情提高公司CRM训练。首先，公司可以提供更多的CRM训练，比如模拟机训练。其次，机组人员之间应该团队协作，相互保持良好的沟通与协作，确保飞行安全。"
     },
     {
       "id": "opi-core-150",
       "taskTitle": "人的因素-CRM与机组协作-10",
       "audioText": "Have you ever had the CRM training?",
-      "audioTextZh": "你参加过CRM训练吗？多久培训一次",
-      "referenceText": "Yes. I have had the CRM training. I have CRM training once a Year.\n是的。我参加过CRM训练，每年参加一次。"
+      "audioTextZh": "你参加过CRM训练吗？",
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. Yes. I have had the CRM training. I have CRM training once a Year.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。是的。我参加过CRM训练，每年参加一次。"
     },
     {
       "id": "opi-core-151",
       "taskTitle": "人的因素-CRM与机组协作-11",
       "audioText": "What topics do you discuss during CRM training?",
       "audioTextZh": "在CRM培训里，你们讨论哪些话题？",
-      "referenceText": "In CRM training, we will discuss how to make a good use of the cockpit resources, how to improve the relationship between crew members, and how to avoid human errors inflight.\n在CRM培训里，我们讨论如何好好利用驾驶舱资源，如何巩固机组成员关系，以及如何避免飞行中的人为错误。"
+      "referenceText": "In CRM training, I would discuss how to make a good use of the cockpit resources, how to improve the relationship between crew members, and how to avoid human errors inflight.",
+      "referenceTextZh": "在CRM培训里，我们讨论如何好好利用驾驶舱资源，如何巩固机组成员关系，以及如何避免飞行中的人为错误。"
     },
     {
       "id": "opi-core-152",
       "taskTitle": "人的因素-CRM与机组协作-12",
       "audioText": "Does your company provide the joint training of CRM for the flight crew and cabin crew?",
       "audioTextZh": "你公司提供飞行员和空乘的CRM联合培训吗？",
-      "referenceText": "Yes. My company provides this kind of training. I think this training is very important. It can help pilots and cabin crew to improve the communication and cooperation\n是的，我的公司提供这样的培训。我认为这样的培训十分重要。它可以帮助飞行员和空乘增强合作和理解。"
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. Yes. My company provides this kind of training. I think this training is very important. It can help pilots and cabin crew to improve the communication and cooperation.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。是的，我的公司提供这样的培训。我认为这样的培训十分重要。它可以帮助飞行员和空乘增强合作和理解。"
     },
     {
       "id": "opi-core-153",
       "taskTitle": "人的因素-CRM与机组协作-13",
-      "audioText": "What drills do you do? Can you give some examples?",
-      "audioTextZh": "你们做什么练习？能给一些例子吗？",
-      "referenceText": "We will have the emergency evacuation training together. For example, we will cooperate with each other to let the passenger leave the aircraft as soon as possible.\n我们一起做紧急撤离的培训。例如，我们互相合作让乘客尽快离开飞机。"
+      "audioText": "What drills do you do?",
+      "audioTextZh": "你们做什么练习？",
+      "referenceText": "I would have the emergency evacuation training together. For example, I would cooperate with each other to let the passenger leave the aircraft as soon as possible.",
+      "referenceTextZh": "我们一起做紧急撤离的培训。例如，我们互相合作让乘客尽快离开飞机。"
     },
     {
       "id": "opi-core-154",
       "taskTitle": "人的因素-CRM与机组协作-14",
       "audioText": "Who do you think should be included in the joint training?",
       "audioTextZh": "你认为联合训练里应该包括哪些人？",
-      "referenceText": "I think the joint training should include the pilots, flight attendants and the ground staff\n我认为联合训练里应该包括飞行员，空乘和地面人员"
+      "referenceText": "I think the joint training should include the pilots, flight attendants and the ground staff.",
+      "referenceTextZh": "我认为联合训练里应该包括飞行员，空乘和地面人员。"
     },
     {
       "id": "opi-core-155",
       "taskTitle": "人的因素-CRM与机组协作-15",
       "audioText": "Do you think joint CRM training is an efficient way to ensure flight safety?",
       "audioTextZh": "你认为联合CRM培训是有效的确保飞行安全的方法吗？",
-      "referenceText": "Yes. I think so. Joint CRM training is very important. It includes the pilots, flight attendants and ground staff. We can practice how to cooperate with each other. In emergency situations, good cooperation can help passengers to leave the emergency situation quickly.是的。我认为是这样的，联合CRM培训非常重要。它包括飞行员，空乘和地面人员。我们训练如何互相合作。在紧急情况下，良好的合作可以帮助乘客尽快离开危险情况。"
+      "referenceText": "Yes. I think so. Joint CRM training is very important. It includes the pilots, flight attendants and ground staff. pilots can practice how to cooperate with each other. In emergency situations, good cooperation can help passengers to leave the emergency situation quickly.",
+      "referenceTextZh": "是的。我认为是这样的，联合CRM培训非常重要。它包括飞行员，空乘和地面人员。我们训练如何互相合作。在紧急情况下，良好的合作可以帮助乘客尽快离开危险情况。"
     },
     {
       "id": "opi-core-156",
       "taskTitle": "人的因素-CRM与机组协作-16",
-      "audioText": "Have you ever met a captain or first officer who is\ndifficult to work with? If so, please say something\nabout it.",
-      "audioTextZh": "你是否遇到过难以合作的机长 或 副驾驶？若有，请说明情况。",
-      "referenceText": "No, I have not met such person before. All the crew members are easy going.\n没有遇到过。所有机组人员都很容易相处。\n\nNo, I haven’t. I believe effective communication and respect are key. If encountered, I’d listen to their opinions, clarify differences based on SOP and safety principles, and prioritize teamwork to ensure flight safety.\n没有。我认为有效沟通和相互尊重是关键。若遇到，我会倾听其意见，基于标准操作程序和安全原则澄清分歧，以团队合作为重，确保飞行安全。"
+      "audioText": "Have you ever met a captain or first officer who is difficult to work with, and if so, please say something about it?",
+      "audioTextZh": "你是否遇到过难以合作的机长 或 副驾驶？",
+      "referenceText": "This is a sample answer that should be adapted to the speaker’s real experience. No, I haven’t. I believe effective communication and respect are key. If encountered, I’d listen to their opinions, clarify differences based on SOP and safety principles, and prioritize teamwork to ensure flight safety.",
+      "referenceTextZh": "这是一个应根据答题者真实经历调整的示范回答。没有。我认为有效沟通和相互尊重是关键。若遇到，我会倾听其意见，基于标准操作程序和安全原则澄清分歧，以团队合作为重，确保飞行安全。"
     },
     {
       "id": "opi-core-157",
       "taskTitle": "人的因素-CRM与机组协作-17",
-      "audioText": "How would you cooperate with a tough\ncaptain or quiet first officer?",
+      "audioText": "How would you cooperate with a tough captain or quiet first officer?",
       "audioTextZh": "如何与严厉的机长 或 沉默的副驾驶合作？",
-      "referenceText": "During the flight I think the most important thing is to ensure flight safety, so teamwork is very important. Good teamwork can help the crew make right decisions and reduce errors. In the cockpit I will focus on my own responsibility, and at the same time cooperate with other crew members. When we have different ideas on certain procedures, we will follow SOP.\n飞行中，保障飞行安全是首要任务，因此团队协作至关重要。良好的协作能帮助机组做出正确决策，减少失误。在驾驶舱内，我会专注于自身职责，同时积极配合其他机组人员；若对某些程序有不同意见，会遵循 SOP 执行。"
+      "referenceText": "During the flight I think the most important thing is to ensure flight safety, so teamwork is very important. Good teamwork can help the crew make right decisions and reduce errors. In the cockpit I will focus on my own responsibility, and at the same time cooperate with other crew members. When we have different ideas on certain procedures, I would follow SOP.",
+      "referenceTextZh": "飞行中，保障飞行安全是首要任务，因此团队协作至关重要。良好的协作能帮助机组做出正确决策，减少失误。在驾驶舱内，我会专注于自身职责，同时积极配合其他机组人员；若对某些程序有不同意见，会遵循 SOP 执行。"
     },
     {
       "id": "opi-core-158",
       "taskTitle": "人的因素-CRM与机组协作-18",
-      "audioText": "Did you ever have the training with\nflight attendants?",
-      "audioTextZh": "你们和乘务组一起训练过吗?",
-      "referenceText": "Yes, I have participated in joint training with flight attendants during my flight training. This kind of joint training mainly includes emergency evacuation drills, cooperation in handling in-flight medical emergencies, passenger management and other subjects. Through this training, I have a better understanding of the work content and responsibilities of flight attendants, and learned how to cooperate effectively with them in emergency situations to ensure the safety of passengers and the smooth progress of the flight. This kind of joint training is very important for improving the coordination and emergency response capabilities of the entire crew.是的，我在飞行训练期间参加过与乘务组的联合训练。这种联合训练主要包括应急撤离演练、机上医疗紧急情况处置配合、旅客管理等科目。通过训练，我更清楚地了解了乘务员的工作内容和职责，学会了在应急情况下如何与他们进行有效配合，以保障旅客的安全和飞行的顺利进行。这种联合训练对于提高整个机组的协同配合能力和应急处置能力非常重要。"
+      "audioText": "Did you ever have the training with flight attendants?",
+      "audioTextZh": "你们和乘务组一起训练过吗？",
+      "referenceText": "Yes, I have participated in joint training with flight attendants during my flight training. This kind of joint training mainly includes emergency evacuation drills, cooperation in handling in-flight medical emergencies, passenger management and other subjects. Through this training, I have a better understanding of the work content and responsibilities of flight attendants, and learned how to cooperate effectively with them in emergency situations to ensure the safety of passengers and the smooth progress of the flight. This kind of joint training is very important for improving the coordination and emergency response capabilities of the entire crew.",
+      "referenceTextZh": "是的，我在飞行训练期间参加过与乘务组的联合训练。这种联合训练主要包括应急撤离演练、机上医疗紧急情况处置配合、旅客管理等科目。通过训练，我更清楚地了解了乘务员的工作内容和职责，学会了在应急情况下如何与他们进行有效配合，以保障旅客的安全和飞行的顺利进行。这种联合训练对于提高整个机组的协同配合能力和应急处置能力非常重要。"
     },
     {
       "id": "opi-core-159",
       "taskTitle": "人的因素-CRM与机组协作-19",
-      "audioText": "What are the subjects you will\npractice with flight attendants\nduring the training?",
-      "audioTextZh": "和机组训练时,你们会训练哪些科目?",
-      "referenceText": "When training with the cabin crew, the main subjects we practice include emergency evacuation procedures, in which we simulate various emergency situations such as aircraft fire, decompression and landing gear failure, and practice the coordination and operation of emergency evacuation between pilots and cabin crew; handling of in-flight medical emergencies, such as how to cooperate with cabin crew to provide first aid to sick or injured passengers, and when to decide to divert due to medical emergencies; management of unruly passengers, learning how to work with cabin crew to maintain cabin order and handle conflicts between passengers; and communication and coordination during normal flight, such as how to conduct effective information communication between pilots and cabin crew during takeoff, cruise and landing phases to ensure the smooth progress of the flight.\n和机组训练时，我们主要练习的科目包括应急撤离程序，模拟飞机起火、失压、起落架故障等各种应急情况，练习飞行员与机组人员之间应急撤离的配合与操作；机上医疗紧急情况处置，如如何与机组人员配合为患病或受伤的旅客提供急救，以及在什么情况下因医疗紧急情况决定改航；不服从管理的旅客处置，学习如何与机组人员协作维护客舱秩序，处理旅客之间的冲突；还有正常飞行中的沟通协作，如在起飞、巡航、降落等阶段，飞行员与机组人员如何进行有效的信息沟通，确保飞行顺利进行。"
+      "audioText": "What are the subjects you will practice with flight attendants during the training?",
+      "audioTextZh": "和机组训练时,你们会训练哪些科目？",
+      "referenceText": "When training with the cabin crew, the main subjects we practice include emergency evacuation procedures, in which we simulate various emergency situations such as aircraft fire, decompression and landing gear failure, and practice the coordination and operation of emergency evacuation between pilots and cabin crew; handling of in-flight medical emergencies, such as how to cooperate with cabin crew to provide first aid to sick or injured passengers, and when to decide to divert due to medical emergencies; management of unruly passengers, learning how to work with cabin crew to maintain cabin order and handle conflicts between passengers; and communication and coordination during normal flight, such as how to conduct effective information communication between pilots and cabin crew during takeoff, cruise and landing phases to ensure the smooth progress of the flight.",
+      "referenceTextZh": "和机组训练时，我们主要练习的科目包括应急撤离程序，模拟飞机起火、失压、起落架故障等各种应急情况，练习飞行员与机组人员之间应急撤离的配合与操作；机上医疗紧急情况处置，如如何与机组人员配合为患病或受伤的旅客提供急救，以及在什么情况下因医疗紧急情况决定改航；不服从管理的旅客处置，学习如何与机组人员协作维护客舱秩序，处理旅客之间的冲突；还有正常飞行中的沟通协作，如在起飞、巡航、降落等阶段，飞行员与机组人员如何进行有效的信息沟通，确保飞行顺利进行。"
     },
     {
       "id": "opi-core-160",
       "taskTitle": "人的因素-CRM与机组协作-20",
-      "audioText": "Why do pilots need the joint\ntraining with flight attendants?",
-      "audioTextZh": "飞行员为什么需要与乘务员进行联合训练?",
-      "referenceText": "Pilots need to conduct joint training with flight attendants mainly because the flight crew is a whole, and the close cooperation between pilots and flight attendants is crucial to ensuring flight safety and the quality of passenger services. Firstly, in emergency situations, such as aircraft fire, decompression, emergency evacuation, etc., pilots and flight attendants need to have a clear division of labor and close cooperation to quickly and effectively respond to emergencies, minimize losses, and ensure the safety of passengers and crew. Secondly, joint training can help pilots and flight attendants better understand each other's work content, responsibilities and operating procedures, avoid misunderstandings and coordination problems in actual work, and improve work efficiency. In addition, joint training can also enhance the team cohesion of the flight crew, make everyone more familiar with each other's working methods and habits, and establish a good cooperative relationship, which is conducive to the smooth progress of daily flight work and the handling of various complex situations. Finally, joint training is also a requirement of civil aviation regulations to ensure that the entire flight crew has the necessary coordination and emergency response capabilities.\n飞行员需要与乘务员进行联合训练，主要是因为机组是一个整体，飞行员与乘务员之间的密切配合对于保障飞行安全和旅客服务质量至关重要。首先，在应急情况下，如飞机起火、失压、应急撤离等，飞行员和乘务员需要分工明确、密切协作，才能快速有效地应对突发状况，将损失降到最低，保障旅客和机组人员的安全。其次，联合训练可以帮助飞行员和乘务员更好地了解彼此的工作内容、职责和操作程序，避免在实际工作中出现误解和协作问题，提高工作效率。此外，联合训练还能增强机组的团队凝聚力，让大家更熟悉彼此的工作方式和习惯，建立良好的合作关系，这有利于日常飞行工作的顺利开展和各种复杂情况的处理。最后，联合训练也是民航法规的要求，以确保整个机组具备必要的协同配合能力和应急处置能力。"
+      "audioText": "Why do pilots need the joint training with flight attendants?",
+      "audioTextZh": "飞行员为什么需要与乘务员进行联合训练？",
+      "referenceText": "Pilots need to conduct joint training with flight attendants mainly because the flight crew is a whole, and the close cooperation between pilots and flight attendants is crucial to ensuring flight safety and the quality of passenger services. First, ly, in emergency situations, such as aircraft fire, decompression, emergency evacuation, etc., pilots and flight attendants need to have a clear division of labor and close cooperation to quickly and effectively respond to emergencies, minimize losses, and ensure the safety of passengers and crew. Second, ly, joint training can help pilots and flight attendants better understand each other's work content, responsibilities and operating procedures, avoid misunderstandings and coordination problems in actual work, and improve work efficiency.",
+      "referenceTextZh": "飞行员需要与乘务员进行联合训练，主要是因为机组是一个整体，飞行员与乘务员之间的密切配合对于保障飞行安全和旅客服务质量至关重要。首先，在应急情况下，如飞机起火、失压、应急撤离等，飞行员和乘务员需要分工明确、密切协作，才能快速有效地应对突发状况，将损失降到最低，保障旅客和机组人员的安全。其次，联合训练可以帮助飞行员和乘务员更好地了解彼此的工作内容、职责和操作程序，避免在实际工作中出现误解和协作问题，提高工作效率。此外，联合训练还能增强机组的团队凝聚力，让大家更熟悉彼此的工作方式和习惯，建立良好的合作关系，这有利于日常飞行工作的顺利开展和各种复杂情况的处理。最后，联合训练也是民航法规的要求，以确保整个机组具备必要的协同配合能力和应急处置能力。"
     },
     {
       "id": "opi-core-161",
       "taskTitle": "人的因素-CRM与机组协作-21",
       "audioText": "What are the duties of the cabin crew?",
-      "audioTextZh": "乘务人员的主要职责是什么?",
-      "referenceText": "Cabin crew's main duties include ensuring passenger safety and order, monitoring cabin conditions, operating emergency equipment, providing in-flight services, assisting with passenger boarding/disembarkation, and reporting abnormal situations to pilots promptly.\n乘务人员的主要职责包括保障乘客安全与秩序、监控客舱状况、操作应急设备、提供机上服务、协助乘客登机/下机，并及时向飞行员报告异常情况。"
+      "audioTextZh": "乘务人员的主要职责是什么？",
+      "referenceText": "Cabin crew's main duties include ensuring passenger safety and order, monitoring cabin conditions, operating emergency equipment, providing in-flight services, assisting with passenger boarding or disembarkation, and reporting abnormal situations to pilots promptly.",
+      "referenceTextZh": "乘务人员的主要职责包括保障乘客安全与秩序、监控客舱状况、操作应急设备、提供机上服务、协助乘客登机/下机，并及时向飞行员报告异常情况。"
     },
     {
       "id": "opi-core-162",
       "taskTitle": "人的因素-CRM与机组协作-22",
       "audioText": "Do you think good cooperation between captain and first officer would benefit flight safety?",
-      "audioTextZh": "你认为机长和副驾驶之间良好的合作可以提高飞行安全吗?",
-      "referenceText": "Absolutely. Good cooperation ensures effective task sharing, timely communication of potential risks, mutual verification of operations, and rational decision-making. It reduces workload and human errors, significantly enhancing flight safety.\n当然。良好的合作能确保有效任务分配、及时沟通潜在风险、相互核实操作并做出合理决策，减少工作负荷和人为失误，显著提升飞行安全。"
+      "audioTextZh": "你认为机长和副驾驶之间良好的合作可以提高飞行安全吗？",
+      "referenceText": "Absolutely. Good cooperation ensures effective task sharing, timely communication of potential risks, mutual verification of operations, and rational decision-making. It reduces workload and human errors, significantly enhancing flight safety.",
+      "referenceTextZh": "当然。良好的合作能确保有效任务分配、及时沟通潜在风险、相互核实操作并做出合理决策，减少工作负荷和人为失误，显著提升飞行安全。"
     },
     {
       "id": "opi-core-163",
       "taskTitle": "人的因素-CRM与机组协作-23",
       "audioText": "If something unhappy happened between a pilot and a flight attendant, what should you do as a captain?",
-      "audioTextZh": "如果飞行员和乘务员之间发生了不愉快的事情,作为机长,你会怎么做?",
-      "referenceText": "I will calmly communicate with both parties to understand the cause, mediate impartially, emphasize the importance of teamwork for flight safety, guide them to set aside conflicts, and ensure they fulfill their duties professionally.\n我会冷静与双方沟通了解原因，公正调解，强调团队合作对飞行安全的重要性，引导他们放下矛盾，确保以专业态度履行职责。"
+      "audioTextZh": "如果飞行员和乘务员之间发生了不愉快的事情,作为机长,你会怎么做？",
+      "referenceText": "I will calmly communicate with both parties to understand the cause, mediate impartially, emphasize the importance of teamwork for flight safety, guide them to set aside conflicts, and ensure they fulfill their duties professionally.",
+      "referenceTextZh": "我会冷静与双方沟通了解原因，公正调解，强调团队合作对飞行安全的重要性，引导他们放下矛盾，确保以专业态度履行职责。"
     },
     {
       "id": "opi-core-164",
       "taskTitle": "人的因素-CRM与机组协作-24",
       "audioText": "If you are first officer and you have some disagreement with captain during flight, what should you do?",
-      "audioTextZh": "如果你是副驾,在飞行中你和机长出现意见不一致,你应该怎么做?",
-      "referenceText": "I will express my opinion politely with factual basis (such as SOP, manual data). Listen to the captain's reasoning carefully. If the disagreement persists, prioritize flight safety and follow the captain's final decision (as he has command authority), then report the issue post-flight if necessary.\n我会以事实为依据如标准操作程序、手册数据礼貌表达观点，认真倾听机长的理由。若分歧仍存在，以飞行安全为先，服从机长的最终决策因其拥有指挥权，必要时在飞行后报告该问题。"
+      "audioTextZh": "如果你是副驾,在飞行中你和机长出现意见不一致,你应该怎么做？",
+      "referenceText": "I will express my opinion politely with factual basis (such as SOP, manual data). Listen to the captain's reasoning carefully. If the disagreement persists, prioritize flight safety and follow the captain's final decision (as he has command authority), then report the issue post-flight if necessary.",
+      "referenceTextZh": "我会以事实为依据如标准操作程序、手册数据礼貌表达观点，认真倾听机长的理由。若分歧仍存在，以飞行安全为先，服从机长的最终决策因其拥有指挥权，必要时在飞行后报告该问题。"
     },
     {
       "id": "opi-core-165",
       "taskTitle": "人的因素-CRM与机组协作-25",
       "audioText": "If you work with a pilot who has limited experience, what should you do?",
-      "audioTextZh": "如果你和一位经验有限的飞行员一起共事,你会怎么做?",
-      "referenceText": "I will clarify task responsibilities clearly, provide timely guidance and support (such as reminding SOP, sharing experience), maintain effective communication, conduct more cross-checks, and ensure they feel comfortable asking questions to guarantee flight safety.\n我会明确任务分工，及时提供指导和支持如提醒标准操作程序、分享经验，保持有效沟通，加强交叉检查，并确保对方愿意提问，以保障飞行安全。"
+      "audioTextZh": "如果你和一位经验有限的飞行员一起共事,你会怎么做？",
+      "referenceText": "I will clarify task responsibilities clearly, provide timely guidance and support (such as reminding SOP, sharing experience), maintain effective communication, conduct more cross-checks, and ensure they feel comfortable asking questions to guarantee flight safety.",
+      "referenceTextZh": "我会明确任务分工，及时提供指导和支持如提醒标准操作程序、分享经验，保持有效沟通，加强交叉检查，并确保对方愿意提问，以保障飞行安全。"
     },
     {
       "id": "opi-core-166",
       "taskTitle": "人的因素-CRM与机组协作-26",
       "audioText": "How do pilots and controllers cooperate with each other to improve flight safety?",
-      "audioTextZh": "飞行员如何与管制员进行协作来提高飞行安全?",
-      "referenceText": "Pilots strictly follow ATC instructions, provide timely position and status reports, use standard phraseology, and communicate emergencies promptly. ATC maintains safe separation, provides accurate weather/route information, offers radar vectors, and coordinates emergency services to support pilots' safe operations.\n飞行员严格遵守空管指令，及时报告位置和状态，使用标准通话用语，并迅速沟通紧急情况。空管维持安全间隔，提供准确天气/航线信息，提供雷达引导，并协调应急服务，以支持飞行员安全运行。"
+      "audioTextZh": "飞行员如何与管制员进行协作来提高飞行安全？",
+      "referenceText": "Pilots strictly follow ATC instructions, provide timely position and status reports, use standard phraseology, and communicate emergencies promptly. ATC maintains safe separation, provides accurate weather or route information, offers radar vectors, and coordinates emergency services to support pilots' safe operations.",
+      "referenceTextZh": "飞行员严格遵守空管指令，及时报告位置和状态，使用标准通话用语，并迅速沟通紧急情况。空管维持安全间隔，提供准确天气/航线信息，提供雷达引导，并协调应急服务，以支持飞行员安全运行。"
     },
     {
       "id": "opi-core-207",
       "taskTitle": "人的因素-CRM与机组协作-27",
       "audioText": "Do you think teamwork is important? Why?",
       "audioTextZh": "你认为团队合作重要吗？为什么？",
-      "referenceText": "Yes, I think teamwork is important. Good teamwork can increase our situation awareness, reduce our workload, reduce the human errors and ensure the flight safety. Poor teamwork may cause accidents or incidents.\n是的，我认为团队合作很重要。良好的团队合作可以提高我们的态势感知，减少我们的工作量，减少人为错误，确保飞行安全。糟糕的团队合作可能会导致事故或事件。"
+      "referenceText": "Yes, I think teamwork is important. Good teamwork can increase our situation awareness, reduce our workload, reduce the human errors and ensure the flight safety. Poor teamwork may cause accidents or incidents.",
+      "referenceTextZh": "是的，我认为团队合作很重要。良好的团队合作可以提高我们的态势感知，减少我们的工作量，减少人为错误，确保飞行安全。糟糕的团队合作可能会导致事故或事件。"
     },
     {
       "id": "opi-core-208",
       "taskTitle": "人的因素-CRM与机组协作-28",
       "audioText": "As a captain, what can you do to have the crew work as a team?",
       "audioTextZh": "作为一名机长，你能做些什么让机组成员作为一个团队工作？",
-      "referenceText": "As a captain, we can do many things to have our crew work as a team. First, we will know the duties and responsibility in the preflight briefing in the briefing room. Second, we should keep good communication and cooperation during flight to ensure the flight safety.\n作为一名机长，我们可以做很多事情让我们的组员作为一个团队工作。首先，我们将在简报室的飞行前简报中了解职责和责任。其次，我们应该在飞行过程中保持良好的沟通与合作，以确保飞行安全。"
+      "referenceText": "As a captain, pilots can do many things to have our crew work as a team. First, I would know the duties and responsibility in the preflight briefing in the briefing room. Second, pilots should keep good communication and cooperation during flight to ensure the flight safety.",
+      "referenceTextZh": "作为一名机长，我们可以做很多事情让我们的组员作为一个团队工作。首先，我们将在简报室的飞行前简报中了解职责和责任。其次，我们应该在飞行过程中保持良好的沟通与合作，以确保飞行安全。"
     },
     {
       "id": "opi-core-209",
       "taskTitle": "人的因素-CRM与机组协作-29",
-      "audioText": "Why does good communication in cockpit benefit flight safety? Do you think the communication among crew members is important? Why?",
-      "audioTextZh": "为什么驾驶舱内的良好沟通有利于飞行安全？你认为机组人员之间的沟通重要吗？为什么？",
-      "referenceText": "Good communication in the cockpit is important. Good communication can increase our situation awareness, reduce our workload, reduce the human errors and ensure the flight safety. Poor communication may cause accidents or incidents.\n驾驶舱内的良好沟通至关重要。良好的沟通能增强我们的态势感知，减轻我们的工作负担，减少人为错误，确保飞行安全。沟通不畅则可能导致事故或事件。"
+      "audioText": "Why does good communication in cockpit benefit flight safety?",
+      "audioTextZh": "为什么驾驶舱内的良好沟通有利于飞行安全？",
+      "referenceText": "Good communication in the cockpit is important. Good communication can increase our situation awareness, reduce our workload, reduce the human errors and ensure the flight safety. Poor communication may cause accidents or incidents.",
+      "referenceTextZh": "驾驶舱内的良好沟通至关重要。良好的沟通能增强我们的态势感知，减轻我们的工作负担，减少人为错误，确保飞行安全。沟通不畅则可能导致事故或事件。"
     },
     {
       "id": "opi-core-210",
       "taskTitle": "人的因素-CRM与机组协作-30",
-      "audioText": "As a copilot，if you see the captain reading newspaper/ magazines/ novels during flight, what will you do?",
-      "audioTextZh": "作为一名副驾驶，如果你看到机长在飞行过程中看报纸/杂志/小说，你会怎么做？",
-      "referenceText": "As a copilot, if I see the captain reading newspapers/ magazines/ novels during flight, I will inform the captain reading newspapers/ magazine/ novels may affect flight safety. Meanwhile, I will focus more on monitoring the aircraft.\n作为副驾驶，如果我看到机长在飞行过程中阅读报纸/杂志/小说，我会提醒机长，阅读报纸/杂志/小说可能会影响飞行安全。同时，我会更加专注于监控飞机。"
+      "audioText": "As a copilot, what would you do if the captain read personal material during flight?",
+      "audioTextZh": "作为一名副驾驶，如果你看到机长在飞行过程中看报纸，你会怎么做？",
+      "referenceText": "As a copilot, if I see the captain reading newspapers or magazines or novels during flight, I will inform the captain reading newspapers or magazine or novels may affect flight safety. Meanwhile, I will focus more on monitoring the aircraft.",
+      "referenceTextZh": "作为副驾驶，如果我看到机长在飞行过程中阅读报纸/杂志/小说，我会提醒机长，阅读报纸/杂志/小说可能会影响飞行安全。同时，我会更加专注于监控飞机。"
     },
     {
       "id": "opi-core-211",
       "taskTitle": "人的因素-CRM与机组协作-31",
       "audioText": "Do you think it necessary to minimize the crew communication in approach phase?",
       "audioTextZh": "你认为在进场阶段有必要减少机组人员之间的沟通吗？",
-      "referenceText": "Yes. I think it is necessary to minimize the crew communication in approach phase because we have many things to do during approach. For example, we will complete the landing checklist. The pilot flying will control the aircraft and the pilot not flying will read out the checklist and monitor the aircraft performance.\n是。我认为在进近阶段应尽量减少机组人员之间的交流，因为在进近阶段我们有很多事情要做。比如，我们要完成着陆检查单。操纵飞机的飞行员负责控制飞机，不操纵飞机的飞行员则要读出检查单并监控飞机性能。"
+      "referenceText": "Yes. I think it is necessary to minimize the crew communication in approach phase because we have many things to do during approach. For example, I would complete the landing checklist. The pilot flying will control the aircraft and the pilot not flying will read out the checklist and monitor the aircraft performance.",
+      "referenceTextZh": "是。我认为在进近阶段应尽量减少机组人员之间的交流，因为在进近阶段我们有很多事情要做。比如，我们要完成着陆检查单。操纵飞机的飞行员负责控制飞机，不操纵飞机的飞行员则要读出检查单并监控飞机性能。"
     },
     {
       "id": "opi-core-212",
       "taskTitle": "人的因素-CRM与机组协作-32",
       "audioText": "How should pilots cooperate with each other before departure?",
       "audioTextZh": "飞行员在起飞前应该如何相互配合？",
-      "referenceText": "There are many things we should do in order to cooperate with each other before departure. First, we should have safety briefing in the briefing room before each flight to share the duties and responsibilities. Second, we will complete the walk-around inspection and cockpit inspection to ensure the aircraft meet MEL requirement. Third, we will work as a team to perform the checklist. For example, the pilot flying will control the aircraft and the pilot not flying will read out the checklist and monitor the aircraft performance.\n在离场前，为了相互配合，我们有许多事情要做。首先，每次飞行前，我们都要在简报室进行安全简报，明确各自的职责和任务。其次，我们要完成绕机检查和驾驶舱检查，以确保飞机符合最低设备清单（MEL）的要求。第三，我们要作为一个团队来执行检查单。例如，操纵飞机的飞行员负责控制飞机，不操纵飞机的飞行员则读出检查单并监控飞机性能。"
+      "referenceText": "There are many things pilots should do in order to cooperate with each other before departure. First, pilots should have safety briefing in the briefing room before each flight to share the duties and responsibilities. Second, I would complete the walk-around inspection and cockpit inspection to ensure the aircraft meet MEL requirement. Third, I would work as a team to complete the applicable checklist. For example, the pilot flying will control the aircraft and the pilot not flying will read out the checklist and monitor the aircraft performance.",
+      "referenceTextZh": "在离场前，为了相互配合，我们有许多事情要做。首先，每次飞行前，我们都要在简报室进行安全简报，明确各自的职责和任务。其次，我们要完成绕机检查和驾驶舱检查，以确保飞机符合最低设备清单（MEL）的要求。第三，我们要作为一个团队来执行检查单。例如，操纵飞机的飞行员负责控制飞机，不操纵飞机的飞行员则读出检查单并监控飞机性能。"
     },
     {
       "id": "opi-core-213",
       "taskTitle": "人的因素-CRM与机组协作-33",
       "audioText": "Do you think it necessary to carry out cross check?",
       "audioTextZh": "你认为有必要进行交叉检查吗？",
-      "referenceText": "Yes, I think it necessary to carry out cross check because it can reduce the human errors, Increase me safety margin and enhance flight safety.\n是的，我认为有必要进行交叉检查，因为它可以减少人为错误，增加安全裕度，提高飞行安全。\n\nCross-check is essential. It involves mutual verification of operations, instrument readings, and decisions between crew members. It effectively reduces human errors, ensures accuracy of actions, and enhances situation awareness, which is a key measure to maintain flight safety.\n交叉检查至关重要。它指机组人员之间相互核实操作、仪表读数和决策，能有效减少人为失误，确保操作准确性，提升情景意识，是保障飞行安全的关键措施。"
+      "referenceText": "Cross-check is essential. It involves mutual verification of operations, instrument readings, and decisions between crew members. It effectively reduces human errors, ensures accuracy of actions, and enhances situation awareness, which is a key measure to maintain flight safety.",
+      "referenceTextZh": "交叉检查至关重要。它指机组人员之间相互核实操作、仪表读数和决策，能有效减少人为失误，确保操作准确性，提升情景意识，是保障飞行安全的关键措施。"
     },
     {
       "id": "opi-core-214",
       "taskTitle": "人的因素-CRM与机组协作-34",
       "audioText": "If one crew member loses consciousness during flight, what should the other one do?",
       "audioTextZh": "如果一名机组人员在飞行过程中失去知觉，另一个机组人员该怎么办？",
-      "referenceText": "If one crew member loses consciousness during flight, first, I will take the control of the aircraft. Second, I will inform the purser to offer first-aid to him. Third, I will report the situation to ATC and request divert to the nearest suitable airport and medical assistance upon arrival.\n如果有机组人员在飞行过程中失去知觉，首先由我来控制飞机。第二，我会通知乘务长对他进行急救。第三，我将向空中交通管制中心报告情况，并要求备降到最近的合适机场，并在抵达后提供医疗援助。"
+      "referenceText": "If one crew member loses consciousness during flight, first, I will take the control of the aircraft. Second, I will inform the purser to offer first-aid to him. Third, I will report the situation to ATC and request divert to the nearest suitable airport and medical assistance upon arrival.",
+      "referenceTextZh": "如果有机组人员在飞行过程中失去知觉，首先由我来控制飞机。第二，我会通知乘务长对他进行急救。第三，我将向空中交通管制中心报告情况，并要求备降到最近的合适机场，并在抵达后提供医疗援助。"
     },
     {
       "id": "opi-core-215",
       "taskTitle": "人的因素-CRM与机组协作-35",
       "audioText": "In abnormal situations, what is the task-sharing like among crew members?",
       "audioTextZh": "在异常情况下，机组成员之间的任务分配是怎样的？",
-      "referenceText": "In abnormal situations, the crew members will work as a team and cross check each other's work to ensure flight safety and efficiency. The pilot flying will control the aircraft. The pilot not flying will complete the checklist and monitor the aircraft performance.\n在异常情况下，机组人员将作为一个团队，相互检查工作，以确保飞行安全和效率。飞行的飞行员将控制飞机。不飞行的飞行员将完成检查单并监控飞机性能。"
+      "referenceText": "In abnormal situations, the crew members will work as a team and cross check each other's work to ensure flight safety and efficiency. The pilot flying will control the aircraft. The pilot not flying will complete the checklist and monitor the aircraft performance.",
+      "referenceTextZh": "在异常情况下，机组人员将作为一个团队，相互检查工作，以确保飞行安全和效率。飞行的飞行员将控制飞机。不飞行的飞行员将完成检查单并监控飞机性能。"
     },
     {
       "id": "opi-core-216",
       "taskTitle": "人的因素-CRM与机组协作-36",
       "audioText": "Do you think that the communication in the cockpit should be minimized in the critical phases?",
-      "audioTextZh": "你认为在关键阶段,应该减少驾驶舱中的交流吗?",
-      "referenceText": "Yes. Critical phases (such as takeoff, approach, landing) involve high crew workload. Non-essential communication should be minimized to focus on flight-related tasks (such as checklist execution, instrument monitoring, ATC communication) and avoid distractions.\n是的。关键阶段如起飞、进近、着陆机组工作负荷大，应减少非必要交流，集中精力处理飞行相关任务如执行检查单、监控仪表、与空管沟通，避免分心。"
+      "audioTextZh": "你认为在关键阶段,应该减少驾驶舱中的交流吗？",
+      "referenceText": "Yes. Critical phases (such as takeoff, approach, landing) involve high crew workload. Non-essential communication should be minimized to focus on flight-related tasks (such as checklist execution, instrument monitoring, ATC communication) and avoid distractions.",
+      "referenceTextZh": "是的。关键阶段如起飞、进近、着陆机组工作负荷大，应减少非必要交流，集中精力处理飞行相关任务如执行检查单、监控仪表、与空管沟通，避免分心。"
     },
     {
       "id": "opi-core-144",
       "taskTitle": "人的因素-CRM与机组协作-37",
-      "audioText": "10. The pilot cooperate with the pilot",
-      "referenceText": "Good cooperation between the captain and FO is very important for flight safety. During normal operation, they should have a good task-sharing in the cockpit. The PF should control the aircraft, the PM should monitor the instruments and systems, pay more attention to the outside to visual check the weather or traffic. During abnormal situation, they should have a good cooperation to perform the checklist. The PF control the aircraft, the PM perform the checklist, then the PF should have a crosscheck and verify."
+      "audioText": "How should pilots cooperate effectively in the cockpit?",
+      "audioTextZh": "驾驶舱内的飞行员应如何有效协作？",
+      "referenceText": "Good cooperation between the captain and FO is very important for flight safety. During normal operation, they should have effective task sharing in the cockpit. The PF should control the aircraft, the PM should monitor the instruments and systems, pay more attention to the outside to check visually for the weather or traffic. During abnormal situation, they should have a good cooperation to complete the applicable checklist. The PF control the aircraft, the PM complete the applicable checklist, then the PF should have a crosscheck and verify.",
+      "referenceTextZh": "驾驶舱内的有效协作需要明确分工、持续监控和相互交叉检查。操纵飞行员负责飞行航迹，监控飞行员负责监控仪表、通信和检查单，并及时指出偏差。异常情况下，机组应按照标准操作程序分配任务，保持态势感知并共同评估方案。任何机组成员发现安全问题时都应清楚提出。"
     },
     {
       "id": "opi-core-145",
       "taskTitle": "人的因素-CRM与机组协作-38",
-      "audioText": "11. The pilot cooperate with the cabin crew",
-      "referenceText": "Good cooperation between the pilot and CC is very important for flight safety. During normal operation, the pilot should have good control of the aircraft, the CC is responsible for providing service for the passengers. During abnormal situation, the pilot should give the CC instructions, comfort the passengers and prepare the passengers for evacuation. The CC should listen to the captain's instructions, comfort and preparing the passengers for evacuation."
+      "audioText": "How should pilots cooperate effectively with the cabin crew?",
+      "audioTextZh": "飞行员应如何与客舱机组有效协作？",
+      "referenceText": "Good cooperation between the pilot and CC is very important for flight safety. During normal operation, the pilot should have good control of the aircraft, the CC is responsible for providing service for the passengers. During abnormal situation, the pilot should give the CC instructions, comfort the passengers and prepare the passengers for evacuation. The CC should listen to the captain's instructions, comfort and preparing the passengers for evacuation.",
+      "referenceTextZh": "飞行员与客舱机组应通过联合简令、及时报告和清楚指令进行协作。正常运行中，驾驶舱负责安全操纵飞机，客舱机组负责客舱安全和旅客管理，并向驾驶舱报告异常情况。紧急情况下，机长应说明计划和时间，客舱机组应准备客舱并反馈执行情况。闭环沟通和相互支持能够提高整体处置能力。"
     },
     {
       "id": "opi-core-368",
       "taskTitle": "人的因素-CRM与机组协作-39",
       "audioText": "What do you think a captain should do to have the whole crew working as a team?",
       "audioTextZh": "你认为机长应如何做才能让全体组成员像一个团队一样协作？",
-      "referenceText": "The captain should respect every crew member and respect their opinions, have a good communication with them to exchange the ideas. Secondly, the captain should lead the crew to follow the SOP and company policy.\n机长应尊重每一位机组成员以及他们的意见，与他们保持良好沟通以交流想法。其次，机长应带领机组成员遵循标准操作程序（SOP，Standard Operating Procedure ）和公司政策 。"
-    },
-    {
-      "id": "opi-core-369",
-      "taskTitle": "人的因素-CRM与机组协作-40",
-      "audioText": "Why do you think a pilot should know something about flight attendants working in the cabin?",
-      "audioTextZh": "你认为飞行员为何需要了解客舱中乘务员的工作情况？",
-      "referenceText": "Because pilot and flight attendants should cooperate with each other during flight operation. If pilot know something about flight attendants working, the pilot can help them and give them proper instruction, especially during emergency, to ensure flight safety.\n因为在飞行操作过程中，飞行员和乘务员需要相互协作。如果飞行员了解乘务员的工作内容，就能在飞行中，尤其是紧急情况下，为他们提供帮助并给予恰当指令，保障飞行安全 。"
+      "referenceText": "The captain should respect every crew member and respect their opinions, have good communication with them to exchange the ideas. Second, ly, the captain should lead the crew to follow the applicable SOP and company policy.",
+      "referenceTextZh": "机长应尊重每一位机组成员以及他们的意见，与他们保持良好沟通以交流想法。其次，机长应带领机组成员遵循标准操作程序（SOP，Standard Operating Procedure ）和公司政策。"
     },
     {
       "id": "opi-core-370",
-      "taskTitle": "人的因素-CRM与机组协作-41",
-      "audioText": "How will you cooperate with the cabin crew? How can cabin crew contribute to flight safety in emergency situation? How can pilot work together with cabin crew to ensure flight safety?",
-      "audioTextZh": "你将如何与客舱机组人员协作？客舱机组人员在紧急情况下如何为飞行安全做贡献？飞行员如何与客舱机组人员协同工作以确保飞行安全？",
-      "referenceText": "Cooperation between the pilot and cabin crew is very important for flight safety. During normal operation, pilot control the aircraft, cabin crew are responsible for providing service for the passenger. During abnormal situation, pilot should have good cooperation to do the checklist, the cabin crew should listen to the Captain's instruction, comfort the passenger and prepare the passenger for emergency evacuation.\n飞行员与客舱机组人员的协作对飞行安全至关重要。正常运行时，飞行员操控飞机，客舱机组人员负责为乘客提供服务。异常情况下，飞行员应良好协作执行检查单，客舱机组人员应听从机长指令，安抚乘客并让乘客为紧急撤离做好准备 。"
+      "taskTitle": "人的因素-CRM与机组协作-40",
+      "audioText": "How will you cooperate with the cabin crew?",
+      "audioTextZh": "你将如何与客舱机组人员协作？",
+      "referenceText": "Cooperation between the pilot and cabin crew is very important for flight safety. During normal operation, pilot control the aircraft, cabin crew are responsible for providing service for the passenger. During abnormal situation, pilot should have good cooperation to do the checklist, the cabin crew should listen to the Captain's instruction, comfort the passenger and prepare the passenger for emergency evacuation.",
+      "referenceTextZh": "飞行员与客舱机组人员的协作对飞行安全至关重要。正常运行时，飞行员操控飞机，客舱机组人员负责为乘客提供服务。异常情况下，飞行员应良好协作执行检查单，客舱机组人员应听从机长指令，安抚乘客并让乘客为紧急撤离做好准备。"
     },
     {
       "id": "opi-core-763",
-      "taskTitle": "人的因素-CRM与机组协作-42",
+      "taskTitle": "人的因素-CRM与机组协作-41",
       "audioText": "Are you familiar with cabin crew's work?",
       "audioTextZh": "你了解客舱机组人员的工作吗？",
-      "referenceText": "Yes, I am familiar with cabin crew’s work. Cabin crew performs various tasks to support the completion of flights and ensure flight safety.\n了解，我知晓客舱机组人员的工作内容。他们要执行各类任务，协助完成航班运行并保障飞行安全 。"
+      "referenceText": "Yes, I am familiar with cabin crew’s work. Cabin crew performs various tasks to support the completion of flights and ensure flight safety.",
+      "referenceTextZh": "了解，我知晓客舱机组人员的工作内容。他们要执行各类任务，协助完成航班运行并保障飞行安全。"
     },
     {
       "id": "opi-core-764",
-      "taskTitle": "人的因素-CRM与机组协作-43",
+      "taskTitle": "人的因素-CRM与机组协作-42",
       "audioText": "Do you think it's necessary for pilot to know what cabin crew (Flight attendant) do in the cabin?",
       "audioTextZh": "你认为飞行员有必要了解客舱机组人员（乘务员 ）在客舱内的工作内容吗？",
-      "referenceText": "Yes, I think it’s necessary for pilots to know what cabin crew do in the cabin. Because we work as a team, and we should be aware of each team member’s duties.\n有必要。因为我们是团队协作开展工作，应该知晓每位团队成员的职责 。"
+      "referenceText": "Yes, I think it’s necessary for pilots to know what cabin crew do in the cabin. Because we work as a team, and pilots should be aware of each team member’s duties.",
+      "referenceTextZh": "有必要。因为我们是团队协作开展工作，应该知晓每位团队成员的职责。"
     },
     {
       "id": "opi-core-765",
-      "taskTitle": "人的因素-CRM与机组协作-44",
+      "taskTitle": "人的因素-CRM与机组协作-43",
       "audioText": "What are the main duties of cabin crew?",
       "audioTextZh": "客舱机组人员的主要职责有哪些？",
-      "referenceText": "Cabin crew have multiple key duties. Before a flight, they conduct a safety briefing with pilots. Then, they perform safety checks before passengers board the aircraft. During the flight, they carry out regular cabin inspections and provide cabin services to passengers. In emergency situations, they report the situation to the captain and assist in calming passengers.\n客舱机组人员承担多项关键职责：航班前，与飞行员进行安全简报沟通；随后，在乘客登机前开展安全检查；飞行中，定期进行客舱巡查并为乘客提供客舱服务；遇紧急情况时，向机长报告状况并协助安抚乘客 。"
+      "referenceText": "Cabin crew have multiple key duties. Before a flight, they conduct a safety briefing with pilots. Then, they perform safety checks before passengers board the aircraft. During the flight, they carry out regular cabin inspections and provide cabin services to passengers. In emergency situations, they report the situation to the captain and assist in calming passengers.",
+      "referenceTextZh": "客舱机组人员承担多项关键职责：航班前，与飞行员进行安全简报沟通；随后，在乘客登机前开展安全检查；飞行中，定期进行客舱巡查并为乘客提供客舱服务；遇紧急情况时，向机长报告状况并协助安抚乘客。"
     },
     {
       "id": "opi-core-766",
-      "taskTitle": "人的因素-CRM与机组协作-45",
+      "taskTitle": "人的因素-CRM与机组协作-44",
       "audioText": "Do you think a good briefing with cabin crew can improve the chances of successful emergency evacuation?",
       "audioTextZh": "你认为与客舱机组人员进行良好的简报沟通，能否提升紧急撤离成功的几率？",
-      "referenceText": "Yes, I think a good briefing with cabin crew can enhance the likelihood of a successful emergency evacuation. If we conduct a thorough briefing with the cabin crew, we’ll clearly understand each crew member’s responsibilities during an emergency evacuation. This clarity boosts the efficiency of the evacuation process.\n我认为可以。若能与客舱机组人员开展充分的简报沟通，我们就能清晰知晓紧急撤离时每位机组人员的职责，这种明确分工有助于提升撤离工作的效率，进而增加紧急撤离成功的可能性 。"
+      "referenceText": "Yes, I think a good briefing with cabin crew can enhance the likelihood of a successful emergency evacuation. If we conduct a thorough briefing with the cabin crew, we’ll clearly understand each crew member’s responsibilities during an emergency evacuation. This clarity boosts the efficiency of the evacuation process.",
+      "referenceTextZh": "我认为可以。若能与客舱机组人员开展充分的简报沟通，我们就能清晰知晓紧急撤离时每位机组人员的职责，这种明确分工有助于提升撤离工作的效率，进而增加紧急撤离成功的可能性。"
     },
     {
       "id": "opi-core-767",
-      "taskTitle": "人的因素-CRM与机组协作-46",
+      "taskTitle": "人的因素-CRM与机组协作-45",
       "audioText": "How can cabin crew contribute to the emergency situation?",
       "audioTextZh": "客舱机组人员在应对紧急情况时能发挥哪些作用？",
-      "referenceText": "Cabin crew plays a crucial role in emergency situations. First, if there are emergencies or abnormal occurrences in the cabin, such as a cabin fire or passenger - related issues, the cabin crew will immediately report them to the captain. Second, they will provide onboard services like first aid to those in need, helping to calm passengers.\n客舱机组人员在紧急情况中起着关键作用。首先，若客舱内出现紧急状况或异常情况（如客舱起火、乘客突发问题等 ），他们会立即向机长报告。其次，会为有需要的人员提供包括急救在内的机上服务，协助安抚乘客情绪 。"
+      "referenceText": "Cabin crew plays a crucial role in emergency situations. First, if there are emergencies or abnormal occurrences in the cabin, such as a cabin fire or passenger-related issues, the cabin crew will immediately report them to the captain. Second, they will provide onboard services like first aid to those in need, helping to calm passengers.",
+      "referenceTextZh": "客舱机组人员在紧急情况中起着关键作用。首先，若客舱内出现紧急状况或异常情况（如客舱起火、乘客突发问题等 ），他们会立即向机长报告。其次，会为有需要的人员提供包括急救在内的机上服务，协助安抚乘客情绪。"
     },
     {
       "id": "opi-core-768",
-      "taskTitle": "人的因素-CRM与机组协作-47",
-      "audioText": "How to improve the relationship between flight crew and cabin crew?",
+      "taskTitle": "人的因素-CRM与机组协作-46",
+      "audioText": "How can pilots improve the relationship between flight crew and cabin crew?",
       "audioTextZh": "如何改善飞行机组与客舱机组之间的关系？",
-      "referenceText": "To improve the relationship between flight crew and cabin crew, we should focus on teamwork to ensure flight safety. First, we need to clearly understand the duties and responsibilities of each crew member. Second, we should maintain effective communication and close cooperation with one another.\n要改善飞行机组和客舱机组的关系，我们应围绕保障飞行安全的团队协作展开。首先，需清晰了解每位机组人员的职责；其次，要保持有效沟通，相互密切配合 。"
+      "referenceText": "To improve the relationship between flight crew and cabin crew, pilots should focus on teamwork to ensure flight safety. First, we need to clearly understand the duties and responsibilities of each crew member. Second, pilots should maintain effective communication and close cooperation with one another.",
+      "referenceTextZh": "要改善飞行机组和客舱机组的关系，我们应围绕保障飞行安全的团队协作展开。首先，需清晰了解每位机组人员的职责；其次，要保持有效沟通，相互密切配合。"
     },
     {
       "id": "opi-core-769",
-      "taskTitle": "人的因素-CRM与机组协作-48",
+      "taskTitle": "人的因素-CRM与机组协作-47",
       "audioText": "How do you often get along with flight attendants during flight?",
       "audioTextZh": "飞行过程中，你通常如何与乘务员相处协作？",
-      "referenceText": "To get along well with flight attendants during a flight, we focus on teamwork to ensure flight safety. First, we make sure to clearly understand each crew member’s duties and responsibilities. Second, we maintain effective communication and close cooperation with one another.\n飞行时，为和乘务员良好协作，我们围绕保障飞行安全开展团队配合。一是明确了解每位机组人员的职责，二是保持有效沟通、相互密切协作 。"
+      "referenceText": "To get along well with flight attendants during a flight, we focus on teamwork to ensure flight safety. First, we make sure to clearly understand each crew member’s duties and responsibilities. Second, we maintain effective communication and close cooperation with one another.",
+      "referenceTextZh": "飞行时，为和乘务员良好协作，我们围绕保障飞行安全开展团队配合。一是明确了解每位机组人员的职责，二是保持有效沟通、相互密切协作。"
     },
     {
       "id": "opi-core-770",
-      "taskTitle": "人的因素-CRM与机组协作-49",
+      "taskTitle": "人的因素-CRM与机组协作-48",
       "audioText": "If something unhappy happens between a pilot and a flight attendant, what should you do as a captain?",
       "audioTextZh": "若飞行员与乘务员之间发生不愉快情况，作为机长你会如何处理？",
-      "referenceText": "If a conflict or unpleasant situation arises between a pilot and flight attendants, as a captain, I would first intervene to de - escalate tensions. I’d remind the team that we’re united in ensuring flight safety, and effective communication and mutual cooperation are essential. I’d encourage open dialogue to resolve misunderstandings promptly, ensuring the focus remains on the flight mission.\n若飞行员和乘务员间出现冲突或不愉快状况，作为机长，我会第一时间介入缓解紧张氛围。向团队强调我们是为保障飞行安全而协作的整体，有效沟通与相互配合至关重要。同时，鼓励双方开诚布公交流，及时化解误会，确保全体人员聚焦飞行任务 。"
+      "referenceText": "If a conflict or unpleasant situation arises between a pilot and flight attendants, as a captain, I would first intervene to de-escalate tensions. I’d remind the team that we’re united in ensuring flight safety, and effective communication and mutual cooperation are essential. I’d encourage open dialogue to resolve misunderstandings promptly, ensuring the focus remains on the flight mission.",
+      "referenceTextZh": "若飞行员和乘务员间出现冲突或不愉快状况，作为机长，我会第一时间介入缓解紧张氛围。向团队强调我们是为保障飞行安全而协作的整体，有效沟通与相互配合至关重要。同时，鼓励双方开诚布公交流，及时化解误会，确保全体人员聚焦飞行任务。"
     },
     {
       "id": "opi-core-771",
-      "taskTitle": "人的因素-CRM与机组协作-50",
+      "taskTitle": "人的因素-CRM与机组协作-49",
       "audioText": "If there is a drunken passenger quarreling with one of the flight attendants in the cabin, what should you do as the captain?",
       "audioTextZh": "若客舱内有醉酒乘客与乘务员发生争执，作为机长你会如何处理？",
-      "referenceText": "If there’s a drunken passenger arguing with a flight attendant in the cabin, as the captain, I’d first instruct the purser and air marshal to respond. They should calmly de - escalate the situation, ensure the passenger is controlled without escalation, and maintain cabin order. If the situation remains unmanageable, I’d communicate with ATC to report the incident and coordinate with airport security for assistance upon arrival, prioritizing flight safety and passenger well - being throughout.\n若客舱中出现醉酒乘客与乘务员争执的情况，作为机长，我会第一时间指令乘务长和航空安全员介入。他们需以冷静方式缓解矛盾，在避免冲突升级的前提下管控该乘客，维护客舱秩序。若局面难以控制，我会联系空中交通管制（ATC）报告事件，协调机场安保在航班抵达后协助处理，全程将飞行安全与乘客权益保障放在首位 。"
+      "referenceText": "If there’s a drunken passenger arguing with a flight attendant in the cabin, as the captain, I’d first instruct the purser and air marshal to respond. They should calmly de-escalate the situation, ensure the passenger is controlled without escalation, and maintain cabin order. If the situation remains unmanageable, I’d communicate with ATC to report the incident and coordinate with airport security for assistance upon arrival, prioritizing flight safety and passenger well-being throughout.",
+      "referenceTextZh": "若客舱中出现醉酒乘客与乘务员争执的情况，作为机长，我会第一时间指令乘务长和航空安全员介入。他们需以冷静方式缓解矛盾，在避免冲突升级的前提下管控该乘客，维护客舱秩序。若局面难以控制，我会联系空中交通管制（ATC）报告事件，协调机场安保在航班抵达后协助处理，全程将飞行安全与乘客权益保障放在首位。"
     },
     {
       "id": "opi-core-772",
-      "taskTitle": "人的因素-CRM与机组协作-51",
+      "taskTitle": "人的因素-CRM与机组协作-50",
       "audioText": "What cabin problems should be immediately reported to the captain by the flight attendants?",
       "audioTextZh": "乘务员需立即向机长报告的客舱问题有哪些？",
-      "referenceText": "Flight attendants should promptly report the following critical cabin problems to the captain:\nIf there’s smoke or fire in the cabin, as these pose immediate threats to safety.\nIn case of a passenger experiencing a serious illness or severe injury, requiring urgent medical or operational decisions.\nAny signs of structural damage to the aircraft, which could impact flight integrity.\n乘务员应迅速向机长报告以下关键客舱问题：\n客舱内出现烟雾或火情，此类情况对安全构成直接威胁。\n乘客突发重病或重伤，需紧急医疗处置或运行决策。\n发现飞机存在结构损伤迹象，可能影响飞行安全完整性 。"
+      "referenceText": "Flight attendants should promptly report the following critical cabin problems to the captain:\nIf there’s smoke or fire in the cabin, as these pose immediate threats to safety.\nIn case of a passenger experiencing a serious illness or severe injury, requiring urgent medical or operational decisions.\nAny signs of structural damage to the aircraft, which could impact flight integrity.",
+      "referenceTextZh": "乘务员应迅速向机长报告以下关键客舱问题：\n客舱内出现烟雾或火情，此类情况对安全构成直接威胁。\n乘客突发重病或重伤，需紧急医疗处置或运行决策。\n发现飞机存在结构损伤迹象，可能影响飞行安全完整性。"
     }
   ]
 }

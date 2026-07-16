@@ -14,8 +14,8 @@
     {
       "id": "opi-image-005-q01",
       "taskTitle": "图片题-005-01",
-      "audioText": "Is the landing gear of this aircraft retracted on the ground? What could be the possible reasons and consequences?",
-      "audioTextZh": "这架飞机的起落架是否在地面收起？可能的原因和后果是什么？",
+      "audioText": "Is the landing gear of this aircraft retracted on the ground?",
+      "audioTextZh": "这架飞机的起落架是否在地面收起？",
       "referenceText": "The main risks are mechanical failure, unsafe gear indication, maintenance error, and serious structural damage. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
       "referenceTextZh": "主要风险包括机械故障、不安全起落架指示、维修差错以及严重结构损伤。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
       "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-005-q01.mp3"
