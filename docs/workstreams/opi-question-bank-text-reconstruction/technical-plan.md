@@ -65,7 +65,7 @@ OPI 正式维护源
 .generated/opi-question-bank-text-reconstruction/
 ```
 
-该目录已经被 Git 忽略，只用于恢复、对账和批次执行。需要长期保留的规则、最终统计、决策摘要、目标审计映射与验收报告应写入 workstream 文档目录；不能只存在于 `.generated`。
+该目录已经被 Git 忽略，只用于恢复、对账和批次执行。需要长期保留的规则、最终统计、决策摘要、目标审计映射与验收报告应写入 workstream 文档目录；不能只存在于 `.generated`。`verify-formal` 只能依赖已提交的最终维护源和正式审计产物，必须能在干净检出中复现；冻结快照只服务执行期回滚和阶段校验。
 
 ## 4. OPI 专用处理工具
 
@@ -78,7 +78,7 @@ prepare           生成逐卡工作项和重复候选
 verify-stage      校验指定内容阶段及锁定状态
 build-review      生成变更预览、统计和待处理项
 apply             仅从全部已锁定工作项写回正式维护源
-verify-formal     验证正式维护源、审计映射和生成产物
+verify-formal     在干净检出中验证正式维护源、逐卡映射、四字段校验和和质量产物
 rollback          从本次冻结快照恢复本路线修改的 OPI 文件
 ```
 

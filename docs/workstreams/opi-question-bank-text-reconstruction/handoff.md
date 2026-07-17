@@ -328,7 +328,7 @@ git diff --check
 git status --short
 ```
 
-`verify-formal` 至少验证：
+`verify-formal` 必须在干净检出中运行，不得依赖未提交的冻结快照或工作项。它至少验证：
 
 - OPI bank、category、topic 和 card 数量声明一致。
 - 全部 OPI card ID 唯一，旧 ID 未被复用。

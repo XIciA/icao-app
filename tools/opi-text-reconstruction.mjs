@@ -1924,26 +1924,192 @@ function commandApply() {
 function commandVerifyFormal() {
   if (!existsSync(decisionsPath) || !existsSync(mappingPath) || !existsSync(qualityPath))
     fail('formal_artifacts_missing');
-  const work = readJson(workItemsPath);
   const decisions = readJson(decisionsPath);
   const mapping = readJson(mappingPath);
   const quality = readJson(qualityPath);
-  if (decisions.decisions.length !== work.items.length) fail('decision_coverage');
-  if (mapping.mappings.length !== work.items.length) fail('mapping_coverage');
-  if (quality.sourceCounts.textCards !== work.items.length) fail('quality_source_coverage');
-  if (!quality.officialFactSources?.length) fail('quality_official_fact_sources');
+  const errors = [];
+  const decisionRows = Array.isArray(decisions.decisions) ? decisions.decisions : [];
+  const mappingRows = Array.isArray(mapping.mappings) ? mapping.mappings : [];
+  if (!Array.isArray(decisions.decisions)) errors.push('decision_artifact_shape');
+  if (!Array.isArray(mapping.mappings)) errors.push('mapping_artifact_shape');
+  if (!decisions.baselineDigest || decisions.baselineDigest !== mapping.baselineDigest)
+    errors.push('artifact_baseline_digest');
+  if (decisions.baselineDigest !== quality.baselineDigest) errors.push('quality_baseline_digest');
+  if (quality.sourceCounts?.textCards !== decisionRows.length)
+    errors.push('quality_source_coverage');
+  if (mappingRows.length !== decisionRows.length) errors.push('mapping_coverage');
+  if (!quality.officialFactSources?.length) errors.push('quality_official_fact_sources');
+
+  const decisionsBySourceId = new Map();
+  const mappingsBySourceId = new Map();
+  for (const decision of decisionRows) {
+    const sourceId = decision?.source?.cardId;
+    if (!sourceId || decisionsBySourceId.has(sourceId)) {
+      errors.push(`decision_source_id:${sourceId ?? 'missing'}`);
+      continue;
+    }
+    decisionsBySourceId.set(sourceId, decision);
+  }
+  for (const item of mappingRows) {
+    const sourceId = item?.sourceCardId;
+    if (!sourceId || mappingsBySourceId.has(sourceId)) {
+      errors.push(`mapping_source_id:${sourceId ?? 'missing'}`);
+      continue;
+    }
+    mappingsBySourceId.set(sourceId, item);
+  }
+
+  const actionCounts = Object.fromEntries(
+    ['keep', 'rewrite', 'split', 'merge', 'move', 'delete'].map((action) => [action, 0]),
+  );
+  const deferredIds = new Set();
+  const activeTargetIds = new Set();
+  for (const [sourceId, decision] of decisionsBySourceId) {
+    const currentMapping = mappingsBySourceId.get(sourceId);
+    if (!currentMapping) {
+      errors.push(`mapping_missing:${sourceId}`);
+      continue;
+    }
+    const details = decision.decision ?? {};
+    if (!Object.hasOwn(actionCounts, details.action)) {
+      errors.push(`decision_action:${sourceId}:${details.action ?? 'missing'}`);
+      continue;
+    }
+    actionCounts[details.action] += 1;
+    if (currentMapping.action !== details.action) errors.push(`mapping_action:${sourceId}`);
+    if (currentMapping.targetCardId !== details.canonicalCardId)
+      errors.push(`mapping_target_id:${sourceId}`);
+    if (currentMapping.targetTopicId !== details.targetTopicId)
+      errors.push(`mapping_target_topic:${sourceId}`);
+    if (currentMapping.targetCategoryId !== details.targetCategoryId)
+      errors.push(`mapping_target_category:${sourceId}`);
+    const retired = details.action === 'delete' || details.action === 'merge';
+    if (currentMapping.status !== (retired ? 'retired' : 'active'))
+      errors.push(`mapping_status:${sourceId}`);
+    if (!retired && details.canonicalCardId === sourceId) {
+      if (activeTargetIds.has(details.canonicalCardId))
+        errors.push(`active_target_duplicate:${details.canonicalCardId}`);
+      activeTargetIds.add(details.canonicalCardId);
+    }
+    if (details.answerDisposition === 'deferred-image-answer') {
+      deferredIds.add(details.canonicalCardId);
+      if (!decision.review?.imageDependencyReason)
+        errors.push(`deferred_reason_empty:${sourceId}`);
+    } else if (details.answerDisposition !== 'complete') {
+      errors.push(`answer_disposition:${sourceId}:${details.answerDisposition ?? 'missing'}`);
+    }
+  }
+  for (const sourceId of mappingsBySourceId.keys()) {
+    if (!decisionsBySourceId.has(sourceId)) errors.push(`decision_missing:${sourceId}`);
+  }
+
   const current = loadOpi();
-  const errors = validateCandidate(current);
+  errors.push(...validateCandidate(current));
+  const rows = flattenOpi(current);
+  const textRows = rows.filter(({ card }) => card.kind !== PURE_IMAGE_KIND);
+  const rowsById = new Map(rows.map((row) => [row.card.id, row]));
+  const currentTextIds = new Set(textRows.map(({ card }) => card.id));
+  if (activeTargetIds.size !== currentTextIds.size) errors.push('active_target_coverage');
+  for (const cardId of currentTextIds) {
+    if (!activeTargetIds.has(cardId)) errors.push(`unmapped_final_card:${cardId}`);
+  }
+  for (const [sourceId, decision] of decisionsBySourceId) {
+    const details = decision.decision;
+    const retired = details.action === 'delete' || details.action === 'merge';
+    const row = rowsById.get(details.canonicalCardId);
+    if (!row) {
+      errors.push(`target_card_missing:${sourceId}:${details.canonicalCardId}`);
+      continue;
+    }
+    if (row.category.id !== details.targetCategoryId || row.topic.id !== details.targetTopicId)
+      errors.push(`target_location:${sourceId}`);
+    if (retired) continue;
+    const fields = {
+      questionEn: row.card.audioText,
+      questionZh: row.card.audioTextZh,
+      answerEn: row.card.referenceText,
+      answerZh: row.card.referenceTextZh,
+    };
+    for (const [field, value] of Object.entries(fields)) {
+      if (checksumJson(value) !== decision.finalContentChecksums?.[field])
+        errors.push(`content_checksum:${sourceId}:${field}`);
+    }
+    if (!normalizeWhitespace(fields.questionEn) || containsHan(fields.questionEn))
+      errors.push(`final_question_en:${sourceId}`);
+    if (!/[?!.]$/u.test(normalizeWhitespace(fields.questionEn)))
+      errors.push(`final_question_terminal:${sourceId}`);
+    if (!normalizeWhitespace(fields.questionZh) || !containsHan(fields.questionZh))
+      errors.push(`final_question_zh:${sourceId}`);
+    if (details.answerDisposition === 'deferred-image-answer') {
+      if (normalizeWhitespace(fields.answerEn) || normalizeWhitespace(fields.answerZh))
+        errors.push(`deferred_answer_not_empty:${sourceId}`);
+    } else {
+      if (!normalizeWhitespace(fields.answerEn) || containsHan(fields.answerEn))
+        errors.push(`final_answer_en:${sourceId}`);
+      if (ANSWER_NUMBERING.test(fields.answerEn ?? ''))
+        errors.push(`final_answer_numbering:${sourceId}`);
+      if (!normalizeWhitespace(fields.answerZh) || !containsHan(fields.answerZh))
+        errors.push(`final_answer_zh:${sourceId}`);
+    }
+  }
+
+  const finalCounts = {
+    categories: current.categories.length,
+    topics: current.categories.reduce((sum, entry) => sum + entry.topics.length, 0),
+    cards: rows.length,
+    textCards: textRows.length,
+    imageCards: rows.length - textRows.length,
+  };
+  for (const [key, value] of Object.entries(finalCounts)) {
+    if (quality.finalCounts?.[key] !== value) errors.push(`quality_final_count:${key}`);
+  }
+  const fieldCoverage = {
+    questionEn: textRows.filter(({ card }) => normalizeWhitespace(card.audioText)).length,
+    questionZh: textRows.filter(({ card }) => normalizeWhitespace(card.audioTextZh)).length,
+    answerEn: textRows.filter(({ card }) => normalizeWhitespace(card.referenceText)).length,
+    answerZh: textRows.filter(({ card }) => normalizeWhitespace(card.referenceTextZh)).length,
+  };
+  for (const [key, value] of Object.entries(fieldCoverage)) {
+    if (quality.fieldCoverage?.[key] !== value) errors.push(`quality_field_coverage:${key}`);
+  }
+  actionCounts['deferred-image-answer'] = deferredIds.size;
+  for (const [key, value] of Object.entries(actionCounts)) {
+    if (quality.actionCounts?.[key] !== value) errors.push(`quality_action_count:${key}`);
+  }
+  const reportedDeferredIds = new Set(
+    (quality.deferredImageAnswers ?? []).map((item) => item.cardId),
+  );
+  if (reportedDeferredIds.size !== deferredIds.size) errors.push('quality_deferred_coverage');
+  for (const cardId of deferredIds) {
+    if (!reportedDeferredIds.has(cardId)) errors.push(`quality_deferred_missing:${cardId}`);
+  }
+  const expectedFacts = new Set(
+    decisionRows.filter((item) => item.review?.factUncertainty).map((item) => item.source.cardId),
+  );
+  const reportedFacts = new Set((quality.factUncertainties ?? []).map((item) => item.cardId));
+  if (expectedFacts.size !== reportedFacts.size) errors.push('quality_fact_coverage');
+  for (const cardId of expectedFacts) {
+    if (!reportedFacts.has(cardId)) errors.push(`quality_fact_missing:${cardId}`);
+  }
+  const expectedSources = new Set(
+    decisionRows
+      .filter((item) => item.review?.factSources?.length)
+      .map((item) => item.source.cardId),
+  );
+  const reportedSources = new Set((quality.officialFactSources ?? []).map((item) => item.cardId));
+  if (expectedSources.size !== reportedSources.size) errors.push('quality_source_coverage');
+  for (const cardId of expectedSources) {
+    if (!reportedSources.has(cardId)) errors.push(`quality_source_missing:${cardId}`);
+  }
   if (errors.length) {
     for (const error of errors.slice(0, 100)) console.error(error);
     fail(`formal_source_errors:${errors.length}`);
   }
-  for (const stage of STAGES) commandVerifyStage(stage);
   const currentDigest = checksumJson(
     sourceRelativePaths().map((path) => ({ path, checksum: fileChecksum(sourcePath(path)) })),
   );
   console.log(
-    `opi_verify_formal_ok decisions=${decisions.decisions.length} mappings=${mapping.mappings.length} sourceDigest=${currentDigest}`,
+    `opi_verify_formal_ok decisions=${decisionRows.length} mappings=${mappingRows.length} sourceDigest=${currentDigest}`,
   );
 }
 
