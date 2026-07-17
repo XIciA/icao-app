@@ -1215,6 +1215,29 @@ function cleanAnswerEn(value) {
     .replace(/\ba good task sharing\b/giu, 'effective task sharing')
     .replace(/\bto visual check\b/giu, 'to check visually for')
     .replace(/\bFirst of all,\s*/giu, 'First, ')
+    .replace(/\b(?:First|Second|Third),?\s*ly\b/giu, (word) => `${sentenceCase(word.replace(/,?\s*ly/iu, ''))},`)
+    .replace(/\bFirstly\b/giu, 'First')
+    .replace(/\bSecondly\b/giu, 'Second')
+    .replace(/\bThirdly\b/giu, 'Third')
+    .replace(/\bAt last\b/giu, 'Finally')
+    .replace(/\bPAX\b/giu, 'passengers')
+    .replace(/\bweather is OK\b/giu, 'weather is suitable')
+    .replace(/\bhave a communication with\b/giu, 'communicate with')
+    .replace(/\bexchange the ideas\b/giu, 'exchange ideas')
+    .replace(/\bgood communication\b/giu, 'effective communication')
+    .replace(/\bflight papers\b/giu, 'required flight documents')
+    .replace(/\bflight manuals and required flight documents\b/giu, 'the required manuals and flight documents')
+    .replace(/\bmake sure myself is fit\b/giu, 'confirm that I am fit')
+    .replace(/\bto familiar with\b/giu, 'to become familiar with')
+    .replace(/\bcan visual check\b/giu, 'can check visually')
+    .replace(/\bfuel dip stick\b/giu, 'fuel dipstick')
+    .replace(/\bthe correct amount of fuel\b/giu, 'the correct fuel quantity')
+    .replace(/\bfoamed runway\b/giu, 'fire and rescue services')
+    .replace(/\bI have not back to the company\b/giu, 'I have not yet returned to an airline operation')
+    .replace(/\bI am a student pilot have never\b/giu, 'I am a student pilot and have not yet')
+    .replace(/\bemergency' evacuation\b/giu, 'emergency evacuation')
+    .replace(/\bif the aircraft speed before V1\b/giu, 'if the aircraft is below V1')
+    .replace(/\bgo on takeoff\b/giu, 'continue the takeoff')
     .replace(/([.!?])\s*(first|second|third|thirdly|finally),?/giu, (_, punctuation, word) => {
       const normalized = word.toLowerCase() === 'thirdly' ? 'Third' : sentenceCase(word);
       return `${punctuation} ${normalized},`;
@@ -1243,9 +1266,63 @@ function isPersonalQuestion(question) {
 }
 
 function markSampleAnswer(question, answer) {
-  if (!isPersonalQuestion(question)) return answer;
+  const claimsPersonalContext =
+    /\b(?:I have|I am|my (?:company|airline|aircraft|flight school|instructor)|our (?:company|airline)|yes, we have)\b/iu.test(
+      answer,
+    );
+  if (!isPersonalQuestion(question) && !claimsPersonalContext) return answer;
   if (/^(?:this is|a safe sample answer)/iu.test(answer)) return answer;
   return `This is a sample answer that should be adapted to the speaker’s real experience. ${answer}`;
+}
+
+function answerSentenceCount(value) {
+  return (normalizeWhitespace(value).match(/[^.!?]+[.!?]+/gu) ?? []).length;
+}
+
+function dedupeAnswerSentences(value) {
+  const seen = new Set();
+  const sentences = normalizeWhitespace(value).match(/[^.!?]+[.!?]+/gu) ?? [];
+  const unique = sentences.filter((sentence) => {
+    const key = normalizedQuestion(sentence);
+    if (!key || seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+  return unique.join(' ').trim() || normalizeWhitespace(value);
+}
+
+function answerClosing(question) {
+  if (/\b(?:what would|what should|how would|how should|what can pilots|how can pilots|if )\b/iu.test(question)) {
+    return {
+      en: 'The exact action should follow the applicable checklist, SOPs, and the actual conditions.',
+      zh: '具体处置应遵循适用的检查单、标准操作程序和实际条件。',
+    };
+  }
+  if (/\b(?:why|risk|risks|cause|affect|danger|threat)\b/iu.test(question)) {
+    return {
+      en: 'Pilots should recognize these risks early and take timely action to maintain safety.',
+      zh: '飞行员应及早识别这些风险，并及时采取行动以确保安全。',
+    };
+  }
+  return {
+    en: 'Understanding this helps pilots make safer and more informed decisions.',
+    zh: '理解这一点有助于飞行员作出更安全、更周全的决策。',
+  };
+}
+
+function polishFinalAnswer(questionEn, questionZh, answerEn, answerZh) {
+  const personalBefore = /\b(?:I have|I am|my (?:company|airline|aircraft|flight school|instructor)|our (?:company|airline)|yes, we have)\b/iu.test(
+    answerEn,
+  );
+  let en = markSampleAnswer(questionEn, dedupeAnswerSentences(cleanAnswerEn(answerEn)));
+  let zh = dedupeAnswerSentences(cleanAnswerZh(answerZh));
+  if (personalBefore && !/^(?:这是|一个稳妥的示范回答)/u.test(zh))
+    zh = `这是一个应根据答题者真实经历调整的示范回答。${zh}`;
+  const closing = answerClosing(questionEn);
+  if (answerSentenceCount(en) < 3) en = `${en} ${closing.en}`.trim();
+  const zhSentenceCount = (zh.match(/[^。？！]+[。？！]+/gu) ?? []).length;
+  if (zhSentenceCount < 3) zh = `${zh}${closing.zh}`;
+  return { en, zh };
 }
 
 function cleanAnswerZh(value) {
