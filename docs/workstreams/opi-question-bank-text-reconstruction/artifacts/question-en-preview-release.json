@@ -23,5 +23,46 @@
   "rollback": {
     "previousOnlineOpiVersion": 2,
     "action": "reactivate-opi-v2-and-deactivate-preview-release"
+  },
+  "deployment": {
+    "status": "active-and-remotely-verified",
+    "deployedAt": "2026-07-18T12:18:00Z",
+    "gitCommit": "0c53d1d",
+    "releaseArchive": "/opt/icao/runtime/releases/opi-question-en-v7-20260718T121055Z/opi-question-en-preview-v7-20260718T121055Z.tar.gz",
+    "releaseArchiveChecksum": "3819104554d229bdbca531f15e0e608663b534b3e6dbea0fa0807e7b4d7653ad",
+    "databaseBackup": "/opt/icao/backups/postgres/icao-opi-question-en-v7-before-20260718T121550Z.dump",
+    "databaseBackupChecksum": "ae56c1cc381436bf3ce85d25d42f276700122696c202c1db64c977fcfd9ac9c5",
+    "databaseBackupCatalogEntries": 604,
+    "isolatedRestore": {
+      "status": "passed",
+      "publicTables": 13,
+      "authTables": 23,
+      "cardStates": 201,
+      "learningRecords": 135,
+      "documents": 3,
+      "syncChanges": 569
+    },
+    "contentBackup": "/opt/icao/backups/content/opi-question-en-v7-20260718T121055Z/active-opi-before.json",
+    "contentBackupChecksum": "7a76397e887e91969d857b482ed65e4da0ca7c97d862b59b5e05a6fdd8dd52e0",
+    "apiDeployment": "not-required-content-import-only",
+    "apiRestartCount": 0,
+    "healthReady": "ok",
+    "online": {
+      "activeOpiVersion": 7,
+      "cards": 1090,
+      "topics": 144,
+      "unfinishedFieldCards": 0,
+      "representativeCardsVerified": 5,
+      "etagMatchedChecksum": true,
+      "ifNoneMatchStatus": 304
+    },
+    "learningData": {
+      "cardStateRowsBefore": 61,
+      "cardStateRowsAfter": 61,
+      "learningRecordRowsBefore": 16,
+      "learningRecordRowsAfter": 16,
+      "deleted": false
+    },
+    "deviceAcceptance": "pending-user-real-device-review"
   }
 }

@@ -1,8 +1,8 @@
 # OPI 题库文本重建阶段日志
 
-状态：阶段 0、阶段 1 已完成并锁定；阶段 1 英文问题验收版待上线；阶段 2 按用户要求暂停
+状态：阶段 0、阶段 1 已完成并锁定；阶段 1 英文问题验收版已上线，等待用户真机验收；阶段 2 按用户要求暂停
 
-更新时间：2026-07-18 20:11（Asia/Shanghai）
+更新时间：2026-07-18 20:19（Asia/Shanghai）
 
 ## 旧记录废弃声明
 
@@ -204,3 +204,19 @@
 - 发布审计：`artifacts/question-en-preview-release.json`。
 
 上线前只读核对：ECS API 和数据库健康；当前线上 OPI 为 v2、144 话题、1356 卡。OPI 学习数据范围为 2 名用户的 61 条卡片状态和 16 条学习记录。本次验收发布不删除学习数据；导入前仍须执行完整 PostgreSQL 备份、checksum 和 `pg_restore -l` 可读性验证，并保留 OPI v2 作为内容级回滚版本。
+
+### 验收版上线结果
+
+- main 提交 `0c53d1d` 已推送；提交范围只包含本 workstream 文档、阶段 1 锁定审计、OPI 工具和共享显示版本，没有包含并行 Web 工作区改动。
+- 本地门禁通过：阶段 1 closure 与 27 个 batch seal、验收包字段合同、正式基线不变、`pnpm content:build`、`pnpm content:check:full` 和 `pnpm check`；App 43 个测试套件/201 个测试及 API 3 个测试文件/177 个测试全部通过。
+- 发布归档位于 `/opt/icao/runtime/releases/opi-question-en-v7-20260718T121055Z/`；归档 SHA-256 为 `3819104554d229bdbca531f15e0e608663b534b3e6dbea0fa0807e7b4d7653ad`，ECS 解包后的 OPI checksum 与本地一致。
+- 导入前完整数据库备份位于 `/opt/icao/backups/postgres/icao-opi-question-en-v7-before-20260718T121550Z.dump`，SHA-256 为 `ae56c1cc381436bf3ce85d25d42f276700122696c202c1db64c977fcfd9ac9c5`；`pg_restore -l` 为 604 项。
+- 隔离恢复演练通过：恢复库可读 13 个 public 表和 23 个 auth 表，并验证 201 条卡片状态、135 条学习记录、3 份用户文档和 569 条同步变更。
+- OPI v2 活动内容另存为 `/opt/icao/backups/content/opi-question-en-v7-20260718T121055Z/active-opi-before.json`，可直接执行内容级回滚；v2 数据库行仍保留为 inactive。
+- 使用现有内容导入脚本激活 OPI v7；未部署 API 源码、未重启 API，容器保持 healthy 且 restart count 为 0，`/health/ready` 的 API 与数据库均为 `ok`。
+- 线上唯一活动 OPI 为 v7：144 话题、1090 卡，其中 1067 英文文本卡、23 纯图片卡；所有文本卡的中文问题、英文答案、中文答案和旧问题音频字段均不存在。
+- 5 张代表卡覆盖保留题、跨话题拆分题、ATIS 拆分题、低制动效应成对题和图片话题一般知识题，数据库与真实鉴权 API 文本均匹配阶段锁。
+- 真实鉴权接口验证通过：OPI checksum 与 ETag 一致，携带 `If-None-Match` 返回 304 和空响应体；临时验收账号已删除。
+- 原有 OPI 学习数据保持 2 名用户、61 条卡片状态和 16 条学习记录，发布前后数量不变，本次未删除学习数据。
+
+当前只剩用户在真实 iOS/Android 设备上的主观内容与显示验收。用户确认前不开始阶段 2，不生成中文问题或任何参考答案；如用户拒绝验收，可将 OPI v2 重新设为 active 并停用 v7。
