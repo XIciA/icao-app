@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "releaseKind": "question-en-stage1-preview",
+  "releaseVersion": 7,
+  "releasedAt": "2026-07-18T12:10:55Z",
+  "baselineDigest": "81ff4e8d16582b5bfd3a2e6b4cf08f6f6eb89159be2b6b93f4c0e3370aea7d42",
+  "stageClosureLock": "5e346404d0df7196f0482abb41618aa9e83145f3727db452905772c36802c4c4",
+  "stageLockArtifact": "question-en-stage1-lock.json",
+  "stageLockArtifactHash": "cb02ef89c69a60af17043fbcb669c8b68d8b9ae8b3cc17913dd6e6e3247e8c82",
+  "bankChecksum": "a943dd2739e1c6235488bcbc2ec5ddc389424631e6045490919d558ca57926f4",
+  "releaseManifestChecksum": "0b6e7c8912bbb53e252a56352305f9299b7eeff77d245dc7f8482af29c8400f2",
+  "counts": {
+    "cards": 1090,
+    "textCards": 1067,
+    "imageCards": 23
+  },
+  "fields": {
+    "questionEn": "locked-and-published",
+    "questionZh": "empty",
+    "answerEn": "empty",
+    "answerZh": "empty"
+  },
+  "rollback": {
+    "previousOnlineOpiVersion": 2,
+    "action": "reactivate-opi-v2-and-deactivate-preview-release"
+  }
+}
