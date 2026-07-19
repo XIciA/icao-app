@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "releasedAt": "2026-07-19T12:20:59+08:00",
+  "release": {
+    "version": 8,
+    "sourceCommit": "f7a22dbc6b59705d58a29eb4a19feb96a8fa07e0",
+    "checksum": "bd142ec28285e82283caaa6958a3e5218f36b3fd2d4455f7aec4a97f9fd3faa7",
+    "archive": ".generated/opi-rebuild/releases/opi-final-v8-20260718T202817Z.tar.gz",
+    "archiveSha256": "efd0098f8588f42190932d288795af8cd5f75a9d6248589a39e65ea4685df1fa",
+    "remoteDirectory": "/opt/icao/runtime/releases/opi-final-v8-20260719T040842Z"
+  },
+  "counts": {
+    "categories": 8,
+    "topics": 144,
+    "cards": 1090,
+    "textCards": 1067,
+    "imageCards": 23,
+    "completeBilingualAnswers": 1057,
+    "deferredImageAnswers": 10
+  },
+  "backups": {
+    "content": {
+      "file": "/opt/icao/backups/content/opi-final-v8-20260719T040842Z/active-opi-v7-before.json",
+      "sha256": "f1e13df6b5443549c130e85c1debc4313904840fec67fd0a5a61dac4c6cc5eef"
+    },
+    "database": {
+      "file": "/opt/icao/backups/postgres/icao-20260719T041546Z.dump",
+      "sha256": "a72869bb43f9c35bf10d445e02634e71c11f3abb11eedd560f2a06ff66410fcf",
+      "pgRestoreListLines": 604,
+      "isolatedRestore": {
+        "result": "pass",
+        "publicTables": 13,
+        "authTables": 23,
+        "cardStates": 225,
+        "learningRecords": 150,
+        "documents": 3,
+        "syncChanges": 667
+      }
+    }
+  },
+  "deployment": {
+    "flow": "existing content import",
+    "apiSourceDeployed": false,
+    "apiRestartCount": 0,
+    "healthReady": {
+      "service": "icao-api",
+      "status": "ok",
+      "database": "ok"
+    },
+    "learningData": {
+      "opiCardStatesBefore": 73,
+      "opiCardStatesAfter": 73,
+      "opiLearningRecordsBefore": 21,
+      "opiLearningRecordsAfter": 21
+    }
+  },
+  "liveVerification": {
+    "unauthenticatedStatus": 401,
+    "authenticatedStatus": 200,
+    "etag": "\"bd142ec28285e82283caaa6958a3e5218f36b3fd2d4455f7aec4a97f9fd3faa7\"",
+    "conditionalStatus": 304,
+    "conditionalBodyBytes": 0,
+    "representativeIds": [
+      "opi-core-058",
+      "opi-extra-354",
+      "opi-extra-380",
+      "opi-image-001-q01",
+      "opi-image-002-q01"
+    ],
+    "temporaryVerificationUserDeleted": true,
+    "deviceTestUserDeleted": true,
+    "result": "pass"
+  },
+  "deviceAcceptance": "device-acceptance/manifest.json",
+  "rollback": {
+    "contentVersion": 7,
+    "databaseBackupVerifiedRestorable": true
+  },
+  "result": "pass"
+}

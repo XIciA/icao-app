@@ -302,7 +302,7 @@
 
 ## 阶段 7：双端验收、Git 与生产发布
 
-状态：执行中。
+状态：已完成。
 
 已完成的本地证据：
 
@@ -313,4 +313,17 @@
 - iOS 登录、会话恢复和 OPI 入口通过，首页显示 `144 话题 / 1090 卡`；短答案代表卡完整显示英文问题、横线、中文问题及英文答案、横线、中文答案，答案展开和学习导航可用。
 - iOS 图片依赖代表卡 `opi-image-002-q01` 正确显示双语问题和“暂无参考内容”，未生成猜测性答案；Android 与 iOS 截图及 SHA-256 已归档到 `artifacts/device-acceptance/manifest.json`，双端结果均为 pass。
 
-阶段 7 尚未完成的项目：精确 Git 范围提交与 main 推送、生产 v7 备份与隔离恢复演练、OPI-only v8 内容导入、健康/版本/字段/ETag/304/代表卡验证、学习数据范围对账和最终线上证据归档。完成这些项目以前不得宣布上线完成。
+生产发布与线上验收结果：
+
+- 正式内容提交 `f7a22dbc6b59705d58a29eb4a19feb96a8fa07e0` 已推送 main；提交只包含本次 OPI 重建、相关共享内容产物、验收证据、工具和显示版本，未纳入并行工作区修改。
+- OPI-only v8 发布归档 SHA-256 为 `efd0098f8588f42190932d288795af8cd5f75a9d6248589a39e65ea4685df1fa`，ECS 发布目录为 `/opt/icao/runtime/releases/opi-final-v8-20260719T040842Z/`；导入文件数量、版本和 checksum 与本地正式构建一致。
+- 导入前备份活动 OPI v7 内容，文件为 `/opt/icao/backups/content/opi-final-v8-20260719T040842Z/active-opi-v7-before.json`，SHA-256 为 `f1e13df6b5443549c130e85c1debc4313904840fec67fd0a5a61dac4c6cc5eef`。
+- 完整 PostgreSQL 备份为 `/opt/icao/backups/postgres/icao-20260719T041546Z.dump`，SHA-256 为 `a72869bb43f9c35bf10d445e02634e71c11f3abb11eedd560f2a06ff66410fcf`；容器内 `pg_restore -l` 为 604 项。
+- 隔离恢复演练通过：恢复库可读 13 个 public 表和 23 个 auth 表，并验证 225 条卡片状态、150 条学习记录、3 份用户文档和 667 条同步变更。
+- 使用仓库既有正式内容导入流程激活 OPI v8；未部署 API 源码、未重启 API，容器 restart count 保持 0，`/health/ready` 的服务与数据库均为 `ok`。
+- 线上唯一活动 OPI 为 v8，checksum 为 `bd142ec28285e82283caaa6958a3e5218f36b3fd2d4455f7aec4a97f9fd3faa7`；8 分类、144 话题、1090 卡、1067 文本卡、23 图片卡、1057 份完整双语答案和 10 份图片依赖延期与正式锁完全一致。
+- 真实鉴权接口全量合同验证通过：未登录请求为 401；登录后题库摘要、完整载荷、5 张代表卡和延期字段均匹配正式发布；ETag 与 checksum 一致，`If-None-Match` 返回 304 且响应体为空。
+- OPI 学习数据发布前后均为 73 条卡片状态和 21 条学习记录，没有执行学习数据清理或迁移；线上验收账号和 iOS/Android 真机测试账号均已删除。
+- 双端验收、备份、恢复、导入和线上请求的结构化证据分别归档在 `artifacts/device-acceptance/manifest.json` 与 `artifacts/production-release-v8.json`；v7 内容与完整数据库备份共同构成可执行回滚点。
+
+阶段 7 于 2026-07-19 12:20（Asia/Shanghai）完成；阶段 2 至阶段 7 全部关闭，OPI v8 已正式上线并通过线上验证。
