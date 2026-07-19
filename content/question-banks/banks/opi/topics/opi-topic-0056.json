@@ -2,21 +2,31 @@
   "categoryId": "opi-category-03",
   "id": "opi-topic-0056",
   "name": "CFIT",
-  "declaredCardCount": 2,
+  "declaredCardCount": 3,
   "cards": [
     {
       "id": "opi-core-627",
       "taskTitle": "缩略词-CFIT-1",
-      "audioText": "What is CFIT？",
+      "audioText": "What is Controlled Flight into Terrain (CFIT)?",
       "audioTextZh": "什么是可控飞行撞地（CFIT）？",
-      "referenceText": "CFIT stands for Controlled Flight Into Terrain. It is extremely dangerous.\n可控飞行撞地（CFIT）的全称是 Controlled Flight Into Terrain ，这种情况极其危险 。"
+      "referenceText": "Controlled Flight into Terrain, or CFIT, occurs when an airworthy aircraft under the crew's control is unintentionally flown into terrain, water or an obstacle. The crew normally has little or no awareness of the collision risk until it is too late. CFIT is different from an accident caused by a prior loss of control or structural failure.",
+      "referenceTextZh": "可控飞行撞地（CFIT）是指处于适航状态并由机组控制的航空器，无意中撞上地形、水面或障碍物。机组往往直到为时已晚，才意识到存在碰撞风险，甚至完全没有察觉。CFIT 不同于因事先失控或结构失效而造成的事故。"
     },
     {
       "id": "opi-core-628",
       "taskTitle": "缩略词-CFIT-2",
-      "audioText": "Why CFIT happens? How to avoid CFIT?",
-      "audioTextZh": "可控飞行撞地（CFIT）为何会发生？如何避免 CFIT？",
-      "referenceText": "There are several reasons for this occurrence. For example, loss of situational awareness, incorrect navigation settings, failure to follow SOPs, pilot fatigue, and so on. Pilots should always adhere to SOPs and conduct cross - checks during flight.\n这类情况的发生有多种原因，比如态势感知缺失、导航设置错误、未遵循标准操作程序（SOPs）、飞行员疲劳等。飞行员在飞行中应始终严格遵守标准操作程序，并进行交叉检查 。"
+      "audioText": "What are the main causes of Controlled Flight into Terrain (CFIT) accidents?",
+      "audioTextZh": "导致可控飞行撞地（CFIT）事故的主要原因有哪些？",
+      "referenceText": "Common CFIT factors include loss of situational awareness, navigation or altitude-setting errors, poor approach planning and descent below a safe altitude. Bad weather, darkness, high workload, weak crew coordination and misunderstood ATC clearances can make these errors more likely. Inadequate charts, procedures, training or terrain-warning capability can also reduce the available safety margin.",
+      "referenceTextZh": "CFIT 的常见因素包括失去态势感知、导航或高度表设定错误、进近计划不当以及下降到安全高度以下。恶劣天气、黑暗、工作负荷高、机组协调不足和误解空管许可都会增加这些错误发生的可能。航图、程序、训练或地形警告能力不足也会减小可用安全裕度。"
+    },
+    {
+      "id": "opi-core-628-part-2",
+      "taskTitle": "缩略词-CFIT-3",
+      "audioText": "How can pilots prevent Controlled Flight into Terrain (CFIT) accidents?",
+      "audioTextZh": "飞行员如何预防可控飞行撞地（CFIT）事故？",
+      "referenceText": "Pilots can prevent CFIT by maintaining accurate position and altitude awareness, using current charts and checking altimeter settings, minimum altitudes and approach constraints. A stabilized approach policy, effective monitoring, clear challenge-and-response communication and an early go-around decision provide important protection. Crews must also understand terrain-warning alerts and carry out the approved escape manoeuvre immediately when required.",
+      "referenceTextZh": "飞行员可以通过准确掌握位置和高度、使用现行航图，并检查高度表设定、最低高度和进近限制来预防 CFIT。稳定进近政策、有效监控、清楚的质询与回应以及及早复飞决定能够提供重要保护。机组还必须理解地形警报，并在程序或警报条件要求时立即执行经批准的改出机动。"
     }
   ]
 }

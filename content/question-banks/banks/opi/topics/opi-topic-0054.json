@@ -7,23 +7,26 @@
     {
       "id": "opi-core-621",
       "taskTitle": "缩略词-EFB-1",
-      "audioText": "What is EFB？",
+      "audioText": "What is an electronic flight bag (EFB)?",
       "audioTextZh": "什么是电子飞行包（EFB）？",
-      "referenceText": "EFB stands for Electronic Flight Bag. Pilots use an electronic device like an iPad to familiarize themselves with airports and procedures.\n电子飞行包（EFB）全称为 Electronic Flight Bag 。飞行员会使用类似 iPad 的电子设备，来熟悉机场信息和操作程序 。\n\nEFB stands for Electronic Flight Bag, a digital device storing manuals, charts, flight plans, and NOTAMs. Its usages include preflight preparation (checking weather and airport data), in-flight reference (accessing SOPs and QRH), and data recording, replacing paper documents for convenience and efficiency.\n电子飞行包（EFB）是存储手册、航图、飞行计划和航行通告（NOTAM）的数字化设备。其用途包括飞行前准备（查阅天气和机场数据）、飞行中参考（调取标准操作程序（SOP）和快速检查单（QRH））及数据记录，替代纸质文档，兼具便捷性与高效性。"
+      "referenceText": "An electronic flight bag is an approved electronic system used to display or manage operational information that was traditionally carried on paper. It may contain charts, manuals, checklists, weather, performance tools and flight documents. The hardware, software, data and backup arrangements must meet the operator's approval and security procedures.",
+      "referenceTextZh": "电子飞行包是一种经批准的电子系统，用于显示或管理过去通常以纸质形式携带的运行信息。它可以包含航图、手册、检查单、天气、性能工具和飞行文件。硬件、软件、数据和备份安排必须符合运营人的批准要求及安保程序。"
     },
     {
       "id": "opi-core-622",
       "taskTitle": "缩略词-EFB-2",
-      "audioText": "Do you often use EFB in daily flight operations?",
-      "audioTextZh": "你经常在飞行运行中使用EFB吗？",
-      "referenceText": "Yes, we often use EFB (Electronic Flight Bag) in flight operations. We can get some important information from EFB to ensure the safety and efficiency of the flight.\n是的，我们在飞行运行中经常使用EFB（电子飞行包）。我们可以从EFB中获得一些重要信息，确保飞行安全高效运行"
+      "audioText": "Do you often use an EFB in your daily flight operations?",
+      "audioTextZh": "你在日常飞行运行中经常使用 EFB 吗？",
+      "referenceText": "A suitable example would be: yes, I use an EFB on almost every flight. I use it for charts, manuals, weather, operational notices and approved performance calculations. I still confirm that the data are current and use the operator's backup method if the device or application fails.",
+      "referenceTextZh": "一个合适的示范答案是：是的，我几乎每次飞行都会使用 EFB。我用它查看航图、手册、天气、运行通告，并完成经批准的性能计算。我仍会确认数据是最新的，并在设备或应用失效时采用运营人的备份方法。"
     },
     {
       "id": "opi-core-623",
       "taskTitle": "缩略词-EFB-3",
-      "audioText": "What EFB applications do you use most during pre flight preparation?",
-      "audioTextZh": "飞行前准备时，你们经常使用哪些EFB应用程序？",
-      "referenceText": "There are some EFB applications we often use during preflight preparation such as weather information, airport information, flight planned route, aeronautical charts, aircraft performance and so on.\n在飞行前准备时，我们经常使用一些EFB应用程序，比如，天气信息，机场信息，飞行计划航路，航图，飞机性能等等\n\nDuring preflight preparation, I use EFB applications to check flight plans, weather forecasts (ATIS, METAR), NOTAMs, airport charts, and loading sheets. I also access aircraft performance data and MEL to confirm airworthiness, ensuring comprehensive preparation for the flight.\n飞行前准备阶段，我会使用电子飞行包（EFB）程序查阅飞行计划、天气预报（自动终端情报服务（ATIS）、航空天气报告（METAR））、航行通告（NOTAM）、机场航图和载重平衡单；还会调取飞机性能数据和最低设备清单（MEL）确认适航状态，为飞行做好全面准备。"
+      "audioText": "Which EFB applications do you use most often during preflight preparation?",
+      "audioTextZh": "飞行前准备期间，你最常使用哪些 EFB 应用程序？",
+      "referenceText": "A suitable example would be: during preflight I use the chart viewer, weather and NOTAM applications, document library and approved takeoff-performance tool most often. I also review the operational flight plan and airport briefing material. The exact applications should be replaced with the operator-approved tools used by the learner.",
+      "referenceTextZh": "一个合适的示范答案是：飞行前我最常使用航图查看器、天气和航行通告应用、文件库以及经批准的起飞性能工具。我还会查看运行飞行计划和机场简报资料。具体应用应替换为学习者所在运营人批准的实际工具。"
     }
   ]
 }

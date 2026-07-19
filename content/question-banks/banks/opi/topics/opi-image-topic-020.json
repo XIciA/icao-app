@@ -14,29 +14,26 @@
     {
       "id": "opi-image-020-q01",
       "taskTitle": "图片题-020-01",
-      "audioText": "What risks will snow and ice on aircraft surfaces bring to flight safety?",
-      "audioTextZh": "飞机表面积雪和结冰会给飞行安全带来哪些风险？",
-      "referenceText": "The main risks are loss of lift, higher drag, inaccurate airspeed indications, and possible control difficulty. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
-      "referenceTextZh": "主要风险包括升力损失、阻力增大、空速指示不准以及可能操纵困难。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-020-q01.mp3"
+      "audioText": "What risks can snow and ice contamination on an aircraft pose to flight safety?",
+      "audioTextZh": "航空器上的冰雪污染会给飞行安全带来哪些风险？",
+      "referenceText": "Snow and ice can change the shape and roughness of wings and control surfaces, reducing lift and increasing drag and stall speed. They can block sensors, restrict controls, damage engines or propellers and add uneven weight. Contamination can also break free during takeoff and damage the aircraft or be ingested.",
+      "referenceTextZh": "冰雪会改变机翼和操纵面的形状与粗糙度，降低升力，增加阻力和失速速度。它们会堵塞传感器、限制操纵、损坏发动机或螺旋桨，并增加重量、造成载荷分布不均。污染物还可能在起飞时脱落，损坏飞机或被发动机吸入。"
     },
     {
       "id": "opi-image-020-q02",
       "taskTitle": "图片题-020-02",
-      "audioText": "How can ice contamination on wings affect the flight safety?",
-      "audioTextZh": "机翼冰污染会如何影响飞行安全？",
-      "referenceText": "This situation is related to Snow and ice contamination. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
-      "referenceTextZh": "这种情况与积雪和结冰污染有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-020-q02.mp3"
+      "audioText": "How can ice contamination on a wing affect aircraft performance and handling?",
+      "audioTextZh": "机翼结冰污染会如何影响航空器性能和操纵特性？",
+      "referenceText": "Even a small amount of rough ice can disturb airflow, reduce maximum lift and increase drag. The wing may stall earlier and with less warning, while roll control and handling can become unpredictable if contamination is uneven. Normal takeoff performance and stall indications therefore cannot be assumed for a contaminated wing.",
+      "referenceTextZh": "即使少量粗糙结冰也会扰乱气流、降低最大升力并增加阻力。机翼可能更早失速且预警更少；污染不均匀时，横滚控制和操纵特性还会变得难以预测。因此，不能假定受污染机翼仍具有正常的起飞性能和失速指示。"
     },
     {
       "id": "opi-image-020-q03",
       "taskTitle": "图片题-020-03",
-      "audioText": "Under that situation,what should pilots do to make sure the flight safety?",
-      "audioTextZh": "在这种情况下，飞行员应做什么来确保飞行安全？",
-      "referenceText": "This situation is related to Snow and ice contamination. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
-      "referenceTextZh": "这种情况与积雪和结冰污染有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-020-q03.mp3"
+      "audioText": "What should pilots do if snow or ice is found on critical aircraft surfaces before departure?",
+      "audioTextZh": "起飞前发现航空器关键表面有冰雪时，飞行员应怎么做？",
+      "referenceText": "Pilots should not depart until critical surfaces meet the applicable clean-aircraft requirement. They should arrange approved removal and protection, inspect or obtain the required check, monitor continuing precipitation and holdover conditions, and repeat treatment if protection is no longer valid. Scraping, heating or fluids must be used only through approved methods that do not damage the aircraft.",
+      "referenceTextZh": "在关键表面达到适用的清洁飞机要求前，飞行员不得起飞。机组应安排批准的除冰和防冰，实施或取得规定的检查，监控持续降水和保持时间，并在防护失效后重新处理。刮除、加热或使用除冰液都必须采用不会损伤飞机的批准方法。"
     }
   ]
 }

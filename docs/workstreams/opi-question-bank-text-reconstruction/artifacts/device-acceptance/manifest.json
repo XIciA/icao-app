@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "acceptedAt": "2026-07-19T12:06:46+08:00",
+  "releaseVersion": 8,
+  "opiChecksum": "bd142ec28285e82283caaa6958a3e5218f36b3fd2d4455f7aec4a97f9fd3faa7",
+  "counts": {
+    "topics": 144,
+    "cards": 1090,
+    "textCards": 1067,
+    "imageCards": 23,
+    "completeBilingualAnswers": 1057,
+    "deferredImageAnswers": 10
+  },
+  "platforms": [
+    {
+      "platform": "android",
+      "runtime": "API 36 emulator, clean Development Build",
+      "checks": [
+        "bank count shows 144 topics and 1090 cards",
+        "bilingual question and answer render English, divider, Chinese",
+        "adjustable example identity is visible for an experience question",
+        "image-dependent deferred answer renders no guessed reference text"
+      ],
+      "evidence": [
+        {
+          "file": "android-opi-v8-bilingual-question-answer.png",
+          "sha256": "38194e01a3854f3a2dff446b017365a993fbee6cddfcd91bc8259278d19d98f1"
+        },
+        {
+          "file": "android-opi-v8-deferred-image-answer.png",
+          "sha256": "3cb4f5fc94a2ce8d0e1509e106ce0df3e110e455a4aa4bc5efb7d0d4991a4177"
+        }
+      ]
+    },
+    {
+      "platform": "ios",
+      "runtime": "iOS 26.3 iPhone 17 Pro simulator, clean Development Build",
+      "checks": [
+        "bank count shows 144 topics and 1090 cards",
+        "bilingual question and answer render English, divider, Chinese",
+        "answer expansion and study navigation work",
+        "image-dependent deferred answer renders no guessed reference text"
+      ],
+      "evidence": [
+        {
+          "file": "ios-opi-v8-bank-count.png",
+          "sha256": "57279aa98c44c7f0df6d0a58d1e962a95ba12e427fcd0fdaad78a8c3fb0b99dc"
+        },
+        {
+          "file": "ios-opi-v8-bilingual-question-answer.png",
+          "sha256": "923e5ed51ea797bfe9609e47ccb396c4f66b95306a27529e5c86dbe6ed86ee5d"
+        },
+        {
+          "file": "ios-opi-v8-deferred-image-answer.png",
+          "sha256": "c4a087c30ea416c71504cf9a73384ef90f25585ecc6a2795f5de81f52b90fef2"
+        }
+      ]
+    }
+  ],
+  "result": "pass"
+}

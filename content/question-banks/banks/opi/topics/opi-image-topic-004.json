@@ -14,20 +14,18 @@
     {
       "id": "opi-image-004-q01",
       "taskTitle": "图片题-004-01",
-      "audioText": "If you are the captain, what should you do when encountering a situation where these two aircraft seem to be in close proximity?",
-      "audioTextZh": "如果你是机长，遇到两架飞机看起来距离很近的情况时应该怎么做？",
-      "referenceText": "In this picture, I can see a situation related to Aircraft proximity. The key points are loss of separation, wake turbulence, runway incursion, and misunderstanding of ATC instructions. It is important for the crew to recognize the risk early, keep good communication, and follow standard operating procedures.",
-      "referenceTextZh": "在这张图片中，我看到的是与飞机接近风险有关的情况。关键点包括间隔丧失、尾流影响、跑道侵入以及误解管制指令。机组应及早识别风险，保持良好沟通，并按照标准操作程序处置。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-004-q01.mp3"
+      "audioText": "If you were the captain of one of these aircraft, how would you respond to the risk of a collision?",
+      "audioTextZh": "如果你是图中其中一架航空器的机长，你会如何应对碰撞风险？",
+      "referenceText": "I would immediately maintain or establish a predictable flight path, follow any traffic-resolution guidance and comply with ATC instructions that do not conflict with an active collision-avoidance command. I would avoid an improvised turn based only on visual impression unless necessary to prevent impact. After separation was restored, I would report the event and review aircraft status and fuel before continuing.",
+      "referenceTextZh": "我会立即保持或建立可预期的飞行轨迹，遵循任何交通避碰或冲突解脱引导，并执行不与当前有效防撞指令冲突的 ATC 指令。除非为避免碰撞所必需，否则我不会仅凭目视判断临时自行转弯。恢复间隔后，我会报告事件，并在继续飞行前检查飞机状态和燃油。"
     },
     {
       "id": "opi-image-004-q02",
       "taskTitle": "图片题-004-02",
-      "audioText": "What factors may cause that situations?",
-      "audioTextZh": "哪些因素可能导致这种情况？",
-      "referenceText": "Possible factors include loss of separation, wake turbulence, runway incursion, and misunderstanding of ATC instructions. Human factors, weather, aircraft condition, airport environment, and communication problems may also contribute to the situation.",
-      "referenceTextZh": "可能因素包括间隔丧失、尾流影响、跑道侵入以及误解管制指令。人的因素、天气、飞机状态、机场环境以及沟通问题也可能共同导致这种情况。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-004-q02.mp3"
+      "audioText": "What factors can cause aircraft to come dangerously close to each other?",
+      "audioTextZh": "哪些因素可能导致航空器彼此危险接近？",
+      "referenceText": "Aircraft can come too close because of misunderstood clearances, navigation error, altitude deviation, missed traffic, weak monitoring or loss of communication. Congested airspace, similar call signs, runway incursions and incorrect collision-avoidance responses can add risk. Equipment failure or delayed controller and pilot action may remove the remaining separation barrier.",
+      "referenceTextZh": "飞机过度接近可能源于误解许可、导航错误、高度偏差、未发现其他航空器、监控薄弱或通信中断。空域拥挤、相似呼号、跑道侵入以及不正确的避碰反应都会增加风险。设备故障，或管制员和飞行员行动迟缓，也可能消除最后一道间隔屏障。"
     }
   ]
 }

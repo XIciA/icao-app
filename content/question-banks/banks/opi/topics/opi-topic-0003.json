@@ -2,168 +2,159 @@
   "categoryId": "opi-category-01",
   "id": "opi-topic-0003",
   "name": "风切变",
-  "declaredCardCount": 23,
+  "declaredCardCount": 19,
   "cards": [
     {
       "id": "opi-core-035",
       "taskTitle": "气象-风切变-1",
-      "audioText": "What is windshear?",
+      "audioText": "What is wind shear?",
       "audioTextZh": "什么是风切变？",
-      "referenceText": "（1）Windshear is the sudden change in wind speed and wind direction in a small area. It can make the aircraft lose airspeed and altitude quickly.\n风切变是指小范围内风速和风向的突然变化。它可以使飞机迅速失去空速和高度。\n（2） windshear is sudden and rapid change in wind speed and wind direction  in a certain time and area .\n 风切变是指在一定时间和区域内风速和风向的突然快速变化。"
+      "referenceText": "Wind shear is a rapid change in wind speed, direction or both over a relatively short distance. It can change an aircraft's airspeed, lift and flight path very quickly. The hazard is greatest when the aircraft is close to the ground and has little height or energy available for recovery.",
+      "referenceTextZh": "风切变是指风速、风向或两者在相对较短距离内迅速变化。它能在极短时间内改变飞机的空速、升力和飞行轨迹。当飞机接近地面、可用于改出的高度或能量很少时，危险最大。"
     },
     {
       "id": "opi-core-036",
       "taskTitle": "气象-风切变-2",
-      "audioText": "Where is it most likely to occur?",
-      "audioTextZh": "风切变最容易发生在哪里？",
-      "referenceText": "Where?\n- at seaside airports;\n- at high elevation airports\n\n风切变最可能在海边机场和高原机场发生"
+      "audioText": "Where is wind shear most likely to occur?",
+      "audioTextZh": "风切变最可能在哪里发生？",
+      "referenceText": "Wind shear is often found near thunderstorms, microbursts, fronts, temperature inversions and strong surface-wind transitions. It can also occur near mountains, terrain and jet streams. Around an airport, pilots should pay particular attention to low-level alerts, gust fronts and rapidly changing winds.",
+      "referenceTextZh": "风切变常见于雷暴、微下击暴流、锋面、逆温层和地面风强烈变化的区域。它也可能出现在山区、地形附近和急流区域。在机场周边，飞行员尤其应注意低空风切变警报、阵风锋和迅速变化的风。"
     },
     {
       "id": "opi-core-037",
       "taskTitle": "气象-风切变-3",
-      "audioText": "Have you ever triggered wind shear warning?",
-      "audioTextZh": "你触发过风切变警报吗？",
-      "referenceText": "No, I have not triggered a wind - shear warning because I fly the DA - 40 for flight training. It is a small and light training aircraft. Our aircraft doesn't have a wind - shear warning system.\n不，我没有触发过风切变警报，因为我驾驶 DA - 40 进行飞行训练。它是一架小型轻型训练飞机。我们的飞机没有风切变警报系统。"
+      "audioText": "Have you ever received a wind shear warning in flight?",
+      "audioTextZh": "你在飞行中收到过风切变警告吗？",
+      "referenceText": "An adjustable example is that I once received a predictive wind-shear warning during approach. The crew discontinued the approach, followed the approved procedure and returned only after reassessing the weather. This example shows the desired response but is not a claim of real experience.",
+      "referenceTextZh": "一个可调整的示范答案是，我曾在进近时收到预测式风切变警告。机组中止了进近，执行了经批准的程序，并在重新评估天气后才再次进近。这个例子用于说明合适的处置方式，并非真实经历陈述。"
     },
     {
       "id": "opi-core-038",
       "taskTitle": "气象-风切变-4",
-      "audioText": "If the wind shear warning is ignored by the pilot, what are the consequences?",
-      "audioTextZh": "如果飞行员忽视风切变警告，会有什么后果？\nWhat would be the possible consequences if the wind shear warnings were ignored by pilots?\n如果飞行员忽视风切变警告，可能会产生什么后果？",
-      "referenceText": "(1)We may encounter wind shear. It is very dangerous. Because wind shear is a sudden change in wind speed and wind direction. It can make the aircraft lose speed and altitude quickly. We encounter wind shear, our aircraft will be difficult to control ,even stall or crash\n我们可能会遇到风切变。这非常危险。因为风切变是风速和风向的突然变化。它可以使飞机迅速失去速度和高度。我们遇到风切变，我们的飞机将难以控制，甚至失速或坠毁\n(2) If wind shear warnings were ignored/disregarded by pilots, it is very dangerous. First, it may cause the airspeed increased and decreased. Second, it may cause the aircraft to lose altitude, so the aircraft is difficult to control.\n风切变警告被忽略，非常危险。第一，风切变会使空速增加或减少；第二，风切变可能导致飞机掉高度。所以，飞机难以控制。"
+      "audioText": "What are the possible consequences if a pilot ignores a wind shear warning?",
+      "audioTextZh": "如果飞行员忽视风切变警告，可能会造成哪些后果？",
+      "referenceText": "Ignoring a wind-shear warning can lead to a rapid loss of airspeed, lift and flight-path control. Near the ground, the aircraft may be unable to climb or may strike terrain before the crew can recover. It can also expose the aircraft to severe turbulence, structural loads and an unstable approach or departure.",
+      "referenceTextZh": "忽视风切变警告可能导致空速和升力迅速下降，并失去对飞行轨迹的控制。在近地面时，飞机可能无法爬升，或者在机组来不及改出前撞上地形。飞机还可能遭遇严重颠簸和较大的结构载荷，进近或离场也会变得不稳定。"
     },
     {
       "id": "opi-core-039",
       "taskTitle": "气象-风切变-5",
-      "audioText": "Does your plane provide wind shear warning to the pilots?",
-      "audioTextZh": "你的飞机是否向飞行员提供风切变警告？",
-      "referenceText": "I fly DA - 40 for flight training. It is a small and light training aircraft. We don't have wind shear warning on our aircraft. But basis on my knowledge, there is low level wind shear warning system on big commercial aircraft that can provide wind shear warning. On big commercial aircraft, the weather radar and EGPWS can also provide wind shear warning for the pilot.\n我驾驶DA-40进行飞行训练。这是一架小型轻型训练飞机。我们的飞机上没有风切变警告。但据我所知，大型商用飞机上有低空风切变预警系统可以提供风切变预警。在大型商用飞机上，气象雷达和EGPWS还可以为飞行员提供风切变预警。"
+      "audioText": "How are pilots warned about wind shear on your aircraft?",
+      "audioTextZh": "你所飞的飞机通过什么方式向飞行员发出风切变警告？",
+      "referenceText": "A suitable aircraft example would use both predictive and reactive wind-shear functions. The crew may receive visual and aural cautions or warnings from the aircraft, while ATC or airport systems may also issue alerts. The exact sensors, messages, coverage and crew response must be learned from the aircraft manual and operator training.",
+      "referenceTextZh": "一个合适的飞机示例会同时使用预测式和反应式风切变功能。机组可能收到飞机发出的视觉和音响警戒或警告提示，而空管或机场系统也可能发布警报。具体的传感器、信息、覆盖范围和机组处置必须依据飞机手册和运营人训练掌握。"
     },
     {
       "id": "opi-core-040",
       "taskTitle": "气象-风切变-6",
       "audioText": "Why is wind shear a threat to flight safety?",
-      "audioTextZh": "为什么风切变对飞行安全构成威胁？",
-      "referenceText": "Wind shear is a sudden change in wind speed and wind direction. It can make the aircraft lose airspeed and altitude quickly. If we encounter wind shear, our a/c will be difficult to control, even stall or crash. It is very dangerous. We should try our best to avoid wind shear.\n风切变是风速和风向的突然变化。它可以使飞机迅速失去空速和高度。如果我们遇到风切变，我们的空调将难以控制，甚至失速或坠毁。这非常危险。我们应该尽量避免风切变。"
+      "audioTextZh": "为什么风切变会威胁飞行安全？",
+      "referenceText": "Wind shear can change the airflow over the aircraft faster than the crew or engines can compensate. It may produce large airspeed, attitude and vertical-path changes, especially during takeoff or landing. At low altitude, there may be too little time and space to recover from the energy loss.",
+      "referenceTextZh": "风切变改变飞机周围气流的速度可能快于机组或发动机的补偿能力。它可能造成空速、姿态和垂直航迹大幅变化，尤其是在起飞或着陆阶段。在低高度时，可能没有足够的时间和空间从能量损失中恢复。"
     },
     {
       "id": "opi-core-041",
       "taskTitle": "气象-风切变-7",
-      "audioText": "Have you ever encountered wind shear during flight?",
+      "audioText": "Have you ever encountered wind shear in flight?",
       "audioTextZh": "你在飞行中遇到过风切变吗？",
-      "referenceText": "（1）Yes, I once encountered wind shear during a training flight. When it happened, the aircraft's speed and altitude changed abruptly. I immediately followed the procedures: maintained aircraft control, communicated with ATC, and adjusted flight parameters to get out of the dangerous situation.\n是的，我在一次训练飞行中遇到过风切变。当它发生时，飞机的速度和高度突然改变。我立即按照程序操作：保持飞机控制，与空中交通管制沟通，调整飞行参数以脱离危险状况 。\n(2) No, I haven't encountered wind shear during flight so far. But I've studied relevant 应对 procedures thoroughly. I know if it occurs, I should prioritize aircraft control, report to ATC promptly, and make proper adjustments based on the situation.\n不，到目前为止我在飞行中还没遇到过风切变。但我已深入学习了相关应对程序。我知道如果遇到，应优先保持飞机控制，立即向空中交通管制报告，并根据情况做出适当调整 。"
+      "referenceText": "One possible sample answer is: yes, I have encountered moderate wind shear, but not a severe microburst. The crew monitored the trend, followed ATC instructions and kept a safe distance from the reported area. If a warning had occurred, we would have used the trained escape or avoidance procedure.",
+      "referenceTextZh": "一个可用的示范答案是：是的，我遇到过中度风切变，但没有遇到过严重微下击暴流。机组监控变化趋势，遵守空管指令，并与报告的危险区域保持安全距离。如果当时出现警告，我们会执行训练过的风切变改出或避让程序。"
     },
     {
       "id": "opi-core-042",
       "taskTitle": "气象-风切变-8",
-      "audioText": "When pilots hear \"go around windshear ahead\" during approach. How do they perform the wind shear recovery maneuvers?",
-      "audioTextZh": "当飞行员在进场过程中听到“绕过前方风切变”时。他们如何进行风切变改成机动？",
-      "referenceText": "We will terminate the approach and perform go around, use the maximum engine power, pitch up 15 degrees, maintain configuration and pay more attention to the airspeed, attitude and altitude of the aircraft.\n我们将终止进近并进行复飞，使用最大发动机功率，俯仰15度，保持配置，并更加注意飞机的空速、姿态和高度。\n\nOn hearing the instruction, immediately push throttle to TOGA thrust. Retract landing gear, adjust flaps to go-around configuration. Pitch up to climb attitude, keep wings level, follow runway heading. Monitor airspeed, altitude and attitude closely. Execute missed approach procedure, climb to designated altitude and report to ATC for further guidance.\n听到该指令后，立即将油门推至复飞（TOGA）推力，收起起落架，调整襟翼至复飞构型；抬头至爬升姿态，保持机翼水平，沿跑道航向飞行；密切监控空速、高度和姿态；执行复飞程序，爬升至指定高度并向空管报告，等待进一步指令。"
+      "audioText": "What should pilots do if they hear a \"GO-AROUND, WINDSHEAR AHEAD\" warning during approach?",
+      "audioTextZh": "进近过程中听到“复飞，前方风切变”警告时，飞行员应如何处置？",
+      "referenceText": "The crew should immediately discontinue the approach and carry out the approved wind-shear avoidance or go-around procedure. They should follow the aircraft's guidance, maintain the required flight path and avoid unnecessary configuration changes while the maneuver is being completed. ATC can be advised when workload permits, but flying the aircraft remains the first priority.",
+      "referenceTextZh": "机组应立即中止进近，并执行经批准的风切变避让或复飞程序。完成机动期间，应遵循飞机引导，保持所需飞行轨迹，并避免不必要的构型变化。工作负荷允许时可以通知空管，但操纵飞机始终是第一要务。"
     },
     {
       "id": "opi-core-043",
       "taskTitle": "气象-风切变-9",
-      "audioText": "When pilots encounter wind shear during takeoff roll before V1, what action should they take?",
-      "audioTextZh": "当飞行员在V1之前的起飞滑跑过程中遇到风切变时，他们应该采取什么行动？",
-      "referenceText": "If the pilots encountered wind shear during takeoff roll before V1 They should shut off the power first. Secondly, use rudder to maintain the aircraft straight on the runway. Thirdly, use the brakes to stop the aircraft on the runway.\n如果飞行员在V1之前的起飞滑跑过程中遇到风切变，他们应该先关闭电源。其次，使用方向舵使飞机在跑道上保持笔直。第三，使用刹车将飞机停在跑道上。"
+      "audioText": "What should pilots do if they encounter wind shear during the takeoff roll before V1?",
+      "audioTextZh": "在 V1 前的起飞滑跑阶段遇到风切变时，飞行员应如何处置？",
+      "referenceText": "Before V1, the crew should apply the operator's approved rejected-takeoff and wind-shear criteria. If those criteria require a rejection, the pilot should begin the approved action promptly and maintain directional control using the performance already calculated for the takeoff. The crew must use trained callouts and aircraft-specific actions rather than make a new stopping-distance judgment during the event.",
+      "referenceTextZh": "在 V1 之前，机组应采用运营人批准的中断起飞和风切变判据。如果这些判据要求中断起飞，飞行员应立即开始执行经批准的动作，按起飞前已经计算的性能处置，并保持方向控制。机组必须使用训练过的标准喊话和机型特定动作，而不能在事件发生时重新判断停车距离。"
     },
     {
       "id": "opi-core-044",
       "taskTitle": "气象-风切变-10",
-      "audioText": "When approaching the rotation speed, wind shear is encountered and speed decreases suddenly, what would you do?",
-      "audioTextZh": "当接近抬轮速度时，遇到风切变，速度突然降低，你会怎么做？",
-      "referenceText": "Because the aircraft speed passes V1, we must go on takeoff. The PF should use the maximum engine power, pitch up 15 degrees, maintain configuration and pay more attention to the airspeed, attitude and altitude of the aircraft.\n因为飞机速度超过V1，我们必须起飞。PF应使用最大发动机功率，俯仰15度，保持配置，并更加注意飞机的空速、姿态和高度。"
+      "audioText": "What would you do if you encountered wind shear and a sudden loss of airspeed as the aircraft approached rotation speed?",
+      "audioTextZh": "飞机接近抬前轮速度时，如果遭遇风切变并且空速突然下降，你会如何处置？",
+      "referenceText": "I would keep the aircraft under control and apply the trained takeoff wind-shear procedure. Any decision to reject must be made before V1 so that the stopping action begins no later than V1; if rejection has not begun by V1, the approved plan is normally to continue the takeoff. If airborne, I would follow the aircraft's escape guidance and avoid untrained configuration changes.",
+      "referenceTextZh": "我会保持飞机受控，并执行训练过的起飞风切变程序。任何中断起飞的决定都必须在 V1 前作出，确保最迟在 V1 时开始采取停止措施；如果到 V1 尚未开始中断，通常应按批准的计划继续起飞。飞机离地后，我会遵循飞机的风切变改出引导，并避免未经训练的构型变化。"
     },
     {
       "id": "opi-core-045",
       "taskTitle": "气象-风切变-11",
-      "audioText": "During approach, you notice more than one dot deviation from glide slope. What is the reason for that?",
-      "audioTextZh": "在进场过程中，你会注意到多个点偏离下滑道。原因是什么？",
-      "referenceText": "There are some reasons for this situation. For example, strong low level wind, navigation accuracy downgraded, improper flight control and so on.\n这种情况有一些原因。例如，低空强风、导航精度下降、飞行控制不当等。"
-    },
-    {
-      "id": "opi-core-046",
-      "taskTitle": "气象-风切变-12",
-      "audioText": "Does your aircraft provide wind shear warning to pilots in flight?",
-      "audioTextZh": "你的飞机是否为飞行中的飞行员提供风切变警告？",
-      "referenceText": "I fly C172, there is no wind shear warning system。But I know there is wind shear warning system in large aircraft such as A320 0r B737. If there is wind shear ahead, we can hear the warning sound, wind shear, wind shear.\n我驾驶的是C172，没有风切变预警系统但我知道A320 0r B737等大型飞机上有风切变预警系统。如果前方有风切变，我们可以听到警告声，风切变，风切变。"
-    },
-    {
-      "id": "opi-core-047",
-      "taskTitle": "气象-风切变-13",
-      "audioText": "Why is wind shear a threat to flight safety?",
-      "audioTextZh": "为什么风切变对飞行安全构成威胁？",
-      "referenceText": "Wind shear is dangerous to flight safety. First, it may cause the airspeed increased and decreased. Second, it may cause the aircraft to lose altitude, so the aircraft is difficult to control.\n风切变对飞行安全有危险。首先，它可能会导致空速增加和减少。其次，它可能会导致飞机失去高度，因此飞机难以控制。"
+      "audioText": "How can wind shear cause an aircraft to deviate from the glide slope during approach?",
+      "audioTextZh": "进近过程中，风切变如何导致飞机偏离下滑道？",
+      "referenceText": "Wind shear can suddenly change headwind or tailwind components and therefore change lift and vertical speed. The aircraft may rise above or sink below the intended glide path even though the previous approach was stable. Large control and thrust corrections may then be required, making a go-around the safer response if stability criteria are no longer met.",
+      "referenceTextZh": "风切变会突然改变顶风或顺风分量，从而改变升力和垂直速度。即使此前进近稳定，飞机也可能升到预定下滑道上方或下沉到其下方。随后可能需要大幅修正操纵和推力；如果不再符合稳定进近标准，复飞会更安全。"
     },
     {
       "id": "opi-core-048",
-      "taskTitle": "气象-风切变-14",
-      "audioText": "Why is low Level wind shear more hazardous than high level wind shear?",
+      "taskTitle": "气象-风切变-12",
+      "audioText": "Why is low-level wind shear more hazardous than wind shear at higher altitudes?",
       "audioTextZh": "为什么低空风切变比高空风切变更危险？",
-      "referenceText": "Low level wind shear is more dangerous than high level wind shear because low level wind shear may cause the aircraft to lose altitude and it is difficult for us to clear the obstacles such as terrains or buildings because the aircraft is too close to the ground.\n低空风切变比高空风切变更危险，因为低空风切变可能会导致飞机失去高度，而且由于飞机离地面太近，我们很难清除地形或建筑物等障碍物。\n\nLow-level wind shear (below 2000ft) is especially hazardous because it occurs during takeoff, initial climb, approach or landing. Pilots have insufficient time and altitude to respond and recover. It causes sudden airspeed and altitude loss, leading to stall, structural damage or crash in a short time, threatening crew and passengers' lives.\n低空风切变（高度2000英尺以下）格外危险，因其发生在起飞、初始爬升、进近或着陆阶段，飞行员缺乏足够的反应时间和高度进行改出；会导致飞机突然失速、高度骤降，短时间内引发结构损伤或坠机，严重威胁机组和乘客生命安全。"
+      "referenceText": "Low-level wind shear is especially hazardous because the aircraft is slow, configured for takeoff or landing and close to the ground. There is little altitude available to regain energy or correct a sudden flight-path change. Obstacles, runway alignment and high workload further reduce the crew's options.",
+      "referenceTextZh": "低空风切变格外危险，因为飞机速度低、处于起飞或着陆构型，并且接近地面。可用于恢复能量或修正突发飞行轨迹变化的高度很少。障碍物、保持跑道方向的要求和较高的工作负荷会进一步减少机组的选择。"
     },
     {
       "id": "opi-core-049",
-      "taskTitle": "气象-风切变-15",
-      "audioText": "How do you recover from wind shear if you got wind shear warning in flight?",
-      "audioTextZh": "如果你在飞行中收到风切变警告，你如何从风切变中恢复过来？",
-      "referenceText": "If we got wind shear warning during takeoff: we would keep the control of the aircraft and add power to leave wind shear area, If we got wind shear warning during landing, we would go around immediately\n如果我们在起飞时收到风切变警告：我们将保持对飞机的控制并增加动力以离开风切变区域，如果我们在着陆时收到风切警告，我们将立即复飞"
+      "taskTitle": "气象-风切变-13",
+      "audioText": "How should pilots respond to a wind shear warning in flight?",
+      "audioTextZh": "飞行中收到风切变警告时，飞行员应如何处置？",
+      "referenceText": "Pilots should take a wind-shear warning seriously and apply the approved avoidance or escape procedure for the phase of flight. They should follow the aircraft guidance, protect the flight path and avoid actions that conflict with the trained maneuver. Once clear and workload permits, they should coordinate with ATC and reassess the plan.",
+      "referenceTextZh": "飞行员应认真对待风切变警告，并根据所处飞行阶段执行经批准的避让或改出程序。他们应遵循飞机引导、保持对飞行轨迹的控制，并避免采取与训练机动相冲突的动作。脱离危险且工作负荷允许后，应与空管协调并重新评估后续计划。"
     },
     {
       "id": "opi-core-050",
-      "taskTitle": "气象-风切变-16",
-      "audioText": "What should you do if you encounter wind shear during takeoff?",
-      "audioTextZh": "如果起飞时遇到风切变，你该怎么办？",
-      "referenceText": "If we encounter wind shear before V1, we will delay takeoff. If we encounter wind shear after V1, we will keep the control of the aircraft and add power to leave the wind shear areas.\n如果我们在V1之前遇到风切变，我们将推迟起飞。如果我们在V1之后遇到风切变，我们将保持对飞机的控制，并增加动力以离开风切变区域。"
+      "taskTitle": "气象-风切变-14",
+      "audioText": "What should pilots do if they encounter wind shear during takeoff?",
+      "audioTextZh": "起飞过程中遇到风切变时，飞行员应如何处置？",
+      "referenceText": "During takeoff, the crew must use the aircraft-specific wind-shear and rejected-takeoff criteria for the actual stage of the takeoff. If the approved decision is to continue or the aircraft is airborne, the pilots should follow the trained escape guidance and prioritize flight-path control. Configuration, automation and ATC communication should be managed exactly as trained, not by a generic fixed sequence.",
+      "referenceTextZh": "起飞时，机组必须根据实际起飞阶段采用机型特定的风切变和中断起飞判据。如果按批准判据应继续起飞，或者飞机已经离地，飞行员应遵循训练过的风切变改出引导，并优先控制飞行轨迹。构型、自动化和空管通信都应按训练要求管理，而不是套用通用的固定顺序。"
     },
     {
       "id": "opi-core-051",
-      "taskTitle": "气象-风切变-17",
-      "audioText": "What effects might wind shear bring to your aircraft performance?",
-      "audioTextZh": "风切变对飞机性能有什么影响？",
-      "referenceText": "Wind shear has a significant impact on aircraft performance. First, it may cause the airspeed to increase or decrease. Second, it may cause the aircraft to lose altitude.\n风切变对飞机性能有很大影响。第一，风切变可能导致空速增加或减小；第二，风切变可能导致飞机掉高度。"
+      "taskTitle": "气象-风切变-15",
+      "audioText": "How can wind shear affect aircraft performance?",
+      "audioTextZh": "风切变会如何影响飞机性能？",
+      "referenceText": "Wind shear can cause rapid changes in indicated airspeed, lift, vertical speed and required thrust. A downdraft or increasing tailwind can reduce climb performance, while an initial headwind gain may be followed by a severe loss. These changes can overwhelm the available performance when the aircraft is close to the ground.",
+      "referenceTextZh": "风切变会使指示空速、升力、垂直速度和所需推力迅速变化。下沉气流或增强的顺风会降低爬升性能，而最初获得的顶风增益之后可能出现严重的空速和性能损失。当飞机接近地面时，这些变化可能超过飞机可用性能。"
     },
     {
       "id": "opi-core-052",
-      "taskTitle": "气象-风切变-18",
-      "audioText": "According to previous reports, low level windshear is expected during take off. What's your decision?",
-      "audioTextZh": "根据之前的报告，预计起飞期间会有低空风切变。你的决策是什么？",
-      "referenceText": "If low - level wind shear is expected during takeoff as per previous reports, here are the decisions: Before the takeoff roll, we can delay takeoff and switch to another runway. During the takeoff roll, if the speed is below V₁, we reject the takeoff; if the speed is above V₁, we continue the takeoff and use maximum power to exit the wind shear area.\n根据之前报告，若预计起飞期间有低空风切变，决策如下：起飞滑跑前，可推迟起飞并更换至另一条跑道；起飞滑跑期间，若速度低于 V₁（决断速度 ），就中断起飞；若速度高于 V₁（决断速度 ），则继续起飞，并用最大功率脱离风切变区域 。"
+      "taskTitle": "气象-风切变-16",
+      "audioText": "What would you do if low-level wind shear were forecast for takeoff?",
+      "audioTextZh": "如果预报起飞时会出现低空风切变，你会如何处置？",
+      "referenceText": "I would review the forecast, airport alerts, runway options and company wind-shear guidance before departure. If the risk were significant, I would delay the takeoff, select a safer runway or wait for the cell or gust front to move away. A performance margin or warning system does not justify departing into a known hazardous microburst.",
+      "referenceTextZh": "起飞前，我会检查预报、机场警报、跑道选择和公司的风切变指南。如果风险较高，我会推迟起飞、选择更安全的跑道，或者等待雷暴单体或阵风锋移开。性能裕度或警告系统并不能成为飞入已知危险微下击暴流的理由。"
     },
     {
       "id": "opi-core-053",
-      "taskTitle": "气象-风切变-19",
-      "audioText": "how do pilots determine whether wind shear is encountered?",
-      "audioTextZh": "飞行员如何确定是否遇到风切变？",
-      "referenceText": "Pilots can determine if wind shear is encountered through these signs: when airspeed changes by more than 15 knots, there’s a ground speed variation, or vertical speed shifts beyond 500 feet per minute. If such conditions occur, it likely means wind shear has been encountered.\n飞行员可通过这些迹象判断是否遇到风切变：当空速变化超过 15 节、存在地速变动，或垂直速度变化超每分钟 500 英尺时，若出现这类情况，大概率是遇到风切变了 。"
-    },
-    {
-      "id": "opi-core-054",
-      "taskTitle": "气象-风切变-20",
-      "audioText": "What is wind shear? Why is wind\nshear dangerous?",
-      "audioTextZh": "什么是风切变?为什么风切变很危险?",
-      "referenceText": "Wind shear is the sudden change in wind speed and direction over a short distance, including horizontal and vertical types. It’s dangerous because it causes abrupt airspeed and altitude changes, making aircraft hard to control, increasing pilot workload. It may lead to stall, structural damage or even crash, especially during critical phases like takeoff and landing.\n风切变是短距离内风速和风向的突然变化，分为水平风切变和垂直风切变。其危险性在于会导致飞机空速和高度骤变，难以操控，增加飞行员工作负荷，可能引发失速、结构损伤甚至坠机，在起飞、着陆等关键飞行阶段风险更高。"
+      "taskTitle": "气象-风切变-17",
+      "audioText": "How can pilots recognize that they have encountered wind shear?",
+      "audioTextZh": "飞行员如何判断飞机已经遭遇风切变？",
+      "referenceText": "The crew may notice unexpected changes in airspeed, vertical speed, pitch, thrust demand or flight-path deviation. Onboard systems may issue a reactive warning, and the aircraft may encounter strong downdrafts or turbulence. Pilots should respond to the total indications and trained alerts rather than wait to prove the exact weather phenomenon.",
+      "referenceTextZh": "机组可能会发现空速、垂直速度、俯仰、推力需求或飞行轨迹出现意外变化。机载系统可能发出反应式警告，飞机也可能遭遇强烈下沉气流或颠簸。飞行员应综合各种指示，并按训练中规定的警报处置，而不是等待确认具体是哪一种天气现象。"
     },
     {
       "id": "opi-core-055",
-      "taskTitle": "气象-风切变-21",
-      "audioText": "What suggestion do you have to\nreduce accident caused by wind\nshear?",
-      "audioTextZh": "你有什么减少风切变危险的建议吗?",
-      "referenceText": "To reduce wind shear accidents, preflight check weather forecast, ATIS and NOTAM. Avoid takeoff/landing in wind shear-prone areas. Inflight use weather radar and PIREP, monitor wind changes. Train pilots in wind shear recognition and recovery. Equip aircraft with predictive wind shear systems. ATC provide timely wind shear alerts to pilots.\n减少风切变事故的建议：起飞前核查天气预报、自动终端情报服务（ATIS）和航行通告（NOTAM），避开风切变高发区域起降；飞行中使用气象雷达和飞行员报告（PIREP），监控风向变化；加强飞行员风切变识别与改出训练；为飞机配备预测性风切变系统；空管及时向飞行员发布风切变预警。"
-    },
-    {
-      "id": "opi-core-056",
-      "taskTitle": "气象-风切变-22",
-      "audioText": "How to recover from wind shear?",
-      "audioTextZh": "如何从风切变中改出?",
-      "referenceText": "To recover from wind shear, immediately execute recovery procedures. Push throttle to maximum (TOGA thrust), pitch up to 15 degrees, maintain configuration. Level wings to maximize climb gradient. Monitor airspeed, altitude and attitude closely. Do not change flaps or landing gear until out of wind shear. After recovery, re-establish normal flight profile.\n风切变改出需立即执行以下程序：将油门推至最大（复飞推力），抬头至15度，保持当前构型；机翼水平以最大化爬升梯度；密切监控空速、高度和姿态；脱离风切变前不改变襟翼和起落架状态；改出后重新建立正常飞行姿态。"
+      "taskTitle": "气象-风切变-18",
+      "audioText": "What measures can help reduce accidents caused by wind shear?",
+      "audioTextZh": "哪些措施有助于减少风切变造成的事故？",
+      "referenceText": "Accidents can be reduced through reliable forecasting and airport detection, timely ATC alerts and disciplined avoidance decisions. Aircraft warning systems, simulator training and clear escape procedures help crews recognize and respond to the hazard. Operators should also use reports and data to improve training without encouraging penetration of dangerous weather.",
+      "referenceTextZh": "可靠的预报和机场探测、及时的空管警报以及严格执行避让决策，都能减少事故。飞机警告系统、模拟机训练和明确的风切变改出程序有助于机组识别并应对危险。运营人还应利用报告和数据改进训练，但不能因此鼓励机组穿越危险天气。"
     },
     {
       "id": "opi-core-057",
-      "taskTitle": "气象-风切变-23",
-      "audioText": "What kind of season or what kind\nof area that is most likely to\nencounter wind shear?",
-      "audioTextZh": "在什么季节或者什么区域你觉得最有可\n能遭遇风切变?",
-      "referenceText": "Wind shear is most likely in summer (due to thunderstorms, CBs) and near airports, mountainous areas, or coastal regions. Summer’s unstable atmosphere breeds convective weather, while airports/coastal areas have sudden wind changes. Mountainous areas experience wind shear from terrain-induced airflow changes.\n风切变最易出现在夏季（雷暴、积雨云多发）以及机场附近、山区、沿海区域。夏季大气不稳定，易引发对流天气；机场和沿海地区风力变化剧烈；山区受地形影响，气流变化易产生风切变。"
+      "taskTitle": "气象-风切变-19",
+      "audioText": "During which seasons is wind shear most likely to occur?",
+      "audioTextZh": "哪些季节最容易出现风切变？",
+      "referenceText": "There is no single wind-shear season everywhere. Convective wind shear and microbursts are often more common in warm seasons when thunderstorms are frequent, while frontal and mountain-related shear can occur in other seasons. Pilots should use local climatology and current weather rather than rely only on the calendar.",
+      "referenceTextZh": "世界各地并不存在统一的风切变季节。由对流引起的风切变和微下击暴流通常在雷暴频繁的暖季更常见，而锋面或山区相关的风切变也可能出现在其他季节。飞行员应依据当地气候特点和当前天气，而不能只看日历。"
     }
   ]
 }

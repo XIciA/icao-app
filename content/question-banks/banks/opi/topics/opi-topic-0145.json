@@ -2,84 +2,103 @@
   "categoryId": "opi-category-03",
   "id": "opi-topic-0145",
   "name": "CI",
-  "declaredCardCount": 11,
+  "declaredCardCount": 12,
   "cards": [
     {
       "id": "opi-extra-351",
       "taskTitle": "缩略词-CI-1",
-      "audioText": "What is Cost Index (CI)?",
-      "audioTextZh": "什么是成本指数？",
-      "referenceText": "CI stands for Cost Index. It is a numerical value entered into the Flight Management System that balances time-related costs against fuel costs. A high CI means prioritizing speed over fuel saving, burning more fuel to reduce flight time. A low CI means prioritizing fuel efficiency, flying slower to save fuel. CI=0 is maximum fuel saving mode, while maximum CI is minimum time mode. It helps airlines optimize flight costs based on fuel price and operational needs.\nCI是成本指数的缩写。它是输入飞行管理系统的一个数值，用于平衡时间相关成本与燃油成本。高CI意味着优先考虑速度而非省油，通过消耗更多燃油来减少飞行时间。低CI意味着优先考虑燃油效率，通过慢飞以节省燃油。CI=0是最大省油模式，而最大CI是最短时间模式。它帮助航空公司根据油价和运行需求优化飞行成本。"
+      "audioText": "What is a cost index (CI)?",
+      "audioTextZh": "什么是成本指数（CI）？",
+      "referenceText": "A cost index is an FMS input that expresses the operator's chosen balance between the cost of time and the cost of fuel. A low value generally favors fuel-saving speeds, while a higher value gives more weight to time. It is an economic optimization parameter, not a safety limit or permission to exceed aircraft restrictions.",
+      "referenceTextZh": "成本指数是输入 FMS 的一个数值，用于表达运营人对时间成本与燃油成本所作的平衡。较低的数值通常倾向于节省燃油的速度，较高的数值则更重视时间。它是经济优化参数，不是安全限制，也不意味着可以超出飞机限制。"
     },
     {
       "id": "opi-extra-352",
       "taskTitle": "缩略词-CI-2",
-      "audioText": "How does CI affect endurance?",
-      "audioTextZh": "成本指数如何影响续航时间？",
-      "referenceText": "CI directly impacts endurance, which is the maximum time an aircraft can stay airborne. High CI increases fuel flow due to higher speed, significantly reducing endurance. Low CI decreases fuel flow by optimizing for fuel efficiency, increasing endurance. During fuel emergencies or holding, pilots may reduce CI to zero to maximize endurance and extend flying time.\nCI直接影响续航时间，即飞机在空中停留的最长时间。高CI因速度提高而增加燃油流量，显著减少续航时间。低CI通过优化燃油效率降低燃油流量，增加续航时间。在燃油紧急情况或等待期间，飞行员可将CI降至零以最大化续航时间，延长飞行时长。"
+      "audioText": "How can the selected cost index affect an aircraft's endurance?",
+      "audioTextZh": "所选成本指数会如何影响航空器的续航能力？",
+      "referenceText": "A lower cost index normally commands more economical speeds, so the aircraft burns fuel more slowly and may remain airborne longer for the same usable fuel. A higher value usually increases speed and fuel flow, reducing endurance if other conditions are unchanged. Actual endurance also depends on altitude, wind, mass, configuration and engine condition, so cost index alone is not an endurance calculation.",
+      "referenceTextZh": "较低的成本指数通常会指令更经济的速度，因此飞机耗油较慢，在可用燃油相同的情况下可能留空更久。较高的数值通常会提高速度和燃油流量；其他条件不变时，续航时间会缩短。实际续航时间还取决于高度、风、重量、构型和发动机状况，因此不能只靠成本指数计算。"
     },
     {
       "id": "opi-extra-353",
       "taskTitle": "缩略词-CI-3",
-      "audioText": "Who determines the Cost Index for a flight?",
-      "audioTextZh": "谁决定航班的成本指数？",
-      "referenceText": "Cost Index is typically determined by Dispatch or Flight Operations based on fuel prices, flight schedules, and company policies. It is provided in the flight plan. However, the Captain has the authority to modify it during flight if necessary, such as to make up time due to delays or to conserve fuel in an emergency situation.\n成本指数通常由签派或飞行运行部门根据燃油价格、航班计划和公司政策确定，并在飞行计划中提供。但机长有权在飞行中必要时修改它，例如因延误追时间或在紧急情况下节省燃油。"
+      "audioText": "Who determines the cost index for a flight?",
+      "audioTextZh": "谁确定一次飞行所使用的成本指数？",
+      "referenceText": "The operator normally establishes the cost-index policy through operations control, dispatch or flight-planning systems. The planned value appears in the operational flight plan or electronic release, and the crew verifies and enters it. A crew should change it only within company authority and with a clear operational reason.",
+      "referenceTextZh": "运营人通常通过运行控制、签派或飞行计划系统制定成本指数政策。计划使用的数值会列在运行飞行计划或电子放行文件中，由机组核对并输入。机组只有在公司授权范围内且有明确运行理由时才应更改该数值。"
     },
     {
       "id": "opi-extra-354",
       "taskTitle": "缩略词-CI-4",
-      "audioText": "Can you change CI during flight? Where is it inserted?",
-      "audioTextZh": "飞行中可以更改CI吗？在哪里输入？",
-      "referenceText": "Yes, pilots can change CI during flight through the Flight Management System, usually on the INIT or PERF pages. Any change will recalculate the optimal speeds for climb, cruise, and descent. This flexibility allows the crew to adapt to changing conditions like weather, delays, or fuel situations.\n可以，飞行员在飞行中可通过飞行管理系统更改CI，通常在INIT或PERF页面。任何更改都会重新计算爬升、巡航和下降的最佳速度。这种灵活性使机组能够适应天气、延误或燃油情况等变化条件。"
+      "audioText": "Under what circumstances might a flight crew change the cost index during a flight?",
+      "audioTextZh": "飞行机组在什么情况下可能会在飞行中更改成本指数？",
+      "referenceText": "A crew might change the cost index after a major delay, a schedule-recovery request, a change in wind or route, or a fuel situation that calls for a more economical speed. It should first assess fuel, arrival constraints, weather, traffic and company guidance rather than using cost index as an automatic answer to delay. ATC speed restrictions and aircraft limitations remain controlling.",
+      "referenceTextZh": "遇到严重延误、收到弥补延误或恢复航班计划的要求、风或航路发生变化，或燃油状况需要采用更经济的速度时，机组可能会调整成本指数。机组应先评估燃油、到达限制、天气、流量和公司指导，不能把调整成本指数当作弥补延误的自动做法。ATC 的速度限制和飞机限制始终具有约束力。"
+    },
+    {
+      "id": "opi-extra-354-part-2",
+      "taskTitle": "缩略词-CI-5",
+      "audioText": "Where is the cost index normally entered in the aircraft's flight management system?",
+      "audioTextZh": "通常在航空器飞行管理系统的什么位置输入成本指数？",
+      "referenceText": "In a typical FMS, the crew enters the cost index on a performance-initialization or flight-plan initialization page. The value is cross-checked against the operational flight plan before it is executed. Pilots should use the exact page name and entry sequence for their aircraft because FMS interfaces differ.",
+      "referenceTextZh": "在典型的 FMS 中，机组会在性能初始化或飞行计划初始化页面输入成本指数。执行前，应根据运行飞行计划交叉核对该数值。由于不同 FMS 的界面不同，飞行员应采用本机型规定的准确页面名称和输入顺序。"
     },
     {
       "id": "opi-extra-355",
-      "taskTitle": "缩略词-CI-5",
-      "audioText": "What happens if you input the wrong CI?",
-      "audioTextZh": "如果输入错误的CI会怎样？",
-      "referenceText": "Inputting the wrong CI can lead to operational issues. If CI is too high, the aircraft burns more fuel than planned, potentially causing a fuel shortage. If CI is too low, the aircraft flies slower, possibly causing delays or missed slots. Therefore, pilots must verify the correct CI during pre-flight setup to ensure accurate performance calculations.\n输入错误的CI可能导致运行问题。如果CI过高，飞机会比计划消耗更多燃油，可能导致燃油不足。如果CI过低，飞机会飞得更慢，可能导致延误或错过时刻。因此，飞行员必须在起飞前确认正确的CI，以确保准确的性能计算。"
+      "taskTitle": "缩略词-CI-6",
+      "audioText": "What problems can result from entering an incorrect cost index?",
+      "audioTextZh": "输入错误的成本指数可能造成哪些问题？",
+      "referenceText": "An incorrect cost index can make the FMS command speeds that are less economical or slower than the operation intended. It can change predicted fuel, time and descent planning and may create an arrival-management problem if the error is not noticed. It should not directly command a speed outside certified limits, but crews must still verify predictions and respect restrictions.",
+      "referenceTextZh": "错误的成本指数可能使 FMS 指令的速度不够经济，或比运行计划所需的速度更慢。它会改变预计燃油、时间和下降计划；如果没有发现错误，还可能造成到达管理问题。成本指数本身不应直接指令超出审定限制的速度，但机组仍须核实预测结果并遵守各项限制。"
     },
     {
       "id": "opi-extra-356",
-      "taskTitle": "缩略词-CI-6",
-      "audioText": "How does CI affect climb, cruise, and descent?\nCI",
-      "audioTextZh": "如何影响爬升、巡航和下降？",
-      "referenceText": "In climb, high CI gives faster speed but shallower climb path. In cruise, high CI increases cruise speed, while low CI enables long-range cruise for fuel saving. In descent, high CI results in later descent at higher speed, while low CI leads to earlier descent at idle thrust. CI optimizes the entire flight profile based on cost priorities.\n爬升阶段，高CI提供更快速度但爬升路径较缓。巡航阶段，高CI提高巡航速度，而低CI实现远程巡航以节省燃油。下降阶段，高CI导致更晚下降且速度更快，低CI则提前以慢车推力下降。CI根据成本优先级优化整个飞行剖面。"
+      "taskTitle": "缩略词-CI-7",
+      "audioText": "How can the cost index affect the climb, cruise, and descent profiles?",
+      "audioTextZh": "成本指数会如何影响爬升、巡航和下降剖面？",
+      "referenceText": "A higher cost index generally leads the FMS to favor faster climb, cruise or descent speed schedules where the aircraft and procedure allow. A lower value tends to favor fuel economy and may produce slower profiles or different optimum-altitude predictions. ATC constraints, noise procedures, weather, aircraft limits and manual speed selections can override the economic schedule.",
+      "referenceTextZh": "在飞机和程序允许的情况下，较高的成本指数通常会使 FMS 选择更快的爬升、巡航或下降速度计划。较低的数值倾向于节省燃油，可能产生较慢的剖面或不同的最佳高度预测。ATC 限制、噪声程序、天气、飞机限制和人工选择的速度都可能取代经济速度计划。"
     },
     {
       "id": "opi-extra-357",
-      "taskTitle": "缩略词-CI-7",
-      "audioText": "You are running low on fuel. How would you adjust CI?",
-      "audioTextZh": "如果燃油紧张，你会如何调整CI？",
-      "referenceText": "If fuel is low, I would immediately reduce CI to zero or minimum. This engages maximum fuel saving mode, reducing fuel flow and increasing endurance. Slowing down to long-range cruise speed extends range and provides more time to reach an alternate airport. This is a critical fuel management action during emergencies.\n如果燃油紧张，我会立即将CI降至零或最小值。这会启动最大省油模式，降低燃油流量，增加续航时间。减速至远程巡航速度可延长航程，提供更多时间飞往备降场。这是紧急情况下关键的燃油管理措施。"
+      "taskTitle": "缩略词-CI-8",
+      "audioText": "What should a crew consider before changing the cost index when the fuel remaining is lower than planned?",
+      "audioTextZh": "剩余燃油低于计划值时，机组在更改成本指数前应考虑哪些因素？",
+      "referenceText": "The crew should first verify the fuel quantity and prediction, identify why fuel is below plan and protect all required reserves and diversion options. It should compare a lower cost index or other economical strategy with wind, altitude, time, weather and ATC constraints. A cost-index change cannot solve a fuel leak or an unsafe reserve trend, so the crew must apply the appropriate fuel procedure and make an early operational decision.",
+      "referenceTextZh": "机组首先应核实燃油量和预测值，查明燃油低于计划的原因，并保障所有规定的储备燃油和改航选择。机组应结合风、高度、时间、天气和 ATC 限制，比较降低成本指数或采用其他经济运行策略的效果。改变成本指数不能解决燃油泄漏或储备燃油趋势不安全的问题，因此机组必须执行适用的燃油程序并及早作出运行决定。"
     },
     {
       "id": "opi-extra-358",
-      "taskTitle": "缩略词-CI-8",
-      "audioText": "What factors influence the choice of CI?",
-      "audioTextZh": "哪些因素影响CI的选择？",
-      "referenceText": "Key factors include fuel price, time costs (crew salaries, passenger connections), flight delays, aircraft type, and route structure. High fuel prices encourage low CI for saving fuel. Tight schedules or delays require high CI to prioritize on-time arrival. Airlines balance these factors to achieve optimal operational efficiency.\n关键因素包括燃油价格、时间成本（机组薪资、旅客中转）、航班延误、飞机类型和航线结构。高油价促使选择低CI以节省燃油。紧张的航班计划或延误需要高CI以优先保证准点到达。航空公司平衡这些因素以实现最佳运行效率。"
+      "taskTitle": "缩略词-CI-9",
+      "audioText": "What factors influence the choice of a cost index for a flight?",
+      "audioTextZh": "哪些因素会影响一次飞行的成本指数选择？",
+      "referenceText": "The choice is influenced by fuel price, the economic value of time, maintenance or engine costs, schedule and connection consequences, and the planned route and wind. Aircraft type, sector length, mass, altitude and company environmental goals also matter. The operator combines these factors through its approved planning method rather than asking pilots to invent a value for each flight.",
+      "referenceTextZh": "成本指数的选择会受到燃油价格、时间的经济价值、维修或发动机成本、时刻与转机后果，以及计划航路和风的影响。机型、航段长度、重量、高度和公司的环境目标也很重要。运营人通过批准的计划方法综合这些因素，而不是要求飞行员为每个航班自行设定数值。"
     },
     {
       "id": "opi-extra-359",
-      "taskTitle": "缩略词-CI-9",
-      "audioText": "How does CI differ between short-haul and long-haul flights?",
-      "audioTextZh": "短途和长途航班的CI有何不同？",
-      "referenceText": "Short-haul flights often use higher CI to minimize turnaround time and maintain schedule integrity, as time costs are significant. Long-haul flights typically use lower CI to save fuel, since fuel represents a larger portion of operating costs. However, adjustments may occur based on real-time conditions like weather or ATC delays.\n短途航班通常使用较高的CI，以最小化过站时间并保持航班正点，因为时间成本显著。长途航班通常使用较低的CI以节省燃油，因为燃油占运营成本比重更大。但根据天气或管制延误等实时情况，可能会进行调整。"
+      "taskTitle": "缩略词-CI-10",
+      "audioText": "Why might an operator use different cost indices for short-haul and long-haul flights?",
+      "audioTextZh": "运营人为什么可能为短程和远程航班使用不同的成本指数？",
+      "referenceText": "On a short sector, time spent climbing and descending is a large part of the flight, so a speed change may save little block time while increasing fuel use. On a long sector, cruise efficiency, wind and the value of arrival time can affect total cost differently. Operators may therefore use route- or fleet-specific values instead of one cost index for every flight.",
+      "referenceTextZh": "在短航段中，爬升和下降占飞行时间的比例较大，因此改变速度可能只节省很少的轮挡时间，却增加燃油消耗。在长航段中，巡航效率、风和准时到达的价值会以不同方式影响总成本。因此，运营人可能按航路或机队采用不同数值，而不是所有航班都使用同一个成本指数。"
     },
     {
       "id": "opi-extra-360",
-      "taskTitle": "缩略词-CI-10",
-      "audioText": "Why is CI important for flight efficiency?",
-      "audioTextZh": "为什么CI对飞行效率很重要？",
-      "referenceText": "CI is a key tool for optimizing flight efficiency. It allows airlines to dynamically balance speed and fuel consumption based on economic priorities. By selecting the appropriate CI, pilots can reduce operating costs, meet schedule requirements, and respond to unexpected situations like fuel emergencies or delays, ensuring both safety and profitability.\nCI是优化飞行效率的关键工具。它使航空公司能够根据经济优先级动态平衡速度和燃油消耗。通过选择合适的CI，飞行员可以降低运营成本、满足航班计划要求，并应对燃油紧急情况或延误等意外状况，确保安全与经济效益。"
+      "taskTitle": "缩略词-CI-11",
+      "audioText": "Why is the cost index important for flight efficiency?",
+      "audioTextZh": "成本指数为什么对飞行效率很重要？",
+      "referenceText": "Cost index gives the FMS a consistent way to trade fuel consumption against flight time according to the operator's economics. It helps produce coordinated speed and vertical-profile predictions rather than optimizing one phase in isolation. Correct use can reduce total operating cost, but safety, reserves, limits and ATC requirements always take priority.",
+      "referenceTextZh": "成本指数使 FMS 能够按照运营人的经济目标，以一致的方法权衡燃油消耗和飞行时间。它有助于生成相互协调的速度与垂直剖面预测，而不是只优化某一个飞行阶段。正确使用可以降低总运行成本，但安全、储备燃油、飞机限制和 ATC 要求始终优先。"
     },
     {
       "id": "opi-extra-361",
-      "taskTitle": "缩略词-CI-11",
-      "audioText": "Does CI affect the top of descent calculation?\nCI",
-      "audioTextZh": "会影响下降顶点计算吗？",
-      "referenceText": "Yes, CI significantly affects the top of descent. With a high CI, the FMS calculates a later and steeper descent, keeping the aircraft at higher altitude and speed for longer to save time. With a low CI, the FMS calculates an earlier descent at idle thrust, allowing the aircraft to glide and save fuel. This ensures optimal vertical profile based on cost priorities.\n是的，CI显著影响下降顶点。使用高CI时，飞行管理系统计算出更晚、更陡的下降，让飞机在更高高度和速度保持更长时间以节省时间。使用低CI时，飞行管理系统计算出更早的慢车推力下降，让飞机滑翔以节省燃油。这确保了根据成本优先级优化垂直剖面。"
+      "taskTitle": "缩略词-CI-12",
+      "audioText": "How can the cost index influence the calculated top of descent?",
+      "audioTextZh": "成本指数会如何影响计算出的下降顶点？",
+      "referenceText": "Cost index affects the planned descent speed, and that speed changes how much distance is needed to lose altitude efficiently. The FMS may therefore move the calculated top of descent when the cost index changes, together with updated wind, route or altitude constraints. The crew should verify the new profile and not assume that the marker alone guarantees compliance with every restriction.",
+      "referenceTextZh": "成本指数会影响计划下降速度，而下降速度又会改变飞机高效降低高度所需的距离。因此，当成本指数以及风、航路或高度限制更新时，FMS 可能会移动计算出的下降顶点。机组应核实新的下降剖面，不能认为仅凭下降顶点标记就能保证满足所有限制。"
     }
   ]
 }

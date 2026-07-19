@@ -2,154 +2,151 @@
   "categoryId": "opi-category-01",
   "id": "opi-topic-0002",
   "name": "积冰",
-  "declaredCardCount": 21,
+  "declaredCardCount": 18,
   "cards": [
     {
       "id": "opi-core-014",
       "taskTitle": "气象-积冰-1",
-      "audioText": "Have you ever encountered icing condition during flight?",
-      "audioTextZh": "你在飞行中遇到过结冰的情况吗？",
-      "referenceText": "（1）No, I have never encountered icing during flight.\n 不，我在飞行中从未遇到结冰。\n（2） No, I have never encountered in-flight icing. But I know in-flight icing is dangerous, it may affect the performance of the aircraft, so we should avoid icing conditions during flight\n不，我从未在飞行中遇到结冰。但我知道飞行中结冰是危险的，它可能会影响飞机的性能，所以我们应该在飞行中避免结冰"
+      "audioText": "Have you ever encountered icing conditions during flight?",
+      "audioTextZh": "你在飞行中遇到过结冰条件吗？",
+      "referenceText": "A sample pilot answer could be that I have encountered light icing conditions in cloud. The crew recognized the indications early, used the approved ice-protection systems and left the conditions. This is only an example; the actual response must follow the aircraft manual and company procedures.",
+      "referenceTextZh": "一个飞行员示范答案可以是：我曾在云中遇到轻度结冰条件。机组及早发现了相关迹象，使用经批准的防除冰系统，并离开了结冰条件。这只是示例；实际处置必须遵循飞机手册和公司程序。"
     },
     {
       "id": "opi-core-015",
       "taskTitle": "气象-积冰-2",
-      "audioText": "What are the Indications in the cockpit for icing condition.",
-      "audioTextZh": "驾驶舱内结冰情况的指示是什么。",
-      "referenceText": "（1）Actually, I am a student pilot. I fly DA - 40 for flight training. We don't have icing indications, but we can check the weather forecast to know the icing conditions. Besides, we will contact the controller to know the icing Information. What's more, we can visual check the icing condition.\n事实上，我是一名学生飞行员。我驾驶DA-40进行飞行训练。我们没有结冰迹象，但我们可以查看天气预报以了解结冰情况。此外，我们将联系控制器了解结冰信息。此外，我们还可以目视检查结冰情况。\n（2）As I know, there is no indication of icing conditions in the cockpit. But we can check if there is ice on the windshield or wings. If there is ice on the windshield or wings, we are in icing condition. Besides, if icing occurs, the airspeed may be reduced and engine thrust may be reduced.据我所知，驾驶舱内没有结冰的迹象。但我们可以检查挡风玻璃或机翼上是否有冰。如果挡风玻璃或机翼上有冰，我们就处于结冰状态。此外，如果结冰，空速可能会降低，发动机推力可能会减小。\n（3）I fly DA-40, which has no icing indication. I judge icing by visual checks of wings/windshields for ice buildup, monitoring airspeed/altitude changes, and receiving ATC/pilot reports. If air temperature is below 0°C with snow/frost, icing is likely. Large aircraft have ice detectors for direct indication.\n我驾驶的DA-40没有积冰指示设备。判断是否积冰的方式包括：目视检查机翼、风挡是否有冰层堆积；监控空速、高度的异常变化；接收空管或其他飞行员的积冰报告；若气温低于0摄氏度且伴随降雪、霜冻，也大概率处于积冰环境。大型飞机则装有冰探测器可直接指示。"
+      "audioText": "What cockpit or other indications can alert pilots to airframe icing?",
+      "audioTextZh": "哪些驾驶舱指示或其他迹象可以提醒飞行员机体结冰？",
+      "referenceText": "Pilots may see ice on the windshield, wipers, wing areas, probes or other visible surfaces. An ice detector or caution may provide a direct indication on equipped aircraft. Unexpected loss of speed or performance, increased power demand, vibration or unusual control response can also suggest icing and requires prompt assessment.",
+      "referenceTextZh": "飞行员可能会在风挡、雨刷、机翼区域、探头或其他可见表面看到结冰。配备相应设备的飞机还可能通过结冰探测器或警戒信息直接提示。速度或性能意外下降、所需功率增大、振动或异常操纵反应，也可能表明出现结冰，需要迅速评估。"
     },
     {
       "id": "opi-core-016",
       "taskTitle": "气象-积冰-3",
-      "audioText": "How is in flight icing dangerous for flight safety.",
-      "audioTextZh": "飞行中结冰对飞行安全有何危害。",
-      "referenceText": "Icing is very dangerous for flight. If we encounter icing during flight, it will degrade our aircraft performance. It will block the pitot tube. And there is abnormal airspeed or altitude indication in the cockpit. If the ice accumulates on the wings. It will decrease the lift and increase the drag. We should try our best to avoid icing.\n结冰对飞行非常危险。如果我们在飞行中遇到结冰，会降低我们的飞机性能。它会堵塞皮托管。驾驶舱内空速或高度指示异常。如果冰积聚在翅膀上。它将降低升力并增加阻力。我们应该尽量避免结冰。\n（2）icing is dangerous.\nFirst, it may increase the drag and decrease the lift.\nSecond, it may cause damage to the aircraft and cause flight control problems.\nThird, it may cause engine problems such as engine vibration, engine flameout  or engine failure.\nFourth, it may cause airspeed or altitude errors (if pitot tubes are blocked by ice).\nfifth, it may cause the aircraft stall.\n积冰危险。第一，结冰可能增加阻力，减小升力；第二，结冰可能导致飞机损坏，导致飞行控制问题；第三，积冰可能导致发动机问题，比如发动机熄火。第四，（如果皮托管被冰堵住，）可能导致空速或高度错误。"
+      "audioText": "How can in-flight icing affect flight safety?",
+      "audioTextZh": "空中结冰会如何影响飞行安全？",
+      "referenceText": "Ice disturbs airflow, reduces lift and increases drag and weight. It can raise stall speed, reduce climb performance and affect handling, propulsion or sensors. Severe contamination may make the aircraft difficult or impossible to control, so early recognition and exit are essential.",
+      "referenceTextZh": "结冰会扰乱气流、减小升力，并增大阻力和重量。它会提高失速速度、降低爬升性能，还可能影响操纵、推进系统或传感器。严重污染可能使飞机难以甚至无法控制，因此必须及早发现并离开结冰条件。"
     },
     {
       "id": "opi-core-017",
       "taskTitle": "气象-积冰-4",
-      "audioText": "What will you do if your aircraft sustains icing during flight?",
-      "audioTextZh": "如果你的飞机在飞行过程中结冰，你会怎么做？",
-      "referenceText": "If we encounter icing during flight, I will turn on the pitot heating system. We will advise the controller of our situation and request to change the flight route or flight level to avoid it.\n如果我们在飞行中遇到结冰情况，我会开启皮托管加热系统。我们会把自身状况告知管制员，并申请改变飞行路线或飞行高度来避开结冰区域。"
+      "audioText": "What should pilots do if they encounter icing conditions in flight?",
+      "audioTextZh": "飞行中遇到结冰条件时，飞行员应如何处置？",
+      "referenceText": "The crew should use the approved ice-protection systems and follow the aircraft checklist. They should leave the icing conditions promptly by changing route or altitude as conditions and clearances permit, while maintaining safe speed and configuration. They should inform ATC when assistance is needed and report significant icing in accordance with applicable procedures.",
+      "referenceTextZh": "机组应使用经批准的防除冰系统，并执行飞机检查单。在条件和管制许可允许的情况下，应通过改变航路或高度迅速离开结冰区域，同时保持安全速度和构型。需要协助时应通知 ATC，并按照适用程序报告明显结冰。"
     },
     {
       "id": "opi-core-018",
       "taskTitle": "气象-积冰-5",
-      "audioText": "If ice accumulates on the wings. What Will you do?",
-      "audioTextZh": "如果机翼上结了冰。你会怎么做？",
-      "referenceText": "If we are on the ground, we will request deicing. If we are in the flight, we will advise controller of the situation and request to change flight route or flight level to avoid it.\n如果我们在地面上，我们将要求除冰。如果我们在飞行中，我们会通知管制员情况，并要求改变飞行路线或飞行高度以避免这种情况。\n\nIf ice accumulates on wings, I’ll activate anti-ice/pitot heating systems immediately. Report to ATC, request level change or deviation to avoid icing areas. Increase thrust to prevent stall. For DA-40, I’ll use hot bleed air, adjust altitude, and ensure no further ice buildup. Before flight, de-ice with fluid and remove ice manually.\n机翼积冰后，立即启动防冰系统和皮托管加温功能；向空管报告，申请改变高度或偏离航线避开积冰区域；增大推力防止失速。对于DA-40机型，会利用发动机引气除冰、调整飞行高度，确保不再积冰。起飞前则会喷洒除冰液并手动清除冰层。"
-    },
-    {
-      "id": "opi-core-019",
-      "taskTitle": "气象-积冰-6",
-      "audioText": "Have you experienced in-flight icing?",
-      "audioTextZh": "你经历过机上结冰吗？",
-      "referenceText": "No, I have never encountered in-flight icing. But I know in-flight icing is dangerous, it may affect the performance of the aircraft, so we should avoid icing conditions during flight\n不，我从未在飞行中遇到结冰。但我知道飞行中结冰是危险的，它可能会影响飞机的性能，所以我们应该在飞行中避免结冰"
+      "audioText": "What should a pilot do if ice begins to accumulate on the wings in flight?",
+      "audioTextZh": "飞行中机翼开始积冰时，飞行员应如何处置？",
+      "referenceText": "The pilot should treat visible wing accumulation as a serious warning and apply the approved icing procedure. The crew should use the installed protection correctly, maintain the prescribed airspeed or required speed margin, and exit the conditions without delay. They should not improvise flap, autopilot or deicing actions outside the aircraft guidance.",
+      "referenceTextZh": "飞行员应把可见的机翼积冰视为严重警告，并执行经批准的结冰处置程序。机组应正确使用已安装的防护系统，保持规定空速或所需速度裕度，并立即离开结冰条件。不得超出机型指导擅自操作襟翼、自动驾驶或除冰系统。"
     },
     {
       "id": "opi-core-020",
-      "taskTitle": "气象-积冰-7",
-      "audioText": "Under what condition will icing conditions occur?",
-      "audioTextZh": "在什么情况下会出现结冰情况？",
-      "referenceText": "Icing occurs when three conditions are met: air temperature below 0°C, aircraft surface temperature below 0°C, and sufficient supercooled droplets in the air. It is more likely in cold weather with high humidity, such as in cumulonimbus clouds (CB), thunderstorm areas or winter flights.\n积冰产生需满足三个条件：气温低于0摄氏度、飞机表面温度低于0摄氏度、空气中有足够的过冷水滴。在湿度大的寒冷天气中易出现，如积雨云（CB）、雷暴区域或冬季飞行时。"
+      "taskTitle": "气象-积冰-6",
+      "audioText": "Under what atmospheric conditions is aircraft icing likely to occur?",
+      "audioTextZh": "哪些大气条件下容易发生飞机结冰？",
+      "referenceText": "Aircraft icing is likely when visible moisture is present and the temperature is cold enough for supercooled water to freeze on the aircraft. Clouds, freezing precipitation and some forms of drizzle or rain can create the hazard. The aircraft manual and current weather products should be used because the exact icing envelope and severity are not defined by one simple temperature value.",
+      "referenceTextZh": "当存在可见水汽且温度低到足以使过冷水滴冻结在飞机上时，就容易出现飞机结冰。云、冻降水以及某些形式的毛毛雨或降雨都可能形成这种危险。由于准确的结冰范围和严重程度不能只用一个简单温度值界定，机组应参考飞机手册和现行气象产品。"
     },
     {
       "id": "opi-core-021",
-      "taskTitle": "气象-积冰-8",
-      "audioText": "Which areas is icing most likely to occur?",
-      "audioTextZh": "哪些位置最有可能发生结冰？",
-      "referenceText": "Icing is most likely to occur on the fuselage, the wings and the windshield\n结冰最有可能发生在机身、机翼和挡风玻璃上\n\nIcing is most likely to occur on aircraft surfaces with leading edges and critical components, such as wings, windshield, engine air intake, pitot tube, static port, radio antenna and landing gear. These areas are directly exposed to supercooled droplets and prone to ice accumulation.\n积冰易出现在飞机的前缘部位和关键部件，包括机翼、风挡、发动机进气口、皮托管、静压孔、无线电天线和起落架等，这些部位直接暴露在过冷水滴中，容易积聚冰层。"
-    },
-    {
-      "id": "opi-core-022",
-      "taskTitle": "气象-积冰-9",
-      "audioText": "Why is icing a threat to flying/flight safety?",
-      "audioTextZh": "为什么结冰对飞行/飞行安全构成威胁？",
-      "referenceText": "Icing is dangerous because it may affect the performance of the aircraft. First, it may increase the drag and decrease the lift. Second, it may cause damage to the aircraft and cause flight control problems. Third, it may cause engine problems such as engine flameout if ice builds up on the engine fan blades.\n结冰是危险的，因为它可能会影响飞机的性能。首先，它可能会增加阻力并减小升力。其次，它可能会对飞机造成损坏并导致飞行控制问题。第三，如果发动机风扇叶片上结冰，可能会导致发动机熄火等发动机问题。\n\nIcing threatens flight safety by altering wing shape, reducing lift by up to 30% and increasing drag by 40%. It can jam flight controls, block pitot tubes (causing inaccurate instruments), ingest into engines (leading to flame-out), and obscure windshields. It also disrupts CG, affecting aircraft stability and increasing stall speed.\n积冰会改变机翼形状，使升力降低30%、阻力增加40%，还会卡住操纵面、堵塞皮托管（导致仪表指示不准）、被发动机吸入（引发熄火）、遮挡风挡；同时破坏重心平衡，影响飞机稳定性并提高失速速度，严重威胁飞行安全。"
-    },
-    {
-      "id": "opi-core-023",
-      "taskTitle": "气象-积冰-10",
-      "audioText": "Do you have any indication in the cockpit to show the airframe icing conditions? If not, how do you know that you are in icing conditions?",
-      "audioTextZh": "驾驶舱内是否有任何指示显示机身结冰情况？如果没有，你怎么知道你处于结冰状态？",
-      "referenceText": "As I know, there is no indication of icing conditions in the cockpit.\nBut we can check the windshield or wings. If there is ice on the windshield or wings, we are in icing condition. Besides, if icing occurs, the airspeed may be reduced and rate of climb may be reduced.\n据我所知，驾驶舱里没有结冰显示，但我们可以检查风挡和机翼，如果风挡和机翼有冰，我们处在结冰区。此外，如果出现结冰，空速可能减小，爬升率可能减小。\n\nI fly DA-40, which has no icing indication. I judge icing by visual checks of wings/windshields for ice buildup, monitoring airspeed/altitude changes, and receiving ATC/pilot reports. If air temperature is below 0°C with snow/frost, icing is likely. Large aircraft have ice detectors for direct indication.\n我驾驶的DA-40没有积冰指示设备。判断是否积冰的方式包括：目视检查机翼、风挡是否有冰层堆积；监控空速、高度的异常变化；接收空管或其他飞行员的积冰报告；若气温低于0摄氏度且伴随降雪、霜冻，也大概率处于积冰环境。大型飞机则装有冰探测器可直接指示。"
-    },
-    {
-      "id": "opi-core-024",
-      "taskTitle": "气象-积冰-11",
-      "audioText": "If ice accumulates on wings, what will you do?",
-      "audioTextZh": "如果机翼上结了冰，你会怎么做？",
-      "referenceText": "If ice accumulates on wings, we will report the situation to ATC and request change the altitude to leave the icing areas. Then we will turn on the de-icing and anti-icing system.\n如果机翼上结冰，我们将向空中交通管制部门报告情况，并要求改变高度以离开结冰区域。然后我们将打开除冰和防冰系统。"
+      "taskTitle": "气象-积冰-7",
+      "audioText": "On which parts of an aircraft is ice most likely to form?",
+      "audioTextZh": "飞机哪些部位最容易结冰？",
+      "referenceText": "Ice commonly forms on exposed leading edges and other surfaces that meet supercooled droplets first. These may include the wings, tail, propellers, engine inlets, windshield, antennas and probes. Ice can also form beyond protected or easily visible areas, so crews must not rely on one observation point alone.",
+      "referenceTextZh": "结冰通常形成在暴露的前缘以及最先接触过冷水滴的其他表面。这些部位可能包括机翼、尾翼、螺旋桨、发动机进气口、风挡、天线和探头。冰还可能形成在防护区域之外或不易观察的位置，因此机组不能只依赖一个观察点。"
     },
     {
       "id": "opi-core-025",
-      "taskTitle": "气象-积冰-12",
-      "audioText": "What kind of de-icing devices are there in the aircraft you fly?",
-      "audioTextZh": "你驾驶的飞机上有什么除冰装置？",
-      "referenceText": "There are some de-icing systems in my aircraft such as hot air system, electrical heater and de-icing fluid.\n我的飞机上有一些除冰系统，如热空气系统、电加热器和除冰液。"
+      "taskTitle": "气象-积冰-8",
+      "audioText": "What de-icing systems are installed on the aircraft you fly?",
+      "audioTextZh": "你所飞的飞机安装了哪些除冰系统？",
+      "referenceText": "A suitable aircraft-specific example would include pneumatic boots on selected leading edges and electrically heated probes and windshield areas. The propeller or engine inlet might use electric heat, fluid or heated air depending on the design. A learner should replace this example with the systems and limitations of the aircraft actually flown.",
+      "referenceTextZh": "一个合适的机型示范答案可以包括：部分前缘使用气动除冰套，探头和部分风挡区域采用电加热。螺旋桨或发动机进气口则可能根据设计采用电加热、液体或热空气。学习者应根据自己实际飞行的飞机，替换为相应系统和限制。"
     },
     {
       "id": "opi-core-026",
-      "taskTitle": "气象-积冰-13",
-      "audioText": "What do you know about the\nanti-ice system in an aircraft?",
-      "audioTextZh": "你对飞机上的防冰系统了解多少?",
-      "referenceText": "Aircraft anti-ice systems use electrical power or engine hot bleed air to heat critical surfaces (windshield, pitot tube, wing leading edges, engine intakes). It melts ice and evaporates water to prevent buildup. DA-40 uses hot bleed air, while large jets have dual systems for key components to ensure flight safety in icing conditions.\n飞机防冰系统利用电力或发动机热引气，对风挡、皮托管、机翼前缘、发动机进气口等关键部位加热，融化冰层并蒸发水分以防止堆积。DA-40采用热引气防冰，大型客机则为关键部件配备双防冰系统，确保在积冰环境下的飞行安全。"
+      "taskTitle": "气象-积冰-9",
+      "audioText": "How does an aircraft's anti-icing system work?",
+      "audioTextZh": "飞机的防冰系统如何工作？",
+      "referenceText": "An anti-icing system operates before or during exposure to prevent ice from forming or adhering on protected areas. Depending on the aircraft, it may use heated air, electric heating or an approved fluid. It protects only the specified surfaces and must be used within the aircraft's procedures and limitations.",
+      "referenceTextZh": "防冰系统在进入结冰条件之前或期间工作，以防止冰在受保护区域形成或附着。根据机型不同，它可能使用热空气、电加热或经批准的防冰液。它只能保护指定表面，并且必须在飞机规定的程序和限制内使用。"
     },
     {
       "id": "opi-core-027",
-      "taskTitle": "气象-积冰-14",
-      "audioText": "How many types of ice can you\nmention?\nWhat kind of ice do you think is\nthe most dangerous for flight\nsafety?",
-      "audioTextZh": "你知道多少类型的冰?什么类型的冰对\n飞行安全最危险?",
-      "referenceText": "Common ice types include rime ice, clear ice, and mixed ice. Clear ice is the most dangerous. It forms when supercooled droplets freeze slowly, creating a smooth, hard layer that alters aerodynamic shape severely, is hard to remove, and can quickly accumulate, leading to loss of lift and control.\n常见的积冰类型有霜状冰、明冰和混合冰。其中明冰最危险，它由过冷水滴缓慢冻结形成，冰层光滑坚硬，会严重改变飞机气动外形，且难以清除、堆积速度快，易导致升力丧失和飞机失控。"
+      "taskTitle": "气象-积冰-10",
+      "audioText": "What types of airframe ice can form in flight?",
+      "audioTextZh": "飞行中可能形成哪些类型的机体积冰？",
+      "referenceText": "The common descriptive types are rime ice, clear ice and mixed ice. Rime ice is usually rough and opaque, while clear ice is smoother and may spread beyond the initial impact area. Mixed ice contains characteristics of both, but pilots may not be able to identify the type reliably in flight.",
+      "referenceTextZh": "常见的描述性结冰类型包括雾凇、明冰和混合冰。雾凇通常粗糙且不透明，明冰则较平滑，并可能扩展到最初撞击区域之外。混合冰兼具二者特征，但飞行员在飞行中未必能够可靠判断具体类型。"
     },
     {
-      "id": "opi-core-028",
-      "taskTitle": "气象-积冰-15",
-      "audioText": "Can planes wait a long time to take off after deicing?",
-      "audioTextZh": "飞机完成除冰后可以等待很长时间再起飞吗?",
-      "referenceText": "No, planes cannot wait long after deicing. Deicing fluid loses effectiveness over time (typically 15-45 mins, depending on weather). Waiting too long allows new ice accumulation, reducing lift and endangering flight. Pilots must take off within the fluid’s holdover time; if exceeded, re-deicing is required.\n不可以，飞机完成除冰后不能长时间等待起飞。除冰液的效果有时间限制（通常15-45分钟，取决于天气），等待过久会导致新的积冰形成，降低升力并危及飞行安全。飞行员必须在除冰液的保持时间内起飞，若超时需重新除冰。"
+      "id": "opi-core-027-part-2",
+      "taskTitle": "气象-积冰-11",
+      "audioText": "Which type of airframe ice poses the greatest threat to flight safety, and why?",
+      "audioTextZh": "哪种类型的机体积冰对飞行安全威胁最大？为什么？",
+      "referenceText": "No single ice type is always the most dangerous because severity depends on accumulation, location and aircraft tolerance. Clear or mixed ice can be especially threatening when it spreads beyond protected surfaces and is difficult to see or remove. Any ice that degrades performance or exceeds the protection system's capability requires immediate attention and exit from the conditions.",
+      "referenceTextZh": "没有哪一种冰在所有情况下都一定最危险，因为严重程度取决于积聚量、位置和飞机承受能力。当明冰或混合冰扩展到受保护表面之外，并且难以发现或清除时，尤其危险。任何降低性能或超出防护系统能力的结冰，都需要立即处置并离开相关条件。"
     },
     {
       "id": "opi-core-029",
-      "taskTitle": "气象-积冰-16",
+      "taskTitle": "气象-积冰-12",
       "audioText": "What is the difference between de-icing and anti-icing?",
-      "audioTextZh": "除冰和防冰有什么区别？",
-      "referenceText": "De-icing removes ice, snow, or frost that has already accumulated on the aircraft surfaces. Anti-icing prevents new ice from forming after de-icing. De-icing is usually done using hot fluid under pressure. Anti-icing uses a thicker fluid that sticks to the surface and absorbs moisture. In practice, most operations use a two-step process: first de-icing to clean the aircraft, then anti-icing to protect it before takeoff. Some fluids combine both functions. Pilots must understand the difference because the holding time starts after the final anti-icing application. Using only de-icing without anti-icing in active precipitation is dangerous.\n除冰是清除飞机表面已经积存的冰、雪或霜。防冰是在除冰后防止新冰形成。除冰通常使用加压的热液体。防冰使用较稠的液体，附着在表面并吸收水分。实际运行中，多数操作采用两步流程：先除冰清洁飞机，再防冰为起飞提供保护。部分液体兼具两种功能。飞行员必须理解这一区别，因为保持时间是从最后一次喷洒防冰液后开始计算。在有持续降水的情况下只除冰而不防冰是危险的。"
+      "audioTextZh": "除冰与防冰有什么区别？",
+      "referenceText": "Deicing removes ice, frost or snow that has already formed on a surface. Anti-icing prevents or delays new contamination from forming or adhering. Some systems or ground treatments can support both functions, but crews must understand which function is being used and follow the approved sequence.",
+      "referenceTextZh": "除冰是清除已经形成在表面上的冰、霜或雪。防冰则是防止或延缓新的污染物形成或附着。某些系统或地面处理可以兼具两种作用，但机组必须了解当前使用的是哪种功能，并遵循经批准的操作顺序。"
     },
     {
       "id": "opi-core-030",
-      "taskTitle": "气象-积冰-17",
-      "audioText": "What is holding time? Why is it important for de-icing and anti-icing?",
-      "audioTextZh": "什么是保持时间？为什么它对除冰和防冰很重要？",
-      "referenceText": "Holding time is the estimated period during which an anti-icing fluid will protect the aircraft from ice, snow, or frost accumulation. It starts when the final anti-icing application begins and ends when the fluid loses effectiveness. Holding time depends on the fluid type, weather conditions, and precipitation intensity. It is important because if takeoff exceeds the holding time, the aircraft may have new ice contamination on critical surfaces like wings. This reduces lift and increases drag. Pilots must check the holding time on the de-icing certificate. If takeoff is delayed beyond this time, the aircraft must return for re-treatment. Safety depends on respecting holding time.\n保持时间是防冰液能够保护飞机防止冰、雪或霜积聚的预估时间段。它从最后一次喷洒防冰液开始时计算，到液体失效时结束。保持时间取决于液体类型、天气条件和降水强度。它之所以重要，是因为如果起飞时间超过了保持时间，飞机的关键表面（如机翼）可能会有新的冰污染，这会降低升力并增加阻力。飞行员必须检查除冰证书上的保持时间。如果起飞延误超过该时间，飞机必须返回重新处理。遵守保持时间关乎安全。"
+      "taskTitle": "气象-积冰-13",
+      "audioText": "What is holdover time in ground de-icing and anti-icing operations?",
+      "audioTextZh": "在地面除冰和防冰作业中，什么是保持时间？",
+      "referenceText": "Holdover time is the estimated period during which an applied anti-icing fluid is expected to protect treated surfaces from frozen contamination. For a one-step treatment it starts when the treatment begins; for a two-step treatment it starts when the final anti-icing fluid application begins. It is selected from approved current guidance for the actual conditions and is a planning estimate, not a guarantee.",
+      "referenceTextZh": "防冰保持时间是指已施用的防冰液预计能够保护处理表面免受冰冻污染物影响的时间。一步法处理从开始施液时计算；两步法处理则从最后一次施用防冰液开始计算。保持时间应根据实际条件，从经批准的现行资料中选取；它只是规划估计，并非保证。"
+    },
+    {
+      "id": "opi-core-030-part-2",
+      "taskTitle": "气象-积冰-14",
+      "audioText": "Why must an aircraft take off within the applicable holdover time after ground de-icing or anti-icing?",
+      "audioTextZh": "飞机在地面除冰或防冰后，为什么必须在适用的保持时间内起飞？",
+      "referenceText": "After the applicable holdover time, the anti-icing fluid may no longer provide the expected protection. Frozen contamination can then form and change the aircraft's aerodynamics. If protection is no longer assured, the crew must follow the approved procedure, which may require a check, retreatment or delaying the takeoff.",
+      "referenceTextZh": "超过适用的防冰保持时间后，防冰液可能无法继续提供预期保护。随后可能形成冰冻污染物，并改变飞机的空气动力性能。如果无法确认保护仍然有效，机组必须执行经批准的程序，其中可能包括检查、重新进行除防冰处理或推迟起飞。"
     },
     {
       "id": "opi-core-031",
-      "taskTitle": "气象-积冰-18",
-      "audioText": "What are the common types of de-icing and anti-icing fluids? How do they differ?",
-      "audioTextZh": "常见的除冰液和防冰液有哪些种类？它们有什么区别？",
-      "referenceText": "There are four main fluid types based on SAE standards. Type I is orange and used for de-icing. It is thin, heated, and runs off quickly. It provides very short holding time. Type II is off-white or pale yellow. It is thicker and contains thickeners to stay on surfaces longer. Type III is green and designed for smaller aircraft. Type IV is green and the most common anti-icing fluid for large jets. It is very thick and provides the longest holding time. Type I is for de-icing only. Types II and IV are for anti-icing. Pilots should check which type is used and what the expected holding time is for current weather conditions.\n根据 SAE 标准，主要有四种液体类型。I 型为橙色，用于除冰，较稀、经过加热、流失快，保持时间很短。II 型为米白色或淡黄色，较稠，含有增稠剂以便在表面停留更久。III 型为绿色，专为小型飞机设计。IV 型为绿色，是大型喷气机最常用的防冰液，非常稠，保持时间最长。I 型仅用于除冰。II 型和 IV 型用于防冰。飞行员应确认使用了哪种类型以及在当前天气条件下的预期保持时间。"
+      "taskTitle": "气象-积冰-15",
+      "audioText": "What are the common types of aircraft de-icing and anti-icing fluids?",
+      "audioTextZh": "常见的飞机除冰液和防冰液有哪些类型？",
+      "referenceText": "The common ground deicing and anti-icing fluids are identified as SAE Types I, II, III and IV. Type I is commonly used for removing contamination and provides relatively limited holdover protection. The thicker Types II, III and IV are intended to provide longer anti-icing protection for aircraft and operations for which they are approved.",
+      "referenceTextZh": "常见的地面除冰和防冰液分为 SAE I、II、III 和 IV 型。I 型液通常用于清除污染物，提供的保持时间相对较短。较稠的 II、III 和 IV 型液用于为经批准的飞机和运行提供更长时间的防冰保护。"
+    },
+    {
+      "id": "opi-core-031-part-2",
+      "taskTitle": "气象-积冰-16",
+      "audioText": "How do the common types of aircraft de-icing and anti-icing fluids differ?",
+      "audioTextZh": "常见类型的飞机除冰液和防冰液有何区别？",
+      "referenceText": "Type I fluid is relatively thin and is often heated for effective deicing, but it normally offers shorter protection. Types II and IV are thicker anti-icing fluids with longer expected holdover performance, while Type III is formulated for aircraft with lower rotation speeds than those normally suited to Types II and IV. Their use also differs by concentration, temperature, precipitation and aircraft compatibility.",
+      "referenceTextZh": "I 型液较稀，通常加热后用于有效除冰，但一般只能提供较短保护。II 型和 IV 型是较稠的防冰液，预期保持时间更长；III 型则为较低抬轮速度的飞机配制，这类飞机的抬轮速度低于通常适用 II 型和 IV 型液飞机的抬轮速度。它们的使用还会因浓度、温度、降水和飞机兼容性而不同。"
     },
     {
       "id": "opi-core-032",
-      "taskTitle": "气象-积冰-19",
+      "taskTitle": "气象-积冰-17",
       "audioText": "Who is responsible for deciding whether de-icing or anti-icing is needed before takeoff?",
-      "audioTextZh": "谁负责决定起飞前是否需要除冰或防冰？",
-      "referenceText": "The pilot in command has the final responsibility for deciding whether de-icing or anti-icing is required. Before takeoff, the captain must check the outside air temperature, visibility, and precipitation. If there is frost, ice, or snow on the wings or control surfaces, de-icing is mandatory. The pilot cannot rely solely on ground crew recommendations. However, the pilot should consult with the airline’s dispatch and ground de-icing personnel for technical advice. Ultimately, if the captain has any doubt about ice contamination, they should request de-icing. Taking off with ice on critical surfaces is illegal and extremely dangerous. The final go/no-go decision belongs to the captain.\n机长对决定是否需要除冰或防冰负有最终责任。起飞前，机长必须检查外界温度、能见度和降水情况。如果机翼或操纵面有霜、冰或雪，必须进行除冰。飞行员不能仅依赖地面人员的建议。但飞行员应咨询公司签派和地面除冰人员获取技术建议。最终，如果机长对冰污染有任何疑问，应要求除冰。在关键表面带冰起飞是非法的且极其危险。最终决定权在机长。"
-    },
-    {
-      "id": "opi-core-033",
-      "taskTitle": "气象-积冰-20",
-      "audioText": "What happens if a pilot exceeds the holding time after applying anti-icing fluid?",
-      "audioTextZh": "如果飞行员在喷洒防冰液后超过了保持时间，会发生什么？",
-      "referenceText": "If the holding time is exceeded, the anti-icing fluid loses its effectiveness. Ice, snow, or frost may start to accumulate again on the aircraft surfaces, especially on the wings and tail. Contamination on critical surfaces reduces lift, increases drag, and may cause early stall or loss of control. Therefore, the pilot must not take off after exceeding holding time. Instead, the aircraft must return to the de-icing pad for re-treatment. The pilot should inform ATC and ground handling of the delay. During taxi, if snow or freezing rain continues, the pilot may need to request a shorter holding time estimate. Never take off if you are uncertain about the condition of the wings after holding time has expired.\n如果超过保持时间，防冰液会失效。冰、雪或霜可能再次在飞机表面积聚，尤其是机翼和尾部。关键表面的污染物会降低升力、增加阻力，可能导致早期失速或失控。因此，飞行员超过保持时间后绝不能起飞。相反，飞机必须返回除冰坪重新处理。飞行员应通知空管和地面服务人员延误情况。在滑行期间，如果雪或冻雨持续，飞行员可能需要请求更短的保持时间估算。如果保持时间过后不确定机翼状况，绝不起飞。"
+      "audioTextZh": "起飞前由谁负责决定是否需要除冰或防冰？",
+      "referenceText": "The pilot in command must be satisfied that the aircraft is safe and meets the clean-aircraft requirements before takeoff. Dispatch, ground personnel and trained deicing staff may provide weather, inspection and treatment information under the operator's program. Their shared duties do not remove the flight crew's responsibility to make the final operational decision.",
+      "referenceTextZh": "起飞前，机长必须确认飞机安全，并符合清洁飞机要求。签派人员、地面人员和受训的除冰人员可以按照公司方案提供天气、检查和处理信息。各方共同承担职责，但不能取代飞行机组作出最终运行决定的责任。"
     },
     {
       "id": "opi-core-034",
-      "taskTitle": "气象-积冰-21",
-      "audioText": "What type of de-icing or anti-icing fluid should be used in heavy snow conditions?",
-      "audioTextZh": "在大雪条件下应使用哪种除冰液或防冰液？",
-      "referenceText": "In heavy snow conditions, a two-step process is recommended. First, use heated Type I fluid for de-icing to remove existing snow and ice. Then apply Type IV anti-icing fluid, which provides the longest holding time under severe weather. Type IV is very thick and can withstand heavy snow for a limited period. However, even Type IV has a maximum holding time. If snow accumulation is extreme, the pilot may need to request repeated de-icing just before takeoff. Some operators use Type II as an alternative, but Type IV is preferred for heavy snow. Never use only Type I in active heavy snow because it offers almost no holding time. Always check the fluid’s certified weather conditions.\n在大雪条件下，建议使用两步流程。首先使用加热的 I 型液体除冰，清除积雪和冰。然后喷洒 IV 型防冰液，它在恶劣天气下提供最长的保持时间。IV 型液体很稠，能在有限时间内承受大雪。但即使 IV 型也有最长保持时间。如果积雪极端严重，飞行员可能需要在起飞前反复除冰。部分运营商使用 II 型作为替代，但 IV 型是大雪条件下的首选。在持续大雪中绝不要只使用 I 型，因为它几乎没有保持时间。务必检查该液体经认证的天气条件。"
+      "taskTitle": "气象-积冰-18",
+      "audioText": "How should the appropriate de-icing or anti-icing fluid be selected in heavy snow?",
+      "audioTextZh": "大雪条件下应如何选择合适的除冰液或防冰液？",
+      "referenceText": "Standard holdover-time tables do not provide a normal holdover time for heavy snow. A crew may operate only under an approved program that gives a valid method for the condition, such as an authorized holdover-time determination system or the required contamination checks. The fluid, mixture and checking method must come from that program and current guidance; otherwise the crew should wait or arrange another approved treatment.",
+      "referenceTextZh": "标准保持时间表不会为大雪条件提供常规保持时间。只有在经批准的方案提供了适用于该条件的有效方法时，例如获准使用保持时间判定系统或执行规定的污染检查，机组才可以运行。防冰液、混合比例和检查方法必须来自该方案和现行指导；否则机组应等待或安排其他经批准的处理。"
     }
   ]
 }

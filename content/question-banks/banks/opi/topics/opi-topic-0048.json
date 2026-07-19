@@ -2,28 +2,39 @@
   "categoryId": "opi-category-05",
   "id": "opi-topic-0048",
   "name": "起飞着陆性能",
-  "declaredCardCount": 3,
+  "declaredCardCount": 4,
   "cards": [
     {
       "id": "opi-core-580",
       "taskTitle": "运行-起飞着陆性能-1",
-      "audioText": "What may happen if pilot failed to assess the landing performance?",
-      "audioTextZh": "若飞行员未能评估着陆性能，可能会发生什么情况？",
-      "referenceText": "If a pilot fails to assess the landing performance, they may not know the runway conditions and runway length. This is very dangerous.\n如果飞行员未能评估着陆性能，他们可能不了解跑道状况和跑道长度，这十分危险 。"
+      "audioText": "What could happen if a pilot fails to assess landing performance?",
+      "audioTextZh": "如果飞行员未评估着陆性能，可能会发生什么？",
+      "referenceText": "If landing performance is not assessed, the aircraft may touch down without enough runway to stop safely. The result could be an overrun, excessive braking, tire or brake damage, loss of directional control or a collision beyond the runway. The crew may also fail to recognize before touchdown that a safe landing is no longer assured and lose the opportunity for a timely go-around.",
+      "referenceTextZh": "如果不评估着陆性能，飞机接地后可能没有足够跑道安全停下。结果可能是冲出跑道、过度制动、轮胎或刹车损坏、失去方向控制，或在跑道外发生碰撞。机组也可能无法在接地前认识到安全着陆已无法保证，从而失去及时复飞的机会。"
     },
     {
       "id": "opi-core-581",
       "taskTitle": "运行-起飞着陆性能-2",
-      "audioText": "Do you make takeoff/landing assessment for each flight? What factors will you consider when making the performance assessment?",
-      "audioTextZh": "你们会为每个航班做起飞 / 着陆评估吗？进行性能评估时会考虑哪些因素？",
-      "referenceText": "Yes, we have to make takeoff and landing assessments for each flight. We have to consider many factors, such as runway conditions, runway length, braking action, flap position, wind, temperature, and so on.\n会的，我们必须为每个航班做起飞和着陆评估。要考虑诸多因素，比如跑道状况、跑道长度、刹车效能、襟翼位置、风向风力、温度等等 。"
+      "audioText": "What factors do you consider when assessing takeoff and landing performance for each flight?",
+      "audioTextZh": "每次飞行评估起飞和着陆性能时，你会考虑哪些因素？",
+      "referenceText": "I consider aircraft weight and configuration, runway length, slope and condition, pressure altitude, temperature, wind and obstacles. I also account for system or equipment status, available braking and reverse thrust, approach or takeoff technique and the required regulatory or company margin. Current runway reports and manufacturer-approved performance data must be used for the actual time and operation.",
+      "referenceTextZh": "我会考虑飞机重量和构型、跑道长度、坡度和状况、气压高度、温度、风和障碍物。我还会考虑系统或设备状态、可用制动与反推、进近或起飞技术，以及法规或公司要求的裕度。必须根据实际时间和运行情况，采用当前跑道报告和制造商批准的性能数据。"
     },
     {
       "id": "opi-core-582",
       "taskTitle": "运行-起飞着陆性能-3",
-      "audioText": "What kind of failure will influence the landing performance?",
-      "audioTextZh": "哪些故障会影响着陆性能？",
-      "referenceText": "There are many failures that may influence the landing performance. For example, engine failure, hydraulic system failure, jammed flaps, brake malfunction, and so on.\n有很多故障可能会影响着陆性能，比如发动机故障、液压系统故障、襟翼卡阻、刹车故障等等 。"
+      "audioText": "Which aircraft failures can affect landing performance?",
+      "audioTextZh": "哪些飞机故障会影响着陆性能？",
+      "referenceText": "Failures of wheel brakes, anti-skid, spoilers, lift dump, thrust reversers, flaps or flight controls can increase landing distance or affect directional control. Hydraulic, electrical or landing-gear problems may also change configuration, braking or steering capability. The crew must use the aircraft's approved performance adjustment and abnormal procedure rather than apply a generic penalty.",
+      "referenceTextZh": "机轮刹车、防滞、扰流板、升力卸载装置、反推、襟翼或飞行操纵系统失效，都可能增加着陆距离或影响方向控制。液压、电气或起落架故障也可能改变构型、制动或转向能力。机组必须使用飞机经批准的性能修正和异常程序，而不能套用未经机型批准的通用性能增量。"
+    },
+    {
+      "id": "opi-core-552",
+      "taskTitle": "运行-起飞着陆性能-4",
+      "audioText": "What tailwind limits apply to takeoff and landing on the aircraft you fly?",
+      "audioTextZh": "你所飞的飞机在起飞和着陆时适用哪些顺风限制？",
+      "referenceText": "An adjustable aircraft answer would state that the applicable takeoff and landing tailwind limits are taken from the aircraft flight manual and the operator's procedures. Different limits may apply to runway condition, configuration, autoland or other operating modes. I would use the most restrictive current limit rather than quote a number from another aircraft.",
+      "referenceTextZh": "一个可调整的机型示范答案会说明，适用的起飞和着陆顺风限制来自飞机飞行手册和运营人程序。跑道状况、构型、自动着陆或其他运行模式可能适用不同限制。我会采用当前最严格的限制，而不会引用其他机型的数值。"
     }
   ]
 }

@@ -2,56 +2,55 @@
   "categoryId": "opi-category-04",
   "id": "opi-topic-0072",
   "name": "红眼航班",
-  "declaredCardCount": 7,
+  "declaredCardCount": 6,
   "cards": [
     {
       "id": "opi-core-741",
       "taskTitle": "人的因素-红眼航班-1",
-      "audioText": "How do you comment a red - eye flight?",
-      "audioTextZh": "你如何看待红眼航班？\nWhat's your opinion about red-eye flight?",
-      "referenceText": "A red - eye flight refers to a night flight. To make more profit and reduce operating costs, airlines will arrange red - eye flights. On the other hand, I think it’s a good thing for passengers. Because it can be a cost - effective option for them to save money.\n红眼航班指的是夜间飞行的航班。为获取更多收益、降低运营成本，航空公司会安排红眼航班。另一方面，我认为这对乘客而言是件好事，因为它能成为乘客省钱的实惠之选 。\n\nRed-eye flights have pros and cons. They reduce airspace congestion, offer cheaper fares for passengers, and increase airline operational efficiency. However, they pose risks like pilot fatigue, low visibility at night, and higher potential for human errors, requiring strict rest management and operational precautions.\n红眼航班有利有弊。它能缓解空域拥堵，为乘客提供更便宜的票价，也提升航空公司运营效率。但存在飞行员疲劳、夜间能见度低、人为失误风险升高的问题，需严格执行休息管理和运行防护措施。"
+      "audioText": "What is your opinion of red-eye flights?",
+      "audioTextZh": "你如何看待红眼航班？",
+      "referenceText": "Red-eye flights are useful for passengers and aircraft scheduling, but they place work in a period when the body naturally expects sleep. I think they can be operated safely only with realistic duty limits, proper rest opportunities and active fatigue reporting. A crew member who is not fit for duty should use the operator's fatigue process rather than trying to hide the problem.",
+      "referenceTextZh": "红眼航班有利于旅客出行和飞机排班，但它把工作安排在人体自然需要睡眠的时段。我认为，只有设置切合实际的执勤限制、提供适当休息机会并主动报告疲劳，才能安全运行这类航班。不适合执勤的机组成员应使用运营人的疲劳管理流程，而不能试图隐瞒问题。"
     },
     {
       "id": "opi-core-742",
       "taskTitle": "人的因素-红眼航班-2",
-      "audioText": "Why do you think red - eye flight is a trend in civil aviation?",
-      "audioTextZh": "你为何认为红眼航班会成为民用航空的一种发展趋势？",
-      "referenceText": "With more and more airlines being established, I think if they want to make a profit, they will arrange red - eye flights.\n随着越来越多航空公司成立，我认为若它们想要盈利，就会安排红眼航班 。"
+      "audioText": "Why do airlines operate red-eye flights?",
+      "audioTextZh": "航空公司为什么运营红眼航班？",
+      "referenceText": "Airlines operate red-eye flights to connect cities overnight and let passengers arrive early in the morning. They can also improve aircraft utilization, serve time-sensitive demand and connect with morning onward flights. The commercial benefit must still be balanced with crew fatigue rules, airport restrictions and passenger demand.",
+      "referenceTextZh": "航空公司运行红眼航班，是为了夜间连接不同城市，让旅客能够在清晨到达。它们还能提高飞机利用率、满足时间敏感型需求，并衔接早晨的后续航班。不过，商业收益仍必须与机组疲劳规定、机场限制和旅客需求取得平衡。"
     },
     {
       "id": "opi-core-743",
       "taskTitle": "人的因素-红眼航班-3",
-      "audioText": "Have you ever flown red eye flight? If no, what kinds\nof flights are red eye flights?",
-      "audioTextZh": "你是否执行过红眼航班？若没有，什么是红眼航班？",
-      "referenceText": "No, I have never flown a red eye flight. A red eye flight is a flight which takes off late at night, and arrives early the next morning.\n没有。红眼航班是指深夜起飞、次日清晨抵达的航班。"
+      "audioText": "Have you ever operated a red-eye flight? If so, what was it like?",
+      "audioTextZh": "你是否曾执行过红眼航班？如果有，那次经历怎么样？",
+      "referenceText": "A suitable example would be an overnight sector that departed near midnight and arrived shortly after sunrise. The quiet traffic made some parts easier, but maintaining alertness during the final approach was demanding because it was close to the body's normal low point. The crew used controlled rest and fatigue countermeasures allowed by the company and completed a careful arrival briefing.",
+      "referenceTextZh": "一个合适的示范案例是：某个夜间航段在接近午夜时起飞，日出后不久到达。较少的交通使部分运行更容易，但最后进近接近人体正常低谷期，保持警觉很有挑战。机组采用了公司允许的受控休息和疲劳缓解措施，并认真完成进场简令。"
     },
     {
       "id": "opi-core-744",
       "taskTitle": "人的因素-红眼航班-4",
-      "audioText": "When preparing for this flight, what can a\npilot do reduce the stress?",
-      "audioTextZh": "为执行红眼航班做准备时，飞行员可采取哪些措施减轻压力？",
-      "referenceText": "We should relax and have more sleep before red eye flights.\n飞行前应放松休息，保证充足睡眠。"
+      "audioText": "How can a pilot prepare for a red-eye flight to reduce fatigue?",
+      "audioTextZh": "飞行员如何为红眼航班做准备以减轻疲劳？",
+      "referenceText": "A pilot should protect sleep before the duty, plan a suitable nap if possible and avoid arriving already sleep-deprived. Good hydration, appropriate meals, light exposure and carefully timed caffeine may help, while alcohol and unapproved stimulants should be avoided. The pilot must assess fitness honestly and report fatigue if adequate alertness cannot be maintained.",
+      "referenceTextZh": "飞行员应在执勤前保障睡眠，条件允许时安排适当小睡，并避免在已经睡眠不足的状态下报到。充分补水、适当饮食、光照和合理安排咖啡因摄入时间可能有所帮助，而酒精和未经批准的兴奋剂应避免。飞行员必须如实评估自己的适岗状态；如果无法保持足够警觉，就应报告疲劳。"
     },
     {
       "id": "opi-core-745",
       "taskTitle": "人的因素-红眼航班-5",
-      "audioText": "What can you do to recover after a red\neye flight?",
-      "audioTextZh": "执行红眼航班后，如何恢复状态？",
-      "referenceText": "We should relax and have more sleep after red eye flights.\n航班结束后应放松休息，补充睡眠。"
+      "audioText": "How can a pilot recover after a red-eye flight?",
+      "audioTextZh": "飞行员在执行红眼航班后如何恢复？",
+      "referenceText": "After the flight, a pilot should arrange safe transport and obtain a sufficient, uninterrupted sleep opportunity in a dark and quiet environment. Returning gradually to a regular sleep schedule, eating normally, hydrating and using light exposure sensibly can support recovery. If significant fatigue or sleep difficulty continues, the pilot should report it and seek qualified medical advice.",
+      "referenceTextZh": "飞行后，飞行员应安排安全交通，并在黑暗、安静的环境中获得充分且不受打扰的睡眠机会。逐步恢复规律作息、正常饮食、补充水分和合理利用光照，都有助于恢复。如果明显疲劳或睡眠困难持续存在，飞行员应予以报告并寻求合格的医疗建议。"
     },
     {
       "id": "opi-core-746",
       "taskTitle": "人的因素-红眼航班-6",
-      "audioText": "Do you know red-eye flight?",
-      "audioTextZh": "你知道红眼航班吗?",
-      "referenceText": "Yes. A red-eye flight refers to a flight that takes off late at night (usually between midnight and 6 am) and arrives early the next morning.  Commonly used for short to medium-haul routes.\n知道。红眼航班指深夜起飞通常在午夜至凌晨6点之间、次日清晨抵达的航班。常用于中短程航线。"
-    },
-    {
-      "id": "opi-core-747",
-      "taskTitle": "人的因素-红眼航班-7",
-      "audioText": "Have you ever flown red-eye flight?",
-      "audioTextZh": "你飞过红眼航班吗?",
-      "referenceText": "No, I haven’t ，as a student pilot. But I’ve learned that flying red-eye flights requires adequate pre-flight rest to stay alert. My flight school also trains us on fatigue management strategies to handle such flights safely in the future.\n作为飞行学员，我还没有飞过。但我了解到，执行红眼航班需要充足的飞行前休息以保持警觉，航校也会训练我们应对疲劳的管理策略，为未来安全执行这类航班做准备。"
+      "audioText": "What is a red-eye flight?",
+      "audioTextZh": "什么是红眼航班？",
+      "referenceText": "A red-eye flight is a flight operated mainly during the night and usually arriving early the next morning. The name refers to passengers or crew appearing tired after losing normal nighttime sleep. It is an informal term, not a separate technical category of flight.",
+      "referenceTextZh": "红眼航班主要在夜间运行，通常于第二天清晨到达。这个名称源于乘客或机组因失去正常夜间睡眠而显得疲惫、眼睛发红。它是非正式说法，并不是一种独立的飞行技术类别。"
     }
   ]
 }

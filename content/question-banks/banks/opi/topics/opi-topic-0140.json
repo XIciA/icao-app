@@ -7,16 +7,18 @@
     {
       "id": "opi-extra-330",
       "taskTitle": "气象-冬夏季运行-1",
-      "audioText": "When you operate in winter, what should you\nconsider?",
-      "audioTextZh": "冬季运行时，需考虑哪些因素？",
-      "referenceText": "There are some factors we should take into consideration when operate in winter. First, before flight, we should get the weather information to check if there is any icing area on our flight planned route. Second, before takeoff, we should make sure there is no ice buildup on the aircraft. Deicing might be required before takeoff. Third, we should pay attention to the runway braking action. It may be poor.\n冬季运行需考虑以下因素：一是飞行前获取气象信息，检查计划航线是否有积冰区域；二是起飞前确保飞机表面无结冰，必要时进行除冰；三是关注跑道刹车效果，冬季刹车效果可能较差。"
+      "audioText": "What factors should pilots consider during winter operations?",
+      "audioTextZh": "冬季运行中，飞行员应考虑哪些因素？",
+      "referenceText": "Winter planning should cover icing and frost, deicing and holdover time, cold-temperature effects, runway contamination and braking action. Pilots should also consider snow-covered markings, visibility, strong winds, alternate airports and equipment or battery performance. Extra time and a careful preflight inspection are often necessary.",
+      "referenceTextZh": "冬季运行计划应涵盖结冰和结霜、除冰与防冰保持时间、低温影响、跑道污染和跑道制动状况。飞行员还应考虑积雪覆盖的标志、能见度、强风、备降机场以及设备或电池性能。通常需要预留更多时间，并认真进行飞行前检查。"
     },
     {
       "id": "opi-extra-331",
       "taskTitle": "气象-冬夏季运行-2",
-      "audioText": "When you operate in summer, what kind of threat do\nyou face?",
-      "audioTextZh": "夏季运行时，会面临哪些威胁？",
-      "referenceText": "In summer operation, we may face some dangerous weather, such as thunderstorm, heavy rain, lightening strike and so on.\n可能遭遇雷暴、暴雨、雷击等危险天气"
+      "audioText": "What hazards can pilots face during summer operations?",
+      "audioTextZh": "夏季运行中，飞行员可能面临哪些危险？",
+      "referenceText": "Summer operations can bring thunderstorms, turbulence, wind shear, hail and intense rain. High temperature and high density altitude can reduce takeoff and climb performance, while heat can affect people and equipment. In some regions, smoke, dust or tropical weather may create additional visibility and routing hazards.",
+      "referenceTextZh": "夏季运行可能遇到雷暴、颠簸、风切变、冰雹和强降雨。高温和高密度高度会降低起飞与爬升性能，炎热还会影响人员和设备。在某些地区，烟雾、沙尘或热带天气也可能带来额外的能见度和航路危险。"
     }
   ]
 }

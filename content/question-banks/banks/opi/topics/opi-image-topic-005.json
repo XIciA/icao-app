@@ -2,7 +2,7 @@
   "categoryId": "opi-category-08",
   "id": "opi-image-topic-005",
   "name": "起落架异常",
-  "declaredCardCount": 2,
+  "declaredCardCount": 4,
   "cards": [
     {
       "id": "opi-image-005-image",
@@ -14,11 +14,24 @@
     {
       "id": "opi-image-005-q01",
       "taskTitle": "图片题-005-01",
-      "audioText": "Is the landing gear of this aircraft retracted on the ground? What could be the possible reasons and consequences?",
-      "audioTextZh": "这架飞机的起落架是否在地面收起？可能的原因和后果是什么？",
-      "referenceText": "The main risks are mechanical failure, unsafe gear indication, maintenance error, and serious structural damage. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
-      "referenceTextZh": "主要风险包括机械故障、不安全起落架指示、维修差错以及严重结构损伤。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-005-q01.mp3"
+      "audioText": "What appears to have happened to the landing gear of the aircraft in this picture?",
+      "audioTextZh": "图中航空器的起落架似乎发生了什么？"
+    },
+    {
+      "id": "opi-image-005-q01-part-2",
+      "taskTitle": "图片题-005-02",
+      "audioText": "What can cause an aircraft's landing gear to collapse or retract on the ground?",
+      "audioTextZh": "哪些因素可能导致航空器起落架在地面坍塌或收起？",
+      "referenceText": "A landing gear can collapse because of structural or lock failure, hard or side-loaded landing damage, overload, corrosion or maintenance error. Uncommanded retraction on the ground may involve an unsafe control action, squat-switch or sensing fault, hydraulic malfunction or failure to install required safety devices during maintenance. The actual cause requires inspection and recorded evidence rather than visual assumption alone.",
+      "referenceTextZh": "起落架可能因结构或锁定机构失效、重着陆或带侧向载荷着陆造成的损伤、过载、腐蚀或维修错误而坍塌。飞机在地面意外收起起落架，可能涉及不安全的操纵动作、空地电门或传感故障、液压故障，或维修时未安装规定的安全装置。实际原因必须依据检查结果和记录证据确定，不能只凭外观推测。"
+    },
+    {
+      "id": "opi-image-005-q01-part-3",
+      "taskTitle": "图片题-005-03",
+      "audioText": "What consequences can result from a landing gear collapse or retraction on the ground?",
+      "audioTextZh": "起落架在地面坍塌或收起可能造成哪些后果？",
+      "referenceText": "A collapse can damage the fuselage, wing, propeller or engine, landing gear structure, fuel tanks and nearby systems. Occupants or ground staff may be injured, and fuel leakage can create a serious fire risk. The runway or stand may be blocked while the aircraft is stabilized, evacuated, inspected and recovered.",
+      "referenceTextZh": "起落架坍塌可能损坏机身、机翼、螺旋桨或发动机、起落架结构、油箱和附近系统。机上人员或地面人员可能受伤，燃油泄漏还会造成严重火灾风险。在飞机得到稳定、人员撤离、完成检查和救援搬移之前，跑道或停机位可能无法使用。"
     }
   ]
 }

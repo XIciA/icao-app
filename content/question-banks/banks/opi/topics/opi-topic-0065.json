@@ -2,154 +2,119 @@
   "categoryId": "opi-category-05",
   "id": "opi-topic-0065",
   "name": "开槽跑道与湿滑道面",
-  "declaredCardCount": 21,
+  "declaredCardCount": 14,
   "cards": [
     {
       "id": "opi-core-686",
       "taskTitle": "运行-开槽跑道与湿滑道面-1",
-      "audioText": "As a part of your pre-flight planning/preparation, how do you determine the runway is grooved?",
-      "audioTextZh": "作为飞行前计划 / 准备的一部分，你们如何确定跑道是否有刻槽？",
-      "referenceText": "We can check the airport information to determine if the runway is grooved.\n我们可以查阅机场资料来确定跑道是否有刻槽 。\n\nDuring pre-flight planning, I obtain runway information from ATIS, NOTAM, ATC reports, or airport charts. Pilot reports (PIREP) also help confirm if the runway is grooved.\n飞行前计划阶段，我会通过自动终端情报服务（ATIS）、航行通告（NOTAM）、空管报告或机场航图获取跑道信息，确定其是否为带槽跑道。其他飞行员的报告（PIREP）也能提供参考。"
+      "audioText": "How can a flight crew determine during preflight planning whether a runway is grooved?",
+      "audioTextZh": "飞行前计划期间，飞行机组如何确定跑道是否刻槽？",
+      "referenceText": "During planning, the crew can check the current aeronautical information publication, airport chart, runway directory or approved electronic airport database. The runway remarks or surface information may identify grooving or a porous friction course. If the information is operationally important and unclear, the crew should confirm it through dispatch or the airport authority rather than infer it from a photograph.",
+      "referenceTextZh": "计划阶段，机组可以查阅现行航空资料汇编、机场航图、跑道资料目录或批准的电子机场数据库。跑道备注或道面信息可能注明刻槽或铺设多孔摩擦层。如果这项信息对运行很重要但内容不清，机组应通过签派或机场管理机构进行确认，而不能根据照片推断。"
     },
     {
       "id": "opi-core-687",
       "taskTitle": "运行-开槽跑道与湿滑道面-2",
-      "audioText": "If there is standing water on the runway, what will you be careful about?",
-      "audioTextZh": "若跑道上有积水，你们需要注意什么？",
-      "referenceText": "（1）If there is standing water on the runway, we should check the braking action. The runway may be slippery, so we need to maintain good directional control of the aircraft.\n若跑道上有积水，我们应检查刹车效能。跑道可能湿滑，因此要保持对飞机良好的方向控制 。\n（2）If there is standing water on the runway, the braking action is reduced and hydroplaning might happen. During landing we shall use recommended speed to touch down, and use the maximum thrust reverse. When the speed is slowed down, then use the brakes.\n跑道积水会降低刹车效果，可能引发滑水现象。着陆时，需按推荐速度接地，使用最大反推；待速度降低后，再使用刹车。\n（3）I will pay attention to reduced braking efficiency and increased hydroplaning risk. I’ll adjust approach speed to be lower, maintain stable attitude, avoid abrupt braking or steering, extend landing distance, and be prepared for go-around if conditions deteriorate.\n我会注意刹车效率下降和水滑风险增加。降低进近速度，保持稳定姿态，避免急剧刹车或转向，预留更长的着陆距离，若情况恶化则做好复飞准备。"
+      "audioText": "What should pilots consider when operating on a runway with standing water?",
+      "audioTextZh": "在有积水的跑道上运行时，飞行员应考虑哪些因素？",
+      "referenceText": "Standing water can reduce tire contact and braking, increase hydroplaning risk and affect directional control. Pilots should use the reported runway condition, water depth or coverage when available, wind, crosswind limits, aircraft performance data and the reliability of braking reports. They should calculate landing or takeoff performance for the actual condition and choose another runway or airport if the margin is inadequate.",
+      "referenceTextZh": "积水可能减少轮胎与道面的接触和制动能力，增加滑水风险，并影响方向控制。飞行员应采用报告的跑道状况，以及可用时的积水深度或覆盖范围，并考虑风、侧风限制、飞机性能数据和制动报告的可靠性。他们应针对实际状况计算着陆或起飞性能；如果裕度不足，就选择其他跑道或机场。"
     },
     {
       "id": "opi-core-688",
       "taskTitle": "运行-开槽跑道与湿滑道面-3",
-      "audioText": "What is the purpose of grooving the runway?",
-      "audioTextZh": "跑道开槽的目的是什么？",
-      "referenceText": "The purpose of grooving the runway is to drain rainwater, reduce the risk of aircraft hydroplaning after heavy rain, and increase the friction between the runway and the aircraft tires, so as to improve the braking performance and ground handling characteristics of the aircraft.\n跑道开槽的目的是排出雨水，减少飞机在大雨后滑水的风险，增加跑道与飞机轮胎之间的摩擦力，从而提高飞机的刹车性能和地面操控特性。"
+      "audioText": "What is the main purpose of grooving a runway?",
+      "audioTextZh": "跑道刻槽的主要目的是什么？",
+      "referenceText": "The main purpose of runway grooving is to provide channels through which water can escape from beneath the tires. This helps preserve tire-to-pavement contact and friction on a wet runway. Grooves therefore reduce, but do not eliminate, the risk of hydroplaning and poor braking.",
+      "referenceTextZh": "跑道刻槽的主要目的是提供通道，使水能够从轮胎下方排出。这有助于在湿跑道上保持轮胎与道面的接触和摩擦力。因此，刻槽能够降低但不能消除滑水和制动不良的风险。"
     },
     {
       "id": "opi-core-689",
       "taskTitle": "运行-开槽跑道与湿滑道面-4",
-      "audioText": "Is a grooved runway effectively dry?",
-      "audioTextZh": "开槽跑道能视为有效干燥吗？",
-      "referenceText": "No. However, the landing distance on a wet, grooved runway is remarkably reduced, almost to the point of being dry until the water depth exceeds 0.1 inch or if there is any slush.\n不能。然而，潮湿的开槽跑道上的着陆距离会显著缩短，几乎达到干燥跑道的水平，除非水深超过 0.1 英寸或存在任何雪泥。"
+      "audioText": "Can a grooved wet runway be treated as equivalent to a dry runway?",
+      "audioTextZh": "刻槽湿跑道能否视为等同于干跑道？",
+      "referenceText": "No. Grooving can improve drainage and friction, but water or other contamination may still reduce tire contact and braking. Pilots must use the runway condition actually reported and the approved wet- or contaminated-runway performance data. They should not substitute dry-runway figures simply because grooves are present.",
+      "referenceTextZh": "不能。刻槽可以改善排水和摩擦力，但水或其他污染物仍可能减少轮胎接触和制动能力。飞行员必须采用实际报告的跑道状况，以及批准的湿跑道或污染跑道性能数据。不能仅因跑道具有刻槽就改用干跑道数据。"
     },
     {
       "id": "opi-core-690",
       "taskTitle": "运行-开槽跑道与湿滑道面-5",
-      "audioText": "How does grooving the runway improve aircraft braking performance?",
-      "audioTextZh": "跑道开槽如何改善飞机刹车性能？",
-      "referenceText": "Grooving the runway can quickly drain the surface water, keep the contact surface between the tire and the runway dry, increase the friction coefficient, so that the brake can play a better role, and reduce the landing roll distance.\n跑道开槽可以快速排走表面积水，保持轮胎与跑道的接触面干燥，增大摩擦系数，使刹车能更好地发挥作用，缩短着陆滑跑距离。"
-    },
-    {
-      "id": "opi-core-691",
-      "taskTitle": "运行-开槽跑道与湿滑道面-6",
-      "audioText": "What are the advantages of grooved runways?",
-      "audioTextZh": "带槽跑道的优势是什么?",
-      "referenceText": "Grooved runways drain water quickly to reduce hydroplaning risk, maintain friction between tires and runway surface (even in wet conditions), improve braking efficiency, and enhance landing/takeoff safety by preventing aircraft skidding or veering off.\n带槽跑道的优势包括：快速排水，减少水滑风险；即使在潮湿条件下也能保持轮胎与跑道表面的摩擦力；提升刹车效率；防止飞机滑行或偏出跑道，增强起降安全性。"
+      "audioText": "How do runway grooves reduce hydroplaning risk and improve braking on a wet surface?",
+      "audioTextZh": "跑道刻槽如何降低滑水风险并改善湿跑道表面的刹车效应？",
+      "referenceText": "Transverse grooves give water a short path away from the tire contact area and provide edges that help the tire maintain contact with the surface. This reduces the water pressure that can lift the tire and helps preserve friction for braking and steering. The benefit becomes smaller if grooves are worn, clogged or overwhelmed by deep water.",
+      "referenceTextZh": "横向刻槽为水离开轮胎接触区域提供较短通道，槽边还有助于轮胎保持与道面接触。这可以降低将轮胎托起的水压，并帮助保留制动和转向操纵所需的摩擦力。如果沟槽磨损、堵塞或被深水淹没，其作用就会减小。"
     },
     {
       "id": "opi-core-692",
-      "taskTitle": "运行-开槽跑道与湿滑道面-7",
-      "audioText": "Will grooving the runway affect the runway friction in winter?",
-      "audioTextZh": "跑道开槽会影响冬季跑道摩擦力吗？",
-      "referenceText": "Generally, it will not have a negative impact. According to the actual measurement results, the grooved runway has a beneficial effect on the aircraft braking performance without negatively affecting the runway friction in winter.\n一般不会产生负面影响。根据实际测量结果，开槽跑道对飞机刹车性能有有益作用，且不会对冬季跑道摩擦力产生负面影响。"
-    },
-    {
-      "id": "opi-core-693",
-      "taskTitle": "运行-开槽跑道与湿滑道面-8",
-      "audioText": "Does a grooved runway have the same hydroplaning resistance as a dry runway?",
-      "audioTextZh": "开槽跑道的防滑水性能与干燥跑道相同吗？",
-      "referenceText": "No. Although the grooved runway can significantly reduce the risk of hydroplaning, it is still affected by water depth. When the water depth exceeds a certain value (such as 0.1 inch), the anti - hydroplaning performance will decline, while the dry runway has no such problem.\n不同。尽管开槽跑道能显著降低滑水风险，但仍受水深影响，当水深超过一定值（如 0.1 英寸）时，防滑水性能会下降，而干燥跑道不存在此问题。"
+      "taskTitle": "运行-开槽跑道与湿滑道面-6",
+      "audioText": "How effective are runway grooves when the surface is covered with snow or ice?",
+      "audioTextZh": "跑道表面被冰雪覆盖时，刻槽的效果如何？",
+      "referenceText": "Grooves may help drain meltwater, but they cannot make compacted snow or ice behave like a normal wet surface. Winter contamination can cover or fill the grooves and greatly reduce their benefit. Pilots must therefore use the reported contaminant, runway condition code and approved contaminated-runway performance rather than assuming the grooves remain effective.",
+      "referenceTextZh": "刻槽可能有助于排走融水，但不能使压实雪或冰表现得像普通湿道面。冬季污染物可能覆盖或填满沟槽，大幅降低其作用。因此，飞行员必须使用报告的污染物、跑道状况代码和批准的污染跑道性能，不能假定刻槽仍然有效。"
     },
     {
       "id": "opi-core-694",
-      "taskTitle": "运行-开槽跑道与湿滑道面-9",
-      "audioText": "Can grooved runways be used for all types of aircraft?",
-      "audioTextZh": "开槽跑道适用于所有类型的飞机吗？",
-      "referenceText": "Yes, grooved runways are suitable for all types of aircraft, from small general - aviation aircraft to large commercial airliners, because it can improve the safety of aircraft landing and take - off under wet conditions, which is of universal significance.\n是的，开槽跑道适用于所有类型的飞机，从小型通用航空飞机到大型商业客机，因为它能提高飞机在潮湿条件下起降的安全性，具有普遍意义。"
-    },
-    {
-      "id": "opi-core-695",
-      "taskTitle": "运行-开槽跑道与湿滑道面-10",
-      "audioText": "What is the principle of runway grooving to reduce hydroplaning?",
-      "audioTextZh": "跑道开槽减少滑水的原理是什么？",
-      "referenceText": "The principle is to quickly drain the water on the runway surface through the grooves, so that the water cannot form a continuous water film between the tire and the runway, reducing the buoyancy of the water film to the tire, and ensuring that the tire can maintain good contact with the runway, thereby reducing the risk of hydroplaning.（原理是通过槽将跑道表面的水快速排出，使水无法在轮胎与跑道之间形成连续水膜，减小水膜对轮胎的浮力，保证轮胎能与跑道保持良好接触，从而降低滑水风险。"
+      "taskTitle": "运行-开槽跑道与湿滑道面-7",
+      "audioText": "Are grooved runways suitable for all types of aircraft?",
+      "audioTextZh": "刻槽跑道是否适用于所有类型的航空器？",
+      "referenceText": "Grooved runways are used by a wide range of aircraft, but suitability is not determined by grooves alone. Operators must consider the pavement strength and condition, runway dimensions, aircraft performance and any manufacturer limitations. Very small, special-purpose or unusually configured aircraft may have additional considerations, so approved operating information remains controlling.",
+      "referenceTextZh": "多种飞机都使用刻槽跑道，但是否适用不能只由刻槽决定。运营人必须考虑道面强度与状况、跑道尺寸、飞机性能和任何制造商限制。很小型、特殊用途或构型异常的飞机可能还有其他注意事项，因此经批准的运行资料始终具有决定作用。"
     },
     {
       "id": "opi-core-696",
-      "taskTitle": "运行-开槽跑道与湿滑道面-11",
-      "audioText": "Are there any special maintenance requirements for grooved runways?",
-      "audioTextZh": "开槽跑道有特殊的维护要求吗？",
-      "referenceText": "Grooved runways need to regularly check the wear and blockage of the grooves to ensure that the grooves can play a normal drainage role. At the same time, pay attention to whether there are cracks or damages at the groove edges, and repair them in time to avoid further expansion of damages.\n开槽跑道需要定期检查槽的磨损情况和堵塞情况，确保槽能正常发挥排水作用。同时，注意槽边缘是否有裂缝或损坏，及时进行修补，避免损坏进一步扩大。"
+      "taskTitle": "运行-开槽跑道与湿滑道面-8",
+      "audioText": "What inspection and maintenance are needed to keep runway grooves effective?",
+      "audioTextZh": "需要进行哪些检查和维护才能保持跑道刻槽的有效性？",
+      "referenceText": "Airport personnel need to inspect groove depth, width, spacing, alignment and general pavement condition. Rubber deposits, debris and sealants must be removed when they block the channels, and worn, damaged or incorrectly formed grooves need repair. Friction assessment and drainage inspections help determine whether the surface continues to provide the intended benefit.",
+      "referenceTextZh": "机场人员需要检查沟槽的深度、宽度、间距、方向和整体道面状况。当橡胶沉积物、碎屑或密封材料堵塞通道时，必须予以清除；磨损、损坏或施工不正确的沟槽则需要修复。摩擦力评估和排水检查有助于判断道面是否继续提供预期作用。"
     },
     {
       "id": "opi-core-697",
-      "taskTitle": "运行-开槽跑道与湿滑道面-12",
-      "audioText": "Will the grooved runway have an impact on the tire wear of the aircraft?",
-      "audioTextZh": "开槽跑道会对飞机轮胎磨损产生影响吗？",
-      "referenceText": "Grooved runways may cause more obvious wear on aircraft tires than non - grooved runways, because the tires are in contact with the grooved surface, and the friction force is more concentrated in some areas, but this wear is within the acceptable range, and the improvement of safety is more important.\n开槽跑道可能会比非开槽跑道对飞机轮胎造成更明显的磨损，因为轮胎与开槽表面接触，摩擦力在某些区域更为集中，但这种磨损在可接受范围内，且安全性的提升更为重要。"
-    },
-    {
-      "id": "opi-core-698",
-      "taskTitle": "运行-开槽跑道与湿滑道面-13",
-      "audioText": "Can the grooved runway be used normally when there is snow or ice?",
-      "audioTextZh": "开槽跑道在有积雪或结冰时能否正常使用？",
-      "referenceText": "The grooved runway can be used normally when there is snow or ice, but the airport needs to carry out normal de - icing and snow - removal operations. The grooves can help to a certain extent to prevent the accumulation of snow and ice, but they cannot completely replace the de - icing and snow - removal work.开槽跑道在有积雪或结冰时可以正常使用，但机场需要进行正常的除冰和除雪作业。槽能在一定程度上帮助阻止冰雪堆积，但不能完全取代除冰除雪工作。"
+      "taskTitle": "运行-开槽跑道与湿滑道面-9",
+      "audioText": "Can runway grooving increase aircraft tire wear?",
+      "audioTextZh": "跑道刻槽是否会加剧航空器轮胎磨损？",
+      "referenceText": "A properly constructed and maintained grooved surface is designed to improve wet friction without causing unacceptable tire damage. Some additional tread wear or rubber deposition may occur depending on pavement texture, braking, speed and tire condition. Any unusual tire damage should be investigated rather than assumed to be a normal result of grooving.",
+      "referenceTextZh": "正确施工并妥善维护的刻槽道面旨在改善湿道面摩擦力，同时避免造成不可接受的轮胎损坏。根据道面纹理、制动、速度和轮胎状态，可能出现一些额外的胎面磨损或橡胶沉积。任何异常轮胎损坏都应接受调查，不能假定它只是刻槽的正常结果。"
     },
     {
       "id": "opi-core-699",
-      "taskTitle": "运行-开槽跑道与湿滑道面-14",
-      "audioText": "How does the grooved runway affect the aircraft's ground effect?",
-      "audioTextZh": "开槽跑道对飞机的地面效应有影响吗？",
-      "referenceText": "The grooved runway has little direct impact on the aircraft's ground effect. The ground effect is mainly related to the height of the aircraft from the ground, the speed, and the aircraft's aerodynamic shape, etc. The groove of the runway mainly affects the friction and drainage between the tire and the runway, and has little influence on the aerodynamic characteristics of the aircraft in the ground effect.\n开槽跑道对飞机的地面效应影响较小。地面效应主要与飞机离地面的高度、速度以及飞机的气动外形等有关，跑道的槽主要影响轮胎与跑道之间的摩擦和排水，对处于地面效应中的飞机气动特性影响不大。"
+      "taskTitle": "运行-开槽跑道与湿滑道面-10",
+      "audioText": "Does runway grooving affect an aircraft's aerodynamic ground effect?",
+      "audioTextZh": "跑道刻槽是否会影响航空器的气动地面效应？",
+      "referenceText": "Runway grooves do not significantly change aerodynamic ground effect because they are very small compared with the aircraft and its height above the surface. Their purpose is to manage water and tire-pavement friction, not airflow around the wing. Any handling change a pilot notices on the ground is more likely related to surface friction or contamination than to ground effect.",
+      "referenceTextZh": "跑道沟槽相对于飞机尺寸及其离地高度非常小，因此不会显著改变空气动力地面效应。沟槽的用途是管理水和轮胎与道面的摩擦力，而不是改变机翼周围的气流。飞行员在地面感受到的任何操纵变化，更可能与道面摩擦力或污染物有关，而不是地面效应。"
     },
     {
       "id": "opi-core-700",
-      "taskTitle": "运行-开槽跑道与湿滑道面-15",
-      "audioText": "Can the grooved runway reduce the aircraft's take - off and landing noise?",
-      "audioTextZh": "开槽跑道能降低飞机起降噪音吗？",
-      "referenceText": "The grooved runway has little effect on reducing aircraft take - off and landing noise. Its main function is to improve the friction coefficient and drainage performance, and has little to do with noise reduction.\n开槽跑道对降低飞机起降噪音作用不大。其主要功能是提高摩擦系数和排水性能，与降噪关系不大。"
+      "taskTitle": "运行-开槽跑道与湿滑道面-11",
+      "audioText": "Does runway grooving significantly affect aircraft noise during takeoff or landing?",
+      "audioTextZh": "跑道刻槽是否会显著影响航空器起飞或着陆时的噪声？",
+      "referenceText": "Grooving may change tire-pavement sound, but grooving alone does not show whether the overall change will be significant. The result depends on groove design, pavement, tire, speed and the other noise sources present during the operation. A local measurement or approved airport study would be needed for a precise comparison.",
+      "referenceTextZh": "刻槽可能改变轮胎与道面之间的声音，但仅凭刻槽本身无法判断总体变化是否明显。结果取决于沟槽设计、道面、轮胎、速度以及运行中存在的其他噪声源。要进行精确比较，需要采用当地测量结果或经批准的机场研究。"
     },
     {
       "id": "opi-core-701",
-      "taskTitle": "运行-开槽跑道与湿滑道面-16",
-      "audioText": "If the braking effect on the grooved runway is poor, what should the pilot do?",
-      "audioTextZh": "如果在开槽跑道上刹车效果不佳，飞行员应怎么做？",
-      "referenceText": "The pilot should provide a PIREP when the braking action advisories are in effect or anytime the actual braking action is less than good, and at the same time, consider taking measures such as going - around, holding or diverting according to the specific situation to ensure flight safety.\n当刹车效果 advisory（提示）生效或实际刹车效果不佳时，飞行员应提供飞行员报告，同时根据具体情况考虑采取复飞、等待或改航等措施，以确保飞行安全。"
+      "taskTitle": "运行-开槽跑道与湿滑道面-12",
+      "audioText": "What should a pilot do if braking action on a grooved runway is poorer than expected?",
+      "audioTextZh": "刻槽跑道上的刹车效应低于预期时，飞行员应怎么做？",
+      "referenceText": "The pilot should maintain directional control, use the aircraft's approved braking technique and avoid assuming that the grooves will restore the expected friction. The crew should consider a go-around if still airborne, or use all appropriate stopping resources if committed to landing. They should report the poorer braking action promptly so ATC and the airport can warn other crews and reassess the runway.",
+      "referenceTextZh": "飞行员应保持方向控制，采用飞机批准的制动技术，不能假定沟槽一定会恢复预期摩擦力。如果飞机仍能安全复飞，机组应考虑复飞；如果已经越过能够安全复飞的阶段而必须完成着陆，则应使用所有适当的停止手段。他们应及时报告较差的制动状况，使 ATC 和机场能够警告其他机组并重新评估跑道。"
     },
     {
       "id": "opi-core-702",
-      "taskTitle": "运行-开槽跑道与湿滑道面-17",
-      "audioText": "In what direction should the runway grooves be arranged?",
-      "audioTextZh": "跑道槽应按什么方向布置？",
-      "referenceText": "The grooves on the runway should be perpendicular to the runway centerline, which is conducive to quickly draining the water on the runway surface to both sides. At the high - speed exit taxiways, the direction of the grooves should be beneficial to pavement drainage.\n跑道槽应垂直于跑道中心线布置，这样有利于将跑道表面的水快速排向两侧。在快速出口滑行道处，槽的方向应利于道面排水。"
-    },
-    {
-      "id": "opi-core-703",
-      "taskTitle": "运行-开槽跑道与湿滑道面-18",
-      "audioText": "Are there any special inspection requirements for grooved runways?",
-      "audioTextZh": "开槽跑道有特殊的检查要求吗？",
-      "referenceText": "Yes, in addition to the normal runway inspection items, grooved runways also need to check the integrity of the grooves, whether there is blockage, and whether the depth and width of the grooves meet the requirements. Any damage or blockage of the grooves may affect the performance of the runway, and timely maintenance and repair are required.有，开槽跑道除了常规的跑道检查项目外，还需检查槽的完整性，是否有堵塞情况，以及槽的深度和宽度是否符合要求等。槽的任何损坏或堵塞都可能影响跑道性能，需要及时进行维护和修复。"
-    },
-    {
-      "id": "opi-core-704",
-      "taskTitle": "运行-开槽跑道与湿滑道面-19",
-      "audioText": "Do you often check to see if a runway is\ngrooved during your preflight planning?",
-      "audioTextZh": "飞行前准备阶段，是否经常检查跑道是否为刻槽跑道？",
-      "referenceText": "Yes, each preflight preparation we will check if the runway is grooved. It is very important, because the brake action of the grooved runway is better. It also helps to drain off the water.\n是的，每次飞行前都会检查。这很重要，因为刻槽跑道的刹车效果更好，且有助于排水。"
+      "taskTitle": "运行-开槽跑道与湿滑道面-13",
+      "audioText": "How are grooves normally oriented on a runway?",
+      "audioTextZh": "跑道刻槽通常按什么方向排列？",
+      "referenceText": "Runway grooves are normally cut across the runway, approximately perpendicular to its centreline. This transverse orientation allows water to move sideways out of the tire path and provides repeated drainage channels along the landing roll. Local construction details follow the airport authority's standard.",
+      "referenceTextZh": "跑道沟槽通常横向切割，方向大致垂直于跑道中线。这种横向布局使水可以从轮胎路径向两侧排出，并在着陆滑跑全程提供连续的排水通道。具体施工细节遵循机场管理机构的标准。"
     },
     {
       "id": "opi-core-705",
-      "taskTitle": "运行-开槽跑道与湿滑道面-20",
-      "audioText": "Do you check whether the runway is good in your daily flight?",
-      "audioTextZh": "在日常飞行中,你会检查跑道是否良好吗?",
-      "referenceText": "Yes, I do. Checking runway conditions is a crucial part of preflight preparation and inflight monitoring to ensure safe takeoff and landing, which is required by SOP (Standard Operating Procedures).\n会的。检查跑道状况是飞行前准备和飞行中监控的关键环节，以确保起飞和着陆安全，这是标准操作程序SOP的要求。"
-    },
-    {
-      "id": "opi-core-706",
-      "taskTitle": "运行-开槽跑道与湿滑道面-21",
-      "audioText": "As a part of your pre-flight planning, how do you determine whether the runway is good?",
-      "audioTextZh": "做为飞行计划的一部分,你如何确定跑道状况是否良好?",
-      "referenceText": "I obtain runway information from ATIS, NOTAM, ATC, and pilot reports. I check details like runway surface condition (e.g., wet, icy, grooved), braking action, length, width, and any obstacles to confirm it meets the aircraft's operational requirements.\n我通过自动终端情报服务ATIS、航行通告NOTAM、空管和其他飞行员报告获取跑道信息，检查跑道表面状况如潮湿、结冰、槽纹、刹车效应、长度、宽度及是否有障碍物，确认其符合飞机运行要求。"
+      "taskTitle": "运行-开槽跑道与湿滑道面-14",
+      "audioText": "How do you assess whether a runway is suitable during preflight planning?",
+      "audioTextZh": "飞行前计划期间，你如何评估跑道是否适合运行？",
+      "referenceText": "I would check runway length, width, slope, elevation, pavement strength, obstacles and available approach or departure procedures. I would then assess wind, weather, runway condition, braking reports, NOTAMs, lighting, rescue capability and any aircraft or operator limits. The final performance calculation must use the expected mass, configuration and current conditions with the required safety margin.",
+      "referenceTextZh": "我会检查跑道长度、宽度、坡度、标高、道面强度、障碍物以及可用的进近或离场程序。随后，我会评估风、天气、跑道状况、制动报告、NOTAM、灯光、救援能力以及任何飞机或运营人限制。最终性能计算必须采用预计重量、构型和当前条件，并计入规定的安全裕度。"
     }
   ]
 }

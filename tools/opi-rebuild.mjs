@@ -60,6 +60,9 @@ const STAGE_FIELDS = {
   'answer-en': 'answerEn',
   'answer-zh': 'answerZh',
 };
+const FULL_INDEPENDENT_REVIEW = 'full-independent';
+const RISK_STRATIFIED_SAMPLE_REVIEW = 'risk-stratified-sample';
+const TRANSLATION_STAGES = new Set(['question-zh', 'answer-zh']);
 
 function fail(message) {
   throw new Error(message);
@@ -89,6 +92,17 @@ function normalize(value) {
 
 function isValidBatchId(value) {
   return value !== 'all' && BATCH_ID.test(value ?? '');
+}
+
+function isNonEmptyUniqueStringArray(value) {
+  return (
+    Array.isArray(value) &&
+    value.length > 0 &&
+    value.every(
+      (entry) => typeof entry === 'string' && normalize(entry) && entry === normalize(entry),
+    ) &&
+    new Set(value).size === value.length
+  );
 }
 
 function hashBuffer(value) {
@@ -458,6 +472,123 @@ function loadWork() {
   return work;
 }
 
+function contentStageLifecycle(work) {
+  if (work.stageState?.baseline !== 'locked') fail('stage_state_baseline_not_locked');
+  let lockedCount = 0;
+  while (
+    lockedCount < CONTENT_STAGES.length &&
+    work.stageState?.[STAGE_FIELDS[CONTENT_STAGES[lockedCount]]] === 'locked'
+  )
+    lockedCount += 1;
+  const currentStage = CONTENT_STAGES[lockedCount] ?? null;
+  if (currentStage && work.stageState?.[STAGE_FIELDS[currentStage]] !== 'pending')
+    fail(
+      'stage_state_current_not_pending:' +
+        currentStage +
+        ':' +
+        work.stageState?.[STAGE_FIELDS[currentStage]],
+    );
+  for (const laterStage of CONTENT_STAGES.slice(lockedCount + (currentStage ? 1 : 0))) {
+    if (work.stageState?.[STAGE_FIELDS[laterStage]] !== 'blocked')
+      fail(
+        'stage_state_future_not_blocked:' +
+          laterStage +
+          ':' +
+          work.stageState?.[STAGE_FIELDS[laterStage]],
+      );
+  }
+  const completedStages = CONTENT_STAGES.slice(0, lockedCount);
+  const closureStages = Object.keys(work.stageClosures ?? {}).filter((stage) =>
+    CONTENT_STAGES.includes(stage),
+  );
+  if (valueHash(closureStages.sort()) !== valueHash([...completedStages].sort()))
+    fail(
+      'stage_closure_sequence:' +
+        closureStages.sort().join(',') +
+        '/' +
+        completedStages.join(','),
+    );
+  const expectedFinalReviewState = currentStage ? 'blocked' : null;
+  if (
+    expectedFinalReviewState &&
+    work.stageState?.finalReview !== expectedFinalReviewState
+  )
+    fail('stage_state_final_review:' + work.stageState?.finalReview + '/' + expectedFinalReviewState);
+  if (
+    !currentStage &&
+    !['pending', 'locked'].includes(work.stageState?.finalReview)
+  )
+    fail('stage_state_final_review_after_content:' + work.stageState?.finalReview);
+  return { currentStage, completedStages };
+}
+
+function requireCurrentContentStage(work, stage, operation) {
+  if (!CONTENT_STAGES.includes(stage)) fail(operation + '_unknown_stage:' + stage);
+  const lifecycle = contentStageLifecycle(work);
+  if (lifecycle.currentStage !== stage)
+    fail(
+      operation +
+        '_stage_not_current:' +
+        stage +
+        ':current=' +
+        (lifecycle.currentStage ?? 'none'),
+    );
+  return lifecycle;
+}
+
+function stageStatusSnapshot(work) {
+  const lifecycle = contentStageLifecycle(work);
+  const currentField = lifecycle.currentStage ? STAGE_FIELDS[lifecycle.currentStage] : null;
+  const activeItems = work.items.filter(isActive);
+  const completedItems = currentField
+    ? activeItems.filter((item) => Boolean(item.locks?.[currentField])).length
+    : activeItems.length;
+  const batchIds = [...new Set(work.items.map((item) => item.provenance.batchId).filter(Boolean))].sort();
+  const sealedBatches = lifecycle.currentStage
+    ? batchIds.filter((batchId) =>
+        existsSync(join(batchManifestRoot, batchId + '.' + lifecycle.currentStage + '.json')),
+      ).length
+    : 0;
+  return {
+    baselineDigest: work.baselineDigest,
+    currentStage: lifecycle.currentStage,
+    completedStages: lifecycle.completedStages,
+    stageState: work.stageState,
+    counts: {
+      originalItems: work.items.filter((item) => !item.source.isDerived).length,
+      activeItems: activeItems.length,
+      currentStageCompletedItems: completedItems,
+      batches: batchIds.length,
+      currentStageSealedBatches: sealedBatches,
+    },
+  };
+}
+
+function commandStageStatus() {
+  verifySourceAgainstBaseline();
+  const work = loadWork();
+  verifyWorkOrigins(work);
+  console.log(JSON.stringify(stageStatusSnapshot(work), null, 2));
+}
+
+function commandPreflightStage(stage) {
+  verifySourceAgainstBaseline();
+  const work = loadWork();
+  verifyWorkOrigins(work);
+  requireCurrentContentStage(work, stage, 'preflight_stage');
+  console.log(
+    JSON.stringify(
+      {
+        ok: true,
+        requestedStage: stage,
+        ...stageStatusSnapshot(work),
+      },
+      null,
+      2,
+    ),
+  );
+}
+
 function originalRowsFromSnapshot() {
   return loadSource(snapshotSourceRoot).rows.filter(({ card }) => card.kind !== 'image');
 }
@@ -604,13 +735,41 @@ function verifyReviewRecord(item, field, errors) {
     errors.push(item.itemId + ':' + field + ':review_record');
     return;
   }
+  const reviewMode =
+    record.reviewMode === undefined ? FULL_INDEPENDENT_REVIEW : record.reviewMode;
+  const independentlyReviewed =
+    record.independentlyReviewed === undefined
+      ? reviewMode === FULL_INDEPENDENT_REVIEW
+      : record.independentlyReviewed;
+  if (![FULL_INDEPENDENT_REVIEW, RISK_STRATIFIED_SAMPLE_REVIEW].includes(reviewMode))
+    errors.push(item.itemId + ':' + field + ':review_mode');
+  if (reviewMode === RISK_STRATIFIED_SAMPLE_REVIEW && !['questionZh', 'answerZh'].includes(field))
+    errors.push(item.itemId + ':' + field + ':sample_review_not_allowed');
+  if (reviewMode === RISK_STRATIFIED_SAMPLE_REVIEW && typeof record.independentlyReviewed !== 'boolean')
+    errors.push(item.itemId + ':' + field + ':independent_review_flag');
+  if (record.independentlyReviewed !== undefined && typeof record.independentlyReviewed !== 'boolean')
+    errors.push(item.itemId + ':' + field + ':independent_review_flag_type');
+  if (reviewMode === FULL_INDEPENDENT_REVIEW && independentlyReviewed !== true)
+    errors.push(item.itemId + ':' + field + ':full_review_not_independent');
   if (!['codex-main', 'codex-subagent'].includes(record.lockedBy))
     errors.push(item.itemId + ':' + field + ':locked_by');
-  if (!['codex-main', 'codex-subagent'].includes(record.reviewer))
-    errors.push(item.itemId + ':' + field + ':reviewer');
-  if (!normalize(record.reviewerContextId)) errors.push(item.itemId + ':' + field + ':reviewer_context');
-  if (record.reviewerContextId === stageProducer(item, field).producerContextId)
-    errors.push(item.itemId + ':' + field + ':reviewer_not_independent');
+  if (independentlyReviewed) {
+    if (!['codex-main', 'codex-subagent'].includes(record.reviewer))
+      errors.push(item.itemId + ':' + field + ':reviewer');
+    if (!normalize(record.reviewerContextId))
+      errors.push(item.itemId + ':' + field + ':reviewer_context');
+    if (record.reviewerContextId === stageProducer(item, field).producerContextId)
+      errors.push(item.itemId + ':' + field + ':reviewer_not_independent');
+  } else {
+    if (record.lockedBy !== 'codex-main')
+      errors.push(item.itemId + ':' + field + ':sample_unreviewed_locked_by');
+    if (record.reviewer !== null || record.reviewerContextId !== null)
+      errors.push(item.itemId + ':' + field + ':sample_unreviewed_fake_reviewer');
+    if ((record.additionalReviewers ?? []).length)
+      errors.push(item.itemId + ':' + field + ':sample_unreviewed_additional_reviewer');
+    if (!record.checks?.includes('producer-inline-check'))
+      errors.push(item.itemId + ':' + field + ':producer_inline_check');
+  }
   if (!normalize(record.reason)) errors.push(item.itemId + ':' + field + ':review_reason');
   if (!Array.isArray(record.checks) || record.checks.length === 0)
     errors.push(item.itemId + ':' + field + ':review_checks');
@@ -1164,6 +1323,7 @@ function commandSealBatch(batchId, stage) {
   const work = loadWork();
   verifySourceAgainstBaseline();
   verifyWorkOrigins(work);
+  requireCurrentContentStage(work, stage, 'seal_batch');
   const items = work.items.filter((item) => item.provenance.batchId === batchId);
   if (!items.length) fail('seal_batch_empty:' + batchId);
   verifyBatchSubset(work, batchId, stage);
@@ -1522,6 +1682,7 @@ function commandCreateBatch(batchId, stage, topicIds) {
   verifyWorkOrigins(work);
   if (!isValidBatchId(batchId)) fail('create_batch_invalid_batch_id');
   if (!CONTENT_STAGES.includes(stage)) fail('create_batch_unknown_stage:' + stage);
+  requireCurrentContentStage(work, stage, 'create_batch');
   const path = batchPath(batchId, stage);
   if (existsSync(path)) fail('batch_file_exists:' + relative(projectRoot, path));
   if (existsSync(join(batchInputManifestRoot, batchId + '.' + stage + '.json')))
@@ -1642,6 +1803,8 @@ function commandCreateBatch(batchId, stage, topicIds) {
       producedAt: null,
     },
     authorization: {
+      reviewMode: FULL_INDEPENDENT_REVIEW,
+      reviewedItemIds: [],
       reviewer: null,
       reviewerContextId: null,
       reviewedAt: null,
@@ -1678,10 +1841,36 @@ function commandCreateBatch(batchId, stage, topicIds) {
 function validateBatchAuthorization(payload) {
   const producer = payload.producer ?? {};
   const authorization = payload.authorization ?? {};
+  const reviewMode =
+    authorization.reviewMode === undefined
+      ? FULL_INDEPENDENT_REVIEW
+      : authorization.reviewMode;
   if (!['codex-main', 'codex-subagent', 'codex-script'].includes(producer.producer))
     fail('batch_producer');
   if (!normalize(producer.producerContextId) || !normalize(producer.producedAt))
     fail('batch_producer_record');
+  if (![FULL_INDEPENDENT_REVIEW, RISK_STRATIFIED_SAMPLE_REVIEW].includes(reviewMode))
+    fail('batch_review_mode');
+  if (!TRANSLATION_STAGES.has(payload.stage) && reviewMode !== FULL_INDEPENDENT_REVIEW)
+    fail('batch_stage_requires_full_independent_review:' + payload.stage);
+  if (
+    reviewMode === FULL_INDEPENDENT_REVIEW &&
+    authorization.reviewedItemIds !== undefined &&
+    (!Array.isArray(authorization.reviewedItemIds) || authorization.reviewedItemIds.length !== 0)
+  )
+    fail('batch_full_review_reviewed_item_ids');
+  if (reviewMode === RISK_STRATIFIED_SAMPLE_REVIEW) {
+    if (!isNonEmptyUniqueStringArray(authorization.reviewedItemIds))
+      fail('batch_sample_reviewed_item_ids');
+    const itemIds = new Set(payload.items.map((item) => item.itemId));
+    if (authorization.reviewedItemIds.some((itemId) => !itemIds.has(itemId)))
+      fail('batch_sample_unknown_reviewed_item');
+    if (
+      authorization.reviewedItemIds.length < payload.items.length &&
+      authorization.lockedBy !== 'codex-main'
+    )
+      fail('batch_sample_unreviewed_requires_main_lock');
+  }
   if (!['codex-main', 'codex-subagent'].includes(authorization.reviewer))
     fail('batch_reviewer');
   if (!normalize(authorization.reviewerContextId) || !normalize(authorization.reviewedAt))
@@ -1709,23 +1898,38 @@ function validateBatchAuthorization(payload) {
   if (!authorization.lockChecks?.length) fail('batch_lock_checks');
 }
 
-function batchReviewRecord(payload, output, field) {
+function batchReviewRecord(payload, output, field, itemId) {
+  const reviewMode =
+    payload.authorization.reviewMode === undefined
+      ? FULL_INDEPENDENT_REVIEW
+      : payload.authorization.reviewMode;
+  const independentlyReviewed =
+    reviewMode === FULL_INDEPENDENT_REVIEW ||
+    payload.authorization.reviewedItemIds.includes(itemId);
   return {
+    reviewMode,
+    independentlyReviewed,
     lockedBy: payload.authorization.lockedBy,
     lockedAt: payload.authorization.lockedAt,
-    reviewer: payload.authorization.reviewer,
-    reviewerContextId: payload.authorization.reviewerContextId,
-    additionalReviewers: payload.authorization.additionalReviewers ?? [],
+    reviewer: independentlyReviewed ? payload.authorization.reviewer : null,
+    reviewerContextId: independentlyReviewed ? payload.authorization.reviewerContextId : null,
+    additionalReviewers: independentlyReviewed
+      ? payload.authorization.additionalReviewers ?? []
+      : [],
     reason:
-      normalize(payload.authorization.reviewReason) +
+      (independentlyReviewed
+        ? normalize(payload.authorization.reviewReason)
+        : 'Producer inline check; not independently sampled.') +
       ' ' +
       normalize(payload.authorization.lockReason) +
       ' ' +
       normalize(output.reviewBasis),
     checks: [
-      ...payload.authorization.reviewChecks,
+      ...(independentlyReviewed
+        ? payload.authorization.reviewChecks
+        : ['producer-inline-check']),
       ...payload.authorization.lockChecks,
-      field + ':item-review-complete',
+      field + (independentlyReviewed ? ':item-review-complete' : ':item-lock-complete'),
     ],
   };
 }
@@ -1863,12 +2067,17 @@ function ingestQuestionEnBatch(work, payload) {
         factUncertainty: '',
       };
       item.reviewRecords = {
-        decision: batchReviewRecord(payload, output, 'decision'),
+        decision: batchReviewRecord(payload, output, 'decision', item.itemId),
       };
       item.locks = {};
       item.locks.decision = expectedDecisionLock(item);
       if (isActive(item)) {
-        item.reviewRecords.questionEn = batchReviewRecord(payload, output, 'questionEn');
+        item.reviewRecords.questionEn = batchReviewRecord(
+          payload,
+          output,
+          'questionEn',
+          item.itemId,
+        );
         item.locks.questionEn = expectedContentLock(item, 'question-en');
       }
       return item;
@@ -1938,7 +2147,7 @@ function ingestLaterStageBatch(work, payload) {
     )
       fail('batch_input_mismatch:' + item.itemId);
     setStageProducer(item, field, payload);
-    item.reviewRecords[field] = batchReviewRecord(payload, output, field);
+    item.reviewRecords[field] = batchReviewRecord(payload, output, field, item.itemId);
     if (stage === 'question-zh') {
       item.content.questionZh = normalize(output.questionZh);
       item.review.questionZh = 'locked';
@@ -1975,6 +2184,8 @@ function commandIngestReviewedBatch(pathArg) {
   const payload = readJson(path);
   const work = loadWork();
   verifyWorkOrigins(work);
+  if (!CONTENT_STAGES.includes(payload.stage)) fail('batch_stage');
+  requireCurrentContentStage(work, payload.stage, 'ingest_reviewed_batch');
   if (
     payload.schemaVersion !== 1 ||
     payload.ruleVersion !== work.ruleVersion ||
@@ -2001,7 +2212,6 @@ function commandIngestReviewedBatch(pathArg) {
     inputManifest.inputHash !== payload.inputHash
   )
     fail('batch_input_manifest_mismatch');
-  if (!CONTENT_STAGES.includes(payload.stage)) fail('batch_stage');
   if (path !== batchPath(payload.batchId, payload.stage))
     fail('batch_path_contract:' + relative(projectRoot, batchPath(payload.batchId, payload.stage)));
   if (existsSync(join(batchManifestRoot, payload.batchId + '.' + payload.stage + '.json')))
@@ -2024,6 +2234,10 @@ function commandIngestReviewedBatch(pathArg) {
 
 function commandCloseStage(stage, authorizationPathArg) {
   if (!CONTENT_STAGES.includes(stage)) fail('close_stage_unknown_stage:' + stage);
+  verifySourceAgainstBaseline();
+  const work = loadWork();
+  verifyWorkOrigins(work);
+  requireCurrentContentStage(work, stage, 'close_stage');
   const authorizationPath = resolve(projectRoot, authorizationPathArg ?? '');
   if (!authorizationPathArg || !existsSync(authorizationPath))
     fail('close_stage_authorization_missing');
@@ -2037,9 +2251,6 @@ function commandCloseStage(stage, authorizationPathArg) {
     !authorization.checks.length
   )
     fail('close_stage_authorization_record');
-  verifySourceAgainstBaseline();
-  const work = loadWork();
-  verifyWorkOrigins(work);
   verifyDecisionAndQuestionEn(work);
   if (stage !== 'question-en') verifyQuestionZh(work);
   if (['answer-en', 'answer-zh'].includes(stage)) verifyAnswerEn(work);
@@ -2090,6 +2301,66 @@ function commandCloseStage(stage, authorizationPathArg) {
   writeJson(workItemsPath, work);
   commandVerifyStage(stage, true);
   console.log('opi_rebuild_close_stage_ok stage=' + stage + ' batches=' + new Set(work.items.map((item) => item.provenance.batchId)).size);
+}
+
+function commandLockFinalReview(authorizationPathArg) {
+  verifySourceAgainstBaseline();
+  const work = loadWork();
+  verifyWorkOrigins(work);
+  const lifecycle = contentStageLifecycle(work);
+  if (lifecycle.currentStage !== null || lifecycle.completedStages.length !== CONTENT_STAGES.length)
+    fail('final_review_content_stages_not_locked');
+  if (work.stageState?.finalReview !== 'pending')
+    fail('final_review_not_pending:' + work.stageState?.finalReview);
+  const authorizationPath = resolve(projectRoot, authorizationPathArg ?? '');
+  if (!authorizationPathArg || !existsSync(authorizationPath))
+    fail('final_review_authorization_missing');
+  const authorization = readJson(authorizationPath);
+  if (authorization.lockedBy !== 'codex-main') fail('final_review_locked_by');
+  if (
+    !normalize(authorization.lockedAt) ||
+    !normalize(authorization.reason) ||
+    !Array.isArray(authorization.checks) ||
+    !authorization.checks.length
+  )
+    fail('final_review_authorization_record');
+  verifyDecisionAndQuestionEn(work);
+  verifyQuestionZh(work);
+  verifyAnswerEn(work);
+  verifyAnswerZh(work);
+  const batchIds = [
+    ...new Set(work.items.map((item) => item.provenance.batchId).filter(Boolean)),
+  ].sort();
+  for (const stage of CONTENT_STAGES) {
+    const closure = work.stageClosures?.[stage];
+    if (!closure || closure.lock !== expectedStageClosureLock(work, stage, closure))
+      fail('stage_closure_invalid:' + stage);
+    for (const batchId of batchIds) {
+      const sealPath = join(batchManifestRoot, batchId + '.' + stage + '.json');
+      if (!existsSync(sealPath)) fail('batch_seal_missing:' + batchId + ':' + stage);
+      const seal = readJson(sealPath);
+      if (
+        seal.payload?.batchId !== batchId ||
+        seal.payload?.stage !== stage ||
+        seal.manifestHash !== valueHash(seal.payload)
+      )
+        fail('batch_seal_stored_payload_invalid:' + batchId + ':' + stage);
+    }
+  }
+  verifyRequiredSeals(work, 'answer-zh');
+  work.finalReview = {
+    status: 'locked',
+    lockedBy: authorization.lockedBy,
+    lockedAt: authorization.lockedAt,
+    reason: normalize(authorization.reason),
+    checks: authorization.checks,
+    lock: null,
+  };
+  work.finalReview.lock = expectedFinalReviewLock(work, work.finalReview);
+  work.stageState.finalReview = 'locked';
+  writeJson(workItemsPath, work);
+  requireFinalReview(work);
+  console.log('opi_rebuild_lock_final_review_ok items=' + work.items.length);
 }
 
 function commandFinalizeQuestionEnOrder(authorizationPathArg) {
@@ -2233,7 +2504,8 @@ function finalCardFromItem(item, topic, index) {
     card.referenceText = normalize(item.content.answerEn);
     card.referenceTextZh = normalize(item.content.answerZh);
   }
-  if (item.source.isDerived || item.decision.canonicalCardId !== item.source.cardId) delete card.audio;
+  delete card.audio;
+  delete card.audioDurationSeconds;
   return card;
 }
 
@@ -2614,19 +2886,8 @@ function verifyFinalSource(finalSource, work) {
   if (errors.length) fail('final_source_invalid\n' + errors.join('\n'));
 }
 
-function requireFinalReview(work) {
-  const finalReview = work.finalReview;
-  if (finalReview?.status !== 'locked') fail('final_review_not_locked');
-  if (!['codex-main', 'codex-subagent'].includes(finalReview.lockedBy))
-    fail('final_review_locked_by');
-  if (
-    !normalize(finalReview.lockedAt) ||
-    !normalize(finalReview.reason) ||
-    !Array.isArray(finalReview.checks) ||
-    !finalReview.checks.length
-  )
-    fail('final_review_record');
-  const expected = valueHash({
+function expectedFinalReviewLock(work, finalReview) {
+  return valueHash({
     stage: 'final-review',
     authorization: {
       lockedBy: finalReview.lockedBy,
@@ -2647,6 +2908,21 @@ function requireFinalReview(work) {
       answerZh: item.locks.answerZh ?? null,
     })),
   });
+}
+
+function requireFinalReview(work) {
+  const finalReview = work.finalReview;
+  if (finalReview?.status !== 'locked') fail('final_review_not_locked');
+  if (!['codex-main', 'codex-subagent'].includes(finalReview.lockedBy))
+    fail('final_review_locked_by');
+  if (
+    !normalize(finalReview.lockedAt) ||
+    !normalize(finalReview.reason) ||
+    !Array.isArray(finalReview.checks) ||
+    !finalReview.checks.length
+  )
+    fail('final_review_record');
+  const expected = expectedFinalReviewLock(work, finalReview);
   if (finalReview.lock !== expected) fail('final_review_lock');
 }
 
@@ -2804,7 +3080,26 @@ function commandApply(releaseVersionArg, releasedAtArg) {
   verifyQuestionZh(work);
   verifyAnswerEn(work);
   verifyAnswerZh(work);
-  for (const stage of CONTENT_STAGES) verifyRequiredSeals(work, stage);
+  const batchIds = [
+    ...new Set(work.items.map((item) => item.provenance.batchId).filter(Boolean)),
+  ].sort();
+  for (const stage of CONTENT_STAGES) {
+    const closure = work.stageClosures?.[stage];
+    if (!closure || closure.lock !== expectedStageClosureLock(work, stage, closure))
+      fail('stage_closure_invalid:' + stage);
+    for (const batchId of batchIds) {
+      const sealPath = join(batchManifestRoot, batchId + '.' + stage + '.json');
+      if (!existsSync(sealPath)) fail('batch_seal_missing:' + batchId + ':' + stage);
+      const seal = readJson(sealPath);
+      if (
+        seal.payload?.batchId !== batchId ||
+        seal.payload?.stage !== stage ||
+        seal.manifestHash !== valueHash(seal.payload)
+      )
+        fail('batch_seal_stored_payload_invalid:' + batchId + ':' + stage);
+    }
+  }
+  verifyRequiredSeals(work, 'answer-zh');
   requireFinalReview(work);
   const oldRegistry = readJson(registryPath);
   if (fileHash(registryPath) !== manifest.registry.hash) fail('registry_changed_since_freeze');
@@ -2831,6 +3126,12 @@ function commandApply(releaseVersionArg, releasedAtArg) {
   };
   writeJson(candidateRegistryPath, candidateRegistry);
   writeArtifacts(candidateArtifactRoot, work, finalSource, releaseVersion, releasedAt);
+  if (existsSync(artifactRoot)) {
+    for (const name of readdirSync(artifactRoot).filter((entry) => entry.endsWith('.json'))) {
+      const candidatePath = join(candidateArtifactRoot, name);
+      if (!existsSync(candidatePath)) copyFileSync(join(artifactRoot, name), candidatePath);
+    }
+  }
   const preApplySourceRoot = join(generatedRoot, 'pre-apply-formal-source');
   const preApplyArtifactRoot = join(generatedRoot, 'pre-apply-formal-artifacts');
   const preApplyRegistryPath = join(generatedRoot, 'pre-apply-registry.json');
@@ -3003,6 +3304,8 @@ function printUsage() {
       '  node tools/opi-rebuild.mjs freeze',
       '  node tools/opi-rebuild.mjs prepare',
       '  node tools/opi-rebuild.mjs verify-baseline',
+      '  node tools/opi-rebuild.mjs stage-status',
+      '  node tools/opi-rebuild.mjs preflight-stage question-en|question-zh|answer-en|answer-zh',
       '  node tools/opi-rebuild.mjs verify-stage baseline|question-en|question-zh|answer-en|answer-zh [--require-seals]',
       '  node tools/opi-rebuild.mjs seal-batch <batch-id> <stage>',
       '  node tools/opi-rebuild.mjs invalidate-batch <batch-id> <stage> <authorization-file>',
@@ -3011,6 +3314,7 @@ function printUsage() {
       '  node tools/opi-rebuild.mjs ingest-reviewed-batch <batch-file>',
       '  node tools/opi-rebuild.mjs finalize-question-en-order <authorization-file>',
       '  node tools/opi-rebuild.mjs close-stage <stage> <authorization-file>',
+      '  node tools/opi-rebuild.mjs lock-final-review <authorization-file>',
       '  node tools/opi-rebuild.mjs build-question-en-preview <release-version> <released-at-iso>',
       '  node tools/opi-rebuild.mjs apply <new-release-version> <released-at-iso>',
       '  node tools/opi-rebuild.mjs verify-formal',
@@ -3026,6 +3330,8 @@ try {
   else if (command === 'freeze') commandFreeze();
   else if (command === 'prepare') commandPrepare();
   else if (command === 'verify-baseline') commandVerifyBaseline();
+  else if (command === 'stage-status') commandStageStatus();
+  else if (command === 'preflight-stage') commandPreflightStage(args[0]);
   else if (command === 'verify-stage') commandVerifyStage(args[0], args.includes('--require-seals'));
   else if (command === 'seal-batch') commandSealBatch(args[0], args[1]);
   else if (command === 'invalidate-batch') commandInvalidateBatch(args[0], args[1], args[2]);
@@ -3034,6 +3340,7 @@ try {
   else if (command === 'ingest-reviewed-batch') commandIngestReviewedBatch(args[0]);
   else if (command === 'finalize-question-en-order') commandFinalizeQuestionEnOrder(args[0]);
   else if (command === 'close-stage') commandCloseStage(args[0], args[1]);
+  else if (command === 'lock-final-review') commandLockFinalReview(args[0]);
   else if (command === 'build-question-en-preview') commandBuildQuestionEnPreview(args[0], args[1]);
   else if (command === 'apply') commandApply(args[0], args[1]);
   else if (command === 'verify-formal') commandVerifyFormal();

@@ -2,111 +2,95 @@
   "categoryId": "opi-category-02",
   "id": "opi-topic-0067",
   "name": "空中相撞与TCAS",
-  "declaredCardCount": 15,
+  "declaredCardCount": 11,
   "cards": [
     {
       "id": "opi-core-337",
       "taskTitle": "特情-空中相撞与TCAS-1",
-      "audioText": "Have you ever heard any accident about mid - air collision?\n Have you ever heard any example of mid-air collision?",
-      "audioTextZh": "你听说过任何空中相撞（mid - air collision）事故吗？\n你听说过任何空中相撞的例子吗？",
-      "referenceText": "（1）Yes, I've heard of one where two aircraft collided in the air, a disaster that led to the development of TCAS.\n是的，我听说过一起，两架飞机在空中相撞，这场灾难促使了空中交通警戒与防撞系统（TCAS）的研发。\n（2）Yes, I have heard some mid-air collision. For example, once a passenger flight collided with a cargo flight over Germany because one aircraft followed ATC instructions and the other aircraft followed TCAS RA.\n是的，我听说过一些空中相撞事故。比如，有一次一架客机和一架货机在德国上空相撞，原因是一架飞机遵循空中交通管制（ATC）指令，另一架飞机遵循 TCAS 决断提示（TCAS RA） 。"
+      "audioText": "Have you ever heard of a mid-air collision involving TCAS?",
+      "audioTextZh": "你听说过涉及 TCAS 的空中相撞事故吗？",
+      "referenceText": "A suitable example would be: no, I have not studied a confirmed mid-air collision that I can accurately describe as involving TCAS. I have read about serious traffic conflicts in which TCAS issued resolution advisories and the crews avoided a collision. The main lesson is to respond correctly to an RA and report any clearance deviation to ATC.",
+      "referenceTextZh": "一个合适的示范答案是：没有，我没有研究过能够准确确认涉及 TCAS 的空中相撞事故。我读过一些严重飞行冲突案例，TCAS 在其中发出决断咨询，机组因此避免了碰撞。主要教训是正确响应 RA，并向空管报告任何偏离许可的情况。"
     },
     {
       "id": "opi-core-338",
       "taskTitle": "特情-空中相撞与TCAS-2",
-      "audioText": "How to avoid mid - air collision/near misses/ground collision?",
-      "audioTextZh": "如何避免空中相撞 / 危险接近 / 地面碰撞？",
-      "referenceText": "First, pilots should thoroughly prepare and be familiar with flight plans/routes. Second, maintain good communication with ATC to stay informed about traffic. Use standard phraseology, speak clearly, and verify if in doubt. Third, practice good cockpit task - sharing: the PF controls the aircraft, the PM monitors instruments/systems and visually checks for traffic. Finally, equip aircraft with advanced systems like TCAS to avoid mid - air collisions.\n首先，飞行员应做好充分准备，熟悉飞行计划 / 航线。其次，与空中交通管制（ATC）保持良好沟通，及时了解交通状况。使用标准用语，清晰通话，有疑问时进行核实。第三，做好驾驶舱任务分工：操纵飞行员（PF）控制飞机，监控飞行员（PM）监控仪表 / 系统并目视检查交通状况。最后，为飞机配备如空中交通警戒与防撞系统（TCAS）这类先进系统，以避免空中相撞 。"
+      "audioText": "How can pilots prevent near misses and mid-air collisions?",
+      "audioTextZh": "飞行员如何防止危险接近和空中相撞？",
+      "referenceText": "Pilots should maintain an effective lookout, follow clearances, use correct altimeter settings and monitor traffic information and onboard collision-avoidance systems. They should communicate clearly with ATC, avoid assumptions about another aircraft's path and apply the right-of-way and airspace rules. If TCAS issues an RA, the crew should respond as trained unless doing so would jeopardize the aircraft.",
+      "referenceTextZh": "飞行员应保持有效目视观察，遵守许可，使用正确的高度表设定，并监控交通信息和机载防撞系统。不应假定其他航空器的航迹，而要与空管清楚通信，并遵守优先权和空域规则。如果 TCAS 发出 RA，机组应按训练响应，除非这样做会危及飞机。"
     },
     {
       "id": "opi-core-352",
       "taskTitle": "特情-空中相撞与TCAS-3",
-      "audioText": "Have you ever encountered near miss or air miss?",
-      "audioTextZh": "你是否遇到过危险接近或空中相撞险情",
-      "referenceText": "No, I have never encountered near air miss. But I know near air miss means the aircraft are too close to each other, it is very dangerous.\n没，我从未遇到过空中危险接近情况。但我知道空中危险接近是指飞机间距离过近，非常危险。\n\n（说明：“near miss” 航空专业常用 “危险接近（未碰撞）” ，“air miss” 也类似，指飞机在空中出现危险接近、险些相撞的情况 。 ）"
+      "audioText": "Have you ever experienced a near miss in flight?",
+      "audioTextZh": "你在飞行中经历过危险接近吗？",
+      "referenceText": "A suitable example would be: no, I have never experienced a true near miss. I have received routine traffic information and have practised TCAS alerts in a simulator. Those exercises reinforced accurate monitoring, immediate RA response and clear communication with ATC.",
+      "referenceTextZh": "一个合适的示范答案是：没有，我从未经历过真正的危险接近。我接收过日常交通信息，也在模拟机中练习过 TCAS 警报。这些训练强化了准确监控、立即响应 RA 和与空管清楚通信的重要性。"
     },
     {
       "id": "opi-core-353",
       "taskTitle": "特情-空中相撞与TCAS-4",
-      "audioText": "What are the possible reasons for near air miss?",
-      "audioTextZh": "空中危险接近（near air miss ）可能的原因有哪些？",
-      "referenceText": "There are many possible reasons for near miss or air miss. First, mechanical problems such as TCAS failure or radar failure may cause near miss. Second, human errors may cause near miss. For example, if the controller lost situational awareness and issued wrong instructions to pilots, or the pilots misunderstood the ATC instructions, it may cause near miss.\n空中危险接近（near miss 或 air miss ）可能有多种原因。首先，诸如空中防撞系统（TCAS ，Traffic Collision Avoidance System ）故障或雷达故障等机械问题可能导致危险接近。其次，人为失误可能引发危险接近。例如，若管制员失去态势感知，向飞行员发出错误指令，或者飞行员误解空中交通管制（ATC ）指令，都可能导致危险接近情况发生 。\n\nKey causes include poor situational awareness, non-standard radio communication, misinterpretation of ATC instructions, high pilot workload, airspace congestion, low visibility, and failure to follow TCAS advisories.\n主要原因包括情景意识差、非标准无线电通讯、误解空管指令、飞行员工作负荷大、空域拥堵、低能见度以及未遵循TCAS咨询提示。"
-    },
-    {
-      "id": "opi-core-354",
-      "taskTitle": "特情-空中相撞与TCAS-5",
-      "audioText": "How can pilots avoid near miss or air miss?",
-      "audioTextZh": "飞行员如何避免危险接近（near miss ）或空中相撞险情（air miss ）？",
-      "referenceText": "First, we can follow ATC instruction to maintain enough separation with other aircraft. Second, we can follow TCAS RA to avoid colliding with other aircraft. Third, if ATC instruction goes against TCAS RA, we should follow TCAS RA to keep enough vertical separation with the conflicting traffic.\n首先，我们可遵循空中交通管制（ATC ）指令，与其他飞机保持足够间隔。其次，遵循空中防撞系统（TCAS ）的决断提示（RA ，Resolution Advisory ），避免与其他飞机相撞。第三，若空中交通管制指令与空中防撞系统决断提示冲突，应遵循空中防撞系统决断提示，与有冲突的航空器保持足够垂直间隔 。\n\nPilots should maintain visual scanning, follow SOP and TCAS guidance strictly, use standard phraseology, confirm ATC clearances, and improve CRM. ATC should enhance separation management and workload control. Airports should optimize airspace structure.\n飞行员应保持目视观察，严格遵循SOP和TCAS指引，使用标准术语，确认空管许可并提升机组资源管理（CRM）；空管应加强间隔管理和工作负荷控制；机场需优化空域结构。"
-    },
-    {
-      "id": "opi-core-355",
-      "taskTitle": "特情-空中相撞与TCAS-6",
-      "audioText": "What may cause mid-air collision?",
-      "audioTextZh": "什么可能导致空中相撞（mid - air collision ）？",
-      "referenceText": "There are many possible reasons for mid-air collision. First, mechanical problems such as TCAS failure or radar failure may cause mid-air collision. Second, human errors may cause mid-air collision. For example, if the controller lost situational awareness and issued wrong instructions to pilots, or the pilots misunderstood the ATC instructions .it may cause mid-air collision.\n空中相撞可能有多种原因。首先，诸如空中防撞系统（TCAS，Traffic Collision Avoidance System ）故障或雷达故障等机械问题可能引发空中相撞。其次，人为失误可能导致空中相撞。例如，若管制员失去态势感知，向飞行员发出错误指令，或者飞行员误解空中交通管制（ATC ）指令，都可能引发空中相撞 。"
-    },
-    {
-      "id": "opi-core-356",
-      "taskTitle": "特情-空中相撞与TCAS-7",
-      "audioText": "How can pilots avoid mid-air collision?",
-      "audioTextZh": "飞行员如何避免空中相撞？",
-      "referenceText": "First, we can follow ATC instructions to maintain enough separation with other aircraft. Second, we can follow TCAS RA to avoid colliding with other aircraft. Third, if ATC instruction goes against TCAS RA, we should follow TCAS RA to keep enough vertical separation with the conflicting traffic.\n首先，我们可遵循空中交通管制（ATC）指令，与其他飞机保持足够间隔。其次，遵循空中防撞系统（TCAS）决断提示（RA，Resolution Advisory ），避免与其他飞机相撞。第三，若空中交通管制指令与空中防撞系统决断提示冲突，应遵循空中防撞系统决断提示，与有冲突的航空器保持足够垂直间隔 。\n\nPilots should monitor instruments and the sky closely, communicate clearly with ATC, follow separation rules, respond promptly to TCAS alerts, conduct thorough preflight preparation, and accumulate simulator training experience.\n飞行员应密切监控仪表和空域，与空管清晰沟通，遵循间隔规则，及时响应TCAS警报，做好充分飞行前准备，并积累模拟机训练经验。"
-    },
-    {
-      "id": "opi-core-713",
-      "taskTitle": "特情-空中相撞与TCAS-8",
-      "audioText": "Do you know TCAS?",
-      "audioTextZh": "你了解空中交通警戒与防撞系统（TCAS）吗？",
-      "referenceText": "TCAS stands for Traffic Alert and Collision Avoidance System. It consists of Traffic Advisory (TA) and Resolution Advisory (RA). The pilot should follow the RA to avoid conflicting traffic. TCAS Resolution Advisory (RA) will give pilots climb or descend instructions to avoid traffic, such as “traffic, traffic, descend, descend now.”\nTCAS 是交通警戒与防撞系统（Traffic Alert and Collision Avoidance System ）的缩写。它包含 交通咨询（TA，Traffic Advisory ） 和 决断咨询（RA，Resolution Advisory ） 两大功能模块：\n•飞行员需遵循 决断咨询（RA） 指令避让冲突航空器；\n•TCAS 的决断咨询（RA）会向飞行员发出 “上升” 或 “下降” 指令避撞，典型语音告警如 “traffic, traffic, descend, descend now.”（“有冲突，有冲突，立即下降，立即下降” ） 。\n\nTCAS stands for Traffic Alert and Collision Avoidance System. It has two functions: Traffic Advisory (TA) warns of conflicting traffic, and Resolution Advisory (RA) provides vertical maneuver instructions (climb/descend) to avoid collision. It works with transponders to monitor nearby aircraft, crucial for mid-air collision prevention.\nTCAS即空中防撞系统，具有两项功能：交通咨询（TA）提示冲突交通，决断咨询（RA）提供垂直机动指令（爬升/下降）以避免碰撞；它通过应答机监控附近飞机，是防止空中相撞的关键设备。"
-    },
-    {
-      "id": "opi-core-714",
-      "taskTitle": "特情-空中相撞与TCAS-9",
-      "audioText": "Do you aircraft be equipped with TCAS?",
-      "audioTextZh": "你的飞机配备空中交通警戒与防撞系统（TCAS）了吗？",
-      "referenceText": "No. I fly the DA - 40 for flight training. It is a small and light aircraft. We don't have TCAS.\n没有。我用于飞行训练的是 DA - 40 飞机，它是一种小型轻型飞机，没有配备 TCAS 。\n\nI fly DA-40 NG, which is equipped with a simple version of TCAS called TIS (Traffic Information Service) via the Garmin 1000 system. It senses surrounding traffic by transmitting transponder signals and alerts the crew with \"traffic\" when conflicting aircraft approach.\n我驾驶的DA-40 NG配备了简易版的TCAS，称为交通信息服务（TIS），集成在Garmin 1000系统中。它通过发送应答机信号感知周边交通，当有冲突飞机接近时会以“traffic”提示机组。"
-    },
-    {
-      "id": "opi-core-715",
-      "taskTitle": "特情-空中相撞与TCAS-10",
-      "audioText": "Have you ever encountered TCAS alert? Or have you ever heard of an accident caused by TCAS?",
-      "audioTextZh": "你遇到过 TCAS 告警吗？或者听说过因 TCAS 引发的事故吗？",
-      "referenceText": "No, I have never encountered a TCAS alert. But I have heard of some accidents caused by TCAS. For example, in the 2002 Überlingen mid - air collision over Germany, a passenger aircraft and a cargo aircraft collided because one followed ATC instructions and the other followed TCAS Resolution Advisory (RA), leading to conflicting maneuvers.\n没有，我从未遇到过 TCAS 告警，但听说过相关事故。比如 2002 年德国乌伯林根空难 ：一架客机与一架货机在德国上空相撞，原因是其中一架飞机遵循空管（ATC）指令，另一架遵循 TCAS 决断咨询（RA）指令，最终因机动动作冲突导致相撞 。"
-    },
-    {
-      "id": "opi-core-716",
-      "taskTitle": "特情-空中相撞与TCAS-11",
-      "audioText": "is your aircraft equipped with TCAS?",
-      "audioTextZh": "你的飞机配备交通警戒与防撞系统（TCAS）了吗？",
-      "referenceText": "I fly a C172, and there is no TCAS on board, but it is equipped with ADS - B. It can be used to help us avoid conflicting traffic in terms of situational awareness, too.\n我驾驶的是塞斯纳 C172 飞机，机上没有安装 TCAS ，但配备了广播式自动相关监视系统（ADS - B）。它可通过增强态势感知，辅助我们避让冲突航空器 。"
+      "audioText": "What can cause a near miss or mid-air collision?",
+      "audioTextZh": "哪些因素会导致危险接近或空中相撞？",
+      "referenceText": "A near miss or collision can result from navigation error, misunderstood clearance, altitude deviation, poor lookout or loss of communication. High workload, fatigue, weather, incorrect position or altitude data and weak coordination can reduce separation further. Equipment limitations or failure may contribute, but disciplined monitoring and timely conflict resolution provide several defenses.",
+      "referenceTextZh": "危险接近或碰撞可能由导航错误、误解许可、高度偏差、目视观察不足或通信中断造成。工作负荷高、疲劳、天气、错误的位置或高度数据以及协调不足会进一步减小间隔。设备限制或失效也可能起作用，但严格监控和及时化解冲突能够提供多层防护。"
     },
     {
       "id": "opi-core-717",
-      "taskTitle": "特情-空中相撞与TCAS-12",
-      "audioText": "What is TCAS? Do you know the functions of TCAS?",
-      "referenceText": "TCAS is an acronym for Traffic Alert and Collision Avoidance System. It is designed to prevent mid - air collisions by providing traffic alerts (TA) and resolution advisories (RA) to pilots.\nTCAS 是 交通警戒与防撞系统（Traffic Alert and Collision Avoidance System ） 的首字母缩写。它通过向飞行员提供 交通警戒（TA，Traffic Advisory ） 和 决断咨询（RA，Resolution Advisory ） ，辅助预防空中相撞事故 。"
+      "taskTitle": "特情-空中相撞与TCAS-5",
+      "audioText": "What is the Traffic Alert and Collision Avoidance System (TCAS)?",
+      "referenceText": "TCAS is an airborne system that monitors replies from nearby transponder-equipped aircraft and assesses possible collision threats. It presents traffic information and, in TCAS II, can issue traffic advisories and vertical resolution advisories. It supports collision avoidance but does not replace ATC separation or the pilot's visual lookout.",
+      "audioTextZh": "什么是空中交通告警和防撞系统（TCAS）？",
+      "referenceTextZh": "TCAS 是一种机载系统，它监控附近装有应答机的航空器所发出的应答，并评估潜在碰撞威胁。系统显示交通信息；TCAS II 还可以发出交通咨询和垂直决断咨询。它用于辅助防撞，但不能取代空管间隔或飞行员的目视观察。"
+    },
+    {
+      "id": "opi-core-717-part-2",
+      "taskTitle": "特情-空中相撞与TCAS-6",
+      "audioText": "What are the main functions of TCAS?",
+      "referenceText": "TCAS helps pilots detect and assess nearby transponder-equipped traffic. A traffic advisory draws attention to a possible threat and supports visual acquisition, while a TCAS II resolution advisory recommends a vertical response to avoid a conflict. The system also coordinates compatible RAs between suitably equipped aircraft.",
+      "audioTextZh": "TCAS 的主要功能是什么？",
+      "referenceTextZh": "TCAS 帮助飞行员探测和评估附近装有应答机的航空器。交通咨询提醒机组注意潜在威胁并帮助目视发现目标，而 TCAS II 决断咨询会建议采取垂直动作以避免冲突。系统还能在适当配备设备的航空器之间协调彼此相容的 RA。"
+    },
+    {
+      "id": "opi-core-714",
+      "taskTitle": "特情-空中相撞与TCAS-7",
+      "audioText": "Is the aircraft you fly equipped with TCAS?",
+      "audioTextZh": "你所飞的飞机配备 TCAS 吗？",
+      "referenceText": "A suitable example would be: yes, the aircraft I fly is equipped with TCAS II. It provides traffic advisories and vertical resolution advisories on the flight displays with aural alerts. Learners should replace this with the system and version installed on their own aircraft.",
+      "referenceTextZh": "一个合适的示范答案是：是的，我所飞的飞机配有 TCAS II。它通过飞行显示器和音响警报提供交通咨询与垂直决断咨询。学习者应将其替换为自己飞机实际安装的系统和版本。"
+    },
+    {
+      "id": "opi-core-715",
+      "taskTitle": "特情-空中相撞与TCAS-8",
+      "audioText": "Have you ever received a TCAS alert in flight?",
+      "audioTextZh": "你在飞行中收到过 TCAS 警告吗？",
+      "referenceText": "A suitable example would be: I have received traffic advisories during normal operations, but I have never received a resolution advisory in a real flight. I have practised RAs in a simulator and followed the displayed guidance and crew callouts. After the conflict, we returned to the clearance and completed the required ATC communication.",
+      "referenceTextZh": "一个合适的示范答案是：我在正常运行中收到过交通咨询，但在真实飞行中从未收到过决断咨询。我在模拟机中练习过 RA，并遵循显示引导和机组标准喊话。冲突解除后，我们回到管制许可，并完成了所需的空管通信。"
     },
     {
       "id": "opi-core-718",
-      "taskTitle": "特情-空中相撞与TCAS-13",
-      "audioText": "How does TCAS work?\nTCAS",
-      "audioTextZh": "是如何工作的？",
-      "referenceText": "TCAS consists of Traffic Advisory (TA) and Resolution Advisory (RA). TA provides information on conflicting traffic, such as altitude, speed, and direction. RA offers vertical guidance to avoid collision. When a potential collision risk is detected, TCAS TA triggers an audible alert: “traffic, traffic”. Then, TCAS RA issues vertical avoidance commands like “climb, climb” or “descend, descend”.\nTCAS 由 交通警戒（TA，Traffic Advisory ） 和 决断咨询（RA，Resolution Advisory ） 两大功能模块组成：\n1. 交通警戒（TA）：\n当检测到潜在相撞风险时，TA 会收集冲突航空器的高度、速度、航向等信息，并触发 声音告警 “traffic, traffic” ，向飞行员提示风险。\n2. 决断咨询（RA）：\n在 TA 告警基础上，RA 会提供 垂直方向避撞指令 ，如发出 “climb, climb”（上升、上升 ）或 “descend, descend”（下降、下降 ）的指令，引导飞行员通过垂直机动规避冲突 。"
+      "taskTitle": "特情-空中相撞与TCAS-9",
+      "audioText": "How does TCAS work?",
+      "audioTextZh": "TCAS 如何工作？",
+      "referenceText": "TCAS interrogates or receives information from nearby transponders and uses relative range, bearing and altitude trends to estimate collision risk. It first identifies relevant traffic and may issue a traffic advisory; TCAS II can then generate a coordinated vertical RA when the threat becomes more urgent. Because it depends on transponder information and system logic, it cannot show every possible hazard.",
+      "referenceTextZh": "TCAS 询问或接收附近应答机的信息，并利用相对距离、方位和高度变化趋势评估碰撞风险。系统先识别相关交通目标并可能发出交通咨询；威胁变得更加紧迫时，TCAS II 可以生成协调的垂直 RA。由于系统依赖应答机信息和自身逻辑，它无法显示所有可能的危险。"
     },
     {
       "id": "opi-core-719",
-      "taskTitle": "特情-空中相撞与TCAS-14",
-      "audioText": "How to avoid traffic conflicts at the busy terminal? Nowadays, the terminal airspace is becoming more and more crowded, as a pilot, do you have any suggestions to avoid near air misses?",
-      "audioTextZh": "如何在繁忙的终端区避免交通冲突？如今，终端区空域变得越来越拥挤。作为一名飞行员，对于避免危险接近（空中相撞险情 ），你有哪些建议?",
-      "referenceText": "First, we can follow ATC instructions to maintain sufficient separation from other aircraft. Second, we can comply with TCAS RAs (Resolution Advisories) to avoid colliding with other aircraft. Third, if an ATC instruction conflicts with a TCAS RA, we should follow the TCAS RA to maintain adequate vertical separation from the conflicting traffic.\n首先，我们可以遵循空中交通管制（ATC）指令，与其他航空器保持足够间隔。其次，遵循空中防撞系统（TCAS）决断指令（RAs ），避免与其他航空器相撞。第三，若空中交通管制指令与空中防撞系统决断指令相悖，应遵循空中防撞系统决断指令，与存在冲突的航空器保持充足的垂直间隔 。"
+      "taskTitle": "特情-空中相撞与TCAS-10",
+      "audioText": "What can pilots do to avoid traffic conflicts in busy terminal airspace?",
+      "audioTextZh": "在繁忙的终端空域，飞行员可以采取哪些措施避免交通冲突？",
+      "referenceText": "Pilots should plan ahead, comply accurately with clearances and monitor altitude, speed, route and radio calls closely. They should maintain a good lookout, use traffic displays correctly and tell ATC promptly if a clearance cannot be followed or a conflict is seen. Stable workload management and disciplined briefings help prevent a busy arrival or departure from overwhelming the crew.",
+      "referenceTextZh": "飞行员应提前规划，准确执行许可，并密切监控高度、速度、航路和无线电呼叫。应保持良好目视观察，正确使用交通显示；如果无法执行许可或发现冲突，应立即告知空管。持续可靠地管理工作负荷并严格执行简令，有助于防止繁忙的进离场使机组不堪重负。"
     },
     {
-      "id": "opi-core-720",
-      "taskTitle": "特情-空中相撞与TCAS-15",
-      "audioText": "What equipment can be used to detect conflicting traffic during the flight?",
-      "audioTextZh": "在飞行中,可以用什么设备来探测冲突飞机?",
-      "referenceText": "During flight, TCAS (Traffic Alert and Collision Avoidance System) is the key equipment to detect conflicting traffic. It provides traffic alerts (TA) and resolution advisories (RA). Additionally, pilots use visual scan, weather radar, and ATC guidance to enhance situational awareness and avoid conflicts.\n飞行中，空中防撞系统（TCAS）是探测冲突飞机的核心设备，它能提供交通告警（TA）和决断告警（RA）。此外，飞行员还通过目视观察、气象雷达以及空管引导来提升情景意识，避免冲突。"
+      "id": "opi-core-464",
+      "taskTitle": "特情-空中相撞与TCAS-11",
+      "audioText": "What safety risks can arise when terminal airspace becomes increasingly congested?",
+      "audioTextZh": "终端空域日益拥挤时，可能产生哪些安全风险？",
+      "referenceText": "Congested terminal airspace increases controller and pilot workload and leaves less time to detect or correct an error. The risks include loss of separation, communication errors, unstable approaches, wake-turbulence encounters and runway incursions during tightly spaced operations. Clear communication, disciplined speed and altitude control, and an early decision to go around when an approach is not stable help manage these risks.",
+      "referenceTextZh": "繁忙的终端空域会增加管制员和飞行员的工作负荷，留给发现或修正错误的时间也更少。风险包括间隔丧失、通信错误、进近不稳定、遭遇尾流颠簸，以及在小间隔运行中发生跑道侵入。清楚通信、严格控制速度和高度，并在进近不稳定时及早决定复飞，有助于管理这些风险。"
     }
   ]
 }

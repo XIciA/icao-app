@@ -7,65 +7,74 @@
     {
       "id": "opi-core-232",
       "taskTitle": "缩略词-SOP-1",
-      "audioText": "What does SOP stand for?\n\"SOP\"",
-      "audioTextZh": "代表什么？",
-      "referenceText": "SOP stands for Standard Operation Procedure.\nSOP代表标准操作程序。"
+      "audioText": "What does SOP stand for?",
+      "audioTextZh": "SOP 代表什么？",
+      "referenceText": "SOP stands for standard operating procedure. In aviation, SOPs describe the approved and repeatable way to carry out normal, abnormal and emergency tasks. They help crew members work consistently and understand what is expected of them.",
+      "referenceTextZh": "SOP 是标准操作程序的英文缩写。在航空运行中，SOP 规定了完成正常、非正常和紧急任务的经批准且可重复执行的方法。它能帮助机组成员保持操作一致，并清楚了解各自应完成的工作。"
     },
     {
       "id": "opi-core-233",
       "taskTitle": "缩略词-SOP-2",
-      "audioText": "What are the basic objectives of SOP?",
-      "audioTextZh": "标准操作程序（SOP）的基本目标是什么？",
-      "referenceText": "（1）SOP aims to reduce human error, improve efficiency, and ensure flight safety, it is very important for flight safety.\n标准操作程序（SOP）旨在减少人为错误、提高效率并确保飞行安全，它对飞行安全至关重要。\n（2）SOPs are designed／used to encourage effective communication and teamwork in the cockpit ,assist crew members to manage the risks and ensure the consistency in the cockpit and enhance flight safety and efficiency.标准操作程序（SOP）用于促进驾驶舱内的有效沟通和团队协作，帮助机组人员管理风险，确保驾驶舱操作的统一性，从而提升飞行安全与效率。"
+      "audioText": "What are the main objectives of SOPs?",
+      "audioTextZh": "SOP 的主要目标是什么？",
+      "referenceText": "The main objectives of SOPs are to make operations safe, consistent and predictable. They define duties, callouts, checks and decision points so that crew members can coordinate effectively. They also provide a common standard for training and performance monitoring.",
+      "referenceTextZh": "SOP 的主要目标是使运行安全、一致且可预期。它通过明确职责、喊话、检查项目和决策点，帮助机组成员有效协作。SOP 还为培训和绩效监控提供统一标准。"
     },
     {
       "id": "opi-core-234",
       "taskTitle": "缩略词-SOP-3",
-      "audioText": "Do you believe SOP is effective methods to prevent human errors? Why?",
-      "audioTextZh": "您认为标准操作程序（SOP）是预防人为错误的有效方法吗？为什么？",
-      "referenceText": "（1）Yes, I think SOPs are effective methods to prevent human errors. Human may forget the procedure and make mistake, it's very dangerous, if we follow SOPs it will reduce human error and ensure flight safety.\n是的，我认为标准操作程序（SOP）是预防人为错误的有效方法。人员可能遗忘程序并犯错，这非常危险；若严格执行SOP，将减少人为失误并确保飞行安全。\n（2）Yes, I think SOPs are effective methods／ways to prevent human errors because SOPs encourage effective communication and cooperation in the cockpit. SOPs require us to work as a team, cross check each other's work and reduce human errors.\n是的，我认为SOP是预防人为错误的有效方法，因为SOP能促进驾驶舱内的有效沟通与协作。它要求我们以团队形式工作，交叉检查彼此操作，从而降低人为差错。"
+      "audioText": "Do you think SOPs are effective in preventing human error? Why or why not?",
+      "audioTextZh": "你认为 SOP 能有效防止人为错误吗？为什么？",
+      "referenceText": "Yes, well-designed SOPs can reduce human error because they give pilots a clear sequence and shared expectations. They support cross-checking and make unusual deviations easier to notice. However, they are effective only when they are practical, understood and followed with sound judgment.",
+      "referenceTextZh": "是的，设计合理的 SOP 能够减少人为错误，因为它为飞行员提供清晰的操作顺序和共同预期。SOP 有助于交叉检查，也能让异常偏差更容易被发现。不过，只有当程序切实可行、得到理解并结合良好判断执行时，它才真正有效。"
     },
     {
       "id": "opi-core-235",
       "taskTitle": "缩略词-SOP-4",
-      "audioText": "What might happen if SOP is not followed?",
-      "audioTextZh": "若不遵守标准操作程序（SOP）可能导致什么后果？",
-      "referenceText": "（1）If SOPs are not followed, pilot may forget some procedure and make mistake it's very dangerous for flight safety.\n若不遵守标准操作程序（SOP），飞行员可能遗漏关键操作步骤并引发失误，这将严重危及飞行安全。\n（2）If we don't follow SOPs, first, it may cause disagreement between crew members in the cockpit. Second, it may reduce the safety margin and increase the risks of accidents.\n违反SOP可能导致：\n第一，驾驶舱机组间产生操作分歧\n第二，安全裕度被削弱，事故风险概率显著上升\n（3）Not following SOP may lead to human errors, missed critical steps (e.g., forgetting to extend landing gear), poor crew coordination, and increased accident risks (e.g., unstable approaches, runway incursions). It can cause structural damage, injuries, or even fatalities.\n不遵守标准操作程序（SOP）可能导致人为失误、遗漏关键步骤（如忘记放起落架）、机组协作不畅，增加事故风险（如不稳定进近、跑道入侵），可能造成飞机结构损坏、人员受伤甚至死亡。"
+      "audioText": "What could happen if pilots do not follow SOPs?",
+      "audioTextZh": "如果飞行员不遵守 SOP，可能会发生什么？",
+      "referenceText": "If pilots do not follow SOPs, important checks may be missed and crew coordination may break down. The aircraft can enter an unsafe condition before anyone recognizes the problem. Deliberate or repeated non-compliance may also lead to reporting, retraining or disciplinary action under the operator's system.",
+      "referenceTextZh": "如果飞行员不遵守 SOP，重要检查可能被遗漏，机组协作也可能中断。飞机可能在任何人发现问题之前就进入不安全状态。故意或反复违规还可能按照公司的管理制度触发报告、补充培训或纪律处理。"
     },
     {
       "id": "opi-core-236",
       "taskTitle": "缩略词-SOP-5",
-      "audioText": "What measures does your company take to ensure the compliance of SOP? what training does your company provide to address and improve strict adherence to SOP?",
-      "audioTextZh": "贵公司采取哪些措施确保SOP合规执行？\n针对SOP的严格遵守，贵公司提供哪些专项培训？",
-      "referenceText": "（1）I have not back to the company yet. We have simulator training to practice the SOPs.\n我尚未返回公司。我们会通过模拟机训练来演练标准操作程序（SOP）。\n（2）My company has taken many measures to ensure the pilots follow SOPs. First, the crew members should review the SOPs periodically. Second, Company check pilots should monitor the crew members if they follow the SOPs strictly during flight.\n我公司已采取多项措施确保飞行员遵守SOP：\n第一，机组人员须定期温习SOP\n第二，公司检查飞行员须监控机组是否严格执行SOP\n（3）Yes, my company offers such training. It includes ground courses, recurrent simulator training, and CRM training to help pilots familiarize themselves with SOPs. QAR and CVR data are used to supervise operations, and irregularities are analyzed to strengthen compliance, ensuring standardized flight practices.\n是的，公司会提供相关培训。包括地面课程、复训模拟机训练和机组资源管理（CRM）培训，帮助飞行员熟悉标准操作程序（SOP）；还会通过快速存储记录器（QAR）和座舱语音记录器（CVR）数据监督运行，分析违规情况以强化执行，确保飞行操作标准化。"
+      "audioText": "What measures does your company take to ensure compliance with SOPs?",
+      "audioTextZh": "贵公司采取哪些措施确保遵守 SOP？",
+      "referenceText": "In a typical operation, the company publishes current procedures, trains crews to use them and checks compliance during line operations and recurrent assessments. Reports and flight-data trends may be reviewed to identify weak points. When a problem appears, the company can clarify the procedure, provide coaching or take other proportionate action.",
+      "referenceTextZh": "在典型运行中，公司会发布现行程序，培训机组正确使用，并通过航线运行和定期考核检查执行情况。公司还可能分析报告和飞行数据趋势，以找出薄弱环节。发现问题后，公司可以澄清程序、提供辅导或采取其他适度措施。"
+    },
+    {
+      "id": "opi-core-236-part-2",
+      "taskTitle": "缩略词-SOP-6",
+      "audioText": "What training does your company provide to promote strict adherence to SOPs?",
+      "audioTextZh": "贵公司提供哪些培训，以促进严格遵守 SOP？",
+      "referenceText": "A suitable example would include initial training, simulator practice and recurrent checks built around the company's SOPs. Scenario-based exercises can show why each critical step, callout and cross-check matters. Briefings and safety feedback can then reinforce the same standard during line operations.",
+      "referenceTextZh": "一个合适的示范答案可以包括围绕公司 SOP 开展的初始培训、模拟机练习和定期检查。情景式训练能够说明每个关键步骤、喊话和交叉检查为什么重要。随后还可以通过简令和安全反馈，在航线运行中持续强化同一标准。"
     },
     {
       "id": "opi-core-237",
-      "taskTitle": "缩略词-SOP-6",
-      "audioText": "What factors and conditions may affect the compliance with SOP?",
-      "audioTextZh": "哪些因素和条件可能影响标准操作程序（SOP）的合规执行？",
-      "referenceText": "There are some factors and conditions that may affect the compliance with SOPs, for example, the pilot operates the aircraft while fatigued, the pilot is under time pressure or high workload, the pilot feels uncomfortable, and so on.\n存在一些因素和条件可能影响标准操作程序（SOP）的合规执行，例如飞行员在疲劳状态下操作飞机、面临时间压力或工作负荷过大、身体不适等情况 。\n\nFactors include high workload, fatigue, stress, poor situational awareness, inadequate training, unfamiliarity with SOP, and crew communication issues. Adverse weather or equipment malfunctions may also distract pilots, leading to deviations from standard procedures.\n影响因素包括高工作负荷、疲劳、压力、情景意识不足、训练不充分、不熟悉SOP以及机组沟通问题。恶劣天气或设备故障也可能分散飞行员注意力，导致偏离标准程序。"
+      "taskTitle": "缩略词-SOP-7",
+      "audioText": "What factors can affect compliance with SOPs?",
+      "audioTextZh": "哪些因素会影响对 SOP 的遵守？",
+      "referenceText": "Compliance can be affected by training quality, procedure design, workload, fatigue and time pressure. Company culture and the example set by senior crew members also matter. Procedures that are unclear, outdated or difficult to use can encourage unsafe workarounds.",
+      "referenceTextZh": "SOP 的执行情况会受到培训质量、程序设计、工作负荷、疲劳和时间压力的影响。公司文化以及资深机组成员树立的榜样也很重要。如果程序不清楚、已经过时或难以使用，就可能诱发不安全的变通做法。"
     },
     {
       "id": "opi-core-238",
-      "taskTitle": "缩略词-SOP-7",
-      "audioText": "Do you think good CRM practices are dependent on strict adherence to SOP? why?",
-      "audioTextZh": "您认为良好的机组资源管理（CRM）实践是否依赖于对SOP的严格遵守？为什么？",
-      "referenceText": "Yes, I think so. Because if we follow SOPs, it will reduce human error and improve efficiency, so as to it can promote communication, cooperation and task-sharing between the crew members.\n是的，我认为如此。因为遵循标准操作程序（SOP）能减少人为差错并提升效率，从而促进机组间的沟通、协作与任务分配。"
-    },
-    {
-      "id": "opi-core-239",
       "taskTitle": "缩略词-SOP-8",
-      "audioText": "Do your company provide joint training with cabin crew for flight crew incapacitation? If no, do You think it is necessary? why?",
-      "audioTextZh": "你们公司是否提供机组失能情况下与客舱机组的联合培训？如果不提供，你认为有必要开展吗？为什么",
-      "referenceText": "I have not back to the company yet. I think it is necessary to take this training. Because after training we will familiar with the procedures practice how to deal with abnormal situation. Improve skills and enrich knowledge. What's more, we will have a better communication and cooperation between crew members.\n我还没回公司。我认为参加这次培训是有必要的。因为培训后我们会熟悉流程，练习如何处理异常情况，提升技能并丰富知识。此外，我们还能更好地与团队成员沟通协作。"
+      "audioText": "Do effective CRM practices depend on strict adherence to SOPs? Why or why not?",
+      "audioTextZh": "有效的 CRM 实践是否依赖于严格遵守 SOP？为什么？",
+      "referenceText": "Effective CRM normally supports strict SOP discipline because both depend on clear roles, communication and cross-checking. CRM also gives crew members tools to question an unsafe deviation and manage an unexpected situation. It does not replace SOPs, but it helps the crew apply them as a coordinated team.",
+      "referenceTextZh": "有效的 CRM 通常有助于严格执行 SOP，因为二者都依赖明确的职责、沟通和交叉检查。CRM 还为机组成员提供了质疑不安全偏差和管理意外情况的方法。CRM 不能取代 SOP，但能帮助机组作为一个协调一致的团队执行程序。"
     },
     {
       "id": "opi-core-240",
       "taskTitle": "缩略词-SOP-9",
-      "audioText": "What's SOP? Why is SOP important for flight safety?\nSOP",
-      "audioTextZh": "是什么?为什么说SOP对飞行安全很重要?",
-      "referenceText": "SOP stands for Standard Operating Procedures, covering normal/abnormal flight procedures. It standardizes operations, reduces human errors, enhances crew coordination, and ensures consistent responses to situations. Following SOP minimizes risks and is fundamental to flight safety.\n标准操作程序（SOP）涵盖正常和非正常飞行流程，标准化操作行为，减少人为失误，提升机组协作，确保对各类情况的响应一致。遵循SOP可最大限度降低风险，是飞行安全的基础。"
+      "audioText": "Why are SOPs important for flight safety?",
+      "audioTextZh": "为什么 SOP 对飞行安全很重要？",
+      "referenceText": "SOPs are important because they turn safety requirements and operating experience into consistent crew actions. They reduce unnecessary variation and support reliable monitoring between pilots. During abnormal situations, a familiar procedure also lowers workload and helps the crew protect its priorities.",
+      "referenceTextZh": "SOP 很重要，因为它把安全要求和运行经验转化为一致的机组行动。它能减少不必要的操作差异，并支持飞行员之间进行可靠监控。在非正常情况下，熟悉的程序还能降低工作负荷，帮助机组守住处置重点。"
     }
   ]
 }

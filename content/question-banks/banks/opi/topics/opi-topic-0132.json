@@ -5,25 +5,28 @@
   "declaredCardCount": 3,
   "cards": [
     {
-      "id": "opi-extra-275",
-      "taskTitle": "特情-结构损伤-1",
-      "audioText": "What are the possible reasons for aircraft structural damage? What kinds of situations will cause the structural damage?",
-      "audioTextZh": "航空器结构损坏可能有哪些原因？哪些情况会导致结构损坏？",
-      "referenceText": "There are possible reasons for structural damage. First, bad weather conditions such as lightning strikes, severe turbulence, and severe icing may cause structural damage to the aircraft. Second, in - flight emergencies like explosive depressurization, bomb explosions, or onboard fires may result in structural damage. Third, ground incidents including ground collisions and tail strikes can lead to structural damage.\n航空器结构损坏存在以下可能原因：一是恶劣天气条件，如雷击、严重颠簸、严重积冰，可能导致航空器结构损坏；二是飞行中出现的紧急情况，像爆炸性释压、炸弹爆炸或机上起火，可能造成结构损坏；三是地面事故，包括地面碰撞、擦尾等，会引发结构损坏 。\n\nStructural damage can be caused by bird strike, FOD ingestion, lightning strike, severe turbulence, ground collision, tail strike, hard landing, belly landing, icing, explosion, or runway overrun.\n导致飞机结构损伤的因素包括鸟击、外物吸入（FOD）、雷击、强颠簸、地面相撞、擦机尾、重着陆、机腹着陆、积冰、爆炸或跑道冲出。"
-    },
-    {
       "id": "opi-extra-276",
-      "taskTitle": "特情-结构损伤-2",
-      "audioText": "If your aircraft suffers from structural damage, what will you do?",
-      "audioTextZh": "若你的航空器遭遇结构损坏，会如何处理？",
-      "referenceText": "If our aircraft suffers from structural damage, we will report the situation to ATC, request priority landing, and arrange for emergency services upon landing. After landing, we will inform maintenance personnel of the structural damage for inspection.\n若我们的航空器遭遇结构损坏，会向空中交通管制（ATC）报告情况，申请优先降落，并安排好落地后的应急服务。落地后，会将结构损坏情况告知维修人员，以便进行检查 。"
+      "taskTitle": "特情-结构损伤-1",
+      "audioText": "What should a pilot do if the aircraft suffers structural damage?",
+      "audioTextZh": "飞机发生结构损伤时，飞行员应如何处置？",
+      "referenceText": "The pilot should maintain control, avoid unnecessary manoeuvring and assess the damage through aircraft indications and any available crew reports. The crew should follow the applicable checklist, respect any reduced speed or load limits, declare the situation as needed and plan a landing at the safest suitable airport. After landing, the aircraft should remain out of service until the required inspection and release are complete.",
+      "referenceTextZh": "飞行员应保持控制，避免不必要的机动，并根据飞机指示和能够获得的机组报告评估损伤。机组应执行适用检查单，遵守任何降低后的速度或载荷限制，根据需要作出相应申报，并计划在最安全的合适机场着陆。着陆后，在完成所需检查并获得放行前，飞机应保持停场状态。"
     },
     {
-      "id": "opi-extra-277",
+      "id": "opi-core-082",
+      "taskTitle": "特情-结构损伤-2",
+      "audioText": "What can cause structural damage to an aircraft?",
+      "audioTextZh": "哪些因素会导致飞机结构损伤？",
+      "referenceText": "Structural damage can result from severe turbulence, a hard landing, a collision, hail, lightning effects, excessive loads or contact with ground equipment. Fatigue, corrosion and improper maintenance can also weaken a structure over time. After any suspected damage, the crew should avoid unnecessary loads and arrange an inspection in accordance with approved procedures.",
+      "referenceTextZh": "严重颠簸、重着陆、碰撞、冰雹、雷电影响、过大载荷或与地面设备接触，都可能造成结构损伤。疲劳、腐蚀和维修不当也会随时间削弱结构。只要怀疑飞机受损，机组就应避免不必要的载荷，并按批准程序安排检查。"
+    },
+    {
+      "id": "opi-core-083",
       "taskTitle": "特情-结构损伤-3",
-      "audioText": "If you made a hard landing,How do you explain to your boss?",
-      "audioTextZh": "若你进行了硬着陆，会如何向主管说明情况？",
-      "referenceText": "If we made a hard landing, we would submit a written report to the company’s relevant department. We would explain the aircraft’s condition during the event and the measures taken to ensure flight safety.\n若我们进行了硬着陆，会向公司相关部门提交书面报告，说明事件发生时航空器的状况，以及为保障飞行安全所采取的措施"
+      "audioText": "Have you ever experienced structural damage to an aircraft?",
+      "audioTextZh": "你经历过飞机结构损伤吗？",
+      "referenceText": "A suitable example would be: no, I have never experienced structural damage to an aircraft. I have practised scenarios involving suspected damage after severe turbulence or a bird strike. In such a case, I would control the aircraft, assess the indications, avoid excessive manoeuvring and follow the checklist before landing for inspection.",
+      "referenceTextZh": "一个合适的示范答案是：没有，我从未经历过飞机结构受损。我练习过严重颠簸或鸟击后怀疑飞机受损的情景。在这种情况下，我会控制飞机、评估指示、避免过度机动，执行检查单后着陆并接受检查。"
     }
   ]
 }

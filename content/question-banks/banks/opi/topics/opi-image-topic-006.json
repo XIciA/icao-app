@@ -2,7 +2,7 @@
   "categoryId": "opi-category-08",
   "id": "opi-image-topic-006",
   "name": "冬季起飞前运行",
-  "declaredCardCount": 4,
+  "declaredCardCount": 3,
   "cards": [
     {
       "id": "opi-image-006-image",
@@ -14,29 +14,18 @@
     {
       "id": "opi-image-006-q01",
       "taskTitle": "图片题-006-01",
-      "audioText": "What flight pre - takeoff preparations should you make if you encounter this situation?",
-      "audioTextZh": "遇到这种情况时，起飞前你应做哪些飞行准备？",
-      "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
-      "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-006-q01.mp3"
+      "audioText": "What pre-takeoff preparations should a flight crew make in the winter conditions shown?",
+      "audioTextZh": "在图中所示的冬季条件下起飞前，飞行机组应做哪些准备？",
+      "referenceText": "The crew should obtain current weather and runway-condition information, calculate winter performance and inspect the aircraft for frost, snow and ice. It must arrange approved deicing or anti-icing when required, monitor holdover and contamination conditions, and ensure critical surfaces are clean before takeoff. Cold-temperature effects on systems, altimetry, fuel, tires and ground movement should be included in the briefing.",
+      "referenceTextZh": "机组应获取最新天气和跑道状况信息，计算冬季运行性能，并检查飞机是否有霜、雪或冰。需要时必须安排批准的除冰或防冰，监控保持时间和污染状况，并确保起飞前关键表面清洁。简令还应考虑低温对系统、高度测量，包括高度表指示与修正，以及燃油、轮胎和地面运行的影响。"
     },
     {
       "id": "opi-image-006-q02",
       "taskTitle": "图片题-006-02",
-      "audioText": "What challenges will pilots face in such weather conditions?",
-      "audioTextZh": "在这种天气条件下飞行员会面临哪些挑战？",
-      "referenceText": "The main risks are contaminated surfaces, low visibility, reduced braking action, and de-icing requirements. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
-      "referenceTextZh": "主要风险包括道面污染、低能见度、刹车效应降低以及除冰需求。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-006-q02.mp3"
-    },
-    {
-      "id": "opi-image-006-q03",
-      "taskTitle": "图片题-006-03",
-      "audioText": "How should pilots prepare to avoid such situations?",
-      "audioTextZh": "飞行员应如何准备以避免这种情况？",
-      "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
-      "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-006-q03.mp3"
+      "audioText": "What challenges do pilots face when operating in the winter weather shown?",
+      "audioTextZh": "在图中所示的冬季天气下运行时，飞行员会面临哪些挑战？",
+      "referenceText": "Winter weather can reduce runway friction, obscure markings, increase stopping distance and make taxi or directional control difficult. Snow and ice can contaminate lifting surfaces, engines and sensors, while cold affects equipment and personnel. Rapidly changing precipitation, visibility and braking reports add uncertainty to performance decisions.",
+      "referenceTextZh": "冬季天气会降低跑道摩擦系数、遮盖标志、增加停止距离，并使滑行或方向控制更加困难。雪和冰可能污染升力面、发动机和传感器，严寒也会影响设备和人员。降水、能见度和制动效应报告的快速变化，会给性能决策增加不确定性。"
     }
   ]
 }

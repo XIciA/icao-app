@@ -50,14 +50,14 @@ describe('embeddedQuestionBankRepository', () => {
     });
   });
 
-  it('keeps all 7,133 cards and canonical media references reconcilable', () => {
+  it('keeps all 6,867 cards and canonical media references reconcilable', () => {
     const resources = new Map(resourceManifest.files.map((resource) => [resource.publicPath, resource]));
 
     const banks = getEmbeddedQuestionBankIds().map((id) => embeddedQuestionBankRepository.getDataset(id));
     return Promise.all(banks).then((datasets) => {
       const cards = datasets.flatMap((dataset) => dataset?.categories.flatMap((category) => category.topics.flatMap((topic) => topic.cards.map((card) => ({ bankId: dataset.id, card })))) ?? []);
-      expect(datasets.map((dataset) => dataset?.declaredCardCount)).toEqual([1223, 900, 3218, 1356, 436]);
-      expect(cards).toHaveLength(7133);
+      expect(datasets.map((dataset) => dataset?.declaredCardCount)).toEqual([1223, 900, 3218, 1090, 436]);
+      expect(cards).toHaveLength(6867);
       expect(resourceManifest.files).toHaveLength(6081);
       expect(cards.filter(({ card }) => card.audio && !resources.has(card.audio))).toEqual([]);
 
@@ -65,8 +65,7 @@ describe('embeddedQuestionBankRepository', () => {
       expect(imageCards).toHaveLength(23);
       expect(imageCards.every(({ card }) => card.kind === 'image' && /^\/question-bank-assets\/images\/opi\/image-questions\/image-topic-\d{3}\.jpg$/.test(card.image) && Boolean(card.imageAlt))).toBe(true);
       const imageQuestionAudio = cards.filter(({ bankId, card }) => bankId === 'opi' && Boolean(card.audio));
-      expect(imageQuestionAudio).toHaveLength(64);
-      expect(imageQuestionAudio.every(({ card }) => /^\/question-bank-assets\/audio\/opi\/image-questions\/image-topic-\d{3}-q\d{2}\.mp3$/.test(card.audio ?? ''))).toBe(true);
+      expect(imageQuestionAudio).toHaveLength(0);
 
       const expectedAudio = (bankId: string, cardId: string) => {
         if (bankId === 'listening') return `/question-bank-assets/audio/listening/main/${cardId.slice(-3)}.mp3`;

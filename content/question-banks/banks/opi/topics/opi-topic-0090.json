@@ -2,35 +2,31 @@
   "categoryId": "opi-category-01",
   "id": "opi-topic-0090",
   "name": "大雨/强降雨",
-  "declaredCardCount": 4,
+  "declaredCardCount": 3,
   "cards": [
     {
       "id": "opi-core-890",
       "taskTitle": "气象-大雨/强降雨-1",
-      "audioText": "If you encounter heavy rain during approach what factors will you consider?",
-      "audioTextZh": "进近时遭遇强降雨，你会考虑哪些因素？",
-      "referenceText": "If there is heavy rain during approach, we will consider low visibility, engine performance, runway condition, and braking action. If no contact at minimum due to heavy rain, we will go around. What's more, if the runway surface is wet, we may overrun the runway.\n进近时遇强降雨，我们会考虑低能见度、发动机性能、跑道状况以及刹车效能。若因强降雨在最低标准时无法建立目视参考，我们会复飞。此外，若跑道表面潮湿，我们可能会出现跑道超限（滑出跑道 ）情况 。"
-    },
-    {
-      "id": "opi-core-891",
-      "taskTitle": "气象-大雨/强降雨-2",
-      "audioText": "If there is standing water on the runway, what will you do?",
-      "audioTextZh": "若跑道上有积水，你会怎么做？",
-      "referenceText": "I will confirm the runway condition and braking action. If the braking action is poor, I cannot land on the runway, I will terminate the approach and perform a go - around. I will request diversion.\n我会确认跑道状况和刹车效能。若刹车效能不佳，无法在该跑道着陆，我会终止进近并复飞，还会申请备降 。"
+      "audioText": "What factors would you consider if you encountered heavy rain during approach?",
+      "audioTextZh": "进近过程中遇到大雨时，你会考虑哪些因素？",
+      "referenceText": "I would consider visibility, runway condition and braking action, crosswind, wind shear and thunderstorm activity, and the approach's stability. I would also check aircraft limitations, landing performance and the risk of engine or sensor effects from intense precipitation. If the approach could not remain stable or the runway margin were doubtful, I would go around or use another plan.",
+      "referenceTextZh": "我会考虑能见度、跑道状况和制动效应、侧风、风切变、雷暴活动以及进近稳定性。我还会检查飞机限制、着陆性能，以及强降水对发动机或传感器的潜在影响。如果进近无法保持稳定，或跑道裕度存在疑问，我会复飞或采用其他方案。"
     },
     {
       "id": "opi-core-892",
-      "taskTitle": "气象-大雨/强降雨-3",
+      "taskTitle": "气象-大雨/强降雨-2",
       "audioText": "Have you ever flown in heavy rain?",
-      "audioTextZh": "你在大雨中飞行过吗?",
-      "referenceText": "Yes, I’ve flown in heavy rain during approach to XX airport. I focused on visibility (windshield wipers on), monitored runway braking action, and adjusted approach speed. Heavy rain reduced visibility and increased landing distance, but I maintained stable flight and landed safely by following procedures.\n飞过。在飞往XX机场的进近阶段，我曾遭遇大雨天气。我开启风挡雨刷保障能见度，监控跑道刹车效应，调整进近速度；大雨虽降低能见度并增加着陆距离，但通过遵循程序，我保持了飞机稳定，安全着陆。"
+      "audioTextZh": "你曾在大雨中飞行过吗？",
+      "referenceText": "One adjustable example is that I have flown through an area of heavy rain during a stabilized approach. The crew monitored visibility, weather radar and aircraft performance, and remained ready to go around. The rain weakened before landing; otherwise, we would have discontinued the approach.",
+      "referenceTextZh": "一个可调整的示范答案是，我曾在稳定进近过程中飞经一片大雨区域。机组监控能见度、气象雷达和飞机性能，并随时准备复飞。着陆前雨势减弱；否则我们会中止进近。"
     },
     {
       "id": "opi-core-893",
-      "taskTitle": "气象-大雨/强降雨-4",
-      "audioText": "What are the bad influences if you fly in heavy rain?",
-      "audioTextZh": "在大雨中飞行的不利影响是什么?",
-      "referenceText": "Heavy rain reduces visibility, obscures windshields, and impairs braking action on runways, increasing the risk of overrun or veering off. It may also cause engine performance issues and affect aircraft stability during approach.\n大雨会降低能见度、遮挡风挡，且会影响跑道刹车性能，增加冲出跑道或偏出跑道的风险，还可能导致发动机性能受影响，并在进近阶段影响飞机稳定性。"
+      "taskTitle": "气象-大雨/强降雨-3",
+      "audioText": "How can heavy rain affect a flight?",
+      "audioTextZh": "大雨会如何影响飞行？",
+      "referenceText": "Heavy rain can reduce visibility, mask terrain or runway cues and increase workload. It may be associated with thunderstorms, turbulence, wind shear, hail and lightning, and it can reduce runway braking performance or increase hydroplaning risk. Very intense precipitation may also affect engines or sensors, so crews should follow limitations and avoid hazardous cells.",
+      "referenceTextZh": "大雨会降低能见度、遮蔽地形或跑道目视线索，并增加工作负荷。它可能伴随雷暴、颠簸、风切变、冰雹和闪电，还会降低跑道制动性能或增加滑水风险。极强降水也可能影响发动机或传感器，因此机组应遵守限制并避开危险雷暴单体。"
     }
   ]
 }

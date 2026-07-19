@@ -7,23 +7,26 @@
     {
       "id": "opi-core-638",
       "taskTitle": "运行-标准喊话-1",
-      "audioText": "What is Standard callout?",
-      "audioTextZh": "什么是标准喊话（Standard callout）？\nWhat does standard callout mean?\n标准喊话是什么意思？",
-      "referenceText": "Standard callouts are predefined words and phrases used by flight crew members. For example, during takeoff, the Pilot Flying (PF) controls the aircraft, while the Pilot Monitoring (PM) makes callouts such as “Flaps checked”, “V1”, and “Rotate [speed in knots]”.\n标准喊话是飞行机组人员使用的预先规定好的标准化用语。例如，起飞阶段，操纵飞机的飞行员（PF）负责操控飞机，监控飞行员（PM）需进行标准喊话，如 “襟翼已检查”“V1 速度”“抬轮 [×× 节]” 。\nStandard callout means using a fixed set of words and phrases to communicate critical information in the cockpit. It ensures every pilot uses the same terms in the same situation, reducing confusion. Typical callouts include “80 knots”, “1000 feet”, “500 feet”, “minimums”, “runway in sight”. Standard callouts help both pilots monitor status and make coordinated decisions. They are a key part of SOP and CRM. Airlines publish standard callout lists in their operation manuals.\n标准喊话是指在驾驶舱内使用固定用语传递关键信息，确保所有飞行员在相同场景下用词统一，减少混淆与误解。典型喊话如：80 节、1000 英尺、500 英尺、最低高度、跑道可见等。标准喊话有助于两名飞行员共同监控状态、协同决策，是 SOP 标准程序与 CRM 机组资源管理的核心组成部分。航空公司在运行手册中明确发布标准喊话清单。"
+      "audioText": "What is a standard callout in flight operations?",
+      "audioTextZh": "飞行运行中的标准喊话是什么？",
+      "referenceText": "A standard callout is a brief, predefined spoken phrase used at a specific point in an operation. It identifies a configuration, flight parameter, deviation or required action in language understood by both pilots. The exact wording and the pilot responsible for making it are defined in the operator's SOP.",
+      "referenceTextZh": "标准喊话是在运行中特定节点使用的简短、预先规定的口头用语。它以两名飞行员都能理解的语言，说明某项构型、飞行参数、偏差或所需动作。确切措辞以及由哪名飞行员负责喊话，都由运营人的 SOP 规定。"
     },
     {
       "id": "opi-core-639",
       "taskTitle": "运行-标准喊话-2",
-      "audioText": "What's the standard call-out during flaps extension?",
-      "audioTextZh": "襟翼放出过程中的标准喊话是什么？",
-      "referenceText": "The Pilot Flying (PF) controls the aircraft, while the Pilot Monitoring (PM) should make a call - out such as: “Check speed, altitude, and flap position.”\n操纵飞机的飞行员（PF）负责操控飞机，监控飞行员（PM）应进行如下标准喊话：“检查速度、高度及襟翼位置。”"
+      "audioText": "What standard callouts are normally used when the flaps are selected and verified?",
+      "audioTextZh": "选择并核实襟翼位置时通常使用哪些标准喊话？",
+      "referenceText": "A suitable example would be for the pilot flying to request the required flap setting and the pilot monitoring to select it. After checking the flap indication and speed, the pilot monitoring calls the actual setting when it is reached or reports any disagreement. Crews must use the precise words and verification sequence in their own SOP rather than adopting this example literally.",
+      "referenceTextZh": "一个合适的示范是：操纵飞行员请求所需襟翼位置，由监控飞行员进行选择。监控飞行员检查襟翼指示和速度后，在襟翼达到实际位置时喊出该位置，或报告任何不一致。机组必须使用自己 SOP 中的确切用语和核实顺序，不能原样照搬这个示例。"
     },
     {
       "id": "opi-core-640",
       "taskTitle": "运行-标准喊话-3",
-      "audioText": "Is stand callout important?",
-      "audioTextZh": "标准喊话重要吗？",
-      "referenceText": "Yes, it is very important. It serves as a cross - check, helping to reduce human error and ensure flight safety.\n重要，它非常关键。标准喊话起到交叉检查的作用，有助于减少人为差错，保障飞行安全 。"
+      "audioText": "Why are standard callouts important for flight safety?",
+      "audioTextZh": "标准喊话为什么对飞行安全很重要？",
+      "referenceText": "Standard callouts create a shared understanding of the aircraft's state and the next required action. They help the monitoring pilot detect deviations, missed actions and incorrect configuration early. Consistent wording also reduces ambiguity and supports effective crew coordination during high-workload phases.",
+      "referenceTextZh": "标准喊话使机组对飞机状态和下一项所需动作形成共同理解。它帮助监控飞行员及早发现偏差、遗漏动作和错误构型。一致的措辞还能减少歧义，并在高工作负荷阶段支持有效的机组协调。"
     }
   ]
 }

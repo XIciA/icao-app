@@ -14,29 +14,26 @@
     {
       "id": "opi-image-003-q01",
       "taskTitle": "图片题-003-01",
-      "audioText": "What preparations should be done before taking off from this runway at night?",
-      "audioTextZh": "夜间从这条跑道起飞前应做哪些准备？",
-      "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
-      "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-003-q01.mp3"
+      "audioText": "What preparations should a flight crew make before taking off at night from the runway shown?",
+      "audioTextZh": "从图中所示跑道夜间起飞前，飞行机组应做哪些准备？",
+      "referenceText": "The crew should verify takeoff performance, runway condition, lighting, NOTAMs, departure routing and terrain or obstacle threats. It should brief the centerline, expected visual cues, instrument transition, rejected-takeoff plan and actions after any light or navigation failure. Cockpit brightness, exterior lights and both pilots' night adaptation should be set before entering the runway.",
+      "referenceTextZh": "机组应核实起飞性能、跑道状况、灯光、NOTAM、离场航路，以及地形或障碍物威胁。简令应包括中线保持、预期目视线索、转入仪表飞行、中断起飞计划，以及灯光或导航设备失效后的行动。进入跑道前，应调好驾驶舱亮度和外部灯光，并确保两名飞行员都已适应夜间环境。"
     },
     {
       "id": "opi-image-003-q02",
       "taskTitle": "图片题-003-02",
-      "audioText": "What potential risks might there be during night take - off from this view?",
-      "audioTextZh": "从这个视角看，夜间起飞可能有哪些潜在风险？",
-      "referenceText": "The main risks are runway lights, correct performance calculation, departure briefing, and careful monitoring of runway alignment. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
-      "referenceTextZh": "主要风险包括检查跑道灯光、核实性能计算、完成离场简令并仔细监控跑道方向。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-003-q02.mp3"
+      "audioText": "What hazards should pilots consider when taking off at night from the runway shown?",
+      "audioTextZh": "从图中所示跑道夜间起飞时，飞行员应考虑哪些危险？",
+      "referenceText": "Hazards include poor depth perception, loss of the natural horizon, misleading lights, unlit obstacles and difficulty identifying the runway environment. Rain, fog, snow or glare can hide centerline and edge cues, while fatigue and a black-hole departure can weaken attitude awareness. The crew should be ready to transfer promptly to instruments and follow the published departure path.",
+      "referenceTextZh": "危险包括深度知觉变差、失去自然地平线、灯光误导、未设灯光的障碍物，以及难以识别跑道环境。雨、雾、雪或眩光可能遮蔽中线和边灯线索，疲劳和黑洞式离场也会削弱姿态意识。机组应准备及时转入仪表参照，并沿公布的离场航迹飞行。"
     },
     {
       "id": "opi-image-003-q03",
       "taskTitle": "图片题-003-03",
-      "audioText": "What other runway lighting facilities do you know?",
-      "audioTextZh": "你还知道哪些其他跑道灯光设施？",
-      "referenceText": "This situation is related to Night runway takeoff. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
-      "referenceTextZh": "这种情况与夜间跑道起飞有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-003-q03.mp3"
+      "audioText": "What types of runway lighting help pilots during takeoff and landing at night?",
+      "audioTextZh": "哪些类型的跑道灯光可以在夜间起飞和着陆时帮助飞行员？",
+      "referenceText": "Runway edge lights show the runway limits, centerline lights help maintain alignment and threshold or runway-end lights identify the usable ends. Touchdown-zone lights support landing orientation, while approach-light systems guide the transition toward the runway environment. Taxiway lights and stop bars help on the ground but must be interpreted according to the local lighting system.",
+      "referenceTextZh": "跑道边灯标示跑道边界，中线灯帮助飞机保持对正，入口灯和跑道末端灯标示可用跑道的两端。接地带灯有助于着陆定位，进近灯光系统则帮助飞行员向跑道环境过渡。滑行道灯和停止排灯有助于地面运行，但必须按照当地灯光系统正确识别。"
     }
   ]
 }

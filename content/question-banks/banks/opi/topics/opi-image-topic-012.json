@@ -14,38 +14,32 @@
     {
       "id": "opi-image-012-q01",
       "taskTitle": "图片题-012-01",
-      "audioText": "Please describe what you observe in this picture.",
-      "audioTextZh": "请描述你在图片中观察到的内容。",
-      "referenceText": "In this picture, I can see a situation related to Taxiway departure queue. The key points are fuel burn, brake heating, congestion, FOD exposure, and increased crew workload. It is important for the crew to recognize the risk early, keep good communication, and follow standard operating procedures.",
-      "referenceTextZh": "在这张图片中，我看到的是与滑行道起飞排队有关的情况。关键点包括耗油增加、刹车升温、地面拥堵、外来物暴露以及机组工作负荷增加。机组应及早识别风险，保持良好沟通，并按照标准操作程序处置。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-012-q01.mp3"
+      "audioText": "What can you see in the aircraft queue shown in this picture?",
+      "audioTextZh": "你能从图中的航空器排队场景中看到什么？"
     },
     {
       "id": "opi-image-012-q02",
       "taskTitle": "图片题-012-02",
-      "audioText": "What are the possible causes of aircraft queuing on taxiways before takeoff?",
-      "audioTextZh": "飞机起飞前在滑行道排队可能有哪些原因？",
-      "referenceText": "Possible factors include fuel burn, brake heating, congestion, FOD exposure, and increased crew workload. Human factors, weather, aircraft condition, airport environment, and communication problems may also contribute to the situation.",
-      "referenceTextZh": "可能因素包括耗油增加、刹车升温、地面拥堵、外来物暴露以及机组工作负荷增加。人的因素、天气、飞机状态、机场环境以及沟通问题也可能共同导致这种情况。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-012-q02.mp3"
+      "audioText": "What can cause aircraft to queue on a taxiway before takeoff?",
+      "audioTextZh": "哪些因素可能导致航空器起飞前在滑行道上排队等候？",
+      "referenceText": "Queues can result when departure demand exceeds runway or airspace capacity. Weather, flow-control restrictions, runway inspection, crossing traffic, deicing, equipment faults and wake-turbulence spacing can slow the sequence. Gate release may also be poorly matched to the actual departure rate.",
+      "referenceTextZh": "当离场需求超过跑道或空域容量时，可能形成排队。天气、流量控制限制、跑道检查、穿越跑道的交通、除冰、设备故障和尾流间隔都会减慢放行顺序。机位放行时机也可能与实际离场率不匹配。"
     },
     {
       "id": "opi-image-012-q03",
       "taskTitle": "图片题-012-03",
-      "audioText": "What risks may exist during long-time taxi waiting on the airport surface?",
-      "audioTextZh": "在机场地面长时间滑行等待可能有哪些风险？",
-      "referenceText": "The main risks are fuel burn, brake heating, congestion, FOD exposure, and increased crew workload. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
-      "referenceTextZh": "主要风险包括耗油增加、刹车升温、地面拥堵、外来物暴露以及机组工作负荷增加。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-012-q03.mp3"
+      "audioText": "What risks can arise when aircraft wait on the ground for an extended period before takeoff?",
+      "audioTextZh": "航空器在起飞前长时间停留在地面可能产生哪些风险？",
+      "referenceText": "Long queues consume fuel, extend duty and increase fatigue, passenger discomfort and the chance that takeoff data or weather becomes outdated. Close-spaced ground traffic can increase runway-incursion, jet-blast, overheating and communication risks. A technical or medical problem may also be harder to manage when access to a stand is limited.",
+      "referenceTextZh": "长时间排队会消耗燃油、延长执勤，并增加疲劳、旅客不适，以及起飞数据或天气信息过期的风险。间距很小的地面交通会增加跑道侵入、喷流、设备过热和通信风险。停机位难以返回时，技术或医疗问题也可能更难处理。"
     },
     {
       "id": "opi-image-012-q04",
       "taskTitle": "图片题-012-04",
-      "audioText": "How to avoid this situation?",
-      "audioTextZh": "如何避免这种情况？",
-      "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
-      "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-012-q04.mp3"
+      "audioText": "How can long ground queues before takeoff be managed or reduced?",
+      "audioTextZh": "如何管理或减少起飞前的长时间地面排队？",
+      "referenceText": "Airports and ATC can meter departures, coordinate runway use and share accurate capacity and expected-delay information. Airlines can hold aircraft at the gate when practical, update schedules and sequence flights using collaborative decision-making. Crews should manage fuel and cabin conditions, update performance and communicate any limit before it becomes urgent.",
+      "referenceTextZh": "机场和 ATC 可以调节离场流量、协调跑道使用，并共享准确的容量与预计延误信息。条件允许时，航空公司可让飞机留在机位等待，更新时刻，并通过协同决策安排航班顺序。机组应管理燃油和客舱条件、更新性能，并在任何限制变得紧迫前及时通报。"
     }
   ]
 }

@@ -14,20 +14,18 @@
     {
       "id": "opi-image-013-q01",
       "taskTitle": "图片题-013-01",
-      "audioText": "What do you know about FOD?",
-      "audioTextZh": "你对外来物损伤了解多少？",
-      "referenceText": "FOD means foreign object debris or foreign object damage. It can damage tires, engines, and aircraft structures, so ramp inspection and runway cleaning are very important.",
-      "referenceTextZh": "FOD 指外来物或外来物损伤。它可能损坏轮胎、发动机和飞机结构，因此机坪检查和跑道清理非常重要。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-013-q01.mp3"
+      "audioText": "What is foreign object debris (FOD), and why is it hazardous?",
+      "audioTextZh": "什么是外来物（FOD）？它为什么危险？",
+      "referenceText": "Foreign object debris is any loose object in an airport operating area that can damage an aircraft or injure people. Examples include metal pieces, stones, tools, baggage parts and pavement fragments. An engine can ingest the object, while tires may throw it into the airframe or another aircraft.",
+      "referenceTextZh": "外来物碎片是机场运行区域内任何可能损坏飞机或伤人的松散物体，例如金属片、石块、工具、行李部件和道面碎片。发动机可能吸入这些物体，轮胎也可能将其抛向机体或其他飞机。"
     },
     {
       "id": "opi-image-013-q02",
       "taskTitle": "图片题-013-02",
-      "audioText": "What measures can prevent foreign object ingestion into aircraft engines?",
-      "audioTextZh": "哪些措施可以防止外来物被吸入飞机发动机？",
-      "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
-      "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-013-q02.mp3"
+      "audioText": "What measures can reduce the risk of foreign object debris being ingested by an aircraft engine?",
+      "audioTextZh": "哪些措施可以降低航空器发动机吸入外来物的风险？",
+      "referenceText": "Airports and operators should inspect and clean movement areas, control tools and materials, maintain pavement and containers, and report debris immediately. Pilots and ground staff should avoid taxiing through visible debris, respect safe engine-running areas and perform the required intake and apron checks. Good housekeeping and investigation of recurring sources prevent the hazard from returning.",
+      "referenceTextZh": "机场和运营人应检查并清扫活动区，管控工具和材料，维护道面与容器，并立即报告碎片。飞行员和地面人员应避免滑过可见碎片，遵守发动机运转区域的安全要求，并完成规定的进气道和机坪检查。良好的现场管理和对反复出现来源的调查，可以防止危险再次发生。"
     }
   ]
 }

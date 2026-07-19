@@ -2,70 +2,55 @@
   "categoryId": "opi-category-05",
   "id": "opi-topic-0030",
   "name": "中断起飞",
-  "declaredCardCount": 9,
+  "declaredCardCount": 6,
   "cards": [
     {
       "id": "opi-core-446",
       "taskTitle": "运行-中断起飞-1",
-      "audioText": "If you abort takeoff due to engine fire, what will you do?",
-      "audioTextZh": "如果因发动机起火中断起飞，你会怎么做？",
-      "referenceText": "（1）I will perform the abort takeoff procedure: first, shut off the engine power. Second, use the rudder to keep the aircraft straight on the runway. Third, apply the brakes to stop the aircraft on the runway. We may need to conduct an evacuation on the runway if necessary.\n我会执行中断起飞程序，首先关闭动力。其次，用方向舵保持飞机在跑道上直线滑行。第三，使用刹车让飞机在跑道上停下。我们可能需要在跑道上进行撤离。\n（2）First, we should cooperate to complete the abort takeoff checklist. Second, inform ATC of the situation and request emergency services. Third, cabin crew should follow the captain’s instructions, comfort passengers, and prepare them for evacuation. Finally, the captain should make a PA to tell passengers to calm down and follow cabin crew instructions for evacuation.\n首先，我们应协同配合完成检查单。其次，应将情况告知空中交通管制（ATC）并请求应急服务。第三，客舱机组人员应听从机长指令，安抚乘客并让乘客做好撤离准备。最后，机长应进行广播，告知乘客冷静并听从客舱机组人员的撤离指令。"
-    },
-    {
-      "id": "opi-core-447",
-      "taskTitle": "运行-中断起飞-2",
-      "audioText": "If bird ingestion happens to you during initial climb, how will you deal with the situation?",
-      "audioTextZh": "在初始爬升阶段遭遇发动机吸入鸟（鸟击发动机 ），你会如何处置这种情况？",
-      "referenceText": "If I encounter a bird strike during initial climb, first, I will stay calm and do my best to control the aircraft, trying to maintain airspeed, attitude, and altitude. Secondly, I will follow the SOP (Standard Operating Procedure) and execute the relevant checklist for bird strike. At last, I will advise ATC of our situation and request to come back to land or land at the nearest suitable airport.\n如果在初始爬升阶段遭遇鸟击发动机，首先，我会保持冷静，尽力控制飞机，尝试维持空速、姿态和高度。其次，我会遵循标准操作程序（SOP）并执行检查单。最后，我会将情况告知空中交通管制（ATC），申请返航着陆或在最近的合适机场降落。"
+      "audioText": "How should a flight crew respond if an engine fire leads to a rejected takeoff?",
+      "audioTextZh": "发动机起火导致中断起飞时，飞行机组应如何处置？",
+      "referenceText": "Once the crew has rejected the takeoff for an engine fire, the pilot should keep the aircraft on the runway and use the approved stopping actions, including braking, spoilers and reverse thrust as applicable. The crew should apply the engine-fire and rejected-takeoff procedure, notify ATC and assess fire, wind and aircraft position. If remaining on board is unsafe, the captain orders an evacuation and the crew directs people toward safe exits away from the fire.",
+      "referenceTextZh": "机组因发动机着火中断起飞后，飞行员应使飞机保持在跑道上，并采用经批准的停止动作，包括按适用情况使用刹车、扰流板和反推。机组应执行发动机火警和中断起飞程序，通知 ATC，并评估火势、风向和飞机位置。如果留在机上不安全，机长应下令撤离，机组引导人员使用远离火源的安全出口。"
     },
     {
       "id": "opi-core-448",
-      "taskTitle": "运行-中断起飞-3",
-      "audioText": "What may cause a pilot to reject takeoff.",
-      "audioTextZh": "哪些情况可能导致飞行员中断起飞？",
-      "referenceText": "There are several reasons that may cause a pilot to reject takeoff. For example, another aircraft crossing the runway, landing gear problems, tire burst, bird strike, and so on.\n有一些导致中断起飞的原因。例如，有飞机穿越跑道、起落架故障、轮胎爆破、鸟击等等。\n\nAbort takeoff before V1 if encountering master warning activation, system failure (engine, hydraulic, electrical), abnormal noise/vibration, tire issues, slow acceleration, takeoff configuration error, fire warning, wind shear alert, or any condition threatening flight safety.\n在V1速度前，若出现主警告激活、系统故障（发动机、液压、电气）、异常噪音/振动、轮胎问题、加速缓慢、起飞构型错误、火警警告、风切变警报或任何威胁飞行安全的情况，应中断起飞。"
+      "taskTitle": "运行-中断起飞-2",
+      "audioText": "What conditions may lead a flight crew to reject a takeoff?",
+      "audioTextZh": "哪些情况可能导致飞行机组中断起飞？",
+      "referenceText": "At low speed, crews may reject for a warning, system fault, unusual noise, unsafe configuration, loss of thrust or another condition that makes the aircraft unsafe to continue. Near V1, the reject criteria become much narrower because stopping risk rises rapidly; typical high-speed reasons include engine failure, fire warning, loss of directional control or a clear indication that the aircraft cannot fly safely. The operator's briefing and procedure define the applicable criteria for the aircraft.",
+      "referenceTextZh": "在低速阶段，机组可能因警告、系统故障、异常噪声、不安全构型、推力丧失或其他使飞机无法安全继续的情况而中断起飞。接近 V1 时，由于停止风险迅速增加，中断标准会大幅收紧；典型的高速中断原因包括发动机失效、火警、失去方向控制，或明确显示飞机无法安全飞行。运营人的简令和程序规定适用于该机型的具体标准。"
     },
     {
       "id": "opi-core-449",
-      "taskTitle": "运行-中断起飞-4",
-      "audioText": "Please tell me the procedure for rejected takeoff.",
-      "audioTextZh": "请告诉我中断起飞的程序。",
-      "referenceText": "I fly the DA - 40 aircraft. Our rejected takeoff procedure is to first shut off the power. Secondly, use the rudder to maintain the aircraft straight on the runway. Thirdly, use the brakes to stop the aircraft on the runway.\n我驾驶 DA - 40 飞机，我们的中断起飞程序是首先关闭动力。其次，用方向舵保持飞机在跑道上直线滑行。第三，使用刹车让飞机在跑道上停下。\n\nFor light aircraft (for example DA-40), reduce throttle to idle, apply brakes firmly to stop. For large aircraft, the captain calls \"stop\", reduces throttle, applies maximum brakes, deploys speed brakes and thrust reverse, maintains runway centerline. After stopping, report to ATC and inform passengers/crew.\n轻型飞机（如DA-40）：将油门收至慢车，用力刹车停稳；大型飞机：机长喊“停止”，收油门，施加最大刹车，放出减速板和反推，保持跑道中心线；停稳后向空管报告并通知乘客/机组。"
+      "taskTitle": "运行-中断起飞-3",
+      "audioText": "What is the general procedure for a rejected takeoff?",
+      "audioTextZh": "中断起飞的一般程序是什么？",
+      "referenceText": "When the reject decision is made, the crew applies the aircraft's immediate stopping actions and maintains directional control. They use the approved braking, speed-brake and reverse-thrust sequence, monitor the stop and tell ATC when workload permits. After stopping, they set the aircraft as required, assess fire and brake risks, complete the checklist and evacuate only when remaining on board is more dangerous.",
+      "referenceTextZh": "作出中断决定后，机组应执行该机型规定的立即停止动作，并保持方向控制。他们按照批准的顺序使用刹车、减速板和反推，监控停止过程，并在工作负荷允许时通知 ATC。停止后，机组按程序处置并固定飞机，评估火灾和刹车风险，完成检查单；只有留在机上的危险更大时才撤离。"
     },
     {
       "id": "opi-core-450",
-      "taskTitle": "运行-中断起飞-5",
-      "audioText": "What are the possible consequences of rejecting takeoff after V1?",
-      "audioTextZh": "在速度达到 V1 后中断起飞，可能会产生哪些后果？",
-      "referenceText": "If we reject takeoff after V1, we may run out of the runway, even cause structural damage or passenger injury. It is very dangerous.\n如果在速度达到 V1 后中断起飞，我们可能会冲出跑道，甚至造成飞机结构损坏或乘客受伤。这非常危险。\n\nAborting takeoff after V1 is extremely dangerous. The aircraft may not have enough runway to stop, leading to runway overrun, structural damage (landing gear, fuselage), tire burst, or even fire/explosion. Crew and passengers face high risk of injuries or fatalities.\n超过V1后中断起飞极具危险性。飞机可能没有足够跑道停稳，导致跑道冲出、结构损伤（起落架、机身）、轮胎爆裂，甚至起火/爆炸，机组和乘客面临高伤亡风险。"
-    },
-    {
-      "id": "opi-core-451",
-      "taskTitle": "运行-中断起飞-6",
-      "audioText": "If the aircraft ingests some foreign objects during takeoff rolling, what would you do?",
-      "audioTextZh": "如果飞机在起飞滑跑阶段吸入异物，你会怎么做？",
-      "referenceText": "If we encounter this situation during takeoff rolling, we will abort takeoff immediately if the aircraft speed before V1. We will shut off the power first and use the rudder to maintain the aircraft straight on the runway. At last, use the maximum brakes to stop the aircraft on the runway. If the aircraft speed passes V1, we must go on takeoff. Then advise ATC of our situation and request land as soon as possible to check the damage.\n如果在起飞滑跑阶段遇到这种情况，若飞机速度在 V1（决策速度 ）之前，我们会立即中断起飞。首先关闭动力，并用方向舵保持飞机在跑道上直线滑行。最后，使用最大刹车让飞机在跑道上停下。若飞机速度超过 V1，我们必须继续起飞。之后，将情况告知空中交通管制（ATC），并申请尽快着陆以检查损坏情况。"
+      "taskTitle": "运行-中断起飞-4",
+      "audioText": "What are the possible consequences of rejecting a takeoff after V1?",
+      "audioTextZh": "在 V1 之后中断起飞可能产生哪些后果？",
+      "referenceText": "Rejecting after V1 may leave insufficient runway or stopway to stop, creating a serious risk of overrun, collision, tire failure, brake fire and structural damage. At high speed, directional control may also be difficult after an engine or tire failure. For a transport aircraft, the normal plan is therefore to continue after V1 and handle the failure airborne, unless the crew judges that the aircraft cannot fly safely.",
+      "referenceTextZh": "超过 V1 后中断起飞，可能没有足够的跑道或停止道使飞机停下，从而带来严重的冲出跑道、碰撞、轮胎失效、刹车起火和结构损坏风险。高速时，发动机或轮胎失效后保持方向控制也可能很困难。因此，对运输类飞机而言，正常计划是在 V1 后继续起飞并在空中处理故障，除非机组判断飞机无法安全飞行。"
     },
     {
       "id": "opi-core-452",
-      "taskTitle": "运行-中断起飞-7",
-      "audioText": "what will you do when the warning alerts are triggered during takeoff?",
-      "audioTextZh": "起飞阶段触发警告警报时，你会怎么做？",
-      "referenceText": "If we encounter this situation during takeoff rolling, we will abort takeoff immediately if the aircraft speed before V1. We will shut off the power first and use the rudder to maintain the aircraft straight on the runway. At last, use the maximum brakes to stop the aircraft on the runway.If the aircraft speed passes V1, we must go on takeoff. Then advise ATC of our situation and request land as soon as possible to check the damage.\n如果在起飞滑跑阶段遇到这种情况，若飞机速度在 V1（决策速度 ）之前，我们会立即中断起飞。首先关闭动力，并用方向舵保持飞机在跑道上直线滑行。最后，使用最大刹车让飞机在跑道上停下。若飞机速度超过 V1，我们必须继续起飞。之后，将情况告知空中交通管制（ATC），并申请尽快着陆以检查损坏情况。"
-    },
-    {
-      "id": "opi-core-453",
-      "taskTitle": "运行-中断起飞-8",
-      "audioText": "What is the reason for executing an aborted takeoff? Under what circumstances should you reject takeoff?",
-      "audioTextZh": "执行中断起飞的原因是什么？在哪些情况下你应该中断起飞？",
-      "referenceText": "There are some possible reasons for rejecting takeoff. First, if we encounter engine problems (such as engine failure or engine fire) during takeoff, we will reject takeoff. Second, if we have landing gear problems (such as a burst tire/tire blown out) during takeoff, we will reject takeoff. Third, if there is a runway incursion (such as a vehicle crossing the runway) during takeoff, we will reject takeoff.\n中断起飞有一些可能的原因。首先，如果遇到发动机问题，比如发动机失效或发动机起火，我们会中断起飞。其次，如果起落架出现问题，比如轮胎爆破 / 爆胎，我们会中断起飞。第三，如果发生跑道入侵情况，比如有车辆穿越跑道，我们会中断起飞。"
+      "taskTitle": "运行-中断起飞-5",
+      "audioText": "How should a flight crew respond if a warning occurs during the takeoff roll?",
+      "audioTextZh": "起飞滑跑过程中出现警告时，飞行机组应如何处置？",
+      "referenceText": "The crew should identify the warning, monitor airspeed and apply the operator's takeoff decision policy rather than react automatically to every light or sound. Before the applicable decision point, a safety-critical warning may require a reject; at high speed, the crew rejects only for the defined serious conditions. If the takeoff continues, the crew flies the aircraft, performs the after-takeoff abnormal procedure and returns or diverts as needed.",
+      "referenceTextZh": "机组应识别警告、监控空速，并执行运营人的起飞决策政策，而不是对每个灯光或声音都作出自动反应。在适用决策点之前，对安全至关重要的警告可能要求中断起飞；高速时，机组只因程序规定的严重状况中断。如果继续起飞，机组应操纵飞机、执行起飞后的非正常程序，并按需返航或改航。"
     },
     {
       "id": "opi-core-454",
-      "taskTitle": "运行-中断起飞-9",
-      "audioText": "What are the procedures of rejecting takeoff? How to make a successful rejected takeoff? What should you do if the speed is after V1 and you have to abort takeoff?",
-      "audioTextZh": "中断起飞的程序有哪些？如何成功执行中断起飞？若速度超过  V1，后必须中断起飞，你该怎么做？",
-      "referenceText": "In case of a rejected takeoff, I will take immediate actions to stop the aircraft on the runway. First, I will retard the thrust lever/reduce power to idle and use maximum brakes. Second, I will raise/extend the speedbrakes and ground spoilers; third, I will use maximum reverse thrust. Meanwhile, I will use the rudder pedals to maintain directional control of the aircraft.\n若需中断起飞，我会立即采取行动让飞机在跑道上停下。首先，我会将推力杆拉回慢车（把动力减小到慢车状态 ）并使用最大刹车。其次，我会升起 / 放出减速板和地面扰流板；第三，我会使用最大反推。同时，我们会用方向舵踏板保持对飞机的方向控制。"
+      "taskTitle": "运行-中断起飞-6",
+      "audioText": "How does V1 affect the decision to continue or reject a takeoff?",
+      "audioTextZh": "V1 如何影响继续起飞或中断起飞的决策？",
+      "referenceText": "V1 is the takeoff decision speed used in performance planning and crew decision-making. To achieve the certified accelerate-stop result, the first action to reject must be taken no later than V1; after V1, the planned response is normally to continue because the remaining runway may not support a safe stop. V1 is not a command to continue an aircraft that is clearly incapable of flight, so the crew still uses judgement under the approved emergency procedure.",
+      "referenceTextZh": "V1 是性能计划和机组决策所使用的起飞决断速度。为了满足审定的加速停止性能，最晚必须在 V1 时采取中断起飞的第一个动作；超过 V1 后，正常计划是继续起飞，因为剩余跑道可能无法支持安全停止。V1 并不意味着必须让一架明显无法飞行的飞机继续起飞，因此机组仍应依据批准的应急程序作出判断。"
     }
   ]
 }

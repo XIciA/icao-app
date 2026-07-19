@@ -2,42 +2,39 @@
   "categoryId": "opi-category-03",
   "id": "opi-topic-0040",
   "name": "GPS",
-  "declaredCardCount": 5,
+  "declaredCardCount": 4,
   "cards": [
     {
       "id": "opi-core-515",
       "taskTitle": "缩略词-GPS-1",
-      "audioText": "What is GPS?",
-      "audioTextZh": "什么是 GPS？",
-      "referenceText": "GPS stands for Global Positioning System. It is a part of GNSS.\nGPS 是全球定位系统（Global Positioning System ）的缩写，它是 GNSS（全球导航卫星系统 ）的组成部分 。"
+      "audioText": "What is the Global Positioning System (GPS)?",
+      "audioTextZh": "什么是全球定位系统（GPS）？",
+      "referenceText": "The Global Positioning System, or GPS, is the satellite-navigation constellation operated by the United States. A receiver calculates position, velocity and time from signals transmitted by several satellites. In aviation, approved GPS equipment can support navigation from the en-route phase to certain instrument approaches.",
+      "referenceTextZh": "全球定位系统（GPS）是由美国运行的卫星导航星座。接收机利用多颗卫星发射的信号计算位置、速度和时间。在航空领域，经批准的 GPS 设备可以支持从航路阶段到某些仪表进近的导航。"
     },
     {
       "id": "opi-core-516",
       "taskTitle": "缩略词-GPS-2",
-      "audioText": "GPS VS Conventional navigation\nGPS",
-      "audioTextZh": "与传统导航对比",
-      "referenceText": "Compared with conventional navigation, GPS is more reliable, more accurate, and safer.\n与传统导航相比，GPS 更可靠、更精准且更安全 。"
-    },
-    {
-      "id": "opi-core-517",
-      "taskTitle": "缩略词-GPS-3",
-      "audioText": "How much do you know about GPS?",
-      "audioTextZh": "你对GPS了解多少？",
-      "referenceText": "As I know, GPS is the Global Positioning System. It is one of the most widely used global navigation satellite systems (GNSS).\n据我所知，GPS 是全球定位系统（Global Positioning System ）。它是使用最广泛的全球导航卫星系统（GNSS ）之一 。。"
+      "audioText": "How does the Global Positioning System (GPS) compare with conventional navigation systems?",
+      "audioTextZh": "全球定位系统（GPS）与传统导航系统相比有何不同？",
+      "referenceText": "GPS can provide continuous position information over a wide area without requiring the aircraft to remain within line-of-sight range of one ground station. Conventional systems such as VOR, DME and NDB depend on ground facilities and have different coverage, accuracy and failure modes. Modern operations often combine satellite, inertial and ground-based information so that one source can be checked against another.",
+      "referenceTextZh": "GPS 可以在大范围内持续提供位置信息，而不要求航空器始终处于某一个地面台的视距范围内。VOR、DME 和 NDB 等传统系统依赖地面设施，在覆盖范围、精度和失效模式方面各不相同。现代运行通常会综合卫星、惯性和地基信息，使不同信息源能够相互核对。"
     },
     {
       "id": "opi-core-518",
-      "taskTitle": "缩略词-GPS-4",
-      "audioText": "Do you prefer GPS or conventional navigation systems?",
-      "audioTextZh": "你更喜欢GPS还是更喜欢传统导航系统？",
-      "referenceText": "I prefer GPS because:\nGPS can provide more precise guidance to the aircraft;\nGPS can be used in all weather conditions;\nGPS can be used all over the world.\n我更喜欢 GPS ，原因如下：\nGPS 能为飞机提供更精准的引导；\nGPS 可在各类天气条件下使用；\nGPS 可在全球范围内使用。"
+      "taskTitle": "缩略词-GPS-3",
+      "audioText": "Do you prefer the Global Positioning System (GPS) or conventional navigation systems?",
+      "audioTextZh": "你更喜欢全球定位系统（GPS）还是传统导航系统？",
+      "referenceText": "A suitable answer would be: I generally prefer GPS because it gives accurate, continuous position information and supports efficient area navigation. However, I would not treat it as the only source, because interference, satellite geometry or an equipment failure can reduce its availability. I would keep the approved conventional or inertial backup methods ready and cross-check the displayed position.",
+      "referenceTextZh": "一个合适的回答是：我通常更喜欢 GPS，因为它能提供准确、连续的位置信息，并支持高效的区域导航。不过，我不会把它作为唯一信息源，因为干扰、卫星几何分布或设备故障都可能降低可用性。我会准备好经批准的传统或惯性备份方法，并对显示的飞机位置进行交叉核对。"
     },
     {
       "id": "opi-core-519",
-      "taskTitle": "缩略词-GPS-5",
-      "audioText": "If GPS fails during flight, what will you do?",
-      "audioTextZh": "如果飞行中GPS失效，你会怎么办？",
-      "referenceText": "If GPS fails during flight, we will use conventional navigation systems such as VOR, NDB, and DME. Besides, we will report our situation to ATC and request radar monitoring and radar vectors.\n如果飞行中GPS失效，我们将使用传统导航系统，比如VOR，NDB，DME。此外，我们将报告管制我们的情况，请求雷达监控和雷达引导。"
+      "taskTitle": "缩略词-GPS-4",
+      "audioText": "What should a pilot do if the Global Positioning System (GPS) fails during flight?",
+      "audioTextZh": "飞行中全球定位系统（GPS）失效时，飞行员应如何处置？",
+      "referenceText": "The pilot should first confirm the failure indications and determine which navigation functions have actually been lost. The crew should use the remaining approved sources, follow the checklist and advise ATC promptly if the aircraft can no longer meet its clearance or required navigation performance. They should request an amended clearance, radar assistance or another suitable procedure rather than continue an operation that needs unavailable GPS capability.",
+      "referenceTextZh": "飞行员应先确认故障指示，并判断实际失去了哪些导航功能。机组应使用剩余的经批准导航源，执行检查单；如果飞机无法继续满足管制许可或所需导航性能，应立即通知空管。应申请修改许可、雷达协助或其他合适程序；如果运行所需的 GPS 功能已经不可用，就不能继续执行该项运行。"
     }
   ]
 }

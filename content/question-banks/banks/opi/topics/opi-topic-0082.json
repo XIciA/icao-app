@@ -7,9 +7,10 @@
     {
       "id": "opi-core-834",
       "taskTitle": "缩略词-NOTAM-1",
-      "audioText": "What are the differences between NOTAM and SNOWTAM?\nNOTAM",
-      "audioTextZh": "和 SNOWTAM 有什么区别？",
-      "referenceText": "NOTAM and SNOWTAM are both notices to pilots, but they serve different purposes. NOTAM is a general notice that informs pilots of changes in aviation facilities, services, procedures, or hazards such as runway closures, navigation aid outages, or airspace restrictions. SNOWTAM is a specific type of NOTAM that provides information about snow, ice, and slush conditions on runways, taxiways, and aprons. It includes contamination, friction coefficient, and braking action. All SNOWTAMs are NOTAMs, but not all NOTAMs are SNOWTAMs. Both are essential for safety.\nNOTAM 与 SNOWTAM 均为飞行员通告，但用途不同。NOTAM 是通用通告，发布设施、服务、程序、危险变化，如跑道关闭、导航设备失效、空域限制等。SNOWTAM 是专项 NOTAM，专门发布跑道、滑行道、机坪的雪、冰、雪水状况，包含污染程度、摩擦系数、刹车效应等。冬季运行必须查阅 SNOWTAM。所有 SNOWTAM 都是 NOTAM，但 NOTAM 不一定是 SNOWTAM，两者均为安全必需。"
+      "audioText": "How does a SNOWTAM differ from other Notices to Airmen (NOTAMs)?",
+      "audioTextZh": "雪情通告（SNOWTAM）与其他航行通告（NOTAM）有何不同？",
+      "referenceText": "A SNOWTAM is a special-series NOTAM used to report significant runway surface conditions involving standing water, snow, slush, ice or frost through the ICAO Global Reporting Format. It gives structured runway condition information, including the assessed condition of each runway third and other operationally important details. Other NOTAMs cover a much wider range of temporary changes or hazards, such as closed facilities, unserviceable aids or airspace restrictions.",
+      "referenceTextZh": "SNOWTAM 是一种特殊系列航行通告，用于按照 ICAO 全球报告格式报告涉及积水、雪、雪浆、冰或霜的重要跑道表面状况。它提供结构化的跑道状况信息，包括对跑道每三分之一段的评估结果和其他重要运行细节。其他航行通告涵盖更广泛的临时变化或危险，例如设施关闭、相关设施不可用或空域限制。"
     }
   ]
 }

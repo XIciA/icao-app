@@ -2,91 +2,79 @@
   "categoryId": "opi-category-05",
   "id": "opi-topic-0050",
   "name": "擦尾",
-  "declaredCardCount": 12,
+  "declaredCardCount": 9,
   "cards": [
     {
       "id": "opi-core-590",
       "taskTitle": "运行-擦尾-1",
-      "audioText": "Which phases of flight does a tail strike often happen? why?",
-      "audioTextZh": "飞机尾部擦地（擦尾）通常发生在飞行的哪些阶段？为什么？",
-      "referenceText": "Tail strikes often happen during takeoff and landing. Because during these phases, the aircraft is either about to lift off or touch down. If we don’t have good control of the aircraft, the tail may strike the ground.\n擦尾情况常发生在起飞和着陆阶段。因为在这两个阶段，飞机要么即将离地升空，要么即将接地降落，要是对飞机控制不当，尾部就可能擦碰到地面 。"
+      "audioText": "During which phases of flight is a tail strike most likely to occur?",
+      "audioTextZh": "航空器最容易在哪些飞行阶段发生擦机尾？",
+      "referenceText": "A tail strike is most likely during rotation for takeoff or during the flare and touchdown on landing. It can also occur during a bounced landing or an attempted go-around after touchdown. These phases combine a low height above the runway with significant pitch changes and limited tail clearance.",
+      "referenceTextZh": "擦尾最可能发生在起飞抬轮期间，或着陆拉平与接地期间。它也可能发生在弹跳着陆中，或接地后尝试复飞时。这些阶段的共同特点是飞机离跑道高度很低、俯仰变化明显，而且机尾离地间隙有限。"
     },
     {
       "id": "opi-core-591",
       "taskTitle": "运行-擦尾-2",
-      "audioText": "According to your understanding, what are the possible reasons to cause a tail strike?",
-      "audioTextZh": "根据你的理解，可能导致尾部擦地（擦尾）的原因有哪些？",
-      "referenceText": "There are some reasons for a tail strike, for example, strong wind shear, improper flight control, miscalculation of the CG (Center of Gravity) position, and so on.\n擦尾的原因有多种，比如强风切变、飞行操纵不当、重心（CG）位置计算错误等等 。\n\nCauses include improper maneuver (excessive rotation rate, early flare), unstable approach, incorrect stabilizer trim, mishandling of crosswinds, over-rotation during go-around, CG miscalculation, and strong wake turbulence.\n原因包括操纵不当（抬头率过大、拉平过早）、不稳定进近、安定面配平错误、侧风处置不当、复飞时过度抬头、重心计算失误以及强尾流颠簸。"
-    },
-    {
-      "id": "opi-core-592",
-      "taskTitle": "运行-擦尾-3",
-      "audioText": "Do you think a tail strike will damage the aircraft and injure the passengers?",
-      "audioTextZh": "你认为尾部擦地（擦尾）会损坏飞机并使乘客受伤吗？",
-      "referenceText": "Yes, I think so. A tail strike can damage the aircraft and injure passengers.\n是的，我认为会。擦尾可能会损坏飞机，还可能让乘客受伤 。"
-    },
-    {
-      "id": "opi-core-593",
-      "taskTitle": "运行-擦尾-4",
-      "audioText": "Do you have any effective ways to avoid a tail strike?",
-      "audioTextZh": "你有没有避免尾部擦地（擦尾）的有效方法？",
-      "referenceText": "First of all, pilots should be cautious about wind shear, as it’s very dangerous. Secondly, maintain smooth and proper attitude control of the aircraft. Thirdly, pilots should accurately calculate the CG (Center of Gravity) position.\n首先，飞行员要对风切变保持警惕，因为风切变十分危险。其次，要平稳、恰当控制飞机姿态。第三，飞行员得准确计算重心（CG）位置 。\n\nPilots should undergo sufficient simulator training, master proper rotation and flare techniques, follow SOP, monitor speed and attitude closely, maintain stable approach, manage CG correctly, and avoid adverse weather like turbulence.\n飞行员应接受充分的模拟机训练，掌握正确的抬头和拉平技巧，遵循SOP，密切监控速度和姿态，保持稳定进近，正确管理重心，并避开颠簸等恶劣天气。"
+      "audioText": "What factors can cause a tail strike?",
+      "audioTextZh": "哪些因素可能导致擦机尾？",
+      "referenceText": "Common factors include excessive rotation rate, rotation at the wrong speed, an incorrect takeoff configuration or an aft centre of gravity. On landing, an unstable approach, prolonged flare, bounce, high pitch attitude or mishandled go-around can reduce tail clearance. Wind changes and incorrect loading or performance data may add to the risk.",
+      "referenceTextZh": "常见因素包括抬轮速率过大、在错误速度抬轮、起飞构型不正确或重心过于靠后。着陆时，进近不稳定、拉平时间过长、弹跳、俯仰姿态过大或复飞操作不当，都会减小机尾离地间隙。风的变化以及装载或性能数据错误还可能增加风险。"
     },
     {
       "id": "opi-core-594",
-      "taskTitle": "运行-擦尾-5",
-      "audioText": "Do you know anything about tail strike? Or have you heard any incident about tail strike?",
-      "audioTextZh": "你了解尾部擦地（擦尾）相关情况吗？或者你听说过任何擦尾事件吗？",
-      "referenceText": "Yes, I know. I heard of a tail strike incident. It occurred at our flying school. A student pilot had a tail strike during landing due to improper control.\n是的，我了解。我听说过一起擦尾事件，发生在我们飞行学校。一名飞行学员因操纵不当，在着陆时发生了擦尾。"
+      "taskTitle": "运行-擦尾-3",
+      "audioText": "Can you describe a tail-strike incident you have heard about?",
+      "audioTextZh": "你能否描述一起自己听说过的擦机尾事件？",
+      "referenceText": "A suitable example would be an aircraft that bounced after a firm touchdown and then struck its tail when the pilot made a large nose-up input. The crew discontinued the landing, completed the applicable checklist and returned for an inspection. The lesson is to follow the aircraft's bounce-recovery guidance and avoid trying to force an unsafe landing.",
+      "referenceTextZh": "一个合适的示范案例是：飞机在较重接地后发生弹跳，飞行员随后大幅向后带杆，导致机尾擦地。机组终止着陆，完成适用检查单并返航接受检查。这个案例的教训是，应遵守该机型的弹跳改出指导，避免强行完成不安全的着陆。"
     },
     {
       "id": "opi-core-595",
-      "taskTitle": "运行-擦尾-6",
-      "audioText": "Have you ever encountered tail strike during flight？",
-      "audioTextZh": "你在飞行过程中遇到过尾部擦地（擦尾）情况吗？",
-      "referenceText": "No, I have never encountered tail strike during flight.\n没有，我在飞行中从未遇到过擦尾情况。"
-    },
-    {
-      "id": "opi-core-596",
-      "taskTitle": "运行-擦尾-7",
-      "audioText": "What damages will tail strike bring to an aircraft?",
-      "audioTextZh": "尾部擦地（擦尾）会给飞机造成哪些损坏？",
-      "referenceText": "A tail strike may cause damage to the aircraft’s fuselage and tail.\n擦尾可能会对飞机的机身和尾部造成损坏。"
+      "taskTitle": "运行-擦尾-4",
+      "audioText": "Have you ever experienced a tail strike or a situation in which one was narrowly avoided?",
+      "audioTextZh": "你是否曾经历过擦机尾或险些擦机尾的情况？",
+      "referenceText": "A suitable example would be a landing in gusty wind where the pitch increased during a bounce and the crew immediately went around. No contact occurred, but the event was reviewed because the tail-clearance margin had become small. This is only a model answer and should be replaced with the learner's own experience if appropriate.",
+      "referenceTextZh": "一个合适的示范案例是：飞机在阵风中着陆，弹跳时俯仰姿态增加，机组随即复飞。虽然没有发生接触，但由于机尾离地裕度已经很小，事后仍对事件进行了复盘。这只是一段示范答案；适当时，学习者应根据自己的经历替换。"
     },
     {
       "id": "opi-core-597",
-      "taskTitle": "运行-擦尾-8",
-      "audioText": "What should pilots do to avoid tail strike?",
-      "audioTextZh": "飞行员应采取哪些措施避免尾部擦地（擦尾）情况？",
-      "referenceText": "We can take several measures to avoid a tail strike. First, we should improve our flight skills. For example, we shouldn’t pull up the aircraft excessively during takeoff or landing. Second, we need to maintain proper weight and balance. Third, during preflight preparations, we should obtain accurate weather information.\n我们可以采取多项措施来避免擦尾。首先，要提升飞行技能，比如在起飞或着陆阶段，不能过度拉杆使飞机抬头。其次，需保持飞机合适的重量与平衡。第三，飞行前准备阶段，要获取准确的气象信息 。\n\nPilots should undergo sufficient simulator training, master proper rotation and flare techniques, follow SOP, monitor speed and attitude closely, maintain stable approach, manage CG correctly, and avoid adverse weather like turbulence.\n飞行员应接受充分的模拟机训练，掌握正确的抬头和拉平技巧，遵循SOP，密切监控速度和姿态，保持稳定进近，正确管理重心，并避开颠簸等恶劣天气。"
+      "taskTitle": "运行-擦尾-5",
+      "audioText": "How can pilots reduce the risk of a tail strike?",
+      "audioTextZh": "飞行员如何降低擦机尾的风险？",
+      "referenceText": "Pilots can reduce the risk by confirming weight, balance, performance data and takeoff configuration before departure. They should use the correct rotation technique, monitor pitch and avoid excessive or abrupt control inputs. On landing, a stabilized approach, proper flare and an early go-around after an unsafe bounce are important safeguards.",
+      "referenceTextZh": "飞行员可以在起飞前确认重量、平衡、性能数据和起飞构型，以降低风险。他们应采用正确的抬轮技术，监控俯仰姿态，并避免过大或突然的操纵输入。着陆时，稳定进近、正确拉平，以及发生不安全弹跳后及早复飞，都是重要保护措施。"
     },
     {
       "id": "opi-core-598",
-      "taskTitle": "运行-擦尾-9",
-      "audioText": "What are the consequences of tail strike?",
-      "audioTextZh": "擦机尾的后果是什么?",
-      "referenceText": "Tail strike causes substantial damage to the aft fuselage and pressure bulkhead, leading to costly repairs and schedule disruptions. Improper repairs may result in catastrophic failure later. It can also damage landing gear and threaten flight safety.\n擦机尾会对机身后部和压力舱壁造成严重损伤，导致高昂的维修费用和航班延误；维修不当可能引发后续灾难性故障，还可能损坏起落架，威胁飞行安全。\n\nTail strike causes substantial damage to the aft fuselage and aft pressure bulkhead, which is time-consuming and expensive to repair. It may lead to schedule disruption, structural fatigue, and even catastrophic failure if repaired improperly. In severe cases, it can damage landing gear or engines, endangering flight safety during takeoff/landing.\n擦机尾会对机身后部和后压力舱壁造成严重损坏，维修耗时且成本高昂。可能导致航班延误、结构疲劳，若维修不当还可能引发灾难性故障。严重时会损坏起落架或发动机，危及起飞/着陆阶段的飞行安全。"
+      "taskTitle": "运行-擦尾-6",
+      "audioText": "What consequences can a tail strike have for an aircraft and its occupants?",
+      "audioTextZh": "擦机尾会给航空器及其乘员造成哪些后果？",
+      "referenceText": "A tail strike can damage the lower fuselage, pressure shell, tail structure and related systems. Damage that is not detected may threaten structural integrity during a later pressurized flight. Occupants may also be injured by the impact or by a subsequent evacuation, and the aircraft can require extensive inspection and repair.",
+      "referenceTextZh": "擦尾可能损坏机身下部、压力壳、尾部结构和相关系统。没有发现的损坏可能在之后的增压飞行中威胁结构完整性。撞击或随后的撤离还可能使人员受伤，飞机也可能需要进行大量检查和修理。"
     },
     {
       "id": "opi-core-599",
-      "taskTitle": "运行-擦尾-10",
-      "audioText": "If you encountered tail strike, what should you do?",
-      "audioTextZh": "如果你遇到擦机尾,你会怎么做?",
-      "referenceText": "Maintain aircraft control first, assess damage via instruments and visual check. Report to ATC, declare emergency if necessary.After landing, record the incident in the logbook and arrange maintenance inspection.\n首先保持飞机控制，通过仪表和目视检查评估损伤；向空管报告，必要时宣布紧急状态；落地后将事件记录在飞行记录本中，并安排维修检查。"
+      "taskTitle": "运行-擦尾-7",
+      "audioText": "What should a flight crew do after a suspected tail strike?",
+      "audioTextZh": "怀疑发生擦机尾后，飞行机组应怎么做？",
+      "referenceText": "After a suspected tail strike, the crew should follow the aircraft's checklist and avoid actions that could worsen possible structural damage. If the aircraft is still on the runway, any decision to reject must remain within the aircraft's established takeoff-decision and SOP boundaries; after liftoff, the crew should complete the tail-strike procedure and return or land at a suitable airport as required. The event must be reported and the aircraft inspected before it is released for further flight.",
+      "referenceTextZh": "怀疑发生擦尾后，机组应执行该机型检查单，并避免采取可能加重结构损坏的操作。如果飞机仍在跑道上，任何中断起飞决定都必须符合该机型既定的起飞决策和 SOP 边界；离地后，机组应完成擦尾程序，并按要求返航或在合适机场着陆。事件必须报告，飞机也必须经过检查后才能再次放行飞行。"
     },
     {
       "id": "opi-core-600",
-      "taskTitle": "运行-擦尾-11",
-      "audioText": "Do you think tail strike only occurs on big aircraft?",
-      "audioTextZh": "你认为只有大飞机才会遭遇擦机尾吗?",
-      "referenceText": "No, tail strike is not limited to big aircraft. Small aircraft can also experience it during takeoff, landing, or go-around if pilots make improper maneuvers like excessive rotation, unstable approach, or mishandling crosswind. Factors like incorrect CG calculation or poor simulator training also increase the risk, regardless of aircraft size.\n不，擦机尾并非仅限于大飞机。小型飞机若飞行员操作不当，如抬头过度、进近不稳定、侧风处置失误，在起飞、着陆或复飞阶段也可能发生擦机尾。无论飞机大小，重心计算错误或模拟机训练不足等因素也会增加该风险。"
+      "taskTitle": "运行-擦尾-8",
+      "audioText": "Why can a tail strike occur on aircraft of different sizes?",
+      "audioTextZh": "为什么不同大小的航空器都可能发生擦机尾？",
+      "referenceText": "Any aircraft can strike its tail if its pitch attitude and ground clearance are not properly controlled. Long aircraft may have less geometric clearance, while smaller aircraft can still be exposed through incorrect loading, excessive rotation or a bounced landing. Design protections help, but they do not replace correct performance data and handling technique.",
+      "referenceTextZh": "如果俯仰姿态和离地间隙控制不当，任何飞机都可能擦尾。机身较长的飞机可能具有较小的几何间隙，而较小的飞机也可能因装载错误、抬轮过度或着陆弹跳而面临风险。设计保护措施会有所帮助，但不能取代正确的性能数据和操纵技术。"
     },
     {
       "id": "opi-core-601",
-      "taskTitle": "运行-擦尾-12",
-      "audioText": "What is the pitch angle beyond which will lead to tail strike on your plane?",
-      "audioTextZh": "在你所飞的飞机上,俯仰角度超过多少会导致擦机尾?",
-      "referenceText": "I fly DA-40, and its tail strike pitch angle limit is around 12-15 degrees. Exceeding this angle during takeoff rotation or landing flare may cause the tail to hit the ground. Specific limits vary by aircraft type; pilots must adhere to the aircraft flight manual (AFM) and SOP to avoid excessive pitch.\n我飞的是DA-40，其擦机尾俯仰角度限制约为12-15度。起飞抬轮或着陆拉平时超过该角度，可能导致机尾触地。具体限制因机型而异，飞行员必须遵守飞机飞行手册（AFM）和标准操作程序（SOP），避免俯仰角度过大。"
+      "taskTitle": "运行-擦尾-9",
+      "audioText": "How would you identify the pitch attitude at which a tail strike could occur on your aircraft type?",
+      "audioTextZh": "你如何确定所飞机型可能发生擦机尾的俯仰姿态？",
+      "referenceText": "For my aircraft type, I would use the approved flight crew operating manual and training material to identify the relevant tail-clearance information. I would also study the normal pitch targets, rotation technique and any pitch-limit indication provided on the flight display. I would not rely on a remembered number from another variant because geometry and configuration can differ.",
+      "referenceTextZh": "对于我的机型，我会使用经批准的飞行机组操作手册和训练资料，查找相关机尾离地间隙信息。我还会学习正常俯仰目标、抬轮技术以及飞行显示器提供的任何俯仰限制指示。我不会依赖记忆中其他改型的数值，因为飞机几何尺寸和构型可能不同。"
     }
   ]
 }

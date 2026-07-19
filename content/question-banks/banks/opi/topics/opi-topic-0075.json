@@ -2,28 +2,23 @@
   "categoryId": "opi-category-05",
   "id": "opi-topic-0075",
   "name": "等待程序",
-  "declaredCardCount": 3,
+  "declaredCardCount": 2,
   "cards": [
     {
       "id": "opi-core-755",
       "taskTitle": "运行-等待程序-1",
-      "audioText": "If ATC asks you to hold at aholding fix, what'll you do?",
-      "audioTextZh": "若空中交通管制（ATC）要求你在等待点等待，你会怎么做？",
-      "referenceText": "I will follow the controller’s instructions to enter the hold. At the same time, I will confirm the holding altitude, the inbound track, left or right pattern, and outbound time.\n我会遵照管制员的指令进入等待程序。同时，确认等待高度、入航航迹、向左或向右的等待航线模式，以及出航时间 。"
+      "audioText": "What should a pilot do after receiving an ATC instruction to hold at a holding fix?",
+      "audioTextZh": "收到空中交通管制部门在等待定位点等待的指令后，飞行员应怎么做？",
+      "referenceText": "The pilot should read back the clearance, identify the holding fix and prepare to enter the pattern as cleared. The crew then slows appropriately, programs and cross-checks the navigation system, briefs the entry and monitors fuel, time, terrain and traffic. If any part of the clearance or expected further-clearance information is unclear, the pilot should clarify it with ATC before reaching the fix when possible.",
+      "referenceTextZh": "飞行员应复诵许可，识别等待定位点，并准备按照许可进入等待航线。随后，机组适当减速，在导航系统中输入并交叉核对等待程序，对进入方式进行简令，并监控燃油、时间、地形和交通。如果许可或预计进一步许可信息有任何不清楚之处，应尽可能在到达定位点前向 ATC 澄清。"
     },
     {
       "id": "opi-core-756",
       "taskTitle": "运行-等待程序-2",
-      "audioText": "If you need to join a holding pattern, what information do you need?",
-      "audioTextZh": "若你需要加入等待航线，需要了解哪些信息？",
-      "referenceText": "I will advise ATC of our situation and request to join the holding pattern. I will confirm the holding fix, holding altitude, inbound track, left or right - hand pattern, and outbound time.\n我会将我方情况告知空中交通管制（ATC）并申请加入等待航线。随后，确认等待点、等待高度、入航航迹、左向或右向等待航线模式，以及出航时间 。"
-    },
-    {
-      "id": "opi-core-757",
-      "taskTitle": "运行-等待程序-3",
-      "audioText": "If ATC request you to hold at a significant\nfix, and what should you do?",
-      "audioTextZh": "若空管要求在重要定位点等待，你会怎么做？",
-      "referenceText": "We need to confirm with ATC, ask ATC the reasons for holding, how long is the holding. If we are required to hold more than 20 minutes, we need to check fuel endurance.\n需向空管确认等待原因和等待时长；若要求等待超过 20 分钟，需检查燃油续航能力。"
+      "audioText": "What information should a pilot confirm before entering a holding pattern?",
+      "audioTextZh": "进入等待航线前，飞行员应确认哪些信息？",
+      "referenceText": "The crew should confirm the fix, inbound course, turn direction, leg time or distance, altitude and the clearance limit. It should also confirm any expected-further-clearance time, speed restriction and how the hold is represented in the navigation database. Wind, fuel, terrain and the planned entry must be briefed before the aircraft reaches the fix.",
+      "referenceTextZh": "机组应确认定位点、入航航迹、转弯方向、航段时间或距离、高度以及许可界限。还应确认任何预计进一步许可时间、速度限制，以及导航数据库中如何表示该等待程序。飞机到达定位点前，必须对风、燃油、地形和计划进入方式进行简令。"
     }
   ]
 }

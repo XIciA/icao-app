@@ -7,135 +7,154 @@
     {
       "id": "opi-core-667",
       "taskTitle": "运行-飞行记录本与手册文件-1",
-      "audioText": "Who is responsible for filling flight logbook?",
-      "audioTextZh": "谁负责填写飞行记录本？",
-      "referenceText": "(1) The captain is responsible for filling the logbook.\n机长负责填写记录本。\n (2) According to the Standard Operating Procedure (SOP), the Pilot Monitoring (PM) is normally responsible for filling in the flight logbook.\n按照标准操作程序（SOP），监控飞行员（PM）通常负责填写飞行记录本"
+      "audioText": "Who is responsible for completing the flight logbook in your operation?",
+      "audioTextZh": "在你所在的运行体系中，谁负责填写飞行记录本？",
+      "referenceText": "A suitable company example would be that the pilot flying records the flight times and operational entries, while the pilot monitoring checks them. The commander remains responsible for making sure the log is complete and accurate before it is submitted. Maintenance personnel complete and certify the technical actions that belong to them.",
+      "referenceTextZh": "一个合适的公司示范是：操纵飞行员填写飞行时间和运行记录，监控飞行员负责核对。机长仍有责任确保记录在提交前完整、准确。维修人员则填写并签署确认属于他们职责范围的技术工作。"
     },
     {
       "id": "opi-core-668",
       "taskTitle": "运行-飞行记录本与手册文件-2",
-      "audioText": "Are there any requirements on filling flight logbook?",
-      "audioTextZh": "填写飞行记录本有要求吗？",
-      "referenceText": "(1) Nowadays, we use cloud - based systems to record training information. In the past, after training, we would record the time, training subject, and the name of the flight instructor.\n如今，我们使用基于云端的系统记录训练信息。过去，训练结束后，我们会记录时间、训练科目以及飞行教员的姓名。\n(2) According to the SOP, the flight logbook should be filled in during the cruise phase or after landing (with engines shut down and parking brakes set). During ground movement or while changing flight levels, flight crew should not fill in the flight logbook. Additionally, entries in the flight logbook should be neat, clear, and correct. (If necessary, flight logbook data and fault records should be checked.)\n 根据标准操作程序（SOP），飞行记录本应在巡航阶段或着陆后（发动机关闭且设置好停留刹车时）填写。在地面移动期间或飞行高度改变过程中，飞行机组人员不应填写飞行记录本。此外，飞行记录本的填写内容应整洁、清晰且准确。（如有必要，应对飞行记录本的数据和故障记录进行检查。 ）"
+      "audioText": "What requirements must be followed when completing a flight logbook?",
+      "audioTextZh": "填写飞行记录本时必须遵守哪些要求？",
+      "referenceText": "Entries must be accurate, legible and made in the approved format using the required time standard and units. The crew should identify the flight and aircraft, record required times, fuel or defects, and sign or authenticate the entry as applicable. Errors should be corrected through the approved method so that the original record and the person making the correction remain traceable.",
+      "referenceTextZh": "记录必须准确、清晰可辨，并采用批准的格式以及规定的时间标准和计量单位。机组应注明航班和飞机，记录规定的时间、燃油或故障，并按适用要求签名或进行身份认证。差错应通过批准的方法更正，使原始记录和更正人员始终可以追溯。"
     },
     {
       "id": "opi-core-669",
       "taskTitle": "运行-飞行记录本与手册文件-3",
-      "audioText": "What items should the flight crew check on the maintenance logbook?",
-      "audioTextZh": "飞行人员检查维修日志应该检查哪些内容？",
-      "referenceText": "They should check the date, the malfunctioning part, the maintenance items, and so on.\n他们应检查日期、故障部件、维修项目等内容 。"
+      "audioText": "What should a flight crew review in the aircraft maintenance log?",
+      "audioTextZh": "飞行机组应在航空器维修记录本中查看哪些内容？",
+      "referenceText": "The crew should review open defects, deferred items, maintenance actions and any operational limitations or special procedures. They should confirm that required releases are valid and that entries affecting dispatch match the aircraft's actual status. Recent recurring defects and crew reports also deserve attention because they may reveal a developing problem.",
+      "referenceTextZh": "机组应检查尚未关闭的故障、保留项目、维修工作以及任何运行限制或特殊程序。他们应确认所需放行文件有效，并且影响签派的记录与飞机实际状态一致。近期反复出现的故障和机组报告也值得关注，因为它们可能反映正在发展的技术问题。"
     },
     {
       "id": "opi-core-670",
       "taskTitle": "运行-飞行记录本与手册文件-4",
-      "audioText": "When do flight crew check maintenance logbook?",
-      "audioTextZh": "飞行人员什么时候检查维修日志？",
-      "referenceText": "(1) Before each flight, ground mechanics are responsible for preparing the maintenance logbook. Finally, the captain will conduct a cross - check and sign their name in the logbook.\n每次飞行前，地面机械师负责准备维修日志。最后，机长会进行交叉检查，并在日志中签字。\n(2) During the preflight cockpit system check, the flight crew will check the maintenance logbook.\n在飞行前驾驶舱系统检查期间，飞行机组会检查维修日志。"
+      "audioText": "When should a flight crew review the aircraft maintenance log?",
+      "audioTextZh": "飞行机组应在什么时候查看航空器维修记录本？",
+      "referenceText": "The crew should review the maintenance log before accepting the aircraft and before completing the dispatch decision. It should be checked again after maintenance work, a crew defect entry or any change to the aircraft's technical status. Relevant new entries during a multi-sector duty should not be assumed to be unchanged from the previous flight.",
+      "referenceTextZh": "机组应在接受飞机以及完成签派决定之前检查维修记录。完成维修工作、机组填写故障记录或飞机技术状态发生任何变化后，还应再次检查。执行多航段任务时，不能假定新出现的相关记录与上一航段保持不变。"
     },
     {
       "id": "opi-core-671",
       "taskTitle": "运行-飞行记录本与手册文件-5",
-      "audioText": "Why do flight crew check it before flight?（",
-      "audioTextZh": "维修日志）\n飞行机组为何要在飞行前检查维修日志？",
-      "referenceText": "(1) The flight crew must ensure that all parts of the aircraft are airworthy.\n飞行机组必须确保飞机的所有部件适航。\n(2) The flight crew need to check the maintenance logbook to understand the aircraft’s condition and confirm that the aircraft meets Minimum Equipment List (MEL) requirements, ensuring the aircraft is airworthy.\n飞行机组需要检查维修日志，了解飞机状态，并确认飞机符合最低设备清单（MEL）要求，确保飞机适航 。"
+      "audioText": "Why is it important to review the aircraft maintenance log before a flight?",
+      "audioTextZh": "飞行前查看航空器维修记录本为什么很重要？",
+      "referenceText": "The maintenance log tells the crew whether the aircraft has unresolved defects, restrictions or recent corrective work that may affect the flight. Without that review, the pilots could use the wrong performance data, miss a required procedure or accept an aircraft that is not properly released. It also creates a clear link between flight crew observations and maintenance action.",
+      "referenceTextZh": "维修记录告诉机组，飞机是否存在未解决故障、限制或近期可能影响飞行的修复工作。如果没有进行这项检查，飞行员可能使用错误的性能数据、遗漏规定程序，或接受一架没有得到正确放行的飞机。它还在飞行机组的观察与维修工作之间建立清楚联系。"
     },
     {
       "id": "opi-core-672",
       "taskTitle": "运行-飞行记录本与手册文件-6",
-      "audioText": "When do you use the normal checklist?",
-      "audioTextZh": "你们何时使用正常检查单？",
-      "referenceText": "During normal operations, we use the normal checklist. For example, when preparing for pushback, we follow the pushback checklist, and when preparing to taxi, we follow the taxi checklist.\n在正常运行期间，我们会使用正常检查单。例如，准备推出时，我们会遵循推出检查单；准备滑行时，我们会遵循滑行检查单 。"
+      "audioText": "When do you use the normal checklist during a flight?",
+      "audioTextZh": "飞行中你在什么时候使用正常检查单？",
+      "referenceText": "Normal checklists are used at defined transitions such as cockpit preparation, before start, after start, taxi, before takeoff, climb, descent, approach, landing and shutdown. They verify that critical configuration and system items have been completed rather than replacing the normal operating flow. The crew follows the sequence and timing specified in its SOP, including interruptions and restarts.",
+      "referenceTextZh": "正常检查单用于驾驶舱准备、启动前、启动后、滑行、起飞前、爬升、下降、进近、着陆和关车等规定的阶段转换点。它核实关键构型和系统项目已经完成，而不是取代正常操作流程。机组应遵守 SOP 规定的顺序和时机，包括检查单被打断后的继续或重新开始方法。"
     },
     {
       "id": "opi-core-673",
       "taskTitle": "运行-飞行记录本与手册文件-7",
-      "audioText": "How do the crew members cooperate with each other to do the checklist?",
-      "audioTextZh": "机组人员如何配合完成检查单",
-      "referenceText": "(1) They should cooperate well to complete the checklist. The Pilot Flying (PF) controls the aircraft, while the Pilot Monitoring (PM) runs through the checklist. Simultaneously, the PF verifies and conducts a cross - check.\n 他们应良好配合来完成检查单。操纵飞机的飞行员（PF）操控飞机，监控飞行员（PM）同步执行检查单流程。同时，PF 进行核实并开展交叉检查。\n(2) Usually, the PM (Pilot Monitoring) reads and executes the checklist, while the PF (Pilot Flying) confirms each item and monitors the aircraft. They cross-check to ensure accuracy. For critical steps, verbal confirmation is required to avoid human errors and maintain operational consistency.\n通常由监控飞行员（PM）朗读并执行检查单，操纵飞行员（PF）确认每一项并监控飞机状态，双方交叉检查确保准确。关键步骤需口头确认，避免人为失误，保持操作一致性。"
+      "audioText": "How do flight crew members coordinate when completing a checklist?",
+      "audioTextZh": "执行检查单时，飞行机组成员如何配合？",
+      "referenceText": "A suitable example would be that one pilot calls the checklist and the other verifies each item and gives the standard response. Both pilots confirm items that require a cross-check, and any disagreement is resolved before continuing. If the checklist is interrupted, the crew resumes or restarts it according to the SOP instead of relying on memory.",
+      "referenceTextZh": "一个合适的示范是：一名飞行员念出检查单项目，另一名飞行员核实每项内容并作出标准回答。需要交叉检查的项目由两名飞行员共同确认，任何不一致都应在继续之前解决。如果检查单被打断，机组应按照 SOP 继续或重新开始，不能依赖记忆。"
     },
     {
       "id": "opi-core-674",
       "taskTitle": "运行-飞行记录本与手册文件-8",
-      "audioText": "Are there any other technical manuals or handbooks in your cockpit? Can you name a few?",
-      "audioTextZh": "你驾驶舱有技术手册吗？你能列举一些吗？",
-      "referenceText": "Yes, the cockpit is equipped with essential manuals: AFM (Aircraft Flight Manual), FCOM (Flight Crew Operations Manual), QRH (Quick Reference Handbook), MEL (Minimum Equipment List), and aeronautical/approach charts. They guide normal/abnormal operations and ensure compliance with regulations.\n有，驾驶舱配备必要手册：飞机飞行手册（AFM）、机组操作手册（FCOM）、快速检查单（QRH）、最低设备清单（MEL）以及航图和进近图。它们为正常/非正常操作提供指导，确保符合规章要求。"
+      "audioText": "Which technical manuals or handbooks are available in your cockpit?",
+      "audioTextZh": "你的驾驶舱内配有哪些技术手册或指南？",
+      "referenceText": "A suitable cockpit set would include the aircraft operating manual, quick reference handbook, minimum equipment information, performance material and the operator's operations manual. Current charts, route and airport information, dangerous-goods guidance and emergency or security procedures may also be available electronically. The exact controlled library depends on the aircraft, route and authority.",
+      "referenceTextZh": "一套合适的驾驶舱资料应包括飞机运行手册、快速检查单手册、最低设备信息、性能资料和运营人的运行手册。现行航图、航路与机场信息、危险品指导以及应急或安保程序也可以电子形式提供。确切的受控资料库取决于机型、航路和监管机构。"
     },
     {
       "id": "opi-core-675",
       "taskTitle": "运行-飞行记录本与手册文件-9",
-      "audioText": "Are there manuals in English or in Chinese? Do you prefer to read the English version or the translated Chinese version?",
-      "audioTextZh": "这些手册是英文的还是中文的？你喜欢原版英文的手册还是翻译纸质的手册？",
-      "referenceText": "Our manuals are available in both English and Chinese. However, I prefer to read the original English manuals. This is because they can save time, help improve our English proficiency, and ensure flight safety. Additionally, there may be translation errors in the Chinese versions, which could potentially impact flight safety.\n我们的手册有英文版和中文版。不过，我更喜欢读原版英文手册。因为这样可以节省时间、有助于提升英语水平，还能保障飞行安全。此外，中文版手册可能存在翻译误差，有可能影响飞行安全 。"
+      "audioText": "In which languages are your cockpit manuals available?",
+      "audioTextZh": "你的驾驶舱手册提供哪些语言版本？",
+      "referenceText": "A suitable example would be that the controlled aircraft manuals and checklists are in English, while some company guidance and training notes are also available in Chinese. The crew uses the approved version and does not substitute an unofficial translation for a controlled procedure. Learners should adapt this answer to the languages authorized by their own operator.",
+      "referenceTextZh": "一个合适的示范是：受控的飞机手册和检查单使用英文，一些公司指导和训练笔记也提供中文版本。机组使用经批准的版本，不能用非官方翻译取代受控程序。学习者应根据自己运营人授权使用的语言调整这段答案。"
+    },
+    {
+      "id": "opi-core-675-part-2",
+      "taskTitle": "运行-飞行记录本与手册文件-10",
+      "audioText": "Do you prefer to read cockpit manuals in English or Chinese, and why?",
+      "audioTextZh": "你更喜欢阅读英文还是中文驾驶舱手册？为什么？",
+      "referenceText": "I prefer English for aircraft manuals because it matches most original manufacturer terminology and cockpit labels. Chinese can be helpful when first learning a complex concept, but translated technical terms may not always match the wording used in the aircraft. For operational use, I would rely on the approved manual language and keep my English terminology current.",
+      "referenceTextZh": "我更喜欢使用英文飞机手册，因为它与大多数制造商的原始术语和驾驶舱标牌一致。初次学习复杂概念时，中文会有所帮助，但翻译后的技术术语不一定与飞机上使用的措辞完全相同。实际运行中，我会以批准的手册语言为准，并保持对英文术语的熟悉程度。"
     },
     {
       "id": "opi-core-676",
-      "taskTitle": "运行-飞行记录本与手册文件-10",
-      "audioText": "Is it possible that paper manuals may be replaced by the electrical files?",
-      "audioTextZh": "纸质手册可能被电子文件所取代吗？",
-      "referenceText": "(1) I don’t think so. I believe paper manuals are very convenient to use.\n我认为不会。我觉得纸质手册使用起来很方便。\n (2) I don’t think paper manuals will be replaced by electronic manuals. This is because paper manuals can be used at any time, even in the event of an electrical failure. In other words, if there is an electrical failure, electronic manuals will become unusable.\n我认为纸质手册不会被电子手册取代。因为纸质手册随时可用，即便发生电气故障时也能使用。也就是说，若出现电气故障，电子手册就无法使用了 。\n（3）Unlikely to be fully replaced. Electronic manuals are convenient for daily use, but paper manuals are irreplaceable in power failures or system malfunctions. Airlines usually retain both to ensure redundancy, balancing efficiency and safety in various flight scenarios.\n不太可能被完全取代。电子手册便于日常使用，但纸质手册在断电或系统故障时不可或缺。航空公司通常两者并存以确保冗余，在不同飞行场景中平衡效率与安全。"
+      "taskTitle": "运行-飞行记录本与手册文件-11",
+      "audioText": "Could electronic manuals eventually replace paper manuals in the cockpit?",
+      "audioTextZh": "电子手册最终能否取代驾驶舱内的纸质手册？",
+      "referenceText": "Yes, electronic manuals can replace most paper manuals if the system is approved, current, easy to search and available when needed. They reduce weight and make revisions faster, but power loss, device failure, software problems or poor interface design can limit access. Operators therefore need suitable backup, charging and revision-control arrangements.",
+      "referenceTextZh": "是的，如果电子手册系统经过批准、内容现行有效、易于检索且需要时可以使用，它就能取代大部分纸质手册。电子手册可以减轻重量并加快修订，但断电、设备故障、软件问题或界面设计不佳都可能限制访问。因此，运营人需要设置合适的备份、充电和版本控制安排。"
     },
     {
       "id": "opi-core-677",
-      "taskTitle": "运行-飞行记录本与手册文件-11",
-      "audioText": "Can you introduce your normal checklist?",
-      "audioTextZh": "你能介绍一下你们的正常检查单吗",
-      "referenceText": "Yes. Our normal checklist includes: pushback checklist, taxi checklist, approach checklist, and so on.\n可以。我们的正常检查单包含：推出检查单、滑行检查单、进近检查单等 。"
+      "taskTitle": "运行-飞行记录本与手册文件-12",
+      "audioText": "What types of items are covered by your normal checklist?",
+      "audioTextZh": "你的正常检查单涵盖哪些类型的项目？",
+      "referenceText": "A normal checklist covers safety-critical configuration and system states for each phase of flight. Typical areas include doors, fuel, flight controls, navigation setup, takeoff or landing configuration, lights, anti-ice and pressurization. It verifies selected items from the normal flow; it is not intended to list every routine action.",
+      "referenceTextZh": "正常检查单涵盖每个飞行阶段对安全至关重要的构型和系统状态。典型内容包括舱门、燃油、飞行操纵、导航设置、起飞或着陆构型、灯光、防冰和增压。它核实正常流程中选定的项目，并非用于列出每一项日常操作。"
     },
     {
       "id": "opi-core-678",
-      "taskTitle": "运行-飞行记录本与手册文件-12",
-      "audioText": "Do you often consult these manuals or handbooks in flight?Are they convenient to use?",
-      "audioTextZh": "你经常查阅这些手册吗？他们用起来方便吗？",
-      "referenceText": "Yes, we often consult/read the manuals or handbooks during flight.\n(Before flight, we consult/read the Aircraft Flight Manual to know the performance of the aircraft. )\nIn normal situations, we will use normal checklists\nIn emergency situations, we will use QRH and SOP to ensure flight safety.\n是的，我们经常查阅飞行手册。飞行前，我们查阅飞机飞行手册了解飞机性能。在正常情况下，我们使用正常检查单。在紧急情况下，我们使用QRH和MEL确保飞行安全。\n\nYes, I consult them regularly. Before flight, AFM is used to confirm aircraft performance. During normal flights, standard checklists are followed. In emergencies or abnormal situations, QRH and MEL are crucial for quick, correct responses, ensuring flight safety and compliance.\n是的，我会定期查阅。飞行前，查阅飞机飞行手册（AFM）确认飞机性能；正常飞行中遵循标准检查单；紧急或非正常情况下，快速检查单（QRH）和最低设备清单（MEL）是快速正确应对的关键，保障飞行安全和合规性。"
+      "taskTitle": "运行-飞行记录本与手册文件-13",
+      "audioText": "How often do you consult technical manuals or handbooks during a flight?",
+      "audioTextZh": "飞行中你多久查阅一次技术手册或指南？",
+      "referenceText": "During routine flight, I would monitor the normal displays continuously and use each checklist at its prescribed stage, but consult a full technical manual only when a question, abnormal condition or planning need arises. In a time-critical abnormal event, the crew normally begins with the approved quick-reference or electronic checklist. More detailed material can be reviewed when workload and flight path are under control.",
+      "referenceTextZh": "日常飞行中，我会持续监控正常显示，并在规定阶段使用相应检查单；只有出现疑问、异常状况或计划需要时，才查阅完整技术手册。发生时间紧迫的异常事件时，机组通常先使用批准的快速检查单或电子检查单。工作负荷得到控制且飞行轨迹稳定后，再查阅更详细的资料。"
+    },
+    {
+      "id": "opi-core-678-part-2",
+      "taskTitle": "运行-飞行记录本与手册文件-14",
+      "audioText": "How easy or difficult are technical manuals or handbooks to use during a flight, and why?",
+      "audioTextZh": "飞行中使用技术手册或指南容易还是困难？为什么？",
+      "referenceText": "Good manuals are easy to use when they have clear headings, a reliable search function and language that matches cockpit indications. They become difficult when the crew is under time pressure, the procedure is spread across several references or the electronic interface is slow. Familiarity and recurrent practice are important, but the document must also be designed for operational use.",
+      "referenceTextZh": "好的手册具有清楚的标题、可靠的搜索功能，而且所用语言与驾驶舱指示一致，因此便于使用。当机组承受时间压力、程序分散在多份资料中或电子界面反应缓慢时，手册就会变得难用。熟悉程度和定期练习很重要，但文件本身也必须针对运行使用进行设计。"
     },
     {
       "id": "opi-core-679",
-      "taskTitle": "运行-飞行记录本与手册文件-13",
-      "audioText": "Which do you prefer to read the paper manuals or the electronic files?",
-      "audioTextZh": "纸质手册和电子手册，你更喜欢哪一个？",
-      "referenceText": "I prefer to read electronic manuals because it’s easy for us to find whatever we want and it can save some room/space for pilots.\n我更喜欢阅读电子手册，因为我们可以使用搜索功能，轻松找到我们想要的东西，同时它能节省空间。"
-    },
-    {
-      "id": "opi-core-680",
-      "taskTitle": "运行-飞行记录本与手册文件-14",
-      "audioText": "Could you please introduce your normal checklists to me?When do you use your normal checklist? What are included in normal checklist?",
-      "audioTextZh": "你能给我们介绍一下正常检查单吗？你们什么时候使用检查单？检查单都包括哪些内容？",
-      "referenceText": "Normal Checklists are used in normal situations to check the important （critical/significant） items of the aircraft and ensure flight safety. There are many normal checklists such as pre-startup checklist, taxiing checklist, pre-takeoff checklist, after-takeoff checklist, landing checklist and so on.\n正常检查单用于正常情况下检查飞机的重要部件确保飞行安全，他包括许多正常检查单，比如，开车前检查单，滑行检查单，起飞前检查单，起飞后检查单，着陆检查单等。\n\nNormal checklists include preflight, takeoff, cruise, approach, and landing items. Contents cover system checks (engines, hydraulics), configuration settings (flaps, landing gear), and instrument verifications. They are used at key flight phases to ensure standard operations and avoid omissions.\n正常检查单包括飞行前、起飞、巡航、进近和着陆等项目，内容涵盖系统检查（发动机、液压系统）、构型设置（襟翼、起落架）和仪表校验。在飞行关键阶段使用，确保操作标准化，避免遗漏。\n\nNormal checklists ensure no critical steps are missed during each flight phase (such as preflight, takeoff, landing). They standardize operations, reduce human errors, enhance crew coordination, and maintain flight safety by verifying system status and configurations.\n正常检查单的作用是确保飞行各阶段（如飞行前、起飞、着陆）不遗漏关键步骤，标准化操作流程，减少人为差错，加强机组协同，并通过核实系统状态和构型保障飞行安全。"
+      "taskTitle": "运行-飞行记录本与手册文件-15",
+      "audioText": "Do you prefer paper or electronic flight manuals, and why?",
+      "audioTextZh": "你更喜欢纸质还是电子飞行手册？为什么？",
+      "referenceText": "I generally prefer electronic manuals because they are searchable, easier to update and reduce the amount of paper carried. Paper can still be quicker for browsing and does not depend on battery power or software. My preference would therefore be an approved electronic system with a reliable independent backup.",
+      "referenceTextZh": "总体而言，我更喜欢电子手册，因为它们可以搜索、更容易更新，而且能减少携带的纸张。纸质手册在快速翻阅时仍可能更方便，并且不依赖电池或软件。因此，我倾向于使用经过批准的电子系统，同时配备可靠且独立的备份。"
     },
     {
       "id": "opi-core-681",
-      "taskTitle": "运行-飞行记录本与手册文件-15",
-      "audioText": "Compared with paper manuals, what are the advantages and disadvantages of electronic manuals?",
-      "audioTextZh": "与纸质手册相比,电子手册的优缺点有哪些?",
-      "referenceText": "Advantages: Portable, easy to update, searchable, and integrates multiple documents, saving time. Disadvantages: Dependent on electricity, vulnerable to system malfunctions. Pilots may over-rely on devices, and data security risks exist. Paper manuals are more reliable in power failures.\n优点：便携、易更新、可检索，整合多种文档，节省时间。缺点：依赖电力，易受系统故障影响；飞行员可能过度依赖设备，存在数据安全风险。纸质手册在断电时更可靠。"
+      "taskTitle": "运行-飞行记录本与手册文件-16",
+      "audioText": "What are the advantages and disadvantages of electronic manuals compared with paper manuals?",
+      "audioTextZh": "与纸质手册相比，电子手册有哪些优点和缺点？",
+      "referenceText": "Electronic manuals can provide fast search, hyperlinks, automatic revision control and a large library on one lightweight device. Their disadvantages include battery and hardware dependence, screen glare, interface errors and the possibility that two pilots lose access through a common system failure. Paper is robust and easy to annotate or compare across pages, but it is heavier, slower to update and harder to search.",
+      "referenceTextZh": "电子手册可以提供快速搜索、超链接、自动版本控制，并在一台轻便设备中存储大量资料。其缺点包括依赖电池和硬件、屏幕反光、界面错误，以及两名飞行员可能因共同系统故障而同时失去访问能力。纸质手册可靠耐用，便于批注或跨页比较，但更重、更新较慢且不易搜索。"
     },
     {
       "id": "opi-core-682",
-      "taskTitle": "运行-飞行记录本与手册文件-16",
-      "audioText": "What is the function of the flight logbook?",
-      "audioTextZh": "飞行记录本的功能是什么？",
-      "referenceText": "A flight logbook is a key document recording flight-related information. Its functions include documenting flight training subjects, training duration, flight instructor signatures, departure/landing time, fuel quantity (FOB), number of persons on board (POB), cargo details, and aircraft malfunctions (if any), serving as an important basis for training, operation, and maintenance.\n飞行记录本是记录飞行相关信息的核心文件，功能包括记录飞行训练科目、训练时长、飞行教员签字、起降时间、燃油量（FOB）、机上人员数（POB）、货物信息以及飞机故障（如有），是训练、运行和维护的重要依据。"
+      "taskTitle": "运行-飞行记录本与手册文件-17",
+      "audioText": "What is the purpose of the flight logbook used in your operation?",
+      "audioTextZh": "你所在运行体系使用的飞行记录本有什么用途？",
+      "referenceText": "A suitable flight logbook records the operational history of each sector, such as flight identification, times, crew information and required fuel or aircraft-status entries. It supports legal records, operational control, maintenance coordination and later review of irregularities. The log also provides traceability when information is transferred between crews and departments.",
+      "referenceTextZh": "一份合适的飞行记录本会记录每个航段的运行历史，例如航班标识、时间、机组信息，以及规定的燃油或飞机状态记录。它为法定记录、运行控制、维修协调和事后审查异常情况提供支持。信息在不同机组和部门之间移交时，记录本还可以保持可追溯性。"
     },
     {
       "id": "opi-core-683",
-      "taskTitle": "运行-飞行记录本与手册文件-17",
-      "audioText": "Which one do you think is more difficult, the English manual or the Chinese manual?",
-      "audioTextZh": "你觉得哪一个更难，英文手册还是中文手册？",
-      "referenceText": "It depends on personal proficiency. English manuals use professional aviation terminology and fixed expressions, which may be challenging for non-native speakers. Chinese manuals are more accessible in language, but the accuracy of technical translations is crucial. Mastery of both is essential for safe flight operations.\n取决于个人熟练度。英文手册使用专业航空术语和固定表达，对非母语者可能存在难度；中文手册语言更易理解，但技术翻译的准确性至关重要，熟练掌握两者对飞行安全运行都必不可少。"
+      "taskTitle": "运行-飞行记录本与手册文件-18",
+      "audioText": "Which do you find more difficult to read, an English manual or a Chinese manual, and why?",
+      "audioTextZh": "英文手册和中文手册相比，你觉得哪一种更难阅读？为什么？",
+      "referenceText": "I find an English manual more demanding when it uses unfamiliar technical vocabulary, although it often matches the manufacturer's original terminology exactly. A Chinese manual may be faster to understand, but some translated terms can differ from cockpit labels. Regular use of both languages helps, while the approved operational version remains the final reference.",
+      "referenceTextZh": "英文手册使用陌生技术词汇时，我会觉得理解难度更大，不过它通常与制造商的原始术语完全一致。中文手册可能更容易快速理解，但某些翻译术语会与驾驶舱标牌不同。经常使用两种语言会有所帮助，但最终仍以经批准的运行版本为准。"
     },
     {
       "id": "opi-core-684",
-      "taskTitle": "运行-飞行记录本与手册文件-18",
-      "audioText": "What kind of manuals should be carried during the flight?",
-      "audioTextZh": "在飞行中需要携带的手册都有哪些?",
-      "referenceText": "Manuals carried during flight include Aircraft Flight Manual (AFM), Flight Crew Operations Manual (FCOM), Quick Reference Handbook (QRH), Minimum Equipment List (MEL), aeronautical charts, and approach charts. They guide normal and emergency operations.\n飞行中需携带的手册包括飞机飞行手册（AFM）、机组操作手册（FCOM）、快速检查单（QRH）、最低设备清单（MEL）、航图和进近图等，为正常及应急运行提供指导。"
-    },
-    {
-      "id": "opi-core-685",
       "taskTitle": "运行-飞行记录本与手册文件-19",
-      "audioText": "Do you have to check the maintenance log book?",
-      "audioTextZh": "你们需要检查维修记录本吗?",
-      "referenceText": "Yes, checking the maintenance logbook is mandatory. It records past aircraft malfunctions, maintenance actions, and unresolved issues. This helps pilots understand the aircraft’s condition, make safe operational decisions, and ensure compliance with airworthiness requirements.\n是的，检查维修记录本是必须的。该记录本记录了飞机过往的故障情况、维修措施及未解决的问题，帮助飞行员了解飞机状态，做出安全运行决策，并确保符合适航要求。"
+      "audioText": "What operational manuals and documents should be available during a flight?",
+      "audioTextZh": "飞行期间应备有哪些运行手册和文件？",
+      "referenceText": "The crew should have current aircraft manuals and checklists, the operator's relevant operations manual, minimum-equipment information and performance data. It also needs current route, airspace, weather, NOTAM, chart and airport information, plus the operational flight plan and load or fuel documents. Required emergency, security and dangerous-goods information must be accessible as applicable.",
+      "referenceTextZh": "机组应配备现行有效的飞机手册和检查单、运营人的相关运行手册、最低设备信息以及性能数据。还需要现行航路、空域、天气、NOTAM、航图和机场信息，以及运行飞行计划和载重或燃油文件。适用时，规定的应急、安保和危险品信息也必须能够查阅。"
     }
   ]
 }

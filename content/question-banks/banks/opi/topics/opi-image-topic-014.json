@@ -14,20 +14,18 @@
     {
       "id": "opi-image-014-q01",
       "taskTitle": "图片题-014-01",
-      "audioText": "What are the main advantages of that cockpits compared with the traditional instrument cockpits?",
-      "audioTextZh": "与传统仪表驾驶舱相比，这类驾驶舱的主要优势是什么？",
-      "referenceText": "The main benefit is improved situational awareness. Compared with the older method, it gives pilots clearer information, better monitoring, and more time to make safe decisions.",
-      "referenceTextZh": "主要好处是提升态势感知。与较旧的方式相比，它能给飞行员更清晰的信息、更好的监控能力，并为安全决策争取更多时间。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-014-q01.mp3"
+      "audioText": "What are the main advantages of a modern glass cockpit over a cockpit with traditional flight instruments?",
+      "audioTextZh": "与采用传统飞行仪表的驾驶舱相比，现代玻璃驾驶舱有哪些主要优势？",
+      "referenceText": "A glass cockpit can integrate flight, navigation, weather and system information and highlight important deviations or warnings. Reconfigurable displays, maps and trend cues can reduce some mental calculation and support failure management. These benefits depend on correct data and mode awareness because display or software failures can affect several functions at once.",
+      "referenceTextZh": "玻璃驾驶舱可以整合飞行、导航、天气和系统信息，并突出重要偏差或警告。可重新配置的显示器、地图和趋势提示能够减少部分心算工作，并帮助机组管理故障。这些优势取决于数据正确和方式意识，因为显示器或软件故障可能同时影响多项功能。"
     },
     {
       "id": "opi-image-014-q02",
       "taskTitle": "图片题-014-02",
-      "audioText": "How do multiple display screens help pilots during flight?",
-      "audioTextZh": "多个显示屏如何在飞行中帮助飞行员？",
-      "referenceText": "This situation is related to Modern glass cockpit. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
-      "referenceTextZh": "这种情况与现代玻璃驾驶舱有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-014-q02.mp3"
+      "audioText": "How do multiple display screens help pilots manage a flight?",
+      "audioTextZh": "多个显示屏如何帮助飞行员管理飞行？",
+      "referenceText": "Separate but coordinated screens let pilots keep primary flight data visible while viewing navigation, engine, system or checklist information. They support cross-checking, task sharing and display reversion after some failures. Too much information or poor page selection can create clutter, so crews follow a clear display-management strategy.",
+      "referenceTextZh": "相互独立但协调工作的显示屏，使飞行员能够在持续查看主要飞行数据的同时，调出导航、发动机、系统或检查单信息。它们有助于交叉核对、任务分工，并在部分故障后支持显示转换。信息过多或页面选择不当会造成杂乱，因此机组应遵循清晰的显示管理策略。"
     }
   ]
 }

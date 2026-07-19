@@ -2,35 +2,31 @@
   "categoryId": "opi-category-03",
   "id": "opi-topic-0057",
   "name": "FCTM",
-  "declaredCardCount": 4,
+  "declaredCardCount": 3,
   "cards": [
     {
       "id": "opi-core-629",
       "taskTitle": "缩略词-FCTM-1",
-      "audioText": "1. What does FCTM stand for?\nFCTM",
-      "audioTextZh": "代表什么？",
-      "referenceText": "FCTM stands for Flight Crew Training Manual.\nFCTM代表飞行人员训练手册"
+      "audioText": "What is the Flight Crew Training Manual (FCTM)?",
+      "audioTextZh": "什么是飞行机组训练手册（FCTM）？",
+      "referenceText": "The Flight Crew Training Manual, or FCTM, is a manufacturer or operator training document that explains recommended techniques and the practical use of aircraft systems and procedures. It supports training and line operations by adding operational explanation to the approved manuals and checklists. It does not replace the Aircraft Flight Manual, operations manual or QRH when those documents have higher authority.",
+      "referenceTextZh": "飞行机组训练手册（FCTM）是制造商或运营人的训练文件，用于说明建议技术以及飞机系统和程序的实际运用。它通过为经批准手册和检查单补充运行解释，为训练和航线运行提供支持。当飞机飞行手册、运行手册或 QRH 的权威性更高时，FCTM 不能取代这些文件。"
     },
     {
       "id": "opi-core-630",
       "taskTitle": "缩略词-FCTM-2",
-      "audioText": "What information can you get from FCTM?",
-      "audioTextZh": "你能从FCTM中获取哪些信息？",
-      "referenceText": "(1) We can obtain information from the FCTM, such as the manual’s general overview, aircraft systems, normal procedures, and emergency procedures.\n我们可从飞行机组训练手册（FCTM）中获取信息，比如手册概况、飞机系统、正常程序以及应急程序 。\n(2)The Flight Crew Training Manual (FCTM) is provided by aircraft manufacturers. It offers guidance on maneuvers and techniques for all phases of flight, covering general information, ground operations, normal procedures, and non - normal operations. Additionally, airlines may incorporate operator - specific details into the FCTM for internal use.\n飞行机组训练手册（FCTM）由飞机制造商提供，它针对飞行各阶段（涵盖概况介绍、地面操作、正常程序及非正常程序），就飞行操纵动作和技术提供指导建议。此外，航空公司可在手册中加入特定运营细节，供内部使用 。"
+      "audioText": "What information can pilots find in the Flight Crew Training Manual (FCTM)?",
+      "audioTextZh": "飞行员可以在飞行机组训练手册（FCTM）中找到哪些信息？",
+      "referenceText": "Pilots can find explanations of normal flight techniques, system operation, flight profiles, handling qualities and selected abnormal situations in an FCTM. It may also discuss performance considerations, automation use, crew coordination and common operational errors. The exact content and its relationship to approved procedures depend on the manufacturer and operator.",
+      "referenceTextZh": "飞行员可以在 FCTM 中查找正常飞行技术、系统工作、飞行剖面、操纵特性和部分异常情况的说明。它还可能讨论性能考虑、自动化使用、机组协调和常见运行错误。具体内容及其与经批准程序的关系取决于制造商和运营人。"
     },
     {
       "id": "opi-core-631",
       "taskTitle": "缩略词-FCTM-3",
-      "audioText": "When do you use FCTM? Give an example.",
-      "audioTextZh": "你什么时候使用FCTM？举个例子",
-      "referenceText": "(1) FCTM is used solely for training purposes. It is a valuable manual for us to utilize during initial or recurrent training. (Additionally, the company is responsible for determining the applicability of FCTM to its operations.)\n飞行机组训练手册（FCTM）仅用于训练用途，是我们初始训练或复训阶段学习参考的重要手册 。（此外，航空公司需自行判定 FCTM 对其实际运营的适用情况 。）\n(2) We frequently use FCTM during ground training (theoretical learning) or simulator training.\n我们常在地面理论培训或模拟机训练时使用 FCTM 。"
-    },
-    {
-      "id": "opi-core-632",
-      "taskTitle": "缩略词-FCTM-4",
-      "audioText": "What do you know about the FCTM? Do you use FCTM in your work?",
-      "audioTextZh": "你知道FCTM吗?你在工作中会使用机组训练手册吗?",
-      "referenceText": "FCTM stands for Flight Crew Training Manual (Boeing) or Flight Crew Techniques Manual (Airbus). It supplements FCOM with practical operation skills and maneuver guidance. Yes, I use it in training and daily work to master aircraft handling techniques and improve operational proficiency.\n飞行机组训练手册（FCTM）是飞机飞行机组操作手册（FCOM）的补充，包含实用操作技巧和机动引导。会在工作中使用，用于掌握飞机操纵技术，提升操作熟练度。"
+      "audioText": "When do you use the Flight Crew Training Manual (FCTM), and can you give an example?",
+      "audioTextZh": "你什么时候使用飞行机组训练手册（FCTM）？能否举例说明？",
+      "referenceText": "A suitable example would be: I use the FCTM during initial or recurrent training and whenever I need to understand the technique behind a checklist or flight profile. For example, before simulator practice I might review the recommended crosswind-landing technique and then compare it with the limitations and procedures in the approved manuals. Learners should replace this example with their actual aircraft and training practice.",
+      "referenceTextZh": "一个合适的示范答案是：我在初始训练或复训期间使用 FCTM，在需要理解某项检查单或飞行剖面背后的技术时也会查阅。例如，模拟机训练前，我可能复习建议的侧风着陆技术，再与经批准手册中的限制和程序进行比较。学习者应根据自己的飞机和训练做法替换这个例子。"
     }
   ]
 }

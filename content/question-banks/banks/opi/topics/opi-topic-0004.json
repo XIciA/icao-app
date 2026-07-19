@@ -2,154 +2,71 @@
   "categoryId": "opi-category-02",
   "id": "opi-topic-0004",
   "name": "应急设备",
-  "declaredCardCount": 21,
+  "declaredCardCount": 8,
   "cards": [
     {
-      "id": "opi-core-058",
+      "id": "opi-core-058-part-2",
       "taskTitle": "特情-应急设备-1",
-      "audioText": "What type of aircraft are you flying now? What kinds of emergency equipment do you have in the cockpit?",
-      "audioTextZh": "你飞什么机型？驾驶舱里配备哪些应急设备？",
-      "referenceText": "I fly the [具体机型，比如 “Cessna 172”]. In the cockpit, we have various emergency equipment to ensure safety, including fire extinguishers, oxygen masks, an axe, a flashlight, a first - aid kit, life vests, escape ropes, and emergency slides. These tools help us handle unexpected situations during flights.\n我驾驶的是 [比如 “塞斯纳 172 型飞机”] 。驾驶舱内配备多种应急设备保障安全，有灭火器、氧气面罩、斧头、手电筒、急救箱、救生衣、逃生绳以及应急滑梯。这些工具能帮我们应对飞行中出现的突发状况 。"
-    },
-    {
-      "id": "opi-core-059",
-      "taskTitle": "特情-应急设备-2",
-      "audioText": "Under what circumstances would you use the oxygen mask in flight?",
-      "audioTextZh": "什么情况下飞行员会使用氧气面罩？",
-      "referenceText": "(1) Actually, the DA - 40 doesn’t have an oxygen mask. But based on my knowledge, if we encounter decompression, an onboard fire, or smoke in the cabin or cockpit, we will use oxygen masks.\n实际上，DA - 40 飞机上没有氧气面罩。但就我所知，若遇到失压、机上起火，或者客舱 / 驾驶舱有烟雾时，我们会使用氧气面罩。\n\n(2) First, if depressurization occurs, we will use oxygen masks. Second, if there is smoke, fumes, or a fire in the cockpit, we will use oxygen masks.\n第一，若出现失压情况，我们会使用氧气面罩；第二，若驾驶舱内有烟雾、烟气或起火，我们会使用氧气面罩。\n\n（3）Oxygen masks are used in situations like cabin depressurization, cockpit fire/smoke (for protection), medical emergencies (aiding sick passengers), operations at high-elevation airports (preventing incapacitation), and air conditioning system failure.\n在客舱失压、驾驶舱起火/有烟雾防护用、医疗紧急情况救助患病乘客、高原机场运行防止失能以及空调系统失效等情况下，需使用氧气面罩。"
+      "audioText": "What emergency equipment is available in the cockpit of the aircraft you fly?",
+      "audioTextZh": "你所飞飞机的驾驶舱内配备了哪些应急设备？",
+      "referenceText": "In a typical transport-aircraft cockpit, emergency equipment includes oxygen masks, smoke goggles, fire extinguishers, life vests and an emergency escape device. The exact equipment and stowage locations depend on the aircraft type. A pilot should use the approved equipment list and cockpit inspection procedure for the aircraft concerned.",
+      "referenceTextZh": "典型运输类飞机的驾驶舱应急设备包括氧气面罩、防烟眼镜、灭火器、救生衣和应急逃生装置。具体设备及存放位置取决于机型。飞行员应采用相关飞机经批准的设备清单和驾驶舱检查程序。"
     },
     {
       "id": "opi-core-060",
-      "taskTitle": "特情-应急设备-3",
-      "audioText": "Do you have evacuation slides on your type of aircraft? Where are they?",
-      "audioTextZh": "你们的飞机上有疏散滑梯吗？他们在哪里？",
-      "referenceText": "I fly the DA - 40 for flight training. Our aircraft doesn’t have evacuation slides. But as far as I know, for example, on a Boeing 737 - 800, the evacuation slides are located at the front and rear of the aircraft.\n\n我驾驶 DA - 40 进行飞行训练。我们的飞机上没有疏散滑梯。但据我所知，比如在波音 737 - 800 飞机上，疏散滑梯位于飞机的前部和后部 。"
+      "taskTitle": "特情-应急设备-2",
+      "audioText": "Does the aircraft type you fly have evacuation slides? If so, where are they located?",
+      "audioTextZh": "你所飞的机型配有撤离滑梯吗？如果有，安装在哪里？",
+      "referenceText": "A suitable example would be: the aircraft I fly has evacuation slides at the main passenger doors and at designated emergency exits. Some slides may also serve as flotation devices, depending on the installation. The exact number, type and location must be confirmed from the aircraft's approved emergency-equipment information.",
+      "referenceTextZh": "一个合适的示范答案是：我所飞机型的主客舱门和指定应急出口配有撤离滑梯。根据安装方式，部分滑梯还可以充当漂浮装置。具体数量、类型和位置必须依据飞机经批准的应急设备资料确认。"
     },
     {
       "id": "opi-core-061",
-      "taskTitle": "特情-应急设备-4",
-      "audioText": "How many evacuation slides do you have?",
-      "audioTextZh": "你们有多少个疏散滑梯？",
-      "referenceText": "(1)As far as I know, there are 4 evacuation slides on the Boeing 737-800.\n据我所知，波音737-800上有4个疏散滑梯。\n(2)I fly C172. There is no emergency slide in C172 but I know there are emergency slides in A320 or B737\n我飞C172。C172没有紧急滑梯，但我知道A320或B737有紧急滑梯"
+      "taskTitle": "特情-应急设备-3",
+      "audioText": "How many evacuation slides are installed on the aircraft type you fly?",
+      "audioTextZh": "你所飞的机型安装了多少个撤离滑梯？",
+      "referenceText": "A suitable example would be: the aircraft variant I fly has six evacuation slides. Four are fitted at the main doors, and two serve the overwing exits. This is a model configuration only, so learners should replace it with the approved number and arrangement for their own aircraft.",
+      "referenceTextZh": "一个合适的示范答案是：我所飞机型共有六个撤离滑梯。四个安装在主舱门，另外两个用于翼上出口。这只是一个示范构型，学习者应替换为自己所飞机型经批准的数量和布置。"
     },
     {
       "id": "opi-core-062",
-      "taskTitle": "特情-应急设备-5",
-      "audioText": "Under what circumstances will you use the evacuation slides?",
-      "audioTextZh": "在什么情况下你会使用疏散滑梯？",
-      "referenceText": "If we encounter a bomb on board, an engine fire, or smoke in the cabin, and need to execute an emergency evacuation, we will deploy the evacuation slides.\n若遇到机上有炸弹、发动机起火或客舱冒烟，且需执行紧急疏散时，我们会启用疏散滑梯 。"
+      "taskTitle": "特情-应急设备-4",
+      "audioText": "Under what circumstances should evacuation slides be used?",
+      "audioTextZh": "在什么情况下应使用撤离滑梯？",
+      "referenceText": "Evacuation slides should be used when an armed exit is opened for an emergency evacuation and the height makes an assisted descent necessary. An exit should not be used if fire, obstacles or another hazard makes the outside area unsafe. Cabin crew assess the exit, redirect passengers when necessary and follow the operator's commands and procedures.",
+      "referenceTextZh": "当已预位的出口为紧急撤离而打开，并且门槛高度需要辅助下滑时，应使用撤离滑梯。如果出口外有火焰、障碍物或其他危险，就不应使用该出口。客舱机组应评估出口，必要时引导旅客改用其他出口，并遵循运营人的口令和程序。"
     },
     {
       "id": "opi-core-063",
-      "taskTitle": "特情-应急设备-6",
-      "audioText": "Have you ever heard of any incident that the passenger deployed the evacuation slide on the ground?",
-      "audioTextZh": "你听说过乘客将疏散滑梯放在地上的事件吗？",
-      "referenceText": "Yes, I heard a passenger opened an over - wing emergency exit. The slide was deployed. The flight crew requested to cancel the slot time. The passenger was taken away by the police.\n\n是的，我听说一位乘客打开了机翼上的紧急出口。滑梯被展开了。机组人员要求取消离场时间。该乘客被警察带走了 。"
+      "taskTitle": "特情-应急设备-5",
+      "audioText": "Have you ever heard of an evacuation slide being deployed accidentally during ground operations?",
+      "audioTextZh": "你听说过地面运行期间撤离滑梯意外释放的情况吗？",
+      "referenceText": "A suitable example would be: yes, I have heard reports of slides deploying accidentally when a door was opened while still armed. Such an event can injure people near the door and cause significant damage and delay. Good door-status communication and strict use of the operator's arming and disarming procedure help prevent it.",
+      "referenceTextZh": "一个合适的示范答案是：是的，我听说过舱门仍处于预位状态时被打开，导致滑梯意外释放的事件。这类事件会使舱门附近人员受伤，并造成严重损坏和延误。做好舱门状态沟通，并严格执行运营人的预位和解除预位程序，有助于防止此类事件。"
     },
     {
       "id": "opi-core-064",
-      "taskTitle": "特情-应急设备-7",
+      "taskTitle": "特情-应急设备-6",
       "audioText": "Why are pilots required to be familiar with emergency equipment?",
-      "audioTextZh": "为什么飞行员需要熟悉应急设备？",
-      "referenceText": "Pilots should be familiar with the location and function of the emergency equipment. In case of any emergency, pilots can use it quickly and correctly.\n飞行员应熟悉应急设备的位置和功能。在任何紧急情况下，飞行员都可以快速正确地使用它。"
-    },
-    {
-      "id": "opi-core-065",
-      "taskTitle": "特情-应急设备-8",
-      "audioText": "What are the consequences if the flight crew discharge the fire extinguisher by mistake?",
-      "audioTextZh": "如果机组人员误放灭火器会有什么后果？",
-      "referenceText": "If the flight crew discharges a fire extinguisher by mistake, in case of an on - board fire later, they may use up the extinguisher and be short of it. So, they should request a diversion or land as soon as possible.\n\n若机组人员误放灭火器，之后万一发生机上火灾，可能会用尽灭火器且无备用。因此，他们应尽快申请改航或降落 。"
-    },
-    {
-      "id": "opi-core-066",
-      "taskTitle": "特情-应急设备-9",
-      "audioText": "What is the procedure to discharge the fire extinguisher for the engine?",
-      "audioTextZh": "发动机灭火器的排放程序是什么？",
-      "referenceText": "According to the checklist, we will disengage the auto-throttle, set the affected engine thrust to idle, shut down the affected engine and then pull the engine fire extinguisher switch.\n根据检查单，我们将松开自动油门，将受影响的发动机推力设置为怠速，关闭受影响的引擎，然后拉动发动机灭火器开关。"
-    },
-    {
-      "id": "opi-core-067",
-      "taskTitle": "特情-应急设备-10",
-      "audioText": "Can you say something about the oxygen system on your aircraft?",
-      "audioTextZh": "你能谈谈你飞机上的氧气系统吗？",
-      "referenceText": "Actually, I fly DA-40, we don't have oxygen system. But based on my knowledge, on big commercial aircraft like B737, there are 3 kinds of oxygen systems. One is for the crew. One is for passengers. The last one is the portable oxygen bottles for emergency use.\n事实上，我乘坐DA-40，我们没有氧气系统。但据我所知，在B737这样的大型商用飞机上，有3种氧气系统。一个是给机组的。一个是给乘客的。最后一个是应急用的便携式氧气瓶。"
+      "audioTextZh": "为什么要求飞行员熟悉应急设备？",
+      "referenceText": "Pilots must be familiar with emergency equipment because an emergency leaves little time to search for instructions or equipment. They need to know what is available, where it is stowed, how to check it and how to use it safely. Regular training also reduces confusion and improves coordination with the cabin crew.",
+      "referenceTextZh": "飞行员必须熟悉应急设备，因为紧急情况下没有多少时间查找说明或设备。他们需要知道机上有哪些设备、存放在哪里、如何检查以及怎样安全使用。定期训练还能减少混乱，并改善与客舱机组的协作。"
     },
     {
       "id": "opi-core-068",
-      "taskTitle": "特情-应急设备-11",
-      "audioText": "Is there any emergency equipment on your aircraft? Are they convenient to use?",
-      "audioTextZh": "你的飞机上有应急设备吗？它们使用方便吗？",
-      "referenceText": "Yes, we have some emergency equipment on board, such as fire extinguishers, oxygen masks, an axe, a flashlight, a first - aid kit, and life vests. They are designed to be easily accessible and convenient to use in emergencies.\n\n是的，我们飞机上有一些应急设备，如灭火器、氧气面罩、斧头、手电筒、急救箱和救生衣。这些设备在设计上便于取用，紧急情况下使用很方便 。"
-    },
-    {
-      "id": "opi-core-069",
-      "taskTitle": "特情-应急设备-12",
-      "audioText": "Why are pilots required to be familiar with the emergency equipment?",
-      "audioTextZh": "为什么飞行员需要熟悉应急设备？",
-      "referenceText": "We are required to be familiar with the emergency equipment because they can be used in emergency situations to ensure flight safety. For example, if we encounter cabin fire, we can use fire extinguishers to put out fire. If we encounter depressurization we can put on oxygen masks to avoid crew incapacitation.\n我们需要熟悉应急设备，因为它们可以在紧急情况下使用，以确保飞行安全。例如，如果我们遇到机舱火灾，我们可以使用灭火器灭火。如果我们遇到减压，我们可以戴上氧气面罩，以避免机组人员丧失能力。"
-    },
-    {
-      "id": "opi-core-070",
-      "taskTitle": "特情-应急设备-13",
-      "audioText": "How many emergency slides are there in your aircraft?",
-      "audioTextZh": "你的飞机上有多少紧急滑梯？",
-      "referenceText": "I fly C172. There is no emergency slide in C172 but I know there are emergency slides in A320 or B737.\n我乘坐C172。C172没有紧急滑梯，但我知道A320或B737有紧急滑梯。"
-    },
-    {
-      "id": "opi-core-071",
-      "taskTitle": "特情-应急设备-14",
-      "audioText": "What are the locations of them?",
-      "audioTextZh": "它们的位置是什么？",
-      "referenceText": "There are emergency slides in Airbus, two are the front, two are in the middle and two are in the tail\n空客有紧急滑梯，两个在前面，两个位于中间，两个处于尾部"
+      "taskTitle": "特情-应急设备-7",
+      "audioText": "How easy is the emergency equipment on your aircraft to use?",
+      "audioTextZh": "你所飞飞机上的应急设备是否容易使用？",
+      "referenceText": "A suitable example would be: most emergency equipment on my aircraft is designed for quick use, but it is only easy when the crew has trained with it. Oxygen masks and fire extinguishers require correct handling under stress, and some escape equipment needs careful deployment. Recurrent practice is therefore more important than assuming that the equipment is self-explanatory.",
+      "referenceTextZh": "一个合适的示范答案是：我所飞机型的大多数应急设备都便于快速使用，但只有机组接受过训练，操作起来才会真正容易。氧气面罩和灭火器在压力下需要正确操作，有些逃生设备也必须谨慎展开。因此，定期练习比想当然地认为设备一看就会更重要。"
     },
     {
       "id": "opi-core-072",
-      "taskTitle": "特情-应急设备-15",
-      "audioText": "What are the functions of emergency slides?",
-      "audioTextZh": "紧急滑梯的功能是什么？",
-      "referenceText": "The emergency slides are used to help the persons on board to evacuate the aircraft as soon as possible.\n紧急滑梯用于帮助机上人员尽快撤离飞机。"
-    },
-    {
-      "id": "opi-core-073",
-      "taskTitle": "特情-应急设备-16",
-      "audioText": "Have you ever heard of emergency slides being deployed during ground operation?",
-      "audioTextZh": "你听说过在地面运行中，紧急滑梯被释放吗",
-      "referenceText": "Yes. Once, it happened to West China Airline,When the aircraft was still taxiing on the taxiway, one passenger opened the emergency exit and the emergency slide was deployed.\n是的。有一次，中国西部航空公司发生了这样的事情，当飞机还在滑行道上滑行时，一名乘客打开了紧急出口，并部署了紧急滑梯。"
-    },
-    {
-      "id": "opi-core-074",
-      "taskTitle": "特情-应急设备-17",
-      "audioText": "When does oxygen mask drop during flight？",
-      "audioTextZh": "飞行中氧气面罩什么时候掉下来",
-      "referenceText": "The oxygen masks will drop if there is depressurization during flight\n如果飞行中减压，氧气面罩会掉落"
-    },
-    {
-      "id": "opi-core-075",
-      "taskTitle": "特情-应急设备-18",
-      "audioText": "Under what conditions do you use oxygen masks?",
-      "audioTextZh": "在什么情况下使用氧气面罩？",
-      "referenceText": "There are many conditions will use oxygen masks. First, if we encounter depressurization during flight, we will use oxygen masks. Second, if there is smoke or fire in the cockpit, we will use oxygen masks.\n有很多情况下会使用氧气面罩。首先，如果我们在飞行中遇到减压，我们将使用氧气面罩。其次，如果驾驶舱内有烟雾或火灾，我们将使用氧气面罩。"
-    },
-    {
-      "id": "opi-core-076",
-      "taskTitle": "特情-应急设备-19",
-      "audioText": "If there is strange smell in the cockpit, what will you do",
-      "audioTextZh": "如果驾驶舱有异味儿，你应该怎么办？",
-      "referenceText": "If there is strange smell in the cockpit,\nfirst, we will put on the oxygen masks and find the source of unusual smell.\nSecond, we will report it to ATC and request emergency landing at the nearest suitable airport and request emergency services after landing such as fire services and medical services.\n如果驾驶舱有异味，第一，我们将带上氧气面罩，查找异味来源；第二，我们将报告管制，请求在最近合适机场紧急落地，请求紧急服务，比如消防服务和医疗服务。"
-    },
-    {
-      "id": "opi-core-077",
-      "taskTitle": "特情-应急设备-20",
-      "audioText": "Under what situations do you need to evacuate?How do you prepare the evacuation?",
-      "audioTextZh": "什么情况下需要撤离？你如何准备撤离？",
-      "referenceText": "There are many situations we need to evacuate. For example,\n1）if there is smoke or fire on board, we need to evacuate.\n2）if there is bomb on board, we need to evacuate.\n有很多情况我们有必要撤离。比如，如果机上有烟雾或起火，我们有必要撤离，如果机上有炸弹，我们有必要撤离。\nIf we have to evacuate, first, we will report our situation to ATC and tell the controller we will evacuate. Second, we will make a PA to inform the passengers we will evacuate and prepare for it. Third, the cabin crew will open the emergency exits and emergency slides and evacuate the passengers.\n如果我们不得不撤离，第一，我们将报告管制我们的情况，告诉管制我们要撤离；第二，我们要做乘客广播，告知乘客我们要撤离，并做好准备；第三，空乘将打开紧急出口，放出紧急滑梯，撤离乘客"
-    },
-    {
-      "id": "opi-core-078",
-      "taskTitle": "特情-应急设备-21",
-      "audioText": "Have you ever encountered an\nemergency situationduring flight? If\nyes, what happened?",
-      "audioTextZh": "你在飞行中遇到过紧急情况吗？如果有，发生了什么？",
-      "referenceText": "No, I haven't encountered an emergency during flight. But I am familiar with emergency disposal procedures through simulator training, such as engine failure, depressurization, and turbulence, and can respond in accordance with SOP and checklists.\n我在飞行中未遇到过紧急情况，但通过模拟机训练熟悉了发动机失效、失压、颠簸等应急处置流程，能够按照SOP和检查单响应。"
+      "taskTitle": "特情-应急设备-8",
+      "audioText": "What functions do evacuation slides serve?",
+      "audioTextZh": "撤离滑梯有哪些用途？",
+      "referenceText": "Evacuation slides provide a rapid route from an aircraft exit to the ground when the door sill is high. On some aircraft, certain slides can detach and serve as flotation devices or life rafts. Their exact functions depend on the approved installation, so crews must know the equipment fitted to each aircraft.",
+      "referenceTextZh": "当飞机出口门槛较高时，撤离滑梯可以提供一条从出口快速到达地面的通道。在部分飞机上，某些滑梯能够拆下并作为漂浮装置或救生筏使用。具体功能取决于经批准的安装构型，因此机组必须了解每架飞机实际配备的设备。"
     }
   ]
 }

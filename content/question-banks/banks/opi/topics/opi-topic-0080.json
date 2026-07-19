@@ -7,30 +7,34 @@
     {
       "id": "opi-core-813",
       "taskTitle": "气象-微下击暴流-1",
-      "audioText": "What do you know about\nmicro-burst?",
-      "audioTextZh": "你知道微下击暴流吗?",
-      "referenceText": "Micro-burst is a localized extreme weather with strong wind shear. It forms a column of fast-sinking air from storm clouds, spreading horizontally on hitting the ground. It’s short-lived (5-15 minutes) and covers 1-3km in diameter, posing great threats to takeoff and landing aircraft.\n微下击暴流是一种局地极端天气，包含强风切变。它由风暴云底部产生快速下沉的气流柱，触地后向水平方向扩散；持续时间短（5-15分钟），影响范围直径1-3公里，对起降阶段的飞机构成极大威胁。"
+      "audioText": "What is a microburst?",
+      "audioTextZh": "什么是微下击暴流？",
+      "referenceText": "A microburst is a small but intense downdraft that reaches the ground and spreads outward. An aircraft crossing it may first experience increasing headwind, then a downdraft and finally a strong tailwind. This rapid sequence can produce a severe loss of performance close to the ground.",
+      "referenceTextZh": "微下击暴流是一股范围较小但强度很大的下沉气流，到达地面后会向外扩散。飞机穿越时可能先遇到增强的顶风，随后是下沉气流，最后是强顺风。这一快速变化过程会使飞机在近地面时严重损失性能。"
     },
     {
       "id": "opi-core-814",
       "taskTitle": "气象-微下击暴流-2",
-      "audioText": "What threat does micro-burst pose\nto flight safety?",
-      "audioTextZh": "微下击暴流会对飞行安全构成哪些威\n胁?",
-      "referenceText": "Micro-burst threatens flight safety in three phases: approaching it brings strong headwind (increased lift and speed); flying through it causes strong downdraft (altitude loss, even crash); leaving it brings strong tailwind (reduced lift and speed, even stall). It may lead to loss of control, structural damage and fatalities.\n微下击暴流对飞行安全的威胁分三阶段：接近时遭遇强逆风（升力和速度骤增）；穿越时遭遇强下沉气流（高度骤降，甚至坠机）；脱离时遭遇强顺风（升力和速度骤减，甚至失速），可能导致飞机失控、结构损伤和人员伤亡。"
+      "audioText": "How can a microburst threaten flight safety?",
+      "audioTextZh": "微下击暴流会如何威胁飞行安全？",
+      "referenceText": "A microburst can change airspeed and lift faster than the aircraft can regain energy. Its downdraft and outflow may prevent a safe climb or cause a rapid descent during approach. Because it is concentrated near the ground, recovery time and altitude are very limited.",
+      "referenceTextZh": "微下击暴流改变空速和升力的速度可能快于飞机重新获得能量的速度。其下沉气流和外流可能使飞机无法安全爬升，或在进近时迅速下降。由于它集中出现在近地面区域，可用于改出的时间和高度十分有限。"
     },
     {
       "id": "opi-core-815",
       "taskTitle": "气象-微下击暴流-3",
-      "audioText": "In what weather conditions do you think you will encounter the micro-burst?",
-      "audioTextZh": "在什么样的天气条件下,你会遇到微下击暴流?",
-      "referenceText": "Micro-burst is likely encountered in severe convective weather, such as thunderstorms, CB, or heavy rain showers. It is a localized, short-lived extreme weather with strong downdrafts and wind shear, often forming under intense storm clouds, posing great threats to takeoff and landing phases.\n微下击暴流易在强对流天气中遇到，如雷暴、积雨云（CB）或强阵雨天气。它是一种局地、短时的极端天气，伴有强下沉气流和风切变，通常在强烈的风暴云下方形成，对起飞和着陆阶段构成极大威胁。"
+      "audioText": "Under what weather conditions are microbursts most likely to occur?",
+      "audioTextZh": "哪些天气条件下最容易出现微下击暴流？",
+      "referenceText": "Microbursts are commonly associated with convective clouds, thunderstorms and strong precipitation shafts. They can also form when precipitation evaporates into dry air below a cloud, producing a strong cooled downdraft. Pilots should consider airport alerts and the whole convective environment, not only whether heavy rain is reaching the ground.",
+      "referenceTextZh": "微下击暴流通常与对流云、雷暴和强降水柱有关。当降水在云下干燥空气中蒸发并形成强烈冷却下沉气流时，它也可能产生。飞行员应综合考虑机场警报和整个对流环境，不能只看大雨是否已经到达地面。"
     },
     {
       "id": "opi-core-816",
       "taskTitle": "气象-微下击暴流-4",
-      "audioText": "What may occur if you fly through a micro-burst?",
-      "audioTextZh": "穿越微下击暴流时会发生什么?",
-      "referenceText": "Flying through a micro-burst may cause sudden changes: strong headwind (increased lift/airspeed) when approaching, severe downdraft (altitude loss, even crash) when passing through, and strong tailwind (reduced lift/airspeed, stall) when exiting. It leads to loss of control, endangering flight safety.\n穿越微下击暴流可能出现突发变化：接近时遭遇强逆风（升力/空速增加），穿越时遭遇强下沉气流（高度骤降，甚至坠毁），脱离时遭遇强顺风（升力/空速降低，可能失速），导致飞机失控，危及飞行安全。"
+      "audioText": "What could happen if an aircraft flew through a microburst?",
+      "audioTextZh": "如果飞机穿越微下击暴流，可能会发生什么？",
+      "referenceText": "The aircraft could experience a rapid airspeed gain followed by a severe loss, strong downdraft and large flight-path deviation. During takeoff or approach, it might be unable to climb or maintain clearance from the ground. An unrecognized or mishandled encounter can therefore result in loss of control or impact with terrain.",
+      "referenceTextZh": "飞机可能先出现空速迅速增加，随后严重下降，并遭遇强烈下沉气流和大幅飞行轨迹偏差。在起飞或进近期间，它可能无法爬升或保持离地间隔。因此，如果未能识别微下击暴流或处置不当，就可能导致失控或撞地。"
     }
   ]
 }

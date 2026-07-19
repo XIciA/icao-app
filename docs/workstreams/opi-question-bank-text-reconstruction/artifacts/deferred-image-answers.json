@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "baselineDigest": "81ff4e8d16582b5bfd3a2e6b4cf08f6f6eb89159be2b6b93f4c0e3370aea7d42",
+  "cards": [
+    {
+      "cardId": "opi-image-002-q01",
+      "topicId": "opi-image-topic-002",
+      "reason": "The answer requires identifying visible details in the specific picture."
+    },
+    {
+      "cardId": "opi-image-005-q01",
+      "topicId": "opi-image-topic-005",
+      "reason": "The answer requires identifying the landing-gear condition visible in the specific picture."
+    },
+    {
+      "cardId": "opi-image-008-q01",
+      "topicId": "opi-image-topic-008",
+      "reason": "The answer requires describing the people, equipment and actions visible in the specific simulator picture."
+    },
+    {
+      "cardId": "opi-image-010-q01",
+      "topicId": "opi-image-topic-010",
+      "reason": "The answer requires identifying the damage visible on the specific aircraft in the picture."
+    },
+    {
+      "cardId": "opi-image-011-q01",
+      "topicId": "opi-image-topic-011",
+      "reason": "The answer requires describing the visible location and condition of the fire in the specific picture."
+    },
+    {
+      "cardId": "opi-image-012-q01",
+      "topicId": "opi-image-topic-012",
+      "reason": "The answer requires describing the number, positions and activity of aircraft visible in the specific picture."
+    },
+    {
+      "cardId": "opi-image-018-q01",
+      "topicId": "opi-image-topic-018",
+      "reason": "The answer requires identifying the visible aircraft attitude, contact point and damage in the specific tail-strike picture."
+    },
+    {
+      "cardId": "opi-image-019-q01",
+      "topicId": "opi-image-topic-019",
+      "reason": "The answer requires interpreting the vehicles, aircraft positions and other visible evidence in the specific ground-handling accident picture."
+    },
+    {
+      "cardId": "opi-image-021-q01",
+      "topicId": "opi-image-topic-021",
+      "reason": "The answer requires identifying the location, shape and severity of bird-strike damage visible in the specific photograph."
+    },
+    {
+      "cardId": "opi-image-023-q01",
+      "topicId": "opi-image-topic-023",
+      "reason": "The answer requires describing the fire, smoke, aircraft and emergency response visible in the specific ground-fire picture."
+    }
+  ]
+}

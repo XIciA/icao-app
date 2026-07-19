@@ -7,30 +7,34 @@
     {
       "id": "opi-extra-081",
       "taskTitle": "运行-驾驶舱进入规则-1",
-      "audioText": "What are your cockpit entry rules?",
-      "audioTextZh": "你们的驾驶舱进入规则是什么？",
-      "referenceText": "First of all, passengers are not allowed to enter the cockpit during flight. For crew members, if they want to enter the cockpit during flight, the pilot will use the camera and interphone to confirm the crew's identification.\n首先，飞行期间乘客不得进入驾驶舱。对于机组人员，若飞行期间想要进入驾驶舱，飞行员会通过摄像头和内部通话设备确认机组人员的身份 。"
+      "audioText": "What rules does your company apply to cockpit entry during flight?",
+      "audioTextZh": "你所在公司对飞行中进入驾驶舱有哪些规定？",
+      "referenceText": "A suitable company policy would keep the flight deck door secured in flight and limit entry to authorized people with an operational need. Identity and access would be verified through the approved communication and door-control procedure, with extra care during high-workload or security-sensitive phases. The crew would never describe or bypass sensitive access details outside the controlled company material.",
+      "referenceTextZh": "一个合适的公司政策应要求飞行中保持驾驶舱门锁闭，只允许因运行需要获得授权的人员进入。身份和进入权限应通过批准的通信与舱门控制程序核实，在高工作负荷或安保敏感阶段尤其谨慎。机组绝不能在受控公司资料之外描述或绕过敏感的进入细节。"
     },
     {
       "id": "opi-extra-082",
       "taskTitle": "运行-驾驶舱进入规则-2",
-      "audioText": "Who can enter the cockpit?",
-      "audioTextZh": "谁可以进入驾驶舱？",
-      "referenceText": "The pilot, the cabin crew (CC), the authorized company operation staff, the authorized inspector, and so on.\n飞行员、客舱乘务员（CC）、经授权的公司运营人员、经授权的检查员等等 。\n\nThose allowed to enter the cockpit include flight crew, authorized cabin crew (for example purser for catering), authorities’ supervisors/representatives, and personnel approved by the captain whose entry is necessary for safe operation. The cockpit door must stay locked during flight, with at least two crew members inside.\n允许进入驾驶舱的人员包括机组成员、授权客舱机组（如负责餐饮的乘务长）、局方监察员或委任代表，以及经机长同意且进入对安全运行必要或有益的人员。飞行期间驾驶舱门需关闭锁定，且需始终有两名机组成员在驾驶舱内。"
+      "audioText": "Who is authorized to enter the cockpit during flight?",
+      "audioTextZh": "飞行中哪些人员获准进入驾驶舱？",
+      "referenceText": "Authorized flight crew and, when operationally necessary, designated cabin crew, inspectors or other persons approved under the applicable rules may be allowed to enter. Authorization alone does not guarantee immediate access because the commander must consider the current operational and security situation. Passengers and other unauthorized people must not enter the flight deck during flight.",
+      "referenceTextZh": "获得授权的飞行机组，以及运行需要时指定的客舱机组、监察员或适用规则批准的其他人员，可以获准进入。仅有授权并不保证立即进入，因为机长必须考虑当前运行和安保状况。飞行中，旅客和其他未经授权的人员不得进入驾驶舱。"
     },
     {
       "id": "opi-extra-083",
       "taskTitle": "运行-驾驶舱进入规则-3",
-      "audioText": "When?\n（",
-      "audioTextZh": "相关人员 ）什么时候（可以进入驾驶舱 ）？",
-      "referenceText": "For example, during catering time, the cabin crew will send meals or coffee to the cockpit.\n例如，在配餐时段，客舱乘务员会给驾驶舱送餐或咖啡"
+      "audioText": "When might an authorized crew member need to enter the cockpit during flight?",
+      "audioTextZh": "获得授权的机组成员在什么情况下可能需要在飞行中进入驾驶舱？",
+      "referenceText": "An authorized cabin crew member may need to enter for an operational briefing, a flight crew welfare check, delivery of important information or response to an abnormal or medical situation. Inspectors or positioning crew may have a defined operational reason under the applicable rules. Entry should be kept to what is necessary and coordinated so it does not disrupt a critical phase of flight.",
+      "referenceTextZh": "经授权的客舱机组成员可能因运行简令、检查飞行机组状况、传递重要信息或处置异常及医疗情况而需要进入驾驶舱。监察员或置位机组可以根据适用规定具有明确的运行理由。进入应仅限必要情况，并做好协调，避免干扰关键飞行阶段。"
     },
     {
       "id": "opi-extra-084",
       "taskTitle": "运行-驾驶舱进入规则-4",
-      "audioText": "In flight what are procedures for crew\nmember to enter the cockpit?",
-      "audioTextZh": "飞行中，机组人员进入驾驶舱的流程是什么？",
-      "referenceText": "During the critical flight phase, the crew member can’t enter the cockpit. During cruising, if the crew member wants to enter the cockpit, they need get the captain’s permission first.\n关键飞行阶段（如起飞、进近、着陆），机组人员不得进入驾驶舱；巡航阶段，若需进入，需先获得机长许可。"
+      "audioText": "What procedure should a crew member follow to enter the cockpit during flight?",
+      "audioTextZh": "机组成员在飞行中进入驾驶舱时应遵循什么程序？",
+      "referenceText": "The crew member should use the operator's approved secure communication and identity-verification procedure and wait for the flight crew to authorize access. The door area should be managed so that unauthorized people cannot follow or observe sensitive actions, and entry should be delayed if cockpit workload or security conditions make it unsafe. Specific codes, timing and door techniques belong only in controlled company training and are intentionally not described here.",
+      "referenceTextZh": "机组成员应使用运营人批准的安全通信和身份核实程序，并等待飞行机组授权进入。舱门区域应受到管理，防止未经授权人员尾随或观察敏感操作；如果驾驶舱工作负荷或安保条件使进入不安全，则应推迟。具体密码、时机和舱门操作方法只属于受控的公司训练材料，因此这里有意不作说明。"
     }
   ]
 }

@@ -14,38 +14,32 @@
     {
       "id": "opi-image-011-q01",
       "taskTitle": "图片题-011-01",
-      "audioText": "Please describe the scene shown in this picture.",
-      "audioTextZh": "请描述图片中显示的场景。",
-      "referenceText": "In this picture, I can see a situation related to Tail engine fire. The key points are smoke, fire spread, system damage, passenger panic, and possible evacuation. It is important for the crew to recognize the risk early, keep good communication, and follow standard operating procedures.",
-      "referenceTextZh": "在这张图片中，我看到的是与尾部发动机火警有关的情况。关键点包括烟雾、火势蔓延、系统损伤、旅客恐慌以及可能需要撤离。机组应及早识别风险，保持良好沟通，并按照标准操作程序处置。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-011-q01.mp3"
+      "audioText": "What can you see in this picture of a tail-mounted engine fire?",
+      "audioTextZh": "你能从这张尾置发动机起火的图片中看到什么？"
     },
     {
       "id": "opi-image-011-q02",
       "taskTitle": "图片题-011-02",
-      "audioText": "What potential risks will tail engine fire bring to the aircraft and passengers?",
-      "audioTextZh": "尾部发动机起火会给飞机和旅客带来哪些潜在风险？",
-      "referenceText": "The main risks are smoke, fire spread, system damage, passenger panic, and possible evacuation. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
-      "referenceTextZh": "主要风险包括烟雾、火势蔓延、系统损伤、旅客恐慌以及可能需要撤离。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-011-q02.mp3"
+      "audioText": "What risks can a fire in a tail-mounted engine pose to an aircraft and its occupants?",
+      "audioTextZh": "尾置发动机起火会给航空器及其乘员带来哪些风险？",
+      "referenceText": "A tail-mounted engine fire can damage the engine, pylon, rear fuselage, tail controls and nearby hydraulic, electrical or fuel systems. Smoke or heat may enter the cabin, and falling debris can threaten the aircraft and people on the ground. Loss of thrust and secondary system damage can make control, pressurization and evacuation more difficult.",
+      "referenceTextZh": "尾部安装的发动机起火可能损坏发动机、吊架、后机身、尾部操纵系统，以及附近的液压、电气或燃油系统。烟雾或高温可能进入客舱，坠落碎片还会威胁飞机和地面人员。推力丧失和次生系统损坏会使飞机控制、增压和撤离更加困难。"
     },
     {
       "id": "opi-image-011-q03",
       "taskTitle": "图片题-011-03",
-      "audioText": "As the pilot in command, how will you handle this situation?",
-      "audioTextZh": "作为机长，你会如何处理这种情况？",
-      "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
-      "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-011-q03.mp3"
+      "audioText": "As the pilot in command, how would you respond to the tail-mounted engine fire shown in this picture?",
+      "audioTextZh": "作为机长，你会如何处置图中所示的尾置发动机起火？",
+      "referenceText": "I would control the aircraft, identify the warning and execute the aircraft's engine-fire procedure, including shutdown and extinguishing actions exactly as directed. I would declare an emergency, assess secondary damage and plan to land as soon as possible at the nearest airport that can be used safely. The cabin would be informed, emergency services requested and an evacuation considered after stopping if fire indications or damage required it.",
+      "referenceTextZh": "我会控制飞机、识别警告，并严格按照本机型发动机火警程序执行关车和灭火操作。我会宣布紧急情况、评估次生损坏，并计划尽快在能够安全使用的最近机场着陆。机组会通知客舱、请求应急服务；停止后如火警指示或损坏情况需要，还会考虑撤离。"
     },
     {
       "id": "opi-image-011-q04",
       "taskTitle": "图片题-011-04",
-      "audioText": "What measures can help reduce the risk of engine fire during flight?",
-      "audioTextZh": "哪些措施可以帮助降低飞行中发动机火警的风险？",
-      "referenceText": "The main risks are smoke, fire spread, system damage, passenger panic, and possible evacuation. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
-      "referenceTextZh": "主要风险包括烟雾、火势蔓延、系统损伤、旅客恐慌以及可能需要撤离。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-011-q04.mp3"
+      "audioText": "What measures can help reduce the risk of an in-flight engine fire?",
+      "audioTextZh": "哪些措施可以降低发动机在飞行中起火的风险？",
+      "referenceText": "Risk is reduced through correct design, inspection and maintenance of fuel, oil, ignition, bleed-air and fire-detection systems. Crews and ground staff should respond to leaks, abnormal starts, damage and maintenance warnings before flight and use approved start and shutdown procedures. Fire detection, containment, extinguishing systems and recurrent training limit consequences when prevention fails.",
+      "referenceTextZh": "正确设计并检查维护燃油、滑油、点火、引气和火警探测系统，可以降低风险。机组和地面人员应在飞行前处理泄漏、启动异常、损坏和维修警告，并采用批准的启动和关车程序。如果预防失效，火警探测、隔离与灭火系统以及定期复训能够限制后果。"
     }
   ]
 }

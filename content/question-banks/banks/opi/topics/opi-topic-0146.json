@@ -2,56 +2,47 @@
   "categoryId": "opi-category-05",
   "id": "opi-topic-0146",
   "name": "局方检查",
-  "declaredCardCount": 7,
+  "declaredCardCount": 5,
   "cards": [
     {
       "id": "opi-extra-362",
       "taskTitle": "运行-局方检查-1",
-      "audioText": "What does a CAAC inspector usually check during a ramp inspection?",
-      "audioTextZh": "局方检查员在停机坪检查时通常会检查哪些内容？\nWhat will be checked by CAAC authority inspector on the aircraft?\nCAAC 检查员会检查飞机上哪些内容？",
-      "referenceText": "During a ramp inspection, the CAAC inspector will check several items. First, flight crew documents including licenses, medical certificates, and type ratings. Second, aircraft documents such as the certificate of registration, airworthiness certificate, and flight manual. Third, operational documents like the flight plan, NOTAMs, weather report, and load sheet. Fourth, safety equipment including fire extinguishers, oxygen systems, first aid kits, and life vests. Fifth, cockpit checklists, the minimum equipment list, and any deferred defects. Finally, the external condition of the aircraft, such as tires, lights, and engine inlets. The inspector ensures the flight is compliant with all regulations.\n在停机坪检查中，局方检查员会检查多项内容。第一，飞行机组文件，包括执照、体检合格证和型别等级。第二，飞机文件，如国籍登记证、适航证和飞行手册。第三，运行文件，如飞行计划、航行通告、天气报告和载重平衡表。第四，安全设备，包括灭火瓶、氧气系统、急救包和救生衣。第五，驾驶舱检查单、最低设备清单以及任何保留故障。最后，飞机外部状况，如轮胎、灯光和发动机进气道。检查员旨在确保航班符合所有规章要求。\nDuring a ramp inspection, the CAAC inspector checks flight crew licenses, medical certificates, and type ratings. They also examine aircraft documents like the certificate of registration, airworthiness certificate, and flight manual. Operational documents such as the flight plan, weather report, NOTAMs, and load sheet are reviewed. Safety equipment including fire extinguishers, oxygen systems, first aid kits, and life vests is inspected. The cockpit checklists, minimum equipment list (MEL) status, and deferred defects are verified. Finally, the general aircraft condition like tire wear, fluid leaks, and external lights is observed. The goal is to ensure full compliance with regulations.在停机坪检查中，局方检查员会检查飞行机组的执照、体检合格证和型别等级。他们还会查验飞机文件，如国籍登记证、适航证和飞行手册。运行文件包括飞行计划、天气报告、航行通告和载重平衡表也会被审核。安全设备如灭火瓶、氧气系统、急救包和救生衣会接受检查。驾驶舱检查单、最低设备清单状态和保留故障也会被核实。最后，飞机总体状况如轮胎磨损、液体渗漏和外部灯光也会被观察。目的是确保持续符合规章要求。"
-    },
-    {
-      "id": "opi-extra-363",
-      "taskTitle": "运行-局方检查-2",
-      "audioText": "Besides the cockpit, what other areas of the aircraft might the inspector examine?",
-      "audioTextZh": "除了驾驶舱，检查员还可能会检查飞机的哪些其他地方？",
-      "referenceText": "Yes, the inspector also checks other areas. In the cabin, they inspect seat belts, emergency exits, cabin crew briefing cards, and galley safety. The cargo hold is examined for proper baggage securing, fire containment covers, and cargo restraint nets. On the exterior, they look at engine inlets, landing gear, pitot probes, static ports, and control surfaces. They may also review the aircraft logbook and technical records if stored outside the cockpit, such as in the forward compartment. Additionally, the ramp area around the aircraft, including ground service connections and wheel chocks, is observed. So the inspection covers the entire aircraft.是的，检查员还会检查其他地方。在客舱，他们检查安全带、应急出口、客舱机组提示卡和厨房安全。货舱会检查行李固定、防火罩和货物拦阻网。外部会查看发动机进气道、起落架、皮托管、静压孔和操纵面。他们也可能查看飞机记录本和技术记录，如果这些文件存放在驾驶舱外（如前舱）。此外，飞机周围的停机坪区域，包括地面勤务接口和轮挡，也会被观察。因此检查覆盖整架飞机。"
+      "audioText": "What does a CAAC inspector typically examine during a ramp inspection?",
+      "audioTextZh": "中国民航局监察员在停机坪检查中通常检查哪些内容？",
+      "referenceText": "A CAAC ramp inspection may examine the aircraft's general condition, required documents, crew qualifications, flight preparation and compliance with operating requirements. Inspectors may review safety and emergency equipment, technical status, loading, dangerous-goods information and evidence that defects are properly controlled. The scope depends on the inspection program and the observations made on that flight.",
+      "referenceTextZh": "CAAC 停机坪检查可能检查飞机总体状况、规定文件、机组资质、飞行准备和对运行要求的遵守情况。检查员可能审查安全与应急设备、技术状态、装载、危险品信息，以及缺陷是否得到适当控制。具体范围取决于检查计划和该航班现场发现的情况。"
     },
     {
       "id": "opi-extra-364",
-      "taskTitle": "运行-局方检查-3",
-      "audioText": "What documents and items should the flight crew prepare before a CAAC inspection?",
-      "audioTextZh": "在局方检查前，飞行机组需要准备哪些文件和物品？",
-      "referenceText": "The flight crew should prepare personal documents: pilot license, medical certificate, passport (if international), and company ID. Operational documents include flight release, operational flight plan, NOTAMs, weather charts, and performance data. Aircraft documents required are the airworthiness certificate, registration certificate, radio license, and journey logbook. Cockpit items such as the quick reference handbook (QRH), MEL, checklists, and latest navigation charts must be ready. Emergency equipment should be accessible and verified as serviceable. If using electronic flight bags (EFBs), ensure current databases are loaded. Having all these items organized and available will help the inspection go smoothly.飞行机组应准备个人文件：飞行执照、体检合格证、护照（国际航班）和公司证件。运行文件包括签派放行单、运行飞行计划、航行通告、天气图和性能数据。需要的飞机文件有适航证、登记证、无线电执照和航行记录本。驾驶舱物品如快速参考手册、最低设备清单、检查单和最新航图必须备好。应急设备应易于取用并确认可用。如果使用电子飞行包，确保数据库为最新。将这些物品整理并随时可提供，有助于检查顺利进行。"
+      "taskTitle": "运行-局方检查-2",
+      "audioText": "What documents and items may a flight crew need to present during a CAAC ramp inspection?",
+      "audioTextZh": "接受中国民航局停机坪检查时，飞行机组可能需要出示哪些文件和物品？",
+      "referenceText": "The crew may need to present licenses, medical certificates, identification, journey or technical log information and relevant aircraft certificates. The operational flight plan, weather and NOTAM briefing, load and fuel documents, checklists and required manuals may also be reviewed. Only valid, controlled records should be provided, using the operator's process for electronic documents and protected information.",
+      "referenceTextZh": "机组可能需要出示执照、体检合格证、身份证明、航行日志或技术记录信息，以及相关飞机证书。运行飞行计划、天气和 NOTAM 简报、载重与燃油文件、检查单和规定手册也可能接受检查。机组只应提供有效且受控的记录，并按照运营人的程序处理电子文件和受保护信息。"
     },
     {
       "id": "opi-extra-365",
-      "taskTitle": "运行-局方检查-4",
-      "audioText": "What precautions should a pilot take when interacting with a CAAC inspector during a spot check?",
-      "audioTextZh": "在抽查过程中，飞行员与局方检查员交流时需要注意哪些事项？",
-      "referenceText": "Pilots should be polite and professional, greeting the inspector and listening carefully. Answer only what is asked; do not volunteer unnecessary information. Never argue or make excuses. If a discrepancy is found, admit it honestly and explain corrective actions. If you do not know the answer, say so – do not guess. Offer to look it up or ask a colleague. Stay calm and cooperative, following reasonable requests such as showing documents or demonstrating a system test. Do not hide any known defect, as that will worsen the situation. After the inspection, inform the captain and the company as required. Remember the inspector’s role is to ensure safety, not to punish personally.飞行员应礼貌且专业，问候检查员并认真倾听。只回答被问到的问题，不要主动提供无关信息。绝不要争论或找借口。如果发现不符合项，诚实承认并解释纠正措施。如果不知道答案，就说不知道——不要猜测。可以主动提出查阅资料或询问同事。保持冷静与合作，遵从合理要求，如出示文件或演示系统测试。不要隐瞒任何已知故障，那样会使情况更糟。检查结束后，按要求报告机长和公司。记住检查员的职责是确保安全，而不是针对个人处罚。"
+      "taskTitle": "运行-局方检查-3",
+      "audioText": "How should a pilot cooperate with a CAAC inspector during a spot check?",
+      "audioTextZh": "接受抽查时，飞行员应如何配合中国民航局监察员？",
+      "referenceText": "The pilot should be professional, verify the inspector's authority through the approved process and provide safe access and requested records without obstructing the inspection. Questions should be answered accurately; if the pilot is unsure, it is better to check the controlled document or contact the company than to guess. The crew should still protect security-sensitive information and ensure that the inspection does not create an unsafe distraction from operational duties.",
+      "referenceTextZh": "飞行员应保持专业，通过批准的流程核实检查员身份和权限，并在不妨碍检查的情况下提供安全的进入通道和所要求的记录。回答问题必须准确；如果不能确定，最好查阅受控文件或联系公司，不应猜测。机组仍须保护安全敏感信息，并确保检查不会使其在执行运行职责时受到不安全的干扰。"
     },
     {
       "id": "opi-extra-366",
-      "taskTitle": "运行-局方检查-5",
-      "audioText": "If you were a CAAC inspector, what key items would you focus on during a cockpit inspection?",
-      "audioTextZh": "如果你是局方检查员，你在驾驶舱检查中会重点检查哪些项目？",
-      "referenceText": "If I were a CAAC inspector, I would focus on crew qualifications: proper licenses and medical fitness for the flight. I would check if pilots follow standard operating procedures and complete checklists correctly. I would examine flight deck documents including the QRH, MEL, and performance manuals for currency and availability. The logbook and defect record would be reviewed to ensure deferred defects are properly handled per MEL. Emergency equipment like fire extinguisher, oxygen masks, and smoke goggles must be in place. I would verify the FMS and communication setup. A clean and orderly cockpit indicates good discipline. I might also ask oral questions about abnormal procedures, such as engine fire or depressurization.如果我是局方检查员，我会重点检查机组资质：有效的执照和适合该次飞行的体检状况。我会检查飞行员是否遵守标准操作程序并正确完成检查单。我会查看驾驶舱文件，包括快速参考手册、最低设备清单和性能手册，确认其现行有效且可用。记录本和故障记录会得到审核，确保保留故障按最低设备清单正确处置。应急设备如灭火瓶、氧气面罩和防烟眼镜必须就位。我会验证飞行管理系统的设置和通信设备。整洁有序的驾驶舱反映良好的纪律。我可能还会口头提问关于非正常程序的问题，比如发动机失火或失压。"
-    },
-    {
-      "id": "opi-extra-367",
-      "taskTitle": "运行-局方检查-6",
-      "audioText": "How do you deal with the authority inspection?",
-      "audioTextZh": "你如何应对局方检查？",
-      "referenceText": "When dealing with a CAAC inspection, I would remain calm and professional. First, I would greet the inspector politely. Second, I would present all required documents when requested, including my license, medical certificate, and aircraft papers. Third, I would answer questions honestly and directly, without guessing or arguing. If I do not know an answer, I would say so and offer to look it up. Fourth, I would follow the inspector's reasonable requests, such as demonstrating a system test or opening a panel. Finally, after the inspection, I would inform the captain and file any necessary reports. Cooperation and honesty are the keys.\n应对局方检查时，我会保持冷静和专业。首先，我会礼貌地问候检查员。其次，被要求时我会出示所有所需文件，包括执照、体检合格证和飞机文件。第三，我会诚实直接回答问题，不猜测不争论。如果不知道答案，我会如实说明并主动查阅。第四，我会遵从检查员的合理要求。最后，检查结束后报告机长并填报必要报告。配合与诚实是关键。"
+      "taskTitle": "运行-局方检查-4",
+      "audioText": "What key items may an inspector examine in the cockpit during a ramp inspection?",
+      "audioTextZh": "停机坪检查期间，监察员可能检查驾驶舱内的哪些重点项目？",
+      "referenceText": "An inspector may check flight instruments, warning panels, required placards, emergency equipment and the condition of seats, belts, windows and cockpit doors. Checklists, charts, manuals, minimum-equipment information, technical log entries and electronic-flight-bag status may be examined. Any visible defect or inconsistent indication can lead to a closer review with the crew and maintenance.",
+      "referenceTextZh": "检查员可能检查飞行仪表、警告面板、规定标牌、应急设备，以及座椅、安全带、窗户和驾驶舱门的状况。检查单、航图、手册、最低设备清单相关资料、技术记录和电子飞行包状态也可能接受检查。任何可见缺陷或不一致的指示，都可能促使检查员与机组和维修人员作进一步核查。"
     },
     {
       "id": "opi-extra-368",
-      "taskTitle": "运行-局方检查-7",
-      "audioText": "Why does the CAAC authority conduct ramp inspections?",
-      "audioTextZh": "局方为什么会进行停机坪检查？",
-      "referenceText": "The CAAC conducts ramp inspections to ensure flight safety and regulatory compliance. First, inspectors verify that aircraft documents, crew licenses, and operational papers are valid and up to date. Second, they check whether the aircraft is properly maintained and free from visible defects. Third, they ensure that safety equipment such as fire extinguishers, oxygen systems, and life vests are on board and serviceable. Fourth, ramp inspections help identify unsafe practices or violations before departure. Finally, these inspections are part of a global safety oversight system required by ICAO. The goal is to prevent accidents, protect passengers and crew, and maintain public confidence in aviation. Inspections are often random but can also be triggered by previous incidents or complaints.\n局方进行停机坪检查是为了确保飞行安全和规章合规。第一，检查员核实飞机文件、机组执照和运行文件是否有效且最新。第二，检查飞机是否得到适当维护且无明显缺陷。第三，确保安全设备如灭火瓶、氧气系统和救生衣在机上且可用。第四，停机坪检查有助于在起飞前发现不安全操作或违规行为。最后，这些检查是国际民航组织要求的全球安全监督体系的一部分。目标是预防事故、保护乘客和机组、维护公众对航空的信心。检查通常是随机的，但也可能由先前的事件或投诉触发。"
+      "taskTitle": "运行-局方检查-5",
+      "audioText": "Why does CAAC conduct ramp inspections?",
+      "audioTextZh": "中国民航局为什么开展停机坪检查？",
+      "referenceText": "CAAC conducts ramp inspections to verify that aircraft and operators comply with applicable safety and operating requirements during real operations. Inspections can identify unsafe conditions, documentation problems or recurring areas that need corrective action. They also provide oversight evidence without replacing the operator's own responsibility for continuing airworthiness and safe operation.",
+      "referenceTextZh": "CAAC 实施停机坪检查，是为了核实飞机和运营人在实际运行中是否符合适用的安全与运行要求。检查可以发现不安全状况、文件问题或需要采取纠正措施的反复性问题。检查也能提供监管依据，但不能取代运营人对持续适航和安全运行所负的责任。"
     }
   ]
 }

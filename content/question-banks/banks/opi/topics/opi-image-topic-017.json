@@ -14,29 +14,26 @@
     {
       "id": "opi-image-017-q01",
       "taskTitle": "图片题-017-01",
-      "audioText": "What kinds of serious failures may force a large jet airliner to ditch on the sea?",
-      "audioTextZh": "哪些严重故障可能迫使大型喷气客机在海上迫降？",
-      "referenceText": "This situation is related to Sea ditching. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
-      "referenceTextZh": "这种情况与水上迫降有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-017-q01.mp3"
+      "audioText": "What types of serious failures could make it necessary for a large passenger aircraft to ditch at sea?",
+      "audioTextZh": "哪些严重故障可能使大型客机必须在海上迫降？",
+      "referenceText": "Ditching may become necessary after loss of all usable engine power when no runway is reachable, severe fuel exhaustion or contamination, or catastrophic system or structural damage that prevents continued flight. Fire, multiple bird ingestion or volcanic-ash damage could contribute to such a situation. The crew must still consider any reachable land airport because a sea landing carries major impact and survival risks.",
+      "referenceTextZh": "当所有可用发动机动力丧失且没有跑道可以到达、燃油严重耗尽或受到污染，或灾难性系统或结构损坏使飞机无法继续飞行时，可能需要水上迫降。火灾、发动机吸入多只鸟或火山灰损伤也可能促成这种情况。机组仍须考虑所有可到达的陆地机场，因为水上着陆存在很大的撞击和生存风险。"
     },
     {
       "id": "opi-image-017-q02",
       "taskTitle": "图片题-017-02",
-      "audioText": "As captain, if all engines fail over water, what full set of procedures will you follow to complete a safe ditching?",
-      "audioTextZh": "作为机长，如果在水面上空所有发动机失效，你会遵循哪些完整程序完成安全迫降？",
-      "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
-      "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-017-q02.mp3"
+      "audioText": "As captain, how would you manage a total loss of engine power over water if ditching became unavoidable?",
+      "audioTextZh": "作为机长，如果航空器在水域上空丧失全部发动机动力且水上迫降已无法避免，你会如何处置？",
+      "referenceText": "I would maintain the best controllable flight path, attempt only approved restart or relight actions and declare the emergency while assessing every reachable landing option. If ditching were unavoidable, I would follow the aircraft checklist, select the best available sea area and direction with regard to wind, swell, daylight, ships and rescue, and brief the cabin early. I would configure and touch down exactly as the aircraft procedure directs, then command evacuation when the aircraft stopped.",
+      "referenceTextZh": "我会保持最佳可控航迹，只尝试批准的发动机重启或重新点火操作，并在评估所有可到达着陆地点的同时宣布紧急情况。如果水上迫降无法避免，我会执行飞机检查单，综合风、涌浪、昼夜条件、船只和救援情况选择最佳可用水域与着水方向，并尽早通知客舱。我会严格按照本机型程序设置构型并触水，飞机停止后下令撤离。"
     },
     {
       "id": "opi-image-017-q03",
       "taskTitle": "图片题-017-03",
-      "audioText": "After successfully ditching on the sea, what evacuation steps should the flight crew carry out immediately?",
-      "audioTextZh": "成功水上迫降后，机组应立即执行哪些撤离步骤？",
-      "referenceText": "This situation is related to Sea ditching. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
-      "referenceTextZh": "这种情况与水上迫降有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-017-q03.mp3"
+      "audioText": "What should the flight crew do to evacuate an aircraft after a ditching?",
+      "audioTextZh": "水上迫降后，飞行机组应如何组织人员撤离航空器？",
+      "referenceText": "After impact, the crew should assess fire, flooding, attitude and usable exits and command evacuation through the safest routes. Cabin crew deploy life rafts or slide-rafts, direct occupants to use life jackets correctly and move everyone away from the aircraft while keeping groups together. The crew should activate or take emergency locating and survival equipment when possible and account for people without delaying escape from immediate danger.",
+      "referenceTextZh": "撞击后，机组应评估火情、进水、飞机姿态和可用出口，并命令人员沿最安全路线撤离。客舱机组放出救生筏或滑梯救生筏，指导人员正确使用救生衣，并在保持人员集中的同时远离飞机。如果条件允许，机组应启动或携带应急定位和求生设备，并清点人员，但不能因此延误逃离眼前危险。"
     }
   ]
 }

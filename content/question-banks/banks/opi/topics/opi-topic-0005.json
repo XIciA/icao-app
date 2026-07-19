@@ -2,252 +2,119 @@
   "categoryId": "opi-category-02",
   "id": "opi-topic-0005",
   "name": "紧急情况遇险",
-  "declaredCardCount": 35,
+  "declaredCardCount": 14,
   "cards": [
     {
-      "id": "opi-core-079",
+      "id": "opi-core-078",
       "taskTitle": "特情-紧急情况遇险-1",
-      "audioText": "What assistance or support do you need from ATC in case of emergency?",
-      "audioTextZh": "在紧急情况下，您需要ATC提供哪些帮助或支持？",
-      "referenceText": "In an emergency, we need ATC to coordinate fire services, medical assistance, and arrange shuttle buses to transport passengers to the terminal. Also, clear communication for priority landing, airspace coordination, and updated weather info are crucial.\n紧急情况下，需 ATC 协调消防、医疗救援，安排摆渡巴士送乘客到航站楼。同时，还需 ATC 保障优先降落、协调空域、提供最新气象信息等清晰通讯支持 。"
+      "audioText": "Have you ever encountered an emergency, urgency, or distress situation during a flight? If so, what happened?",
+      "audioTextZh": "你在飞行中遇到过应急、紧急或遇险情况吗？如果遇到过，当时发生了什么？",
+      "referenceText": "A suitable example would be: no, I have not encountered a real emergency, urgency or distress situation during a flight. I have practised several emergencies in a simulator, including a loss of cabin pressure followed by oxygen use and an emergency descent. The exercise showed why clear task sharing and checklist discipline are essential.",
+      "referenceTextZh": "一个合适的示范答案是：没有，我在飞行中没有遇到过真实的紧急或遇险情况。我在模拟机中练习过多种紧急情况，包括座舱失压后使用氧气并进行紧急下降。训练让我认识到，明确分工和严格执行检查单十分重要。"
     },
     {
-      "id": "opi-core-080",
+      "id": "opi-core-079",
       "taskTitle": "特情-紧急情况遇险-2",
-      "audioText": "Who should be the last one to leave the aircraft in case of emergency?",
-      "audioTextZh": "在紧急情况下，谁应该是最后一个离开飞机的人？",
-      "referenceText": "I think the captain should be the last one to leave the aircraft in case of emergency, because he is responsible for all the passengers and crew members on board.\n我认为在紧急情况下，机长应该是最后一个离开飞机的人，因为他对机上的所有乘客和机组人员负责。"
-    },
-    {
-      "id": "opi-core-081",
-      "taskTitle": "特情-紧急情况遇险-3",
-      "audioText": "What may cause the pilot to go around / Execute missed approach?",
-      "audioTextZh": "什么可能导致飞行员复飞/执行复飞？",
-      "referenceText": "here are some reasons for going around. For example, runway not in sight at minimums, encountering wind shear, localized weather fluctuations, and no proper contact for landing, and so on.\n复飞有这些原因，比如在最低标准时看不到跑道、遭遇风切变、局部气象波动，以及无法建立合适着陆衔接，等等 。"
-    },
-    {
-      "id": "opi-core-082",
-      "taskTitle": "特情-紧急情况遇险-4",
-      "audioText": "Under what circumstances may the aircraft suffer structural damage? Can you name a few?",
-      "audioTextZh": "在什么情况下，飞机可能会遭受结构性损坏？你能列举几个吗？",
-      "referenceText": "There are some reasons for structural damage. For example, make a hard landing, bird strike, lightning strike, severe turbulence, explosion and so on.\n结构损坏的原因有很多。例如，硬着陆、鸟击、雷击、严重湍流、爆炸等。\n\nStructural damage can be caused by bird strike, FOD ingestion, lightning strike, severe turbulence, ground collision, tail strike, hard landing, belly landing, icing, explosion, or runway overrun.\n导致飞机结构损伤的因素包括鸟击、外物吸入（FOD）、雷击、强颠簸、地面相撞、擦机尾、重着陆、机腹着陆、积冰、爆炸或跑道冲出。"
-    },
-    {
-      "id": "opi-core-083",
-      "taskTitle": "特情-紧急情况遇险-5",
-      "audioText": "Do you have any experience of aircraft structural damage?",
-      "audioTextZh": "你遇到过飞机结构损坏吗？",
-      "referenceText": "No, I’ve never encountered aircraft structural damage.\n不，我从未遇到过飞机结构损坏的情况。"
+      "audioText": "What assistance might a flight crew need from ATC or ground personnel during an emergency?",
+      "audioTextZh": "紧急情况下，机组可能需要 ATC 或地面人员提供哪些协助？",
+      "referenceText": "ATC can provide priority handling, traffic information, vectors, weather and airport information, and coordination with rescue services. Ground personnel may supply firefighting, medical support, towing, stairs or buses, depending on the event. The flight crew should state the nature of the emergency, its intentions and the specific assistance required.",
+      "referenceTextZh": "空管可以提供优先保障、交通信息、雷达引导、天气和机场信息，并协调救援服务。根据事件需要，地面人员可以提供消防、医疗、牵引、客梯或摆渡车。飞行机组应说明紧急情况的性质、行动意图和所需的具体协助。"
     },
     {
       "id": "opi-core-084",
-      "taskTitle": "特情-紧急情况遇险-6",
-      "audioText": "When do you make an emergency descent?",
-      "audioTextZh": "你什么时候会进行紧急下降？",
-      "referenceText": "There are many conditions we will make emergency descent. First, if we encounter depressurization during flight, we will make emergency descent. Second, if there is smoke or fire onboard such as engine fire, cabin fire, we will carry out emergency descent.\n我们会在多种情况下进行紧急下降。首先，如果在飞行过程中遇到机舱失压，我们会进行紧急下降。其次，如果机舱内出现烟雾或火情，如发动机起火、机舱起火，我们也会进行紧急下降。\n\nEmergency descent is required when encountering decompression, uncontrollable in-flight fire/smoke, pressurization system malfunction, air conditioning failure causing extreme cabin temperature, or bomb threat. It aims to quickly reach a safe altitude or land at the nearest airport to mitigate risks.\n遇到以下情况需执行紧急下降：失压、无法控制的机上火情/烟雾、增压系统故障、空调失效导致客舱温度极端、炸弹威胁等。其目的是快速抵达安全高度或在最近机场着陆，以降低风险。"
+      "taskTitle": "特情-紧急情况遇险-3",
+      "audioText": "When is an emergency descent necessary?",
+      "audioTextZh": "何时需要实施紧急下降？",
+      "referenceText": "An emergency descent is necessary when the aircraft must lose altitude quickly to protect the occupants or the aircraft. The most common example is a serious loss of cabin pressure at high altitude; uncontrollable smoke or fire may also require a rapid descent and landing. Terrain, traffic, weather and aircraft limitations still have to be considered throughout the manoeuvre.",
+      "referenceTextZh": "当飞机必须迅速降低高度以保护机上人员或飞机时，就需要紧急下降。最常见的例子是高空发生严重座舱失压；无法控制的烟雾或火灾也可能要求迅速下降并着陆。整个机动过程中仍需考虑地形、交通、天气和飞机限制。"
     },
     {
       "id": "opi-core-085",
-      "taskTitle": "特情-紧急情况遇险-7",
-      "audioText": "What procedures should you follow when making an emergency descent/?",
-      "audioTextZh": "进行紧急下降时，你应该遵循哪些程序？",
-      "referenceText": "When conducting an emergency descent: First, if time allows, report the situation to ATC and request emergency descent clearance. Second, complete the recall items checklist. Third, set the thrust levers to idle. Then, follow the aircraft’s emergency descent profile, monitor instruments, and communicate with crew.\n进行紧急下降时：首先，若时间允许，向 ATC 报告情况并申请紧急下降许可；其次，完成记忆项目检查单；第三，将推力杆收至慢车。随后，遵循飞机紧急下降剖面，监控仪表并与机组沟通 。\n\nFirst, don oxygen mask, notify crew and passengers. Set transponder to 7700, turn on all exterior lights. Turn away from assigned route (if safe) to avoid traffic. Descend at near-max speed with idle thrust and speed brakes extended. Monitor traffic via TCAS/visual check. Coordinate with ATC and land at the nearest suitable airport.\n首先佩戴氧气面罩，通知机组和乘客；应答机编码设置为7700，开启所有外部灯光；在安全前提下偏离指定航线以避开其他飞机；以接近最大速度下降，推力调至慢车并伸出减速板；通过防撞系统（TCAS）/目视监控交通；与空管协调，在最近的合适机场着陆。"
+      "taskTitle": "特情-紧急情况遇险-4",
+      "audioText": "What procedures should a pilot follow during an emergency descent?",
+      "audioTextZh": "紧急下降过程中，飞行员应遵循哪些程序？",
+      "referenceText": "The pilots should use oxygen when required, establish the descent, control speed and configuration, and follow the aircraft's emergency-descent checklist. They should notify ATC as soon as workload permits, monitor terrain and traffic, and coordinate with the cabin crew. The exact profile must respect the aircraft limitations and may need modification for terrain, weather or damage.",
+      "referenceTextZh": "飞行员应按要求使用氧气、开始下降、控制速度和构型，并执行飞机紧急下降检查单。工作负荷允许后应尽快通知空管，监控地形和交通，并与客舱机组协调。具体下降剖面必须遵守飞机限制，也可能需要根据地形、天气或损伤情况作出调整。"
     },
     {
       "id": "opi-core-086",
-      "taskTitle": "特情-紧急情况遇险-8",
-      "audioText": "What help you get from ATC while emergency descent?",
-      "audioTextZh": "在紧急下降过程中，你从空中交通管制（ATC）获得了哪些帮助？",
-      "referenceText": "The ATC can offer us some help while executing emergency descent. First, ATC will offer us the clearance to execute the emergency descent. Second, ATC will remind other aircraft emergency descent in progress and give way to us. Third, ATC will offer us the flight conditions and enroute minimum altitude and so on.\n在执行紧急下降时，空中交通管制（ATC）可以为我们提供一些帮助。首先，ATC会为我们提供执行紧急下降的许可。其次，ATC会提醒其他正在进行紧急下降的飞机，并让我们先行。第三，ATC会向我们提供飞行条件和航路最低高度等信息。"
+      "taskTitle": "特情-紧急情况遇险-5",
+      "audioText": "What assistance can ATC provide during an emergency descent?",
+      "audioTextZh": "ATC 在紧急下降过程中可以提供哪些协助？",
+      "referenceText": "ATC can clear or protect the descent path, move other traffic and provide traffic, terrain, weather and suitable-airport information. Controllers can also alert emergency services and coordinate with the next facility. The crew should report the emergency, position, altitude, intentions and any assistance needed as soon as practicable.",
+      "referenceTextZh": "空管可以为下降提供许可、保护下降航径并调配其他航空器，还能提供交通、地形、天气和合适机场的信息。管制员也可以通知应急服务部门，并与下一个管制单位协调。机组应在切实可行时尽快报告紧急情况、位置、高度、行动意图和所需协助。"
     },
     {
       "id": "opi-core-087",
-      "taskTitle": "特情-紧急情况遇险-9",
-      "audioText": "What are the possible reasons for belly landing?",
-      "audioTextZh": "飞机机腹着陆的可能原因是什么？",
-      "referenceText": "There are many possible reasons for belly landing. First, the pilot may forget to extend the landing gear during landing. Second, the mechanical problem may prevent the pilot from extending the landing gear. In these situations, we have to make a belly landing.\n飞机机腹着陆可能有很多原因。首先，飞行员在降落过程中可能忘记放下起落架。其次，机械故障可能使飞行员无法放下起落架。在这些情况下，我们不得不进行机腹着陆。"
+      "taskTitle": "特情-紧急情况遇险-6",
+      "audioText": "What can cause an aircraft to make a belly landing?",
+      "audioTextZh": "哪些情况会导致飞机进行机腹着陆？",
+      "referenceText": "A belly landing may be necessary when the landing gear cannot be extended or is unsafe to use. Possible causes include mechanical or hydraulic failure, structural damage, an unsafe gear indication confirmed by other evidence, or damage after a collision. The final decision depends on the aircraft condition, checklist guidance, runway options and available emergency support.",
+      "referenceTextZh": "当起落架无法放下或使用起落架不安全时，可能需要进行机腹着陆。可能原因包括机械或液压故障、结构损伤、起落架不安全指示且有其他证据佐证，或者碰撞后的损伤。最终决定取决于飞机状况、检查单指导、跑道选择和可用应急保障。"
     },
     {
       "id": "opi-core-088",
-      "taskTitle": "特情-紧急情况遇险-10",
-      "audioText": "How do you prepare for a belly landing?",
-      "audioTextZh": "你如何为机腹着陆做准备？",
-      "referenceText": "If we have to make a belly landing, first, we will report our situation to ATC and request emergency landing and emergency services such as foamed runway, fire services, medical services and so on. Second, we will hold somewhere to burn fuel to reduce the weight of aircraft, reduce the landing speed of the aircraft and reduce the risk of fire upon landing.\n如果我们必须进行机腹降落，首先，我们会向空中交通管制（ATC）报告情况，并请求紧急降落和紧急服务，如泡沫跑道、消防服务、医疗服务等。其次，我们会选择一个地方等待，以消耗燃油来减轻飞机重量，降低飞机着陆速度，并减少着陆时发生火灾的风险。"
+      "taskTitle": "特情-紧急情况遇险-7",
+      "audioText": "How should a flight crew prepare for a belly landing?",
+      "audioTextZh": "机组应如何为机腹着陆做准备？",
+      "referenceText": "The crew should complete the landing-gear abnormal checklist, confirm the actual gear condition and plan the safest available landing. They should brief the cabin crew and passengers, coordinate with ATC and emergency services, calculate landing performance and prepare for a possible evacuation. The approach and aircraft configuration must follow the type-specific procedure because fuel, engine and flap considerations vary.",
+      "referenceTextZh": "机组应完成起落架异常检查单，确认起落架实际状态，并规划最安全的可用着陆方案。应向客舱机组和旅客进行简令，与空管和应急服务协调，计算着陆性能，并为可能的撤离做好准备。进近和飞机构型必须遵循机型特定程序，因为燃油、发动机和襟翼方面的考虑会因机型而异。"
     },
     {
       "id": "opi-core-089",
-      "taskTitle": "特情-紧急情况遇险-11",
-      "audioText": "Do you think belly landing is very dangerous?",
-      "audioTextZh": "你认为机腹着陆很危险吗？",
-      "referenceText": "Yes, I think belly landing is very dangerous. First, it may cause structural damage to the aircraft. Second, it may cause fire on board. Third, it may cause persons on board injured.\n是的，我认为机腹着陆非常危险。首先，它可能会对飞机造成结构性损坏。其次，它可能会导致机上发生火灾。第三，这可能会导致机上人员受伤。"
+      "taskTitle": "特情-紧急情况遇险-8",
+      "audioText": "How dangerous is a belly landing, and why?",
+      "audioTextZh": "机腹着陆有多危险？为什么？",
+      "referenceText": "A belly landing is serious because the aircraft may be difficult to control and contact with the runway can damage the fuselage, engines or fuel system. Fire, smoke and evacuation hazards may follow the landing. Careful preparation and a suitable surface can reduce the risk, but the outcome depends greatly on the damage and aircraft type.",
+      "referenceTextZh": "机腹着陆很严重，因为飞机可能难以控制，而且与跑道接触可能损坏机身、发动机或燃油系统。着陆后还可能出现火灾、烟雾和撤离危险。周密准备和合适的着陆表面可以降低风险，但结果很大程度上取决于损伤情况和机型。"
     },
     {
       "id": "opi-core-090",
-      "taskTitle": "特情-紧急情况遇险-12",
-      "audioText": "What factors will you take into considerations before making a belly landing？",
-      "audioTextZh": "在进行机腹着陆之前，你会考虑哪些因素",
-      "referenceText": "There are many factors we will consider before making a belly landing such as the weight of the aircraft, the landing speed of the aircraft, the weather conditions, the runway conditions, the ground services and so on\n在进行机腹着陆之前，我们会考虑许多因素，如飞机的重量、飞机的着陆速度、天气状况、跑道状况、地面服务等"
+      "taskTitle": "特情-紧急情况遇险-9",
+      "audioText": "What factors should a pilot consider before deciding to make a belly landing?",
+      "audioTextZh": "在决定进行机腹着陆前，飞行员应考虑哪些因素？",
+      "referenceText": "The pilot should confirm the gear problem and consider whether further troubleshooting is safe and useful. Important factors include fuel remaining, weather, runway length and surface, crosswind, aircraft damage, rescue support and whether another airport offers better conditions. The final plan should follow the aircraft checklist and leave enough time to brief the crew and passengers.",
+      "referenceTextZh": "飞行员应确认起落架故障，并考虑继续排故是否安全且有价值。重要因素包括剩余燃油、天气、跑道长度和道面、侧风、飞机损伤、救援保障，以及其他机场是否具备更好的条件。最终方案应遵循飞机检查单，并留出足够时间向机组和旅客进行简令。"
     },
     {
       "id": "opi-core-091",
-      "taskTitle": "特情-紧急情况遇险-13",
-      "audioText": "What will you do if you have to make belly landing?",
-      "audioTextZh": "如果你必须进行机腹着陆，你会怎么做？",
-      "referenceText": "If we have to make a belly landing, first, we will report our situation to ATC and request emergency landing and emergency services such as foamed runway, fire services, medical services and so on. Second, we will hold somewhere to burn fuel to reduce the weight of aircraft, reduce the landing speed of the aircraft and reduce the risk of fire upon landing. After landing, we will execute emergency evacuation.\n如果我们必须进行机腹着陆，首先，我们将向空中交通管制部门报告我们的情况，并要求紧急着陆和紧急服务，如泡沫跑道、消防、医疗服务等。其次，我们将在某处燃烧燃料，以减轻飞机的重量，降低飞机的着陆速度，降低着陆时发生火灾的风险。着陆后，我们将进行紧急疏散。"
-    },
-    {
-      "id": "opi-core-092",
-      "taskTitle": "特情-紧急情况遇险-14",
-      "audioText": "What will you do if you have to make ditching？",
-      "audioTextZh": "如果你必须迫降，你会怎么做",
-      "referenceText": "If we have to make a ditching, we will report our situation to ATC and request emergency services after ditching. Then we will complete the ditching checklist and inform the cabin crew and passengers to make preparation for ditching such as wearing the lifevest and follow the route of emergency evacuation. Upon ditching, we will follow the instructions of rescuers to leave the aircraft as quickly as we can.\n如果我们必须进行迫降，我们将在迫降后向空管报告我们的情况并请求紧急服务。然后，我们将完成迫降检查表，并通知机组人员和乘客做好迫降准备，如穿救生衣，并遵循紧急疏散路线。迫降后，我们将按照救援人员的指示尽快离开飞机。"
-    },
-    {
-      "id": "opi-core-093",
-      "taskTitle": "特情-紧急情况遇险-15",
-      "audioText": "When is it necessary to execute emergency evacuation?",
-      "audioTextZh": "何时需要执行紧急疏散？",
-      "referenceText": "There are many situations in which we will execute an emergency evacuation. First, if there is fire on board such as engine fire, cabin fire, cockpit fire, we will execute emergency evacuation. Second, if there is a bomb on board, we will carry out emergency evacuation. Third, after emergency landing such as forced landing or belly landing, we will make emergency evacuation.\n在许多情况下，我们将执行紧急疏散。首先，如果机上发生火灾，如发动机火灾、机舱火灾、驾驶舱火灾，我们将执行紧急疏散。第二，如果机上有炸弹，我们将进行紧急疏散。第三，在迫降或腹降等紧急降落后，我们将进行紧急疏散。\n\nEmergency evacuation is necessary if there is uncontrollable fire/smoke, severe structural damage, serious fuel leak, forced landing, identified bomb, or any situation threatening crew/passenger lives.\n当出现无法控制的火情/烟雾、严重结构损伤、大量燃油泄漏、迫降、确认有爆炸物或其他威胁机组和乘客生命的情况时，需执行紧急撤离。"
-    },
-    {
-      "id": "opi-core-094",
-      "taskTitle": "特情-紧急情况遇险-16",
-      "audioText": "How fast should you execute the emergency evacuation?",
-      "audioTextZh": "你应该以多快的速度执行紧急疏散？",
-      "referenceText": "We should execute the emergency evacuation as soon as possible if an emergency evacuation is required, According to the regulation, in case of fire on board, we should evacuate the passengers in 90 seconds.\n如果需要紧急疏散，我们应该尽快执行紧急疏散。根据规定，如果船上发生火灾，我们应该在90秒内疏散乘客。"
-    },
-    {
-      "id": "opi-core-095",
-      "taskTitle": "特情-紧急情况遇险-17",
-      "audioText": "What are the procedures of executing emergency evacuation?",
-      "audioTextZh": "执行紧急疏散的程序是什么？",
-      "referenceText": "First, we will report our intention to ATC that will we will execute emergency evacuation. Second, we will make a PA to inform cabin crew and passengers that we will make emergency evacuation. Third，we will complete the emergency evacuation checklist. Fourth, the cabin crew will open the emergency exits and emergency slides and lead the passengers to leave the aircraft in time and in order. We will be the last one to leave the aircraft.\n首先，我们将向空中交通管制部门报告我们将执行紧急疏散的意图。其次，我们将发出广播，通知机组人员和乘客我们将进行紧急疏散。第三，我们将完成紧急疏散检查表。第四，机组人员将打开紧急出口和紧急滑梯，引导乘客及时有序地离开飞机。我们将是最后一个离开飞机的人。\n\nStop the aircraft, set parking brakes, cut off engines and power. Inform cabin crew to prepare evacuation, report to ATC and request fire/medical assistance. Instruct passengers to brace for impact, open emergency exits, and guide orderly evacuation.\n停稳飞机，设置停留刹车，关闭发动机和电源；通知客舱机组准备撤离，向空管报告并请求消防/医疗支援；指示乘客做好防撞准备，打开紧急出口，引导有序撤离。"
-    },
-    {
-      "id": "opi-core-096",
-      "taskTitle": "特情-紧急情况遇险-18",
-      "audioText": "What can you help flight attendants execute emergency evacuation?",
-      "audioTextZh": "你能帮助空乘人员执行紧急疏散吗？",
-      "referenceText": "First, we will make a PA to inform the passengers to make preparation for emergency evacuation and the route of emergency evacuation. After completing the emergency evacuation checklist， we will help the flight attendants to evacuate the passengers.\n首先，我们将制作广播，通知乘客做好紧急疏散准备和紧急疏散路线。完成紧急疏散检查表后，我们将帮助空乘人员疏散乘客。"
-    },
-    {
-      "id": "opi-core-097",
-      "taskTitle": "特情-紧急情况遇险-19",
-      "audioText": "Do you have the emergency evacuation training with the flight attendants?",
-      "audioTextZh": "你和乘务员一起接受过紧急疏散培训吗？",
-      "referenceText": "I am a student Pilot have never trained with flight attendants for emergency' evacuation. But I know we should keep good communication and cooperation to ensure the passengers evacuate the aircraft in order and in time.\n我是一名学生飞行员，从未与空乘人员一起接受过紧急疏散培训。但我知道我们应该保持良好的沟通与合作，以确保乘客有序及时撤离飞机。"
-    },
-    {
-      "id": "opi-core-098",
-      "taskTitle": "特情-紧急情况遇险-20",
-      "audioText": "Who should be the last one to leave the aircraft in case of emergency situations?",
-      "audioTextZh": "在紧急情况下，谁应该最后一个离开飞机？",
-      "referenceText": "According to the regulations, the captain should be the last one to leave the aircraft in case of emergency situations.\n根据规定，在紧急情况下，机长应最后一个离开飞机。"
-    },
-    {
-      "id": "opi-core-099",
-      "taskTitle": "特情-紧急情况遇险-21",
-      "audioText": "Under what circumstances do you declare medical emergency?",
-      "audioTextZh": "在什么情况下，你会宣布医疗紧急情况？",
-      "referenceText": "There are many conditions/situations in which we will declare medical emergency. First, if the pilot gets incapacitated, we will declare medical emergency. Second, if the passenger gets seriously ill such as heart attack, we will declare medical emergency. Third, if the passengers get seriously injured, we will declare medical emergency.\n在许多情况下，我们会宣布医疗紧急状态。首先，如果飞行员丧失能力，我们将宣布医疗紧急情况。其次，如果乘客患上心脏病等严重疾病，我们将宣布医疗紧急情况。第三，如果乘客严重受伤，我们将宣布医疗紧急情况。\n\nI declare medical emergency when crew or passengers face life-threatening situations, such as severe injuries, heart attacks, unconsciousness, or uncontrollable bleeding. It’s also required if a medical professional on board confirms the situation is critical, needing immediate ground medical assistance.\n当机组或乘客遭遇危及生命的状况时会宣布医疗紧急情况，例如重伤、心脏病发作、昏迷或无法控制的出血。若机上专业医护人员确认情况危急，需立即获得地面医疗援助，也需宣布。"
-    },
-    {
-      "id": "opi-core-100",
-      "taskTitle": "特情-紧急情况遇险-22",
-      "audioText": "What would you do if you have passengers injured due to turbulence?",
-      "audioTextZh": "如果乘客因颠簸而受伤，你会怎么做？",
-      "referenceText": "If the passengers get injured due turbulence, first, we will ask the flight attendants to offer first aid to him. Second, we will make a PA to find a doctor on board. Third, we will report our situation to ATC and request land at nearest suitable airport and medical services.\n如果乘客因颠簸受伤，首先，我们会要求空乘人员对他进行急救。其次，我们将通过PA在机上找到一名医生。第三，我们将向空中交通管制部门报告我们的情况，并要求在最近的合适机场降落和医疗服务。\n\nFirst, I maintain stable flight control. Then, I ask cabin crew to provide first aid and find a doctor on board. I inform ATC of the situation, request priority landing and ambulance at the destination, ensuring the injured passenger gets timely medical treatment.\n首先保持飞机稳定操纵，随后让客舱机组为受伤乘客提供急救并寻找机上医生。向空管通报情况，申请优先降落及目的地机场救护车待命，确保受伤乘客及时获得医疗救治。"
-    },
-    {
-      "id": "opi-core-101",
-      "taskTitle": "特情-紧急情况遇险-23",
-      "audioText": "If one passenger suffered from heart attack during flight, what would you do?",
-      "audioTextZh": "如果一名乘客在飞行中心脏病发作，你会怎么做？",
-      "referenceText": "If one passenger suffered from heart attack, first, we will ask the flight attendants to offer first aid to him. Second, we will make a PA to find a doctor on board. Third, we will report our situation to ATC and request land at nearest suitable airport and medical services.\n如果一名乘客心脏病发作，首先，我们会要求空乘人员对他进行急救。其次，我们将通过PA在机上找到一名医生。第三，我们将向空中交通管制部门报告我们的情况，并要求在最近的合适机场降落和医疗服务。"
-    },
-    {
-      "id": "opi-core-102",
-      "taskTitle": "特情-紧急情况遇险-24",
-      "audioText": "How do you carry out first-aid to persons on board?",
-      "audioTextZh": "你们如何对机上人员进行急救？",
-      "referenceText": "If the person on board needs first aid, the flight attendants can offer him or her oxygen supply. Then we will make a PA to find a doctor on board. Finally, we will report our situation to ATC and request land at nearest suitable airport and medical services.\n如果机上人员需要急救，乘务员可以为其提供氧气。然后我们会做一个机长广播，在机上找一个医生。最后，我们将向空中交通管制部门报告我们的情况，并要求在最近的合适机场降落和医疗服务。"
+      "taskTitle": "特情-紧急情况遇险-10",
+      "audioText": "What actions should a pilot take when carrying out a belly landing?",
+      "audioTextZh": "实施机腹着陆时，飞行员应采取哪些措施？",
+      "referenceText": "The pilot should fly a stable approach, use the configuration specified by the abnormal checklist and touch down in a controlled manner on the selected surface. The crew should keep the aircraft aligned, shut down or secure systems as directed and stop without creating unnecessary additional damage. Once stopped, they should assess fire or smoke and evacuate if remaining on board is unsafe.",
+      "referenceTextZh": "飞行员应保持稳定进近，使用异常检查单规定的构型，并在选定表面上以受控方式接地。机组应保持飞机对正，按指示关闭或确保相关系统处于安全状态，并在不造成额外不必要损伤的情况下停下。停稳后，应评估是否有火灾或烟雾；如果留在机上不安全，就应撤离。"
     },
     {
       "id": "opi-core-103",
-      "taskTitle": "特情-紧急情况遇险-25",
-      "audioText": "What are the differences between urgency and distress situations?",
-      "audioTextZh": "紧急情况和遇险情况有什么区别？",
-      "referenceText": "There are some differences between urgency and distress situations. The urgency situation does not need immediate assistance from the ATC, the captain will call PANPAN in these situations, such as passenger illness or slow depressurization. The distress situation needs immediate assistance from the ATC, the captain will call MAYDAY in these situations, such as total engine failure, fire on board or bomb explosion on board.\n紧急情况和遇险情况之间存在一些差异。紧急情况不需要空中交通管制的立即援助，在这种情况下，如乘客生病或减压缓慢，机长将呼叫PANPAN。遇险情况需要空中交通管制的立即援助，在这些情况下，如发动机完全故障、机上起火或机上炸弹爆炸，机长将呼叫MAYDAY。\n\nUrgency (PAN PAN) refers to situations requiring prompt attention but not immediate danger (such as fuel shortage, sick passenger). Distress (MAYDAY) is more severe, involving immediate threat to life or aircraft (such as fire, engine failure, hijack).\n紧急情况（PAN PAN）指需要及时处理但无即时危险的情况（如燃油短缺、乘客生病）；遇险情况（MAYDAY）更为严重，涉及生命或飞机的即时威胁（如火情、发动机失效、劫持）。"
-    },
-    {
-      "id": "opi-core-104",
-      "taskTitle": "特情-紧急情况遇险-26",
-      "audioText": "Have you ever encountered any urgency or distress situations?",
-      "audioTextZh": "你是否遇到过任何紧急或遇险的情况？",
-      "referenceText": "No, I have never encountered any urgency or distress situations."
+      "taskTitle": "特情-紧急情况遇险-11",
+      "audioText": "What is the difference between an urgency situation and a distress situation?",
+      "audioTextZh": "紧急情况与遇险情况有什么区别？",
+      "referenceText": "A distress situation involves grave and imminent danger and requires immediate assistance; the radiotelephony signal is MAYDAY. An urgency situation concerns the safety of an aircraft or person but does not yet require immediate assistance; the signal is PAN-PAN. Distress traffic has priority over all other communications, while urgency traffic has priority over routine traffic but not distress.",
+      "referenceTextZh": "遇险情况涉及严重且迫在眉睫的危险，需要立即援助；其无线电话信号为 MAYDAY。紧急情况关系到航空器或人员安全，但尚不需要立即援助；其信号为 PAN-PAN。遇险通信优先于所有其他通信，紧急通信优先于日常通信，但低于遇险通信。"
     },
     {
       "id": "opi-core-105",
-      "taskTitle": "特情-紧急情况遇险-27",
-      "audioText": "What would you do in case of emergency?",
-      "audioTextZh": "万一发生紧急情况，你会怎么做？",
-      "referenceText": "In case of emergency. I will keep control of the aircraft, ask the copilot to read the checklist, and l will do the operations. At the same time, I will report this situation to ATC, request diversion or priority to landing and emergency services,\n在紧急情况下。我会控制飞机，让副驾驶阅读检查单，然后我会进行操作。同时，我将向空中交通管制部门报告这一情况，请求改道或优先降落和紧急服务，"
-    },
-    {
-      "id": "opi-core-106",
-      "taskTitle": "特情-紧急情况遇险-28",
-      "audioText": "Please give an example or describe the steps you may take in urgency or distress situations?",
-      "audioTextZh": "请举一个例子或描述你在紧急或遇险中可能采取的步骤？",
-      "referenceText": "For example, if I encounter the rapid depressurization, I will put on the oxygen mask, try my best to control the aircraft, ask the copilot to report to ATC, request immediate descent to minimum safe altitude. Then, I will request priority landing, and all possible ground emergency services.\n例如，如果我遇到快速减压，我会戴上氧气面罩，尽力控制飞机，要求副驾驶向空中交通管制报告，要求立即下降到最低安全高度。然后，我将请求优先降落，以及所有可能的地面紧急服务。"
-    },
-    {
-      "id": "opi-core-107",
-      "taskTitle": "特情-紧急情况遇险-29",
-      "audioText": "What support do you need from ATC or ground personnel in emergency situations?",
-      "audioTextZh": "在紧急情况下，你需要空中交通管制或地面人员提供哪些支持？",
-      "referenceText": "In emergency situations, the ATC or ground personnel will give us all the possible ground services, such as fire services, medical services, airport police and rescue and so on.\n在紧急情况下，空中交通管制或地面人员将为我们提供所有可能的地面服务，如消防服务、医疗服务、机场警察和救援等。"
-    },
-    {
-      "id": "opi-core-108",
-      "taskTitle": "特情-紧急情况遇险-30",
-      "audioText": "Who should be the last one to leave the aircraft in the emergency situations? Why?",
-      "audioTextZh": "在紧急情况下，谁应该是最后一个离开飞机的人？为什么？",
-      "referenceText": "The captain should be the last one to leave the aircraft in the emergency situations. Captain has the highest duties to the safety of this flight. After emergency evacuation, the captain will do the cabin check to ensure everyone has left the aircraft．He will be the last one to leave the aircraft.\n在紧急情况下，机长应该是最后一个离开飞机的人。机长对这次飞行的安全负有最高责任。紧急疏散后，机长将进行机舱检查，以确保所有人都已离开飞机。他将是最后一个离开飞机的人。"
+      "taskTitle": "特情-紧急情况遇险-12",
+      "audioText": "What general steps should a pilot take in an urgency or distress situation?",
+      "audioTextZh": "在紧急或遇险情况下，飞行员通常应采取哪些步骤？",
+      "referenceText": "The pilot should control the aircraft, identify the problem and choose the safest immediate course of action. The crew should use the applicable checklist, declare MAYDAY or PAN-PAN as appropriate, state its intentions and request the assistance needed. They should keep ATC and the cabin crew informed without allowing communication to distract from flying the aircraft.",
+      "referenceTextZh": "飞行员应控制飞机、识别问题并选择最安全的即时行动方案。机组应执行适用检查单，视情况宣布 MAYDAY 或 PAN-PAN，说明行动意图并请求所需协助。应持续向空管和客舱机组通报情况，但不能让通信影响飞机操纵。"
     },
     {
       "id": "opi-core-109",
-      "taskTitle": "特情-紧急情况遇险-31",
-      "audioText": "How do pilots make a distress\ntransmitting?",
-      "audioTextZh": "飞行员如何进行遇险呼叫？",
-      "referenceText": "The distress transmission shall begin with the signal MAYDAY three times. Then the pilot shall report to ATC what has happened, how serious it is, what’s his intention and what kind of assistance is required and other useful information.\n遇险呼叫需以 “MAYDAY” 信号开头，连续呼叫三次；随后向空管报告事件情况、严重程度、自身意图、所需援助及其他有用信息。"
+      "taskTitle": "特情-紧急情况遇险-13",
+      "audioText": "How should a pilot transmit a distress message?",
+      "audioTextZh": "飞行员应如何发送遇险信息？",
+      "referenceText": "The pilot should begin with MAYDAY, preferably repeated three times, followed by the station called and the aircraft identification. The message should give the nature of the distress, intentions, position, altitude, fuel remaining, persons on board and any assistance required, as time permits. It should normally be transmitted on the frequency in use, with the emergency frequency used when necessary.",
+      "referenceTextZh": "飞行员应先呼叫 MAYDAY，最好重复三次，随后说明被呼叫电台和航空器识别标志。时间允许时，报文应包括遇险性质、行动意图、位置、高度、剩余燃油、机上人数和所需协助。通常应在当前使用的频率上发送，必要时使用应急频率。"
     },
     {
       "id": "opi-core-110",
-      "taskTitle": "特情-紧急情况遇险-32",
-      "audioText": "What should you do when you hear one\naircraft making a distress transmission\nduring flight?",
-      "audioTextZh": "飞行中听到其他飞机的遇险呼叫，你会怎么做？",
-      "referenceText": "If the distress aircraft can communicate with ATC, I will stop transmitting. If not, I will help to relay the message to ATC and provide necessary assistance.\n若遇险飞机可与空管正常通信，将停止通话以避免干扰；若无法通信，将协助向空管转发信息并提供必要援助。"
-    },
-    {
-      "id": "opi-core-111",
-      "taskTitle": "特情-紧急情况遇险-33",
-      "audioText": "Did you review emergency procedures in simulator training?",
-      "audioTextZh": "你在飞模拟机时候接受过紧急程序吗?",
-      "referenceText": "Yes, I reviewed various emergency procedures in simulator training, including engine failure, depressurization, fire, bird strike, runway incursion, and evacuation. The training focused on SOP compliance, decision-making, and crew coordination to handle emergencies calmly and ensure flight safety.\n是的，我在模拟机训练中复习过多种紧急程序，包括发动机失效、释压、火情、鸟击、跑道入侵和撤离等。训练重点是遵循标准操作程序（SOP）、决策制定和机组协作，以冷静处置紧急情况，保障飞行安全。"
-    },
-    {
-      "id": "opi-core-112",
-      "taskTitle": "特情-紧急情况遇险-34",
-      "audioText": "What do you think are the principles of evacuation?",
-      "audioTextZh": "你认为紧急撤离的重要原则有哪些?",
-      "referenceText": "Key principles of emergency evacuation include: prioritizing safety (avoiding fire/smoke); speed (evacuating within 90 seconds); order (guiding passengers calmly); crew responsibility (captain as last to leave); using correct exits (avoiding blocked ones); and coordinating with cabin crew to ensure all passengers are evacuated.\n紧急撤离的核心原则包括：安全优先（避开火/烟雾）；快速撤离（90秒内完成）；秩序井然（引导乘客保持冷静）；机组职责（机长最后撤离）；选择正确出口（避开堵塞出口）；与客舱机组协作，确保所有乘客撤离完毕。"
-    },
-    {
-      "id": "opi-core-113",
-      "taskTitle": "特情-紧急情况遇险-35",
-      "audioText": "What are the duties of cabin crew during emergency evacuation?",
-      "audioTextZh": "紧急撤离时机组的职责有哪些?",
-      "referenceText": "During emergency evacuation, cabin crew duties include: guiding passengers to exits calmly; assisting vulnerable passengers (children, elderly); opening emergency exits and deploying slides; maintaining order to avoid stampedes; checking cabins for remaining passengers; coordinating with flight crew; and reporting evacuation status to the captain.\n紧急撤离时，客舱机组的职责包括：冷静引导乘客前往出口；协助弱势乘客（儿童、老人）；打开紧急出口并展开滑梯；维持秩序防止踩踏；检查客舱是否有滞留乘客；与飞行机组协作；向机长报告撤离情况。"
+      "taskTitle": "特情-紧急情况遇险-14",
+      "audioText": "What should a pilot do after hearing another aircraft transmit a distress message in flight?",
+      "audioTextZh": "飞行中听到另一架飞机发送遇险信息后，飞行员应如何处置？",
+      "referenceText": "The pilot should listen carefully, avoid unnecessary transmissions and record useful details such as the aircraft's position and intentions. If the called station does not answer or cannot communicate, the pilot should relay the message or offer assistance when able. Any assistance must be coordinated without endangering the pilot's own aircraft or interfering with the distress traffic.",
+      "referenceTextZh": "飞行员应认真守听，避免不必要的发射，并记录遇险航空器的位置和行动意图等有用信息。如果被呼叫电台没有应答或无法通信，飞行员应在能力允许时中继报文或主动提供协助。任何协助都必须经过协调，不能危及自己的飞机或干扰遇险通信。"
     }
   ]
 }

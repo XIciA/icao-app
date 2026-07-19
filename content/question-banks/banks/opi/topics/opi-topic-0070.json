@@ -2,77 +2,47 @@
   "categoryId": "opi-category-02",
   "id": "opi-topic-0070",
   "name": "机上炸弹与可疑物品",
-  "declaredCardCount": 10,
+  "declaredCardCount": 5,
   "cards": [
     {
       "id": "opi-core-730",
       "taskTitle": "特情-机上炸弹与可疑物品-1",
-      "audioText": "Does your company provide training about/concerning/regarding bomb on board? Did you receive/get/have training to deal with/handling bomb on board?",
-      "audioTextZh": "你们公司有提供关于航空器上遇有炸弹情况的培训吗？\n你接受过应对航空器上炸弹情况的培训吗？",
-      "referenceText": "No, I have not been back to the company yet. I have not taken this training yet. Now I am still undergoing flight training at the flight school.\n没有，我还没回到公司。也还没参加过这类培训。目前我仍在飞行学校进行飞行训练 。"
+      "audioText": "What training has your company provided on handling bomb threats on board?",
+      "audioTextZh": "你所在的公司提供过哪些机上炸弹威胁处置培训？",
+      "referenceText": "A suitable company example would be: my operator provides recurrent security training on receiving and evaluating a bomb threat. It covers accurate recording, discreet crew coordination, use of the approved checklist, communication with ATC and security specialists, and preparation for landing or evacuation. Sensitive tactics are practised only through the operator's controlled procedures.",
+      "referenceTextZh": "一个合适的公司示范答案是：我的运营人会定期开展如何接收和评估炸弹威胁的安保复训。内容包括准确记录、谨慎协调机组、使用经批准的检查单、与空管和安保专家通信，以及为着陆或撤离做准备。敏感处置方法只通过运营人受控程序进行训练。"
     },
     {
       "id": "opi-core-731",
       "taskTitle": "特情-机上炸弹与可疑物品-2",
-      "audioText": "During flight, if ATC receives an anonymous call saying that there is a bomb on your aircraft, what will you do?",
-      "audioTextZh": "飞行期间，若空中交通管制（ATC）接到匿名电话称你的飞机上有炸弹，你会怎么做？",
-      "referenceText": "(1) If we encounter this situation during flight, first of all, we will ask the air marshal to search the aircraft interior for any suspicious articles. Then we will advise the controller of our situation, request to land as soon as possible and request a bomb squad. At the same time, we will request a remote apron for parking our aircraft due to the bomb on board.\n若飞行中遇到这种情况，首先，我们会让空警搜查飞机内部，查找可疑物品。然后，我们会将自身情况告知管制员，申请尽快降落并请求拆弹小组支援。同时，因飞机上有炸弹，我们会申请将飞机停靠在偏远停机坪 。\n(2) If there is a suspected bomb on board, first, we will inform the crew members to search the cabin for any suspicious articles. Second, we will report our situation to ATC and request a bomb disposal squad and emergency services. Finally, we will execute an emergency evacuation.\n若飞机上疑似有炸弹，首先，我们会通知机组人员搜查客舱，查找可疑物品。其次，向空中交通管制报告情况，请求拆弹小组和应急服务支援。最后，执行紧急撤离程序 。"
+      "audioText": "What should a pilot do after receiving a bomb threat against the aircraft during flight?",
+      "audioTextZh": "飞行中收到针对本机的炸弹威胁后，飞行员应如何处置？",
+      "referenceText": "The pilot should control the aircraft, record and pass the available threat information, and apply the operator's bomb-threat checklist. The crew should coordinate discreetly with the cabin, ATC, the operator and security authorities, then choose a landing plan based on the assessed threat and available airports. They should not improvise searches, handling or passenger instructions outside the approved procedure.",
+      "referenceTextZh": "飞行员应控制飞机，记录并传递现有威胁信息，执行运营人的炸弹威胁检查单。机组应谨慎地与客舱、空管、运营人和安保当局协调，再根据威胁评估和可用机场选择着陆方案。不应在经批准程序之外擅自实施搜查、处置物品或向旅客发出指令。"
     },
     {
       "id": "opi-core-732",
       "taskTitle": "特情-机上炸弹与可疑物品-3",
-      "audioText": "Does your company provide training about/concerning/regarding suspicious articles? Did you receive/get/have training to deal with/handling suspicious articles?",
-      "audioTextZh": "你们公司有提供关于可疑物品的培训吗？你接受过处理可疑物品的培训吗？",
-      "referenceText": "No, I have not been back to the company yet. I have not taken this training yet. Now I am still taking flight training in the flight school.\n没有，我还没回到公司。我也还没参加过这类培训。目前我仍在飞行学校进行飞行训练 。"
+      "audioText": "What training has your company provided on handling suspicious items on board?",
+      "audioTextZh": "你所在的公司提供过哪些机上可疑物品处置培训？",
+      "referenceText": "A suitable company example would include recognition of suspicious items, protection of the area and immediate reporting through the crew chain. Training would also cover the approved search and threat-response checklists, communication, passenger management and coordination with security services. Detailed techniques should remain within the operator's controlled security program.",
+      "referenceTextZh": "一个合适的公司示范答案会涵盖可疑物品识别、保护相关区域，并立即按机组报告链上报。训练还会包括经批准的搜查和威胁处置检查单、通信、旅客管理以及与安保部门协调。具体方法应只在运营人受控的安保方案内讲授。"
     },
     {
       "id": "opi-core-733",
       "taskTitle": "特情-机上炸弹与可疑物品-4",
-      "audioText": "What are your procedures to deal with suspicious articles during flight?",
-      "audioTextZh": "飞行中遇到可疑物品时，你们的处置流程是怎样的？",
-      "referenceText": "If we encounter this situation during flight, first of all, we will ask the air marshal to search the aircraft interior for any suspicious articles. Then we will advise the air traffic controller of our situation, request to land as soon as possible and request a bomb squad. At the same time, we will request a remote apron for parking our aircraft due to the suspicious articles on board.\n若飞行中遭遇此类情况，首先，我们会让空警搜查飞机内部，查找可疑物品。随后，将情况告知空中交通管制员，申请尽快降落并请求拆弹小组支援。同时，因机上有可疑物品，我们会申请将飞机停靠在偏远停机坪 。"
+      "audioText": "What procedures should be followed if a suspicious item is found on board during flight?",
+      "audioTextZh": "飞行中发现机上可疑物品时，应遵循哪些程序？",
+      "referenceText": "Crew members should not touch or move a suspicious item unless the approved procedure specifically requires it. They should inform the flight deck discreetly, keep people away, preserve useful information and follow the operator's security checklist. The commander should coordinate with ATC and security authorities and prepare for the safest suitable landing and controlled ground response.",
+      "referenceTextZh": "除非经批准程序有明确要求，否则机组成员不应触摸或移动可疑物品。他们应谨慎通知驾驶舱，让人员远离，保留有用信息，并执行运营人的安保检查单。机长应与空管和安保当局协调，准备在最安全的合适机场着陆，并安排受控的地面处置。"
     },
     {
-      "id": "opi-core-734",
+      "id": "opi-extra-106",
       "taskTitle": "特情-机上炸弹与可疑物品-5",
-      "audioText": "If there is a suspicious luggage on board your aircraft what will you do? What are your company's procedures of dealing with suspicious luggage on board?",
-      "audioTextZh": "若你的飞机上有可疑行李，你会怎么做？你们公司对于机上可疑行李的处置流程是怎样的？",
-      "referenceText": "If there is suspicious luggage on board your aircraft, first, we will inform the cabin crew to search the cabin for the luggage. Second, we will report our situation to ATC and request a bomb disposal squad and other emergency services such as fire services and medical services. Third, we will execute an emergency evacuation if necessary.\n若飞机上有可疑行李，首先，我们会通知客舱机组人员搜查客舱查找该行李。其次，向空中交通管制（ATC）报告情况，请求拆弹小组及消防、医疗等其他应急服务支援。第三，如有必要，执行紧急撤离程序 。"
-    },
-    {
-      "id": "opi-core-735",
-      "taskTitle": "特情-机上炸弹与可疑物品-6",
-      "audioText": "If you have received an anonymous call saying that there is bomb on board, what should you do?",
-      "audioTextZh": "如果你收到一个匿名电话,称飞机上有炸弹,你会怎么做?",
-      "referenceText": "Stay calm, maintain aircraft control, and follow SOP. Instruct cabin crew to search for suspicious items without alarming passengers. Report to ATC, declare emergency (squawk 7700), request diversion to the nearest airport, and ask for bomb disposal squad, fire, and medical services. Prepare for emergency evacuation after landing.\n保持冷静，稳定操纵飞机，遵循标准操作程序（SOP）；指示乘务员在不引起乘客恐慌的情况下排查可疑物品；向空管报告，宣布紧急状态（应答机编码7700），请求改航至最近机场，并协调防爆小组、消防和医疗支援；准备落地后紧急撤离。"
-    },
-    {
-      "id": "opi-core-736",
-      "taskTitle": "特情-机上炸弹与可疑物品-7",
-      "audioText": "How to prevent bomb threat from happening?",
-      "audioTextZh": "如何防止炸弹威胁再次发生?",
-      "referenceText": "To prevent bomb threats, airports and airlines should use advanced security equipment, train ground staff thoroughly, strengthen cooperation with police and fire departments, and raise public security awareness. Strictly implement security checks to prevent dangerous goods and terrorists from boarding aircraft.\n防止炸弹威胁需机场和航空公司配备先进安检设备、加强地勤人员培训、深化与公安消防部门的合作、提升公众安全意识；严格执行安检流程，阻止危险品和恐怖分子登机。"
-    },
-    {
-      "id": "opi-core-184",
-      "taskTitle": "特情-机上炸弹与可疑物品-8",
-      "audioText": "What's your company procedure concerning suspicious luggage check？",
-      "audioTextZh": "你们公司关于疑似行李检查的政策是什么？",
-      "referenceText": "If there is a suspicious luggage on board our aircraft, first, we will inform the cabin crew to search the cabin for the luggage. Second, we will report our situation to ATC and request bomb disposal squad and other emergency services such as fire services and medical services. Third, we will execute emergency evacuation.\n如果飞机上有疑似行李，我们将让机组人员搜索客舱寻找疑似行李；然后我们将报告管制，请求拆弹小组和其他紧急服务，比如消防服务和医疗服务；最后，我们将紧急疏散机上人员。"
-    },
-    {
-      "id": "opi-core-185",
-      "taskTitle": "特情-机上炸弹与可疑物品-9",
-      "audioText": "If ATC informs you that they have received anonymous call, see there is a bomb for your aircraft. What will you do",
-      "audioTextZh": "如果管制通知你，他们收到匿名电话说你飞机上有炸弹，你如何处置？",
-      "referenceText": "If there is a suspected bomb on board, first, we will inform the crew members to search the cabin for the suspected bomb. Second, we will report our situation to ATC and request bomb disposal squad and emergency services. Finally, we will execute emergency evacuation.\n如果飞机上有疑似炸弹，我们将让机组人员搜索客舱寻找疑似物品；然后我们将报告管制，请求拆弹小组和紧急服务；最后，我们将紧急疏散机上人员。"
-    },
-    {
-      "id": "opi-core-186",
-      "taskTitle": "特情-机上炸弹与可疑物品-10",
-      "audioText": "What is your company standard procedures of dealing with suspicious bomb on board?",
-      "audioTextZh": "处置机上疑似炸弹的标准程序是什么？",
-      "referenceText": "If there is a suspected bomb on board, first, we will inform the crew members to search the cabin for the suspected bomb. Second, we will report our situation to ATC and request bomb disposal squad and emergency services. Finally, we will execute emergency evacuation.\n如果飞机上有疑似炸弹，我们将让机组人员搜索客舱寻找疑似物品；然后我们将报告管制，请求拆弹小组和紧急服务；最后，我们将紧急疏散机上人员。"
+      "audioText": "After a bomb threat is received while the aircraft is on the ground, should passengers be allowed to disembark immediately? Why or why not?",
+      "audioTextZh": "飞机在地面收到炸弹威胁后，是否应允许乘客立即下机？为什么？",
+      "referenceText": "Passengers should not automatically disembark without a coordinated decision, because the safest action depends on the credibility and nature of the threat and the aircraft's location. The commander, operator, ATC, airport and security authorities should arrange a controlled parking, disembarkation or evacuation plan and keep people away from the assessed hazard. If there is an immediate life-threatening danger, the emergency procedure may require evacuation without delay.",
+      "referenceTextZh": "旅客不应在没有协调决定的情况下自行下机，因为最安全的行动取决于威胁的可信度、性质和飞机所在位置。机长、运营人、空管、机场和安保当局应安排受控的停机、下客或撤离方案，并让人员远离经评估的危险。如果存在立即危及生命的危险，应急程序可能要求毫不延误地撤离。"
     }
   ]
 }

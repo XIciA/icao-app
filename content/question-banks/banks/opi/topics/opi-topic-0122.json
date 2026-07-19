@@ -2,70 +2,55 @@
   "categoryId": "opi-category-07",
   "id": "opi-topic-0122",
   "name": "问好",
-  "declaredCardCount": 9,
+  "declaredCardCount": 6,
   "cards": [
     {
       "id": "opi-extra-137",
       "taskTitle": "其它-问好-1",
-      "audioText": "How are you today? How's everything going today?",
-      "audioTextZh": "你今天过得怎么样？今天一切都还好吗？",
-      "referenceText": "I'm good! Thank you for asking!\n我挺好的！谢谢你的关心！"
+      "audioText": "How are you today?",
+      "audioTextZh": "你今天感觉怎么样？",
+      "referenceText": "A suitable answer would be: I am well, thank you, although I feel slightly nervous about the test. I arrived with enough time to settle down and review my documents. I am ready to begin and will focus on communicating clearly rather than trying to sound perfect.",
+      "referenceTextZh": "一个合适的回答是：我很好，谢谢，不过对考试有一点紧张。我提前到达，留出了足够时间平静下来并检查文件。我已经准备好开始，会专注于清楚沟通，而不是追求听起来完美。"
     },
     {
       "id": "opi-extra-138",
       "taskTitle": "其它-问好-2",
-      "audioText": "How's the weather like today? Do you think today is a good day for flying? Do you like the weather today?",
-      "audioTextZh": "今天天气怎么样？你觉得今天是适合飞行的好天气吗？你喜欢今天的天气吗？",
-      "referenceText": "Yes, today is a good day for flying. The sky is clear, visibility is OK, wind calm. We have lovely sunshine. It is a good day for flying.\n是的，今天是适合飞行的好天气。天空晴朗，能见度良好，风力平稳。阳光很宜人。是个适合飞行的好日子。\nNo, it is not a good day for flying. The sky is overcast, visibility is poor, it is windy/ rainy/ cloudy/ foggy.\n不，今天不是适合飞行的好天气。天空阴沉，能见度差，还有风 / 下雨 / 多云 / 有雾。"
+      "audioText": "What is the weather like today, and is it suitable for flying?",
+      "audioTextZh": "今天天气怎么样？适合飞行吗？",
+      "referenceText": "A suitable example would be: the weather is clear with light wind and good visibility, so it is generally suitable for normal flying. A pilot would still need current reports, forecasts, runway conditions and aircraft limits before making an operational decision. This answer should be changed to match the actual weather on the test day.",
+      "referenceTextZh": "一个合适的示范答案是：天气晴朗、风力较小、能见度良好，总体适合正常飞行。不过，飞行员仍需获取现行报告、预报、跑道状况和飞机限制，才能作出运行决定。应根据考试当天的实际天气修改这段答案。"
     },
     {
       "id": "opi-extra-139",
       "taskTitle": "其它-问好-3",
-      "audioText": "How did you come/get here today? How did you come to the test center? Did you drive yourself here today?",
-      "audioTextZh": "你今天是怎么来这儿的？你是怎么来考试中心的？你今天是自己开车来的吗？",
-      "referenceText": "I came here by taxi.\n我是坐出租车来这儿的。\nI came to the test center by subway today. It was convenient and punctual, avoiding traffic jams on the road.\n我今天是乘坐地铁来考试中心的。既方便又准时，避免了路上的交通拥堵。"
+      "audioText": "How did you get to the test center today?",
+      "audioTextZh": "你今天是怎么到达考试中心的？",
+      "referenceText": "A suitable example would be: I took the metro to the test center and then walked for about ten minutes. I chose public transport because traffic is unpredictable and parking is limited. I left early, so the journey was calm and I arrived on time.",
+      "referenceTextZh": "一个合适的示范答案是：我乘地铁到考试中心，然后步行大约十分钟。我选择公共交通，因为路况难以预测，而且停车位有限。我提早出发，所以路上很从容，也准时到达。"
     },
     {
       "id": "opi-extra-140",
       "taskTitle": "其它-问好-4",
-      "audioText": "Did you have a good sleep last night?",
-      "audioTextZh": "昨天休息得好吗?",
-      "referenceText": "Yes, I had a sound sleep last night. I went to bed early to ensure I was energetic for today's test.\n是的，我昨晚睡得很好。为了保证今天考试精力充沛，我很早就休息了。"
+      "audioText": "Did you sleep well last night?",
+      "audioTextZh": "你昨晚睡得好吗？",
+      "referenceText": "A suitable answer would be: yes, I slept for about seven hours and woke up feeling rested. I stopped studying early enough to relax and prepared my documents before going to bed. That helped me avoid rushing this morning.",
+      "referenceTextZh": "一个合适的回答是：是的，我睡了大约七个小时，醒来时感觉休息充分。我提早结束复习，让自己放松，并在睡前准备好文件。这使我今天早上不用匆忙。"
     },
     {
       "id": "opi-extra-141",
       "taskTitle": "其它-问好-5",
-      "audioText": "What are you going to do after\nthis test?",
-      "audioTextZh": "这次考试结束后,你会干什么?",
-      "referenceText": "after this test, I plan to review the knowledge points related to the test, summarize my shortcomings, and at the same time continue to practice my aviation English oral skills to prepare for future flight work.\n考试结束后，我打算回顾一下考试相关的知识点，总结自己的不足，同时继续练习航空英语口语，为今后的飞行工作做准备。"
-    },
-    {
-      "id": "opi-extra-142",
-      "taskTitle": "其它-问好-6",
-      "audioText": "Do you want to work in foreign\nairlines?",
-      "audioTextZh": "你想在外航工作吗?",
-      "referenceText": "Yes, I am willing to work in foreign airlines. It can allow me to experience different aviation cultures and management models, improve my cross-cultural communication skills and comprehensive professional capabilities.\n是的，我愿意在外航工作。这能让我体验不同的航空文化和管理模式，提升自己的跨文化沟通能力和综合专业素养。"
-    },
-    {
-      "id": "opi-extra-143",
-      "taskTitle": "其它-问好-7",
-      "audioText": "In your opinion, what are the\nchallenges of working in a foreign\nairline?",
-      "audioTextZh": "在你看来,在外航工作有哪些挑战?",
-      "referenceText": "In my opinion, the challenges of working in a foreign airline mainly include overcoming language barriers to ensure smooth communication with colleagues and air traffic controllers; adapting to different aviation regulations and operating procedures; and adjusting to different cultural backgrounds and work rhythms to integrate into the team quickly.\n在我看来，在外航工作的挑战主要包括：克服语言障碍，确保与同事和空管的沟通顺畅；适应不同的航空法规和操作程序；以及调整自身以适应不同的文化背景和工作节奏，快速融入团队。"
-    },
-    {
-      "id": "opi-extra-144",
-      "taskTitle": "其它-问好-8",
-      "audioText": "What's your company's logo?",
-      "audioTextZh": "你们公司的logo是什么?",
-      "referenceText": "As a student pilot who hasn't officially joined an airline yet, I don't have a company logo corresponding to my current status. However, I have a certain understanding of the logos of many well-known airlines. For example, the logo of Air China is a phoenix pattern, symbolizing auspiciousness and nobility.\n作为一名尚未正式加入航空公司的飞行学员，我目前还没有对应的公司logo。但我对许多知名航空公司的logo有一定的了解，比如中国国际航空公司的logo是凤凰图案，象征着吉祥与高贵。"
+      "audioText": "What are you going to do after this test?",
+      "audioTextZh": "这次考试结束后你打算做什么？",
+      "referenceText": "A suitable answer would be: after the test, I will have lunch and then return home to rest. I also plan to note which questions were difficult while they are still fresh in my mind. Later, I can use those notes to improve my English practice.",
+      "referenceTextZh": "一个合适的回答是：考试后，我会先吃午饭，再回家休息。我还打算趁记忆清晰时记下哪些题目比较困难。以后可以利用这些笔记改进英语练习。"
     },
     {
       "id": "opi-extra-145",
-      "taskTitle": "其它-问好-9",
-      "audioText": "Do you think the ICAO English test is difficult? Which part is the most difficult for you?",
-      "audioTextZh": "你觉得ICAO英语测试难吗?你觉得哪一部分最难?",
-      "referenceText": "I think the ICAO English test is challenging but manageable. For me, the most difficult part is the interactive communication (e.g., discussing complex emergency scenarios). It requires fluent expression, accurate aviation terminology, and quick response to the examiner’s questions. I’ve been practicing by simulating conversations and learning professional vocabulary to improve.\n我认为国际民航组织（ICAO）英语测试有挑战性但可以应对。对我来说，最难的部分是互动交流（如讨论复杂紧急情景），这需要流利的表达、准确的航空术语，以及对考官问题的快速回应。我一直在通过模拟对话和学习专业词汇来提升这方面能力。"
+      "taskTitle": "其它-问好-6",
+      "audioText": "Which part of the ICAO English test do you find most difficult, and why?",
+      "audioTextZh": "你觉得 ICAO 英语考试的哪个部分最难？为什么？",
+      "referenceText": "I find the unexpected-situation section most difficult because I must understand the problem quickly and explain a safe response in clear English. It tests listening, aviation knowledge and spontaneous speaking at the same time. I improve by practising varied scenarios and organizing my answer around the situation, actions and reasons.",
+      "referenceTextZh": "我觉得意外情况部分最难，因为我必须迅速理解问题，并用清楚的英语说明安全处置。它同时考查听力、航空知识和即兴表达能力。我会通过练习不同情景，并按照情况、行动和理由组织答案来提高。"
     }
   ]
 }

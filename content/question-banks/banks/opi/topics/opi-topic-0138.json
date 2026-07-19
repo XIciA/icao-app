@@ -2,28 +2,39 @@
   "categoryId": "opi-category-06",
   "id": "opi-topic-0138",
   "name": "刹车系统",
-  "declaredCardCount": 3,
+  "declaredCardCount": 4,
   "cards": [
     {
       "id": "opi-extra-323",
       "taskTitle": "飞机系统-刹车系统-1",
-      "audioText": "Please introduce the aircraft brake system.",
-      "audioTextZh": "请介绍飞机刹车系统。",
-      "referenceText": "I fly C172. Each main landing gear has disc brakes and it’s powered by hydraulic power. It’s controlled by the rudder pedal.\n我驾驶 C172。该机每个主起落架均配备盘式刹车，由液压驱动，通过方向舵踏板控制。"
+      "audioText": "What are the main functions of an aircraft braking system?",
+      "audioTextZh": "航空器刹车系统的主要功能有哪些？",
+      "referenceText": "The braking system slows and stops the aircraft during taxi, landing and a rejected takeoff and can hold it stationary on the ground. It supports directional control through differential braking and may include anti-skid, autobrake and brake-temperature monitoring. Parking and alternate or emergency braking functions may use separate sources or control paths depending on the aircraft.",
+      "referenceTextZh": "制动系统使飞机在滑行、着陆和中断起飞时减速并停止，也能使飞机在地面保持静止。它通过差动刹车辅助方向控制，并可能包括防滞、自动刹车和刹车温度监控功能。根据机型，停留刹车以及备用或应急刹车功能可以采用独立动力源或控制路径。"
     },
     {
       "id": "opi-extra-324",
       "taskTitle": "飞机系统-刹车系统-2",
-      "audioText": "What can you do if you lose your brake system?",
-      "audioTextZh": "若刹车系统失效，你会怎么做？",
-      "referenceText": "If I find this problem before takeoff, I will report to the mechanics and ask them to fix it. If the brake system is inoperative before landing, I will report to ATC and request the longest runway for landing. After touchdown, I will use maximum thrust reverser and spoilers to stop the aircraft.\n若起飞前发现问题，会向机械师报告并要求维修；若着陆前刹车系统失效，会向空管报告并申请最长跑道着陆；接地后，使用最大反推和减速板使飞机停稳。"
+      "audioText": "How should a flight crew respond if the aircraft's normal braking system fails?",
+      "audioTextZh": "航空器正常刹车系统失效时，飞行机组应如何处置？",
+      "referenceText": "The crew should recognize the failure, maintain directional control and apply the aircraft's alternate or emergency braking procedure. It must understand the remaining brake source, anti-skid and steering capability, use reverse thrust or other deceleration devices as approved, and monitor brake condition. If the failure is known before landing, the crew should recalculate distance, select the most suitable runway and brief stopping and evacuation considerations.",
+      "referenceTextZh": "机组应识别故障、保持方向控制并执行飞机的备用或应急刹车程序。他们必须了解剩余刹车动力源、防滞和转向能力，按批准方式使用反推或其他减速装置，并监控刹车状态。如果着陆前已知故障，机组应重新计算距离、选择最合适的跑道，并对停止与撤离注意事项进行简令。"
     },
     {
       "id": "opi-extra-325",
       "taskTitle": "飞机系统-刹车系统-3",
-      "audioText": "Will you takeoff or land on a runway\nwhen the braking action is poor?",
-      "audioTextZh": "刹车效果不佳时，是否会在该跑道起飞或着陆？",
-      "referenceText": "I will check whether the runway is long enough for takeoff or landing. If not, I will delay takeoff or land.\n会检查跑道长度是否满足起飞或着陆需求；若不满足，将延迟起飞或着陆。"
+      "audioText": "How should a crew decide whether it is safe to take off when runway braking action is poor?",
+      "audioTextZh": "跑道刹车效应差时，机组应如何判断能否安全起飞？",
+      "referenceText": "The crew should use the reported runway condition and braking information with current weather, contaminant, crosswind and the approved takeoff-performance method. It must consider accelerate-stop distance, directional-control limits, aircraft defects and whether reports are recent and representative. If the calculation or operating limit is not satisfied with the required margin, the aircraft should not take off until conditions improve or another suitable runway is used.",
+      "referenceTextZh": "机组应结合当前天气、污染物、侧风和批准的起飞性能方法，采用报告的跑道状况与制动信息。必须考虑加速停止距离、方向控制限制、飞机故障，以及报告是否足够新且具有代表性。如果计算结果或运行限制无法在规定裕度下满足，飞机应等到条件改善或改用其他合适跑道后再起飞。"
+    },
+    {
+      "id": "opi-extra-325-part-2",
+      "taskTitle": "飞机系统-刹车系统-4",
+      "audioText": "How should a crew decide whether it is safe to land when runway braking action is poor?",
+      "audioTextZh": "跑道刹车效应差时，机组应如何判断能否安全着陆？",
+      "referenceText": "Before approach, the crew should assess the latest runway condition, braking reports, wind, contaminant and weather and calculate landing performance for the expected mass and configuration. It should compare the required distance and crosswind with approved limits, consider report reliability and retain a go-around or diversion option. If the runway cannot provide the required margin, the crew should use another runway or airport rather than hope that braking will be better than reported.",
+      "referenceTextZh": "进近前，机组应评估最新跑道状况、制动报告、风、污染物和天气，并按预计重量和构型计算着陆性能。他们应把所需距离与侧风同批准限制比较，考虑报告可靠性，并保留复飞或改航选择。如果跑道无法提供规定裕度，机组应改用其他跑道或机场，不能寄希望于实际制动优于报告。"
     }
   ]
 }

@@ -14,20 +14,18 @@
     {
       "id": "opi-image-001-q01",
       "taskTitle": "图片题-001-01",
-      "audioText": "What hazards do we have during night flying?",
-      "audioTextZh": "夜间飞行有哪些危险？",
-      "referenceText": "The main risks are reduced visibility, cockpit workload, spatial disorientation, and difficulty judging terrain or clouds. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
-      "referenceTextZh": "主要风险包括能见度降低、驾驶舱工作负荷增加、空间定向困难以及地形和云的判断变难。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-001-q01.mp3"
+      "audioText": "What are the main hazards of flying at night?",
+      "audioTextZh": "夜间飞行的主要危险有哪些？",
+      "referenceText": "Night flying reduces external visual references and makes terrain, cloud and distance harder to judge. Fatigue, visual illusions, bright cockpit lighting and failure of runway or aircraft lights can further reduce awareness. Weather that is manageable by day may become more demanding when the natural horizon and escape options are not visible.",
+      "referenceTextZh": "夜间飞行会减少外部目视参照，使地形、云层和距离更难判断。疲劳、视觉错觉、过亮的驾驶舱照明，以及跑道灯光或飞机灯光失效，都会进一步降低情景意识。白天尚可应对的天气，在看不见自然地平线和脱离方案时可能更具挑战。"
     },
     {
       "id": "opi-image-001-q02",
       "taskTitle": "图片题-001-02",
-      "audioText": "What preparations will you make before a night flight?",
-      "audioTextZh": "夜航前你会做哪些准备？",
-      "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
-      "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-001-q02.mp3"
+      "audioText": "What preparations should pilots make before a night flight?",
+      "audioTextZh": "飞行员在夜间飞行前应做哪些准备？",
+      "referenceText": "Pilots should review weather, terrain, obstacles, airport lighting, NOTAMs and suitable alternates and ensure that the route and fuel plan preserve safe options. They should check cockpit, exterior and emergency lighting, carry required equipment and brief night illusions and approach threats. Adequate rest and deliberate control of cockpit brightness help maintain alertness and outside vision.",
+      "referenceTextZh": "飞行员应检查天气、地形、障碍物、机场灯光、NOTAM 和合适的备降机场，并确保航路和燃油计划保留安全选择。机组应检查驾驶舱、外部和应急照明，携带规定设备，并对夜间错觉和进近威胁进行简令。充分休息并有意识地控制驾驶舱亮度，有助于保持警觉和舱外目视能力。"
     }
   ]
 }

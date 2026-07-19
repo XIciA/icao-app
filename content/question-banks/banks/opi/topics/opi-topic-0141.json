@@ -7,16 +7,18 @@
     {
       "id": "opi-extra-332",
       "taskTitle": "运行-高度偏差-1",
-      "audioText": "Could you please name a few of major factors that\nmay cause altitude deviation?",
-      "audioTextZh": "请列举几个可能导致高度偏差的主要因素？",
-      "referenceText": "There are some factors that may cause altitude deviation, such as severe turbulence, wrong altitude setting and altimeter malfunction, misunderstanding of ATC’s instruction and so on.\n包括强湍流、高度设置错误及高度表故障、对空管指令的误解等。"
+      "audioText": "What are the main factors that can cause an altitude deviation?",
+      "audioTextZh": "导致高度偏差的主要因素有哪些？",
+      "referenceText": "Altitude deviations can result from misunderstood clearances, incorrect readbacks, wrong mode or target selection, distraction and weak monitoring. Turbulence, high climb or descent rate, altimeter-setting errors and automation or instrument faults can also contribute. Confusion between units, transition levels or similar call signs may increase the risk.",
+      "referenceTextZh": "高度偏差可能由误解许可、复诵错误、方式或目标选择错误、分心和监控薄弱造成。颠簸、较大的爬升或下降率、高度表设定错误，以及自动化或仪表故障也可能成为原因。单位、过渡高度层或相似呼号混淆会进一步增加风险。"
     },
     {
       "id": "opi-extra-333",
       "taskTitle": "运行-高度偏差-2",
-      "audioText": "What could a pilot do to avoid altitude deviation?",
-      "audioTextZh": "飞行员可采取哪些措施避免高度偏差？",
-      "referenceText": "Well. First, before flight, pilot should get the weather information to avoid get into the turbulent area. Second, if we have any doubt with ATC’s instruction, we should confirm with ATC immediately. Third, during flight, both pilots should cross check their altimeters.\n一是飞行前获取气象信息，避免飞入湍流区域；二是若对空管指令有疑问，立即向空管确认；三是飞行中，两名飞行员需交叉检查高度表。"
+      "audioText": "How can a flight crew prevent an altitude deviation?",
+      "audioTextZh": "飞行机组如何预防高度偏差？",
+      "referenceText": "The crew should read back and confirm the cleared altitude, set and cross-check the target and altimeters, and announce flight-mode changes. Both pilots monitor the vertical path and use standard callouts as the aircraft approaches the level. During high workload, one pilot should remain focused on flight path, and any unclear clearance should be resolved before acting.",
+      "referenceTextZh": "机组应复诵并确认许可高度，设置并交叉核对目标和高度表，并宣布飞行方式变化。飞机接近目标高度层时，两名飞行员都应监控垂直轨迹并使用标准喊话。高工作负荷期间，一名飞行员应始终专注于飞行轨迹；任何不清楚的许可都应在执行前解决。"
     }
   ]
 }

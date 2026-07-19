@@ -2,50 +2,79 @@
   "categoryId": "opi-category-05",
   "id": "opi-topic-0092",
   "name": "旅客异常情况处置",
-  "declaredCardCount": 7,
+  "declaredCardCount": 9,
   "cards": [
     {
       "id": "opi-extra-003",
       "taskTitle": "运行-旅客异常情况处置-1",
-      "audioText": "get anxious during long delay",
-      "referenceText": "First of all, I will make a PA to explain the reason for delay/diversion. Secondly, I will ask cabin crew to provide some food and drinks. At last, I will keep informing the PAX of the latest flight information.\n首先，我会进行广播（PA ），解释延误 / 备降的原因。其次，我会让客舱乘务员提供一些食物和饮品。最后，我会持续向乘客（PAX ）通报最新的航班信息 。"
+      "audioText": "How should a flight crew respond when passengers become anxious during a long delay?",
+      "referenceText": "The flight crew should provide honest, timely updates through the cabin crew or public address system without promising a time that is not known. It should explain the operational reason in plain language, describe what is being done and acknowledge the inconvenience. Regular communication, basic welfare support and respectful cabin management can reduce uncertainty and frustration.",
+      "audioTextZh": "长时间延误导致乘客焦虑时，机组应如何应对？",
+      "referenceTextZh": "飞行机组应通过客舱机组或广播系统及时、如实地更新情况，不能承诺尚不确定的时间。应以简单语言说明运行原因、正在采取的措施，并对给旅客造成的不便表示理解。定期沟通、基本生活保障和尊重旅客的客舱管理能够减少不确定感和挫折感。"
     },
     {
       "id": "opi-extra-004",
       "taskTitle": "运行-旅客异常情况处置-2",
-      "audioText": "complain about the diversion",
-      "referenceText": "First of all, I will make a PA to explain the reason for delay/diversion. Secondly, I will ask cabin crew to provide some food and drinks. At last, I will keep informing the PAX of the latest flight information.\n首先，我会进行广播，解释延误 / 备降的原因；其次，我会安排客舱乘务员提供餐食和饮品；最后，我会持续向乘客通报最新的航班信息 。"
+      "audioText": "How should a flight crew respond when passengers complain about a diversion?",
+      "referenceText": "The crew should acknowledge the passengers' frustration and explain that the diversion was made for safety or another operational necessity. Information about the new airport, expected delay and onward arrangements should be shared when it is confirmed. Calm, consistent messages are better than speculation or blaming another party.",
+      "audioTextZh": "乘客抱怨备降时，机组应如何应对？",
+      "referenceTextZh": "机组应理解旅客的不满，并说明备降是出于安全或其他运行需要。在信息得到确认后，应告知新机场、预计延误和后续安排。冷静且一致的信息比猜测或归咎他方更好。"
     },
     {
       "id": "opi-extra-005",
       "taskTitle": "运行-旅客异常情况处置-3",
-      "audioText": "PAX get ill feel uncomfortable/suffer from heart attack/get injured during turbulence",
-      "referenceText": "First of all, I will ask the cabin crew to give them first aid and take good care of him. Secondly, I will advise ATC of our situation, if necessary, I will request divert to the nearest suitable airport and medical assistance.\n首先，我会让客舱乘务员对其进行急救并悉心照料；其次，我会将情况告知空中交通管制（ATC），如有必要，我会申请备降最近的合适机场并请求医疗援助 。"
+      "audioText": "What should a flight crew do if a passenger becomes ill or feels unwell during flight?",
+      "referenceText": "The cabin crew should assess the passenger, provide first aid within their training and ask whether qualified medical help is available. The flight crew should obtain clear details, seek ground medical advice when available and evaluate diversion using the patient's condition, remaining flight time, weather and airport support. Medical services should be arranged for arrival and the passenger monitored throughout.",
+      "audioTextZh": "飞行中乘客生病或感觉不适时，机组应如何处置？",
+      "referenceTextZh": "客舱机组应评估旅客状况，在训练范围内提供急救，并询问是否有合格医务人员能够协助。飞行机组应获得清楚的详细情况，在能够联系时寻求地面医疗建议，并根据患者状况、剩余飞行时间、天气和机场保障评估是否备降。应安排医疗服务在飞机到达时接手，并在整个过程中持续监控旅客。"
     },
     {
       "id": "opi-extra-006",
       "taskTitle": "运行-旅客异常情况处置-4",
-      "audioText": "drunk(unruly) PAX on board in flight",
-      "referenceText": "I will ask the air marshal to keep him away from other PAX. If he is being unruly, I will let the air marshal restrain him and monitor him.\n我会让空警将其与其他乘客隔离开。若他行为不端，我会让空警对其进行约束并监视 。"
+      "audioText": "What should a flight crew do if a drunk or unruly passenger disrupts a flight?",
+      "referenceText": "The crew should use calm, clear instructions and stop the passenger from creating further risk without unnecessary confrontation. Cabin crew should coordinate with the captain, stop serving alcohol to that passenger, protect other passengers and use trained restraint procedures only when justified and authorized. The commander should consider diversion and request police or medical assistance for arrival based on the severity.",
+      "audioTextZh": "醉酒或行为不当的乘客干扰飞行时，机组应如何处置？",
+      "referenceTextZh": "机组应使用冷静、清楚的指令，在避免不必要对抗的同时阻止旅客继续制造风险。客舱机组应与机长协调，停止向该旅客供应酒精饮料，保护其他旅客，而且只有在理由充分并获得授权时，才采用自己受训掌握的约束程序。机长应根据事件严重程度考虑备降，并请求警方或医疗人员在到达时提供协助。"
     },
     {
       "id": "opi-extra-007",
       "taskTitle": "运行-旅客异常情况处置-5",
-      "audioText": "fight between the PAX",
-      "referenceText": "I will ask the cabin crew to communicate with them to stop the fight. If they don't listen and keep fighting, I will ask the air marshal to restrain them. After landing, I will request the airport police to take them away.\n我会让客舱乘务员沟通，让他们停止斗殴。若不听劝阻继续斗殴，我会让空警约束他们。着陆后，我会要求机场警方将他们带走 。"
+      "audioText": "What should a flight crew do if passengers start fighting on board?",
+      "referenceText": "Cabin crew should call for assistance, separate the people if it can be done safely and move nearby passengers away. They should inform the captain, assess injuries and use the operator's disruptive-passenger and restraint procedures when necessary. The flight crew should evaluate diversion and arrange police and medical support at the landing airport.",
+      "audioTextZh": "机上乘客开始打架时，机组应如何处置？",
+      "referenceTextZh": "客舱机组应呼叫协助，在能够安全做到时分开相关人员，并让附近旅客离开。他们应通知机长、评估伤情，并在必要时使用运营人的扰乱行为旅客处置程序和约束程序。飞行机组应评估是否备降，并安排警方和医疗人员在着陆机场提供支持。"
     },
     {
-      "id": "opi-extra-008",
+      "id": "opi-core-100",
       "taskTitle": "运行-旅客异常情况处置-6",
-      "audioText": "refuse to check his oversized baggage/turn off his mobile",
-      "referenceText": "We will tell him that checking the baggage/turning off his mobile is for flight safety. If he keeps refusing to check his oversized baggage/turn off his mobile, I will force him to check the baggage/turn off his mobile phone. As a captain, I can refuse him boarding.\n我们会告知他，托运行李 / 关闭手机是为了飞行安全。若他持续拒绝托运超大行李 / 关闭手机，我会强制他托运行李 / 关闭手机。作为机长，我可拒绝其登机 。"
+      "audioText": "What should a flight crew do if passengers are injured by turbulence?",
+      "audioTextZh": "如果乘客因颠簸受伤，机组应如何处置？",
+      "referenceText": "The pilots should move away from the hazardous area when practical, switch on the seat-belt sign and coordinate with the cabin crew. Injured passengers should receive first aid and medical assessment, and the crew should obtain medical support if available. The commander should consider diversion based on the injuries, remaining flight time, weather and suitable medical facilities.",
+      "referenceTextZh": "条件允许时，飞行员应飞离危险区域，打开安全带指示灯，并与客舱机组协调。受伤旅客应接受急救和医疗评估，机组还应在能够获得支持时寻求医疗协助。机长应根据伤情、剩余飞行时间、天气和合适的医疗设施考虑备降。"
     },
     {
-      "id": "opi-extra-011",
+      "id": "opi-core-101",
       "taskTitle": "运行-旅客异常情况处置-7",
-      "audioText": "If there is a drunken passenger quarreling with one of the flight attendant in the cabin, what should you do as a captain?",
-      "audioTextZh": "如果有一名醉酒乘客在客舱和一名乘务人员发生争吵,作为机长,你会这么做?",
-      "referenceText": "As captain, I will focus on aircraft control first. Instruct air marshals and cabin crew to separate the drunk passenger, calm him down, and prevent him from disturbing others or damaging equipment. If the situation escalates, report to ATC, request priority landing, and arrange for police assistance upon arrival to ensure cabin order and flight safety.\n作为机长，首先专注于航空器操纵；指示空保和乘务员分隔醉酒乘客，安抚其情绪，阻止其干扰他人或损坏设备；若事态升级，向空管报告，请求优先落地，落地后安排警方协助处置，确保客舱秩序和飞行安全。"
+      "audioText": "What should a flight crew do if a passenger has a heart attack during flight?",
+      "audioTextZh": "飞行中如果乘客突发心脏病，机组应如何处置？",
+      "referenceText": "The crew should treat the event as time-critical, ask whether a medically qualified passenger can help and use the onboard medical equipment within their training. The pilots should obtain medical advice if available, inform ATC of the assistance required and evaluate diversion to a suitable airport. Cabin crew should continue care and monitoring while ground medical services are arranged for arrival.",
+      "referenceTextZh": "机组应将事件视为时间紧迫的情况，询问是否有具备医疗资质的旅客能够协助，并在自身训练范围内使用机载医疗设备。如果能够获得医疗建议，飞行员应主动获取，同时向空管说明所需协助，并评估是否备降到合适机场。客舱机组应持续照护和监控患者；同时，应提前安排地面医疗人员在飞机到达时接手。"
+    },
+    {
+      "id": "opi-extra-101",
+      "taskTitle": "运行-旅客异常情况处置-8",
+      "audioText": "What should you do if a passenger refuses to check oversized baggage at the gate?",
+      "audioTextZh": "如果乘客在登机口拒绝托运超大行李，你应如何处理？",
+      "referenceText": "I would explain that the bag exceeds the cabin limit and must be checked or otherwise handled under the airline's policy. If the passenger still refuses, I would involve the gate supervisor and captain and would not allow an unsafe or noncompliant item to be carried into the cabin. Any spare batteries, power banks or other cabin-only items must first be removed before the bag is checked.",
+      "referenceTextZh": "我会说明行李超过客舱限额，必须托运或按照航空公司的政策另行处理。如果旅客仍然拒绝，我会请登机口主管和机长处理，不允许不安全或不合规的物品带入客舱。托运行李前，必须先取出所有备用电池、充电宝和其他只能放在客舱内的物品。"
+    },
+    {
+      "id": "opi-extra-102",
+      "taskTitle": "运行-旅客异常情况处置-9",
+      "audioText": "What should you do if a passenger refuses to turn off a mobile phone when instructed?",
+      "audioTextZh": "如果乘客经要求后仍拒绝关闭手机，你应如何处理？",
+      "referenceText": "The crew should repeat the instruction calmly, explain that passengers must follow safety directions and give the person a reasonable opportunity to comply. Continued refusal should be reported to the captain and handled under the operator's disruptive-passenger procedure, including returning to the gate or requesting assistance if necessary. The response should remain proportionate and should avoid an unnecessary confrontation.",
+      "referenceTextZh": "机组应冷静地重复指令，说明旅客必须遵守安全要求，并给对方合理的配合机会。如果旅客继续拒绝，应报告机长并按运营人的扰乱行为旅客处置程序处理，必要时返回登机口或请求协助。处置应与风险相称，并避免不必要的对抗。"
     }
   ]
 }

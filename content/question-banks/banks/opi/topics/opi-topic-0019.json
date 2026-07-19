@@ -2,56 +2,39 @@
   "categoryId": "opi-category-05",
   "id": "opi-topic-0019",
   "name": "舱单",
-  "declaredCardCount": 7,
+  "declaredCardCount": 4,
   "cards": [
     {
       "id": "opi-core-303",
       "taskTitle": "运行-舱单-1",
-      "audioText": "Who is responsible for providing the loading sheet to the flight crew?",
-      "audioTextZh": "谁负责向飞行机组提供装载单（loading sheet）？",
-      "referenceText": "The dispatcher is responsible for providing the loading sheet to the flight crew.\n签派员（dispatcher）负责向飞行机组提供装载单 。"
+      "audioText": "Who is responsible for providing the load sheet to the flight crew?",
+      "audioTextZh": "谁负责向飞行机组提供载重平衡舱单？",
+      "referenceText": "The operator is responsible for ensuring that an accurate load sheet is prepared and provided to the flight crew. The work may be performed by the operator's load-control unit or an authorized ground-handling agent. The commander reviews and accepts the final mass-and-balance information before departure under the operator's procedure.",
+      "referenceTextZh": "运营人负责确保编制准确的载重平衡表并提供给飞行机组。这项工作可以由运营人的配载控制部门或经授权的地面服务代理完成。起飞前，机长按照运营人程序审核并接受最终的重量和平衡信息。"
     },
     {
       "id": "opi-core-304",
       "taskTitle": "运行-舱单-2",
-      "audioText": "What's the use of the loading sheet?",
-      "audioTextZh": "装载单（loading sheet）有什么用途？",
-      "referenceText": "（1）Based on my knowledge, the pilot should consider the aircraft weight and balance. The pilot can get the passenger and cargo information from the loading sheet. It can help the pilot to make pre-flight preparation to make sure the aircraft is well-balanced.\n据我所知，飞行员需考虑飞机的重量与平衡。可从装载单获取乘客和货物信息，助力飞行员进行飞行前准备，确保飞机平衡良好。\n（2）Loading sheet is very important. We can get some important information about weight and balance from loading sheet such as persons on board (POB), cargos, fuel quantity, CG and so on.装载单十分重要，能从中获取重量与平衡相关的关键信息，比如机上人员（POB）、货物、燃油量、重心（CG）等 。"
+      "audioText": "What is the purpose of a load sheet?",
+      "audioTextZh": "载重平衡舱单有什么用途？",
+      "referenceText": "A load sheet confirms the aircraft's actual or calculated takeoff mass and centre of gravity for the planned flight. It shows whether loading remains within structural and balance limits and supplies values needed for performance and trim calculations. It also creates a controlled record that can be updated if passengers, baggage, cargo or fuel change before departure.",
+      "referenceTextZh": "载重平衡表确认计划航班飞机的实际或计算起飞重量与重心。它表明装载是否保持在结构和重心限制内，并提供性能与配平计算所需的数值。它还形成一份受控记录；如果起飞前乘客、行李、货物或燃油发生变化，可以据此更新。"
     },
     {
       "id": "opi-core-305",
       "taskTitle": "运行-舱单-3",
-      "audioText": "What information is included in the loading sheet?",
-      "audioTextZh": "装载单（loading sheet）包含哪些信息？",
-      "referenceText": "（1）The loading sheet includes a lot of information such as zero fuel weight, CG, POB, fuel on board, take-off weight and so on.\n装载单包含诸多信息，如无燃油重量（zero fuel weight）、重心（CG）、机上人员（POB）、机上燃油量（fuel on board）、起飞重量（take - off weight）等。\n（2）There is some important information include in the loading sheet such as persons on board (POB), cargos, fuel quantity, CG and so on.\n装载单包含一些重要信息，像机上人员（POB）、货物（cargos）、燃油量（fuel quantity）、重心（CG）等 。"
-    },
-    {
-      "id": "opi-core-306",
-      "taskTitle": "运行-舱单-4",
-      "audioText": "Which department is responsible for the provision of the loading sheet?",
-      "audioTextZh": "哪个部门负责提供舱单？",
-      "referenceText": "The dispatching office is responsible for providing the loading sheet.\n签派室负责提供舱单。"
+      "audioText": "What information is included on a load sheet?",
+      "audioTextZh": "载重平衡舱单包含哪些信息？",
+      "referenceText": "A load sheet normally identifies the aircraft and flight and records passenger, baggage, cargo and fuel loads. It includes operating, zero-fuel, takeoff and expected landing masses as applicable, together with centre-of-gravity or index information and allowable limits. It may also show load distribution, special loads, last-minute changes and the person or system responsible for preparation and acceptance.",
+      "referenceTextZh": "载重平衡表通常注明飞机和航班，并记录乘客、行李、货物与燃油载荷。按适用情况，它包括使用重量、无油重量、起飞重量和预计着陆重量，以及重心或指数信息与允许限制。它还可能列出载荷分布、特殊载荷、最后一分钟变更，以及负责制表和接受的人员或系统。"
     },
     {
       "id": "opi-core-307",
-      "taskTitle": "运行-舱单-5",
-      "audioText": "How do you get the loading sheet?",
-      "audioTextZh": "你怎么获取舱单？",
-      "referenceText": "We can get the loading sheet from the flight dispatchers.\n我们可以从签派室获取舱单。"
-    },
-    {
-      "id": "opi-core-308",
-      "taskTitle": "运行-舱单-6",
-      "audioText": "What's the use of loading sheet?What information can you get from the loading sheet?",
-      "audioTextZh": "舱单的用处是什么？我们可以从舱单获取哪些信息？",
-      "referenceText": "Loading sheet is very important. We can get some important information about weight and balance from loading sheet such as persons on board (POB), cargos, fuel quantity, CG and so on.\n舱单非常有用，我们可以从舱单中获取一些关于重量与平衡重要信息，比如机上人员（POB），货物，燃油重量，重心等。"
-    },
-    {
-      "id": "opi-core-309",
-      "taskTitle": "运行-舱单-7",
-      "audioText": "What do you know about the loading sheet? What information is included in the loading sheet?",
-      "audioTextZh": "你知道舱单吗?舱单中都有哪些信息?",
-      "referenceText": "A loading sheet is used for weight and balance control. It includes flight number, number of persons on board (POB), cargo/baggage weight, fuel quantity (FOB), center of gravity (CG), and takeoff/landing weight. Pilots use it to calculate takeoff data and ensure aircraft stability.\n舱单用于重量和平衡控制，包含航班号、机上人员数（POB）、货物/行李重量、燃油量（FOB）、重心（CG）以及起飞/着陆重量。飞行员用它计算起飞数据，确保飞机稳定性。"
+      "taskTitle": "运行-舱单-4",
+      "audioText": "How does the flight crew receive the load sheet before departure?",
+      "audioTextZh": "起飞前，飞行机组如何收到载重平衡舱单？",
+      "referenceText": "A suitable company example would be: load control sends the final electronic load sheet to the aircraft's operational system before departure. Both pilots compare it with the flight plan, fuel and loading information, and the commander accepts it through the approved interface. Any last-minute change is entered and a revised calculation is checked before takeoff.",
+      "referenceTextZh": "一个可按公司实际流程调整的示范答案是：起飞前，配载控制通过飞机运行系统发送最终电子载重平衡表。两名飞行员都将其与飞行计划、燃油和装载信息进行核对，然后由机长通过批准的界面接受。任何最后一分钟变更都要录入系统，并在起飞前检查重新计算的结果。"
     }
   ]
 }

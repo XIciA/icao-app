@@ -9,70 +9,80 @@
       "taskTitle": "气象-空气密度-1",
       "audioText": "What is air density in simple terms?",
       "audioTextZh": "简单来说，什么是空气密度？",
-      "referenceText": "Air density is the mass of air in a given volume. You can think of it as how 'thick' or 'thin' the air is. For example, at sea level on a cold day, the air is thick (high density), but at high altitudes on a hot day, the air is thin (low density).\n空气密度是给定体积内的空气质量。您可以把它想象成空气是“稠”还是“稀”。例如，在寒冷天气的海平面，空气很稠密（高密度），但在高海拔的炎热天气里，空气就很稀薄（低密度）。"
+      "referenceText": "Air density describes how much mass of air is contained in a given volume. Dense air has more air molecules in that volume, while thin air has fewer. This difference affects how well wings, propellers and engines can perform.",
+      "referenceTextZh": "空气密度表示一定体积空气中所含的质量。密度大的空气在相同体积内含有更多空气分子，稀薄空气则更少。这种差异会影响机翼、螺旋桨和发动机的工作性能。"
     },
     {
       "id": "opi-extra-289",
       "taskTitle": "气象-空气密度-2",
       "audioText": "Why is air density so important for aircraft performance?",
-      "audioTextZh": "问：为什么空气密度对飞机性能如此重要？",
-      "referenceText": "Because it directly affects how much lift the wings can generate and how much power the engine can produce. High density air means better lift and more power, which is good for performance. Low density air means less lift and reduced power, which degrades performance.\n答：因为它直接影响机翼能产生多少升力以及发动机能输出多少功率。高密度空气意味着更好的升力和更大的功率，这对性能有利。低密度空气意味着升力减少和功率下降，这会降低性能。"
+      "audioTextZh": "为什么空气密度对飞机性能如此重要？",
+      "referenceText": "Aircraft depend on air for lift, engine output and propeller or rotor efficiency. When density decreases, the aircraft generally needs more runway and has less climb performance. Pilots must therefore use performance data that reflects the actual pressure, temperature, altitude and other relevant conditions.",
+      "referenceTextZh": "飞机依靠空气产生升力，发动机也需要空气提供输出，螺旋桨或旋翼的效率同样受空气影响。密度降低时，飞机通常需要更长跑道，爬升性能也会下降。因此，飞行员必须使用能够反映实际气压、温度、高度和其他相关条件的性能数据。"
     },
     {
       "id": "opi-extra-290",
       "taskTitle": "气象-空气密度-3",
       "audioText": "What are the three main factors that affect air density?",
       "audioTextZh": "影响空气密度的三个主要因素是什么？",
-      "referenceText": "The three main factors are altitude, temperature, and humidity.\n三个主要因素是高度、温度和湿度。\n\nAltitude: Density decreases as we climb.\n\n高度：随着爬升，密度降低。\n\nTemperature: Density decreases as temperature increases.\n\n温度：随着温度升高，密度降低。\n\nHumidity: Density decreases as humidity increases.\n\n湿度：随着湿度增加，密度降低。"
+      "referenceText": "The three main factors are atmospheric pressure, temperature and humidity. Lower pressure and higher temperature reduce density. Increasing humidity also reduces density because water vapor is lighter than the dry-air molecules it replaces.",
+      "referenceTextZh": "三个主要因素是大气压力、温度和湿度。气压降低和温度升高都会使密度减小。湿度增加也会降低空气密度，因为水汽分子比它所取代的干空气分子轻。"
     },
     {
       "id": "opi-extra-291",
       "taskTitle": "气象-空气密度-4",
-      "audioText": "How does altitude affect air density and performance?",
-      "audioTextZh": "高度如何影响空气密度和性能？",
-      "referenceText": "As altitude increases, air pressure drops, so the air molecules are more spread out. This means lower air density. As a result, the engine produces less power, and the wings generate less lift, leading to a longer takeoff distance and a poorer rate of climb.\n随着高度增加，气压下降，所以空气分子更加分散。这意味着空气密度更低。其结果就是发动机功率输出减少，机翼产生的升力也减少，导致起飞距离更长和爬升率变差。"
+      "audioText": "How does altitude affect air density and aircraft performance?",
+      "audioTextZh": "高度如何影响空气密度和飞机性能？",
+      "referenceText": "As altitude increases, pressure usually falls and the air becomes less dense. Lower density reduces engine, propeller and aerodynamic performance, so takeoff distance can increase and climb rate can decrease. The aircraft performs as if it were operating at the corresponding density altitude.",
+      "referenceTextZh": "随着高度增加，气压通常下降，空气也会变得稀薄。密度降低会削弱发动机、螺旋桨和空气动力性能，因此起飞距离可能增加，爬升率可能下降。飞机的性能就像在相应密度高度上运行一样。"
     },
     {
       "id": "opi-extra-292",
       "taskTitle": "气象-空气密度-5",
       "audioText": "How does temperature affect air density?",
       "audioTextZh": "温度如何影响空气密度？",
-      "referenceText": "When temperature rises, the air molecules move faster and spread apart, causing the air to expand. This means there are fewer molecules in a given volume, so the density decreases. That's why aircraft performance is worse on a hot day.\n当温度升高时，空气分子运动加快并扩散，导致空气膨胀。这意味着在给定体积内的分子数量变少，因此密度降低。这就是为什么在炎热天气下飞机性能会更差。"
+      "referenceText": "At the same pressure, warmer air is less dense because it expands. Higher temperature therefore raises density altitude and normally reduces takeoff and climb performance. Colder air is denser and generally improves those performance margins, subject to other limitations.",
+      "referenceTextZh": "在相同气压下，较暖的空气会膨胀，因此密度更低。温度升高会增加密度高度，通常降低起飞和爬升性能。较冷空气密度更大，一般会改善这些性能裕度，但仍受其他限制约束。"
     },
     {
       "id": "opi-extra-293",
       "taskTitle": "气象-空气密度-6",
-      "audioText": "How does humidity affect air density? Isn't moist air heavier?",
-      "audioTextZh": "湿度如何影响空气密度？潮湿的空气不是更重吗？",
-      "referenceText": "Actually, it's the opposite. Water vapor is lighter than the nitrogen and oxygen that make up most of our dry air. So, when humidity is high, the lighter water molecules displace some of the heavier air molecules, making the moist air less dense than dry air.\n实际上，情况正好相反。水蒸气比构成我们干空气大部分的氮气和氧气要轻。因此，当湿度高时，较轻的水分子取代了一些较重的空气分子，使得潮湿空气的密度比干燥空气要小。"
+      "audioText": "How does increasing humidity affect air density, and why?",
+      "audioTextZh": "湿度增加会如何影响空气密度？为什么？",
+      "referenceText": "Increasing humidity makes air slightly less dense because water-vapor molecules are lighter than the nitrogen and oxygen they replace. This raises density altitude and can reduce performance. The effect is usually smaller than pressure and temperature effects, but it can add to them on a hot, high day.",
+      "referenceTextZh": "湿度增加会使空气密度略微降低，因为水汽分子比它所取代的氮气和氧气分子轻。这会提高密度高度并可能降低性能。其影响通常小于气压和温度的影响，但在高温高原条件下会与它们叠加。"
     },
     {
       "id": "opi-extra-294",
       "taskTitle": "气象-空气密度-7",
-      "audioText": "What is 'High Density Altitude'?",
-      "audioTextZh": "什么是“高密度高度”？",
-      "referenceText": "High Density Altitude is a condition where the air density is low, making the aircraft perform as if it were physically at a higher altitude. It's caused by high temperature, high elevation, and/or high humidity. It's dangerous because it leads to degraded aircraft performance.\n高密度高度是一种空气密度低的条件，使得飞机的性能表现就像它实际处于一个更高的海拔高度一样。它是由高温、高海拔和/或高湿度引起的。这很危险，因为它会导致飞机性能下降。"
+      "audioText": "What does high density altitude mean?",
+      "audioTextZh": "高密度高度意味着什么？",
+      "referenceText": "High density altitude means that the air density is equivalent to the standard atmosphere at a relatively high altitude. In simple terms, the air is thin for the aircraft's actual location. The aircraft will therefore show the reduced performance associated with that higher effective altitude.",
+      "referenceTextZh": "高密度高度表示当前空气密度相当于标准大气中一个较高高度的密度。简单地说，对于飞机实际所在位置而言，空气比较稀薄。因此，飞机会表现出与这个较高等效高度相对应的性能下降。"
     },
     {
       "id": "opi-extra-295",
       "taskTitle": "气象-空气密度-8",
-      "audioText": "What performance issues might you encounter during takeoff in low air density conditions?",
-      "audioTextZh": "在低空气密度条件下起飞，你可能会遇到哪些性能问题？",
-      "referenceText": "In low density conditions, like on a hot day at a high-altitude airport, we face a longer ground roll because the wings need more speed to generate enough lift. Our rate of climb will also be much weaker, which could be a critical problem if there are obstacles after takeoff.\n在低密度条件下，比如在高海拔机场的炎热天气里，我们会面临更长的地面滑跑距离，因为机翼需要更高的速度才能产生足够的升力。我们的爬升率也会弱得多，如果起飞航径上有障碍物，这可能是一个关键问题。"
+      "audioText": "What performance problems might occur during takeoff in low-density conditions?",
+      "audioTextZh": "在低空气密度条件下起飞时，可能出现哪些性能问题？",
+      "referenceText": "Low-density conditions can increase takeoff distance and reduce acceleration, engine or propeller performance and climb rate. Obstacle clearance may become critical even when the runway appears long enough. A heavily loaded aircraft at a hot, high airport may have very little performance margin.",
+      "referenceTextZh": "低空气密度会增加起飞距离，并降低加速性能、发动机或螺旋桨性能以及爬升率。即使跑道看起来足够长，越障能力也可能成为关键限制。载重较大的飞机在高温高原机场可能只剩很小的性能裕度。"
     },
     {
       "id": "opi-extra-296",
       "taskTitle": "气象-空气密度-9",
-      "audioText": "As a pilot, how do you compensate for low air density conditions?",
-      "audioTextZh": "作为飞行员，你如何应对低空气密度条件？",
-      "referenceText": "We must carefully calculate takeoff performance using the aircraft manual, considering the actual temperature, pressure, and runway length. We might need to reduce weight by carrying less fuel or payload. We should also plan to use a longer runway if available, and be mentally prepared for a sluggish climb.\n我们必须使用飞机手册，仔细考虑实际温度、气压和跑道长度来计算起飞性能。我们可能需要通过减少燃油或商载来减轻重量。如果条件允许，我们还应计划使用更长的跑道，并对缓慢的爬升做好心理准备。"
+      "audioText": "How can a pilot compensate for the effects of low air density?",
+      "audioTextZh": "飞行员如何补偿低空气密度带来的影响？",
+      "referenceText": "The pilot should calculate performance with current conditions and reduce weight or wait for cooler conditions when necessary. A longer suitable runway, a different departure time or a less demanding route may improve the margin. The operation must remain within the aircraft manual and obstacle-clearance requirements; technique cannot create performance that the aircraft does not have.",
+      "referenceTextZh": "飞行员应根据当前条件计算性能，必要时减轻重量或等待气温下降。更长且合适的跑道、不同的起飞时间或要求较低的航路都可能增加裕度。运行必须符合飞机手册和越障要求；任何操纵技巧都不能创造飞机本身不具备的性能。"
     },
     {
       "id": "opi-extra-297",
       "taskTitle": "气象-空气密度-10",
-      "audioText": "Can you give an example of a dangerous situation caused by ignoring air density?",
-      "audioTextZh": "你能举一个因忽视空气密度而导致的危险情况的例子吗？",
-      "referenceText": "A classic example is a pilot taking off from a mountain airport on a hot afternoon without performing performance calculations. The plane uses the entire runway but struggles to lift off, or lifts off but cannot climb, potentially leading to an accident by striking obstacles beyond the runway. This highlights why understanding density altitude is a matter of safety.\n一个典型的例子是，飞行员在炎热的下午从一个山区机场起飞，但没有进行性能计算。飞机用尽了整个跑道却难以离地，或者离地后无法爬升，最终可能导致在跑道头外撞击障碍物的事故。这凸显了理解密度高度是一个安全问题。"
+      "audioText": "Can you describe a dangerous situation that could result from ignoring the effects of low air density?",
+      "audioTextZh": "你能描述一种忽视低空气密度影响可能造成的危险情况吗？",
+      "referenceText": "A representative example would be a heavily loaded aircraft departing a hot, high airport without a proper performance calculation. It might use much more runway than expected and then climb too slowly to clear terrain or obstacles. The danger comes from assuming that performance will be the same as on a cool day near sea level.",
+      "referenceTextZh": "一个有代表性的例子是，载重较大的飞机在高温高原机场起飞前没有正确计算性能。它可能使用远超预期的跑道长度，随后因爬升过慢而无法越过地形或障碍物。危险源于错误地假定飞机性能会与海平面附近的凉爽天气相同。"
     }
   ]
 }

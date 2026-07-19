@@ -2,147 +2,135 @@
   "categoryId": "opi-category-07",
   "id": "opi-topic-0046",
   "name": "航空发展与新技术",
-  "declaredCardCount": 20,
+  "declaredCardCount": 16,
   "cards": [
     {
       "id": "opi-core-567",
       "taskTitle": "其它-航空发展与新技术-1",
-      "audioText": "What do you think the aviation industry in China will be like in 10 years from now?",
-      "audioTextZh": "你认为从现在起 10 年后，中国航空业会是什么样？",
-      "referenceText": "In the future, there will be more and more aircraft, and the airspace will become more crowded. Maybe aircraft won’t be controlled by pilots. AI robots will replace pilots in the future. Aircraft will have more advanced equipment. We will fly aircraft made in China.\n未来，飞机数量会越来越多，空域会变得更繁忙。或许飞机将不再由飞行员操控，人工智能机器人会在未来取代飞行员。飞机将配备更先进的设备，我们会驾驶中国造的飞机飞行 。\n\nI am very optimistic about the development of China's civil aviation in the next decade. Firstly, in terms of fleet expansion, with the continuous growth of market demand and the maturity of domestic aircraft such as the C919, Chinese airlines will continue to expand their fleets, increasing the proportion of domestic aircraft and reducing dependence on foreign aircraft. Secondly, in terms of route network expansion, China's civil aviation will further improve the domestic route network, strengthen the connection between large and medium-sized cities and small and medium-sized cities, and at the same time expand international routes, enhancing China's status as an international aviation hub. Thirdly, in terms of technological innovation, China's civil aviation will continue to promote the application of new technologies such as artificial intelligence, big data and the Internet of Things in flight operations, air traffic control and passenger services, improving operational efficiency and safety levels. In addition, in terms of green development, affected by the global call for environmental protection, China's civil aviation will pay more attention to energy conservation and emission reduction, promote the use of more environmentally friendly aircraft and fuels, and achieve sustainable development. Finally, in terms of talent training, China's civil aviation will continue to strengthen the training of professional talents such as pilots, air traffic controllers and maintenance personnel, providing a solid talent guarantee for the development of the industry. Overall, China's civil aviation will usher in a period of high-quality development in the next decade, making greater contributions to the country's economic and social development.我对中国民航未来十年的发展非常乐观。首先，在机队扩张方面，随着市场需求的持续增长以及C919等国产飞机的成熟，中国航空公司将继续扩大机队规模，增加国产飞机的占比，降低对国外飞机的依赖。其次，在航线网络拓展方面，中国民航将进一步完善国内航线网络，加强大中城市与中小城市之间的连接，同时拓展国际航线，提升中国作为国际航空枢纽的地位。再次，在技术创新方面，中国民航将继续推动人工智能、大数据、物联网等新技术在飞行运行、空中交通管制、旅客服务等领域的应用，提高运营效率和安全水平。此外，在绿色发展方面，受全球环保呼吁的影响，中国民航将更加注重节能减排，推广使用更环保的飞机和燃油，实现可持续发展。最后，在人才培养方面，中国民航将继续加强飞行员、空管、维修人员等专业人才的培养，为行业发展提供坚实的人才保障。总体而言，未来十年中国民航将迎来高质量发展的时期，为国家经济社会发展做出更大的贡献。"
+      "audioText": "How do you think China's aviation industry will develop over the next ten years?",
+      "audioTextZh": "你认为未来十年中国航空业将如何发展？",
+      "referenceText": "Over the next ten years, I expect China's aviation market to keep expanding, with stronger domestic networks and more international and regional connections. Growth is likely to include wider use of domestically developed aircraft, smarter air traffic management, digital airports and lower-carbon operations. The main challenge will be matching growth with safety oversight, qualified personnel, infrastructure, environmental goals and stable airline economics.",
+      "referenceTextZh": "未来十年，我预计中国航空市场会继续扩大，国内航线网络将更加完善，国际和地区连接也会增加。增长可能包括更广泛使用国产飞机、更智能的空中交通管理、数字化机场和低碳运行。主要挑战是使安全监管、合格人员、基础设施、环境目标和航空公司经营的经济可持续性跟上增长速度。"
     },
     {
       "id": "opi-core-570",
       "taskTitle": "其它-航空发展与新技术-2",
-      "audioText": "What kind of navigation equipment will be integrated into the cockpit in the future?",
-      "audioTextZh": "未来会有哪些导航设备集成到驾驶舱中？",
-      "referenceText": "Now I fly  C - 172 for flight training. In our cockpit, we have VOR, ILS, GPS, and so on. I think in the future, there will be more and more advanced navigation equipment in the cockpit, such as autopilot systems, auto - brake systems, weather radar, and so on.\n目前我驾驶 C - 172 进行飞行训练。我们的驾驶舱里配备了甚高频全向信标（VOR）、仪表着陆系统（ILS）、全球定位系统（GPS）等设备。我认为未来驾驶舱会集成越来越多先进的导航及相关设备，比如自动驾驶系统、自动刹车系统、气象雷达等等 。\n\nKey modern equipment includes EFB (Electronic Flight Bag) for digital documents, HUD (Head-up Display) for integrated flight data, EGPWS (Enhanced Ground Proximity Warning System) for terrain avoidance, and TCAS II for collision prevention. These enhance safety and efficiency.\n应安装的现代设备包括：电子飞行包EFB，用于数字化文档、平视显示器HUD，整合飞行数据、增强型近地警告系统EGPWS，规避地形风险以及二代空中防撞系统TCAS II，预防碰撞，这些设备能显著提升飞行安全性和运行效率。"
-    },
-    {
-      "id": "opi-core-571",
-      "taskTitle": "其它-航空发展与新技术-3",
-      "audioText": "Do you have any plan about your future?",
-      "audioTextZh": "你对你的未来有什么计划吗?",
-      "referenceText": "In the future, I hope to successfully obtain my commercial pilot license first, then join a reputable airline, accumulate flight experience continuously, and eventually become an excellent captain, contributing my own strength to ensuring flight safety.\n未来，我希望先成功考取商用飞行员执照，然后加入一家知名的航空公司，不断积累飞行经验，最终成为一名优秀的机长，为保障飞行安全贡献自己的力量。"
+      "audioText": "How might cockpit navigation technology develop in the future?",
+      "audioTextZh": "未来驾驶舱导航技术可能如何发展？",
+      "referenceText": "Cockpit navigation will probably combine more satellite constellations, inertial data, terrain information and real-time operational updates in one resilient system. Displays may offer better three-dimensional guidance, traffic and weather integration, while automation helps crews compare sources and detect interference or bad data. Development must also preserve independent backup, clear human control and strong cybersecurity.",
+      "referenceTextZh": "驾驶舱导航可能会把更多卫星星座、惯性数据、地形信息和实时运行更新整合到一个更具韧性的系统中。显示器可能提供更好的三维引导，并进一步整合交通和天气信息，自动化则帮助机组比较不同信息源，发现干扰或错误数据。技术发展还必须保留独立备份、明确的人为控制和强有力的网络安全。"
     },
     {
       "id": "opi-core-572",
-      "taskTitle": "其它-航空发展与新技术-4",
-      "audioText": "Could you briefly describe the progress that China's civil aviation has made over the past decade?",
-      "audioTextZh": "能简单描述下,中国民航在过去10年间取得了哪些进步吗?",
-      "referenceText": "Over the past decade, China’s civil aviation has achieved remarkable progress: expanded air routes and airport networks; adopted advanced technologies (HUD, GNSS, AI); improved safety standards (lower accident rate); increased fleet size and passenger throughput; enhanced international cooperation; and promoted domestic aircraft like C919, demonstrating strong development momentum.\n过去十年，中国民航取得了显著进步：航线和机场网络不断拓展；采用先进技术（平视显示器（HUD）、全球导航卫星系统（GNSS）、人工智能）；安全标准提升（事故率降低）；机队规模和客运量增长；国际合作加强；国产大飞机C919投入运营，展现出强劲的发展势头。"
+      "taskTitle": "其它-航空发展与新技术-3",
+      "audioText": "What progress has China's civil aviation made over the past decade?",
+      "audioTextZh": "过去十年，中国民航取得了哪些进步？",
+      "referenceText": "Over the past decade, China's civil aviation has expanded its airport and route network, improved transport capacity and adopted more digital services. It has also certified and introduced domestically developed commercial aircraft, including the C919, while strengthening large-scale airline and airport operations. Progress has not been only about size; safety management, airworthiness capability, passenger service and international connectivity have also developed.",
+      "referenceTextZh": "过去十年，中国民航扩大了机场和航线网络，提高了运输能力，并采用了更多数字化服务。中国还完成了包括 C919 在内的国产商用飞机审定和投入运行，同时增强了大型航空公司与机场的运行能力。进步不仅体现在规模上，安全管理、适航能力、旅客服务和国际通达性也得到了发展。"
     },
     {
       "id": "opi-core-573",
-      "taskTitle": "其它-航空发展与新技术-5",
-      "audioText": "What new technologies or equipment has China's civil aviation adopted?",
-      "audioTextZh": "中国民航采用了哪些新技术或新设备?",
-      "referenceText": "China’s civil aviation has adopted various new technologies and equipment: HUD for low-visibility operations; GNSS/RNAV/RNP for precise navigation; EFB replacing paper documents; AI for predictive maintenance; advanced weather radar (TDWR); domestic aircraft C919; and digital communication systems like CPDLC, improving efficiency and safety.\n中国民航采用的新技术和新设备包括：用于低能见度运行的平视显示器（HUD）；用于精准导航的全球导航卫星系统（GNSS）/区域导航（RNAV）/所需导航性能（RNP）；替代纸质文件的电子飞行包（EFB）；用于预测性维护的人工智能；先进气象雷达（终端多普勒天气雷达（TDWR））；国产大飞机C919；以及管制员和驾驶员数据链通讯（CPDLC）等数字通讯系统，提升了运行效率和安全性。"
+      "taskTitle": "其它-航空发展与新技术-4",
+      "audioText": "What new technologies or equipment have been adopted in China's civil aviation?",
+      "audioTextZh": "中国民航采用了哪些新技术或新设备？",
+      "referenceText": "Chinese civil aviation has adopted domestically developed aircraft such as the C919 and expanded advanced flight, maintenance and training systems around them. Airports and airlines increasingly use electronic flight bags, biometric or self-service passenger processing, data-driven operations and automated baggage or ground systems. Air traffic management is also developing satellite-based navigation, digital information exchange and more precise surveillance.",
+      "referenceTextZh": "中国民航已经采用 C919 等国产飞机，并围绕这些机型发展先进的飞行、维修和训练体系。机场和航空公司越来越多地使用电子飞行包、生物识别或自助式旅客处理流程、数据驱动的运行，以及自动化行李或地面系统。空中交通管理也在发展基于卫星的导航、数字信息交换和更精确的监视技术。"
     },
     {
       "id": "opi-core-574",
-      "taskTitle": "其它-航空发展与新技术-6",
-      "audioText": "How can you deal with the challenges brought by the new technologies or equipment?",
-      "audioTextZh": "你如何应对新科技或新设备所带来的挑战呢?",
-      "referenceText": "To address challenges from new technologies/equipment, I actively participate in training (ground courses, simulator) to master operations; study manuals and updates regularly; practice with colleagues to share experience; remain cautious to avoid over-reliance on automation; and provide feedback to improve usability, ensuring safe and efficient application.\n为应对新科技和新设备带来的挑战，我会积极参加培训（地面课程、模拟机）以掌握操作；定期学习手册和更新内容；与同事交流实践经验；保持谨慎，避免过度依赖自动化；并提供反馈以优化设备可用性，确保其安全高效应用。"
-    },
-    {
-      "id": "opi-core-575",
-      "taskTitle": "其它-航空发展与新技术-7",
-      "audioText": "Against the backdrop of the aviation industry's development, as a pilot, how do you plan to respond?",
-      "audioTextZh": "在航空业发展的背景下,作为一名飞行员,你打算如何应对呢?",
-      "referenceText": "As a pilot, I plan to respond by: continuously improving professional skills (recurrent training, simulator practice); mastering new technologies and equipment; enhancing aviation English proficiency; adhering to safety regulations and SOPs; strengthening CRM and teamwork; and maintaining a proactive learning attitude to adapt to industry changes and ensure flight safety.\n作为一名飞行员，我计划通过以下方式应对航空业发展：持续提升专业技能（复训、模拟机训练）；掌握新技术和新设备；提高航空英语水平；遵守安全法规和标准操作程序（SOP）；加强机组资源管理（CRM）和团队协作；保持积极的学习态度，适应行业变化，保障飞行安全。"
+      "taskTitle": "其它-航空发展与新技术-5",
+      "audioText": "How can pilots adapt safely to new aviation technologies and equipment?",
+      "audioTextZh": "飞行员如何安全适应新的航空技术和设备？",
+      "referenceText": "Pilots should first understand the purpose, limits, failure modes and human-factors risks of a new system before using it in line operations. Approved ground training, simulator practice and supervised experience should be followed by disciplined use of manuals and standard procedures. Crews must continue monitoring the automation, keep manual and basic skills current, and report confusing behaviour or safety events.",
+      "referenceTextZh": "飞行员在航线运行中使用新系统前，首先应了解其用途、限制、失效方式和人因风险。完成批准的地面训练、模拟机练习和在监督下取得经验后，还应严格依照手册和标准程序操作。机组必须继续监控自动化，持续保持人工操纵和基本技能的熟练度，并报告令人困惑的系统表现或安全事件。"
     },
     {
       "id": "opi-core-576",
-      "taskTitle": "其它-航空发展与新技术-8",
-      "audioText": "Do you think AI Robot will replace pilot in the future?",
-      "audioTextZh": "你认为未来人工智能机器人会取代飞行员吗？",
-      "referenceText": "（1）I don't think so. Because AI robots are good at data calculation, while pilots are good at dealing with emergencies and making safe decisions.\n我认为不会。因为人工智能机器人擅长数据计算，而飞行员擅长应对紧急情况并做出安全决策 。\n（2）Yes. I think so. Because several decades ago, there were 3 crew members in the cockpit, including one flight engineer. With the development of technology, the flight engineer is replaced by modern system. So, I think AI can replace one of the pilots in the future and we need only one pilot to monitor the system.\n是的，我认为会。因为几十年前，驾驶舱内有 3 名机组人员，包括 1 名飞行工程师。随着技术发展，飞行工程师的工作已被现代系统取代。因此，我认为未来人工智能可取代一名飞行员，届时只需 1 名飞行员监控系统即可。\n（3）No, I don’t think AI will replace pilots. AI excels at data processing and routine tasks but lacks human judgment in complex emergencies (e.g., unforeseen weather, system failures). Pilots provide critical decision-making, situational awareness, and emergency response, which are irreplaceable for flight safety.\n不，我认为人工智能不会取代飞行员。人工智能擅长数据处理和常规任务，但在复杂紧急情况（如突发天气、系统故障）中缺乏人类判断力。飞行员的关键决策、情景意识和应急处置能力，对飞行安全而言是不可替代的。"
+      "taskTitle": "其它-航空发展与新技术-6",
+      "audioText": "Do you think artificial intelligence could replace pilots in the future, and why?",
+      "audioTextZh": "你认为人工智能未来可能取代飞行员吗？为什么？",
+      "referenceText": "I do not expect artificial intelligence to replace airline pilots completely in the foreseeable future. AI can support planning, monitoring, diagnosis and workload management, but rare emergencies require broad judgement, responsibility, communication and adaptation to incomplete information. Any greater autonomy would need exceptionally strong evidence for reliability, cybersecurity, certification and safe human oversight.",
+      "referenceTextZh": "我认为在可预见的未来，人工智能不会完全取代航空公司飞行员。人工智能可以辅助计划、监控、诊断和工作负荷管理，但罕见紧急情况需要广泛的判断、责任承担、沟通能力，以及面对不完整信息时的适应能力。任何程度更高的自主运行都需要极其有力的可靠性、网络安全和审定证据，并确保安全的人为监督。"
     },
     {
       "id": "opi-core-577",
-      "taskTitle": "其它-航空发展与新技术-9",
-      "audioText": "Will AR/VR be used in simulator training?",
-      "audioTextZh": "增强现实 / 虚拟现实技术会用于模拟机训练吗？",
-      "referenceText": "Yes, I think so. Nowadays, AR and VR are commonly used in video games. If AR and VR are used in simulator training, it will help us become familiar with procedures, practice dealing with abnormal situations, improve skills, and enrich knowledge. What’s more, it will enhance communication and cooperation among the crew.\n会的，我认为会。如今，增强现实（AR）和虚拟现实（VR）在电子游戏里已广泛应用。要是将其用于模拟机训练，能帮我们熟悉操作流程、练习应对异常情况、提升技能并丰富知识。此外，还能加强机组成员间的沟通与协作 。"
-    },
-    {
-      "id": "opi-core-578",
-      "taskTitle": "其它-航空发展与新技术-10",
-      "audioText": "With the wide application of VR and\nAR technologies, do you think\nwhether they can be used to improve\npresent simulator training?",
-      "audioTextZh": "随着虚拟现实（VR）和增强现实（AR）技术的广泛应用，你认为它们能否用于改进当前的模拟机训练？",
-      "referenceText": "Yes, I think VR and AR can be used to improve present simulator training. VR and AR technologies can enhance the pilots’ real-world experience. Pilots can better improve their flight skills and response to abnormal situations created by VR and AR.\n是的，我认为 VR 和 AR 技术能够改进当前的模拟机训练。这些技术可增强飞行员的真实场景体验，帮助飞行员更好地提升飞行技术，以及应对由 VR 和 AR 模拟出的异常情况。"
+      "taskTitle": "其它-航空发展与新技术-7",
+      "audioText": "How could augmented reality and virtual reality improve simulator training?",
+      "audioTextZh": "增强现实和虚拟现实可以如何改进模拟机训练？",
+      "referenceText": "Virtual reality can create repeatable cockpit, cabin or airport scenarios without occupying a full-flight simulator, while augmented reality can place guidance or system information over real equipment. These tools can help practise spatial tasks, rare events, walk-arounds and team communication with immediate feedback. They should supplement, not replace, appropriately qualified hands-on and full-flight simulation when motion, control feel or certified performance is essential.",
+      "referenceTextZh": "虚拟现实可以在不占用全动模拟机的情况下，重复创建驾驶舱、客舱或机场情景；增强现实则可以把引导或系统信息叠加在真实设备上。这些工具有助于练习空间操作、罕见事件、绕机检查和团队沟通，并即时提供反馈。如果运动感、操纵感觉或经审定的性能必不可少，它们应作为补充，不能取代符合资质要求的实操训练和全动模拟机训练。"
     },
     {
       "id": "opi-core-579",
-      "taskTitle": "其它-航空发展与新技术-11",
-      "audioText": "What do you know about AI?",
-      "audioTextZh": "你知道AI吗?",
-      "referenceText": "AI stands for Artificial Intelligence, an area of computer science focusing on intelligent machines. In aviation, AI is used in automation systems, predictive maintenance, weather forecasting, and navigation assistance. It reduces pilot workload but requires human supervision to ensure safety.\nAI是人工智能（Artificial Intelligence）的缩写，是计算机科学的一个领域，专注于研发智能机器。在航空领域，人工智能应用于自动系统、预测性维护、天气预报和导航辅助等方面，能减轻飞行员工作负荷，但仍需人工监督以保障安全。"
+      "taskTitle": "其它-航空发展与新技术-8",
+      "audioText": "What do you know about artificial intelligence and its use in aviation?",
+      "audioTextZh": "你对人工智能及其在航空领域的应用有哪些了解？",
+      "referenceText": "Artificial intelligence uses data and algorithms to perform tasks such as recognizing patterns, making predictions or supporting decisions. In aviation it can assist maintenance forecasting, traffic-flow planning, weather analysis, passenger operations and monitoring of flight or safety data. Because errors may be hard to explain and can affect safety, aviation uses require controlled data, validation, cybersecurity and clear human responsibility.",
+      "referenceTextZh": "人工智能利用数据和算法执行模式识别、预测或辅助决策等任务。在航空领域，它可以辅助维修预测、交通流量计划、天气分析、旅客服务运营，以及对飞行或安全数据的监控。由于错误可能难以解释且会影响安全，航空应用需要受控数据、验证、网络安全和明确的人为责任。"
     },
     {
       "id": "opi-core-758",
-      "taskTitle": "其它-航空发展与新技术-12",
-      "audioText": "Do you know about C919?",
-      "audioTextZh": "你了解 C919 吗？",
-      "referenceText": "The C919 is a large advanced commercial aircraft developed and manufactured in China. It is equipped with the advanced LEAP engines and features a fly - by - wire system. As a Chinese citizen, I’m proud of my country. As a pilot, I hope to fly this type of aircraft in the future.\nC919 是中国自主研制的大型先进商用飞机。它配备了先进的 LEAP 发动机，采用电传操纵系统。作为一名中国公民，我为祖国感到骄傲。作为飞行员，我希望未来能驾驶这种机型飞行 。\n\nYes, I have a certain understanding of the C919. The C919 is a large jet civil aircraft with independent intellectual property rights in China, developed in accordance with the latest international airworthiness standards. It is designed specifically for short to medium-haul routes. The letter \"C\" is the first letter of \"China\" and also the first letter of the English abbreviation \"COMAC\" of Commercial Aircraft Corporation of China, Ltd. The first \"9\" implies \"permanence\", and \"19\" represents that the maximum passenger capacity of China's first medium-sized airliner is 190. The C919 made its first flight at Shanghai Pudong International Airport on May 5, 2017. As China's first self-developed large civil aircraft, the C919 is of great significance for promoting the development of China's aviation industry and enhancing national technological strength. It has filled the gap in China's large civil aircraft manufacturing and is expected to compete with international mainstream models such as the A320 and B737 in the future.\n是的，我对C919有一定的了解。C919是中国首款按照最新国际适航标准，具有自主知识产权的干线民用飞机，专为短程到中程的航线设计。“C”是“China”的首字母，也是中国商飞英文缩写“COMAC”的首字母，第一个“9”的寓意是天长地久，“19”代表的是中国首型中型客机最大载客量为190座。C919于2017年5月5日在上海浦东国际机场完成首飞。作为中国自主研发的首款大型民用飞机，C919对于推动中国航空产业发展、提升国家科技实力具有重要意义，它填补了中国大型民用飞机制造的空白，未来有望与A320、B737等国际主流机型展开竞争。"
-    },
-    {
-      "id": "opi-core-759",
-      "taskTitle": "其它-航空发展与新技术-13",
-      "audioText": "Can you say something about the new type of aircraft C919？",
-      "audioTextZh": "你能讲讲新型客机 C919 的情况吗？",
-      "referenceText": "As we know, the C919 is a large commercial aircraft independently designed and manufactured in China.\n“C” stands for China,\n“9” implies longevity,\n“19” means the aircraft can carry 190 passengers.\n众所周知，C919 是中国自主设计并制造的大型商用客机。\n“C” 代表中国，\n“9” 寓意长久，\n“19” 表示该机型可搭载 190 名乘客 。"
+      "taskTitle": "其它-航空发展与新技术-9",
+      "audioText": "What do you know about the C919?",
+      "audioTextZh": "你对 C919 有哪些了解？",
+      "referenceText": "The C919 is a single-aisle jet airliner developed by COMAC and certified by the Civil Aviation Administration of China. COMAC lists a baseline seating range of 158 to 192 passengers and a range of about 4,075 to 5,555 kilometres, depending on version and layout. The first commercial flight took place in May 2023 after delivery to launch customer China Eastern Airlines.",
+      "referenceTextZh": "C919 是由中国商飞研制并经中国民用航空局审定的单通道喷气式客机。中国商飞公布的基本载客量范围为 158 至 192 人，航程根据具体版本和布局约为 4075 至 5555 公里。该机交付启动用户中国东方航空后，于 2023 年 5 月完成首次商业飞行。"
     },
     {
       "id": "opi-core-760",
-      "taskTitle": "其它-航空发展与新技术-14",
-      "audioText": "What is your opinion on the new type of aircraft?",
-      "audioTextZh": "你对这款新型飞机有什么看法？",
-      "referenceText": "The C919 has several technological advantages.\n1. The C919 is equipped with a fly - by - wire system and automatic flight control systems to enhance aircraft performance and passenger comfort.\n2. It features digital flight instruments, which boost situational awareness, reduce pilots’ workload, and make flights safer and more manageable.\nC919 具备诸多技术优势：\n1. C919 配备了电传操纵系统和自动飞行控制系统，能提升飞机性能与乘客乘坐舒适度。\n2. 它采用数字化飞行仪表，可增强情景意识、减轻飞行员工作负荷，让飞行更安全、操作更便捷 。"
+      "taskTitle": "其它-航空发展与新技术-10",
+      "audioText": "What is your opinion of the C919?",
+      "audioTextZh": "你如何看待 C919？",
+      "referenceText": "I think the C919 is an important step in developing another modern single-aisle aircraft programme and a broader commercial-aviation supply and support system in China. Its real long-term success should be judged by safe service, reliability, operating economics, production quality and worldwide support rather than national symbolism alone. Continued operational data and regulatory acceptance will provide a fairer comparison as the fleet grows.",
+      "referenceTextZh": "我认为，C919 是发展另一款现代单通道飞机项目，以及在中国建设更广泛商用航空供应与支持体系的重要一步。它能否取得真正的长期成功，应依据安全运行、可靠性、运行经济性、生产质量和全球支持能力来判断，而不能只看国家象征意义。随着机队扩大，持续积累的运行数据和监管认可将为比较提供更公平的基础。"
     },
     {
       "id": "opi-core-761",
-      "taskTitle": "其它-航空发展与新技术-15",
-      "audioText": "What's the difference between\nC919 and other big jet?\nC919",
-      "audioTextZh": "和其他大飞机有哪些不同?",
-      "referenceText": "The C919 differs from other large jets in several aspects. Firstly, in terms of independent research and development and intellectual property rights, the C919 is a large civil aircraft with independent intellectual property rights in China, involving a large number of domestic independent research and development technologies and components, which is of great significance for promoting the development of China's aviation industry chain. In contrast, many other large jets are products of foreign aviation giants with mature technical systems and industrial chains. Secondly, in terms of design positioning, the C919 is mainly positioned for short to medium-haul routes, with a maximum range of about 5,555 kilometers and a maximum passenger capacity of 190, which is more in line with the market demand for short to medium-haul routes in China and other regions. Some other large jets may have a wider range of design positioning, including long-haul large aircraft with larger passenger capacity and longer range. Thirdly, in terms of technical configuration, the C919 adopts a series of advanced technologies and materials to improve fuel efficiency and operational economy, such as advanced aerodynamic design, lightweight materials and efficient engines. Although other large jets also have similar technical characteristics, there may be differences in specific technical parameters and configuration schemes due to different design concepts and market positioning. Finally, in terms of market positioning, the C919 will first focus on the domestic and Asian markets, gradually expand to the international market, while other mature large jets have a wider market coverage and more stable customer groups globally.\nC919与其他大飞机的不同之处体现在多个方面。首先，在自主研发与知识产权方面，C919是中国具有自主知识产权的大型民用飞机，涉及大量国内自主研发的技术和零部件，对于推动中国航空产业链的发展具有重要意义。而其他许多大飞机是国外航空巨头的产品，拥有成熟的技术体系和产业链。其次，在设计定位上，C919主要定位于短中程航线，最大航程约5555公里，最大载客量190人，更符合中国及周边地区短中程航线的市场需求。其他一些大飞机的设计定位则更为广泛，包括载客量更大、航程更远的远程大型飞机。再次，在技术配置上，C919采用了一系列先进技术和材料，以提高燃油效率和运营经济性，如先进的气动设计、轻量化材料和高效发动机等。虽然其他大飞机也具备类似的技术特点，但由于设计理念和市场定位的不同，在具体的技术参数和配置方案上可能存在差异。最后，在市场定位上，C919将首先聚焦国内和亚洲市场，逐步向国际市场拓展，而其他成熟的大飞机在全球范围内拥有更广泛的市场覆盖和更稳定的客户群体。"
+      "taskTitle": "其它-航空发展与新技术-11",
+      "audioText": "How does the C919 compare with other single-aisle commercial aircraft?",
+      "audioTextZh": "C919 与其他单通道商用航空器相比表现如何？",
+      "referenceText": "The C919 serves the same broad short- to medium-haul, single-aisle market as aircraft such as the Airbus A320 family and Boeing 737 family. Its published seating and range overlap with parts of those families, but exact payload, fuel burn, cabin layout and airport performance must be compared version by version. The older families have much larger global fleets and support networks, while the C919 is still building operational experience and production scale.",
+      "referenceTextZh": "C919 与空客 A320 系列和波音 737 系列总体上面向相近且存在重叠的中短程单通道客机市场。其公布的载客量和航程与这些系列的部分型号重叠，但具体商载、耗油量、客舱布局和机场性能必须逐个版本比较。较早的两个系列拥有规模大得多的全球机队和支持网络，而 C919 仍在积累运行经验和扩大生产规模。"
     },
     {
       "id": "opi-core-762",
-      "taskTitle": "其它-航空发展与新技术-16",
-      "audioText": "Do you know which domestic\nairlines operate the C919?",
-      "audioTextZh": "你知道哪些国内航空公司运营C919客机吗?",
-      "referenceText": "As of now, several domestic airlines have started operating the C919 airliner. For example, China Eastern Airlines is one of the first airlines to operate the C919. It took delivery of the first C919 aircraft and opened the first commercial flight route. In addition, Air China, China Southern Airlines and other major domestic airlines have also signed purchase agreements with COMAC and will gradually introduce and operate the C919 airliner in the future. With the continuous improvement of the C919's production capacity and airworthiness certification, more domestic airlines are expected to join the ranks of operating the C919, promoting the widespread application of this domestic large aircraft in the civil aviation market.\n截至目前，已有多家国内航空公司开始运营C919客机。例如，中国东方航空公司是首批运营C919的航空公司之一，它接收了首架C919飞机，并开通了首条商业航线。此外，中国国际航空公司、中国南方航空公司等国内主要航空公司也已与中国商飞签订了采购协议，未来将逐步引进并运营C919客机。随着C919产能的不断提升和适航认证的逐步完善，预计会有更多国内航空公司加入到C919的运营行列中，推动这款国产大飞机在民航市场的广泛应用。"
+      "taskTitle": "其它-航空发展与新技术-12",
+      "audioText": "Which Chinese airlines currently operate the C919?",
+      "audioTextZh": "目前有哪些中国航空公司运营 C919？",
+      "referenceText": "As of the latest official operator information checked for this answer, China Eastern Airlines, Air China and China Southern Airlines operate the C919. China Eastern was the launch operator, and Air China and China Southern received their first aircraft in August 2024 before starting route operations. The operator list can change, so learners should verify the latest COMAC and airline fleet information.",
+      "referenceTextZh": "根据为本答案核对的最新运营人官方信息，中国东方航空、中国国际航空和中国南方航空均运营 C919。中国东航是启动运营人，国航和南航在 2024 年 8 月接收首架飞机，随后开始航线运行。运营人名单可能变化，因此学习者应核实中国商飞和各航空公司的最新机队信息。"
     },
     {
       "id": "opi-extra-387",
-      "taskTitle": "其它-航空发展与新技术-17",
-      "audioText": "What do you know about SAF?",
-      "audioTextZh": "什么是 SAF（可持续航空燃油）？",
-      "referenceText": "SAF stands for Sustainable Aviation Fuel. It is a type of aviation fuel made from renewable sources such as used cooking oil, agricultural waste, animal fats, or even household garbage. Unlike traditional jet fuel which comes from crude oil, SAF reduces carbon dioxide emissions by up to 80% over its lifecycle. SAF can be blended with conventional jet fuel and used in existing aircraft engines without modification. Currently, most aircraft can operate with a blend of up to 50% SAF. Airlines are increasingly using SAF to reduce environmental impact and meet international climate goals. The main challenges are limited supply and higher cost.\nSAF 即可持续航空燃油，由废餐饮油、农业废弃物、动物脂肪、生活垃圾等可再生原料制成。与传统原油基航油不同，SAF 全生命周期可减碳最高 80%，可与常规航油混合，无需改装即可用于现役发动机。目前多数飞机可使用最高 50% 比例的 SAF 混合油。航空公司广泛使用 SAF 以降低环境影响、实现气候目标。主要挑战是供应有限、成本较高。"
+      "taskTitle": "其它-航空发展与新技术-13",
+      "audioText": "What is sustainable aviation fuel, or SAF?",
+      "audioTextZh": "什么是可持续航空燃料（SAF）？",
+      "referenceText": "Sustainable aviation fuel, or SAF, is renewable or waste-derived aviation fuel that meets defined sustainability criteria. Approved SAF is produced through certified pathways and used as a blend or fuel meeting the applicable aviation-fuel specification, so it can work with existing aircraft and infrastructure within approved limits. Its climate benefit is assessed over the full life cycle, not only at the engine exhaust.",
+      "referenceTextZh": "可持续航空燃料（SAF）是符合规定可持续性标准的可再生或废弃物来源航空燃料。经批准的 SAF 通过认证的生产路径制造，并以掺混燃料形式使用，或作为符合适用航空燃料规格的燃料使用，因此能在批准限制内用于现有飞机和基础设施。其气候效益按全生命周期评估，而不只看发动机排气。"
     },
     {
       "id": "opi-extra-388",
-      "taskTitle": "其它-航空发展与新技术-18",
-      "audioText": "What are the main advantages of SAF compared to traditional jet fuel?",
-      "audioTextZh": "与传统喷气燃料相比，SAF 的主要优势是什么？",
-      "referenceText": "SAF has several advantages over traditional jet fuel. First, it significantly reduces carbon dioxide emissions by up to 80% over its lifecycle, helping aviation fight climate change. Second, SAF produces fewer particulates and sulfur oxides, resulting in cleaner engine exhaust and improved local air quality around airports. Third, SAF can be blended with conventional fuel and used in existing aircraft engines without modifications. Fourth, it is compatible with current refueling infrastructure. Fifth, using waste materials promotes circular economy. The main issues are higher cost and limited supply.\nSAF 相较传统航油优势明显：全生命周期减碳最高 80%，助力应对气候变化；颗粒物与硫氧化物排放更低，机场周边空气质量更好；可直接掺混使用，无需改装发动机与加油设施；兼容现有储运系统；使用废弃物原料有利于循环经济。当前主要问题是成本更高、供应有限。"
+      "taskTitle": "其它-航空发展与新技术-14",
+      "audioText": "What are the main advantages of SAF compared with conventional jet fuel?",
+      "audioTextZh": "与传统航空喷气燃料相比，可持续航空燃料（SAF）有哪些主要优势？",
+      "referenceText": "The main advantage of SAF is lower life-cycle greenhouse-gas emissions than conventional fossil jet fuel when it is produced through a genuinely sustainable pathway. It can be introduced into much of the existing aircraft and fuel system without waiting for an entirely new propulsion fleet. Some pathways may also reduce particulate emissions and diversify energy supply, but the size of each benefit depends on feedstock and production method.",
+      "referenceTextZh": "SAF 的主要优势是，如果通过真正可持续的路径生产，其全生命周期温室气体排放低于传统化石航空燃料。它可以在大部分现有飞机和燃油系统中投入使用，不必等待全新的动力机队。某些生产路径还能减少颗粒物排放并使能源供应多样化，但每项效益的大小取决于原料和生产方法。"
     },
     {
       "id": "opi-extra-389",
-      "taskTitle": "其它-航空发展与新技术-19",
-      "audioText": "What are the current limitations or challenges of using SAF in commercial aviation?",
-      "audioTextZh": "在当前商业航空中使用 SAF 有哪些局限或挑战？",
-      "referenceText": "The main challenges of SAF are cost and supply. SAF is currently two to four times more expensive than traditional jet fuel. Production capacity is limited with few refineries worldwide. Feedstock availability is also a challenge – collecting enough used cooking oil or agricultural waste is difficult at scale. Certification and testing take time. Blending limits are up to 50% now, while 100% SAF is under test. Transportation and storage need careful management to avoid contamination. Investment and technology are improving quickly.\nSAF 主要挑战是成本与供应：价格是传统航油的 2-4 倍；全球炼厂少，产能有限；原料收集难度大；认证与测试周期长；目前多数发动机最大掺混比例 50%，纯 SAF 仍在试验；运输与储存需严格管理防污染。相关投资与技术正在快速进步。"
+      "taskTitle": "其它-航空发展与新技术-15",
+      "audioText": "What are the main challenges of using SAF in commercial aviation?",
+      "audioTextZh": "在商业航空中使用可持续航空燃料（SAF）面临哪些主要挑战？",
+      "referenceText": "SAF is currently limited by production volume, high cost, financing needs and the time required to build feedstock, processing and distribution capacity. Feedstocks must avoid unacceptable land-use, food, water or biodiversity effects, and each pathway must meet fuel-quality and sustainability certification. Global accounting, policy stability and fair access are also difficult because aviation is international and supply is uneven.",
+      "referenceTextZh": "目前，SAF 受到产量、高成本、融资需求以及建立原料、加工和配送能力所需时间的限制。原料必须避免造成不可接受的土地利用、粮食、水资源或生物多样性影响，而且每种生产路径都必须通过燃油质量与可持续性认证。由于航空业具有国际性且供应分布不均，全球核算、政策稳定性和公平获取也很困难。"
     },
     {
       "id": "opi-extra-390",
-      "taskTitle": "其它-航空发展与新技术-20",
-      "audioText": "What is the role of SAF in achieving the aviation industry's net-zero emission target?\nSAF",
-      "audioTextZh": "在实现航空业净零排放目标中扮演什么角色？",
-      "referenceText": "SAF plays a critical role in aviation's net-zero emission target. IATA has committed to net-zero by 2050, and SAF is expected to contribute about 65% of emission reductions. Unlike electric or hydrogen aircraft needing new designs, SAF can be used in today's fleet without modifications, making it the most immediate solution. Achieving net-zero needs massive investment: SAF will rise from ~1% now to over 60% by 2050. Governments and airlines are expanding refineries, lowering costs, and increasing feedstock supply. SAF is the most important solution for decarbonization.\nSAF 是航空业实现净零排放的核心方案。IATA 承诺 2050 年净零碳排放，SAF 预计贡献约 65% 减排量。与需全新设计的电动 / 氢能飞机不同，SAF 可直接用于现有机队，是最即时可行的方案。实现净零需要大规模投资：SAF 占比将从目前约 1% 提升至 2050 年的 60% 以上。各国与航空公司正扩建炼厂、降低成本、增加原料供应。SAF 是航空脱碳最重要的解决方案。"
+      "taskTitle": "其它-航空发展与新技术-16",
+      "audioText": "What role can SAF play in aviation's transition toward net-zero carbon emissions?",
+      "audioTextZh": "在航空业向净零碳排放转型的过程中，可持续航空燃料（SAF）可以发挥什么作用？",
+      "referenceText": "SAF can replace part of fossil jet fuel while using much of the existing aircraft fleet, so ICAO analyses identify it as a major potential contributor to aviation carbon reduction. Its contribution depends on rapid scale-up, credible life-cycle savings and strong sustainability safeguards. It cannot deliver net zero alone, so aircraft technology, efficient operations, cleaner energy, infrastructure and other measures must develop at the same time.",
+      "referenceTextZh": "SAF 可以在继续使用大部分现有飞机的同时替代部分化石航空燃料，因此 ICAO 的分析把它视为实现航空减碳的重要潜在手段。它能发挥多大作用，取决于能否迅速扩大规模、实现可信的全生命周期减排，并采用有力的可持续性保障措施。SAF 无法单独实现净零目标，因此飞机技术、高效运行、清洁能源、基础设施和其他措施必须同步发展。"
     }
   ]
 }

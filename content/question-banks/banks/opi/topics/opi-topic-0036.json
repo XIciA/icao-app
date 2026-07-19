@@ -2,91 +2,71 @@
   "categoryId": "opi-category-06",
   "id": "opi-topic-0036",
   "name": "起落架",
-  "declaredCardCount": 12,
+  "declaredCardCount": 8,
   "cards": [
     {
       "id": "opi-core-482",
       "taskTitle": "飞机系统-起落架-1",
-      "audioText": "If your landing gear couldn't be extended during approach, what will you do?",
-      "audioTextZh": "进近时若起落架无法放下，你会怎么做？",
-      "referenceText": "If I can't extend the landing gear during approach, first of all, I will request the holding area for check. Secondly, if I am not sure about the landing gear position, I will request a low pass for visual check. Third, if it still can't be extended, I will try manual extension. At last, if it still doesn't work, I will have to perform a belly landing as a last resort.\n若进近时我无法放下起落架，首先，我会申请进入等待空域进行检查。其次，若不确定起落架位置，我会申请低空通场以目视检查。第三，若起落架仍无法放下，我会尝试手动放下。最后，若还是不行，我只能进行机腹着陆。\n\nAbort the approach and enter a holding pattern. Follow SOP and checklist to attempt manual or gravity extension. Conduct a low pass for ground visual confirmation. If extension fails, dump fuel to reduce weight, inform crew and passengers, declare emergency to ATC, and request foam on the runway for belly landing. Prepare for evacuation after landing.\n中断进近并加入等待程序；遵循SOP和检查单尝试手动或重力放轮；低空通场让地面人员目视确认起落架状态；若放轮失败，放油减轻重量，告知机组和乘客，向空管宣布紧急状态，请求跑道喷洒泡沫以准备机腹着陆；落地后准备撤离。"
-    },
-    {
-      "id": "opi-core-483",
-      "taskTitle": "飞机系统-起落架-2",
-      "audioText": "If you decided to make a belly landing, what preparation should you make before landing?",
-      "audioTextZh": "若决定进行机腹着陆，着陆前应做哪些准备？",
-      "referenceText": "If I decide to make a belly landing, first of all, I will inform ATC and request foam to be applied on the runway. I also need fire service and medical assistance. Secondly, I will ask the cabin crew to prepare the passengers for evacuation. At last, I will make a PA to tell the passengers to calm down and follow the cabin crew's instructions for evacuation.\n若我决定进行机腹着陆，首先，我会通知空中交通管制（ATC）并申请在跑道喷洒泡沫。我还需要消防服务和医疗援助。其次，我会让客舱机组人员让乘客做好撤离准备。最后，我会进行广播，告知乘客保持冷静，听从客舱机组人员的撤离指令 。\n\nFirst, dump excess fuel to reduce fire and explosion risks. Declare emergency to ATC, request foam on the runway, fire, and medical services. Inform crew and passengers to fasten seatbelts, brace for impact, and prepare for evacuation. Maintain stable flight attitude, select the longest runway, and ensure landing gear is retracted.\n首先释放多余燃油，降低起火和爆炸风险；向空管宣布紧急状态，请求跑道喷洒泡沫及消防、医疗支援；告知机组和乘客系紧安全带、做好冲击防护并准备撤离；保持稳定飞行姿态，选择最长跑道，确保起落架已收回。"
-    },
-    {
-      "id": "opi-core-484",
-      "taskTitle": "飞机系统-起落架-3",
-      "audioText": "Do you think belly landing is safe?",
-      "audioTextZh": "你认为机腹着陆安全吗？",
-      "referenceText": "No, I don't think a belly landing is safe. Because during a belly landing, the aircraft is at risk of catching fire. It may damage the aircraft and injure the passengers.\n不，我认为机腹着陆不安全。因为若进行机腹着陆，存在起火风险，可能会损坏飞机并使乘客受伤 。"
+      "audioText": "How should a flight crew respond if the landing gear does not extend during approach?",
+      "audioTextZh": "进近过程中起落架无法放下时，飞行机组应如何处置？",
+      "referenceText": "If the gear does not extend normally, the crew should maintain a safe flight path and go around when more time or altitude is needed. They should apply the landing-gear abnormal checklist, try the approved alternate extension system and verify the result using every available indication. The crew should plan fuel, landing configuration and runway use, brief cabin crew and passengers, and coordinate emergency services before landing.",
+      "referenceTextZh": "如果起落架无法正常放下，机组应保持安全飞行轨迹；需要更多时间或高度时，应执行复飞。他们应执行起落架非正常检查单，尝试经批准的备用放轮系统，并利用所有可用指示核实结果。着陆前，机组应规划燃油、着陆构型和跑道使用，向客舱机组与乘客做简令，并协调应急服务。"
     },
     {
       "id": "opi-core-485",
-      "taskTitle": "飞机系统-起落架-4",
-      "audioText": "What's the function of the landing gear?",
-      "audioTextZh": "起落架的功能是什么？",
-      "referenceText": "The landing gear can support the aircraft on the ground to enable taxiing and steering. What's more, it can absorb shocks during touchdown.起落架可在地面支撑飞机，用于滑行和转向。此外，它能在着陆触地时吸收冲击力 。\nAircraft landing gears have key functions: supporting the aircraft during ground taxi, takeoff roll, and landing; absorbing impact to reduce vibration and improve comfort; enabling steering on the ground; and facilitating braking to stop the aircraft after landing. They ensure stable ground operation and safe takeoff/landing.\n飞机起落架的核心功能包括：在地面滑行、起飞滑跑和着陆时支撑飞机重量；吸收撞击力，减少振动，提升舒适度；实现地面转向；提供刹车功能，使飞机着陆后停止。起落架保障地面运行稳定和起降安全。"
+      "taskTitle": "飞机系统-起落架-2",
+      "audioText": "What is the function of the landing gear?",
+      "audioTextZh": "起落架有什么作用？",
+      "referenceText": "The landing gear supports the aircraft on the ground and absorbs the loads of landing and ground movement. Its wheels, brakes and steering allow taxi, takeoff acceleration, directional control and stopping. Retraction reduces drag in flight, while extension may also change aircraft stability and system configuration.",
+      "referenceTextZh": "起落架在地面支撑飞机，并吸收着陆和地面活动产生的载荷。机轮、刹车和转弯系统使飞机能够滑行、在起飞时加速、控制方向并停止。收起起落架可以减小飞行阻力，放下起落架也可能改变飞机稳定性和系统构型。"
     },
     {
       "id": "opi-core-486",
-      "taskTitle": "飞机系统-起落架-5",
-      "audioText": "If the indication lights are unserviceable, how do you determine whether the LG is down and locked?",
-      "audioTextZh": "若指示灯失效，如何确定起落架（LG）已放下并锁定？",
-      "referenceText": "We will advise ATC of our situation and request a low pass to perform a visual check.\n我们会向管制员报告情况，申请低空通场进行目视检查 。"
+      "taskTitle": "飞机系统-起落架-3",
+      "audioText": "How can pilots confirm that the landing gear is down and locked if the normal indication is unavailable?",
+      "audioTextZh": "正常指示不可用时，飞行员如何确认起落架已经放下并锁定？",
+      "referenceText": "If the normal indication is unavailable, pilots should use the abnormal checklist and compare any independent position sensors, system pages, mechanical indicators or warning logic provided by the aircraft. A tower fly-by or external observation may supply supporting information when conditions allow, but it may not prove that an internal lock is secure. The crew should treat the gear as uncertain unless the approved alternate verification method confirms a safe condition.",
+      "referenceTextZh": "如果正常指示不可用，飞行员应使用非正常检查单，并比较飞机提供的任何独立位置传感器、系统页面、机械指示器或警告逻辑。条件允许时，从塔台旁低空通场或外部观察可以提供辅助信息，但未必能证明内部锁定机构已经锁好。除非经批准的备用核实方法确认状态安全，否则机组应把起落架状态视为不确定。"
     },
     {
       "id": "opi-core-487",
-      "taskTitle": "飞机系统-起落架-6",
-      "audioText": "What are the procedures of alternate extension system? How does it work?",
-      "audioTextZh": "备用放下系统的操作程序是什么？它如何工作？",
-      "referenceText": "On our DA - 40 aircraft. We have a fixed landing gear. But Based on my knowledge, if we cannot extend the landing gear, we will extend the landing gear manually.\n在我们的 DA - 40 飞机上，起落架是固定不可收放的。但就我的知识而言，若无法放下起落架（注：因 DA - 40 起落架固定，实际场景应是可收放机型的假设 ），我们会手动放下起落架 。"
+      "taskTitle": "飞机系统-起落架-4",
+      "audioText": "What procedure should a flight crew follow to use the alternate landing gear extension system?",
+      "audioTextZh": "使用备用起落架放下系统时，飞行机组应遵循什么程序？",
+      "referenceText": "The crew should first stabilize the aircraft, confirm that normal extension has failed and select the conditions required by the alternate-extension checklist. They then operate the specified handle, lever, switch or release in the exact sequence, observing speed and configuration limits. After extension, they verify every available down-and-locked indication, complete the landing preparation and do not reset the system unless the procedure authorizes it.",
+      "referenceTextZh": "机组应先稳定飞机，确认正常放轮已经失效，并按备用放轮检查单设置所需条件。随后，他们严格按照规定顺序操作指定的手柄、操纵杆、开关或释放装置，同时遵守速度和构型限制。放轮后，机组应核实所有可用的放下并锁好指示，完成着陆准备；除非程序授权，否则不得复位系统。"
     },
     {
       "id": "opi-core-488",
-      "taskTitle": "飞机系统-起落架-7",
-      "audioText": "Please describe the alternate landing gear extension system and how does the system work",
-      "audioTextZh": "请描述备用起落架收放系统，以及这个系统如何工作？",
-      "referenceText": "The alternate landing gear extension system is used to extend the landing gear manually if the landing gear can’t be extended hydraulically or electrically. In emergency situations, we can use the alternate landing gear extension system to release the landing gear lock, and the landing gear will extend under gravity.\n备用收放起落架系统在起落架无法液压或电动放下情况下，用来手动放下起落架。在紧急情况下，我们可以使用备用起落架收放系统断开起落架上位锁，起落架会随着重力放下。"
-    },
-    {
-      "id": "opi-core-489",
-      "taskTitle": "飞机系统-起落架-8",
-      "audioText": "How do you determine if the landing gear is down if the gear indicationlights  is in operative",
-      "audioTextZh": "如果起落架指示灯不工作，你如何判断起落架是否放下？",
-      "referenceText": "If the gear indication lights are inoperative, we will request low pass for visual check if the landing gear is down. Besides, in large aircraft, the warning system such as GPWS or radar altimeter will trigger a warning if the aircraft is close to the ground and the landing gear is not down. Some aircraft can give us voice warning “gear not down”.\n如果起落架指示灯不工作，我们将请求低空通场目视检查起落架是否放下。此外，在大型飞机上，如果飞机靠近地面，但起落架没有放出，警告系统，比如GPWS，雷达高度表会触发警报。一些飞机还会给我们语音警报“起落架没有放下”。"
+      "taskTitle": "飞机系统-起落架-5",
+      "audioText": "How does an alternate landing gear extension system work?",
+      "audioTextZh": "备用起落架放下系统如何工作？",
+      "referenceText": "An alternate system normally bypasses the failed normal power or control path and releases the landing-gear uplocks. Gravity, airflow, springs, stored hydraulic pressure or a separate electrical or mechanical source then moves the gear toward the down position. Mechanical locks secure it for landing, but the exact energy source and indications depend on the aircraft.",
+      "referenceTextZh": "备用系统通常会绕过失效的正常动力或控制路径，并释放起落架上位锁。随后由重力、气流、弹簧、储存的液压压力，或独立的电气或机械动力源推动起落架向放下位置运动。机械锁在着陆前将起落架固定，但具体动力源和指示取决于机型。"
     },
     {
       "id": "opi-core-490",
-      "taskTitle": "飞机系统-起落架-9",
-      "audioText": "How do you determine whether the landing gears are extended or not?",
-      "audioTextZh": "你如何确定起落架是否放下?",
-      "referenceText": "First, check the landing gear indication lights in the cockpit. If lights are unserviceable, use the alternate indicator or conduct a visual check via cockpit windows. For confirmation, perform a low pass and ask ATC or ground personnel to verify the gear position. Follow SOP for cross-validation to ensure accuracy.\n首先查看驾驶舱内的起落架指示灯；若指示灯失效，使用备用指示器或通过驾驶舱窗户目视检查；如需确认，可低空通场并请求空管或地面人员核实起落架状态；遵循SOP进行交叉验证，确保结果准确。"
+      "taskTitle": "飞机系统-起落架-6",
+      "audioText": "How can pilots confirm that the landing gear is down and locked?",
+      "audioTextZh": "飞行员如何确认起落架已经放下并锁定？",
+      "referenceText": "Pilots normally confirm the required down-and-locked indications for each gear and check that related warning lights or messages are clear. They cross-check the system page, mechanical indicators or other independent information provided by the aircraft and complete the landing checklist. If indications disagree, the crew uses the abnormal procedure rather than assuming that the gear is locked.",
+      "referenceTextZh": "飞行员通常要确认每个起落架都有规定的放下并锁好指示，并检查相关警告灯或信息已经消失。他们还会交叉核对系统页面、机械指示器或飞机提供的其他独立信息，并完成着陆检查单。如果各项指示不一致，机组应使用非正常程序，而不能假定起落架已经锁好。"
     },
     {
       "id": "opi-core-491",
-      "taskTitle": "飞机系统-起落架-10",
-      "audioText": "What may cause the landing gear problems?",
-      "audioTextZh": "什么会导致飞机起落架问题?",
-      "referenceText": "Landing gear problems may result from hydraulic system failure, electrical malfunction, mechanical wear, improper extension/retraction operation, bird strike, FOD damage, hard landing, or lack of maintenance. These issues can lead to failure to extend/retract, structural damage, or unsafe landing conditions.\n起落架问题可能由液压系统故障、电气故障、机械磨损、收放操作不当、鸟击、外物损伤（FOD）、重着陆或维护不足导致。这些问题会造成起落架收放失效、结构损坏或着陆状态不安全。"
+      "taskTitle": "飞机系统-起落架-7",
+      "audioText": "What can cause landing gear problems?",
+      "audioTextZh": "哪些因素可能导致起落架出现问题？",
+      "referenceText": "Landing-gear problems can result from hydraulic, electrical, mechanical or control-system failures. Low fluid, a leak, damaged doors or uplocks, faulty position sensors, tire or brake damage and obstruction by ice or debris are possible causes. Hard landings, towing damage, maintenance errors and operation outside speed or load limits can also affect the system.",
+      "referenceTextZh": "起落架问题可能由液压、电气、机械或控制系统故障引起。相关液压系统油液量不足、泄漏、舱门或上位锁损坏、位置传感器故障、轮胎或刹车损坏，以及冰或碎屑造成的阻塞，都是可能原因。重着陆、拖飞机造成的损坏、维修差错，以及超出速度或载荷限制运行也会影响该系统。"
     },
     {
       "id": "opi-core-492",
-      "taskTitle": "飞机系统-起落架-11",
-      "audioText": "During approach and landing phases, when will you extend the landing gear?",
-      "audioTextZh": "在进近和着陆阶段,你什么时候放下起落架?",
-      "referenceText": "During approach and landing, I extend the landing gear at a safe altitude (usually above MDA/DA) and appropriate airspeed, as specified in SOP. Typically, it’s done before entering the final approach fix (FAF) to ensure it’s fully extended and locked before landing, maintaining stable flight.\n在进近和着陆阶段，我会按照标准操作程序（SOP），在安全高度（通常高于最低下降高度/决断高度）和合适空速时放下起落架。通常在进入最后进近定位点（FAF）前完成，确保着陆前起落架完全伸出并锁定，保持飞行稳定。"
-    },
-    {
-      "id": "opi-core-493",
-      "taskTitle": "飞机系统-起落架-12",
-      "audioText": "When do you make a belly landing?",
-      "audioTextZh": "你在什么情况下会进行机腹着陆?",
-      "referenceText": "Belly landing is conducted when the landing gear fails to extend and cannot be repaired inflight (such as, hydraulic malfunction, structural damage). It’s a last resort to avoid crash. Pilots dump fuel, request foam on the runway, and inform passengers to brace for impact before landing.\n机腹着陆通常在起落架无法伸出且飞行中无法修复时（如液压故障、结构损坏）进行，是避免坠毁的最后手段。飞行员会先放油减重，请求机场在跑道喷洒泡沫，并告知乘客做好冲击防护后再进行着陆。"
+      "taskTitle": "飞机系统-起落架-8",
+      "audioText": "When is the landing gear normally extended during approach?",
+      "audioTextZh": "进近过程中通常在什么时候放下起落架？",
+      "referenceText": "The landing gear is normally extended at the point specified by the approach profile and operator procedure, early enough to complete configuration and stabilize the aircraft by the required gate. Crews often use a published fix, distance or altitude rather than one universal value. Extension may be moved earlier for extra drag, system checks or traffic, but speed limits and fuel effects must be considered.",
+      "referenceTextZh": "起落架通常在进近剖面和运营人程序规定的位置放下，并应留出足够时间，使飞机在规定高度门前完成构型并稳定。机组通常使用公布的定位点、距离或高度，而不是一个全球通用数值。为了增加阻力、检查系统或配合交通，可以提前放轮，但必须考虑速度限制和燃油影响。"
     }
   ]
 }

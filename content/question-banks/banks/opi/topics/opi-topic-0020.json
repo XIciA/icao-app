@@ -7,22 +7,26 @@
     {
       "id": "opi-core-310",
       "taskTitle": "缩略词-QAR-1",
-      "audioText": "What is QAR?",
-      "referenceText": "QAR stands for quick access recorder. It can record the flight data, such as the airspeed, altitude, heading, position and so on. It's always used for training, investigation, and improving pilot skills, but we don't have it on our aircraft, so I don't know much about it.\n\nQAR 是快速存取记录器（quick access recorder ）的缩写。它能够记录飞行数据，比如空速、高度、航向、位置等。它常被用于训练、调查以及提升飞行员技能，但我们的飞机上没有配备，所以我对它了解不多 。"
+      "audioText": "What is a quick access recorder (QAR)?",
+      "referenceText": "A quick access recorder is an onboard recorder designed to make operational flight data easier for an operator to retrieve. Unlike the crash-protected FDR, it is mainly used for routine analysis, maintenance and flight-data monitoring and may not have the same impact and fire protection. Some aircraft obtain similar data through integrated storage or wireless transfer rather than a separate unit.",
+      "audioTextZh": "什么是快速存取记录器（QAR）？",
+      "referenceTextZh": "快速存取记录器是一种机载记录器，便于运营人提取运行飞行数据。与具有防撞保护的 FDR 不同，它主要用于日常分析、维修和飞行数据监控，可能不具备同等的抗撞击和耐火保护。部分飞机通过集成存储或无线传输获取类似数据，而不使用独立设备。"
     },
     {
       "id": "opi-core-311",
       "taskTitle": "缩略词-QAR-2",
-      "audioText": "Can you tell us some examples or items in QAR?",
-      "audioTextZh": "你能给我们讲讲快速存取记录器（QAR）中的一些示例或项目（内容）吗？",
-      "referenceText": "Yes. QAR is used to monitor and record some important items about the aircraft performance during flight such as aircraft system conditions, engine parameters, flight control parameters and so on.\n\n可以，飞行中，QAR用来监控和记录飞机性能相关的重要内容，比如飞机系统状况，发动机参数、飞行操纵参数等。"
+      "audioText": "What types of flight data are recorded by a QAR?",
+      "audioTextZh": "QAR 会记录哪些类型的飞行数据？",
+      "referenceText": "A QAR may record many of the same parameters available to an FDR, such as altitude, speed, attitude, position, configuration, control inputs and engine or system values. It may capture a larger or more convenient data set for operational analysis. The exact list depends on aircraft data buses, recorder configuration and the operator's monitoring program.",
+      "referenceTextZh": "QAR 可以记录许多与 FDR 相同的参数，例如高度、速度、姿态、位置、构型、操纵输入以及发动机或系统数值。它可能提供更大或更便于使用的数据集，供运行分析使用。具体参数取决于飞机数据总线、记录器构型和运营人的监控方案。"
     },
     {
       "id": "opi-core-312",
       "taskTitle": "缩略词-QAR-3",
-      "audioText": "Do you think the QAR is not properly\nused by companies? Why?",
-      "audioTextZh": "你认为部分公司对 QAR 的使用是否存在不当？为什么？",
-      "referenceText": "I fly C172, there is no QAR in our aircraft. But I know some companies may not review the data recorded by QAR, and the pilot’s problem and the aircraft maintenance problem will not be discovered.\n我驾驶的 C172 未配备 QAR，但我了解到部分公司可能不审查 QAR 记录的数据，导致飞行员操作中的问题以及飞机维护隐患无法被及时发现。"
+      "audioText": "Do you think airlines use QAR data appropriately? Why or why not?",
+      "audioTextZh": "你认为航空公司合理使用 QAR 数据吗？为什么？",
+      "referenceText": "I think QAR data is used appropriately when it supports safety trends, maintenance and training through a transparent and protected program. Data should be accurate, access-controlled and de-identified where practical, with clear limits on punitive use. If crews understand the purpose and safeguards, the program can improve safety without damaging reporting culture.",
+      "referenceTextZh": "我认为，当 QAR 数据通过透明且受保护的方案支持安全趋势分析、维修和训练时，使用就是恰当的。数据应准确、受到访问控制，并在切实可行时去除身份信息，同时明确限制惩罚性用途。如果机组了解目的和保障措施，这一方案就能在不损害报告文化的情况下改善安全。"
     }
   ]
 }

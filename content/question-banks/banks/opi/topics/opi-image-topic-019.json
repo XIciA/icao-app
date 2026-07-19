@@ -14,20 +14,16 @@
     {
       "id": "opi-image-019-q01",
       "taskTitle": "图片题-019-01",
-      "audioText": "What factors may lead to that situation?",
-      "audioTextZh": "哪些因素可能导致这种情况？",
-      "referenceText": "Possible factors include poor communication, unsafe equipment positioning, weak marshalling, and ramp congestion. Human factors, weather, aircraft condition, airport environment, and communication problems may also contribute to the situation.",
-      "referenceTextZh": "可能因素包括沟通不畅、设备停放不安全、引导不足以及机坪拥堵。人的因素、天气、飞机状态、机场环境以及沟通问题也可能共同导致这种情况。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-019-q01.mp3"
+      "audioText": "What factors may have contributed to the ground-handling accident shown in this picture?",
+      "audioTextZh": "哪些因素可能促成图中所示的地面作业事故？"
     },
     {
       "id": "opi-image-019-q02",
       "taskTitle": "图片题-019-02",
-      "audioText": "How to avoid such accidents from happening?",
-      "audioTextZh": "如何避免此类事故发生？",
-      "referenceText": "In this picture, I can see a situation related to Ground service accident. The key points are poor communication, unsafe equipment positioning, weak marshalling, and ramp congestion. It is important for the crew to recognize the risk early, keep good communication, and follow standard operating procedures.",
-      "referenceTextZh": "在这张图片中，我看到的是与地面保障事故有关的情况。关键点包括沟通不畅、设备停放不安全、引导不足以及机坪拥堵。机组应及早识别风险，保持良好沟通，并按照标准操作程序处置。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-019-q02.mp3"
+      "audioText": "How can ground-handling accidents involving aircraft be prevented?",
+      "audioTextZh": "如何预防涉及航空器的地面作业事故？",
+      "referenceText": "Prevention depends on trained and authorized staff, clear procedures, serviceable equipment and positive communication before any vehicle or aircraft movement. Marked safety zones, wing walkers, speed control, brake checks, chocks and confirmation that doors, panels and equipment are clear reduce collision risk. Fatigue, poor visibility and time pressure should be managed, and near misses reported so repeated hazards are corrected.",
+      "referenceTextZh": "预防措施包括使用经过训练和授权的人员、明确程序、状况良好的设备，以及在任何车辆或飞机移动前进行明确沟通。划定安全区、安排翼尖监护员、控制速度、检查刹车、使用轮挡，并确认舱门和面板已妥善关闭、设备已撤离飞机运动区域，可以降低碰撞风险。还应管理疲劳、低能见度和时间压力，并报告险情，以便纠正反复出现的危险。"
     }
   ]
 }

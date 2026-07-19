@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "baselineDigest": "81ff4e8d16582b5bfd3a2e6b4cf08f6f6eb89159be2b6b93f4c0e3370aea7d42",
+  "baselineRegistryHash": "332fc745722e2f86d9e48432febf15ea1c2702b5891929e10c2417466d8ee965",
+  "rollbackCommand": "node tools/opi-rebuild.mjs rollback",
+  "verificationCommand": "node tools/opi-rebuild.mjs verify-rollback",
+  "restores": {
+    "opiSourceFiles": 153,
+    "registry": true
+  }
+}

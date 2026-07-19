@@ -2,70 +2,63 @@
   "categoryId": "opi-category-06",
   "id": "opi-topic-0060",
   "name": "襟翼",
-  "declaredCardCount": 9,
+  "declaredCardCount": 7,
   "cards": [
     {
       "id": "opi-core-644",
       "taskTitle": "飞机系统-襟翼-1",
-      "audioText": "What should you pay attention to when extending or retracting the flaps?",
-      "audioTextZh": "放出或收上襟翼时，需要注意什么？",
-      "referenceText": "We should monitor the airspeed and confirm that the flaps are at their designated positions.\n我们应关注空速，并确认襟翼处于规定位置 。"
+      "audioText": "What should pilots monitor when extending or retracting the flaps?",
+      "audioTextZh": "放出或收回襟翼时，飞行员应监控哪些情况？",
+      "referenceText": "Pilots should confirm that airspeed is within the approved flap-operating range before selecting the new position. They then monitor the lever or selector, the position indication, movement symmetry and any warning or fault message. They should also watch the aircraft's pitch, speed and handling as the configuration changes.",
+      "referenceTextZh": "飞行员选择新的襟翼位置前，应确认空速处于经批准的襟翼操作范围内。随后，他们应监控手柄或选择器、位置指示、动作对称性以及任何警告或故障信息。构型变化时，还应观察飞机的俯仰、速度和操纵特性。"
     },
     {
       "id": "opi-core-645",
       "taskTitle": "飞机系统-襟翼-2",
-      "audioText": "If you cannot extend the flaps during approach, What will you do?",
-      "audioTextZh": "进近阶段若无法放出襟翼，你会如何操作？",
-      "referenceText": "If we cannot fully extend the flaps, we will request the longest available runway for landing.\n若无法将襟翼完全放出，我们会申请使用可用的最长跑道着陆 。"
+      "audioText": "What should pilots do if the flaps fail to extend normally during an approach?",
+      "audioTextZh": "进近过程中襟翼无法正常放出时，飞行员应如何处置？",
+      "referenceText": "The crew should maintain a safe speed and flight path, avoid repeated or trial selections unless the checklist directs them, and complete the applicable abnormal procedure. They should determine the available configuration, recalculate approach speed and landing distance, and consider runway, weather and go-around performance. If necessary, they should discontinue the approach and use a more suitable runway or airport.",
+      "referenceTextZh": "机组应保持安全速度和飞行轨迹，除非检查单要求，否则避免反复选择或尝试不同位置，并完成适用的非正常程序。他们应确定可用构型，重新计算进近速度和着陆距离，并考虑跑道、天气和复飞性能。必要时，应终止进近，改用更合适的跑道或机场。"
     },
     {
       "id": "opi-core-646",
       "taskTitle": "飞机系统-襟翼-3",
-      "audioText": "What are the potential risks with the flaps cannot be extended?",
-      "audioTextZh": "若襟翼无法放出，存在哪些潜在风险？",
-      "referenceText": "If the flaps cannot be extended, we will conduct a high - speed approach, and there is a risk of running out of runway length for a safe landing.\n若襟翼无法放出，进近时飞机将保持较高速度，可能出现跑道长度不足以安全着陆的风险（即可能冲出跑道 ）。\n\nFlap jamming during approach may reduce lift and increase landing speed, leading to unstable landing, long landing distance, runway overrun, or veer-off. It may also cause structural damage (e.g., tire burst, landing gear damage) and injuries to crew and passengers due to hard landing impact.\n进近时襟翼卡阻会导致升力不足、着陆速度增大，引发不稳定进近、着陆距离延长、跑道冲出或偏出；还可能造成轮胎爆裂、起落架损坏等结构损伤，且硬着陆冲击会导致机组和乘客受伤。"
+      "audioText": "What operational risks can arise if the flaps fail to extend during an approach?",
+      "audioTextZh": "进近过程中襟翼无法放出可能带来哪些运行风险？",
+      "referenceText": "Without the planned flap setting, approach and landing speeds may be higher and the required landing distance may increase. The aircraft may have a different pitch attitude, handling response and go-around performance, while crew workload rises. A rushed continuation can therefore lead to an unstable approach, runway overrun or configuration-related damage.",
+      "referenceTextZh": "如果无法使用计划的襟翼位置，进近和着陆速度可能更高，所需着陆距离也可能增加。飞机的俯仰姿态、操纵响应和复飞性能可能不同，同时机组工作负荷会增加。因此，匆忙继续进近可能导致进近不稳定、冲出跑道或与构型有关的损坏。"
     },
     {
       "id": "opi-core-647",
       "taskTitle": "飞机系统-襟翼-4",
-      "audioText": "What are the consequences if the flaps\nhave been extended above altitude\nlimitation?",
-      "audioTextZh": "襟翼在超过高度限制的情况下放出会产生什么后果？",
-      "referenceText": "If the flaps have been extended above altitude limitation, our airspeed will decrease rapidly, and we may lose some altitude.\n空速会快速下降，且可能出现掉高度的情况。"
+      "audioText": "What risks can arise if the flaps are operated outside their approved limitations?",
+      "audioTextZh": "超出批准的限制操作襟翼可能产生哪些风险？",
+      "referenceText": "Operating flaps above their approved speed can overload or damage the flap structure and drive system. Selecting an unsuitable position can also produce unexpected lift, drag, pitch change or handling difficulties. Pilots must respect the aircraft limitations and use the checklist if an overspeed or abnormal indication occurs.",
+      "referenceTextZh": "在超过批准速度时操作襟翼，可能使襟翼结构和驱动系统过载或损坏。选择不合适的位置还会造成意外的升力、阻力或俯仰变化，或使操纵变得困难。飞行员必须遵守飞机限制；如果出现超速或异常指示，应使用检查单。"
     },
     {
       "id": "opi-core-648",
       "taskTitle": "飞机系统-襟翼-5",
-      "audioText": "According to your company’s SOP, what\nis the flap setting for takeoff?",
-      "audioTextZh": "根据贵公司 SOP，起飞时的襟翼设置是多少？",
-      "referenceText": "I fly C172. According to SOP, we can take off without flaps or with a flap setting up to 10°.\n我驾驶 C172。根据 SOP，起飞时可不放襟翼，或襟翼设置最大至 10°。"
-    },
-    {
-      "id": "opi-core-649",
-      "taskTitle": "飞机系统-襟翼-6",
-      "audioText": "What would you do if the flaps are\njammed before landing?",
-      "audioTextZh": "着陆前襟翼卡阻，你会怎么做？",
-      "referenceText": "First, I will follow the checklist and try to extend the flaps again. If the flaps are still jammed, I will report this situation to ATC and request the longest runway for landing. After touchdown, I will use maximum brake to stop the aircraft on the runway.\n首先，按照检查单尝试再次放出襟翼；若仍卡阻，向空管报告情况并申请最长跑道着陆；接地后，使用最大刹车使飞机在跑道内停稳。"
-    },
-    {
-      "id": "opi-core-650",
-      "taskTitle": "飞机系统-襟翼-7",
-      "audioText": "If pilots decide to make all flaps-up landing, what\npreparation should they make before landing?",
-      "audioTextZh": "若决定执行全襟翼收上着陆（无襟翼着陆），着陆前需做哪些准备？",
-      "referenceText": "In this situation, first, I will report the situation to ATC and request the longest runway for landing. Second, pilot should hold in the air to burn fuel or dump some fuel to reduce the weight.\n首先，向空管报告情况，申请最长跑道着陆；其次，在空中等待消耗燃油或放油，以降低飞机重量。"
+      "audioText": "How is the takeoff flap setting selected under your company's procedures?",
+      "audioTextZh": "根据你所在公司的程序，如何选择起飞襟翼设置？",
+      "referenceText": "A suitable company example would be to select the takeoff flap setting through the approved performance calculation. The calculation considers runway length and condition, obstacles, weather, aircraft mass, thrust setting and any relevant defect. Both pilots verify the result against the load sheet, takeoff data and aircraft configuration before departure.",
+      "referenceTextZh": "一个合适的公司示范是，通过批准的性能计算选择起飞襟翼设置。计算考虑跑道长度和状况、障碍物、天气、飞机重量、推力设置以及任何相关故障。起飞前，两名飞行员都应根据载重平衡表、起飞数据和飞机构型核实结果。"
     },
     {
       "id": "opi-core-651",
-      "taskTitle": "飞机系统-襟翼-8",
-      "audioText": "What are the potential risks for all flaps-up landing?",
-      "audioTextZh": "全襟翼收上（无襟翼）着陆有哪些潜在风险？",
-      "referenceText": "If we make a flaps-up landing, the landing speed will higher than normal, the aircraft may run out of the runway.\n着陆速度会高于正常水平，飞机可能冲出跑道。"
+      "taskTitle": "飞机系统-襟翼-6",
+      "audioText": "What risks are associated with landing with the flaps up?",
+      "audioTextZh": "收上襟翼着陆有哪些风险？",
+      "referenceText": "A flaps-up landing normally requires a higher approach speed and much more landing distance than a normal landing. The unusual pitch attitude and handling can make the approach harder to stabilize, and the higher touchdown energy increases tire and brake demands. Go-around performance and obstacle clearance must also be assessed for the abnormal configuration.",
+      "referenceTextZh": "与正常着陆相比，襟翼全收着陆通常需要更高的进近速度和长得多的着陆距离。异常俯仰姿态和操纵特性会使进近更难稳定，而较高的接地能量会增加轮胎与刹车负荷。还必须针对异常构型评估复飞性能和越障能力。"
     },
     {
       "id": "opi-core-652",
-      "taskTitle": "飞机系统-襟翼-9",
-      "audioText": "How to make a successful landing without flaps or with partial flaps?",
-      "audioTextZh": "如何在无襟翼或者部分襟翼情况下进行成功着陆?",
-      "referenceText": "First, execute the flapless/partial flaps landing checklist. Precisely control airspeed, properly reduce thrust to lower landing speed, request the longest runway, and inform crew and passengers of potential impact. Maintain stable attitude during approach and landing, and use anti-skid brakes to ensure stopping within the runway.\n首先执行无襟翼/部分襟翼着陆检查单；精确控制空速，适当减小推力降低着陆速度，请求最长跑道，告知机组和乘客可能的冲击；进近和着陆时保持稳定姿态，使用防滞刹车确保在跑道内停稳。"
+      "taskTitle": "飞机系统-襟翼-7",
+      "audioText": "How should pilots manage a landing with no flaps or only partial flaps?",
+      "audioTextZh": "飞行员应如何实施无襟翼或部分襟翼着陆？",
+      "referenceText": "Pilots should use the abnormal checklist, establish the permitted flap configuration and calculate the revised approach speed and landing distance. They should brief the different handling, pitch attitude, touchdown, braking and go-around considerations and choose a runway with adequate margin. A stabilized approach is essential, and the crew should go around if the planned conditions are not met.",
+      "referenceTextZh": "飞行员应使用非正常检查单，确定允许的襟翼构型，并计算修订后的进近速度和着陆距离。他们应就不同的操纵特性、俯仰姿态、接地、制动和复飞注意事项进行简令，并选择具有足够裕度的跑道。稳定进近至关重要；如果计划条件没有满足，机组应复飞。"
     }
   ]
 }

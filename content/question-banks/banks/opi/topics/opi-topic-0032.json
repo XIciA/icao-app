@@ -2,56 +2,47 @@
   "categoryId": "opi-category-03",
   "id": "opi-topic-0032",
   "name": "RVSM",
-  "declaredCardCount": 7,
+  "declaredCardCount": 5,
   "cards": [
     {
       "id": "opi-core-460",
       "taskTitle": "缩略词-RVSM-1",
-      "audioText": "Do you know RVSM? What does RVSM stand for? What's your understand RVSM?",
-      "audioTextZh": "你了解 RVSM 吗？RVSM 代表什么？你对 RVSM 的理解是怎样的？",
-      "referenceText": "RVSM stands for reduced vertical separation minimum. It aims to make full use of the airspace. But in my opinion, it increases workload for both the controller and pilot. What's more, it increases the risk of mid - air collision and misunderstanding.\nRVSM 代表最小垂直间隔缩小（Reduced Vertical Separation Minimum  ）。它旨在充分利用空域。但在我看来，它增加了管制员和飞行员的工作负荷。而且，它增加了空中相撞和误解的风险。\n\nRVSM stands for Reduced Vertical Separation Minimum. It is an airspace operation standard that reduces the vertical separation between aircraft in the range of 8900m to 12500m to 300m, optimizing airspace utilization.\nRVSM即缩小最低垂直间隔，是一种空域运行标准，将8900米至12500米高度范围内的航空器垂直间隔缩小至300米，以优化空域利用率。"
+      "audioText": "What is Reduced Vertical Separation Minimum (RVSM)?",
+      "audioTextZh": "什么是缩小垂直间隔标准（RVSM）？",
+      "referenceText": "Reduced Vertical Separation Minimum, or RVSM, is a system that allows approved aircraft to be separated vertically by 1,000 feet in designated high-level airspace. Without RVSM, the normal vertical separation in that level band would be 2,000 feet. It depends on accurate height-keeping equipment, approved operations and effective monitoring.",
+      "referenceTextZh": "缩小垂直间隔标准（RVSM）是一套系统，允许获准航空器在指定高空空域内采用 1000 英尺垂直间隔。没有 RVSM 时，该高度层范围内的正常垂直间隔为 2000 英尺。它依赖准确的高度保持设备、经批准的运行和有效监控。"
     },
     {
       "id": "opi-core-461",
       "taskTitle": "缩略词-RVSM-2",
-      "audioText": "What is the base level? And Top level of RVSM airspace?\nRVSM",
-      "audioTextZh": "空域的基准高度层和最高高度层分别是什么？",
-      "referenceText": "The basic level of RVSM airspace is 8900 meters (29100 feet), and the top level is 12500 meters (41100 feet). Vertical separation within this range is set to 300 meters.\nRVSM空域的最低高度为8900米（29100英尺），最高高度为12500米（41100英尺），该范围内的垂直间隔设定为300米。"
+      "audioText": "What are the lower and upper flight-level limits of Reduced Vertical Separation Minimum (RVSM) airspace?",
+      "audioTextZh": "RVSM 空域的飞行高度层下限和上限分别是多少？",
+      "referenceText": "RVSM airspace normally extends from FL290 to FL410, inclusive. This means both FL290 and FL410 are within the RVSM level band. Pilots must still check the applicable regional publication because the lateral limits and any exceptions depend on the airspace concerned.",
+      "referenceTextZh": "RVSM 空域通常包括 FL290 至 FL410。也就是说，FL290 和 FL410 都在 RVSM 高度层范围内。飞行员仍必须查看适用的地区性资料，因为水平边界和任何例外取决于具体空域。"
     },
     {
       "id": "opi-core-462",
       "taskTitle": "缩略词-RVSM-3",
-      "audioText": "Are there any qualifications/requirements if a pilot fly into RVSM airspace?",
-      "audioTextZh": "飞行员进入 RVSM 空域，有哪些资质 / 要求？",
-      "referenceText": "1   If we fly into RVSM airspace, we must meet some requirements. And the aircraft should be equipped with auto pilot, TCAS, RNP, The inertial reference system and so on.\n若进入 RVSM 空域，我们必须满足一些要求。飞机应配备自动驾驶仪、空中交通警戒与防撞系统（TCAS）、所需导航性能（RNP）、惯性参考系统等设备。\n\n2   A pilot cannot legally fly into RVSM airspace unless they are operating an RVSM-certified aircraft, for an RVSM-authorized operator, and have themselves been trained in that operator's specific RVSM procedures.\n飞行员必须同时满足以下三个条件方可合法进入RVSM空域：驾驶经RVSM认证的航空器，代表获RVSM授权的运营商执飞，且已完成该运营商特定的RVSM程序培训。"
+      "audioText": "What requirements must be met before an aircraft can operate in Reduced Vertical Separation Minimum (RVSM) airspace?",
+      "audioTextZh": "航空器在 RVSM 空域运行前必须满足哪些要求？",
+      "referenceText": "The aircraft must meet the applicable RVSM airworthiness and height-keeping standards, and the operator must hold the required authorization. The necessary altimetry, altitude-alerting, automatic altitude-control and transponder equipment must be serviceable within the approved limits. The crew, maintenance programme, flight planning and operating procedures must also satisfy the relevant authority and operator requirements.",
+      "referenceTextZh": "航空器必须符合适用的 RVSM 适航和高度保持标准，运营人也必须持有所需批准。规定的高度测量、高度警告、自动高度控制和应答机设备必须在批准限制内保持可用。机组、维修方案、飞行计划和运行程序也必须满足相关监管当局和运营人的要求。"
     },
     {
       "id": "opi-core-463",
       "taskTitle": "缩略词-RVSM-4",
-      "audioText": "If the autopilot failure in RVSM airspace, what will you do?",
-      "audioTextZh": "若在 RVSM 空域出现自动驾驶仪故障，你会怎么做？",
-      "referenceText": "If the autopilot failure in RVSM airspace, we are no longer qualified. We will request leave the RVSM airspace.\n若在 RVSM 空域发生自动驾驶仪故障，我们将不再满足（该空域的 ）运行资质要求。我们会申请离开 RVSM 空域。"
-    },
-    {
-      "id": "opi-core-464",
-      "taskTitle": "缩略词-RVSM-5",
-      "audioText": "Nowadays, the terminal airspace is becoming more and more crowded, are there any potential risks?",
-      "audioTextZh": "如今终端空域（进近 / 起降空域 ）越来越繁忙，存在哪些潜在风险？",
-      "referenceText": "In my opinion, because there are more and more aircraft, it increases workload for both pilot and ATC. What's more, it increases the risk of mid - air collision and misunderstanding.\n在我看来，由于飞机数量越来越多，这增加了飞行员和空中交通管制员（ATC）的工作负荷。而且，它增加了空中相撞和指令误解的风险。"
-    },
-    {
-      "id": "opi-core-465",
-      "taskTitle": "缩略词-RVSM-6",
-      "audioText": "How to avoid traffic conflicts at the busy terminal?",
-      "audioTextZh": "如何在复杂终端进近区避免航空器冲突?",
-      "referenceText": "Strictly follow ATC vectors and speed restrictions, maintain situational awareness via EFIS/TCAS, use standard communication, avoid last-minute maneuver changes, and request clearances in advance. Improve coordination with ATC and adhere to approach procedures.\n严格遵循空管引导和速度限制，通过电子飞行仪表系统（EFIS）/TCAS保持情景意识，使用标准通讯，避免临时变更机动动作，并提前申请许可；加强与空管的协调，严格遵守进近程序。"
+      "audioText": "What should a pilot do if the autopilot fails in Reduced Vertical Separation Minimum (RVSM) airspace?",
+      "audioTextZh": "在 RVSM 空域中自动驾驶仪失效时，飞行员应如何处置？",
+      "referenceText": "If the automatic altitude-control system fails in RVSM airspace, the pilot should maintain the cleared level as accurately as possible while assessing the failure. The pilot should promptly tell ATC, using the applicable unable-RVSM phraseology, and request assistance or a clearance out of RVSM airspace as required. The crew should monitor traffic and follow the aircraft checklist, operator procedures and regional contingency guidance.",
+      "referenceTextZh": "如果自动高度控制系统在 RVSM 空域失效，飞行员应在评估故障的同时尽可能准确地保持管制许可高度层。飞行员应立即通知空管，使用适用的“UNABLE RVSM”标准通话用语，并按需请求协助或申请离开 RVSM 空域的许可。机组应监控交通，并执行飞机检查单、运营人程序和地区应急指南。"
     },
     {
       "id": "opi-core-466",
-      "taskTitle": "缩略词-RVSM-7",
-      "audioText": "What is the advantage of operating RVSM?",
-      "audioTextZh": "实施RVSM的优势有哪些?",
-      "referenceText": "Operating RVSM fully utilizes airspace capacity, increases flight efficiency, allows pilots to select optimal cruising altitudes to save fuel, reduces flight delays, and lowers operational costs for airlines.\n实施RVSM能充分利用空域容量，提升飞行效率，让飞行员选择最优巡航高度以节省燃油，减少航班延误，并降低航空公司运营成本。"
+      "taskTitle": "缩略词-RVSM-5",
+      "audioText": "What are the operational advantages of Reduced Vertical Separation Minimum (RVSM) airspace?",
+      "audioTextZh": "RVSM 空域有哪些运行优势？",
+      "referenceText": "RVSM creates more usable flight levels in busy high-level airspace. Aircraft can often fly closer to their most fuel-efficient altitude, which may reduce fuel burn, emissions and delays. The additional levels also give ATC more flexibility when separating and sequencing traffic.",
+      "referenceTextZh": "RVSM 在繁忙高空空域提供了更多可用飞行高度层。航空器通常能够更接近燃油效率最高的高度飞行，从而可能减少燃油消耗、排放和延误。增加的高度层也让空管在航空器间隔和排序方面更加灵活。"
     }
   ]
 }

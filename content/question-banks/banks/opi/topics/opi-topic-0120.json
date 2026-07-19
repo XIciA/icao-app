@@ -7,37 +7,42 @@
     {
       "id": "opi-extra-116",
       "taskTitle": "特情-失速警告-1",
-      "audioText": "Do you have a stall warning on your aircraft?",
-      "audioTextZh": "你们的飞机上有失速警告装置吗？",
-      "referenceText": "Yes, we have a stall warning. It includes a warning horn and a voice warning.\n有，我们飞机上有失速警告装置，它包含警告喇叭和语音警告 。"
+      "audioText": "What stall warning indications are available on the aircraft type you fly?",
+      "audioTextZh": "你所飞的机型提供哪些失速警告指示？",
+      "referenceText": "A suitable transport-aircraft example would provide visual and aural stall warnings, such as a warning message or light and an unmistakable sound or voice. It may also provide angle-of-attack-related cues, buffet, stick shaker or other tactile warning depending on the design. Learners should name only the indications installed on their aircraft and understand that some cues can change under degraded flight-control laws.",
+      "referenceTextZh": "一个合适的运输类飞机示范应包括目视和音响失速警告，例如警告信息或警告灯，以及明确无误的声音或语音。根据设计，它还可能提供与迎角有关的提示、抖振、抖杆器或其他触觉警告。学习者只能列出自己飞机实际安装的指示，并理解某些提示在飞行操纵法则降级时可能发生变化。"
     },
     {
       "id": "opi-extra-117",
       "taskTitle": "特情-失速警告-2",
-      "audioText": "What may cause aircraft stall?",
-      "audioTextZh": "哪些情况可能导致飞机失速？",
-      "referenceText": "There are some reasons for a stall. For example, strong low - level windshear, severe icing, overcontrol, or when the aircraft exceeds the critical angle of attack, it stalls.\n飞机失速有多种原因，比如强低空风切变、严重积冰、操纵过量，或者当飞机超过临界迎角时，就会失速 。"
+      "audioText": "What can cause an aircraft to exceed its critical angle of attack and stall?",
+      "audioTextZh": "哪些因素可能导致航空器超过临界迎角并失速？",
+      "referenceText": "A stall occurs when the wing exceeds its critical angle of attack, which can happen at any airspeed or attitude. Excessive pitch, low energy, steep maneuvering, wind shear, icing, turbulence or an abrupt load increase can bring the aircraft to that condition. Distraction, automation mismanagement and delayed recognition can allow the angle of attack to keep increasing.",
+      "referenceTextZh": "机翼超过临界迎角时就会失速，这可能发生在任何空速或姿态。俯仰过大、能量低、坡度较大的机动、风切变、结冰、颠簸或载荷突然增加，都可能使飞机进入这种状态。分心、自动化管理不当和识别延迟会使迎角继续增大。"
     },
     {
       "id": "opi-extra-118",
       "taskTitle": "特情-失速警告-3",
-      "audioText": "How to recover from a stall? What are the stall recovery procedure?",
-      "audioTextZh": "如何从失速中改出？失速改出程序是怎样的？",
-      "referenceText": "If we encounter a stall, we should push the control column forward and increase engine power.\n若遭遇失速，我们应向前推杆并增加发动机推力 。"
+      "audioText": "How should a flight crew recover from an aerodynamic stall?",
+      "audioTextZh": "飞行机组应如何从气动失速中改出？",
+      "referenceText": "The first priority is to reduce angle of attack enough to unstall the wing, even if that requires lowering the nose and losing altitude. The crew then manages roll, thrust, drag and flight path in accordance with the aircraft's approved recovery procedure, avoiding premature pull-up or conflicting inputs. Once airflow is restored, it returns to a safe flight path while respecting speed and structural limits.",
+      "referenceTextZh": "首要任务是充分减小迎角，使机翼脱离失速，即使这需要低头并损失高度。随后，机组按照飞机批准的改出程序管理滚转、推力、阻力和飞行轨迹，避免过早拉起或相互冲突的操纵输入。气流恢复后，应在遵守速度和结构限制的同时返回安全飞行轨迹。"
     },
     {
       "id": "opi-extra-119",
       "taskTitle": "特情-失速警告-4",
-      "audioText": "Do you think stall is dangerous? Why?",
-      "audioTextZh": "你认为失速是否危险？为什么？",
-      "referenceText": "Yes, stall is very dangerous. First, stall can make our aircraft lose control and altitude rapidly. Especially during takeoff and landing, we may not have enough altitude to recover from stall, the aircraft might crash into terrain.\n是的，失速非常危险。首先，失速会导致飞机快速失控和掉高度；尤其在起飞和着陆阶段，可能没有足够高度改出失速，飞机可能撞地。"
+      "audioText": "Why is an aerodynamic stall dangerous?",
+      "audioTextZh": "气动失速为什么危险？",
+      "referenceText": "A stall reduces lift and can produce loss of altitude, roll-off, buffet and degraded control. Near the ground, there may be insufficient height to reduce angle of attack and recover safely. A mishandled stall can develop into a more severe upset, structural exceedance or loss of control.",
+      "referenceTextZh": "失速会降低升力，并可能造成高度损失、滚转偏离、抖振和操纵能力下降。接近地面时，可能没有足够高度减小迎角并安全改出。失速处置不当可能发展为更严重的姿态异常、结构超限或失去控制。"
     },
     {
       "id": "opi-extra-120",
       "taskTitle": "特情-失速警告-5",
-      "audioText": "What can a pilot do to prevent a stall?",
-      "audioTextZh": "飞行员可采取哪些措施预防失速？",
-      "referenceText": "Each airplane has a critical angle of attack, if we exceed the critical angle of attack, we will stall. As a result, to prevent a stall, first, pilot should maintain a suitable angle of attack, do not exceed the critical angle of attack; second, we should keep good balance; third, before flight we should get weather information, do not fly into bad weather.\n每架飞机都有临界迎角，超过临界迎角就会失速。因此，预防失速的措施包括：一是保持合适迎角，不超过临界迎角；二是保持飞机良好平衡；三是飞行前获取气象信息，避免飞入恶劣天气区域。"
+      "audioText": "How can pilots prevent an aerodynamic stall?",
+      "audioTextZh": "飞行员如何预防气动失速？",
+      "referenceText": "Pilots prevent stalls by managing angle of attack and energy, maintaining appropriate speed and configuration, and respecting bank and load-factor effects. They should monitor automation, anticipate wind and icing, and respond promptly to low-energy or stall warnings. Stable approaches, correct performance data and recurrent upset-prevention training support these habits.",
+      "referenceTextZh": "飞行员通过管理迎角和能量、保持适当速度与构型，并考虑坡度和载荷因数的影响来预防失速。他们应监控自动化、预见风和结冰，并及时响应低能量或失速警告。稳定进近、正确性能数据和定期的姿态异常预防训练，有助于形成这些习惯。"
     }
   ]
 }

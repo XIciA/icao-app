@@ -14,29 +14,26 @@
     {
       "id": "opi-image-022-q01",
       "taskTitle": "图片题-022-01",
-      "audioText": "What weather conditions will further reduce visibility during night landing on such terrain airports?",
-      "audioTextZh": "在这类地形机场夜间着陆时，哪些天气条件会进一步降低能见度？",
-      "referenceText": "This situation is related to Night terrain approach. I would identify the threat, communicate clearly, follow the checklist, and choose the safest option according to aircraft status and operating conditions.",
-      "referenceTextZh": "这种情况与山区夜间进近有关。我会识别威胁，清楚沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-022-q01.mp3"
+      "audioText": "What weather conditions can further reduce visibility during a night approach to an airport in mountainous terrain?",
+      "audioTextZh": "夜间进近山区机场时，哪些天气条件会进一步降低能见度？",
+      "referenceText": "Fog, low cloud, rain, snow and blowing precipitation can further reduce visibility during the approach. Mist, haze, smoke and glare or reflection from cockpit and ground lights may hide terrain and distort distance. Orographic cloud and precipitation can form or change quickly around mountain slopes, obscuring both the runway environment and escape terrain.",
+      "referenceTextZh": "雾、低云、雨、雪和吹雪会进一步降低进近时的能见度。轻雾、霾、烟，以及驾驶舱和地面灯光的眩光或反射，可能遮蔽地形并使距离判断失真。山地云和降水会在山坡附近迅速形成或变化，同时遮蔽跑道环境和复飞脱离地形。"
     },
     {
       "id": "opi-image-022-q02",
       "taskTitle": "图片题-022-02",
-      "audioText": "What are the functions of the runway lights?",
-      "audioTextZh": "跑道灯光有哪些功能？",
-      "referenceText": "The main benefit is improved situational awareness. Compared with the older method, it gives pilots clearer information, better monitoring, and more time to make safe decisions.",
-      "referenceTextZh": "主要好处是提升态势感知。与较旧的方式相比，它能给飞行员更清晰的信息、更好的监控能力，并为安全决策争取更多时间。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-022-q02.mp3"
+      "audioText": "How do runway lights help pilots during a night approach and landing?",
+      "audioTextZh": "跑道灯光如何在夜间进近和着陆时帮助飞行员？",
+      "referenceText": "Approach and runway lights help pilots identify the runway environment, alignment, threshold, edges, centerline and remaining visual path at night. Color, spacing and pattern provide orientation and support the transition from instruments to outside references. Lights do not guarantee terrain clearance or a stable approach, so pilots still follow the procedure and go around if the required visual references are not reliable.",
+      "referenceTextZh": "夜间，进近灯和跑道灯帮助飞行员识别跑道环境、对正方向、入口、边界、中线和剩余目视航迹。灯光的颜色、间距和图案提供方位信息，并帮助飞行员从仪表参照过渡到外部目视参照。灯光不能保证越障或稳定进近，因此飞行员仍须遵循程序；所需目视参照不可靠时应当复飞。"
     },
     {
       "id": "opi-image-022-q03",
       "taskTitle": "图片题-022-03",
-      "audioText": "What pre-descent briefings help pilot handle night approach risks",
-      "audioTextZh": "下降前哪些简令有助于飞行员处理夜间进近风险？",
-      "referenceText": "The main risks are low cloud, rain, fog, terrain shadow, and limited visual references. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
-      "referenceTextZh": "主要风险包括低云、降雨、雾、地形阴影以及目视参照有限。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-022-q03.mp3"
+      "audioText": "What should a pre-descent briefing cover before a night approach to an airport in mountainous terrain?",
+      "audioTextZh": "夜间进近山区机场前，下降前简令应涵盖哪些内容？",
+      "referenceText": "The briefing should cover terrain and minimum altitudes, the approach and missed approach, runway lighting, weather, NOTAMs and any night visual illusion. It should identify stabilized-approach gates, navigation and altitude cross-checks, automation strategy, go-around triggers and the escape path after a missed approach. Fuel, alternate options, communication, workload and possible loss of visual reference should also be agreed before descent.",
+      "referenceTextZh": "简令应包括地形和最低高度、进近与复飞程序、跑道灯光、天气、NOTAM，以及任何相关的夜间目视错觉。还应明确稳定进近门、导航和高度交叉核对、自动化策略、复飞触发条件，以及复飞后的脱离航迹。下降前，机组也应就燃油、备降选择、通信、工作负荷和可能失去目视参照的情况达成一致。"
     }
   ]
 }

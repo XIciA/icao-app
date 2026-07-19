@@ -2,119 +2,143 @@
   "categoryId": "opi-category-07",
   "id": "opi-topic-0121",
   "name": "机型与职业",
-  "declaredCardCount": 16,
+  "declaredCardCount": 17,
   "cards": [
     {
-      "id": "opi-extra-121",
+      "id": "opi-core-058",
       "taskTitle": "其它-机型与职业-1",
-      "audioText": "Do you like this type of aircraft?",
-      "audioTextZh": "你喜欢这种型号的飞机吗？",
-      "referenceText": "Yes, I like it. It has good performance and is easy to control. What's more, it's the first aircraft I fly as a pilot, so I like it.\n喜欢，它性能不错，也容易操控。而且，这是我作为飞行员驾驶的第一种飞机，所以我喜欢它 。"
+      "audioText": "What type of aircraft do you currently fly?",
+      "audioTextZh": "你目前飞哪种型号的飞机？",
+      "referenceText": "A suitable example would be: I currently fly the Airbus A320 family. It is a twin-engine, narrow-body jet used mainly for short- and medium-haul flights. Learners should replace the aircraft type and details with their own experience.",
+      "referenceTextZh": "一个合适的示范答案是：我目前飞空客 A320 系列。它是一种双发窄体喷气式飞机，主要用于中短程航班。学习者应根据自己的经历替换机型和相关细节。"
     },
     {
-      "id": "opi-extra-122",
+      "id": "opi-core-571",
       "taskTitle": "其它-机型与职业-2",
-      "audioText": "How do you like your flight instructor? What have you learn from your flight instructor?",
-      "audioTextZh": "你觉得你的飞行教员怎么样？你从飞行教员那里学到了什么？",
-      "referenceText": "My flight instructor is very kind, warm - hearted/nice and professional. Not only does he teach me aeronautical knowledge, but also flight techniques. He is very strict. I’ve learned a lot from him.\n我的飞行教员很友善、热心 / 人很好且很专业。他不仅教我航空知识，还传授飞行技巧。他要求很严格，我从他身上学到了很多 。\n\nI have learned a lot from my flight instructor. First of all, I have mastered solid flight skills and professional knowledge, including various flight operation techniques and emergency disposal methods. Secondly, the instructor has always emphasized the importance of flight safety, teaching me to always put safety first, strictly abide by operating procedures, and not take any chances. In addition, the instructor's rigorous work attitude and calm response in the face of emergencies have also influenced me deeply. He taught me to maintain a good psychological quality during the flight, remain calm and rational when encountering problems, and make correct decisions quickly. Finally, the instructor also taught me the importance of teamwork and effective communication, which is crucial for ensuring flight safety.\n我从飞行教员那里学到了很多东西。首先，我掌握了扎实的飞行技能和专业知识，包括各种飞行操作技巧和应急处置方法。其次，教员始终强调飞行安全的重要性，教导我要始终将安全放在首位，严格遵守操作程序，不抱有任何侥幸心理。此外，教员严谨的工作态度和面对突发情况时的沉着应对也深深影响了我。他教会我在飞行过程中要保持良好的心理素质，遇到问题时沉着冷静、理性分析，快速做出正确的决策。最后，教员还教会了我团队协作和有效沟通的重要性，这对于保障飞行安全至关重要。"
+      "audioText": "What are your plans for your future aviation career?",
+      "audioTextZh": "你对未来的航空职业生涯有什么规划？",
+      "referenceText": "A suitable example would be: I plan to build more line experience, complete an aircraft-type upgrade and gradually prepare for command responsibility. I also want to strengthen my English, technical knowledge and mentoring skills while maintaining a strong safety record. Learners should replace these goals with a realistic path based on their current licence and career stage.",
+      "referenceTextZh": "一个合适的示范答案是：我计划积累更多航线经验，完成机型升级，并逐步为承担机长责任做准备。我还想在保持良好安全记录的同时，提高英语水平、技术知识和指导他人的能力。学习者应根据自己当前的执照和职业阶段，改为描述切合实际的职业发展路径。"
+    },
+    {
+      "id": "opi-extra-058",
+      "taskTitle": "其它-机型与职业-3",
+      "audioText": "What are the main operating limitations of the aircraft type you fly?",
+      "audioTextZh": "你所飞机型的主要运行限制有哪些？",
+      "referenceText": "A suitable transport-aircraft answer would include maximum and minimum speeds, operating altitude, weight and centre-of-gravity limits, and structural load limits. It would also cover wind, runway, temperature, system, engine and configuration limitations such as flap, gear and pressurization limits. Learners should use the approved limitations section for their exact model and never substitute remembered figures from another variant.",
+      "referenceTextZh": "一个合适的运输类飞机答案应包括最大和最小速度、运行高度、重量与重心限制，以及结构载荷限制。它还应涵盖风、跑道、温度、系统、发动机和构型限制，例如襟翼、起落架和增压限制。学习者应查阅自己具体型号经批准手册的限制章节，绝不能用记忆中其他改型的数值替代。"
+    },
+    {
+      "id": "opi-extra-121",
+      "taskTitle": "其它-机型与职业-4",
+      "audioText": "Do you like the aircraft type you currently fly, and why?",
+      "audioTextZh": "你喜欢目前所飞的机型吗？为什么？",
+      "referenceText": "A suitable answer would be: I like the A320 family because its cockpit layout is consistent, its automation supports routine workload and its common family design helps training. I also need to stay alert to automation modes and maintain manual flying skills. This is a model opinion and should be adapted to the learner's real aircraft.",
+      "referenceTextZh": "一个合适的回答是：我喜欢 A320 系列，因为驾驶舱布局一致、自动化有助于管理日常工作负荷，而且系列通用性有利于训练。我也需要时刻注意自动化方式，并保持人工飞行技能。这是一段示范性观点，应根据学习者的实际机型调整。"
     },
     {
       "id": "opi-extra-123",
-      "taskTitle": "其它-机型与职业-3",
-      "audioText": "Can you say something about your first solo? What's the most unforgettable experience during your career?",
-      "audioTextZh": "你能讲讲你的首次单飞吗？你职业生涯中最难忘的经历是什么？",
-      "referenceText": "I took my first solo flight last year. That day was good for flying — the sky was clear, visibility was okay, and the wind was calm. At the beginning, I felt a bit nervous. My flight instructor encouraged me, saying I could make it. I controlled the aircraft and flew 3 traffic patterns. It’s an unforgettable experience in my life.\n我去年进行了首次单飞。那天很适合飞行 —— 天空晴朗，能见度不错，风力平稳。一开始我有点紧张，飞行教员鼓励我，说我能行。我操控飞机，完成了 3 个起落航线飞行。这是我人生中难忘的经历 。"
-    },
-    {
-      "id": "opi-extra-124",
-      "taskTitle": "其它-机型与职业-4",
-      "audioText": "What type of aircraft do you fly? Can you introduce your aircraft systems?",
-      "audioTextZh": "你驾驶哪种型号的飞机？能介绍一下飞机的系统吗？",
-      "referenceText": "I fly the C172. It has several aircraft systems, such as the electrical system, flight control system, landing gear, communication and navigation systems. Additionally, there are the hydraulic system, pressurization system, air conditioning system, and oxygen system.\n我驾驶 C172 飞机。它配备有多个系统，比如电气系统、飞行控制系统、起落架、通信与导航系统。此外，还有液压系统、增压系统、空调系统和氧气系统 。\nI currently fly the DA-40, a single-engine propeller aircraft mainly used for flight training. It can accommodate 4 people, has excellent gliding performance, long endurance, light weight and a long service life. It also requires a short takeoff and landing distance, making it very suitable for local circuit training and cross-country training for student pilots.\n我目前飞行的机型是DA-40，它是一款单引擎螺旋桨飞机，主要用于飞行训练。该机型可容纳4人，滑翔性能出色，续航时间长，重量轻且使用寿命久，起飞和降落所需距离较短，非常适合飞行学员进行本场起落训练和转场训练。"
-    },
-    {
-      "id": "opi-extra-125",
       "taskTitle": "其它-机型与职业-5",
-      "audioText": "Do you use control column or side stick in your aircraft?",
-      "audioTextZh": "你的飞机上用的是驾驶杆（control column）还是侧杆（side stick）？",
-      "referenceText": "I fly C172, I use control column.\n我驾驶 C172 飞机，用的是驾驶杆 。"
-    },
-    {
-      "id": "opi-extra-126",
-      "taskTitle": "其它-机型与职业-6",
-      "audioText": "What are the advantages or disadvantages of control column/side stick?",
-      "audioTextZh": "驾驶杆 / 侧杆有哪些优缺点？",
-      "referenceText": "There are some advantages of the control column. Control columns control the aircraft via mechanical or hydraulic mechanisms, so we can feel that we are controlling the aircraft ourselves. However, there are some disadvantages too. Control columns take up more room in the cockpit, and we may feel stressed.\n驾驶杆有一些优点，它通过机械或液压机构操控飞机，所以我们能切实感受到自己在控制飞机。不过，它也有缺点，在驾驶舱内占据的空间较大，而且我们（飞行员 ）可能会感到操作压力 。"
+      "audioText": "What has been the most unforgettable experience of your aviation career?",
+      "audioTextZh": "你的航空职业生涯中最难忘的经历是什么？",
+      "referenceText": "A suitable example would be my first supervised passenger flight after completing simulator training. The weather changed near the destination, so the crew diverted calmly and applied the planning and communication skills I had just learned. It was memorable because it showed that a safe change of plan is a normal professional decision; this event is fictional.",
+      "referenceTextZh": "一个合适的示范案例是：完成模拟机训练后，我第一次在监督下执行客运飞行。接近目的地时天气发生变化，因此机组冷静改航，并运用了我刚刚学到的计划和沟通技能。这次经历令人难忘，因为它说明安全地改变计划是一项正常的职业决定；该事件为虚构案例。"
     },
     {
       "id": "opi-extra-127",
-      "taskTitle": "其它-机型与职业-7",
-      "audioText": "If you are given a chance to choose any type of aircraft to fly, will you choose Boeing or Airbus?",
-      "audioTextZh": "如果给你机会选择驾驶任意机型，你会选波音还是空客的飞机？",
-      "referenceText": "If I have a chance to choose, I will choose Airbus. Because Airbus aircraft use side sticks, so we’ll have more space and feel more comfortable. Besides, Airbus uses fly - by - wire technology, which can reduce our workload.\n如果有机会选，我会选空客的飞机。因为空客飞机用侧杆，这样驾驶舱空间更大，我们（飞行员 ）也会更舒适。而且，空客采用电传操纵技术，能减轻我们的工作负担 。"
+      "taskTitle": "其它-机型与职业-6",
+      "audioText": "If you could choose, would you prefer to fly a Boeing or an Airbus aircraft, and why?",
+      "audioTextZh": "如果可以选择，你更愿意驾驶波音还是空客飞机？为什么？",
+      "referenceText": "I would be happy to fly either, but I might choose Airbus because I am interested in its flight-control philosophy and family commonality. Boeing aircraft offer their own cockpit logic and handling qualities, and the exact experience varies by generation and model. Training quality, operator culture and the specific assignment would matter more to me than the brand name alone.",
+      "referenceTextZh": "我愿意驾驶两者中的任何一种，但可能会选择空客，因为我对它的飞行操纵理念和系列通用性感兴趣。波音飞机也有自身的驾驶舱逻辑和操纵特性，而且具体体验会随代际和型号变化。对我而言，训练质量、运营人文化和具体岗位比品牌本身更重要。"
     },
     {
       "id": "opi-extra-128",
-      "taskTitle": "其它-机型与职业-8",
-      "audioText": "What are the differences between Boeing aircraft and Airbus?",
-      "audioTextZh": "波音飞机和空客飞机有哪些区别？",
-      "referenceText": "There are some differences between Boeing aircraft and Airbus aircraft. First, Boeing aircraft use control columns, while Airbus aircraft use side sticks. Second, Boeing aircraft are controlled by hydraulic - mechanical mechanisms, while Airbus aircraft are controlled by fly - by - wire systems.\n波音飞机和空客飞机存在一些区别。首先，波音飞机采用驾驶杆（control columns ），而空客飞机使用侧杆（side sticks ）。其次，波音飞机由液压机械机构操控，空客飞机则通过电传操纵系统（fly - by - wire systems ）进行控制 。"
+      "taskTitle": "其它-机型与职业-7",
+      "audioText": "What general differences do pilots notice between Boeing and Airbus flight decks?",
+      "audioTextZh": "飞行员通常会注意到波音与空客驾驶舱之间有哪些差异？",
+      "referenceText": "Pilots often notice differences in control interfaces, automation logic, display design and how flight-envelope functions are implemented. As one high-level example, current Airbus fly-by-wire flight decks commonly use sidesticks, while Boeing interfaces and automation should be compared model by model rather than described by one feature. A fair comparison should name the exact aircraft and avoid turning broad design philosophies into claims that one brand is always more manual or more automated.",
+      "referenceTextZh": "飞行员经常会注意到操纵界面、自动化逻辑、显示设计以及飞行包线功能实现方式的差异。举一个概括性例子，当前空客电传操纵驾驶舱通常使用侧杆，而波音的界面和自动化应逐个型号比较，不能只用一个特征概括。公平比较应明确具体机型，避免把广泛的设计理念变成某一品牌总是更偏人工或更自动化的结论。"
     },
     {
       "id": "opi-extra-129",
-      "taskTitle": "其它-机型与职业-9",
-      "audioText": "What are the technological advantages and disadvantages of the aircraft you fly now?",
-      "audioTextZh": "你目前驾驶的飞机在技术方面有哪些优缺点？",
-      "referenceText": "I fly the C172. It is our training aircraft during initial training. It is easy to control. However, it can only fly below 3,000m, and it can only stay airborne for about five hours.\n我驾驶的是 C172 飞机，它是我们初始训练阶段用的教练机，容易操控。但它的飞行高度只能在 3000 米以下，而且续航时间大概只有五小时左右 。"
+      "taskTitle": "其它-机型与职业-8",
+      "audioText": "What do you consider the main technological strengths and limitations of the aircraft type you currently fly?",
+      "audioTextZh": "你认为目前所飞机型的主要技术优势和局限性是什么？",
+      "referenceText": "A suitable A320-family answer would highlight integrated electronic displays, fly-by-wire flight controls, flight-management capability and strong family commonality. Its high level of integration can reduce routine workload, but crews must manage automation modes, data entry and degraded-system behavior carefully. Learners should replace this with strengths and limitations supported by the manuals and experience for their actual model.",
+      "referenceTextZh": "一个合适的 A320 系列答案会强调集成电子显示器、电传飞行操纵、飞行管理能力和很高的系列通用性。高度集成可以减少日常工作负荷，但机组必须谨慎管理自动化方式、数据输入和系统降级后的表现。学习者应根据自己实际机型的手册和经验，以有依据的优点与限制替换这段内容。"
     },
     {
       "id": "opi-extra-130",
-      "taskTitle": "其它-机型与职业-10",
-      "audioText": "How many passengers can your aircraft accommodate?",
-      "audioTextZh": "你的飞机能搭载多少乘客？",
-      "referenceText": "I fly the C172. It can accommodate 2 passengers.\n我驾驶的是 C172 飞机，它能搭载 2 名乘客 。"
+      "taskTitle": "其它-机型与职业-9",
+      "audioText": "What is the passenger capacity of the aircraft type you fly?",
+      "audioTextZh": "你所飞机型的载客量是多少？",
+      "referenceText": "A suitable A320 example would be roughly 140 to 180 passengers, depending on the cabin layout and certified configuration. Operators may choose different class arrangements, seat pitch and exit-limited capacities, so there is no single number for every aircraft. Learners should use the approved seating configuration of the aircraft they actually operate.",
+      "referenceTextZh": "一个合适的 A320 示范答案是：根据客舱布局和审定构型，载客量大约为 140 至 180 人。运营人可以选择不同的舱等布局、座椅间距和受出口能力限制的载客量，因此不存在适用于每架飞机的单一数值。学习者应使用自己实际运行飞机经批准的座位构型。"
     },
     {
       "id": "opi-extra-131",
-      "taskTitle": "其它-机型与职业-11",
-      "audioText": "How many types of aircraft are there in your fleet?",
-      "audioTextZh": "你们机队中有多少种型号的飞机？",
-      "referenceText": "In our fleet, there is only one type of aircraft C172 /A320 /B737.\n我们机队中只有一种型号的飞机，即 C172/A320/B37"
-    },
-    {
-      "id": "opi-extra-132",
-      "taskTitle": "其它-机型与职业-12",
-      "audioText": "How many kinds of type ratings do you have now? What are they?",
-      "audioTextZh": "你目前有多少种型别等级（资格）？分别是什么？",
-      "referenceText": "Now I have 3 type - ratings.\nsingle engine land 单发陆地\nmulti - engine land 多发陆地\nA320/B737                                                  目前我有 3 种型别等级（资格），分别是：\n单发陆地（适用于单发、在陆地起降飞机的型别等级 ）\n多发陆地（适用于多发、在陆地起降飞机的型别等级 ）\nA320/B737（对应空客 A320、波音 B737 机型的型别等级，代表具备驾驶这些特定民航客机的资格 ）"
+      "taskTitle": "其它-机型与职业-10",
+      "audioText": "Which aircraft types are operated in your company's fleet?",
+      "audioTextZh": "你所在公司的机队运营哪些机型？",
+      "referenceText": "A suitable company example would be a fleet made up mainly of Airbus A320-family aircraft for short- and medium-haul routes, with a smaller number of wide-body aircraft for longer services. The mix allows some common training while matching capacity to different markets. Learners should replace this fictional fleet with their operator's current published information.",
+      "referenceTextZh": "一个合适的公司示范是：机队主要由执行中短程航线的空客 A320 系列飞机组成，另有少量宽体飞机执行较长航线。这种组合既能实现部分训练通用，又能使运力与不同市场相匹配。学习者应根据自己运营人当前公布的信息替换这个虚构机队。"
     },
     {
       "id": "opi-extra-133",
-      "taskTitle": "其它-机型与职业-13",
-      "audioText": "Please compare the aircraft you fly in your company and the aircraft you have flown in the flight school",
-      "audioTextZh": "请对比你在公司驾驶的飞机和你在飞行学校飞过的飞机",
-      "referenceText": "In the flight school, I fly the C172 (C172, SR20, PA44). They are the training aircraft in our initial flight training. They are easy to control.\nIn the company, I will fly the A320 (A320, B737). They are large commercial aircraft. They are more advanced. They may improve the aircraft performance, reduce our workload and make our flight easier and safer.\n在飞行学校，我飞塞斯纳 172（C172、SR20、PA44 可选 ）。它们是我们初始飞行训练的训练用机。它们易于操控。\n在公司，我将飞空客 A320（A320、B737 可选 ）。它们是大型商用飞机。它们更先进，能够提升飞机性能、减轻我们的工作负担，让飞行更轻松、安全。"
+      "taskTitle": "其它-机型与职业-11",
+      "audioText": "How does the aircraft you fly now compare with the aircraft you flew during flight training?",
+      "audioTextZh": "你现在所飞的航空器与飞行训练期间驾驶的航空器相比如何？",
+      "referenceText": "A suitable example would compare a modern airline jet with the small piston trainer used for initial training. The jet is faster, heavier, pressurized and highly automated, so energy, systems and crew coordination require much more planning. The trainer gives more direct control feedback and simpler systems, which made it useful for building basic flying skills.",
+      "referenceTextZh": "一个合适的示范案例是：把现代航空公司喷气式飞机与初始训练使用的小型活塞式教练机进行比较。喷气式飞机速度更快、重量更大、具有增压且高度自动化，因此能量、系统和机组协调需要更多计划。教练机提供更直接的操纵反馈和更简单的系统，因此很适合培养基本飞行技能。"
     },
     {
       "id": "opi-extra-134",
+      "taskTitle": "其它-机型与职业-12",
+      "audioText": "What is your opinion of large commercial aircraft designed and manufactured in China?",
+      "audioTextZh": "你如何看待中国设计和制造的大型商用飞机？",
+      "referenceText": "I think large commercial aircraft developed in China are an important addition to the global aviation industry. Programs such as the C919 can build engineering capability, supply-chain experience and more competition, but long-term success depends on safety, reliability, support, certification and transparent in-service performance. I would judge each aircraft by verified operational evidence rather than by its country of origin.",
+      "referenceTextZh": "我认为，中国研制的大型商用飞机是全球航空工业的重要补充。C919 等项目可以发展工程能力、积累供应链经验并带来更多竞争，但长期成功取决于安全、可靠性、支持能力、审定和透明的在役表现。我会根据经过核实的运行证据评价每一种飞机，而不是以原产国判断。"
+    },
+    {
+      "id": "opi-core-849",
+      "taskTitle": "其它-机型与职业-13",
+      "audioText": "Which aircraft type ratings have you held?",
+      "audioTextZh": "你曾持有哪些航空器型别等级？",
+      "referenceText": "A suitable example would be: I have held a type rating for the Airbus A320 family and no other transport-aircraft rating. I keep the rating valid through the required recurrent training and checks. Learners must replace this with their own licenses and should not claim a rating they do not hold.",
+      "referenceTextZh": "一个合适的示范答案是：我持有空客 A320 系列机型等级，没有其他运输类飞机机型等级。我通过规定的复训和检查保持该等级有效。学习者必须根据自己的执照替换这段内容，不应声称持有自己并未取得的等级。"
+    },
+    {
+      "id": "opi-core-866",
       "taskTitle": "其它-机型与职业-14",
-      "audioText": "What is your opinion about large commercial aircraft designed and manufactured in China?",
-      "audioTextZh": "你对中国自主设计和制造的大型商用飞机有什么看法？",
-      "referenceText": "So far, there are some large commercial aircraft designed and made in China, such as ARJ - 21, C919. They are equipped with advanced equipment and systems and they can make our flight safe and comfortable. We feel very proud of them and we are looking forward to flying them.\n迄今为止，有一些大型商用飞机是由中国自主设计和制造的，比如 ARJ - 21、C919 。它们配备了先进的设备和系统，能够保障我们飞行的安全与舒适 。我们为这些飞机感到无比骄傲，并且都盼望着能驾驶它们飞行 。"
+      "audioText": "What are the main systems on the aircraft type you fly?",
+      "audioTextZh": "你所飞的机型有哪些主要系统？",
+      "referenceText": "A suitable transport-aircraft example would include flight controls, electrical power, hydraulics, fuel, engines, fire protection, landing gear and brakes. It would also have navigation and communication, autoflight, air conditioning and pressurization, ice and rain protection, and warning or recording systems. Learners should reorganize the list to match the system chapters and architecture of the aircraft they actually fly.",
+      "referenceTextZh": "一个合适的运输类飞机示范会包括飞行操纵、电源、液压、燃油、发动机、防火、起落架和刹车系统。它还会包括导航与通信、自动飞行、空调与增压、防冰防雨，以及警告或记录系统。学习者应按照自己实际所飞机型的系统章节和架构重新组织这份清单。"
     },
     {
-      "id": "opi-extra-135",
+      "id": "opi-extra-142",
       "taskTitle": "其它-机型与职业-15",
-      "audioText": "Where did you learn flying, at home or\nabroad?",
-      "audioTextZh": "你在哪里学习的飞行,在国内还是国外?",
-      "referenceText": "I learned flying in China. The flight school I attend has complete training facilities and professional instructors, which can provide systematic and standardized flight training, helping me lay a solid foundation for my flying skills.\n我在国内学习飞行。我所在的飞行学校拥有完善的训练设施和专业的教员，能够提供系统、规范的飞行训练，帮助我扎实掌握飞行技能。"
+      "audioText": "Would you like to work for a foreign airline, and why?",
+      "audioTextZh": "你愿意为外国航空公司工作吗？为什么？",
+      "referenceText": "I would consider working for a foreign airline because it could expose me to a different culture, route network and operating environment. It might also improve my English and broaden my professional experience. I would compare training, safety culture, contract conditions, family impact and license requirements before deciding.",
+      "referenceTextZh": "我会考虑到外国航空公司工作，因为这样可以接触不同文化、航线网络和运行环境。这也可能提高我的英语水平并拓宽职业经历。作出决定前，我会比较训练、安全文化、合同条件、对家庭的影响和执照要求。"
     },
     {
-      "id": "opi-extra-136",
+      "id": "opi-extra-143",
       "taskTitle": "其它-机型与职业-16",
-      "audioText": "Can you tell me something about\nyour flight school?",
-      "audioTextZh": "你能告诉我你的航校吗?",
-      "referenceText": "My flight school is located in a city with convenient transportation and superior geographical conditions. It has a professional teaching team composed of experienced flight instructors and ground teachers. The school is equipped with a large number of advanced training aircraft and simulators, and has a complete set of training courses covering theoretical knowledge, flight skills and emergency disposal. It attaches great importance to the safety and quality of training, and has trained a large number of outstanding aviation professionals for the industry.\n我的飞行学校位于一座交通便利、地理条件优越的城市。学校拥有一支由经验丰富的飞行教员和地面教员组成的专业教学团队，配备了大量先进的训练飞机和模拟机，并且拥有涵盖理论知识、飞行技能和应急处置等方面的完整训练课程。学校非常注重训练安全和质量，为行业培养了大批优秀的航空人才。"
+      "audioText": "What challenges might a pilot face when working for a foreign airline?",
+      "audioTextZh": "飞行员为外国航空公司工作时可能面临哪些挑战？",
+      "referenceText": "A pilot may need to adapt to a different language, culture, regulatory system and style of crew communication. License conversion, immigration, commuting and separation from family can also be demanding. The safest approach is to learn the new operator's procedures carefully while speaking up whenever language or cultural assumptions create uncertainty.",
+      "referenceTextZh": "飞行员可能需要适应不同语言、文化、监管体系和机组沟通方式。执照转换、移民手续、通勤和与家人分离也可能很有挑战。最安全的做法是认真学习新运营人的程序；只要语言或文化假设造成疑问，就主动提出。"
+    },
+    {
+      "id": "opi-extra-151",
+      "taskTitle": "其它-机型与职业-17",
+      "audioText": "Which aircraft types have you flown?",
+      "audioTextZh": "你飞过哪些机型？",
+      "referenceText": "A suitable example would be: I actually flew a small single-engine piston trainer during initial training and later operated the Airbus A320 family in airline service. The first built basic handling skills, while the second introduced multi-crew operations and complex systems. Learners must distinguish aircraft they have actually flown from types encountered only in a simulator or ground course.",
+      "referenceTextZh": "一个合适的示范答案是：初始训练期间，我实际驾驶过一架小型单发活塞教练机，后来在航空公司运行中驾驶空客 A320 系列。前者培养了基本操纵技能，后者让我接触多机组运行和复杂系统。学习者必须区分自己实际驾驶过的飞机与只在模拟机或地面课程中接触的机型。"
     }
   ]
 }

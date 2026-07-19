@@ -14,29 +14,24 @@
     {
       "id": "opi-image-023-q01",
       "taskTitle": "图片题-023-01",
-      "audioText": "Please describe the emergency scene you see in this picture.",
-      "audioTextZh": "请描述你在图片中看到的紧急场景。",
-      "referenceText": "In this picture, I can see a situation related to Ground fire emergency. The key points are fuel, hot brakes, leaking fluids, ground equipment, and delayed emergency response. It is important for the crew to recognize the risk early, keep good communication, and follow standard operating procedures.",
-      "referenceTextZh": "在这张图片中，我看到的是与地面火灾应急有关的情况。关键点包括燃油、热刹车、液体泄漏、地面设备以及应急响应延迟。机组应及早识别风险，保持良好沟通，并按照标准操作程序处置。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-023-q01.mp3"
+      "audioText": "What can you see in this picture of a ground-fire emergency?",
+      "audioTextZh": "你能从这张地面火灾紧急情况的图片中看到什么？"
     },
     {
       "id": "opi-image-023-q02",
       "taskTitle": "图片题-023-02",
-      "audioText": "What factors increase the risk of that situation",
-      "audioTextZh": "哪些因素会增加这种情况的风险？",
-      "referenceText": "The main risks are fuel, hot brakes, leaking fluids, ground equipment, and delayed emergency response. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
-      "referenceTextZh": "主要风险包括燃油、热刹车、液体泄漏、地面设备以及应急响应延迟。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-023-q02.mp3"
+      "audioText": "What factors can increase the risk of an aircraft fire on the ground?",
+      "audioTextZh": "哪些因素会增加航空器在地面起火的风险？",
+      "referenceText": "Risk increases with fuel or oil leaks, hot work, battery faults, damaged wiring, abnormal engine or APU starts and careless fueling. Combustible cabin or cargo material, oxygen, poor housekeeping and unavailable fire equipment can allow a small ignition to spread. Wind, close parking and delayed detection can threaten nearby aircraft and people.",
+      "referenceTextZh": "燃油或滑油泄漏、动火作业、电池故障、导线损坏、发动机或 APU 启动异常，以及加油操作不当都会增加风险。客舱或货舱内的可燃材料、氧气、现场管理不善和灭火设备不可用，可能使小火源迅速蔓延。风、飞机停放间距小和发现延迟还会威胁附近飞机和人员。"
     },
     {
       "id": "opi-image-023-q03",
       "taskTitle": "图片题-023-03",
-      "audioText": "If you operate an aircraft parked near this malfunctioning burning aircraft, what actions will you take to stay safe?",
-      "audioTextZh": "如果你操作的飞机停在这架故障起火飞机附近，你会采取哪些行动保证安全？",
-      "referenceText": "I would brief the threat, check the relevant aircraft systems and performance, coordinate with ATC and the crew, and follow the checklist. If safety is not assured, I would delay, discontinue, reject, go around, or divert as appropriate.",
-      "referenceTextZh": "我会完成威胁简令，检查相关飞机系统和性能，与管制和机组协同，并执行检查单。如果安全无法保证，我会根据情况选择延误、中止、拒绝起飞、复飞或备降。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-023-q03.mp3"
+      "audioText": "If your aircraft were parked near the burning aircraft shown, how would you protect your aircraft and its occupants?",
+      "audioTextZh": "如果你的航空器停在图中起火航空器附近，你会如何保护自己的航空器及其乘员？",
+      "referenceText": "I would immediately coordinate with ground control, airport fire services and ground staff and stop fueling, boarding or other exposed activity. If it could be done safely, I would have the aircraft moved away from smoke, heat and wind-driven fire; otherwise I would shut down and order an evacuation through exits away from the hazard. The crew would account for occupants, keep them upwind and clear, and avoid delaying evacuation to protect baggage or the aircraft.",
+      "referenceTextZh": "我会立即与地面管制、机场消防和地面人员协调，并停止加油、登机或其他使人员暴露于危险的活动。如果能够安全实施，我会安排将飞机移离烟雾、高温和顺风蔓延的火势；否则就关车，并命令人员从远离危险一侧的出口撤离。机组会清点人员，让他们留在上风方向的安全区域，不能为了保护行李或飞机而延误撤离。"
     }
   ]
 }

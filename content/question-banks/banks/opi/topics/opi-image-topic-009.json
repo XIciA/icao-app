@@ -14,20 +14,18 @@
     {
       "id": "opi-image-009-q01",
       "taskTitle": "图片题-009-01",
-      "audioText": "What are the differences between these traditional aircraft instruments and modern advanced flight instrument cockpits?",
-      "audioTextZh": "这些传统飞机仪表与现代先进飞行仪表驾驶舱有什么区别？",
-      "referenceText": "The main benefit is improved situational awareness. Compared with the older method, it gives pilots clearer information, better monitoring, and more time to make safe decisions.",
-      "referenceTextZh": "主要好处是提升态势感知。与较旧的方式相比，它能给飞行员更清晰的信息、更好的监控能力，并为安全决策争取更多时间。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-009-q01.mp3"
+      "audioText": "What are the main differences between a cockpit with traditional flight instruments and a modern glass cockpit?",
+      "audioTextZh": "采用传统飞行仪表的驾驶舱与现代玻璃驾驶舱有哪些主要区别？",
+      "referenceText": "Traditional cockpits present information on many separate gauges, while glass cockpits combine flight, navigation and system data on electronic displays. Glass systems can add maps, alerts, trends and reconfigurable pages, whereas analog instruments often provide simpler independent indications. The modern layout reduces some scanning but creates new demands for mode awareness, data management and failure reversion.",
+      "referenceTextZh": "传统驾驶舱用许多独立仪表显示信息，玻璃驾驶舱则把飞行、导航和系统数据集中到电子显示器上。玻璃驾驶舱可以增加地图、警告、趋势和可重新配置的页面，模拟仪表通常提供较简单、相互独立的指示。现代布局减少了部分扫描工作，却对方式意识、数据管理和故障后的显示转换提出了新要求。"
     },
     {
       "id": "opi-image-009-q02",
       "taskTitle": "图片题-009-02",
-      "audioText": "What challenges do pilots face when operating aircraft with these traditional instruments?",
-      "audioTextZh": "飞行员操作这些传统仪表飞机时会面临哪些挑战？",
-      "referenceText": "The main risks are higher scan workload, less integrated information, and greater dependence on manual cross-checking. These risks may reduce safety margins and increase crew workload, so pilots should monitor the aircraft carefully and be ready to take conservative action.",
-      "referenceTextZh": "主要风险包括扫视负荷更高、信息整合程度更低并且更依赖人工交叉检查。这些风险会降低安全裕度并增加机组工作负荷，因此飞行员应认真监控飞机状态，并准备采取保守处置。",
-      "audio": "/question-bank-assets/audio/opi/image-questions/image-topic-009-q02.mp3"
+      "audioText": "What challenges do pilots face when flying an aircraft with traditional flight instruments?",
+      "audioTextZh": "驾驶采用传统飞行仪表的航空器时，飞行员会面临哪些挑战？",
+      "referenceText": "Pilots must scan and combine information from many separate instruments without an integrated map or system picture. Small trends or related failures can be harder to recognize quickly, and navigation or performance work may require more manual calculation. Good instrument-scan discipline is essential, but familiar analog indications can remain clear and robust.",
+      "referenceTextZh": "飞行员必须扫描并综合许多独立仪表的信息，而没有一体化地图或系统全貌。细小趋势或相互关联的故障可能更难迅速识别，导航或性能工作也可能需要更多人工计算。良好的仪表扫描习惯非常重要，不过熟悉的模拟仪表指示仍可保持清晰和可靠。"
     }
   ]
 }

@@ -7,16 +7,18 @@
     {
       "id": "opi-extra-273",
       "taskTitle": "运行-客航与货航-1",
-      "audioText": "What are the differences between passenger flight and cargo flight?",
-      "audioTextZh": "客运航班和货运航班有哪些区别？",
-      "referenceText": "As I know, there are differences between passenger flights and cargo flights. First, passenger flights transport passengers and their luggage to destinations, while cargo flights only transport goods. Second, passenger flights operate with flight attendants on board, whereas cargo flights don’t require attendants as they focus on transporting cargo.\n据我了解，客运航班和货运航班存在以下区别：一是客运航班将乘客及其行李运送至目的地，货运航班则仅运输货物；二是客运航班执行任务时有机组乘务人员随行，货运航班因以货物运输为核心，无需乘务人员随行 。\n\nPassenger flights and cargo flights have several differences. First, passenger flights carry people, so safety and comfort are more critical. They require cabin crew, passenger seats, oxygen masks for all, and in-flight entertainment systems. Cargo flights carry goods only, so no cabin crew or passenger amenities are needed. Second, cargo flights often operate at night to avoid peak hours, while passenger flights follow daytime schedules more frequently. Third, cargo flights may carry dangerous goods, requiring special handling and documentation. Fourth, security procedures differ – passenger flights focus on hijacking and bomb threats, while cargo flights focus on smuggling and undeclared hazardous materials. Both must follow ICAO and CAAC regulations.\n客运航班和货运航班有若干区别。客运航班运载人员，安全和舒适更关键，需要客舱机组、座椅、全员氧气面罩、娱乐系统。货运航班只载货物，无需客舱机组与旅客设施。货运常夜间运行，客运多日间飞行。货运可能载危险品，需特殊处理与文件。安保程序不同：客运关注劫机炸弹威胁，货运关注走私与未申报危险品。两者均需遵守 ICAO 与 CAAC 规章。"
+      "audioText": "What are the main operational differences between passenger and cargo flights?",
+      "audioTextZh": "客运航班与货运航班在运行方面有哪些主要区别？",
+      "referenceText": "Passenger flights include cabin-service, passenger welfare and boarding considerations, while cargo flights focus more on freight loading, restraint and dangerous-goods information. Cargo schedules may contain more night sectors or airports with limited passenger facilities, but both operations use the same basic flight-safety principles. The crew must understand the specific load, ground-handling and emergency risks of the operation rather than assume that one is easier.",
+      "referenceTextZh": "客运飞行需要考虑客舱服务、旅客照料和登机，货运飞行则更侧重货物装载、固定和危险品信息。货运排班可能包含更多夜间航段或旅客设施有限的机场，但两类运行采用相同的基本飞行安全原则。机组必须了解具体运行的载荷、地面保障和应急风险，不能假定其中一种更容易。"
     },
     {
       "id": "opi-extra-274",
       "taskTitle": "运行-客航与货航-2",
-      "audioText": "What are the main duties for pilots of passenger flight?",
-      "audioTextZh": "客运航班飞行员的主要职责有哪些？",
-      "referenceText": "As pilots of passenger flight, we are responsible for the safety of the flight including the safety of the aircraft, the safety of persons on board and their belongings.\nAs pilots of passenger flight, we are responsible for the safety of the flight including the safety of the aircraft, the safety of persons on board and their belongings.\n作为客运航班飞行员，我们负责保障飞行安全，涵盖航空器安全、机上人员安全及他们的财物安全 。"
+      "audioText": "What are the main duties of pilots on a passenger flight?",
+      "audioTextZh": "飞行员在客运航班上的主要职责有哪些？",
+      "referenceText": "Pilots plan and operate the flight, verify aircraft, weather, fuel, load and performance information, and coordinate with ATC, dispatch, cabin and ground teams. They monitor the aircraft and route, manage normal and abnormal situations and make decisions that protect passengers and crew. They also complete required records and report technical or safety events after the flight.",
+      "referenceTextZh": "飞行员计划并实施飞行，核实飞机、天气、燃油、载荷和性能信息，并与 ATC、签派、客舱和地面团队协调。他们监控飞机和航路，管理正常与异常情况，并作出保护旅客和机组的决定。飞行后，他们还应完成规定记录并报告技术或安全事件。"
     }
   ]
 }

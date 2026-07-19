@@ -2,77 +2,55 @@
   "categoryId": "opi-category-02",
   "id": "opi-topic-0133",
   "name": "飞行中失火",
-  "declaredCardCount": 10,
+  "declaredCardCount": 6,
   "cards": [
     {
       "id": "opi-extra-278",
       "taskTitle": "特情-飞行中失火-1",
-      "audioText": "If you are going to land with engine Fire, what preparation will you make?",
-      "audioTextZh": "若要在发动机起火情况下着陆，需做哪些准备？",
-      "referenceText": "If we encounter an engine fire during flight, first, we will report the situation to ATC and request an emergency landing. Second, we will cut off the fuel supply to the faulty engine, activate the fire suppression system (discharge fire bottles) to extinguish the fire. If necessary, we will shut down the faulty engine.\n若飞行中遭遇发动机起火，首先，会向空中交通管制（ATC）报告情况并申请紧急降落；其次，切断故障发动机的燃油供应，启动灭火系统（释放灭火瓶 ）灭火；如有必要，会关闭故障发动机 。"
-    },
-    {
-      "id": "opi-extra-279",
-      "taskTitle": "特情-飞行中失火-2",
-      "audioText": "During flight, if you observe smoke in flight deck, what will you do?",
-      "audioTextZh": "飞行中，若在驾驶舱观察到烟雾，会如何处理？",
-      "referenceText": "If there is smoke or fire in the cockpit, first, we will put on oxygen masks. Second, we will report the situation to ATC, request an emergency descent, and arrange for an immediate landing.\n若驾驶舱内出现烟雾或火情，首先，我们会佩戴氧气面罩；其次，向空中交通管制（ATC）报告情况，申请紧急下降并安排立即着陆 。\n\nDon oxygen mask immediately, identify the smoke source if possible, and isolate it. Ventilate the cockpit/cabin (open side window for light aircraft). Report to ATC, declare emergency, and request priority landing at the nearest airport. Follow QRH procedures for smoke/fire handling.\n立即佩戴氧气面罩，尽可能识别并隔离烟雾源；为驾驶舱/客舱通风（轻型飞机打开侧窗）；向空管报告并宣布紧急状态，请求在最近机场优先着陆；遵循快速检查单（QRH）的烟雾/火情处置程序。"
-    },
-    {
-      "id": "opi-extra-280",
-      "taskTitle": "特情-飞行中失火-3",
-      "audioText": "During cruise, if the flight attendant reported there is a smoke in the cabin, what will you do?",
-      "audioTextZh": "巡航阶段，若乘务员报告客舱出现烟雾，会如何处理？",
-      "referenceText": "If we receive a report of smoke in the cabin during cruise, first, we will report the situation to ATC and request an emergency landing at the nearest suitable airport, along with arranging emergency services. Second, the cabin crew will attempt to extinguish potential fires using fire extinguishers. Third, we will help remove smoke by activating air vents or relevant ventilation systems.\n若巡航阶段收到客舱烟雾报告，首先，我们会向空中交通管制（ATC）报告情况，申请在最近的合适机场紧急着陆，并协调应急服务；其次，乘务组会使用灭火器尝试扑灭可能存在的火情；最后，我们会通过开启通风口或相关通风系统来协助排除烟雾 。"
-    },
-    {
-      "id": "opi-extra-281",
-      "taskTitle": "特情-飞行中失火-4",
-      "audioText": "Have you ever encountered engine fire during flight?",
-      "audioTextZh": "你在飞行中遇到过发动机起火情况吗？",
-      "referenceText": "No, I have never encountered engine fire during flight.\n没有，我在飞行中从未遇到过发动机起火情况。"
+      "audioText": "What preparations should a flight crew make before landing with an engine fire?",
+      "audioTextZh": "发动机着火情况下着陆前，机组应做哪些准备？",
+      "referenceText": "The crew should use the engine-fire checklist, assess whether the fire is extinguished and choose the nearest suitable airport for an urgent landing. It should brief the cabin, declare the emergency, obtain performance and runway information, and coordinate firefighting support. Approach configuration, fuel handling and possible evacuation must follow the aircraft and operator procedures.",
+      "referenceTextZh": "机组应执行发动机火警检查单，评估火是否已经熄灭，并选择最近的合适机场紧急着陆。应向客舱进行简令，宣布紧急情况，获取性能和跑道信息，并协调消防保障。进近构型、燃油处置和可能的撤离必须遵循飞机和运营人程序。"
     },
     {
       "id": "opi-extra-282",
-      "taskTitle": "特情-飞行中失火-5",
-      "audioText": "What are the common causes of engine compartment fire?",
+      "taskTitle": "特情-飞行中失火-2",
+      "audioText": "What are the common causes of an engine-compartment fire?",
       "audioTextZh": "发动机舱起火的常见原因有哪些？",
-      "referenceText": "There are common causes of engine compartment fire. First, fuel leaks or oil leaks in the engine compartment may lead to fires. Second, mechanical failures of the engine itself can result in fires. Third, errors during maintenance procedures might cause fires in the engine compartment.\n发动机舱起火有以下常见原因：一是发动机舱内燃油泄漏或滑油泄漏，可能引发起火；二是发动机自身出现机械故障，会导致起火；三是维修作业过程中存在失误，可能造成发动机舱起火 。"
+      "referenceText": "An engine-compartment fire can result from a fuel, oil or hydraulic leak reaching a hot surface. It may also be caused by electrical faults, overheated components, mechanical failure, damaged lines, foreign object damage or improper maintenance. Fire detection and isolation systems reduce the risk, but the exact source often requires inspection after landing.",
+      "referenceTextZh": "发动机舱火灾可能由燃油、滑油或液压油泄漏并接触高温表面引起。电气故障、部件过热、机械失效、管路损坏、外来物损伤或维修不当也可能引发火灾。火警探测和隔离系统能够降低风险，但确切火源通常要在着陆后通过检查确定。"
     },
     {
       "id": "opi-extra-283",
-      "taskTitle": "特情-飞行中失火-6",
-      "audioText": "What equipment can be used to extinguish fire on board?",
-      "audioTextZh": "机上可使用哪些设备灭火？",
-      "referenceText": "On board, fire suppression bottles are used to extinguish engine fires, and portable fire extinguishers are utilized for cabin fires.\n机上灭火时，发动机火情使用灭火瓶（ suppression bottles ）处置，客舱火情则用便携式灭火器 。\n\nOnboard fire extinguishers (such as Halon 1301, HFCs) are primary equipment. Other tools include fire blankets (for small fires), emergency evacuation slides (to isolate fire areas), and APU shutdown (to cut off fuel supply for engine fires).\n机上灭火器（如哈龙1301、氢氟烃类）是主要设备，其他工具包括灭火毯（用于小火）、紧急撤离滑梯（隔离火区）以及辅助动力装置（APU）关闭（切断发动机火情的燃油供应）。"
+      "taskTitle": "特情-飞行中失火-3",
+      "audioText": "What firefighting equipment is available on board an aircraft?",
+      "audioTextZh": "飞机上配备了哪些灭火设备？",
+      "referenceText": "Aircraft may have fixed fire detection and extinguishing systems for engines, the auxiliary power unit, cargo compartments or lavatories. Portable extinguishers, protective breathing equipment, smoke goggles, fire gloves and crash axes may also be carried for crew use. The fitted equipment and approved extinguishing agent depend on the aircraft, compartment and regulation.",
+      "referenceTextZh": "飞机可能为发动机、辅助动力装置、货舱或卫生间配备固定式火警探测和灭火系统。机上也可能配有供机组使用的便携式灭火器、防护式呼吸设备、防烟眼镜、消防手套和应急斧。实际设备和经批准的灭火剂取决于飞机、舱室和法规。"
     },
     {
       "id": "opi-extra-284",
-      "taskTitle": "特情-飞行中失火-7",
-      "audioText": "For a long haul flight, at maximum takeoff weight just becoming airborne, smoke comes from the cabin, what action would you take?",
-      "audioTextZh": "执行长途飞行时，飞机以最大起飞重量刚离地，客舱出现烟雾，应采取什么行动？",
-      "referenceText": "If smoke emerges from the cabin in this scenario, first, we will report the situation to ATC and request an immediate return for landing. Second, we will dump fuel to reduce the aircraft’s weight and lower the landing speed, facilitating a safer landing. After landing, we will conduct an emergency evacuation.\n若出现此客舱烟雾情况，首先，向空中交通管制（ATC）报告并申请立即返场着陆；其次，进行放油操作，减轻飞机重量、降低着陆速度，保障着陆安全；着陆后，实施紧急撤离 。\n\nMaintain aircraft control, inform cabin crew to assess smoke source and provide first aid. Report to ATC, declare emergency (squawk 7700), and request priority landing at the nearest airport. Do not climb to high altitude; keep thrust stable. Prepare passengers/crew for potential evacuation after landing.\n保持飞机控制，通知客舱机组评估烟雾源并提供急救；向空管报告，宣布紧急状态（应答机编码7700），请求在最近机场优先着陆；不爬升至高空，保持推力稳定；让乘客/机组准备好落地后可能的撤离。"
+      "taskTitle": "特情-飞行中失火-4",
+      "audioText": "What action should a flight crew take if cabin smoke appears immediately after takeoff on a long-haul flight at maximum takeoff weight?",
+      "audioTextZh": "远程航班以最大起飞重量起飞后立即出现客舱烟雾时，机组应采取什么措施？",
+      "referenceText": "Maximum takeoff weight does not justify delaying action for cabin smoke. The crew should protect breathing, apply the smoke or fire checklist, coordinate immediate cabin firefighting and plan the nearest suitable landing while advising ATC. Landing performance, overweight-landing considerations and any fuel jettison must be evaluated through the approved procedure, but an uncontrolled fire normally makes time the priority.",
+      "referenceTextZh": "最大起飞重量不能成为延迟处置客舱烟雾的理由。机组应采取呼吸防护，执行烟雾或火灾检查单，协调客舱立即灭火，并在通知空管的同时计划在最近的合适机场着陆。着陆性能、超重着陆因素和任何放油都必须按经批准程序评估，但无法控制的火灾通常意味着时间最为关键。"
     },
     {
       "id": "opi-extra-285",
-      "taskTitle": "特情-飞行中失火-8",
-      "audioText": "What ground services do you request when you are going to land with fire on board?",
-      "audioTextZh": "当机上有火情准备着陆时，你会请求哪些地面服务？",
-      "referenceText": "If we are going to land with fire on board, we will request fire - fighting services, medical emergency services, and aircraft salvage services as needed.\n当机上有火情准备着陆时，我们会请求消防服务、医疗急救服务，必要时还会请求航空器打捞救援服务 。"
+      "taskTitle": "特情-飞行中失火-5",
+      "audioText": "What ground services should a flight crew request before landing with a fire on board?",
+      "audioTextZh": "机上发生火灾时，机组在着陆前应请求哪些地面服务？",
+      "referenceText": "The crew should request aircraft rescue and firefighting services and state the fire location, dangerous goods, fuel, persons on board and any special assistance needed. Medical services, a remote parking position, towing and evacuation support may also be required. ATC and airport operations can coordinate the response, but the crew should keep the request focused on the actual hazard.",
+      "referenceTextZh": "机组应请求航空器救援和消防服务，并说明火灾位置、危险品、燃油、机上人数和所需的任何特别协助。还可能需要医疗服务、远机位、牵引和撤离支持。空管和机场运行部门可以协调响应，但机组的请求应始终围绕实际危险。"
     },
     {
       "id": "opi-extra-286",
-      "taskTitle": "特情-飞行中失火-9",
-      "audioText": "If you encounter engine fire during flight, how can you handle it?",
-      "audioTextZh": "如果你遇到发动机起火,你会怎么处理?",
-      "referenceText": "Follow SOP and engine fire checklist: shut down the affected engine, cut off fuel/electrical supply, activate fire extinguishers. Maintain aircraft control, report to ATC, declare emergency, and request diversion to the nearest suitable airport. Prepare for emergency landing and evacuation if needed.\n遵循标准操作程序（SOP）和发动机火警检查单：关闭故障发动机，切断燃油/电源供应，启动灭火器；保持飞机控制，向空管报告并宣布紧急状态，请求改航至最近合适机场；必要时准备紧急着陆和撤离。"
-    },
-    {
-      "id": "opi-extra-287",
-      "taskTitle": "特情-飞行中失火-10",
-      "audioText": "What may cause engine fire during flight?",
-      "audioTextZh": "在飞行中什么会导致发动机起火?",
-      "referenceText": "Engine fire in flight may result from bird/debris ingestion, ice ingestion, fuel or oil leakage, fuel contamination, mechanical failures, or maintenance issues. These factors can ignite fuel or oil, leading to fire, reduced thrust, or even engine shutdown, endangering flight safety.\n飞行中发动机起火可能由鸟类/碎片吸入、积冰吸入、燃油或滑油泄漏、燃油污染、机械故障或维护问题导致。这些因素会点燃燃油或滑油，引发火情，造成推力下降甚至发动机失效，危及飞行安全。"
+      "taskTitle": "特情-飞行中失火-6",
+      "audioText": "How should a flight crew respond to an engine fire in flight?",
+      "audioTextZh": "飞行中发动机起火时，机组应如何处置？",
+      "referenceText": "The pilots should maintain control, identify the affected engine and perform the approved engine-fire memory actions and checklist. They should monitor whether the warning clears, declare the emergency and plan an urgent landing at a suitable airport. Shutdown, extinguisher use, fuel handling and restart decisions must follow the aircraft-specific procedure.",
+      "referenceTextZh": "飞行员应保持控制，识别受影响的发动机，并完成经批准的发动机火警记忆项目和检查单。应监控警告是否消失，宣布紧急情况，并计划在合适机场紧急着陆。发动机关车、灭火瓶使用、燃油处置和重新启动决定必须遵循机型特定程序。"
     }
   ]
 }
