@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "releasedAt": "2026-07-19T12:20:59+08:00",
+  "releasedAt": "2026-07-19T12:23:18+08:00",
   "release": {
     "version": 8,
     "sourceCommit": "f7a22dbc6b59705d58a29eb4a19feb96a8fa07e0",
@@ -49,9 +49,12 @@
     },
     "learningData": {
       "opiCardStatesBefore": 73,
-      "opiCardStatesAfter": 73,
+      "opiCardStatesImmediatelyAfterImport": 73,
+      "opiCardStatesFinalObserved": 75,
       "opiLearningRecordsBefore": 21,
-      "opiLearningRecordsAfter": 21
+      "opiLearningRecordsImmediatelyAfterImport": 21,
+      "opiLearningRecordsFinalObserved": 21,
+      "finalObservationNote": "Two active production users synchronized two additional OPI card states after the import verification. All 75 final states belong to active Auth users; deleted verification accounts left no orphaned OPI state."
     }
   },
   "liveVerification": {
