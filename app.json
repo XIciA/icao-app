@@ -33,7 +33,7 @@
       "versionCode": 3439561
     },
     "web": {
-      "output": "static",
+      "output": "single",
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [

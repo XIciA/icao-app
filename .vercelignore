@@ -1,0 +1,11 @@
+.generated/
+/content/
+docs/
+infra/
+services/
+strategic/
+tools/
+战略/
+ios/
+android/
+*.log

@@ -7,7 +7,7 @@ import type {
   SyncPullResponse,
   SyncPushResponse,
 } from '@icao/contracts';
-import Storage from 'expo-sqlite/kv-store';
+import Storage from '@/platform/storage';
 
 import { apiRequest } from '@/platform/api-client';
 import { findQuestionBankCardReference } from '@/features/question-bank/annotations/card-index';

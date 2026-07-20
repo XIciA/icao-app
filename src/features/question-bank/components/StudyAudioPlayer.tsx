@@ -1,10 +1,12 @@
 import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import { AlertCircle, Check, Headphones, Pause, Play, RotateCcw } from 'lucide-react-native';
 import { type ReactNode, useCallback, useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, AppState, Modal, Pressable, StyleSheet, View, useWindowDimensions } from 'react-native';
+import { ActivityIndicator, AppState, Pressable, StyleSheet, View } from 'react-native';
 import type { GestureType } from 'react-native-gesture-handler';
 
 import { AppText } from '@/components/ui';
+import { AppModal } from '@/components/platform/AppModal';
+import { useAppViewportDimensions } from '@/components/platform/useAppViewportDimensions';
 import { colors, fonts, radii, shadows, spacing } from '@/theme';
 import { audioSessionOrchestrator, type AudioLease } from '@/platform/audio';
 import { useAudioLoadTimeout } from '../hooks/useAudioLoadTimeout';
@@ -47,7 +49,7 @@ export function StudyAudioPlayer({
   practiceControls?: ReactNode;
   variant?: 'default' | 'integrated-recording';
 }) {
-  const { height: windowHeight, width: windowWidth } = useWindowDimensions();
+  const { height: windowHeight, width: windowWidth } = useAppViewportDimensions();
   const player = useAudioPlayer(null, { updateInterval: 250, preferredForwardBufferDuration: 10 });
   const status = useAudioPlayerStatus(player);
   const [speedIndex, setSpeedIndex] = useState(1);
@@ -518,7 +520,7 @@ export function StudyAudioPlayer({
         </>
       )}
 
-      <Modal animationType="fade" onRequestClose={closeSpeedMenu} transparent visible={Boolean(speedMenuPosition)}>
+      <AppModal animationType="fade" onRequestClose={closeSpeedMenu} transparent visible={Boolean(speedMenuPosition)}>
         <View style={styles.modalLayer}>
           <Pressable accessibilityLabel="关闭倍速选择" onPressIn={closeSpeedMenu} style={StyleSheet.absoluteFill} />
           {speedMenuPosition ? (
@@ -535,7 +537,7 @@ export function StudyAudioPlayer({
             </View>
           ) : null}
         </View>
-      </Modal>
+      </AppModal>
     </View>
   );
 }

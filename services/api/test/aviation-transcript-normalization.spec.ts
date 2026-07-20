@@ -215,6 +215,7 @@ describe('AiProviderService transcribe result', () => {
       dashscopeBaseUrl: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
       aiTextModel: 'qwen-turbo',
       aiAsrModel: 'qwen3-asr-flash',
+      corsOrigins: ['http://localhost:8081'],
     };
 
     const result = await new AiProviderService(config).transcribe(Buffer.from('audio'), 'audio/wav');

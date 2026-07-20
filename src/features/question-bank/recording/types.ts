@@ -1,4 +1,4 @@
-export type RecordingFormat = 'm4a' | 'wav';
+export type RecordingFormat = 'm4a' | 'wav' | 'webm';
 
 export type RecordingAsset = {
   byteSize: number;

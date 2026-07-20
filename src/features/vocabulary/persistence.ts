@@ -1,4 +1,4 @@
-import Storage from 'expo-sqlite/kv-store';
+import Storage from '@/platform/storage';
 
 import type { VocabularyState, VocabularyTestResult, VocabularyWordProgress, VocabularyWordStatus } from './types';
 

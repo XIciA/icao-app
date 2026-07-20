@@ -22,7 +22,7 @@ mkdir -p "$ARCHIVE_DIR"
 cd "$PROJECT_ROOT"
 git ls-files -co --exclude-standard -z -- \
   package.json pnpm-lock.yaml pnpm-workspace.yaml \
-  packages/contracts services/api content/vocabulary infra/api \
+  patches packages/contracts services/api content/vocabulary infra/api \
   | tar --null -T - -czf "$ARCHIVE"
 shasum -a 256 "$ARCHIVE" > "$ARCHIVE.sha256"
 
@@ -39,12 +39,15 @@ source_dir=$release_dir/source
 rollback_image=icao-api:rollback-$release_id
 candidate_image=icao-api:candidate-$release_id
 backup_dir=/opt/icao/backups/api-$release_id
+runtime_compose=/opt/icao/runtime/api/docker-compose.yml
 
 mkdir -p "$source_dir" "$backup_dir"
 tar -xzf "$release_dir/source.tar.gz" -C "$source_dir"
 if [ -d /opt/icao/runtime/source ]; then
   tar -czf "$backup_dir/source-before.tar.gz" -C /opt/icao/runtime/source .
 fi
+if [ -f "$runtime_compose" ]; then cp "$runtime_compose" "$backup_dir/docker-compose-before.yml"; fi
+install -m 600 "$source_dir/infra/api/docker-compose.runtime.yml" "$runtime_compose"
 docker image inspect icao-api:phase2a >/dev/null
 docker tag icao-api:phase2a "$rollback_image"
 
@@ -53,10 +56,10 @@ docker tag "$candidate_image" icao-api:phase2a
 
 rollback() {
   docker tag "$rollback_image" icao-api:phase2a
-  docker compose -f /opt/icao/runtime/api/docker-compose.yml up -d --force-recreate api
+  docker compose -f "$runtime_compose" up -d --force-recreate api
 }
 
-if ! docker compose -f /opt/icao/runtime/api/docker-compose.yml up -d --force-recreate api; then
+if ! docker compose -f "$runtime_compose" up -d --force-recreate api; then
   rollback
   exit 1
 fi

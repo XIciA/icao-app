@@ -7,6 +7,18 @@ import { colors, spacing } from '@/theme';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { AuthShell, AuthHeading, AuthField, PasswordField, TextLink } from './auth-ui';
 
+export function loginErrorMessage(code: string) {
+  switch (code) {
+    case 'invalid_email_or_password': return '邮箱或密码错误';
+    case 'auth_network_error': return '网络连接失败，请检查网络后重试。';
+    case 'auth_service_unavailable': return '认证服务暂时不可用，请稍后重试。';
+    case 'auth_session_storage_unavailable': return '浏览器禁止了本地存储，无法保存登录状态。请关闭无痕模式或允许本站点数据后重试。';
+    case 'auth_request_not_completed': return '认证请求未到达服务端。请刷新页面、关闭内容拦截或切换网络后重试。（诊断码：auth_failed）';
+    case 'auth_not_configured': return '登录服务尚未配置';
+    default: return `登录失败（错误代码：${code}）`;
+  }
+}
+
 export function LoginScreen() {
   const router = useRouter();
   const auth = useAuth();
@@ -24,7 +36,7 @@ export function LoginScreen() {
       router.replace((auth.consumePendingPath() ?? '/(tabs)') as Href);
     } catch (value) {
       const code = value instanceof Error ? value.message : 'auth_failed';
-      setError(code === 'invalid_email_or_password' ? '邮箱或密码错误' : code === 'auth_not_configured' ? '登录服务尚未配置' : '登录失败，请稍后重试');
+      setError(loginErrorMessage(code));
     } finally {
       setSubmitting(false);
     }

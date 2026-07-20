@@ -4,14 +4,22 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { HttpErrorFilter } from './http-error.filter';
 import multipart from '@fastify/multipart';
+import { loadConfig, type ApiConfig } from './config';
 
-export async function createApp() {
+export async function createApp(config: ApiConfig = loadConfig()) {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter({
     bodyLimit: 10 * 1024 * 1024,
     logger: process.env.NODE_ENV === 'test' ? false : true,
     requestTimeout: 15_000,
   }), {
     bufferLogs: true,
+  });
+  app.enableCors({
+    origin: config.corsOrigins,
+    credentials: false,
+    methods: ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Authorization', 'Content-Type', 'If-Match', 'If-None-Match'],
+    maxAge: 86_400,
   });
   app.useGlobalFilters(new HttpErrorFilter());
   await app.register(multipart, {

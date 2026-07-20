@@ -8,12 +8,12 @@ import { StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { AppViewport } from '@/components/platform/AppViewport';
+import { ModalHost } from '@/components/platform/ModalHost';
 import { CenteredState } from '@/components/states/CenteredState';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { AuthProvider, useAuth } from '@/features/auth/AuthProvider';
-import { RadioMiniPlayer } from '@/features/radio-player/RadioMiniPlayer';
-import { RadioPlayerProvider } from '@/features/radio-player/RadioPlayerProvider';
-import { recordingRepository } from '@/features/question-bank/recording/recording-repository';
+import { AppRuntime } from '@/platform/AppRuntime';
 import { colors } from '@/theme';
 
 SplashScreen.preventAutoHideAsync().catch(() => undefined);
@@ -31,25 +31,24 @@ export default function RootLayout() {
     if (fontsLoaded || fontError) SplashScreen.hideAsync().catch(() => undefined);
   }, [fontError, fontsLoaded]);
 
-  useEffect(() => {
-    recordingRepository.cleanupExpired();
-  }, []);
-
   if (!fontsLoaded && !fontError) return <GlobalLoadingScreen />;
 
   return (
     <GestureHandlerRootView style={styles.root}>
-      <SafeAreaProvider>
-        <AuthProvider>
-          <RadioPlayerProvider>
-            <View style={styles.root}>
-              <StatusBar backgroundColor={colors.background} style="dark" />
-              <AppStack />
-              <RadioMiniPlayer />
-            </View>
-          </RadioPlayerProvider>
-        </AuthProvider>
-      </SafeAreaProvider>
+      <AppViewport>
+        <ModalHost>
+          <SafeAreaProvider>
+            <AuthProvider>
+              <AppRuntime>
+                <View style={styles.root}>
+                  <StatusBar backgroundColor={colors.background} style="dark" />
+                  <AppStack />
+                </View>
+              </AppRuntime>
+            </AuthProvider>
+          </SafeAreaProvider>
+        </ModalHost>
+      </AppViewport>
     </GestureHandlerRootView>
   );
 }

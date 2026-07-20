@@ -1,4 +1,4 @@
-import Storage from 'expo-sqlite/kv-store';
+import Storage from '@/platform/storage';
 import type { ApiSuccessEnvelope, VocabularyDataset, VocabularyRelease } from '@icao/contracts';
 
 import { apiFetch, getApiBaseUrl } from '@/platform/api-client';

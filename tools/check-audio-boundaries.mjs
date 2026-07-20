@@ -5,7 +5,9 @@ const root = process.cwd();
 const sourceRoot = path.join(root, 'src');
 const orchestrator = 'src/platform/audio/audio-session-orchestrator.ts';
 const recorderAdapter = 'src/features/question-bank/recording/expo-recorder-adapter.ts';
+const recorderAdapterWeb = 'src/features/question-bank/recording/expo-recorder-adapter.web.ts';
 const repository = 'src/features/question-bank/recording/recording-repository.ts';
+const repositoryWeb = 'src/features/question-bank/recording/recording-repository.web.ts';
 const productionExtensions = new Set(['.ts', '.tsx']);
 
 async function sourceFiles(directory) {
@@ -40,17 +42,17 @@ for (const file of files) {
     file,
     content,
     /\b(?:getRecordingPermissionsAsync|RecordingPresets|requestRecordingPermissionsAsync|useAudioRecorder|useAudioRecorderState)\b/,
-    [recorderAdapter],
+    [recorderAdapter, recorderAdapterWeb],
     'native recording hooks, presets, and permissions are owned by the Expo recorder adapter',
   );
   reject(file, content, /audio-session-coordinator/, [], 'the retired audio session coordinator must not be referenced');
   reject(file, content, /\b(?:type|interface)\s+AudioOwner\b/, [orchestrator], 'AudioOwner must have one definition');
   reject(file, content, /\b(?:type|interface)\s+RecordingAsset\b/, ['src/features/question-bank/recording/types.ts'], 'RecordingAsset must have one definition');
   reject(file, content, /\bclass\s+AudioSessionOrchestrator\b/, [orchestrator], 'the audio session orchestrator must have one implementation');
-  reject(file, content, /\bclass\s+RecordingRepository\b/, [repository], 'the recording repository must have one implementation');
+  reject(file, content, /\bclass\s+RecordingRepository\b/, [repository, repositoryWeb], 'the recording repository must have one platform implementation');
   reject(file, content, /\ballowsRecording\s*:/, [orchestrator], 'audio profiles must be defined only by the orchestrator');
 
-  if (name.startsWith('src/features/question-bank/recording/') && ![repository, recorderAdapter].includes(name) && !name.includes('/__tests__/')) {
+  if (name.startsWith('src/features/question-bank/recording/') && ![repository, repositoryWeb, recorderAdapter, recorderAdapterWeb].includes(name) && !name.includes('/__tests__/')) {
     if (/from\s+['"]expo-file-system['"]/.test(content) || /\.delete\s*\(/.test(content)) {
       failures.push(`${name}: recording file creation and deletion belong to RecordingRepository`);
     }

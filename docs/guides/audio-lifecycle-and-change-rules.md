@@ -105,7 +105,7 @@ stateDiagram-v2
 `commitRaw` 的固定顺序：
 
 1. 检查停止时长至少 400 ms。
-2. 等待文件大小稳定，检查文件存在、最低 10 KB 和格式对应的最低 bytes/ms。
+2. 等待文件大小稳定，检查文件存在和格式对应的最低 bytes/ms。Native WAV 最低 10 KB；Web 压缩 Blob 使用独立的 1 KB 合理下限，不能以 WAV 文件大小误判有效 WebM/Opus 录音。
 3. 复制到 `Paths.cache/icao-recordings/<sessionId>/<assetId>.<format>.pending`。
 4. 校验 pending 大小与 raw 一致。
 5. 原子 move 为正式文件，再校验目标。

@@ -11,10 +11,11 @@ import {
 } from 'lucide-react-native';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import { Modal, Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { TabPlaceholderScreen } from '@/components/screens/TabPlaceholderScreen';
+import { AppModal } from '@/components/platform/AppModal';
 import { AppText } from '@/components/ui';
 import { getEmbeddedQuestionBanks } from '@/features/question-bank/data/repository';
 import type { QuestionBankDataset } from '@/features/question-bank/types';
@@ -106,7 +107,7 @@ export default function QuestionBankTab() {
         title="稳步进阶，冲刺目标等级"
       />
 
-      <Modal animationType="fade" onRequestClose={() => setPickerOpen(false)} transparent visible={pickerOpen}>
+      <AppModal animationType="fade" onRequestClose={() => setPickerOpen(false)} transparent visible={pickerOpen}>
         <View style={styles.modalBackdrop}>
           <Pressable
             accessibilityLabel="关闭课程选择"
@@ -145,7 +146,7 @@ export default function QuestionBankTab() {
             })}
           </View>
         </View>
-      </Modal>
+      </AppModal>
     </>
   );
 }

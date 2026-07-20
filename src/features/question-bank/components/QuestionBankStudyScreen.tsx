@@ -3,7 +3,7 @@ import type { WordLookupResult } from '@icao/contracts';
 import { useRouter } from 'expo-router';
 import { Check, ChevronLeft, ChevronRight, Flag, Grid3X3, Languages, WifiOff } from 'lucide-react-native';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Keyboard, Pressable, ScrollView, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { Keyboard, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   ReduceMotion,
@@ -17,6 +17,7 @@ import Animated, {
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { CenteredState } from '@/components/states/CenteredState';
+import { useAppViewportDimensions } from '@/components/platform/useAppViewportDimensions';
 import { AppText, BottomSheet, Button } from '@/components/ui';
 import { colors, fonts, motion, radii, spacing } from '@/theme';
 import { acceptAiConsent, hasAiConsent, wordLookup } from '@/features/ai/ai-client';
@@ -45,7 +46,7 @@ type Props = { dataset: QuestionBankDataset; category: QuestionBankCategory; top
 export function QuestionBankStudyScreen({ dataset, category, topic, initialCardId, returnTo }: Props) {
   const router = useRouter();
   const insets = useSafeAreaInsets();
-  const { width: viewportWidth } = useWindowDimensions();
+  const { width: viewportWidth } = useAppViewportDimensions();
   const reduceMotion = useReducedMotion();
   const session = useStudySession({ dataset, category, topic, initialCardId });
   const [answerCardVisible, setAnswerCardVisible] = useState(false);
@@ -57,7 +58,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
   const [lookupError, setLookupError] = useState<string>();
   const [aiConsented, setAiConsented] = useState(false);
   const [finishing, setFinishing] = useState(false);
-  const [returningToRadio, setReturningToRadio] = useState(false);
+  const [leavingStudy, setLeavingStudy] = useState(false);
   const [finishError, setFinishError] = useState<string>();
   const [editingWorkbenchTab, setEditingWorkbenchTab] = useState<'mine' | 'notes'>();
   const [swipeBoundaryMessage, setSwipeBoundaryMessage] = useState<string>();
@@ -79,11 +80,20 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
   const target = card && !imageCard ? { bankId: dataset.id, categoryId: category.id, topicId: topic.id, cardId: card.id } : undefined;
   const annotations = useQuestionAnnotations(target);
 
-  usePreventRemove(!session.report && !returningToRadio, () => { void finish('abort', returnTo === 'radio'); });
+  usePreventRemove(!session.report && !leavingStudy, () => { void leaveStudy(); });
 
   useEffect(() => {
-    if (returningToRadio) router.replace('/content/radio');
-  }, [returningToRadio, router]);
+    if (!leavingStudy) return;
+    if (returnTo === 'annotations') {
+      router.replace('/annotations');
+      return;
+    }
+    if (returnTo === 'radio') {
+      router.replace('/content/radio');
+      return;
+    }
+    router.replace({ pathname: '/question-bank/[bankId]', params: { bankId: dataset.id } });
+  }, [dataset.id, leavingStudy, returnTo, router]);
 
   useEffect(() => {
     let active = true;
@@ -370,7 +380,33 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
     };
   }
 
-  async function finish(reason: 'abort' | 'complete', returnDirectlyToRadio = false) {
+  async function leaveStudy() {
+    if (taskInteractionActive) {
+      setFinishError('录音正在保存，请稍候再返回。');
+      return;
+    }
+    if (finishInFlight.current || cardTransitionInFlight.current) return;
+    finishInFlight.current = true;
+    setFinishing(true);
+    setFinishError(undefined);
+    finishWorkbenchEditing();
+    try {
+      const saved = await (workbenchRef.current?.flushAutoSave() ?? Promise.resolve(true));
+      if (!saved) {
+        setFinishError('回答自动保存失败，请重试后返回。');
+        return;
+      }
+      setQuestionAudioPauseRequest((request) => request + 1);
+      setRecordingPreviewPauseRequest((request) => request + 1);
+      setDismissMediaControlsRequest((request) => request + 1);
+      setLeavingStudy(true);
+    } finally {
+      finishInFlight.current = false;
+      setFinishing(false);
+    }
+  }
+
+  async function finish(reason: 'abort' | 'complete') {
     if (taskInteractionActive) {
       setFinishError('录音正在保存，请稍候再结束。');
       return;
@@ -390,7 +426,6 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
       setRecordingPreviewPauseRequest((request) => request + 1);
       setDismissMediaControlsRequest((request) => request + 1);
       await session.finish(reason, sessionAnnotationMetrics());
-      if (returnDirectlyToRadio) setReturningToRadio(true);
     } catch {
       setFinishError('学习报告保存失败，请重试。');
     } finally {
@@ -445,7 +480,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
   return (
     <SafeAreaView edges={['top']} style={styles.root}>
       <View style={styles.topBar}>
-        <Pressable accessibilityLabel={returnTo === 'radio' ? '保存并返回随身听' : '结束学习并查看报告'} disabled={finishing || taskInteractionActive} onPress={() => void finish('abort', returnTo === 'radio')} style={returnTo === 'radio' ? styles.returnToRadioButton : styles.circleButton}><ChevronLeft color={colors.foreground} size={21} />{returnTo === 'radio' ? <AppText variant="button">返回随身听</AppText> : null}</Pressable>
+        <Pressable accessibilityLabel={returnTo === 'radio' ? '返回随身听' : returnTo === 'annotations' ? '返回我的标注' : '返回题库目录'} disabled={finishing || taskInteractionActive} onPress={() => void leaveStudy()} style={returnTo === 'radio' ? styles.returnToRadioButton : styles.circleButton}><ChevronLeft color={colors.foreground} size={21} />{returnTo === 'radio' ? <AppText variant="button">返回随身听</AppText> : null}</Pressable>
         <View style={styles.topSpacer} />
         <Pressable accessibilityLabel="打开答题卡" disabled={taskInteractionActive} onPress={() => { finishWorkbenchEditing(); setAnswerCardVisible(true); }} style={styles.counterButton}><Grid3X3 color={colors.mutedForeground} size={15} /><AppText style={styles.counter} variant="button">{session.currentIndex + 1} / {topic.cards.length}</AppText></Pressable>
       </View>

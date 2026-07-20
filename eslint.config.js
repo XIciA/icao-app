@@ -33,6 +33,7 @@ module.exports = defineConfig([
     files: [
       "src/platform/audio/audio-session-orchestrator.ts",
       "src/features/question-bank/recording/expo-recorder-adapter.ts",
+      "src/features/question-bank/recording/expo-recorder-adapter.web.ts",
     ],
     rules: { "no-restricted-imports": "off" },
   },

@@ -1,7 +1,9 @@
 import { Check, Highlighter, Plus, Search, Tags, X } from 'lucide-react-native';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Modal, Pressable, ScrollView, StyleSheet, TextInput, View, useWindowDimensions } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
+import { AppModal } from '@/components/platform/AppModal';
+import { useAppViewportDimensions } from '@/components/platform/useAppViewportDimensions';
 import { AppText } from '@/components/ui';
 import { colors, radii, shadows, spacing } from '@/theme';
 
@@ -46,7 +48,7 @@ export function AnnotationToolbar({
   tagDefinitions: AnnotationDefinition[];
   resetToken: string | number;
 }) {
-  const { width: windowWidth } = useWindowDimensions();
+  const { width: windowWidth } = useAppViewportDimensions();
   const toolbarRef = useRef<View>(null);
   const [picker, setPicker] = useState<PickerKind>();
   const [pickerTop, setPickerTop] = useState<number>(spacing[20]);
@@ -179,7 +181,7 @@ export function AnnotationToolbar({
         </View>
       ) : null}
 
-      <Modal animationType="fade" onRequestClose={closePicker} transparent visible={Boolean(picker)}>
+      <AppModal animationType="fade" onRequestClose={closePicker} transparent visible={Boolean(picker)}>
         <View style={styles.modalLayer}>
           <Pressable accessibilityLabel="关闭标注工具" onPress={closePicker} style={StyleSheet.absoluteFill} />
           <View style={[styles.picker, { left: pickerLeft, top: pickerTop, width: pickerWidth }]} testID="annotation-picker-panel">
@@ -225,7 +227,7 @@ export function AnnotationToolbar({
             ) : null}
           </View>
         </View>
-      </Modal>
+      </AppModal>
     </View>
   );
 }

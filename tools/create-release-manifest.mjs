@@ -28,7 +28,7 @@ async function hashFiles(files) {
 
 const workspaceEntries = await hashFiles(gitFiles());
 const apiPaths = [
-  'package.json', 'pnpm-lock.yaml', 'pnpm-workspace.yaml',
+  'package.json', 'pnpm-lock.yaml', 'pnpm-workspace.yaml', 'patches',
   'packages/contracts', 'services/api', 'content/vocabulary', 'infra/api',
 ];
 const apiEntries = await hashFiles(gitFiles(apiPaths));

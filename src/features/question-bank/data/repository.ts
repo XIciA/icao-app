@@ -1,5 +1,5 @@
 import embeddedData from './question-bank.json';
-import Storage from 'expo-sqlite/kv-store';
+import Storage from '@/platform/storage';
 import type { ApiSuccessEnvelope, QuestionBankRelease } from '@icao/contracts';
 
 import type { QuestionBankDataset, QuestionBankId, QuestionBankTopic } from '../types';

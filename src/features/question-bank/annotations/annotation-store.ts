@@ -1,4 +1,4 @@
-import Storage from 'expo-sqlite/kv-store';
+import Storage from '@/platform/storage';
 
 import { enqueueAnnotationStore } from '@/features/sync/learning-sync';
 

@@ -1,7 +1,8 @@
 import type { AiConsent, GrammarReviewRequest, GrammarReviewResult, OpiAnalysisResult, PolishRequest, PolishResult, TranscribeResult, WordLookupRequest, WordLookupResult } from '@icao/contracts';
-import Storage from 'expo-sqlite/kv-store';
+import Storage from '@/platform/storage';
 
 import { apiAccessToken, apiRequest, getApiBaseUrl, recoverApiUnauthorized } from '@/platform/api-client';
+import { createAudioUploadForm } from '@/platform/audio-upload';
 
 const POLICY_VERSION = 'ai-learning-privacy-v1';
 const CONSENT_KEY = `icao.ai.consent.${POLICY_VERSION}`;
@@ -48,15 +49,12 @@ export async function transcribeRecording(uri: string, signal?: AbortSignal) {
       hintsVersion: 'local-e2e-v1',
     } satisfies TranscribeResult;
   }
-  const [{ File }, { fetch: expoFetch }] = await Promise.all([import('expo-file-system'), import('expo/fetch')]);
+  const { fetch: audioFetch, form } = await createAudioUploadForm(uri);
   const baseUrl = getApiBaseUrl();
   if (!baseUrl) throw new Error('api_not_configured');
   const token = await apiAccessToken();
   if (!token) throw new Error('missing_bearer_token');
-  const file = new File(uri);
-  const form = new FormData();
-  form.append('audio', file);
-  const send = (accessToken: string) => expoFetch(`${baseUrl}/v1/ai/transcribe`, {
+  const send = (accessToken: string) => audioFetch(`${baseUrl}/v1/ai/transcribe`, {
     method: 'POST',
     headers: { accept: 'application/json', authorization: `Bearer ${accessToken}` },
     body: form,

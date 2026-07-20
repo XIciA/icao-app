@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { LoginScreen } from '@/components/auth/login-screen';
+import { LoginScreen, loginErrorMessage } from '@/components/auth/login-screen';
 
 jest.mock('lucide-react-native', () => {
   const { View } = jest.requireActual('react-native');
@@ -28,5 +28,13 @@ describe('<LoginScreen />', () => {
     expect(screen.getByText('登录状态安全保存在本机')).toBeTruthy();
     expect(screen.getByText('忘记密码')).toBeTruthy();
     expect(screen.getByText('立即注册')).toBeTruthy();
+  });
+
+  it('maps login failures to actionable messages', () => {
+    expect(loginErrorMessage('invalid_email_or_password')).toBe('邮箱或密码错误');
+    expect(loginErrorMessage('auth_network_error')).toBe('网络连接失败，请检查网络后重试。');
+    expect(loginErrorMessage('auth_service_unavailable')).toBe('认证服务暂时不可用，请稍后重试。');
+    expect(loginErrorMessage('auth_session_storage_unavailable')).toContain('浏览器禁止了本地存储');
+    expect(loginErrorMessage('auth_request_not_completed')).toContain('认证请求未到达服务端');
   });
 });

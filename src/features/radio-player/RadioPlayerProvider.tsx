@@ -1,4 +1,4 @@
-import Storage from 'expo-sqlite/kv-store';
+import Storage from '@/platform/storage';
 import TrackPlayer, {
   Event,
   RepeatMode,
@@ -11,6 +11,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef, use
 import { AppState } from 'react-native';
 
 import { resolveQuestionBankAsset, resolveRemoteQuestionBankAsset } from '@/features/question-bank/platform/resource-service';
+import { useAuth } from '@/features/auth/AuthProvider';
 import { audioSessionOrchestrator, type AudioLease } from '@/platform/audio';
 
 import { getEmbeddedRadioCatalogs, loadRadioCatalogs } from './catalog';
@@ -28,7 +29,7 @@ import {
 import { nextManualTrack, nextTrack, previousTrack, selectShuffleTrack, type ShuffleState } from './queue';
 import { migrateRadioIntervalSeconds } from './radio-snapshot';
 import { ensureRadioTrackPlayer, setRadioContentPlaybackRate, setRadioRemoteHandlers } from './track-player-runtime';
-import type { RadioBankId, RadioCatalog, RadioPlaybackMode, RadioSubtitleMode, RadioTrack } from './types';
+import type { RadioBankId, RadioCatalog, RadioPlaybackMode, RadioPlayerContextValue, RadioSubtitleMode, RadioTrack } from './types';
 
 const STORAGE_KEY = 'icao.radio-player.v1';
 const speedOptions = [0.75, 1, 1.25, 1.5] as const;
@@ -50,43 +51,7 @@ type Snapshot = {
   bankTrackIds: Partial<Record<RadioBankId, string>>;
 };
 
-type RadioContextValue = {
-  catalogs: RadioCatalog[];
-  currentCatalog?: RadioCatalog;
-  currentTrack?: RadioTrack;
-  currentIndex: number;
-  mode: RadioPlaybackMode;
-  subtitleMode: RadioSubtitleMode;
-  rate: number;
-  intervalSeconds: number;
-  intervalRemaining: number;
-  waitingForNext: boolean;
-  speedOptions: readonly number[];
-  playing: boolean;
-  loading: boolean;
-  buffering: boolean;
-  error?: string;
-  position: number;
-  duration: number;
-  sessionVisible: boolean;
-  activateSession: () => void;
-  play: () => Promise<void>;
-  pause: () => void;
-  toggle: () => Promise<void>;
-  seek: (position: number) => Promise<void>;
-  next: (autoPlay?: boolean) => Promise<void>;
-  previous: () => Promise<void>;
-  selectBank: (bankId: RadioBankId) => void;
-  selectTrack: (trackId: string, autoPlay?: boolean) => void;
-  setMode: (mode: RadioPlaybackMode) => void;
-  setSubtitleMode: (mode: RadioSubtitleMode) => void;
-  setRate: (rate: number) => void;
-  setIntervalSeconds: (seconds: number) => void;
-  retry: () => void;
-  stopAndClear: () => void;
-};
-
-const RadioContext = createContext<RadioContextValue | undefined>(undefined);
+const RadioContext = createContext<RadioPlayerContextValue | undefined>(undefined);
 
 function findTrack(catalogs: RadioCatalog[], bankId: RadioBankId, trackId: string) {
   const catalog = catalogs.find((item) => item.bankId === bankId) ?? catalogs[0];
@@ -113,6 +78,7 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
 }
 
 function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
+  const auth = useAuth();
   const embeddedCatalogs = useMemo(getEmbeddedRadioCatalogs, []);
   const [catalogs, setCatalogs] = useState(embeddedCatalogs);
   const [bankId, setBankId] = useState<RadioBankId>(embeddedCatalogs[0]?.bankId ?? 'listening');
@@ -317,10 +283,11 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
   }, [chooseUpcoming, releaseRadioLease, resolveTrack, setWaitingForNext]);
 
   useEffect(() => {
+    if (auth.restoring || !auth.session) return;
     void loadRadioCatalogs().then((next) => {
       if (next.length) setCatalogs(next);
     }).catch(() => undefined);
-  }, []);
+  }, [auth.restoring, auth.session]);
 
   useEffect(() => {
     let active = true;
@@ -356,7 +323,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
   }), []);
 
   useEffect(() => {
-    if (!restored || !currentCatalog || !currentTrack) return;
+    if (!restored || !auth.session || !currentCatalog || !currentTrack) return;
     if (nativeTransitionTrackId.current === currentTrack.id || requestedTrackId.current === currentTrack.id) {
       nativeTransitionTrackId.current = undefined;
       requestedTrackId.current = undefined;
@@ -364,7 +331,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     }
     const restorePosition = preparedTrackId.current ? 0 : pendingSeek.current;
     void prepareTrack(currentCatalog, currentTrack, { autoPlay: pendingPlay.current, position: restorePosition });
-  }, [currentCatalog, currentTrack, prepareTrack, restored]);
+  }, [auth.session, currentCatalog, currentTrack, prepareTrack, restored]);
 
   useTrackPlayerEvents(radioPlayerEvents, (event) => {
     if (event.type === Event.PlaybackError) {
@@ -626,7 +593,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     void saveSnapshot();
   }, [playback.state, replacePreparedUpcoming, saveSnapshot, setWaitingForNext]);
 
-  const value = useMemo<RadioContextValue>(() => ({
+  const value = useMemo<RadioPlayerContextValue>(() => ({
     catalogs,
     currentCatalog,
     currentTrack,

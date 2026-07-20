@@ -53,6 +53,21 @@ describe('API foundation', () => {
     expect(() => loadConfig({ NODE_ENV: 'production' })).toThrow('invalid_api_configuration');
   });
 
+  it('accepts only exact HTTP origins in the CORS allowlist', () => {
+    const base = {
+      DATABASE_URL: process.env.DATABASE_URL,
+      SUPABASE_URL: process.env.SUPABASE_URL,
+      SUPABASE_PUBLIC_URL: process.env.SUPABASE_PUBLIC_URL,
+      SUPABASE_PUBLISHABLE_KEY: process.env.SUPABASE_PUBLISHABLE_KEY,
+      SUPABASE_SECRET_KEY: process.env.SUPABASE_SECRET_KEY,
+    };
+    expect(loadConfig({ ...base, CORS_ORIGINS: 'https://feizhuicao.com,http://localhost:8081' }).corsOrigins).toEqual([
+      'https://feizhuicao.com',
+      'http://localhost:8081',
+    ]);
+    expect(() => loadConfig({ ...base, CORS_ORIGINS: 'https://feizhuicao.com/path' })).toThrow('invalid_api_configuration:CORS_ORIGINS');
+  });
+
   it('returns live and ready health envelopes', async () => {
     const app = await testApp();
     const live = await app.inject({ method: 'GET', url: '/health/live' });

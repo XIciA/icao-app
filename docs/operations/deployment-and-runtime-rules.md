@@ -68,3 +68,18 @@ SSH 隧道只转发请求，不同步代码。
 - 未完成、未复核或与当前任务无关的工作区改动不得进入部署。
 - API 部署不得顺带执行数据库 Migration。
 - 正式生产发布、域名、证书、支付和不可逆数据操作仍需单独授权。
+
+## Web 在线版
+
+```text
+浏览器 → feizhuicao.com（Vercel SPA）
+       → api.feizhuicao.com（ECS API）
+       → cloud.feizhuicao.com（Supabase/Auth/资源）
+```
+
+- 仓库仍是 Web、iOS、Android 的唯一代码源；Vercel 只托管导出的静态前端，不保存题库或服务端用户数据。
+- Web 生产环境只允许公开 API/Supabase URL 与 publishable key；服务端 secret、service-role key、AI key 不得进入 Vercel client bundle。
+- API CORS 使用精确来源白名单。新增或移除正式/预览来源属于 API 运行配置变更，需备份环境、重启容器并验证 `/health/ready` 和代表性预检/条件请求。
+- Web 发布前保留上一条 Vercel production deployment；发布失败使用 Vercel Rollback/Promote 恢复，不删除域名或 DNS。
+- `vercel.json` 负责 SPA fallback、安全头和 hash 静态资源缓存；入口 HTML 不得被长期 immutable 缓存。
+- 具体命令、验证和回滚顺序见 `docs/workstreams/app-web-online-edition/deployment-runbook.md`。

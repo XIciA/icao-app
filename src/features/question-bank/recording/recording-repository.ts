@@ -2,7 +2,8 @@ import { Directory, File, Paths } from 'expo-file-system';
 
 import { emitAudioDiagnostic } from '@/platform/audio/audio-diagnostics';
 
-import type { RawRecording, RecordingAsset, RecordingFailureCode } from './types';
+import { RecordingRepositoryError } from './recording-repository-error';
+import type { RawRecording, RecordingAsset } from './types';
 
 const MIN_RECORDING_DURATION_MS = 400;
 const MIN_RECORDING_BYTES = 10_000;
@@ -10,12 +11,7 @@ const FILE_SETTLE_INTERVAL_MS = 100;
 const MAX_SETTLE_ATTEMPTS = 8;
 const ORPHAN_MAX_AGE_MS = 24 * 60 * 60 * 1_000;
 
-export class RecordingRepositoryError extends Error {
-  constructor(readonly code: RecordingFailureCode) {
-    super(code);
-    this.name = 'RecordingRepositoryError';
-  }
-}
+export { RecordingRepositoryError } from './recording-repository-error';
 
 type RecordingRepositoryDependencies = {
   createId?: () => string;

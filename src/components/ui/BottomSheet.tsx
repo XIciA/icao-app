@@ -1,7 +1,9 @@
 import type { PropsWithChildren, ReactNode } from 'react';
-import { Modal, Pressable, ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { AppModal } from '@/components/platform/AppModal';
+import { useAppViewportDimensions } from '@/components/platform/useAppViewportDimensions';
 import { colors, radii, shadows, spacing } from '@/theme';
 
 type Props = PropsWithChildren<{
@@ -14,10 +16,10 @@ type Props = PropsWithChildren<{
 
 export function BottomSheet({ visible, onClose, children, footer, scrollable = true, accessibilityLabel = '底部弹层' }: Props) {
   const insets = useSafeAreaInsets();
-  const { height } = useWindowDimensions();
+  const { height } = useAppViewportDimensions();
 
   return (
-    <Modal animationType="slide" onRequestClose={onClose} transparent visible={visible}>
+    <AppModal animationType="slide" onRequestClose={onClose} transparent visible={visible}>
       <View accessibilityLabel={accessibilityLabel} style={styles.root}>
         <View style={[StyleSheet.absoluteFill, styles.overlay]} />
         <Pressable accessibilityLabel="关闭弹层" onPress={onClose} style={StyleSheet.absoluteFill} />
@@ -31,7 +33,7 @@ export function BottomSheet({ visible, onClose, children, footer, scrollable = t
           {footer ? <View style={styles.footer}>{footer}</View> : null}
         </View>
       </View>
-    </Modal>
+    </AppModal>
   );
 }
 

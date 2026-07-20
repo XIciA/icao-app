@@ -13,6 +13,7 @@ const schema = z.object({
   DASHSCOPE_BASE_URL: z.string().url().default('https://dashscope.aliyuncs.com/compatible-mode/v1'),
   AI_TEXT_MODEL: z.string().min(1).default('qwen-turbo'),
   AI_ASR_MODEL: z.string().min(1).default('qwen3-asr-flash'),
+  CORS_ORIGINS: z.string().default('http://localhost:8081,http://127.0.0.1:8081,http://localhost:4173,http://127.0.0.1:4173'),
 });
 
 export type ApiConfig = {
@@ -28,9 +29,28 @@ export type ApiConfig = {
   dashscopeBaseUrl: string;
   aiTextModel: string;
   aiAsrModel: string;
+  corsOrigins: string[];
 };
 
 export const API_CONFIG = Symbol('API_CONFIG');
+
+function parseCorsOrigins(value: string): string[] {
+  const origins = [...new Set(value.split(',').map((entry) => entry.trim()).filter(Boolean))];
+  if (origins.length === 0) throw new Error('invalid_api_configuration:CORS_ORIGINS');
+
+  for (const origin of origins) {
+    let url: URL;
+    try {
+      url = new URL(origin);
+    } catch {
+      throw new Error('invalid_api_configuration:CORS_ORIGINS');
+    }
+    if (!['http:', 'https:'].includes(url.protocol) || url.origin !== origin) {
+      throw new Error('invalid_api_configuration:CORS_ORIGINS');
+    }
+  }
+  return origins;
+}
 
 export function loadConfig(environment: NodeJS.ProcessEnv = process.env): ApiConfig {
   const parsed = schema.safeParse(environment);
@@ -52,5 +72,6 @@ export function loadConfig(environment: NodeJS.ProcessEnv = process.env): ApiCon
     dashscopeBaseUrl: parsed.data.DASHSCOPE_BASE_URL,
     aiTextModel: parsed.data.AI_TEXT_MODEL,
     aiAsrModel: parsed.data.AI_ASR_MODEL,
+    corsOrigins: parseCorsOrigins(parsed.data.CORS_ORIGINS),
   };
 }

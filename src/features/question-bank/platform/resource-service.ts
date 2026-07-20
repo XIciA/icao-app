@@ -1,5 +1,5 @@
 import Constants from 'expo-constants';
-import Storage from 'expo-sqlite/kv-store';
+import Storage from '@/platform/storage';
 import type { ResolvedResource } from '@icao/contracts';
 
 import { apiRequest, getApiBaseUrl } from '@/platform/api-client';

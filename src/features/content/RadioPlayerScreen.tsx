@@ -22,11 +22,12 @@ import {
 } from 'lucide-react-native';
 import { useRouter } from 'expo-router';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, FlatList, Pressable, ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
+import { ActivityIndicator, FlatList, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import Animated, { cancelAnimation, useAnimatedStyle, useReducedMotion, useSharedValue, withRepeat, withSequence, withTiming } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AppText, BottomSheet, Button, TextField } from '@/components/ui';
+import { useAppViewportDimensions } from '@/components/platform/useAppViewportDimensions';
 import { SoftGlow } from '@/components/visual/SoftGlow';
 import { AudioTimeline, formatAudioTime } from '@/features/question-bank/components/AudioTimeline';
 import { QuestionBankSwitcherHeader, type QuestionBankSwitcherItem } from '@/features/question-bank/components/QuestionBankSwitcherHeader';
@@ -95,7 +96,7 @@ function BreathingWaveform({ active, remaining }: { active: boolean; remaining?:
 export function RadioPlayerScreen() {
   const radio = useRadioPlayer();
   const router = useRouter();
-  const { height } = useWindowDimensions();
+  const { height } = useAppViewportDimensions();
   const [queueOpen, setQueueOpen] = useState(false);
   const [intervalOpen, setIntervalOpen] = useState(false);
   const [query, setQuery] = useState('');

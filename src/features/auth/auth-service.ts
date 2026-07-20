@@ -44,13 +44,18 @@ function appSession(session: Session | null): AppSession | undefined {
   };
 }
 
-function authError(error: { message: string; code?: string } | null) {
-  if (!error) return new Error('auth_failed');
+export function authError(error: { message: string; code?: string } | null) {
+  if (!error) return new Error('auth_service_unavailable');
   const message = error.message.toLowerCase();
+  const code = error.code?.toLowerCase();
   if (message.includes('invalid login')) return new Error('invalid_email_or_password');
   if (message.includes('already registered') || message.includes('already exists')) return new Error('email_already_registered');
+  if (message.includes('failed to fetch') || message.includes('network request failed') || message.includes('networkerror') || message.includes('network error')) return new Error('auth_network_error');
+  if (message.includes('localstorage') || message.includes('storage') || message.includes('quota exceeded')) return new Error('auth_session_storage_unavailable');
+  if (code === 'unexpected_failure' || code === 'request_timeout' || code === 'over_request_rate_limit' || message.includes('service unavailable') || message.includes('temporarily unavailable')) return new Error('auth_service_unavailable');
+  if (code === 'auth_failed') return new Error('auth_request_not_completed');
   if (message.includes('password')) return new Error('weak_password');
-  return new Error(error.code ?? 'auth_failed');
+  return new Error(code ?? 'auth_failed');
 }
 
 class SupabaseEmailAuthService implements AuthService {

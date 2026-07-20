@@ -5,6 +5,7 @@ import { StyleSheet, View } from 'react-native';
 
 import { AppText, Button } from '@/components/ui';
 import { useAuth } from '@/features/auth/AuthProvider';
+import { EMAIL_DELIVERY_AVAILABLE } from '@/platform/email-capabilities';
 import { colors, spacing } from '@/theme';
 import { AuthShell, AuthHeading, AuthField, TextLink } from './auth-ui';
 
@@ -16,6 +17,10 @@ export function ForgotPasswordScreen() {
   const [sent, setSent] = useState(false);
   const [error, setError] = useState('');
   const ready = /^\S+@\S+\.\S+$/.test(email.trim());
+
+  if (!EMAIL_DELIVERY_AVAILABLE) {
+    return <AuthShell><AuthHeading title="找回密码" subtitle="公网邮件找回暂未开放" /><View style={styles.notice}><KeyRound color={colors.primary} size={16} /><AppText style={styles.flex} variant="caption">当前版本未配置正式邮件服务。如需重置密码，请联系管理员处理。</AppText></View><View style={styles.bottomLink}><TextLink label="返回登录" onPress={() => router.replace('/auth/login')} /></View></AuthShell>;
+  }
 
   async function submit() {
     if (!ready) return;

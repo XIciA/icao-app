@@ -163,23 +163,33 @@ describe('study exit flow', () => {
     expect(screen.queryByText('结束本次学习？')).toBeNull();
   });
 
-  it('ends from the native back action and shows the report directly', async () => {
+  it('returns to the catalog from the visible back button without ending the session', async () => {
     const screen = await render(<QuestionBankStudyScreen category={category} dataset={dataset} topic={topic} />);
 
-    await act(async () => { mockPreventRemoveHandler?.(); });
+    await act(async () => { fireEvent.press(screen.getByLabelText('返回题库目录')); });
 
-    await waitFor(() => expect(screen.getByText('report:abort')).toBeTruthy());
-    expect(mockFinish).toHaveBeenCalledWith('abort');
+    await waitFor(() => expect(mockReplace).toHaveBeenCalledWith({ pathname: '/question-bank/[bankId]', params: { bankId: dataset.id } }));
+    expect(mockFinish).not.toHaveBeenCalled();
     expect(mockFlush).toHaveBeenCalledTimes(1);
   });
 
-  it('saves and returns directly to the paused radio session when opened from radio', async () => {
+  it('returns to the catalog from the native back action without ending the session', async () => {
+    await render(<QuestionBankStudyScreen category={category} dataset={dataset} topic={topic} />);
+
+    await act(async () => { mockPreventRemoveHandler?.(); });
+
+    await waitFor(() => expect(mockReplace).toHaveBeenCalledWith({ pathname: '/question-bank/[bankId]', params: { bankId: dataset.id } }));
+    expect(mockFinish).not.toHaveBeenCalled();
+    expect(mockFlush).toHaveBeenCalledTimes(1);
+  });
+
+  it('returns to the paused radio session without ending the study session when opened from radio', async () => {
     const screen = await render(<QuestionBankStudyScreen category={category} dataset={dataset} returnTo="radio" topic={topic} />);
 
-    await act(async () => { fireEvent.press(screen.getByLabelText('保存并返回随身听')); });
+    await act(async () => { fireEvent.press(screen.getByLabelText('返回随身听')); });
 
     await waitFor(() => expect(mockReplace).toHaveBeenCalledWith('/content/radio'));
-    expect(mockFinish).toHaveBeenCalledWith('abort');
+    expect(mockFinish).not.toHaveBeenCalled();
     expect(mockFlush).toHaveBeenCalledTimes(1);
   });
 
