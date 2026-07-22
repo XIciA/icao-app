@@ -8,13 +8,19 @@ import { archiveAndBindEmptyLearningSync, bindEmptyLearningSync, bindLearningSyn
 import { colors, radii, spacing } from '@/theme';
 
 import { getAuthService, type AppSession } from './auth-service';
+import { UI_ACCEPTANCE_MODE_AVAILABLE } from './ui-acceptance-mode';
 
 type AuthContextValue = {
   configured: boolean;
   accountReady: boolean;
+  canAccessApp: boolean;
   restoring: boolean;
   session?: AppSession;
+  uiAcceptanceAvailable: boolean;
+  uiAcceptanceMode: boolean;
   consumePendingPath(): string | undefined;
+  enterUiAcceptanceMode(): void;
+  exitUiAcceptanceMode(): void;
   rememberPendingPath(path: string): void;
   signIn(email: string, password: string): Promise<void>;
   signUp(email: string, password: string): Promise<void>;
@@ -32,8 +38,13 @@ const unavailable = async () => { throw new Error('auth_not_configured'); };
 const AuthContext = createContext<AuthContextValue>({
   configured: false,
   accountReady: false,
+  canAccessApp: false,
   restoring: false,
+  uiAcceptanceAvailable: false,
+  uiAcceptanceMode: false,
   consumePendingPath: () => undefined,
+  enterUiAcceptanceMode: () => undefined,
+  exitUiAcceptanceMode: () => undefined,
   rememberPendingPath: () => undefined,
   signIn: unavailable,
   signUp: unavailable,
@@ -56,6 +67,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [binding, setBinding] = useState(false);
   const [bindingError, setBindingError] = useState('');
   const [pendingPath, setPendingPath] = useState<string>();
+  const [uiAcceptanceMode, setUiAcceptanceMode] = useState(false);
 
   useEffect(() => {
     if (!service) return;
@@ -79,6 +91,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (active) {
         setLearningSyncActiveUser(next?.user.id);
         setSession(next);
+        if (next) setUiAcceptanceMode(false);
         if (!next) setAccountReady(false);
       }
     });
@@ -177,11 +190,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const value = useMemo<AuthContextValue>(() => ({
     configured: Boolean(service),
     accountReady,
+    canAccessApp: Boolean(session) || uiAcceptanceMode,
     restoring,
     session,
+    uiAcceptanceAvailable: UI_ACCEPTANCE_MODE_AVAILABLE,
+    uiAcceptanceMode,
     consumePendingPath() { const value = pendingPath; setPendingPath(undefined); return value; },
+    enterUiAcceptanceMode() {
+      if (!UI_ACCEPTANCE_MODE_AVAILABLE) return;
+      setLearningSyncActiveUser(undefined);
+      setAccountReady(false);
+      setUiAcceptanceMode(true);
+    },
+    exitUiAcceptanceMode() {
+      setUiAcceptanceMode(false);
+      setPendingPath(undefined);
+    },
     rememberPendingPath(path) { if (!path.startsWith('/auth/') && !path.startsWith('/legal/')) setPendingPath(path); },
-    async signIn(email, password) { if (!service) return unavailable(); setAccountReady(false); setSession(await service.signInWithEmail(email, password)); },
+    async signIn(email, password) { if (!service) return unavailable(); setAccountReady(false); setUiAcceptanceMode(false); setSession(await service.signInWithEmail(email, password)); },
     async signUp(email, password) { if (!service) return unavailable(); setAccountReady(false); setSession(await service.signUpWithEmail(email, password)); },
     async signOut() { if (!service) return unavailable(); await service.signOut('local'); setSession(undefined); setAccountReady(false); },
     async signOutAll() { if (!service) return unavailable(); await revokeAllAndClear(); },
@@ -217,7 +243,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setSession(undefined);
       setAccountReady(false);
     },
-  }), [accountReady, pendingPath, restoring, revokeAllAndClear, service, session]);
+  }), [accountReady, pendingPath, restoring, revokeAllAndClear, service, session, uiAcceptanceMode]);
 
   return <AuthContext.Provider value={value}>{children}<AppModal animationType="fade" onRequestClose={() => undefined} transparent visible={bindingPrompt}><View style={styles.overlay}><View style={styles.dialog}><AppText variant="sectionTitle">选择本机学习数据归属</AppText><AppText>此设备已有旧版或其他账号的本机数据。继续前必须选择合并到当前账号，或保存本地归档并从当前账号的云端数据开始。</AppText>{bindingError ? <AppText color={colors.destructive} variant="caption">{bindingError}</AppText> : null}<Button disabled={binding} onPress={() => void confirmBinding()}>{binding ? '正在处理…' : '合并到当前账号并同步'}</Button><Button disabled={binding} onPress={() => void archiveBinding()} variant="outline">本地归档并从云端开始</Button></View></View></AppModal></AuthContext.Provider>;
 }

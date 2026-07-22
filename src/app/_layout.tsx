@@ -1,10 +1,10 @@
 import { Geist_400Regular, Geist_500Medium, Geist_600SemiBold } from '@expo-google-fonts/geist';
 import { GeistMono_400Regular } from '@expo-google-fonts/geist-mono';
 import { useFonts } from 'expo-font';
-import { Stack, SplashScreen, usePathname, type ErrorBoundaryProps } from 'expo-router';
+import { Stack, SplashScreen, usePathname, useRouter, type ErrorBoundaryProps } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -12,6 +12,7 @@ import { AppViewport } from '@/components/platform/AppViewport';
 import { ModalHost } from '@/components/platform/ModalHost';
 import { CenteredState } from '@/components/states/CenteredState';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
+import { AppText } from '@/components/ui';
 import { AuthProvider, useAuth } from '@/features/auth/AuthProvider';
 import { AppRuntime } from '@/platform/AppRuntime';
 import { colors } from '@/theme';
@@ -58,7 +59,7 @@ export function AppStack() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (!auth.restoring && !auth.session && pathname && pathname !== '/' && !pathname.startsWith('/auth/') && !pathname.startsWith('/legal/')) {
+    if (!auth.restoring && !auth.canAccessApp && pathname && pathname !== '/' && !pathname.startsWith('/auth/') && !pathname.startsWith('/legal/')) {
       auth.rememberPendingPath(pathname);
     }
   }, [auth, pathname]);
@@ -66,7 +67,8 @@ export function AppStack() {
   if (auth.restoring) return <GlobalLoadingScreen />;
 
   return (
-    <Stack
+    <View style={styles.root}>
+      <Stack
             screenOptions={{
               animation: 'slide_from_right',
               animationDuration: 220,
@@ -77,13 +79,13 @@ export function AppStack() {
             }}
           >
             <Stack.Screen name="index" options={{ animation: 'fade', gestureEnabled: false }} />
-            <Stack.Protected guard={!auth.session}>
+            <Stack.Protected guard={!auth.canAccessApp}>
               <Stack.Screen name="auth/[slug]" options={{ gestureEnabled: false }} />
             </Stack.Protected>
             <Stack.Screen name="auth/callback" options={{ gestureEnabled: false }} />
             <Stack.Screen name="auth/recovery" options={{ gestureEnabled: false }} />
             <Stack.Screen name="legal/[slug]" />
-            <Stack.Protected guard={Boolean(auth.session)}>
+            <Stack.Protected guard={auth.canAccessApp}>
               <Stack.Screen name="(tabs)" options={{ animation: 'fade', fullScreenGestureEnabled: false, gestureEnabled: false }} />
               <Stack.Screen name="detail/[slug]" />
               <Stack.Screen name="question-bank/[bankId]/index" />
@@ -98,7 +100,28 @@ export function AppStack() {
               <Stack.Screen name="info/[slug]" />
               <Stack.Screen name="state/[slug]" />
             </Stack.Protected>
-          </Stack>
+      </Stack>
+      <UiAcceptanceBadge />
+    </View>
+  );
+}
+
+function UiAcceptanceBadge() {
+  const auth = useAuth();
+  const router = useRouter();
+  if (!auth.uiAcceptanceMode) return null;
+  return (
+    <Pressable
+      accessibilityLabel="退出 UI 验收模式"
+      accessibilityRole="button"
+      onPress={() => {
+        auth.exitUiAcceptanceMode();
+        router.replace('/auth/login');
+      }}
+      style={({ pressed }) => [styles.acceptanceBadge, pressed ? styles.acceptanceBadgePressed : null]}
+    >
+      <AppText color={colors.accentForeground} variant="micro">UI 验收模式 · 退出</AppText>
+    </Pressable>
   );
 }
 
@@ -121,4 +144,15 @@ export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
 const styles = StyleSheet.create({
   root: { flex: 1 },
   errorRoot: { backgroundColor: colors.background, flex: 1 },
+  acceptanceBadge: {
+    backgroundColor: colors.accent,
+    borderRadius: 999,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    position: 'absolute',
+    right: 12,
+    top: 12,
+    zIndex: 100,
+  },
+  acceptanceBadgePressed: { opacity: 0.8 },
 });

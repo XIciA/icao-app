@@ -1,6 +1,6 @@
 import { type Href, useRouter } from 'expo-router';
 import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 
 import { AppText, Button } from '@/components/ui';
 import { colors, spacing } from '@/theme';
@@ -42,6 +42,11 @@ export function LoginScreen() {
     }
   }
 
+  function enterUiAcceptanceMode() {
+    auth.enterUiAcceptanceMode();
+    router.replace('/(tabs)');
+  }
+
   return (
     <AuthShell>
       <AuthHeading title="欢迎回来" subtitle="登录以继续你的 ICAO 备考进度" />
@@ -57,6 +62,16 @@ export function LoginScreen() {
         <AppText variant="caption">还没有账号？ </AppText>
         <TextLink label="立即注册" onPress={() => router.push('/auth/register')} />
       </View>
+      {auth.uiAcceptanceAvailable ? (
+        <Pressable
+          accessibilityLabel="进入 UI 验收模式"
+          accessibilityRole="button"
+          onPress={enterUiAcceptanceMode}
+          style={({ pressed }) => [styles.acceptanceEntry, pressed ? styles.acceptanceEntryPressed : null]}
+        >
+          <AppText color={colors.accent} variant="micro">开发者 · 免登录验收</AppText>
+        </Pressable>
+      ) : null}
     </AuthShell>
   );
 }
@@ -66,4 +81,16 @@ const styles = StyleSheet.create({
   passwordHelp: { alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' },
   scopeNote: { marginTop: spacing[6], textAlign: 'center' },
   bottomLink: { alignItems: 'center', flexDirection: 'row', justifyContent: 'center', marginTop: 'auto', paddingBottom: spacing[3], paddingTop: spacing[8] },
+  acceptanceEntry: {
+    backgroundColor: colors.card,
+    borderColor: colors.border,
+    borderRadius: 999,
+    borderWidth: 1,
+    bottom: spacing[3],
+    paddingHorizontal: spacing[3],
+    paddingVertical: spacing[2],
+    position: 'absolute',
+    right: spacing[5],
+  },
+  acceptanceEntryPressed: { opacity: 0.75 },
 });

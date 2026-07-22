@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import type { GestureType } from 'react-native-gesture-handler';
 
 import type { RecordingAsset } from '../recording/types';
+import type { WordLookupInteraction } from '../lib/word-lookup-interaction';
 import type { QuestionBankCard, StudyBehavior } from '../types';
 import { ChoiceList } from './ChoiceList';
 import { SpeakingPracticePanel } from './SpeakingPracticePanel';
@@ -15,6 +16,9 @@ export function StudyTaskRenderer({
   revealed,
   recording,
   onChoose,
+  onLookupWord,
+  isLookupAvailable,
+  lookupInteraction,
   onClearRecording,
   onRecorded,
   onInteractionChange,
@@ -32,6 +36,9 @@ export function StudyTaskRenderer({
   revealed: boolean;
   recording?: RecordingAsset;
   onChoose: (index: number) => void;
+  onLookupWord?: (word: string) => void;
+  isLookupAvailable?: (word: string) => boolean;
+  lookupInteraction?: WordLookupInteraction;
   onClearRecording: () => void;
   onRecorded: (recording: RecordingAsset) => void;
   onInteractionChange?: (active: boolean) => void;
@@ -47,6 +54,9 @@ export function StudyTaskRenderer({
       <ChoiceList
         choices={card.choices}
         correctChoiceIndex={card.correctChoiceIndex}
+        isLookupAvailable={isLookupAvailable}
+        lookupInteraction={lookupInteraction}
+        onLookupWord={onLookupWord}
         onSelect={onChoose}
         selectedChoiceIndex={selectedChoiceIndex}
         showResult={revealed && selectedChoiceIndex !== undefined}

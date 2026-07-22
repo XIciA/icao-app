@@ -72,6 +72,11 @@ describe('shared study engine', () => {
     expect(storytellingCards.every((card) => !Object.hasOwn(card, 'referenceText'))).toBe(true);
   });
 
+  it('never exposes a reference tab for listening, including a remotely misconfigured dataset', () => {
+    const listening: QuestionBankDataset = { ...datasets[0], study: { ...datasets[0].study, consoleTabs: ['reference', 'notes'] } };
+    expect(getStudyBehavior(listening).workbenchTabs).toEqual(['notes']);
+  });
+
   it('does not migrate visit-only legacy state as completed', () => {
     expect(migrateLegacyCardState({ visited: true, note: '', updatedAt: '2026-07-12T00:00:00.000Z' }).completed).toBe(false);
     expect(migrateLegacyCardState({ visited: true, recorded: true, note: '', updatedAt: '2026-07-12T00:00:00.000Z' }).completed).toBe(true);

@@ -1,5 +1,8 @@
-const WEB_APP_VIEWPORT = Object.freeze({ height: 812, width: 375 });
+import { useWindowDimensions } from 'react-native';
+
+import { resolveWebContentWidth } from './web-layout';
 
 export function useAppViewportDimensions() {
-  return WEB_APP_VIEWPORT;
+  const viewport = useWindowDimensions();
+  return { ...viewport, width: resolveWebContentWidth(viewport.width) };
 }

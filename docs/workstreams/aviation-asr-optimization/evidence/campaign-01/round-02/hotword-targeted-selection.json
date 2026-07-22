@@ -1,0 +1,14 @@
+{
+  "ids": [
+    "sentences900:sentence900-main-199",
+    "listening:listening-main-181",
+    "sentences900:sentence900-main-201",
+    "listening:listening-main-328",
+    "listening:listening-main-1130",
+    "listening:listening-main-207",
+    "sentences900:sentence900-main-705",
+    "sentences900:sentence900-main-877",
+    "sentences900:sentence900-main-691"
+  ],
+  "rationale": "验证 RVR→RV 与 ICAO→Icaho 两个目标错误，同时保护四个既有正确领域样本和三个含 we are 等近邻普通表达的短句。"
+}

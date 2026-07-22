@@ -1,0 +1,80 @@
+{
+  "sentences900:sentence900-main-718": {
+    "mainCategory": "REFERENCE_MISMATCH",
+    "note": "音频内容是空速下降、颠簸和下降至 FL390，与参考文本的暴雨、发动机熄火和请求爬升完全不同；排除为源数据错配，不用于调优。",
+    "referenceStatus": "mismatch",
+    "semanticOutcome": "excluded"
+  },
+  "sentences900:sentence900-main-078": {
+    "mainCategory": "NORMALIZATION_MISSING",
+    "note": "ASR 已听出 Hotel Zulu 01 和 124 decimal 35，但当前规则未安全收敛为 HZ01 与 124.35；记录为后续上下文规则候选。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "sentences900:sentence900-main-407": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "航空语境中的 radial 被识别为 radio；BKM VOR 已正确规范化，暂不为一次发音近似建立替换规则。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "sentences900:sentence900-main-325": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "three sixty 与 360 语义相同，当前展示保留数字形式可接受，不作为错误规则输入。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-303": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "frequency/frequencies 的单复数和题干标签省略不改变语义，属于可接受转写差异。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-201": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "take-off、climb-out 的连字符形式及题干标签省略不改变语义。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-732": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "ASR 未输出 A/B 说话人标签，但正文和问题完整，语义可接受。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-1139": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "miss 被识别为 missed；D9 已由明确 taxiway 上下文正确规范化，剩余差异轻微。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "listening:listening-main-611": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "JAL 781 与音频中的 Japan/Japan Air 781 是代码和话音呼号写法差异；现有语料两种目标并存，不能单向公共替换。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-1202": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "NWA 与 Northwest、two 与 2 以及说话人标签属于等价书写差异，核心下降指令完整。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-067": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "CES 与 China Eastern 是代码和话音呼号写法差异；正文语义完整。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-217": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "BAW 与 Speedbird 是运营人代码和话音呼号写法差异；不能在缺少明确目标策略时单向替换。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "storytelling:story-koala-062": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "多次 runway 15 right 被切分成疑问式 15, right?，并有 Air/Are France 等近音差异；故事主旨仍完整，记录航空表达识别问题但不以激进规则修补。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  }
+}

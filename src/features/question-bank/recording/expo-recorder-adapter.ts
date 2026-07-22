@@ -80,6 +80,7 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
   const recorderState = useAudioRecorderState(recorder, 200);
   const format: RecordingFormat = Platform.OS === 'ios' ? 'wav' : 'm4a';
   const e2e = useRef({ prepared: false, recording: false, startedAt: 0, uri: undefined as string | undefined });
+  const nativeStartedAt = useRef<number | undefined>(undefined);
 
   if (E2E_ENABLED) {
     return {
@@ -121,6 +122,8 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
         uri = recorder.uri ?? undefined;
       } catch {
         uri = recorder.uri ?? undefined;
+      } finally {
+        nativeStartedAt.current = undefined;
       }
       return uri;
     },
@@ -132,7 +135,10 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
         return false;
       }
     },
-    prepare: () => recorder.prepareToRecordAsync(),
+    async prepare() {
+      nativeStartedAt.current = undefined;
+      await recorder.prepareToRecordAsync();
+    },
     async requestPermission() {
       const permission = await requestMicrophonePermission();
       return permission.granted;
@@ -140,22 +146,32 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
     start() {
       recorder.record();
       if (!recorder.isRecording) throw new Error('record_start_failed');
+      nativeStartedAt.current = Date.now();
     },
     async stop() {
+      const statusBeforeStop = recorder.getStatus();
+      const elapsedMillis = nativeStartedAt.current === undefined
+        ? 0
+        : Math.max(0, Date.now() - nativeStartedAt.current);
       const durationBeforeStop = Math.max(
+        elapsedMillis,
         recorderState.durationMillis,
-        Math.round(recorder.currentTime * 1000),
+        statusBeforeStop.durationMillis,
       );
-      await recorder.stop();
-      const status = recorder.getStatus();
-      const uri = status.url ?? recorder.uri ?? undefined;
-      if (!uri) throw new Error('record_stop_failed');
-      return {
-        durationMillis: Math.max(durationBeforeStop, status.durationMillis),
-        format,
-        minBytesPerMillisecond: MIN_BYTES_PER_MILLISECOND,
-        uri,
-      };
+      try {
+        await recorder.stop();
+        const status = recorder.getStatus();
+        const uri = status.url ?? recorder.uri ?? undefined;
+        if (!uri) throw new Error('record_stop_failed');
+        return {
+          durationMillis: Math.max(durationBeforeStop, status.durationMillis),
+          format,
+          minBytesPerMillisecond: MIN_BYTES_PER_MILLISECOND,
+          uri,
+        };
+      } finally {
+        nativeStartedAt.current = undefined;
+      }
     },
   };
 }

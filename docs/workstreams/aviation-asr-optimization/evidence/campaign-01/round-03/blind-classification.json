@@ -1,0 +1,128 @@
+{
+  "sentences900:sentence900-main-845": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-388": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-052": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-656": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "ground staff, standby 被识别为 ground, set stand by，处置对象失真；不由规则补写。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "sentences900:sentence900-main-398": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-155": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-336": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "8,000/8000 与 1,000/1000 数值完全一致。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "sentences900:sentence900-main-245": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-600": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "request vectors 前多出 rate or，方位和 8 海里仍正确。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "sentences900:sentence900-main-146": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "cleared 被识别为 clear；runway 24 right 已由既有规则正确形成 24R。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "listening:listening-main-145": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "readback 分词、冠词和被动语态差异不改变未及时纠正的原因。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-348": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "fly a level 被识别为 file a level，12500 的千位逗号位置异常；原始数字顺序未丢失但书写质量较差。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "listening:listening-main-406": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "mechanic/mechanics 单复数差异不改变受损部件。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-1042": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "China Eastern/CES 与标点为等价表示，2100 米和复飞原因正确。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-490": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "第二次呼号 NWA 546 丢失 A 成为 NW 546；其余进近灯和落地许可完整。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "listening:listening-main-988": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "listening:listening-main-430": {
+    "mainCategory": "REFERENCE_MISMATCH",
+    "note": "参考以省略号缺失 fork/strut 具体内容，音频识别反而完整；排除缺失片段的收益判断。",
+    "referenceStatus": "mismatch",
+    "semanticOutcome": "excluded"
+  },
+  "listening:listening-main-733": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "人名 Wang 被识别为 Wong，30 分钟循环录音内容正确。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "listening:listening-main-312": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "unknown balloon 被识别为 unmanned balloon，可能改变描述；32、300、40 数值保持正确。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "listening:listening-main-205": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "have to/will have to 与 had/will have to 的时态差异不改变道路事故导致绕行。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "storytelling:story-pepec-0045": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "ATR 42 被拆成 at r42；其余航班号、人数、高度、跑道和日期均保留。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  }
+}

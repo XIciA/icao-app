@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "version": "aviation-hotwords:v4",
+  "targetModel": "fun-asr-2025-11-07",
+  "language": "en",
+  "entries": [
+    { "text": "VOR", "weight": 4, "category": "navigation", "source": "question-bank:release-8" }
+  ],
+  "decision": "rejected",
+  "reason": "8 条隔离定向对照中仅改善 1/2 个 VR 错例，并把保护样本 Bravo Kilo Mike 变为 Bravo Kilo Mic，造成新的关键航路点字母退化。"
+}

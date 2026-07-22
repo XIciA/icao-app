@@ -1,0 +1,380 @@
+{
+  "sentences900:sentence900-main-824": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-020": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-417": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-329": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "末尾 QNH 1014 整体漏识别，不能由热词或规范化补写。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "sentences900:sentence900-main-818": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-409": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-011": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-269": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "IP 的 ICAO 拼读被粘连为 Indiapapa；短双字母热词风险高，本轮只记录。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "sentences900:sentence900-main-227": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "导航点 BK 的拼读被识别为 Brava，位置实体错误且不适合由规则猜回。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "sentences900:sentence900-main-200": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "Confirm/Confirmed 不影响可见度询问的核心含义。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "sentences900:sentence900-main-449": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-515": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-079": {
+    "mainCategory": "NORMALIZATION_MISSING",
+    "note": "Zulu Alpha Mike 与 Delta Zero Three 已听对，但尚未统一为 ZAM 和 D03。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "sentences900:sentence900-main-281": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-337": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "descend 被识别为 descent，FL50 规范化正确；普通词性错误不以规则修补。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "sentences900:sentence900-main-251": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-485": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-646": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "our descent 被识别为 or descent，属于普通英语近音错误。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "sentences900:sentence900-main-842": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "A/Our 和标点差异不改变电池货物检查与延迟推出的含义。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "sentences900:sentence900-main-668": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "startup/start up 为等价书写形式。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "sentences900:sentence900-main-226": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-438": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-525": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "and cancel all speed restrictions 被严重识别为 encampment at all speed restrictions，无法安全规则化恢复。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "unusable"
+  },
+  "sentences900:sentence900-main-172": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-157": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-695": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-046": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-363": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-098": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "关键离场时间 49 被识别为 4:00，不能凭参考答案改回。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "sentences900:sentence900-main-445": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "10,000 与 10000 仅千位分隔写法不同，数值正确。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-181": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "ICAO 被识别为 Icaho，是低歧义标准缩写的明确上游错误，进入定向热词验证。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "listening:listening-main-111": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "说话人标签、wanna/want to 和标点不同，争议内容完整。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-529": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "tow bar has bent 被识别为 has been，且 Japan Air 多处不稳定，影响故障信息。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "listening:listening-main-757": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "listening:listening-main-615": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "HUR VOR 一处拼读和 VOR 分词错误，另一处 Uniform 被识别为 Uform；高度、航向和入航迹数值正确。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "listening:listening-main-991": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "listening:listening-main-607": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "Northwest 281 与 NWA 281 是口头呼号和三字码的等价表示，其他内容完整。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-719": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "listening:listening-main-750": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "five/seven 与 5/7、go around 连字符差异均不改变数值和题意。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-404": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "音频措辞使用 stress limit/flaps compared，和参考 structural limit/paired flap 表达同一结论。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-1121": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "GBT 的 Golf 被识别为 Goffle；其余等待和避让含义完整，单次短码先观察。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "listening:listening-main-391": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "departure 被识别为 approach，改变联系单位；Speedbird/BAW 为等价呼号表示。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "listening:listening-main-193": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "Golf 已正确规范化为 G；meters per second 与 m/s 内容等价。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-642": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "listening:listening-main-008": {
+    "mainCategory": "NORMALIZATION_MISSING",
+    "note": "runway 36 right 被模型用句点和问号切开，未形成 36R；盲目跨标点合并风险较高。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "listening:listening-main-1077": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "over near the south field 比参考多 near，但否决原因仍是南场上空滑翔机。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-705": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "音频含 about、onto 等措辞，参考本身语法不完整；35 和 8 两个关键数量正确。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-507": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "listening:listening-main-1048": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "due variable visibility 被识别为 do variable visibility；呼号名称/代码属于等价表示。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "listening:listening-main-374": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "读回中的 Foxtrot 被识别为 Fox truck，路线仍可推断但字母未忠实保留。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "listening:listening-main-174": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "原始音频措辞表现为 and 1000 feet below，与参考 or below 有源文本疑点；30 度和两点钟信息正确。",
+    "referenceStatus": "suspect",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-1135": {
+    "mainCategory": "NORMALIZATION_MISSING",
+    "note": "句首 Charlie Zulu Quebec 已听对但未统一为 CZQ；BDE VOR 已正确规范化。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "listening:listening-main-444": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "either below desired or well away 与 far below designed and away 是音频/参考措辞变体，核心避障含义一致。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-722": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "listening:listening-main-003": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "开头题号 three 和 Dragonair/HDA 为来源呈现差异，液压故障、低空通场和 45 米均正确。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-779": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "整段出现重复、错词和截断，已无法可靠表达题意；不以热词或规则修补。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "unusable"
+  },
+  "listening:listening-main-398": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "China Southern/CSN 与 Echo 5/E5 为口头和代码写法差异，医疗事件与转弯指令完整。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-1225": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "listening:listening-main-331": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "Air Canada 215 与 ACA 215 为等价呼号表示，其余方位、距离和方向完全保留。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-629": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "首个 Wuhan Control/Gulf Air 严重失真，WUH/WHA 的拼读也未统一；13 时和 9000 米保持正确。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "storytelling:story-kongguan-014": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "冠词、所有格和标点差异不改变事故过程，全部关键数字正确。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "storytelling:story-kongguan-029": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "音频包含 Story 29，另有冠词、标点和 MYAT 大小写差异，事故事实基本完整。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "storytelling:story-pepec-0130": {
+    "mainCategory": "REFERENCE_MISMATCH",
+    "note": "16 秒音频实际是角色提示和简化指令，参考却是完整事故报道；结构警告得到确认，排除收益判断。",
+    "referenceStatus": "mismatch",
+    "semanticOutcome": "excluded"
+  }
+}

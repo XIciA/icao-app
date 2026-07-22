@@ -4,6 +4,9 @@ import { Pressable, StyleSheet, View } from 'react-native';
 import { AppText, BottomSheet } from '@/components/ui';
 import { colors, fonts, radii, spacing } from '@/theme';
 
+const ANSWER_CARD_NUMBER_HEIGHT = 40;
+const ANSWER_CARD_GRID_MAX_WIDTH = 368;
+
 type Props = {
   visible: boolean;
   total: number;
@@ -70,11 +73,11 @@ const styles = StyleSheet.create({
   legendItem: { alignItems: 'center', flexDirection: 'row', gap: spacing[1.5] },
   legendDot: { borderRadius: radii.full, height: 12, width: 12 },
   outlined: { borderColor: colors.border, borderWidth: 1 },
-  grid: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing[3], paddingBottom: spacing[5], paddingTop: spacing[4] },
-  number: { alignItems: 'center', aspectRatio: 1, backgroundColor: colors.background, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, justifyContent: 'center', position: 'relative', width: '17%' },
+  grid: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing[3], maxWidth: ANSWER_CARD_GRID_MAX_WIDTH, paddingBottom: spacing[5], paddingTop: spacing[4], width: '100%' },
+  number: { alignItems: 'center', backgroundColor: colors.background, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, height: ANSWER_CARD_NUMBER_HEIGHT, justifyContent: 'center', position: 'relative', width: '17%' },
   numberCurrent: { backgroundColor: colors.primary, borderColor: colors.primary },
   numberVisited: { backgroundColor: colors.primary10, borderColor: colors.primary20 },
-  numberText: { fontFamily: fonts.monoRegular, includeFontPadding: false, textAlign: 'center', textAlignVertical: 'center', width: '100%' },
+  numberText: { fontFamily: fonts.monoRegular, height: ANSWER_CARD_NUMBER_HEIGHT, includeFontPadding: false, lineHeight: ANSWER_CARD_NUMBER_HEIGHT, textAlign: 'center', textAlignVertical: 'center', width: '100%' },
   check: { position: 'absolute', right: 4, top: 4 },
   pressed: { opacity: 0.75, transform: [{ scale: 0.95 }] },
 });

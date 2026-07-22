@@ -146,4 +146,21 @@ describe('annotation store', () => {
     });
     expect(hook.result.current.entry?.highlights.map((item) => item.wordIndex)).toEqual([1]);
   });
+
+  it('removes the same highlight color and replaces a different color', async () => {
+    jest.mocked(sqliteLearningStore.getTopicStates).mockResolvedValue({});
+    const hook = await renderHook(() => useQuestionAnnotations(target));
+    await waitFor(() => expect(hook.result.current.hydrated).toBe(true));
+    const value = { blockId: 'question' as const, wordIndex: 1, quote: 'two', sentence: 'One two.', sourceText: 'One two.' };
+
+    await act(async () => hook.result.current.toggleHighlight({ ...value, colorId: 'green' }));
+    expect(hook.result.current.entry?.highlights[0]?.colorId).toBe('green');
+
+    await act(async () => hook.result.current.toggleHighlight({ ...value, colorId: 'yellow' }));
+    expect(hook.result.current.entry?.highlights).toHaveLength(1);
+    expect(hook.result.current.entry?.highlights[0]?.colorId).toBe('yellow');
+
+    await act(async () => hook.result.current.toggleHighlight({ ...value, colorId: 'yellow' }));
+    expect(hook.result.current.entry?.highlights ?? []).toEqual([]);
+  });
 });

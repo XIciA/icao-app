@@ -1,0 +1,379 @@
+{
+  "campaignId": "aviation-asr-campaign-01",
+  "content": {
+    "registryReleaseVersion": 8,
+    "registryReleasedAt": "2026-07-18T19:36:00Z"
+  },
+  "phase": "blind",
+  "round": 1,
+  "samples": [
+    {
+      "audio": {
+        "checksum": "587269b0fcaa231b2175dcfc99c683a601c9183395c5ef53cf782e57eafbd2fa",
+        "durationSeconds": 10.44,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/576.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/576.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-576",
+      "categoryId": "sentence900-5级",
+      "expectedField": "audioText",
+      "expectedText": "Both our windshield heating systems have failed. Ice is obstructing our view. Request latest airport weather.",
+      "expectedTextSha256": "9cf4e09600d14d33141b5a5db7e68231279486a1c1b97473b2d1334a79a2a087",
+      "id": "sentences900:sentence900-main-576",
+      "topicId": "sentence900-5级-main"
+    },
+    {
+      "audio": {
+        "checksum": "a0ad1c354c7e4978eea6757d9366e980a254542e0c1c88c12346d8195985f5b1",
+        "durationSeconds": 9.312,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/642.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/642.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-642",
+      "categoryId": "sentence900-4级",
+      "expectedField": "audioText",
+      "expectedText": "Our weather radar has failed and we are in IMC. Request return for landing.",
+      "expectedTextSha256": "9d8e4ef5ca0ab41b1227baf6761580d9ff03bf937ee322f2bee8121a7280e57e",
+      "id": "sentences900:sentence900-main-642",
+      "topicId": "sentence900-4级-main"
+    },
+    {
+      "audio": {
+        "checksum": "6d5768ebecd35ffead6f922d53a0ff99d052b6fe64b8a0ffec9de0949f1ba432",
+        "durationSeconds": 9.144,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/635.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/635.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-635",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "GPS unreliable, terminating ADS-B transmissions.",
+      "expectedTextSha256": "0e3dfa468b24d588db4d17000e93641f3f6117e2ff20bc6058c5793d09938414",
+      "id": "sentences900:sentence900-main-635",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "4e51f1ba07bcba4c3909c632691ddeae883c694c253d4cc66c2ba09bba090c1f",
+        "durationSeconds": 6.936,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/356.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/356.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-356",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Remain this frequency.",
+      "expectedTextSha256": "6148f1bade313d58bcbc082ec349679f78b602d3e572e88f416a0a7438304790",
+      "id": "sentences900:sentence900-main-356",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "f006aaf75ded4bd1c6cf337017f3022fb23e284a42be0cbb47acdebd2f612934",
+        "durationSeconds": 7.728,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/199.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/199.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-199",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Confirm current RVR less than 400 meters.",
+      "expectedTextSha256": "482df50b0e01d7ca7a6215b747669cd5ac3709cb2eb11432206d703317009420",
+      "id": "sentences900:sentence900-main-199",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "770f5e53db0cbec8ee027b4abefa10af4a3218aea8c0b6f1192cd29d1dc6da2b",
+        "durationSeconds": 10.584,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/763.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/763.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-763",
+      "categoryId": "sentence900-5级",
+      "expectedField": "audioText",
+      "expectedText": "We are shutting down our engines. There are boxes blown by the wind toward our aircraft.",
+      "expectedTextSha256": "149da5846660e0e3363b2c5654c5cea00255b8980a9b64eeff76bee930b804b7",
+      "id": "sentences900:sentence900-main-763",
+      "topicId": "sentence900-5级-main"
+    },
+    {
+      "audio": {
+        "checksum": "25d2d0c59818000235acad4a0dc1312bb82aac3d09f5bb05c913a339b62944e6",
+        "durationSeconds": 5.16,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/015.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/015.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-015",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Descend at 2000 feet per minute.",
+      "expectedTextSha256": "1ab5e2be21d0cb29fb16d7bb56cf1ebf617adfb09cd66b5771aa2447ce07929e",
+      "id": "sentences900:sentence900-main-015",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "99eedcdee22a2d50df6d3ddb7317ae61cc301e9fabe4aaf25be6a8fdb536297d",
+        "durationSeconds": 17.52,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/317.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/317.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-317",
+      "categoryId": "sentence900-5级",
+      "expectedField": "audioText",
+      "expectedText": "Hold at 20 DME of ST VOR, FL100, inbound track 260 degrees, left turns, limiting outbound distance 24 DME.",
+      "expectedTextSha256": "4abc484351233b8a15d4159d6e79583b1da8767979f4e32ec08b2f8ff65300fb",
+      "id": "sentences900:sentence900-main-317",
+      "topicId": "sentence900-5级-main"
+    },
+    {
+      "audio": {
+        "checksum": "2a905e2b796934b06f60d2c5f6498758ceef814696e0362bca012ad88ce62d76",
+        "durationSeconds": 6.312,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/049.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/049.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-049",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Request taxi to south maintenance ramp.",
+      "expectedTextSha256": "07c6dedc1ed68466dea0f289261d7464b6b19190b40f20ea6e5f43a685379daa",
+      "id": "sentences900:sentence900-main-049",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "4dcd8e24f452aa6cbf9bda298a33e5da6e1ec5a8d809f3bd44129cf30c25f13e",
+        "durationSeconds": 11.16,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/321.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/321.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-321",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Position 10 miles north east of LN.",
+      "expectedTextSha256": "bb758239f38240647437da90e79f8852f45e54f5e99b61dec89c927606f24d24",
+      "id": "sentences900:sentence900-main-321",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "c448ab22a1c9a80c676b18257b69cd89017ec28e75e0a22ad6c44513618c490b",
+        "durationSeconds": 13.896,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s03-section-06-q19.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-06-q19.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-1130",
+      "categoryId": "listening-category-04",
+      "expectedField": "audioText",
+      "expectedText": "CCA 500, Runway 26R RVR, touchdown 600m, mid-point 800m, stop-end 700m. Question: what is the RVR of the stop end?",
+      "expectedTextSha256": "89578a0c1b976eb469b05f0fce5ce26db4056055f3b0c96ce88b381673cf5016",
+      "id": "listening:listening-main-1130",
+      "topicId": "listening-topic-04"
+    },
+    {
+      "audio": {
+        "checksum": "9b35356448f140228c64283ccac40121923675b883483e8bbdd14d7e2fe2f856",
+        "durationSeconds": 14.328,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-17-q20.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-17-q20.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-904",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "Without the pressurization system, the cabin will slowly lose pressure as it equilibrates with the external atmospheric pressure. Question: If the pressurization system fails during cruise flight, what will most likely happen to the cabin pressure?",
+      "expectedTextSha256": "a87036222b501b5bc6ea7732d3cf648f6f26070e70ade6391fd4bf4e0bc3c3af",
+      "id": "listening:listening-main-904",
+      "topicId": "listening-topic-01"
+    },
+    {
+      "audio": {
+        "checksum": "60697d33e1e1f7017c069c71d39acb3951d51a5ba0083d18faba8055e471396a",
+        "durationSeconds": 31.032,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/199.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/199.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-199",
+      "categoryId": "listening-category-02",
+      "expectedField": "audioText",
+      "expectedText": "C: TWA 141, taxi to holding point of Runway 36 via A4 and A. Taxi with caution , taxiway is slippery. C: TWA 141, stop immediately, there is conflicting traffic on the way to you. P: Stopping, traffic in sight, TWA 141. Question: What did the flight crew possibly see on their way?",
+      "expectedTextSha256": "97f14d1868cf80f43cc54b6d7a55baf4bcb94a523e8616a1a1ad9505cfe675b3",
+      "id": "listening:listening-main-199",
+      "topicId": "listening-topic-02"
+    },
+    {
+      "audio": {
+        "checksum": "283958251823510e88a78590c729b6640a8f2d907c6dbe39ff160467310eb192",
+        "durationSeconds": 23.784,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/582.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/582.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-582",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "In a teardrop entry, the aircraft flies to the holding fix, turns into the protected area, flies for one minute, and then turns back inbound, proceeds to the fix, and continues from there. Question: how long would the aircraft fly into the protected area in a teardrop entry?",
+      "expectedTextSha256": "c6e975dacad0386153b35601030fec72e7505c9b2f1db1aff0d38c67f5ad1bdf",
+      "id": "listening:listening-main-582",
+      "topicId": "listening-topic-01"
+    },
+    {
+      "audio": {
+        "checksum": "ed18feb571101b785f925a9698c88dcc31b2c9f1d208af98ec7d9b1c78d2f633",
+        "durationSeconds": 19.152,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-08-q15.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-08-q15.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-727",
+      "categoryId": "listening-category-03",
+      "expectedField": "audioText",
+      "expectedText": "An aircraft's data-link communication system is designed to transmit non-voice data. This includes flight plans, updated weather information, and the status of various aircraft systems. It enhances the efficiency and safety of flight operations. Question: What is the role of an aircraft's data-link communication system?",
+      "expectedTextSha256": "337987342c1c7c3df9d2623f9aceb45c5f974752cf6c44192737f534f6d8a055",
+      "id": "listening:listening-main-727",
+      "topicId": "listening-topic-03"
+    },
+    {
+      "audio": {
+        "checksum": "a0722b82f2d5a22cba9a0fad0f8b7f06d98eab8d596691eedcbde6e74f20067f",
+        "durationSeconds": 16.008,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/454.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/454.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-454",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "B: Before each flight, the pilots must have all the necessary documents in hand such as flight plan, weather forecast, NOTAM and so on. Question: Which document is not mentioned?",
+      "expectedTextSha256": "967d77d0c005989c3fa652b8b72ec90579b8775dce0c229cc725297bbfff9625",
+      "id": "listening:listening-main-454",
+      "topicId": "listening-topic-01"
+    },
+    {
+      "audio": {
+        "checksum": "71eeffae81f5e6b545b8806b3d4daf6b781a389d21207646308988c30f45603e",
+        "durationSeconds": 16.668,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-01-q20.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-01-q20.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-649",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "The transponder sends information about the aircraft's identity, altitude, and speed to air traffic control. This helps air traffic controllers to track and manage the aircraft more effectively in the airspace. Question: What is the role of the transponder in aviation communication?",
+      "expectedTextSha256": "7229157ec4fba5191c508aa4c7b938ae9af4e5381c3bd779e8682161be47f5d6",
+      "id": "listening:listening-main-649",
+      "topicId": "listening-topic-01"
+    },
+    {
+      "audio": {
+        "checksum": "1d13b2997cff117c6c1d2dce156731ee3da076e766e94cbf4ebf4fcdfc7169f1",
+        "durationSeconds": 22.284,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s04-section-03-q14.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s04-section-03-q14.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-1185",
+      "categoryId": "listening-category-02",
+      "expectedField": "audioText",
+      "expectedText": "C: CCA 981, Wuhan Tower, radar shows you are 200 feet above glide slope. P: Tower, CCA 981, roger, we've just lost glide slope indication on the instrument, we are going around as published. Question: What type of approach was CCA 981 flying before the Missed Approach?",
+      "expectedTextSha256": "ebe9db975786e4f7d5853eff678bc89bbe9a695db4afe2b36e973ac81caab05c",
+      "id": "listening:listening-main-1185",
+      "topicId": "listening-topic-02"
+    },
+    {
+      "audio": {
+        "checksum": "6b0d82dd2ad6bc250e6ea39a8cd17b1c2970932e719a2036d8445ab26b8e7c91",
+        "durationSeconds": 17.388,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-11-q12.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-11-q12.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-777",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "Analog-to-Digital Converters (ADCs) play a central role in digital flight systems by converting sensor data into digital signals for processing and display on EFIS screens. Question: What do odern digital flight instruments often use to synthesize and process data from various sensors?",
+      "expectedTextSha256": "52b39505cac8e6efbbc3d1ad2e361a9ecea45dffb1254c86c43cc425cfdc8a23",
+      "id": "listening:listening-main-777",
+      "topicId": "listening-topic-01"
+    },
+    {
+      "audio": {
+        "checksum": "506a06a22893aac4fb3153db2ce430b34eee2161f5b47f0fc7871633d3e5fdba",
+        "durationSeconds": 26.688,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/299.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/299.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-299",
+      "categoryId": "listening-category-04",
+      "expectedField": "audioText",
+      "expectedText": "P: Melbourne Tower, QFA 344, hold at holding point of Runway 29, ready for departure. C: QFA 344, hold at holding point for a few minutes, the runway is still blocked by a Cessna. Question: Why does the controller ask the pilot to hold?",
+      "expectedTextSha256": "ee5bf8483ace65ad302b870a21d029d6d3b0afc143c4164e7f08b253a3e0d159",
+      "id": "listening:listening-main-299",
+      "topicId": "listening-topic-04"
+    },
+    {
+      "audio": {
+        "checksum": "c0b632b6fd33447a7e06fbeea45cc946501c0ae0d0ac08a0ba4f398f37d2e727",
+        "durationSeconds": 53.64,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/storytelling/koala/026.mp3",
+        "publicPath": "/question-bank-assets/audio/storytelling/koala/026.mp3"
+      },
+      "bankId": "storytelling",
+      "cardId": "story-koala-026",
+      "categoryId": "story-category-1",
+      "expectedField": "audioText",
+      "expectedText": "A strong snowstorm hit Chicago Internationalairport in an afternoon. An aircraft from United Airlines circled several times before attempting to land at the airport. The snowstorm had reduced visibility severely. The runway visual range was at 4, 500 feet below the landing minimums for the ILS approach to Runway 13 Center. The controller advised the crew to hold in the air, waiting for the weather to get better, or to divert to another airport with a longer runway. But both suggestions would produce large additional expense for the airline, as well as inconvenience of the flight's passengers. Sothe crew decided to circle to land on runway 31 Center, which had lower landing minimums. But unfortunately, the strong tailwind made the plane skid off the runway and crash into a stopping truck.",
+      "expectedTextSha256": "c1a03fa4619058db5e71c5cefcc1e8173248fb7a6b6c8ff253e1454484daabf5",
+      "id": "storytelling:story-koala-026",
+      "topicId": "story-flight-basic"
+    }
+  ],
+  "schemaVersion": 1,
+  "seed": "aviation-asr-campaign-01-seed-v1",
+  "summary": {
+    "audioDurationSeconds": 349.164,
+    "counts": {
+      "sentences900": 10,
+      "listening": 10,
+      "storytelling": 1
+    },
+    "sourceWarnings": 0
+  }
+}

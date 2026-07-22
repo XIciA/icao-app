@@ -46,7 +46,7 @@ try {
   const guestForm = new FormData();
   guestForm.append('audio', new File([guestAudio], 'guest-sample.mp3', { type: 'audio/mpeg' }));
   const guestTranscript = await api('/v1/ai/transcribe', undefined, { method: 'POST', body: guestForm });
-  assert(guestTranscript.rawTranscript && guestTranscript.transcript, 'guest_transcribe_invalid');
+  assert(guestTranscript.transcript, 'guest_transcribe_invalid');
   const guestGrammar = await api('/v1/ai/grammar-review', undefined, { method: 'POST', body: JSON.stringify({ module: 'opi', questionId: 'guest-grammar', questionText: 'Describe your aircraft fuel capacity.', transcript: 'My aircraft carry much fuel.' }) });
   assert(guestGrammar.correctedText && Array.isArray(guestGrammar.issues), 'guest_grammar_invalid');
   const guestOpi = await api('/v1/ai/opi-analysis', undefined, { method: 'POST', body: JSON.stringify({ module: 'opi', questionId: 'guest-analysis', questionText: 'What would you do in severe turbulence?', transcript: 'I slow down and tell ATC.' }) });
@@ -71,7 +71,7 @@ try {
   const form = new FormData();
   form.append('audio', new File([audio], 'sample.mp3', { type: 'audio/mpeg' }));
   const transcript = await api('/v1/ai/transcribe', token, { method: 'POST', body: form });
-  assert(transcript.rawTranscript && transcript.transcript && transcript.hintsVersion === 'transcribe-hints:v1', 'transcribe_invalid');
+  assert(transcript.transcript, 'transcribe_invalid');
 
   const grammarInput = { module: 'atc', questionId: 'verify-atc', questionText: 'Report established on the localizer.', transcript: 'We is established on localizer.' };
   const grammar = await api('/v1/ai/grammar-review', token, { method: 'POST', body: JSON.stringify(grammarInput) });

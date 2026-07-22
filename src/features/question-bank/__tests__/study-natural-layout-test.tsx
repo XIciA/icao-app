@@ -164,8 +164,9 @@ describe('study workbench natural layout', () => {
     });
     expect(StyleSheet.flatten(screen.getByTestId('study-workbench-primary-action').props.style)).toMatchObject({
       backgroundColor: 'transparent',
+      borderColor: colors.primary20,
       borderRadius: 999,
-      borderWidth: 0,
+      borderWidth: 1,
       minHeight: 36,
     });
     expect(editAction).toBeTruthy();
@@ -282,7 +283,7 @@ describe('study workbench natural layout', () => {
     expect(screen.getByTestId('study-workbench-tab-reference').props.hitSlop).toBe(8);
     expect(StyleSheet.flatten(screen.getByLabelText('学习控制台栏目').props.style)).toMatchObject({ backgroundColor: 'transparent', borderWidth: 0 });
     expect(StyleSheet.flatten(screen.getByTestId('study-workbench-tab-mine').props.style)).toMatchObject({ height: 28, width: 18 });
-    expect(StyleSheet.flatten(screen.getByTestId('study-workbench-tab-indicator-mine').props.style)).toMatchObject({ height: 4, width: 14 });
+    expect(StyleSheet.flatten(screen.getByTestId('study-workbench-tab-indicator-mine').props.style)).toMatchObject({ height: 4, width: 10 });
     expect(StyleSheet.flatten(screen.getByTestId('study-workbench-tab-indicator-reference').props.style)).toMatchObject({ height: 4, width: 4 });
 
     fireEvent.press(screen.getByLabelText('切换到参考答案'));

@@ -1,0 +1,1146 @@
+{
+  "schemaVersion": 1,
+  "campaignId": "aviation-asr-campaign-01",
+  "round": 5,
+  "phase": "blind",
+  "versions": {
+    "model": "fun-asr-2025-11-07",
+    "hotwords": {
+      "mode": "none"
+    },
+    "normalizationVersion": "aviation-normalization:v7",
+    "normalizationSha256": "b7cd3a765529269b06d298b811c4332b0eec31c4c7dcb429519990d1d09860ad"
+  },
+  "summary": {
+    "overall": {
+      "sampleCount": 21,
+      "rawContentExact": 6,
+      "finalContentExact": 6,
+      "rawWer": 0.18502202643171806,
+      "finalWer": 0.16886930983847284,
+      "criticalEntityErrors": 71
+    },
+    "byModule": {
+      "sentences900": {
+        "sampleCount": 10,
+        "rawContentExact": 3,
+        "finalContentExact": 3,
+        "rawWer": 0.21739130434782608,
+        "finalWer": 0.18478260869565216,
+        "criticalEntityErrors": 6
+      },
+      "listening": {
+        "sampleCount": 10,
+        "rawContentExact": 3,
+        "finalContentExact": 3,
+        "rawWer": 0.18805309734513273,
+        "finalWer": 0.18141592920353983,
+        "criticalEntityErrors": 48
+      },
+      "storytelling": {
+        "sampleCount": 1,
+        "rawContentExact": 0,
+        "finalContentExact": 0,
+        "rawWer": 0.15328467153284672,
+        "finalWer": 0.11678832116788321,
+        "criticalEntityErrors": 17
+      }
+    },
+    "failed": 0,
+    "classificationComplete": 21,
+    "total": 21
+  },
+  "samples": [
+    {
+      "audio": {
+        "checksum": "3f413ba6a0f8c17ab8b1d879395b0b78bdd4a3af87e079439420a463faeab04a",
+        "durationSeconds": 10.008,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/497.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/497.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-497",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "My apologies, I wasn’t aware the boom mike was transmitting.",
+      "expectedTextSha256": "a939bc4d7f5e511f86546f67c5155582b45692fd6c2010fab314062320baad99",
+      "id": "sentences900:sentence900-main-497",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "My apologies, I wasn't aware that the boom mic was transmitting.",
+      "transcript": "My apologies, I wasn't aware that the boom mic was transmitting.",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 11,
+        "wordErrors": 2,
+        "wer": 0.18181818181818182
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 11,
+        "wordErrors": 2,
+        "wer": 0.18181818181818182
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "wasn’t/wasn't、boom mike/boom mic 及可省略的 that 不改变语义。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "6cea48740e1e143d0ae335be36ca97f0a958a25d1bed7868be003d8a43b127cf",
+        "durationSeconds": 10.224,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/391.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/391.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-391",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Affirm, cross BKM VOR at or before 55",
+      "expectedTextSha256": "c87c4387f0b1229df08289e3f0c9d6fa10147557a4af6fe494a92bff301c0b42",
+      "id": "sentences900:sentence900-main-391",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "A firm cross Bravo kilo Mike VOR at or before 55.",
+      "transcript": "A firm cross BKM VOR at or before 55.",
+      "transformations": [
+        {
+          "after": "A firm cross BKM VOR at or before 55.",
+          "before": "A firm cross Bravo kilo Mike VOR at or before 55.",
+          "risk": "context-required",
+          "ruleId": "NAVAID-001"
+        }
+      ],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 8,
+        "wordErrors": 5,
+        "wer": 0.625
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 8,
+        "wordErrors": 2,
+        "wer": 0.25
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "ASR_GENERAL",
+        "note": "Affirm 被分词为 A firm；BKM VOR 已正确规范化，剩余错误轻微且不宜做通用替换。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "minor"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "58682c2164f85b01cba829b72d63599dae4d3b6509e0e7a521f65a0bb7e52182",
+        "durationSeconds": 8.52,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/159.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/159.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-159",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Request Accelerate-Stop Distance Available (ASDA) from intersection D1.",
+      "expectedTextSha256": "2d5fffe5e96879f3357bd22af1cfe5c0023ea69252710fc1153cc996e1f69baa",
+      "id": "sentences900:sentence900-main-159",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "Request accelerate stop distance available from intersection delta one.",
+      "transcript": "Request accelerate stop distance available from intersection delta 1.",
+      "transformations": [
+        {
+          "after": "Request accelerate stop distance available from intersection delta 1.",
+          "before": "Request accelerate stop distance available from intersection delta one.",
+          "risk": "context-required",
+          "ruleId": "CALLSIGN-001"
+        }
+      ],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 9,
+        "wordErrors": 3,
+        "wer": 0.3333333333333333
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 9,
+        "wordErrors": 3,
+        "wer": 0.3333333333333333
+      },
+      "critical": {
+        "missing": [
+          "letter:ASDA"
+        ],
+        "hallucinated": [
+          "number:1"
+        ],
+        "errorCount": 2
+      },
+      "classification": {
+        "mainCategory": "NORMALIZATION_MISSING",
+        "note": "Accelerate-Stop Distance Available 已听对，参考文本额外给出 ASDA；intersection Delta 1 可在未来以明确上下文收敛为 D1，但本轮不追加盲测后规则。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "minor"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "d24aee0202f5faea03b9545e77fc49736f0a3008da0d56ec423cb890c4d041bd",
+        "durationSeconds": 11.208,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/436.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/436.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-436",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "At 144E (east) squawk 2000.",
+      "expectedTextSha256": "202b207318a870f4b42fa629a0beb1a8197f77759c852e7dd95023c894b80a55",
+      "id": "sentences900:sentence900-main-436",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "At 144 degrees east, squawk 2000.",
+      "transcript": "At 144 degrees east, squawk 2000.",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 5,
+        "wordErrors": 2,
+        "wer": 0.4
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 5,
+        "wordErrors": 2,
+        "wer": 0.4
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [
+          "number:144"
+        ],
+        "errorCount": 1
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "144E 与 144 degrees east 是等价坐标表达，squawk 2000 正确。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "56c63c97e04d192d966495ce9b3822d2896e700d6605e1f29fe30a77499f9be5",
+        "durationSeconds": 5.328,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/040.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/040.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-040",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Maintain 160 knots until 4 miles final.",
+      "expectedTextSha256": "43c0c28cac6b963739e1c63664aa644a1f4b9f3c8719f26377d5acd0ff444e2e",
+      "id": "sentences900:sentence900-main-040",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "Maintain 167 knots until four mile final.",
+      "transcript": "Maintain 167 knots until four mile final.",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 7,
+        "wordErrors": 3,
+        "wer": 0.42857142857142855
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 7,
+        "wordErrors": 3,
+        "wer": 0.42857142857142855
+      },
+      "critical": {
+        "missing": [
+          "number:160",
+          "number:4"
+        ],
+        "hallucinated": [
+          "number:167"
+        ],
+        "errorCount": 3
+      },
+      "classification": {
+        "mainCategory": "ASR_DOMAIN",
+        "note": "关键速度 160 被识别为 167，属于数字实体错误；不得用规范化猜测修复。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "major"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "7007d071f8574d008148f0aa37e16f53ed6e4dc123055fc0cef57cbfb2a9f770",
+        "durationSeconds": 9.192,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/658.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/658.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-658",
+      "categoryId": "sentence900-5级",
+      "expectedField": "audioText",
+      "expectedText": "We are unable to restart engine number one with bleed air. Request high speed for a windmill air start.",
+      "expectedTextSha256": "d4a0283cfe2d19bf6aa3586dd51188eba30bc193a39e0ea62f5d3c79a1c33ac1",
+      "id": "sentences900:sentence900-main-658",
+      "topicId": "sentence900-5级-main",
+      "status": "success",
+      "rawTranscript": "We are unable to restart engine number one with bleed air. Request high speed for a windmill air start.",
+      "transcript": "We are unable to restart engine number one with bleed air. Request high speed for a windmill air start.",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 19,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 19,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "f6ee64eaba5907adf78abae2f598980d2714188fa5879e872c6cbd3f9078c4c3",
+        "durationSeconds": 9.864,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/459.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/459.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-459",
+      "categoryId": "sentence900-4级",
+      "expectedField": "audioText",
+      "expectedText": "We have an avionics ventilation problem. The skin heat-exchangers and blower fan have failed.",
+      "expectedTextSha256": "57bac5ffaf081ae6fea2eb9f3363b434a1e838874e7abf360a9e9e5d3ad8deeb",
+      "id": "sentences900:sentence900-main-459",
+      "topicId": "sentence900-4级-main",
+      "status": "success",
+      "rawTranscript": "We have an avionics ventilation problem. The skin heat exchangers and blower fan have failed.",
+      "transcript": "We have an avionics ventilation problem. The skin heat exchangers and blower fan have failed.",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 15,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 15,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "262eea3f123dff96435054be6c5bd90b79a4c7e51b875353d37f9ee6b583bff7",
+        "durationSeconds": 8.016,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/241.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/241.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-241",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Affirm squawk 7500.",
+      "expectedTextSha256": "a62b1363bc9f83aaacd41208533e6a2a7e094c05823c136236afd589fec28f49",
+      "id": "sentences900:sentence900-main-241",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "Affirm squawk 7500.",
+      "transcript": "Affirm squawk 7500.",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 3,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 3,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "0e269cf33f5b8a955e9648183fb194ccb0a0c6ee0fd651d5bb0e5e31ffbdf24c",
+        "durationSeconds": 7.008,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/464.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/464.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-464",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Request further climb due wind-shear.",
+      "expectedTextSha256": "861b51d2bf27b22b2b2f48917e32815ee747f184355d078ccda2c9f90a103d42",
+      "id": "sentences900:sentence900-main-464",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "Request further climb to winch here.",
+      "transcript": "Request further climb to winch here.",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 6,
+        "wordErrors": 3,
+        "wer": 0.5
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 6,
+        "wordErrors": 3,
+        "wer": 0.5
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "ASR_DOMAIN",
+        "note": "wind-shear 被识别为 winch here，改变了爬升原因；记录为航空术语识别问题。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "major"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "bfc788dc08abc4a37cc1637a436051acb812a47472f82eacac7c0a793c596c5c",
+        "durationSeconds": 12.408,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/077.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/077.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-077",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Gate 26, request clearance to London with information F.",
+      "expectedTextSha256": "46c79082b419af9e8e8bfbb19befd56084542c085ee218d96cac107eeb5cafcc",
+      "id": "sentences900:sentence900-main-077",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "Gate 26 requests clearance to London with information Foxstrut.",
+      "transcript": "Gate 26 requests clearance to London with information Foxstrut.",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 9,
+        "wordErrors": 2,
+        "wer": 0.2222222222222222
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 9,
+        "wordErrors": 2,
+        "wer": 0.2222222222222222
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "ASR_DOMAIN",
+        "note": "Foxtrot 被识别为 Foxstrut，requests/request 另有轻微词形差异；信息 F 未正确形成。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "minor"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "2ab0bf6a95e608dea117a9fd05b820f929766993a499b020268e060e0b4e3378",
+        "durationSeconds": 18.864,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s02-section-01-q13.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-01-q13.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-935",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "Thunderstorms can cause erratic altimeter readings due to rapid pressure changes. The sudden changes in air pressure within the storm can lead to inaccurate altitude indications, which can be a problem for pilots trying to maintain a proper flight level. Question: How do thunderstorms impact the altimeter readings of an aircraft?",
+      "expectedTextSha256": "5fd15bbf3d2a49932097bfc877be84a0105fa22e65c78ccd7fa607176cfa5adb",
+      "id": "listening:listening-main-935",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "Thunderstorms can cause erratic altimeter readings due to rapid pressure changes. The sudden changes in air pressure within the storm can lead to inaccurate altitude indications. Which can be a problem for pilots trying to maintain a proper flight level. Question, how do thunderstorms impact the altimeter readings of an aircraft?",
+      "transcript": "Thunderstorms can cause erratic altimeter readings due to rapid pressure changes. The sudden changes in air pressure within the storm can lead to inaccurate altitude indications. Which can be a problem for pilots trying to maintain a proper flight level. Question, how do thunderstorms impact the altimeter readings of an aircraft?",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 51,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 51,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "388d1b6ffce7183d417102dd545d5f7c1a5dadc657423f845d5a230cd32a56a3",
+        "durationSeconds": 32.304,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/545.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/545.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-545",
+      "categoryId": "listening-category-03",
+      "expectedField": "audioText",
+      "expectedText": "Minimum sector altitude, MSA, is the lowest altitude which may be used under emergency conditions, which will provide a minimum clearance of 300 meters, 1,000 feet above all obstacles located in an area contained within a sector of a circle. Of 46 kilometers or 25 nautical miles radius centered on a radio aid to navigation. Question: what is the radius of a sector?",
+      "expectedTextSha256": "0cf8979c09ff6873d13391af20ca09e46b8b7b979a0e0ccde9b9c076f8e8fde4",
+      "id": "listening:listening-main-545",
+      "topicId": "listening-topic-03",
+      "status": "success",
+      "rawTranscript": "Minimum sector altitude msa is the lowest altitude which may be used under emergency conditions, which will provide a minimum clearance of 300 meters, 1000 feet above all obstacles located in an area contained within a sector of a circle of 46 kilometers or 25 nautical miles radius centered on a radio aid to navigation. Question: What is the radius of a sector?",
+      "transcript": "Minimum sector altitude msa is the lowest altitude which may be used under emergency conditions, which will provide a minimum clearance of 300 meters, 1000 feet above all obstacles located in an area contained within a sector of a circle of 46 kilometers or 25 nautical miles radius centered on a radio aid to navigation. Question: What is the radius of a sector?",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 64,
+        "wordErrors": 2,
+        "wer": 0.03125
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 64,
+        "wordErrors": 2,
+        "wer": 0.03125
+      },
+      "critical": {
+        "missing": [
+          "letter:MSA",
+          "number:1",
+          "number:000"
+        ],
+        "hallucinated": [
+          "number:1000"
+        ],
+        "errorCount": 4
+      },
+      "classification": {
+        "mainCategory": "NORMALIZATION_MISSING",
+        "note": "MSA 已听对但未统一大写；1000/1,000 和题干标点为等价展示。该规则留待下一轮而不污染本轮盲测。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "minor"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "85f9319b8b86a08d19316c0dcc567b571bac85876d9f4e5791226fc3804ec3cd",
+        "durationSeconds": 20.448,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-11-q03.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-11-q03.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-768",
+      "categoryId": "listening-category-03",
+      "expectedField": "audioText",
+      "expectedText": "Ground staff, especially those working in customer service, are responsible for communicating updates to passengers and organizing rebookings or accommodations in the event of delays. Question: When a flight is delayed due to bad weather, who is primarily responsible for informing passengers about the situation and arranging alternative plans?",
+      "expectedTextSha256": "e18f467889b04f3cbe261a5a68cf264541221490af11285186c1793c1856b270",
+      "id": "listening:listening-main-768",
+      "topicId": "listening-topic-03",
+      "status": "success",
+      "rawTranscript": "Ground staff, especially those working in customer service, are responsible for communicating updates to passengers, and organizing rebookings or accommodations in the event of delays. Question, when a flight is delayed due to bad weather, who is primarily responsible for informing passengers about the situation and arranging alternative plans?",
+      "transcript": "Ground staff, especially those working in customer service, are responsible for communicating updates to passengers, and organizing rebookings or accommodations in the event of delays. Question, when a flight is delayed due to bad weather, who is primarily responsible for informing passengers about the situation and arranging alternative plans?",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 49,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 49,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "2482ae75621f69c3cfcdaf17b7b25bda81a222cf1a73fb0f7b8fd075dabf914c",
+        "durationSeconds": 24.456,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/339.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/339.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-339",
+      "categoryId": "listening-category-04",
+      "expectedField": "audioText",
+      "expectedText": "P: UAL 350, we can't hold any longer, we have a seriously ill passenger on board. C: UAL 350, leave the holding pattern, fly heading 050. P: Heading 050, UAL 350. Request first aid upon landing. C: Roger, UAL 350. Question: What will be the immediate need after landing?",
+      "expectedTextSha256": "410bbb557d92c400e075702c517bc333456b7d9f6fee9d29b898560ce908fb38",
+      "id": "listening:listening-main-339",
+      "topicId": "listening-topic-04",
+      "status": "success",
+      "rawTranscript": "United 350, we can't hold any longer. We have a serious ill passenger on board. United 350, leave the holding pattern, fly heading 050. Heading 050, United 350, request first aid after landing. Roger, United 350. What will be the immediate need after landing?",
+      "transcript": "United 350, we can't hold any longer. We have a serious ill passenger on board. United 350, leave the holding pattern, fly heading 050. Heading 050, United 350, request first aid after landing. Roger, United 350. What will be the immediate need after landing?",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 50,
+        "wordErrors": 11,
+        "wer": 0.22
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 50,
+        "wordErrors": 11,
+        "wer": 0.22
+      },
+      "critical": {
+        "missing": [
+          "callsign:UAL 350",
+          "callsign:UAL 350",
+          "callsign:UAL 350",
+          "callsign:UAL 350",
+          "letter:UAL",
+          "letter:UAL",
+          "letter:UAL",
+          "letter:UAL"
+        ],
+        "hallucinated": [],
+        "errorCount": 8
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "UAL 与 United、seriously/serious、upon/after 及说话人标签差异不改变急救请求。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "e3aaa1dda78340f6f523ed49cd980266f97813e90da3c91c3646d2d59b33dfd7",
+        "durationSeconds": 42.984,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/094.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/094.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-094",
+      "categoryId": "listening-category-02",
+      "expectedField": "audioText",
+      "expectedText": "GND: Wuhan approach, CCA 101 leaving 2100m descending 900m. ATC: CCA 101 maintain 900m proceed direct to the ILS outer marker and uh weather is uh sky partially obscured, wind calm, fog, and smoke, altimeter 1011, runway one zero, visual RVR less than 300 m. Question: Which of the following is correct according to the conversation above?",
+      "expectedTextSha256": "b61f1faeb49526ca72e064fe1b7be37a24bec1407633df9fbb3106082b7a6c80",
+      "id": "listening:listening-main-094",
+      "topicId": "listening-topic-02",
+      "status": "success",
+      "rawTranscript": "Wuhan approach, Air China 101, leaving 2,100 meters, descending 900 meters. Air china 101 maintain 900 meters proceed direct. To the ils outer marker and whether is a sky partially obscured. Wind calm fog and smoke altimeter 1011.Runway 10, visual of RVR less than 300 meters. Question: Which of the following is correct according to the conversation above?",
+      "transcript": "Wuhan approach, Air China 101, leaving 2,100 meters, descending 900 meters. Air china 101 maintain 900 meters proceed direct. To the ILS outer marker and whether is a sky partially obscured. Wind calm fog and smoke altimeter 1011.Runway 10, visual of RVR less than 300 meters. Question: Which of the following is correct according to the conversation above?",
+      "transformations": [
+        {
+          "after": "Wuhan approach, Air China 101, leaving 2,100 meters, descending 900 meters. Air china 101 maintain 900 meters proceed direct. To the ILS outer marker and whether is a sky partially obscured. Wind calm fog and smoke altimeter 1011.Runway 10, visual of RVR less than 300 meters. Question: Which of the following is correct according to the conversation above?",
+          "before": "Wuhan approach, Air China 101, leaving 2,100 meters, descending 900 meters. Air china 101 maintain 900 meters proceed direct. To the ils outer marker and whether is a sky partially obscured. Wind calm fog and smoke altimeter 1011.Runway 10, visual of RVR less than 300 meters. Question: Which of the following is correct according to the conversation above?",
+          "risk": "safe",
+          "ruleId": "ABBR-001"
+        }
+      ],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 57,
+        "wordErrors": 19,
+        "wer": 0.3333333333333333
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 57,
+        "wordErrors": 19,
+        "wer": 0.3333333333333333
+      },
+      "critical": {
+        "missing": [
+          "callsign:CCA 101",
+          "callsign:CCA 101",
+          "letter:GND",
+          "letter:CCA",
+          "letter:CCA",
+          "letter:ATC"
+        ],
+        "hallucinated": [
+          "runway:RUNWAY 10",
+          "number:2",
+          "number:100",
+          "number:900",
+          "number:900",
+          "number:10"
+        ],
+        "errorCount": 12
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "CCA 与 Air China、数字标点及说话人标签为展示差异；weather/whether 有轻微近音，但关键高度、跑道、RVR 信息可理解。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "414c39b5b0dd0513042a6965dd774fc093114535f46649dc4ce43332ea5bb396",
+        "durationSeconds": 4.14,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s03-section-06-q06.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-06-q06.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-1118",
+      "categoryId": "listening-category-04",
+      "expectedField": "audioText",
+      "expectedText": "P: Beijing Ground, CCA 4014, radio check on 118.6, how do you read? C: CCA 4014, Beijing Ground, I read you 3, loud background whistle. Question: What's the radio signal of CCA 4104 like?",
+      "expectedTextSha256": "d3206308fdf19255f6d3a3ffa11a67c9cfb753a04919928bdf823747e4ea59bd",
+      "id": "listening:listening-main-1118",
+      "sourceWarning": "duration_text_ratio_suspect",
+      "topicId": "listening-topic-04",
+      "status": "success",
+      "rawTranscript": "China Eastern 9197 Shanghai Ground, you are readable.",
+      "transcript": "China Eastern 9197 Shanghai Ground, you are readable.",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 36,
+        "wordErrors": 34,
+        "wer": 0.9444444444444444
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 36,
+        "wordErrors": 34,
+        "wer": 0.9444444444444444
+      },
+      "critical": {
+        "missing": [
+          "callsign:CCA 4014",
+          "callsign:CCA 4014",
+          "callsign:CCA 4104",
+          "frequency:118.6",
+          "letter:CCA",
+          "letter:CCA",
+          "letter:CCA",
+          "number:4014",
+          "number:4014",
+          "number:118.6",
+          "number:3",
+          "number:4104"
+        ],
+        "hallucinated": [
+          "number:9197"
+        ],
+        "errorCount": 13
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_MISMATCH",
+        "note": "16 秒音频实际是 China Eastern 9197/Shanghai Ground，与参考的 CCA 4014/Beijing Ground/118.6 完全不同，且清单已有时长文本比告警；排除为源数据错配。",
+        "referenceStatus": "mismatch",
+        "semanticOutcome": "excluded"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "e4cb126e9d1127a266d0619ba4643e2eb67e1d9dedd9f030495ff549a840c37b",
+        "durationSeconds": 11.952,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s03-section-04-q10.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-04-q10.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-1083",
+      "categoryId": "listening-category-04",
+      "expectedField": "audioText",
+      "expectedText": "P: Approach, good morning, CCA 512, descending FL200, Squawking 4123. Question: What is the squawk code of CCA 512?",
+      "expectedTextSha256": "84578a542faadb7d58b0feed9823b19ff3ab4d20be843832947690a7f0cffa81",
+      "id": "listening:listening-main-1083",
+      "topicId": "listening-topic-04",
+      "status": "success",
+      "rawTranscript": "Approach, good morning Air China 512 descending flight level 200 squawking 4123. What is the squawk code of Air China 512?",
+      "transcript": "Approach, good morning Air China 512 descending FL200 squawking 4123. What is the squawk code of Air China 512?",
+      "transformations": [
+        {
+          "after": "Approach, good morning Air China 512 descending FL200 squawking 4123. What is the squawk code of Air China 512?",
+          "before": "Approach, good morning Air China 512 descending flight level 200 squawking 4123. What is the squawk code of Air China 512?",
+          "risk": "context-required",
+          "ruleId": "FL-001"
+        }
+      ],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 19,
+        "wordErrors": 9,
+        "wer": 0.47368421052631576
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 19,
+        "wordErrors": 6,
+        "wer": 0.3157894736842105
+      },
+      "critical": {
+        "missing": [
+          "callsign:CCA 512",
+          "callsign:CCA 512",
+          "letter:CCA",
+          "letter:CCA"
+        ],
+        "hallucinated": [],
+        "errorCount": 4
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "CCA 与 Air China 为代码和话音呼号形式差异；FL200 和 squawk 4123 均正确。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "e98a4305de4a8beb0cb1b8a78cd24368fe02b8c183c1f32b4b342d2c2cebbde8",
+        "durationSeconds": 22.284,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-06-q16.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-06-q16.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-702",
+      "categoryId": "listening-category-03",
+      "expectedField": "audioText",
+      "expectedText": "Dublin at 0830, wind 280 at 12 knots, visibility 10km plus cloud scattered 2200ft, temperature 12, dew point 6, QNH1002, no sig. Question: What is the temperature dew point spread?",
+      "expectedTextSha256": "4e6f251e81d2ba37029aeea908d42ee8b4a62ed73d4ec5321ce05459e927c464",
+      "id": "listening:listening-main-702",
+      "topicId": "listening-topic-03",
+      "status": "success",
+      "rawTranscript": "Dublin at 0830, wind 280 at 12 knots, visibility 10 kilometers, plus clouds scattered at 2200 feet, temperature 12, dew point 6, QNH 1002, no sig. What is the temperature dew point spread?",
+      "transcript": "Dublin at 0830, wind 280 at 12 knots, visibility 10 kilometers, plus clouds scattered at 2200 feet, temperature 12, dew point 6, QNH 1002, no sig. What is the temperature dew point spread?",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 30,
+        "wordErrors": 9,
+        "wer": 0.3
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 30,
+        "wordErrors": 9,
+        "wer": 0.3
+      },
+      "critical": {
+        "missing": [
+          "callsign:QNH1002"
+        ],
+        "hallucinated": [
+          "callsign:QNH 1002",
+          "letter:QNH",
+          "number:10",
+          "number:2200",
+          "number:1002"
+        ],
+        "errorCount": 6
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "10km/10 kilometers、2200ft/2200 feet、QNH1002/QNH 1002 及 cloud/clouds 为等价展示差异。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "1965e68fd5010112cc069c62c3c6f5a9a3b657fd97363bc58080b30ced16d4dd",
+        "durationSeconds": 18.216,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-01-q06.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-01-q06.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-635",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "In low visibility situations like fog or heavy rain, pilots often struggle to spot other airplanes around them. This becomes a crucial challenge as it's essential for safety to know the position of nearby aircraft. Question: What is one of the main challenges for pilots during low visibility conditions?",
+      "expectedTextSha256": "bcb9044b4dfe4c7a79cc43b2c96352d93acae927c7f891f960f962f865b2abfc",
+      "id": "listening:listening-main-635",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "In low visibility situations like fog or heavy rain, pilots often struggle to spot other airplanes around them. This becomes a crucial challenge, as it's essential for safety to know the position of nearby aircraft. Question, what is one of the main challenges for pilots during low visibility conditions?",
+      "transcript": "In low visibility situations like fog or heavy rain, pilots often struggle to spot other airplanes around them. This becomes a crucial challenge, as it's essential for safety to know the position of nearby aircraft. Question, what is one of the main challenges for pilots during low visibility conditions?",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 50,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 50,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "8f884e3d28c9f6e2a71607a90315edca26b8a4f8bb5f0bc4f6d82be6f21fbf20",
+        "durationSeconds": 18.72,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-17-q07.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-17-q07.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-891",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "The Engine Indications and Crew Alerting System (EICAS) provides real-time monitoring of engine performance and alerts the crew to anomalies such as flameouts through warning messages and parameter changes. Question: Which of the following systems is most likely to detect an engine flameout during flight?",
+      "expectedTextSha256": "1e63cc4ca896d1224db78e5541d2275a147afad88c57b1c2100fc6263e726681",
+      "id": "listening:listening-main-891",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "The engine indications and crew alerting system, icus, provides real time monitoring of engine performance, and alerts the crew to anomalies such as flameouts through warning messages and parameter changes. Question, which of the following systems is most likely to detect an engine flameout during flight?",
+      "transcript": "The engine indications and crew alerting system, icus, provides real time monitoring of engine performance, and alerts the crew to anomalies such as flameouts through warning messages and parameter changes. Question, which of the following systems is most likely to detect an engine flameout during flight?",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 46,
+        "wordErrors": 1,
+        "wer": 0.021739130434782608
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 46,
+        "wordErrors": 1,
+        "wer": 0.021739130434782608
+      },
+      "critical": {
+        "missing": [
+          "letter:EICAS"
+        ],
+        "hallucinated": [],
+        "errorCount": 1
+      },
+      "classification": {
+        "mainCategory": "ASR_DOMAIN",
+        "note": "EICAS 被识别为 icus；系统全称已正确听出，语义仍可恢复，但缩写未听对。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "minor"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "94950d9359ebfa89582663b3359b039fe5965858756df3fc70dcdc25fb1e7702",
+        "durationSeconds": 61.752,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/storytelling/koala/017.mp3",
+        "publicPath": "/question-bank-assets/audio/storytelling/koala/017.mp3"
+      },
+      "bankId": "storytelling",
+      "cardId": "story-koala-017",
+      "categoryId": "story-category-1",
+      "expectedField": "audioText",
+      "expectedText": "During a flight from Hong Kong to Beijing, we captured an urgency call from UAL320 that they had a bird strike. A bird crashed their left windshield and the captain was badly wounded by the broken glass, so they requested for priority landing and ambulance. We informed this serious incident to the controller. The controller contacted the UAL320 at once without receiving any response. So we were asked to relay the instruction to UAL320. Luckily, we contacted them successfully, \"UAL320, CCA830, Beijing Approach cleared you ILS straight in approach runway 16R, you are number one, ambulance and first aid will be ready for you. \"Roger, thank you very much\", the UAL320 replied. Finally, the aircraft landed on Beijing airport safely and the captain was sent to hospital immediately. There were no other people injured on the airplane.",
+      "expectedTextSha256": "6d88c0f7d12212e660dd20c234c74c5d486c32de349dd41daa185134868fd3e5",
+      "id": "storytelling:story-koala-017",
+      "topicId": "story-flight-basic",
+      "status": "success",
+      "rawTranscript": "During a flight from hong kong to beijing, we captured an urgency call from united tree 20 that they had a bird strike, a bird crashed, their left windshield and the captain was badly wounded by the broken glass. So they requested for priority landing and ambulance. We informed this serious incident to the controller, the controller contacted the united tree 20 at once without receiving any response. So we were asked to relay the instruction to united tree 20. Luckily, we contacted them successfully united tree 20 air china, 830 beijing approach, cleared you ills straight in approach runway 16, right? You are number one ambulance and first aid will be ready for you. Roger, thank you very much. The united tree 20 replied. Finally, the aircraft landed on beijing airport safely and the captain was sent to hospital immediately. There were no other people injured on the airplane.",
+      "transcript": "During a flight from hong kong to beijing, we captured an urgency call from united 320 that they had a bird strike, a bird crashed, their left windshield and the captain was badly wounded by the broken glass. So they requested for priority landing and ambulance. We informed this serious incident to the controller, the controller contacted the united 320 at once without receiving any response. So we were asked to relay the instruction to united 320. Luckily, we contacted them successfully united 320 air china, 830 beijing approach, cleared you ills straight in approach runway 16, right? You are number one ambulance and first aid will be ready for you. Roger, thank you very much. The united 320 replied. Finally, the aircraft landed on beijing airport safely and the captain was sent to hospital immediately. There were no other people injured on the airplane.",
+      "transformations": [
+        {
+          "after": "During a flight from hong kong to beijing, we captured an urgency call from united 320 that they had a bird strike, a bird crashed, their left windshield and the captain was badly wounded by the broken glass. So they requested for priority landing and ambulance. We informed this serious incident to the controller, the controller contacted the united 320 at once without receiving any response. So we were asked to relay the instruction to united 320. Luckily, we contacted them successfully united 320 air china, 830 beijing approach, cleared you ills straight in approach runway 16, right? You are number one ambulance and first aid will be ready for you. Roger, thank you very much. The united 320 replied. Finally, the aircraft landed on beijing airport safely and the captain was sent to hospital immediately. There were no other people injured on the airplane.",
+          "before": "During a flight from hong kong to beijing, we captured an urgency call from united tree 20 that they had a bird strike, a bird crashed, their left windshield and the captain was badly wounded by the broken glass. So they requested for priority landing and ambulance. We informed this serious incident to the controller, the controller contacted the united tree 20 at once without receiving any response. So we were asked to relay the instruction to united tree 20. Luckily, we contacted them successfully united tree 20 air china, 830 beijing approach, cleared you ills straight in approach runway 16, right? You are number one ambulance and first aid will be ready for you. Roger, thank you very much. The united tree 20 replied. Finally, the aircraft landed on beijing airport safely and the captain was sent to hospital immediately. There were no other people injured on the airplane.",
+          "risk": "context-required",
+          "ruleId": "CALLSIGN-001"
+        }
+      ],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 137,
+        "wordErrors": 21,
+        "wer": 0.15328467153284672
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 137,
+        "wordErrors": 16,
+        "wer": 0.11678832116788321
+      },
+      "critical": {
+        "missing": [
+          "callsign:UAL320",
+          "callsign:UAL320",
+          "callsign:UAL320",
+          "callsign:UAL320",
+          "callsign:UAL320",
+          "callsign:CCA830",
+          "runway:RUNWAY 16R",
+          "letter:ILS",
+          "number:16R"
+        ],
+        "hallucinated": [
+          "runway:RUNWAY 16",
+          "number:320",
+          "number:320",
+          "number:320",
+          "number:320",
+          "number:320",
+          "number:830",
+          "number:16"
+        ],
+        "errorCount": 17
+      },
+      "classification": {
+        "mainCategory": "ASR_DOMAIN",
+        "note": "UAL/CCA 与 United/Air China 主要是代码和话音形式差异，但 ILS 被听成 ills、runway 16R 被切分为疑问式 16 right；故事主旨仍完整。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "minor"
+      }
+    }
+  ]
+}

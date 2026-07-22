@@ -1,0 +1,13 @@
+{
+  "ids": [
+    "listening:listening-main-1162",
+    "storytelling:story-pepec-0073",
+    "sentences900:sentence900-main-602",
+    "sentences900:sentence900-main-854",
+    "sentences900:sentence900-main-857",
+    "listening:listening-main-494",
+    "listening:listening-main-1150",
+    "storytelling:story-wing-034"
+  ],
+  "rationale": "验证 PANPAN→pompon/pon pon 与 TCAS→cast 两类目标错例，并用 3 条 TCAS、3 条 PANPAN 未参与本轮开发集的样本保护术语、数字、呼号和上下文。"
+}

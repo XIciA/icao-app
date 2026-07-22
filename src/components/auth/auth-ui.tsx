@@ -9,8 +9,7 @@ import { colors, fonts, radii, spacing } from '@/theme';
 
 export function AuthShell({ children }: { children: React.ReactNode }) {
   return (
-    <Screen keyboard scroll contentStyle={styles.screen}>
-      <SoftGlow intensity={0.9} size={350} style={styles.glow} />
+    <Screen background={<SoftGlow intensity={0.9} size={350} style={styles.glow} />} keyboard scroll contentStyle={styles.screen}>
       <AuthTopBar />
       {children}
     </Screen>

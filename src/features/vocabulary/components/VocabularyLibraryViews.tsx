@@ -76,10 +76,7 @@ export function VocabularyBooksView({
     <Screen contentStyle={styles.zero}>
       <TopBar title="单词学习" />
       <ScrollView contentContainerStyle={styles.page} showsVerticalScrollIndicator={false} style={styles.grow}>
-        <View style={styles.centerHeader}>
-          <AppText variant="pageTitle">单词学习</AppText>
-          <AppText style={styles.center}>从 838 条 ICAO 词汇中选择词书，按自己的节奏学习。</AppText>
-        </View>
+        <AppText style={styles.center}>从 838 条 ICAO 词汇中选择词书，按自己的节奏学习。</AppText>
 
         {warning ? (
           <View style={styles.warning}>
@@ -274,7 +271,6 @@ const styles = StyleSheet.create({
   zero: { paddingHorizontal: 0 },
   grow: { flex: 1 },
   page: { gap: spacing[4], padding: spacing[5], paddingBottom: spacing[6] },
-  centerHeader: { alignItems: 'center', gap: spacing[2], paddingVertical: spacing[4] },
   center: { textAlign: 'center' },
   stack: { gap: spacing[3] },
   warning: { alignItems: 'center', backgroundColor: 'rgba(183,118,16,0.10)', borderRadius: radii.lg, flexDirection: 'row', gap: spacing[2], padding: spacing[3] },

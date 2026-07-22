@@ -445,7 +445,6 @@ export function StudyAudioPlayer({
                   <Play color={colors.primaryForeground} fill={colors.primaryForeground} size={18} style={styles.playIcon} />
                 )}
               </Pressable>
-              <AppText color={audioControllable ? colors.foreground : colors.mutedForeground} variant="micro">{status.playing ? '暂停' : '播放'}</AppText>
             </View>
             {practiceControls ? <View style={styles.practiceControls}>{practiceControls}</View> : null}
           </View>
@@ -543,7 +542,7 @@ export function StudyAudioPlayer({
 }
 
 const styles = StyleSheet.create({
-  root: { alignSelf: 'stretch', backgroundColor: 'rgba(244,242,236,0.55)', borderColor: colors.border, borderRadius: radii.xxl, borderWidth: 1, padding: spacing[3] },
+  root: { alignSelf: 'stretch' },
   integratedRoot: { backgroundColor: 'transparent', borderRadius: 0, borderWidth: 0, gap: spacing[4], padding: 0 },
   integratedHeader: { alignItems: 'center', flexDirection: 'row', gap: spacing[3] },
   integratedLabelRow: { flex: 1, marginBottom: 0, minWidth: 0 },
@@ -555,7 +554,7 @@ const styles = StyleSheet.create({
   practiceControls: { flex: 1, minWidth: 0 },
   integratedStatus: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[2.5], minHeight: 52, paddingVertical: spacing[1] },
   labelRow: { alignItems: 'center', flexDirection: 'row', gap: spacing[1.5], marginBottom: spacing[2] },
-  label: { flex: 1, fontFamily: fonts.sansSemibold },
+  label: { flex: 1, fontFamily: fonts.serifSemibold },
   tagDots: { alignItems: 'center', flexDirection: 'row', paddingRight: 2 },
   tagDot: { borderColor: colors.card, borderRadius: radii.full, borderWidth: 2, height: 13, width: 13 },
   tagDotOverlap: { marginLeft: -5 },

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "environment": "production",
+  "status": "verified-none",
+  "mode": "none",
+  "model": "fun-asr-2025-11-07",
+  "hotwordsVersion": "aviation-hotwords:v2",
+  "verifiedAt": "2026-07-22T14:36:12Z",
+  "providerEntriesSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "entries": []
+}

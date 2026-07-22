@@ -1,0 +1,159 @@
+{
+  "campaignId": "aviation-asr-campaign-01",
+  "content": {
+    "registryReleaseVersion": 8,
+    "registryReleasedAt": "2026-07-18T19:36:00Z"
+  },
+  "phase": "targeted",
+  "rationale": "验证两个 VOR→VR 目标错例，保护四个既有导航台样本，并用两个含普通 for 的短句检查 VOR 误吸附。",
+  "round": 3,
+  "samples": [
+    {
+      "audio": {
+        "checksum": "19f3d6d32879b358558f6778c3054adc77ea9bcd9e5b2a9b731b2a3968a334bc",
+        "durationSeconds": 7.608,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/405.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/405.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-405",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Report 25 miles from BKM VOR.",
+      "expectedTextSha256": "578d0197b9256cb650009819f51cccf2c6773582e15f3f6d3a878d8989952c30",
+      "id": "sentences900:sentence900-main-405",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "8f9343c0318d0c0d17df23b56df18c971330f59c14d04fca6583d7e1e6aa9427",
+        "durationSeconds": 7.992,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/062.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/062.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-062",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Expect hold at HUR VOR for 10 minutes due traffic.",
+      "expectedTextSha256": "25033b609dcd59c36fb4bace4204c01478a7982cbd7136b8223d78878d857a98",
+      "id": "sentences900:sentence900-main-062",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "86b427052005409409c5daec698a4fc75f07424a15b551418a2cf5daf35c39bd",
+        "durationSeconds": 19.392,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/074.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/074.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-074",
+      "categoryId": "sentence900-5级",
+      "expectedField": "audioText",
+      "expectedText": "Hold south of AMS VOR at 9000 feet, inbound track 270 degrees, left hand pattern, outbound time 1 minute. Expect further clearance at 46.",
+      "expectedTextSha256": "b6da02c5760df8f0a2d448b46c4646878ab0a0fb98106c39e73765541a99272b",
+      "id": "sentences900:sentence900-main-074",
+      "topicId": "sentence900-5级-main"
+    },
+    {
+      "audio": {
+        "checksum": "32e5e0b14c1e15e6f1765f0ca813fc1a3a9d555237c03174514c6b9ab7e12f82",
+        "durationSeconds": 11.256,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/428.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/428.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-428",
+      "categoryId": "sentence900-5级",
+      "expectedField": "audioText",
+      "expectedText": "Radar control is resumed, track direct to BKM VOR and increase speed to Mach number decimal 84.",
+      "expectedTextSha256": "72f7b2f6bea984730ab109c7dfe391920ff668790f13e2f70ce9f176c8698514",
+      "id": "sentences900:sentence900-main-428",
+      "topicId": "sentence900-5级-main"
+    },
+    {
+      "audio": {
+        "checksum": "4ae2e60e5dee90d54cf0f4527438223f62debb034a98879e0256d12dcb4d0f03",
+        "durationSeconds": 12,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/372.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/372.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-372",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Holding northwest of W VOR FL120, what is the delay for approach?",
+      "expectedTextSha256": "c7cef98b67427a40970efea57339f400bc5036c6dc2e72a5edac848c0c5d9abc",
+      "id": "sentences900:sentence900-main-372",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "25ac31cf038e96f3e24c2d1deaa0f13152c6f8be8a0880b8e58711de5c960622",
+        "durationSeconds": 53.904,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/615.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/615.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-615",
+      "categoryId": "listening-category-02",
+      "expectedField": "audioText",
+      "expectedText": "P: Sydney control, CCA 101, flight level nine zero, heading zero three five, descending to flight level six zero. C: CCA 101, hold on the three four five radio of the HUR VOR at one zero DME, Maintain 3000 meters, inbound track 165 degrees, right hand pattern, expected approach time 8. P: Hold on the 345 radio of the HUR VOR at 10 DME, maintain 3000 meters, inbound track 165 degrees, right hand pattern, expected approach Time eight, CCA 101. Question: what is the inbound track?",
+      "expectedTextSha256": "b8e24e527ba5380d9c9f299739d1f0cefd3679919695dcad9dbac4478f36623d",
+      "id": "listening:listening-main-615",
+      "topicId": "listening-topic-02"
+    },
+    {
+      "audio": {
+        "checksum": "70575ebce1cb3374a80e6964abe9348e29289286241e12b68739c6799d48f3e2",
+        "durationSeconds": 9.96,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/519.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/519.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-519",
+      "categoryId": "sentence900-4级",
+      "expectedField": "audioText",
+      "expectedText": "We cannot extinguish the engine fire. Request priority landing and emergency services on arrival.",
+      "expectedTextSha256": "bce2c29de7c21803dd4e56496bd0f6396b22611b51e285e711d7f814dd01a6b7",
+      "id": "sentences900:sentence900-main-519",
+      "topicId": "sentence900-4级-main"
+    },
+    {
+      "audio": {
+        "checksum": "ebf23c8687e8882c206ce1abf592494d72baf34cc69d39e0a78bcbc712e9cf6f",
+        "durationSeconds": 9.96,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/597.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/597.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-597",
+      "categoryId": "sentence900-4级",
+      "expectedField": "audioText",
+      "expectedText": "Request to climb to minimum safe altitude due to malfunction of navigation computers.",
+      "expectedTextSha256": "c23b24d8aae86b1d394b875b3b306481963051ce6fb9421343e35af585a811bd",
+      "id": "sentences900:sentence900-main-597",
+      "topicId": "sentence900-4级-main"
+    }
+  ],
+  "schemaVersion": 1,
+  "seed": "targeted:fb5e54f3b50a197d",
+  "summary": {
+    "audioDurationSeconds": 132.072,
+    "counts": {
+      "sentences900": 7,
+      "listening": 1,
+      "storytelling": 0
+    },
+    "sourceWarnings": 0
+  }
+}

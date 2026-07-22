@@ -1,0 +1,159 @@
+{
+  "campaignId": "aviation-asr-campaign-01",
+  "content": {
+    "registryReleaseVersion": 8,
+    "registryReleasedAt": "2026-07-18T19:36:00Z"
+  },
+  "phase": "targeted",
+  "rationale": "验证 PANPAN→pompon/pon pon 与 TCAS→cast 两类目标错例，并用 3 条 TCAS、3 条 PANPAN 未参与本轮开发集的样本保护术语、数字、呼号和上下文。",
+  "round": 5,
+  "samples": [
+    {
+      "audio": {
+        "checksum": "bf25958e2c9c07ae8b5a0194d7d9ba8ea045885a7a4656aa20611671cf2f2b93",
+        "durationSeconds": 27.72,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s04-section-01-q15.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s04-section-01-q15.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-1162",
+      "categoryId": "listening-category-02",
+      "expectedField": "audioText",
+      "expectedText": "P: Wuhan Control, CCA 4106, we have just encountered the severe turbulence, 2 passengers were severely injured, and 1 passenger with heart attack. C: CCA 4106, confirm you declare PANPAN, report your intention. P: Yeah, we want to declare a PANPAN, and request priority landing at Wuhan airport. C: CCA 4106, you are number 1, radar vector, turn left heading 150, expedite descend and maintain 4200m. Question: Which of the following is not true according to the exchange?",
+      "expectedTextSha256": "79e13ebe8e06f89a3528a4cad4d5d49c9c4ffeffc82f4b15fedc7aed69571843",
+      "id": "listening:listening-main-1162",
+      "topicId": "listening-topic-02"
+    },
+    {
+      "audio": {
+        "checksum": "ea5d2bfb3b334729f1ab7e350259251a171b9d1d287d326e61ae2e9444dfb68f",
+        "durationSeconds": 111.24,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/storytelling/web-v5/pepec-story-0073.mp3",
+        "publicPath": "/question-bank-assets/audio/storytelling/web-v5/pepec-story-0073.mp3"
+      },
+      "bankId": "storytelling",
+      "cardId": "story-pepec-0073",
+      "categoryId": "story-category-1",
+      "expectedField": "audioText",
+      "expectedText": "On July 25, 2025, A Southwest Airlines Boeing 7 37, performing flight Southwest 1 4 9 6 from Burbank, to Las Vegas (USA), was climbing through about 14100 feet out of Burbank about 11 nautical miles north of Burbank. A Military Hawker Hunter MK.5 8, from El Paso to Point Mugu (USA), was descending through 14,500 feet towards Point Mugu, when the vertical separation reduced to about 350 feet and the horizontal separation reduced to about 4 nautical miles, when both aircraft received TCAS resolution advisories prompting the Hunter to climb and the Boeing to descend. The Hunter climbed about 100 feet in response to the Resolution Advisory, the Boeing descended about 500 feet before resuming the climb. Both aircraft continued to their destinations for landings without further incident. Two flight attendants on board of the Boeing 737 received minor injuries. The FAA reported: \"Southwest Airlines Flight 1 4 9 6 responded to an onboard alert that another aircraft was in the vicinity while in Los Angeles Air Route Traffic Control Center airspace. The FAA is investigating the event that occurred around 12 p.m. local time on Friday, July 25.\" Passengers reported they were lifted out of their seats and onto flight attendants causing injuries to two flight attendants, when the aircraft went into a sudden descent. The flight crew later came on explaining a collision warning had activated and he needed to avoid the aircraft coming at them. The airline reported the crew reacted to onboard traffic alerts, the airline is working with the FAA to understand the circumstances. Two flight attendants are being treated for injuries, none of the passengers received any injuries.",
+      "expectedTextSha256": "e31e0b0609d461afbbd1686411a3e3617af152a56c750f862ef103b5931f22f4",
+      "id": "storytelling:story-pepec-0073",
+      "topicId": "story-flight-basic"
+    },
+    {
+      "audio": {
+        "checksum": "11016f6e51dd7113bad16180e5faec9540978df0e99e6275a91c2765c4153e79",
+        "durationSeconds": 8.52,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/602.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/602.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-602",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Unable, TCAS RA.",
+      "expectedTextSha256": "c55180d2a601c6f7019a782a96dd376a9ae2f5d36521fd34603c89e0cce3cc16",
+      "id": "sentences900:sentence900-main-602",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "4c6040bc4094f43db44bdc321fc15077cc6c2b0d4ad30b211739d9244aec5706",
+        "durationSeconds": 7.224,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/854.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/854.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-854",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Unable to comply, TCAS RA.",
+      "expectedTextSha256": "3b11e92534f4705b3ca2a159232e298e5204bff22c2c4f3208fb9819f73cb2ed",
+      "id": "sentences900:sentence900-main-854",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "fe7c0db85b1f3d4544bf377e71573f59e2e278d0de8bb5fe26b72a8dc1b252af",
+        "durationSeconds": 10.056,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/857.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/857.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-857",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "We have injuries resulting from our TCAS maneuver. Request ambulance on arrival.",
+      "expectedTextSha256": "b49d02175718b8afb52eb6eae8e74f0c22b941f957b35609e00cef5d62cb2e48",
+      "id": "sentences900:sentence900-main-857",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "34eb5581995dffcb727c76b4a6a93e8643ec7408db780000006f97af4785a45f",
+        "durationSeconds": 21.216,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/494.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/494.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-494",
+      "categoryId": "listening-category-04",
+      "expectedField": "audioText",
+      "expectedText": "P: PANPAN PANPAN PANPAN, Wuhan approach, CES 141, we have no fuel on board, due long time holding, request priority landing. C: CES 141, Roger that, radar vector for ILS approach Runway 18L. Question: Why did the crew declare urgency?",
+      "expectedTextSha256": "3d7370cd8ddafa6de5475cf10e5a780fddbb1246e3b77e0ee45aecf3962185cd",
+      "id": "listening:listening-main-494",
+      "topicId": "listening-topic-04"
+    },
+    {
+      "audio": {
+        "checksum": "9557c9cb12da0e1632b0ef105f1b5801b5dd12e3ae0f2028ec1554ac2ff7de4c",
+        "durationSeconds": 18.756,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s03-section-07-q20.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-07-q20.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-1150",
+      "categoryId": "listening-category-04",
+      "expectedField": "audioText",
+      "expectedText": "P: PANPAN, PANPAN, PANPAN, UAL 521, a passenger is seriously ill, probably a heart attack, request divert to A. C: roger, UAL 521, turn left heading 180, I will advise you request medical assistance upon landing. Question: What happened on board?",
+      "expectedTextSha256": "1094ea3715b2789c199ec13747d1edcde8c2f1cfd825d4aa9e0384e0837c446d",
+      "id": "listening:listening-main-1150",
+      "topicId": "listening-topic-04"
+    },
+    {
+      "audio": {
+        "checksum": "d8d845492732272b3702438670980afc9cf015ccf4d2d587c87b7fcef6c964d4",
+        "durationSeconds": 57.576,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/storytelling/wing/034.mp3",
+        "publicPath": "/question-bank-assets/audio/storytelling/wing/034.mp3"
+      },
+      "bankId": "storytelling",
+      "cardId": "story-wing-034",
+      "categoryId": "story-category-1",
+      "expectedField": "audioText",
+      "expectedText": "An A319 with 148 passengers and 6 crew, was descending when the first officer, pilot flying, became unfit to fly, relinquished control to the captain and left the cockpit. The captain declared PANPAN and continued for a safe landing. The probable cause of the incident was that the co-pilot experienced anxiety which developed into an anxiety attack during the approach. The captain, ATC and cabin crew worked together effectively to achieve a safe single pilot landing and to get medical help for the co-pilot. If the co-pilot reported that he is unfit for duty, and if there were more effective communication between the co-pilot and the captain, the opportunity for the incident might had been reduced.",
+      "expectedTextSha256": "4afc2b085a90eb431311d4269f5ad2bfefefe3763dae405ce6e7db91e2f35ece",
+      "id": "storytelling:story-wing-034",
+      "topicId": "story-flight-required"
+    }
+  ],
+  "schemaVersion": 1,
+  "seed": "targeted:b5197c329ce47428",
+  "summary": {
+    "audioDurationSeconds": 262.308,
+    "counts": {
+      "sentences900": 3,
+      "listening": 3,
+      "storytelling": 2
+    },
+    "sourceWarnings": 0
+  }
+}

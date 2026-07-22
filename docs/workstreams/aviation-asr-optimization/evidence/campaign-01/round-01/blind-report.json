@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": 1,
+  "campaignId": "aviation-asr-campaign-01",
+  "round": 1,
+  "phase": "blind",
+  "versions": {
+    "model": "fun-asr-2025-11-07",
+    "hotwords": {
+      "mode": "none"
+    },
+    "normalizationVersion": "aviation-normalization:v3",
+    "normalizationSha256": "34aabfb414b868f67b4537a68c0bb694ba98b9f77dbed8085a7d952272ffaf33"
+  },
+  "summary": {
+    "overall": {
+      "sampleCount": 21,
+      "rawContentExact": 9,
+      "finalContentExact": 11,
+      "rawWer": 0.12326656394453005,
+      "finalWer": 0.10785824345146379,
+      "criticalEntityErrors": 32
+    },
+    "byModule": {
+      "sentences900": {
+        "sampleCount": 10,
+        "rawContentExact": 5,
+        "finalContentExact": 7,
+        "rawWer": 0.16,
+        "finalWer": 0.07,
+        "criticalEntityErrors": 5
+      },
+      "listening": {
+        "sampleCount": 10,
+        "rawContentExact": 4,
+        "finalContentExact": 4,
+        "rawWer": 0.13908872901678657,
+        "finalWer": 0.13189448441247004,
+        "criticalEntityErrors": 19
+      },
+      "storytelling": {
+        "sampleCount": 1,
+        "rawContentExact": 0,
+        "finalContentExact": 0,
+        "rawWer": 0.045454545454545456,
+        "finalWer": 0.06060606060606061,
+        "criticalEntityErrors": 8
+      }
+    },
+    "failed": 0,
+    "classificationComplete": 21,
+    "total": 21
+  },
+  "samples": [
+    {
+      "audio": {
+        "checksum": "587269b0fcaa231b2175dcfc99c683a601c9183395c5ef53cf782e57eafbd2fa",
+        "durationSeconds": 10.44,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/576.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/576.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-576",
+      "categoryId": "sentence900-5级",
+      "expectedField": "audioText",
+      "expectedText": "Both our windshield heating systems have failed. Ice is obstructing our view. Request latest airport weather.",
+      "expectedTextSha256": "9cf4e09600d14d33141b5a5db7e68231279486a1c1b97473b2d1334a79a2a087",
+      "id": "sentences900:sentence900-main-576",
+      "topicId": "sentence900-5级-main",
+      "status": "success",
+      "rawTranscript": "Both our windshield heating systems have failed. Ice is obstructing our view. Request latest airport weather.",
+      "transcript": "Both our windshield heating systems have failed. Ice is obstructing our view. Request latest airport weather.",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 16,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 16,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "a0ad1c354c7e4978eea6757d9366e980a254542e0c1c88c12346d8195985f5b1",
+        "durationSeconds": 9.312,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/642.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/642.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-642",
+      "categoryId": "sentence900-4级",
+      "expectedField": "audioText",
+      "expectedText": "Our weather radar has failed and we are in IMC. Request return for landing.",
+      "expectedTextSha256": "9d8e4ef5ca0ab41b1227baf6761580d9ff03bf937ee322f2bee8121a7280e57e",
+      "id": "sentences900:sentence900-main-642",
+      "topicId": "sentence900-4级-main",
+      "status": "success",
+      "rawTranscript": "Our weather radar has failed and we are in IMC. Request return for landing.",
+      "transcript": "Our weather radar has failed and we are in IMC. Request return for landing.",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 14,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 14,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "6d5768ebecd35ffead6f922d53a0ff99d052b6fe64b8a0ffec9de0949f1ba432",
+        "durationSeconds": 9.144,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/635.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/635.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-635",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "GPS unreliable, terminating ADS-B transmissions.",
+      "expectedTextSha256": "0e3dfa468b24d588db4d17000e93641f3f6117e2ff20bc6058c5793d09938414",
+      "id": "sentences900:sentence900-main-635",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "GPS unreliable, terminating ADSB transmissions.",
+      "transcript": "GPS unreliable, terminating ADS-B transmissions.",
+      "transformations": [
+        {
+          "after": "GPS unreliable, terminating ADS-B transmissions.",
+          "before": "GPS unreliable, terminating ADSB transmissions.",
+          "risk": "safe",
+          "ruleId": "ABBR-001"
+        }
+      ],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 6,
+        "wordErrors": 2,
+        "wer": 0.3333333333333333
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 6,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "4e51f1ba07bcba4c3909c632691ddeae883c694c253d4cc66c2ba09bba090c1f",
+        "durationSeconds": 6.936,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/356.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/356.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-356",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Remain this frequency.",
+      "expectedTextSha256": "6148f1bade313d58bcbc082ec349679f78b602d3e572e88f416a0a7438304790",
+      "id": "sentences900:sentence900-main-356",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "remain this frequency.",
+      "transcript": "remain this frequency.",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 3,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 3,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "f006aaf75ded4bd1c6cf337017f3022fb23e284a42be0cbb47acdebd2f612934",
+        "durationSeconds": 7.728,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/199.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/199.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-199",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Confirm current RVR less than 400 meters.",
+      "expectedTextSha256": "482df50b0e01d7ca7a6215b747669cd5ac3709cb2eb11432206d703317009420",
+      "id": "sentences900:sentence900-main-199",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "Confirm current RV less than 400 meters.",
+      "transcript": "Confirm current RV less than 400 meters.",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 7,
+        "wordErrors": 1,
+        "wer": 0.14285714285714285
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 7,
+        "wordErrors": 1,
+        "wer": 0.14285714285714285
+      },
+      "critical": {
+        "missing": [
+          "letter:RVR"
+        ],
+        "hallucinated": [
+          "letter:RV"
+        ],
+        "errorCount": 2
+      },
+      "classification": {
+        "mainCategory": "ASR_DOMAIN",
+        "note": "关键缩写 RVR 被识别为 RV，属于真实领域识别错误；本轮候选规则未参与该位置。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "major"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "770f5e53db0cbec8ee027b4abefa10af4a3218aea8c0b6f1192cd29d1dc6da2b",
+        "durationSeconds": 10.584,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/763.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/763.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-763",
+      "categoryId": "sentence900-5级",
+      "expectedField": "audioText",
+      "expectedText": "We are shutting down our engines. There are boxes blown by the wind toward our aircraft.",
+      "expectedTextSha256": "149da5846660e0e3363b2c5654c5cea00255b8980a9b64eeff76bee930b804b7",
+      "id": "sentences900:sentence900-main-763",
+      "topicId": "sentence900-5级-main",
+      "status": "success",
+      "rawTranscript": "We are shutting down our engines. There are boxes blown by the wind toward our aircraft.",
+      "transcript": "We are shutting down our engines. There are boxes blown by the wind toward our aircraft.",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 16,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 16,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "25d2d0c59818000235acad4a0dc1312bb82aac3d09f5bb05c913a339b62944e6",
+        "durationSeconds": 5.16,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/015.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/015.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-015",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Descend at 2000 feet per minute.",
+      "expectedTextSha256": "1ab5e2be21d0cb29fb16d7bb56cf1ebf617adfb09cd66b5771aa2447ce07929e",
+      "id": "sentences900:sentence900-main-015",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "Descend at two thousand feet per minute.",
+      "transcript": "Descend at 2000 feet per minute.",
+      "transformations": [
+        {
+          "after": "Descend at 2000 feet per minute.",
+          "before": "Descend at two thousand feet per minute.",
+          "risk": "context-required",
+          "ruleId": "ALTITUDE-001"
+        }
+      ],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 6,
+        "wordErrors": 2,
+        "wer": 0.3333333333333333
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 6,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "99eedcdee22a2d50df6d3ddb7317ae61cc301e9fabe4aaf25be6a8fdb536297d",
+        "durationSeconds": 17.52,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/317.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/317.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-317",
+      "categoryId": "sentence900-5级",
+      "expectedField": "audioText",
+      "expectedText": "Hold at 20 DME of ST VOR, FL100, inbound track 260 degrees, left turns, limiting outbound distance 24 DME.",
+      "expectedTextSha256": "4abc484351233b8a15d4159d6e79583b1da8767979f4e32ec08b2f8ff65300fb",
+      "id": "sentences900:sentence900-main-317",
+      "topicId": "sentence900-5级-main",
+      "status": "success",
+      "rawTranscript": "Hold at 20 DME of Sierra Tango VOR, flight level 100, inbound track 260 degrees, left turns limiting outbound distance to 4 DME.",
+      "transcript": "Hold at 20 DME of ST VOR, FL100, inbound track 260 degrees, left turns limiting outbound distance to 4 DME.",
+      "transformations": [
+        {
+          "after": "Hold at 20 DME of Sierra Tango VOR, FL100, inbound track 260 degrees, left turns limiting outbound distance to 4 DME.",
+          "before": "Hold at 20 DME of Sierra Tango VOR, flight level 100, inbound track 260 degrees, left turns limiting outbound distance to 4 DME.",
+          "risk": "context-required",
+          "ruleId": "FL-001"
+        },
+        {
+          "after": "Hold at 20 DME of ST VOR, FL100, inbound track 260 degrees, left turns limiting outbound distance to 4 DME.",
+          "before": "Hold at 20 DME of Sierra Tango VOR, FL100, inbound track 260 degrees, left turns limiting outbound distance to 4 DME.",
+          "risk": "context-required",
+          "ruleId": "NAVAID-001"
+        }
+      ],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 19,
+        "wordErrors": 7,
+        "wer": 0.3684210526315789
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 19,
+        "wordErrors": 2,
+        "wer": 0.10526315789473684
+      },
+      "critical": {
+        "missing": [
+          "number:24"
+        ],
+        "hallucinated": [
+          "number:4"
+        ],
+        "errorCount": 2
+      },
+      "classification": {
+        "mainCategory": "ASR_GENERAL",
+        "note": "限制距离 24 DME 被识别成 4 DME，是阻塞性的数字错误；FL100 与 ST VOR 的候选规范化正确且未引入错误。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "major"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "2a905e2b796934b06f60d2c5f6498758ceef814696e0362bca012ad88ce62d76",
+        "durationSeconds": 6.312,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/049.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/049.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-049",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Request taxi to south maintenance ramp.",
+      "expectedTextSha256": "07c6dedc1ed68466dea0f289261d7464b6b19190b40f20ea6e5f43a685379daa",
+      "id": "sentences900:sentence900-main-049",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "Request taxi to South Maintenance Ramp.",
+      "transcript": "Request taxi to South Maintenance Ramp.",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 6,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 6,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "4dcd8e24f452aa6cbf9bda298a33e5da6e1ec5a8d809f3bd44129cf30c25f13e",
+        "durationSeconds": 11.16,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/321.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/321.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-321",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Position 10 miles north east of LN.",
+      "expectedTextSha256": "bb758239f38240647437da90e79f8852f45e54f5e99b61dec89c927606f24d24",
+      "id": "sentences900:sentence900-main-321",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "Position 10 miles northeast of Lima, November.",
+      "transcript": "Position 10 miles northeast of Lima, November.",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 7,
+        "wordErrors": 4,
+        "wer": 0.5714285714285714
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 7,
+        "wordErrors": 4,
+        "wer": 0.5714285714285714
+      },
+      "critical": {
+        "missing": [
+          "letter:LN"
+        ],
+        "hallucinated": [],
+        "errorCount": 1
+      },
+      "classification": {
+        "mainCategory": "NORMALIZATION_MISSING",
+        "note": "Lima, November 内容已听对，但逗号使现有航路点规则未形成 LN；盲测只记录，不回调本轮候选。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "minor"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "c448ab22a1c9a80c676b18257b69cd89017ec28e75e0a22ad6c44513618c490b",
+        "durationSeconds": 13.896,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s03-section-06-q19.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-06-q19.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-1130",
+      "categoryId": "listening-category-04",
+      "expectedField": "audioText",
+      "expectedText": "CCA 500, Runway 26R RVR, touchdown 600m, mid-point 800m, stop-end 700m. Question: what is the RVR of the stop end?",
+      "expectedTextSha256": "89578a0c1b976eb469b05f0fce5ce26db4056055f3b0c96ce88b381673cf5016",
+      "id": "listening:listening-main-1130",
+      "topicId": "listening-topic-04",
+      "status": "success",
+      "rawTranscript": "Air China 500 runway 26 right RVR touchdown 600 meters midpoint 800 meters stop and 700 meters question what is the RVR of the stop end.",
+      "transcript": "Air China 500 runway 26R RVR touchdown 600 meters midpoint 800 meters stop and 700 meters question what is the RVR of the stop end.",
+      "transformations": [
+        {
+          "after": "Air China 500 runway 26R RVR touchdown 600 meters midpoint 800 meters stop and 700 meters question what is the RVR of the stop end.",
+          "before": "Air China 500 runway 26 right RVR touchdown 600 meters midpoint 800 meters stop and 700 meters question what is the RVR of the stop end.",
+          "risk": "context-required",
+          "ruleId": "RUNWAY-001"
+        }
+      ],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 22,
+        "wordErrors": 12,
+        "wer": 0.5454545454545454
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 22,
+        "wordErrors": 10,
+        "wer": 0.45454545454545453
+      },
+      "critical": {
+        "missing": [
+          "callsign:CCA 500",
+          "letter:CCA"
+        ],
+        "hallucinated": [
+          "number:600",
+          "number:800",
+          "number:700"
+        ],
+        "errorCount": 5
+      },
+      "classification": {
+        "mainCategory": "NORMALIZATION_MISSING",
+        "note": "Air China 500 尚未统一为 CCA 500；runway 26 right 已由本轮规则正确转为 runway 26R，三个 RVR 数值均保持正确。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "minor"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "9b35356448f140228c64283ccac40121923675b883483e8bbdd14d7e2fe2f856",
+        "durationSeconds": 14.328,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-17-q20.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-17-q20.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-904",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "Without the pressurization system, the cabin will slowly lose pressure as it equilibrates with the external atmospheric pressure. Question: If the pressurization system fails during cruise flight, what will most likely happen to the cabin pressure?",
+      "expectedTextSha256": "a87036222b501b5bc6ea7732d3cf648f6f26070e70ade6391fd4bf4e0bc3c3af",
+      "id": "listening:listening-main-904",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "Without the pressurization system, the cabin will slowly lose pressure as it equilibrates with the external atmospheric pressure. Question: If the pressurization system fails during cruise flight, what will most likely happen to the cabin pressure?",
+      "transcript": "Without the pressurization system, the cabin will slowly lose pressure as it equilibrates with the external atmospheric pressure. Question: If the pressurization system fails during cruise flight, what will most likely happen to the cabin pressure?",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 36,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 36,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "60697d33e1e1f7017c069c71d39acb3951d51a5ba0083d18faba8055e471396a",
+        "durationSeconds": 31.032,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/199.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/199.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-199",
+      "categoryId": "listening-category-02",
+      "expectedField": "audioText",
+      "expectedText": "C: TWA 141, taxi to holding point of Runway 36 via A4 and A. Taxi with caution , taxiway is slippery. C: TWA 141, stop immediately, there is conflicting traffic on the way to you. P: Stopping, traffic in sight, TWA 141. Question: What did the flight crew possibly see on their way?",
+      "expectedTextSha256": "97f14d1868cf80f43cc54b6d7a55baf4bcb94a523e8616a1a1ad9505cfe675b3",
+      "id": "listening:listening-main-199",
+      "topicId": "listening-topic-02",
+      "status": "success",
+      "rawTranscript": "TWA 141 taxi to the holding point runway 36 via taxiway alpha 4 and alpha taxi with caution taxiway is slippery. TWA 141 stop immediately there is conflicting traffic on the way to you. Stopping traffic in sight. TWA 141.Question: What did the flight crew possibly see on their way?",
+      "transcript": "TWA 141 taxi to the holding point runway 36 via taxiway alpha 4 and alpha taxi with caution taxiway is slippery. TWA 141 stop immediately there is conflicting traffic on the way to you. Stopping traffic in sight. TWA 141.Question: What did the flight crew possibly see on their way?",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 52,
+        "wordErrors": 9,
+        "wer": 0.17307692307692307
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 52,
+        "wordErrors": 9,
+        "wer": 0.17307692307692307
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [
+          "number:4"
+        ],
+        "errorCount": 1
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "taxiway Alpha 4/Alpha 与 A4/A 是可接受的口述写法，hold short 核心含义和问题完整。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "283958251823510e88a78590c729b6640a8f2d907c6dbe39ff160467310eb192",
+        "durationSeconds": 23.784,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/582.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/582.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-582",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "In a teardrop entry, the aircraft flies to the holding fix, turns into the protected area, flies for one minute, and then turns back inbound, proceeds to the fix, and continues from there. Question: how long would the aircraft fly into the protected area in a teardrop entry?",
+      "expectedTextSha256": "c6e975dacad0386153b35601030fec72e7505c9b2f1db1aff0d38c67f5ad1bdf",
+      "id": "listening:listening-main-582",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "In a teardrop entry, the aircraft flies to the holding fix, turns into the protected area, flies for one minute, and then turns back inbound. Proceeds to the fix, and continues from there. Question, how long would the aircraft fly into the protected area in a teardrop entry?",
+      "transcript": "In a teardrop entry, the aircraft flies to the holding fix, turns into the protected area, flies for one minute, and then turns back inbound. Proceeds to the fix, and continues from there. Question, how long would the aircraft fly into the protected area in a teardrop entry?",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 48,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 48,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "ed18feb571101b785f925a9698c88dcc31b2c9f1d208af98ec7d9b1c78d2f633",
+        "durationSeconds": 19.152,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-08-q15.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-08-q15.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-727",
+      "categoryId": "listening-category-03",
+      "expectedField": "audioText",
+      "expectedText": "An aircraft's data-link communication system is designed to transmit non-voice data. This includes flight plans, updated weather information, and the status of various aircraft systems. It enhances the efficiency and safety of flight operations. Question: What is the role of an aircraft's data-link communication system?",
+      "expectedTextSha256": "337987342c1c7c3df9d2623f9aceb45c5f974752cf6c44192737f534f6d8a055",
+      "id": "listening:listening-main-727",
+      "topicId": "listening-topic-03",
+      "status": "success",
+      "rawTranscript": "An aircraft's data link communication system is designed to transmit non-voice data. This includes flight plans, updated weather information, and the status of various aircraft systems. It enhances the efficiency and safety of flight operations. Question, what is the role of an aircraft's data link communication system?",
+      "transcript": "An aircraft's data link communication system is designed to transmit non-voice data. This includes flight plans, updated weather information, and the status of various aircraft systems. It enhances the efficiency and safety of flight operations. Question, what is the role of an aircraft's data link communication system?",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 50,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 50,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "a0722b82f2d5a22cba9a0fad0f8b7f06d98eab8d596691eedcbde6e74f20067f",
+        "durationSeconds": 16.008,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/454.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/454.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-454",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "B: Before each flight, the pilots must have all the necessary documents in hand such as flight plan, weather forecast, NOTAM and so on. Question: Which document is not mentioned?",
+      "expectedTextSha256": "967d77d0c005989c3fa652b8b72ec90579b8775dce0c229cc725297bbfff9625",
+      "id": "listening:listening-main-454",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "Before each flight, pilots must have all necessary documents in hand, including the flight plan, weather forecast, notam, and so on. Which document is not mentioned?",
+      "transcript": "Before each flight, pilots must have all necessary documents in hand, including the flight plan, weather forecast, notam, and so on. Which document is not mentioned?",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 30,
+        "wordErrors": 6,
+        "wer": 0.2
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 30,
+        "wordErrors": 6,
+        "wer": 0.2
+      },
+      "critical": {
+        "missing": [
+          "letter:NOTAM"
+        ],
+        "hallucinated": [],
+        "errorCount": 1
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "including/such as、冠词和题干标签不同，NOTAM 内容完整且题意一致。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "71eeffae81f5e6b545b8806b3d4daf6b781a389d21207646308988c30f45603e",
+        "durationSeconds": 16.668,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-01-q20.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-01-q20.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-649",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "The transponder sends information about the aircraft's identity, altitude, and speed to air traffic control. This helps air traffic controllers to track and manage the aircraft more effectively in the airspace. Question: What is the role of the transponder in aviation communication?",
+      "expectedTextSha256": "7229157ec4fba5191c508aa4c7b938ae9af4e5381c3bd779e8682161be47f5d6",
+      "id": "listening:listening-main-649",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "The transponder sends information about the aircraft's identity, altitude, and speed to air traffic control. This helps air traffic controllers to track and manage the aircraft more effectively in the airspace. Question, what is the role of the transponder in aviation communication?",
+      "transcript": "The transponder sends information about the aircraft's identity, altitude, and speed to air traffic control. This helps air traffic controllers to track and manage the aircraft more effectively in the airspace. Question, what is the role of the transponder in aviation communication?",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 43,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 43,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "1d13b2997cff117c6c1d2dce156731ee3da076e766e94cbf4ebf4fcdfc7169f1",
+        "durationSeconds": 22.284,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s04-section-03-q14.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s04-section-03-q14.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-1185",
+      "categoryId": "listening-category-02",
+      "expectedField": "audioText",
+      "expectedText": "C: CCA 981, Wuhan Tower, radar shows you are 200 feet above glide slope. P: Tower, CCA 981, roger, we've just lost glide slope indication on the instrument, we are going around as published. Question: What type of approach was CCA 981 flying before the Missed Approach?",
+      "expectedTextSha256": "ebe9db975786e4f7d5853eff678bc89bbe9a695db4afe2b36e973ac81caab05c",
+      "id": "listening:listening-main-1185",
+      "topicId": "listening-topic-02",
+      "status": "success",
+      "rawTranscript": "Air China 981, Wuhan Tower radar shows you are 200 feet above the glide slope. Tower, Air China 981, Roger. We have just lost the glide slope indication on my instrument. We're going around as published. What type of approach was Air China 981 flying before the missed approach?",
+      "transcript": "Air China 981, Wuhan Tower radar shows you are 200 feet above the glide slope. Tower, Air China 981, Roger. We have just lost the glide slope indication on my instrument. We're going around as published. What type of approach was Air China 981 flying before the missed approach?",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 48,
+        "wordErrors": 13,
+        "wer": 0.2708333333333333
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 48,
+        "wordErrors": 13,
+        "wer": 0.2708333333333333
+      },
+      "critical": {
+        "missing": [
+          "callsign:CCA 981",
+          "callsign:CCA 981",
+          "callsign:CCA 981",
+          "letter:CCA",
+          "letter:CCA",
+          "letter:CCA"
+        ],
+        "hallucinated": [],
+        "errorCount": 6
+      },
+      "classification": {
+        "mainCategory": "NORMALIZATION_MISSING",
+        "note": "Air China 981 内容听对但尚未统一为 CCA 981；高度和复飞信息完整。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "minor"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "6b0d82dd2ad6bc250e6ea39a8cd17b1c2970932e719a2036d8445ab26b8e7c91",
+        "durationSeconds": 17.388,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-11-q12.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-11-q12.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-777",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "Analog-to-Digital Converters (ADCs) play a central role in digital flight systems by converting sensor data into digital signals for processing and display on EFIS screens. Question: What do odern digital flight instruments often use to synthesize and process data from various sensors?",
+      "expectedTextSha256": "52b39505cac8e6efbbc3d1ad2e361a9ecea45dffb1254c86c43cc425cfdc8a23",
+      "id": "listening:listening-main-777",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "Analog to digital converters play a central role in digital flight systems by converting sensor data into digital signals for processing and display on EFIS screens. Question: What do Oden digital flight instruments often use to synthesize and process data from various sensors?",
+      "transcript": "Analog to digital converters play a central role in digital flight systems by converting sensor data into digital signals for processing and display on EFIS screens. Question: What do Oden digital flight instruments often use to synthesize and process data from various sensors?",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 44,
+        "wordErrors": 2,
+        "wer": 0.045454545454545456
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 44,
+        "wordErrors": 2,
+        "wer": 0.045454545454545456
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_MISMATCH",
+        "note": "参考题干中的 odern 明显缺少 modern 的首字母，且音频识别为 Oden；该处不用于规则收益判断。",
+        "referenceStatus": "mismatch",
+        "semanticOutcome": "excluded"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "506a06a22893aac4fb3153db2ce430b34eee2161f5b47f0fc7871633d3e5fdba",
+        "durationSeconds": 26.688,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/299.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/299.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-299",
+      "categoryId": "listening-category-04",
+      "expectedField": "audioText",
+      "expectedText": "P: Melbourne Tower, QFA 344, hold at holding point of Runway 29, ready for departure. C: QFA 344, hold at holding point for a few minutes, the runway is still blocked by a Cessna. Question: Why does the controller ask the pilot to hold?",
+      "expectedTextSha256": "ee5bf8483ace65ad302b870a21d029d6d3b0afc143c4164e7f08b253a3e0d159",
+      "id": "listening:listening-main-299",
+      "topicId": "listening-topic-04",
+      "status": "success",
+      "rawTranscript": "Melbourne Tower, Qantas 344, hold and holding point runway 299, ready for departure. Quadrus three four four hold at the holding point runway two nine r for a few minutes. The runway is still blocked by a cessna. Why did the controller ask the pilot to hold?",
+      "transcript": "Melbourne Tower, Qantas 344, hold and holding point runway 299, ready for departure. Quadrus three four four hold at the holding point runway 29 r for a few minutes. The runway is still blocked by a cessna. Why did the controller ask the pilot to hold?",
+      "transformations": [
+        {
+          "after": "Melbourne Tower, Qantas 344, hold and holding point runway 299, ready for departure. Quadrus three four four hold at the holding point runway 29 r for a few minutes. The runway is still blocked by a cessna. Why did the controller ask the pilot to hold?",
+          "before": "Melbourne Tower, Qantas 344, hold and holding point runway 299, ready for departure. Quadrus three four four hold at the holding point runway two nine r for a few minutes. The runway is still blocked by a cessna. Why did the controller ask the pilot to hold?",
+          "risk": "context-required",
+          "ruleId": "RUNWAY-001"
+        }
+      ],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 44,
+        "wordErrors": 16,
+        "wer": 0.36363636363636365
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 44,
+        "wordErrors": 15,
+        "wer": 0.3409090909090909
+      },
+      "critical": {
+        "missing": [
+          "callsign:QFA 344",
+          "callsign:QFA 344",
+          "letter:QFA",
+          "letter:QFA",
+          "number:344"
+        ],
+        "hallucinated": [
+          "number:299"
+        ],
+        "errorCount": 6
+      },
+      "classification": {
+        "mainCategory": "ASR_DOMAIN",
+        "note": "runway 29 被识别为 299，第二段又出现 Quadrus 和多余 R；属于呼号与跑道的严重上游识别错误。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "unusable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "c0b632b6fd33447a7e06fbeea45cc946501c0ae0d0ac08a0ba4f398f37d2e727",
+        "durationSeconds": 53.64,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/storytelling/koala/026.mp3",
+        "publicPath": "/question-bank-assets/audio/storytelling/koala/026.mp3"
+      },
+      "bankId": "storytelling",
+      "cardId": "story-koala-026",
+      "categoryId": "story-category-1",
+      "expectedField": "audioText",
+      "expectedText": "A strong snowstorm hit Chicago Internationalairport in an afternoon. An aircraft from United Airlines circled several times before attempting to land at the airport. The snowstorm had reduced visibility severely. The runway visual range was at 4, 500 feet below the landing minimums for the ILS approach to Runway 13 Center. The controller advised the crew to hold in the air, waiting for the weather to get better, or to divert to another airport with a longer runway. But both suggestions would produce large additional expense for the airline, as well as inconvenience of the flight's passengers. Sothe crew decided to circle to land on runway 31 Center, which had lower landing minimums. But unfortunately, the strong tailwind made the plane skid off the runway and crash into a stopping truck.",
+      "expectedTextSha256": "c1a03fa4619058db5e71c5cefcc1e8173248fb7a6b6c8ff253e1454484daabf5",
+      "id": "storytelling:story-koala-026",
+      "topicId": "story-flight-basic",
+      "status": "success",
+      "rawTranscript": "A strong snowstorm hit chicago international airport in an afternoon. An aircraft from united airlines circled several times before attempting to land at the airport. The snowstorm had reduced visibility severely. The runway visual range was at 4,500 feet below the landing minimums for the ils approach to runway 1 tree center. The controller advised the crew to hold in the air, waiting for the weather to get better or to divert to another airport with a longer runway. But both suggestions would produce large additional expense for the airline, as well as inconvenience of the flight's passengers. So, the crew decided to circle to land on runway 31 center, which had lower landing minimums. But unfortunately, the strong tailwind made the plane skid off the runway and crash into a stopping truck.",
+      "transcript": "A strong snowstorm hit chicago international airport in an afternoon. An aircraft from united airlines circled several times before attempting to land at the airport. The snowstorm had reduced visibility severely. The runway visual range was at 4,500 feet below the landing minimums for the ILS approach to runway 1 tree center. The controller advised the crew to hold in the air, waiting for the weather to get better or to divert to another airport with a longer runway. But both suggestions would produce large additional expense for the airline, as well as inconvenience of the flight's passengers. So, the crew decided to circle to land on runway 31C, which had lower landing minimums. But unfortunately, the strong tailwind made the plane skid off the runway and crash into a stopping truck.",
+      "transformations": [
+        {
+          "after": "A strong snowstorm hit chicago international airport in an afternoon. An aircraft from united airlines circled several times before attempting to land at the airport. The snowstorm had reduced visibility severely. The runway visual range was at 4,500 feet below the landing minimums for the ILS approach to runway 1 tree center. The controller advised the crew to hold in the air, waiting for the weather to get better or to divert to another airport with a longer runway. But both suggestions would produce large additional expense for the airline, as well as inconvenience of the flight's passengers. So, the crew decided to circle to land on runway 31 center, which had lower landing minimums. But unfortunately, the strong tailwind made the plane skid off the runway and crash into a stopping truck.",
+          "before": "A strong snowstorm hit chicago international airport in an afternoon. An aircraft from united airlines circled several times before attempting to land at the airport. The snowstorm had reduced visibility severely. The runway visual range was at 4,500 feet below the landing minimums for the ils approach to runway 1 tree center. The controller advised the crew to hold in the air, waiting for the weather to get better or to divert to another airport with a longer runway. But both suggestions would produce large additional expense for the airline, as well as inconvenience of the flight's passengers. So, the crew decided to circle to land on runway 31 center, which had lower landing minimums. But unfortunately, the strong tailwind made the plane skid off the runway and crash into a stopping truck.",
+          "risk": "safe",
+          "ruleId": "ABBR-001"
+        },
+        {
+          "after": "A strong snowstorm hit chicago international airport in an afternoon. An aircraft from united airlines circled several times before attempting to land at the airport. The snowstorm had reduced visibility severely. The runway visual range was at 4,500 feet below the landing minimums for the ILS approach to runway 1 tree center. The controller advised the crew to hold in the air, waiting for the weather to get better or to divert to another airport with a longer runway. But both suggestions would produce large additional expense for the airline, as well as inconvenience of the flight's passengers. So, the crew decided to circle to land on runway 31C, which had lower landing minimums. But unfortunately, the strong tailwind made the plane skid off the runway and crash into a stopping truck.",
+          "before": "A strong snowstorm hit chicago international airport in an afternoon. An aircraft from united airlines circled several times before attempting to land at the airport. The snowstorm had reduced visibility severely. The runway visual range was at 4,500 feet below the landing minimums for the ILS approach to runway 1 tree center. The controller advised the crew to hold in the air, waiting for the weather to get better or to divert to another airport with a longer runway. But both suggestions would produce large additional expense for the airline, as well as inconvenience of the flight's passengers. So, the crew decided to circle to land on runway 31 center, which had lower landing minimums. But unfortunately, the strong tailwind made the plane skid off the runway and crash into a stopping truck.",
+          "risk": "context-required",
+          "ruleId": "RUNWAY-001"
+        }
+      ],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 132,
+        "wordErrors": 6,
+        "wer": 0.045454545454545456
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 132,
+        "wordErrors": 8,
+        "wer": 0.06060606060606061
+      },
+      "critical": {
+        "missing": [
+          "runway:RUNWAY 13",
+          "runway:RUNWAY 31",
+          "number:13",
+          "number:31"
+        ],
+        "hallucinated": [
+          "runway:RUNWAY 1",
+          "runway:RUNWAY 31C",
+          "number:1",
+          "number:31C"
+        ],
+        "errorCount": 8
+      },
+      "classification": {
+        "mainCategory": "ASR_GENERAL",
+        "note": "首个 runway 13 Center 被识别成 runway 1 tree center，不能由规则猜回；后一个 runway 31 center 已安全转为 31C，未新增关键实体错误。",
+        "referenceStatus": "suspect",
+        "semanticOutcome": "major"
+      }
+    }
+  ]
+}

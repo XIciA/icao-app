@@ -1,0 +1,379 @@
+{
+  "campaignId": "aviation-asr-campaign-01",
+  "content": {
+    "registryReleaseVersion": 8,
+    "registryReleasedAt": "2026-07-18T19:36:00Z"
+  },
+  "phase": "blind",
+  "round": 3,
+  "samples": [
+    {
+      "audio": {
+        "checksum": "2c8a8958da3628d185979a02c30fdfb12e38d95ffc525cf1672b670384713100",
+        "durationSeconds": 13.224,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/845.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/845.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-845",
+      "categoryId": "sentence900-5级",
+      "expectedField": "audioText",
+      "expectedText": "Request passenger stairs connect immediately after we stop on the runway. We want to disembark passengers as quickly as possible.",
+      "expectedTextSha256": "5d1d2d1f3ac9a48e65936dbf2c52ac8dacbdd4728706a53e74b52355feddaac4",
+      "id": "sentences900:sentence900-main-845",
+      "topicId": "sentence900-5级-main"
+    },
+    {
+      "audio": {
+        "checksum": "6d6f79e680147d160fc4b752eb140020f4f869c3adc888673eda887c9de5cff5",
+        "durationSeconds": 9.72,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/388.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/388.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-388",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Descend to FL170, cross BKM VOR at or above FL210.",
+      "expectedTextSha256": "ee936fa31092f58ed6991d0fc35c5c924a803ce1f3cde4ad93bca6ef41fe56ca",
+      "id": "sentences900:sentence900-main-388",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "3cf73040d52b08306fd94452e89f27b363dbebc8050513d3fac80d2dc499bd00",
+        "durationSeconds": 7.8,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/052.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/052.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-052",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Contact Control on 118.9.",
+      "expectedTextSha256": "5f5bd96f91b6ff2f98e394e31fafff01ca266d8bfe52748ca4443285ab523bbd",
+      "id": "sentences900:sentence900-main-052",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "d4682f49e890c590cd2ff3c53772f2beaa82ac102c2f345f41528a8572141bcf",
+        "durationSeconds": 9.984,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/656.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/656.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-656",
+      "categoryId": "sentence900-4级",
+      "expectedField": "audioText",
+      "expectedText": "Our APU bleed air malfunctioned during engine startup. We are calling the ground staff, standby.",
+      "expectedTextSha256": "455651588d1185e6d5c90af9b3a5c5d7f0ab6c1ecfb2009f8944eeaa1116c9c4",
+      "id": "sentences900:sentence900-main-656",
+      "topicId": "sentence900-4级-main"
+    },
+    {
+      "audio": {
+        "checksum": "5f14bdc4cc0078b3c3d8e5957b55c5ac75f701ce5744e58b44291eac1e43488a",
+        "durationSeconds": 9.432,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/398.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/398.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-398",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Cleared offset 25 miles left of track for 30 minutes.",
+      "expectedTextSha256": "1410f47043600eb6766610536d714d09c8946c9ea0866294480c3a7da859eda8",
+      "id": "sentences900:sentence900-main-398",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "a39059dd53cc287d53182da65b0de808e15b783eb79dc64ae805d75a0b0669cb",
+        "durationSeconds": 6.984,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/155.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/155.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-155",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Negative intersection departure due performance.",
+      "expectedTextSha256": "245281e9017a1a39738583e0dc45493e0a61e71ffa3538b807aa6b718b5f785f",
+      "id": "sentences900:sentence900-main-155",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "08ff513bde2545dfdb312d22e455ffe6a9210c73bb0f30cacfe792a214ecf9a0",
+        "durationSeconds": 9.024,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/336.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/336.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-336",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Descend to 8000 feet at 1000 feet per minute or greater.",
+      "expectedTextSha256": "eec869cbaacdef7a97d541d5cb1987d82abe63cbafbafba50a8395e66d4b64d2",
+      "id": "sentences900:sentence900-main-336",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "72b5d0c5ffeda0b63d300873c62e292a57ff697a701622bb00474346592a06ab",
+        "durationSeconds": 5.808,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/245.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/245.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-245",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Turn right 20 degrees.",
+      "expectedTextSha256": "9ee5a7abd1bc310313a26a34ef8f4ec3d68eeb4f08146a075cfa17396b6415a2",
+      "id": "sentences900:sentence900-main-245",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "532c55b84de35b7fd1457b72690f1fd9051fd36034e36d9432094ef89736236a",
+        "durationSeconds": 10.68,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/600.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/600.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-600",
+      "categoryId": "sentence900-4级",
+      "expectedField": "audioText",
+      "expectedText": "We have conflicting traffic at eleven o’clock, 8 miles, climbing. Request vectors for avoidance.",
+      "expectedTextSha256": "4177479d17df3a83fd4b0120bbd89e52db6784a0b1a8048ecf6a2173e40fcda7",
+      "id": "sentences900:sentence900-main-600",
+      "topicId": "sentence900-4级-main"
+    },
+    {
+      "audio": {
+        "checksum": "f79315fc7efdedae0da26a5d375e831793d2405924024c813542d12756ecc7a5",
+        "durationSeconds": 10.176,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/146.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/146.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-146",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "After departure, turn left heading 190, Runway 24R, cleared for takeoff.",
+      "expectedTextSha256": "9a6cf8c1b37956277845f4bda1c935ddef549ee995e8604c12c4573ebc59559e",
+      "id": "sentences900:sentence900-main-146",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "e19de5094f863f53dd2208ce39dcd4d727ddb0151cc9ebd30fbca10db4f8d3f8",
+        "durationSeconds": 17.208,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/145.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/145.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-145",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "The pilot gave an incorrect readback and switched the radio frequency before being corrected. As a result, the aircraft crossed the active runway without clearance. Question: Why wasn't the readback corrected?",
+      "expectedTextSha256": "13dfcc61717a4ed898c271e8cd8a6fbcb75bbb850ea282e01096ad6396d3f4d8",
+      "id": "listening:listening-main-145",
+      "topicId": "listening-topic-01"
+    },
+    {
+      "audio": {
+        "checksum": "1e34db913e96829369bf7a4294e6bb062ceb72e024e7d2c786c65dfaf5a751d0",
+        "durationSeconds": 30.864,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/348.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/348.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-348",
+      "categoryId": "listening-category-03",
+      "expectedField": "audioText",
+      "expectedText": "M1: Have you heard the ATC broadcast that RVSM operations will begin in 30 minutes? M2: Yes. All aircraft departing from or entering China’s sovereign airspace need to fly a level between 8900 m and 12500 m inclusive, in accordance with the China RVSM level allocation. Question: What was the conversation about?",
+      "expectedTextSha256": "33dd26445fa812b2af5f29611163f183f0572b0b8900332db7f7492cf903e2b8",
+      "id": "listening:listening-main-348",
+      "topicId": "listening-topic-03"
+    },
+    {
+      "audio": {
+        "checksum": "8b262be2f0a61c93ba2aaf9c6a4d653475e493388237ca158760dda63f35617a",
+        "durationSeconds": 16.944,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/406.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/406.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-406",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "During routine maintenance, mechanics found damage to the fan blades, turbine blades, and compressor blades. Question: Which part or parts of the aircraft were damaged?",
+      "expectedTextSha256": "20d6b5a2951462a51185f508ee1fc8557eaba02aff98bcaeee461727d2587d97",
+      "id": "listening:listening-main-406",
+      "topicId": "listening-topic-01"
+    },
+    {
+      "audio": {
+        "checksum": "1e533ad1b792c6094cb5ddb55cf159136ba8e042b06966110d51b1bea335d9dd",
+        "durationSeconds": 18.864,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s03-section-01-q06.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-01-q06.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-1042",
+      "categoryId": "listening-category-04",
+      "expectedField": "audioText",
+      "expectedText": "C: CES 5195, go around, follow the localizer, climb to and maintain 2100 meters, the preceding aircraft aborted takeoff. P: Going around, CES 5195. Question: Why was CES 5195 instructed to go around?",
+      "expectedTextSha256": "7ff611c5f5d1dd105d80f05dbbe5e180aac2625ed64165617d49d8ef3e7d38e7",
+      "id": "listening:listening-main-1042",
+      "topicId": "listening-topic-04"
+    },
+    {
+      "audio": {
+        "checksum": "e7f3c5eed6dced59618d5338e6b228318c398bf134c2ceec7e3d908ea05aad09",
+        "durationSeconds": 20.208,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/490.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/490.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-490",
+      "categoryId": "listening-category-04",
+      "expectedField": "audioText",
+      "expectedText": "P: NWA 546, please brighten up the approach lights. They look dim. C: NWA 546, they are already on maximum setting. Cleared to land. P: Cleared to land, five four six. Question: what is the weather probably like?",
+      "expectedTextSha256": "890681a8be84683ec0b05a04c27189488ce9a01e8638afcb198d192fb71d6d1c",
+      "id": "listening:listening-main-490",
+      "topicId": "listening-topic-04"
+    },
+    {
+      "audio": {
+        "checksum": "a39e4aa747857fcaf7cb12bba196743adafed8189ea3a09c8c5b50e91d426ebb",
+        "durationSeconds": 21.744,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s02-section-04-q06.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-04-q06.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-988",
+      "categoryId": "listening-category-03",
+      "expectedField": "audioText",
+      "expectedText": "International flight communication may involve different frequencies and communication protocols due to different airspace regulations. Pilots and air traffic controllers need to be aware of and follow the specific requirements of each country or region they are flying through or operating in. Question: How does international flight communication differ from domestic flight communication?",
+      "expectedTextSha256": "992f71dc01568ba05e4fc550e4227348acc7cec90352a3c3b5690f2720804c35",
+      "id": "listening:listening-main-988",
+      "topicId": "listening-topic-03"
+    },
+    {
+      "audio": {
+        "checksum": "30369bf6636a7c452c494737ad857502e236bec6353e3088ec15836aa807ae78",
+        "durationSeconds": 24.888,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/430.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/430.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-430",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "P: On landing, I noticed the landing gear had a little shimmy. M: Okay, we will check it. The ... is good, ... in the center, the gear is not locked down properly. Question: What was the problem with the nose gear on landing?",
+      "expectedTextSha256": "def748553933252484665b42a9e0302bc6e1632b9ec2987dfb0f6ffe169f6e2a",
+      "id": "listening:listening-main-430",
+      "topicId": "listening-topic-01"
+    },
+    {
+      "audio": {
+        "checksum": "e762b0f1f3cea7d3b27568d8b3b4ee8229163f4329303fd0bc33af72186cb6a0",
+        "durationSeconds": 15.588,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-09-q01.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-09-q01.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-733",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "A: Mr Wang, this new equipment will record any transmissions from the cockpit B: Yes. It also records cockpit area conversations. All inputs are recorded on a 30-minute continuous-loop tape Question: What are they talking about?",
+      "expectedTextSha256": "b65c6de8b129c49a5295e257d4ec2accc9db5228113673b08009c6f134c1d36a",
+      "id": "listening:listening-main-733",
+      "topicId": "listening-topic-01"
+    },
+    {
+      "audio": {
+        "checksum": "d9003c4ea89514057d913c62fdb5e587d97891e2ee00dd76553fb3dc34b449e8",
+        "durationSeconds": 21.816,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/312.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/312.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-312",
+      "categoryId": "listening-category-04",
+      "expectedField": "audioText",
+      "expectedText": "C: UAL 321, caution, unknown balloon over right turning base of Runway 36 at time 32, altitude 300m, moving northbound 40km per hour. Question: Why should UAL 321 keep a good lookout?",
+      "expectedTextSha256": "b75d375cd63ab12a6f7089c68d655018be0d4492797987937bc664d0839cc9d3",
+      "id": "listening:listening-main-312",
+      "topicId": "listening-topic-04"
+    },
+    {
+      "audio": {
+        "checksum": "1aa25c5887c43bfd494e85aab1869a4f0e7e2379cdbdbfeef06083825877984a",
+        "durationSeconds": 16.536,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/205.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/205.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-205",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "That group of tourists have to take a later flight because they can't get to the airport in time. There's been a major accident on the main road to the airport, so they had to make a detour. Question: Why can't they get to the airport in time?",
+      "expectedTextSha256": "b12a1647ffdbb0c5f78fff88bfb42fa6d7167fdcf0d58569adbf20bcae7f8701",
+      "id": "listening:listening-main-205",
+      "topicId": "listening-topic-01"
+    },
+    {
+      "audio": {
+        "checksum": "1783547fe5671094355bc566f7b25cc90f28e6eb6c51a62d529a30c4d274a3e0",
+        "durationSeconds": 40.5,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/storytelling/web-v5/pepec-story-0045.mp3",
+        "publicPath": "/question-bank-assets/audio/storytelling/web-v5/pepec-story-0045.mp3"
+      },
+      "bankId": "storytelling",
+      "cardId": "story-pepec-0045",
+      "categoryId": "story-category-1",
+      "expectedField": "audioText",
+      "expectedText": "On March 18, 2025, a Japan Air Commuter A T R 4 2, performing flight 2 0 1 from Amakusa to Kumamoto (Japan) with 14 people on board, was climbing out of Amakusa's Runway 31when the crew stopped the climb at 4000 feet after receiving a lightning strike. The aircraft returned to Amakusa for a safe landing on Runway 31about 25 minutes after departure. The airline reported the aircraft was inspected, burn marks were found at the nose wheel area and on the tail of the aircraft. All flights of the aircraft until and including Mar 26th 2025 have been cancelled.",
+      "expectedTextSha256": "fee8485eaf13a732edf18fb87b824d383e7ef924660969ab34539014a323b8e5",
+      "id": "storytelling:story-pepec-0045",
+      "topicId": "story-flight-basic"
+    }
+  ],
+  "schemaVersion": 1,
+  "seed": "aviation-asr-campaign-01-seed-v1",
+  "summary": {
+    "audioDurationSeconds": 337.99199999999996,
+    "counts": {
+      "sentences900": 10,
+      "listening": 10,
+      "storytelling": 1
+    },
+    "sourceWarnings": 0
+  }
+}

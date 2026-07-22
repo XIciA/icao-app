@@ -1,0 +1,1094 @@
+{
+  "campaignId": "aviation-asr-campaign-01",
+  "content": {
+    "registryReleaseVersion": 8,
+    "registryReleasedAt": "2026-07-18T19:36:00Z"
+  },
+  "phase": "development",
+  "round": 2,
+  "samples": [
+    {
+      "audio": {
+        "checksum": "771fa57758f28dd8599c0fbd7e33bc0bd193f76a5a052f46777bc725221e0655",
+        "durationSeconds": 10.752,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/824.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/824.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-824",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Some of the hijackers are carrying sharp protruding weapons.",
+      "expectedTextSha256": "c463923de92800cf82960fa404edc2d4b6867b2608ef38846d9e6688a5b1afb8",
+      "id": "sentences900:sentence900-main-824",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "4bd97af2f4415797fa7c37db72f0a8752cff8520f25a40ec96427e40488beccf",
+        "durationSeconds": 4.824,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/020.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/020.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-020",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Expedite descent to FL180.",
+      "expectedTextSha256": "83cb12d7289ead71835bd806218eba29603268415d525d90f3bd518abe389487",
+      "id": "sentences900:sentence900-main-020",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "24af1f9fa74ebc03a8f32afc6ee13e1899a4b29b5c991d834f162492b22d6fcd",
+        "durationSeconds": 10.608,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/417.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/417.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-417",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Request VMC descent to FL60.",
+      "expectedTextSha256": "2d770486b3caf00213443036c09637883f5fe1218176daddff78f9a8c8d29a8e",
+      "id": "sentences900:sentence900-main-417",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "2455e74215cf810380307cecb2014d23fd322a1f3aa0638471db13b2e96a4cf6",
+        "durationSeconds": 12.264,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/329.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/329.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-329",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Precision radar approach Runway 27 heading 260, descending to 2500 feet, QNH1014.",
+      "expectedTextSha256": "573baa337f1decff14bdd3a960f94d3332218491902ac22930085720497c39dd",
+      "id": "sentences900:sentence900-main-329",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "964e859859bf55ac5ad386d35c32f25aa347a5a465a355becb9c22add8a34623",
+        "durationSeconds": 11.496,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/818.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/818.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-818",
+      "categoryId": "sentence900-4级",
+      "expectedField": "audioText",
+      "expectedText": "We have a hijack situation on board. Can our destination airport provide armed intervention?",
+      "expectedTextSha256": "5f8c4db4af913d29277239df00fc6d6a33c4dfef7f931b2aa534ead69d86ccfc",
+      "id": "sentences900:sentence900-main-818",
+      "topicId": "sentence900-4级-main"
+    },
+    {
+      "audio": {
+        "checksum": "f763fcffb38d712c57ca56a92fb5ccb3d0124faae948956e72155d35fadcfbf5",
+        "durationSeconds": 9.048,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/409.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/409.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-409",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Climb to FL220, report passing FL170.",
+      "expectedTextSha256": "b3c132dfc03dec3c238d34c629c1f7b5e261aef292aa31ed73701505f99cd272",
+      "id": "sentences900:sentence900-main-409",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "bfc6d2e28cd5c4873a81cf4cdbc91ddc7479a6571af6aa2b7765b37fce73e6ab",
+        "durationSeconds": 7.68,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/011.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/011.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-011",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Stop descent at FL210.",
+      "expectedTextSha256": "dd66fc0239c4edd6eaf08cb4a393e703e13eb770a48acf8099f4e94202fee334",
+      "id": "sentences900:sentence900-main-011",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "3a7f41facc21682d8cc21e3e5853113e82eecca424639fc3141754353ea10689",
+        "durationSeconds": 6.672,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/269.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/269.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-269",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Next report at IP.",
+      "expectedTextSha256": "24ee6dd51d5e4a2aeb5d52593bf4aadc9b782cb21eaed23013582cfd517f06c9",
+      "id": "sentences900:sentence900-main-269",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "362f5b97dfca68fb5d51ea6eafb173987eee9fff69f16351b61c794e4051610f",
+        "durationSeconds": 8.016,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/227.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/227.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-227",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Identified, position 50 miles east of BK.",
+      "expectedTextSha256": "414cc44ee46222e2447b8797ef2ff32fd93cf894d6b1b5dfbc2711430614e6f7",
+      "id": "sentences900:sentence900-main-227",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "4bb9fd985f6d82e99c724b539513427a26e5561708f65ac547ebcbb5f37c8b30",
+        "durationSeconds": 7.248,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/200.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/200.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-200",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Confirm visibility more than 1000 meters.",
+      "expectedTextSha256": "76338a2b233ae1d9123320634be9dfb3b404e3abe5fea020804f15fffc5a5300",
+      "id": "sentences900:sentence900-main-200",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "9f182ecc2eb8fc607c1601a34357352d5c7a67e66fbc63053f4138ad37aec897",
+        "durationSeconds": 7.032,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/449.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/449.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-449",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Our pressurization system has malfunctioned.",
+      "expectedTextSha256": "b58496cc2ddc1e264d99d0d94453ce64dbfff98b30dbfc4675008507f606e927",
+      "id": "sentences900:sentence900-main-449",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "c0563d93ec0e1657271a300db82989281fc5c7db7991b55b9de3ea944ea6381c",
+        "durationSeconds": 8.112,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/515.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/515.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-515",
+      "categoryId": "sentence900-5级",
+      "expectedField": "audioText",
+      "expectedText": "The windshield suddenly had electrical arcing. We need to pull the circuit breakers and delay the approach.",
+      "expectedTextSha256": "83d5933cf8ddbb0152c04b31271e67672ecfc346705ce427e91d6f9312e8e394",
+      "id": "sentences900:sentence900-main-515",
+      "topicId": "sentence900-5级-main"
+    },
+    {
+      "audio": {
+        "checksum": "0eca2dc9637d95599f0a7be9af10aa512110884e0111b8c5e9fc252ea2b24cc0",
+        "durationSeconds": 19.896,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/079.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/079.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-079",
+      "categoryId": "sentence900-4级",
+      "expectedField": "audioText",
+      "expectedText": "Cleared to destination via ZAM, flight planned route, D03 Departure, cruising level 230, squawk 3763.",
+      "expectedTextSha256": "e062a970b8f7dae1788eb3a24e3003ba8382656b17016d2a6e9323285ac67b44",
+      "id": "sentences900:sentence900-main-079",
+      "topicId": "sentence900-4级-main"
+    },
+    {
+      "audio": {
+        "checksum": "c99dea12c6b014dd8a2d17b99ad8d637546855c34512f352b802841b485eceb2",
+        "durationSeconds": 6.624,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/281.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/281.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-281",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Transponder Charlie.",
+      "expectedTextSha256": "f04ef7a1200a881c6e3e324ab2a100ce6efa5bda3d6428a892a26c828878cab9",
+      "id": "sentences900:sentence900-main-281",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "398d0da4e15b66f3bb3cc58527d8aa7587f628e2c0076964e5b14291ef97c4e1",
+        "durationSeconds": 10.224,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/337.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/337.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-337",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Maintain own separation and VMC, descend to FL50.",
+      "expectedTextSha256": "4aa2df6445e19a854a2de1360faf276463824d411991aaa51026ad4feb02f1eb",
+      "id": "sentences900:sentence900-main-337",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "99f3de7df75b526bfbd89ae137cfd968decc90bb0865a9d34a074a025ea9da53",
+        "durationSeconds": 9.96,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/251.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/251.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-251",
+      "categoryId": "sentence900-4级",
+      "expectedField": "audioText",
+      "expectedText": "Your radar vector appears to be taking us to the prohibited area, confirm.",
+      "expectedTextSha256": "04910f0c34e7d5de3eabd05e3edf61b709261af227aef5a6d6306a1434afc63f",
+      "id": "sentences900:sentence900-main-251",
+      "topicId": "sentence900-4级-main"
+    },
+    {
+      "audio": {
+        "checksum": "39b7ae3fb383fe2a0b57310b9e22f65f5a4101493db59320fc3d5a242f54f165",
+        "durationSeconds": 9,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/485.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/485.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-485",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Our Aviation Authority does not permit this procedure.",
+      "expectedTextSha256": "cb10ebc93ce730e19f402283fc77955385b7b149273cb96ba380b142c9fe9b8d",
+      "id": "sentences900:sentence900-main-485",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "e97f0ac42d7bb51974cea48d6c61bf1f8c878372ccd5872826e42471c5e23103",
+        "durationSeconds": 9.96,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/646.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/646.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-646",
+      "categoryId": "sentence900-5级",
+      "expectedField": "audioText",
+      "expectedText": "We do not have that runway in our database. Request delay our descent while we program the CDU.",
+      "expectedTextSha256": "324ae8c90564d93394771aafe8bee68897273256f09c1a244623b11a9a66ee43",
+      "id": "sentences900:sentence900-main-646",
+      "topicId": "sentence900-5级-main"
+    },
+    {
+      "audio": {
+        "checksum": "551234fc4f63ebba3bd34d597bbdd300ceedc9501c0406fca7ed62f31548349c",
+        "durationSeconds": 10.608,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/842.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/842.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-842",
+      "categoryId": "sentence900-5级",
+      "expectedField": "audioText",
+      "expectedText": "A ramp inspection discovered crates of lithium batteries in the cargo hold. We are verifying. Request delay pushback.",
+      "expectedTextSha256": "c0f3146442a7779599414fd5df6baf47b3f631fa7efe091270cbd316f3dddf0d",
+      "id": "sentences900:sentence900-main-842",
+      "topicId": "sentence900-5级-main"
+    },
+    {
+      "audio": {
+        "checksum": "af272dd8850430c7052228d93f5186265e312072fc11bcac851dcd6650b34c29",
+        "durationSeconds": 9.36,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/668.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/668.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-668",
+      "categoryId": "sentence900-5级",
+      "expectedField": "audioText",
+      "expectedText": "We have a generator failure and cannot start our APU at this altitude. Request descent to perform APU startup.",
+      "expectedTextSha256": "492a06a0b94091d1c7d5d4a4b40d04672da87fb4329622b78dcab6a3f47337ed",
+      "id": "sentences900:sentence900-main-668",
+      "topicId": "sentence900-5级-main"
+    },
+    {
+      "audio": {
+        "checksum": "a756830c3075e9d183ce7cfa714092782218657000c17f8be47f476ae4aecd08",
+        "durationSeconds": 7.272,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/226.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/226.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-226",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Confirm identification lost.",
+      "expectedTextSha256": "cc64288419d1b8661536569fedf6e681917f425f683d6d31306587a6ed8f2e80",
+      "id": "sentences900:sentence900-main-226",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "2f671b04b013b4e99ffd6cde66ac7717a9b917ad6263b26aaf9c103cc3fc39a4",
+        "durationSeconds": 8.856,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/438.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/438.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-438",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Continue CPDLC make position report via CPDLC.",
+      "expectedTextSha256": "0dc49784f0db139a5aad23411f2c8fc2287e8805ec01681306a2bee112fd7879",
+      "id": "sentences900:sentence900-main-438",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "ff08d596869dc766f43cd95dee3f300b7995c5cf2695d58eba017d55cd45bfc8",
+        "durationSeconds": 9.312,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/525.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/525.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-525",
+      "categoryId": "sentence900-5级",
+      "expectedField": "audioText",
+      "expectedText": "We have smoke coming out of our avionics bay. It is out of control. Request proceed direct to final and cancel all speed restrictions.",
+      "expectedTextSha256": "83fc8b3b701fc6346af52b1c3ed18586eafab9cf5a33040bb10debd6f3284284",
+      "id": "sentences900:sentence900-main-525",
+      "topicId": "sentence900-5级-main"
+    },
+    {
+      "audio": {
+        "checksum": "73b5bbebf5f8cedfda7b69366202b3f8e86a1520d76e32dfcf051e4220996b6e",
+        "durationSeconds": 5.496,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/172.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/172.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-172",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Long final, airfield in sight.",
+      "expectedTextSha256": "23ecc5fb3becf27c1e27e0c56d052505b4b7225215ddf115cf7c936e8fcdc7af",
+      "id": "sentences900:sentence900-main-172",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "bd6bea89bb41d1c26881844fe8e7b11451d77c976284db2427ed70a22f797bed",
+        "durationSeconds": 6.096,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/157.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/157.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-157",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Request intersection departure from C2.",
+      "expectedTextSha256": "e96a2626bd9fba4b512c443f8f19b520b08935b4e416e7f9e521042d3977d69f",
+      "id": "sentences900:sentence900-main-157",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "606008eccef2dfe763ab6fcc80783ba86d7ed7cc607169a1c3ef356eb2eead27",
+        "durationSeconds": 9.624,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/695.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/695.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-695",
+      "categoryId": "sentence900-4级",
+      "expectedField": "audioText",
+      "expectedText": "Our left engine has ingested FOD. We are shutting down engines and holding position.",
+      "expectedTextSha256": "c14816359fa413a040363aa0c1292d696f4b7138be8c0a7d2dd95163860c22e4",
+      "id": "sentences900:sentence900-main-695",
+      "topicId": "sentence900-4级-main"
+    },
+    {
+      "audio": {
+        "checksum": "afe4e1d1460fda3ea27c11fa29a74d408a558817b833bf24920a414d1f2fbb91",
+        "durationSeconds": 6.024,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/046.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/046.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-046",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Request radar vectors for visual approach Runway 22.",
+      "expectedTextSha256": "af0d5d7fc0c507ce147a73bdf71f2ebad3d51aeba51a25a5e117ac3ab170d8d4",
+      "id": "sentences900:sentence900-main-046",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "0e3209a1fb7824726ccd958c755b306db2bfed14ada2b4144b81aac916ad9fa4",
+        "durationSeconds": 9.384,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/363.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/363.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-363",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Cleared for LDA approach Runway 24.",
+      "expectedTextSha256": "116ef47e9bc4925830e483ad3425f294a17ae5e173be47b7a9d6bce3d18292d8",
+      "id": "sentences900:sentence900-main-363",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "378bb9599615ec4b53f62ce0ea9aa4a7c7beb839df6b8efa2153b12384e01673",
+        "durationSeconds": 9.12,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/098.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/098.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-098",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Expect departure at 49, start up at own discretion, QNH 1004.",
+      "expectedTextSha256": "61ce4c40b5288d2e6dc7425ce7373fac8959ac8e1d2a002406d3484343898883",
+      "id": "sentences900:sentence900-main-098",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "ff3343daa705b91fbd53eea7da557b808fcffad3572c7a23045d9f753f0fdeff",
+        "durationSeconds": 10.32,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/445.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/445.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-445",
+      "categoryId": "sentence900-4级",
+      "expectedField": "audioText",
+      "expectedText": "We have lost electrical power to the cabin air compressor. Request immediate descent to 10,000 feet.",
+      "expectedTextSha256": "bbecab0fdf93f64f3e50c51ccdb8421f52071742af8a6d335e9b06ba076131ce",
+      "id": "sentences900:sentence900-main-445",
+      "topicId": "sentence900-4级-main"
+    },
+    {
+      "audio": {
+        "checksum": "63ecd02dcdbaacfc4c5fc168efcc00aa56169fda8a096660383659827f56b756",
+        "durationSeconds": 25.992,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/181.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/181.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-181",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "M1: Do you know there is a word the controller will use to inform pilots to disregard a taxi clearance issued at the beginning of the transmission? M2: Yes, there is an ICAO standard word. Question: What word should be used in this situation?",
+      "expectedTextSha256": "4f7ed5772bb8b3c493321cc29555db1e6a94837766a6216a8f8bc14b539f12ca",
+      "id": "listening:listening-main-181",
+      "topicId": "listening-topic-01"
+    },
+    {
+      "audio": {
+        "checksum": "00bbd1cfff6975d2752f188634483436ab7eb62cd47cb57a71bc4d8f642edd2a",
+        "durationSeconds": 29.76,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/111.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/111.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-111",
+      "categoryId": "listening-category-03",
+      "expectedField": "audioText",
+      "expectedText": "Captain: Ladies and gentlemen, we have to return to the gate for more fuel due to the traffic control.. Passenger: We wanna depart immediately Captain: I am qualified in ditching. So, do you want to get gas or get wet? Question: What is the dispute between the crew and passengers?",
+      "expectedTextSha256": "0ec70ce28c55f3bb0fa2b28f7e82b8ec066e41a0461b65f0f10650c957dae647",
+      "id": "listening:listening-main-111",
+      "topicId": "listening-topic-03"
+    },
+    {
+      "audio": {
+        "checksum": "4af4dc7c729b65ebfff0ca952b5ce08cafa397427130c5282844db1268d4b1a2",
+        "durationSeconds": 37.512,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/529.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/529.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-529",
+      "categoryId": "listening-category-02",
+      "expectedField": "audioText",
+      "expectedText": "P: Ground, JAL 728, the tow bar has bent during push back. We are waiting for them to get another one. C: JAL 728, report when ready to push. But if you take a little bit long time, we have to allocate you a new slot time. Question: What will happen if the aircraft cannot be pushed back quickly?",
+      "expectedTextSha256": "649a38236d28ea323281313936dc33258efa40f0e0c3d13183c3a240c2277831",
+      "id": "listening:listening-main-529",
+      "topicId": "listening-topic-02"
+    },
+    {
+      "audio": {
+        "checksum": "b423d28aafc13a89fe3a440525fd1d589b3289678576901330c3db4852d729bf",
+        "durationSeconds": 18.144,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-10-q12.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-10-q12.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-757",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "Ramp service teams are responsible for handling all physical loading and unloading activities related to the aircraft. This ensures that the aircraft is ready for departure and that all cargo and baggage are safely and efficiently transferred. Question: What is one of the main responsibilities of the ramp service team?",
+      "expectedTextSha256": "196d7218434eb4ba6458e3537e593c85e6c1d907517c507d10e9c468a6899626",
+      "id": "listening:listening-main-757",
+      "topicId": "listening-topic-01"
+    },
+    {
+      "audio": {
+        "checksum": "25ac31cf038e96f3e24c2d1deaa0f13152c6f8be8a0880b8e58711de5c960622",
+        "durationSeconds": 53.904,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/615.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/615.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-615",
+      "categoryId": "listening-category-02",
+      "expectedField": "audioText",
+      "expectedText": "P: Sydney control, CCA 101, flight level nine zero, heading zero three five, descending to flight level six zero. C: CCA 101, hold on the three four five radio of the HUR VOR at one zero DME, Maintain 3000 meters, inbound track 165 degrees, right hand pattern, expected approach time 8. P: Hold on the 345 radio of the HUR VOR at 10 DME, maintain 3000 meters, inbound track 165 degrees, right hand pattern, expected approach Time eight, CCA 101. Question: what is the inbound track?",
+      "expectedTextSha256": "b8e24e527ba5380d9c9f299739d1f0cefd3679919695dcad9dbac4478f36623d",
+      "id": "listening:listening-main-615",
+      "topicId": "listening-topic-02"
+    },
+    {
+      "audio": {
+        "checksum": "29091f03e1f2672e5ff91cea62ea3430499480e57b61ebf29e92d3220d4d6828",
+        "durationSeconds": 18.576,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s02-section-04-q09.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-04-q09.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-991",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "Speaking clearly and using standard phraseology is a key element of effective aviation communication. This ensures that both pilots and air traffic controllers understand each other accurately and reduces the chances of miscommunication. Question: What is a key element of effective aviation communication?",
+      "expectedTextSha256": "67bc1a232a88eb03bda817379284d0929b5f465d922ba3752498101dfc5717d2",
+      "id": "listening:listening-main-991",
+      "topicId": "listening-topic-01"
+    },
+    {
+      "audio": {
+        "checksum": "41c5172e2ee3ea11b7313673d05d7d647549d26cadd7db5c7dc44077c976b2c2",
+        "durationSeconds": 15.6,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/607.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/607.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-607",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "NWA 281, we have an electrical failure. We intend to return to the airport, but we have to down 40 tons of fuel first. Question: what is the crew intention?",
+      "expectedTextSha256": "8389408e9475de42dd42aec6699f767b4b06dd5684c3ed30e286500de5d65ef0",
+      "id": "listening:listening-main-607",
+      "topicId": "listening-topic-01"
+    },
+    {
+      "audio": {
+        "checksum": "dbed690e8169891098d369fdc4a11f0e2e4089d5f700b43cb815a03e3b9c7372",
+        "durationSeconds": 13.212,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-08-q07.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-08-q07.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-719",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "The aircraft was too high on the glide path during the approach. Despite attempts to correct, they couldn't get it right and had to execute a missed approach to avoid a hard landing. Question: What was the cause of the missed approach?",
+      "expectedTextSha256": "3b341e332857db2c8b3983eb64424dbc52e08a3f79142479c8c0e30e3be4734a",
+      "id": "listening:listening-main-719",
+      "topicId": "listening-topic-01"
+    },
+    {
+      "audio": {
+        "checksum": "fac23b31361aee852f555fcb2bf211bbb7c7fcd23d3171c8b4003f2d8ab98a85",
+        "durationSeconds": 13.464,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-10-q05.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-10-q05.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-750",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "A climb gradient between 5% to 7% is typically sufficient to clear obstacles and re-establish a stable climb after a go-around. Question: What is the typical climb gradient expected during a go-around?",
+      "expectedTextSha256": "f85e8db022f4c2345e66772fc655f873a597b8b42a11b38956e2c561572762cf",
+      "id": "listening:listening-main-750",
+      "topicId": "listening-topic-01"
+    },
+    {
+      "audio": {
+        "checksum": "efaffcf3627bc283bdef0140d4ee666f82dde364b20742c4460c3446ce69c6f5",
+        "durationSeconds": 17.712,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/404.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/404.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-404",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "In a swept-wing aircraft, the aircraft structural limit with one flap down and the paired flap up is lower. Question: What type of aircraft is mentioned in the statement?",
+      "expectedTextSha256": "40844028b94f097da3319569980ff8fa0525190e78f29ad148fa6f5b22f2bea8",
+      "id": "listening:listening-main-404",
+      "topicId": "listening-topic-01"
+    },
+    {
+      "audio": {
+        "checksum": "01c9381145e421931d0e2e7f79494bb36bf203fd776cab97bc4dbb1c093e2dec",
+        "durationSeconds": 9.324,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s03-section-06-q10.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-06-q10.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-1121",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "GBT, hold before the next intersection, and give way to the aircraft on the left. Question: What is the pilot going to do?",
+      "expectedTextSha256": "c59bb3263ba93feedb50813235fee87a7ad0049466cf920786b70946c7b99198",
+      "id": "listening:listening-main-1121",
+      "topicId": "listening-topic-01"
+    },
+    {
+      "audio": {
+        "checksum": "96376e0be781e83f05dbfca105172699fd68e07ae9886917acaa4f7696cc8e54",
+        "durationSeconds": 16.272,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/391.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/391.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-391",
+      "categoryId": "listening-category-04",
+      "expectedField": "audioText",
+      "expectedText": "C: BAW 505, after departure, contact departure on 119.7, cleared for takeoff Runway 25L, wind calm. Question: Which runway is the runway in use?",
+      "expectedTextSha256": "ce9a27affdcff27c03e703d1c21c75174098da21387809a87080f1150687de3c",
+      "id": "listening:listening-main-391",
+      "topicId": "listening-topic-04"
+    },
+    {
+      "audio": {
+        "checksum": "8a9147ae652bbec499a281688ef92868326af4d6820228369b3150d68e9b09e2",
+        "durationSeconds": 14.64,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/193.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/193.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-193",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "All Stations, Wuhan Ground, Information G is valid, surface wind is now 220 degrees at 5m/s. Question: What has changed in information G?",
+      "expectedTextSha256": "dd0f93ef717021b2210e9018ea4291d53d8417d02b2f51cddfc27b51fb39d6c0",
+      "id": "listening:listening-main-193",
+      "topicId": "listening-topic-01"
+    },
+    {
+      "audio": {
+        "checksum": "471440317940fb5a5e4c7ba50b088d12f042a1e0ad3988b2870f847dcb4f5496",
+        "durationSeconds": 18.504,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-01-q13.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-01-q13.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-642",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "Airlines follow strict safety protocols, and one of them is that they won't initiate takeoffs during low visibility until the visibility improves to a specific minimum level required for a safe departure as per regulations. Question: Which of the following is a safety protocol for airlines during low visibility takeoffs?",
+      "expectedTextSha256": "123da8b30a05ec698e78e990ce455021d27c53fa57357ad2e9722921afbe7912",
+      "id": "listening:listening-main-642",
+      "topicId": "listening-topic-01"
+    },
+    {
+      "audio": {
+        "checksum": "e18fcfce11c4252798b1b4df41e88f2996390c44fdaf0f82c0dd28ab73ba86c5",
+        "durationSeconds": 35.472,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/008.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/008.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-008",
+      "categoryId": "listening-category-02",
+      "expectedField": "audioText",
+      "expectedText": "P: CCA 101, we are now 4800 meters, passing WZF, information E received. C: CCA 101, radar contact, descend to 3000 meters, turn right heading 040, radar vectored ILS approach Runway 36R. Question: What are the controller's instructions on new altitude, flight heading, and runway in use?",
+      "expectedTextSha256": "3a738ae37d9e5764341716d70d52888b5290fd9acc797140d47a1acd2aebd9a4",
+      "id": "listening:listening-main-008",
+      "topicId": "listening-topic-02"
+    },
+    {
+      "audio": {
+        "checksum": "3fbbff95cc3773a089fdebf96629930a9bd35b2243678bad3bf35d921939381a",
+        "durationSeconds": 17.136,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s03-section-04-q04.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-04-q04.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-1077",
+      "categoryId": "listening-category-04",
+      "expectedField": "audioText",
+      "expectedText": "P: Delivery, CCA 334. Confirm after departure, heading south. C: Negative, for your information, a glider is over south field. Question: Why did the controller deny the pilot's confirmation?",
+      "expectedTextSha256": "9d4c8cc4fc4c2c46d77af152f99cd31db965b811a9c285970fc079274bd39af7",
+      "id": "listening:listening-main-1077",
+      "topicId": "listening-topic-04"
+    },
+    {
+      "audio": {
+        "checksum": "b84a6931253d1e3b257f058ab571910eaed9167be46edc889b0c9c3a07b17f6c",
+        "durationSeconds": 11.844,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-07-q03.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-07-q03.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-705",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "With the help of two cabin crew members, 35 passengers are evacuated the aircraft on the right side of aircraft, including 8 from the right wing. Question: How many passengers evacuated the aircraft on the right side?",
+      "expectedTextSha256": "1911b12a5b27e684ad16e58d6cdcb943a3b1a15aa0b305a19198299e1de49cdc",
+      "id": "listening:listening-main-705",
+      "topicId": "listening-topic-01"
+    },
+    {
+      "audio": {
+        "checksum": "658d4ad3ab605306e93ddac7215464f89f112bc77bb01a67b04f2372e125713f",
+        "durationSeconds": 35.136,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/507.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/507.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-507",
+      "categoryId": "listening-category-03",
+      "expectedField": "audioText",
+      "expectedText": "Pilots or vehicle drivers who are lost or uncertain of their position on the aerodrome maneuvering area will stop and notify the ATS unit of the circumstances, including their last known position. However, if the pilot or vehicle driver recognizes that They are on a runway and are able to locate a nearby suitable taxiway, they should vacate the runway as expeditiously as possible. Question: what will pilots or vehicle drivers do if they are on the runway?",
+      "expectedTextSha256": "b1115abb6700db076fa3977308723f8f5091411afc947597742ffb161275e6cc",
+      "id": "listening:listening-main-507",
+      "topicId": "listening-topic-03"
+    },
+    {
+      "audio": {
+        "checksum": "dac908e5dd7fe8c66eb570e147f657cba5e5dbf5c3a3fa1738537baaf28deddb",
+        "durationSeconds": 18.648,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s03-section-01-q12.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-01-q12.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-1048",
+      "categoryId": "listening-category-04",
+      "expectedField": "audioText",
+      "expectedText": "P: Wuhan Approach, CES 5325, what's the delay like? C: CES 5325, delay not determined due variable visibility, suggest divert to Changsha Airport. Question: Why did the controller suggest CES 5325 diverting to Changsha?",
+      "expectedTextSha256": "ce86e827b1ee101b6cb99e185b8062baf20bf53e3f1e43c016e12d02a93a3f0d",
+      "id": "listening:listening-main-1048",
+      "topicId": "listening-topic-04"
+    },
+    {
+      "audio": {
+        "checksum": "1ef97c8e89bbe3f868387ccc4c2df54e9dc32b5feb7fe72913ed6bbd9456e26e",
+        "durationSeconds": 19.68,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/374.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/374.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-374",
+      "categoryId": "listening-category-04",
+      "expectedField": "audioText",
+      "expectedText": "C: BAW 204, taxi to holding point of Runway 27 via taxiway F, J and G. P: F, J, G to holding point Runway 27, BAW 204. Question: What is the taxi route?",
+      "expectedTextSha256": "e449c990de72f4269a9001ada86212afa8b96a585dfe299765eabbe56392d21a",
+      "id": "listening:listening-main-374",
+      "topicId": "listening-topic-04"
+    },
+    {
+      "audio": {
+        "checksum": "f360b541c6a51b69e8c266a903c402b92fbef913477c08936048e34957f07227",
+        "durationSeconds": 16.872,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/174.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/174.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-174",
+      "categoryId": "listening-category-04",
+      "expectedField": "audioText",
+      "expectedText": "C: Turn left 30 degrees, when completing the turn, expect a traffic at your 2 o’clock, climbing, at 1000ft or below. Question: When will the traffic be at 2 o’clock?",
+      "expectedTextSha256": "ab73447aa11c8335d7c8f364c43429b5677388c7614a1466c8cfe75572e1be6a",
+      "id": "listening:listening-main-174",
+      "topicId": "listening-topic-04"
+    },
+    {
+      "audio": {
+        "checksum": "9dcb175bf15ead884d4b88a6253b1ff5416eb9f9510f586f630af7cc4fc29e0c",
+        "durationSeconds": 11.952,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s03-section-07-q04.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-07-q04.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-1135",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "CZQ, intercept 124 degrees radial of BDE VOR, report crossing boundary. Question: When will the pilot report next?",
+      "expectedTextSha256": "94f856b19ae51457b9604293eef370c6b49be1b9ebc21ec8df12c2529ae0ab5c",
+      "id": "listening:listening-main-1135",
+      "topicId": "listening-topic-01"
+    },
+    {
+      "audio": {
+        "checksum": "29803ba0ee6a6ea057a2a5ef9a4c225dc534a4b51bb11645925e87a66531c6c2",
+        "durationSeconds": 24.456,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/444.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/444.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-444",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "B: Highest features in the vicinity of each flight leg will be far below the designed altitude and away from the line of flight. Question: What does the sentence mean?",
+      "expectedTextSha256": "af43e09e9145915ca82d813b35cafe6afbffdbe34727bb02e412c5d3fb060fb2",
+      "id": "listening:listening-main-444",
+      "topicId": "listening-topic-01"
+    },
+    {
+      "audio": {
+        "checksum": "d0309dd113da064b710173ea8bd0e20c8c27bb8f6feae81793a8cec2de10fb39",
+        "durationSeconds": 21.132,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-08-q10.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-08-q10.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-722",
+      "categoryId": "listening-category-03",
+      "expectedField": "audioText",
+      "expectedText": "Pilots use a variety of communication methods, but during takeoff, the most common one is the VHF radio. It allows for real - time communication with air traffic control towers, ensuring a smooth and safe takeoff process. Question: Which of the following is a common way for pilots to communicate with air traffic control during takeoff?",
+      "expectedTextSha256": "3d29eed39589548e892e42f07eea1e3638ae20802eafbb4d86d536a48d556592",
+      "id": "listening:listening-main-722",
+      "topicId": "listening-topic-03"
+    },
+    {
+      "audio": {
+        "checksum": "8ffa688249821a94153fea9955535a01b21789561107034800965a2719c0fe9b",
+        "durationSeconds": 30.36,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/003.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/003.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-003",
+      "categoryId": "listening-category-02",
+      "expectedField": "audioText",
+      "expectedText": "P: Tower, HDA 305, we cannot extend the nose gear due to a hydraulic problem. Request making a low pass for a visual check. C: HDA 305, make a low pass, not below 45 meters, over the Runway 36. Question: what is the level for low pass?",
+      "expectedTextSha256": "f14e8407ede7249d87a217c42ce9a35988dac1cd78c3f4f283d561c92e210ccd",
+      "id": "listening:listening-main-003",
+      "topicId": "listening-topic-02"
+    },
+    {
+      "audio": {
+        "checksum": "d6ab5eac79edb76e5eeeb80df2841bc7f81ebd1ed3e6d047e51f5ea8e7a5ab97",
+        "durationSeconds": 20.844,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-11-q14.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-11-q14.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-779",
+      "categoryId": "listening-category-03",
+      "expectedField": "audioText",
+      "expectedText": "Flight Management Systems (FMS) are frequently linked with digital flight instruments to provide unified data about navigation, fuel efficiency, and other operational parameters, improving overall cockpit management. Question: Which systems are digital instruments in modern cockpits often integrated with for enhanced situational awareness?",
+      "expectedTextSha256": "22bd30541fd1bdd7d3463909b1da9c58518a7471482879419667176e9de86f29",
+      "id": "listening:listening-main-779",
+      "topicId": "listening-topic-03"
+    },
+    {
+      "audio": {
+        "checksum": "37c57dc3d1352941281307dd89d790ea2ffa8a71e785a91dceb1bad121822a29",
+        "durationSeconds": 30,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/398.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/398.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-398",
+      "categoryId": "listening-category-02",
+      "expectedField": "audioText",
+      "expectedText": "P: Ground, CSN 3108, I have to go back to the apron and need medical assistance upon arrival. The flight attendant reported a woman on board is miscarrying and needs a doctor. C: CSN 3108, right turn ahead at intersection E5, we will inform those concerned. Question: What happened on board?",
+      "expectedTextSha256": "4f70109cd6dd5f7486ec52ad6910b4b62cb27ed3b13b8527c3bcca9dcfda6710",
+      "id": "listening:listening-main-398",
+      "topicId": "listening-topic-02"
+    },
+    {
+      "audio": {
+        "checksum": "24a6d94614b668b323b2c0cc1bbc88f269b03f475c11e93ed34c26d678713de3",
+        "durationSeconds": 21.024,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s02-section-09-q16.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-09-q16.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-1225",
+      "categoryId": "listening-category-03",
+      "expectedField": "audioText",
+      "expectedText": "During an engine failure on takeoff, the pilot's first priority is to maintain aircraft control and follow the Quick Reference Handbook (QRH) procedures to ensure safe handling of the situation before attempting any corrective action. Question: In the event of an engine failure during takeoff, which of the following actions should be prioritized by the pilot?",
+      "expectedTextSha256": "c11d60058aaca4dfa5e3d3c19abf51db0bb5100772dc248cd6ff29b130ac6c6a",
+      "id": "listening:listening-main-1225",
+      "topicId": "listening-topic-03"
+    },
+    {
+      "audio": {
+        "checksum": "6ed00d9a19fb62d35c70e37bf9a1547b90588bbbdf4507275be73baebdab064f",
+        "durationSeconds": 14.472,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/331.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/331.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-331",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "P: ACA 215, unknown fast-moving traffic, 11 o'clock, 10 miles, crossing left to right. Question: Where is the unknown traffic?",
+      "expectedTextSha256": "e0d051c697f1aaf3cbb5540b86a779c1ad19ccfd5fdcc08444ac9e36b4eb7a1e",
+      "id": "listening:listening-main-331",
+      "topicId": "listening-topic-01"
+    },
+    {
+      "audio": {
+        "checksum": "0e9737a1c15e257ab2a51b3de4bead40524f763ba505059b9cc04dfbf5bffd7d",
+        "durationSeconds": 42.48,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/629.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/629.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-629",
+      "categoryId": "listening-category-02",
+      "expectedField": "audioText",
+      "expectedText": "P: Wuhan Control, GFA 205, four five kilometers southwest of Wuhan, at 9000 meter. Estimated overhead WUH at one three. Request clearance to cross airway Red 343 at WHA. C: GFA 205, Wuhan Control, cleared to cross Red 343, at WHA at 13 or before, maintain 9000 meters. Question: when will Gulf air cross red tree for tree?",
+      "expectedTextSha256": "0048a8de46239baa7998b0249870901ca9ba07ba6719b8f9d93d821f693f543e",
+      "id": "listening:listening-main-629",
+      "topicId": "listening-topic-02"
+    },
+    {
+      "audio": {
+        "checksum": "fb55ddfc2173a60468fa68a19ce05420937edb3efee25ac2f73e6f4255637676",
+        "durationSeconds": 61.488,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/storytelling/kongguan/014.mp3",
+        "publicPath": "/question-bank-assets/audio/storytelling/kongguan/014.mp3"
+      },
+      "bankId": "storytelling",
+      "cardId": "story-kongguan-014",
+      "categoryId": "story-category-2",
+      "expectedField": "audioText",
+      "expectedText": "It was a sunny day in 2010, a Delta Airline's 767-300 departed from Shanghai Pudong International Airport to Seoul. It carried 256 passengers and 13 crew members on board. During takeoff rolling, an unknown foreign object was sucked into port engine and the engine fire warning light illuminated. Then the flight crew declared an emergency right after airborne and completed the emergency checklist procedure. Through good communication, the controller understood the flight crew wanted to return to land. But the pilot had to dump fuel before landing because the aircraft was overweight to land. So the controller vectored the aircraft by radar to the dumping area. After circling over the sea and dumping fuel for almost one hour, the plane returned to land at departure airport safely.",
+      "expectedTextSha256": "7282f01aedbbf87d00bd1bbe712eea303e8d29850476b3a38e0d7e2c1d4e24bd",
+      "id": "storytelling:story-kongguan-014",
+      "topicId": "story-atc-required"
+    },
+    {
+      "audio": {
+        "checksum": "11c23cb836ccbcaa0e35186508424ac3b7da28605ea88db50379d57488a761ae",
+        "durationSeconds": 64.992,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/storytelling/kongguan/029.mp3",
+        "publicPath": "/question-bank-assets/audio/storytelling/kongguan/029.mp3"
+      },
+      "bankId": "storytelling",
+      "cardId": "story-kongguan-029",
+      "categoryId": "story-category-2",
+      "expectedField": "audioText",
+      "expectedText": "On July 13, 2003, Air Sunshine Airlines, a Cessna was ditched in the Atlantic Ocean following the in-flight failure of the right engine. Four of the nine passengers sustained no injuries, three passengers and the pilot sustained minor injuries, and one adult and one child passenger died after they evacuated the airplane. The airplane sustained substantial damage. The airplane was being operated as a scheduled international passenger commuter flight from F Hollywood International Airport, Florida, to MYAT. Visual meteorological conditions prevailed for the flight, which operated on a visual flight rules flight plan. The National Transportation Safety Board determines that the probable cause of this accident was the in-flight failure of the right engine and the pilot's failure to adequately manage the airplane's performance after the engine failed. The right engine failure resulted from inadequate maintenance that was performed by Air Sunshine's maintenance personnel.",
+      "expectedTextSha256": "a0d94af48fce632d4ceeb5830d3b5ecb896fb93556d25430c08be24b598241d6",
+      "id": "storytelling:story-kongguan-029",
+      "topicId": "story-atc-required"
+    },
+    {
+      "audio": {
+        "checksum": "3c4c2d86a1a4985ab1b510700a055a97729adc29c60cccc61f68779ef6f45b61",
+        "durationSeconds": 16.128,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/storytelling/web-v5/pepec-story-0130.mp3",
+        "publicPath": "/question-bank-assets/audio/storytelling/web-v5/pepec-story-0130.mp3"
+      },
+      "bankId": "storytelling",
+      "cardId": "story-pepec-0130",
+      "categoryId": "story-category-1",
+      "expectedField": "audioText",
+      "expectedText": "power bank's thermal runaway On February 22, 2026, a Horizon Air Embraer ERJ-1 7 5 on behalf of Alaska Air, registration November 6 4 1 Quebec X-ray performing flight Alaska 2 1 1 7 from Wichita to Seattle (USA), was climbing out of Wichita when the crew stopped the climb at FL2 0 0 after the power bank of a passenger suffered a thermal runaway and caught fire. While cabin crew doused and secured the device, the flight crew returned the aircraft to Wichita for a safe landing on Runway 01L about 40 minutes after departure. The owner of the power bank was taken to a hospital with minor burns.",
+      "expectedTextSha256": "48e36d9c6b908e0a93e7d79178351b587aae915ae52940f2d310c3213ea25014",
+      "id": "storytelling:story-pepec-0130",
+      "sourceWarning": "duration_text_ratio_suspect",
+      "topicId": "story-flight-basic"
+    }
+  ],
+  "schemaVersion": 1,
+  "seed": "aviation-asr-campaign-01-seed-v1",
+  "summary": {
+    "audioDurationSeconds": 1087.62,
+    "counts": {
+      "sentences900": 30,
+      "listening": 30,
+      "storytelling": 3
+    },
+    "sourceWarnings": 1
+  }
+}

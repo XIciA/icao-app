@@ -1,7 +1,11 @@
-import { render } from '@testing-library/react-native';
+import { fireEvent, render } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { LoginScreen, loginErrorMessage } from '@/components/auth/login-screen';
+
+let mockUiAcceptanceAvailable = false;
+const mockEnterUiAcceptanceMode = jest.fn();
+const mockReplace = jest.fn();
 
 jest.mock('lucide-react-native', () => {
   const { View } = jest.requireActual('react-native');
@@ -11,10 +15,24 @@ jest.mock('lucide-react-native', () => {
 
 jest.mock('expo-router', () => ({
   useLocalSearchParams: () => ({ slug: 'login' }),
-  useRouter: () => ({ back: jest.fn(), push: jest.fn(), replace: jest.fn() }),
+  useRouter: () => ({ back: jest.fn(), push: jest.fn(), replace: mockReplace }),
+}));
+
+jest.mock('@/features/auth/AuthProvider', () => ({
+  useAuth: () => ({
+    enterUiAcceptanceMode: mockEnterUiAcceptanceMode,
+    signIn: jest.fn(),
+    uiAcceptanceAvailable: mockUiAcceptanceAvailable,
+  }),
 }));
 
 describe('<LoginScreen />', () => {
+  beforeEach(() => {
+    mockEnterUiAcceptanceMode.mockClear();
+    mockReplace.mockClear();
+    mockUiAcceptanceAvailable = false;
+  });
+
   it('renders the controlled email and password login entries', async () => {
     const screen = await render(
       <SafeAreaProvider initialMetrics={{ frame: { height: 812, width: 375, x: 0, y: 0 }, insets: { bottom: 34, left: 0, right: 0, top: 47 } }}>
@@ -28,6 +46,21 @@ describe('<LoginScreen />', () => {
     expect(screen.getByText('登录状态安全保存在本机')).toBeTruthy();
     expect(screen.getByText('忘记密码')).toBeTruthy();
     expect(screen.getByText('立即注册')).toBeTruthy();
+    expect(screen.queryByText('开发者 · 免登录验收')).toBeNull();
+  });
+
+  it('shows the developer entry only when the Web acceptance build enables it', async () => {
+    mockUiAcceptanceAvailable = true;
+    const screen = await render(
+      <SafeAreaProvider initialMetrics={{ frame: { height: 812, width: 375, x: 0, y: 0 }, insets: { bottom: 34, left: 0, right: 0, top: 47 } }}>
+        <LoginScreen />
+      </SafeAreaProvider>,
+    );
+
+    fireEvent.press(screen.getByText('开发者 · 免登录验收'));
+
+    expect(mockEnterUiAcceptanceMode).toHaveBeenCalledTimes(1);
+    expect(mockReplace).toHaveBeenCalledWith('/(tabs)');
   });
 
   it('maps login failures to actionable messages', () => {

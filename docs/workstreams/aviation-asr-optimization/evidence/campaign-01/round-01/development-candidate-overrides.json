@@ -1,0 +1,14 @@
+{
+  "sentences900:sentence900-main-428": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "to/too 退化已修复，BKM VOR 恢复正确；剩余标点及 Mach number decimal eight four/84 为可接受书写变体。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "storytelling:story-wing-012": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "两处明确 runway 15 right 已安全规范化为 15R；剩余逗号问句和 taxiway/tax away 属于原始识别问题，不继续扩张规则。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  }
+}

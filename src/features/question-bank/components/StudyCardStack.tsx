@@ -44,6 +44,7 @@ export function StudyCardStack({
         {...panResponder.panHandlers}
         layout={cardLayoutTransition}
         style={[styles.primary, revealed ? null : styles.primaryCollapsed]}
+        testID="study-card-primary"
       >
         {primary}
       </Animated.View>
@@ -54,6 +55,7 @@ export function StudyCardStack({
             exiting={FadeOutUp.duration(motion.quick).reduceMotion(ReduceMotion.System)}
             layout={cardLayoutTransition}
             style={styles.transcript}
+            testID="study-card-transcript"
           >
             {transcript}
           </Animated.View>
@@ -62,6 +64,7 @@ export function StudyCardStack({
             exiting={FadeOutUp.duration(motion.quick).reduceMotion(ReduceMotion.System)}
             layout={cardLayoutTransition}
             style={styles.workbench}
+            testID="study-card-workbench"
           >
             {workbench}
           </Animated.View>
@@ -82,12 +85,12 @@ export function StudyCardStack({
 }
 
 const styles = StyleSheet.create({
-  root: { gap: spacing[4], position: 'relative' },
-  primary: { backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.xxl, borderWidth: 1, flexShrink: 0, padding: spacing[4], zIndex: 3, ...shadows.card },
+  root: { gap: spacing[5], position: 'relative' },
+  primary: { backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.xxl, borderWidth: 1, flexShrink: 0, padding: spacing[5], zIndex: 3, ...shadows.card },
   primaryCollapsed: { marginBottom: spacing[8] },
-  transcript: { backgroundColor: colors.secondary, borderColor: colors.border, borderRadius: radii.xxl, borderWidth: 1, padding: spacing[4], zIndex: 2 },
+  transcript: { backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.xxl, borderWidth: 1, padding: spacing[5], zIndex: 2, ...shadows.card },
   workbench: { backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.xxl, borderWidth: 1, zIndex: 1, ...shadows.card },
   collapsedLayers: { bottom: 0, height: spacing[12] + spacing[3], left: 0, position: 'absolute', right: 0 },
-  collapsedTranscript: { backgroundColor: colors.secondary, borderColor: colors.border, borderRadius: radii.xxl, borderWidth: 1, bottom: spacing[3], height: spacing[12], left: spacing[1], position: 'absolute', right: spacing[1], zIndex: 2, ...shadows.card },
+  collapsedTranscript: { backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.xxl, borderWidth: 1, bottom: spacing[3], height: spacing[12], left: spacing[1], position: 'absolute', right: spacing[1], zIndex: 2, ...shadows.card },
   collapsedWorkbench: { backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.xxl, borderWidth: 1, bottom: 0, height: spacing[12], left: spacing[2], position: 'absolute', right: spacing[2], zIndex: 1, ...shadows.card },
 });

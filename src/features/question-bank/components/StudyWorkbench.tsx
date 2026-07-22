@@ -105,7 +105,6 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     tabs,
     topicTitle,
   } = props;
-  const [rawTranscript, setRawTranscript] = useState<string>();
   const [grammar, setGrammar] = useState<GrammarReviewResult>();
   const [opi, setOpi] = useState<OpiAnalysisResult>();
   const [matchMessage, setMatchMessage] = useState<string>();
@@ -135,7 +134,6 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     grammar,
     matchMessage,
     polishedText: opi?.polishedText,
-    rawTranscript,
   });
   latestSnapshot.current = {
     cardKey,
@@ -159,7 +157,6 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
       recordType: 'ai_result',
       aiResult: {
         questionId: cardKey,
-        rawTranscript,
         transcript: answerText,
         grammar: grammar ? {
           overallFeedbackZh: grammar.overallFeedbackZh,
@@ -218,7 +215,6 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   useEffect(() => {
     const controller = activeRequest.current;
     if (controller) controller.abort();
-    setRawTranscript(undefined);
     setGrammar(undefined);
     setOpi(undefined);
     setMatchMessage(undefined);
@@ -275,16 +271,20 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
       await ensureConsent();
       const result = await transcribeRecording(recordingUri, controller.signal);
       if (controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
-      setRawTranscript(result.rawTranscript);
       changeAnswer(result.transcript);
       emitAudioDiagnostic({ code: 'transcription_completed', level: 'info', scope: 'transcription' });
-    } catch {
+    } catch (error) {
       if (activeRequest.current === controller && currentCardKey.current === requestCardKey) {
+        const noSpeechDetected = error instanceof Error && error.message === 'no_speech_detected';
         setFailedAction('transcribe');
-        setError(controller.signal.aborted ? '已取消转写' : '语音转写失败，请检查网络后重试。');
+        setError(controller.signal.aborted
+          ? '已取消转写'
+          : noSpeechDetected
+            ? '未检测到清晰语音，请回放录音并检查麦克风后重新录制。'
+            : '语音转写失败，请检查网络后重试。');
         emitAudioDiagnostic({
-          code: controller.signal.aborted ? 'transcription_cancelled' : 'transcription_failed',
-          level: controller.signal.aborted ? 'info' : 'error',
+          code: controller.signal.aborted ? 'transcription_cancelled' : noSpeechDetected ? 'no_speech_detected' : 'transcription_failed',
+          level: controller.signal.aborted ? 'info' : 'warning',
           scope: 'transcription',
         });
       }
@@ -462,12 +462,12 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
 });
 
 const styles = StyleSheet.create({
-  header: { alignItems: 'center', flexDirection: 'row', gap: spacing[2], justifyContent: 'space-between', minHeight: 52, paddingHorizontal: spacing[4], paddingTop: spacing[3] },
+  header: { alignItems: 'center', flexDirection: 'row', gap: spacing[2], justifyContent: 'space-between', minHeight: 52, paddingHorizontal: spacing[4], paddingTop: spacing[4] },
   headerTitle: { alignItems: 'center', flex: 1, flexDirection: 'row', gap: spacing[2], minWidth: 0 },
   headerTitleText: { flexShrink: 1 },
   headerActions: { alignItems: 'center', flexDirection: 'row', flexShrink: 0, gap: spacing[1.5] },
   reviewAction: { alignItems: 'center', backgroundColor: 'transparent', borderColor: colors.primary20, borderRadius: radii.full, borderWidth: 1, justifyContent: 'center', minHeight: 36, paddingHorizontal: spacing[3] },
-  editAction: { alignItems: 'center', backgroundColor: 'transparent', borderRadius: radii.full, borderWidth: 0, justifyContent: 'center', minHeight: 36, minWidth: 40, paddingHorizontal: spacing[2] },
+  editAction: { alignItems: 'center', backgroundColor: 'transparent', borderColor: colors.primary20, borderRadius: radii.full, borderWidth: 1, justifyContent: 'center', minHeight: 36, paddingHorizontal: spacing[3] },
   headerActionDisabled: { opacity: 0.45 },
   content: { paddingHorizontal: 0 },
   responseSection: { gap: spacing[2], paddingHorizontal: spacing[4], paddingVertical: spacing[2] },
@@ -478,11 +478,11 @@ const styles = StyleSheet.create({
   aiDivider: { backgroundColor: colors.primary20, height: StyleSheet.hairlineWidth, width: '100%' },
   aiExplanation: { lineHeight: 22 },
   aiRetry: { alignItems: 'center', alignSelf: 'flex-start', borderRadius: radii.full, justifyContent: 'center', minHeight: 36, paddingHorizontal: spacing[2] },
-  footer: { alignItems: 'flex-end', flexDirection: 'row', justifyContent: 'space-between', minHeight: 40, paddingBottom: spacing[2], paddingHorizontal: spacing[3], paddingTop: spacing[1] },
+  footer: { alignItems: 'flex-end', flexDirection: 'row', justifyContent: 'space-between', minHeight: 32, paddingBottom: spacing[1.5], paddingHorizontal: spacing[3], paddingTop: spacing[1] },
   dots: { alignItems: 'center', backgroundColor: 'transparent', borderWidth: 0, flexDirection: 'row', height: 28 },
   dotTarget: { alignItems: 'center', height: 28, justifyContent: 'center', width: 18 },
   dot: { backgroundColor: colors.mutedForeground, borderRadius: radii.full, height: 4, opacity: 0.32, width: 4 },
-  dotActive: { backgroundColor: colors.primary, height: 4, opacity: 1, width: 14 },
+  dotActive: { backgroundColor: colors.primary, height: 4, opacity: 1, width: 10 },
   actions: { alignItems: 'center', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'flex-end' },
   action: { alignItems: 'center', borderRadius: radii.full, justifyContent: 'center', minHeight: 44, paddingHorizontal: spacing[2.5] },
   pressed: { opacity: 0.72 },

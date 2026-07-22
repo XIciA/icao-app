@@ -1,6 +1,6 @@
 import { Fragment, useCallback, useMemo, useRef, useState } from 'react';
 import type { LayoutRectangle } from 'react-native';
-import { StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 
 import { colors, fonts, spacing } from '@/theme';
@@ -8,6 +8,9 @@ import { colors, fonts, spacing } from '@/theme';
 import { annotationHighlightBackgrounds } from '../annotations/colors';
 import { sentenceAround, tokenizeStudyText } from '../annotations/text';
 import type { AnnotationDefinition, AnnotationHighlight, AnnotationTextBlockId, AnnotationToneKey } from '../annotations/types';
+import type { WordLookupInteraction } from '../lib/word-lookup-interaction';
+import { normalizeStaticLookupWord } from '../static-word-lookup/normalize';
+import { InteractiveWordTarget } from './InteractiveWordTarget';
 
 type DragSelection = {
   action: 'apply' | 'remove';
@@ -22,6 +25,8 @@ export function InteractiveStudyText({
   dictionaryMode,
   highlightMode,
   highlights,
+  isLookupAvailable,
+  lookupInteraction = 'long-press',
   lookupEnabled,
   onHighlight,
   onHighlightRange,
@@ -34,10 +39,12 @@ export function InteractiveStudyText({
   dictionaryMode: boolean;
   highlightMode: boolean;
   highlights: AnnotationHighlight[];
+  isLookupAvailable?: (word: string) => boolean;
+  lookupInteraction?: WordLookupInteraction;
   lookupEnabled: boolean;
   onHighlight: (value: { blockId: AnnotationTextBlockId; wordIndex: number; quote: string; sentence: string; sourceText: string }) => void;
   onHighlightRange: (value: { action: 'apply' | 'remove'; blockId: AnnotationTextBlockId; endWordIndex: number; sourceText: string; startWordIndex: number }) => void;
-  onLookup: (value: { word: string; sentence: string }) => void;
+  onLookup: (word: string) => void;
   text: string;
 }) {
   const tokens = useMemo(() => tokenizeStudyText(text), [text]);
@@ -123,27 +130,47 @@ export function InteractiveStudyText({
           const lineBreaks = trailingWhitespace.match(/\n/g)?.length ?? 0;
           const nextToken = trailingWhitespace ? tokens[tokenIndex + 2] : tokens[tokenIndex + 1];
           const connectsToNext = Boolean(tone && trailingWhitespace && !lineBreaks && nextToken?.wordIndex !== undefined && toneForWord(nextToken.wordIndex) === tone);
-          const lookupAllowed = lookupEnabled && !highlightMode;
+          const lookupWord = normalizeStaticLookupWord(token.text);
+          const lookupAllowed = lookupEnabled && !highlightMode && Boolean(lookupWord) && (isLookupAvailable?.(lookupWord!) ?? true);
+          const lookupByTap = lookupAllowed && dictionaryMode && lookupInteraction === 'tap';
+          const lookupByLongPress = lookupAllowed && lookupInteraction === 'long-press';
+          const highlightByTap = highlightMode && Platform.OS === 'web';
+          const wordSpacingStyle = lineBreaks ? null : connectsToNext ? styles.connectedWord : styles.wordSpacing;
+          if (lookupByTap || highlightByTap) {
+            return (
+              <Fragment key={`${index}-${token.text}`}>
+                <InteractiveWordTarget
+                  accessibilityLabel={lookupByTap ? `查词：${token.text}` : `${active ? '更新或取消' : '添加'}高亮：${token.text}`}
+                  onPress={lookupByTap ? () => onLookup(lookupWord!) : () => onHighlight({
+                    blockId,
+                    wordIndex: index,
+                    quote: token.text,
+                    sentence: sentenceAround(text, token.start, token.end),
+                    sourceText: text,
+                  })}
+                  style={wordSpacingStyle}
+                  textStyle={[styles.word, backgroundColor ? { backgroundColor } : null]}
+                >
+                  {token.text}
+                </InteractiveWordTarget>
+                {lineBreaks ? <View style={[styles.lineBreak, lineBreaks > 1 ? { height: (lineBreaks - 1) * 25 } : null]} /> : null}
+              </Fragment>
+            );
+          }
           return (
             <Fragment key={`${index}-${token.text}`}>
               <Text
-                accessibilityLabel={dictionaryMode ? `查词：${token.text}` : highlightMode ? `${active ? '更新或取消' : '添加'}高亮：${token.text}` : lookupAllowed ? `长按查词：${token.text}` : undefined}
+                accessibilityLabel={highlightMode ? `${active ? '更新或取消' : '添加'}高亮：${token.text}` : lookupByLongPress ? `长按查词：${token.text}` : undefined}
                 onLayout={(event) => boxesRef.current.set(index, event.nativeEvent.layout)}
-                onLongPress={lookupAllowed ? () => onLookup({
-                  word: token.text.replace(/^[^\p{L}]+|[^\p{L}]+$/gu, ''),
-                  sentence: sentenceAround(text, token.start, token.end),
-                }) : undefined}
-                onPress={dictionaryMode && !highlightMode ? () => onLookup({
-                  word: token.text.replace(/^[^\p{L}]+|[^\p{L}]+$/gu, ''),
-                  sentence: sentenceAround(text, token.start, token.end),
-                }) : highlightMode ? () => onHighlight({
+                onLongPress={lookupByLongPress ? () => onLookup(lookupWord!) : undefined}
+                onPress={highlightMode ? () => onHighlight({
                   blockId,
                   wordIndex: index,
                   quote: token.text,
                   sentence: sentenceAround(text, token.start, token.end),
                   sourceText: text,
                 }) : undefined}
-                style={[styles.word, lineBreaks ? null : connectsToNext ? styles.connectedWord : styles.wordSpacing, backgroundColor ? { backgroundColor } : null]}
+                style={[styles.word, wordSpacingStyle, backgroundColor ? { backgroundColor } : null]}
               >
                 {token.text}
               </Text>

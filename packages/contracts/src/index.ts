@@ -224,9 +224,7 @@ export type WordLookupResult = {
 };
 
 export type TranscribeResult = {
-  rawTranscript: string;
   transcript: string;
-  hintsVersion: string;
 };
 
 export type ExactMatchOperation = 'equal' | 'missing' | 'extra' | 'replace' | 'order';

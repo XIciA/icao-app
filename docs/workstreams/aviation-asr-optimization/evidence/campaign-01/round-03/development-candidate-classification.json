@@ -1,0 +1,380 @@
+{
+  "sentences900:sentence900-main-308": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-716": {
+    "mainCategory": "REFERENCE_MISMATCH",
+    "note": "音频内容是火山喷发询问，与最大高度和湍流原文完全无关，确认资源/文本错配。",
+    "referenceStatus": "mismatch",
+    "semanticOutcome": "excluded"
+  },
+  "sentences900:sentence900-main-267": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "关键速度 250 被识别为 25，不能通过规则猜回。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "sentences900:sentence900-main-640": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-881": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-810": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-653": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "多出的 the 不改变烟雾和医疗协助含义。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "sentences900:sentence900-main-757": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-749": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "ten/two 与 10/2 及标点差异不改变方位和距离。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "sentences900:sentence900-main-122": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "Approaching 被识别为 Approach，跑道 24 和过跑道请求保持正确。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "sentences900:sentence900-main-583": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-820": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-664": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-130": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-064": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-594": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "RVSM 被识别为 RBSM，是标准缩写的上游领域错误。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "sentences900:sentence900-main-553": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-416": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "千位分隔符和标点不同，5000、1014、7000 均正确。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "sentences900:sentence900-main-256": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "Mach decimal 82 与 Mach 0.82 数值等价。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "sentences900:sentence900-main-483": {
+    "mainCategory": "NORMALIZATION_MISSING",
+    "note": "CAT III C 内容已听对，但目标类别写法应统一为 CAT IIIC。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "sentences900:sentence900-main-893": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-101": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-074": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "left-hand、one minute 和标点为等价写法；AMS、9000、270、46 均正确。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "sentences900:sentence900-main-626": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "tyres/tires 及 hold at/hold the 不改变维护等待含义。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "sentences900:sentence900-main-764": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "difficulty/difficulties 为不影响含义的单复数变化。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "sentences900:sentence900-main-495": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "re-release 被识别为 release，可能改变再次放行含义，普通前缀漏词不以规则修补。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "sentences900:sentence900-main-751": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-892": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-446": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-421": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "listening:listening-main-223": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "alter/change、components on/of wing 为等义措辞。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-648": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "listening:listening-main-645": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "频率已从 118 decimal 0 megahertz 安全统一为 118.0 MHz；剩余冠词、连字符和 question 标点是等价差异。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-699": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "音频包含 halfway 和 at the end 等参考未完整呈现的措辞；着陆位置主旨一致。",
+    "referenceStatus": "suspect",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-575": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "9000 米成为 900 米、119.05 成为 1190.05，两个关键数值严重错误，禁止规则猜回。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "unusable"
+  },
+  "listening:listening-main-567": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "atmospheric/atmosphere、loss gain 标点和 question 标记差异不改变气象清单。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-446": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "首个 wind shear 被识别为 way here；后续两次识别正确，先作为短语热词候选证据记录。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "listening:listening-main-084": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "United/UAL、cannot/can not 和 tail wind/tailwind 等价，跑道 27/09 正确。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-617": {
+    "mainCategory": "NORMALIZATION_MISSING",
+    "note": "one five minutes 已转为 15；slot time 的 three zero/three five 尚未在明确上下文中数字化。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "listening:listening-main-208": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "appropriate/proper、route of flight 等措辞和标点不同，低能见度使用地面雷达的答案完整。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-424": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "冠词和标点变化不改变方向与距离两个要素。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-701": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "three 与 3 为等价数量，10 和 15 分钟已规范化且全部事实正确。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-441": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "题干中的 in force 被粘连为 enforce，普通同音分词错误不适合作为民航规则。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "listening:listening-main-717": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "listening:listening-main-887": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "listening:listening-main-802": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "listening:listening-main-155": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "taxiway WP 被识别为 taxing Whiskey Papa，字母已听到但航空结构未保持。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "listening:listening-main-1210": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "Japan Air 多次不稳定，APU 被拆成 a pu，MEL 句段也粘连；故障主旨尚存但质量较差。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "listening:listening-main-476": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "Air France/AFR 与 Echo/E 为等价呼号和信息码，36R/36L 均正确。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-305": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "过去时/现在时变化不改变低能见度导致延误的答案。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-627": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "呼号 BOV 361 被识别为 Way 361；所有风切变高度和速度数值正确。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "listening:listening-main-268": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "EGT/N1 顺序互换不改变监控项目。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-340": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "CCA 9018 丢失 Air 且 runway 14R 被切成问句，关键呼号与跑道展示不可靠。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "listening:listening-main-833": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "Question 被识别为 Quizzed in，正文完全正确。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "listening:listening-main-1080": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "Speedbird/BAW、number three/No.3 和标点差异等价，发动机火焰与返航完整。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-483": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "listening:listening-main-1180": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "中段 ACA 767 被识别为 I kind of a 767；全部飞行高度仍正确规范化。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "listening:listening-main-236": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "China Eastern/CES、Boeing/B 和千位分隔为等价表示，偏置拒绝原因完整。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-687": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "参考语法不完整，识别以完整句表达同一缺乏经验和态势意识原因。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-942": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "storytelling:story-kongguan-016": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "heart 被识别为 hard；题号和字数标注属于来源附加文本，其他故事内容基本完整。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "storytelling:story-pepec-0030": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "One Air 被多次识别为 one are/1 are；FL240、跑道和时间保持正确。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "storytelling:story-wing-037": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "数字口述与书写、标点和 4.5/four point five 等价；FL230 与 runway 13R 已正确规范化。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  }
+}

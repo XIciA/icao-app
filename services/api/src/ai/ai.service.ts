@@ -7,13 +7,14 @@ import { DatabaseService } from '../database/database.service';
 import { aiConsents, aiUsageLogs, aiWordCache } from '../database/schema';
 import { AiAssetsService } from './ai-assets.service';
 import { AiProviderService, type ProviderMeta } from './ai-provider.service';
+import { AVIATION_TRANSCRIPT_NORMALIZATION_VERSION, normalizeAviationTranscript } from './aviation-transcript-normalization';
+import { FunAsrService } from './fun-asr.service';
 import { grammarResultSchema, polishResultSchema, wordLookupResultSchema } from './ai.schemas';
 
 const PROMPTS = {
   word: 'word-lookup-v1',
   grammar: 'grammar-review-v1',
   polish: 'polish-v1',
-  transcribe: 'transcribe-hints:v1',
 } as const;
 
 type UsageCapability = 'word_lookup' | 'transcribe' | 'grammar_review' | 'polish';
@@ -24,6 +25,7 @@ export class AiService {
     private readonly database: DatabaseService,
     private readonly assets: AiAssetsService,
     private readonly provider: AiProviderService,
+    private readonly asr: FunAsrService,
   ) {}
 
   async acceptConsent(userId: string, policyVersion: string): Promise<AiConsent> {
@@ -107,8 +109,12 @@ export class AiService {
     await this.requireConsent(userId);
     if (!audio.length || audio.length > 8 * 1024 * 1024) throw new BadRequestException('invalid_audio');
     return this.run({
-      userId, requestId, capability: 'transcribe', model: this.provider.asrModel(), promptVersion: PROMPTS.transcribe, units: 3,
-      action: () => this.provider.transcribe(audio, mimeType, signal),
+      userId, requestId, capability: 'transcribe', model: this.asr.model(),
+      promptVersion: `${this.asr.hotwordsVersion()}+${AVIATION_TRANSCRIPT_NORMALIZATION_VERSION}`, units: 3,
+      action: async () => {
+        const result = await this.asr.transcribe(audio, mimeType, signal);
+        return { data: { transcript: normalizeAviationTranscript(result.rawTranscript) }, meta: result.meta };
+      },
     });
   }
 

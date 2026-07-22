@@ -1,0 +1,13 @@
+{
+  "ids": [
+    "sentences900:sentence900-main-405",
+    "sentences900:sentence900-main-062",
+    "sentences900:sentence900-main-074",
+    "sentences900:sentence900-main-428",
+    "sentences900:sentence900-main-372",
+    "listening:listening-main-615",
+    "sentences900:sentence900-main-519",
+    "sentences900:sentence900-main-597"
+  ],
+  "rationale": "验证两个 VOR→VR 目标错例，保护四个既有导航台样本，并用两个含普通 for 的短句检查 VOR 误吸附。"
+}

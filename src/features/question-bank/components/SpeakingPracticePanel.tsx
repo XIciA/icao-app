@@ -134,7 +134,6 @@ export function SpeakingPracticePanel({
             >
               {playback.status.playing ? <Pause color={colors.primary} size={17} /> : <RotateCcw color={playbackDisabled ? colors.mutedForeground : colors.primary} size={17} />}
             </Pressable>
-            <AppText color={playbackDisabled ? colors.mutedForeground : colors.foreground} variant="micro">{retryable ? '重试' : playback.status.playing ? '暂停' : '回放'}</AppText>
           </View>
         </View>
 
@@ -230,7 +229,7 @@ export function SpeakingPracticePanel({
 
 const styles = StyleSheet.create({
   root: { gap: spacing[2] },
-  recordButton: { alignItems: 'center', backgroundColor: colors.primary, borderRadius: radii.full, flexDirection: 'row', gap: spacing[2], height: 48, justifyContent: 'center', width: '100%' },
+  recordButton: { alignItems: 'center', backgroundColor: colors.primary, borderRadius: radii.full, flexDirection: 'row', gap: spacing[2], height: 46, justifyContent: 'center', width: '100%' },
   integratedRoot: { flex: 1, gap: spacing[2], minWidth: 0 },
   integratedControlRow: { alignItems: 'center', flexDirection: 'row', gap: spacing[3] },
   integratedRecordButton: { flex: 1, minWidth: 0, paddingHorizontal: spacing[3], width: 'auto' },

@@ -1,0 +1,128 @@
+{
+  "sentences900:sentence900-main-497": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "wasn’t/wasn't、boom mike/boom mic 及可省略的 that 不改变语义。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "sentences900:sentence900-main-391": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "Affirm 被分词为 A firm；BKM VOR 已正确规范化，剩余错误轻微且不宜做通用替换。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "sentences900:sentence900-main-159": {
+    "mainCategory": "NORMALIZATION_MISSING",
+    "note": "Accelerate-Stop Distance Available 已听对，参考文本额外给出 ASDA；intersection Delta 1 可在未来以明确上下文收敛为 D1，但本轮不追加盲测后规则。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "sentences900:sentence900-main-436": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "144E 与 144 degrees east 是等价坐标表达，squawk 2000 正确。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "sentences900:sentence900-main-040": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "关键速度 160 被识别为 167，属于数字实体错误；不得用规范化猜测修复。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "sentences900:sentence900-main-658": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-459": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-241": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-464": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "wind-shear 被识别为 winch here，改变了爬升原因；记录为航空术语识别问题。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "sentences900:sentence900-main-077": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "Foxtrot 被识别为 Foxstrut，requests/request 另有轻微词形差异；信息 F 未正确形成。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "listening:listening-main-935": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "listening:listening-main-545": {
+    "mainCategory": "NORMALIZATION_MISSING",
+    "note": "MSA 已听对但未统一大写；1000/1,000 和题干标点为等价展示。该规则留待下一轮而不污染本轮盲测。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "listening:listening-main-768": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "listening:listening-main-339": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "UAL 与 United、seriously/serious、upon/after 及说话人标签差异不改变急救请求。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-094": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "CCA 与 Air China、数字标点及说话人标签为展示差异；weather/whether 有轻微近音，但关键高度、跑道、RVR 信息可理解。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-1118": {
+    "mainCategory": "REFERENCE_MISMATCH",
+    "note": "16 秒音频实际是 China Eastern 9197/Shanghai Ground，与参考的 CCA 4014/Beijing Ground/118.6 完全不同，且清单已有时长文本比告警；排除为源数据错配。",
+    "referenceStatus": "mismatch",
+    "semanticOutcome": "excluded"
+  },
+  "listening:listening-main-1083": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "CCA 与 Air China 为代码和话音呼号形式差异；FL200 和 squawk 4123 均正确。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-702": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "10km/10 kilometers、2200ft/2200 feet、QNH1002/QNH 1002 及 cloud/clouds 为等价展示差异。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-635": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "listening:listening-main-891": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "EICAS 被识别为 icus；系统全称已正确听出，语义仍可恢复，但缩写未听对。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "storytelling:story-koala-017": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "UAL/CCA 与 United/Air China 主要是代码和话音形式差异，但 ILS 被听成 ills、runway 16R 被切分为疑问式 16 right；故事主旨仍完整。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  }
+}

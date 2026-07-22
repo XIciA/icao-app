@@ -59,8 +59,7 @@ export function QuestionBankCatalog({ dataset }: { dataset: QuestionBankDataset 
   }
 
   return (
-    <Screen contentStyle={styles.screen}>
-      <SoftGlow intensity={0.75} size={360} style={styles.glow} />
+    <Screen background={<SoftGlow intensity={0.75} size={360} style={styles.glow} />} contentStyle={styles.screen}>
       <QuestionBankSwitcherHeader
         items={switcherItems}
         onBack={() => router.back()}

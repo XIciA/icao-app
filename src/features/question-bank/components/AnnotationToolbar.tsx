@@ -1,5 +1,6 @@
 import { Check, Highlighter, Plus, Search, Tags, X } from 'lucide-react-native';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import type { ReactNode } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
 import { AppModal } from '@/components/platform/AppModal';
@@ -11,13 +12,14 @@ import { annotationToneColors } from '../annotations/colors';
 import type { AnnotationDefinition, AnnotationToneKey } from '../annotations/types';
 
 type CreatorKind = 'tag' | 'highlight';
-type PickerKind = CreatorKind;
+type PickerKind = 'tag';
 
 export function AnnotationToolbar({
   activeHighlightId,
   dictionaryMode,
   highlightDefinitions,
   highlightMode,
+  leading,
   onCreateHighlight,
   onCreateTag,
   onDictionaryModeChange,
@@ -35,6 +37,7 @@ export function AnnotationToolbar({
   dictionaryMode: boolean;
   highlightDefinitions: AnnotationDefinition[];
   highlightMode: boolean;
+  leading?: ReactNode;
   onCreateHighlight: (label: string, color: AnnotationToneKey) => void;
   onCreateTag: (label: string, color: AnnotationToneKey) => void;
   onDictionaryModeChange: (value: boolean) => void;
@@ -55,10 +58,6 @@ export function AnnotationToolbar({
   const [creator, setCreator] = useState<CreatorKind>();
   const [name, setName] = useState('');
   const [tone, setTone] = useState<AnnotationToneKey>('green');
-  const activeHighlight = useMemo(
-    () => highlightDefinitions.find((definition) => definition.id === activeHighlightId) ?? highlightDefinitions[0],
-    [activeHighlightId, highlightDefinitions],
-  );
   const pickerWidth = Math.min(windowWidth - spacing[10], 390);
   const pickerLeft = Math.max(spacing[5], (windowWidth - pickerWidth) / 2);
 
@@ -67,10 +66,6 @@ export function AnnotationToolbar({
     setCreator(undefined);
     setName('');
   }, [resetToken]);
-
-  useEffect(() => {
-    if (!highlightMode && picker === 'highlight') setPicker(undefined);
-  }, [highlightMode, picker]);
 
   function measurePickerTop() {
     toolbarRef.current?.measureInWindow((_x, y, _width, height) => {
@@ -101,7 +96,6 @@ export function AnnotationToolbar({
     if (submittedKind === 'tag') onCreateTag(label, tone);
     else onCreateHighlight(label, tone);
     closeCreator();
-    if (submittedKind === 'highlight') setPicker(undefined);
   }
 
   function toggleDictionary() {
@@ -114,15 +108,15 @@ export function AnnotationToolbar({
 
   function toggleHighlightMode() {
     if (highlightMode) {
-      if (picker === 'highlight') closePicker();
-      else openPicker('highlight');
+      setPicker(undefined);
+      closeCreator();
+      onHighlightModeChange(false);
       return;
     }
     setPicker(undefined);
     closeCreator();
     onDictionaryModeChange(false);
     onHighlightModeChange(true);
-    openPicker('highlight');
   }
 
   function toggleTags() {
@@ -136,16 +130,40 @@ export function AnnotationToolbar({
     openPicker('tag');
   }
 
-  function finishHighlightMode() {
-    closePicker();
-    onHighlightModeChange(false);
-  }
+  const visibleTagCreator = creator === 'tag' && picker === 'tag';
+  const visibleHighlightCreator = creator === 'highlight' && highlightMode;
 
-  const visibleCreator = Boolean(creator && creator === picker);
+  const creatorForm = (visibleTagCreator || visibleHighlightCreator) ? (
+    <View style={styles.creator}>
+      <TextInput
+        accessibilityLabel={creator === 'tag' ? '新标签名称' : '新高亮名称'}
+        autoFocus
+        maxLength={8}
+        onChangeText={setName}
+        onSubmitEditing={submitCreator}
+        placeholder="名称"
+        placeholderTextColor={colors.mutedForeground}
+        style={styles.input}
+        value={name}
+      />
+      <View style={styles.creatorFooter}>
+        <View style={styles.tones}>
+          {(Object.keys(annotationToneColors) as AnnotationToneKey[]).map((key) => (
+            <Pressable accessibilityLabel={`颜色 ${key}`} key={key} onPress={() => setTone(key)} style={[styles.toneButton, tone === key ? styles.toneSelected : null]}>
+              <View style={[styles.toneDot, { backgroundColor: annotationToneColors[key] }]} />
+            </Pressable>
+          ))}
+        </View>
+        <Pressable accessibilityLabel="取消新建" onPress={closeCreator} style={styles.iconButton}><X color={colors.mutedForeground} size={15} /></Pressable>
+        <Pressable accessibilityLabel="确认新建" disabled={!name.trim()} onPress={submitCreator} style={[styles.confirmButton, !name.trim() ? styles.disabled : null]}><Check color={colors.primaryForeground} size={15} /></Pressable>
+      </View>
+    </View>
+  ) : null;
 
   return (
     <View style={styles.root}>
       <View collapsable={false} onLayout={measurePickerTop} ref={toolbarRef} style={styles.toolbar}>
+        {leading}
         {showDictionary ? (
           <Pressable accessibilityLabel={dictionaryMode ? '关闭查词模式' : '开启查词模式'} onPress={toggleDictionary} style={[styles.tool, dictionaryMode ? styles.toolActive : null]}>
             <Search color={dictionaryMode ? colors.primary : colors.mutedForeground} size={14} />
@@ -153,9 +171,9 @@ export function AnnotationToolbar({
           </Pressable>
         ) : null}
         {showHighlights ? (
-          <Pressable accessibilityLabel={highlightMode ? picker === 'highlight' ? '收起高亮颜色' : '打开高亮颜色' : '开启高亮模式'} accessibilityState={{ expanded: picker === 'highlight', selected: highlightMode }} onPress={toggleHighlightMode} style={[styles.tool, highlightMode ? styles.toolActive : null]}>
+          <Pressable accessibilityLabel={highlightMode ? '关闭高亮模式' : '开启高亮模式'} accessibilityState={{ expanded: highlightMode, selected: highlightMode }} onPress={toggleHighlightMode} style={[styles.tool, highlightMode ? styles.toolActive : null]}>
             <Highlighter color={highlightMode ? colors.primary : colors.mutedForeground} size={14} />
-            <AppText color={highlightMode ? colors.primary : colors.mutedForeground} variant="caption">{highlightMode ? '高亮中' : '高亮'}</AppText>
+            <AppText color={highlightMode ? colors.primary : colors.mutedForeground} variant="caption">高亮</AppText>
           </Pressable>
         ) : null}
         {showTags ? (
@@ -166,18 +184,16 @@ export function AnnotationToolbar({
         ) : null}
       </View>
 
-      {highlightMode && picker !== 'highlight' ? (
-        <View style={styles.highlightStatus} testID="highlight-mode-status">
-          <Pressable accessibilityLabel="调整高亮颜色" onPress={() => openPicker('highlight')} style={styles.highlightStatusMain}>
-            <View style={[styles.statusDot, { backgroundColor: annotationToneColors[activeHighlight?.color ?? 'green'] }]} />
-            <AppText color={colors.foreground} variant="micro">{activeHighlight?.label ?? '重点'}</AppText>
-            <AppText color={colors.primary} variant="micro">高亮中</AppText>
-          </Pressable>
-          <View style={styles.statusDivider} />
-          <Pressable accessibilityLabel="结束高亮模式" onPress={finishHighlightMode} style={styles.finishHighlight}>
-            <Check color={colors.primary} size={12} />
-            <AppText color={colors.primary} variant="micro">完成</AppText>
-          </Pressable>
+      {showHighlights && highlightMode ? (
+        <View style={styles.highlightPanel} testID="highlight-color-panel">
+          <ToolOptions
+            definitions={highlightDefinitions}
+            onCreate={() => setCreator('highlight')}
+            onSelect={onHighlightChange}
+            singleSelection
+            selectedIds={[activeHighlightId]}
+          />
+          {visibleHighlightCreator ? creatorForm : null}
         </View>
       ) : null}
 
@@ -185,46 +201,14 @@ export function AnnotationToolbar({
         <View style={styles.modalLayer}>
           <Pressable accessibilityLabel="关闭标注工具" onPress={closePicker} style={StyleSheet.absoluteFill} />
           <View style={[styles.picker, { left: pickerLeft, top: pickerTop, width: pickerWidth }]} testID="annotation-picker-panel">
-            {picker === 'highlight' ? <AppText color={colors.mutedForeground} variant="micro">轻点单词，或按住后拖动高亮</AppText> : null}
             <ToolOptions
-              definitions={picker === 'tag' ? tagDefinitions : highlightDefinitions}
-              onCreate={() => setCreator(picker)}
-              onSelect={(id) => {
-                if (picker === 'tag') onTagToggle(id);
-                else {
-                  onHighlightChange(id);
-                  closePicker();
-                }
-              }}
-              singleSelection={picker === 'highlight'}
-              selectedIds={picker === 'tag' ? selectedTags : [activeHighlightId]}
+              definitions={tagDefinitions}
+              onCreate={() => setCreator('tag')}
+              onSelect={onTagToggle}
+              singleSelection={false}
+              selectedIds={selectedTags}
             />
-            {visibleCreator ? (
-              <View style={styles.creator}>
-                <TextInput
-                  accessibilityLabel={creator === 'tag' ? '新标签名称' : '新高亮名称'}
-                  autoFocus
-                  maxLength={8}
-                  onChangeText={setName}
-                  onSubmitEditing={submitCreator}
-                  placeholder="名称"
-                  placeholderTextColor={colors.mutedForeground}
-                  style={styles.input}
-                  value={name}
-                />
-                <View style={styles.creatorFooter}>
-                  <View style={styles.tones}>
-                    {(Object.keys(annotationToneColors) as AnnotationToneKey[]).map((key) => (
-                      <Pressable accessibilityLabel={`颜色 ${key}`} key={key} onPress={() => setTone(key)} style={[styles.toneButton, tone === key ? styles.toneSelected : null]}>
-                        <View style={[styles.toneDot, { backgroundColor: annotationToneColors[key] }]} />
-                      </Pressable>
-                    ))}
-                  </View>
-                  <Pressable accessibilityLabel="取消新建" onPress={closeCreator} style={styles.iconButton}><X color={colors.mutedForeground} size={15} /></Pressable>
-                  <Pressable accessibilityLabel="确认新建" disabled={!name.trim()} onPress={submitCreator} style={[styles.confirmButton, !name.trim() ? styles.disabled : null]}><Check color={colors.primaryForeground} size={15} /></Pressable>
-                </View>
-              </View>
-            ) : null}
+            {visibleTagCreator ? creatorForm : null}
           </View>
         </View>
       </AppModal>
@@ -262,8 +246,9 @@ function ToolOptions({ definitions, onCreate, onSelect, selectedIds, singleSelec
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, position: 'relative', zIndex: 30 },
+  root: { position: 'relative', width: '100%', zIndex: 30 },
   toolbar: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing[2] },
+  highlightPanel: { backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.xl, borderWidth: 1, gap: spacing[2], marginTop: spacing[2], padding: spacing[2.5] },
   modalLayer: { flex: 1 },
   picker: { backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.xl, borderWidth: 1, gap: spacing[2], padding: spacing[2.5], position: 'absolute', ...shadows.modal },
   options: { flexDirection: 'row', gap: spacing[2], paddingRight: spacing[1] },
@@ -283,9 +268,4 @@ const styles = StyleSheet.create({
   iconButton: { alignItems: 'center', height: 30, justifyContent: 'center', width: 30 },
   confirmButton: { alignItems: 'center', backgroundColor: colors.primary, borderRadius: radii.full, height: 30, justifyContent: 'center', width: 30 },
   disabled: { opacity: 0.4 },
-  highlightStatus: { alignItems: 'center', backgroundColor: colors.card80, borderColor: colors.primary20, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', left: 0, minHeight: 34, position: 'absolute', top: spacing[10], zIndex: 40, ...shadows.floating },
-  highlightStatusMain: { alignItems: 'center', flexDirection: 'row', gap: spacing[1.5], minHeight: 34, paddingLeft: spacing[2.5], paddingRight: spacing[2] },
-  statusDot: { borderRadius: radii.full, height: 8, width: 8 },
-  statusDivider: { alignSelf: 'stretch', backgroundColor: colors.border, width: StyleSheet.hairlineWidth },
-  finishHighlight: { alignItems: 'center', flexDirection: 'row', gap: spacing[1], minHeight: 34, paddingHorizontal: spacing[2.5] },
 });

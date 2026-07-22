@@ -25,9 +25,9 @@ native stop -> repository commit -> session RecordingAsset -> reveal/mine
 ## 防回归
 
 - ESLint `no-restricted-imports` 阻止越过 native API 所有权。
-- `tools/check-audio-boundaries.mjs` 检查唯一 mode/recorder/type/repository 边界和旧 coordinator 引用。
+- `tools/check-audio-boundaries.mjs` 检查唯一 mode/recorder/type/repository 边界、旧 coordinator 引用，并禁止用单位不一致的 `AudioRecorder.currentTime` 判定 native 录音时长。
 - `pnpm check:audio` 接入 `pnpm check:app`。
-- Jest 覆盖状态转换、异步 owner、超时、stale lease、文件事务、重复 stop、后台/卸载、替换和消费者隔离。
+- Jest 覆盖状态转换、异步 owner、超时、stale lease、文件事务、重复 stop、后台/卸载、替换、消费者隔离和 native recorder 时长单位契约。
 - Maestro 使用 Dev-only adapter；release config/build 双重禁止 E2E 标志。
 - release script 按平台验证 audio-sensitive fingerprint evidence。
 

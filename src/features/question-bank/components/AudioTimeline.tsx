@@ -6,7 +6,7 @@ import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 
 import { AppText } from '@/components/ui';
 import { colors, fonts, motion, radii, spacing } from '@/theme';
 
-const THUMB_SIZE = 16;
+const THUMB_SIZE = 14;
 
 export function formatAudioTime(value: number) {
   const seconds = Math.max(0, Math.floor(value || 0));
@@ -207,8 +207,8 @@ export function AudioTimeline({
 const styles = StyleSheet.create({
   root: { flex: 1 },
   control: { height: 44, justifyContent: 'center', position: 'relative' },
-  trackBase: { backgroundColor: colors.border, borderRadius: radii.full, height: 6, left: 0, position: 'absolute', right: 0 },
-  fill: { backgroundColor: colors.primary, borderRadius: radii.full, height: 6, left: 0, position: 'absolute' },
+  trackBase: { backgroundColor: colors.border, borderRadius: radii.full, height: 4, left: 0, position: 'absolute', right: 0 },
+  fill: { backgroundColor: colors.primary, borderRadius: radii.full, height: 4, left: 0, position: 'absolute' },
   thumb: { backgroundColor: colors.card, borderColor: colors.primary, borderRadius: radii.full, borderWidth: 2, height: THUMB_SIZE, left: 0, position: 'absolute', width: THUMB_SIZE },
   disabled: { opacity: 0.45 },
   timeRow: { flexDirection: 'row', justifyContent: 'space-between', marginTop: -spacing[1] },

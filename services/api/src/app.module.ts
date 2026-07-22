@@ -19,6 +19,8 @@ import { SyncService } from './sync/sync.service';
 import { AiController } from './ai/ai.controller';
 import { AiAssetsService } from './ai/ai-assets.service';
 import { AiProviderService } from './ai/ai-provider.service';
+import { AsrAudioStorageService } from './ai/asr-audio-storage.service';
+import { FunAsrService } from './ai/fun-asr.service';
 import { AiService } from './ai/ai.service';
 import { VocabularyController } from './vocabulary/vocabulary.controller';
 import { VocabularyService } from './vocabulary/vocabulary.service';
@@ -38,6 +40,8 @@ import { VocabularyService } from './vocabulary/vocabulary.service';
     SyncService,
     AiAssetsService,
     AiProviderService,
+    AsrAudioStorageService,
+    FunAsrService,
     AiService,
     VocabularyService,
   ],

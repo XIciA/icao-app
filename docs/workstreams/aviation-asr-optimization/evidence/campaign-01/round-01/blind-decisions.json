@@ -1,0 +1,12 @@
+{
+  "sentences900:sentence900-main-199": { "mainCategory": "ASR_DOMAIN", "note": "关键缩写 RVR 被识别为 RV，属于真实领域识别错误；本轮候选规则未参与该位置。", "referenceStatus": "aligned", "semanticOutcome": "major" },
+  "sentences900:sentence900-main-317": { "mainCategory": "ASR_GENERAL", "note": "限制距离 24 DME 被识别成 4 DME，是阻塞性的数字错误；FL100 与 ST VOR 的候选规范化正确且未引入错误。", "referenceStatus": "aligned", "semanticOutcome": "major" },
+  "sentences900:sentence900-main-321": { "mainCategory": "NORMALIZATION_MISSING", "note": "Lima, November 内容已听对，但逗号使现有航路点规则未形成 LN；盲测只记录，不回调本轮候选。", "referenceStatus": "aligned", "semanticOutcome": "minor" },
+  "listening:listening-main-1130": { "mainCategory": "NORMALIZATION_MISSING", "note": "Air China 500 尚未统一为 CCA 500；runway 26 right 已由本轮规则正确转为 runway 26R，三个 RVR 数值均保持正确。", "referenceStatus": "aligned", "semanticOutcome": "minor" },
+  "listening:listening-main-199": { "mainCategory": "REFERENCE_VARIANT", "note": "taxiway Alpha 4/Alpha 与 A4/A 是可接受的口述写法，hold short 核心含义和问题完整。", "referenceStatus": "variant", "semanticOutcome": "acceptable" },
+  "listening:listening-main-454": { "mainCategory": "REFERENCE_VARIANT", "note": "including/such as、冠词和题干标签不同，NOTAM 内容完整且题意一致。", "referenceStatus": "variant", "semanticOutcome": "acceptable" },
+  "listening:listening-main-1185": { "mainCategory": "NORMALIZATION_MISSING", "note": "Air China 981 内容听对但尚未统一为 CCA 981；高度和复飞信息完整。", "referenceStatus": "aligned", "semanticOutcome": "minor" },
+  "listening:listening-main-777": { "mainCategory": "REFERENCE_MISMATCH", "note": "参考题干中的 odern 明显缺少 modern 的首字母，且音频识别为 Oden；该处不用于规则收益判断。", "referenceStatus": "mismatch", "semanticOutcome": "excluded" },
+  "listening:listening-main-299": { "mainCategory": "ASR_DOMAIN", "note": "runway 29 被识别为 299，第二段又出现 Quadrus 和多余 R；属于呼号与跑道的严重上游识别错误。", "referenceStatus": "aligned", "semanticOutcome": "unusable" },
+  "storytelling:story-koala-026": { "mainCategory": "ASR_GENERAL", "note": "首个 runway 13 Center 被识别成 runway 1 tree center，不能由规则猜回；后一个 runway 31 center 已安全转为 31C，未新增关键实体错误。", "referenceStatus": "suspect", "semanticOutcome": "major" }
+}

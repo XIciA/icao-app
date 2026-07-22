@@ -11,8 +11,17 @@ const schema = z.object({
   SUPABASE_URL: z.string().url(),
   DASHSCOPE_API_KEY: z.string().min(10).optional(),
   DASHSCOPE_BASE_URL: z.string().url().default('https://dashscope.aliyuncs.com/compatible-mode/v1'),
+  DASHSCOPE_ASR_BASE_URL: z.string().url().default('https://dashscope.aliyuncs.com/api/v1'),
   AI_TEXT_MODEL: z.string().min(1).default('qwen-turbo'),
-  AI_ASR_MODEL: z.string().min(1).default('qwen3-asr-flash'),
+  AI_ASR_MODEL: z.string().min(1).default('fun-asr-2025-11-07'),
+  AI_ASR_HOTWORDS_MODE: z.enum(['none', 'vocabulary']).default('vocabulary'),
+  AI_ASR_VOCABULARY_ID: z.string().min(1).optional(),
+  AI_ASR_HOTWORDS_VERSION: z.string().min(1).default('aviation-hotwords:v1'),
+  AI_ASR_STAGING_BUCKET: z.string().min(1).default('ai-transcription-inputs'),
+  AI_ASR_POLL_INTERVAL_MS: z.coerce.number().int().min(250).max(10_000).default(2_000),
+  AI_ASR_TIMEOUT_MS: z.coerce.number().int().min(5_000).max(120_000).default(55_000),
+  AI_ASR_SIGNED_URL_TTL_SECONDS: z.coerce.number().int().min(60).max(3_600).default(600),
+  AI_ASR_STALE_AUDIO_TTL_SECONDS: z.coerce.number().int().min(3_600).max(604_800).default(86_400),
   CORS_ORIGINS: z.string().default('http://localhost:8081,http://127.0.0.1:8081,http://localhost:4173,http://127.0.0.1:4173'),
 });
 
@@ -27,8 +36,17 @@ export type ApiConfig = {
   supabaseUrl: string;
   dashscopeApiKey?: string;
   dashscopeBaseUrl: string;
+  dashscopeAsrBaseUrl: string;
   aiTextModel: string;
   aiAsrModel: string;
+  aiAsrHotwordsMode: 'none' | 'vocabulary';
+  aiAsrVocabularyId?: string;
+  aiAsrHotwordsVersion: string;
+  aiAsrStagingBucket: string;
+  aiAsrPollIntervalMs: number;
+  aiAsrTimeoutMs: number;
+  aiAsrSignedUrlTtlSeconds: number;
+  aiAsrStaleAudioTtlSeconds: number;
   corsOrigins: string[];
 };
 
@@ -58,6 +76,15 @@ export function loadConfig(environment: NodeJS.ProcessEnv = process.env): ApiCon
     const fields = parsed.error.issues.map((issue) => issue.path.join('.') || 'environment').join(', ');
     throw new Error(`invalid_api_configuration:${fields}`);
   }
+  if (parsed.data.NODE_ENV === 'production' && parsed.data.DASHSCOPE_API_KEY
+    && parsed.data.AI_ASR_MODEL.startsWith('fun-asr')) {
+    if (parsed.data.AI_ASR_HOTWORDS_MODE === 'vocabulary' && !parsed.data.AI_ASR_VOCABULARY_ID) {
+      throw new Error('invalid_api_configuration:AI_ASR_VOCABULARY_ID');
+    }
+    if (parsed.data.AI_ASR_HOTWORDS_MODE === 'none' && parsed.data.AI_ASR_VOCABULARY_ID) {
+      throw new Error('invalid_api_configuration:AI_ASR_HOTWORDS_MODE');
+    }
+  }
 
   return {
     databaseUrl: parsed.data.DATABASE_URL,
@@ -70,8 +97,17 @@ export function loadConfig(environment: NodeJS.ProcessEnv = process.env): ApiCon
     supabaseUrl: parsed.data.SUPABASE_URL,
     dashscopeApiKey: parsed.data.DASHSCOPE_API_KEY,
     dashscopeBaseUrl: parsed.data.DASHSCOPE_BASE_URL,
+    dashscopeAsrBaseUrl: parsed.data.DASHSCOPE_ASR_BASE_URL,
     aiTextModel: parsed.data.AI_TEXT_MODEL,
     aiAsrModel: parsed.data.AI_ASR_MODEL,
+    aiAsrHotwordsMode: parsed.data.AI_ASR_HOTWORDS_MODE,
+    aiAsrVocabularyId: parsed.data.AI_ASR_VOCABULARY_ID,
+    aiAsrHotwordsVersion: parsed.data.AI_ASR_HOTWORDS_VERSION,
+    aiAsrStagingBucket: parsed.data.AI_ASR_STAGING_BUCKET,
+    aiAsrPollIntervalMs: parsed.data.AI_ASR_POLL_INTERVAL_MS,
+    aiAsrTimeoutMs: parsed.data.AI_ASR_TIMEOUT_MS,
+    aiAsrSignedUrlTtlSeconds: parsed.data.AI_ASR_SIGNED_URL_TTL_SECONDS,
+    aiAsrStaleAudioTtlSeconds: parsed.data.AI_ASR_STALE_AUDIO_TTL_SECONDS,
     corsOrigins: parseCorsOrigins(parsed.data.CORS_ORIGINS),
   };
 }

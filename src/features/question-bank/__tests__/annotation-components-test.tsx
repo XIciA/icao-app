@@ -1,6 +1,6 @@
 import { fireEvent, render, waitFor } from '@testing-library/react-native';
 import { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 import { DEFAULT_ANNOTATION_HIGHLIGHTS, DEFAULT_ANNOTATION_TAGS } from '../annotations/types';
 import { AnnotationToolbar } from '../components/AnnotationToolbar';
@@ -59,7 +59,7 @@ describe('annotation study controls', () => {
     expect(onHighlight).toHaveBeenCalledWith(expect.objectContaining({ wordIndex: 1, quote: 'two.', sentence: 'One two.' }));
   });
 
-  it('looks up a word on long press without enabling dictionary mode', async () => {
+  it('looks up a normalized word on long press without enabling dictionary mode', async () => {
     const onLookup = jest.fn();
     const screen = await render(
       <InteractiveStudyText
@@ -78,7 +78,36 @@ describe('annotation study controls', () => {
     );
 
     fireEvent(screen.getByLabelText('长按查词：deviation'), 'longPress');
-    expect(onLookup).toHaveBeenCalledWith({ word: 'deviation', sentence: 'Request deviation to avoid weather.' });
+    expect(onLookup).toHaveBeenCalledWith('deviation');
+  });
+
+  it('uses a single tap only while web dictionary mode is active', async () => {
+    const onLookup = jest.fn();
+    const screen = await render(
+      <InteractiveStudyText
+        activeHighlightId="green"
+        blockId="question"
+        definitions={DEFAULT_ANNOTATION_HIGHLIGHTS}
+        dictionaryMode
+        highlightMode={false}
+        highlights={[]}
+        lookupEnabled
+        lookupInteraction="tap"
+        onHighlight={jest.fn()}
+        onHighlightRange={jest.fn()}
+        onLookup={onLookup}
+        text="Request deviation to avoid weather."
+      />,
+    );
+
+    const lookupTarget = screen.getByLabelText('查词：deviation');
+    expect(StyleSheet.flatten(screen.getByText('deviation').props.style).textDecorationLine).toBeUndefined();
+    expect(StyleSheet.flatten(lookupTarget.props.style).cursor).toBe('pointer');
+    expect(StyleSheet.flatten(lookupTarget.props.style).borderRadius).toBeUndefined();
+    fireEvent.press(lookupTarget);
+    expect(onLookup).toHaveBeenCalledWith('deviation');
+    fireEvent(lookupTarget, 'longPress');
+    expect(onLookup).toHaveBeenCalledTimes(1);
   });
 
   it('uses a highlighter background and disables lookup while highlight mode is active', async () => {
@@ -103,6 +132,36 @@ describe('annotation study controls', () => {
     expect(StyleSheet.flatten(highlighted.props.style).backgroundColor).toBe('rgba(242, 201, 76, 0.38)');
     fireEvent(highlighted, 'longPress');
     expect(onLookup).not.toHaveBeenCalled();
+  });
+
+  it('uses the same web press target for highlight mode', async () => {
+    const originalPlatform = Platform.OS;
+    Object.defineProperty(Platform, 'OS', { configurable: true, value: 'web' });
+    const onHighlight = jest.fn();
+    try {
+      const screen = await render(
+        <InteractiveStudyText
+          activeHighlightId="green"
+          blockId="question"
+          definitions={DEFAULT_ANNOTATION_HIGHLIGHTS}
+          dictionaryMode={false}
+          highlightMode
+          highlights={[]}
+          lookupEnabled
+          onHighlight={onHighlight}
+          onHighlightRange={jest.fn()}
+          onLookup={jest.fn()}
+          text="One two."
+        />,
+      );
+
+      const target = screen.getByLabelText('添加高亮：two.');
+      expect(StyleSheet.flatten(target.props.style).cursor).toBe('pointer');
+      fireEvent.press(target);
+      expect(onHighlight).toHaveBeenCalledWith(expect.objectContaining({ wordIndex: 1, quote: 'two.' }));
+    } finally {
+      Object.defineProperty(Platform, 'OS', { configurable: true, value: originalPlatform });
+    }
   });
 
   it('fills the space between adjacent highlights that use the same color', async () => {
@@ -157,24 +216,30 @@ describe('annotation study controls', () => {
     );
     fireEvent.press(screen.getByLabelText('打开标签面板'));
     expect(onHighlightModeChange).toHaveBeenCalledWith(false);
-    await waitFor(() => expect(screen.getByLabelText('新建标注定义')).toBeTruthy());
+    await waitFor(() => expect(screen.getByTestId('annotation-picker-panel')).toBeTruthy());
+    expect(screen.getAllByLabelText('新建标注定义')).not.toHaveLength(0);
   });
 
-  it('keeps the newly selected dictionary or highlight mode active', async () => {
+  it('keeps highlight in a strict off/on state with a persistent color panel', async () => {
     const screen = await render(<StatefulToolbar />);
 
+    expect(screen.queryByTestId('highlight-color-panel')).toBeNull();
     fireEvent.press(screen.getByLabelText('开启查词模式'));
     await waitFor(() => expect(screen.getByLabelText('关闭查词模式')).toBeTruthy());
 
     fireEvent.press(screen.getByLabelText('开启高亮模式'));
-    await waitFor(() => expect(screen.getByTestId('annotation-picker-panel')).toBeTruthy());
-    expect(StyleSheet.flatten(screen.getByTestId('annotation-picker-panel').props.style).position).toBe('absolute');
+    await waitFor(() => expect(screen.getByTestId('highlight-color-panel')).toBeTruthy());
+    expect(screen.getByLabelText('开启查词模式')).toBeTruthy();
+    expect(screen.queryByTestId('annotation-picker-panel')).toBeNull();
+    expect(screen.getByText('高亮')).toBeTruthy();
 
-    fireEvent.press(screen.getByLabelText('使用重点高亮'));
-    await waitFor(() => expect(screen.getByTestId('highlight-mode-status')).toBeTruthy());
-    expect(screen.getByLabelText('调整高亮颜色')).toBeTruthy();
+    fireEvent.press(screen.getByLabelText('使用记忆高亮'));
+    await waitFor(() => expect(screen.getByTestId('highlight-color-panel')).toBeTruthy());
+    expect(screen.queryByTestId('highlight-mode-status')).toBeNull();
+    expect(screen.getByLabelText('关闭高亮模式')).toBeTruthy();
 
-    fireEvent.press(screen.getByLabelText('结束高亮模式'));
+    fireEvent.press(screen.getByLabelText('关闭高亮模式'));
     await waitFor(() => expect(screen.getByLabelText('开启高亮模式')).toBeTruthy());
+    expect(screen.queryByTestId('highlight-color-panel')).toBeNull();
   });
 });

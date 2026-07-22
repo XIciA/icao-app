@@ -1,0 +1,380 @@
+{
+  "sentences900:sentence900-main-772": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-835": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-332": {
+    "mainCategory": "NORMALIZATION_MISSING",
+    "note": "内容已听成 flight level 200/300，但未统一写成 FL200/FL300。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "sentences900:sentence900-main-347": {
+    "mainCategory": "NORMALIZATION_MISSING",
+    "note": "内容已听成 flight level 150，但未统一写成 FL150。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "sentences900:sentence900-main-244": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-705": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-017": {
+    "mainCategory": "NORMALIZATION_MISSING",
+    "note": "PLT 已正确规范化；数字形式的 flight level 210 尚未写成 FL210。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "sentences900:sentence900-main-811": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "eight-month 与 8-month 内容等价，不应为贴合参考写法建立公共转换。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "sentences900:sentence900-main-509": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-877": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-201": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "midpoint 与 mid-point 等价，仅为连字符差异。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "sentences900:sentence900-main-875": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-306": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-003": {
+    "mainCategory": "NORMALIZATION_MISSING",
+    "note": "内容已听成 flight level 190，但未统一写成 FL190。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "sentences900:sentence900-main-428": {
+    "mainCategory": "NORMALIZATION_REGRESSION",
+    "note": "原始 direct to Bravo Kilo Mike VOR 被错误规范化为 direct 2BKM VOR；前置词 to 被当成数字 two。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "sentences900:sentence900-main-372": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "参考为 W VOR，原始结果成为 WISQY VOR；短导航台名称证据不足，不据此加入高风险单字母热词。",
+    "referenceStatus": "suspect",
+    "semanticOutcome": "major"
+  },
+  "sentences900:sentence900-main-519": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-097": {
+    "mainCategory": "NORMALIZATION_MISSING",
+    "note": "start up at 35 被写成 3:5；仅记录上下文格式问题，本轮不从单例扩展规则。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "sentences900:sentence900-main-262": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-282": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-068": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "cancelled/canceled、标点和 time at 50 语序存在可接受差异，核心指令一致。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "sentences900:sentence900-main-030": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "icing condition/conditions 为不改变含义的单复数差异。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "sentences900:sentence900-main-592": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-708": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "wind shear、wind-shear 与现有目标写法 windshear 语义一致。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "sentences900:sentence900-main-247": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-311": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-451": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-691": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "模型多出冠词 a，民航关键内容和处置未改变，不适合热词或规范化修补。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "sentences900:sentence900-main-597": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-144": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "航空语境中的 in sight 被合并为 insight；短通用短语误吸附风险高，先记录不启用热词。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "listening:listening-main-481": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "结果修正了参考末尾 flight planned 的语法性笔误，问题语义完整。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-297": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "ANRAT 被识别为 anr，问题段还出现 CID/SID 并列；航空公司名称与 CCA 写法差异另列规范化问题。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "listening:listening-main-834": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "listening:listening-main-668": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "what was/what is 和标点变化不改变题意。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-966": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "inject it 被写成 injected，且 question 标点错位；属于普通识别差异。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "listening:listening-main-189": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "VINI 被写成 vinny，YB/SID 也未形成目标民航写法；专名错误是主要问题。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "listening:listening-main-126": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "fly/work、better/much better 与 trying/must decide 显示音频措辞和参考存在小幅变体，主旨一致。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-660": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "listening:listening-main-212": {
+    "mainCategory": "REFERENCE_MISMATCH",
+    "note": "参考的 much trench 与识别出的 marked trench 明显疑似原文错误；该样本不用于规则收益判断。",
+    "referenceStatus": "mismatch",
+    "semanticOutcome": "excluded"
+  },
+  "listening:listening-main-518": {
+    "mainCategory": "NORMALIZATION_MISSING",
+    "note": "Air France 123 内容听对，但目标呼号写法 AFR 123 尚未统一。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "listening:listening-main-1151": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "LKO VOR 被识别为 Lima Kilow Oscar view are；参考 15o radial 另有明显排版噪点，但 150 radial 内容可确认。",
+    "referenceStatus": "suspect",
+    "semanticOutcome": "major"
+  },
+  "listening:listening-main-1064": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "音频措辞与参考在指令句上有较大但同义的改写；United/UAL 是可独立处理的呼号写法差异。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-654": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "listening:listening-main-207": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "continuous/repetitive broadcasting 与参考措辞不同但定义和问题语义一致。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-209": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "若干叙述词与参考不同，核心笑话和 360 turn 完整；现有 360 规范化正确。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-829": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "listening:listening-main-1022": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "单复数、may/might 和 airfield/field 等变体不改变题意。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-1131": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "关键高度 2100 被识别为 2000，属于不可由热词或安全规范化猜回的数字错误。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "listening:listening-main-234": {
+    "mainCategory": "NORMALIZATION_MISSING",
+    "note": "China Eastern 345 内容听对，但目标呼号 CES 345 未统一；1400 与 14:00 可等价接受。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "listening:listening-main-392": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "hold short of E4 的程序性语序被打乱，影响滑行指令含义；不使用规则猜回漏词。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "listening:listening-main-195": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "WEKING 被识别为 Wickon，且问题中的 NWA 丢失 A；属于航路专名和呼号识别问题。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "listening:listening-main-459": {
+    "mainCategory": "REFERENCE_MISMATCH",
+    "note": "参考缺少 no oxygen indication 和主语信息，疑似原文漏写；排除出规则收益判断。",
+    "referenceStatus": "mismatch",
+    "semanticOutcome": "excluded"
+  },
+  "listening:listening-main-056": {
+    "mainCategory": "NORMALIZATION_MISSING",
+    "note": "Air Canada 503 内容听对，但目标呼号 ACA 503 未统一；高度、航向和跑道内容正确。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "listening:listening-main-156": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "关键飞行高度 FL290/FL330 被识别成 flight level 2900/3300，不能通过规则擅自删零。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "listening:listening-main-224": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "座椅单复数和语序变化不改变问题所需信息。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-795": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "listening:listening-main-579": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "listening:listening-main-1152": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "Chengdu、cabin、crew 及三次呼号数字均出现严重错误，属于整体识别质量问题，不能用公共规则补答案。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "unusable"
+  },
+  "listening:listening-main-328": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "介词、单复数和列举措辞略有差异，RVR 定义和问题完整。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-789": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "Question 被识别成 Quizzed in，SOP 大小写也未统一；主要是普通短语错误。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "storytelling:story-wing-012": {
+    "mainCategory": "NORMALIZATION_MISSING",
+    "note": "数字形式 runway 15 right 未统一为 runway 15R；另有 taxiway/tax away 普通识别错误。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "storytelling:story-koala-053": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "普通语境中的 TV stations 被识别为 tango victor stations；不建立题目专用 ICAO 反向替换。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "storytelling:story-wing-039": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  }
+}

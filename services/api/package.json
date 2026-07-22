@@ -5,7 +5,8 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json && node scripts/copy-ai-assets.mjs && node scripts/copy-vocabulary-assets.mjs",
     "asr:eval": "tsx scripts/asr-postprocessing-eval.ts",
-    "check": "node --check scripts/migrate.mjs && node --check scripts/import-content.mjs && node --check scripts/verify-live.mjs && node --check scripts/verify-ai-live.mjs && node --check scripts/verify-account-live.mjs && node --check scripts/copy-ai-assets.mjs && node --check scripts/copy-vocabulary-assets.mjs && pnpm typecheck && pnpm lint && pnpm test && pnpm build",
+    "asr:optimization": "tsx scripts/aviation-asr-optimization.ts",
+    "check": "node --check scripts/migrate.mjs && node --check scripts/import-content.mjs && node --check scripts/verify-live.mjs && node --check scripts/verify-ai-live.mjs && node --check scripts/verify-asr-live.mjs && node --check scripts/verify-account-live.mjs && node --check scripts/copy-ai-assets.mjs && node --check scripts/copy-vocabulary-assets.mjs && node --check scripts/aviation-asr-batch.mjs && pnpm typecheck && pnpm lint && pnpm test && pnpm build",
     "dev": "tsx watch src/main.ts",
     "lint": "eslint .",
     "migration:apply": "node scripts/migrate.mjs",
@@ -14,6 +15,7 @@
     "start": "node dist/main.js",
     "test": "vitest run",
     "verify:account-live": "node scripts/verify-account-live.mjs",
+    "verify:asr-live": "node scripts/verify-asr-live.mjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

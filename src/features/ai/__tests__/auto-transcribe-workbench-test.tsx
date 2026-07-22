@@ -5,8 +5,6 @@ import { Gesture } from 'react-native-gesture-handler';
 import { StudyWorkbench } from '@/features/question-bank/components/StudyWorkbench';
 
 const mockTranscribeRecording = jest.fn(async (_uri: string, _signal?: AbortSignal) => ({
-  hintsVersion: 'transcribe-hints:v1',
-  rawTranscript: 'raw aviation transcript',
   transcript: 'normalized aviation transcript',
 }));
 const mockAcceptAiConsent = jest.fn(async () => ({ policyVersion: 'v1', acceptedAt: new Date().toISOString() }));
@@ -85,6 +83,41 @@ describe('AI speaking workbench', () => {
     expect(screen.queryByText('转写录音')).toBeNull();
     expect(screen.queryByText('原始识别文本（只读）')).toBeNull();
     expect(screen.queryByText('raw aviation transcript')).toBeNull();
+  });
+
+  it('explains when the provider detects no speech in the recording', async () => {
+    mockTranscribeRecording.mockRejectedValueOnce(new Error('no_speech_detected'));
+    const screen = await render(
+      <StudyWorkbench
+        activeTab="mine"
+        answerText=""
+        bankId="opi"
+        bankTitle="OPI"
+        cardKey="opi-card-no-speech"
+        categoryTitle="运行"
+        learningStore={{ addRecord: mockAddRecord }}
+        noteText=""
+        onAnswerChange={jest.fn()}
+        onEditingTabChange={jest.fn()}
+        onFeedback={jest.fn()}
+        onNoteChange={jest.fn()}
+        onRetrySave={jest.fn()}
+        onTabChange={jest.fn()}
+        questionText="Question"
+        recordingKey="file:///silent.webm:3000"
+        recordingUri="file:///silent.webm"
+        referenceContent={null}
+        referenceLabel="参考答案"
+        reviewKind="opi-analysis"
+        sessionId="study-test-session"
+        sessionStartedAt="2026-07-15T00:00:00.000Z"
+        swipeGesture={Gesture.Pan().enabled(false)}
+        tabs={['mine']}
+        topicTitle="燃油"
+      />,
+    );
+
+    await waitFor(() => expect(screen.getByText('未检测到清晰语音，请回放录音并检查麦克风后重新录制。')).toBeTruthy());
   });
 
   it('does not transcribe the same recording again after the workbench remounts', async () => {

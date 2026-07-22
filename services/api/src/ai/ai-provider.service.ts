@@ -1,8 +1,6 @@
 import { Inject, Injectable, ServiceUnavailableException } from '@nestjs/common';
-import type { TranscribeResult } from '@icao/contracts';
 
 import { API_CONFIG, type ApiConfig } from '../config';
-import { normalizeAviationTranscript } from './aviation-transcript-normalization';
 
 type Completion = {
   choices?: Array<{ message?: { content?: unknown } }>;
@@ -10,7 +8,7 @@ type Completion = {
   error?: { message?: string };
 };
 
-export type ProviderMeta = { inputTokens?: number; outputTokens?: number };
+export type ProviderMeta = { audioDurationSeconds?: number; inputTokens?: number; outputTokens?: number };
 
 @Injectable()
 export class AiProviderService {
@@ -57,22 +55,5 @@ export class AiProviderService {
     return { data: data as T, meta: { inputTokens: payload.usage?.prompt_tokens, outputTokens: payload.usage?.completion_tokens } satisfies ProviderMeta };
   }
 
-  async transcribe(audio: Buffer, mimeType: string, signal?: AbortSignal): Promise<{ data: TranscribeResult; meta: ProviderMeta }> {
-    const payload = await this.request({
-      model: this.config.aiAsrModel,
-      messages: [{ role: 'user', content: [{ type: 'input_audio', input_audio: { data: `data:${mimeType};base64,${audio.toString('base64')}` } }] }],
-      asr_options: { enable_itn: false, language: 'en' },
-      stream: false,
-    }, 35_000, signal);
-    const content = payload.choices?.[0]?.message?.content;
-    const rawTranscript = typeof content === 'string' ? content.trim() : '';
-    if (!rawTranscript) throw new ServiceUnavailableException('ai_invalid_response');
-    return {
-      data: { rawTranscript, transcript: normalizeAviationTranscript(rawTranscript), hintsVersion: 'transcribe-hints:v1' },
-      meta: { inputTokens: payload.usage?.prompt_tokens, outputTokens: payload.usage?.completion_tokens },
-    };
-  }
-
   textModel() { return this.config.aiTextModel; }
-  asrModel() { return this.config.aiAsrModel; }
 }

@@ -1,10 +1,12 @@
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
+import { Platform } from 'react-native';
 
 import { QuestionBankStudyScreen } from '../components/QuestionBankStudyScreen';
 import type { QuestionBankCategory, QuestionBankDataset, QuestionBankTopic } from '../types';
 
-const mockWordLookup = jest.fn(async (_input: unknown) => ({ cached: false, definition: '偏离', sentenceMeaning: '请求偏航以避开天气。' }));
-const mockAcceptAiConsent = jest.fn();
+const mockFindStaticWordLookup = jest.fn((word: string) => word === 'deviation' ? {
+  word: 'deviation', ipa: '/ˌdiːviˈeɪʃən/', aviationMeaning: 'n. 偏离预定航向', generalMeaning: 'n. 偏差；背离',
+} : undefined);
 
 jest.mock('@react-navigation/native', () => ({ usePreventRemove: jest.fn() }));
 jest.mock('expo-router', () => ({ useRouter: () => ({ replace: jest.fn() }) }));
@@ -15,7 +17,7 @@ jest.mock('react-native-safe-area-context', () => {
 jest.mock('lucide-react-native', () => {
   const { View } = jest.requireActual('react-native');
   const Icon = () => <View />;
-  return { Check: Icon, ChevronLeft: Icon, ChevronRight: Icon, Flag: Icon, Grid3X3: Icon, Languages: Icon, WifiOff: Icon };
+  return { Check: Icon, ChevronLeft: Icon, ChevronRight: Icon, Flag: Icon, Grid3X3: Icon, Highlighter: Icon, Languages: Icon, Plus: Icon, Search: Icon, Tags: Icon, WifiOff: Icon, X: Icon };
 });
 jest.mock('@/components/states/CenteredState', () => ({ CenteredState: () => null }));
 jest.mock('@/components/ui', () => {
@@ -26,20 +28,23 @@ jest.mock('@/components/ui', () => {
     Button: ({ children, onPress }: { children: React.ReactNode; onPress?: () => void }) => <Pressable accessibilityLabel={typeof children === 'string' ? children : undefined} onPress={onPress}><Text>{children}</Text></Pressable>,
   };
 });
-jest.mock('@/features/ai/ai-client', () => ({
-  acceptAiConsent: () => mockAcceptAiConsent(),
-  hasAiConsent: async () => true,
-  wordLookup: (input: unknown) => mockWordLookup(input),
+jest.mock('../static-word-lookup/repository', () => ({
+  findStaticWordLookup: (word: string) => mockFindStaticWordLookup(word),
+  hasStaticWordLookup: (word: string) => word === 'deviation',
 }));
 jest.mock('../hooks/useQuestionBankAsset', () => ({ useQuestionBankAsset: () => ({ resolving: false, retry: jest.fn() }) }));
 jest.mock('../hooks/useStudySession', () => ({
-  useStudySession: ({ dataset, topic }: { dataset: QuestionBankDataset; topic: QuestionBankTopic }) => ({
-    activeTab: 'notes', answerText: '', card: topic.cards[0], cardState: undefined, clearRecording: jest.fn(), collapseAnswers: jest.fn(),
-    behavior: { generatedAudio: false, referenceLabel: dataset.study.copy.referenceLabel, reviewKind: 'none', taskKind: 'choices', transcriptLabel: dataset.study.copy.transcriptLabel, workbenchTabs: ['notes'] },
-    chooseOption: jest.fn(), currentIndex: 0, finish: jest.fn(), goTo: jest.fn(), hydrated: true, markCompleted: jest.fn(), markFeedback: jest.fn(), playRequestToken: 0,
-    recording: undefined, report: undefined, revealCurrent: jest.fn(), revealed: true, setActiveTab: jest.fn(), setToolMode: jest.fn(), toggleAnswers: jest.fn(),
-    topic, updateAnswer: jest.fn(), visitedIndexes: new Set([0]),
-  }),
+  useStudySession: ({ dataset, topic }: { dataset: QuestionBankDataset; topic: QuestionBankTopic }) => {
+    const { useState } = jest.requireActual('react');
+    const [toolMode, setToolMode] = useState();
+    return {
+      activeTab: 'notes', answerText: '', card: topic.cards[0], cardState: undefined, clearRecording: jest.fn(), collapseAnswers: jest.fn(),
+      behavior: { generatedAudio: false, referenceLabel: dataset.study.copy.referenceLabel, reviewKind: 'none', taskKind: 'choices', transcriptLabel: dataset.study.copy.transcriptLabel, workbenchTabs: ['notes'] },
+      chooseOption: jest.fn(), currentIndex: 0, finish: jest.fn(), goTo: jest.fn(), hydrated: true, markCompleted: jest.fn(), markFeedback: jest.fn(), playRequestToken: 0,
+      recording: undefined, report: undefined, revealCurrent: jest.fn(), revealed: true, setActiveTab: jest.fn(), setToolMode, toggleAnswers: jest.fn(), toolMode,
+      topic, updateAnswer: jest.fn(), visitedIndexes: new Set([0]),
+    };
+  },
 }));
 jest.mock('../annotations/use-question-annotations', () => ({
   useQuestionAnnotations: () => ({
@@ -48,7 +53,6 @@ jest.mock('../annotations/use-question-annotations', () => ({
   }),
 }));
 jest.mock('../platform/network-service', () => ({ getConnectivity: async () => 'online', subscribeConnectivity: () => jest.fn() }));
-jest.mock('../components/AnnotationToolbar', () => ({ AnnotationToolbar: () => null }));
 jest.mock('../components/AnswerCardSheet', () => ({ AnswerCardSheet: () => null }));
 jest.mock('../components/StudyAudioPlayer', () => ({ StudyAudioPlayer: () => null }));
 jest.mock('../components/StudyCardStack', () => {
@@ -75,24 +79,48 @@ const dataset: QuestionBankDataset = {
 
 describe('study word lookup interaction', () => {
   beforeEach(() => {
-    mockWordLookup.mockClear();
-    mockAcceptAiConsent.mockClear();
+    mockFindStaticWordLookup.mockClear();
   });
 
-  it.each([
-    ['音频原文', 'deviation', 'Request deviation to avoid weather.'],
-    ['参考答案', 'clearance', 'Confirm clearance before departure.'],
-  ])('automatically looks up a long-pressed word in %s after consent', async (_section, word, sentence) => {
+  it('opens a fixed local entry from the listening transcript without an AI request', async () => {
     const screen = await render(<QuestionBankStudyScreen category={category} dataset={dataset} topic={topic} />);
 
     await act(async () => {
-      fireEvent(screen.getByLabelText(`长按查词：${word}`), 'longPress');
-      await Promise.resolve();
-      await Promise.resolve();
+      fireEvent(screen.getByLabelText('长按查词：deviation'), 'longPress');
     });
 
-    await waitFor(() => expect(mockWordLookup).toHaveBeenCalledWith({ module: 'listening', questionId: 'card', word, sentence }));
-    expect(mockAcceptAiConsent).not.toHaveBeenCalled();
-    expect(screen.queryByLabelText('查询释义')).toBeNull();
+    await waitFor(() => expect(mockFindStaticWordLookup).toHaveBeenCalledWith('deviation'));
+    expect(screen.getByText('/ˌdiːviˈeɪʃən/')).toBeTruthy();
+    expect(screen.getByText('航空释义：n. 偏离预定航向')).toBeTruthy();
+    expect(screen.getByText('常用释义：n. 偏差；背离')).toBeTruthy();
+    expect(screen.queryByText('AI 查词')).toBeNull();
+    expect(screen.queryByText('本句理解')).toBeNull();
+    expect(screen.queryByText('重新查询')).toBeNull();
+  });
+
+  it('does not expose the listening legacy answer key as reference content', async () => {
+    const screen = await render(<QuestionBankStudyScreen category={category} dataset={dataset} topic={topic} />);
+
+    expect(screen.queryByLabelText('长按查词：clearance')).toBeNull();
+    expect(screen.queryByText('Confirm clearance before departure.')).toBeNull();
+  });
+
+  it('activates web lookup from the toolbar and opens the fixed entry with one click', async () => {
+    const originalPlatform = Platform.OS;
+    Object.defineProperty(Platform, 'OS', { configurable: true, value: 'web' });
+    try {
+      const screen = await render(<QuestionBankStudyScreen category={category} dataset={dataset} topic={topic} />);
+
+      await act(async () => {
+        fireEvent.press(screen.getByLabelText('开启查词模式'));
+      });
+      await waitFor(() => expect(screen.getByLabelText('关闭查词模式')).toBeTruthy());
+      fireEvent.press(screen.getByLabelText('查词：deviation'));
+
+      await waitFor(() => expect(mockFindStaticWordLookup).toHaveBeenCalledWith('deviation'));
+      expect(screen.getByText('/ˌdiːviˈeɪʃən/')).toBeTruthy();
+    } finally {
+      Object.defineProperty(Platform, 'OS', { configurable: true, value: originalPlatform });
+    }
   });
 });

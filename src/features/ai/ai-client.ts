@@ -44,9 +44,7 @@ export async function transcribeRecording(uri: string, signal?: AbortSignal) {
   if (AUDIO_E2E_ENABLED) {
     if (signal?.aborted) throw new Error('request_aborted');
     return {
-      rawTranscript: 'audio lifecycle test transcript',
       transcript: 'Audio lifecycle test transcript.',
-      hintsVersion: 'local-e2e-v1',
     } satisfies TranscribeResult;
   }
   const { fetch: audioFetch, form } = await createAudioUploadForm(uri);

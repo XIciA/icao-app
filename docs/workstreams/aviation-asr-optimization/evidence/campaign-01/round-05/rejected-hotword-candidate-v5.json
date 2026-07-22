@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "version": "aviation-hotwords:v5",
+  "targetModel": "fun-asr-2025-11-07",
+  "language": "en",
+  "entries": [
+    {
+      "text": "PANPAN",
+      "weight": 4,
+      "category": "emergency",
+      "source": "question-bank:release-8"
+    },
+    {
+      "text": "TCAS",
+      "weight": 4,
+      "category": "aircraft-systems",
+      "source": "question-bank:release-8"
+    }
+  ],
+  "decision": "rejected",
+  "reason": "8 条隔离定向对照中，PANPAN 与 TCAS 的两个开发集目标错例均未改善，6 个保护样本中的术语也没有被热词稳定纠正；个别非术语文本波动不能归因为热词收益。"
+}

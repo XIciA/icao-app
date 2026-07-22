@@ -4,7 +4,11 @@ import { AppStack } from '@/app/_layout';
 import IndexRoute from '@/app/index';
 
 let mockSession: { user: { id: string } } | undefined;
+let mockCanAccessApp = false;
+let mockUiAcceptanceMode = false;
 const mockRememberPendingPath = jest.fn();
+const mockExitUiAcceptanceMode = jest.fn();
+const mockReplace = jest.fn();
 
 jest.mock('lucide-react-native', () => {
   const { View } = jest.requireActual('react-native');
@@ -15,9 +19,12 @@ jest.mock('lucide-react-native', () => {
 jest.mock('@/features/auth/AuthProvider', () => ({
   AuthProvider: ({ children }: { children: React.ReactNode }) => children,
   useAuth: () => ({
+    canAccessApp: mockCanAccessApp,
+    exitUiAcceptanceMode: mockExitUiAcceptanceMode,
     rememberPendingPath: mockRememberPendingPath,
     restoring: false,
     session: mockSession,
+    uiAcceptanceMode: mockUiAcceptanceMode,
   }),
 }));
 
@@ -47,17 +54,23 @@ jest.mock('expo-router', () => {
     },
     Stack,
     usePathname: () => '/',
+    useRouter: () => ({ replace: mockReplace }),
   };
 });
 
 describe('authentication routing', () => {
   beforeEach(() => {
     mockRememberPendingPath.mockClear();
+    mockExitUiAcceptanceMode.mockClear();
+    mockReplace.mockClear();
+    mockCanAccessApp = false;
     mockSession = undefined;
+    mockUiAcceptanceMode = false;
   });
 
   it('keeps the neutral index route available during a signed-in cold start', async () => {
     mockSession = { user: { id: 'user-1' } };
+    mockCanAccessApp = true;
 
     const screen = await render(<AppStack />);
 
@@ -76,11 +89,25 @@ describe('authentication routing', () => {
     expect(screen.getByTestId('screen-auth/callback')).toBeTruthy();
   });
 
+  it('opens app routes without creating an authenticated session in UI acceptance mode', async () => {
+    mockCanAccessApp = true;
+    mockUiAcceptanceMode = true;
+
+    const screen = await render(<AppStack />);
+
+    expect(screen.getByTestId('screen-(tabs)')).toBeTruthy();
+    expect(screen.queryByTestId('screen-auth/[slug]')).toBeNull();
+    expect(screen.getByText('UI 验收模式 · 退出')).toBeTruthy();
+    expect(mockSession).toBeUndefined();
+  });
+
   it.each([
-    [{ user: { id: 'user-1' } }, '/(tabs)'],
-    [undefined, '/auth/login'],
-  ])('redirects the neutral index according to the restored session', async (session, expectedHref) => {
+    [{ user: { id: 'user-1' } }, true, '/(tabs)'],
+    [undefined, true, '/(tabs)'],
+    [undefined, false, '/auth/login'],
+  ])('redirects the neutral index according to the available access mode', async (session, canAccessApp, expectedHref) => {
     mockSession = session;
+    mockCanAccessApp = canAccessApp;
 
     const screen = await render(<IndexRoute />);
 

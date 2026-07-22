@@ -52,6 +52,10 @@ for (const file of files) {
   reject(file, content, /\bclass\s+RecordingRepository\b/, [repository, repositoryWeb], 'the recording repository must have one platform implementation');
   reject(file, content, /\ballowsRecording\s*:/, [orchestrator], 'audio profiles must be defined only by the orchestrator');
 
+  if (name === recorderAdapter && /\brecorder\.currentTime\b/.test(content)) {
+    failures.push(`${name}: recorder.currentTime has platform-divergent units; use RecorderState.durationMillis and elapsed wall time`);
+  }
+
   if (name.startsWith('src/features/question-bank/recording/') && ![repository, repositoryWeb, recorderAdapter, recorderAdapterWeb].includes(name) && !name.includes('/__tests__/')) {
     if (/from\s+['"]expo-file-system['"]/.test(content) || /\.delete\s*\(/.test(content)) {
       failures.push(`${name}: recording file creation and deletion belong to RecordingRepository`);

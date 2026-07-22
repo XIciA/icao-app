@@ -198,6 +198,9 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
         recorder.addEventListener('stop', finish, { once: true });
         recorder.addEventListener('error', fail, { once: true });
         try {
+          // Flush the encoder before stopping. Some Chromium versions otherwise
+          // emit only a small container header for short, valid recordings.
+          recorder.requestData();
           recorder.stop();
         } catch {
           fail();

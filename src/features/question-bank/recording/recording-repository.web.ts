@@ -4,9 +4,10 @@ import { RecordingRepositoryError } from './recording-repository-error';
 import type { RawRecording, RecordingAsset } from './types';
 
 const MIN_RECORDING_DURATION_MS = 400;
-// WebM/Opus is much smaller than the native WAV asset. A 10 KB floor rejects
-// legitimate browser speech recordings, especially short or quiet ones.
-const MIN_RECORDING_BYTES = 1_024;
+// WebM/Opus is compressed and Chromium may produce a valid short recording
+// below 1 KB. Keep only a small container floor; duration and the encoder's
+// bytes-per-millisecond hint provide the remaining integrity check.
+const MIN_RECORDING_BYTES = 256;
 const ORPHAN_MAX_AGE_MS = 24 * 60 * 60 * 1_000;
 
 let idSequence = 0;

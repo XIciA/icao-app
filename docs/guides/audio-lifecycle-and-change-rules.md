@@ -96,6 +96,7 @@ stateDiagram-v2
 
 - stop 必须幂等；同一次操作的重复松手共享同一个 Promise。
 - 每次 start 增加 generation。权限、prepare、stop、commit 的异步结果只有 generation 仍匹配时才能发布。
+- Native 录音时长只能由 stop 前的 `RecorderState.durationMillis` 与 adapter 自己记录的实际经过时间交叉校验；不得使用 `AudioRecorder.currentTime` 推导毫秒。Expo 原生实现曾在 iOS / Android 暴露不同单位，重复换算会把有效文件误判为不完整。
 - 后台、卸载、被其它 owner 取代会使 generation 失效并清理 raw/新提交的过期资产。
 - 原生录音器意外结束会发 `INTERRUPTED` 并进入 finalizing；如果停止结果无效，进入显式失败态。
 - reducer 对非法转换返回原 state，不“猜测”调用者意图。

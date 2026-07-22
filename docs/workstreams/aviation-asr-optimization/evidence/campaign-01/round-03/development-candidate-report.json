@@ -1,0 +1,3253 @@
+{
+  "schemaVersion": 1,
+  "campaignId": "aviation-asr-campaign-01",
+  "round": 3,
+  "phase": "development",
+  "versions": {
+    "model": "fun-asr-2025-11-07",
+    "hotwords": {
+      "mode": "none"
+    },
+    "normalizationVersion": "aviation-normalization:v5",
+    "normalizationSha256": "1f757d9620e5f4d66365990e1849b8297abaa69a157870d787546120e58a22fb"
+  },
+  "summary": {
+    "overall": {
+      "sampleCount": 63,
+      "rawContentExact": 21,
+      "finalContentExact": 23,
+      "rawWer": 0.15283613445378152,
+      "finalWer": 0.13602941176470587,
+      "criticalEntityErrors": 128
+    },
+    "byModule": {
+      "sentences900": {
+        "sampleCount": 30,
+        "rawContentExact": 15,
+        "finalContentExact": 17,
+        "rawWer": 0.11873350923482849,
+        "finalWer": 0.0870712401055409,
+        "criticalEntityErrors": 16
+      },
+      "listening": {
+        "sampleCount": 30,
+        "rawContentExact": 6,
+        "finalContentExact": 6,
+        "rawWer": 0.17929292929292928,
+        "finalWer": 0.1691919191919192,
+        "criticalEntityErrors": 88
+      },
+      "storytelling": {
+        "sampleCount": 3,
+        "rawContentExact": 0,
+        "finalContentExact": 0,
+        "rawWer": 0.09792284866468842,
+        "finalWer": 0.07418397626112759,
+        "criticalEntityErrors": 24
+      }
+    },
+    "failed": 0,
+    "classificationComplete": 63,
+    "total": 63
+  },
+  "samples": [
+    {
+      "audio": {
+        "checksum": "fcbca804485ecf150f8c2f5958cead8bf46e7126e34ed15e3da003fc34690322",
+        "durationSeconds": 5.688,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/308.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/308.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-308",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Passing outer marker.",
+      "expectedTextSha256": "4e66c289c455b8bd78f7e69ab3a3c2f9b0c92d8924c5f7a0a601879355e97d9d",
+      "id": "sentences900:sentence900-main-308",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "passing outer marker.",
+      "transcript": "passing outer marker.",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 3,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 3,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "952f3abea0f63a533ce698b7dcc9cbbc8dd10a0a07d2298d562fc6115eb98001",
+        "durationSeconds": 13.272,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/716.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/716.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-716",
+      "categoryId": "sentence900-5级",
+      "expectedField": "audioText",
+      "expectedText": "We are flying near our maximum altitude. We cannot maintain airspeed in this turbulence. Request immediate descent.",
+      "expectedTextSha256": "14e15476459bde35626a08213946f56a3846feb3690246cf251f84a1ab1e8911",
+      "id": "sentences900:sentence900-main-716",
+      "topicId": "sentence900-5级-main",
+      "status": "success",
+      "rawTranscript": "We have received information of a new volcanic eruption. Will it affect our route?",
+      "transcript": "We have received information of a new volcanic eruption. Will it affect our route?",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 17,
+        "wordErrors": 16,
+        "wer": 0.9411764705882353
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 17,
+        "wordErrors": 16,
+        "wer": 0.9411764705882353
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_MISMATCH",
+        "note": "音频内容是火山喷发询问，与最大高度和湍流原文完全无关，确认资源/文本错配。",
+        "referenceStatus": "mismatch",
+        "semanticOutcome": "excluded"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "16deb6a2ee97c007d347a8ea6c976e10e32d9d722f7d49c560024bf217bf9397",
+        "durationSeconds": 7.128,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/267.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/267.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-267",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Request speed 250 knots due turbulence.",
+      "expectedTextSha256": "b9e797d2241c58e1efe7eeaf0ade461a3dbec2e2287c6be5b3c74f58f507ba2b",
+      "id": "sentences900:sentence900-main-267",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "Request speed 25 knots due turbulence.",
+      "transcript": "Request speed 25 knots due turbulence.",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 6,
+        "wordErrors": 1,
+        "wer": 0.16666666666666666
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 6,
+        "wordErrors": 1,
+        "wer": 0.16666666666666666
+      },
+      "critical": {
+        "missing": [
+          "number:250"
+        ],
+        "hallucinated": [
+          "number:25"
+        ],
+        "errorCount": 2
+      },
+      "classification": {
+        "mainCategory": "ASR_GENERAL",
+        "note": "关键速度 250 被识别为 25，不能通过规则猜回。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "major"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "c175bc3b970979b1404ded07ae3ec17be502ac644bc5d28f5a86a6adf40054c6",
+        "durationSeconds": 8.64,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/640.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/640.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-640",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Our airspeed is unreliable. Request radar vectors for long final.",
+      "expectedTextSha256": "47f1718c1f503afef697847cd4f9db1495c6094ef97f77711eb6568e87e1a7ed",
+      "id": "sentences900:sentence900-main-640",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "Our airspeed is unreliable. Request radar vectors for long final.",
+      "transcript": "Our airspeed is unreliable. Request radar vectors for long final.",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 10,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 10,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "ffb2d300df114f0e9631333d60d9a53b058508af3f1e0859a3ba7b14b211bdd7",
+        "durationSeconds": 9.528,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/881.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/881.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-881",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Unable, we are in IMC.",
+      "expectedTextSha256": "d5495c98fb0ff5ce16eca90a6e0656ed97c8d5e1234ba38f1eb5ff79e67bd727",
+      "id": "sentences900:sentence900-main-881",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "Unable, we are in IMC.",
+      "transcript": "Unable, we are in IMC.",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 5,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 5,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "00b8f95b74d6a4d2bb3a13502765000ba9aaaf9902d33689d95f36fb57b9d29d",
+        "durationSeconds": 14.592,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/810.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/810.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-810",
+      "categoryId": "sentence900-5级",
+      "expectedField": "audioText",
+      "expectedText": "The purser told me the injured passenger has blood type O. Maybe this information is useful to the paramedics.",
+      "expectedTextSha256": "5d9440c9cf267bf441fcd3ab142758b7e052a3f3e6b1f202282ffd30e2b53ae7",
+      "id": "sentences900:sentence900-main-810",
+      "topicId": "sentence900-5级-main",
+      "status": "success",
+      "rawTranscript": "The purser told me the injured passenger has blood type O. Maybe this information is useful to the paramedics.",
+      "transcript": "The purser told me the injured passenger has blood type O. Maybe this information is useful to the paramedics.",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 19,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 19,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "9faafa1c216cc497a7660decb0db54ff432d3708f456bc3811e248ca3789c73f",
+        "durationSeconds": 9.672,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/653.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/653.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-653",
+      "categoryId": "sentence900-5级",
+      "expectedField": "audioText",
+      "expectedText": "There was heavy smoke in the cabin before we ventilated the aircraft. Request medical assistance for passengers after landing.",
+      "expectedTextSha256": "bfc6c9f3d8c2041678d40e107ba58d13ce5bbf59891621b25ebc3eae6c84b4e1",
+      "id": "sentences900:sentence900-main-653",
+      "topicId": "sentence900-5级-main",
+      "status": "success",
+      "rawTranscript": "There was heavy smoke in the cabin before we ventilated the aircraft. Request medical assistance for the passengers after landing.",
+      "transcript": "There was heavy smoke in the cabin before we ventilated the aircraft. Request medical assistance for the passengers after landing.",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 19,
+        "wordErrors": 1,
+        "wer": 0.05263157894736842
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 19,
+        "wordErrors": 1,
+        "wer": 0.05263157894736842
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "多出的 the 不改变烟雾和医疗协助含义。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "9bfc6e87ba2f08a25ead786a30514f5ce40e4ffc4edefec9ec82fa5f69f4b032",
+        "durationSeconds": 10.416,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/757.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/757.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-757",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "There are red lights ahead of us. Confirm taxi instructions.",
+      "expectedTextSha256": "0486deefb106dc01995733eb5f44f09bbc62c6add01f8bbfc79025522601472b",
+      "id": "sentences900:sentence900-main-757",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "There are red lights ahead of us. Confirm taxi instructions.",
+      "transcript": "There are red lights ahead of us. Confirm taxi instructions.",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 10,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 10,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "b86fff856f6896394364e727968fe2075329488cabd6523d65698f0b31569262",
+        "durationSeconds": 11.496,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/749.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/749.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-749",
+      "categoryId": "sentence900-5级",
+      "expectedField": "audioText",
+      "expectedText": "We have a visual on a tornado at our 10 o’clock, about 2 miles. Request immediate right turn.",
+      "expectedTextSha256": "d5584b0f3d3720447e6bf69073b544970511614a415739d21be2e621b1774833",
+      "id": "sentences900:sentence900-main-749",
+      "topicId": "sentence900-5级-main",
+      "status": "success",
+      "rawTranscript": "we have a visual on a tornado at our ten o'clock about two miles request immediate right turn.",
+      "transcript": "we have a visual on a tornado at our ten o'clock about 2 miles request immediate right turn.",
+      "transformations": [
+        {
+          "after": "we have a visual on a tornado at our ten o'clock about 2 miles request immediate right turn.",
+          "before": "we have a visual on a tornado at our ten o'clock about two miles request immediate right turn.",
+          "risk": "context-required",
+          "ruleId": "ALTITUDE-001"
+        }
+      ],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 19,
+        "wordErrors": 2,
+        "wer": 0.10526315789473684
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 19,
+        "wordErrors": 1,
+        "wer": 0.05263157894736842
+      },
+      "critical": {
+        "missing": [
+          "number:10"
+        ],
+        "hallucinated": [],
+        "errorCount": 1
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "ten/two 与 10/2 及标点差异不改变方位和距离。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "e8d3a614a0596fdc441e7ebbf752d00b57ddfdee5ad5d33c5def3589739204e3",
+        "durationSeconds": 6.36,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/122.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/122.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-122",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Approaching holding point, request crossing Runway 24.",
+      "expectedTextSha256": "8bcc568811b06505d55da675f6e54c1f90ad42302a878162765e170382f097c0",
+      "id": "sentences900:sentence900-main-122",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "Approach holding point, request crossing runway 24.",
+      "transcript": "Approach holding point, request crossing runway 24.",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 7,
+        "wordErrors": 1,
+        "wer": 0.14285714285714285
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 7,
+        "wordErrors": 1,
+        "wer": 0.14285714285714285
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "ASR_GENERAL",
+        "note": "Approaching 被识别为 Approach，跑道 24 和过跑道请求保持正确。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "minor"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "ca8edfa03edcf2f092459e1b855faec11239538dde3690fbe61f94e5a8309429",
+        "durationSeconds": 9.72,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/583.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/583.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-583",
+      "categoryId": "sentence900-4级",
+      "expectedField": "audioText",
+      "expectedText": "We have master warning lights in the cockpit. Request landing at the nearest suitable airport.",
+      "expectedTextSha256": "26fadd1e6b38c4ae1e5298ee3242f265c7d5279f113de5d07ef18bdb4d86f1b4",
+      "id": "sentences900:sentence900-main-583",
+      "topicId": "sentence900-4级-main",
+      "status": "success",
+      "rawTranscript": "We have master warning lights in the cockpit. Request landing at the nearest suitable airport.",
+      "transcript": "We have master warning lights in the cockpit. Request landing at the nearest suitable airport.",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 15,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 15,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "991a20e7ae9bbb73e791a4eefe7b6e750d56054d4cbb10c0e78bf85de6b18cb5",
+        "durationSeconds": 11.424,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/820.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/820.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-820",
+      "categoryId": "sentence900-5级",
+      "expectedField": "audioText",
+      "expectedText": "I can see the area outside of the cockpit. There are two hijack suspects standing in the aisle.",
+      "expectedTextSha256": "1b122b29f882e3dd6f4bfec326ad4184cfdd914c2c790e9ebeb248fbf8818247",
+      "id": "sentences900:sentence900-main-820",
+      "topicId": "sentence900-5级-main",
+      "status": "success",
+      "rawTranscript": "I can see the area outside of the cockpit. There are two hijack suspects standing in the aisle.",
+      "transcript": "I can see the area outside of the cockpit. There are two hijack suspects standing in the aisle.",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 18,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 18,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "664c6043c8194d899e5affcd34f80f3143b04c4f369dcfcad081c19ea100f1d3",
+        "durationSeconds": 8.304,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/664.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/664.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-664",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "CPDLC terminated due to failure, reverting to voice communication.",
+      "expectedTextSha256": "ca1b633510bdcfe4370cfd07a9be935c70a7f3fe14a52440b1668693cd55c516",
+      "id": "sentences900:sentence900-main-664",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "CPDLC terminated due to failure reverting to voice communication.",
+      "transcript": "CPDLC terminated due to failure reverting to voice communication.",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 9,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 9,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "d6ed2bf89c09c9cd7cfc368574e3f64c7086e5fa938ea74690cb7d2731867790",
+        "durationSeconds": 6.696,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/130.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/130.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-130",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Follow the greens to holding point Runway 05R.",
+      "expectedTextSha256": "f8575481f896a4cdc3d27bdfe65c1300595dca3a9103c61e74884b58219d7581",
+      "id": "sentences900:sentence900-main-130",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "Follow the greens to holding point runway 05 right.",
+      "transcript": "Follow the greens to holding point runway 05R.",
+      "transformations": [
+        {
+          "after": "Follow the greens to holding point runway 05R.",
+          "before": "Follow the greens to holding point runway 05 right.",
+          "risk": "context-required",
+          "ruleId": "RUNWAY-001"
+        }
+      ],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 8,
+        "wordErrors": 2,
+        "wer": 0.25
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 8,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "6b26cddd416435d40b96461ad0400337e1c0217e592dea1eaa9f68f13f583363",
+        "durationSeconds": 4.752,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/064.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/064.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-064",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Revised expected approach time 54.",
+      "expectedTextSha256": "a0534d3fe74e65c04d1e5511a49cb69833f5a6a60be476f94c5f725892f5826d",
+      "id": "sentences900:sentence900-main-064",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "Revised expected approach time 54.",
+      "transcript": "Revised expected approach time 54.",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 5,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 5,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "eea3668e773f5e4ed9a17266109019e4f2fc07437f6d5682a527a3190ca21e7b",
+        "durationSeconds": 9.84,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/594.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/594.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-594",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "We no longer have altitude warning. Request leaving RVSM airspace.",
+      "expectedTextSha256": "1879fd96257df63ea52805d58ca0b2c14e8f79da0841e806b3e8708b0091455f",
+      "id": "sentences900:sentence900-main-594",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "We no longer have altitude warning. Request leaving RBSM airspace.",
+      "transcript": "We no longer have altitude warning. Request leaving RBSM airspace.",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 10,
+        "wordErrors": 1,
+        "wer": 0.1
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 10,
+        "wordErrors": 1,
+        "wer": 0.1
+      },
+      "critical": {
+        "missing": [
+          "letter:RVSM"
+        ],
+        "hallucinated": [
+          "letter:RBSM"
+        ],
+        "errorCount": 2
+      },
+      "classification": {
+        "mainCategory": "ASR_DOMAIN",
+        "note": "RVSM 被识别为 RBSM，是标准缩写的上游领域错误。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "major"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "9bc6ccd78ab130cb44b8f575d369e1fc70d3ab01533a7334347a710554d54281",
+        "durationSeconds": 13.44,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/553.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/553.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-553",
+      "categoryId": "sentence900-5级",
+      "expectedField": "audioText",
+      "expectedText": "We have leaked a large amount of fuel onto the apron. Request fire trucks on standby and the stairs vehicle to disembark the passengers.",
+      "expectedTextSha256": "78b550875fe813c1ef978e6fea21d55a9394b3f205670df228a2e9bd01324ec8",
+      "id": "sentences900:sentence900-main-553",
+      "topicId": "sentence900-5级-main",
+      "status": "success",
+      "rawTranscript": "We have leaked a large amount of fuel onto the apron. Request fire trucks on standby and the stairs vehicle to disembark the passengers.",
+      "transcript": "We have leaked a large amount of fuel onto the apron. Request fire trucks on standby and the stairs vehicle to disembark the passengers.",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 24,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 24,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "71b4275b99dcbe819b22b4c7a85284cf7cba18e473ba68a83d6c4438b9caf08d",
+        "durationSeconds": 9.768,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/416.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/416.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-416",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Descending to 5000 feet QNH 1014, report passing 7000 feet.",
+      "expectedTextSha256": "a3ea316aa6f7d8560f7f18a18aa6ed8daa7bc462d35bdb80c766d29dbe5990b1",
+      "id": "sentences900:sentence900-main-416",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "Descending to 5,000 feet QNH 1014. Report passing 7,000 feet.",
+      "transcript": "Descending to 5,000 feet QNH 1014. Report passing 7,000 feet.",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 10,
+        "wordErrors": 4,
+        "wer": 0.4
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 10,
+        "wordErrors": 4,
+        "wer": 0.4
+      },
+      "critical": {
+        "missing": [
+          "number:5000",
+          "number:7000"
+        ],
+        "hallucinated": [
+          "number:5",
+          "number:000",
+          "number:000",
+          "number:7"
+        ],
+        "errorCount": 6
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "千位分隔符和标点不同，5000、1014、7000 均正确。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "eec6dbd611a3c8bfa841262859a75e8a6b1acc6a64f38adcd0b834b0a9239361",
+        "durationSeconds": 9.528,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/256.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/256.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-256",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Maintain Mach decimal 82, transition speed 310 knots.",
+      "expectedTextSha256": "b0ee3a89f718b2835cc32d2b178ca624d817fcba421620a436639529bfaf6162",
+      "id": "sentences900:sentence900-main-256",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "Maintain Mach 0.82, transition speed 310 knots.",
+      "transcript": "Maintain Mach 0.82, transition speed 310 knots.",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 8,
+        "wordErrors": 1,
+        "wer": 0.125
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 8,
+        "wordErrors": 1,
+        "wer": 0.125
+      },
+      "critical": {
+        "missing": [
+          "number:82"
+        ],
+        "hallucinated": [
+          "number:0.82"
+        ],
+        "errorCount": 2
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "Mach decimal 82 与 Mach 0.82 数值等价。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "96c7a414303f4e9f57d2c5780593f4eca9ec0e2132932267d856f44790c5ae47",
+        "durationSeconds": 8.088,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/483.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/483.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-483",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Our Airline policy does not allow us to perform CAT IIIC approach.",
+      "expectedTextSha256": "3e8253d8f415b379224a9ac7206a6a0a8541099fe3f4a923a2e43dd2b1631ada",
+      "id": "sentences900:sentence900-main-483",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "Our airline policy does not allow us to perform CAT III C approach.",
+      "transcript": "Our airline policy does not allow us to perform CAT III C approach.",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 12,
+        "wordErrors": 2,
+        "wer": 0.16666666666666666
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 12,
+        "wordErrors": 2,
+        "wer": 0.16666666666666666
+      },
+      "critical": {
+        "missing": [
+          "letter:IIIC"
+        ],
+        "hallucinated": [
+          "letter:III"
+        ],
+        "errorCount": 2
+      },
+      "classification": {
+        "mainCategory": "NORMALIZATION_MISSING",
+        "note": "CAT III C 内容已听对，但目标类别写法应统一为 CAT IIIC。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "minor"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "6b105b2142a923c97205b6d075731d11c645809bb60b970772e578cecb3f1e4f",
+        "durationSeconds": 9.408,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/893.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/893.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-893",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "We had to overshoot because of wake turbulence.",
+      "expectedTextSha256": "71e36c2e2ecf2d16e50330618ad919b5957420f8de71ddfdef4f47d6869da6e0",
+      "id": "sentences900:sentence900-main-893",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "We had to overshoot because of wake turbulence.",
+      "transcript": "We had to overshoot because of wake turbulence.",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 8,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 8,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "f37a190049f04de3c1b782ca9721f563ac7c212be363b35bfab2e384da82c43c",
+        "durationSeconds": 4.704,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/101.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/101.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-101",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "You are unreadable.",
+      "expectedTextSha256": "30c6d8aaa48a6d13016b4e34fe4cc229b207e558ecf3a392fbf169ca39a0f9bd",
+      "id": "sentences900:sentence900-main-101",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "you are unreadable.",
+      "transcript": "you are unreadable.",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 3,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 3,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "86b427052005409409c5daec698a4fc75f07424a15b551418a2cf5daf35c39bd",
+        "durationSeconds": 19.392,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/074.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/074.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-074",
+      "categoryId": "sentence900-5级",
+      "expectedField": "audioText",
+      "expectedText": "Hold south of AMS VOR at 9000 feet, inbound track 270 degrees, left hand pattern, outbound time 1 minute. Expect further clearance at 46.",
+      "expectedTextSha256": "b6da02c5760df8f0a2d448b46c4646878ab0a0fb98106c39e73765541a99272b",
+      "id": "sentences900:sentence900-main-074",
+      "topicId": "sentence900-5级-main",
+      "status": "success",
+      "rawTranscript": "Hold south of Alpha Mike Sierra VOR at nine thousand feet inbound track 270 degrees left-hand pattern outbound time one minute expect further clearance at four six.",
+      "transcript": "Hold south of AMS VOR at 9000 feet inbound track 270 degrees left-hand pattern outbound time one minute expect further clearance at 46.",
+      "transformations": [
+        {
+          "after": "Hold south of Alpha Mike Sierra VOR at 9000 feet inbound track 270 degrees left-hand pattern outbound time one minute expect further clearance at four six.",
+          "before": "Hold south of Alpha Mike Sierra VOR at nine thousand feet inbound track 270 degrees left-hand pattern outbound time one minute expect further clearance at four six.",
+          "risk": "context-required",
+          "ruleId": "ALTITUDE-001"
+        },
+        {
+          "after": "Hold south of AMS VOR at 9000 feet inbound track 270 degrees left-hand pattern outbound time one minute expect further clearance at four six.",
+          "before": "Hold south of Alpha Mike Sierra VOR at 9000 feet inbound track 270 degrees left-hand pattern outbound time one minute expect further clearance at four six.",
+          "risk": "context-required",
+          "ruleId": "NAVAID-001"
+        },
+        {
+          "after": "Hold south of AMS VOR at 9000 feet inbound track 270 degrees left-hand pattern outbound time one minute expect further clearance at 46.",
+          "before": "Hold south of AMS VOR at 9000 feet inbound track 270 degrees left-hand pattern outbound time one minute expect further clearance at four six.",
+          "risk": "context-required",
+          "ruleId": "TIME-001"
+        }
+      ],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 24,
+        "wordErrors": 8,
+        "wer": 0.3333333333333333
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 24,
+        "wordErrors": 1,
+        "wer": 0.041666666666666664
+      },
+      "critical": {
+        "missing": [
+          "number:1"
+        ],
+        "hallucinated": [],
+        "errorCount": 1
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "left-hand、one minute 和标点为等价写法；AMS、9000、270、46 均正确。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "e76896bee6962c8c5c950b73c83fcfe9c8dc40e01890f2398b5d75943991d675",
+        "durationSeconds": 9.12,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/626.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/626.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-626",
+      "categoryId": "sentence900-4级",
+      "expectedField": "audioText",
+      "expectedText": "The tyres are deflated. We will have to hold at present position for maintenance inspection.",
+      "expectedTextSha256": "0ffbaf19fb91af8a6276761790f5a0fddd28b9ac09ec58f90d16133e08c8d050",
+      "id": "sentences900:sentence900-main-626",
+      "topicId": "sentence900-4级-main",
+      "status": "success",
+      "rawTranscript": "the tires are deflated. we will have to hold the present position for maintenance inspection.",
+      "transcript": "the tires are deflated. we will have to hold the present position for maintenance inspection.",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 15,
+        "wordErrors": 2,
+        "wer": 0.13333333333333333
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 15,
+        "wordErrors": 2,
+        "wer": 0.13333333333333333
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "tyres/tires 及 hold at/hold the 不改变维护等待含义。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "7766b8b518c4613e09b8dca22a3e07e49ad25606132e8ce7f9be532ca6f46b30",
+        "durationSeconds": 11.808,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/764.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/764.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-764",
+      "categoryId": "sentence900-5级",
+      "expectedField": "audioText",
+      "expectedText": "We had difficulty starting up our engines due strong tailwind. Request to change our pushback position facing west.",
+      "expectedTextSha256": "218077be4757cad0192aaf161d5b5f0f33371fd3fd6268fc99fd9cc4a63b6d94",
+      "id": "sentences900:sentence900-main-764",
+      "topicId": "sentence900-5级-main",
+      "status": "success",
+      "rawTranscript": "We had difficulties starting up our engines due strong tailwind. Request to change our pushback position facing west.",
+      "transcript": "We had difficulties starting up our engines due strong tailwind. Request to change our pushback position facing west.",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 18,
+        "wordErrors": 1,
+        "wer": 0.05555555555555555
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 18,
+        "wordErrors": 1,
+        "wer": 0.05555555555555555
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "difficulty/difficulties 为不影响含义的单复数变化。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "c9446e63b40a843062105965305a9edc1e1b9b3538af011ab6aecd4440946698",
+        "durationSeconds": 9.648,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/495.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/495.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-495",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Our data-link has malfunctioned. Request re-release the flight plan by voice.",
+      "expectedTextSha256": "7b04b7020aff46d77f852f878c34c3c5c9599e10324d7c019743c2208c4493ba",
+      "id": "sentences900:sentence900-main-495",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "Our data link has malfunctioned. Request release the flight plan by voice.",
+      "transcript": "Our data link has malfunctioned. Request release the flight plan by voice.",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 13,
+        "wordErrors": 1,
+        "wer": 0.07692307692307693
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 13,
+        "wordErrors": 1,
+        "wer": 0.07692307692307693
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "ASR_GENERAL",
+        "note": "re-release 被识别为 release，可能改变再次放行含义，普通前缀漏词不以规则修补。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "minor"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "69a520f3471f45d4b0aa739474d4ac7b54ab4e2e2b5cdeb309c809ddfc5aedac",
+        "durationSeconds": 13.896,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/751.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/751.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-751",
+      "categoryId": "sentence900-5级",
+      "expectedField": "audioText",
+      "expectedText": "The hurricane has gathered in strength and will affect all airports at the south coast. Request diversion.",
+      "expectedTextSha256": "d57f42ddafa8b47bb0f116ffddde0cfaa9603300b976e05faa06d1d01dd4a593",
+      "id": "sentences900:sentence900-main-751",
+      "topicId": "sentence900-5级-main",
+      "status": "success",
+      "rawTranscript": "The hurricane has gathered in strength and will affect all airports at the south coast. Request diversion.",
+      "transcript": "The hurricane has gathered in strength and will affect all airports at the south coast. Request diversion.",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 17,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 17,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "bed3309f2a296c3e6afdf7b2db7ae9b2c5d7397ddbe9f69c69cae92c743db10a",
+        "durationSeconds": 9.576,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/892.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/892.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-892",
+      "categoryId": "sentence900-4级",
+      "expectedField": "audioText",
+      "expectedText": "Sorry, there was a problem with my audio equipment. How do you read me now?",
+      "expectedTextSha256": "08683c794e89dfe64484e79efc15ad365bb6479f10067eb5ae2dbbb1e8deea4a",
+      "id": "sentences900:sentence900-main-892",
+      "topicId": "sentence900-4级-main",
+      "status": "success",
+      "rawTranscript": "Sorry, there was a problem with my audio equipment. How do you read me now?",
+      "transcript": "Sorry, there was a problem with my audio equipment. How do you read me now?",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 15,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": true,
+        "wordCount": 15,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "ba55b2cb937fb9e4a632e349fb82a94cce836a91876aa923d7a448964ad79460",
+        "durationSeconds": 11.352,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/446.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/446.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-446",
+      "categoryId": "sentence900-5级",
+      "expectedField": "audioText",
+      "expectedText": "We just had a smoke emergency. We need to depressurize the airplane to let in fresh air. Request rapid descent to 8000 feet.",
+      "expectedTextSha256": "8732a2db43e8607fbc6c646eed85bb97c60b1c64d0b2079906db661e11794886",
+      "id": "sentences900:sentence900-main-446",
+      "topicId": "sentence900-5级-main",
+      "status": "success",
+      "rawTranscript": "we just had a smoke emergency. we need to depressurize the airplane to let in fresh air. request rapid descent to eight thousand feet.",
+      "transcript": "we just had a smoke emergency. we need to depressurize the airplane to let in fresh air. request rapid descent to 8000 feet.",
+      "transformations": [
+        {
+          "after": "we just had a smoke emergency. we need to depressurize the airplane to let in fresh air. request rapid descent to 8000 feet.",
+          "before": "we just had a smoke emergency. we need to depressurize the airplane to let in fresh air. request rapid descent to eight thousand feet.",
+          "risk": "context-required",
+          "ruleId": "ALTITUDE-001"
+        }
+      ],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 23,
+        "wordErrors": 2,
+        "wer": 0.08695652173913043
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 23,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "a8edccfe874739a27d0efb6fdadd3f701ecb5af617d99caa2cb271c1090a0ef6",
+        "durationSeconds": 6.888,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/421.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/421.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-421",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Remain outside controlled airspace, expect further clearance at 55.",
+      "expectedTextSha256": "6f3727c6fe55f619025fa99b969620dc511cb9577532baaa3e91b5a0aabc57c1",
+      "id": "sentences900:sentence900-main-421",
+      "topicId": "sentence900-3级-main",
+      "status": "success",
+      "rawTranscript": "Remain outside controlled airspace. Expect further clearance at 55.",
+      "transcript": "Remain outside controlled airspace. Expect further clearance at 55.",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 9,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 9,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "c34141696ae48380f7fa17bed98bfc1a5bd33086887e46d4e08590f56628fed0",
+        "durationSeconds": 19.248,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/223.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/223.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-223",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "The ailerons perform the same function on the ground as they do in the air. That is, they alter the lift and drag components on the wings. Question: What is the function of the ailerons?",
+      "expectedTextSha256": "f7c727c82564113d81a17ec31a199f9e936714908df54ec685f1251805290fc9",
+      "id": "listening:listening-main-223",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "The ailerons perform the same function on the ground as they do in the air, that is, to change the lift and drag components of the wing. Question: What is the function of the ailerons?",
+      "transcript": "The ailerons perform the same function on the ground as they do in the air, that is, to change the lift and drag components of the wing. Question: What is the function of the ailerons?",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 35,
+        "wordErrors": 4,
+        "wer": 0.11428571428571428
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 35,
+        "wordErrors": 4,
+        "wer": 0.11428571428571428
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "alter/change、components on/of wing 为等义措辞。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "5d915079128fdf238adfc07753cbbbaf0052b8a2d1e16b3253467263de1bc059",
+        "durationSeconds": 17.676,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-01-q19.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-01-q19.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-648",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "Air traffic control uses different frequencies for different aircraft. This helps to manage the communication and avoid interference, allowing them to clearly communicate with each aircraft in a busy airspace. Question: How does air traffic control ensure clear communication with multiple aircraft?",
+      "expectedTextSha256": "8b3f1814ee69ee96eaa324d7a1adf59564d6e75c2a6f1e52661727a5c0b6f68d",
+      "id": "listening:listening-main-648",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "Air traffic control uses different frequencies for different aircraft. This helps to manage the communication and avoid interference, allowing them to clearly communicate with each aircraft in a busy airspace. Question, how does air traffic control ensure clear communication with multiple aircraft?",
+      "transcript": "Air traffic control uses different frequencies for different aircraft. This helps to manage the communication and avoid interference, allowing them to clearly communicate with each aircraft in a busy airspace. Question, how does air traffic control ensure clear communication with multiple aircraft?",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 42,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 42,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "62d170bd4ab01775aac07fff8f9658b2f66f26c9c4216437ddc96163884093da",
+        "durationSeconds": 21.636,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-01-q16.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-01-q16.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-645",
+      "categoryId": "listening-category-03",
+      "expectedField": "audioText",
+      "expectedText": "Pilots and air traffic controllers usually communicate on the frequency of 118.0MHz. This frequency is widely used for various air traffic control communications, including takeoff, landing, and en-route instructions. Question: What is the most common communication frequency used by pilots and air traffic controllers?",
+      "expectedTextSha256": "e4dc09c3ff118c2613f9633bab1d5c5d4e296646b17f8d9df836cd3bead995bf",
+      "id": "listening:listening-main-645",
+      "topicId": "listening-topic-03",
+      "status": "success",
+      "rawTranscript": "Pilots and air traffic controllers usually communicate on the frequency of 118 decimal 0 megahertz. This frequency is widely used for various air traffic control communications, including takeoff landing and enroute instructions question. What is the most common communication frequency used by pilots and air traffic controllers?",
+      "transcript": "Pilots and air traffic controllers usually communicate on the frequency of 118.0 MHz. This frequency is widely used for various air traffic control communications, including takeoff landing and enroute instructions question. What is the most common communication frequency used by pilots and air traffic controllers?",
+      "transformations": [
+        {
+          "after": "Pilots and air traffic controllers usually communicate on the frequency of 118.0 MHz. This frequency is widely used for various air traffic control communications, including takeoff landing and enroute instructions question. What is the most common communication frequency used by pilots and air traffic controllers?",
+          "before": "Pilots and air traffic controllers usually communicate on the frequency of 118 decimal 0 megahertz. This frequency is widely used for various air traffic control communications, including takeoff landing and enroute instructions question. What is the most common communication frequency used by pilots and air traffic controllers?",
+          "risk": "context-required",
+          "ruleId": "FREQ-005"
+        }
+      ],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 46,
+        "wordErrors": 5,
+        "wer": 0.10869565217391304
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 46,
+        "wordErrors": 4,
+        "wer": 0.08695652173913043
+      },
+      "critical": {
+        "missing": [
+          "number:118"
+        ],
+        "hallucinated": [
+          "frequency:118.0",
+          "number:118.0"
+        ],
+        "errorCount": 3
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "频率已从 118 decimal 0 megahertz 安全统一为 118.0 MHz；剩余冠词、连字符和 question 标点是等价差异。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "80316298c00e8f08fcea1a39d65f18042d17de8adc857990640b4b057946a58f",
+        "durationSeconds": 15.048,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-06-q11.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-06-q11.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-699",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "The aircraft flew over touchdown zone and landed half down the runway, it break heavily and vacate the runway onto taxiway A4. Question: Where did the aircraft land?",
+      "expectedTextSha256": "57e4c2017c41944dc23bd70b1f2691312bb86757596a5cdf459d9ee91cfafc16",
+      "id": "listening:listening-main-699",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "The aircraft flew over the touchdown zone and landed half way down the runway. It braked heavily and vacated at the end of the runway onto taxiway Alpha Four. Where did the aircraft land?",
+      "transcript": "The aircraft flew over the touchdown zone and landed half way down the runway. It braked heavily and vacated at the end of the runway onto taxiway Alpha 4. Where did the aircraft land?",
+      "transformations": [
+        {
+          "after": "The aircraft flew over the touchdown zone and landed half way down the runway. It braked heavily and vacated at the end of the runway onto taxiway Alpha 4. Where did the aircraft land?",
+          "before": "The aircraft flew over the touchdown zone and landed half way down the runway. It braked heavily and vacated at the end of the runway onto taxiway Alpha Four. Where did the aircraft land?",
+          "risk": "context-required",
+          "ruleId": "POSITION-001"
+        }
+      ],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 28,
+        "wordErrors": 10,
+        "wer": 0.35714285714285715
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 28,
+        "wordErrors": 10,
+        "wer": 0.35714285714285715
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [
+          "number:4"
+        ],
+        "errorCount": 1
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "音频包含 halfway 和 at the end 等参考未完整呈现的措辞；着陆位置主旨一致。",
+        "referenceStatus": "suspect",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "c16cbff796def055053ff6eaf4ec6865cd6587f3f5ecaf9887bf12ff66b0290d",
+        "durationSeconds": 28.728,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/575.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/575.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-575",
+      "categoryId": "listening-category-02",
+      "expectedField": "audioText",
+      "expectedText": "P: Tower, CES 525, go around, no contact at minimal. C: CES 525, climb and maintain nine thousand meters, fly heading zero six zero, contact approach on one one niner decimal zero five. Question: why did CES 525 pull up?",
+      "expectedTextSha256": "ae3dad8b1fea49b6ee3a9de3599f6dc7a74a548c1ecd4557589536b4218f34ce",
+      "id": "listening:listening-main-575",
+      "topicId": "listening-topic-02",
+      "status": "success",
+      "rawTranscript": "Tower China Eastern 525, go around, no contact, minimal. China Eastern 525, climb and maintain 900 meters, fly heading 060, contact approach on 1190.05.Question: Why did China Eastern 525 pull up?",
+      "transcript": "Tower China Eastern 525, go around, no contact, minimal. China Eastern 525, climb and maintain 900 meters, fly heading 060, contact approach on 1190.05.Question: Why did China Eastern 525 pull up?",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 40,
+        "wordErrors": 19,
+        "wer": 0.475
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 40,
+        "wordErrors": 19,
+        "wer": 0.475
+      },
+      "critical": {
+        "missing": [
+          "callsign:CES 525",
+          "callsign:CES 525",
+          "callsign:CES 525",
+          "letter:CES",
+          "letter:CES",
+          "letter:CES"
+        ],
+        "hallucinated": [
+          "heading:HEADING 060",
+          "number:900",
+          "number:060",
+          "number:1190.05"
+        ],
+        "errorCount": 10
+      },
+      "classification": {
+        "mainCategory": "ASR_GENERAL",
+        "note": "9000 米成为 900 米、119.05 成为 1190.05，两个关键数值严重错误，禁止规则猜回。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "unusable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "cef457b62d353d43101041162ec6bd325fd0a4d54959623c810fe873cae47bba",
+        "durationSeconds": 27.624,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/567.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/567.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-567",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "Unstable atmospheric conditions such as extreme turbulence, severe wind gusts, sudden loss gain of airspeed as much as 40 to 50 knots, thunderstorms with extremely heavy rains, hail, icing and lightning may Exist at any altitude. Question: which of the following is not mentioned in the passage?",
+      "expectedTextSha256": "a5387e4fc5149b99ccd27280fa6d7728c0b90b9aaa60ead9902f36ca14f18b1f",
+      "id": "listening:listening-main-567",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "Unstable atmosphere conditions, such as extreme turbulence, severe wind gusts, sudden loss/gain of airspeed as much as 40 to 50 knots, thunderstorms with extremely heavy rains, hail, icing, and lightning may exist at any altitude. Q. Which of the following is not mentioned in the passage?",
+      "transcript": "Unstable atmosphere conditions, such as extreme turbulence, severe wind gusts, sudden loss/gain of airspeed as much as 40 to 50 knots, thunderstorms with extremely heavy rains, hail, icing, and lightning may exist at any altitude. Q. Which of the following is not mentioned in the passage?",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 47,
+        "wordErrors": 2,
+        "wer": 0.0425531914893617
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 47,
+        "wordErrors": 2,
+        "wer": 0.0425531914893617
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "atmospheric/atmosphere、loss gain 标点和 question 标记差异不改变气象清单。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "f61278376dcab9176fb63cbd1107c8e8b43d6c8258ca36f47ce6d3453a59b413",
+        "durationSeconds": 25.92,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/446.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/446.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-446",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "B1: I was wondering whether you know wind shear. B2: Yes, the most hazardous wind shear is microburst. It can occur beneath the thunderstorm, rain shower or cumulus cloud. Question: What kind of wind shear is the most dangerous?",
+      "expectedTextSha256": "7cc5e1900903b41bf032d988633f0e4b7bdab8a4970541cb00a31df413f8a3b4",
+      "id": "listening:listening-main-446",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "I was wondering whether you know the way here. Yes, the most hazardous wind shear is the microburst. It can occur beneath a thunderstorm, rain shower, or cumulus cloud. What kind of wind shear is the most dangerous?",
+      "transcript": "I was wondering whether you know the way here. Yes, the most hazardous windshear is the microburst. It can occur beneath a thunderstorm, rain shower, or cumulus cloud. What kind of windshear is the most dangerous?",
+      "transformations": [
+        {
+          "after": "I was wondering whether you know the way here. Yes, the most hazardous windshear is the microburst. It can occur beneath a thunderstorm, rain shower, or cumulus cloud. What kind of windshear is the most dangerous?",
+          "before": "I was wondering whether you know the way here. Yes, the most hazardous wind shear is the microburst. It can occur beneath a thunderstorm, rain shower, or cumulus cloud. What kind of wind shear is the most dangerous?",
+          "risk": "safe",
+          "ruleId": "ABBR-001"
+        }
+      ],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 39,
+        "wordErrors": 7,
+        "wer": 0.1794871794871795
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 39,
+        "wordErrors": 11,
+        "wer": 0.28205128205128205
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "ASR_DOMAIN",
+        "note": "首个 wind shear 被识别为 way here；后续两次识别正确，先作为短语热词候选证据记录。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "minor"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "44edbd8e02e795fc07861da3729534543f8f02692a7e2e429ed29bb710eb0cb3",
+        "durationSeconds": 17.904,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/084.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/084.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-084",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "UAL 334, we can not accept Runway 27 with such a tailwind. We wish to change to Runway 09. Question: Which runway will the crew use to take off?",
+      "expectedTextSha256": "9d12ba94b9c75d2dd39297e650a77e8301221439d0c34c78b0d5d8d4127a06a4",
+      "id": "listening:listening-main-084",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "United 334, we cannot accept runway 27 with such a tail wind. We wish to change to runway 09. Question. Which runway will the crew use to take off?",
+      "transcript": "United 334, we cannot accept runway 27 with such a tail wind. We wish to change to runway 09. Question. Which runway will the crew use to take off?",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 29,
+        "wordErrors": 5,
+        "wer": 0.1724137931034483
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 29,
+        "wordErrors": 5,
+        "wer": 0.1724137931034483
+      },
+      "critical": {
+        "missing": [
+          "callsign:UAL 334",
+          "letter:UAL"
+        ],
+        "hallucinated": [],
+        "errorCount": 2
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "United/UAL、cannot/can not 和 tail wind/tailwind 等价，跑道 27/09 正确。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "8fee669e73bfc0d0e8352c614e11ddc3ce113dc622fdedf76be771b6fa69f54d",
+        "durationSeconds": 27.12,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/617.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/617.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-617",
+      "categoryId": "listening-category-02",
+      "expectedField": "audioText",
+      "expectedText": "P: CSN 306 boarding has not completed yet. Besides, we have a catering delay, will be ready in one five minutes. Could you put me on request for a slot time after three zero? C: Roger, CSN 306, your slot time is three five. Question: which of the following is not the possible reason for delay?",
+      "expectedTextSha256": "baaa9341a18a9e6ed38281c2ebd5890af0e7ea84e5236bc0a5925c9161f8a5f9",
+      "id": "listening:listening-main-617",
+      "topicId": "listening-topic-02",
+      "status": "success",
+      "rawTranscript": "China Southern 306 boarding has not completed yet. Besides, we have a catering delay. We'll be ready in one five minutes. Could you put me on request for a slot time after three zero? Roger, China Southern, three zero six. Your slot time is three five. Question: Which of the following is not the possible reason for delay?",
+      "transcript": "China Southern 306 boarding has not completed yet. Besides, we have a catering delay. We'll be ready in 15 minutes. Could you put me on request for a slot time after three zero? Roger, China Southern, three zero six. Your slot time is three five. Question: Which of the following is not the possible reason for delay?",
+      "transformations": [
+        {
+          "after": "China Southern 306 boarding has not completed yet. Besides, we have a catering delay. We'll be ready in 15 minutes. Could you put me on request for a slot time after three zero? Roger, China Southern, three zero six. Your slot time is three five. Question: Which of the following is not the possible reason for delay?",
+          "before": "China Southern 306 boarding has not completed yet. Besides, we have a catering delay. We'll be ready in one five minutes. Could you put me on request for a slot time after three zero? Roger, China Southern, three zero six. Your slot time is three five. Question: Which of the following is not the possible reason for delay?",
+          "risk": "context-required",
+          "ruleId": "ALTITUDE-001"
+        }
+      ],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 56,
+        "wordErrors": 10,
+        "wer": 0.17857142857142858
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 56,
+        "wordErrors": 12,
+        "wer": 0.21428571428571427
+      },
+      "critical": {
+        "missing": [
+          "callsign:CSN 306",
+          "callsign:CSN 306",
+          "letter:CSN",
+          "letter:CSN",
+          "number:306"
+        ],
+        "hallucinated": [
+          "number:15"
+        ],
+        "errorCount": 6
+      },
+      "classification": {
+        "mainCategory": "NORMALIZATION_MISSING",
+        "note": "one five minutes 已转为 15；slot time 的 three zero/three five 尚未在明确上下文中数字化。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "minor"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "c995b0609a4293e2c5277efdd4eba60a41a36650ba1de55adcd8a5e7bf41ed3c",
+        "durationSeconds": 27.192,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/208.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/208.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-208",
+      "categoryId": "listening-category-03",
+      "expectedField": "audioText",
+      "expectedText": "Before clearing an aircraft for takeoff, it is the responsibility of Tower controller to maintain proper spacing between aircraft. This distance varies, depending on the route of fight, the type of aircraft, and weather conditions. At time of low visibility, the controller uses surface radar to monitor the position of each aircraft on the ground. Question: What do controllers use in low visibility conditions?",
+      "expectedTextSha256": "b2bd677db4b1353392765d8e473d7e4a460dbef27f418a277e4d7d517cf16072",
+      "id": "listening:listening-main-208",
+      "topicId": "listening-topic-03",
+      "status": "success",
+      "rawTranscript": "Before clearing an aircraft for takeoff, it is the responsibility of the tower controller to maintain appropriate spacing between aircraft. This distance varies depending on the route of flight. The type of aircraft and weather conditions. At times of low visibility, the controller uses surface radar to monitor the position of each aircraft on the ground. What do controllers use in low visibility conditions?",
+      "transcript": "Before clearing an aircraft for takeoff, it is the responsibility of the tower controller to maintain appropriate spacing between aircraft. This distance varies depending on the route of flight. The type of aircraft and weather conditions. At times of low visibility, the controller uses surface radar to monitor the position of each aircraft on the ground. What do controllers use in low visibility conditions?",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 64,
+        "wordErrors": 5,
+        "wer": 0.078125
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 64,
+        "wordErrors": 5,
+        "wer": 0.078125
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "appropriate/proper、route of flight 等措辞和标点不同，低能见度使用地面雷达的答案完整。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "e498725319235f06a0d2724dd284dc23a97788cb46336558779089fc1270d9e5",
+        "durationSeconds": 18.312,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/424.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/424.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-424",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "Sometimes the controller may provide weather avoidance clearance to the pilots; such clearance always contains the direction and distance. Question: What will be contained in an avoidance clearance?",
+      "expectedTextSha256": "b9d9646fef9b646e630c8fe0a271600dd16ec3e14b42a2f1926bda868e7f5c6d",
+      "id": "listening:listening-main-424",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "Sometimes the controller may provide a weather avoidance clearance to the pilots. Such a clearance always contains the direction and distance. What will be contained in an avoidance clearance?",
+      "transcript": "Sometimes the controller may provide a weather avoidance clearance to the pilots. Such a clearance always contains the direction and distance. What will be contained in an avoidance clearance?",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 28,
+        "wordErrors": 3,
+        "wer": 0.10714285714285714
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 28,
+        "wordErrors": 3,
+        "wer": 0.10714285714285714
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "冠词和标点变化不改变方向与距离两个要素。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "974aa8356c71b6653d6f5c484f57fbd03476e8d5c81ebd8027edf6c4461b0ad4",
+        "durationSeconds": 14.4,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-06-q15.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-06-q15.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-701",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "The flight was delayed because 3 passengers were late, then the tug was 10 minutes late, the aircraft had to wait 15 minutes due to flow control. Question: How many passengers were late?",
+      "expectedTextSha256": "696476c95080e5656ffc0e132dfa5456be4b4a812b3864f4e5820b46f66f8c44",
+      "id": "listening:listening-main-701",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "the flight was delayed because three passengers were late. then the tug was ten minutes late. the aircraft also had to wait fifteen minutes due to flow control. how many passengers were late?",
+      "transcript": "the flight was delayed because three passengers were late. then the tug was 10 minutes late. the aircraft also had to wait 15 minutes due to flow control. how many passengers were late?",
+      "transformations": [
+        {
+          "after": "the flight was delayed because three passengers were late. then the tug was 10 minutes late. the aircraft also had to wait 15 minutes due to flow control. how many passengers were late?",
+          "before": "the flight was delayed because three passengers were late. then the tug was ten minutes late. the aircraft also had to wait fifteen minutes due to flow control. how many passengers were late?",
+          "risk": "context-required",
+          "ruleId": "ALTITUDE-001"
+        }
+      ],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 33,
+        "wordErrors": 5,
+        "wer": 0.15151515151515152
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 33,
+        "wordErrors": 3,
+        "wer": 0.09090909090909091
+      },
+      "critical": {
+        "missing": [
+          "number:3"
+        ],
+        "hallucinated": [],
+        "errorCount": 1
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "three 与 3 为等价数量，10 和 15 分钟已规范化且全部事实正确。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "3e8b367ce208ab29edbe2b0d691c28437697a19f6153fa47526744b7f5e90ee3",
+        "durationSeconds": 21.384,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/441.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/441.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-441",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "B: The captain should check the maintenance logbook before departure to ensure the maintenance release is in force and satisfactory to the flight. Question: What does the phrase \"in force\" mean?",
+      "expectedTextSha256": "8c38933f92b5d390fe3dc936dfc31b62c68161721a2400cd88e4e5d4f0a4d1e3",
+      "id": "listening:listening-main-441",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "The captain should check the maintenance log before departure to ensure a valid maintenance release is in force and satisfactory for the flight. Question: What does the phrase enforce mean?",
+      "transcript": "The captain should check the maintenance log before departure to ensure a valid maintenance release is in force and satisfactory for the flight. Question: What does the phrase enforce mean?",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 31,
+        "wordErrors": 7,
+        "wer": 0.22580645161290322
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 31,
+        "wordErrors": 7,
+        "wer": 0.22580645161290322
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "ASR_GENERAL",
+        "note": "题干中的 in force 被粘连为 enforce，普通同音分词错误不适合作为民航规则。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "minor"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "16e5773ea39d92636831206ba141a9eded77149fca413c4a07a22d719685dcba",
+        "durationSeconds": 12.744,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-08-q05.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-08-q05.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-717",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "The weather conditions deteriorated rapidly near the runway. The visibility dropped below the minimum required for landing, so the crew executed a missed approach. Question: Why did the aircraft go around?",
+      "expectedTextSha256": "51cc0fda6813c6237692f7352fc2a4b3f97c24240d2eae9b1add5d9619d2a4ec",
+      "id": "listening:listening-main-717",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "The weather conditions deteriorated rapidly near the runway. The visibility dropped below the minimum required for landing, so the crew executed a missed approach. Question. Why did the aircraft go around?",
+      "transcript": "The weather conditions deteriorated rapidly near the runway. The visibility dropped below the minimum required for landing, so the crew executed a missed approach. Question. Why did the aircraft go around?",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 31,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 31,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "8926a1461a946c4ea8fa3d9f9c1ab5b16eac6a7249fedc4259819cc27f6796fa",
+        "durationSeconds": 14.256,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-17-q03.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-17-q03.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-887",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "The fuel pump regulates the flow of fuel to the combustion chamber, ensuring proper mixture for efficient operation of the APU. Question: Which component of the APU ensures that the correct amount of fuel is delivered to the combustion chamber?",
+      "expectedTextSha256": "69508c0d6fc99147cb87056cb3fa07c0ea905de36a6b98648d62f68d829be80f",
+      "id": "listening:listening-main-887",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "The fuel pump regulates the flow of fuel to the combustion chamber, ensuring proper mixture for efficient operation of the apu. Question, which component of the apu ensures that the correct amount of fuel is delivered to the combustion chamber?",
+      "transcript": "The fuel pump regulates the flow of fuel to the combustion chamber, ensuring proper mixture for efficient operation of the apu. Question, which component of the apu ensures that the correct amount of fuel is delivered to the combustion chamber?",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 40,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 40,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [
+          "letter:APU",
+          "letter:APU"
+        ],
+        "hallucinated": [],
+        "errorCount": 2
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "47cbedede17acf8f18df467e3b8a88d0abd06477e9a42b14adb92343aa372287",
+        "durationSeconds": 17.244,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-12-q17.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-12-q17.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-802",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "Maintaining a positive rate of climb during a 'go around' ensures that the aircraft gains altitude quickly and avoids any potential hazards near the runway, such as other aircraft or terrain. Question: During a 'go around', why is it important to maintain a positive rate of climb?",
+      "expectedTextSha256": "2122bdcbf4fb09b77d99f8c0bc3138cf65334f3d64b0f5abbfe314919ea18c66",
+      "id": "listening:listening-main-802",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "Maintaining a positive rate of climb during a go-around ensures that the aircraft gains altitude quickly and avoids any potential hazards near the runway, such as other aircraft or terrain. Question, during a go-around, why is it important to maintain a positive rate of climb?",
+      "transcript": "Maintaining a positive rate of climb during a go-around ensures that the aircraft gains altitude quickly and avoids any potential hazards near the runway, such as other aircraft or terrain. Question, during a go-around, why is it important to maintain a positive rate of climb?",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 47,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 47,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "7f38340420f47215c9065136abcf9c7fcba93dd3288e1ade25f43341b9a6cf48",
+        "durationSeconds": 17.04,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/155.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/155.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-155",
+      "categoryId": "listening-category-04",
+      "expectedField": "audioText",
+      "expectedText": "C: SIA 512, give way to EAL 777 on taxiway WP passing left to right. Question: What is SIA 512 required to do?",
+      "expectedTextSha256": "44d6c4fe0e89582c1a4971ae4bb6710b4ffc4b7e0272fe196464b0fc00d18b5c",
+      "id": "listening:listening-main-155",
+      "topicId": "listening-topic-04",
+      "status": "success",
+      "rawTranscript": "Singapore 512 give way to the Eastern 777 on taxing Whiskey Papa passing left to right. What is Singapore 512 required to do?",
+      "transcript": "Singapore 512 give way to the Eastern 777 on taxing Whiskey Papa passing left to right. What is Singapore 512 required to do?",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 23,
+        "wordErrors": 9,
+        "wer": 0.391304347826087
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 23,
+        "wordErrors": 9,
+        "wer": 0.391304347826087
+      },
+      "critical": {
+        "missing": [
+          "callsign:SIA 512",
+          "callsign:SIA 512",
+          "callsign:EAL 777",
+          "letter:SIA",
+          "letter:SIA",
+          "letter:EAL",
+          "letter:WP"
+        ],
+        "hallucinated": [],
+        "errorCount": 7
+      },
+      "classification": {
+        "mainCategory": "ASR_DOMAIN",
+        "note": "taxiway WP 被识别为 taxing Whiskey Papa，字母已听到但航空结构未保持。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "major"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "6eea77c0f57f355de1d766f72c0a1e57b876311bf114684499d0bb32f5f32310",
+        "durationSeconds": 20.916,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s04-section-04-q19.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s04-section-04-q19.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-1210",
+      "categoryId": "listening-category-02",
+      "expectedField": "audioText",
+      "expectedText": "C: JAL 785, the ground mechanics reported that two white navigational light and one stroke light below APU exhaust off. P: is that so, we have to check the MEL. P: Ground, JAL 785, it's not airworthy, we will taxi back to park for replacement. Question: Why did the aircraft taxi back?",
+      "expectedTextSha256": "617f2668540f1c2860b45a61295706d2704e64a56e0e015fc25fea148c7d1a45",
+      "id": "listening:listening-main-1210",
+      "topicId": "listening-topic-02",
+      "status": "success",
+      "rawTranscript": "Japan are 785. The ground mechanics reported that two white navigational light and one stroke light below a pu exhaust off. Is that so we have to check the mel ground? Japan 785. It's not airworthy. We will taxi back to park for replacement question. Why did the aircraft taxi back?",
+      "transcript": "Japan are 785. The ground mechanics reported that two white navigational light and one stroke light below a pu exhaust off. Is that so we have to check the mel ground? Japan 785. It's not airworthy. We will taxi back to park for replacement question. Why did the aircraft taxi back?",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 53,
+        "wordErrors": 7,
+        "wer": 0.1320754716981132
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 53,
+        "wordErrors": 7,
+        "wer": 0.1320754716981132
+      },
+      "critical": {
+        "missing": [
+          "callsign:JAL 785",
+          "callsign:JAL 785",
+          "letter:JAL",
+          "letter:JAL",
+          "letter:APU",
+          "letter:MEL"
+        ],
+        "hallucinated": [],
+        "errorCount": 6
+      },
+      "classification": {
+        "mainCategory": "ASR_GENERAL",
+        "note": "Japan Air 多次不稳定，APU 被拆成 a pu，MEL 句段也粘连；故障主旨尚存但质量较差。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "major"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "eca3a3173de81ba69f36f732bfab2a826fd7a7ca61db5d0b7ffed9ed408641c9",
+        "durationSeconds": 24.984,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/476.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/476.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-476",
+      "categoryId": "listening-category-04",
+      "expectedField": "audioText",
+      "expectedText": "P: Wuhan approach, AFR 188, over Rune Factories, Information E. Good morning. C: AFR 188, Wuhan approach, radar contact. Glide path Runway 36R is inoperative. Expect ILS approach Runway 36L for landing. Question: what is a reason for using Runway 36L?",
+      "expectedTextSha256": "db08982bcd3adea620bd1fd71d3ba0919d3649826a53b23bb090fd200f3bbd4a",
+      "id": "listening:listening-main-476",
+      "topicId": "listening-topic-04",
+      "status": "success",
+      "rawTranscript": "Wuhan approach air france 188 over rune factories information echo good morning. Air France 188 Wuhan approach radar contact glide path runway 36 right is inoperative. Expect ILS approach runway 36 left for landing. Question: What is the reason for using runway 36 left?",
+      "transcript": "Wuhan approach air france 188 over rune factories information E good morning. Air France 188 Wuhan approach radar contact glide path runway 36R is inoperative. Expect ILS approach runway 36L for landing. Question: What is the reason for using runway 36L?",
+      "transformations": [
+        {
+          "after": "Wuhan approach air france 188 over rune factories information echo good morning. Air France 188 Wuhan approach radar contact glide path runway 36R is inoperative. Expect ILS approach runway 36L for landing. Question: What is the reason for using runway 36L?",
+          "before": "Wuhan approach air france 188 over rune factories information echo good morning. Air France 188 Wuhan approach radar contact glide path runway 36 right is inoperative. Expect ILS approach runway 36 left for landing. Question: What is the reason for using runway 36 left?",
+          "risk": "context-required",
+          "ruleId": "RUNWAY-001"
+        },
+        {
+          "after": "Wuhan approach air france 188 over rune factories information E good morning. Air France 188 Wuhan approach radar contact glide path runway 36R is inoperative. Expect ILS approach runway 36L for landing. Question: What is the reason for using runway 36L?",
+          "before": "Wuhan approach air france 188 over rune factories information echo good morning. Air France 188 Wuhan approach radar contact glide path runway 36R is inoperative. Expect ILS approach runway 36L for landing. Question: What is the reason for using runway 36L?",
+          "risk": "context-required",
+          "ruleId": "POSITION-001"
+        }
+      ],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 41,
+        "wordErrors": 13,
+        "wer": 0.3170731707317073
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 41,
+        "wordErrors": 6,
+        "wer": 0.14634146341463414
+      },
+      "critical": {
+        "missing": [
+          "callsign:AFR 188",
+          "callsign:AFR 188",
+          "letter:AFR",
+          "letter:AFR"
+        ],
+        "hallucinated": [],
+        "errorCount": 4
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "Air France/AFR 与 Echo/E 为等价呼号和信息码，36R/36L 均正确。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "7d394970cedc46886010b18b08bb393fa62e6cf5d2cf4d1255d55e3301ad700f",
+        "durationSeconds": 14.904,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/305.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/305.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-305",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "Their flight wasn't leaving on time because they were held up at the gate. They couldn't be pushed back until the visibility improved. Question: What is the probable reason for the delay?",
+      "expectedTextSha256": "6596e662560d0cfa8c917ac576b9a550c6acb83a51b7207d20ca048aeb9c704a",
+      "id": "listening:listening-main-305",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "their flight won't leave on time because they are being held at the gate. they can't push back until the visibility improves. What's the probable reason for the delay?",
+      "transcript": "their flight won't leave on time because they are being held at the gate. they can't push back until the visibility improves. What's the probable reason for the delay?",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 34,
+        "wordErrors": 11,
+        "wer": 0.3235294117647059
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 34,
+        "wordErrors": 11,
+        "wer": 0.3235294117647059
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "过去时/现在时变化不改变低能见度导致延误的答案。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "04aea9a2903bf3994fd08b981010ae8c968f3efb994e00ebd3a4f13ae43720f5",
+        "durationSeconds": 24.216,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/627.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/627.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-627",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "BOV 361, wind shear alert. Previous 757 reported severe wind shear, gained 25 knots between 800 and 400 feet, followed by loss of 30 knots between 600 and 200 feet. Question: what is the height range of speed increase?",
+      "expectedTextSha256": "b9b4478d90dfeb59d585ae65b79dd1ae3417acb711cf91b71e5d1139e465b1e0",
+      "id": "listening:listening-main-627",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "Way 361 wind shear alert previous 757 reported severe wind shear gained 25 knots between 800 and 400 feet followed by loss of 30 knots between 600 and 200 feet. Question: What is the height range of speed increase?",
+      "transcript": "Way 361 windshear alert previous 757 reported severe windshear gained 25 knots between 800 and 400 feet followed by loss of 30 knots between 600 and 200 feet. Question: What is the height range of speed increase?",
+      "transformations": [
+        {
+          "after": "Way 361 windshear alert previous 757 reported severe windshear gained 25 knots between 800 and 400 feet followed by loss of 30 knots between 600 and 200 feet. Question: What is the height range of speed increase?",
+          "before": "Way 361 wind shear alert previous 757 reported severe wind shear gained 25 knots between 800 and 400 feet followed by loss of 30 knots between 600 and 200 feet. Question: What is the height range of speed increase?",
+          "risk": "safe",
+          "ruleId": "ABBR-001"
+        }
+      ],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 39,
+        "wordErrors": 1,
+        "wer": 0.02564102564102564
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 39,
+        "wordErrors": 5,
+        "wer": 0.1282051282051282
+      },
+      "critical": {
+        "missing": [
+          "callsign:BOV 361",
+          "letter:BOV"
+        ],
+        "hallucinated": [],
+        "errorCount": 2
+      },
+      "classification": {
+        "mainCategory": "ASR_DOMAIN",
+        "note": "呼号 BOV 361 被识别为 Way 361；所有风切变高度和速度数值正确。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "major"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "3c577cd609b875e5a552f2cb832efa5863a285d56306bbca1e40b57a16774629",
+        "durationSeconds": 23.52,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/268.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/268.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-268",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "During engine start, some pilots think N1 and EGT as the most important to monitor, but pilots should also monitor N2, Fuel flow, start valve open light and engine start switches. Question: According to the statement what do some pilots think is the most important to monitor?",
+      "expectedTextSha256": "9b3035cb1b668d266fcf8a021354575e14ffcbdf162bf86a26b0412a37743485",
+      "id": "listening:listening-main-268",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "During engine start, some pilots think EGT and N1 are the most important to monitor, but pilots should also monitor N2, fuel flow, start valve open light, and engine start switches. According to the statement, what do some pilots think is the most important to monitor?",
+      "transcript": "During engine start, some pilots think EGT and N1 are the most important to monitor, but pilots should also monitor N2, fuel flow, start valve open light, and engine start switches. According to the statement, what do some pilots think is the most important to monitor?",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 47,
+        "wordErrors": 4,
+        "wer": 0.0851063829787234
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 47,
+        "wordErrors": 4,
+        "wer": 0.0851063829787234
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "EGT/N1 顺序互换不改变监控项目。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "a5dfcfdaddba0d8f031925bac98b13a24801f66998e689d2d4b74570f6fb2500",
+        "durationSeconds": 31.2,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/340.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/340.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-340",
+      "categoryId": "listening-category-02",
+      "expectedField": "audioText",
+      "expectedText": "P: Ground, CSN 3251, request taxi. C: CSN 3251, for your information, KAL 236 and CCA 9018, both B747s, nearly collided on Runway 14R one minute ago. Stay there now, I will call you back. P: Roger, CSN 3251. Question: What happened?",
+      "expectedTextSha256": "9a45ed3bbe2340b0392319c0b9b3661f8d79c822e450265e7f4c4bb08e6ea6be",
+      "id": "listening:listening-main-340",
+      "topicId": "listening-topic-02",
+      "status": "success",
+      "rawTranscript": "Ground china, southern 3251 request taxi. China southern 3251 for your information, korean 236 and china 9018, both boeing 747s, nearly collided on runway 14, right? One minute ago, stay there and i'll call you back. Roger holding china, southern 3251.Question: What happened?",
+      "transcript": "Ground china, southern 3251 request taxi. China southern 3251 for your information, korean 236 and china 9018, both boeing 747s, nearly collided on runway 14, right? One minute ago, stay there and i'll call you back. Roger holding china, southern 3251.Question: What happened?",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 42,
+        "wordErrors": 17,
+        "wer": 0.40476190476190477
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 42,
+        "wordErrors": 17,
+        "wer": 0.40476190476190477
+      },
+      "critical": {
+        "missing": [
+          "callsign:CSN 3251",
+          "callsign:CSN 3251",
+          "callsign:CSN 3251",
+          "callsign:KAL 236",
+          "callsign:CCA 9018",
+          "runway:RUNWAY 14R",
+          "letter:CSN",
+          "letter:CSN",
+          "letter:CSN",
+          "letter:KAL",
+          "letter:CCA",
+          "number:14R"
+        ],
+        "hallucinated": [
+          "runway:RUNWAY 14",
+          "number:14"
+        ],
+        "errorCount": 14
+      },
+      "classification": {
+        "mainCategory": "ASR_GENERAL",
+        "note": "CCA 9018 丢失 Air 且 runway 14R 被切成问句，关键呼号与跑道展示不可靠。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "major"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "f7e609bade7e7eec97765d803d5572debaae93bc177979cb39ffaea897bdd7f5",
+        "durationSeconds": 14.508,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-14-q09.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-14-q09.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-833",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "Wake turbulence tends to sink and drift sideways, making it most hazardous to aircraft that are flying below and slightly behind the aircraft that generated it. Question: When is wake turbulence is most dangerous to following aircraft ​",
+      "expectedTextSha256": "4865e2364638304bc0622885e7695b33913ba5b04c28defb3e1e7442b6fbf079",
+      "id": "listening:listening-main-833",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "Wake turbulence tends to sink and drift sideways, making it most hazardous to aircraft that are flying below and slightly behind the aircraft that generated it. Quizzed in when is wake turbulence is most dangerous to following aircraft?",
+      "transcript": "Wake turbulence tends to sink and drift sideways, making it most hazardous to aircraft that are flying below and slightly behind the aircraft that generated it. Quizzed in when is wake turbulence is most dangerous to following aircraft?",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 38,
+        "wordErrors": 3,
+        "wer": 0.07894736842105263
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 38,
+        "wordErrors": 3,
+        "wer": 0.07894736842105263
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "ASR_GENERAL",
+        "note": "Question 被识别为 Quizzed in，正文完全正确。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "minor"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "70d1827f589fc32294dc0de6a9be9e1f42e4d34503ec8bd9d6eacfa23badf8d5",
+        "durationSeconds": 13.032,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s03-section-04-q07.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-04-q07.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-1080",
+      "categoryId": "listening-category-04",
+      "expectedField": "audioText",
+      "expectedText": "C: BAW 480, flames coming out from your No. 3 engine on takeoff, please advise. P: roger, declaring an emergency, request immediate return, BAW 480. Question: Why are they declaring an emergency?",
+      "expectedTextSha256": "9066bc8e658ed5a3e2e42ffa313afc5b6213fe036c342b26e1d25225a69e7012",
+      "id": "listening:listening-main-1080",
+      "topicId": "listening-topic-04",
+      "status": "success",
+      "rawTranscript": "Speedbird 480 flames coming from your number three engine on takeoff. Please advise. Roger, declaring an emergency, request immediate return. Speedbird 480. Why are they declaring an emergency?",
+      "transcript": "Speedbird 480 flames coming from your number three engine on takeoff. Please advise. Roger, declaring an emergency, request immediate return. Speedbird 480. Why are they declaring an emergency?",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 32,
+        "wordErrors": 8,
+        "wer": 0.25
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 32,
+        "wordErrors": 8,
+        "wer": 0.25
+      },
+      "critical": {
+        "missing": [
+          "callsign:BAW 480",
+          "callsign:BAW 480",
+          "letter:BAW",
+          "letter:BAW",
+          "number:3"
+        ],
+        "hallucinated": [],
+        "errorCount": 5
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "Speedbird/BAW、number three/No.3 和标点差异等价，发动机火焰与返航完整。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "88d5ba10f782668c0ea0141893028824117cc135c29f4408822e9e7d53204028",
+        "durationSeconds": 12.096,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/483.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/483.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-483",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "Computers have made the weather gathering process much easier in recent years. Question: what has been made easier by computers?",
+      "expectedTextSha256": "23fd434c11d54af93a54007895c52e66967c103027c26c9a4a571aa819d6a660",
+      "id": "listening:listening-main-483",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "Computers have made the weather gathering process much easier in recent years. Question: What has been made easier by computers?",
+      "transcript": "Computers have made the weather gathering process much easier in recent years. Question: What has been made easier by computers?",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 20,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 20,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "f4e59b03ef0419776b7549b13e31816557751feca0ff87786a1c2aaa10bdc9dc",
+        "durationSeconds": 29.7,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s04-section-03-q09.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s04-section-03-q09.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-1180",
+      "categoryId": "listening-category-02",
+      "expectedField": "audioText",
+      "expectedText": "P: ACA 767, request climb to FL360 due turbulence. C: ACA 767, FL360 is not available due spacing. can you accept FL380. P: Negative due weight. but we need to change level, lower level is OK, ACA 767. C: ACA 767, descend to FL300. Question: Why could ACA 767 not accept FL380?",
+      "expectedTextSha256": "cf4ec36ab069bd0f910b4b47d5fff8fda0161f490f253189efd69d881b619027",
+      "id": "listening:listening-main-1180",
+      "topicId": "listening-topic-02",
+      "status": "success",
+      "rawTranscript": "Air canada 767 request climb to flight level 360 due turbulence. Air canada 767 flight level 360 not available due spacing. Can you accept flight level 380 negative due weight but we need to change level. A lower level is okay. I kind of a 767 air canada 767 descent to flight level 300.Why could Air Canada 767 not accept flight level 380?",
+      "transcript": "Air canada 767 request climb to FL360 due turbulence. Air canada 767 FL360 not available due spacing. Can you accept FL380 negative due weight but we need to change level. A lower level is okay. I kind of a 767 air canada 767 descent to FL300.Why could Air Canada 767 not accept FL380?",
+      "transformations": [
+        {
+          "after": "Air canada 767 request climb to FL360 due turbulence. Air canada 767 FL360 not available due spacing. Can you accept FL380 negative due weight but we need to change level. A lower level is okay. I kind of a 767 air canada 767 descent to FL300.Why could Air Canada 767 not accept FL380?",
+          "before": "Air canada 767 request climb to flight level 360 due turbulence. Air canada 767 flight level 360 not available due spacing. Can you accept flight level 380 negative due weight but we need to change level. A lower level is okay. I kind of a 767 air canada 767 descent to flight level 300.Why could Air Canada 767 not accept flight level 380?",
+          "risk": "context-required",
+          "ruleId": "FL-001"
+        }
+      ],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 52,
+        "wordErrors": 30,
+        "wer": 0.5769230769230769
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 52,
+        "wordErrors": 18,
+        "wer": 0.34615384615384615
+      },
+      "critical": {
+        "missing": [
+          "callsign:ACA 767",
+          "callsign:ACA 767",
+          "callsign:ACA 767",
+          "callsign:ACA 767",
+          "callsign:ACA 767",
+          "letter:ACA",
+          "letter:ACA",
+          "letter:ACA",
+          "letter:ACA",
+          "letter:ACA",
+          "letter:OK"
+        ],
+        "hallucinated": [],
+        "errorCount": 11
+      },
+      "classification": {
+        "mainCategory": "ASR_GENERAL",
+        "note": "中段 ACA 767 被识别为 I kind of a 767；全部飞行高度仍正确规范化。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "major"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "b801a515a64ed13881ee78751bac3e5b7742b3cef6b8499b9a5d2180be1a06e4",
+        "durationSeconds": 31.968,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/236.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/236.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-236",
+      "categoryId": "listening-category-02",
+      "expectedField": "audioText",
+      "expectedText": "P: Shanghai, CES 324, good evening, maintaining 9500 m, squawk 3426. C: CES 324, roger, offset right 3 miles. P: Negative offset. We are a B737-500 with no automatic offset tracking capability, CES 324. C: CES 324, roger, fly flight-planned route. Question: Why did CES 324 not fly the offset?",
+      "expectedTextSha256": "77086da19a83f25aa5fd73900f24f96e770f6b9c5e9e2b641c9c2a758d601049",
+      "id": "listening:listening-main-236",
+      "topicId": "listening-topic-02",
+      "status": "success",
+      "rawTranscript": "Shanghai China Eastern 324, good evening, maintaining 9,500 meters, squawk 3426. China Eastern 324, Roger, offset right, 3 miles. Negative offset, we are a 737-500 with no automatic offset tracking capability, China Eastern 324. China Eastern 324, Roger, fly flight plan route. Why did China Eastern 324 not fly the offset?",
+      "transcript": "Shanghai China Eastern 324, good evening, maintaining 9,500 meters, squawk 3426. China Eastern 324, Roger, offset right, 3 miles. Negative offset, we are a 737-500 with no automatic offset tracking capability, China Eastern 324. China Eastern 324, Roger, fly flight plan route. Why did China Eastern 324 not fly the offset?",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 52,
+        "wordErrors": 18,
+        "wer": 0.34615384615384615
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 52,
+        "wordErrors": 18,
+        "wer": 0.34615384615384615
+      },
+      "critical": {
+        "missing": [
+          "callsign:CES 324",
+          "callsign:CES 324",
+          "callsign:CES 324",
+          "callsign:CES 324",
+          "callsign:CES 324",
+          "letter:CES",
+          "letter:CES",
+          "letter:CES",
+          "letter:CES",
+          "letter:CES",
+          "number:9500"
+        ],
+        "hallucinated": [
+          "number:9",
+          "number:500",
+          "number:737"
+        ],
+        "errorCount": 14
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "China Eastern/CES、Boeing/B 和千位分隔为等价表示，偏置拒绝原因完整。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "da1cf48d6c9a77ad2957cc950dac64c2fe3f2aa475bdd02baa1374cc4a101921",
+        "durationSeconds": 17.064,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s01-section-04-q07.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-04-q07.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-687",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "The controller who has only five-month experience on the job without awareness of a collision course and did not take any corrective action. Question: Why did not the controller take any corrective action?",
+      "expectedTextSha256": "a4f586f2f37bbcdbc78cde30f9e9b1085f6281f3f2bb130052ea936408d1ca84",
+      "id": "listening:listening-main-687",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "the controller who had only five months experience on the job was not aware they were on a collision course and did not take any corrective action. question. Why didn't the controller take any corrective action?",
+      "transcript": "the controller who had only five months experience on the job was not aware they were on a collision course and did not take any corrective action. question. Why didn't the controller take any corrective action?",
+      "transformations": [],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 34,
+        "wordErrors": 10,
+        "wer": 0.29411764705882354
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 34,
+        "wordErrors": 10,
+        "wer": 0.29411764705882354
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "参考语法不完整，识别以完整句表达同一缺乏经验和态势意识原因。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "1956a52f927d8b0f4e29198dde075d9090e0e22f3d1f526cd03d32e254df5183",
+        "durationSeconds": 17.46,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s02-section-01-q20.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-01-q20.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-942",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "Contamination of the hydraulic fluid is a common cause of hydraulic system failure. Dust, dirt, or metal particles can get into the fluid and damage the pumps, valves, and other components of the hydraulic system. Question: What is a common cause of hydraulic system failure?",
+      "expectedTextSha256": "7c47b3331a6e65f057f2d7c93a64418f065aed80da5159ee20f0091941b7ef05",
+      "id": "listening:listening-main-942",
+      "topicId": "listening-topic-01",
+      "status": "success",
+      "rawTranscript": "Contamination of the hydraulic fluid is a common cause of hydraulic system failure. Dust, dirt, or metal particles can get into the fluid and damage the pumps. Valves and other components of the hydraulic system. Question, what is a common cause of hydraulic system failure?",
+      "transcript": "Contamination of the hydraulic fluid is a common cause of hydraulic system failure. Dust, dirt, or metal particles can get into the fluid and damage the pumps. Valves and other components of the hydraulic system. Question, what is a common cause of hydraulic system failure?",
+      "transformations": [],
+      "raw": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 45,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "final": {
+        "contentExact": true,
+        "strictExact": false,
+        "wordCount": 45,
+        "wordErrors": 0,
+        "wer": 0
+      },
+      "critical": {
+        "missing": [],
+        "hallucinated": [],
+        "errorCount": 0
+      },
+      "classification": {
+        "mainCategory": "MATCH",
+        "note": "自动内容匹配；主线程仍可抽查。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "correct"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "f4eb9bec4c51e600a2352d780405a3768d7b3d57471b988b41ebf7e2de5be71b",
+        "durationSeconds": 49.032,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/storytelling/kongguan/016.mp3",
+        "publicPath": "/question-bank-assets/audio/storytelling/kongguan/016.mp3"
+      },
+      "bankId": "storytelling",
+      "cardId": "story-kongguan-016",
+      "categoryId": "story-category-2",
+      "expectedField": "audioText",
+      "expectedText": "In November 1996 I was in a flight flying to New York. I was in the flight because I got a call from New York Hospital that a heart would be ready for me. The pilot called the tower and told them who we were. The ATC said we could not land because President Clinton was there and the security service would not let us land. The pilot told the ATC that he would report this to the press and TV stations. I think they would let us land because of the bad influence. However, it didn't work because the controllers wanted to have a look of Clinton. So we had to divert to the alternate airport instead. Fortunately, I got to the hospital on time. It was a great heart as you can see I am still alive almost 11 years after the operation. (145 words)",
+      "expectedTextSha256": "37bdee7c02953d5fd96a46cd8f1e1c6730de9065cabdd92ba461118141cf6f11",
+      "id": "storytelling:story-kongguan-016",
+      "topicId": "story-atc-required",
+      "status": "success",
+      "rawTranscript": "Story 16 in november 1996. I was in a flight flying to new york. I was in the flight because i got a call from new york hospital that a heart would be ready for me. The pilot called the tower and told them who we were. The atc said we could not land because president clinton was there and the security service would not let us land. The pilot told the atc that he would report this to the press and tv stations. I think they would let us land because of the bad influence, however, It didn't work because the controllers wanted to have a look of clinton. So we had to divert to the alternate airport instead. Fortunately, i got to the hospital on time. It was a great hard. As you can see, i am still alive almost 11 years after the operation.",
+      "transcript": "Story 16 in november 1996. I was in a flight flying to new york. I was in the flight because i got a call from new york hospital that a heart would be ready for me. The pilot called the tower and told them who we were. The ATC said we could not land because president clinton was there and the security service would not let us land. The pilot told the ATC that he would report this to the press and tv stations. I think they would let us land because of the bad influence, however, It didn't work because the controllers wanted to have a look of clinton. So we had to divert to the alternate airport instead. Fortunately, i got to the hospital on time. It was a great hard. As you can see, i am still alive almost 11 years after the operation.",
+      "transformations": [
+        {
+          "after": "Story 16 in november 1996. I was in a flight flying to new york. I was in the flight because i got a call from new york hospital that a heart would be ready for me. The pilot called the tower and told them who we were. The ATC said we could not land because president clinton was there and the security service would not let us land. The pilot told the ATC that he would report this to the press and tv stations. I think they would let us land because of the bad influence, however, It didn't work because the controllers wanted to have a look of clinton. So we had to divert to the alternate airport instead. Fortunately, i got to the hospital on time. It was a great hard. As you can see, i am still alive almost 11 years after the operation.",
+          "before": "Story 16 in november 1996. I was in a flight flying to new york. I was in the flight because i got a call from new york hospital that a heart would be ready for me. The pilot called the tower and told them who we were. The atc said we could not land because president clinton was there and the security service would not let us land. The pilot told the atc that he would report this to the press and tv stations. I think they would let us land because of the bad influence, however, It didn't work because the controllers wanted to have a look of clinton. So we had to divert to the alternate airport instead. Fortunately, i got to the hospital on time. It was a great hard. As you can see, i am still alive almost 11 years after the operation.",
+          "risk": "safe",
+          "ruleId": "ABBR-001"
+        }
+      ],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 148,
+        "wordErrors": 5,
+        "wer": 0.033783783783783786
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 148,
+        "wordErrors": 5,
+        "wer": 0.033783783783783786
+      },
+      "critical": {
+        "missing": [
+          "letter:TV",
+          "number:145"
+        ],
+        "hallucinated": [
+          "number:16"
+        ],
+        "errorCount": 3
+      },
+      "classification": {
+        "mainCategory": "ASR_GENERAL",
+        "note": "heart 被识别为 hard；题号和字数标注属于来源附加文本，其他故事内容基本完整。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "minor"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "484c199bddae875d4036827b71fbd8de6edbd26b59da0f739e06e66d90db1e6d",
+        "durationSeconds": 28.728,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/storytelling/web-v5/pepec-story-0030.mp3",
+        "publicPath": "/question-bank-assets/audio/storytelling/web-v5/pepec-story-0030.mp3"
+      },
+      "bankId": "storytelling",
+      "cardId": "story-pepec-0030",
+      "categoryId": "story-category-1",
+      "expectedField": "audioText",
+      "expectedText": "Engine failure On February 13, 2025, a One Air Boeing 7 47 400 freighter, performing positioning flight One Air 9 3 2 Papa from Cardiff (UK) to Zaragoza (Spain), was climbing out of Cardiff's Runway 12when the crew stopped the climb at FL2 4 0 following an engine failure. The aircraft diverted to East Midlands (UK) for a safe landing on Runway 09about 50 minutes after departure.",
+      "expectedTextSha256": "d9358c238a5d779b2ab06213708d5fbaef30ba19abd2a943fe20b634e3709293",
+      "id": "storytelling:story-pepec-0030",
+      "topicId": "story-flight-basic",
+      "status": "success",
+      "rawTranscript": "Engine failure on february 13th 2025, a one are boeing 747-400 freighter performing positioning flight 1 are 932 papa from cardiff uk to zaragoza. Spain was climbing out of cardiff's runway 12. When the crew stopped the climb at flight level 240 following an engine failure, the aircraft diverted to east midlands uk. For a safe landing on runway 09 about 50 minutes after departure.",
+      "transcript": "Engine failure on february 13th 2025, a one are boeing 747-400 freighter performing positioning flight 1 are 932 papa from cardiff uk to zaragoza. Spain was climbing out of cardiff's runway 12. When the crew stopped the climb at FL240 following an engine failure, the aircraft diverted to east midlands uk. For a safe landing on runway 09 about 50 minutes after departure.",
+      "transformations": [
+        {
+          "after": "Engine failure on february 13th 2025, a one are boeing 747-400 freighter performing positioning flight 1 are 932 papa from cardiff uk to zaragoza. Spain was climbing out of cardiff's runway 12. When the crew stopped the climb at FL240 following an engine failure, the aircraft diverted to east midlands uk. For a safe landing on runway 09 about 50 minutes after departure.",
+          "before": "Engine failure on february 13th 2025, a one are boeing 747-400 freighter performing positioning flight 1 are 932 papa from cardiff uk to zaragoza. Spain was climbing out of cardiff's runway 12. When the crew stopped the climb at flight level 240 following an engine failure, the aircraft diverted to east midlands uk. For a safe landing on runway 09 about 50 minutes after departure.",
+          "risk": "context-required",
+          "ruleId": "FL-001"
+        }
+      ],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 68,
+        "wordErrors": 16,
+        "wer": 0.23529411764705882
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 68,
+        "wordErrors": 16,
+        "wer": 0.23529411764705882
+      },
+      "critical": {
+        "missing": [
+          "callsign:FL2",
+          "letter:UK",
+          "letter:UK",
+          "number:13",
+          "number:7",
+          "number:47",
+          "number:9",
+          "number:3",
+          "number:2",
+          "number:4",
+          "number:0"
+        ],
+        "hallucinated": [
+          "callsign:FL240",
+          "runway:RUNWAY 12",
+          "runway:RUNWAY 09",
+          "number:747",
+          "number:1",
+          "number:932",
+          "number:12",
+          "number:09"
+        ],
+        "errorCount": 19
+      },
+      "classification": {
+        "mainCategory": "ASR_DOMAIN",
+        "note": "One Air 被多次识别为 one are/1 are；FL240、跑道和时间保持正确。",
+        "referenceStatus": "aligned",
+        "semanticOutcome": "major"
+      }
+    },
+    {
+      "audio": {
+        "checksum": "31fbbf3b797b84deb1aa9cd5c19161f1d26cee4483bbaf3a9eaf719cabe5bf36",
+        "durationSeconds": 61.08,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/storytelling/wing/037.mp3",
+        "publicPath": "/question-bank-assets/audio/storytelling/wing/037.mp3"
+      },
+      "bankId": "storytelling",
+      "cardId": "story-wing-037",
+      "categoryId": "story-category-1",
+      "expectedField": "audioText",
+      "expectedText": "An Air France aircraft performs flight from London to Paris with 136 people on board. When the aircraft was climbing through FL230, the crew donned their oxygen masks, declared Mayday and requested an immediate return to London. The crew advised they suspected a fire on board, and then, they reported they had smoke and fumes in the cockpit. The aircraft landed safely back on runway 13R about 23 minutes after departure. The crew advised they were able to vacate the runway. Finally, the aircraft taxied to the apron. The aircraft was able to depart about 4 hours after landing, and reached Paris with a delay of 4.5 hours. Maintenance identified a faulty display as source of the fumes and smoke.",
+      "expectedTextSha256": "b0dc8e3d41943bc0bf0180ffaef2288be0685af9bbe691476ab472772edf37ef",
+      "id": "storytelling:story-wing-037",
+      "topicId": "story-flight-required",
+      "status": "success",
+      "rawTranscript": "An Air France aircraft performs flight from London to Paris with 136 people on board. When the aircraft was climbing through flight level 230, the crew donned their oxygen masks, declared Mayday, and requested an immediate return to London. The crew advised they suspected a fire on board, and then they reported they had smoke and fumes in the cockpit. the aircraft landed safely back on runway one tree right about twenty three minutes after departure. the crew advised they were able to vacate the runway. finally, the aircraft taxied to the apron. the aircraft was able to depart about four hours after landing and reached paris with a delay of four point five hours. Maintenance identified a faulty display as source of the fumes and smoke.",
+      "transcript": "An Air France aircraft performs flight from London to Paris with 136 people on board. When the aircraft was climbing through FL230, the crew donned their oxygen masks, declared Mayday, and requested an immediate return to London. The crew advised they suspected a fire on board, and then they reported they had smoke and fumes in the cockpit. the aircraft landed safely back on runway 13R about 23 minutes after departure. the crew advised they were able to vacate the runway. finally, the aircraft taxied to the apron. the aircraft was able to depart about four hours after landing and reached paris with a delay of four point five hours. Maintenance identified a faulty display as source of the fumes and smoke.",
+      "transformations": [
+        {
+          "after": "An Air France aircraft performs flight from London to Paris with 136 people on board. When the aircraft was climbing through FL230, the crew donned their oxygen masks, declared Mayday, and requested an immediate return to London. The crew advised they suspected a fire on board, and then they reported they had smoke and fumes in the cockpit. the aircraft landed safely back on runway one tree right about twenty three minutes after departure. the crew advised they were able to vacate the runway. finally, the aircraft taxied to the apron. the aircraft was able to depart about four hours after landing and reached paris with a delay of four point five hours. Maintenance identified a faulty display as source of the fumes and smoke.",
+          "before": "An Air France aircraft performs flight from London to Paris with 136 people on board. When the aircraft was climbing through flight level 230, the crew donned their oxygen masks, declared Mayday, and requested an immediate return to London. The crew advised they suspected a fire on board, and then they reported they had smoke and fumes in the cockpit. the aircraft landed safely back on runway one tree right about twenty three minutes after departure. the crew advised they were able to vacate the runway. finally, the aircraft taxied to the apron. the aircraft was able to depart about four hours after landing and reached paris with a delay of four point five hours. Maintenance identified a faulty display as source of the fumes and smoke.",
+          "risk": "context-required",
+          "ruleId": "FL-001"
+        },
+        {
+          "after": "An Air France aircraft performs flight from London to Paris with 136 people on board. When the aircraft was climbing through FL230, the crew donned their oxygen masks, declared Mayday, and requested an immediate return to London. The crew advised they suspected a fire on board, and then they reported they had smoke and fumes in the cockpit. the aircraft landed safely back on runway 13R about twenty three minutes after departure. the crew advised they were able to vacate the runway. finally, the aircraft taxied to the apron. the aircraft was able to depart about four hours after landing and reached paris with a delay of four point five hours. Maintenance identified a faulty display as source of the fumes and smoke.",
+          "before": "An Air France aircraft performs flight from London to Paris with 136 people on board. When the aircraft was climbing through FL230, the crew donned their oxygen masks, declared Mayday, and requested an immediate return to London. The crew advised they suspected a fire on board, and then they reported they had smoke and fumes in the cockpit. the aircraft landed safely back on runway one tree right about twenty three minutes after departure. the crew advised they were able to vacate the runway. finally, the aircraft taxied to the apron. the aircraft was able to depart about four hours after landing and reached paris with a delay of four point five hours. Maintenance identified a faulty display as source of the fumes and smoke.",
+          "risk": "context-required",
+          "ruleId": "RUNWAY-001"
+        },
+        {
+          "after": "An Air France aircraft performs flight from London to Paris with 136 people on board. When the aircraft was climbing through FL230, the crew donned their oxygen masks, declared Mayday, and requested an immediate return to London. The crew advised they suspected a fire on board, and then they reported they had smoke and fumes in the cockpit. the aircraft landed safely back on runway 13R about 23 minutes after departure. the crew advised they were able to vacate the runway. finally, the aircraft taxied to the apron. the aircraft was able to depart about four hours after landing and reached paris with a delay of four point five hours. Maintenance identified a faulty display as source of the fumes and smoke.",
+          "before": "An Air France aircraft performs flight from London to Paris with 136 people on board. When the aircraft was climbing through FL230, the crew donned their oxygen masks, declared Mayday, and requested an immediate return to London. The crew advised they suspected a fire on board, and then they reported they had smoke and fumes in the cockpit. the aircraft landed safely back on runway 13R about twenty three minutes after departure. the crew advised they were able to vacate the runway. finally, the aircraft taxied to the apron. the aircraft was able to depart about four hours after landing and reached paris with a delay of four point five hours. Maintenance identified a faulty display as source of the fumes and smoke.",
+          "risk": "context-required",
+          "ruleId": "ALTITUDE-001"
+        }
+      ],
+      "raw": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 121,
+        "wordErrors": 12,
+        "wer": 0.09917355371900827
+      },
+      "final": {
+        "contentExact": false,
+        "strictExact": false,
+        "wordCount": 121,
+        "wordErrors": 4,
+        "wer": 0.03305785123966942
+      },
+      "critical": {
+        "missing": [
+          "number:4",
+          "number:4.5"
+        ],
+        "hallucinated": [],
+        "errorCount": 2
+      },
+      "classification": {
+        "mainCategory": "REFERENCE_VARIANT",
+        "note": "数字口述与书写、标点和 4.5/four point five 等价；FL230 与 runway 13R 已正确规范化。",
+        "referenceStatus": "variant",
+        "semanticOutcome": "acceptable"
+      }
+    }
+  ]
+}

@@ -24,8 +24,7 @@ export function DiscoverHomeScreen() {
   const router = useRouter();
   const open = (slug: string) => router.push({ pathname: '/content/[slug]', params: { slug } });
   return (
-    <Screen bottomInset scroll contentStyle={styles.screen}>
-      <SoftGlow intensity={0.8} size={320} style={styles.glow} />
+    <Screen background={<SoftGlow intensity={0.8} size={320} style={styles.glow} />} bottomInset scroll contentStyle={styles.screen}>
       <View style={styles.header}><AppText variant="pageTitle">发现</AppText><AppText>功能、资源与课程，探索更多学习方式。</AppText></View>
       <SectionTitle title="功能" en="Features" />
       <Card style={styles.featureCard}>

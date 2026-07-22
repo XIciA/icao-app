@@ -53,4 +53,5 @@ describe('<ChoiceList />', () => {
     expect(screen.queryByLabelText('正确答案')).toBeNull();
     expect(screen.queryByLabelText('错误答案')).toBeNull();
   });
+
 });

@@ -11,7 +11,7 @@ export const AVIATION_TRANSCRIPT_NORMALIZATION_EXAMPLES = [
   { normalized: 'QNH 1013', spoken: 'QNH one zero one three' },
 ] as const;
 
-export const AVIATION_TRANSCRIPT_NORMALIZATION_VERSION = 'aviation-normalization:v2';
+export const AVIATION_TRANSCRIPT_NORMALIZATION_VERSION = 'aviation-normalization:v7';
 
 export type TranscriptNormalizationRisk = 'safe' | 'context-required' | 'guarded';
 
@@ -139,7 +139,8 @@ const FL_WORDS_PATTERN = new RegExp(
   `\\b(?:flight\\s+level|fl)\\s+${DIGIT_WORD_PATTERN}\\s+${DIGIT_WORD_PATTERN}(?:\\s+${DIGIT_WORD_PATTERN})?\\b`,
   'gi',
 );
-const FL_NUMERIC_PATTERN = /\bfl\s+(\d{3})\b/gi;
+const FL_NUMERIC_PATTERN = /\b(?:flight\s+level|fl)\s+(\d{2,3})\b/gi;
+const RUNWAY_NUMERIC_SUFFIX_PATTERN = /\brunway\s+(\d{1,2})\s+(left|right|center|centre)\b/gi;
 const RUNWAY_SUFFIX_PATTERN = new RegExp(
   `\\brunway\\s+${DIGIT_WORD_PATTERN}\\s+${DIGIT_WORD_PATTERN}\\s+(left|right|center|centre)\\b`,
   'gi',
@@ -339,14 +340,18 @@ export function normalizeAviationTranscriptDetailed(input: string): AviationTran
   trackedRule(state, 'TXT-001', 'safe', normalizeSpaces);
   trackedRule(state, 'ABBR-001', 'safe', (value) => value
     .replace(/\batc\b/gi, 'ATC')
+    .replace(/\bapu\b/gi, 'APU')
     .replace(/\bqnh\b/gi, 'QNH')
     .replace(/\bqfe\b/gi, 'QFE')
     .replace(/\bads[-\s]?b\b/gi, 'ADS-B')
     .replace(/\bils\b/gi, 'ILS')
+    .replace(/\bifr\b/gi, 'IFR')
     .replace(/\bvor\b/gi, 'VOR')
     .replace(/\bndb\b/gi, 'NDB')
     .replace(/\brnav\b/gi, 'RNAV')
     .replace(/\btcas\b/gi, 'TCAS')
+    .replace(/\bnotam\b/gi, 'NOTAM')
+    .replace(/\bsop\b/gi, 'SOP')
     .replace(/\bvmc\b/gi, 'VMC')
     .replace(/\bc\s+b\b/gi, 'CB')
     .replace(/\bmetres\b/gi, 'meters')
@@ -363,6 +368,12 @@ export function normalizeAviationTranscriptDetailed(input: string): AviationTran
     .replace(FL_NUMERIC_PATTERN, 'FL$1')
     .replace(FL_WORDS_PATTERN, normalizeFlWords));
   trackedRule(state, 'RUNWAY-001', 'context-required', (value) => value
+    .replace(RUNWAY_NUMERIC_SUFFIX_PATTERN, (match, runway: string, suffix: string) => {
+      const numericRunway = Number(runway);
+      return numericRunway >= 1 && numericRunway <= 36
+        ? `runway ${String(numericRunway).padStart(2, '0')}${runwaySuffixFor(suffix)}`
+        : match;
+    })
     .replace(RUNWAY_SUFFIX_PATTERN, (match, d1: string, d2: string, suffix: string) => {
       const digits = digitsFor(d1, d2);
       return digits ? `runway ${digits}${runwaySuffixFor(suffix)}` : match;
@@ -392,6 +403,14 @@ export function normalizeAviationTranscriptDetailed(input: string): AviationTran
       const afterDigits = digitsFromText(after);
       return beforeDigits && afterDigits ? `${prefix} ${beforeDigits}.${afterDigits}` : match;
     },
+  ));
+  trackedRule(state, 'FREQ-005', 'context-required', (value) => value.replace(
+    /\b((?:the\s+)?frequency\s+of)\s+(\d{2,3})\s+(?:decimal|point)\s+(\d{1,3})\s+(?:mega\s*hertz|megahertz|mhz)\b/gi,
+    (match, prefix: string, before: string, after: string) => `${prefix} ${before}.${after} MHz`,
+  ));
+  trackedRule(state, 'FREQ-006', 'guarded', (value) => value.replace(
+    /\b(contact\s+(?:approach|departure|control|tower|ground)(?:\s+on)?)\s+((?:11[89]|12\d|13[0-6])\d{2})\b/gi,
+    (match, prefix: string, digits: string) => `${prefix} ${digits.slice(0, 3)}.${digits.slice(3)}`,
   ));
   trackedRule(state, 'FREQ-002', 'context-required', (value) => value.replace(
     new RegExp(`\\b(hear\\s+it\\s+as)\\s+(${DIGIT_WORD_SEQUENCE_PATTERN})\\s+(?:decimal|point)\\s+(${DIGIT_WORD_SEQUENCE_PATTERN})\\b`, 'gi'),
@@ -444,6 +463,13 @@ export function normalizeAviationTranscriptDetailed(input: string): AviationTran
     }));
   trackedRule(state, 'CALLSIGN-001', 'context-required', (value) => value
     .replace(
+      new RegExp(`\\b(Air\\s+Canada|Air\\s+China|Air\\s+France|China\\s+Eastern|China\\s+Southern|Delta|Dragonair|Eastern|Great\\s+Wall|Japan(?:\\s+Air(?:lines)?)?|KLM|Korean(?:\\s+Air)?|Northwest|Pacific|Qantas|Singapore|Southern|Southwest|Speedbird|United(?:\\s+Airlines)?|Windar|Windor)\\s+(${DIGIT_WORD_NON_CAPTURING_PATTERN})\\s+(\\d{1,3})\\b`, 'gi'),
+      (match, prefix: string, leading: string, trailing: string) => {
+        const digit = digitFor(leading);
+        return digit ? `${prefix} ${digit}${trailing}` : match;
+      },
+    )
+    .replace(
     new RegExp(`\\b(Air\\s+Canada|Air\\s+China|Air\\s+France|China\\s+Eastern|China\\s+Southern|Delta|Dragonair|Eastern|Great\\s+Wall|Japan(?:\\s+Air(?:lines)?)?|KLM|Korean(?:\\s+Air)?|Northwest|Pacific|Qantas|Singapore|Southern|Southwest|Speedbird|United(?:\\s+Airlines)?|Windar|Windor)\\s+(${CALLSIGN_PUNCTUATED_DIGIT_SEQUENCE_PATTERN})\\b(?=\\s*(?:[,.;?!]|$|roger\\b|thanks\\b|vacate\\b|enter\\b|have\\b|is\\b|for\\b|on\\b|stop\\b))`, 'gi'),
       (match, prefix: string, spoken: string) => {
         const number = callsignNumberFor(spoken);
@@ -486,6 +512,10 @@ export function normalizeAviationTranscriptDetailed(input: string): AviationTran
       const number = callsignDigitsFor(digit);
       return code && number ? `${prefix} ${code}${number}` : match;
     })
+    .replace(new RegExp(`\\b(intersection\\s+departure\\s+from)\\s+(${ICAO_SPELLING_WORD_PATTERN})\\s+(\\d{1,2})\\b`, 'gi'), (match, prefix: string, spelling: string, digit: string) => {
+      const code = spellingTokenFor(spelling);
+      return code ? `${prefix} ${code}${digit}` : match;
+    })
     .replace(new RegExp(`\\b(intersection)\\s+(${ICAO_SPELLING_WORD_PATTERN})\\s+(${DESIGNATOR_DIGIT_WORD_PATTERN})\\b`, 'gi'), (match, prefix: string, spelling: string, digit: string) => {
       const code = spellingTokenFor(spelling);
       const number = callsignDigitsFor(digit);
@@ -500,6 +530,10 @@ export function normalizeAviationTranscriptDetailed(input: string): AviationTran
       const code = spellingTokenFor(spelling);
       const number = callsignDigitsFor(digit);
       return code && number ? `${prefix}${code}${number}` : match;
+    })
+    .replace(new RegExp(`\\b((?:holding\\s+point|rapid\\s+exit|cleared\\s+to\\s+leave|taxiway)\\s+)(${ICAO_SPELLING_WORD_PATTERN})\\s+(\\d{1,2})\\b`, 'gi'), (match, prefix: string, spelling: string, digit: string) => {
+      const code = spellingTokenFor(spelling);
+      return code ? `${prefix}${code}${digit}` : match;
     })
     .replace(new RegExp(`\\b(stand)\\s+(${ICAO_SPELLING_WORD_PATTERN})\\s+(${DESIGNATOR_DIGIT_WORD_PATTERN})\\b`, 'gi'), (match, prefix: string, spelling: string, digit: string) => {
       const code = spellingTokenFor(spelling);
@@ -538,8 +572,11 @@ export function normalizeAviationTranscriptDetailed(input: string): AviationTran
   trackedRule(state, 'NAVAID-001', 'context-required', (value) => value.replace(
     NAVAID_SPELLING_PATTERN,
     (match, spelling: string, navaid: string) => {
-      const code = spellingSequenceFor(spelling);
-      return code ? `${code} ${navaid.toUpperCase()}` : match;
+      const leadingPreposition = /^(to|too)\s+/i.exec(spelling);
+      const designator = leadingPreposition ? spelling.slice(leadingPreposition[0].length) : spelling;
+      const code = spellingSequenceFor(designator);
+      if (!code) return match;
+      return `${leadingPreposition ? `${leadingPreposition[1]} ` : ''}${code} ${navaid.toUpperCase()}`;
     },
   ));
   trackedRule(state, 'WAYPOINT-001', 'context-required', (value) => value
@@ -589,7 +626,8 @@ export function normalizeAviationTranscriptDetailed(input: string): AviationTran
     },
   ));
   trackedRule(state, 'URGENCY-001', 'safe', (value) => value
-    .replace(/\bpan\s+pan\b/gi, 'pan-pan')
+    .replace(/\b((?:confirm\s+you\s+)?declare(?:d)?(?:\s+a)?)\s+(?:pompon|p(?:an|on|om)\s+p(?:an|on|om))\b/gi, '$1 PANPAN')
+    .replace(/\bpan\s+pan\b/gi, 'PANPAN')
     .replace(/(?<!-)\bpan\b(?!-)/gi, 'PAN')
     .replace(/\bmay\s+day\b/gi, 'mayday'));
   trackedRule(state, 'MACH-001', 'context-required', (value) => value.replace(
@@ -631,7 +669,15 @@ export function normalizeAviationTranscriptDetailed(input: string): AviationTran
     .replace(/\bB\s+T\s+M\b/gi, 'BTM')
     .replace(/\bB\s+C\s+F\b/gi, 'BCF')
     .replace(/\bA\s+P\s+U\b/gi, 'APU')
+    .replace(/\bC\s+P\s+D\s+L\s+C\b/gi, 'CPDLC')
     .replace(/\bR\s+V\s+S\s+M\b/gi, 'RVSM'));
+  trackedRule(state, 'ABBR-003', 'guarded', (value) => value
+    .replace(/\bIcaho(?=\s+(?:standard|spelling))\b/gi, 'ICAO')
+    .replace(/\bTCS\s*RA\b/gi, 'TCAS RA')
+    .replace(/\bT\.\s*Cas\.(?=\s*R\.\s*A\.)/gi, 'TCAS')
+    .replace(/\bTCAS\s+R\.\s*A\./gi, 'TCAS RA')
+    .replace(/\b(?:TCAST|cast)(?=\s+(?:resolution\s+advisories?|maneuvers?))\b/gi, 'TCAS')
+    .replace(/\bCAT\s+III\s+C\b/gi, 'CAT IIIC'));
   trackedRule(state, 'ALTITUDE-002', 'guarded', (value) => value.replace(
     /\b(nine|niner)\s+or\s+(?:hundred|100)\s+(meters|metres|feet)\b/gi,
     (match, digit: string, unit: string) => `${digitFor(digit)}00 ${/^metres$/i.test(unit) ? 'meters' : unit}`,
@@ -804,6 +850,13 @@ export function normalizeAviationTranscriptDetailed(input: string): AviationTran
   ));
   trackedRule(state, 'NOTAM-001', 'guarded', (value) => value.replace(/\bNote\s+to\s+say\b/gi, 'NOTAM says'));
   trackedRule(state, 'TAXIWAY-002', 'guarded', (value) => value.replace(/\b(taxiway\s+Zulu),\s+Foxtail\b/gi, '$1 4'));
+  trackedRule(state, 'TAXIWAY-003', 'context-required', (value) => value.replace(
+    new RegExp(`\\b(taxiway\\s+)(${ICAO_SPELLING_WORD_PATTERN})\\b(?!\\s+(?:\\d|${DESIGNATOR_DIGIT_WORD_PATTERN})\\b)(?=\\s+(?:to|for|at|about|and|is|was|will|then|before|after|on|near|with|where|which|that|has|had|shall)\\b|[,.;?!])`, 'gi'),
+    (match, prefix: string, spelling: string) => {
+      const code = spellingTokenFor(spelling);
+      return code ? `${prefix}${code}` : match;
+    },
+  ));
   trackedRule(state, 'TXT-002', 'safe', normalizeSpaces);
   return { transcript: state.transcript, transformations: state.transformations, version: AVIATION_TRANSCRIPT_NORMALIZATION_VERSION };
 }

@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { AppContentFrame } from '@/components/platform/AppContentFrame';
 import { colors, spacing } from '@/theme';
 
 type Props = PropsWithChildren<{
@@ -35,6 +36,7 @@ export function Screen({
       contentContainerStyle={[styles.content, styles.scrollContent, bottomInset ? styles.withTabBar : null, contentStyle]}
       keyboardShouldPersistTaps="handled"
       showsVerticalScrollIndicator={false}
+      style={styles.flex}
       {...scrollProps}
     >
       {children}
@@ -53,10 +55,10 @@ export function Screen({
           behavior={Platform.select({ ios: 'padding', android: undefined })}
           style={styles.flex}
         >
-          {content}
+          <AppContentFrame style={styles.flex}>{content}</AppContentFrame>
         </KeyboardAvoidingView>
       ) : (
-        content
+        <AppContentFrame style={styles.flex}>{content}</AppContentFrame>
       )}
     </SafeAreaView>
   );

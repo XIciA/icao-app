@@ -27,6 +27,7 @@ import Animated, { cancelAnimation, useAnimatedStyle, useReducedMotion, useShare
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AppText, BottomSheet, Button, TextField } from '@/components/ui';
+import { AppContentFrame } from '@/components/platform/AppContentFrame';
 import { useAppViewportDimensions } from '@/components/platform/useAppViewportDimensions';
 import { SoftGlow } from '@/components/visual/SoftGlow';
 import { AudioTimeline, formatAudioTime } from '@/features/question-bank/components/AudioTimeline';
@@ -157,6 +158,7 @@ export function RadioPlayerScreen() {
 
   return (
     <SafeAreaView edges={['top', 'bottom']} style={styles.screen}>
+      <AppContentFrame style={styles.contentFrame}>
       <QuestionBankSwitcherHeader
         items={switcherItems}
         onBack={() => router.back()}
@@ -212,6 +214,7 @@ export function RadioPlayerScreen() {
           </View>
         </View>
       </View>
+      </AppContentFrame>
 
       <BottomSheet accessibilityLabel="播放间隔" onClose={() => setIntervalOpen(false)} visible={intervalOpen}>
         <View style={styles.intervalSheet}>
@@ -271,6 +274,7 @@ function QueueRow({ item, current, playing, onPress }: { item: RadioTrack; curre
 
 const styles = StyleSheet.create({
   screen: { backgroundColor: colors.background, flex: 1 },
+  contentFrame: { flex: 1 },
   headerAction: { alignItems: 'center', borderRadius: radii.full, height: 40, justifyContent: 'center', width: 40 },
   headerActionPressed: { backgroundColor: colors.secondary },
   playerBody: { alignItems: 'center', flex: 1, minHeight: 0, paddingBottom: spacing[2], paddingHorizontal: spacing[5] },

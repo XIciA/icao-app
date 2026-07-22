@@ -68,6 +68,30 @@ describe('API foundation', () => {
     expect(() => loadConfig({ ...base, CORS_ORIGINS: 'https://feizhuicao.com/path' })).toThrow('invalid_api_configuration:CORS_ORIGINS');
   });
 
+  it('requires the production hotword mode and vocabulary configuration to agree', () => {
+    const base = {
+      NODE_ENV: 'production',
+      DATABASE_URL: process.env.DATABASE_URL,
+      SUPABASE_URL: process.env.SUPABASE_URL,
+      SUPABASE_PUBLIC_URL: process.env.SUPABASE_PUBLIC_URL,
+      SUPABASE_PUBLISHABLE_KEY: process.env.SUPABASE_PUBLISHABLE_KEY,
+      SUPABASE_SECRET_KEY: process.env.SUPABASE_SECRET_KEY,
+      DASHSCOPE_API_KEY: 'test-dashscope-key',
+    };
+    expect(loadConfig({
+      ...base,
+      AI_ASR_HOTWORDS_MODE: 'none',
+      AI_ASR_HOTWORDS_VERSION: 'aviation-hotwords:v2',
+    }).aiAsrHotwordsMode).toBe('none');
+    expect(() => loadConfig({ ...base, AI_ASR_HOTWORDS_MODE: 'vocabulary' }))
+      .toThrow('invalid_api_configuration:AI_ASR_VOCABULARY_ID');
+    expect(() => loadConfig({
+      ...base,
+      AI_ASR_HOTWORDS_MODE: 'none',
+      AI_ASR_VOCABULARY_ID: 'should-not-be-ignored',
+    })).toThrow('invalid_api_configuration:AI_ASR_HOTWORDS_MODE');
+  });
+
   it('returns live and ready health envelopes', async () => {
     const app = await testApp();
     const live = await app.inject({ method: 'GET', url: '/health/live' });

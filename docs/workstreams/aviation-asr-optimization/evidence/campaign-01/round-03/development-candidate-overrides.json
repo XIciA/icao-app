@@ -1,0 +1,8 @@
+{
+  "listening:listening-main-645": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "频率已从 118 decimal 0 megahertz 安全统一为 118.0 MHz；剩余冠词、连字符和 question 标点是等价差异。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  }
+}

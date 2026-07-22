@@ -1,9 +1,8 @@
 import { usePreventRemove } from '@react-navigation/native';
-import type { WordLookupResult } from '@icao/contracts';
 import { useRouter } from 'expo-router';
 import { Check, ChevronLeft, ChevronRight, Flag, Grid3X3, Languages, WifiOff } from 'lucide-react-native';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Keyboard, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Keyboard, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   ReduceMotion,
@@ -17,17 +16,19 @@ import Animated, {
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { CenteredState } from '@/components/states/CenteredState';
+import { AppContentFrame } from '@/components/platform/AppContentFrame';
 import { useAppViewportDimensions } from '@/components/platform/useAppViewportDimensions';
 import { AppText, BottomSheet, Button } from '@/components/ui';
 import { colors, fonts, motion, radii, spacing } from '@/theme';
-import { acceptAiConsent, hasAiConsent, wordLookup } from '@/features/ai/ai-client';
 
 import { annotationToneColors } from '../annotations/colors';
 import { useQuestionAnnotations } from '../annotations/use-question-annotations';
 import type { AnnotationTextBlockId } from '../annotations/types';
 import { useStudySession } from '../hooks/useStudySession';
 import { useQuestionBankAsset } from '../hooks/useQuestionBankAsset';
+import { resolveWordLookupInteraction, showsWordLookupModeToggle } from '../lib/word-lookup-interaction';
 import { getConnectivity, subscribeConnectivity, type Connectivity } from '../platform/network-service';
+import { findStaticWordLookup, hasStaticWordLookup, type StaticWordLookupEntry } from '../static-word-lookup/repository';
 import type { QuestionBankCategory, QuestionBankDataset, QuestionBankTopic } from '../types';
 import { boundedHorizontalSwipe } from '../lib/study-gestures';
 import { AnnotationToolbar } from './AnnotationToolbar';
@@ -40,7 +41,6 @@ import { StudyReport } from './StudyReport';
 import { StudyTaskRenderer } from './StudyTaskRenderer';
 import { StudyWorkbench, type StudyWorkbenchHandle } from './StudyWorkbench';
 
-type LookupRequest = { word: string; sentence: string; blockLabel: string };
 type Props = { dataset: QuestionBankDataset; category: QuestionBankCategory; topic: QuestionBankTopic; initialCardId?: string; returnTo?: 'annotations' | 'radio' };
 
 export function QuestionBankStudyScreen({ dataset, category, topic, initialCardId, returnTo }: Props) {
@@ -52,11 +52,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
   const [answerCardVisible, setAnswerCardVisible] = useState(false);
   const [connectivity, setConnectivity] = useState<Connectivity>('unknown');
   const [activeHighlightId, setActiveHighlightId] = useState('green');
-  const [lookup, setLookup] = useState<LookupRequest>();
-  const [lookupResult, setLookupResult] = useState<WordLookupResult>();
-  const [lookupBusy, setLookupBusy] = useState(false);
-  const [lookupError, setLookupError] = useState<string>();
-  const [aiConsented, setAiConsented] = useState(false);
+  const [lookup, setLookup] = useState<StaticWordLookupEntry>();
   const [finishing, setFinishing] = useState(false);
   const [leavingStudy, setLeavingStudy] = useState(false);
   const [finishError, setFinishError] = useState<string>();
@@ -101,8 +97,6 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
     const unsubscribe = subscribeConnectivity(setConnectivity);
     return () => { active = false; unsubscribe(); };
   }, []);
-
-  useEffect(() => { void hasAiConsent().then(setAiConsented); }, []);
 
   useEffect(() => {
     bodyScrollRef.current?.scrollTo({ animated: false, y: 0 });
@@ -317,46 +311,16 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
     };
   }, [activeWorkbenchTab, editingWorkbenchTab, handleQuestionSwipe, questionOffsetX, questionSwipeEnabled, session.currentIndex, session.toolMode, setActiveWorkbenchTab, topic.cards.length, workbenchTabs]);
 
-  async function runLookup(request = lookup, alreadyConsented = aiConsented) {
-    if (!request || !card) return;
-    setLookupBusy(true);
-    setLookupError(undefined);
-    try {
-      if (!alreadyConsented) {
-        await acceptAiConsent();
-        setAiConsented(true);
-      }
-      const module = dataset.id === 'sentences900' ? 'sentence900'
-        : dataset.id === 'radiotelephony' ? 'atc'
-          : dataset.id === 'storytelling' ? 'story'
-            : dataset.id;
-      setLookupResult(await wordLookup({ module, questionId: card.id, word: request.word, sentence: request.sentence }));
-    } catch {
-      setLookupError('AI 查词暂时失败，请检查网络后重试。');
-    } finally {
-      setLookupBusy(false);
-    }
-  }
-
   const selectedTagColors = useMemo(() => (annotations.entry?.tagIds ?? []).flatMap((id) => {
     const definition = annotations.tagDefinitions.find((item) => item.id === id);
     return definition ? [annotationToneColors[definition.color]] : [];
   }), [annotations.entry?.tagIds, annotations.tagDefinitions]);
+  const lookupInteraction = resolveWordLookupInteraction(Platform.OS, session.toolMode);
+  const dictionaryMode = lookupInteraction === 'tap';
 
-  function lookupWord(blockLabel: string, value: { word: string; sentence: string }) {
-    if (!value.word) return;
-    const request = { ...value, blockLabel };
-    setLookupResult(undefined);
-    setLookupError(undefined);
-    setLookup(request);
-    if (aiConsented) {
-      void runLookup(request, true);
-      return;
-    }
-    void hasAiConsent().then((consented) => {
-      setAiConsented(consented);
-      if (consented) void runLookup(request, true);
-    }).catch(() => setAiConsented(false));
+  function lookupWord(word: string) {
+    const entry = findStaticWordLookup(word);
+    if (entry) setLookup(entry);
   }
 
   function toggleHighlight(value: { blockId: AnnotationTextBlockId; wordIndex: number; quote: string; sentence: string; sourceText: string }) {
@@ -444,13 +408,13 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
   const transcript = card.kind === 'image' ? null : (
     <View style={styles.cardContent}>
       <View style={styles.sectionTitle}><Languages color={colors.mutedForeground} size={15} /><AppText variant="button">{session.behavior.transcriptLabel}</AppText></View>
-      <InteractiveStudyText activeHighlightId={activeHighlightId} blockId="question" definitions={annotations.highlightDefinitions} dictionaryMode={false} highlightMode={session.toolMode === 'highlight'} highlights={entry?.highlights ?? []} lookupEnabled={dataset.study.tools.dictionary} onHighlight={toggleHighlight} onHighlightRange={applyHighlightRange} onLookup={(value) => lookupWord(session.behavior.transcriptLabel, value)} text={card.audioText} />
+      <InteractiveStudyText activeHighlightId={activeHighlightId} blockId="question" definitions={annotations.highlightDefinitions} dictionaryMode={dictionaryMode} highlightMode={session.toolMode === 'highlight'} highlights={entry?.highlights ?? []} isLookupAvailable={hasStaticWordLookup} lookupEnabled={dataset.study.tools.dictionary} lookupInteraction={lookupInteraction} onHighlight={toggleHighlight} onHighlightRange={applyHighlightRange} onLookup={lookupWord} text={card.audioText} />
       {card.audioTextZh ? <AppText style={styles.translation}>{card.audioTextZh}</AppText> : null}
     </View>
   );
-  const referenceContent = card.kind === 'image' ? null : (
+  const referenceContent = card.kind === 'image' || dataset.id === 'listening' || !card.referenceText ? null : (
     <View style={styles.referenceContent}>
-      {card.referenceText ? <InteractiveStudyText activeHighlightId={activeHighlightId} blockId="reference" definitions={annotations.highlightDefinitions} dictionaryMode={false} highlightMode={session.toolMode === 'highlight'} highlights={entry?.highlights ?? []} lookupEnabled={dataset.study.tools.dictionary} onHighlight={toggleHighlight} onHighlightRange={applyHighlightRange} onLookup={(value) => lookupWord(session.behavior.referenceLabel, value)} text={card.referenceText} /> : <AppText color={colors.mutedForeground}>暂无参考内容</AppText>}
+      <InteractiveStudyText activeHighlightId={activeHighlightId} blockId="reference" definitions={annotations.highlightDefinitions} dictionaryMode={dictionaryMode} highlightMode={session.toolMode === 'highlight'} highlights={entry?.highlights ?? []} isLookupAvailable={hasStaticWordLookup} lookupEnabled={dataset.study.tools.dictionary} lookupInteraction={lookupInteraction} onHighlight={toggleHighlight} onHighlightRange={applyHighlightRange} onLookup={lookupWord} text={card.referenceText} />
       {card.referenceTextZh ? <AppText style={styles.translation}>{card.referenceTextZh}</AppText> : null}
     </View>
   );
@@ -461,8 +425,11 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
       blockedExternalGesture={questionSwipeGesture}
       card={card}
       interactionGesture={recordingInteractionGesture}
+      isLookupAvailable={hasStaticWordLookup}
       key={card.id}
+      lookupInteraction={lookupInteraction}
       onChoose={session.chooseOption}
+      onLookupWord={lookupWord}
       onClearRecording={session.clearRecording}
       onInteractionChange={setTaskInteractionActive}
       onPreviewPlaybackStart={handleRecordingPreviewStart}
@@ -479,16 +446,16 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
 
   return (
     <SafeAreaView edges={['top']} style={styles.root}>
+      <AppContentFrame style={styles.contentFrame}>
       <View style={styles.topBar}>
-        <Pressable accessibilityLabel={returnTo === 'radio' ? '返回随身听' : returnTo === 'annotations' ? '返回我的标注' : '返回题库目录'} disabled={finishing || taskInteractionActive} onPress={() => void leaveStudy()} style={returnTo === 'radio' ? styles.returnToRadioButton : styles.circleButton}><ChevronLeft color={colors.foreground} size={21} />{returnTo === 'radio' ? <AppText variant="button">返回随身听</AppText> : null}</Pressable>
+        <Pressable accessibilityLabel={returnTo === 'radio' ? '返回随身听' : returnTo === 'annotations' ? '返回我的标注' : '返回题库目录'} disabled={finishing || taskInteractionActive} onPress={() => void leaveStudy()} style={({ pressed }) => [returnTo === 'radio' ? styles.returnToRadioButton : styles.circleButton, pressed ? styles.topBarPressed : null]}><ChevronLeft color={colors.foreground} size={21} />{returnTo === 'radio' ? <AppText variant="button">返回随身听</AppText> : null}</Pressable>
         <View style={styles.topSpacer} />
-        <Pressable accessibilityLabel="打开答题卡" disabled={taskInteractionActive} onPress={() => { finishWorkbenchEditing(); setAnswerCardVisible(true); }} style={styles.counterButton}><Grid3X3 color={colors.mutedForeground} size={15} /><AppText style={styles.counter} variant="button">{session.currentIndex + 1} / {topic.cards.length}</AppText></Pressable>
+        <Pressable accessibilityLabel="打开答题卡" disabled={taskInteractionActive} onPress={() => { finishWorkbenchEditing(); setAnswerCardVisible(true); }} style={({ pressed }) => [styles.counterButton, pressed ? styles.counterPressed : null]}><Grid3X3 color={colors.mutedForeground} size={15} /><AppText style={styles.counter} variant="button">{session.currentIndex + 1} / {topic.cards.length}</AppText></Pressable>
       </View>
       {connectivity === 'offline' ? <View style={styles.offline}><WifiOff color={colors.mutedForeground} size={15} /><AppText style={styles.offlineCopy} variant="micro">当前处于离线状态；文字学习和本机标注仍可使用。</AppText></View> : null}
 
       {!imageCard ? <View style={styles.tools}>
-        <Pressable accessibilityLabel={session.revealed ? '收起答案' : '显示答案'} onPress={toggleAnswers} style={[styles.answerTool, session.revealed ? styles.toolActive : null]}><Check color={session.revealed ? colors.primary : colors.mutedForeground} size={14} /><AppText color={session.revealed ? colors.primary : colors.mutedForeground} variant="caption">答案</AppText></Pressable>
-        <AnnotationToolbar activeHighlightId={activeHighlightId} dictionaryMode={false} highlightDefinitions={annotations.highlightDefinitions} highlightMode={session.toolMode === 'highlight'} onCreateHighlight={(label, color) => { finishWorkbenchEditing(); void annotations.addHighlightDefinition(label, color).then((id) => { if (id) setActiveHighlightId(id); }); }} onCreateTag={(label, color) => { finishWorkbenchEditing(); void annotations.addTagDefinition(label, color); }} onDictionaryModeChange={(value) => { finishWorkbenchEditing(); session.setToolMode(value ? 'dictionary' : undefined); }} onHighlightChange={(value) => { finishWorkbenchEditing(); setActiveHighlightId(value); }} onHighlightModeChange={(value) => { finishWorkbenchEditing(); session.setToolMode(value ? 'highlight' : undefined); }} onTagToggle={(id) => { finishWorkbenchEditing(); void annotations.toggleTag(id); }} resetToken={card.id} selectedTags={entry?.tagIds ?? []} showDictionary={false} showHighlights={dataset.study.tools.highlights} showTags={dataset.study.tools.tags} tagDefinitions={annotations.tagDefinitions} />
+        <AnnotationToolbar activeHighlightId={activeHighlightId} dictionaryMode={dictionaryMode} highlightDefinitions={annotations.highlightDefinitions} highlightMode={session.toolMode === 'highlight'} leading={<Pressable accessibilityLabel={session.revealed ? '收起答案' : '显示答案'} onPress={toggleAnswers} style={({ pressed }) => [styles.answerTool, session.revealed ? styles.toolActive : null, pressed ? styles.toolPressed : null]}><Check color={session.revealed ? colors.primary : colors.mutedForeground} size={14} /><AppText color={session.revealed ? colors.primary : colors.mutedForeground} variant="caption">答案</AppText></Pressable>} onCreateHighlight={(label, color) => { finishWorkbenchEditing(); void annotations.addHighlightDefinition(label, color).then((id) => { if (id) setActiveHighlightId(id); }); }} onCreateTag={(label, color) => { finishWorkbenchEditing(); void annotations.addTagDefinition(label, color); }} onDictionaryModeChange={(value) => { finishWorkbenchEditing(); session.setToolMode(value ? 'dictionary' : undefined); }} onHighlightChange={(value) => { finishWorkbenchEditing(); setActiveHighlightId(value); }} onHighlightModeChange={(value) => { finishWorkbenchEditing(); session.setToolMode(value ? 'highlight' : undefined); }} onTagToggle={(id) => { finishWorkbenchEditing(); void annotations.toggleTag(id); }} resetToken={card.id} selectedTags={entry?.tagIds ?? []} showDictionary={showsWordLookupModeToggle(Platform.OS) && dataset.study.tools.dictionary} showHighlights={dataset.study.tools.highlights} showTags={dataset.study.tools.tags} tagDefinitions={annotations.tagDefinitions} />
       </View> : null}
 
       <GestureDetector gesture={questionSwipeGesture}>
@@ -507,19 +474,20 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
       <View style={[styles.footerShell, { paddingBottom: Math.max(insets.bottom, spacing[2]) }]}>
         {finishError ? <AppText color={colors.destructive} style={styles.finishError} variant="caption">{finishError}</AppText> : null}
         <View style={styles.footer}>
-          <Button disabled={finishing || taskInteractionActive || cardTransitionActive} leading={<Flag color={colors.foreground} size={15} />} onPress={() => void finish('abort')} size="sm" variant="ghost">{finishing ? '生成中…' : '结束'}</Button>
-          <Button disabled={finishing || taskInteractionActive || cardTransitionActive || session.currentIndex === 0} leading={<ChevronLeft color={colors.foreground} size={16} />} onPress={() => { void goToCard(session.currentIndex - 1, -1); }} size="sm" variant="outline">上一题</Button>
-          <Button accessibilityLabel={session.currentIndex < topic.cards.length - 1 ? '下一题' : '完成'} disabled={finishing || taskInteractionActive || cardTransitionActive} onPress={() => { if (session.currentIndex < topic.cards.length - 1) void goToCard(session.currentIndex + 1, 1); else void finish('complete'); }} size="sm" style={styles.footerPrimary}>{finishing ? '生成中…' : session.currentIndex < topic.cards.length - 1 ? '下一题' : '完成'} <ChevronRight color={colors.primaryForeground} size={15} /></Button>
+          <Button disabled={finishing || taskInteractionActive || cardTransitionActive} leading={<Flag color={colors.foreground} size={18} />} onPress={() => void finish('abort')} size="sm" style={styles.footerFinish} testID="study-footer-finish" variant="outline">{finishing ? '生成中…' : '结束'}</Button>
+          <Button disabled={finishing || taskInteractionActive || cardTransitionActive || session.currentIndex === 0} leading={<ChevronLeft color={colors.foreground} size={20} />} onPress={() => { void goToCard(session.currentIndex - 1, -1); }} size="sm" style={styles.footerPrevious} testID="study-footer-previous" variant="outline">上一题</Button>
+          <Button accessibilityLabel={session.currentIndex < topic.cards.length - 1 ? '下一题' : '完成'} disabled={finishing || taskInteractionActive || cardTransitionActive} onPress={() => { if (session.currentIndex < topic.cards.length - 1) void goToCard(session.currentIndex + 1, 1); else void finish('complete'); }} size="sm" style={styles.footerPrimary} testID="study-footer-next">{finishing ? '生成中…' : session.currentIndex < topic.cards.length - 1 ? '下一题' : '完成'} <ChevronRight color={colors.primaryForeground} size={20} /></Button>
         </View>
       </View>
+      </AppContentFrame>
 
       <AnswerCardSheet current={session.currentIndex} onClose={() => setAnswerCardVisible(false)} onSelect={(index) => { void goToCard(index).then((changed) => { if (changed) setAnswerCardVisible(false); }); }} total={topic.cards.length} visible={answerCardVisible} visited={session.visitedIndexes} />
-      <BottomSheet accessibilityLabel="上下文查词" onClose={() => setLookup(undefined)} visible={Boolean(lookup)}><View style={styles.sheetContent}><AppText color={colors.primary} variant="micro">AI 查词</AppText><AppText variant="pageTitle">{lookup?.word}</AppText><AppText variant="caption">{dataset.title} · {card.taskTitle} · {lookup?.blockLabel}</AppText><View style={styles.lookupSentence}><AppText>{lookup?.sentence}</AppText></View>{lookupResult ? <><View style={styles.lookupResult}><AppText variant="button">释义</AppText><AppText>{lookupResult.definition}</AppText></View><View style={styles.lookupResult}><AppText variant="button">本句理解</AppText><AppText>{lookupResult.sentenceMeaning}</AppText></View><AppText color={colors.mutedForeground} variant="micro">{lookupResult.cached ? '已复用相同查询，不重复调用 AI' : 'AI 生成内容，请结合原句学习'}</AppText></> : <><AppText variant="caption">查询会发送所选词与当前句子，不上传录音，也不会进入个人学习记录。</AppText>{lookupBusy ? <AppText color={colors.mutedForeground} variant="caption">正在查询释义…</AppText> : null}{lookupError ? <><AppText color={colors.destructive} variant="caption">{lookupError}</AppText><Button onPress={() => void runLookup()} size="lg">重新查询</Button></> : null}{!aiConsented && !lookupBusy && !lookupError ? <Button onPress={() => void runLookup()} size="lg">同意 AI 处理并查询</Button> : null}</>}<Button onPress={() => setLookup(undefined)} size="lg" variant="outline">返回学习</Button></View></BottomSheet>
+      <BottomSheet accessibilityLabel="查词结果" onClose={() => setLookup(undefined)} scrollable={false} visible={Boolean(lookup)}><View style={styles.sheetContent}><AppText variant="pageTitle">{lookup?.word}</AppText><AppText color={colors.mutedForeground}>{lookup?.ipa}</AppText><AppText>{`航空释义：${lookup?.aviationMeaning ?? ''}`}</AppText><AppText>{`常用释义：${lookup?.generalMeaning ?? ''}`}</AppText></View></BottomSheet>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  root: { backgroundColor: colors.background, flex: 1, overflow: 'hidden' }, state: { alignItems: 'center', backgroundColor: colors.background, flex: 1, justifyContent: 'center' }, topBar: { alignItems: 'center', flexDirection: 'row', minHeight: 46, paddingHorizontal: spacing[3] }, circleButton: { alignItems: 'center', borderRadius: radii.full, height: 38, justifyContent: 'center', width: 38 }, topSpacer: { flex: 1 }, counterButton: { alignItems: 'center', backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 34, paddingHorizontal: spacing[3] }, counter: { fontFamily: fonts.monoRegular }, offline: { alignItems: 'center', backgroundColor: colors.secondary, flexDirection: 'row', gap: spacing[2], marginHorizontal: spacing[5], padding: spacing[2] }, offlineCopy: { flex: 1 }, tools: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[2], paddingHorizontal: spacing[5], paddingVertical: spacing[2], zIndex: 20 }, answerTool: { alignItems: 'center', backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 30, paddingHorizontal: spacing[3] }, toolActive: { backgroundColor: colors.primary06, borderColor: colors.primary }, bodyGesture: { flex: 1, minHeight: 0 }, body: { flex: 1, minHeight: 0 }, bodyContent: { paddingBottom: spacing[5], paddingHorizontal: spacing[5], paddingTop: spacing[1] }, primaryContent: { gap: spacing[3] }, divider: { backgroundColor: colors.border, height: StyleSheet.hairlineWidth }, cardContent: { gap: spacing[2], paddingBottom: spacing[2] }, sectionTitle: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] }, translation: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth, color: colors.mutedForeground, marginTop: spacing[2], paddingTop: spacing[2] }, referenceContent: { gap: spacing[2] }, swipeBoundary: { alignSelf: 'center', backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, bottom: spacing[3], paddingHorizontal: spacing[3], paddingVertical: spacing[2], position: 'absolute' }, footerShell: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth, gap: spacing[1], paddingTop: spacing[2] }, finishError: { paddingHorizontal: spacing[5], textAlign: 'center' }, footer: { alignItems: 'center', flexDirection: 'row', gap: spacing[2], paddingHorizontal: spacing[5] }, footerPrimary: { flex: 1 }, sheetContent: { gap: spacing[3], paddingBottom: spacing[3] }, lookupSentence: { backgroundColor: colors.secondary, borderRadius: radii.xl, padding: spacing[3] }, lookupResult: { backgroundColor: colors.secondary, borderRadius: radii.xl, gap: spacing[1], padding: spacing[3] },
+  root: { backgroundColor: colors.background, flex: 1, overflow: 'hidden' }, contentFrame: { flex: 1 }, state: { alignItems: 'center', backgroundColor: colors.background, flex: 1, justifyContent: 'center' }, topBar: { alignItems: 'center', flexDirection: 'row', minHeight: 48, paddingBottom: spacing[1], paddingHorizontal: spacing[3] }, circleButton: { alignItems: 'center', borderRadius: radii.full, height: 38, justifyContent: 'center', width: 38 }, topBarPressed: { opacity: 0.65 }, topSpacer: { flex: 1 }, counterButton: { alignItems: 'center', backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 34, paddingHorizontal: spacing[3] }, counterPressed: { opacity: 0.72, transform: [{ scale: 0.97 }] }, counter: { fontFamily: fonts.monoRegular }, offline: { alignItems: 'center', backgroundColor: colors.secondary, flexDirection: 'row', gap: spacing[2], marginHorizontal: spacing[5], padding: spacing[2] }, offlineCopy: { flex: 1 }, tools: { paddingHorizontal: spacing[5], paddingVertical: spacing[2.5], zIndex: 20 }, answerTool: { alignItems: 'center', backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 30, paddingHorizontal: spacing[3] }, toolActive: { backgroundColor: colors.primary06, borderColor: colors.primary }, toolPressed: { opacity: 0.72, transform: [{ scale: 0.97 }] }, bodyGesture: { flex: 1, minHeight: 0 }, body: { flex: 1, minHeight: 0 }, bodyContent: { paddingBottom: spacing[5], paddingHorizontal: spacing[5], paddingTop: spacing[2] }, primaryContent: { gap: spacing[4] }, divider: { backgroundColor: colors.border, height: StyleSheet.hairlineWidth }, cardContent: { gap: spacing[2], paddingBottom: spacing[2] }, sectionTitle: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] }, translation: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth, color: colors.mutedForeground, fontSize: 13, lineHeight: 21, marginTop: spacing[3], paddingTop: spacing[3] }, referenceContent: { gap: spacing[2] }, swipeBoundary: { alignSelf: 'center', backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, bottom: spacing[3], paddingHorizontal: spacing[3], paddingVertical: spacing[2], position: 'absolute' }, footerShell: { backgroundColor: colors.background, gap: spacing[1], paddingTop: spacing[2], shadowColor: colors.foreground, shadowOffset: { height: -4, width: 0 }, shadowOpacity: 0.025, shadowRadius: 12, elevation: 3 }, finishError: { paddingHorizontal: spacing[5], textAlign: 'center' }, footer: { alignItems: 'center', flexDirection: 'row', gap: spacing[2], paddingHorizontal: spacing[5] }, footerFinish: { backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.full, minHeight: 48, paddingHorizontal: spacing[4] }, footerPrevious: { backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.full, flex: 1, minHeight: 48, paddingHorizontal: spacing[3] }, footerPrimary: { borderRadius: radii.full, flex: 1, minHeight: 48, paddingHorizontal: spacing[3] }, sheetContent: { gap: spacing[3], paddingBottom: spacing[3] },
   returnToRadioButton: { alignItems: 'center', borderRadius: radii.full, flexDirection: 'row', gap: spacing[1], minHeight: 38, paddingHorizontal: spacing[2] },
 });

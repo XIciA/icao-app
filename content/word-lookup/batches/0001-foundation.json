@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "word": "clearance",
+      "ipa": "/ˈklɪrəns/",
+      "aviationMeaning": "n. 空中交通管制许可；放行许可",
+      "generalMeaning": "n. 准许；清除；间隙"
+    },
+    {
+      "word": "descent",
+      "ipa": "/dɪˈsent/",
+      "aviationMeaning": "n. 下降",
+      "generalMeaning": "n. 斜坡；恶化；沦落；血统"
+    },
+    {
+      "word": "deviation",
+      "ipa": "/ˌdiːviˈeɪʃən/",
+      "aviationMeaning": "n. 偏离预定航向、航线或程序",
+      "generalMeaning": "n. 偏差；背离；偏离"
+    }
+  ]
+}

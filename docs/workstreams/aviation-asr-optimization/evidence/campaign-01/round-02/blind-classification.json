@@ -1,0 +1,128 @@
+{
+  "sentences900:sentence900-main-405": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "VOR 被识别为 VR；BKM 的拼读已正确规范化，导航台类型仍缺字母。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "sentences900:sentence900-main-801": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-611": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-183": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "wind shear 与当前目标写法 windshear 及标点差异不改变复飞含义。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "sentences900:sentence900-main-225": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "BK 被识别为 Brava kilo，是本轮第二个 BK 类导航点错误；盲测只记录到下一轮。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "sentences900:sentence900-main-819": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-677": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-062": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "HUR 拼读已形成 HUR，但 VOR 再次被识别为 VR；10 分钟正确。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  },
+  "sentences900:sentence900-main-469": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "sentences900:sentence900-main-760": {
+    "mainCategory": "NORMALIZATION_MISSING",
+    "note": "taxiway Lima 3 已听对但未统一为 L3；follow-me 和 we're 为等价写法。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "listening:listening-main-293": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "Air France/AFR、toilet 单复数与省略号位置内容等价，FL40、45 海里和航向 150 均正确。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-1069": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "首个 CCA 980 被识别为 Air China 9980，且开头控制单位失真；关键呼号数字错误阻塞。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "unusable"
+  },
+  "listening:listening-main-709": {
+    "mainCategory": "REFERENCE_MISMATCH",
+    "note": "参考 A RJ 疑为 An RJ 的排版错误，模型粘连为 NRJ；其余起飞场景信息完整，排除该词形收益判断。",
+    "referenceStatus": "mismatch",
+    "semanticOutcome": "excluded"
+  },
+  "listening:listening-main-233": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "China Eastern/CES、Boeing/B 和 wind shear/windshear 为等价表示，50、800、20 三个数值正确。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-696": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "参考末尾 southeast 明显应为 Celsius；所有温度边界在识别中保持一致。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-138": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "Speedbird/BAW、Boeing/B 与 Tai yuan/Taiyuan 为口头和书写差异，7800 米与航向 120 正确。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-058": {
+    "mainCategory": "REFERENCE_VARIANT",
+    "note": "Speedbird 141 与 BAW 141 是等价呼号，EGT 故障和拖车处置完整。",
+    "referenceStatus": "variant",
+    "semanticOutcome": "acceptable"
+  },
+  "listening:listening-main-686": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "第二个未见样本中 ICAO 再次成为 Icaho；本轮热词试验已证明单纯加词无效，转入下一轮受限规则候选。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "minor"
+  },
+  "listening:listening-main-718": {
+    "mainCategory": "MATCH",
+    "note": "自动内容匹配；主线程仍可抽查。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "correct"
+  },
+  "listening:listening-main-176": {
+    "mainCategory": "ASR_GENERAL",
+    "note": "340、316 与 runway 36L 多处发生数字或拼读错误，现有规则还把部分呼号写成 3 16；属于关键实体严重错误，但不是本轮新增。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "unusable"
+  },
+  "storytelling:story-pepec-0019": {
+    "mainCategory": "ASR_DOMAIN",
+    "note": "Lufthansa 两次被识别为 loafed/loved hansa，另有 Frankfurt/Main 和 weather 等普通错误；FL350 正确规范化。",
+    "referenceStatus": "aligned",
+    "semanticOutcome": "major"
+  }
+}

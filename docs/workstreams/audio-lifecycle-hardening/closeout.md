@@ -31,6 +31,13 @@
 
 未完成且必须在发布前执行：本机未安装 Maestro，因此双端确定性 flow 没有生成证据；iPhone 真机 30 次矩阵、双端真实麦克风冒烟、正式验收截图、Android Emulator 安装/运行和物理 Android 集中终验均未完成。
 
+### 2026-07-22 回归修复补充
+
+- 已确认 iOS 真机报错来自 adapter 对 `AudioRecorder.currentTime` 重复做秒到毫秒换算，使实际录音时长被放大 1000 倍，随后被 repository 错判为文件不完整；不是麦克风未录到或文件未落盘。
+- 已移除该平台差异字段依赖，改用 stop 前 `RecorderState.durationMillis` 与 adapter 实际经过时间；新增 Jest contract test 和 `check:audio` 静态门禁，禁止同一错误再次进入主路径。
+- 未引入新的录音、文件、时长、回放或 session owner；既有共享模块和资产边界保持不变。
+- 当前 `pnpm check` 全部通过；连接的物理 iPhone Development Build 编译和安装通过。真实麦克风复验因手机使用 5G、无法连接局域网 Metro 而待同一 Wi-Fi 下补做，Android 无连接设备，双端发布 fingerprint 证据尚未刷新。
+
 ## 部署
 
 本工作流只修改客户端、测试、脚本和文档；未修改 `services/api`、数据库或运行时环境，因此不部署 ECS。最终发布仍需重新生成 iOS/Android 安装包，并先通过对应平台 audio fingerprint gate。

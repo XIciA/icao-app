@@ -1,0 +1,176 @@
+{
+  "campaignId": "aviation-asr-campaign-01",
+  "content": {
+    "registryReleaseVersion": 8,
+    "registryReleasedAt": "2026-07-18T19:36:00Z"
+  },
+  "phase": "targeted",
+  "rationale": "验证 RVR→RV 与 ICAO→Icaho 两个目标错误，同时保护四个既有正确领域样本和三个含 we are 等近邻普通表达的短句。",
+  "round": 2,
+  "samples": [
+    {
+      "audio": {
+        "checksum": "f006aaf75ded4bd1c6cf337017f3022fb23e284a42be0cbb47acdebd2f612934",
+        "durationSeconds": 7.728,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/199.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/199.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-199",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Confirm current RVR less than 400 meters.",
+      "expectedTextSha256": "482df50b0e01d7ca7a6215b747669cd5ac3709cb2eb11432206d703317009420",
+      "id": "sentences900:sentence900-main-199",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "63ecd02dcdbaacfc4c5fc168efcc00aa56169fda8a096660383659827f56b756",
+        "durationSeconds": 25.992,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/181.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/181.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-181",
+      "categoryId": "listening-category-01",
+      "expectedField": "audioText",
+      "expectedText": "M1: Do you know there is a word the controller will use to inform pilots to disregard a taxi clearance issued at the beginning of the transmission? M2: Yes, there is an ICAO standard word. Question: What word should be used in this situation?",
+      "expectedTextSha256": "4f7ed5772bb8b3c493321cc29555db1e6a94837766a6216a8f8bc14b539f12ca",
+      "id": "listening:listening-main-181",
+      "topicId": "listening-topic-01"
+    },
+    {
+      "audio": {
+        "checksum": "a5ad8bc3ebf5d245c82cb74ce17aa2b3997a7451c3d44a3da69e6f260670aa23",
+        "durationSeconds": 6.96,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/201.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/201.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-201",
+      "categoryId": "sentence900-3级",
+      "expectedField": "audioText",
+      "expectedText": "Is mid-point RVR available?",
+      "expectedTextSha256": "9724efb69c20af3c37686b98c2435c97b6653088f2b6b2721dcf66e212de7ddb",
+      "id": "sentences900:sentence900-main-201",
+      "topicId": "sentence900-3级-main"
+    },
+    {
+      "audio": {
+        "checksum": "f91a37ed1e04247e0721f62bc1c935826b505b5edae72e4372bca1ccad9cdf84",
+        "durationSeconds": 31.2,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/328.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/328.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-328",
+      "categoryId": "listening-category-03",
+      "expectedField": "audioText",
+      "expectedText": "RVR is runway visual range, which represents the range over which runway high-intensity lights can be seen in the direction of landing along the runway. RVR values are measured at three points along the runway: the touchdown point, midpoint and endpoint, also known as the stop end. Question: At which runway point is RVR not measured?",
+      "expectedTextSha256": "e3e8e9ce1aa63d9fede0cd598d05ef2bacb765482ed4f77f149cec706ee097d0",
+      "id": "listening:listening-main-328",
+      "topicId": "listening-topic-03"
+    },
+    {
+      "audio": {
+        "checksum": "c448ab22a1c9a80c676b18257b69cd89017ec28e75e0a22ad6c44513618c490b",
+        "durationSeconds": 13.896,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v5/audio/listening/web-v5/pepec-listening-s03-section-06-q19.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-06-q19.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-1130",
+      "categoryId": "listening-category-04",
+      "expectedField": "audioText",
+      "expectedText": "CCA 500, Runway 26R RVR, touchdown 600m, mid-point 800m, stop-end 700m. Question: what is the RVR of the stop end?",
+      "expectedTextSha256": "89578a0c1b976eb469b05f0fce5ce26db4056055f3b0c96ce88b381673cf5016",
+      "id": "listening:listening-main-1130",
+      "topicId": "listening-topic-04"
+    },
+    {
+      "audio": {
+        "checksum": "7f3e3a7cdf7ab6d0c3b3459a540ec187e84c1174183712ec8a2a6051ee82cf0e",
+        "durationSeconds": 28.128,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/listening/main/207.mp3",
+        "publicPath": "/question-bank-assets/audio/listening/main/207.mp3"
+      },
+      "bankId": "listening",
+      "cardId": "listening-main-207",
+      "categoryId": "listening-category-03",
+      "expectedField": "audioText",
+      "expectedText": "M1: There is a broadcast that provides current routine information to the arriving and departing aircraft by means of continuous and repeated broadcast to update. M2: And it is identified by ICAO spelling alphabetic letters and transmitted in alphabetic order. Question: What are they talking about?",
+      "expectedTextSha256": "12d8fb745fa414adfea053a66ce2356c2b8c401ad21e0380259b1cc7e3d2df0c",
+      "id": "listening:listening-main-207",
+      "topicId": "listening-topic-03"
+    },
+    {
+      "audio": {
+        "checksum": "9acb8fad2567fa0dd298de80684e712674346bf47d5aa2550a75d939e879a63c",
+        "durationSeconds": 12.576,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/705.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/705.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-705",
+      "categoryId": "sentence900-4级",
+      "expectedField": "audioText",
+      "expectedText": "We are encountering clear ice. Request immediate right turn to heading 130.",
+      "expectedTextSha256": "f12c4ec8c201cd8020c9645038488e77f0fe0fd508e3c9d7d15ba100de81d5a8",
+      "id": "sentences900:sentence900-main-705",
+      "topicId": "sentence900-4级-main"
+    },
+    {
+      "audio": {
+        "checksum": "05d376269a58574415fa9e1e62129bf54087882a0622fdc503f08633a336abae",
+        "durationSeconds": 9.936,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/877.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/877.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-877",
+      "categoryId": "sentence900-4级",
+      "expectedField": "audioText",
+      "expectedText": "Confirm we are being vectored to fly overhead the airport for right downwind.",
+      "expectedTextSha256": "9b749bda081b7c049ce1eb89849fbab39004b6382fdb6a100fefb8cb759170a4",
+      "id": "sentences900:sentence900-main-877",
+      "topicId": "sentence900-4级-main"
+    },
+    {
+      "audio": {
+        "checksum": "0f4e73e6c97da4fefac16ac13d18a0207d19fc473db700797f227a7122b47af3",
+        "durationSeconds": 9.096,
+        "mimeType": "audio/mpeg",
+        "objectKey": "v1/audio/sentence900/main/691.mp3",
+        "publicPath": "/question-bank-assets/audio/sentence900/main/691.mp3"
+      },
+      "bankId": "sentences900",
+      "cardId": "sentence900-main-691",
+      "categoryId": "sentence900-4级",
+      "expectedField": "audioText",
+      "expectedText": "Engine Number Three has smoke coming out of the pylon section. We are evacuating.",
+      "expectedTextSha256": "e784599e7bb391ab51ff3f218394e1d001f798d19576cee3cd8a1c88c1e3860e",
+      "id": "sentences900:sentence900-main-691",
+      "topicId": "sentence900-4级-main"
+    }
+  ],
+  "schemaVersion": 1,
+  "seed": "targeted:2f297838f3050df1",
+  "summary": {
+    "audioDurationSeconds": 145.512,
+    "counts": {
+      "sentences900": 5,
+      "listening": 4,
+      "storytelling": 0
+    },
+    "sourceWarnings": 0
+  }
+}

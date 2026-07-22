@@ -1,7 +1,5 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
-import type { ApiConfig } from '../src/config';
-import { AiProviderService } from '../src/ai/ai-provider.service';
 import { normalizeAviationTranscript, normalizeAviationTranscriptDetailed } from '../src/ai/aviation-transcript-normalization';
 
 describe('normalizeAviationTranscript', () => {
@@ -15,13 +13,19 @@ describe('normalizeAviationTranscript', () => {
     ['flight level tree fife zero', 'FL350'],
     ['flight level niner zero to flight level seven zero', 'FL90 to FL70'],
     ['fl 290', 'FL290'],
+    ['flight level 200', 'FL200'],
+    ['flight level 90', 'FL90'],
     ['runway two seven', 'runway 27'],
     ['runway two seven left', 'runway 27L'],
     ['runway zero niner right', 'runway 09R'],
+    ['runway 15 right', 'runway 15R'],
+    ['runway 4 left', 'runway 04L'],
     ['runway one eight centre', 'runway 18C'],
     ['heading one eight zero', 'heading 180'],
     ['squawk seven five zero zero', 'squawk 7500'],
     ['contact tower one two three decimal four five', 'contact tower 123.45'],
+    ['the frequency of 118 decimal 0 megahertz', 'the frequency of 118.0 MHz'],
+    ['contact approach on 12835', 'contact approach on 128.35'],
     ['monitor guard one two one point fife', 'monitor guard 121.5'],
     ['cruising level three fife zero', 'cruising level 350'],
     ['three thousand five hundred feet', '3500 feet'],
@@ -40,6 +44,7 @@ describe('normalizeAviationTranscript', () => {
     ['United eight zero five', 'United 805'],
     ['Air China nine a one, stop immediately', 'Air China 981, stop immediately'],
     ['China Southern three seventy eight', 'China Southern 378'],
+    ['China Southern Tree 16, surface wind tree four zero', 'China Southern 316, surface wind tree four zero'],
     ['Great Wall five four six', 'Great Wall 546'],
     ['Japan Airlines seven eight five', 'Japan Airlines 785'],
     ['Pacific two eight, fuel leak', 'Pacific 28, fuel leak'],
@@ -55,12 +60,15 @@ describe('normalizeAviationTranscript', () => {
     ['information Foxtrot received', 'information F received'],
     ['information X ray received', 'information X received'],
     ['accept intersection departure from Charlie Two', 'accept intersection departure from C2'],
+    ['request intersection departure from Charlie 2', 'request intersection departure from C2'],
     ['proceed direct to Zulu Foxtrot', 'proceed direct to ZF'],
     ['estimating Papa November Oscar at four six', 'estimating PNO at four six'],
     ['Lima Victor NDB one one two three', 'LV NDB 1123'],
     ['then Tango five to gate two one one', 'then Tango 5 to gate 211'],
     ['holding point Foxtrot One runway one niner', 'holding point F1 runway 19'],
     ['rapid exit Juliet Five', 'rapid exit J5'],
+    ['rapid exit Juliet 5', 'rapid exit J5'],
+    ['taxiway Lima 3', 'taxiway L3'],
     ['position one zero miles northeast of Lima November', 'position 10 miles northeast of LN'],
     ['maintaining flight level nine zero over Whiskey X Ray Juliet', 'maintaining FL90 over WXJ'],
     ['cross Alpha Uniform at flight level one zero zero', 'cross AU at FL100'],
@@ -73,11 +81,23 @@ describe('normalizeAviationTranscript', () => {
     ['ready to join Romeo three four three', 'ready to join R343'],
     ['report Delta Sierra Golf', 'report DSG'],
     ['bravo two VOR', 'B2 VOR'],
+    ['direct to Bravo Kilo Mike VOR', 'direct to BKM VOR'],
     ['x-ray seven NDB', 'X7 NDB'],
     ['alpha one RNAV departure', 'A1 RNAV Departure'],
     ['charlie two departure', 'C2 Departure'],
     ['atc reported ads b failure', 'ATC reported ADS-B failure'],
-    ['pan pan we have engine failure', 'pan-pan we have engine failure'],
+    ['operating in the ifr environment', 'operating in the IFR environment'],
+    ['notam and sop are available', 'NOTAM and SOP are available'],
+    ['apu and C P D L C connected', 'APU and CPDLC connected'],
+    ['CAT III C approach', 'CAT IIIC approach'],
+    ['there is an Icaho standard word', 'there is an ICAO standard word'],
+    ['pan pan we have engine failure', 'PANPAN we have engine failure'],
+    ['confirm you declare pompon', 'confirm you declare PANPAN'],
+    ['we declared a pon pon', 'we declared a PANPAN'],
+    ['cast resolution advisories', 'TCAS resolution advisories'],
+    ['TCAST maneuver', 'TCAS maneuver'],
+    ['TCS RA', 'TCAS RA'],
+    ['T. Cas. R. A.', 'TCAS RA'],
     ['may day engine failure', 'mayday engine failure'],
     ['roger pan, say intention', 'roger PAN, say intention'],
     ['clear of C B', 'clear of CB'],
@@ -151,6 +171,7 @@ describe('normalizeAviationTranscript', () => {
     ['ADS-B receiver one zero nine zero data link', 'ADS-B receiver 1090 data link'],
     ['Note to say glide slope unserviceable', 'NOTAM says glide slope unserviceable'],
     ['taxiway Zulu, Foxtail, Alpha', 'taxiway Zulu 4, Alpha'],
+    ['taxi via taxiway Charlie to holding point runway 24', 'taxi via taxiway C to holding point runway 24'],
     ['rejoin the Alpha One before BKM VOR', 'rejoin the A1 before BKM VOR'],
     ['B two four, request startup', 'Bay24, request start-up'],
     ['at three two, altitude three hundred meters', 'at 32, altitude 300 meters'],
@@ -186,44 +207,5 @@ describe('normalizeAviationTranscript', () => {
     expect(first.transformations.map((item) => item.ruleId)).toEqual(expect.arrayContaining(['TXT-001', 'FL-001', 'CALLSIGN-001']));
     expect(second.transcript).toBe(first.transcript);
     expect(second.transformations).toEqual([]);
-  });
-});
-
-describe('AiProviderService transcribe result', () => {
-  afterEach(() => {
-    vi.unstubAllGlobals();
-  });
-
-  it('preserves the raw transcript and returns the canonical hints version', async () => {
-    vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify({
-      choices: [{ message: { content: 'I has turbulence at flight level two niner zero' } }],
-    }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
-    })));
-
-    const config: ApiConfig = {
-      databaseUrl: 'postgresql://postgres:test@127.0.0.1:5432/postgres',
-      host: '127.0.0.1',
-      nodeEnv: 'test',
-      port: 3101,
-      supabasePublishableKey: 'test-publishable-key-that-is-long-enough',
-      supabasePublicUrl: 'http://127.0.0.1:8000',
-      supabaseSecretKey: 'test-secret-key-that-is-long-enough',
-      supabaseUrl: 'http://127.0.0.1:8000',
-      dashscopeApiKey: 'test-dashscope-key',
-      dashscopeBaseUrl: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
-      aiTextModel: 'qwen-turbo',
-      aiAsrModel: 'qwen3-asr-flash',
-      corsOrigins: ['http://localhost:8081'],
-    };
-
-    const result = await new AiProviderService(config).transcribe(Buffer.from('audio'), 'audio/wav');
-
-    expect(result.data).toEqual({
-      rawTranscript: 'I has turbulence at flight level two niner zero',
-      transcript: 'I has turbulence at FL290',
-      hintsVersion: 'transcribe-hints:v1',
-    });
   });
 });

@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "version": "aviation-hotwords:v2",
+  "targetModel": "fun-asr-2025-11-07",
+  "language": "en",
+  "entries": []
+}

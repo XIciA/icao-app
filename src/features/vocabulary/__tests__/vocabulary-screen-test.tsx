@@ -75,6 +75,7 @@ describe('VocabularyScreen', () => {
   it('renders all three real-size books and opens the 30-question assessment', async () => {
     const screen = await render(withSafeArea(<VocabularyScreen />));
     await waitFor(() => expect(screen.getByText('从 838 条 ICAO 词汇中选择词书，按自己的节奏学习。')).toBeTruthy());
+    expect(screen.getAllByText('单词学习')).toHaveLength(1);
     expect(screen.getByText('ICAO考前预习')).toBeTruthy();
     expect(screen.getByText('360 词')).toBeTruthy();
     expect(screen.getByText('372 词')).toBeTruthy();

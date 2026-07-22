@@ -37,6 +37,25 @@ pnpm ios:standalone
 | iPhone 日常调试，仅启动 Metro | `pnpm start` |
 | 完整项目检查 | `pnpm check` |
 
+## Web 本地验收
+
+免登录检查 Web 页面、手机宽度和桌面宽度时，先导出专用验收构建：
+
+```bash
+pnpm web:acceptance:export
+pnpm web:serve
+```
+
+浏览器打开 `http://127.0.0.1:4173`，点击登录页右下角“开发者 · 免登录验收”。该模式只放开本地 UI 路由，不创建账号会话，也不能代替认证、同步、AI 或账号能力验收；刷新页面后会自动退出。
+
+需要热更新时使用：
+
+```bash
+pnpm web:acceptance
+```
+
+正常 Web 生产导出继续使用 `pnpm web:export`。验收和正常命令都会清理 Metro 缓存，确保开关切换生效；正常导出会强制关闭免登录入口。
+
 杀进程
 lsof -tiTCP:8081 -sTCP:LISTEN | xargs kill
 pnpm ios:phase2a

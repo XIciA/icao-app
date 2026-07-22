@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "version": "aviation-hotwords:v3",
+  "targetModel": "fun-asr-2025-11-07",
+  "language": "en",
+  "entries": [
+    { "text": "ICAO", "weight": 4, "category": "air-traffic-control", "source": "question-bank:release-8" },
+    { "text": "RVR", "weight": 4, "category": "air-traffic-control", "source": "question-bank:release-8" }
+  ],
+  "decision": "rejected",
+  "reason": "9 条隔离定向对照中两个目标错例均未改善；正确样本无语义退化，因此撤销而不扩大词表或提高权重。"
+}

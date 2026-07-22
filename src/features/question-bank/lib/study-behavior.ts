@@ -21,7 +21,7 @@ export function getStudyBehavior(dataset: QuestionBankDataset): StudyBehavior {
     workbenchTabs: dataset.study.consoleTabs.filter((tab) => {
       if (tab === 'mine') return dataset.study.tools.recorder;
       if (tab === 'notes') return dataset.study.tools.notes;
-      return true;
+      return dataset.id !== 'listening';
     }),
     reviewKind,
     generatedAudio: dataset.capabilities?.audioMode === 'generated' || (!dataset.capabilities && dataset.id === 'opi'),

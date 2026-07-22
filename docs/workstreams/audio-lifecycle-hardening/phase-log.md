@@ -65,3 +65,14 @@
 - Android Emulator 已存在不同签名的同包名 App，Debug APK 安装被 `INSTALL_FAILED_UPDATE_INCOMPATIBLE` 拒绝；未擅自卸载和清空现有数据。
 - iOS Simulator 实际渲染了 900 句学习录音页。检查期间发现并修复了“无资产也调用 `replace(null)` 导致误报回放失败”和 Fast Refresh 后访问已释放 native shared object 两个问题；空资产复验不再显示回放错误，最终 App shell 重启无红屏，相关卸载/播放生命周期测试通过。正式登录路由随后由并行开发恢复，因此没有再用临时入口伪造最终截图；这仍不替代真机录音验收。
 - 本机没有 Maestro，确定性 E2E 未运行；iPhone 30 次与真实麦克风冒烟仍待设备终验。
+
+## 2026-07-22：iOS 真机有效录音被误判回归
+
+状态：根因修复与工程验证完成，真实麦克风复验待同网连接
+
+- 截图错误码定位为 `recording_file_incomplete`。实际文件已经生成，但 native adapter 把 iOS `AudioRecorder.currentTime` 的毫秒值再次乘以 1000，仓库因此按放大 1000 倍的虚假时长校验文件大小并拒绝有效 WAV。
+- adapter 改为在 stop 前交叉使用 `RecorderState.durationMillis` 和自身记录的实际经过时间，不再读取跨平台单位不一致的 `AudioRecorder.currentTime`。
+- 新增 adapter contract 测试：mock 的 `currentTime` 一旦被读取就抛错，确保后续 Expo/录音改动不会重新依赖该字段；`check:audio` 同时加入静态禁止规则。
+- 复用既有 `AudioSessionOrchestrator`、controller、`RecordingRepository`、`RecordingAsset` 和文件事务，没有新增第二时长来源、录音 owner 或删除路径。
+- `pnpm check` 通过：App 55 suites / 241 tests，API 4 files / 208 tests；iOS Development Build 在连接的物理 iPhone 上完成编译与安装（0 errors、3 个既有 warnings）。
+- 真机启动时 iPhone 处于 5G，无法访问 Mac 的局域网 Metro 地址 `192.168.1.2:8082`；需连接同一 Wi-Fi 后完成 2–3 秒真实麦克风录音复验。Android 本轮无连接设备，未生成 Android 新证据。

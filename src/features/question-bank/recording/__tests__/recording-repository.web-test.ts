@@ -30,7 +30,7 @@ describe('Web RecordingRepository', () => {
   });
 
   it('commits a valid compressed WebM recording below the native WAV size floor', async () => {
-    const rawUri = rawBlobUri(1_500);
+    const rawUri = rawBlobUri(600);
     const asset = await new RecordingRepository().commitRaw({
       cardId: 'card-1',
       durationMillis: 900,
@@ -41,7 +41,7 @@ describe('Web RecordingRepository', () => {
     });
 
     expect(asset).toMatchObject({
-      byteSize: 1_500,
+      byteSize: 600,
       cardId: 'card-1',
       durationMillis: 900,
       format: 'webm',
@@ -52,7 +52,7 @@ describe('Web RecordingRepository', () => {
   });
 
   it('still rejects an empty or header-only browser recording', async () => {
-    const rawUri = rawBlobUri(900);
+    const rawUri = rawBlobUri(128);
 
     await expect(new RecordingRepository().commitRaw({
       cardId: 'card-1',
