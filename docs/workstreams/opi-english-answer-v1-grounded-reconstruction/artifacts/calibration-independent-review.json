@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "batchId": "cal-001",
+  "reviewer": "codex-independent",
+  "mode": "full-read-only-no-production-writing",
+  "coverage": {
+    "read": 40,
+    "total": 40
+  },
+  "readCardIds": [
+    "opi-core-001",
+    "opi-core-004",
+    "opi-core-005",
+    "opi-core-030-part-2",
+    "opi-core-042",
+    "opi-core-061",
+    "opi-core-078",
+    "opi-core-105",
+    "opi-core-168",
+    "opi-core-223",
+    "opi-core-114",
+    "opi-core-117",
+    "opi-core-461",
+    "opi-core-721",
+    "opi-core-136",
+    "opi-core-163",
+    "opi-core-208",
+    "opi-core-743",
+    "opi-core-754",
+    "opi-extra-247",
+    "opi-core-190",
+    "opi-core-195",
+    "opi-core-268",
+    "opi-core-283",
+    "opi-core-463",
+    "opi-core-591",
+    "opi-extra-019",
+    "opi-core-474",
+    "opi-core-871",
+    "opi-extra-125",
+    "opi-extra-216",
+    "opi-core-058",
+    "opi-core-849",
+    "opi-extra-130",
+    "opi-extra-144",
+    "opi-extra-179",
+    "opi-image-002-q01",
+    "opi-image-006-q01",
+    "opi-image-013-q01",
+    "opi-image-021-q02"
+  ],
+  "passIds": [
+    "opi-core-001",
+    "opi-core-004",
+    "opi-core-005",
+    "opi-core-030-part-2",
+    "opi-core-042",
+    "opi-core-061",
+    "opi-core-078",
+    "opi-core-105",
+    "opi-core-168",
+    "opi-core-223",
+    "opi-core-114",
+    "opi-core-117",
+    "opi-core-721",
+    "opi-core-163",
+    "opi-core-208",
+    "opi-core-743",
+    "opi-extra-247",
+    "opi-core-190",
+    "opi-core-268",
+    "opi-core-283",
+    "opi-core-463",
+    "opi-core-591",
+    "opi-extra-019",
+    "opi-core-474",
+    "opi-core-871",
+    "opi-extra-125",
+    "opi-extra-216",
+    "opi-core-058",
+    "opi-extra-130",
+    "opi-extra-144",
+    "opi-extra-179",
+    "opi-image-006-q01",
+    "opi-image-013-q01",
+    "opi-image-021-q02"
+  ],
+  "findings": [
+    {
+      "findingId": "cal-001-f001",
+      "cardId": "opi-core-195",
+      "severity": "major",
+      "dimension": "selected-segment-boundary",
+      "evidence": "The answer uses aircraft weight, but that factor appears only in opi-core-244:s01 and was not among the declared selected segments.",
+      "issue": "A substantive preparation factor could not be traced to the declared selectedSegmentIds, so the provenance record was incomplete."
+    },
+    {
+      "findingId": "cal-001-f002",
+      "cardId": "opi-core-136",
+      "severity": "minor",
+      "dimension": "minimal-edit/selected-segment-boundary",
+      "evidence": "The answer required an unclear clearance to be confirmed immediately, while that timing word was absent from the selected opi-core-372:s02 segment.",
+      "issue": "The ATC communication action contained a timing qualifier not supported by the declared selected segment."
+    }
+  ],
+  "specialDecisions": [
+    {
+      "cardId": "opi-core-461",
+      "decision": "source-insufficient",
+      "review": "agree"
+    },
+    {
+      "cardId": "opi-core-754",
+      "decision": "source-insufficient",
+      "review": "agree"
+    },
+    {
+      "cardId": "opi-core-849",
+      "decision": "source-insufficient",
+      "review": "agree"
+    },
+    {
+      "cardId": "opi-image-002-q01",
+      "decision": "deferred-image-answer",
+      "review": "agree"
+    }
+  ],
+  "conclusion": "needs-changes",
+  "summary": {
+    "blocker": 0,
+    "major": 1,
+    "minor": 1
+  }
+}

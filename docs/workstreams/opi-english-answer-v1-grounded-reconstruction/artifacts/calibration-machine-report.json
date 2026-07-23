@@ -1,0 +1,561 @@
+{
+  "schemaVersion": 1,
+  "ruleVersion": "opi-answer-v1-grounded-2026-07-23",
+  "batchId": "cal-001",
+  "questionLockHash": "6a1b20f3cdeb9438115675cbc1a196b7df41e83e1d1e9b84881c4588c1b13e93",
+  "calibrationHash": "02699ad58cf08d018c6e1994f1bd1671ca148aa5568205b3ce13a02ba5b3eceb",
+  "counts": {
+    "items": 40,
+    "dispositions": {
+      "complete": 34,
+      "source-insufficient": 5,
+      "deferred-image-answer": 1
+    },
+    "errors": 0,
+    "warnings": 0,
+    "novelTokenCandidates": 110
+  },
+  "errors": [],
+  "warnings": [],
+  "items": [
+    {
+      "cardId": "opi-core-001",
+      "disposition": "complete",
+      "answerHash": "fdc1a9588cd75194f95ed3dcc35d17d0e3d7c2a337cd6c22e9d1b793c52436b4",
+      "wordCount": 23,
+      "sentenceCount": 2,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 1,
+      "novelTokenCandidates": []
+    },
+    {
+      "cardId": "opi-core-004",
+      "disposition": "complete",
+      "answerHash": "bb2e59cf8b07e6bfd5e22f55777dc3b58ca0d9b0a30e01303720a46ac22d7251",
+      "wordCount": 50,
+      "sentenceCount": 4,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 1,
+      "novelTokenCandidates": [
+        "sop"
+      ]
+    },
+    {
+      "cardId": "opi-core-005",
+      "disposition": "complete",
+      "answerHash": "39980154b5e1f6d9efae333e312ba834c0e3d2d409cc71f834747e53afd155c2",
+      "wordCount": 40,
+      "sentenceCount": 3,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 1,
+      "novelTokenCandidates": [
+        "clouds",
+        "cumulonimbus",
+        "likely"
+      ]
+    },
+    {
+      "cardId": "opi-core-030-part-2",
+      "disposition": "complete",
+      "answerHash": "a16af3a15d232dfb972ea6ac4df2943d7dd5f8d2d67d45e87b24413a68d87285",
+      "wordCount": 42,
+      "sentenceCount": 3,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 2,
+      "novelTokenCandidates": [
+        "increase",
+        "over",
+        "reduce",
+        "treated"
+      ]
+    },
+    {
+      "cardId": "opi-core-042",
+      "disposition": "complete",
+      "answerHash": "0e7b9866c54be8e3b04116376913e57dc6821d6fee1be5f9db873783c610da5f",
+      "wordCount": 30,
+      "sentenceCount": 2,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 2,
+      "novelTokenCandidates": [
+        "clear",
+        "shear",
+        "wind"
+      ]
+    },
+    {
+      "cardId": "opi-core-061",
+      "disposition": "complete",
+      "answerHash": "ef6fd6f41c9c5e52057930c3d7ea17171cbc7c22554f55e74abfe82b25f2f18c",
+      "wordCount": 9,
+      "sentenceCount": 1,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 1,
+      "novelTokenCandidates": []
+    },
+    {
+      "cardId": "opi-core-078",
+      "disposition": "complete",
+      "answerHash": "eaac99636a3f4fd167d337b9384e3bb8120e449bbf3f5f693dcd0ef199aaef98",
+      "wordCount": 32,
+      "sentenceCount": 2,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 2,
+      "novelTokenCandidates": [
+        "practised",
+        "responses",
+        "sops",
+        "using"
+      ]
+    },
+    {
+      "cardId": "opi-core-105",
+      "disposition": "complete",
+      "answerHash": "845b8253de10ef7f1ad790264216f565d58e12576c430a7119b618ca7cb3e213",
+      "wordCount": 45,
+      "sentenceCount": 3,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 1,
+      "novelTokenCandidates": [
+        "actions",
+        "carry",
+        "necessary",
+        "out"
+      ]
+    },
+    {
+      "cardId": "opi-core-168",
+      "disposition": "complete",
+      "answerHash": "227b6a19520c8319769e888a506ee3cc38a43b3d740b58f418d5610805e660ad",
+      "wordCount": 36,
+      "sentenceCount": 2,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 2,
+      "novelTokenCandidates": [
+        "categories",
+        "regulations",
+        "transported"
+      ]
+    },
+    {
+      "cardId": "opi-core-223",
+      "disposition": "complete",
+      "answerHash": "42daeae36bebe975253f0bb35acce877c91c4ddcee43b296baecf97c407a2a19",
+      "wordCount": 57,
+      "sentenceCount": 3,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 1,
+      "novelTokenCandidates": [
+        "complete",
+        "deteriorated"
+      ]
+    },
+    {
+      "cardId": "opi-core-114",
+      "disposition": "complete",
+      "answerHash": "e7778e60947705515cb18324f2d4a7b0ff975525a455c6fc28ad51287775d293",
+      "wordCount": 28,
+      "sentenceCount": 3,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 1,
+      "novelTokenCandidates": [
+        "audio",
+        "important",
+        "including",
+        "information",
+        "investigations",
+        "recordings",
+        "transmissions"
+      ]
+    },
+    {
+      "cardId": "opi-core-117",
+      "disposition": "complete",
+      "answerHash": "5d26c041cbf90728d9937515ddae81932c919052248782a16128940924b108bc",
+      "wordCount": 33,
+      "sentenceCount": 3,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 2,
+      "novelTokenCandidates": [
+        "encourage",
+        "improve",
+        "practices",
+        "sops",
+        "useful"
+      ]
+    },
+    {
+      "cardId": "opi-core-461",
+      "disposition": "source-insufficient",
+      "answerHash": null,
+      "wordCount": 0,
+      "sentenceCount": 0,
+      "paragraphCount": 0,
+      "selectedSegmentCount": 0,
+      "novelTokenCandidates": []
+    },
+    {
+      "cardId": "opi-core-721",
+      "disposition": "complete",
+      "answerHash": "2f05b9241735469b27e420f1834ab2d6c1f0e61263d95a3989e729657f3c4592",
+      "wordCount": 29,
+      "sentenceCount": 2,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 1,
+      "novelTokenCandidates": [
+        "conducted",
+        "flight",
+        "important",
+        "inoperative",
+        "tells"
+      ]
+    },
+    {
+      "cardId": "opi-core-136",
+      "disposition": "complete",
+      "answerHash": "4095c43e8cba22721d7e9de65acb8824a5700892954b260e1a69c2090a8687d9",
+      "wordCount": 36,
+      "sentenceCount": 3,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 1,
+      "novelTokenCandidates": [
+        "accurately",
+        "clearance",
+        "transmitted"
+      ]
+    },
+    {
+      "cardId": "opi-core-163",
+      "disposition": "complete",
+      "answerHash": "c31352bd6dd1e0a658df5640a6bab5221bb0a3a9b592e1e4283a8697c1144dc5",
+      "wordCount": 54,
+      "sentenceCount": 3,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 2,
+      "novelTokenCandidates": [
+        "help",
+        "misunderstanding",
+        "people",
+        "professional",
+        "reduce",
+        "speak",
+        "tension"
+      ]
+    },
+    {
+      "cardId": "opi-core-208",
+      "disposition": "complete",
+      "answerHash": "1fdedbc0d25573f1ffc6aa0a48ef2e76192e6cbb3788ac4cd0cb08672283052f",
+      "wordCount": 45,
+      "sentenceCount": 3,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 2,
+      "novelTokenCandidates": [
+        "each",
+        "encourage",
+        "everyone",
+        "following",
+        "make",
+        "member's",
+        "opinion",
+        "responsibilities",
+        "sure",
+        "throughout",
+        "understands"
+      ]
+    },
+    {
+      "cardId": "opi-core-743",
+      "disposition": "complete",
+      "answerHash": "f6ee4f979e9d586072c294f7e1d18644db1b5d24c8c3af2e97ce23239be67e57",
+      "wordCount": 32,
+      "sentenceCount": 3,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 2,
+      "novelTokenCandidates": [
+        "departs",
+        "preflight",
+        "understand"
+      ]
+    },
+    {
+      "cardId": "opi-core-754",
+      "disposition": "source-insufficient",
+      "answerHash": null,
+      "wordCount": 0,
+      "sentenceCount": 0,
+      "paragraphCount": 0,
+      "selectedSegmentCount": 0,
+      "novelTokenCandidates": []
+    },
+    {
+      "cardId": "opi-extra-247",
+      "disposition": "source-insufficient",
+      "answerHash": null,
+      "wordCount": 0,
+      "sentenceCount": 0,
+      "paragraphCount": 0,
+      "selectedSegmentCount": 0,
+      "novelTokenCandidates": []
+    },
+    {
+      "cardId": "opi-core-190",
+      "disposition": "complete",
+      "answerHash": "3a16e21868d99f236e17398e2b0ac1bea36c7ef926ef53e233a66985de842fcf",
+      "wordCount": 22,
+      "sentenceCount": 2,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 1,
+      "novelTokenCandidates": [
+        "never"
+      ]
+    },
+    {
+      "cardId": "opi-core-195",
+      "disposition": "complete",
+      "answerHash": "53715152be2e95a6b515465282ff75069a3304be9480dbae10705188afafffea",
+      "wordCount": 56,
+      "sentenceCount": 3,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 3,
+      "novelTokenCandidates": [
+        "airport's",
+        "analyse",
+        "condition",
+        "departure",
+        "effect",
+        "including",
+        "make",
+        "review",
+        "sure"
+      ]
+    },
+    {
+      "cardId": "opi-core-268",
+      "disposition": "complete",
+      "answerHash": "1117294cdf2acc22af84d6a34c857105363ea5c1ed8073ae8df69c03eb26673d",
+      "wordCount": 18,
+      "sentenceCount": 2,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 1,
+      "novelTokenCandidates": [
+        "gallons"
+      ]
+    },
+    {
+      "cardId": "opi-core-283",
+      "disposition": "complete",
+      "answerHash": "6774b9e54eed7bdc9b6fe76daa4a4995bb9ccdd351f52f7db7e5c65ad43c2422",
+      "wordCount": 22,
+      "sentenceCount": 2,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 1,
+      "novelTokenCandidates": [
+        "aircraft",
+        "cause",
+        "declare"
+      ]
+    },
+    {
+      "cardId": "opi-core-463",
+      "disposition": "complete",
+      "answerHash": "61ba7b9fd4c9066e42d3460df83a7d72e10f9ee750d6744ed9d62823aa0edbdf",
+      "wordCount": 25,
+      "sentenceCount": 1,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 1,
+      "novelTokenCandidates": [
+        "aircraft",
+        "clearance",
+        "failed",
+        "meet",
+        "requirements"
+      ]
+    },
+    {
+      "cardId": "opi-core-591",
+      "disposition": "complete",
+      "answerHash": "a255f4857f09468fb3114aab3fc7cf530f1b9537cbe3d5c2b1455d9aa7ed2d93",
+      "wordCount": 44,
+      "sentenceCount": 2,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 2,
+      "novelTokenCandidates": [
+        "calculation",
+        "centre-of-gravity",
+        "crosswind",
+        "error",
+        "handling",
+        "other",
+        "poor",
+        "result",
+        "such"
+      ]
+    },
+    {
+      "cardId": "opi-extra-019",
+      "disposition": "complete",
+      "answerHash": "957762348cd113bd6dddcc0a2c9f28d6d913d9ccc4e7ec641710519c35ade054",
+      "wordCount": 22,
+      "sentenceCount": 1,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 1,
+      "novelTokenCandidates": [
+        "discuss",
+        "explain",
+        "issue",
+        "view"
+      ]
+    },
+    {
+      "cardId": "opi-core-474",
+      "disposition": "complete",
+      "answerHash": "be263e0f70e699f19091f88b97c2c85a066ed5caf0a517c231d0c84b5114da99",
+      "wordCount": 14,
+      "sentenceCount": 1,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 1,
+      "novelTokenCandidates": [
+        "main-gear"
+      ]
+    },
+    {
+      "cardId": "opi-core-871",
+      "disposition": "source-insufficient",
+      "answerHash": null,
+      "wordCount": 0,
+      "sentenceCount": 0,
+      "paragraphCount": 0,
+      "selectedSegmentCount": 0,
+      "novelTokenCandidates": []
+    },
+    {
+      "cardId": "opi-extra-125",
+      "disposition": "complete",
+      "answerHash": "fb485983680efea0d36e6793f2ed9eaa12da7924b3cd3efd464a4cbf36d49e61",
+      "wordCount": 9,
+      "sentenceCount": 1,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 1,
+      "novelTokenCandidates": [
+        "uses"
+      ]
+    },
+    {
+      "cardId": "opi-extra-216",
+      "disposition": "complete",
+      "answerHash": "17e27d83c4eb0881318f6ccec441f8b38d02dec49a8db8cf020675e3e329409e",
+      "wordCount": 24,
+      "sentenceCount": 2,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 1,
+      "novelTokenCandidates": [
+        "practised",
+        "scenarios"
+      ]
+    },
+    {
+      "cardId": "opi-core-058",
+      "disposition": "complete",
+      "answerHash": "9b74acfa0c26c24ca5ca1a5b7f56ae49ea9f5146f44a7389103cbf1a883eeded",
+      "wordCount": 14,
+      "sentenceCount": 1,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 1,
+      "novelTokenCandidates": []
+    },
+    {
+      "cardId": "opi-core-849",
+      "disposition": "source-insufficient",
+      "answerHash": null,
+      "wordCount": 0,
+      "sentenceCount": 0,
+      "paragraphCount": 0,
+      "selectedSegmentCount": 0,
+      "novelTokenCandidates": []
+    },
+    {
+      "cardId": "opi-extra-130",
+      "disposition": "complete",
+      "answerHash": "b9a55bfd9a00e7160c71511803407ce2e6a73b76848cb2b942a339d6f8a5cf14",
+      "wordCount": 9,
+      "sentenceCount": 1,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 1,
+      "novelTokenCandidates": []
+    },
+    {
+      "cardId": "opi-extra-144",
+      "disposition": "complete",
+      "answerHash": "2123f639b663668b0e5815d1227b77fcceb1734d9cf08cacb3e1db7e4b0f9b6f",
+      "wordCount": 22,
+      "sentenceCount": 1,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 1,
+      "novelTokenCandidates": [
+        "am",
+        "describe"
+      ]
+    },
+    {
+      "cardId": "opi-extra-179",
+      "disposition": "complete",
+      "answerHash": "9324975a0bdb345c0ad5a5fd068ccadc3bc6dd403b96ce7537924fe98ff100ad",
+      "wordCount": 15,
+      "sentenceCount": 2,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 1,
+      "novelTokenCandidates": [
+        "states",
+        "travelled",
+        "united"
+      ]
+    },
+    {
+      "cardId": "opi-image-002-q01",
+      "disposition": "deferred-image-answer",
+      "answerHash": null,
+      "wordCount": 0,
+      "sentenceCount": 0,
+      "paragraphCount": 0,
+      "selectedSegmentCount": 0,
+      "novelTokenCandidates": []
+    },
+    {
+      "cardId": "opi-image-006-q01",
+      "disposition": "complete",
+      "answerHash": "5ef146c8d95ae5f2cdf9330e932997988336b4dc20b8c0ece32d2424bb4f03e8",
+      "wordCount": 35,
+      "sentenceCount": 2,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 1,
+      "novelTokenCandidates": [
+        "takeoff",
+        "winter-weather"
+      ]
+    },
+    {
+      "cardId": "opi-image-013-q01",
+      "disposition": "complete",
+      "answerHash": "37e4d0dd886433b7c6f54807e1691becebcb2546859384d995cb5b61ec82bd4d",
+      "wordCount": 29,
+      "sentenceCount": 3,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 1,
+      "novelTokenCandidates": [
+        "inspections",
+        "tyres"
+      ]
+    },
+    {
+      "cardId": "opi-image-021-q02",
+      "disposition": "complete",
+      "answerHash": "da0a7a390f6fc8aca4cc21e2ce1f617942cd28f9876fb79f7ecd0a6209c96e94",
+      "wordCount": 29,
+      "sentenceCount": 2,
+      "paragraphCount": 1,
+      "selectedSegmentCount": 1,
+      "novelTokenCandidates": []
+    }
+  ]
+}

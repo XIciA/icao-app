@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-07-23T16:59:44+08:00",
+  "reviewer": "codex-independent",
+  "adjudicator": "codex-main",
+  "scope": {
+    "exactDuplicateCandidates": 0,
+    "similarityCandidatesBeforeAdjudication": 4,
+    "commonOpeningGroupsBeforeAdjudication": 9,
+    "machineWarnings": 2
+  },
+  "similarityDecisions": [
+    {
+      "cardIds": ["opi-image-006-q01", "opi-image-003-q01"],
+      "decision": "accepted-source-driven-overlap",
+      "reason": "The questions cover winter and night takeoff preparation. Their distinct approved v2 segments use the same generic preparation framework, while the final answers retain the applicable condition and decision boundary."
+    },
+    {
+      "cardIds": ["opi-image-021-q02", "opi-image-016-q04"],
+      "decision": "reopened-and-resolved",
+      "reason": "The generic v2 segment could conservatively support a suspected bird-strike response but could not safely support engine-fire actions or a takeoff-stage decision boundary.",
+      "action": "Converted opi-image-016-q04 to source-insufficient and resealed ans-002."
+    },
+    {
+      "cardIds": ["opi-image-001-q02", "opi-image-003-q01"],
+      "decision": "accepted-source-driven-overlap",
+      "reason": "The questions themselves substantially overlap on night-flight and night-takeoff preparation, and both approved v2 segments contain the same source wording."
+    },
+    {
+      "cardIds": ["opi-image-009-q01", "opi-image-014-q01"],
+      "decision": "accepted-source-driven-overlap",
+      "reason": "The difference-versus-advantages questions express the same glass-cockpit comparison, and their approved v2 segments are identical."
+    }
+  ],
+  "commonOpeningDecisions": [
+    {
+      "opening": "no i have never",
+      "decision": "accepted-question-driven",
+      "reason": "All occurrences answer distinct Have you ever questions and remain consistent with the locked student-pilot persona."
+    },
+    {
+      "opening": "the flight crew should",
+      "decision": "accepted-question-driven",
+      "reason": "The questions explicitly ask what a flight crew should do, and the subsequent actions differ by event."
+    },
+    {
+      "opening": "the crew should follow",
+      "decision": "accepted-source-driven",
+      "reason": "The occurrences are separate malfunction or emergency questions whose approved sources explicitly invoke the applicable SOP, QRH, or checklist."
+    },
+    {
+      "opening": "the pilot should report",
+      "decision": "accepted-question-driven",
+      "reason": "The report recipient and follow-up action differ across the underlying questions."
+    },
+    {
+      "opening": "i am a student",
+      "decision": "accepted-persona-consistency",
+      "reason": "The occurrences preserve the locked student-pilot, training-aircraft, flight-school, and no-current-airline-employer background."
+    },
+    {
+      "opening": "i would check the",
+      "decision": "resolved-by-reopen",
+      "reason": "Three occurrences matched their questions and sources. The engine-fire occurrence exposed an insufficient generic source and was removed."
+    },
+    {
+      "opening": "no i have not",
+      "decision": "accepted-question-driven",
+      "reason": "The occurrences are direct negative responses to distinct personal-experience questions."
+    },
+    {
+      "opening": "pilots should follow the",
+      "decision": "accepted-source-driven",
+      "reason": "The radio, go-around, flap, and engine-parameter questions retain different source-supported procedures."
+    },
+    {
+      "opening": "the main purpose of",
+      "decision": "accepted-question-driven",
+      "reason": "Each question explicitly asks for the main purpose of a different subject, and no substantive content is reused."
+    }
+  ],
+  "machineWarningDecisions": [
+    {
+      "cardId": "opi-extra-178",
+      "warning": "word_count:4",
+      "decision": "accepted",
+      "reason": "The approved source only supports the concise direct answer and does not justify added content."
+    },
+    {
+      "cardId": "opi-extra-185",
+      "warning": "word_count:4",
+      "decision": "accepted",
+      "reason": "The optional book detail was not necessary to answer the question; the concise source-supported answer is complete."
+    }
+  ],
+  "finalResult": {
+    "complete": 899,
+    "sourceInsufficient": 158,
+    "deferredImageAnswer": 10,
+    "exactDuplicateCandidates": 0,
+    "remainingSimilarityCandidates": 3,
+    "remainingCommonOpeningGroups": 8,
+    "unresolvedFindings": 0,
+    "finalDecisionHash": "0bf5d02f776ec100618921635fc14c323bf5f7e400051c62650b780a2a28b8e5"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "batchId": "cal-001",
+  "adjudicator": "codex-main",
+  "status": "closed",
+  "finalCalibrationHash": "cd34f95b94174bfeb855f55471ed54ff7ee45b62adf7e41fddc365f6ab29c691",
+  "findings": [
+    {
+      "findingId": "cal-001-f001",
+      "cardId": "opi-core-195",
+      "decision": "accepted",
+      "action": "Added the already-authorized opi-core-244:s01 segment to selectedSegmentIds; the answer text did not change."
+    },
+    {
+      "findingId": "cal-001-f002",
+      "cardId": "opi-core-136",
+      "decision": "accepted",
+      "action": "Removed the unsupported word immediately and reran all calibration machine checks."
+    }
+  ],
+  "machineReview": {
+    "status": "reviewed",
+    "candidateCount": 110,
+    "conclusion": "All remaining novel-token candidates are inflection, number agreement, spelling normalization, necessary cohesion, or wording already supported by the selected source and locked question; no additional substantive content was identified."
+  },
+  "specialDecisionReview": {
+    "sourceInsufficient": [
+      "opi-core-461",
+      "opi-core-754",
+      "opi-core-849"
+    ],
+    "deferredImageAnswer": [
+      "opi-image-002-q01"
+    ],
+    "status": "independent-review-agreed-and-main-confirmed"
+  },
+  "userApproval": {
+    "status": "approved",
+    "approvedAt": "2026-07-23T09:08:48+08:00"
+  },
+  "result": "locked-user-approved",
+  "crossBatchConsistencyAudit": {
+    "auditId": "persona-consistency-001",
+    "file": "docs/workstreams/opi-english-answer-v1-grounded-reconstruction/artifacts/cross-batch-consistency-audit.json",
+    "cardIds": [
+      "opi-core-871",
+      "opi-extra-247"
+    ]
+  },
+  "counts": {
+    "items": 40,
+    "complete": 34,
+    "sourceInsufficient": 5,
+    "deferredImageAnswer": 1
+  }
+}

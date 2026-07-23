@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "ruleVersion": "opi-answer-v1-grounded-2026-07-23",
+  "generatedAt": "2026-07-23T03:46:26.442Z",
+  "branch": "main",
+  "baselineCommit": "e2fb3f4952d7a356e91834e872c343582c0cdf22",
+  "originMainCommit": "e2fb3f4952d7a356e91834e872c343582c0cdf22",
+  "currentReleaseVersion": 8,
+  "currentFormalSourceDigest": "75cf1046f2f51826c47f5459f52d4648afc213479836ff68c1f11e8581451657",
+  "questionLockHash": "6a1b20f3cdeb9438115675cbc1a196b7df41e83e1d1e9b84881c4588c1b13e93",
+  "corpusDigest": "d48152e06f54149f4ff7f1011fa0149985e09614d216811de566190022e1aced",
+  "onlineV8Evidence": {
+    "sourceArtifact": "docs/workstreams/opi-question-bank-text-reconstruction/artifacts/production-release-v8.json",
+    "version": 8,
+    "checksum": "bd142ec28285e82283caaa6958a3e5218f36b3fd2d4455f7aec4a97f9fd3faa7",
+    "result": "pass"
+  },
+  "rollbackPoints": {
+    "formalSourceCommit": "f7a22dbc6b59705d58a29eb4a19feb96a8fa07e0",
+    "contentVersion": 7,
+    "contentBackup": {
+      "file": "/opt/icao/backups/content/opi-final-v8-20260719T040842Z/active-opi-v7-before.json",
+      "sha256": "f1e13df6b5443549c130e85c1debc4313904840fec67fd0a5a61dac4c6cc5eef"
+    },
+    "databaseBackup": {
+      "file": "/opt/icao/backups/postgres/icao-20260719T041546Z.dump",
+      "sha256": "a72869bb43f9c35bf10d445e02634e71c11f3abb11eedd560f2a06ff66410fcf",
+      "pgRestoreListLines": 604,
+      "isolatedRestore": {
+        "result": "pass",
+        "publicTables": 13,
+        "authTables": 23,
+        "cardStates": 225,
+        "learningRecords": 150,
+        "documents": 3,
+        "syncChanges": 667
+      }
+    }
+  },
+  "counts": {
+    "categories": 8,
+    "topics": 144,
+    "cards": 1090,
+    "textCards": 1067,
+    "imageCards": 23,
+    "category01To07TextCards": 1003,
+    "imageTopicTextCards": 64,
+    "deferredImageAnswers": 10,
+    "targetAnswers": 1057
+  },
+  "historicalSources": [
+    {
+      "key": "v1-categories-01-07",
+      "requestedCommit": "d32f10f",
+      "commit": "d32f10ffbe4699fe5cc7a5068bf4904c1ec11262",
+      "releaseVersion": 1,
+      "categoryIds": [
+        "opi-category-01",
+        "opi-category-02",
+        "opi-category-03",
+        "opi-category-04",
+        "opi-category-05",
+        "opi-category-06",
+        "opi-category-07"
+      ],
+      "registryHash": "233e417f733e225590e39408e4d8e7cbd279982824c95b2f697a1f2b7ecf27d5",
+      "recordCount": 1269,
+      "segmentCount": 1642
+    },
+    {
+      "key": "v2-category-08-images",
+      "requestedCommit": "b95d541",
+      "commit": "b95d541315da39c47ec3b2686d2dc40b8ec6e8fd",
+      "releaseVersion": 2,
+      "categoryIds": [
+        "opi-category-08"
+      ],
+      "registryHash": "f18a838b8f47eb62f7e0519418bcdba38bef8ad2db921c7ed9d67bd67e856f41",
+      "recordCount": 64,
+      "segmentCount": 64
+    }
+  ],
+  "sourceMapping": {
+    "targetTextCards": 1067,
+    "mappedTextCards": 1067,
+    "v1Targets": 1003,
+    "v2ImageTargets": 64,
+    "structuralSourceCountDistribution": {
+      "1": 819,
+      "2": 205,
+      "3": 35,
+      "4": 6,
+      "5": 1,
+      "7": 1
+    },
+    "usableSourceCountDistribution": {
+      "1": 820,
+      "2": 204,
+      "3": 35,
+      "4": 6,
+      "5": 1,
+      "7": 1
+    },
+    "excludedStructuralMappings": 1
+  },
+  "immutableQuestionFields": [
+    "cardId",
+    "categoryId",
+    "topicId",
+    "taskTitle",
+    "questionEn",
+    "questionZh"
+  ],
+  "excludedProductionSources": [
+    "current-v8-answer-en",
+    "current-v8-answer-zh"
+  ]
+}

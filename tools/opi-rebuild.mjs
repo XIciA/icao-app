@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
 import {
   copyFileSync,
   closeSync,
@@ -42,6 +43,93 @@ const artifactRoot = join(
   projectRoot,
   'docs/workstreams/opi-question-bank-text-reconstruction/artifacts',
 );
+const groundedWorkstreamRoot = join(
+  projectRoot,
+  'docs/workstreams/opi-english-answer-v1-grounded-reconstruction',
+);
+const groundedArtifactRoot = join(groundedWorkstreamRoot, 'artifacts');
+const groundedGeneratedRoot = join(projectRoot, '.generated/opi-answer-v1-grounded');
+const groundedCorpusPath = join(groundedGeneratedRoot, 'legacy-corpus.json');
+const groundedWorkItemsPath = join(groundedGeneratedRoot, 'work-items.json');
+const groundedCalibrationInputPath = join(groundedGeneratedRoot, 'calibration-input.json');
+const groundedAnswerBatchInputRoot = join(groundedGeneratedRoot, 'answer-batch-inputs');
+const groundedAnswerBatchRoot = join(groundedGeneratedRoot, 'answer-batches');
+const groundedAnswerReviewRoot = join(groundedGeneratedRoot, 'answer-reviews');
+const groundedAnswerPreviewReleaseRoot = join(
+  groundedGeneratedRoot,
+  'answer-en-preview-release',
+);
+const groundedBaselineArtifactPath = join(groundedArtifactRoot, 'baseline-manifest.json');
+const groundedSourceMapArtifactPath = join(groundedArtifactRoot, 'source-map.json');
+const groundedCalibrationArtifactPath = join(groundedArtifactRoot, 'calibration-batch.json');
+const groundedCalibrationMachineReportPath = join(
+  groundedArtifactRoot,
+  'calibration-machine-report.json',
+);
+const groundedCalibrationReviewerReportPath = join(
+  groundedArtifactRoot,
+  'calibration-independent-review.json',
+);
+const groundedCalibrationAdjudicationPath = join(
+  groundedArtifactRoot,
+  'calibration-adjudication.json',
+);
+const groundedCalibrationComparisonPath = join(
+  groundedArtifactRoot,
+  'calibration-comparison.md',
+);
+const groundedBatchPlanArtifactPath = join(groundedArtifactRoot, 'answer-batch-plan.json');
+const groundedAnswerPreviewArtifactPath = join(
+  groundedArtifactRoot,
+  'answer-en-preview-release.json',
+);
+const groundedAnswerFinalPreviewArtifactPath = join(
+  groundedArtifactRoot,
+  'answer-en-final-preview-release.json',
+);
+const groundedFinalAnswerAuditPath = join(groundedArtifactRoot, 'final-answer-audit.json');
+const groundedFinalQualityReportPath = join(groundedArtifactRoot, 'final-quality-report.md');
+const groundedCrossBatchAuditPath = join(
+  groundedArtifactRoot,
+  'cross-batch-consistency-audit.json',
+);
+const groundedMappingArtifactPath = join(
+  projectRoot,
+  'docs/workstreams/opi-question-bank-text-reconstruction/artifacts/card-target-mapping.json',
+);
+const groundedDeferredArtifactPath = join(
+  projectRoot,
+  'docs/workstreams/opi-question-bank-text-reconstruction/artifacts/deferred-image-answers.json',
+);
+const groundedProductionV8ArtifactPath = join(
+  projectRoot,
+  'docs/workstreams/opi-question-bank-text-reconstruction/artifacts/production-release-v8.json',
+);
+
+const GROUNDED_SCHEMA_VERSION = 1;
+const GROUNDED_RULE_VERSION = 'opi-answer-v1-grounded-2026-07-23';
+const GROUNDED_SOURCES = [
+  {
+    key: 'v1-categories-01-07',
+    commit: 'd32f10f',
+    releaseVersion: 1,
+    categoryIds: [
+      'opi-category-01',
+      'opi-category-02',
+      'opi-category-03',
+      'opi-category-04',
+      'opi-category-05',
+      'opi-category-06',
+      'opi-category-07',
+    ],
+  },
+  {
+    key: 'v2-category-08-images',
+    commit: 'b95d541',
+    releaseVersion: 2,
+    categoryIds: ['opi-category-08'],
+  },
+];
 
 const WORK_SCHEMA_VERSION = 2;
 const MANIFEST_SCHEMA_VERSION = 2;
@@ -3296,6 +3384,1959 @@ function commandRollback() {
   console.log('opi_rebuild_rollback_ok files=' + manifest.sourceFileCount + ' registry=true');
 }
 
+function gitOutput(args) {
+  return execFileSync('git', args, {
+    cwd: projectRoot,
+    encoding: 'utf8',
+    maxBuffer: 128 * 1024 * 1024,
+  }).trim();
+}
+
+function gitJson(commit, path) {
+  return JSON.parse(gitOutput(['show', commit + ':' + path]));
+}
+
+function gitPaths(commit, root) {
+  return gitOutput(['ls-tree', '-r', '--name-only', commit, root])
+    .split('\n')
+    .map((entry) => entry.trim())
+    .filter(Boolean)
+    .sort();
+}
+
+function extractLegacyEnglishSegments(rawAnswer, sourceKey, sourceCardId) {
+  const prepared = String(rawAnswer ?? '')
+    .replace(/\r\n?/gu, '\n')
+    .replace(
+      /[（(][^（）()\n]*\p{Script=Han}[^（）()\n]*[）)](?=[.．。]?[A-Za-z])/gu,
+      '',
+    )
+    .replace(/([（(]\s*\d+\s*[）)])/gu, '\n$1');
+  const segments = [];
+  let currentLines = [];
+  let variant = null;
+
+  function flush() {
+    const text = normalize(currentLines.join('\n'));
+    currentLines = [];
+    if (!text || !/[A-Za-z]/u.test(text)) return;
+    const ordinal = segments.length + 1;
+    const textHash = valueHash(text);
+    segments.push({
+      segmentId:
+        sourceKey + ':' + sourceCardId + ':s' + String(ordinal).padStart(2, '0') + ':' + textHash.slice(0, 12),
+      ordinal,
+      variant,
+      text,
+      textHash,
+    });
+  }
+
+  for (const originalLine of prepared.split('\n')) {
+    let line = originalLine.trim();
+    if (!line) {
+      flush();
+      continue;
+    }
+    const marker = line.match(/^[（(]\s*(\d+)\s*[）)]\s*/u);
+    if (marker) {
+      flush();
+      variant = Number(marker[1]);
+      line = line.slice(marker[0].length).trim();
+      if (!line) continue;
+    }
+    if (HAN.test(line[0] ?? '')) {
+      flush();
+      continue;
+    }
+    const firstHan = line.search(HAN);
+    const englishPrefix = (firstHan >= 0 ? line.slice(0, firstHan) : line).trim();
+    if (englishPrefix && /[A-Za-z]/u.test(englishPrefix)) currentLines.push(englishPrefix);
+    if (firstHan >= 0) flush();
+  }
+  flush();
+  return segments;
+}
+
+function loadGroundedLegacySource(config) {
+  const fullCommit = gitOutput(['rev-parse', config.commit + '^{commit}']);
+  const registry = gitJson(config.commit, 'content/question-banks/registry.json');
+  if (registry.releaseVersion !== config.releaseVersion)
+    fail(config.key + ':unexpected_release_version:' + registry.releaseVersion);
+  const topicPaths = gitPaths(
+    config.commit,
+    'content/question-banks/banks/opi/topics',
+  ).filter((path) => path.endsWith('.json'));
+  const records = [];
+  for (const path of topicPaths) {
+    const topic = gitJson(config.commit, path);
+    if (!config.categoryIds.includes(topic.categoryId)) continue;
+    for (const card of topic.cards) {
+      if (card.kind === 'image') continue;
+      const rawAnswer = String(card.referenceText ?? '').replace(/\r\n?/gu, '\n').trim();
+      const segments = extractLegacyEnglishSegments(rawAnswer, config.key, card.id);
+      records.push({
+        corpusKey: config.key + ':' + card.id,
+        sourceKey: config.key,
+        commit: fullCommit,
+        releaseVersion: config.releaseVersion,
+        sourceCategoryId: topic.categoryId,
+        sourceTopicId: topic.id,
+        sourceTopicName: topic.name,
+        sourceCardId: card.id,
+        sourceQuestionEn: normalize(card.audioText),
+        rawAnswer,
+        rawAnswerHash: valueHash(rawAnswer),
+        segments,
+      });
+    }
+  }
+  records.sort((left, right) =>
+    left.sourceTopicId.localeCompare(right.sourceTopicId) ||
+    left.sourceCardId.localeCompare(right.sourceCardId),
+  );
+  return {
+    key: config.key,
+    requestedCommit: config.commit,
+    commit: fullCommit,
+    releaseVersion: config.releaseVersion,
+    categoryIds: config.categoryIds,
+    registryHash: valueHash(registry),
+    recordCount: records.length,
+    segmentCount: records.reduce((sum, record) => sum + record.segments.length, 0),
+    records,
+  };
+}
+
+function groundedQuestionRows() {
+  return loadSource().rows
+    .filter(({ card }) => card.kind !== 'image')
+    .map(({ category, topic, topicIndex, card, cardIndex }) => {
+      const row = {
+        categoryId: category.id,
+        categoryName: category.name,
+        topicId: topic.id,
+        topicName: topic.name,
+        topicIndex,
+        cardId: card.id,
+        cardIndex,
+        taskTitle: card.taskTitle,
+        questionEn: normalize(card.audioText),
+        questionZh: normalize(card.audioTextZh),
+      };
+      return { ...row, questionHash: valueHash(row) };
+    });
+}
+
+function groundedQuestionLock(rows) {
+  return valueHash(rows.map(({ questionHash, ...row }) => ({ ...row, questionHash })));
+}
+
+function withoutGeneratedAt(value) {
+  const result = clone(value);
+  delete result.generatedAt;
+  return result;
+}
+
+function collectGroundedAnswerBaseline() {
+  const current = loadSource();
+  const currentRegistry = readJson(registryPath);
+  const questionRows = groundedQuestionRows();
+  const questionLockHash = groundedQuestionLock(questionRows);
+  const imageRows = current.rows.filter(({ card }) => card.kind === 'image');
+  const legacySources = GROUNDED_SOURCES.map(loadGroundedLegacySource);
+  const corpusRecords = legacySources.flatMap((source) => source.records);
+  const corpusByKey = new Map(corpusRecords.map((record) => [record.corpusKey, record]));
+  if (corpusByKey.size !== corpusRecords.length) fail('grounded_duplicate_corpus_key');
+
+  const mappingArtifact = readJson(groundedMappingArtifactPath);
+  const reverseMapping = new Map();
+  for (const mapping of mappingArtifact.mappings) {
+    for (const targetCardId of mapping.targetCardIds ?? []) {
+      const rows = reverseMapping.get(targetCardId) ?? [];
+      rows.push({
+        sourceCardId: mapping.sourceCardId,
+        sourceTopicId: mapping.sourceTopicId,
+        sourceStatus: mapping.status,
+      });
+      reverseMapping.set(targetCardId, rows);
+    }
+  }
+  const deferredArtifact = readJson(groundedDeferredArtifactPath);
+  const deferredById = new Map(deferredArtifact.cards.map((entry) => [entry.cardId, entry]));
+  const targetIds = new Set(questionRows.map((row) => row.cardId));
+  for (const cardId of deferredById.keys()) {
+    if (!targetIds.has(cardId)) fail('grounded_unknown_deferred_card:' + cardId);
+  }
+
+  const structuralSourceCountDistribution = {};
+  const usableSourceCountDistribution = {};
+  const sourceMapCards = [];
+  const workItems = [];
+  for (const row of questionRows) {
+    const sourceConfig = GROUNDED_SOURCES.find((entry) => entry.categoryIds.includes(row.categoryId));
+    if (!sourceConfig) fail(row.cardId + ':grounded_source_policy_missing');
+    const mappings = reverseMapping.get(row.cardId) ?? [];
+    if (!mappings.length) fail(row.cardId + ':grounded_source_mapping_missing');
+    const excludedMappings = [];
+    const sourcePool = mappings.flatMap((mapping) => {
+      const corpusKey = sourceConfig.key + ':' + mapping.sourceCardId;
+      const record = corpusByKey.get(corpusKey);
+      if (!record) {
+        excludedMappings.push({
+          ...mapping,
+          sourcePolicy: sourceConfig.key,
+          reason: 'source-card-not-present-in-authorized-release',
+        });
+        return [];
+      }
+      return [{
+        corpusKey,
+        sourceKey: sourceConfig.key,
+        releaseVersion: sourceConfig.releaseVersion,
+        commit: record.commit,
+        sourceCategoryId: record.sourceCategoryId,
+        sourceTopicId: record.sourceTopicId,
+        sourceTopicName: record.sourceTopicName,
+        sourceCardId: record.sourceCardId,
+        sourceQuestionEn: record.sourceQuestionEn,
+        rawAnswerHash: record.rawAnswerHash,
+        segments: record.segments.map(({ segmentId, ordinal, variant, textHash }) => ({
+          segmentId,
+          ordinal,
+          variant,
+          textHash,
+        })),
+      }];
+    });
+    if (!sourcePool.length) fail(row.cardId + ':grounded_usable_source_pool_empty');
+    sourcePool.sort((left, right) => left.corpusKey.localeCompare(right.corpusKey));
+    const structuralCountKey = String(mappings.length);
+    structuralSourceCountDistribution[structuralCountKey] =
+      (structuralSourceCountDistribution[structuralCountKey] ?? 0) + 1;
+    const usableCountKey = String(sourcePool.length);
+    usableSourceCountDistribution[usableCountKey] =
+      (usableSourceCountDistribution[usableCountKey] ?? 0) + 1;
+    const deferred = deferredById.get(row.cardId);
+    sourceMapCards.push({
+      cardId: row.cardId,
+      categoryId: row.categoryId,
+      topicId: row.topicId,
+      sourcePolicy: sourceConfig.key,
+      structuralSourceCount: mappings.length,
+      sources: sourcePool,
+      excludedMappings,
+    });
+    workItems.push({
+      cardId: row.cardId,
+      categoryId: row.categoryId,
+      categoryName: row.categoryName,
+      topicId: row.topicId,
+      topicName: row.topicName,
+      taskTitle: row.taskTitle,
+      questionEn: row.questionEn,
+      questionZh: row.questionZh,
+      questionHash: row.questionHash,
+      sourcePolicy: sourceConfig.key,
+      sourcePool,
+      excludedMappings,
+      decision: {
+        status: deferred ? 'deferred-image-answer' : 'pending',
+        answerEn: null,
+        selectedSegmentIds: [],
+        editActions: [],
+        sourceAssessment: deferred ? 'image-dependent' : null,
+        riskAssessment: deferred?.reason ?? null,
+        producer: null,
+        review: 'pending',
+      },
+    });
+  }
+
+  const sourceMap = {
+    schemaVersion: GROUNDED_SCHEMA_VERSION,
+    ruleVersion: GROUNDED_RULE_VERSION,
+    questionLockHash,
+    counts: {
+      targetTextCards: questionRows.length,
+      mappedTextCards: sourceMapCards.length,
+      v1Targets: sourceMapCards.filter((card) => card.sourcePolicy === 'v1-categories-01-07').length,
+      v2ImageTargets: sourceMapCards.filter((card) => card.sourcePolicy === 'v2-category-08-images').length,
+      structuralSourceCountDistribution,
+      usableSourceCountDistribution,
+      excludedStructuralMappings: sourceMapCards.reduce(
+        (sum, card) => sum + card.excludedMappings.length,
+        0,
+      ),
+    },
+    cards: sourceMapCards,
+  };
+  const corpus = {
+    schemaVersion: GROUNDED_SCHEMA_VERSION,
+    ruleVersion: GROUNDED_RULE_VERSION,
+    sources: legacySources.map(({ records: _records, ...source }) => source),
+    corpusDigest: valueHash(
+      corpusRecords.map((record) => ({
+        corpusKey: record.corpusKey,
+        rawAnswerHash: record.rawAnswerHash,
+        segmentHashes: record.segments.map((segment) => segment.textHash),
+      })),
+    ),
+    records: corpusRecords,
+  };
+  const productionV8 = readJson(groundedProductionV8ArtifactPath);
+  const baseline = {
+    schemaVersion: GROUNDED_SCHEMA_VERSION,
+    ruleVersion: GROUNDED_RULE_VERSION,
+    generatedAt: new Date().toISOString(),
+    branch: gitOutput(['branch', '--show-current']),
+    baselineCommit: gitOutput(['rev-parse', 'HEAD']),
+    originMainCommit: gitOutput(['rev-parse', 'origin/main']),
+    currentReleaseVersion: currentRegistry.releaseVersion,
+    currentFormalSourceDigest: sourceDigest(),
+    questionLockHash,
+    corpusDigest: corpus.corpusDigest,
+    onlineV8Evidence: {
+      sourceArtifact: relative(projectRoot, groundedProductionV8ArtifactPath),
+      version: productionV8.release.version,
+      checksum: productionV8.release.checksum,
+      result: productionV8.result,
+    },
+    rollbackPoints: {
+      formalSourceCommit: productionV8.release.sourceCommit,
+      contentVersion: productionV8.rollback.contentVersion,
+      contentBackup: productionV8.backups.content,
+      databaseBackup: productionV8.backups.database,
+    },
+    counts: {
+      categories: current.categories.length,
+      topics: current.topics.length,
+      cards: current.rows.length,
+      textCards: questionRows.length,
+      imageCards: imageRows.length,
+      category01To07TextCards: questionRows.filter((row) => row.categoryId !== 'opi-category-08').length,
+      imageTopicTextCards: questionRows.filter((row) => row.categoryId === 'opi-category-08').length,
+      deferredImageAnswers: deferredById.size,
+      targetAnswers: questionRows.length - deferredById.size,
+    },
+    historicalSources: legacySources.map((source) => ({
+      key: source.key,
+      requestedCommit: source.requestedCommit,
+      commit: source.commit,
+      releaseVersion: source.releaseVersion,
+      categoryIds: source.categoryIds,
+      registryHash: source.registryHash,
+      recordCount: source.recordCount,
+      segmentCount: source.segmentCount,
+    })),
+    sourceMapping: sourceMap.counts,
+    immutableQuestionFields: [
+      'cardId',
+      'categoryId',
+      'topicId',
+      'taskTitle',
+      'questionEn',
+      'questionZh',
+    ],
+    excludedProductionSources: ['current-v8-answer-en', 'current-v8-answer-zh'],
+  };
+  const work = {
+    schemaVersion: GROUNDED_SCHEMA_VERSION,
+    ruleVersion: GROUNDED_RULE_VERSION,
+    questionLockHash,
+    corpusDigest: corpus.corpusDigest,
+    items: workItems,
+  };
+  return { baseline, corpus, sourceMap, work };
+}
+
+function commandBuildGroundedAnswerBaseline() {
+  if (existsSync(groundedGeneratedRoot))
+    fail('grounded_generated_root_exists: clean it explicitly before rebuilding');
+  const { baseline, corpus, sourceMap, work } = collectGroundedAnswerBaseline();
+  writeJson(groundedCorpusPath, corpus);
+  writeJson(groundedWorkItemsPath, work);
+  writeJson(groundedBaselineArtifactPath, baseline);
+  writeJson(groundedSourceMapArtifactPath, sourceMap);
+  console.log(
+    'opi_grounded_answer_baseline_ok text=' + baseline.counts.textCards +
+      ' v1=' + baseline.counts.category01To07TextCards +
+      ' v2_image=' + baseline.counts.imageTopicTextCards +
+      ' target_answers=' + baseline.counts.targetAnswers +
+      ' question_lock=' + baseline.questionLockHash,
+  );
+}
+
+function commandRefreshGroundedAnswerBaseline() {
+  if (!existsSync(groundedGeneratedRoot))
+    fail('grounded_generated_root_missing: build the baseline first');
+  const previousBaseline = readJson(groundedBaselineArtifactPath);
+  const { baseline, corpus, sourceMap, work } = collectGroundedAnswerBaseline();
+  if (baseline.questionLockHash !== previousBaseline.questionLockHash)
+    fail('grounded_refresh_question_lock_changed');
+  if (baseline.counts.textCards !== previousBaseline.counts.textCards)
+    fail('grounded_refresh_text_count_changed');
+  writeJson(groundedCorpusPath, corpus);
+  writeJson(groundedWorkItemsPath, work);
+  writeJson(groundedBaselineArtifactPath, baseline);
+  writeJson(groundedSourceMapArtifactPath, sourceMap);
+  console.log(
+    'opi_grounded_answer_baseline_refresh_ok text=' + baseline.counts.textCards +
+      ' corpus=' + baseline.corpusDigest,
+  );
+}
+
+function commandVerifyGroundedQuestionLock() {
+  const baseline = readJson(groundedBaselineArtifactPath);
+  const rows = groundedQuestionRows();
+  const actual = groundedQuestionLock(rows);
+  if (actual !== baseline.questionLockHash)
+    fail('grounded_question_lock_changed expected=' + baseline.questionLockHash + ' actual=' + actual);
+  if (rows.length !== baseline.counts.textCards)
+    fail('grounded_question_count_changed:' + rows.length);
+  console.log('opi_grounded_question_lock_ok text=' + rows.length + ' hash=' + actual);
+}
+
+function commandVerifyGroundedAnswerBaseline() {
+  if (!existsSync(groundedCorpusPath) || !existsSync(groundedWorkItemsPath))
+    fail('grounded_generated_baseline_missing');
+  const expected = collectGroundedAnswerBaseline();
+  const actualBaseline = readJson(groundedBaselineArtifactPath);
+  const actualCorpus = readJson(groundedCorpusPath);
+  const actualSourceMap = readJson(groundedSourceMapArtifactPath);
+  const actualWork = readJson(groundedWorkItemsPath);
+  if (valueHash(withoutGeneratedAt(actualBaseline)) !== valueHash(withoutGeneratedAt(expected.baseline)))
+    fail('grounded_baseline_manifest_mismatch');
+  if (valueHash(actualCorpus) !== valueHash(expected.corpus)) fail('grounded_corpus_mismatch');
+  if (valueHash(actualSourceMap) !== valueHash(expected.sourceMap)) fail('grounded_source_map_mismatch');
+  if (valueHash(actualWork) !== valueHash(expected.work)) fail('grounded_work_items_mismatch');
+  commandVerifyGroundedQuestionLock();
+  console.log(
+    'opi_grounded_answer_baseline_verify_ok mapped=' + actualSourceMap.counts.mappedTextCards +
+      ' corpus=' + actualCorpus.records.length +
+      ' digest=' + actualCorpus.corpusDigest,
+  );
+}
+
+function commandCreateGroundedAnswerCalibration(cardIds) {
+  if (!isNonEmptyUniqueStringArray(cardIds)) fail('grounded_calibration_card_ids_invalid');
+  if (cardIds.length < 30 || cardIds.length > 50)
+    fail('grounded_calibration_size_must_be_30_to_50:' + cardIds.length);
+  commandVerifyGroundedQuestionLock();
+  const work = readJson(groundedWorkItemsPath);
+  const corpus = readJson(groundedCorpusPath);
+  const itemById = new Map(work.items.map((item) => [item.cardId, item]));
+  const corpusByKey = new Map(corpus.records.map((record) => [record.corpusKey, record]));
+  const items = cardIds.map((cardId) => {
+    const item = itemById.get(cardId);
+    if (!item) fail('grounded_calibration_unknown_card:' + cardId);
+    return {
+      cardId: item.cardId,
+      categoryId: item.categoryId,
+      categoryName: item.categoryName,
+      topicId: item.topicId,
+      topicName: item.topicName,
+      taskTitle: item.taskTitle,
+      questionEn: item.questionEn,
+      questionZh: item.questionZh,
+      questionHash: item.questionHash,
+      sourcePolicy: item.sourcePolicy,
+      initialDisposition: item.decision.status,
+      initialRiskReason: item.decision.riskAssessment,
+      excludedMappings: item.excludedMappings,
+      sources: item.sourcePool.map((source) => {
+        const record = corpusByKey.get(source.corpusKey);
+        if (!record) fail(cardId + ':grounded_calibration_corpus_missing:' + source.corpusKey);
+        return {
+          corpusKey: record.corpusKey,
+          sourceKey: record.sourceKey,
+          releaseVersion: record.releaseVersion,
+          commit: record.commit,
+          sourceCategoryId: record.sourceCategoryId,
+          sourceTopicId: record.sourceTopicId,
+          sourceTopicName: record.sourceTopicName,
+          sourceCardId: record.sourceCardId,
+          sourceQuestionEn: record.sourceQuestionEn,
+          rawAnswer: record.rawAnswer,
+          rawAnswerHash: record.rawAnswerHash,
+          segments: record.segments,
+        };
+      }),
+    };
+  });
+  writeJson(groundedCalibrationInputPath, {
+    schemaVersion: GROUNDED_SCHEMA_VERSION,
+    ruleVersion: GROUNDED_RULE_VERSION,
+    questionLockHash: work.questionLockHash,
+    corpusDigest: work.corpusDigest,
+    selectedBy: 'codex-main',
+    count: items.length,
+    items,
+  });
+  console.log(
+    'opi_grounded_answer_calibration_input_ok count=' + items.length +
+      ' path=' + relative(projectRoot, groundedCalibrationInputPath),
+  );
+}
+
+function groundedAnswerRiskCandidates(item) {
+  const question = item.questionEn.toLowerCase();
+  const risks = [];
+  if (/have you ever|your experience|what happened|do you currently|did you/iu.test(question))
+    risks.push('personal-experience');
+  if (/your company|your airline|company require|company provide|company promote/iu.test(question))
+    risks.push('company-policy-or-procedure');
+  if (/aircraft type|aircraft you fly|your aircraft|type ratings?/iu.test(question))
+    risks.push('aircraft-type');
+  if (/how many|how much|maximum|minimum|lower and upper|limit|distance|altitude|speed|hours?|minutes?|feet|degrees/iu.test(question))
+    risks.push('numerical-or-limit');
+  if (/what should|how should|how would|what procedure|what actions?|how do you respond|what measures/iu.test(question))
+    risks.push('procedure-or-safety-action');
+  if (item.categoryId === 'opi-category-08') risks.push('image-topic');
+  if (item.cardId.includes('-part-')) risks.push('split-card');
+  if (item.sourcePool.length > 1) risks.push('multi-source');
+  if (item.decision.status === 'deferred-image-answer') risks.push('deferred-image-answer');
+  return risks;
+}
+
+function groundedAnswerBatchInput(item, corpusByKey) {
+  return {
+    cardId: item.cardId,
+    categoryId: item.categoryId,
+    categoryName: item.categoryName,
+    topicId: item.topicId,
+    topicName: item.topicName,
+    taskTitle: item.taskTitle,
+    questionEn: item.questionEn,
+    questionZh: item.questionZh,
+    questionHash: item.questionHash,
+    sourcePolicy: item.sourcePolicy,
+    initialDisposition: item.decision.status,
+    initialRiskReason: item.decision.riskAssessment,
+    riskCandidates: groundedAnswerRiskCandidates(item),
+    excludedMappings: item.excludedMappings,
+    sources: item.sourcePool.map((source) => {
+      const record = corpusByKey.get(source.corpusKey);
+      if (!record) fail(item.cardId + ':grounded_batch_corpus_missing:' + source.corpusKey);
+      return {
+        corpusKey: record.corpusKey,
+        sourceKey: record.sourceKey,
+        releaseVersion: record.releaseVersion,
+        commit: record.commit,
+        sourceCategoryId: record.sourceCategoryId,
+        sourceTopicId: record.sourceTopicId,
+        sourceTopicName: record.sourceTopicName,
+        sourceCardId: record.sourceCardId,
+        sourceQuestionEn: record.sourceQuestionEn,
+        rawAnswer: record.rawAnswer,
+        rawAnswerHash: record.rawAnswerHash,
+        segments: record.segments,
+      };
+    }),
+  };
+}
+
+function collectGroundedAnswerBatchPlan() {
+  commandVerifyGroundedQuestionLock();
+  const calibration = readJson(groundedCalibrationArtifactPath);
+  const adjudication = readJson(groundedCalibrationAdjudicationPath);
+  if (calibration.reviewStatus !== 'locked-user-approved')
+    fail('grounded_calibration_not_user_approved');
+  if (adjudication.userApproval?.status !== 'approved')
+    fail('grounded_calibration_approval_record_missing');
+  const calibrationIds = new Set(calibration.items.map((item) => item.cardId));
+  const work = readJson(groundedWorkItemsPath);
+  const corpus = readJson(groundedCorpusPath);
+  const corpusByKey = new Map(corpus.records.map((record) => [record.corpusKey, record]));
+  const remaining = work.items.filter((item) => !calibrationIds.has(item.cardId));
+  const batchCount = Math.ceil(remaining.length / 28);
+  const minimumSize = Math.floor(remaining.length / batchCount);
+  const largerBatchCount = remaining.length - minimumSize * batchCount;
+  const sizes = Array.from(
+    { length: batchCount },
+    (_, index) => minimumSize + (index < largerBatchCount ? 1 : 0),
+  );
+  const batches = [];
+  let offset = 0;
+  for (const [index, size] of sizes.entries()) {
+    const batchId = 'ans-' + String(index + 1).padStart(3, '0');
+    const items = remaining
+      .slice(offset, offset + size)
+      .map((item) => groundedAnswerBatchInput(item, corpusByKey));
+    offset += size;
+    const input = {
+      schemaVersion: GROUNDED_SCHEMA_VERSION,
+      ruleVersion: GROUNDED_RULE_VERSION,
+      batchId,
+      questionLockHash: work.questionLockHash,
+      corpusDigest: work.corpusDigest,
+      producer: 'codex-main',
+      reviewer: 'codex-independent',
+      count: items.length,
+      items,
+    };
+    batches.push({
+      batchId,
+      count: items.length,
+      topicIds: [...new Set(items.map((item) => item.topicId))],
+      cardIds: items.map((item) => item.cardId),
+      inputHash: valueHash(input),
+      input,
+    });
+  }
+  if (offset !== remaining.length) fail('grounded_batch_plan_offset');
+  const plan = {
+    schemaVersion: GROUNDED_SCHEMA_VERSION,
+    ruleVersion: GROUNDED_RULE_VERSION,
+    generatedAt: new Date().toISOString(),
+    questionLockHash: work.questionLockHash,
+    corpusDigest: work.corpusDigest,
+    calibration: {
+      batchId: calibration.batchId,
+      count: calibration.items.length,
+      hash: readJson(groundedCalibrationMachineReportPath).calibrationHash,
+      userApproved: true,
+    },
+    counts: {
+      allTextCards: work.items.length,
+      calibrationCards: calibration.items.length,
+      remainingCards: remaining.length,
+      productionBatches: batches.length,
+      minimumBatchSize: Math.min(...batches.map((batch) => batch.count)),
+      maximumBatchSize: Math.max(...batches.map((batch) => batch.count)),
+    },
+    batches: batches.map(({ input: _input, ...batch }) => batch),
+  };
+  return { plan, batches };
+}
+
+function commandPlanGroundedAnswerBatches() {
+  if (existsSync(groundedAnswerBatchInputRoot))
+    fail('grounded_answer_batch_input_root_exists');
+  const { plan, batches } = collectGroundedAnswerBatchPlan();
+  for (const batch of batches)
+    writeJson(join(groundedAnswerBatchInputRoot, batch.batchId + '.json'), batch.input);
+  mkdirSync(groundedAnswerBatchRoot, { recursive: true });
+  mkdirSync(groundedAnswerReviewRoot, { recursive: true });
+  writeJson(groundedBatchPlanArtifactPath, plan);
+  console.log(
+    'opi_grounded_answer_batch_plan_ok remaining=' + plan.counts.remainingCards +
+      ' batches=' + plan.counts.productionBatches +
+      ' size=' + plan.counts.minimumBatchSize + '-' + plan.counts.maximumBatchSize,
+  );
+}
+
+function commandRefreshGroundedAnswerBatchPlan() {
+  if (!existsSync(groundedAnswerBatchInputRoot))
+    fail('grounded_answer_batch_input_root_missing: plan batches first');
+  const previousPlan = readJson(groundedBatchPlanArtifactPath);
+  const { plan, batches } = collectGroundedAnswerBatchPlan();
+  if (plan.questionLockHash !== previousPlan.questionLockHash)
+    fail('grounded_batch_refresh_question_lock_changed');
+  if (
+    valueHash(plan.batches.map(({ batchId, cardIds }) => ({ batchId, cardIds }))) !==
+    valueHash(previousPlan.batches.map(({ batchId, cardIds }) => ({ batchId, cardIds })))
+  )
+    fail('grounded_batch_refresh_card_allocation_changed');
+  for (const batch of batches)
+    writeJson(join(groundedAnswerBatchInputRoot, batch.batchId + '.json'), batch.input);
+  writeJson(groundedBatchPlanArtifactPath, plan);
+  console.log(
+    'opi_grounded_answer_batch_plan_refresh_ok remaining=' + plan.counts.remainingCards +
+      ' batches=' + plan.counts.productionBatches,
+  );
+}
+
+function commandVerifyGroundedAnswerBatchPlan() {
+  const expected = collectGroundedAnswerBatchPlan();
+  const actualPlan = readJson(groundedBatchPlanArtifactPath);
+  if (valueHash(withoutGeneratedAt(actualPlan)) !== valueHash(withoutGeneratedAt(expected.plan)))
+    fail('grounded_answer_batch_plan_mismatch');
+  for (const batch of expected.batches) {
+    const path = join(groundedAnswerBatchInputRoot, batch.batchId + '.json');
+    if (!existsSync(path)) fail('grounded_answer_batch_input_missing:' + batch.batchId);
+    if (valueHash(readJson(path)) !== valueHash(batch.input))
+      fail('grounded_answer_batch_input_mismatch:' + batch.batchId);
+  }
+  console.log(
+    'opi_grounded_answer_batch_plan_verify_ok remaining=' + actualPlan.counts.remainingCards +
+      ' batches=' + actualPlan.counts.productionBatches,
+  );
+}
+
+function commandVerifyGroundedAnswerBatch(batchId) {
+  if (!isValidBatchId(batchId) || !/^ans-\d{3}$/u.test(batchId))
+    fail('grounded_answer_batch_id_invalid:' + batchId);
+  commandVerifyGroundedQuestionLock();
+  const inputPath = join(groundedAnswerBatchInputRoot, batchId + '.json');
+  const outputPath = join(groundedAnswerBatchRoot, batchId + '.json');
+  if (!existsSync(inputPath)) fail('grounded_answer_batch_input_missing:' + batchId);
+  if (!existsSync(outputPath)) fail('grounded_answer_batch_output_missing:' + batchId);
+  const input = readJson(inputPath);
+  const batch = readJson(outputPath);
+  const errors = [];
+  const warnings = [];
+  if (batch.schemaVersion !== GROUNDED_SCHEMA_VERSION) errors.push('batch:schema_version');
+  if (batch.ruleVersion !== GROUNDED_RULE_VERSION) errors.push('batch:rule_version');
+  if (batch.batchId !== batchId || input.batchId !== batchId) errors.push('batch:batch_id');
+  if (batch.inputHash !== valueHash(input)) errors.push('batch:input_hash');
+  if (batch.questionLockHash !== input.questionLockHash) errors.push('batch:question_lock');
+  if (batch.corpusDigest !== input.corpusDigest) errors.push('batch:corpus_digest');
+  if (batch.producer !== 'codex-main') errors.push('batch:producer');
+  if (!Array.isArray(batch.items) || batch.items.length !== input.items.length)
+    errors.push('batch:item_count');
+  const inputById = new Map(input.items.map((item) => [item.cardId, item]));
+  const ids = batch.items?.map((item) => item.cardId) ?? [];
+  if (new Set(ids).size !== ids.length) errors.push('batch:duplicate_card_id');
+  if (valueHash([...ids].sort()) !== valueHash(input.items.map((item) => item.cardId).sort()))
+    errors.push('batch:card_set');
+
+  const existingAnswers = new Map();
+  const calibration = readJson(groundedCalibrationArtifactPath);
+  for (const item of calibration.items.filter((item) => item.disposition === 'complete'))
+    existingAnswers.set(normalize(item.answerEn).toLowerCase(), item.cardId);
+  if (existsSync(groundedAnswerBatchRoot)) {
+    for (const name of readdirSync(groundedAnswerBatchRoot).filter((name) => name.endsWith('.json')).sort()) {
+      if (name === batchId + '.json') continue;
+      const other = readJson(join(groundedAnswerBatchRoot, name));
+      for (const item of other.items ?? []) {
+        if (item.disposition === 'complete' && normalize(item.answerEn))
+          existingAnswers.set(normalize(item.answerEn).toLowerCase(), item.cardId);
+      }
+    }
+  }
+
+  const allowedGrammarTokens = new Set(
+    'a an the and or but so if then than that this these those it its they them their we our i my he she his her would should could can may might must is are was were be been being have has had do does did to of in on at for from with without as by before after during until while when where which who what how no not only also first second however therefore because again any every all one two three four zero more most relevant required applicable immediately closely currently instead according main possible carefully clear safely safe unsafe reduced increased higher lower longer greater less better early further very flight takeoff landing aircraft pilot pilots crew'.split(' '),
+  );
+  const itemReports = [];
+  const batchAnswers = [];
+  for (const item of batch.items ?? []) {
+    const source = inputById.get(item.cardId);
+    if (!source) {
+      errors.push(item.cardId + ':not_in_batch_input');
+      continue;
+    }
+    if (item.questionEn !== source.questionEn) errors.push(item.cardId + ':question_changed');
+    if (!Array.isArray(item.riskTags) || !item.riskTags.length)
+      errors.push(item.cardId + ':risk_tags');
+    if (!['complete', 'source-insufficient', 'deferred-image-answer'].includes(item.disposition))
+      errors.push(item.cardId + ':disposition');
+    const segmentById = new Map(
+      source.sources.flatMap((entry) => entry.segments).map((segment) => [segment.segmentId, segment]),
+    );
+    for (const segmentId of [...(item.selectedSegmentIds ?? []), ...(item.consideredSegmentIds ?? [])])
+      if (!segmentById.has(segmentId)) errors.push(item.cardId + ':segment_outside_source_pool:' + segmentId);
+    if (!Array.isArray(item.editActions) || !item.editActions.length)
+      errors.push(item.cardId + ':edit_actions');
+    if (!normalize(item.riskAssessment)) errors.push(item.cardId + ':risk_assessment');
+    const answer = item.answerEn == null ? null : normalize(item.answerEn);
+    if (item.disposition === 'complete') {
+      if (!answer) errors.push(item.cardId + ':answer_missing');
+      if (!(item.selectedSegmentIds ?? []).length)
+        errors.push(item.cardId + ':selected_segments_missing');
+      if (item.sourceAssessment !== 'sufficient') errors.push(item.cardId + ':source_assessment');
+    } else {
+      if (answer) errors.push(item.cardId + ':answer_must_be_null');
+      if ((item.selectedSegmentIds ?? []).length)
+        errors.push(item.cardId + ':selected_segments_must_be_empty');
+      if (segmentById.size > 0 && !(item.consideredSegmentIds ?? []).length)
+        errors.push(item.cardId + ':considered_segments_missing');
+    }
+    if (item.disposition === 'deferred-image-answer') {
+      if (source.initialDisposition !== 'deferred-image-answer')
+        errors.push(item.cardId + ':unapproved_image_deferral');
+      if (item.sourceAssessment !== 'image-dependent')
+        errors.push(item.cardId + ':deferred_source_assessment');
+    }
+    if (item.disposition === 'source-insufficient' && item.sourceAssessment !== 'insufficient')
+      errors.push(item.cardId + ':insufficient_source_assessment');
+
+    let wordCount = 0;
+    let sentenceCount = 0;
+    let paragraphCount = 0;
+    let novelTokens = [];
+    if (answer) {
+      if (HAN.test(answer)) errors.push(item.cardId + ':han_in_answer');
+      if (/^(?:\s*(?:\d+[.)]|[-*•])\s+)/mu.test(answer)) errors.push(item.cardId + ':list_format');
+      if (/a suitable example|learners should|replace this answer|one adjustable example|example would be/iu.test(answer))
+        errors.push(item.cardId + ':banned_instruction_or_template');
+      if (/\n{3,}/u.test(answer)) errors.push(item.cardId + ':abnormal_newlines');
+      if (answer !== item.answerEn) errors.push(item.cardId + ':answer_not_normalized');
+      const normalizedAnswer = answer.toLowerCase();
+      const duplicateOwner = existingAnswers.get(normalizedAnswer);
+      if (duplicateOwner) errors.push(item.cardId + ':duplicate_answer:' + duplicateOwner);
+      existingAnswers.set(normalizedAnswer, item.cardId);
+      wordCount = englishTokens(answer).length;
+      sentenceCount = (answer.match(/[.!?](?:\s|$)/gu) ?? []).length;
+      paragraphCount = answer.split(/\n\s*\n/gu).length;
+      if (sentenceCount < 1 || sentenceCount > 7)
+        warnings.push(item.cardId + ':sentence_count:' + sentenceCount);
+      if (wordCount < 5 || wordCount > 140) warnings.push(item.cardId + ':word_count:' + wordCount);
+      if (paragraphCount > 2) warnings.push(item.cardId + ':paragraph_count:' + paragraphCount);
+      const sourceTokens = new Set([
+        ...englishTokens(source.questionEn),
+        ...(item.selectedSegmentIds ?? []).flatMap((segmentId) =>
+          englishTokens(segmentById.get(segmentId)?.text),
+        ),
+      ]);
+      novelTokens = [...new Set(englishTokens(answer))]
+        .filter((token) => !sourceTokens.has(token) && !allowedGrammarTokens.has(token))
+        .sort();
+      batchAnswers.push({ cardId: item.cardId, answer });
+    }
+    itemReports.push({
+      cardId: item.cardId,
+      disposition: item.disposition,
+      answerHash: answer ? valueHash(answer) : null,
+      wordCount,
+      sentenceCount,
+      paragraphCount,
+      selectedSegmentCount: (item.selectedSegmentIds ?? []).length,
+      novelTokenCandidates: novelTokens,
+    });
+  }
+  const similarityCandidates = [];
+  for (let leftIndex = 0; leftIndex < batchAnswers.length; leftIndex += 1) {
+    for (let rightIndex = leftIndex + 1; rightIndex < batchAnswers.length; rightIndex += 1) {
+      const left = batchAnswers[leftIndex];
+      const right = batchAnswers[rightIndex];
+      const score = jaccard(left.answer, right.answer);
+      if (score >= 0.82)
+        similarityCandidates.push({ left: left.cardId, right: right.cardId, score });
+    }
+  }
+  const dispositions = Object.fromEntries(
+    ['complete', 'source-insufficient', 'deferred-image-answer'].map((status) => [
+      status,
+      (batch.items ?? []).filter((item) => item.disposition === status).length,
+    ]),
+  );
+  const report = {
+    schemaVersion: GROUNDED_SCHEMA_VERSION,
+    ruleVersion: GROUNDED_RULE_VERSION,
+    batchId,
+    inputHash: batch.inputHash,
+    questionLockHash: batch.questionLockHash,
+    batchHash: valueHash({
+      inputHash: batch.inputHash,
+      questionLockHash: batch.questionLockHash,
+      corpusDigest: batch.corpusDigest,
+      items: batch.items,
+    }),
+    counts: {
+      items: batch.items?.length ?? 0,
+      dispositions,
+      errors: errors.length,
+      warnings: warnings.length,
+      novelTokenCandidates: itemReports.reduce(
+        (sum, item) => sum + item.novelTokenCandidates.length,
+        0,
+      ),
+      similarityCandidates: similarityCandidates.length,
+    },
+    errors,
+    warnings,
+    similarityCandidates,
+    items: itemReports,
+  };
+  writeJson(join(groundedAnswerReviewRoot, batchId + '.machine.json'), report);
+  if (errors.length) fail('grounded_answer_batch_invalid\n' + errors.join('\n'));
+  console.log(
+    'opi_grounded_answer_batch_verify_ok batch=' + batchId +
+      ' items=' + report.counts.items +
+      ' complete=' + dispositions.complete +
+      ' insufficient=' + dispositions['source-insufficient'] +
+      ' deferred=' + dispositions['deferred-image-answer'] +
+      ' warnings=' + warnings.length +
+      ' similar=' + similarityCandidates.length +
+      ' hash=' + report.batchHash,
+  );
+}
+
+function readGroundedSealedAnswerDecisions() {
+  commandVerifyGroundedAnswerBaseline();
+  commandVerifyGroundedAnswerBatchPlan();
+  commandVerifyGroundedAnswerCalibration();
+  commandBuildGroundedAnswerCalibrationReview();
+
+  const calibration = readJson(groundedCalibrationArtifactPath);
+  if (calibration.reviewStatus !== 'locked-user-approved')
+    fail('grounded_preview_calibration_not_user_approved');
+  const decisions = [...calibration.items];
+  const batchFiles = readdirSync(groundedAnswerBatchRoot)
+    .filter((name) => /^ans-\d{3}\.json$/u.test(name))
+    .sort();
+  if (!batchFiles.length) fail('grounded_preview_no_sealed_batches');
+
+  for (const name of batchFiles) {
+    const batchId = name.slice(0, -'.json'.length);
+    commandVerifyGroundedAnswerBatch(batchId);
+    const batch = readJson(join(groundedAnswerBatchRoot, name));
+    const machine = readJson(join(groundedAnswerReviewRoot, batchId + '.machine.json'));
+    const independent = readJson(join(groundedAnswerReviewRoot, batchId + '.independent.json'));
+    const adjudication = readJson(join(groundedAnswerReviewRoot, batchId + '.adjudication.json'));
+    const cardIds = batch.items.map((item) => item.cardId);
+    const cardIdHash = valueHash([...cardIds].sort());
+    if (batch.reviewStatus !== 'sealed-independent-review-closed')
+      fail('grounded_preview_batch_not_sealed:' + batchId);
+    if (batch.batchHash !== machine.batchHash)
+      fail('grounded_preview_batch_hash_mismatch:' + batchId);
+    if (
+      independent.batchId !== batchId ||
+      independent.reviewer !== 'codex-independent' ||
+      independent.mode !== 'full-read-only-no-production-writing' ||
+      independent.coverage?.read !== cardIds.length ||
+      independent.coverage?.total !== cardIds.length ||
+      (Array.isArray(independent.readCardIds) &&
+        valueHash([...independent.readCardIds].sort()) !== cardIdHash)
+    )
+      fail('grounded_preview_independent_review_invalid:' + batchId);
+    const findingIds = (independent.findings ?? []).map((finding) => finding.findingId);
+    const adjudicatedIds = (adjudication.findings ?? []).map((finding) => finding.findingId);
+    if (
+      adjudication.batchId !== batchId ||
+      adjudication.adjudicator !== 'codex-main' ||
+      adjudication.status !== 'closed' ||
+      adjudication.finalBatchHash !== batch.batchHash ||
+      valueHash([...findingIds].sort()) !== valueHash([...adjudicatedIds].sort()) ||
+      (adjudication.machineReview?.candidateCount ?? adjudication.machineReview?.novelTokenCandidates) !==
+        machine.counts.novelTokenCandidates
+    )
+      fail('grounded_preview_adjudication_invalid:' + batchId);
+    decisions.push(...batch.items);
+  }
+
+  const decisionByCardId = new Map();
+  for (const decision of decisions) {
+    if (!decision.cardId || decisionByCardId.has(decision.cardId))
+      fail('grounded_preview_duplicate_decision:' + decision.cardId);
+    if (!['complete', 'source-insufficient', 'deferred-image-answer'].includes(decision.disposition))
+      fail('grounded_preview_disposition:' + decision.cardId);
+    if (decision.disposition === 'complete' && !normalize(decision.answerEn))
+      fail('grounded_preview_complete_answer_missing:' + decision.cardId);
+    if (decision.disposition !== 'complete' && normalize(decision.answerEn))
+      fail('grounded_preview_noncomplete_answer_present:' + decision.cardId);
+    decisionByCardId.set(decision.cardId, decision);
+  }
+  const counts = Object.fromEntries(
+    ['complete', 'source-insufficient', 'deferred-image-answer'].map((status) => [
+      status,
+      decisions.filter((decision) => decision.disposition === status).length,
+    ]),
+  );
+  return { decisions, decisionByCardId, batchFiles: batchFiles.map((name) => name.slice(0, -5)), counts };
+}
+
+function commandApplyGroundedAnswerCrossBatchAudit() {
+  const audit = readJson(groundedCrossBatchAuditPath);
+  if (!['approved-by-codex-main', 'applied'].includes(audit.status))
+    fail('grounded_cross_batch_audit_not_approved');
+  if (audit.reviewer !== 'codex-independent' || audit.adjudicator !== 'codex-main')
+    fail('grounded_cross_batch_audit_identity');
+  const findingsByBatch = new Map();
+  for (const finding of audit.findings ?? []) {
+    if (!finding.batchId || !finding.cardId || !normalize(finding.evidence))
+      fail('grounded_cross_batch_audit_finding_invalid');
+    const rows = findingsByBatch.get(finding.batchId) ?? [];
+    rows.push(finding);
+    findingsByBatch.set(finding.batchId, rows);
+  }
+  if ((audit.findings ?? []).length !== 40)
+    fail('grounded_cross_batch_audit_finding_count:' + (audit.findings ?? []).length);
+
+  const applyFinding = (item, finding) => {
+    if (item.disposition === 'source-insufficient') return false;
+    if (item.disposition !== 'complete')
+      fail('grounded_cross_batch_audit_disposition:' + finding.cardId + ':' + item.disposition);
+    item.riskTags = [...new Set([...(item.riskTags ?? []), 'persona-consistency', 'source-insufficient'])];
+    item.disposition = 'source-insufficient';
+    item.consideredSegmentIds = [
+      ...new Set([...(item.consideredSegmentIds ?? []), ...(item.selectedSegmentIds ?? [])]),
+    ];
+    item.selectedSegmentIds = [];
+    item.editActions = [
+      ...(item.editActions ?? []),
+      'cross-batch persona audit rejected the answer because it conflicts with the locked student-pilot and no-current-airline background',
+    ];
+    item.answerEn = null;
+    item.sourceAssessment = 'insufficient';
+    item.riskAssessment =
+      finding.evidence + ' This conflicts with the locked student-pilot and no-current-airline background.';
+    return true;
+  };
+
+  const beforeCalibration = readJson(groundedCalibrationMachineReportPath).counts.dispositions;
+  const calibration = readJson(groundedCalibrationArtifactPath);
+  for (const finding of findingsByBatch.get('cal-001') ?? []) {
+    const item = calibration.items.find((candidate) => candidate.cardId === finding.cardId);
+    if (!item) fail('grounded_cross_batch_calibration_card_missing:' + finding.cardId);
+    applyFinding(item, finding);
+  }
+  writeJson(groundedCalibrationArtifactPath, calibration);
+  commandVerifyGroundedAnswerCalibration();
+  const calibrationMachine = readJson(groundedCalibrationMachineReportPath);
+  const calibrationAdjudication = readJson(groundedCalibrationAdjudicationPath);
+  calibrationAdjudication.machineReview.candidateCount =
+    calibrationMachine.counts.novelTokenCandidates;
+  calibrationAdjudication.crossBatchConsistencyAudit = {
+    auditId: audit.auditId,
+    file: relative(projectRoot, groundedCrossBatchAuditPath),
+    cardIds: (findingsByBatch.get('cal-001') ?? []).map((finding) => finding.cardId),
+  };
+  calibrationAdjudication.counts = {
+    items: calibration.items.length,
+    complete: calibrationMachine.counts.dispositions.complete,
+    sourceInsufficient: calibrationMachine.counts.dispositions['source-insufficient'],
+    deferredImageAnswer: calibrationMachine.counts.dispositions['deferred-image-answer'],
+  };
+  writeJson(groundedCalibrationAdjudicationPath, calibrationAdjudication);
+  commandBuildGroundedAnswerCalibrationReview();
+  commandRefreshGroundedAnswerBatchPlan();
+
+  const changedBatches = [];
+  for (const [batchId, findings] of findingsByBatch) {
+    if (batchId === 'cal-001') continue;
+    const batchPath = join(groundedAnswerBatchRoot, batchId + '.json');
+    if (!existsSync(batchPath)) fail('grounded_cross_batch_batch_missing:' + batchId);
+    const batch = readJson(batchPath);
+    for (const finding of findings) {
+      const item = batch.items.find((candidate) => candidate.cardId === finding.cardId);
+      if (!item) fail('grounded_cross_batch_card_missing:' + batchId + ':' + finding.cardId);
+      applyFinding(item, finding);
+    }
+    batch.reviewStatus = 'producer-complete-pending-cross-batch-reseal';
+    batch.batchHash = null;
+    writeJson(batchPath, batch);
+    commandVerifyGroundedAnswerBatch(batchId);
+    const machine = readJson(join(groundedAnswerReviewRoot, batchId + '.machine.json'));
+    batch.reviewStatus = 'sealed-independent-review-closed';
+    batch.batchHash = machine.batchHash;
+    writeJson(batchPath, batch);
+    const adjudicationPath = join(groundedAnswerReviewRoot, batchId + '.adjudication.json');
+    const adjudication = readJson(adjudicationPath);
+    adjudication.finalBatchHash = machine.batchHash;
+    adjudication.machineReview = {
+      ...(adjudication.machineReview ?? {}),
+      status: 'reviewed',
+      candidateCount: machine.counts.novelTokenCandidates,
+      errors: machine.counts.errors,
+      warnings: machine.counts.warnings,
+      similarityCandidates: machine.counts.similarityCandidates,
+    };
+    adjudication.crossBatchConsistencyAudit = {
+      auditId: audit.auditId,
+      file: relative(projectRoot, groundedCrossBatchAuditPath),
+      cardIds: findings.map((finding) => finding.cardId),
+      decision: 'accepted',
+    };
+    adjudication.counts = {
+      items: batch.items.length,
+      complete: machine.counts.dispositions.complete,
+      sourceInsufficient: machine.counts.dispositions['source-insufficient'],
+      deferredImageAnswer: machine.counts.dispositions['deferred-image-answer'],
+    };
+    writeJson(adjudicationPath, adjudication);
+    commandVerifyGroundedAnswerBatch(batchId);
+    changedBatches.push({
+      batchId,
+      cardIds: findings.map((finding) => finding.cardId),
+      finalBatchHash: machine.batchHash,
+    });
+  }
+  const allItems = [
+    ...calibration.items,
+    ...readdirSync(groundedAnswerBatchRoot)
+      .filter((name) => /^ans-\d{3}\.json$/u.test(name))
+      .sort()
+      .flatMap((name) => readJson(join(groundedAnswerBatchRoot, name)).items),
+  ];
+  audit.status = 'applied';
+  audit.appliedAt = new Date().toISOString();
+  audit.result = {
+    beforeCalibration,
+    changedBatches,
+    counts: {
+      items: allItems.length,
+      complete: allItems.filter((item) => item.disposition === 'complete').length,
+      sourceInsufficient: allItems.filter((item) => item.disposition === 'source-insufficient').length,
+      deferredImageAnswer: allItems.filter((item) => item.disposition === 'deferred-image-answer').length,
+    },
+  };
+  writeJson(groundedCrossBatchAuditPath, audit);
+  console.log(
+    'opi_grounded_cross_batch_audit_applied findings=' + audit.findings.length +
+      ' complete=' + audit.result.counts.complete +
+      ' insufficient=' + audit.result.counts.sourceInsufficient +
+      ' deferred=' + audit.result.counts.deferredImageAnswer,
+  );
+}
+
+function commandBuildGroundedAnswerFinalAudit() {
+  const sealed = readGroundedSealedAnswerDecisions();
+  if (sealed.decisions.length !== 1067)
+    fail('grounded_final_audit_decision_count:' + sealed.decisions.length);
+  const workItems = readJson(groundedWorkItemsPath);
+  const corpus = readJson(groundedCorpusPath);
+  const workItemById = new Map(workItems.items.map((item) => [item.cardId, item]));
+  const segmentById = new Map();
+  for (const record of corpus.records) {
+    for (const segment of record.segments) {
+      segmentById.set(segment.segmentId, {
+        sourceKey: record.sourceKey,
+        releaseVersion: record.releaseVersion,
+        commit: record.commit,
+        sourceCategoryId: record.sourceCategoryId,
+        sourceTopicId: record.sourceTopicId,
+        sourceTopicName: record.sourceTopicName,
+        sourceCardId: record.sourceCardId,
+        sourceQuestionEn: record.sourceQuestionEn,
+        rawAnswerHash: record.rawAnswerHash,
+        ...segment,
+      });
+    }
+  }
+  const ownerById = new Map(
+    readJson(groundedCalibrationArtifactPath).items.map((item) => [item.cardId, 'cal-001']),
+  );
+  const batches = sealed.batchFiles.map((batchId) => {
+    const batchPath = join(groundedAnswerBatchRoot, batchId + '.json');
+    const machinePath = join(groundedAnswerReviewRoot, batchId + '.machine.json');
+    const independentPath = join(groundedAnswerReviewRoot, batchId + '.independent.json');
+    const adjudicationPath = join(groundedAnswerReviewRoot, batchId + '.adjudication.json');
+    const batch = readJson(batchPath);
+    const machine = readJson(machinePath);
+    const independent = readJson(independentPath);
+    const adjudication = readJson(adjudicationPath);
+    for (const item of batch.items) ownerById.set(item.cardId, batchId);
+    return {
+      batchId,
+      inputHash: batch.inputHash,
+      batchHash: batch.batchHash,
+      reviewStatus: batch.reviewStatus,
+      counts: machine.counts,
+      independentCoverage: independent.coverage,
+      independentFindingCount: independent.findings?.length ?? 0,
+      adjudicationStatus: adjudication.status,
+      evidenceHashes: {
+        batch: fileHash(batchPath),
+        machine: fileHash(machinePath),
+        independent: fileHash(independentPath),
+        adjudication: fileHash(adjudicationPath),
+      },
+    };
+  });
+  const resolveSegments = (ids, cardId) =>
+    (ids ?? []).map((segmentId) => {
+      const segment = segmentById.get(segmentId);
+      if (!segment) fail('grounded_final_audit_segment_missing:' + cardId + ':' + segmentId);
+      return segment;
+    });
+  const cards = sealed.decisions.map((decision) => {
+    const workItem = workItemById.get(decision.cardId);
+    if (!workItem) fail('grounded_final_audit_work_item_missing:' + decision.cardId);
+    return {
+      cardId: decision.cardId,
+      categoryId: workItem.categoryId,
+      categoryName: workItem.categoryName,
+      topicId: workItem.topicId,
+      topicName: workItem.topicName,
+      taskTitle: workItem.taskTitle,
+      questionEn: workItem.questionEn,
+      questionZh: workItem.questionZh,
+      questionHash: workItem.questionHash,
+      sourcePolicy: workItem.sourcePolicy,
+      decisionOwner: ownerById.get(decision.cardId),
+      disposition: decision.disposition,
+      answerEn: decision.answerEn ?? null,
+      selectedSources: resolveSegments(decision.selectedSegmentIds, decision.cardId),
+      consideredSources: resolveSegments(decision.consideredSegmentIds, decision.cardId),
+      editActions: decision.editActions,
+      sourceAssessment: decision.sourceAssessment,
+      riskAssessment: decision.riskAssessment,
+      riskTags: decision.riskTags,
+    };
+  });
+  if (new Set(cards.map((card) => card.cardId)).size !== cards.length)
+    fail('grounded_final_audit_duplicate_cards');
+  const completeCards = cards.filter((card) => card.disposition === 'complete');
+  const exactAnswerOwners = new Map();
+  const exactDuplicateCandidates = [];
+  for (const card of completeCards) {
+    const key = normalize(card.answerEn).toLowerCase();
+    const previous = exactAnswerOwners.get(key);
+    if (previous) exactDuplicateCandidates.push({ left: previous, right: card.cardId });
+    else exactAnswerOwners.set(key, card.cardId);
+  }
+  const globalSimilarityCandidates = [];
+  for (let leftIndex = 0; leftIndex < completeCards.length; leftIndex += 1) {
+    for (let rightIndex = leftIndex + 1; rightIndex < completeCards.length; rightIndex += 1) {
+      const left = completeCards[leftIndex];
+      const right = completeCards[rightIndex];
+      const score = jaccard(left.answerEn, right.answerEn);
+      if (score >= 0.82)
+        globalSimilarityCandidates.push({ left: left.cardId, right: right.cardId, score });
+    }
+  }
+  const styleCounts = new Map();
+  for (const card of completeCards) {
+    const tokens = englishTokens(card.answerEn);
+    const opening = tokens.slice(0, 4).join(' ');
+    if (opening) styleCounts.set(opening, (styleCounts.get(opening) ?? 0) + 1);
+  }
+  const commonOpenings = [...styleCounts.entries()]
+    .filter(([, count]) => count >= 4)
+    .sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0]))
+    .map(([opening, count]) => ({ opening, count }));
+  const wordCounts = completeCards.map((card) => englishTokens(card.answerEn).length);
+  const globalTextReview = {
+    exactDuplicateCandidates,
+    similarityThreshold: 0.82,
+    similarityCandidates: globalSimilarityCandidates,
+    wordCount: {
+      minimum: Math.min(...wordCounts),
+      maximum: Math.max(...wordCounts),
+      average: Number(
+        (wordCounts.reduce((sum, count) => sum + count, 0) / wordCounts.length).toFixed(2),
+      ),
+    },
+    commonOpenings,
+  };
+  const machineTotals = batches.reduce(
+    (total, batch) => ({
+      errors: total.errors + batch.counts.errors,
+      warnings: total.warnings + batch.counts.warnings,
+      similarityCandidates: total.similarityCandidates + batch.counts.similarityCandidates,
+      novelTokenCandidates: total.novelTokenCandidates + batch.counts.novelTokenCandidates,
+    }),
+    { errors: 0, warnings: 0, similarityCandidates: 0, novelTokenCandidates: 0 },
+  );
+  const summary = {
+    textCards: cards.length,
+    complete: cards.filter((card) => card.disposition === 'complete').length,
+    sourceInsufficient: cards.filter((card) => card.disposition === 'source-insufficient').length,
+    deferredImageAnswer: cards.filter((card) => card.disposition === 'deferred-image-answer').length,
+    calibrationCards: 40,
+    batches: batches.length,
+    batchCards: cards.length - 40,
+    machineTotals,
+    globalTextReview: {
+      exactDuplicateCandidates: exactDuplicateCandidates.length,
+      similarityCandidates: globalSimilarityCandidates.length,
+      commonOpenings: commonOpenings.length,
+      wordCount: globalTextReview.wordCount,
+    },
+  };
+  const finalDecisionHash = valueHash(
+    cards.map((card) => ({
+      cardId: card.cardId,
+      questionHash: card.questionHash,
+      disposition: card.disposition,
+      answerEn: card.answerEn,
+      selectedSegmentIds: card.selectedSources.map((source) => source.segmentId),
+      consideredSegmentIds: card.consideredSources.map((source) => source.segmentId),
+    })),
+  );
+  const audit = {
+    schemaVersion: GROUNDED_SCHEMA_VERSION,
+    ruleVersion: GROUNDED_RULE_VERSION,
+    generatedAt: new Date().toISOString(),
+    questionLockHash: workItems.questionLockHash,
+    corpusDigest: corpus.corpusDigest,
+    finalDecisionHash,
+    summary,
+    sourceBoundaries: corpus.sources,
+    calibration: {
+      batchId: 'cal-001',
+      reviewStatus: readJson(groundedCalibrationArtifactPath).reviewStatus,
+      batchHash: readJson(groundedCalibrationArtifactPath).batchHash,
+    },
+    batches,
+    crossBatchConsistencyAudit: existsSync(groundedCrossBatchAuditPath)
+      ? {
+          file: relative(projectRoot, groundedCrossBatchAuditPath),
+          hash: fileHash(groundedCrossBatchAuditPath),
+        }
+      : null,
+    sourceInsufficientCardIds: cards
+      .filter((card) => card.disposition === 'source-insufficient')
+      .map((card) => card.cardId),
+    deferredImageAnswerCardIds: cards
+      .filter((card) => card.disposition === 'deferred-image-answer')
+      .map((card) => card.cardId),
+    globalTextReview,
+    cards,
+  };
+  writeJson(groundedFinalAnswerAuditPath, audit);
+  const warnings = batches.flatMap((batch) =>
+    readJson(join(groundedAnswerReviewRoot, batch.batchId + '.machine.json')).warnings
+      .map((warning) => batch.batchId + ':' + warning),
+  );
+  const similarities = batches.flatMap((batch) =>
+    readJson(join(groundedAnswerReviewRoot, batch.batchId + '.machine.json'))
+      .similarityCandidates.map((candidate) => ({ batchId: batch.batchId, ...candidate })),
+  );
+  const qualityLines = [
+    '# OPI 英文答案 v1 语料约束二次重建最终质量报告',
+    '',
+    '生成时间：' + audit.generatedAt,
+    '',
+    '## 锁定摘要',
+    '',
+    '- 问题锁：`' + audit.questionLockHash + '`',
+    '- 语料摘要：`' + audit.corpusDigest + '`',
+    '- 最终决定摘要：`' + finalDecisionHash + '`',
+    '- 文本卡：' + summary.textCards,
+    '- 完成英文答案：' + summary.complete,
+    '- 来源不足：' + summary.sourceInsufficient,
+    '- 图片依赖延期：' + summary.deferredImageAnswer,
+    '- 校准批：40 张；正式批：' + summary.batches + ' 批、' + summary.batchCards + ' 张',
+    '',
+    '## 质量门禁',
+    '',
+    '- 所有正式批均完成主 Codex 生产、独立 Codex 全量只读复核、主 Codex 裁决和机器复验。',
+    '- 机器错误：' + machineTotals.errors,
+    '- 机器警告：' + machineTotals.warnings,
+    '- 批内相似度候选：' + machineTotals.similarityCandidates,
+    '- 全局完全重复候选：' + exactDuplicateCandidates.length,
+    '- 全局相似度候选：' + globalSimilarityCandidates.length,
+    '- novel-token 人工审查候选总数：' + machineTotals.novelTokenCandidates,
+    '- 所有正常答案均引用批准的 v1/v2 片段；来源不足和图片延期均不写答案。',
+    '- 当前中英文问题、卡片 ID、话题和排序继续受问题锁保护。',
+    '',
+    '## 机器警告',
+    '',
+    ...(warnings.length ? warnings.map((warning) => '- ' + warning) : ['- 无']),
+    '',
+    '## 相似度候选',
+    '',
+    ...(similarities.length
+      ? similarities.map(
+          (candidate) =>
+            '- ' + candidate.batchId + ': ' + candidate.left + ' / ' +
+            candidate.right + ' = ' + candidate.score,
+        )
+      : ['- 无']),
+    '',
+    '## 全局重复与风格候选',
+    '',
+    '- 完全重复：' + exactDuplicateCandidates.length,
+    '- Jaccard ≥ 0.82：' + globalSimilarityCandidates.length,
+    '- 高频四词开头：' + commonOpenings.length,
+    '',
+    '## 审计入口',
+    '',
+    '- 逐卡来源、摘取片段、编辑动作、风险决定和批次归属：`artifacts/final-answer-audit.json`',
+    '- 跨批人物与内容一致性：`artifacts/cross-batch-consistency-audit.json`',
+    '- 每批独立复核、主裁决和机器报告：`.generated/opi-answer-v1-grounded/answer-reviews/`',
+    '',
+  ];
+  writeFileSync(groundedFinalQualityReportPath, qualityLines.join('\n'), 'utf8');
+  console.log(
+    'opi_grounded_final_audit_ok decisions=' + cards.length +
+      ' complete=' + summary.complete +
+      ' insufficient=' + summary.sourceInsufficient +
+      ' deferred=' + summary.deferredImageAnswer +
+      ' hash=' + finalDecisionHash,
+  );
+}
+
+function readGroundedFinalAuditDecisions() {
+  if (!existsSync(groundedFinalAnswerAuditPath))
+    fail('grounded_final_audit_missing');
+  commandVerifyGroundedQuestionLock();
+  const audit = readJson(groundedFinalAnswerAuditPath);
+  const currentRows = groundedQuestionRows();
+  const currentById = new Map(currentRows.map((row) => [row.cardId, row]));
+  if (
+    audit.schemaVersion !== GROUNDED_SCHEMA_VERSION ||
+    audit.ruleVersion !== GROUNDED_RULE_VERSION ||
+    audit.questionLockHash !== groundedQuestionLock(currentRows) ||
+    !Array.isArray(audit.cards) ||
+    audit.cards.length !== currentRows.length
+  )
+    fail('grounded_final_audit_lock_invalid');
+  const allowedSourceByCategory = new Map(
+    GROUNDED_SOURCES.flatMap((source) =>
+      source.categoryIds.map((categoryId) => [
+        categoryId,
+        { key: source.key, releaseVersion: source.releaseVersion },
+      ]),
+    ),
+  );
+  const decisions = audit.cards.map((card) => {
+    const current = currentById.get(card.cardId);
+    if (
+      !current ||
+      card.questionHash !== current.questionHash ||
+      card.questionEn !== current.questionEn ||
+      card.questionZh !== current.questionZh ||
+      card.categoryId !== current.categoryId ||
+      card.topicId !== current.topicId ||
+      card.taskTitle !== current.taskTitle
+    )
+      fail('grounded_final_audit_question_changed:' + card.cardId);
+    if (!['complete', 'source-insufficient', 'deferred-image-answer'].includes(card.disposition))
+      fail('grounded_final_audit_disposition:' + card.cardId);
+    const answerEn = card.answerEn == null ? null : normalize(card.answerEn);
+    if (card.disposition === 'complete' ? !answerEn : Boolean(answerEn))
+      fail('grounded_final_audit_answer_state:' + card.cardId);
+    if (card.disposition === 'complete' && !(card.selectedSources?.length))
+      fail('grounded_final_audit_selected_source_missing:' + card.cardId);
+    const allowedSource = allowedSourceByCategory.get(card.categoryId);
+    for (const source of [...(card.selectedSources ?? []), ...(card.consideredSources ?? [])]) {
+      if (
+        source.sourceKey !== allowedSource?.key ||
+        source.releaseVersion !== allowedSource.releaseVersion ||
+        !normalize(source.segmentId) ||
+        !normalize(source.text) ||
+        source.textHash !== valueHash(source.text)
+      )
+        fail('grounded_final_audit_source_invalid:' + card.cardId);
+    }
+    return {
+      cardId: card.cardId,
+      questionEn: card.questionEn,
+      disposition: card.disposition,
+      answerEn,
+      selectedSegmentIds: (card.selectedSources ?? []).map((source) => source.segmentId),
+      consideredSegmentIds: (card.consideredSources ?? []).map((source) => source.segmentId),
+      editActions: card.editActions,
+      sourceAssessment: card.sourceAssessment,
+      riskAssessment: card.riskAssessment,
+      riskTags: card.riskTags,
+    };
+  });
+  const finalDecisionHash = valueHash(
+    audit.cards.map((card) => ({
+      cardId: card.cardId,
+      questionHash: card.questionHash,
+      disposition: card.disposition,
+      answerEn: card.answerEn,
+      selectedSegmentIds: (card.selectedSources ?? []).map((source) => source.segmentId),
+      consideredSegmentIds: (card.consideredSources ?? []).map((source) => source.segmentId),
+    })),
+  );
+  if (finalDecisionHash !== audit.finalDecisionHash)
+    fail('grounded_final_audit_decision_hash');
+  const decisionByCardId = new Map(decisions.map((decision) => [decision.cardId, decision]));
+  if (decisionByCardId.size !== decisions.length)
+    fail('grounded_final_audit_duplicate_card');
+  const counts = Object.fromEntries(
+    ['complete', 'source-insufficient', 'deferred-image-answer'].map((disposition) => [
+      disposition,
+      decisions.filter((decision) => decision.disposition === disposition).length,
+    ]),
+  );
+  if (
+    counts.complete !== audit.summary?.complete ||
+    counts['source-insufficient'] !== audit.summary?.sourceInsufficient ||
+    counts['deferred-image-answer'] !== audit.summary?.deferredImageAnswer
+  )
+    fail('grounded_final_audit_count_mismatch');
+  return {
+    decisions,
+    decisionByCardId,
+    counts,
+    batchFiles: (audit.batches ?? []).map((batch) => batch.batchId),
+    finalDecisionHash,
+  };
+}
+
+function buildGroundedAnswerPreviewSource(decisionByCardId) {
+  const source = loadSource();
+  const topics = source.topics.map((topic) => ({
+    ...clone(topic),
+    cards: topic.cards.map((card) => {
+      const next = clone(card);
+      if (next.kind === 'image') return next;
+      const decision = decisionByCardId.get(next.id);
+      delete next.referenceText;
+      delete next.referenceTextZh;
+      if (decision?.disposition === 'complete') next.referenceText = normalize(decision.answerEn);
+      return next;
+    }),
+  }));
+  const bank = {
+    ...clone(source.bank),
+    description: '英文答案验收预览；中文参考答案尚未发布',
+    statusLabel: '英文答案验收版',
+    study: {
+      ...clone(source.bank.study),
+      copy: {
+        ...clone(source.bank.study.copy),
+        transcriptLabel: '英文问题',
+        referenceLabel: '英文参考答案',
+      },
+    },
+  };
+  return { bank, categories: clone(source.categories), topics };
+}
+
+function verifyGroundedAnswerPreviewDataset(dataset, decisions) {
+  const source = runtimeDatasetFromSource(loadSource());
+  const sourceRows = source.categories.flatMap((category) =>
+    category.topics.flatMap((topic) => topic.cards.map((card) => ({ category, topic, card }))),
+  );
+  const rows = dataset.categories.flatMap((category) =>
+    category.topics.flatMap((topic) => topic.cards.map((card) => ({ category, topic, card }))),
+  );
+  const errors = [];
+  if (dataset.id !== 'opi') errors.push('preview:bank_id');
+  if (dataset.declaredTopicCount !== 144) errors.push('preview:topic_count');
+  if (dataset.declaredCardCount !== 1090 || rows.length !== 1090) errors.push('preview:card_count');
+  if (sourceRows.length !== rows.length) errors.push('preview:source_card_count');
+  const sourceById = new Map(sourceRows.map((row) => [row.card.id, row]));
+  const seen = new Set();
+  let textCards = 0;
+  let imageCards = 0;
+  let publishedAnswers = 0;
+  for (const row of rows) {
+    const original = sourceById.get(row.card.id);
+    if (!original || seen.has(row.card.id)) {
+      errors.push('preview:card_identity:' + row.card.id);
+      continue;
+    }
+    seen.add(row.card.id);
+    if (row.category.id !== original.category.id || row.topic.id !== original.topic.id)
+      errors.push('preview:card_location:' + row.card.id);
+    if (row.card.kind === 'image') {
+      imageCards += 1;
+      if (valueHash(row.card) !== valueHash(original.card))
+        errors.push('preview:image_changed:' + row.card.id);
+      continue;
+    }
+    textCards += 1;
+    if (
+      row.card.taskTitle !== original.card.taskTitle ||
+      row.card.audioText !== original.card.audioText ||
+      row.card.audioTextZh !== original.card.audioTextZh
+    )
+      errors.push('preview:question_changed:' + row.card.id);
+    if (Object.hasOwn(row.card, 'referenceTextZh'))
+      errors.push('preview:answer_zh_present:' + row.card.id);
+    const decision = decisions.decisionByCardId.get(row.card.id);
+    const expectedAnswer = decision?.disposition === 'complete' ? normalize(decision.answerEn) : undefined;
+    if (row.card.referenceText !== expectedAnswer) {
+      errors.push('preview:answer_projection:' + row.card.id);
+    } else if (expectedAnswer) {
+      publishedAnswers += 1;
+    }
+  }
+  if (seen.size !== sourceRows.length) errors.push('preview:missing_cards');
+  if (textCards !== 1067 || imageCards !== 23) errors.push('preview:kind_count');
+  if (publishedAnswers !== decisions.counts.complete) errors.push('preview:published_answer_count');
+  if (errors.length) fail('grounded_answer_preview_invalid\n' + errors.join('\n'));
+  return {
+    cards: rows.length,
+    textCards,
+    imageCards,
+    sealedDecisions: decisions.decisions.length,
+    completeAnswers: decisions.counts.complete,
+    sourceInsufficient: decisions.counts['source-insufficient'],
+    deferredImageAnswers: decisions.counts['deferred-image-answer'],
+    unfinishedTextAnswers: textCards - decisions.decisions.length,
+    emptyAnswerFields: textCards - decisions.counts.complete,
+  };
+}
+
+function commandBuildGroundedAnswerPreview(releaseVersionArg, releasedAtArg) {
+  const releaseVersion = Number(releaseVersionArg);
+  if (!Number.isInteger(releaseVersion) || releaseVersion < 1)
+    fail('grounded_answer_preview_release_version');
+  const releasedAt = normalize(releasedAtArg);
+  if (!releasedAt || Number.isNaN(Date.parse(releasedAt)))
+    fail('grounded_answer_preview_released_at');
+  const currentRegistry = readJson(registryPath);
+  if (releaseVersion <= currentRegistry.releaseVersion)
+    fail('grounded_answer_preview_release_not_above_formal:' + currentRegistry.releaseVersion);
+  const decisions = readGroundedFinalAuditDecisions();
+  const source = buildGroundedAnswerPreviewSource(decisions.decisionByCardId);
+  const dataset = runtimeDatasetFromSource(source);
+  const counts = verifyGroundedAnswerPreviewDataset(dataset, decisions);
+  const releaseKind =
+    counts.unfinishedTextAnswers === 0
+      ? 'answer-en-final-preview'
+      : 'answer-en-partial-preview';
+  const previewArtifactPath =
+    counts.unfinishedTextAnswers === 0
+      ? groundedAnswerFinalPreviewArtifactPath
+      : groundedAnswerPreviewArtifactPath;
+
+  rmSync(groundedAnswerPreviewReleaseRoot, { recursive: true, force: true });
+  const bankPath = join(groundedAnswerPreviewReleaseRoot, 'banks/opi.json');
+  const resourcesPath = join(groundedAnswerPreviewReleaseRoot, 'resources/manifest.json');
+  writeJson(bankPath, dataset);
+  const resourceVersion = readJson(
+    join(projectRoot, 'content/question-banks/resources/manifest.source.json'),
+  ).version;
+  writeJson(resourcesPath, { schemaVersion: 1, version: resourceVersion, files: [] });
+  const manifest = {
+    schemaVersion: 1,
+    releaseVersion,
+    releasedAt,
+    banks: [{
+      id: 'opi',
+      version: releaseVersion,
+      file: 'banks/opi.json',
+      checksum: fileHash(bankPath),
+      categories: dataset.categories.length,
+      topics: dataset.declaredTopicCount,
+      cards: dataset.declaredCardCount,
+    }],
+    resources: {
+      version: resourceVersion,
+      file: 'resources/manifest.json',
+      checksum: fileHash(resourcesPath),
+      files: 0,
+      sizeBytes: 0,
+    },
+  };
+  writeJson(join(groundedAnswerPreviewReleaseRoot, 'manifest.json'), manifest);
+  writeJson(join(groundedAnswerPreviewReleaseRoot, 'change-report.json'), {
+    schemaVersion: 1,
+    releaseKind,
+    releaseVersion,
+    questionLockHash: readJson(groundedBaselineArtifactPath).questionLockHash,
+    corpusDigest: readJson(groundedBaselineArtifactPath).corpusDigest,
+    finalDecisionHash: decisions.finalDecisionHash,
+    batchIds: decisions.batchFiles,
+    counts,
+    fields: {
+      questionEn: 'v8-locked-and-preserved',
+      questionZh: 'v8-locked-and-preserved',
+      answerEn: 'sealed-complete-only',
+      answerZh: 'omitted-for-all-text-cards',
+    },
+  });
+  writeJson(previewArtifactPath, {
+    schemaVersion: 1,
+    releaseKind,
+    releaseVersion,
+    releasedAt,
+    questionLockHash: readJson(groundedBaselineArtifactPath).questionLockHash,
+    corpusDigest: readJson(groundedBaselineArtifactPath).corpusDigest,
+    finalDecisionHash: decisions.finalDecisionHash,
+    releaseRoot: relative(projectRoot, groundedAnswerPreviewReleaseRoot),
+    bankChecksum: manifest.banks[0].checksum,
+    releaseManifestChecksum: fileHash(join(groundedAnswerPreviewReleaseRoot, 'manifest.json')),
+    batchIds: decisions.batchFiles,
+    counts,
+    rollback: {
+      activeProductionVersion: currentRegistry.releaseVersion,
+      action:
+        'delete-preview-release-and-reactivate-opi-v' + currentRegistry.releaseVersion,
+    },
+  });
+  console.log(
+    'opi_grounded_answer_preview_ok version=' + releaseVersion +
+      ' complete=' + counts.completeAnswers +
+      ' insufficient=' + counts.sourceInsufficient +
+      ' deferred=' + counts.deferredImageAnswers +
+      ' unfinished=' + counts.unfinishedTextAnswers +
+      ' checksum=' + manifest.banks[0].checksum,
+  );
+}
+
+function englishTokens(value) {
+  return (String(value ?? '').toLowerCase().match(/[a-z]+(?:[-'][a-z]+)*/gu) ?? []);
+}
+
+function commandVerifyGroundedAnswerCalibration(pathArg) {
+  commandVerifyGroundedQuestionLock();
+  const calibrationPath = pathArg ? resolve(projectRoot, pathArg) : groundedCalibrationArtifactPath;
+  const batch = readJson(calibrationPath);
+  const input = readJson(groundedCalibrationInputPath);
+  const inputById = new Map(input.items.map((item) => [item.cardId, item]));
+  const errors = [];
+  const warnings = [];
+  if (batch.schemaVersion !== GROUNDED_SCHEMA_VERSION) errors.push('batch:schema_version');
+  if (batch.ruleVersion !== GROUNDED_RULE_VERSION) errors.push('batch:rule_version');
+  if (batch.questionLockHash !== input.questionLockHash) errors.push('batch:question_lock');
+  if (batch.corpusDigest !== input.corpusDigest) errors.push('batch:corpus_digest');
+  if (batch.producer !== 'codex-main') errors.push('batch:producer');
+  if (!Array.isArray(batch.items) || batch.items.length !== input.items.length)
+    errors.push('batch:item_count');
+  const ids = batch.items?.map((item) => item.cardId) ?? [];
+  if (new Set(ids).size !== ids.length) errors.push('batch:duplicate_card_id');
+  if (valueHash([...ids].sort()) !== valueHash(input.items.map((item) => item.cardId).sort()))
+    errors.push('batch:card_set');
+
+  const allowedGrammarTokens = new Set(
+    'a an the and or but so if then than that this these those it its they them their we our i my he she his her would should could can may might must is are was were be been being have has had do does did to of in on at for from with without as by before after during until while when where which who what how no not only also first second however therefore because again any every all one two three four zero more most relevant required applicable immediately closely currently instead'.split(' '),
+  );
+  const answerOwners = new Map();
+  const itemReports = [];
+  for (const item of batch.items ?? []) {
+    const source = inputById.get(item.cardId);
+    if (!source) {
+      errors.push(item.cardId + ':not_in_calibration_input');
+      continue;
+    }
+    if (item.questionEn !== source.questionEn) errors.push(item.cardId + ':question_changed');
+    if (!Array.isArray(item.riskTags) || !item.riskTags.length)
+      errors.push(item.cardId + ':risk_tags');
+    if (!['complete', 'source-insufficient', 'deferred-image-answer'].includes(item.disposition))
+      errors.push(item.cardId + ':disposition');
+    const segmentById = new Map(
+      source.sources.flatMap((entry) => entry.segments).map((segment) => [segment.segmentId, segment]),
+    );
+    for (const segmentId of [...(item.selectedSegmentIds ?? []), ...(item.consideredSegmentIds ?? [])])
+      if (!segmentById.has(segmentId)) errors.push(item.cardId + ':segment_outside_source_pool:' + segmentId);
+    if (!Array.isArray(item.editActions) || !item.editActions.length)
+      errors.push(item.cardId + ':edit_actions');
+    if (!normalize(item.riskAssessment)) errors.push(item.cardId + ':risk_assessment');
+
+    const answer = item.answerEn == null ? null : normalize(item.answerEn);
+    if (item.disposition === 'complete') {
+      if (!answer) errors.push(item.cardId + ':answer_missing');
+      if (!Array.isArray(item.selectedSegmentIds) || !item.selectedSegmentIds.length)
+        errors.push(item.cardId + ':selected_segments_missing');
+      if (item.sourceAssessment !== 'sufficient') errors.push(item.cardId + ':source_assessment');
+    } else {
+      if (answer) errors.push(item.cardId + ':answer_must_be_null');
+      if ((item.selectedSegmentIds ?? []).length) errors.push(item.cardId + ':selected_segments_must_be_empty');
+      if (!(item.consideredSegmentIds ?? []).length) errors.push(item.cardId + ':considered_segments_missing');
+    }
+    if (item.disposition === 'deferred-image-answer') {
+      if (source.initialDisposition !== 'deferred-image-answer')
+        errors.push(item.cardId + ':unapproved_image_deferral');
+      if (item.sourceAssessment !== 'image-dependent')
+        errors.push(item.cardId + ':deferred_source_assessment');
+    }
+    if (item.disposition === 'source-insufficient' && item.sourceAssessment !== 'insufficient')
+      errors.push(item.cardId + ':insufficient_source_assessment');
+
+    let wordCount = 0;
+    let sentenceCount = 0;
+    let paragraphCount = 0;
+    let novelTokens = [];
+    if (answer) {
+      if (HAN.test(answer)) errors.push(item.cardId + ':han_in_answer');
+      if (/^(?:\s*(?:\d+[.)]|[-*•])\s+)/mu.test(answer)) errors.push(item.cardId + ':list_format');
+      if (/a suitable example|learners should|replace this answer|one adjustable example|example would be/iu.test(answer))
+        errors.push(item.cardId + ':banned_instruction_or_template');
+      if (/\n{3,}/u.test(answer)) errors.push(item.cardId + ':abnormal_newlines');
+      if (answer !== item.answerEn) errors.push(item.cardId + ':answer_not_normalized');
+      const normalizedAnswer = answer.toLowerCase();
+      const duplicateOwner = answerOwners.get(normalizedAnswer);
+      if (duplicateOwner) errors.push(item.cardId + ':duplicate_answer:' + duplicateOwner);
+      answerOwners.set(normalizedAnswer, item.cardId);
+      wordCount = englishTokens(answer).length;
+      sentenceCount = (answer.match(/[.!?](?:\s|$)/gu) ?? []).length;
+      paragraphCount = answer.split(/\n\s*\n/gu).length;
+      if (sentenceCount < 1 || sentenceCount > 7)
+        warnings.push(item.cardId + ':sentence_count:' + sentenceCount);
+      if (wordCount < 5 || wordCount > 140) warnings.push(item.cardId + ':word_count:' + wordCount);
+      if (paragraphCount > 2) warnings.push(item.cardId + ':paragraph_count:' + paragraphCount);
+      const sourceTokens = new Set([
+        ...englishTokens(source.questionEn),
+        ...(item.selectedSegmentIds ?? []).flatMap((segmentId) =>
+          englishTokens(segmentById.get(segmentId)?.text),
+        ),
+      ]);
+      novelTokens = [...new Set(englishTokens(answer))]
+        .filter((token) => !sourceTokens.has(token) && !allowedGrammarTokens.has(token))
+        .sort();
+    }
+    itemReports.push({
+      cardId: item.cardId,
+      disposition: item.disposition,
+      answerHash: answer ? valueHash(answer) : null,
+      wordCount,
+      sentenceCount,
+      paragraphCount,
+      selectedSegmentCount: (item.selectedSegmentIds ?? []).length,
+      novelTokenCandidates: novelTokens,
+    });
+  }
+  const dispositions = Object.fromEntries(
+    ['complete', 'source-insufficient', 'deferred-image-answer'].map((status) => [
+      status,
+      (batch.items ?? []).filter((item) => item.disposition === status).length,
+    ]),
+  );
+  const report = {
+    schemaVersion: GROUNDED_SCHEMA_VERSION,
+    ruleVersion: GROUNDED_RULE_VERSION,
+    batchId: batch.batchId,
+    questionLockHash: batch.questionLockHash,
+    calibrationHash: valueHash({
+      questionLockHash: batch.questionLockHash,
+      corpusDigest: batch.corpusDigest,
+      items: batch.items,
+    }),
+    counts: {
+      items: batch.items?.length ?? 0,
+      dispositions,
+      errors: errors.length,
+      warnings: warnings.length,
+      novelTokenCandidates: itemReports.reduce(
+        (sum, item) => sum + item.novelTokenCandidates.length,
+        0,
+      ),
+    },
+    errors,
+    warnings,
+    items: itemReports,
+  };
+  writeJson(groundedCalibrationMachineReportPath, report);
+  if (errors.length) fail('grounded_calibration_invalid\n' + errors.join('\n'));
+  console.log(
+    'opi_grounded_answer_calibration_verify_ok items=' + report.counts.items +
+      ' complete=' + dispositions.complete +
+      ' insufficient=' + dispositions['source-insufficient'] +
+      ' deferred=' + dispositions['deferred-image-answer'] +
+      ' warnings=' + warnings.length +
+      ' hash=' + report.calibrationHash,
+  );
+}
+
+function markdownQuote(value) {
+  return normalize(value)
+    .split('\n')
+    .map((line) => '> ' + line)
+    .join('\n');
+}
+
+function commandBuildGroundedAnswerCalibrationReview() {
+  commandVerifyGroundedAnswerCalibration();
+  const batch = readJson(groundedCalibrationArtifactPath);
+  const input = readJson(groundedCalibrationInputPath);
+  const machine = readJson(groundedCalibrationMachineReportPath);
+  const reviewer = readJson(groundedCalibrationReviewerReportPath);
+  const adjudication = readJson(groundedCalibrationAdjudicationPath);
+  const expectedIds = batch.items.map((item) => item.cardId);
+  const expectedIdHash = valueHash([...expectedIds].sort());
+  if (reviewer.batchId !== batch.batchId) fail('grounded_reviewer_batch_id');
+  if (reviewer.reviewer !== 'codex-independent') fail('grounded_reviewer_identity');
+  if (reviewer.coverage?.read !== expectedIds.length || reviewer.coverage?.total !== expectedIds.length)
+    fail('grounded_reviewer_coverage_count');
+  if (valueHash([...(reviewer.readCardIds ?? [])].sort()) !== expectedIdHash)
+    fail('grounded_reviewer_coverage_set');
+  const findingIds = (reviewer.findings ?? []).map((finding) => finding.findingId);
+  if (new Set(findingIds).size !== findingIds.length) fail('grounded_reviewer_duplicate_finding_id');
+  for (const finding of reviewer.findings ?? []) {
+    if (!expectedIds.includes(finding.cardId)) fail('grounded_reviewer_unknown_card:' + finding.cardId);
+    if (!['blocker', 'major', 'minor'].includes(finding.severity))
+      fail('grounded_reviewer_severity:' + finding.findingId);
+    if (!normalize(finding.dimension) || !normalize(finding.evidence) || !normalize(finding.issue))
+      fail('grounded_reviewer_finding_incomplete:' + finding.findingId);
+  }
+  if (adjudication.batchId !== batch.batchId || adjudication.status !== 'closed')
+    fail('grounded_adjudication_not_closed');
+  const adjudicationIds = (adjudication.findings ?? []).map((finding) => finding.findingId);
+  if (valueHash([...adjudicationIds].sort()) !== valueHash([...findingIds].sort()))
+    fail('grounded_adjudication_finding_set');
+  if (adjudication.machineReview?.status !== 'reviewed')
+    fail('grounded_machine_candidates_not_adjudicated');
+  if (adjudication.machineReview?.candidateCount !== machine.counts.novelTokenCandidates)
+    fail('grounded_machine_candidate_count');
+
+  const inputById = new Map(input.items.map((item) => [item.cardId, item]));
+  const findingByCard = new Map();
+  for (const finding of reviewer.findings ?? []) {
+    const rows = findingByCard.get(finding.cardId) ?? [];
+    rows.push(finding);
+    findingByCard.set(finding.cardId, rows);
+  }
+  const adjudicationByFinding = new Map(
+    (adjudication.findings ?? []).map((finding) => [finding.findingId, finding]),
+  );
+  const lines = [
+    '# OPI 英文答案 v1/v2 来源约束校准批对照',
+    '',
+    '批次：`' + batch.batchId + '`',
+    '',
+    '问题锁：`' + batch.questionLockHash + '`',
+    '',
+    '校准 hash：`' + machine.calibrationHash + '`',
+    '',
+    '结果：' + machine.counts.dispositions.complete + ' 个完成答案，' +
+      machine.counts.dispositions['source-insufficient'] + ' 个来源不足，' +
+      machine.counts.dispositions['deferred-image-answer'] + ' 个图片延期。独立 Codex 已全量阅读 ' +
+      reviewer.coverage.read + '/' + reviewer.coverage.total + '，发现 ' +
+      reviewer.findings.length + ' 项问题，主 Codex 已逐项裁决关闭。',
+    '',
+    '说明：下列“来源片段”是从固定历史提交原始答案中确定性抽出的英文原文；工具只负责展示，选择、删减、最小修订和最终答案均由主 Codex 完成。',
+    '',
+  ];
+  for (const [index, item] of batch.items.entries()) {
+    const source = inputById.get(item.cardId);
+    const segmentById = new Map(
+      source.sources.flatMap((entry) =>
+        entry.segments.map((segment) => [segment.segmentId, { ...segment, source: entry }]),
+      ),
+    );
+    lines.push('## ' + String(index + 1).padStart(2, '0') + '. `' + item.cardId + '` · ' + source.topicName);
+    lines.push('');
+    lines.push('- 风险：' + item.riskTags.join('、'));
+    lines.push('- 决定：`' + item.disposition + '`');
+    lines.push('- 来源策略：`' + source.sourcePolicy + '`');
+    lines.push('');
+    lines.push('当前英文问题：');
+    lines.push('');
+    lines.push(markdownQuote(item.questionEn));
+    lines.push('');
+    lines.push('历史来源卡：');
+    lines.push('');
+    for (const entry of source.sources) {
+      lines.push(
+        '- `' + entry.sourceCardId + '`（release ' + entry.releaseVersion +
+          '，`' + entry.commit.slice(0, 12) + '`）：' + entry.sourceQuestionEn,
+      );
+    }
+    if (source.excludedMappings.length) {
+      lines.push(
+        '- 已排除映射：' + source.excludedMappings.map((entry) =>
+          '`' + entry.sourceCardId + '`（' + entry.reason + '）').join('；'),
+      );
+    }
+    lines.push('');
+    const excerptIds = item.disposition === 'complete'
+      ? item.selectedSegmentIds
+      : item.consideredSegmentIds;
+    lines.push(item.disposition === 'complete' ? '选用来源片段：' : '已审查但未采用的来源片段：');
+    lines.push('');
+    for (const segmentId of excerptIds) {
+      const segment = segmentById.get(segmentId);
+      lines.push('- `' + segmentId + '`，源卡 `' + segment.source.sourceCardId + '`');
+      lines.push('');
+      lines.push(markdownQuote(segment.text));
+      lines.push('');
+    }
+    lines.push('编辑动作：' + item.editActions.join('；') + '。');
+    lines.push('');
+    lines.push('最终英文答案：');
+    lines.push('');
+    lines.push(item.answerEn ? markdownQuote(item.answerEn) : '> （留空）');
+    lines.push('');
+    lines.push('来源与风险结论：' + item.riskAssessment);
+    lines.push('');
+    const findings = findingByCard.get(item.cardId) ?? [];
+    if (!findings.length) {
+      lines.push('独立复核：通过。');
+    } else {
+      lines.push('独立复核与主裁决：');
+      lines.push('');
+      for (const finding of findings) {
+        const decision = adjudicationByFinding.get(finding.findingId);
+        lines.push(
+          '- `' + finding.findingId + '` ' + finding.severity + '/' + finding.dimension +
+            '：' + finding.issue + '；主裁决：' + decision.decision + '，' + decision.action,
+        );
+      }
+    }
+    lines.push('');
+  }
+  writeFileSync(groundedCalibrationComparisonPath, lines.join('\n') + '\n');
+  console.log(
+    'opi_grounded_answer_calibration_review_ok items=' + batch.items.length +
+      ' findings=' + reviewer.findings.length +
+      ' path=' + relative(projectRoot, groundedCalibrationComparisonPath),
+  );
+}
+
 function printUsage() {
   console.log(
     [
@@ -3320,6 +5361,20 @@ function printUsage() {
       '  node tools/opi-rebuild.mjs verify-formal',
       '  node tools/opi-rebuild.mjs verify-rollback',
       '  node tools/opi-rebuild.mjs rollback',
+      '  node tools/opi-rebuild.mjs build-grounded-answer-baseline',
+      '  node tools/opi-rebuild.mjs refresh-grounded-answer-baseline',
+      '  node tools/opi-rebuild.mjs verify-grounded-answer-baseline',
+      '  node tools/opi-rebuild.mjs verify-grounded-question-lock',
+      '  node tools/opi-rebuild.mjs create-grounded-answer-calibration <card-id...>',
+      '  node tools/opi-rebuild.mjs verify-grounded-answer-calibration [calibration-file]',
+      '  node tools/opi-rebuild.mjs build-grounded-answer-calibration-review',
+      '  node tools/opi-rebuild.mjs plan-grounded-answer-batches',
+      '  node tools/opi-rebuild.mjs refresh-grounded-answer-batch-plan',
+      '  node tools/opi-rebuild.mjs verify-grounded-answer-batch-plan',
+      '  node tools/opi-rebuild.mjs verify-grounded-answer-batch <batch-id>',
+      '  node tools/opi-rebuild.mjs apply-grounded-answer-cross-batch-audit',
+      '  node tools/opi-rebuild.mjs build-grounded-answer-final-audit',
+      '  node tools/opi-rebuild.mjs build-grounded-answer-preview <release-version> <released-at-iso>',
     ].join('\n'),
   );
 }
@@ -3346,6 +5401,29 @@ try {
   else if (command === 'verify-formal') commandVerifyFormal();
   else if (command === 'verify-rollback') commandVerifyRollback();
   else if (command === 'rollback') commandRollback();
+  else if (command === 'build-grounded-answer-baseline') commandBuildGroundedAnswerBaseline();
+  else if (command === 'refresh-grounded-answer-baseline') commandRefreshGroundedAnswerBaseline();
+  else if (command === 'verify-grounded-answer-baseline') commandVerifyGroundedAnswerBaseline();
+  else if (command === 'verify-grounded-question-lock') commandVerifyGroundedQuestionLock();
+  else if (command === 'create-grounded-answer-calibration')
+    commandCreateGroundedAnswerCalibration(args);
+  else if (command === 'verify-grounded-answer-calibration')
+    commandVerifyGroundedAnswerCalibration(args[0]);
+  else if (command === 'build-grounded-answer-calibration-review')
+    commandBuildGroundedAnswerCalibrationReview();
+  else if (command === 'plan-grounded-answer-batches') commandPlanGroundedAnswerBatches();
+  else if (command === 'refresh-grounded-answer-batch-plan')
+    commandRefreshGroundedAnswerBatchPlan();
+  else if (command === 'verify-grounded-answer-batch-plan')
+    commandVerifyGroundedAnswerBatchPlan();
+  else if (command === 'verify-grounded-answer-batch')
+    commandVerifyGroundedAnswerBatch(args[0]);
+  else if (command === 'apply-grounded-answer-cross-batch-audit')
+    commandApplyGroundedAnswerCrossBatchAudit();
+  else if (command === 'build-grounded-answer-final-audit')
+    commandBuildGroundedAnswerFinalAudit();
+  else if (command === 'build-grounded-answer-preview')
+    commandBuildGroundedAnswerPreview(args[0], args[1]);
   else {
     printUsage();
     if (command) process.exitCode = 1;

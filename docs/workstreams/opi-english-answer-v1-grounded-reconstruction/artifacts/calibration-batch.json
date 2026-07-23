@@ -1,0 +1,836 @@
+{
+  "schemaVersion": 1,
+  "ruleVersion": "opi-answer-v1-grounded-2026-07-23",
+  "batchId": "cal-001",
+  "questionLockHash": "6a1b20f3cdeb9438115675cbc1a196b7df41e83e1d1e9b84881c4588c1b13e93",
+  "corpusDigest": "d48152e06f54149f4ff7f1011fa0149985e09614d216811de566190022e1aced",
+  "producer": "codex-main",
+  "reviewStatus": "locked-user-approved",
+  "items": [
+    {
+      "cardId": "opi-core-001",
+      "questionEn": "Have you ever encountered a lightning strike during flight?",
+      "riskTags": [
+        "personal-experience"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-core-001:s02:2e95cb42d490"
+      ],
+      "editActions": [
+        "selected one legacy variant",
+        "removed repetition",
+        "corrected cohesion"
+      ],
+      "answerEn": "No, I have never encountered a lightning strike during flight. I know that lightning strikes are dangerous, so I avoid them during flight.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "First-person content is an adjustable practice answer and contains no experience beyond the selected variant."
+    },
+    {
+      "cardId": "opi-core-004",
+      "questionEn": "What should a pilot do if the aircraft is struck by lightning during flight?",
+      "riskTags": [
+        "aviation-procedure",
+        "merged-source"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-core-004:s03:b3643dfce96b"
+      ],
+      "editActions": [
+        "selected the most complete legacy variant",
+        "changed to conditional first person",
+        "tightened sequencing"
+      ],
+      "answerEn": "I would first maintain control of the aircraft and follow the SOP and checklist. I would check for structural or system damage and report the situation to ATC. If the damage were severe, I would request a diversion to an alternate airport. After landing, I would request a maintenance inspection.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "All actions come from the selected v1 variant; no checklist action or limit was added."
+    },
+    {
+      "cardId": "opi-core-005",
+      "questionEn": "What measures can pilots take to reduce the risk of a lightning strike?",
+      "riskTags": [
+        "aviation-procedure",
+        "merged-source"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-core-005:s03:a0de9af1c4fe"
+      ],
+      "editActions": [
+        "selected one coherent legacy variant",
+        "removed a runway-change detail",
+        "corrected word order"
+      ],
+      "answerEn": "Before flight, I check the weather reports and avoid areas where lightning is likely. During flight, I monitor the weather radar and request a deviation from ATC if lightning is detected ahead. I also avoid cumulonimbus clouds and thunderstorm areas.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "The answer retains only weather review, radar monitoring, deviation, and thunderstorm avoidance from v1."
+    },
+    {
+      "cardId": "opi-core-030-part-2",
+      "questionEn": "Why must an aircraft take off within the applicable holdover time after ground de-icing or anti-icing?",
+      "riskTags": [
+        "split-card",
+        "aviation-procedure",
+        "numerical-source-risk"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-core-030:s01:a8bdf982a495",
+        "v1-categories-01-07:opi-core-033:s01:0778e4961722"
+      ],
+      "editActions": [
+        "merged two matching legacy explanations",
+        "removed the variable 15–45 minute figure",
+        "shortened consequence chain"
+      ],
+      "answerEn": "Anti-icing fluid loses effectiveness over time. If takeoff is delayed beyond the applicable holdover time, ice, snow, or frost may accumulate again on critical surfaces. This contamination can reduce lift and increase drag, so the aircraft must be treated again before takeoff.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "The variable numerical range was excluded; every retained consequence and action is present in v1."
+    },
+    {
+      "cardId": "opi-core-042",
+      "questionEn": "What should pilots do if they hear a \"GO-AROUND, WINDSHEAR AHEAD\" warning during approach?",
+      "riskTags": [
+        "aviation-procedure",
+        "merged-source",
+        "unsafe-specific-risk"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-core-042:s02:876088607037",
+        "v1-categories-01-07:opi-core-457:s01:5ad45e7c2e18"
+      ],
+      "editActions": [
+        "removed fixed pitch guidance",
+        "retained common recovery actions",
+        "corrected grammar"
+      ],
+      "answerEn": "The pilots should go around immediately. They should use TOGA thrust, maintain the required configuration until clear of the wind shear, and closely monitor airspeed, altitude, attitude, and vertical speed.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "The fixed 15-degree pitch value and conflicting configuration changes were excluded rather than supplemented."
+    },
+    {
+      "cardId": "opi-core-061",
+      "questionEn": "How many evacuation slides are installed on the aircraft type you fly?",
+      "riskTags": [
+        "aircraft-type",
+        "numerical-fact",
+        "merged-source"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-core-061:s02:c41d97cd9563"
+      ],
+      "editActions": [
+        "selected the C172 legacy variant",
+        "answered the number directly",
+        "corrected number agreement"
+      ],
+      "answerEn": "I fly the C172, which has no evacuation slides.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "The aircraft type and zero-slide answer are both stated in the selected v1 variant."
+    },
+    {
+      "cardId": "opi-core-078",
+      "questionEn": "Have you ever encountered an emergency, urgency, or distress situation during a flight? If so, what happened?",
+      "riskTags": [
+        "personal-experience",
+        "merged-source"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-core-078:s01:867ac333e7ff",
+        "v1-categories-01-07:opi-core-104:s01:10d87efa577f"
+      ],
+      "editActions": [
+        "merged consistent negative answers",
+        "condensed simulator examples",
+        "corrected terminology"
+      ],
+      "answerEn": "No, I have never encountered an emergency, urgency, or distress situation during a flight. However, I have practised responses to engine failure, depressurization, and turbulence in simulator training, using SOPs and checklists.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "No real event is invented; the simulator experience is explicit in v1."
+    },
+    {
+      "cardId": "opi-core-105",
+      "questionEn": "What general steps should a pilot take in an urgency or distress situation?",
+      "riskTags": [
+        "aviation-procedure",
+        "merged-source"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-core-105:s01:879e494dfcf9"
+      ],
+      "editActions": [
+        "repaired sentence fragments",
+        "corrected pronouns",
+        "split one run-on sentence"
+      ],
+      "answerEn": "I would keep control of the aircraft and ask the copilot to read the checklist while I carry out the required actions. At the same time, I would report the situation to ATC. If necessary, I would request a diversion, priority landing, and emergency services.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "The answer stays at the general level of the source and adds no emergency-specific checklist steps."
+    },
+    {
+      "cardId": "opi-core-168",
+      "questionEn": "What do you learn during dangerous goods training?",
+      "riskTags": [
+        "training",
+        "merged-source"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-core-168:s01:e85fde721427",
+        "v1-categories-01-07:opi-core-180:s01:f8b7e3a70697"
+      ],
+      "editActions": [
+        "merged complementary topic lists",
+        "removed slash alternatives",
+        "corrected plurality"
+      ],
+      "answerEn": "During dangerous goods training, we learn the regulations and categories of dangerous goods. We also learn how to identify and check them, how they should be transported, and how to deal with a leak during flight.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "Every training topic is present in the two selected v1 segments."
+    },
+    {
+      "cardId": "opi-core-223",
+      "questionEn": "What should a pilot do if an engine ingests a bird during initial climb?",
+      "riskTags": [
+        "aviation-procedure",
+        "merged-source"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-core-223:s02:669d1d77114a"
+      ],
+      "editActions": [
+        "converted a semicolon list to sentences",
+        "removed parameter examples",
+        "changed to conditional first person"
+      ],
+      "answerEn": "I would first maintain control of the aircraft and closely monitor the engine parameters. I would follow the SOP and complete the engine malfunction checklist, then report the situation and aircraft status to ATC. If engine performance deteriorated significantly, I would request a diversion to the nearest suitable airport and prepare for an emergency landing if necessary.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "Specific parameter labels were omitted; all retained actions come from the selected v1 segment."
+    },
+    {
+      "cardId": "opi-core-114",
+      "questionEn": "What is a cockpit voice recorder (CVR)?",
+      "riskTags": [
+        "aviation-fact",
+        "merged-source",
+        "numerical-source-risk"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-core-114:s02:9eb31aa86cc8"
+      ],
+      "editActions": [
+        "removed the recording-duration claim",
+        "condensed the definition and purpose",
+        "corrected capitalization"
+      ],
+      "answerEn": "CVR stands for Cockpit Voice Recorder. It records cockpit audio, including crew communications, radio transmissions, warnings, and background sounds. The recordings can provide important information for accident investigations.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "The time-duration value was excluded; no replacement value was added."
+    },
+    {
+      "cardId": "opi-core-117",
+      "questionEn": "What is your opinion on using CVR recordings to monitor flight crews?",
+      "riskTags": [
+        "opinion",
+        "company-policy",
+        "merged-source"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-core-117:s01:67259b6dcb83",
+        "v1-categories-01-07:opi-core-122:s01:d39b727fd709"
+      ],
+      "editActions": [
+        "merged duplicate views",
+        "softened an absolute claim",
+        "shortened the list"
+      ],
+      "answerEn": "I think using CVR recordings for supervision can be useful. It can encourage crews to follow SOPs, maintain professional communication, and reduce irrelevant talk in the cockpit. These practices can improve flight safety.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "The answer expresses only the positive supervisory rationale contained in v1 and does not invent a company policy."
+    },
+    {
+      "cardId": "opi-core-461",
+      "questionEn": "What are the lower and upper flight-level limits of Reduced Vertical Separation Minimum (RVSM) airspace?",
+      "riskTags": [
+        "aviation-fact",
+        "numerical-fact",
+        "source-insufficient"
+      ],
+      "disposition": "source-insufficient",
+      "consideredSegmentIds": [
+        "v1-categories-01-07:opi-core-461:s01:dc36967674a8"
+      ],
+      "selectedSegmentIds": [],
+      "editActions": [
+        "rejected an unsupported conversion from altitude values to flight-level designators"
+      ],
+      "answerEn": null,
+      "sourceAssessment": "insufficient",
+      "riskAssessment": "The authorized source gives metre and foot altitudes rather than the flight-level limits requested. Converting or rounding them would add a substantive numerical answer."
+    },
+    {
+      "cardId": "opi-core-721",
+      "questionEn": "What is a Minimum Equipment List (MEL)?",
+      "riskTags": [
+        "aviation-fact",
+        "merged-source"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-core-721:s01:daad9f31f8f3"
+      ],
+      "editActions": [
+        "selected the dispatch-focused definition",
+        "corrected conditional grammar",
+        "split into short sentences"
+      ],
+      "answerEn": "MEL stands for Minimum Equipment List. It is an important document for aircraft dispatch because it tells the crew whether a flight can be conducted when equipment is inoperative.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "The answer avoids expanding the source into approval conditions or rectification intervals."
+    },
+    {
+      "cardId": "opi-core-136",
+      "questionEn": "What communication practices should pilots use when speaking with ATC?",
+      "riskTags": [
+        "aviation-communication",
+        "merged-source"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-core-372:s02:ded57d039a4e"
+      ],
+      "editActions": [
+        "selected the clearest composite source",
+        "removed equipment-check material",
+        "reordered for spoken flow"
+      ],
+      "answerEn": "Pilots should use standard phraseology, speak clearly, and read back instructions correctly. If a clearance is unclear, they should confirm it with ATC. They should stay focused and avoid distractions so that information is transmitted accurately.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "All communication practices are explicitly listed in the selected v1 segment."
+    },
+    {
+      "cardId": "opi-core-163",
+      "questionEn": "As the captain, how would you handle a conflict between a pilot and a cabin crew member?",
+      "riskTags": [
+        "crew-procedure",
+        "merged-source"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-core-163:s01:f44f5b27454d",
+        "v1-categories-01-07:opi-core-770:s01:76de276ed80d"
+      ],
+      "editActions": [
+        "split a long list into three sentences",
+        "changed to conditional first person",
+        "clarified pronoun references"
+      ],
+      "answerEn": "I would first speak calmly with both people to understand the cause of the conflict and reduce the tension. I would mediate impartially and remind them that teamwork and professional communication are essential to flight safety. I would then help them resolve the misunderstanding so they could focus on their duties and the flight.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "No escalation path or company procedure absent from v1 was introduced."
+    },
+    {
+      "cardId": "opi-core-208",
+      "questionEn": "As the captain, how would you help the crew work effectively as a team?",
+      "riskTags": [
+        "crew-procedure",
+        "merged-source"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-core-208:s01:6fea7520aae9",
+        "v1-categories-01-07:opi-core-368:s01:faf18a6f13dd"
+      ],
+      "editActions": [
+        "merged complementary leadership points",
+        "corrected number agreement",
+        "changed to conditional first person"
+      ],
+      "answerEn": "As captain, I would make sure everyone understands their duties and responsibilities during the preflight briefing. I would respect each crew member's opinion and encourage good communication and cooperation throughout the flight. I would also lead the crew in following the SOP and company policy.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "The leadership, briefing, communication, SOP, and policy points all appear in v1."
+    },
+    {
+      "cardId": "opi-core-743",
+      "questionEn": "Have you ever operated a red-eye flight? If so, what was it like?",
+      "riskTags": [
+        "personal-experience",
+        "merged-source"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-core-743:s01:dc0773638a08",
+        "v1-categories-01-07:opi-core-747:s01:bfd037ab9ec8"
+      ],
+      "editActions": [
+        "merged a negative experience answer with source knowledge",
+        "removed flight-school policy detail",
+        "corrected punctuation"
+      ],
+      "answerEn": "No, I have never operated a red-eye flight. I understand that a red-eye flight departs late at night and arrives early the next morning. It requires adequate preflight rest to stay alert.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "The answer does not claim an event; the definition and rest point are both stated in v1."
+    },
+    {
+      "cardId": "opi-core-754",
+      "questionEn": "How does your company promote good flight discipline?",
+      "riskTags": [
+        "company-policy",
+        "source-insufficient"
+      ],
+      "disposition": "source-insufficient",
+      "consideredSegmentIds": [
+        "v1-categories-01-07:opi-core-754:s01:265101db65f6"
+      ],
+      "selectedSegmentIds": [],
+      "editActions": [
+        "rejected conversion of a flight-school practice into company policy"
+      ],
+      "answerEn": null,
+      "sourceAssessment": "insufficient",
+      "riskAssessment": "The only authorized answer describes a flight school. Recasting it as the speaker's company policy would invent a substantive employer practice."
+    },
+    {
+      "cardId": "opi-extra-247",
+      "questionEn": "Have you ever felt fatigued while on duty? If so, how did you manage it?",
+      "riskTags": [
+        "personal-experience",
+        "fatigue-safety",
+        "persona-consistency",
+        "source-insufficient"
+      ],
+      "disposition": "source-insufficient",
+      "selectedSegmentIds": [],
+      "editActions": [
+        "retained the single legacy example",
+        "corrected tense consistency",
+        "split a semicolon sentence",
+        "cross-batch persona audit rejected the answer because it conflicts with the locked student-pilot and no-current-airline background"
+      ],
+      "answerEn": null,
+      "sourceAssessment": "insufficient",
+      "riskAssessment": "The answer claims personal fatigue during night freight operations and reporting to a supervisor. This conflicts with the locked student-pilot and no-current-airline background.",
+      "consideredSegmentIds": [
+        "v1-categories-01-07:opi-extra-247:s01:3ba6a3762f9b"
+      ]
+    },
+    {
+      "cardId": "opi-core-190",
+      "questionEn": "Have you ever taken off from or landed on a short and narrow runway?",
+      "riskTags": [
+        "personal-experience",
+        "merged-source"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-core-190:s02:23509f4dd91a"
+      ],
+      "editActions": [
+        "selected the more informative negative variant",
+        "removed unasked procedure detail",
+        "corrected tense"
+      ],
+      "answerEn": "No, I have never taken off from or landed on a short and narrow runway. However, I have received relevant simulator training.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "No real short-runway operation is claimed."
+    },
+    {
+      "cardId": "opi-core-195",
+      "questionEn": "How should a flight crew prepare before a flight to a high-elevation airport?",
+      "riskTags": [
+        "aviation-procedure",
+        "merged-source"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-core-195:s01:6590e663302d",
+        "v1-categories-01-07:opi-core-195:s02:10acfcdecaf8",
+        "v1-categories-01-07:opi-core-244:s01:709b77fc52b9"
+      ],
+      "editActions": [
+        "merged complementary preparation lists",
+        "removed the unexplained MOCA acronym",
+        "grouped related checks"
+      ],
+      "answerEn": "Before the flight, I would analyse the terrain and weather and review the runway conditions and the airport's arrival and departure procedures. I would check aircraft performance, including the effect of aircraft weight, and make sure the aircraft was in good condition. I would also discuss possible emergency situations and the relevant procedures with the crew.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "The answer retains only checks and briefings stated across the selected v1 material."
+    },
+    {
+      "cardId": "opi-core-268",
+      "questionEn": "What is the maximum fuel capacity of the aircraft type you fly?",
+      "riskTags": [
+        "aircraft-type",
+        "numerical-fact"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-core-268:s01:ca257f2c231f"
+      ],
+      "editActions": [
+        "selected the only complete numerical variant",
+        "corrected unit plural",
+        "combined two clauses"
+      ],
+      "answerEn": "I fly the DA-40 for flight training. Its maximum fuel capacity is 41 gallons, of which 39 gallons are usable.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "The aircraft type and both quantities are copied from the authorized v1 variant without external correction."
+    },
+    {
+      "cardId": "opi-core-283",
+      "questionEn": "What does the term \"minimum fuel\" mean in aviation?",
+      "riskTags": [
+        "aviation-fact",
+        "numerical-source-risk"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-core-283:s01:5aa688cf0492"
+      ],
+      "editActions": [
+        "retained the non-emergency definition",
+        "removed the 45-minute and 3,000-foot claim",
+        "corrected conditional grammar"
+      ],
+      "answerEn": "Minimum fuel is not a fuel emergency. It means that any further delay may cause the aircraft to declare a fuel emergency.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "Potentially system-specific numerical criteria were excluded and not replaced."
+    },
+    {
+      "cardId": "opi-core-463",
+      "questionEn": "What should a pilot do if the autopilot fails in Reduced Vertical Separation Minimum (RVSM) airspace?",
+      "riskTags": [
+        "aviation-procedure",
+        "aviation-fact"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-core-463:s01:b79127428d56"
+      ],
+      "editActions": [
+        "corrected the conditional clause",
+        "changed to first person",
+        "made the ATC request explicit without adding a destination level"
+      ],
+      "answerEn": "If the autopilot failed in RVSM airspace, I would request clearance to leave RVSM airspace because the aircraft would no longer meet the applicable requirements.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "No contingency level, separation value, or checklist step was added."
+    },
+    {
+      "cardId": "opi-core-591",
+      "questionEn": "What factors can cause a tail strike?",
+      "riskTags": [
+        "aviation-fact",
+        "cross-category-mapping-exclusion"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-core-591:s01:b6b77e2c6840",
+        "v1-categories-01-07:opi-core-591:s02:4587414a7f72"
+      ],
+      "editActions": [
+        "merged two v1 lists",
+        "excluded an unauthorized v2 image-source mapping",
+        "normalized terminology"
+      ],
+      "answerEn": "A tail strike can result from improper control, such as an excessive rotation rate, an early flare, or over-rotation during a go-around. Other factors include an unstable approach, incorrect stabilizer trim, poor crosswind handling, a centre-of-gravity calculation error, strong wind shear, or wake turbulence.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "Every factor comes from the two authorized v1 segments; the mapped image source was not read into the pool."
+    },
+    {
+      "cardId": "opi-extra-019",
+      "questionEn": "As a first officer, what would you do if you disagreed with the captain about a diversion?",
+      "riskTags": [
+        "crew-procedure",
+        "company-policy",
+        "unsafe-source-risk"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-extra-019:s01:fcbbcc9f151f"
+      ],
+      "editActions": [
+        "retained communication and SOP points",
+        "removed the absolute instruction to follow the captain",
+        "corrected phrasing"
+      ],
+      "answerEn": "I would discuss the issue with the captain again, explain my view, and suggest that we follow the SOP and company policy.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "The unsafe absolute ending was deleted. No escalation procedure absent from v1 was added."
+    },
+    {
+      "cardId": "opi-core-474",
+      "questionEn": "How many independent hydraulic systems does the aircraft type you fly have?",
+      "riskTags": [
+        "aircraft-type",
+        "numerical-fact"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-core-474:s01:c37774a776c7"
+      ],
+      "editActions": [
+        "selected the DA-40 variant",
+        "removed comparisons with other types",
+        "corrected sentence structure"
+      ],
+      "answerEn": "I fly the DA-40, which has one hydraulic system, mainly for the main-gear brakes.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "The type, count, and stated function all come from the selected v1 variant."
+    },
+    {
+      "cardId": "opi-core-871",
+      "questionEn": "What procedure does your company require for a rapid depressurization?",
+      "riskTags": [
+        "company-procedure",
+        "aviation-procedure",
+        "unsafe-specific-risk",
+        "persona-consistency",
+        "source-insufficient"
+      ],
+      "disposition": "source-insufficient",
+      "selectedSegmentIds": [],
+      "editActions": [
+        "selected the non-numerical variant",
+        "removed the fixed FL100 target",
+        "corrected pronoun consistency",
+        "cross-batch persona audit rejected the answer because it conflicts with the locked student-pilot and no-current-airline background"
+      ],
+      "answerEn": null,
+      "sourceAssessment": "insufficient",
+      "riskAssessment": "The answer claims a current rapid-decompression company procedure involving an oxygen mask and emergency descent on a pressurized aircraft. This conflicts with the locked student-pilot and no-current-airline background.",
+      "consideredSegmentIds": [
+        "v1-categories-01-07:opi-core-871:s01:b39436567415"
+      ]
+    },
+    {
+      "cardId": "opi-extra-125",
+      "questionEn": "Does the aircraft type you fly use a control column or a sidestick?",
+      "riskTags": [
+        "aircraft-type",
+        "merged-source"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-extra-125:s01:45a96f079ff7"
+      ],
+      "editActions": [
+        "selected the concise C172 variant",
+        "repaired a comma splice"
+      ],
+      "answerEn": "I fly the C172, which uses a control column.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "Both the type and control input are explicit in v1."
+    },
+    {
+      "cardId": "opi-extra-216",
+      "questionEn": "Have you ever experienced an engine problem in flight? If so, what happened?",
+      "riskTags": [
+        "personal-experience",
+        "merged-source"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-extra-216:s01:101b585a7f07"
+      ],
+      "editActions": [
+        "retained the negative experience answer",
+        "condensed simulator examples",
+        "corrected repetition"
+      ],
+      "answerEn": "No, I have never experienced an engine problem in flight. However, I have practised engine failure, flameout, fire, and surge scenarios in the simulator.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "No real event is claimed; every simulator scenario is listed in v1."
+    },
+    {
+      "cardId": "opi-core-058",
+      "questionEn": "What type of aircraft do you currently fly?",
+      "riskTags": [
+        "aircraft-type",
+        "personal-background",
+        "merged-source"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-core-865:s01:09ff82710bd3"
+      ],
+      "editActions": [
+        "selected the complete non-placeholder source",
+        "normalized the model hyphenation",
+        "combined two sentences"
+      ],
+      "answerEn": "I am a student pilot, and I currently fly the DA-40 for flight training.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "The placeholder answer was not used; the selected v1 source states the role, type, and purpose."
+    },
+    {
+      "cardId": "opi-core-849",
+      "questionEn": "Which aircraft type ratings have you held?",
+      "riskTags": [
+        "aircraft-type",
+        "personal-background",
+        "source-insufficient"
+      ],
+      "disposition": "source-insufficient",
+      "consideredSegmentIds": [
+        "v1-categories-01-07:opi-core-849:s01:0d9ea0f8c800",
+        "v1-categories-01-07:opi-extra-132:s01:035bf5f4efb7",
+        "v1-categories-01-07:opi-extra-132:s02:f812739d6054",
+        "v1-categories-01-07:opi-extra-132:s03:7ba69da902ce",
+        "v1-categories-01-07:opi-extra-153:s01:967c6b0ef6d4"
+      ],
+      "selectedSegmentIds": [],
+      "editActions": [
+        "rejected conflation of licence, class rating, aircraft flown, and type rating"
+      ],
+      "answerEn": null,
+      "sourceAssessment": "insufficient",
+      "riskAssessment": "The authorized sources are internally inconsistent and do not support a safe, unambiguous list of aircraft type ratings."
+    },
+    {
+      "cardId": "opi-extra-130",
+      "questionEn": "What is the passenger capacity of the aircraft type you fly?",
+      "riskTags": [
+        "aircraft-type",
+        "numerical-fact"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-extra-130:s01:90287c973e40"
+      ],
+      "editActions": [
+        "combined the type and capacity statements",
+        "spelled out the number"
+      ],
+      "answerEn": "I fly the C172, which can accommodate two passengers.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "The aircraft type and passenger count are explicit in v1."
+    },
+    {
+      "cardId": "opi-extra-144",
+      "questionEn": "What does your company's logo look like?",
+      "riskTags": [
+        "company-background",
+        "personal-background"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-extra-144:s01:72f5742cc5c7"
+      ],
+      "editActions": [
+        "selected the source's direct no-company response",
+        "removed the unrelated Air China example",
+        "shortened wording"
+      ],
+      "answerEn": "I am a student pilot and have not officially joined an airline, so I do not have a company logo to describe.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "No employer or logo is invented."
+    },
+    {
+      "cardId": "opi-extra-179",
+      "questionEn": "Have you ever traveled abroad?",
+      "riskTags": [
+        "personal-experience",
+        "ordinary-language"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v1-categories-01-07:opi-extra-179:s01:594864465c60"
+      ],
+      "editActions": [
+        "split the direct answer from the examples",
+        "normalized the country name"
+      ],
+      "answerEn": "Yes, I have. I have travelled to Australia, the United States, Japan, and South Africa.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "All destinations are present in v1; only the country name was normalized."
+    },
+    {
+      "cardId": "opi-image-002-q01",
+      "questionEn": "What can you see in this picture?",
+      "riskTags": [
+        "image-dependent",
+        "deferred-image-answer"
+      ],
+      "disposition": "deferred-image-answer",
+      "consideredSegmentIds": [
+        "v2-category-08-images:opi-image-002-q01:s01:d07f97047b5d"
+      ],
+      "selectedSegmentIds": [],
+      "editActions": [
+        "preserved the existing image-dependent deferral"
+      ],
+      "answerEn": null,
+      "sourceAssessment": "image-dependent",
+      "riskAssessment": "The answer requires identifying visible details in the specific picture."
+    },
+    {
+      "cardId": "opi-image-006-q01",
+      "questionEn": "What pre-takeoff preparations should a flight crew make in the winter conditions shown?",
+      "riskTags": [
+        "image-context",
+        "aviation-procedure",
+        "merged-source"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v2-category-08-images:opi-image-006-q01:s01:837178f842b4"
+      ],
+      "editActions": [
+        "retained pre-takeoff-relevant actions",
+        "removed go-around and diversion options",
+        "made the winter threat explicit from the question"
+      ],
+      "answerEn": "I would brief the winter-weather threat, check the relevant aircraft systems and performance, coordinate with the crew and ATC, and follow the checklist. If safety were not assured, I would delay or reject the takeoff.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "The winter context comes from the locked question; every action and decision comes from the authorized v2 source."
+    },
+    {
+      "cardId": "opi-image-013-q01",
+      "questionEn": "What is foreign object debris (FOD), and why is it hazardous?",
+      "riskTags": [
+        "image-topic-general-knowledge",
+        "aviation-fact"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v2-category-08-images:opi-image-013-q01:s01:8307a5208ffa"
+      ],
+      "editActions": [
+        "split definition, hazard, and prevention into sentences",
+        "corrected cohesion"
+      ],
+      "answerEn": "FOD means foreign object debris or foreign object damage. It is hazardous because it can damage tyres, engines, and aircraft structures. Ramp inspections and runway cleaning are therefore important.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "No examples or effects beyond the v2 source were added."
+    },
+    {
+      "cardId": "opi-image-021-q02",
+      "questionEn": "As captain, how would you respond to a suspected bird strike in flight?",
+      "riskTags": [
+        "image-context",
+        "aviation-procedure"
+      ],
+      "disposition": "complete",
+      "selectedSegmentIds": [
+        "v2-category-08-images:opi-image-021-q02:s01:837178f842b4"
+      ],
+      "editActions": [
+        "retained in-flight-relevant actions",
+        "removed delay, reject, and go-around options",
+        "condensed the generic source"
+      ],
+      "answerEn": "I would check the relevant aircraft systems and performance, coordinate with the crew and ATC, and follow the checklist. If safety were not assured, I would divert as appropriate.",
+      "sourceAssessment": "sufficient",
+      "riskAssessment": "The answer is deliberately general because v2 contains no bird-strike-specific checklist detail."
+    }
+  ]
+}

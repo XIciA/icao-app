@@ -1,0 +1,397 @@
+{
+  "schemaVersion": 1,
+  "auditId": "persona-consistency-001",
+  "status": "applied",
+  "reviewer": "codex-independent",
+  "reviewMode": "full-read-only-no-production-writing",
+  "adjudicator": "codex-main",
+  "coverage": {
+    "calibrationCards": 40,
+    "productionBatchCards": 1027,
+    "completeAnswersRead": 940,
+    "firstPersonCandidatesRead": 278
+  },
+  "lockedPersona": {
+    "currentStatus": "student pilot",
+    "operation": "domestic flight training",
+    "currentAirlineEmployer": null,
+    "flightHours": "about 100",
+    "hometown": "Chengdu",
+    "currentCity": "Xi'an"
+  },
+  "rule": "A complete first-person answer must not claim a current airline employer, commercial line-operation history, or multi-crew airline duty that conflicts with the locked student-pilot background.",
+  "decision": "accepted-all-findings-and-reopen-affected-batches",
+  "findings": [
+    {
+      "batchId": "cal-001",
+      "cardId": "opi-core-871",
+      "evidence": "The answer claims a current rapid-decompression company procedure involving an oxygen mask and emergency descent on a pressurized aircraft."
+    },
+    {
+      "batchId": "cal-001",
+      "cardId": "opi-extra-247",
+      "evidence": "The answer claims personal fatigue during night freight operations and reporting to a supervisor."
+    },
+    {
+      "batchId": "ans-005",
+      "cardId": "opi-core-115",
+      "evidence": "The answer claims a current company fleet whose aircraft all have cockpit voice recorders."
+    },
+    {
+      "batchId": "ans-005",
+      "cardId": "opi-core-133",
+      "evidence": "The answer evaluates the speaker's current company policy for monitoring flight crews through CVR recordings."
+    },
+    {
+      "batchId": "ans-005",
+      "cardId": "opi-core-134",
+      "evidence": "The answer presents the speaker as a current crew member whose performance is subject to company CVR monitoring."
+    },
+    {
+      "batchId": "ans-006",
+      "cardId": "opi-core-149",
+      "evidence": "The answer claims a current company that could provide more CRM simulator training to pilots."
+    },
+    {
+      "batchId": "ans-006",
+      "cardId": "opi-core-152",
+      "evidence": "The answer claims a current company that provides joint CRM training for flight and cabin crews."
+    },
+    {
+      "batchId": "ans-006",
+      "cardId": "opi-core-156",
+      "evidence": "The answer claims personal work experience with a captain, first officer, and other airline crew members."
+    },
+    {
+      "batchId": "ans-006",
+      "cardId": "opi-core-167",
+      "evidence": "The answer claims an existing company affiliation and an expected return to that company."
+    },
+    {
+      "batchId": "ans-007",
+      "cardId": "opi-core-182",
+      "evidence": "The answer claims current company guidance for cargo manifests, dangerous goods, and in-flight crew response."
+    },
+    {
+      "batchId": "ans-007",
+      "cardId": "opi-core-236",
+      "evidence": "The answer claims a current company SOP review and line-monitoring program."
+    },
+    {
+      "batchId": "ans-007",
+      "cardId": "opi-core-236-part-2",
+      "evidence": "The answer claims current company ground, recurrent simulator, and CRM training."
+    },
+    {
+      "batchId": "ans-008",
+      "cardId": "opi-core-257",
+      "evidence": "The answer claims the speaker's airline operates complex-airport routes and provides route-specific training."
+    },
+    {
+      "batchId": "ans-008",
+      "cardId": "opi-core-276",
+      "evidence": "The answer claims a current company fuel policy and first-person company fuel requirements."
+    },
+    {
+      "batchId": "ans-009",
+      "cardId": "opi-core-303",
+      "evidence": "The answer places the speaker in a current commercial operation receiving load and balance documents from dispatch."
+    },
+    {
+      "batchId": "ans-009",
+      "cardId": "opi-core-307",
+      "evidence": "The answer places the speaker in a current airline operation receiving a load sheet from dispatch before departure."
+    },
+    {
+      "batchId": "ans-011",
+      "cardId": "opi-core-366",
+      "evidence": "The answer claims current PF, PM, and first-officer duties in a multi-crew operation."
+    },
+    {
+      "batchId": "ans-011",
+      "cardId": "opi-core-393",
+      "evidence": "The answer claims the speaker's airline provides unfamiliar-airport simulator and line training."
+    },
+    {
+      "batchId": "ans-016",
+      "cardId": "opi-core-239",
+      "evidence": "The answer claims an existing company affiliation and an expected return to that company."
+    },
+    {
+      "batchId": "ans-018",
+      "cardId": "opi-core-604",
+      "evidence": "The answer evaluates onboard meals from the perspective of a current commercial flight crew member."
+    },
+    {
+      "batchId": "ans-019",
+      "cardId": "opi-core-648",
+      "evidence": "The answer claims a company SOP for operating a C172."
+    },
+    {
+      "batchId": "ans-019",
+      "cardId": "opi-core-653",
+      "evidence": "The answer claims a current company alcohol prohibition and preflight testing policy."
+    },
+    {
+      "batchId": "ans-020",
+      "cardId": "opi-core-660",
+      "evidence": "The answer claims a current company cockpit no-smoking policy."
+    },
+    {
+      "batchId": "ans-020",
+      "cardId": "opi-core-662",
+      "evidence": "The answer claims a current company in-flight smoking policy for flight crew."
+    },
+    {
+      "batchId": "ans-020",
+      "cardId": "opi-core-667",
+      "evidence": "The answer claims current multi-crew SOP duties in which the pilot monitoring completes the flight record."
+    },
+    {
+      "batchId": "ans-020",
+      "cardId": "opi-core-672",
+      "evidence": "The answer claims normal use of a pushback checklist in the speaker's operation."
+    },
+    {
+      "batchId": "ans-020",
+      "cardId": "opi-core-674",
+      "evidence": "The answer claims the speaker's cockpit carries transport-aircraft documents including an FCOM, QRH, and MEL."
+    },
+    {
+      "batchId": "ans-020",
+      "cardId": "opi-core-678",
+      "evidence": "The answer claims routine use of a company SOP and QRH in current line operations."
+    },
+    {
+      "batchId": "ans-022",
+      "cardId": "opi-core-730",
+      "evidence": "The answer claims an existing company affiliation and an expected return after flight school."
+    },
+    {
+      "batchId": "ans-022",
+      "cardId": "opi-core-732",
+      "evidence": "The answer claims an existing company affiliation and an expected return after flight school."
+    },
+    {
+      "batchId": "ans-024",
+      "cardId": "opi-core-827",
+      "evidence": "The answer claims personal passenger-airline experience handling an overheated passenger device with a crew."
+    },
+    {
+      "batchId": "ans-025",
+      "cardId": "opi-core-855",
+      "evidence": "The answer claims a current company radio-failure SOP."
+    },
+    {
+      "batchId": "ans-025",
+      "cardId": "opi-core-856",
+      "evidence": "The answer claims current multi-crew radio duties in which the first officer handles ground communications."
+    },
+    {
+      "batchId": "ans-027",
+      "cardId": "opi-extra-037",
+      "evidence": "The answer claims current captain-led joint briefings with cabin crew."
+    },
+    {
+      "batchId": "ans-027",
+      "cardId": "opi-extra-051",
+      "evidence": "The answer claims that the speaker personally briefs cabin crew before a flight."
+    },
+    {
+      "batchId": "ans-028",
+      "cardId": "opi-extra-081",
+      "evidence": "The answer claims a current company cockpit-entry policy and cabin-crew entry procedure."
+    },
+    {
+      "batchId": "ans-028",
+      "cardId": "opi-extra-092",
+      "evidence": "The answer claims personal severe-thunderstorm line experience using airborne weather radar and landing the aircraft safely."
+    },
+    {
+      "batchId": "ans-029",
+      "cardId": "opi-extra-096",
+      "evidence": "The answer claims an existing company affiliation and an expected return to that company."
+    },
+    {
+      "batchId": "ans-033",
+      "cardId": "opi-extra-240",
+      "evidence": "The answer describes the speaker as currently working scheduled duties and preparing for the next flight."
+    },
+    {
+      "batchId": "ans-034",
+      "cardId": "opi-extra-270",
+      "evidence": "The answer claims current shifts, colleagues, days off, and operational workload experience."
+    }
+  ],
+  "unrelatedPersonaChecks": {
+    "flightHoursConflictFound": false,
+    "hometownConflictFound": false,
+    "currentCityConflictFound": false,
+    "trainingAircraftNamesAccepted": [
+      "C172",
+      "DA40"
+    ]
+  },
+  "appliedAt": "2026-07-23T08:49:11.816Z",
+  "result": {
+    "beforeCalibration": {
+      "complete": 36,
+      "source-insufficient": 3,
+      "deferred-image-answer": 1
+    },
+    "changedBatches": [
+      {
+        "batchId": "ans-005",
+        "cardIds": [
+          "opi-core-115",
+          "opi-core-133",
+          "opi-core-134"
+        ],
+        "finalBatchHash": "bd84c445c0e0e6986b1435f93e3e809d887fdef412dcb30b8761eca20eeed974"
+      },
+      {
+        "batchId": "ans-006",
+        "cardIds": [
+          "opi-core-149",
+          "opi-core-152",
+          "opi-core-156",
+          "opi-core-167"
+        ],
+        "finalBatchHash": "bbf0a4c033aa8ec6ece06c52072a7ce617ebf978d07c1b0b52e49cdc4d35de4e"
+      },
+      {
+        "batchId": "ans-007",
+        "cardIds": [
+          "opi-core-182",
+          "opi-core-236",
+          "opi-core-236-part-2"
+        ],
+        "finalBatchHash": "42518f5ecdde091b43ee9de7addcc1fada4540a4eebaf3fd7e069615a74a25e4"
+      },
+      {
+        "batchId": "ans-008",
+        "cardIds": [
+          "opi-core-257",
+          "opi-core-276"
+        ],
+        "finalBatchHash": "b1939431530fd2c4345823172b710b042010fdf1d6a5f9b62f10724b6fea15a7"
+      },
+      {
+        "batchId": "ans-009",
+        "cardIds": [
+          "opi-core-303",
+          "opi-core-307"
+        ],
+        "finalBatchHash": "0b375f3a70ec5184ac24dce09e39b1268c270cc8b401ff42cb6fc6d7109f9699"
+      },
+      {
+        "batchId": "ans-011",
+        "cardIds": [
+          "opi-core-366",
+          "opi-core-393"
+        ],
+        "finalBatchHash": "1260f0211f3e8a9c39027dc912fc56560e922d2bd953dfb2d8fd339df55a3412"
+      },
+      {
+        "batchId": "ans-016",
+        "cardIds": [
+          "opi-core-239"
+        ],
+        "finalBatchHash": "00b63e94a32ffeaae4d3c0521ca93623359bacc100e98970e2040269e6d1e96d"
+      },
+      {
+        "batchId": "ans-018",
+        "cardIds": [
+          "opi-core-604"
+        ],
+        "finalBatchHash": "bae377f034cc9dfd077b5578afbce0e282653f499fc0655eee3dac82bf578fb6"
+      },
+      {
+        "batchId": "ans-019",
+        "cardIds": [
+          "opi-core-648",
+          "opi-core-653"
+        ],
+        "finalBatchHash": "14a78215aaf144ee1440db63f839f8b642a39f55a4c7982e17bfdd3043334abc"
+      },
+      {
+        "batchId": "ans-020",
+        "cardIds": [
+          "opi-core-660",
+          "opi-core-662",
+          "opi-core-667",
+          "opi-core-672",
+          "opi-core-674",
+          "opi-core-678"
+        ],
+        "finalBatchHash": "7222f9eab87e2797166df4929212add1425d0498fef80a971ff8870ee2f0ca24"
+      },
+      {
+        "batchId": "ans-022",
+        "cardIds": [
+          "opi-core-730",
+          "opi-core-732"
+        ],
+        "finalBatchHash": "68ba0adad27301325c6f0040e1e8311e8007e5cc1fd342771962d3219ab81b69"
+      },
+      {
+        "batchId": "ans-024",
+        "cardIds": [
+          "opi-core-827"
+        ],
+        "finalBatchHash": "e561576c213dc9936e29c722e5b2623d76726439e996cd24708e79944a66708e"
+      },
+      {
+        "batchId": "ans-025",
+        "cardIds": [
+          "opi-core-855",
+          "opi-core-856"
+        ],
+        "finalBatchHash": "c67acd1cebd6faab679a4c41712c35c525e184a1f304cf98e660544c73418e8d"
+      },
+      {
+        "batchId": "ans-027",
+        "cardIds": [
+          "opi-extra-037",
+          "opi-extra-051"
+        ],
+        "finalBatchHash": "85b088be76067754ac458f22d71b56537bf33915d881be062aab37904686a332"
+      },
+      {
+        "batchId": "ans-028",
+        "cardIds": [
+          "opi-extra-081",
+          "opi-extra-092"
+        ],
+        "finalBatchHash": "f0253eece4e8b9fc14fb74375a11578abdbdfc040b259a15c9981a823d332119"
+      },
+      {
+        "batchId": "ans-029",
+        "cardIds": [
+          "opi-extra-096"
+        ],
+        "finalBatchHash": "518a76aa6d3121a715a327757dda0504a33a38639f1a4526971c0c278988d39a"
+      },
+      {
+        "batchId": "ans-033",
+        "cardIds": [
+          "opi-extra-240"
+        ],
+        "finalBatchHash": "6912a5e7fb19dc17ff319d7b3264535eab07b3faedf3426aaa157c12d57c34a9"
+      },
+      {
+        "batchId": "ans-034",
+        "cardIds": [
+          "opi-extra-270"
+        ],
+        "finalBatchHash": "0dc65207e059fc3f64b6727bcc21449d7e6d7a1276dbc9ff0918a88e3a11431f"
+      }
+    ],
+    "counts": {
+      "items": 1067,
+      "complete": 900,
+      "sourceInsufficient": 157,
+      "deferredImageAnswer": 10
+    }
+  }
+}

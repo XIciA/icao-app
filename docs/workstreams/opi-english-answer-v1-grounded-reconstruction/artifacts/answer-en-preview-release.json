@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "releaseKind": "answer-en-partial-preview",
+  "releaseVersion": 9,
+  "releasedAt": "2026-07-23T05:36:00Z",
+  "questionLockHash": "6a1b20f3cdeb9438115675cbc1a196b7df41e83e1d1e9b84881c4588c1b13e93",
+  "corpusDigest": "d48152e06f54149f4ff7f1011fa0149985e09614d216811de566190022e1aced",
+  "releaseRoot": ".generated/opi-answer-v1-grounded/answer-en-preview-release",
+  "bankChecksum": "01e90c365d5ecb12c3b2691bc5d6a75e8ffbf1655bd56d6d68dc93d4395bb566",
+  "releaseManifestChecksum": "1e9b5ed4e6eff4c37ca12671172f3eceb8328c6ac9f192ba4348b792ae764ac3",
+  "batchIds": [
+    "ans-001",
+    "ans-002",
+    "ans-003",
+    "ans-004",
+    "ans-005",
+    "ans-006",
+    "ans-007",
+    "ans-008",
+    "ans-009",
+    "ans-010",
+    "ans-011",
+    "ans-012",
+    "ans-013",
+    "ans-014",
+    "ans-015",
+    "ans-016",
+    "ans-017",
+    "ans-018",
+    "ans-019",
+    "ans-020",
+    "ans-021"
+  ],
+  "counts": {
+    "cards": 1090,
+    "textCards": 1067,
+    "imageCards": 23,
+    "sealedDecisions": 628,
+    "completeAnswers": 553,
+    "sourceInsufficient": 65,
+    "deferredImageAnswers": 10,
+    "unfinishedTextAnswers": 439,
+    "emptyAnswerFields": 514
+  },
+  "rollback": {
+    "activeProductionVersion": 8,
+    "action": "delete preview v9 release row, then reactivate preserved v8 release row"
+  },
+  "deployment": {
+    "status": "active-and-remotely-verified",
+    "activatedAt": "2026-07-23T05:37:56.533640Z",
+    "releaseArchive": "/opt/icao/runtime/releases/opi-answer-en-preview-v9-20260723T053600Z/opi-answer-en-preview-v9-20260723T053600Z.tar.gz",
+    "releaseArchiveSha256": "45acaba1d660cdd2ab4ca5acd9a13cdee2cafb9c91d9e6f6b69fb3f1612ab20d",
+    "contentBackup": "/opt/icao/backups/opi-answer-en-preview-v9-20260723T053600Z/active-opi-v8-before.json",
+    "contentBackupSha256": "d23a1487d80321e7dea43d46665cd9f1e77afc451fbf3058f28e0c134242e98b",
+    "databaseBackup": "/opt/icao/backups/postgres/icao-opi-answer-en-preview-v9-20260723T053600Z-before.dump",
+    "databaseBackupSha256": "64ca51b239b711db4a8f3223512b30f9ac70279aac3555eff9de7af8d779c4a4",
+    "databaseBackupCatalogEntries": 604,
+    "isolatedRestore": {
+      "result": "pass",
+      "publicTables": 13,
+      "authTables": 23,
+      "cardStates": 271,
+      "learningRecords": 187,
+      "note": "The complete dump was retained and catalog-verified. A public/auth subset was restored with --no-owner --no-privileges because Supabase vault ownership cannot be restored into an isolated verification database."
+    },
+    "apiSourceDeployed": false,
+    "apiRestartCount": 0,
+    "healthReady": {
+      "service": "icao-api",
+      "status": "ok",
+      "database": "ok"
+    },
+    "liveVerification": {
+      "unauthenticatedStatus": 401,
+      "authenticatedStatus": 200,
+      "etag": "\"01e90c365d5ecb12c3b2691bc5d6a75e8ffbf1655bd56d6d68dc93d4395bb566\"",
+      "conditionalStatus": 304,
+      "conditionalBodyBytes": 0,
+      "temporaryVerificationUserDeleted": true,
+      "representativeCardIds": [
+        "opi-core-689",
+        "opi-core-692",
+        "opi-image-002-q01",
+        "opi-core-725"
+      ],
+      "result": "pass"
+    }
+  }
+}
