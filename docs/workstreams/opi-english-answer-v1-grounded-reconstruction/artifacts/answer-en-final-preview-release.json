@@ -3,6 +3,7 @@
   "releaseKind": "answer-en-final-preview",
   "releaseVersion": 9,
   "releasedAt": "2026-07-23T09:19:10Z",
+  "sourceCommit": "1d79866d10a12e46c7733f68bff400888f7e0f89",
   "questionLockHash": "6a1b20f3cdeb9438115675cbc1a196b7df41e83e1d1e9b84881c4588c1b13e93",
   "corpusDigest": "d48152e06f54149f4ff7f1011fa0149985e09614d216811de566190022e1aced",
   "finalDecisionHash": "0bf5d02f776ec100618921635fc14c323bf5f7e400051c62650b780a2a28b8e5",
@@ -60,7 +61,59 @@
     "emptyAnswerFields": 168
   },
   "rollback": {
-    "activeProductionVersion": 8,
-    "action": "delete-preview-release-and-reactivate-opi-v8"
+    "preservedContentVersion": 8,
+    "preservedContentChecksum": "bd142ec28285e82283caaa6958a3e5218f36b3fd2d4455f7aec4a97f9fd3faa7",
+    "replacedActivePreviewChecksum": "01e90c365d5ecb12c3b2691bc5d6a75e8ffbf1655bd56d6d68dc93d4395bb566",
+    "action": "deactivate OPI v9 and reactivate the preserved OPI v8 release; use the pre-import database dump if content-level rollback is insufficient"
+  },
+  "deployment": {
+    "status": "active-and-remotely-verified",
+    "activatedAt": "2026-07-23T09:25:39Z",
+    "releaseArchive": "/opt/icao/runtime/releases/opi-answer-en-final-v9-20260723T091910Z/opi-answer-en-final-v9-20260723T091910Z.tar.gz",
+    "releaseArchiveSha256": "328ff17fadb508b17888dd067bdc94430d7af50f59d4a27aa0680e3db8f9d35a",
+    "contentBackup": "/opt/icao/backups/opi-answer-en-final-v9-20260723T091910Z/active-opi-before.json",
+    "contentBackupSha256": "b676492e8f56c07ab06cf37150d3556f99e6b3bf41d7abe761e41d034d56e159",
+    "databaseBackup": "/opt/icao/backups/postgres/icao-opi-answer-en-final-v9-20260723T091910Z-before.dump",
+    "databaseBackupSha256": "480be15b244e276a65683e084eb25bcfa29503ab2e8685c2574831b874b124d5",
+    "databaseBackupCatalogEntries": 634,
+    "isolatedRestore": {
+      "result": "pass",
+      "publicTables": 16,
+      "authTables": 23,
+      "questionBankReleases": 15
+    },
+    "apiSourceDeployed": false,
+    "apiRestartCount": 0,
+    "healthReady": {
+      "service": "icao-api",
+      "status": "ok",
+      "database": "ok"
+    },
+    "liveVerification": {
+      "unauthenticatedStatus": 401,
+      "authenticatedStatus": 200,
+      "releaseVersion": 9,
+      "checksum": "09c0961f187a8abc1f1165dfda427b3441de22108013d0cca5ea27ba328b8d49",
+      "etag": "\"09c0961f187a8abc1f1165dfda427b3441de22108013d0cca5ea27ba328b8d49\"",
+      "cards": 1090,
+      "textCards": 1067,
+      "completeAnswers": 899,
+      "sourceInsufficient": 158,
+      "deferredImageAnswers": 10,
+      "answerZhFields": 0,
+      "conditionalStatus": 304,
+      "conditionalBodyBytes": 0,
+      "representativeCardIds": [
+        "opi-core-689",
+        "opi-core-058",
+        "opi-core-875",
+        "opi-core-077-part-2",
+        "opi-image-009-q01",
+        "opi-image-002-q01",
+        "opi-image-016-q04"
+      ],
+      "temporaryVerificationUserDeleted": true,
+      "result": "pass"
+    }
   }
 }

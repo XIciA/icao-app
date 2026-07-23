@@ -1,6 +1,6 @@
 # OPI 英文答案 v1 语料约束二次重建阶段日志
 
-状态：阶段 0–6 完成并锁定；阶段 7 Git、生产发布和线上验证进行中
+状态：阶段 0–7 完成；完整 OPI v9 英文答案预览已上线并通过远程验证
 
 更新时间：2026-07-23（Asia/Shanghai）
 
@@ -163,3 +163,26 @@ node tools/opi-rebuild.mjs verify-grounded-question-lock
 - 内容导入没有部署或重启 API 源码；`icao-api` restart count 为 0，`/health/ready` 的服务与数据库均为 `ok`。真实 HTTPS 鉴权请求为 200，未鉴权为 401；ETag 与 v9 checksum 一致，`If-None-Match` 返回 304 和空响应体；一次性验证用户已删除。
 - 线上代表项确认：`opi-core-689` 有英文答案但无中文答案；`opi-core-692`（来源不足）、`opi-image-002-q01`（图片延期）和 `opi-core-725`（未生产）均无答案字段。
 - 回滚点为保留的 v8 release、活动 v8 JSON 备份和完整数据库 dump；若必须立即撤回预览，删除 v9 release 行后重新激活 v8 行即可，详细路径与 checksum 已记录在预览审计文件。
+
+## 阶段 7：Git、生产发布与线上验证
+
+状态：完成。
+
+- 有效任务范围以提交 `1d79866d10a12e46c7733f68bff400888f7e0f89` 提交并推送
+  `main`；工作区内词典、账号、AI、反馈等并行修改均未纳入该提交。
+- 发布包从该提交的干净 `git archive` 重新构建，OPI checksum 与锁定构建一致；
+  归档 SHA-256 为 `328ff17fadb508b17888dd067bdc94430d7af50f59d4a27aa0680e3db8f9d35a`。
+- 导入前保存当前活动 OPI 内容和完整 PostgreSQL dump；dump 有 634 个目录项，并在
+  隔离数据库成功恢复 16 个 public 表、23 个 auth 表和 15 条题库 release。
+- 使用既有内容导入脚本更新 OPI v9，没有部署 API 源码，也没有重启 API 容器；
+  `icao-api` restart count 保持 0。
+- `/health/ready` 的服务和数据库均为 `ok`；真实 HTTPS 等价鉴权链路验证为未鉴权 401、
+  鉴权 200。
+- 线上活动 OPI 为 v9，checksum 为
+  `09c0961f187a8abc1f1165dfda427b3441de22108013d0cca5ea27ba328b8d49`；
+  1090 卡、1067 文本卡、899 个英文答案、0 个中文答案字段均与本地锁定构建一致。
+- 普通题、个人背景题、程序题、拆分题、图片一般知识题、图片延期题和来源不足题的
+  7 张代表卡均通过；`If-None-Match` 返回 304 和空响应体，临时验证用户已删除。
+- v8 release 及 checksum 继续保留为内容级回滚点；完整数据库与导入前活动 v9 部分
+  预览快照均已备份。详细路径、hash 和回滚动作见
+  `artifacts/answer-en-final-preview-release.json`。
