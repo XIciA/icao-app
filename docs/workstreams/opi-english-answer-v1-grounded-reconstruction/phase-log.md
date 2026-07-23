@@ -176,7 +176,7 @@ node tools/opi-rebuild.mjs verify-grounded-question-lock
   隔离数据库成功恢复 16 个 public 表、23 个 auth 表和 15 条题库 release。
 - 使用既有内容导入脚本更新 OPI v9，没有部署 API 源码，也没有重启 API 容器；
   `icao-api` restart count 保持 0。
-- `/health/ready` 的服务和数据库均为 `ok`；真实 HTTPS 等价鉴权链路验证为未鉴权 401、
+- `/health/ready` 的服务和数据库均为 `ok`；真实 HTTPS 鉴权链路验证为未鉴权 401、
   鉴权 200。
 - 线上活动 OPI 为 v9，checksum 为
   `09c0961f187a8abc1f1165dfda427b3441de22108013d0cca5ea27ba328b8d49`；
