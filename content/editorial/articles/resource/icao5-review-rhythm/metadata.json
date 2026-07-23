@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "editorial-resource-icao5-review-rhythm",
+  "slug": "icao5-review-rhythm",
+  "version": 1,
+  "channel": "resource",
+  "category": "planning",
+  "badge": "备考规划",
+  "title": "ICAO 5 级备考：如何安排复习节奏与能力提升方向",
+  "summary": "以六项语言能力为坐标，用“诊断—专项—整合”三阶段安排训练，并通过每日闭环与周期复盘持续校准。",
+  "tags": [
+    "ICAO 5",
+    "备考规划",
+    "能力提升"
+  ],
+  "publishedAt": "2026-07-23T14:59:00+08:00",
+  "cover": {
+    "publicPath": "/editorial-assets/icao5-review-rhythm/cover.jpg",
+    "sourceFile": "../../../assets/icao5-review-rhythm-cover.jpg",
+    "alt": "机场窗前摆放着空白计划本、笔和航空耳机",
+    "width": 800,
+    "height": 500,
+    "mimeType": "image/jpeg"
+  }
+}

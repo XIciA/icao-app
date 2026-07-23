@@ -179,7 +179,7 @@ export function AnnotationToolbar({
         {showTags ? (
           <Pressable accessibilityLabel={picker === 'tag' ? '关闭标签面板' : '打开标签面板'} accessibilityState={{ expanded: picker === 'tag' }} onPress={toggleTags} style={[styles.tool, picker === 'tag' || selectedTags.length ? styles.toolActive : null]}>
             <Tags color={picker === 'tag' || selectedTags.length ? colors.primary : colors.mutedForeground} size={14} />
-            <AppText color={picker === 'tag' || selectedTags.length ? colors.primary : colors.mutedForeground} variant="caption">标签 {selectedTags.length}</AppText>
+            <AppText color={picker === 'tag' || selectedTags.length ? colors.primary : colors.mutedForeground} variant="caption">标签</AppText>
           </Pressable>
         ) : null}
       </View>

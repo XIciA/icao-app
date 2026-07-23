@@ -28,7 +28,7 @@ React Native 学习卡
 | `word-lookup` | 服务端文本模型 | `definition`, `contextExplanationZh`, `promptVersion` |
 | `transcribe` | 服务端 ASR + 保守规范化 | `rawTranscript`, `transcript`, `hintsVersion` |
 | `exact-match-check` | RN 本地纯函数 | 一致性、缺失/多余/替换/顺序问题 |
-| `grammar-review` | 服务端文本模型 | `overallFeedbackZh`, `issues`, `correctedText`, `promptVersion` |
+| `grammar-review` | 服务端文本模型 | `issues`, `correctedText`, `promptVersion` |
 | `polish` | 服务端文本模型 | `polishedText`, `promptVersion`, 警告 |
 
 - OPI “分析表达”组合 `grammar-review -> polish`，但 `polish` 仍保持独立服务能力，不新增独立产品入口。
@@ -37,7 +37,7 @@ React Native 学习卡
 
 ## 3. 民航语言资产
 
-- `docs/AI-requirement/` 继续是人工可读的权威来源，`domain/` 中的稳定 ID 和含义不变。
+- `docs/ai/` 继续是人工可读的权威来源；运行时基础资产的稳定 ID 和含义不变。
 - 建立确定性的资产编译/校验流程，生成供后端运行的版本化结构数据；生成物不作为手工编辑源。
 - 运行时按能力、题库、题目上下文和长度上限选择相关术语、读法、短语和错误边界，不全量塞入每个 Prompt。
 - `hint-only` 资产只进入提示或候选；确定性规范化只处理高置信的缩写、数字、航向、跑道、QNH 等场景。

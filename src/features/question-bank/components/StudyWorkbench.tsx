@@ -1,4 +1,4 @@
-import type { GrammarReviewResult, OpiAnalysisResult } from '@icao/contracts';
+import type { GrammarReviewResult } from '@icao/contracts';
 import {
   forwardRef,
   type ReactNode,
@@ -51,22 +51,20 @@ type Props = {
   answerText: string;
   questionText: string;
   reviewKind: StudyReviewKind;
-  recordingKey?: string;
   recordingUri?: string;
-  transcriptionAttempted?: boolean;
   referenceContent: ReactNode;
   noteText: string;
   saveError?: string;
   editingTab?: 'mine' | 'notes';
   swipeGesture: GestureType;
   learningStore?: Pick<LearningStore, 'addRecord'>;
+  persistAiResult?: boolean;
   onTabChange: (tab: StudyConsoleTab) => void;
   onEditingTabChange: (tab?: 'mine' | 'notes') => void;
   onAnswerChange: (text: string) => void;
   onNoteChange: (text: string) => void;
   onRetrySave: () => void;
   onFeedback: () => void;
-  onTranscriptionAttempted?: (recordingKey: string) => void;
 };
 
 export type StudyWorkbenchHandle = {
@@ -83,6 +81,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     categoryTitle,
     editingTab,
     learningStore = sqliteLearningStore,
+    persistAiResult = true,
     noteText,
     onAnswerChange,
     onEditingTabChange,
@@ -90,11 +89,8 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     onNoteChange,
     onRetrySave,
     onTabChange,
-    onTranscriptionAttempted,
     questionText,
-    recordingKey,
     recordingUri,
-    transcriptionAttempted,
     referenceContent,
     referenceLabel,
     reviewKind,
@@ -106,7 +102,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     topicTitle,
   } = props;
   const [grammar, setGrammar] = useState<GrammarReviewResult>();
-  const [opi, setOpi] = useState<OpiAnalysisResult>();
+  const [polishedText, setPolishedText] = useState<string>();
   const [matchMessage, setMatchMessage] = useState<string>();
   const [busy, setBusy] = useState<'transcribe' | 'review'>();
   const [error, setError] = useState<string>();
@@ -117,7 +113,6 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   const [noteInputHeight, setNoteInputHeight] = useState(92);
   const [saveRevision, setSaveRevision] = useState(0);
   const activeRequest = useRef<AbortController | undefined>(undefined);
-  const lastAutoTranscribeKey = useRef<string | undefined>(undefined);
   const answerInputRef = useRef<TextInput>(null);
   const noteInputRef = useRef<TextInput>(null);
   const currentCardKey = useRef(cardKey);
@@ -133,7 +128,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     answerText,
     grammar,
     matchMessage,
-    polishedText: opi?.polishedText,
+    polishedText,
   });
   latestSnapshot.current = {
     cardKey,
@@ -150,7 +145,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
       completedCount: 1,
       totalCount: 1,
       correctCount: 0,
-      feedbackCount: grammar || opi || matchMessage ? 1 : 0,
+      feedbackCount: grammar || polishedText || matchMessage ? 1 : 0,
       durationSeconds: Math.max(0, Math.round((Date.now() - Date.parse(sessionStartedAt)) / 1000)),
       reason: 'complete',
       createdAt: sessionStartedAt,
@@ -159,11 +154,10 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
         questionId: cardKey,
         transcript: answerText,
         grammar: grammar ? {
-          overallFeedbackZh: grammar.overallFeedbackZh,
           correctedText: grammar.correctedText,
           issues: grammar.issues,
         } : undefined,
-        polishedText: opi?.polishedText,
+        polishedText,
       },
     },
   };
@@ -175,6 +169,11 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   }, []);
 
   const persistCurrent = useCallback(() => {
+    if (!persistAiResult) {
+      dirty.current = false;
+      setAutoSaveError(undefined);
+      return Promise.resolve(true);
+    }
     const saveLatest = async () => {
       while (true) {
         const snapshot = latestSnapshot.current;
@@ -203,7 +202,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     const operation = saveQueue.current.then(saveLatest, saveLatest);
     saveQueue.current = operation.then(() => undefined, () => undefined);
     return operation;
-  }, [learningStore]);
+  }, [learningStore, persistAiResult]);
 
   const flushAutoSave = useCallback(async () => {
     activeRequest.current?.abort();
@@ -216,7 +215,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     const controller = activeRequest.current;
     if (controller) controller.abort();
     setGrammar(undefined);
-    setOpi(undefined);
+    setPolishedText(undefined);
     setMatchMessage(undefined);
     setError(undefined);
     setFailedAction(undefined);
@@ -249,7 +248,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
 
   const changeAnswer = useCallback((text: string) => {
     setGrammar(undefined);
-    setOpi(undefined);
+    setPolishedText(undefined);
     setMatchMessage(undefined);
     setError(undefined);
     setFailedAction(undefined);
@@ -260,7 +259,6 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   const transcribe = useCallback(async () => {
     if (!recordingUri) return;
     const requestCardKey = cardKey;
-    if (recordingKey) onTranscriptionAttempted?.(recordingKey);
     activeRequest.current?.abort();
     setBusy('transcribe');
     setError(undefined);
@@ -294,13 +292,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
         if (currentCardKey.current === requestCardKey) setBusy(undefined);
       }
     }
-  }, [cardKey, changeAnswer, ensureConsent, onTranscriptionAttempted, recordingKey, recordingUri]);
-
-  useEffect(() => {
-    if (!recordingKey || !recordingUri || transcriptionAttempted || lastAutoTranscribeKey.current === recordingKey) return;
-    lastAutoTranscribeKey.current = recordingKey;
-    void transcribe();
-  }, [recordingKey, recordingUri, transcribe, transcriptionAttempted]);
+  }, [cardKey, changeAnswer, ensureConsent, recordingUri]);
 
   async function reviewAnswer() {
     if (!answerText.trim()) return;
@@ -332,13 +324,13 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
         markDirty();
         const polished = await polishExpression({ ...input, module: 'opi', correctedText: grammarResult.correctedText }, controller.signal);
         if (controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
-        setOpi({ grammar: grammarResult, polishedText: polished.polishedText, polishPromptVersion: polished.promptVersion });
+        setPolishedText(polished.polishedText);
         markDirty();
       } else {
         const result = await grammarReview(input, controller.signal);
         if (controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
         setGrammar(result);
-        setOpi(undefined);
+        setPolishedText(undefined);
         markDirty();
       }
     } catch {
@@ -376,12 +368,14 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   const aiBusy = busy === 'transcribe' || busy === 'review';
   const showRetry = activeTab === 'mine' ? Boolean(autoSaveError) : activeTab === 'notes' ? Boolean(saveError) : false;
   const showReviewAction = activeTab === 'mine' && reviewKind !== 'none';
+  const showTranscribeAction = activeTab === 'mine' && Boolean(recordingUri);
+  const transcribeDisabled = !recordingUri || editing || aiBusy;
   const reviewDisabled = !answerText.trim() || editing || aiBusy;
   const reviewError = failedAction === 'review' ? error : undefined;
   const transcriptionError = failedAction === 'transcribe' ? error : undefined;
-  const aiPrimaryText = opi?.polishedText || grammar?.correctedText || (matchMessage ? questionText : undefined);
+  const aiPrimaryText = polishedText || grammar?.correctedText || (matchMessage ? questionText : undefined);
   const aiExplanation = matchMessage ?? (grammar
-    ? [grammar.overallFeedbackZh, ...grammar.issues].map((item) => item.trim()).filter(Boolean).join('\n')
+    ? grammar.issues.length ? grammar.issues.map((item) => item.trim()).filter(Boolean).join('\n') : '未发现明确语法问题'
     : undefined);
   const showAiRegion = busy === 'review' || Boolean(reviewError || aiPrimaryText || aiExplanation);
 
@@ -394,17 +388,17 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
             <AppText numberOfLines={1} style={styles.headerTitleText} variant="button">{title}</AppText>
           </View>
           {editableTab ? <View style={styles.headerActions}>
-            {showReviewAction ? <Pressable
-              accessibilityLabel={reviewLabel}
+            {showTranscribeAction ? <Pressable
+              accessibilityLabel="转写"
               accessibilityRole="button"
-              accessibilityState={{ disabled: reviewDisabled }}
-              disabled={reviewDisabled}
+              accessibilityState={{ disabled: transcribeDisabled }}
+              disabled={transcribeDisabled}
               hitSlop={4}
-              onPress={() => void reviewAnswer()}
-              style={({ pressed }) => [styles.reviewAction, pressed && !reviewDisabled ? styles.pressed : null, reviewDisabled ? styles.headerActionDisabled : null]}
-              testID="study-workbench-review-action"
+              onPress={() => void transcribe()}
+              style={({ pressed }) => [styles.transcribeAction, pressed && !transcribeDisabled ? styles.pressed : null, transcribeDisabled ? styles.headerActionDisabled : null]}
+              testID="study-workbench-transcribe-action"
             >
-              <AppText color={reviewDisabled ? colors.mutedForeground : colors.primary} variant="caption">{reviewLabel}</AppText>
+              <AppText color={transcribeDisabled ? colors.mutedForeground : colors.primary} variant="caption">转写</AppText>
             </Pressable> : null}
             <Pressable
               accessibilityLabel={editAccessibilityLabel}
@@ -418,6 +412,18 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
             >
               <AppText color={aiBusy ? colors.mutedForeground : colors.primary} variant="caption">{editing ? '完成' : '编辑'}</AppText>
             </Pressable>
+            {showReviewAction ? <Pressable
+              accessibilityLabel={reviewLabel}
+              accessibilityRole="button"
+              accessibilityState={{ disabled: reviewDisabled }}
+              disabled={reviewDisabled}
+              hitSlop={4}
+              onPress={() => void reviewAnswer()}
+              style={({ pressed }) => [styles.reviewAction, pressed && !reviewDisabled ? styles.pressed : null, reviewDisabled ? styles.headerActionDisabled : null]}
+              testID="study-workbench-review-action"
+            >
+              <AppText color={reviewDisabled ? colors.mutedForeground : colors.primary} variant="caption">{reviewLabel}</AppText>
+            </Pressable> : null}
           </View> : null}
         </View>
 
@@ -453,7 +459,6 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
           <View style={styles.actions}>
             {showRetry ? <Pressable accessibilityLabel="重试保存" accessibilityRole="button" onPress={() => activeTab === 'mine' ? void persistCurrent() : onRetrySave()} style={styles.action}><AppText color={colors.destructive} variant="micro">重试</AppText></Pressable> : null}
             {aiBusy ? <Pressable accessibilityLabel="取消当前 AI 操作" accessibilityRole="button" onPress={() => activeRequest.current?.abort()} style={styles.action}><AppText color={colors.mutedForeground} variant="micro">取消</AppText></Pressable> : null}
-            {activeTab === 'mine' && (failedAction === 'transcribe' || (transcriptionAttempted && !answerText.trim())) && recordingUri && !aiBusy ? <Pressable accessibilityLabel="重试语音转写" accessibilityRole="button" onPress={() => void transcribe()} style={styles.action}><AppText color={colors.primary} variant="micro">重试转写</AppText></Pressable> : null}
           </View>
         </View>
       </View>
@@ -466,6 +471,7 @@ const styles = StyleSheet.create({
   headerTitle: { alignItems: 'center', flex: 1, flexDirection: 'row', gap: spacing[2], minWidth: 0 },
   headerTitleText: { flexShrink: 1 },
   headerActions: { alignItems: 'center', flexDirection: 'row', flexShrink: 0, gap: spacing[1.5] },
+  transcribeAction: { alignItems: 'center', backgroundColor: 'transparent', borderColor: colors.primary20, borderRadius: radii.full, borderWidth: 1, justifyContent: 'center', minHeight: 36, paddingHorizontal: spacing[3] },
   reviewAction: { alignItems: 'center', backgroundColor: 'transparent', borderColor: colors.primary20, borderRadius: radii.full, borderWidth: 1, justifyContent: 'center', minHeight: 36, paddingHorizontal: spacing[3] },
   editAction: { alignItems: 'center', backgroundColor: 'transparent', borderColor: colors.primary20, borderRadius: radii.full, borderWidth: 1, justifyContent: 'center', minHeight: 36, paddingHorizontal: spacing[3] },
   headerActionDisabled: { opacity: 0.45 },

@@ -22,16 +22,10 @@ type AuthContextValue = {
   enterUiAcceptanceMode(): void;
   exitUiAcceptanceMode(): void;
   rememberPendingPath(path: string): void;
-  signIn(email: string, password: string): Promise<void>;
-  signUp(email: string, password: string): Promise<void>;
+  signIn(inviteCode: string): Promise<void>;
   signOut(): Promise<void>;
   signOutAll(): Promise<void>;
-  changePassword(currentPassword: string, newPassword: string): Promise<void>;
-  requestEmailChange(currentPassword: string, newEmail: string): Promise<void>;
-  requestPasswordReset(email: string): Promise<void>;
-  exchangeEmailCode(code: string): Promise<void>;
-  completeRecovery(password: string): Promise<void>;
-  deleteAccount(currentPassword: string): Promise<void>;
+  deleteAccount(inviteCode: string): Promise<void>;
 };
 
 const unavailable = async () => { throw new Error('auth_not_configured'); };
@@ -47,14 +41,8 @@ const AuthContext = createContext<AuthContextValue>({
   exitUiAcceptanceMode: () => undefined,
   rememberPendingPath: () => undefined,
   signIn: unavailable,
-  signUp: unavailable,
   signOut: unavailable,
   signOutAll: unavailable,
-  changePassword: unavailable,
-  requestEmailChange: unavailable,
-  requestPasswordReset: unavailable,
-  exchangeEmailCode: unavailable,
-  completeRecovery: unavailable,
   deleteAccount: unavailable,
 });
 
@@ -207,32 +195,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setPendingPath(undefined);
     },
     rememberPendingPath(path) { if (!path.startsWith('/auth/') && !path.startsWith('/legal/')) setPendingPath(path); },
-    async signIn(email, password) { if (!service) return unavailable(); setAccountReady(false); setUiAcceptanceMode(false); setSession(await service.signInWithEmail(email, password)); },
-    async signUp(email, password) { if (!service) return unavailable(); setAccountReady(false); setSession(await service.signUpWithEmail(email, password)); },
+    async signIn(inviteCode) { if (!service) return unavailable(); setAccountReady(false); setUiAcceptanceMode(false); setSession(await service.signInWithInviteCode(inviteCode)); },
     async signOut() { if (!service) return unavailable(); await service.signOut('local'); setSession(undefined); setAccountReady(false); },
     async signOutAll() { if (!service) return unavailable(); await revokeAllAndClear(); },
-    async changePassword(currentPassword, newPassword) {
-      if (!service || !session?.user.email) return unavailable();
-      setSession(await service.changePassword(session.user.email, currentPassword, newPassword));
-      await revokeAllAndClear();
-    },
-    async requestEmailChange(currentPassword, newEmail) {
-      if (!service || !session?.user.email) return unavailable();
-      await service.requestEmailChange(session.user.email, currentPassword, newEmail);
-    },
-    async requestPasswordReset(email) { if (!service) return unavailable(); await service.requestPasswordReset(email); },
-    async exchangeEmailCode(code) { if (!service) return unavailable(); setSession(await service.exchangeEmailCode(code)); },
-    async completeRecovery(password) {
-      if (!service) return unavailable();
-      setSession(await service.setRecoveryPassword(password));
-      await revokeAllAndClear();
-    },
-    async deleteAccount(currentPassword) {
+    async deleteAccount(inviteCode) {
       if (!service) return unavailable();
       const response = await apiFetch('/v1/account', {
         method: 'DELETE',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ currentPassword, confirmation: '注销账号' }),
+        body: JSON.stringify({ inviteCode, confirmation: '注销账号' }),
       });
       if (!response.ok) {
         const body = await response.json().catch(() => undefined) as { error?: { code?: string } } | undefined;

@@ -49,8 +49,8 @@ try {
   assert(guestTranscript.transcript, 'guest_transcribe_invalid');
   const guestGrammar = await api('/v1/ai/grammar-review', undefined, { method: 'POST', body: JSON.stringify({ module: 'opi', questionId: 'guest-grammar', questionText: 'Describe your aircraft fuel capacity.', transcript: 'My aircraft carry much fuel.' }) });
   assert(guestGrammar.correctedText && Array.isArray(guestGrammar.issues), 'guest_grammar_invalid');
-  const guestOpi = await api('/v1/ai/opi-analysis', undefined, { method: 'POST', body: JSON.stringify({ module: 'opi', questionId: 'guest-analysis', questionText: 'What would you do in severe turbulence?', transcript: 'I slow down and tell ATC.' }) });
-  assert(guestOpi.grammar?.correctedText && guestOpi.polishedText, 'guest_opi_invalid');
+  const guestPolish = await api('/v1/ai/polish', undefined, { method: 'POST', body: JSON.stringify({ module: 'opi', questionId: 'guest-polish', questionText: 'What would you do in severe turbulence?', transcript: 'I slow down and tell ATC.' }) });
+  assert(guestPolish.polishedText, 'guest_polish_invalid');
   const guestUsage = await database`select capability, status from ai_usage_logs where user_id is null order by created_at desc limit 5`;
   assert(guestUsage.length === 5 && guestUsage.every((row) => row.status === 'success'), 'guest_usage_logs_invalid');
 
@@ -75,23 +75,19 @@ try {
 
   const grammarInput = { module: 'atc', questionId: 'verify-atc', questionText: 'Report established on the localizer.', transcript: 'We is established on localizer.' };
   const grammar = await api('/v1/ai/grammar-review', token, { method: 'POST', body: JSON.stringify(grammarInput) });
-  assert(grammar.correctedText && grammar.overallFeedbackZh && Array.isArray(grammar.issues), 'grammar_invalid');
+  assert(grammar.correctedText && Array.isArray(grammar.issues) && grammar.promptVersion === 'grammar-review:v2', 'grammar_invalid');
 
   const standalonePolish = await api('/v1/ai/polish', token, { method: 'POST', body: JSON.stringify({ module: 'opi', questionId: 'verify-polish', questionText: 'Describe your response to turbulence.', transcript: 'I will slow down and tell ATC.', correctedText: 'I will slow down and inform ATC.' }) });
-  assert(standalonePolish.polishedText && standalonePolish.promptVersion === 'polish-v1', 'standalone_polish_invalid');
-
-  const opiInput = { module: 'opi', questionId: 'verify-opi', questionText: 'What would you do if you encountered severe turbulence?', transcript: 'If I meet severe turbulence, I will slow down and tell ATC.' };
-  const opi = await api('/v1/ai/opi-analysis', token, { method: 'POST', body: JSON.stringify(opiInput) });
-  assert(opi.grammar?.correctedText && opi.polishedText, 'opi_invalid');
+  assert(standalonePolish.polishedText && standalonePolish.promptVersion === 'polish:v2', 'standalone_polish_invalid');
 
   const usage = await database`select capability, status, quota_units from ai_usage_logs where user_id = ${userId} order by created_at`;
-  assert(usage.length === 6, 'usage_log_count');
+  assert(usage.length === 5, 'usage_log_count');
   assert(usage.every((row) => row.status === 'success'), 'usage_log_status');
   assert(new Set(usage.map((row) => row.capability)).size === 4, 'usage_log_capabilities');
   const quota = await database`select used_units from ai_quota_buckets where user_id = ${userId}`;
   assert(quota.length === 0, 'usage_limit_should_be_disabled');
 
-  console.log(JSON.stringify({ guest: 'word-transcribe-grammar-opi-real-ok', guestUsageLogs: guestUsage.length, authenticated: 'all-real-ok', cacheWithoutCharge: 'ok', usageLogs: usage.length, usageLimits: 'disabled' }));
+  console.log(JSON.stringify({ guest: 'word-transcribe-grammar-polish-real-ok', guestUsageLogs: guestUsage.length, authenticated: 'all-real-ok', cacheWithoutCharge: 'ok', usageLogs: usage.length, usageLimits: 'disabled' }));
 } finally {
   if (userId) {
     const deletion = await admin.auth.admin.deleteUser(userId);

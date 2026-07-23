@@ -7,6 +7,8 @@ import { MeController } from './auth/me.controller';
 import { RequireAuthGuard } from './auth/require-auth.guard';
 import { SessionSecurityService } from './auth/session-security.service';
 import { SupabaseAuthVerifier } from './auth/supabase-auth.verifier';
+import { InviteAuthController } from './auth/invite-auth.controller';
+import { InviteAuthService } from './auth/invite-auth.service';
 import { API_CONFIG, loadConfig } from './config';
 import { DatabaseService } from './database/database.service';
 import { HealthController } from './health.controller';
@@ -24,19 +26,27 @@ import { FunAsrService } from './ai/fun-asr.service';
 import { AiService } from './ai/ai.service';
 import { VocabularyController } from './vocabulary/vocabulary.controller';
 import { VocabularyService } from './vocabulary/vocabulary.service';
+import { EditorialController } from './editorial/editorial.controller';
+import { EditorialService } from './editorial/editorial.service';
+import { FeedbackAttachmentStorage } from './feedback/feedback-attachment-storage';
+import { FeedbackCleanupService } from './feedback/feedback-cleanup.service';
+import { FeedbackController } from './feedback/feedback.controller';
+import { FeedbackService } from './feedback/feedback.service';
 
 @Module({
-  controllers: [HealthController, MeController, AccountController, QuestionBankController, ResourceController, SyncController, AiController, VocabularyController],
+  controllers: [HealthController, MeController, InviteAuthController, AccountController, QuestionBankController, ResourceController, EditorialController, SyncController, AiController, VocabularyController, FeedbackController],
   providers: [
     { provide: API_CONFIG, useFactory: () => loadConfig() },
     DatabaseService,
     SupabaseAuthVerifier,
     { provide: AUTH_VERIFIER, useExisting: SupabaseAuthVerifier },
     SessionSecurityService,
+    InviteAuthService,
     RequireAuthGuard,
     AccountService,
     QuestionBankService,
     ResourceService,
+    EditorialService,
     SyncService,
     AiAssetsService,
     AiProviderService,
@@ -44,6 +54,9 @@ import { VocabularyService } from './vocabulary/vocabulary.service';
     FunAsrService,
     AiService,
     VocabularyService,
+    FeedbackAttachmentStorage,
+    FeedbackCleanupService,
+    FeedbackService,
   ],
 })
 export class AppModule {}

@@ -4,83 +4,58 @@
   "assets": [
     {
       "path": "capabilities/README.md",
-      "bytes": 2021,
-      "sha256": "a44593fcbdf1db94f04376a4bad3ed62dbacf1840f136b76e67ce7d3c445d429"
-    },
-    {
-      "path": "capabilities/grammar-review-v1.md",
-      "bytes": 3934,
-      "sha256": "3f68e3dbae7270ea657dad13bde42b9d5923ec24e6c3e8b7b4ec9924f5a57a63"
-    },
-    {
-      "path": "capabilities/polish-v1.md",
-      "bytes": 3845,
-      "sha256": "ca0a511c5d7a7e0a3c1a0758142c411d4d8d55411432bd99c7b3314f3e4bc1b1"
+      "bytes": 1083,
+      "sha256": "2bab0f5fadf42217088c097af4c8ddcbac4716eca80d38373f6b70dd301b2bef"
     },
     {
       "path": "capabilities/transcribe-hints-v1.md",
-      "bytes": 7650,
-      "sha256": "e5d29dfd04f1389854fe23d50cf0b6b48c9a5577c1968e35b29cfb37dd9f4d93"
+      "bytes": 7431,
+      "sha256": "9cd401db4247dafb606f1905a411485b17ea36e23bbe75e91ac51c74caa00f02"
     },
     {
       "path": "capabilities/word-lookup-v1.md",
-      "bytes": 4043,
-      "sha256": "16a90a99dc663223cd1b5b2332a2047a72e0409b596cbd3819a356d3b9bbc3f2"
+      "bytes": 3903,
+      "sha256": "d65d2c151f7f6de39fe5e53d76fc701efef9428576a820880bfeb5abf04c43b8"
     },
     {
       "path": "domain/README.md",
-      "bytes": 2510,
-      "sha256": "42ddf1d19af54b400e20d3774d542c4d124b083522a51d1a4b0eaf651c1a6dee"
-    },
-    {
-      "path": "domain/aviation-common-errors.md",
-      "bytes": 3428,
-      "sha256": "d5075cd9f6a494e616833034c34ce15436948f5be5bf425c7b15d2c74e6bff7c"
+      "bytes": 1941,
+      "sha256": "e7bb55baa44b4b4bc34d88fc27937f7998e4f6891db24366dfc95c6631a9d554"
     },
     {
       "path": "domain/aviation-hotwords.md",
-      "bytes": 6635,
-      "sha256": "b7241afcb72abb65f1207ea8aae14907fe369343c3efbd210004a892db86666f"
+      "bytes": 6575,
+      "sha256": "9c544ef186d3bf75e828174b86960126fb711ee4b7ea29515ffeb5d995caed4b"
     },
     {
       "path": "domain/aviation-number-readings.md",
-      "bytes": 10989,
-      "sha256": "dd47e7a153243d0633e310efe963638d0714810c36fb9e4b41fda392b74ff0c0"
+      "bytes": 10929,
+      "sha256": "ddea95de0a8fbc9e8391fdc7c924e133537a34356409fc7d293fb321ce350425"
     },
     {
       "path": "domain/aviation-phrasebook.md",
-      "bytes": 7554,
-      "sha256": "fa75a2df59cae0b89e3dab04a5dcefdab365e60b3ead259dd4c09f2fa1a9e03b"
+      "bytes": 6859,
+      "sha256": "158ce22e24e3758570b9286572976c66eefb418debe009776f7c1d43b0ed466a"
     },
     {
       "path": "domain/aviation-terminology.md",
-      "bytes": 10078,
-      "sha256": "45d24e168bdcfea7c8447d9c0f5f05d4af07cdc6af5eb44d5379d6ac544038cd"
+      "bytes": 9870,
+      "sha256": "caf825ea7a76b0c242ac3fb34bee6219972d7d64857140afc66546d995fa51cc"
     },
     {
       "path": "domain/sentence900-ai-corpus.md",
-      "bytes": 12695,
-      "sha256": "c5db31d3384836b83cd6dbfd3ec7fde2cbe8b1f19f68a20cc87fbe61e687f033"
+      "bytes": 12406,
+      "sha256": "e385fe4cb3ae3bb0e62a9bd09e00ceda9b3c74549a0a02bf931e605c4e607a04"
     },
     {
       "path": "shared/README.md",
-      "bytes": 1590,
-      "sha256": "8df1e9a95decbf43503eadd1799ca7e3567becb013a63bfccb5d8b1273d112aa"
-    },
-    {
-      "path": "shared/content-asset-structure-v1.md",
-      "bytes": 6420,
-      "sha256": "043b153beee00c5de5ee9929d4b6e922d745bc1d3ed282d00243b8f7c24a4a56"
-    },
-    {
-      "path": "shared/few-shot-selection-v1.md",
-      "bytes": 4490,
-      "sha256": "b5f9ee3db273cd032f2f8f3c3abcc4bb53aaf35fe3a2403633e3d056f7b9b8ca"
+      "bytes": 1071,
+      "sha256": "3e109112b81cab3b24cd677a5571c37805483255a082985dc9921ad041abcd7e"
     },
     {
       "path": "shared/output-quality-rules-v1.md",
-      "bytes": 6674,
-      "sha256": "705301d60ba685a26242359eceb161808e72122ef30fc850be28343b5bb7743b"
+      "bytes": 877,
+      "sha256": "2253dca8e32c24290cb52402d6e3f250ab3e6c993d89dbf396f7fac579dc6647"
     }
   ],
   "stableIds": [
@@ -147,86 +122,6 @@
     {
       "id": "AB-016",
       "path": "domain/aviation-hotwords.md"
-    },
-    {
-      "id": "AE-001",
-      "path": "domain/aviation-common-errors.md"
-    },
-    {
-      "id": "AE-002",
-      "path": "domain/aviation-common-errors.md"
-    },
-    {
-      "id": "AE-003",
-      "path": "domain/aviation-common-errors.md"
-    },
-    {
-      "id": "AE-004",
-      "path": "domain/aviation-common-errors.md"
-    },
-    {
-      "id": "CE-001",
-      "path": "domain/aviation-common-errors.md"
-    },
-    {
-      "id": "CE-002",
-      "path": "domain/aviation-common-errors.md"
-    },
-    {
-      "id": "CE-003",
-      "path": "domain/aviation-common-errors.md"
-    },
-    {
-      "id": "CE-004",
-      "path": "domain/aviation-common-errors.md"
-    },
-    {
-      "id": "CE-005",
-      "path": "domain/aviation-common-errors.md"
-    },
-    {
-      "id": "FS-001",
-      "path": "shared/few-shot-selection-v1.md"
-    },
-    {
-      "id": "FS-002",
-      "path": "shared/few-shot-selection-v1.md"
-    },
-    {
-      "id": "FS-003",
-      "path": "shared/few-shot-selection-v1.md"
-    },
-    {
-      "id": "FS-004",
-      "path": "shared/few-shot-selection-v1.md"
-    },
-    {
-      "id": "FS-005",
-      "path": "shared/few-shot-selection-v1.md"
-    },
-    {
-      "id": "FS-006",
-      "path": "shared/few-shot-selection-v1.md"
-    },
-    {
-      "id": "FS-007",
-      "path": "shared/few-shot-selection-v1.md"
-    },
-    {
-      "id": "GR-OQ-001",
-      "path": "shared/output-quality-rules-v1.md"
-    },
-    {
-      "id": "GR-OQ-002",
-      "path": "shared/output-quality-rules-v1.md"
-    },
-    {
-      "id": "GR-OQ-003",
-      "path": "shared/output-quality-rules-v1.md"
-    },
-    {
-      "id": "GR-OQ-004",
-      "path": "shared/output-quality-rules-v1.md"
     },
     {
       "id": "HW-001",
@@ -561,30 +456,6 @@
       "path": "shared/output-quality-rules-v1.md"
     },
     {
-      "id": "OQ-003",
-      "path": "shared/output-quality-rules-v1.md"
-    },
-    {
-      "id": "OQ-004",
-      "path": "shared/output-quality-rules-v1.md"
-    },
-    {
-      "id": "OQ-005",
-      "path": "shared/output-quality-rules-v1.md"
-    },
-    {
-      "id": "OQ-006",
-      "path": "shared/output-quality-rules-v1.md"
-    },
-    {
-      "id": "OQ-007",
-      "path": "shared/output-quality-rules-v1.md"
-    },
-    {
-      "id": "OQ-008",
-      "path": "shared/output-quality-rules-v1.md"
-    },
-    {
       "id": "PH-001",
       "path": "domain/aviation-phrasebook.md"
     },
@@ -742,38 +613,6 @@
     },
     {
       "id": "PH-040",
-      "path": "domain/aviation-phrasebook.md"
-    },
-    {
-      "id": "PO-OQ-001",
-      "path": "shared/output-quality-rules-v1.md"
-    },
-    {
-      "id": "PO-OQ-002",
-      "path": "shared/output-quality-rules-v1.md"
-    },
-    {
-      "id": "PO-OQ-003",
-      "path": "shared/output-quality-rules-v1.md"
-    },
-    {
-      "id": "PO-OQ-004",
-      "path": "shared/output-quality-rules-v1.md"
-    },
-    {
-      "id": "PP-001",
-      "path": "domain/aviation-phrasebook.md"
-    },
-    {
-      "id": "PP-002",
-      "path": "domain/aviation-phrasebook.md"
-    },
-    {
-      "id": "PP-003",
-      "path": "domain/aviation-phrasebook.md"
-    },
-    {
-      "id": "PP-004",
       "path": "domain/aviation-phrasebook.md"
     },
     {
@@ -941,63 +780,11 @@
       "path": "domain/aviation-terminology.md"
     },
     {
-      "id": "TN-001",
-      "path": "domain/aviation-common-errors.md"
-    },
-    {
-      "id": "TN-002",
-      "path": "domain/aviation-common-errors.md"
-    },
-    {
-      "id": "TN-003",
-      "path": "domain/aviation-common-errors.md"
-    },
-    {
-      "id": "TN-004",
-      "path": "domain/aviation-common-errors.md"
-    },
-    {
-      "id": "TODO-001",
-      "path": "domain/aviation-common-errors.md"
-    },
-    {
-      "id": "TODO-002",
-      "path": "domain/aviation-common-errors.md"
-    },
-    {
-      "id": "TODO-003",
-      "path": "domain/aviation-common-errors.md"
-    },
-    {
-      "id": "TR-OQ-001",
-      "path": "shared/output-quality-rules-v1.md"
-    },
-    {
-      "id": "TR-OQ-002",
-      "path": "shared/output-quality-rules-v1.md"
-    },
-    {
-      "id": "TR-OQ-003",
-      "path": "shared/output-quality-rules-v1.md"
-    },
-    {
-      "id": "TR-OQ-004",
-      "path": "shared/output-quality-rules-v1.md"
-    },
-    {
-      "id": "WL-OQ-001",
-      "path": "shared/output-quality-rules-v1.md"
-    },
-    {
       "id": "WL-OQ-002",
       "path": "shared/output-quality-rules-v1.md"
     },
     {
       "id": "WL-OQ-003",
-      "path": "shared/output-quality-rules-v1.md"
-    },
-    {
-      "id": "WL-OQ-004",
       "path": "shared/output-quality-rules-v1.md"
     }
   ]

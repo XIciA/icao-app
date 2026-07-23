@@ -19,10 +19,17 @@ export type AuthenticatedUser = {
   email?: string;
 };
 
+export type InviteSessionResponse = {
+  accessToken: string;
+  refreshToken: string;
+  expiresAt?: number;
+  user: { id: string; displayName: string };
+};
+
 export type RevokeAllSessionsResponse = { revoked: true };
 
 export type DeleteAccountRequest = {
-  currentPassword: string;
+  inviteCode: string;
   confirmation: '注销账号';
 };
 
@@ -56,6 +63,129 @@ export type ResolvedResource = {
   mimeType: string;
   url: string;
   expiresIn: number;
+};
+
+export type FeedbackCategory = 'feature_suggestion' | 'content_correction' | 'other';
+export type FeedbackStatus = 'received' | 'in_progress' | 'resolved' | 'cannot_reproduce';
+export type FeedbackSource = 'profile' | 'study';
+
+export type FeedbackQuestionContext = {
+  bankId: string;
+  categoryId: string;
+  topicId: string;
+  cardId: string;
+};
+
+export type FeedbackErrorContext = {
+  code: string;
+  requestId?: string;
+};
+
+export type FeedbackSubmissionPayload = {
+  clientSubmissionId: string;
+  category: FeedbackCategory;
+  description: string;
+  contact?: string;
+  source: FeedbackSource;
+  sourceRoute: string;
+  appDisplayVersion: string;
+  platform: 'web' | 'ios' | 'android';
+  osName?: string;
+  osVersion?: string;
+  question?: FeedbackQuestionContext;
+  error?: FeedbackErrorContext;
+};
+
+export type FeedbackSubmissionResponse = {
+  ticketNumber: string;
+  status: 'received';
+  createdAt: string;
+};
+
+export type EditorialChannel = 'resource' | 'opi_hotspot';
+
+export type EditorialCover = {
+  publicPath: string;
+  alt: string;
+  width: 800;
+  height: 500;
+  mimeType: 'image/jpeg' | 'image/png';
+  checksum: string;
+  sizeBytes: number;
+};
+
+export type EditorialHeadingBlock = {
+  type: 'heading';
+  level: 2 | 3;
+  text: string;
+};
+
+export type EditorialParagraphBlock = {
+  type: 'paragraph';
+  text: string;
+};
+
+export type EditorialListBlock = {
+  type: 'list';
+  ordered: boolean;
+  items: string[];
+};
+
+export type EditorialCalloutBlock = {
+  type: 'callout';
+  tone: 'note' | 'warning';
+  title?: string;
+  text: string;
+};
+
+export type EditorialBlock =
+  | EditorialHeadingBlock
+  | EditorialParagraphBlock
+  | EditorialListBlock
+  | EditorialCalloutBlock;
+
+export type EditorialSourceLink = {
+  title: string;
+  publisher: string;
+  url: string;
+};
+
+export type EditorialArticleSummary = {
+  id: string;
+  slug: string;
+  version: number;
+  channel: EditorialChannel;
+  category: string;
+  badge: string;
+  title: string;
+  summary: string;
+  tags: string[];
+  publishedAt: string | null;
+  cover: EditorialCover;
+};
+
+export type EditorialArticle = EditorialArticleSummary & {
+  blocks: EditorialBlock[];
+  sourceLinks: EditorialSourceLink[];
+};
+
+export type EditorialListResponse = {
+  version: number;
+  checksum: string;
+  items: EditorialArticleSummary[];
+};
+
+export type EditorialDetailResponse = {
+  version: number;
+  checksum: string;
+  article: EditorialArticle;
+};
+
+export type EditorialReleaseSnapshot = {
+  schemaVersion: 1;
+  version: number;
+  builtAt: string;
+  articles: EditorialArticle[];
 };
 
 export type VocabularyBookId = 'preview' | 'icao4' | 'icao5';
@@ -249,16 +379,9 @@ export type GrammarReviewRequest = {
 };
 
 export type GrammarReviewResult = {
-  overallFeedbackZh: string;
   correctedText: string;
   issues: string[];
   promptVersion: string;
-};
-
-export type OpiAnalysisResult = {
-  grammar: GrammarReviewResult;
-  polishedText: string;
-  polishPromptVersion: string;
 };
 
 export type PolishRequest = {

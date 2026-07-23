@@ -40,7 +40,7 @@
 - 确认正式 iOS Bundle ID、回调域名、Universal Link 和内部测试设备。
 - 验证微信登录能否接入自托管 Supabase Auth，并保持 Supabase 为会话权威。
 - 确认题库、音频、图片和用户数据的内部测试访问边界。
-- 固定 Web AI 标准库与 `docs/AI-requirement/` 的版本基线。
+- 固定 `docs/ai/` 中的 AI 能力规范版本基线。
 
 ### 允许范围
 

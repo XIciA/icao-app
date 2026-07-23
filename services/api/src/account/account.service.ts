@@ -1,21 +1,23 @@
-import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
-
-import { API_CONFIG, type ApiConfig } from '../config';
+import { InviteAuthService } from '../auth/invite-auth.service';
 import { SessionSecurityService } from '../auth/session-security.service';
+import { API_CONFIG, type ApiConfig } from '../config';
+import { FeedbackService } from '../feedback/feedback.service';
 
 @Injectable()
 export class AccountService {
-  private readonly publicAuth: SupabaseClient;
   private readonly adminAuth: SupabaseClient;
 
   constructor(
     @Inject(API_CONFIG) config: ApiConfig,
     private readonly sessions: SessionSecurityService,
+    private readonly invites: InviteAuthService,
+    private readonly feedback: FeedbackService,
   ) {
-    const authOptions = { auth: { autoRefreshToken: false, detectSessionInUrl: false, persistSession: false } };
-    this.publicAuth = createClient(config.supabaseUrl, config.supabasePublishableKey, authOptions);
-    this.adminAuth = createClient(config.supabaseUrl, config.supabaseSecretKey, authOptions);
+    this.adminAuth = createClient(config.supabaseUrl, config.supabaseSecretKey, {
+      auth: { autoRefreshToken: false, detectSessionInUrl: false, persistSession: false },
+    });
   }
 
   async revokeAll(userId: string, accessToken: string) {
@@ -25,11 +27,9 @@ export class AccountService {
     return { revoked: true as const };
   }
 
-  async deleteAccount(userId: string, email: string | undefined, currentPassword: string) {
-    if (!email) throw new UnauthorizedException('account_email_missing');
-    const { error: passwordError } = await this.publicAuth.auth.signInWithPassword({ email, password: currentPassword });
-    if (passwordError) throw new UnauthorizedException('invalid_current_password');
-    const { error } = await this.adminAuth.auth.admin.deleteUser(userId, false);
-    if (error) throw new Error('account_deletion_failed');
+  async deleteAccount(userId: string, inviteCode: string) {
+    const feedbackObjectKeys = await this.feedback.userObjectKeys(userId);
+    await this.invites.deleteAccount(userId, inviteCode);
+    await this.feedback.removeObjects(feedbackObjectKeys).catch(() => undefined);
   }
 }

@@ -15,7 +15,7 @@
 
 | 目录 | 内容 | 放置原则 |
 | --- | --- | --- |
-| `AI-requirement/` | AI 能力、领域知识、评测样本 | 可长期复用的 AI 内容规范 |
+| `ai/` | AI 能力规范与基础资产 | 可长期复用的 AI 内容规范 |
 | `bigandsmall-workflows/` | 大小流程和阶段启动模板 | 项目执行方法，不放具体任务产物 |
 | `design/` | UI、视觉和交互规范 | 稳定设计基准 |
 | `execution/` | 正式阶段日志、验收矩阵和证据 | 主路线阶段执行记录 |
@@ -49,7 +49,7 @@
 ```text
 docs/
 ├── README.md
-├── AI-requirement/          # AI 规则、领域知识与评测样本
+├── ai/                      # AI 能力规范与基础资产
 ├── bigandsmall-workflows/   # 文档驱动开发与编排流程
 ├── design/                  # UI 与视觉规范
 ├── execution/               # 主路线阶段日志、验收与证据

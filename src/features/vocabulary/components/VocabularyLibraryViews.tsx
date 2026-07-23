@@ -29,6 +29,7 @@ import type {
   VocabularyWord,
   VocabularyWordStatus,
 } from '../types';
+import { isWordFavorite } from '../favorites';
 import { progressFor } from '../progress-store';
 import { VocabularyProgress } from './VocabularyProgress';
 
@@ -197,7 +198,7 @@ export function VocabularyWordListView({
   book: VocabularyBook;
   state: VocabularyState;
   onBack: () => void;
-  onToggleFavorite: (wordId: string) => Promise<unknown> | unknown;
+  onToggleFavorite: (word: VocabularyWord) => Promise<unknown> | unknown;
   onStart: (words: VocabularyWord[]) => void;
 }) {
   const insets = useSafeAreaInsets();
@@ -208,7 +209,7 @@ export function VocabularyWordListView({
     const needle = query.trim().toLocaleLowerCase();
     return book.words.filter((word) => {
       const progress = progressFor(word.id, state);
-      const filterMatches = filter === 'all' || (filter === 'favorite' ? progress.favorite : progress.status === filter);
+      const filterMatches = filter === 'all' || (filter === 'favorite' ? isWordFavorite({ word: word.word, wordId: word.id }, state) : progress.status === filter);
       if (!filterMatches) return false;
       if (!needle) return true;
       return `${word.word} ${word.meaning} ${word.example} ${word.exampleTranslation}`.toLocaleLowerCase().includes(needle);
@@ -238,6 +239,7 @@ export function VocabularyWordListView({
         renderItem={({ item: word }) => {
           const open = expanded === word.id;
           const progress = progressFor(word.id, state);
+          const favorite = isWordFavorite({ word: word.word, wordId: word.id }, state);
           return (
             <Card style={styles.wordRow}>
               <Pressable accessibilityLabel={`${open ? '收起' : '展开'}${word.word}`} onPress={() => setExpanded(open ? undefined : word.id)} style={styles.wordMain}>
@@ -245,8 +247,8 @@ export function VocabularyWordListView({
                   <View style={styles.inline}><AppText variant="sectionTitle">{word.word}</AppText><Tag tone={statusTones[progress.status]}>{statusLabels[progress.status]}</Tag></View>
                   {!open ? <AppText numberOfLines={2} variant="caption">{word.meaning}</AppText> : null}
                 </View>
-                <Pressable accessibilityLabel={progress.favorite ? '取消收藏' : '收藏'} hitSlop={8} onPress={(event) => { event.stopPropagation(); void onToggleFavorite(word.id); }}>
-                  <Star color={progress.favorite ? colors.accent : colors.mutedForeground} fill={progress.favorite ? colors.accent : 'transparent'} size={19} />
+                <Pressable accessibilityLabel={favorite ? '取消收藏' : '收藏'} hitSlop={8} onPress={(event) => { event.stopPropagation(); void onToggleFavorite(word); }}>
+                  <Star color={favorite ? colors.accent : colors.mutedForeground} fill={favorite ? colors.accent : 'transparent'} size={19} />
                 </Pressable>
                 <ChevronDown color={colors.mutedForeground} size={17} style={{ transform: [{ rotate: open ? '180deg' : '0deg' }] }} />
               </Pressable>

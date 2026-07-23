@@ -43,10 +43,10 @@ export function BrandMark({ large = false }: { large?: boolean }) {
 }
 
 export function AuthField({
-  label, value, onChangeText, placeholder, icon: Icon, prefix, keyboardType, maxLength
+  label, value, onChangeText, placeholder, icon: Icon, prefix, keyboardType, maxLength, autoCapitalize
 }: {
   label: string; value: string; onChangeText: (v: string) => void; placeholder?: string;
-  icon?: any; prefix?: string; keyboardType?: any; maxLength?: number;
+  icon?: any; prefix?: string; keyboardType?: any; maxLength?: number; autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
 }) {
   return (
     <View style={styles.authField}>
@@ -55,6 +55,7 @@ export function AuthField({
         {prefix ? <AppText variant="caption">{prefix}</AppText> : null}
         {Icon && !prefix ? <Icon color={colors.mutedForeground} size={20} /> : null}
         <TextInput
+          autoCapitalize={autoCapitalize}
           keyboardType={keyboardType}
           maxLength={maxLength}
           onChangeText={onChangeText}

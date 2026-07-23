@@ -207,13 +207,16 @@ describe('annotation study controls', () => {
         onHighlightModeChange={onHighlightModeChange}
         onTagToggle={jest.fn()}
         resetToken="card-1"
-        selectedTags={[]}
+        selectedTags={['good']}
         showDictionary
         showHighlights
         showTags
         tagDefinitions={DEFAULT_ANNOTATION_TAGS}
       />,
     );
+    expect(screen.getByText('标签')).toBeTruthy();
+    expect(screen.queryByText('标签 0')).toBeNull();
+    expect(screen.queryByText('标签 1')).toBeNull();
     fireEvent.press(screen.getByLabelText('打开标签面板'));
     expect(onHighlightModeChange).toHaveBeenCalledWith(false);
     await waitFor(() => expect(screen.getByTestId('annotation-picker-panel')).toBeTruthy());

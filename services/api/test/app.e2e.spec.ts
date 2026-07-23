@@ -1,4 +1,4 @@
-import { UnauthorizedException } from '@nestjs/common';
+import { NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { FastifyAdapter, type NestFastifyApplication } from '@nestjs/platform-fastify';
 import { describe, expect, it } from 'vitest';
@@ -7,8 +7,10 @@ import { AppModule } from '../src/app.module';
 import { AccountService } from '../src/account/account.service';
 import { AUTH_VERIFIER, type AuthVerifier, type VerifiedAuthSession } from '../src/auth/auth.types';
 import { SessionSecurityService } from '../src/auth/session-security.service';
+import { InviteAuthService } from '../src/auth/invite-auth.service';
 import { loadConfig } from '../src/config';
 import { DatabaseService } from '../src/database/database.service';
+import { EditorialService } from '../src/editorial/editorial.service';
 import { HttpErrorFilter } from '../src/http-error.filter';
 
 process.env.NODE_ENV = 'test';
@@ -17,6 +19,7 @@ process.env.SUPABASE_URL = 'http://127.0.0.1:8000';
 process.env.SUPABASE_PUBLISHABLE_KEY = 'test-publishable-key-that-is-long-enough';
 process.env.SUPABASE_PUBLIC_URL = 'http://127.0.0.1:8000';
 process.env.SUPABASE_SECRET_KEY = 'test-secret-key-that-is-long-enough';
+process.env.INVITE_AUTH_SECRET = 'test-invite-auth-secret-that-is-long-enough';
 
 class FakeAuthVerifier implements AuthVerifier {
   async verify(token: string): Promise<VerifiedAuthSession> {
@@ -38,8 +41,77 @@ async function testApp({ revoked = false }: { revoked?: boolean } = {}) {
     .useValue(new FakeAuthVerifier())
     .overrideProvider(SessionSecurityService)
     .useValue({ assertActive: async () => { if (revoked) throw new UnauthorizedException('session_revoked'); }, revokeAll: async () => undefined })
+    .overrideProvider(InviteAuthService)
+    .useValue({
+      assertActiveAccount: async () => undefined,
+      deleteAccount: async () => undefined,
+      exchange: async () => ({
+        accessToken: 'invite-access-token',
+        refreshToken: 'invite-refresh-token',
+        expiresAt: 1_800_000_000,
+        user: { id: '00000000-0000-4000-8000-000000000001', displayName: '起落平安' },
+      }),
+    })
     .overrideProvider(AccountService)
     .useValue({ revokeAll: async () => ({ revoked: true }), deleteAccount: async () => undefined })
+    .overrideProvider(EditorialService)
+    .useValue({
+      list: async () => ({
+        version: 1,
+        checksum: 'a'.repeat(64),
+        items: [{
+          id: 'editorial-resource-icao5-review-rhythm',
+          slug: 'icao5-review-rhythm',
+          version: 1,
+          channel: 'resource',
+          category: 'planning',
+          badge: '备考规划',
+          title: 'ICAO 5 级备考：如何安排复习节奏与能力提升方向',
+          summary: '能力导向的复习节奏。',
+          tags: ['ICAO 5'],
+          publishedAt: '2026-07-23T00:00:00.000Z',
+          cover: {
+            publicPath: '/editorial-assets/icao5-review-rhythm/cover.jpg',
+            alt: '航空学习桌面',
+            width: 800,
+            height: 500,
+            mimeType: 'image/jpeg',
+            checksum: 'b'.repeat(64),
+            sizeBytes: 10,
+          },
+        }],
+      }),
+      get: async (slug: string) => {
+        if (slug !== 'icao5-review-rhythm') throw new NotFoundException('editorial_not_found');
+        return {
+          version: 1,
+          checksum: 'a'.repeat(64),
+          article: {
+            id: 'editorial-resource-icao5-review-rhythm',
+            slug,
+            version: 1,
+            channel: 'resource',
+            category: 'planning',
+            badge: '备考规划',
+            title: 'ICAO 5 级备考：如何安排复习节奏与能力提升方向',
+            summary: '能力导向的复习节奏。',
+            tags: ['ICAO 5'],
+            publishedAt: '2026-07-23T00:00:00.000Z',
+            cover: {
+              publicPath: '/editorial-assets/icao5-review-rhythm/cover.jpg',
+              alt: '航空学习桌面',
+              width: 800,
+              height: 500,
+              mimeType: 'image/jpeg',
+              checksum: 'b'.repeat(64),
+              sizeBytes: 10,
+            },
+            blocks: [{ type: 'paragraph', text: '正文' }],
+            sourceLinks: [],
+          },
+        };
+      },
+    })
     .compile();
   const app = module.createNestApplication<NestFastifyApplication>(new FastifyAdapter({ logger: false }));
   app.useGlobalFilters(new HttpErrorFilter());
@@ -60,6 +132,7 @@ describe('API foundation', () => {
       SUPABASE_PUBLIC_URL: process.env.SUPABASE_PUBLIC_URL,
       SUPABASE_PUBLISHABLE_KEY: process.env.SUPABASE_PUBLISHABLE_KEY,
       SUPABASE_SECRET_KEY: process.env.SUPABASE_SECRET_KEY,
+      INVITE_AUTH_SECRET: process.env.INVITE_AUTH_SECRET,
     };
     expect(loadConfig({ ...base, CORS_ORIGINS: 'https://feizhuicao.com,http://localhost:8081' }).corsOrigins).toEqual([
       'https://feizhuicao.com',
@@ -76,6 +149,7 @@ describe('API foundation', () => {
       SUPABASE_PUBLIC_URL: process.env.SUPABASE_PUBLIC_URL,
       SUPABASE_PUBLISHABLE_KEY: process.env.SUPABASE_PUBLISHABLE_KEY,
       SUPABASE_SECRET_KEY: process.env.SUPABASE_SECRET_KEY,
+      INVITE_AUTH_SECRET: process.env.INVITE_AUTH_SECRET,
       DASHSCOPE_API_KEY: 'test-dashscope-key',
     };
     expect(loadConfig({
@@ -134,8 +208,8 @@ describe('API foundation', () => {
     const app = await testApp();
     const headers = { authorization: 'Bearer valid-token' };
     const revoked = await app.inject({ method: 'POST', url: '/v1/account/sessions/revoke-all', headers });
-    const invalidDeletion = await app.inject({ method: 'DELETE', url: '/v1/account', headers, payload: { currentPassword: 'short', confirmation: '注销账号' } });
-    const deleted = await app.inject({ method: 'DELETE', url: '/v1/account', headers, payload: { currentPassword: 'Password123', confirmation: '注销账号' } });
+    const invalidDeletion = await app.inject({ method: 'DELETE', url: '/v1/account', headers, payload: { inviteCode: '', confirmation: '注销账号' } });
+    const deleted = await app.inject({ method: 'DELETE', url: '/v1/account', headers, payload: { inviteCode: '起落平安-7K4M-2Q9X', confirmation: '注销账号' } });
     expect(revoked.statusCode).toBe(201);
     expect(revoked.json()).toEqual({ revoked: true });
     expect(invalidDeletion.statusCode).toBe(400);
@@ -144,19 +218,48 @@ describe('API foundation', () => {
     await app.close();
   });
 
-  it('requires authentication for question banks, vocabulary, resources and AI', async () => {
+  it('exchanges an invite code for a standard Supabase session envelope', async () => {
+    const app = await testApp();
+    const response = await app.inject({
+      method: 'POST',
+      url: '/v1/auth/invite/session',
+      payload: { inviteCode: '起落平安-7K4M-2Q9X' },
+    });
+    expect(response.statusCode).toBe(201);
+    expect(response.json().data).toMatchObject({
+      accessToken: 'invite-access-token',
+      user: { displayName: '起落平安' },
+    });
+    await app.close();
+  });
+
+  it('requires authentication for question banks, vocabulary, resources, editorial, feedback and AI', async () => {
     const app = await testApp();
     const payload = { accepted: true, policyVersion: 'ai-learning-privacy-v1' };
     const responses = await Promise.all([
       app.inject({ method: 'GET', url: '/v1/question-banks' }),
       app.inject({ method: 'GET', url: '/v1/vocabulary' }),
       app.inject({ method: 'GET', url: '/v1/resources/resolve?path=/question-bank-assets/test.mp3' }),
+      app.inject({ method: 'GET', url: '/v1/editorial?channel=resource' }),
+      app.inject({ method: 'POST', url: '/v1/feedback' }),
       app.inject({ method: 'POST', url: '/v1/ai/consent', payload }),
     ]);
-    expect(responses.map((response) => response.statusCode)).toEqual([401, 401, 401, 401]);
+    expect(responses.map((response) => response.statusCode)).toEqual([401, 401, 401, 401, 401, 401]);
     expect(responses.map((response) => response.json().error.code)).toEqual([
-      'missing_bearer_token', 'missing_bearer_token', 'missing_bearer_token', 'missing_bearer_token',
+      'missing_bearer_token', 'missing_bearer_token', 'missing_bearer_token', 'missing_bearer_token', 'missing_bearer_token', 'missing_bearer_token',
     ]);
+    await app.close();
+  });
+
+  it('does not register the retired OPI analysis endpoint', async () => {
+    const app = await testApp();
+    const response = await app.inject({
+      method: 'POST',
+      url: '/v1/ai/opi-analysis',
+      headers: { authorization: 'Bearer valid-token' },
+      payload: { module: 'opi', questionId: 'question', questionText: 'Question', transcript: 'Answer' },
+    });
+    expect(response.statusCode).toBe(404);
     await app.close();
   });
 
@@ -170,6 +273,31 @@ describe('API foundation', () => {
     expect(etag).toMatch(/^"[a-f0-9]{64}"$/);
     const cached = await app.inject({ method: 'GET', url: '/v1/vocabulary', headers: { ...headers, 'if-none-match': etag! } });
     expect(cached.statusCode).toBe(304);
+    await app.close();
+  });
+
+  it('serves authenticated editorial list and detail with ETag caching', async () => {
+    const app = await testApp();
+    const headers = { authorization: 'Bearer valid-token' };
+    const list = await app.inject({ method: 'GET', url: '/v1/editorial?channel=resource', headers });
+    expect(list.statusCode).toBe(200);
+    expect(list.json().data.items.map((item: { slug: string }) => item.slug)).toEqual(['icao5-review-rhythm']);
+    expect(list.headers.etag).toBe(`"${'a'.repeat(64)}"`);
+    const detail = await app.inject({ method: 'GET', url: '/v1/editorial/icao5-review-rhythm', headers });
+    expect(detail.statusCode).toBe(200);
+    expect(detail.json().data.article.blocks).toEqual([{ type: 'paragraph', text: '正文' }]);
+    const cached = await app.inject({
+      method: 'GET',
+      url: '/v1/editorial/icao5-review-rhythm',
+      headers: { ...headers, 'if-none-match': detail.headers.etag! },
+    });
+    expect(cached.statusCode).toBe(304);
+    const invalidChannel = await app.inject({ method: 'GET', url: '/v1/editorial?channel=unknown', headers });
+    const missing = await app.inject({ method: 'GET', url: '/v1/editorial/missing-article', headers });
+    expect(invalidChannel.statusCode).toBe(400);
+    expect(invalidChannel.json().error.code).toBe('invalid_editorial_channel');
+    expect(missing.statusCode).toBe(404);
+    expect(missing.json().error.code).toBe('editorial_not_found');
     await app.close();
   });
 

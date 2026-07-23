@@ -111,7 +111,7 @@ export function VocabularyScreen() {
       setSessionSummary(summary);
       setView('complete');
     };
-    return <VocabularyStudyView index={studyIndex} onChoose={(status) => { setRevealed(true); return recordStatus(status); }} onExit={() => setView(returnView)} onNext={next} onToggleFavorite={() => progress.toggleFavorite(currentWord.id)} onWrong={() => recordStatus('wrong')} revealed={revealed} state={progress.state} words={studyWords} />;
+    return <VocabularyStudyView index={studyIndex} onChoose={(status) => { setRevealed(true); return recordStatus(status); }} onExit={() => setView(returnView)} onNext={next} onToggleFavorite={() => progress.toggleFavorite(currentWord)} onWrong={() => recordStatus('wrong')} revealed={revealed} state={progress.state} words={studyWords} />;
   }
 
   if (view === 'complete') {

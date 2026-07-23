@@ -1,5 +1,5 @@
 import { BadRequestException, Body, Controller, Delete, Post, Req, UseGuards } from '@nestjs/common';
-import type { ApiSuccessEnvelope, AiConsent, GrammarReviewRequest, GrammarReviewResult, OpiAnalysisResult, PolishRequest, PolishResult, TranscribeResult, WordLookupRequest, WordLookupResult } from '@icao/contracts';
+import type { ApiSuccessEnvelope, AiConsent, GrammarReviewRequest, GrammarReviewResult, PolishRequest, PolishResult, TranscribeResult, WordLookupRequest, WordLookupResult } from '@icao/contracts';
 import type { MultipartFile } from '@fastify/multipart';
 
 import type { AuthenticatedRequest } from '../auth/auth.types';
@@ -53,13 +53,6 @@ export class AiController {
     const parsed = grammarSchema.safeParse(body);
     if (!parsed.success) throw new BadRequestException('invalid_grammar_review');
     return { requestId: request.id, data: await this.ai.grammarReview(request.user!.id, request.id, parsed.data, cancellationSignal(request)) };
-  }
-
-  @Post('opi-analysis')
-  async opi(@Body() body: GrammarReviewRequest, @Req() request: AiRequest): Promise<ApiSuccessEnvelope<OpiAnalysisResult>> {
-    const parsed = grammarSchema.safeParse(body);
-    if (!parsed.success || parsed.data.module !== 'opi') throw new BadRequestException('invalid_opi_analysis');
-    return { requestId: request.id, data: await this.ai.opiAnalysis(request.user!.id, request.id, parsed.data, cancellationSignal(request)) };
   }
 
   @Post('polish')

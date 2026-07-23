@@ -1,5 +1,5 @@
 import { createClient, type Session, type SupabaseClient } from '@supabase/supabase-js';
-import * as Linking from 'expo-linking';
+import type { ApiErrorEnvelope, ApiSuccessEnvelope, InviteSessionResponse } from '@icao/contracts';
 
 import { secureSessionStorage } from './secure-session-storage';
 
@@ -7,32 +7,18 @@ export type AppSession = {
   accessToken: string;
   expiresAt?: number;
   refreshToken: string;
-  user: { id: string; email?: string };
+  user: { id: string; displayName?: string };
 };
 
 export type AuthService = {
   getSession(): Promise<AppSession | undefined>;
   refreshSession(): Promise<AppSession | undefined>;
-  signInWithEmail(email: string, password: string): Promise<AppSession>;
-  signUpWithEmail(email: string, password: string): Promise<AppSession>;
-  changePassword(email: string, currentPassword: string, newPassword: string): Promise<AppSession>;
-  requestEmailChange(email: string, currentPassword: string, newEmail: string): Promise<void>;
-  requestPasswordReset(email: string): Promise<void>;
-  exchangeEmailCode(code: string): Promise<AppSession>;
-  setRecoveryPassword(password: string): Promise<AppSession>;
+  signInWithInviteCode(inviteCode: string): Promise<AppSession>;
   signOut(scope?: 'local' | 'global' | 'others'): Promise<void>;
   onSessionChange(listener: (session: AppSession | undefined) => void): () => void;
   startAutoRefresh(): void;
   stopAutoRefresh(): void;
 };
-
-export function isValidPassword(value: string) {
-  return value.length >= 8 && value.length <= 64 && /[A-Za-z]/.test(value) && /\d/.test(value);
-}
-
-function emailRedirect(flow: 'email-change' | 'recovery') {
-  return Linking.createURL('auth/callback', { queryParams: { flow } });
-}
 
 function appSession(session: Session | null): AppSession | undefined {
   if (!session) return undefined;
@@ -40,7 +26,10 @@ function appSession(session: Session | null): AppSession | undefined {
     accessToken: session.access_token,
     refreshToken: session.refresh_token,
     expiresAt: session.expires_at,
-    user: { id: session.user.id, email: session.user.email },
+    user: {
+      id: session.user.id,
+      displayName: typeof session.user.user_metadata?.display_name === 'string' ? session.user.user_metadata.display_name : undefined,
+    },
   };
 }
 
@@ -48,18 +37,16 @@ export function authError(error: { message: string; code?: string } | null) {
   if (!error) return new Error('auth_service_unavailable');
   const message = error.message.toLowerCase();
   const code = error.code?.toLowerCase();
-  if (message.includes('invalid login')) return new Error('invalid_email_or_password');
-  if (message.includes('already registered') || message.includes('already exists')) return new Error('email_already_registered');
+  if (message.includes('invalid login')) return new Error('invalid_invite_code');
   if (message.includes('failed to fetch') || message.includes('network request failed') || message.includes('networkerror') || message.includes('network error')) return new Error('auth_network_error');
   if (message.includes('localstorage') || message.includes('storage') || message.includes('quota exceeded')) return new Error('auth_session_storage_unavailable');
   if (code === 'unexpected_failure' || code === 'request_timeout' || code === 'over_request_rate_limit' || message.includes('service unavailable') || message.includes('temporarily unavailable')) return new Error('auth_service_unavailable');
   if (code === 'auth_failed') return new Error('auth_request_not_completed');
-  if (message.includes('password')) return new Error('weak_password');
   return new Error(code ?? 'auth_failed');
 }
 
-class SupabaseEmailAuthService implements AuthService {
-  constructor(private readonly client: SupabaseClient) {}
+class SupabaseInviteAuthService implements AuthService {
+  constructor(private readonly client: SupabaseClient, private readonly apiUrl: string) {}
 
   async getSession() {
     const { data, error } = await this.client.auth.getSession();
@@ -73,54 +60,26 @@ class SupabaseEmailAuthService implements AuthService {
     return appSession(data.session);
   }
 
-  async signInWithEmail(email: string, password: string) {
-    const { data, error } = await this.client.auth.signInWithPassword({ email: email.trim().toLowerCase(), password });
+  async signInWithInviteCode(inviteCode: string) {
+    let response: Response;
+    try {
+      response = await fetch(`${this.apiUrl}/v1/auth/invite/session`, {
+        method: 'POST',
+        headers: { accept: 'application/json', 'content-type': 'application/json' },
+        body: JSON.stringify({ inviteCode }),
+      });
+    } catch {
+      throw new Error('auth_network_error');
+    }
+    const body = await response.json().catch(() => undefined) as ApiSuccessEnvelope<InviteSessionResponse> | ApiErrorEnvelope | undefined;
+    if (!response.ok || !body || 'error' in body) {
+      throw new Error(body && 'error' in body ? body.error.code : 'auth_service_unavailable');
+    }
+    const { data, error } = await this.client.auth.setSession({ access_token: body.data.accessToken, refresh_token: body.data.refreshToken });
     if (error || !data.session) throw authError(error);
-    return appSession(data.session)!;
-  }
-
-  async signUpWithEmail(email: string, password: string) {
-    const { data, error } = await this.client.auth.signUp({ email: email.trim().toLowerCase(), password });
-    if (error || !data.session) throw authError(error ?? { message: 'email_confirmation_required' });
-    return appSession(data.session)!;
-  }
-
-
-  async changePassword(email: string, currentPassword: string, newPassword: string) {
-    const signedIn = await this.signInWithEmail(email, currentPassword);
-    const { data, error } = await this.client.auth.updateUser({ password: newPassword });
-    if (error || !data.user) throw authError(error);
-    return (await this.getSession()) ?? signedIn;
-  }
-
-  async requestEmailChange(email: string, currentPassword: string, newEmail: string) {
-    await this.signInWithEmail(email, currentPassword);
-    const { error } = await this.client.auth.updateUser(
-      { email: newEmail.trim().toLowerCase() },
-      { emailRedirectTo: emailRedirect('email-change') },
-    );
-    if (error) throw authError(error);
-  }
-
-  async requestPasswordReset(email: string) {
-    const { error } = await this.client.auth.resetPasswordForEmail(email.trim().toLowerCase(), {
-      redirectTo: emailRedirect('recovery'),
-    });
-    if (error) throw authError(error);
-  }
-
-  async exchangeEmailCode(code: string) {
-    const { data, error } = await this.client.auth.exchangeCodeForSession(code);
-    if (error || !data.session) throw authError(error);
-    return appSession(data.session)!;
-  }
-
-  async setRecoveryPassword(password: string) {
-    const { error } = await this.client.auth.updateUser({ password });
-    if (error) throw authError(error);
-    const session = await this.getSession();
+    const session = appSession(data.session);
     if (!session) throw new Error('auth_failed');
-    return session;
+    return { ...session, user: { ...session.user, displayName: body.data.user.displayName } };
   }
 
   async signOut(scope: 'local' | 'global' | 'others' = 'local') {
@@ -148,8 +107,9 @@ export function getAuthService() {
   if (singleton) return singleton;
   const url = process.env.EXPO_PUBLIC_SUPABASE_URL;
   const publishableKey = process.env.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
-  if (!url || !publishableKey) return undefined;
-  singleton = new SupabaseEmailAuthService(createClient(url, publishableKey, {
+  const apiUrl = process.env.EXPO_PUBLIC_ICAO_API_URL?.replace(/\/$/, '');
+  if (!url || !publishableKey || !apiUrl) return undefined;
+  singleton = new SupabaseInviteAuthService(createClient(url, publishableKey, {
     auth: {
       autoRefreshToken: true,
       detectSessionInUrl: false,
@@ -157,7 +117,7 @@ export function getAuthService() {
       persistSession: true,
       storage: secureSessionStorage,
     },
-  }));
+  }), apiUrl);
   return singleton;
 }
 

@@ -219,19 +219,18 @@ describe('study workbench natural layout', () => {
     expect(screen.queryByText('更自然的民航口语表达')).toBeNull();
   });
 
-  it('uses corrected grammar as the primary output and merges feedback with issues', async () => {
+  it('uses corrected grammar as the primary output and lists each grammar issue', async () => {
     mockGrammarReview.mockResolvedValueOnce({
       correctedText: 'The crew should request an amended heading.',
       issues: ['Use amended heading in radiotelephony.'],
-      overallFeedbackZh: '表达清楚，可进一步贴近陆空通话语境。',
-      promptVersion: 'grammar:v1',
+      promptVersion: 'grammar-review:v2',
     });
     const screen = await render(<StudyWorkbench {...baseProps} activeTab="mine" answerText="The crew request new heading." reviewKind="grammar" tabs={['mine', 'notes']} />);
 
     await act(async () => { fireEvent.press(screen.getByLabelText('分析表达')); });
 
     await waitFor(() => expect(screen.getByTestId('study-workbench-ai-primary').props.children).toBe('The crew should request an amended heading.'));
-    expect(screen.getByTestId('study-workbench-ai-explanation').props.children).toBe('表达清楚，可进一步贴近陆空通话语境。\nUse amended heading in radiotelephony.');
+    expect(screen.getByTestId('study-workbench-ai-explanation').props.children).toBe('Use amended heading in radiotelephony.');
     expect(screen.getAllByTestId('study-workbench-ai-region')).toHaveLength(1);
   });
 
@@ -239,17 +238,16 @@ describe('study workbench natural layout', () => {
     mockGrammarReview.mockResolvedValueOnce({
       correctedText: 'The corrected grammar output.',
       issues: ['One concise issue.'],
-      overallFeedbackZh: '整体反馈。',
-      promptVersion: 'grammar:v1',
+      promptVersion: 'grammar-review:v2',
     });
-    mockPolishExpression.mockResolvedValueOnce({ polishedText: 'The polished OPI output.', promptVersion: 'polish:v1' });
+    mockPolishExpression.mockResolvedValueOnce({ polishedText: 'The polished OPI output.', promptVersion: 'polish:v2' });
     const screen = await render(<StudyWorkbench {...baseProps} activeTab="mine" answerText="My draft answer." tabs={['mine', 'reference', 'notes']} />);
 
     await act(async () => { fireEvent.press(screen.getByLabelText('分析表达')); });
 
     await waitFor(() => expect(screen.getByTestId('study-workbench-ai-primary').props.children).toBe('The polished OPI output.'));
     expect(screen.queryByText('The corrected grammar output.')).toBeNull();
-    expect(screen.getByTestId('study-workbench-ai-explanation').props.children).toBe('整体反馈。\nOne concise issue.');
+    expect(screen.getByTestId('study-workbench-ai-explanation').props.children).toBe('One concise issue.');
     expect(screen.getAllByTestId('study-workbench-ai-region')).toHaveLength(1);
   });
 
@@ -267,10 +265,11 @@ describe('study workbench natural layout', () => {
     expect(screen.getByLabelText('重试分析表达')).toBeTruthy();
     expect(screen.getAllByTestId('study-workbench-ai-region')).toHaveLength(1);
 
-    mockGrammarReview.mockResolvedValueOnce({ correctedText: 'Retry succeeded.', issues: [], overallFeedbackZh: '已完成。', promptVersion: 'grammar:v1' });
+    mockGrammarReview.mockResolvedValueOnce({ correctedText: 'Retry succeeded.', issues: [], promptVersion: 'grammar-review:v2' });
     await act(async () => { fireEvent.press(screen.getByLabelText('重试分析表达')); });
     await waitFor(() => expect(screen.getByTestId('study-workbench-ai-primary').props.children).toBe('Retry succeeded.'));
     expect(screen.queryByText('AI 分析暂时失败，请稍后重试。')).toBeNull();
+    expect(screen.getByTestId('study-workbench-ai-explanation').props.children).toBe('未发现明确语法问题');
   });
 
   it('uses compact dots for multi-section navigation and keeps the active state accessible', async () => {

@@ -3,6 +3,28 @@ import type { ApiErrorEnvelope, ApiSuccessEnvelope } from '@icao/contracts';
 let accessTokenProvider: (() => Promise<string | undefined>) | undefined;
 let accessTokenRefresher: (() => Promise<string | undefined>) | undefined;
 let sessionInvalidatedHandler: (() => Promise<void> | void) | undefined;
+let recentApiError: { code: string; requestId?: string; occurredAt: number } | undefined;
+
+export class ApiClientError extends Error {
+  constructor(
+    public readonly code: string,
+    public readonly status: number,
+    public readonly requestId?: string,
+  ) {
+    super(code);
+    this.name = 'ApiClientError';
+  }
+}
+
+export function rememberApiError(code: string, status: number, requestId?: string) {
+  recentApiError = { code, requestId, occurredAt: Date.now() };
+  return new ApiClientError(code, status, requestId);
+}
+
+export function getRecentApiError(maxAgeMilliseconds = 10 * 60 * 1_000) {
+  if (!recentApiError || Date.now() - recentApiError.occurredAt > maxAgeMilliseconds) return undefined;
+  return { code: recentApiError.code, requestId: recentApiError.requestId };
+}
 
 export function setApiAccessTokenProvider(provider: (() => Promise<string | undefined>) | undefined) {
   accessTokenProvider = provider;
@@ -61,10 +83,11 @@ export async function invalidateApiSession() {
 
 export async function apiRequest<T>(path: string, init: RequestInit = {}) {
   const response = await apiFetch(path, init);
-  const body = await response.json() as ApiSuccessEnvelope<T> | ApiErrorEnvelope;
+  const body = await response.json().catch(() => undefined) as ApiSuccessEnvelope<T> | ApiErrorEnvelope | undefined;
+  if (!body) throw rememberApiError(`api_http_${response.status}`, response.status);
   if (!response.ok || 'error' in body) {
     const code = 'error' in body ? body.error.code : `api_http_${response.status}`;
-    throw new Error(code);
+    throw rememberApiError(code, response.status, body.requestId);
   }
   return body.data;
 }

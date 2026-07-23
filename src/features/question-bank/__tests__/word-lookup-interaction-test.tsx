@@ -7,6 +7,7 @@ import type { QuestionBankCategory, QuestionBankDataset, QuestionBankTopic } fro
 const mockFindStaticWordLookup = jest.fn((word: string) => word === 'deviation' ? {
   word: 'deviation', ipa: '/ˌdiːviˈeɪʃən/', aviationMeaning: 'n. 偏离预定航向', generalMeaning: 'n. 偏差；背离',
 } : undefined);
+const mockToggleFavorite = jest.fn();
 
 jest.mock('@react-navigation/native', () => ({ usePreventRemove: jest.fn() }));
 jest.mock('expo-router', () => ({ useRouter: () => ({ replace: jest.fn() }) }));
@@ -17,7 +18,7 @@ jest.mock('react-native-safe-area-context', () => {
 jest.mock('lucide-react-native', () => {
   const { View } = jest.requireActual('react-native');
   const Icon = () => <View />;
-  return { Check: Icon, ChevronLeft: Icon, ChevronRight: Icon, Flag: Icon, Grid3X3: Icon, Highlighter: Icon, Languages: Icon, Plus: Icon, Search: Icon, Tags: Icon, WifiOff: Icon, X: Icon };
+  return { Check: Icon, ChevronLeft: Icon, ChevronRight: Icon, Flag: Icon, Grid3X3: Icon, Highlighter: Icon, Languages: Icon, Plus: Icon, Search: Icon, Star: Icon, Tags: Icon, WifiOff: Icon, X: Icon };
 });
 jest.mock('@/components/states/CenteredState', () => ({ CenteredState: () => null }));
 jest.mock('@/components/ui', () => {
@@ -53,6 +54,19 @@ jest.mock('../annotations/use-question-annotations', () => ({
   }),
 }));
 jest.mock('../platform/network-service', () => ({ getConnectivity: async () => 'online', subscribeConnectivity: () => jest.fn() }));
+jest.mock('@/features/vocabulary/progress-store', () => ({
+  useWordFavorites: () => {
+    const { useState } = jest.requireActual('react');
+    const [favorite, setFavorite] = useState(false);
+    return {
+      isFavorite: () => favorite,
+      toggleFavorite: async (reference: { word: string }) => {
+        mockToggleFavorite(reference);
+        setFavorite((value: boolean) => !value);
+      },
+    };
+  },
+}));
 jest.mock('../components/AnswerCardSheet', () => ({ AnswerCardSheet: () => null }));
 jest.mock('../components/StudyAudioPlayer', () => ({ StudyAudioPlayer: () => null }));
 jest.mock('../components/StudyCardStack', () => {
@@ -80,6 +94,7 @@ const dataset: QuestionBankDataset = {
 describe('study word lookup interaction', () => {
   beforeEach(() => {
     mockFindStaticWordLookup.mockClear();
+    mockToggleFavorite.mockClear();
   });
 
   it('opens a fixed local entry from the listening transcript without an AI request', async () => {
@@ -96,6 +111,10 @@ describe('study word lookup interaction', () => {
     expect(screen.queryByText('AI 查词')).toBeNull();
     expect(screen.queryByText('本句理解')).toBeNull();
     expect(screen.queryByText('重新查询')).toBeNull();
+
+    fireEvent.press(screen.getByLabelText('收藏'));
+    await waitFor(() => expect(screen.getByLabelText('取消收藏')).toBeTruthy());
+    expect(mockToggleFavorite).toHaveBeenCalledWith({ word: 'deviation' });
   });
 
   it('does not expose the listening legacy answer key as reference content', async () => {

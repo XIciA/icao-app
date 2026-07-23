@@ -2,7 +2,7 @@ import { render } from '@testing-library/react-native';
 import { StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { AnswerCardSheet } from '../components/AnswerCardSheet';
+import { AnswerCardSheet, answerCardWebGridStyle, answerCardWebNumberStyle } from '../components/AnswerCardSheet';
 
 jest.mock('lucide-react-native', () => {
   const { View } = jest.requireActual('react-native');
@@ -37,5 +37,10 @@ describe('<AnswerCardSheet />', () => {
         width: '17%',
       });
     }
+  });
+
+  it('lets the Web grid span its sheet while keeping question buttons at their mobile size', () => {
+    expect(answerCardWebGridStyle).toEqual({ justifyContent: 'space-between', maxWidth: '100%' });
+    expect(answerCardWebNumberStyle).toEqual({ maxWidth: 62 });
   });
 });

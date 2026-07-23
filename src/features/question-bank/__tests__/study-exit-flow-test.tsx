@@ -25,7 +25,7 @@ jest.mock('react-native-safe-area-context', () => {
 jest.mock('lucide-react-native', () => {
   const { View: MockView } = jest.requireActual('react-native');
   const MockIcon = () => <MockView />;
-  return { Check: MockIcon, ChevronLeft: MockIcon, ChevronRight: MockIcon, Flag: MockIcon, Grid3X3: MockIcon, Languages: MockIcon, WifiOff: MockIcon };
+  return { Check: MockIcon, ChevronLeft: MockIcon, ChevronRight: MockIcon, Flag: MockIcon, Grid3X3: MockIcon, Languages: MockIcon, Star: MockIcon, WifiOff: MockIcon };
 });
 jest.mock('@/components/states/CenteredState', () => {
   const { Text: MockText } = jest.requireActual('react-native');
@@ -61,6 +61,9 @@ jest.mock('../annotations/use-question-annotations', () => ({
 jest.mock('../platform/network-service', () => ({
   getConnectivity: async () => 'online',
   subscribeConnectivity: () => jest.fn(),
+}));
+jest.mock('@/features/vocabulary/progress-store', () => ({
+  useWordFavorites: () => ({ isFavorite: () => false, toggleFavorite: jest.fn() }),
 }));
 jest.mock('@/features/ai/ai-client', () => ({ hasAiConsent: async () => false }));
 jest.mock('../components/AnnotationToolbar', () => ({ AnnotationToolbar: () => null }));

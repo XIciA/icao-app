@@ -2,12 +2,14 @@ import { Inject, Injectable, UnauthorizedException, type CanActivate, type Execu
 
 import { AUTH_VERIFIER, type AuthenticatedRequest, type AuthVerifier } from './auth.types';
 import { SessionSecurityService } from './session-security.service';
+import { InviteAuthService } from './invite-auth.service';
 
 @Injectable()
 export class RequireAuthGuard implements CanActivate {
   constructor(
     @Inject(AUTH_VERIFIER) private readonly verifier: AuthVerifier,
     private readonly sessions: SessionSecurityService,
+    private readonly invites: InviteAuthService,
   ) {}
 
   async canActivate(context: ExecutionContext) {
@@ -20,6 +22,7 @@ export class RequireAuthGuard implements CanActivate {
     if (!token) throw new UnauthorizedException('missing_bearer_token');
     const auth = await this.verifier.verify(token);
     await this.sessions.assertActive(auth);
+    await this.invites.assertActiveAccount(auth.user.id);
     request.auth = auth;
     request.user = auth.user;
     return true;

@@ -1,6 +1,6 @@
 # Sentence900 AI Corpus
 
-本文档把上游 `feizhuicu/docs/references/sentence900/900原始文本.txt` 定位为 `sentence900` 的 AI 语料源。它不替代当前设计稿运行时题库 JSON，只用于沉淀 ASR hotwords / hints、保守 normalization、word-lookup 术语和 polish phrasebook 候选。
+本文档把上游 `feizhuicu/docs/references/sentence900/900原始文本.txt` 定位为 `sentence900` 的 AI 语料源。它不替代当前设计稿运行时题库 JSON，只用于沉淀 ASR hotwords / hints、保守 normalization 和 word-lookup 术语候选。
 
 ## 1. Source Validation
 
@@ -128,23 +128,23 @@ Review decision: ready for AI content assets; do not change published question-b
 
 ## 5. Phrasebook Candidates
 
-这些短语可用于 ASR phrase hints、word-lookup 和 polish。用于 polish 时只能改进用户已有表达，不得生成完整标准答案。
+这些短语可用于 ASR phrase hints 和 word-lookup。
 
 | ID | Phrase | Category | Count | Sentence IDs | Status | Use For |
 | --- | --- | --- | ---: | --- | --- | --- |
-| S900-PH-001 | `request diversion` | emergency / alternate | 27 | 360, 460, 487, 501, 541, 545, 547, 571 | ready | transcribe, word-lookup, polish |
-| S900-PH-002 | `request radar vectors` | navigation | 12 | 46, 290, 463, 468, 478, 480, 505, 513 | ready | transcribe, word-lookup, polish |
-| S900-PH-003 | `request immediate descent` | emergency | 10 | 445, 452, 453, 655, 680, 681, 702, 713 | ready | transcribe, word-lookup, polish |
-| S900-PH-004 | `request emergency services` | emergency | 6 | 522, 548, 666, 735, 776, 862 | ready | transcribe, word-lookup, polish |
-| S900-PH-005 | `expect further clearance` | holding | 5 | 68, 73, 74, 371, 421 | ready | transcribe, word-lookup, polish |
-| S900-PH-006 | `request priority landing` | emergency | 5 | 502, 503, 519, 808, 867 | ready | transcribe, word-lookup, polish |
-| S900-PH-007 | `request holding instructions` | holding | 4 | 313, 479, 741, 890 | ready | transcribe, word-lookup, polish |
-| S900-PH-008 | `contact Approach` | communication | 2 | 67, 228 | ready | transcribe, word-lookup, polish |
-| S900-PH-009 | `hold as published` | holding | 2 | 68, 369 | ready | transcribe, word-lookup, polish |
-| S900-PH-010 | `maintain runway heading` | departure | 2 | 137, 780 | ready | transcribe, word-lookup, polish |
-| S900-PH-011 | `cleared to land` | clearance | 2 | 174, 179 | ready | transcribe, word-lookup, polish |
-| S900-PH-012 | `unable to maintain altitude` | limitation | 1 | 465 | ready | transcribe, word-lookup, polish |
-| S900-PH-013 | `unable to comply` | limitation | 1 | 854 | ready | transcribe, word-lookup, polish |
+| S900-PH-001 | `request diversion` | emergency / alternate | 27 | 360, 460, 487, 501, 541, 545, 547, 571 | ready | transcribe, word-lookup |
+| S900-PH-002 | `request radar vectors` | navigation | 12 | 46, 290, 463, 468, 478, 480, 505, 513 | ready | transcribe, word-lookup |
+| S900-PH-003 | `request immediate descent` | emergency | 10 | 445, 452, 453, 655, 680, 681, 702, 713 | ready | transcribe, word-lookup |
+| S900-PH-004 | `request emergency services` | emergency | 6 | 522, 548, 666, 735, 776, 862 | ready | transcribe, word-lookup |
+| S900-PH-005 | `expect further clearance` | holding | 5 | 68, 73, 74, 371, 421 | ready | transcribe, word-lookup |
+| S900-PH-006 | `request priority landing` | emergency | 5 | 502, 503, 519, 808, 867 | ready | transcribe, word-lookup |
+| S900-PH-007 | `request holding instructions` | holding | 4 | 313, 479, 741, 890 | ready | transcribe, word-lookup |
+| S900-PH-008 | `contact Approach` | communication | 2 | 67, 228 | ready | transcribe, word-lookup |
+| S900-PH-009 | `hold as published` | holding | 2 | 68, 369 | ready | transcribe, word-lookup |
+| S900-PH-010 | `maintain runway heading` | departure | 2 | 137, 780 | ready | transcribe, word-lookup |
+| S900-PH-011 | `cleared to land` | clearance | 2 | 174, 179 | ready | transcribe, word-lookup |
+| S900-PH-012 | `unable to maintain altitude` | limitation | 1 | 465 | ready | transcribe, word-lookup |
+| S900-PH-013 | `unable to comply` | limitation | 1 | 854 | ready | transcribe, word-lookup |
 
 ## 6. Boundary Notes
 
@@ -152,4 +152,3 @@ Review decision: ready for AI content assets; do not change published question-b
 - `exact-match-check` 保持本地确定性规则，不调用 LLM。
 - ASR 可以使用本文件里的 hotwords / navaid hints，但不能直接把用户语音补全为标准句。
 - `word-lookup` 可以引用本语料中的句子编号解释术语和短语。
-- `grammar-review` 不应把 900 句标准表达强加给用户输入。

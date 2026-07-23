@@ -1,7 +1,7 @@
-import type { AiConsent, GrammarReviewRequest, GrammarReviewResult, OpiAnalysisResult, PolishRequest, PolishResult, TranscribeResult, WordLookupRequest, WordLookupResult } from '@icao/contracts';
+import type { AiConsent, GrammarReviewRequest, GrammarReviewResult, PolishRequest, PolishResult, TranscribeResult, WordLookupRequest, WordLookupResult } from '@icao/contracts';
 import Storage from '@/platform/storage';
 
-import { apiAccessToken, apiRequest, getApiBaseUrl, recoverApiUnauthorized } from '@/platform/api-client';
+import { apiAccessToken, apiRequest, getApiBaseUrl, recoverApiUnauthorized, rememberApiError } from '@/platform/api-client';
 import { createAudioUploadForm } from '@/platform/audio-upload';
 
 const POLICY_VERSION = 'ai-learning-privacy-v1';
@@ -59,20 +59,16 @@ export async function transcribeRecording(uri: string, signal?: AbortSignal) {
     signal,
   }) as Promise<Response>;
   const response = await recoverApiUnauthorized(await send(token), send);
-  const payload = await response.json() as { data?: TranscribeResult; error?: { code?: string } };
-  if (!response.ok || !payload.data) throw new Error(payload.error?.code ?? `api_http_${response.status}`);
+  const payload = await response.json() as { requestId?: string; data?: TranscribeResult; error?: { code?: string } };
+  if (!response.ok || !payload.data) {
+    throw rememberApiError(payload.error?.code ?? `api_http_${response.status}`, response.status, payload.requestId);
+  }
   return payload.data;
 }
 
 export function grammarReview(input: GrammarReviewRequest, signal?: AbortSignal) {
   return apiRequest<GrammarReviewResult>('/v1/ai/grammar-review', {
     method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input), signal,
-  });
-}
-
-export function opiAnalysis(input: GrammarReviewRequest) {
-  return apiRequest<OpiAnalysisResult>('/v1/ai/opi-analysis', {
-    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input),
   });
 }
 

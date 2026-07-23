@@ -21,6 +21,6 @@ export class AccountController {
   async delete(@Body() body: DeleteAccountRequest, @Req() request: AuthenticatedRequest): Promise<void> {
     const parsed = deleteAccountSchema.safeParse(body);
     if (!parsed.success) throw new BadRequestException('invalid_account_deletion');
-    await this.account.deleteAccount(request.user!.id, request.user!.email, parsed.data.currentPassword);
+    await this.account.deleteAccount(request.user!.id, parsed.data.inviteCode);
   }
 }

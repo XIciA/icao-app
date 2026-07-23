@@ -8,7 +8,7 @@ import { loadConfig, type ApiConfig } from './config';
 
 export async function createApp(config: ApiConfig = loadConfig()) {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter({
-    bodyLimit: 10 * 1024 * 1024,
+    bodyLimit: 16 * 1024 * 1024,
     logger: process.env.NODE_ENV === 'test' ? false : true,
     requestTimeout: 15_000,
   }), {
@@ -23,7 +23,7 @@ export async function createApp(config: ApiConfig = loadConfig()) {
   });
   app.useGlobalFilters(new HttpErrorFilter());
   await app.register(multipart, {
-    limits: { fileSize: 8 * 1024 * 1024, files: 1, fields: 8, parts: 9 },
+    limits: { fileSize: 8 * 1024 * 1024, files: 3, fields: 8, parts: 12 },
   });
   app.enableShutdownHooks();
   await app.init();

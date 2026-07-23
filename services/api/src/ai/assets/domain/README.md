@@ -18,15 +18,11 @@
 
 - 资产: 常见表达
   文件: `aviation-phrasebook.md`
-  职责: 管理 ASR phrase hints、word-lookup、polish 可复用表达
-
-- 资产: 常见错误
-  文件: `aviation-common-errors.md`
-  职责: 管理 grammar-review、polish、transcribe negative rules 可复用错误样本
+  职责: 管理 ASR phrase hints 和 word-lookup 可复用表达
 
 - 资产: sentence900 AI 语料源
   文件: `sentence900-ai-corpus.md`
-  职责: 管理 900 句抽取出的 ASR hotwords / hints、航路点和导航台候选、保守 normalization 场景、word-lookup 与 polish 可复用短语
+  职责: 管理 900 句抽取出的 ASR hotwords / hints、航路点和导航台候选、保守 normalization 场景和 word-lookup 可复用短语
 
 ## 2. 内容归属
 
@@ -42,9 +38,6 @@
 - 内容类型: 固定短语、管制表达、天气表达、紧急表达
   放置文件: `aviation-phrasebook.md`
 
-- 内容类型: 学习者常见语法错误、表达问题、transcribe 禁止改写样例
-  放置文件: `aviation-common-errors.md`
-
 - 内容类型: sentence900 专属语料源、句子编号引用、抽取统计和 AI 资产候选
   放置文件: `sentence900-ai-corpus.md`
 
@@ -56,14 +49,5 @@
 - 规则: 保留稳定 ID
   说明: 方便 capability 和 eval 引用
 
-- 规则: 状态按 shared 定义
-  说明: 状态含义见 `../shared/content-asset-structure-v1.md`
-
 - 规则: 能力边界写清楚
   说明: `Use For` 或 `Applies To` 必须明确
-
-- 规则: 不写 prompt
-  说明: prompt draft 回到 `../capabilities/`
-
-- 规则: 不写 eval 结论
-  说明: 输入和期望输出样本回到 `../evals/`

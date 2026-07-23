@@ -30,6 +30,7 @@ export const questionBankReleases = pgTable('question_bank_releases', {
 export const resourceObjects = pgTable('resource_objects', {
   objectKey: text('object_key').primaryKey(),
   module: text('module').notNull(),
+  storageBucket: text('storage_bucket').default('question-bank-assets').notNull(),
   sourcePath: text('source_path').notNull(),
   checksum: text('checksum').notNull(),
   sizeBytes: bigint('size_bytes', { mode: 'number' }).notNull(),
@@ -37,6 +38,93 @@ export const resourceObjects = pgTable('resource_objects', {
   status: text('status').default('ready').notNull(),
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
 });
+
+export const editorialReleases = pgTable('editorial_releases', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  version: integer('version').notNull(),
+  checksum: text('checksum').notNull(),
+  payload: jsonb('payload').notNull(),
+  active: boolean('active').default(false).notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex('editorial_release_version').on(table.version),
+  uniqueIndex('editorial_release_checksum').on(table.checksum),
+]);
+
+export const inviteAccounts = pgTable('invite_accounts', {
+  codeLookup: text('code_lookup').primaryKey(),
+  codeHash: text('code_hash').notNull(),
+  displayName: text('display_name').notNull(),
+  userId: uuid('user_id'),
+  status: text('status').default('active').notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  lastLoginAt: timestamp('last_login_at', { withTimezone: true }),
+  deletedAt: timestamp('deleted_at', { withTimezone: true }),
+}, (table) => [
+  uniqueIndex('invite_accounts_user').on(table.userId),
+]);
+
+export const inviteLoginAttempts = pgTable('invite_login_attempts', {
+  sourceHash: text('source_hash').primaryKey(),
+  failureCount: integer('failure_count').default(0).notNull(),
+  windowStartedAt: timestamp('window_started_at', { withTimezone: true }).defaultNow().notNull(),
+  blockedUntil: timestamp('blocked_until', { withTimezone: true }),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+});
+
+export const feedbackTickets = pgTable('feedback_tickets', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  ticketNumber: text('ticket_number').notNull(),
+  userId: uuid('user_id').notNull(),
+  clientSubmissionId: uuid('client_submission_id').notNull(),
+  category: text('category').notNull(),
+  description: text('description').notNull(),
+  contact: text('contact'),
+  status: text('status').default('received').notNull(),
+  source: text('source').notNull(),
+  sourceRoute: text('source_route').notNull(),
+  appDisplayVersion: text('app_display_version').notNull(),
+  platform: text('platform').notNull(),
+  browserName: text('browser_name'),
+  browserVersion: text('browser_version'),
+  osName: text('os_name'),
+  osVersion: text('os_version'),
+  errorCode: text('error_code'),
+  errorRequestId: text('error_request_id'),
+  bankId: text('bank_id'),
+  bankVersion: integer('bank_version'),
+  bankChecksum: text('bank_checksum'),
+  categoryId: text('category_id'),
+  topicId: text('topic_id'),
+  cardId: text('card_id'),
+  questionVerified: boolean('question_verified').default(false).notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex('feedback_tickets_ticket_number').on(table.ticketNumber),
+  uniqueIndex('feedback_tickets_user_submission').on(table.userId, table.clientSubmissionId),
+  index('feedback_tickets_user_created').on(table.userId, table.createdAt),
+  index('feedback_tickets_status_created').on(table.status, table.createdAt),
+  index('feedback_tickets_category_created').on(table.category, table.createdAt),
+  index('feedback_tickets_app_version').on(table.appDisplayVersion),
+  index('feedback_tickets_question').on(table.bankId, table.cardId),
+]);
+
+export const feedbackAttachments = pgTable('feedback_attachments', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  ticketId: uuid('ticket_id').notNull(),
+  objectKey: text('object_key').notNull(),
+  mimeType: text('mime_type').notNull(),
+  sizeBytes: integer('size_bytes').notNull(),
+  checksum: text('checksum').notNull(),
+  expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+  deletedAt: timestamp('deleted_at', { withTimezone: true }),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex('feedback_attachments_object_key').on(table.objectKey),
+  index('feedback_attachments_ticket').on(table.ticketId),
+  index('feedback_attachments_expiry').on(table.expiresAt),
+]);
 
 export const userCardStates = pgTable('user_card_states', {
   userId: uuid('user_id').notNull(),

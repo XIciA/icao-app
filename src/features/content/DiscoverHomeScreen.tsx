@@ -10,13 +10,13 @@ type Entry = { slug: string; title: string; en: string; description: string; ico
 const features: Entry[] = [
   { slug: 'vocab', title: '单词学习', en: 'Vocabulary', description: '航空高频词汇记忆与测试', icon: BookMarked },
   { slug: 'radio', title: '随身听', en: 'Listening', description: '碎片时间沉浸式磨耳朵', icon: Radio },
-  { slug: 'mock-exam', title: 'AI 模考', en: 'Mock Exam', description: 'AI 考官问答实时评分', icon: Bot, mock: true },
+  { slug: 'mock-exam', title: 'AI 模考', en: 'Mock Exam', description: 'AI 考官问答实时评分', icon: Bot },
   { slug: 'ai-report', title: '学习报告', en: 'Report', description: '个性化能力分析建议', icon: LineChart, mock: true },
 ];
 const resources: Entry[] = [
   { slug: 'hotspot', title: 'OPI 热点', en: 'OPI Focus', description: '每日各考点真实考题资讯', icon: Flame },
-  { slug: 'articles', title: '优质文章', en: 'Articles', description: '精选航空英语学习文章', icon: FileText },
   { slug: 'resources', title: '资源分享', en: 'Resources', description: '备考资料与实用工具合集', icon: FolderOpen },
+  { slug: 'articles', title: '优质文章', en: 'Articles', description: '精选航空英语学习文章', icon: FileText },
   { slug: 'courses', title: '体系课程', en: 'Courses', description: '从入门到冲刺的系统化课程体系', icon: GraduationCap },
 ];
 

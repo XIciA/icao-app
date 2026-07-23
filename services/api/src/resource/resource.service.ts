@@ -1,13 +1,12 @@
 import { Inject, Injectable, NotFoundException, ServiceUnavailableException } from '@nestjs/common';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
-import { eq } from 'drizzle-orm';
+import { and, eq } from 'drizzle-orm';
 import type { ResolvedResource } from '@icao/contracts';
 
 import { API_CONFIG, type ApiConfig } from '../config';
 import { DatabaseService } from '../database/database.service';
 import { resourceObjects } from '../database/schema';
 
-const BUCKET = 'question-bank-assets';
 const EXPIRES_IN_SECONDS = 5 * 60;
 
 @Injectable()
@@ -25,9 +24,11 @@ export class ResourceService {
   }
 
   async resolve(publicPath: string): Promise<ResolvedResource> {
-    const [resource] = await this.database.db.select().from(resourceObjects).where(eq(resourceObjects.sourcePath, publicPath)).limit(1);
-    if (!resource || resource.status !== 'ready') throw new NotFoundException('resource_not_found');
-    const { data, error } = await this.storage.storage.from(BUCKET).createSignedUrl(resource.objectKey, EXPIRES_IN_SECONDS);
+    const [resource] = await this.database.db.select().from(resourceObjects)
+      .where(and(eq(resourceObjects.sourcePath, publicPath), eq(resourceObjects.status, 'ready')))
+      .limit(1);
+    if (!resource) throw new NotFoundException('resource_not_found');
+    const { data, error } = await this.storage.storage.from(resource.storageBucket).createSignedUrl(resource.objectKey, EXPIRES_IN_SECONDS);
     if (error || !data.signedUrl) throw new ServiceUnavailableException('resource_signing_failed');
     return {
       publicPath,

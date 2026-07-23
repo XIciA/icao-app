@@ -68,7 +68,6 @@ export function useStudySession({
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [recordings, setRecordings] = useState<Record<string, RecordingAsset>>({});
   const recordingsRef = useRef(recordings);
-  const [attemptedTranscriptionKeys, setAttemptedTranscriptionKeys] = useState<Set<string>>(() => new Set());
   const [feedbackCardIds, setFeedbackCardIds] = useState<Set<string>>(() => new Set());
   const [playRequestToken, setPlayRequestToken] = useState(1);
   const [report, setReport] = useState<LearningRecord>();
@@ -197,10 +196,6 @@ export function useStudySession({
     if (previous) recordingRepository.discard(previous);
   }, [card]);
 
-  const markTranscriptionAttempted = useCallback((recordingKey: string) => {
-    setAttemptedTranscriptionKeys((current) => new Set(current).add(recordingKey));
-  }, []);
-
   const updateAnswer = useCallback((text: string) => {
     if (!card) return;
     setAnswers((current) => ({ ...current, [card.id]: text }));
@@ -281,8 +276,6 @@ export function useStudySession({
     answerText: card ? answers[card.id] ?? '' : '',
     recordings,
     recording: card ? recordings[card.id] : undefined,
-    attemptedTranscriptionKeys,
-    markTranscriptionAttempted,
     playRequestToken,
     report,
     saveFailure,

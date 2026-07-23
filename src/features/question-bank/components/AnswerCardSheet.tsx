@@ -1,11 +1,15 @@
 import { Check, X } from 'lucide-react-native';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Platform, Pressable, StyleSheet, View } from 'react-native';
 
 import { AppText, BottomSheet } from '@/components/ui';
 import { colors, fonts, radii, spacing } from '@/theme';
 
 const ANSWER_CARD_NUMBER_HEIGHT = 40;
 const ANSWER_CARD_GRID_MAX_WIDTH = 368;
+const ANSWER_CARD_WEB_NUMBER_MAX_WIDTH = 62;
+
+export const answerCardWebGridStyle = { justifyContent: 'space-between', maxWidth: '100%' } as const;
+export const answerCardWebNumberStyle = { maxWidth: ANSWER_CARD_WEB_NUMBER_MAX_WIDTH } as const;
 
 type Props = {
   visible: boolean;
@@ -25,7 +29,7 @@ export function AnswerCardSheet({ visible, total, current, visited, onSelect, on
         <Legend color={colors.primary10} label="已学" />
         <Legend color={colors.background} label="未学" outlined />
       </View>
-      <View style={styles.grid}>
+      <View style={[styles.grid, Platform.OS === 'web' ? answerCardWebGridStyle : null]}>
         {Array.from({ length: total }, (_, index) => {
           const isCurrent = index === current;
           const isVisited = visited.has(index);
@@ -37,6 +41,7 @@ export function AnswerCardSheet({ visible, total, current, visited, onSelect, on
               onPress={() => onSelect(index)}
               style={({ pressed }) => [
                 styles.number,
+                Platform.OS === 'web' ? answerCardWebNumberStyle : null,
                 isCurrent ? styles.numberCurrent : isVisited ? styles.numberVisited : null,
                 pressed ? styles.pressed : null,
               ]}

@@ -76,8 +76,9 @@ describe('authentication routing', () => {
 
     expect(screen.getByTestId('screen-index')).toBeTruthy();
     expect(screen.getByTestId('screen-(tabs)')).toBeTruthy();
+    expect(screen.getByTestId('screen-word-favorites')).toBeTruthy();
     expect(screen.queryByTestId('screen-auth/[slug]')).toBeNull();
-    expect(screen.getByTestId('screen-auth/callback')).toBeTruthy();
+    expect(screen.queryByTestId('screen-auth/callback')).toBeNull();
   });
 
   it('keeps login available and app tabs protected while signed out', async () => {
@@ -86,7 +87,8 @@ describe('authentication routing', () => {
     expect(screen.getByTestId('screen-index')).toBeTruthy();
     expect(screen.getByTestId('screen-auth/[slug]')).toBeTruthy();
     expect(screen.queryByTestId('screen-(tabs)')).toBeNull();
-    expect(screen.getByTestId('screen-auth/callback')).toBeTruthy();
+    expect(screen.queryByTestId('screen-word-favorites')).toBeNull();
+    expect(screen.queryByTestId('screen-auth/callback')).toBeNull();
   });
 
   it('opens app routes without creating an authenticated session in UI acceptance mode', async () => {

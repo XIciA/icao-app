@@ -13,8 +13,9 @@ type StaticWordLookupDataset = {
   entries: StaticWordLookupEntry[];
 };
 
+const staticEntries = (staticLookupDataset as StaticWordLookupDataset).entries;
 const entries = new Map(
-  (staticLookupDataset as StaticWordLookupDataset).entries.map((entry) => [entry.word, entry]),
+  staticEntries.map((entry) => [entry.word, entry]),
 );
 
 export function findStaticWordLookup(value: string) {
@@ -24,4 +25,8 @@ export function findStaticWordLookup(value: string) {
 
 export function hasStaticWordLookup(value: string) {
   return Boolean(findStaticWordLookup(value));
+}
+
+export function getStaticWordLookupEntries() {
+  return staticEntries;
 }

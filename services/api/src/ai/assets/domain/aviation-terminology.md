@@ -1,6 +1,6 @@
 # Aviation Terminology
 
-本文档集中管理 ICAO / 民航英语术语解释。通用维护规则见 `README.md`，状态定义见 `../shared/content-asset-structure-v1.md`。
+本文档集中管理 ICAO / 民航英语术语解释。通用维护规则见 `README.md`。
 
 ## 1. Scope
 
@@ -8,7 +8,7 @@
   说明: 统一术语含义、中文解释、常见搭配和适用能力
 
 - 项目: 主要服务能力
-  说明: `word-lookup`, `polish`, `grammar-review`
+  说明: `word-lookup`
 
 - 项目: 间接服务能力
   说明: `transcribe`，只抽取适合 ASR 的术语作为 hotwords
@@ -50,7 +50,7 @@
   Plain Meaning: air traffic control
   Aviation Meaning Zh: 空中交通管制或管制员/管制单位
   Common Collocations: advise ATC, contact ATC, ATC clearance
-  Use For: transcribe, word-lookup, polish
+  Use For: transcribe, word-lookup
   Notes: 转写中保持大写
   Status: ready
 
@@ -90,7 +90,7 @@
   Plain Meaning: pressure altitude level
   Aviation Meaning Zh: 飞行高度层，通常写作 FL 加三位数字
   Common Collocations: flight level two niner zero, maintain FL290
-  Use For: transcribe, word-lookup, polish
+  Use For: transcribe, word-lookup
   Notes: 可规范为 `FL290` 这类格式
   Status: ready
 
@@ -140,7 +140,7 @@
   Plain Meaning: to move closer
   Aviation Meaning Zh: 进近或进近程序
   Common Collocations: continue approach, approach clearance
-  Use For: transcribe, word-lookup, polish
+  Use For: transcribe, word-lookup
   Notes: 不是普通“靠近”优先
   Status: ready
 
@@ -160,7 +160,7 @@
   Plain Meaning: move downward
   Aviation Meaning Zh: 下降到指定高度或高度层
   Common Collocations: descend to altitude, descend to FL290
-  Use For: transcribe, grammar-review
+  Use For: transcribe
   Notes: 常与 `to` 搭配
   Status: ready
 
@@ -170,7 +170,7 @@
   Plain Meaning: move upward
   Aviation Meaning Zh: 爬升到指定高度或高度层
   Common Collocations: climb to altitude, climb to FL290
-  Use For: transcribe, grammar-review
+  Use For: transcribe
   Notes: 常与 `to` 搭配
   Status: ready
 
@@ -180,7 +180,7 @@
   Plain Meaning: keep something unchanged
   Aviation Meaning Zh: 按指令保持高度、航向或速度
   Common Collocations: maintain FL290, maintain heading
-  Use For: word-lookup, polish
+  Use For: word-lookup
   Notes: 比 keep 更贴近管制指令
   Status: ready
 
@@ -200,7 +200,7 @@
   Plain Meaning: difference from normal
   Aviation Meaning Zh: 偏航、绕飞、偏离原航路
   Common Collocations: request deviation, weather deviation
-  Use For: word-lookup, polish
+  Use For: word-lookup
   Notes: 常用于天气绕飞
   Status: ready
 
@@ -260,7 +260,7 @@
   Plain Meaning: abort landing and climb away
   Aviation Meaning Zh: 复飞
   Common Collocations: go around, initiate a go-around
-  Use For: transcribe, polish
+  Use For: transcribe
   Notes: 作为短语整体理解
   Status: ready
 
@@ -347,7 +347,7 @@
   Category: runway
   Aviation Meaning Zh: 进跑道对正
   Common Collocations: line up and wait
-  Use For: transcribe, polish
+  Use For: transcribe
   Status: ready
 
 - ID: TERX-009
@@ -355,7 +355,7 @@
   Category: procedure
   Aviation Meaning Zh: 复飞程序
   Common Collocations: missed approach procedure
-  Use For: word-lookup, polish
+  Use For: word-lookup
   Status: ready
 
 - ID: TERX-010
@@ -363,7 +363,7 @@
   Category: emergency
   Aviation Meaning Zh: 紧急下降
   Common Collocations: initiate emergency descent
-  Use For: word-lookup, polish
+  Use For: word-lookup
   Status: ready
 
 - ID: TERX-011
@@ -371,7 +371,7 @@
   Category: emergency
   Aviation Meaning Zh: 发动机失效
   Common Collocations: engine failure after takeoff
-  Use For: word-lookup, polish
+  Use For: word-lookup
   Status: ready
 
 - ID: TERX-012
@@ -379,5 +379,5 @@
   Category: emergency
   Aviation Meaning Zh: 医疗紧急情况
   Common Collocations: declare medical emergency
-  Use For: word-lookup, polish
+  Use For: word-lookup
   Status: ready

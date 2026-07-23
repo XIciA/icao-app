@@ -89,14 +89,42 @@
 - 已新增第 6604–6703 个词形的可审查内容批次，汇总词条数为 6700；校验结果：`word_lookup_dataset_partial_check_ok words=6700 remaining=2067`，题库输入覆盖校验持续通过。
 - 已新增第 6704–6803 个词形的可审查内容批次，汇总词条数为 6800；校验结果：`word_lookup_dataset_partial_check_ok words=6800 remaining=1967`，题库输入覆盖校验持续通过。
 - 已新增第 6804–6903 个词形的可审查内容批次，汇总词条数为 6900；校验结果：`word_lookup_dataset_partial_check_ok words=6900 remaining=1867`，题库输入覆盖校验持续通过。
+- 已新增第 6904–7003 个词形的可审查内容批次，汇总词条数为 7000；校验结果：`word_lookup_dataset_partial_check_ok words=7000 remaining=1767`，题库输入覆盖校验持续通过。
+- 已新增第 7004–7103 个词形的可审查内容批次，汇总词条数为 7100；校验结果：`word_lookup_dataset_partial_check_ok words=7100 remaining=1667`，题库输入覆盖校验持续通过。
+- 已新增第 7104–7203 个词形的可审查内容批次，汇总词条数为 7200；校验结果：`word_lookup_dataset_partial_check_ok words=7200 remaining=1567`，题库输入覆盖校验持续通过。
+- 已新增第 7204–7303 个词形的可审查内容批次，汇总词条数为 7300；校验结果：`word_lookup_dataset_partial_check_ok words=7300 remaining=1467`，题库输入覆盖校验持续通过。
+- 已新增第 7304–7403 个词形的可审查内容批次，汇总词条数为 7400；校验结果：`word_lookup_dataset_partial_check_ok words=7400 remaining=1367`，题库输入覆盖校验持续通过。
+- 已新增第 7404–7503 个词形的可审查内容批次，汇总词条数为 7500；校验结果：`word_lookup_dataset_partial_check_ok words=7500 remaining=1267`，题库输入覆盖校验持续通过。
+- 已新增第 7504–7603 个词形的可审查内容批次，汇总词条数为 7600；校验结果：`word_lookup_dataset_partial_check_ok words=7600 remaining=1167`，题库输入覆盖校验持续通过。
+- 已新增第 7604–7703 个词形的可审查内容批次，汇总词条数为 7700；校验结果：`word_lookup_dataset_partial_check_ok words=7700 remaining=1067`，题库输入覆盖校验持续通过。
+- 已新增第 7704–7803 个词形的可审查内容批次，汇总词条数为 7800；校验结果：`word_lookup_dataset_partial_check_ok words=7800 remaining=967`，题库输入覆盖校验持续通过。
+- 已新增第 7804–7903 个词形的可审查内容批次，汇总词条数为 7900；校验结果：`word_lookup_dataset_partial_check_ok words=7900 remaining=867`，题库输入覆盖校验持续通过。
+- 已新增第 7904–8003 个词形的可审查内容批次，汇总词条数为 8000；校验结果：`word_lookup_dataset_partial_check_ok words=8000 remaining=767`，题库输入覆盖校验持续通过。
+- 已新增第 8004–8103 个词形的可审查内容批次，汇总词条数为 8100；校验结果：`word_lookup_dataset_partial_check_ok words=8100 remaining=667`，题库输入覆盖校验持续通过。
+- 已新增第 8104–8203 个词形的可审查内容批次，汇总词条数为 8200；校验结果：`word_lookup_dataset_partial_check_ok words=8200 remaining=567`，题库输入覆盖校验持续通过。
+- 已新增第 8204–8303 个词形的可审查内容批次，汇总词条数为 8300；校验结果：`word_lookup_dataset_partial_check_ok words=8300 remaining=467`，题库输入覆盖校验持续通过。
+- 已新增第 8304–8403 个词形的可审查内容批次，汇总词条数为 8400；校验结果：`word_lookup_dataset_partial_check_ok words=8400 remaining=367`，题库输入覆盖校验持续通过。
+- 已新增第 8404–8503 个词形的可审查内容批次，汇总词条数为 8500；校验结果：`word_lookup_dataset_partial_check_ok words=8500 remaining=267`，题库输入覆盖校验持续通过。
+- 已新增第 8504–8603 个词形的可审查内容批次，汇总词条数为 8600；校验结果：`word_lookup_dataset_partial_check_ok words=8600 remaining=167`，题库输入覆盖校验持续通过。
+- 已新增第 8604–8703 个词形的可审查内容批次，汇总词条数为 8700；校验结果：`word_lookup_dataset_partial_check_ok words=8700 remaining=67`，题库输入覆盖校验持续通过。
+- 已新增第 8704–8767 个词形的可审查内容批次，汇总词条数为 8767；全量校验结果：`word_lookup_dataset_check_ok words=8767`，题库输入覆盖校验为 `word_lookup_check_ok words=8767 occurrences=298095 rejected=1237`。
+- 全量校验发现早期批次漏收第 301–303 个词形 `aligning`、`alignment`、`aligns`；已新增独立纠正批次，避免改写既有批次审查记录。
 
-## 阶段 3：本地接入（待内容收口）
+## 阶段 3：本地接入
 
-状态：骨架完成，未验收
+状态：自动化、全量工程检查与三端 bundle 导出已通过；真实端验收移交阶段 4
 
 - 新增运行时规范化与本地 repository；学习页查词入口已不引用 AI 客户端、认证或 AI 同意状态。
 - 弹层仅保留词形、一个美式 IPA、航空释义、常用释义；无原句、本句理解、AI、加载、重试或返回按钮。
 - 听力的 `referenceText` 已在行为层与学习页渲染层双重排除；四个选项新增按词长按查词，长按不触发短按作答。
-- Web 改为显式“查词”模式：工具栏增加“查词”开关，激活后题干或选项内的可查词使用独立按压目标，悬停或键盘聚焦显示圆角浅蓝背景和指针光标，单击后查词；高亮复用同一交互反馈，两种模式互斥，并移除“高亮中 / 完成”浮动状态条。iOS / Android 保持长按，未改变既有查词手势。
-- 已补充针对静态词条、弹层精简、听力遗留答案键隐藏与选项长按的自动测试。全量静态数据完成前，不进行阶段 3/4 的最终验收。
-- Web 查词与高亮交互修复已通过类型检查、Lint、全量 App Jest（54 个测试套件、240 个测试）、Web/iOS/Android Expo 导出和静态词表局部覆盖校验。真实 Chrome 鼠标验收因本机浏览器控制插件初始化错误 `Cannot redefine property: process` 未执行；该项保留为全量内容完成后的真实页面验收项目。
+- Web 改为显式“查词”模式：工具栏增加“查词”开关，激活后题干或选项内的可查词使用独立按压目标，悬停或键盘聚焦显示无圆角的浅蓝背景和指针光标，单击后查词；高亮复用同一交互反馈，两种模式互斥，并移除“高亮中 / 完成”浮动状态条。iOS / Android 保持长按，未改变既有查词手势。
+- 已补充针对静态词条、弹层精简、听力遗留答案键隐藏与选项长按的自动测试；全量工程检查通过（App 55 套件、241 测试；API 208 测试），Web/iOS/Android Expo bundle 导出通过，静态词表全量覆盖校验通过。
+- 真实 Chrome 鼠标验收仍未执行：本机浏览器控制插件此前初始化错误 `Cannot redefine property: process`；该项与 Android 真机长按验收保留在阶段 4，不以导出结果替代。
+
+## 阶段 4：验收与收口
+
+状态：已完成（Android 配置、运行时和真实设备验证已由用户明确移出本任务范围）
+
+- 已启动 `ICAO_V8_iPhone17Pro` Development Build，确认题库首页与听力学习页加载当前 bundle；听力页仅显示四个选项，没有 `referenceText` 遗留答案区块，原生工具栏不显示 Web 专用“查词”按钮，符合长按入口设计。
+- Android 曾在重新构建、安装并启动当前 Development Build 后于加载阶段报错 `TypeError: Cannot read property 'CAPABILITY_PLAY' of null`。用户已明确暂不需要 Android 配置、运行时和真实设备验证；该问题不作为本 workstream 的阻断项。
+- 收口证据：全量词条覆盖 `word_lookup_dataset_check_ok words=8767`；题库输入覆盖 `word_lookup_check_ok words=8767 occurrences=298095 rejected=1237`；全量工程检查通过；Web、iOS、Android bundle 导出通过；iOS Development Build 页面渲染通过；定向 Web/原生交互测试通过。

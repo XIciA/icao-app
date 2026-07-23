@@ -1,7 +1,7 @@
 import { BadRequestException, HttpException, Injectable } from '@nestjs/common';
 import { createHash } from 'node:crypto';
 import { and, eq, gt } from 'drizzle-orm';
-import type { AiConsent, GrammarReviewRequest, GrammarReviewResult, OpiAnalysisResult, PolishRequest, PolishResult, WordLookupRequest, WordLookupResult } from '@icao/contracts';
+import type { AiConsent, GrammarReviewRequest, PolishRequest, PolishResult, WordLookupRequest, WordLookupResult } from '@icao/contracts';
 
 import { DatabaseService } from '../database/database.service';
 import { aiConsents, aiUsageLogs, aiWordCache } from '../database/schema';
@@ -9,12 +9,13 @@ import { AiAssetsService } from './ai-assets.service';
 import { AiProviderService, type ProviderMeta } from './ai-provider.service';
 import { AVIATION_TRANSCRIPT_NORMALIZATION_VERSION, normalizeAviationTranscript } from './aviation-transcript-normalization';
 import { FunAsrService } from './fun-asr.service';
+import { GRAMMAR_REVIEW_PROMPT, OPI_POLISH_PROMPT } from './ai-prompts';
 import { grammarResultSchema, polishResultSchema, wordLookupResultSchema } from './ai.schemas';
 
 const PROMPTS = {
   word: 'word-lookup-v1',
-  grammar: 'grammar-review-v1',
-  polish: 'polish-v1',
+  grammar: 'grammar-review:v2',
+  polish: 'polish:v2',
 } as const;
 
 type UsageCapability = 'word_lookup' | 'transcribe' | 'grammar_review' | 'polish';
@@ -118,45 +119,24 @@ export class AiService {
     });
   }
 
-  private async grammar(userId: string, requestId: string, input: GrammarReviewRequest, signal?: AbortSignal): Promise<GrammarReviewResult> {
-    const rules = await this.assets.promptRules('grammar', [input.transcript, input.questionText]);
+  async grammarReview(userId: string, requestId: string, input: GrammarReviewRequest, signal?: AbortSignal) {
+    await this.requireConsent(userId);
     const result = await this.run({
       userId, requestId, capability: 'grammar_review', model: this.provider.textModel(), promptVersion: PROMPTS.grammar, units: 2,
       action: async () => {
-        const generated = await this.provider.generateJson<unknown>(rules, JSON.stringify({ task: 'Review only clear grammar problems. Do not score, grade, assess pronunciation or create a standard answer.', input }), signal);
+        const generated = await this.provider.generateJson<unknown>(GRAMMAR_REVIEW_PROMPT, JSON.stringify({ transcript: input.transcript }), signal);
         return { data: grammarResultSchema.parse(generated.data), meta: generated.meta };
       },
     });
     return { ...result, promptVersion: PROMPTS.grammar };
   }
 
-  async grammarReview(userId: string, requestId: string, input: GrammarReviewRequest, signal?: AbortSignal) {
-    await this.requireConsent(userId);
-    return this.grammar(userId, requestId, input, signal);
-  }
-
-  async opiAnalysis(userId: string, requestId: string, input: GrammarReviewRequest, signal?: AbortSignal): Promise<OpiAnalysisResult> {
-    await this.requireConsent(userId);
-    if (input.module !== 'opi') throw new BadRequestException('invalid_ai_module');
-    const grammar = await this.grammar(userId, `${requestId}:grammar`, input, signal);
-    const rules = await this.assets.promptRules('polish', [grammar.correctedText, input.questionText]);
-    const polished = await this.run({
-      userId, requestId: `${requestId}:polish`, capability: 'polish', model: this.provider.textModel(), promptVersion: PROMPTS.polish, units: 2,
-      action: async () => {
-        const generated = await this.provider.generateJson<unknown>(rules, JSON.stringify({ task: 'Preserve the learner original meaning. Produce a natural, concise spoken civil aviation expression for comparison, not a standard answer.', question: input.questionText, original: input.transcript, corrected: grammar.correctedText }), signal);
-        return { data: polishResultSchema.parse(generated.data), meta: generated.meta };
-      },
-    });
-    return { grammar, ...polished, polishPromptVersion: PROMPTS.polish };
-  }
-
   async polish(userId: string, requestId: string, input: PolishRequest, signal?: AbortSignal): Promise<PolishResult> {
     await this.requireConsent(userId);
-    const rules = await this.assets.promptRules('polish', [input.correctedText ?? input.transcript, input.questionText]);
     const result = await this.run({
       userId, requestId, capability: 'polish', model: this.provider.textModel(), promptVersion: PROMPTS.polish, units: 2,
       action: async () => {
-        const generated = await this.provider.generateJson<unknown>(rules, JSON.stringify({ task: 'Preserve the learner original meaning. Produce a natural, concise spoken civil aviation expression for comparison, not a standard answer.', input }), signal);
+        const generated = await this.provider.generateJson<unknown>(OPI_POLISH_PROMPT, JSON.stringify({ transcript: input.transcript, ...(input.correctedText ? { correctedText: input.correctedText } : {}) }), signal);
         return { data: polishResultSchema.parse(generated.data), meta: generated.meta };
       },
     });

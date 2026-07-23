@@ -8,6 +8,11 @@ import {
   subscribeVocabularyState,
   writeVocabularyState,
 } from './persistence';
+import {
+  favoriteKeyForWord,
+  isWordFavorite,
+  type WordFavoriteReference,
+} from './favorites';
 import type {
   VocabularyBook,
   VocabularyBookStats,
@@ -23,7 +28,12 @@ async function mutateVocabularyState(updater: (state: VocabularyState) => Vocabu
   let result = createEmptyVocabularyState();
   const next = mutationQueue.catch(() => undefined).then(async () => {
     const current = await readVocabularyState();
-    result = await writeVocabularyState(updater(current));
+    const updated = updater(current);
+    if (updated === current) {
+      result = current;
+      return;
+    }
+    result = await writeVocabularyState(updated);
     await enqueueVocabularyDocument(result);
   });
   mutationQueue = next;
@@ -44,12 +54,12 @@ export function statsForBook(book: VocabularyBook, state: VocabularyState): Voca
     if (progress.status === 'vague') stats.vague += 1;
     if (progress.status === 'forgot') stats.forgot += 1;
     if (progress.status === 'wrong') stats.wrong += 1;
-    if (progress.favorite) stats.favorite += 1;
+    if (isWordFavorite({ word: word.word, wordId: word.id }, state)) stats.favorite += 1;
   }
   return stats;
 }
 
-export function useVocabularyProgress(books: VocabularyBook[]) {
+export function useVocabularyState() {
   const [state, setState] = useState<VocabularyState>(createEmptyVocabularyState);
   const [ready, setReady] = useState(false);
 
@@ -62,6 +72,87 @@ export function useVocabularyProgress(books: VocabularyBook[]) {
     return () => { active = false; unsubscribe(); };
   }, []);
 
+  return { ready, state };
+}
+
+export async function setWordFavorite(reference: WordFavoriteReference, favorite: boolean) {
+  const updatedAt = new Date().toISOString();
+  return mutateVocabularyState((current) => {
+    const key = favoriteKeyForWord(reference.word);
+    if (!key) return current;
+    const words = {
+      ...current.words,
+      [key]: { status: 'new' as const, favorite, updatedAt },
+    };
+    if (reference.wordId) {
+      words[reference.wordId] = {
+        ...progressFor(reference.wordId, current),
+        favorite,
+        updatedAt,
+      };
+    }
+    return { ...current, words, updatedAt };
+  });
+}
+
+export async function toggleWordFavorite(reference: WordFavoriteReference) {
+  let favorite = false;
+  return mutateVocabularyState((current) => {
+    favorite = !isWordFavorite(reference, current);
+    const updatedAt = new Date().toISOString();
+    const key = favoriteKeyForWord(reference.word);
+    if (!key) return current;
+    const words = {
+      ...current.words,
+      [key]: { status: 'new' as const, favorite, updatedAt },
+    };
+    if (reference.wordId) {
+      words[reference.wordId] = {
+        ...progressFor(reference.wordId, current),
+        favorite,
+        updatedAt,
+      };
+    }
+    return { ...current, words, updatedAt };
+  });
+}
+
+export async function migrateLegacyVocabularyFavorites(books: VocabularyBook[]) {
+  const migratedAt = new Date().toISOString();
+  return mutateVocabularyState((current) => {
+    let words = current.words;
+    let changed = false;
+    for (const book of books) {
+      for (const word of book.words) {
+        const legacy = current.words[word.id];
+        const key = favoriteKeyForWord(word.word);
+        if (!legacy || !key) continue;
+        const canonical = words[key];
+        if (!legacy.favorite && !canonical) continue;
+        if (canonical && Date.parse(canonical.updatedAt) >= Date.parse(legacy.updatedAt)) continue;
+        if (!changed) words = { ...current.words };
+        words[key] = { status: 'new', favorite: legacy.favorite, updatedAt: legacy.updatedAt };
+        changed = true;
+      }
+    }
+    return changed ? { ...current, words, updatedAt: migratedAt } : current;
+  });
+}
+
+export function useWordFavorites() {
+  const { ready, state } = useVocabularyState();
+  const toggleFavorite = useCallback((reference: WordFavoriteReference) => toggleWordFavorite(reference), []);
+  const setFavorite = useCallback((reference: WordFavoriteReference, favorite: boolean) => setWordFavorite(reference, favorite), []);
+  return { ready, state, isFavorite: (reference: WordFavoriteReference) => isWordFavorite(reference, state), toggleFavorite, setFavorite };
+}
+
+export function useVocabularyProgress(books: VocabularyBook[]) {
+  const { ready, state } = useVocabularyState();
+
+  useEffect(() => {
+    if (ready && books.length) void migrateLegacyVocabularyFavorites(books);
+  }, [books, ready, state.updatedAt]);
+
   const setStatus = useCallback(async (wordId: string, status: VocabularyWordStatus) => {
     const updatedAt = new Date().toISOString();
     return mutateVocabularyState((current) => ({
@@ -71,17 +162,7 @@ export function useVocabularyProgress(books: VocabularyBook[]) {
     }));
   }, []);
 
-  const toggleFavorite = useCallback(async (wordId: string) => {
-    const updatedAt = new Date().toISOString();
-    return mutateVocabularyState((current) => {
-      const progress = progressFor(wordId, current);
-      return {
-        ...current,
-        words: { ...current.words, [wordId]: { ...progress, favorite: !progress.favorite, updatedAt } },
-        updatedAt,
-      };
-    });
-  }, []);
+  const toggleFavorite = useCallback((word: { id: string; word: string }) => toggleWordFavorite({ word: word.word, wordId: word.id }), []);
 
   const resetBook = useCallback(async (book: VocabularyBook) => {
     const updatedAt = new Date().toISOString();

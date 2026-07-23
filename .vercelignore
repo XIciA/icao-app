@@ -1,5 +1,6 @@
 .generated/
 /content/
+/原始资源资料/
 docs/
 infra/
 services/

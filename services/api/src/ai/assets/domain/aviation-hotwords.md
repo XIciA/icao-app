@@ -1,6 +1,6 @@
 # Aviation Hotwords
 
-本文档集中管理 ICAO / 民航英语 ASR 热词和缩写规则。通用维护规则见 `README.md`，状态定义见 `../shared/content-asset-structure-v1.md`。
+本文档集中管理 ICAO / 民航英语 ASR 热词和缩写规则。通用维护规则见 `README.md`。
 
 ## 1. Scope
 

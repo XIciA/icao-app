@@ -35,7 +35,6 @@ export const wordLookupResultSchema = z.object({
 }).strict();
 
 export const grammarResultSchema = z.object({
-  overallFeedbackZh: z.string().trim().min(1).max(1200),
   correctedText: z.string().trim().min(1).max(5000),
   issues: z.array(z.string().trim().min(1).max(1200)).max(30),
 }).strict();

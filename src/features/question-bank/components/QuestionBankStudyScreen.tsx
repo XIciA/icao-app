@@ -1,6 +1,6 @@
 import { usePreventRemove } from '@react-navigation/native';
 import { useRouter } from 'expo-router';
-import { Check, ChevronLeft, ChevronRight, Flag, Grid3X3, Languages, WifiOff } from 'lucide-react-native';
+import { Check, ChevronLeft, ChevronRight, Flag, Grid3X3, Languages, Star, WifiOff } from 'lucide-react-native';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Keyboard, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
@@ -20,6 +20,7 @@ import { AppContentFrame } from '@/components/platform/AppContentFrame';
 import { useAppViewportDimensions } from '@/components/platform/useAppViewportDimensions';
 import { AppText, BottomSheet, Button } from '@/components/ui';
 import { colors, fonts, motion, radii, spacing } from '@/theme';
+import { useWordFavorites } from '@/features/vocabulary/progress-store';
 
 import { annotationToneColors } from '../annotations/colors';
 import { useQuestionAnnotations } from '../annotations/use-question-annotations';
@@ -49,6 +50,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
   const { width: viewportWidth } = useAppViewportDimensions();
   const reduceMotion = useReducedMotion();
   const session = useStudySession({ dataset, category, topic, initialCardId });
+  const wordFavorites = useWordFavorites();
   const [answerCardVisible, setAnswerCardVisible] = useState(false);
   const [connectivity, setConnectivity] = useState<Connectivity>('unknown');
   const [activeHighlightId, setActiveHighlightId] = useState('green');
@@ -70,7 +72,6 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
   const bodyScrollRef = useRef<ScrollView>(null);
   const questionOffsetX = useSharedValue(0);
   const card = session.card;
-  const recordingKey = session.recording?.id;
   const imageCard = card?.kind === 'image';
   const audioAsset = useQuestionBankAsset(card?.audio);
   const target = card && !imageCard ? { bankId: dataset.id, categoryId: category.id, topicId: topic.id, cardId: card.id } : undefined;
@@ -370,6 +371,39 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
     }
   }
 
+  async function openCorrectionFeedback() {
+    if (!card || taskInteractionActive || finishInFlight.current || cardTransitionInFlight.current) return;
+    finishInFlight.current = true;
+    setFinishError(undefined);
+    finishWorkbenchEditing();
+    try {
+      const saved = await (workbenchRef.current?.flushAutoSave() ?? Promise.resolve(true));
+      if (!saved) {
+        setFinishError('回答自动保存失败，请重试后提交纠错。');
+        return;
+      }
+      setQuestionAudioPauseRequest((request) => request + 1);
+      setRecordingPreviewPauseRequest((request) => request + 1);
+      setDismissMediaControlsRequest((request) => request + 1);
+      router.push({
+        pathname: '/info/[slug]',
+        params: {
+          slug: 'feedback',
+          source: 'study',
+          sourceRoute: `/question-bank/${dataset.id}/study/${category.id}/${topic.id}`,
+          bankId: dataset.id,
+          categoryId: category.id,
+          topicId: topic.id,
+          cardId: card.id,
+        },
+      });
+    } catch {
+      setFinishError('回答自动保存失败，请重试后提交纠错。');
+    } finally {
+      finishInFlight.current = false;
+    }
+  }
+
   async function finish(reason: 'abort' | 'complete') {
     if (taskInteractionActive) {
       setFinishError('录音正在保存，请稍候再结束。');
@@ -450,6 +484,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
       <View style={styles.topBar}>
         <Pressable accessibilityLabel={returnTo === 'radio' ? '返回随身听' : returnTo === 'annotations' ? '返回我的标注' : '返回题库目录'} disabled={finishing || taskInteractionActive} onPress={() => void leaveStudy()} style={({ pressed }) => [returnTo === 'radio' ? styles.returnToRadioButton : styles.circleButton, pressed ? styles.topBarPressed : null]}><ChevronLeft color={colors.foreground} size={21} />{returnTo === 'radio' ? <AppText variant="button">返回随身听</AppText> : null}</Pressable>
         <View style={styles.topSpacer} />
+        <Pressable accessibilityLabel="纠正当前题目内容" disabled={finishing || taskInteractionActive || cardTransitionActive} hitSlop={5} onPress={() => void openCorrectionFeedback()} style={({ pressed }) => [styles.correctionButton, pressed ? styles.counterPressed : null]}><Flag color={colors.mutedForeground} size={13} /><AppText color={colors.mutedForeground} variant="micro">纠错</AppText></Pressable>
         <Pressable accessibilityLabel="打开答题卡" disabled={taskInteractionActive} onPress={() => { finishWorkbenchEditing(); setAnswerCardVisible(true); }} style={({ pressed }) => [styles.counterButton, pressed ? styles.counterPressed : null]}><Grid3X3 color={colors.mutedForeground} size={15} /><AppText style={styles.counter} variant="button">{session.currentIndex + 1} / {topic.cards.length}</AppText></Pressable>
       </View>
       {connectivity === 'offline' ? <View style={styles.offline}><WifiOff color={colors.mutedForeground} size={15} /><AppText style={styles.offlineCopy} variant="micro">当前处于离线状态；文字学习和本机标注仍可使用。</AppText></View> : null}
@@ -464,7 +499,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
             {card.kind === 'image' ? (
               <ImageQuestionCard imageAlt={card.imageAlt} imagePath={card.image} onDisplayed={() => session.markCompleted(card.id)} />
             ) : (
-              <StudyCardStack onCollapse={() => { void collapseWorkbench(); }} onReveal={() => session.revealCurrent(true)} primary={<View style={styles.primaryContent}><StudyAudioPlayer autoPlayRequest={session.playRequestToken} blockedExternalGesture={questionSwipeGesture} dismissControlsRequest={dismissMediaControlsRequest} generatedAudio={session.behavior.generatedAudio && !card.audio} label={card.taskTitle} onPlaybackStart={handleQuestionPlaybackStart} onRetry={audioAsset.retry} onSeekInteractionChange={setSeekInteractionActive} pauseRequest={questionAudioPauseRequest} playbackKey={card.id} practiceControls={integratedRecordingLayout ? taskContent : undefined} resolving={audioAsset.resolving} tagColors={selectedTagColors} uri={audioAsset.uri} variant={integratedRecordingLayout ? 'integrated-recording' : 'default'} />{integratedRecordingLayout ? null : <><View style={styles.divider} />{taskContent}</>}</View>} revealed={session.revealed} transcript={transcript} workbench={<StudyWorkbench ref={workbenchRef} activeTab={session.activeTab} answerText={session.answerText} bankId={dataset.id} bankTitle={dataset.title} cardKey={card.id} categoryTitle={category.name} editingTab={editingWorkbenchTab} noteText={entry?.note ?? ''} onAnswerChange={session.updateAnswer} onEditingTabChange={setEditingWorkbenchTab} onFeedback={session.markFeedback} onNoteChange={(note) => { void annotations.saveNote(note); }} onRetrySave={() => { void annotations.retrySave(); }} onTabChange={session.setActiveTab} onTranscriptionAttempted={session.markTranscriptionAttempted} questionText={card.audioText} recordingKey={recordingKey} recordingUri={session.recording?.uri} referenceContent={referenceContent} referenceLabel={session.behavior.referenceLabel} reviewKind={session.behavior.reviewKind} saveError={annotations.saveErrorMessage} sessionId={session.sessionId} sessionStartedAt={session.sessionStartedAt} swipeGesture={workbenchSwipeGesture} tabs={session.behavior.workbenchTabs} topicTitle={topic.name} transcriptionAttempted={Boolean(recordingKey && session.attemptedTranscriptionKeys.has(recordingKey))} />} />
+              <StudyCardStack onCollapse={() => { void collapseWorkbench(); }} onReveal={() => session.revealCurrent(true)} primary={<View style={styles.primaryContent}><StudyAudioPlayer autoPlayRequest={session.playRequestToken} blockedExternalGesture={questionSwipeGesture} dismissControlsRequest={dismissMediaControlsRequest} generatedAudio={session.behavior.generatedAudio && !card.audio} label={card.taskTitle} onPlaybackStart={handleQuestionPlaybackStart} onRetry={audioAsset.retry} onSeekInteractionChange={setSeekInteractionActive} pauseRequest={questionAudioPauseRequest} playbackKey={card.id} practiceControls={integratedRecordingLayout ? taskContent : undefined} resolving={audioAsset.resolving} tagColors={selectedTagColors} uri={audioAsset.uri} variant={integratedRecordingLayout ? 'integrated-recording' : 'default'} />{integratedRecordingLayout ? null : <><View style={styles.divider} />{taskContent}</>}</View>} revealed={session.revealed} transcript={transcript} workbench={<StudyWorkbench ref={workbenchRef} activeTab={session.activeTab} answerText={session.answerText} bankId={dataset.id} bankTitle={dataset.title} cardKey={card.id} categoryTitle={category.name} editingTab={editingWorkbenchTab} noteText={entry?.note ?? ''} onAnswerChange={session.updateAnswer} onEditingTabChange={setEditingWorkbenchTab} onFeedback={session.markFeedback} onNoteChange={(note) => { void annotations.saveNote(note); }} onRetrySave={() => { void annotations.retrySave(); }} onTabChange={session.setActiveTab} questionText={card.audioText} recordingUri={session.recording?.uri} referenceContent={referenceContent} referenceLabel={session.behavior.referenceLabel} reviewKind={session.behavior.reviewKind} saveError={annotations.saveErrorMessage} sessionId={session.sessionId} sessionStartedAt={session.sessionStartedAt} swipeGesture={workbenchSwipeGesture} tabs={session.behavior.workbenchTabs} topicTitle={topic.name} />} />
             )}
           </ScrollView>
           {swipeBoundaryMessage ? <View accessibilityLiveRegion="polite" pointerEvents="none" style={styles.swipeBoundary}><AppText variant="micro">{swipeBoundaryMessage}</AppText></View> : null}
@@ -482,12 +517,36 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
       </AppContentFrame>
 
       <AnswerCardSheet current={session.currentIndex} onClose={() => setAnswerCardVisible(false)} onSelect={(index) => { void goToCard(index).then((changed) => { if (changed) setAnswerCardVisible(false); }); }} total={topic.cards.length} visible={answerCardVisible} visited={session.visitedIndexes} />
-      <BottomSheet accessibilityLabel="查词结果" onClose={() => setLookup(undefined)} scrollable={false} visible={Boolean(lookup)}><View style={styles.sheetContent}><AppText variant="pageTitle">{lookup?.word}</AppText><AppText color={colors.mutedForeground}>{lookup?.ipa}</AppText><AppText>{`航空释义：${lookup?.aviationMeaning ?? ''}`}</AppText><AppText>{`常用释义：${lookup?.generalMeaning ?? ''}`}</AppText></View></BottomSheet>
+      <BottomSheet accessibilityLabel="查词结果" onClose={() => setLookup(undefined)} scrollable={false} visible={Boolean(lookup)}>
+        <View style={styles.sheetContent}>
+          <View style={styles.lookupTitleRow}>
+            <AppText style={styles.lookupTitle} variant="pageTitle">{lookup?.word}</AppText>
+            {lookup ? (
+              <Pressable
+                accessibilityLabel={wordFavorites.isFavorite({ word: lookup.word }) ? '取消收藏' : '收藏'}
+                accessibilityRole="button"
+                hitSlop={8}
+                onPress={() => { void wordFavorites.toggleFavorite({ word: lookup.word }); }}
+                style={({ pressed }) => [styles.lookupFavorite, pressed ? styles.lookupFavoritePressed : null]}
+              >
+                <Star
+                  color={wordFavorites.isFavorite({ word: lookup.word }) ? colors.accent : colors.mutedForeground}
+                  fill={wordFavorites.isFavorite({ word: lookup.word }) ? colors.accent : 'transparent'}
+                  size={22}
+                />
+              </Pressable>
+            ) : null}
+          </View>
+          <AppText color={colors.mutedForeground}>{lookup?.ipa}</AppText>
+          <AppText>{`航空释义：${lookup?.aviationMeaning ?? ''}`}</AppText>
+          <AppText>{`常用释义：${lookup?.generalMeaning ?? ''}`}</AppText>
+        </View>
+      </BottomSheet>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  root: { backgroundColor: colors.background, flex: 1, overflow: 'hidden' }, contentFrame: { flex: 1 }, state: { alignItems: 'center', backgroundColor: colors.background, flex: 1, justifyContent: 'center' }, topBar: { alignItems: 'center', flexDirection: 'row', minHeight: 48, paddingBottom: spacing[1], paddingHorizontal: spacing[3] }, circleButton: { alignItems: 'center', borderRadius: radii.full, height: 38, justifyContent: 'center', width: 38 }, topBarPressed: { opacity: 0.65 }, topSpacer: { flex: 1 }, counterButton: { alignItems: 'center', backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 34, paddingHorizontal: spacing[3] }, counterPressed: { opacity: 0.72, transform: [{ scale: 0.97 }] }, counter: { fontFamily: fonts.monoRegular }, offline: { alignItems: 'center', backgroundColor: colors.secondary, flexDirection: 'row', gap: spacing[2], marginHorizontal: spacing[5], padding: spacing[2] }, offlineCopy: { flex: 1 }, tools: { paddingHorizontal: spacing[5], paddingVertical: spacing[2.5], zIndex: 20 }, answerTool: { alignItems: 'center', backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 30, paddingHorizontal: spacing[3] }, toolActive: { backgroundColor: colors.primary06, borderColor: colors.primary }, toolPressed: { opacity: 0.72, transform: [{ scale: 0.97 }] }, bodyGesture: { flex: 1, minHeight: 0 }, body: { flex: 1, minHeight: 0 }, bodyContent: { paddingBottom: spacing[5], paddingHorizontal: spacing[5], paddingTop: spacing[2] }, primaryContent: { gap: spacing[4] }, divider: { backgroundColor: colors.border, height: StyleSheet.hairlineWidth }, cardContent: { gap: spacing[2], paddingBottom: spacing[2] }, sectionTitle: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] }, translation: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth, color: colors.mutedForeground, fontSize: 13, lineHeight: 21, marginTop: spacing[3], paddingTop: spacing[3] }, referenceContent: { gap: spacing[2] }, swipeBoundary: { alignSelf: 'center', backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, bottom: spacing[3], paddingHorizontal: spacing[3], paddingVertical: spacing[2], position: 'absolute' }, footerShell: { backgroundColor: colors.background, gap: spacing[1], paddingTop: spacing[2], shadowColor: colors.foreground, shadowOffset: { height: -4, width: 0 }, shadowOpacity: 0.025, shadowRadius: 12, elevation: 3 }, finishError: { paddingHorizontal: spacing[5], textAlign: 'center' }, footer: { alignItems: 'center', flexDirection: 'row', gap: spacing[2], paddingHorizontal: spacing[5] }, footerFinish: { backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.full, minHeight: 48, paddingHorizontal: spacing[4] }, footerPrevious: { backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.full, flex: 1, minHeight: 48, paddingHorizontal: spacing[3] }, footerPrimary: { borderRadius: radii.full, flex: 1, minHeight: 48, paddingHorizontal: spacing[3] }, sheetContent: { gap: spacing[3], paddingBottom: spacing[3] },
+  root: { backgroundColor: colors.background, flex: 1, overflow: 'hidden' }, contentFrame: { flex: 1 }, state: { alignItems: 'center', backgroundColor: colors.background, flex: 1, justifyContent: 'center' }, topBar: { alignItems: 'center', flexDirection: 'row', gap: spacing[2], minHeight: 48, paddingBottom: spacing[1], paddingHorizontal: spacing[3] }, circleButton: { alignItems: 'center', borderRadius: radii.full, height: 38, justifyContent: 'center', width: 38 }, topBarPressed: { opacity: 0.65 }, topSpacer: { flex: 1 }, correctionButton: { alignItems: 'center', borderRadius: radii.full, flexDirection: 'row', gap: spacing[1], minHeight: 34, paddingHorizontal: spacing[2] }, counterButton: { alignItems: 'center', backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 34, paddingHorizontal: spacing[3] }, counterPressed: { opacity: 0.72, transform: [{ scale: 0.97 }] }, counter: { fontFamily: fonts.monoRegular }, offline: { alignItems: 'center', backgroundColor: colors.secondary, flexDirection: 'row', gap: spacing[2], marginHorizontal: spacing[5], padding: spacing[2] }, offlineCopy: { flex: 1 }, tools: { paddingHorizontal: spacing[5], paddingVertical: spacing[2.5], zIndex: 20 }, answerTool: { alignItems: 'center', backgroundColor: colors.card80, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, flexDirection: 'row', gap: spacing[1.5], minHeight: 30, paddingHorizontal: spacing[3] }, toolActive: { backgroundColor: colors.primary06, borderColor: colors.primary }, toolPressed: { opacity: 0.72, transform: [{ scale: 0.97 }] }, bodyGesture: { flex: 1, minHeight: 0 }, body: { flex: 1, minHeight: 0 }, bodyContent: { paddingBottom: spacing[5], paddingHorizontal: spacing[5], paddingTop: spacing[2] }, primaryContent: { gap: spacing[4] }, divider: { backgroundColor: colors.border, height: StyleSheet.hairlineWidth }, cardContent: { gap: spacing[2], paddingBottom: spacing[2] }, sectionTitle: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] }, translation: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth, color: colors.mutedForeground, fontSize: 13, lineHeight: 21, marginTop: spacing[3], paddingTop: spacing[3] }, referenceContent: { gap: spacing[2] }, swipeBoundary: { alignSelf: 'center', backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, bottom: spacing[3], paddingHorizontal: spacing[3], paddingVertical: spacing[2], position: 'absolute' }, footerShell: { backgroundColor: colors.background, gap: spacing[1], paddingTop: spacing[2], shadowColor: colors.foreground, shadowOffset: { height: -4, width: 0 }, shadowOpacity: 0.025, shadowRadius: 12, elevation: 3 }, finishError: { paddingHorizontal: spacing[5], textAlign: 'center' }, footer: { alignItems: 'center', flexDirection: 'row', gap: spacing[2], paddingHorizontal: spacing[5] }, footerFinish: { backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.full, minHeight: 48, paddingHorizontal: spacing[4] }, footerPrevious: { backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.full, flex: 1, minHeight: 48, paddingHorizontal: spacing[3] }, footerPrimary: { borderRadius: radii.full, flex: 1, minHeight: 48, paddingHorizontal: spacing[3] }, sheetContent: { gap: spacing[3], paddingBottom: spacing[3] }, lookupTitleRow: { alignItems: 'center', flexDirection: 'row', gap: spacing[3], justifyContent: 'space-between' }, lookupTitle: { flex: 1 }, lookupFavorite: { alignItems: 'center', borderRadius: radii.full, height: 40, justifyContent: 'center', width: 40 }, lookupFavoritePressed: { backgroundColor: colors.secondary, transform: [{ scale: 0.95 }] },
   returnToRadioButton: { alignItems: 'center', borderRadius: radii.full, flexDirection: 'row', gap: spacing[1], minHeight: 38, paddingHorizontal: spacing[2] },
 });

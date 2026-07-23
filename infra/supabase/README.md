@@ -4,7 +4,7 @@
 - ECS 运行目录为 `/opt/icao/runtime/supabase`；真实 `.env` 只保存在服务器，权限为 `600`。
 - Kong、PostgreSQL session pool 和 transaction pool 仅绑定 `127.0.0.1`，当前只通过 SSH 隧道联调。
 - 第二阶段 A 不启动 Realtime、Edge Runtime、Logs/Analytics。
-- 邮箱注册开启、注册确认关闭；匿名、手机号和第三方登录关闭。
+- 公开注册关闭；邀请码账户仍使用内部邮箱密码会话，匿名、手机号和第三方登录关闭。内部邮箱不向用户展示，也不发送公网邮件。
 - Mailpit `v1.30.4` 使用官方 GHCR 镜像，作为无持久化、无认证测试 SMTP；SMTP 只在容器网络内可用，Web UI 只绑定 ECS `127.0.0.1:8025`。
 - 换绑邮箱和找回密码邮件只进入 Mailpit，不向公网邮箱投递；通过 SSH 隧道查看。
 - 正式域名、HTTPS 与公网安全门禁完成前，不开放任何业务端口。

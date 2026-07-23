@@ -1,4 +1,5 @@
 import embeddedData from './question-bank.json';
+import { Platform } from 'react-native';
 import Storage from '@/platform/storage';
 import type { ApiSuccessEnvelope, QuestionBankRelease } from '@icao/contracts';
 
@@ -26,6 +27,8 @@ type CachedRelease = QuestionBankRelease<QuestionBankDataset> & { cachedAt: stri
 export type QuestionBankSource = 'remote' | 'cache' | 'embedded';
 export type QuestionBankLoadResult = { dataset: QuestionBankDataset; source: QuestionBankSource; warning?: string };
 const CACHE_PREFIX = 'icao.content.v1.bank.';
+const WEB_CACHE_READ_TIMEOUT_MILLISECONDS = 600;
+const WEB_REFRESH_TIMEOUT_MILLISECONDS = 12_000;
 
 function cacheKey(id: QuestionBankId) {
   return `${CACHE_PREFIX}${id}`;
@@ -42,11 +45,26 @@ async function readCachedRelease(id: QuestionBankId) {
   }
 }
 
-export const remoteQuestionBankRepository: QuestionBankRepository = {
-  async getDataset(id) {
+async function readCachedReleaseForWebEntry(id: QuestionBankId) {
+  return new Promise<CachedRelease | undefined>((resolve) => {
+    const timeout = setTimeout(() => resolve(undefined), WEB_CACHE_READ_TIMEOUT_MILLISECONDS);
+    void readCachedRelease(id)
+      .then((release) => {
+        clearTimeout(timeout);
+        resolve(release);
+      })
+      .catch(() => {
+        clearTimeout(timeout);
+        resolve(undefined);
+      });
+  });
+}
+
+export const remoteQuestionBankRepository = {
+  async getDataset(id, signal?: AbortSignal) {
     const cached = await readCachedRelease(id);
     const headers = cached ? { 'if-none-match': `"${cached.checksum}"` } : undefined;
-    const response = await apiFetch(`/v1/question-banks/${encodeURIComponent(id)}`, { headers });
+    const response = await apiFetch(`/v1/question-banks/${encodeURIComponent(id)}`, { headers, signal });
     if (response.status === 304 && cached) return cached.dataset;
     if (response.status === 404) return undefined;
     if (!response.ok) throw new Error(`question_bank_http_${response.status}`);
@@ -59,9 +77,27 @@ export const remoteQuestionBankRepository: QuestionBankRepository = {
     const dataset = await this.getDataset(bankId);
     return dataset?.categories.find((category) => category.id === categoryId)?.topics.find((topic) => topic.id === topicId);
   },
-};
+} satisfies QuestionBankRepository;
+
+function refreshQuestionBankForWeb(id: QuestionBankId) {
+  if (!getApiBaseUrl()) return;
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), WEB_REFRESH_TIMEOUT_MILLISECONDS);
+  void remoteQuestionBankRepository.getDataset(id, controller.signal)
+    .catch(() => undefined)
+    .finally(() => clearTimeout(timeout));
+}
+
+async function loadQuestionBankForWeb(id: QuestionBankId): Promise<QuestionBankLoadResult | undefined> {
+  const cached = await readCachedReleaseForWebEntry(id);
+  const embedded = await embeddedQuestionBankRepository.getDataset(id);
+  refreshQuestionBankForWeb(id);
+  if (cached) return { dataset: cached.dataset, source: 'cache' };
+  return embedded ? { dataset: embedded, source: 'embedded' } : undefined;
+}
 
 export async function loadQuestionBank(id: QuestionBankId): Promise<QuestionBankLoadResult | undefined> {
+  if (Platform.OS === 'web') return loadQuestionBankForWeb(id);
   if (getApiBaseUrl()) {
     try {
       const remote = await remoteQuestionBankRepository.getDataset(id);

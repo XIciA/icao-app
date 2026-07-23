@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://feizhuicao.com/schemas/editorial-source-v1.json",
+  "title": "Editorial source metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "slug",
+    "version",
+    "channel",
+    "category",
+    "badge",
+    "title",
+    "summary",
+    "tags",
+    "publishedAt",
+    "cover"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "id": { "type": "string", "minLength": 1 },
+    "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "version": { "type": "integer", "minimum": 1 },
+    "channel": { "enum": ["resource", "opi_hotspot"] },
+    "category": { "type": "string", "minLength": 1 },
+    "badge": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "summary": { "type": "string", "minLength": 1 },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "publishedAt": { "type": ["string", "null"], "format": "date-time" },
+    "cover": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["publicPath", "sourceFile", "alt", "width", "height", "mimeType"],
+      "properties": {
+        "publicPath": { "type": "string", "pattern": "^/editorial-assets/" },
+        "sourceFile": { "type": "string", "minLength": 1 },
+        "alt": { "type": "string", "minLength": 1 },
+        "width": { "const": 800 },
+        "height": { "const": 500 },
+        "mimeType": { "enum": ["image/jpeg", "image/png"] }
+      }
+    }
+  }
+}

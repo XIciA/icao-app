@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "path": "原始资源资料/资源分享/icao5复习节奏与方向.docx",
+    "sha256": "57c68288957539cb477d26c844be62124953287418b26062db37471dcf24084a",
+    "title": "ICAO5 级考试特点与备考方向",
+    "preserved": true
+  },
+  "editorialChanges": [
+    "删除关于“卡通过率”、同批次相对竞争和依赖多次考试碰运气的无依据结论。",
+    "删除固定学习周期、结果承诺和将个人案例泛化为考试规律的表述。",
+    "按六项语言能力、三阶段复习、每日训练闭环、复盘与心态重新组织全文。",
+    "将应试经验改写为可观察、可复盘、以能力证据为依据的训练建议。"
+  ],
+  "factSources": [
+    {
+      "id": "icao-language-proficiency",
+      "title": "ICAO Language Proficiency",
+      "publisher": "International Civil Aviation Organization",
+      "url": "https://www.icao.int/operational-safety/language-proficency",
+      "checkedAt": "2026-07-23",
+      "supports": [
+        "ICAO 语言能力框架及其安全沟通目的"
+      ]
+    },
+    {
+      "id": "icao-personnel-licensing-faq",
+      "title": "Personnel Licensing FAQ",
+      "publisher": "International Civil Aviation Organization",
+      "url": "https://www.icao.int/personnel-licensing-faq",
+      "checkedAt": "2026-07-23",
+      "supports": [
+        "语言能力评价关注发音、结构、词汇、流利程度、理解能力和应答能力六项指标",
+        "总体等级由六项指标中的最低等级决定"
+      ]
+    },
+    {
+      "id": "caac-rating-scale",
+      "title": "民用航空器驾驶员和地面教员合格审定规则：语言能力等级量表",
+      "publisher": "中国民用航空局",
+      "url": "https://www.caac.gov.cn/PHONE/XXGK_17/XXGK/MHGZ/201605/t20160511_37226.html",
+      "checkedAt": "2026-07-23",
+      "supports": [
+        "中国民航语言能力等级量表中的六项评价维度及等级描述"
+      ]
+    },
+    {
+      "id": "caac-pepec-guide",
+      "title": "飞行人员英语考试考生指南",
+      "publisher": "中国民用航空局飞行人员信息咨询平台",
+      "url": "https://pilot.caac.gov.cn/servlet/FileUploadManagerServlet?UUID=d791c391-26d9-420a-b950-71e49048b86c&method=noDownload",
+      "checkedAt": "2026-07-23",
+      "supports": [
+        "PEPEC 依据标准参照原则评价语言能力",
+        "口语面试不存在统一的标准答案"
+      ]
+    }
+  ]
+}

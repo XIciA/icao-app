@@ -9,6 +9,7 @@ const schema = z.object({
   SUPABASE_PUBLIC_URL: z.string().url(),
   SUPABASE_SECRET_KEY: z.string().min(20),
   SUPABASE_URL: z.string().url(),
+  INVITE_AUTH_SECRET: z.string().min(32),
   DASHSCOPE_API_KEY: z.string().min(10).optional(),
   DASHSCOPE_BASE_URL: z.string().url().default('https://dashscope.aliyuncs.com/compatible-mode/v1'),
   DASHSCOPE_ASR_BASE_URL: z.string().url().default('https://dashscope.aliyuncs.com/api/v1'),
@@ -34,6 +35,7 @@ export type ApiConfig = {
   supabasePublicUrl: string;
   supabaseSecretKey: string;
   supabaseUrl: string;
+  inviteAuthSecret: string;
   dashscopeApiKey?: string;
   dashscopeBaseUrl: string;
   dashscopeAsrBaseUrl: string;
@@ -95,6 +97,7 @@ export function loadConfig(environment: NodeJS.ProcessEnv = process.env): ApiCon
     supabasePublicUrl: parsed.data.SUPABASE_PUBLIC_URL,
     supabaseSecretKey: parsed.data.SUPABASE_SECRET_KEY,
     supabaseUrl: parsed.data.SUPABASE_URL,
+    inviteAuthSecret: parsed.data.INVITE_AUTH_SECRET,
     dashscopeApiKey: parsed.data.DASHSCOPE_API_KEY,
     dashscopeBaseUrl: parsed.data.DASHSCOPE_BASE_URL,
     dashscopeAsrBaseUrl: parsed.data.DASHSCOPE_ASR_BASE_URL,

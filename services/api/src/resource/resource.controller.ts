@@ -12,7 +12,9 @@ export class ResourceController {
 
   @Get('resolve')
   async resolve(@Query('path') path: string | undefined, @Req() request: AuthenticatedRequest): Promise<ApiSuccessEnvelope<ResolvedResource>> {
-    if (!path?.startsWith('/question-bank-assets/')) throw new BadRequestException('invalid_resource_path');
+    if (!path || (!path.startsWith('/question-bank-assets/') && !path.startsWith('/editorial-assets/'))) {
+      throw new BadRequestException('invalid_resource_path');
+    }
     return { requestId: request.id, data: await this.resources.resolve(path) };
   }
 }

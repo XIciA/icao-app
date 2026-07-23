@@ -95,7 +95,7 @@ RN 当前没有真实 AI client、API、Prompt 执行、schema 校验、同意�
 
 可复用标准库：
 
-- 当前项目 `docs/AI-requirement/` 有 22 份规则、能力、领域与 eval 文档。
+- 当前项目以 `docs/ai/` 作为 AI 能力与基础资产的规范入口。
 - Web 参考库有 6 个 AI Route Handler 和 63 个 `features/ai` 文件，覆盖查词、转写、原文对比、语法检查和 OPI 润色链路。
 - Web 的 Prompt、schema、航空热词、数字读法、规范化、错误码和 eval 可作为行为证据，但代码不能照搬。
 

@@ -116,12 +116,19 @@ export type CardLearningState = {
   updatedAt: string;
 };
 
+export type MockExamRecordMeta = {
+  examType: 'icao4-recert' | 'icao4-first' | 'icao5-first';
+  mode: 'complete' | 'custom';
+  moduleIds: QuestionBankId[];
+  sectionCounts: { id: string; title: string; total: number }[];
+};
+
 export type LearningRecord = {
   schemaVersion?: 1 | 2 | 3;
   id: string;
   sessionId?: string;
   cardId?: string;
-  bankId: QuestionBankId;
+  bankId: QuestionBankId | 'mock_exam';
   bankTitle: string;
   categoryTitle: string;
   topicTitle: string;
@@ -135,12 +142,13 @@ export type LearningRecord = {
   reason: 'abort' | 'complete';
   createdAt: string;
   updatedAt?: string;
-  recordType?: 'session' | 'ai_result';
+  recordType?: 'session' | 'ai_result' | 'mock_exam';
+  mockExam?: MockExamRecordMeta;
   aiResult?: {
     questionId: string;
     rawTranscript?: string;
     transcript: string;
-    grammar?: { overallFeedbackZh: string; correctedText: string; issues: string[] };
+    grammar?: { correctedText: string; issues: string[] };
     polishedText?: string;
   };
 };

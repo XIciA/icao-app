@@ -37,7 +37,7 @@
 
 ### 主要工作
 
-- 为 `docs/AI-requirement/capabilities|domain|shared` 生成文件清单、checksum、稳定 ID 与重复/引用报告，冻结迁移基线。
+- 为 `docs/ai/` 与仍在运行时使用的基础资产生成文件清单、checksum 和引用报告，冻结迁移基线。
 - 从已授权的 `feizhuicu/.env.local` 读取必要模型配置，安全写入本地/ECS 私密环境；不打印或写入 Git。
 - 在 ECS 执行一次最小文本 JSON mode 和一次短 WAV ASR 真实调用，锁定 provider 地域、模型快照、超时和价格版本。
 - 记录密钥来源已验证、模型 ID 与冒烟结论，不记录密钥值。

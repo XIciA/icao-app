@@ -1,12 +1,13 @@
-import { CheckCircle2, RotateCcw, Star, Volume2, X } from 'lucide-react-native';
+import { CheckCircle2, ChevronLeft, RotateCcw, Star, Volume2 } from 'lucide-react-native';
 import { useEffect } from 'react';
-import { Alert, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { TopBar } from '@/components/navigation/TopBar';
 import { AppText, Button, Card, Screen, Tag } from '@/components/ui';
 import { colors, radii, spacing } from '@/theme';
 
+import { isWordFavorite } from '../favorites';
 import { progressFor } from '../progress-store';
 import { speakVocabulary, speakVocabularyWithFeedback, stopVocabularySpeech } from '../speech';
 import type { VocabularyState, VocabularyWord, VocabularyWordStatus } from '../types';
@@ -38,16 +39,13 @@ export function VocabularyStudyView({
   const insets = useSafeAreaInsets();
   const word = words[index]!;
   const progress = progressFor(word.id, state);
+  const favorite = isWordFavorite({ word: word.word, wordId: word.id }, state);
 
   useEffect(() => {
     void speakVocabulary(word.word);
     return () => { void stopVocabularySpeech(); };
   }, [word.id, word.word]);
 
-  const confirmExit = () => Alert.alert('退出本轮学习？', '已完成的学习状态会保留，你可以稍后继续。', [
-    { text: '继续学习', style: 'cancel' },
-    { text: '退出', onPress: () => { void stopVocabularySpeech(); onExit(); } },
-  ]);
   const choose = (status: Exclude<VocabularyWordStatus, 'new' | 'wrong'>) => {
     void onChoose(status);
     void speakVocabulary(word.word, word.example);
@@ -56,10 +54,10 @@ export function VocabularyStudyView({
   return (
     <Screen contentStyle={styles.zero}>
       <View style={styles.topBar}>
-        <Pressable accessibilityLabel="退出学习" hitSlop={8} onPress={confirmExit} style={styles.iconButton}><X color={colors.foreground} size={21} /></Pressable>
+        <Pressable accessibilityLabel="返回上一页" hitSlop={8} onPress={() => { void stopVocabularySpeech(); onExit(); }} style={styles.iconButton}><ChevronLeft color={colors.foreground} size={21} /></Pressable>
         <AppText variant="button">{index + 1} / {words.length}</AppText>
-        <Pressable accessibilityLabel={progress.favorite ? '取消收藏' : '收藏'} hitSlop={8} onPress={() => { void onToggleFavorite(); }} style={styles.iconButton}>
-          <Star color={progress.favorite ? colors.accent : colors.mutedForeground} fill={progress.favorite ? colors.accent : 'transparent'} size={21} />
+        <Pressable accessibilityLabel={favorite ? '取消收藏' : '收藏'} hitSlop={8} onPress={() => { void onToggleFavorite(); }} style={styles.iconButton}>
+          <Star color={favorite ? colors.accent : colors.mutedForeground} fill={favorite ? colors.accent : 'transparent'} size={21} />
         </Pressable>
       </View>
       <View style={styles.progressWrap}><VocabularyProgress value={(index + 1) / words.length} /></View>

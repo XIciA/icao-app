@@ -1,6 +1,6 @@
 # Aviation Number And Letter Readings
 
-本文档管理 ICAO / 民航英语中的数字和字母读法。通用维护规则见 `README.md`，状态定义见 `../shared/content-asset-structure-v1.md`。
+本文档管理 ICAO / 民航英语中的数字和字母读法。通用维护规则见 `README.md`。
 
 ## 1. Scope
 

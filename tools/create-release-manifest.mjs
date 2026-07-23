@@ -18,7 +18,13 @@ async function hashFiles(files) {
   const entries = [];
   for (const file of files) {
     const absolute = path.join(root, file);
-    const stat = await lstat(absolute);
+    let stat;
+    try {
+      stat = await lstat(absolute);
+    } catch (error) {
+      if (error?.code === 'ENOENT') continue;
+      throw error;
+    }
     if (!stat.isFile()) continue;
     const bytes = await readFile(absolute);
     entries.push({ path: file, bytes: stat.size, sha256: createHash('sha256').update(bytes).digest('hex') });

@@ -4,8 +4,6 @@ import { join } from 'node:path';
 
 const capabilityFiles = {
   word: 'capabilities/word-lookup-v1.md',
-  grammar: 'capabilities/grammar-review-v1.md',
-  polish: 'capabilities/polish-v1.md',
 } as const;
 
 const domainFiles = [
@@ -13,7 +11,6 @@ const domainFiles = [
   'domain/aviation-hotwords.md',
   'domain/aviation-number-readings.md',
   'domain/aviation-phrasebook.md',
-  'domain/aviation-common-errors.md',
   'domain/sentence900-ai-corpus.md',
   'shared/output-quality-rules-v1.md',
 ] as const;

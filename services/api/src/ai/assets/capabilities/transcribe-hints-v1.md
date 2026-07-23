@@ -73,7 +73,7 @@
 - 层级: 7
   名称: Negative Rules
   发生阶段: ASR 后
-  存放位置: `../shared/output-quality-rules-v1.md` / `../domain/aviation-common-errors.md`
+  存放位置: 本文档
 
 - 层级: 8
   名称: Review Samples
@@ -238,10 +238,6 @@ Normalization 是 ASR 输出后的轻量格式整理。它不是纠错、不是�
 - 内容: 输出质检规则
   位置: `../shared/output-quality-rules-v1.md`
   说明: `TR-OQ-001` - `TR-OQ-004` 定义 transcribe 边界
-
-- 内容: 常见错误边界
-  位置: `../domain/aviation-common-errors.md`
-  说明: `TN-*` 样本记录 transcribe 不能改写的学习者原话
 
 - 内容: 评测样本
   位置: `../evals/transcribe-samples.md`

@@ -92,10 +92,6 @@
   用途: JSON、字段、边界和风格规则
   位置: `../shared/output-quality-rules-v1.md`
 
-- 内容类型: few-shot 筛选规则
-  用途: 判断哪些样例可进入 prompt examples
-  位置: `../shared/few-shot-selection-v1.md`
-
 - 内容类型: 航空术语
   用途: 补充民航语境解释
   位置: `../domain/aviation-terminology.md`

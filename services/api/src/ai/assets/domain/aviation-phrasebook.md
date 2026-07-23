@@ -1,11 +1,11 @@
 # Aviation Phrasebook
 
-本文档管理 ICAO / 民航英语常见短语。通用维护规则见 `README.md`，状态定义见 `../shared/content-asset-structure-v1.md`。
+本文档管理 ICAO / 民航英语常见短语。通用维护规则见 `README.md`。
 
 ## 1. Scope
 
 - 项目: 主要用途
-  说明: 服务 ASR phrase hints、word-lookup 的短语解释、polish 的口语表达风格
+  说明: 服务 ASR phrase hints 和 word-lookup 的短语解释
 
 - 项目: 重要边界
   说明: 短语可以提示识别和表达选择，但不能自动补全用户没说的话
@@ -298,30 +298,4 @@
   Target Format: medical emergency
   Related Hotwords: medical emergency
   Notes: 医疗紧急情况
-  Status: ready
-
-## 7. Polish 可参考表达样本
-
-- ID: PP-001
-  User Intent: 告诉管制
-  Preferred Aviation Expression: advise ATC
-  Notes: 比 tell ATC 更贴近民航口语
-  Status: ready
-
-- ID: PP-002
-  User Intent: 绕飞天气
-  Preferred Aviation Expression: request deviation
-  Notes: 简洁常用
-  Status: ready
-
-- ID: PP-003
-  User Intent: 保持飞机控制
-  Preferred Aviation Expression: maintain aircraft control
-  Notes: 紧急处置常用
-  Status: ready
-
-- ID: PP-004
-  User Intent: 恶劣天气
-  Preferred Aviation Expression: adverse weather
-  Notes: 比 bad weather 更正式
   Status: ready

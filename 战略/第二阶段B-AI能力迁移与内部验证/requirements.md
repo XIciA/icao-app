@@ -14,8 +14,8 @@
 
 ## 2. 对照基线
 
-- `docs/AI-requirement/` 是 AI 能力目标、Prompt、输出边界和领域知识的内容基线。
-- `docs/AI-requirement/domain/` 中的 ICAO 缩写、航空热词、数字与字母读法、固定通话短语、典型易错项和 900 句语料必须严格保留，不删除、不弱化、不随意改写含义或稳定 ID。
+- `docs/ai/` 是 AI 能力目标、Prompt 和输出边界的内容基线。
+- 仍在运行时使用的 ICAO 缩写、航空热词、数字与字母读法、固定通话短语和 900 句语料必须严格保留，不删除、不弱化、不随意改写含义或稳定 ID。
 - 运行时可按能力与题库选择相关资产，不要求每次调用全量注入；`hint-only` 资产只用于识别辅助，不得在语义不明确时自动替换 `rawTranscript`。
 - Web 项目中已有的 `word-lookup`、`transcribe`、`exact-match-check`、`grammar-review` 和 `polish` 是行为与质量参考，不直接复制 Web UI、路由或业务代码。
 - React Native 保留第一阶段已确认的 UI、导航、录音交互和学习流程，只补齐真实 AI 调用所必需的状态、结果和提示。

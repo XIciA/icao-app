@@ -17,6 +17,7 @@ function config(): ApiConfig {
     supabasePublicUrl: 'https://cloud.example.com',
     supabaseSecretKey: 'test-secret-key-that-is-long-enough',
     supabaseUrl: 'http://supabase.internal:8000',
+    inviteAuthSecret: 'test-invite-auth-secret-that-is-long-enough',
     dashscopeApiKey: 'test-dashscope-key',
     dashscopeBaseUrl: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
     dashscopeAsrBaseUrl: 'https://dashscope.aliyuncs.com/api/v1',

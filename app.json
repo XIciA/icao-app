@@ -11,7 +11,7 @@
       "icon": "./assets/expo.icon",
       "supportsTablet": false,
       "bundleIdentifier": "com.anonymous.icao-app",
-      "buildNumber": "3439561",
+      "buildNumber": "3449008",
       "config": {
         "usesNonExemptEncryption": false
       },
@@ -30,7 +30,7 @@
       },
       "predictiveBackGestureEnabled": false,
       "package": "com.feizhuicao.app",
-      "versionCode": 3439561
+      "versionCode": 3449008
     },
     "web": {
       "output": "single",
@@ -58,6 +58,13 @@
       "expo-sqlite",
       "expo-secure-store",
       "expo-asset",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "允许飞猪 ICAO 选择图片并随反馈提交。",
+          "cameraPermission": false
+        }
+      ],
       "./plugins/with-android-release-signing"
     ],
     "experiments": {

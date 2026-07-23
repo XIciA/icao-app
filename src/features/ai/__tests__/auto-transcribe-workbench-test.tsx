@@ -1,4 +1,4 @@
-import { render, waitFor } from '@testing-library/react-native';
+import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { useState } from 'react';
 import { Gesture } from 'react-native-gesture-handler';
 
@@ -30,7 +30,7 @@ describe('AI speaking workbench', () => {
     jest.clearAllMocks();
   });
 
-  it('automatically transcribes each completed recording once', async () => {
+  it('waits for an explicit transcribe action before processing a completed recording', async () => {
     const onAnswerChange = jest.fn();
     const learningStore = { addRecord: mockAddRecord };
     function Harness() {
@@ -52,7 +52,6 @@ describe('AI speaking workbench', () => {
           onRetrySave={jest.fn()}
           onTabChange={jest.fn()}
           questionText="Question"
-          recordingKey="file:///recording.wav:3000"
           recordingUri="file:///recording.wav"
           referenceContent={null}
           referenceLabel="参考答案"
@@ -70,6 +69,14 @@ describe('AI speaking workbench', () => {
     );
 
     await waitFor(() => expect(mockHasAiConsent).toHaveBeenCalledTimes(1));
+    expect(mockTranscribeRecording).not.toHaveBeenCalled();
+    expect(screen.getByLabelText('转写')).toBeTruthy();
+
+    await act(async () => {
+      fireEvent.press(screen.getByLabelText('转写'));
+      await Promise.resolve();
+    });
+
     await waitFor(() => expect(mockTranscribeRecording).toHaveBeenCalledTimes(1));
     await waitFor(() => expect(onAnswerChange).toHaveBeenCalledWith('normalized aviation transcript'));
     await waitFor(() => expect(screen.getByText('normalized aviation transcript')).toBeTruthy());
@@ -80,7 +87,7 @@ describe('AI speaking workbench', () => {
       aiResult: expect.objectContaining({ transcript: 'normalized aviation transcript' }),
     })));
     expect(screen.queryByLabelText('我的回答')).toBeNull();
-    expect(screen.queryByText('转写录音')).toBeNull();
+    expect(screen.getByTestId('study-workbench-transcribe-action')).toBeTruthy();
     expect(screen.queryByText('原始识别文本（只读）')).toBeNull();
     expect(screen.queryByText('raw aviation transcript')).toBeNull();
   });
@@ -104,7 +111,6 @@ describe('AI speaking workbench', () => {
         onRetrySave={jest.fn()}
         onTabChange={jest.fn()}
         questionText="Question"
-        recordingKey="file:///silent.webm:3000"
         recordingUri="file:///silent.webm"
         referenceContent={null}
         referenceLabel="参考答案"
@@ -117,11 +123,15 @@ describe('AI speaking workbench', () => {
       />,
     );
 
+    expect(mockTranscribeRecording).not.toHaveBeenCalled();
+    await act(async () => {
+      fireEvent.press(screen.getByLabelText('转写'));
+      await Promise.resolve();
+    });
     await waitFor(() => expect(screen.getByText('未检测到清晰语音，请回放录音并检查麦克风后重新录制。')).toBeTruthy());
   });
 
-  it('does not transcribe the same recording again after the workbench remounts', async () => {
-    const onTranscriptionAttempted = jest.fn();
+  it('does not start a transcription after the workbench remounts until the user presses transcribe', async () => {
     const commonProps = {
       activeTab: 'mine' as const,
       answerText: '',
@@ -137,9 +147,7 @@ describe('AI speaking workbench', () => {
       onNoteChange: jest.fn(),
       onRetrySave: jest.fn(),
       onTabChange: jest.fn(),
-      onTranscriptionAttempted,
       questionText: 'Question',
-      recordingKey: 'file:///recording.wav:3000',
       recordingUri: 'file:///recording.wav',
       referenceContent: null,
       referenceLabel: '参考答案',
@@ -151,12 +159,16 @@ describe('AI speaking workbench', () => {
       topicTitle: '燃油',
     };
     const first = await render(<StudyWorkbench {...commonProps} tabs={[...commonProps.tabs]} />);
-    await waitFor(() => expect(mockTranscribeRecording).toHaveBeenCalledTimes(1));
-    await waitFor(() => expect(onTranscriptionAttempted).toHaveBeenCalledWith('file:///recording.wav:3000'));
+    expect(mockTranscribeRecording).not.toHaveBeenCalled();
     await first.unmount();
 
-    await render(<StudyWorkbench {...commonProps} tabs={[...commonProps.tabs]} transcriptionAttempted />);
+    const second = await render(<StudyWorkbench {...commonProps} tabs={[...commonProps.tabs]} />);
 
-    expect(mockTranscribeRecording).toHaveBeenCalledTimes(1);
+    expect(mockTranscribeRecording).not.toHaveBeenCalled();
+    await act(async () => {
+      fireEvent.press(second.getByLabelText('转写'));
+      await Promise.resolve();
+    });
+    await waitFor(() => expect(mockTranscribeRecording).toHaveBeenCalledTimes(1));
   });
 });

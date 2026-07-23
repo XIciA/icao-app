@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "state": "published",
+  "languageReview": {
+    "approved": true,
+    "reviewedAt": "2026-07-23",
+    "notes": "已统一中文标点、术语、标题层级和段落长度；未保留营销承诺。"
+  },
+  "factReview": {
+    "approved": true,
+    "reviewedAt": "2026-07-23",
+    "sourceIds": [
+      "icao-language-proficiency",
+      "icao-personnel-licensing-faq",
+      "caac-rating-scale",
+      "caac-pepec-guide"
+    ],
+    "notes": "仅保留可由 ICAO、CAAC 官方材料支持的考试与评级表述；训练建议明确为方法建议，不构成结果承诺。"
+  },
+  "rightsReview": {
+    "approved": true,
+    "reviewedAt": "2026-07-23",
+    "coverOrigin": "AI-generated for this article; no text, logo, airline livery or identifiable person."
+  },
+  "previewApproval": {
+    "approved": true,
+    "approvedAt": "2026-07-23T14:59:00+08:00",
+    "notes": "用户已明确确认正式稿、封面和真实页面预览，可以发布。"
+  },
+  "history": [
+    {
+      "state": "raw",
+      "at": "2026-07-23",
+      "note": "登记原始 DOCX 和 checksum。"
+    },
+    {
+      "state": "extracted",
+      "at": "2026-07-23",
+      "note": "提取标题、段落和列表，原始文件保持不变。"
+    },
+    {
+      "state": "editing",
+      "at": "2026-07-23",
+      "note": "删除无依据结论并按能力导向重写。"
+    },
+    {
+      "state": "fact_checked",
+      "at": "2026-07-23",
+      "note": "使用 ICAO、CAAC 官方资料核验。"
+    },
+    {
+      "state": "approved",
+      "at": "2026-07-23",
+      "note": "语言、事实和素材权利审核通过。"
+    },
+    {
+      "state": "built",
+      "at": "2026-07-23",
+      "note": "结构化发布包已构建；尚未取得预览批准。"
+    },
+    {
+      "state": "preview_approved",
+      "at": "2026-07-23T14:59:00+08:00",
+      "note": "用户明确确认正式稿、封面和真实页面预览，可以发布。"
+    },
+    {
+      "state": "published",
+      "at": "2026-07-23T15:18:00+08:00",
+      "note": "Editorial release v1 已导入生产环境；API 健康检查、鉴权、详情、404、ETag/304 和私有封面加载验证通过。"
+    }
+  ]
+}

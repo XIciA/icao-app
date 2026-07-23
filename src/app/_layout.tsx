@@ -82,8 +82,6 @@ export function AppStack() {
             <Stack.Protected guard={!auth.canAccessApp}>
               <Stack.Screen name="auth/[slug]" options={{ gestureEnabled: false }} />
             </Stack.Protected>
-            <Stack.Screen name="auth/callback" options={{ gestureEnabled: false }} />
-            <Stack.Screen name="auth/recovery" options={{ gestureEnabled: false }} />
             <Stack.Screen name="legal/[slug]" />
             <Stack.Protected guard={auth.canAccessApp}>
               <Stack.Screen name="(tabs)" options={{ animation: 'fade', fullScreenGestureEnabled: false, gestureEnabled: false }} />
@@ -95,7 +93,9 @@ export function AppStack() {
               />
               <Stack.Screen name="learning-records" />
               <Stack.Screen name="annotations" />
+              <Stack.Screen name="word-favorites" />
               <Stack.Screen name="content/[slug]" />
+              <Stack.Screen name="content/resources/[articleSlug]" />
               <Stack.Screen name="account/[slug]" />
               <Stack.Screen name="info/[slug]" />
               <Stack.Screen name="state/[slug]" />

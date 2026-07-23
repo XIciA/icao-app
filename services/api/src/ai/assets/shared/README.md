@@ -1,31 +1,17 @@
 # Shared AI Requirement Assets
 
-本目录是跨能力共享规则的唯一入口。这里放结构、状态、few-shot 筛选和输出质检，不放具体能力 prompt、术语正文或样本正文。
+本目录保存仍由运行时内容资产复用的输出质检规则，不放具体能力 prompt、术语正文或样本正文。
 
 ## 1. 当前文档
 
-- 文件: `content-asset-structure-v1.md`
-  作用: 内容资产结构和生命周期规则
-  典型问题: 新内容应该放在哪个目录、状态怎么标
-
-- 文件: `few-shot-selection-v1.md`
-  作用: few-shot 候选筛选规则
-  典型问题: 哪些 eval 样本适合进入 prompt examples
-
 - 文件: `output-quality-rules-v1.md`
-  作用: 输出质检规则
+  作用: 静态查词输出质检规则
   典型问题: 什么算越界、失败、需要人工复核
 
 ## 2. 引用方式
 
 - 来源: `capabilities/`
   如何使用 shared: 引用输出质检规则 ID，不重复复制共性边界
-
-- 来源: `domain/`
-  如何使用 shared: 按结构规则维护状态、ID 和字段
-
-- 来源: `evals/`
-  如何使用 shared: 按 few-shot 规则标注候选，引用相关质检规则 ID
 
 ## 3. 不放在 shared 的内容
 

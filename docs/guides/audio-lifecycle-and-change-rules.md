@@ -29,7 +29,7 @@
 | 原生录音 | `expo-recorder-adapter.ts` | Expo recorder/权限/preset；仅 E2E raw WAV 写入 | 提交资产、删除已提交资产、业务发布 |
 | 录音资产 | `RecordingRepository` | Expo FileSystem | 组件直接删除；URI 充当身份 |
 | 录音回放 | `useRecordingPlayback` | stable player、repository existence、orchestrator | 加载失败清 asset；initial source 与 replace 双驱动 |
-| 转写 | `StudyWorkbench` / AI client | `RecordingAsset.id` 触发一次、asset URI 上传 | 以 URI/时长做幂等键；失败回滚录音 |
+| 转写 | `StudyWorkbench` / AI client | 用户点击“转写”后，上传已提交录音资产的 URI | 以 URI/时长做幂等键；失败回滚录音 |
 
 合法依赖方向：
 
@@ -120,7 +120,7 @@ stateDiagram-v2
 - 4 秒加载超时或 native error 只设置 `playback_load_failed`；确认文件被系统清理时设置 `asset_missing`。
 - `asset_missing` 也只禁用回放，已经展开的答案和已有转写仍保留。
 - 每次播放前获取 `recordingPlayback` lease；完成、暂停、后台、错误或卸载后释放。
-- 自动转写用 `RecordingAsset.id` 记入 `attemptedTranscriptionKeys`，同一资产自动触发一次；重试是明确用户动作。
+- 转写只能由用户点击“转写”发起；同一时刻只允许该资产的一次在途请求。失败后由用户再次点击“转写”重试，重录成功后使用新资产 ID。
 - 新资产有新 ID，因此重录成功只对新 ID 触发；重录失败仍保留旧 ID 和旧结果。
 
 ## 7. 错误码与排障顺序
