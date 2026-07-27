@@ -31,6 +31,7 @@
     "content:audio:verify": "node tools/question-bank-audio-mapping-audit.mjs verify",
     "content:audio:verify:live": "node tools/question-bank-live-verify.mjs",
     "opi-hotspot:generate": "node scripts/generate-opi-hotspots.mjs",
+    "opi-hotspot:build": "node scripts/build-opi-hotspots.mjs",
     "opi-hotspot:check": "node scripts/validate-opi-hotspots.mjs",
     "content:radiotelephony:text-audit": "node tools/radiotelephony-audio-text-context-audit.mjs",
     "content:radiotelephony:text-audit:check": "node tools/radiotelephony-audio-text-context-audit.mjs --check",

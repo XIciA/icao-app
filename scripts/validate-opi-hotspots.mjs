@@ -7,7 +7,12 @@ import { fileURLToPath } from 'node:url';
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const contentRoot = path.resolve(scriptDir, '../content/question-banks');
 const indexPath = path.join(contentRoot, 'opi-hotspots.json');
+const runtimePath = path.resolve(scriptDir, '../src/features/content/hotspot/data/opi-hotspots.json');
 const topicsDir = path.join(contentRoot, 'banks/opi/topics');
+if (!fs.existsSync(runtimePath)) throw new Error('opi_hotspot_validation_failed:runtime_index_missing');
+if (!fs.readFileSync(indexPath).equals(fs.readFileSync(runtimePath))) {
+  throw new Error('opi_hotspot_validation_failed:runtime_index_stale_run_opi_hotspot_build');
+}
 const index = JSON.parse(fs.readFileSync(indexPath, 'utf8'));
 const topics = new Map(
   fs.readdirSync(topicsDir)

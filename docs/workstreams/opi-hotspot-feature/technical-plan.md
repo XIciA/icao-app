@@ -4,7 +4,7 @@
 
 ## 数据
 
-热点 JSON 只保存 `brief → topicId → cardIds` 映射。运行时按声明的话题解析卡片；缺失、错属、重复和图片题均失败关闭。
+`content/question-banks/opi-hotspots.json` 是唯一维护源，只保存 `brief → topicId → cardIds` 映射。`pnpm opi-hotspot:build` 生成客户端运行索引；校验会拒绝源文件与生成文件不一致。运行时按声明的话题解析卡片，缺失、错属、重复和图片题均失败关闭。
 
 `scripts/validate-opi-hotspots.mjs` 在发布检查中验证：
 

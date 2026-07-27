@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const opiBase = path.resolve(scriptDir, '../content/question-banks/banks/opi');
 const outputPath = path.resolve(scriptDir, '../content/question-banks/opi-hotspots.json');
+const runtimePath = path.resolve(scriptDir, '../src/features/content/hotspot/data/opi-hotspots.json');
 const excludedCategories = new Set(['opi-category-08']);
 const centerPools = [
   ['广汉考点', '绵阳考点'],
@@ -101,9 +102,12 @@ for (let offset = 0; offset < 8; offset += 1) {
   });
 }
 
-fs.writeFileSync(outputPath, `${JSON.stringify({
+const outputBytes = `${JSON.stringify({
   generatedAt: '2026-07-23T14:43:19.270Z',
   briefs,
-}, null, 2)}\n`);
+}, null, 2)}\n`;
+fs.writeFileSync(outputPath, outputBytes);
+fs.mkdirSync(path.dirname(runtimePath), { recursive: true });
+fs.writeFileSync(runtimePath, outputBytes);
 
 console.log(`Generated ${briefs.length} OPI hotspot briefs at ${outputPath}`);

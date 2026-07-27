@@ -1,4 +1,4 @@
-import hotspotIndex from '@/../content/question-banks/opi-hotspots.json';
+import hotspotIndex from './data/opi-hotspots.json';
 
 import type { OpiHotspotBrief, OpiHotspotIndex } from './types';
 
