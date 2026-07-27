@@ -1,5 +1,8 @@
 .generated/
-/content/
+/content/*
+!/content/question-banks/
+/content/question-banks/*
+!/content/question-banks/opi-hotspots.json
 /原始资源资料/
 docs/
 infra/

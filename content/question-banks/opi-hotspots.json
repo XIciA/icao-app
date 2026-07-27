@@ -1,0 +1,538 @@
+{
+  "generatedAt": "2026-07-23T14:43:19.270Z",
+  "briefs": [
+    {
+      "id": "hotspot-2026-07-23",
+      "date": "2026-07-23",
+      "title": "7月23日 考试资讯",
+      "centers": [
+        "广汉考点",
+        "成都考点"
+      ],
+      "topics": [
+        {
+          "topicId": "opi-topic-0148",
+          "topicTitle": "侧窗",
+          "cardIds": [
+            "opi-extra-374",
+            "opi-extra-378-part-2",
+            "opi-extra-377",
+            "opi-extra-375",
+            "opi-extra-376",
+            "opi-extra-373-part-2"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0120",
+          "topicTitle": "失速警告",
+          "cardIds": [
+            "opi-extra-117",
+            "opi-extra-119",
+            "opi-extra-118",
+            "opi-extra-116",
+            "opi-extra-120"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0015",
+          "topicTitle": "SOP",
+          "cardIds": [
+            "opi-core-236-part-2",
+            "opi-core-237",
+            "opi-core-236",
+            "opi-core-233",
+            "opi-core-234",
+            "opi-core-235"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0089",
+          "topicTitle": "电力系统失效",
+          "cardIds": [
+            "opi-core-883",
+            "opi-core-879",
+            "opi-core-887",
+            "opi-core-885",
+            "opi-core-889",
+            "opi-core-886"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0003",
+          "topicTitle": "风切变",
+          "cardIds": [
+            "opi-core-052",
+            "opi-core-035",
+            "opi-core-053",
+            "opi-core-050",
+            "opi-core-039",
+            "opi-core-057"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hotspot-2026-07-22",
+      "date": "2026-07-22",
+      "title": "7月22日 考试资讯",
+      "centers": [
+        "绵阳考点"
+      ],
+      "topics": [
+        {
+          "topicId": "opi-topic-0070",
+          "topicTitle": "机上炸弹与可疑物品",
+          "cardIds": [
+            "opi-core-730",
+            "opi-extra-106",
+            "opi-core-731",
+            "opi-core-732",
+            "opi-core-733"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0031",
+          "topicTitle": "复飞",
+          "cardIds": [
+            "opi-core-459",
+            "opi-core-081",
+            "opi-core-197",
+            "opi-core-456"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0119",
+          "topicTitle": "烟雾",
+          "cardIds": [
+            "opi-core-076",
+            "opi-extra-115",
+            "opi-extra-113",
+            "opi-extra-114"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0063",
+          "topicTitle": "飞行记录本与手册文件",
+          "cardIds": [
+            "opi-core-674",
+            "opi-core-667",
+            "opi-core-671",
+            "opi-core-673",
+            "opi-core-670",
+            "opi-core-676"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0133",
+          "topicTitle": "飞行中失火",
+          "cardIds": [
+            "opi-extra-278",
+            "opi-extra-283",
+            "opi-extra-282",
+            "opi-extra-285",
+            "opi-extra-284",
+            "opi-extra-286"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hotspot-2026-07-21",
+      "date": "2026-07-21",
+      "title": "7月21日 考试资讯",
+      "centers": [
+        "广汉考点",
+        "成都考点"
+      ],
+      "topics": [
+        {
+          "topicId": "opi-topic-0099",
+          "topicTitle": "绕机检查",
+          "cardIds": [
+            "opi-extra-024",
+            "opi-extra-053",
+            "opi-extra-043",
+            "opi-extra-047",
+            "opi-extra-026",
+            "opi-extra-027"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0018",
+          "topicTitle": "燃油",
+          "cardIds": [
+            "opi-core-275",
+            "opi-core-292",
+            "opi-core-268",
+            "opi-core-273",
+            "opi-core-272",
+            "opi-core-288"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0114",
+          "topicTitle": "驾驶舱进入规则",
+          "cardIds": [
+            "opi-extra-081",
+            "opi-extra-082",
+            "opi-extra-083",
+            "opi-extra-084"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0123",
+          "topicTitle": "基本情况",
+          "cardIds": [
+            "opi-extra-173",
+            "opi-extra-165",
+            "opi-extra-150",
+            "opi-extra-170",
+            "opi-extra-152",
+            "opi-extra-155"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0085",
+          "topicTitle": "无线电检查",
+          "cardIds": [
+            "opi-core-852",
+            "opi-core-857",
+            "opi-core-854",
+            "opi-core-858",
+            "opi-core-855",
+            "opi-core-856"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hotspot-2026-07-20",
+      "date": "2026-07-20",
+      "title": "7月20日 考试资讯",
+      "centers": [
+        "广汉考点"
+      ],
+      "topics": [
+        {
+          "topicId": "opi-topic-0049",
+          "topicTitle": "着陆重量",
+          "cardIds": [
+            "opi-core-587",
+            "opi-core-583",
+            "opi-core-589",
+            "opi-core-588",
+            "opi-core-585",
+            "opi-core-586"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0025",
+          "topicTitle": "训练与复训",
+          "cardIds": [
+            "opi-core-388-part-2",
+            "opi-core-397",
+            "opi-core-406",
+            "opi-core-396",
+            "opi-core-409",
+            "opi-core-390"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0130",
+          "topicTitle": "疲劳与值勤限制",
+          "cardIds": [
+            "opi-extra-244",
+            "opi-extra-238",
+            "opi-extra-246",
+            "opi-extra-252",
+            "opi-extra-263",
+            "opi-extra-261"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0057",
+          "topicTitle": "FCTM",
+          "cardIds": [
+            "opi-core-631",
+            "opi-core-630",
+            "opi-core-629"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0019",
+          "topicTitle": "舱单",
+          "cardIds": [
+            "opi-core-303",
+            "opi-core-304",
+            "opi-core-307",
+            "opi-core-305"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hotspot-2026-07-19",
+      "date": "2026-07-19",
+      "title": "7月19日 考试资讯",
+      "centers": [
+        "广汉考点"
+      ],
+      "topics": [
+        {
+          "topicId": "opi-topic-0026",
+          "topicTitle": "外来物吸入",
+          "cardIds": [
+            "opi-core-226",
+            "opi-core-412",
+            "opi-core-415",
+            "opi-core-416",
+            "opi-core-414",
+            "opi-core-222"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0029",
+          "topicTitle": "夜航",
+          "cardIds": [
+            "opi-core-445",
+            "opi-core-442",
+            "opi-core-444",
+            "opi-core-441"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0035",
+          "topicTitle": "液压系统",
+          "cardIds": [
+            "opi-core-472",
+            "opi-core-473",
+            "opi-core-475",
+            "opi-core-479",
+            "opi-core-474",
+            "opi-core-477"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0118",
+          "topicTitle": "不稳定进近",
+          "cardIds": [
+            "opi-extra-111",
+            "opi-extra-108",
+            "opi-extra-110"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0147",
+          "topicTitle": "VASI",
+          "cardIds": [
+            "opi-extra-369",
+            "opi-extra-371",
+            "opi-extra-370",
+            "opi-extra-372"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hotspot-2026-07-18",
+      "date": "2026-07-18",
+      "title": "7月18日 考试资讯",
+      "centers": [
+        "广汉考点"
+      ],
+      "topics": [
+        {
+          "topicId": "opi-topic-0139",
+          "topicTitle": "飞行自动化系统",
+          "cardIds": [
+            "opi-extra-326",
+            "opi-extra-327",
+            "opi-extra-329",
+            "opi-extra-329-part-2"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0028",
+          "topicTitle": "颠簸",
+          "cardIds": [
+            "opi-core-430",
+            "opi-core-432",
+            "opi-core-439",
+            "opi-core-434",
+            "opi-core-428",
+            "opi-core-427"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0094",
+          "topicTitle": "备降与改航",
+          "cardIds": [
+            "opi-extra-025",
+            "opi-extra-023",
+            "opi-extra-021",
+            "opi-extra-017",
+            "opi-extra-015",
+            "opi-extra-019"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0112",
+          "topicTitle": "英语课程",
+          "cardIds": [
+            "opi-extra-066",
+            "opi-extra-073",
+            "opi-extra-072",
+            "opi-extra-070",
+            "opi-extra-074",
+            "opi-extra-067"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0054",
+          "topicTitle": "EFB",
+          "cardIds": [
+            "opi-core-621",
+            "opi-core-623",
+            "opi-core-622"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hotspot-2026-07-17",
+      "date": "2026-07-17",
+      "title": "7月17日 考试资讯",
+      "centers": [
+        "广汉考点",
+        "绵阳考点",
+        "成都考点"
+      ],
+      "topics": [
+        {
+          "topicId": "opi-topic-0071",
+          "topicTitle": "情景意识",
+          "cardIds": [
+            "opi-core-739",
+            "opi-core-737",
+            "opi-core-738"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0022",
+          "topicTitle": "发动机滑油",
+          "cardIds": [
+            "opi-core-319",
+            "opi-core-324",
+            "opi-core-334",
+            "opi-core-331",
+            "opi-core-325",
+            "opi-core-318"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0127",
+          "topicTitle": "发动机问题",
+          "cardIds": [
+            "opi-core-323",
+            "opi-core-336",
+            "opi-core-322",
+            "opi-core-321",
+            "opi-extra-214-part-2",
+            "opi-core-326"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0086",
+          "topicTitle": "紧急撤离",
+          "cardIds": [
+            "opi-core-097",
+            "opi-core-094",
+            "opi-core-113",
+            "opi-core-112",
+            "opi-core-096",
+            "opi-core-095"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0122",
+          "topicTitle": "问好",
+          "cardIds": [
+            "opi-extra-140",
+            "opi-extra-138",
+            "opi-extra-141",
+            "opi-extra-145",
+            "opi-extra-139",
+            "opi-extra-137"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hotspot-2026-07-16",
+      "date": "2026-07-16",
+      "title": "7月16日 考试资讯",
+      "centers": [
+        "广汉考点",
+        "绵阳考点"
+      ],
+      "topics": [
+        {
+          "topicId": "opi-topic-0037",
+          "topicTitle": "积雨云与雷暴",
+          "cardIds": [
+            "opi-core-508",
+            "opi-core-506",
+            "opi-core-496",
+            "opi-core-495",
+            "opi-core-504",
+            "opi-core-500"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0052",
+          "topicTitle": "尾流",
+          "cardIds": [
+            "opi-core-609",
+            "opi-core-611",
+            "opi-core-610",
+            "opi-core-612",
+            "opi-core-607"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0066",
+          "topicTitle": "人为因素与人为差错",
+          "cardIds": [
+            "opi-core-712",
+            "opi-core-707-part-2",
+            "opi-core-707",
+            "opi-core-708"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0030",
+          "topicTitle": "中断起飞",
+          "cardIds": [
+            "opi-core-454",
+            "opi-core-446",
+            "opi-core-450",
+            "opi-core-449",
+            "opi-core-452",
+            "opi-core-448"
+          ]
+        },
+        {
+          "topicId": "opi-topic-0032",
+          "topicTitle": "RVSM",
+          "cardIds": [
+            "opi-core-462",
+            "opi-core-461",
+            "opi-core-466",
+            "opi-core-463",
+            "opi-core-460"
+          ]
+        }
+      ]
+    }
+  ]
+}

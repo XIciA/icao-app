@@ -1,5 +1,5 @@
 import { usePreventRemove } from '@react-navigation/native';
-import { useRouter } from 'expo-router';
+import { type Href, useRouter } from 'expo-router';
 import { Check, ChevronLeft, ChevronRight, Flag, Grid3X3, Languages, Star, WifiOff } from 'lucide-react-native';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Keyboard, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
@@ -42,9 +42,18 @@ import { StudyReport } from './StudyReport';
 import { StudyTaskRenderer } from './StudyTaskRenderer';
 import { StudyWorkbench, type StudyWorkbenchHandle } from './StudyWorkbench';
 
-type Props = { dataset: QuestionBankDataset; category: QuestionBankCategory; topic: QuestionBankTopic; initialCardId?: string; returnTo?: 'annotations' | 'radio' };
+type Props = {
+  dataset: QuestionBankDataset;
+  category: QuestionBankCategory;
+  topic: QuestionBankTopic;
+  initialCardId?: string;
+  returnTo?: 'annotations' | 'radio';
+  returnHref?: Href;
+  returnLabel?: string;
+  sourceRoute?: string;
+};
 
-export function QuestionBankStudyScreen({ dataset, category, topic, initialCardId, returnTo }: Props) {
+export function QuestionBankStudyScreen({ dataset, category, topic, initialCardId, returnTo, returnHref, returnLabel, sourceRoute }: Props) {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const { width: viewportWidth } = useAppViewportDimensions();
@@ -76,11 +85,11 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
   const audioAsset = useQuestionBankAsset(card?.audio);
   const target = card && !imageCard ? { bankId: dataset.id, categoryId: category.id, topicId: topic.id, cardId: card.id } : undefined;
   const annotations = useQuestionAnnotations(target);
-
-  usePreventRemove(!session.report && !leavingStudy, () => { void leaveStudy(); });
-
-  useEffect(() => {
-    if (!leavingStudy) return;
+  const navigateAfterStudy = useCallback(() => {
+    if (returnHref) {
+      router.dismissTo(returnHref);
+      return;
+    }
     if (returnTo === 'annotations') {
       router.replace('/annotations');
       return;
@@ -90,7 +99,14 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
       return;
     }
     router.replace({ pathname: '/question-bank/[bankId]', params: { bankId: dataset.id } });
-  }, [dataset.id, leavingStudy, returnTo, router]);
+  }, [dataset.id, returnHref, returnTo, router]);
+
+  usePreventRemove(!session.report && !leavingStudy, () => { void leaveStudy(); });
+
+  useEffect(() => {
+    if (!leavingStudy) return;
+    navigateAfterStudy();
+  }, [leavingStudy, navigateAfterStudy]);
 
   useEffect(() => {
     let active = true;
@@ -390,7 +406,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
         params: {
           slug: 'feedback',
           source: 'study',
-          sourceRoute: `/question-bank/${dataset.id}/study/${category.id}/${topic.id}`,
+          sourceRoute: sourceRoute ?? `/question-bank/${dataset.id}/study/${category.id}/${topic.id}`,
           bankId: dataset.id,
           categoryId: category.id,
           topicId: topic.id,
@@ -433,7 +449,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
   }
 
   if (session.report) {
-    return <StudyReport interaction={dataset.study.interaction} noteCount={session.report.noteCount ?? 0} onReturn={() => returnTo === 'annotations' ? router.replace('/annotations') : returnTo === 'radio' ? router.replace('/content/radio') : router.replace({ pathname: '/question-bank/[bankId]', params: { bankId: dataset.id } })} record={session.report} />;
+    return <StudyReport interaction={dataset.study.interaction} noteCount={session.report.noteCount ?? 0} onReturn={navigateAfterStudy} record={session.report} />;
   }
   if (!session.hydrated) return <SafeAreaView style={styles.state}><AppText variant="caption">正在恢复学习进度…</AppText></SafeAreaView>;
   if (session.loadError || !card) return <SafeAreaView style={styles.state}><CenteredState actionLabel="重新加载" description={session.loadError ?? '当前题目不存在，请返回题库后重试。'} onAction={session.retryHydration} title="学习内容加载失败" tone="destructive" /></SafeAreaView>;
@@ -482,7 +498,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
     <SafeAreaView edges={['top']} style={styles.root}>
       <AppContentFrame style={styles.contentFrame}>
       <View style={styles.topBar}>
-        <Pressable accessibilityLabel={returnTo === 'radio' ? '返回随身听' : returnTo === 'annotations' ? '返回我的标注' : '返回题库目录'} disabled={finishing || taskInteractionActive} onPress={() => void leaveStudy()} style={({ pressed }) => [returnTo === 'radio' ? styles.returnToRadioButton : styles.circleButton, pressed ? styles.topBarPressed : null]}><ChevronLeft color={colors.foreground} size={21} />{returnTo === 'radio' ? <AppText variant="button">返回随身听</AppText> : null}</Pressable>
+        <Pressable accessibilityLabel={returnLabel ?? (returnTo === 'radio' ? '返回随身听' : returnTo === 'annotations' ? '返回我的标注' : '返回题库目录')} disabled={finishing || taskInteractionActive} onPress={() => void leaveStudy()} style={({ pressed }) => [returnTo === 'radio' ? styles.returnToRadioButton : styles.circleButton, pressed ? styles.topBarPressed : null]}><ChevronLeft color={colors.foreground} size={21} />{returnTo === 'radio' ? <AppText variant="button">返回随身听</AppText> : null}</Pressable>
         <View style={styles.topSpacer} />
         <Pressable accessibilityLabel="纠正当前题目内容" disabled={finishing || taskInteractionActive || cardTransitionActive} hitSlop={5} onPress={() => void openCorrectionFeedback()} style={({ pressed }) => [styles.correctionButton, pressed ? styles.counterPressed : null]}><Flag color={colors.mutedForeground} size={13} /><AppText color={colors.mutedForeground} variant="micro">纠错</AppText></Pressable>
         <Pressable accessibilityLabel="打开答题卡" disabled={taskInteractionActive} onPress={() => { finishWorkbenchEditing(); setAnswerCardVisible(true); }} style={({ pressed }) => [styles.counterButton, pressed ? styles.counterPressed : null]}><Grid3X3 color={colors.mutedForeground} size={15} /><AppText style={styles.counter} variant="button">{session.currentIndex + 1} / {topic.cards.length}</AppText></Pressable>
