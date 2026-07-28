@@ -1,6 +1,6 @@
 # Web Study Audio Incident: Mainland Static Asset Delivery
 
-状态：长期修复实施中；Git Preview、Production 与中国大陆实机验收待完成
+状态：Git Preview 已通过；Production 与中国大陆实机验收待完成
 
 日期：2026-07-28
 
@@ -50,6 +50,14 @@
 `release_output_missing_run_content_build` 内容产物前置门禁停止；本次没有生成、修改或发布
 题库内容 release，因此以各独立门禁作为代码回归证据。
 
+Git Preview `dpl_DwGeKmDVmNMLryfF7dPKXEuqGvVN` 已从提交 `b7506fb` 完成构建：
+`release.json` 为 `app-qb-v10-817646d597e77a8c`、6081 个文件、
+814518693 bytes。`Sentence18` 返回 `audio/mpeg`、支持 `206` Range，
+完整 SHA-256 为 `10570d04e65e9b333f6064caf063dc96e29c9f4358cac8840051f77db1968ffe`，
+与资源 manifest 一致。Preview 首页 HTML 只有入口 bundle，不引用题库音频；
+入口 bundle 压缩传输为 2581721 bytes，迁移前 Production 为 2581809 bytes，
+没有因静态资源目录增加首页负载。
+
 ## Rollback
 
 - 保留迁移前 Production deployment `dpl_7MxNsiYaSvPXxuC7vipHZHpcRqoP`。
@@ -59,9 +67,9 @@
 
 ## Acceptance
 
-- [ ] Git Preview 构建完成 6081 个文件、814518693 bytes
-- [ ] Preview marker、代表 MP3 的 `200/206`、MIME 和 checksum 通过
-- [ ] Preview 首页无题库音频请求，入口 bundle 相对基线无显著增长
+- [x] Git Preview 构建完成 6081 个文件、814518693 bytes
+- [x] Preview marker、代表 MP3 的 `200/206`、MIME 和 checksum 通过
+- [x] Preview 首页无题库音频请求，入口 bundle 相对基线无显著增长
 - [ ] Production 只从 `feizhuicao.com/question-bank-assets/*` 播放题卡音频
 - [ ] iPhone Safari 无 VPN 的 5G 与 Wi-Fi 首帧通过
 - [ ] macOS Chrome/Safari 与录音互斥无回归
