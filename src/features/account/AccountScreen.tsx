@@ -1,7 +1,8 @@
+import * as ImagePicker from 'expo-image-picker';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { AlertTriangle, Bell, Bookmark, Check, CheckCircle2, ChevronRight, Cloud, History, Info, Languages, LogOut, MapPin, Pencil, RefreshCcw, Shield, Trash2, UserRound } from 'lucide-react-native';
+import { AlertTriangle, Bookmark, Check, CheckCircle2, ChevronRight, Cloud, History, Info, LogOut, MapPin, Pencil, RefreshCcw, Shield, Trash2, UserRound } from 'lucide-react-native';
 import { useCallback, useEffect, useState } from 'react';
-import { ActivityIndicator, Pressable, StyleSheet, Switch, View } from 'react-native';
+import { ActivityIndicator, Alert, Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { TopBar } from '@/components/navigation/TopBar';
 import { AppModal } from '@/components/platform/AppModal';
@@ -14,6 +15,7 @@ import { sqliteLearningStore } from '@/features/question-bank/platform/learning-
 import { bindLearningSync, getLearningSyncStatus, inspectLearningSyncBinding, runLearningSync, type LearningSyncStatus } from '@/features/sync/learning-sync';
 import { colors, radii, spacing } from '@/theme';
 import { SESSION_STORAGE_LABEL } from '@/platform/session-storage-capabilities';
+import { updateProfile, useProfile } from './profile-store';
 
 type AccountSlug = 'profile' | 'edit-profile' | 'settings' | 'sync' | 'security' | 'delete-account';
 const pages: AccountSlug[] = ['profile', 'edit-profile', 'settings', 'sync', 'security', 'delete-account'];
@@ -31,34 +33,125 @@ export function AccountScreen() {
 }
 
 function Page({ title, children, scroll = true }: { title: string; children: React.ReactNode; scroll?: boolean }) {
-  return <Screen scroll={scroll} contentStyle={styles.screen}><TopBar title={title} />{children}</Screen>;
+  return <Screen contentStyle={styles.screen} scroll={scroll}><TopBar title={title} />{children}</Screen>;
 }
 
 function ProfilePage() {
   const router = useRouter();
   const auth = useAuth();
+  const profile = useProfile();
   const displayName = auth.session?.user.displayName ?? '飞行学员';
-  return <Page title="个人资料"><View style={styles.profileHero}><Avatar /><AppText variant="pageTitle">{displayName}</AppText><AppText variant="caption">账号 ID：{auth.session?.user.id.slice(0, 8)}</AppText><Tag>内测账号</Tag></View><View style={styles.content}><Section title="基本信息"><Row icon={UserRound} label="账户名称" value={displayName} first /><Row icon={Info} label="性别" value="男" /><Row icon={MapPin} label="所在地区" value="四川 · 广汉" /></Section><Section title="登录账号"><Row icon={Shield} label="邀请码登录" value="已启用" first /></Section><AppText variant="caption">账户名称由专属邀请码确定，用于账号归属与跨设备同步。</AppText><Button leading={<Pencil color={colors.primaryForeground} size={16} />} onPress={() => router.push('/account/edit-profile')}>编辑资料</Button></View></Page>;
+  return (
+    <Page title="个人资料">
+      <View style={styles.profileHero}>
+        <Avatar uri={profile.avatarUri} />
+        <AppText variant="pageTitle">{displayName}</AppText>
+        <AppText variant="caption">账号 ID：{auth.session?.user.id.slice(0, 8)}</AppText>
+        <Tag>内测账号</Tag>
+      </View>
+      <View style={styles.content}>
+        <Section title="基本信息">
+          <Row first icon={UserRound} label="账户名称" value={displayName} />
+          <Row icon={Info} label="性别" value={profile.gender} />
+          <Row icon={MapPin} label="所在地区" value={profile.region} />
+          <Row icon={Bookmark} label="个性签名" value={profile.signature} />
+        </Section>
+        <Section title="登录账号">
+          <Row first icon={Shield} label="邀请码登录" value="已启用" />
+        </Section>
+        <AppText variant="caption">账户名称由专属邀请码确定，用于账号归属与跨设备同步。</AppText>
+        <Button leading={<Pencil color={colors.primaryForeground} size={16} />} onPress={() => router.push('/account/edit-profile')}>编辑资料</Button>
+      </View>
+    </Page>
+  );
 }
 
 function EditProfilePage() {
   const router = useRouter();
   const auth = useAuth();
-  const [gender, setGender] = useState('男');
-  const [level, setLevel] = useState('ICAO 4 级');
-  const [signature, setSignature] = useState('每天进步一点点，冲刺 ICAO 4 级！');
+  const profile = useProfile();
+  const [avatarUri, setAvatarUri] = useState<string | null>(profile.avatarUri);
+  const [gender, setGender] = useState(profile.gender);
+  const [targetLevel, setTargetLevel] = useState(profile.targetLevel);
+  const [signature, setSignature] = useState(profile.signature);
+  const [region, setRegion] = useState(profile.region);
   const [saved, setSaved] = useState(false);
-  return <Page title="编辑资料"><View style={styles.avatarEdit}><Avatar small /><AppText variant="caption">点击更换头像</AppText></View><View style={styles.form}><TextField editable={false} label="账户名称" value={auth.session?.user.displayName ?? '飞行学员'} /><AppText variant="micro">账户名称由邀请码确定，如需调整请联系管理员。</AppText><Choice label="性别" options={['男', '女', '保密']} value={gender} onChange={setGender} /><TextField label="所在地区" value="四川 · 广汉" editable={false} /><Choice label="目标等级" options={['ICAO 4 级', 'ICAO 5 级', 'ICAO 6 级']} value={level} onChange={setLevel} compact /><TextField label="个性签名" multiline onChangeText={setSignature} style={styles.textarea} value={signature} /><Button onPress={() => setSaved(true)} size="lg">保存修改</Button><AppText style={styles.center} variant="micro">资料仅在本机演示，不会上传云端</AppText></View><BottomSheet onClose={() => setSaved(false)} visible={saved}><SheetResult title="资料已保存" body="本次仅更新演示状态，没有修改真实账户。" onPress={() => { setSaved(false); router.back(); }} /></BottomSheet></Page>;
+  const [saving, setSaving] = useState(false);
+
+  useEffect(() => {
+    setAvatarUri(profile.avatarUri);
+    setGender(profile.gender);
+    setTargetLevel(profile.targetLevel);
+    setSignature(profile.signature);
+    setRegion(profile.region);
+  }, [profile]);
+
+  async function chooseAvatar() {
+    const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (!permission.granted) {
+      Alert.alert('无法访问相册', '请在系统设置中允许访问照片后重试。');
+      return;
+    }
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ['images'],
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 0.8,
+    });
+    if (!result.canceled && result.assets[0]?.uri) {
+      setAvatarUri(result.assets[0].uri);
+    }
+  }
+
+  async function handleSave() {
+    setSaving(true);
+    await updateProfile({
+      avatarUri,
+      gender,
+      targetLevel,
+      signature,
+      region,
+    });
+    setSaving(false);
+    setSaved(true);
+  }
+
+  return (
+    <Page title="编辑资料">
+      <View style={styles.avatarEdit}>
+        <Pressable accessibilityLabel="更换头像" onPress={() => void chooseAvatar()}>
+          <Avatar small uri={avatarUri} />
+        </Pressable>
+        <Pressable accessibilityLabel="点击更换头像" onPress={() => void chooseAvatar()}>
+          <AppText color={colors.primary} variant="caption">点击更换头像</AppText>
+        </Pressable>
+      </View>
+      <View style={styles.form}>
+        <TextField editable={false} label="账户名称" value={auth.session?.user.displayName ?? '飞行学员'} />
+        <AppText variant="micro">账户名称由邀请码确定，如需调整请联系管理员。</AppText>
+        <Choice label="性别" onChange={setGender} options={['男', '女', '保密']} value={gender} />
+        <TextField label="所在地区" onChangeText={setRegion} value={region} />
+        <Choice compact label="目标等级" onChange={setTargetLevel} options={['ICAO 4 级', 'ICAO 5 级', 'ICAO 6 级']} value={targetLevel} />
+        <TextField label="个性签名" multiline onChangeText={setSignature} style={styles.textarea} value={signature} />
+        <Button disabled={saving} onPress={() => void handleSave()} size="lg">
+          {saving ? '正在保存…' : '保存修改'}
+        </Button>
+      </View>
+      <BottomSheet onClose={() => setSaved(false)} visible={saved}>
+        <SheetResult body="个人资料已更新并保存在本机。" onPress={() => { setSaved(false); router.back(); }} title="资料已保存" />
+      </BottomSheet>
+    </Page>
+  );
 }
 
 function SettingsPage() {
   const router = useRouter();
   const auth = useAuth();
-  const [notify, setNotify] = useState(false);
   const [confirm, setConfirm] = useState(false);
   const [signOutError, setSignOutError] = useState('');
   const [aiConsent, setAiConsent] = useState(false);
   useEffect(() => { void hasAiConsent().then(setAiConsent); }, []);
+
   async function revokeAi() {
     try {
       await withdrawAiConsent();
@@ -67,6 +160,7 @@ function SettingsPage() {
       setSignOutError('AI 数据处理同意撤回失败，请登录并稍后重试');
     }
   }
+
   async function signOut(all = false) {
     try {
       if (all) await auth.signOutAll();
@@ -77,7 +171,30 @@ function SettingsPage() {
       setSignOutError('退出失败，请稍后重试');
     }
   }
-  return <Page title="设置"><View style={styles.content}><Section title="账号"><Row icon={Shield} label="账号安全" hint="邀请码与会话" first onPress={() => router.push('/account/security')} /><Row icon={Bell} label="消息通知" value={notify ? '已开启' : '未开启'} trailing={<Switch value={notify} onValueChange={setNotify} />} /></Section><Section title="AI 与隐私"><Row icon={Shield} label={aiConsent ? '撤回 AI 数据处理同意' : 'AI 数据处理同意'} hint={aiConsent ? '撤回后仍可使用录音、回放和非 AI 学习功能' : '首次使用 AI 功能时由你明确确认'} value={aiConsent ? '已同意' : '未同意'} first onPress={aiConsent ? () => { void revokeAi(); } : undefined} /></Section><Section title="通用"><Row icon={Cloud} label="学习数据同步" value="自动同步" first onPress={() => router.push('/account/sync')} /><Row icon={Languages} label="语言" value="简体中文" /><Row icon={RefreshCcw} label="深色模式" value="跟随系统" /><Row icon={Trash2} label="清理缓存" value="12.6 MB" /></Section><Section title="支持"><Row icon={Info} label="帮助中心" first onPress={() => router.push('/info/help')} /><Row icon={Info} label="关于飞猪 ICAO" value={APP_DISPLAY_VERSION} onPress={() => router.push('/info/about')} /></Section>{signOutError ? <AppText color={colors.destructive} variant="caption">{signOutError}</AppText> : null}<Button disabled={!auth.session} leading={<LogOut color={colors.destructive} size={16} />} onPress={() => setConfirm(true)} variant="outline">退出登录</Button><AppText style={styles.center} variant="micro">© 2026 飞猪 ICAO</AppText></View><LogoutDialog visible={confirm} onCancel={() => setConfirm(false)} onCurrent={() => { void signOut(false); }} onAll={() => { void signOut(true); }} /></Page>;
+
+  return (
+    <Page title="设置">
+      <View style={styles.content}>
+        <Section title="账号">
+          <Row first hint="邀请码与会话" icon={Shield} label="账号安全" onPress={() => router.push('/account/security')} />
+        </Section>
+        <Section title="AI 与隐私">
+          <Row first hint={aiConsent ? '撤回后仍可使用录音、回放和非 AI 学习功能' : '首次使用 AI 功能时由你明确确认'} icon={Shield} label={aiConsent ? '撤回 AI 数据处理同意' : 'AI 数据处理同意'} onPress={aiConsent ? () => { void revokeAi(); } : undefined} value={aiConsent ? '已同意' : '未同意'} />
+        </Section>
+        <Section title="通用">
+          <Row first icon={Cloud} label="学习数据同步" onPress={() => router.push('/account/sync')} value="自动同步" />
+        </Section>
+        <Section title="支持">
+          <Row first icon={Info} label="帮助中心" onPress={() => router.push('/info/help')} />
+          <Row icon={Info} label="关于飞猪 ICAO" onPress={() => router.push('/info/about')} value={APP_DISPLAY_VERSION} />
+        </Section>
+        {signOutError ? <AppText color={colors.destructive} variant="caption">{signOutError}</AppText> : null}
+        <Button disabled={!auth.session} leading={<LogOut color={colors.destructive} size={16} />} onPress={() => setConfirm(true)} variant="outline">退出登录</Button>
+        <AppText style={styles.center} variant="micro">© 2026 飞猪 ICAO</AppText>
+      </View>
+      <LogoutDialog onAll={() => { void signOut(true); }} onCancel={() => setConfirm(false)} onCurrent={() => { void signOut(false); }} visible={confirm} />
+    </Page>
+  );
 }
 
 type SyncPhase = 'idle' | 'syncing' | 'success';
@@ -130,13 +247,13 @@ function SyncPage() {
         : bound
           ? ['云同步已绑定', status.lastSyncedAt ? `上次同步：${new Date(status.lastSyncedAt).toLocaleString()}` : '尚未完成首次同步。']
           : ['需要确认数据归属', '确认后先保留本机快照，再将数据归入当前内测账号。'];
-  return <Page title="学习数据同步"><View style={styles.content}><Card elevated style={styles.syncCard}><View style={styles.syncIcon}>{phase === 'syncing' ? <ActivityIndicator color={colors.primary} /> : phase === 'success' ? <Check color={colors.primary} size={22} /> : <Cloud color={colors.primary} size={22} />}</View><View style={styles.flex}><AppText variant="cardTitle">{copy[0]}</AppText><AppText variant="caption">{copy[1]}</AppText></View></Card><Section title="本机数据"><Row icon={History} label="学习记录" value={`${localCounts.records} 条`} first /><Row icon={Bookmark} label="标注与笔记" value={`${localCounts.annotations} 项`} /><Row icon={Cloud} label="待同步变更" value={`${status.pendingCount} 项`} /></Section>{error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}<Button disabled={phase === 'syncing'} leading={phase === 'syncing' ? <ActivityIndicator color={colors.primaryForeground} /> : <RefreshCcw color={colors.primaryForeground} size={16} />} onPress={() => void sync()} size="lg">{phase === 'syncing' ? '同步中' : !auth.session ? '去登录' : bound ? '立即同步' : '确认归属并同步'}</Button><AppText style={styles.center} variant="micro">失败不会删除本机数据；不支持跨账号自动合并。</AppText></View></Page>;
+  return <Page title="学习数据同步"><View style={styles.content}><Card elevated style={styles.syncCard}><View style={styles.syncIcon}>{phase === 'syncing' ? <ActivityIndicator color={colors.primary} /> : phase === 'success' ? <Check color={colors.primary} size={22} /> : <Cloud color={colors.primary} size={22} />}</View><View style={styles.flex}><AppText variant="cardTitle">{copy[0]}</AppText><AppText variant="caption">{copy[1]}</AppText></View></Card><Section title="本机数据"><Row first icon={History} label="学习记录" value={`${localCounts.records} 条`} /><Row icon={Bookmark} label="标注与笔记" value={`${localCounts.annotations} 项`} /><Row icon={Cloud} label="待同步变更" value={`${status.pendingCount} 项`} /></Section>{error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}<Button disabled={phase === 'syncing'} leading={phase === 'syncing' ? <ActivityIndicator color={colors.primaryForeground} /> : <RefreshCcw color={colors.primaryForeground} size={16} />} onPress={() => void sync()} size="lg">{phase === 'syncing' ? '同步中' : !auth.session ? '去登录' : bound ? '立即同步' : '确认归属并同步'}</Button><AppText style={styles.center} variant="micro">失败不会删除本机数据；不支持跨账号自动合并。</AppText></View></Page>;
 }
 
 function SecurityPage() {
   const auth = useAuth();
   const router = useRouter();
-  return <Page title="账号安全"><View style={styles.content}><Section title="登录与绑定"><Row icon={Shield} label="登录方式" value="专属邀请码" first /><Row icon={UserRound} label="账户名称" value={auth.session?.user.displayName ?? '未登录'} /></Section><Section title="安全"><Row icon={Shield} label="会话存储" value={SESSION_STORAGE_LABEL} first /></Section><Section title="危险操作"><Row danger icon={Trash2} label="注销账号" hint="永久删除账号与活跃数据" first onPress={() => router.push('/account/delete-account')} /></Section></View></Page>;
+  return <Page title="账号安全"><View style={styles.content}><Section title="登录与绑定"><Row first icon={Shield} label="登录方式" value="专属邀请码" /><Row icon={UserRound} label="账户名称" value={auth.session?.user.displayName ?? '未登录'} /></Section><Section title="安全"><Row first icon={Shield} label="会话存储" value={SESSION_STORAGE_LABEL} /></Section><Section title="危险操作"><Row danger first icon={Trash2} label="注销账号" hint="永久删除账号与活跃数据" onPress={() => router.push('/account/delete-account')} /></Section></View></Page>;
 }
 
 function DeleteAccountPage() {
@@ -147,7 +264,21 @@ function DeleteAccountPage() {
   return <Page title="注销账号"><View style={styles.delete}><View style={styles.dangerHero}><View style={styles.dangerIcon}><AlertTriangle color={colors.destructive} size={30} /></View><AppText variant="sectionTitle">此操作不可撤销</AppText><AppText style={styles.center}>注销账号会永久删除当前账号的活跃数据。</AppText></View><Card style={styles.risks}>{risks.map((risk) => <View key={risk} style={styles.risk}><View style={styles.riskDot}><AppText color={colors.destructive} variant="micro">×</AppText></View><AppText style={styles.flex}>{risk}</AppText></View>)}</Card><TextField autoCapitalize="characters" label="确认邀请码" onChangeText={setInviteCode} placeholder="请输入完整邀请码" value={inviteCode} /><TextField label="确认文字" onChangeText={setConfirmation} placeholder="请输入：注销账号" value={confirmation} /><Pressable onPress={() => setAgreed(!agreed)} style={styles.consent}><View style={[styles.checkbox, agreed && styles.checkboxOn]}>{agreed ? <Check color={colors.primaryForeground} size={12} /> : null}</View><AppText variant="caption">我已知晓上述风险，仍要注销账号</AppText></Pressable>{error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}<Button disabled={!ready || deleting} onPress={() => void remove()} size="lg" variant="destructive">{deleting ? '正在注销…' : '永久注销账号'}</Button><Button disabled={deleting} onPress={router.back} size="lg" variant="outline">放弃，返回</Button></View></Page>;
 }
 
-function Avatar({ small = false }: { small?: boolean }) { return <View style={[styles.avatar, small && styles.avatarSmall]}><UserRound color={colors.primary} size={small ? 25 : 32} /><View style={styles.editBadge}><Pencil color={colors.primaryForeground} size={9} /></View></View>; }
+function Avatar({ uri, small = false }: { uri?: string | null; small?: boolean }) {
+  return (
+    <View style={[styles.avatar, small && styles.avatarSmall]}>
+      {uri ? (
+        <Image accessibilityLabel="用户头像" source={{ uri }} style={[styles.avatarImage, small && styles.avatarSmallImage]} />
+      ) : (
+        <UserRound color={colors.primary} size={small ? 25 : 32} />
+      )}
+      <View style={styles.editBadge}>
+        <Pencil color={colors.primaryForeground} size={9} />
+      </View>
+    </View>
+  );
+}
+
 function Choice({ label, options, value, onChange, compact = false }: { label: string; options: string[]; value: string; onChange: (value: string) => void; compact?: boolean }) { return <View style={styles.choice}><AppText variant="button">{label}</AppText><View style={styles.choiceRow}>{options.map((option) => <Pressable key={option} onPress={() => onChange(option)} style={[styles.choiceButton, value === option && styles.choiceSelected]}><AppText color={value === option ? colors.primary : colors.mutedForeground} variant={compact ? 'micro' : 'caption'}>{option}</AppText></Pressable>)}</View></View>; }
 function Section({ title, children }: { title: string; children: React.ReactNode }) { return <View style={styles.section}><AppText variant="caption">{title}</AppText><Card style={styles.rows}>{children}</Card></View>; }
 function Row({ icon: Icon, label, hint, value, onPress, first = false, danger = false, trailing }: { icon: typeof UserRound; label: string; hint?: string; value?: string; onPress?: () => void; first?: boolean; danger?: boolean; trailing?: React.ReactNode }) { const content = <View style={[styles.row, !first && styles.rowBorder]}><View style={[styles.rowIcon, danger && styles.rowIconDanger]}><Icon color={danger ? colors.destructive : colors.primary} size={16} /></View><View style={styles.flex}><AppText color={danger ? colors.destructive : colors.foreground} variant="button">{label}</AppText>{hint ? <AppText variant="micro">{hint}</AppText> : null}</View>{value ? <AppText variant="caption">{value}</AppText> : null}{trailing}{onPress ? <ChevronRight color={colors.mutedForeground} size={16} /> : null}</View>; return onPress ? <Pressable onPress={onPress}>{content}</Pressable> : content; }
@@ -155,5 +286,5 @@ function SheetResult({ title, body, onPress }: { title: string; body: string; on
 function LogoutDialog({ visible, onCancel, onCurrent, onAll }: { visible: boolean; onCancel: () => void; onCurrent: () => void; onAll: () => void }) { return <AppModal animationType="slide" onRequestClose={onCancel} transparent visible={visible}><Pressable onPress={onCancel} style={styles.overlay}><Pressable onPress={() => undefined} style={styles.logout}><View style={styles.handle} /><View style={styles.dangerIcon}><LogOut color={colors.destructive} size={26} /></View><AppText variant="sectionTitle">退出登录</AppText><AppText style={styles.center}>退出不会删除学习数据；未同步变更会保留在本机。</AppText><Button onPress={onCurrent} size="lg">仅退出当前设备</Button><Button onPress={onAll} size="lg" variant="destructive">退出全部设备</Button><Button onPress={onCancel} size="lg" variant="outline">取消</Button></Pressable></Pressable></AppModal>; }
 
 const styles = StyleSheet.create({
-  screen: { paddingHorizontal: 0 }, content: { gap: spacing[5], padding: spacing[5] }, profileHero: { alignItems: 'center', gap: spacing[2], paddingHorizontal: spacing[5], paddingTop: spacing[5] }, avatar: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.full, height: 74, justifyContent: 'center', position: 'relative', width: 74 }, avatarSmall: { height: 58, width: 58 }, editBadge: { alignItems: 'center', backgroundColor: colors.primary, borderColor: colors.card, borderRadius: radii.full, borderWidth: 2, bottom: 0, height: 20, justifyContent: 'center', position: 'absolute', right: 0, width: 20 }, avatarEdit: { alignItems: 'center', gap: spacing[2], paddingTop: spacing[5] }, form: { gap: spacing[4], padding: spacing[5] }, formNoPad: { gap: spacing[4] }, textarea: { minHeight: 72, textAlignVertical: 'top' }, center: { textAlign: 'center' }, section: { gap: spacing[2] }, rows: { padding: 0 }, row: { alignItems: 'center', flexDirection: 'row', gap: spacing[3], minHeight: 58, paddingHorizontal: spacing[3] }, rowBorder: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth }, rowIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.md, height: 34, justifyContent: 'center', width: 34 }, rowIconDanger: { backgroundColor: 'rgba(219,43,51,0.08)' }, flex: { flex: 1 }, choice: { gap: spacing[2] }, choiceRow: { flexDirection: 'row', gap: spacing[2] }, choiceButton: { alignItems: 'center', backgroundColor: colors.card, borderColor: colors.input, borderRadius: radii.md, borderWidth: 1, flex: 1, justifyContent: 'center', minHeight: 40, paddingHorizontal: spacing[1] }, choiceSelected: { backgroundColor: colors.primary10, borderColor: colors.primary }, syncCard: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[3] }, syncIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.md, height: 44, justifyContent: 'center', width: 44 }, current: { alignItems: 'center', flexDirection: 'row', gap: spacing[3] }, softIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.md, height: 40, justifyContent: 'center', width: 40 }, delete: { gap: spacing[3], padding: spacing[5] }, dangerHero: { alignItems: 'center', gap: spacing[2] }, dangerIcon: { alignItems: 'center', backgroundColor: 'rgba(219,43,51,0.10)', borderRadius: radii.full, height: 62, justifyContent: 'center', width: 62 }, risks: { backgroundColor: 'rgba(219,43,51,0.04)', borderColor: 'rgba(219,43,51,0.22)', gap: spacing[3] }, risk: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[2] }, riskDot: { alignItems: 'center', backgroundColor: 'rgba(219,43,51,0.10)', borderRadius: radii.full, height: 18, justifyContent: 'center', width: 18 }, consent: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] }, checkbox: { alignItems: 'center', borderColor: colors.input, borderRadius: radii.sm, borderWidth: 1, height: 18, justifyContent: 'center', width: 18 }, checkboxOn: { backgroundColor: colors.primary, borderColor: colors.primary }, sheet: { alignItems: 'center', gap: spacing[3], paddingBottom: spacing[3] }, overlay: { backgroundColor: colors.overlay, flex: 1, justifyContent: 'flex-end' }, logout: { alignItems: 'stretch', backgroundColor: colors.card, borderTopLeftRadius: radii.xxl, borderTopRightRadius: radii.xxl, gap: spacing[3], padding: spacing[5], paddingBottom: spacing[8] }, handle: { alignSelf: 'center', backgroundColor: colors.border, borderRadius: radii.full, height: 4, marginBottom: spacing[1], width: 40 },
+  screen: { paddingHorizontal: 0 }, content: { gap: spacing[5], padding: spacing[5] }, profileHero: { alignItems: 'center', gap: spacing[2], paddingHorizontal: spacing[5], paddingTop: spacing[5] }, avatar: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.full, height: 74, justifyContent: 'center', overflow: 'hidden', position: 'relative', width: 74 }, avatarSmall: { height: 58, width: 58 }, avatarImage: { borderRadius: radii.full, height: 74, width: 74 }, avatarSmallImage: { height: 58, width: 58 }, editBadge: { alignItems: 'center', backgroundColor: colors.primary, borderColor: colors.card, borderRadius: radii.full, borderWidth: 2, bottom: 0, height: 20, justifyContent: 'center', position: 'absolute', right: 0, width: 20, zIndex: 2 }, avatarEdit: { alignItems: 'center', gap: spacing[2], paddingTop: spacing[5] }, form: { gap: spacing[4], padding: spacing[5] }, formNoPad: { gap: spacing[4] }, textarea: { minHeight: 72, textAlignVertical: 'top' }, center: { textAlign: 'center' }, section: { gap: spacing[2] }, rows: { padding: 0 }, row: { alignItems: 'center', flexDirection: 'row', gap: spacing[3], minHeight: 58, paddingHorizontal: spacing[3] }, rowBorder: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth }, rowIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.md, height: 34, justifyContent: 'center', width: 34 }, rowIconDanger: { backgroundColor: 'rgba(219,43,51,0.08)' }, flex: { flex: 1 }, choice: { gap: spacing[2] }, choiceRow: { flexDirection: 'row', gap: spacing[2] }, choiceButton: { alignItems: 'center', backgroundColor: colors.card, borderColor: colors.input, borderRadius: radii.md, borderWidth: 1, flex: 1, justifyContent: 'center', minHeight: 40, paddingHorizontal: spacing[1] }, choiceSelected: { backgroundColor: colors.primary10, borderColor: colors.primary }, syncCard: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[3] }, syncIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.md, height: 44, justifyContent: 'center', width: 44 }, current: { alignItems: 'center', flexDirection: 'row', gap: spacing[3] }, softIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.md, height: 40, justifyContent: 'center', width: 40 }, delete: { gap: spacing[3], padding: spacing[5] }, dangerHero: { alignItems: 'center', gap: spacing[2] }, dangerIcon: { alignItems: 'center', backgroundColor: 'rgba(219,43,51,0.10)', borderRadius: radii.full, height: 62, justifyContent: 'center', width: 62 }, risks: { backgroundColor: 'rgba(219,43,51,0.04)', borderColor: 'rgba(219,43,51,0.22)', gap: spacing[3] }, risk: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[2] }, riskDot: { alignItems: 'center', backgroundColor: 'rgba(219,43,51,0.10)', borderRadius: radii.full, height: 18, justifyContent: 'center', width: 18 }, consent: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] }, checkbox: { alignItems: 'center', borderColor: colors.input, borderRadius: radii.sm, borderWidth: 1, height: 18, justifyContent: 'center', width: 18 }, checkboxOn: { backgroundColor: colors.primary, borderColor: colors.primary }, sheet: { alignItems: 'center', gap: spacing[3], paddingBottom: spacing[3] }, overlay: { backgroundColor: colors.overlay, flex: 1, justifyContent: 'flex-end' }, logout: { alignItems: 'stretch', backgroundColor: colors.card, borderTopLeftRadius: radii.xxl, borderTopRightRadius: radii.xxl, gap: spacing[3], padding: spacing[5], paddingBottom: spacing[8] }, handle: { alignSelf: 'center', backgroundColor: colors.border, borderRadius: radii.full, height: 4, marginBottom: spacing[1], width: 40 },
 });

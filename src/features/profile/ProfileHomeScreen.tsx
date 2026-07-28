@@ -10,24 +10,32 @@ import { sqliteLearningStore } from '@/features/question-bank/platform/learning-
 import type { LearningRecord } from '@/features/question-bank/types';
 import { AccountScreen, Avatar, RowGroup, Row } from '@/components/account/account-ui';
 import { useAuth } from '@/features/auth/AuthProvider';
+import { useProfile } from '@/features/account/profile-store';
 
 const menu = [
   { slug: 'learning-records', label: '学习记录', icon: History },
   { slug: 'annotations', label: '我的标注', icon: Bookmark },
   { slug: 'word-favorites', label: '单词收藏', icon: Star },
   { slug: 'settings', label: '设置', icon: Settings },
-  { slug: 'feedback', label: '意见反馈', icon: MessageCircle }
+  { slug: 'feedback', label: '意见反馈', icon: MessageCircle },
 ];
 
 export function ProfileHomeScreen() {
   const router = useRouter();
   const auth = useAuth();
+  const profile = useProfile();
   const [records, setRecords] = useState<LearningRecord[]>([]);
-  useFocusEffect(useCallback(() => {
-    let active = true;
-    void sqliteLearningStore.getRecords().then((items) => { if (active) setRecords(items); });
-    return () => { active = false; };
-  }, []));
+  useFocusEffect(
+    useCallback(() => {
+      let active = true;
+      void sqliteLearningStore.getRecords().then((items) => {
+        if (active) setRecords(items);
+      });
+      return () => {
+        active = false;
+      };
+    }, []),
+  );
   const sessionRecords = useMemo(() => records.filter((item) => item.recordType !== 'ai_result'), [records]);
   const cards = useMemo(() => sessionRecords.reduce((sum, item) => sum + item.completedCount, 0), [sessionRecords]);
   const accountLabel = auth.restoring
@@ -41,33 +49,44 @@ export function ProfileHomeScreen() {
     else if (slug === 'annotations') router.push('/annotations');
     else if (slug === 'word-favorites') router.push('/word-favorites');
     else if (slug === 'settings') router.push('/account/settings');
-    else if (slug === 'feedback') router.push({
-      pathname: '/info/[slug]',
-      params: { slug: 'feedback', source: 'profile', sourceRoute: '/profile' },
-    });
+    else if (slug === 'feedback')
+      router.push({
+        pathname: '/info/[slug]',
+        params: { slug: 'feedback', source: 'profile', sourceRoute: '/profile' },
+      });
     else router.push('/account/profile');
   }
 
   return (
     <AccountScreen>
-      <Pressable accessibilityLabel={`个人资料，${accountLabel}`} onPress={() => open('profile-detail')} style={({ pressed }) => pressed ? styles.pressed : null}>
+      <Pressable
+        accessibilityLabel={`个人资料，${accountLabel}`}
+        onPress={() => open('profile-detail')}
+        style={({ pressed }) => (pressed ? styles.pressed : null)}
+      >
         <Card elevated style={styles.profile}>
-          <Avatar size={56} icon={UserRound} />
+          <Avatar icon={UserRound} size={56} uri={profile.avatarUri} />
           <View style={styles.copy}>
             <AppText variant="sectionTitle">{auth.session?.user.displayName ?? '飞行学员'}</AppText>
-            <AppText ellipsizeMode="middle" numberOfLines={1} style={styles.account} variant="caption">{accountLabel}</AppText>
-            <AppText variant="caption">目标：ICAO 4 级 · 加油！</AppText>
+            <AppText ellipsizeMode="middle" numberOfLines={1} style={styles.account} variant="caption">
+              {accountLabel}
+            </AppText>
+            <AppText variant="caption">目标：{profile.targetLevel} · 加油！</AppText>
           </View>
           <ChevronRight color={colors.mutedForeground} size={20} />
         </Card>
       </Pressable>
       <View style={styles.stats}>
         <Card style={styles.stat}>
-          <AppText style={styles.value} variant="pageTitle">{cards}</AppText>
+          <AppText style={styles.value} variant="pageTitle">
+            {cards}
+          </AppText>
           <AppText variant="caption">已学卡片</AppText>
         </Card>
         <Card style={styles.stat}>
-          <AppText style={styles.value} variant="pageTitle">{sessionRecords.length}</AppText>
+          <AppText style={styles.value} variant="pageTitle">
+            {sessionRecords.length}
+          </AppText>
           <AppText variant="caption">学习次数</AppText>
         </Card>
       </View>
@@ -75,16 +94,18 @@ export function ProfileHomeScreen() {
         <RowGroup>
           {menu.map((item, index) => (
             <Row
+              icon={item.icon}
+              isLast={index === menu.length - 1}
               key={item.slug}
               label={item.label}
-              icon={item.icon}
               onPress={() => open(item.slug)}
-              isLast={index === menu.length - 1}
             />
           ))}
         </RowGroup>
       </View>
-      <AppText style={styles.footer} variant="caption">© 2026 飞猪 ICAO · {APP_DISPLAY_VERSION}</AppText>
+      <AppText style={styles.footer} variant="caption">
+        © 2026 飞猪 ICAO · {APP_DISPLAY_VERSION}
+      </AppText>
     </AccountScreen>
   );
 }

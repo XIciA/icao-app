@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "editorial-resource-air-ground-communication-experience",
+  "slug": "air-ground-communication-experience",
+  "version": 1,
+  "channel": "resource",
+  "category": "radiotelephony",
+  "badge": "陆空通话",
+  "title": "陆空通话经验分享：用情景意识、完整确认与标准术语建立稳定表达",
+  "summary": "把每次陆空通话训练还原为“判断场景—提取关键信息—清晰回应—确认与澄清”的安全沟通闭环。",
+  "tags": [
+    "陆空通话",
+    "情景意识",
+    "标准用语"
+  ],
+  "publishedAt": "2026-07-23T21:57:07+08:00",
+  "cover": {
+    "publicPath": "/editorial-assets/air-ground-communication-experience/cover.jpg",
+    "sourceFile": "../../../assets/air-ground-communication-experience-cover.jpg",
+    "alt": "机场晨光下的航空耳机、无线电手持话筒和空白通话记录卡",
+    "width": 800,
+    "height": 500,
+    "mimeType": "image/jpeg"
+  }
+}

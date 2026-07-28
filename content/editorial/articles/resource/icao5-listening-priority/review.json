@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "state": "published",
+  "languageReview": {
+    "approved": true,
+    "reviewedAt": "2026-07-23",
+    "notes": "已统一中文标点、术语、标题层级和段落节奏；不保留分数、周期或结果承诺。"
+  },
+  "factReview": {
+    "approved": true,
+    "reviewedAt": "2026-07-23",
+    "sourceIds": [
+      "icao-personnel-licensing-faq",
+      "icao-language-rating-scale",
+      "caac-rating-scale"
+    ],
+    "notes": "仅保留 ICAO、CAAC 官方材料支持的能力框架和原则；国内考试具体题型、分数与题库信息全部移除。"
+  },
+  "rightsReview": {
+    "approved": true,
+    "reviewedAt": "2026-07-23",
+    "coverOrigin": "AI-generated for this article; no text, logo, airline livery or identifiable person."
+  },
+  "previewApproval": {
+    "approved": true,
+    "approvedAt": "2026-07-23T21:57:07+08:00",
+    "notes": "用户已明确确认两篇正式稿、封面和页面预览，可以发布 v2。"
+  },
+  "history": [
+    {
+      "state": "raw",
+      "at": "2026-07-23",
+      "note": "登记原始 DOCX 和 checksum。"
+    },
+    {
+      "state": "extracted",
+      "at": "2026-07-23",
+      "note": "提取标题、段落和列表，原始文件保持不变。"
+    },
+    {
+      "state": "editing",
+      "at": "2026-07-23",
+      "note": "删除题库、分数与结果策略，改写为完整语言能力训练文章。"
+    },
+    {
+      "state": "fact_checked",
+      "at": "2026-07-23",
+      "note": "使用 ICAO、CAAC 官方资料核验语言能力框架。"
+    },
+    {
+      "state": "approved",
+      "at": "2026-07-23",
+      "note": "语言、事实和素材权利审核通过；待构建和用户预览确认。"
+    },
+    {
+      "state": "built",
+      "at": "2026-07-23T21:53:00+08:00",
+      "note": "Editorial release v2 已构建并通过结构、来源、封面和 checksum 门禁；待真实页面预览。"
+    },
+    {
+      "state": "preview_approved",
+      "at": "2026-07-23T21:57:07+08:00",
+      "note": "用户明确确认两篇正式稿、封面和页面预览，可以发布 v2。"
+    },
+    {
+      "state": "published",
+      "at": "2026-07-23T22:04:57+08:00",
+      "note": "Editorial release v2 已导入生产环境；线上登录鉴权、文章详情、封面签名访问和 ETag 条件请求验证通过。"
+    }
+  ]
+}

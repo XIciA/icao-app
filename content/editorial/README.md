@@ -15,6 +15,7 @@ extract → editing → fact_checked → approved → build
 
 ```bash
 pnpm editorial:extract -- --source "原始资源资料/资源分享/文件.docx"
+pnpm editorial:extract -- --source "原始资源资料/资源分享/文件.pptx"
 pnpm editorial:check
 pnpm editorial:build
 pnpm editorial:preview
@@ -22,4 +23,6 @@ pnpm editorial:publish -- --confirm-preview-approved
 pnpm editorial:verify-live -- --base-url https://api.example.com --slug article-slug
 ```
 
-`publish` 仅在审核状态为 `preview_approved` 且显式传入确认参数时运行。生产发布前仍须按运维规则完成数据库备份、Migration 审核和 API 回滚准备。
+`extract` 支持 DOCX 与 PPTX。PPTX 输出按幻灯片顺序保留页码边界；仍须对源演示文稿进行视觉核验，以补足图像与图表中的信息。`publish` 仅在审核状态为 `preview_approved` 且显式传入确认参数时运行。生产发布前仍须按运维规则完成数据库备份、Migration 审核和 API 回滚准备。
+
+跨 Agent 的执行约定、权限边界、交接格式和发布门禁见 [OPERATIONS.md](./OPERATIONS.md)。Codex Skill、Antigravity 或人工操作者都必须以该文档及本目录内容为准；它们不拥有独立的内容或发布记录。

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "editorial-resource-icao5-listening-priority",
+  "slug": "icao5-listening-priority",
+  "version": 1,
+  "channel": "resource",
+  "category": "listening",
+  "badge": "听力训练",
+  "title": "ICAO 5 级备考：听力最重要？先建立完整的理解与表达能力",
+  "summary": "听力是高杠杆的输入训练，但 5 级备考更需要把理解、重组、表达、互动和复盘连接成完整能力闭环。",
+  "tags": [
+    "ICAO 5",
+    "听力训练",
+    "能力提升"
+  ],
+  "publishedAt": "2026-07-23T21:57:07+08:00",
+  "cover": {
+    "publicPath": "/editorial-assets/icao5-listening-priority/cover.jpg",
+    "sourceFile": "../../../assets/icao5-listening-priority-cover.jpg",
+    "alt": "机场晨光下的航空耳机、空白笔记本和显示音频波形的无文字设备",
+    "width": 800,
+    "height": 500,
+    "mimeType": "image/jpeg"
+  }
+}

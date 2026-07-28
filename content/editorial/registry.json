@@ -1,8 +1,10 @@
 {
   "schemaVersion": 1,
-  "releaseVersion": 1,
-  "builtAt": "2026-07-23T14:59:00+08:00",
+  "releaseVersion": 2,
+  "builtAt": "2026-07-23T21:57:07+08:00",
   "articles": [
-    "articles/resource/icao5-review-rhythm"
+    "articles/resource/icao5-review-rhythm",
+    "articles/resource/air-ground-communication-experience",
+    "articles/resource/icao5-listening-priority"
   ]
 }

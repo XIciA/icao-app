@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "state": "published",
+  "languageReview": {
+    "approved": true,
+    "reviewedAt": "2026-07-23",
+    "notes": "已将课程讲义改为面向学习者的正式文章，统一术语、中文标点、标题层级与段落长度。"
+  },
+  "factReview": {
+    "approved": true,
+    "reviewedAt": "2026-07-23",
+    "sourceIds": [
+      "icao-personnel-licensing-faq",
+      "icao-aviation-english-training",
+      "icao-annex-10-radiotelephony",
+      "caac-radiotelephony-phraseology"
+    ],
+    "notes": "只保留 ICAO、CAAC 官方资料支持的沟通原则；不把训练建议写成具体运行指令，也不保留题库、分数或通过结论。"
+  },
+  "rightsReview": {
+    "approved": true,
+    "reviewedAt": "2026-07-23",
+    "coverOrigin": "AI-generated for this article; no text, logo, airline livery or identifiable person."
+  },
+  "previewApproval": {
+    "approved": true,
+    "approvedAt": "2026-07-23T21:57:07+08:00",
+    "notes": "用户已明确确认两篇正式稿、封面和页面预览，可以发布 v2。"
+  },
+  "history": [
+    {
+      "state": "raw",
+      "at": "2026-07-23",
+      "note": "登记原始 PPTX 和 checksum。"
+    },
+    {
+      "state": "extracted",
+      "at": "2026-07-23",
+      "note": "按 33 张幻灯片提取文字并完成演示文稿渲染核验；原始文件保持不变。"
+    },
+    {
+      "state": "editing",
+      "at": "2026-07-23",
+      "note": "删除课程宣传、题号、评分与题库策略，按安全沟通能力重写。"
+    },
+    {
+      "state": "fact_checked",
+      "at": "2026-07-23",
+      "note": "使用 ICAO、CAAC 官方资料核验标准用语、普通语言、澄清与紧急通信表述。"
+    },
+    {
+      "state": "approved",
+      "at": "2026-07-23",
+      "note": "语言、事实和素材权利审核通过；待构建和用户预览确认。"
+    },
+    {
+      "state": "built",
+      "at": "2026-07-23T21:53:00+08:00",
+      "note": "Editorial release v2 已构建并通过结构、来源、封面和 checksum 门禁；待真实页面预览。"
+    },
+    {
+      "state": "preview_approved",
+      "at": "2026-07-23T21:57:07+08:00",
+      "note": "用户明确确认两篇正式稿、封面和页面预览，可以发布 v2。"
+    },
+    {
+      "state": "published",
+      "at": "2026-07-23T22:04:57+08:00",
+      "note": "Editorial release v2 已导入生产环境；线上登录鉴权、文章详情、封面签名访问和 ETag 条件请求验证通过。"
+    }
+  ]
+}

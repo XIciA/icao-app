@@ -323,17 +323,60 @@ function extract(flags) {
   const sourcePath = resolve(repoRoot, input);
   assert(sourcePath.startsWith(`${repoRoot}/`), 'invalid_extract_source');
   assert(existsSync(sourcePath), `extract_source_not_found:${input}`);
-  assert(extname(sourcePath).toLowerCase() === '.docx', 'extract_source_must_be_docx');
-  const result = spawnSync('pandoc', ['-f', 'docx', '-t', 'gfm', sourcePath], { encoding: 'utf8' });
-  assert(result.status === 0, `pandoc_extract_failed:${result.stderr.trim()}`);
+  const extension = extname(sourcePath).toLowerCase();
+  assert(['.docx', '.pptx'].includes(extension), 'extract_source_must_be_docx_or_pptx');
+  let normalized;
+  if (extension === '.docx') {
+    const result = spawnSync('pandoc', ['-f', 'docx', '-t', 'gfm', sourcePath], { encoding: 'utf8' });
+    assert(result.status === 0, `pandoc_extract_failed:${result.stderr.trim()}`);
+    normalized = result.stdout.replace(/\r\n/g, '\n').trimEnd();
+  } else {
+    normalized = extractPptx(sourcePath);
+  }
   const output = flags.get('out')
     ? resolve(repoRoot, flags.get('out'))
-    : join(repoRoot, '.generated/editorial/extracted', `${basename(sourcePath, '.docx')}.md`);
+    : join(repoRoot, '.generated/editorial/extracted', `${basename(sourcePath, extension)}.md`);
   assert(output.startsWith(`${repoRoot}/`), 'invalid_extract_output');
   mkdirSync(dirname(output), { recursive: true });
-  const normalized = result.stdout.replace(/\r\n/g, '\n').trimEnd();
-  writeFileSync(output, `<!-- source: ${relative(repoRoot, sourcePath)} -->\n<!-- sha256: ${sha256(readFileSync(sourcePath))} -->\n\n${normalized}\n`);
+  writeFileSync(output, `<!-- source: ${relative(repoRoot, sourcePath)} -->\n<!-- sha256: ${sha256(readFileSync(sourcePath))} -->\n<!-- format: ${extension.slice(1)} -->\n\n${normalized}\n`);
   console.log(`editorial_extract_ok source=${relative(repoRoot, sourcePath)} output=${relative(repoRoot, output)}`);
+}
+
+function decodeXmlText(value) {
+  return value
+    .replace(/&amp;/gu, '&')
+    .replace(/&lt;/gu, '<')
+    .replace(/&gt;/gu, '>')
+    .replace(/&quot;/gu, '"')
+    .replace(/&apos;/gu, "'");
+}
+
+function extractPptx(sourcePath) {
+  const listing = spawnSync('unzip', ['-Z1', sourcePath], { encoding: 'utf8' });
+  assert(listing.status === 0, `pptx_list_failed:${listing.stderr.trim()}`);
+  const slides = listing.stdout
+    .split('\n')
+    .map((entry) => {
+      const match = /^ppt\/slides\/slide(\d+)\.xml$/u.exec(entry.trim());
+      return match ? { path: entry.trim(), index: Number(match[1]) } : undefined;
+    })
+    .filter(Boolean)
+    .sort((left, right) => left.index - right.index);
+  assert(slides.length > 0, 'pptx_has_no_slides');
+
+  const extracted = slides.map((slide) => {
+    const xml = spawnSync('unzip', ['-p', sourcePath, slide.path], { encoding: 'utf8' });
+    assert(xml.status === 0, `pptx_slide_extract_failed:${slide.index}:${xml.stderr.trim()}`);
+    const paragraphs = [...xml.stdout.matchAll(/<a:p(?:\s[^>]*)?>([\s\S]*?)<\/a:p>/gu)]
+      .map((paragraph) => [...paragraph[1].matchAll(/<a:t(?:\s[^>]*)?>([\s\S]*?)<\/a:t>/gu)]
+        .map((text) => decodeXmlText(text[1]))
+        .join('')
+        .replace(/\s+/gu, ' ')
+        .trim())
+      .filter(Boolean);
+    return [`## 幻灯片 ${slide.index}`, '', paragraphs.join('\n\n') || '（未检测到可提取文本）'].join('\n');
+  });
+  return extracted.join('\n\n').trimEnd();
 }
 
 function preview(flags) {

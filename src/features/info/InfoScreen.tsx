@@ -18,7 +18,7 @@ import {
   X,
 } from 'lucide-react-native';
 import { useEffect, useMemo, useState } from 'react';
-import { Alert, Image, Pressable, StyleSheet, View } from 'react-native';
+import { Alert, Image, Linking, Platform, Pressable, Share, StyleSheet, View } from 'react-native';
 
 import { TopBar } from '@/components/navigation/TopBar';
 import { AppText, Button, Card, Screen, TextField } from '@/components/ui';
@@ -346,6 +346,32 @@ function feedbackErrorMessage(cause: unknown) {
 
 function AboutPage() {
   const router = useRouter();
+
+  async function handleRate() {
+    const url = Platform.OS === 'ios' ? 'https://apps.apple.com' : 'market://details?id=com.icao.app';
+    const can = await Linking.canOpenURL(url).catch(() => false);
+    if (can) {
+      await Linking.openURL(url);
+    } else {
+      Alert.alert('感谢支持', '当前处于内测阶段，暂未上线 App Store 应用商店。');
+    }
+  }
+
+  async function handleShare() {
+    try {
+      await Share.share({
+        message: `飞猪 ICAO - 航空英语·陆空通话备考助手\n版本：${APP_DISPLAY_VERSION}\n与我一起高效备考 ICAO 英语！`,
+        title: '飞猪 ICAO 备考助手',
+      });
+    } catch {
+      // ignore
+    }
+  }
+
+  function handleCheckUpdate() {
+    Alert.alert('检查更新', `当前版本（${APP_DISPLAY_VERSION}）已是最新版本。`);
+  }
+
   return (
     <Page title="关于飞猪 ICAO">
       <View style={styles.aboutHero}>
@@ -356,12 +382,12 @@ function AboutPage() {
       </View>
       <View style={styles.content}>
         <Section>
-          <Row icon={RefreshCcw} label="检查更新" value="已是最新版本" first />
-          <Row icon={Star} label="给我们评分" hint="去应用商店支持我们" onPress={() => undefined} />
-          <Row icon={Upload} label="分享给朋友" onPress={() => undefined} />
+          <Row first icon={RefreshCcw} label="检查更新" onPress={handleCheckUpdate} value="已是最新版本" />
+          <Row hint="去应用商店支持我们" icon={Star} label="给我们评分" onPress={() => void handleRate()} />
+          <Row icon={Upload} label="分享给朋友" onPress={() => void handleShare()} />
         </Section>
         <Section>
-          <Row icon={FileText} label="用户协议" first onPress={() => router.push('/info/agreement')} />
+          <Row first icon={FileText} label="用户协议" onPress={() => router.push('/info/agreement')} />
           <Row icon={ShieldCheck} label="隐私政策" onPress={() => router.push('/info/privacy')} />
         </Section>
         <AppText style={styles.copyright} variant="micro">Copyright © 2026 飞猪 ICAO{`\n`}All rights reserved</AppText>

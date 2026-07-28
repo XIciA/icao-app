@@ -1,5 +1,15 @@
 import { useRouter } from 'expo-router';
-import { BookMarked, Bot, ChevronRight, FileText, Flame, FolderOpen, GraduationCap, LineChart, Radio, type LucideIcon } from 'lucide-react-native';
+import {
+  BookMarked,
+  Bot,
+  ChevronRight,
+  Flame,
+  FolderOpen,
+  GraduationCap,
+  LineChart,
+  Radio,
+  type LucideIcon,
+} from 'lucide-react-native';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import { AppText, Card, Screen } from '@/components/ui';
@@ -13,12 +23,17 @@ const features: Entry[] = [
   { slug: 'mock-exam', title: 'AI 模考', en: 'Mock Exam', description: 'AI 考官问答实时评分', icon: Bot },
   { slug: 'ai-report', title: '学习报告', en: 'Report', description: '个性化能力分析建议', icon: LineChart, mock: true },
 ];
-const resources: Entry[] = [
+const resourceEntries: Entry[] = [
   { slug: 'hotspot', title: 'OPI 热点', en: 'OPI Focus', description: '每日各考点真实考题资讯', icon: Flame },
   { slug: 'resources', title: '资源分享', en: 'Resources', description: '备考资料与实用工具合集', icon: FolderOpen },
-  { slug: 'articles', title: '优质文章', en: 'Articles', description: '精选航空英语学习文章', icon: FileText },
-  { slug: 'courses', title: '体系课程', en: 'Courses', description: '从入门到冲刺的系统化课程体系', icon: GraduationCap },
 ];
+const courseEntry: Entry = {
+  slug: 'courses',
+  title: '体系课程',
+  en: 'Courses',
+  description: '从入门到冲刺的系统化课程体系',
+  icon: GraduationCap,
+};
 
 export function DiscoverHomeScreen() {
   const router = useRouter();
@@ -31,9 +46,9 @@ export function DiscoverHomeScreen() {
         <View style={styles.grid}>{features.map((entry) => <Feature key={entry.slug} entry={entry} onPress={() => open(entry.slug)} />)}</View>
       </Card>
       <SectionTitle title="资源" en="Resources" />
-      <View style={styles.list}>{resources.slice(0, 3).map((entry) => <ListEntry key={entry.slug} entry={entry} onPress={() => open(entry.slug)} />)}</View>
+      <View style={styles.list}>{resourceEntries.map((entry) => <ListEntry key={entry.slug} entry={entry} onPress={() => open(entry.slug)} />)}</View>
       <SectionTitle title="课程" en="Courses" />
-      <ListEntry entry={resources[3]} onPress={() => open(resources[3].slug)} emphasis />
+      <ListEntry entry={courseEntry} onPress={() => open(courseEntry.slug)} emphasis />
     </Screen>
   );
 }

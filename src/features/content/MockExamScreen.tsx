@@ -15,7 +15,7 @@ const modules: { id: MockExamModuleId; title: string; icon: typeof Headphones }[
   { id: 'listening', title: '听力', icon: Headphones }, { id: 'sentences900', title: '900 句', icon: MessageSquareQuote }, { id: 'radiotelephony', title: '陆空通话', icon: RadioTower }, { id: 'storytelling', title: '故事复诵', icon: BookOpenText }, { id: 'opi', title: 'OPI', icon: Mic2 },
 ];
 
-export function MockExamScreen({ reportOnly = false }: { reportOnly?: boolean }) {
+export function MockExamScreen() {
   const [examType, setExamType] = useState<MockExamType>('icao4-first');
   const [selected, setSelected] = useState<Set<MockExamModuleId>>(() => new Set(MOCK_EXAM_MODULES['icao4-first']));
   const [session, setSession] = useState<MockExamSession>();
@@ -29,7 +29,7 @@ export function MockExamScreen({ reportOnly = false }: { reportOnly?: boolean })
   const chooseType = (next: MockExamType) => { setExamType(next); setSelected(new Set(MOCK_EXAM_MODULES[next])); setError(undefined); };
   const start = async () => { if (!selectedIds.length) return; setBusy(true); setError(undefined); try { setSession(await buildMockExamSession({ examType, modules: selectedIds })); } catch (value) { setError(value instanceof Error ? value.message : '试卷生成失败，请重试。'); } finally { setBusy(false); } };
   if (session) return <MockExamSessionScreen session={session} onDone={(reason, answered) => { setCompleted({ reason, answered, total: session.items.length }); setSession(undefined); }} />;
-  if (completed || reportOnly) return <Completion reason={completed?.reason ?? 'complete'} answered={completed?.answered ?? 0} total={completed?.total ?? 0} onRestart={() => setCompleted(undefined)} />;
+  if (completed) return <Completion reason={completed.reason} answered={completed.answered} total={completed.total} onRestart={() => setCompleted(undefined)} />;
   return <Screen scroll contentStyle={styles.screen}><TopBar title="AI 模考" /><View style={styles.setup}>
     <View style={styles.hero}><AppText color={colors.primary} variant="micro">LEARNING MOCK EXAM</AppText><AppText variant="pageTitle">学习型模考</AppText><AppText>按考试规则组卷，作答和复盘沿用题库学习页。本功能不提供官方等级或评分。</AppText></View>
     <Section title="考试类型"><View style={styles.types}>{(Object.keys(MOCK_EXAM_MODULES) as MockExamType[]).map((id) => <Pressable key={id} onPress={() => chooseType(id)} style={[styles.type, examType === id && styles.active]}>{examType === id ? <View style={styles.typeCheck}><Check color={colors.primaryForeground} size={10} /></View> : null}<AppText style={styles.center} variant="sectionTitle">{MOCK_EXAM_TYPE_LABELS[id].replace(' 初考', '').replace(' 复考', '')}</AppText><AppText color={examType === id ? colors.primary : colors.mutedForeground} variant="caption">{id.endsWith('recert') ? '复考' : '初考'}</AppText></Pressable>)}</View></Section>

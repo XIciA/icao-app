@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "path": "原始资源资料/资源分享/ICAO5级备考：听力最重要？.docx",
+    "sha256": "e1dffae08efc68543563681bf5d9548a858b9d1620a5979bf60f34c0475c945a",
+    "title": "ICAO5 级备考：听力最重要？",
+    "preserved": true
+  },
+  "editorialChanges": [
+    "删除题库更新、题型变化、听力题数、分值、及格线、目标分数和通过风险等未经公开官方来源支持的结论。",
+    "删除将听力定义为唯一或最高优先级的绝对结论，改为说明其作为输入训练的高杠杆价值与边界。",
+    "将“刷题”和“背答案”的对立性表述改写为理解、重组、输出、互动和复盘的能力训练闭环。",
+    "以 ICAO 六项语言能力与沟通策略为结构，不对学习周期、等级或结果作承诺。"
+  ],
+  "factSources": [
+    {
+      "id": "icao-personnel-licensing-faq",
+      "title": "Personnel Licensing FAQ",
+      "publisher": "International Civil Aviation Organization",
+      "url": "https://www.icao.int/personnel-licensing-faq",
+      "checkedAt": "2026-07-23",
+      "supports": [
+        "ICAO 语言能力评价关注发音、结构、词汇、流利度、理解和互动",
+        "理解能力与互动中的确认、核实、澄清共同构成安全沟通能力"
+      ]
+    },
+    {
+      "id": "icao-language-rating-scale",
+      "title": "ICAO Language Proficiency Rating Scale",
+      "publisher": "International Civil Aviation Organization",
+      "url": "https://www.icao.int/MID/Documents/2015/IELP%20Workshop/06%20Sipos%20Rating%20Scale%20edited.pdf",
+      "checkedAt": "2026-07-23",
+      "supports": [
+        "ICAO 5 级的理解、流利度与互动描述",
+        "评价不是单一听力指标"
+      ]
+    },
+    {
+      "id": "caac-rating-scale",
+      "title": "民用航空器驾驶员和地面教员合格审定规则：语言能力等级量表",
+      "publisher": "中国民用航空局",
+      "url": "https://www.caac.gov.cn/PHONE/XXGK_17/XXGK/MHGZ/201605/t20160511_37226.html",
+      "checkedAt": "2026-07-23",
+      "supports": [
+        "中国民航英语语言能力等级与执照签注的相关规则"
+      ]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 import { useRouter } from 'expo-router';
 import { ArrowLeft, ChevronRight } from 'lucide-react-native';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 import type { PropsWithChildren } from 'react';
 
 import { AppText, Card, Screen } from '@/components/ui';
@@ -8,7 +8,7 @@ import { colors, radii, spacing } from '@/theme';
 
 export function AccountScreen({ children }: { children: React.ReactNode }) {
   return (
-    <Screen bottomInset scroll contentStyle={styles.screen}>
+    <Screen bottomInset contentStyle={styles.screen} scroll>
       {children}
     </Screen>
   );
@@ -61,10 +61,14 @@ export function Row({
   return content;
 }
 
-export function Avatar({ size = 56, icon: Icon }: { size?: number; icon?: any }) {
+export function Avatar({ size = 56, icon: Icon, uri }: { size?: number; icon?: any; uri?: string | null }) {
   return (
     <View style={[styles.avatar, { width: size, height: size, borderRadius: size / 2 }]}>
-      {Icon ? <Icon color={colors.primary} size={size / 2} /> : null}
+      {uri ? (
+        <Image accessibilityLabel="用户头像" source={{ uri }} style={{ width: size, height: size, borderRadius: size / 2 }} />
+      ) : Icon ? (
+        <Icon color={colors.primary} size={size / 2} />
+      ) : null}
     </View>
   );
 }
@@ -81,5 +85,5 @@ const styles = StyleSheet.create({
   rowPressed: { backgroundColor: colors.secondary },
   rowLabel: { flex: 1 },
   iconBox: { alignItems: 'center', backgroundColor: colors.primary08, borderRadius: radii.lg, height: 36, justifyContent: 'center', width: 36 },
-  avatar: { alignItems: 'center', backgroundColor: colors.primary10, justifyContent: 'center' },
+  avatar: { alignItems: 'center', backgroundColor: colors.primary10, justifyContent: 'center', overflow: 'hidden' },
 });

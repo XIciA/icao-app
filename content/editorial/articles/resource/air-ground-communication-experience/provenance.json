@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "path": "原始资源资料/资源分享/陆空通话经验分享.pptx",
+    "sha256": "3f8c367502812d269980c942062755da618ebfc0b13482cb2a42bb3adb4ac9d4",
+    "title": "飞猪 ICAO 体系课程：陆空通话",
+    "preserved": true
+  },
+  "editorialChanges": [
+    "将原课程幻灯片改写为独立的能力训练文章，不转载课件版式、品牌、题号或示例答案。",
+    "删除评分轮次、正确率、题库更新、原题概率和考试通过策略等无法由公开 ICAO、CAAC 一手资料支持的内容。",
+    "将“遗漏不确定信息”的答题策略改为以安全为核心的确认、复诵、请求重复与澄清原则。",
+    "保留并重组情景意识、首次联系、标准术语、普通语言和紧急通信的通用训练价值。"
+  ],
+  "factSources": [
+    {
+      "id": "icao-personnel-licensing-faq",
+      "title": "Personnel Licensing FAQ",
+      "publisher": "International Civil Aviation Organization",
+      "url": "https://www.icao.int/personnel-licensing-faq",
+      "checkedAt": "2026-07-23",
+      "supports": [
+        "在有规定的情形使用 ICAO 标准用语；标准用语不足以表达时使用普通语言",
+        "通过确认、核实和澄清处理沟通中的误解"
+      ]
+    },
+    {
+      "id": "icao-aviation-english-training",
+      "title": "Guidelines for Aviation English Training Programmes",
+      "publisher": "International Civil Aviation Organization",
+      "url": "https://www.icao.int/safety/lpr/documents/323_en.pdf",
+      "checkedAt": "2026-07-23",
+      "supports": [
+        "标准用语与普通语言在无线电通信中都可能需要",
+        "标准用语具有清晰、简洁、国际通用和操作意义明确的特点"
+      ]
+    },
+    {
+      "id": "icao-annex-10-radiotelephony",
+      "title": "Annex 10, Volume II: Aeronautical Telecommunications",
+      "publisher": "International Civil Aviation Organization",
+      "url": "https://www.icao.int/Meetings/anconf12/Document%20Archive/AN10_V2_cons%5B1%5D.pdf",
+      "checkedAt": "2026-07-23",
+      "supports": [
+        "紧急和遇险无线电话通信的优先级与基本构成",
+        "PAN PAN 和 MAYDAY 的使用属于运行程序，必须以现行程序和实际情况为准"
+      ]
+    },
+    {
+      "id": "caac-radiotelephony-phraseology",
+      "title": "空中交通无线电通话用语（MH/T 4014-2003）",
+      "publisher": "中国民用航空局",
+      "url": "https://www.caac.gov.cn/PHONE/XXGK_17/XXGK/BZGF/HYBZ/201511/t20151102_7597.html",
+      "checkedAt": "2026-07-23",
+      "supports": [
+        "我国民用航空空中交通无线电通话的规范表达和各飞行阶段相关内容"
+      ]
+    }
+  ]
+}
