@@ -1,5 +1,13 @@
 # Web Vercel 后端分离阶段记录
 
+## 2026-07-28：iOS Web 首次手动播放时序修复
+
+- 第二轮用户截图精确对应 `sentence900-main-018`；线上文件与 manifest checksum 一致，MIME、编码、时长、CORS、`200/206` 和 Range 均正常，排除资源损坏与普通加载延迟。
+- 截图触发的是“首帧启动超时”而不是“资源加载超时”；代码审计确认 Web 手动入口在 `await study lease` 后才调用 `play()`，导致 iOS 浏览器丢失首次有声播放所需的用户手势。
+- Web 手动点击现在先发起既有 lease 申请，并在同一点击同步栈内调用唯一 Expo player；lease 失败、页面失活或 generation 过期时立即暂停并释放迟到 lease。
+- 后续切题自动播放不是本次根因并予以保留；Native 的 lease-first 播放路径没有修改。
+- 新增 pending mode Promise 的调用顺序测试与 lease 失败恢复测试；完整自动化与发布证据在正式上线后补齐。
+
 ## 2026-07-28：新浏览器题卡音频首帧恢复
 
 - 代表性音频文件、跨域、Range 和不可变缓存检查正常；故障集中在 Web 新会话自动播放受限后，Expo Web 仍报告播放请求但时间停在 0 秒。

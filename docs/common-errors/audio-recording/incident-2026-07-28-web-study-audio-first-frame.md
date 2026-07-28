@@ -1,6 +1,6 @@
 # Web Study Audio Incident: First Playback Stuck at 0:00
 
-状态：长期修复已发布并通过正式域名新浏览器验收
+状态：第二轮根因修复待发布
 
 日期：2026-07-28
 
@@ -44,13 +44,17 @@ Actual:
 - Expo Web 可先发布 `playing=true, currentTime=0`，现有 UI 因而进入首帧 spinner。
 - `useAudioLoadTimeout` 只在 `isLoaded=false` 时计时，无法覆盖已经 loaded 但首帧不前进的状态。
 - 旧浏览器已有资源缓存和媒体使用历史；新浏览器同时面临冷请求与首次有声播放限制。
+- 第二轮截图精确对应 `sentence900-main-018`：线上 MP3 与 manifest SHA-256 一致，`200/206`、CORS、Range、MIME、编码和时长均正常。
+- 第二轮界面显示的是 6 秒“启动超时”而不是 12 秒“加载超时”；播放按钮只有在 Expo `isLoaded=true` 后可点击，因此故障发生在资源已装载之后。
+- 第二轮代码审计发现手动点击路径先 `await audioSessionOrchestrator.acquire(...)`，随后才执行 `player.play()`；Web 的 mode 切换虽然为空操作，Promise 边界仍会丢失 iOS 用户激活。
 
 ## Root cause
 
-Web 首次播放策略和播放器恢复状态机存在两个相邻缺口：
+Web 首次播放策略和播放器恢复状态机存在三个相邻缺口：
 
 1. 第一张题卡在浏览器尚未确认有声播放前盲目自动播放。
 2. 播放请求发出后只依赖 Expo 状态观察，没有独立的首帧期限；浏览器拒绝或媒体停在 0 秒时无法转入失败状态。
+3. 第一轮虽然增加了手势入口和首帧期限，但手动入口仍在异步 lease 完成后才调用 `play()`。iOS 将其视为脱离点击手势并拒绝播放；Expo 未转发底层 Promise rejection，最终由看门狗报告“音频启动超时”。
 
 该问题没有破坏音频 owner 或录音资产，但违反了资源失败必须有明确状态和重试入口的产品不变量。
 
@@ -67,9 +71,10 @@ Web 首次播放策略和播放器恢复状态机存在两个相邻缺口：
 
 - Shared owner/source of truth reused: `StudyAudioPlayer`、`AudioSessionOrchestrator`、题库资源 resolver 和既有 Expo player。
 - Implementation change: Web 学习会话在首次首帧确认前不自动播放；首次点击后才解锁后续切题自动播放。
-- Restored invariant: 每次播放仍先获取 `study` lease；没有增加 audio owner、player、资源映射或时长来源。
+- Second-round correction: Web 手动点击先发起既有 `study` lease 申请，并在同一点击同步栈内调用 Expo player；lease 失败或 generation 过期时立即暂停并释放迟到 lease。
+- Restored invariant: session 协调仍只有 `AudioSessionOrchestrator`；没有增加 audio owner、player、资源映射或时长来源。Native 与后续切题自动播放的 lease-first 路径不变。
 - Recovery change: 每个 Web 播放请求使用 generation 隔离的 6 秒首帧看门狗；超时后暂停、释放 lease，并显示“音频启动超时”与重试。
-- Regression test: 覆盖 Web 首次手势、首帧解锁、后续切题自动播放、0 秒超时，以及 iOS/Android 原有自动播放行为。
+- Regression test: 覆盖 Web `play()` 在 pending mode Promise 完成前同步发出、lease 失败暂停恢复、首次手势、首帧解锁、后续切题自动播放、0 秒超时，以及 iOS/Android 原有自动播放行为。
 - Static or release gate: `pnpm check:audio` 继续验证唯一 orchestrator 与音频边界。
 
 ## Verification

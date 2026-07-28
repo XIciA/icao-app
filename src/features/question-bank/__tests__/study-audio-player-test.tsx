@@ -144,6 +144,60 @@ describe('StudyAudioPlayer', () => {
     await screen.unmount();
   });
 
+  it('issues the first Web play call inside the user gesture without awaiting the audio lease', async () => {
+    setTestPlatform('web');
+    let finishModeSwitch!: () => void;
+    mockSetAudioModeAsync.mockReturnValueOnce(new Promise<void>((resolve) => { finishModeSwitch = resolve; }));
+    mockStatus = { ...initialMockStatus(), isBuffering: false, isLoaded: true, playbackState: 'readyToPlay' };
+    const screen = await render(
+      <StudyAudioPlayer autoPlayRequest={1} label="Sentence18" playbackKey="web-ios-gesture" uri="https://example.test/sentence-18.mp3" />,
+    );
+
+    fireEvent.press(screen.getByLabelText('播放'));
+
+    expect(mockSetAudioModeAsync).not.toHaveBeenCalled();
+    expect(mockPlayer.play).toHaveBeenCalledTimes(1);
+    expect(audioSessionOrchestrator.getActiveLeaseForTests()).toBeUndefined();
+
+    await waitFor(() => expect(mockSetAudioModeAsync).toHaveBeenCalledTimes(1));
+    await act(async () => {
+      finishModeSwitch();
+      await Promise.resolve();
+      await Promise.resolve();
+    });
+    await waitFor(() => expect(audioSessionOrchestrator.getActiveLeaseForTests()?.owner).toBe('study'));
+
+    mockStatus = { ...mockStatus, currentTime: 0.25, playing: true };
+    await screen.rerender(
+      <StudyAudioPlayer autoPlayRequest={1} label="Sentence18" playbackKey="web-ios-gesture" uri="https://example.test/sentence-18.mp3" />,
+    );
+    await screen.unmount();
+  });
+
+  it('pauses Web playback and exposes retry when the gesture-started lease fails', async () => {
+    setTestPlatform('web');
+    mockSetAudioModeAsync.mockRejectedValueOnce(new Error('mode failed'));
+    mockStatus = { ...initialMockStatus(), isBuffering: false, isLoaded: true, playbackState: 'readyToPlay' };
+    const screen = await render(
+      <StudyAudioPlayer autoPlayRequest={1} label="Sentence18" playbackKey="web-lease-failure" uri="https://example.test/sentence-18.mp3" />,
+    );
+    mockPlayer.pause.mockClear();
+
+    await act(async () => {
+      fireEvent.press(screen.getByLabelText('播放'));
+      await Promise.resolve();
+      await Promise.resolve();
+      await Promise.resolve();
+    });
+
+    expect(mockPlayer.play).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(screen.getByText('音频启动超时')).toBeTruthy());
+    expect(mockPlayer.pause).toHaveBeenCalled();
+    expect(screen.getByLabelText('重试音频')).toBeTruthy();
+    expect(audioSessionOrchestrator.getActiveLeaseForTests()).toBeUndefined();
+    await screen.unmount();
+  });
+
   it('turns a Web first-frame stall into a recoverable state instead of spinning forever', async () => {
     setTestPlatform('web');
     mockStatus = { ...initialMockStatus(), isBuffering: false, isLoaded: true, playbackState: 'readyToPlay' };

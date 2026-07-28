@@ -316,6 +316,43 @@ export function StudyAudioPlayer({
     void releaseAudioLease();
   }, [cancelWebStartAttempt, releaseAudioLease, tryPausePlayer]);
 
+  function startWebPlaybackFromGesture() {
+    if (Platform.OS !== 'web' || !uri) return;
+    if (status.didJustFinish || (status.duration > 0 && status.currentTime >= status.duration)) {
+      void trySeekPlayer(0);
+    }
+    const operationGeneration = playGeneration.current + 1;
+    playGeneration.current = operationGeneration;
+    beginWebStartAttempt();
+
+    // iOS browsers only permit audible playback while the user-activation
+    // handler is still on the stack. Start the lease transition first, but do
+    // not await it before issuing play(); Expo Audio Web does not expose the
+    // underlying HTMLMediaElement.play() rejection.
+    const leasePromise = audioSessionOrchestrator.acquire('study', 'study-play');
+    onPlaybackStart?.();
+    if (!tryPlayPlayer()) {
+      playGeneration.current += 1;
+      cancelWebStartAttempt('timed-out');
+      void leasePromise.then(releaseAudioLease, () => undefined);
+      return;
+    }
+
+    void leasePromise.then(async (lease) => {
+      if (operationGeneration !== playGeneration.current || appStateRef.current !== 'active') {
+        await releaseAudioLease(lease);
+        return;
+      }
+      audioLease.current = lease;
+    }, () => {
+      if (operationGeneration !== playGeneration.current) return;
+      playGeneration.current += 1;
+      pendingAutoPlayRef.current = false;
+      cancelWebStartAttempt('timed-out');
+      tryPausePlayer();
+    });
+  }
+
   async function toggle() {
     if (!uri) return;
     if (status.playing) {
@@ -323,6 +360,9 @@ export function StudyAudioPlayer({
       cancelWebStartAttempt();
       tryPausePlayer();
       await releaseAudioLease();
+    }
+    else if (Platform.OS === 'web') {
+      startWebPlaybackFromGesture();
     }
     else {
       if (status.didJustFinish || (status.duration > 0 && status.currentTime >= status.duration)) await trySeekPlayer(0);
@@ -340,7 +380,7 @@ export function StudyAudioPlayer({
         onPlaybackStart?.();
         if (!tryPlayPlayer()) throw new Error('study_player_play_failed');
       } catch {
-        cancelWebStartAttempt(Platform.OS === 'web' ? 'timed-out' : 'idle');
+        cancelWebStartAttempt();
         if (lease) await releaseAudioLease(lease);
       }
     }

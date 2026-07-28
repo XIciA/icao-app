@@ -144,6 +144,13 @@ stateDiagram-v2
 4. 确认 generation 是否过期、stop 是否被合并、AppState 是否触发取消。
 5. 最后再检查 player load 或服务端 ASR；不能先改 UI 状态掩盖生命周期错误。
 
+### Web 有声播放的用户手势边界
+
+- iOS 浏览器首次有声播放必须在用户点击处理函数的同步调用栈内发出，不能在 `await` 音频 lease、模式切换或其他 Promise 之后再调用 `play()`。
+- `StudyAudioPlayer` 的 Web 首次手动播放仍先发起既有 `study` lease 申请，但必须在同一次点击回调内同步调用稳定 Expo player；不得为此新增 HTML audio、第二 player 或第二 session owner。
+- lease 获取失败、页面失活、题卡切换或 generation 过期时，必须暂停该次播放并释放迟到的 lease。Native 和后续已解锁的切题自动播放继续遵守“lease 获取完成后播放”的原有顺序。
+- 回归测试必须让 Web mode 切换 Promise 保持 pending，并断言 `play()` 已在 Promise 完成前调用；只验证最终播放状态不足以覆盖浏览器用户手势约束。
+
 ## 8. 强制验收矩阵
 
 | 变更 | Jest / 静态 | iOS | Android | 发布证据 |
