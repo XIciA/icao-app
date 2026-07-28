@@ -21,13 +21,17 @@ const questionBankReleaseRoot = join(root, 'dist/question-bank-release');
 const editorialReleaseRoot = join(root, 'dist/editorial-release');
 const outputPath = join(root, '.generated/web-content/current-release.json');
 const releaseVersionArgumentIndex = process.argv.indexOf('--release-version');
+const reuseAssetsPointerArgumentIndex = process.argv.indexOf('--reuse-assets-pointer');
 const expectedReleaseVersion = Number(
   releaseVersionArgumentIndex >= 0
     ? process.argv[releaseVersionArgumentIndex + 1]
     : process.env.WEB_CONTENT_RELEASE_VERSION ?? 8,
 );
+const reuseAssetsPointerUrl = reuseAssetsPointerArgumentIndex >= 0
+  ? process.argv[reuseAssetsPointerArgumentIndex + 1]
+  : undefined;
 const prepareOnly = process.argv.includes('--prepare-only');
-const assetShardCount = 10;
+const defaultAssetShardCount = 10;
 const vercelScope = process.env.VERCEL_CONTENT_SCOPE ?? 'xixi-s-projects6';
 
 function fail(message) {
@@ -63,13 +67,13 @@ function questionBankResourcePath(sourceRelativePath) {
   fail(`web_content_resource_missing:${sourceRelativePath}`);
 }
 
-function shardForPath(path) {
+function shardForPath(path, shardCount) {
   let hash = 0x811c9dc5;
   for (let index = 0; index < path.length; index += 1) {
     hash ^= path.charCodeAt(index);
     hash = Math.imul(hash, 0x01000193) >>> 0;
   }
-  return hash % assetShardCount;
+  return hash % shardCount;
 }
 
 function run(command, args, options = {}) {
@@ -112,7 +116,101 @@ function staticVercelConfig() {
   }, null, 2)}\n`;
 }
 
-function prepareRelease() {
+function metadataVercelConfig() {
+  return `${JSON.stringify({
+    $schema: 'https://openapi.vercel.sh/vercel.json',
+    framework: null,
+    headers: [
+      {
+        source: '/web-content/current.json',
+        headers: [
+          { key: 'Access-Control-Allow-Origin', value: '*' },
+          { key: 'Cache-Control', value: 'public, max-age=0, must-revalidate' },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+        ],
+      },
+      {
+        source: '/web-content/releases/(.*)',
+        headers: [
+          { key: 'Access-Control-Allow-Origin', value: '*' },
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+        ],
+      },
+    ],
+  }, null, 2)}\n`;
+}
+
+async function fetchBytes(url, label) {
+  let lastError;
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    try {
+      const response = await fetch(url, { signal: AbortSignal.timeout(15_000) });
+      if (!response.ok) {
+        if (response.status < 500) fail(`web_content_reuse_fetch_failed:${label}:${response.status}`);
+        throw new Error(`http_${response.status}`);
+      }
+      return Buffer.from(await response.arrayBuffer());
+    } catch (error) {
+      lastError = error;
+      if (attempt < 3) await new Promise((resolvePromise) => setTimeout(resolvePromise, attempt * 250));
+    }
+  }
+  const code = lastError instanceof Error && 'cause' in lastError
+    && lastError.cause && typeof lastError.cause === 'object' && 'code' in lastError.cause
+    ? String(lastError.cause.code)
+    : 'unknown';
+  fail(`web_content_reuse_fetch_failed:${label}:${code}`);
+}
+
+function validReusePointer(value) {
+  return value
+    && typeof value === 'object'
+    && typeof value.releaseId === 'string'
+    && typeof value.baseUrl === 'string'
+    && value.baseUrl.startsWith('https://')
+    && Number.isInteger(value.assetShardCount)
+    && value.assetShardCount > 0
+    && typeof value.assetShardTemplate === 'string'
+    && value.assetShardTemplate.startsWith('https://')
+    && value.assetShardTemplate.includes('{shard}');
+}
+
+async function loadReusableAssets(localResourceManifestBytes) {
+  if (!reuseAssetsPointerUrl) return undefined;
+  if (!reuseAssetsPointerUrl.startsWith('https://')) fail('web_content_reuse_pointer_invalid');
+  const pointerBytes = await fetchBytes(reuseAssetsPointerUrl, 'pointer');
+  const pointer = JSON.parse(pointerBytes.toString('utf8'));
+  if (!validReusePointer(pointer)) fail('web_content_reuse_pointer_invalid');
+
+  const remoteManifestUrl = `${pointer.baseUrl.replace(/\/+$/u, '')}/question-bank/resources/manifest.json`;
+  const remoteManifestBytes = await fetchBytes(remoteManifestUrl, 'resource_manifest');
+  const localChecksum = sha256(localResourceManifestBytes);
+  const remoteChecksum = sha256(remoteManifestBytes);
+  if (localChecksum !== remoteChecksum) {
+    fail(`web_content_reuse_manifest_mismatch:local=${localChecksum}:remote=${remoteChecksum}`);
+  }
+
+  await Promise.all(Array.from({ length: pointer.assetShardCount }, async (_, index) => {
+    const shard = String(index + 1).padStart(2, '0');
+    const shardBaseUrl = pointer.assetShardTemplate.replace('{shard}', shard).replace(/\/+$/u, '');
+    const releaseBytes = await fetchBytes(`${shardBaseUrl}/release.json`, `asset_shard_${shard}`);
+    const release = JSON.parse(releaseBytes.toString('utf8'));
+    if (release.shard !== index + 1 || release.shardCount !== pointer.assetShardCount) {
+      fail(`web_content_reuse_shard_mismatch:${shard}`);
+    }
+  }));
+
+  return {
+    assetShardCount: pointer.assetShardCount,
+    assetShardTemplate: pointer.assetShardTemplate,
+    manifestChecksum: localChecksum,
+    pointerUrl: reuseAssetsPointerUrl,
+    releaseId: pointer.releaseId,
+  };
+}
+
+async function prepareRelease() {
   run(process.execPath, ['tools/question-bank-content.mjs', 'build']);
   run(process.execPath, ['tools/question-bank-content.mjs', 'check', '--full']);
   run(process.execPath, ['tools/vocabulary-content.mjs', 'check']);
@@ -126,6 +224,9 @@ function prepareRelease() {
     fail(`web_content_release_mismatch:expected=${expectedReleaseVersion}:actual=${questionBankManifest.releaseVersion}`);
   }
   const resourceSource = readJson(join(questionBankRoot, 'resources/manifest.source.json'));
+  const resourceManifestBytes = readFileSync(join(questionBankReleaseRoot, 'resources/manifest.json'));
+  const reusedAssets = await loadReusableAssets(resourceManifestBytes);
+  const assetShardCount = reusedAssets?.assetShardCount ?? defaultAssetShardCount;
   const vocabularyBytes = readFileSync(join(root, 'content/vocabulary/dataset.json'));
   const editorialManifestBytes = readFileSync(join(editorialReleaseRoot, 'manifest.json'));
   const releaseChecksum = sha256(Buffer.concat([
@@ -137,12 +238,14 @@ function prepareRelease() {
   const releaseId = `app-qb-v${questionBankManifest.releaseVersion}-${releaseChecksum.slice(0, 16)}`;
   const projectPrefix = `feizhuicao-v${questionBankManifest.releaseVersion}-${releaseChecksum.slice(0, 8)}`;
   const metadataProject = `${projectPrefix}-content`;
-  const assetShardTemplate = `https://${projectPrefix}-a{shard}.vercel.app`;
+  const assetShardTemplate = reusedAssets?.assetShardTemplate ?? `https://${projectPrefix}-a{shard}.vercel.app`;
   const baseUrl = `https://${metadataProject}.vercel.app/web-content/releases/${releaseId}`;
   const pointerUrl = `https://${metadataProject}.vercel.app/web-content/current.json`;
   const stagingRoot = mkdtempSync(join(tmpdir(), `icao-web-${releaseId}-`));
-  const shardDirectories = Array.from({ length: assetShardCount }, (_, index) =>
-    join(stagingRoot, `asset-${String(index + 1).padStart(2, '0')}`));
+  const shardDirectories = reusedAssets
+    ? []
+    : Array.from({ length: assetShardCount }, (_, index) =>
+      join(stagingRoot, `asset-${String(index + 1).padStart(2, '0')}`));
   const shardBytes = Array(assetShardCount).fill(0);
   const shardFiles = Array(assetShardCount).fill(0);
 
@@ -157,10 +260,14 @@ function prepareRelease() {
     }, null, 2)}\n`);
   }
   for (const resource of resourceSource.files) {
-    const shard = shardForPath(resource.publicPath);
-    const source = questionBankResourcePath(resource.sourceRelativePath);
-    copy(source, join(shardDirectories[shard], resource.publicPath.replace(/^\//u, '')));
-    shardBytes[shard] += statSync(source).size;
+    const shard = shardForPath(resource.publicPath, assetShardCount);
+    const sourceSize = resource.sizeBytes;
+    if (!reusedAssets) {
+      const source = questionBankResourcePath(resource.sourceRelativePath);
+      copy(source, join(shardDirectories[shard], resource.publicPath.replace(/^\//u, '')));
+      if (statSync(source).size !== sourceSize) fail(`web_content_resource_size_mismatch:${resource.publicPath}`);
+    }
+    shardBytes[shard] += sourceSize;
     shardFiles[shard] += 1;
   }
   if (Math.max(...shardBytes) >= 95_000_000) {
@@ -170,7 +277,7 @@ function prepareRelease() {
   const metadataDirectory = join(stagingRoot, 'metadata');
   const releaseDirectory = join(metadataDirectory, 'web-content/releases', releaseId);
   mkdirSync(releaseDirectory, { recursive: true });
-  writeFileSync(join(metadataDirectory, 'vercel.json'), staticVercelConfig());
+  writeFileSync(join(metadataDirectory, 'vercel.json'), metadataVercelConfig());
   for (const bank of questionBankManifest.banks) {
     copy(join(questionBankReleaseRoot, bank.file), join(releaseDirectory, 'question-bank', bank.file));
   }
@@ -199,6 +306,11 @@ function prepareRelease() {
       shardCount: assetShardCount,
       shardBytes,
       shardFiles,
+      manifestChecksum: sha256(resourceManifestBytes),
+      reusedFrom: reusedAssets ? {
+        releaseId: reusedAssets.releaseId,
+        pointerUrl: reusedAssets.pointerUrl,
+      } : undefined,
     },
     vocabulary: { words: 838, checksum: sha256(vocabularyBytes) },
     editorial: { version: editorialManifest.version, checksum: editorialManifest.checksum },
@@ -227,18 +339,22 @@ function prepareRelease() {
     pointerUrl,
     projectPrefix,
     releaseId,
+    reusedAssets,
     shardDirectories,
     stagingRoot,
   };
 }
 
-function main() {
-  const prepared = prepareRelease();
+async function main() {
+  const prepared = await prepareRelease();
   console.log(`web_content_static_prepared release=${prepared.releaseId} staging=${prepared.stagingRoot}`);
+  if (prepared.reusedAssets) {
+    console.log(`web_content_assets_reused release=${prepared.reusedAssets.releaseId} checksum=${prepared.reusedAssets.manifestChecksum}`);
+  }
   if (prepareOnly) return;
   prepared.shardDirectories.forEach((directory, index) => {
     const projectName = `${prepared.projectPrefix}-a${String(index + 1).padStart(2, '0')}`;
-    console.log(`web_content_static_deploy shard=${index + 1}/${assetShardCount} project=${projectName}`);
+    console.log(`web_content_static_deploy shard=${index + 1}/${defaultAssetShardCount} project=${projectName}`);
     deployProject(projectName, directory);
   });
   console.log(`web_content_static_deploy metadata project=${prepared.metadataProject}`);
@@ -247,4 +363,4 @@ function main() {
   rmSync(prepared.stagingRoot, { recursive: true, force: true });
 }
 
-main();
+await main();

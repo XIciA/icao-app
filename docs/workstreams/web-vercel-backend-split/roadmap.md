@@ -24,7 +24,7 @@
 ### C. 内容镜像
 
 - [x] 确认 Vercel Hobby Blob 的 2000 次高级操作上限不适合一次上传 6081 个资源。
-- [x] 以 `releaseVersion 8` 构建完整内容闭包。
+- [x] 以 `releaseVersion 8` 构建首次完整内容闭包。
 - [x] 将 814.5 MB 资源按稳定哈希部署到 10 个不可变 Vercel 静态项目。
 - [x] 部署独立版本清单项目和 `web-content/current.json`。
 - [x] 配置 Web 当前指针、分片模板、版本和 checksum。
@@ -39,7 +39,15 @@
 - [x] 真实浏览器网络目标检查。
 - [x] 删除旧 Web ECS/Supabase 环境变量。
 - [x] Production 切换并验证 `feizhuicao.com`。
-- [ ] Vercel 团队完成 AI Gateway 账单验证后，复验 Gateway 主转写并关闭当前阻塞项。
+- [x] Web 暂时隐藏转写按钮；AI Gateway 账单验证不再阻塞本次 v10 发布。
+
+### E. App v10 跟随同步
+
+- [x] 固化 App 真机基准：题库 v10、1223 道听力题的 4892 条中文选项、16 条 OPI 热点。
+- [x] 合并热点列表、真实题目详情、学习与返回链路。
+- [x] 扩展 `web:content:sync`，严格校验后复用 v8 的 6081 个不可变资源。
+- [ ] 发布 v10 metadata，部署 Preview 并完成浏览器验收。
+- [ ] Preview 通过后提升 Production，并记录正式域名和回滚证据。
 
 ### 已发现的网络事实
 
@@ -62,9 +70,9 @@
 ## 首发通过条件
 
 - 独立邀请码登录和刷新恢复成功。
-- release v8 的 6867 张卡片和完整资源闭包可从公开 versioned URL 读取。
+- release v10 的 6867 张卡片、听力中文选项和完整资源闭包可从公开 versioned URL 读取。
 - 代表性音频支持正常请求和播放。
-- 查词、文本 AI 和录音转写至少各完成一次真实请求。
+- 查词和文本 AI 至少各完成一次真实请求；Web 不显示转写按钮。
 - 浏览器运行时零 ECS 请求。
 - `feizhuicao.com` 指向已验收的 Vercel Production。
 - iOS/Android 配置、依赖和 ECS 链路未切换。

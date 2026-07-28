@@ -46,14 +46,14 @@ Browser
 ```text
 content/question-banks + vocabulary + editorial
         ↓ build/check
-releaseVersion 8 完整发布闭包
+releaseVersion 10 完整发布闭包
         ↓ pnpm web:content:sync
 10 个 Vercel 静态资源分片 + 1 个 metadata 项目
         ↓ 发布新的 current.json
 Web 自动读取新指针
 ```
 
-同步命令先运行完整题库、词汇和文章校验，再按资源公开路径的 FNV-1a 哈希分配到 10 个分片。发布 ID 和项目名由 App 题库版本及总 checksum 组成，每个静态项目只承载一个不可变 release。全部资源分片成功后才部署 metadata 指针，因此失败不会暴露半个版本。
+同步命令先运行完整题库、词汇和文章校验，再按资源公开路径的 FNV-1a 哈希分配到 10 个分片。发布 ID 和项目名由 App 题库版本及总 checksum 组成，每个静态项目只承载一个不可变 release。若指定 `--reuse-assets-pointer`，只有远端与本地资源 manifest 的完整 SHA-256、分片数量和全部分片身份都通过校验时，才复用已有不可变分片；否则立即失败。全部资源分片成功或严格复用通过后才部署 metadata 指针，因此失败不会暴露半个版本。
 
 首发必须核对：
 
@@ -75,6 +75,7 @@ Web 自动读取新指针
 - 文本 AI：Vercel Function 直接请求 DashScope OpenAI-compatible API。
 - 转写主路径：浏览器录音 → 同源 Function → Vercel AI Gateway → `gpt-4o-mini-transcribe`。
 - 转写备用路径：同源 Function → Model Studio 临时文件 → Qwen3-ASR。
+- 当前 Web UI 不展示转写按钮；两条转写路径暂时保留，恢复入口前必须重新完成 Preview 验收。
 - 单个录音源文件最大 3 MB，Function 超时 120 秒。
 - 两条路径均不在本项目保存录音或长期 AI 历史；备用临时文件由 Model Studio 自动过期。
 - 首版不保留长期 AI 历史，不实施用户用量额度。
