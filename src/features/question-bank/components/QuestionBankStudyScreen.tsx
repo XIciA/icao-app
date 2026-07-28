@@ -27,6 +27,7 @@ import { useQuestionAnnotations } from '../annotations/use-question-annotations'
 import type { AnnotationTextBlockId } from '../annotations/types';
 import { useStudySession } from '../hooks/useStudySession';
 import { useQuestionBankAsset } from '../hooks/useQuestionBankAsset';
+import { useQuestionBankAudioPreload } from '../hooks/useQuestionBankAudioPreload';
 import { resolveWordLookupInteraction, showsWordLookupModeToggle } from '../lib/word-lookup-interaction';
 import { getConnectivity, subscribeConnectivity, type Connectivity } from '../platform/network-service';
 import { findStaticWordLookup, hasStaticWordLookup, type StaticWordLookupEntry } from '../static-word-lookup/repository';
@@ -83,6 +84,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
   const card = session.card;
   const imageCard = card?.kind === 'image';
   const audioAsset = useQuestionBankAsset(card?.audio);
+  useQuestionBankAudioPreload(topic.cards, session.currentIndex);
   const target = card && !imageCard ? { bankId: dataset.id, categoryId: category.id, topicId: topic.id, cardId: card.id } : undefined;
   const annotations = useQuestionAnnotations(target);
   const navigateAfterStudy = useCallback(() => {

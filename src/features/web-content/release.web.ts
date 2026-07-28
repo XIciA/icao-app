@@ -5,6 +5,8 @@ import type { WebContentRelease } from './release';
 const CACHE_KEY = 'icao.web.content.release-pointer.v1';
 const POINTER_TIMEOUT_MILLISECONDS = 8_000;
 let pendingRelease: Promise<WebContentRelease> | undefined;
+let currentRelease: WebContentRelease | undefined;
+let backgroundRefreshScheduled = false;
 
 function validRelease(value: unknown): value is WebContentRelease {
   if (!value || typeof value !== 'object') return false;
@@ -68,12 +70,29 @@ async function fetchRelease() {
   }
 }
 
-export function loadWebContentRelease() {
-  pendingRelease ??= fetchRelease().catch((error) => {
+function refreshReleasePointer() {
+  pendingRelease ??= fetchRelease().then((release) => {
+    currentRelease = release;
+    return release;
+  }).catch((error) => {
     pendingRelease = undefined;
     throw error;
   });
   return pendingRelease;
+}
+
+export function loadWebContentRelease() {
+  currentRelease ??= configuredRelease();
+  if (currentRelease) {
+    if (!backgroundRefreshScheduled && process.env.EXPO_PUBLIC_ICAO_WEB_CONTENT_POINTER_URL) {
+      backgroundRefreshScheduled = true;
+      setTimeout(() => {
+        void refreshReleasePointer().catch(() => undefined);
+      }, 1_500);
+    }
+    return Promise.resolve(currentRelease);
+  }
+  return refreshReleasePointer();
 }
 
 export async function resolveWebContentUrl(path: string) {

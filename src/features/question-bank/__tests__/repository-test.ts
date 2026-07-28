@@ -146,10 +146,12 @@ describe('embeddedQuestionBankRepository', () => {
     } as Response);
 
     await expect(loadQuestionBank('opi')).resolves.toMatchObject({ source: 'remote', dataset: { id: 'opi' } });
+    await expect(loadQuestionBank('opi')).resolves.toMatchObject({ source: 'remote', dataset: { id: 'opi' } });
     expect(globalThis.fetch).toHaveBeenCalledWith(
       'https://content.example/releases/app-qb-v8-test/question-bank/banks/opi.json',
       expect.any(Object),
     );
+    expect(globalThis.fetch).toHaveBeenCalledTimes(1);
   });
 
   it('rewrites a cached signed URL to the current tunnel origin', async () => {

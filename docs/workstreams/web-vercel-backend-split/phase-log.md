@@ -1,5 +1,15 @@
 # Web Vercel 后端分离阶段记录
 
+## 2026-07-28：不改变海外部署的 Web 性能优化
+
+- Web 根布局不再等待约 14 MB 的 Noto Serif SC 字体文件；Geist UI 字体后台加载，中文标题使用系统衬线回退。Native 继续加载原有五套字体，显示路径不变。
+- Web 题库 release 与 App 内置 releaseVersion 一致时直接复用已构建数据；版本不一致时仍读取 Vercel 不可变镜像。模块内增加内存缓存、同题库在途请求去重和校验后的 IndexedDB 快速路径。
+- 题库目录的学习进度改为 Web 单事务批量读取，避免 OPI、陆空通话目录并发创建数百个 IndexedDB 事务；Native 继续使用原有逐题组读取路径。
+- Web 题目资源改为同步解析不可变 Vercel URL，学习页预加载后两题音频；没有新增音频 owner、播放器或 session 生命周期。
+- Web 随身听只在用户打开随身听后加载目录和准备音频，不再在登录完成后与题库页面争抢网络、解析和存储资源。
+- Expo 字体导入收敛到实际使用的四个字重，导出资源从 55 项降至 23 项；Noto Serif SC 不再进入 Web 导出。Web 首包 Brotli 由线上约 2.45 MB 降至本地产物约 1.70 MB。
+- `pnpm check` 全量通过：65 个 App Jest suites / 286 tests、8 个 API suites / 235 tests、题库/热点/内容/词汇/ASR、TypeScript、Lint、contracts 和 API build 均通过；`check:audio` 确认音频架构边界未变化。
+
 ## 2026-07-28：App v10 跟随同步
 
 - App 基准提交包含题库 v10、16 条 OPI 热点、听力中文选项和已验收的录音生命周期修复。

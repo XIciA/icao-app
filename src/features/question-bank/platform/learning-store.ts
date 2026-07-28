@@ -80,6 +80,46 @@ async function readTopicStates(topicId: string) {
   return result;
 }
 
+export async function readTopicStatesBatch(topics: readonly QuestionBankTopic[]) {
+  const topicIds = topics.map((topic) => topic.id);
+  await Promise.all(topicIds.map((topicId) => (
+    topicWriteQueues.get(`${TOPIC_PREFIX}${topicId}`)?.catch(() => undefined)
+  )));
+
+  const keys = topicIds.flatMap((topicId) => [
+    `${TOPIC_PREFIX}${topicId}`,
+    `${MIGRATION_PREFIX}${topicId}`,
+    `${LEGACY_TOPIC_PREFIX}${topicId}`,
+  ]);
+  const values = new Map(await Storage.multiGet(keys));
+  const writes: [string, string][] = [];
+  const statesByTopic: Record<string, Record<string, CardLearningState>> = {};
+
+  topicIds.forEach((topicId) => {
+    const currentKey = `${TOPIC_PREFIX}${topicId}`;
+    const current = normalizeTopicStates(parseJson<Record<string, Partial<CardLearningState>>>(
+      values.get(currentKey) ?? null,
+      {},
+    ));
+    if (values.get(`${MIGRATION_PREFIX}${topicId}`)) {
+      statesByTopic[topicId] = current;
+      return;
+    }
+
+    const legacy = normalizeTopicStates(parseJson<Record<string, Partial<CardLearningState>>>(
+      values.get(`${LEGACY_TOPIC_PREFIX}${topicId}`) ?? null,
+      {},
+    ));
+    const merged = { ...legacy, ...current };
+    statesByTopic[topicId] = merged;
+    if (Object.keys(merged).length > 0) writes.push([currentKey, JSON.stringify(merged)]);
+    writes.push([`${MIGRATION_PREFIX}${topicId}`, '1']);
+  });
+
+  if (writes.length > 0) await Storage.multiSet(writes);
+  return statesByTopic;
+}
+
 export const sqliteLearningStore: LearningStore = {
   async getCardState(topicId, cardId) {
     const states = await readTopicStates(topicId);

@@ -1,6 +1,3 @@
-import { Geist_400Regular, Geist_500Medium, Geist_600SemiBold } from '@expo-google-fonts/geist';
-import { GeistMono_400Regular } from '@expo-google-fonts/geist-mono';
-import { useFonts } from 'expo-font';
 import { Stack, SplashScreen, usePathname, useRouter, type ErrorBoundaryProps } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
@@ -15,18 +12,13 @@ import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';
 import { AppText } from '@/components/ui';
 import { AuthProvider, useAuth } from '@/features/auth/AuthProvider';
 import { AppRuntime } from '@/platform/AppRuntime';
+import { useAppFonts } from '@/platform/use-app-fonts';
 import { colors } from '@/theme';
 
 SplashScreen.preventAutoHideAsync().catch(() => undefined);
 
 export default function RootLayout() {
-  const [fontsLoaded, fontError] = useFonts({
-    Geist_400Regular,
-    Geist_500Medium,
-    Geist_600SemiBold,
-    GeistMono_400Regular,
-    NotoSerifSC_600SemiBold: require('../../assets/fonts/NotoSerifSC_600SemiBold.ttf'),
-  });
+  const [fontsLoaded, fontError] = useAppFonts();
 
   useEffect(() => {
     if (fontsLoaded || fontError) SplashScreen.hideAsync().catch(() => undefined);
