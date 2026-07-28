@@ -16,24 +16,24 @@
       "taskTitle": "图片题-007-01",
       "audioText": "What is meant by a high-altitude airport?",
       "audioTextZh": "什么是高海拔机场？",
-      "referenceText": "A high-altitude airport is an airport located far enough above sea level for reduced air density to have an important operational effect. The exact threshold used for a label can differ, so pilots rely on the airport elevation and aircraft performance data rather than the name alone. High temperature can further raise density altitude and worsen performance.",
-      "referenceTextZh": "高高原机场是海拔较高、空气密度降低已对运行产生重要影响的机场。具体称谓采用的高度标准可能不同，因此飞行员应依据机场标高和飞机性能数据，而不能只看名称。高温会进一步提高密度高度，使性能变差。"
+      "referenceText": "A high-altitude airport is located at a high elevation above sea level. Because the air is thinner, aircraft performance, approach planning, and landing distance must be checked carefully.",
+      "referenceTextZh": "高海拔机场位于海拔较高的位置。由于空气较稀薄，必须仔细检查飞机性能、进近计划和着陆距离。"
     },
     {
       "id": "opi-image-007-q02",
       "taskTitle": "图片题-007-02",
       "audioText": "If you had to land at the high-altitude airport shown, how would you prepare for a safe arrival?",
       "audioTextZh": "如果必须在图中所示的高海拔机场着陆，你会如何为安全到达做准备？",
-      "referenceText": "I would review airport elevation, terrain, weather, runway condition and approach or missed-approach gradients and calculate landing and go-around performance for the expected mass. The briefing would cover higher true airspeed and groundspeed, visual illusions, engine and brake limitations, oxygen or pressurization considerations and escape options. I would arrive stabilized with adequate fuel and use another airport if the required margins were not available.",
-      "referenceTextZh": "我会检查机场标高、地形、天气、跑道状况、进近和复飞梯度，并按预计重量计算着陆和复飞性能。简令会包括较高的真空速和地速、目视错觉、发动机和刹车限制、供氧或增压注意事项，以及脱离方案。我会在燃油充足的情况下以稳定状态进近；如果没有规定的安全裕度，就改用其他机场。"
+      "referenceText": "Because the air is thinner at a high-altitude airport, I would check the aircraft performance, approach planning, and landing distance very carefully before arrival.",
+      "referenceTextZh": "由于高海拔机场空气较稀薄，我会在到达前非常仔细地检查飞机性能、进近计划和着陆距离。"
     },
     {
       "id": "opi-image-007-q03",
       "taskTitle": "图片题-007-03",
       "audioText": "What challenges do pilots face when operating at high-altitude airports?",
       "audioTextZh": "在高海拔机场运行时，飞行员会面临哪些挑战？",
-      "referenceText": "Low air density reduces engine, propeller, rotor and wing performance and increases true airspeed for a given indicated speed. Takeoff and landing distances may be longer, climb and go-around capability lower, and terrain clearance more demanding. High groundspeed, weather, hypoxia risk and reduced braking or cooling margins can add workload.",
-      "referenceTextZh": "空气密度低会降低发动机、螺旋桨、旋翼和机翼性能，并使相同指示空速对应的真空速更高。起飞和着陆距离可能增加，爬升和复飞能力降低，越障也更具挑战。较高地速、天气、缺氧风险，以及制动或冷却裕度减小，都会增加工作负荷。"
+      "referenceText": "Pilots face thin air, longer landing distances, reduced engine performance, and terrain restrictions.",
+      "referenceTextZh": "飞行员面临的挑战包括空气稀薄、着陆距离增加、发动机性能下降和地形限制。"
     }
   ]
 }

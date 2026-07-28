@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-07-28T05:28:51Z",
+  "policy": {
+    "producer": "main Codex with synchronous proofreading",
+    "independentReviewer": "read-only Codex context",
+    "finalArbiter": "main Codex",
+    "reviewerProductionWrites": false
+  },
+  "sample": {
+    "size": 300,
+    "findingCount": 19,
+    "findingCardIds": [
+      "opi-core-849",
+      "opi-core-058-part-2",
+      "opi-core-624",
+      "opi-core-833",
+      "opi-core-857",
+      "opi-extra-125",
+      "opi-core-473",
+      "opi-core-525",
+      "opi-core-724",
+      "opi-core-852",
+      "opi-core-883",
+      "opi-extra-257",
+      "opi-extra-354",
+      "opi-image-003-q03",
+      "opi-image-012-q02",
+      "opi-core-781",
+      "opi-core-640",
+      "opi-extra-074",
+      "opi-extra-315"
+    ]
+  },
+  "escalation": {
+    "batchIds": [
+      "answer-completion-zh-001",
+      "answer-completion-zh-009",
+      "answer-completion-zh-012",
+      "answer-completion-zh-013",
+      "answer-completion-zh-014",
+      "answer-completion-zh-015",
+      "answer-completion-zh-018",
+      "answer-completion-zh-019"
+    ],
+    "reviewedCards": 432,
+    "newFindingCount": 29,
+    "newFindingCardIds": [
+      "opi-extra-247",
+      "opi-image-006-q02",
+      "opi-core-500",
+      "opi-core-504",
+      "opi-core-537",
+      "opi-core-543",
+      "opi-core-684",
+      "opi-core-689",
+      "opi-core-707",
+      "opi-core-725",
+      "opi-core-727",
+      "opi-extra-106",
+      "opi-core-113",
+      "opi-extra-004",
+      "opi-extra-015",
+      "opi-extra-017",
+      "opi-extra-021",
+      "opi-extra-038",
+      "opi-extra-066",
+      "opi-extra-067",
+      "opi-extra-072",
+      "opi-extra-073",
+      "opi-core-851",
+      "opi-core-858",
+      "opi-core-074",
+      "opi-extra-239",
+      "opi-extra-254",
+      "opi-extra-259",
+      "opi-core-065"
+    ]
+  },
+  "resolution": {
+    "totalFindingCount": 48,
+    "closedFindingCount": 48,
+    "reopenedBatchCount": 13,
+    "remainingFindingCount": 0,
+    "finalDigitWarningCount": 0,
+    "status": "closed"
+  }
+}

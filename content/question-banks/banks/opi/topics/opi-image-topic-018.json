@@ -15,23 +15,25 @@
       "id": "opi-image-018-q01",
       "taskTitle": "图片题-018-01",
       "audioText": "What can you see in this picture of an apparent tail-strike event?",
-      "audioTextZh": "你能从这张疑似擦机尾事件的图片中看到什么？"
+      "audioTextZh": "你能从这张疑似擦机尾事件的图片中看到什么？",
+      "referenceText": "The aircraft is rotating for takeoff with a high nose-up attitude. Its rear fuselage appears to be contacting or scraping the runway. This is consistent with a tail strike, although the amount of damage cannot be judged from the picture.",
+      "referenceTextZh": "飞机正以较大的机头上仰姿态抬轮起飞，其后机身似乎正在接触或擦碰跑道。这与擦尾现象相符，但无法从图片判断损伤程度。"
     },
     {
       "id": "opi-image-018-q02",
       "taskTitle": "图片题-018-02",
       "audioText": "How can takeoff weight affect the risk of a tail strike?",
       "audioTextZh": "起飞重量会如何影响擦机尾风险？",
-      "referenceText": "Higher weight normally requires a higher rotation speed and may change the time and distance needed to lift off. If the crew rotates early, too rapidly or with incorrect performance data, the aircraft may reach an excessive pitch attitude before adequate clearance develops. Weight is therefore one factor in the calculation and technique, not a direct cause by itself.",
-      "referenceTextZh": "重量增加通常需要更高的抬轮速度，也可能改变飞机离地所需的时间和距离。如果机组过早或过快抬轮，或使用了错误的性能数据，飞机可能在尚未形成足够离地间隙前达到过大的俯仰姿态。因此，重量是计算和操纵技术中的一个因素，本身并不是直接原因。"
+      "referenceText": "High takeoff weight is one factor that can increase the risk of a tail strike.",
+      "referenceTextZh": "较大的起飞重量是可能增加擦尾风险的因素之一。"
     },
     {
       "id": "opi-image-018-q03",
       "taskTitle": "图片题-018-03",
       "audioText": "How can a flight crew reduce the risk of a tail strike?",
       "audioTextZh": "飞行机组如何降低擦机尾风险？",
-      "referenceText": "The crew should verify weight, balance, takeoff speeds and configuration and use the aircraft's approved rotation technique. Pilots monitor pitch and rotation rate, avoid abrupt inputs and maintain a stabilized landing with correct flare technique. An unsafe bounce or go-around near the ground must be handled through the aircraft-specific procedure without excessive nose-up input.",
-      "referenceTextZh": "机组应核实重量、平衡、起飞速度和构型，并采用本机型批准的抬轮技术。飞行员应监控俯仰姿态和抬轮速率，避免突然操纵，并以正确的拉平技术保持稳定着陆。飞机在近地面发生不安全弹跳或复飞时，必须按照机型专用程序处理，不能输入过大的抬头操纵量。"
+      "referenceText": "The crew should brief the tail-strike threat, check the relevant aircraft performance, coordinate clearly, and follow the checklist. If safety were not assured, the takeoff should be delayed or rejected.",
+      "referenceTextZh": "机组应对擦尾威胁进行简令，检查相关飞机性能，保持清晰协调，并执行检查单。如果无法确保安全，应推迟起飞或中断起飞。"
     }
   ]
 }

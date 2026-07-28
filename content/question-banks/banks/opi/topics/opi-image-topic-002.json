@@ -15,23 +15,25 @@
       "id": "opi-image-002-q01",
       "taskTitle": "图片题-002-01",
       "audioText": "What can you see in this picture?",
-      "audioTextZh": "你能在这张图片中看到什么？"
+      "audioTextZh": "你能在这张图片中看到什么？",
+      "referenceText": "The picture shows a large passenger aircraft parked at a snow-covered airport. Snow is lying across the apron, and the weather appears very cold. Airport buildings and other aircraft can be seen in the background.",
+      "referenceTextZh": "图片中，一架大型客机停在被积雪覆盖的机场。停机坪上有积雪，天气看起来非常寒冷。背景中可以看到机场建筑和其他飞机。"
     },
     {
       "id": "opi-image-002-q02",
       "taskTitle": "图片题-002-02",
       "audioText": "How can ice on a wing affect flight safety?",
       "audioTextZh": "机翼结冰会如何影响飞行安全？",
-      "referenceText": "Ice changes the shape and surface of the wing. It reduces lift, increases drag, and may raise the stall speed. It can also reduce control effectiveness, so even a small amount of contamination may create a serious safety risk.",
-      "referenceTextZh": "结冰会改变机翼的形状和表面状态。它会减小升力、增大阻力，还可能提高失速速度。结冰也会降低操纵效能，因此即使只有少量污染物，也可能造成严重的安全风险。"
+      "referenceText": "Ice on a wing can reduce lift, increase drag, raise the stall speed, and cause possible control problems. These effects may reduce safety margins.",
+      "referenceTextZh": "机翼结冰会减小升力、增大阻力、提高失速速度，并可能导致操纵问题。这些影响会降低安全裕度。"
     },
     {
       "id": "opi-image-002-q03",
       "taskTitle": "图片题-002-03",
       "audioText": "What should a pilot do if ice or frost is found on the wings before departure?",
       "audioTextZh": "起飞前如果发现机翼上有冰或霜，飞行员应如何处置？",
-      "referenceText": "The pilot should not depart until the wings and other required critical surfaces are clean. Existing ice or frost must first be removed by an approved deicing process; anti-icing treatment may then be applied when needed to delay new contamination. The crew should follow the applicable procedure, consider holdover time and repeat the inspection if conditions require it.",
-      "referenceTextZh": "在机翼和其他规定的关键表面清洁之前，飞行员不应起飞。已有的冰或霜必须先通过经批准的除冰程序清除；必要时还可以进行防冰处理，以延缓新的污染物形成。机组应遵循适用程序，考虑防冰保持时间，并在条件需要时重新检查。"
+      "referenceText": "I would identify the wing contamination, communicate clearly, follow the checklist, and choose the safest option according to the aircraft status and operating conditions.",
+      "referenceTextZh": "我会识别机翼污染情况，保持清晰沟通，执行检查单，并根据飞机状态和运行条件选择最安全的方案。"
     }
   ]
 }

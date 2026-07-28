@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "ruleVersion": "opi-answer-completion-bilingual-v10-2026-07-28",
+  "appliedAt": "2026-07-28T05:29:29.691Z",
+  "releaseVersion": 10,
+  "releasedAt": "2026-07-28T05:29:16Z",
+  "questionLockHash": "6a1b20f3cdeb9438115675cbc1a196b7df41e83e1d1e9b84881c4588c1b13e93",
+  "englishLockHash": "ad2519fefd4374f6080b7594f544a533c3e9301e8525a687d20fede9d4e92f9a",
+  "finalLockHash": "64f583c1d3f587c2bf0afe7e07c9ee3ee889b4895072c366a73d56a3ce3e7686",
+  "sourceDigest": "35040cff9acbcb44c948df9e5aabddf339f3eb73658c9659ea421dbcb1148a44",
+  "registryHash": "5f15d0e5c92d7a6b374ab07c68937c9c074cfe8018e1e2aa412b2ff8dd194e2d",
+  "counts": {
+    "sourceFiles": 153,
+    "categories": 8,
+    "topics": 144,
+    "ordinaryTopics": 121,
+    "imageTopics": 23,
+    "cards": 1090,
+    "textCards": 1067,
+    "imageCards": 23,
+    "imageTopicTextCards": 64
+  },
+  "rollback": {
+    "snapshotRoot": ".generated/opi-answer-completion/snapshot",
+    "command": "node tools/opi-rebuild.mjs rollback-answer-completion"
+  }
+}

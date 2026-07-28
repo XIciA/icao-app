@@ -9,16 +9,16 @@
       "taskTitle": "气象-冬夏季运行-1",
       "audioText": "What factors should pilots consider during winter operations?",
       "audioTextZh": "冬季运行中，飞行员应考虑哪些因素？",
-      "referenceText": "Winter planning should cover icing and frost, deicing and holdover time, cold-temperature effects, runway contamination and braking action. Pilots should also consider snow-covered markings, visibility, strong winds, alternate airports and equipment or battery performance. Extra time and a careful preflight inspection are often necessary.",
-      "referenceTextZh": "冬季运行计划应涵盖结冰和结霜、除冰与防冰保持时间、低温影响、跑道污染和跑道制动状况。飞行员还应考虑积雪覆盖的标志、能见度、强风、备降机场以及设备或电池性能。通常需要预留更多时间，并认真进行飞行前检查。"
+      "referenceText": "Pilots should review the weather for icing conditions along the planned route. Before takeoff, they must make sure that ice has not accumulated on the aircraft and arrange deicing when required. They should also consider that runway braking action may be poor.",
+      "referenceTextZh": "飞行员应查看计划航路沿线是否存在结冰天气。起飞前，必须确保飞机没有积冰，并在需要时安排除冰。他们还应考虑跑道刹车效应可能较差。"
     },
     {
       "id": "opi-extra-331",
       "taskTitle": "气象-冬夏季运行-2",
       "audioText": "What hazards can pilots face during summer operations?",
       "audioTextZh": "夏季运行中，飞行员可能面临哪些危险？",
-      "referenceText": "Summer operations can bring thunderstorms, turbulence, wind shear, hail and intense rain. High temperature and high density altitude can reduce takeoff and climb performance, while heat can affect people and equipment. In some regions, smoke, dust or tropical weather may create additional visibility and routing hazards.",
-      "referenceTextZh": "夏季运行可能遇到雷暴、颠簸、风切变、冰雹和强降雨。高温和高密度高度会降低起飞与爬升性能，炎热还会影响人员和设备。在某些地区，烟雾、沙尘或热带天气也可能带来额外的能见度和航路危险。"
+      "referenceText": "Summer operations can expose pilots to thunderstorms, heavy rain, and lightning.",
+      "referenceTextZh": "夏季运行可能使飞行员面临雷暴、大雨和雷电。"
     }
   ]
 }

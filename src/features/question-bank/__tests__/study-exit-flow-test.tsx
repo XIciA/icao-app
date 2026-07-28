@@ -10,6 +10,7 @@ import type { LearningRecord, QuestionBankCategory, QuestionBankDataset, Questio
 const mockFinish = jest.fn();
 const mockGoTo = jest.fn();
 const mockFlush = jest.fn(async () => true);
+const mockDismissTo = jest.fn();
 const mockReplace = jest.fn();
 let mockPreventRemoveHandler: (() => void) | undefined;
 let mockTaskKind: 'choices' | 'recording' = 'choices';
@@ -17,7 +18,7 @@ let mockTaskKind: 'choices' | 'recording' = 'choices';
 jest.mock('@react-navigation/native', () => ({
   usePreventRemove: (_prevent: boolean, handler: () => void) => { mockPreventRemoveHandler = handler; },
 }));
-jest.mock('expo-router', () => ({ useRouter: () => ({ replace: mockReplace }) }));
+jest.mock('expo-router', () => ({ useRouter: () => ({ dismissTo: mockDismissTo, replace: mockReplace }) }));
 jest.mock('react-native-safe-area-context', () => {
   const { View: MockView } = jest.requireActual('react-native');
   return { SafeAreaView: ({ children }: { children: React.ReactNode }) => <MockView>{children}</MockView>, useSafeAreaInsets: () => ({ top: 0, right: 0, bottom: 0, left: 0 }) };
@@ -126,6 +127,7 @@ describe('study exit flow', () => {
     mockFinish.mockReset();
     mockGoTo.mockReset();
     mockFlush.mockReset().mockResolvedValue(true);
+    mockDismissTo.mockReset();
     mockReplace.mockReset();
     mockPreventRemoveHandler = undefined;
     mockTaskKind = 'choices';
@@ -182,6 +184,25 @@ describe('study exit flow', () => {
     await act(async () => { mockPreventRemoveHandler?.(); });
 
     await waitFor(() => expect(mockReplace).toHaveBeenCalledWith({ pathname: '/question-bank/[bankId]', params: { bankId: dataset.id } }));
+    expect(mockFinish).not.toHaveBeenCalled();
+    expect(mockFlush).toHaveBeenCalledTimes(1);
+  });
+
+  it('returns a hotspot session to its explicit detail route', async () => {
+    const returnHref = { pathname: '/content/hotspot/[briefId]', params: { briefId: 'hotspot-2026-07-23' } } as const;
+    const screen = await render(
+      <QuestionBankStudyScreen
+        category={category}
+        dataset={dataset}
+        returnHref={returnHref}
+        returnLabel="返回热点详情"
+        topic={topic}
+      />,
+    );
+
+    await act(async () => { fireEvent.press(screen.getByLabelText('返回热点详情')); });
+
+    await waitFor(() => expect(mockDismissTo).toHaveBeenCalledWith(returnHref));
     expect(mockFinish).not.toHaveBeenCalled();
     expect(mockFlush).toHaveBeenCalledTimes(1);
   });

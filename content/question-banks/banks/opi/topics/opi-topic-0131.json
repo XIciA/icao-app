@@ -9,16 +9,16 @@
       "taskTitle": "运行-客航与货航-1",
       "audioText": "What are the main operational differences between passenger and cargo flights?",
       "audioTextZh": "客运航班与货运航班在运行方面有哪些主要区别？",
-      "referenceText": "Passenger flights include cabin-service, passenger welfare and boarding considerations, while cargo flights focus more on freight loading, restraint and dangerous-goods information. Cargo schedules may contain more night sectors or airports with limited passenger facilities, but both operations use the same basic flight-safety principles. The crew must understand the specific load, ground-handling and emergency risks of the operation rather than assume that one is easier.",
-      "referenceTextZh": "客运飞行需要考虑客舱服务、旅客照料和登机，货运飞行则更侧重货物装载、固定和危险品信息。货运排班可能包含更多夜间航段或旅客设施有限的机场，但两类运行采用相同的基本飞行安全原则。机组必须了解具体运行的载荷、地面保障和应急风险，不能假定其中一种更容易。"
+      "referenceText": "Passenger flights carry people and their baggage and normally include passenger seating, cabin services, and cabin crew. Cargo flights mainly carry goods and may require special handling and documentation, particularly for dangerous goods. Cargo operations often use night schedules, while passenger flights operate more frequently during the day.",
+      "referenceTextZh": "客运航班运送旅客及其行李，通常设有旅客座位、客舱服务和客舱机组。货运航班主要运输货物，可能需要特殊的处理和文件，尤其是在运输危险品时。货运运行经常采用夜间时刻，而客运航班更多在日间运行。"
     },
     {
       "id": "opi-extra-274",
       "taskTitle": "运行-客航与货航-2",
       "audioText": "What are the main duties of pilots on a passenger flight?",
       "audioTextZh": "飞行员在客运航班上的主要职责有哪些？",
-      "referenceText": "Pilots plan and operate the flight, verify aircraft, weather, fuel, load and performance information, and coordinate with ATC, dispatch, cabin and ground teams. They monitor the aircraft and route, manage normal and abnormal situations and make decisions that protect passengers and crew. They also complete required records and report technical or safety events after the flight.",
-      "referenceTextZh": "飞行员计划并实施飞行，核实飞机、天气、燃油、载荷和性能信息，并与 ATC、签派、客舱和地面团队协调。他们监控飞机和航路，管理正常与异常情况，并作出保护旅客和机组的决定。飞行后，他们还应完成规定记录并报告技术或安全事件。"
+      "referenceText": "The pilots are responsible for the safe operation of the aircraft and for the safety of the people and their belongings on board.",
+      "referenceTextZh": "飞行员负责飞机的安全运行，并保障机上人员及其物品的安全。"
     }
   ]
 }

@@ -9,16 +9,16 @@
       "taskTitle": "运行-高度偏差-1",
       "audioText": "What are the main factors that can cause an altitude deviation?",
       "audioTextZh": "导致高度偏差的主要因素有哪些？",
-      "referenceText": "Altitude deviations can result from misunderstood clearances, incorrect readbacks, wrong mode or target selection, distraction and weak monitoring. Turbulence, high climb or descent rate, altimeter-setting errors and automation or instrument faults can also contribute. Confusion between units, transition levels or similar call signs may increase the risk.",
-      "referenceTextZh": "高度偏差可能由误解许可、复诵错误、方式或目标选择错误、分心和监控薄弱造成。颠簸、较大的爬升或下降率、高度表设定错误，以及自动化或仪表故障也可能成为原因。单位、过渡高度层或相似呼号混淆会进一步增加风险。"
+      "referenceText": "An altitude deviation can be caused by severe turbulence, an incorrect altitude setting, or an altimeter malfunction. It can also result from misunderstanding an ATC instruction.",
+      "referenceTextZh": "高度偏离可能由严重颠簸、高度设置错误或高度表故障造成，也可能是误解空中交通管制指令所致。"
     },
     {
       "id": "opi-extra-333",
       "taskTitle": "运行-高度偏差-2",
       "audioText": "How can a flight crew prevent an altitude deviation?",
       "audioTextZh": "飞行机组如何预防高度偏差？",
-      "referenceText": "The crew should read back and confirm the cleared altitude, set and cross-check the target and altimeters, and announce flight-mode changes. Both pilots monitor the vertical path and use standard callouts as the aircraft approaches the level. During high workload, one pilot should remain focused on flight path, and any unclear clearance should be resolved before acting.",
-      "referenceTextZh": "机组应复诵并确认许可高度，设置并交叉核对目标和高度表，并宣布飞行方式变化。飞机接近目标高度层时，两名飞行员都应监控垂直轨迹并使用标准喊话。高工作负荷期间，一名飞行员应始终专注于飞行轨迹；任何不清楚的许可都应在执行前解决。"
+      "referenceText": "The crew should review weather information and remain alert for areas of turbulence. If an ATC instruction is unclear, they should confirm it immediately. Both pilots should also cross-check their altimeters during flight.",
+      "referenceTextZh": "机组应查看气象信息，并对颠簸区域保持警觉。如果空中交通管制指令不明确，应立即进行确认。两名飞行员还应在飞行中交叉核对高度表。"
     }
   ]
 }

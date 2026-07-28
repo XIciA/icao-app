@@ -9,56 +9,56 @@
       "taskTitle": "运行-绕机检查-1",
       "audioText": "Who is responsible for performing the preflight walk-around inspection?",
       "audioTextZh": "谁负责进行飞行前绕机检查？",
-      "referenceText": "A suitable company example would assign the external inspection to one flight crew member, normally the pilot designated by the operating procedure. That pilot completes the approved route and reports the result, while the commander remains responsible for accepting the aircraft's overall condition. Qualified maintenance or ground staff may perform some inspections, but their work does not remove the crew's required checks.",
-      "referenceTextZh": "一个合适的公司示范是：由一名飞行机组成员负责外部检查，通常是运行程序指定的飞行员。该飞行员按照批准路线完成检查并报告结果，机长仍负责确认飞机整体状况可以接受。合格的维修或地面人员可以完成部分检查，但他们的工作不能免除机组规定的检查。"
+      "referenceText": "The captain has overall responsibility for the walk-around inspection, although the first officer normally performs it under the company's SOP. A student pilot may carry it out under the supervision and confirmation of a flight instructor.",
+      "referenceTextZh": "机长对绕机检查承担总体责任，但通常由副驾驶按照公司标准操作程序执行。学员飞行员可以在飞行教员监督和确认下完成检查。"
     },
     {
       "id": "opi-extra-024",
       "taskTitle": "运行-绕机检查-2",
       "audioText": "Why is it important to follow the prescribed route during a walk-around inspection?",
       "audioTextZh": "绕机检查时为什么必须遵循规定的路线？",
-      "referenceText": "A prescribed route creates a repeatable sequence and reduces the chance that an area is missed or checked twice while another is overlooked. It also helps a pilot notice a change from the aircraft's normal condition. If the inspection is interrupted, a known route makes it easier to restart at the correct point or repeat the check as required.",
-      "referenceTextZh": "规定的路线形成可重复的顺序，能降低漏检某一区域，或重复检查一处却忽略另一处的可能性。它还帮助飞行员发现飞机正常状态发生的变化。如果检查被打断，固定路线有助于从正确位置重新开始，或按要求重新检查。"
+      "referenceText": "Following a prescribed route helps the pilot inspect every required area without missing a point. A consistent sequence reduces human error, improves efficiency, and helps ensure that critical parts are checked before flight.",
+      "referenceTextZh": "沿规定路线检查，能帮助飞行员覆盖每个必检区域而不遗漏。固定顺序可以减少人为差错、提高效率，并确保飞行前检查关键部位。"
     },
     {
       "id": "opi-extra-026",
       "taskTitle": "运行-绕机检查-3",
       "audioText": "Which areas of an aircraft require especially careful attention during a walk-around inspection, and why?",
       "audioTextZh": "绕机检查时，航空器的哪些区域需要特别仔细检查？为什么？",
-      "referenceText": "Areas needing close attention include tires, brakes, landing gear, flight-control surfaces, probes, ports, engines and visible fluid lines because damage or obstruction can affect takeoff and control. Doors, panels, lights, antennas and fuselage skin should be checked for security and damage. The pilot also looks for leaks, contamination, ice, foreign objects and signs of a bird or ground-equipment strike.",
-      "referenceTextZh": "需要重点检查的区域包括轮胎、刹车、起落架、飞行操纵面、探头、静压孔、发动机和可见液体管路，因为损坏或堵塞会影响起飞和操纵。还应检查舱门、盖板、灯光、天线和机身蒙皮是否固定良好、有无损坏。飞行员也应寻找泄漏、污染物、冰、外来物，以及鸟击或地面设备撞击的迹象。"
+      "referenceText": "The engines, landing gear, wings, flight-control surfaces, and pitot tubes require careful attention. Each of these areas is important to the aircraft's safe operation, although the entire aircraft should still be inspected thoroughly.",
+      "referenceTextZh": "发动机、起落架、机翼、飞行操纵面和空速管需要重点检查。这些区域都关系到飞机安全运行，但整架飞机仍须全面检查。"
     },
     {
       "id": "opi-extra-027",
       "taskTitle": "运行-绕机检查-4",
       "audioText": "What requires extra attention during a walk-around inspection in extremely cold weather?",
       "audioTextZh": "在极寒天气下进行绕机检查时，哪些方面需要格外注意？",
-      "referenceText": "In extreme cold, the pilot should pay special attention to frost, ice, snow and frozen contamination on lifting and control surfaces, sensors, inlets and landing gear. Drains, vents, doors, seals and control movement may be affected, while tires, fluids and batteries can behave differently. Any deicing or anti-icing must follow the approved procedure and the aircraft must be clean for takeoff as required.",
-      "referenceTextZh": "在严寒条件下，飞行员应特别注意升力面和操纵面、传感器、进气口与起落架上的霜、冰、雪和冻结污染物。排水口、通气口、舱门、密封件和操纵动作可能受影响，轮胎、液体和电瓶的性能也可能不同。任何除冰或防冰都必须遵守批准程序，而且起飞前必须按要求清除飞机关键表面的霜、冰、雪和其他污染物。"
+      "referenceText": "The pilot should look carefully for ice on the airframe and wings and check that the pitot tubes are not blocked. Ice on the wings can reduce lift and aircraft performance, while a blocked pitot tube can cause inaccurate cockpit indications.",
+      "referenceTextZh": "飞行员应认真检查机体和机翼是否结冰，并确认空速管没有堵塞。机翼结冰会降低升力和飞机性能，空速管堵塞则会造成驾驶舱指示不准确。"
     },
     {
       "id": "opi-extra-043",
       "taskTitle": "运行-绕机检查-5",
       "audioText": "Why is a walk-around inspection important?",
       "audioTextZh": "绕机检查为什么很重要？",
-      "referenceText": "The walk-around gives the flight crew a direct check that the aircraft appears safe and correctly configured before flight. It can reveal damage, leaks, open panels, worn tires, ice, blocked probes or foreign objects that cockpit indications may not show. Finding the problem on the ground allows maintenance action before speed and workload make the consequences more serious.",
-      "referenceTextZh": "绕机检查使飞行机组能够在飞行前直接确认飞机外观看起来安全且构型正确。它可以发现驾驶舱指示未必显示的损坏、泄漏、未关闭盖板、轮胎磨损、结冰、探头堵塞或外来物。在地面发现问题，可以让维修人员在速度和工作负荷使后果更加严重之前采取行动。"
+      "referenceText": "A walk-around inspection can reveal fuel leaks, ice, structural damage, or foreign objects before flight. It also allows the pilot to check the engines, pitot tubes, and flight-control surfaces. Finding these problems on the ground helps prevent an in-flight malfunction.",
+      "referenceTextZh": "绕机检查可以在飞行前发现燃油泄漏、结冰、结构损伤或外来物，也使飞行员能够检查发动机、空速管和飞行操纵面。在地面发现这些问题有助于防止飞行中故障。"
     },
     {
       "id": "opi-extra-047",
       "taskTitle": "运行-绕机检查-6",
       "audioText": "What route do you follow during a walk-around inspection?",
       "audioTextZh": "你进行绕机检查时遵循什么路线？",
-      "referenceText": "A suitable example would begin at the forward entry area, continue around the nose and one side of the aircraft, pass the tail, and return along the other side to the starting point. I would follow the approved aircraft checklist in a consistent direction and include each required upper or lower inspection area that can be seen safely. Learners should describe their actual operator's route rather than copy this generic sequence.",
-      "referenceTextZh": "一个合适的示范是：从前舱门区域开始，绕过机头并沿飞机一侧检查，经过机尾后再沿另一侧返回起点。我会按照批准的飞机检查单，始终沿一致方向检查，并包括所有能够安全看到的规定上部或下部区域。学习者应描述自己运营人的实际路线，不能照搬这个通用顺序。"
+      "referenceText": "I begin at the nose, walk around the right side of the aircraft, continue around the left side, and finish back at the nose.",
+      "referenceTextZh": "我从机头开始，沿飞机右侧绕行，再继续检查左侧，最后回到机头。"
     },
     {
       "id": "opi-extra-053",
       "taskTitle": "运行-绕机检查-7",
       "audioText": "What should a pilot do if a defect is found during a walk-around inspection?",
       "audioTextZh": "绕机检查中发现缺陷时，飞行员应怎么做？",
-      "referenceText": "The pilot should stop and assess the defect without trying an unauthorized repair or assuming it is harmless. The finding should be reported to the commander and maintenance, recorded as required, and evaluated through the approved airworthiness and dispatch process. The aircraft is accepted only after the defect is corrected or properly deferred with all associated conditions satisfied.",
-      "referenceTextZh": "飞行员应停止检查并评估故障，不得尝试未经授权的维修或假定故障无关紧要。发现的问题应报告机长和维修部门，按要求记录，并通过批准的适航与签派流程进行评估。只有故障已经排除，或已按规定保留且所有相关条件都得到满足后，才能接受飞机。"
+      "referenceText": "The pilot should report the defect to maintenance personnel and review the Minimum Equipment List. If dispatch with the defect is permitted, the flight may proceed under the applicable conditions. If it is not permitted, the aircraft should be changed or the flight cancelled.",
+      "referenceTextZh": "飞行员应向维修人员报告缺陷并查看最低设备清单。如果该缺陷允许放行，航班可在适用条件下执行；如果不允许，就应更换飞机或取消航班。"
     }
   ]
 }

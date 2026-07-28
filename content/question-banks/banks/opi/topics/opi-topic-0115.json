@@ -9,64 +9,64 @@
       "taskTitle": "气象-不利天气-1",
       "audioText": "How do you analyze weather conditions before a flight?",
       "audioTextZh": "飞行前你如何分析天气状况？",
-      "referenceText": "A model pilot answer would be to review official observations, forecasts, significant-weather products, winds, radar and satellite information before departure. I would compare the route, destination and alternates, then look for trends and operational limits rather than one isolated report. I would update the analysis during the flight and change the plan if the risk increased.",
-      "referenceTextZh": "一个飞行员示范答案是，起飞前查看官方观测资料、预报、重要天气产品、风、雷达和卫星资料。我会比较航路、目的地和备降场的情况，关注变化趋势和运行限制，而不是只看一份孤立报告。我会在飞行中更新分析，并在风险增加时改变计划。"
+      "referenceText": "I collect weather information from dispatch, ATIS, and ATC. I analyze hazards such as thunderstorms, wind shear, icing, and low visibility, and discuss them with the crew during the preflight briefing. If necessary, I adjust the flight plan or select a more suitable alternate airport or runway.",
+      "referenceTextZh": "我会从签派、自动终端情报服务和空中交通管制获取气象信息。我会分析雷暴、风切变、结冰和低能见度等危险，并在飞行前简令中与机组讨论。必要时，我会调整飞行计划，或选择更合适的备降机场或跑道。"
     },
     {
       "id": "opi-extra-086",
       "taskTitle": "气象-不利天气-2",
       "audioText": "Why is understanding adverse weather important for flight safety?",
       "audioTextZh": "为什么了解不利天气对飞行安全很重要？",
-      "referenceText": "Adverse weather can change aircraft performance, visibility, runway condition and the crew's available options. Understanding it helps pilots recognize hazards early and make safer decisions about departure, route, approach or diversion. Without that knowledge, normal-looking conditions can develop into a high-workload emergency.",
-      "referenceTextZh": "不利天气会改变飞机性能、能见度、跑道状况和机组可用的选择。了解这些影响有助于飞行员及早识别危险，并对起飞、航路、进近或备降作出更安全的决定。缺少这种知识时，看似正常的条件也可能演变成高工作负荷的紧急情况。"
+      "referenceText": "Understanding adverse weather helps pilots recognize and avoid serious threats such as thunderstorms, lightning, icing, and wind shear. For example, ice can block a pitot tube, create abnormal indications, reduce lift, and increase drag. Knowing these effects supports safer planning and avoidance.",
+      "referenceTextZh": "了解不利天气有助于飞行员识别和避开雷暴、雷击、结冰和风切变等严重威胁。例如，结冰可能堵塞空速管、造成异常指示、减小升力并增大阻力。掌握这些影响有助于更安全地进行计划和规避。"
     },
     {
       "id": "opi-extra-087",
       "taskTitle": "气象-不利天气-3",
       "audioText": "How can adverse weather conditions other than cumulonimbus clouds and turbulence affect flight safety?",
       "audioTextZh": "除积雨云和颠簸外，其他不利天气条件会如何影响飞行安全？",
-      "referenceText": "Icing can reduce lift and control, fog can remove visual references, and strong winds can affect flight path and runway use. Heavy rain, snow or dust may reduce visibility and contaminate a runway. Extreme temperature can also change performance, equipment reliability and human endurance.",
-      "referenceTextZh": "结冰会降低升力和操纵能力，雾会使目视参考消失，强风会影响飞行轨迹和跑道使用。大雨、降雪或沙尘可能降低能见度并污染跑道。极端温度还会改变性能、设备可靠性和人的耐受能力。"
+      "referenceText": "Wind shear and microbursts can cause sudden changes in airspeed or altitude and make the aircraft difficult to control. Icing reduces lift and increases drag, while a strong crosswind can make runway alignment difficult. Lightning may damage aircraft systems, and low visibility can increase navigation, runway-incursion, and ground-collision risks.",
+      "referenceTextZh": "风切变和微下击暴流会使空速或高度突然变化，令飞机难以操纵。结冰会减小升力并增大阻力，强侧风则会增加保持跑道对正的难度。雷击可能损坏飞机系统，低能见度会增加导航、跑道侵入和地面碰撞的风险。"
     },
     {
       "id": "opi-core-553",
       "taskTitle": "气象-不利天气-4",
       "audioText": "How can strong winds affect an aircraft during flight?",
       "audioTextZh": "飞行中，强风会如何影响飞机？",
-      "referenceText": "Strong winds can cause turbulence, drift, airspeed changes and difficulty maintaining the intended flight path. Near terrain, they may create mountain waves, rotors and strong downdrafts. During takeoff and landing, crosswind, tailwind and gusts can reduce control and performance margins.",
-      "referenceTextZh": "强风可能造成颠簸、偏流、空速变化，并使飞机难以保持预定飞行轨迹。在地形附近，强风可能形成山地波、转子气流和强烈下沉气流。起飞和着陆时，侧风、顺风和阵风都会降低操纵与性能裕度。"
+      "referenceText": "Strong winds can affect fuel use and landing distance. Crosswinds can make it difficult to maintain runway alignment, while wind shear can cause sudden changes in airspeed and altitude and make control more difficult. The crew may need to adjust the flight path and aircraft attitude to manage these effects.",
+      "referenceTextZh": "强风会影响燃油消耗和着陆距离。侧风会增加保持跑道对正的难度，风切变则可能造成空速和高度突然变化，使飞机更难操纵。机组可能需要调整飞行轨迹和飞机姿态来应对这些影响。"
     },
     {
       "id": "opi-extra-088",
       "taskTitle": "气象-不利天气-5",
       "audioText": "Which weather condition do you consider the greatest threat to flight safety, and why?",
       "audioTextZh": "你认为哪种天气条件对飞行安全威胁最大？为什么？",
-      "referenceText": "One reasonable answer is that severe convective weather presents the greatest overall threat. A thunderstorm can combine turbulence, wind shear, hail, lightning, icing and intense rain in one rapidly changing area. The safest strategy is early avoidance because aircraft capability cannot remove all of those hazards.",
-      "referenceTextZh": "一个合理的回答是，严重对流天气带来的综合威胁最大。雷暴可以在一个迅速变化的区域内同时带来颠簸、风切变、冰雹、闪电、结冰和强降雨。最安全的策略是尽早避开，因为飞机的能力无法消除所有这些危险。"
+      "referenceText": "I consider a severe thunderstorm with cumulonimbus clouds to be the greatest weather threat. It can combine lightning, severe turbulence, icing, hail, and wind shear. Together, these hazards can damage the aircraft, cause system failures, and make control difficult.",
+      "referenceTextZh": "我认为伴有积雨云的强雷暴是最大的天气威胁。它可能同时带来雷电、严重颠簸、结冰、冰雹和风切变。这些危险共同作用时可能损坏飞机、导致系统失效，并使飞机难以操纵。"
     },
     {
       "id": "opi-extra-089",
       "taskTitle": "气象-不利天气-6",
       "audioText": "What measures can reduce the risk of incidents caused by hazardous weather?",
       "audioTextZh": "哪些措施可以降低危险天气引发不安全事件的风险？",
-      "referenceText": "Risk can be reduced through reliable weather observation and forecasting, thorough briefing and clear operating limits. Pilots need recurrent training, conservative decision-making and updated information from dispatch, ATC and other aircraft. After events, reporting and data review can improve procedures and warning systems.",
-      "referenceTextZh": "可靠的天气观测和预报、全面的天气讲解以及明确的运行限制都能降低风险。飞行员需要定期复训、作出保守决定，并持续接收签派、空管和其他飞机提供的最新信息。事件发生后，报告和数据审查可以帮助改进程序与警告系统。"
+      "referenceText": "The crew should complete a thorough preflight weather analysis, make contingency plans, and assign clear monitoring duties. During flight, they should obtain current reports and use available weather-detection equipment. If hazardous weather affects the route or airport, they may delay, change the runway or level, deviate, hold, or divert as appropriate.",
+      "referenceTextZh": "机组应在飞行前全面分析天气，制定备选方案，并明确分配监控职责。飞行中，他们应获取最新报告，并使用可用的气象探测设备。如果危险天气影响航路或机场，可视情况延误、改变跑道或高度层、绕飞、等待或备降。"
     },
     {
       "id": "opi-extra-090",
       "taskTitle": "气象-不利天气-7",
       "audioText": "Where do pilots obtain weather information before departure?",
       "audioTextZh": "飞行员在起飞前从哪里获取天气信息？",
-      "referenceText": "Pilots obtain weather from approved national aviation-weather services, operator or dispatch systems, airport observations and forecasts. Briefings may include radar and satellite products, significant-weather warnings, winds and pilot reports. The crew should know which source is official for the operation and check that the information is current.",
-      "referenceTextZh": "飞行员通过经批准的国家航空气象服务、运营人或签派系统、机场观测和预报获取天气信息。天气讲解可能包括雷达和卫星产品、重要天气警告、风和飞行员报告。机组应清楚本次运行以哪个来源为正式依据，并确认信息是最新的。"
+      "referenceText": "Pilots obtain weather information from ATIS broadcasts, ATC briefings, METARs, pilot reports, and the dispatch office. They review conditions at the departure airport, along the route, and at the destination.",
+      "referenceTextZh": "飞行员通过自动终端情报服务广播、空中交通管制简令、机场例行天气报告、驾驶员报告和签派室获取气象信息。他们会查看起飞机场、航路沿线和目的地的天气状况。"
     },
     {
       "id": "opi-extra-092",
       "taskTitle": "气象-不利天气-8",
       "audioText": "Have you ever encountered severe weather during a flight? If so, what happened?",
       "audioTextZh": "你在飞行中遇到过恶劣天气吗？如果遇到过，当时发生了什么？",
-      "referenceText": "A suitable example would be: yes, severe thunderstorms once blocked part of our planned route. The crew detected the weather early, secured the cabin and coordinated a wide deviation with ATC without entering the hazardous cells. The flight remained safe, but the diversion added time and required careful fuel monitoring.",
-      "referenceTextZh": "一个合适的示范答案是：是的，严重雷暴曾阻断我们计划航路的一部分。机组及早发现天气，确保客舱内人员和物品固定妥当，并与空管协调大范围绕飞，没有进入危险单体。飞行保持安全，但绕飞增加了时间，也要求我们仔细监控燃油。"
+      "referenceText": "No, I have not encountered severe weather during an actual flight. I have studied these hazards and practised weather-avoidance decisions during training. The exercises taught me to obtain current weather information, avoid hazardous areas, maintain control, and change the route or landing plan when necessary.",
+      "referenceTextZh": "没有，我在实际飞行中没有遇到过严重天气。我学习过这些危险，并在训练中练习了天气规避决策。这些练习教会我获取最新气象信息、避开危险区域、保持飞机控制，并在必要时改变航路或着陆计划。"
     }
   ]
 }

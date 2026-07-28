@@ -9,64 +9,64 @@
       "taskTitle": "特情-外来物吸入-1",
       "audioText": "What is foreign object ingestion (FOI)?",
       "audioTextZh": "什么是外来物吸入（FOI）？",
-      "referenceText": "Foreign object ingestion occurs when an engine draws in an object that is not part of the normal airflow. The object may be runway debris, a tool, ice, a stone, a bird or another loose item. Ingestion can damage the fan, compressor or other engine sections and may reduce thrust or cause failure.",
-      "referenceTextZh": "发动机吸入不属于正常气流组成的物体时，就发生外来物吸入。物体可能是跑道碎片、工具、冰块、石子、鸟或其他松散物品。吸入可能损坏风扇、压气机或发动机其他部分，并可能降低推力或导致失效。"
+      "referenceText": "FOI stands for foreign object ingestion. It occurs when an aircraft engine takes in a foreign object, such as a bird or debris, during ground or flight operations.",
+      "referenceTextZh": "FOI 是外来物吸入的缩写。它是指飞机发动机在地面或飞行运行中吸入鸟类、碎片等外来物。"
     },
     {
       "id": "opi-core-412",
       "taskTitle": "特情-外来物吸入-2",
       "audioText": "What can happen if an engine ingests a foreign object?",
       "audioTextZh": "发动机吸入异物后可能会发生什么？",
-      "referenceText": "An ingested object can bend or break engine blades, disturb airflow and cause vibration, abnormal noise or a compressor stall. The engine may lose thrust, overheat, leak, catch fire or fail completely. Pieces may also damage nearby aircraft structure or systems, so an inspection is required after suspected ingestion.",
-      "referenceTextZh": "吸入物可能使发动机叶片弯曲或断裂、扰乱气流，并造成振动、异常噪声或压气机失速。发动机可能失去推力、过热、泄漏、起火或完全失效。碎片还可能损坏附近的飞机结构或系统，因此怀疑发生吸入后必须进行检查。"
+      "referenceText": "Foreign object ingestion can damage engine blades, the cowling, or internal components. It may reduce thrust and cause vibration, an engine surge, a flameout, or engine failure.",
+      "referenceTextZh": "外来物吸入会损坏发动机叶片、整流罩或内部部件，可能降低推力，并造成振动、发动机喘振、熄火或失效。"
     },
     {
       "id": "opi-core-226",
       "taskTitle": "特情-外来物吸入-3",
       "audioText": "During which phases of aircraft operation is foreign object ingestion most likely to occur, and why?",
       "audioTextZh": "外来物吸入最容易发生在飞机运行的哪些阶段？为什么？",
-      "referenceText": "Foreign object ingestion is especially likely during engine start, taxi, takeoff and landing when engines operate close to contaminated pavement. High thrust can draw loose stones, metal, ice or other debris into an inlet, and jet blast or vehicle movement can displace objects. Ingestion can also occur in flight through birds, hail or material released from another source.",
-      "referenceTextZh": "发动机启动、滑行、起飞和着陆期间，发动机靠近受污染的道面运行，最容易吸入外来物。大推力会将松散石块、金属、冰或其他碎片吸入进气口，喷气尾流或车辆移动也会使物体移位。飞行中还可能吸入鸟、冰雹或其他来源释放的物质。"
+      "referenceText": "Foreign object ingestion is most likely during takeoff and landing because the aircraft is at low altitude, where birds and other foreign objects may be encountered.",
+      "referenceTextZh": "外来物吸入最容易发生在起飞和着陆阶段，因为飞机处于低高度，可能遇到鸟类和其他外来物。"
     },
     {
       "id": "opi-core-416",
       "taskTitle": "特情-外来物吸入-4",
       "audioText": "What measures can help prevent foreign object damage?",
       "audioTextZh": "哪些措施有助于防止外来物损伤？",
-      "referenceText": "Airports and operators can reduce foreign object damage through regular inspections, prompt debris removal, tool control and careful construction and maintenance practices. Drivers and crews should secure loose items, avoid creating jet-blast hazards and report contamination immediately. Pilots should inspect visible areas and avoid operating through known debris until the surface is checked.",
-      "referenceTextZh": "机场和运营人可以通过定期检查、及时清除碎片、工具管控以及谨慎开展施工和维修来减少外来物损伤。驾驶员和机组应固定好松散物品，避免制造喷气尾流危险，并立即报告道面污染。飞行员应检查可见区域，在道面接受检查前避免通过已知碎片区域运行。"
+      "referenceText": "Pilots should check the ground and sky before flight, report debris to ATC, and delay takeoff if necessary. Airports should keep runways and taxiways clean and disperse birds.",
+      "referenceTextZh": "飞行员应在飞行前检查地面和天空，向空中交通管制报告碎片，并在必要时推迟起飞。机场应保持跑道和滑行道清洁并驱散鸟类。"
     },
     {
       "id": "opi-core-418",
       "taskTitle": "特情-外来物吸入-5",
       "audioText": "What should a pilot do after finding foreign objects on the runway before departure?",
       "audioTextZh": "起飞前发现跑道上有异物时，飞行员应如何处置？",
-      "referenceText": "The pilot should stop or remain clear of the contaminated area and report the exact location and description to ATC or airport operations. The takeoff should not begin until the runway has been inspected and the hazard removed or the crew has an approved safe alternative. Other aircraft should be warned through the appropriate operational channel.",
-      "referenceTextZh": "飞行员应停下或避开受污染区域，并向空管或机场运行部门报告准确位置和物体描述。在跑道完成检查、危险被清除，或机组获得经批准的安全替代方案之前，不应开始起飞。还应通过适当的运行渠道警告其他航空器。"
+      "referenceText": "The pilot should report the foreign objects and their position to ATC and request a takeoff delay or another runway. Takeoff should not continue until ATC confirms that the runway is clear.",
+      "referenceTextZh": "飞行员应向空中交通管制报告外来物及其位置，并申请推迟起飞或改用另一条跑道。在管制确认跑道已经清理之前，不应继续起飞。"
     },
     {
       "id": "opi-core-222",
       "taskTitle": "特情-外来物吸入-6",
       "audioText": "What should a pilot do if an engine ingests a foreign object during the takeoff roll?",
       "audioTextZh": "起飞滑跑过程中发动机吸入异物时，飞行员应如何处置？",
-      "referenceText": "The crew should keep the aircraft under control and apply the approved rejected-takeoff criteria for the actual speed and indications. If the takeoff is rejected, the pilots should use the aircraft procedure, stop safely and advise ATC and emergency services as needed. If the approved decision is to continue, they should handle any engine damage after becoming airborne using the applicable checklist.",
-      "referenceTextZh": "机组应保持飞机受控，并根据实际速度和指示采用经批准的中断起飞判据。如果中断起飞，飞行员应执行飞机程序，安全停下，并按需通知空管和应急服务。如果按批准判据应继续起飞，则应在离地后使用适用检查单处置任何发动机损伤。"
+      "referenceText": "If there are signs of serious engine damage before V1 and there is enough runway to stop, I would reject the takeoff in accordance with the procedure. At or after V1, I would normally continue, maintain control, and handle any engine failure after becoming airborne. I would then follow the checklist, inform ATC, and return or divert as required.",
+      "referenceTextZh": "如果在 V1 之前出现严重发动机损伤迹象，且跑道长度足以停车，我会按照程序中断起飞。在达到或超过 V1 后，我通常会继续起飞、保持控制，并在离地后处置发动机失效。随后，我会执行检查单、通知空中交通管制，并按需返航或改航。"
     },
     {
       "id": "opi-core-415",
       "taskTitle": "特情-外来物吸入-7",
       "audioText": "What should a pilot do if an engine ingests a foreign object during initial climb?",
       "audioTextZh": "初始爬升过程中发动机吸入异物时，飞行员应如何处置？",
-      "referenceText": "The pilots should maintain control, continue the climb as required and assess engine indications before taking further action. They should apply the applicable engine-damage or failure checklist, coordinate with ATC and plan a landing at a suitable airport. Turns, speed and configuration should account for reduced thrust, vibration or possible structural effects.",
-      "referenceTextZh": "飞行员应保持控制，按要求继续爬升，并在采取后续动作前评估发动机指示。应执行适用的发动机损伤或失效检查单，与空管协调，并计划在合适机场着陆。转弯、速度和构型都应考虑推力降低、振动或可能的结构影响。"
+      "referenceText": "The pilot should continue the climb to a safe altitude, monitor engine parameters such as thrust, vibration, and exhaust gas temperature, and follow the applicable SOP to assess the damage. The pilot should advise ATC and decide whether to continue or divert based on the engine condition.",
+      "referenceTextZh": "飞行员应继续爬升至安全高度，监控推力、振动和排气温度等发动机参数，并遵循适用的标准操作程序评估损伤。飞行员应通知空中交通管制，并根据发动机状态决定继续飞行还是改航。"
     },
     {
       "id": "opi-core-414",
       "taskTitle": "特情-外来物吸入-8",
       "audioText": "What should a pilot do if an engine ingests a foreign object in flight?",
       "audioTextZh": "飞行中发动机吸入异物时，飞行员应如何处置？",
-      "referenceText": "The pilot should maintain control and identify the affected engine from reliable indications. The crew should follow the appropriate abnormal checklist, avoid unnecessary power changes if severe damage is suspected and advise ATC of the assistance needed. A prompt landing may be required, but the urgency depends on thrust, vibration, fire indications and the overall aircraft condition.",
-      "referenceTextZh": "飞行员应保持控制，并根据可靠指示识别受影响的发动机。机组应执行适当的异常检查单；如果怀疑严重损伤，应避免不必要的推力变化，并向空管说明所需协助。可能需要尽快着陆，但紧迫程度取决于推力、振动、火警指示和飞机整体状况。"
+      "referenceText": "If an engine ingests a foreign object in flight, the pilot should divert to the nearest suitable airport.",
+      "referenceTextZh": "如果发动机在飞行中吸入外来物，飞行员应改航至最近的合适机场。"
     }
   ]
 }

@@ -9,48 +9,48 @@
       "taskTitle": "飞机系统-导航-1",
       "audioText": "What navigation systems or aids are available on the aircraft you fly, and which ones do you normally use?",
       "audioTextZh": "你所飞的航空器配有哪些导航系统或设备？你通常使用哪些？",
-      "referenceText": "A suitable transport-aircraft example would include dual inertial and satellite navigation integrated through the flight-management system, supported by radio aids such as VOR, DME and ILS. The crew normally follows the approved FMS route while cross-checking position with independent sensors, raw data and ATC information. The exact aids used depend on route, equipment status and the approved navigation specification.",
-      "referenceTextZh": "一个合适的运输类飞机示范应包括通过飞行管理系统整合的双套惯性导航和卫星导航，并由 VOR、DME 和 ILS 等无线电助航设施提供支持。机组通常按照批准的 FMS 航路飞行，同时利用独立传感器、原始数据和 ATC 信息交叉核对位置。实际使用哪些助航设施取决于航路、设备状态和批准的导航规范。"
+      "referenceText": "The example DA-40 at my flight school has a GPS navigation display, VOR and ILS receivers, and a magnetic compass. I normally use GPS for route guidance and situational awareness, while cross-checking it with charts, radio aids, and visual landmarks when available. I confirm the actual installed and serviceable equipment before each flight.",
+      "referenceTextZh": "我所在航校的示例 DA-40 配有 GPS 导航显示器、VOR 和 ILS 接收机，以及磁罗盘。我通常使用 GPS 进行航路引导和保持情景意识，同时在条件允许时用航图、无线电导航设施和目视地标进行交叉核对。每次飞行前，我都会确认飞机实际安装且可以正常使用的设备。"
     },
     {
       "id": "opi-extra-227",
       "taskTitle": "飞机系统-导航-2",
       "audioText": "What should a pilot do if they become unsure of their position during a flight?",
       "audioTextZh": "飞行中无法确定自身位置时，飞行员应怎么做？",
-      "referenceText": "The pilot should maintain a safe altitude and heading, reduce workload and avoid continuing on an uncertain mental picture. The crew should cross-check independent navigation sources, raw radio data, charts, terrain, time and fuel, and ask ATC for position or radar assistance when available. If position cannot be established reliably, it should follow the applicable lost-or-uncertain-position procedure and choose the safest route or landing option.",
-      "referenceTextZh": "飞行员应保持安全高度和航向、降低工作负荷，并避免在位置态势不明时盲目继续原航路或原计划。机组应交叉核对独立导航源、原始无线电数据、航图、地形、时间和燃油，并在可用时向 ATC 请求位置信息或雷达协助。如果无法可靠确定位置，应执行适用的位置丢失或不确定程序，并选择最安全的航路或着陆方案。"
+      "referenceText": "The pilot should use the available navigation system and, if possible, compare the position with visible landmarks. The pilot should also inform ATC and request radar vectors.",
+      "referenceTextZh": "飞行员应使用可用的导航系统，并尽可能将飞机位置与目视地标进行比较。飞行员还应通知空中交通管制并请求雷达引导。"
     },
     {
       "id": "opi-extra-229",
       "taskTitle": "飞机系统-导航-3",
       "audioText": "What are the main differences between an ILS approach and a VOR approach?",
       "audioTextZh": "ILS 进近与 VOR 进近的主要区别是什么？",
-      "referenceText": "An ILS can provide both lateral localizer guidance and vertical glide-slope guidance for a precision approach. A conventional VOR approach normally provides lateral course information but no electronic vertical path, so the pilot follows published altitude and descent information. Minima, equipment and monitoring requirements depend on the published procedure and aircraft capability.",
-      "referenceTextZh": "ILS 可以为精密进近同时提供航向道横向引导和下滑道垂直引导。传统 VOR 进近通常提供横向航迹信息，但没有电子垂直航迹，因此飞行员按照公布的高度和下降信息飞行。最低标准、设备和监控要求取决于公布程序与飞机能力。"
+      "referenceText": "An ILS is a precision approach that provides both lateral and vertical guidance. A VOR approach is a non-precision approach that normally provides lateral course guidance only.",
+      "referenceTextZh": "ILS 是一种同时提供横向和垂直引导的精密进近。VOR 进近属于非精密进近，通常只提供横向航迹引导。"
     },
     {
       "id": "opi-extra-229-part-2",
       "taskTitle": "飞机系统-导航-4",
       "audioText": "Which type of approach do you prefer, an ILS approach or a VOR approach, and why?",
       "audioTextZh": "ILS 进近和 VOR 进近相比，你更喜欢哪一种？为什么？",
-      "referenceText": "I prefer an ILS when it is available because its lateral and vertical guidance reduces the need to manage descent from step-down altitudes. It can support lower minima and a more stable path, although the crew must still monitor raw data and possible signal problems. A VOR approach remains useful when an ILS is unavailable and requires careful altitude and distance management.",
-      "referenceTextZh": "ILS 可用时我更喜欢使用它，因为横向和垂直引导减少了按各梯级最低高度逐段管理下降的工作。它可以支持较低的最低标准和更稳定的航迹，不过机组仍必须监控原始数据和可能的信号问题。ILS 不可用时，VOR 进近仍有价值，但需要谨慎管理高度和距离。"
+      "referenceText": "I prefer an ILS approach because it provides both lateral and vertical guidance. This gives me more precise approach guidance than a VOR approach.",
+      "referenceTextZh": "我更喜欢 ILS 进近，因为它同时提供横向和垂直引导。与 VOR 进近相比，它能为我提供更精确的进近引导。"
     },
     {
       "id": "opi-extra-231",
       "taskTitle": "飞机系统-导航-5",
       "audioText": "How should a flight crew respond if the aircraft's navigation equipment fails in flight?",
       "audioTextZh": "飞行中航空器导航设备失效时，飞行机组应如何处置？",
-      "referenceText": "The crew should maintain a safe flight path, identify which navigation sources remain and complete the applicable checklist. It should cross-check independent equipment, raw radio aids, visual references or ATC assistance and advise ATC if navigation capability no longer meets the clearance or airspace requirement. The pilots then select a route, altitude and airport that can be flown safely with the remaining capability.",
-      "referenceTextZh": "机组应保持安全飞行轨迹，识别仍然可用的导航源，并完成适用检查单。他们应交叉核对独立设备、原始无线电助航数据、目视参照或 ATC 协助；如果导航能力不再满足 ATC 许可或空域要求，应通知 ATC。随后，飞行员选择能够利用剩余能力安全飞行的航路、高度和机场。"
+      "referenceText": "The crew should first maintain the current heading and altitude and use any available backup navigation aids. If possible, they can cross-check their position with visible landmarks. They should inform ATC and request radar vectors.",
+      "referenceTextZh": "机组首先应保持当前航向和高度，并使用任何可用的备用导航设备。如果可能，可以用目视地标交叉核对飞机位置。他们还应通知空中交通管制并请求雷达引导。"
     },
     {
       "id": "opi-extra-233",
       "taskTitle": "飞机系统-导航-6",
       "audioText": "What can cause spatial disorientation in flight?",
       "audioTextZh": "哪些因素可能导致飞行中的空间定向障碍？",
-      "referenceText": "Spatial disorientation can occur when visual references are poor and the inner ear or body sensations give a misleading sense of motion or attitude. Acceleration, turns, turbulence, head movement, fatigue and distraction can make the conflict worse. Pilots reduce the risk by trusting and cross-checking the flight instruments rather than trying to fly by sensation.",
-      "referenceTextZh": "目视参照不足时，内耳或身体感觉可能对运动或姿态产生误导，从而造成空间定向障碍。加速、转弯、颠簸、头部运动、疲劳和分心会加剧这种冲突。飞行员应相信并交叉核对飞行仪表，而不是凭感觉操纵，以降低风险。"
+      "referenceText": "Poor visibility in bad weather can cause spatial disorientation.",
+      "referenceTextZh": "恶劣天气中的低能见度可能导致空间定向障碍。"
     }
   ]
 }

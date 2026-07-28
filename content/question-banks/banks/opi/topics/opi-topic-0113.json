@@ -9,40 +9,40 @@
       "taskTitle": "缩略词-EFIS-1",
       "audioText": "What is an electronic flight instrument system (EFIS)?",
       "audioTextZh": "什么是电子飞行仪表系统（EFIS）？",
-      "referenceText": "An electronic flight instrument system is a set of electronic displays that presents primary flight and navigation information. It replaces many individual mechanical instruments with integrated screens such as a primary flight display and navigation display. The system receives information from aircraft sensors and computers and includes alerts for invalid or failed data.",
-      "referenceTextZh": "电子飞行仪表系统是一组用于显示主要飞行和导航信息的电子显示器。它以主飞行显示器、导航显示器等集成屏幕取代许多独立机械仪表。系统接收飞机传感器和计算机的信息，并对无效或失效数据发出警报。"
+      "referenceText": "EFIS stands for Electronic Flight Instrument System. It uses displays such as a primary flight display and a multi-function display to present flight, navigation, weather, traffic, and terrain information in an integrated form.",
+      "referenceTextZh": "EFIS 是电子飞行仪表系统的缩写。它使用主飞行显示器和多功能显示器等屏幕，以综合形式呈现飞行、导航、天气、交通和地形信息。"
     },
     {
       "id": "opi-extra-076",
       "taskTitle": "缩略词-EFIS-2",
       "audioText": "Is the aircraft you fly equipped with an EFIS?",
       "audioTextZh": "你所飞的飞机配备 EFIS 吗？",
-      "referenceText": "A suitable example would be: yes, the aircraft I fly has a full EFIS. It uses electronic primary flight and navigation displays for both pilots, with standby instruments available for backup. Learners should replace this description with the installed displays and redundancy of their own aircraft.",
-      "referenceTextZh": "一个合适的示范答案是：是的，我所飞机型配有完整的 EFIS。两名飞行员都使用电子主飞行显示器和导航显示器，并以备用仪表作为备份。学习者应根据自己飞机实际安装的显示器和冗余配置替换这段说明。"
+      "referenceText": "Yes, the aircraft I fly is equipped with an EFIS.",
+      "referenceTextZh": "是的，我飞的飞机配有 EFIS。"
     },
     {
       "id": "opi-extra-078",
       "taskTitle": "缩略词-EFIS-3",
       "audioText": "Which do you prefer in the cockpit, digital displays or traditional analog instruments, and why?",
       "audioTextZh": "在驾驶舱内，你更喜欢数字显示器还是传统模拟仪表？为什么？",
-      "referenceText": "I prefer well-designed digital displays because they combine flight, navigation and system information in a clear and flexible format. They can reduce scan time and present warnings or trends more effectively than a large group of separate instruments. I still value simple standby instruments because they provide an independent reference when a display or data source fails.",
-      "referenceTextZh": "我更喜欢设计良好的数字显示器，因为它们能够以清晰、灵活的形式整合飞行、导航和系统信息。与大量分散仪表相比，它们可以减少仪表扫视时间，并更有效地显示警告或变化趋势。我仍重视简单的备用仪表，因为主显示器或数据源失效时，它们能提供独立参考。"
+      "referenceText": "I prefer digital displays because they integrate important flight information in one place. This reduces the time needed to scan separate instruments, lowers workload, and supports situational awareness. Traditional analog instruments can still be reliable, but I find digital displays more convenient and efficient.",
+      "referenceTextZh": "我更喜欢数字显示，因为它把重要飞行信息集中在一起。这可以减少扫描独立仪表所需的时间、降低工作负荷并支持情景意识。传统模拟仪表仍然可靠，但我认为数字显示更方便、更高效。"
     },
     {
       "id": "opi-extra-080",
       "taskTitle": "缩略词-EFIS-4",
       "audioText": "What is an EFIS used for?",
       "audioTextZh": "EFIS 有什么用途？",
-      "referenceText": "EFIS is used to present the aircraft's attitude, airspeed, altitude, vertical path, heading, navigation route and other flight information. It can also show weather, traffic, terrain, approach guidance and system messages when those functions are integrated. The displays help the crew monitor the flight path and aircraft status through every phase.",
-      "referenceTextZh": "EFIS 用于显示飞机姿态、空速、高度、垂直航迹、航向、导航航路和其他飞行信息。如果集成了相应功能，它还可以显示天气、交通、地形、进近引导和系统信息。这些显示器帮助机组在每个飞行阶段监控飞行轨迹和飞机状态。"
+      "referenceText": "An EFIS is used to display essential flight and navigation information. The PFD presents items such as attitude, altitude, airspeed, heading, and vertical speed, while the MFD presents navigation and weather information.",
+      "referenceTextZh": "电子飞行仪表系统用于显示重要的飞行和导航信息。主飞行显示器显示姿态、高度、空速、航向和垂直速度等信息，多功能显示器则显示导航和气象信息。"
     },
     {
       "id": "opi-extra-080-part-2",
       "taskTitle": "缩略词-EFIS-5",
       "audioText": "What are the main advantages of an EFIS?",
       "audioTextZh": "EFIS 的主要优势是什么？",
-      "referenceText": "EFIS can organize a large amount of information into consistent displays and reduce the number of separate instruments. It supports flexible formats, integrated navigation, clear alerts and useful overlays such as weather, traffic and terrain. Digital systems also improve redundancy and maintenance diagnostics, although crews must be trained for display or data-source failures.",
-      "referenceTextZh": "EFIS 可以把大量信息组织为一致的显示形式，并减少独立仪表的数量。它支持灵活格式、集成导航、清晰警报，以及天气、交通和地形等有用叠加信息。数字系统还能改善冗余和维修诊断能力，但机组必须接受显示器或数据源失效方面的训练。"
+      "referenceText": "An EFIS integrates multiple types of flight information in clear displays, reducing search time and pilot workload. This improves situational awareness and operational efficiency.",
+      "referenceTextZh": "电子飞行仪表系统将多种飞行信息集中显示在清晰的屏幕上，减少了查找信息所需的时间和飞行员的工作负荷。这有助于提高情景意识和运行效率。"
     }
   ]
 }

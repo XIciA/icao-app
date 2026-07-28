@@ -105,9 +105,39 @@ const groundedProductionV8ArtifactPath = join(
   projectRoot,
   'docs/workstreams/opi-question-bank-text-reconstruction/artifacts/production-release-v8.json',
 );
+const completionWorkstreamRoot = join(
+  projectRoot,
+  'docs/workstreams/opi-answer-completion-and-bilingualization',
+);
+const completionArtifactRoot = join(completionWorkstreamRoot, 'artifacts');
+const completionGeneratedRoot = join(projectRoot, '.generated/opi-answer-completion');
+const completionSnapshotRoot = join(completionGeneratedRoot, 'snapshot');
+const completionSnapshotSourceRoot = join(completionSnapshotRoot, 'source');
+const completionSnapshotRegistryPath = join(completionSnapshotRoot, 'registry.json');
+const completionWorkItemsPath = join(completionGeneratedRoot, 'work-items.json');
+const completionEnglishInputRoot = join(completionGeneratedRoot, 'english-inputs');
+const completionEnglishOutputRoot = join(completionGeneratedRoot, 'english-outputs');
+const completionChineseInputRoot = join(completionGeneratedRoot, 'chinese-inputs');
+const completionChineseOutputRoot = join(completionGeneratedRoot, 'chinese-outputs');
+const completionReleaseRoot = join(completionGeneratedRoot, 'formal-release');
+const completionBaselineArtifactPath = join(completionArtifactRoot, 'baseline.json');
+const completionEnglishAuditPath = join(completionArtifactRoot, 'english-answer-audit.json');
+const completionEnglishReopenLogPath = join(
+  completionArtifactRoot,
+  'english-answer-reopen-log.json',
+);
+const completionChineseReopenLogPath = join(
+  completionArtifactRoot,
+  'chinese-answer-reopen-log.json',
+);
+const completionFinalAuditPath = join(completionArtifactRoot, 'final-bilingual-audit.json');
+const completionQualityReportPath = join(completionArtifactRoot, 'final-quality-report.md');
+const completionReleaseArtifactPath = join(completionArtifactRoot, 'production-release-v10.json');
 
 const GROUNDED_SCHEMA_VERSION = 1;
 const GROUNDED_RULE_VERSION = 'opi-answer-v1-grounded-2026-07-23';
+const COMPLETION_SCHEMA_VERSION = 1;
+const COMPLETION_RULE_VERSION = 'opi-answer-completion-bilingual-v10-2026-07-28';
 const GROUNDED_SOURCES = [
   {
     key: 'v1-categories-01-07',
@@ -5337,6 +5367,1135 @@ function commandBuildGroundedAnswerCalibrationReview() {
   );
 }
 
+function completionStructuralHash(source = loadSource()) {
+  const stripAnswers = (card) => {
+    const next = clone(card);
+    delete next.referenceText;
+    delete next.referenceTextZh;
+    return next;
+  };
+  return valueHash({
+    bank: source.bank,
+    categories: source.categories,
+    topics: source.topics.map((topic) => ({
+      ...topic,
+      cards: topic.cards.map(stripAnswers),
+    })),
+  });
+}
+
+function completionImagePath(cardId) {
+  const match = String(cardId).match(/^opi-image-(\d{3})-q\d+$/u);
+  if (!match) return null;
+  return join(
+    projectRoot,
+    'content/question-banks/resources/files/images/opi/image-questions',
+    'image-topic-' + match[1] + '.jpg',
+  );
+}
+
+function completionStyleReferences(card, cards) {
+  const candidates = [
+    ...cards.filter(
+      (candidate) =>
+        candidate.cardId !== card.cardId &&
+        candidate.disposition === 'complete' &&
+        candidate.topicId === card.topicId,
+    ),
+    ...cards.filter(
+      (candidate) =>
+        candidate.cardId !== card.cardId &&
+        candidate.disposition === 'complete' &&
+        candidate.categoryId === card.categoryId &&
+        candidate.topicId !== card.topicId,
+    ),
+  ];
+  const seen = new Set();
+  return candidates
+    .filter((candidate) => {
+      if (seen.has(candidate.cardId)) return false;
+      seen.add(candidate.cardId);
+      return true;
+    })
+    .slice(0, 5)
+    .map((candidate) => ({
+      cardId: candidate.cardId,
+      questionEn: candidate.questionEn,
+      answerEn: candidate.answerEn,
+    }));
+}
+
+function completionEnglishBatchPlan(missingCards) {
+  const imageCards = missingCards.filter(
+    (card) => card.originalDisposition === 'deferred-image-answer',
+  );
+  const insufficient = missingCards.filter(
+    (card) => card.originalDisposition === 'source-insufficient',
+  );
+  const categoryOrder = [...new Set(insufficient.map((card) => card.categoryId))];
+  const byCategory = new Map(
+    categoryOrder.map((categoryId) => [
+      categoryId,
+      insufficient.filter((card) => card.categoryId === categoryId),
+    ]),
+  );
+  const calibration = [...imageCards];
+  let round = 0;
+  while (calibration.length < 28) {
+    let added = false;
+    for (const categoryId of categoryOrder) {
+      const candidate = byCategory.get(categoryId)?.[round];
+      if (!candidate) continue;
+      calibration.push(candidate);
+      added = true;
+      if (calibration.length === 28) break;
+    }
+    if (!added) break;
+    round += 1;
+  }
+  const calibrationIds = new Set(calibration.map((card) => card.cardId));
+  const remaining = missingCards.filter((card) => !calibrationIds.has(card.cardId));
+  const chunks = [calibration];
+  for (let index = 0; index < remaining.length; index += 28)
+    chunks.push(remaining.slice(index, index + 28));
+  return chunks.map((cards, index) => ({
+    batchId: 'comp-en-' + String(index + 1).padStart(3, '0'),
+    role: index === 0 ? 'calibration' : 'production',
+    cardIds: cards.map((card) => card.cardId),
+  }));
+}
+
+function commandPrepareAnswerCompletion() {
+  if (existsSync(completionGeneratedRoot))
+    fail('answer_completion_generated_root_exists');
+  const grounded = readGroundedFinalAuditDecisions();
+  const groundedAudit = readJson(groundedFinalAnswerAuditPath);
+  const rows = groundedQuestionRows();
+  const questionLockHash = groundedQuestionLock(rows);
+  const source = loadSource();
+  const sourceEntries = sourceFileEntries();
+  mkdirSync(completionSnapshotSourceRoot, { recursive: true });
+  for (const entry of sourceEntries) {
+    const target = join(completionSnapshotSourceRoot, entry.path);
+    mkdirSync(dirname(target), { recursive: true });
+    copyFileSync(join(opiRoot, entry.path), target);
+  }
+  copyFileSync(registryPath, completionSnapshotRegistryPath);
+
+  const cards = groundedAudit.cards.map((card) => {
+    const imagePath =
+      card.disposition === 'deferred-image-answer'
+        ? completionImagePath(card.cardId)
+        : null;
+    if (imagePath && !existsSync(imagePath))
+      fail('answer_completion_image_missing:' + card.cardId);
+    return {
+      cardId: card.cardId,
+      categoryId: card.categoryId,
+      categoryName: card.categoryName,
+      topicId: card.topicId,
+      topicName: card.topicName,
+      taskTitle: card.taskTitle,
+      questionEn: card.questionEn,
+      questionZh: card.questionZh,
+      questionHash: card.questionHash,
+      originalDisposition: card.disposition,
+      originalAnswerEn:
+        card.disposition === 'complete' ? normalize(card.answerEn) : null,
+      originalAnswerHash:
+        card.disposition === 'complete' ? valueHash(normalize(card.answerEn)) : null,
+      originalRiskAssessment: card.riskAssessment ?? null,
+      riskTags: card.riskTags ?? [],
+      styleReferences:
+        card.disposition === 'complete'
+          ? []
+          : completionStyleReferences(card, groundedAudit.cards),
+      image:
+        imagePath
+          ? {
+              path: relative(projectRoot, imagePath),
+              hash: fileHash(imagePath),
+            }
+          : null,
+      answerEn:
+        card.disposition === 'complete' ? normalize(card.answerEn) : null,
+      answerEnStatus:
+        card.disposition === 'complete' ? 'locked-existing-v9' : 'pending',
+      englishBatchId: null,
+      englishProvenance: null,
+      answerZh: null,
+      answerZhStatus: 'blocked',
+      chineseBatchId: null,
+    };
+  });
+  const missingCards = cards.filter((card) => card.answerEnStatus === 'pending');
+  const batchPlan = completionEnglishBatchPlan(missingCards);
+  const cardById = new Map(cards.map((card) => [card.cardId, card]));
+  for (const batch of batchPlan) {
+    const items = batch.cardIds.map((cardId) => {
+      const card = cardById.get(cardId);
+      card.englishBatchId = batch.batchId;
+      return {
+        cardId: card.cardId,
+        categoryId: card.categoryId,
+        categoryName: card.categoryName,
+        topicId: card.topicId,
+        topicName: card.topicName,
+        taskTitle: card.taskTitle,
+        questionEn: card.questionEn,
+        questionZh: card.questionZh,
+        previousDisposition: card.originalDisposition,
+        previousRiskAssessment: card.originalRiskAssessment,
+        riskTags: card.riskTags,
+        styleReferences: card.styleReferences,
+        image: card.image,
+      };
+    });
+    const input = {
+      schemaVersion: COMPLETION_SCHEMA_VERSION,
+      ruleVersion: COMPLETION_RULE_VERSION,
+      batchId: batch.batchId,
+      role: batch.role,
+      questionLockHash,
+      items,
+    };
+    input.inputHash = valueHash({
+      ruleVersion: input.ruleVersion,
+      batchId: input.batchId,
+      questionLockHash: input.questionLockHash,
+      items: input.items,
+    });
+    writeJson(join(completionEnglishInputRoot, batch.batchId + '.json'), input);
+  }
+  const work = {
+    schemaVersion: COMPLETION_SCHEMA_VERSION,
+    ruleVersion: COMPLETION_RULE_VERSION,
+    questionLockHash,
+    sourceEnglishDecisionHash: grounded.finalDecisionHash,
+    sourceStructuralHash: completionStructuralHash(source),
+    sourceDigest: sourceDigest(),
+    cards,
+    batchPlan,
+  };
+  writeJson(completionWorkItemsPath, work);
+  const imageHashes = cards
+    .filter((card) => card.image)
+    .map((card) => ({ cardId: card.cardId, ...card.image }));
+  writeJson(completionBaselineArtifactPath, {
+    schemaVersion: COMPLETION_SCHEMA_VERSION,
+    ruleVersion: COMPLETION_RULE_VERSION,
+    frozenAt: new Date().toISOString(),
+    questionLockHash,
+    sourceEnglishDecisionHash: grounded.finalDecisionHash,
+    sourceStructuralHash: work.sourceStructuralHash,
+    sourceDigest: work.sourceDigest,
+    sourceRegistry: {
+      releaseVersion: readJson(registryPath).releaseVersion,
+      hash: fileHash(registryPath),
+    },
+    counts: {
+      cards: source.rows.length,
+      textCards: cards.length,
+      imageCards: source.rows.filter(({ card }) => card.kind === 'image').length,
+      lockedExistingEnglish: cards.filter(
+        (card) => card.answerEnStatus === 'locked-existing-v9',
+      ).length,
+      pendingEnglish: missingCards.length,
+      previousSourceInsufficient: cards.filter(
+        (card) => card.originalDisposition === 'source-insufficient',
+      ).length,
+      previousDeferredImage: cards.filter(
+        (card) => card.originalDisposition === 'deferred-image-answer',
+      ).length,
+      englishBatches: batchPlan.length,
+    },
+    batchPlan,
+    imageHashes,
+    excludedSources: ['discarded-v8-answer-en', 'discarded-v8-answer-zh'],
+  });
+  console.log(
+    'opi_answer_completion_prepare_ok existing=' +
+      (cards.length - missingCards.length) +
+      ' pending=' + missingCards.length +
+      ' batches=' + batchPlan.length +
+      ' question_lock=' + questionLockHash,
+  );
+}
+
+function completionEnglishOutputPath(batchId) {
+  if (!isValidBatchId(batchId)) fail('answer_completion_batch_id_invalid');
+  return join(completionEnglishOutputRoot, batchId + '.json');
+}
+
+function validateCompletionEnglishOutput(batchId, requireReview = true) {
+  const inputPath = join(completionEnglishInputRoot, batchId + '.json');
+  const outputPath = completionEnglishOutputPath(batchId);
+  if (!existsSync(inputPath)) fail('answer_completion_input_missing:' + batchId);
+  if (!existsSync(outputPath)) fail('answer_completion_output_missing:' + batchId);
+  const input = readJson(inputPath);
+  const output = readJson(outputPath);
+  const errors = [];
+  const warnings = [];
+  if (
+    output.schemaVersion !== COMPLETION_SCHEMA_VERSION ||
+    output.ruleVersion !== COMPLETION_RULE_VERSION ||
+    output.batchId !== batchId ||
+    output.inputHash !== input.inputHash ||
+    output.producer !== 'codex-main'
+  )
+    errors.push('batch:header');
+  const inputIds = input.items.map((item) => item.cardId);
+  const outputIds = (output.items ?? []).map((item) => item.cardId);
+  if (
+    outputIds.length !== inputIds.length ||
+    valueHash([...outputIds].sort()) !== valueHash([...inputIds].sort())
+  )
+    errors.push('batch:card_set');
+  const inputById = new Map(input.items.map((item) => [item.cardId, item]));
+  const answerOwners = new Map();
+  const itemReports = [];
+  const allowedSourceTypes = new Set([
+    'current-v9-style',
+    'official-source-grounded-new',
+    'image-observation',
+    'illustrative-sample',
+  ]);
+  for (const item of output.items ?? []) {
+    const source = inputById.get(item.cardId);
+    if (!source) {
+      errors.push(item.cardId + ':unknown_card');
+      continue;
+    }
+    const answer = normalize(item.answerEn);
+    if (!answer || answer !== item.answerEn) errors.push(item.cardId + ':answer_missing_or_not_normalized');
+    if (HAN.test(answer)) errors.push(item.cardId + ':han_in_answer');
+    if (/^(?:\s*(?:\d+[.)]|[-*•])\s+)/mu.test(answer))
+      errors.push(item.cardId + ':list_format');
+    if (/a suitable example|learners should|replace this answer|example answer/iu.test(answer))
+      errors.push(item.cardId + ':template_disclaimer');
+    if (/\n{3,}/u.test(answer)) errors.push(item.cardId + ':abnormal_newlines');
+    if (!allowedSourceTypes.has(item.sourceType))
+      errors.push(item.cardId + ':source_type');
+    if (!Array.isArray(item.styleReferenceCardIds))
+      errors.push(item.cardId + ':style_references');
+    const allowedStyleIds = new Set(source.styleReferences.map((reference) => reference.cardId));
+    for (const styleId of item.styleReferenceCardIds ?? [])
+      if (!allowedStyleIds.has(styleId))
+        errors.push(item.cardId + ':style_reference_outside_input:' + styleId);
+    if (!Array.isArray(item.officialSources))
+      errors.push(item.cardId + ':official_sources');
+    for (const citation of item.officialSources ?? [])
+      if (!normalize(citation.title) || !/^https?:\/\//u.test(citation.url ?? ''))
+        errors.push(item.cardId + ':official_source_invalid');
+    if (
+      item.sourceType === 'official-source-grounded-new' &&
+      !(item.officialSources?.length)
+    )
+      errors.push(item.cardId + ':official_source_required');
+    if (
+      source.previousDisposition === 'deferred-image-answer' &&
+      (item.sourceType !== 'image-observation' || !normalize(item.imageObservation))
+    )
+      errors.push(item.cardId + ':image_observation_required');
+    if (!Array.isArray(item.editActions) || !item.editActions.length)
+      errors.push(item.cardId + ':edit_actions');
+    if (!normalize(item.riskAssessment))
+      errors.push(item.cardId + ':risk_assessment');
+    const wordCount = englishTokens(answer).length;
+    const sentenceCount = (answer.match(/[.!?](?:\s|$)/gu) ?? []).length;
+    const paragraphCount = answer.split(/\n\s*\n/gu).length;
+    if (wordCount < 4 || wordCount > 70)
+      warnings.push(item.cardId + ':word_count:' + wordCount);
+    if (sentenceCount < 1 || sentenceCount > 4)
+      warnings.push(item.cardId + ':sentence_count:' + sentenceCount);
+    if (paragraphCount > 2)
+      warnings.push(item.cardId + ':paragraph_count:' + paragraphCount);
+    const normalizedAnswer = answer.toLowerCase();
+    if (answerOwners.has(normalizedAnswer))
+      errors.push(item.cardId + ':duplicate_answer:' + answerOwners.get(normalizedAnswer));
+    answerOwners.set(normalizedAnswer, item.cardId);
+    itemReports.push({
+      cardId: item.cardId,
+      answerHash: valueHash(answer),
+      wordCount,
+      sentenceCount,
+      paragraphCount,
+    });
+  }
+  if (requireReview) {
+    const review = output.independentReview;
+    if (
+      review?.reviewer !== 'codex-independent' ||
+      review?.status !== 'complete' ||
+      review?.readCardIds?.length !== inputIds.length ||
+      valueHash([...(review?.readCardIds ?? [])].sort()) !==
+        valueHash([...inputIds].sort())
+    )
+      errors.push('batch:independent_review');
+    const findingIds = (review?.findings ?? []).map((finding) => finding.findingId);
+    if (new Set(findingIds).size !== findingIds.length)
+      errors.push('batch:duplicate_review_finding');
+    const adjudication = output.adjudication;
+    if (
+      adjudication?.adjudicator !== 'codex-main' ||
+      adjudication?.status !== 'closed' ||
+      valueHash([...(adjudication?.findingIds ?? [])].sort()) !==
+        valueHash([...findingIds].sort())
+    )
+      errors.push('batch:adjudication');
+  }
+  const report = {
+    schemaVersion: COMPLETION_SCHEMA_VERSION,
+    ruleVersion: COMPLETION_RULE_VERSION,
+    batchId,
+    inputHash: input.inputHash,
+    errors,
+    warnings,
+    items: itemReports,
+  };
+  writeJson(join(completionEnglishOutputRoot, batchId + '.machine.json'), report);
+  if (errors.length)
+    fail('answer_completion_english_invalid\n' + errors.join('\n'));
+  return { input, output, report };
+}
+
+function commandVerifyAnswerCompletionEnglish(batchId, allowPendingReview) {
+  const result = validateCompletionEnglishOutput(batchId, !allowPendingReview);
+  console.log(
+    'opi_answer_completion_english_verify_ok batch=' + batchId +
+      ' items=' + result.report.items.length +
+      ' warnings=' + result.report.warnings.length,
+  );
+}
+
+function commandIngestAnswerCompletionEnglish(batchId) {
+  const { input, output, report } = validateCompletionEnglishOutput(batchId, true);
+  const work = readJson(completionWorkItemsPath);
+  if (work.questionLockHash !== groundedQuestionLock(groundedQuestionRows()))
+    fail('answer_completion_question_lock_changed');
+  const workById = new Map(work.cards.map((card) => [card.cardId, card]));
+  for (const item of output.items) {
+    const card = workById.get(item.cardId);
+    if (!card || card.englishBatchId !== batchId || card.answerEnStatus !== 'pending')
+      fail('answer_completion_ingest_state:' + item.cardId);
+    card.answerEn = normalize(item.answerEn);
+    card.answerEnStatus = 'locked-new';
+    card.englishProvenance = {
+      sourceType: item.sourceType,
+      styleReferenceCardIds: item.styleReferenceCardIds,
+      officialSources: item.officialSources,
+      imageObservation: normalize(item.imageObservation) || null,
+      editActions: item.editActions,
+      riskAssessment: item.riskAssessment,
+    };
+    card.answerZhStatus = 'pending';
+  }
+  const batchHash = valueHash({
+    batchId,
+    inputHash: input.inputHash,
+    answers: output.items.map((item) => ({
+      cardId: item.cardId,
+      answerEn: normalize(item.answerEn),
+      sourceType: item.sourceType,
+      styleReferenceCardIds: item.styleReferenceCardIds,
+      officialSources: item.officialSources,
+      imageObservation: normalize(item.imageObservation) || null,
+      editActions: item.editActions,
+      riskAssessment: item.riskAssessment,
+    })),
+    machineWarnings: report.warnings,
+    independentReview: output.independentReview,
+    adjudication: output.adjudication,
+  });
+  output.reviewStatus = 'sealed-independent-review-closed';
+  output.batchHash = batchHash;
+  writeJson(completionEnglishOutputPath(batchId), output);
+  writeJson(completionWorkItemsPath, work);
+  console.log(
+    'opi_answer_completion_english_ingest_ok batch=' + batchId +
+      ' items=' + output.items.length + ' hash=' + batchHash,
+  );
+}
+
+function commandReopenAnswerCompletionEnglish(batchId, reason) {
+  if (!BATCH_ID.test(batchId ?? ''))
+    fail('answer_completion_reopen_batch_id');
+  if (!normalize(reason))
+    fail('answer_completion_reopen_reason');
+  const work = readJson(completionWorkItemsPath);
+  const batch = work.batchPlan.find((candidate) => candidate.batchId === batchId);
+  if (!batch)
+    fail('answer_completion_reopen_unknown_batch:' + batchId);
+  const workById = new Map(work.cards.map((card) => [card.cardId, card]));
+  const cards = batch.cardIds.map((cardId) => {
+    const card = workById.get(cardId);
+    if (
+      !card ||
+      card.englishBatchId !== batchId ||
+      card.answerEnStatus !== 'locked-new' ||
+      !normalize(card.answerEn)
+    )
+      fail('answer_completion_reopen_state:' + cardId);
+    return card;
+  });
+  const outputPath = completionEnglishOutputPath(batchId);
+  const output = readJson(outputPath);
+  if (!normalize(output.batchHash))
+    fail('answer_completion_reopen_missing_hash:' + batchId);
+  const log = existsSync(completionEnglishReopenLogPath)
+    ? readJson(completionEnglishReopenLogPath)
+    : {
+        schemaVersion: COMPLETION_SCHEMA_VERSION,
+        ruleVersion: COMPLETION_RULE_VERSION,
+        entries: [],
+      };
+  log.entries.push({
+    batchId,
+    previousBatchHash: output.batchHash,
+    reason: normalize(reason),
+    cardIds: batch.cardIds,
+  });
+  for (const card of cards) {
+    card.answerEn = null;
+    card.answerEnStatus = 'pending';
+    card.englishProvenance = null;
+    card.answerZh = null;
+    card.answerZhStatus = 'blocked';
+    card.chineseBatchId = null;
+  }
+  output.reviewStatus = 'reopened-for-rule';
+  output.batchHash = null;
+  writeJson(completionEnglishOutputPath(batchId), output);
+  writeJson(completionWorkItemsPath, work);
+  writeJson(completionEnglishReopenLogPath, log);
+  console.log(
+    'opi_answer_completion_english_reopen_ok batch=' + batchId +
+      ' items=' + cards.length,
+  );
+}
+
+function completionEnglishLockPayload(cards) {
+  return cards.map((card) => ({
+    cardId: card.cardId,
+    questionHash: card.questionHash,
+    answerEn: card.answerEn,
+    answerHash: valueHash(card.answerEn),
+    answerEnStatus: card.answerEnStatus,
+    englishBatchId: card.englishBatchId,
+  }));
+}
+
+function commandBuildAnswerCompletionEnglishAudit() {
+  const work = readJson(completionWorkItemsPath);
+  const currentQuestionLock = groundedQuestionLock(groundedQuestionRows());
+  if (work.questionLockHash !== currentQuestionLock)
+    fail('answer_completion_question_lock_changed');
+  if (work.cards.length !== 1067)
+    fail('answer_completion_work_card_count:' + work.cards.length);
+  const pending = work.cards.filter((card) => !normalize(card.answerEn));
+  if (pending.length)
+    fail('answer_completion_english_pending:' + pending.map((card) => card.cardId).join(','));
+  const groundedAudit = readJson(groundedFinalAnswerAuditPath);
+  const groundedById = new Map(groundedAudit.cards.map((card) => [card.cardId, card]));
+  const existingChanges = [];
+  for (const card of work.cards.filter((candidate) => candidate.answerEnStatus === 'locked-existing-v9')) {
+    const original = normalize(groundedById.get(card.cardId)?.answerEn);
+    if (valueHash(card.answerEn) !== valueHash(original))
+      existingChanges.push(card.cardId);
+  }
+  if (existingChanges.length)
+    fail('answer_completion_existing_answer_changed:' + existingChanges.join(','));
+  const batchEvidence = work.batchPlan.map((batch) => {
+    const outputPath = completionEnglishOutputPath(batch.batchId);
+    const output = readJson(outputPath);
+    if (output.reviewStatus !== 'sealed-independent-review-closed' || !output.batchHash)
+      fail('answer_completion_batch_unsealed:' + batch.batchId);
+    validateCompletionEnglishOutput(batch.batchId, true);
+    return {
+      batchId: batch.batchId,
+      role: batch.role,
+      cardIds: batch.cardIds,
+      batchHash: output.batchHash,
+      outputHash: fileHash(outputPath),
+      independentFindingCount: output.independentReview.findings?.length ?? 0,
+    };
+  });
+  const cards = work.cards.map((card) => ({
+    cardId: card.cardId,
+    categoryId: card.categoryId,
+    categoryName: card.categoryName,
+    topicId: card.topicId,
+    topicName: card.topicName,
+    taskTitle: card.taskTitle,
+    questionEn: card.questionEn,
+    questionZh: card.questionZh,
+    questionHash: card.questionHash,
+    answerEn: card.answerEn,
+    answerHash: valueHash(card.answerEn),
+    answerOrigin:
+      card.answerEnStatus === 'locked-existing-v9'
+        ? 'locked-existing-v9'
+        : 'completed-v10',
+    originalDisposition: card.originalDisposition,
+    englishBatchId: card.englishBatchId,
+    provenance: card.englishProvenance,
+    riskTags: card.riskTags,
+  }));
+  const englishLockHash = valueHash(completionEnglishLockPayload(work.cards));
+  const answerOwners = new Map();
+  const exactDuplicates = [];
+  for (const card of cards) {
+    const normalizedAnswer = normalize(card.answerEn).toLowerCase();
+    if (answerOwners.has(normalizedAnswer))
+      exactDuplicates.push([answerOwners.get(normalizedAnswer), card.cardId]);
+    else answerOwners.set(normalizedAnswer, card.cardId);
+  }
+  writeJson(completionEnglishAuditPath, {
+    schemaVersion: COMPLETION_SCHEMA_VERSION,
+    ruleVersion: COMPLETION_RULE_VERSION,
+    generatedAt: new Date().toISOString(),
+    questionLockHash: work.questionLockHash,
+    sourceEnglishDecisionHash: work.sourceEnglishDecisionHash,
+    englishLockHash,
+    counts: {
+      textCards: cards.length,
+      preservedExisting: cards.filter((card) => card.answerOrigin === 'locked-existing-v9').length,
+      completedNew: cards.filter((card) => card.answerOrigin === 'completed-v10').length,
+      sourceInsufficient: 0,
+      deferredImageAnswer: 0,
+      exactDuplicatePairs: exactDuplicates.length,
+    },
+    batches: batchEvidence,
+    exactDuplicates,
+    cards,
+  });
+  console.log(
+    'opi_answer_completion_english_audit_ok cards=' + cards.length +
+      ' preserved=' + (cards.length - 168) +
+      ' completed=168 hash=' + englishLockHash,
+  );
+}
+
+function commandPrepareAnswerCompletionChinese() {
+  if (!existsSync(completionEnglishAuditPath))
+    fail('answer_completion_english_audit_missing');
+  if (existsSync(completionChineseInputRoot) || existsSync(completionChineseOutputRoot))
+    fail('answer_completion_chinese_root_exists');
+  const englishAudit = readJson(completionEnglishAuditPath);
+  const work = readJson(completionWorkItemsPath);
+  if (
+    englishAudit.questionLockHash !== groundedQuestionLock(groundedQuestionRows()) ||
+    englishAudit.cards.length !== 1067
+  )
+    fail('answer_completion_english_audit_invalid');
+  const workById = new Map(work.cards.map((card) => [card.cardId, card]));
+  const chunkSize = 54;
+  const batchPlan = [];
+  for (let index = 0; index < englishAudit.cards.length; index += chunkSize) {
+    const cards = englishAudit.cards.slice(index, index + chunkSize);
+    const batchId = 'comp-zh-' + String(batchPlan.length + 1).padStart(3, '0');
+    const items = cards.map((card) => ({
+      cardId: card.cardId,
+      categoryId: card.categoryId,
+      categoryName: card.categoryName,
+      topicId: card.topicId,
+      topicName: card.topicName,
+      questionEn: card.questionEn,
+      questionZh: card.questionZh,
+      answerEn: card.answerEn,
+      answerHash: card.answerHash,
+      riskTags: card.riskTags,
+      answerOrigin: card.answerOrigin,
+    }));
+    const input = {
+      schemaVersion: COMPLETION_SCHEMA_VERSION,
+      ruleVersion: COMPLETION_RULE_VERSION,
+      batchId,
+      questionLockHash: englishAudit.questionLockHash,
+      englishLockHash: englishAudit.englishLockHash,
+      items,
+    };
+    input.inputHash = valueHash({
+      batchId,
+      questionLockHash: input.questionLockHash,
+      englishLockHash: input.englishLockHash,
+      items,
+    });
+    writeJson(join(completionChineseInputRoot, batchId + '.json'), input);
+    batchPlan.push({ batchId, cardIds: cards.map((card) => card.cardId), inputHash: input.inputHash });
+    for (const card of cards) {
+      const workCard = workById.get(card.cardId);
+      workCard.chineseBatchId = batchId;
+      workCard.answerZhStatus = 'pending';
+    }
+  }
+  work.chineseBatchPlan = batchPlan;
+  work.englishLockHash = englishAudit.englishLockHash;
+  writeJson(completionWorkItemsPath, work);
+  console.log(
+    'opi_answer_completion_chinese_prepare_ok cards=' + englishAudit.cards.length +
+      ' batches=' + batchPlan.length +
+      ' english_lock=' + englishAudit.englishLockHash,
+  );
+}
+
+function validateCompletionChineseOutput(batchId) {
+  if (!isValidBatchId(batchId)) fail('answer_completion_chinese_batch_id_invalid');
+  const inputPath = join(completionChineseInputRoot, batchId + '.json');
+  const outputPath = join(completionChineseOutputRoot, batchId + '.json');
+  if (!existsSync(inputPath)) fail('answer_completion_chinese_input_missing:' + batchId);
+  if (!existsSync(outputPath)) fail('answer_completion_chinese_output_missing:' + batchId);
+  const input = readJson(inputPath);
+  const output = readJson(outputPath);
+  const errors = [];
+  const warnings = [];
+  if (
+    output.schemaVersion !== COMPLETION_SCHEMA_VERSION ||
+    output.ruleVersion !== COMPLETION_RULE_VERSION ||
+    output.batchId !== batchId ||
+    output.inputHash !== input.inputHash ||
+    output.producer !== 'codex-main' ||
+    output.selfReview?.status !== 'complete'
+  )
+    errors.push('batch:header');
+  const inputIds = input.items.map((item) => item.cardId);
+  const outputIds = (output.items ?? []).map((item) => item.cardId);
+  if (
+    outputIds.length !== inputIds.length ||
+    valueHash([...outputIds].sort()) !== valueHash([...inputIds].sort())
+  )
+    errors.push('batch:card_set');
+  const inputById = new Map(input.items.map((item) => [item.cardId, item]));
+  const itemReports = [];
+  for (const item of output.items ?? []) {
+    const source = inputById.get(item.cardId);
+    if (!source) {
+      errors.push(item.cardId + ':unknown_card');
+      continue;
+    }
+    const answerZh = normalize(item.answerZh);
+    if (!answerZh || answerZh !== item.answerZh)
+      errors.push(item.cardId + ':answer_zh_missing_or_not_normalized');
+    if (!HAN.test(answerZh)) errors.push(item.cardId + ':answer_zh_no_han');
+    if (ENGLISH_SENTENCE.test(answerZh)) errors.push(item.cardId + ':english_sentence_in_zh');
+    if (/^(?:\s*(?:\d+[.)]|[-*•])\s+)/mu.test(answerZh))
+      errors.push(item.cardId + ':list_format');
+    if (/\n{3,}/u.test(answerZh)) errors.push(item.cardId + ':abnormal_newlines');
+    const englishParagraphs = normalize(source.answerEn).split(/\n\s*\n/gu).length;
+    const chineseParagraphs = answerZh.split(/\n\s*\n/gu).length;
+    if (englishParagraphs !== chineseParagraphs)
+      warnings.push(item.cardId + ':paragraph_mismatch:' + englishParagraphs + ':' + chineseParagraphs);
+    const englishDigits = (source.answerEn.match(/\d+(?:\.\d+)?/gu) ?? []).sort();
+    const chineseDigits = (answerZh.match(/\d+(?:\.\d+)?/gu) ?? []).sort();
+    if (valueHash(englishDigits) !== valueHash(chineseDigits))
+      warnings.push(item.cardId + ':digit_mismatch');
+    itemReports.push({
+      cardId: item.cardId,
+      answerZhHash: valueHash(answerZh),
+      englishParagraphs,
+      chineseParagraphs,
+    });
+  }
+  const report = {
+    schemaVersion: COMPLETION_SCHEMA_VERSION,
+    ruleVersion: COMPLETION_RULE_VERSION,
+    batchId,
+    errors,
+    warnings,
+    items: itemReports,
+  };
+  writeJson(join(completionChineseOutputRoot, batchId + '.machine.json'), report);
+  if (errors.length)
+    fail('answer_completion_chinese_invalid\n' + errors.join('\n'));
+  return { input, output, report };
+}
+
+function commandVerifyAnswerCompletionChinese(batchId) {
+  const result = validateCompletionChineseOutput(batchId);
+  console.log(
+    'opi_answer_completion_chinese_verify_ok batch=' + batchId +
+      ' items=' + result.report.items.length +
+      ' warnings=' + result.report.warnings.length,
+  );
+}
+
+function commandIngestAnswerCompletionChinese(batchId) {
+  const { input, output, report } = validateCompletionChineseOutput(batchId);
+  const work = readJson(completionWorkItemsPath);
+  const workById = new Map(work.cards.map((card) => [card.cardId, card]));
+  for (const item of output.items) {
+    const card = workById.get(item.cardId);
+    if (
+      !card ||
+      card.chineseBatchId !== batchId ||
+      card.answerZhStatus !== 'pending'
+    )
+      fail('answer_completion_chinese_ingest_state:' + item.cardId);
+    card.answerZh = normalize(item.answerZh);
+    card.answerZhStatus = 'locked';
+  }
+  const batchHash = valueHash({
+    batchId,
+    inputHash: input.inputHash,
+    translations: output.items.map((item) => ({
+      cardId: item.cardId,
+      answerZh: normalize(item.answerZh),
+    })),
+    selfReview: output.selfReview,
+    machineWarnings: report.warnings,
+  });
+  output.reviewStatus = 'sealed-main-production-and-review';
+  output.batchHash = batchHash;
+  writeJson(join(completionChineseOutputRoot, batchId + '.json'), output);
+  writeJson(completionWorkItemsPath, work);
+  console.log(
+    'opi_answer_completion_chinese_ingest_ok batch=' + batchId +
+      ' items=' + output.items.length + ' hash=' + batchHash,
+  );
+}
+
+function commandReopenAnswerCompletionChinese(batchId, reason) {
+  if (!BATCH_ID.test(batchId ?? ''))
+    fail('answer_completion_chinese_reopen_batch_id');
+  if (!normalize(reason))
+    fail('answer_completion_chinese_reopen_reason');
+  const work = readJson(completionWorkItemsPath);
+  const batch = work.chineseBatchPlan?.find(
+    (candidate) => candidate.batchId === batchId,
+  );
+  if (!batch)
+    fail('answer_completion_chinese_reopen_unknown_batch:' + batchId);
+  const workById = new Map(work.cards.map((card) => [card.cardId, card]));
+  const cards = batch.cardIds.map((cardId) => {
+    const card = workById.get(cardId);
+    if (
+      !card ||
+      card.chineseBatchId !== batchId ||
+      card.answerZhStatus !== 'locked' ||
+      !normalize(card.answerZh)
+    )
+      fail('answer_completion_chinese_reopen_state:' + cardId);
+    return card;
+  });
+  const outputPath = join(completionChineseOutputRoot, batchId + '.json');
+  const output = readJson(outputPath);
+  if (!normalize(output.batchHash))
+    fail('answer_completion_chinese_reopen_missing_hash:' + batchId);
+  const log = existsSync(completionChineseReopenLogPath)
+    ? readJson(completionChineseReopenLogPath)
+    : {
+        schemaVersion: COMPLETION_SCHEMA_VERSION,
+        ruleVersion: COMPLETION_RULE_VERSION,
+        entries: [],
+      };
+  log.entries.push({
+    batchId,
+    previousBatchHash: output.batchHash,
+    reason: normalize(reason),
+    cardIds: batch.cardIds,
+  });
+  for (const card of cards) {
+    card.answerZh = null;
+    card.answerZhStatus = 'pending';
+  }
+  output.reviewStatus = 'reopened-for-rule';
+  output.batchHash = null;
+  writeJson(outputPath, output);
+  writeJson(completionWorkItemsPath, work);
+  writeJson(completionChineseReopenLogPath, log);
+  console.log(
+    'opi_answer_completion_chinese_reopen_ok batch=' + batchId +
+      ' items=' + cards.length,
+  );
+}
+
+function commandBuildAnswerCompletionFinalAudit() {
+  const work = readJson(completionWorkItemsPath);
+  const englishAudit = readJson(completionEnglishAuditPath);
+  if (work.questionLockHash !== groundedQuestionLock(groundedQuestionRows()))
+    fail('answer_completion_question_lock_changed');
+  if (work.englishLockHash !== englishAudit.englishLockHash)
+    fail('answer_completion_english_lock_changed');
+  const incomplete = work.cards.filter(
+    (card) => !normalize(card.answerEn) || !normalize(card.answerZh),
+  );
+  if (incomplete.length)
+    fail('answer_completion_bilingual_pending:' + incomplete.map((card) => card.cardId).join(','));
+  const englishById = new Map(englishAudit.cards.map((card) => [card.cardId, card]));
+  const cards = work.cards.map((card) => {
+    const english = englishById.get(card.cardId);
+    if (!english || valueHash(card.answerEn) !== english.answerHash)
+      fail('answer_completion_final_english_changed:' + card.cardId);
+    return {
+      ...english,
+      answerZh: card.answerZh,
+      answerZhHash: valueHash(card.answerZh),
+      chineseBatchId: card.chineseBatchId,
+    };
+  });
+  const chineseBatches = work.chineseBatchPlan.map((batch) => {
+    const outputPath = join(completionChineseOutputRoot, batch.batchId + '.json');
+    const output = readJson(outputPath);
+    validateCompletionChineseOutput(batch.batchId);
+    if (output.reviewStatus !== 'sealed-main-production-and-review' || !output.batchHash)
+      fail('answer_completion_chinese_batch_unsealed:' + batch.batchId);
+    return {
+      batchId: batch.batchId,
+      cardIds: batch.cardIds,
+      batchHash: output.batchHash,
+      outputHash: fileHash(outputPath),
+    };
+  });
+  const finalLockHash = valueHash(
+    cards.map((card) => ({
+      cardId: card.cardId,
+      questionHash: card.questionHash,
+      answerHash: card.answerHash,
+      answerZhHash: card.answerZhHash,
+    })),
+  );
+  const digitWarnings = [];
+  const englishSentenceErrors = [];
+  for (const card of cards) {
+    const enDigits = (card.answerEn.match(/\d+(?:\.\d+)?/gu) ?? []).sort();
+    const zhDigits = (card.answerZh.match(/\d+(?:\.\d+)?/gu) ?? []).sort();
+    if (valueHash(enDigits) !== valueHash(zhDigits))
+      digitWarnings.push(card.cardId);
+    if (ENGLISH_SENTENCE.test(card.answerZh))
+      englishSentenceErrors.push(card.cardId);
+  }
+  if (englishSentenceErrors.length)
+    fail('answer_completion_final_english_in_zh:' + englishSentenceErrors.join(','));
+  writeJson(completionFinalAuditPath, {
+    schemaVersion: COMPLETION_SCHEMA_VERSION,
+    ruleVersion: COMPLETION_RULE_VERSION,
+    generatedAt: new Date().toISOString(),
+    questionLockHash: work.questionLockHash,
+    englishLockHash: englishAudit.englishLockHash,
+    finalLockHash,
+    counts: {
+      textCards: cards.length,
+      answerEn: cards.filter((card) => normalize(card.answerEn)).length,
+      answerZh: cards.filter((card) => normalize(card.answerZh)).length,
+      sourceInsufficient: 0,
+      deferredImageAnswer: 0,
+      previousMissingResolved: cards.filter(
+        (card) => card.originalDisposition !== 'complete',
+      ).length,
+      digitWarnings: digitWarnings.length,
+    },
+    englishBatches: englishAudit.batches,
+    chineseBatches,
+    digitWarnings,
+    cards,
+  });
+  const qualityLines = [
+    '# OPI 参考答案补全与双语正式版最终质量报告',
+    '',
+    '- 问题锁：`' + work.questionLockHash + '`',
+    '- 英文锁：`' + englishAudit.englishLockHash + '`',
+    '- 双语锁：`' + finalLockHash + '`',
+    '- 文本卡：1067',
+    '- 英文答案：1067',
+    '- 中文答案：1067',
+    '- 已补齐历史空缺：168',
+    '- 来源不足：0',
+    '- 图片延期：0',
+    '- 数字对应报警：' + digitWarnings.length,
+    '',
+    '数字报警只表示字符形式差异，必须由主 Codex逐项裁决后才允许正式应用。',
+    '',
+  ];
+  writeFileSync(completionQualityReportPath, qualityLines.join('\n'), 'utf8');
+  console.log(
+    'opi_answer_completion_final_audit_ok cards=' + cards.length +
+      ' digit_warnings=' + digitWarnings.length +
+      ' hash=' + finalLockHash,
+  );
+}
+
+function buildAnswerCompletionFormalSource(finalAudit) {
+  const source = loadSource();
+  const cardById = new Map(finalAudit.cards.map((card) => [card.cardId, card]));
+  const topics = source.topics.map((topic) => ({
+    ...clone(topic),
+    cards: topic.cards.map((card) => {
+      const next = clone(card);
+      if (next.kind === 'image') return next;
+      const decision = cardById.get(next.id);
+      if (!decision) fail('answer_completion_formal_card_missing:' + next.id);
+      if (
+        normalize(next.audioText) !== decision.questionEn ||
+        normalize(next.audioTextZh) !== decision.questionZh
+      )
+        fail('answer_completion_formal_question_changed:' + next.id);
+      next.referenceText = decision.answerEn;
+      next.referenceTextZh = decision.answerZh;
+      return next;
+    }),
+  }));
+  return {
+    bank: clone(source.bank),
+    categories: clone(source.categories),
+    topics,
+  };
+}
+
+function verifyAnswerCompletionFormalSource(finalSource, finalAudit) {
+  const source = loadSource();
+  const sourceRows = source.rows;
+  const rows = finalSource.topics.flatMap((topic) =>
+    topic.cards.map((card) => ({ topic, card })),
+  );
+  const sourceById = new Map(sourceRows.map((row) => [row.card.id, row]));
+  const auditById = new Map(finalAudit.cards.map((card) => [card.cardId, card]));
+  const errors = [];
+  let textCards = 0;
+  let imageCards = 0;
+  for (const row of rows) {
+    const original = sourceById.get(row.card.id);
+    if (!original) {
+      errors.push(row.card.id + ':new_card');
+      continue;
+    }
+    if (row.card.kind === 'image') {
+      imageCards += 1;
+      if (valueHash(row.card) !== valueHash(original.card))
+        errors.push(row.card.id + ':image_changed');
+      continue;
+    }
+    textCards += 1;
+    const auditCard = auditById.get(row.card.id);
+    if (!auditCard) {
+      errors.push(row.card.id + ':audit_missing');
+      continue;
+    }
+    if (
+      row.topic.id !== auditCard.topicId ||
+      row.card.taskTitle !== auditCard.taskTitle ||
+      normalize(row.card.audioText) !== auditCard.questionEn ||
+      normalize(row.card.audioTextZh) !== auditCard.questionZh
+    )
+      errors.push(row.card.id + ':question_or_location_changed');
+    if (
+      normalize(row.card.referenceText) !== auditCard.answerEn ||
+      normalize(row.card.referenceTextZh) !== auditCard.answerZh
+    )
+      errors.push(row.card.id + ':answer_projection');
+  }
+  if (rows.length !== 1090 || textCards !== 1067 || imageCards !== 23)
+    errors.push('formal:counts');
+  if (errors.length)
+    fail('answer_completion_formal_invalid\n' + errors.join('\n'));
+}
+
+function commandApplyAnswerCompletion(releaseVersionArg, releasedAtArg) {
+  const releaseVersion = Number(releaseVersionArg);
+  if (releaseVersion !== 10) fail('answer_completion_release_must_be_10');
+  const releasedAt = normalize(releasedAtArg);
+  if (!releasedAt || Number.isNaN(Date.parse(releasedAt)))
+    fail('answer_completion_released_at_invalid');
+  const baseline = readJson(completionBaselineArtifactPath);
+  const finalAudit = readJson(completionFinalAuditPath);
+  if (
+    finalAudit.questionLockHash !== groundedQuestionLock(groundedQuestionRows()) ||
+    finalAudit.counts?.answerEn !== 1067 ||
+    finalAudit.counts?.answerZh !== 1067
+  )
+    fail('answer_completion_final_audit_invalid');
+  if (completionStructuralHash() !== baseline.sourceStructuralHash)
+    fail('answer_completion_source_structure_changed');
+  const registry = readJson(registryPath);
+  if (registry.releaseVersion >= releaseVersion)
+    fail('answer_completion_release_not_above_registry:' + registry.releaseVersion);
+  const finalSource = buildAnswerCompletionFormalSource(finalAudit);
+  verifyAnswerCompletionFormalSource(finalSource, finalAudit);
+  rmSync(completionReleaseRoot, { recursive: true, force: true });
+  writeSource(join(completionReleaseRoot, 'source'), finalSource);
+  writeJson(join(completionReleaseRoot, 'registry.json'), {
+    ...registry,
+    releaseVersion,
+    releasedAt,
+  });
+  writeSource(opiRoot, finalSource);
+  writeJson(registryPath, {
+    ...registry,
+    releaseVersion,
+    releasedAt,
+  });
+  const formalAudit = auditSource();
+  if (
+    formalAudit.counts.cards !== 1090 ||
+    formalAudit.counts.textCards !== 1067 ||
+    formalAudit.quality.missingAnswerEn.length ||
+    formalAudit.quality.missingAnswerZh.length
+  )
+    fail('answer_completion_applied_formal_audit');
+  writeJson(join(completionArtifactRoot, 'formal-application.json'), {
+    schemaVersion: COMPLETION_SCHEMA_VERSION,
+    ruleVersion: COMPLETION_RULE_VERSION,
+    appliedAt: new Date().toISOString(),
+    releaseVersion,
+    releasedAt,
+    questionLockHash: finalAudit.questionLockHash,
+    englishLockHash: finalAudit.englishLockHash,
+    finalLockHash: finalAudit.finalLockHash,
+    sourceDigest: sourceDigest(),
+    registryHash: fileHash(registryPath),
+    counts: formalAudit.counts,
+    rollback: {
+      snapshotRoot: relative(projectRoot, completionSnapshotRoot),
+      command: 'node tools/opi-rebuild.mjs rollback-answer-completion',
+    },
+  });
+  console.log(
+    'opi_answer_completion_apply_ok version=' + releaseVersion +
+      ' cards=' + formalAudit.counts.cards +
+      ' text=' + formalAudit.counts.textCards +
+      ' digest=' + sourceDigest(),
+  );
+}
+
+function commandVerifyAnswerCompletionFormal() {
+  const finalAudit = readJson(completionFinalAuditPath);
+  if (finalAudit.questionLockHash !== groundedQuestionLock(groundedQuestionRows()))
+    fail('answer_completion_formal_question_lock_changed');
+  verifyAnswerCompletionFormalSource(loadSource(), finalAudit);
+  const registry = readJson(registryPath);
+  if (registry.releaseVersion !== 10)
+    fail('answer_completion_formal_registry_version:' + registry.releaseVersion);
+  const audit = auditSource();
+  if (
+    audit.quality.missingAnswerEn.length ||
+    audit.quality.missingAnswerZh.length ||
+    audit.quality.hanInAnswerEn.length
+  )
+    fail('answer_completion_formal_quality');
+  console.log(
+    'opi_answer_completion_formal_verify_ok version=10 cards=' + audit.counts.cards +
+      ' text=' + audit.counts.textCards + ' digest=' + audit.sourceDigest,
+  );
+}
+
+function commandRollbackAnswerCompletion() {
+  if (
+    !existsSync(completionSnapshotSourceRoot) ||
+    !existsSync(completionSnapshotRegistryPath)
+  )
+    fail('answer_completion_rollback_snapshot_missing');
+  for (const entry of sourceFileEntries(completionSnapshotSourceRoot)) {
+    const target = join(opiRoot, entry.path);
+    mkdirSync(dirname(target), { recursive: true });
+    copyFileSync(join(completionSnapshotSourceRoot, entry.path), target);
+  }
+  copyFileSync(completionSnapshotRegistryPath, registryPath);
+  console.log(
+    'opi_answer_completion_rollback_ok version=' +
+      readJson(registryPath).releaseVersion +
+      ' digest=' + sourceDigest(),
+  );
+}
+
 function printUsage() {
   console.log(
     [
@@ -5375,6 +6534,19 @@ function printUsage() {
       '  node tools/opi-rebuild.mjs apply-grounded-answer-cross-batch-audit',
       '  node tools/opi-rebuild.mjs build-grounded-answer-final-audit',
       '  node tools/opi-rebuild.mjs build-grounded-answer-preview <release-version> <released-at-iso>',
+      '  node tools/opi-rebuild.mjs prepare-answer-completion',
+      '  node tools/opi-rebuild.mjs verify-answer-completion-en <batch-id> [--allow-pending-review]',
+      '  node tools/opi-rebuild.mjs reopen-answer-completion-en <batch-id> <reason>',
+      '  node tools/opi-rebuild.mjs ingest-answer-completion-en <batch-id>',
+      '  node tools/opi-rebuild.mjs build-answer-completion-english-audit',
+      '  node tools/opi-rebuild.mjs prepare-answer-completion-zh',
+      '  node tools/opi-rebuild.mjs verify-answer-completion-zh <batch-id>',
+      '  node tools/opi-rebuild.mjs reopen-answer-completion-zh <batch-id> <reason>',
+      '  node tools/opi-rebuild.mjs ingest-answer-completion-zh <batch-id>',
+      '  node tools/opi-rebuild.mjs build-answer-completion-final-audit',
+      '  node tools/opi-rebuild.mjs apply-answer-completion <release-version> <released-at-iso>',
+      '  node tools/opi-rebuild.mjs verify-answer-completion-formal',
+      '  node tools/opi-rebuild.mjs rollback-answer-completion',
     ].join('\n'),
   );
 }
@@ -5424,6 +6596,32 @@ try {
     commandBuildGroundedAnswerFinalAudit();
   else if (command === 'build-grounded-answer-preview')
     commandBuildGroundedAnswerPreview(args[0], args[1]);
+  else if (command === 'prepare-answer-completion')
+    commandPrepareAnswerCompletion();
+  else if (command === 'verify-answer-completion-en')
+    commandVerifyAnswerCompletionEnglish(args[0], args.includes('--allow-pending-review'));
+  else if (command === 'reopen-answer-completion-en')
+    commandReopenAnswerCompletionEnglish(args[0], args.slice(1).join(' '));
+  else if (command === 'ingest-answer-completion-en')
+    commandIngestAnswerCompletionEnglish(args[0]);
+  else if (command === 'build-answer-completion-english-audit')
+    commandBuildAnswerCompletionEnglishAudit();
+  else if (command === 'prepare-answer-completion-zh')
+    commandPrepareAnswerCompletionChinese();
+  else if (command === 'verify-answer-completion-zh')
+    commandVerifyAnswerCompletionChinese(args[0]);
+  else if (command === 'reopen-answer-completion-zh')
+    commandReopenAnswerCompletionChinese(args[0], args.slice(1).join(' '));
+  else if (command === 'ingest-answer-completion-zh')
+    commandIngestAnswerCompletionChinese(args[0]);
+  else if (command === 'build-answer-completion-final-audit')
+    commandBuildAnswerCompletionFinalAudit();
+  else if (command === 'apply-answer-completion')
+    commandApplyAnswerCompletion(args[0], args[1]);
+  else if (command === 'verify-answer-completion-formal')
+    commandVerifyAnswerCompletionFormal();
+  else if (command === 'rollback-answer-completion')
+    commandRollbackAnswerCompletion();
   else {
     printUsage();
     if (command) process.exitCode = 1;

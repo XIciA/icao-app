@@ -9,40 +9,40 @@
       "taskTitle": "缩略词-CDFA-1",
       "audioText": "What is the Continuous Descent Final Approach (CDFA) technique?",
       "audioTextZh": "什么是连续下降最后进近（CDFA）技术？",
-      "referenceText": "Continuous Descent Final Approach, or CDFA, is a technique for flying the final segment of a non-precision approach as a continuous, stable descent. The crew follows a calculated descent path without level flight at intermediate step-down altitudes, while still respecting every published constraint. If the required visual reference or stabilized conditions are not achieved at the applicable decision point, the crew carries out a go-around under the approved procedure.",
-      "referenceTextZh": "连续下降最后进近（CDFA）是一种飞行技术，用于以连续、稳定下降的方式完成非精密进近的最后航段。机组沿计算出的下降航径飞行，不在中间的梯级下降高度平飞，同时仍遵守每一项公布限制。如果在适用决策点没有获得所需目视参考或不满足稳定条件，机组应按经批准程序复飞。"
+      "referenceText": "CDFA stands for Continuous Descent Final Approach. It is a technique for flying a non-precision approach with a continuous descent instead of level flight on the final approach. The technique can reduce workload and help reduce the risk of CFIT.",
+      "referenceTextZh": "CDFA 是连续下降最后进近的缩写。它是一种实施非精密进近的技术，在最后进近阶段持续下降，而不是平飞。该技术可以降低工作负荷，并有助于减少可控飞行撞地风险。"
     },
     {
       "id": "opi-core-634",
       "taskTitle": "缩略词-CDFA-2",
       "audioText": "How does a non-precision approach flown using the Continuous Descent Final Approach (CDFA) technique differ from a precision approach?",
       "audioTextZh": "采用连续下降最后进近（CDFA）技术实施的非精密进近与精密进近有何不同？",
-      "referenceText": "A CDFA can make a non-precision approach look more like a stabilized continuous descent, but it does not turn it into a precision approach. The non-precision procedure still relies on its published navigation aid or RNAV criteria and applicable minima. A precision approach provides approved continuous lateral and vertical guidance with its own system performance and obstacle-protection standards.",
-      "referenceTextZh": "CDFA 可以使非精密进近更接近稳定、连续下降，但不会把它变成精密进近。非精密进近程序仍依赖其公布的导航设施或 RNAV 标准和适用最低标准。精密进近提供经批准的连续横向和垂直引导，并有自身的系统性能和障碍物保护标准。"
+      "referenceText": "CDFA is a technique for flying the final segment of a non-precision approach as a continuous, stabilised descent instead of using level segments. A precision approach provides approved lateral and vertical guidance, while CDFA does not change the underlying approach procedure into a precision approach. It improves stability but the published minima and missed-approach requirements still apply.",
+      "referenceTextZh": "CDFA 是一种把非精密进近最后阶段飞成连续稳定下降，而不设置平飞段的技术。精密进近提供经批准的水平和垂直引导，而 CDFA 并不会把原有进近程序变成精密进近。它提高了稳定性，但公布的最低标准和复飞要求仍然适用。"
     },
     {
       "id": "opi-core-635",
       "taskTitle": "缩略词-CDFA-3",
       "audioText": "How does the Continuous Descent Final Approach (CDFA) technique change the way a non-precision approach is flown?",
       "audioTextZh": "连续下降最后进近（CDFA）技术如何改变非精密进近的实施方式？",
-      "referenceText": "With CDFA, the crew plans a constant descent path from the final approach point instead of descending early and levelling at each minimum altitude. They monitor the path, speed, configuration and published step-down constraints throughout the descent. The approach is discontinued at the applicable decision point if the required visual reference or stabilized conditions are not met.",
-      "referenceTextZh": "采用 CDFA 时，机组从最后进近点规划恒定下降航径，而不是提前下降后在每个最低高度改平。在下降全过程中，应监控航径、速度、构型和公布的梯级下降限制。如果在适用决策点没有获得所需目视参考或不满足稳定条件，就应中止进近。"
+      "referenceText": "CDFA replaces the level segments of a conventional non-precision approach with a continuous descent along a planned vertical path. The crew crosses any step-down fixes at or above their minimum altitudes and reaches the applicable decision point in a stable condition. The decision altitude, any add-on, and the point for starting a missed approach follow the published procedure and operator SOP.",
+      "referenceTextZh": "CDFA 用沿计划垂直航径的连续下降取代传统非精密进近中的平飞段。机组在不低于最低高度的条件下飞越各梯级下降定位点，并以稳定状态到达适用的决断点。决断高度、任何附加值以及开始复飞的位置，都应遵循公布程序和运营人标准操作程序。"
     },
     {
       "id": "opi-core-636",
       "taskTitle": "缩略词-CDFA-4",
       "audioText": "What advantages does the Continuous Descent Final Approach (CDFA) technique have over the conventional step-down method?",
       "audioTextZh": "与传统梯级下降方式相比，连续下降最后进近（CDFA）技术有哪些优势？",
-      "referenceText": "CDFA promotes a stable flight path and reduces the power, pitch and configuration changes associated with repeated level-offs. It can lower crew workload, improve fuel efficiency and noise performance, and reduce exposure to controlled-flight-into-terrain risk. It also makes it easier to recognize an unstable approach and go around at a defined point.",
-      "referenceTextZh": "CDFA 有助于保持稳定飞行轨迹，并减少多次改平所带来的推力、俯仰和构型变化。它可以降低机组工作负荷，改善燃油效率和噪声性能，并减少可控飞行撞地风险。它还便于机组识别进近不稳定，并在明确的决策点复飞。"
+      "referenceText": "CDFA avoids the repeated level-offs of a conventional step-down approach and gives the crew a steadier descent profile. This can reduce workload, improve approach stability and obstacle awareness, and reduce the risk of CFIT. Eliminating level-offs can also save time and fuel.",
+      "referenceTextZh": "CDFA 避免了传统梯级下降进近中反复改平，并为机组提供更平稳的下降剖面。这可以降低工作负荷、改善进近稳定性和障碍物意识，并降低可控飞行撞地风险。消除平飞段还可以节省时间和燃油。"
     },
     {
       "id": "opi-core-637",
       "taskTitle": "缩略词-CDFA-5",
       "audioText": "Have you ever been required to use the Continuous Descent Final Approach (CDFA) technique?",
       "audioTextZh": "你是否曾被要求使用连续下降最后进近（CDFA）技术？",
-      "referenceText": "A suitable example would be: yes, I have used CDFA during simulator training and on approved non-precision approaches. I briefed the descent path, checked every altitude constraint and was prepared to go around at the applicable decision point. Learners should change this answer to match their real training and operational experience.",
-      "referenceTextZh": "一个合适的示范答案是：是的，我在模拟机训练和经批准的非精密进近中使用过 CDFA。我对下降航径进行了简令，检查了每一项高度限制，并准备在适用决策点复飞。学习者应根据自己的真实训练和运行经历修改这个答案。"
+      "referenceText": "Yes. I have been required to use CDFA when flying a non-precision approach.",
+      "referenceTextZh": "是的。我曾在实施非精密进近时被要求使用 CDFA。"
     }
   ]
 }

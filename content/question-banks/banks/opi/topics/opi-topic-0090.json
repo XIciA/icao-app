@@ -9,24 +9,24 @@
       "taskTitle": "气象-大雨/强降雨-1",
       "audioText": "What factors would you consider if you encountered heavy rain during approach?",
       "audioTextZh": "进近过程中遇到大雨时，你会考虑哪些因素？",
-      "referenceText": "I would consider visibility, runway condition and braking action, crosswind, wind shear and thunderstorm activity, and the approach's stability. I would also check aircraft limitations, landing performance and the risk of engine or sensor effects from intense precipitation. If the approach could not remain stable or the runway margin were doubtful, I would go around or use another plan.",
-      "referenceTextZh": "我会考虑能见度、跑道状况和制动效应、侧风、风切变、雷暴活动以及进近稳定性。我还会检查飞机限制、着陆性能，以及强降水对发动机或传感器的潜在影响。如果进近无法保持稳定，或跑道裕度存在疑问，我会复飞或采用其他方案。"
+      "referenceText": "I would consider the reduced visibility, engine performance, runway condition, and reported braking action. I would also assess the risk of a runway overrun on a wet surface. If I did not have the required visual reference at the minimum, I would go around.",
+      "referenceTextZh": "我会考虑能见度降低、发动机性能、跑道状况和报告的制动作用，也会评估湿跑道冲出风险。如果在最低标准处没有取得所需目视参考，我会复飞。"
     },
     {
       "id": "opi-core-892",
       "taskTitle": "气象-大雨/强降雨-2",
       "audioText": "Have you ever flown in heavy rain?",
       "audioTextZh": "你曾在大雨中飞行过吗？",
-      "referenceText": "One adjustable example is that I have flown through an area of heavy rain during a stabilized approach. The crew monitored visibility, weather radar and aircraft performance, and remained ready to go around. The rain weakened before landing; otherwise, we would have discontinued the approach.",
-      "referenceTextZh": "一个可调整的示范答案是，我曾在稳定进近过程中飞经一片大雨区域。机组监控能见度、气象雷达和飞机性能，并随时准备复飞。着陆前雨势减弱；否则我们会中止进近。"
+      "referenceText": "Yes, I have flown through heavy rain during an approach. I used the windshield wipers, monitored visibility and runway braking action, and adjusted the approach speed in accordance with the procedure. Although visibility was reduced and the landing distance increased, I maintained a stable approach and landed safely.",
+      "referenceTextZh": "是的，我曾在进近期间穿过强降雨。我使用风挡雨刷，监控能见度和跑道制动作用，并按照程序调整进近速度。虽然能见度降低、着陆距离增加，我仍保持稳定进近并安全着陆。"
     },
     {
       "id": "opi-core-893",
       "taskTitle": "气象-大雨/强降雨-3",
       "audioText": "How can heavy rain affect a flight?",
       "audioTextZh": "大雨会如何影响飞行？",
-      "referenceText": "Heavy rain can reduce visibility, mask terrain or runway cues and increase workload. It may be associated with thunderstorms, turbulence, wind shear, hail and lightning, and it can reduce runway braking performance or increase hydroplaning risk. Very intense precipitation may also affect engines or sensors, so crews should follow limitations and avoid hazardous cells.",
-      "referenceTextZh": "大雨会降低能见度、遮蔽地形或跑道目视线索，并增加工作负荷。它可能伴随雷暴、颠簸、风切变、冰雹和闪电，还会降低跑道制动性能或增加滑水风险。极强降水也可能影响发动机或传感器，因此机组应遵守限制并避开危险雷暴单体。"
+      "referenceText": "Heavy rain can reduce visibility and obscure the windshield. It can reduce runway braking action and increase the risk of an overrun or runway excursion. It may also affect engine performance and aircraft stability during approach.",
+      "referenceTextZh": "强降雨会降低能见度并遮蔽风挡，降低跑道制动作用，并增加冲出或偏出跑道的风险。它还可能影响进近期间的发动机性能和飞机稳定性。"
     }
   ]
 }

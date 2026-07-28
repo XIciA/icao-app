@@ -15,23 +15,25 @@
       "id": "opi-image-023-q01",
       "taskTitle": "图片题-023-01",
       "audioText": "What can you see in this picture of a ground-fire emergency?",
-      "audioTextZh": "你能从这张地面火灾紧急情况的图片中看到什么？"
+      "audioTextZh": "你能从这张地面火灾紧急情况的图片中看到什么？",
+      "referenceText": "A passenger aircraft is on the ground with a major fire and heavy black smoke around it. Another aircraft is parked nearby, close to the burning aircraft. The fire appears intense, but its source and the condition of the occupants cannot be determined from the picture.",
+      "referenceTextZh": "一架客机停在地面，周围发生严重火灾并冒出大量黑烟。另一架飞机停在附近，距离起火飞机很近。火势看起来非常猛烈，但无法从图片判断火源和机上人员状况。"
     },
     {
       "id": "opi-image-023-q02",
       "taskTitle": "图片题-023-02",
       "audioText": "What factors can increase the risk of an aircraft fire on the ground?",
       "audioTextZh": "哪些因素会增加航空器在地面起火的风险？",
-      "referenceText": "Risk increases with fuel or oil leaks, hot work, battery faults, damaged wiring, abnormal engine or APU starts and careless fueling. Combustible cabin or cargo material, oxygen, poor housekeeping and unavailable fire equipment can allow a small ignition to spread. Wind, close parking and delayed detection can threaten nearby aircraft and people.",
-      "referenceTextZh": "燃油或滑油泄漏、动火作业、电池故障、导线损坏、发动机或 APU 启动异常，以及加油操作不当都会增加风险。客舱或货舱内的可燃材料、氧气、现场管理不善和灭火设备不可用，可能使小火源迅速蔓延。风、飞机停放间距小和发现延迟还会威胁附近飞机和人员。"
+      "referenceText": "Fuel, hot brakes, leaking fluids, and nearby ground equipment can increase the risk of an aircraft fire on the ground.",
+      "referenceTextZh": "燃油、高温刹车、泄漏的液体和附近的地面设备都会增加飞机在地面起火的风险。"
     },
     {
       "id": "opi-image-023-q03",
       "taskTitle": "图片题-023-03",
       "audioText": "If your aircraft were parked near the burning aircraft shown, how would you protect your aircraft and its occupants?",
       "audioTextZh": "如果你的航空器停在图中起火航空器附近，你会如何保护自己的航空器及其乘员？",
-      "referenceText": "I would immediately coordinate with ground control, airport fire services and ground staff and stop fueling, boarding or other exposed activity. If it could be done safely, I would have the aircraft moved away from smoke, heat and wind-driven fire; otherwise I would shut down and order an evacuation through exits away from the hazard. The crew would account for occupants, keep them upwind and clear, and avoid delaying evacuation to protect baggage or the aircraft.",
-      "referenceTextZh": "我会立即与地面管制、机场消防和地面人员协调，并停止加油、登机或其他使人员暴露于危险的活动。如果能够安全实施，我会安排将飞机移离烟雾、高温和顺风蔓延的火势；否则就关车，并命令人员从远离危险一侧的出口撤离。机组会清点人员，让他们留在上风方向的安全区域，不能为了保护行李或飞机而延误撤离。"
+      "referenceText": "I would alert ground control and the cabin crew immediately and stop boarding or servicing activities. If there were enough time and it was safe and authorized, I would have the aircraft moved away from the fire. Otherwise, I would shut it down and evacuate through exits away from the flames and smoke, directing everyone to assemble upwind at a safe distance.",
+      "referenceTextZh": "我会立即通知地面管制和客舱机组，并停止登机或保障作业。如果时间充足且安全并获得许可，我会让飞机移离火场。否则，我会关闭飞机，并通过远离火焰和烟雾的出口撤离，指挥所有人到上风向的安全距离集合。"
     }
   ]
 }

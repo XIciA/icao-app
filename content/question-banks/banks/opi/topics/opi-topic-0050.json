@@ -9,72 +9,72 @@
       "taskTitle": "运行-擦尾-1",
       "audioText": "During which phases of flight is a tail strike most likely to occur?",
       "audioTextZh": "航空器最容易在哪些飞行阶段发生擦机尾？",
-      "referenceText": "A tail strike is most likely during rotation for takeoff or during the flare and touchdown on landing. It can also occur during a bounced landing or an attempted go-around after touchdown. These phases combine a low height above the runway with significant pitch changes and limited tail clearance.",
-      "referenceTextZh": "擦尾最可能发生在起飞抬轮期间，或着陆拉平与接地期间。它也可能发生在弹跳着陆中，或接地后尝试复飞时。这些阶段的共同特点是飞机离跑道高度很低、俯仰变化明显，而且机尾离地间隙有限。"
+      "referenceText": "A tail strike is most likely during takeoff and landing, when the aircraft is rotating for liftoff or flaring before touchdown. Excessive or improper pitch control in these phases can allow the tail to contact the ground.",
+      "referenceTextZh": "擦尾最容易发生在起飞和着陆阶段，即飞机抬轮离地或接地前拉平时。这些阶段俯仰操纵过大或不当，会使机尾接触地面。"
     },
     {
       "id": "opi-core-591",
       "taskTitle": "运行-擦尾-2",
       "audioText": "What factors can cause a tail strike?",
       "audioTextZh": "哪些因素可能导致擦机尾？",
-      "referenceText": "Common factors include excessive rotation rate, rotation at the wrong speed, an incorrect takeoff configuration or an aft centre of gravity. On landing, an unstable approach, prolonged flare, bounce, high pitch attitude or mishandled go-around can reduce tail clearance. Wind changes and incorrect loading or performance data may add to the risk.",
-      "referenceTextZh": "常见因素包括抬轮速率过大、在错误速度抬轮、起飞构型不正确或重心过于靠后。着陆时，进近不稳定、拉平时间过长、弹跳、俯仰姿态过大或复飞操作不当，都会减小机尾离地间隙。风的变化以及装载或性能数据错误还可能增加风险。"
+      "referenceText": "A tail strike can result from improper control, such as an excessive rotation rate, an early flare, or over-rotation during a go-around. Other factors include an unstable approach, incorrect stabilizer trim, poor crosswind handling, a centre-of-gravity calculation error, strong wind shear, or wake turbulence.",
+      "referenceTextZh": "擦尾可能由操纵不当引起，例如抬轮速率过大、过早拉平，或复飞时过度抬头。其他因素还包括进近不稳定、安定面配平错误、侧风操纵不当、重心计算错误、强风切变或尾流。"
     },
     {
       "id": "opi-core-594",
       "taskTitle": "运行-擦尾-3",
       "audioText": "Can you describe a tail-strike incident you have heard about?",
       "audioTextZh": "你能否描述一起自己听说过的擦机尾事件？",
-      "referenceText": "A suitable example would be an aircraft that bounced after a firm touchdown and then struck its tail when the pilot made a large nose-up input. The crew discontinued the landing, completed the applicable checklist and returned for an inspection. The lesson is to follow the aircraft's bounce-recovery guidance and avoid trying to force an unsafe landing.",
-      "referenceTextZh": "一个合适的示范案例是：飞机在较重接地后发生弹跳，飞行员随后大幅向后带杆，导致机尾擦地。机组终止着陆，完成适用检查单并返航接受检查。这个案例的教训是，应遵守该机型的弹跳改出指导，避免强行完成不安全的着陆。"
+      "referenceText": "Yes. I heard about a tail-strike incident at a flying school. A student pilot struck the tail during landing because of improper aircraft control.",
+      "referenceTextZh": "是的。我听说过一起发生在航校的擦尾事件。一名学员飞行员因操纵不当，在着陆时使机尾撞地。"
     },
     {
       "id": "opi-core-595",
       "taskTitle": "运行-擦尾-4",
       "audioText": "Have you ever experienced a tail strike or a situation in which one was narrowly avoided?",
       "audioTextZh": "你是否曾经历过擦机尾或险些擦机尾的情况？",
-      "referenceText": "A suitable example would be a landing in gusty wind where the pitch increased during a bounce and the crew immediately went around. No contact occurred, but the event was reviewed because the tail-clearance margin had become small. This is only a model answer and should be replaced with the learner's own experience if appropriate.",
-      "referenceTextZh": "一个合适的示范案例是：飞机在阵风中着陆，弹跳时俯仰姿态增加，机组随即复飞。虽然没有发生接触，但由于机尾离地裕度已经很小，事后仍对事件进行了复盘。这只是一段示范答案；适当时，学习者应根据自己的经历替换。"
+      "referenceText": "No, I have never experienced a tail strike or a situation in which one was narrowly avoided. I have studied the risk during training, especially the need to use the correct rotation rate, maintain a stable approach, and avoid excessive pitch during takeoff, landing, or a go-around.",
+      "referenceTextZh": "没有，我从未经历过擦尾或险些擦尾的情况。我在训练中学习过相关风险，尤其要采用正确的抬轮速率、保持稳定进近，并避免在起飞、着陆或复飞时俯仰过大。"
     },
     {
       "id": "opi-core-597",
       "taskTitle": "运行-擦尾-5",
       "audioText": "How can pilots reduce the risk of a tail strike?",
       "audioTextZh": "飞行员如何降低擦机尾的风险？",
-      "referenceText": "Pilots can reduce the risk by confirming weight, balance, performance data and takeoff configuration before departure. They should use the correct rotation technique, monitor pitch and avoid excessive or abrupt control inputs. On landing, a stabilized approach, proper flare and an early go-around after an unsafe bounce are important safeguards.",
-      "referenceTextZh": "飞行员可以在起飞前确认重量、平衡、性能数据和起飞构型，以降低风险。他们应采用正确的抬轮技术，监控俯仰姿态，并避免过大或突然的操纵输入。着陆时，稳定进近、正确拉平，以及发生不安全弹跳后及早复飞，都是重要保护措施。"
+      "referenceText": "Pilots can reduce the risk through simulator training and by using the correct rotation and flare techniques. They should follow the SOP and monitor speed and pitch attitude closely. They should avoid excessive rotation during takeoff and maintain a stable approach and proper flare during landing. Accurate weight-and-balance and centre-of-gravity calculations and good weather information are also important.",
+      "referenceTextZh": "飞行员可以通过模拟机训练以及采用正确的抬轮和拉平技术来降低风险。他们应遵循标准操作程序，密切监控速度和俯仰姿态，起飞时避免过度抬轮，着陆时保持稳定进近并正确拉平。准确的重量平衡和重心计算以及良好天气信息也很重要。"
     },
     {
       "id": "opi-core-598",
       "taskTitle": "运行-擦尾-6",
       "audioText": "What consequences can a tail strike have for an aircraft and its occupants?",
       "audioTextZh": "擦机尾会给航空器及其乘员造成哪些后果？",
-      "referenceText": "A tail strike can damage the lower fuselage, pressure shell, tail structure and related systems. Damage that is not detected may threaten structural integrity during a later pressurized flight. Occupants may also be injured by the impact or by a subsequent evacuation, and the aircraft can require extensive inspection and repair.",
-      "referenceTextZh": "擦尾可能损坏机身下部、压力壳、尾部结构和相关系统。没有发现的损坏可能在之后的增压飞行中威胁结构完整性。撞击或随后的撤离还可能使人员受伤，飞机也可能需要进行大量检查和修理。"
+      "referenceText": "A tail strike can damage the tail, aft fuselage, or aft pressure bulkhead and may also affect the landing gear. Repairs can be expensive and time-consuming and may disrupt the aircraft’s schedule. The event can also threaten flight safety and injure passengers.",
+      "referenceTextZh": "擦尾会损坏机尾、后机身或后压力隔框，也可能影响起落架。修理费用可能很高且耗时较长，并会打乱飞机运行计划。该事件还会威胁飞行安全并使旅客受伤。"
     },
     {
       "id": "opi-core-599",
       "taskTitle": "运行-擦尾-7",
       "audioText": "What should a flight crew do after a suspected tail strike?",
       "audioTextZh": "怀疑发生擦机尾后，飞行机组应怎么做？",
-      "referenceText": "After a suspected tail strike, the crew should follow the aircraft's checklist and avoid actions that could worsen possible structural damage. If the aircraft is still on the runway, any decision to reject must remain within the aircraft's established takeoff-decision and SOP boundaries; after liftoff, the crew should complete the tail-strike procedure and return or land at a suitable airport as required. The event must be reported and the aircraft inspected before it is released for further flight.",
-      "referenceTextZh": "怀疑发生擦尾后，机组应执行该机型检查单，并避免采取可能加重结构损坏的操作。如果飞机仍在跑道上，任何中断起飞决定都必须符合该机型既定的起飞决策和 SOP 边界；离地后，机组应完成擦尾程序，并按要求返航或在合适机场着陆。事件必须报告，飞机也必须经过检查后才能再次放行飞行。"
+      "referenceText": "The crew should first maintain aircraft control and assess the available instrument and visual indications for damage. They should inform ATC and declare an emergency if necessary. After landing, the crew should record the event in the logbook and arrange a maintenance inspection.",
+      "referenceTextZh": "机组应首先控制好飞机，并根据可用仪表和目视指示评估损伤。他们应通知空中交通管制，并在必要时宣布紧急状态。着陆后，机组应在飞行记录本中记录事件并安排维修检查。"
     },
     {
       "id": "opi-core-600",
       "taskTitle": "运行-擦尾-8",
       "audioText": "Why can a tail strike occur on aircraft of different sizes?",
       "audioTextZh": "为什么不同大小的航空器都可能发生擦机尾？",
-      "referenceText": "Any aircraft can strike its tail if its pitch attitude and ground clearance are not properly controlled. Long aircraft may have less geometric clearance, while smaller aircraft can still be exposed through incorrect loading, excessive rotation or a bounced landing. Design protections help, but they do not replace correct performance data and handling technique.",
-      "referenceTextZh": "如果俯仰姿态和离地间隙控制不当，任何飞机都可能擦尾。机身较长的飞机可能具有较小的几何间隙，而较小的飞机也可能因装载错误、抬轮过度或着陆弹跳而面临风险。设计保护措施会有所帮助，但不能取代正确的性能数据和操纵技术。"
+      "referenceText": "A tail strike is not limited to large aircraft because it can result from how the aircraft is handled during takeoff, landing, or a go-around. Excessive rotation, an unstable approach, or poor crosswind handling can create the risk on aircraft of different sizes. Incorrect centre-of-gravity calculations or inadequate training can increase the risk as well.",
+      "referenceTextZh": "擦尾并不限于大型飞机，因为起飞、着陆或复飞时的操纵方式都可能造成擦尾。抬轮过度、进近不稳定或侧风操纵不当，会使不同大小的飞机都面临这种风险。重心计算错误或训练不足也会增加风险。"
     },
     {
       "id": "opi-core-601",
       "taskTitle": "运行-擦尾-9",
       "audioText": "How would you identify the pitch attitude at which a tail strike could occur on your aircraft type?",
       "audioTextZh": "你如何确定所飞机型可能发生擦机尾的俯仰姿态？",
-      "referenceText": "For my aircraft type, I would use the approved flight crew operating manual and training material to identify the relevant tail-clearance information. I would also study the normal pitch targets, rotation technique and any pitch-limit indication provided on the flight display. I would not rely on a remembered number from another variant because geometry and configuration can differ.",
-      "referenceTextZh": "对于我的机型，我会使用经批准的飞行机组操作手册和训练资料，查找相关机尾离地间隙信息。我还会学习正常俯仰目标、抬轮技术以及飞行显示器提供的任何俯仰限制指示。我不会依赖记忆中其他改型的数值，因为飞机几何尺寸和构型可能不同。"
+      "referenceText": "I would identify the applicable pitch attitude by checking the aircraft flight manual and the SOP for my aircraft type. I would then monitor pitch carefully during takeoff rotation and the landing flare so that I did not exceed that limit.",
+      "referenceTextZh": "我会查阅该机型的飞机飞行手册和标准操作程序，确定适用的俯仰姿态限制。随后在起飞抬轮和着陆拉平时认真监控俯仰，避免超过该限制。"
     }
   ]
 }

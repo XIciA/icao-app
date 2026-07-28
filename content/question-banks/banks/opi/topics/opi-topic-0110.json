@@ -9,16 +9,16 @@
       "taskTitle": "特情-失控-1",
       "audioText": "What can cause an aircraft to lose control in flight?",
       "audioTextZh": "哪些因素可能导致航空器在飞行中失去控制？",
-      "referenceText": "Loss of control can result from an aerodynamic stall, severe upset, icing, turbulence, spatial disorientation or incorrect flight-control input. System failures, unreliable information, automation surprise and poor energy management can also contribute. It is often an error chain in which the crew does not recognize or correct a developing deviation early enough.",
-      "referenceTextZh": "失去控制可能由气动失速、严重姿态异常、结冰、颠簸、空间定向障碍或错误的飞行操纵输入引起。系统故障、信息不可靠、自动化表现出乎预期和能量管理不佳也可能成为促成因素。它往往是一条差错链，机组没有足够早地识别或纠正正在发展的偏差。"
+      "referenceText": "Loss of control can result from major failures of the flight-control, hydraulic, electrical, or engine systems. Pilot error, poor situational awareness, or exceeding aircraft limits can also be factors. Severe icing, turbulence, wind shear, thunderstorms, or an onboard fire may also lead to loss of control.",
+      "referenceTextZh": "飞行操纵、液压、电气或发动机系统发生严重故障，可能导致失去控制。飞行员差错、情景意识不足或超出飞机限制也可能是因素。严重结冰、颠簸、风切变、雷暴或机上火灾同样可能造成失控。"
     },
     {
       "id": "opi-extra-056",
       "taskTitle": "特情-失控-2",
       "audioText": "What should a flight crew do if they lose control of the aircraft during flight?",
       "audioTextZh": "飞行中航空器失去控制时，飞行机组应怎么做？",
-      "referenceText": "The crew should recognize the upset, take control and apply the aircraft manufacturer's recovery procedure without delay. In general, it must manage angle of attack first, then bank, thrust and flight path while respecting structural and speed limits. The pilots should reduce conflicting inputs, use reliable indications and communicate with ATC only after control is being restored.",
-      "referenceTextZh": "机组应识别姿态异常、接管操纵，并立即执行飞机制造商规定的改出程序。通常必须先管理迎角，再处理坡度、推力和飞行轨迹，同时遵守结构与速度限制。飞行员应减少相互冲突的操纵输入，使用可靠指示，并且只在飞机开始恢复控制后才与 ATC 通信。"
+      "referenceText": "The crew's first priority is to recover control by following the applicable SOP, memory items, and emergency checklist. Once able, the crew should advise ATC of the situation. If control cannot be restored, they should declare distress and prepare for a forced landing or ditching.",
+      "referenceTextZh": "机组首要任务是按照适用的标准操作程序、记忆项目和应急检查单恢复控制。条件允许后，应向空中交通管制报告情况。如果无法恢复控制，应宣布遇险并准备迫降或水上迫降。"
     }
   ]
 }

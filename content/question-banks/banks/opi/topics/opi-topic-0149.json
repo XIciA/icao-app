@@ -9,56 +9,56 @@
       "taskTitle": "运行-禁区、危险区、限制区-1",
       "audioText": "What are the main differences among prohibited, restricted, and danger areas?",
       "audioTextZh": "禁区、限制区和危险区的主要区别是什么？",
-      "referenceText": "A prohibited area is airspace in which flight is prohibited. A restricted area is airspace in which flight is restricted according to specified conditions, while a danger area is airspace where activities dangerous to aircraft may exist at stated times. States may publish separate authorization or access mechanisms, but pilots must use the current national AIP without blurring these three basic definitions.",
-      "referenceTextZh": "禁区是禁止航空器飞行的空域。限制区是按照规定条件限制航空器飞行的空域；危险区则是在公布时段内可能存在对航空器飞行构成危险的活动的划定空域。各国可能公布不同的授权或准入机制，但飞行员必须使用现行国家 AIP，不能混淆这三种基本定义。"
+      "referenceText": "A prohibited area is airspace in which flight is prohibited. A restricted area is airspace in which flight is allowed only under specified conditions or with the required authorization. A danger area is airspace in which activities dangerous to aircraft may exist at stated times, so pilots must check its status.",
+      "referenceTextZh": "禁区是禁止飞行的空域。限制区是只有在规定条件下或获得所需许可后才能飞行的空域。危险区是在规定时间内可能存在危及航空器活动的空域，因此飞行员必须核实其状态。"
     },
     {
       "id": "opi-extra-380",
       "taskTitle": "运行-禁区、危险区、限制区-2",
       "audioText": "What risks can arise from entering prohibited, restricted, or danger areas without following the applicable requirements?",
       "audioTextZh": "未遵守适用要求而进入禁区、限制区或危险区，可能产生哪些风险？",
-      "referenceText": "Entry into a prohibited area or violation of a restricted area's conditions can lead to interception, enforcement action, urgent rerouting and loss of separation. A danger area primarily presents a physical risk from activities such as weapons, unmanned systems or intensive training, while its legal access rules depend on the State. Any of these events can create high workload, fuel penalties and a serious threat if the crew does not respond promptly.",
-      "referenceTextZh": "进入禁区或违反限制区的规定条件，可能导致被拦截、受到执法处置、紧急改航和间隔丧失。危险区的主要问题是武器、无人系统或密集训练等活动带来的实际危险，具体法律准入规则则取决于所在国家。这些情况都可能造成工作负荷增加和额外燃油代价；如果机组没有及时应对，还可能构成严重威胁。"
+      "referenceText": "Unauthorized entry can lead to a regulatory warning, violation, or investigation and may cause major operational delays. The aircraft could also be intercepted and required to land. Entering an active danger area may expose the aircraft to hazardous military or other activities.",
+      "referenceTextZh": "未经授权进入这些空域可能受到监管警告、违规处理或调查，也可能造成严重运行延误。飞机还可能遭到拦截并被要求着陆。进入正在活动的危险区可能使飞机面临危险的军事活动或其他活动。"
     },
     {
       "id": "opi-extra-381",
       "taskTitle": "运行-禁区、危险区、限制区-3",
       "audioText": "What should a flight crew do if the aircraft is approaching a restricted area unexpectedly?",
       "audioTextZh": "航空器意外接近限制区时，飞行机组应怎么做？",
-      "referenceText": "The crew should verify position and the area's status, maintain a safe flight path and avoid entering it while considering terrain, traffic and aircraft performance. It should inform ATC immediately, request an amended clearance or heading and use the current chart and navigation data to monitor the boundary. If ATC communication is unavailable, the pilots follow the applicable airspace and contingency procedures rather than making an abrupt unsafe turn.",
-      "referenceTextZh": "机组应核实位置和该空域的状态，在考虑地形、其他航空器和飞机性能的同时保持安全航迹并避免进入。机组应立即通知 ATC，请求修改许可或航向，并使用现行航图和导航数据监控边界。如果无法与 ATC 通信，飞行员应执行适用的空域和应急程序，不能突然作出不安全的转弯。"
+      "referenceText": "The crew should confirm the aircraft's position using the available navigation sources and make sure all crew members understand the situation. They should contact ATC promptly, report the problem, and request a clearance or deviation around the area. The aircraft should not enter unless the applicable authorization has been obtained.",
+      "referenceTextZh": "机组应使用可用的导航来源确认飞机位置，并确保所有机组成员都了解当前情况。他们应立即联系空中交通管制，报告问题，并请求许可或绕飞该区域。未取得适用许可前，飞机不应进入。"
     },
     {
       "id": "opi-extra-382",
       "taskTitle": "运行-禁区、危险区、限制区-4",
       "audioText": "How can pilots obtain current information about prohibited, restricted, and danger areas before and during a flight?",
       "audioTextZh": "飞行前和飞行中，飞行员如何获取有关禁区、限制区和危险区的最新信息？",
-      "referenceText": "Before flight, pilots use the current AIP, charts, NOTAMs, operational briefing and approved flight-planning system to identify boundaries, hours and restrictions. During flight, they monitor updated NOTAM or operational information, ATC messages and the navigation display when it contains authorized current data. A moving-map depiction is helpful but does not replace the controlling aeronautical publication or a required clearance.",
-      "referenceTextZh": "飞行前，飞行员使用现行 AIP、航图、NOTAM、运行简报和批准的飞行计划系统，确认有关空域的边界、生效或活动时段和适用限制。飞行中，他们应监控更新的 NOTAM 或运行信息、ATC 通报，以及采用授权且现行数据的导航显示。移动地图上的图示很有帮助，但不能取代具有约束力的航行资料或规定的许可。"
+      "referenceText": "Before flight, pilots should review NOTAMs, aeronautical charts, and the dispatch or AIS briefing for the areas and their active times. During flight, they can obtain updates from ATC and from available data-link services. A current onboard navigation database may also display the areas, but pilots should ask ATC if the status is uncertain.",
+      "referenceTextZh": "飞行前，飞行员应通过航行通告、航图，以及签派或航行情报服务简令，了解这些区域及其活动时间。飞行中，可以从空中交通管制和可用的数据链服务获取更新。现行的机载导航数据库也可能显示这些区域，但状态不明确时，飞行员应向空中交通管制查询。"
     },
     {
       "id": "opi-extra-383",
       "taskTitle": "运行-禁区、危险区、限制区-5",
       "audioText": "What factors should a pilot consider before accepting an ATC clearance through an active danger area?",
       "audioTextZh": "接受穿越正在活动的危险区的空中交通管制许可前，飞行员应考虑哪些因素？",
-      "referenceText": "Before accepting the route, the pilot should confirm the danger area's active times, altitude limits and hazardous activity and whether that activity has been suspended or safely coordinated for the transit. An ATC clearance, any legal access requirement and the actual management or absence of the hazard are separate questions, so the crew also considers navigation, communication, escape options, weather and fuel. If the activity or protection is unclear or the risk is unacceptable, the pilot should request a route around the area.",
-      "referenceTextZh": "接受航路前，飞行员应确认危险区的活动时间、高度限制和危险活动，并确认相关活动是否已经停止，或是否已为穿越飞行作出安全协调。ATC 许可、任何法定准入要求，以及危险是否真正得到管控或消除，是三个不同的问题；机组还要考虑导航、通信、退出方案、天气和燃油。如果无法确认活动情况或防护措施，或风险不可接受，飞行员应请求绕飞该区域。"
+      "referenceText": "Before accepting the clearance, the crew should confirm the danger area's lateral and vertical limits, active time, current status, and the hazardous activity involved. They should check that entry is legally permitted, that the aircraft can remain within the clearance, and that fuel, weather, navigation, and an escape route are adequate. If the status or safety is uncertain, they should request a route around it.",
+      "referenceTextZh": "接受许可前，机组应确认危险区的水平和垂直边界、活动时间、当前状态，以及所涉及的危险活动。他们应核实进入该区域是否合法，飞机能否始终保持在许可范围内，以及燃油、天气、导航和退出航路是否满足要求。如果状态或安全性不明确，应请求绕飞该区域。"
     },
     {
       "id": "opi-extra-384",
       "taskTitle": "运行-禁区、危险区、限制区-6",
       "audioText": "How can a pilot identify prohibited, restricted, and danger areas on an aeronautical chart?",
       "audioTextZh": "飞行员如何在航图上识别禁区、限制区和危险区？",
-      "referenceText": "Aeronautical charts depict these areas with published boundaries, vertical limits, identifiers and associated labels or notes. The identifier often includes a national prefix and a letter linked to the area type, but conventions and colors differ by chart producer. Pilots should use the chart legend and current AIP rather than rely only on memory of a symbol.",
-      "referenceTextZh": "航图以公布的边界、垂直范围、识别代号和相关标注或注释表示这些区域。识别代号通常包含国家前缀和与空域类型相关的字母，但不同航图制作方采用的惯例和颜色可能不同。飞行员应查阅航图图例和现行 AIP，不能只凭记忆判断符号。"
+      "referenceText": "These areas are shown by charted boundaries and identifying labels. The chart may also show their vertical limits, operating times, and references to NOTAM information. Because colors and symbols vary by chart, the pilot should use the chart legend to confirm each area's meaning.",
+      "referenceTextZh": "这些区域通过航图上的边界和识别标志来表示。航图还可能标明其垂直范围、活动时间和相关航行通告索引。由于不同航图的颜色和符号有所不同，飞行员应查阅图例，确认每个区域的含义。"
     },
     {
       "id": "opi-extra-385",
       "taskTitle": "运行-禁区、危险区、限制区-7",
       "audioText": "What should a flight crew do immediately after realizing that the aircraft has inadvertently entered a restricted area?",
       "audioTextZh": "发现航空器误入限制区后，飞行机组应立即怎么做？",
-      "referenceText": "The crew should maintain control, verify position and leave the area by the safest practical route without making an abrupt maneuver that creates a greater hazard. It should inform ATC immediately, comply with appropriate instructions or interception procedures and monitor terrain, traffic and fuel. The event should be reported after landing with accurate times and navigation information so the cause and any required follow-up can be addressed.",
-      "referenceTextZh": "机组应保持飞机控制、核实位置，并沿最安全可行的航路离开该区域，不能作出会造成更大危险的突然机动。机组应立即通知 ATC，遵守适当的指令或拦截程序，并监控地形、其他航空器和燃油。着陆后应报告事件，提供准确的时间和导航信息，以便查明原因并完成所需的后续处理。"
+      "referenceText": "The crew should take prompt action to leave the restricted area by a safe route and contact ATC without delay. They should report the error, current position, and intentions while the crew continues normal duties. After landing, the event should be reported through the applicable company process.",
+      "referenceTextZh": "机组应立即采取行动，沿安全航路离开限制区，并尽快联系空中交通管制。他们应报告误入情况、当前位置和意图，同时继续履行正常机组职责。着陆后，应按照适用的公司程序报告该事件。"
     }
   ]
 }

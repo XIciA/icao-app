@@ -9,112 +9,112 @@
       "taskTitle": "特情-跑道侵入与地面冲突-1",
       "audioText": "What should a pilot do if the aircraft collides with a ground vehicle while taxiing?",
       "audioTextZh": "滑行时飞机与地面车辆相撞，飞行员应如何处置？",
-      "referenceText": "The pilot should stop the aircraft, set the parking brake when appropriate and make sure there is no immediate fire or injury risk. The crew should advise ATC or ground control, assess occupants and aircraft indications, and request emergency or medical assistance as needed. The aircraft should not move again until its condition and the safe method of recovery have been established.",
-      "referenceTextZh": "飞行员应停住飞机，适当时设置停留刹车，并确认没有立即发生火灾或人员受伤的风险。机组应通知空管或地面管制，评估机上人员和飞机指示，并按需请求应急或医疗协助。在确认飞机状况和安全恢复或移离方式之前，飞机不应再次移动。"
+      "referenceText": "The pilot should stop the aircraft immediately, set the parking brake, and have the cabin crew check for injuries. The crew should report the collision to ATC and company dispatch and request maintenance inspection and emergency assistance if needed. Taxi should not resume until the aircraft's airworthiness has been confirmed.",
+      "referenceTextZh": "飞行员应立即停下飞机、设置停留刹车，并让客舱机组检查是否有人受伤。机组应向空中交通管制和公司签派报告碰撞，并在需要时申请维修检查和应急协助。在确认飞机适航之前，不得恢复滑行。"
     },
     {
       "id": "opi-core-340",
       "taskTitle": "特情-跑道侵入与地面冲突-2",
       "audioText": "What should a pilot do after missing the correct taxiway in heavy fog?",
       "audioTextZh": "大雾中错过正确滑行道后，飞行员应如何处置？",
-      "referenceText": "The pilot should not turn unpredictably or try to recover the route without clearance. The aircraft should stop in a safe position, tell ATC that the taxiway was missed and request clear revised instructions or assistance. Both pilots should verify the new route and aircraft position before moving again.",
-      "referenceTextZh": "飞行员不应在没有协调的情况下随意转弯，也不应在没有许可的情况下自行找回路线。飞机应在安全位置停下，告知空管错过了滑行道，并请求清楚的新指令或协助。再次移动前，两名飞行员都应确认新路线和飞机位置。"
+      "referenceText": "The pilot should stop immediately and advise ATC that the correct taxiway was missed.",
+      "referenceTextZh": "飞行员应立即停车，并通知空中交通管制自己错过了正确的滑行道。"
     },
     {
       "id": "opi-core-341",
       "taskTitle": "特情-跑道侵入与地面冲突-3",
       "audioText": "Have you ever heard of an incident or accident involving a runway incursion?",
       "audioTextZh": "你听说过涉及跑道侵入的事故或事件吗？",
-      "referenceText": "A suitable example would be: yes, I have read reports of runway incursions in which an aircraft or vehicle entered a protected runway without the required authorization. Some were resolved with enough time, while others required immediate braking or a go-around. These events show why clearances, position awareness and stop-bar discipline are critical.",
-      "referenceTextZh": "一个合适的示范答案是：是的，我看过航空器或车辆未经所需许可进入受保护跑道的跑道侵入报告。有些事件有足够时间得到化解，另一些则要求立即刹车或复飞。这些事件说明，管制许可、位置意识和停止排灯纪律十分关键。"
+      "referenceText": "Yes. In 1977, two Boeing 747 aircraft collided on a runway in heavy fog after a misunderstanding. It became the deadliest accident in aviation history.",
+      "referenceTextZh": "是的。1977 年，两架波音 747 飞机因误解在大雾中的跑道上相撞。这成为航空史上死亡人数最多的事故。"
     },
     {
       "id": "opi-core-342",
       "taskTitle": "特情-跑道侵入与地面冲突-4",
       "audioText": "What is a runway incursion?",
       "audioTextZh": "什么是跑道侵入？",
-      "referenceText": "A runway incursion is any occurrence at an aerodrome involving the incorrect presence of an aircraft, vehicle or person on the protected area of a surface designated for takeoff and landing. It may range from an event with no immediate consequence to a serious collision risk. The definition concerns incorrect presence, not only an actual loss of separation or collision.",
-      "referenceTextZh": "跑道侵入是指在机场发生的任何航空器、车辆或人员错误地出现在用于航空器着陆和起飞的地面保护区内的情况。其严重程度可以从没有直接后果的事件到存在严重碰撞风险不等。这个定义关注的是错误出现，而不只是真正发生间隔丧失或碰撞。"
+      "referenceText": "A runway incursion is the incorrect presence of an aircraft, vehicle, or person in the protected area of a runway used for takeoff or landing.",
+      "referenceTextZh": "跑道侵入是指飞机、车辆或人员错误地出现在用于起飞或着陆的跑道保护区内。"
     },
     {
       "id": "opi-core-343",
       "taskTitle": "特情-跑道侵入与地面冲突-5",
       "audioText": "What can cause a runway incursion?",
       "audioTextZh": "哪些因素会导致跑道侵入？",
-      "referenceText": "Runway incursions can result from misunderstood clearances, incorrect readbacks, loss of position awareness or entry without authorization. Contributing factors include complex airport layouts, unclear signs or markings, low visibility, distraction, workload and language difficulties. Controller errors and vehicle or pedestrian deviations can also place someone incorrectly in the protected area.",
-      "referenceTextZh": "跑道侵入可能源于误解许可、错误复诵、失去位置意识或未经许可进入。复杂的机场布局、不清楚的标志或标线、低能见度、注意力分散、工作负荷和语言困难都是促成因素。管制员错误以及车辆或行人偏离路线，也可能使其错误进入保护区。"
+      "referenceText": "A runway incursion can result from low visibility, misunderstanding between pilots and controllers, nonstandard phraseology, or a pilot's unfamiliarity with the airport and its procedures. Poor ground management, such as a vehicle entering a runway without clearance, can also cause one.",
+      "referenceTextZh": "低能见度、飞行员与管制员之间的误解、非标准通话用语，或飞行员不熟悉机场及其程序，都可能导致跑道侵入。地面管理不当，例如车辆未经许可进入跑道，也可能造成跑道侵入。"
     },
     {
       "id": "opi-core-344",
       "taskTitle": "特情-跑道侵入与地面冲突-6",
       "audioText": "What can cause a ground collision?",
       "audioTextZh": "哪些因素会导致地面碰撞？",
-      "referenceText": "A ground collision can be caused by poor visibility, excessive taxi speed, distraction, unclear instructions or loss of position awareness. Congestion, blind areas, unfamiliar layouts, weak coordination with ground staff and unmarked obstacles add risk. Mechanical failure or slippery pavement can also reduce the crew's ability to stop or steer.",
-      "referenceTextZh": "能见度不佳、滑行速度过快、注意力分散、指令不清或失去位置意识都可能造成地面碰撞。交通拥挤、盲区、不熟悉的布局、与地面人员协调不足和无标记障碍物会增加风险。机械故障或湿滑道面也会降低机组停车或转向的能力。"
+      "referenceText": "A ground collision can be caused by poor visibility, a mechanical problem, or human error. Inoperative brakes or steering may cause an aircraft to leave a taxiway or runway, while a misunderstanding between pilots and controllers can also create a collision risk.",
+      "referenceTextZh": "地面碰撞可能由低能见度、机械故障或人为差错造成。刹车或转向失效可能使飞机偏离滑行道或跑道，而飞行员与管制员之间的误解也会带来碰撞风险。"
     },
     {
       "id": "opi-core-345",
       "taskTitle": "特情-跑道侵入与地面冲突-7",
       "audioText": "How can ground collisions be prevented?",
       "audioTextZh": "如何防止地面碰撞？",
-      "referenceText": "Crews can prevent ground collisions by planning the taxi route, confirming clearances, controlling speed and maintaining a continuous outside scan. Both pilots should monitor position, markings, traffic and obstacles and should use approved maps or surface displays without relying on them alone. If there is any doubt about position or clearance, the aircraft should stop and ask for help.",
-      "referenceTextZh": "机组可以通过规划滑行路线、确认许可、控制速度并持续向外观察来预防地面碰撞。两名飞行员都应监控位置、标线、交通和障碍物，并使用经批准的地图或场面显示，但不能单独依赖这些设备。只要对位置或许可存在疑问，飞机就应停下并请求协助。"
+      "referenceText": "Pilots should prepare thoroughly, follow ATC instructions, use standard phraseology, taxi slowly in low visibility, and maintain situational awareness. ATC should communicate clearly, and airports should provide effective signs and lighting and manage movement areas carefully.",
+      "referenceTextZh": "飞行员应充分准备，遵循空中交通管制指令，使用标准通话用语，在低能见度下缓慢滑行，并保持情景意识。空中交通管制应清晰通信，机场则应提供有效的标志和灯光，并认真管理活动区域。"
     },
     {
       "id": "opi-core-346",
       "taskTitle": "特情-跑道侵入与地面冲突-8",
       "audioText": "How can pilots reduce the risk of a collision while taxiing in heavy fog?",
       "audioTextZh": "大雾中滑行时，飞行员如何降低碰撞风险？",
-      "referenceText": "The crew should use the airport chart, brief the route and taxi at a speed that permits a safe stop within the visible area. Both pilots should verify each sign, marking, clearance limit and runway crossing, using an approved moving map when available. If position, clearance or obstacle separation becomes uncertain, they should stop and request detailed ATC assistance.",
-      "referenceTextZh": "机组应使用机场图，讲解滑行路线，并以能够在可见范围内安全停下的速度滑行。两名飞行员都应确认每个标志、标线、许可界限和跑道穿越许可；如果配备经批准的机载机场活动地图，也应使用。如果无法确定位置、许可或与障碍物的间隔，应停下并请求空管提供详细协助。"
+      "referenceText": "Pilots should taxi carefully, follow ATC instructions and regulations, and maintain good situational awareness.",
+      "referenceTextZh": "飞行员应谨慎滑行，遵循空中交通管制指令和规章，并保持良好情景意识。"
     },
     {
       "id": "opi-core-349",
       "taskTitle": "特情-跑道侵入与地面冲突-9",
       "audioText": "What are the possible consequences of a runway incursion?",
       "audioTextZh": "跑道侵入可能造成哪些后果？",
-      "referenceText": "A runway incursion can cause a collision between aircraft, a vehicle or a person during takeoff or landing. Even without a collision, it may force a rejected takeoff, go-around or sudden evasive action and can result in injury, damage and major operational disruption. The severity depends on speed, proximity, visibility and the time available to react.",
-      "referenceTextZh": "跑道侵入可能导致航空器在起飞或着陆时与另一航空器、车辆或人员相撞。即使没有碰撞，也可能迫使机组中断起飞、复飞或突然采取避让动作，并造成人员受伤、财产损伤和严重运行中断。严重程度取决于速度、距离、能见度和可用于反应的时间。"
+      "referenceText": "A runway incursion may cause a ground collision and structural damage to an aircraft. It can also lead to long ground delays or holding in the air.",
+      "referenceTextZh": "跑道侵入可能造成地面碰撞和飞机结构损伤，还可能导致长时间地面延误或空中等待。"
     },
     {
       "id": "opi-core-350",
       "taskTitle": "特情-跑道侵入与地面冲突-10",
       "audioText": "What can be done to prevent runway incursions?",
       "audioTextZh": "可以采取哪些措施防止跑道侵入？",
-      "referenceText": "Prevention requires clear airport design, visible signs and markings, reliable lighting, disciplined ATC communication and effective vehicle control. Pilots should brief the taxi, use correct readbacks, maintain position awareness and never cross or enter a runway without the required authorization. Training, hot-spot information, reporting and risk-based airport improvements support the whole system.",
-      "referenceTextZh": "预防跑道侵入需要清晰的机场设计、醒目的标志和标线、可靠的灯光、规范的空管通信以及有效的车辆控制。飞行员应讲解滑行路线，正确复诵，保持位置意识，未经所需许可绝不能穿越或进入跑道。训练、热点信息、报告和基于风险的机场改进措施可以为整个系统提供支持。"
+      "referenceText": "Pilots should follow SOPs, study airport charts, use standard radio phraseology, read back clearances correctly, confirm their position when unsure, and taxi slowly in low visibility. ATC should issue clear instructions, while airports should improve runway signs, markings, lighting, and surface management.",
+      "referenceTextZh": "飞行员应遵循标准操作程序，研究机场图，使用标准无线电通话用语，正确复诵许可，在不确定时确认位置，并在低能见度下缓慢滑行。空中交通管制应发布明确指令，机场则应改进跑道标志、标线、灯光和道面活动管理。"
     },
     {
       "id": "opi-core-351",
       "taskTitle": "特情-跑道侵入与地面冲突-11",
       "audioText": "Who may be responsible when a runway incursion occurs?",
       "audioTextZh": "发生跑道侵入时，哪些人员可能负有责任？",
-      "referenceText": "Responsibility may involve a pilot, controller, vehicle driver, pedestrian, airport operator or more than one party. The immediate classification describes what happened, while a formal investigation determines the contributing actions and system conditions. It is therefore unsafe to assign blame before communication, layout, visibility, procedures and human factors have been examined.",
-      "referenceTextZh": "责任可能涉及飞行员、管制员、车辆驾驶员、行人、机场运营人或多个相关方。初步分类说明发生了什么，正式调查则确定促成事件的行为和系统条件。因此，在检查通信、布局、能见度、程序和人为因素之前就归咎于某一方是不安全的。"
+      "referenceText": "Responsibility depends on what caused the incursion. A pilot may be responsible after misunderstanding an ATC instruction, while a controller may be responsible after issuing an incorrect instruction.",
+      "referenceTextZh": "责任取决于造成侵入的原因。飞行员可能因误解空中交通管制指令承担责任，管制员也可能因发布错误指令承担责任。"
     },
     {
       "id": "opi-core-357",
       "taskTitle": "特情-跑道侵入与地面冲突-12",
       "audioText": "What ground conditions can contribute to a ground collision?",
       "audioTextZh": "哪些地面条件可能导致地面碰撞？",
-      "referenceText": "Ice, snow, standing water, loose gravel, mud or rubber contamination can reduce braking or steering. Poor markings, damaged pavement, inadequate lighting, construction and foreign objects can make position or obstacle clearance harder to judge. Slopes, tight turns, congestion and strong wind may add to the collision risk.",
-      "referenceTextZh": "冰、雪、积水、松散碎石、泥浆或橡胶污染都会降低制动或转向能力。标线不清、道面损坏、灯光不足、施工和外来物，会使位置或障碍物间隔更难判断。坡度、急转弯、交通拥挤和强风也可能增加碰撞风险。"
+      "referenceText": "Low visibility, poor runway or taxiway lighting, and unclear markings can contribute to a ground collision. Wet or slippery surfaces, foreign-object debris, and narrow taxiways can also make safe maneuvering more difficult.",
+      "referenceTextZh": "低能见度、跑道或滑行道灯光不足，以及标线不清，都可能导致地面碰撞。湿滑道面、外来物和狭窄滑行道也会增加安全机动的难度。"
     },
     {
       "id": "opi-core-358",
       "taskTitle": "特情-跑道侵入与地面冲突-13",
       "audioText": "What should a pilot do when taxiing at an airport with an unfamiliar layout?",
       "audioTextZh": "在布局不熟悉的机场滑行时，飞行员应如何处置？",
-      "referenceText": "The pilot should study the current airport chart, NOTAMs, hot spots and expected taxi route before movement. During taxi, the crew should use both outside cues and approved navigation aids, confirm every clearance limit and avoid rushing. If the layout or position is unclear, stopping and asking ATC for progressive or detailed instructions is the safe response.",
-      "referenceTextZh": "开始移动前，飞行员应研究现行机场图、航行通告、热点和预计滑行路线。滑行期间，机组应同时使用外部线索和经批准的导航辅助设备，确认每个许可界限，并避免仓促行动。如果布局或位置不清楚，安全做法是停车并请求空管提供渐进式滑行指令或详细指令。"
+      "referenceText": "The pilot should taxi slowly, follow the airport chart, monitor ATC instructions, and read them back clearly. If unsure of the position, the pilot should confirm it with ATC and may request progressive taxi instructions or a follow-me vehicle. Good crew communication is also important.",
+      "referenceTextZh": "飞行员应缓慢滑行、遵循机场图、守听空中交通管制指令并清楚复诵。如果不确定位置，应向管制确认，并可以申请逐段滑行指令或引导车。良好的机组沟通也很重要。"
     },
     {
       "id": "opi-core-394",
       "taskTitle": "特情-跑道侵入与地面冲突-14",
       "audioText": "What should a pilot do after missing a rapid-exit taxiway at an unfamiliar airport?",
       "audioTextZh": "在陌生机场错过快速脱离滑行道后，飞行员应如何处置？",
-      "referenceText": "The pilot should continue safely on the current taxi path and should not make a sudden turn to recover the missed exit. The crew should advise ATC, accept or request a revised route and verify it on the airport chart before the next turn. If position becomes uncertain, the aircraft should stop in a safe place and ask for detailed assistance.",
-      "referenceTextZh": "飞行员应沿当前滑行路线安全继续，不应突然转弯试图驶回错过的出口。机组应通知空管，接受或请求新的路线，并在下一次转弯前用机场图进行核实。如果无法确定位置，飞机应在安全地点停下并请求详细协助。"
+      "referenceText": "The pilot should advise ATC and request instructions to vacate the runway at the next suitable exit. If the next exit is too far away, the pilot may request permission to backtrack, provided that other traffic is not affected.",
+      "referenceTextZh": "飞行员应通知空中交通管制，并申请从下一个合适出口脱离跑道。如果下一个出口太远，在不影响其他交通的前提下，可以申请许可沿跑道反向滑行。"
     }
   ]
 }

@@ -9,32 +9,32 @@
       "taskTitle": "运行-复飞-1",
       "audioText": "What general procedure should a flight crew follow when initiating a go-around?",
       "audioTextZh": "开始复飞时，飞行机组应遵循什么一般程序？",
-      "referenceText": "The pilot initiates the go-around by applying the approved go-around thrust or mode and setting the required pitch while controlling the flight path. The crew confirms a positive climb, retracts landing gear and flaps in the specified sequence, and follows the published missed-approach or ATC clearance. They announce the go-around, monitor automation and energy closely, and tell ATC as soon as workload permits.",
-      "referenceTextZh": "飞行员通过设置经批准的复飞推力或复飞方式并设定所需俯仰姿态开始复飞，同时控制飞行轨迹。机组确认飞机正上升后，按规定顺序收起起落架和襟翼，并飞行公布的复飞程序或执行 ATC 许可。他们应宣布复飞，密切监控自动化和能量，并在工作负荷允许时尽快通知 ATC。"
+      "referenceText": "The crew should apply takeoff/go-around thrust, pitch the aircraft to the climb attitude, and adjust the landing gear and flaps for the go-around. They should follow the runway heading, climb to the altitude specified in the missed-approach procedure, and report to ATC.",
+      "referenceTextZh": "机组应使用起飞复飞推力，使飞机上仰至爬升姿态，并按照复飞要求调整起落架和襟翼。他们应沿跑道航向飞行，爬升至复飞程序规定的高度，并向空中交通管制报告。"
     },
     {
       "id": "opi-core-459",
       "taskTitle": "运行-复飞-2",
       "audioText": "How should a pilot respond if the aircraft is above the glide path late in the approach?",
       "audioTextZh": "进近后段航空器仍高于下滑道时，飞行员应如何处置？",
-      "referenceText": "If the aircraft is high on the glide path late in the approach, the pilot should not use an excessive descent rate or unstable configuration to force the landing. The crew should compare the condition with the stabilized-approach criteria and initiate a go-around when those criteria cannot be regained within the approved gate. A new approach can then be planned with better spacing, energy management or a different runway or procedure.",
-      "referenceTextZh": "如果飞机在进近后段高于下滑道，飞行员不应采用过大的下降率或不稳定构型强行着陆。机组应把当前状况与稳定进近标准比较；如果无法在批准的高度门内恢复标准，就应开始复飞。随后可以通过增加间隔、改善能量管理，或选择其他跑道或程序来计划新的进近。"
+      "referenceText": "A gentle correction may be attempted only if the deviation is controllable, the speed is normal, and the runway is visible. If the deviation cannot be corrected promptly or the approach is unstable, the pilot should go around.",
+      "referenceTextZh": "只有在偏差可控、速度正常且跑道可见时，才可以尝试小幅修正。如果无法及时修正偏差或进近不稳定，飞行员应复飞。"
     },
     {
       "id": "opi-core-081",
       "taskTitle": "运行-复飞-3",
       "audioText": "What conditions might require a pilot to go around?",
       "audioTextZh": "哪些情况可能需要飞行员复飞？",
-      "referenceText": "A go-around may be required after an unstable approach, a runway incursion, loss of required visual reference, an unsafe landing clearance or unacceptable wind conditions. It may also be necessary if the aircraft is not correctly configured or the runway is obstructed. A pilot should go around whenever a safe landing is doubtful and then follow the published and ATC procedure.",
-      "referenceTextZh": "进近不稳定、跑道侵入、失去所需目视参考、收到不具备安全着陆条件的许可或风况不可接受时，可能需要复飞。如果飞机构型不正确或跑道上有障碍物，也可能必须复飞。只要安全着陆存在疑问，飞行员就应复飞，随后遵循公布程序和空管指令。"
+      "referenceText": "A go-around may be required if the runway is not in sight at minimums, the approach is unstable or too fast, wind shear is encountered, or localizer guidance fluctuates. Other reasons include a runway incursion, a landing-gear or system problem, wind beyond the applicable limits, poor visibility, or an ATC instruction.",
+      "referenceTextZh": "在最低标准处看不到跑道、进近不稳定或速度过大、遭遇风切变，或航向道引导波动时，都可能需要复飞。其他原因包括跑道侵入、起落架或系统故障、风超过适用限制、能见度不良，或空中交通管制指令。"
     },
     {
       "id": "opi-core-197",
       "taskTitle": "运行-复飞-4",
       "audioText": "What should pilots consider when going around at a complex airport?",
       "audioTextZh": "在复杂机场复飞时，飞行员应考虑哪些因素？",
-      "referenceText": "During a go-around at a complex airport, pilots must fly the published or cleared missed-approach path accurately and remain alert for terrain, obstacles and nearby traffic. The crew should manage configuration and automation carefully, confirm the correct navigation mode, and avoid turning toward a familiar but unapproved path. They should tell ATC promptly, but aircraft control and compliance with terrain-safe procedures come first.",
-      "referenceTextZh": "在复杂机场复飞时，飞行员必须准确飞行公布或管制许可的复飞航迹，并警惕地形、障碍物和附近交通。机组应谨慎管理构型和自动化，确认导航方式正确，避免转向熟悉但未经批准的航迹。他们应及时通知 ATC，但飞机操纵和遵守确保地形安全的程序具有更高优先级。"
+      "referenceText": "Pilots should follow the published missed-approach procedure and monitor nearby terrain and obstacles closely. They should consider the weather and possible mountain wind shear and maintain the appropriate speed and altitude. Good communication with ATC and coordination with the cabin crew are also important.",
+      "referenceTextZh": "飞行员应遵循公布的复飞程序，并密切监控附近地形和障碍物。他们应考虑天气和可能的山地风切变，并保持适当的速度和高度。与空中交通管制保持良好沟通，并与客舱机组协调也很重要。"
     }
   ]
 }

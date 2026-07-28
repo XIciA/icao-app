@@ -9,48 +9,48 @@
       "taskTitle": "人的因素-禁烟政策-1",
       "audioText": "What is your opinion of your company's no-smoking policy?",
       "audioTextZh": "你如何看待你所在公司的禁烟政策？",
-      "referenceText": "A suitable opinion would be that a no-smoking policy is necessary because smoke and ignition sources create health and fire risks in an aircraft. It also keeps cockpit behavior consistent with the rules applied to passengers and cabin crew. The policy should cover cigarettes, electronic smoking devices and reporting of any violation.",
-      "referenceTextZh": "一个合适的观点是：禁烟政策很有必要，因为烟雾和火源会在飞机上造成健康与火灾风险。它也使驾驶舱行为与适用于乘客和客舱机组的规定保持一致。政策应涵盖香烟、电子吸烟装置以及任何违规行为的报告。"
+      "referenceText": "I am not employed by an airline, but I support a strict no-smoking policy at my flight school. Smoking creates a fire risk, harms health, and can distract people from safe operations. A clear prohibition also gives students and instructors the same standard to follow.",
+      "referenceTextZh": "我尚未受雇于航空公司，但支持航校实行严格禁烟政策。吸烟会带来火灾风险、损害健康，并使人无法专注于安全运行。明确禁止还为学员和教员提供统一标准。"
     },
     {
       "id": "opi-core-662",
       "taskTitle": "人的因素-禁烟政策-2",
       "audioText": "Can you describe your company's smoking policy for flight crew?",
       "audioTextZh": "你能否说明你所在公司对飞行机组吸烟的规定？",
-      "referenceText": "A suitable company example would prohibit flight crew from smoking or using electronic smoking devices on board, including in the cockpit, and during any other restricted duty area. Crew members would be required to follow airport rules and remain fit for duty during breaks. Any onboard violation or related safety concern would be reported through the approved company process.",
-      "referenceTextZh": "一个合适的公司示范是：禁止飞行机组在机上，包括驾驶舱内，以及任何其他受限制的执勤区域吸烟或使用电子吸烟装置。机组成员必须遵守机场规定，并在休息期间保持适合执勤。任何机上违规或相关安全疑虑都应通过批准的公司流程报告。"
+      "referenceText": "I am not employed by an airline. At my flight school, smoking is not permitted in the aircraft or during flight training, and pilots and instructors are expected to follow the school's safety rules. This reduces fire risk and keeps the cockpit environment safe and professional.",
+      "referenceTextZh": "我尚未受雇于航空公司。在我的航校，飞机内和飞行训练期间都禁止吸烟，飞行员和教员必须遵守航校安全规定。这能降低火灾风险，并保持驾驶舱环境安全、专业。"
     },
     {
       "id": "opi-core-663",
       "taskTitle": "人的因素-禁烟政策-3",
       "audioText": "Why is smoking prohibited in the cockpit?",
       "audioTextZh": "为什么禁止在驾驶舱内吸烟？",
-      "referenceText": "Smoking introduces an ignition source and can create smoke, contamination and distraction in a safety-critical workspace. In the cockpit, even a small fire or dropped hot object can affect equipment and demand immediate crew attention. A complete prohibition also avoids exposing other crew members to smoke and supports consistent enforcement of onboard rules.",
-      "referenceTextZh": "吸烟会引入火源，并在对安全至关重要的工作空间内产生烟雾、污染和分心。在驾驶舱，即使很小的火情或掉落的炽热物体，也可能影响设备并要求机组立即处置。全面禁止吸烟还可以避免其他机组成员接触烟雾，并有助于一致执行机上规定。"
+      "referenceText": "Smoking can reduce visibility in the cockpit and create a fire hazard. It can also increase the risk of hypoxia and harm a pilot’s health. These effects can endanger flight safety.",
+      "referenceTextZh": "吸烟会降低驾驶舱能见度并造成火灾危险，还会增加缺氧风险并损害飞行员健康。这些影响会危及飞行安全。"
     },
     {
       "id": "opi-core-664",
       "taskTitle": "人的因素-禁烟政策-4",
       "audioText": "Should flight instructors avoid smoking in front of trainees, and why?",
       "audioTextZh": "飞行教员是否应避免在学员面前吸烟？为什么？",
-      "referenceText": "Yes, because instructors are role models, and smoking in front of trainees can make an unhealthy or prohibited behavior appear acceptable. Avoiding it supports professional standards and prevents second-hand smoke exposure. The instructor should also explain the operator's fitness and smoking rules clearly rather than relying only on personal example.",
-      "referenceTextZh": "是的，因为教员是榜样，在学员面前吸烟可能使不健康或被禁止的行为显得可以接受。避免这样做有助于维护职业标准，并防止他人吸入二手烟。教员还应明确解释运营人的执勤适宜性和吸烟规定，而不能只依靠个人示范。"
+      "referenceText": "Yes, flight instructors should avoid smoking in front of trainees. Smoking harms health and can impair reaction ability, so avoiding it supports flight safety and reinforces the importance of healthy habits for pilots.",
+      "referenceTextZh": "是的，飞行教员应避免在学员面前吸烟。吸烟损害健康并会降低反应能力，因此避免吸烟有助于飞行安全，也能强化飞行员保持健康习惯的重要性。"
     },
     {
       "id": "opi-core-665",
       "taskTitle": "人的因素-禁烟政策-5",
       "audioText": "Do you think pilots should be discouraged from smoking, and why?",
       "audioTextZh": "你认为是否应劝阻飞行员吸烟？为什么？",
-      "referenceText": "Yes, pilots should be encouraged to avoid smoking because it harms health and may reduce long-term fitness for duty. Smoking can also create dependence and make long duties or smoke-free operations more difficult. Supportive cessation programs are likely to be more constructive than stigma, while onboard prohibitions must still be enforced.",
-      "referenceTextZh": "是的，应鼓励飞行员避免吸烟，因为吸烟有害健康，并可能降低长期执勤适宜性。吸烟还会造成依赖，使长时间执勤或无烟运行变得更加困难。支持性的戒烟计划可能比污名化更有建设性，但机上禁令仍必须严格执行。"
+      "referenceText": "Yes, I think pilots should be discouraged from smoking. It can cause respiratory and cardiovascular disease and reduce physical fitness. It can also impair reaction speed and concentration, which may endanger flight safety.",
+      "referenceTextZh": "是的，我认为应劝阻飞行员吸烟。吸烟会造成呼吸和心血管疾病并降低体能，还可能损害反应速度和注意力，危及飞行安全。"
     },
     {
       "id": "opi-core-666",
       "taskTitle": "人的因素-禁烟政策-6",
       "audioText": "What should the flight crew do if a passenger is reported to be smoking on board?",
       "audioTextZh": "接到旅客在机上吸烟的报告后，飞行机组应怎么做？",
-      "referenceText": "The flight crew should have the cabin crew stop the behavior in accordance with the operator's procedure and assess whether smoke or fire is present. The commander should be informed of the passenger's response and any continuing safety risk, and the crew should consider the appropriate operational action without escalating the situation unnecessarily. The event and relevant evidence should be recorded after landing for company and authority follow-up.",
-      "referenceTextZh": "飞行机组应让客舱机组按照运营人程序制止这种行为，并评估是否存在烟雾或火灾。应将乘客的反应和任何持续存在的安全风险报告机长；机组应考虑适当的运行措施，同时避免不必要地激化局面。着陆后，应记录事件和相关证据，以便公司和监管机构跟进处理。"
+      "referenceText": "The flight crew should ask the cabin crew to stop the passenger and explain the fire and safety risks. If the passenger refuses to comply, the incident should be recorded and airport security can be asked to handle the matter after arrival.",
+      "referenceTextZh": "飞行机组应让客舱机组制止该旅客，并说明火灾和安全风险。如果旅客拒绝遵守规定，应记录事件，并可在到达后请机场安保部门处理。"
     }
   ]
 }

@@ -9,24 +9,24 @@
       "taskTitle": "特情-医疗紧急情况-1",
       "audioText": "What medical assistance can cabin crew provide during a flight?",
       "audioTextZh": "飞行中，客舱机组可以提供哪些医疗救助？",
-      "referenceText": "Cabin crew can assess the passenger, provide first aid within their training and use onboard oxygen, an automated external defibrillator or medical kit as appropriate. They can ask for qualified medical help, contact ground medical support through the pilots and continue monitoring the patient. They also provide the flight deck with clear information for a diversion decision and prepare for handover to emergency services.",
-      "referenceTextZh": "客舱机组可以评估旅客状况，在训练范围内提供急救，并视情况使用机载氧气、自动体外除颤器或医疗箱。他们可以寻求合格医务人员协助，通过飞行员联系地面医疗支持，并持续监控患者。他们还可以向驾驶舱提供清晰信息，帮助作出备降决定，并准备把患者交给应急服务人员。"
+      "referenceText": "Cabin crew can provide basic first aid, including bleeding control and bandaging, and can perform CPR in a cardiac arrest. They can use the onboard emergency medical kit under professional guidance, monitor the passenger, and keep the pilots informed.",
+      "referenceTextZh": "客舱机组可以提供基本急救，包括止血和包扎，并可在心搏骤停时进行心肺复苏。他们可以在专业指导下使用机载应急医疗箱，监控旅客状况，并持续向飞行员报告。"
     },
     {
       "id": "opi-core-099",
       "taskTitle": "特情-医疗紧急情况-2",
       "audioText": "Under what circumstances should a pilot declare a medical emergency?",
       "audioTextZh": "飞行员应在什么情况下宣布医疗紧急情况？",
-      "referenceText": "A pilot should declare a medical emergency when a person's condition is serious or time-critical and priority handling or immediate medical support is needed. Warning signs may include loss of consciousness, severe breathing difficulty, chest pain or uncontrolled bleeding, but diagnosis should be left to qualified medical personnel. The crew should share the available facts, request the assistance needed and consider diversion using the operator's procedure.",
-      "referenceTextZh": "当人员状况严重或时间紧迫，需要优先保障或立即获得医疗支持时，飞行员应宣布医疗紧急情况。警示迹象可能包括失去意识、严重呼吸困难、胸痛或出血不止，但诊断应交由合格医务人员完成。机组应说明掌握的事实、请求所需协助，并按运营人程序考虑备降。"
+      "referenceText": "A pilot should declare a medical emergency when a crew member or passenger has a life-threatening condition or needs immediate medical assistance on the ground. Examples include pilot incapacitation, a heart attack, unconsciousness, severe injury, or uncontrollable bleeding. A critical assessment by a medical professional on board would also support the declaration.",
+      "referenceTextZh": "当机组成员或旅客出现危及生命的情况，或需要在地面立即获得医疗帮助时，飞行员应宣布医疗紧急状态。例如飞行员失能、心脏病发作、失去意识、严重受伤或无法控制的出血。机上医疗专业人员作出的危重评估也支持宣布紧急状态。"
     },
     {
       "id": "opi-core-102",
       "taskTitle": "特情-医疗紧急情况-3",
       "audioText": "How should first aid be provided to someone on board an aircraft?",
       "audioTextZh": "应如何为飞机上的人员提供急救？",
-      "referenceText": "First aid should be provided by trained crew members or medically qualified passengers using the equipment available on board. The person should be assessed, monitored and protected from further harm while the flight crew obtains medical advice and considers diversion. Treatment should remain within the provider's training and the operator's procedure, with clear information passed to emergency services before landing.",
-      "referenceTextZh": "受过训练的机组成员或具备医疗资质的旅客应使用机载设备实施急救。在飞行机组获取医疗建议并考虑备降的同时，应评估和监控患者状况，防止其受到进一步伤害。救治不得超出施救者的训练范围和运营人程序，并应在着陆前向应急服务部门清楚提供相关信息。"
+      "referenceText": "The crew should first make sure the area is safe, assess the person's condition, and call for trained medical help. They should provide care within their training, such as controlling bleeding or performing CPR when indicated. The person should be monitored, and the pilots should be updated so that medical support or a diversion can be arranged.",
+      "referenceTextZh": "机组应先确认现场安全、评估人员状况并呼叫受过训练的医疗帮助。他们应在自身训练范围内提供救护，例如按需止血或实施心肺复苏。应持续监控患者并向飞行员更新情况，以便安排医疗支援或改航。"
     }
   ]
 }

@@ -7,6 +7,7 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const questionBankPath = resolve(root, 'src/features/question-bank/data/question-bank.json');
 const outputPath = resolve(root, 'content/word-lookup/word-list.json');
 const datasetPath = resolve(root, 'content/word-lookup/dataset.json');
+const runtimeDatasetPath = resolve(root, 'src/features/question-bank/static-word-lookup/data/dataset.json');
 const batchesPath = resolve(root, 'content/word-lookup/batches');
 
 const scope = {
@@ -192,7 +193,13 @@ function validateDataset(wordList, dataset, requireComplete) {
 }
 
 async function checkDataset() {
-  const [wordList, dataset] = await Promise.all([readFile(outputPath, 'utf8').then(JSON.parse), readFile(datasetPath, 'utf8').then(JSON.parse)]);
+  const [wordList, datasetBytes, runtimeBytes] = await Promise.all([
+    readFile(outputPath, 'utf8').then(JSON.parse),
+    readFile(datasetPath),
+    readFile(runtimeDatasetPath),
+  ]);
+  assert(datasetBytes.equals(runtimeBytes), 'word_lookup_runtime_dataset_stale_run_word_lookup_runtime_build');
+  const dataset = JSON.parse(datasetBytes.toString('utf8'));
   const { received } = validateDataset(wordList, dataset, true);
   console.log(`word_lookup_dataset_check_ok words=${received}`);
 }
@@ -244,8 +251,19 @@ async function assembleDataset() {
     })),
     entries: entries.sort((left, right) => String(left.word).localeCompare(String(right.word), 'en-US')),
   };
-  await writeFile(datasetPath, stableJson(dataset));
+  const bytes = stableJson(dataset);
+  await Promise.all([
+    writeFile(datasetPath, bytes),
+    mkdir(dirname(runtimeDatasetPath), { recursive: true }).then(() => writeFile(runtimeDatasetPath, bytes)),
+  ]);
   console.log(`word_lookup_dataset_assemble_ok batches=${batchValues.length} words=${dataset.entries.length}`);
+}
+
+async function syncRuntimeDataset() {
+  const bytes = await readFile(datasetPath);
+  await mkdir(dirname(runtimeDatasetPath), { recursive: true });
+  await writeFile(runtimeDatasetPath, bytes);
+  console.log(`word_lookup_runtime_sync_ok bytes=${bytes.length}`);
 }
 
 const command = process.argv[2] ?? 'check';
@@ -254,4 +272,5 @@ else if (command === 'check') await check();
 else if (command === 'check-dataset') await checkDataset();
 else if (command === 'check-dataset-partial') await checkPartialDataset();
 else if (command === 'assemble-dataset') await assembleDataset();
+else if (command === 'sync-runtime') await syncRuntimeDataset();
 else throw new Error(`unknown_command:${command}`);

@@ -9,72 +9,72 @@
       "taskTitle": "特情-危险品运输-1",
       "audioText": "What dangerous goods training has your company provided to you?",
       "audioTextZh": "你所在的公司为你提供过哪些危险品培训？",
-      "referenceText": "A suitable company example would be: my operator provides initial and recurrent dangerous goods training. It covers recognition, acceptance limits, passenger baggage, loading information, emergency response and incident reporting. The course uses the operator's manuals and current regulatory material rather than relying on memory alone.",
-      "referenceTextZh": "一个合适的公司示范答案是：我的运营人提供危险品初始训练和复训。内容包括危险品识别、收运限制、旅客行李、装载信息、应急处置和事件报告。课程依据运营人手册和现行法规资料，而不是只靠记忆。"
+      "referenceText": "I am not employed by an airline, so I have not received company dangerous-goods training. My aviation study has covered the main hazard classes, labels, hidden dangerous goods, and restrictions on items carried by passengers or crew. Airline personnel require approved initial and recurrent training for their assigned duties.",
+      "referenceTextZh": "我尚未受雇于航空公司，因此没有接受过公司危险品培训。我的航空学习涵盖了主要危险类别、标签、隐含危险品，以及旅客或机组携带物品的限制。航空公司人员必须接受与其职责相适应并经批准的初始和复训。"
     },
     {
       "id": "opi-core-168",
       "taskTitle": "特情-危险品运输-2",
       "audioText": "What do you learn during dangerous goods training?",
       "audioTextZh": "你在危险品培训中会学习哪些内容？",
-      "referenceText": "Dangerous goods training teaches crews how to recognize hazards, read labels and documentation, and understand what may or may not be carried. It also covers loading information, passenger baggage restrictions, emergency communication, response checklists and reporting. The depth of each topic depends on the person's duties and the operator's approval.",
-      "referenceTextZh": "危险品训练教机组识别危险、阅读标签和文件，并了解哪些物品可以或不可以运输。训练还涵盖装载信息、旅客行李限制、应急通信、处置检查单和报告。每个主题的深度取决于人员职责和运营人的批准。"
+      "referenceText": "During dangerous goods training, we learn the regulations and categories of dangerous goods. We also learn how to identify and check them, how they should be transported, and how to deal with a leak during flight.",
+      "referenceTextZh": "在危险品培训中，我们会学习危险品的法规和类别。我们还会学习如何识别和检查危险品、如何运输危险品，以及飞行中发生泄漏时应如何处置。"
     },
     {
       "id": "opi-core-171",
       "taskTitle": "特情-危险品运输-3",
       "audioText": "What are some examples of dangerous goods transported by air?",
       "audioTextZh": "航空运输中常见的危险品有哪些？",
-      "referenceText": "Examples include fuel, compressed gases, flammable liquids, corrosive chemicals, explosives, radioactive material and infectious substances. Lithium batteries, dry ice and some medical or maintenance supplies may also be dangerous goods. Whether an item is permitted depends on its classification, quantity, packaging, documentation and the type of aircraft operation.",
-      "referenceTextZh": "例如燃油、压缩气体、易燃液体、腐蚀性化学品、爆炸品、放射性物质和感染性物质。锂电池、干冰以及某些医疗或维修用品也可能属于危险品。一件物品能否运输取决于其分类、数量、包装、文件和航空器运行类型。"
+      "referenceText": "Examples of dangerous goods include lithium batteries, fireworks, oxygen cylinders, dry ice, paint, and lighters. Radioactive, flammable, explosive, toxic, and corrosive substances may also be classified as dangerous goods.",
+      "referenceTextZh": "危险品的例子包括锂电池、烟花、氧气瓶、干冰、油漆和打火机。放射性、易燃、爆炸性、有毒和腐蚀性物质也可能被归类为危险品。"
     },
     {
       "id": "opi-core-173",
       "taskTitle": "特情-危险品运输-4",
       "audioText": "Why are certain items classified as dangerous goods in aviation?",
       "audioTextZh": "为什么航空运输中的某些物品会被归类为危险品？",
-      "referenceText": "Certain items are classified as dangerous goods because their physical or chemical properties can endanger people, the aircraft or the environment during transport. They may burn, explode, leak, corrode, release toxic material or react dangerously under heat, pressure or damage. Classification allows suitable packaging, marking, handling, separation and emergency planning.",
-      "referenceTextZh": "某些物品被归为危险品，是因为其物理或化学性质在运输中可能危及人员、航空器或环境。它们可能燃烧、爆炸、泄漏、腐蚀、释放有毒物质，或在受热、受压或损坏时发生危险反应。分类有助于采用合适的包装、标记、装卸与处置和隔离措施，并制定应急计划。"
+      "referenceText": "Certain items are classified as dangerous goods because they may be flammable, explosive, or toxic. They can cause a fire, damage the aircraft, harm people on board, and endanger flight safety.",
+      "referenceTextZh": "某些物品被归类为危险品，是因为它们可能易燃、易爆或有毒。它们可能引发火灾、损坏飞机、伤害机上人员，并危及飞行安全。"
     },
     {
       "id": "opi-core-175",
       "taskTitle": "特情-危险品运输-5",
       "audioText": "What precautions should a pilot take when dangerous goods are being transported on the aircraft?",
       "audioTextZh": "飞机运输危险品时，飞行员应采取哪些预防措施？",
-      "referenceText": "The pilot should confirm that the dangerous goods have been accepted, loaded and documented under the approved program. The crew must review the information supplied to the pilot in command, note the location and hazards, and have the relevant emergency guidance available. Any discrepancy, leakage or undeclared item should be resolved before departure or handled through the applicable in-flight procedure.",
-      "referenceTextZh": "飞行员应确认危险品已按经批准的方案完成收运、装载和文件记录。机组必须审阅提供给机长的信息，注意危险品的位置和危险性，并确保能够获取相关应急指南。任何不一致、泄漏或未申报物品都应在起飞前解决，或者按适用的空中处置程序处理。"
+      "referenceText": "The pilot should review the loading information and confirm the type, quantity, packaging, stowage, and labeling of the dangerous goods. The crew should be briefed on the relevant emergency procedures. During flight, the aircraft and cargo area should be monitored for any leak or fire.",
+      "referenceTextZh": "飞行员应查看装载信息，并确认危险品的类型、数量、包装、存放位置和标签。机组应接受相关应急程序简令。飞行中，应监控飞机和货舱是否发生泄漏或火灾。"
     },
     {
       "id": "opi-core-176",
       "taskTitle": "特情-危险品运输-6",
       "audioText": "What should the flight crew do if dangerous goods leak during a flight?",
       "audioTextZh": "飞行中发生危险品泄漏时，飞行机组应如何处置？",
-      "referenceText": "The crew should identify the material from the available documentation, protect people from exposure and use the operator's dangerous-goods emergency checklist. They should inform the cabin crew and ATC as appropriate, isolate the area when possible and avoid touching, diluting or cleaning an unknown substance without specific guidance. The commander should assess diversion and arrange specialist assistance after landing.",
-      "referenceTextZh": "机组应根据现有文件识别物质，防止人员暴露，并使用运营人的危险品应急检查单。应视情况通知客舱机组和空管，在可能时隔离相关区域；没有具体指导时，应避免触摸、稀释或清理不明物质。机长应评估是否备降，并在着陆后安排专业人员协助。"
+      "referenceText": "The crew should follow the applicable SOP and dangerous-goods leakage checklist. The leak area should be isolated, passengers should be kept away, and first aid should be provided if needed. The crew should report the situation to ATC, request a priority landing and emergency services, and prepare for evacuation after landing if the situation cannot be controlled.",
+      "referenceTextZh": "机组应遵循适用的标准操作程序和危险品泄漏检查单。应隔离泄漏区域、让旅客远离，并在需要时提供急救。机组应向空中交通管制报告情况，申请优先着陆和应急服务；如果情况无法控制，还应为着陆后的撤离做好准备。"
     },
     {
       "id": "opi-core-177",
       "taskTitle": "特情-危险品运输-7",
       "audioText": "How often do you receive dangerous goods training?",
       "audioTextZh": "你多久接受一次危险品培训？",
-      "referenceText": "A suitable example would be: I receive dangerous goods training during initial qualification and at the recurrent interval required by my operator and authority. Additional briefings are given when regulations or company procedures change. Learners should replace this with the actual interval in their approved training program.",
-      "referenceTextZh": "一个合适的示范答案是：我在初始资格训练期间，以及运营人和监管当局要求的复训周期内接受危险品训练。法规或公司程序变化时，还会安排补充讲解。学习者应将其替换为自己经批准训练方案中的实际周期。"
+      "referenceText": "I receive dangerous goods transportation training every two years.",
+      "referenceTextZh": "我每两年接受一次危险品运输培训。"
     },
     {
       "id": "opi-core-178",
       "taskTitle": "特情-危险品运输-8",
       "audioText": "Why do pilots need specialized training in dangerous goods transportation?",
       "audioTextZh": "为什么飞行员需要接受危险品运输方面的专项培训？",
-      "referenceText": "Pilots need specialized training because dangerous goods may look ordinary while creating serious fire, toxic, corrosive or reactive hazards. Correct information affects loading, diversion, firefighting and the safety of passengers and responders. Training also helps pilots recognize undeclared items and use the emergency guidance without improvising.",
-      "referenceTextZh": "飞行员需要专门训练，因为危险品外观看似普通，却可能造成严重的火灾、有毒、腐蚀或反应性危险。正确信息会影响装载、备降、灭火以及旅客和救援人员的安全。训练还能帮助飞行员识别未申报物品，并依据应急指南处置，而不是临时发挥。"
+      "referenceText": "Pilots need specialized training because dangerous goods can threaten flight safety. The training helps them identify dangerous goods and understand how to handle a leak during flight.",
+      "referenceTextZh": "飞行员需要接受专门培训，因为危险品可能威胁飞行安全。培训帮助他们识别危险品，并了解飞行中发生泄漏时应如何处置。"
     },
     {
       "id": "opi-core-182",
       "taskTitle": "特情-危险品运输-9",
       "audioText": "What company guidance do pilots follow to identify and handle dangerous goods during flight?",
       "audioTextZh": "飞行中，飞行员依据哪些公司指南识别和处置危险品？",
-      "referenceText": "A suitable company example would use the operations manual, dangerous goods manual, checklist and the information supplied to the pilot in command. For an incident, the crew would consult the applicable response drill in the current ICAO-based emergency guidance and contact company support when available. Exact document names and responsibilities must be replaced with those of the learner's operator.",
-      "referenceTextZh": "一个合适的公司示范答案会使用运行手册、危险品手册、检查单和提供给机长的信息。发生事件时，机组会查阅当前基于 ICAO 应急指南的适用应急处置程序，并在能够联系时寻求公司支持。具体文件名称和职责必须替换为学习者所在运营人的实际规定。"
+      "referenceText": "Before departure, we review the notification to the captain to confirm the dangerous goods, their location, and any special handling information. If an incident occurs, we identify the item from that information and follow the aircraft checklist and the dangerous-goods emergency response guidance. We coordinate with the cabin crew, ATC, and company operations and land at a suitable airport as soon as the seriousness of the event requires.",
+      "referenceTextZh": "离场前，我们查看机长通知单，确认危险品、存放位置和任何特殊处置信息。如果发生事件，我们会根据这些信息识别物品，并执行飞机检查单和危险品应急响应指南。我们会与客舱机组、空中交通管制和公司运行部门协调，并根据事件严重程度尽快在合适机场着陆。"
     }
   ]
 }

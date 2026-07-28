@@ -9,32 +9,32 @@
       "taskTitle": "运行-夜航-1",
       "audioText": "Which airport visual aids help pilots land safely at night?",
       "audioTextZh": "哪些机场目视助航设施可以帮助飞行员在夜间安全着陆？",
-      "referenceText": "Approach lights help pilots identify and align with the runway before reaching the threshold. Runway edge, threshold, end, centreline and touchdown-zone lights define the usable surface and landing area, while PAPI or VASI provides visual glide-path guidance. Airport beacons, signs, markings and taxiway lights also support orientation and safe movement after landing.",
-      "referenceTextZh": "进近灯光帮助飞行员在到达跑道入口前识别跑道并对正跑道。跑道边灯、入口灯、末端灯、中线灯和接地区灯标明可用道面与着陆区域，PAPI 或 VASI 则提供目视下滑道引导。机场灯标、标志牌、道面标志和滑行道灯光也有助于着陆后的定向和地面安全滑行。"
+      "referenceText": "Useful visual aids include approach lights, runway edge lights, runway centerline lights, and PAPI lights.",
+      "referenceTextZh": "有用的目视助航设施包括进近灯、跑道边灯、跑道中线灯和 PAPI 灯。"
     },
     {
       "id": "opi-core-442",
       "taskTitle": "运行-夜航-2",
       "audioText": "What are the main differences between flying during the day and flying at night?",
       "audioTextZh": "昼间飞行与夜间飞行的主要区别是什么？",
-      "referenceText": "At night, terrain, cloud and unlit obstacles are harder to see, and pilots have fewer visual references for attitude, height and distance. Lights can create illusions such as a false horizon, black-hole approach or misleading runway perspective, while fatigue and reduced night vision add risk. Night flying therefore requires stronger instrument cross-checking, careful lighting management and more conservative weather and fuel planning.",
-      "referenceTextZh": "夜间更难看清地形、云层和没有灯光的障碍物，飞行员用于判断姿态、高度和距离的目视参照也更少。灯光可能造成假地平线、黑洞进近或误导性的跑道透视等错觉，而疲劳和夜视能力下降还会增加风险。因此，夜间飞行需要加强仪表交叉检查、谨慎管理灯光，并在天气和燃油计划上采取更保守的策略。"
+      "referenceText": "Day flight usually provides better outside visual references, so landmarks, terrain, and objects are easier to see. At night, those references and visual contact with the runway are more limited, so pilots depend more on instruments and airport lighting. Visual illusions are also more likely at night.",
+      "referenceTextZh": "昼间飞行通常有更好的外部目视参照，因此地标、地形和物体更容易看清。夜间这些参照和与跑道的目视接触更有限，飞行员会更依赖仪表和机场灯光。夜间也更容易产生视觉错觉。"
     },
     {
       "id": "opi-core-444",
       "taskTitle": "运行-夜航-3",
       "audioText": "What are the main components of a runway lighting system?",
       "audioTextZh": "跑道灯光系统主要由哪些部分组成？",
-      "referenceText": "The main runway lighting components are edge lights, threshold and runway-end lights. Depending on the runway and operating minima, the system may also include centreline, touchdown-zone and runway-end identifier lights. Approach lights and visual glide-slope indicators are separate but closely related visual aids used to guide the final approach.",
-      "referenceTextZh": "跑道灯光的主要组成部分是跑道边灯、入口灯和跑道末端灯。根据跑道和运行最低标准，系统还可能包括中线灯、接地区灯和跑道末端识别灯。进近灯和目视下滑道指示器属于独立但密切相关的目视助航设施，用于引导最后进近。"
+      "referenceText": "The main runway lighting components include runway edge lights, centerline lights, threshold lights, and touchdown-zone lights.",
+      "referenceTextZh": "跑道灯光的主要组成包括跑道边灯、中线灯、入口灯和接地区灯。"
     },
     {
       "id": "opi-core-445",
       "taskTitle": "运行-夜航-4",
       "audioText": "What functions does runway lighting provide during night operations?",
       "audioTextZh": "跑道灯光在夜间运行中发挥哪些作用？",
-      "referenceText": "Runway lighting shows the runway's direction, width, threshold and end when natural visual cues are weak. Centreline and touchdown-zone lights improve alignment and distance judgement in low visibility, while colour changes help show the remaining runway. The system also helps crews distinguish the runway from taxiways and surrounding ground lights.",
-      "referenceTextZh": "当天然目视线索不足时，跑道灯光显示跑道的方向、宽度、入口和末端。中线灯和接地区灯能在低能见度下改善对正和距离判断，灯光颜色的变化则有助于判断剩余跑道。该系统还能帮助机组把跑道与滑行道和周围地面灯光区分开。"
+      "referenceText": "Runway lighting makes the runway boundaries and centerline easier to see at night. It helps pilots judge their position, align the aircraft with the runway, and conduct safer takeoffs and landings.",
+      "referenceTextZh": "跑道灯光使飞行员在夜间更容易看清跑道边界和中线。它有助于判断位置、使飞机与跑道对正，并更安全地起飞和着陆。"
     }
   ]
 }

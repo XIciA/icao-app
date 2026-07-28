@@ -9,48 +9,48 @@
       "taskTitle": "其它-问好-1",
       "audioText": "How are you today?",
       "audioTextZh": "你今天感觉怎么样？",
-      "referenceText": "A suitable answer would be: I am well, thank you, although I feel slightly nervous about the test. I arrived with enough time to settle down and review my documents. I am ready to begin and will focus on communicating clearly rather than trying to sound perfect.",
-      "referenceTextZh": "一个合适的回答是：我很好，谢谢，不过对考试有一点紧张。我提前到达，留出了足够时间平静下来并检查文件。我已经准备好开始，会专注于清楚沟通，而不是追求听起来完美。"
+      "referenceText": "I am doing well today, thank you for asking.",
+      "referenceTextZh": "我今天状态很好，谢谢关心。"
     },
     {
       "id": "opi-extra-138",
       "taskTitle": "其它-问好-2",
       "audioText": "What is the weather like today, and is it suitable for flying?",
       "audioTextZh": "今天天气怎么样？适合飞行吗？",
-      "referenceText": "A suitable example would be: the weather is clear with light wind and good visibility, so it is generally suitable for normal flying. A pilot would still need current reports, forecasts, runway conditions and aircraft limits before making an operational decision. This answer should be changed to match the actual weather on the test day.",
-      "referenceTextZh": "一个合适的示范答案是：天气晴朗、风力较小、能见度良好，总体适合正常飞行。不过，飞行员仍需获取现行报告、预报、跑道状况和飞机限制，才能作出运行决定。应根据考试当天的实际天气修改这段答案。"
+      "referenceText": "The sky is clear, visibility is acceptable, and the wind is calm. There is plenty of sunshine, so it is a good day for flying.",
+      "referenceTextZh": "天空晴朗，能见度可以接受，风也很小。阳光充足，因此今天很适合飞行。"
     },
     {
       "id": "opi-extra-139",
       "taskTitle": "其它-问好-3",
       "audioText": "How did you get to the test center today?",
       "audioTextZh": "你今天是怎么到达考试中心的？",
-      "referenceText": "A suitable example would be: I took the metro to the test center and then walked for about ten minutes. I chose public transport because traffic is unpredictable and parking is limited. I left early, so the journey was calm and I arrived on time.",
-      "referenceTextZh": "一个合适的示范答案是：我乘地铁到考试中心，然后步行大约十分钟。我选择公共交通，因为路况难以预测，而且停车位有限。我提早出发，所以路上很从容，也准时到达。"
+      "referenceText": "I came to the test center by subway. It was convenient and punctual, and I avoided the road traffic.",
+      "referenceTextZh": "我是乘地铁到考试中心的。地铁方便准时，也让我避开了道路交通。"
     },
     {
       "id": "opi-extra-140",
       "taskTitle": "其它-问好-4",
       "audioText": "Did you sleep well last night?",
       "audioTextZh": "你昨晚睡得好吗？",
-      "referenceText": "A suitable answer would be: yes, I slept for about seven hours and woke up feeling rested. I stopped studying early enough to relax and prepared my documents before going to bed. That helped me avoid rushing this morning.",
-      "referenceTextZh": "一个合适的回答是：是的，我睡了大约七个小时，醒来时感觉休息充分。我提早结束复习，让自己放松，并在睡前准备好文件。这使我今天早上不用匆忙。"
+      "referenceText": "Yes, I slept well last night. I went to bed early so that I would have enough energy for today's test.",
+      "referenceTextZh": "是的，我昨晚睡得很好。我很早就上床休息了，以保证有足够的精力参加今天的考试。"
     },
     {
       "id": "opi-extra-141",
       "taskTitle": "其它-问好-5",
       "audioText": "What are you going to do after this test?",
       "audioTextZh": "这次考试结束后你打算做什么？",
-      "referenceText": "A suitable answer would be: after the test, I will have lunch and then return home to rest. I also plan to note which questions were difficult while they are still fresh in my mind. Later, I can use those notes to improve my English practice.",
-      "referenceTextZh": "一个合适的回答是：考试后，我会先吃午饭，再回家休息。我还打算趁记忆清晰时记下哪些题目比较困难。以后可以利用这些笔记改进英语练习。"
+      "referenceText": "After the test, I will review the main topics and identify the areas I need to improve. I will also continue practising spoken aviation English to prepare for future flight work.",
+      "referenceTextZh": "考试后，我会复习主要话题，找出自己需要提高的方面。我也会继续练习航空英语口语，为今后的飞行工作做准备。"
     },
     {
       "id": "opi-extra-145",
       "taskTitle": "其它-问好-6",
       "audioText": "Which part of the ICAO English test do you find most difficult, and why?",
       "audioTextZh": "你觉得 ICAO 英语考试的哪个部分最难？为什么？",
-      "referenceText": "I find the unexpected-situation section most difficult because I must understand the problem quickly and explain a safe response in clear English. It tests listening, aviation knowledge and spontaneous speaking at the same time. I improve by practising varied scenarios and organizing my answer around the situation, actions and reasons.",
-      "referenceTextZh": "我觉得意外情况部分最难，因为我必须迅速理解问题，并用清楚的英语说明安全处置。它同时考查听力、航空知识和即兴表达能力。我会通过练习不同情景，并按照情况、行动和理由组织答案来提高。"
+      "referenceText": "I find the interactive communication section the most difficult, especially when discussing complex emergency situations. It requires fluent expression, accurate aviation terminology, and a quick response to the examiner's questions.",
+      "referenceTextZh": "我觉得互动交流部分最难，尤其是讨论复杂紧急情况时。它要求表达流利、航空术语准确，并能迅速回答考官的问题。"
     }
   ]
 }

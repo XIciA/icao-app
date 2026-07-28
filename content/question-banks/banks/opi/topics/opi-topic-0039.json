@@ -9,24 +9,24 @@
       "taskTitle": "缩略词-GNSS-1",
       "audioText": "What is a Global Navigation Satellite System (GNSS)?",
       "audioTextZh": "什么是全球导航卫星系统（GNSS）？",
-      "referenceText": "A Global Navigation Satellite System, or GNSS, uses satellite signals to provide an aircraft with position, velocity and time information. GNSS is the general term for compatible global or regional satellite-navigation constellations and their augmentations. Aircraft use approved GNSS equipment for functions such as area navigation, approaches and position monitoring.",
-      "referenceTextZh": "全球导航卫星系统（GNSS）利用卫星信号向航空器提供位置、速度和时间信息。GNSS 是兼容的全球或地区卫星导航星座及其增强系统的总称。航空器使用经批准的 GNSS 设备执行区域导航、进近和位置监控等功能。"
+      "referenceText": "GNSS stands for Global Navigation Satellite System. It is a family of satellite navigation systems that includes GPS from the United States, GLONASS from Russia, BeiDou from China, and Galileo from Europe.",
+      "referenceTextZh": "GNSS 是全球导航卫星系统的缩写。它是一系列卫星导航系统的统称，包括美国的 GPS、俄罗斯的 GLONASS、中国的北斗和欧洲的伽利略。"
     },
     {
       "id": "opi-core-514",
       "taskTitle": "缩略词-GNSS-2",
       "audioText": "Which satellite navigation constellations are included in the Global Navigation Satellite System (GNSS)?",
       "audioTextZh": "全球导航卫星系统（GNSS）包括哪些卫星导航星座？",
-      "referenceText": "The main global constellations are the United States GPS, Russia's GLONASS, Europe's Galileo and China's BeiDou. Regional systems such as Japan's QZSS and India's NavIC can provide additional service in their coverage areas. A particular aircraft can use only the signals and augmentations supported by its approved receiver.",
-      "referenceTextZh": "主要全球星座包括美国的 GPS、俄罗斯的 GLONASS、欧洲的 Galileo 和中国的北斗。日本的 QZSS 和印度的 NavIC 等地区系统可以在其覆盖区域提供额外服务。具体航空器只能使用经批准接收机所支持的信号和增强系统。"
+      "referenceText": "GNSS includes GPS from the United States, GLONASS from Russia, Galileo from Europe, and the BeiDou Navigation Satellite System from China. It also includes other satellite navigation systems.",
+      "referenceTextZh": "GNSS 包括美国的 GPS、俄罗斯的 GLONASS、欧洲的伽利略和中国的北斗卫星导航系统，也包括其他卫星导航系统。"
     },
     {
       "id": "opi-core-785",
       "taskTitle": "缩略词-GNSS-3",
       "audioText": "What are the advantages of modern satellite-based navigation?",
       "audioTextZh": "现代卫星导航有哪些优势？",
-      "referenceText": "Modern satellite-based navigation can provide accurate position information over a wide area. It supports more flexible routes and precise arrival and approach procedures, which can improve access and efficiency. With appropriate equipment and procedures, it can also reduce reliance on the physical location of ground navigation aids.",
-      "referenceTextZh": "现代卫星导航可以在广阔区域内提供准确的位置信息。它支持更灵活的航路以及精确的进场和进近程序，从而改善机场可达性和运行效率。在设备和程序适当的情况下，它还可以减少对地面导航台具体位置的依赖。"
+      "referenceText": "Modern satellite-based navigation can provide precise guidance worldwide and in different weather conditions. It can support flexible and direct routes, including operations in remote areas without ground navigation equipment. These capabilities can reduce pilot workload and may also reduce airline operating costs.",
+      "referenceTextZh": "现代卫星导航可以在全球和不同天气条件下提供精确引导。它支持灵活和直接的航路，包括在没有地面导航设备的偏远地区运行。这些能力可以降低飞行员工作负荷，也可能降低航空公司运行成本。"
     }
   ]
 }

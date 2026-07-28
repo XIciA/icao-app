@@ -9,32 +9,32 @@
       "taskTitle": "运行-舱单-1",
       "audioText": "Who is responsible for providing the load sheet to the flight crew?",
       "audioTextZh": "谁负责向飞行机组提供载重平衡舱单？",
-      "referenceText": "The operator is responsible for ensuring that an accurate load sheet is prepared and provided to the flight crew. The work may be performed by the operator's load-control unit or an authorized ground-handling agent. The commander reviews and accepts the final mass-and-balance information before departure under the operator's procedure.",
-      "referenceTextZh": "运营人负责确保编制准确的载重平衡表并提供给飞行机组。这项工作可以由运营人的配载控制部门或经授权的地面服务代理完成。起飞前，机长按照运营人程序审核并接受最终的重量和平衡信息。"
+      "referenceText": "The operator is responsible for ensuring that the load sheet is prepared and provided to the flight crew. The work may be done by the operator's load-control staff or by an approved contracted provider. The person supervising the loading confirms the final load, and the captain verifies and accepts the mass-and-balance document before departure.",
+      "referenceTextZh": "运营人负责确保载重平衡表得到编制并提供给飞行机组。这项工作可以由运营人的配载人员或经批准的承包服务商完成。负责监督装载的人员确认最终装载情况，机长则在离场前核实并接受质量与平衡文件。"
     },
     {
       "id": "opi-core-304",
       "taskTitle": "运行-舱单-2",
       "audioText": "What is the purpose of a load sheet?",
       "audioTextZh": "载重平衡舱单有什么用途？",
-      "referenceText": "A load sheet confirms the aircraft's actual or calculated takeoff mass and centre of gravity for the planned flight. It shows whether loading remains within structural and balance limits and supplies values needed for performance and trim calculations. It also creates a controlled record that can be updated if passengers, baggage, cargo or fuel change before departure.",
-      "referenceTextZh": "载重平衡表确认计划航班飞机的实际或计算起飞重量与重心。它表明装载是否保持在结构和重心限制内，并提供性能与配平计算所需的数值。它还形成一份受控记录；如果起飞前乘客、行李、货物或燃油发生变化，可以据此更新。"
+      "referenceText": "A load sheet provides weight-and-balance information for preflight preparation. It helps the pilot check passenger and cargo loads, fuel quantity, and center of gravity and confirm that the aircraft is properly balanced.",
+      "referenceTextZh": "载重平衡表为飞行前准备提供重量和平衡信息。它帮助飞行员核对旅客和货物载荷、燃油量及重心，并确认飞机配载平衡正确。"
     },
     {
       "id": "opi-core-305",
       "taskTitle": "运行-舱单-3",
       "audioText": "What information is included on a load sheet?",
       "audioTextZh": "载重平衡舱单包含哪些信息？",
-      "referenceText": "A load sheet normally identifies the aircraft and flight and records passenger, baggage, cargo and fuel loads. It includes operating, zero-fuel, takeoff and expected landing masses as applicable, together with centre-of-gravity or index information and allowable limits. It may also show load distribution, special loads, last-minute changes and the person or system responsible for preparation and acceptance.",
-      "referenceTextZh": "载重平衡表通常注明飞机和航班，并记录乘客、行李、货物与燃油载荷。按适用情况，它包括使用重量、无油重量、起飞重量和预计着陆重量，以及重心或指数信息与允许限制。它还可能列出载荷分布、特殊载荷、最后一分钟变更，以及负责制表和接受的人员或系统。"
+      "referenceText": "A load sheet may include the flight number, number of people on board, cargo and baggage weight, fuel quantity, zero-fuel weight, center of gravity, and takeoff and landing weights.",
+      "referenceTextZh": "载重平衡表可能包括航班号、机上人数、货物和行李重量、燃油量、无燃油重量、重心以及起飞和着陆重量。"
     },
     {
       "id": "opi-core-307",
       "taskTitle": "运行-舱单-4",
       "audioText": "How does the flight crew receive the load sheet before departure?",
       "audioTextZh": "起飞前，飞行机组如何收到载重平衡舱单？",
-      "referenceText": "A suitable company example would be: load control sends the final electronic load sheet to the aircraft's operational system before departure. Both pilots compare it with the flight plan, fuel and loading information, and the commander accepts it through the approved interface. Any last-minute change is entered and a revised calculation is checked before takeoff.",
-      "referenceTextZh": "一个可按公司实际流程调整的示范答案是：起飞前，配载控制通过飞机运行系统发送最终电子载重平衡表。两名飞行员都将其与飞行计划、燃油和装载信息进行核对，然后由机长通过批准的界面接受。任何最后一分钟变更都要录入系统，并在起飞前检查重新计算的结果。"
+      "referenceText": "The flight crew may receive the load sheet as a paper document or by an approved electronic or data-link system. Before the captain accepts it, the crew checks the flight details, load figures, takeoff and landing weights, and centre-of-gravity information. Any last-minute change must be communicated and recorded.",
+      "referenceTextZh": "飞行机组可以通过纸质文件或经批准的电子或数据链系统接收载重平衡表。机长接受文件前，机组会核对航班信息、载荷数据、起飞和着陆重量以及重心信息。任何临时变更都必须传达并记录。"
     }
   ]
 }

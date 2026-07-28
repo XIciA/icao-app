@@ -15,23 +15,25 @@
       "id": "opi-image-021-q01",
       "taskTitle": "图片题-021-01",
       "audioText": "What visible bird-strike damage can you identify in this photograph?",
-      "audioTextZh": "你能从这张照片中识别出哪些明显的鸟击损伤？"
+      "audioTextZh": "你能从这张照片中识别出哪些明显的鸟击损伤？",
+      "referenceText": "Flames and smoke are visible around one engine, and birds can be seen close to the aircraft. The engine may have ingested one or more birds and suffered serious damage. Internal damage cannot be confirmed from the photograph.",
+      "referenceTextZh": "一台发动机周围可以看到火焰和烟雾，飞机附近还有鸟。发动机可能吸入了一只或多只鸟并受到严重损伤。照片无法确认内部损伤。"
     },
     {
       "id": "opi-image-021-q02",
       "taskTitle": "图片题-021-02",
       "audioText": "As captain, how would you respond to a suspected bird strike in flight?",
       "audioTextZh": "作为机长，怀疑飞行中发生鸟击时，你会如何处置？",
-      "referenceText": "The crew should maintain control, monitor engines, flight controls, pressurization and other affected systems, and complete any relevant checklist. It should inform ATC promptly when the strike, a bird hazard or the resulting limitation affects the operation and assess vibration, damage indications, weather, terrain and airport suitability. After landing, the event should be entered and reported through the operator, maintenance and applicable wildlife-strike process because hidden damage is possible even when the aircraft appears normal.",
-      "referenceTextZh": "机组应保持飞机控制，监控发动机、飞行操纵、增压和其他受影响系统，并完成所有相关检查单。如果鸟撞、鸟类危险或由此产生的限制影响运行，应及时通知 ATC，同时评估振动、损坏指示、天气、地形和机场适用性。着陆后，即使飞机外观看似正常，也应在记录中填写事件，并通过运营人、维修和适用的鸟击报告流程上报，因为可能存在隐蔽损伤。"
+      "referenceText": "I would check the relevant aircraft systems and performance, coordinate with the crew and ATC, and follow the checklist. If safety were not assured, I would divert as appropriate.",
+      "referenceTextZh": "我会检查相关飞机系统和性能，与机组及空中交通管制协调，并执行检查单。如果无法确保安全，我会视情况改航。"
     },
     {
       "id": "opi-image-021-q03",
       "taskTitle": "图片题-021-03",
       "audioText": "What environmental and operational factors increase the risk of a bird strike?",
       "audioTextZh": "哪些环境和运行因素会增加鸟击风险？",
-      "referenceText": "Risk increases near airports, at low altitude and during migration, dawn or dusk, when birds are active near feeding, water or nesting areas. Seasonal habitat, grass, waste, standing water and local wildlife-management conditions can attract birds. Aircraft speed, route, weather and nearby flock activity affect the chance and severity of a strike.",
-      "referenceTextZh": "机场附近、低高度、迁徙期、黎明或黄昏，以及鸟类在觅食地、水域或筑巢区附近活动时，鸟击风险会增加。季节性栖息地、草地、垃圾、积水和当地野生动物管理状况都可能吸引鸟类。飞机速度、航路、天气和附近鸟群活动会影响鸟击发生的概率和严重程度。"
+      "referenceText": "Bird-strike risk is highest near airports and at low altitude during takeoff, climb, approach, and landing. It increases during migration periods and around wetlands, open water, grass, rubbish sites, or other places that attract birds. Dawn, dusk, poor visibility, and airport activities that disturb flocks can make detection and avoidance more difficult.",
+      "referenceTextZh": "鸟击风险在机场附近以及起飞、爬升、进近和着陆的低高度阶段最高。迁徙季节，以及湿地、开阔水域、草地、垃圾场或其他吸引鸟类的地点附近，风险会增大。黎明、黄昏、低能见度，以及惊扰鸟群的机场活动，都可能使发现和避让更加困难。"
     }
   ]
 }

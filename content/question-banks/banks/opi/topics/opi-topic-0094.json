@@ -9,72 +9,72 @@
       "taskTitle": "运行-备降与改航-1",
       "audioText": "Do you select an alternate airport for every flight? Why or why not?",
       "audioTextZh": "你是否为每次飞行都选择备降机场？为什么？",
-      "referenceText": "Not every flight legally requires a destination alternate, because the requirement depends on weather, approach availability, aircraft capability and the applicable operating rules. Even when no alternate is required, the crew still needs a realistic plan for deterioration, runway closure or another disruption. I would use the approved dispatch criteria rather than selecting or omitting an alternate by habit.",
-      "referenceTextZh": "法律并不要求每个航班都必须设置目的地备降机场，因为这项要求取决于天气、进近可用性、飞机能力和适用运行规则。即使不要求备降机场，机组仍需要针对天气恶化、跑道关闭或其他运行中断制定现实方案。我会采用批准的签派标准，而不是凭习惯选择或省略备降机场。"
+      "referenceText": "No, not for every flight. I do not plan an alternate for traffic-circuit training, but for cross-country training I plan suitable departure, en-route, and destination alternates.",
+      "referenceTextZh": "不是每次飞行都需要。我不会为起落航线训练计划备降机场，但在转场训练中会计划合适的起飞、航路和目的地备降机场。"
     },
     {
       "id": "opi-extra-015",
       "taskTitle": "运行-备降与改航-2",
       "audioText": "What circumstances may cause a flight to divert?",
       "audioTextZh": "哪些情况可能导致航班备降？",
-      "referenceText": "A diversion may be caused by worsening weather, runway closure, low fuel margin, a technical problem or a medical or security event. Congestion, airport curfew, volcanic ash or an unavailable approach can also make the destination unsuitable. The decision should be based on the developing risk and remaining options, not on a fixed list alone.",
-      "referenceTextZh": "天气恶化、跑道关闭、燃油裕度过低、技术问题，以及医疗或安保事件都可能导致改航。交通拥堵、机场宵禁、火山灰或进近不可用，也会使目的地不再合适。决定应依据正在发展的风险和剩余选择，而不能只依赖一份固定清单。"
+      "referenceText": "A flight may divert because of an aircraft problem such as a system failure, structural damage, fire, or depressurization. Medical emergencies, bomb threats, or hijacking may also require a diversion. Other causes include bad weather, low visibility, or restrictions at the destination.",
+      "referenceTextZh": "系统失效、结构损伤、火灾或失压等飞机问题可能导致备降。医疗紧急情况、炸弹威胁或劫机也可能要求备降。其他原因包括恶劣天气、低能见度或目的地限制。"
     },
     {
       "id": "opi-extra-017",
       "taskTitle": "运行-备降与改航-3",
       "audioText": "Who should the flight crew coordinate with during a diversion?",
       "audioTextZh": "备降过程中，飞行机组应与哪些人员或单位协调？",
-      "referenceText": "The pilots should coordinate with ATC, the operator's dispatch or operations control, and the cabin crew. Depending on the event, they may also need airport services, maintenance, medical support, security and ground handling at the diversion airport. The flight crew remains responsible for flying the aircraft and making the operational decision while using this support.",
-      "referenceTextZh": "飞行员应与 ATC、运营人的签派或运行控制部门以及客舱机组协调。根据事件性质，他们还可能需要改航机场的机场服务、维修、医疗支持、安保和地面保障。飞行机组利用这些支持，但仍负责操纵飞机和作出运行决定。"
+      "referenceText": "During a diversion, the pilots should first coordinate within the flight crew. They should then contact ATC for clearance and guidance, keep the company dispatcher informed, and coordinate the revised plan with the alternate airport.",
+      "referenceTextZh": "备降期间，飞行员应先在飞行机组内部协调，然后联系空中交通管制获取许可和引导，通知公司签派员，并与备降机场协调修改后的计划。"
     },
     {
       "id": "opi-extra-019",
       "taskTitle": "运行-备降与改航-4",
       "audioText": "As a first officer, what would you do if you disagreed with the captain about a diversion?",
       "audioTextZh": "作为副驾驶，如果你对机长的备降决定有不同意见，你会怎么做？",
-      "referenceText": "As first officer, I would state the safety concern clearly, support it with weather, fuel, performance or system information, and propose a practical alternative. If the captain still disagreed, I would use assertive CRM and repeat the concern in proportion to the risk rather than becoming silent or argumentative. In an immediate threat, I would follow the operator's intervention policy and take only the action needed to protect the flight.",
-      "referenceTextZh": "作为副驾驶，我会清楚说明安全疑虑，并用天气、燃油、性能或系统信息作为依据，同时提出可行的替代方案。如果机长仍不同意，我会采用坚定主动的 CRM 沟通，根据风险程度再次提出疑虑，而不是沉默或争辩。遇到即时威胁时，我会遵循运营人的干预政策，只采取保护飞行安全所需的行动。"
+      "referenceText": "I would discuss the issue with the captain again, explain my view, and suggest that we follow the SOP and company policy.",
+      "referenceTextZh": "我会再次与机长讨论这个问题，说明自己的观点，并建议我们遵循标准操作程序和公司政策。"
     },
     {
       "id": "opi-extra-021",
       "taskTitle": "运行-备降与改航-5",
       "audioText": "Have you ever experienced a diversion? If so, what happened?",
       "audioTextZh": "你是否曾经历过备降？如果有，当时发生了什么？",
-      "referenceText": "A suitable example would be a diversion caused by thunderstorms closing the planned approach route. The crew reviewed fuel and weather, selected an airport with better conditions, informed ATC and the cabin, and coordinated ground handling through operations. The landing was normal, and the passengers continued after the weather improved; this is a fictional example for learners to adapt.",
-      "referenceTextZh": "一个合适的示范案例是：雷暴使计划进近航路无法使用，航班因此改航。机组检查燃油和天气，选择一个条件较好的机场，通知 ATC 和客舱，并通过运行部门协调地面保障。飞机正常着陆，天气改善后旅客继续行程；这是供学习者调整的虚构案例。"
+      "referenceText": "No, I have never experienced a diversion.",
+      "referenceTextZh": "没有，我从未经历过备降。"
     },
     {
       "id": "opi-extra-023",
       "taskTitle": "运行-备降与改航-6",
       "audioText": "What factors should a flight crew consider when selecting a diversion airport?",
       "audioTextZh": "选择备降机场时，飞行机组应考虑哪些因素？",
-      "referenceText": "The crew should consider weather, runway and approach suitability, terrain, airport operating hours and available rescue, handling and maintenance support. It also assesses fuel, flight time, aircraft defects, passenger or medical needs, crew duty limits and onward operational consequences. The nearest airport is not always the safest or most suitable choice.",
-      "referenceTextZh": "机组应考虑天气、跑道与进近适用性、地形、机场开放时间，以及可用的救援、地面保障和维修支持。他们还应评估燃油、飞行时间、飞机故障、旅客或医疗需求、机组执勤限制和对后续运行的影响。最近的机场不一定是最安全或最合适的选择。"
+      "referenceText": "The crew should consider the weather, fuel endurance, runway length and condition, and the airport's available facilities. Ground handling, fire and medical services, and maintenance support may also affect the choice.",
+      "referenceTextZh": "机组应考虑天气、燃油续航能力、跑道长度和状况以及机场可用设施。地面保障、消防和医疗服务以及维修支援也可能影响选择。"
     },
     {
       "id": "opi-extra-025",
       "taskTitle": "运行-备降与改航-7",
       "audioText": "What assistance can ATC provide to a flight that is diverting?",
       "audioTextZh": "空中交通管制部门可以为正在备降的航班提供哪些协助？",
-      "referenceText": "ATC can provide headings, direct routing, altitude and traffic separation and can coordinate priority when the situation justifies it. Controllers may pass weather, runway, airport and frequency information and notify emergency services or the destination unit. The crew should state its needs and limitations clearly because ATC cannot decide aircraft performance or airport suitability for the commander.",
-      "referenceTextZh": "ATC 可以提供航向、高度、直飞航路和交通间隔，并在情况需要时协调优先权。管制员可以传递天气、跑道、机场和频率信息，并通知应急服务或目的地管制单位。机组应清楚说明需求和限制，因为 ATC 无法替机长判断飞机性能或机场适用性。"
+      "referenceText": "ATC can provide or relay available weather information for the route and alternate airport. It may also provide runway-condition information, details about available ground services, and relevant minimum safe altitude information.",
+      "referenceTextZh": "空中交通管制可以提供或转发航路和备降机场的可用天气信息，也可能提供跑道状况、可用地面服务以及相关最低安全高度的信息。"
     },
     {
       "id": "opi-extra-028",
       "taskTitle": "运行-备降与改航-8",
       "audioText": "What factors should a flight crew consider when deciding whether to divert or return?",
       "audioTextZh": "决定备降还是返航时，飞行机组应考虑哪些因素？",
-      "referenceText": "The crew should compare the safety and practicality of returning, continuing or diverting to another airport. Important factors include aircraft condition, urgency, fuel, distance, weather, terrain, runway suitability, maintenance and passenger needs. It should also consider which option preserves the widest range of safe alternatives if conditions worsen, rather than automatically choosing the closest airport.",
-      "referenceTextZh": "机组应比较返航、继续飞行或改航到另一机场在安全性和可行性方面的差异。重要因素包括飞机状态、紧迫程度、燃油、距离、天气、地形、跑道适用性、维修和旅客需求。还应考虑情况恶化时，哪个方案能保留范围最广的安全替代选择，而不是自动选择最近机场。"
+      "referenceText": "The crew should compare the available fuel, en-route weather, and conditions at the possible airports. They should also consider the facilities and assistance available, the safe altitude along each route, and the aircraft's landing weight if returning.",
+      "referenceTextZh": "机组应比较可用燃油、航路天气和各候选机场的条件，还应考虑可用设施和协助、每条航路的安全高度，以及返航时飞机的着陆重量。"
     },
     {
       "id": "opi-extra-038",
       "taskTitle": "运行-备降与改航-9",
       "audioText": "What preparations should a flight crew make after deciding to divert?",
       "audioTextZh": "决定备降后，飞行机组应做哪些准备？",
-      "referenceText": "After deciding, the crew should confirm fuel and performance, obtain weather and airport information, program and cross-check the new route, and brief the approach and likely threats. It should coordinate with ATC, operations and cabin crew and give passengers an accurate explanation when workload permits. Landing data, emergency services, ground handling and any maintenance or medical support should be arranged before arrival when possible.",
-      "referenceTextZh": "作出决定后，机组应确认燃油和性能，获取天气与机场信息，在系统中输入并交叉核对新航路，并对进近和可能的威胁进行简令。他们应与 ATC、运行部门和客舱机组协调，并在工作负荷允许时向旅客作出准确解释。条件允许时，应在到达前取得或计算着陆数据，并协调应急服务、地面保障以及任何维修或医疗支持。"
+      "referenceText": "The crew should inform ATC of the situation and request clearance to the diversion airport. They should obtain its weather and runway information, update the flight plan in the FMS if the aircraft is equipped with one, and brief the cabin crew and passengers about the diversion.",
+      "referenceTextZh": "机组应向空中交通管制报告情况，并申请前往备降机场的许可。他们应获取该机场天气和跑道信息；如果飞机配有 FMS，就更新飞行计划，并向客舱机组和旅客作备降简令。"
     }
   ]
 }

@@ -9,16 +9,16 @@
       "taskTitle": "运行-重心-1",
       "audioText": "What factors can affect an aircraft's center of gravity at takeoff?",
       "audioTextZh": "哪些因素会影响航空器起飞时的重心？",
-      "referenceText": "Takeoff centre of gravity is affected by the distribution of passengers, baggage, cargo, fuel and operating items. Last-minute changes, incorrect loading data, fuel transfer or loading in the wrong compartment can shift it from the planned value. The crew verifies the final load information and ensures both weight and balance remain within the approved envelope.",
-      "referenceTextZh": "起飞重心受旅客、行李、货物、燃油和运行物品分布的影响。最后一分钟变更、装载数据错误、燃油传输或货物装入错误舱位，都可能使重心偏离计划值。机组应核实最终装载信息，并确保重量和平衡都保持在批准包线内。"
+      "referenceText": "The center of gravity at takeoff is affected by the amount and location of fuel, passengers, baggage, and cargo. The way these loads are distributed through the aircraft determines the final center-of-gravity position.",
+      "referenceTextZh": "飞机起飞时的重心受燃油、旅客、行李和货物的数量及其位置影响。这些载荷在飞机上的分布方式决定了最终的重心位置。"
     },
     {
       "id": "opi-extra-094",
       "taskTitle": "运行-重心-2",
       "audioText": "How can an excessively forward center of gravity affect an aircraft?",
       "audioTextZh": "重心过度靠前会如何影响航空器？",
-      "referenceText": "An excessively forward centre of gravity increases the nose-down tendency and the control force or trim needed to raise the nose. It can reduce takeoff rotation and landing flare capability, increase stall speed in some conditions and add load to the nose gear. If it is outside the approved envelope, the aircraft must not depart even if total weight is within limits.",
-      "referenceTextZh": "重心过于靠前会增加低头趋势，以及抬头所需的操纵力或配平量。它可能削弱起飞抬轮和着陆拉平能力，在某些条件下提高失速速度，并增加前起落架载荷。如果重心超出批准包线，即使总重量仍在限制内，飞机也不得起飞。"
+      "referenceText": "An excessively forward center of gravity makes the aircraft harder to rotate and may increase the takeoff distance. It can also increase fuel consumption in cruise, although it generally increases longitudinal stability.",
+      "referenceTextZh": "重心过度靠前会使飞机更难抬前轮，并可能增加起飞距离。它还可能增加巡航燃油消耗，不过通常会提高纵向稳定性。"
     }
   ]
 }

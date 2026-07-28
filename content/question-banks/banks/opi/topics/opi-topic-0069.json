@@ -9,24 +9,24 @@
       "taskTitle": "缩略词-QRH-1",
       "audioText": "What is a Quick Reference Handbook (QRH)?",
       "audioTextZh": "什么是快速检查单（QRH）？",
-      "referenceText": "A Quick Reference Handbook, or QRH, is a readily accessible collection of checklists and essential guidance for abnormal and emergency situations. It helps the crew identify the condition, perform required immediate or follow-up actions, and manage the aircraft in a standard sequence. The crew must use the current QRH approved or accepted for that aircraft and operator.",
-      "referenceTextZh": "快速检查单手册（QRH）是一本便于取用的检查单和重要指南汇编，用于异常和紧急情况。它帮助机组识别状况、完成所需立即动作或后续动作，并按照标准顺序管理飞机。机组必须使用针对相关飞机和运营人获得批准或认可的现行 QRH。"
+      "referenceText": "QRH stands for Quick Reference Handbook. It gives flight crews quick access to checklists and procedural guidance. This helps pilots respond correctly to operational problems, reduce errors, and manage workload.",
+      "referenceTextZh": "QRH 是快速参考手册的缩写。它使飞行机组可以迅速查阅检查单和程序指导，帮助飞行员正确处置运行问题、减少差错并管理工作负荷。"
     },
     {
       "id": "opi-core-725",
       "taskTitle": "缩略词-QRH-2",
       "audioText": "How does an interactive Quick Reference Handbook (QRH) differ from a conventional QRH?",
       "audioTextZh": "交互式快速检查单（QRH）与传统 QRH 有何不同？",
-      "referenceText": "A conventional QRH is usually a paper book or a fixed electronic copy that the crew navigates manually. An interactive QRH may use system data, links and conditional logic to show the relevant checklist and track completed steps. The crew must still verify that the displayed procedure matches the actual condition and follow the approved fallback if the interactive function fails.",
-      "referenceTextZh": "传统 QRH 通常是纸质手册或固定电子版本，由机组手动查找。交互式 QRH 可以利用系统数据、链接和条件逻辑显示相关检查单，并跟踪已完成步骤。机组仍必须确认显示程序与实际状况一致，并在交互功能失效时执行经批准的备用方法。"
+      "referenceText": "An interactive QRH provides interactive checklists with notes that help pilots understand what to do, how to do it, and why each step is needed. It can also offer aircraft-specific customization, electronic updates, navigation, and search functions. A conventional QRH mainly presents the procedures without those interactive notes and functions.",
+      "referenceTextZh": "交互式快速参考手册（QRH）提供带有说明的交互式检查单，帮助飞行员理解要做什么、如何做以及每一步为何需要。它还可以提供机型定制、电子更新、导航和搜索功能。传统 QRH 主要呈现程序，没有这些交互说明和功能。"
     },
     {
       "id": "opi-core-727",
       "taskTitle": "缩略词-QRH-3",
       "audioText": "Why is a Quick Reference Handbook (QRH) useful to flight crews?",
       "audioTextZh": "快速检查单（QRH）为什么对飞行机组很有用？",
-      "referenceText": "The QRH gives crews fast access to standardized actions when time and workload are critical. It reduces reliance on memory, supports coordination between pilots and helps ensure that important follow-up steps are not missed. It is also useful for reviewing non-normal consequences, performance information and landing considerations after the immediate threat is controlled.",
-      "referenceTextZh": "在时间紧迫、工作负荷较高时，QRH 能让机组快速获取标准化动作。它减少对记忆的依赖，支持两名飞行员协调，并帮助确保重要后续步骤不被遗漏。在直接威胁得到控制后，它也适合用来查看非正常情况后果、性能信息和着陆考虑事项。"
+      "referenceText": "A QRH gives the crew checklists and procedures to follow when an emergency occurs. It can improve situational awareness, reduce workload and human error, and support flight safety.",
+      "referenceTextZh": "发生紧急情况时，快速参考手册（QRH）为机组提供需要执行的检查单和程序。它可以提高情景意识、降低工作负荷和人为差错，并保障飞行安全。"
     }
   ]
 }
