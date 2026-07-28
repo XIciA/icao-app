@@ -1,9 +1,12 @@
 import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
-import { AppState, StyleSheet, View } from 'react-native';
+import { AppState, Platform, StyleSheet, View } from 'react-native';
 
 import { audioSessionOrchestrator } from '@/platform/audio';
 
-import { StudyAudioPlayer } from '../components/StudyAudioPlayer';
+import {
+  StudyAudioPlayer,
+  WEB_AUDIO_FIRST_FRAME_TIMEOUT_MS,
+} from '../components/StudyAudioPlayer';
 
 const mockSetAudioModeAsync = jest.fn(async (_mode: unknown): Promise<void> => undefined);
 
@@ -16,15 +19,24 @@ const mockPlayer = {
   playing: false,
 };
 
-let mockStatus = {
-  currentTime: 0,
-  didJustFinish: false,
-  duration: 10,
-  isBuffering: true,
-  isLoaded: false,
-  playbackState: 'loading',
-  playing: false,
-};
+function initialMockStatus() {
+  return {
+    currentTime: 0,
+    didJustFinish: false,
+    duration: 10,
+    isBuffering: true,
+    isLoaded: false,
+    playbackState: 'loading',
+    playing: false,
+  };
+}
+
+let mockStatus = initialMockStatus();
+const initialPlatform = Platform.OS;
+
+function setTestPlatform(platform: 'android' | 'ios' | 'web') {
+  Object.defineProperty(Platform, 'OS', { configurable: true, value: platform });
+}
 
 jest.mock('lucide-react-native', () => {
   const { View } = jest.requireActual('react-native');
@@ -48,30 +60,119 @@ describe('StudyAudioPlayer', () => {
     mockPlayer.replace.mockImplementation(() => undefined);
     mockPlayer.seekTo.mockResolvedValue(undefined);
     mockPlayer.setPlaybackRate.mockImplementation(() => undefined);
-    mockStatus = { ...mockStatus, isBuffering: true, isLoaded: false, playbackState: 'loading', playing: false };
+    mockStatus = initialMockStatus();
+    setTestPlatform(initialPlatform as 'android' | 'ios' | 'web');
   });
 
   afterEach(() => {
     audioSessionOrchestrator.resetForTests();
+    setTestPlatform(initialPlatform as 'android' | 'ios' | 'web');
     jest.useRealTimers();
     jest.restoreAllMocks();
   });
 
-  it('waits for the replacement source to load before first-card or navigation autoplay', async () => {
+  it.each(['ios', 'android'] as const)('waits for the replacement source to load before %s autoplay', async (platform) => {
+    setTestPlatform(platform);
     const screen = await render(
-      <StudyAudioPlayer autoPlayRequest={1} label="Sentence1" playbackKey="card-1" uri="https://example.test/card-1.mp3" />,
+      <StudyAudioPlayer autoPlayRequest={1} label="Sentence1" playbackKey={`card-${platform}`} uri={`https://example.test/card-${platform}.mp3`} />,
     );
 
-    expect(mockPlayer.replace).toHaveBeenCalledWith('https://example.test/card-1.mp3');
+    expect(mockPlayer.replace).toHaveBeenCalledWith(`https://example.test/card-${platform}.mp3`);
     expect(mockPlayer.play).not.toHaveBeenCalled();
 
     mockStatus = { ...mockStatus, isBuffering: false, isLoaded: true, playbackState: 'readyToPlay' };
     await screen.rerender(
-      <StudyAudioPlayer autoPlayRequest={1} label="Sentence1" playbackKey="card-1" uri="https://example.test/card-1.mp3" />,
+      <StudyAudioPlayer autoPlayRequest={1} label="Sentence1" playbackKey={`card-${platform}`} uri={`https://example.test/card-${platform}.mp3`} />,
     );
 
     await waitFor(() => expect(mockPlayer.play).toHaveBeenCalledTimes(1));
   });
+
+  it('requires a first Web gesture, then restores navigation autoplay after playback advances', async () => {
+    setTestPlatform('web');
+    mockStatus = { ...initialMockStatus(), isBuffering: false, isLoaded: true, playbackState: 'readyToPlay' };
+    const screen = await render(
+      <StudyAudioPlayer autoPlayRequest={1} label="Sentence1" playbackKey="web-card-1" uri="https://example.test/web-card-1.mp3" />,
+    );
+
+    await act(async () => Promise.resolve());
+    expect(mockPlayer.play).not.toHaveBeenCalled();
+    expect(screen.getByLabelText('播放')).toBeTruthy();
+
+    await act(async () => {
+      fireEvent.press(screen.getByLabelText('播放'));
+      await Promise.resolve();
+      await Promise.resolve();
+      await Promise.resolve();
+    });
+    expect(mockPlayer.play).toHaveBeenCalledTimes(1);
+
+    mockStatus = { ...mockStatus, currentTime: 0, playing: true };
+    await screen.rerender(
+      <StudyAudioPlayer autoPlayRequest={1} label="Sentence1" playbackKey="web-card-1" uri="https://example.test/web-card-1.mp3" />,
+    );
+    expect(screen.getByLabelText('音频正在启动').props.accessibilityState).toEqual({ disabled: true });
+
+    mockStatus = { ...mockStatus, currentTime: 0.25 };
+    await screen.rerender(
+      <StudyAudioPlayer autoPlayRequest={1} label="Sentence1" playbackKey="web-card-1" uri="https://example.test/web-card-1.mp3" />,
+    );
+
+    await screen.rerender(
+      <StudyAudioPlayer autoPlayRequest={2} label="Sentence2" playbackKey="web-card-2" uri="https://example.test/web-card-2.mp3" />,
+    );
+    mockStatus = { ...initialMockStatus() };
+    await screen.rerender(
+      <StudyAudioPlayer autoPlayRequest={2} label="Sentence2" playbackKey="web-card-2" uri="https://example.test/web-card-2.mp3" />,
+    );
+    mockStatus = { ...initialMockStatus(), isBuffering: false, isLoaded: true, playbackState: 'readyToPlay' };
+    await screen.rerender(
+      <StudyAudioPlayer autoPlayRequest={2} label="Sentence2" playbackKey="web-card-2" uri="https://example.test/web-card-2.mp3" />,
+    );
+
+    await waitFor(() => expect(mockPlayer.play).toHaveBeenCalledTimes(2));
+    mockStatus = { ...mockStatus, currentTime: 0.25, playing: true };
+    await screen.rerender(
+      <StudyAudioPlayer autoPlayRequest={2} label="Sentence2" playbackKey="web-card-2" uri="https://example.test/web-card-2.mp3" />,
+    );
+    await act(async () => {
+      fireEvent.press(screen.getByLabelText('暂停'));
+      await Promise.resolve();
+      await Promise.resolve();
+      await Promise.resolve();
+    });
+    await screen.unmount();
+  });
+
+  it('turns a Web first-frame stall into a recoverable state instead of spinning forever', async () => {
+    setTestPlatform('web');
+    mockStatus = { ...initialMockStatus(), isBuffering: false, isLoaded: true, playbackState: 'readyToPlay' };
+    const screen = await render(
+      <StudyAudioPlayer autoPlayRequest={1} label="SIA 852-1" playbackKey="web-stall" uri="https://example.test/web-stall.mp3" />,
+    );
+
+    await act(async () => {
+      fireEvent.press(screen.getByLabelText('播放'));
+      await Promise.resolve();
+      await Promise.resolve();
+      await Promise.resolve();
+    });
+    expect(mockPlayer.play).toHaveBeenCalledTimes(1);
+
+    mockStatus = { ...mockStatus, currentTime: 0, playing: true };
+    await screen.rerender(
+      <StudyAudioPlayer autoPlayRequest={1} label="SIA 852-1" playbackKey="web-stall" uri="https://example.test/web-stall.mp3" />,
+    );
+
+    await waitFor(
+      () => expect(screen.getByText('音频启动超时')).toBeTruthy(),
+      { timeout: WEB_AUDIO_FIRST_FRAME_TIMEOUT_MS + 1_000 },
+    );
+    expect(screen.getByText('浏览器未能开始播放；请重新加载后点击播放。')).toBeTruthy();
+    expect(mockPlayer.pause).toHaveBeenCalled();
+    await waitFor(() => expect(audioSessionOrchestrator.getActiveLeaseForTests()).toBeUndefined());
+    await screen.unmount();
+  }, 10_000);
 
   it('reports source readiness once and uses the manifest duration while metadata loads', async () => {
     const onReady = jest.fn();

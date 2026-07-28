@@ -156,3 +156,4 @@ git diff --check
 ## 8. 已记录事故
 
 - [`incident-2026-07-28-playback-transcription.md`](./incident-2026-07-28-playback-transcription.md)：有效真机录音无法稳定回放，账号同意漂移导致转写不可用。
+- [`incident-2026-07-28-web-study-audio-first-frame.md`](./incident-2026-07-28-web-study-audio-first-frame.md)：Web 新浏览器首次题卡音频停在 0 秒且无限转圈。
