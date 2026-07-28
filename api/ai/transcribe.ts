@@ -16,7 +16,10 @@ export default {
       if (request.method !== 'POST') return failure(id, 405, 'method_not_allowed');
       const body = await readJson(request, 4_200_000) as { dataUrl?: unknown };
       if (!validRecordingDataUrl(body.dataUrl)) return failure(id, 400, 'invalid_audio');
-      return success(id, await transcribeUrl(body.dataUrl));
+      return success(id, await transcribeUrl(
+        body.dataUrl,
+        request.headers.get('x-vercel-oidc-token') ?? undefined,
+      ));
     } catch (error) {
       const code = error instanceof Error ? error.message : 'ai_service_unavailable';
       const status = code === 'web_session_required' ? 401 : code === 'no_speech_detected' ? 422 : 503;

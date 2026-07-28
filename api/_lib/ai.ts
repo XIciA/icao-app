@@ -1,7 +1,9 @@
 const TEXT_BASE_URL = process.env.DASHSCOPE_BASE_URL ?? 'https://dashscope.aliyuncs.com/compatible-mode/v1';
 const TEMPORARY_UPLOAD_POLICY_URL = 'https://dashscope.aliyuncs.com/api/v1/uploads';
+const AI_GATEWAY_TRANSCRIPTION_URL = 'https://ai-gateway.vercel.sh/v4/ai/transcription-model';
 const TEXT_MODEL = process.env.AI_TEXT_MODEL ?? 'qwen-turbo';
 const ASR_MODEL = process.env.AI_ASR_MODEL ?? 'qwen3-asr-flash';
+const GATEWAY_TRANSCRIPTION_MODEL = process.env.AI_GATEWAY_TRANSCRIPTION_MODEL ?? 'openai/gpt-4o-mini-transcribe';
 
 const GRAMMAR_REVIEW_PROMPT = `You are an English grammar checker.
 
@@ -221,7 +223,43 @@ async function uploadTemporaryAudio(fileUrl: string) {
   return `oss://${key}`;
 }
 
-export async function transcribeUrl(fileUrl: string) {
+export async function transcribeUrl(fileUrl: string, requestOidcToken?: string) {
+  const audio = audioData(fileUrl);
+  try {
+    const gatewayApiKey = process.env.AI_GATEWAY_API_KEY;
+    const gatewayOidcToken = requestOidcToken || process.env.VERCEL_OIDC_TOKEN;
+    const gatewayToken = gatewayApiKey || gatewayOidcToken;
+    if (!gatewayToken) throw new Error('ai_gateway_not_configured');
+    const response = await upstream(AI_GATEWAY_TRANSCRIPTION_URL, {
+      method: 'POST',
+      headers: {
+        authorization: `Bearer ${gatewayToken}`,
+        'content-type': 'application/json',
+        'ai-gateway-auth-method': gatewayApiKey ? 'api-key' : 'oidc',
+        'ai-gateway-protocol-version': '0.0.1',
+        'ai-model-id': GATEWAY_TRANSCRIPTION_MODEL,
+        'ai-transcription-model-specification-version': '4',
+      },
+      body: JSON.stringify({
+        audio: audio.bytes.toString('base64'),
+        mediaType: audio.mime,
+        providerOptions: {},
+      }),
+    }, 60_000);
+    const result = await response.json() as { text?: unknown };
+    const transcript = typeof result.text === 'string'
+      ? result.text.replace(/\s+/gu, ' ').trim()
+      : '';
+    if (!transcript) throw new Error('no_speech_detected');
+    return { transcript };
+  } catch (error) {
+    console.error(JSON.stringify({
+      event: 'ai_gateway_transcription_fallback',
+      name: error instanceof Error ? error.name : 'unknown',
+      message: error instanceof Error ? error.message.slice(0, 300) : 'unknown',
+    }));
+  }
+
   const temporaryAudioUrl = await uploadTemporaryAudio(fileUrl);
   const response = await upstream(`${TEXT_BASE_URL.replace(/\/+$/u, '')}/chat/completions`, {
     method: 'POST',

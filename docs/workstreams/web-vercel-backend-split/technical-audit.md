@@ -31,7 +31,7 @@
 | 音频/图片 | ECS/Supabase resolver | 10 个 Vercel 静态资源分片 |
 | 词汇/文章 | ECS API | Vercel 静态 JSON release |
 | AI | ECS API | Vercel Function → DashScope |
-| 录音上传 | multipart 到 ECS | Function 接收 Base64 → Model Studio 48 小时临时文件 |
+| 录音上传 | multipart 到 ECS | Function 接收 Base64 → Vercel AI Gateway；DashScope 临时文件备用 |
 | 账户页 | 正式账号/云同步 | Web 体验版边界 |
 
 ## 4. 风险与门禁
@@ -43,7 +43,8 @@
 - Cookie 必须在 Preview 和正式域名均能刷新恢复。
 - 公开静态资源不是 DRM；本项目邀请码只是体验入口，产品已接受这一边界。
 - Vercel Hobby Blob 的月度高级操作额度不足以一次上传完整题库，因此题库使用 10 个小于 95 MB 的静态项目，并以稳定 FNV-1a 哈希分片。
-- Fun-ASR 的 `file_urls` 不接受 Base64；Web 改用 Qwen3-ASR，并通过 Model Studio 临时文件解决跨境大请求不稳定。
+- Fun-ASR 的 `file_urls` 不接受 Base64；最初的 Qwen3-ASR 临时文件方案仍受 Vercel 到阿里北京的间歇性连接超时影响，因此调整为 Vercel AI Gateway 主路径、Qwen3-ASR 备用路径。
+- AI Gateway 使用 Vercel 请求级 OIDC，不在仓库或环境变量保存新的长期 Provider 密钥；Vercel 团队必须先完成 Gateway 账单验证。
 - Vercel 消除了“未备案大陆 ECS 是 Web 必经链路”的主要问题，但不等于中国大陆全网绝对可达。
 
 ## 5. 基线与回滚

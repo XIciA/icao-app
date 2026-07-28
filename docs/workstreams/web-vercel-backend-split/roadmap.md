@@ -19,7 +19,7 @@
 - [x] Web AuthProvider 禁用 Supabase 和云同步。
 - [x] Web API client 固定同源 Vercel Functions。
 - [x] Web 账户页、本机数据和体验版说明。
-- [x] 文本 AI、录音 Base64 上送、Model Studio 临时文件和 Qwen3-ASR。
+- [x] 文本 AI、录音 Base64 上送、AI Gateway 主转写和 Qwen3-ASR 备用转写。
 
 ### C. 内容镜像
 
@@ -35,16 +35,19 @@
 - [x] 全量 Jest、TypeScript、Lint、音频边界和 Web export 初检。
 - [x] Web bundle 零 ECS 扫描。
 - [x] Vercel Preview 登录、内容、音频和文本 AI 冒烟。
-- [ ] Vercel Preview/Production 录音转写冒烟。
-- [ ] 真实浏览器网络目标检查。
-- [ ] 删除旧 Web ECS/Supabase 环境变量。
-- [ ] Production 切换并验证 `feizhuicao.com`。
+- [x] Vercel Preview/Production Qwen3-ASR 录音转写冒烟；随后发现跨境链路间歇超时。
+- [x] 真实浏览器网络目标检查。
+- [x] 删除旧 Web ECS/Supabase 环境变量。
+- [x] Production 切换并验证 `feizhuicao.com`。
+- [ ] Vercel 团队完成 AI Gateway 账单验证后，复验 Gateway 主转写并关闭当前阻塞项。
 
 ### 已发现的网络事实
 
 - 本机到受保护的 `*.vercel.app` Preview 曾连续出现 TLS 握手失败，请求未到达函数。
 - 这类故障发生在浏览器/本机到 Vercel 边缘的链路，无法由登录或 API 代码修复。
 - 正式切换必须以 `feizhuicao.com` 的公网可达性为准；纯 Vercel 不承诺中国大陆全运营商 100% 可达。
+- Vercel 新加坡和东京函数到阿里北京 `dashscope.aliyuncs.com` 均观察到间歇连接超时；仅更换 Vercel 区域不足以保证转写稳定。
+- AI Gateway OIDC 请求已到达 Gateway，但团队未完成账单验证时返回 `customer_verification_required`，因此不能把该路径标记为已验收。
 
 ## 小流程验收记录模板
 

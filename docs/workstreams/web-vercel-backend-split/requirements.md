@@ -10,7 +10,7 @@
 - Web 是次级的独立体验产品，继续使用当前 Expo Web 页面、组件、主题、交互与业务规则，不创建 Web V2。
 - Web 前端和 Web 专用服务端均运行在 Vercel；浏览器正常运行时完全不请求当前 ECS、其 Supabase 或其资源域名。
 - Web 与 App 不同步账号和个人数据。邀请码仅用于进入体验版；学习记录保存在当前浏览器，清理站点数据后允许丢失。
-- Web 可继续使用阿里 DashScope 模型，但密钥和调用只存在于 Vercel Functions，浏览器不经过阿里云 ECS。
+- Web 文本 AI 可继续使用阿里 DashScope；录音转写优先使用 Vercel AI Gateway，并以 DashScope 作为备用。所有密钥和调用只存在于 Vercel Functions，浏览器不经过阿里云 ECS。
 
 ## 2. 首版必须具备
 
@@ -21,7 +21,7 @@
 5. 完整稳定题库 `releaseVersion 8` 的文本、5777 个题目音频引用及图片资源可访问。
 6. 题库镜像提供公开、不可变、版本化地址；Web 通过可更新指针跟随 App 内容发布。
 7. 查词、语法检查、表达润色和录音转写使用 Vercel Functions。
-8. 录音只为当次转写临时进入阿里 Model Studio 临时文件区，平台在 48 小时后自动删除。
+8. 录音只用于当次转写：主路径直接提交给 Vercel AI Gateway；备用路径临时进入阿里 Model Studio 文件区并自动过期。
 9. 所有不适用于体验版的账号、同步或反馈入口隐藏或提供明确说明。
 10. Web 生产构建中不得包含当前 ECS 主机名、IP 或 Supabase 公共配置。
 

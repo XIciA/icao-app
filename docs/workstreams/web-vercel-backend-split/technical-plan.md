@@ -28,7 +28,8 @@ Browser
 ├── feizhuicao.com 静态 Expo Web
 ├── /api/session             独立邀请码 + 签名 Cookie
 ├── /api/ai/*                Vercel Function → DashScope
-├── /api/ai/transcribe       录音 Base64 → Model Studio 临时文件
+├── /api/ai/transcribe       录音 Base64 → Vercel AI Gateway
+│                              └── 失败时回退 Model Studio 临时文件
 ├── metadata static project
 │   ├── web-content/current.json
 │   └── releases/<release-id>/{question-bank,vocabulary,editorial}
@@ -36,7 +37,7 @@ Browser
     └── question-bank-assets/{audio,images}
 ```
 
-浏览器不得持有 DashScope 或 Cookie 签名密钥。浏览器把不超过 3 MB 的录音编码为 Base64 发送到同源 Function；Function 取得 Model Studio 临时上传凭证，将录音放入与模型绑定的临时文件区，再以 `oss://` 内部地址调用 Qwen3-ASR。临时文件 48 小时自动过期。
+浏览器不得持有 AI Provider 或 Cookie 签名密钥。浏览器把不超过 3 MB 的录音编码为 Base64 发送到同源 Function；Function 优先使用请求携带的 Vercel OIDC 身份调用 AI Gateway 批量转写。Gateway 不可用时，Function 才取得 Model Studio 临时上传凭证，将录音放入与模型绑定的临时文件区，再以 `oss://` 内部地址调用 Qwen3-ASR。
 
 ## 3. 内容所有权与同步
 
@@ -72,9 +73,10 @@ Web 自动读取新指针
 ## 5. AI 与录音
 
 - 文本 AI：Vercel Function 直接请求 DashScope OpenAI-compatible API。
-- 转写：浏览器录音 → 同源 Function → Model Studio 48 小时临时文件 → Qwen3-ASR。
+- 转写主路径：浏览器录音 → 同源 Function → Vercel AI Gateway → `gpt-4o-mini-transcribe`。
+- 转写备用路径：同源 Function → Model Studio 临时文件 → Qwen3-ASR。
 - 单个录音源文件最大 3 MB，Function 超时 120 秒。
-- 临时文件由 Model Studio 自动过期，不保存长期 AI 历史。
+- 两条路径均不在本项目保存录音或长期 AI 历史；备用临时文件由 Model Studio 自动过期。
 - 首版不保留长期 AI 历史，不实施用户用量额度。
 
 ## 6. 发布与回滚
