@@ -28,7 +28,7 @@
 | API client | ECS base URL | 同源 `/api/*` |
 | 邀请码 | App 账号服务 | Web 独立环境变量 |
 | 题库文本 | ECS API/embedded | 静态 release + 本机缓存 + embedded fallback |
-| 音频/图片 | ECS/Supabase resolver | 10 个 Vercel 静态资源分片 |
+| 音频/图片 | ECS/Supabase resolver | Git 构建校验并生成的 `feizhuicao.com/question-bank-assets/*` 同域镜像 |
 | 词汇/文章 | ECS API | Vercel 静态 JSON release |
 | AI | ECS API | Vercel Function → DashScope |
 | 录音上传 | multipart 到 ECS | Function 接收 Base64 → Vercel AI Gateway；DashScope 临时文件备用 |
@@ -42,7 +42,7 @@
 - 内容目录必须不可变；同步失败不得覆盖 `current.json`。
 - Cookie 必须在 Preview 和正式域名均能刷新恢复。
 - 公开静态资源不是 DRM；本项目邀请码只是体验入口，产品已接受这一边界。
-- Vercel Hobby Blob 的月度高级操作额度不足以一次上传完整题库，因此题库使用 10 个小于 95 MB 的静态项目，并以稳定 FNV-1a 哈希分片。
+- Vercel Hobby Blob 的月度高级操作额度不足以一次上传完整题库；最初以 CLI 将题库发布到 10 个小于 95 MB 的静态项目。中国大陆实机随后证明浏览器直接访问这些 `*.vercel.app` 分片不稳定，因此 Git 构建现在读取同一 pointer、逐项校验 manifest checksum，并把 814.5 MB 资源生成为主站同域静态输出；原分片保留为构建输入和回滚源。
 - Fun-ASR 的 `file_urls` 不接受 Base64；最初的 Qwen3-ASR 临时文件方案仍受 Vercel 到阿里北京的间歇性连接超时影响，因此调整为 Vercel AI Gateway 主路径、Qwen3-ASR 备用路径。
 - AI Gateway 使用 Vercel 请求级 OIDC，不在仓库或环境变量保存新的长期 Provider 密钥；Vercel 团队必须先完成 Gateway 账单验证。
 - Vercel 消除了“未备案大陆 ECS 是 Web 必经链路”的主要问题，但不等于中国大陆全网绝对可达。

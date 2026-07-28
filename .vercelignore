@@ -1,4 +1,5 @@
 .generated/
+/dist/
 /content/editorial/
 /content/question-banks/*
 !/content/question-banks/opi-hotspots.json

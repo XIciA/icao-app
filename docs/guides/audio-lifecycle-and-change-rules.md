@@ -65,6 +65,7 @@ flowchart LR
 - Web 元素仍属于既有 `study` owner。点击播放必须在用户操作同步栈内调用原生 `play()`，同时异步获取 orchestrator lease；lease 失败、录音抢占、后台、暂停、切题和卸载都必须暂停元素并释放已有 lease。
 - URI 就绪即可点击，不等待 `loadeddata`；只有用户点击或已解锁后的尽力自动播放开始后，才允许启动首帧超时。
 - Web 下一题预热不拥有 session 或播放状态，只能在当前题产生首帧后使用至多一个独立浏览器 `Audio` 元素做尽力预热。
+- Web Production 构建从当前不可变内容 release 校验并物化 `question-bank-assets`，播放器只读取同源 `/question-bank-assets/*`。资源 manifest、checksum 和原 Vercel 分片仍是唯一发布事实；同域构建产物只是经过校验的交付镜像，不得成为第二套音频映射或内容来源。iOS/Android 继续使用原生 resolver，不读取该 Web 镜像。
 
 ### 随身听原生间隔轨道
 
