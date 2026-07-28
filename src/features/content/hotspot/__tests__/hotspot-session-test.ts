@@ -1,67 +1,60 @@
 import { embeddedQuestionBankRepository } from '@/features/question-bank/data/repository';
 
-import { buildHotspotSession } from '../build-hotspot-session';
-import { loadHotspotBriefs } from '../repository';
+import { buildHotspotSession, resolveHotspotTopics } from '../build-hotspot-session';
+import { getHotspotBrief, loadHotspotBriefs } from '../repository';
 
-describe('Hotspot Feature Integration Tests', () => {
-  it('loads embedded hotspot briefs sorted by date descending', () => {
+describe('OPI hotspot data and study session', () => {
+  it('loads unique briefs in descending date order', () => {
     const briefs = loadHotspotBriefs();
-    expect(briefs.length).toBeGreaterThan(0);
+    expect(briefs).toHaveLength(8);
+    expect(new Set(briefs.map((brief) => brief.id)).size).toBe(briefs.length);
+    for (let index = 0; index < briefs.length - 1; index += 1) {
+      expect(briefs[index].date.localeCompare(briefs[index + 1].date)).toBeGreaterThan(0);
+    }
+    expect(getHotspotBrief(briefs[0].id)).toBe(briefs[0]);
+  });
 
-    for (let i = 0; i < briefs.length - 1; i++) {
-      expect(briefs[i].date.localeCompare(briefs[i + 1].date)).toBeGreaterThanOrEqual(0);
+  it('resolves every card from its declared OPI topic and excludes image questions', async () => {
+    const dataset = await embeddedQuestionBankRepository.getDataset('opi');
+    expect(dataset).toBeDefined();
+    if (!dataset) return;
+
+    for (const brief of loadHotspotBriefs()) {
+      const resolved = resolveHotspotTopics(brief, dataset);
+      expect(resolved).toHaveLength(brief.topics.length);
+      const cards = resolved.flatMap((topic) => topic.cards);
+      expect(cards).toHaveLength(brief.topics.reduce((sum, topic) => sum + topic.cardIds.length, 0));
+      expect(new Set(cards.map((card) => card.id)).size).toBe(cards.length);
+      expect(cards.every((card) => card.kind !== 'image' && !card.id.startsWith('opi-image-'))).toBe(true);
     }
   });
 
-  it('builds a valid synthetic study session inheriting OPI config and excluding image cards', async () => {
-    const opiDataset = await embeddedQuestionBankRepository.getDataset('opi');
-    expect(opiDataset).toBeDefined();
-    if (!opiDataset) return;
+  it('builds a hotspot session with the shared OPI study behavior and record marker', async () => {
+    const dataset = await embeddedQuestionBankRepository.getDataset('opi');
+    expect(dataset).toBeDefined();
+    if (!dataset) return;
 
-    const briefs = loadHotspotBriefs();
-    const brief = briefs[0];
-
-    const session = buildHotspotSession(brief, opiDataset);
-
-    // Verify dataset inheritance
+    const brief = loadHotspotBriefs()[0];
+    const session = buildHotspotSession(brief, dataset);
     expect(session.dataset.id).toBe('opi');
-    expect(session.dataset.study).toEqual(opiDataset.study);
-    expect(session.dataset.capabilities).toEqual(opiDataset.capabilities);
-
-    // Verify synthetic category & topic
-    expect(session.category.name).toContain('[热点]');
-    expect(session.category.name).toContain(brief.title);
+    expect(session.dataset.study).toEqual(dataset.study);
+    expect(session.dataset.capabilities).toEqual(dataset.capabilities);
+    expect(session.category.name).toBe(`[热点] ${brief.title}`);
     expect(session.topic.id).toBe(brief.id);
-    expect(session.topic.cards.length).toBeGreaterThan(0);
-
-    // Verify no image cards were included
-    for (const card of session.topic.cards) {
-      expect(card.kind).not.toBe('image');
-      expect(card.id.startsWith('opi-image-')).toBe(false);
-    }
   });
 
-  it('ensures all card references in all briefs exist in the OPI question bank', async () => {
-    const opiDataset = await embeddedQuestionBankRepository.getDataset('opi');
-    expect(opiDataset).toBeDefined();
-    if (!opiDataset) return;
+  it('fails closed when a card is assigned to the wrong topic', async () => {
+    const dataset = await embeddedQuestionBankRepository.getDataset('opi');
+    expect(dataset).toBeDefined();
+    if (!dataset) return;
 
-    const allCardIds = new Set<string>();
-    for (const category of opiDataset.categories) {
-      for (const topic of category.topics) {
-        for (const card of topic.cards) {
-          allCardIds.add(card.id);
-        }
-      }
-    }
-
-    const briefs = loadHotspotBriefs();
-    for (const brief of briefs) {
-      for (const topic of brief.topics) {
-        for (const cardId of topic.cardIds) {
-          expect(allCardIds.has(cardId)).toBe(true);
-        }
-      }
-    }
+    const brief = loadHotspotBriefs()[0];
+    const corrupted = {
+      ...brief,
+      topics: brief.topics.map((topic, index) => index === 0
+        ? { ...topic, cardIds: [brief.topics[1].cardIds[0]] }
+        : topic),
+    };
+    expect(() => resolveHotspotTopics(corrupted, dataset)).toThrow('热点题目不属于对应话题');
   });
 });

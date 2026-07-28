@@ -1,4 +1,4 @@
-import staticLookupDataset from '../../../../content/word-lookup/dataset.json';
+import staticLookupDataset from './data/dataset.json';
 
 import { normalizeStaticLookupWord } from './normalize';
 

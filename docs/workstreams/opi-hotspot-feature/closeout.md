@@ -1,40 +1,37 @@
-# 收口记录：OPI 热点功能 (OPI Hotspot Feature)
+# OPI 热点代码收口
 
-## 1. 完成内容
+状态：代码与本地验收完成，进入 Vercel 发布
 
-全量实现了 OPI 热点功能（每日考点资讯抽样练习包），包含：
+## 已完成
 
-1. **类型与契约数据层**
-   - `src/features/content/hotspot/types.ts` 定义了 `OpiHotspotBrief` 与 `OpiHotspotTopic` 数据规范。
-   - `content/question-banks/opi-hotspots.json` 录入了 8 天每日考试资讯的完整数据索引（共 208 道题目引用）。
-   - `scripts/generate-opi-hotspots.mjs` 离线随机抽题脚本，支持排除图片题并保证引用卡片存在。
-   - `src/features/content/hotspot/repository.ts` 提供热点资讯按日期降序读取。
+- 删除 `ContentLibraryScreen.tsx` 中的旧硬编码热点页面、两条假数据和 BottomSheet 流程。
+- 发布八条热点资讯，共引用 208 道现有 OPI 题目。
+- 详情页按话题展示真实 OPI 问题文本。
+- 热点学习复用统一题库学习页、录音、答案、双语、标注和学习记录能力。
+- 学习退出和报告返回使用 `dismissTo` 回到对应热点详情。
+- 热点记录分类标题带 `[热点]` 前缀。
+- 新增强制数据校验，拒绝缺失、错属、重复和图片题。
+- 客户端携带由唯一内容源生成并校验的运行索引；Vercel 继续排除完整 `content/` 生产目录。
+- 共享学习页的静态查词数据也改用由既有唯一内容源生成并校验的客户端运行资产，消除 Vercel 对 `content/` 的直接依赖。
 
-2. **热点练习包合成器**
-   - `src/features/content/hotspot/build-hotspot-session.ts` 实现了将 `OpiHotspotBrief` 与 OPI 数据集切片合成为 `QuestionBankDataset` / `QuestionBankCategory` / `QuestionBankTopic` 的逻辑。
-   - 完美继承 OPI 题库全套学习配置（音频模式、录音控制、参考答案及查词高亮等），并在分类名称中引入 `[热点]` 前缀以区分学习记录。
+## 共享源复用审查
 
-3. **UI 列表与全屏详情页**
-   - `src/features/content/hotspot/HotspotListScreen.tsx` 实现了：
-     - `HotspotListScreen`：每日资讯列表（日期徽章、考点地点 Tag、话题数量与总题数指示）。
-     - `HotspotDetailScreen`：全屏导航详情页，展开展示各话题及包含的题目数量。
-     - “开始学习”主按钮：点击后拉起 `QuestionBankStudyScreen` 进入全屏卡片练习。
-   - 更新 `src/features/content/ContentLibraryScreen.tsx` 挂载 `HotspotContainerScreen`。
+- 问题、答案和题目结构：统一 OPI 题库。
+- 音频与生成音频策略：统一题库资源解析。
+- 播放、录音和音频会话：`QuestionBankStudyScreen` 及既有音频编排。
+- 学习状态、记录、标注和笔记：既有 learning store。
 
-4. **自动化测试与防错校验**
-   - `src/features/content/hotspot/__tests__/hotspot-session-test.ts`（3/3 测试通过）。
-   - 验证了按日期排序、图片题过滤、合成包配置继承以及 100% 题目 ID 存在性。
+未引入第二套题目、答案、音频映射、播放器、录音器或学习生命周期所有者。
 
----
+## 验证
 
-## 2. 验证结果
+- `pnpm content:build && pnpm check`：通过。
+- App：64 个测试套件、279 个测试全部通过。
+- API：8 个测试文件、230 个测试全部通过。
+- `pnpm check:web`：通过。
+- 浏览器链路：列表 → 详情真实题目 → 学习 → 返回详情 → 返回列表通过。
+- 360、375、390、430px 无水平溢出，视觉检查通过。
 
-- `pnpm typecheck`: **0 errors** (tsc --noEmit 通过)
-- `pnpm test`: **3/3 passed** (Hotspot Integration Tests 单元测试全过)
-- 应用版本号更新：`src/config/app-version.ts` 提升至 `v2026.07.23.2312`。
+## 发布边界
 
----
-
-## 3. 未做事项与后续建议
-
-- 当前使用基于确定性 PRNG 的随机抽题脚本生成基础索引。后续可依据 `原始资源资料/OPI热点/` 中的 Word 文件调整 mapping 以提升拟真考情贴合度。
+本次没有 API、数据库、原生依赖、Expo 插件或权限变更。Web 使用 Vercel Preview 验收后提升为 production；ECS 不重启。

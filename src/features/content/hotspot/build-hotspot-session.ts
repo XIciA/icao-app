@@ -1,21 +1,10 @@
-/**
- * Builds a synthetic QuestionBankDataset / Category / Topic
- * from an OPI hotspot briefing, suitable for passing directly
- * to QuestionBankStudyScreen.
- *
- * The synthetic dataset inherits the real OPI dataset's study
- * config and capabilities so that audio mode, recorder, review
- * mode and all learning behaviours work identically.
- */
-
 import type {
-  QuestionBankCard,
   QuestionBankCategory,
   QuestionBankDataset,
   QuestionBankTopic,
 } from '@/features/question-bank/types';
 
-import type { OpiHotspotBrief } from './types';
+import type { OpiHotspotBrief, ResolvedOpiHotspotTopic } from './types';
 
 export type HotspotSessionResult = {
   dataset: QuestionBankDataset;
@@ -23,44 +12,50 @@ export type HotspotSessionResult = {
   topic: QuestionBankTopic;
 };
 
-/**
- * Build a study session from a hotspot briefing.
- *
- * @param brief  The hotspot briefing containing topic → cardId mappings.
- * @param opiDataset  The full OPI QuestionBankDataset (loaded via loadQuestionBank('opi')).
- * @returns A synthetic dataset/category/topic triple ready for QuestionBankStudyScreen.
- * @throws If no matching cards are found.
- */
+export function resolveHotspotTopics(
+  brief: OpiHotspotBrief,
+  opiDataset: QuestionBankDataset,
+): ResolvedOpiHotspotTopic[] {
+  const topicMap = new Map<string, QuestionBankTopic>();
+  for (const category of opiDataset.categories) {
+    for (const topic of category.topics) topicMap.set(topic.id, topic);
+  }
+
+  const seenCardIds = new Set<string>();
+  return brief.topics.map((hotspotTopic) => {
+    const sourceTopic = topicMap.get(hotspotTopic.topicId);
+    if (!sourceTopic) {
+      throw new Error(`热点话题不存在：${hotspotTopic.topicId}`);
+    }
+    if (sourceTopic.name !== hotspotTopic.topicTitle) {
+      throw new Error(`热点话题标题与 OPI 题库不一致：${hotspotTopic.topicId}`);
+    }
+
+    const cardsById = new Map(sourceTopic.cards.map((card) => [card.id, card]));
+    const cards = hotspotTopic.cardIds.map((cardId) => {
+      if (seenCardIds.has(cardId)) throw new Error(`热点题目重复：${cardId}`);
+      const card = cardsById.get(cardId);
+      if (!card) throw new Error(`热点题目不属于对应话题：${cardId}`);
+      if (card.kind === 'image' || card.id.startsWith('opi-image-')) {
+        throw new Error(`热点题目暂不支持图片题：${cardId}`);
+      }
+      seenCardIds.add(cardId);
+      return card;
+    });
+
+    if (cards.length === 0) throw new Error(`热点话题没有可学习题目：${hotspotTopic.topicId}`);
+    return { ...hotspotTopic, cards };
+  });
+}
+
 export function buildHotspotSession(
   brief: OpiHotspotBrief,
   opiDataset: QuestionBankDataset,
 ): HotspotSessionResult {
-  // Build a lookup map of all OPI cards by ID (across all categories and topics)
-  const cardMap = new Map<string, QuestionBankCard>();
-  for (const category of opiDataset.categories) {
-    for (const topic of category.topics) {
-      for (const card of topic.cards) {
-        cardMap.set(card.id, card);
-      }
-    }
-  }
+  const resolvedTopics = resolveHotspotTopics(brief, opiDataset);
+  const allCards = resolvedTopics.flatMap((topic) => topic.cards);
+  if (allCards.length === 0) throw new Error(`热点资讯「${brief.title}」没有匹配到任何 OPI 题目。`);
 
-  // Collect all cards referenced by the briefing, preserving topic order
-  const allCards: QuestionBankCard[] = [];
-  for (const hotspotTopic of brief.topics) {
-    for (const cardId of hotspotTopic.cardIds) {
-      const card = cardMap.get(cardId);
-      if (card && card.kind !== 'image') {
-        allCards.push(card);
-      }
-    }
-  }
-
-  if (allCards.length === 0) {
-    throw new Error(`热点资讯「${brief.title}」没有匹配到任何 OPI 题目。`);
-  }
-
-  // Build synthetic topic containing all cards from the briefing
   const syntheticTopic: QuestionBankTopic = {
     id: brief.id,
     name: brief.title,
@@ -68,8 +63,6 @@ export function buildHotspotSession(
     declaredCardCount: allCards.length,
     cards: allCards,
   };
-
-  // Build synthetic category wrapping the topic
   const syntheticCategory: QuestionBankCategory = {
     id: `hotspot-category-${brief.date}`,
     name: `[热点] ${brief.title}`,
@@ -79,15 +72,8 @@ export function buildHotspotSession(
     topics: [syntheticTopic],
   };
 
-  // Build synthetic dataset inheriting the real OPI config
-  const syntheticDataset: QuestionBankDataset = {
-    ...opiDataset,
-    // Keep id as 'opi' so audio resolution, TTS, and study behaviour all work
-    categories: [syntheticCategory],
-  };
-
   return {
-    dataset: syntheticDataset,
+    dataset: { ...opiDataset, categories: [syntheticCategory] },
     category: syntheticCategory,
     topic: syntheticTopic,
   };

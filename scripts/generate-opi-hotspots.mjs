@@ -1,45 +1,15 @@
 #!/usr/bin/env node
-/**
- * Generate opi-hotspots.json with randomised exam briefings.
- *
- * Usage:  node scripts/generate-opi-hotspots.mjs
- *
- * Reads the OPI question bank from content/question-banks/banks/opi/,
- * excludes category-08 (image questions), and randomly samples topics
- * and cards to build briefings that resemble daily exam intelligence.
- */
 
-import * as fs from 'node:fs';
-import * as path from 'node:path';
+import fs from 'node:fs';
+import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// ---------------------------------------------------------------------------
-// Configuration
-// ---------------------------------------------------------------------------
-
-const OPI_BASE = path.resolve(__dirname, '../content/question-banks/banks/opi');
-const OUTPUT = path.resolve(__dirname, '../content/question-banks/opi-hotspots.json');
-
-/** Category IDs to exclude (image questions). */
-const EXCLUDED_CATEGORIES = new Set(['opi-category-08']);
-
-/** Number of briefings to generate. */
-const BRIEFING_COUNT = 8;
-
-/** Topics per briefing. */
-const TOPICS_PER_BRIEFING = 5;
-
-/** Cards sampled per topic. */
-const CARDS_PER_TOPIC = 6;
-
-/** Start date for generated briefings (most recent first). */
-const START_DATE = new Date('2026-07-23');
-
-/** Exam center pools. */
-const CENTER_POOLS = [
+const scriptDir = path.dirname(fileURLToPath(import.meta.url));
+const opiBase = path.resolve(scriptDir, '../content/question-banks/banks/opi');
+const outputPath = path.resolve(scriptDir, '../content/question-banks/opi-hotspots.json');
+const runtimePath = path.resolve(scriptDir, '../src/features/content/hotspot/data/opi-hotspots.json');
+const excludedCategories = new Set(['opi-category-08']);
+const centerPools = [
   ['广汉考点', '绵阳考点'],
   ['广汉考点'],
   ['绵阳考点'],
@@ -47,15 +17,10 @@ const CENTER_POOLS = [
   ['广汉考点', '成都考点'],
 ];
 
-// ---------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------
-
 function readJson(filePath) {
-  return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
 
-/** Deterministic PRNG (same algorithm as mock-exam build-session). */
 function createRandom(seed) {
   let state = seed >>> 0;
   return () => {
@@ -67,125 +32,82 @@ function createRandom(seed) {
   };
 }
 
-function shuffle(items, next) {
-  const pool = [...items];
-  for (let i = pool.length - 1; i > 0; i--) {
-    const j = Math.floor(next() * (i + 1));
-    [pool[i], pool[j]] = [pool[j], pool[i]];
-  }
-  return pool;
-}
-
 function sample(items, count, next) {
-  const shuffled = shuffle([...items], next);
-  return shuffled.slice(0, Math.min(count, shuffled.length));
-}
-
-function formatDate(date) {
-  const y = date.getFullYear();
-  const m = String(date.getMonth() + 1).padStart(2, '0');
-  const d = String(date.getDate()).padStart(2, '0');
-  return `${y}-${m}-${d}`;
-}
-
-function formatTitle(date) {
-  return `${date.getMonth() + 1}月${date.getDate()}日 考试资讯`;
-}
-
-// ---------------------------------------------------------------------------
-// Data loading
-// ---------------------------------------------------------------------------
-
-function loadOpiData() {
-  const categoriesDir = path.join(OPI_BASE, 'categories');
-  const topicsDir = path.join(OPI_BASE, 'topics');
-
-  const categoryFiles = fs.readdirSync(categoriesDir).filter((f) => f.endsWith('.json'));
-  const categories = categoryFiles
-    .map((f) => readJson(path.join(categoriesDir, f)))
-    .filter((c) => !EXCLUDED_CATEGORIES.has(c.id));
-
-  const topicIdSet = new Set(categories.flatMap((c) => c.topicIds));
-  const topicFiles = fs.readdirSync(topicsDir).filter((f) => f.endsWith('.json'));
-  const topics = topicFiles
-    .map((f) => readJson(path.join(topicsDir, f)))
-    .filter((t) => topicIdSet.has(t.id));
-
-  // Filter out image cards from every topic
-  for (const topic of topics) {
-    topic.cards = topic.cards.filter(
-      (c) => c.kind !== 'image' && !c.id.startsWith('opi-image-'),
-    );
+  const pool = [...items];
+  for (let index = pool.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(next() * (index + 1));
+    [pool[index], pool[swapIndex]] = [pool[swapIndex], pool[index]];
   }
-
-  // Only keep topics with enough text cards for meaningful sampling
-  const eligibleTopics = topics.filter((t) => t.cards.length >= 3);
-  return { categories, topics: eligibleTopics };
+  return pool.slice(0, Math.min(count, pool.length));
 }
 
-// ---------------------------------------------------------------------------
-// Generation
-// ---------------------------------------------------------------------------
+function localDateParts(date) {
+  return {
+    year: date.getFullYear(),
+    month: date.getMonth() + 1,
+    day: date.getDate(),
+  };
+}
 
-function generate() {
-  const { topics } = loadOpiData();
-  console.log(`Loaded ${topics.length} eligible topics (image-free, ≥3 cards).`);
+function loadEligibleTopics() {
+  const categoriesDir = path.join(opiBase, 'categories');
+  const topicsDir = path.join(opiBase, 'topics');
+  const topicIds = new Set(
+    fs.readdirSync(categoriesDir)
+      .filter((name) => name.endsWith('.json'))
+      .map((name) => readJson(path.join(categoriesDir, name)))
+      .filter((category) => !excludedCategories.has(category.id))
+      .flatMap((category) => category.topicIds),
+  );
 
-  const seed = 20260723;
-  const next = createRandom(seed);
-  const briefs = [];
+  return fs.readdirSync(topicsDir)
+    .filter((name) => name.endsWith('.json'))
+    .map((name) => readJson(path.join(topicsDir, name)))
+    .filter((topic) => topicIds.has(topic.id))
+    .map((topic) => ({
+      ...topic,
+      cards: topic.cards.filter((card) => card.kind !== 'image' && !card.id.startsWith('opi-image-')),
+    }))
+    .filter((topic) => topic.cards.length >= 3);
+}
 
-  // Track used topics to maximise variety across briefings
-  const usedTopicIds = new Set();
+const next = createRandom(20260723);
+const topics = loadEligibleTopics();
+const usedTopicIds = new Set();
+const briefs = [];
+const startDate = new Date(2026, 6, 23);
 
-  for (let i = 0; i < BRIEFING_COUNT; i++) {
-    const date = new Date(START_DATE);
-    date.setDate(date.getDate() - i);
-    const dateStr = formatDate(date);
+for (let offset = 0; offset < 8; offset += 1) {
+  const date = new Date(startDate);
+  date.setDate(date.getDate() - offset);
+  const { year, month, day } = localDateParts(date);
+  const dateText = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+  let available = topics.filter((topic) => !usedTopicIds.has(topic.id));
+  if (available.length < 5) available = topics;
+  const selectedTopics = sample(available, 5, next);
 
-    // Prefer unused topics, fallback to any if pool exhausted
-    let available = topics.filter((t) => !usedTopicIds.has(t.id));
-    if (available.length < TOPICS_PER_BRIEFING) {
-      available = [...topics];
-    }
-
-    const selectedTopics = sample(available, TOPICS_PER_BRIEFING, next);
-    const centers = CENTER_POOLS[Math.floor(next() * CENTER_POOLS.length)];
-
-    const briefTopics = selectedTopics.map((topic) => {
+  briefs.push({
+    id: `hotspot-${dateText}`,
+    date: dateText,
+    title: `${month}月${day}日 考试资讯`,
+    centers: centerPools[Math.floor(next() * centerPools.length)],
+    topics: selectedTopics.map((topic) => {
       usedTopicIds.add(topic.id);
-      const cardsToSample = Math.min(CARDS_PER_TOPIC, topic.cards.length);
-      const sampledCards = sample(topic.cards, cardsToSample, next);
       return {
         topicId: topic.id,
         topicTitle: topic.name,
-        cardIds: sampledCards.map((c) => c.id),
+        cardIds: sample(topic.cards, 6, next).map((card) => card.id),
       };
-    });
-
-    briefs.push({
-      id: `hotspot-${dateStr}`,
-      date: dateStr,
-      title: formatTitle(date),
-      centers,
-      topics: briefTopics,
-    });
-  }
-
-  const output = {
-    generatedAt: new Date().toISOString(),
-    briefs,
-  };
-
-  fs.writeFileSync(OUTPUT, JSON.stringify(output, null, 2) + '\n', 'utf-8');
-
-  // Summary
-  const totalCards = briefs.reduce(
-    (sum, b) => sum + b.topics.reduce((s, t) => s + t.cardIds.length, 0),
-    0,
-  );
-  console.log(`Generated ${briefs.length} briefings with ${totalCards} total card references.`);
-  console.log(`Output: ${OUTPUT}`);
+    }),
+  });
 }
 
-generate();
+const outputBytes = `${JSON.stringify({
+  generatedAt: '2026-07-23T14:43:19.270Z',
+  briefs,
+}, null, 2)}\n`;
+fs.writeFileSync(outputPath, outputBytes);
+fs.mkdirSync(path.dirname(runtimePath), { recursive: true });
+fs.writeFileSync(runtimePath, outputBytes);
+
+console.log(`Generated ${briefs.length} OPI hotspot briefs at ${outputPath}`);
