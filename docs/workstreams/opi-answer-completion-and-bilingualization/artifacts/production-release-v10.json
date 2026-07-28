@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "releasedAt": "2026-07-28T14:07:00+08:00",
+  "release": {
+    "version": 10,
+    "sourceCommit": "2ff5ce2692d7a5cf04a3dbc97bbba345c8098bce",
+    "checksum": "7d8ffe589858c1049bf5bbb3d6e537176f1d05e1012e431e475c727069ecab24",
+    "archive": "/tmp/opi-answer-bilingual-v10-20260728T060111Z.tar.gz",
+    "archiveSha256": "a89d17e7aabbf3892ff4e6c9ee614f35cb26838c1637cf97d4547e2e00a2519d",
+    "remoteDirectory": "/opt/icao/runtime/releases/opi-answer-bilingual-v10-20260728T060111Z"
+  },
+  "counts": {
+    "categories": 8,
+    "topics": 144,
+    "cards": 1090,
+    "textCards": 1067,
+    "imageCards": 23,
+    "answerEn": 1067,
+    "answerZh": 1067,
+    "sourceInsufficient": 0,
+    "deferredImageAnswers": 0
+  },
+  "backups": {
+    "content": {
+      "version": 9,
+      "checksum": "09c0961f187a8abc1f1165dfda427b3441de22108013d0cca5ea27ba328b8d49",
+      "file": "/opt/icao/backups/opi-answer-bilingual-v10-20260728T060111Z/active-opi-v9-before.json",
+      "sha256": "9c626c587f84ed395bc97520d676f97d4f4db356e57c1b0b29f6ada30f8cf55a"
+    },
+    "database": {
+      "file": "/opt/icao/backups/postgres/icao-opi-answer-bilingual-v10-20260728T060111Z-before.dump",
+      "sha256": "62fdce679aa4ad2448bc2d40964568960065568373137bd844f12909eeb56617",
+      "pgRestoreCatalogEntries": 646,
+      "isolatedRestore": {
+        "result": "pass",
+        "scope": [
+          "public",
+          "auth"
+        ],
+        "publicTables": 18,
+        "authTables": 23,
+        "questionBankReleases": 16,
+        "cardStates": 249,
+        "learningRecords": 127,
+        "documents": 5,
+        "syncChanges": 548,
+        "note": "The protected Supabase vault secrets table was intentionally excluded from the isolated public/auth restore verification."
+      }
+    }
+  },
+  "deployment": {
+    "flow": "existing content import",
+    "resourceManifestFiles": 87,
+    "resourceUploads": 0,
+    "resourceSkips": 87,
+    "apiSourceDeployed": false,
+    "apiRestartCount": 0,
+    "healthReady": {
+      "service": "icao-api",
+      "status": "ok",
+      "database": "ok"
+    },
+    "learningData": {
+      "opiCardStatesBefore": 67,
+      "opiCardStatesAfter": 67,
+      "opiLearningRecordsBefore": 24,
+      "opiLearningRecordsAfter": 24
+    }
+  },
+  "liveVerification": {
+    "unauthenticatedStatus": 401,
+    "authenticatedListStatus": 200,
+    "authenticatedBankStatus": 200,
+    "releaseVersion": 10,
+    "checksum": "7d8ffe589858c1049bf5bbb3d6e537176f1d05e1012e431e475c727069ecab24",
+    "etag": "\"7d8ffe589858c1049bf5bbb3d6e537176f1d05e1012e431e475c727069ecab24\"",
+    "conditionalStatus": 304,
+    "conditionalBodyBytes": 0,
+    "representativeCardIds": [
+      "opi-core-001",
+      "opi-core-058-part-2",
+      "opi-core-849",
+      "opi-extra-247",
+      "opi-image-002-q01",
+      "opi-image-016-q04"
+    ],
+    "representativeFourFieldsComplete": true,
+    "temporaryVerificationInviteDisabled": true,
+    "result": "pass"
+  },
+  "deviceAcceptance": {
+    "android": "excluded by user",
+    "iosSimulator": "cancelled by user",
+    "iosPhysicalDevice": "deferred to user after release"
+  },
+  "rollback": {
+    "contentVersion": 9,
+    "contentBackupVerified": true,
+    "databaseBackupVerifiedRestorable": true,
+    "action": "deactivate OPI v10 and reactivate the preserved OPI v9 release; use the pre-import database dump if content-level rollback is insufficient"
+  },
+  "result": "pass"
+}

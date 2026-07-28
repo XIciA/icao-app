@@ -47,13 +47,30 @@
 
 ## 阶段 4：门禁与发布
 
-状态：执行中。
+状态：完成。
 
 - `verify-answer-completion-formal`：通过。
 - `pnpm content:build`：通过。
 - `pnpm content:check:full`：通过。
-- `pnpm check`：通过；App 63 个测试套件、281 个测试通过，API 8 个测试文件、230 个测试通过。
+- 合并远端 main 后在提交对应的干净工作树重新执行全部门禁：App 64 个测试套件、279 个测试通过，API 8 个测试文件、230 个测试通过。
 - OPI v10 不再包含 `SATCOM` 与 `AIP` 的唯一语料，已同步删除对应 ASR 候选并重新构建；候选库 237 项、部署项 0，校验通过。
 - Android 按用户要求不在本轮范围。
 - 按用户 2026-07-28 最新决定取消模拟器验收；发布后由用户自行完成 iOS 真机验收。
-- Git 提交、生产备份、隔离恢复验证、v10 导入和线上验证待完成。
+- 有效内容与运行时产物已由提交
+  `2ff5ce2692d7a5cf04a3dbc97bbba345c8098bce` 推送 main。
+- OPI-only v10 归档 SHA-256 为
+  `a89d17e7aabbf3892ff4e6c9ee614f35cb26838c1637cf97d4547e2e00a2519d`；
+  导入未部署 API 源码、未重启 API，restart count 保持 0。
+- 发布前保存活动 v9 内容与完整 PostgreSQL dump；dump 有 646 个目录项，public/auth
+  子集在隔离数据库恢复 18 个 public 表、23 个 auth 表、16 条题库 release、249 条卡片状态、
+  127 条学习记录、5 份用户文档和 548 条同步变更。Supabase vault 的受保护 secrets 表未纳入
+  隔离恢复验收。
+- 线上唯一活动 OPI 为 v10，checksum 为
+  `7d8ffe589858c1049bf5bbb3d6e537176f1d05e1012e431e475c727069ecab24`；
+  8 分类、144 话题、1090 卡、1067 份英文答案和 1067 份中文答案均匹配锁定结果。
+- 真实 HTTPS 验证通过：未鉴权 401、鉴权 200、6 张代表卡四字段完整，ETag 匹配 checksum，
+  `If-None-Match` 返回 304 和空响应体。
+- 导入前后 OPI 学习数据均为 67 条卡片状态和 24 条学习记录；没有执行清理或迁移。
+- `/health/ready` 的服务和数据库均为 `ok`；临时验收邀请码已禁用并撤销会话。
+- 生产 v9 内容、完整数据库 dump 和活动 v9 release 共同构成回滚点。详细证据见
+  `artifacts/production-release-v10.json`。
