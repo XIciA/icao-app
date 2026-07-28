@@ -6,7 +6,7 @@ import { getHotspotBrief, loadHotspotBriefs } from '../repository';
 describe('OPI hotspot data and study session', () => {
   it('loads unique briefs in descending date order', () => {
     const briefs = loadHotspotBriefs();
-    expect(briefs).toHaveLength(8);
+    expect(briefs).toHaveLength(16);
     expect(new Set(briefs.map((brief) => brief.id)).size).toBe(briefs.length);
     for (let index = 0; index < briefs.length - 1; index += 1) {
       expect(briefs[index].date.localeCompare(briefs[index + 1].date)).toBeGreaterThan(0);
