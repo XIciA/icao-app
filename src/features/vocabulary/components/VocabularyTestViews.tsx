@@ -1,6 +1,6 @@
-import { BarChart3, Check, Clock3, RotateCcw, Volume2, X } from 'lucide-react-native';
+import { ArrowLeft, BarChart3, Check, Clock3, RotateCcw, Volume2, X } from 'lucide-react-native';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Alert, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { TopBar } from '@/components/navigation/TopBar';
@@ -124,15 +124,15 @@ export function VocabularyTestRunner({ books, onExit, onFinish }: { books: Vocab
     setAnswers((current) => current.map((answer, index) => index === current.length - 1 ? { ...answer, correct: false } : answer));
     setChosenCorrect(false);
   };
-  const confirmExit = () => Alert.alert('退出本次测评？', '本次测评尚未完成，退出后不会保存结果。', [
-    { text: '继续测评', style: 'cancel' },
-    { text: '退出', style: 'destructive', onPress: () => { void stopVocabularySpeech(); onExit(); } },
-  ]);
+  const exit = () => {
+    void stopVocabularySpeech();
+    onExit();
+  };
 
   return (
     <Screen contentStyle={styles.zero}>
       <View style={styles.testTopBar}>
-        <Pressable accessibilityLabel="退出测评" hitSlop={8} onPress={confirmExit} style={styles.iconButton}><X color={colors.foreground} size={21} /></Pressable>
+        <Pressable accessibilityLabel="返回" accessibilityRole="button" hitSlop={8} onPress={exit} style={styles.iconButton}><ArrowLeft color={colors.foreground} size={21} /></Pressable>
         <View style={styles.topCenter}><AppText variant="button">{questionNo} / {VOCABULARY_TEST_TOTAL}</AppText><Tag tone="muted">{phaseLabel}</Tag></View>
         <View accessibilityLabel={`剩余${seconds}秒`} style={[styles.timer, seconds <= 3 ? styles.timerUrgent : null]}><Clock3 color={seconds <= 3 ? colors.destructive : colors.primary} size={15} /><AppText color={seconds <= 3 ? colors.destructive : colors.primary} variant="button">{seconds}</AppText></View>
       </View>

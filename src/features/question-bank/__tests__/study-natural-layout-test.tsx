@@ -1,6 +1,6 @@
 import { act, fireEvent, render, waitFor, within } from '@testing-library/react-native';
 import { createRef, useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { Gesture } from 'react-native-gesture-handler';
 
 import { grammarReview, polishExpression } from '@/features/ai/ai-client';
@@ -200,6 +200,19 @@ describe('study workbench natural layout', () => {
     const noteScreen = await render(<StudyWorkbench {...baseProps} activeTab="notes" tabs={['mine', 'notes']} />);
     expect(noteScreen.getByText('记录这道题的关键词、易错点或复盘想法')).toBeTruthy();
     expect(noteScreen.queryByText('暂无笔记')).toBeNull();
+  });
+
+  it('removes transcription-only copy from the web answer empty state', async () => {
+    const originalPlatform = Platform.OS;
+    Object.defineProperty(Platform, 'OS', { configurable: true, value: 'web' });
+    try {
+      const screen = await render(<StudyWorkbench {...baseProps} activeTab="mine" recordingUri="blob:test-recording" tabs={['mine', 'notes']} />);
+      expect(screen.getByText('回答会显示在这里')).toBeTruthy();
+      expect(screen.queryByText('录音或编辑后，回答会显示在这里')).toBeNull();
+      expect(screen.queryByText('录音仅用于本次转写。')).toBeNull();
+    } finally {
+      Object.defineProperty(Platform, 'OS', { configurable: true, value: originalPlatform });
+    }
   });
 
   it('shows the correct original and exact-match summary in one flat blue AI region', async () => {
