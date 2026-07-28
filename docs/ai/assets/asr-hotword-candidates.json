@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "version": "aviation-hotword-candidates:v1",
   "source": {
-    "registryReleaseVersion": 8,
-    "registryReleasedAt": "2026-07-18T19:36:00Z",
+    "registryReleaseVersion": 10,
+    "registryReleasedAt": "2026-07-28T05:29:16Z",
     "reviewVersion": "aviation-hotword-candidate-review:v1",
-    "recordCount": 5611,
+    "recordCount": 5621,
     "specs": [
       {
         "bankId": "sentences900",
@@ -28,8 +28,8 @@
         "field": "referenceText",
         "label": "OPI reference answer",
         "totalCards": 1090,
-        "validText": 1057,
-        "missingText": 33
+        "validText": 1067,
+        "missingText": 23
       },
       {
         "bankId": "storytelling",
@@ -47,28 +47,28 @@
       "kind": "abbreviation",
       "category": "air-traffic-control",
       "evidence": {
-        "questionCount": 285,
-        "totalOccurrences": 342,
+        "questionCount": 324,
+        "totalOccurrences": 390,
         "sourceCount": 4,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 132,
-            "totalOccurrences": 141,
+            "questionCount": 171,
+            "totalOccurrences": 189,
             "exampleCardIds": [
               "opi-core-004",
               "opi-core-005",
+              "opi-core-015",
               "opi-core-017",
-              "opi-core-039",
+              "opi-core-018",
               "opi-core-041",
-              "opi-core-042",
-              "opi-core-049",
-              "opi-core-050",
               "opi-core-055",
               "opi-core-076",
               "opi-core-077-part-2",
-              "opi-core-079"
+              "opi-core-079",
+              "opi-core-081",
+              "opi-core-085"
             ]
           },
           {
@@ -148,9 +148,9 @@
             "questionCount": 3,
             "totalOccurrences": 3,
             "exampleCardIds": [
-              "opi-core-456",
-              "opi-core-508",
-              "opi-extra-383"
+              "opi-extra-193",
+              "opi-extra-196",
+              "opi-extra-304"
             ]
           },
           {
@@ -215,26 +215,28 @@
       "kind": "abbreviation",
       "category": "air-traffic-control",
       "evidence": {
-        "questionCount": 17,
-        "totalOccurrences": 18,
+        "questionCount": 22,
+        "totalOccurrences": 24,
         "sourceCount": 3,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 10,
-            "totalOccurrences": 11,
+            "questionCount": 15,
+            "totalOccurrences": 17,
             "exampleCardIds": [
+              "opi-core-055",
               "opi-core-219",
+              "opi-core-221",
               "opi-core-314-part-2",
+              "opi-core-392",
+              "opi-core-512",
               "opi-core-525",
               "opi-core-525-part-2",
               "opi-core-525-part-3",
               "opi-core-525-part-4",
               "opi-core-526",
-              "opi-core-527",
-              "opi-core-528",
-              "opi-core-547"
+              "opi-core-527"
             ]
           },
           {
@@ -515,19 +517,10 @@
       "kind": "abbreviation",
       "category": "air-traffic-control",
       "evidence": {
-        "questionCount": 182,
-        "totalOccurrences": 272,
-        "sourceCount": 4,
+        "questionCount": 181,
+        "totalOccurrences": 268,
+        "sourceCount": 3,
         "sources": [
-          {
-            "bankId": "opi",
-            "field": "referenceText",
-            "questionCount": 1,
-            "totalOccurrences": 4,
-            "exampleCardIds": [
-              "opi-core-461"
-            ]
-          },
           {
             "bankId": "radiotelephony",
             "field": "referenceText",
@@ -825,25 +818,20 @@
       "kind": "abbreviation",
       "category": "air-traffic-control",
       "evidence": {
-        "questionCount": 11,
-        "totalOccurrences": 13,
+        "questionCount": 6,
+        "totalOccurrences": 6,
         "sourceCount": 2,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 9,
-            "totalOccurrences": 11,
+            "questionCount": 4,
+            "totalOccurrences": 4,
             "exampleCardIds": [
               "opi-core-120",
               "opi-core-126",
-              "opi-core-285",
-              "opi-core-421",
-              "opi-core-821",
-              "opi-core-824",
-              "opi-core-833",
-              "opi-core-834",
-              "opi-extra-390"
+              "opi-extra-067",
+              "opi-extra-073"
             ]
           },
           {
@@ -977,22 +965,19 @@
       "kind": "abbreviation",
       "category": "air-traffic-control",
       "evidence": {
-        "questionCount": 10,
-        "totalOccurrences": 10,
+        "questionCount": 7,
+        "totalOccurrences": 9,
         "sourceCount": 3,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 6,
-            "totalOccurrences": 6,
+            "questionCount": 3,
+            "totalOccurrences": 5,
             "exampleCardIds": [
-              "opi-core-623",
-              "opi-core-684",
               "opi-core-834",
               "opi-extra-364",
-              "opi-extra-371",
-              "opi-extra-382"
+              "opi-extra-384"
             ]
           },
           {
@@ -1149,17 +1134,16 @@
       "kind": "abbreviation",
       "category": "air-traffic-control",
       "evidence": {
-        "questionCount": 18,
-        "totalOccurrences": 18,
+        "questionCount": 17,
+        "totalOccurrences": 17,
         "sourceCount": 3,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 4,
-            "totalOccurrences": 4,
+            "questionCount": 3,
+            "totalOccurrences": 3,
             "exampleCardIds": [
-              "opi-core-313",
               "opi-core-314",
               "opi-core-314-part-2",
               "opi-core-316"
@@ -1211,14 +1195,14 @@
       "category": "air-traffic-control",
       "evidence": {
         "questionCount": 16,
-        "totalOccurrences": 20,
+        "totalOccurrences": 21,
         "sourceCount": 3,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
             "questionCount": 5,
-            "totalOccurrences": 8,
+            "totalOccurrences": 9,
             "exampleCardIds": [
               "opi-core-460",
               "opi-core-461",
@@ -1576,20 +1560,18 @@
       "kind": "term",
       "category": "aircraft-systems",
       "evidence": {
-        "questionCount": 10,
-        "totalOccurrences": 10,
+        "questionCount": 8,
+        "totalOccurrences": 8,
         "sourceCount": 3,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 4,
-            "totalOccurrences": 4,
+            "questionCount": 2,
+            "totalOccurrences": 2,
             "exampleCardIds": [
-              "opi-core-123",
-              "opi-core-583",
-              "opi-image-013-q01",
-              "opi-image-015-q01"
+              "opi-core-027",
+              "opi-extra-027"
             ]
           },
           {
@@ -1629,21 +1611,18 @@
       "kind": "abbreviation",
       "category": "aircraft-systems",
       "evidence": {
-        "questionCount": 31,
-        "totalOccurrences": 35,
+        "questionCount": 28,
+        "totalOccurrences": 31,
         "sourceCount": 4,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 5,
-            "totalOccurrences": 7,
+            "questionCount": 2,
+            "totalOccurrences": 3,
             "exampleCardIds": [
-              "opi-core-881",
               "opi-core-882",
-              "opi-core-883",
-              "opi-core-886",
-              "opi-image-023-q02"
+              "opi-core-883"
             ]
           },
           {
@@ -1740,18 +1719,17 @@
       "kind": "term",
       "category": "aircraft-systems",
       "evidence": {
-        "questionCount": 18,
-        "totalOccurrences": 18,
+        "questionCount": 17,
+        "totalOccurrences": 17,
         "sourceCount": 3,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 2,
-            "totalOccurrences": 2,
+            "questionCount": 1,
+            "totalOccurrences": 1,
             "exampleCardIds": [
-              "opi-core-884",
-              "opi-extra-113"
+              "opi-extra-320"
             ]
           },
           {
@@ -1869,19 +1847,10 @@
       "kind": "proper-name",
       "category": "aircraft-systems",
       "evidence": {
-        "questionCount": 3,
-        "totalOccurrences": 3,
-        "sourceCount": 2,
+        "questionCount": 2,
+        "totalOccurrences": 2,
+        "sourceCount": 1,
         "sources": [
-          {
-            "bankId": "opi",
-            "field": "referenceText",
-            "questionCount": 1,
-            "totalOccurrences": 1,
-            "exampleCardIds": [
-              "opi-core-324"
-            ]
-          },
           {
             "bankId": "storytelling",
             "field": "audioText",
@@ -1907,17 +1876,16 @@
       "kind": "proper-name",
       "category": "aircraft-systems",
       "evidence": {
-        "questionCount": 2,
-        "totalOccurrences": 3,
+        "questionCount": 1,
+        "totalOccurrences": 1,
         "sourceCount": 1,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 2,
-            "totalOccurrences": 3,
+            "questionCount": 1,
+            "totalOccurrences": 1,
             "exampleCardIds": [
-              "opi-core-758",
               "opi-core-762"
             ]
           }
@@ -1973,25 +1941,26 @@
       "kind": "abbreviation",
       "category": "aircraft-systems",
       "evidence": {
-        "questionCount": 13,
-        "totalOccurrences": 13,
+        "questionCount": 14,
+        "totalOccurrences": 17,
         "sourceCount": 2,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 11,
-            "totalOccurrences": 11,
+            "questionCount": 12,
+            "totalOccurrences": 15,
             "exampleCardIds": [
+              "opi-core-114",
               "opi-core-115",
-              "opi-core-116",
               "opi-core-117",
               "opi-core-119",
+              "opi-core-120",
               "opi-core-121",
+              "opi-core-124",
               "opi-core-126",
               "opi-core-127",
               "opi-core-130",
-              "opi-core-132",
               "opi-core-133",
               "opi-core-134"
             ]
@@ -2021,24 +1990,27 @@
       "kind": "term",
       "category": "aircraft-systems",
       "evidence": {
-        "questionCount": 12,
-        "totalOccurrences": 13,
+        "questionCount": 15,
+        "totalOccurrences": 16,
         "sourceCount": 2,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 8,
-            "totalOccurrences": 9,
+            "questionCount": 11,
+            "totalOccurrences": 12,
             "exampleCardIds": [
+              "opi-core-059",
+              "opi-core-078",
+              "opi-core-082",
               "opi-core-111",
-              "opi-core-389",
-              "opi-core-408",
+              "opi-core-773",
+              "opi-core-777",
               "opi-core-869",
               "opi-core-870",
               "opi-core-874",
-              "opi-core-875",
-              "opi-extra-378-part-2"
+              "opi-core-877",
+              "opi-extra-015"
             ]
           },
           {
@@ -2068,10 +2040,19 @@
       "kind": "abbreviation",
       "category": "aircraft-systems",
       "evidence": {
-        "questionCount": 3,
-        "totalOccurrences": 5,
-        "sourceCount": 1,
+        "questionCount": 4,
+        "totalOccurrences": 6,
+        "sourceCount": 2,
         "sources": [
+          {
+            "bankId": "opi",
+            "field": "referenceText",
+            "questionCount": 1,
+            "totalOccurrences": 1,
+            "exampleCardIds": [
+              "opi-extra-376"
+            ]
+          },
           {
             "bankId": "storytelling",
             "field": "audioText",
@@ -2098,16 +2079,19 @@
       "kind": "abbreviation",
       "category": "aircraft-systems",
       "evidence": {
-        "questionCount": 3,
-        "totalOccurrences": 3,
+        "questionCount": 6,
+        "totalOccurrences": 6,
         "sourceCount": 1,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 3,
-            "totalOccurrences": 3,
+            "questionCount": 6,
+            "totalOccurrences": 6,
             "exampleCardIds": [
+              "opi-core-843",
+              "opi-core-847",
+              "opi-extra-075",
               "opi-extra-076",
               "opi-extra-080",
               "opi-extra-080-part-2"
@@ -2128,19 +2112,21 @@
       "kind": "abbreviation",
       "category": "aircraft-systems",
       "evidence": {
-        "questionCount": 5,
-        "totalOccurrences": 7,
+        "questionCount": 7,
+        "totalOccurrences": 10,
         "sourceCount": 2,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 3,
-            "totalOccurrences": 3,
+            "questionCount": 5,
+            "totalOccurrences": 6,
             "exampleCardIds": [
+              "opi-core-039",
               "opi-core-262",
               "opi-core-520",
-              "opi-core-523"
+              "opi-core-523",
+              "opi-core-843"
             ]
           },
           {
@@ -2168,20 +2154,10 @@
       "kind": "abbreviation",
       "category": "aircraft-systems",
       "evidence": {
-        "questionCount": 14,
-        "totalOccurrences": 15,
-        "sourceCount": 4,
+        "questionCount": 12,
+        "totalOccurrences": 12,
+        "sourceCount": 3,
         "sources": [
-          {
-            "bankId": "opi",
-            "field": "referenceText",
-            "questionCount": 2,
-            "totalOccurrences": 3,
-            "exampleCardIds": [
-              "opi-core-319",
-              "opi-core-329"
-            ]
-          },
           {
             "bankId": "radiotelephony",
             "field": "referenceText",
@@ -2307,20 +2283,18 @@
       "kind": "abbreviation",
       "category": "aircraft-systems",
       "evidence": {
-        "questionCount": 4,
-        "totalOccurrences": 4,
+        "questionCount": 2,
+        "totalOccurrences": 2,
         "sourceCount": 1,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 4,
-            "totalOccurrences": 4,
+            "questionCount": 2,
+            "totalOccurrences": 2,
             "exampleCardIds": [
-              "opi-core-121",
-              "opi-core-132",
-              "opi-core-310",
-              "opi-core-311"
+              "opi-core-131",
+              "opi-core-132"
             ]
           }
         ]
@@ -2367,23 +2341,18 @@
       "kind": "abbreviation",
       "category": "aircraft-systems",
       "evidence": {
-        "questionCount": 11,
-        "totalOccurrences": 12,
+        "questionCount": 6,
+        "totalOccurrences": 6,
         "sourceCount": 2,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 7,
-            "totalOccurrences": 8,
+            "questionCount": 2,
+            "totalOccurrences": 2,
             "exampleCardIds": [
-              "opi-extra-226",
-              "opi-extra-351",
-              "opi-extra-354-part-2",
-              "opi-extra-355",
-              "opi-extra-356",
-              "opi-extra-360",
-              "opi-extra-361"
+              "opi-extra-038",
+              "opi-extra-357"
             ]
           },
           {
@@ -2413,23 +2382,25 @@
       "kind": "term",
       "category": "aircraft-systems",
       "evidence": {
-        "questionCount": 34,
-        "totalOccurrences": 35,
+        "questionCount": 36,
+        "totalOccurrences": 37,
         "sourceCount": 3,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 7,
-            "totalOccurrences": 7,
+            "questionCount": 9,
+            "totalOccurrences": 9,
             "exampleCardIds": [
-              "opi-core-089",
+              "opi-core-003",
+              "opi-core-007",
+              "opi-core-429",
+              "opi-core-430",
+              "opi-core-434",
               "opi-core-598",
-              "opi-core-869",
-              "opi-extra-026",
-              "opi-image-005-q01-part-3",
-              "opi-image-011-q02",
-              "opi-image-016-q02"
+              "opi-image-015-q01",
+              "opi-image-018-q01",
+              "opi-image-019-q01"
             ]
           },
           {
@@ -2480,17 +2451,16 @@
       "kind": "abbreviation",
       "category": "aircraft-systems",
       "evidence": {
-        "questionCount": 7,
-        "totalOccurrences": 8,
+        "questionCount": 6,
+        "totalOccurrences": 6,
         "sourceCount": 3,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 5,
-            "totalOccurrences": 6,
+            "questionCount": 4,
+            "totalOccurrences": 4,
             "exampleCardIds": [
-              "opi-core-520",
               "opi-core-521",
               "opi-core-522",
               "opi-core-523",
@@ -2530,20 +2500,22 @@
       "kind": "abbreviation",
       "category": "aircraft-systems",
       "evidence": {
-        "questionCount": 6,
-        "totalOccurrences": 7,
+        "questionCount": 8,
+        "totalOccurrences": 8,
         "sourceCount": 1,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 6,
-            "totalOccurrences": 7,
+            "questionCount": 8,
+            "totalOccurrences": 8,
             "exampleCardIds": [
+              "opi-core-572",
+              "opi-core-613",
               "opi-core-614",
-              "opi-core-615",
               "opi-core-616",
               "opi-core-617",
+              "opi-core-618",
               "opi-core-619",
               "opi-core-620"
             ]
@@ -2573,8 +2545,8 @@
             "questionCount": 2,
             "totalOccurrences": 2,
             "exampleCardIds": [
-              "opi-core-087",
-              "opi-core-473"
+              "opi-core-473",
+              "opi-core-491"
             ]
           },
           {
@@ -2613,28 +2585,28 @@
       "kind": "phrase",
       "category": "aircraft-systems",
       "evidence": {
-        "questionCount": 56,
-        "totalOccurrences": 87,
+        "questionCount": 63,
+        "totalOccurrences": 95,
         "sourceCount": 4,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 16,
-            "totalOccurrences": 16,
+            "questionCount": 23,
+            "totalOccurrences": 24,
             "exampleCardIds": [
+              "opi-core-021",
               "opi-core-087",
-              "opi-core-192",
-              "opi-core-409",
               "opi-core-456",
               "opi-core-472",
               "opi-core-473",
               "opi-core-477",
+              "opi-core-481",
               "opi-core-485",
-              "opi-core-492",
-              "opi-core-583",
-              "opi-core-866",
-              "opi-extra-026"
+              "opi-core-488",
+              "opi-core-490",
+              "opi-core-491",
+              "opi-core-492"
             ]
           },
           {
@@ -2702,10 +2674,20 @@
       "kind": "abbreviation",
       "category": "aircraft-systems",
       "evidence": {
-        "questionCount": 2,
-        "totalOccurrences": 4,
-        "sourceCount": 1,
+        "questionCount": 4,
+        "totalOccurrences": 6,
+        "sourceCount": 2,
         "sources": [
+          {
+            "bankId": "opi",
+            "field": "referenceText",
+            "questionCount": 2,
+            "totalOccurrences": 2,
+            "exampleCardIds": [
+              "opi-core-837",
+              "opi-extra-080"
+            ]
+          },
           {
             "bankId": "storytelling",
             "field": "audioText",
@@ -2731,16 +2713,23 @@
       "kind": "term",
       "category": "aircraft-systems",
       "evidence": {
-        "questionCount": 9,
-        "totalOccurrences": 11,
+        "questionCount": 16,
+        "totalOccurrences": 18,
         "sourceCount": 4,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 3,
-            "totalOccurrences": 4,
+            "questionCount": 10,
+            "totalOccurrences": 11,
             "exampleCardIds": [
+              "opi-core-017",
+              "opi-core-021",
+              "opi-core-026",
+              "opi-extra-026",
+              "opi-extra-027",
+              "opi-extra-043",
+              "opi-extra-086",
               "opi-extra-334",
               "opi-extra-335",
               "opi-extra-336"
@@ -2791,28 +2780,24 @@
       "kind": "term",
       "category": "aircraft-systems",
       "evidence": {
-        "questionCount": 31,
-        "totalOccurrences": 31,
+        "questionCount": 21,
+        "totalOccurrences": 22,
         "sourceCount": 4,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 18,
-            "totalOccurrences": 18,
+            "questionCount": 8,
+            "totalOccurrences": 9,
             "exampleCardIds": [
-              "opi-core-245",
-              "opi-core-269",
-              "opi-core-677",
-              "opi-core-850-part-3",
-              "opi-core-866",
+              "opi-core-867",
               "opi-core-868",
-              "opi-core-878",
-              "opi-extra-058",
-              "opi-extra-060",
+              "opi-core-877",
               "opi-extra-061",
               "opi-extra-062",
-              "opi-extra-063"
+              "opi-extra-063",
+              "opi-extra-064",
+              "opi-extra-376"
             ]
           },
           {
@@ -2877,8 +2862,8 @@
             "questionCount": 2,
             "totalOccurrences": 2,
             "exampleCardIds": [
-              "opi-core-311",
-              "opi-core-312"
+              "opi-core-310",
+              "opi-core-311"
             ]
           }
         ]
@@ -2896,20 +2881,18 @@
       "kind": "abbreviation",
       "category": "aircraft-systems",
       "evidence": {
-        "questionCount": 7,
-        "totalOccurrences": 8,
+        "questionCount": 5,
+        "totalOccurrences": 6,
         "sourceCount": 3,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 4,
-            "totalOccurrences": 4,
+            "questionCount": 2,
+            "totalOccurrences": 2,
             "exampleCardIds": [
-              "opi-core-337",
               "opi-core-338",
-              "opi-core-352",
-              "opi-core-718"
+              "opi-core-719"
             ]
           },
           {
@@ -2946,18 +2929,20 @@
       "kind": "phrase",
       "category": "aircraft-systems",
       "evidence": {
-        "questionCount": 7,
-        "totalOccurrences": 8,
+        "questionCount": 9,
+        "totalOccurrences": 10,
         "sourceCount": 2,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 2,
-            "totalOccurrences": 2,
+            "questionCount": 4,
+            "totalOccurrences": 4,
             "exampleCardIds": [
-              "opi-core-715",
-              "opi-core-717-part-2"
+              "opi-core-337",
+              "opi-core-338",
+              "opi-core-717-part-2",
+              "opi-core-719"
             ]
           },
           {
@@ -2988,24 +2973,28 @@
       "kind": "abbreviation",
       "category": "aircraft-systems",
       "evidence": {
-        "questionCount": 41,
-        "totalOccurrences": 53,
+        "questionCount": 46,
+        "totalOccurrences": 60,
         "sourceCount": 4,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 8,
-            "totalOccurrences": 13,
+            "questionCount": 13,
+            "totalOccurrences": 20,
             "exampleCardIds": [
               "opi-core-337",
               "opi-core-338",
-              "opi-core-352",
+              "opi-core-353",
               "opi-core-524",
               "opi-core-714",
+              "opi-core-715",
               "opi-core-717",
               "opi-core-717-part-2",
-              "opi-core-718"
+              "opi-core-718",
+              "opi-core-719",
+              "opi-core-840",
+              "opi-core-843"
             ]
           },
           {
@@ -3086,7 +3075,7 @@
             "questionCount": 1,
             "totalOccurrences": 1,
             "exampleCardIds": [
-              "opi-core-834"
+              "opi-extra-371"
             ]
           },
           {
@@ -3130,19 +3119,20 @@
       "kind": "term",
       "category": "airport-operations",
       "evidence": {
-        "questionCount": 10,
-        "totalOccurrences": 14,
+        "questionCount": 11,
+        "totalOccurrences": 16,
         "sourceCount": 2,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 3,
-            "totalOccurrences": 3,
+            "questionCount": 4,
+            "totalOccurrences": 5,
             "exampleCardIds": [
-              "opi-core-201",
-              "opi-core-230",
-              "opi-core-342"
+              "opi-core-285",
+              "opi-core-316",
+              "opi-core-525",
+              "opi-core-525-part-2"
             ]
           },
           {
@@ -3175,10 +3165,19 @@
       "kind": "term",
       "category": "airport-operations",
       "evidence": {
-        "questionCount": 7,
-        "totalOccurrences": 7,
-        "sourceCount": 3,
+        "questionCount": 8,
+        "totalOccurrences": 8,
+        "sourceCount": 4,
         "sources": [
+          {
+            "bankId": "opi",
+            "field": "referenceText",
+            "questionCount": 1,
+            "totalOccurrences": 1,
+            "exampleCardIds": [
+              "opi-core-394"
+            ]
+          },
           {
             "bankId": "radiotelephony",
             "field": "referenceText",
@@ -3294,20 +3293,28 @@
       "kind": "term",
       "category": "airport-operations",
       "evidence": {
-        "questionCount": 25,
-        "totalOccurrences": 27,
+        "questionCount": 33,
+        "totalOccurrences": 35,
         "sourceCount": 4,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 4,
-            "totalOccurrences": 4,
+            "questionCount": 12,
+            "totalOccurrences": 12,
             "exampleCardIds": [
               "opi-core-081",
+              "opi-core-111",
               "opi-core-342",
+              "opi-core-343",
               "opi-core-349",
-              "opi-extra-198"
+              "opi-core-351",
+              "opi-core-382",
+              "opi-core-448",
+              "opi-core-643",
+              "opi-extra-198",
+              "opi-extra-200",
+              "opi-image-004-q02"
             ]
           },
           {
@@ -3363,18 +3370,19 @@
       "kind": "abbreviation",
       "category": "airport-operations",
       "evidence": {
-        "questionCount": 5,
-        "totalOccurrences": 5,
+        "questionCount": 6,
+        "totalOccurrences": 7,
         "sourceCount": 3,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 2,
-            "totalOccurrences": 2,
+            "questionCount": 3,
+            "totalOccurrences": 4,
             "exampleCardIds": [
               "opi-core-441",
-              "opi-extra-370"
+              "opi-extra-370",
+              "opi-extra-371"
             ]
           },
           {
@@ -3462,20 +3470,27 @@
       "kind": "phrase",
       "category": "airport-operations",
       "evidence": {
-        "questionCount": 25,
-        "totalOccurrences": 27,
+        "questionCount": 32,
+        "totalOccurrences": 34,
         "sourceCount": 4,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 4,
-            "totalOccurrences": 4,
+            "questionCount": 11,
+            "totalOccurrences": 11,
             "exampleCardIds": [
               "opi-core-081",
+              "opi-core-111",
               "opi-core-342",
+              "opi-core-343",
               "opi-core-349",
-              "opi-extra-198"
+              "opi-core-382",
+              "opi-core-448",
+              "opi-core-643",
+              "opi-extra-198",
+              "opi-extra-200",
+              "opi-image-004-q02"
             ]
           },
           {
@@ -3592,20 +3607,19 @@
       "kind": "abbreviation",
       "category": "airport-operations",
       "evidence": {
-        "questionCount": 4,
-        "totalOccurrences": 4,
+        "questionCount": 3,
+        "totalOccurrences": 3,
         "sourceCount": 1,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 4,
-            "totalOccurrences": 4,
+            "questionCount": 3,
+            "totalOccurrences": 3,
             "exampleCardIds": [
-              "opi-core-441",
               "opi-extra-369",
               "opi-extra-370",
-              "opi-extra-372"
+              "opi-extra-371"
             ]
           }
         ]
@@ -3904,17 +3918,17 @@
       "category": "communications",
       "evidence": {
         "questionCount": 10,
-        "totalOccurrences": 13,
+        "totalOccurrences": 12,
         "sourceCount": 2,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
             "questionCount": 4,
-            "totalOccurrences": 6,
+            "totalOccurrences": 5,
             "exampleCardIds": [
-              "opi-core-359",
               "opi-core-371",
+              "opi-core-573",
               "opi-core-624",
               "opi-core-626"
             ]
@@ -4077,19 +4091,10 @@
       "kind": "abbreviation",
       "category": "communications",
       "evidence": {
-        "questionCount": 2,
-        "totalOccurrences": 2,
-        "sourceCount": 2,
+        "questionCount": 1,
+        "totalOccurrences": 1,
+        "sourceCount": 1,
         "sources": [
-          {
-            "bankId": "opi",
-            "field": "referenceText",
-            "questionCount": 1,
-            "totalOccurrences": 1,
-            "exampleCardIds": [
-              "opi-core-796"
-            ]
-          },
           {
             "bankId": "sentences900",
             "field": "audioText",
@@ -4162,10 +4167,19 @@
       "kind": "callsign",
       "category": "communications",
       "evidence": {
-        "questionCount": 41,
-        "totalOccurrences": 42,
-        "sourceCount": 2,
+        "questionCount": 42,
+        "totalOccurrences": 43,
+        "sourceCount": 3,
         "sources": [
+          {
+            "bankId": "opi",
+            "field": "referenceText",
+            "questionCount": 1,
+            "totalOccurrences": 1,
+            "exampleCardIds": [
+              "opi-core-377"
+            ]
+          },
           {
             "bankId": "radiotelephony",
             "field": "referenceText",
@@ -4277,19 +4291,10 @@
       "kind": "phrase",
       "category": "communications",
       "evidence": {
-        "questionCount": 41,
-        "totalOccurrences": 41,
-        "sourceCount": 3,
+        "questionCount": 40,
+        "totalOccurrences": 40,
+        "sourceCount": 2,
         "sources": [
-          {
-            "bankId": "opi",
-            "field": "referenceText",
-            "questionCount": 1,
-            "totalOccurrences": 1,
-            "exampleCardIds": [
-              "opi-core-286"
-            ]
-          },
           {
             "bankId": "radiotelephony",
             "field": "referenceText",
@@ -4335,18 +4340,19 @@
       "kind": "phrase",
       "category": "communications",
       "evidence": {
-        "questionCount": 11,
-        "totalOccurrences": 12,
+        "questionCount": 12,
+        "totalOccurrences": 13,
         "sourceCount": 4,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 3,
-            "totalOccurrences": 3,
+            "questionCount": 4,
+            "totalOccurrences": 4,
             "exampleCardIds": [
               "opi-core-283",
               "opi-core-284",
+              "opi-core-285",
               "opi-core-287"
             ]
           },
@@ -4397,10 +4403,19 @@
       "kind": "phrase",
       "category": "communications",
       "evidence": {
-        "questionCount": 6,
-        "totalOccurrences": 7,
-        "sourceCount": 1,
+        "questionCount": 7,
+        "totalOccurrences": 8,
+        "sourceCount": 2,
         "sources": [
+          {
+            "bankId": "opi",
+            "field": "referenceText",
+            "questionCount": 1,
+            "totalOccurrences": 1,
+            "exampleCardIds": [
+              "opi-core-103"
+            ]
+          },
           {
             "bankId": "storytelling",
             "field": "audioText",
@@ -4430,28 +4445,28 @@
       "kind": "term",
       "category": "communications",
       "evidence": {
-        "questionCount": 15,
-        "totalOccurrences": 15,
+        "questionCount": 16,
+        "totalOccurrences": 17,
         "sourceCount": 1,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 15,
-            "totalOccurrences": 15,
+            "questionCount": 16,
+            "totalOccurrences": 17,
             "exampleCardIds": [
               "opi-core-136",
               "opi-core-139",
+              "opi-core-338",
+              "opi-core-343",
+              "opi-core-345",
+              "opi-core-350",
               "opi-core-363",
               "opi-core-374",
               "opi-core-377",
-              "opi-core-382",
-              "opi-core-385",
-              "opi-core-463",
+              "opi-core-384",
               "opi-core-643",
-              "opi-core-851",
-              "opi-extra-066",
-              "opi-extra-067"
+              "opi-core-707-part-2"
             ]
           }
         ]
@@ -4517,23 +4532,10 @@
       "kind": "term",
       "category": "communications",
       "evidence": {
-        "questionCount": 7,
-        "totalOccurrences": 9,
-        "sourceCount": 2,
+        "questionCount": 2,
+        "totalOccurrences": 4,
+        "sourceCount": 1,
         "sources": [
-          {
-            "bankId": "opi",
-            "field": "referenceText",
-            "questionCount": 5,
-            "totalOccurrences": 5,
-            "exampleCardIds": [
-              "opi-core-363",
-              "opi-core-382",
-              "opi-core-643",
-              "opi-extra-066",
-              "opi-extra-195"
-            ]
-          },
           {
             "bankId": "storytelling",
             "field": "audioText",
@@ -4592,37 +4594,6 @@
         "semanticImportance": "high"
       },
       "rationale": "由普通词组成但在民航中含义关键，只在真实错例和反例支持后考虑启用。"
-    },
-    {
-      "text": "SATCOM",
-      "kind": "abbreviation",
-      "category": "communications",
-      "evidence": {
-        "questionCount": 4,
-        "totalOccurrences": 4,
-        "sourceCount": 1,
-        "sources": [
-          {
-            "bankId": "opi",
-            "field": "referenceText",
-            "questionCount": 4,
-            "totalOccurrences": 4,
-            "exampleCardIds": [
-              "opi-core-359",
-              "opi-core-361",
-              "opi-core-371",
-              "opi-core-383"
-            ]
-          }
-        ]
-      },
-      "assessment": {
-        "domainSpecificity": "high",
-        "recognitionDifficulty": "high",
-        "ambiguityRisk": "low",
-        "semanticImportance": "high"
-      },
-      "rationale": "民航标准缩写，字母边界和规范拼写容易丢失，错误会改变专业含义。"
     },
     {
       "text": "SELCAL",
@@ -4878,25 +4849,21 @@
       "kind": "term",
       "category": "communications",
       "evidence": {
-        "questionCount": 17,
-        "totalOccurrences": 17,
+        "questionCount": 13,
+        "totalOccurrences": 13,
         "sourceCount": 3,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 10,
-            "totalOccurrences": 10,
+            "questionCount": 6,
+            "totalOccurrences": 6,
             "exampleCardIds": [
-              "opi-core-286",
               "opi-core-361",
               "opi-core-362",
               "opi-core-383",
-              "opi-core-462",
-              "opi-core-524",
-              "opi-core-718",
-              "opi-core-792",
-              "opi-core-855",
+              "opi-core-717",
+              "opi-extra-097",
               "opi-extra-105"
             ]
           },
@@ -4938,19 +4905,18 @@
       "kind": "phrase",
       "category": "communications",
       "evidence": {
-        "questionCount": 4,
-        "totalOccurrences": 4,
+        "questionCount": 3,
+        "totalOccurrences": 3,
         "sourceCount": 2,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 3,
-            "totalOccurrences": 3,
+            "questionCount": 2,
+            "totalOccurrences": 2,
             "exampleCardIds": [
-              "opi-core-286",
-              "opi-core-361",
-              "opi-core-383"
+              "opi-extra-097",
+              "opi-extra-105"
             ]
           },
           {
@@ -5055,24 +5021,20 @@
       "kind": "abbreviation",
       "category": "communications",
       "evidence": {
-        "questionCount": 12,
-        "totalOccurrences": 12,
+        "questionCount": 8,
+        "totalOccurrences": 8,
         "sourceCount": 3,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 8,
-            "totalOccurrences": 8,
+            "questionCount": 4,
+            "totalOccurrences": 4,
             "exampleCardIds": [
               "opi-core-359",
-              "opi-core-365",
               "opi-core-371",
-              "opi-core-525-part-4",
-              "opi-core-791",
               "opi-core-793",
-              "opi-core-808",
-              "opi-core-854"
+              "opi-core-797"
             ]
           },
           {
@@ -5170,20 +5132,24 @@
       "kind": "phrase",
       "category": "emergency",
       "evidence": {
-        "questionCount": 28,
-        "totalOccurrences": 34,
+        "questionCount": 32,
+        "totalOccurrences": 38,
         "sourceCount": 4,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 4,
-            "totalOccurrences": 4,
+            "questionCount": 8,
+            "totalOccurrences": 8,
             "exampleCardIds": [
-              "opi-core-083",
+              "opi-core-082",
+              "opi-core-111",
               "opi-core-217",
               "opi-core-220",
-              "opi-core-326"
+              "opi-core-224",
+              "opi-core-448",
+              "opi-core-491",
+              "opi-extra-183"
             ]
           },
           {
@@ -5248,18 +5214,18 @@
       "category": "emergency",
       "evidence": {
         "questionCount": 4,
-        "totalOccurrences": 5,
+        "totalOccurrences": 4,
         "sourceCount": 2,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
             "questionCount": 3,
-            "totalOccurrences": 4,
+            "totalOccurrences": 3,
             "exampleCardIds": [
-              "opi-core-627",
-              "opi-core-628",
-              "opi-core-628-part-2"
+              "opi-core-628-part-2",
+              "opi-core-633",
+              "opi-core-636"
             ]
           },
           {
@@ -5286,22 +5252,23 @@
       "kind": "term",
       "category": "emergency",
       "evidence": {
-        "questionCount": 13,
-        "totalOccurrences": 13,
+        "questionCount": 14,
+        "totalOccurrences": 14,
         "sourceCount": 3,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 6,
-            "totalOccurrences": 6,
+            "questionCount": 7,
+            "totalOccurrences": 7,
             "exampleCardIds": [
-              "opi-core-146",
+              "opi-core-074",
+              "opi-core-084",
               "opi-core-153",
-              "opi-core-161",
-              "opi-core-772",
-              "opi-core-874",
-              "opi-core-878"
+              "opi-core-155",
+              "opi-extra-063",
+              "opi-extra-308",
+              "opi-extra-378"
             ]
           },
           {
@@ -5342,24 +5309,27 @@
       "kind": "term",
       "category": "emergency",
       "evidence": {
-        "questionCount": 11,
-        "totalOccurrences": 14,
+        "questionCount": 14,
+        "totalOccurrences": 18,
         "sourceCount": 3,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 8,
-            "totalOccurrences": 9,
+            "questionCount": 11,
+            "totalOccurrences": 13,
             "exampleCardIds": [
               "opi-core-092",
               "opi-core-786",
               "opi-core-787",
-              "opi-core-796",
               "opi-core-798",
-              "opi-core-806",
-              "opi-image-017-q01",
-              "opi-image-017-q02"
+              "opi-core-808",
+              "opi-core-810",
+              "opi-core-811",
+              "opi-core-812",
+              "opi-extra-056",
+              "opi-extra-183",
+              "opi-image-017-q01"
             ]
           },
           {
@@ -5406,11 +5376,11 @@
             "questionCount": 6,
             "totalOccurrences": 6,
             "exampleCardIds": [
-              "opi-core-078",
               "opi-core-084",
-              "opi-core-111",
-              "opi-core-871",
-              "opi-core-874",
+              "opi-core-085",
+              "opi-core-086",
+              "opi-core-875",
+              "opi-core-876",
               "opi-core-877"
             ]
           },
@@ -5481,19 +5451,28 @@
       "kind": "phrase",
       "category": "emergency",
       "evidence": {
-        "questionCount": 16,
-        "totalOccurrences": 18,
+        "questionCount": 27,
+        "totalOccurrences": 29,
         "sourceCount": 3,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 3,
-            "totalOccurrences": 3,
+            "questionCount": 14,
+            "totalOccurrences": 14,
             "exampleCardIds": [
+              "opi-core-078",
               "opi-core-111",
-              "opi-core-200",
-              "opi-core-448"
+              "opi-core-222",
+              "opi-core-281",
+              "opi-core-282",
+              "opi-core-335",
+              "opi-core-389",
+              "opi-core-390",
+              "opi-core-412",
+              "opi-core-582",
+              "opi-core-786",
+              "opi-core-883"
             ]
           },
           {
@@ -5540,19 +5519,22 @@
       "kind": "phrase",
       "category": "emergency",
       "evidence": {
-        "questionCount": 28,
-        "totalOccurrences": 36,
+        "questionCount": 31,
+        "totalOccurrences": 39,
         "sourceCount": 4,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 3,
-            "totalOccurrences": 3,
+            "questionCount": 6,
+            "totalOccurrences": 6,
             "exampleCardIds": [
-              "opi-core-446",
-              "opi-image-011-q02",
-              "opi-image-016-q01"
+              "opi-core-062",
+              "opi-core-585",
+              "opi-extra-282",
+              "opi-image-011-q03",
+              "opi-image-016-q01",
+              "opi-image-016-q02"
             ]
           },
           {
@@ -5621,7 +5603,7 @@
             "totalOccurrences": 2,
             "exampleCardIds": [
               "opi-core-077",
-              "opi-extra-357"
+              "opi-core-288"
             ]
           },
           {
@@ -5672,22 +5654,20 @@
       "kind": "term",
       "category": "emergency",
       "evidence": {
-        "questionCount": 8,
-        "totalOccurrences": 8,
+        "questionCount": 6,
+        "totalOccurrences": 6,
         "sourceCount": 3,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 6,
-            "totalOccurrences": 6,
+            "questionCount": 4,
+            "totalOccurrences": 4,
             "exampleCardIds": [
-              "opi-core-773",
+              "opi-core-663",
+              "opi-core-868",
               "opi-core-870",
-              "opi-core-874",
-              "opi-core-876",
-              "opi-core-878",
-              "opi-image-007-q03"
+              "opi-core-878"
             ]
           },
           {
@@ -5723,23 +5703,22 @@
       "kind": "term",
       "category": "emergency",
       "evidence": {
-        "questionCount": 7,
-        "totalOccurrences": 8,
+        "questionCount": 6,
+        "totalOccurrences": 6,
         "sourceCount": 1,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 7,
-            "totalOccurrences": 8,
+            "questionCount": 6,
+            "totalOccurrences": 6,
             "exampleCardIds": [
-              "opi-core-214",
-              "opi-core-239",
-              "opi-core-537",
+              "opi-core-099",
+              "opi-core-530",
               "opi-core-773",
               "opi-core-778",
-              "opi-core-863",
-              "opi-extra-244"
+              "opi-core-868",
+              "opi-extra-063"
             ]
           }
         ]
@@ -5757,22 +5736,20 @@
       "kind": "term",
       "category": "emergency",
       "evidence": {
-        "questionCount": 57,
-        "totalOccurrences": 142,
+        "questionCount": 55,
+        "totalOccurrences": 138,
         "sourceCount": 3,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 6,
-            "totalOccurrences": 8,
+            "questionCount": 4,
+            "totalOccurrences": 4,
             "exampleCardIds": [
               "opi-core-103",
-              "opi-core-105",
               "opi-core-109",
               "opi-core-286",
-              "opi-core-287",
-              "opi-core-298"
+              "opi-core-801"
             ]
           },
           {
@@ -5830,20 +5807,10 @@
       "kind": "term",
       "category": "emergency",
       "evidence": {
-        "questionCount": 3,
-        "totalOccurrences": 3,
-        "sourceCount": 2,
+        "questionCount": 1,
+        "totalOccurrences": 1,
+        "sourceCount": 1,
         "sources": [
-          {
-            "bankId": "opi",
-            "field": "referenceText",
-            "questionCount": 2,
-            "totalOccurrences": 2,
-            "exampleCardIds": [
-              "opi-core-103",
-              "opi-core-105"
-            ]
-          },
           {
             "bankId": "storytelling",
             "field": "audioText",
@@ -5916,10 +5883,28 @@
       "kind": "phrase",
       "category": "emergency",
       "evidence": {
-        "questionCount": 56,
-        "totalOccurrences": 56,
-        "sourceCount": 3,
+        "questionCount": 66,
+        "totalOccurrences": 66,
+        "sourceCount": 4,
         "sources": [
+          {
+            "bankId": "opi",
+            "field": "referenceText",
+            "questionCount": 10,
+            "totalOccurrences": 10,
+            "exampleCardIds": [
+              "opi-core-079",
+              "opi-core-100",
+              "opi-core-105",
+              "opi-core-176",
+              "opi-core-198",
+              "opi-core-287",
+              "opi-core-298",
+              "opi-core-327",
+              "opi-core-539",
+              "opi-extra-278"
+            ]
+          },
           {
             "bankId": "radiotelephony",
             "field": "referenceText",
@@ -5980,17 +5965,18 @@
       "kind": "phrase",
       "category": "emergency",
       "evidence": {
-        "questionCount": 7,
-        "totalOccurrences": 7,
+        "questionCount": 8,
+        "totalOccurrences": 8,
         "sourceCount": 2,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 1,
-            "totalOccurrences": 1,
+            "questionCount": 2,
+            "totalOccurrences": 2,
             "exampleCardIds": [
-              "opi-core-626"
+              "opi-core-626",
+              "opi-core-854"
             ]
           },
           {
@@ -6032,9 +6018,9 @@
             "questionCount": 4,
             "totalOccurrences": 4,
             "exampleCardIds": [
-              "opi-core-111",
-              "opi-core-193",
-              "opi-core-349",
+              "opi-core-389",
+              "opi-core-450",
+              "opi-core-454",
               "opi-extra-323"
             ]
           },
@@ -6186,19 +6172,24 @@
       "kind": "term",
       "category": "meteorology",
       "evidence": {
-        "questionCount": 10,
-        "totalOccurrences": 10,
+        "questionCount": 15,
+        "totalOccurrences": 16,
         "sourceCount": 2,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 3,
-            "totalOccurrences": 3,
+            "questionCount": 8,
+            "totalOccurrences": 9,
             "exampleCardIds": [
+              "opi-core-002",
+              "opi-core-005",
               "opi-core-494",
               "opi-core-495",
-              "opi-core-506"
+              "opi-core-496",
+              "opi-core-509",
+              "opi-core-815",
+              "opi-extra-088"
             ]
           },
           {
@@ -6271,26 +6262,25 @@
       "kind": "phrase",
       "category": "meteorology",
       "evidence": {
-        "questionCount": 24,
+        "questionCount": 23,
         "totalOccurrences": 26,
         "sourceCount": 4,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 10,
+            "questionCount": 9,
             "totalOccurrences": 10,
             "exampleCardIds": [
-              "opi-core-003",
-              "opi-core-038",
               "opi-core-082",
-              "opi-core-083",
-              "opi-core-153",
+              "opi-core-427",
+              "opi-core-428",
               "opi-core-429",
               "opi-core-430",
-              "opi-core-440",
               "opi-core-495",
-              "opi-core-772"
+              "opi-core-798",
+              "opi-extra-088",
+              "opi-extra-332"
             ]
           },
           {
@@ -6346,19 +6336,10 @@
       "kind": "abbreviation",
       "category": "meteorology",
       "evidence": {
-        "questionCount": 6,
-        "totalOccurrences": 6,
-        "sourceCount": 2,
+        "questionCount": 5,
+        "totalOccurrences": 5,
+        "sourceCount": 1,
         "sources": [
-          {
-            "bankId": "opi",
-            "field": "referenceText",
-            "questionCount": 1,
-            "totalOccurrences": 1,
-            "exampleCardIds": [
-              "opi-core-855"
-            ]
-          },
           {
             "bankId": "sentences900",
             "field": "audioText",
@@ -6387,18 +6368,21 @@
       "kind": "phrase",
       "category": "meteorology",
       "evidence": {
-        "questionCount": 6,
-        "totalOccurrences": 6,
+        "questionCount": 9,
+        "totalOccurrences": 9,
         "sourceCount": 3,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 2,
-            "totalOccurrences": 2,
+            "questionCount": 5,
+            "totalOccurrences": 5,
             "exampleCardIds": [
+              "opi-core-591",
               "opi-core-607",
-              "opi-core-612"
+              "opi-core-609",
+              "opi-core-610",
+              "opi-image-004-q02"
             ]
           },
           {
@@ -6436,28 +6420,28 @@
       "kind": "phrase",
       "category": "meteorology",
       "evidence": {
-        "questionCount": 34,
-        "totalOccurrences": 36,
+        "questionCount": 47,
+        "totalOccurrences": 55,
         "sourceCount": 4,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 19,
-            "totalOccurrences": 19,
+            "questionCount": 32,
+            "totalOccurrences": 38,
             "exampleCardIds": [
               "opi-core-035",
               "opi-core-036",
+              "opi-core-037",
+              "opi-core-038",
+              "opi-core-039",
               "opi-core-040",
               "opi-core-041",
-              "opi-core-045",
+              "opi-core-042",
               "opi-core-048",
-              "opi-core-051",
-              "opi-core-057",
-              "opi-core-245",
-              "opi-core-434",
-              "opi-core-439",
-              "opi-core-495"
+              "opi-core-049",
+              "opi-core-050",
+              "opi-core-051"
             ]
           },
           {
@@ -6659,20 +6643,19 @@
       "kind": "term",
       "category": "navigation",
       "evidence": {
-        "questionCount": 9,
-        "totalOccurrences": 10,
+        "questionCount": 8,
+        "totalOccurrences": 9,
         "sourceCount": 3,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 4,
-            "totalOccurrences": 4,
+            "questionCount": 3,
+            "totalOccurrences": 3,
             "exampleCardIds": [
-              "opi-core-196",
-              "opi-core-338",
-              "opi-core-525-part-3",
-              "opi-core-628-part-2"
+              "opi-core-527",
+              "opi-core-835",
+              "opi-extra-332"
             ]
           },
           {
@@ -7019,10 +7002,21 @@
       "kind": "proper-name",
       "category": "navigation",
       "evidence": {
-        "questionCount": 23,
-        "totalOccurrences": 25,
-        "sourceCount": 2,
+        "questionCount": 26,
+        "totalOccurrences": 29,
+        "sourceCount": 3,
         "sources": [
+          {
+            "bankId": "opi",
+            "field": "referenceText",
+            "questionCount": 3,
+            "totalOccurrences": 4,
+            "exampleCardIds": [
+              "opi-extra-156",
+              "opi-extra-163",
+              "opi-extra-166"
+            ]
+          },
           {
             "bankId": "radiotelephony",
             "field": "referenceText",
@@ -7160,18 +7154,17 @@
       "kind": "abbreviation",
       "category": "navigation",
       "evidence": {
-        "questionCount": 16,
-        "totalOccurrences": 19,
+        "questionCount": 15,
+        "totalOccurrences": 18,
         "sourceCount": 4,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 2,
-            "totalOccurrences": 2,
+            "questionCount": 1,
+            "totalOccurrences": 1,
             "exampleCardIds": [
-              "opi-core-516",
-              "opi-extra-226"
+              "opi-core-519"
             ]
           },
           {
@@ -7285,17 +7278,18 @@
       "kind": "phrase",
       "category": "navigation",
       "evidence": {
-        "questionCount": 25,
-        "totalOccurrences": 43,
+        "questionCount": 26,
+        "totalOccurrences": 45,
         "sourceCount": 2,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 2,
-            "totalOccurrences": 2,
+            "questionCount": 3,
+            "totalOccurrences": 4,
             "exampleCardIds": [
-              "opi-core-877",
+              "opi-core-461",
+              "opi-core-503",
               "opi-extra-061"
             ]
           },
@@ -7363,18 +7357,24 @@
       "kind": "abbreviation",
       "category": "navigation",
       "evidence": {
-        "questionCount": 3,
-        "totalOccurrences": 5,
+        "questionCount": 9,
+        "totalOccurrences": 9,
         "sourceCount": 2,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 2,
-            "totalOccurrences": 4,
+            "questionCount": 8,
+            "totalOccurrences": 8,
             "exampleCardIds": [
               "opi-core-513",
-              "opi-core-805"
+              "opi-core-514",
+              "opi-core-515",
+              "opi-core-572",
+              "opi-core-573",
+              "opi-core-781",
+              "opi-core-783",
+              "opi-core-808"
             ]
           },
           {
@@ -7401,21 +7401,28 @@
       "kind": "abbreviation",
       "category": "navigation",
       "evidence": {
-        "questionCount": 19,
-        "totalOccurrences": 23,
+        "questionCount": 26,
+        "totalOccurrences": 31,
         "sourceCount": 4,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 5,
-            "totalOccurrences": 6,
+            "questionCount": 12,
+            "totalOccurrences": 14,
             "exampleCardIds": [
+              "opi-core-513",
               "opi-core-514",
               "opi-core-515",
               "opi-core-516",
               "opi-core-518",
-              "opi-core-519"
+              "opi-core-519",
+              "opi-core-523",
+              "opi-core-570",
+              "opi-core-790",
+              "opi-core-840",
+              "opi-core-843",
+              "opi-extra-226"
             ]
           },
           {
@@ -7550,19 +7557,10 @@
       "kind": "proper-name",
       "category": "navigation",
       "evidence": {
-        "questionCount": 18,
-        "totalOccurrences": 25,
-        "sourceCount": 3,
+        "questionCount": 17,
+        "totalOccurrences": 24,
+        "sourceCount": 2,
         "sources": [
-          {
-            "bankId": "opi",
-            "field": "referenceText",
-            "questionCount": 1,
-            "totalOccurrences": 1,
-            "exampleCardIds": [
-              "opi-extra-156"
-            ]
-          },
           {
             "bankId": "radiotelephony",
             "field": "referenceText",
@@ -7733,10 +7731,20 @@
       "kind": "phrase",
       "category": "navigation",
       "evidence": {
-        "questionCount": 7,
-        "totalOccurrences": 9,
-        "sourceCount": 3,
+        "questionCount": 9,
+        "totalOccurrences": 11,
+        "sourceCount": 4,
         "sources": [
+          {
+            "bankId": "opi",
+            "field": "referenceText",
+            "questionCount": 2,
+            "totalOccurrences": 2,
+            "exampleCardIds": [
+              "opi-core-587",
+              "opi-core-756"
+            ]
+          },
           {
             "bankId": "radiotelephony",
             "field": "referenceText",
@@ -7916,19 +7924,19 @@
       "category": "navigation",
       "evidence": {
         "questionCount": 231,
-        "totalOccurrences": 238,
+        "totalOccurrences": 237,
         "sourceCount": 4,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
             "questionCount": 4,
-            "totalOccurrences": 5,
+            "totalOccurrences": 4,
             "exampleCardIds": [
-              "opi-core-615",
               "opi-extra-226",
               "opi-extra-229",
-              "opi-extra-229-part-2"
+              "opi-extra-229-part-2",
+              "opi-extra-371"
             ]
           },
           {
@@ -8006,10 +8014,19 @@
       "kind": "phrase",
       "category": "navigation",
       "evidence": {
-        "questionCount": 180,
-        "totalOccurrences": 184,
-        "sourceCount": 3,
+        "questionCount": 181,
+        "totalOccurrences": 185,
+        "sourceCount": 4,
         "sources": [
+          {
+            "bankId": "opi",
+            "field": "referenceText",
+            "questionCount": 1,
+            "totalOccurrences": 1,
+            "exampleCardIds": [
+              "opi-extra-229-part-2"
+            ]
+          },
           {
             "bankId": "radiotelephony",
             "field": "referenceText",
@@ -8407,17 +8424,18 @@
       "kind": "term",
       "category": "navigation",
       "evidence": {
-        "questionCount": 41,
-        "totalOccurrences": 42,
+        "questionCount": 42,
+        "totalOccurrences": 43,
         "sourceCount": 4,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 1,
-            "totalOccurrences": 1,
+            "questionCount": 2,
+            "totalOccurrences": 2,
             "exampleCardIds": [
-              "opi-extra-229"
+              "opi-core-081",
+              "opi-core-846"
             ]
           },
           {
@@ -8516,27 +8534,19 @@
       "kind": "term",
       "category": "navigation",
       "evidence": {
-        "questionCount": 20,
-        "totalOccurrences": 21,
+        "questionCount": 12,
+        "totalOccurrences": 12,
         "sourceCount": 4,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 11,
-            "totalOccurrences": 12,
+            "questionCount": 3,
+            "totalOccurrences": 3,
             "exampleCardIds": [
-              "opi-core-314",
-              "opi-core-444",
               "opi-core-614",
-              "opi-core-619",
-              "opi-core-634",
-              "opi-core-782",
-              "opi-core-887",
-              "opi-extra-192",
-              "opi-extra-192-part-2",
-              "opi-extra-229",
-              "opi-extra-229-part-2"
+              "opi-core-615",
+              "opi-core-634"
             ]
           },
           {
@@ -8685,7 +8695,7 @@
             "questionCount": 1,
             "totalOccurrences": 1,
             "exampleCardIds": [
-              "opi-core-516"
+              "opi-core-519"
             ]
           },
           {
@@ -8813,19 +8823,18 @@
       "kind": "abbreviation",
       "category": "navigation",
       "evidence": {
-        "questionCount": 3,
-        "totalOccurrences": 3,
+        "questionCount": 2,
+        "totalOccurrences": 2,
         "sourceCount": 1,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 3,
-            "totalOccurrences": 3,
+            "questionCount": 2,
+            "totalOccurrences": 2,
             "exampleCardIds": [
               "opi-core-467",
-              "opi-core-468",
-              "opi-core-783"
+              "opi-core-469"
             ]
           }
         ]
@@ -8882,10 +8891,19 @@
       "kind": "proper-name",
       "category": "navigation",
       "evidence": {
-        "questionCount": 11,
-        "totalOccurrences": 12,
-        "sourceCount": 2,
+        "questionCount": 12,
+        "totalOccurrences": 13,
+        "sourceCount": 3,
         "sources": [
+          {
+            "bankId": "opi",
+            "field": "referenceText",
+            "questionCount": 1,
+            "totalOccurrences": 1,
+            "exampleCardIds": [
+              "opi-core-758"
+            ]
+          },
           {
             "bankId": "radiotelephony",
             "field": "referenceText",
@@ -8928,10 +8946,23 @@
       "kind": "phrase",
       "category": "navigation",
       "evidence": {
-        "questionCount": 55,
-        "totalOccurrences": 55,
-        "sourceCount": 3,
+        "questionCount": 60,
+        "totalOccurrences": 60,
+        "sourceCount": 4,
         "sources": [
+          {
+            "bankId": "opi",
+            "field": "referenceText",
+            "questionCount": 5,
+            "totalOccurrences": 5,
+            "exampleCardIds": [
+              "opi-core-292",
+              "opi-core-519",
+              "opi-core-889",
+              "opi-extra-227",
+              "opi-extra-231"
+            ]
+          },
           {
             "bankId": "radiotelephony",
             "field": "referenceText",
@@ -9072,19 +9103,22 @@
       "kind": "abbreviation",
       "category": "navigation",
       "evidence": {
-        "questionCount": 14,
-        "totalOccurrences": 17,
+        "questionCount": 17,
+        "totalOccurrences": 19,
         "sourceCount": 3,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 3,
-            "totalOccurrences": 4,
+            "questionCount": 6,
+            "totalOccurrences": 6,
             "exampleCardIds": [
               "opi-core-467",
+              "opi-core-468",
+              "opi-core-469",
               "opi-core-471",
-              "opi-core-634"
+              "opi-core-570",
+              "opi-core-573"
             ]
           },
           {
@@ -9170,21 +9204,25 @@
       "kind": "abbreviation",
       "category": "navigation",
       "evidence": {
-        "questionCount": 7,
-        "totalOccurrences": 9,
+        "questionCount": 11,
+        "totalOccurrences": 11,
         "sourceCount": 2,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 5,
-            "totalOccurrences": 7,
+            "questionCount": 9,
+            "totalOccurrences": 9,
             "exampleCardIds": [
               "opi-core-467",
+              "opi-core-468",
               "opi-core-471",
+              "opi-core-570",
+              "opi-core-573",
               "opi-core-781",
               "opi-core-782",
-              "opi-core-783"
+              "opi-core-783",
+              "opi-core-843"
             ]
           },
           {
@@ -9397,7 +9435,7 @@
             "questionCount": 1,
             "totalOccurrences": 1,
             "exampleCardIds": [
-              "opi-extra-372"
+              "opi-extra-369"
             ]
           },
           {
@@ -9501,7 +9539,7 @@
             "questionCount": 4,
             "totalOccurrences": 4,
             "exampleCardIds": [
-              "opi-core-516",
+              "opi-core-519",
               "opi-extra-226",
               "opi-extra-229",
               "opi-extra-229-part-2"
@@ -10039,37 +10077,6 @@
       "rationale": "航路点、导航台或机场代码缺少通用语言先验，错误会改变位置含义。"
     },
     {
-      "text": "AIP",
-      "kind": "abbreviation",
-      "category": "procedure",
-      "evidence": {
-        "questionCount": 4,
-        "totalOccurrences": 4,
-        "sourceCount": 1,
-        "sources": [
-          {
-            "bankId": "opi",
-            "field": "referenceText",
-            "questionCount": 4,
-            "totalOccurrences": 4,
-            "exampleCardIds": [
-              "opi-core-360",
-              "opi-extra-379",
-              "opi-extra-382",
-              "opi-extra-384"
-            ]
-          }
-        ]
-      },
-      "assessment": {
-        "domainSpecificity": "high",
-        "recognitionDifficulty": "high",
-        "ambiguityRisk": "low",
-        "semanticImportance": "high"
-      },
-      "rationale": "民航标准缩写，字母边界和规范拼写容易丢失，错误会改变专业含义。"
-    },
-    {
       "text": "ATSB",
       "kind": "abbreviation",
       "category": "procedure",
@@ -10165,14 +10172,14 @@
       "category": "procedure",
       "evidence": {
         "questionCount": 5,
-        "totalOccurrences": 5,
+        "totalOccurrences": 6,
         "sourceCount": 1,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
             "questionCount": 5,
-            "totalOccurrences": 5,
+            "totalOccurrences": 6,
             "exampleCardIds": [
               "opi-core-633",
               "opi-core-634",
@@ -10225,28 +10232,26 @@
       "kind": "abbreviation",
       "category": "procedure",
       "evidence": {
-        "questionCount": 12,
-        "totalOccurrences": 13,
+        "questionCount": 10,
+        "totalOccurrences": 12,
         "sourceCount": 1,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 12,
-            "totalOccurrences": 13,
+            "questionCount": 10,
+            "totalOccurrences": 12,
             "exampleCardIds": [
-              "opi-core-135",
               "opi-core-147",
               "opi-core-149",
               "opi-core-150",
-              "opi-core-151",
               "opi-core-152",
-              "opi-core-153",
               "opi-core-154",
               "opi-core-155",
               "opi-core-238",
-              "opi-core-548",
-              "opi-extra-019"
+              "opi-core-574",
+              "opi-core-708",
+              "opi-core-750"
             ]
           }
         ]
@@ -10264,19 +10269,21 @@
       "kind": "abbreviation",
       "category": "procedure",
       "evidence": {
-        "questionCount": 6,
-        "totalOccurrences": 6,
+        "questionCount": 8,
+        "totalOccurrences": 8,
         "sourceCount": 1,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 6,
-            "totalOccurrences": 6,
+            "questionCount": 8,
+            "totalOccurrences": 8,
             "exampleCardIds": [
+              "opi-extra-299",
               "opi-extra-300",
               "opi-extra-301",
-              "opi-extra-302",
+              "opi-extra-304",
+              "opi-extra-306",
               "opi-extra-307",
               "opi-extra-308",
               "opi-extra-309"
@@ -10297,19 +10304,10 @@
       "kind": "abbreviation",
       "category": "procedure",
       "evidence": {
-        "questionCount": 3,
-        "totalOccurrences": 3,
-        "sourceCount": 3,
+        "questionCount": 2,
+        "totalOccurrences": 2,
+        "sourceCount": 2,
         "sources": [
-          {
-            "bankId": "opi",
-            "field": "referenceText",
-            "questionCount": 1,
-            "totalOccurrences": 1,
-            "exampleCardIds": [
-              "opi-core-795"
-            ]
-          },
           {
             "bankId": "sentences900",
             "field": "audioText",
@@ -10378,17 +10376,16 @@
       "kind": "abbreviation",
       "category": "procedure",
       "evidence": {
-        "questionCount": 3,
-        "totalOccurrences": 3,
+        "questionCount": 2,
+        "totalOccurrences": 2,
         "sourceCount": 1,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 3,
-            "totalOccurrences": 3,
+            "questionCount": 2,
+            "totalOccurrences": 2,
             "exampleCardIds": [
-              "opi-core-629",
               "opi-core-630",
               "opi-core-631"
             ]
@@ -10408,20 +10405,17 @@
       "kind": "phrase",
       "category": "procedure",
       "evidence": {
-        "questionCount": 35,
-        "totalOccurrences": 36,
+        "questionCount": 32,
+        "totalOccurrences": 34,
         "sourceCount": 2,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 4,
-            "totalOccurrences": 4,
+            "questionCount": 1,
+            "totalOccurrences": 2,
             "exampleCardIds": [
-              "opi-core-444",
-              "opi-core-633",
-              "opi-core-635",
-              "opi-core-743"
+              "opi-core-633"
             ]
           },
           {
@@ -10459,10 +10453,19 @@
       "kind": "phrase",
       "category": "procedure",
       "evidence": {
-        "questionCount": 15,
-        "totalOccurrences": 17,
-        "sourceCount": 3,
+        "questionCount": 16,
+        "totalOccurrences": 18,
+        "sourceCount": 4,
         "sources": [
+          {
+            "bankId": "opi",
+            "field": "referenceText",
+            "questionCount": 1,
+            "totalOccurrences": 1,
+            "exampleCardIds": [
+              "opi-core-289"
+            ]
+          },
           {
             "bankId": "radiotelephony",
             "field": "referenceText",
@@ -10517,25 +10520,19 @@
       "kind": "term",
       "category": "procedure",
       "evidence": {
-        "questionCount": 9,
-        "totalOccurrences": 9,
+        "questionCount": 3,
+        "totalOccurrences": 4,
         "sourceCount": 1,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 9,
-            "totalOccurrences": 9,
+            "questionCount": 3,
+            "totalOccurrences": 4,
             "exampleCardIds": [
               "opi-core-030",
               "opi-core-030-part-2",
-              "opi-core-031",
-              "opi-core-031-part-2",
-              "opi-core-034",
-              "opi-extra-330",
-              "opi-image-002-q03",
-              "opi-image-006-q01",
-              "opi-image-020-q03"
+              "opi-core-031-part-2"
             ]
           }
         ]
@@ -10620,20 +10617,24 @@
       "kind": "abbreviation",
       "category": "procedure",
       "evidence": {
-        "questionCount": 4,
-        "totalOccurrences": 5,
+        "questionCount": 8,
+        "totalOccurrences": 9,
         "sourceCount": 1,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 4,
-            "totalOccurrences": 5,
+            "questionCount": 8,
+            "totalOccurrences": 9,
             "exampleCardIds": [
-              "opi-core-127",
-              "opi-core-269",
+              "opi-core-212",
+              "opi-core-623",
+              "opi-core-671",
               "opi-core-721",
-              "opi-core-723"
+              "opi-core-723",
+              "opi-extra-362",
+              "opi-extra-364",
+              "opi-extra-366"
             ]
           }
         ]
@@ -10651,19 +10652,18 @@
       "kind": "phrase",
       "category": "procedure",
       "evidence": {
-        "questionCount": 37,
-        "totalOccurrences": 58,
+        "questionCount": 36,
+        "totalOccurrences": 56,
         "sourceCount": 4,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 3,
-            "totalOccurrences": 4,
+            "questionCount": 2,
+            "totalOccurrences": 2,
             "exampleCardIds": [
-              "opi-core-241",
-              "opi-extra-253",
-              "opi-image-022-q03"
+              "opi-core-635",
+              "opi-extra-198"
             ]
           },
           {
@@ -10733,20 +10733,10 @@
       "kind": "abbreviation",
       "category": "procedure",
       "evidence": {
-        "questionCount": 11,
-        "totalOccurrences": 11,
-        "sourceCount": 2,
+        "questionCount": 9,
+        "totalOccurrences": 9,
+        "sourceCount": 1,
         "sources": [
-          {
-            "bankId": "opi",
-            "field": "referenceText",
-            "questionCount": 2,
-            "totalOccurrences": 2,
-            "exampleCardIds": [
-              "opi-core-148",
-              "opi-core-377"
-            ]
-          },
           {
             "bankId": "storytelling",
             "field": "audioText",
@@ -10779,22 +10769,24 @@
       "kind": "abbreviation",
       "category": "procedure",
       "evidence": {
-        "questionCount": 6,
-        "totalOccurrences": 8,
+        "questionCount": 8,
+        "totalOccurrences": 9,
         "sourceCount": 1,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 6,
-            "totalOccurrences": 8,
+            "questionCount": 8,
+            "totalOccurrences": 9,
             "exampleCardIds": [
-              "opi-core-360",
-              "opi-core-383",
+              "opi-core-198",
               "opi-core-629",
               "opi-core-724",
               "opi-core-725",
-              "opi-core-727"
+              "opi-core-727",
+              "opi-extra-336",
+              "opi-extra-364",
+              "opi-extra-366"
             ]
           }
         ]
@@ -10932,27 +10924,28 @@
       "kind": "abbreviation",
       "category": "procedure",
       "evidence": {
-        "questionCount": 11,
-        "totalOccurrences": 11,
+        "questionCount": 41,
+        "totalOccurrences": 41,
         "sourceCount": 1,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 11,
-            "totalOccurrences": 11,
+            "questionCount": 41,
+            "totalOccurrences": 41,
             "exampleCardIds": [
-              "opi-core-163",
+              "opi-core-004",
+              "opi-core-111",
+              "opi-core-157",
+              "opi-core-164",
+              "opi-core-176",
+              "opi-core-191",
+              "opi-core-198",
+              "opi-core-203",
+              "opi-core-208",
+              "opi-core-223",
               "opi-core-232",
-              "opi-core-238",
-              "opi-core-599",
-              "opi-core-638",
-              "opi-core-639",
-              "opi-core-672",
-              "opi-core-673",
-              "opi-core-856",
-              "opi-extra-209",
-              "opi-extra-311"
+              "opi-core-236"
             ]
           }
         ]
@@ -10970,28 +10963,22 @@
       "kind": "phrase",
       "category": "procedure",
       "evidence": {
-        "questionCount": 14,
-        "totalOccurrences": 14,
+        "questionCount": 8,
+        "totalOccurrences": 8,
         "sourceCount": 3,
         "sources": [
           {
             "bankId": "opi",
             "field": "referenceText",
-            "questionCount": 12,
-            "totalOccurrences": 12,
+            "questionCount": 6,
+            "totalOccurrences": 6,
             "exampleCardIds": [
-              "opi-core-038",
-              "opi-core-081",
-              "opi-core-189",
-              "opi-core-193",
-              "opi-core-198",
               "opi-core-589",
               "opi-core-591",
-              "opi-core-636",
-              "opi-core-646",
-              "opi-core-707-part-2",
-              "opi-core-738",
-              "opi-extra-108"
+              "opi-core-600",
+              "opi-core-647",
+              "opi-extra-108",
+              "opi-extra-200"
             ]
           },
           {
@@ -11027,10 +11014,19 @@
       "kind": "abbreviation",
       "category": "procedure",
       "evidence": {
-        "questionCount": 10,
-        "totalOccurrences": 13,
-        "sourceCount": 1,
+        "questionCount": 11,
+        "totalOccurrences": 14,
+        "sourceCount": 2,
         "sources": [
+          {
+            "bankId": "opi",
+            "field": "referenceText",
+            "questionCount": 1,
+            "totalOccurrences": 1,
+            "exampleCardIds": [
+              "opi-core-855"
+            ]
+          },
           {
             "bankId": "storytelling",
             "field": "audioText",
