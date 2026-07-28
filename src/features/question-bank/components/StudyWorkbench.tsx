@@ -15,6 +15,7 @@ import { GestureDetector, type GestureType } from 'react-native-gesture-handler'
 import { AppText } from '@/components/ui';
 import { acceptAiConsent, grammarReview, hasAiConsent, polishExpression, transcribeRecording } from '@/features/ai/ai-client';
 import { exactMatch } from '@/features/ai/exact-match';
+import { TRANSCRIPTION_ACTION_ENABLED } from '@/features/ai/transcription-ui-capability';
 import { emitAudioDiagnostic } from '@/platform/audio/audio-diagnostics';
 import { colors, radii, spacing } from '@/theme';
 
@@ -368,7 +369,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   const aiBusy = busy === 'transcribe' || busy === 'review';
   const showRetry = activeTab === 'mine' ? Boolean(autoSaveError) : activeTab === 'notes' ? Boolean(saveError) : false;
   const showReviewAction = activeTab === 'mine' && reviewKind !== 'none';
-  const showTranscribeAction = activeTab === 'mine' && Boolean(recordingUri);
+  const showTranscribeAction = TRANSCRIPTION_ACTION_ENABLED && activeTab === 'mine' && Boolean(recordingUri);
   const transcribeDisabled = !recordingUri || editing || aiBusy;
   const reviewDisabled = !answerText.trim() || editing || aiBusy;
   const reviewError = failedAction === 'review' ? error : undefined;
