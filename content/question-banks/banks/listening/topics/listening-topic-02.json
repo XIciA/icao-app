@@ -17,7 +17,13 @@
         "65m",
         "all of above"
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "45米",
+        "55米",
+        "65米",
+        "以上全部"
+      ]
     },
     {
       "id": "listening-main-008",
@@ -32,7 +38,13 @@
         "3000, 080, 36L",
         "3000, 040, 36R"
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "4800米、航向040、36L跑道",
+        "4800米、航向040、36R跑道",
+        "3000米、航向080、36L跑道",
+        "3000米、航向040、36R跑道"
+      ]
     },
     {
       "id": "listening-main-009",
@@ -47,7 +59,13 @@
         "M to outer, inner, cross 31L at K",
         "M to inner, outer, cross 31L at K"
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "经K到内侧和外侧滑行道，在M点穿越31L跑道",
+        "沿内侧滑行道，经M到外侧滑行道，在K点穿越31L跑道",
+        "经M到外侧和内侧滑行道，在K点穿越31L跑道",
+        "经M到内侧和外侧滑行道，在K点穿越31L跑道"
+      ]
     },
     {
       "id": "listening-main-011",
@@ -62,7 +80,13 @@
         "Waiting for land",
         "Waiting for departure clearance"
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "等待开始起飞滑跑",
+        "等待进入跑道",
+        "等待着陆",
+        "等待离场许可"
+      ]
     },
     {
       "id": "listening-main-012",
@@ -77,7 +101,13 @@
         "To inform the controller the type of the aircraft",
         "To change the SSR mode"
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "获取二次监视雷达编码",
+        "确认应答机工作正常",
+        "告知管制员航空器机型",
+        "改变二次监视雷达模式"
+      ]
     },
     {
       "id": "listening-main-013",
@@ -92,7 +122,13 @@
         "Conflicting aircraft",
         "Aircraft speed"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "雷达识别",
+        "机载防撞系统",
+        "冲突航空器",
+        "航空器速度"
+      ]
     },
     {
       "id": "listening-main-018",
@@ -107,7 +143,13 @@
         "An intruder",
         "Depressurization"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "机载防撞系统",
+        "机载雷达显示高度丢失",
+        "入侵航空器",
+        "失压"
+      ]
     },
     {
       "id": "listening-main-031",
@@ -122,7 +164,13 @@
         "Birds over the runway marker",
         "Birds over the takeoff path"
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "跑道入口上空有鸟群",
+        "接地区上空有鸟群",
+        "跑道标志上空有鸟群",
+        "起飞航迹上有鸟群"
+      ]
     },
     {
       "id": "listening-main-032",
@@ -137,7 +185,13 @@
         "He cannot climb to 6,600 m due traffic",
         "He would like maintain 5,400 m"
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "他想追回延误时间",
+        "他因时刻表原因爬升至5400米",
+        "由于交通原因他不能爬升至6600米",
+        "他想保持5400米"
+      ]
     },
     {
       "id": "listening-main-033",
@@ -152,7 +206,13 @@
         "Go to the information desk",
         "Omit the position report"
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "改变高度",
+        "核实自动终端情报服务信息",
+        "前往问讯处",
+        "省略位置报告"
+      ]
     },
     {
       "id": "listening-main-035",
@@ -167,7 +227,13 @@
         "To avoid the opposite traffic",
         "To save more time"
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "与前方航空器保持足够间隔",
+        "在当前位置等待5分钟",
+        "避开相向航空器",
+        "节省更多时间"
+      ]
     },
     {
       "id": "listening-main-036",
@@ -182,7 +248,13 @@
         "To evacuate the passengers on board",
         "To check the weather condition"
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "实施直线进近",
+        "尽快着陆",
+        "撤离机上乘客",
+        "检查天气状况"
+      ]
     },
     {
       "id": "listening-main-037",
@@ -197,7 +269,13 @@
         "To call ATC later",
         "To hear loud explosion"
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "宣布遇险",
+        "查明问题",
+        "稍后呼叫空中交通管制",
+        "听到巨大爆炸声"
+      ]
     },
     {
       "id": "listening-main-038",
@@ -212,7 +290,13 @@
         "A pregnant woman was in danger",
         "A flight attendant reported something wrong with undercarriage"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "一名婴儿即将出生",
+        "一名乘务员即将分娩",
+        "一名孕妇处于危险中",
+        "一名乘务员报告起落架有问题"
+      ]
     },
     {
       "id": "listening-main-039",
@@ -227,7 +311,13 @@
         "Wind shear on final",
         "Number one to land"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "起落架问题",
+        "应急服务",
+        "五边有风切变",
+        "第一个着陆"
+      ]
     },
     {
       "id": "listening-main-051",
@@ -242,7 +332,13 @@
         "Got a warning of wind shear",
         "Controller refused his request to turn left"
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "遭遇不利气象条件",
+        "遭遇强风",
+        "收到风切变警告",
+        "管制员拒绝其左转请求"
+      ]
     },
     {
       "id": "listening-main-052",
@@ -257,7 +353,13 @@
         "Waypoint, time, level, airway",
         "Waypoint, time, level, airway, speed"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "航路、航路点、应答机编码",
+        "航路、航路点、频率",
+        "航路点、时间、高度、航路",
+        "航路点、时间、高度、航路、速度"
+      ]
     },
     {
       "id": "listening-main-054",
@@ -272,7 +374,13 @@
         "ILS approach Runway 18L",
         "None of the above"
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "对18L跑道实施目视进近",
+        "对36R跑道实施目视进近",
+        "对18L跑道实施仪表着陆系统进近",
+        "以上都不是"
+      ]
     },
     {
       "id": "listening-main-055",
@@ -287,7 +395,13 @@
         "Go to the information desk",
         "Omit the position report"
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "改变高度",
+        "查收自动终端情报服务信息",
+        "前往问讯处",
+        "省略位置报告"
+      ]
     },
     {
       "id": "listening-main-056",
@@ -302,7 +416,13 @@
         "Rear part of the aircraft",
         "Cockpit"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "航空器前部",
+        "航空器中部",
+        "航空器后部",
+        "驾驶舱"
+      ]
     },
     {
       "id": "listening-main-058",
@@ -317,7 +437,13 @@
         "The engine vibration is high",
         "The engine limitation is high"
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "发动机转速过高",
+        "发动机温度过高",
+        "发动机振动过大",
+        "发动机限制值过高"
+      ]
     },
     {
       "id": "listening-main-059",
@@ -332,7 +458,13 @@
         "Conflicting aircraft",
         "Aircraft speed"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "雷达识别",
+        "机载防撞系统",
+        "冲突航空器",
+        "航空器速度"
+      ]
     },
     {
       "id": "listening-main-066",
@@ -347,7 +479,13 @@
         "Requesting to maintain heading",
         "Request clearance to the next point"
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "请求改变高度",
+        "作位置报告",
+        "请求保持航向",
+        "请求前往下一报告点的许可"
+      ]
     },
     {
       "id": "listening-main-068",
@@ -362,7 +500,13 @@
         "106 degrees",
         "286 degrees"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "108度",
+        "105度",
+        "106度",
+        "286度"
+      ]
     },
     {
       "id": "listening-main-073",
@@ -377,7 +521,13 @@
         "Before 13",
         "None of above"
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "恰好13分",
+        "不晚于13分",
+        "13分以前",
+        "以上都不是"
+      ]
     },
     {
       "id": "listening-main-076",
@@ -392,7 +542,13 @@
         "The rudder was jammed.",
         "All of above"
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "右侧外副翼受损",
+        "一套液压系统故障",
+        "方向舵卡住",
+        "以上全部"
+      ]
     },
     {
       "id": "listening-main-077",
@@ -407,7 +563,13 @@
         "Amber point",
         "Amber place"
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "琥珀色脉冲",
+        "一个蓝色钱包",
+        "琥珀色点",
+        "琥珀色地点"
+      ]
     },
     {
       "id": "listening-main-079",
@@ -422,7 +584,13 @@
         "Aircraft below 8,100 m near HZ",
         "None of above"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "8100米以下的航空器",
+        "HZ附近的航空器",
+        "HZ附近8100米以下的航空器",
+        "以上都不是"
+      ]
     },
     {
       "id": "listening-main-080",
@@ -437,7 +605,13 @@
         "An altitude loss on the airborne radar",
         "An intruder"
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "失压",
+        "机载防撞系统",
+        "机载雷达显示高度丢失",
+        "入侵航空器"
+      ]
     },
     {
       "id": "listening-main-087",
@@ -452,7 +626,13 @@
         "Wind becomes slight",
         "All of above"
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "风力变得温和",
+        "风力变得柔和",
+        "风力变得轻微",
+        "以上全部"
+      ]
     },
     {
       "id": "listening-main-094",
@@ -467,7 +647,13 @@
         "Sky is obscured",
         "RVR 300"
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "能见度11.6",
+        "QNH 1011",
+        "天空被遮蔽",
+        "跑道视程300米"
+      ]
     },
     {
       "id": "listening-main-097",
@@ -482,7 +668,13 @@
         "The aircraft has run over one of the ground personnel",
         "A boy got into the main landing gear bay"
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "主起落架轮舱有问题",
+        "前起落架轮舱有问题",
+        "航空器碾过一名地面人员",
+        "一名男孩进入主起落架舱"
+      ]
     },
     {
       "id": "listening-main-099",
@@ -497,7 +689,13 @@
         "The pilot",
         "An unknown person"
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "管制员",
+        "安保人员",
+        "飞行员",
+        "不明人员"
+      ]
     },
     {
       "id": "listening-main-116",
@@ -512,7 +710,13 @@
         "Tyre burst during gear extension",
         "The wheel well is damaged"
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "轮胎在轮舱外爆裂",
+        "轮胎在轮舱内爆裂",
+        "轮胎在放下起落架时爆裂",
+        "轮舱受损"
+      ]
     },
     {
       "id": "listening-main-117",
@@ -527,7 +731,13 @@
         "The flight may cross the boundary",
         "The flight crossed the boundary and made an approach"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "管制员的许可不再有效",
+        "管制员承担责任",
+        "航班可以穿越边界",
+        "航班已穿越边界并实施进近"
+      ]
     },
     {
       "id": "listening-main-118",
@@ -542,7 +752,13 @@
         "To take passengers from another flight",
         "Thirty passengers are missing"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "该航班刚被取消",
+        "他们必须等待一班汉莎航空航班",
+        "接运另一航班的乘客",
+        "有30名乘客失踪"
+      ]
     },
     {
       "id": "listening-main-120",
@@ -557,7 +773,13 @@
         "The runway is just reopened",
         "The runway is snow flooded"
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "跑道正在清理",
+        "跑道上现在发生紧急情况",
+        "跑道刚刚重新开放",
+        "跑道被积雪淹没"
+      ]
     },
     {
       "id": "listening-main-137",
@@ -572,7 +794,13 @@
         "The flight had a cabin fire",
         "The flight had noticed a bush fire."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "该航班作了位置报告",
+        "该航班发现了坠机地点",
+        "该航班客舱着火",
+        "该航班发现了灌木火灾"
+      ]
     },
     {
       "id": "listening-main-140",
@@ -587,7 +815,13 @@
         "Evacuate",
         "Maintain altitude"
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "下降到较低高度",
+        "爬升到更高高度",
+        "撤离",
+        "保持高度"
+      ]
     },
     {
       "id": "listening-main-158",
@@ -602,7 +836,13 @@
         "A long holding on landing",
         "A long distance final"
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "医疗援助",
+        "在五边保持航向",
+        "着陆前长时间等待",
+        "长距离最后进近"
+      ]
     },
     {
       "id": "listening-main-173",
@@ -617,7 +857,13 @@
         "Heading",
         "Transponder code"
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "频率",
+        "高度",
+        "航向",
+        "应答机编码"
+      ]
     },
     {
       "id": "listening-main-176",
@@ -632,7 +878,13 @@
         "Expect late landing clearance.",
         "runway threshold was displaced."
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "许可在36R跑道着陆",
+        "一条快速脱离滑行道不可用",
+        "预计较晚发布着陆许可",
+        "跑道入口内移"
+      ]
     },
     {
       "id": "listening-main-177",
@@ -647,7 +899,13 @@
         "They can't extend their flaps",
         "R/W 23 L is blocked"
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "他们需要更长的跑道",
+        "他们必须复飞",
+        "他们无法放出襟翼",
+        "23L跑道被堵塞"
+      ]
     },
     {
       "id": "listening-main-178",
@@ -662,7 +920,13 @@
         "Possible undercarriage problem",
         "Engine trouble"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "用于训练",
+        "跑道视程400米",
+        "可能存在起落架问题",
+        "发动机故障"
+      ]
     },
     {
       "id": "listening-main-179",
@@ -677,7 +941,13 @@
         "Weak turbulence on approaching",
         "Weak turbulence of departure aircraft"
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "五边上的尾流颠簸",
+        "离场航空器的尾流颠簸",
+        "进近时的微弱颠簸",
+        "离场航空器的微弱颠簸"
+      ]
     },
     {
       "id": "listening-main-197",
@@ -692,7 +962,13 @@
         "They expedited their taxi across RW 16.",
         "They didn't accept the clearance to cross."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "他们速度太快，无法停下",
+        "他们穿越了16跑道，正在T滑行道外等待",
+        "他们加速滑行穿越16跑道",
+        "他们没有接受穿越许可"
+      ]
     },
     {
       "id": "listening-main-199",
@@ -707,7 +983,13 @@
         "Oncoming traffic",
         "Following traffic"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "平行航空器",
+        "背离航空器",
+        "迎面而来的航空器",
+        "跟随航空器"
+      ]
     },
     {
       "id": "listening-main-200",
@@ -722,7 +1004,13 @@
         "A long holding on landing",
         "A long distance final"
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "医疗援助",
+        "在五边保持航向",
+        "着陆前长时间等待",
+        "长距离最后进近"
+      ]
     },
     {
       "id": "listening-main-217",
@@ -737,7 +1025,13 @@
         "Hydraulic fluid was leaking.",
         "They were evacuating the passengers."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "前轮无法转向",
+        "前轮爆胎",
+        "液压油正在泄漏",
+        "他们正在撤离乘客"
+      ]
     },
     {
       "id": "listening-main-218",
@@ -752,7 +1046,13 @@
         "Going round",
         "Flying through"
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "爬升",
+        "向右转",
+        "复飞",
+        "穿越飞行"
+      ]
     },
     {
       "id": "listening-main-219",
@@ -767,7 +1067,13 @@
         "Climb rate.",
         "Descent rate."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "呼号",
+        "飞行高度层",
+        "爬升率",
+        "下降率"
+      ]
     },
     {
       "id": "listening-main-236",
@@ -782,7 +1088,13 @@
         "Due to weather.",
         "Due to lack of installed equipment."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "他们只有一套GPS工作",
+        "他们想按计划航路飞行",
+        "由于天气",
+        "由于未安装所需设备"
+      ]
     },
     {
       "id": "listening-main-237",
@@ -797,7 +1109,13 @@
         "Descend to FL230.",
         "Descend when ready."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "立即爬升",
+        "减速至240节",
+        "下降至FL230",
+        "准备好时下降"
+      ]
     },
     {
       "id": "listening-main-240",
@@ -812,7 +1130,13 @@
         "The crew requests a different runway.",
         "Another runway is not available."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "鸟群将被赶走",
+        "延误太久，所以他们接受许可",
+        "机组请求另一条跑道",
+        "没有其他跑道可用"
+      ]
     },
     {
       "id": "listening-main-256",
@@ -827,7 +1151,13 @@
         "Visibility below minima",
         "Surface wind 250 at 5 kts"
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "23L跑道仪表着陆系统停用",
+        "使用VOR进近16跑道",
+        "能见度低于最低标准",
+        "地面风250度、5节"
+      ]
     },
     {
       "id": "listening-main-258",
@@ -842,7 +1172,13 @@
         "To save fuel or time.",
         "Due to weight."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "避开结冰条件",
+        "由于积雨云",
+        "节省燃油或时间",
+        "由于重量"
+      ]
     },
     {
       "id": "listening-main-260",
@@ -857,7 +1193,13 @@
         "Danger of collision with the ground.",
         "Danger of collision with another aircraft."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "速度过高",
+        "导航精度丧失",
+        "有与地面相撞的危险",
+        "有与另一架航空器相撞的危险"
+      ]
     },
     {
       "id": "listening-main-276",
@@ -872,7 +1214,13 @@
         "Runway 16R.",
         "Runway 36R."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "12L跑道",
+        "36L跑道",
+        "16R跑道",
+        "36R跑道"
+      ]
     },
     {
       "id": "listening-main-277",
@@ -887,7 +1235,13 @@
         "Air China has an emergency",
         "Air Canada has two engines failed"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "加拿大航空发生紧急情况",
+        "中国国际航空航向200",
+        "中国国际航空发生紧急情况",
+        "加拿大航空两台发动机失效"
+      ]
     },
     {
       "id": "listening-main-278",
@@ -902,7 +1256,13 @@
         "They missed the turn onto T.",
         "Runway 5L is an active runway."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "他们右转进入了T滑行道",
+        "他们现在位于E滑行道",
+        "他们错过了转入T滑行道的路口",
+        "5L跑道是正在使用的跑道"
+      ]
     },
     {
       "id": "listening-main-279",
@@ -917,7 +1277,13 @@
         "50 miles west of Beijing",
         "060 miles west of Beijing"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "北京以东50海里",
+        "北京以东60海里",
+        "北京以西50海里",
+        "北京以西060海里"
+      ]
     },
     {
       "id": "listening-main-280",
@@ -932,7 +1298,13 @@
         "He is holding his position.",
         "His aircraft is running out of fuel."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "机上有病人",
+        "左发动机着火",
+        "他正在保持位置",
+        "航空器燃油即将耗尽"
+      ]
     },
     {
       "id": "listening-main-296",
@@ -947,7 +1319,13 @@
         "It will offset its path to encounter CBs.",
         "It is expected to meet CBs on its original route."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "左转以恢复自主领航",
+        "左转后恢复自主领航",
+        "偏离航迹以进入积雨云",
+        "预计在原航路上遭遇积雨云"
+      ]
     },
     {
       "id": "listening-main-297",
@@ -962,7 +1340,13 @@
         "ANRAT 2D and 5345",
         "ANRAT 9D and 5444"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "DRIVE 9D和5345",
+        "DRIVE 2D和3654",
+        "ANRAT 2D和5345",
+        "ANRAT 9D和5444"
+      ]
     },
     {
       "id": "listening-main-298",
@@ -977,7 +1361,13 @@
         "Runway 23L",
         "Runway 15"
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "16跑道",
+        "23R跑道",
+        "23L跑道",
+        "15跑道"
+      ]
     },
     {
       "id": "listening-main-300",
@@ -992,7 +1382,13 @@
         "Due to weight.",
         "Due to spacing."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "由于颠簸和结冰",
+        "由于中度颠簸",
+        "由于重量",
+        "由于间隔"
+      ]
     },
     {
       "id": "listening-main-316",
@@ -1007,7 +1403,13 @@
         "Notam",
         "PIREP"
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "重要气象情报",
+        "自动终端情报服务",
+        "航行通告",
+        "驾驶员报告"
+      ]
     },
     {
       "id": "listening-main-317",
@@ -1022,7 +1424,13 @@
         "Radar control problem.",
         "A Transponder problem."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "发射机故障",
+        "无线电完全失效",
+        "雷达管制问题",
+        "应答机故障"
+      ]
     },
     {
       "id": "listening-main-318",
@@ -1037,7 +1445,13 @@
         "Turn to heading 020 degrees.",
         "Cleared to 2000 meters at pilot discretion."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "他们有增压故障",
+        "由于前方地形较高无法下降",
+        "先转向航向020度",
+        "由飞行员自行决定下降至2000米"
+      ]
     },
     {
       "id": "listening-main-319",
@@ -1052,7 +1466,13 @@
         "backtrack on R/W 07 R",
         "taxi straight ahead"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "在23滑行道上",
+        "在07L跑道上滑行",
+        "在07R跑道上反向滑行",
+        "径直向前滑行"
+      ]
     },
     {
       "id": "listening-main-336",
@@ -1067,7 +1487,13 @@
         "Taxiway B",
         "Taxiway J"
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "L滑行道",
+        "N滑行道",
+        "B滑行道",
+        "J滑行道"
+      ]
     },
     {
       "id": "listening-main-337",
@@ -1082,7 +1508,13 @@
         "Communication established.",
         "Position report."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "无线电联系中断",
+        "无线电检查正常",
+        "已建立通信",
+        "位置报告"
+      ]
     },
     {
       "id": "listening-main-340",
@@ -1097,7 +1529,13 @@
         "There was almost a collision on the runway.",
         "There was a vehicle on the runway."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "发生了跑道侵入",
+        "跑道上发生了相撞",
+        "跑道上险些发生相撞",
+        "跑道上有车辆"
+      ]
     },
     {
       "id": "listening-main-356",
@@ -1112,7 +1550,13 @@
         "The nose wheel has collapsed.",
         "The electrics in the nose of the aircraft."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "液压故障",
+        "发动机故障",
+        "前轮坍塌",
+        "机头电气系统故障"
+      ]
     },
     {
       "id": "listening-main-358",
@@ -1127,7 +1571,13 @@
         "Gate broken",
         "Infectious disease"
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "有生病的乘客",
+        "蓝色鸟击",
+        "登机口损坏",
+        "传染病"
+      ]
     },
     {
       "id": "listening-main-359",
@@ -1142,7 +1592,13 @@
         "Number 1",
         "Number 3"
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "第4个",
+        "第2个",
+        "第1个",
+        "第3个"
+      ]
     },
     {
       "id": "listening-main-360",
@@ -1157,7 +1613,13 @@
         "They have to go around.",
         "They can't extend their flaps."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "他们需要更长的跑道",
+        "他们进近速度太快",
+        "他们必须复飞",
+        "他们无法放出襟翼"
+      ]
     },
     {
       "id": "listening-main-377",
@@ -1172,7 +1634,13 @@
         "Work in progress.",
         "Animal on the runway."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "进近期间有风切变",
+        "天气恶劣",
+        "正在施工",
+        "跑道上有动物"
+      ]
     },
     {
       "id": "listening-main-378",
@@ -1187,7 +1655,13 @@
         "There is no vehicle",
         "At the opposite end of the runway"
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "02跑道起始端",
+        "滑行道上",
+        "没有车辆",
+        "跑道另一端"
+      ]
     },
     {
       "id": "listening-main-379",
@@ -1202,7 +1676,13 @@
         "Because of moderate turbulence.",
         "Because of unserviceable anti-ice system."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "由于低能见度",
+        "由于雷暴警报",
+        "由于中度颠簸",
+        "由于防冰系统失效"
+      ]
     },
     {
       "id": "listening-main-380",
@@ -1217,7 +1697,13 @@
         "Visual Approach",
         "ILS Approach"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "VOR进近",
+        "NDB进近",
+        "目视进近",
+        "ILS进近"
+      ]
     },
     {
       "id": "listening-main-396",
@@ -1232,7 +1718,13 @@
         "Turn left",
         "Turn right"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "航向250度",
+        "航向260度",
+        "左转",
+        "右转"
+      ]
     },
     {
       "id": "listening-main-398",
@@ -1247,7 +1739,13 @@
         "A flight attendant was going to give birth to a baby.",
         "The reported problem was undercarriage."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "一名女子有流产危险",
+        "一名婴儿即将出生",
+        "一名乘务员即将分娩",
+        "报告的问题是起落架故障"
+      ]
     },
     {
       "id": "listening-main-400",
@@ -1262,7 +1760,13 @@
         "AFR 966 requires landing priority.",
         "AFR 966 is 15 miles west."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "DLH 124遇到燃油问题",
+        "AFR 966位于9,000英尺",
+        "AFR 966要求优先着陆",
+        "AFR 966位于西侧15海里"
+      ]
     },
     {
       "id": "listening-main-416",
@@ -1277,7 +1781,13 @@
         "Red flights appeared before V1.",
         "Red warning lights appeared before V1."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "在达到V1前看到跑道上有红灯",
+        "另一架飞机的红灯在达到V1前亮起",
+        "在达到V1前出现了红色飞行物",
+        "在达到V1前出现了红色警告灯"
+      ]
     },
     {
       "id": "listening-main-419",
@@ -1292,7 +1802,13 @@
         "Descend to 9200 meters.",
         "Leave route A593 to the east."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "向西脱离A593航路",
+        "立即加速下降",
+        "下降至9,200米",
+        "向东脱离A593航路"
+      ]
     },
     {
       "id": "listening-main-440",
@@ -1307,7 +1823,13 @@
         "Evacuate",
         "Maintain altitude"
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "下降到较低高度",
+        "爬升到较高高度",
+        "撤离",
+        "保持高度"
+      ]
     },
     {
       "id": "listening-main-448",
@@ -1322,7 +1844,13 @@
         "Not in an APU condition",
         "Not in an air operating condition"
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "不符合最低设备清单要求",
+        "不处于成对工作状态",
+        "不处于APU工作状态",
+        "不具备空中运行条件"
+      ]
     },
     {
       "id": "listening-main-453",
@@ -1337,7 +1865,13 @@
         "FL120 due to depressurization.",
         "FL210 due to pressurization"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "因高度上升而在FL120",
+        "因失压而在FL210",
+        "因失压而在FL120",
+        "因增压而在FL210"
+      ]
     },
     {
       "id": "listening-main-458",
@@ -1352,7 +1886,13 @@
         "Smoke coming out from the avionics bay.",
         "Smoke coming out from the rear toilet."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "后客舱冒烟",
+        "前客舱冒烟",
+        "航空电子设备舱冒烟",
+        "后部洗手间冒烟"
+      ]
     },
     {
       "id": "listening-main-477",
@@ -1367,7 +1907,13 @@
         "Due ground accident.",
         "Due published procdedure."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "由于间隔需要",
+        "由于排序需要",
+        "由于地面事故",
+        "由于公布程序"
+      ]
     },
     {
       "id": "listening-main-478",
@@ -1382,7 +1928,13 @@
         "Starboard engine ingestion.",
         "Starboard engine failure."
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "左发熄火",
+        "左发过热",
+        "右发吸入异物",
+        "右发失效"
+      ]
     },
     {
       "id": "listening-main-496",
@@ -1397,7 +1949,13 @@
         "1500m.",
         "2400m."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "2,700米",
+        "2,100米",
+        "1,500米",
+        "2,400米"
+      ]
     },
     {
       "id": "listening-main-511",
@@ -1412,7 +1970,13 @@
         "Check the landing gear by making a low pass.",
         "Check the landing gear at the present position."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "尝试放下起落架",
+        "尝试锁定起落架",
+        "通过低空通场检查起落架",
+        "在当前位置检查起落架"
+      ]
     },
     {
       "id": "listening-main-514",
@@ -1427,7 +1991,13 @@
         "Due dense smoke in rear cargo hold.",
         "Due ILS equipment not available."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "由于36R跑道上有浓烟",
+        "由于航空电子设备舱内有浓烟",
+        "由于后货舱内有浓烟",
+        "由于ILS设备不可用"
+      ]
     },
     {
       "id": "listening-main-529",
@@ -1442,7 +2012,13 @@
         "They will have to wait for a new tow bar.",
         "They will have to go back to stand."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "他们的起飞将延误",
+        "他们将换一辆牵引车",
+        "他们必须等待新的拖把",
+        "他们必须返回停机位"
+      ]
     },
     {
       "id": "listening-main-531",
@@ -1457,7 +2033,13 @@
         "The aircraft can not get out of the mud.",
         "The aircraft can not taxi to the runway without a tug."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "C滑行道太滑",
+        "铺筑面上泥浆太多",
+        "飞机无法驶出泥浆",
+        "没有牵引车飞机就无法滑行到跑道"
+      ]
     },
     {
       "id": "listening-main-534",
@@ -1472,7 +2054,13 @@
         "Wrong copy of wind.",
         "Wrong copy of QNH."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "复诵了错误的跑道",
+        "复诵了错误的滑行道",
+        "复诵了错误的风况",
+        "复诵了错误的QNH"
+      ]
     },
     {
       "id": "listening-main-556",
@@ -1487,7 +2075,13 @@
         "To climb to and maintain 11300m.",
         "To descend and maintain 9500m."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "爬升并保持10,100米",
+        "保持当前高度层",
+        "爬升并保持11,300米",
+        "下降并保持9,500米"
+      ]
     },
     {
       "id": "listening-main-557",
@@ -1502,7 +2096,13 @@
         "B747 encountered a gear problem.",
         "An unreported vehicle was on Taxiway B."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "一架飞机误占了滑行道",
+        "CSN 1347滑错了方向",
+        "一架B747遇到起落架问题",
+        "B滑行道上有一辆未报告的车辆"
+      ]
     },
     {
       "id": "listening-main-558",
@@ -1517,7 +2117,13 @@
         "Due to dangerous area.",
         "Due to prohibited area."
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "由于军事行动",
+        "由于限制区",
+        "由于危险区",
+        "由于禁区"
+      ]
     },
     {
       "id": "listening-main-575",
@@ -1532,7 +2138,13 @@
         "Bird strike.",
         "For flight training."
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "未与进近管制取得联系",
+        "在最低标准处未见跑道",
+        "遭遇鸟击",
+        "进行飞行训练"
+      ]
     },
     {
       "id": "listening-main-577",
@@ -1547,7 +2159,13 @@
         "Look left upward.",
         "Look right downward."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "向左下方看",
+        "向右上方看",
+        "向左上方看",
+        "向右下方看"
+      ]
     },
     {
       "id": "listening-main-578",
@@ -1562,7 +2180,13 @@
         "Due to unknown traffic.",
         "Due to runway unavailable."
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "由于恶劣天气",
+        "由于交通拥堵",
+        "由于不明航空器",
+        "由于跑道不可用"
+      ]
     },
     {
       "id": "listening-main-596",
@@ -1577,7 +2201,13 @@
         "Because taxiway B is blocked.",
         "Because Runway 34 is not available."
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "因为仪表发生故障",
+        "因为存在机械故障",
+        "因为B滑行道被阻塞",
+        "因为34跑道不可用"
+      ]
     },
     {
       "id": "listening-main-597",
@@ -1592,7 +2222,13 @@
         "Try to fix the problem.",
         "Detour to avoid weather."
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "进行检查",
+        "尽快着陆",
+        "尝试排除故障",
+        "绕飞以避开天气"
+      ]
     },
     {
       "id": "listening-main-598",
@@ -1607,7 +2243,13 @@
         "The pilot has a low pressure problem.",
         "The pilot has a taxiing problem."
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "飞行员正在返回停机坪",
+        "飞行员准备脱离跑道",
+        "飞行员遇到低压问题",
+        "飞行员遇到滑行问题"
+      ]
     },
     {
       "id": "listening-main-614",
@@ -1622,7 +2264,13 @@
         "Passenger steps and ferry buses.",
         "tow tractor."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "机务人员",
+        "消防救援服务",
+        "客梯车和摆渡车",
+        "牵引车"
+      ]
     },
     {
       "id": "listening-main-615",
@@ -1637,7 +2285,13 @@
         "345 degrees.",
         "156 degrees."
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "035度",
+        "165度",
+        "345度",
+        "156度"
+      ]
     },
     {
       "id": "listening-main-616",
@@ -1652,7 +2306,13 @@
         "Initial climb 8000 feet, squawk 3034, departure frequency 132.0.",
         "Initial climb 8000 feet, squawk 2034, departure frequency 132.0."
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "起始爬升至8,000英尺，应答机编码2034，离场频率123.0",
+        "高度8,000英尺，应答机编码3034，离场频率123.0",
+        "起始爬升至8,000英尺，应答机编码3034，离场频率132.0",
+        "起始爬升至8,000英尺，应答机编码2034，离场频率132.0"
+      ]
     },
     {
       "id": "listening-main-617",
@@ -1667,7 +2327,13 @@
         "Boarding delay.",
         "Broken catering truck."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "登机尚未完成",
+        "配餐延误",
+        "登机延误",
+        "配餐车故障"
+      ]
     },
     {
       "id": "listening-main-629",
@@ -1682,7 +2348,13 @@
         "Before 13.",
         "No sooner than 13."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "不得晚于13点",
+        "13点以后",
+        "13点以前",
+        "不得早于13点"
+      ]
     },
     {
       "id": "listening-main-630",
@@ -1697,7 +2369,13 @@
         "The controller's recommended level is 9600m.",
         "The required level is not available due weather."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "DAL遭遇了严重颠簸",
+        "DAL希望改变高度层",
+        "管制员建议的高度为9,600米",
+        "由于天气原因，所需高度层不可用"
+      ]
     },
     {
       "id": "listening-main-632",
@@ -1712,7 +2390,13 @@
         "ILS approach.",
         "Surveillence radar approach."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "VOR进近",
+        "目视进近",
+        "ILS进近",
+        "监视雷达进近"
+      ]
     },
     {
       "id": "listening-main-1047",
@@ -1727,7 +2411,13 @@
         "Due to smoke warning in the flight deck.",
         "Due to smoke warning in the avionics bay."
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "由于前客舱出现烟雾警告",
+        "由于前货舱出现烟雾警告",
+        "由于驾驶舱出现烟雾警告",
+        "由于航空电子设备舱出现烟雾警告"
+      ]
     },
     {
       "id": "listening-main-1049",
@@ -1742,7 +2432,13 @@
         "The taxiway is covered with patches of fog.",
         "The taxiway is covered with patches of snow."
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "滑行道局部结冰",
+        "滑行道局部有积水",
+        "滑行道局部有雾",
+        "滑行道局部有积雪"
+      ]
     },
     {
       "id": "listening-main-1051",
@@ -1757,7 +2453,13 @@
         "Due high oil temperature of starboard engine.",
         "Due loud noise coming out from front cabin."
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "由于后部洗手间传出巨响",
+        "由于右发排气温度指示过高",
+        "由于右发滑油温度过高",
+        "由于前客舱传出巨响"
+      ]
     },
     {
       "id": "listening-main-1054",
@@ -1772,7 +2474,13 @@
         "Push back.",
         "Engine test run."
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "启动APU",
+        "在停机位启动一台发动机",
+        "推出",
+        "试车"
+      ]
     },
     {
       "id": "listening-main-1055",
@@ -1787,7 +2495,13 @@
         "Heading",
         "Transponder code"
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "频率",
+        "高度",
+        "航向",
+        "应答机编码"
+      ]
     },
     {
       "id": "listening-main-1056",
@@ -1802,7 +2516,13 @@
         "They scheduled to 8100.",
         "They scheduled to 8100 but accept 7500."
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "他们接受7,500，但不接受8,100",
+        "他们接受8,100",
+        "他们计划飞往8,100",
+        "他们计划飞往8,100，但接受7,500"
+      ]
     },
     {
       "id": "listening-main-1058",
@@ -1817,7 +2537,13 @@
         "Squawk not available yet.",
         "5501."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "5510",
+        "5505",
+        "应答机编码尚不可用",
+        "5501"
+      ]
     },
     {
       "id": "listening-main-1066",
@@ -1832,7 +2558,13 @@
         "Distress",
         "Fire in all toilets"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "紧急情况",
+        "正常着陆",
+        "遇险情况",
+        "所有洗手间起火"
+      ]
     },
     {
       "id": "listening-main-1078",
@@ -1847,7 +2579,13 @@
         "3000 to 7000 feet.",
         "5000 to 7000 feet."
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "7,000至9,000英尺",
+        "3,000至5,000英尺",
+        "3,000至7,000英尺",
+        "5,000至7,000英尺"
+      ]
     },
     {
       "id": "listening-main-1091",
@@ -1862,7 +2600,13 @@
         "A vehicle on the second right.",
         "Workmen on the right second"
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "飞行员在左侧第一个路口",
+        "施工人员在左侧第一个路口",
+        "一辆车在右侧第二个路口",
+        "施工人员在右侧第二个路口"
+      ]
     },
     {
       "id": "listening-main-1100",
@@ -1877,7 +2621,13 @@
         "An aircraft Tyre",
         "Rudder problems"
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "跑道上有金属物",
+        "跑道上有橡胶",
+        "一只飞机轮胎",
+        "方向舵故障"
+      ]
     },
     {
       "id": "listening-main-1103",
@@ -1892,7 +2642,13 @@
         "To divert to the alternate",
         "To fix yaw damper"
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "使用备选航路",
+        "报告严重颠簸",
+        "备降",
+        "修复偏航阻尼器"
+      ]
     },
     {
       "id": "listening-main-1105",
@@ -1907,7 +2663,13 @@
         "The controller is trying to find the aircraft on radar",
         "The pilot is trying to find the aircraft on radar"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "飞机正在核对航向",
+        "飞机正在绕飞",
+        "管制员正在雷达上搜寻该飞机",
+        "飞行员正在雷达上搜寻该飞机"
+      ]
     },
     {
       "id": "listening-main-1115",
@@ -1922,7 +2684,13 @@
         "Because there is wind shear warning message.",
         "Because there is traffic on short final."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "因为一名乘客呼吸困难",
+        "因为离场空域实施流量控制",
+        "因为出现风切变警告信息",
+        "因为有航空器在短五边"
+      ]
     },
     {
       "id": "listening-main-1143",
@@ -1937,7 +2705,13 @@
         "Between 500 feet and the surface.",
         "Between 600 feet and the surface."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "300英尺至地面之间",
+        "500英尺至300英尺之间",
+        "500英尺至地面之间",
+        "600英尺至地面之间"
+      ]
     },
     {
       "id": "listening-main-1145",
@@ -1952,7 +2726,13 @@
         "They have something wrong with the takeoff configuration.",
         "They have something wrong with the undercarriage and flaps."
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "他们无法复位着陆构型警告",
+        "他们无法复位起飞构型警告",
+        "他们的起飞构型存在问题",
+        "他们的起落架和襟翼存在问题"
+      ]
     },
     {
       "id": "listening-main-1148",
@@ -1967,7 +2747,13 @@
         "Vertical fin",
         "Right rudder"
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "后机身",
+        "左升降舵",
+        "垂直安定面",
+        "右方向舵"
+      ]
     },
     {
       "id": "listening-main-1149",
@@ -1982,7 +2768,13 @@
         "Due to military activities.",
         "Due to forbidden area."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "由于限制区",
+        "由于危险区",
+        "由于军事活动",
+        "由于禁区"
+      ]
     },
     {
       "id": "listening-main-1151",
@@ -1997,7 +2789,13 @@
         "The flight had a cabin fire",
         "The flight had noticed a bush fire."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "该航班进行了位置报告",
+        "该航班发现了一处坠机地点",
+        "该航班客舱起火",
+        "该航班发现了丛林火灾"
+      ]
     },
     {
       "id": "listening-main-1152",
@@ -2012,7 +2810,13 @@
         "C. Evacuate",
         "D. Maintain altitude"
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "A. 下降到较低高度",
+        "B. 爬升到较高高度",
+        "C. 撤离",
+        "D. 保持高度"
+      ]
     },
     {
       "id": "listening-main-1153",
@@ -2027,7 +2831,13 @@
         "Because there was wind shear warning on Runway 36.",
         "Because there was a broken tug on Runway 36."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "因为顺风超过起飞限制",
+        "因为强顺风导致36跑道关闭",
+        "因为36跑道出现风切变警告",
+        "因为36跑道上有一辆故障牵引车"
+      ]
     },
     {
       "id": "listening-main-1154",
@@ -2042,7 +2852,13 @@
         "Due to takeoff configuration warning.",
         "Due to wind shear warning."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "由于发动机火警",
+        "由于超重警告",
+        "由于起飞构型警告",
+        "由于风切变警告"
+      ]
     },
     {
       "id": "listening-main-1155",
@@ -2057,7 +2873,13 @@
         "They have low fuel quantity in one of the engines.",
         "D.They have low fluid quantity in one of the engines."
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "他们的一台发动机滑油压力低",
+        "他们的一台发动机滑油量低",
+        "他们的一台发动机燃油量低",
+        "他们的一台发动机液体量低"
+      ]
     },
     {
       "id": "listening-main-1156",
@@ -2072,7 +2894,13 @@
         "Because they had a passenger that ran into the toilet on final.",
         "Because they made an unstable approach on final."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "因为他们遭遇了一架波音787的尾流",
+        "因为他们在五边遭遇强侧风",
+        "因为一名乘客在五边时跑进洗手间",
+        "因为他们在五边进近不稳定"
+      ]
     },
     {
       "id": "listening-main-1157",
@@ -2087,7 +2915,13 @@
         "They had landing gear problem.",
         "They had pressurization problem."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "他们遇到液压系统问题",
+        "他们遇到电气系统问题",
+        "他们遇到起落架问题",
+        "他们遇到增压系统问题"
+      ]
     },
     {
       "id": "listening-main-1158",
@@ -2102,7 +2936,13 @@
         "Hydraulic fluid is leaking from the green system.",
         "Fuel is leaking from the wing tanks."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "货舱内有酒精泄漏",
+        "发动机舱内有引气泄漏",
+        "绿色液压系统有液压油泄漏",
+        "机翼油箱有燃油泄漏"
+      ]
     },
     {
       "id": "listening-main-1159",
@@ -2117,7 +2957,13 @@
         "The controller has seen the reported balloon on the radar.",
         "The controller didn't approve CCA 4307's request to turn left."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "CCA 4307报告一个大白色气球从左向右飘过",
+        "CCA 4307请求右转避让所报告的气球",
+        "管制员已在雷达上看到所报告的气球",
+        "管制员未批准CCA 4307左转的请求"
+      ]
     },
     {
       "id": "listening-main-1160",
@@ -2132,7 +2978,13 @@
         "The male passenger was drunk.",
         "Other passengers attacked the male passenger."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "JAL 783遭遇非法干扰",
+        "一名男性乘客进入驾驶舱",
+        "该男性乘客醉酒",
+        "其他乘客袭击了该男性乘客"
+      ]
     },
     {
       "id": "listening-main-1161",
@@ -2147,7 +2999,13 @@
         "Because they lost visual reference at minima.",
         "Because they lost control of the passengers."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "因为他们丢失了ILS信号",
+        "因为他们与空管失去无线电联系",
+        "因为他们在最低标准处失去目视参考",
+        "因为他们无法控制乘客"
+      ]
     },
     {
       "id": "listening-main-1162",
@@ -2162,7 +3020,13 @@
         "Three passengers were seriously injured in the turbulence.",
         "CCA 4106 was No. 1 to land."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "CCA 4106遭遇严重颠簸",
+        "CCA 4106宣布紧急状态",
+        "三名乘客在颠簸中受重伤",
+        "CCA 4106为第一架着陆的飞机"
+      ]
     },
     {
       "id": "listening-main-1163",
@@ -2177,7 +3041,13 @@
         "Expect late landing clearance.",
         "runway threshold was displaced."
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "可以在36R跑道着陆",
+        "一条快速脱离道不可用",
+        "预计较晚收到着陆许可",
+        "跑道入口已内移"
+      ]
     },
     {
       "id": "listening-main-1164",
@@ -2192,7 +3062,13 @@
         "They can't extend their flaps",
         "R/W23L is blocked"
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "他们需要一条更长的跑道",
+        "他们必须复飞",
+        "他们无法放出襟翼",
+        "23L跑道被阻塞"
+      ]
     },
     {
       "id": "listening-main-1165",
@@ -2207,7 +3083,13 @@
         "They expedited their taxi across RW 16.",
         "They didn't accept the clearance to cross."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "他们速度太快，无法停下",
+        "他们已穿越16跑道，正在T滑行道外等待",
+        "他们加速滑行穿越了16跑道",
+        "他们没有接受穿越许可"
+      ]
     },
     {
       "id": "listening-main-1166",
@@ -2222,7 +3104,13 @@
         "Because of a bird strike.",
         "Because of a fuel leak."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "因为发动机起火",
+        "因为涡轮温度过高",
+        "因为遭遇鸟击",
+        "因为燃油泄漏"
+      ]
     },
     {
       "id": "listening-main-1167",
@@ -2237,7 +3125,13 @@
         "FL370 is available.",
         "Present level is too low."
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "当前高度层太高",
+        "当前高度层颠簸太强",
+        "FL370可用",
+        "当前高度层太低"
+      ]
     },
     {
       "id": "listening-main-1168",
@@ -2252,7 +3146,13 @@
         "Hydraulic fluid was leaking.",
         "They were evacuating the passengers."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "前轮无法转向",
+        "前轮爆胎",
+        "液压油正在泄漏",
+        "他们正在撤离乘客"
+      ]
     },
     {
       "id": "listening-main-1169",
@@ -2267,7 +3167,13 @@
         "2512",
         "1256"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "2315",
+        "1461",
+        "2512",
+        "1256"
+      ]
     },
     {
       "id": "listening-main-1170",
@@ -2282,7 +3188,13 @@
         "Due to weather.",
         "Due to lack of installed equipment."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "他们只有一套GPS正常工作",
+        "他们希望按计划航路飞行",
+        "由于天气原因",
+        "由于缺少机载设备"
+      ]
     },
     {
       "id": "listening-main-1171",
@@ -2297,7 +3209,13 @@
         "Controller instructed both aircraft to descend.",
         "TCAS indication agreed with ATC instruction."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "TCAS指示与空管指令相冲突",
+        "决断咨询指示UAL 347下降",
+        "管制员指示两架飞机都下降",
+        "TCAS指示与空管指令一致"
+      ]
     },
     {
       "id": "listening-main-1172",
@@ -2312,7 +3230,13 @@
         "The crew requests a different runway.",
         "Another runway is not available."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "鸟群将被驱离",
+        "延误时间太长，因此他们接受该许可",
+        "机组请求使用另一条跑道",
+        "没有其他跑道可用"
+      ]
     },
     {
       "id": "listening-main-1173",
@@ -2327,7 +3251,13 @@
         "Visibility below minima",
         "Surface wind 250 at 5 knots"
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "23L跑道ILS停止服务",
+        "使用VOR进近16跑道",
+        "能见度低于最低标准",
+        "地面风250度、5节"
+      ]
     },
     {
       "id": "listening-main-1174",
@@ -2342,7 +3272,13 @@
         "Air China has an emergency.",
         "Air Canada has two engines failed"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "加拿大航空遇到紧急情况",
+        "中国国际航空航向200度",
+        "中国国际航空遇到紧急情况",
+        "加拿大航空有两台发动机失效"
+      ]
     },
     {
       "id": "listening-main-1175",
@@ -2357,7 +3293,13 @@
         "They missed the turn onto Tango.",
         "Runway 5L is an active runway."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "他们右转进入Tango滑行道",
+        "他们现在位于E滑行道",
+        "他们错过了转入Tango滑行道的路口",
+        "5L跑道为使用中的跑道"
+      ]
     },
     {
       "id": "listening-main-1176",
@@ -2372,7 +3314,13 @@
         "It will offset its path to encounter CBs.",
         "It is expected to meet CBs on its original route."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "它将左转恢复自主领航",
+        "它将在左转后恢复自主领航",
+        "它将偏置航迹以进入积雨云",
+        "预计它会在原航路上遇到积雨云"
+      ]
     },
     {
       "id": "listening-main-1177",
@@ -2387,7 +3335,13 @@
         "ANRAT2D and 5345",
         "ANRAT9D and 5444"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "DRIVE9D离场程序和5345",
+        "DRIVE2D离场程序和3654",
+        "ANRAT2D离场程序和5345",
+        "ANRAT9D离场程序和5444"
+      ]
     },
     {
       "id": "listening-main-1178",
@@ -2402,7 +3356,13 @@
         "Runway 23L",
         "Runway 15"
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "16跑道",
+        "23R跑道",
+        "23L跑道",
+        "15跑道"
+      ]
     },
     {
       "id": "listening-main-1179",
@@ -2417,7 +3377,13 @@
         "Because there is a tug on the runway",
         "Because the vehicle blocked the runway"
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "因为有一架飞机在五边",
+        "因为一架航空器占用了跑道",
+        "因为跑道上有一辆牵引车",
+        "因为一辆车辆占用了跑道"
+      ]
     },
     {
       "id": "listening-main-1180",
@@ -2432,7 +3398,13 @@
         "Due to weight.",
         "Due to spacing."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "由于颠簸和结冰",
+        "由于中度颠簸",
+        "由于重量原因",
+        "由于间隔原因"
+      ]
     },
     {
       "id": "listening-main-1181",
@@ -2447,7 +3419,13 @@
         "NOTAM.",
         "PIREP."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "航空气象广播（VOLMET）",
+        "自动终端情报服务",
+        "航行通告",
+        "飞行员报告"
+      ]
     },
     {
       "id": "listening-main-1182",
@@ -2462,7 +3440,13 @@
         "Radar control problem.",
         "A Transponder problem."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "发射机故障",
+        "无线电完全失效",
+        "雷达管制问题",
+        "应答机故障"
+      ]
     },
     {
       "id": "listening-main-1183",
@@ -2477,7 +3461,13 @@
         "Turn to heading 020 degrees.",
         "Cleared to 2000 meters at pilot discretion."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "他们遇到增压问题",
+        "由于地势较高而无法下降",
+        "转到航向020度",
+        "由飞行员自行决定下降至2,000米"
+      ]
     },
     {
       "id": "listening-main-1184",
@@ -2492,7 +3482,13 @@
         "backtrack on Runway 07R",
         "taxi straight ahead"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "经23滑行道",
+        "在07L跑道上滑行",
+        "在07R跑道上反向滑行",
+        "向前直行"
+      ]
     },
     {
       "id": "listening-main-1185",
@@ -2507,7 +3503,13 @@
         "VOR.",
         "NDB."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "ILS进近",
+        "航向台进近",
+        "VOR进近",
+        "NDB进近"
+      ]
     },
     {
       "id": "listening-main-1186",
@@ -2522,7 +3524,13 @@
         "Taxiway B",
         "Taxiway J"
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "L滑行道",
+        "N滑行道",
+        "B滑行道",
+        "J滑行道"
+      ]
     },
     {
       "id": "listening-main-1187",
@@ -2537,7 +3545,13 @@
         "Communication established.",
         "Position report."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "无线电联系已中断",
+        "无线电检查正常",
+        "已建立通信",
+        "位置报告"
+      ]
     },
     {
       "id": "listening-main-1188",
@@ -2552,7 +3566,13 @@
         "Low endurance",
         "Fuel shortage"
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "燃油泄漏",
+        "缺少燃油",
+        "续航时间不足",
+        "燃油短缺"
+      ]
     },
     {
       "id": "listening-main-1189",
@@ -2567,7 +3587,13 @@
         "Medical service.",
         "A leader-van"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "引导车",
+        "摆渡车",
+        "医疗服务",
+        "引导车"
+      ]
     },
     {
       "id": "listening-main-1190",
@@ -2582,7 +3608,13 @@
         "There was almost a collision on the runway.",
         "There was a vehicle on the runway."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "发生了跑道侵入",
+        "跑道上发生了相撞",
+        "跑道上险些发生相撞",
+        "跑道上有车辆"
+      ]
     },
     {
       "id": "listening-main-1191",
@@ -2597,7 +3629,13 @@
         "The nose wheel has collapsed.",
         "The electrics in the nose of the aircraft."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "液压故障",
+        "发动机故障",
+        "前轮坍塌",
+        "机头电气系统故障"
+      ]
     },
     {
       "id": "listening-main-1192",
@@ -2612,7 +3650,13 @@
         "Work in progress on runway",
         "There is a vehicle behind the aircraft"
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "牵引车发生故障",
+        "拖把损坏",
+        "跑道正在施工",
+        "飞机后方有车辆"
+      ]
     },
     {
       "id": "listening-main-1193",
@@ -2627,7 +3671,13 @@
         "Gate broken",
         "Infectious disease"
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "有生病的乘客",
+        "蓝色鸟击",
+        "登机口损坏",
+        "传染病"
+      ]
     },
     {
       "id": "listening-main-1194",
@@ -2642,7 +3692,13 @@
         "Number 2.",
         "Number 1."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "第4位",
+        "第3位",
+        "第2位",
+        "第1位"
+      ]
     },
     {
       "id": "listening-main-1195",
@@ -2657,7 +3713,13 @@
         "They have to go around.",
         "They can't extend their flaps."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "他们需要一条更长的跑道",
+        "他们进近速度太快",
+        "他们必须复飞",
+        "他们无法放出襟翼"
+      ]
     },
     {
       "id": "listening-main-1196",
@@ -2672,7 +3734,13 @@
         "Boeing 737",
         "Airbus 320"
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "空客A340",
+        "波音747",
+        "波音737",
+        "空客A320"
+      ]
     },
     {
       "id": "listening-main-1197",
@@ -2687,7 +3755,13 @@
         "Work in progress.",
         "Animal on the runway."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "进近期间有风切变",
+        "天气恶劣",
+        "正在施工",
+        "跑道上有动物"
+      ]
     },
     {
       "id": "listening-main-1198",
@@ -2702,7 +3776,13 @@
         "There is no vehicle",
         "At the opposite end of the runway"
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "02跑道起始端",
+        "滑行道上",
+        "没有车辆",
+        "跑道另一端"
+      ]
     },
     {
       "id": "listening-main-1199",
@@ -2717,7 +3797,13 @@
         "Because of moderate turbulence.",
         "Because of unserviceable anti-ice system."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "由于低能见度",
+        "由于雷暴警报",
+        "由于中度颠簸",
+        "由于防冰系统失效"
+      ]
     },
     {
       "id": "listening-main-1200",
@@ -2732,7 +3818,13 @@
         "Visual Approach",
         "ILS Approach"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "VOR进近",
+        "NDB进近",
+        "目视进近",
+        "ILS进近"
+      ]
     },
     {
       "id": "listening-main-1201",
@@ -2747,7 +3839,13 @@
         "Turn left",
         "Turn right"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "航向250度",
+        "航向260度",
+        "左转",
+        "右转"
+      ]
     },
     {
       "id": "listening-main-1202",
@@ -2762,7 +3860,13 @@
         "Crossing traffic.",
         "2 minutes or less."
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "在FL330",
+        "立即",
+        "遇到穿越航空器",
+        "两分钟或更短时间内"
+      ]
     },
     {
       "id": "listening-main-1203",
@@ -2777,7 +3881,13 @@
         "A flight attendant was going to give birth to a baby.",
         "The reported problem was undercarriage."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "一名女性有流产危险",
+        "一名婴儿即将出生",
+        "一名乘务员即将分娩",
+        "报告的问题是起落架故障"
+      ]
     },
     {
       "id": "listening-main-1204",
@@ -2792,7 +3902,13 @@
         "Thunderstorm area",
         "Permitted area"
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "禁区",
+        "直升机训练区",
+        "雷暴区",
+        "允许飞行区"
+      ]
     },
     {
       "id": "listening-main-1205",
@@ -2807,7 +3923,13 @@
         "AFR 966 requires landing priority.",
         "AFR 966 is 15 miles west."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "DLH 124遇到燃油问题",
+        "AFR 966位于9,000英尺",
+        "AFR 966要求优先着陆",
+        "AFR 966位于西侧15海里"
+      ]
     },
     {
       "id": "listening-main-1206",
@@ -2822,7 +3944,13 @@
         "Red flights appeared before V1.",
         "Red warning lights appeared before V1."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "在达到V1前看到跑道上有红灯",
+        "另一架飞机的红灯在达到V1前亮起",
+        "在达到V1前出现了红色飞行物",
+        "在达到V1前出现了红色警告灯"
+      ]
     },
     {
       "id": "listening-main-1208",
@@ -2837,7 +3965,13 @@
         "Descend to 9200 meters.",
         "Leave route A593 to the east."
       ],
-      "correctChoiceIndex": 3
+      "correctChoiceIndex": 3,
+      "choicesZh": [
+        "向西脱离A593航路",
+        "立即加速下降",
+        "下降至9,200米",
+        "向东脱离A593航路"
+      ]
     },
     {
       "id": "listening-main-1209",
@@ -2852,7 +3986,13 @@
         "Because of wind condition.",
         "Because of low height."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "由于低能见度",
+        "由于严重颠簸",
+        "由于风况",
+        "由于高度过低"
+      ]
     },
     {
       "id": "listening-main-1210",
@@ -2867,7 +4007,13 @@
         "Not in an APU condition",
         "Not in an air operating condition"
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "不符合最低设备清单要求",
+        "不处于修复完好状态",
+        "不处于APU工作状态",
+        "不具备空中运行条件"
+      ]
     },
     {
       "id": "listening-main-1211",
@@ -2882,7 +4028,13 @@
         "FL120 due to depressurization",
         "FL210 due to pressurization"
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "因高度上升而在FL120",
+        "因失压而在FL210",
+        "因失压而在FL120",
+        "因增压而在FL210"
+      ]
     },
     {
       "id": "listening-main-1227",
@@ -2897,7 +4049,13 @@
         "After passing FL190.",
         "After passing FL210."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "通过FL170后",
+        "通过FL250后",
+        "通过FL190后",
+        "通过FL210后"
+      ]
     },
     {
       "id": "listening-main-1228",
@@ -2912,7 +4070,13 @@
         "Make a low pass for visual check.",
         "Spray foam on the runway."
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "进行紧急着陆",
+        "加入等待航线进行检查",
+        "低空通场以便目视检查",
+        "在跑道上喷洒泡沫"
+      ]
     },
     {
       "id": "listening-main-1229",
@@ -2927,7 +4091,13 @@
         "Due ongoing snow clearance.",
         "Due centerline lighting malfunction."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "由于正在施工",
+        "由于故障车辆阻塞",
+        "由于正在除雪",
+        "由于中线灯故障"
+      ]
     },
     {
       "id": "listening-main-1230",
@@ -2942,7 +4112,13 @@
         "CCA 981 is coming back due engine overheating.",
         "CCA 981 is holding for fuel jettison."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "CCA 981过重，无法安全着陆",
+        "CCA 981因吸入鸟而返航",
+        "CCA 981因发动机过热而返航",
+        "CCA 981正在等待放油"
+      ]
     },
     {
       "id": "listening-main-1238",
@@ -2957,7 +4133,13 @@
         "They were caught in thunderstorm between FL240 and 260.",
         "They were caught in moderate icing and anti-icing equipment failed."
       ],
-      "correctChoiceIndex": 1
+      "correctChoiceIndex": 1,
+      "choicesZh": [
+        "他们在FL210至FL240之间遭遇中度结冰",
+        "他们遭遇中度结冰且除冰设备失效",
+        "他们在FL240至FL260之间遭遇雷暴",
+        "他们遭遇中度结冰且防冰设备失效"
+      ]
     },
     {
       "id": "listening-main-1239",
@@ -2972,7 +4154,13 @@
         "An emergency traffic had not vacated the taxiway F.",
         "An emergency traffic took the wrong direction."
       ],
-      "correctChoiceIndex": 2
+      "correctChoiceIndex": 2,
+      "choicesZh": [
+        "其灯光系统停止服务",
+        "一辆故障车辆滑出跑道",
+        "一架紧急航空器尚未脱离F滑行道",
+        "一架紧急航空器走错了方向"
+      ]
     },
     {
       "id": "listening-main-1240",
@@ -2987,7 +4175,13 @@
         "They extinguished the fire on engine.",
         "They did emergency evacuation."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "他们执行了紧急检查单",
+        "他们关闭了故障发动机",
+        "他们扑灭了发动机火灾",
+        "他们实施了紧急撤离"
+      ]
     },
     {
       "id": "listening-main-1241",
@@ -3002,7 +4196,13 @@
         "Open cabin door.",
         "Sudden explosion."
       ],
-      "correctChoiceIndex": 0
+      "correctChoiceIndex": 0,
+      "choicesZh": [
+        "突然失压",
+        "风挡破裂",
+        "客舱门开启",
+        "突然爆炸"
+      ]
     }
   ]
 }
