@@ -156,4 +156,6 @@ git diff --check
 ## 8. 已记录事故
 
 - [`incident-2026-07-28-playback-transcription.md`](./incident-2026-07-28-playback-transcription.md)：有效真机录音无法稳定回放，账号同意漂移导致转写不可用。
+- [`incident-2026-07-28-web-study-audio-first-frame.md`](./incident-2026-07-28-web-study-audio-first-frame.md)：Web 首次自动播放、用户手势和首帧看门狗的前两轮修复；真实 iPhone 后续证据已转入下一记录。
+- [`incident-2026-07-28-web-study-audio-mobile-safari.md`](./incident-2026-07-28-web-study-audio-mobile-safari.md)：移动 Safari 因 `loadeddata/isLoaded` 播放门槛无法启动题卡参考音频。
 - [`incident-2026-07-28-web-study-audio-first-frame.md`](./incident-2026-07-28-web-study-audio-first-frame.md)：Web 新浏览器首次题卡音频停在 0 秒且无限转圈。

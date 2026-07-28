@@ -1,6 +1,6 @@
 # Web Study Audio Incident: First Playback Stuck at 0:00
 
-状态：第二轮根因修复已发布并通过正式域名验收
+状态：前两轮首帧与用户手势修复已发布；后续真实 iPhone 发现更早的 `loadeddata` 门槛，结论已由新事故记录接续
 
 日期：2026-07-28
 
@@ -58,6 +58,12 @@ Web 首次播放策略和播放器恢复状态机存在三个相邻缺口：
 
 该问题没有破坏音频 owner 或录音资产，但违反了资源失败必须有明确状态和重试入口的产品不变量。
 
+### Later physical-device correction
+
+本记录前两轮验收覆盖桌面新会话和 390px 浏览器视口，没有覆盖真实 iPhone Safari 的媒体预加载行为。相同显示版本随后在真实 iPhone Safari / 5G 上稳定显示的是 12 秒“音频加载超时”，而不是 6 秒“音频启动超时”：Expo Web 尚未发布 `loadeddata/isLoaded`，播放按钮仍不可点击，因而根本没有进入本记录修复的手势与首帧路径。
+
+这项新证据没有推翻“点击必须同步调用 `play()`”和“首帧需要看门狗”的结论，但证明它们不足以长期关闭事故。Web 题卡随后改用平台专用 `HTMLAudioElement`，完整根因、实现和上线验收由 [`incident-2026-07-28-web-study-audio-mobile-safari.md`](./incident-2026-07-28-web-study-audio-mobile-safari.md) 接续；本记录中的 Expo Web 共享播放器方案只保留为历史阶段，不再是当前长期边界。
+
 ## Rejected hypotheses
 
 | Hypothesis | Evidence that rejected it |
@@ -83,7 +89,7 @@ Web 首次播放策略和播放器恢复状态机存在三个相邻缺口：
 - [x] `pnpm check:audio`
 - [x] `pnpm check`：66 个 App suites / 294 tests；8 个 API suites / 235 tests
 - [x] Vercel Preview 构建、健康和 bundle 验收；候选 URL 受团队登录保护
-- [x] Production 正式域名新浏览器首次播放、切题自动播放、手机宽度冷刷新验收
+- [x] Production 正式域名桌面新浏览器首次播放、切题自动播放、390px 浏览器视口冷刷新验收
 - [x] Native Development Build：不适用，Native 路径未修改
 - [x] Platform fingerprint：不适用，未修改原生敏感实现
 - [x] Physical-device microphone → playback → transcription：不适用，本事故不涉及录音或转写
@@ -109,10 +115,10 @@ Web 首次播放策略和播放器恢复状态机存在三个相邻缺口：
 ## Remaining risks
 
 - 中国大陆到 Vercel 音频分片的冷网络质量仍可能造成真实加载超时；本修复保证可诊断和可重试，不改变海外部署拓扑。
-- Expo Audio Web 仍不暴露底层播放 Promise；因此以“是否产生首帧”作为稳定的公开 API 恢复边界。
+- Expo Audio Web 不暴露底层播放 Promise，并把 `loadeddata` 当成 ready；真实移动 Safari 证明该抽象不能继续作为 Web 题卡长期播放边界。
 
 ## Follow-up
 
 - Owner: Web 题卡音频
 - Required evidence: 后续 Expo Audio 升级时继续复跑 Web 首次手势和首帧超时回归。
-- Completion condition: 已达到；首卡显示可点击播放，点击同步保留浏览器用户手势并产生首帧，下一题没有无限等待，阻断路径由调用顺序、lease 失败和 6 秒首帧期限回归测试共同覆盖。
+- Completion condition: 前两轮目标已达到，但事故整体未关闭；以新记录中的真实 iPhone、Android Chrome、录音互斥和平台专用 Web 播放层验收为最终完成条件。

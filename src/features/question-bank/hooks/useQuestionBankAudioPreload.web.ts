@@ -1,10 +1,14 @@
-import { clearPreloadedSource, preload } from 'expo-audio';
 import { useEffect, useInsertionEffect, useRef } from 'react';
 
 import { resolveQuestionBankAsset } from '../platform/resource-service';
 import type { QuestionBankCard } from '../types';
 
 const NEXT_AUDIO_PRELOAD_DELAY_MS = 750;
+
+type OwnedPreload = {
+  audio: HTMLAudioElement;
+  uri: string;
+};
 
 function audioUri(card?: QuestionBankCard) {
   return card && card.kind !== 'image' && card.audio
@@ -35,7 +39,7 @@ export function useQuestionBankAudioPreload(
   currentIndex: number,
   currentAudioReady: boolean,
 ) {
-  const ownedSources = useRef(new Set<string>());
+  const ownedPreload = useRef<OwnedPreload | undefined>(undefined);
 
   useInsertionEffect(() => {
     ensureQuestionBankAudioConnectionHint(audioUri(cards[currentIndex]));
@@ -43,30 +47,55 @@ export function useQuestionBankAudioPreload(
   }, [cards, currentIndex]);
 
   useEffect(() => {
-    const currentUri = audioUri(cards[currentIndex]);
     const nextUri = audioUri(cards[currentIndex + 1]);
-    const desiredSources = new Set([currentUri, nextUri].filter((uri): uri is string => Boolean(uri)));
 
-    ownedSources.current.forEach((uri) => {
-      if (desiredSources.has(uri)) return;
-      ownedSources.current.delete(uri);
-      void Promise.resolve(clearPreloadedSource(uri)).catch(() => undefined);
-    });
+    function disposeOwnedPreload() {
+      const owned = ownedPreload.current;
+      if (!owned) return;
+      ownedPreload.current = undefined;
+      try {
+        owned.audio.pause();
+        owned.audio.removeAttribute('src');
+        owned.audio.load();
+      } catch {
+        // Preloading is only a best-effort performance hint.
+      }
+    }
 
-    if (!currentAudioReady || !nextUri || ownedSources.current.has(nextUri)) return;
+    if (ownedPreload.current && ownedPreload.current.uri !== nextUri) disposeOwnedPreload();
+    if (
+      !currentAudioReady
+      || !nextUri
+      || ownedPreload.current?.uri === nextUri
+      || typeof Audio === 'undefined'
+    ) return;
     const timeout = setTimeout(() => {
-      ownedSources.current.add(nextUri);
-      void Promise.resolve(preload(nextUri)).catch(() => {
-        ownedSources.current.delete(nextUri);
-      });
+      if (ownedPreload.current && ownedPreload.current.uri !== nextUri) disposeOwnedPreload();
+      if (ownedPreload.current?.uri === nextUri) return;
+      const audio = new Audio();
+      audio.crossOrigin = 'anonymous';
+      audio.preload = 'auto';
+      audio.src = nextUri;
+      ownedPreload.current = { audio, uri: nextUri };
+      try {
+        audio.load();
+      } catch {
+        disposeOwnedPreload();
+      }
     }, NEXT_AUDIO_PRELOAD_DELAY_MS);
     return () => clearTimeout(timeout);
   }, [cards, currentAudioReady, currentIndex]);
 
   useEffect(() => () => {
-    ownedSources.current.forEach((uri) => {
-      void Promise.resolve(clearPreloadedSource(uri)).catch(() => undefined);
-    });
-    ownedSources.current.clear();
+    const owned = ownedPreload.current;
+    ownedPreload.current = undefined;
+    if (!owned) return;
+    try {
+      owned.audio.pause();
+      owned.audio.removeAttribute('src');
+      owned.audio.load();
+    } catch {
+      // Preloading is only a best-effort performance hint.
+    }
   }, []);
 }

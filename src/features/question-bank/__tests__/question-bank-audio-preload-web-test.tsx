@@ -6,13 +6,22 @@ import {
   useQuestionBankAudioPreload,
 } from '../hooks/useQuestionBankAudioPreload.web';
 
-const mockClearPreloadedSource = jest.fn();
-const mockPreload = jest.fn();
+class MockPreloadAudio {
+  static instances: MockPreloadAudio[] = [];
 
-jest.mock('expo-audio', () => ({
-  clearPreloadedSource: (source: string) => mockClearPreloadedSource(source),
-  preload: (source: string) => mockPreload(source),
-}));
+  crossOrigin: string | null = null;
+  preload = '';
+  src = '';
+  load = jest.fn();
+  pause = jest.fn();
+  removeAttribute = jest.fn((name: string) => {
+    if (name === 'src') this.src = '';
+  });
+
+  constructor() {
+    MockPreloadAudio.instances.push(this);
+  }
+}
 
 const cards = [
   { audio: 'https://audio-08.example.test/001.mp3', id: 'card-1', kind: 'speaking' },
@@ -29,9 +38,24 @@ function Harness({ currentAudioReady, currentIndex = 0 }: {
 }
 
 describe('useQuestionBankAudioPreload.web', () => {
+  const originalAudio = Object.getOwnPropertyDescriptor(globalThis, 'Audio');
+
+  beforeAll(() => {
+    Object.defineProperty(globalThis, 'Audio', {
+      configurable: true,
+      value: MockPreloadAudio,
+    });
+  });
+
+  afterAll(() => {
+    if (originalAudio) Object.defineProperty(globalThis, 'Audio', originalAudio);
+    else Reflect.deleteProperty(globalThis, 'Audio');
+  });
+
   beforeEach(() => {
     jest.clearAllMocks();
     jest.useFakeTimers();
+    MockPreloadAudio.instances = [];
   });
 
   afterEach(() => {
@@ -45,19 +69,33 @@ describe('useQuestionBankAudioPreload.web', () => {
     await act(async () => {
       jest.runAllTimers();
     });
-    expect(mockPreload).not.toHaveBeenCalled();
+    expect(MockPreloadAudio.instances).toHaveLength(0);
 
     await screen.rerender(<Harness currentAudioReady />);
     await act(async () => {
       jest.advanceTimersByTime(749);
     });
-    expect(mockPreload).not.toHaveBeenCalled();
+    expect(MockPreloadAudio.instances).toHaveLength(0);
 
     await act(async () => {
       jest.advanceTimersByTime(1);
     });
-    expect(mockPreload).toHaveBeenCalledTimes(1);
-    expect(mockPreload).toHaveBeenCalledWith('https://audio-07.example.test/002.mp3');
+    expect(MockPreloadAudio.instances).toHaveLength(1);
+    expect(MockPreloadAudio.instances[0]).toMatchObject({
+      crossOrigin: 'anonymous',
+      preload: 'auto',
+      src: 'https://audio-07.example.test/002.mp3',
+    });
+    expect(MockPreloadAudio.instances[0].load).toHaveBeenCalledTimes(1);
+
+    await screen.rerender(<Harness currentAudioReady currentIndex={1} />);
+    await act(async () => {
+      jest.advanceTimersByTime(750);
+    });
+    expect(MockPreloadAudio.instances).toHaveLength(2);
+    expect(MockPreloadAudio.instances[0].pause).toHaveBeenCalled();
+    expect(MockPreloadAudio.instances[0].removeAttribute).toHaveBeenCalledWith('src');
+    expect(MockPreloadAudio.instances[1].src).toBe('https://audio-06.example.test/003.mp3');
   });
 
   it('adds reusable connection hints without duplicating an origin', () => {
