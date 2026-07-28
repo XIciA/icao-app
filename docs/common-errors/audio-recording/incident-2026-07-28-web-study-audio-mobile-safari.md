@@ -118,6 +118,14 @@ Expo Audio Web 只在底层媒体元素触发 `loadeddata` 后发布 `isLoaded=t
 - [ ] 顶层 `pnpm check`：该现网分支原本缺少题库 release output，第一步以 `release_output_missing_run_content_build` 停止；按“不更新内容 release”边界未生成或带入该输出
 - [ ] fresh iOS/Android audio-sensitive fingerprints：两条命令均已执行，但本机缺少 Maestro，按门禁在生成证据前停止；本次没有修改 fingerprint 输入中的原生敏感文件
 
+### Preview evidence
+
+- Preview deployment：`dpl_8XcozBuedF4yhVbJnTMF6YYb6wAm`
+- Preview URL：`https://feizhuicao-website-1fwtpa1ix-xixi-s-projects6.vercel.app`
+- Vercel 状态：Ready；远程 Production-equivalent Web 导出完成，3217 modules，入口 bundle 约 13 MB raw。
+- 已登录 Chrome 可通过 Vercel SSO 打开 Preview，并确认应用入口正常。
+- Preview 域名使用独立 Web 邀请会话，不能复用正式域名登录；本地 UI acceptance 模式能进入题库入口，但该分支原本缺少 release output，按本轮边界没有生成内容，因此音频交互留到正式域名既有会话完成。
+
 ## Physical-device verification
 
 - [ ] iPhone Safari / 5G：Sentence68 冷开后立即可点并产生首帧
