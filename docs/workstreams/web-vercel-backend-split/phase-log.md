@@ -6,7 +6,9 @@
 - 截图触发的是“首帧启动超时”而不是“资源加载超时”；代码审计确认 Web 手动入口在 `await study lease` 后才调用 `play()`，导致 iOS 浏览器丢失首次有声播放所需的用户手势。
 - Web 手动点击现在先发起既有 lease 申请，并在同一点击同步栈内调用唯一 Expo player；lease 失败、页面失活或 generation 过期时立即暂停并释放迟到 lease。
 - 后续切题自动播放不是本次根因并予以保留；Native 的 lease-first 播放路径没有修改。
-- 新增 pending mode Promise 的调用顺序测试与 lease 失败恢复测试；完整自动化与发布证据在正式上线后补齐。
+- 新增 pending mode Promise 的调用顺序测试与 lease 失败恢复测试；`pnpm check:web`、`pnpm check:audio` 和 `pnpm check` 全部通过，包含 66 个 App suites / 294 tests、8 个 API suites / 235 tests。
+- Preview `dpl_FhEjB4R8MUcd2FVXew4M665bH8iF` 构建 Ready，交互 URL 受团队 SSO 保护；Production `dpl_3phgCARKsfcjS8JZxNMnxVsj9QrZ` 已发布，发布前回滚点为 `dpl_GZG4ea1uYMLPEZzQ2eCwTN1VWtVZ`。
+- 正式域名全新标签与 390×844 手机宽度冷刷新均验证 `Sentence18` 点击后首帧前进；下一题 `Sentence67` 自动播放正常，浏览器无 error/warning。
 
 ## 2026-07-28：新浏览器题卡音频首帧恢复
 
