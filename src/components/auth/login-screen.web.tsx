@@ -58,7 +58,6 @@ export function LoginScreen() {
         {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
         <Button disabled={submitting} onPress={() => void submit()} size="lg">{submitting ? '登录中…' : '进入 Web 体验版'}</Button>
       </View>
-      <AppText style={styles.scopeNote} variant="caption">App 是正式学习产品；当前网页为独立体验环境。</AppText>
       {auth.uiAcceptanceAvailable ? (
         <Pressable
           accessibilityLabel="进入 UI 验收模式"
@@ -75,7 +74,6 @@ export function LoginScreen() {
 
 const styles = StyleSheet.create({
   form: { gap: spacing[4], marginTop: spacing[8] },
-  scopeNote: { marginTop: spacing[6], textAlign: 'center' },
   acceptanceEntry: {
     backgroundColor: colors.card,
     borderColor: colors.border,
