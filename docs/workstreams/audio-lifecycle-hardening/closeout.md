@@ -38,6 +38,13 @@
 - 未引入新的录音、文件、时长、回放或 session owner；既有共享模块和资产边界保持不变。
 - 当前 `pnpm check` 全部通过；连接的物理 iPhone Development Build 编译和安装通过。真实麦克风复验因手机使用 5G、无法连接局域网 Metro 而待同一 Wi-Fi 下补做，Android 无连接设备，双端发布 fingerprint 证据尚未刷新。
 
+### 2026-07-28 回放与转写修复补充
+
+- 真机容器取证确认既有 iOS WAV 的封装、采样率、声道和语音电平均有效；当前安装运行时访问正式 HTTPS API，不再把本轮故障误归因于 loopback 地址。
+- 回放失败根因是空资产阶段提前调用 `player.remove()`，使后续录音 URI 被装载进已经从 Expo Audio registry 注销的 managed player。现在 stable player 从创建到组件卸载始终由 `useAudioPlayer` 管理，空资产不销毁；静态门禁禁止该调用重新进入录音回放 consumer。
+- 转写失败根因之一是本地全局 AI 同意与服务端账号级同意发生漂移。现在每次 AI 操作前幂等登记当前账号同意，并把服务端同意、登录、录音格式和 no-speech 错误分开呈现及诊断。
+- 相关 5 个 suites / 31 tests 与 `check:audio` 已通过；没有服务端运行时代码、数据库或协议变更，因此不触发 ECS 部署。物理 iPhone 的“真实讲话 2–3 秒 → 回放 → 转写”仍须在退出 iPhone 镜像后完成最终验收。
+
 ## 部署
 
 本工作流只修改客户端、测试、脚本和文档；未修改 `services/api`、数据库或运行时环境，因此不部署 ECS。最终发布仍需重新生成 iOS/Android 安装包，并先通过对应平台 audio fingerprint gate。

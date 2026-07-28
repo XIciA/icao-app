@@ -64,11 +64,10 @@ export function useRecordingPlayback(asset?: RecordingAsset, pauseRequest = 0) {
     pause();
     setError(undefined);
     if (!asset) {
-      try {
-        player.remove();
-      } catch {
-        // The player may already be empty or released; there is no asset to invalidate.
-      }
+      // useAudioPlayer owns this shared object's lifetime. Calling remove() here
+      // deregisters the still-mounted native player, so a later recording can
+      // be replaced into an object that no longer receives normal lifecycle
+      // handling or status updates.
       return;
     }
     try {

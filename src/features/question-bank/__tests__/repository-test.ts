@@ -41,10 +41,24 @@ describe('embeddedQuestionBankRepository', () => {
 
   it('loads the real listening dataset and canonical audio path', async () => {
     const listening = await embeddedQuestionBankRepository.getDataset('listening');
+    const listeningCards = listening?.categories.flatMap((category) =>
+      category.topics.flatMap((topic) => topic.cards),
+    ) ?? [];
 
     expect(listening?.declaredTopicCount).toBe(4);
     expect(listening?.declaredCardCount).toBe(1223);
     expect(listening?.categories).toHaveLength(4);
+    expect(listeningCards).toHaveLength(1223);
+    expect(listeningCards.every((card) =>
+      card.kind !== 'image'
+      && Array.isArray(card.choices)
+      && Array.isArray(card.choicesZh)
+      && card.choices.length === 4
+      && card.choicesZh.length === card.choices.length
+      && card.choicesZh.every((choice) => choice.trim().length > 0),
+    )).toBe(true);
+    expect(listeningCards.reduce((total, card) =>
+      total + (card.kind !== 'image' && Array.isArray(card.choicesZh) ? card.choicesZh.length : 0), 0)).toBe(4892);
     expect(listening?.categories[0].topics[0].cards[0]).toMatchObject({
       id: 'listening-main-001',
       audio: '/question-bank-assets/audio/listening/main/001.mp3',

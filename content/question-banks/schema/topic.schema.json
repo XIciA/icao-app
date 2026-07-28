@@ -26,6 +26,7 @@
               "audio": { "type": "string", "minLength": 1 },
               "audioDurationSeconds": { "type": "number", "exclusiveMinimum": 0 },
               "choices": { "type": "array", "items": { "type": "string" } },
+              "choicesZh": { "type": "array", "items": { "type": "string", "minLength": 1 } },
               "correctChoiceIndex": { "type": "integer", "minimum": 0 }
             },
             "not": { "anyOf": [{ "required": ["image"] }, { "required": ["imageAlt"] }] }
@@ -45,6 +46,7 @@
                 { "required": ["audioText"] },
                 { "required": ["audio"] },
                 { "required": ["choices"] },
+                { "required": ["choicesZh"] },
                 { "required": ["referenceText"] },
                 { "required": ["referenceTextZh"] }
               ]

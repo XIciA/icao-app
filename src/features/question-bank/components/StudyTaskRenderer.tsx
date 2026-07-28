@@ -53,6 +53,7 @@ export function StudyTaskRenderer({
     return card.choices?.length ? (
       <ChoiceList
         choices={card.choices}
+        choicesZh={card.choicesZh}
         correctChoiceIndex={card.correctChoiceIndex}
         isLookupAvailable={isLookupAvailable}
         lookupInteraction={lookupInteraction}
@@ -60,6 +61,7 @@ export function StudyTaskRenderer({
         onSelect={onChoose}
         selectedChoiceIndex={selectedChoiceIndex}
         showResult={revealed && selectedChoiceIndex !== undefined}
+        showTranslations={revealed}
       />
     ) : null;
   }

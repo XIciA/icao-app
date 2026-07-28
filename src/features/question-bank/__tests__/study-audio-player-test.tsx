@@ -73,6 +73,33 @@ describe('StudyAudioPlayer', () => {
     await waitFor(() => expect(mockPlayer.play).toHaveBeenCalledTimes(1));
   });
 
+  it('does not mistake the previous card loaded status for the replacement source readiness', async () => {
+    mockStatus = { ...mockStatus, isBuffering: false, isLoaded: true, playbackState: 'readyToPlay' };
+    const screen = await render(
+      <StudyAudioPlayer label="Sentence1" playbackKey="card-1" uri="https://example.test/card-1.mp3" />,
+    );
+
+    await screen.rerender(
+      <StudyAudioPlayer autoPlayRequest={2} label="Sentence2" playbackKey="card-2" uri="https://example.test/card-2.mp3" />,
+    );
+
+    expect(mockPlayer.replace).toHaveBeenLastCalledWith('https://example.test/card-2.mp3');
+    expect(mockPlayer.play).not.toHaveBeenCalled();
+
+    mockStatus = { ...mockStatus, isBuffering: true, isLoaded: false, playbackState: 'loading' };
+    await screen.rerender(
+      <StudyAudioPlayer autoPlayRequest={2} label="Sentence2" playbackKey="card-2" uri="https://example.test/card-2.mp3" />,
+    );
+    expect(mockPlayer.play).not.toHaveBeenCalled();
+
+    mockStatus = { ...mockStatus, isBuffering: false, isLoaded: true, playbackState: 'readyToPlay' };
+    await screen.rerender(
+      <StudyAudioPlayer autoPlayRequest={2} label="Sentence2" playbackKey="card-2" uri="https://example.test/card-2.mp3" />,
+    );
+
+    await waitFor(() => expect(mockPlayer.play).toHaveBeenCalledTimes(1));
+  });
+
   it('drops pending navigation autoplay when the app backgrounds during loading', async () => {
     let appStateListener: ((state: 'active' | 'background' | 'inactive') => void) | undefined;
     jest.spyOn(AppState, 'addEventListener').mockImplementation((_type, listener) => {
@@ -130,6 +157,10 @@ describe('StudyAudioPlayer', () => {
     mockSetAudioModeAsync.mockReturnValueOnce(new Promise<void>((resolve) => { finishModeSwitch = resolve; }));
     mockStatus = { ...mockStatus, isBuffering: false, isLoaded: true, playbackState: 'readyToPlay', playing: false };
     const screen = await render(
+      <StudyAudioPlayer autoPlayRequest={1} label="Sentence2" pauseRequest={0} playbackKey="card-stale" uri="https://example.test/card-stale.mp3" />,
+    );
+    mockStatus = { ...mockStatus };
+    await screen.rerender(
       <StudyAudioPlayer autoPlayRequest={1} label="Sentence2" pauseRequest={0} playbackKey="card-stale" uri="https://example.test/card-stale.mp3" />,
     );
     await waitFor(() => expect(mockSetAudioModeAsync).toHaveBeenCalledTimes(1));
@@ -200,13 +231,17 @@ describe('StudyAudioPlayer', () => {
     const screen = await render(
       <StudyAudioPlayer label="Sentence5" onPlaybackStart={onPlaybackStart} playbackKey="card-5" uri="https://example.test/card-5.mp3" />,
     );
+    mockStatus = { ...mockStatus, didJustFinish: false };
+    await screen.rerender(
+      <StudyAudioPlayer label="Sentence5" onPlaybackStart={onPlaybackStart} playbackKey="card-5" uri="https://example.test/card-5.mp3" />,
+    );
     mockPlayer.seekTo.mockClear();
     mockPlayer.play.mockClear();
 
     fireEvent.press(screen.getByLabelText('播放'));
 
     await waitFor(() => expect(mockPlayer.seekTo).toHaveBeenCalledWith(0));
-    expect(onPlaybackStart).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(onPlaybackStart).toHaveBeenCalledTimes(1));
     expect(mockPlayer.play).toHaveBeenCalledTimes(1);
     expect(mockPlayer.seekTo.mock.invocationCallOrder[0]).toBeLessThan(mockPlayer.play.mock.invocationCallOrder[0]);
   });

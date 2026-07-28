@@ -138,7 +138,7 @@ function validate({ registry, banks, resources }, { full = false } = {}) {
           if (card.kind === 'image') {
             assertString(card.image, `${bank.id}/${topic.id}/${card.id}.image`);
             assertString(card.imageAlt, `${bank.id}/${topic.id}/${card.id}.imageAlt`);
-            if (card.audioText !== undefined || card.audio !== undefined || card.referenceText !== undefined || card.referenceTextZh !== undefined || card.choices !== undefined) fail(`invalid_image_card_fields:${card.id}`);
+            if (card.audioText !== undefined || card.audio !== undefined || card.referenceText !== undefined || card.referenceTextZh !== undefined || card.choices !== undefined || card.choicesZh !== undefined) fail(`invalid_image_card_fields:${card.id}`);
             referencedImages.add(card.image);
           } else {
             if (card.kind !== undefined && card.kind !== 'text') fail(`unsupported_card_kind:${card.id}`);
@@ -148,6 +148,13 @@ function validate({ registry, banks, resources }, { full = false } = {}) {
           if (card.choices) {
             if (!Array.isArray(card.choices) || card.choices.length < 2) fail(`invalid_choices:${card.id}`);
             if (!Number.isInteger(card.correctChoiceIndex) || card.correctChoiceIndex < 0 || card.correctChoiceIndex >= card.choices.length) fail(`invalid_correct_choice:${card.id}`);
+            if (card.choicesZh !== undefined) {
+              if (!Array.isArray(card.choicesZh) || card.choicesZh.length !== card.choices.length) fail(`invalid_choices_zh_count:${card.id}`);
+              if (card.choicesZh.some((choice) => typeof choice !== 'string' || !choice.trim())) fail(`invalid_choices_zh_text:${card.id}`);
+            }
+            if (bank.id === 'listening' && card.choicesZh === undefined) fail(`missing_choices_zh:${card.id}`);
+          } else if (card.choicesZh !== undefined) {
+            fail(`orphan_choices_zh:${card.id}`);
           }
           if (card.audio) {
             referencedAudio.add(card.audio);

@@ -1,0 +1,3396 @@
+{
+  "schemaVersion": 1,
+  "retiredPath": "content/question-banks/resources/files/audio/radiotelephony/web-v5",
+  "generatedAt": "2026-07-28T11:14:43+08:00",
+  "fileCount": 677,
+  "totalBytes": 54962010,
+  "aggregateAlgorithm": "sha256 of sorted lines: <file-sha256><two spaces><repo-relative-path>\\n",
+  "aggregateSha256": "89bfe81865c0cce95525ce413885d653aa03af6a95f55805dfde7ed4916f3c86",
+  "files": [
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-001-afr113-q05.mp3",
+      "sizeBytes": 61100,
+      "sha256": "6bb181a1469ed49777d176f9d05bd66978ee583c056f53ee9db9d2aacc0b05ad"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-001-afr113-q07.mp3",
+      "sizeBytes": 68876,
+      "sha256": "93320462b0c377cef0af5bb5b830b9e1402bb40fd65cc6b8a43ba80f322ab57c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-001-afr113-q08.mp3",
+      "sizeBytes": 66572,
+      "sha256": "4fa4747c972f07577f1d6845630a2454c94d5e992b7b36dd308c3ebea2c180c7"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-001-afr113-q15.mp3",
+      "sizeBytes": 121004,
+      "sha256": "0f0f6bcd912a7d5bf2203a5e039e2e7c1a7e6b349829925507be6768b980cc7a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-001-afr113-q16.mp3",
+      "sizeBytes": 115244,
+      "sha256": "1a9d8b0c87997d653676777d5bc00abd8f40e1cfa70cca3500ce2e0c5c257ff2"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-001-afr113-q18.mp3",
+      "sizeBytes": 45260,
+      "sha256": "576018178970e31d64b7a83c83f04f91066d0bf8e4e34404d622cd784506a83a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-002-sia123-q02.mp3",
+      "sizeBytes": 157580,
+      "sha256": "edabc344f9c529318f8f8e52b3ac8974a6f19e8369156a270e7dbd64d0af1be6"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-002-sia123-q05.mp3",
+      "sizeBytes": 47564,
+      "sha256": "b9ac75cbdaafa95c36ad3afff795b35f2dc973e2b75a8f0c8640dac566235dc0"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-002-sia123-q08.mp3",
+      "sizeBytes": 94220,
+      "sha256": "a7839ff1880dcfa20fcea8cc59d191d407d3bc1f5eb8144cbdc63f1d1a16b362"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-002-sia123-q09.mp3",
+      "sizeBytes": 83852,
+      "sha256": "fda6b40a9f202c5125a91b385281fd2752590f0d75a2cf5e068e882415e20ef2"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-002-sia123-q10.mp3",
+      "sizeBytes": 18188,
+      "sha256": "e3752b4805a9166db6ab8dddf7560eb5b9ecadde4705be750c68199f586385a5"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-002-sia123-q15.mp3",
+      "sizeBytes": 18656,
+      "sha256": "00691314d32ccf8ff1cf217e6f975fa12cf2640f28dbc2f6cee9ad4a30aea45c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-002-sia123-q17.mp3",
+      "sizeBytes": 20924,
+      "sha256": "333935382484dfdc9cd9444e14291ad464fb311213258a71a710982138542f77"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-003-ual403-q02.mp3",
+      "sizeBytes": 63116,
+      "sha256": "04c882186b42c777786e299a0cecc3ea2fe92b50c3df56d0394d48ab1652b43f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-003-ual403-q07.mp3",
+      "sizeBytes": 106604,
+      "sha256": "734f31ae319d4e789ea8ba0a764caacf4240acd15385289453753132cfb60d29"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-003-ual403-q08.mp3",
+      "sizeBytes": 78668,
+      "sha256": "80ee68993e7ea82a5dc3079c8246d596ff7d7845de04ab0b4568b9efe33df696"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-003-ual403-q09.mp3",
+      "sizeBytes": 56780,
+      "sha256": "04eceaa078d4e73392cbaa2aea56d81530521e16d3f80e3c08982127f3bc2fb7"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-003-ual403-q10.mp3",
+      "sizeBytes": 93356,
+      "sha256": "af753eb1713ead2020b60993961bc8c5c9be84756b7fdfdb436a9472b5ec751c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-003-ual403-q11.mp3",
+      "sizeBytes": 44684,
+      "sha256": "2d51680d00e8eeda4bfe47aabf55f2a8140386c68ce686d65ff933d6ff512ca0"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-007-sia497-q02.mp3",
+      "sizeBytes": 152972,
+      "sha256": "a9a50e780325fccfec83dcb7d196dd97b5599d3bd30fad4196482581d11dd479"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-007-sia497-q03.mp3",
+      "sizeBytes": 65708,
+      "sha256": "109b6cc5a1915127fc3924ca50eb13ca81712176029723c0d2e315616040fa6b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-007-sia497-q11.mp3",
+      "sizeBytes": 41516,
+      "sha256": "37ecbe081b238c4f67741a1c60ff437b3bd51bb80802aa6835fda87f9915fb27"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-007-sia497-q14.mp3",
+      "sizeBytes": 62540,
+      "sha256": "fd393b565bb4a2d6d6e2fd597f27f3971f051767bcd9c27fcb9c55c20f189ec5"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-007-sia497-q16.mp3",
+      "sizeBytes": 38924,
+      "sha256": "0254a604705a7e4db6da5b39624fcbfbf1c6ecb533cd65788c2c0b958fa7b173"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-007-sia497-q17.mp3",
+      "sizeBytes": 57356,
+      "sha256": "b2d4eb9925c59936177124a10026a3aac5f12c6afe307773398e1ab06725b894"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-008-csn557-q01.mp3",
+      "sizeBytes": 95660,
+      "sha256": "b4e737ba833ef362a5809a25b1f1f64ac29f0f37e12f1ef6fb66cd1bff2940c8"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-008-csn557-q05.mp3",
+      "sizeBytes": 79532,
+      "sha256": "ae898c5aebd79494ba79226a43f2f7367c44e2dfc50bedef040f0aca12e4dcef"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-008-csn557-q09.mp3",
+      "sizeBytes": 52460,
+      "sha256": "63ec3b90cb5eea593a6084835744ba9705c26bfc318c11df5ddb5f7f3a4c5f5a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-008-csn557-q13.mp3",
+      "sizeBytes": 89900,
+      "sha256": "421c1e3e6a9061b38ef400f154287ad0bba3ab0428eb230a86f121e7e61db946"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-009-csn542-q01.mp3",
+      "sizeBytes": 47564,
+      "sha256": "b6602cf99917d479d48fdde03bff3e0f38254bc06293c6478bfbba93cb2084c5"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-009-csn542-q02.mp3",
+      "sizeBytes": 203660,
+      "sha256": "38e79711436c016b1def6b9c96ccb03db7bba9162e2ac1c75eb8ddf1b47dde35"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-009-csn542-q06.mp3",
+      "sizeBytes": 116108,
+      "sha256": "603c9b6193f494aa274449c54665c5076f79b2c62d445d6abb7e13968a4a4aa3"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-009-csn542-q12.mp3",
+      "sizeBytes": 40652,
+      "sha256": "cd200e1f7afa9922dad0a063b27048819f44a62048804c8d283dae6bd1aee1f7"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-009-csn542-q14.mp3",
+      "sizeBytes": 94220,
+      "sha256": "76bd3f3198395c352c09802074a4f45fff2315fde41506315db481b7df00daf7"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-009-csn542-q16.mp3",
+      "sizeBytes": 85580,
+      "sha256": "2ce955479296ef459cd08aaff9ab486ddf1b562723177090f15b8abba0aa1339"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-009-csn542-q19.mp3",
+      "sizeBytes": 29996,
+      "sha256": "bbb59dd3763bfd8b6d7e34640dcd4459185626f19585e8b3f39d7d3ad0da1351"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-010-csn3102-q01.mp3",
+      "sizeBytes": 87884,
+      "sha256": "5c5d36415c5a541b343e4bef2620c813ede95d01ea639c51b28ec118cb8802bc"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-010-csn3102-q02.mp3",
+      "sizeBytes": 47276,
+      "sha256": "d63ca7f687c8fae9047ef6b16a1220ee63085bd9df50032f2e5facf11f90ce5b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-010-csn3102-q03.mp3",
+      "sizeBytes": 72620,
+      "sha256": "c888aaf41e9ecdc38a7d88c7f909c55a2c4111ecfd026d967618af9025e8b86b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-010-csn3102-q05.mp3",
+      "sizeBytes": 61676,
+      "sha256": "a203d952686ae92e52c906c46c8f46c5cdde3cff9352178b460f89ee41568fc0"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-010-csn3102-q07.mp3",
+      "sizeBytes": 87308,
+      "sha256": "2c044e2862143461863942aa1cf661ecae3d241ae0067982329c7cfbad26bb36"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-010-csn3102-q08.mp3",
+      "sizeBytes": 87884,
+      "sha256": "cc24629c4e4aba1ef749be8f302e2dd4baddef3121d31f22173d04a227e7150f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-010-csn3102-q10.mp3",
+      "sizeBytes": 104012,
+      "sha256": "1ecd8d419fe92b1eacfb173531a10cc47fab2030c81db8b015b36e3a7cad7738"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-010-csn3102-q12.mp3",
+      "sizeBytes": 75212,
+      "sha256": "dfc2228f33f73cb53d9d9f902b78fa33e7fbe576b7299b5e030709226d0965c9"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-010-csn3102-q13.mp3",
+      "sizeBytes": 44108,
+      "sha256": "5b4eb6a596d564b97edf865b552f3af4df3d90e73370b79aa98841aa3431f7a2"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-010-csn3102-q15.mp3",
+      "sizeBytes": 63692,
+      "sha256": "6784687879faaecf63c7e982a40362fe9413936ef7669d4dd9c2fa13d1164633"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-010-csn3102-q16.mp3",
+      "sizeBytes": 44684,
+      "sha256": "37c07348bf06d156548befa9ae4ad09d8449a8e34b0a47bc15f4a4bb58160126"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-010-csn3102-q17.mp3",
+      "sizeBytes": 72908,
+      "sha256": "62a42606926fb4b3844b211b067db8a910e8211386c7c749d5b6b02a1f855b36"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-010-csn3102-q18.mp3",
+      "sizeBytes": 58796,
+      "sha256": "d9f5bbbb80b752237edb43d9aa6b57a83dc426e062f2395dc362c7d354b44d78"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-010-csn3102-q19.mp3",
+      "sizeBytes": 33740,
+      "sha256": "fd04668e9df38b7a328b0233647a17e57eb725602f258bae8a6579e8b9fd3a59"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-011-csn3102-q01.mp3",
+      "sizeBytes": 87308,
+      "sha256": "fdac53ba80a875023d12b138dcfd165094ec13163a97f51b5ea3857829b17fd5"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-011-csn3102-q02.mp3",
+      "sizeBytes": 65996,
+      "sha256": "3f5dfcd801a1ff8f35c0abeb3fff7f97bc598ba6f3c0b48cb9b80201ca4acf27"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-011-csn3102-q05.mp3",
+      "sizeBytes": 73772,
+      "sha256": "57e17228e1a4b44deee71d7f891881bdd5faa5f082f7ca53caf8de49da6570f0"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-011-csn3102-q07.mp3",
+      "sizeBytes": 61964,
+      "sha256": "10a85a6eaf2d9bd267db65708897e6c9cc5cac7d3c7668ec55c363ea00e7836e"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-011-csn3102-q09.mp3",
+      "sizeBytes": 95372,
+      "sha256": "3862fb5f074745f598d94b443d9f4e3caef3fbd8b5cf365d97d53de3d27e7db4"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-011-csn3102-q10.mp3",
+      "sizeBytes": 61964,
+      "sha256": "53f2a2f8502baebe8e36a8a97c796095411bcb2c2ee609174e4feb895753cf22"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-011-csn3102-q12.mp3",
+      "sizeBytes": 73196,
+      "sha256": "cc4602f199bdf29a2b2b09c7523c6d640bbb5806b989a7bd6177cba3229ab09f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-011-csn3102-q13.mp3",
+      "sizeBytes": 58220,
+      "sha256": "f70de11be7cad0ad76123e126d4afc49c7707564098280cbbbcb816653114c33"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-011-csn3102-q14.mp3",
+      "sizeBytes": 62252,
+      "sha256": "8b9afdceedf5e0e97d355fae2cbb564e6ef4b92f7be96e90ebe61d8539ed2fd7"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-011-csn3102-q16.mp3",
+      "sizeBytes": 46988,
+      "sha256": "d644b4668522eeddf3398453cf25a03b2212d0eef951a09cc40a040bf66d3499"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-011-csn3102-q18.mp3",
+      "sizeBytes": 106892,
+      "sha256": "447debd61fceba00d8f87da585c0f4ef4b5f7aa99729ee2989559e7ca7f07951"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-011-csn3102-q19.mp3",
+      "sizeBytes": 78668,
+      "sha256": "ac66d96cffa4cc367803d40199337f2c55a344c59b39aa517469559cf28ea8c9"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-012-csn3102-q01.mp3",
+      "sizeBytes": 93356,
+      "sha256": "38f5b189de552999fa3818c98a03b103e554d1911901684453e38ccb4fbf3060"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-012-csn3102-q02.mp3",
+      "sizeBytes": 140012,
+      "sha256": "cdaa1135426c092d916b0be8a31e298eeaf10ae370bcdff7f4a9f418fab832f8"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-012-csn3102-q03.mp3",
+      "sizeBytes": 78668,
+      "sha256": "2d01ba044416bc365f91238e834ba10c4cb8d2ce4117fbb9e27f1504d9f5746b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-012-csn3102-q04.mp3",
+      "sizeBytes": 64844,
+      "sha256": "4f4d87529828c3455c1b2df53c17f7c42ba0e880b0c081fea31a52f82e02de8e"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-012-csn3102-q05.mp3",
+      "sizeBytes": 36620,
+      "sha256": "4beb017cd10d859f43790fccc84ab8419f80594798324f60cf7758c86a90c159"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-012-csn3102-q06.mp3",
+      "sizeBytes": 19916,
+      "sha256": "9737ca1690945fc423b4968e88c4de7a5c36e89721b2d3f3494e842c4ffedf10"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-012-csn3102-q07.mp3",
+      "sizeBytes": 62540,
+      "sha256": "b18f7ac59fc7d065df0f5085047f1032ea5ce1e10e999ebf9a1e75323f61a635"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-012-csn3102-q08.mp3",
+      "sizeBytes": 58796,
+      "sha256": "81d42be27904505b130c32208dc097530a0883886d7748d490019beac098266e"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-012-csn3102-q09.mp3",
+      "sizeBytes": 57068,
+      "sha256": "640c767cc522387fb72f39c9699c4004ac5b6dc0f92f44435b4e53d95e6a3409"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-012-csn3102-q11.mp3",
+      "sizeBytes": 71756,
+      "sha256": "e8a274cad87eb1f09c50fe7973cf4ee0f10d991eda60c96b350b871eb3053394"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-012-csn3102-q13.mp3",
+      "sizeBytes": 67148,
+      "sha256": "23eadec3c6b0e52af64307bc4564931cc49f93c0e8dcc17d1aa634a0bedcfd8a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-012-csn3102-q14.mp3",
+      "sizeBytes": 81548,
+      "sha256": "259cfea8a1e1fb8ee5225a651f183c75730fd8c9508e91c97761291963ad5ffe"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-012-csn3102-q15.mp3",
+      "sizeBytes": 63692,
+      "sha256": "9ba31cd84b99d4dc6dbb5055872ba2978a244406670e34c539a79c537d30512c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-012-csn3102-q16.mp3",
+      "sizeBytes": 63692,
+      "sha256": "742dc0c9cf2a041a20f0d8978c657eae316cb7ed235a48cddc7ef44f3a02bef9"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-012-csn3102-q17.mp3",
+      "sizeBytes": 96812,
+      "sha256": "1b059ca047268522b4afa2bb7f43aeba0cde1cd80442e0b0077e190e198d3400"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-013-csn6682-q01.mp3",
+      "sizeBytes": 97676,
+      "sha256": "cd13a776df11ce0fb84314601e64e695c4c2877759fbe7a9b298b84240e2b300"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-013-csn6682-q02.mp3",
+      "sizeBytes": 108332,
+      "sha256": "9b35d9a2246ed39fed1926706c67dd9a2ec6683bc10997aabc2c46abb5f49b25"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-013-csn6682-q03.mp3",
+      "sizeBytes": 64268,
+      "sha256": "7e8388d482bdf11826ace63e4a1df7b40308dd87d8cd164027cdace6b66c9fb6"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-013-csn6682-q04.mp3",
+      "sizeBytes": 179756,
+      "sha256": "a6d054055b4f8d10197174b355356ad22a8a0819d027ab62bbe0e6ac62ed0e99"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-013-csn6682-q06.mp3",
+      "sizeBytes": 77804,
+      "sha256": "78d687ef3791094ea158f10d93626ce433234b6370e29e28ab0b134d1134c6ac"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-013-csn6682-q08.mp3",
+      "sizeBytes": 76940,
+      "sha256": "fc8450a95ad9f5c8f6de45f4fd97679e592d280be197d2e574a547b9ba2149a3"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-013-csn6682-q10.mp3",
+      "sizeBytes": 87020,
+      "sha256": "32099fb35b2cdce231cfff7d270826423fa03c5c3c09d13081f4804e5fdf2a77"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-013-csn6682-q12.mp3",
+      "sizeBytes": 93068,
+      "sha256": "74dd702b2c80cfc9d404fe02feb792c254c90076dc31aff0ea988daec95bf027"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-013-csn6682-q14.mp3",
+      "sizeBytes": 99980,
+      "sha256": "32d686519acd44a5d6dddc2aee241404c15604953367d6caebc633fde850c5d2"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-013-csn6682-q15.mp3",
+      "sizeBytes": 89324,
+      "sha256": "0bccf7828d9d08f4115ac0093ff9d0d24b7b98ed547c9af8a25bafab454daf1a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-013-csn6682-q16.mp3",
+      "sizeBytes": 48716,
+      "sha256": "af959451eb77366ed2e28e141559a4682347f4b6e4fab99c9e49df4274530026"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-013-csn6682-q17.mp3",
+      "sizeBytes": 43820,
+      "sha256": "142617423567ce6c7cad53740c6e12dfa3320d7667cd5c5ba6eec4b9e8f89246"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-014-csn371-q02.mp3",
+      "sizeBytes": 145196,
+      "sha256": "f5232f1e4eb9c83ef05875846f474739e0dba0dda58f0180c443323e2c32c830"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-014-csn371-q14.mp3",
+      "sizeBytes": 82412,
+      "sha256": "96a38f0fddce0701cd7418ca0a7db5fcf9b9778089b80b064a7ecadd6b7fd047"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-014-csn371-q17.mp3",
+      "sizeBytes": 101996,
+      "sha256": "f51d8c884177df4ac19be77c176e196ef9f96575d9cec862446abdc664925e63"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-014-csn371-q18.mp3",
+      "sizeBytes": 48428,
+      "sha256": "24d8684c75b194e595953afdca25df14e2cc9f65be84945143caeba01919fc18"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-015-sia615-q07.mp3",
+      "sizeBytes": 51020,
+      "sha256": "0c1c259b6a740f079b6df3989cf8930307f22d0780571fdb39e57538a3fb527a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-015-sia615-q08.mp3",
+      "sizeBytes": 67436,
+      "sha256": "3bf5e425abc76c37368615a4877846688014e9d3aa78f5351f686223cc977472"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-015-sia615-q15.mp3",
+      "sizeBytes": 97964,
+      "sha256": "dba5d5de8632a0a0cf237c9231b8ed64b51053b16a71f94388c3e32afb6ce620"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-016-afr101-q02.mp3",
+      "sizeBytes": 159020,
+      "sha256": "f3d6b4a48fbe118a7c3617dccd6e1b4afa5399e1d21392433a95cb4c6bce1adc"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-016-afr101-q03.mp3",
+      "sizeBytes": 112652,
+      "sha256": "9ef4ce7667be98bb4af76f5cc393a80a34833544356c50afea7451135e1e8625"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-016-afr101-q09.mp3",
+      "sizeBytes": 104876,
+      "sha256": "9e37e70df19dcd440684a1c46fdc803cdf7ab01b4eb2d17a918774422ce7a398"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-016-afr101-q12.mp3",
+      "sizeBytes": 71180,
+      "sha256": "450a5385b989e6768c7f8a463e24886adca3a31fb73743da421e6e245c1b5d64"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-016-afr101-q15.mp3",
+      "sizeBytes": 116108,
+      "sha256": "99d85b8bb48cd426abd04b54c0f88cb07b3091547ef770b5789eb38df3c7a359"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-016-afr101-q16.mp3",
+      "sizeBytes": 94796,
+      "sha256": "d6a2fa31d281316a544ec597fbea67edd14ad0029d4237c4aa62979967e7f0fe"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-017-sia852-q01.mp3",
+      "sizeBytes": 84140,
+      "sha256": "0c4ff33ef93dd85bc02ed549374e7f3840625d8d5870903dc90ec64c43db39b5"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-017-sia852-q02.mp3",
+      "sizeBytes": 154700,
+      "sha256": "5df4dc047ecc92df193eb4de9232925d16ffeb147117110c26b1834ae77e0305"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-017-sia852-q05.mp3",
+      "sizeBytes": 95084,
+      "sha256": "db92e0084dc6a153911e7de978efad4cf1041d430f74db1ec38454b1b1a47096"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-017-sia852-q06.mp3",
+      "sizeBytes": 83276,
+      "sha256": "ee187036aa0bb95f58fa7f8b494613d67760e43cbb94ba4d0323f44f42220037"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-017-sia852-q08.mp3",
+      "sizeBytes": 48716,
+      "sha256": "1a228d2829c3d9fa975aa33f93153d77ee51d4f35c08f64a304ab022811b6117"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-017-sia852-q09.mp3",
+      "sizeBytes": 49004,
+      "sha256": "9284cd80869bbe485e762a4ccb4c48412289013f0a106ef8ccdb492cc9086acc"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-017-sia852-q13.mp3",
+      "sizeBytes": 77228,
+      "sha256": "207aa43c75fd27fc358b8cae3c6336ffde53ba8d39274ffd570038902d85f5d9"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-019-sia308-q02.mp3",
+      "sizeBytes": 163340,
+      "sha256": "8c70768cf81cd5ff0fac55cd7a016d8eb2292dc5f5a1f8ba61abb02b2fa8f1b1"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-019-sia308-q04.mp3",
+      "sizeBytes": 47780,
+      "sha256": "da1581f5411f4c8db80bd5366c8dd2af20b8a6816414a2be5cfff717c8113434"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-019-sia308-q08.mp3",
+      "sizeBytes": 96812,
+      "sha256": "c8e6c64f39f5788216bf891d2676eed331967c0c5724c8135149362c29795aa0"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-019-sia308-q09.mp3",
+      "sizeBytes": 50012,
+      "sha256": "ab895976992d839a78cc63c0d58d61067fc9bf2df26ec478fcae86b2f65dd952"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-019-sia308-q10.mp3",
+      "sizeBytes": 60812,
+      "sha256": "92a429f19f3ba66c8ea2b11dbb9f5dd4f31e0ba33f2aad0935f65102df030daf"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-019-sia308-q12.mp3",
+      "sizeBytes": 115820,
+      "sha256": "5301443aeed0c60c158c9681aa0391d2ced990cc1c48f97d7c76f37a01a4c9be"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-019-sia308-q16.mp3",
+      "sizeBytes": 71180,
+      "sha256": "529e621017d20c1e5ce9eb52ebfcd413c5aec4b078fb491c77b73fb742dbdc3f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-020-baw931-q02.mp3",
+      "sizeBytes": 127412,
+      "sha256": "47e0c4ea27da9bc339906d2ca67c91080731e1cf747daff9f5194c7b4fcc961d"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-020-baw931-q10.mp3",
+      "sizeBytes": 64268,
+      "sha256": "c16b76bc0dfd45640125b6bb324e7021cbb77717b68dfb0c318453f44c5e95aa"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-020-baw931-q13.mp3",
+      "sizeBytes": 67148,
+      "sha256": "f6f1761e916a7fecbddff55b396a3feb2d26a2cf3ddcfa3fdf6e3d1632b206b5"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-021-baw2352-q01.mp3",
+      "sizeBytes": 104012,
+      "sha256": "6242e0dadcd3237c8584168953b48a67acf5557c762012481f1d64a41e93b275"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-021-baw2352-q02.mp3",
+      "sizeBytes": 75212,
+      "sha256": "f43a792b874e8e8c3e34c2345cb3cdd1062813c20c1cc5c382cb5fce77d0290a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-021-baw2352-q03.mp3",
+      "sizeBytes": 84716,
+      "sha256": "3496f40cadc88bfcfb98a573e7773cad949e22af2b391f23ab59170a1fc8ee4f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-021-baw2352-q04.mp3",
+      "sizeBytes": 82700,
+      "sha256": "0b42ed7d69af703b39cc8f0b9d718526919e33e68a90dd02a0ec97990dcde2ab"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-021-baw2352-q05.mp3",
+      "sizeBytes": 73196,
+      "sha256": "b79a60a5d8e26c17efc3aad214cdb81c2eff116da8810f6f9f7fbbb262a02908"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-021-baw2352-q06.mp3",
+      "sizeBytes": 44396,
+      "sha256": "4efe681bf2b848d1e4e52b0c6d4bf1bdd6d107332d4b1611d6af0ad5ad697073"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-021-baw2352-q07.mp3",
+      "sizeBytes": 79532,
+      "sha256": "2332591f5e9e1f1d6eba12b244408e748c2f7258273f29dc3775ff34c0452c00"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-021-baw2352-q08.mp3",
+      "sizeBytes": 106604,
+      "sha256": "82ea8579568e0bb2db364c5a82438d2b8109538bdfe9eeb63eb2d288ae545cfa"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-021-baw2352-q09.mp3",
+      "sizeBytes": 101708,
+      "sha256": "36ca9913bba04a7a7b5148a34623ac1e82ead130aac70b8ed71ff4c1ee757b41"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-021-baw2352-q10.mp3",
+      "sizeBytes": 73772,
+      "sha256": "d02dfdbe2b9c36e15e25cc2cac4e4cf0984736b1a75b317ec6515f475ecdaffd"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-021-baw2352-q11.mp3",
+      "sizeBytes": 53324,
+      "sha256": "ce78023dc7b3f32f0c279271c0a9a02428e9c4cffc28b619a9afb9af57d08e14"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-021-baw2352-q12.mp3",
+      "sizeBytes": 72332,
+      "sha256": "0f25490f0abfafed5055649f77e1c2f3298c78adde6667bc4f074be8699a398c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-021-baw2352-q13.mp3",
+      "sizeBytes": 128204,
+      "sha256": "9147b2703582088c029980126611c3dd6be0156ea94997b791a77c31602d2ce0"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-021-baw2352-q14.mp3",
+      "sizeBytes": 49868,
+      "sha256": "327225c0a4c540c329d72a8b0c1537220b404a02ed3eef8fd0b22c1ee7b59fbf"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-021-baw2352-q15.mp3",
+      "sizeBytes": 65420,
+      "sha256": "b86bf7004c6d4a5be48fa63513d4f0be69187fa0afb9eab6ffc3a1605534b178"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-021-baw2352-q16.mp3",
+      "sizeBytes": 55916,
+      "sha256": "a38f9ecbc227a36f4ae3c576336198d2d69218ed75145cc0de3a7a743d0a2619"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-021-baw2352-q17.mp3",
+      "sizeBytes": 69164,
+      "sha256": "614b9f0651c6a9f657952606b1b8110002f913d797cb773a04be4fdeb6d16114"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-021-baw2352-q18.mp3",
+      "sizeBytes": 35720,
+      "sha256": "28ee9c9b9a745e4b16e2e0c39653542adffcba9e1d27306dff393733f6c1eae1"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-021-baw2352-q19.mp3",
+      "sizeBytes": 88172,
+      "sha256": "069da831f18c7cb5eefba21add85a0a0f2f0301d511514a6ca6b35cf904ffea0"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-022-baw120-q01.mp3",
+      "sizeBytes": 92780,
+      "sha256": "8544284229a42d70fa07baa5dbcb96977d0a49e2a9c9ee6445d3cc1130c9635b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-022-baw120-q02.mp3",
+      "sizeBytes": 94508,
+      "sha256": "dc7a19754386d2a3eb9bf60091cffd77b868bbd699f6d56d327d511870efc063"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-022-baw120-q03.mp3",
+      "sizeBytes": 116684,
+      "sha256": "a9e77c843ac3820694873fc4be5f26b342c418998485143686fe15dcf3068b9f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-022-baw120-q04.mp3",
+      "sizeBytes": 69452,
+      "sha256": "b1130c8f88f489faf23ab5cdaff074aa02578c1b04416a1df6b6102535f7acca"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-022-baw120-q05.mp3",
+      "sizeBytes": 121004,
+      "sha256": "71cd4bcc5e0b993e2675be46fb2aeaee170b5902fa870892f53bcfbb49799653"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-022-baw120-q07.mp3",
+      "sizeBytes": 84140,
+      "sha256": "ec7f9ca066a38ad9fcd7cfd82518daf6ab9fec62c9fa3065f15afa789a2a21b5"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-022-baw120-q08.mp3",
+      "sizeBytes": 69164,
+      "sha256": "4ae7d29abcb32c90f8d4324cb6c5a41dba4fd40d065ba9344e574882bbdbf770"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-022-baw120-q10.mp3",
+      "sizeBytes": 68012,
+      "sha256": "472361d32a66d2a6d9d4d9aa12ec47d6c39776e83bc65ed6d5fb50bf6fbb1f3b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-023-baw817-q02.mp3",
+      "sizeBytes": 50156,
+      "sha256": "7d3b328dbef0d5e0472644ff656de39ce415c82a76a67aab9ce4024d4f130f27"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-023-baw817-q06.mp3",
+      "sizeBytes": 94220,
+      "sha256": "26b90af5151d9a3e81da6bbcca3fd68f137228624ecf3458a98689af93226823"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-023-baw817-q08.mp3",
+      "sizeBytes": 56780,
+      "sha256": "290ff6c3e8cf72d2c347a38c450a3df90835f49417d9d8fd74210c16d8029049"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-023-baw817-q09.mp3",
+      "sizeBytes": 85580,
+      "sha256": "6a561401b938254a61dd3ee1981536ab4e20d4e2f8650c6036436c9e8afb5964"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-023-baw817-q12.mp3",
+      "sizeBytes": 28556,
+      "sha256": "9bbe7ee449e513659e9d3c8c4158449c504b8ad1a3d46aa478b4c054e3700c1e"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-024-aca331-q03.mp3",
+      "sizeBytes": 62540,
+      "sha256": "c43f6bfe5ae290566097c5008cc85770fc3d14e65462a32ab24086d38f3a596a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-024-aca331-q05.mp3",
+      "sizeBytes": 76940,
+      "sha256": "67692fe5aa73c02bcca8194c75f70d7bd306f7e3678326f053ce8416f04f7bba"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-024-aca331-q08.mp3",
+      "sizeBytes": 102860,
+      "sha256": "13951d784d196c71a939110c49ac8620f92e79a859e5e5cf79515cecedada330"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-024-aca331-q09.mp3",
+      "sizeBytes": 87308,
+      "sha256": "a9ca512b083ddb103d911e779c7e6d031ea71896ca8daff6ca0a719a32cbba6e"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-024-aca331-q13.mp3",
+      "sizeBytes": 111500,
+      "sha256": "9dc781b1033cccc205d813b0833a8e849ec14d6e7cbeb21766a25bf368bd3177"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-024-aca331-q19.mp3",
+      "sizeBytes": 73196,
+      "sha256": "b705a1664d00628962f2461e09dbc704a170aa43fe6fd7a05a6dcfc2df71f484"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-025-aca219-q01.mp3",
+      "sizeBytes": 120716,
+      "sha256": "17bcb7d50be4b2ce32c679bc44fe451b823cc4cc2b18a0fde789b9ca074ecbf0"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-025-aca219-q02.mp3",
+      "sizeBytes": 75500,
+      "sha256": "59363a29d3956bfd1f6245e29e6efc6a89d1b742032852b5e5ca63726a8f46f9"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-025-aca219-q11.mp3",
+      "sizeBytes": 75788,
+      "sha256": "99e87664e27b08d359097299670a6a0ddff59e5bb73b022f60e2847aedb9c9ab"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-025-aca219-q12.mp3",
+      "sizeBytes": 128204,
+      "sha256": "7a952230d71b0756b22b5f51bcb011f836ca58219979ddc555c8dc47f7c60ff8"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-025-aca219-q14.mp3",
+      "sizeBytes": 63116,
+      "sha256": "d25a591073da23e14788150417cae6530e1a96bf76c2b93ee00b1a6870f9a963"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-025-aca219-q19.mp3",
+      "sizeBytes": 54764,
+      "sha256": "d2b4a100bf4f47cd04ac764687c28620f94cd1d77d10424d08c3df72ca203767"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-026-aca452-q06.mp3",
+      "sizeBytes": 123020,
+      "sha256": "e0a808d204aa658e62ee3de34de8e8d11f1941eac50c72abe028eaf391fe0a2e"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-026-aca452-q08.mp3",
+      "sizeBytes": 92492,
+      "sha256": "bef324d5d3751483f7e6a994454120d50d95f40e323bbfcf85e5fa7dd63f7380"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-026-aca452-q11.mp3",
+      "sizeBytes": 99404,
+      "sha256": "7d652be4adeccdc2b22e687c4d735b1f451d7e5df479851f3f514b031ae04496"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-026-aca452-q12.mp3",
+      "sizeBytes": 79532,
+      "sha256": "448a07be5e90bfb57e59779631cc0ee32b9034ecb84c2d9599a9d756ac9b718d"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-026-aca452-q15.mp3",
+      "sizeBytes": 62540,
+      "sha256": "2f9abee59dbb22f8f184a8f3ec6f3e6761f51b59cb948dcc27a2e1a2252e9688"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-026-aca452-q16.mp3",
+      "sizeBytes": 86156,
+      "sha256": "d9814aa6004fe7ccd0bed8710c9aedd2f628dbf2d9ba5c23c4db54b21423e3b8"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-027-aca517-q01.mp3",
+      "sizeBytes": 80972,
+      "sha256": "6e9d1e44c7e6cc3e72a9930743af34262efb0fc5b8ecc82ba6751d59a4001bac"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-027-aca517-q03.mp3",
+      "sizeBytes": 72908,
+      "sha256": "3023050ebad9bd582fb82b1744d0c0625448a6fbc64f8b0166c26ed4256a032c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-027-aca517-q04.mp3",
+      "sizeBytes": 95084,
+      "sha256": "fba28b5416d70ce873e48a81519ef180f3bf40bafd6084c243962e93537404fa"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-027-aca517-q05.mp3",
+      "sizeBytes": 57356,
+      "sha256": "a4291d0b5e6dc4ef9cd624478a2b318f1704c33c7f9eaac4bacd381325b9356c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-027-aca517-q06.mp3",
+      "sizeBytes": 73196,
+      "sha256": "d53deda223cb9dd67bab7ee245c0ed9918eecbd33f36931053756c7779e03b60"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-027-aca517-q10.mp3",
+      "sizeBytes": 110060,
+      "sha256": "eb9205aea8541996c4a3e175d19fdb0770775abe85678fa05ad371490d2b3cd0"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-027-aca517-q11.mp3",
+      "sizeBytes": 65996,
+      "sha256": "4158912379c3f090317339ddcb7043a6a90e97992c958968e73d8d602334cbb7"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-028-aca521-q02.mp3",
+      "sizeBytes": 192428,
+      "sha256": "daff4c0d7d284ccf71d891606d22c5b15d6bcf3f04220a08f09b4a5b47ac03ea"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-029-aca571-q01.mp3",
+      "sizeBytes": 110060,
+      "sha256": "ea83431a84eb71464d92724dd3e7b4119291604a46e2cc683bc2a320452c8c3b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-029-aca571-q02.mp3",
+      "sizeBytes": 78092,
+      "sha256": "bb2237f659033d8fa3b5d5f59c0253303e258bf6c5a34a931c836c84a5e47d06"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-029-aca571-q03.mp3",
+      "sizeBytes": 120428,
+      "sha256": "9851adc4518b65645ebda7c6e85cf8b086810ab0d6e2d034ce3c54719e944d14"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-029-aca571-q04.mp3",
+      "sizeBytes": 98540,
+      "sha256": "88aa8bfae30ec87e22937fd884e2f94e8c0676c2e8f91cff7eb60764aa3d0c60"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-029-aca571-q05.mp3",
+      "sizeBytes": 135404,
+      "sha256": "549f3eed6f088b90f3c2830aaf66a839f1264fa227f128b5979d644e8a9ee421"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-029-aca571-q06.mp3",
+      "sizeBytes": 108332,
+      "sha256": "079be951b073f5156d072840821e0f434b60b9b66f9f06f02b0c65c564928fb0"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-029-aca571-q07.mp3",
+      "sizeBytes": 61100,
+      "sha256": "ba5ab0b0c8732661a5fdbdaee8922c0b991e628b4060be90bfbc538f852a8b69"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-029-aca571-q08.mp3",
+      "sizeBytes": 97964,
+      "sha256": "4a363ef200b39c39da5269b2856ff26d35e58d4bc5207fdd72d7055ec1075c4e"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-029-aca571-q09.mp3",
+      "sizeBytes": 53324,
+      "sha256": "ee43b2aa31d410fffde47e8000dc03aca9100c51d6d5685f06557ea5b22141b7"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-029-aca571-q10.mp3",
+      "sizeBytes": 93932,
+      "sha256": "4b082170306f0566cd9231812d62b47f55a3a479de1866963781b4d7cce2bdbe"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-029-aca571-q11.mp3",
+      "sizeBytes": 87308,
+      "sha256": "6704a689503f20c2c3691f80c418511b7907d4103968b9d88529ed878df94285"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-029-aca571-q12.mp3",
+      "sizeBytes": 77804,
+      "sha256": "4a1ca2c7b851a86e9cdfd123c5a144333bb6cbba3cb42a7aed35d5168fc4b782"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-029-aca571-q13.mp3",
+      "sizeBytes": 91916,
+      "sha256": "a9645fa223ed329384f5c40f1960ef873892e0b0ecf77f1f4ad9ac6fee3c4348"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-029-aca571-q14.mp3",
+      "sizeBytes": 93644,
+      "sha256": "2f21e6cedb8e45ab6491868c3cf7b4dad378fd0eb11c3467405589318bc7bfa6"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-029-aca571-q15.mp3",
+      "sizeBytes": 51020,
+      "sha256": "3c056f704dfbf6a09e93e4b37c30fadc73529dfc7c2d1f7c93ab0d2d2a6983b6"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-029-aca571-q16.mp3",
+      "sizeBytes": 42956,
+      "sha256": "f53c4039078b9cb71b73e379a4bdda5e6db4ebb3baebdeac7136538fe13fc32c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-031-ces565-q01.mp3",
+      "sizeBytes": 57284,
+      "sha256": "af531b2257a6963bbd4625be01d5093e27e38dfbd90274500880744da85d6e20"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-031-ces565-q02.mp3",
+      "sizeBytes": 91520,
+      "sha256": "81ca5f0c6f7a54b20dc4a19097d69c74007f21f1ef8b33749a99cf1af9b672f9"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-031-ces565-q06.mp3",
+      "sizeBytes": 74636,
+      "sha256": "652d2ecdac6c74810ba5a96f48d7d0478909bec2bbb1261739697ad01c80f82d"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-031-ces565-q16.mp3",
+      "sizeBytes": 78956,
+      "sha256": "f6d9b1d325b3f8178a76db343705df8bb6a6572af86e93ea74c5e663cc39bbbd"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-031-ces565-q18.mp3",
+      "sizeBytes": 41048,
+      "sha256": "482596dbbe411890e3abd0f70323047c79cbd4f6fe464cfd68de43375310e9d6"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-032-ces728-q02.mp3",
+      "sizeBytes": 118700,
+      "sha256": "18325f5fb46a3d0574217382b685eedfd98bcd10b3c9e014a9f61dfb5d5f205a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-032-ces728-q09.mp3",
+      "sizeBytes": 90476,
+      "sha256": "c856d74c0137e62317163121796b4432210f998d8d01fcd24aa5ee882d58c09d"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-032-ces728-q10.mp3",
+      "sizeBytes": 110060,
+      "sha256": "fc8e98a36db6d65ae02b825bc15e45d609d8c5d4b7faadf616b5b3d0e5c920bb"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-032-ces728-q11.mp3",
+      "sizeBytes": 75212,
+      "sha256": "dbb6ec170468c3ab2c01a601d3e4a365f059a4fdef2064f0abf4b671bac4d03a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-032-ces728-q15.mp3",
+      "sizeBytes": 65996,
+      "sha256": "1f99ca0790485298f6f654ecc041070b65dc6f93d378759111a0d9ede395ab4d"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-032-ces728-q16.mp3",
+      "sizeBytes": 98252,
+      "sha256": "2e035090385efdf8209420daf56e0843216258805ec0419bd448b25f277e10ea"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-033-ces556-q02.mp3",
+      "sizeBytes": 58220,
+      "sha256": "de9ce1590bbd97cf9fc543d96f4e4241133357ffeb7e3067215eca1ad13424fa"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-033-ces556-q03.mp3",
+      "sizeBytes": 99404,
+      "sha256": "c844f4f9cbe2333ab40dde6d728d0484c6c709bd228a711a43a64bb07f459291"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-033-ces556-q04.mp3",
+      "sizeBytes": 97388,
+      "sha256": "99179188eafd2257491240b98fea782b2f4fcef9809499cc8793ff3076e1587d"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-033-ces556-q05.mp3",
+      "sizeBytes": 58796,
+      "sha256": "1e4084cd597aedaea3853ef96f58ffecbdc6c9d43df18efd9062017269e95bf2"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-033-ces556-q07.mp3",
+      "sizeBytes": 75212,
+      "sha256": "8b4c5f5ececdd9b70a27ef1537e3fb799e6adcaf0f1b61d3a71499cf9aa0fb55"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-033-ces556-q11.mp3",
+      "sizeBytes": 135116,
+      "sha256": "baae0a6c34327cea150e2cb3fa78aa1d7082ef900a53f2a6c4a33d09341e76e7"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-033-ces556-q14.mp3",
+      "sizeBytes": 80108,
+      "sha256": "12569555d6e27fdf579b25c67beecd069cb8aba01cf9d19efd8f79ff62b5b420"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-033-ces556-q15.mp3",
+      "sizeBytes": 70604,
+      "sha256": "129a306ae9516606ec3002bac42f7df33c8fdc4bc7f34b3fc3c467667050f576"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-033-ces556-q19.mp3",
+      "sizeBytes": 93356,
+      "sha256": "1929fc7b578b9ea4f4198caf2ed9a16f25c2a8db4ce74a1af823c2e846f61fe8"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-034-ces2151-q01.mp3",
+      "sizeBytes": 96236,
+      "sha256": "be57999834fa1778ee792549a6cf31e5b06f46e563de59bbedbb0a575fbaf01c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-034-ces2151-q02.mp3",
+      "sizeBytes": 201068,
+      "sha256": "c554787d7472af9a4e66f897cdd1892159deb4b3fe30970c69d0f2d8e2618254"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-034-ces2151-q04.mp3",
+      "sizeBytes": 70316,
+      "sha256": "a63b3391bd07afaea7eeb2a56c52b6ec3ed430c74b87e3d1a291b888d81768ba"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-034-ces2151-q07.mp3",
+      "sizeBytes": 79532,
+      "sha256": "ce3c18bb131410c2467760eff868acee6c037238e0bb13156c8c37dfcb73c904"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-034-ces2151-q08.mp3",
+      "sizeBytes": 117836,
+      "sha256": "63392a0769d2bee5a6acccddd4241ef843df3782cf0b1fba6828dc8b3eb65ef6"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-034-ces2151-q10.mp3",
+      "sizeBytes": 115532,
+      "sha256": "0a76128bc996a4b3f1d901c88e245ef88277519ce21db93cf4de93e1aa279ff7"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-034-ces2151-q11.mp3",
+      "sizeBytes": 117548,
+      "sha256": "7728b2246b7aecc997e9dfa470a4e70b73b165eeae0c1f6a2637beb3c16bf030"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-034-ces2151-q12.mp3",
+      "sizeBytes": 83564,
+      "sha256": "be2293cc830eaecfaec3dc76ca0414828bdb4e19a4c8e0525691b496039bc893"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-034-ces2151-q13.mp3",
+      "sizeBytes": 40940,
+      "sha256": "1b3c25ab63951039848e6da1ae6268ef188b84d649684d2325e0a8e2e3d97005"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-034-ces2151-q14.mp3",
+      "sizeBytes": 111212,
+      "sha256": "6d78e3c5b9c1bf090ee259e22757899aea051931f18bf39dd2ef03ff7f82c66c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-034-ces2151-q15.mp3",
+      "sizeBytes": 109772,
+      "sha256": "dd27a25214a36b453f2c6a4529dd0bad0b79de96c58c92f7a5bdafe73b86c465"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-035-ces5118-q02.mp3",
+      "sizeBytes": 64300,
+      "sha256": "53fddb25a9f68edac069c023a833920b80409ba092dc00268dc0951bbd8132ab"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-035-ces5118-q04.mp3",
+      "sizeBytes": 177196,
+      "sha256": "c391bc7785472fde28ed818c18bd65c1fdfebf4cf995b72ed1c65ac870a2ab6f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-035-ces5118-q06.mp3",
+      "sizeBytes": 71788,
+      "sha256": "c65a13b9839bce831e47c3804cdd803ad61bbce177b867af0a964c4baadd4029"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-035-ces5118-q10.mp3",
+      "sizeBytes": 121900,
+      "sha256": "428d3c044eaf60d8e092df2f116d9a3d07aefb3bf50082c6e9efa1f2828cc20b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-035-ces5118-q15.mp3",
+      "sizeBytes": 205964,
+      "sha256": "a67ccf61b3c7a39cb2078abb9b26e9f9234c1ba1904775cfb7664251c58bee0d"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-035-ces5118-q16.mp3",
+      "sizeBytes": 57100,
+      "sha256": "d9f38be8a0046bb806a6cb8b03feca943c94b53ec566f4a65d314ed40bc04a15"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-035-ces5118-q17.mp3",
+      "sizeBytes": 57100,
+      "sha256": "8a6115ce86cd39277e70c42c72aee254fa16816c8ad9f45947ee2b319c834bbf"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-035-ces5118-q18.mp3",
+      "sizeBytes": 112684,
+      "sha256": "0491ec35ad120c5e6f15444e0e832901334f6b5919aa1bc568764f81bc2712a2"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-035-ces5118-q21.mp3",
+      "sizeBytes": 129644,
+      "sha256": "9ffb4b8b9d751790d2ed3c101b8d9a02034527a7f66a81db3b0b30cb0b092c60"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-035-ces5118-q22.mp3",
+      "sizeBytes": 140300,
+      "sha256": "9c7302e7a2fad9389ac4b71e3e33b903478d685381e27d17c02dc76c0fe31557"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-036-ces769-q02.mp3",
+      "sizeBytes": 172556,
+      "sha256": "a2154526c1ddef1f73c000e0b3dde43f35783b8a8ad16a932f2d45b3f43113cd"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-036-ces769-q08.mp3",
+      "sizeBytes": 108620,
+      "sha256": "3459f334029aa8aac3afba0145b82359f80405a99b0903c3a170e9e57a3520ce"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-036-ces769-q10.mp3",
+      "sizeBytes": 98828,
+      "sha256": "1972bfdd64398a415ef278e91c5e131e5775e994bf3295060e49a195ad60326e"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-036-ces769-q14.mp3",
+      "sizeBytes": 49508,
+      "sha256": "e0f567b00e2111d6ceb097424fa890e6fa9f4053803977b52969c7c0680daea1"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-036-ces769-q15.mp3",
+      "sizeBytes": 66572,
+      "sha256": "300652f87bc8d58a9764574b8a4a605fbc2950c9417a7e913487b15b9e18feaf"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-037-ces529-q02.mp3",
+      "sizeBytes": 63692,
+      "sha256": "07b427b53e61dcdb5cfbf11668561e732924c7ab686a2c00fa89ee3e0c1ef9b0"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-037-ces529-q03.mp3",
+      "sizeBytes": 88748,
+      "sha256": "c04bf2e687b010d55062910fa5ffdf8c7428011abefb7774f9faf2c1671d019d"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-037-ces529-q11.mp3",
+      "sizeBytes": 46412,
+      "sha256": "92dc19c6cc15eb2a183dd66707482eaaef35978869e2d6db6ec898937d2dfae7"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-038-ces209-q01.mp3",
+      "sizeBytes": 79820,
+      "sha256": "359a4e2853d690554a513da0ba71c20f0ef140847b67c296c6920f6989d8f0ad"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-038-ces209-q02.mp3",
+      "sizeBytes": 40148,
+      "sha256": "ee7d964bb5884961cf4100685cebfdc3c7926d15265148f1584859caa22ec9fb"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-038-ces209-q03.mp3",
+      "sizeBytes": 63512,
+      "sha256": "1e5534e89e3acb4f87997ce2165e005c9958e4948896fe6cb26f7c2d930d88b4"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-038-ces209-q04.mp3",
+      "sizeBytes": 65708,
+      "sha256": "6983086793d4bbfd9798046b06ba74c8c209a0aa56689e3b04e8d6e3536f74cc"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-038-ces209-q05.mp3",
+      "sizeBytes": 79820,
+      "sha256": "ce51091e407a8627a8c5d202660a90c9f2e4dbe8cadab04b6aeda0990d07be1a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-038-ces209-q06.mp3",
+      "sizeBytes": 73772,
+      "sha256": "7992144f99e71c3e31804d597324e4afcef3a8bf45bba18b8c9de51578985827"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-038-ces209-q07.mp3",
+      "sizeBytes": 57068,
+      "sha256": "217f0f93a27871a03a1ace6c5c2ba6dc2834de5778ab59dfe5585e79563251be"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-038-ces209-q08.mp3",
+      "sizeBytes": 75788,
+      "sha256": "05eabc80c90443e11d052ab5e0bc9e6987f668c422dd0714ddff6843f81e7762"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-038-ces209-q09.mp3",
+      "sizeBytes": 97100,
+      "sha256": "bc80a6b9dbdee0859020432ff9fc01f9591663febf3ba14d04ebb39af048bdc2"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-038-ces209-q10.mp3",
+      "sizeBytes": 87884,
+      "sha256": "2041977324e8df9af829feccc151ee1d8c0c9472b7b290f74749ad706fd2a6dd"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-038-ces209-q11.mp3",
+      "sizeBytes": 46412,
+      "sha256": "daebd9930c38ba6f4bded51c5799160658511c213bfcb6f882552068fd630a67"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-038-ces209-q12.mp3",
+      "sizeBytes": 105740,
+      "sha256": "4691cd0bc0890c43a0fc4f5669faa01df3513102272dd56e3d80affc32459b41"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-038-ces209-q13.mp3",
+      "sizeBytes": 44396,
+      "sha256": "fe53fb445916dab6c7c0bfbd39c272bd7815a3333dae8348fb25a2352522c3ac"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-038-ces209-q14.mp3",
+      "sizeBytes": 57644,
+      "sha256": "de107ff637472fd4ca5257202beeee1b48fe44426bfdc97d8b08d98485f0d697"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-038-ces209-q15.mp3",
+      "sizeBytes": 40940,
+      "sha256": "fde4ee823034b2c9160a838c8270dc0c65a1c6dd07c894dee21b8fa694e7a075"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-039-ces5277-q01.mp3",
+      "sizeBytes": 69668,
+      "sha256": "5c45c182f61ffc5df92638496ae854a2d087d6ce27fa6183e8a84fb38fbdf4e4"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-039-ces5277-q02.mp3",
+      "sizeBytes": 145772,
+      "sha256": "702d5c17f0f9c4b619809b2e145b35dd4cafa76b0e4915934d6a11c4f38595c7"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-039-ces5277-q04.mp3",
+      "sizeBytes": 83852,
+      "sha256": "2ee71038f6072290f6a021c37bee40f5a657ba20bfe037e81f2d2f6386d4f271"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-039-ces5277-q05.mp3",
+      "sizeBytes": 65420,
+      "sha256": "dc4eefc1bc25b0fd9935fef8d230102290fcf726cafd55b7a892116bc22f6b9f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-039-ces5277-q06.mp3",
+      "sizeBytes": 53900,
+      "sha256": "86f062e8405cc25d449e08dff35b9a79f8df53bfcd46dc1b7cc71e07f39546fd"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-039-ces5277-q09.mp3",
+      "sizeBytes": 126188,
+      "sha256": "3023ae13b90cba611a109695d49b2a0694a17a3564f1bcf34e24bf867e8c9cf3"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-039-ces5277-q11.mp3",
+      "sizeBytes": 144908,
+      "sha256": "24e94ea3224acec6eb8b2d950ff70928a822c7f32e19665d9f807f4383f2dd57"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-039-ces5277-q13.mp3",
+      "sizeBytes": 90188,
+      "sha256": "7976893f6f5476f2c1db57d81fd10727b1f9c8a408bedc324dc4bb465e999441"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-039-ces5277-q15.mp3",
+      "sizeBytes": 65708,
+      "sha256": "63e984ccfb20b84cc64b76af7a98ca10bbb23d7f173767f4cb976fe787a60cd4"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-039-ces5277-q16.mp3",
+      "sizeBytes": 45548,
+      "sha256": "59f07b8e1dc7dc74794f5d449ddeb0e18995264f6522bbef1e4751b75c4ae4f0"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-040-cca512-q02.mp3",
+      "sizeBytes": 187244,
+      "sha256": "475b8e35fe4f8a5848df756549c18b0c9d0e967c307f9db13071cc3f765e581b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-040-cca512-q08.mp3",
+      "sizeBytes": 92492,
+      "sha256": "3a976345d1b5aa493576f06f8ec8c5e28867aab48d2f2e96d4235c8ac0d8d10e"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-040-cca512-q11.mp3",
+      "sizeBytes": 74060,
+      "sha256": "cf456823733d6f771006cdf137a30900e92847a6f1f047c8bd440c5b16561718"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-040-cca512-q12.mp3",
+      "sizeBytes": 78668,
+      "sha256": "bfba794abca8ea444ab6bed27ed40a82311163943b54d5c3dd8d97ffa4505eee"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-040-cca512-q13.mp3",
+      "sizeBytes": 45836,
+      "sha256": "e4ef91d17a8b4118cb0ee75800eaf5e0d44842ef75366c1d2e88016b4033339a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-040-cca512-q14.mp3",
+      "sizeBytes": 89612,
+      "sha256": "a6899645a91c2f031de358dadb5c0ea03d57e06beb16fdd9c231a5b76f5e96bb"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-040-cca512-q17.mp3",
+      "sizeBytes": 78956,
+      "sha256": "d8450a512d32d344eab1d25797ae938c375d2f3e4628e1f58f9c040bf3fb6ed4"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-041-cca725-q01.mp3",
+      "sizeBytes": 100556,
+      "sha256": "3004007774a396150415cdf52a56ce626f156638e70a5530ec3c58b53d5eec12"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-041-cca725-q02.mp3",
+      "sizeBytes": 116756,
+      "sha256": "52a7ad8ab0ac46f432a16d17c488af99cff089e7b4d4f1b3ebfc9b98e43d1f4a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-041-cca725-q04.mp3",
+      "sizeBytes": 76652,
+      "sha256": "d73d107df525391bffe44e0e763d87cc99381e77af988f8454a59b0fd98fbd39"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-041-cca725-q06.mp3",
+      "sizeBytes": 59660,
+      "sha256": "a6d2db73f44e557ab3353bc091bb6030f6691c125f3a481af22ca709ea44f6c8"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-041-cca725-q13.mp3",
+      "sizeBytes": 70028,
+      "sha256": "f7066663cf4089c5302493d82b12702c0249c9cb37d484a6e9afaa64c49df524"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-042-cca985-q02.mp3",
+      "sizeBytes": 170828,
+      "sha256": "0674748d3397bf3e393d770858f93ea302b357056d288f18a330162717673354"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-042-cca985-q03.mp3",
+      "sizeBytes": 74924,
+      "sha256": "a3d269674822852324f67d6866c55e26872593e922e1166dc9bd3de947e184cd"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-042-cca985-q05.mp3",
+      "sizeBytes": 109484,
+      "sha256": "63f25a0f843894910a22f5860e600ad8c9f651c1bc5e8d869e66d2f6db26beb5"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-042-cca985-q08.mp3",
+      "sizeBytes": 70892,
+      "sha256": "ab8f1e128f58ebb6ef3adfc0a150a136ef8e5aac571dbcb24c6a8196bd3c3f61"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-043-cca937-q02.mp3",
+      "sizeBytes": 182924,
+      "sha256": "8d17179884ba1466a7c8abdb21257b24cd0555c373b59e74e0dd75b62e09c887"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-043-cca937-q04.mp3",
+      "sizeBytes": 102284,
+      "sha256": "9e2d45a70fc24fce52692e35fb5f84f64f12bc7f66a2a1ba2832dbf668df550d"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-043-cca937-q07.mp3",
+      "sizeBytes": 81548,
+      "sha256": "23586f53e0a7326a86f3cfdf71a0b9015f9bb177fa7fc72ebc905a40026c3359"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-043-cca937-q12.mp3",
+      "sizeBytes": 138284,
+      "sha256": "e5d41715154b0d7f1275fc201bbbc36a4ea85d527884e9ecbd7de436a38213c6"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-043-cca937-q13.mp3",
+      "sizeBytes": 97100,
+      "sha256": "98ddd6d1b156d7c7866da8c6b7fec873ca02381e83cb7952118018a1f95b02f2"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-043-cca937-q14.mp3",
+      "sizeBytes": 94220,
+      "sha256": "6bab950493a8a38be777816e2054a11b4a6eb309422d087ff59fe5434bac1bf5"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-044-cca976-q02.mp3",
+      "sizeBytes": 195020,
+      "sha256": "1a6a01aa603f8faa43c8fd20387c95bba26ff9a91676514deaae91676ee17cdf"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-044-cca976-q09.mp3",
+      "sizeBytes": 79532,
+      "sha256": "6bd4ce698b938425389930e60327d6c43ab8089032f3dd973748a419f5c94bc7"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-044-cca976-q16.mp3",
+      "sizeBytes": 91340,
+      "sha256": "572cc5343e44e98927e83352916be29dc29065d7f81fc1d1cc5c1f0c95ad61ca"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-045-cca527-q02.mp3",
+      "sizeBytes": 197900,
+      "sha256": "ddae1a8ed6619edf542220b5a84bb900c1e49fd4cd5391a1e061ad1f2e9a083f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-045-cca527-q06.mp3",
+      "sizeBytes": 51020,
+      "sha256": "5a4cd3c67ed2c34af9ec1d2b71cf300bcec11102189d334cb222b3667289d8ab"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-045-cca527-q07.mp3",
+      "sizeBytes": 75788,
+      "sha256": "f073891ff30af9f68a373d1ff7d1070aebfd153e9175f3b2edad99fcda26efbf"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-045-cca527-q12.mp3",
+      "sizeBytes": 87308,
+      "sha256": "6de5dcda6606a8f4834d2cb73e54fd9952128d198bfb198db97668eba0bfe9d2"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-045-cca527-q13.mp3",
+      "sizeBytes": 80972,
+      "sha256": "1e2ce388f79d8bd410a63214686f9a799515e923f6b4af561a6f6d485d86383d"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-045-cca527-q14.mp3",
+      "sizeBytes": 80972,
+      "sha256": "8cb28deda72b5921f1dd891914a20692ada8e6f536c4780421f2fa057220930a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-045-cca527-q16.mp3",
+      "sizeBytes": 45836,
+      "sha256": "c2dcccdafedf822351fb569bde86d50300d12bb111a0157a5baecc34bf09ddc3"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-046-cca1301-q01.mp3",
+      "sizeBytes": 96524,
+      "sha256": "1b956d6dc49f4b3b13ea216343c9384b91abbd3badbb3aee41b00f1a41d7e3c3"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-046-cca1301-q02.mp3",
+      "sizeBytes": 50444,
+      "sha256": "389a0a9926bad119d93185d573f3bc586b36bab92af619db6977b08bc8e19147"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-046-cca1301-q04.mp3",
+      "sizeBytes": 60812,
+      "sha256": "20f8711e2b52f083355f02527a589edb75dd8866750df2ee7df25df381ae009f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-046-cca1301-q06.mp3",
+      "sizeBytes": 108908,
+      "sha256": "68f82075d24565302c7cec5581b317e2fe4478f7bff27b58a6217e96f34b7fcd"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-046-cca1301-q07.mp3",
+      "sizeBytes": 60812,
+      "sha256": "84e10f9e791f37061c0c3ff301c0ee14a5b0956064f00b880260765561093e24"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-046-cca1301-q09.mp3",
+      "sizeBytes": 41804,
+      "sha256": "cbb7edb03e84769ff2a3ee204f4d414f7a7cae63b22b97972287ae419668ef6b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-046-cca1301-q10.mp3",
+      "sizeBytes": 73196,
+      "sha256": "46f18912d0a5fb79081eb333f679d87016a682261c4c329e8c57237dec7230d8"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-046-cca1301-q11.mp3",
+      "sizeBytes": 87020,
+      "sha256": "a6f339d6c9487074b82c7e2ec72862786634b111f91d68e102fa6fc19a377f62"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-046-cca1301-q12.mp3",
+      "sizeBytes": 37772,
+      "sha256": "3f6c1e9629252869c91122b0dbeabe0121056389a0c19a9b5d3d4d8dddf55e4a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-046-cca1301-q14.mp3",
+      "sizeBytes": 48140,
+      "sha256": "f8385f60ac7b04133be5125b26a7187a814f9cbc677f182ad2b7f242c81b3d4d"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-046-cca1301-q16.mp3",
+      "sizeBytes": 68012,
+      "sha256": "e677e668f8ea71d734750738aee6bc92e39cc9e1ff0c19de50b4f4ab6be44a9b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-046-cca1301-q17.mp3",
+      "sizeBytes": 91340,
+      "sha256": "88d6f8089ef6097b613f3c4aa3860ef19ba8380cc4e687a2847c8fd45113098d"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-046-cca1301-q19.mp3",
+      "sizeBytes": 72620,
+      "sha256": "59cbf1c120fe16d46654479ece34320d06978bcdc3cc86ee242b5924fa9b2d8b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-046-cca1301-q20.mp3",
+      "sizeBytes": 39500,
+      "sha256": "8a322c5136be45154288bf5bd35c3d42b52c4223b8f12280f25e416a16f9ac23"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-047-cca3101-q01.mp3",
+      "sizeBytes": 96812,
+      "sha256": "348a71ca8c8acb9404551672689433ad6cfb4d56d871eab229468ea8c90982d2"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-047-cca3101-q02.mp3",
+      "sizeBytes": 49868,
+      "sha256": "dee3c8e618d152a95fc976bc7ce59369a4b5fc88836b8dc831df44f6c0f6c03f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-047-cca3101-q03.mp3",
+      "sizeBytes": 39500,
+      "sha256": "07066b379bea10049e10880b05e40746bfb4cfd004c801f8a29d2df9b69c7061"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-047-cca3101-q04.mp3",
+      "sizeBytes": 60524,
+      "sha256": "3b5a8b4cf9d8890b1485c588bc1d2f116394c578525e8b2d1eda66919d28101b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-047-cca3101-q05.mp3",
+      "sizeBytes": 67724,
+      "sha256": "58ddbe0bfd72bbb42b710f0487abb6828af01fe3a15470cd65294ef962f3f478"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-047-cca3101-q06.mp3",
+      "sizeBytes": 108908,
+      "sha256": "ea82ed3c894ab3cbb3534f095245c482f7e41193eaee1c597ec47e8f56a9029f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-047-cca3101-q07.mp3",
+      "sizeBytes": 61388,
+      "sha256": "2e181d3c6ba88894d17da29b6aad0ebf2783a9ec8f891abc0e10cbca339af439"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-047-cca3101-q08.mp3",
+      "sizeBytes": 57356,
+      "sha256": "17636c54df41b59a227c020dd9b481ac463c8d86bb2cb0ca5ae6fd3cf09eb205"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-047-cca3101-q09.mp3",
+      "sizeBytes": 41228,
+      "sha256": "42aebae7c34ccdb6fc846caeeed0a99fb1930beea7b3f140c6c5142467a67e5f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-047-cca3101-q10.mp3",
+      "sizeBytes": 72908,
+      "sha256": "a1f18f9cef48234ecc8ff809d6d589cd11abedff552b9b80c4c18ba203048965"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-047-cca3101-q11.mp3",
+      "sizeBytes": 86444,
+      "sha256": "141d4518040c1b838691ef25dec322956872f80f91dd620eaf32614cca074069"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-047-cca3101-q12.mp3",
+      "sizeBytes": 37772,
+      "sha256": "847915e6731891e591a346865c1bde7fe241dea82bf5c97c2a2931a02e98792b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-047-cca3101-q13.mp3",
+      "sizeBytes": 65420,
+      "sha256": "7e737722149f92de0f8a172dacc2573af93d1265b847d08d599b119a3576e14d"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-047-cca3101-q14.mp3",
+      "sizeBytes": 48140,
+      "sha256": "222d6d90714afd9a78f7cbcdfa5f410f0201123a0db0af53e47076f3aed29876"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-047-cca3101-q15.mp3",
+      "sizeBytes": 52172,
+      "sha256": "43e205712ee6d6605abb8939b708ae8877dfff383bb4367ab066c11c53ec91a2"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-047-cca3101-q16.mp3",
+      "sizeBytes": 67436,
+      "sha256": "a63bc8732aa09be65204cae07f1e2bbaa1e2f2ab05c130f9f89139dea98af6ca"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-047-cca3101-q17.mp3",
+      "sizeBytes": 90476,
+      "sha256": "d8dfca3e24f26121a713c03a4faa19980e5ada48c85dca015732cd749c741961"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-047-cca3101-q18.mp3",
+      "sizeBytes": 56780,
+      "sha256": "ac0d4c86887d40bc6921b646980196d09a059936d339eb49667264fef3b27b75"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-047-cca3101-q19.mp3",
+      "sizeBytes": 72044,
+      "sha256": "0a64af88e7226e4191be5218dd02124532b8a34a097220a4865a578fde414a73"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-047-cca3101-q20.mp3",
+      "sizeBytes": 39500,
+      "sha256": "61b84034965cfdd9b5d1182738a7c93979ce67e45173f135204b930170172a97"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-048-cca321-q01.mp3",
+      "sizeBytes": 96560,
+      "sha256": "e73b08d778e6c66289668f3d7826e6bf1ba9f9b0b364d52755d3fbeda98ede6b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-048-cca321-q09.mp3",
+      "sizeBytes": 96236,
+      "sha256": "9483550e437df709be577a0666d5843b75c4bd4be860f0f0ce2dd5013fdd396a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-048-cca321-q14.mp3",
+      "sizeBytes": 113516,
+      "sha256": "c6792a9b9e59f60e9ffe325495cfcb1fa4ac271dec37f225a9d7543ea59d16d9"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-048-cca321-q17.mp3",
+      "sizeBytes": 67436,
+      "sha256": "63ea6c1f38f756051ad9815a456aed45f2ed1c919171159ca0fdb48d975fb44a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-049-cca1368-q01.mp3",
+      "sizeBytes": 126188,
+      "sha256": "e0ab9701328971ae4066c1e1536dcaf8bd80e303e455d2f2a976fe7b73dc0803"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-049-cca1368-q02.mp3",
+      "sizeBytes": 84428,
+      "sha256": "e4399d577d0115bcdbd248d35e45872c451cc34347b91115ab0950cdf9162b00"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-049-cca1368-q03.mp3",
+      "sizeBytes": 52172,
+      "sha256": "14a865e4e2382f8ad8f994f590b889caa1fcf4d5b30cf5c68197dc6cdb38c31e"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-049-cca1368-q04.mp3",
+      "sizeBytes": 71468,
+      "sha256": "cb4b198604f83bb91b1dc137eecce6b747a8304906d0bd35234fb38d8962a608"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-049-cca1368-q05.mp3",
+      "sizeBytes": 61100,
+      "sha256": "78e6b72dba95ecbb53138a33feefcd78b33c03e33383d188fb96bb62bc233085"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-049-cca1368-q07.mp3",
+      "sizeBytes": 61388,
+      "sha256": "ca5f246078b35b8277c29b76db4baf008c5405da5da008b3e0f8286463107668"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-049-cca1368-q09.mp3",
+      "sizeBytes": 106604,
+      "sha256": "a7fd774b21faabe1f459f011cab8b3b10159e95271a68312e7e4623d567a8d4b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-049-cca1368-q10.mp3",
+      "sizeBytes": 75212,
+      "sha256": "f7af90fe877d7aef951e50aeea4e6cc49da7b82289b3406d8fd52e89266fe855"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-049-cca1368-q12.mp3",
+      "sizeBytes": 42668,
+      "sha256": "502ea66877c4cbfd32c29c9953daeda3a8a1b8f7cac80d03e0ece1da9d48772a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-049-cca1368-q14.mp3",
+      "sizeBytes": 83852,
+      "sha256": "7b426b448c50e577f74466210191859b720ffa12132503cd0905893d74a80eb5"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-049-cca1368-q16.mp3",
+      "sizeBytes": 59660,
+      "sha256": "322585cf04a11c694f835086d873ec12fcb980a5f2c2d1a245c3686ab86cd587"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-050-cca572-q01.mp3",
+      "sizeBytes": 109772,
+      "sha256": "5e57f3537c20b4a1306d2460bf9aa148b6b0b59be6d3d3cf8f1fdcc78dae3623"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-050-cca572-q02.mp3",
+      "sizeBytes": 126116,
+      "sha256": "8c6c35119027720fe92ded703840d91e9a5024ff80488de43e86bdb849506b9a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-050-cca572-q03.mp3",
+      "sizeBytes": 50804,
+      "sha256": "95dec2729a7b122658e6b1e96d68656504dc08fcc7b44b4f152f89f3a033c083"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-050-cca572-q04.mp3",
+      "sizeBytes": 39500,
+      "sha256": "d264bcc4939815520044a2ae94461c1a3cb881c48bdb0fd2c808798ec97fc25b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-050-cca572-q05.mp3",
+      "sizeBytes": 77228,
+      "sha256": "51e26c80db9560f2b7bd58f647d2b52582352385fa0e013e0268835dbd14834c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-050-cca572-q06.mp3",
+      "sizeBytes": 77516,
+      "sha256": "ee7716f15a9310c7c2886c242b601e2f6b50edafa7081de3396cb0f4d3ec833e"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-050-cca572-q07.mp3",
+      "sizeBytes": 45836,
+      "sha256": "55fab53692f2a33d63b76e26849521b7d48b79b62e5c5b15f19de9b1b9c0aa70"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-050-cca572-q08.mp3",
+      "sizeBytes": 77228,
+      "sha256": "4f9d69f9c2c37e460f79ce4700b85c2f64f7e03af4bacb437558b17e91192392"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-050-cca572-q09.mp3",
+      "sizeBytes": 129932,
+      "sha256": "2edffbe240cee8e445027cdd8fd13e507f8e060c83c41932a3f1d7964797a38a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-050-cca572-q10.mp3",
+      "sizeBytes": 55052,
+      "sha256": "65c82d02d19cbc9c26c9800b0b74da88c0f21ba365c8eb489a0894406bb6811d"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-050-cca572-q11.mp3",
+      "sizeBytes": 85004,
+      "sha256": "fc3c13f496c3e6e105e12ca240170bfceecce79e50a53c3e9aa75ab6a11802de"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-050-cca572-q12.mp3",
+      "sizeBytes": 105452,
+      "sha256": "8284a38a5bf1045c6cb09cd515b593f4aee6911ba1ae4c1ad288b88dde379d66"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-050-cca572-q13.mp3",
+      "sizeBytes": 74924,
+      "sha256": "892ac852326819014b8ab6806d26d68994c0d17489112363311cac436c5bbd0c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-050-cca572-q14.mp3",
+      "sizeBytes": 51020,
+      "sha256": "b08070bcf7eb9348154941975bdb9e192765b80d4f038f50b8b563bae34d0197"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-050-cca572-q15.mp3",
+      "sizeBytes": 123020,
+      "sha256": "fc17fb81d30a6e66483025c412f89374e8716330ac6e2c3f3001e223eebd1397"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-050-cca572-q16.mp3",
+      "sizeBytes": 42956,
+      "sha256": "57328d8c81be0fcbebff597fbc9ccbc0d072e782fc14720ff9c681e1b7753f77"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-050-cca572-q17.mp3",
+      "sizeBytes": 48428,
+      "sha256": "d5f486b744bb78936d3f41d45c125afae79a8333907fa281654d93304c0f3b90"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-051-cca1432-q01.mp3",
+      "sizeBytes": 140300,
+      "sha256": "288e47a8005b0ab3a8c4240b3d8ec6469d8a3721b19b83d0c74abcb843dbd86b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-051-cca1432-q02.mp3",
+      "sizeBytes": 98828,
+      "sha256": "6585e3a7e18cb0f0dd923f111c4d874231039e74f5573822cc20a7312fbafb00"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-051-cca1432-q04.mp3",
+      "sizeBytes": 57356,
+      "sha256": "fad92813bc4288c17c716d750929d8f5344b9b5dc7abbc033ac1f4ae27aa87e5"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-051-cca1432-q05.mp3",
+      "sizeBytes": 76076,
+      "sha256": "58c6d55783fcfcac942679d527627d1fa29da635cbff277b05680a819f8db65f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-051-cca1432-q07.mp3",
+      "sizeBytes": 63980,
+      "sha256": "4b1971e516f3034aad7b3b23f8f99bc085bf274d6e8429c0e23683b115a208c3"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-051-cca1432-q09.mp3",
+      "sizeBytes": 57176,
+      "sha256": "6050470a72245e70d1ad51676a5f9677046c42ef673137e5147a44cb19491104"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-051-cca1432-q10.mp3",
+      "sizeBytes": 53216,
+      "sha256": "bca70edc7fb0e2e925de241adc73d28dd1d6038a301bdb63f5c2548cf0e8530d"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-051-cca1432-q12.mp3",
+      "sizeBytes": 89900,
+      "sha256": "77b38e7c5cbda03c6d97fe402e20c491fc890f930920866fb6193b9051db2a7f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-051-cca1432-q14.mp3",
+      "sizeBytes": 123020,
+      "sha256": "e4067a6d8375389f96db1983e4104b7cc925fa16e5c257f608fd00068a4f1043"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-051-cca1432-q15.mp3",
+      "sizeBytes": 87308,
+      "sha256": "d5c048f8e0555d702c8e5886fdb0c3e39c1114fc5be30713db1ba81fedf400ea"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-052-csn319-q02.mp3",
+      "sizeBytes": 162764,
+      "sha256": "356a24955697dfceb64ae84ad3dc86712b0d0a42fb007ee8b86d1e5f474dace9"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-052-csn319-q05.mp3",
+      "sizeBytes": 83852,
+      "sha256": "51b6daac566d10277487b71efbd45f243cec4ac834f3ee3f8409c73fb9600622"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-052-csn319-q07.mp3",
+      "sizeBytes": 68012,
+      "sha256": "f418696bf373adeac869ab0074dc87930a8f674d47b944459c9569985623d6f0"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-052-csn319-q08.mp3",
+      "sizeBytes": 46412,
+      "sha256": "79c26bffa232e7bac2f6e437daec8fa12a4a92ee9d16bf0a6267f576aea1574b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-052-csn319-q09.mp3",
+      "sizeBytes": 57356,
+      "sha256": "f1c5d2eb8d7b77c6bf4c221a7d81f41255e76711c950d53eee3ba875804d4c47"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-052-csn319-q12.mp3",
+      "sizeBytes": 60812,
+      "sha256": "6da754b75300e9b0ed4469d9a0b5465ac45c306a982d93c25508d61b306f9a81"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-052-csn319-q14.mp3",
+      "sizeBytes": 94508,
+      "sha256": "268fbeecf926f42ff715f3fb55dfc27439d6ed965cb1c49bd782ff28d9f8f1c5"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-054-csn3109-q01.mp3",
+      "sizeBytes": 101996,
+      "sha256": "e8313bfeba2963355d15a15f7dd1e80789ab58594a92d48d9e95e0fbb8665d1e"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-054-csn3109-q02.mp3",
+      "sizeBytes": 84140,
+      "sha256": "6b4fe7049aa95ae7f8c2cfba442cc16c98a02649e2f9fd1400da2fbc0361a329"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-054-csn3109-q04.mp3",
+      "sizeBytes": 59084,
+      "sha256": "2e741fd75aee91a4ecb3bb5229239f95755f881462d0b5f08d4d273667422049"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-054-csn3109-q05.mp3",
+      "sizeBytes": 40940,
+      "sha256": "a03b354b20b75f032d130cbc6994d840c460211cf2813f5cfbc63ae5a192af66"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-054-csn3109-q07.mp3",
+      "sizeBytes": 46124,
+      "sha256": "f8f08530b3392f5be2ee8846605bef451e03b373078d5013dda0e33542829b60"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-054-csn3109-q08.mp3",
+      "sizeBytes": 63404,
+      "sha256": "f984b1fc45eafd154c80042f0214f6c2233e496b4d123c817d6a3976a6442681"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-054-csn3109-q09.mp3",
+      "sizeBytes": 78668,
+      "sha256": "5d8710bb8450d06e64dffffe0c698b09c7b24396435f0ae0f25ea8e882c38bf3"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-054-csn3109-q10.mp3",
+      "sizeBytes": 70316,
+      "sha256": "39623e0b5ba9f6a5a3fdd45648a2d947018f9f246f47c765a7eb40f1a9780b91"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-054-csn3109-q12.mp3",
+      "sizeBytes": 86444,
+      "sha256": "169ace726a18710bea52eb24e0043c6c0d4cea9242934742699926fb251553dc"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-054-csn3109-q14.mp3",
+      "sizeBytes": 73196,
+      "sha256": "903909ce29c052505a3d02b5933bb6b849d5e8daa571b4574addda9257d397f4"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-054-csn3109-q16.mp3",
+      "sizeBytes": 36620,
+      "sha256": "b364834750de3140df36ebc66c00641549d9bda2f4ff517a7ffeb904366137b6"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-055-csn7353-q01.mp3",
+      "sizeBytes": 102284,
+      "sha256": "83392a912ccb401fda65b0f4c1116a2acb646b5df8f60b6401976d88b8ac0dfb"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-055-csn7353-q02.mp3",
+      "sizeBytes": 63116,
+      "sha256": "22aad81192ec8a32de0c65dc2b5d2ebadc4517529a228bdf7e34f670f5f007f8"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-055-csn7353-q03.mp3",
+      "sizeBytes": 165644,
+      "sha256": "e4f4ac78c701e2879eabcf5a2646433571713958870a9a86a71d2504df59f536"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-055-csn7353-q04.mp3",
+      "sizeBytes": 72332,
+      "sha256": "f9292bee5251153cfd3409f2a8261ceb0014499c0b018d893b0ecbfca0d25f98"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-055-csn7353-q06.mp3",
+      "sizeBytes": 91340,
+      "sha256": "f40b07877eb0f0e0e50e209e86ef498438535427c0d4c79bbe688609028ef307"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-055-csn7353-q08.mp3",
+      "sizeBytes": 71180,
+      "sha256": "8a9e22c0e33800efb253ef84835a74de367ce5d2a09c8106d0f42bbc54c3344c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-055-csn7353-q09.mp3",
+      "sizeBytes": 79244,
+      "sha256": "f1b4c9cb173f066851582de738262d904c98ca56f3cf3a306d9beae43e06cce8"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-055-csn7353-q10.mp3",
+      "sizeBytes": 76652,
+      "sha256": "80529f2b8c17953ecf701ad3227cae1a821a8fe8ae83b2c58d38e8d948fdd720"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-055-csn7353-q11.mp3",
+      "sizeBytes": 51884,
+      "sha256": "b0e95cee7dae92b27cb884d800f18ad38e556439c30172729b466ab4f6429847"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-055-csn7353-q13.mp3",
+      "sizeBytes": 71180,
+      "sha256": "4dcceac53c4f5d2c5c9ba0a59dbe79e656d9279b1c1349f2a38b6a378a6edf03"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-055-csn7353-q15.mp3",
+      "sizeBytes": 73772,
+      "sha256": "ac1a7019dfdacf2dfa5511f3a57172416baa6a56d0876bd2cdb0f371816fca2c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-055-csn7353-q16.mp3",
+      "sizeBytes": 65132,
+      "sha256": "038fc94682d9ac1ffa2a1f7f2e6115f68ada08481d96027ab186dbde400f29f8"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-056-csn1310-q01.mp3",
+      "sizeBytes": 118412,
+      "sha256": "afe23e1c7bdeaff1f8a564194ac15bba9a18df37cdce771d8647984bd9774a18"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-056-csn1310-q02.mp3",
+      "sizeBytes": 146060,
+      "sha256": "632b0810d5b9b171dc774a82f222af013407860d09696c9a9407f0b3b68ccd6f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-056-csn1310-q03.mp3",
+      "sizeBytes": 82124,
+      "sha256": "db05b5f79493ec2e49326d88d755ffea4373e692b8a58b24da9be3f6d5ea4523"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-056-csn1310-q04.mp3",
+      "sizeBytes": 74060,
+      "sha256": "91e9f75290b10c1265d83d6d467363ef66712373d668ef81cd73da8c72d2b304"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-056-csn1310-q06.mp3",
+      "sizeBytes": 51596,
+      "sha256": "deaa7e036d214e7298f741eec5666462c332b1729576548450020dd75b925c9b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-056-csn1310-q08.mp3",
+      "sizeBytes": 74060,
+      "sha256": "c093f83d77387ededc46768fbeaa800f253d2b73f184a85b7e3b4b83e6362466"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-056-csn1310-q10.mp3",
+      "sizeBytes": 89324,
+      "sha256": "39af390f5526ea2d050da890bc7dcc117400ce0ebca2e66835d6ff4530838e5d"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-056-csn1310-q11.mp3",
+      "sizeBytes": 69740,
+      "sha256": "380c29fd72358ca19e6fbb3fa7b7fbff0e0da05b7dcc48e725e1b69187ac0aa8"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-056-csn1310-q13.mp3",
+      "sizeBytes": 93068,
+      "sha256": "83ef0c5793f799cc557508fb302b7014332e3c6b9854162fa1ba6582411297da"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-056-csn1310-q15.mp3",
+      "sizeBytes": 77516,
+      "sha256": "4c858ca24eee5a79ca84885d66dc85fe4232a0d1a31a3f779b39ad1cb79aad2c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-056-csn1310-q16.mp3",
+      "sizeBytes": 82700,
+      "sha256": "de9315385539bbae31ce3f022a48c056eebcd7ecb317da03d0cd90c50e969ebd"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-058-csn3235-q01.mp3",
+      "sizeBytes": 116684,
+      "sha256": "307f2bb2ec869f385c3a941429d9048677888fdd9c383daaa020f9b0f1034b73"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-058-csn3235-q02.mp3",
+      "sizeBytes": 211724,
+      "sha256": "c1c1d4c314bafbd4c1bbda864f467acba06a5116785c244496f19657e96cded7"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-058-csn3235-q03.mp3",
+      "sizeBytes": 87020,
+      "sha256": "c9982d197d941b73ccad270f4b837978a693a90a3d1b27c5b878296f49ce189c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-058-csn3235-q04.mp3",
+      "sizeBytes": 59084,
+      "sha256": "13f67af0acb573e87ab4aa29e261c67f4dbd2e852990b2a90cc44976bce84fa4"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-058-csn3235-q05.mp3",
+      "sizeBytes": 53900,
+      "sha256": "41e6cc581f080db0da7b13dddf865367df9ba6ea8e8c1887c4323eb2b8de5441"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-058-csn3235-q06.mp3",
+      "sizeBytes": 37484,
+      "sha256": "50db491bd13a7b4394c0267f064600453535abcca4230a07fda17121fc841670"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-058-csn3235-q08.mp3",
+      "sizeBytes": 27152,
+      "sha256": "82c1c6cb5090da9155183de00ae6b74404f9da9f4c4b370ccb7f6b94db1a5f55"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-058-csn3235-q10.mp3",
+      "sizeBytes": 80972,
+      "sha256": "88231c3d17b5e5e192d149a10bf66b4ce33b7657e645c03b43b463454b929793"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-058-csn3235-q11.mp3",
+      "sizeBytes": 57932,
+      "sha256": "dd3236234da96482af95b4b8c6a47dc196fdef365aafde905e78fc6705520f23"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-058-csn3235-q12.mp3",
+      "sizeBytes": 88460,
+      "sha256": "13d8ce987d87a3b7e86812a608db88ca49cfc5d0afe3db4668b6d8a3505c50e8"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-058-csn3235-q13.mp3",
+      "sizeBytes": 66284,
+      "sha256": "c409fb34ad0a385932045e1ccbebd416a7cc7ddf0e962ba57f230ab25f10ba75"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-058-csn3235-q14.mp3",
+      "sizeBytes": 83276,
+      "sha256": "b2970df087bbf17b5953a216bd1fa86158c9b4bb19ca576c3e4895035dcfb8dc"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-058-csn3235-q15.mp3",
+      "sizeBytes": 85580,
+      "sha256": "720212cc09a41dcb1aba7973d4151f58d08ba6aef180fcadbf3cdb8a7e19e54b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-059-csn3112-q01.mp3",
+      "sizeBytes": 114956,
+      "sha256": "c4e637a807dd7f53f73848c2859741ca4ea68cbb164773acca63f0b3c170774b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-059-csn3112-q02.mp3",
+      "sizeBytes": 81260,
+      "sha256": "9514bf502d5b90d2d1b8c571bd4d70c9e6a8091e0ec55ca2751cbc504d17e896"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-059-csn3112-q04.mp3",
+      "sizeBytes": 125036,
+      "sha256": "c909564d442058536e64ef6f4cea0ea01503a7f43107f300c7a627120202fabd"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-059-csn3112-q05.mp3",
+      "sizeBytes": 38636,
+      "sha256": "4a9fa271176d05b297a64bf16d3b1b10f0da23a91c2532ed0c01cb98f7d02d2c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-059-csn3112-q06.mp3",
+      "sizeBytes": 46412,
+      "sha256": "f0150c46a9f92ab47b0e11328df5d0d8e270bc24a901255203e214c016f8b000"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-059-csn3112-q07.mp3",
+      "sizeBytes": 50444,
+      "sha256": "7aee2c203e2ce3dfd75041d86c6ea10f2a4056763c5f891566dfae4f37e4fb14"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-059-csn3112-q09.mp3",
+      "sizeBytes": 67724,
+      "sha256": "e36d73e2db5a00261bdba741d93cfc1fdb1f9fd4183dfcbd3efd8d4203acc6d2"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-059-csn3112-q10.mp3",
+      "sizeBytes": 53612,
+      "sha256": "b1da6e5617c87c8704e3ce71b8ee7322b7c02f1755f80151370eb713323ee040"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-059-csn3112-q11.mp3",
+      "sizeBytes": 85580,
+      "sha256": "a7fc8dcb7a31a210ebf594f0600318fd28009c9f699d05a3cb1a6bef056db582"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-059-csn3112-q13.mp3",
+      "sizeBytes": 96236,
+      "sha256": "b8f424e953c887c517251681d91d5e4dfc2aecfe03ac2721386fd03f23903cdd"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-059-csn3112-q15.mp3",
+      "sizeBytes": 78956,
+      "sha256": "6df38c817bddf5c9e25320ab10f88d4d507f9c2e7d75ae80704e99f6ab7b4aeb"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-059-csn3112-q16.mp3",
+      "sizeBytes": 82700,
+      "sha256": "dfe761d986177b942fcc42ff6a78a4a54f308c0706fe676ff3b781b208278df5"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-059-csn3112-q17.mp3",
+      "sizeBytes": 65420,
+      "sha256": "9470a20d13714df3c73d2cee07ed2368ef5d9c93d660615c1026fedfbd67adc5"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-059-csn3112-q19.mp3",
+      "sizeBytes": 43532,
+      "sha256": "56ef8a19e79c2fc58b6a2294d54ca5a828e2a4fafcad1b934c2f42a7087269c2"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-060-csn9302-q01.mp3",
+      "sizeBytes": 82412,
+      "sha256": "fac5732f6d4a2bdd986bb9a12640e2c80aa05f654d244adc356dc4eb01f35a5f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-060-csn9302-q02.mp3",
+      "sizeBytes": 92204,
+      "sha256": "40b848a46ea5a56600d2936bfadf5d0e08f9df6b4b5ea546f958216924d62577"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-060-csn9302-q03.mp3",
+      "sizeBytes": 80396,
+      "sha256": "d9e63aa8921bb9fe1c6d317ba0c030ebc863cfdec572b20a57e1c9a97ff01c50"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-060-csn9302-q04.mp3",
+      "sizeBytes": 71180,
+      "sha256": "c3deb482c289efbd4ad3d0ff4e16e6973da7b946f304cb22ccb5da2cb9216567"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-060-csn9302-q06.mp3",
+      "sizeBytes": 95084,
+      "sha256": "52da1d0a528a6adc69c576ef1c6fb2347c02983758c2787ae1bb1df4f19f41eb"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-060-csn9302-q08.mp3",
+      "sizeBytes": 78092,
+      "sha256": "eedd2f5ef707605b48bdec0860947caa28b92b24313d055258c909e3e18cd357"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-060-csn9302-q09.mp3",
+      "sizeBytes": 69740,
+      "sha256": "8aa1df18a2bc473bdbb697fe4ff7d7cf799246760dbe880e11e7cf2a523b9e4e"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-060-csn9302-q10.mp3",
+      "sizeBytes": 86156,
+      "sha256": "6f8bbd091f52bc1ade52917630b5115603759391397b3a6141066c52fde1003c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-060-csn9302-q12.mp3",
+      "sizeBytes": 120428,
+      "sha256": "7b8c5e0d0c0415542dd8a8f8c7a1bfe1fe91e1092ad7026bf83c8fb18a675609"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-060-csn9302-q13.mp3",
+      "sizeBytes": 115532,
+      "sha256": "2ec32adc3b782cd66e7ba2db4ca268e3304e976ad6582f25b0ba7c1349cfc37f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-060-csn9302-q17.mp3",
+      "sizeBytes": 80108,
+      "sha256": "774301b405c0f8f93fb915833a36d102290ed2a79b377d58414e5d12f1cf5d6c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-060-csn9302-q18.mp3",
+      "sizeBytes": 58220,
+      "sha256": "1cf7d57aa48b74c4426bfdfcf92ce43a700c8d3b23490696159ea198aa1de7e1"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-060-csn9302-q19.mp3",
+      "sizeBytes": 49868,
+      "sha256": "1856092cb28b1bef967b419a2a3ee88d421a21439351325a6a6577eb12e07f72"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-061-afr896-q01.mp3",
+      "sizeBytes": 94508,
+      "sha256": "e06989a4eff117aef70292b651ad9531876069b73a10f25c231b7643d0dea75a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-061-afr896-q02.mp3",
+      "sizeBytes": 57356,
+      "sha256": "49b626b7a807827c8e1cb6bd44125ff09d68afdaaaf8c5aed07ded9b3e36da05"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-061-afr896-q03.mp3",
+      "sizeBytes": 80396,
+      "sha256": "5f3a0e4d32243dae03ef96e0693a7a4d2974a8e8af38c6a1953c1f99c6ed7d59"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-061-afr896-q04.mp3",
+      "sizeBytes": 40940,
+      "sha256": "0edbc1edcd4cefe550280a9eae125893f52a6f372147aa8484ee3d4a34d6d889"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-061-afr896-q05.mp3",
+      "sizeBytes": 118412,
+      "sha256": "0e7c499275de355ceaac2dbab06429d4494ff20b6a5a183c0474bda53f4c01aa"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-061-afr896-q06.mp3",
+      "sizeBytes": 43244,
+      "sha256": "8c7c085969d4e471bfef38e074ddca2649714182a3ec51bde11b135e5e7f5810"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-061-afr896-q08.mp3",
+      "sizeBytes": 59948,
+      "sha256": "8ee14fa4385f7eab34e05cea240b4277853c87fed56de4e855edef36fdb46cfe"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-061-afr896-q09.mp3",
+      "sizeBytes": 39788,
+      "sha256": "ddaf361c7f82f73c80d63d3c246971212d2f65192d42f0a64e4147f086387529"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-061-afr896-q10.mp3",
+      "sizeBytes": 40940,
+      "sha256": "12d6654744a4f3a7ee0b50b53a7da4e97c107e7db17a21619a8a3329cff95540"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-061-afr896-q11.mp3",
+      "sizeBytes": 133676,
+      "sha256": "70afd6ecd257aa8e225c36b7bde6f3b52da5526774021075ea02b5811d74369d"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-061-afr896-q13.mp3",
+      "sizeBytes": 116972,
+      "sha256": "253d308c5e0f64f03735316c72aea21e07c95644f504b6c85cde94b12a74c432"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-061-afr896-q15.mp3",
+      "sizeBytes": 126188,
+      "sha256": "7b85c8063a173fae1474ac0c4b44daddc0d4d47aabfb041af7b27a198990633e"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-061-afr896-q16.mp3",
+      "sizeBytes": 152972,
+      "sha256": "07d9e7bc01f4e9eccfd7fb67c78952293e5ceabcc1caf04690ecf5d42b062fc1"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-062-afr941-q01.mp3",
+      "sizeBytes": 87884,
+      "sha256": "770a0303d46b796f37b48f1f8891958e0399b974ac8d83b3a4821611b763b446"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-062-afr941-q02.mp3",
+      "sizeBytes": 87020,
+      "sha256": "d276eaa359d800165f372310ea2def7e98ac9330c13f6153c044f93cdb878380"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-062-afr941-q03.mp3",
+      "sizeBytes": 116396,
+      "sha256": "c1f4bb75b697a904a62b700069f3379884d83c610d1d21ecdd7549211b65ac61"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-062-afr941-q05.mp3",
+      "sizeBytes": 68588,
+      "sha256": "efad893b285fe2cc615f138078d1c1dc47e57f2218e99c140c303d7b9a082838"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-062-afr941-q07.mp3",
+      "sizeBytes": 95660,
+      "sha256": "0b62d64331804a773e5c1b90fd0e793f424982384113a6dbe56308af0dcebe4a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-062-afr941-q08.mp3",
+      "sizeBytes": 70028,
+      "sha256": "5f0b245aba36d41495ad260c8d3a663b5a7e304f3926a8ec8167a4fd2143b393"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-062-afr941-q09.mp3",
+      "sizeBytes": 135692,
+      "sha256": "aaf961ec24e1f377fc9af149ac6e1bd80258ba98bae77a445f561c60fab136de"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-062-afr941-q10.mp3",
+      "sizeBytes": 108044,
+      "sha256": "d83ca1a9fb25007f0a3b4b9bae3b1079b2e65a4f1de23779c0bfc164ad3a76b0"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-063-qfa923-q03.mp3",
+      "sizeBytes": 106208,
+      "sha256": "beb8db4fb76ae65718e0e961806bbf1f4657730f60ecfd93c657c81b4bba336a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-063-qfa923-q10.mp3",
+      "sizeBytes": 115532,
+      "sha256": "3d846a53e1d59b17aec97b176b4a0c717c59a4376dd5e6da62cbda958ac2416e"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-063-qfa923-q16.mp3",
+      "sizeBytes": 107756,
+      "sha256": "779293feaa370520eef448060edce79a30dbeda3f80b012511b3b2468e07da68"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-064-afr675-q01.mp3",
+      "sizeBytes": 110348,
+      "sha256": "012c4eed09ce8a77bff9f33b0f37d8dc8056ee7456718050ecea6a59c11d19a3"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-064-afr675-q14.mp3",
+      "sizeBytes": 106028,
+      "sha256": "428951079c251e15bbab3844107c0eb5fcd2dea1e173a573766e8ad274980fe1"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-064-afr675-q15.mp3",
+      "sizeBytes": 44108,
+      "sha256": "5ec2e86514dfd2f84c59a039de0a41e07e327086f50a95aeab25b7c830764b88"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-064-afr675-q17.mp3",
+      "sizeBytes": 32588,
+      "sha256": "b80502de9fcbc7f1e6c5a13b1935cb611806f80a0e86554f6508334c8b27a6de"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-065-afr9939-q02.mp3",
+      "sizeBytes": 163628,
+      "sha256": "2972532b02d9b1ec3dccba0b164a6da151adc1393ed0fde3e4ba970ff3d3b1d1"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-065-afr9939-q03.mp3",
+      "sizeBytes": 36908,
+      "sha256": "863c30683eb4f64537cc6ef2320dee63dbb736ca682d5fded9a011af7bdc1e34"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-065-afr9939-q05.mp3",
+      "sizeBytes": 58220,
+      "sha256": "4aa287457511053a9412409ae7c62cc539d0dec4602c51754ea6d37fd2817706"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-065-afr9939-q09.mp3",
+      "sizeBytes": 55340,
+      "sha256": "a334a2dee76486b7eeb32fbf63730ba6ec3d21b9d41fd34b19bdc8da1fb1e0f1"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-065-afr9939-q11.mp3",
+      "sizeBytes": 37772,
+      "sha256": "1936f1422f4e0fc2b51a29c900ac8ae82b6aeee9994cad9434cf7974d5914bec"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-065-afr9939-q12.mp3",
+      "sizeBytes": 53324,
+      "sha256": "88a5c13f0d9efd564223ab12e84008787aed91feec98141ee9c4704903204ab5"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-065-afr9939-q13.mp3",
+      "sizeBytes": 65420,
+      "sha256": "de091755c2a591630ef9289f0745f3aef14a0356c08db991ea570024ddb5e5f2"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-065-afr9939-q15.mp3",
+      "sizeBytes": 41228,
+      "sha256": "8e9823f3e310e04659391fff0e792b8aa9f55a3d66c017d4cb6b6057d2831ae9"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-066-afr101-q03.mp3",
+      "sizeBytes": 112652,
+      "sha256": "9ef4ce7667be98bb4af76f5cc393a80a34833544356c50afea7451135e1e8625"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-066-afr101-q08.mp3",
+      "sizeBytes": 81548,
+      "sha256": "ec972bddead3acaad653b6e2e02925c590a7faa6a99d82ab01a038f5e2028a5a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-066-afr101-q11.mp3",
+      "sizeBytes": 84140,
+      "sha256": "a83cb411e96bbb6adbae5b3e6cd8d7fb29ae553b15e967fdd4d26ae40937d51f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-067-afr332-q01.mp3",
+      "sizeBytes": 105740,
+      "sha256": "d3a2f3e871e1f6607cf6bfe5bbce209a8832b039576d505b97631f1e6ff9914d"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-067-afr332-q02.mp3",
+      "sizeBytes": 96812,
+      "sha256": "91eed51fe9c177932a384ff1ddaada11e87017089a38e6d90c8c0680d7c393e8"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-067-afr332-q03.mp3",
+      "sizeBytes": 74636,
+      "sha256": "c47ea2d544b601fb4d96469211e9e5171df23be069a99c6086a657f8014f6306"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-067-afr332-q04.mp3",
+      "sizeBytes": 104012,
+      "sha256": "230a8b387fbadd7df09e651844c84ec94c5fccc0206c87b3b5eea94340820692"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-067-afr332-q05.mp3",
+      "sizeBytes": 109196,
+      "sha256": "c48c82734b54d0747a44532e7b9f7633554341386c71ba8e155ac1cc4c7ff62e"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-067-afr332-q06.mp3",
+      "sizeBytes": 167948,
+      "sha256": "e53181885e99f3ed82fe2be1a79fe8db16eab54f87eba86e392f41382aa680d9"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-067-afr332-q07.mp3",
+      "sizeBytes": 99404,
+      "sha256": "5c75a6bac54da1ccb0546412040d000425408a6ccbced238e2e8856658c3f12b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-067-afr332-q08.mp3",
+      "sizeBytes": 91052,
+      "sha256": "067f355fafec713bfad7944de117625c36cbafe99ad4af35c060dd1bf5e5bc8c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-067-afr332-q09.mp3",
+      "sizeBytes": 56204,
+      "sha256": "26ce91e9786e6549d6c30a8873cbe3b56a3fcf3b62b16271146f7bd54023ed0f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-067-afr332-q10.mp3",
+      "sizeBytes": 70028,
+      "sha256": "a64b0c06e9c4ce30e747d978a95bebc7fdb7727520220aaf499ff7ddb442215f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-067-afr332-q11.mp3",
+      "sizeBytes": 108620,
+      "sha256": "617ac4bdb3c17a779ad61062bc5c77b199a9bed61082592ac7126d961d65ba20"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-067-afr332-q12.mp3",
+      "sizeBytes": 67436,
+      "sha256": "f8e6272d65679621ff0236d7e7fe951da54092862d68890d2ff5a231bca5ff92"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-067-afr332-q13.mp3",
+      "sizeBytes": 62828,
+      "sha256": "66e9935ff67df3f881dc3294cf264b47a3c12f87eb44daf73252d1990164e6f1"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-067-afr332-q14.mp3",
+      "sizeBytes": 168236,
+      "sha256": "915106dd5475d9db0bc0ec4d84dd22ebd75c4b5d92e1b7544bf440c456784ae2"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-067-afr332-q15.mp3",
+      "sizeBytes": 69452,
+      "sha256": "84311c26d898ee928787e9b3cfb4a4ecce15a480132e8ca7779cd52cad491389"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-068-ual831-q02.mp3",
+      "sizeBytes": 62540,
+      "sha256": "966aa9a6d365a9465a9fba674fbcf7414e91eab144ff23057f307960127c27ec"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-068-ual831-q06.mp3",
+      "sizeBytes": 61100,
+      "sha256": "def1567390cc7c68d7ed50b92f67af145a7671d054776c94223a6588be38d44c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-068-ual831-q08.mp3",
+      "sizeBytes": 107180,
+      "sha256": "78a0967828bf43fc7231430b741b85982b1431bff9d3107bad9257a5d076adea"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-068-ual831-q11.mp3",
+      "sizeBytes": 65420,
+      "sha256": "37ceb4ba8b4002a296ef5e52e205083d8eba966829e081e04a1d544e28ea348c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-068-ual831-q12.mp3",
+      "sizeBytes": 80684,
+      "sha256": "aaed78a47d73b64562905aa27d848df5fc0a4d214e9655c4f008a6b3123818d0"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-068-ual831-q14.mp3",
+      "sizeBytes": 120716,
+      "sha256": "90744be31c203ef7e73d583e6ccc151d2fca8ed7d8c6c9df80e51a921494da57"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-068-ual831-q16.mp3",
+      "sizeBytes": 92780,
+      "sha256": "02dcc592bcf1266adc57ff86bf24ac2bd7587ee775156822bdf2a2d9625e2ead"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-068-ual831-q17.mp3",
+      "sizeBytes": 173708,
+      "sha256": "14c10c2487d749dc90635a7c351167cc7a5d8c3d4a728881afc136620c689fe1"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-068-ual831-q18.mp3",
+      "sizeBytes": 85868,
+      "sha256": "f4c6d908ca190e2eefa9a064f58f09ca548bbf3315ab9d97e1dd9898b2c6d61f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-069-ual182-q02.mp3",
+      "sizeBytes": 65132,
+      "sha256": "7926c832993eaf151af9e6a758fb585ac34436b1f8aed546385ccfa81f2a0650"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-069-ual182-q07.mp3",
+      "sizeBytes": 49004,
+      "sha256": "8c4d256203548648f122b1613e4262a536c7f3b7d273d564c3918bfe77178055"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-069-ual182-q12.mp3",
+      "sizeBytes": 66572,
+      "sha256": "bc384da3e0a93d2c3f54ad1111735b181cf1c43a2d6d2a4ed47688e8c9520b18"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-069-ual182-q13.mp3",
+      "sizeBytes": 94220,
+      "sha256": "37eefb7eb2f48550311559058f1c3665387403d4a4bf325c694617d5832ae326"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-069-ual182-q14.mp3",
+      "sizeBytes": 128780,
+      "sha256": "d985195b5658aa5af8e3fcf3000a5e83f55402abcf1251a58f77a849bd008323"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-069-ual182-q17.mp3",
+      "sizeBytes": 76364,
+      "sha256": "45025e11c8cf3f83b10f280d06331ca92d7c56556ed5626e913b65f066b1e361"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-070-ual219-q01.mp3",
+      "sizeBytes": 89612,
+      "sha256": "3ef906e85f5da03f6d3e7e9ba7e30d7b4c48eeac4da21e476d1be54fdd716dba"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-070-ual219-q03.mp3",
+      "sizeBytes": 90764,
+      "sha256": "33e467b4f472722e80694036dfc7acd4e3820aec5e47516dff284390a4a98fdb"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-070-ual219-q06.mp3",
+      "sizeBytes": 78380,
+      "sha256": "c56a49b8dfbe4082eebb32ac6a82df1e8fd8020f050f5527dd17db6fff50dfd5"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-070-ual219-q08.mp3",
+      "sizeBytes": 72044,
+      "sha256": "acc947a15b16cc1bd6b5b810fcaa38de1f0505a13d15504a399d1babb3d60ade"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-070-ual219-q10.mp3",
+      "sizeBytes": 77516,
+      "sha256": "865d51b890c47d945ee7be6e057ea18257e241b71e12f7411d503c9362bdae43"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-070-ual219-q14.mp3",
+      "sizeBytes": 65996,
+      "sha256": "fd2f75b27e09af7844a995db0ace60a52509ce65d519a9709f87198649a0a7fc"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-071-ual805-q01.mp3",
+      "sizeBytes": 99404,
+      "sha256": "152edaf27685bfb5e530735aa8eecf424a21f1d52cb9b7442dc095139f0820c1"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-071-ual805-q02.mp3",
+      "sizeBytes": 79244,
+      "sha256": "13cb93e80e714c59d3b2c2f14e71466453563e30ae77f9a5ce958d7dfad543e0"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-071-ual805-q05.mp3",
+      "sizeBytes": 87596,
+      "sha256": "5d67ff05409d0a652f372ec5ccb301917b7dff40fc88a0384e27fa6237ef4632"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-071-ual805-q06.mp3",
+      "sizeBytes": 85292,
+      "sha256": "6df3e743cf8807874d4c933665fb27c1a306fb1383a2e9c81c56826b801a6131"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-071-ual805-q10.mp3",
+      "sizeBytes": 54476,
+      "sha256": "1674fe404c8292c3ec1be7d85c3f9c4dbeef408cda142018c239821e7e2a927c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-071-ual805-q11.mp3",
+      "sizeBytes": 54764,
+      "sha256": "f2b7cfbfaa368a5029c8f3d2cb8c26ca75a2d0124fa21fccc053b0a8d3935439"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-071-ual805-q12.mp3",
+      "sizeBytes": 118988,
+      "sha256": "c1e1d03776677da1099080299958f83056d9d91b22e848f01d59f57883403470"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-072-ual811-q02.mp3",
+      "sizeBytes": 111212,
+      "sha256": "c7749f85c47d73ca3f5aed0c09cba8a932f017651ccc6ca7a819cb6ecf5f5bc1"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-072-ual811-q03.mp3",
+      "sizeBytes": 63404,
+      "sha256": "ce2bc14026e281df082993415f1c8162cfd6e5253849e0921a2bbc3df2256225"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-072-ual811-q06.mp3",
+      "sizeBytes": 87596,
+      "sha256": "77063de5a8f32fce65fb15c65960ff8411244af852ce334f07215edb27aaa475"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-072-ual811-q08.mp3",
+      "sizeBytes": 94796,
+      "sha256": "48634c64d3dcf906d151e43ee2e3a3c375cee4ea19a49c186dd30a7f4ad3e0ae"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-072-ual811-q09.mp3",
+      "sizeBytes": 80108,
+      "sha256": "b6d67b9bca1e412d98c708aadd6f57eb8705ecc91b9c0a98d38ba518ce964e49"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-072-ual811-q12.mp3",
+      "sizeBytes": 130508,
+      "sha256": "80529df103949b3f4c71414143a89fada3d89dfee3aab0913ca596e0cc74bdeb"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-072-ual811-q13.mp3",
+      "sizeBytes": 61676,
+      "sha256": "bf640013e2f07a64cbb4a370cb051bee1a8dae63602a096ec36ec3ca3bf1c905"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-073-ual835-q04.mp3",
+      "sizeBytes": 56204,
+      "sha256": "0123908eb4fb4df5d72a1bc4342498bc1a6aca48c4312f8f0f6b9767913282b2"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-073-ual835-q05.mp3",
+      "sizeBytes": 75212,
+      "sha256": "6e82d0913850ba43b8b53b53be4dd512dc9def7af09f6f5c403e9855e4ea1cca"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-073-ual835-q08.mp3",
+      "sizeBytes": 80396,
+      "sha256": "576f3b569adcd9115dda042e78ad08e73d21da49df14843c08968f45a9aa97ae"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-073-ual835-q10.mp3",
+      "sizeBytes": 112076,
+      "sha256": "6f23daa10e9fdb5ebcc5eb88c94935b61cc5d48ca850e48d19c032d463f2fdd9"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-073-ual835-q14.mp3",
+      "sizeBytes": 54476,
+      "sha256": "1595fd1ead51a14b3c14859a3ae31cdfb38482cb8f0f94163cd7e9d3bce64bda"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-074-ual221-q01.mp3",
+      "sizeBytes": 101132,
+      "sha256": "d63f4178fbdf0d4bf1b8af9e4fa0864adb826c6aabf698a16f7c7eae9acd5ea3"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-074-ual221-q02.mp3",
+      "sizeBytes": 57644,
+      "sha256": "ca69968a339a9dd67d0ea19011251d279fc3d43a53f940ed1063cf5cb411e54c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-074-ual221-q03.mp3",
+      "sizeBytes": 66572,
+      "sha256": "2ac33d5deadfb54b0b8f0a8a22f5df1008161f53ebcc8d95597689cc4942b018"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-074-ual221-q04.mp3",
+      "sizeBytes": 92492,
+      "sha256": "6562c0add4cb63cc55c7aed3ccb0b5a3622cc9d8ba260547187743a0631f088d"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-074-ual221-q05.mp3",
+      "sizeBytes": 103436,
+      "sha256": "8e5ffe6da1b5ab89d39c257407644c7673bb42f84cbc50b53a0f80dc954b67c1"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-074-ual221-q06.mp3",
+      "sizeBytes": 61100,
+      "sha256": "f82665b20d15d9dfcd24a29ebe1555e18b8ead6cf7c8b896d7f0c81f4a011b22"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-074-ual221-q07.mp3",
+      "sizeBytes": 66572,
+      "sha256": "79001377515d6feee1563e69ff97187faa1c182f4978c66d04c7d2607e764845"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-074-ual221-q09.mp3",
+      "sizeBytes": 72332,
+      "sha256": "4707244b6547ed734cf26b3940fa881e84837fd22101117a66341ef6bf6a3644"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-074-ual221-q11.mp3",
+      "sizeBytes": 59372,
+      "sha256": "738b2a6f775323567e6aec4031b6161968f2ff783e69f379dda5b59d0c39f819"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-074-ual221-q12.mp3",
+      "sizeBytes": 91340,
+      "sha256": "bfb0d044c2f26b788dbe6790e77738af803a500bfb7aae64f7c00aeb0972402c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-074-ual221-q13.mp3",
+      "sizeBytes": 69740,
+      "sha256": "a5170fef1efb35a8385b4ecb0cd9ea5ea1de3f99e2039f7098f98f37341fb09b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-074-ual221-q14.mp3",
+      "sizeBytes": 76076,
+      "sha256": "1593a6fe431ed45575e62180ae482cc5db64977faa219729511f4c5b21bf4bb6"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-074-ual221-q16.mp3",
+      "sizeBytes": 77228,
+      "sha256": "68b2d9bc49c0051949776de335849744b55b38219911a591a714e25f96d6aa5c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-075-ual817-q01.mp3",
+      "sizeBytes": 69452,
+      "sha256": "f86fc52c29f92426f2c35fa54e2a8d65a1c01d5cf80a688898e95fb2e763cc80"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-075-ual817-q02.mp3",
+      "sizeBytes": 78956,
+      "sha256": "79675e68667e464ce3c6eddcdc5a297f81dd431719af30979dbf0adad9bcc39e"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-075-ual817-q03.mp3",
+      "sizeBytes": 36908,
+      "sha256": "49b7722389ae5336397503bb03c487079e02625880be29cb5ff5906430eced10"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-075-ual817-q04.mp3",
+      "sizeBytes": 40652,
+      "sha256": "a42755daf10ab814cbed23ce3c5d20eafaa86a03cf4ebdf8f11f465832d8825a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-075-ual817-q05.mp3",
+      "sizeBytes": 70604,
+      "sha256": "82923bdb3521e1b4a6fcb3128dbd9cc398f7f3b5d0c06d8ad5c6f669729c00ed"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-075-ual817-q06.mp3",
+      "sizeBytes": 122444,
+      "sha256": "c2194454d6d65fb300cdec9acafa61c38d5c7fe835fbc9fb79cef0eee8271f4a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-075-ual817-q07.mp3",
+      "sizeBytes": 67148,
+      "sha256": "0a08226bd13ab799d476b2216a4ca1d257205a869bdc0902292a4dc3d24982b4"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-075-ual817-q08.mp3",
+      "sizeBytes": 79532,
+      "sha256": "6cadf7012babc5edd0b4ce1b32ea625dca2d627d232450c8ec9d52fb33987ae9"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-075-ual817-q09.mp3",
+      "sizeBytes": 101132,
+      "sha256": "20543c584f5c6c0d767d18dd5cdd847556dd25b6da06d5024b35b0a33470ba2b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-075-ual817-q10.mp3",
+      "sizeBytes": 101708,
+      "sha256": "b74de79b0c90c6fdbf414a4da3efdb0e4944afdee7e0b9a58678ada3455971af"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-075-ual817-q11.mp3",
+      "sizeBytes": 42668,
+      "sha256": "f78fb9f42fb8a732a9e177a3d1cd687e844121fac64e231d4dc5d1cf5dc72d81"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-075-ual817-q12.mp3",
+      "sizeBytes": 78092,
+      "sha256": "9944e1e175bee0b6295ee1f3e27b0f51740187b597e6255b1fc0e4407a4dc09c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-075-ual817-q13.mp3",
+      "sizeBytes": 61964,
+      "sha256": "aaeeffb40c3b8516a3128f1405bdaf945a962b63402b90af398bde0ed5c5d41c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-075-ual817-q14.mp3",
+      "sizeBytes": 112652,
+      "sha256": "db249629f7abc2c5cc4feab506105abdd10d5f212d12755e07bc69c6ab07164f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-075-ual817-q15.mp3",
+      "sizeBytes": 50444,
+      "sha256": "3cb826771de193001f76b8cf86951a7c39187d7a67cca8558b0c2008fae4f91b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-075-ual817-q16.mp3",
+      "sizeBytes": 67148,
+      "sha256": "894255e55ddd5890b69a0a45018f22bdc70d5028207bf1a295c7fd152068fc00"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-075-ual817-q17.mp3",
+      "sizeBytes": 88748,
+      "sha256": "f3d63f55b2a5abc253340c41495c68c864387bbe92cc9992960f291757c95e6e"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-076-ual813-q01.mp3",
+      "sizeBytes": 103436,
+      "sha256": "32ab13943d1271782fcad1e8800e68630d46b38ce985b557c191b6ffcf015541"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-076-ual813-q02.mp3",
+      "sizeBytes": 48428,
+      "sha256": "adf4a6b57759d25740ceffa718630d14a3e8412d9437517588906eaf33de0891"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-076-ual813-q03.mp3",
+      "sizeBytes": 73196,
+      "sha256": "8f832d1d728c68cf051b7d09ffbd08b7321f9a649ad251f7b22c6944b5b4cd7d"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-076-ual813-q04.mp3",
+      "sizeBytes": 104300,
+      "sha256": "51082df2cdf1fe8578df629ffb6a43773fcf8bbfd2ee85c904a60b3f3b24b480"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-076-ual813-q05.mp3",
+      "sizeBytes": 56204,
+      "sha256": "e1af75c0dea01410efbf49a007663e724629a1daad8c3d8bd2411699d24a4c6f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-076-ual813-q06.mp3",
+      "sizeBytes": 72908,
+      "sha256": "f6c42948fc888c89ae2b44067ca0e5c0ac361e2583fb2d237545392e2bfe33bc"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-076-ual813-q07.mp3",
+      "sizeBytes": 63692,
+      "sha256": "f4d667bd0bd892bb7a03b88b4931a257627d4086deaccff853f61360696cd57f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-076-ual813-q08.mp3",
+      "sizeBytes": 58508,
+      "sha256": "effdb56917bec357e0e2929e8cc6d22baf28ed38f0a7321e5a0ad226303ada0c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-076-ual813-q09.mp3",
+      "sizeBytes": 70604,
+      "sha256": "b0a83aad6d3d27eaef60c0fff543a7fec4414ad9ce796ac122b95175b672e179"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-076-ual813-q10.mp3",
+      "sizeBytes": 61676,
+      "sha256": "8636a7734675f51faa4f55e2822292f66cd9ef8271883f43926d93852367d2f5"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-076-ual813-q11.mp3",
+      "sizeBytes": 55916,
+      "sha256": "57c10f2fd78737f1c2ea8a795614eef4a479c32a38235c8b9744a6d7a9c2ca0c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-076-ual813-q12.mp3",
+      "sizeBytes": 91340,
+      "sha256": "95d9b11770ad59422d61e9968fd90e3d1d127c91433230c8d76910c6be306341"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-076-ual813-q13.mp3",
+      "sizeBytes": 74636,
+      "sha256": "bcfca65f2ff65e5537aea2f1ded4d9603a819c0aa0eb1d92541addbd7a63fd1b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-076-ual813-q14.mp3",
+      "sizeBytes": 75788,
+      "sha256": "191e257eb3427964b48fcad2d0dab0f9c9d5a9f280facb3feee75d7981cf9f8e"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-076-ual813-q15.mp3",
+      "sizeBytes": 69452,
+      "sha256": "7acb615ae4eac878b46d23608c683f56a3015d15af33797e82c2ab43b8bca380"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-076-ual813-q16.mp3",
+      "sizeBytes": 77516,
+      "sha256": "2696a1cb99297471467cdd5d67bfb487f51294021ae2578e47aeb35b42eb291c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-077-qfa701-q01.mp3",
+      "sizeBytes": 136556,
+      "sha256": "97f9b6fbb57f4a0055fe31d34d474da9c7e24775bb2f2d9dbe6d4f93952f8be3"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-077-qfa701-q02.mp3",
+      "sizeBytes": 42988,
+      "sha256": "f30ec37110cc5a6d788bcca4099c055da00978b9632478c9053442c8c39d7edb"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-077-qfa701-q04.mp3",
+      "sizeBytes": 101132,
+      "sha256": "9d042199235acf52a5a060a6b96529057cd8f25330981d96d9b2deaa77ba6810"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-077-qfa701-q08.mp3",
+      "sizeBytes": 50444,
+      "sha256": "1340a5ae115c1937dff5bcb043d38235340bcbbbc4aa7365b4aef92f36664a3e"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-077-qfa701-q10.mp3",
+      "sizeBytes": 85292,
+      "sha256": "ac51f7b5612cc2692a3055c03473589072a65cde7c31dc653b474d2f07cc84c1"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-077-qfa701-q15.mp3",
+      "sizeBytes": 44428,
+      "sha256": "bc2c7cbf97c4b188fb24217e72a55708f2ef8db6249579df5da4e690f2b43653"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-078-qfa160-q01.mp3",
+      "sizeBytes": 123308,
+      "sha256": "9aa62166075009e28848dfdedb230f8ba0a561aad92c233b607eab7ce4272277"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-078-qfa160-q02.mp3",
+      "sizeBytes": 65420,
+      "sha256": "4fd462b1b9e568c840f66d1cd9c6179914e942b6a36886e52e69d8e2924987bc"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-078-qfa160-q10.mp3",
+      "sizeBytes": 79532,
+      "sha256": "38380d6403eef34e3dd86f904f01a26a0f54de902f05b65e51816a8f8164b7c9"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-078-qfa160-q17.mp3",
+      "sizeBytes": 106316,
+      "sha256": "56da71c64e849622711d3af2ec92b76d297a3baba91a5a06a1180d63ec382f1f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-079-qfa358-q01.mp3",
+      "sizeBytes": 110924,
+      "sha256": "4be2059a149cb4450325ead289eead55e5023fe3268218ca0679532c06e69977"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-079-qfa358-q04.mp3",
+      "sizeBytes": 111500,
+      "sha256": "fd10a593c66c5bd8deb4ddbdb3472ec1ba93a0100cfb895883f3ff3703a46905"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-079-qfa358-q05.mp3",
+      "sizeBytes": 59660,
+      "sha256": "bf0b724af5246af1c263497e86eadbb613fad74a982ff88543d9424a4a39911e"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-079-qfa358-q08.mp3",
+      "sizeBytes": 128204,
+      "sha256": "b6094ec7a01f3b8fe3ee0134818c8b48f6eae827a1a97965b8c8fc22d90f5903"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-079-qfa358-q11.mp3",
+      "sizeBytes": 60812,
+      "sha256": "39d6c238abb5030461a10d13387a35087e630b84ad7d164f06f0f2cf0bacc488"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-079-qfa358-q13.mp3",
+      "sizeBytes": 107180,
+      "sha256": "e7aedfe9aa9a5fc03860c2298e54b9eb93dd3727b8e6f4d6c938edfba275437e"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-079-qfa358-q15.mp3",
+      "sizeBytes": 88748,
+      "sha256": "4ca1291e785faa6b33ebfdd4b84c3e28d10dab49418a92895699dac18aab4751"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-080-qfa432-q02.mp3",
+      "sizeBytes": 159308,
+      "sha256": "db52236b285766495f1e99e701f406af091bd6dd94c556a2bf24a914ed099a21"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-080-qfa432-q07.mp3",
+      "sizeBytes": 107756,
+      "sha256": "27d22ff66d23c68cbdd55b3806ed0d23ce02f9e5576e8ed97e9265f5aa00438d"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-080-qfa432-q09.mp3",
+      "sizeBytes": 47564,
+      "sha256": "0766d84a0b0fe8754163cb5a15c615efcfdfbb672e6e8e9ca0c6a055eaee6d81"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-080-qfa432-q14.mp3",
+      "sizeBytes": 86732,
+      "sha256": "655565159661b6aac0821dc2eed6d3f769f3b30d1b22121b2dfd201e4766da7c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-080-qfa432-q16.mp3",
+      "sizeBytes": 111500,
+      "sha256": "0ec9d0e2e66b46afecb0c8fc8a3572516f22169dda4098ca6fc05cff30321609"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-080-qfa432-q19.mp3",
+      "sizeBytes": 119276,
+      "sha256": "ac65894fab69d2966c4353fca6c40f0e0f6fd3ac45b1fb72db1d6041368be97b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-082-jal602-q02.mp3",
+      "sizeBytes": 82412,
+      "sha256": "3c2052a55e875c19279c3070c8ecc16e3c2acb45b92ea81cff47b8aae4645b80"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-082-jal602-q05.mp3",
+      "sizeBytes": 125900,
+      "sha256": "de6775b01adc5c4dd936d210f2b458384cc9ce678689dcc989af28d929311bcb"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-082-jal602-q06.mp3",
+      "sizeBytes": 40652,
+      "sha256": "835b75dc3dcaef2b321ecc8484991a81d69504d5bdde2e1ce33bd0a702cd7c15"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-082-jal602-q08.mp3",
+      "sizeBytes": 118988,
+      "sha256": "334c7062b055c6c507edcffe1423a0d5e575f8c312b37590bbab1105e30b2845"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-082-jal602-q15.mp3",
+      "sizeBytes": 127628,
+      "sha256": "2509bf61e31ffeccf9bb8ae93d7d1d9590906a92083bfa87b75c927f1fa498e1"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-083-jal220-q02.mp3",
+      "sizeBytes": 136844,
+      "sha256": "948d3690e7af0c785f910af4784c7ff4fccaa410a23fddebb680faa834663525"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-083-jal220-q05.mp3",
+      "sizeBytes": 125036,
+      "sha256": "2e1243981ab2c87e44684a8320ece0fbfd370600d05c12349704f43d60b0f80b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-083-jal220-q07.mp3",
+      "sizeBytes": 87020,
+      "sha256": "a13754d6328e839a61019951a53b11778645b526efd2386cad8d765903c6ef0a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-083-jal220-q10.mp3",
+      "sizeBytes": 68300,
+      "sha256": "f2daaf0f89a833712644cb668aa7fc9db60beb62eb0921edd9c275083d0762d0"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-084-klm88-q02.mp3",
+      "sizeBytes": 23372,
+      "sha256": "d695897be7c086dd5ccb749dccb1f5957f346df45fb5c8bd1e7cf6f6fbe1b5bc"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-084-klm88-q04.mp3",
+      "sizeBytes": 139724,
+      "sha256": "9907e36fe08201a40fcee1a9d11c44ecb7f2f21852c9bcd5ff217ef9ed1e438b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-084-klm88-q09.mp3",
+      "sizeBytes": 93932,
+      "sha256": "6283e1a0c2ef196609c89d2fdc4f4b1dbc25ee7427285c6a74d1a2587eab097d"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-084-klm88-q18.mp3",
+      "sizeBytes": 139436,
+      "sha256": "d3f4a3f5d95c7cc356a1e5ef0504f5035e402d59076dfc652124315731c29e46"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-084-klm88-q20.mp3",
+      "sizeBytes": 68012,
+      "sha256": "a8466e0ac39b6d11d01cece9eeacb4f50562131fadd86ebe1f0e46eb0005264a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-085-sia323-q01.mp3",
+      "sizeBytes": 63080,
+      "sha256": "427e31724ed6d593a10577544ef6388c960b942f99cf0e7c7a0b8c0d486b1312"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-085-sia323-q02.mp3",
+      "sizeBytes": 169676,
+      "sha256": "84bc6f9491c698430b059d132f403bda960b47482e291eb1671322b67a2067f7"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-085-sia323-q05.mp3",
+      "sizeBytes": 52856,
+      "sha256": "b893cc93c46d244db6c5f9112feb71a29c9a6cb4766779ea4bef80288a60dbef"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-085-sia323-q08.mp3",
+      "sizeBytes": 36297,
+      "sha256": "08ef2ed5555f2e864a5ffd3a362f6d19cc7016070477a2ef02ef8ac8c060d2ef"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-085-sia323-q10.mp3",
+      "sizeBytes": 41373,
+      "sha256": "56e91d6aedd06a3735d5732900cae169a28fc7f8188d50bd469b6566723c7e01"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-085-sia323-q11.mp3",
+      "sizeBytes": 34208,
+      "sha256": "4a44e6a29ff82ec70f2489d25fad43d421d8b81545408dea89d1f3345a51c7fd"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-085-sia323-q13.mp3",
+      "sizeBytes": 41516,
+      "sha256": "37ecbe081b238c4f67741a1c60ff437b3bd51bb80802aa6835fda87f9915fb27"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-085-sia323-q14.mp3",
+      "sizeBytes": 65996,
+      "sha256": "dffdaa1314cbe7cbb074f100082a901f60a61b83eb82302dfa1ee8bbe5f22ae4"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-085-sia323-q17.mp3",
+      "sizeBytes": 26396,
+      "sha256": "35bad4fc7b54af90739d4cc87f17af06ae0d91967dc14d30905bf9238d2a3593"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-087-cca321-q01.mp3",
+      "sizeBytes": 112076,
+      "sha256": "c2e5f5bd1095b4effbb311b02358255c479d601227dcb716a9ebd3ade445a65b"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-087-cca321-q02.mp3",
+      "sizeBytes": 53900,
+      "sha256": "93ff93bcbb6b8b06b99d98657de60271a50dd2524e0c4091bfdcf22a969521d2"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-087-cca321-q03.mp3",
+      "sizeBytes": 78956,
+      "sha256": "5002f5529e0453b757d1086324e2616f2691dbd61b5b63aa10b420596b66d601"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-087-cca321-q04.mp3",
+      "sizeBytes": 33452,
+      "sha256": "d1e2bbbbf872769e024422886e1d5dcd420c0ec7c93fd00a9658a623c3e27f21"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-087-cca321-q05.mp3",
+      "sizeBytes": 44108,
+      "sha256": "5ada3278713a88d1c7bcaa1bda3863267cb504dceaf38e00714bbb9b5f2885e9"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-087-cca321-q06.mp3",
+      "sizeBytes": 90476,
+      "sha256": "bdefb8f2877a117267a4846df7b562d51e570d50b90d5f11ca2289ab8b8ae43c"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-087-cca321-q07.mp3",
+      "sizeBytes": 60812,
+      "sha256": "0987af930dfd8da42b1a78aa711a93d63466e794818c4e3201de90e21dd29aea"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-087-cca321-q08.mp3",
+      "sizeBytes": 55916,
+      "sha256": "1fc084b9233ec33b7cfa3fa6f7e458e329325404de4f569501c001e65ba0ed8a"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-087-cca321-q09.mp3",
+      "sizeBytes": 54188,
+      "sha256": "52fd2b9c429dfac67bf972d3f9a580596d2355085a78547614347c75e1eff0b1"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-087-cca321-q10.mp3",
+      "sizeBytes": 65132,
+      "sha256": "47b5f53a345d7c3c20e0006851c18b2a359b5230234e5167b38edc8bb0a66f42"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-087-cca321-q11.mp3",
+      "sizeBytes": 142028,
+      "sha256": "45fd697e50153a9f07fd88d2e98b87676ae8bba2fca6e307f03d7661eca74fcf"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-087-cca321-q12.mp3",
+      "sizeBytes": 54476,
+      "sha256": "982f156ec8c97f4530a1022c73ca83d32f963e6756bebaabf53290358eca906f"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-087-cca321-q14.mp3",
+      "sizeBytes": 61100,
+      "sha256": "d0745044ba7d2d84757bbc0cc393a518eba4c8966a802a2c14463873c3eb2f46"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-087-cca321-q15.mp3",
+      "sizeBytes": 62828,
+      "sha256": "dd282ec615d96a694a988afe6e02aab69910908c1ea70feacd67b90e04dad561"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-087-cca321-q16.mp3",
+      "sizeBytes": 57356,
+      "sha256": "d88cfda5a9b1e7c59fa14e68a1f1e59bc14263ae415a6c6214d7c2d1559624a7"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-087-cca321-q17.mp3",
+      "sizeBytes": 65420,
+      "sha256": "a1454f95c42cf4c242e62e3b4c676cb3bb40a7b130ed8c192f12de02aa1e8378"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-087-cca321-q18.mp3",
+      "sizeBytes": 45836,
+      "sha256": "0d5d3edf90ac79996f756a7216f2819178e28a7af316b62fa9abc67429aeb9ed"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-087-cca321-q19.mp3",
+      "sizeBytes": 31328,
+      "sha256": "593ec53e9b1b0e313b4c6b2673c71e8b4a6539215f2f64bac84332392c6b734e"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-088-sia223-q01.mp3",
+      "sizeBytes": 59372,
+      "sha256": "55dff4720f386216d35a7a45ff29d72b0b13b0d909f1d42a0033392836b091af"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-088-sia223-q02.mp3",
+      "sizeBytes": 49868,
+      "sha256": "62df30ef4d55ae2eb1352f0be07d244ddd13e9b3e812476027fe8a6ad616e2fd"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-088-sia223-q03.mp3",
+      "sizeBytes": 71468,
+      "sha256": "7c1230d50556915dc7f86d0e273454d59be4d4650882d21419760f7ae0a269e1"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-088-sia223-q04.mp3",
+      "sizeBytes": 65996,
+      "sha256": "6b248a43b630e39d03a3bc94de4fd73f6cf47bb79a35662d6f55aa587f201ed1"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-088-sia223-q05.mp3",
+      "sizeBytes": 47276,
+      "sha256": "0c01c0826e7cc95a89ed918549a1f32c81a89f38bf8ca356cde149dcf9f7c553"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-088-sia223-q06.mp3",
+      "sizeBytes": 76364,
+      "sha256": "683584b2f02c55d0360c4631443eb7db83af0230a4684b8e376ac5fce6e90992"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-088-sia223-q07.mp3",
+      "sizeBytes": 71468,
+      "sha256": "ba81ad1a6bc5136ffdb551a12bdefaded58ff6af4da02f50cb6f576272979bf8"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-088-sia223-q08.mp3",
+      "sizeBytes": 47564,
+      "sha256": "da871d27a2c34f9fa23468ee4ffc002ffb0fae6740925928b34f157039d37742"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-088-sia223-q09.mp3",
+      "sizeBytes": 33164,
+      "sha256": "37ed25bc755462142000255f2f91be5e83966ce5388ff93ca0197643b8021dc9"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-088-sia223-q10.mp3",
+      "sizeBytes": 13292,
+      "sha256": "20dff557852ad4078a0201231aba3e2c7bee3d84418e34813d57253c34e44b0d"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-088-sia223-q11.mp3",
+      "sizeBytes": 57644,
+      "sha256": "b48f2b33411a6767537b455a3f861d8d040171335881e5df1bbed1ccf8281027"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-088-sia223-q12.mp3",
+      "sizeBytes": 78092,
+      "sha256": "b7e1ad365b19131b6263ab66746f96eaa7badc87a992e2a67acfc1bd3f347517"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-088-sia223-q13.mp3",
+      "sizeBytes": 42668,
+      "sha256": "0c559d048b83f0541eb8b120add49a47219c58b0502fcb37cd61d58190959afe"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-088-sia223-q14.mp3",
+      "sizeBytes": 25964,
+      "sha256": "f0773b782c624b7f4783217407c54f6e9a5ece51858c178db780e9ce853ebf49"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-088-sia223-q15.mp3",
+      "sizeBytes": 44972,
+      "sha256": "203b7f9dcb7b0062043a2cd276b6d79fe06bab01e43fcf9e4df99e5d2b1f11f5"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-088-sia223-q16.mp3",
+      "sizeBytes": 58220,
+      "sha256": "15a9591b337839b2057b8ee14a43b7c951b4ccc45410ca96177fd297c6d92614"
+    },
+    {
+      "path": "content/question-banks/resources/files/audio/radiotelephony/web-v5/pepec-radiotelephony-088-sia223-q17.mp3",
+      "sizeBytes": 58220,
+      "sha256": "07b03f1aead72d79c94438d49ca83830cce6bb24e02b46dd3c6daeb73f0a8c51"
+    }
+  ]
+}

@@ -85,7 +85,6 @@ export function AppStack() {
             <Stack.Screen name="legal/[slug]" />
             <Stack.Protected guard={auth.canAccessApp}>
               <Stack.Screen name="(tabs)" options={{ animation: 'fade', fullScreenGestureEnabled: false, gestureEnabled: false }} />
-              <Stack.Screen name="detail/[slug]" />
               <Stack.Screen name="question-bank/[bankId]/index" />
               <Stack.Screen
                 name="question-bank/[bankId]/study/[categoryId]/[topicId]"
@@ -98,7 +97,6 @@ export function AppStack() {
               <Stack.Screen name="content/resources/[articleSlug]" />
               <Stack.Screen name="account/[slug]" />
               <Stack.Screen name="info/[slug]" />
-              <Stack.Screen name="state/[slug]" />
             </Stack.Protected>
       </Stack>
       <UiAcceptanceBadge />

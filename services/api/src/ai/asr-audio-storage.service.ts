@@ -14,11 +14,19 @@ const EXTENSIONS: Record<string, string> = {
   'audio/ogg': 'ogg',
   'audio/wav': 'wav',
   'audio/webm': 'webm',
-  'audio/x-m4a': 'm4a',
+};
+
+const MIME_ALIASES: Record<string, string> = {
+  'audio/vnd.wave': 'audio/wav',
+  'audio/wave': 'audio/wav',
+  'audio/x-m4a': 'audio/mp4',
+  'audio/x-pn-wav': 'audio/wav',
+  'audio/x-wav': 'audio/wav',
 };
 
 export function resolveAsrAudioFormat(mimeType: string) {
-  const contentType = mimeType.split(';', 1)[0]?.trim().toLowerCase() || 'application/octet-stream';
+  const reportedType = mimeType.split(';', 1)[0]?.trim().toLowerCase() || 'application/octet-stream';
+  const contentType = MIME_ALIASES[reportedType] ?? reportedType;
   return { contentType, extension: EXTENSIONS[contentType] ?? 'audio' };
 }
 

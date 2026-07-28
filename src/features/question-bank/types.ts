@@ -45,6 +45,7 @@ export type QuestionBankTextCard = QuestionBankCardBase & {
   audio?: string;
   audioDurationSeconds?: number;
   choices?: string[];
+  choicesZh?: string[];
   correctChoiceIndex?: number;
 };
 
@@ -56,6 +57,7 @@ export type QuestionBankImageCard = QuestionBankCardBase & {
   audioTextZh?: never;
   audio?: never;
   choices?: never;
+  choicesZh?: never;
   correctChoiceIndex?: never;
   referenceText?: never;
   referenceTextZh?: never;

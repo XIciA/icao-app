@@ -56,5 +56,4 @@ app-example
 # large local workflow snapshots and resumable caches
 /.generated/
 /.vercel/
-/.env.local
-/.env.*.local
+.env*
