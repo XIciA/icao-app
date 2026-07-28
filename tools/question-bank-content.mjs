@@ -9,6 +9,7 @@ const contentRoot = join(root, 'content/question-banks');
 const banksRoot = join(contentRoot, 'banks');
 const resourcesRoot = join(contentRoot, 'resources');
 const embeddedPath = join(root, 'src/features/question-bank/data/question-bank.json');
+const embeddedReleasePath = join(root, 'src/features/question-bank/data/question-bank-release.json');
 const embeddedAudioIndexPath = join(root, 'src/features/question-bank/data/audio-index.json');
 const outputRoot = join(root, 'dist/question-bank-release');
 const audioRoot = resolve(process.env.QUESTION_BANK_AUDIO_ROOT ?? '/Users/zhouyide/Desktop/icao设计稿/public/question-bank-assets/audio');
@@ -368,11 +369,16 @@ function build() {
   rmSync(outputRoot, { recursive: true, force: true });
   renameSync(temporary, outputRoot);
   writeJson(embeddedPath, sources.banks);
+  writeJson(embeddedReleasePath, {
+    releaseVersion: sources.registry.releaseVersion,
+    releasedAt: sources.registry.releasedAt,
+  });
   console.log(`content_built ${JSON.stringify(generated.stats)}`);
 }
 
 function check({ full = false } = {}) {
-  const generated = artifactsFromSources(loadSources());
+  const sources = loadSources();
+  const generated = artifactsFromSources(sources);
   if (!existsSync(outputRoot)) fail('release_output_missing_run_content_build');
   const actualFiles = [];
   function walk(path) {
@@ -386,7 +392,14 @@ function check({ full = false } = {}) {
   const expectedFiles = [...generated.files.keys()].sort();
   if (JSON.stringify(actualFiles.sort()) !== JSON.stringify(expectedFiles)) fail('release_file_set_mismatch');
   for (const [path, bytes] of generated.files) if (!readFileSync(join(outputRoot, path)).equals(bytes)) fail(`generated_file_modified:${path}`);
-  const stats = validate(loadSources(), { full });
+  const expectedEmbeddedRelease = jsonBytes({
+    releaseVersion: sources.registry.releaseVersion,
+    releasedAt: sources.registry.releasedAt,
+  });
+  if (!existsSync(embeddedReleasePath) || !readFileSync(embeddedReleasePath).equals(expectedEmbeddedRelease)) {
+    fail('embedded_release_metadata_outdated_run_content_build');
+  }
+  const stats = validate(sources, { full });
   console.log(`content_check_ok full=${full} ${JSON.stringify(stats)}`);
 }
 

@@ -1,5 +1,5 @@
 import embeddedData from './question-bank.json';
-import questionBankRegistry from '../../../../content/question-banks/registry.json';
+import embeddedRelease from './question-bank-release.json';
 import { Platform } from 'react-native';
 import Storage from '@/platform/storage';
 import type { ApiSuccessEnvelope, QuestionBankRelease } from '@icao/contracts';
@@ -104,7 +104,7 @@ async function performQuestionBankLoadForWeb(id: QuestionBankId): Promise<Questi
   if (memory?.releaseIdentity === releaseIdentity) return memory.result;
 
   const releaseVersion = Number(contentRelease.releaseId?.match(/qb-v(\d+)/u)?.[1]);
-  if (releaseVersion === questionBankRegistry.releaseVersion) {
+  if (releaseVersion === embeddedRelease.releaseVersion) {
     const embedded = await embeddedQuestionBankRepository.getDataset(id);
     if (embedded) {
       const result = { dataset: embedded, source: 'embedded' } satisfies QuestionBankLoadResult;
@@ -131,7 +131,7 @@ async function performQuestionBankLoadForWeb(id: QuestionBankId): Promise<Questi
     webMemoryCache.set(id, { releaseIdentity, result });
     void Storage.setItem(cacheKey(id), JSON.stringify({
       bankId: id,
-      version: Number(contentRelease.releaseId?.match(/qb-v(\d+)/u)?.[1] ?? questionBankRegistry.releaseVersion),
+      version: Number(contentRelease.releaseId?.match(/qb-v(\d+)/u)?.[1] ?? embeddedRelease.releaseVersion),
       checksum: contentRelease.releaseChecksum ?? '0'.repeat(64),
       dataset,
       cachedAt: new Date().toISOString(),
