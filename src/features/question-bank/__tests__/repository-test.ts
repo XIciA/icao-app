@@ -14,6 +14,7 @@ import { Platform } from 'react-native';
 describe('embeddedQuestionBankRepository', () => {
   const originalApiUrl = process.env.EXPO_PUBLIC_ICAO_API_URL;
   const originalSupabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL;
+  const originalWebContentBaseUrl = process.env.EXPO_PUBLIC_ICAO_WEB_CONTENT_BASE_URL;
   const originalPlatform = Platform.OS;
 
   afterEach(() => {
@@ -23,6 +24,8 @@ describe('embeddedQuestionBankRepository', () => {
     else process.env.EXPO_PUBLIC_ICAO_API_URL = originalApiUrl;
     if (originalSupabaseUrl === undefined) delete process.env.EXPO_PUBLIC_SUPABASE_URL;
     else process.env.EXPO_PUBLIC_SUPABASE_URL = originalSupabaseUrl;
+    if (originalWebContentBaseUrl === undefined) delete process.env.EXPO_PUBLIC_ICAO_WEB_CONTENT_BASE_URL;
+    else process.env.EXPO_PUBLIC_ICAO_WEB_CONTENT_BASE_URL = originalWebContentBaseUrl;
     Object.defineProperty(Platform, 'OS', { configurable: true, value: originalPlatform });
   });
 
@@ -118,19 +121,21 @@ describe('embeddedQuestionBankRepository', () => {
     expect(result).toMatchObject({ source: 'embedded', warning: 'question_bank_remote_unavailable', dataset: { id: 'opi' } });
   });
 
-  it('shows an embedded question bank immediately on web while its remote release refreshes in the background', async () => {
-    process.env.EXPO_PUBLIC_ICAO_API_URL = 'http://127.0.0.1:3101';
+  it('loads the immutable Vercel mirror on web without calling the App API', async () => {
+    process.env.EXPO_PUBLIC_ICAO_WEB_CONTENT_BASE_URL = 'https://content.example/releases/app-qb-v8-test';
     Object.defineProperty(Platform, 'OS', { configurable: true, value: 'web' });
     const dataset = await embeddedQuestionBankRepository.getDataset('opi');
     jest.spyOn(globalThis, 'fetch').mockResolvedValue({
       ok: true,
       status: 200,
-      json: async () => ({ requestId: 'test', data: { bankId: 'opi', version: 1, checksum: 'fresh', dataset } }),
+      json: async () => dataset,
     } as Response);
 
-    await expect(loadQuestionBank('opi')).resolves.toMatchObject({ source: 'embedded', dataset: { id: 'opi' } });
-    await new Promise((resolve) => setTimeout(resolve, 0));
-    expect(globalThis.fetch).toHaveBeenCalled();
+    await expect(loadQuestionBank('opi')).resolves.toMatchObject({ source: 'remote', dataset: { id: 'opi' } });
+    expect(globalThis.fetch).toHaveBeenCalledWith(
+      'https://content.example/releases/app-qb-v8-test/question-bank/banks/opi.json',
+      expect.any(Object),
+    );
   });
 
   it('rewrites a cached signed URL to the current tunnel origin', async () => {

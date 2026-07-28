@@ -1,7 +1,7 @@
 import { useFocusEffect, useRouter } from 'expo-router';
 import { Bookmark, ChevronRight, History, MessageCircle, Settings, Star, UserRound } from 'lucide-react-native';
 import { useCallback, useMemo, useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Platform, Pressable, StyleSheet, View } from 'react-native';
 
 import { AppText, Card } from '@/components/ui';
 import { APP_DISPLAY_VERSION } from '@/config/app-version';
@@ -18,7 +18,7 @@ const menu = [
   { slug: 'word-favorites', label: '单词收藏', icon: Star },
   { slug: 'settings', label: '设置', icon: Settings },
   { slug: 'feedback', label: '意见反馈', icon: MessageCircle },
-];
+].filter((item) => Platform.OS !== 'web' || item.slug !== 'feedback');
 
 export function ProfileHomeScreen() {
   const router = useRouter();
@@ -41,7 +41,7 @@ export function ProfileHomeScreen() {
   const accountLabel = auth.restoring
     ? '正在确认账号…'
     : auth.session?.user.displayName
-      ? `内测账号 · ${auth.session.user.displayName}`
+      ? `${Platform.OS === 'web' ? 'Web 体验版' : '内测账号'} · ${auth.session.user.displayName}`
       : '尚未登录';
 
   function open(slug: string) {
@@ -104,7 +104,7 @@ export function ProfileHomeScreen() {
         </RowGroup>
       </View>
       <AppText style={styles.footer} variant="caption">
-        © 2026 飞猪 ICAO · {APP_DISPLAY_VERSION}
+        © 2026 飞猪 ICAO · {APP_DISPLAY_VERSION}{Platform.OS === 'web' ? ' · 数据仅存本机' : ''}
       </AppText>
     </AccountScreen>
   );

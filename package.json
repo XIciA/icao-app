@@ -15,7 +15,9 @@
     "web:acceptance:export": "EXPO_PUBLIC_ICAO_UI_ACCEPTANCE=1 expo export --platform web --clear",
     "web:export": "EXPO_PUBLIC_ICAO_UI_ACCEPTANCE=0 expo export --platform web --clear",
     "web:serve": "node scripts/serve-web-export.mjs",
-    "check:web": "pnpm web:export",
+    "web:content:sync": "node tools/web-content-sync.mjs",
+    "check:web:network": "node tools/check-web-network-boundary.mjs",
+    "check:web": "pnpm web:export && pnpm check:web:network",
     "android": "./scripts/with-android-env.sh expo run:android",
     "android:prebuild": "./scripts/with-android-env.sh expo prebuild --platform android --clean",
     "android:emulator": "./scripts/start-android-emulator.sh",
@@ -130,6 +132,7 @@
   "devDependencies": {
     "@testing-library/react-native": "14.0.1",
     "@types/jest": "29.5.14",
+    "@types/node": "24.10.0",
     "@types/react": "~19.2.2",
     "@types/react-dom": "^19.2.3",
     "eslint": "^9.39.4",

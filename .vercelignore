@@ -1,5 +1,11 @@
 .generated/
-/content/
+/content/editorial/
+/content/question-banks/*
+!/content/question-banks/opi-hotspots.json
+/content/vocabulary/
+/content/word-lookup/batches/
+/content/word-lookup/README.md
+/content/word-lookup/word-list.json
 /原始资源资料/
 docs/
 infra/

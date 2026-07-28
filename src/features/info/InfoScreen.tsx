@@ -83,7 +83,7 @@ function HelpPage() {
   const [open, setOpen] = useState(-1);
   const faqs = [
     ['如何切换不同的题库？', '在题库首页进入对应模块，即可切换学习内容。'],
-    ['我的标注和笔记会同步吗？', '登录后，支持的学习数据会通过现有同步服务保存。'],
+    ['我的标注和笔记会同步吗？', Platform.OS === 'web' ? 'Web 体验版只保存在当前浏览器，不与 App 同步；清理浏览器数据后会丢失。' : '登录后，支持的学习数据会通过现有同步服务保存。'],
     ['随身听支持后台播放吗？', '后台播放能力以当前 Development Build 的系统行为为准。'],
     ['如何提交内容纠错？', '在刷题学习页顶部点击“纠错”，系统会自动附带当前题目信息。'],
   ];
@@ -341,6 +341,7 @@ function feedbackErrorMessage(cause: unknown) {
   if (code === 'feedback_image_too_large') return '有图片超过 5 MB，请移除后重试。';
   if (code === 'invalid_feedback_image') return '图片格式无效，请仅使用 JPEG、PNG 或 WebP。';
   if (code === 'missing_bearer_token' || code === 'invalid_bearer_token') return '登录状态已失效，请重新登录后提交。';
+  if (code === 'web_demo_feature_unavailable') return 'Web 体验版暂不提供意见反馈，请在 iOS 或 Android App 中提交。';
   return '提交失败，请检查网络后重试。你的文字和图片已保留。';
 }
 

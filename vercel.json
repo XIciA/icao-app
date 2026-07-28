@@ -1,16 +1,23 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
+  "regions": ["hkg1"],
   "installCommand": "pnpm install --frozen-lockfile",
   "buildCommand": "pnpm web:export",
   "outputDirectory": "dist",
+  "functions": {
+    "api/**/*.ts": {
+      "maxDuration": 120
+    }
+  },
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "microphone=(self)" }
+        { "key": "Permissions-Policy", "value": "microphone=(self)" },
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.vercel.app; media-src 'self' blob: https://*.vercel.app; connect-src 'self' blob: https://*.vercel.app; font-src 'self' data:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'" }
       ]
     },
     {
