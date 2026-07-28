@@ -7,6 +7,10 @@
 - 每个 Web 播放请求增加 6 秒首帧期限；超时会暂停、释放既有 `study` lease，并显示可重试状态，不再无限转圈。
 - 继续复用 `StudyAudioPlayer`、`AudioSessionOrchestrator`、题库资源 resolver 和唯一 Expo player；没有增加第二个音频 owner、播放器、资源映射或时长来源。
 - 回归测试覆盖 Web 首次手势、首帧解锁、后续切题自动播放、首帧超时，以及 iOS/Android 自动播放行为。
+- `pnpm check:web` 和 `pnpm check` 通过：Web 零 ECS 网络边界、66 个 App suites / 292 tests、8 个 API suites / 235 tests，以及 v10 题库与 16 条 OPI 热点均正常。
+- Preview `dpl_HH2YS2FKni3DbDJe8G7gDgmMYNtx` 的健康、v10 release 和 bundle 通过；候选 URL 受 Vercel 团队登录保护。
+- Production `dpl_246Y9qNs2teVoSwJB44CwmuDFZVG` 首轮发布后，新浏览器进入 `SIA 852-1` 显示播放按钮，点击后完整播放至 13 秒，下一题自动播放、390px 手机宽度冷刷新和再次播放均通过，浏览器无 error/warning。
+- 发布前 Production 回滚点 `dpl_GokoGhzuGr4DmPbq9kwrvNDHc7iG` 继续保留。
 
 ## 2026-07-28：不改变海外部署的 Web 性能优化
 

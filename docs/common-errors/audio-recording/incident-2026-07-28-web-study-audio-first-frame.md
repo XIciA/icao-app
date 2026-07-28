@@ -1,6 +1,6 @@
 # Web Study Audio Incident: First Playback Stuck at 0:00
 
-状态：长期修复已实现，等待线上新浏览器验收
+状态：长期修复已发布并通过正式域名新浏览器验收
 
 日期：2026-07-28
 
@@ -12,7 +12,7 @@
 
 ## Environment
 
-- App display version: `v2026.07.28.2002`
+- App display version: `v2026.07.28.2014`
 - Native build: 不涉及
 - Commit or reviewed file set: Web `StudyAudioPlayer`、对应回归测试和阶段记录
 - Platform/device/OS: Web；新浏览器会话，包含 iOS WebKit 浏览器
@@ -77,11 +77,19 @@ Web 首次播放策略和播放器恢复状态机存在两个相邻缺口：
 - [x] Targeted `StudyAudioPlayer` tests: 17/17
 - [x] `pnpm check:audio`
 - [x] `pnpm check`
-- [ ] Vercel Preview 新浏览器首次播放验收
-- [ ] Production 正式域名新浏览器首次播放验收
-- [ ] Native Development Build：不适用，Native 路径未修改
-- [ ] Platform fingerprint：不适用，未修改原生敏感实现
-- [ ] Physical-device microphone → playback → transcription：不适用，本事故不涉及录音或转写
+- [x] Vercel Preview 构建、健康和 bundle 验收；候选 URL 受团队登录保护
+- [x] Production 正式域名新浏览器首次播放、切题自动播放、手机宽度冷刷新验收
+- [x] Native Development Build：不适用，Native 路径未修改
+- [x] Platform fingerprint：不适用，未修改原生敏感实现
+- [x] Physical-device microphone → playback → transcription：不适用，本事故不涉及录音或转写
+
+发布证据：
+
+- Preview：`dpl_HH2YS2FKni3DbDJe8G7gDgmMYNtx`
+- 首轮 Production：`dpl_246Y9qNs2teVoSwJB44CwmuDFZVG`
+- 发布前回滚点：`dpl_GokoGhzuGr4DmPbq9kwrvNDHc7iG`
+- 正式域名代表场景：新会话进入 `SIA 852-1` 后先显示“播放”；点击后从 `0:00` 前进并完整播放至 `0:13`，下一题自动播放正常，390px 宽度刷新后再次播放正常。
+- 正式域名运行日志：浏览器 error/warning 为 0。
 
 ## Remaining risks
 
@@ -91,5 +99,5 @@ Web 首次播放策略和播放器恢复状态机存在两个相邻缺口：
 ## Follow-up
 
 - Owner: Web 题卡音频
-- Required evidence: Preview 和正式域名均使用无本站缓存、无既有媒体授权的新浏览器会话验收。
-- Completion condition: 首卡显示可点击播放，点击后进度前进；人为阻断首帧时 6 秒内退出 spinner；下一题没有无限等待。
+- Required evidence: 后续 Expo Audio 升级时继续复跑 Web 首次手势和首帧超时回归。
+- Completion condition: 已达到；首卡显示可点击播放，点击后进度前进，下一题没有无限等待，阻断路径由 6 秒回归测试覆盖。
