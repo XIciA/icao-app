@@ -1,7 +1,7 @@
 import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import { AlertCircle, Check, Headphones, Pause, Play, RotateCcw } from 'lucide-react-native';
 import { type ReactNode, useCallback, useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, AppState, Pressable, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, AppState, Platform, Pressable, StyleSheet, View } from 'react-native';
 import type { GestureType } from 'react-native-gesture-handler';
 
 import { AppText } from '@/components/ui';
@@ -30,7 +30,9 @@ export function StudyAudioPlayer({
   dismissControlsRequest = 0,
   pauseRequest = 0,
   onPlaybackStart,
+  onReady,
   practiceControls,
+  durationHint,
   variant = 'default',
 }: {
   uri?: string;
@@ -46,7 +48,9 @@ export function StudyAudioPlayer({
   dismissControlsRequest?: number;
   pauseRequest?: number;
   onPlaybackStart?: () => void;
+  onReady?: () => void;
   practiceControls?: ReactNode;
+  durationHint?: number;
   variant?: 'default' | 'integrated-recording';
 }) {
   const { height: windowHeight, width: windowWidth } = useAppViewportDimensions();
@@ -63,6 +67,7 @@ export function StudyAudioPlayer({
   const resumeAfterScrubRef = useRef(false);
   const audioLease = useRef<AudioLease | undefined>(undefined);
   const playGeneration = useRef(0);
+  const readyNotifiedKeyRef = useRef<string | undefined>(undefined);
   const currentAppState = AppState.currentState;
   const appStateRef = useRef<'active' | 'background' | 'inactive' | 'unknown' | 'extension'>(
     typeof currentAppState === 'string' ? currentAppState : 'active',
@@ -76,6 +81,11 @@ export function StudyAudioPlayer({
   const integrated = variant === 'integrated-recording';
   const audioFailed = !uri || loadTimeout.timedOut || status.playbackState === 'error';
   const audioControllable = Boolean(uri && status.isLoaded && !loadTimeout.timedOut && status.playbackState !== 'error');
+  const displayDuration = status.duration > 0 ? status.duration : durationHint ?? 0;
+  const waitingForFirstFrame = Platform.OS === 'web'
+    && status.playing
+    && status.currentTime <= 0
+    && !status.didJustFinish;
 
   latestStatusRef.current = status;
 
@@ -149,6 +159,7 @@ export function StudyAudioPlayer({
     onSeekInteractionChange?.(false);
     void trySeekPlayer(0);
     statusAtSourceReplacementRef.current = undefined;
+    readyNotifiedKeyRef.current = undefined;
     if (!uri) return;
     statusAtSourceReplacementRef.current = latestStatusRef.current;
     if (!tryReplacePlayer(uri)) {
@@ -160,6 +171,14 @@ export function StudyAudioPlayer({
     }
     pendingAutoPlayRef.current = autoPlayRequest > 0;
   }, [autoPlayRequest, onSeekInteractionChange, playbackKey, releaseAudioLease, tryPausePlayer, tryReplacePlayer, trySeekPlayer, trySetPlaybackRate, uri]);
+
+  useEffect(() => {
+    if (!onReady || !uri || !status.isLoaded) return;
+    if (statusAtSourceReplacementRef.current === status) return;
+    if (readyNotifiedKeyRef.current === playbackKey) return;
+    readyNotifiedKeyRef.current = playbackKey;
+    onReady();
+  }, [onReady, playbackKey, status, uri]);
 
   useEffect(() => {
     if (!pendingAutoPlayRef.current || appStateRef.current !== 'active') return;
@@ -430,7 +449,7 @@ export function StudyAudioPlayer({
               <AudioTimeline
                 blockedExternalGesture={blockedExternalGesture}
                 disabled={!status.isLoaded}
-                duration={status.duration}
+                duration={displayDuration}
                 onInteractionChange={onSeekInteractionChange}
                 onScrubCancel={cancelScrub}
                 onScrubEnd={finishScrub}
@@ -450,7 +469,7 @@ export function StudyAudioPlayer({
                 onPress={() => void toggle()}
                 style={({ pressed }) => [styles.integratedPlay, !audioControllable ? styles.controlDisabled : null, pressed ? styles.pressed : null]}
               >
-                {uri && !audioFailed && !status.isLoaded ? (
+                {uri && !audioFailed && (!status.isLoaded || waitingForFirstFrame) ? (
                   <ActivityIndicator color={colors.primaryForeground} size="small" />
                 ) : status.playing ? (
                   <Pause color={colors.primaryForeground} fill={colors.primaryForeground} size={18} />
@@ -505,7 +524,7 @@ export function StudyAudioPlayer({
                 onPress={() => void toggle()}
                 style={({ pressed }) => [styles.play, pressed ? styles.pressed : null]}
               >
-                {!status.isLoaded ? (
+                {!status.isLoaded || waitingForFirstFrame ? (
                   <ActivityIndicator color={colors.primaryForeground} size="small" />
                 ) : status.playing ? (
                   <Pause color={colors.primaryForeground} fill={colors.primaryForeground} size={18} />
@@ -517,7 +536,7 @@ export function StudyAudioPlayer({
                 <AudioTimeline
                   blockedExternalGesture={blockedExternalGesture}
                   disabled={!status.isLoaded}
-                  duration={status.duration}
+                  duration={displayDuration}
                   onInteractionChange={onSeekInteractionChange}
                   onScrubCancel={cancelScrub}
                   onScrubEnd={finishScrub}

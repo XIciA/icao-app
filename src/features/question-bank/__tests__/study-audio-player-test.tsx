@@ -73,6 +73,47 @@ describe('StudyAudioPlayer', () => {
     await waitFor(() => expect(mockPlayer.play).toHaveBeenCalledTimes(1));
   });
 
+  it('reports source readiness once and uses the manifest duration while metadata loads', async () => {
+    const onReady = jest.fn();
+    mockStatus = { ...mockStatus, duration: 0, isLoaded: false };
+    const screen = await render(
+      <StudyAudioPlayer
+        durationHint={5.112}
+        label="Sentence1"
+        onReady={onReady}
+        playbackKey="card-ready"
+        uri="https://example.test/card-ready.mp3"
+      />,
+    );
+
+    expect(screen.getByText('0:05')).toBeTruthy();
+    expect(onReady).not.toHaveBeenCalled();
+
+    mockStatus = { ...mockStatus, duration: 5.112, isBuffering: false, isLoaded: true, playbackState: 'readyToPlay' };
+    await screen.rerender(
+      <StudyAudioPlayer
+        durationHint={5.112}
+        label="Sentence1"
+        onReady={onReady}
+        playbackKey="card-ready"
+        uri="https://example.test/card-ready.mp3"
+      />,
+    );
+    await waitFor(() => expect(onReady).toHaveBeenCalledTimes(1));
+
+    mockStatus = { ...mockStatus };
+    await screen.rerender(
+      <StudyAudioPlayer
+        durationHint={5.112}
+        label="Sentence1"
+        onReady={onReady}
+        playbackKey="card-ready"
+        uri="https://example.test/card-ready.mp3"
+      />,
+    );
+    expect(onReady).toHaveBeenCalledTimes(1);
+  });
+
   it('does not mistake the previous card loaded status for the replacement source readiness', async () => {
     mockStatus = { ...mockStatus, isBuffering: false, isLoaded: true, playbackState: 'readyToPlay' };
     const screen = await render(
