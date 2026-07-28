@@ -1,9 +1,15 @@
 import type { VocabularyDataset } from '@icao/contracts';
 
-import { resolveWebContentUrl } from '@/features/web-content/release';
+import { loadWebContentRelease, resolveWebContentUrl } from '@/features/web-content/release';
 import Storage from '@/platform/storage';
 
 const CACHE_KEY = 'icao.web.content.v1.vocabulary';
+const REQUEST_TIMEOUT_MILLISECONDS = 10_000;
+
+type CachedVocabulary = {
+  releaseIdentity: string;
+  dataset: VocabularyDataset;
+};
 
 export type VocabularyLoadResult = {
   dataset: VocabularyDataset;
@@ -30,26 +36,67 @@ export function validateVocabularyDataset(dataset: VocabularyDataset) {
   return dataset;
 }
 
+function releaseIdentity(release: Awaited<ReturnType<typeof loadWebContentRelease>>) {
+  return release.releaseChecksum ?? release.releaseId ?? release.baseUrl;
+}
+
 async function cached() {
   const raw = await Storage.getItem(CACHE_KEY);
   if (!raw) return undefined;
   try {
-    return validateVocabularyDataset(JSON.parse(raw) as VocabularyDataset);
+    const value = JSON.parse(raw) as unknown;
+    if (
+      value
+      && typeof value === 'object'
+      && 'dataset' in value
+      && 'releaseIdentity' in value
+      && typeof value.releaseIdentity === 'string'
+    ) {
+      return {
+        dataset: validateVocabularyDataset(value.dataset as VocabularyDataset),
+        releaseIdentity: value.releaseIdentity,
+      };
+    }
+    return {
+      dataset: validateVocabularyDataset(value as VocabularyDataset),
+      releaseIdentity: undefined,
+    };
   } catch {
     return undefined;
   }
 }
 
+async function fetchVocabulary(identity: string) {
+  const response = await fetch(await resolveWebContentUrl('/vocabulary/dataset.json'), {
+    signal: AbortSignal.timeout(REQUEST_TIMEOUT_MILLISECONDS),
+  });
+  if (!response.ok) throw new Error(`vocabulary_http_${response.status}`);
+  const dataset = validateVocabularyDataset(await response.json() as VocabularyDataset);
+  await Storage.setItem(CACHE_KEY, JSON.stringify({
+    dataset,
+    releaseIdentity: identity,
+  } satisfies CachedVocabulary));
+  return dataset;
+}
+
 export async function loadVocabulary(): Promise<VocabularyLoadResult> {
+  const release = await loadWebContentRelease();
+  const identity = releaseIdentity(release);
   const local = await cached();
+  if (local?.releaseIdentity === identity) {
+    void fetchVocabulary(identity).catch(() => undefined);
+    return { dataset: local.dataset, source: 'cache' };
+  }
   try {
-    const response = await fetch(await resolveWebContentUrl('/vocabulary/dataset.json'));
-    if (!response.ok) throw new Error(`vocabulary_http_${response.status}`);
-    const dataset = validateVocabularyDataset(await response.json() as VocabularyDataset);
-    await Storage.setItem(CACHE_KEY, JSON.stringify(dataset));
-    return { dataset, source: 'remote' };
+    return { dataset: await fetchVocabulary(identity), source: 'remote' };
   } catch (error) {
-    if (local) return { dataset: local, source: 'cache', warning: 'vocabulary_remote_unavailable' };
+    if (local) {
+      return {
+        dataset: local.dataset,
+        source: 'cache',
+        warning: 'vocabulary_remote_unavailable',
+      };
+    }
     throw error;
   }
 }

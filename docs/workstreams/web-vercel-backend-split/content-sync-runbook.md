@@ -25,7 +25,15 @@ pnpm web:content:sync \
 7. 仅把 Preview 环境指向候选 release，部署并完成浏览器验收。
 8. Preview 全部通过后更新 Production 环境并从同一提交部署。
 
-代码部署使用 Git build。`pnpm web:deploy:export` 会在 Expo 导出后读取当前环境 pointer，把已发布的十个资源分片逐文件校验并物化为 `dist/question-bank-assets`。该步骤只生成同域交付镜像，不修改内容 release、资源 manifest 或 App 资源来源。Preview 必须核对 `/question-bank-assets/release.json` 的 release、6081 个文件和总字节数，并确认首页没有预取完整音频目录。
+代码部署使用 Git build。`pnpm web:deploy:export` 会在 Expo 导出后读取当前环境 pointer：
+
+- 把已发布的十个资源分片逐文件校验并物化为 `dist/question-bank-assets`；
+- 校验 `web-release.json`、838 条词汇、文章 release 和文章封面后物化为
+  `dist/web-content/releases/<release-id>`。
+
+这些步骤只生成同域交付镜像，不修改内容 release、资源 manifest 或 App 资源来源。Preview
+必须核对 `/question-bank-assets/release.json` 的 6081 个资源，以及
+`/web-content/current.json`、词汇、文章和封面；首页不得预取完整音频或内容目录。
 
 ## 强制失败条件
 

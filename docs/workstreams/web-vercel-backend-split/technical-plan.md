@@ -27,13 +27,11 @@
 Browser
 ├── feizhuicao.com 静态 Expo Web
 ├── /question-bank-assets/*     Git 构建生成的同域音频/图片
+├── /web-content/releases/*     Git 构建生成的同域词汇/文章/封面
 ├── /api/session             独立邀请码 + 签名 Cookie
 ├── /api/ai/*                Vercel Function → DashScope
 ├── /api/ai/transcribe       录音 Base64 → Vercel AI Gateway
 │                              └── 失败时回退 Model Studio 临时文件
-├── metadata static project
-│   ├── web-content/current.json
-│   └── releases/<release-id>/{question-bank,vocabulary,editorial}
 └── build-time content input
     ├── metadata static project
     └── 10 immutable asset projects（浏览器不直连）
@@ -52,14 +50,16 @@ releaseVersion 10 完整发布闭包
         ↓ pnpm web:content:sync
 10 个 Vercel 静态资源分片 + 1 个 metadata 项目
         ↓ 发布新的 current.json
-Git Web build 读取 pointer、逐文件校验并生成 dist/question-bank-assets
+Git Web build 读取 pointer、逐文件校验并生成 dist/question-bank-assets 与 dist/web-content
         ↓
-浏览器从 feizhuicao.com/question-bank-assets 同域按需读取
+浏览器从 feizhuicao.com 同域按需读取音频、词汇和文章
 ```
 
 同步命令先运行完整题库、词汇和文章校验，再按资源公开路径的 FNV-1a 哈希分配到 10 个分片。发布 ID 和项目名由 App 题库版本及总 checksum 组成，每个静态项目只承载一个不可变 release。若指定 `--reuse-assets-pointer`，只有远端与本地资源 manifest 的完整 SHA-256、分片数量和全部分片身份都通过校验时，才复用已有不可变分片；否则立即失败。全部资源分片成功或严格复用通过后才部署 metadata 指针，因此失败不会暴露半个版本。
 
 Web Git 构建不改变上述内容发布所有权。`web:deploy:export` 在 Expo 导出后读取 Production/Preview 对应 pointer，要求 pointer 的 release ID 与 checksum 和构建环境完全一致，并以同一 FNV-1a 规则取回全部 6081 个资源。每个文件必须同时通过大小和 SHA-256 校验，随后才原子发布到 `dist/question-bank-assets`。构建失败不产生可部署的半量镜像；首页和 Web 首包不引用完整资源目录，浏览器仍只按当前音频和首帧后的下一题预热下载。
+
+同一构建还读取 `web-release.json`，校验词汇 checksum、文章 release checksum 以及每张封面的大小和 SHA-256，再原子发布到 `dist/web-content/releases/<release-id>`。单词学习和资源分享只在用户打开对应模块后请求这些同域文件；release 匹配的 IndexedDB 缓存立即展示，后台刷新不阻塞页面。OPI 热点和体系课程继续使用小型 bundle 内静态数据，Native 内容路径不变。
 
 首发必须核对：
 

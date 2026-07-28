@@ -8,6 +8,10 @@ let pendingRelease: Promise<WebContentRelease> | undefined;
 let currentRelease: WebContentRelease | undefined;
 let backgroundRefreshScheduled = false;
 
+function sameOriginContentEnabled() {
+  return process.env.EXPO_PUBLIC_ICAO_WEB_SAME_ORIGIN_CONTENT === '1';
+}
+
 function validRelease(value: unknown): value is WebContentRelease {
   if (!value || typeof value !== 'object') return false;
   const release = value as Partial<WebContentRelease>;
@@ -24,14 +28,17 @@ function validRelease(value: unknown): value is WebContentRelease {
 }
 
 function configuredRelease(): WebContentRelease | undefined {
-  const baseUrl = process.env.EXPO_PUBLIC_ICAO_WEB_CONTENT_BASE_URL?.replace(/\/$/u, '');
+  const releaseId = process.env.EXPO_PUBLIC_ICAO_WEB_CONTENT_RELEASE;
+  const baseUrl = sameOriginContentEnabled() && releaseId
+    ? `/web-content/releases/${releaseId}`
+    : process.env.EXPO_PUBLIC_ICAO_WEB_CONTENT_BASE_URL?.replace(/\/$/u, '');
   if (!baseUrl) return undefined;
   return {
     assetShardCount: Number(process.env.EXPO_PUBLIC_ICAO_WEB_ASSET_SHARD_COUNT) || undefined,
     assetShardTemplate: process.env.EXPO_PUBLIC_ICAO_WEB_ASSET_SHARD_TEMPLATE,
     baseUrl,
     releaseChecksum: process.env.EXPO_PUBLIC_ICAO_WEB_CONTENT_CHECKSUM,
-    releaseId: process.env.EXPO_PUBLIC_ICAO_WEB_CONTENT_RELEASE,
+    releaseId,
   };
 }
 
@@ -84,7 +91,11 @@ function refreshReleasePointer() {
 export function loadWebContentRelease() {
   currentRelease ??= configuredRelease();
   if (currentRelease) {
-    if (!backgroundRefreshScheduled && process.env.EXPO_PUBLIC_ICAO_WEB_CONTENT_POINTER_URL) {
+    if (
+      !sameOriginContentEnabled()
+      && !backgroundRefreshScheduled
+      && process.env.EXPO_PUBLIC_ICAO_WEB_CONTENT_POINTER_URL
+    ) {
       backgroundRefreshScheduled = true;
       setTimeout(() => {
         void refreshReleasePointer().catch(() => undefined);
