@@ -47,7 +47,7 @@
 - [x] 合并热点列表、真实题目详情、学习与返回链路。
 - [x] 扩展 `web:content:sync`，严格校验后复用 v8 的 6081 个不可变资源。
 - [x] 发布 v10 metadata，部署 Preview 并完成浏览器验收。
-- [ ] Preview 通过后提升 Production，并记录正式域名和回滚证据。
+- [x] Preview 通过后提升 Production，并记录正式域名和回滚证据。
 
 ### 已发现的网络事实
 

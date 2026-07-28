@@ -13,4 +13,6 @@
 - Preview deployment `dpl_EvP3Rwgu8i2TSE8mDjZPpcUYh8cV` 运行正常，`/api/health` 明确返回 `app-qb-v10-817646d597e77a8c`。
 - Preview 真实浏览器验收通过：邀请码登录、听力中文选项、16 条热点、真实题目详情、学习结束返回、热点深链刷新、手机和桌面宽度，以及 Web 转写入口隐藏。
 - Production 切换前回滚点为 `dpl_FitcmUPfPgmXFoEZQX7bmGiCQr4J` 和 v8 release `app-qb-v8-7cf2feb27846afb2`。
-- Production 发布与正式域名验收待最终已提交版本部署后补充。
+- Production deployment `dpl_DNdkCPpPuCLkFq6cVwLZmVJk6z6Y` 已完成首次正式切换和验收；`feizhuicao.com/api/health` 返回 v10 release。
+- 正式域名复验通过：1223 道听力题及中文选项、16 条热点、热点真实学习页、Web 转写入口隐藏，浏览器无运行错误。
+- 回滚资源继续保留，不删除 v8 内容项目、旧 Production deployment 或 v10 内容项目。
