@@ -9,4 +9,8 @@
 - v10 候选 release 为 `app-qb-v10-817646d597e77a8c`；复用 v8 十个不可变资源分片。
 - OPI 热点校验：16 条、100 个话题引用、504 个题目引用。
 - 听力中文选项校验：1223 张卡片、4892 条译文。
-- Production 发布与正式域名验收待 Preview 通过后补充。
+- v10 metadata 已发布到 `feizhuicao-v10-817646d5-content.vercel.app`，公开指针使用 `max-age=0`，版本目录和复用资源分片保持不可变缓存。
+- Preview deployment `dpl_EvP3Rwgu8i2TSE8mDjZPpcUYh8cV` 运行正常，`/api/health` 明确返回 `app-qb-v10-817646d597e77a8c`。
+- Preview 真实浏览器验收通过：邀请码登录、听力中文选项、16 条热点、真实题目详情、学习结束返回、热点深链刷新、手机和桌面宽度，以及 Web 转写入口隐藏。
+- Production 切换前回滚点为 `dpl_FitcmUPfPgmXFoEZQX7bmGiCQr4J` 和 v8 release `app-qb-v8-7cf2feb27846afb2`。
+- Production 发布与正式域名验收待最终已提交版本部署后补充。
