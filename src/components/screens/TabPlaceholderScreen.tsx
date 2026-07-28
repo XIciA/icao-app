@@ -1,4 +1,3 @@
-import { useRouter } from 'expo-router';
 import { ChevronRight, type LucideIcon } from 'lucide-react-native';
 import type { ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -24,12 +23,10 @@ type Props = {
   headerLeading?: ReactNode;
   headerTrailing?: ReactNode;
   entries: FoundationEntry[];
-  onEntryPress?: (entry: FoundationEntry) => void;
+  onEntryPress: (entry: FoundationEntry) => void;
 };
 
 export function TabPlaceholderScreen({ title, subtitle, eyebrow, headerLeading, headerTrailing, entries, onEntryPress }: Props) {
-  const router = useRouter();
-
   return (
     <Screen
       background={(
@@ -67,7 +64,7 @@ export function TabPlaceholderScreen({ title, subtitle, eyebrow, headerLeading, 
               accessibilityLabel={`${entry.title}，${enabled ? '打开' : '功能开发中'}`}
               disabled={!enabled}
               key={entry.slug}
-              onPress={() => onEntryPress ? onEntryPress(entry) : router.push({ pathname: '/detail/[slug]', params: { slug: entry.slug } })}
+              onPress={() => onEntryPress(entry)}
               style={!enabled ? styles.disabled : null}
             >
               <View style={styles.row}>

@@ -30,8 +30,10 @@ export function HotspotListScreen() {
       <View style={styles.list}>
         {briefs.map((brief) => {
           const [, month, day] = brief.date.split('-');
-          const monthLabel = MONTH_EN[Number(month) - 1] ?? month;
-          const totalQuestions = brief.topics.reduce((sum, topic) => sum + topic.cardIds.length, 0);
+          const monthIndex = parseInt(month ?? '1', 10) - 1;
+          const monthLabel = MONTH_EN[monthIndex] ?? month;
+          const totalQuestions = brief.topics.reduce((sum, t) => sum + t.cardIds.length, 0);
+
           return (
             <Card key={brief.id} style={styles.card}>
               <Pressable

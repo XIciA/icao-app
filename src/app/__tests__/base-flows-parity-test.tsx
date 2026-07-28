@@ -4,7 +4,6 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AccountScreen } from '@/features/account/AccountScreen';
 import { APP_DISPLAY_VERSION } from '@/config/app-version';
 import { InfoScreen } from '@/features/info/InfoScreen';
-import { SystemStateScreen } from '@/features/states/SystemStateScreen';
 
 let mockParams: Record<string, string> = { slug: '' };
 const mockSubmitFeedback = jest.fn();
@@ -83,14 +82,6 @@ describe('base flow parity screens', () => {
     mockParams = { slug: 'about' };
     const screen = await render(withSafeArea(<InfoScreen />));
     expect(screen.getByText(`版本 ${APP_DISPLAY_VERSION}`)).toBeTruthy();
-  });
-
-  it('lists permission and failure states from the state hub', async () => {
-    mockParams = { slug: 'gallery' };
-    const screen = await render(withSafeArea(<SystemStateScreen />));
-    expect(screen.getByText('麦克风权限说明')).toBeTruthy();
-    expect(screen.getByText('麦克风被拒绝')).toBeTruthy();
-    expect(screen.getByText('全局加载页')).toBeTruthy();
   });
 
   it('submits a profile feedback form and shows only the ticket number', async () => {
