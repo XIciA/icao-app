@@ -9,16 +9,16 @@
       "taskTitle": "缩略词-CPDLC-1",
       "audioText": "What is Controller-Pilot Data Link Communications (CPDLC)?",
       "audioTextZh": "什么是管制员—飞行员数据链通信（CPDLC）？",
-      "referenceText": "Controller-Pilot Data Link Communications, or CPDLC, is a digital method of exchanging standard air traffic control messages between a controller and an aircraft. It can carry clearances, requests, reports and other operational messages without using voice for every exchange. CPDLC supplements voice communication but does not remove the need to monitor and use the required radio channels.",
-      "referenceTextZh": "管制员—飞行员数据链通信（CPDLC）是一种由管制员和航空器交换标准空管报文的数字通信方式。它可以传送许可、请求、报告和其他运行报文，无须每次交换都使用语音。CPDLC 是语音通信的补充，但不能免除监听和使用规定无线电频道的要求。"
+      "referenceText": "CPDLC stands for Controller-Pilot Data Link Communications. It is a data-link system that allows pilots and ATC to exchange text messages such as clearances, requests, and reports. It supplements voice communication and can reduce frequency congestion and misunderstandings.",
+      "referenceTextZh": "CPDLC 是管制员与飞行员数据链通信的缩写。它是一种数据链系统，使飞行员和空中交通管制能够交换管制许可、请求和报告等文字信息。它补充话音通信，并能缓解频率拥塞和减少误解。"
     },
     {
       "id": "opi-core-626",
       "taskTitle": "缩略词-CPDLC-2",
       "audioText": "How can pilots use Controller-Pilot Data Link Communications (CPDLC) to communicate with air traffic control after a two-way radio failure?",
       "audioTextZh": "双向无线电通信失效后，飞行员如何使用管制员—飞行员数据链通信（CPDLC）与空中交通管制部门通信？",
-      "referenceText": "If CPDLC is already available and the appropriate ATC unit can be reached, the crew can send a message reporting the radio failure and request instructions. They must read each data-link clearance carefully, respond with the correct standard message and confirm that it applies to their flight. CPDLC does not replace the published lost-communication procedure, so the crew must also follow the applicable checklist, route and altitude rules while trying other approved communication methods.",
-      "referenceTextZh": "如果 CPDLC 已经可用，而且能够联系到适当的空管单位，机组可以发送报文报告无线电失效并请求指令。必须仔细阅读每份数据链许可，用正确的标准报文响应，并确认许可适用于本次飞行。CPDLC 不能取代公布的通信失效程序，因此机组在尝试其他经批准通信方法的同时，还必须执行适用检查单以及航路和高度规则。"
+      "referenceText": "The pilots should first confirm that CPDLC is available. They can then send ATC a text message reporting the two-way radio failure and request further instructions. The crew should monitor the CPDLC display, follow the text clearance, and acknowledge receipt through the data link.",
+      "referenceTextZh": "飞行员应先确认 CPDLC 可用，然后向空中交通管制发送文字信息，报告双向无线电通信失效并申请进一步指令。机组应监控 CPDLC 显示、遵循文字许可，并通过数据链确认收到。"
     }
   ]
 }

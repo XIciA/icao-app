@@ -9,24 +9,24 @@
       "taskTitle": "人的因素-危险态度-1",
       "audioText": "What are hazardous attitudes in aviation?",
       "audioTextZh": "航空领域中的危险态度是什么？",
-      "referenceText": "Hazardous attitudes are patterns of thinking that can push a pilot toward unsafe decisions. Common training examples include feeling invulnerable, acting impulsively, rejecting authority, showing off or giving up control of the situation. The labels are useful only if they help a pilot recognize the behavior and choose a safer response.",
-      "referenceTextZh": "危险态度是可能推动飞行员作出不安全决定的思维模式。训练中的常见例子包括认为自己不会出事、冲动行事、抗拒权威、炫耀能力或放弃掌控局面。只有当这些标签能帮助飞行员识别行为并选择更安全的应对方式时，它们才有价值。"
+      "referenceText": "Hazardous attitudes in aviation include anti-authority, macho, impulsivity, invulnerability, and resignation. They can weaken safety awareness, crew communication, and cooperation, and increase the risk of human error.",
+      "referenceTextZh": "航空中的危险态度包括反权威、逞强、冲动、侥幸和消极认命。这些态度会削弱安全意识、机组沟通与合作，并增加人为差错风险。"
     },
     {
       "id": "opi-core-749",
       "taskTitle": "人的因素-危险态度-2",
       "audioText": "How can hazardous attitudes affect flight safety?",
       "audioTextZh": "危险态度会如何影响飞行安全？",
-      "referenceText": "Hazardous attitudes can make a pilot underestimate risk, ignore procedures, rush a decision or continue a plan that no longer makes sense. They can also discourage another crew member from speaking up. If the attitude is not recognized, it may remove several safety barriers at the same time.",
-      "referenceTextZh": "危险态度可能使飞行员低估风险、忽视程序、匆忙决策，或继续执行已经不再合理的计划。它还可能使另一名机组成员不敢提出意见。如果这种态度没有被识别，可能会同时消除多道安全屏障。"
+      "referenceText": "Hazardous attitudes can impair situational awareness, lead to poor decisions, weaken crew coordination, and cause pilots to ignore regulations or SOPs. For example, an anti-authority attitude may make a pilot reject useful advice or rules, while impulsivity may lead to hasty actions. These behaviours increase the risk of mistakes and accidents.",
+      "referenceTextZh": "危险态度会损害情景意识、导致错误决策、削弱机组协调，并使飞行员忽视规章或标准操作程序。例如，反权威态度会使飞行员拒绝有用建议或规则，而冲动会造成草率行动。这些行为会增加差错和事故风险。"
     },
     {
       "id": "opi-core-750",
       "taskTitle": "人的因素-危险态度-3",
       "audioText": "How can pilots recognize and manage hazardous attitudes?",
       "audioTextZh": "飞行员如何识别和管理危险态度？",
-      "referenceText": "Pilots can recognize hazardous attitudes by noticing repeated thoughts such as 'it will not happen to me,' 'do it now,' or 'I must prove I can handle this.' They should pause, check the facts against procedures and limits, invite challenge and consider a safer alternative. Debriefing, training and honest feedback help reveal patterns that are hard to see alone.",
-      "referenceTextZh": "飞行员可以通过留意反复出现的想法来识别危险态度，例如“这种事不会发生在我身上”“马上去做”或“我必须证明自己能处理”。他们应暂停行动，对照程序和限制检查事实，鼓励他人提出质疑，并考虑更安全的替代方案。讲评、训练和诚实反馈有助于揭示个人很难独自发现的行为模式。"
+      "referenceText": "Pilots need self-awareness to recognize personal bias and hazardous attitudes. They can manage them by following regulations, SOPs, and manuals, strengthening CRM communication and cooperation, and learning from mistakes. Flight safety should take priority over personal bias.",
+      "referenceTextZh": "飞行员需要具备自我意识，才能发现个人偏见和危险态度。他们可以通过遵守规章、标准操作程序和手册，加强 CRM 沟通与合作，并从错误中学习来进行管理。飞行安全应优先于个人偏见。"
     }
   ]
 }

@@ -9,24 +9,24 @@
       "taskTitle": "人的因素-情景意识-1",
       "audioText": "What is situational awareness in flight operations?",
       "audioTextZh": "飞行运行中的情景意识是什么？",
-      "referenceText": "Situational awareness is an accurate understanding of what is happening around the aircraft, what it means and what is likely to happen next. It includes the flight path, energy, systems, weather, terrain, traffic, time and the intentions of other crew members and ATC. It must be updated continuously as conditions change.",
-      "referenceTextZh": "情景意识是对飞机周围正在发生什么、这些情况意味着什么，以及下一步可能发生什么形成准确理解。它包括飞行轨迹、能量、系统、天气、地形、交通、时间，以及其他机组成员和 ATC 的意图。随着情况变化，必须持续更新这种理解。"
+      "referenceText": "Situational awareness means knowing what is happening around the aircraft and understanding what it means for the flight. It includes noticing relevant information, understanding its significance, and anticipating what may happen next. For pilots, this includes the aircraft's position, weather, traffic, fuel, and system status.",
+      "referenceTextZh": "情景意识是指知道飞机周围正在发生什么，并理解这对飞行意味着什么。它包括发现相关信息、理解其意义，并预判下一步可能发生的情况。对飞行员而言，这包括飞机位置、天气、交通、燃油和系统状态。"
     },
     {
       "id": "opi-core-738",
       "taskTitle": "人的因素-情景意识-2",
       "audioText": "How can a loss of situational awareness affect flight safety?",
       "audioTextZh": "丧失情景意识会如何影响飞行安全？",
-      "referenceText": "When situational awareness is lost, a crew may misjudge position, altitude, energy, aircraft status or the time available to act. That can lead to navigation errors, controlled flight into terrain, airspace or runway conflict, unstable approach or incorrect system response. The danger increases because the crew may continue acting confidently on an outdated mental picture.",
-      "referenceTextZh": "情景意识丧失后，机组可能错误判断位置、高度、能量、飞机状态或可用于行动的时间。这会导致导航错误、可控飞行撞地、空域或跑道冲突、进近不稳定或错误的系统处置。更危险的是，机组可能继续根据已经过时的认知自信地采取行动。"
+      "referenceText": "A pilot who loses situational awareness may forget procedures, fail to follow SOPs, and make mistakes. These errors can create a serious risk to flight safety.",
+      "referenceTextZh": "丧失情景意识的飞行员可能忘记程序、未遵守标准操作程序并发生差错。这些错误会对飞行安全造成严重风险。"
     },
     {
       "id": "opi-core-739",
       "taskTitle": "人的因素-情景意识-3",
       "audioText": "How can pilots improve and maintain their situational awareness?",
       "audioTextZh": "飞行员如何提高并保持情景意识？",
-      "referenceText": "Pilots can maintain awareness by briefing the plan and threats, monitoring flight path and automation, and making timely standard callouts. They should cross-check independent sources, share changes clearly and regularly ask whether the aircraft is where and in the state they expect. If confusion develops, reducing workload, using available automation appropriately and taking time to rebuild the picture can prevent further errors.",
-      "referenceTextZh": "飞行员可以通过对计划和威胁进行简令、监控飞行轨迹与自动化，以及及时进行标准喊话来保持情景意识。他们应交叉核对独立信息源，清楚传递情况变化，并经常确认飞机是否处在预期位置和状态。如果出现困惑，降低工作负荷、适当使用可用自动化，并留出时间重新建立完整认知，可以防止更多差错。"
+      "referenceText": "Pilots should monitor the radio frequencies throughout the flight. They should also follow the SOPs and cross-check important information.",
+      "referenceTextZh": "飞行员应在整个飞行过程中守听无线电频率，还应遵循标准操作程序并交叉检查重要信息。"
     }
   ]
 }

@@ -16,24 +16,24 @@
       "taskTitle": "图片题-003-01",
       "audioText": "What preparations should a flight crew make before taking off at night from the runway shown?",
       "audioTextZh": "从图中所示跑道夜间起飞前，飞行机组应做哪些准备？",
-      "referenceText": "The crew should verify takeoff performance, runway condition, lighting, NOTAMs, departure routing and terrain or obstacle threats. It should brief the centerline, expected visual cues, instrument transition, rejected-takeoff plan and actions after any light or navigation failure. Cockpit brightness, exterior lights and both pilots' night adaptation should be set before entering the runway.",
-      "referenceTextZh": "机组应核实起飞性能、跑道状况、灯光、NOTAM、离场航路，以及地形或障碍物威胁。简令应包括中线保持、预期目视线索、转入仪表飞行、中断起飞计划，以及灯光或导航设备失效后的行动。进入跑道前，应调好驾驶舱亮度和外部灯光，并确保两名飞行员都已适应夜间环境。"
+      "referenceText": "Before the night takeoff, I would brief the threat, check the relevant aircraft systems and performance, coordinate with the crew and ATC, and follow the checklist. If safety were not assured, I would delay or reject the takeoff.",
+      "referenceTextZh": "夜间起飞前，我会对相关威胁进行简令，检查飞机系统和性能，与机组及空中交通管制协调，并执行检查单。如果无法确保安全，我会推迟起飞或中断起飞。"
     },
     {
       "id": "opi-image-003-q02",
       "taskTitle": "图片题-003-02",
       "audioText": "What hazards should pilots consider when taking off at night from the runway shown?",
       "audioTextZh": "从图中所示跑道夜间起飞时，飞行员应考虑哪些危险？",
-      "referenceText": "Hazards include poor depth perception, loss of the natural horizon, misleading lights, unlit obstacles and difficulty identifying the runway environment. Rain, fog, snow or glare can hide centerline and edge cues, while fatigue and a black-hole departure can weaken attitude awareness. The crew should be ready to transfer promptly to instruments and follow the published departure path.",
-      "referenceTextZh": "危险包括深度知觉变差、失去自然地平线、灯光误导、未设灯光的障碍物，以及难以识别跑道环境。雨、雾、雪或眩光可能遮蔽中线和边灯线索，疲劳和黑洞式离场也会削弱姿态意识。机组应准备及时转入仪表参照，并沿公布的离场航迹飞行。"
+      "referenceText": "At night, reduced visibility makes it harder to judge height, distance, terrain, and clouds. Spatial disorientation and higher cockpit workload can make the takeoff and departure more demanding. A thorough briefing and a careful instrument cross-check help control these risks.",
+      "referenceTextZh": "夜间能见度较低，更难判断高度、距离、地形和云层。空间定向障碍和较高的驾驶舱工作负荷会使起飞和离场更具挑战。充分的简令和谨慎的仪表交叉检查有助于控制这些风险。"
     },
     {
       "id": "opi-image-003-q03",
       "taskTitle": "图片题-003-03",
       "audioText": "What types of runway lighting help pilots during takeoff and landing at night?",
       "audioTextZh": "哪些类型的跑道灯光可以在夜间起飞和着陆时帮助飞行员？",
-      "referenceText": "Runway edge lights show the runway limits, centerline lights help maintain alignment and threshold or runway-end lights identify the usable ends. Touchdown-zone lights support landing orientation, while approach-light systems guide the transition toward the runway environment. Taxiway lights and stop bars help on the ground but must be interpreted according to the local lighting system.",
-      "referenceTextZh": "跑道边灯标示跑道边界，中线灯帮助飞机保持对正，入口灯和跑道末端灯标示可用跑道的两端。接地带灯有助于着陆定位，进近灯光系统则帮助飞行员向跑道环境过渡。滑行道灯和停止排灯有助于地面运行，但必须按照当地灯光系统正确识别。"
+      "referenceText": "Approach lights and runway-end identifier lights help pilots find and align with the runway. Threshold, edge, centerline, and touchdown-zone lights show the runway's position and usable landing area. Runway-end lights and visual glide-slope indicators provide additional guidance during landing, while edge and centerline lights also support takeoff.",
+      "referenceTextZh": "进近灯和跑道入口识别灯帮助飞行员找到跑道并与跑道对正。入口灯、边灯、中线灯和接地区灯显示跑道位置及可用着陆区域。跑道末端灯和目视下滑指示器在着陆时提供进一步引导，而边灯和中线灯也为起飞提供支持。"
     }
   ]
 }

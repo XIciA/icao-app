@@ -9,32 +9,32 @@
       "taskTitle": "人的因素-飞行作风-1",
       "audioText": "What is your opinion of flight discipline?",
       "audioTextZh": "你如何看待飞行纪律？",
-      "referenceText": "I see flight discipline as the habit of following sound procedures and limits even when nobody is watching and the operation appears routine. It does not mean blind obedience; a pilot may need to depart from a normal plan when safety requires it, but the reason should be deliberate and accountable. Good discipline makes crew behavior predictable and leaves more capacity for genuine surprises.",
-      "referenceTextZh": "我认为，飞行纪律是一种习惯：即使无人监督、运行看似平常，也始终遵守合理的程序和限制。它并不意味着盲目服从；安全需要时，飞行员可能必须偏离正常计划，但理由应经过审慎考虑、能够解释，并由飞行员承担责任。良好纪律使机组行为更可预测，也为真正的意外情况保留更多应对能力。"
+      "referenceText": "I think strong flight discipline is essential for flight safety because pilots control the aircraft and are responsible for everyone on board. Pilots should follow regulations and SOPs and share tasks properly in the cockpit. They should also avoid smoking in the cockpit and consuming alcohol before a flight.",
+      "referenceTextZh": "我认为良好的飞行作风对飞行安全至关重要，因为飞行员操纵飞机并对机上所有人负责。飞行员应遵守规章和标准操作程序，并在驾驶舱内合理分工。他们还应避免在驾驶舱吸烟和在飞行前饮酒。"
     },
     {
       "id": "opi-core-752",
       "taskTitle": "人的因素-飞行作风-2",
       "audioText": "How can flight discipline affect flight safety?",
       "audioTextZh": "飞行纪律会如何影响飞行安全？",
-      "referenceText": "Good discipline keeps the aircraft within approved limits and ensures that checks, callouts and monitoring are performed consistently. It makes errors easier for the other pilot to detect and reduces improvisation during high workload. Poor discipline can normalize small deviations until the crew no longer recognizes a serious unsafe condition.",
-      "referenceTextZh": "良好纪律使飞机保持在批准限制内，并确保检查、喊话和监控始终得到落实。它使另一名飞行员更容易发现差错，并减少高工作负荷下的临时发挥。纪律不佳会使小偏差逐渐变得正常，直到机组不再意识到已经出现严重的不安全状况。"
+      "referenceText": "Poor flight discipline can cause pilots to ignore regulations and SOPs, forget procedures, and make mistakes. Undisciplined behaviour can also reduce situational awareness and lead to poor decisions, creating a serious risk to flight safety.",
+      "referenceTextZh": "不良飞行作风会使飞行员忽视规章和标准操作程序、忘记程序并发生差错。不守纪律的行为还会降低情景意识并导致错误决策，对飞行安全造成严重风险。"
     },
     {
       "id": "opi-core-753",
       "taskTitle": "人的因素-飞行作风-3",
       "audioText": "How can pilots develop good flight discipline?",
       "audioTextZh": "飞行员如何养成良好的飞行纪律？",
-      "referenceText": "Pilots develop discipline through accurate training, repeated use of SOPs and careful preparation for every flight. They should accept constructive challenge, debrief deviations and avoid shortcuts even when a shortcut appears harmless. Instructors and senior pilots strengthen the habit when their own behavior matches the standard they teach.",
-      "referenceTextZh": "飞行员通过准确训练、反复使用 SOP 和认真准备每次飞行来培养纪律。他们应接受建设性质疑，对偏差进行讲评，并且即使捷径看起来无害，也不应采用。教员和资深飞行员以身作则，行为与所教标准一致时，能够进一步巩固这种习惯。"
+      "referenceText": "Pilots can develop good flight discipline by maintaining the right attitude and respecting life, rules, and responsibility. They should also maintain professional conduct and never compromise basic safety standards.",
+      "referenceTextZh": "飞行员可以通过保持正确态度，并尊重生命、规则和责任来养成良好飞行作风。他们还应保持专业行为，绝不降低基本安全标准。"
     },
     {
       "id": "opi-core-754",
       "taskTitle": "人的因素-飞行作风-4",
       "audioText": "How does your company promote good flight discipline?",
       "audioTextZh": "你所在公司如何促进良好飞行纪律的养成？",
-      "referenceText": "A suitable company example would combine clear SOPs, realistic training, line checks and open reporting of deviations. Managers would examine why a rule is difficult to follow, correct weak procedures or resources, and act consistently when someone knowingly ignores a safety boundary. Commanders and instructors would be expected to model the same standards in daily operations.",
-      "referenceTextZh": "一个合适的公司示范是：结合清楚的 SOP、真实情景训练、航线检查和公开报告偏差。管理人员会分析某项规定为何难以遵守，纠正薄弱程序或资源问题，并对明知故犯、越过安全边界的行为作出一致处置。机长和教员也应在日常运行中示范同样的标准。"
+      "referenceText": "I am not employed by an airline, so I do not have a company flight-discipline programme. At my flight school, instructors promote discipline through clear procedures, checklists, standard calls, thorough briefings, and direct debriefing of any deviation. A typical airline would add recurrent training and operational monitoring.",
+      "referenceTextZh": "我尚未受雇于航空公司，因此没有公司的飞行作风培养计划。在航校，教员通过明确的程序、检查单、标准口令、充分的简令以及对偏差的直接讲评来培养良好作风。典型航空公司还会加入复训和运行监控。"
     }
   ]
 }

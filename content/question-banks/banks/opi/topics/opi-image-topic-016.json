@@ -16,32 +16,32 @@
       "taskTitle": "图片题-016-01",
       "audioText": "What can cause an aircraft engine fire during ground operations?",
       "audioTextZh": "哪些因素可能导致航空器发动机在地面运行期间起火？",
-      "referenceText": "A ground engine fire can result from a fuel or oil leak, a hot start, a damaged line, maintenance error or foreign object damage. Unburned fuel can accumulate in the exhaust during an abnormal start, while fueling or ground equipment can introduce other fuel and ignition hazards near a running engine. Incorrect starting, shutdown or ventilation conditions may allow heat or combustible material to build up.",
-      "referenceTextZh": "地面发动机火灾可能由燃油或滑油泄漏、热启动、管路损坏、维修错误或外来物损伤造成。异常启动时，未燃烧的燃油可能积聚在排气系统中；加油或地面设备也会在运转中的发动机附近带来其他燃油和点火危险。错误的启动、关车或通风条件可能使热量或可燃物积聚。"
+      "referenceText": "Fuel leakage or overheating can cause an aircraft engine fire during ground operations.",
+      "referenceTextZh": "燃油泄漏或过热可能导致飞机在地面运行期间发生发动机火灾。"
     },
     {
       "id": "opi-image-016-q02",
       "taskTitle": "图片题-016-02",
       "audioText": "What risks can an engine fire during taxi pose to the aircraft and its occupants?",
       "audioTextZh": "滑行期间发动机起火会给航空器及其乘员带来哪些风险？",
-      "referenceText": "Fire can damage the engine, wing, fuselage and nearby systems and may spread to fuel, ground equipment or another aircraft. Smoke and heat can enter the cabin, injure ground staff and block normal exits. During taxi, reduced access for firefighters and the need to stop in a safe position can complicate evacuation.",
-      "referenceTextZh": "火灾会损坏发动机、机翼、机身和附近系统，还可能蔓延到燃油、地面设备或其他飞机。烟雾和高温可能进入客舱、伤害地面人员，并阻断正常出口。滑行时，消防人员较难接近，加上需要将飞机停在安全位置，会使撤离更加复杂。"
+      "referenceText": "An engine fire during taxi may create smoke and an evacuation risk. These risks may reduce safety margins and increase crew workload.",
+      "referenceTextZh": "滑行期间发动机起火可能产生烟雾，并带来撤离风险。这些风险可能降低安全裕度并增加机组工作负荷。"
     },
     {
       "id": "opi-image-016-q03",
       "taskTitle": "图片题-016-03",
       "audioText": "What preflight inspections can help reduce the risk of an engine fire during ground operations?",
       "audioTextZh": "哪些飞行前检查可以帮助降低发动机在地面运行期间起火的风险？",
-      "referenceText": "The inspection should look for visible fuel or oil leaks, damaged lines, loose panels, intake or exhaust debris and signs of overheating or previous fire. Required fire-detection and extinguishing status, maintenance entries and engine-area servicing should be verified through approved records and checks. Ground staff must also keep equipment and combustible material clear of engine hazard zones.",
-      "referenceTextZh": "检查应注意可见的燃油或滑油泄漏、管路损坏、面板松动、进气道或排气口碎片，以及过热或既往火灾痕迹。规定的火警探测与灭火系统状态、维修记录和发动机区域勤务，应通过批准的记录与检查进行核实。地面人员还必须使设备和可燃物远离发动机危险区。"
+      "referenceText": "The walk-around should look for fuel, oil, or hydraulic leaks, damaged wiring, loose panels, and signs of overheating around the engine. The crew should confirm that the nacelle and cowling are secure and that the intake is clear of FOD. Required maintenance checks should also confirm that the fire-detection and extinguishing systems are serviceable.",
+      "referenceTextZh": "绕机检查应查找燃油、滑油或液压油泄漏、线路损坏、面板松动，以及发动机周围的过热迹象。机组应确认短舱和整流罩固定可靠，进气口内没有外来物。规定的维修检查还应确认火警探测和灭火系统工作正常。"
     },
     {
       "id": "opi-image-016-q04",
       "taskTitle": "图片题-016-04",
       "audioText": "As captain, how would you respond to an engine fire detected during takeoff?",
       "audioTextZh": "作为机长，起飞过程中发现发动机起火时，你会如何处置？",
-      "referenceText": "If the warning occurs before the takeoff is committed, I would reject in accordance with the aircraft's established takeoff-decision and fire procedure. If airborne or beyond the safe rejection boundary, I would continue to control the aircraft, complete the engine-fire checklist, declare an emergency and land as soon as possible at a safely usable airport. The cabin and emergency services would be coordinated, with evacuation after stopping if the fire or damage required it.",
-      "referenceTextZh": "如果火警发生在起飞决定前，我会按照飞机规定的起飞决策和火警程序中断起飞。如果飞机已经离地，或已超过能够安全中断的界限，我会继续控制飞机、完成发动机火警检查单、宣布紧急情况，并尽快在能够安全使用的机场着陆。机组会协调客舱和应急服务；停止后如果火情或损坏需要，则组织撤离。"
+      "referenceText": "If the fire warning occurred before the takeoff decision speed and the aircraft could stop safely, I would reject the takeoff in accordance with the procedure. At or after the decision speed, I would continue the takeoff, maintain control, climb safely, and then complete the engine-fire memory actions and checklist. I would declare an emergency and arrange the earliest safe landing, treating a continuing fire as an immediate threat.",
+      "referenceTextZh": "如果火警出现在起飞决断速度之前，且飞机能够安全停下，我会按照程序中断起飞。在达到或超过决断速度后，我会继续起飞，控制好飞机并安全爬升，然后完成发动机火警记忆项目和检查单。我会宣布紧急状态并安排尽早安全着陆，把持续燃烧的火情视为直接威胁。"
     }
   ]
 }

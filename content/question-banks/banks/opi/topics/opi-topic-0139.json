@@ -9,32 +9,32 @@
       "taskTitle": "飞机系统-飞行自动化系统-1",
       "audioText": "Which automated systems are commonly used in a modern cockpit?",
       "audioTextZh": "现代驾驶舱通常使用哪些自动化系统？",
-      "referenceText": "Modern cockpits commonly use an autopilot, flight director, autothrust or autothrottle, flight-management system and automatic navigation functions. They may also include automatic landing capability, system control, warning logic and protection or envelope functions. The exact level of automation and the way systems interact depend on the aircraft and selected modes.",
-      "referenceTextZh": "现代驾驶舱通常使用自动驾驶仪、飞行指引、自动推力或自动油门、飞行管理系统和自动导航功能。还可能包括自动着陆能力、系统控制、警告逻辑以及保护或飞行包线功能。自动化的具体程度和系统交互方式取决于机型和所选方式。"
+      "referenceText": "Common automated cockpit systems include the autopilot, autothrottle, and autoland system.",
+      "referenceTextZh": "常见的驾驶舱自动化系统包括自动驾驶仪、自动油门和自动着陆系统。"
     },
     {
       "id": "opi-extra-327",
       "taskTitle": "飞机系统-飞行自动化系统-2",
       "audioText": "How reliable are modern cockpit automation systems?",
       "audioTextZh": "现代驾驶舱自动化系统的可靠性如何？",
-      "referenceText": "Modern automation is highly reliable when it is correctly configured, supplied with valid data and used within its approved envelope. It can still fail, disconnect, use an unexpected mode or follow an incorrect crew entry exactly. Pilots therefore verify selections, monitor the flight path and maintain the skills needed to simplify or take over when the result is not safe.",
-      "referenceTextZh": "如果自动化系统配置正确、输入数据有效并在批准包线内使用，现代自动化系统具有很高可靠性。它仍可能失效、断开、采用出乎预期的方式，或完全按照机组输入的错误数据执行。飞行员因此要核实选择、监控飞行轨迹，并保持在结果不安全时简化自动化或接管操纵所需的技能。"
+      "referenceText": "Modern cockpit automation systems are generally very reliable. Many systems have backup capability, so another system may be available if one becomes inoperative.",
+      "referenceTextZh": "现代驾驶舱自动化系统通常非常可靠。许多系统具有备份能力，因此一个系统失效时，可能还有另一个系统可用。"
     },
     {
       "id": "opi-extra-329",
       "taskTitle": "飞机系统-飞行自动化系统-3",
       "audioText": "What is the role of pilots in today's highly automated cockpits?",
       "audioTextZh": "在当今高度自动化的驾驶舱中，飞行员发挥什么作用？",
-      "referenceText": "Pilots remain responsible for the safe flight path, system state and operational decisions even when automation performs many control tasks. They select appropriate modes, enter and verify data, monitor results and intervene when the aircraft is not doing what is intended. They also manage threats, communicate and handle novel situations that automation cannot understand as a complete operational problem.",
-      "referenceTextZh": "即使自动化完成许多操纵任务，飞行员仍对安全飞行轨迹、系统状态和运行决定负责。他们选择适当方式、输入并核实数据、监控结果，并在飞机没有按照预期运行时干预。他们还要管理威胁、沟通，并处理自动化无法从完整运行层面理解的新情况。"
+      "referenceText": "In a highly automated cockpit, pilots manage and monitor the systems that help control the aircraft. Their role includes making sure the automation is operating as intended.",
+      "referenceTextZh": "在高度自动化的驾驶舱中，飞行员负责管理和监控协助控制飞机的系统。他们的职责包括确保自动化系统按预期工作。"
     },
     {
       "id": "opi-extra-329-part-2",
       "taskTitle": "飞机系统-飞行自动化系统-4",
       "audioText": "Do you think pilots have become too dependent on automation, and why?",
       "audioTextZh": "你认为飞行员是否变得过度依赖自动化？为什么？",
-      "referenceText": "Some pilots can become too dependent on automation if they stop cross-checking it or avoid manual flying even when a simpler method would be safer. The problem is not automation itself but weak understanding, poor monitoring and loss of basic skills. Good training and deliberate practice help pilots use automation as a tool without surrendering responsibility to it.",
-      "referenceTextZh": "如果飞行员停止交叉核对自动化，或即使采用更简单方法更安全也回避人工飞行，就可能变得过度依赖自动化。问题不在自动化本身，而在于理解不足、监控不佳和基本技能退化。良好训练和有意识的练习帮助飞行员把自动化当作工具，而不把责任交给它。"
+      "referenceText": "Yes, I think some pilots have become too dependent on automation. Automated systems perform much of the routine aircraft control, so pilots may spend more time monitoring and managing those systems.",
+      "referenceTextZh": "是的，我认为一些飞行员已经过度依赖自动化。自动化系统承担了大量日常飞机操纵任务，因此飞行员可能把更多时间用于监控和管理这些系统。"
     }
   ]
 }

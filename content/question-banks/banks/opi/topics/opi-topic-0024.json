@@ -9,136 +9,136 @@
       "taskTitle": "运行-飞行员-ATC通信-1",
       "audioText": "How do pilots use the communication equipment available in the cockpit?",
       "audioTextZh": "飞行员如何使用驾驶舱内的通信设备？",
-      "referenceText": "A suitable example would be: the crew selects the required VHF or HF radio and audio source through the cockpit audio panels, then uses the push-to-talk switch for voice messages. CPDLC or SATCOM may be used where approved, and one pilot monitors the active and emergency frequencies while the other flies. Every frequency, call sign and message is cross-checked under the operator's procedure.",
-      "referenceTextZh": "一个合适的示范答案是：机组通过驾驶舱音频控制面板选择所需的 VHF 或 HF 电台和音频源，然后使用按键通话开关发送语音信息。在获准使用时，可以采用 CPDLC 或卫星通信；一名飞行员操纵飞机时，另一名飞行员守听当前频率和应急频率。每个频率、呼号和信息都按照运营人程序进行交叉核对。"
+      "referenceText": "Pilots use VHF or HF radios and data links to communicate with ATC. They can use the passenger-address system for announcements, the interphone to speak with cabin crew or ground staff, and a satellite phone to contact company dispatch.",
+      "referenceTextZh": "飞行员使用 VHF 或 HF 无线电和数据链与空中交通管制通信。他们可以使用旅客广播系统进行广播，使用内话系统与客舱机组或地面人员通话，并使用卫星电话联系公司签派。"
     },
     {
       "id": "opi-core-360",
       "taskTitle": "运行-飞行员-ATC通信-2",
       "audioText": "Where can pilots find their operator's guidance for handling a communication failure?",
       "audioTextZh": "飞行员可以在哪里找到所属运营人关于处置通信失效的指导？",
-      "referenceText": "Pilots should find the operator's primary communication-failure guidance in the operations manual and the aircraft's approved abnormal or QRH checklist. Route-specific details also come from the current AIP, charts and other approved aeronautical publications. Training notes may explain the procedure, but they should not replace the controlled operational documents.",
-      "referenceTextZh": "飞行员应在运行手册以及飞机经批准的非正常检查单或 QRH 中查找运营人关于通信失效的主要指导。与特定航路有关的细节还来自现行 AIP、航图和其他批准的航空资料。训练笔记可以解释程序，但不能取代受控的运行文件。"
+      "referenceText": "At my flight school, communication-failure guidance can be found in the checklist and SOP.",
+      "referenceTextZh": "在我的航校，可以从检查单和标准操作程序中找到通信失效处置指引。"
     },
     {
       "id": "opi-core-361",
       "taskTitle": "运行-飞行员-ATC通信-3",
       "audioText": "How should pilots respond if their radio transmitter fails?",
       "audioTextZh": "无线电发射机失效时，飞行员应如何处置？",
-      "referenceText": "The crew should confirm the transmitter fault by checking the microphone, push-to-talk switch, audio-panel selection and another radio if available. They should try an alternate radio, frequency, data link, SATCOM or relay and tell ATC through any working method. If two-way communication is lost, they should apply the published failure procedure and use transponder code 7600 where that code is applicable.",
-      "referenceTextZh": "机组应通过检查麦克风、按键通话开关、音频控制面板选择以及另一部可用电台，确认发射机故障。他们应尝试备用电台、频率、数据链、卫星通信或中继，并通过任何仍可用的方式通知 ATC。如果双向通信中断，应执行公布的失效程序，并在适用该编码的地区将应答机设为 7600。"
+      "referenceText": "Pilots should follow the applicable SOP and checklist and recheck the headset, microphone, frequency, and transmitter. They should set the transponder to 7600 and continue monitoring ATC instructions if the receiver is still working.",
+      "referenceTextZh": "飞行员应遵循适用的标准操作程序和检查单，并重新检查耳机、麦克风、频率和发射机。他们应将应答机设为 7600；如果接收机仍能工作，就继续守听空中交通管制指令。"
     },
     {
       "id": "opi-core-362",
       "taskTitle": "运行-飞行员-ATC通信-4",
       "audioText": "How should pilots respond if their radio receiver fails?",
       "audioTextZh": "无线电接收机失效时，飞行员应如何处置？",
-      "referenceText": "The crew should check volume, squelch, headset or speaker, audio-panel selection and another receiver before concluding that reception has failed. They should try other radios or data-link methods, transmit blind if the procedure requires and watch for messages through relays or visual signals. If effective two-way communication cannot be restored, they should use the applicable lost-communication route, altitude, approach and transponder procedures.",
-      "referenceTextZh": "在判定接收失效之前，机组应检查音量、静噪、耳机或扬声器、音频控制面板选择以及另一部接收机。他们应尝试其他电台或数据链方式；如果程序要求，则盲发信息，并留意通过中继或目视信号传来的信息。如果无法恢复有效双向通信，应采用适用的通信失效航路、高度、进近和应答机程序。"
+      "referenceText": "If the radio receiver fails but the transmitter still works, the pilots should set the transponder to 7600 and transmit blind on the appropriate frequency.",
+      "referenceTextZh": "如果无线电接收机失效但发射机仍能工作，飞行员应将应答机设为 7600，并在适当频率上进行盲发。"
     },
     {
       "id": "opi-core-363",
       "taskTitle": "运行-飞行员-ATC通信-5",
       "audioText": "What human factors can reduce the effectiveness of pilot–controller communication?",
       "audioTextZh": "哪些人为因素会降低飞行员与管制员之间的沟通效果？",
-      "referenceText": "High workload, fatigue, stress, distraction and expectation bias can cause a pilot or controller to hear what was expected rather than what was said. Language proficiency, accent, fast speech, similar call signs and unfamiliar phraseology can reduce understanding. Weak readback and hearback, poor microphone technique and reluctance to ask for clarification allow an error to remain hidden.",
-      "referenceTextZh": "高工作负荷、疲劳、压力、分心和预期偏差，可能使飞行员或管制员听到自己预期的内容，而不是对方实际说出的内容。语言能力、口音、语速过快、相似呼号和不熟悉的通话用语都会降低理解程度。复诵与监听核对薄弱、麦克风使用不当以及不愿请求澄清，会使差错一直隐藏。"
+      "referenceText": "Communication can become less effective when pilots or controllers use nonstandard phraseology, speak unclearly, or fail to confirm information when in doubt. High pilot workload and an incorrect frequency setting can also cause problems.",
+      "referenceTextZh": "飞行员或管制员使用非标准通话用语、表达不清，或有疑问时未核实信息，都会降低通信效果。飞行员工作负荷过高和频率设置错误也会造成问题。"
     },
     {
       "id": "opi-core-365",
       "taskTitle": "运行-飞行员-ATC通信-6",
       "audioText": "What environmental conditions can interfere with pilot–controller communication?",
       "audioTextZh": "哪些环境条件会干扰飞行员与管制员之间的通信？",
-      "referenceText": "Terrain can block line-of-sight VHF signals, while distance and low altitude reduce radio coverage. Thunderstorms, precipitation static, electrical interference and solar or ionospheric effects can degrade some voice or HF communications. Frequency congestion and simultaneous transmissions may also mask a message even when the radio equipment is serviceable.",
-      "referenceTextZh": "地形会阻挡视距传播的 VHF 信号，而距离较远和高度较低也会缩小无线电覆盖范围。雷暴、降水静电、电气干扰以及太阳或电离层效应，可能降低某些语音或 HF 通信质量。频率拥堵和同时发射也可能掩盖信息，即使无线电设备本身工作正常。"
+      "referenceText": "Loud external noise, malfunctioning communication equipment, an unstable signal, and interference from other transmissions can disrupt pilot–controller communication.",
+      "referenceTextZh": "较大的外部噪声、通信设备故障、信号不稳定以及其他发射造成的干扰，都会中断飞行员与管制员之间的通信。"
     },
     {
       "id": "opi-core-366",
       "taskTitle": "运行-飞行员-ATC通信-7",
       "audioText": "Which flight crew member normally handles radio communication with ATC?",
       "audioTextZh": "通常由哪名飞行机组成员负责与空中交通管制部门进行无线电通信？",
-      "referenceText": "In a typical two-pilot operation, the pilot monitoring normally handles routine ATC communication while the pilot flying controls and monitors the flight path. The role can be transferred explicitly, and the captain may assign it differently during high workload or an abnormal event. Both pilots should listen to safety-critical messages and cross-check clearances.",
-      "referenceTextZh": "在典型的双人制运行中，监控飞行员通常负责日常 ATC 通信，操纵飞行员则操纵并监控飞行轨迹。该职责可以明确移交；在高工作负荷或异常事件期间，机长也可以作出不同分配。两名飞行员都应收听对安全至关重要的信息，并交叉核对许可。"
+      "referenceText": "The pilot monitoring normally handles radio communication with ATC while the pilot flying concentrates on controlling and navigating the aircraft. The crew may reassign the duty when necessary, but the change should be clearly understood by both pilots.",
+      "referenceTextZh": "监控飞行员通常负责与空中交通管制进行无线电通信，操纵飞行员则专注于控制和导航飞机。机组可以在必要时重新分配这项职责，但两名飞行员都应清楚理解这一变更。"
     },
     {
       "id": "opi-core-367",
       "taskTitle": "运行-飞行员-ATC通信-8",
       "audioText": "Why should pilots keep radio transmissions brief and relevant?",
       "audioTextZh": "飞行员为什么应使无线电通话简短并紧扣相关内容？",
-      "referenceText": "Brief, relevant transmissions leave the frequency available for clearances, safety reports and other aircraft. They reduce the chance that a message will be blocked, interrupted or misunderstood. Concise communication should still include every fact ATC needs; speed must not remove clarity.",
-      "referenceTextZh": "简短而相关的通话能把频率留给管制许可、安全报告和其他飞机使用。这样可以降低信息被阻塞、打断或误解的可能性。简洁沟通仍应包含 ATC 所需的全部事实，不能为了速度牺牲清晰度。"
+      "referenceText": "Takeoff and approach are critical phases with a high pilot workload. Brief, relevant transmissions help pilots focus on controlling the aircraft and completing the checklist.",
+      "referenceTextZh": "起飞和进近是飞行员工作负荷较高的关键阶段。简短且相关的通话有助于飞行员专注于控制飞机和完成检查单。"
     },
     {
       "id": "opi-core-371",
       "taskTitle": "运行-飞行员-ATC通信-9",
       "audioText": "What are the main ways pilots can communicate with ATC?",
       "audioTextZh": "飞行员与空中交通管制部门通信的主要方式有哪些？",
-      "referenceText": "The main method is two-way voice communication by VHF, with HF used in some remote or oceanic areas. Approved data link such as CPDLC can carry clearances and reports, and SATCOM voice may provide another option. Pilots may also communicate through another aircraft, a radio service or visual tower signals when normal contact is unavailable.",
-      "referenceTextZh": "主要方式是使用 VHF 进行双向语音通信，在一些偏远或远洋地区则使用 HF。经批准的数据链通信，如 CPDLC，可以传递许可和报告，卫星语音通信也可提供另一种选择。正常联络不可用时，飞行员还可以通过其他飞机、无线电服务单位或塔台目视信号进行通信。"
+      "referenceText": "The two main methods are voice communication by VHF or HF radio and text communication by data link, such as CPDLC. Radio supports real-time conversation, while data link can carry clearances and reports when voice communication is difficult.",
+      "referenceTextZh": "两种主要方式是通过 VHF 或 HF 无线电进行话音通信，以及通过 CPDLC 等数据链进行文字通信。无线电支持实时对话，数据链则可在话音通信困难时传递许可和报告。"
     },
     {
       "id": "opi-core-374",
       "taskTitle": "运行-飞行员-ATC通信-10",
       "audioText": "What suggestions would you give air traffic controllers to improve communication with pilots?",
       "audioTextZh": "为了改善与飞行员的沟通，你会向空中交通管制员提出哪些建议？",
-      "referenceText": "Controllers can help by using standard phraseology, a clear pace and one manageable set of instructions at a time. They should avoid unnecessary words, listen carefully to readbacks and correct any error immediately. When a pilot asks for clarification or reports high workload, repeating or simplifying the message is safer than speaking faster.",
-      "referenceTextZh": "管制员可以通过使用标准用语、清楚地以适当语速说话，并且每次只发出一组便于处理的指令来提供帮助。他们应避免不必要的词语，认真听取复诵，并立即纠正任何差错。当飞行员请求澄清或报告工作负荷较高时，重复或简化信息比加快语速更安全。"
+      "referenceText": "Controllers should use standard phraseology, speak clearly, and verify any information that is uncertain. They should provide flight and weather information promptly and maintain good communication with pilots. In an emergency, they should offer timely assistance.",
+      "referenceTextZh": "管制员应使用标准通话用语、表达清楚，并核实任何不确定的信息。他们应及时提供飞行和天气信息，并与飞行员保持良好沟通。出现紧急情况时，应及时提供协助。"
     },
     {
       "id": "opi-core-376",
       "taskTitle": "运行-飞行员-ATC通信-11",
       "audioText": "Have you ever experienced a misunderstanding while communicating by radio in flight?",
       "audioTextZh": "你是否曾在飞行中通过无线电通信时遇到误解？",
-      "referenceText": "A suitable example would be: during simulator training, I initially read back the wrong altitude because another aircraft had a similar call sign. The other pilot noticed the mismatch, and we asked ATC to confirm before changing level. The event showed why both pilots should listen and why a clearance should never be followed when the call sign or content is uncertain.",
-      "referenceTextZh": "一个合适的示范答案是：在模拟机训练中，因为另一架飞机的呼号相似，我起初复诵了错误的高度。另一名飞行员发现信息不一致，我们在改变高度层之前请 ATC 进行了确认。这件事说明了为什么两名飞行员都应守听，也说明呼号或内容存在疑问时绝不能执行许可。"
+      "referenceText": "No, I have never experienced a misunderstanding during radio communication in flight.",
+      "referenceTextZh": "没有，我在飞行中的无线电通信里从未遇到过误解。"
     },
     {
       "id": "opi-core-377",
       "taskTitle": "运行-飞行员-ATC通信-12",
       "audioText": "Can you describe an aviation incident in which a misunderstanding between pilots and controllers played a part?",
       "audioTextZh": "你能否描述一起航空事件，其中飞行员与管制员之间的误解是影响因素之一？",
-      "referenceText": "Avianca Flight 052 in 1990 is a clear example. The crew used wording such as “priority” and “running out of fuel” but failed to communicate an emergency fuel situation to ATC before fuel exhaustion; the NTSB found that this communication failure contributed to the accident. The case shows why crews must use standard, unmistakable emergency phraseology and confirm that the controller understands the urgency.",
-      "referenceTextZh": "1990 年的哥伦比亚航空 052 号班机是一个典型案例。机组使用了“优先”和“燃油即将耗尽”等措辞，却未能在燃油耗尽前向 ATC 清楚传达燃油紧急情况；美国国家运输安全委员会认定，这一沟通失效是事故的促成因素。这一案例说明，机组必须使用标准且毫不含糊的紧急通话用语，并确认管制员理解情况的紧迫性。"
+      "referenceText": "The 1977 Tenerife accident is a well-known example. The KLM aircraft began its takeoff while the Pan Am aircraft was still on the runway, and unclear phraseology and overlapping radio transmissions contributed to the misunderstanding. The accident led to stronger emphasis on standard phraseology, complete readbacks, and clear takeoff clearances.",
+      "referenceTextZh": "1977 年特内里费事故是一个著名案例。泛美飞机仍在跑道上时，荷航飞机开始起飞，含糊的通话用语和重叠的无线电发射促成了误解。事故后，业界更加重视标准通话用语、完整复诵和明确的起飞许可。"
     },
     {
       "id": "opi-core-382",
       "taskTitle": "运行-飞行员-ATC通信-13",
       "audioText": "Why is clear voice communication important to aviation safety?",
       "audioTextZh": "清晰的语音通信为什么对航空安全很重要？",
-      "referenceText": "Clear voice communication lets pilots and controllers share clearances, traffic, weather and emergency information without delay. A misunderstood altitude, runway, route or call sign can place aircraft in conflict or lead a crew toward terrain. Standard phraseology, accurate readback and active hearback create independent opportunities to catch the error.",
-      "referenceTextZh": "清楚的语音通信使飞行员和管制员能够及时交换许可、交通、天气和紧急信息。误解高度、跑道、航路或呼号，可能使飞机发生冲突，或使机组飞向地形。标准用语、准确复诵和主动监听核对，为发现差错提供了彼此独立的机会。"
+      "referenceText": "Clear voice communication quickly conveys pilot intentions and ATC instructions. It allows unclear information to be confirmed in real time and supports an effective response to emergencies. This reduces misunderstandings that could lead to a loss of separation or a runway incursion.",
+      "referenceTextZh": "清晰的话音通信能够迅速传达飞行员意图和空中交通管制指令。它使不明确的信息可以得到实时核实，并支持对紧急情况作出有效响应，从而减少可能导致间隔丧失或跑道侵入的误解。"
     },
     {
       "id": "opi-core-383",
       "taskTitle": "运行-飞行员-ATC通信-14",
       "audioText": "What is your operator's procedure for a radio communication failure?",
       "audioTextZh": "你所属运营人规定的无线电通信失效程序是什么？",
-      "referenceText": "A suitable operator example would be: the crew first checks the audio panel and alternate radios, then tries the last frequency, emergency frequency, data link, SATCOM or a relay as available. If two-way contact remains lost, we set the applicable transponder code and follow the published route, altitude and approach procedure while monitoring for ATC instructions. The precise sequence comes from our QRH, operations manual and the current regional publication.",
-      "referenceTextZh": "一个合适的运营人示范答案是：机组先检查音频控制面板和备用电台，然后视可用情况尝试上一频率、应急频率、数据链、卫星通信或中继。如果仍无法恢复双向联络，我们会设置适用的应答机编码，并执行公布的航路、高度和进近程序，同时守听 ATC 指令。确切顺序来自我们的 QRH、运行手册和现行地区资料。"
+      "referenceText": "My operator's procedure is to set the transponder to 7600 and try to re-establish communication by resetting the radios or using 121.5. We make blind transmissions and position reports as necessary.",
+      "referenceTextZh": "我所在运营人的程序是将应答机设为 7600，并通过重置无线电或使用 121.5 尝试恢复通信。必要时，我们会进行盲发和位置报告。"
     },
     {
       "id": "opi-core-384",
       "taskTitle": "运行-飞行员-ATC通信-15",
       "audioText": "How should pilots respond if ATC uses non-standard phraseology?",
       "audioTextZh": "如果空中交通管制员使用非标准用语，飞行员应如何应对？",
-      "referenceText": "If non-standard wording is unclear, the pilot should not guess or act on an uncertain clearance. The pilot should ask ATC to repeat, confirm or say the instruction in another way, then read back the understood clearance using standard terms. If the message could affect immediate safety, the crew should state the specific point of uncertainty and maintain the last clearly understood safe clearance as applicable.",
-      "referenceTextZh": "如果非标准措辞含义不清，飞行员不应猜测，也不能按照存在疑问的许可行动。飞行员应请 ATC 重复、确认或换一种方式表达指令，然后用标准术语复诵自己理解的许可。如果信息可能影响即时安全，机组应明确指出具体疑问，并视情况保持执行最后一项已清楚理解且安全的许可。"
+      "referenceText": "Pilots should listen carefully, reply with standard radiotelephony phraseology, and read back the instruction correctly. If anything is unclear, they should ask ATC to confirm or repeat the instruction before taking further action.",
+      "referenceTextZh": "飞行员应认真守听，使用标准无线电话音回答，并正确复诵指令。如果有任何不清楚之处，应在采取进一步行动前请求空中交通管制确认或重复指令。"
     },
     {
       "id": "opi-core-385",
       "taskTitle": "运行-飞行员-ATC通信-16",
       "audioText": "What communication risks can arise when a controller has a strong accent?",
       "audioTextZh": "管制员口音浓重时，可能产生哪些通信风险？",
-      "referenceText": "A strong or unfamiliar accent can make numbers, call signs and similar-sounding words harder to distinguish, especially with noise or poor signal quality. Expectation bias may then cause a pilot to fill in a word incorrectly instead of recognizing uncertainty. Slower speech, standard phraseology, complete readbacks and respectful requests for repetition reduce the risk without treating accent itself as a lack of competence.",
-      "referenceTextZh": "浓重或不熟悉的口音会使数字、呼号和发音相近的词更难分辨，在噪声大或信号质量差时尤其如此。预期偏差随后可能使飞行员把一个词错误补全，而没有意识到自己其实并不确定。放慢语速、使用标准用语、完整复诵并礼貌请求重复，可以降低风险，而不把口音本身视为能力不足。"
+      "referenceText": "A strong accent may cause pilots to mishear or misunderstand an ATC instruction. This can lead to an incorrect altitude or route and may delay confirmation of the instruction.",
+      "referenceTextZh": "较重的口音可能使飞行员听错或误解空中交通管制指令，导致使用错误的高度或航路，并可能延误对指令的确认。"
     },
     {
       "id": "opi-core-643",
       "taskTitle": "运行-飞行员-ATC通信-17",
       "audioText": "Why can non-standard phraseology threaten flight safety?",
       "audioTextZh": "非标准用语为什么会威胁飞行安全？",
-      "referenceText": "Non-standard phraseology can give the same words different meanings to different pilots and controllers. It increases ambiguity, weakens readback and hearback, and is especially risky for numbers, runways, levels and emergency status. Under high workload or across language backgrounds, that ambiguity can delay action or produce a clearance deviation.",
-      "referenceTextZh": "非标准通话用语可能使同样的词在不同飞行员和管制员心中具有不同含义。它会增加歧义、削弱复诵与监听核对，对数字、跑道、高度层和紧急状态尤其危险。在高工作负荷或不同语言背景下，这种歧义可能延误行动或导致偏离许可。"
+      "referenceText": "Non-standard phraseology can cause pilots and controllers to misunderstand each other. That misunderstanding may lead to a runway incursion or an accident.",
+      "referenceTextZh": "非标准通话用语会使飞行员和管制员彼此误解。这种误解可能导致跑道侵入或事故。"
     }
   ]
 }

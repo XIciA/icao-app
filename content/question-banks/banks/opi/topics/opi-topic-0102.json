@@ -9,96 +9,96 @@
       "taskTitle": "运行-飞行前准备-1",
       "audioText": "How do you prepare the day before a flight?",
       "audioTextZh": "飞行前一天你会如何准备？",
-      "referenceText": "A suitable example would be to check the planned reporting time, transport and broad weather outlook, then protect enough sleep for the duty. I would prepare required documents and equipment, avoid alcohol and anything that could affect fitness, and resolve personal commitments that might disturb rest. Detailed operational planning would still use current information on the day of flight.",
-      "referenceTextZh": "一个合适的示范是：查看计划报到时间、交通安排和总体天气趋势，然后为本次执勤保障充足睡眠。我会准备所需文件和设备，避免饮酒以及任何可能影响适岗状态的行为或物质，并处理好可能打扰休息的个人事务。详细运行计划仍应在飞行当天使用最新信息完成。"
+      "referenceText": "The day before a flight, I review the route, weather forecasts, NOTAMs, airport charts, and relevant procedures. I also check the aircraft performance information, including weight and balance and fuel consumption, and make sure my licences and documents are valid. Finally, I get enough rest so that I will be alert.",
+      "referenceTextZh": "飞行前一天，我会查看航路、天气预报、航行通告、机场图和相关程序。我还会检查飞机性能信息，包括重量平衡和燃油消耗，并确认执照和文件有效。最后，我会充分休息，确保保持警觉。"
     },
     {
       "id": "opi-extra-018",
       "taskTitle": "运行-飞行前准备-2",
       "audioText": "What do you normally do during preflight preparation?",
       "audioTextZh": "飞行前准备期间你通常做什么？",
-      "referenceText": "I review the operational flight plan, weather, NOTAMs, route, fuel, alternates, aircraft status and load information. The crew calculates or verifies performance, checks documents and equipment, briefs threats and divides duties. We then inspect and prepare the aircraft, coordinate with cabin and ground teams, and confirm that the flight can be conducted safely.",
-      "referenceTextZh": "我会检查运行飞行计划、天气、NOTAM、航路、燃油、备降机场、飞机状态和装载信息。机组计算或核实性能，检查文件与设备，对威胁进行简令并分配职责。随后，我们检查并准备飞机，与客舱和地面团队协调，并确认航班能够安全实施。"
+      "referenceText": "I review the weather, airport information, flight plan, fuel, and weight and balance. I complete the preflight briefing, check that the required manuals and documents are on board, and use the IMSAFE checklist to confirm that I am fit to fly. I then carry out a careful walk-around inspection.",
+      "referenceTextZh": "我会查看天气、机场信息、飞行计划、燃油以及重量平衡。我会完成飞行前简令，检查所需手册和文件是否在机上，并使用 IMSAFE 检查单确认自己适合飞行。随后认真进行绕机检查。"
     },
     {
       "id": "opi-extra-029",
       "taskTitle": "运行-飞行前准备-3",
       "audioText": "How long does your preflight preparation usually take?",
       "audioTextZh": "你的飞行前准备通常需要多长时间？",
-      "referenceText": "A suitable example would be about one hour from reporting to planned departure for a routine short-haul flight. More time may be needed for difficult weather, an unfamiliar airport, a technical issue or special loading. The important point is to report early enough to complete every required task without rushing, not to meet a universal number.",
-      "referenceTextZh": "一个合适的示范答案是：对于常规短途航班，从报到到计划起飞大约一小时。天气复杂、机场陌生、存在技术问题或特殊装载时，可能需要更多时间。重点是提早报到，确保不慌不忙地完成每项规定任务，而不是追求一个全球通用数值。"
+      "referenceText": "My preflight preparation usually takes one or two hours, although it may sometimes take a full day.",
+      "referenceTextZh": "我的飞行前准备通常需要一两个小时，但有时也可能需要一整天。"
     },
     {
       "id": "opi-extra-030",
       "taskTitle": "运行-飞行前准备-4",
       "audioText": "What is the main purpose of flight planning?",
       "audioTextZh": "飞行计划的主要目的是什么？",
-      "referenceText": "The main purpose of flight planning is to create a safe, legal and practical plan from departure to destination with suitable alternatives. It brings together route, weather, airspace, aircraft performance, fuel, payload, airport and operational limitations. The plan also gives the crew decision points and enough margin to respond when actual conditions differ from the forecast.",
-      "referenceTextZh": "飞行计划的主要目的是制定一套从出发地到目的地的完整计划，确保飞行安全、合法、可行，并包含合适的替代方案。它综合航路、天气、空域、飞机性能、燃油、业载、机场和运行限制。计划还为机组提供决策点和足够裕度，以应对实际情况与预报不同。"
+      "referenceText": "The main purpose of flight planning is to make the flight safe and efficient. It includes selecting a suitable route, calculating fuel, confirming alternate airports, assessing weather and airspace, and arranging crew tasks. Good planning reduces risk and helps the flight operate smoothly.",
+      "referenceTextZh": "飞行计划的主要目的是确保飞行安全高效。它包括选择合适航路、计算燃油、确认备降机场、评估天气和空域并安排机组任务。良好计划可以降低风险并使飞行顺利进行。"
     },
     {
       "id": "opi-extra-033",
       "taskTitle": "运行-飞行前准备-5",
       "audioText": "How do you use a computer during preflight preparation?",
       "audioTextZh": "飞行前准备期间你如何使用计算机？",
-      "referenceText": "I use approved systems to retrieve weather and NOTAMs, review the operational flight plan and charts, and calculate or verify fuel and aircraft performance. The computer also supports load information, electronic documents and communication with dispatch or operations. I cross-check critical inputs and outputs because a fast calculation can still be wrong if the data or selection is wrong.",
-      "referenceTextZh": "我使用批准的系统获取天气和 NOTAM，检查运行飞行计划与航图，并计算或核实燃油和飞机性能。计算机还支持装载信息、电子文件，以及与签派或运行部门通信。我会交叉核对关键输入和输出，因为即使计算很快，数据或选项错误仍会产生错误结果。"
+      "referenceText": "I use a computer to obtain important preflight information, especially weather information and the flight plan.",
+      "referenceTextZh": "我使用计算机获取重要的飞行前信息，尤其是天气信息和飞行计划。"
     },
     {
       "id": "opi-extra-037",
       "taskTitle": "运行-飞行前准备-6",
       "audioText": "What tasks do you complete in the briefing room before a flight?",
       "audioTextZh": "飞行前你会在准备室完成哪些工作？",
-      "referenceText": "In the briefing room, the crew reviews the route, weather, NOTAMs, fuel, alternates, aircraft status and operational risks. We verify required documents and performance information, agree on task allocation and discuss any special passengers, cargo or airport restrictions. Unresolved issues are coordinated with dispatch, maintenance or ground staff before the aircraft is accepted.",
-      "referenceTextZh": "在准备室，机组检查航路、天气、NOTAM、燃油、备降机场、飞机状态和运行风险。我们核实规定文件和性能信息，商定职责分配，并讨论任何特殊旅客、货物或机场限制。接受飞机前，尚未解决的问题应与签派、维修或地面人员协调。"
+      "referenceText": "Before a flight, I review the route, weather, NOTAMs, airport charts, fuel, and weight and balance in the briefing room. I check the flight plan, aircraft performance, alternate airports, and any special procedures. I also confirm that my documents are valid and that I am fit to fly.",
+      "referenceTextZh": "飞行前，我会在准备室查看航路、天气、航行通告、机场图、燃油以及重量平衡。我会检查飞行计划、飞机性能、备降机场和任何特殊程序，还会确认文件有效并且自己适合飞行。"
     },
     {
       "id": "opi-extra-039",
       "taskTitle": "运行-飞行前准备-7",
       "audioText": "Do you think a preflight briefing between the captain and cabin crew should be mandatory? Why?",
       "audioTextZh": "你认为机长与客舱机组之间的飞行前协同会是否应为强制要求？为什么？",
-      "referenceText": "Yes, a structured briefing should be required because the flight deck and cabin share responsibility for the same operation and emergencies. It confirms flight time, weather or turbulence, special passengers, security concerns, sterile-cockpit expectations and communication signals. The briefing can be short on a routine sector, but it should never become a meaningless formality.",
-      "referenceTextZh": "是的，应要求进行结构化简令，因为驾驶舱和客舱对同一次运行和紧急情况共同承担责任。简令确认飞行时间、天气或颠簸、特殊旅客、安保问题、无干扰驾驶舱要求和通信信号。常规航段的简令可以简短，但绝不能变成没有意义的形式。"
+      "referenceText": "Yes, I think it should be mandatory. The briefing allows the captain and cabin crew to discuss the weather, confirm their duties and responsibilities, and review possible abnormal or emergency situations. This helps the crew work together effectively during the flight.",
+      "referenceTextZh": "是的，我认为这应是强制要求。简令使机长和客舱机组能够讨论天气、确认职责，并查看可能发生的非正常或紧急情况。这有助于机组在飞行中有效合作。"
     },
     {
       "id": "opi-extra-041",
       "taskTitle": "运行-飞行前准备-8",
       "audioText": "What information should a flight crew obtain before departure?",
       "audioTextZh": "起飞前，飞行机组应获取哪些信息？",
-      "referenceText": "Before departure, the crew needs current weather, NOTAMs, route and airspace information, fuel, load and performance data, and destination and alternate conditions. It also needs the aircraft's maintenance and dispatch status, runway condition, relevant ATC or slot information and any operational restrictions. Passenger, cargo, security and ground-handling information should be included when it affects the flight.",
-      "referenceTextZh": "起飞前，机组需要现行天气、NOTAM、航路和空域信息、燃油、装载和性能数据，以及目的地与备降机场条件。还需要飞机的维修与签派状态、跑道状况、相关 ATC 或时隙信息和任何运行限制。旅客、货物、安保和地面保障信息在影响飞行时也应纳入。"
+      "referenceText": "Before departure, the flight crew should obtain the relevant weather and airport information, review the aircraft's performance information, and confirm the flight plan.",
+      "referenceTextZh": "离场前，飞行机组应获取相关天气和机场信息，查看飞机性能信息，并确认飞行计划。"
     },
     {
       "id": "opi-extra-045",
       "taskTitle": "运行-飞行前准备-9",
       "audioText": "Have you ever found an abnormal condition during a preflight check? If so, how was it handled?",
       "audioTextZh": "你是否曾在飞行前检查中发现异常情况？如果有，当时是如何处理的？",
-      "referenceText": "A suitable example would be finding a small hydraulic-fluid leak near a landing-gear area during the walk-around. I stopped the inspection, informed the captain and maintenance, and the defect was assessed before the aircraft was accepted. Maintenance corrected the leak and documented the work; this is a fictional example for learners to adapt.",
-      "referenceTextZh": "一个合适的示范案例是：绕机检查时，在起落架附近发现少量液压油泄漏。我停止检查，通知机长和维修部门，飞机被接受前对故障进行了评估。维修人员排除泄漏并记录工作；这是供学习者调整的虚构案例。"
+      "referenceText": "No, I have never found an abnormal condition during a preflight check. If I found a problem with the aircraft, I would report it to the mechanics for a maintenance inspection.",
+      "referenceTextZh": "没有，我在飞行前检查中从未发现异常。如果发现飞机存在问题，我会向机务人员报告并申请维修检查。"
     },
     {
       "id": "opi-extra-050",
       "taskTitle": "运行-飞行前准备-10",
       "audioText": "What is a preflight check?",
       "audioTextZh": "什么是飞行前检查？",
-      "referenceText": "A preflight check is the set of inspections and verifications completed before an aircraft departs. It includes reviewing documents and technical status, preparing the cockpit, checking systems and completing the required external inspection. Its purpose is to confirm that the aircraft, crew and operational plan are ready for the intended flight.",
-      "referenceTextZh": "飞行前检查是飞机起飞前完成的一系列检查和核实。它包括检查文件与技术状态、准备驾驶舱、检查系统和完成规定的外部检查。其目的是确认飞机、机组和运行计划都已为预定飞行做好准备。"
+      "referenceText": "A preflight check is the inspection completed before flight to confirm that the aircraft is ready and airworthy. It includes an exterior walk-around of areas such as the wings, engines, and landing gear, as well as cockpit checks of the instruments, systems, and documents. Its purpose is to identify potential defects before departure.",
+      "referenceTextZh": "飞行前检查是在飞行前完成的检查，用于确认飞机已经准备好并且适航。它包括对机翼、发动机和起落架等区域进行外部绕机检查，以及在驾驶舱检查仪表、系统和文件，目的是在离场前发现潜在缺陷。"
     },
     {
       "id": "opi-extra-051",
       "taskTitle": "运行-飞行前准备-11",
       "audioText": "What do you discuss when briefing the cabin crew before departure?",
       "audioTextZh": "与客舱机组进行飞行前协同会时，你会讨论哪些内容？",
-      "referenceText": "The briefing should cover expected flight time, weather and turbulence, any operational or security concern and the likely workload during departure and arrival. The pilots and cabin crew confirm communication methods, sterile-cockpit periods, emergency coordination and any passenger needing special assistance. Relevant equipment defects, fueling or boarding issues and diversion considerations should be included without overloading the briefing with unrelated detail.",
-      "referenceTextZh": "简令应涵盖预计飞行时间、天气和颠簸、任何运行或安保问题，以及离场和到达期间可能的工作负荷。飞行员和客舱机组应确认沟通方式、无干扰驾驶舱时段、应急协调和任何需要特别协助的旅客。相关设备故障、加油或登机问题以及改航考虑也应纳入，但应避免加入过多无关细节而使简令失去重点。"
+      "referenceText": "I do not brief cabin crew because my DA-40 training flights do not carry them. In a typical airline briefing, the pilots and cabin crew would discuss flight time, weather and turbulence, expected service restrictions, security concerns, special passengers, and emergency communication. The briefing should also confirm how the crews will coordinate during abnormal situations.",
+      "referenceTextZh": "我不向客舱机组进行简令，因为我的 DA-40 训练飞行不搭载客舱机组。在典型航空公司简令中，飞行员和客舱机组会讨论飞行时间、天气和颠簸、预计服务限制、安保问题、特殊旅客和应急通信。简令还应确认出现非正常情况时双方如何协调。"
     },
     {
       "id": "opi-extra-054",
       "taskTitle": "运行-飞行前准备-12",
       "audioText": "What does the cabin crew do before departure?",
       "audioTextZh": "起飞前，客舱机组会做哪些工作？",
-      "referenceText": "Before departure, cabin crew inspect their assigned areas and emergency equipment, receive the briefing and check catering, security and cabin condition. They welcome and assist passengers, verify baggage and seating, give the safety demonstration and secure the cabin, galleys and doors. They then report cabin readiness and any unresolved problem to the flight crew through the approved procedure.",
-      "referenceTextZh": "起飞前，客舱机组检查各自负责的区域和应急设备，接受简令，并检查配餐、安保和客舱状况。他们迎接并协助旅客，核实行李和座位，进行安全演示，并确保客舱、厨房和舱门处于安全状态。随后，他们通过批准程序向飞行机组报告客舱准备完毕以及任何未解决问题。"
+      "referenceText": "Before departure, the cabin crew attends a safety briefing with the pilots and checks the emergency equipment and cabin facilities. They verify passenger boarding, maintain cabin order, and demonstrate safety procedures such as seat-belt use.",
+      "referenceTextZh": "离场前，客舱机组参加与飞行员进行的安全简令，并检查应急设备和客舱设施。他们核实旅客登机、维持客舱秩序，并演示安全带使用等安全程序。"
     }
   ]
 }

@@ -9,56 +9,56 @@
       "taskTitle": "其它-英语课程-1",
       "audioText": "Why is training in aviation English and radiotelephony important for pilots?",
       "audioTextZh": "航空英语和无线电通话训练为什么对飞行员很重要？",
-      "referenceText": "Aviation English and radiotelephony training help pilots exchange safety-critical information accurately under time pressure. Standard phraseology reduces ambiguity in routine situations, while plain language is needed when an unusual event does not fit a standard phrase. Training also improves listening across accents, readback discipline and the ability to clarify a message before misunderstanding affects the flight.",
-      "referenceTextZh": "航空英语和无线电通话训练帮助飞行员在时间压力下准确交换对安全至关重要的信息。标准用语可以减少常规情况下的歧义，而异常事件无法用标准用语表达时则需要使用明语。训练还能提高对不同口音的听辨能力、复诵纪律，以及在误解影响飞行前澄清信息的能力。"
+      "referenceText": "The training teaches pilots standard phraseology and radiotelephony communication procedures. These skills are important for clear and reliable communication between pilots and air traffic controllers.",
+      "referenceTextZh": "培训教授飞行员标准通话用语和无线电通话程序。这些技能对于飞行员与空中交通管制员之间清晰可靠的通信十分重要。"
     },
     {
       "id": "opi-extra-067",
       "taskTitle": "其它-英语课程-2",
       "audioText": "What aviation English training have you received, including any radiotelephony courses?",
       "audioTextZh": "你接受过哪些航空英语培训，包括无线电通话课程（如有）？",
-      "referenceText": "A suitable example would include an aviation English course focused on listening, speaking, pronunciation and operational vocabulary, followed by a radiotelephony course using simulated ATC exchanges. The training covered standard phraseology, readbacks, clarification, emergencies and the use of plain language. Learners should replace this with the courses and assessments they actually completed.",
-      "referenceTextZh": "一个合适的示范答案包括：先参加侧重听、说、发音和运行词汇的航空英语课程，再参加使用模拟 ATC 通话的无线电通话课程。训练内容包括标准用语、复诵、澄清、紧急情况和明语使用。学习者应根据自己实际完成的课程和考核替换这段内容。"
+      "referenceText": "I have taken ICAO and ATPL English courses, as well as reading, listening, and spoken-English classes. During ground training, I also completed a course in English radiotelephony communication.",
+      "referenceTextZh": "我参加过 ICAO 和 ATPL 英语课程，以及阅读、听力和英语口语课程。地面训练期间，我还完成了英语无线电通话课程。"
     },
     {
       "id": "opi-extra-068",
       "taskTitle": "其它-英语课程-3",
       "audioText": "How does aviation English differ from everyday English?",
       "audioTextZh": "航空英语与日常英语有何不同？",
-      "referenceText": "Aviation English uses a controlled technical vocabulary, standard phraseology and a strong focus on accurate numbers, clearances and readbacks. Messages are usually brief and structured because both time and radio quality may be limited. Everyday English is broader and more flexible, while aviation also requires plain language for unexpected situations.",
-      "referenceTextZh": "航空英语使用受控的技术词汇和标准用语，并高度重视数字、许可和复诵的准确性。由于时间和无线电质量都可能受限，信息通常简短且结构清楚。日常英语的范围更广、表达更灵活，而航空领域在意外情况下还需要使用明语。"
+      "referenceText": "Aviation English places greater emphasis on standard words, phrases, and communication procedures. It is designed to be accurate, concise, and clear so that pilots and controllers avoid misunderstandings. Everyday English is more flexible and can also rely on gestures and other context.",
+      "referenceTextZh": "航空英语更强调标准词语、短语和通信程序，要求准确、简洁、清楚，使飞行员和管制员避免误解。日常英语更灵活，也可以依赖手势和其他语境信息。"
     },
     {
       "id": "opi-extra-070",
       "taskTitle": "其它-英语课程-4",
       "audioText": "What did you learn from your aviation English training?",
       "audioTextZh": "你从航空英语培训中学到了什么？",
-      "referenceText": "A suitable answer would be that I learned to listen for the operational meaning rather than every word and to use standard phraseology whenever it fits. I also learned to speak at a steady rate, read back critical information and ask for repetition or clarification without embarrassment. Scenario practice showed me how plain language supports communication during abnormal events.",
-      "referenceTextZh": "一个合适的回答是：我学会了听取运行含义，而不是纠结每个词，并在适用时使用标准用语。我还学会以稳定语速说话、复诵关键信息，并且不因难为情而回避请求重复或澄清。情景练习让我认识到，明语如何在异常事件中支持沟通。"
+      "referenceText": "I learned the communication procedures used between pilots and controllers. I also learned to use standard words and phrases, speak clearly, and avoid misunderstandings.",
+      "referenceTextZh": "我学习了飞行员与管制员之间使用的通信程序，也学习了使用标准词语和短语、清楚表达并避免误解。"
     },
     {
       "id": "opi-extra-072",
       "taskTitle": "其它-英语课程-5",
       "audioText": "Do you find it difficult to communicate with ATC in English? Why or why not?",
       "audioTextZh": "你觉得用英语与空中交通管制部门沟通困难吗？为什么？",
-      "referenceText": "I sometimes find it difficult when the frequency is busy, the signal is weak or the speaker has an unfamiliar accent. Standard phraseology and preparation make routine exchanges easier, but unusual situations require more flexible listening and speaking. If I am unsure, I ask for repetition or confirmation instead of pretending that I understood.",
-      "referenceTextZh": "频率繁忙、信号微弱或说话者口音不熟悉时，我有时会觉得困难。标准用语和事前准备使常规通话更容易，但异常情况需要更灵活的听说能力。如果我不确定，就会请求重复或确认，而不会假装自己已经听懂。"
+      "referenceText": "Yes, I sometimes find it difficult, especially when controllers speak quickly, use an unfamiliar accent, or change a clearance unexpectedly. Standard phraseology makes routine calls easier, but non-routine situations require stronger listening and plain-English skills. Regular practice with real ATC recordings and simulator scenarios helps me improve.",
+      "referenceTextZh": "是的，有时我会觉得困难，尤其是管制员语速很快、口音不熟悉，或突然更改许可时。标准通话用语使例行呼叫更容易，但非正常情况需要更强的听力和普通英语表达能力。经常练习真实管制录音和模拟机场景能帮助我提高。"
     },
     {
       "id": "opi-extra-073",
       "taskTitle": "其它-英语课程-6",
       "audioText": "How do you improve your aviation English communication skills?",
       "audioTextZh": "你如何提高自己的航空英语沟通能力？",
-      "referenceText": "I practise listening to varied but authentic aviation communications and repeat clear standard phrases aloud. Scenario work with an instructor or partner helps me explain abnormal situations in plain English and receive correction on pronunciation and meaning. I also review errors after practice and keep a small record of terms or message patterns that cause difficulty.",
-      "referenceTextZh": "我会练习收听各种真实的航空通信，并大声重复清楚的标准用语。与教员或伙伴进行情景练习，有助于我用简明英语解释异常情况，并获得有关发音和含义的纠正。我也会在练习后复盘差错，并简要记录容易产生困难的术语或信息模式。"
+      "referenceText": "I study ICAO terminology and practise standard communication sentences every day. I use simulator scenarios and practise English radiotelephony with colleagues so that we can correct mistakes. I also listen to real ATC communications, watch training videos, and review aviation English manuals and course material.",
+      "referenceTextZh": "我每天学习 ICAO 术语并练习标准通信句子。我利用模拟机场景，并与同事练习英语无线电通话，以便相互纠错。我还收听真实空中交通管制通信、观看培训视频，并复习航空英语手册和课程材料。"
     },
     {
       "id": "opi-extra-074",
       "taskTitle": "其它-英语课程-7",
       "audioText": "How long have you been learning English?",
       "audioTextZh": "你学习英语多长时间了？",
-      "referenceText": "A suitable example would be: I have studied English for about ten years, with the last three years focused more strongly on aviation communication. I continue to practise because operational proficiency can decline without regular use. Learners should replace the duration and focus with their actual history.",
-      "referenceTextZh": "一个合适的示范答案是：我学习英语大约十年，最近三年更加专注于航空通信。我会继续练习，因为运行语言能力在缺少规律使用时可能下降。学习者应根据自己的实际经历替换学习时长和重点。"
+      "referenceText": "I have been learning English for more than 15 years. During flight training, I also studied radiotelephony, aviation terminology, and interview English.",
+      "referenceTextZh": "我学习英语已经超过 15 年。飞行训练期间，我还学习了无线电通话、航空术语和面试英语。"
     }
   ]
 }

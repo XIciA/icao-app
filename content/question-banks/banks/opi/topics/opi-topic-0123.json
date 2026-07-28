@@ -9,160 +9,160 @@
       "taskTitle": "其它-基本情况-1",
       "audioText": "How many flight hours have you accumulated in total?",
       "audioTextZh": "你总共积累了多少飞行小时？",
-      "referenceText": "A suitable example would be: I have accumulated about 3,500 flight hours in total. Most of those hours are on multi-engine transport aircraft, with the remainder from training and earlier operations. Learners should replace this number and experience breakdown with their own verified logbook record.",
-      "referenceTextZh": "一个合适的示范答案是：我的总飞行时间约为 3500 小时。其中大部分是在多发运输类飞机上积累的，其余来自训练和早期运行。学习者应根据自己经核实的飞行经历记录替换小时数和经历构成。"
+      "referenceText": "I have accumulated about 15 flight hours in total. Most of that time was gained through dual instruction on the DA-40. I am continuing to build experience as I prepare for my first solo flight.",
+      "referenceTextZh": "我累计飞行了大约 15 小时，其中大部分是在 DA-40 上进行的带飞训练。为了准备第一次单飞，我正在继续积累经验。"
     },
     {
       "id": "opi-extra-144",
       "taskTitle": "其它-基本情况-2",
       "audioText": "What does your company's logo look like?",
       "audioTextZh": "你所在公司的标志是什么样的？",
-      "referenceText": "A suitable company example would be a simple blue logo shaped like a bird above the airline's name. The blue suggests reliability and the bird suggests flight and freedom. Learners should describe their actual company's published logo rather than use this fictional design.",
-      "referenceTextZh": "一个合适的公司示范是：航空公司名称上方有一个鸟形的简洁蓝色标志。蓝色代表可靠，鸟形则让人联想到飞行和自由。学习者应描述自己实际公司公布的标志，不能使用这个虚构设计。"
+      "referenceText": "I am a student pilot and have not officially joined an airline, so I do not have a company logo to describe.",
+      "referenceTextZh": "我是一名学员飞行员，尚未正式加入航空公司，因此没有可以介绍的公司标志。"
     },
     {
       "id": "opi-extra-150",
       "taskTitle": "其它-基本情况-3",
       "audioText": "Which airline do you work for?",
       "audioTextZh": "你在哪家航空公司工作？",
-      "referenceText": "A suitable answer should begin with the learner's real employer, for example: 'I work for [company name], a regional passenger airline based in China.' One brief sentence about the airline's operation can follow. A learner who is not employed by an airline should say so honestly instead of inventing a company.",
-      "referenceTextZh": "一个合适的回答应以学习者的真实雇主开头，例如：“我在［公司名称］工作，这是一家总部位于中国的地区客运航空公司。”随后可以用一句话简要介绍公司的运行。没有受雇于航空公司的学习者应诚实说明，不能虚构公司。"
+      "referenceText": "I am currently a student pilot, so I have not officially joined an airline yet.",
+      "referenceTextZh": "我目前是一名飞行学员，所以还没有正式加入航空公司。"
     },
     {
       "id": "opi-extra-152",
       "taskTitle": "其它-基本情况-4",
       "audioText": "How many years have you worked as a pilot?",
       "audioTextZh": "你从事飞行员工作多少年了？",
-      "referenceText": "A suitable example would be: I have worked as a professional pilot for six years. I spent the first two years instructing and the next four years in airline operations. Learners should replace these figures and roles with their actual experience.",
-      "referenceTextZh": "一个合适的示范答案是：我担任职业飞行员已经六年。最初两年从事飞行教学，之后四年在航空公司从事飞行运行。学习者应根据自己的实际经历替换这些年限和岗位。"
+      "referenceText": "I have not worked as a professional pilot yet because I am still a student pilot. My aviation experience comes from flight training rather than employment. I plan to apply for a pilot position after I complete the required licences and training.",
+      "referenceTextZh": "我仍是一名飞行学员，因此还没有担任过职业飞行员。我的航空经历来自飞行训练，而不是受雇工作。完成规定的执照和训练后，我计划应聘飞行员职位。"
     },
     {
       "id": "opi-extra-152-part-2",
       "taskTitle": "其它-基本情况-5",
       "audioText": "How long have you worked for your current company?",
       "audioTextZh": "你在目前所在的公司工作多长时间了？",
-      "referenceText": "A suitable example would be: I have worked for my current company for four years. During that time, I completed initial airline training and progressed from supervised line flying to normal first-officer duties. This timeline is fictional and should be replaced with the learner's real employment history.",
-      "referenceTextZh": "一个合适的示范答案是：我在目前的公司工作了四年。在此期间，我完成航空公司初始训练，并从在监督下进行航线飞行逐步转为正常副驾驶职责。这段时间线是虚构的，应根据学习者的真实工作经历替换。"
+      "referenceText": "I do not have a current employer because I am still training at flight school. Therefore, I have not worked for a company as a pilot. My present focus is completing my training and building the experience needed for future employment.",
+      "referenceTextZh": "我仍在航校训练，目前没有雇主。因此，我还没有在任何公司担任过飞行员。现阶段我主要专注于完成训练，并积累未来就业所需的经验。"
     },
     {
       "id": "opi-extra-155",
       "taskTitle": "其它-基本情况-6",
       "audioText": "Do you like your company's logo, and why?",
       "audioTextZh": "你喜欢自己公司的标志吗？为什么？",
-      "referenceText": "A suitable answer would be: yes, I like the fictional blue bird logo because it is simple, easy to recognize and connected with flight. It also remains clear at different sizes on the aircraft and digital screens. Learners should give an honest opinion about their actual company's logo.",
-      "referenceTextZh": "一个合适的回答是：是的，我喜欢这个虚构的蓝色鸟形标志，因为它简洁、容易识别，而且与飞行有关。无论用在飞机还是数字屏幕上，改变尺寸后仍然清楚。学习者应诚实表达对自己实际公司标志的看法。"
+      "referenceText": "I have not joined an airline yet, so I do not have a company logo to evaluate. I do like my flight school's logo because it is simple, easy to recognise, and represents aviation training. A good logo should be clear and professional rather than too complicated.",
+      "referenceTextZh": "我还没有加入航空公司，所以没有可以评价的公司标志。我很喜欢航校的标志，因为它简洁、容易识别，也能体现飞行训练的特点。好的标志应当清晰、专业，不宜过于复杂。"
     },
     {
       "id": "opi-extra-156",
       "taskTitle": "其它-基本情况-7",
       "audioText": "What is your favorite city, and why?",
       "audioTextZh": "你最喜欢哪座城市？为什么？",
-      "referenceText": "A suitable example would be Hangzhou because it combines a beautiful lake, historic areas and a modern technology industry. I enjoy walking around West Lake and the city has convenient transport and good food. Learners should choose a city they know well and support the preference with personal reasons.",
-      "referenceTextZh": "一个合适的示范答案是杭州，因为它兼有美丽的湖泊、历史街区和现代科技产业。我喜欢沿西湖散步，这座城市交通便利，美食也很多。学习者应选择自己熟悉的城市，并用个人理由说明偏好。"
+      "referenceText": "My favourite city is Chengdu because it is my hometown and my family lives there. I enjoy its relaxed atmosphere, Sichuan food, and green public spaces. It also has many interesting places to visit, including the giant panda research base.",
+      "referenceTextZh": "我最喜欢的城市是成都，因为那里是我的家乡，我的家人也住在那里。我喜欢成都悠闲的氛围、川菜和绿意盎然的公共空间。那里还有许多有趣的景点，包括大熊猫繁育研究基地。"
     },
     {
       "id": "opi-extra-157",
       "taskTitle": "其它-基本情况-8",
       "audioText": "What is the traffic like where you live now?",
       "audioTextZh": "你目前居住地的交通状况怎么样？",
-      "referenceText": "A suitable answer would be: traffic is heavy during the morning and evening peaks, especially on roads leading into the city center. Public transport is usually more reliable than driving at those times. Outside the peaks, journeys are much quicker, although rain can still cause delays.",
-      "referenceTextZh": "一个合适的示范答案是：早晚高峰交通拥堵，通往市中心的道路尤其严重。那段时间公共交通通常比开车更可靠。高峰以外出行速度快得多，不过下雨仍可能造成延误。"
+      "referenceText": "I currently live in Xi'an. Traffic is often busy, and there are frequent traffic jams because it is a large city.",
+      "referenceTextZh": "我目前住在西安。作为一座大城市，这里的交通经常很繁忙，也时常堵车。"
     },
     {
       "id": "opi-extra-158",
       "taskTitle": "其它-基本情况-9",
       "audioText": "Which do you prefer, your hometown or the city where you live now, and why?",
       "audioTextZh": "你的家乡和目前居住的城市相比，你更喜欢哪一个？为什么？",
-      "referenceText": "I would prefer my hometown because my family and old friends are there and the pace of life is calmer. The city where I live now offers better public transport and more career opportunities, but housing and traffic are more stressful. My choice might change if my work and family needs change.",
-      "referenceTextZh": "我更喜欢家乡，因为家人和老朋友都在那里，生活节奏也更平静。我现在居住的城市公共交通更好、职业机会更多，但住房和交通带来的压力也更大。如果工作和家庭需求改变，我的选择也可能变化。"
+      "referenceText": "I prefer my hometown because I grew up there and know it very well. My family still lives there, which makes it especially important to me.",
+      "referenceTextZh": "我更喜欢自己的家乡，因为我在那里长大，对那里非常熟悉。我的家人现在仍住在那里，所以家乡对我格外重要。"
     },
     {
       "id": "opi-extra-163",
       "taskTitle": "其它-基本情况-10",
       "audioText": "What is your hometown famous for?",
       "audioTextZh": "你的家乡因什么而闻名？",
-      "referenceText": "A suitable example would be: my hometown is famous for tea, traditional gardens and a historic old town. Visitors also enjoy local food and the nearby hills. Learners should replace these details with accurate features of their own hometown.",
-      "referenceTextZh": "一个合适的示范答案是：我的家乡以茶叶、传统园林和历史老城闻名。游客也喜欢当地美食和附近的山。学习者应根据自己家乡的真实特点替换这些内容。"
+      "referenceText": "My hometown is Chengdu in Sichuan Province. It is famous for Sichuan food, especially hot pot and mapo tofu, and for attractions such as the Chengdu Research Base of Giant Panda Breeding.",
+      "referenceTextZh": "我的家乡是四川省成都市。那里以川菜闻名，尤其是火锅和麻婆豆腐，还有成都大熊猫繁育研究基地等景点。"
     },
     {
       "id": "opi-extra-164",
       "taskTitle": "其它-基本情况-11",
       "audioText": "What is the weather usually like in your hometown?",
       "audioTextZh": "你的家乡通常是什么天气？",
-      "referenceText": "A suitable example would be: summers are hot and humid, while winters are cool and sometimes wet. Spring is mild but changeable, and autumn is usually the most comfortable season. Learners should adapt the description to their hometown's real climate.",
-      "referenceTextZh": "一个合适的示范答案是：夏季炎热潮湿，冬季凉爽，有时多雨。春季温和但天气多变，秋季通常最舒适。学习者应根据自己家乡的真实气候调整这段描述。"
+      "referenceText": "The weather in my hometown is usually mild and humid. Summers are not extremely hot, winters are relatively warm, and most of the rain falls in summer and autumn.",
+      "referenceTextZh": "我的家乡通常气候温和湿润。夏天不会极端炎热，冬天相对温暖，降雨大多集中在夏季和秋季。"
     },
     {
       "id": "opi-extra-165",
       "taskTitle": "其它-基本情况-12",
       "audioText": "How does your hometown compare with the city where you live now?",
       "audioTextZh": "你的家乡与目前居住的城市相比如何？",
-      "referenceText": "My hometown is smaller, quieter and less expensive than the city where I live now. The current city has more jobs, public transport and entertainment, but it also has heavier traffic and a faster pace. Both places are attractive for different stages of life.",
-      "referenceTextZh": "我的家乡比现在居住的城市更小、更安静，生活成本也更低。现在的城市有更多工作、公共交通和娱乐选择，但交通更拥堵，生活节奏也更快。两座城市分别适合人生的不同阶段。"
+      "referenceText": "My hometown is more relaxed, with a strong cultural atmosphere and a slower pace of life. The city where I live now is a busy aviation hub with a faster working rhythm and more convenient transport, especially for air travel.",
+      "referenceTextZh": "我的家乡生活节奏较慢，氛围更轻松，也有浓厚的文化气息。我现在居住的城市是一座繁忙的航空枢纽，工作节奏更快，交通也更便利，尤其是航空出行。"
     },
     {
       "id": "opi-extra-166",
       "taskTitle": "其它-基本情况-13",
       "audioText": "What interesting places can visitors see in your hometown?",
       "audioTextZh": "游客可以在你的家乡参观哪些有趣的地方？",
-      "referenceText": "A suitable example would be an old town with traditional streets, a lakeside park and a local history museum. Visitors can also walk in nearby hills and try the region's food and tea. Learners should choose places they can describe accurately and explain what makes them interesting.",
-      "referenceTextZh": "一个合适的示范答案是：一座拥有传统街巷的老城、一处湖滨公园和一座地方历史博物馆。游客还可以到附近山中徒步，并品尝当地美食和茶。学习者应选择自己能够准确描述的地点，并说明其有趣之处。"
+      "referenceText": "Visitors can see giant pandas at the Chengdu Research Base of Giant Panda Breeding. They can also visit Jinli Ancient Street to experience traditional Sichuan culture and the Dujiangyan Irrigation System to see remarkable ancient engineering.",
+      "referenceTextZh": "游客可以在成都大熊猫繁育研究基地看到大熊猫。他们也可以到锦里古街体验传统四川文化，或参观都江堰水利工程，了解非凡的古代工程技术。"
     },
     {
       "id": "opi-extra-167",
       "taskTitle": "其它-基本情况-14",
       "audioText": "What is your preferred mode of transportation, and why?",
       "audioTextZh": "你最喜欢哪种交通方式？为什么？",
-      "referenceText": "I prefer the metro because it is reliable, avoids road congestion and lets me use the travel time to read or rest. It is less convenient late at night or when I carry heavy luggage. For those situations, I would use a taxi or car instead.",
-      "referenceTextZh": "我更喜欢地铁，因为它可靠、避开道路拥堵，而且让我可以利用路上时间阅读或休息。深夜或携带很重的行李时，地铁不太方便。遇到这些情况，我会改乘出租车或开车。"
+      "referenceText": "I prefer to travel by air because it is fast and efficient, especially over long distances. It also lets me experience aviation directly.",
+      "referenceTextZh": "我更喜欢乘飞机旅行，因为它快捷高效，尤其适合长途出行。乘飞机也能让我直接感受航空。"
     },
     {
       "id": "opi-extra-168",
       "taskTitle": "其它-基本情况-15",
       "audioText": "Do you think owning a car is necessary in your hometown, and why?",
       "audioTextZh": "你认为在家乡拥有一辆汽车有必要吗？为什么？",
-      "referenceText": "I do not think a car is necessary in the town center because buses and short taxi trips cover most daily needs. It becomes more useful for families, rural journeys or places with limited public transport. The decision depends on cost, parking, traffic and how often a person travels outside the town.",
-      "referenceTextZh": "我认为市中心生活不一定需要汽车，因为公交车和短途出租车可以满足大部分日常需求。对于家庭出行、乡村行程或公共交通有限的地方，汽车会更有用。决定取决于成本、停车、交通，以及一个人前往城外的频率。"
+      "referenceText": "It depends on a person's needs. A car is useful for families in suburban areas or people who often travel to remote places. For someone living downtown with convenient public transport, owning a car may not be necessary.",
+      "referenceTextZh": "这取决于个人需求。对住在郊区的家庭或经常前往偏远地区的人来说，汽车很有用。对住在市中心且公共交通便利的人来说，可能没有必要拥有汽车。"
     },
     {
       "id": "opi-extra-169",
       "taskTitle": "其它-基本情况-16",
       "audioText": "Which place abroad would you most like to visit, and why?",
       "audioTextZh": "你最想去国外的哪个地方？为什么？",
-      "referenceText": "I would most like to visit New Zealand because of its dramatic mountains, coastline and national parks. I would like to travel between several regions rather than stay in one city. The trip would also give me a chance to use English in everyday situations and learn about another culture.",
-      "referenceTextZh": "我最想去新西兰，因为那里有壮丽的山脉、海岸线和国家公园。我希望在多个地区旅行，而不是只停留在一座城市。这趟旅行还能让我在日常情景中使用英语，并了解另一种文化。"
+      "referenceText": "I have not travelled abroad yet, but I would most like to visit the United States. I would like to see its aviation museums and training institutions and learn more about aviation technology and training concepts.",
+      "referenceTextZh": "我还没有出国旅行过，但最想去美国。我想参观那里的航空博物馆和训练机构，进一步了解航空技术和训练理念。"
     },
     {
       "id": "opi-extra-170",
       "taskTitle": "其它-基本情况-17",
       "audioText": "Have you ever operated an international flight?",
       "audioTextZh": "你是否曾执行过国际航班？",
-      "referenceText": "A suitable example would be: yes, I have operated several short international sectors in East Asia. They required more attention to international procedures, entry documents, time differences and communication across accents. This is a fictional experience and learners should describe their own record or say that they have not flown internationally.",
-      "referenceTextZh": "一个合适的示范答案是：是的，我曾执行过几次东亚地区的短途国际航段。这些航班要求我更加注意国际程序、入境文件、时差和不同口音之间的沟通。这是虚构经历，学习者应描述自己的真实记录，或说明没有国际飞行经历。"
+      "referenceText": "No, I have not operated an international flight yet. My flight experience is mainly limited to domestic training flights, although I have studied international flight operations in theory. I hope to gain experience on international routes after becoming a professional pilot.",
+      "referenceTextZh": "没有，我还没有执行过国际航班。我的飞行经历主要是国内训练飞行，不过我在理论上学习过国际飞行运行。成为职业飞行员后，我希望能积累国际航线经验。"
     },
     {
       "id": "opi-extra-171",
       "taskTitle": "其它-基本情况-18",
       "audioText": "Does your company operate any international routes?",
       "audioTextZh": "你所在公司是否运营国际航线？",
-      "referenceText": "A suitable company example would be that the airline operates a small number of international routes to nearby countries as well as a larger domestic network. The international flights are scheduled mainly from major hub airports. This is a fictional network and should be replaced with the operator's current published routes.",
-      "referenceTextZh": "一个合适的公司示范是：航空公司除规模较大的国内航线网络外，还运营少量飞往邻国的国际航线。国际航班主要从大型枢纽机场起飞。这是虚构的航线网络，应根据运营人当前公布的航线替换。"
+      "referenceText": "I am not employed by an airline, so I do not have a company route network. My flight-school operations are domestic training flights rather than scheduled international services. I hope to gain international flying experience after completing my training and joining an airline.",
+      "referenceTextZh": "我没有在航空公司任职，因此没有公司的航线网络。我的航校运行是国内训练飞行，而不是定期国际航班。完成训练并加入航空公司后，我希望能获得国际飞行经验。"
     },
     {
       "id": "opi-extra-172",
       "taskTitle": "其它-基本情况-19",
       "audioText": "Do you prefer international or domestic routes, and why?",
       "audioTextZh": "你更喜欢国际航线还是国内航线？为什么？",
-      "referenceText": "I prefer international routes because they offer more varied airports, cultures and communication experience. They also require extra preparation for procedures, documents and possible language differences. Domestic routes can be more familiar and efficient, so I would still value a balanced schedule.",
-      "referenceTextZh": "我更喜欢国际航线，因为它能带来更多不同的机场、文化和沟通经历。它也要求为程序、文件和可能的语言差异做更多准备。国内航线可能更熟悉、更高效，所以我仍希望排班保持均衡。"
+      "referenceText": "I appreciate both types of route. International routes offer opportunities to experience different cultures and aviation environments, while domestic routes involve more familiar procedures. For those reasons, I do not have a strong preference.",
+      "referenceTextZh": "我喜欢这两类航线。国际航线提供了体验不同文化和航空环境的机会，国内航线的运行程序则更加熟悉。因此，我没有明显的偏好。"
     },
     {
       "id": "opi-extra-173",
       "taskTitle": "其它-基本情况-20",
       "audioText": "Do you prefer long-haul or short-haul routes, and why?",
       "audioTextZh": "你更喜欢远程航线还是短程航线？为什么？",
-      "referenceText": "I prefer short-haul routes because they provide more takeoffs and landings and usually allow more time at home. The workload can be intense because several sectors and turnarounds occur in one duty. Long-haul flying offers different experience, but night work, time-zone changes and fatigue can be more demanding.",
-      "referenceTextZh": "我更喜欢短途航线，因为起飞和着陆次数更多，通常也能有更多时间在家。不过，一次执勤中包含多个航段和快速过站，工作负荷可能很高。长途飞行带来不同经历，但夜间工作、时区变化和疲劳会更有挑战。"
+      "referenceText": "I do not have a strong preference. Long-haul routes require good physical fitness and fatigue management, while short-haul routes require pilots to adapt to frequent takeoffs and landings. Both types of route can help a pilot improve different skills.",
+      "referenceTextZh": "我没有明显的偏好。长途航线要求良好的身体素质和疲劳管理能力，短途航线则要求飞行员适应频繁的起飞和着陆。两类航线都能帮助飞行员提高不同方面的技能。"
     }
   ]
 }

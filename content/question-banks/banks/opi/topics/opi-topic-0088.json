@@ -9,80 +9,80 @@
       "taskTitle": "飞机系统-增压系统-1",
       "audioText": "Could you describe the pressurization system, if any, on the aircraft you fly?",
       "audioTextZh": "你能否介绍所飞航空器的增压系统（如有）？",
-      "referenceText": "A suitable transport-aircraft example would use engine bleed air or another compressed-air source to provide a continuous flow of conditioned air to a pressurized cabin structure. Automatic controllers regulate outflow valves to maintain the planned cabin altitude and differential pressure, with indications, warnings and manual backup available to the crew. Learners should adapt the description to their aircraft because source architecture and controls differ.",
-      "referenceTextZh": "一个合适的运输类飞机示范是：使用发动机引气或其他压缩空气源，向增压客舱结构持续供应经过调节的空气。自动控制器调节排气活门，以保持计划的客舱高度和压差，同时向机组提供指示、警告和人工备用控制。由于气源架构和控制方式不同，学习者应根据自己的飞机调整这段说明。"
+      "referenceText": "The DA-40 that I fly is not pressurized, so it does not have a cabin pressurization system.",
+      "referenceTextZh": "我飞的 DA-40 是非增压飞机，因此没有客舱增压系统。"
     },
     {
       "id": "opi-core-868",
       "taskTitle": "飞机系统-增压系统-2",
       "audioText": "Why do some aircraft need pressurization systems?",
       "audioTextZh": "为什么有些航空器需要增压系统？",
-      "referenceText": "At high altitude, outside air pressure and available oxygen are too low for people to remain comfortable and fully effective without protection. Pressurization keeps the cabin at a lower equivalent altitude so occupants can breathe normally while the aircraft operates efficiently above much of the weather. The system also requires structural limits, pressure control and emergency oxygen as safeguards.",
-      "referenceTextZh": "在高空，外界气压和可用氧气都太低，如果没有保护，人员无法保持舒适和充分的工作能力。增压使客舱保持在较低的等效高度，使人员能够正常呼吸，同时飞机可以在大部分天气之上高效运行。该系统还需要结构限制、压力控制和应急氧气作为保护措施。"
+      "referenceText": "Some aircraft need pressurization systems to control cabin altitude and maintain adequate oxygen levels at high altitude. This helps prevent hypoxia and possible incapacitation while keeping the passengers and crew safe and comfortable.",
+      "referenceTextZh": "有些飞机需要增压系统来控制客舱高度，并在高空维持足够氧气水平。这有助于防止缺氧和可能的失能，同时保持旅客和机组安全舒适。"
     },
     {
       "id": "opi-core-869",
       "taskTitle": "飞机系统-增压系统-3",
       "audioText": "What can cause in-flight depressurization?",
       "audioTextZh": "哪些因素可能导致飞行中失压？",
-      "referenceText": "Depressurization can result from a door, window, fuselage or seal leak, a failed pressure-control or outflow-valve system, or loss of the air supply. Incorrect system configuration or structural damage can also be involved. The crew should diagnose only as far as the checklist and available indications allow, because the exact cause may not be clear in flight.",
-      "referenceTextZh": "舱门、窗户、机身或密封件泄漏，压力控制或排气活门系统失效，以及气源丧失都可能导致失压。系统构型错误或结构损坏也可能成为原因。机组只应在检查单和可用指示允许的范围内诊断，因为飞行中可能无法确定确切原因。"
+      "referenceText": "In-flight depressurization can result from a pressurization-system failure, an outflow-valve malfunction, an air-conditioning pack problem, or a bleed-air leak. It can also be caused by an improperly sealed door or by structural damage to a door, window, windshield, or the aircraft skin.",
+      "referenceTextZh": "飞行中失压可能由增压系统失效、外流活门故障、空调组件问题或引气泄漏造成。舱门密封不当，或舱门、舷窗、风挡及机身蒙皮的结构损伤也会导致失压。"
     },
     {
       "id": "opi-core-870",
       "taskTitle": "飞机系统-增压系统-4",
       "audioText": "How do slow and rapid depressurization differ in the risks they present?",
       "audioTextZh": "缓慢失压和快速失压所带来的风险有何不同？",
-      "referenceText": "A slow depressurization may be difficult to notice, allowing hypoxia to impair judgement before the crew understands the problem. A rapid depressurization is more obvious and can produce noise, fog, temperature change and sudden oxygen-mask deployment, leaving little time for action. Both are dangerous at high altitude, but their recognition challenges and immediate workload differ.",
-      "referenceTextZh": "缓慢失压可能很难察觉，使缺氧在机组了解问题之前就损害其判断力。快速失压更明显，可能产生噪声、雾气、温度变化和氧气面罩突然落下，留给机组的行动时间很少。两种情况在高空都很危险，但识别难点和即时工作负荷不同。"
+      "referenceText": "Rapid depressurization causes a sudden loss of pressure and oxygen, so the crew and passengers may become incapacitated before they can respond. Slow depressurization is less obvious because hypoxia develops gradually, making the problem difficult to detect. Both are dangerous, but they present different warning and response challenges.",
+      "referenceTextZh": "快速失压会使压力和氧气突然丧失，机组和旅客可能在作出反应前就失能。缓慢失压不明显，因为缺氧逐渐发展，问题更难发现。两者都很危险，但警示和响应方面的挑战不同。"
     },
     {
       "id": "opi-core-871",
       "taskTitle": "飞机系统-增压系统-5",
       "audioText": "What procedure does your company require for a rapid depressurization?",
       "audioTextZh": "快速失压时，你所在公司要求执行什么程序？",
-      "referenceText": "A suitable company example would require both pilots to put on oxygen masks, establish communication and maintain aircraft control before completing the rapid-depressurization checklist. The crew would initiate the aircraft-specific emergency descent when required, advise ATC as soon as workload permits, and level at an altitude that is safe for oxygen, terrain and traffic. Cabin status, diversion and landing would then be coordinated without removing masks prematurely.",
-      "referenceTextZh": "一个合适的公司示范程序是：两名飞行员先戴上氧气面罩、建立通信并保持飞机受控，然后执行快速失压检查单。需要时，机组按照具体机型程序开始紧急下降，在工作负荷允许时尽快通知 ATC，并综合可用氧气、地形和交通，在安全高度改平。随后，在不过早摘下面罩的前提下协调客舱状态、改航和着陆。"
+      "referenceText": "I do not have a company rapid-depressurisation procedure because I am not employed by an airline and the DA-40 I use is not pressurised. In a pressurised multi-crew aircraft, the typical priorities are to use oxygen immediately, establish crew communication, control the aircraft, and follow the approved checklist. The crew then descends when required while maintaining terrain clearance and coordinates with ATC and the cabin crew.",
+      "referenceTextZh": "我没有公司的快速失压程序，因为我尚未受雇于航空公司，而且我使用的 DA-40 是非增压飞机。在增压多机组飞机上，典型的首要动作是立即使用氧气、建立机组通信、控制飞机并执行批准的检查单。随后，机组在保持地形间隔的前提下按需下降，并与空中交通管制和客舱机组协调。"
     },
     {
       "id": "opi-core-874",
       "taskTitle": "飞机系统-增压系统-6",
       "audioText": "What are the possible consequences of depressurization?",
       "audioTextZh": "失压可能造成哪些后果？",
-      "referenceText": "Depressurization can cause hypoxia, loss of consciousness, decompression injury, cold, noise and flying debris. The cabin may fog temporarily, oxygen masks may deploy and unsecured occupants can be injured, especially if structural damage is involved. Operational consequences include an emergency descent, diversion, increased fuel use and possible damage requiring inspection.",
-      "referenceTextZh": "失压会造成缺氧、失去意识、减压伤、寒冷、噪声和飞散物体。客舱可能暂时起雾，氧气面罩可能落下；未固定的人员可能受伤，涉及结构损坏时尤其如此。运行后果包括紧急下降、改航、燃油消耗增加，以及可能需要检查的飞机损坏。"
+      "referenceText": "Depressurization can cause pilots to lose consciousness because of a lack of oxygen. Passengers may feel unwell or suffer injuries. A severe event may involve structural damage and could ultimately lead to the loss of the aircraft.",
+      "referenceTextZh": "失压会因缺氧使飞行员失去意识。旅客可能感到不适或受伤。严重事件可能伴有结构损伤，并最终导致飞机损失。"
     },
     {
       "id": "opi-core-875",
       "taskTitle": "飞机系统-增压系统-7",
       "audioText": "What should a flight crew do if depressurization occurs in flight?",
       "audioTextZh": "飞行中发生失压时，飞行机组应怎么做？",
-      "referenceText": "The crew should protect itself with oxygen as required, control the aircraft and complete the applicable depressurization checklist. It should descend when necessary to an altitude that is safe for breathing while respecting terrain, weather and traffic, and communicate the emergency when able. The pilots then assess cabin condition, remaining systems and fuel and plan a suitable landing.",
-      "referenceTextZh": "机组应按要求使用氧气保护自己、操纵飞机并完成适用的失压检查单。必要时，应下降到适合呼吸且兼顾地形、天气和交通安全的高度，并在能够通信时通报紧急情况。随后，飞行员评估客舱状况、剩余系统和燃油，并计划在合适机场着陆。"
+      "referenceText": "The flight crew should put on their oxygen masks and make an emergency descent to a safe altitude. They should report the situation and their intentions to ATC and request emergency services.",
+      "referenceTextZh": "飞行机组应戴上氧气面罩，并紧急下降至安全高度。他们应向空中交通管制报告情况和意图，并申请应急服务。"
     },
     {
       "id": "opi-core-876",
       "taskTitle": "飞机系统-增压系统-8",
       "audioText": "How should a flight crew determine a safe altitude after a depressurization?",
       "audioTextZh": "失压后，飞行机组应如何确定安全高度？",
-      "referenceText": "The crew should use the aircraft checklist and determine an altitude that protects occupants from hypoxia while remaining above terrain and obstacles. It must consider minimum safe altitudes, route escape procedures, weather, traffic and the duration of available oxygen. Over high terrain, the safest immediate altitude may be a compromise until the aircraft reaches a route where further descent is possible.",
-      "referenceTextZh": "机组应使用飞机检查单，确定既能保护人员免受缺氧又高于地形和障碍物的高度。必须考虑最低安全高度、航路应急逃逸程序、天气、交通和可用氧气的持续时间。在高地形上空，最安全的即时高度可能需要折中，直到飞机到达可以进一步下降的航路位置。"
+      "referenceText": "After using oxygen and starting the emergency descent, the crew should choose an altitude that provides enough oxygen while remaining above terrain and obstacles. About 10,000 feet or lower is normally desirable, but the minimum safe or sector altitude may require the aircraft to level higher. The crew should use charts, terrain information, and ATC assistance to determine the safe level.",
+      "referenceTextZh": "使用氧气并开始紧急下降后，机组应选择既能提供足够氧气、又高于地形和障碍物的高度。通常希望下降到约 10,000 英尺或以下，但最低安全高度或扇区高度可能要求飞机在更高高度改平。机组应利用航图、地形信息和空中交通管制协助确定安全高度层。"
     },
     {
       "id": "opi-core-877",
       "taskTitle": "飞机系统-增压系统-9",
       "audioText": "Does every pressurization problem require an emergency descent? Why or why not?",
       "audioTextZh": "每次增压问题都需要紧急下降吗？为什么？",
-      "referenceText": "No, because a minor pressure-control fault at low altitude or a stable cabin that remains within limits may not require an emergency descent. The decision depends on cabin altitude and trend, warnings, flight level, oxygen availability, terrain and whether the crew can control the system. The checklist defines when an immediate descent is required, while the crew still plans a suitable landing for the fault.",
-      "referenceTextZh": "不一定，因为低空轻微的压力控制故障，或始终保持在限制内的稳定客舱状况，可能不需要紧急下降。决定取决于客舱高度及其趋势、警告、飞行高度层、氧气可用量、地形，以及机组能否控制系统。检查单规定何时必须立即下降，同时机组仍应针对故障计划在合适机场着陆。"
+      "referenceText": "No. A minor or slowly developing pressurization problem may first be handled by checking the system and following the applicable checklist. A rapid or severe depressurization requires an emergency descent, and the crew may also need to divert and land.",
+      "referenceTextZh": "不一定。轻微或缓慢发展的增压问题，可以先检查系统并执行适用检查单。快速或严重失压需要紧急下降，机组还可能需要改航并着陆。"
     },
     {
       "id": "opi-core-878",
       "taskTitle": "飞机系统-增压系统-10",
       "audioText": "How can a pilot recognize that depressurization has occurred?",
       "audioTextZh": "飞行员如何判断已经发生失压？",
-      "referenceText": "Indications can include a cabin-altitude warning, abnormal cabin altitude or pressure trend, oxygen-mask deployment and changes on the pressurization display. The crew may also notice ear discomfort, unusual noise, mist, cold, airflow or symptoms of hypoxia. Slow decompression can be subtle, so instrument monitoring and immediate response to warning signs are essential.",
-      "referenceTextZh": "可能的指示包括客舱高度警告、异常客舱高度或压力趋势、氧气面罩落下，以及增压显示器上的变化。机组还可能察觉耳部不适、异常噪声、雾气、寒冷、气流或缺氧症状。缓慢失压可能不易察觉，因此仪表监控和发现警告迹象后立即响应至关重要。"
+      "referenceText": "A pilot may see an abnormal cabin-pressure differential, a rapid rise in cabin altitude or cabin rate, or a cabin-altitude warning. Other signs can include automatic deployment of oxygen masks, pressure discomfort in the ears or sinuses, and symptoms of hypoxia such as dizziness or blurred vision.",
+      "referenceTextZh": "飞行员可能看到异常客舱压差、客舱高度或客舱高度变化率迅速上升，或收到客舱高度警告。其他迹象包括氧气面罩自动脱落、耳部或鼻窦压力不适，以及头晕或视物模糊等缺氧症状。"
     }
   ]
 }

@@ -9,64 +9,64 @@
       "taskTitle": "特情-应急设备-1",
       "audioText": "What emergency equipment is available in the cockpit of the aircraft you fly?",
       "audioTextZh": "你所飞飞机的驾驶舱内配备了哪些应急设备？",
-      "referenceText": "In a typical transport-aircraft cockpit, emergency equipment includes oxygen masks, smoke goggles, fire extinguishers, life vests and an emergency escape device. The exact equipment and stowage locations depend on the aircraft type. A pilot should use the approved equipment list and cockpit inspection procedure for the aircraft concerned.",
-      "referenceTextZh": "典型运输类飞机的驾驶舱应急设备包括氧气面罩、防烟眼镜、灭火器、救生衣和应急逃生装置。具体设备及存放位置取决于机型。飞行员应采用相关飞机经批准的设备清单和驾驶舱检查程序。"
+      "referenceText": "The example DA-40 I use for training carries a portable fire extinguisher within reach of the pilots and the emergency equipment required by its approved equipment list. It does not have transport-aircraft equipment such as quick-donning masks, protective breathing equipment, or escape ropes. Before flight, I verify the equipment actually installed and required for the planned operation.",
+      "referenceTextZh": "我用于训练的示例 DA-40 在飞行员触手可及的位置配有便携式灭火器，并携带其批准设备清单规定的应急设备。它没有快戴式面罩、防护式呼吸设备或逃生绳等运输机设备。飞行前，我会核实飞机实际安装的设备以及本次运行所需的设备。"
     },
     {
       "id": "opi-core-060",
       "taskTitle": "特情-应急设备-2",
       "audioText": "Does the aircraft type you fly have evacuation slides? If so, where are they located?",
       "audioTextZh": "你所飞的机型配有撤离滑梯吗？如果有，安装在哪里？",
-      "referenceText": "A suitable example would be: the aircraft I fly has evacuation slides at the main passenger doors and at designated emergency exits. Some slides may also serve as flotation devices, depending on the installation. The exact number, type and location must be confirmed from the aircraft's approved emergency-equipment information.",
-      "referenceTextZh": "一个合适的示范答案是：我所飞机型的主客舱门和指定应急出口配有撤离滑梯。根据安装方式，部分滑梯还可以充当漂浮装置。具体数量、类型和位置必须依据飞机经批准的应急设备资料确认。"
+      "referenceText": "No. I fly a DA-40 for flight training, and it does not have evacuation slides.",
+      "referenceTextZh": "没有。我使用 DA-40 进行飞行训练，这种飞机没有撤离滑梯。"
     },
     {
       "id": "opi-core-061",
       "taskTitle": "特情-应急设备-3",
       "audioText": "How many evacuation slides are installed on the aircraft type you fly?",
       "audioTextZh": "你所飞的机型安装了多少个撤离滑梯？",
-      "referenceText": "A suitable example would be: the aircraft variant I fly has six evacuation slides. Four are fitted at the main doors, and two serve the overwing exits. This is a model configuration only, so learners should replace it with the approved number and arrangement for their own aircraft.",
-      "referenceTextZh": "一个合适的示范答案是：我所飞机型共有六个撤离滑梯。四个安装在主舱门，另外两个用于翼上出口。这只是一个示范构型，学习者应替换为自己所飞机型经批准的数量和布置。"
+      "referenceText": "I fly the C172, which has no evacuation slides.",
+      "referenceTextZh": "我飞的是 C172，这种飞机没有撤离滑梯。"
     },
     {
       "id": "opi-core-062",
       "taskTitle": "特情-应急设备-4",
       "audioText": "Under what circumstances should evacuation slides be used?",
       "audioTextZh": "在什么情况下应使用撤离滑梯？",
-      "referenceText": "Evacuation slides should be used when an armed exit is opened for an emergency evacuation and the height makes an assisted descent necessary. An exit should not be used if fire, obstacles or another hazard makes the outside area unsafe. Cabin crew assess the exit, redirect passengers when necessary and follow the operator's commands and procedures.",
-      "referenceTextZh": "当已预位的出口为紧急撤离而打开，并且门槛高度需要辅助下滑时，应使用撤离滑梯。如果出口外有火焰、障碍物或其他危险，就不应使用该出口。客舱机组应评估出口，必要时引导旅客改用其他出口，并遵循运营人的口令和程序。"
+      "referenceText": "Evacuation slides should be deployed when an emergency evacuation is required, for example because of a bomb on board, an engine fire, or smoke in the cabin.",
+      "referenceTextZh": "需要紧急撤离时应放出撤离滑梯，例如机上有炸弹、发动机起火或客舱出现烟雾。"
     },
     {
       "id": "opi-core-063",
       "taskTitle": "特情-应急设备-5",
       "audioText": "Have you ever heard of an evacuation slide being deployed accidentally during ground operations?",
       "audioTextZh": "你听说过地面运行期间撤离滑梯意外释放的情况吗？",
-      "referenceText": "A suitable example would be: yes, I have heard reports of slides deploying accidentally when a door was opened while still armed. Such an event can injure people near the door and cause significant damage and delay. Good door-status communication and strict use of the operator's arming and disarming procedure help prevent it.",
-      "referenceTextZh": "一个合适的示范答案是：是的，我听说过舱门仍处于预位状态时被打开，导致滑梯意外释放的事件。这类事件会使舱门附近人员受伤，并造成严重损坏和延误。做好舱门状态沟通，并严格执行运营人的预位和解除预位程序，有助于防止此类事件。"
+      "referenceText": "Yes. I heard about a passenger opening an overwing emergency exit on the ground, which caused the slide to deploy.",
+      "referenceTextZh": "是的。我听说过一名旅客在地面打开翼上应急出口，导致滑梯放出的事件。"
     },
     {
       "id": "opi-core-064",
       "taskTitle": "特情-应急设备-6",
       "audioText": "Why are pilots required to be familiar with emergency equipment?",
       "audioTextZh": "为什么要求飞行员熟悉应急设备？",
-      "referenceText": "Pilots must be familiar with emergency equipment because an emergency leaves little time to search for instructions or equipment. They need to know what is available, where it is stowed, how to check it and how to use it safely. Regular training also reduces confusion and improves coordination with the cabin crew.",
-      "referenceTextZh": "飞行员必须熟悉应急设备，因为紧急情况下没有多少时间查找说明或设备。他们需要知道机上有哪些设备、存放在哪里、如何检查以及怎样安全使用。定期训练还能减少混乱，并改善与客舱机组的协作。"
+      "referenceText": "Pilots need to know the location and function of emergency equipment so they can use it quickly and correctly during an emergency.",
+      "referenceTextZh": "飞行员需要了解应急设备的位置和功能，以便在紧急情况下快速、正确地使用。"
     },
     {
       "id": "opi-core-068",
       "taskTitle": "特情-应急设备-7",
       "audioText": "How easy is the emergency equipment on your aircraft to use?",
       "audioTextZh": "你所飞飞机上的应急设备是否容易使用？",
-      "referenceText": "A suitable example would be: most emergency equipment on my aircraft is designed for quick use, but it is only easy when the crew has trained with it. Oxygen masks and fire extinguishers require correct handling under stress, and some escape equipment needs careful deployment. Recurrent practice is therefore more important than assuming that the equipment is self-explanatory.",
-      "referenceTextZh": "一个合适的示范答案是：我所飞机型的大多数应急设备都便于快速使用，但只有机组接受过训练，操作起来才会真正容易。氧气面罩和灭火器在压力下需要正确操作，有些逃生设备也必须谨慎展开。因此，定期练习比想当然地认为设备一看就会更重要。"
+      "referenceText": "The emergency equipment on my aircraft is designed to be easy to reach and convenient to use. It includes fire extinguishers, oxygen masks, a flashlight, a first-aid kit, and life vests.",
+      "referenceTextZh": "我所飞机型的应急设备设计得便于接近和使用，包括灭火器、氧气面罩、手电筒、急救箱和救生衣。"
     },
     {
       "id": "opi-core-072",
       "taskTitle": "特情-应急设备-8",
       "audioText": "What functions do evacuation slides serve?",
       "audioTextZh": "撤离滑梯有哪些用途？",
-      "referenceText": "Evacuation slides provide a rapid route from an aircraft exit to the ground when the door sill is high. On some aircraft, certain slides can detach and serve as flotation devices or life rafts. Their exact functions depend on the approved installation, so crews must know the equipment fitted to each aircraft.",
-      "referenceTextZh": "当飞机出口门槛较高时，撤离滑梯可以提供一条从出口快速到达地面的通道。在部分飞机上，某些滑梯能够拆下并作为漂浮装置或救生筏使用。具体功能取决于经批准的安装构型，因此机组必须了解每架飞机实际配备的设备。"
+      "referenceText": "Evacuation slides help people on board leave the aircraft as quickly as possible during an evacuation.",
+      "referenceTextZh": "撤离滑梯可以帮助机上人员在撤离时尽快离开飞机。"
     }
   ]
 }

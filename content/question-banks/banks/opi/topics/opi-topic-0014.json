@@ -9,64 +9,64 @@
       "taskTitle": "特情-鸟击-1",
       "audioText": "Have you ever encountered a bird strike?",
       "audioTextZh": "你遇到过鸟击吗？",
-      "referenceText": "A suitable example would be: no, I have never experienced a confirmed bird strike. I have seen birds near airports and have practised bird-strike and engine-damage scenarios in a simulator. Those exercises emphasized aircraft control, correct takeoff decisions and inspection after landing.",
-      "referenceTextZh": "一个合适的示范答案是：没有，我从未经历过确认的鸟击。我曾在机场附近看到鸟群，也在模拟机中练习过鸟击和发动机受损情景。这些训练强调飞机控制、正确作出起飞决定以及着陆后检查。"
+      "referenceText": "No, I have never encountered a bird strike.",
+      "referenceTextZh": "没有，我从未遭遇过鸟击。"
     },
     {
       "id": "opi-core-218",
       "taskTitle": "特情-鸟击-2",
       "audioText": "During which phases of flight are bird strikes most likely to occur, and why?",
       "audioTextZh": "鸟击最容易发生在哪些飞行阶段？为什么？",
-      "referenceText": "Bird strikes are most common during takeoff, climb, descent, approach and landing. Most birds fly at relatively low altitude, and aircraft spend these phases close to airports where birds may gather around food, water or habitat. Strikes can still occur at cruise altitude, but they are much less common.",
-      "referenceTextZh": "鸟击最常发生在起飞、爬升、下降、进近和着陆阶段。大多数鸟类在相对较低的高度飞行，而飞机在这些阶段接近机场，鸟类可能因食物、水源或栖息地在此聚集。巡航高度仍可能发生鸟击，但要少得多。"
+      "referenceText": "Bird strikes are most likely during takeoff and landing because birds are active at lower altitudes.",
+      "referenceTextZh": "鸟击最容易发生在起飞和着陆阶段，因为鸟类在较低高度活动。"
     },
     {
       "id": "opi-core-219",
       "taskTitle": "特情-鸟击-3",
       "audioText": "Where can pilots obtain information about bird activity before departure?",
       "audioTextZh": "起飞前，飞行员可以从哪里获取鸟类活动信息？",
-      "referenceText": "Pilots can check NOTAMs, ATIS, airport or company operational messages and recent reports from ATC or other crews. Dispatch and airport operations may also provide warnings about concentrated bird activity or wildlife-control work. Because activity changes quickly, the crew should combine preflight information with visual observation during taxi and departure.",
-      "referenceTextZh": "飞行员可以查看航行通告、ATIS、机场或公司运行信息，以及空管或其他机组近期的报告。签派和机场运行部门也可能提供鸟类集中活动或野生动物控制工作的警告。由于鸟类活动变化很快，机组应将航前信息与滑行和离场期间的目视观察结合起来。"
+      "referenceText": "Before departure, pilots can obtain bird-activity information from ATIS, ATC, and reports from other pilots. They can also make a visual check of the airport area.",
+      "referenceTextZh": "离场前，飞行员可以从 ATIS、空中交通管制和其他飞行员报告中获取鸟类活动信息，还可以目视检查机场区域。"
     },
     {
       "id": "opi-core-220",
       "taskTitle": "特情-鸟击-4",
       "audioText": "How can bird strikes threaten flight safety?",
       "audioTextZh": "鸟击会如何威胁飞行安全？",
-      "referenceText": "A bird strike can damage an engine, windshield, radome, wing, flight-control surface or sensor. Multiple birds or a large bird can cause serious thrust loss, impaired visibility or structural damage at a critical phase of flight. Even when no malfunction is obvious, the event may require a report and maintenance inspection.",
-      "referenceTextZh": "鸟击可能损坏发动机、风挡、雷达罩、机翼、飞行操纵面或传感器。多只鸟或大型鸟类可能在关键飞行阶段造成严重推力损失、能见度受损或结构损伤。即使没有明显故障，事件也可能需要报告和维修检查。"
+      "referenceText": "A bird strike may damage the nose, windshield, or engines. Bird ingestion can cause an engine surge, flameout, or failure. A windshield strike may also break the windshield and injure the flight crew.",
+      "referenceTextZh": "鸟击可能损坏机头、风挡或发动机。鸟被吸入发动机后可能导致喘振、熄火或失效。鸟撞风挡还可能使风挡破裂，并造成飞行机组受伤。"
     },
     {
       "id": "opi-core-221",
       "taskTitle": "特情-鸟击-5",
       "audioText": "What measures can help prevent bird strikes?",
       "audioTextZh": "哪些措施有助于防止鸟击？",
-      "referenceText": "Airports can reduce the risk through habitat management, wildlife detection, dispersal, reporting and removal of food or water attractants. Pilots can review warnings, stay alert, use lights and operating techniques as approved, and delay or change the takeoff when concentrated birds create an unacceptable hazard. Prompt strike and bird-activity reports help airports improve later control measures.",
-      "referenceTextZh": "机场可以通过栖息地管理、野生动物探测和驱赶、报告以及清除吸引鸟类的食物或水源来降低风险。飞行员可以查看警告、保持警觉、按批准要求使用灯光和运行技术；当鸟群集中构成不可接受的危险时，可以推迟或改变起飞计划。及时报告鸟击和鸟类活动，有助于机场改进后续控制措施。"
+      "referenceText": "Pilots can check ATIS, ATC information, and pilot reports before flight and maintain a good visual scan. If bird activity is reported along the flight path, they can request a route change or delay the approach or departure. Airport management can also disperse birds near the airport.",
+      "referenceTextZh": "飞行员可以在飞行前查看 ATIS、空中交通管制信息和飞行员报告，并保持良好的目视观察。如果航路上报告有鸟类活动，可以申请改变航路，或推迟进近或离场。机场管理部门也可以驱赶机场附近的鸟类。"
     },
     {
       "id": "opi-core-223",
       "taskTitle": "特情-鸟击-6",
       "audioText": "What should a pilot do if an engine ingests a bird during initial climb?",
       "audioTextZh": "初始爬升过程中发动机吸入鸟类时，飞行员应如何处置？",
-      "referenceText": "The pilots should maintain control, continue the initial climb as required and identify the affected engine or system from reliable indications. They should apply the engine-damage or failure checklist, inform ATC and decide whether to return or land at another suitable airport. Configuration and turns should be managed carefully because the aircraft may have reduced performance or vibration.",
-      "referenceTextZh": "飞行员应保持控制，按要求继续初始爬升，并根据可靠指示识别受影响的发动机或系统。应执行发动机损伤或失效检查单，通知空管，并决定返场还是在另一个合适机场着陆。由于飞机性能可能下降或出现振动，构型和转弯都应谨慎管理。"
+      "referenceText": "I would first maintain control of the aircraft and closely monitor the engine parameters. I would follow the SOP and complete the engine malfunction checklist, then report the situation and aircraft status to ATC. If engine performance deteriorated significantly, I would request a diversion to the nearest suitable airport and prepare for an emergency landing if necessary.",
+      "referenceTextZh": "我会首先控制好飞机，并密切监控发动机参数。我会遵循标准操作程序并完成发动机故障检查单，然后向空中交通管制报告情况和飞机状态。如果发动机性能明显恶化，我会申请改航至最近的合适机场，并在必要时准备紧急着陆。"
     },
     {
       "id": "opi-core-224",
       "taskTitle": "特情-鸟击-7",
       "audioText": "How prepared do you feel to handle a bird strike?",
       "audioTextZh": "你觉得自己应对鸟击的准备有多充分？",
-      "referenceText": "A suitable example would be: I feel reasonably prepared because I have studied the checklist and practised bird-strike scenarios in a simulator. Training helps me prioritize aircraft control, engine assessment, communication and the landing decision. I would still rely on the actual indications and approved procedure rather than assume every strike develops in the same way.",
-      "referenceTextZh": "一个合适的示范答案是：我认为自己准备得比较充分，因为我学习过检查单，也在模拟机中练习过鸟击情景。训练帮助我依次关注飞机控制、发动机评估、通信和着陆决定。但我仍会依据实际指示和经批准程序，而不会假定每次鸟击都会以相同方式发展。"
+      "referenceText": "I feel prepared to handle a bird strike because I know the procedures for avoiding and responding to one, although I have never encountered one in flight.",
+      "referenceTextZh": "虽然我从未在飞行中遭遇鸟击，但我了解鸟击的预防和处置程序，因此认为自己已做好应对准备。"
     },
     {
       "id": "opi-core-230",
       "taskTitle": "特情-鸟击-8",
       "audioText": "Who is responsible for controlling bird activity around an airport?",
       "audioTextZh": "谁负责控制机场周边的鸟类活动？",
-      "referenceText": "The airport operator normally leads wildlife-hazard management on and near the aerodrome. Wildlife specialists, air traffic services, local authorities, landowners, airlines and pilots also contribute through control measures and timely reports. Responsibility is shared because bird activity can extend beyond the airport boundary.",
-      "referenceTextZh": "机场运营人通常负责牵头管理机场及其附近的野生动物危险。野生动物专家、空中交通服务部门、地方当局、土地所有者、航空公司和飞行员也会通过控制措施和及时报告发挥作用。由于鸟类活动可能延伸到机场边界之外，这项责任需要多方共同承担。"
+      "referenceText": "The airport management department is responsible for controlling bird activity near the airport. It may send bird-control vehicles to disperse birds when activity is reported.",
+      "referenceTextZh": "机场管理部门负责控制机场附近的鸟类活动。收到鸟情报告后，可以派出驱鸟车辆驱散鸟群。"
     }
   ]
 }

@@ -9,24 +9,24 @@
       "taskTitle": "特情-结构损伤-1",
       "audioText": "What should a pilot do if the aircraft suffers structural damage?",
       "audioTextZh": "飞机发生结构损伤时，飞行员应如何处置？",
-      "referenceText": "The pilot should maintain control, avoid unnecessary manoeuvring and assess the damage through aircraft indications and any available crew reports. The crew should follow the applicable checklist, respect any reduced speed or load limits, declare the situation as needed and plan a landing at the safest suitable airport. After landing, the aircraft should remain out of service until the required inspection and release are complete.",
-      "referenceTextZh": "飞行员应保持控制，避免不必要的机动，并根据飞机指示和能够获得的机组报告评估损伤。机组应执行适用检查单，遵守任何降低后的速度或载荷限制，根据需要作出相应申报，并计划在最安全的合适机场着陆。着陆后，在完成所需检查并获得放行前，飞机应保持停场状态。"
+      "referenceText": "The pilot should maintain control, avoid abrupt manoeuvres, and follow the applicable damage or abnormal checklist. The crew should assess flight controls, pressurisation, fuel, hydraulics, and other affected systems without assuming the damage is limited to what is visible. They should declare an emergency when appropriate, land at a suitable airport, and arrange a detailed inspection.",
+      "referenceTextZh": "飞行员应保持飞机控制，避免突然机动，并执行适用的损坏或非正常检查单。机组应评估飞行操纵、增压、燃油、液压及其他受影响的系统，不能假定损坏仅限于肉眼可见的部分。他们应在适当时宣布紧急状态，在合适的机场着陆，并安排详细检查。"
     },
     {
       "id": "opi-core-082",
       "taskTitle": "特情-结构损伤-2",
       "audioText": "What can cause structural damage to an aircraft?",
       "audioTextZh": "哪些因素会导致飞机结构损伤？",
-      "referenceText": "Structural damage can result from severe turbulence, a hard landing, a collision, hail, lightning effects, excessive loads or contact with ground equipment. Fatigue, corrosion and improper maintenance can also weaken a structure over time. After any suspected damage, the crew should avoid unnecessary loads and arrange an inspection in accordance with approved procedures.",
-      "referenceTextZh": "严重颠簸、重着陆、碰撞、冰雹、雷电影响、过大载荷或与地面设备接触，都可能造成结构损伤。疲劳、腐蚀和维修不当也会随时间削弱结构。只要怀疑飞机受损，机组就应避免不必要的载荷，并按批准程序安排检查。"
+      "referenceText": "Structural damage can result from a bird strike, lightning, severe turbulence, or severe icing. It can also be caused by a ground collision, tail strike, hard landing, belly landing, runway overrun, explosive depressurization, or an explosion.",
+      "referenceTextZh": "结构损伤可能由鸟击、雷击、严重颠簸或严重结冰引起。地面碰撞、擦尾、重着陆、机腹着陆、冲出跑道、爆炸性失压或爆炸也可能造成结构损伤。"
     },
     {
       "id": "opi-core-083",
       "taskTitle": "特情-结构损伤-3",
       "audioText": "Have you ever experienced structural damage to an aircraft?",
       "audioTextZh": "你经历过飞机结构损伤吗？",
-      "referenceText": "A suitable example would be: no, I have never experienced structural damage to an aircraft. I have practised scenarios involving suspected damage after severe turbulence or a bird strike. In such a case, I would control the aircraft, assess the indications, avoid excessive manoeuvring and follow the checklist before landing for inspection.",
-      "referenceTextZh": "一个合适的示范答案是：没有，我从未经历过飞机结构受损。我练习过严重颠簸或鸟击后怀疑飞机受损的情景。在这种情况下，我会控制飞机、评估指示、避免过度机动，执行检查单后着陆并接受检查。"
+      "referenceText": "No, I have never experienced structural damage to an aircraft.",
+      "referenceTextZh": "没有，我从未经历过飞机结构损伤。"
     }
   ]
 }

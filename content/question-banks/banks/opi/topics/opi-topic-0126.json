@@ -9,64 +9,64 @@
       "taskTitle": "飞机系统-飞行操纵系统-1",
       "audioText": "Does the aircraft type you fly use a control column or a sidestick?",
       "audioTextZh": "你所飞的机型使用驾驶杆还是侧杆？",
-      "referenceText": "A suitable Airbus A320-family example would use a sidestick rather than a conventional control column. Each pilot has a separate sidestick, and the flight-control computers interpret the electrical commands according to the active control law. Learners should replace this with the control arrangement of the aircraft they actually fly.",
-      "referenceTextZh": "一个合适的空客 A320 系列示范是：飞机使用侧杆，而不是传统驾驶盘。每名飞行员都有一根独立侧杆，飞行操纵计算机按照当前有效的操纵法则解释电信号指令。学习者应根据自己实际所飞机型的操纵装置替换这段内容。"
+      "referenceText": "I fly the C172, which uses a control column.",
+      "referenceTextZh": "我飞的是 C172，它使用驾驶杆。"
     },
     {
       "id": "opi-extra-126",
       "taskTitle": "飞机系统-飞行操纵系统-2",
       "audioText": "What are the main advantages and disadvantages of a control column compared with a sidestick?",
       "audioTextZh": "与侧杆相比，驾驶杆有哪些主要优点和缺点？",
-      "referenceText": "A control column gives visible and often tactile movement that can help one pilot sense the other's input, but it occupies more space and may transmit some unwanted forces. A sidestick frees panel and leg space and can support electronic flight-control design, but separate sticks may provide less direct awareness of the other pilot's input. Neither arrangement is automatically safer; design, feedback, training and crew coordination determine how well it works.",
-      "referenceTextZh": "驾驶盘具有可见且往往可以感知的运动，能帮助一名飞行员感受到另一人的操纵输入，但它占用更多空间，也可能传递一些不需要的作用力。侧杆可以释放仪表板和腿部空间，并支持电传操纵设计，但相互独立的侧杆可能较难让飞行员直接察觉对方的输入。任何一种装置都不会自动更加安全；设计、反馈、训练和机组协调决定了使用效果。"
+      "referenceText": "A control column can give the pilot a physical sense of controlling the aircraft through its mechanical or hydraulic mechanism. Its main disadvantage compared with a sidestick is that it takes up more space in the cockpit.",
+      "referenceTextZh": "驾驶盘通过机械或液压机构，能够让飞行员获得操纵飞机的实体反馈。与侧杆相比，它的主要缺点是会占用更多驾驶舱空间。"
     },
     {
       "id": "opi-extra-202",
       "taskTitle": "飞机系统-飞行操纵系统-3",
       "audioText": "What are the main flight control surfaces on an aircraft?",
       "audioTextZh": "航空器的主要飞行操纵面有哪些？",
-      "referenceText": "The primary flight control surfaces are normally the ailerons, elevator or stabilator, and rudder. Many transport aircraft also use spoilers to assist roll control or reduce lift. Flaps, slats and trim systems support control and performance but are usually classified separately as secondary or auxiliary controls.",
-      "referenceTextZh": "主飞行操纵面通常包括副翼、升降舵或全动平尾，以及方向舵。许多运输类飞机还使用扰流板辅助滚转操纵。襟翼、缝翼和配平系统支持操纵与性能，但通常单独归类为次级或辅助飞行操纵装置。"
+      "referenceText": "The primary flight control surfaces are the ailerons, elevator, and rudder. The ailerons control roll, the elevator controls pitch, and the rudder controls yaw.",
+      "referenceTextZh": "主要飞行操纵面是副翼、升降舵和方向舵。副翼控制滚转，升降舵控制俯仰，方向舵控制偏航。"
     },
     {
       "id": "opi-extra-203",
       "taskTitle": "飞机系统-飞行操纵系统-4",
       "audioText": "Where are the main flight control surfaces located on an aircraft?",
       "audioTextZh": "航空器的主要飞行操纵面位于什么位置？",
-      "referenceText": "Ailerons are normally located near the outboard trailing edges of the wings, although spoilers on the upper wing may also assist roll. The elevator is on the trailing edge of the horizontal tail, or the whole stabilator may move, while the rudder is on the trailing edge of the vertical tail. Some aircraft combine these functions in different surfaces, so the exact layout should be checked in the aircraft manual.",
-      "referenceTextZh": "副翼通常位于机翼外侧后缘附近，机翼上表面的扰流板也可能辅助滚转。升降舵位于水平尾翼后缘；如果使用全动平尾，则整个平尾都会运动；方向舵位于垂直尾翼后缘。有些飞机通过不同操纵面组合这些功能，因此具体布局应查阅飞机手册。"
+      "referenceText": "The ailerons are located on the wings. The elevator and rudder are located on the tail.",
+      "referenceTextZh": "副翼位于机翼上，升降舵和方向舵位于飞机尾部。"
     },
     {
       "id": "opi-extra-204",
       "taskTitle": "飞机系统-飞行操纵系统-5",
       "audioText": "What functions do the main flight control surfaces perform?",
       "audioTextZh": "主要飞行操纵面发挥哪些作用？",
-      "referenceText": "Ailerons and roll spoilers control or assist movement about the longitudinal axis. The elevator or stabilator controls pitch about the lateral axis, and the rudder controls yaw about the vertical axis. Together they let the pilot change attitude and maintain the required flight path, subject to the aircraft's control laws and limits.",
-      "referenceTextZh": "副翼和滚转扰流板控制或辅助飞机绕纵轴运动。升降舵或全动平尾控制绕横轴的俯仰，方向舵则控制绕垂直轴的偏航。三者共同使飞行员能够改变姿态并保持所需飞行轨迹，同时受飞机操纵法则和限制约束。"
+      "referenceText": "The ailerons control roll, the elevator controls pitch, and the rudder controls yaw.",
+      "referenceTextZh": "副翼控制滚转，升降舵控制俯仰，方向舵控制偏航。"
     },
     {
       "id": "opi-extra-205",
       "taskTitle": "飞机系统-飞行操纵系统-6",
       "audioText": "How can pilots check that the flight controls are working correctly before takeoff?",
       "audioTextZh": "起飞前，飞行员如何检查飞行操纵系统是否工作正常？",
-      "referenceText": "Before takeoff, the crew uses the approved flight-control check to move the controls through the required range and verify the cockpit indications. The pilots confirm correct direction, freedom of movement or normal electronic response and any required agreement between the physical controls and surface display. If an abnormal indication, restriction or disagreement appears, they stop the departure process and follow the applicable procedure.",
-      "referenceTextZh": "起飞前，机组使用批准的飞行操纵检查，使操纵装置在规定范围内运动并核实驾驶舱指示。飞行员确认运动方向正确、动作自由或电子响应正常，并按要求核对实体操纵装置与操纵面显示的一致性。如果出现异常指示、卡阻或不一致，机组应停止离场流程并执行适用程序。"
+      "referenceText": "During the walk-around inspection, pilots check the flight control surfaces and make sure they are not jammed. Before takeoff, they follow the applicable checklist and move the controls to verify that the ailerons, elevator, and rudder respond correctly.",
+      "referenceTextZh": "绕机检查时，飞行员会检查飞行操纵面，确认它们没有卡阻。起飞前，他们会执行适用的检查单并活动操纵装置，确认副翼、升降舵和方向舵响应正常。"
     },
     {
       "id": "opi-extra-206",
       "taskTitle": "飞机系统-飞行操纵系统-7",
       "audioText": "What are the main operating limitations of your aircraft's flight control system?",
       "audioTextZh": "你所飞航空器的飞行操纵系统有哪些主要运行限制？",
-      "referenceText": "A suitable answer would cover the flight-control limitations stated in the approved AFM or operating manual, including relevant speed, configuration, trim and autopilot restrictions. It may also address the capabilities and operational restrictions that apply after a degraded control law or loss of hydraulic or electrical support. Learners should quote only the approved limitations for their exact aircraft and avoid treating internal design parameters as pilot operating limits.",
-      "referenceTextZh": "一个合适的回答应涵盖批准的 AFM 或运行手册规定的飞行操纵限制，包括相关速度、构型、配平和自动驾驶限制。它还可说明操纵法则降级或液压、电气支持丧失后适用的能力与运行限制。学习者只能引用自己具体机型的批准限制，不能把内部设计参数当作飞行员运行限制。"
+      "referenceText": "The exact flight-control-system limitations depend on the DA-40 variant and installed equipment. Its conventional primary controls do not have a separate flight-control law or operating mode to select, so I operate within the approved airspeed, load-factor, weight, and centre-of-gravity limits. If an autopilot is installed, I follow its separate engagement and operating limits in the aircraft flight manual.",
+      "referenceTextZh": "飞行操纵系统的具体限制取决于 DA-40 的型号和安装设备。它采用传统的主飞行操纵系统，没有需要选择的独立飞行控制律或运行模式，因此我会遵守经批准的空速、载荷系数、重量和重心限制。如果安装了自动驾驶仪，我会遵守飞行手册中单独规定的接通和运行限制。"
     },
     {
       "id": "opi-extra-209",
       "taskTitle": "飞机系统-飞行操纵系统-8",
       "audioText": "How should cockpit tasks be shared when the autopilot cannot be engaged?",
       "audioTextZh": "自动驾驶仪无法接通时，应如何分配驾驶舱工作？",
-      "referenceText": "A suitable arrangement would assign the pilot flying to manual flight path and energy control, while the pilot monitoring handles radios, checklists, system changes and navigation support. The pilot monitoring should call out deviations clearly and reduce nonessential tasks, especially in turbulence or a high-workload approach. The crew can transfer control or request more time if workload becomes unbalanced, following the operator's SOP.",
-      "referenceTextZh": "一个合适的分工是：由操纵飞行员负责人工控制飞行轨迹和能量，监控飞行员负责无线电、检查单、系统改变和导航支持。监控飞行员应清楚喊出偏差，并减少非必要任务，在颠簸或高工作负荷进近中尤其如此。如果工作负荷失衡，机组可以按照运营人 SOP 移交操纵权或请求更多时间。"
+      "referenceText": "The pilot flying should control the aircraft manually. The pilot monitoring should read the checklist and monitor the aircraft's performance.",
+      "referenceTextZh": "操纵飞行员应人工控制飞机，监控飞行员应朗读检查单并监控飞机性能。"
     }
   ]
 }

@@ -16,16 +16,16 @@
       "taskTitle": "图片题-009-01",
       "audioText": "What are the main differences between a cockpit with traditional flight instruments and a modern glass cockpit?",
       "audioTextZh": "采用传统飞行仪表的驾驶舱与现代玻璃驾驶舱有哪些主要区别？",
-      "referenceText": "Traditional cockpits present information on many separate gauges, while glass cockpits combine flight, navigation and system data on electronic displays. Glass systems can add maps, alerts, trends and reconfigurable pages, whereas analog instruments often provide simpler independent indications. The modern layout reduces some scanning but creates new demands for mode awareness, data management and failure reversion.",
-      "referenceTextZh": "传统驾驶舱用许多独立仪表显示信息，玻璃驾驶舱则把飞行、导航和系统数据集中到电子显示器上。玻璃驾驶舱可以增加地图、警告、趋势和可重新配置的页面，模拟仪表通常提供较简单、相互独立的指示。现代布局减少了部分扫描工作，却对方式意识、数据管理和故障后的显示转换提出了新要求。"
+      "referenceText": "Compared with traditional flight instruments, a modern glass cockpit gives pilots clearer information, supports better monitoring, and provides more time to make safe decisions. This can improve situational awareness.",
+      "referenceTextZh": "与传统飞行仪表相比，现代玻璃驾驶舱能向飞行员提供更清晰的信息，帮助他们更好地监控，并留出更多时间作出安全决策。这有助于提高情景意识。"
     },
     {
       "id": "opi-image-009-q02",
       "taskTitle": "图片题-009-02",
       "audioText": "What challenges do pilots face when flying an aircraft with traditional flight instruments?",
       "audioTextZh": "驾驶采用传统飞行仪表的航空器时，飞行员会面临哪些挑战？",
-      "referenceText": "Pilots must scan and combine information from many separate instruments without an integrated map or system picture. Small trends or related failures can be harder to recognize quickly, and navigation or performance work may require more manual calculation. Good instrument-scan discipline is essential, but familiar analog indications can remain clear and robust.",
-      "referenceTextZh": "飞行员必须扫描并综合许多独立仪表的信息，而没有一体化地图或系统全貌。细小趋势或相互关联的故障可能更难迅速识别，导航或性能工作也可能需要更多人工计算。良好的仪表扫描习惯非常重要，不过熟悉的模拟仪表指示仍可保持清晰和可靠。"
+      "referenceText": "Traditional flight instruments can create a higher scan workload, provide less integrated information, and require more manual cross-checking.",
+      "referenceTextZh": "传统飞行仪表可能增加仪表扫描工作量，提供的综合信息较少，并要求飞行员进行更多人工交叉检查。"
     }
   ]
 }

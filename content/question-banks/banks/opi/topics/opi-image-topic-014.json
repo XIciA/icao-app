@@ -16,16 +16,16 @@
       "taskTitle": "图片题-014-01",
       "audioText": "What are the main advantages of a modern glass cockpit over a cockpit with traditional flight instruments?",
       "audioTextZh": "与采用传统飞行仪表的驾驶舱相比，现代玻璃驾驶舱有哪些主要优势？",
-      "referenceText": "A glass cockpit can integrate flight, navigation, weather and system information and highlight important deviations or warnings. Reconfigurable displays, maps and trend cues can reduce some mental calculation and support failure management. These benefits depend on correct data and mode awareness because display or software failures can affect several functions at once.",
-      "referenceTextZh": "玻璃驾驶舱可以整合飞行、导航、天气和系统信息，并突出重要偏差或警告。可重新配置的显示器、地图和趋势提示能够减少部分心算工作，并帮助机组管理故障。这些优势取决于数据正确和方式意识，因为显示器或软件故障可能同时影响多项功能。"
+      "referenceText": "A modern glass cockpit can improve situational awareness. Compared with traditional flight instruments, it gives pilots clearer information, supports better monitoring, and provides more time to make safe decisions.",
+      "referenceTextZh": "现代玻璃驾驶舱可以提高情景意识。与传统飞行仪表相比，它向飞行员提供更清晰的信息，帮助他们更好地监控，并留出更多时间作出安全决策。"
     },
     {
       "id": "opi-image-014-q02",
       "taskTitle": "图片题-014-02",
       "audioText": "How do multiple display screens help pilots manage a flight?",
       "audioTextZh": "多个显示屏如何帮助飞行员管理飞行？",
-      "referenceText": "Separate but coordinated screens let pilots keep primary flight data visible while viewing navigation, engine, system or checklist information. They support cross-checking, task sharing and display reversion after some failures. Too much information or poor page selection can create clutter, so crews follow a clear display-management strategy.",
-      "referenceTextZh": "相互独立但协调工作的显示屏，使飞行员能够在持续查看主要飞行数据的同时，调出导航、发动机、系统或检查单信息。它们有助于交叉核对、任务分工，并在部分故障后支持显示转换。信息过多或页面选择不当会造成杂乱，因此机组应遵循清晰的显示管理策略。"
+      "referenceText": "Multiple screens can present flight, navigation, engine, system, and weather information in an organized way. They help both pilots monitor the same situation, compare information, and notice abnormal conditions quickly. Separate displays also provide useful redundancy, although the crew must still cross-check them and understand any display failure.",
+      "referenceTextZh": "多个显示屏可以有序呈现飞行、导航、发动机、系统和天气信息。它们有助于两名飞行员监控同一情况、比对信息并迅速发现异常。独立显示屏还能提供一定冗余，但机组仍须交叉检查，并了解显示故障的影响。"
     }
   ]
 }

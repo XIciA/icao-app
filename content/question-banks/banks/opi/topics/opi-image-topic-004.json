@@ -16,16 +16,16 @@
       "taskTitle": "图片题-004-01",
       "audioText": "If you were the captain of one of these aircraft, how would you respond to the risk of a collision?",
       "audioTextZh": "如果你是图中其中一架航空器的机长，你会如何应对碰撞风险？",
-      "referenceText": "I would immediately maintain or establish a predictable flight path, follow any traffic-resolution guidance and comply with ATC instructions that do not conflict with an active collision-avoidance command. I would avoid an improvised turn based only on visual impression unless necessary to prevent impact. After separation was restored, I would report the event and review aircraft status and fuel before continuing.",
-      "referenceTextZh": "我会立即保持或建立可预期的飞行轨迹，遵循任何交通避碰或冲突解脱引导，并执行不与当前有效防撞指令冲突的 ATC 指令。除非为避免碰撞所必需，否则我不会仅凭目视判断临时自行转弯。恢复间隔后，我会报告事件，并在继续飞行前检查飞机状态和燃油。"
+      "referenceText": "I would recognize the risk as early as possible, maintain clear communication, and follow the standard operating procedures.",
+      "referenceTextZh": "我会尽早识别风险，保持清晰沟通，并遵循标准操作程序。"
     },
     {
       "id": "opi-image-004-q02",
       "taskTitle": "图片题-004-02",
       "audioText": "What factors can cause aircraft to come dangerously close to each other?",
       "audioTextZh": "哪些因素可能导致航空器彼此危险接近？",
-      "referenceText": "Aircraft can come too close because of misunderstood clearances, navigation error, altitude deviation, missed traffic, weak monitoring or loss of communication. Congested airspace, similar call signs, runway incursions and incorrect collision-avoidance responses can add risk. Equipment failure or delayed controller and pilot action may remove the remaining separation barrier.",
-      "referenceTextZh": "飞机过度接近可能源于误解许可、导航错误、高度偏差、未发现其他航空器、监控薄弱或通信中断。空域拥挤、相似呼号、跑道侵入以及不正确的避碰反应都会增加风险。设备故障，或管制员和飞行员行动迟缓，也可能消除最后一道间隔屏障。"
+      "referenceText": "Possible factors include loss of separation, wake turbulence, a runway incursion, or a misunderstanding of ATC instructions. Human factors, weather, aircraft condition, the airport environment, and communication problems may also contribute.",
+      "referenceTextZh": "可能的因素包括间隔丧失、尾流、跑道侵入，或对空中交通管制指令的误解。人的因素、天气、飞机状况、机场环境和通信问题也可能起到作用。"
     }
   ]
 }

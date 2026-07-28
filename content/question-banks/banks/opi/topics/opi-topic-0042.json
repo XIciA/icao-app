@@ -9,56 +9,56 @@
       "taskTitle": "缩略词-ATIS-1",
       "audioText": "What is the Automatic Terminal Information Service (ATIS)?",
       "audioTextZh": "什么是自动终端情报服务（ATIS）？",
-      "referenceText": "ATIS is a continuous or repeated broadcast of current, routine information for arriving and departing aircraft at a terminal. It contains non-control information and is identified by a code letter that changes when the message is updated. It may be delivered by recorded voice or by data link where that service is available.",
-      "referenceTextZh": "ATIS 是在终端区为进离场航空器连续或重复广播当前常规信息的服务。它包含非管制信息，并以代码字母标识；每次信息更新时，字母都会改变。服务可以通过录音语音提供，在具备条件时也可以通过数据链提供。"
+      "referenceText": "ATIS stands for Automatic Terminal Information Service. It is a service that provides essential operational information for aircraft at an aerodrome.",
+      "referenceTextZh": "ATIS 是自动终端情报服务的缩写。它为在机场运行的航空器提供重要运行信息。"
     },
     {
       "id": "opi-core-525-part-2",
       "taskTitle": "缩略词-ATIS-2",
       "audioText": "What is the function of the Automatic Terminal Information Service (ATIS)?",
       "audioTextZh": "自动终端情报服务（ATIS）有什么作用？",
-      "referenceText": "ATIS gives pilots essential airport, weather and operational information before they call the controller. It reduces repeated radio transmissions, lowers frequency congestion and lets controllers focus on clearances and traffic. The code letter also tells ATC which version of the information the crew has received.",
-      "referenceTextZh": "ATIS 让飞行员在首次呼叫管制员前获得重要的机场、天气和运行信息。它减少重复的无线电发射和频率拥堵，使管制员能够专注于许可和交通。代码字母还会告诉空管机组已经收到哪个版本的信息。"
+      "referenceText": "ATIS gives pilots essential operational information about the departure or arrival aerodrome. This helps them prepare for takeoff or landing.",
+      "referenceTextZh": "ATIS 向飞行员提供离场或到达机场的重要运行信息，帮助他们为起飞或着陆做好准备。"
     },
     {
       "id": "opi-core-525-part-3",
       "taskTitle": "缩略词-ATIS-3",
       "audioText": "What information is included in an Automatic Terminal Information Service (ATIS) broadcast?",
       "audioTextZh": "自动终端情报服务（ATIS）广播包含哪些信息？",
-      "referenceText": "An ATIS broadcast normally includes current weather, altimeter setting, the runway and approach in use, and other important airport information. It may also include significant runway conditions, relevant operational notices, hazards and special instructions. The message ends with an identifying code letter so the pilot can report receiving the correct version.",
-      "referenceTextZh": "ATIS 广播通常包括当前天气、高度表设定、使用中的跑道和进近方式，以及其他重要机场信息。它还可能包括重要跑道状况、相关运行通告、危险和特别指令。报文以识别代码字母结尾，飞行员可据此报告自己收到的是正确版本。"
+      "referenceText": "An ATIS broadcast includes information such as visibility, wind, temperature, and the active runway.",
+      "referenceTextZh": "ATIS 广播包括能见度、风、温度和使用跑道等信息。"
     },
     {
       "id": "opi-core-525-part-4",
       "taskTitle": "缩略词-ATIS-4",
       "audioText": "Where can pilots obtain information from the Automatic Terminal Information Service (ATIS)?",
       "audioTextZh": "飞行员可以从哪里获取自动终端情报服务（ATIS）信息？",
-      "referenceText": "Pilots can normally receive voice ATIS on the published VHF frequency or, at some airports, through the voice channel of a navigation aid. Where D-ATIS is available, the same type of information can be requested through an approved data-link system. The current method and frequency are shown in the applicable aeronautical charts or airport information.",
-      "referenceTextZh": "飞行员通常可以在公布的 VHF 频率上收听语音 ATIS；在部分机场，也可以通过导航台的语音频道接收。提供 D-ATIS 时，可通过经批准的数据链系统请求同类信息。当前接收方式和频率会标在适用航图或机场资料中。"
+      "referenceText": "Pilots can obtain ATIS information by listening on the designated ATIS frequency.",
+      "referenceTextZh": "飞行员可以通过守听指定的 ATIS 频率获取信息。"
     },
     {
       "id": "opi-core-528",
       "taskTitle": "缩略词-ATIS-5",
       "audioText": "When should pilots listen to the Automatic Terminal Information Service (ATIS) broadcast?",
       "audioTextZh": "飞行员应在什么时候收听自动终端情报服务（ATIS）广播？",
-      "referenceText": "Pilots should obtain ATIS early enough to prepare for departure or arrival before making the relevant initial call to ATC. They should listen again or obtain the updated message when the code changes or when conditions may have changed. If the broadcast is unavailable or unclear, they should request the necessary information from ATC.",
-      "referenceTextZh": "飞行员应足够早地获取 ATIS，以便在相关的首次空管呼叫前做好离场或到达准备。代码字母变化或条件可能已经改变时，应重新收听或获取更新报文。如果广播不可用或不清楚，应向空管请求所需信息。"
+      "referenceText": "Pilots usually listen to ATIS before departure and again before the approach. This gives them the latest airport and weather information for each phase of flight.",
+      "referenceTextZh": "飞行员通常在离场前和进近前分别收听 ATIS，以获得每个飞行阶段最新的机场和天气信息。"
     },
     {
       "id": "opi-core-526",
       "taskTitle": "缩略词-ATIS-6",
       "audioText": "What Automatic Terminal Information Service (ATIS) frequency do you normally use at your home airport?",
       "audioTextZh": "你通常在基地机场使用哪个自动终端情报服务（ATIS）频率？",
-      "referenceText": "A suitable example would be: I normally use 128.65 MHz for ATIS at my home airport. Before each flight, I confirm that frequency on the current chart rather than relying only on memory. Learners should replace 128.65 MHz with the frequency actually published for their home airport.",
-      "referenceTextZh": "一个合适的示范答案是：我通常使用 128.65 MHz 收听本场 ATIS。每次飞行前，我都会在现行航图上确认这个频率，而不只依靠记忆。学习者应将 128.65 MHz 替换为自己本场实际公布的频率。"
+      "referenceText": "My home airport is used only for flight training and does not have ATIS, so I do not use an ATIS frequency there.",
+      "referenceTextZh": "我的本场机场只用于飞行训练，没有 ATIS，因此我在那里不使用 ATIS 频率。"
     },
     {
       "id": "opi-core-527",
       "taskTitle": "缩略词-ATIS-7",
       "audioText": "Why is it necessary for pilots to listen to the Automatic Terminal Information Service (ATIS) broadcast?",
       "audioTextZh": "飞行员为什么必须收听自动终端情报服务（ATIS）广播？",
-      "referenceText": "Listening to ATIS gives the crew time to plan for the runway, approach, weather and current airport conditions. It improves situational awareness and reduces the chance of misunderstanding information during a busy radio exchange. Reporting the correct ATIS code also prevents ATC from repeating routine details unnecessarily.",
-      "referenceTextZh": "收听 ATIS 可以让机组提前规划跑道、进近、天气和当前机场条件。它能提高态势感知，并减少繁忙无线电通话中误解信息的可能。报告正确的 ATIS 代码还可避免空管无谓地重复常规细节。"
+      "referenceText": "Pilots need to listen to ATIS because it provides current operational and weather information for safe departure or arrival. It can include the active runway, approach type, runway condition, wind, visibility, weather, temperature, dew point, and altimeter setting. This information helps the crew prepare before takeoff or landing.",
+      "referenceTextZh": "飞行员需要收听 ATIS，因为它提供安全离场或到达所需的当前运行和天气信息。内容可以包括使用跑道、进近类型、跑道状况、风、能见度、天气、温度、露点和高度表拨正值。这些信息帮助机组在起飞或着陆前做好准备。"
     }
   ]
 }

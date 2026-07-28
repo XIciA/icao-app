@@ -9,16 +9,16 @@
       "taskTitle": "运行-飞行操纵检查-1",
       "audioText": "When do pilots normally perform a flight control check?",
       "audioTextZh": "飞行员通常在什么时候进行飞行操纵检查？",
-      "referenceText": "Pilots normally perform the required flight-control check during ground preparation or taxi before takeoff, at the point specified by the checklist and SOP. It is done only when the area is clear and control movement will not create a hazard. A further check may be required after maintenance or an abnormal indication, but the approved procedure determines its scope.",
-      "referenceTextZh": "飞行员通常在起飞前的地面准备或滑行期间，于检查单和 SOP 规定的节点完成飞行操纵检查。只有在周围区域安全、操纵面运动不会造成危险时才实施。维修后或出现异常指示后可能需要进一步检查，但检查范围由批准程序规定。"
+      "referenceText": "Pilots normally perform a flight control check during the pre-takeoff checks, after the controls are unlocked and before takeoff. They move the controls through the required range and confirm that they move freely, in the correct direction, and without unusual resistance. The exact timing follows the aircraft checklist.",
+      "referenceTextZh": "飞行员通常在起飞前检查阶段进行飞行操纵检查，即在操纵装置解锁后、起飞前完成。他们会按要求的范围活动操纵装置，确认其运动顺畅、方向正确且没有异常阻力。具体时机应遵循飞机检查单。"
     },
     {
       "id": "opi-extra-313",
       "taskTitle": "运行-飞行操纵检查-2",
       "audioText": "How do the pilot flying and pilot monitoring normally share duties during a flight control check?",
       "audioTextZh": "进行飞行操纵检查时，操纵飞行员与监控飞行员通常如何分工？",
-      "referenceText": "A suitable arrangement would have one pilot move the controls through the approved sequence while the other confirms the indications, direction and required system response. Both pilots monitor the surrounding area, and the pilot performing the check announces each movement or result as required. Any restriction or disagreement stops the check and is handled through the applicable procedure before departure.",
-      "referenceTextZh": "一个合适的分工是：一名飞行员按照批准顺序移动操纵装置，另一名飞行员确认指示、方向和规定的系统响应。两名飞行员都要监控周围区域，实施检查的飞行员按要求宣布每项动作或结果。任何卡阻或不一致都会使检查停止，并在离场前按照适用程序处理。"
+      "referenceText": "In a typical multi-crew check, the pilot flying moves each control as called for and watches for free, unobstructed movement. The pilot monitoring cross-checks the corresponding control-surface or flight-control indication and confirms the result. The exact division follows the aircraft checklist and operator SOP, and both pilots stop the check if movement, direction, or indication is abnormal.",
+      "referenceTextZh": "在典型的多机组检查中，操纵飞行员按口令活动每个操纵装置，并观察其是否能够自由、无阻碍地移动。监控飞行员交叉核对相应的操纵面或飞行操纵指示，并确认结果。具体分工应遵循飞机检查单和运营人的标准操作程序；如果动作、方向或指示异常，两名飞行员都应停止检查。"
     }
   ]
 }

@@ -9,56 +9,56 @@
       "taskTitle": "运行-无线电检查-1",
       "audioText": "When might a flight crew need to request a radio check from ATC?",
       "audioTextZh": "飞行机组在什么情况下可能需要请求空中交通管制部门进行无线电检查？",
-      "referenceText": "A crew may request a radio check when normal contact cannot be established after the frequency has been selected and verified, after maintenance, or when transmissions are weak, distorted or intermittent. It can help distinguish an aircraft radio problem from an incorrect frequency or local coverage issue. The check should not occupy a busy frequency unnecessarily and should use the applicable standard phraseology.",
-      "referenceTextZh": "选择并核实频率后仍无法建立正常联络、完成维修后，或通话信号微弱、失真或断续时，机组可以请求无线电检查。它有助于区分飞机无线电故障、频率错误和当地覆盖问题。无线电检查不应无故占用繁忙频率，并应使用适用的标准通话用语。"
+      "referenceText": "A crew may request a radio check during its initial contact with ATC, including before pushback or engine start. A check may also be needed when a transmission is unclear or its readability is below the required standard.",
+      "referenceTextZh": "机组可以在首次联系空中交通管制时申请无线电检查，包括推出或起动发动机之前。通话内容听不清或可懂度低于所需标准时，也可能需要检查。"
     },
     {
       "id": "opi-core-852",
       "taskTitle": "运行-无线电检查-2",
       "audioText": "How should a pilot conduct a radio check with ATC?",
       "audioTextZh": "飞行员应如何与空中交通管制部门进行无线电检查？",
-      "referenceText": "The pilot should call the station using its correct name, identify the aircraft and request a radio check on the selected frequency. The response normally reports readability on the recognized scale, and the pilot acknowledges briefly. If readability is poor, the crew checks frequency, volume, audio selection and the alternative radio before trying another approved means of communication.",
-      "referenceTextZh": "飞行员应使用正确的单位名称呼叫对方，说明飞机身份，并在所选频率请求无线电检查。对方通常按公认等级报告可读度，飞行员作简短确认。如果可读度较差，机组应先检查频率、音量、音频选择和备用电台，再尝试其他经批准的通信方式。"
+      "referenceText": "The pilot should first check that the headset and microphone are working and select the correct frequency. The pilot should then call the ATC station, identify the aircraft, request a radio check, and ask, \"How do you read me?\" Both sides should confirm that the transmission is clear.",
+      "referenceTextZh": "飞行员应先检查耳机和麦克风是否工作正常，并选择正确频率。随后呼叫空中交通管制电台、表明飞机身份、申请无线电检查，并询问“信号怎样？”双方都应确认通信内容收听清晰。"
     },
     {
       "id": "opi-core-854",
       "taskTitle": "运行-无线电检查-3",
       "audioText": "Have you ever experienced a radio failure in flight?",
       "audioTextZh": "你是否曾在飞行中遇到无线电失效？",
-      "referenceText": "A suitable example would be a flight in which the primary VHF radio stopped transmitting during cruise. The other radio remained available, so the crew confirmed the frequency, informed ATC and followed the abnormal checklist while avoiding unnecessary changes. Maintenance was notified after landing, and the defect was entered in the technical log.",
-      "referenceTextZh": "一个合适的示范案例是：巡航期间，主 VHF 电台停止发射。另一部电台仍可使用，因此机组确认频率、通知 ATC 并执行非正常检查单，同时避免不必要的改动。着陆后通知维修部门，并把故障记录在技术记录本中。"
+      "referenceText": "No, I have never experienced a radio failure in flight.",
+      "referenceTextZh": "没有，我在飞行中从未遇到过无线电失效。"
     },
     {
       "id": "opi-core-855",
       "taskTitle": "运行-无线电检查-4",
       "audioText": "What procedure does your company require after a radio failure in flight?",
       "audioTextZh": "飞行中无线电失效后，你所在公司要求执行什么程序？",
-      "referenceText": "A suitable company example would require the crew first to maintain a safe flight path, check the audio and radio selections, and try the other radio, relevant frequencies and approved alternative means. Once two-way communication failure is confirmed, the crew would follow the applicable lost-communication procedure, including the relevant VMC or IFR route, altitude, clearance-limit and transponder requirements, rather than treating the last clearance as a universal rule. After landing, the defect and event would be reported for maintenance and operational review.",
-      "referenceTextZh": "一个合适的公司示范程序是：机组首先保持安全飞行轨迹，检查音频和无线电选择，并尝试另一部电台、相关频率和经批准的替代方式。确认双向通信失效后，机组执行适用的通信失效程序，包括相关的 VMC 或 IFR 航路、高度、许可界限和应答机要求，而不是把最后一项许可当作普遍规则。着陆后，报告故障和事件，供维修与运行部门审查。"
+      "referenceText": "I am not employed by an airline, so I follow my flight school's radio-failure procedure. I check the radio, headset, audio panel, and frequency, try another frequency or radio, and transmit blind if necessary. If communication is lost, I select code 7600 when applicable and follow the published VFR or IFR lost-communication procedure.",
+      "referenceTextZh": "我尚未受雇于航空公司，因此遵循航校的无线电失效程序。我会检查无线电、耳机、音频面板和频率，尝试另一频率或无线电，并在必要时盲发。如果通信中断，我会在适用时选择代码 7600，并遵循公布的 VFR 或 IFR 失去通信程序。"
     },
     {
       "id": "opi-core-856",
       "taskTitle": "运行-无线电检查-5",
       "audioText": "How is responsibility for radiotelephony (RTF) communication with ATC normally assigned within a flight crew?",
       "audioTextZh": "飞行机组通常如何分配与空中交通管制部门进行无线电话通信（RTF）的职责？",
-      "referenceText": "A suitable crew arrangement would assign routine ATC communication to the pilot monitoring so the pilot flying can concentrate on flight path control. The pilot flying still listens, confirms clearances and may take over communication when workload or the situation requires it. The exact transfer of responsibility is briefed and follows the operator's SOP.",
-      "referenceTextZh": "一个合适的机组分工是：由监控飞行员负责日常 ATC 通信，使操纵飞行员能够专注于控制飞行轨迹。操纵飞行员仍应守听并确认许可，而且在工作负荷或情况需要时可以接管通信。具体职责移交应在简令中说明，并遵守运营人的 SOP。"
+      "referenceText": "In a multi-crew cockpit, the pilot monitoring normally handles radio communication while the pilot flying controls and navigates the aircraft. The duties are confirmed during the briefing and may be reassigned if necessary. During my dual flight training, my instructor and I agree before flight who will make each radio call.",
+      "referenceTextZh": "在多机组驾驶舱内，监控飞行员通常负责无线电通信，操纵飞行员负责操纵和导航飞机。职责在简令中确认，并可在必要时重新分配。双人飞行训练时，我和教员会在飞行前约定由谁进行每次无线电通话。"
     },
     {
       "id": "opi-core-857",
       "taskTitle": "运行-无线电检查-6",
       "audioText": "What does the radiotelephony phrase \"I read you five\" mean?",
       "audioTextZh": "无线电话用语“I read you five”是什么意思？",
-      "referenceText": "'I read you five' means the transmission is perfectly readable on the standard one-to-five readability scale. It describes readability, not signal strength or the accuracy of the message. A lower number indicates increasing difficulty, with one meaning unreadable.",
-      "referenceTextZh": "“I read you five”表示按照一至五级的标准可读度等级，通话完全清晰可辨。它描述的是可读度，而不是信号强度或信息内容是否准确。数字越小表示辨认越困难，其中一级表示完全无法辨认。"
+      "referenceText": "\"I read you five\" means that the transmission is perfectly readable. It is the highest readability level and indicates that the signal is loud and clear.",
+      "referenceTextZh": "“信号五分”表示收到的通话内容完全清晰可懂。这是最高可懂度等级，表示信号响亮清晰。"
     },
     {
       "id": "opi-core-858",
       "taskTitle": "运行-无线电检查-7",
       "audioText": "What should a pilot do if radio communication becomes intermittent or unreliable?",
       "audioTextZh": "无线电通信变得断续或不可靠时，飞行员应怎么做？",
-      "referenceText": "The crew should verify the selected frequency, audio panel, volume, squelch and microphone, then try the other radio and relevant frequencies. It should keep the last understood clearance in mind, use data link, relay through another aircraft or other approved means when available, and apply the lost-communication procedure if contact is lost. The pilots must continue flying and monitoring while avoiding repeated troubleshooting that distracts from the flight path.",
-      "referenceTextZh": "机组应核实所选频率、音频控制面板、音量、静噪和麦克风，然后尝试另一部电台和相关频率。机组应记住最后一项已听懂的许可，在可用时采用数据链、通过其他飞机中继或使用其他批准方式；如果失去联络，则执行通信失效程序。飞行员必须继续操纵和监控飞机，避免反复排故分散对飞行轨迹的注意力。"
+      "referenceText": "The pilot should check the radio equipment and antenna, try an alternate frequency, and adjust the radio settings if necessary. While some communication remains, the pilot should use standard phraseology and keep transmissions brief. If communication fails completely, the pilot should follow the applicable radio-failure procedure and select code 7600 when required.",
+      "referenceTextZh": "飞行员应检查无线电设备和天线、尝试备用频率，并在必要时调整无线电设置。仍可通信时，应使用标准通话用语并保持通话简短。如果通信完全中断，应遵循适用的无线电失效程序，并在规定时选择代码 7600。"
     }
   ]
 }

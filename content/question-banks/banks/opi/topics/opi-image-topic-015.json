@@ -16,24 +16,24 @@
       "taskTitle": "图片题-015-01",
       "audioText": "What types of aircraft damage can result from a poorly controlled landing in a strong crosswind?",
       "audioTextZh": "在强侧风中着陆控制不当可能对航空器造成哪些损伤？",
-      "referenceText": "A poorly controlled crosswind landing can side-load or damage tires, wheels and landing gear and may lead to a runway excursion. A wingtip, engine nacelle, tail or control surface can strike the runway if bank or pitch becomes excessive. A hard or bounced touchdown can also damage the airframe and require a maintenance inspection.",
-      "referenceTextZh": "侧风着陆控制不当会使轮胎、机轮和起落架承受侧向载荷或受损，并可能导致冲出跑道。如果坡度或俯仰过大，翼尖、发动机短舱、机尾或操纵面可能擦碰跑道。重着陆或弹跳着陆也可能损坏机体，需要进行维修检查。"
+      "referenceText": "A poorly controlled crosswind landing can place excessive side loads on the landing gear and damage tyres, wheels, or gear components. A hard or sideways touchdown may also damage the wing, engine nacelle, tail, or fuselage if any part strikes the runway. Severe loads can cause structural damage that requires a detailed inspection.",
+      "referenceTextZh": "侧风着陆操纵不当会使起落架承受过大的侧向载荷，并损坏轮胎、机轮或起落架部件。重着陆或带侧滑接地还可能使机翼、发动机短舱、机尾或机身撞击跑道而受损。严重载荷可能造成需要详细检查的结构损伤。"
     },
     {
       "id": "opi-image-015-q02",
       "taskTitle": "图片题-015-02",
       "audioText": "As captain, how would you prepare for an approach when strong crosswinds are reported?",
       "audioTextZh": "作为机长，接到强侧风报告后，你会如何为进近做准备？",
-      "referenceText": "I would verify the latest wind, gusts, runway condition and crosswind limits and calculate performance for the expected landing mass. The briefing would cover the approved crosswind technique, approach stability, runway and alternate options, go-around criteria and any system limitation. I would choose the most suitable runway and retain enough fuel to wait or divert if conditions exceeded the safe margin.",
-      "referenceTextZh": "我会核实最新风向风速、阵风、跑道状况和侧风限制，并按预计着陆重量计算性能。简令会包括批准的侧风技术、进近稳定性、跑道与备降选择、复飞标准以及任何相关系统限制。我会选择最合适的跑道，并保留足够燃油，以便在条件超过安全裕度时等待或改航。"
+      "referenceText": "Before the approach, I would brief the crosswind threat, check the relevant aircraft performance, coordinate with the crew and ATC, and follow the checklist. If safety were not assured, I would delay the approach or divert as appropriate.",
+      "referenceTextZh": "进近前，我会对侧风威胁进行简令，检查相关飞机性能，与机组及空中交通管制协调，并执行检查单。如果无法确保安全，我会推迟进近或视情况改航。"
     },
     {
       "id": "opi-image-015-q03",
       "taskTitle": "图片题-015-03",
       "audioText": "As captain, how would you manage an approach if you encountered stronger-than-expected crosswinds?",
       "audioTextZh": "作为机长，如果进近中遇到比预期更强的侧风，你会如何处置？",
-      "referenceText": "I would call the changing wind, reassess the stable approach and avoid trying to force the aircraft onto the runway. If the crosswind, control margin or touchdown alignment was no longer acceptable, I would go around. The crew would then consider another runway, wait for improvement or divert, using current wind and performance information.",
-      "referenceTextZh": "我会报出风的变化、重新评估进近是否稳定，并避免强行把飞机落到跑道上。如果侧风、操纵裕度或接地对正不再可以接受，我会复飞。随后，机组依据最新风和性能信息，考虑改用其他跑道、等待条件改善或改航。"
+      "referenceText": "I would check the relevant aircraft performance, coordinate with the crew and ATC, and follow the checklist. If safety were not assured in the stronger crosswind, I would go around or divert as appropriate.",
+      "referenceTextZh": "我会检查相关飞机性能，与机组及空中交通管制协调，并执行检查单。如果更强的侧风下无法确保安全，我会复飞或视情况改航。"
     }
   ]
 }

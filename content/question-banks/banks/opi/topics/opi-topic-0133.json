@@ -9,48 +9,48 @@
       "taskTitle": "特情-飞行中失火-1",
       "audioText": "What preparations should a flight crew make before landing with an engine fire?",
       "audioTextZh": "发动机着火情况下着陆前，机组应做哪些准备？",
-      "referenceText": "The crew should use the engine-fire checklist, assess whether the fire is extinguished and choose the nearest suitable airport for an urgent landing. It should brief the cabin, declare the emergency, obtain performance and runway information, and coordinate firefighting support. Approach configuration, fuel handling and possible evacuation must follow the aircraft and operator procedures.",
-      "referenceTextZh": "机组应执行发动机火警检查单，评估火是否已经熄灭，并选择最近的合适机场紧急着陆。应向客舱进行简令，宣布紧急情况，获取性能和跑道信息，并协调消防保障。进近构型、燃油处置和可能的撤离必须遵循飞机和运营人程序。"
+      "referenceText": "The crew should inform ATC, request an emergency or priority landing, and ask for fire and medical services to be ready. They should cut off fuel to the affected engine, use the fire-suppression system, and shut down the engine if necessary. They should also prepare for a possible evacuation after landing.",
+      "referenceTextZh": "机组应通知空中交通管制，请求紧急或优先着陆，并要求消防和医疗服务做好准备。他们应切断受影响发动机的燃油，使用灭火系统，并在必要时关停发动机。机组还应为着陆后可能进行的撤离做好准备。"
     },
     {
       "id": "opi-extra-282",
       "taskTitle": "特情-飞行中失火-2",
       "audioText": "What are the common causes of an engine-compartment fire?",
       "audioTextZh": "发动机舱起火的常见原因有哪些？",
-      "referenceText": "An engine-compartment fire can result from a fuel, oil or hydraulic leak reaching a hot surface. It may also be caused by electrical faults, overheated components, mechanical failure, damaged lines, foreign object damage or improper maintenance. Fire detection and isolation systems reduce the risk, but the exact source often requires inspection after landing.",
-      "referenceTextZh": "发动机舱火灾可能由燃油、滑油或液压油泄漏并接触高温表面引起。电气故障、部件过热、机械失效、管路损坏、外来物损伤或维修不当也可能引发火灾。火警探测和隔离系统能够降低风险，但确切火源通常要在着陆后通过检查确定。"
+      "referenceText": "Common causes include fuel or oil leaks in the engine compartment, mechanical failures, and maintenance errors. Bird, debris, or ice ingestion can also contribute to an engine fire.",
+      "referenceTextZh": "常见原因包括发动机舱内的燃油或滑油泄漏、机械故障和维修差错。吸入鸟类、碎片或冰也可能导致发动机失火。"
     },
     {
       "id": "opi-extra-283",
       "taskTitle": "特情-飞行中失火-3",
       "audioText": "What firefighting equipment is available on board an aircraft?",
       "audioTextZh": "飞机上配备了哪些灭火设备？",
-      "referenceText": "Aircraft may have fixed fire detection and extinguishing systems for engines, the auxiliary power unit, cargo compartments or lavatories. Portable extinguishers, protective breathing equipment, smoke goggles, fire gloves and crash axes may also be carried for crew use. The fitted equipment and approved extinguishing agent depend on the aircraft, compartment and regulation.",
-      "referenceTextZh": "飞机可能为发动机、辅助动力装置、货舱或卫生间配备固定式火警探测和灭火系统。机上也可能配有供机组使用的便携式灭火器、防护式呼吸设备、防烟眼镜、消防手套和应急斧。实际设备和经批准的灭火剂取决于飞机、舱室和法规。"
+      "referenceText": "Aircraft may have built-in fire-suppression bottles for engine fires and portable fire extinguishers for fires in the cabin.",
+      "referenceTextZh": "飞机可以配备处理发动机失火的内置灭火瓶，以及用于客舱火灾的便携式灭火器。"
     },
     {
       "id": "opi-extra-284",
       "taskTitle": "特情-飞行中失火-4",
       "audioText": "What action should a flight crew take if cabin smoke appears immediately after takeoff on a long-haul flight at maximum takeoff weight?",
       "audioTextZh": "远程航班以最大起飞重量起飞后立即出现客舱烟雾时，机组应采取什么措施？",
-      "referenceText": "Maximum takeoff weight does not justify delaying action for cabin smoke. The crew should protect breathing, apply the smoke or fire checklist, coordinate immediate cabin firefighting and plan the nearest suitable landing while advising ATC. Landing performance, overweight-landing considerations and any fuel jettison must be evaluated through the approved procedure, but an uncontrolled fire normally makes time the priority.",
-      "referenceTextZh": "最大起飞重量不能成为延迟处置客舱烟雾的理由。机组应采取呼吸防护，执行烟雾或火灾检查单，协调客舱立即灭火，并在通知空管的同时计划在最近的合适机场着陆。着陆性能、超重着陆因素和任何放油都必须按经批准程序评估，但无法控制的火灾通常意味着时间最为关键。"
+      "referenceText": "Cabin smoke immediately after takeoff requires prompt action even if the aircraft is heavy. The crew should use oxygen as required, complete the smoke or fire checklist, declare an emergency, and return or land at the nearest suitable airport. An overweight landing may be safer than delaying to burn fuel, so the crew should assess landing performance, request emergency services, and prepare the cabin for landing.",
+      "referenceTextZh": "起飞后立即出现客舱烟雾时，即使飞机较重也必须迅速处置。机组应按需使用氧气，完成烟雾或火警检查单，宣布紧急状态，并返航或降落在最近的合适机场。超重着陆可能比通过继续飞行消耗燃油更安全，因此机组应评估着陆性能，请求应急服务，并让客舱做好着陆准备。"
     },
     {
       "id": "opi-extra-285",
       "taskTitle": "特情-飞行中失火-5",
       "audioText": "What ground services should a flight crew request before landing with a fire on board?",
       "audioTextZh": "机上发生火灾时，机组在着陆前应请求哪些地面服务？",
-      "referenceText": "The crew should request aircraft rescue and firefighting services and state the fire location, dangerous goods, fuel, persons on board and any special assistance needed. Medical services, a remote parking position, towing and evacuation support may also be required. ATC and airport operations can coordinate the response, but the crew should keep the request focused on the actual hazard.",
-      "referenceTextZh": "机组应请求航空器救援和消防服务，并说明火灾位置、危险品、燃油、机上人数和所需的任何特别协助。还可能需要医疗服务、远机位、牵引和撤离支持。空管和机场运行部门可以协调响应，但机组的请求应始终围绕实际危险。"
+      "referenceText": "The crew should request firefighting and emergency medical services. Aircraft recovery or salvage services may also be needed, depending on the situation.",
+      "referenceTextZh": "机组应请求消防和紧急医疗服务。视具体情况，可能还需要飞机拖救或打捞服务。"
     },
     {
       "id": "opi-extra-286",
       "taskTitle": "特情-飞行中失火-6",
       "audioText": "How should a flight crew respond to an engine fire in flight?",
       "audioTextZh": "飞行中发动机起火时，机组应如何处置？",
-      "referenceText": "The pilots should maintain control, identify the affected engine and perform the approved engine-fire memory actions and checklist. They should monitor whether the warning clears, declare the emergency and plan an urgent landing at a suitable airport. Shutdown, extinguisher use, fuel handling and restart decisions must follow the aircraft-specific procedure.",
-      "referenceTextZh": "飞行员应保持控制，识别受影响的发动机，并完成经批准的发动机火警记忆项目和检查单。应监控警告是否消失，宣布紧急情况，并计划在合适机场紧急着陆。发动机关车、灭火瓶使用、燃油处置和重新启动决定必须遵循机型特定程序。"
+      "referenceText": "The crew should maintain control of the aircraft and follow the applicable engine-fire checklist. The affected engine should be shut down and isolated, and the fire-extinguishing system should be used as directed by the checklist. The crew should declare the emergency, coordinate with ATC, and prepare to land at a suitable airport and evacuate if necessary.",
+      "referenceTextZh": "机组应保持飞机控制，并执行适用的发动机失火检查单。应关停并隔离受影响的发动机，并按照检查单指示使用灭火系统。机组应宣布紧急状态，与空中交通管制协调，并准备在合适的机场着陆，必要时实施撤离。"
     }
   ]
 }

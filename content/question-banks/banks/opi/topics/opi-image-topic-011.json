@@ -15,31 +15,33 @@
       "id": "opi-image-011-q01",
       "taskTitle": "图片题-011-01",
       "audioText": "What can you see in this picture of a tail-mounted engine fire?",
-      "audioTextZh": "你能从这张尾置发动机起火的图片中看到什么？"
+      "audioTextZh": "你能从这张尾置发动机起火的图片中看到什么？",
+      "referenceText": "The picture shows flames and dark smoke coming from the rear engine of a three-engine aircraft. The fire appears to be concentrated around the tail-mounted engine. The exact cause of the fire is not visible.",
+      "referenceTextZh": "图片中，一架三发飞机的后部发动机冒出火焰和浓烟。火势似乎集中在尾置发动机周围。图片无法显示起火的确切原因。"
     },
     {
       "id": "opi-image-011-q02",
       "taskTitle": "图片题-011-02",
       "audioText": "What risks can a fire in a tail-mounted engine pose to an aircraft and its occupants?",
       "audioTextZh": "尾置发动机起火会给航空器及其乘员带来哪些风险？",
-      "referenceText": "A tail-mounted engine fire can damage the engine, pylon, rear fuselage, tail controls and nearby hydraulic, electrical or fuel systems. Smoke or heat may enter the cabin, and falling debris can threaten the aircraft and people on the ground. Loss of thrust and secondary system damage can make control, pressurization and evacuation more difficult.",
-      "referenceTextZh": "尾部安装的发动机起火可能损坏发动机、吊架、后机身、尾部操纵系统，以及附近的液压、电气或燃油系统。烟雾或高温可能进入客舱，坠落碎片还会威胁飞机和地面人员。推力丧失和次生系统损坏会使飞机控制、增压和撤离更加困难。"
+      "referenceText": "The main risks are smoke, fire spreading, system damage, passenger panic, and a possible evacuation.",
+      "referenceTextZh": "主要风险包括烟雾、火势蔓延、系统损坏、旅客恐慌，以及可能需要撤离。"
     },
     {
       "id": "opi-image-011-q03",
       "taskTitle": "图片题-011-03",
       "audioText": "As the pilot in command, how would you respond to the tail-mounted engine fire shown in this picture?",
       "audioTextZh": "作为机长，你会如何处置图中所示的尾置发动机起火？",
-      "referenceText": "I would control the aircraft, identify the warning and execute the aircraft's engine-fire procedure, including shutdown and extinguishing actions exactly as directed. I would declare an emergency, assess secondary damage and plan to land as soon as possible at the nearest airport that can be used safely. The cabin would be informed, emergency services requested and an evacuation considered after stopping if fire indications or damage required it.",
-      "referenceTextZh": "我会控制飞机、识别警告，并严格按照本机型发动机火警程序执行关车和灭火操作。我会宣布紧急情况、评估次生损坏，并计划尽快在能够安全使用的最近机场着陆。机组会通知客舱、请求应急服务；停止后如火警指示或损坏情况需要，还会考虑撤离。"
+      "referenceText": "For the tail-mounted engine fire, I would check the relevant aircraft systems and performance, coordinate with the crew and ATC, and follow the checklist. If safety were not assured, I would divert as appropriate.",
+      "referenceTextZh": "对于尾置发动机起火，我会检查相关飞机系统和性能，与机组及空中交通管制协调，并执行检查单。如果无法确保安全，我会视情况改航。"
     },
     {
       "id": "opi-image-011-q04",
       "taskTitle": "图片题-011-04",
       "audioText": "What measures can help reduce the risk of an in-flight engine fire?",
       "audioTextZh": "哪些措施可以降低发动机在飞行中起火的风险？",
-      "referenceText": "Risk is reduced through correct design, inspection and maintenance of fuel, oil, ignition, bleed-air and fire-detection systems. Crews and ground staff should respond to leaks, abnormal starts, damage and maintenance warnings before flight and use approved start and shutdown procedures. Fire detection, containment, extinguishing systems and recurrent training limit consequences when prevention fails.",
-      "referenceTextZh": "正确设计并检查维护燃油、滑油、点火、引气和火警探测系统，可以降低风险。机组和地面人员应在飞行前处理泄漏、启动异常、损坏和维修警告，并采用批准的启动和关车程序。如果预防失效，火警探测、隔离与灭火系统以及定期复训能够限制后果。"
+      "referenceText": "Regular maintenance should detect fuel, oil, and hydraulic leaks and any damage to engine wiring or hot sections. Crews should complete careful preflight inspections, monitor engine indications, and respond promptly to abnormal temperatures, vibration, or warning messages. Good FOD control and correct engine-start procedures also reduce the risk.",
+      "referenceTextZh": "定期维修应发现燃油、滑油和液压油泄漏，以及发动机线路或高温部件的损伤。机组应认真完成飞行前检查，监控发动机指示，并及时处置温度异常、振动或警告信息。良好的外来物管理和正确的发动机起动程序也能降低风险。"
     }
   ]
 }

@@ -16,16 +16,16 @@
       "taskTitle": "图片题-013-01",
       "audioText": "What is foreign object debris (FOD), and why is it hazardous?",
       "audioTextZh": "什么是外来物（FOD）？它为什么危险？",
-      "referenceText": "Foreign object debris is any loose object in an airport operating area that can damage an aircraft or injure people. Examples include metal pieces, stones, tools, baggage parts and pavement fragments. An engine can ingest the object, while tires may throw it into the airframe or another aircraft.",
-      "referenceTextZh": "外来物碎片是机场运行区域内任何可能损坏飞机或伤人的松散物体，例如金属片、石块、工具、行李部件和道面碎片。发动机可能吸入这些物体，轮胎也可能将其抛向机体或其他飞机。"
+      "referenceText": "FOD means foreign object debris or foreign object damage. It is hazardous because it can damage tyres, engines, and aircraft structures. Ramp inspections and runway cleaning are therefore important.",
+      "referenceTextZh": "FOD 指外来物碎片或外来物损伤。它会危及安全，因为可能损坏轮胎、发动机和飞机结构。因此，机坪检查和跑道清扫十分重要。"
     },
     {
       "id": "opi-image-013-q02",
       "taskTitle": "图片题-013-02",
       "audioText": "What measures can reduce the risk of foreign object debris being ingested by an aircraft engine?",
       "audioTextZh": "哪些措施可以降低航空器发动机吸入外来物的风险？",
-      "referenceText": "Airports and operators should inspect and clean movement areas, control tools and materials, maintain pavement and containers, and report debris immediately. Pilots and ground staff should avoid taxiing through visible debris, respect safe engine-running areas and perform the required intake and apron checks. Good housekeeping and investigation of recurring sources prevent the hazard from returning.",
-      "referenceTextZh": "机场和运营人应检查并清扫活动区，管控工具和材料，维护道面与容器，并立即报告碎片。飞行员和地面人员应避免滑过可见碎片，遵守发动机运转区域的安全要求，并完成规定的进气道和机坪检查。良好的现场管理和对反复出现来源的调查，可以防止危险再次发生。"
+      "referenceText": "Airport operators should inspect and clean runways, taxiways, and aprons regularly. Airlines need good housekeeping and tool-control procedures, while crews should check the engine intake and nearby ground area during the walk-around. Pilots should also avoid using high thrust where loose debris may be drawn into an engine.",
+      "referenceTextZh": "机场运营方应定期检查并清扫跑道、滑行道和机坪。航空公司需要做好现场管理和工具管控，机组则应在绕机检查时查看发动机进气口及附近地面。飞行员还应避免在松散碎片可能被吸入发动机的区域使用大推力。"
     }
   ]
 }

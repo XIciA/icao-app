@@ -9,256 +9,256 @@
       "taskTitle": "运行-燃油-1",
       "audioText": "What legal fuel requirements must be met before a flight?",
       "audioTextZh": "飞行前必须满足哪些法规规定的燃油要求？",
-      "referenceText": "Before departure, the aircraft must carry at least the fuel required by the applicable regulations and the operator's approved fuel policy. For a typical commercial flight, the calculation considers taxi, trip, contingency, destination-alternate, final-reserve and any additional fuel required by the route or conditions. The commander must also decide whether discretionary extra fuel is needed for weather, traffic, airport limits or other operational risks.",
-      "referenceTextZh": "起飞前，飞机至少必须携带适用法规和运营人批准的燃油政策所要求的燃油。对于典型商业航班，计算项目包括滑行燃油、航程燃油、应急燃油、目的地备降燃油、最后储备燃油，以及航路或运行条件所需的任何附加燃油。机长还必须根据天气、交通、机场限制或其他运行风险，决定是否需要酌情增加额外燃油。"
+      "referenceText": "Before a flight, the required fuel must include fuel to reach the destination, proceed to an alternate airport, hold if necessary, and maintain the required reserve.",
+      "referenceTextZh": "飞行前所需燃油必须包括飞往目的地、前往备降机场、必要时等待，以及保持规定储备所需的燃油。"
     },
     {
       "id": "opi-core-268",
       "taskTitle": "运行-燃油-2",
       "audioText": "What is the maximum fuel capacity of the aircraft type you fly?",
       "audioTextZh": "你所飞机型的最大燃油容量是多少？",
-      "referenceText": "A suitable aircraft-type example would be: a standard Airbus A320 has about 24,000 litres of usable fuel volume. The exact volume depends on the variant and tank configuration, while fuel density changes the corresponding fuel mass rather than the tank's litre capacity. A pilot should quote the approved aircraft manual or load-planning system for the actual aircraft instead of relying on this rounded training figure.",
-      "referenceTextZh": "一个合适的机型示范答案是：标准空客 A320 的可用燃油容积约为 24000 升。确切容积取决于具体改型和油箱构型；燃油密度改变的是相应的燃油质量，而不是油箱容积。飞行员应查阅实际飞机经批准的手册或配载计划系统，不能只依赖这个取整后的训练数值。"
+      "referenceText": "I fly the DA-40 for flight training. Its maximum fuel capacity is 41 gallons, of which 39 gallons are usable.",
+      "referenceTextZh": "我使用 DA-40 进行飞行训练。它的最大燃油容量为 41 加仑，其中 39 加仑可用。"
     },
     {
       "id": "opi-core-269",
       "taskTitle": "运行-燃油-3",
       "audioText": "What factors should be considered when calculating the fuel required for a flight?",
       "audioTextZh": "计算一次飞行所需燃油时，应考虑哪些因素？",
-      "referenceText": "The calculation should use the planned route, aircraft weight, forecast wind and temperature, expected altitude, performance and any air traffic restrictions. It must account for taxi, trip, contingency, alternate, final reserve and additional requirements, together with likely delays, weather and airport conditions. The crew should also consider fuel needed for MEL effects, anti-icing, pressurization limits, tankering or a possible change of runway or approach.",
-      "referenceTextZh": "计算时应采用计划航路、飞机重量、预报风和温度、预计高度、性能以及任何空中交通限制。计算必须包括滑行、航程、应急、备降、最后储备和附加燃油要求，并考虑可能的延误、天气和机场状况。机组还应考虑 MEL 项目影响、防冰、增压限制、多带燃油运行，以及可能改变跑道或进近所需的燃油。"
+      "referenceText": "The calculation should consider the flight distance and time, aircraft weight and balance, weather and wind, altitude and airspeed, and the aircraft's fuel-consumption rate.",
+      "referenceTextZh": "计算时应考虑飞行距离和时间、飞机重量和平衡、天气和风、高度和空速，以及飞机的燃油消耗率。"
     },
     {
       "id": "opi-core-270",
       "taskTitle": "运行-燃油-4",
       "audioText": "How can pilots determine the aircraft's remaining endurance in flight?",
       "audioTextZh": "飞行员如何确定航空器在飞行中的剩余续航时间？",
-      "referenceText": "Pilots can estimate endurance by dividing usable fuel remaining by the predicted fuel flow for the expected conditions. In practice, they compare the flight-management prediction with fuel gauges, actual burn since departure and an independent operational flight-plan check. Reserve fuel should remain clearly identified, because total time until empty is not the same as time available before a minimum-fuel or emergency threshold is reached.",
-      "referenceTextZh": "飞行员可以用剩余可用燃油除以预期条件下的预计燃油流量，估算续航时间。实际运行中，他们会将飞行管理系统的预测与燃油表、起飞后的实际耗油量以及独立的运行飞行计划核对结果进行比较。储备燃油应始终明确标识，因为燃油全部耗尽前的总时间，并不等同于达到最低燃油或紧急情况门槛前的可用时间。"
+      "referenceText": "Pilots can estimate endurance from the remaining fuel quantity and the current fuel-consumption rate. They can compare this with the flight plan and adjust the estimate for flight time, speed, altitude, weather, and headwind.",
+      "referenceTextZh": "飞行员可以根据剩余燃油量和当前燃油消耗率估算续航时间。他们可以将结果与飞行计划比较，并根据飞行时间、速度、高度、天气和顶风修正估算。"
     },
     {
       "id": "opi-core-271",
       "taskTitle": "运行-燃油-5",
       "audioText": "How is your aircraft normally refueled before a flight?",
       "audioTextZh": "飞行前通常如何为你的航空器加油？",
-      "referenceText": "A suitable example would be: the aircraft is normally pressure-refueled through the single-point refueling panel by trained ground staff. The required uplift and distribution are agreed with load control, and the crew monitors the fuel indication and any operational restrictions. After refueling, the actual quantity is checked against the order, gauges and fuel receipt before the load sheet is accepted.",
-      "referenceTextZh": "一个合适的示范答案是：通常由经过培训的地面人员通过单点加油面板为飞机进行压力加油。所需加油量和分配方式由相关人员与配载控制共同确认，机组监控燃油指示和任何运行限制。加油后，在接受载重平衡表前，应将实际油量与加油指令、仪表指示和加油凭证相互核对。"
+      "referenceText": "Before each flight, the ground mechanics refuel the aircraft, and I check the fuel quantity.",
+      "referenceTextZh": "每次飞行前，地面机务人员为飞机加油，我负责检查燃油量。"
     },
     {
       "id": "opi-core-272",
       "taskTitle": "运行-燃油-6",
       "audioText": "What safety precautions should be taken during aircraft refueling?",
       "audioTextZh": "航空器加油期间应采取哪些安全预防措施？",
-      "referenceText": "Refueling should be performed in the designated area by trained personnel with the aircraft, vehicle and equipment secured as required. Ignition sources must be controlled, bonding or other approved static-protection procedures used, and clear communication maintained so pumping can stop immediately if a spill, leak or fire hazard appears. Access for emergency response and passenger evacuation must remain available, with any refueling while passengers are on board conducted only under the approved special procedure.",
-      "referenceTextZh": "加油应由经过培训的人员在指定区域进行，并按要求固定飞机、车辆和设备。必须控制火源，采用搭接或其他经批准的静电防护程序，并保持清楚沟通，以便出现溢油、泄漏或火灾危险时立即停止泵油。应始终保留应急响应和乘客撤离通道；乘客在机上时，只能按照批准的专项程序加油。"
+      "referenceText": "The refueling area should be clear, safe, and away from ignition sources. The crew should make sure the fuel is not contaminated and have fire extinguishers ready.",
+      "referenceTextZh": "加油区域应保持整洁安全，并远离火源。机组应确认燃油未受污染，并准备好灭火器。"
     },
     {
       "id": "opi-core-273",
       "taskTitle": "运行-燃油-7",
       "audioText": "What should a flight crew do if a fuel leak is detected during refueling?",
       "audioTextZh": "加油期间发现燃油泄漏时，飞行机组应如何处置？",
-      "referenceText": "The crew should have refueling stopped immediately and prevent engines, electrical switching or other ignition sources from increasing the risk. They should inform ground staff, maintenance and airport emergency services as appropriate, keep people away from the spill and use the aircraft evacuation procedure if passengers are at risk. The aircraft must not be dispatched until the leak, contamination risk and any damage have been inspected and released under approved maintenance procedures.",
-      "referenceTextZh": "机组应立即要求停止加油，并防止发动机、电气开关操作或其他火源增加风险。他们应根据情况通知地面人员、维修部门和机场应急服务，使人员远离溢油区域；如果乘客面临风险，则使用飞机撤离程序。在泄漏、污染风险和任何损坏均经检查，并按照批准的维修程序放行之前，飞机不得签派。"
+      "referenceText": "The crew should stop refueling immediately and inform the ground staff. Fire extinguishers should be ready, and maintenance personnel should inspect and handle the leak.",
+      "referenceTextZh": "机组应立即停止加油并通知地面人员。应准备好灭火器，由维修人员检查并处理泄漏。"
     },
     {
       "id": "opi-core-274",
       "taskTitle": "运行-燃油-8",
       "audioText": "What should a flight crew do if a fuel leak is detected in flight?",
       "audioTextZh": "飞行中发现燃油泄漏时，飞行机组应如何处置？",
-      "referenceText": "The crew should control the aircraft, confirm the indications and apply the fuel-leak or fuel-imbalance checklist without making unapproved valve changes. They should monitor tank quantities, engine indications and remaining endurance, inform ATC if the flight may be affected, and choose a suitable landing airport early. Crossfeed, pump or engine actions must follow the aircraft procedure because the wrong configuration can increase fuel loss or affect the operating engine.",
-      "referenceTextZh": "机组应控制飞机、确认指示，并执行燃油泄漏或燃油不平衡检查单，不得擅自改变活门位置。他们应监控各油箱油量、发动机指示和剩余续航时间；如果飞行可能受到影响，应通知 ATC，并及早选择合适的着陆机场。交输、燃油泵或发动机操作必须遵守飞机程序，因为错误构型可能加剧燃油流失或影响仍在工作的发动机。"
+      "referenceText": "The crew should follow the applicable SOP and checklist and try to control the problem. They should advise ATC of the situation and, if necessary, divert to the nearest suitable airport. After landing, maintenance personnel should inspect the leak.",
+      "referenceTextZh": "机组应遵循适用的标准操作程序和检查单，并尽力控制问题。他们应向空中交通管制报告情况，并在必要时改航至最近的合适机场。着陆后，维修人员应检查泄漏。"
     },
     {
       "id": "opi-core-275",
       "taskTitle": "运行-燃油-9",
       "audioText": "How can the flight crew verify that the correct amount of fuel is on board after refueling?",
       "audioTextZh": "加油后，飞行机组如何核实机上燃油量是否正确？",
-      "referenceText": "A suitable procedure would be to compare the cockpit fuel indication with the planned block fuel and the quantity shown on the refueling panel or fuel receipt. The crew should check that tank distribution is correct and make an independent reasonableness check using the uplift, fuel already on board and the expected density. Any unexplained difference must be resolved before accepting the load sheet or departing.",
-      "referenceTextZh": "一个合适的程序是，将驾驶舱燃油指示与计划轮挡燃油以及加油面板或加油凭证所示油量进行比较。机组应检查各油箱分配是否正确，并根据加油量、机上原有燃油和预期密度，独立判断数值是否合理。任何无法解释的差异都必须在接受载重平衡表或起飞前解决。"
+      "referenceText": "Depending on the aircraft, the crew can verify the quantity by visually checking the fuel tanks, checking the fuel-quantity indicator, or using a fuel dipstick.",
+      "referenceTextZh": "根据机型不同，机组可以通过目视检查油箱、查看燃油量指示器，或使用量油尺来核实燃油量。"
     },
     {
       "id": "opi-core-276",
       "taskTitle": "运行-燃油-10",
       "audioText": "What is your company's fuel policy?",
       "audioTextZh": "你所在公司的燃油政策是什么？",
-      "referenceText": "A suitable company-policy example would be: each flight must carry all regulatory fuel, any fuel required by the operational flight plan and extra fuel justified by the actual risks. The commander can add discretionary fuel without commercial pressure, while unnecessary tankering is assessed for its weight and environmental cost. Fuel is monitored against planned checkpoints in flight, and an early landing decision is made if the required reserve can no longer be protected.",
-      "referenceTextZh": "一个合适的公司政策示范答案是：每个航班必须携带全部法定燃油、运行飞行计划要求的燃油，以及根据实际风险确定的额外燃油。机长可以在不受商业压力的情况下酌情增加燃油；对于不必要的多带燃油，则要评估其重量和环境成本。飞行中按计划检查点监控燃油；如果无法再保护所需储备燃油，应及早作出着陆决定。"
+      "referenceText": "I am not employed by an airline, so I follow my flight school's fuel policy and the applicable regulations. We plan enough usable fuel for the flight, expected contingencies, any required alternate, the required reserve, and additional operational needs. During flight, I compare actual fuel with the plan and land with the required reserve intact.",
+      "referenceTextZh": "我尚未受雇于航空公司，因此遵循航校的燃油政策和适用法规。我们会为本次飞行、预计的意外情况、任何所需备降、规定储备和额外运行需要计划足够的可用燃油。飞行中，我会把实际燃油与计划比较，并在着陆时保留完整的规定储备。"
     },
     {
       "id": "opi-core-277",
       "taskTitle": "运行-燃油-11",
       "audioText": "How can cruising altitude affect an aircraft's fuel consumption?",
       "audioTextZh": "巡航高度会如何影响航空器的燃油消耗？",
-      "referenceText": "For many jet aircraft, climbing toward an optimum cruise altitude reduces drag and fuel burn per distance compared with remaining low. If the aircraft climbs too high for its weight and conditions, reduced manoeuvre margin or inefficient engine operation can remove that benefit. The best level changes as fuel is burned, so step climbs may improve efficiency when traffic, weather and performance allow.",
-      "referenceTextZh": "对于许多喷气式飞机，与保持在低高度相比，向最佳巡航高度爬升可以降低阻力和每单位航程的耗油量。如果飞机在当时重量和条件下爬得过高，机动裕度减小或发动机运行效率下降会抵消这项收益。最佳高度会随燃油消耗而变化，因此在交通、天气和性能允许时，阶梯爬升可以提高效率。"
+      "referenceText": "At a higher cruising altitude, lower air density can reduce drag and help save fuel. However, fuel consumption also depends on aircraft limitations, weight, and engine performance, so pilots should select the optimum cruising altitude rather than simply flying as high as possible.",
+      "referenceTextZh": "在较高巡航高度，较低的空气密度会减小阻力并有助于节省燃油。不过，燃油消耗还取决于飞机限制、重量和发动机性能，因此飞行员应选择最佳巡航高度，而不是简单地飞得越高越好。"
     },
     {
       "id": "opi-core-278",
       "taskTitle": "运行-燃油-12",
       "audioText": "Do you think pilots play an important role in reducing fuel consumption, and why?",
       "audioTextZh": "你认为飞行员在降低燃油消耗方面发挥着重要作用吗？为什么？",
-      "referenceText": "Yes, pilots have an important role because many operational choices affect fuel burn. Accurate planning, efficient speed and altitude control, good use of automation, timely configuration and cooperation with ATC can reduce unnecessary consumption. Safety, weather, passenger comfort and required reserves must always take priority over a fuel-saving target.",
-      "referenceTextZh": "是的，飞行员发挥着重要作用，因为许多运行选择都会影响燃油消耗。准确计划、高效控制速度和高度、合理使用自动化设备、及时改变构型以及与 ATC 配合，都能减少不必要的耗油。安全、天气、乘客舒适度和规定储备燃油必须始终优先于节油目标。"
+      "referenceText": "Yes, pilots play an important role because their choices affect fuel consumption. They can select an economical speed, altitude, and route, use smooth control inputs, and avoid unnecessary holding or go-arounds. Fuel saving should always remain secondary to safety.",
+      "referenceTextZh": "是的，飞行员的选择会影响燃油消耗，因此他们发挥着重要作用。他们可以选择经济的速度、高度和航路，平稳操纵，并避免不必要的等待或复飞。节省燃油必须始终服从安全。"
     },
     {
       "id": "opi-core-280",
       "taskTitle": "运行-燃油-13",
       "audioText": "What is your opinion of airline policies that encourage pilots to save fuel?",
       "audioTextZh": "你如何看待鼓励飞行员节省燃油的航空公司政策？",
-      "referenceText": "I support fuel-efficiency policies when they promote sound planning and remove unnecessary waste without weakening a safety margin. A good policy gives pilots useful performance tools and feedback while protecting the commander's authority to carry extra fuel or choose a safer route. It becomes unsafe if crews feel pressured to reduce fuel below the approved requirement or delay a necessary diversion.",
-      "referenceTextZh": "我支持能够促进合理计划、减少不必要浪费且不削弱安全裕度的燃油效率政策。好的政策会为飞行员提供有用的性能工具和反馈，同时保障机长增加额外燃油或选择更安全航路的权力。如果机组感到有压力，因而把燃油降低到批准要求以下或推迟必要的改航，这项政策就会变得不安全。"
+      "referenceText": "I think such policies are positive because fuel saving can reduce operating costs and help the environment. However, safety must never be compromised. Pilots should not avoid a necessary go-around or reduce reserve fuel simply to save fuel.",
+      "referenceTextZh": "我认为这类政策是积极的，因为节省燃油可以降低运行成本并有利于环境。不过，绝不能牺牲安全。飞行员不能为了省油而避免必要的复飞或减少储备燃油。"
     },
     {
       "id": "opi-core-281",
       "taskTitle": "运行-燃油-14",
       "audioText": "How can contaminated fuel affect flight safety?",
       "audioTextZh": "受污染的燃油会如何影响飞行安全？",
-      "referenceText": "Contaminated fuel can restrict filters, damage pumps and fuel-control components, or interrupt fuel flow to an engine. Water, particles, microbes or the wrong fuel grade may cause unstable operation, power loss or flameout, and a common supply problem can affect more than one engine. Contamination can also cause corrosion and unreliable quantity or system indications.",
-      "referenceTextZh": "受污染的燃油可能堵塞滤器，损坏油泵和燃油控制部件，或中断发动机的燃油供应。水、颗粒、微生物或错误牌号的燃油可能导致运行不稳定、功率损失或熄火；如果同一供油源出现问题，还可能影响多台发动机。污染也会造成腐蚀，并使油量或系统指示不可靠。"
+      "referenceText": "Contaminated fuel can block fuel filters or pipes and interrupt the fuel supply. It may reduce engine performance and cause power loss, vibration, flameout, engine failure, or damage to engine components.",
+      "referenceTextZh": "受污染的燃油会堵塞燃油滤或管路并中断供油。它可能降低发动机性能，并造成推力丧失、振动、熄火、发动机失效或发动机部件损坏。"
     },
     {
       "id": "opi-core-282",
       "taskTitle": "运行-燃油-15",
       "audioText": "Why is water in aircraft fuel a safety hazard?",
       "audioTextZh": "航空燃油中的水为什么会构成安全隐患？",
-      "referenceText": "Free water can collect in low points, support microbial growth and cause corrosion in the fuel system. At low temperature it can freeze into ice that restricts filters, pipes or fuel flow, which may reduce or stop engine power. Water can also interfere with accurate sampling and indicates that storage, handling or drainage needs investigation.",
-      "referenceTextZh": "游离水会积聚在低点，促进微生物生长，并导致燃油系统腐蚀。在低温下，水可能冻结成冰，堵塞滤器、管路或燃油通道，从而降低甚至中断发动机功率。水还会干扰准确取样，并表明燃油储存、处理或排水环节需要调查。"
+      "referenceText": "Water in the fuel may freeze at high altitude. It can cause an engine surge or engine failure and create a serious flight-safety hazard.",
+      "referenceTextZh": "燃油中的水分可能在高空结冰，导致发动机喘振或失效，并形成严重的飞行安全威胁。"
     },
     {
       "id": "opi-core-283",
       "taskTitle": "运行-燃油-16",
       "audioText": "What does the term \"minimum fuel\" mean in aviation?",
       "audioTextZh": "航空领域中的“最低油量”是什么意思？",
-      "referenceText": "MINIMUM FUEL tells ATC that the aircraft is committed to land at a specific airport and that any change to the existing clearance may result in landing with less than planned final-reserve fuel. It is not an emergency declaration and does not automatically give traffic priority. It warns ATC that further delay could create an emergency.",
-      "referenceTextZh": "“MINIMUM FUEL”表示飞机已经确定必须在某一特定机场着陆，若对现有许可作出任何改变，可能导致着陆时燃油低于计划最后储备燃油。它不是紧急情况声明，也不会自动获得交通优先权。它提醒 ATC，进一步延误可能造成紧急情况。"
+      "referenceText": "Minimum fuel is not a fuel emergency. It means that any further delay may cause the aircraft to declare a fuel emergency.",
+      "referenceTextZh": "最低油量并不等同于燃油紧急情况。它表示任何进一步延误都可能导致飞机需要宣布燃油紧急状态。"
     },
     {
       "id": "opi-core-284",
       "taskTitle": "运行-燃油-17",
       "audioText": "How should a pilot advise ATC of a minimum-fuel situation?",
       "audioTextZh": "飞行员应如何将最低油量状况通知空中交通管制部门？",
-      "referenceText": "The pilot should advise the controller using the call sign followed by the words “MINIMUM FUEL.” The message should be made as soon as the condition is recognized, not saved until the fuel becomes critical. The crew should then give any useful endurance or operational information requested and monitor whether the clearance changes the predicted landing fuel.",
-      "referenceTextZh": "飞行员应以呼号加“MINIMUM FUEL”用语通知管制员。一旦识别出这种状况就应发送信息，不能等到燃油变得危急。随后，机组应提供管制员要求的任何有用续航时间或运行信息，并监控许可变化是否影响预计着陆剩余燃油。"
+      "referenceText": "The pilot should advise ATC, \"MINIMUM FUEL,\" and explain that no further delay can be accepted.",
+      "referenceTextZh": "飞行员应向空中交通管制报告“MINIMUM FUEL”，并说明无法接受进一步延误。"
     },
     {
       "id": "opi-core-285",
       "taskTitle": "运行-燃油-18",
       "audioText": "When should a pilot declare a fuel emergency?",
       "audioTextZh": "飞行员应在什么时候宣布燃油紧急情况？",
-      "referenceText": "Under the ICAO standard, the pilot should declare a fuel emergency when the calculated usable fuel expected on landing at the nearest airport where a safe landing can be made will be less than the planned final-reserve fuel. The declaration should not be delayed until the tanks are almost empty or an engine loses fuel pressure. An earlier emergency declaration may also be justified if another fuel-related condition creates immediate distress.",
-      "referenceTextZh": "按照 ICAO 标准，如果预计在能够安全着陆的最近机场着陆时，计算出的可用燃油将少于计划最后储备燃油，飞行员应宣布燃油紧急情况。不能等到油箱几乎耗空或发动机失去燃油压力时才宣布。如果其他与燃油有关的状况使飞机立即陷入遇险状态，也可以更早宣布紧急情况。"
+      "referenceText": "A pilot should declare a fuel emergency when the predicted usable fuel on landing at the nearest aerodrome where a safe landing can be made will be below the planned final reserve fuel. This is different from reporting minimum fuel, which is not an emergency declaration.",
+      "referenceTextZh": "当预计飞机在可安全着陆的最近机场着陆时，可用燃油将低于计划的最后储备燃油，飞行员就应宣布燃油紧急状态。这与报告最低油量不同，最低油量并不是紧急状态声明。"
     },
     {
       "id": "opi-core-286",
       "taskTitle": "运行-燃油-19",
       "audioText": "How should a pilot declare a fuel emergency to ATC?",
       "audioTextZh": "飞行员应如何向空中交通管制部门宣布燃油紧急情况？",
-      "referenceText": "The pilot should transmit the call sign and “MAYDAY, MAYDAY, MAYDAY, FUEL” on the active ATC frequency. The crew should state the intended landing airport, position, altitude, remaining endurance and any assistance needed as workload permits. If contact cannot be made, they should use the applicable emergency frequency, transponder code and lost-communication procedures.",
-      "referenceTextZh": "飞行员应在当前 ATC 频率发送呼号以及“MAYDAY, MAYDAY, MAYDAY, FUEL”。在工作负荷允许时，机组应说明拟着陆机场、位置、高度、剩余续航时间以及所需协助。如果无法建立联系，应使用适用的应急频率、应答机编码和通信失效程序。"
+      "referenceText": "The pilot should transmit “MAYDAY” three times, followed by “FUEL,” and give the aircraft call sign, position, altitude, intentions, fuel endurance in minutes, and number of people on board. The crew should then state the landing request clearly and follow ATC instructions as far as safety permits.",
+      "referenceTextZh": "飞行员应连续三次发送“MAYDAY”，随后说“FUEL”，并报告飞机呼号、位置、高度、意图、以分钟表示的续航时间和机上人数。随后，机组应清楚说明着陆请求，并在安全允许范围内遵循空中交通管制指令。"
     },
     {
       "id": "opi-core-287",
       "taskTitle": "运行-燃油-20",
       "audioText": "What is the difference between a minimum-fuel situation and a fuel emergency?",
       "audioTextZh": "最低油量状况与燃油紧急情况有何不同？",
-      "referenceText": "Minimum fuel is an advisory that further delay or a change to the current clearance may cause the aircraft to land below planned final reserve. It is not itself an emergency and does not automatically provide priority. A fuel emergency exists when the predicted usable fuel on landing at the nearest airport where a safe landing can be made will be below final reserve, so the crew declares MAYDAY FUEL and requires priority assistance.",
-      "referenceTextZh": "最低燃油是一项提示，表明进一步延误或改变当前许可可能使飞机着陆时低于计划最后储备燃油。它本身不是紧急情况，也不会自动获得优先权。如果预计在能够安全着陆的最近机场着陆时，可用燃油将低于最后储备燃油，就构成燃油紧急情况，机组应宣布“MAYDAY FUEL”并需要优先协助。"
+      "referenceText": "Minimum fuel is an informational notice to ATC that further delay cannot be accepted, but it is not an emergency. A fuel emergency is a distress situation in which the fuel is insufficient and immediate ATC assistance and a priority landing are required.",
+      "referenceTextZh": "最低油量是向空中交通管制发出的信息通知，表示无法接受进一步延误，但它并不是紧急情况。燃油紧急情况属于遇险状态，表示燃油不足，需要空中交通管制立即协助并安排优先着陆。"
     },
     {
       "id": "opi-core-288",
       "taskTitle": "运行-燃油-21",
       "audioText": "What can cause an aircraft to run short of fuel?",
       "audioTextZh": "哪些因素可能导致航空器燃油短缺？",
-      "referenceText": "An aircraft can run short of fuel because of incorrect planning, wrong loading, a leak, contamination or inaccurate quantity information. Stronger headwinds, weather deviations, holding, repeated approaches, an airport closure or flying at an inefficient level can increase consumption or time. Late recognition, poor monitoring and delaying a diversion can turn a manageable difference into an emergency.",
-      "referenceTextZh": "飞机燃油不足可能由计划错误、装载错误、泄漏、污染或油量信息不准确造成。较强逆风、绕飞天气、等待、多次进近、机场关闭或在低效高度层飞行，都会增加耗油量或飞行时间。发现过晚、监控不当和迟迟不决定改航，可能把原本可控的偏差演变为紧急情况。"
+      "referenceText": "An aircraft can run short of fuel because of inadequate preflight fuel, a fuel leak, a diversion, strong headwinds, or a long delay. Prolonged low-altitude flight, an inefficient speed or configuration, excessive holding or go-arounds, and incorrect fuel calculations can also contribute.",
+      "referenceTextZh": "飞行前加油不足、燃油泄漏、改航、强顶风或长时间延误，都可能使飞机燃油不足。长时间低空飞行、低效的速度或构型、过多等待或复飞，以及燃油计算错误也可能造成燃油短缺。"
     },
     {
       "id": "opi-core-289",
       "taskTitle": "运行-燃油-22",
       "audioText": "What procedures should a flight crew follow when dumping fuel?",
       "audioTextZh": "放油时，飞行机组应遵循哪些程序？",
-      "referenceText": "The crew should first confirm that fuel jettison is necessary and permitted for the aircraft, then use the approved checklist to configure and monitor the system. They should coordinate the route, altitude and weather with ATC, avoid unsuitable areas and keep other aircraft and the cabin crew informed as required. Quantity and balance must be monitored throughout, and ATC should be told immediately when dumping starts, stops or cannot be completed normally.",
-      "referenceTextZh": "机组首先应确认确有放油必要且该机型允许放油，然后按照批准的检查单设置并监控放油系统。他们应与 ATC 协调航路、高度和天气，避开不合适区域，并按要求通知其他飞机和客舱机组。放油过程中必须持续监控油量和平衡；放油开始、停止或无法正常完成时，应立即通知 ATC。"
+      "referenceText": "The crew should advise ATC and request routing to a fuel-dumping area. They should follow the applicable SOP, monitor the fuel quantity and aircraft status, and stop dumping when the target weight is reached. Afterward, they should inform ATC that fuel dumping is complete and request clearance to continue.",
+      "referenceTextZh": "机组应通知空中交通管制，并申请飞往放油区域的航路。他们应遵循适用的标准操作程序，监控燃油量和飞机状态，并在达到目标重量时停止放油。完成后，应通知空中交通管制放油结束，并申请继续飞行的许可。"
     },
     {
       "id": "opi-core-290",
       "taskTitle": "运行-燃油-23",
       "audioText": "Under what circumstances might an aircraft need to dump fuel?",
       "audioTextZh": "航空器在什么情况下可能需要放油？",
-      "referenceText": "Fuel may be dumped when an aircraft must land soon after takeoff and its weight is above the permitted or practical landing weight. Examples include a serious technical failure, medical emergency, smoke or another event requiring an early return. The crew must balance the time and risk of jettisoning against the option of an overweight landing, and many aircraft are not equipped to dump fuel.",
-      "referenceTextZh": "如果飞机起飞后必须很快着陆，而其重量高于允许或实际可行的着陆重量，就可能需要放油。例如，严重技术故障、医疗紧急情况、烟雾或其他需要提早返航的事件。机组必须权衡放油所需时间和风险与超重着陆方案，而且许多飞机并未配备放油系统。"
+      "referenceText": "An aircraft may need to dump fuel when an emergency requires an early return or diversion and the aircraft is above its maximum landing weight. Dumping fuel reduces the landing weight before the emergency landing.",
+      "referenceTextZh": "当紧急情况要求飞机提前返航或改航，而飞机重量又超过最大着陆重量时，可能需要空中放油。放油可以在紧急着陆前降低着陆重量。"
     },
     {
       "id": "opi-core-291",
       "taskTitle": "运行-燃油-24",
       "audioText": "What areas should be avoided when dumping fuel?",
       "audioTextZh": "放油时应避开哪些区域？",
-      "referenceText": "Fuel should not be dumped over densely populated areas or where it could create an avoidable hazard to people, property or sensitive environments. The crew should also avoid thunderstorms, known ignition hazards and areas where other aircraft could be affected. ATC normally helps select a suitable route and altitude, but an urgent emergency may limit the available choice.",
-      "referenceTextZh": "不应在人口稠密地区上空，或可能对人员、财产或敏感环境造成可避免危险的区域放油。机组还应避开雷暴、已知火源危险以及可能影响其他飞机的区域。ATC 通常会协助选择合适的航路和高度，但情况紧急时，可用选择可能受到限制。"
+      "referenceText": "Crews should avoid dumping fuel over cities and other densely populated areas because it may endanger people and property.",
+      "referenceTextZh": "机组应避免在城市和其他人口稠密区域上空放油，因为这可能危及人员和财产。"
     },
     {
       "id": "opi-core-292",
       "taskTitle": "运行-燃油-25",
       "audioText": "What assistance may a flight crew request from ATC during fuel dumping?",
       "audioTextZh": "放油期间，飞行机组可以请求空中交通管制部门提供哪些协助？",
-      "referenceText": "The crew may ask ATC for a suitable area, routing and altitude for the fuel dump. ATC can provide separation from other aircraft, coordinate airspace, broadcast warnings and arrange priority routing back to a suitable airport. The crew should also request emergency services for landing when the condition that caused the dump requires them.",
-      "referenceTextZh": "机组可以请求 ATC 为放油提供合适的区域、航路和高度。ATC 可以与其他飞机保持间隔、协调空域、发布警告，并安排返回合适机场的优先航路。如果导致放油的情况需要应急服务，机组还应请求这些服务在着陆时待命。"
+      "referenceText": "The crew may request radar vectors from ATC to the designated fuel-dumping area.",
+      "referenceTextZh": "机组可以申请空中交通管制雷达引导前往指定放油区域。"
     },
     {
       "id": "opi-core-293",
       "taskTitle": "运行-燃油-26",
       "audioText": "How is aircraft fuel quality checked before flight?",
       "audioTextZh": "飞行前如何检查航空燃油的质量？",
-      "referenceText": "A suitable preflight process includes checking fuel grade and delivery records, then examining required samples for water, particles, colour or other abnormal appearance. Ground or maintenance personnel drain the specified low points and perform any approved water-detection or density checks for the fuel system. The crew verifies that the checks are complete and resolves any contamination indication before flight.",
-      "referenceTextZh": "一个合适的飞行前流程包括检查燃油牌号和交付记录，然后检查规定样品中是否存在水、颗粒、颜色异常或其他异常外观。地面或维修人员从规定低点放油取样，并完成燃油系统经批准的水分检测或密度检查。机组应核实这些检查已经完成，并在飞行前查明并妥善处置任何污染指示。"
+      "referenceText": "Before flight, the pilot drains a fuel sample and checks whether its color is normal. This helps confirm that the fuel quality is acceptable before it is used.",
+      "referenceTextZh": "飞行前，飞行员会放取燃油样品并检查颜色是否正常。这有助于在使用燃油前确认其质量可以接受。"
     },
     {
       "id": "opi-core-295",
       "taskTitle": "运行-燃油-27",
       "audioText": "What factors affect an aircraft's fuel efficiency?",
       "audioTextZh": "哪些因素会影响航空器的燃油效率？",
-      "referenceText": "Fuel efficiency depends on aircraft design, weight, speed, altitude, configuration and engine condition. Wind, temperature, turbulence, routing, holding and air traffic restrictions also affect how much fuel is used for a given trip. Efficient planning and maintenance can reduce consumption, but safety constraints and actual operating conditions set the practical limit.",
-      "referenceTextZh": "燃油效率取决于飞机设计、重量、速度、高度、构型和发动机状态。风、温度、颠簸、航路、等待和空中交通限制，也会影响某一航程的耗油量。高效计划和维修能够降低消耗，但安全限制和实际运行条件决定了现实边界。"
+      "referenceText": "Fuel efficiency is affected by weather and wind, airspeed, altitude, aircraft weight and configuration, and the pilot's flying technique. Smooth maneuvers and an appropriate altitude and speed can improve efficiency.",
+      "referenceTextZh": "燃油效率会受到天气和风、空速、高度、飞机重量和构型以及飞行员操纵技术的影响。平稳机动并选择适当的高度和速度，可以提高效率。"
     },
     {
       "id": "opi-core-297",
       "taskTitle": "运行-燃油-28",
       "audioText": "What can pilots do to reduce fuel consumption during a flight?",
       "audioTextZh": "飞行员在飞行中可以采取哪些措施降低燃油消耗？",
-      "referenceText": "Pilots can follow the approved economical speed and altitude strategy, request efficient routing or step climbs, and avoid unnecessary level flight or configuration changes. Accurate weather updates and early coordination with ATC can reduce avoidable deviations, holding and excess track miles. Smooth energy management, correct aircraft trim and timely use of reduced-engine taxi or other approved techniques can also help without weakening safety margins.",
-      "referenceTextZh": "飞行员可以遵循经批准的经济速度和高度策略，申请效率更高的航路或阶梯爬升，并避免不必要的平飞或构型改变。准确的天气更新和及早与 ATC 协调，可以减少可避免的绕飞、等待和额外航迹里程。平稳的能量管理、正确配平，以及适时采用减少发动机运行数量的滑行或其他经批准的技术，也能在不削弱安全裕度的情况下提高效率。"
+      "referenceText": "Pilots can select an economical cruising altitude and speed and request a direct route or straight-in approach when available. They can also avoid prolonged holding and unnecessary maneuvers and maintain stable flight.",
+      "referenceTextZh": "飞行员可以选择经济的巡航高度和速度，并在条件允许时申请直飞航路或直接进近。他们还可以避免长时间等待和不必要的机动，并保持稳定飞行。"
     },
     {
       "id": "opi-core-298",
       "taskTitle": "运行-燃油-29",
       "audioText": "What should a pilot do if a fuel emergency develops during a go-around?",
       "audioTextZh": "复飞过程中出现燃油紧急情况时，飞行员应如何处置？",
-      "referenceText": "The pilot must fly the go-around safely while immediately recognizing that the extra manoeuvre has changed the fuel prediction. If the calculated landing fuel meets the emergency criterion, the crew should declare MAYDAY FUEL, request priority handling and proceed to the nearest airport where a safe landing can be made. The crew should avoid unnecessary manoeuvring, complete the relevant checks and give ATC accurate endurance information as workload permits.",
-      "referenceTextZh": "飞行员必须安全执行复飞，同时立即意识到这次额外机动已经改变燃油预测。如果计算出的着陆剩余燃油符合紧急情况标准，机组应宣布“MAYDAY FUEL”、申请优先处置，并飞往能够安全着陆的最近机场。机组应避免不必要的机动，完成相关检查，并在工作负荷允许时向 ATC 提供准确的续航时间信息。"
+      "referenceText": "The pilot should immediately advise ATC of the fuel emergency and request a priority landing at the nearest suitable airport. The crew should simplify the flight, avoid unnecessary maneuvers, and monitor the remaining fuel closely.",
+      "referenceTextZh": "飞行员应立即向空中交通管制报告燃油紧急情况，并申请在最近的合适机场优先着陆。机组应简化飞行，避免不必要的机动，并密切监控剩余燃油。"
     },
     {
       "id": "opi-core-300",
       "taskTitle": "运行-燃油-30",
       "audioText": "Can you describe an occasion when you were involved in refueling an aircraft?",
       "audioTextZh": "你能否描述一次自己参与航空器加油的经历？",
-      "referenceText": "A suitable example would be: during training, I observed a pressure-refueling operation and checked the ordered fuel against the cockpit indication. I confirmed the tank distribution, fuel receipt and final block fuel before the load sheet was accepted. Learners should replace this with their real duties and experience, or state that they have only observed the process.",
-      "referenceTextZh": "一个合适的示范答案是：在训练期间，我观察过一次压力加油作业，并将订购油量与驾驶舱指示进行了核对。我在接受载重平衡表前确认了油箱分配、加油凭证和最终轮挡燃油。学习者应根据自己的真实职责和经历替换这段内容，或者说明自己只观察过这一流程。"
+      "referenceText": "Yes. During flight training, I took part in refueling an aircraft. We calculated the required fuel from the flight plan, monitored the process for contamination or leaks, and confirmed the fuel quantity afterward.",
+      "referenceTextZh": "是的。在飞行训练期间，我参与过飞机加油。我们根据飞行计划计算所需燃油，监控加油过程是否出现污染或泄漏，并在结束后确认燃油量。"
     },
     {
       "id": "opi-core-301",
       "taskTitle": "运行-燃油-31",
       "audioText": "How many fuel tanks does the aircraft type you fly have?",
       "audioTextZh": "你所飞的机型有多少个燃油箱？",
-      "referenceText": "A suitable standard Airbus A320 example would be: the normal fuel-storage layout has five tank sections—the centre tank, a left and right inner wing tank, and a left and right outer wing tank. Some simplified descriptions group each wing's inner and outer sections together, while optional additional tanks can change the configuration. Pilots should use the system description and counting convention for the exact aircraft they operate.",
-      "referenceTextZh": "一个合适的标准空客 A320 示范答案是：正常燃油储存布局有五个油箱区域，即中央油箱、左右两个机翼内侧油箱和左右两个机翼外侧油箱。有些简化说明会把每侧机翼的内、外油箱合并计算，而选装的附加油箱也可能改变构型。飞行员应采用自己实际运行机型的系统说明和油箱计数方式。"
+      "referenceText": "I fly the DA-40, which has two main fuel tanks, one in each wing.",
+      "referenceTextZh": "我飞的是 DA-40，它有两个主油箱，每侧机翼各一个。"
     },
     {
       "id": "opi-core-302",
       "taskTitle": "运行-燃油-32",
       "audioText": "What can cause aircraft fuel to become contaminated?",
       "audioTextZh": "哪些因素可能造成航空燃油污染？",
-      "referenceText": "Fuel can become contaminated by water entering storage or aircraft tanks, dirty transfer equipment, rust, dust or degraded seals and hoses. Microbial growth can develop where water and fuel meet, while mixing the wrong fuel grade or additives creates another serious hazard. Poor storage, incomplete sampling and maintenance errors allow contamination to remain undetected.",
-      "referenceTextZh": "水分进入储油设施或飞机油箱、传输设备脏污、锈蚀、灰尘以及密封件和软管老化，都可能污染燃油。水与燃油交界处可能滋生微生物，而混入错误牌号的燃油或添加剂又会造成另一种严重危险。储存不当、取样不完整和维修差错，会使污染未被发现。"
+      "referenceText": "Fuel can become contaminated because of inadequate preflight inspection, poor maintenance, or an improperly filtered fuel supply. Water, sand, or other debris in the fuel tanks can also contaminate it.",
+      "referenceTextZh": "飞行前检查不充分、维修不当或燃油供应过滤不合格，都可能造成燃油污染。油箱中的水、沙粒或其他碎片也会污染燃油。"
     }
   ]
 }

@@ -9,104 +9,104 @@
       "taskTitle": "特情-充电宝与锂电池-1",
       "audioText": "Why are lithium batteries classified as dangerous goods in aviation?",
       "audioTextZh": "为什么锂电池在航空运输中被归类为危险品？",
-      "referenceText": "Lithium batteries are dangerous goods because damage, defects, short circuits or overheating can start thermal runaway. A failing cell can release heat, smoke, flammable material and fire, and it may cause nearby cells to fail. Transport rules therefore control battery testing, size, packaging, location and quantity.",
-      "referenceTextZh": "锂电池属于危险品，因为损坏、缺陷、短路或过热都可能引发热失控。失效电芯会释放热量、烟雾、易燃物并起火，还可能引发邻近电芯失效。因此，运输规则会规范电池测试要求，并限制电池容量、包装、存放位置和数量。"
+      "referenceText": "Lithium batteries store a large amount of energy in a small space. If they are damaged, short-circuited, or overheated, they can enter thermal runaway and produce smoke, intense heat, fire, or even an explosion. A lithium-battery fire can be difficult to control on an aircraft, so these batteries are treated as dangerous goods.",
+      "referenceTextZh": "锂电池在很小空间内储存大量能量。如果受损、短路或过热，可能进入热失控状态，产生烟雾、高温、火灾甚至爆炸。锂电池火灾在飞机上可能很难控制，因此这些电池被视为危险品。"
     },
     {
       "id": "opi-core-818",
       "taskTitle": "特情-充电宝与锂电池-2",
       "audioText": "What symptoms indicate a lithium battery is failing?",
       "audioTextZh": "哪些迹象表明锂电池出现故障？",
-      "referenceText": "Warning signs include unusual heat, swelling, hissing, a strong or unusual smell, discoloration, leaking, smoke or sparks. A device may also shut down, deform or become too hot to handle. A passenger who notices any of these signs should stop using the device and alert the crew immediately.",
-      "referenceTextZh": "警示迹象包括异常发热、膨胀、嘶嘶声、强烈或异常气味、变色、泄漏、冒烟或火花。设备还可能关机、变形或烫到无法触碰。旅客发现任何此类迹象时，都应停止使用设备并立即通知机组。"
+      "referenceText": "Warning signs include unusual heat, swelling or deformation, and hissing or other strange noises. Smoke or a burning smell can also indicate that the battery is failing.",
+      "referenceTextZh": "警示迹象包括异常发热、鼓胀或变形，以及嘶嘶声或其他异常声音。烟雾或烧焦气味也可能表明电池正在失效。"
     },
     {
       "id": "opi-core-819",
       "taskTitle": "特情-充电宝与锂电池-3",
       "audioText": "What should crew members do if a passenger's lithium-battery-powered device catches fire?",
       "audioTextZh": "如果乘客使用的锂电池供电设备起火，机组人员应如何处置？",
-      "referenceText": "The cabin crew should notify the flight deck, move people away and apply the operator's lithium-battery fire procedure. They should use the approved extinguisher to control flames and then cool the cells thoroughly with water or another suitable nonalcoholic liquid to prevent propagation and reignition. The device should be monitored continuously and moved or contained only as the approved procedure permits.",
-      "referenceTextZh": "客舱机组应通知驾驶舱，让人员远离，并执行运营人的锂电池火灾处置程序。应使用经批准的灭火器控制明火，随后用水或其他合适的非酒精液体充分冷却电芯，防止热失控蔓延和复燃。应持续监控设备，而且只能在经批准程序允许时移动或将其置于容器中。"
+      "referenceText": "The crew should act immediately and use the available extinguisher to suppress the flames. They should then cool the device with water or another non-alcoholic liquid to prevent re-ignition and continue to monitor it because thermal runaway can restart. Other passengers should be kept clear, and the cockpit should be kept informed.",
+      "referenceTextZh": "机组应立即行动，使用可用灭火器压制火焰。随后应用水或其他不含酒精的液体冷却设备，防止复燃，并持续监控，因为热失控可能重新发生。应让其他旅客远离，并持续通知驾驶舱。"
     },
     {
       "id": "opi-core-820",
       "taskTitle": "特情-充电宝与锂电池-4",
       "audioText": "Why are lithium battery fires particularly challenging on aircraft?",
       "audioTextZh": "为什么锂电池火灾在飞机上尤其难以处置？",
-      "referenceText": "A lithium battery can keep producing heat after the visible flames are extinguished. Thermal runaway may spread from one cell to another, causing repeated flare-ups, smoke and the release of flammable material. This is why crews must both extinguish the fire and cool and monitor the device for possible reignition.",
-      "referenceTextZh": "即使可见火焰已经熄灭，锂电池仍可能继续产生热量。热失控可能从一个电芯蔓延到另一个，造成反复起火、冒烟并释放易燃物。因此，机组既要灭火，也要冷却并持续监控设备，防止复燃。"
+      "referenceText": "Lithium battery fires can burn intensely and may re-ignite after the flames appear to be out. Traditional extinguishers may not fully stop the reaction. On an aircraft, escape options are limited and smoke can spread through the cabin quickly, so early detection is critical.",
+      "referenceTextZh": "锂电池火灾燃烧猛烈，并可能在明火看似熄灭后复燃。传统灭火器未必能完全终止反应。飞机上的逃生选择有限，烟雾又会迅速蔓延，因此早期发现至关重要。"
     },
     {
       "id": "opi-core-821",
       "taskTitle": "特情-充电宝与锂电池-5",
       "audioText": "What regulations apply to passengers carrying spare lithium batteries?",
       "audioTextZh": "乘客携带备用锂电池时适用哪些规定？",
-      "referenceText": "Spare lithium batteries and power banks must be carried in cabin baggage, not checked baggage, with their terminals protected from short circuit. Under the ICAO provisions effective from 27 March 2026, a passenger may carry no more than two power banks; other spare batteries remain subject to the applicable energy, quantity and operator-approval limits. Damaged, defective or recalled batteries must not be carried.",
-      "referenceTextZh": "备用锂电池和充电宝必须放在手提行李中，不能放入托运行李，而且端子应采取防短路措施。根据 2026 年 3 月 27 日起生效的 ICAO 规定，每名旅客携带的充电宝不得超过两个；其他备用电池仍受适用的能量、数量和运营人批准限制。损坏、有缺陷或被召回的电池不得携带。"
+      "referenceText": "Spare lithium batteries must be carried in cabin baggage rather than checked baggage. Their terminals must be protected against short circuits, for example by using the original packaging or tape.",
+      "referenceTextZh": "备用锂电池必须放在手提行李中，不能放入托运行李。电池端子必须采取防短路保护，例如使用原包装或胶带。"
     },
     {
       "id": "opi-core-822",
       "taskTitle": "特情-充电宝与锂电池-6",
       "audioText": "What restrictions apply to carrying lithium batteries in checked baggage?",
       "audioTextZh": "托运行李中携带锂电池有哪些限制？",
-      "referenceText": "Spare batteries and power banks are prohibited in checked baggage and must remain accessible in the cabin. A device with an installed battery may be allowed in checked baggage only under the applicable limits and must be completely switched off and protected from damage and accidental activation. Airline or national rules may be stricter, and damaged or recalled batteries are not acceptable.",
-      "referenceTextZh": "备用电池和充电宝禁止放入托运行李，必须留在客舱内可接近的位置。装有电池的设备只有在符合适用限制时才可能放入托运行李，并且必须完全关闭，同时防止损坏和意外启动。航空公司或国家规则可能更加严格，损坏或被召回的电池不能携带。"
+      "referenceText": "Spare lithium batteries must not be placed in checked baggage. Batteries installed in devices such as laptops may sometimes be accepted in checked baggage, depending on the applicable rules. Keeping spare batteries in the cabin allows a problem to be detected and handled more quickly.",
+      "referenceTextZh": "备用锂电池不得放入托运行李。根据适用规定，安装在笔记本电脑等设备内的电池有时可以放入托运行李。把备用电池留在客舱内，能够更快发现并处理问题。"
     },
     {
       "id": "opi-core-823",
       "taskTitle": "特情-充电宝与锂电池-7",
       "audioText": "How should the crew respond to a portable electronic device that is smoking or overheating?",
       "audioTextZh": "便携式电子设备冒烟或过热时，机组应如何处置？",
-      "referenceText": "The user should stop using or charging the device and notify the crew immediately. Crew members should disconnect external power if safe, move passengers away and follow the approved overheating or fire checklist without handling a hot or smoking device unnecessarily. They should cool and monitor it as the procedure requires because thermal runaway can develop or restart.",
-      "referenceTextZh": "使用者应停止使用设备或为其充电，并立即通知机组。安全条件允许时，机组成员应断开外部电源，让旅客远离，并执行经批准的过热或火灾检查单，避免无谓地触碰发热或冒烟的设备。应按程序冷却并监控设备，因为热失控可能发生或再次出现。"
+      "referenceText": "The crew should act immediately, disconnect the device from power if possible, and follow the portable-device fire procedure. A smoking or overheating device should be cooled with water or another non-alcoholic liquid; if flames are present, the correct extinguisher is used first and cooling follows. The device must be isolated as directed, monitored for re-ignition, and reported to the flight crew.",
+      "referenceTextZh": "机组应立即行动，在可能情况下切断设备电源，并执行便携式设备火灾程序。冒烟或过热的设备应用水或其他不含酒精的液体冷却；如果出现火焰，应先使用正确的灭火器，再进行冷却。设备必须按指示隔离、持续监控是否复燃，并向飞行机组报告。"
     },
     {
       "id": "opi-core-824",
       "taskTitle": "特情-充电宝与锂电池-8",
       "audioText": "How would you explain the main lithium battery safety rules to a passenger?",
       "audioTextZh": "你会如何向乘客说明锂电池的主要安全规定？",
-      "referenceText": "I would tell the passenger to keep spare batteries and power banks in cabin baggage, protect their terminals and never carry a damaged or recalled battery. Current ICAO provisions limit power banks to two per passenger and prohibit recharging a power bank on board; ICAO also recommends not using one to charge another device, while an airline may make that restriction mandatory. Battery energy limits and any required operator approval still apply.",
-      "referenceTextZh": "我会告诉旅客，备用电池和充电宝应放在手提行李中，保护好端子，绝不能携带损坏或被召回的电池。现行 ICAO 规定每名旅客最多携带两个充电宝，并禁止在机上给充电宝本身充电；ICAO 还建议不要用充电宝给其他设备充电，而航空公司可以将这项建议规定为强制要求。电池能量限制以及任何所需的运营人批准仍然适用。"
+      "referenceText": "I would explain that lithium batteries are normally safe, but a damaged battery can overheat and catch fire. The batteries should be kept in the cabin so that the crew can monitor them and respond quickly if there is a problem. This reduces the risk of an unnoticed fire in the cargo hold.",
+      "referenceTextZh": "我会解释，锂电池通常是安全的，但受损电池可能过热并起火。电池应留在客舱内，使机组能够监控，并在发生问题时迅速响应，从而降低货舱内火灾未被发现的风险。"
     },
     {
       "id": "opi-core-827",
       "taskTitle": "特情-充电宝与锂电池-9",
       "audioText": "Have you ever encountered a malfunctioning portable electronic device during a flight?",
       "audioTextZh": "你在飞行中遇到过便携式电子设备故障吗？",
-      "referenceText": "A suitable example would be: no, I have not encountered a malfunctioning electronic device during a real flight. In training, I have practised a scenario in which a phone overheated and began to smoke. The exercise focused on early reporting, disconnecting power, firefighting, cooling and continuous monitoring.",
-      "referenceTextZh": "一个合适的示范答案是：没有，我在真实飞行中没有遇到过电子设备故障。我在训练中练习过手机过热并开始冒烟的情景。训练重点是及早报告、断开电源、灭火、冷却和持续监控。"
+      "referenceText": "No, I have never encountered a malfunctioning portable electronic device during a flight. I have studied the warning signs, such as unusual heat, swelling, smoke, or a burning smell, and I know that the crew must respond immediately because a lithium battery can re-ignite.",
+      "referenceTextZh": "没有，我从未在飞行中遇到过便携式电子设备故障。我学习过异常发热、鼓胀、烟雾或烧焦气味等警示迹象，也知道锂电池可能复燃，因此机组必须立即响应。"
     },
     {
       "id": "opi-core-829",
       "taskTitle": "特情-充电宝与锂电池-10",
       "audioText": "How can passengers ensure their power bank is safe?",
       "audioTextZh": "乘客如何确保充电宝是安全的？",
-      "referenceText": "Passengers should use a power bank from a reliable source with a clear capacity marking and no damage, swelling or recall notice. They should protect it from crushing, heat, liquid and short circuits and follow the airline's carriage and use rules. If it becomes unusually warm, changes shape or smells unusual, they should stop using it and tell the crew.",
-      "referenceTextZh": "旅客应使用来源可靠、容量标识清楚，而且没有损坏、膨胀或召回通知的充电宝。应防止充电宝受到挤压、受热、进液或短路，并遵守航空公司的携带和使用规定。如果充电宝异常发热、变形或发出异味，应停止使用并通知机组。"
+      "referenceText": "Passengers should check that a power bank is not damaged or swollen before a flight. Its terminals should be protected against short circuits by using its original case or suitable packaging. A damaged power bank should never be carried on board.",
+      "referenceTextZh": "旅客应在飞行前检查充电宝是否损坏或鼓胀。应使用原装外壳或合适包装保护端子，防止短路。损坏的充电宝绝不能带上飞机。"
     },
     {
       "id": "opi-core-830",
       "taskTitle": "特情-充电宝与锂电池-11",
       "audioText": "Why are damaged power banks particularly dangerous?",
       "audioTextZh": "为什么损坏的充电宝特别危险？",
-      "referenceText": "A damaged power bank may have an internal short circuit that starts thermal runaway without much warning. Its cells can release intense heat, smoke and flammable material, and one failing cell may trigger the next. Damage also makes safe handling and prediction more difficult, so such a power bank should not be carried.",
-      "referenceTextZh": "损坏的充电宝可能发生内部短路，并在几乎没有预警的情况下引发热失控。其电芯会释放大量热量、烟雾和易燃物，而且一个失效电芯可能引发下一个电芯失效。损坏还会增加安全处置和预测其后续发展的难度，因此不应携带这类充电宝。"
+      "referenceText": "Damage or swelling can indicate that a power bank is chemically unstable and that its internal separator may be compromised. Pressure, heat, or even normal use may then cause a short circuit and trigger thermal runaway. For this reason, a damaged power bank should not be taken on a flight.",
+      "referenceTextZh": "损坏或鼓胀可能表明充电宝的化学状态不稳定，内部隔膜可能已经受损。此时压力、热量甚至正常使用都可能造成短路并触发热失控。因此，损坏的充电宝不应带上飞机。"
     },
     {
       "id": "opi-core-832",
       "taskTitle": "特情-充电宝与锂电池-12",
       "audioText": "How would you explain why power banks must not be placed in checked baggage?",
       "audioTextZh": "你会如何解释充电宝不得放入托运行李的原因？",
-      "referenceText": "A power bank is treated as a spare lithium battery, so it must stay in the cabin rather than checked baggage. In the cabin, smoke or overheating can be noticed quickly and trained crew can cool and control the device. A fire in a baggage compartment may not be accessible, and ordinary suppression may not stop thermal runaway from spreading between cells.",
-      "referenceTextZh": "充电宝按备用锂电池管理，因此必须留在客舱，不能放入托运行李。在客舱内，受训机组能够迅速发现冒烟或过热，并冷却和控制设备。行李舱内的火灾可能无法接近，而且普通灭火系统未必能阻止热失控在电芯之间蔓延。"
+      "referenceText": "I would explain that a power bank must stay in carry-on baggage because a cargo-hold fire is harder to detect and suppress. In the cabin, the crew can see signs of overheating and respond much more quickly.",
+      "referenceTextZh": "我会解释，充电宝必须放在手提行李中，因为货舱火灾更难发现和扑灭。在客舱内，机组可以看到过热迹象并更快响应。"
     },
     {
       "id": "opi-core-833",
       "taskTitle": "特情-充电宝与锂电池-13",
       "audioText": "Why are passengers prohibited from using power banks during a flight?",
       "audioTextZh": "为什么禁止乘客在飞行中使用充电宝？",
-      "referenceText": "The question needs one qualification: ICAO does not impose a universal ban on using a power bank to charge another portable device, but it recommends against that use and an airline may prohibit it. Since 27 March 2026, ICAO does prohibit passengers from recharging the power bank itself during flight. These restrictions reduce charging-related exposure and keep the battery available for monitoring if it overheats, swells or smokes.",
-      "referenceTextZh": "这个问题需要加以限定：ICAO 并未普遍禁止用充电宝给其他便携式设备充电，但建议不要这样使用，航空公司也可以作出禁止规定。自 2026 年 3 月 27 日起，ICAO 禁止旅客在飞行中为充电宝本身充电。这些限制可以减少充电相关风险，并使电池在过热、膨胀或冒烟时保持在便于监控的位置。"
+      "referenceText": "A power bank generates heat while it is being used. If a faulty unit overheats inside a seat pocket or bag, the problem may not be noticed until it becomes serious. Prohibiting its use reduces the chance of an unnoticed event and supports early detection.",
+      "referenceTextZh": "充电宝使用时会产生热量。如果故障充电宝在座椅口袋或行李中过热，可能直到情况严重才被发现。禁止使用可以减少事件未被发现的机会，并有助于早期发现。"
     }
   ]
 }

@@ -8,57 +8,57 @@
       "id": "opi-core-520",
       "taskTitle": "缩略词-GPWS与EGPWS-1",
       "audioText": "What is the Enhanced Ground Proximity Warning System (EGPWS)?",
-      "referenceText": "The Enhanced Ground Proximity Warning System, or EGPWS, is a terrain-awareness system that warns the crew of a potential collision with terrain or obstacles. It combines aircraft position and a terrain database with height and flight-path information to provide forward-looking alerts. It also retains warning functions associated with the earlier GPWS design.",
+      "referenceText": "EGPWS stands for Enhanced Ground Proximity Warning System. It warns pilots about terrain and obstacles so that they can avoid a collision. It can issue alerts such as “Terrain, terrain” and “Pull up.”",
       "audioTextZh": "什么是增强型近地警告系统（EGPWS）？",
-      "referenceTextZh": "增强型近地警告系统（EGPWS）是一种地形感知系统，用于警告机组可能与地形或障碍物相撞。它将飞机位置、地形数据库与高度和飞行轨迹信息结合，提供前视警报。系统还保留了早期 GPWS 设计所具有的警告功能。"
+      "referenceTextZh": "EGPWS 是增强型近地警告系统的缩写。它向飞行员发出地形和障碍物警告，帮助避免碰撞。系统可以发出“Terrain, terrain”和“Pull up”等告警。"
     },
     {
       "id": "opi-core-521",
       "taskTitle": "缩略词-GPWS与EGPWS-2",
       "audioText": "What is the function of the Ground Proximity Warning System (GPWS)?",
       "audioTextZh": "近地警告系统（GPWS）有什么功能？",
-      "referenceText": "GPWS monitors the aircraft's height, configuration and vertical movement to detect dangerous proximity to the ground. It gives visual and aural alerts so the crew can recognize the threat and take the approved escape action. Its purpose is to reduce accidents in which a serviceable aircraft is unintentionally flown into terrain.",
-      "referenceTextZh": "GPWS 监控飞机高度、构型和垂直运动，以探测危险的近地状态。它发出目视和音响警报，使机组能够识别威胁并执行经批准的改出动作。其目的是减少飞机在适航状态下无意撞向地形的事故。"
+      "referenceText": "The function of GPWS is to help prevent controlled flight into terrain. It monitors the aircraft’s proximity to the ground and gives the flight crew aural and visual warnings when there is a terrain-collision risk.",
+      "referenceTextZh": "GPWS 的作用是帮助防止可控飞行撞地。它监控飞机与地面的接近程度，并在存在撞地风险时向飞行机组发出声音和目视警告。"
     },
     {
       "id": "opi-core-522",
       "taskTitle": "缩略词-GPWS与EGPWS-3",
       "audioText": "How does the Ground Proximity Warning System (GPWS) work?",
       "audioTextZh": "近地警告系统（GPWS）如何工作？",
-      "referenceText": "A traditional GPWS receives information such as radio altitude, vertical speed, airspeed and landing configuration. It compares those inputs with programmed warning envelopes and produces an alert when the aircraft enters a hazardous condition. Because the basic system mainly reacts to the terrain directly below the aircraft, it may give less warning for rapidly rising terrain ahead.",
-      "referenceTextZh": "传统 GPWS 接收无线电高度、垂直速度、空速和着陆构型等信息。它将这些输入与预设警告包线比较，并在飞机进入危险状态时发出警报。由于基础系统主要对飞机正下方的地形作出反应，对前方迅速升高的地形可能提供较少预警。"
+      "referenceText": "GPWS uses radio-altimeter information to monitor the aircraft’s height above the ground. Its different operating modes compare that height with conditions such as the aircraft’s descent rate. If the aircraft is too close to the ground or descending too rapidly near it, the system gives a warning such as “Sink rate.”",
+      "referenceTextZh": "GPWS 使用无线电高度表信息监控飞机相对地面的高度。不同工作模式会把该高度与飞机下降率等条件进行比较。如果飞机离地面过近或在近地面下降过快，系统会发出“Sink rate”等警告。"
     },
     {
       "id": "opi-core-523",
       "taskTitle": "缩略词-GPWS与EGPWS-4",
       "audioText": "What is the difference between the Ground Proximity Warning System (GPWS) and the Enhanced Ground Proximity Warning System (EGPWS)?",
       "audioTextZh": "近地警告系统（GPWS）与增强型近地警告系统（EGPWS）有何不同？",
-      "referenceText": "Basic GPWS is mainly reactive and uses aircraft sensor data to detect hazardous proximity to terrain below. EGPWS adds accurate position, a terrain and obstacle database, and forward-looking logic, so it can warn about rising terrain ahead earlier. Both systems require the crew to respond immediately in accordance with the approved warning procedure unless the warning is positively known to be false under that procedure.",
-      "referenceTextZh": "基础 GPWS 主要是反应式系统，利用飞机传感器数据探测飞机与下方地形的危险接近状态。EGPWS 增加了准确位置、地形和障碍物数据库以及前视逻辑，因此能够更早警告前方升高的地形。两套系统发出警告时，机组都必须立即按经批准的警告程序处置，除非根据该程序已经确认警告为误警。"
+      "referenceText": "GPWS mainly reacts to ground-proximity information beneath the aircraft. EGPWS is an enhanced system that also uses GPS and terrain, obstacle, and airport databases to compare the aircraft’s position with surrounding terrain. This allows EGPWS to provide earlier warnings about high or steep terrain ahead.",
+      "referenceTextZh": "GPWS 主要根据飞机下方的近地信息作出反应。EGPWS 是增强系统，还利用 GPS 以及地形、障碍物和机场数据库，把飞机位置与周围地形比较，因此可以更早警告前方较高或陡峭的地形。"
     },
     {
       "id": "opi-core-524",
       "taskTitle": "缩略词-GPWS与EGPWS-5",
       "audioText": "What is the difference between the Ground Proximity Warning System (GPWS) and the Traffic Alert and Collision Avoidance System (TCAS)?",
       "audioTextZh": "近地警告系统（GPWS）与空中交通告警和防撞系统（TCAS）有何不同？",
-      "referenceText": "GPWS warns about terrain or obstacle threats based on the aircraft's height and flight path. TCAS uses transponder information to detect equipped aircraft that may create a traffic conflict and can issue traffic or resolution advisories. In simple terms, GPWS protects mainly against terrain, while TCAS protects mainly against other aircraft.",
-      "referenceTextZh": "GPWS 根据飞机高度和飞行轨迹，对地形或障碍物威胁发出警告。TCAS 利用应答机信息探测可能造成飞行冲突的已装备航空器，并可以发出交通咨询或决断咨询。简单来说，GPWS 主要防止撞地，TCAS 主要防止与其他航空器相撞。"
+      "referenceText": "GPWS helps prevent collisions with terrain or obstacles by monitoring the aircraft’s proximity to the ground and issuing warnings. TCAS helps prevent mid-air collisions by tracking nearby transponder-equipped aircraft and, when necessary, providing resolution advisories such as climb or descend commands.",
+      "referenceTextZh": "GPWS 通过监控飞机与地面的接近程度并发出警告，帮助防止与地形或障碍物相撞。TCAS 通过跟踪附近配有应答机的飞机来防止空中相撞，并在必要时提供爬升或下降等决断咨询。"
     },
     {
       "id": "opi-core-199",
       "taskTitle": "缩略词-GPWS与EGPWS-6",
       "audioText": "What should pilots do if they receive a ground proximity warning even though the runway is in sight?",
       "audioTextZh": "即使已经看到跑道，飞行员收到近地警告时仍应如何处置？",
-      "referenceText": "Seeing the runway does not by itself make a ground-proximity warning safe to ignore. The crew should immediately carry out the aircraft's approved warning or escape response, unless a clearly defined, pre-approved exception applies and every required condition for that exception is already met. They should advise ATC as workload allows and reassess position, flight path, configuration and terrain before any further approach.",
-      "referenceTextZh": "看到跑道本身并不能说明可以安全忽略近地警告。机组应立即执行该机型经批准的警告响应或避险动作，除非存在定义清楚、事先批准的例外，而且该例外所需的每项条件都已满足。在工作负荷允许时，机组应通知 ATC；在进行任何后续进近前，还应重新评估位置、飞行轨迹、构型和地形。"
+      "referenceText": "Seeing the runway does not by itself cancel a terrain warning. The pilots should immediately perform the published escape manoeuvre and continue until the warning stops and a safe flight path is assured. Only in clear daytime visual conditions, when it is immediately obvious that there is no danger, may the response be limited as permitted by the approved TAWS procedure.",
+      "referenceTextZh": "看到跑道本身并不能取消地形警告。飞行员应立即执行公布的逃逸机动，并持续执行，直到警告停止且确认飞行航迹安全。只有在昼间清晰目视条件下，并且能立即确认不存在危险时，才可以按照批准的 TAWS 程序限制响应动作。"
     },
     {
       "id": "opi-core-262",
       "taskTitle": "缩略词-GPWS与EGPWS-7",
       "audioText": "How can EGPWS support safe operations at a complex airport?",
       "audioTextZh": "EGPWS 如何为复杂机场的安全运行提供支持？",
-      "referenceText": "EGPWS can compare the aircraft's position and flight path with a terrain and obstacle database, giving forward-looking alerts near difficult terrain. Its terrain display can improve situational awareness during arrival, approach and go-around at an unfamiliar or complex airport. It is an additional safety layer, not a substitute for current charts, accurate navigation, published procedures or visual lookout.",
-      "referenceTextZh": "EGPWS 可以把飞机的位置和飞行轨迹与地形及障碍物数据库比较，在接近复杂地形时提供前视警报。飞机在陌生或复杂机场进场、进近和复飞时，其地形显示可以增强情景意识。它是一层额外的安全保护，不能取代现行航图、准确导航、公布程序或目视观察。"
+      "referenceText": "At a complex airport, EGPWS can warn the crew when the aircraft is too low relative to surrounding terrain. It supports terrain avoidance by giving aural alerts such as “Too low, terrain” or “Terrain, pull up.”",
+      "referenceTextZh": "在复杂机场，EGPWS 可以在飞机相对周围地形过低时警告机组。系统通过“Too low, terrain”或“Terrain, pull up”等声音告警支持地形避让。"
     }
   ]
 }

@@ -9,56 +9,56 @@
       "taskTitle": "气象-雷击-1",
       "audioText": "Have you ever encountered a lightning strike during flight?",
       "audioTextZh": "你在飞行中遇到过雷击吗？",
-      "referenceText": "One adjustable example is that I have not experienced a direct lightning strike in flight. I have operated near thunderstorms, so I treat lightning as part of a wider convective-weather threat. I would avoid the hazardous area rather than rely on the aircraft's lightning protection.",
-      "referenceTextZh": "一个可调整的示范答案是，我没有在飞行中遭遇过直接雷击。我曾在雷暴附近运行，因此会把雷电视为整个强对流天气威胁的一部分。我会避开危险区域，而不是依赖飞机的防雷保护。"
+      "referenceText": "No, I have never encountered a lightning strike during flight. I know that lightning strikes are dangerous, so I avoid them during flight.",
+      "referenceTextZh": "没有，我在飞行中从未遭遇过雷击。我知道雷击很危险，因此在飞行中会避开雷电活动区域。"
     },
     {
       "id": "opi-core-002",
       "taskTitle": "气象-雷击-2",
       "audioText": "Under what weather conditions are lightning strikes most likely to occur?",
       "audioTextZh": "雷击最可能在哪些天气条件下发生？",
-      "referenceText": "Lightning is most likely in or near active convective clouds, especially thunderstorms with strong vertical development. Heavy precipitation, turbulence and electrical activity may occur in the same area. A pilot should use forecasts, reports and onboard weather information to avoid the whole hazardous cell.",
-      "referenceTextZh": "雷电最可能出现在活跃的对流云内部或附近，尤其是垂直发展旺盛的雷暴中。同一区域还可能出现强降水、颠簸和电活动。飞行员应利用预报、报告和机载气象信息，避开整个危险单体。"
+      "referenceText": "Lightning strikes are most likely to occur in thunderstorms or cumulonimbus clouds.",
+      "referenceTextZh": "雷击最可能发生在雷暴或积雨云中。"
     },
     {
       "id": "opi-core-003",
       "taskTitle": "气象-雷击-3",
       "audioText": "Why are lightning strikes hazardous to flight safety?",
       "audioTextZh": "为什么雷击会危及飞行安全？",
-      "referenceText": "A lightning strike can damage the skin, radome, antennas or electrical equipment. It may cause temporary instrument problems, system faults or a strong flash and noise that distract the crew. The surrounding thunderstorm can also bring severe turbulence, hail and icing, which may be a greater immediate threat.",
-      "referenceTextZh": "雷击可能损坏机身蒙皮、雷达罩、天线或电气设备。它还可能引起短暂的仪表异常、系统故障，强烈的闪光和巨响也会分散机组注意力。雷暴本身还可能带来严重颠簸、冰雹和结冰，这些威胁在当时甚至可能更加紧迫。"
+      "referenceText": "A lightning strike may damage the fuselage, wings, or electronic equipment. It may also cause electrical failure or disrupt communication and navigation systems.",
+      "referenceTextZh": "雷击可能损坏机身、机翼或电子设备，还可能导致电气故障，或使通信和导航系统中断。"
     },
     {
       "id": "opi-core-004",
       "taskTitle": "气象-雷击-4",
       "audioText": "What should a pilot do if the aircraft is struck by lightning during flight?",
       "audioTextZh": "飞行中飞机遭遇雷击时，飞行员应如何处置？",
-      "referenceText": "The crew should maintain control, confirm the flight path and check the aircraft for abnormal indications. They should follow the applicable checklist, assess the weather and system status, and advise ATC if a route change or priority is needed. A suitable landing and a maintenance inspection should be considered, especially if damage or a malfunction is suspected.",
-      "referenceTextZh": "机组应保持飞机受控，确认飞行轨迹，并检查是否有异常指示。随后应执行适用检查单，评估天气和系统状态；如果需要改变航路或获得优先保障，应通知 ATC。特别是在怀疑存在损伤或故障时，应考虑在合适的机场着陆并安排维修检查。"
+      "referenceText": "I would first maintain control of the aircraft and follow the SOP and checklist. I would check for structural or system damage and report the situation to ATC. If the damage were severe, I would request a diversion to an alternate airport. After landing, I would request a maintenance inspection.",
+      "referenceTextZh": "我会首先控制好飞机，并遵循标准操作程序和检查单。我会检查飞机是否存在结构或系统损伤，并向空中交通管制报告情况。如果损伤严重，我会申请改航至备降机场。着陆后，我会申请进行维修检查。"
     },
     {
       "id": "opi-core-005",
       "taskTitle": "气象-雷击-5",
       "audioText": "What measures can pilots take to reduce the risk of a lightning strike?",
       "audioTextZh": "飞行员可以采取哪些措施降低遭遇雷击的风险？",
-      "referenceText": "Pilots can reduce the risk by planning around convective weather and keeping a safe distance from thunderstorms. They should use current forecasts, weather radar, lightning information, pilot reports and ATC assistance without treating any one source as complete. If the safe route is uncertain, delaying, diverting or turning away is better than entering the cell.",
-      "referenceTextZh": "飞行员可以通过绕开对流天气进行航前规划，并与雷暴保持安全距离来降低风险。应综合使用现行预报、气象雷达、雷电信息、飞行员报告和 ATC 协助，而不能把任何单一信息源视为完整依据。如果无法确认航路安全，推迟起飞、备降或转向避让都比进入雷暴单体更好。"
+      "referenceText": "Before flight, I check the weather reports and avoid areas where lightning is likely. During flight, I monitor the weather radar and request a deviation from ATC if lightning is detected ahead. I also avoid cumulonimbus clouds and thunderstorm areas.",
+      "referenceTextZh": "飞行前，我会查看天气报告，并避开可能发生雷电的区域。飞行中，我会监控气象雷达；如果前方探测到雷电，就向空中交通管制申请绕飞。我还会避开积雨云和雷暴区域。"
     },
     {
       "id": "opi-core-007",
       "taskTitle": "气象-雷击-6",
       "audioText": "What damage can a lightning strike cause to an aircraft?",
       "audioTextZh": "雷击会对飞机造成哪些损伤？",
-      "referenceText": "A strike may leave small burns, pits or holes at the entry and exit points. It can also damage composite material, the radome, lights, antennas, wiring or electronic systems. Some damage may not be visible during flight, so an inspection is important after a suspected strike.",
-      "referenceTextZh": "雷击可能在雷击入口点和出口点留下小面积烧蚀、凹坑或孔洞。它还可能损坏复合材料、雷达罩、灯具、天线、线路或电子系统。有些损伤在飞行中不可见，因此疑似遭受雷击后进行检查很重要。"
+      "referenceText": "A lightning strike may damage the fuselage, wings, or electronic equipment. It may also cause communication or navigation failure.",
+      "referenceTextZh": "雷击可能损坏机身、机翼或电子设备，还可能导致通信或导航失效。"
     },
     {
       "id": "opi-core-012",
       "taskTitle": "气象-雷击-7",
       "audioText": "During which phase of flight is an aircraft most likely to be struck by lightning?",
       "audioTextZh": "飞机在哪个飞行阶段最容易遭遇雷击？",
-      "referenceText": "Aircraft are most likely to be struck during the takeoff and landing parts of a flight, especially while climbing or descending through electrically active cloud. Strikes are less common in cruise because aircraft are often above the main cloud layer and crews have more opportunity to avoid storm cells. A strike can still occur in any phase when the aircraft is near active weather.",
-      "referenceTextZh": "飞机最可能在起飞和着陆相关阶段遭受雷击，尤其是在爬升或下降穿越电活动活跃的云层时。巡航阶段的雷击相对较少，因为飞机往往位于主要云层之上，而且机组有更多机会避开雷暴单体。不过，只要飞机接近活跃天气，任何飞行阶段都可能发生雷击。"
+      "referenceText": "An aircraft is most likely to be struck by lightning during climb, descent, or holding rather than at normal cruise altitude. These phases often take it through active cloud layers at lower altitudes. The risk is greatest near thunderstorms and at levels where the temperature is close to freezing.",
+      "referenceTextZh": "飞机在爬升、下降或等待阶段比在正常巡航高度更容易遭到雷击，因为这些阶段常会穿过较低高度的活跃云层。雷暴附近以及温度接近冰点的高度层风险最大。"
     }
   ]
 }

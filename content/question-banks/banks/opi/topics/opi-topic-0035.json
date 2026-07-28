@@ -9,64 +9,64 @@
       "taskTitle": "飞机系统-液压系统-1",
       "audioText": "Why is the hydraulic system important to aircraft operation?",
       "audioTextZh": "液压系统为什么对航空器运行很重要？",
-      "referenceText": "Hydraulic systems transmit power through pressurized fluid and can move heavy aircraft components with precise control. They commonly operate flight controls, landing gear, brakes, nose-wheel steering, flaps, slats, spoilers and thrust reversers. Multiple systems and backup sources provide redundancy when one source or circuit fails.",
-      "referenceTextZh": "液压系统通过加压液体传递动力，能够精确操纵较重的飞机部件。它通常驱动飞行操纵面、起落架、刹车、前轮转弯、襟翼、缝翼、扰流板和反推装置。多套系统和备用动力源可在某一动力源或回路失效时提供冗余。"
+      "referenceText": "The hydraulic system provides pressure to operate important aircraft components. Depending on the aircraft, these may include flight controls, landing gear, flaps and slats, brakes, steering, spoilers, and thrust reversers. This makes hydraulics important for aircraft control and maneuverability.",
+      "referenceTextZh": "液压系统提供压力来驱动飞机的重要部件。根据机型不同，这些部件可能包括飞行操纵面、起落架、襟翼和缝翼、刹车、转向、扰流板和反推装置。因此，液压系统对飞机操纵和机动能力十分重要。"
     },
     {
       "id": "opi-core-473",
       "taskTitle": "飞机系统-液压系统-2",
       "audioText": "How can a major hydraulic system failure affect an aircraft in flight?",
       "audioTextZh": "液压系统发生重大故障会如何影响飞行中的航空器？",
-      "referenceText": "A major hydraulic failure can reduce or remove normal flight-control assistance and affect landing gear, brakes, steering, high-lift devices or reversers. The aircraft may require greater control force, alternate extension, different flap settings, higher approach speed and a longer landing distance. Loss of several systems can seriously limit controllability and may require immediate use of emergency or backup controls.",
-      "referenceTextZh": "严重液压故障可能削弱或使正常飞行操纵助力丧失，并影响起落架、刹车、转弯、高升力装置或反推。飞机可能需要更大的操纵力、采用备用放轮、使用不同的襟翼设置、提高进近速度并增加着陆距离。多套系统失效会严重限制操纵能力，并可能要求立即使用应急或备用操纵装置。"
+      "referenceText": "A major hydraulic failure may affect the flight controls, landing gear, flaps, and brakes. The crew may be unable to extend the gear or flaps, which can lead to a gear-up landing, a higher landing speed, and a longer landing distance.",
+      "referenceTextZh": "严重液压故障可能影响飞行操纵、起落架、襟翼和刹车。机组可能无法放下起落架或襟翼，从而导致机腹着陆、更高的着陆速度和更长的着陆距离。"
     },
     {
       "id": "opi-core-474",
       "taskTitle": "飞机系统-液压系统-3",
       "audioText": "How many independent hydraulic systems does the aircraft type you fly have?",
       "audioTextZh": "你所飞的机型有多少套相互独立的液压系统？",
-      "referenceText": "A suitable Airbus A320 example would be: the aircraft has three independent hydraulic systems, called Green, Blue and Yellow. They have separate fluid circuits and different normal pressure sources, with limited backup or power-transfer arrangements between parts of the system. Learners should replace this with the architecture of the aircraft they actually fly.",
-      "referenceTextZh": "一个合适的空客 A320 示范答案是：该飞机有三套独立液压系统，分别称为绿、蓝和黄系统。它们拥有独立的液压油回路和不同的正常压力源，系统的相关部分之间还设有有限的备用供压或动力传输安排。学习者应根据自己实际所飞机型的系统架构替换这段内容。"
+      "referenceText": "I fly the DA-40, which has one hydraulic system, mainly for the main-gear brakes.",
+      "referenceTextZh": "我飞的是 DA-40，它有一套液压系统，主要用于主起落架刹车。"
     },
     {
       "id": "opi-core-475",
       "taskTitle": "飞机系统-液压系统-4",
       "audioText": "How should a flight crew respond to the failure of one hydraulic system?",
       "audioTextZh": "一套液压系统失效时，飞行机组应如何处置？",
-      "referenceText": "The crew should confirm the failure indications, follow the hydraulic-system checklist and avoid cycling pumps or valves unless the procedure directs it. They should review which controls and landing systems are lost, protect the remaining hydraulic systems and calculate the changed approach and landing performance. ATC and cabin crew should be advised, and the aircraft should land at a suitable airport with the required emergency support.",
-      "referenceTextZh": "机组应确认失效指示，执行液压系统检查单；除非程序指示，否则应避免反复开关泵或活门。他们应检查哪些操纵功能和着陆系统已经丧失，保护其余液压系统，并计算变化后的进近与着陆性能。机组应通知 ATC 和客舱机组，并在具有所需应急保障的合适机场着陆。"
+      "referenceText": "On the DA-40 I fly, the first priority is to maintain aircraft control, airspeed, altitude, and attitude. I would follow the checklist, advise ATC, and try to resolve the problem. If it could not be resolved, I would return or divert to a suitable airport, request a longer runway if braking were affected, and arrange a maintenance inspection after landing.",
+      "referenceTextZh": "在我飞的 DA-40 上，首要任务是保持飞机控制、空速、高度和姿态。我会执行检查单、通知空中交通管制，并尝试解决问题。如果无法解决，我会返航或改航至合适机场；如果制动受到影响，会申请较长跑道，并在着陆后安排维修检查。"
     },
     {
       "id": "opi-core-477",
       "taskTitle": "飞机系统-液压系统-5",
       "audioText": "Which aircraft systems or components are commonly powered by hydraulics?",
       "audioTextZh": "哪些航空器系统或部件通常由液压驱动？",
-      "referenceText": "Hydraulics commonly power primary or secondary flight controls, flaps, slats, spoilers and speed brakes. They may also operate landing gear, wheel brakes, nose-wheel steering, thrust reversers, cargo doors and some propeller or utility systems. Aircraft designers divide these users among separate circuits so one leak does not remove every essential function.",
-      "referenceTextZh": "液压系统通常驱动主飞行或辅助飞行操纵面、襟翼、缝翼、扰流板和减速板。它还可能操纵起落架、机轮刹车、前轮转弯、反推装置、货舱门以及某些螺旋桨或辅助系统。飞机设计者把这些用户分配到不同回路，使一处泄漏不会导致所有重要功能同时丧失。"
+      "referenceText": "Depending on the aircraft, hydraulics may power the landing gear, nose-wheel steering, brakes, ailerons, elevators, rudder, flaps, and slats.",
+      "referenceTextZh": "根据机型不同，液压系统可能驱动起落架、前轮转向、刹车、副翼、升降舵、方向舵、襟翼和缝翼。"
     },
     {
       "id": "opi-core-479",
       "taskTitle": "飞机系统-液压系统-6",
       "audioText": "Can an aircraft continue to operate safely after losing one hydraulic system?",
       "audioTextZh": "失去一套液压系统后，航空器能否继续安全运行？",
-      "referenceText": "Many multi-system aircraft can continue safely after one hydraulic system is lost because another system or backup source retains essential control. However, some functions may be slower, unavailable or limited, and approach speed, landing distance or crosswind capability may change. The crew must follow the checklist and performance limits; redundancy does not automatically mean that continuing to the original destination is the safest choice.",
-      "referenceTextZh": "许多装有多套液压系统的飞机在失去一套系统后仍能安全继续飞行，因为其他系统或备用动力源保留了必要的操纵能力。不过，有些功能可能变慢、不可用或受到限制，进近速度、着陆距离或侧风能力也可能发生变化。机组必须执行检查单并遵守性能限制；具备冗余并不自动意味着继续飞往原目的地就是最安全的选择。"
+      "referenceText": "Yes, an aircraft with more than one independent hydraulic system may continue to operate after one system fails because another working system can still provide hydraulic power.",
+      "referenceTextZh": "是的，拥有多套独立液压系统的飞机在一套系统失效后仍可能继续运行，因为另一套正常系统仍可提供液压动力。"
     },
     {
       "id": "opi-core-480",
       "taskTitle": "飞机系统-液压系统-7",
       "audioText": "How should a flight crew respond to a hydraulic fluid leak in flight?",
       "audioTextZh": "飞行中液压油泄漏时，飞行机组应如何处置？",
-      "referenceText": "The crew should confirm the leak from quantity, pressure, temperature and related system indications, then apply the approved checklist. They should isolate or switch off pumps only as directed, prevent the leak from damaging another system and review the remaining flight-control and landing capability. Because fluid loss can progress, the crew should plan an early landing at a suitable airport and request assistance based on the expected brake, steering or gear limitations.",
-      "referenceTextZh": "机组应根据油量、压力、温度和相关系统指示确认泄漏，然后执行批准的检查单。他们只应按程序指示隔离或关断液压泵，防止泄漏损坏另一套系统，并检查剩余的飞行操纵和着陆能力。由于液体流失可能继续发展，机组应计划及早在合适机场着陆，并根据预计的刹车、转弯或起落架限制请求协助。"
+      "referenceText": "The crew should follow the SOP and hydraulic-leak checklist, check the fluid quantity and possible leak source, and monitor aircraft control and performance. They should advise ATC and, if pressure drops significantly, divert to a suitable airport with a long runway. They should prepare for an emergency landing and evacuation if necessary.",
+      "referenceTextZh": "机组应执行标准操作程序和液压泄漏检查单，检查液压油量和可能的泄漏源，并监控飞机操纵和性能。他们应通知空中交通管制；如果压力明显下降，应改航至跑道较长的合适机场。必要时还应准备紧急着陆和撤离。"
     },
     {
       "id": "opi-core-481",
       "taskTitle": "飞机系统-液压系统-8",
       "audioText": "How can a hydraulic fluid leak affect flight safety?",
       "audioTextZh": "液压油泄漏会如何影响飞行安全？",
-      "referenceText": "A leak can lower fluid quantity and pressure until powered components move slowly, operate abnormally or stop working. Escaping fluid may damage nearby equipment or, if it reaches a hot surface, create smoke or fire. System interaction or an incorrect isolation response can also overheat or disable a hydraulic system that was still healthy.",
-      "referenceTextZh": "泄漏可能使液压油液量和压力下降，直至由液压驱动的部件动作缓慢、工作异常或完全停止。泄出的液体可能损坏附近设备；如果接触高温表面，还可能产生烟雾或引发火灾。系统之间的相互影响或错误的隔离处置，也可能使原本正常的液压系统过热或失效。"
+      "referenceText": "A hydraulic fluid leak can reduce system pressure and cause partial or complete loss of flight controls, landing gear, brakes, or thrust reversers. A severe leak may make the aircraft difficult to control and can contribute to a runway overrun or structural damage.",
+      "referenceTextZh": "液压油泄漏会降低系统压力，并造成飞行操纵、起落架、刹车或反推部分或完全丧失。严重泄漏可能使飞机难以操纵，并可能促成冲出跑道或结构损伤。"
     }
   ]
 }

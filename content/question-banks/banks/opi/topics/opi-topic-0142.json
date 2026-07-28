@@ -9,24 +9,24 @@
       "taskTitle": "飞机系统-皮托管-1",
       "audioText": "What is the pitot tube used for?",
       "audioTextZh": "皮托管有什么用途？",
-      "referenceText": "The pitot tube senses total pressure from the airflow as the aircraft moves forward. The air-data system compares this with static pressure to determine indicated airspeed and related values. Pitot heat helps prevent ice from blocking the opening when used according to the aircraft procedure.",
-      "referenceTextZh": "皮托管在飞机向前运动时感受气流的总压。大气数据系统将其与静压比较，确定指示空速和相关数值。按照飞机程序使用皮托管加温，有助于防止冰堵塞管口。"
+      "referenceText": "The pitot tube collects total air pressure and provides an input used to measure the aircraft's airspeed.",
+      "referenceTextZh": "空速管收集全压，并提供用于测量飞机空速的输入信号。"
     },
     {
       "id": "opi-extra-335",
       "taskTitle": "飞机系统-皮托管-2",
       "audioText": "How can a blocked pitot tube affect airspeed indications?",
       "audioTextZh": "皮托管堵塞会如何影响空速指示？",
-      "referenceText": "A blocked pitot tube can produce an airspeed indication that is frozen, incorrect or changes in a misleading way with altitude, depending on which openings are blocked. Different air-data sources may disagree and trigger warnings or affect systems that use airspeed. The crew should not rely on one simple symptom because blockage configurations and aircraft processing differ.",
-      "referenceTextZh": "根据哪些开口被堵塞，皮托管堵塞可能使空速指示停留不变、显示错误，或随高度以误导方式变化。不同大气数据源可能出现不一致并触发警告，或影响使用空速数据的系统。机组不能只依赖一种简单征象，因为堵塞组合和飞机数据处理方式各不相同。"
+      "referenceText": "A blocked pitot tube can make the airspeed indication incorrect or unreliable. The reading may fluctuate and mislead the pilots.",
+      "referenceTextZh": "空速管堵塞会导致空速指示错误或不可靠。读数可能发生波动并误导飞行员。"
     },
     {
       "id": "opi-extra-336",
       "taskTitle": "飞机系统-皮托管-3",
       "audioText": "How should a flight crew respond to a suspected pitot-system blockage?",
       "audioTextZh": "怀疑皮托系统堵塞时，飞行机组应如何处置？",
-      "referenceText": "The crew should maintain a safe attitude and thrust using the aircraft's unreliable-airspeed or air-data procedure and avoid chasing conflicting indications. It should compare independent sources, confirm pitot or probe heat as directed, manage automation in accordance with the checklist and use known attitude-and-thrust guidance when applicable. The crew then communicates the limitation and plans a suitable altitude, route and landing without improvising a generic sensor reset.",
-      "referenceTextZh": "机组应按照飞机的空速不可靠或大气数据程序，使用安全姿态与推力保持飞行，避免追随相互冲突的指示反复修正。他们应比较独立信息源，按指示确认皮托管或探头加温，根据检查单管理自动化，并在适用时使用已知的姿态与推力指导。随后，机组通报限制并计划合适的高度、航路和着陆，不能自行尝试通用的传感器复位方法。"
+      "referenceText": "The crew should follow the applicable QRH or aircraft procedure and use other reliable instruments to maintain control. If ice is suspected, the procedure may call for pitot heat. If the problem remains unresolved, the crew should inform ATC and consider diverting for maintenance.",
+      "referenceTextZh": "机组应执行适用的快速检查单或机型程序，并使用其他可靠仪表保持飞机控制。如果怀疑结冰，程序可能要求接通空速管加温。如果问题仍无法解决，机组应通知空中交通管制，并考虑备降进行维修。"
     }
   ]
 }

@@ -9,80 +9,80 @@
       "taskTitle": "缩略词-EBT-1",
       "audioText": "What is evidence-based training (EBT) in aviation?",
       "audioTextZh": "什么是航空循证训练（EBT）？",
-      "referenceText": "Evidence-based training is a competency-based approach that uses operational data to identify the most important threats and pilot performance needs. Instead of repeating only a fixed list of maneuvers, it develops and assesses competencies through realistic scenarios. The program still includes required critical events and is designed within an approved regulatory framework.",
-      "referenceTextZh": "循证训练是一种基于胜任力的方法，利用运行数据识别最重要的威胁和飞行员表现需求。它不只重复一份固定的机动动作清单，而是通过真实情景培养并评估胜任力。该计划仍包括规定的关键事件，并在批准的监管框架内设计。"
+      "referenceText": "Evidence-based training is an approach to pilot training and assessment that uses operational data, training records, and accident or incident analysis to identify important threats and training needs. It focuses on developing core pilot competencies in realistic situations rather than testing only isolated maneuvers.",
+      "referenceTextZh": "循证训练是一种飞行员训练与评估方法，它利用运行数据、训练记录及事故或事件分析来识别重要威胁和训练需求。它注重在真实情境中培养飞行员的核心胜任能力，而不是只考核孤立的机动动作。"
     },
     {
       "id": "opi-extra-299",
       "taskTitle": "缩略词-EBT-2",
       "audioText": "How is operational evidence used to shape an EBT program?",
       "audioTextZh": "如何利用运行证据设计 EBT 方案？",
-      "referenceText": "De-identified information from accidents, incidents, flight-data monitoring, safety reports, training results and operational changes is analyzed for recurring threats and performance gaps. Program designers use the patterns to select scenarios, emphasize relevant competencies and adjust training frequency or difficulty. The evidence should represent the operator's operation and be reviewed regularly rather than used as a one-time justification.",
-      "referenceTextZh": "从事故、事故征候、飞行数据监控、安全报告、训练结果和运行变化中取得的去标识化信息，会用于分析反复出现的威胁和能力差距。课程设计人员根据这些模式选择情景、突出相关胜任力，并调整训练频率或难度。证据应能代表运营人的实际运行，并定期审查，而不能只作为一次性的理由。"
+      "referenceText": "An EBT programme uses evidence from normal operations, incidents, safety reports, and training and competency assessments. The data is analysed to identify recurring threats, errors, and performance gaps. Those findings shape the scenarios and training priorities, and later operational and training data provides a feedback loop for checking and improving the programme.",
+      "referenceTextZh": "循证训练方案会采用正常运行、事件、安全报告，以及训练与胜任能力评估中的证据。通过分析这些数据，可以找出反复出现的威胁、差错和能力不足之处。这些发现用于确定训练场景和训练重点，之后的运行与训练数据则形成反馈闭环，用于检查和改进方案。"
     },
     {
       "id": "opi-extra-300",
       "taskTitle": "缩略词-EBT-3",
       "audioText": "How does EBT differ from traditional pilot training?",
       "audioTextZh": "EBT 与传统飞行员训练有何不同？",
-      "referenceText": "Traditional recurrent training often emphasizes repeated maneuvers and checking of prescribed events. EBT organizes training around competencies and uses operational evidence to build scenarios in which several technical and nontechnical skills are observed together. It does not remove technical practice; it changes how events are selected, combined, coached and assessed.",
-      "referenceTextZh": "传统复训通常强调重复机动动作和检查规定事件。EBT 围绕胜任力组织训练，并利用运行证据设计情景，在同一情景中同时观察多项技术与非技术技能。它并不取消技术练习，而是改变事件的选择、组合、指导和评估方式。"
+      "referenceText": "Traditional training often concentrates on predetermined failures and can encourage rote learning. EBT uses data-driven scenarios that represent complex line operations more closely. It emphasizes how and why pilots act, rather than only whether they complete one maneuver.",
+      "referenceTextZh": "传统训练往往侧重预先设定的故障，并可能鼓励机械记忆。循证训练采用以数据为依据的场景，更贴近复杂的航线运行。它强调飞行员采取行动的方式和原因，而不只是看其能否完成某一个机动动作。"
     },
     {
       "id": "opi-extra-301",
       "taskTitle": "缩略词-EBT-4",
       "audioText": "What are the main advantages of EBT?",
       "audioTextZh": "EBT 的主要优势有哪些？",
-      "referenceText": "EBT can focus limited simulator time on threats and performance weaknesses shown by real operations. Scenario-based practice develops judgement, monitoring, communication and resilience together with aircraft handling. Because performance is reviewed by competency, instructors can give more precise feedback and the program can evolve as operational risk changes.",
-      "referenceTextZh": "EBT 可以把有限的模拟机时间集中用于真实运行所显示的威胁和能力薄弱环节。情景训练在培养飞机操纵能力的同时，也发展判断、监控、沟通和韧性。由于按照胜任力审视表现，教员可以提供更准确的反馈，课程也能随运行风险变化而发展。"
+      "referenceText": "EBT focuses training on relevant threats identified from operational data. It develops core competencies such as decision-making and communication and gives pilots useful feedback on how they perform under pressure. This can prepare crews more effectively for complex and unexpected situations.",
+      "referenceTextZh": "循证训练把重点放在运行数据所识别的相关威胁上。它培养决策和沟通等核心胜任能力，并就飞行员在压力下的表现提供有价值的反馈。这能让机组更有效地应对复杂和意外情况。"
     },
     {
       "id": "opi-extra-302",
       "taskTitle": "缩略词-EBT-5",
       "audioText": "What are core competencies in EBT, and what are some examples?",
       "audioTextZh": "EBT 中的核心胜任力是什么？能否举例说明？",
-      "referenceText": "Core competencies are observable areas of pilot performance used across different scenarios. ICAO's EBT framework includes application of procedures, communication, automated and manual flight-path management as separate competencies, leadership and teamwork, problem solving and decision making, situation awareness and information management, and workload management. The framework evaluates how the pilot combines these abilities, not only whether one maneuver reached a numerical result.",
-      "referenceTextZh": "核心胜任力是能够在不同情景中观察到的飞行员表现领域。ICAO 的 EBT 框架包括程序应用、沟通、自动和人工飞行轨迹管理两项独立胜任力、领导与团队合作、问题解决与决策、情景意识与信息管理，以及工作负荷管理。该框架评估飞行员如何综合这些能力，而不只是某个机动动作是否达到一个数值结果。"
+      "referenceText": "Core competencies are the basic skills and behaviors required for safe and effective flight operations. Examples include problem-solving and decision-making, situational awareness, workload management, leadership and teamwork, and communication.",
+      "referenceTextZh": "核心胜任能力是安全、有效开展飞行运行所需的基本技能和行为，例如解决问题与决策、情景意识、工作负荷管理、领导力与团队协作，以及沟通能力。"
     },
     {
       "id": "opi-extra-304",
       "taskTitle": "缩略词-EBT-6",
       "audioText": "Can you give an example of an EBT-style scenario?",
       "audioTextZh": "你能否举例说明一种 EBT 风格的训练场景？",
-      "referenceText": "A suitable scenario would begin with poor weather and a minor technical fault during approach, followed by a runway change and a lower-than-planned fuel margin. The crew must manage the aircraft, communicate, reassess the landing plan and decide whether to continue, hold or divert. The instructor observes several competencies and adapts the event to the crew's decisions instead of testing one memorized sequence alone.",
-      "referenceTextZh": "一个合适的情景是：进近期间先遇到恶劣天气和轻微技术故障，随后发生跑道变更，燃油裕度也低于计划。机组必须管理飞机、沟通、重新评估着陆计划，并决定继续进近、等待还是改航。教员观察多项胜任力，并根据机组决定调整事件，而不是只检查一套背熟的顺序。"
+      "referenceText": "An EBT scenario might combine several problems instead of presenting one isolated failure. For example, the crew could manage a sick passenger while receiving a conflicting ATC clearance, avoiding bad weather, and dealing with a minor system problem. This tests several competencies at the same time.",
+      "referenceTextZh": "循证训练场景可能把多个问题结合起来，而不是只设置一个孤立故障。例如，机组可能需要一边处理患病旅客，一边应对相互冲突的空中交通管制许可、避开恶劣天气，并处理一个轻微系统问题。这样可以同时考查多项胜任能力。"
     },
     {
       "id": "opi-extra-306",
       "taskTitle": "缩略词-EBT-7",
       "audioText": "How are pilots assessed during EBT?",
       "audioTextZh": "EBT 期间如何评估飞行员？",
-      "referenceText": "Pilots are assessed against defined behavioral indicators for each competency during realistic events. Instructors collect observable evidence, consider the consistency and safety effect of the behavior, and use a standardized grading method. The debrief explains strengths and development needs with specific examples rather than relying on a general impression.",
-      "referenceTextZh": "飞行员在贴近实际的训练事件中，按照每项胜任力规定的行为指标接受评估。教员收集可观察证据，考虑行为的一致性和对安全的影响，并采用标准化评分方法。讲评用具体例子说明优点和发展需要，而不是依赖笼统印象。"
+      "referenceText": "Assessment is continuous and integrated into the EBT scenario. The instructor observes how the pilot applies core competencies throughout the session. The focus is on managing the whole situation effectively rather than simply passing or failing one maneuver.",
+      "referenceTextZh": "评估是持续进行的，并融入整个循证训练场景。教员会观察飞行员在整个训练过程中如何运用核心胜任能力。重点是有效管理整体情况，而不是简单判定某一个机动动作通过或不通过。"
     },
     {
       "id": "opi-extra-307",
       "taskTitle": "缩略词-EBT-8",
       "audioText": "What is your personal opinion on EBT?",
       "audioTextZh": "你个人如何看待 EBT？",
-      "referenceText": "I support EBT because it links training to real operational risk and examines how pilots manage a complete situation. It can make simulator time more relevant and feedback more useful. However, it requires reliable data, well-trained instructors and consistent assessment, or the scenario can become subjective.",
-      "referenceTextZh": "我支持 EBT，因为它把训练与真实运行风险联系起来，并考查飞行员如何管理完整情况。它能使模拟机时间更贴近实际，反馈也更有用。不过，它需要可靠数据、训练有素的教员和一致的评估，否则情景可能变得主观。"
+      "referenceText": "I strongly support EBT because it brings training closer to the reality of the flight deck. It develops pilots who can think through changing situations instead of relying only on technical routines. That ability is important when events do not go as planned.",
+      "referenceTextZh": "我非常支持循证训练，因为它使训练更贴近驾驶舱的真实情况。它能培养飞行员分析不断变化的情况，而不只是依赖技术性固定程序。当事情没有按计划发展时，这种能力十分重要。"
     },
     {
       "id": "opi-extra-308",
       "taskTitle": "缩略词-EBT-9",
       "audioText": "What types of operational situations are commonly covered in EBT?",
       "audioTextZh": "EBT 通常涵盖哪些类型的运行情况？",
-      "referenceText": "EBT may cover unstable approaches, weather changes, automation surprises, system failures, loss of situational awareness and difficult go-around or diversion decisions. It can also include unreliable information, runway threats and communication or workload problems. The purpose is not to predict one exact accident but to practise competencies that transfer across unexpected events.",
-      "referenceTextZh": "EBT 可能涵盖进近不稳定、天气变化、自动化表现出乎预期、系统故障、情景意识丧失，以及困难的复飞或改航决策。它还可包括信息不可靠、跑道威胁和沟通或工作负荷问题。目的不是预测某一起确切事故，而是练习能够迁移到不同意外事件中的胜任力。"
+      "referenceText": "EBT can cover situations such as engine or hydraulic failures, decompression, fire, and bird strikes. It also uses complex scenarios that require decisions under pressure and communication with other pilots, ATC, or cabin crew. Human-factor challenges such as fatigue, stress, and complacency may be included as well.",
+      "referenceTextZh": "循证训练可以涵盖发动机或液压系统失效、失压、火灾和鸟击等情况。它还会采用复杂场景，要求飞行员在压力下作出决定，并与其他飞行员、空中交通管制或客舱机组沟通。疲劳、压力和自满等人为因素挑战也可以纳入其中。"
     },
     {
       "id": "opi-extra-309",
       "taskTitle": "缩略词-EBT-10",
       "audioText": "What is the main purpose of EBT?",
       "audioTextZh": "EBT 的主要目的是什么？",
-      "referenceText": "The main purpose of EBT is to improve a pilot's ability to manage the threats most relevant to safe operations. It develops resilient, observable competencies that can be applied when events do not follow a familiar script. Operational evidence keeps the program focused and allows it to change as risks and technology evolve.",
-      "referenceTextZh": "EBT 的主要目的是提高飞行员管理与安全运行最相关威胁的能力。它培养具有韧性且可观察的胜任力，使飞行员在事件不按熟悉脚本发展时仍能运用这些能力。运行证据使课程保持重点，并使其能够随着风险和技术发展而调整。"
+      "referenceText": "The main purpose of EBT is to improve pilot competencies and flight safety through training based on evidence. It develops skills such as situational awareness, decision-making, communication, coordination, and emergency response for complex operations. It also aims to make training more relevant and effective.",
+      "referenceTextZh": "循证训练的主要目的是通过基于证据的训练，提高飞行员胜任能力和飞行安全。它针对复杂运行培养情景意识、决策、沟通、协作和应急反应等技能，同时也致力于提高训练的针对性和有效性。"
     }
   ]
 }

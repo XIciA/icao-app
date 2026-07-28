@@ -9,40 +9,40 @@
       "taskTitle": "飞机系统-空调系统-1",
       "audioText": "Have you ever experienced an aircraft air-conditioning system failure?",
       "audioTextZh": "你是否曾遇到航空器空调系统失效？",
-      "referenceText": "A suitable example would be a flight in which one air-conditioning pack failed during climb. The remaining system maintained an acceptable cabin condition, so the crew completed the checklist, monitored pressurization and temperature, and continued after assessing weather and redundancy. The defect was logged and repaired after landing; this is a fictional example.",
-      "referenceTextZh": "一个合适的示范案例是：爬升期间，一套空调组件失效。剩余系统保持了可接受的客舱环境，因此机组完成检查单、监控增压和温度，并在评估天气与冗余后继续飞行。着陆后记录并修复故障；这是一个虚构案例。"
+      "referenceText": "No, I have never experienced an aircraft air-conditioning system failure in flight.",
+      "referenceTextZh": "没有，我从未在飞行中遇到过飞机空调系统失效。"
     },
     {
       "id": "opi-extra-061",
       "taskTitle": "飞机系统-空调系统-2",
       "audioText": "What factors should a flight crew consider when deciding whether to continue a flight after an air-conditioning system failure?",
       "audioTextZh": "空调系统失效后，飞行机组决定是否继续飞行时应考虑哪些因素？",
-      "referenceText": "The crew should consider whether pressurization and temperature can remain within limits, which equipment and zones are affected, and whether another independent source remains. It also assesses flight level, weather, icing, smoke or odor, passenger condition, diversion airports, the in-flight checklist and any relevant pre-existing deferred defect. A stable cabin with adequate redundancy may allow continuation, while loss of pressure control or unsafe temperature can require descent and landing.",
-      "referenceTextZh": "机组应考虑增压和温度能否保持在限制内、哪些设备与区域受到影响，以及是否还存在另一个独立气源。他们还要评估飞行高度层、天气、结冰、烟雾或异味、旅客状况、改航机场、飞行中检查单以及任何相关的原有保留故障。客舱状况稳定且冗余充足时可能允许继续飞行，而压力失控或温度不安全则可能要求下降并着陆。"
+      "referenceText": "The crew should assess the extent of the failure, whether pressurization or cabin temperature is affected, and whether the checklist resolves the problem. They should also consider a suitable flight level and the effect on the passengers and crew. If safe conditions cannot be maintained, they should inform ATC and return or divert to a suitable airport.",
+      "referenceTextZh": "机组应评估故障范围、增压或客舱温度是否受到影响，以及检查单能否解决问题。他们还应考虑合适的飞行高度层和对旅客及机组的影响。如果无法维持安全条件，应通知空中交通管制并返航或改航至合适机场。"
     },
     {
       "id": "opi-extra-062",
       "taskTitle": "飞机系统-空调系统-3",
       "audioText": "What are the main functions of an aircraft's air-conditioning system?",
       "audioTextZh": "航空器空调系统的主要功能有哪些？",
-      "referenceText": "The air-conditioning system supplies and distributes air at a controlled temperature and ventilation rate to the cockpit and cabin. On many pressurized aircraft, its air source also supports cabin pressurization and equipment cooling. The system may divide the aircraft into zones and mix fresh supply air with filtered recirculated air, depending on the design.",
-      "referenceTextZh": "空调系统以受控的温度和通风流量向驾驶舱与客舱供气并进行分配。在许多增压飞机上，它的气源还支持客舱增压和设备冷却。根据设计，系统可以把飞机划分为不同温区，并将新鲜供气与经过过滤的再循环空气混合。"
+      "referenceText": "The air-conditioning system supplies warm or cool air to control cabin temperature. It also provides fresh air, helps control humidity, and supports cabin pressurization on aircraft where those functions are connected. These functions help keep the passengers and crew safe and comfortable.",
+      "referenceTextZh": "空调系统提供热空气或冷空气以控制客舱温度，也提供新鲜空气、帮助控制湿度，并在相关功能相连的飞机上支持客舱增压。这些功能帮助旅客和机组保持安全舒适。"
     },
     {
       "id": "opi-extra-063",
       "taskTitle": "飞机系统-空调系统-4",
       "audioText": "How can an air-conditioning system failure affect flight safety?",
       "audioTextZh": "空调系统失效会如何影响飞行安全？",
-      "referenceText": "A failure can lead to excessive heat or cold, poor equipment cooling and increased crew or passenger discomfort. If the failed system also supports pressurization, redundancy may be reduced or cabin altitude may become difficult to control. Smoke, fumes or an electrical fault associated with the failure can create a more urgent threat than loss of comfort alone.",
-      "referenceTextZh": "故障可能造成温度过高或过低、设备冷却不足，并增加机组或旅客的不适。如果失效系统还支持增压，冗余可能减少，或客舱高度可能变得难以控制。与故障相关的烟雾、烟气或电气故障，可能比单纯失去舒适性构成更紧迫的威胁。"
+      "referenceText": "An air-conditioning failure can cause the cabin to become extremely hot or cold, leading to discomfort and possibly incapacitation. On aircraft where the systems are connected, it may also affect pressurization and contribute to a decompression event. The failure can also increase pilot workload.",
+      "referenceTextZh": "空调失效会使客舱变得过热或过冷，造成人员不适并可能失能。在相关系统相连的飞机上，它还可能影响增压并促成失压事件。故障也会增加飞行员工作负荷。"
     },
     {
       "id": "opi-extra-064",
       "taskTitle": "飞机系统-空调系统-5",
       "audioText": "What should a flight crew do if the aircraft's air-conditioning system fails?",
       "audioTextZh": "航空器空调系统失效时，飞行机组应怎么做？",
-      "referenceText": "The crew should identify the warning, maintain aircraft control and complete the applicable air-conditioning or pack checklist. It should monitor cabin altitude, pressure, temperature and any smoke or odor, avoid unapproved resets and use remaining systems within their limits. The crew then decides whether to change altitude, continue or land based on cabin condition, redundancy and the risk of the failure worsening.",
-      "referenceTextZh": "机组应识别警告、保持飞机受控，并完成适用的空调或空调组件检查单。他们应监控客舱高度、压力、温度和任何烟雾或异味，避免未经批准的复位，并在限制内使用剩余系统。随后，机组根据客舱状况、冗余以及故障恶化风险，决定改变高度、继续飞行还是着陆。"
+      "referenceText": "The crew should follow the SOP and checklist and determine whether cabin temperature or pressurization is affected. They should use oxygen masks if required by a pressurization problem. If temperature cannot be controlled or safety is threatened, they should inform ATC and divert to a suitable airport.",
+      "referenceTextZh": "机组应遵循标准操作程序和检查单，并判断客舱温度或增压是否受到影响。如果增压问题要求使用氧气面罩，就应及时使用。如果无法控制温度或安全受到威胁，应通知空中交通管制并改航至合适机场。"
     }
   ]
 }

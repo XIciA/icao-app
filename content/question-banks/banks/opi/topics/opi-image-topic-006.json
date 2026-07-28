@@ -16,16 +16,16 @@
       "taskTitle": "图片题-006-01",
       "audioText": "What pre-takeoff preparations should a flight crew make in the winter conditions shown?",
       "audioTextZh": "在图中所示的冬季条件下起飞前，飞行机组应做哪些准备？",
-      "referenceText": "The crew should obtain current weather and runway-condition information, calculate winter performance and inspect the aircraft for frost, snow and ice. It must arrange approved deicing or anti-icing when required, monitor holdover and contamination conditions, and ensure critical surfaces are clean before takeoff. Cold-temperature effects on systems, altimetry, fuel, tires and ground movement should be included in the briefing.",
-      "referenceTextZh": "机组应获取最新天气和跑道状况信息，计算冬季运行性能，并检查飞机是否有霜、雪或冰。需要时必须安排批准的除冰或防冰，监控保持时间和污染状况，并确保起飞前关键表面清洁。简令还应考虑低温对系统、高度测量，包括高度表指示与修正，以及燃油、轮胎和地面运行的影响。"
+      "referenceText": "I would brief the winter-weather threat, check the relevant aircraft systems and performance, coordinate with the crew and ATC, and follow the checklist. If safety were not assured, I would delay or reject the takeoff.",
+      "referenceTextZh": "我会对冬季天气威胁进行简令，检查相关飞机系统和性能，与机组及空中交通管制协调，并执行检查单。如果无法确保安全，我会推迟起飞或中断起飞。"
     },
     {
       "id": "opi-image-006-q02",
       "taskTitle": "图片题-006-02",
       "audioText": "What challenges do pilots face when operating in the winter weather shown?",
       "audioTextZh": "在图中所示的冬季天气下运行时，飞行员会面临哪些挑战？",
-      "referenceText": "Winter weather can reduce runway friction, obscure markings, increase stopping distance and make taxi or directional control difficult. Snow and ice can contaminate lifting surfaces, engines and sensors, while cold affects equipment and personnel. Rapidly changing precipitation, visibility and braking reports add uncertainty to performance decisions.",
-      "referenceTextZh": "冬季天气会降低跑道摩擦系数、遮盖标志、增加停止距离，并使滑行或方向控制更加困难。雪和冰可能污染升力面、发动机和传感器，严寒也会影响设备和人员。降水、能见度和制动效应报告的快速变化，会给性能决策增加不确定性。"
+      "referenceText": "The main challenges are contaminated surfaces, low visibility, reduced braking action, and de-icing requirements.",
+      "referenceTextZh": "主要挑战包括道面污染、低能见度、制动作用降低，以及除冰要求。"
     }
   ]
 }

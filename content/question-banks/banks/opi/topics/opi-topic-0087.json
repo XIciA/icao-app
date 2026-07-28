@@ -9,24 +9,24 @@
       "taskTitle": "运行-旅客广播-1",
       "audioText": "When should the flight crew make a passenger announcement (PA)?",
       "audioTextZh": "飞行机组应在什么时候进行旅客广播（PA）？",
-      "referenceText": "Passenger announcements should be made when information affects safety, comfort or the expected progress of the flight. Typical occasions include welcome and departure information, turbulence, delays, diversions, abnormal situations and preparation for arrival. The timing and detail should support cabin-crew duties and avoid speculation or unnecessary alarm.",
-      "referenceTextZh": "当信息影响安全、舒适度或预期飞行进程时，应向旅客广播。典型时机包括欢迎与离港信息、颠簸、延误、改航、异常情况和到达准备。广播的时机和详细程度应有助于客舱机组履行职责，并避免猜测或引起不必要的恐慌。"
+      "referenceText": "The captain should make a passenger announcement when an emergency evacuation is required. The announcement should tell passengers to remain calm and follow the cabin crew's evacuation instructions.",
+      "referenceTextZh": "需要紧急撤离时，机长应向旅客广播。广播应要求旅客保持冷静，并遵循客舱机组的撤离指令。"
     },
     {
       "id": "opi-core-863",
       "taskTitle": "运行-旅客广播-2",
       "audioText": "Should a passenger announcement be made if one pilot becomes incapacitated in flight? Why or why not?",
       "audioTextZh": "飞行中一名飞行员失能时，是否应进行旅客广播？为什么？",
-      "referenceText": "Not necessarily. The crew should first control the aircraft, manage the incapacitation and coordinate with the cabin crew and operations. A passenger announcement should be made only if passengers need instructions or an operational change must be explained, and it should protect the pilot's privacy while giving accurate, calm information.",
-      "referenceTextZh": "不一定。机组首先应控制飞机、处置失能人员，并与客舱机组和运行部门协调。只有乘客需要接受指令，或必须解释运行变化时才应广播；广播应保护飞行员隐私，同时提供准确、平静的信息。"
+      "referenceText": "Normally, the crew should not make a passenger announcement solely to say that a pilot has become incapacitated. Such an announcement could cause unnecessary panic in the cabin.",
+      "referenceTextZh": "通常不应仅为告知一名飞行员已经失能而向旅客广播，因为这可能在客舱内造成不必要的恐慌。"
     },
     {
       "id": "opi-core-864",
       "taskTitle": "运行-旅客广播-3",
       "audioText": "How should the cabin crew be informed if a pilot becomes incapacitated in flight?",
       "audioTextZh": "飞行中一名飞行员失能时，应如何通知客舱机组？",
-      "referenceText": "The operating pilot should contact the senior cabin crew member through the normal interphone or emergency call method and state clearly that a pilot is incapacitated. The message should request the specific assistance required, such as securing or moving the affected pilot, first aid and preparation for a diversion or landing. Communication should be brief, calm and updated as the plan changes.",
-      "referenceTextZh": "未失能且仍能履行职责的飞行员应通过正常内话或应急呼叫方式联系乘务长，明确说明一名飞行员已经失能。信息应提出所需的具体协助，例如固定或移动失能飞行员、实施急救，以及为改航或着陆做准备。沟通应简短、冷静，并随计划变化及时更新。"
+      "referenceText": "The other pilot should first take control of the aircraft and then use the interphone to inform the cabin crew. The cabin crew should be asked to provide first aid to the incapacitated pilot.",
+      "referenceTextZh": "另一名飞行员应先接管飞机，然后使用内话通知客舱机组，并要求客舱机组为失能飞行员提供急救。"
     }
   ]
 }

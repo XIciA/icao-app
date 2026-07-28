@@ -127,7 +127,6 @@
     { "text": "KLM", "profile": "callsign", "category": "communications" },
     { "text": "LATAM", "profile": "proper-name", "category": "communications" },
     { "text": "QFA", "profile": "callsign", "category": "communications" },
-    { "text": "SATCOM", "profile": "abbreviation", "category": "communications" },
     { "text": "SELCAL", "profile": "abbreviation", "category": "communications" },
     { "text": "SIA", "profile": "callsign", "category": "communications" },
     { "text": "UAL", "profile": "callsign", "category": "communications" },
@@ -203,7 +202,6 @@
     { "text": "XSH", "profile": "waypoint", "category": "navigation" },
     { "text": "ZHO", "profile": "waypoint", "category": "navigation" },
 
-    { "text": "AIP", "profile": "abbreviation", "category": "procedure" },
     { "text": "ATSB", "profile": "abbreviation", "category": "procedure" },
     { "text": "BFU", "profile": "abbreviation", "category": "procedure" },
     { "text": "CAAC", "profile": "abbreviation", "category": "procedure" },

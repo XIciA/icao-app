@@ -9,32 +9,32 @@
       "taskTitle": "运行-驾驶舱进入规则-1",
       "audioText": "What rules does your company apply to cockpit entry during flight?",
       "audioTextZh": "你所在公司对飞行中进入驾驶舱有哪些规定？",
-      "referenceText": "A suitable company policy would keep the flight deck door secured in flight and limit entry to authorized people with an operational need. Identity and access would be verified through the approved communication and door-control procedure, with extra care during high-workload or security-sensitive phases. The crew would never describe or bypass sensitive access details outside the controlled company material.",
-      "referenceTextZh": "一个合适的公司政策应要求飞行中保持驾驶舱门锁闭，只允许因运行需要获得授权的人员进入。身份和进入权限应通过批准的通信与舱门控制程序核实，在高工作负荷或安保敏感阶段尤其谨慎。机组绝不能在受控公司资料之外描述或绕过敏感的进入细节。"
+      "referenceText": "I am not employed by an airline, and the DA-40 does not have a separate secured cockpit. In airline operations, entry during flight is limited to authorised people with a valid operational need and requires the captain's approval. The secure-door and identity-verification procedures must be followed without revealing them to unauthorised persons.",
+      "referenceTextZh": "我没有在航空公司任职，而且 DA-40 没有独立的安全驾驶舱。在航空公司运行中，飞行期间只有具备正当运行需要的获准人员才能进入驾驶舱，并且必须得到机长批准。必须遵守安全门和身份核验程序，不得向未经授权的人员透露这些程序。"
     },
     {
       "id": "opi-extra-082",
       "taskTitle": "运行-驾驶舱进入规则-2",
       "audioText": "Who is authorized to enter the cockpit during flight?",
       "audioTextZh": "飞行中哪些人员获准进入驾驶舱？",
-      "referenceText": "Authorized flight crew and, when operationally necessary, designated cabin crew, inspectors or other persons approved under the applicable rules may be allowed to enter. Authorization alone does not guarantee immediate access because the commander must consider the current operational and security situation. Passengers and other unauthorized people must not enter the flight deck during flight.",
-      "referenceTextZh": "获得授权的飞行机组，以及运行需要时指定的客舱机组、监察员或适用规则批准的其他人员，可以获准进入。仅有授权并不保证立即进入，因为机长必须考虑当前运行和安保状况。飞行中，旅客和其他未经授权的人员不得进入驾驶舱。"
+      "referenceText": "Authorized people may include flight crew members, approved cabin crew members, company operations staff, and authorized inspectors or official representatives. The captain may also approve entry by a person whose presence is necessary for safe operation.",
+      "referenceTextZh": "获准人员可能包括飞行机组成员、经批准的客舱机组成员、公司运行人员，以及获得授权的监察员或官方代表。机长也可以批准因保障安全运行而确有必要进入驾驶舱的人员。"
     },
     {
       "id": "opi-extra-083",
       "taskTitle": "运行-驾驶舱进入规则-3",
       "audioText": "When might an authorized crew member need to enter the cockpit during flight?",
       "audioTextZh": "获得授权的机组成员在什么情况下可能需要在飞行中进入驾驶舱？",
-      "referenceText": "An authorized cabin crew member may need to enter for an operational briefing, a flight crew welfare check, delivery of important information or response to an abnormal or medical situation. Inspectors or positioning crew may have a defined operational reason under the applicable rules. Entry should be kept to what is necessary and coordinated so it does not disrupt a critical phase of flight.",
-      "referenceTextZh": "经授权的客舱机组成员可能因运行简令、检查飞行机组状况、传递重要信息或处置异常及医疗情况而需要进入驾驶舱。监察员或置位机组可以根据适用规定具有明确的运行理由。进入应仅限必要情况，并做好协调，避免干扰关键飞行阶段。"
+      "referenceText": "An authorized cabin crew member may need to enter during meal service to bring food, coffee, or other refreshments to the pilots.",
+      "referenceTextZh": "在供餐期间，经授权的客舱机组成员可能需要进入驾驶舱，为飞行员送餐、咖啡或其他饮品。"
     },
     {
       "id": "opi-extra-084",
       "taskTitle": "运行-驾驶舱进入规则-4",
       "audioText": "What procedure should a crew member follow to enter the cockpit during flight?",
       "audioTextZh": "机组成员在飞行中进入驾驶舱时应遵循什么程序？",
-      "referenceText": "The crew member should use the operator's approved secure communication and identity-verification procedure and wait for the flight crew to authorize access. The door area should be managed so that unauthorized people cannot follow or observe sensitive actions, and entry should be delayed if cockpit workload or security conditions make it unsafe. Specific codes, timing and door techniques belong only in controlled company training and are intentionally not described here.",
-      "referenceTextZh": "机组成员应使用运营人批准的安全通信和身份核实程序，并等待飞行机组授权进入。舱门区域应受到管理，防止未经授权人员尾随或观察敏感操作；如果驾驶舱工作负荷或安保条件使进入不安全，则应推迟。具体密码、时机和舱门操作方法只属于受控的公司训练材料，因此这里有意不作说明。"
+      "referenceText": "In an airline operation, the crew member should first confirm that entry is necessary and use the operator's secure communication and identity-check procedure. The pilots verify the request, check that the area is safe, and control the door opening. The door should then be closed and secured immediately after the authorised person enters.",
+      "referenceTextZh": "在航空公司运行中，机组成员应先确认确有进入驾驶舱的必要，并使用运营人的安全通信和身份核验程序。飞行员核实请求，确认门外区域安全，并控制驾驶舱门开启。获准人员进入后，应立即关门并重新锁闭。"
     }
   ]
 }

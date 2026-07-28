@@ -9,16 +9,16 @@
       "taskTitle": "缩略词-MEL-1",
       "audioText": "What is a Minimum Equipment List (MEL)?",
       "audioTextZh": "什么是最低设备清单（MEL）？",
-      "referenceText": "A Minimum Equipment List, or MEL, is an approved, operator-specific document that states when an aircraft may be dispatched with certain equipment inoperative. It includes conditions, limitations, repair intervals and any required maintenance or operating procedures. An item not permitted by the MEL or other applicable approved provision normally has to be serviceable before dispatch.",
-      "referenceTextZh": "最低设备清单（MEL）是一份经批准、运营人特定的文件，规定某些设备不工作时航空器在什么条件下可以签派。它包括条件、限制、修复期限以及任何所需维修或运行程序。MEL 或其他适用批准条款不允许失效的项目，通常必须在签派前恢复可用。"
+      "referenceText": "MEL stands for Minimum Equipment List. It is an important document for aircraft dispatch because it tells the crew whether a flight can be conducted when equipment is inoperative.",
+      "referenceTextZh": "MEL 是最低设备清单的缩写。它是飞机签派的重要文件，因为当某项设备不工作时，它会说明该航班是否可以运行。"
     },
     {
       "id": "opi-core-723",
       "taskTitle": "缩略词-MEL-2",
       "audioText": "Why is a Minimum Equipment List (MEL) important for flight safety?",
       "audioTextZh": "最低设备清单（MEL）为什么对飞行安全很重要？",
-      "referenceText": "The MEL provides a controlled way to decide whether an aircraft remains safe and legal to dispatch with a defect. It identifies the necessary limitations, placards, maintenance actions, operating procedures and time allowed for repair. This prevents an informal decision from replacing an approved assessment of system redundancy and operational risk.",
-      "referenceTextZh": "MEL 为判断存在故障的航空器是否仍能安全、合法签派提供受控方法。它规定所需限制、标牌、维修措施、运行程序和允许的修复时间。这样可以防止用非正式决定取代对系统冗余和运行风险的经批准评估。"
+      "referenceText": "An MEL identifies the equipment that may be temporarily inoperative while the aircraft still maintains an acceptable level of safety. It states the conditions, limitations, crew or maintenance procedures, and repair interval that must be met before dispatch. Equipment not permitted by the MEL must be serviceable before flight.",
+      "referenceTextZh": "MEL 说明哪些设备可以暂时不工作，同时飞机仍保持可接受的安全水平。它规定放行前必须满足的条件、限制、机组或维修程序以及修复期限。MEL 不允许失效的设备必须在飞行前恢复正常。"
     }
   ]
 }

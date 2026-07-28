@@ -9,24 +9,24 @@
       "taskTitle": "运行-不稳定进近-1",
       "audioText": "What is an unstable approach?",
       "audioTextZh": "什么是不稳定进近？",
-      "referenceText": "An unstable approach is one that does not meet the operator's required criteria by the defined gate or cannot remain within them afterward. The criteria usually cover flight path, speed, descent rate, configuration, thrust, checklist completion and crew workload. If stability is not achieved or maintained within the approved limits, the normal response is a go-around.",
-      "referenceTextZh": "不稳定进近是指飞机到规定高度门时仍不符合运营人要求的标准，或此后无法继续保持这些标准。标准通常涵盖飞行轨迹、速度、下降率、构型、推力、检查单完成情况和机组工作负荷。如果没有在批准限制内建立或保持稳定，正常处置是复飞。"
+      "referenceText": "An unstable approach is one that does not meet the operator's stabilised-approach criteria by the required gate. The aircraft may be outside the permitted limits for flight path, speed, descent rate, configuration, thrust, or checklist completion. If the approach is not stabilised by the gate or later becomes unstable, the crew should go around.",
+      "referenceTextZh": "不稳定进近是指飞机在规定的高度门未达到运营人的稳定进近标准。飞机的飞行轨迹、速度、下降率、构型、推力或检查单完成情况可能超出允许范围。如果在高度门仍未稳定，或此后变得不稳定，机组应复飞。"
     },
     {
       "id": "opi-extra-110",
       "taskTitle": "运行-不稳定进近-2",
       "audioText": "What can cause an aircraft to deviate from the glide slope during an approach?",
       "audioTextZh": "哪些因素可能导致航空器在进近过程中偏离下滑道？",
-      "referenceText": "An aircraft can deviate from the glide slope because of wind, turbulence, poor energy management, late configuration or incorrect control input. Automation mode errors, inaccurate navigation setup, distraction or an unstable intercept can also contribute. False or disturbed guidance and equipment faults are possible, so the crew cross-checks the indication with other available information.",
-      "referenceTextZh": "飞机可能因风、颠簸、能量管理不佳、构型建立过晚或操纵输入错误而偏离下滑道。自动化方式错误、导航设置不准确、分心或不稳定的切入也可能成为原因。还可能出现虚假或受扰的引导和设备故障，因此机组应利用其他可用信息交叉核对指示。"
+      "referenceText": "Glide-slope deviation can result from wind shear, a downdraft, adverse weather, or high workload. Incorrect pitch or thrust control, navigation-aid inaccuracy, aircraft performance problems, or poor alignment with the approach path can also cause it.",
+      "referenceTextZh": "下滑道偏离可能由风切变、下沉气流、不利天气或工作负荷过高造成。俯仰或推力控制不当、导航设备不准确、飞机性能问题，或未与进近航迹正确对准，也可能导致下滑道偏离。"
     },
     {
       "id": "opi-extra-111",
       "taskTitle": "运行-不稳定进近-3",
       "audioText": "What should a flight crew do if the aircraft deviates from the glide slope during an approach?",
       "audioTextZh": "航空器在进近过程中偏离下滑道时，飞行机组应怎么做？",
-      "referenceText": "The crew should recognize and call the deviation, confirm the guidance and automation mode, and make a smooth correction while monitoring speed and descent rate. It should not chase the indication with large inputs or continue below the operator's stability gate outside approved limits. If the correct path cannot be regained and maintained promptly, the crew should go around and reassess the approach.",
-      "referenceTextZh": "机组应识别并喊出偏差，确认引导和自动化方式，并在监控速度与下降率的同时平稳修正。不能用大幅操纵追赶指示，也不能在运营人的稳定高度门以下超出批准限制继续进近。如果无法迅速恢复并保持正确航迹，机组应复飞并重新评估进近。"
+      "referenceText": "The crew should monitor airspeed, attitude, and thrust and make smooth corrections to regain the glide slope. If the deviation exceeds the permitted limits or cannot be corrected promptly, they should follow the SOP, go around, advise ATC, and prepare for another approach.",
+      "referenceTextZh": "机组应监控空速、姿态和推力，并平稳修正以重新回到下滑道。如果偏差超出允许范围，或无法及时修正，机组应遵循标准操作程序复飞，通知空中交通管制，并准备再次进近。"
     }
   ]
 }

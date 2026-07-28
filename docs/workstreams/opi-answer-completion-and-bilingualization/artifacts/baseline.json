@@ -1,0 +1,285 @@
+{
+  "schemaVersion": 1,
+  "ruleVersion": "opi-answer-completion-bilingual-v10-2026-07-28",
+  "frozenAt": "2026-07-28T03:27:37.054Z",
+  "questionLockHash": "6a1b20f3cdeb9438115675cbc1a196b7df41e83e1d1e9b84881c4588c1b13e93",
+  "sourceEnglishDecisionHash": "0bf5d02f776ec100618921635fc14c323bf5f7e400051c62650b780a2a28b8e5",
+  "sourceStructuralHash": "56988aea5bcffa059cea9a4f262660bdf97568434522b2034472c587947823ea",
+  "sourceDigest": "75cf1046f2f51826c47f5459f52d4648afc213479836ff68c1f11e8581451657",
+  "sourceRegistry": {
+    "releaseVersion": 9,
+    "hash": "05b3352b3b71bae0ed845e897b6632e1365ae3996884410ff49c7777a47df0c7"
+  },
+  "counts": {
+    "cards": 1090,
+    "textCards": 1067,
+    "imageCards": 23,
+    "lockedExistingEnglish": 899,
+    "pendingEnglish": 168,
+    "previousSourceInsufficient": 158,
+    "previousDeferredImage": 10,
+    "englishBatches": 6
+  },
+  "batchPlan": [
+    {
+      "batchId": "comp-en-001",
+      "role": "calibration",
+      "cardIds": [
+        "opi-image-002-q01",
+        "opi-image-005-q01",
+        "opi-image-008-q01",
+        "opi-image-010-q01",
+        "opi-image-011-q01",
+        "opi-image-012-q01",
+        "opi-image-018-q01",
+        "opi-image-019-q01",
+        "opi-image-021-q01",
+        "opi-image-023-q01",
+        "opi-core-461",
+        "opi-core-754",
+        "opi-core-871",
+        "opi-core-849",
+        "opi-image-003-q02",
+        "opi-core-012",
+        "opi-core-058-part-2",
+        "opi-core-196",
+        "opi-core-115",
+        "opi-extra-247",
+        "opi-core-486",
+        "opi-core-762",
+        "opi-image-003-q03",
+        "opi-core-036",
+        "opi-core-109",
+        "opi-core-257",
+        "opi-core-120",
+        "opi-core-149"
+      ]
+    },
+    {
+      "batchId": "comp-en-002",
+      "role": "production",
+      "cardIds": [
+        "opi-image-010-q03",
+        "opi-image-011-q04",
+        "opi-image-012-q04",
+        "opi-image-013-q02",
+        "opi-image-014-q02",
+        "opi-image-015-q01",
+        "opi-image-016-q03",
+        "opi-image-016-q04",
+        "opi-image-017-q01",
+        "opi-image-017-q03",
+        "opi-image-020-q02",
+        "opi-image-021-q03",
+        "opi-image-022-q01",
+        "opi-image-023-q03",
+        "opi-core-044",
+        "opi-core-045",
+        "opi-core-057",
+        "opi-core-126",
+        "opi-core-133",
+        "opi-core-134",
+        "opi-core-152",
+        "opi-core-156",
+        "opi-core-164",
+        "opi-core-167",
+        "opi-core-182",
+        "opi-core-236",
+        "opi-core-236-part-2",
+        "opi-core-276"
+      ]
+    },
+    {
+      "batchId": "comp-en-003",
+      "role": "production",
+      "cardIds": [
+        "opi-core-285",
+        "opi-core-286",
+        "opi-core-303",
+        "opi-core-307",
+        "opi-core-313",
+        "opi-core-316",
+        "opi-extra-192-part-2",
+        "opi-core-366",
+        "opi-core-377",
+        "opi-core-393",
+        "opi-core-402",
+        "opi-core-405",
+        "opi-core-222",
+        "opi-core-452",
+        "opi-core-454",
+        "opi-core-468",
+        "opi-core-487",
+        "opi-core-199",
+        "opi-core-239",
+        "opi-core-552",
+        "opi-core-586",
+        "opi-core-595",
+        "opi-core-604",
+        "opi-core-614",
+        "opi-core-615",
+        "opi-core-627",
+        "opi-core-629",
+        "opi-core-634"
+      ]
+    },
+    {
+      "batchId": "comp-en-004",
+      "role": "production",
+      "cardIds": [
+        "opi-core-635",
+        "opi-core-639",
+        "opi-core-647",
+        "opi-core-648",
+        "opi-core-653",
+        "opi-core-656",
+        "opi-core-660",
+        "opi-core-662",
+        "opi-core-667",
+        "opi-core-672",
+        "opi-core-674",
+        "opi-core-678",
+        "opi-core-678-part-2",
+        "opi-core-683",
+        "opi-core-692",
+        "opi-core-694",
+        "opi-core-700",
+        "opi-core-717-part-2",
+        "opi-core-718",
+        "opi-core-723",
+        "opi-core-730",
+        "opi-core-732",
+        "opi-core-823",
+        "opi-core-827",
+        "opi-core-850-part-3",
+        "opi-extra-161",
+        "opi-core-855",
+        "opi-core-856"
+      ]
+    },
+    {
+      "batchId": "comp-en-005",
+      "role": "production",
+      "cardIds": [
+        "opi-core-876",
+        "opi-core-881",
+        "opi-core-102",
+        "opi-extra-037",
+        "opi-extra-051",
+        "opi-extra-072",
+        "opi-extra-081",
+        "opi-extra-084",
+        "opi-extra-092",
+        "opi-extra-096",
+        "opi-extra-108",
+        "opi-extra-118",
+        "opi-extra-058",
+        "opi-extra-131",
+        "opi-extra-133",
+        "opi-extra-151",
+        "opi-core-398",
+        "opi-extra-152",
+        "opi-extra-152-part-2",
+        "opi-extra-155",
+        "opi-extra-156",
+        "opi-extra-171",
+        "opi-extra-186-part-3",
+        "opi-extra-206",
+        "opi-core-321",
+        "opi-core-329",
+        "opi-extra-214",
+        "opi-extra-214-part-2"
+      ]
+    },
+    {
+      "batchId": "comp-en-006",
+      "role": "production",
+      "cardIds": [
+        "opi-core-067",
+        "opi-extra-226",
+        "opi-extra-240",
+        "opi-extra-242",
+        "opi-extra-256",
+        "opi-extra-257",
+        "opi-extra-259",
+        "opi-extra-260",
+        "opi-extra-267",
+        "opi-extra-270",
+        "opi-extra-276",
+        "opi-extra-284",
+        "opi-extra-299",
+        "opi-extra-311",
+        "opi-extra-313",
+        "opi-extra-314",
+        "opi-extra-315",
+        "opi-extra-323",
+        "opi-extra-324",
+        "opi-extra-325",
+        "opi-extra-325-part-2",
+        "opi-extra-347",
+        "opi-extra-348",
+        "opi-extra-357",
+        "opi-extra-373-part-2",
+        "opi-extra-377",
+        "opi-extra-378-part-2",
+        "opi-extra-383"
+      ]
+    }
+  ],
+  "imageHashes": [
+    {
+      "cardId": "opi-image-002-q01",
+      "path": "content/question-banks/resources/files/images/opi/image-questions/image-topic-002.jpg",
+      "hash": "075f983ae87d212138310be98339ab81cd73d1bf58302479e1f9331bed00ab09"
+    },
+    {
+      "cardId": "opi-image-005-q01",
+      "path": "content/question-banks/resources/files/images/opi/image-questions/image-topic-005.jpg",
+      "hash": "c9bf143af58cc9b8bc22d288e094f7897ecf008540245cf5eeaf481c40e2cef9"
+    },
+    {
+      "cardId": "opi-image-008-q01",
+      "path": "content/question-banks/resources/files/images/opi/image-questions/image-topic-008.jpg",
+      "hash": "007a740504df8627767a2695ba2cb5694df41efba1649db164bfb535f9954a1d"
+    },
+    {
+      "cardId": "opi-image-010-q01",
+      "path": "content/question-banks/resources/files/images/opi/image-questions/image-topic-010.jpg",
+      "hash": "1b5397aa594394399135f7ccc3c0a4deaeb3fa887544e8b7ad30d0b91d49698e"
+    },
+    {
+      "cardId": "opi-image-011-q01",
+      "path": "content/question-banks/resources/files/images/opi/image-questions/image-topic-011.jpg",
+      "hash": "789d9e524c68ce0848777423e1b88c1f6d8fc66ece3503dab6eae6cd50339418"
+    },
+    {
+      "cardId": "opi-image-012-q01",
+      "path": "content/question-banks/resources/files/images/opi/image-questions/image-topic-012.jpg",
+      "hash": "066869e9ef9ef7a43a165ba442e7f317bae8dcb91fa94d1649e850039316e02e"
+    },
+    {
+      "cardId": "opi-image-018-q01",
+      "path": "content/question-banks/resources/files/images/opi/image-questions/image-topic-018.jpg",
+      "hash": "f4b14c577b348996c3229979dfb2de30cd902cac4fa9a08e7d4bbc3d1b3e0749"
+    },
+    {
+      "cardId": "opi-image-019-q01",
+      "path": "content/question-banks/resources/files/images/opi/image-questions/image-topic-019.jpg",
+      "hash": "1a1f1f3be0d0bbe74c89c317c58e7d0785c965ef81dad3b27c9ca2452869637c"
+    },
+    {
+      "cardId": "opi-image-021-q01",
+      "path": "content/question-banks/resources/files/images/opi/image-questions/image-topic-021.jpg",
+      "hash": "fe349eb9f57b4e9d08cac901dcab370f1ce50715dfc1e413d05a5f5f235ae410"
+    },
+    {
+      "cardId": "opi-image-023-q01",
+      "path": "content/question-banks/resources/files/images/opi/image-questions/image-topic-023.jpg",
+      "hash": "0be907d411674e3d549aec254f95844eca850f9f477833f8f8c97cf696c7d677"
+    }
+  ],
+  "excludedSources": [
+    "discarded-v8-answer-en",
+    "discarded-v8-answer-zh"
+  ]
+}
