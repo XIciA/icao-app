@@ -55,6 +55,9 @@ for (const file of files) {
   if (name === recorderAdapter && /\brecorder\.currentTime\b/.test(content)) {
     failures.push(`${name}: recorder.currentTime has platform-divergent units; use RecorderState.durationMillis and elapsed wall time`);
   }
+  if (name === 'src/features/question-bank/recording/use-recording-playback.ts' && /\bplayer\.remove\s*\(/.test(content)) {
+    failures.push(`${name}: useAudioPlayer owns native player disposal; do not deregister a mounted playback consumer`);
+  }
 
   if (name.startsWith('src/features/question-bank/recording/') && ![repository, repositoryWeb, recorderAdapter, recorderAdapterWeb].includes(name) && !name.includes('/__tests__/')) {
     if (/from\s+['"]expo-file-system['"]/.test(content) || /\.delete\s*\(/.test(content)) {

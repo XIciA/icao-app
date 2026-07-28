@@ -55,6 +55,10 @@ try {
   if (created.error) throw created.error;
   assert(created.data.user?.id, 'create_user_failed');
   userId = created.data.user.id;
+  await database`
+    insert into invite_accounts (code_lookup, code_hash, display_name, user_id, status)
+    values (${`asr-verify-${suffix}`}, ${'verification-only'}, ${'转写验证'}, ${userId}, ${'active'})
+  `;
 
   const signedIn = await auth.auth.signInWithPassword({ email, password });
   if (signedIn.error) throw signedIn.error;
@@ -99,6 +103,7 @@ try {
   }));
 } finally {
   if (userId) {
+    await database`delete from invite_accounts where user_id = ${userId}`;
     const deletion = await admin.auth.admin.deleteUser(userId);
     if (deletion.error) throw deletion.error;
   }

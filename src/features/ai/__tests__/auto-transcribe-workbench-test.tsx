@@ -77,6 +77,7 @@ describe('AI speaking workbench', () => {
       await Promise.resolve();
     });
 
+    await waitFor(() => expect(mockAcceptAiConsent).toHaveBeenCalledTimes(1));
     await waitFor(() => expect(mockTranscribeRecording).toHaveBeenCalledTimes(1));
     await waitFor(() => expect(onAnswerChange).toHaveBeenCalledWith('normalized aviation transcript'));
     await waitFor(() => expect(screen.getByText('normalized aviation transcript')).toBeTruthy());
@@ -129,6 +130,46 @@ describe('AI speaking workbench', () => {
       await Promise.resolve();
     });
     await waitFor(() => expect(screen.getByText('未检测到清晰语音，请回放录音并检查麦克风后重新录制。')).toBeTruthy());
+  });
+
+  it('re-registers account-scoped consent even when the local acknowledgement exists', async () => {
+    const screen = await render(
+      <StudyWorkbench
+        activeTab="mine"
+        answerText=""
+        bankId="opi"
+        bankTitle="OPI"
+        cardKey="opi-card-consent"
+        categoryTitle="运行"
+        learningStore={{ addRecord: mockAddRecord }}
+        noteText=""
+        onAnswerChange={jest.fn()}
+        onEditingTabChange={jest.fn()}
+        onFeedback={jest.fn()}
+        onNoteChange={jest.fn()}
+        onRetrySave={jest.fn()}
+        onTabChange={jest.fn()}
+        questionText="Question"
+        recordingUri="file:///recording.wav"
+        referenceContent={null}
+        referenceLabel="参考答案"
+        reviewKind="opi-analysis"
+        sessionId="study-test-session"
+        sessionStartedAt="2026-07-15T00:00:00.000Z"
+        swipeGesture={Gesture.Pan().enabled(false)}
+        tabs={['mine']}
+        topicTitle="燃油"
+      />,
+    );
+
+    await waitFor(() => expect(mockHasAiConsent).toHaveBeenCalledTimes(1));
+    await act(async () => {
+      fireEvent.press(screen.getByLabelText('转写'));
+      await Promise.resolve();
+    });
+
+    await waitFor(() => expect(mockAcceptAiConsent).toHaveBeenCalledTimes(1));
+    expect(mockAcceptAiConsent.mock.invocationCallOrder[0]).toBeLessThan(mockTranscribeRecording.mock.invocationCallOrder[0]);
   });
 
   it('does not start a transcription after the workbench remounts until the user presses transcribe', async () => {

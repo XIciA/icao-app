@@ -76,3 +76,13 @@
 - 复用既有 `AudioSessionOrchestrator`、controller、`RecordingRepository`、`RecordingAsset` 和文件事务，没有新增第二时长来源、录音 owner 或删除路径。
 - `pnpm check` 通过：App 55 suites / 241 tests，API 4 files / 208 tests；iOS Development Build 在连接的物理 iPhone 上完成编译与安装（0 errors、3 个既有 warnings）。
 - 真机启动时 iPhone 处于 5G，无法访问 Mac 的局域网 Metro 地址 `192.168.1.2:8082`；需连接同一 Wi-Fi 后完成 2–3 秒真实麦克风录音复验。Android 本轮无连接设备，未生成 Android 新证据。
+
+## 2026-07-28：真机回放与转写重复失效
+
+状态：两条确定根因已修复，真实麦克风终验待用户在手机本体执行
+
+- 从连接 iPhone 的 App 数据容器取证：历史 WAV 为 16 kHz、单声道、16-bit PCM，除明确的 header-only 失败样本外，多条文件有正常语音电平；当前安装版本的网络缓存实际访问 `https://api.feizhuicao.com` / `https://cloud.feizhuicao.com`，因此本轮不能再归因为麦克风完全无输入或真机仍使用 loopback API。
+- 回放 consumer 在“尚无资产”的首次 effect 中调用 `player.remove()`，提前把仍挂载的 `useAudioPlayer` native shared object 从 Expo Audio registry 移除；录音成功后又把 URI `replace` 到这个已注销实例，导致回放装载/状态更新反复失效。现改为由 `useAudioPlayer` 独占释放，空资产不销毁实例，并新增从空资产 rerender 到已提交资产的回归测试及 `check:audio` 静态禁令。
+- AI 同意的本地 key 没有按账号区分，而服务端同意是账号级。换邀请码账号、撤回或恢复本地存储后，本地可能错误跳过服务端登记，转写被 `ai_consent_required` / 会话错误拒绝，界面却统一显示为网络失败。现每次 AI 操作前幂等同步服务端同意，并对无语音、无效文件、同意不同步和登录失效分别显示原因；诊断事件记录错误码但不记录内容、URI、令牌或身份。
+- ECS `/health/ready` 已确认 API/database 为 `ok`。既有 `verify-asr-live.mjs` 仍按普通 Supabase 测试账号建号，已被当前邀请码账号 guard 以 `invite_account_required` 拒绝；因此该脚本不能冒充本轮实时 ASR 通过证据，后续需单独迁移 live verifier。
+- `pnpm check:audio` 与 5 个相关 Jest suites / 31 tests 已通过。本轮复用既有 orchestrator、adapter、repository、RecordingAsset、playback consumer 和 AI client，没有新增第二 owner、文件类型、删除路径或转写协议。

@@ -58,6 +58,8 @@ export function StudyAudioPlayer({
   const speedButtonRef = useRef<View>(null);
   const speedMenuAnchorRef = useRef<{ left: number; top: number } | undefined>(undefined);
   const pendingAutoPlayRef = useRef(false);
+  const latestStatusRef = useRef(status);
+  const statusAtSourceReplacementRef = useRef<typeof status | undefined>(undefined);
   const resumeAfterScrubRef = useRef(false);
   const audioLease = useRef<AudioLease | undefined>(undefined);
   const playGeneration = useRef(0);
@@ -74,6 +76,8 @@ export function StudyAudioPlayer({
   const integrated = variant === 'integrated-recording';
   const audioFailed = !uri || loadTimeout.timedOut || status.playbackState === 'error';
   const audioControllable = Boolean(uri && status.isLoaded && !loadTimeout.timedOut && status.playbackState !== 'error');
+
+  latestStatusRef.current = status;
 
   const tryPausePlayer = useCallback(() => {
     try {
@@ -144,15 +148,24 @@ export function StudyAudioPlayer({
     setSpeedMenuPosition(undefined);
     onSeekInteractionChange?.(false);
     void trySeekPlayer(0);
+    statusAtSourceReplacementRef.current = undefined;
     if (!uri) return;
-    if (!tryReplacePlayer(uri) || !trySetPlaybackRate(speedRef.current)) {
-      // Status/load timeout owns the visible source error state.
+    statusAtSourceReplacementRef.current = latestStatusRef.current;
+    if (!tryReplacePlayer(uri)) {
+      statusAtSourceReplacementRef.current = undefined;
+      return;
+    }
+    if (!trySetPlaybackRate(speedRef.current)) {
+      // The source can still play at the native default rate.
     }
     pendingAutoPlayRef.current = autoPlayRequest > 0;
   }, [autoPlayRequest, onSeekInteractionChange, playbackKey, releaseAudioLease, tryPausePlayer, tryReplacePlayer, trySeekPlayer, trySetPlaybackRate, uri]);
 
   useEffect(() => {
-    if (!pendingAutoPlayRef.current || appStateRef.current !== 'active' || !status.isLoaded || status.playbackState === 'error') return;
+    if (!pendingAutoPlayRef.current || appStateRef.current !== 'active') return;
+    if (statusAtSourceReplacementRef.current === status) return;
+    statusAtSourceReplacementRef.current = undefined;
+    if (!status.isLoaded || status.playbackState === 'error') return;
     pendingAutoPlayRef.current = false;
     const operationGeneration = playGeneration.current + 1;
     playGeneration.current = operationGeneration;
@@ -171,7 +184,7 @@ export function StudyAudioPlayer({
         if (lease) await releaseAudioLease(lease);
       }
     })();
-  }, [onPlaybackStart, releaseAudioLease, status.isLoaded, status.playbackState, tryPlayPlayer]);
+  }, [onPlaybackStart, releaseAudioLease, status, tryPlayPlayer]);
 
   useEffect(() => {
     if (pauseRequest <= 0) return;

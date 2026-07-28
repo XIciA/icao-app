@@ -117,10 +117,13 @@ stateDiagram-v2
 ## 6. 回放与转写隔离
 
 - 回放使用 `useAudioPlayer(null)` 创建稳定实例，每次只通过 `replace(uri)` 装载。
+- `useAudioPlayer` 自己拥有 native shared object 的释放；组件仍挂载时不得调用 `player.remove()`。无资产时只暂停并等待，后续资产仍由同一个实例 `replace(uri)`。
 - 4 秒加载超时或 native error 只设置 `playback_load_failed`；确认文件被系统清理时设置 `asset_missing`。
 - `asset_missing` 也只禁用回放，已经展开的答案和已有转写仍保留。
 - 每次播放前获取 `recordingPlayback` lease；完成、暂停、后台、错误或卸载后释放。
 - 转写只能由用户点击“转写”发起；同一时刻只允许该资产的一次在途请求。失败后由用户再次点击“转写”重试，重录成功后使用新资产 ID。
+- 本地 AI 同意只用于界面提示，不能作为当前账号已经完成服务端登记的证据；每次 AI 操作前都要幂等同步账号级服务端同意，避免换号、撤回或恢复本地存储后产生假阳性。
+- API 暂存录音前必须把 `audio/x-wav`、`audio/wave`、`audio/vnd.wave`、`audio/x-pn-wav` 规范为 `audio/wav`，把 `audio/x-m4a` 规范为 `audio/mp4`；content type 与扩展名必须同步规范化。
 - 新资产有新 ID，因此重录成功只对新 ID 触发；重录失败仍保留旧 ID 和旧结果。
 
 ## 7. 错误码与排障顺序
@@ -131,7 +134,7 @@ stateDiagram-v2
 | recorder | `microphone_permission_denied`, `record_prepare_failed`, `record_start_failed`, `record_stop_failed`, `recording_interrupted` | 权限、Development Build、AppState、generation |
 | repository | `recording_too_short`, `recording_file_incomplete`, `recording_commit_failed`, `recording_asset_missing` | duration、稳定 size、pending/目标大小、cache 清理 |
 | playback | `playback_load_failed`, `playback_start_failed`, `asset_missing` | asset 是否存在、replace 是否唯一、lease 获取 |
-| transcription | `transcription_completed`, `transcription_failed`, `transcription_cancelled` | asset ID 是否变化、attempted key、网络/AI API |
+| transcription | `transcription_completed`, `transcription_failed`, `transcription_cancelled` | asset ID、multipart MIME 及规范化、账号级 AI 同意、登录状态、网络/AI API |
 
 排障必须按以下顺序，避免继续打补丁：
 
@@ -157,12 +160,23 @@ stateDiagram-v2
 ## 9. 修改前检查表
 
 - [ ] 已读本指南和 Expo SDK 55 对应 Audio/FileSystem 文档。
+- [ ] 已读 `docs/common-errors/audio-recording/README.md` 和相关历史事故。
 - [ ] 已确认没有可复用的 owner、repository、asset、player 或状态事件。
 - [ ] 没有新增 `setAudioModeAsync`、recorder hook、权限或 preset 入口。
 - [ ] 没有让 UI 直接 import Expo FileSystem 或删除录音。
+- [ ] stable player 仍由 `useAudioPlayer` 释放，未在挂载期间调用 `player.remove()`。
+- [ ] 新录音格式或 preset 的 MIME alias 已在 API 规范化，并有真实格式的 live verifier 证据。
 - [ ] 成功判定不依赖 player load、转写或组件渲染。
 - [ ] 新异步步骤有 generation/lease token 或明确幂等键。
 - [ ] 错误不会删除旧资产，不会自动恢复旧音频。
 - [ ] 诊断事件不含内容、URI、令牌或身份信息。
 - [ ] 新的错误码、状态、owner 或文件阶段已更新测试和本指南。
 - [ ] 已运行适用的自动化、Development Build、真机矩阵并记录真实证据。
+
+## 10. 故障知识维护
+
+- 所有真机录音、回放或转写回归都必须在 `docs/common-errors/audio-recording/` 创建或更新英文文件名的事故记录。
+- 事故记录使用 `incident-template.md`，至少包含环境、复现、证据、根因、排除项、长期修复、自动化门禁、真机验证和剩余风险。
+- 事故目录保存排障知识，本文继续保存唯一架构不变量；禁止在事故文件中建立第二套生命周期规范。
+- 修复若没有恢复明确不变量，或没有增加可复现测试、静态门禁、类型化诊断、设备证据中的至少一项，默认不得标记为长期解决。
+- 构建成功、模拟器成功、确定性 E2E 和历史请求成功不得代替当前版本的手机本体麦克风闭环。

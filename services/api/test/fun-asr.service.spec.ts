@@ -191,4 +191,21 @@ describe('resolveAsrAudioFormat', () => {
       extension: 'm4a',
     });
   });
+
+  it.each(['audio/x-wav', 'audio/wave', 'audio/vnd.wave', 'audio/x-pn-wav'])(
+    'canonicalizes the iOS WAV alias %s before storage upload',
+    (mimeType) => {
+      expect(resolveAsrAudioFormat(mimeType)).toEqual({
+        contentType: 'audio/wav',
+        extension: 'wav',
+      });
+    },
+  );
+
+  it('canonicalizes the non-standard iOS M4A alias before storage upload', () => {
+    expect(resolveAsrAudioFormat('audio/x-m4a')).toEqual({
+      contentType: 'audio/mp4',
+      extension: 'm4a',
+    });
+  });
 });

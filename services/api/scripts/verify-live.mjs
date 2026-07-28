@@ -1,16 +1,19 @@
 import { randomBytes } from 'node:crypto';
 import { createClient } from '@supabase/supabase-js';
+import postgres from 'postgres';
 
 const apiBase = process.env.API_BASE ?? 'http://127.0.0.1:3101';
 const supabaseUrl = process.env.SUPABASE_URL;
 const publishableKey = process.env.SUPABASE_PUBLISHABLE_KEY;
 const secretKey = process.env.SUPABASE_SECRET_KEY;
-if (!supabaseUrl || !publishableKey || !secretKey) throw new Error('missing_live_verification_configuration');
+const databaseUrl = process.env.DATABASE_URL;
+if (!supabaseUrl || !publishableKey || !secretKey || !databaseUrl) throw new Error('missing_live_verification_configuration');
 
 const options = { auth: { autoRefreshToken: false, detectSessionInUrl: false, persistSession: false } };
 const first = createClient(supabaseUrl, publishableKey, options);
 const second = createClient(supabaseUrl, publishableKey, options);
 const admin = createClient(supabaseUrl, secretKey, options);
+const database = postgres(databaseUrl, { prepare: false, max: 1 });
 const suffix = `${Date.now()}-${randomBytes(4).toString('hex')}`;
 const email = `phase2a-${suffix}@example.test`;
 const password = `Icao-${randomBytes(18).toString('base64url')}!7`;
@@ -37,12 +40,19 @@ async function api(path, accessToken, init = {}) {
 }
 
 try {
-  const signup = await first.auth.signUp({ email, password });
-  if (signup.error) throw signup.error;
-  assert(signup.data.session, 'signup_session_missing');
-  assert(signup.data.user?.id, 'signup_user_missing');
-  userId = signup.data.user.id;
-  const firstToken = signup.data.session.access_token;
+  const created = await admin.auth.admin.createUser({ email, password, email_confirm: true });
+  if (created.error) throw created.error;
+  assert(created.data.user?.id, 'create_user_failed');
+  userId = created.data.user.id;
+  await database`
+    insert into invite_accounts (code_lookup, code_hash, display_name, user_id, status)
+    values (${`live-verify-${suffix}`}, ${'verification-only'}, ${'接口验证'}, ${userId}, ${'active'})
+  `;
+
+  const firstLogin = await first.auth.signInWithPassword({ email, password });
+  if (firstLogin.error) throw firstLogin.error;
+  assert(firstLogin.data.session, 'first_session_missing');
+  const firstToken = firstLogin.data.session.access_token;
   const me = await api('/v1/me', firstToken);
   assert(me.id === userId && me.email === email, 'authenticated_user_mismatch');
 
@@ -138,7 +148,7 @@ try {
   assert(recordChange?.payload?.version === 2 && recordChange?.payload?.record?.aiResult?.transcript === 'session-b-latest', 'first_session_did_not_restore_record_v2');
 
   console.log(JSON.stringify({
-    auth: 'signup-login-wrong-password-session-restore-ok',
+    auth: 'admin-provision-login-wrong-password-session-restore-ok',
     duplicate: 'ok',
     staleConflict: 'ok',
     recordUpdate: 'v1-v2-stale-pull-ok',
@@ -148,7 +158,9 @@ try {
   }));
 } finally {
   if (userId && !keepTestUser) {
+    await database`delete from invite_accounts where user_id = ${userId}`;
     const deletion = await admin.auth.admin.deleteUser(userId);
     if (deletion.error) throw deletion.error;
   }
+  await database.end({ timeout: 5 });
 }

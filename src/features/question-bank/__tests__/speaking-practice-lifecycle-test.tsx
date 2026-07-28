@@ -165,12 +165,17 @@ describe('SpeakingPracticePanel lifecycle', () => {
     await screen.unmount();
   });
 
-  it('does not report a playback failure before a recording asset exists', async () => {
+  it('keeps the managed playback object alive until a recording asset exists', async () => {
     const screen = await render(<SpeakingPracticePanel {...commonProps} variant="integrated" />);
 
     expect(screen.queryByText('录音回放准备失败，可以重试回放。')).toBeNull();
-    expect(mockPlayback.remove).toHaveBeenCalled();
+    expect(mockPlayback.remove).not.toHaveBeenCalled();
     expect(mockPlayback.replace).not.toHaveBeenCalled();
+
+    await screen.rerender(<SpeakingPracticePanel {...commonProps} recording={committedAsset} variant="integrated" />);
+
+    await waitFor(() => expect(mockPlayback.replace).toHaveBeenCalledWith(committedAsset.uri));
+    expect(mockPlayback.remove).not.toHaveBeenCalled();
     await screen.unmount();
   });
 

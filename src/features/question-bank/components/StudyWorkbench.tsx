@@ -15,6 +15,7 @@ import { GestureDetector, type GestureType } from 'react-native-gesture-handler'
 import { AppText } from '@/components/ui';
 import { acceptAiConsent, grammarReview, hasAiConsent, polishExpression, transcribeRecording } from '@/features/ai/ai-client';
 import { exactMatch } from '@/features/ai/exact-match';
+import { ApiClientError } from '@/platform/api-client';
 import { emitAudioDiagnostic } from '@/platform/audio/audio-diagnostics';
 import { colors, radii, spacing } from '@/theme';
 
@@ -23,6 +24,24 @@ import type { LearningRecord, QuestionBankId, StudyConsoleTab, StudyReviewKind }
 
 const labels: Record<StudyConsoleTab, string> = { mine: '我的回答', reference: '参考答案', notes: '我的笔记' };
 const AUTO_SAVE_DELAY_MS = 600;
+
+function transcriptionFailure(error: unknown, aborted: boolean) {
+  if (aborted) return { code: 'transcription_cancelled', message: '已取消转写' };
+  const code = error instanceof ApiClientError ? error.code : error instanceof Error ? error.message : 'transcription_failed';
+  if (code === 'no_speech_detected') {
+    return { code, message: '未检测到清晰语音，请回放录音并检查麦克风后重新录制。' };
+  }
+  if (code === 'invalid_audio') {
+    return { code, message: '录音文件格式无效，请重新录制后转写。' };
+  }
+  if (code === 'ai_consent_required') {
+    return { code, message: 'AI 使用授权状态未同步，请重试转写。' };
+  }
+  if (code === 'missing_bearer_token' || code === 'invalid_session' || code === 'invite_account_required') {
+    return { code, message: '登录状态已失效，请重新登录后转写。' };
+  }
+  return { code, message: '语音转写失败，请检查网络后重试。' };
+}
 
 function stableResultId(sessionId: string, cardKey: string) {
   let hash = 2166136261;
@@ -241,10 +260,12 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   }, [persistCurrent, saveRevision]);
 
   const ensureConsent = useCallback(async () => {
-    if (consented) return;
+    // The local acknowledgement is intentionally only a UI hint. Server
+    // consent is account-scoped, so re-register it idempotently before every
+    // AI action to survive account switches, revocation, and restored storage.
     await acceptAiConsent();
     setConsented(true);
-  }, [consented]);
+  }, []);
 
   const changeAnswer = useCallback((text: string) => {
     setGrammar(undefined);
@@ -273,16 +294,13 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
       emitAudioDiagnostic({ code: 'transcription_completed', level: 'info', scope: 'transcription' });
     } catch (error) {
       if (activeRequest.current === controller && currentCardKey.current === requestCardKey) {
-        const noSpeechDetected = error instanceof Error && error.message === 'no_speech_detected';
+        const failure = transcriptionFailure(error, controller.signal.aborted);
         setFailedAction('transcribe');
-        setError(controller.signal.aborted
-          ? '已取消转写'
-          : noSpeechDetected
-            ? '未检测到清晰语音，请回放录音并检查麦克风后重新录制。'
-            : '语音转写失败，请检查网络后重试。');
+        setError(failure.message);
         emitAudioDiagnostic({
-          code: controller.signal.aborted ? 'transcription_cancelled' : noSpeechDetected ? 'no_speech_detected' : 'transcription_failed',
+          code: controller.signal.aborted ? 'transcription_cancelled' : 'transcription_failed',
           level: controller.signal.aborted ? 'info' : 'warning',
+          reason: failure.code,
           scope: 'transcription',
         });
       }
