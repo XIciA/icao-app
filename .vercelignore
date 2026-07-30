@@ -1,4 +1,5 @@
 .generated/
+/outputs/
 /dist/
 /content/editorial/
 /content/question-banks/*

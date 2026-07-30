@@ -29,10 +29,6 @@ export function preferredWorkbenchTab(tabs: StudyConsoleTab[]) {
   return tabs.includes('reference') ? 'reference' : tabs[0] ?? 'notes';
 }
 
-export function shouldCompleteLegacyState(state: Partial<CardLearningState>) {
-  return migrateLegacyCardState(state).completed;
-}
-
 export function useStudySession({
   dataset,
   category,

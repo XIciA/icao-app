@@ -38,8 +38,6 @@ export type NativeRadioIntervalTrack = {
   url: string;
 };
 
-export type NativeRadioTrack = NativeRadioContentTrack | NativeRadioIntervalTrack;
-
 export function clampRadioInterval(value: number) {
   if (!Number.isFinite(value)) return 0;
   return Math.max(0, Math.min(RADIO_INTERVAL_MAX_SECONDS, Math.round(value)));

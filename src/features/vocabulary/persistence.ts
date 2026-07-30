@@ -81,7 +81,3 @@ export function subscribeVocabularyState(listener: (state: VocabularyState) => v
   listeners.add(listener);
   return () => listeners.delete(listener);
 }
-
-export function resetVocabularyPersistenceForTests() {
-  listeners.clear();
-}
