@@ -98,7 +98,26 @@ const Storage = {
   },
 
   async multiGet(keys: readonly string[]): Promise<StorageResult[]> {
-    return Promise.all(keys.map(async (key) => [key, await Storage.getItem(key)] as const));
+    const database = await openDatabase();
+    if (!database) return keys.map((key) => [key, memoryFallback.get(key) ?? null] as const);
+
+    return new Promise((resolve) => {
+      const transaction = database.transaction(STORE_NAME, 'readonly');
+      const store = transaction.objectStore(STORE_NAME);
+      const values = new Map<string, string | null>();
+      keys.forEach((key) => {
+        const request = store.get(key);
+        request.onsuccess = () => {
+          values.set(key, typeof request.result === 'string' ? request.result : null);
+        };
+        request.onerror = () => {
+          values.set(key, memoryFallback.get(key) ?? null);
+        };
+      });
+      transaction.oncomplete = () => resolve(keys.map((key) => [key, values.get(key) ?? null] as const));
+      transaction.onerror = () => resolve(keys.map((key) => [key, memoryFallback.get(key) ?? null] as const));
+      transaction.onabort = () => resolve(keys.map((key) => [key, memoryFallback.get(key) ?? null] as const));
+    });
   },
 
   async multiSet(entries: readonly StorageEntry[]): Promise<void> {

@@ -192,11 +192,11 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
   }, [chooseTrack]);
 
   useEffect(() => {
-    if (auth.restoring || !auth.session) return;
+    if (auth.restoring || !auth.session || !sessionVisible) return;
     void loadRadioCatalogs().then((nextCatalogs) => {
       if (nextCatalogs.length) setCatalogs(nextCatalogs);
     }).catch(() => undefined);
-  }, [auth.restoring, auth.session]);
+  }, [auth.restoring, auth.session, sessionVisible]);
 
   useEffect(() => {
     let active = true;
@@ -234,10 +234,10 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
   }), [clearIntervalTimer, player]);
 
   useEffect(() => {
-    if (!restored || !auth.session || !currentTrack || loadingTrackId.current === currentTrack.id || preparedTrackId.current === currentTrack.id) return;
+    if (!restored || !auth.session || !sessionVisible || !currentTrack || loadingTrackId.current === currentTrack.id || preparedTrackId.current === currentTrack.id) return;
     const restoredPosition = pendingSeek.current;
     void prepareTrack(currentTrack, { autoPlay: false, position: restoredPosition });
-  }, [auth.session, currentTrack, prepareTrack, restored]);
+  }, [auth.session, currentTrack, prepareTrack, restored, sessionVisible]);
 
   useEffect(() => {
     if (!currentTrack || loadingTrackId.current !== currentTrack.id || !status.isLoaded) return;

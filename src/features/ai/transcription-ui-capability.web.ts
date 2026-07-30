@@ -1,0 +1,1 @@
+export const TRANSCRIPTION_ACTION_ENABLED = false;

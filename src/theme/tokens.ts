@@ -1,5 +1,7 @@
 import type { TextStyle, ViewStyle } from 'react-native';
 
+import { fonts } from './font-families';
+
 /**
  * Native conversion of the frozen design tokens in icao设计稿/app/globals.css.
  * OKLCH values are converted to sRGB hex because React Native does not expose a
@@ -64,13 +66,7 @@ export const radii = {
   full: 999,
 } as const;
 
-export const fonts = {
-  sansRegular: 'Geist_400Regular',
-  sansMedium: 'Geist_500Medium',
-  sansSemibold: 'Geist_600SemiBold',
-  serifSemibold: 'NotoSerifSC_600SemiBold',
-  monoRegular: 'GeistMono_400Regular',
-} as const;
+export { fonts };
 
 export const type = {
   pageTitle: {

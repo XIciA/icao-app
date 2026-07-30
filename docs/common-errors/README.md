@@ -16,6 +16,7 @@
 ## 能力目录
 
 - [`audio-recording/`](./audio-recording/README.md)：录音、录音文件、回放、音频 session、上传与转写。
+- [`web-content/`](./web-content/README.md)：Web 静态内容、同域交付、浏览器缓存和中国大陆网络可达性。
 
 新增能力目录时使用全小写英文和连字符。事故文件使用
 `incident-YYYY-MM-DD-short-description.md`。

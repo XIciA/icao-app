@@ -1,7 +1,7 @@
 import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import { AlertCircle, Check, Headphones, Pause, Play, RotateCcw } from 'lucide-react-native';
 import { type ReactNode, useCallback, useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, AppState, Pressable, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, AppState, Platform, Pressable, StyleSheet, View } from 'react-native';
 import type { GestureType } from 'react-native-gesture-handler';
 
 import { AppText } from '@/components/ui';
@@ -15,6 +15,9 @@ import { AudioTimeline } from './AudioTimeline';
 const speeds = [0.75, 1, 1.25, 1.5];
 const SPEED_MENU_WIDTH = 112;
 const SPEED_MENU_HEIGHT = 176;
+export const WEB_AUDIO_FIRST_FRAME_TIMEOUT_MS = 6_000;
+
+type WebAudioStartState = 'idle' | 'needs-gesture' | 'starting' | 'timed-out';
 
 export function StudyAudioPlayer({
   uri,
@@ -30,7 +33,9 @@ export function StudyAudioPlayer({
   dismissControlsRequest = 0,
   pauseRequest = 0,
   onPlaybackStart,
+  onReady,
   practiceControls,
+  durationHint,
   variant = 'default',
 }: {
   uri?: string;
@@ -46,7 +51,9 @@ export function StudyAudioPlayer({
   dismissControlsRequest?: number;
   pauseRequest?: number;
   onPlaybackStart?: () => void;
+  onReady?: () => void;
   practiceControls?: ReactNode;
+  durationHint?: number;
   variant?: 'default' | 'integrated-recording';
 }) {
   const { height: windowHeight, width: windowWidth } = useAppViewportDimensions();
@@ -63,6 +70,11 @@ export function StudyAudioPlayer({
   const resumeAfterScrubRef = useRef(false);
   const audioLease = useRef<AudioLease | undefined>(undefined);
   const playGeneration = useRef(0);
+  const readyNotifiedKeyRef = useRef<string | undefined>(undefined);
+  const webAudioUnlockedRef = useRef(false);
+  const webStartGenerationRef = useRef(0);
+  const webStartTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const [webStartState, setWebStartState] = useState<WebAudioStartState>('idle');
   const currentAppState = AppState.currentState;
   const appStateRef = useRef<'active' | 'background' | 'inactive' | 'unknown' | 'extension'>(
     typeof currentAppState === 'string' ? currentAppState : 'active',
@@ -74,8 +86,11 @@ export function StudyAudioPlayer({
     hasError: status.playbackState === 'error',
   });
   const integrated = variant === 'integrated-recording';
-  const audioFailed = !uri || loadTimeout.timedOut || status.playbackState === 'error';
-  const audioControllable = Boolean(uri && status.isLoaded && !loadTimeout.timedOut && status.playbackState !== 'error');
+  const webStartTimedOut = Platform.OS === 'web' && webStartState === 'timed-out';
+  const audioFailed = !uri || loadTimeout.timedOut || webStartTimedOut || status.playbackState === 'error';
+  const audioControllable = Boolean(uri && status.isLoaded && !loadTimeout.timedOut && !webStartTimedOut && status.playbackState !== 'error');
+  const displayDuration = status.duration > 0 ? status.duration : durationHint ?? 0;
+  const waitingForFirstFrame = Platform.OS === 'web' && webStartState === 'starting';
 
   latestStatusRef.current = status;
 
@@ -129,18 +144,49 @@ export function StudyAudioPlayer({
     if (audioLease.current?.token === lease?.token) audioLease.current = undefined;
   }, []);
 
+  const cancelWebStartAttempt = useCallback((nextState: WebAudioStartState = 'idle', updateState = true) => {
+    if (Platform.OS !== 'web') return;
+    webStartGenerationRef.current += 1;
+    if (webStartTimeoutRef.current) clearTimeout(webStartTimeoutRef.current);
+    webStartTimeoutRef.current = undefined;
+    if (updateState) setWebStartState(nextState);
+  }, []);
+
+  const beginWebStartAttempt = useCallback(() => {
+    if (Platform.OS !== 'web') return;
+    cancelWebStartAttempt('starting');
+    const generation = webStartGenerationRef.current;
+    webStartTimeoutRef.current = setTimeout(() => {
+      if (generation !== webStartGenerationRef.current) return;
+      webStartTimeoutRef.current = undefined;
+      webStartGenerationRef.current += 1;
+      setWebStartState('timed-out');
+      playGeneration.current += 1;
+      pendingAutoPlayRef.current = false;
+      resumeAfterScrubRef.current = false;
+      tryPausePlayer();
+      void releaseAudioLease();
+    }, WEB_AUDIO_FIRST_FRAME_TIMEOUT_MS);
+  }, [cancelWebStartAttempt, releaseAudioLease, tryPausePlayer]);
+
   useEffect(() => audioSessionOrchestrator.register('study', {
     deactivate: async () => {
       playGeneration.current += 1;
       pendingAutoPlayRef.current = false;
       resumeAfterScrubRef.current = false;
+      cancelWebStartAttempt();
       if (!tryPausePlayer()) throw new Error('study_player_pause_failed');
       audioLease.current = undefined;
     },
-  }), [tryPausePlayer]);
+  }), [cancelWebStartAttempt, tryPausePlayer]);
 
   useEffect(() => {
     playGeneration.current += 1;
+    const shouldRequestAutoPlay = autoPlayRequest > 0;
+    const shouldGateWebAutoPlay = Platform.OS === 'web'
+      && shouldRequestAutoPlay
+      && !webAudioUnlockedRef.current;
+    cancelWebStartAttempt(shouldGateWebAutoPlay ? 'needs-gesture' : 'idle');
     tryPausePlayer();
     void releaseAudioLease();
     pendingAutoPlayRef.current = false;
@@ -149,6 +195,7 @@ export function StudyAudioPlayer({
     onSeekInteractionChange?.(false);
     void trySeekPlayer(0);
     statusAtSourceReplacementRef.current = undefined;
+    readyNotifiedKeyRef.current = undefined;
     if (!uri) return;
     statusAtSourceReplacementRef.current = latestStatusRef.current;
     if (!tryReplacePlayer(uri)) {
@@ -158,8 +205,23 @@ export function StudyAudioPlayer({
     if (!trySetPlaybackRate(speedRef.current)) {
       // The source can still play at the native default rate.
     }
-    pendingAutoPlayRef.current = autoPlayRequest > 0;
-  }, [autoPlayRequest, onSeekInteractionChange, playbackKey, releaseAudioLease, tryPausePlayer, tryReplacePlayer, trySeekPlayer, trySetPlaybackRate, uri]);
+    pendingAutoPlayRef.current = shouldRequestAutoPlay && !shouldGateWebAutoPlay;
+  }, [autoPlayRequest, cancelWebStartAttempt, onSeekInteractionChange, playbackKey, releaseAudioLease, tryPausePlayer, tryReplacePlayer, trySeekPlayer, trySetPlaybackRate, uri]);
+
+  useEffect(() => {
+    if (Platform.OS !== 'web' || webStartState !== 'starting') return;
+    if (status.currentTime <= 0 && !status.didJustFinish) return;
+    webAudioUnlockedRef.current = true;
+    cancelWebStartAttempt();
+  }, [cancelWebStartAttempt, status.currentTime, status.didJustFinish, webStartState]);
+
+  useEffect(() => {
+    if (!onReady || !uri || !status.isLoaded) return;
+    if (statusAtSourceReplacementRef.current === status) return;
+    if (readyNotifiedKeyRef.current === playbackKey) return;
+    readyNotifiedKeyRef.current = playbackKey;
+    onReady();
+  }, [onReady, playbackKey, status, uri]);
 
   useEffect(() => {
     if (!pendingAutoPlayRef.current || appStateRef.current !== 'active') return;
@@ -169,6 +231,7 @@ export function StudyAudioPlayer({
     pendingAutoPlayRef.current = false;
     const operationGeneration = playGeneration.current + 1;
     playGeneration.current = operationGeneration;
+    beginWebStartAttempt();
     void (async () => {
       let lease: AudioLease | undefined;
       try {
@@ -181,28 +244,31 @@ export function StudyAudioPlayer({
         onPlaybackStart?.();
         if (!tryPlayPlayer()) throw new Error('study_player_play_failed');
       } catch {
+        cancelWebStartAttempt(Platform.OS === 'web' ? 'timed-out' : 'idle');
         if (lease) await releaseAudioLease(lease);
       }
     })();
-  }, [onPlaybackStart, releaseAudioLease, status, tryPlayPlayer]);
+  }, [beginWebStartAttempt, cancelWebStartAttempt, onPlaybackStart, releaseAudioLease, status, tryPlayPlayer]);
 
   useEffect(() => {
     if (pauseRequest <= 0) return;
     playGeneration.current += 1;
     pendingAutoPlayRef.current = false;
     resumeAfterScrubRef.current = false;
+    cancelWebStartAttempt();
     tryPausePlayer();
     void releaseAudioLease();
-  }, [pauseRequest, releaseAudioLease, tryPausePlayer]);
+  }, [cancelWebStartAttempt, pauseRequest, releaseAudioLease, tryPausePlayer]);
 
   useEffect(() => {
     if (status.playbackState !== 'error') return;
     playGeneration.current += 1;
     pendingAutoPlayRef.current = false;
     resumeAfterScrubRef.current = false;
+    cancelWebStartAttempt();
     tryPausePlayer();
     void releaseAudioLease();
-  }, [releaseAudioLease, status.playbackState, tryPausePlayer]);
+  }, [cancelWebStartAttempt, releaseAudioLease, status.playbackState, tryPausePlayer]);
 
   useEffect(() => {
     setSpeedMenuPosition(undefined);
@@ -216,6 +282,7 @@ export function StudyAudioPlayer({
         playGeneration.current += 1;
         pendingAutoPlayRef.current = false;
         resumeAfterScrubRef.current = false;
+        cancelWebStartAttempt();
         setSpeedMenuPosition(undefined);
         onSeekInteractionChange?.(false);
         if (player.playing) tryPausePlayer();
@@ -223,16 +290,17 @@ export function StudyAudioPlayer({
       }
     });
     return () => subscription.remove();
-  }, [onSeekInteractionChange, player, releaseAudioLease, tryPausePlayer]);
+  }, [cancelWebStartAttempt, onSeekInteractionChange, player, releaseAudioLease, tryPausePlayer]);
 
   useEffect(() => {
     if (!loadTimeout.timedOut) return;
     playGeneration.current += 1;
     pendingAutoPlayRef.current = false;
     resumeAfterScrubRef.current = false;
+    cancelWebStartAttempt();
     tryPausePlayer();
     void releaseAudioLease();
-  }, [loadTimeout.timedOut, releaseAudioLease, tryPausePlayer]);
+  }, [cancelWebStartAttempt, loadTimeout.timedOut, releaseAudioLease, tryPausePlayer]);
 
   useEffect(() => {
     if (status.didJustFinish) {
@@ -243,21 +311,64 @@ export function StudyAudioPlayer({
 
   useEffect(() => () => {
     playGeneration.current += 1;
+    cancelWebStartAttempt('idle', false);
     tryPausePlayer();
     void releaseAudioLease();
-  }, [releaseAudioLease, tryPausePlayer]);
+  }, [cancelWebStartAttempt, releaseAudioLease, tryPausePlayer]);
+
+  function startWebPlaybackFromGesture() {
+    if (Platform.OS !== 'web' || !uri) return;
+    if (status.didJustFinish || (status.duration > 0 && status.currentTime >= status.duration)) {
+      void trySeekPlayer(0);
+    }
+    const operationGeneration = playGeneration.current + 1;
+    playGeneration.current = operationGeneration;
+    beginWebStartAttempt();
+
+    // iOS browsers only permit audible playback while the user-activation
+    // handler is still on the stack. Start the lease transition first, but do
+    // not await it before issuing play(); Expo Audio Web does not expose the
+    // underlying HTMLMediaElement.play() rejection.
+    const leasePromise = audioSessionOrchestrator.acquire('study', 'study-play');
+    onPlaybackStart?.();
+    if (!tryPlayPlayer()) {
+      playGeneration.current += 1;
+      cancelWebStartAttempt('timed-out');
+      void leasePromise.then(releaseAudioLease, () => undefined);
+      return;
+    }
+
+    void leasePromise.then(async (lease) => {
+      if (operationGeneration !== playGeneration.current || appStateRef.current !== 'active') {
+        await releaseAudioLease(lease);
+        return;
+      }
+      audioLease.current = lease;
+    }, () => {
+      if (operationGeneration !== playGeneration.current) return;
+      playGeneration.current += 1;
+      pendingAutoPlayRef.current = false;
+      cancelWebStartAttempt('timed-out');
+      tryPausePlayer();
+    });
+  }
 
   async function toggle() {
     if (!uri) return;
     if (status.playing) {
       playGeneration.current += 1;
+      cancelWebStartAttempt();
       tryPausePlayer();
       await releaseAudioLease();
+    }
+    else if (Platform.OS === 'web') {
+      startWebPlaybackFromGesture();
     }
     else {
       if (status.didJustFinish || (status.duration > 0 && status.currentTime >= status.duration)) await trySeekPlayer(0);
       const operationGeneration = playGeneration.current + 1;
       playGeneration.current = operationGeneration;
+      beginWebStartAttempt();
       let lease: AudioLease | undefined;
       try {
         lease = await audioSessionOrchestrator.acquire('study', 'study-play');
@@ -269,6 +380,7 @@ export function StudyAudioPlayer({
         onPlaybackStart?.();
         if (!tryPlayPlayer()) throw new Error('study_player_play_failed');
       } catch {
+        cancelWebStartAttempt();
         if (lease) await releaseAudioLease(lease);
       }
     }
@@ -310,9 +422,10 @@ export function StudyAudioPlayer({
 
   function retry() {
     if (!uri) return;
+    cancelWebStartAttempt(Platform.OS === 'web' ? 'needs-gesture' : 'idle');
     loadTimeout.retry();
     onRetry?.();
-    pendingAutoPlayRef.current = true;
+    pendingAutoPlayRef.current = Platform.OS !== 'web' || webAudioUnlockedRef.current;
     if (!tryReplacePlayer(uri) || !trySetPlaybackRate(speeds[speedIndex])) {
       pendingAutoPlayRef.current = false;
     }
@@ -415,8 +528,8 @@ export function StudyAudioPlayer({
             <View style={styles.integratedStatus}>
               <AlertCircle color={colors.destructive} size={18} />
               <View style={styles.errorCopy}>
-                <AppText variant="button">{loadTimeout.timedOut ? '音频加载超时' : '音频加载失败'}</AppText>
-                <AppText variant="caption">{loadTimeout.timedOut ? '连接可能已中断；重试会重新获取音频地址。' : '原文与题目仍可继续学习。'}</AppText>
+                <AppText variant="button">{webStartTimedOut ? '音频启动超时' : loadTimeout.timedOut ? '音频加载超时' : '音频加载失败'}</AppText>
+                <AppText variant="caption">{webStartTimedOut ? '浏览器未能开始播放；请重新加载后点击播放。' : loadTimeout.timedOut ? '连接可能已中断；重试会重新获取音频地址。' : '原文与题目仍可继续学习。'}</AppText>
               </View>
               {uri ? (
                 <Pressable accessibilityLabel="重试音频" onPress={retry} style={styles.retry}>
@@ -430,7 +543,7 @@ export function StudyAudioPlayer({
               <AudioTimeline
                 blockedExternalGesture={blockedExternalGesture}
                 disabled={!status.isLoaded}
-                duration={status.duration}
+                duration={displayDuration}
                 onInteractionChange={onSeekInteractionChange}
                 onScrubCancel={cancelScrub}
                 onScrubEnd={finishScrub}
@@ -444,13 +557,13 @@ export function StudyAudioPlayer({
           <View style={styles.integratedControls} testID="integrated-audio-controls">
             <View style={styles.sideControl}>
               <Pressable
-                accessibilityLabel={status.playing ? '暂停' : '播放'}
-                accessibilityState={{ disabled: !audioControllable }}
-                disabled={!audioControllable}
+                accessibilityLabel={waitingForFirstFrame ? '音频正在启动' : status.playing ? '暂停' : '播放'}
+                accessibilityState={{ disabled: !audioControllable || waitingForFirstFrame }}
+                disabled={!audioControllable || waitingForFirstFrame}
                 onPress={() => void toggle()}
                 style={({ pressed }) => [styles.integratedPlay, !audioControllable ? styles.controlDisabled : null, pressed ? styles.pressed : null]}
               >
-                {uri && !audioFailed && !status.isLoaded ? (
+                {uri && !audioFailed && (!status.isLoaded || waitingForFirstFrame) ? (
                   <ActivityIndicator color={colors.primaryForeground} size="small" />
                 ) : status.playing ? (
                   <Pause color={colors.primaryForeground} fill={colors.primaryForeground} size={18} />
@@ -487,8 +600,8 @@ export function StudyAudioPlayer({
             <View style={styles.error}>
               <AlertCircle color={colors.destructive} size={18} />
               <View style={styles.errorCopy}>
-                <AppText variant="button">{loadTimeout.timedOut ? '音频加载超时' : '音频加载失败'}</AppText>
-                <AppText variant="caption">{loadTimeout.timedOut ? '连接可能已中断；重试会重新获取音频地址。' : '原文与题目仍可继续学习。'}</AppText>
+                <AppText variant="button">{webStartTimedOut ? '音频启动超时' : loadTimeout.timedOut ? '音频加载超时' : '音频加载失败'}</AppText>
+                <AppText variant="caption">{webStartTimedOut ? '浏览器未能开始播放；请重新加载后点击播放。' : loadTimeout.timedOut ? '连接可能已中断；重试会重新获取音频地址。' : '原文与题目仍可继续学习。'}</AppText>
               </View>
               {uri ? (
                 <Pressable accessibilityLabel="重试音频" onPress={retry} style={styles.retry}>
@@ -500,12 +613,12 @@ export function StudyAudioPlayer({
           ) : (
             <View style={styles.playerRow}>
               <Pressable
-                accessibilityLabel={status.playing ? '暂停' : '播放'}
-                disabled={!status.isLoaded}
+                accessibilityLabel={waitingForFirstFrame ? '音频正在启动' : status.playing ? '暂停' : '播放'}
+                disabled={!status.isLoaded || waitingForFirstFrame}
                 onPress={() => void toggle()}
                 style={({ pressed }) => [styles.play, pressed ? styles.pressed : null]}
               >
-                {!status.isLoaded ? (
+                {!status.isLoaded || waitingForFirstFrame ? (
                   <ActivityIndicator color={colors.primaryForeground} size="small" />
                 ) : status.playing ? (
                   <Pause color={colors.primaryForeground} fill={colors.primaryForeground} size={18} />
@@ -517,7 +630,7 @@ export function StudyAudioPlayer({
                 <AudioTimeline
                   blockedExternalGesture={blockedExternalGesture}
                   disabled={!status.isLoaded}
-                  duration={status.duration}
+                  duration={displayDuration}
                   onInteractionChange={onSeekInteractionChange}
                   onScrubCancel={cancelScrub}
                   onScrubEnd={finishScrub}

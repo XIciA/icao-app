@@ -9,12 +9,13 @@ import {
   useState,
 } from 'react';
 import { BookOpenCheck, MessageSquareText, NotebookPen } from 'lucide-react-native';
-import { Keyboard, Pressable, StyleSheet, TextInput, View } from 'react-native';
+import { Keyboard, Platform, Pressable, StyleSheet, TextInput, View } from 'react-native';
 import { GestureDetector, type GestureType } from 'react-native-gesture-handler';
 
 import { AppText } from '@/components/ui';
 import { acceptAiConsent, grammarReview, hasAiConsent, polishExpression, transcribeRecording } from '@/features/ai/ai-client';
 import { exactMatch } from '@/features/ai/exact-match';
+import { TRANSCRIPTION_ACTION_ENABLED } from '@/features/ai/transcription-ui-capability';
 import { ApiClientError } from '@/platform/api-client';
 import { emitAudioDiagnostic } from '@/platform/audio/audio-diagnostics';
 import { colors, radii, spacing } from '@/theme';
@@ -386,7 +387,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   const aiBusy = busy === 'transcribe' || busy === 'review';
   const showRetry = activeTab === 'mine' ? Boolean(autoSaveError) : activeTab === 'notes' ? Boolean(saveError) : false;
   const showReviewAction = activeTab === 'mine' && reviewKind !== 'none';
-  const showTranscribeAction = activeTab === 'mine' && Boolean(recordingUri);
+  const showTranscribeAction = TRANSCRIPTION_ACTION_ENABLED && activeTab === 'mine' && Boolean(recordingUri);
   const transcribeDisabled = !recordingUri || editing || aiBusy;
   const reviewDisabled = !answerText.trim() || editing || aiBusy;
   const reviewError = failedAction === 'review' ? error : undefined;
@@ -448,8 +449,8 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
         <View style={styles.content} testID="study-workbench-content">
           {activeTab === 'mine' ? <View>
             <View style={styles.responseSection}>
-              {recordingUri && !consented ? <AppText variant="micro">录音仅用于本次转写。</AppText> : null}
-              {editing ? <TextInput accessibilityLabel="我的回答" autoFocus multiline onBlur={() => { onEditingTabChange(undefined); void persistCurrent(); }} onChangeText={changeAnswer} onContentSizeChange={({ nativeEvent }) => setAnswerInputHeight(Math.max(92, Math.ceil(nativeEvent.contentSize.height)))} placeholder={busy === 'transcribe' ? '正在转写…' : '输入回答'} placeholderTextColor={colors.mutedForeground} ref={answerInputRef} scrollEnabled={false} style={[styles.input, { height: answerInputHeight }]} textAlignVertical="top" value={answerText} /> : <View accessibilityLabel="我的回答内容" style={styles.input}><AppText color={answerText ? colors.foreground : colors.mutedForeground}>{answerText || (busy === 'transcribe' ? '正在转写…' : '录音或编辑后，回答会显示在这里')}</AppText></View>}
+              {Platform.OS !== 'web' && recordingUri && !consented ? <AppText variant="micro">录音仅用于本次转写。</AppText> : null}
+              {editing ? <TextInput accessibilityLabel="我的回答" autoFocus multiline onBlur={() => { onEditingTabChange(undefined); void persistCurrent(); }} onChangeText={changeAnswer} onContentSizeChange={({ nativeEvent }) => setAnswerInputHeight(Math.max(92, Math.ceil(nativeEvent.contentSize.height)))} placeholder={busy === 'transcribe' ? '正在转写…' : '输入回答'} placeholderTextColor={colors.mutedForeground} ref={answerInputRef} scrollEnabled={false} style={[styles.input, { height: answerInputHeight }]} textAlignVertical="top" value={answerText} /> : <View accessibilityLabel="我的回答内容" style={styles.input}><AppText color={answerText ? colors.foreground : colors.mutedForeground}>{answerText || (busy === 'transcribe' ? '正在转写…' : Platform.OS === 'web' ? '回答会显示在这里' : '录音或编辑后，回答会显示在这里')}</AppText></View>}
               {transcriptionError ? <AppText color={colors.destructive} variant="caption">{transcriptionError}</AppText> : null}
               {autoSaveError ? <AppText accessibilityLiveRegion="assertive" color={colors.destructive} variant="micro">{autoSaveError}</AppText> : null}
             </View>

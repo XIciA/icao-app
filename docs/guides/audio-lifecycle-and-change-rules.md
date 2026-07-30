@@ -24,7 +24,7 @@
 | --- | --- | --- | --- |
 | 全局 session/profile | `src/platform/audio/audio-session-orchestrator.ts` | Expo Audio mode API、诊断 | UI/Provider 直接改 mode；第二 owner registry |
 | 随身听引擎 | `RadioPlayerProvider` + Track Player | orchestrator lease、共享题库/资源 resolver | 私有题库或私有音频 session |
-| 题卡音频 | `StudyAudioPlayer` | orchestrator lease、稳定 Expo player | 录音中抢占播放；自行恢复随身听 |
+| 题卡音频 | `StudyAudioPlayer` | orchestrator lease、平台稳定 player | 录音中抢占播放；自行恢复随身听 |
 | 录音生命周期 | `useSpeakingRecordingController` | recorder adapter、repository、orchestrator | UI 管 recorder、依赖回放状态判成功 |
 | 原生录音 | `expo-recorder-adapter.ts` | Expo recorder/权限/preset；仅 E2E raw WAV 写入 | 提交资产、删除已提交资产、业务发布 |
 | 录音资产 | `RecordingRepository` | Expo FileSystem | 组件直接删除；URI 充当身份 |
@@ -57,6 +57,15 @@ flowchart LR
 - lease token 递增；旧 lease 的 release 是无副作用操作，不能释放新 owner。
 - owner 的 `deactivate` 必须等实际 pause 完成。它不能在 orchestrator 的 acquire 队列内反向调用 release，否则会死锁。
 - release 只恢复 idle，不保存“上一个 owner”，也没有自动 resume 回调。
+
+### Web 题卡参考音频
+
+- iOS/Android 题卡继续由无平台后缀的 `StudyAudioPlayer.tsx` 和 Expo Audio stable player 管理。
+- Expo Web 如果把 `loadeddata/isLoaded` 当成播放按钮前置条件，会与移动 Safari 的用户手势媒体策略形成死锁；Web 题卡因此由 `StudyAudioPlayer.web.tsx` 隔离管理一个持久 `HTMLAudioElement`。
+- Web 元素仍属于既有 `study` owner。点击播放必须在用户操作同步栈内调用原生 `play()`，同时异步获取 orchestrator lease；lease 失败、录音抢占、后台、暂停、切题和卸载都必须暂停元素并释放已有 lease。
+- URI 就绪即可点击，不等待 `loadeddata`；只有用户点击或已解锁后的尽力自动播放开始后，才允许启动首帧超时。
+- Web 下一题预热不拥有 session 或播放状态，只能在当前题产生首帧后使用至多一个独立浏览器 `Audio` 元素做尽力预热。
+- Web Production 构建从当前不可变内容 release 校验并物化 `question-bank-assets`，播放器只读取同源 `/question-bank-assets/*`。资源 manifest、checksum 和原 Vercel 分片仍是唯一发布事实；同域构建产物只是经过校验的交付镜像，不得成为第二套音频映射或内容来源。iOS/Android 继续使用原生 resolver，不读取该 Web 镜像。
 
 ### 随身听原生间隔轨道
 
@@ -143,6 +152,13 @@ stateDiagram-v2
 3. 确认当前 owner/lease token 和旧 owner 的实际 pause 结果。
 4. 确认 generation 是否过期、stop 是否被合并、AppState 是否触发取消。
 5. 最后再检查 player load 或服务端 ASR；不能先改 UI 状态掩盖生命周期错误。
+
+### Web 有声播放的用户手势边界
+
+- iOS 浏览器首次有声播放必须在用户点击处理函数的同步调用栈内发出，不能在 `await` 音频 lease、模式切换或其他 Promise 之后再调用 `play()`。
+- `StudyAudioPlayer` 的 Web 首次手动播放仍先发起既有 `study` lease 申请，但必须在同一次点击回调内同步调用稳定 Expo player；不得为此新增 HTML audio、第二 player 或第二 session owner。
+- lease 获取失败、页面失活、题卡切换或 generation 过期时，必须暂停该次播放并释放迟到的 lease。Native 和后续已解锁的切题自动播放继续遵守“lease 获取完成后播放”的原有顺序。
+- 回归测试必须让 Web mode 切换 Promise 保持 pending，并断言 `play()` 已在 Promise 完成前调用；只验证最终播放状态不足以覆盖浏览器用户手势约束。
 
 ## 8. 强制验收矩阵
 

@@ -83,5 +83,10 @@ describe('VocabularyScreen', () => {
     fireEvent.press(screen.getByLabelText('开始30题词汇测评'));
     await waitFor(() => expect(screen.getByText('每题 10 秒')).toBeTruthy());
     expect(screen.getByText('开始 30 题测评')).toBeTruthy();
+    fireEvent.press(screen.getByText('开始 30 题测评'));
+    await waitFor(() => expect(screen.getByLabelText('返回')).toBeTruthy());
+    expect(screen.queryByLabelText('退出测评')).toBeNull();
+    fireEvent.press(screen.getByLabelText('返回'));
+    await waitFor(() => expect(screen.getByText('开始 30 题测评')).toBeTruthy());
   });
 });

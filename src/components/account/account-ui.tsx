@@ -4,7 +4,7 @@ import { Image, Pressable, StyleSheet, View } from 'react-native';
 import type { PropsWithChildren } from 'react';
 
 import { AppText, Card, Screen } from '@/components/ui';
-import { colors, radii, spacing } from '@/theme';
+import { colors, fonts, radii, spacing } from '@/theme';
 
 export function AccountScreen({ children }: { children: React.ReactNode }) {
   return (
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   screen: { paddingTop: spacing[2] },
   topbar: { alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between', paddingVertical: spacing[2], marginBottom: spacing[4] },
   back: { alignItems: 'center', height: 42, justifyContent: 'center', width: 42, marginLeft: -spacing[2] },
-  topbarTitle: { fontFamily: 'NotoSerifSC_600SemiBold', fontSize: 18 },
+  topbarTitle: { fontFamily: fonts.serifSemibold, fontSize: 18 },
   sectionLabel: { marginLeft: spacing[4], marginBottom: spacing[2], marginTop: spacing[6], letterSpacing: 1 },
   rowGroup: { padding: 0, overflow: 'hidden' },
   row: { alignItems: 'center', flexDirection: 'row', gap: spacing[3], minHeight: 60, paddingHorizontal: spacing[4] },

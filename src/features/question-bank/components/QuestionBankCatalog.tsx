@@ -8,8 +8,8 @@ import { AppText, Card, Screen } from '@/components/ui';
 import { SoftGlow } from '@/components/visual/SoftGlow';
 import { colors, fonts, radii, shadows, spacing } from '@/theme';
 
-import { completedCards, sqliteLearningStore } from '../platform/learning-store';
 import { getEmbeddedQuestionBanks } from '../data/repository';
+import { loadCatalogProgress, type CatalogProgressMap } from '../lib/catalog-progress';
 import type { QuestionBankCategory, QuestionBankDataset } from '../types';
 import { QuestionBankSwitcherHeader } from './QuestionBankSwitcherHeader';
 
@@ -22,12 +22,10 @@ const bankIcons: Record<QuestionBankDataset['icon'], LucideIcon> = {
   story: BookOpenText,
 };
 
-type ProgressMap = Record<string, { learned: number; total: number }>;
-
 export function QuestionBankCatalog({ dataset }: { dataset: QuestionBankDataset }) {
   const router = useRouter();
   const [expanded, setExpanded] = useState<string>();
-  const [progress, setProgress] = useState<ProgressMap>({});
+  const [progress, setProgress] = useState<CatalogProgressMap>({});
   const switcherItems = useMemo(() => getEmbeddedQuestionBanks().map((item) => ({
     icon: bankIcons[item.icon],
     label: item.title,
@@ -38,13 +36,8 @@ export function QuestionBankCatalog({ dataset }: { dataset: QuestionBankDataset 
   useEffect(() => {
     let active = true;
     const topics = dataset.categories.flatMap((category) => category.topics);
-    void Promise.all(
-      topics.map(async (topic) => {
-        const states = await sqliteLearningStore.getTopicStates(topic);
-        return [topic.id, { learned: completedCards(topic.cards, states), total: topic.declaredCardCount }] as const;
-      }),
-    ).then((entries) => {
-      if (active) setProgress(Object.fromEntries(entries));
+    void loadCatalogProgress(topics).then((nextProgress) => {
+      if (active) setProgress(nextProgress);
     });
     return () => {
       active = false;
