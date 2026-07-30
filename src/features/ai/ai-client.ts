@@ -1,4 +1,4 @@
-import type { AiConsent, GrammarReviewRequest, GrammarReviewResult, PolishRequest, PolishResult, TranscribeResult, WordLookupRequest, WordLookupResult } from '@icao/contracts';
+import type { AiConsent, GrammarReviewRequest, GrammarReviewResult, PolishRequest, PolishResult, TranscribeResult } from '@icao/contracts';
 import Storage from '@/platform/storage';
 
 import { apiAccessToken, apiRequest, getApiBaseUrl, recoverApiUnauthorized, rememberApiError } from '@/platform/api-client';
@@ -6,7 +6,6 @@ import { createAudioUploadForm } from '@/platform/audio-upload';
 
 const POLICY_VERSION = 'ai-learning-privacy-v1';
 const CONSENT_KEY = `icao.ai.consent.${POLICY_VERSION}`;
-const lookupCache = new Map<string, WordLookupResult>();
 const AUDIO_E2E_ENABLED = __DEV__ && process.env.EXPO_PUBLIC_ICAO_AUDIO_E2E === '1';
 
 export async function hasAiConsent() {
@@ -27,17 +26,6 @@ export async function acceptAiConsent() {
 export async function withdrawAiConsent() {
   await apiRequest<{ revoked: true }>('/v1/ai/consent', { method: 'DELETE' });
   await Storage.removeItem(CONSENT_KEY);
-}
-
-export async function wordLookup(input: WordLookupRequest) {
-  const key = JSON.stringify([input.module, input.word.toLocaleLowerCase(), input.sentence.replace(/\s+/g, ' ').trim()]);
-  const cached = lookupCache.get(key);
-  if (cached) return { ...cached, cached: true };
-  const result = await apiRequest<WordLookupResult>('/v1/ai/word-lookup', {
-    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input),
-  });
-  lookupCache.set(key, result);
-  return result;
 }
 
 export async function transcribeRecording(uri: string, signal?: AbortSignal) {

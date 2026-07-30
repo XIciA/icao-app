@@ -145,7 +145,7 @@ export function InteractiveStudyText({
                     blockId,
                     wordIndex: index,
                     quote: token.text,
-                    sentence: sentenceAround(text, token.start, token.end),
+                    sentence: sentenceAround(text, token.start),
                     sourceText: text,
                   })}
                   style={wordSpacingStyle}
@@ -167,7 +167,7 @@ export function InteractiveStudyText({
                   blockId,
                   wordIndex: index,
                   quote: token.text,
-                  sentence: sentenceAround(text, token.start, token.end),
+                  sentence: sentenceAround(text, token.start),
                   sourceText: text,
                 }) : undefined}
                 style={[styles.word, wordSpacingStyle, backgroundColor ? { backgroundColor } : null]}

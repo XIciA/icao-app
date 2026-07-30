@@ -1,5 +1,3 @@
-import type { ReactNode } from 'react';
-import { View } from 'react-native';
 import type { GestureType } from 'react-native-gesture-handler';
 
 import type { RecordingAsset } from '../recording/types';
@@ -83,8 +81,4 @@ export function StudyTaskRenderer({
       variant={variant}
     />
   );
-}
-
-export function TaskSection({ children }: { children: ReactNode }) {
-  return <View>{children}</View>;
 }

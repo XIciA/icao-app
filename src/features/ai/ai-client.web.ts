@@ -5,8 +5,6 @@ import type {
   PolishRequest,
   PolishResult,
   TranscribeResult,
-  WordLookupRequest,
-  WordLookupResult,
 } from '@icao/contracts';
 
 import Storage from '@/platform/storage';
@@ -15,7 +13,6 @@ import { apiRequest } from '@/platform/api-client';
 const POLICY_VERSION = 'ai-learning-privacy-v1';
 const CONSENT_KEY = `icao.ai.consent.${POLICY_VERSION}`;
 const MAXIMUM_TRANSCRIPTION_BYTES = 3_000_000;
-const lookupCache = new Map<string, WordLookupResult>();
 
 export async function hasAiConsent() {
   return (await Storage.getItem(CONSENT_KEY)) === 'accepted';
@@ -34,19 +31,6 @@ export async function acceptAiConsent() {
 export async function withdrawAiConsent() {
   await apiRequest<{ revoked: true }>('/v1/ai/consent', { method: 'DELETE' });
   await Storage.removeItem(CONSENT_KEY);
-}
-
-export async function wordLookup(input: WordLookupRequest) {
-  const key = JSON.stringify([input.module, input.word.toLocaleLowerCase(), input.sentence.replace(/\s+/gu, ' ').trim()]);
-  const cached = lookupCache.get(key);
-  if (cached) return { ...cached, cached: true };
-  const result = await apiRequest<WordLookupResult>('/v1/ai/word-lookup', {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify(input),
-  });
-  lookupCache.set(key, result);
-  return result;
 }
 
 function audioDataUrl(audio: Blob) {

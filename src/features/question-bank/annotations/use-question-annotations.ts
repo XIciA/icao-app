@@ -127,7 +127,7 @@ export function useQuestionAnnotations(target?: QuestionBankCardTarget) {
         wordIndex: token.wordIndex!,
         colorId: value.colorId,
         quote: token.text,
-        sentence: sentenceAround(value.sourceText, token.start, token.end),
+        sentence: sentenceAround(value.sourceText, token.start),
         contentFingerprint: fingerprint,
       }))],
     };
