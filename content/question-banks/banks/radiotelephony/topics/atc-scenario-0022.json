@@ -1,7 +1,7 @@
 {
   "categoryId": "atc-afr",
   "id": "atc-scenario-0022",
-  "name": "AFR 896 皮托管加温,GPS高度地速失效",
+  "name": "AFR 896 皮托管加温，GPS高度地速失效",
   "declaredCardCount": 20,
   "cards": [
     {
@@ -9,7 +9,7 @@
       "taskTitle": "AFR 896-1",
       "audioText": "B: Your call sign is AFR 896, you are from Paris to Wuhan, you are flying at 11300 meters, approaching XIY, call Xi'an Control.",
       "audioTextZh": "你的呼号是AFR 896，从巴黎飞往武汉，当前高度11300米，接近XIY，请呼叫西安管制。",
-      "referenceText": "Xi'an Control, AFR 896, maintaining 11300 meters,approaching XIY.",
+      "referenceText": "Xi'an Control, AFR 896, maintaining 11300 meters, approaching XIY.",
       "referenceTextZh": "西安管制，AFR 896，保持11300米，接近XIY。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/375.mp3"
     },
@@ -18,7 +18,7 @@
       "taskTitle": "AFR 896-2",
       "audioText": "B: You check with Xi'an Control if there is any turbulence reported by preceding aircraft at 10700 meters?",
       "audioTextZh": "向西安管制询问前机在10700米是否报告过颠簸。",
-      "referenceText": "Xi'an Control, AFR 896, is there any turbulence reported by preceding aircraft at 10700 meters ?",
+      "referenceText": "Xi'an Control, AFR 896, is there any turbulence reported by preceding aircraft at 10700 meters?",
       "referenceTextZh": "西安管制，AFR 896，请问前机在10700米是否报告过颠簸？",
       "audio": "/question-bank-assets/audio/radiotelephony/main/376.mp3"
     },
@@ -99,7 +99,7 @@
       "taskTitle": "AFR 896-11",
       "audioText": "B: You have established contact with Wuhan Control, initiated descent for Runway 36R, during descent, airspeed and altitude readings are abnormal, possibly due to ice blockage, advise Wuhan Control this situation. This is an Urgent call.",
       "audioTextZh": "你已与武汉管制建立联系，开始为36右跑道下降。下降过程中，空速和高度读数异常，可能由结冰堵塞造成，请向武汉管制说明情况。这是紧急呼叫。",
-      "referenceText": "PANPAN PANPAN PANPAN, Wuhan Control, AFR 896,our airspeed and altitude readings are abnormal, possibly due to ice blockage.",
+      "referenceText": "PANPAN PANPAN PANPAN, Wuhan Control, AFR 896, our airspeed and altitude readings are abnormal, possibly due to ice blockage.",
       "referenceTextZh": "PANPAN PANPAN PANPAN，武汉管制，AFR 896，我们的空速和高度读数异常，可能由结冰堵塞造成。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/385.mp3"
     },

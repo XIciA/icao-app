@@ -1,4 +1,4 @@
-import { Check, X } from 'lucide-react-native';
+import { Check, X } from '@/components/ui/icons';
 import { Platform, Pressable, StyleSheet, View } from 'react-native';
 
 import { AppText, BottomSheet } from '@/components/ui';

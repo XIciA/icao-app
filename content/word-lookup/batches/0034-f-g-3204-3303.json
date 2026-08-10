@@ -1,105 +1,485 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"ft","ipa":"/ˌef ˈtiː/","aviationMeaning":"n. 英尺（feet 缩写）；高度和距离单位","generalMeaning":"n. 英尺缩写"},
-    {"word":"fuel","ipa":"/ˈfjuːəl/","aviationMeaning":"n. 燃油；v. 加注燃油","generalMeaning":"n. 燃料；v. 加燃料"},
-    {"word":"fuel-control","ipa":"/ˈfjuːəl kənˈtroʊl/","aviationMeaning":"n. 燃油控制；发动机燃油调节系统","generalMeaning":"n. 燃料控制"},
-    {"word":"fuel-dump","ipa":"/ˈfjuːəl dʌmp/","aviationMeaning":"n. 放油；紧急着陆前排放燃油","generalMeaning":"n. 倾倒燃料"},
-    {"word":"fuel-efficiency","ipa":"/ˈfjuːəl ɪˈfɪʃənsi/","aviationMeaning":"n. 燃油效率；单位航程耗油表现","generalMeaning":"n. 燃料效率"},
-    {"word":"fuel-efficient","ipa":"/ˈfjuːəl ɪˈfɪʃənt/","aviationMeaning":"adj. 节油的；燃油效率高的","generalMeaning":"adj. 节能的；高效的"},
-    {"word":"fuel-imbalance","ipa":"/ˈfjuːəl ɪmˈbæləns/","aviationMeaning":"n. 燃油不平衡；左右油箱燃油差异","generalMeaning":"n. 燃料不平衡"},
-    {"word":"fuel-leak","ipa":"/ˈfjuːəl liːk/","aviationMeaning":"n. 燃油泄漏","generalMeaning":"n. 燃料泄漏"},
-    {"word":"fuel-quality","ipa":"/ˈfjuːəl ˈkwɑːləti/","aviationMeaning":"n. 燃油质量；燃油适航性与污染情况","generalMeaning":"n. 燃料质量"},
-    {"word":"fuel-related","ipa":"/ˈfjuːəl rɪˈleɪtɪd/","aviationMeaning":"adj. 燃油相关的","generalMeaning":"adj. 燃料相关的"},
-    {"word":"fuel-saving","ipa":"/ˈfjuːəl ˌseɪvɪŋ/","aviationMeaning":"adj. 节油的；降低航班燃油消耗的","generalMeaning":"adj. 节省燃料的"},
-    {"word":"fuel-storage","ipa":"/ˈfjuːəl ˈstɔːrɪdʒ/","aviationMeaning":"n. 燃油储存；机场或航空器燃油存放","generalMeaning":"n. 燃料储存"},
-    {"word":"fuel-system","ipa":"/ˈfjuːəl ˈsɪstəm/","aviationMeaning":"n. 燃油系统；储存、输送和供给系统","generalMeaning":"n. 燃料系统"},
-    {"word":"fueled","ipa":"/ˈfjuːəld/","aviationMeaning":"adj. 已加油的；燃油已补给的","generalMeaning":"adj. 已加燃料的"},
-    {"word":"fueling","ipa":"/ˈfjuːəlɪŋ/","aviationMeaning":"n. 加油；航空器地面燃油补给","generalMeaning":"n. 加燃料"},
-    {"word":"full","ipa":"/fʊl/","aviationMeaning":"adj. 满的；如满载、油箱满或满功率","generalMeaning":"adj. 满的；完全的"},
-    {"word":"full-flight","ipa":"/fʊl flaɪt/","aviationMeaning":"adj. 全飞行的；如全动模拟机训练","generalMeaning":"adj. 全程飞行的"},
-    {"word":"fully","ipa":"/ˈfʊli/","aviationMeaning":"adv. 完全地；充分地","generalMeaning":"adv. 完全地；充分地"},
-    {"word":"fume","ipa":"/fjuːm/","aviationMeaning":"n. 烟雾；有害蒸气；v. 冒烟","generalMeaning":"n. 烟；蒸气；v. 冒烟"},
-    {"word":"fumes","ipa":"/fjuːmz/","aviationMeaning":"n. 烟雾；有害蒸气（复数）","generalMeaning":"n. 烟；蒸气（复数）"},
-    {"word":"fun","ipa":"/fʌn/","aviationMeaning":"n. 乐趣；非技术性描述","generalMeaning":"n. 乐趣；好玩"},
-    {"word":"function","ipa":"/ˈfʌŋkʃən/","aviationMeaning":"n. 功能；系统设计作用；v. 运作","generalMeaning":"n. 功能；v. 运作"},
-    {"word":"functionality","ipa":"/ˌfʌŋkʃəˈnæləti/","aviationMeaning":"n. 功能性；系统可用的功能范围","generalMeaning":"n. 功能性"},
-    {"word":"functioned","ipa":"/ˈfʌŋkʃənd/","aviationMeaning":"v. 已运作；系统或设备已正常工作","generalMeaning":"v. 已运作"},
-    {"word":"functioning","ipa":"/ˈfʌŋkʃənɪŋ/","aviationMeaning":"adj. 正常运作的；系统或设备工作的","generalMeaning":"adj. 运作的；起作用的"},
-    {"word":"functions","ipa":"/ˈfʌŋkʃənz/","aviationMeaning":"n. 功能（复数）；系统执行的作用","generalMeaning":"n. 功能（复数）"},
-    {"word":"fundamental","ipa":"/ˌfʌndəˈmentəl/","aviationMeaning":"adj. 基本的；飞行安全的根本原则","generalMeaning":"adj. 基本的；根本的"},
-    {"word":"funding","ipa":"/ˈfʌndɪŋ/","aviationMeaning":"n. 资金；机场、航空公司或安全项目资金","generalMeaning":"n. 资金；资助"},
-    {"word":"fupad","ipa":"/ˈfuːpæd/","aviationMeaning":"n. 航空资料中的疑似缩写或拼写；需结合原文","generalMeaning":"n. 缩写或拼写；请结合原文"},
-    {"word":"further","ipa":"/ˈfɜːrðər/","aviationMeaning":"adj. 进一步的；更远的；如 further clearance","generalMeaning":"adj. 更进一步的；更远的"},
-    {"word":"further-clearance","ipa":"/ˈfɜːrðər ˈklɪrəns/","aviationMeaning":"n. 后续放行；空管给予后续航路或高度许可","generalMeaning":"n. 进一步许可"},
-    {"word":"fuse","ipa":"/fjuːz/","aviationMeaning":"n. 保险丝；电路过载保护件；v. 熔化","generalMeaning":"n. 保险丝；v. 熔化"},
-    {"word":"fuselage","ipa":"/ˈfjuːzəlɑːʒ/","aviationMeaning":"n. 机身；航空器主体结构","generalMeaning":"n. 机身"},
-    {"word":"future","ipa":"/ˈfjuːtʃər/","aviationMeaning":"n. 未来；后续运行或计划时期","generalMeaning":"n. 未来；adj. 将来的"},
-    {"word":"g","ipa":"/dʒiː/","aviationMeaning":"n. 字母 G；过载单位 g；ICAO 拼读词 Golf 对应字母","generalMeaning":"n. 英文字母 G"},
-    {"word":"gad","ipa":"/ɡæd/","aviationMeaning":"n. 航空资料缩写或专有名称；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"gaf","ipa":"/ɡæf/","aviationMeaning":"n. 航空资料缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"gain","ipa":"/ɡeɪn/","aviationMeaning":"v. 获得；增加高度、速度或性能；n. 增益","generalMeaning":"v. 获得；增加；n. 收益"},
-    {"word":"gained","ipa":"/ɡeɪnd/","aviationMeaning":"v. 已获得；已增加高度、速度或性能","generalMeaning":"v. 已获得；已增加"},
-    {"word":"gaining","ipa":"/ˈɡeɪnɪŋ/","aviationMeaning":"v. 正获得；正增加高度、速度或性能","generalMeaning":"v. 正获得；正增加"},
-    {"word":"gains","ipa":"/ɡeɪnz/","aviationMeaning":"v. 获得或增加；n. 增益（复数）","generalMeaning":"v. 获得；n. 收益（复数）"},
-    {"word":"gaj","ipa":"/ɡædʒ/","aviationMeaning":"n. 航空资料缩写或专有名称；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"galeao","ipa":"/ˌɡæliˈaʊ/","aviationMeaning":"n. 加利昂；里约热内卢机场名称","generalMeaning":"n. 专有地名"},
-    {"word":"galeao's","ipa":"/ˌɡæliˈaʊz/","aviationMeaning":"n. Galeao 的所有格形式；机场名称组成部分","generalMeaning":"n. 专有地名的所有格形式"},
-    {"word":"galileo","ipa":"/ˌɡælɪˈleɪoʊ/","aviationMeaning":"n. 伽利略；欧洲卫星导航系统名称","generalMeaning":"n. 专有名称"},
-    {"word":"galley","ipa":"/ˈɡæli/","aviationMeaning":"n. 客舱厨房；机上餐饮准备区","generalMeaning":"n. 船上厨房；狭长厨房"},
-    {"word":"galleys","ipa":"/ˈɡæliz/","aviationMeaning":"n. 客舱厨房（复数）；机上餐饮准备区","generalMeaning":"n. 船上厨房（复数）"},
-    {"word":"gander","ipa":"/ˈɡændər/","aviationMeaning":"n. 甘德；机场或地名","generalMeaning":"n. 雄鹅；专有地名"},
-    {"word":"gap","ipa":"/ɡæp/","aviationMeaning":"n. 间隙；航班间隔、设备空隙或信息缺口","generalMeaning":"n. 缺口；间隔"},
-    {"word":"gaping","ipa":"/ˈɡeɪpɪŋ/","aviationMeaning":"adj. 张开的；如未关闭的开口或裂缝","generalMeaning":"adj. 张大的；敞开的"},
-    {"word":"gaps","ipa":"/ɡæps/","aviationMeaning":"n. 间隙；航班间隔、设备空隙或信息缺口（复数）","generalMeaning":"n. 缺口；间隔（复数）"},
-    {"word":"gardens","ipa":"/ˈɡɑːrdənz/","aviationMeaning":"n. 花园（复数）；地面地标或地名组成部分","generalMeaning":"n. 花园（复数）"},
-    {"word":"gas","ipa":"/ɡæs/","aviationMeaning":"n. 气体；燃气；发动机或危险品语境","generalMeaning":"n. 气体；汽油"},
-    {"word":"gases","ipa":"/ˈɡæsɪz/","aviationMeaning":"n. 气体（复数）；发动机排气或危险品气体","generalMeaning":"n. 气体（复数）"},
-    {"word":"gate","ipa":"/ɡeɪt/","aviationMeaning":"n. 登机口；机场旅客登机位置","generalMeaning":"n. 大门；闸门"},
-    {"word":"gates","ipa":"/ɡeɪts/","aviationMeaning":"n. 登机口（复数）；机场旅客登机位置","generalMeaning":"n. 大门；闸门（复数）"},
-    {"word":"gather","ipa":"/ˈɡæðər/","aviationMeaning":"v. 收集；汇集信息、数据或人员","generalMeaning":"v. 收集；聚集"},
-    {"word":"gathered","ipa":"/ˈɡæðərd/","aviationMeaning":"v. 已收集；已汇集信息、数据或人员","generalMeaning":"v. 已收集；已聚集"},
-    {"word":"gathering","ipa":"/ˈɡæðərɪŋ/","aviationMeaning":"v. 正收集；汇集信息、数据或人员","generalMeaning":"v. 正收集；聚集"},
-    {"word":"gathers","ipa":"/ˈɡæðərz/","aviationMeaning":"v. 收集；汇集信息、数据或人员","generalMeaning":"v. 收集；聚集"},
-    {"word":"gatwick","ipa":"/ˈɡætwɪk/","aviationMeaning":"n. 盖特威克；伦敦机场名称","generalMeaning":"n. 专有地名"},
-    {"word":"gatwick's","ipa":"/ˈɡætwɪks/","aviationMeaning":"n. Gatwick 的所有格形式；机场名称组成部分","generalMeaning":"n. 专有地名的所有格形式"},
-    {"word":"gauge","ipa":"/ɡeɪdʒ/","aviationMeaning":"n. 仪表；压力、油量或温度指示表；v. 测量","generalMeaning":"n. 量规；仪表；v. 测量"},
-    {"word":"gauges","ipa":"/ɡeɪdʒɪz/","aviationMeaning":"n. 仪表（复数）；压力、油量或温度指示表","generalMeaning":"n. 量规；仪表（复数）"},
-    {"word":"gaulle","ipa":"/ɡoʊl/","aviationMeaning":"n. 戴高乐；巴黎机场名称组成部分","generalMeaning":"n. 专有名称"},
-    {"word":"gaulle's","ipa":"/ɡoʊlz/","aviationMeaning":"n. Gaulle 的所有格形式；机场名称组成部分","generalMeaning":"n. 专有名称的所有格形式"},
-    {"word":"gave","ipa":"/ɡeɪv/","aviationMeaning":"v. 已给出；已发布指令、许可或信息","generalMeaning":"v. 给（过去式）"},
-    {"word":"gbas","ipa":"/ˌdʒiː biː eɪ ˈes/","aviationMeaning":"n. 地基增强系统（缩写）；卫星导航增强系统","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"gbd","ipa":"/ˌdʒiː biː ˈdiː/","aviationMeaning":"n. 航空资料缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"gbt","ipa":"/ˌdʒiː biː ˈtiː/","aviationMeaning":"n. 航空资料缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"gc","ipa":"/ˌdʒiː ˈsiː/","aviationMeaning":"n. 地面控制或航空资料缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"gca","ipa":"/ˌdʒiː siː ˈeɪ/","aviationMeaning":"n. 地面管制进近（缩写）","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"gcd","ipa":"/ˌdʒiː siː ˈdiː/","aviationMeaning":"n. 航空资料缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"gcf","ipa":"/ˌdʒiː siː ˈef/","aviationMeaning":"n. 航空资料缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"gdl","ipa":"/ˌdʒiː diː ˈel/","aviationMeaning":"n. 瓜达拉哈拉机场代码或航空缩写","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"gear","ipa":"/ɡɪr/","aviationMeaning":"n. 起落架；传动装置；v. 调整至某状态","generalMeaning":"n. 齿轮；装备"},
-    {"word":"gear-in-transit","ipa":"/ɡɪr ɪn ˈtrænzɪt/","aviationMeaning":"adj. 起落架正在收放中的","generalMeaning":"adj. 装置正在移动中的"},
-    {"word":"gears","ipa":"/ɡɪrz/","aviationMeaning":"n. 起落架或齿轮（复数）","generalMeaning":"n. 齿轮；装备（复数）"},
-    {"word":"general","ipa":"/ˈdʒenrəl/","aviationMeaning":"adj. 一般的；总体的；如通用航空","generalMeaning":"adj. 一般的；总体的"},
-    {"word":"generally","ipa":"/ˈdʒenrəli/","aviationMeaning":"adv. 一般而言；通常","generalMeaning":"adv. 一般地；通常"},
-    {"word":"generate","ipa":"/ˈdʒenəreɪt/","aviationMeaning":"v. 产生；发电、产生推力或告警","generalMeaning":"v. 产生；生成"},
-    {"word":"generated","ipa":"/ˈdʒenəreɪtɪd/","aviationMeaning":"adj. 已产生的；由系统生成的","generalMeaning":"adj. 已产生的；生成的"},
-    {"word":"generates","ipa":"/ˈdʒenəreɪts/","aviationMeaning":"v. 产生；发电、产生推力或告警","generalMeaning":"v. 产生；生成"},
-    {"word":"generating","ipa":"/ˈdʒenəreɪtɪŋ/","aviationMeaning":"v. 正产生；正发电或产生推力","generalMeaning":"v. 正产生；生成"},
-    {"word":"generation","ipa":"/ˌdʒenəˈreɪʃən/","aviationMeaning":"n. 发电；电力产生或设备代际","generalMeaning":"n. 一代；产生"},
-    {"word":"generator","ipa":"/ˈdʒenəreɪtər/","aviationMeaning":"n. 发电机；航空器电源设备","generalMeaning":"n. 发电机；生成器"},
-    {"word":"generators","ipa":"/ˈdʒenəreɪtərz/","aviationMeaning":"n. 发电机（复数）；航空器电源设备","generalMeaning":"n. 发电机；生成器（复数）"},
-    {"word":"generic","ipa":"/dʒəˈnerɪk/","aviationMeaning":"adj. 通用的；非特定机型或机场的","generalMeaning":"adj. 通用的；一般的"},
-    {"word":"geneva","ipa":"/dʒəˈniːvə/","aviationMeaning":"n. 日内瓦；机场或地名","generalMeaning":"n. 专有地名"},
-    {"word":"geneva's","ipa":"/dʒəˈniːvəz/","aviationMeaning":"n. Geneva 的所有格形式；机场或地名组成部分","generalMeaning":"n. 专有地名的所有格形式"},
-    {"word":"genre","ipa":"/ˈʒɑːnrə/","aviationMeaning":"n. 类型；资料或训练内容类别","generalMeaning":"n. 类型；体裁"},
-    {"word":"gentle","ipa":"/ˈdʒentl/","aviationMeaning":"adj. 轻柔的；如轻微转弯或柔和操纵","generalMeaning":"adj. 温和的；轻柔的"},
-    {"word":"gentleman","ipa":"/ˈdʒentlmən/","aviationMeaning":"n. 男士；旅客称谓","generalMeaning":"n. 绅士；先生"},
-    {"word":"gentlemen","ipa":"/ˈdʒentlmən/","aviationMeaning":"n. 男士（复数）；旅客称谓","generalMeaning":"n. 绅士；先生（复数）"},
-    {"word":"genuine","ipa":"/ˈdʒenjuɪn/","aviationMeaning":"adj. 真实的；有效的；如真实警报或证件","generalMeaning":"adj. 真的；真诚的"},
-    {"word":"genuinely","ipa":"/ˈdʒenjuɪnli/","aviationMeaning":"adv. 真正地；确实地","generalMeaning":"adv. 真正地；真诚地"},
-    {"word":"geography","ipa":"/dʒiˈɑːɡrəfi/","aviationMeaning":"n. 地理；航线、地形和区域知识","generalMeaning":"n. 地理学；地理"},
-    {"word":"geometric","ipa":"/ˌdʒiːəˈmetrɪk/","aviationMeaning":"adj. 几何的；导航、航迹或结构几何相关","generalMeaning":"adj. 几何的"},
-    {"word":"geometry","ipa":"/dʒiˈɑːmətri/","aviationMeaning":"n. 几何；航迹、天线或结构几何关系","generalMeaning":"n. 几何学；几何形状"},
-    {"word":"george","ipa":"/dʒɔːrdʒ/","aviationMeaning":"n. 乔治；人名或机场名称组成部分","generalMeaning":"n. 专有名称"}
+    {
+      "word": "ft",
+      "ipa": "/ˌef ˈtiː/",
+      "aviationMeaning": "n. 英尺（feet 缩写）；高度和距离单位",
+      "generalMeaning": "n. 英尺缩写"
+    },
+    {
+      "word": "fuel",
+      "ipa": "/ˈfjuːəl/",
+      "aviationMeaning": "n. 燃油；v. 加注燃油",
+      "generalMeaning": "n. 燃料；v. 加燃料"
+    },
+    {
+      "word": "fuel-dump",
+      "ipa": "/ˈfjuːəl dʌmp/",
+      "aviationMeaning": "n. 放油；紧急着陆前排放燃油",
+      "generalMeaning": "n. 倾倒燃料"
+    },
+    {
+      "word": "fuel-efficient",
+      "ipa": "/ˈfjuːəl ɪˈfɪʃənt/",
+      "aviationMeaning": "adj. 节油的；燃油效率高的",
+      "generalMeaning": "adj. 节能的；高效的"
+    },
+    {
+      "word": "fuel-system",
+      "ipa": "/ˈfjuːəl ˈsɪstəm/",
+      "aviationMeaning": "n. 燃油系统；储存、输送和供给系统",
+      "generalMeaning": "n. 燃料系统"
+    },
+    {
+      "word": "fueled",
+      "ipa": "/ˈfjuːəld/",
+      "aviationMeaning": "adj. 已加油的；燃油已补给的",
+      "generalMeaning": "adj. 已加燃料的"
+    },
+    {
+      "word": "fueling",
+      "ipa": "/ˈfjuːəlɪŋ/",
+      "aviationMeaning": "n. 加油；航空器地面燃油补给",
+      "generalMeaning": "n. 加燃料"
+    },
+    {
+      "word": "full",
+      "ipa": "/fʊl/",
+      "aviationMeaning": "adj. 满的；如满载、油箱满或满功率",
+      "generalMeaning": "adj. 满的；完全的"
+    },
+    {
+      "word": "full-flight",
+      "ipa": "/fʊl flaɪt/",
+      "aviationMeaning": "adj. 全飞行的；如全动模拟机训练",
+      "generalMeaning": "adj. 全程飞行的"
+    },
+    {
+      "word": "fully",
+      "ipa": "/ˈfʊli/",
+      "aviationMeaning": "adv. 完全地；充分地",
+      "generalMeaning": "adv. 完全地；充分地"
+    },
+    {
+      "word": "fume",
+      "ipa": "/fjuːm/",
+      "aviationMeaning": "n. 烟雾；有害蒸气；v. 冒烟",
+      "generalMeaning": "n. 烟；蒸气；v. 冒烟"
+    },
+    {
+      "word": "fumes",
+      "ipa": "/fjuːmz/",
+      "aviationMeaning": "n. 烟雾；有害蒸气（复数）",
+      "generalMeaning": "n. 烟；蒸气（复数）"
+    },
+    {
+      "word": "fun",
+      "ipa": "/fʌn/",
+      "aviationMeaning": "n. 乐趣；非技术性描述",
+      "generalMeaning": "n. 乐趣；好玩"
+    },
+    {
+      "word": "function",
+      "ipa": "/ˈfʌŋkʃən/",
+      "aviationMeaning": "n. 功能；系统设计作用；v. 运作",
+      "generalMeaning": "n. 功能；v. 运作"
+    },
+    {
+      "word": "functionality",
+      "ipa": "/ˌfʌŋkʃəˈnæləti/",
+      "aviationMeaning": "n. 功能性；系统可用的功能范围",
+      "generalMeaning": "n. 功能性"
+    },
+    {
+      "word": "functioned",
+      "ipa": "/ˈfʌŋkʃənd/",
+      "aviationMeaning": "v. 已运作；系统或设备已正常工作",
+      "generalMeaning": "v. 已运作"
+    },
+    {
+      "word": "functioning",
+      "ipa": "/ˈfʌŋkʃənɪŋ/",
+      "aviationMeaning": "adj. 正常运作的；系统或设备工作的",
+      "generalMeaning": "adj. 运作的；起作用的"
+    },
+    {
+      "word": "functions",
+      "ipa": "/ˈfʌŋkʃənz/",
+      "aviationMeaning": "n. 功能（复数）；系统执行的作用",
+      "generalMeaning": "n. 功能（复数）"
+    },
+    {
+      "word": "fundamental",
+      "ipa": "/ˌfʌndəˈmentəl/",
+      "aviationMeaning": "adj. 基本的；飞行安全的根本原则",
+      "generalMeaning": "adj. 基本的；根本的"
+    },
+    {
+      "word": "funding",
+      "ipa": "/ˈfʌndɪŋ/",
+      "aviationMeaning": "n. 资金；机场、航空公司或安全项目资金",
+      "generalMeaning": "n. 资金；资助"
+    },
+    {
+      "word": "fupad",
+      "ipa": "/ˈfuːpæd/",
+      "aviationMeaning": "n. 航空资料中的疑似缩写或拼写；需结合原文",
+      "generalMeaning": "n. 缩写或拼写；请结合原文"
+    },
+    {
+      "word": "further",
+      "ipa": "/ˈfɜːrðər/",
+      "aviationMeaning": "adj. 进一步的；更远的；如 further clearance",
+      "generalMeaning": "adj. 更进一步的；更远的"
+    },
+    {
+      "word": "fuse",
+      "ipa": "/fjuːz/",
+      "aviationMeaning": "n. 保险丝；电路过载保护件；v. 熔化",
+      "generalMeaning": "n. 保险丝；v. 熔化"
+    },
+    {
+      "word": "fuselage",
+      "ipa": "/ˈfjuːzəlɑːʒ/",
+      "aviationMeaning": "n. 机身；航空器主体结构",
+      "generalMeaning": "n. 机身"
+    },
+    {
+      "word": "future",
+      "ipa": "/ˈfjuːtʃər/",
+      "aviationMeaning": "n. 未来；后续运行或计划时期",
+      "generalMeaning": "n. 未来；adj. 将来的"
+    },
+    {
+      "word": "g",
+      "ipa": "/dʒiː/",
+      "aviationMeaning": "n. 字母 G；过载单位 g；ICAO 拼读词 Golf 对应字母",
+      "generalMeaning": "n. 英文字母 G"
+    },
+    {
+      "word": "gad",
+      "ipa": "/ɡæd/",
+      "aviationMeaning": "n. 航空资料缩写或专有名称；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "gaf",
+      "ipa": "/ɡæf/",
+      "aviationMeaning": "n. 航空资料缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "gain",
+      "ipa": "/ɡeɪn/",
+      "aviationMeaning": "v. 获得；增加高度、速度或性能；n. 增益",
+      "generalMeaning": "v. 获得；增加；n. 收益"
+    },
+    {
+      "word": "gained",
+      "ipa": "/ɡeɪnd/",
+      "aviationMeaning": "v. 已获得；已增加高度、速度或性能",
+      "generalMeaning": "v. 已获得；已增加"
+    },
+    {
+      "word": "gaining",
+      "ipa": "/ˈɡeɪnɪŋ/",
+      "aviationMeaning": "v. 正获得；正增加高度、速度或性能",
+      "generalMeaning": "v. 正获得；正增加"
+    },
+    {
+      "word": "gains",
+      "ipa": "/ɡeɪnz/",
+      "aviationMeaning": "v. 获得或增加；n. 增益（复数）",
+      "generalMeaning": "v. 获得；n. 收益（复数）"
+    },
+    {
+      "word": "gaj",
+      "ipa": "/ɡædʒ/",
+      "aviationMeaning": "n. 航空资料缩写或专有名称；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "galeao",
+      "ipa": "/ˌɡæliˈaʊ/",
+      "aviationMeaning": "n. 加利昂；里约热内卢机场名称",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "galeao's",
+      "ipa": "/ˌɡæliˈaʊz/",
+      "aviationMeaning": "n. Galeao 的所有格形式；机场名称组成部分",
+      "generalMeaning": "n. 专有地名的所有格形式"
+    },
+    {
+      "word": "galileo",
+      "ipa": "/ˌɡælɪˈleɪoʊ/",
+      "aviationMeaning": "n. 伽利略；欧洲卫星导航系统名称",
+      "generalMeaning": "n. 专有名称"
+    },
+    {
+      "word": "galley",
+      "ipa": "/ˈɡæli/",
+      "aviationMeaning": "n. 客舱厨房；机上餐饮准备区",
+      "generalMeaning": "n. 船上厨房；狭长厨房"
+    },
+    {
+      "word": "gander",
+      "ipa": "/ˈɡændər/",
+      "aviationMeaning": "n. 甘德；机场或地名",
+      "generalMeaning": "n. 雄鹅；专有地名"
+    },
+    {
+      "word": "gap",
+      "ipa": "/ɡæp/",
+      "aviationMeaning": "n. 间隙；航班间隔、设备空隙或信息缺口",
+      "generalMeaning": "n. 缺口；间隔"
+    },
+    {
+      "word": "gaping",
+      "ipa": "/ˈɡeɪpɪŋ/",
+      "aviationMeaning": "adj. 张开的；如未关闭的开口或裂缝",
+      "generalMeaning": "adj. 张大的；敞开的"
+    },
+    {
+      "word": "gaps",
+      "ipa": "/ɡæps/",
+      "aviationMeaning": "n. 间隙；航班间隔、设备空隙或信息缺口（复数）",
+      "generalMeaning": "n. 缺口；间隔（复数）"
+    },
+    {
+      "word": "gas",
+      "ipa": "/ɡæs/",
+      "aviationMeaning": "n. 气体；燃气；发动机或危险品语境",
+      "generalMeaning": "n. 气体；汽油"
+    },
+    {
+      "word": "gases",
+      "ipa": "/ˈɡæsɪz/",
+      "aviationMeaning": "n. 气体（复数）；发动机排气或危险品气体",
+      "generalMeaning": "n. 气体（复数）"
+    },
+    {
+      "word": "gate",
+      "ipa": "/ɡeɪt/",
+      "aviationMeaning": "n. 登机口；机场旅客登机位置",
+      "generalMeaning": "n. 大门；闸门"
+    },
+    {
+      "word": "gates",
+      "ipa": "/ɡeɪts/",
+      "aviationMeaning": "n. 登机口（复数）；机场旅客登机位置",
+      "generalMeaning": "n. 大门；闸门（复数）"
+    },
+    {
+      "word": "gather",
+      "ipa": "/ˈɡæðər/",
+      "aviationMeaning": "v. 收集；汇集信息、数据或人员",
+      "generalMeaning": "v. 收集；聚集"
+    },
+    {
+      "word": "gathered",
+      "ipa": "/ˈɡæðərd/",
+      "aviationMeaning": "v. 已收集；已汇集信息、数据或人员",
+      "generalMeaning": "v. 已收集；已聚集"
+    },
+    {
+      "word": "gathering",
+      "ipa": "/ˈɡæðərɪŋ/",
+      "aviationMeaning": "v. 正收集；汇集信息、数据或人员",
+      "generalMeaning": "v. 正收集；聚集"
+    },
+    {
+      "word": "gatwick",
+      "ipa": "/ˈɡætwɪk/",
+      "aviationMeaning": "n. 盖特威克；伦敦机场名称",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "gatwick's",
+      "ipa": "/ˈɡætwɪks/",
+      "aviationMeaning": "n. Gatwick 的所有格形式；机场名称组成部分",
+      "generalMeaning": "n. 专有地名的所有格形式"
+    },
+    {
+      "word": "gauge",
+      "ipa": "/ɡeɪdʒ/",
+      "aviationMeaning": "n. 仪表；压力、油量或温度指示表；v. 测量",
+      "generalMeaning": "n. 量规；仪表；v. 测量"
+    },
+    {
+      "word": "gauges",
+      "ipa": "/ɡeɪdʒɪz/",
+      "aviationMeaning": "n. 仪表（复数）；压力、油量或温度指示表",
+      "generalMeaning": "n. 量规；仪表（复数）"
+    },
+    {
+      "word": "gaulle",
+      "ipa": "/ɡoʊl/",
+      "aviationMeaning": "n. 戴高乐；巴黎机场名称组成部分",
+      "generalMeaning": "n. 专有名称"
+    },
+    {
+      "word": "gaulle's",
+      "ipa": "/ɡoʊlz/",
+      "aviationMeaning": "n. Gaulle 的所有格形式；机场名称组成部分",
+      "generalMeaning": "n. 专有名称的所有格形式"
+    },
+    {
+      "word": "gave",
+      "ipa": "/ɡeɪv/",
+      "aviationMeaning": "v. 已给出；已发布指令、许可或信息",
+      "generalMeaning": "v. 给（过去式）"
+    },
+    {
+      "word": "gbd",
+      "ipa": "/ˌdʒiː biː ˈdiː/",
+      "aviationMeaning": "n. 航空资料缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "gbt",
+      "ipa": "/ˌdʒiː biː ˈtiː/",
+      "aviationMeaning": "n. 航空资料缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "gc",
+      "ipa": "/ˌdʒiː ˈsiː/",
+      "aviationMeaning": "n. 地面控制或航空资料缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "gca",
+      "ipa": "/ˌdʒiː siː ˈeɪ/",
+      "aviationMeaning": "n. 地面管制进近（缩写）",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "gcd",
+      "ipa": "/ˌdʒiː siː ˈdiː/",
+      "aviationMeaning": "n. 航空资料缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "gcf",
+      "ipa": "/ˌdʒiː siː ˈef/",
+      "aviationMeaning": "n. 航空资料缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "gdl",
+      "ipa": "/ˌdʒiː diː ˈel/",
+      "aviationMeaning": "n. 瓜达拉哈拉机场代码或航空缩写",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "gear",
+      "ipa": "/ɡɪr/",
+      "aviationMeaning": "n. 起落架；传动装置；v. 调整至某状态",
+      "generalMeaning": "n. 齿轮；装备"
+    },
+    {
+      "word": "gear-in-transit",
+      "ipa": "/ɡɪr ɪn ˈtrænzɪt/",
+      "aviationMeaning": "adj. 起落架正在收放中的",
+      "generalMeaning": "adj. 装置正在移动中的"
+    },
+    {
+      "word": "gears",
+      "ipa": "/ɡɪrz/",
+      "aviationMeaning": "n. 起落架或齿轮（复数）",
+      "generalMeaning": "n. 齿轮；装备（复数）"
+    },
+    {
+      "word": "general",
+      "ipa": "/ˈdʒenrəl/",
+      "aviationMeaning": "adj. 一般的；总体的；如通用航空",
+      "generalMeaning": "adj. 一般的；总体的"
+    },
+    {
+      "word": "generally",
+      "ipa": "/ˈdʒenrəli/",
+      "aviationMeaning": "adv. 一般而言；通常",
+      "generalMeaning": "adv. 一般地；通常"
+    },
+    {
+      "word": "generate",
+      "ipa": "/ˈdʒenəreɪt/",
+      "aviationMeaning": "v. 产生；发电、产生推力或告警",
+      "generalMeaning": "v. 产生；生成"
+    },
+    {
+      "word": "generated",
+      "ipa": "/ˈdʒenəreɪtɪd/",
+      "aviationMeaning": "adj. 已产生的；由系统生成的",
+      "generalMeaning": "adj. 已产生的；生成的"
+    },
+    {
+      "word": "generates",
+      "ipa": "/ˈdʒenəreɪts/",
+      "aviationMeaning": "v. 产生；发电、产生推力或告警",
+      "generalMeaning": "v. 产生；生成"
+    },
+    {
+      "word": "generating",
+      "ipa": "/ˈdʒenəreɪtɪŋ/",
+      "aviationMeaning": "v. 正产生；正发电或产生推力",
+      "generalMeaning": "v. 正产生；生成"
+    },
+    {
+      "word": "generator",
+      "ipa": "/ˈdʒenəreɪtər/",
+      "aviationMeaning": "n. 发电机；航空器电源设备",
+      "generalMeaning": "n. 发电机；生成器"
+    },
+    {
+      "word": "generators",
+      "ipa": "/ˈdʒenəreɪtərz/",
+      "aviationMeaning": "n. 发电机（复数）；航空器电源设备",
+      "generalMeaning": "n. 发电机；生成器（复数）"
+    },
+    {
+      "word": "geneva",
+      "ipa": "/dʒəˈniːvə/",
+      "aviationMeaning": "n. 日内瓦；机场或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "geneva's",
+      "ipa": "/dʒəˈniːvəz/",
+      "aviationMeaning": "n. Geneva 的所有格形式；机场或地名组成部分",
+      "generalMeaning": "n. 专有地名的所有格形式"
+    },
+    {
+      "word": "genre",
+      "ipa": "/ˈʒɑːnrə/",
+      "aviationMeaning": "n. 类型；资料或训练内容类别",
+      "generalMeaning": "n. 类型；体裁"
+    },
+    {
+      "word": "gentle",
+      "ipa": "/ˈdʒentl/",
+      "aviationMeaning": "adj. 轻柔的；如轻微转弯或柔和操纵",
+      "generalMeaning": "adj. 温和的；轻柔的"
+    },
+    {
+      "word": "gentleman",
+      "ipa": "/ˈdʒentlmən/",
+      "aviationMeaning": "n. 男士；旅客称谓",
+      "generalMeaning": "n. 绅士；先生"
+    },
+    {
+      "word": "gentlemen",
+      "ipa": "/ˈdʒentlmən/",
+      "aviationMeaning": "n. 男士（复数）；旅客称谓",
+      "generalMeaning": "n. 绅士；先生（复数）"
+    },
+    {
+      "word": "george",
+      "ipa": "/dʒɔːrdʒ/",
+      "aviationMeaning": "n. 乔治；人名或机场名称组成部分",
+      "generalMeaning": "n. 专有名称"
+    }
   ]
 }

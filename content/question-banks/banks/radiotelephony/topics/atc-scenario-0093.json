@@ -18,7 +18,7 @@
       "taskTitle": "CES 728-2",
       "audioText": "C: CES 728, cleared to Guangzhou via flight planned route, departure Runway 36R, LKO-02 departure, initial climb 1200 meters, cruising level 9800 meters, when airborne, contact 119.6, squawk 3615.",
       "audioTextZh": "C：CES 728，许可飞往广州，按飞行计划航路，离场跑道 36R，LKO-02 离场，起始爬升 1200 米，巡航高度 9800 米，离地后联系 119.6，应答机 3615。",
-      "referenceText": "Cleared to Guangzhou via fight planned route, departure Runway 36R, LKO-02 departure, initially climb 1200 meters, cruising level 9800 meters, when airborne, contact 119.6, squawk 3615, CES 728.",
+      "referenceText": "Cleared to Guangzhou via flight planned route, departure Runway 36R, LKO-02 departure, initially climb 1200 meters, cruising level 9800 meters, when airborne, contact 119.6, squawk 3615, CES 728.",
       "referenceTextZh": "许可飞往广州，按飞行计划航路，离场跑道 36R，LKO-02 离场，起始爬升 1200 米，巡航高度 9800 米，离地后联系 119.6，应答机 3615，CES 728。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1599.mp3"
     },
@@ -81,7 +81,7 @@
       "taskTitle": "CES 728-9",
       "audioText": "B: It's much later in the flight, you are at cruising level, ask Wuhan Control if 10400 meters is available, and if there is any turbulence reported by preceding aircraft on that level.",
       "audioTextZh": "B：飞行后段，你在巡航高度，询问武汉管制 10400 米是否可用，以及前机是否报告该高度有颠簸。",
-      "referenceText": "Wuhan Control, CES 728, is 10400 meters available? is there any turbulence reported by preceding aircraft at 10400 meters?",
+      "referenceText": "Wuhan Control, CES 728, is 10400 meters available? Is there any turbulence reported by preceding aircraft at 10400 meters?",
       "referenceTextZh": "武汉管制，CES 728，10400 米是否可用？前机是否报告 10400 米有颠簸？",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1606.mp3"
     },

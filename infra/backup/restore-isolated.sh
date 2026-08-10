@@ -8,7 +8,12 @@ fi
 
 backup=$1
 test -f "$backup"
-sha256sum -c "$backup.sha256"
+backup_dir=$(dirname "$backup")
+backup_name=$(basename "$backup")
+(
+  cd "$backup_dir"
+  sha256sum -c "$backup_name.sha256"
+)
 
 name="icao-restore-test-$(date -u +%Y%m%dT%H%M%SZ)"
 docker run --rm --name "$name" \

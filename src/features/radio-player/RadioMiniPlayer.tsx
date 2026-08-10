@@ -1,5 +1,5 @@
 import { usePathname, useRouter } from 'expo-router';
-import { Headphones, Pause, Play, SkipForward, X } from 'lucide-react-native';
+import { Headphones, Pause, Play, SkipForward, X } from '@/components/ui/icons';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { useEffect } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';

@@ -19,7 +19,7 @@ import {
   Shuffle,
   SkipBack,
   SkipForward,
-} from 'lucide-react-native';
+} from '@/components/ui/icons';
 import { useRouter } from 'expo-router';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, FlatList, Pressable, ScrollView, StyleSheet, View } from 'react-native';
@@ -32,7 +32,7 @@ import { useAppViewportDimensions } from '@/components/platform/useAppViewportDi
 import { SoftGlow } from '@/components/visual/SoftGlow';
 import { AudioTimeline, formatAudioTime } from '@/features/question-bank/components/AudioTimeline';
 import { QuestionBankSwitcherHeader, type QuestionBankSwitcherItem } from '@/features/question-bank/components/QuestionBankSwitcherHeader';
-import { RADIO_INTERVAL_MAX_SECONDS, RADIO_INTERVAL_PRESETS } from '@/features/radio-player/native-queue';
+import { RADIO_INTERVAL_MAX_SECONDS, RADIO_INTERVAL_PRESETS } from '@/features/radio-player/radio-interval';
 import { useRadioPlayer } from '@/features/radio-player/RadioPlayerProvider';
 import type { RadioBankId, RadioPlaybackMode, RadioSubtitleMode, RadioTrack } from '@/features/radio-player/types';
 import { colors, fonts, radii, shadows, spacing } from '@/theme';

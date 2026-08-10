@@ -1,7 +1,7 @@
 import { useRouter } from 'expo-router';
-import { ArrowLeft, Plane, Eye, EyeOff, Check } from 'lucide-react-native';
+import { ArrowLeft, Plane, Eye, EyeOff, Check } from '@/components/ui/icons';
 import { useState } from 'react';
-import { Pressable, StyleSheet, TextInput, View } from 'react-native';
+import { Platform, Pressable, StyleSheet, TextInput, View } from 'react-native';
 
 import { AppText, TextField, Screen } from '@/components/ui';
 import { SoftGlow } from '@/components/visual/SoftGlow';
@@ -18,8 +18,17 @@ export function AuthShell({ children }: { children: React.ReactNode }) {
 
 export function AuthTopBar() {
   const router = useRouter();
+  const handleBack = () => {
+    if (Platform.OS === 'web') {
+      router.back();
+      return;
+    }
+    if (router.canGoBack()) router.back();
+    else router.replace('/auth/splash');
+  };
+
   return (
-    <Pressable accessibilityLabel="返回" hitSlop={10} onPress={router.back} style={styles.back}>
+    <Pressable accessibilityLabel="返回" hitSlop={10} onPress={handleBack} style={styles.back}>
       <ArrowLeft color={colors.foreground} size={19} />
     </Pressable>
   );

@@ -1,5 +1,5 @@
 import { useLocalSearchParams } from 'expo-router';
-import { LibraryBig } from 'lucide-react-native';
+import { LibraryBig } from '@/components/ui/icons';
 
 import { CenteredState } from '@/components/states/CenteredState';
 import { GlobalLoadingScreen } from '@/components/states/GlobalLoadingScreen';

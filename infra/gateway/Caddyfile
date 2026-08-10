@@ -11,24 +11,12 @@
 	}
 }
 
-api.feizhuicao.com {
+api.readyoufife.com {
 	import icao_security_headers
 	reverse_proxy 127.0.0.1:3101
 }
 
-cloud.feizhuicao.com {
+cloud.readyoufife.com {
 	import icao_security_headers
 	reverse_proxy 127.0.0.1:8000
-}
-
-download.feizhuicao.com {
-	import icao_security_headers
-	header X-Robots-Tag "noindex, nofollow, noarchive"
-
-	@apk path *.apk
-	header @apk Content-Type "application/vnd.android.package-archive"
-	header @apk Content-Disposition "attachment"
-
-	root * /srv/android-download
-	file_server
 }

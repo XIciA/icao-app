@@ -54,7 +54,7 @@
       "taskTitle": "CES 5118-6",
       "audioText": "B: 5 minutes later, no call from Delivery, ask about the duration and reason of the delay.",
       "audioTextZh": "B：5 分钟后，放行没有呼叫，询问延误时长和原因。",
-      "referenceText": "Wuhan Delivery, CES 5118, what's the delay like and what's the reason for the delay ?",
+      "referenceText": "Wuhan Delivery, CES 5118, what's the delay like and what's the reason for the delay?",
       "referenceTextZh": "武汉放行，CES 5118，延误情况如何，延误原因是什么？",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1692.mp3"
     },
@@ -196,7 +196,7 @@
     {
       "id": "atc-scenario-0098-card-main-1708",
       "taskTitle": "CES 5118-22",
-      "audioText": "C: CES 5118, roger, break! break! CSN 328, taxi forward to be clear of E1.\nB: The aircraft moved, you are able to continue taxi and line up.",
+      "audioText": "C: CES 5118, roger, break! Break! CSN 328, taxi forward to be clear of E1.\nB: The aircraft moved, you are able to continue taxi and line up.",
       "audioTextZh": "C：CES 5118，收到，break！break！CSN 328，向前滑行以让开 E1。\nB：该飞机移动后，你可以继续滑行并进跑道。",
       "referenceText": "Wuhan Tower, CES 5118, traffic is clear, we are able to continue taxi and line up.",
       "referenceTextZh": "武汉塔台，CES 5118，交通已脱离，我们可以继续滑行并进跑道。",

@@ -88,7 +88,7 @@
     {
       "id": "atc-scenario-0130-card-main-2250",
       "taskTitle": "ACA 517-10",
-      "audioText": "ACA 517, expect radar vector for VOR/DME approach 36 right.\nthe weather is deteriorating and below landing minimum, ask for ILS approach 36 Left.",
+      "audioText": "ACA 517, expect radar vector for VOR/DME approach 36 right.\nThe weather is deteriorating and below landing minimum, ask for ILS approach 36 Left.",
       "audioTextZh": "ACA 517，预计雷达引导 VOR/DME 进近 Runway 36R。\n天气正在恶化并低于着陆最低标准，请求 ILS 进近 Runway 36L。",
       "referenceText": "expect radar vector for VOR, DME approach Runway 36R, request ILS approach Runway 36L due deteriorating weather and below landing minima, ACA 517.",
       "referenceTextZh": "预计雷达引导 VOR、DME 进近 Runway 36R，因天气恶化并低于着陆最低标准，请求 ILS 进近 Runway 36L，ACA 517。",

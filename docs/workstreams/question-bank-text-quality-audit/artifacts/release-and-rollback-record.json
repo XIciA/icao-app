@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "questionBankRelease": {
+    "releaseVersion": 12,
+    "releasedAt": "2026-07-30T16:52:28Z",
+    "totalBanks": 5,
+    "totalTopics": 341,
+    "totalCards": 6865,
+    "resourceManifestSha256": "94525c1fd882667345b733d2e26885c2f761e725b0f3b454b4e4c914e3533693",
+    "resourceFiles": 6081,
+    "resourceSizeBytes": 814518693
+  },
+  "ecs": {
+    "releaseDirectory": "/opt/icao/runtime/releases/question-bank-text-v12-20260730T170904Z",
+    "incrementalArchiveSha256": "4d5fc8cb2a3fad3a70be8087ef16b458933291503246dd3bd365eafba46e1206",
+    "changedBanks": [
+      "listening",
+      "sentences900",
+      "radiotelephony",
+      "storytelling"
+    ],
+    "unchangedBanks": [
+      "opi"
+    ],
+    "uploadedResources": 0,
+    "activeVersionsAfter": {
+      "listening": 12,
+      "opi": 10,
+      "radiotelephony": 12,
+      "sentences900": 12,
+      "storytelling": 12
+    },
+    "activeCardsAfter": 6865,
+    "apiImage": "icao-api:phase2a",
+    "apiRestartCount": 0,
+    "health": "healthy",
+    "preReleaseActiveBankSnapshot": {
+      "path": "/opt/icao/backups/content/question-bank-text-v12-20260730T170904Z/active-banks-before.json",
+      "sha256": "b5d81bd6379e6e22429d623ff95937c1b5805744e6a4640d523b5eafc38f61b6"
+    },
+    "postgresBackup": {
+      "path": "/opt/icao/backups/postgres/icao-question-bank-text-v12-20260730T170904Z-before.dump",
+      "sha256": "8e0bf51428e4b51d8768046af1b73e303564229ae0ab9383cc279b939ffc2aef",
+      "pgRestoreCatalogEntries": 646
+    },
+    "rollbackSql": "/opt/icao/backups/content/question-bank-text-v12-20260730T170904Z/rollback.sql"
+  },
+  "webContent": {
+    "releaseId": "app-qb-v12-bf1bbbc35087dfff",
+    "checksum": "bf1bbbc35087dfff8a7822de0a875977ce7c5e652228de07ae17b39f7e1c0f50",
+    "pointerUrl": "https://feizhuicao-v12-bf1bbbc3-content.vercel.app/web-content/current.json",
+    "releaseBaseUrl": "https://feizhuicao-v12-bf1bbbc3-content.vercel.app/web-content/releases/app-qb-v12-bf1bbbc35087dfff",
+    "resourceReuseBase": "https://feizhuicao.com",
+    "resourceUploadCount": 0
+  },
+  "webRollback": {
+    "productionDeploymentBefore": "dpl_3nmvbVtdCcfQsBYubzVsPgBszEUx",
+    "contentReleaseBefore": "app-qb-v10-817646d597e77a8c",
+    "procedure": "Restore the backed-up Production content environment values and promote the recorded previous Production deployment. Keep both immutable v10 and v12 content releases."
+  },
+  "dynamicFinalEvidence": "The final Web Preview/Production deployment identifier and post-promotion domain checks are reported in the task handoff after the repository is frozen, so recording an allocated deployment ID cannot invalidate APP_DISPLAY_VERSION."
+}

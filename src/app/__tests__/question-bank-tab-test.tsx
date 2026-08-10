@@ -37,7 +37,7 @@ describe('<QuestionBankTab />', () => {
     expect(screen.getByText('4 题组 / 1223 题')).toBeTruthy();
     expect(screen.getByText('900 句')).toBeTruthy();
     expect(screen.getByText('陆空通话')).toBeTruthy();
-    expect(screen.getByText('186 场景 / 3218 卡')).toBeTruthy();
+    expect(screen.getByText('186 场景 / 3216 卡')).toBeTruthy();
     expect(screen.getByText('OPI')).toBeTruthy();
     expect(screen.getByText('144 话题 / 1090 卡')).toBeTruthy();
     expect(screen.queryByText('可练习')).toBeNull();

@@ -91,7 +91,7 @@
     {
       "id": "listening-main-095",
       "taskTitle": "20s航空英语-5",
-      "audioText": "Captain: Look, there is a vehicle ahead, it looks like a follow-me-van. Did you requset it from the controller? For the time being, we don't need it and we can handle the situation. FO: No. I guess other aircraft need it. The dense fog today is a big problem for all aircraft .\nQuestion: What does the first speaker imply?",
+      "audioText": "Captain: Look, there is a vehicle ahead, it looks like a follow-me-van. Did you request it from the controller? For the time being, we don't need it and we can handle the situation. FO: No. I guess other aircraft need it. The dense fog today is a big problem for all aircraft.\nQuestion: What does the first speaker imply?",
       "audioTextZh": "机长：看，前方有一辆车，看起来像引导车。是你向管制员申请的吗？目前我们不需要它，能够自行处理。副驾驶：没有。我猜是其他飞机需要它。今天的浓雾对所有飞机来说都是个大问题。\n问题：第一位说话者暗示了什么？",
       "referenceText": "正确答案：D. They can solve the problem by themselves",
       "audio": "/question-bank-assets/audio/listening/main/095.mp3",
@@ -469,7 +469,7 @@
     {
       "id": "listening-main-190",
       "taskTitle": "20s航空英语-23",
-      "audioText": "In-flight icing conditions exist with air temperature below freezing, but some water in cloud is liquid. The most important feature of cloud that fix. ice buildup is amount of liquid water in the cloud and the signs of water droplets. Generally, the first signs of icing problems are decreasing airspeed, decreasing climb rate and higher normal power setting for selected airspeed.\nQuestion: What is one of the first signs of an icing problem?",
+      "audioText": "In-flight icing conditions exist with air temperature below freezing, but some water in cloud is liquid. The most important feature of cloud that fix. Ice buildup is amount of liquid water in the cloud and the signs of water droplets. Generally, the first signs of icing problems are decreasing airspeed, decreasing climb rate and higher normal power setting for selected airspeed.\nQuestion: What is one of the first signs of an icing problem?",
       "audioTextZh": "当气温低于冰点、但云中仍有部分液态水时，就存在空中结冰条件。影响云中积冰的最重要因素，是云中液态水的含量和水滴的大小。通常，结冰问题最初表现为指示空速下降、爬升率降低，以及为保持选定空速需要使用比正常更高的功率设置。\n问题：结冰问题最初的征兆之一是什么？",
       "referenceText": "正确答案：D. decreasing air speed",
       "audio": "/question-bank-assets/audio/listening/main/190.mp3",
@@ -490,7 +490,7 @@
     {
       "id": "listening-main-198",
       "taskTitle": "20s航空英语-24",
-      "audioText": "P: PANPAN, PANPAN, PANPAN, AFR 4095,B737, We have shut down No. 2 engine due to a bird strike. heading now 320,altitude600m, current position 10 miles south of RTD. request return for immediate landing.\nQuestion: Why was the engine shut down?",
+      "audioText": "P: PANPAN, PANPAN, PANPAN, AFR 4095, B737, We have shut down No. 2 engine due to a bird strike. Heading now 320, altitude 600m, current position 10 miles south of RTD. Request return for immediate landing.\nQuestion: Why was the engine shut down?",
       "audioTextZh": "飞行员：PAN PAN，PAN PAN，PAN PAN，AFR 4095，B737。由于遭遇鸟击，我们已经关闭2号发动机。当前航向320，高度600米，位置在RTD以南10海里，请求立即返场着陆。\n问题：为什么关闭发动机？",
       "referenceText": "正确答案：C. Because of a bird strike.",
       "audio": "/question-bank-assets/audio/listening/main/198.mp3",
@@ -532,7 +532,7 @@
     {
       "id": "listening-main-208",
       "taskTitle": "20s航空英语-26",
-      "audioText": "Before clearing an aircraft for takeoff, it is the responsibility of Tower controller to maintain proper spacing between aircraft. This distance varies, depending on the route of fight, the type of aircraft, and weather conditions. At time of low visibility, the controller uses surface radar to monitor the position of each aircraft on the ground.\nQuestion: What do controllers use in low visibility conditions?",
+      "audioText": "Before clearing an aircraft for takeoff, it is the responsibility of Tower controller to maintain proper spacing between aircraft. This distance varies, depending on the route of flight, the type of aircraft, and weather conditions. At time of low visibility, the controller uses surface radar to monitor the position of each aircraft on the ground.\nQuestion: What do controllers use in low visibility conditions?",
       "audioTextZh": "在许可航空器起飞前，塔台管制员有责任保持航空器之间的适当间隔。该间隔会根据飞行航路、机型和天气条件而变化。在低能见度条件下，管制员使用场面监视雷达监控每架航空器在地面的具体位置。\n问题：在低能见度条件下，管制员使用什么设备？",
       "referenceText": "正确答案：C. surface radar",
       "audio": "/question-bank-assets/audio/listening/main/208.mp3",
@@ -721,7 +721,7 @@
     {
       "id": "listening-main-257",
       "taskTitle": "20s航空英语-35",
-      "audioText": "P: PANPAN, PANPAN, PANPAN, Manila Tower, CCA 982, We have engine fire warning light. We have completed emergency checklist procedures, warning light remains illuminated, however, there are no visible signs of fire, we'll need to vacate the runway，request taxiing instructions.\nQuestion: Why does the pilot make the urgency call?",
+      "audioText": "P: PANPAN, PANPAN, PANPAN, Manila Tower, CCA 982, We have engine fire warning light. We have completed emergency checklist procedures, warning light remains illuminated, however, there are no visible signs of fire, we'll need to vacate the runway, request taxiing instructions.\nQuestion: Why does the pilot make the urgency call?",
       "audioTextZh": "飞行员：PAN PAN，PAN PAN，PAN PAN，马尼拉塔台，CCA 982，我们的发动机火警灯亮起。我们已经完成紧急检查单程序，警告灯仍然亮着，但没有看到任何起火迹象。我们需要脱离跑道，请求滑行指令。\n问题：飞行员为什么发出紧急呼叫？",
       "referenceText": "正确答案：A. Fire warning light on.",
       "audio": "/question-bank-assets/audio/listening/main/257.mp3",
@@ -784,7 +784,7 @@
     {
       "id": "listening-main-269",
       "taskTitle": "20s航空英语-38",
-      "audioText": "We are at 10,500m, and there was increasing turbulence. other aircraft reported not much turbulence at 12,500m, but we are too heavy to climb that high. the controller said we could climb to 11,500m or descend to below 9,500m, there was a lot of traffic in the area, so our choice was quite limited.\nQuestion: Which of the following altitudes could be requested?",
+      "audioText": "We are at 10,500m, and there was increasing turbulence. Other aircraft reported not much turbulence at 12,500m, but we are too heavy to climb that high. The controller said we could climb to 11,500m or descend to below 9,500m, there was a lot of traffic in the area, so our choice was quite limited.\nQuestion: Which of the following altitudes could be requested?",
       "audioTextZh": "我们目前在10500米，颠簸正在增强。其他航空器报告12500米处颠簸不大，但我们太重，无法爬升到那么高。管制员表示，我们可以爬升至11500米，或者下降至9500米以下。该区域交通繁忙，因此可选方案十分有限。\n问题：可以申请以下哪个高度？",
       "referenceText": "正确答案：C. 11,500 meters",
       "audio": "/question-bank-assets/audio/listening/main/269.mp3",
@@ -1288,7 +1288,7 @@
     {
       "id": "listening-main-445",
       "taskTitle": "20s航空英语-62",
-      "audioText": "P: This is the captain speaking. Welcome aboard Flight 305 to New York. we have closed the door at this time. However, there will be a short delay due to traffic congestion. we have been informed that we will have to wait for another10 minutes to pushback.\nQuestion: How long will Flight 305 have to wait before pushback?",
+      "audioText": "P: This is the captain speaking. Welcome aboard Flight 305 to New York. We have closed the door at this time. However, there will be a short delay due to traffic congestion. We have been informed that we will have to wait for another10 minutes to pushback.\nQuestion: How long will Flight 305 have to wait before pushback?",
       "audioTextZh": "机长：我是机长。欢迎乘坐飞往纽约的305号航班。目前舱门已经关闭。不过，由于空中交通拥堵，航班将短暂延误。我们接到通知，还要再等待10分钟才能推出。\n问题：305号航班在推出前还要等待多长时间？",
       "referenceText": "正确答案：A. 10 minutes",
       "audio": "/question-bank-assets/audio/listening/main/445.mp3",
@@ -1317,7 +1317,7 @@
         "Exceed the limitations.",
         "Lose the key to the aircraft.",
         "cause an accident.",
-        "End up with an inefficent flight."
+        "End up with an inefficient flight."
       ],
       "correctChoiceIndex": 2,
       "choicesZh": [
@@ -1461,7 +1461,7 @@
       "referenceText": "正确答案：C. Fly as cleared and maintain the highest altitude of the succeeding portion of flight path.",
       "audio": "/question-bank-assets/audio/listening/main/487.mp3",
       "choices": [
-        "Land as soon as practiceable.",
+        "Land as soon as practicable.",
         "Maintain present flight level as filed in flight plan.",
         "Fly as cleared and maintain the highest altitude of the succeeding portion of flight path.",
         "follow the route assigned by ATC and maintain minimum altitude en-route."
@@ -1666,7 +1666,7 @@
     {
       "id": "listening-main-527",
       "taskTitle": "20s航空英语-80",
-      "audioText": "Aircraft conflict refers to predicted conflict of two aircraft or between aircraft and airspace. A red alert is used for conflicts, when the predicted minimum separation is 5 nautical miles or less. A yellow alert indicates the minimum separation. is between five and approximately twelve nautical miles. A blue is used for conflicts between an aircraft and predefined airspace.\nQuestion: which conflict alert will sound when the minimum separation is eight nautical miles?",
+      "audioText": "Aircraft conflict refers to predicted conflict of two aircraft or between aircraft and airspace. A red alert is used for conflicts, when the predicted minimum separation is 5 nautical miles or less. A yellow alert indicates the minimum separation. Is between five and approximately twelve nautical miles. A blue is used for conflicts between an aircraft and predefined airspace.\nQuestion: which conflict alert will sound when the minimum separation is eight nautical miles?",
       "audioTextZh": "航空器冲突是指两架航空器之间或航空器与空域之间的预计冲突。当预计最小间隔为5海里或更小时，使用红色警报来表示冲突。黄色警报表示最小间隔在5海里到大约12海里之间。蓝色警报用于表示航空器与预定义空域之间的冲突。\n问题：当最小间隔为8海里时，会发出哪种冲突警报？",
       "referenceText": "正确答案：B. Yellow alerts.",
       "audio": "/question-bank-assets/audio/listening/main/527.mp3",
@@ -1918,7 +1918,7 @@
     {
       "id": "listening-main-587",
       "taskTitle": "20s航空英语-92",
-      "audioText": "Controllers should not clear an aircraft for a visual approach when the RVR is less than 800 meters in UK. If a pilot request a visual approach, when the RVR is less than 800 meters, controllers should inform the pilot that this type of approach is unavailable. and request the pilot's intention.\nQuestion: under what condition can a pilot make a visual approach?",
+      "audioText": "Controllers should not clear an aircraft for a visual approach when the RVR is less than 800 meters in UK. If a pilot request a visual approach, when the RVR is less than 800 meters, controllers should inform the pilot that this type of approach is unavailable. And request the pilot's intention.\nQuestion: under what condition can a pilot make a visual approach?",
       "audioTextZh": "在英国，当跑道视程（RVR）小于800米时，管制员不应批准飞机进行目视进近。如果飞行员在跑道视程小于800米时请求目视进近，管制员应告知飞行员这种进近方式不可行，并询问飞行员的意图。\n问题：在什么情况下飞行员可以进行目视进近？",
       "referenceText": "正确答案：B. Visibility is 800 meters.",
       "audio": "/question-bank-assets/audio/listening/main/587.mp3",
@@ -1939,7 +1939,7 @@
     {
       "id": "listening-main-588",
       "taskTitle": "20s航空英语-93",
-      "audioText": "Pilot weather reports, PIREPs are required when the following conditions exist. Ceiling at or below 5,000 feet, visibility is 5 miles or less, thunderstorms, turbulence of moderate or greater, icing of light or greater, windshear. er, volcano eruption and volcanic ash clouds.\nQuestion: which of the following is not included in pilot weather reports?",
+      "audioText": "Pilot weather reports, PIREPs are required when the following conditions exist. Ceiling at or below 5,000 feet, visibility is 5 miles or less, thunderstorms, turbulence of moderate or greater, icing of light or greater, windshear. Er, volcano eruption and volcanic ash clouds.\nQuestion: which of the following is not included in pilot weather reports?",
       "audioTextZh": "当出现以下情况时，需要提交飞行员天气报告（PIREPs）：云底高度在5000英尺或以下，能见度为5英里或更低，雷暴，中度或更强烈的颠簸，轻度或更严重的结冰，风切变，火山喷发和火山灰云。\n问题：以下哪项未包含在飞行员天气报告中？",
       "referenceText": "正确答案：B. Light turbulence.",
       "audio": "/question-bank-assets/audio/listening/main/588.mp3",
@@ -2275,7 +2275,7 @@
     {
       "id": "listening-main-679",
       "taskTitle": "20s航空英语-109",
-      "audioText": "On January 17, 2023, Scandinavian 305 was climbing out of Runway 31when the crew stopped the climb at FL100 due to being unable to retract the landing gear. The aircraft diverted to the alternate airport for a safe landing on Runway 36.\nQuestion: Why did Scandinavian 305 stop climb at FL100?",
+      "audioText": "On January 17, 2023, Scandinavian 305 was climbing out of Runway 31 when the crew stopped the climb at FL100 due to being unable to retract the landing gear. The aircraft diverted to the alternate airport for a safe landing on Runway 36.\nQuestion: Why did Scandinavian 305 stop climb at FL100?",
       "audioTextZh": "2023年1月17日，Scandinavian 305从Runway 31起飞爬升时，因无法收起起落架，机组在FL100停止爬升。航空器改航至备降机场，并在Runway 36安全着陆。\n问题：Scandinavian 305为什么在FL100停止爬升？",
       "referenceText": "正确答案：A. Because they are unable to retract the landing gear.",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-03-q11.mp3",
@@ -2485,7 +2485,7 @@
     {
       "id": "listening-main-724",
       "taskTitle": "20s航空英语-119",
-      "audioText": "In international airspace, English is the standard language for communication between aircraft and air traffic control. This universal language helps to avoid misunderstandings and ensures seamless communication across different regions.\"\nQuestion: When an aircraft is in international airspace, what language is typically used for communication with other aircraft and air traffic control?",
+      "audioText": "In international airspace, English is the standard language for communication between aircraft and air traffic control. This universal language helps to avoid misunderstandings and ensures seamless communication across different regions.\nQuestion: When an aircraft is in international airspace, what language is typically used for communication with other aircraft and air traffic control?",
       "audioTextZh": "在国际空域中，英语是航空器与空中交通管制通信的标准语言。这种通用语言有助于避免误解，并确保不同地区之间的通信顺畅。\n问题：航空器位于国际空域时，通常使用哪种语言与其他航空器和空中交通管制通信？",
       "referenceText": "正确答案：C. English.",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-08-q12.mp3",
@@ -3052,7 +3052,7 @@
     {
       "id": "listening-main-867",
       "taskTitle": "20s航空英语-146",
-      "audioText": "The pitot static tubes supply pressure data to the airspeed indicator, altimeter, and vertical speed indicator. If these tubes become blocked, all three instruments may provide inaccurate readings.\nQuestion: Which of the following flight instruments is not likely to be affected if the pitot static tubes become blocked? ​",
+      "audioText": "The pitot static tubes supply pressure data to the airspeed indicator, altimeter, and vertical speed indicator. If these tubes become blocked, all three instruments may provide inaccurate readings.\nQuestion: Which of the following flight instruments is not likely to be affected if the pitot static tubes become blocked?",
       "audioTextZh": "皮托静压管向空速表、高度表和垂直速度表提供压力数据。如果这些管路堵塞，这三种仪表都可能提供不准确的读数。\n问题：如果皮托静压管堵塞，以下哪种飞行仪表不太可能受到影响？",
       "referenceText": "正确答案：D. Heading indicator",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-16-q03.mp3",
@@ -3138,62 +3138,62 @@
       "taskTitle": "20s航空英语-150",
       "audioText": "A wingtip vortex is found during takeoff, cruising and landing. When the aircraft fly with ground effect, the ground interferes with the wingtip vortex, which reduces the drag. When the aircraft is flying very near the ground, the vortex strength is much less, therefore, there is a large reduction of drag.\nQuestion: What's the main topic of the statement?",
       "audioTextZh": "起飞、巡航和着陆期间都会产生翼尖涡。航空器在地面效应中飞行时，地面会干扰翼尖涡，从而减小阻力。航空器非常接近地面时，涡流强度小得多，因此阻力会大幅减小。\n问题：这段陈述的主题是什么？",
-      "referenceText": "正确答案：A. A. Vortex.",
+      "referenceText": "正确答案：A. Vortex.",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-01-q01.mp3",
       "choices": [
-        "A. Vortex.",
-        "B. Takeoff.",
-        "C. Cruise.",
-        "D. Wing Tips."
+        "Vortex.",
+        "Takeoff.",
+        "Cruise.",
+        "Wing Tips."
       ],
       "correctChoiceIndex": 0,
       "choicesZh": [
-        "A. 涡流",
-        "B. 起飞",
-        "C. 巡航",
-        "D. 翼尖"
+        "涡流",
+        "起飞",
+        "巡航",
+        "翼尖"
       ]
     },
     {
       "id": "listening-main-926",
       "taskTitle": "20s航空英语-151",
-      "audioText": "AFR 145 is currently en route from Paris to London Heathrew. The aircraft is descending to 3000ft and request diverting to TLA. ATC is unable to grant the request due to conflicting traffic at 3000ft.\nQuestion: Why did Air Traffic Control deny the request of AFR 145?",
+      "audioText": "AFR 145 is currently en route from Paris to London Heathrow. The aircraft is descending to 3000ft and request diverting to TLA. ATC is unable to grant the request due to conflicting traffic at 3000ft.\nQuestion: Why did Air Traffic Control deny the request of AFR 145?",
       "audioTextZh": "AFR 145目前正在从巴黎飞往伦敦希思罗机场。航空器正下降至3000ft，并申请改航至TLA。由于在3000ft存在冲突航空器，ATC无法批准该请求。\n问题：空中交通管制为什么拒绝AFR 145的请求？",
-      "referenceText": "正确答案：A. A.Conflicting Traffic",
+      "referenceText": "正确答案：A. Conflicting Traffic",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-01-q02.mp3",
       "choices": [
-        "A.Conflicting Traffic",
-        "B. Military activity",
-        "C. Weather conditions",
-        "D. Weather conditions."
+        "Conflicting Traffic",
+        "Military activity",
+        "Weather conditions",
+        "Weather conditions."
       ],
       "correctChoiceIndex": 0,
       "choicesZh": [
-        "A. 冲突航空器",
-        "B. 军事活动",
-        "C. 天气状况",
-        "D. 天气状况"
+        "冲突航空器",
+        "军事活动",
+        "天气状况",
+        "天气状况"
       ]
     },
     {
       "id": "listening-main-927",
       "taskTitle": "20s航空英语-152",
-      "audioText": "There was a very scare accident on the flight to Hawaii. During takeoff, there was dense cloud but no thunder or lightning, but about 20 seconds later, as the plane climbing, there was a tremmendous flash outside the plane and a large bang. Immediately, the engines throttles back and we levelled off. We looked out of the window and the engines were there and there was no fire.\nQuestion: What probably caused the large bang?",
+      "audioText": "There was a very scary accident on the flight to Hawaii. During takeoff, there was dense cloud but no thunder or lightning, but about 20 seconds later, as the plane was climbing, there was a tremendous flash outside the plane and a large bang. Immediately, the engines throttled back and we levelled off. We looked out of the window and the engines were there and there was no fire.\nQuestion: What probably caused the large bang?",
       "audioTextZh": "飞往夏威夷的航班上发生了一起非常惊险的事故。起飞时有浓云，但没有雷声或闪电；约20秒后，飞机正在爬升时，机外出现一道强烈闪光并伴随一声巨响。发动机随即减小推力，我们改为平飞。我们向窗外看去，发动机仍在，也没有起火。\n问题：巨响可能是什么造成的？",
-      "referenceText": "正确答案：A. A. a fuel tank explosion",
+      "referenceText": "正确答案：A. a fuel tank explosion",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-01-q05.mp3",
       "choices": [
-        "A. a fuel tank explosion",
-        "B. severe turbulence",
-        "C. a bird strike",
-        "D. a lightning strike"
+        "a fuel tank explosion",
+        "severe turbulence",
+        "a bird strike",
+        "a lightning strike"
       ],
       "correctChoiceIndex": 0,
       "choicesZh": [
-        "A. 油箱爆炸",
-        "B. 严重颠簸",
-        "C. 鸟击",
-        "D. 雷击"
+        "油箱爆炸",
+        "严重颠簸",
+        "鸟击",
+        "雷击"
       ]
     },
     {
@@ -4188,12 +4188,12 @@
       "taskTitle": "20s航空英语-200",
       "audioText": "Checking the fuel system during preflight is important to ensure there is sufficient fuel for the planned flight and that the fuel is clean and free of contaminants. Insufficient fuel can lead to an emergency situation mid-flight, and contaminated fuel can cause engine problems.\nQuestion: Why is it important to check the fuel system during preflight?",
       "audioTextZh": "飞行前检查燃油系统十分重要，以确保计划飞行所需的燃油充足，并且燃油清洁、没有污染物。燃油不足可能在飞行途中引发紧急情况，燃油污染则可能造成发动机问题。\n问题：为什么飞行前检查燃油系统很重要？",
-      "referenceText": "正确答案：B. B.To ensure there is sufficient fuel for the planned flight and that the fuel is clean and free of contaminants.",
+      "referenceText": "正确答案：B. To ensure there is sufficient fuel for the planned flight and that the fuel is clean and free of contaminants.",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-04-q20.mp3",
       "choices": [
         "To make sure the fuel smells nice.",
-        "B.To ensure there is sufficient fuel for the planned flight and that the fuel is clean and free of contaminants.",
-        "C.To see if the fuel tank is a nice color.",
+        "To ensure there is sufficient fuel for the planned flight and that the fuel is clean and free of contaminants.",
+        "To see if the fuel tank is a nice color.",
         "To check if the fuel cap is shiny."
       ],
       "correctChoiceIndex": 1,
@@ -4291,7 +4291,7 @@
     {
       "id": "listening-main-1009",
       "taskTitle": "20s航空英语-205",
-      "audioText": "A runway strip including a precision approach runway shall be practically extended from the distance of at least 150 meters from runway centerline with code number 3 or 4 and at least 75 meters with code number 1or 2.\nQuestion: How does the runway strip of a precision runway extend from the runway central line?",
+      "audioText": "A runway strip including a precision approach runway shall be practically extended from the distance of at least 150 meters from runway centerline with code number 3 or 4 and at least 75 meters with code number 1 or 2.\nQuestion: How does the runway strip of a precision runway extend from the runway central line?",
       "audioTextZh": "包含精密进近跑道的升降带，对于代码编号3或4，应从跑道中心线向外实际延伸至少150 meters；对于代码编号1或2，应至少延伸75 meters。\n问题：精密进近跑道的升降带从跑道中心线向外延伸多远？",
       "referenceText": "正确答案：B. At least 150m with code number 3 or 4",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-05-q10.mp3",
@@ -4396,7 +4396,7 @@
     {
       "id": "listening-main-1014",
       "taskTitle": "20s航空英语-210",
-      "audioText": "Federal regulations specify when you must use supplemental oxygen. if you are pilot flying at cruising a1titude of 12,000ft, you should consult the regulations. As a general rule, consider using supplemental oxygen Over 10,000ft during the day and 5,000ft at night.\nQuestion: When, generally speaking, should supplemental oxygen be used?",
+      "audioText": "Federal regulations specify when you must use supplemental oxygen. If you are pilot flying at cruising altitude of 12,000ft, you should consult the regulations. As a general rule, consider using supplemental oxygen Over 10,000ft during the day and 5,000ft at night.\nQuestion: When, generally speaking, should supplemental oxygen be used?",
       "audioTextZh": "联邦法规规定了必须使用补充氧气的时机。如果飞行员在12,000ft巡航高度飞行，应查阅相关法规。通常，白天超过10,000ft、夜间超过5,000ft时应考虑使用补充氧气。\n问题：一般来说，应在什么时候使用补充氧气？",
       "referenceText": "正确答案：B. Over 10,000ft daytime and 5,000ft at night",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-06-q13.mp3",
@@ -4438,7 +4438,7 @@
     {
       "id": "listening-main-1016",
       "taskTitle": "20s航空英语-212",
-      "audioText": "P1: Did you hear what captain Mike said? There was something about the date when the flight plan reports would be chosen.\nP2: Yes, he said we should hand the flight plan report when we finished the...but they must be finished on N13. if not before.\nQuestion: When would the flight plan reports be given to the captain?",
+      "audioText": "P1: Did you hear what captain Mike said? There was something about the date when the flight plan reports would be chosen.\nP2: Yes, he said we should hand the flight plan report when we finished the... But they must be finished on N13. If not before.\nQuestion: When would the flight plan reports be given to the captain?",
       "audioTextZh": "P1: 你听到Mike机长说什么了吗？他提到了提交飞行计划报告的日期。\nP2: 是的，他说我们完成……时就应提交飞行计划报告，但最迟必须在N13完成。\n问题：应在什么时候把飞行计划报告交给机长？",
       "referenceText": "正确答案：A. On or before N13.",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-07-q03.mp3",
@@ -4501,7 +4501,7 @@
     {
       "id": "listening-main-1019",
       "taskTitle": "20s航空英语-215",
-      "audioText": "The localizer transmitter is situated at the extended runway centerline beyond the stopend, the localizer being normally found the centerline of runway and extended along descent path 25 miles with 45 ILS channels with frequency range from 108.10 to 119.95 MHZ to provide pilots with course guidance.\nQuestion: What is localizer used for?",
+      "audioText": "The localizer transmitter is situated at the extended runway centerline beyond the stop end, the localizer being normally found the centerline of runway and extended along descent path 25 miles with 45 ILS channels with frequency range from 108.10 to 119.95 MHZ to provide pilots with course guidance.\nQuestion: What is localizer used for?",
       "audioTextZh": "航向台发射机位于停止端之外的跑道中心线延长线上；航向道通常沿跑道中心线和下降路径延伸25 miles，设有45个ILS信道，频率范围为108.10至119.95 MHZ，为飞行员提供航道引导。\n问题：航向台用于什么？",
       "referenceText": "正确答案：A. Horizontal guidance",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-07-q09.mp3",
@@ -4585,7 +4585,7 @@
     {
       "id": "listening-main-1023",
       "taskTitle": "20s航空英语-219",
-      "audioText": "Heathrow Information C, cloud scattered at 3000ft, broken at 5000ft, wind 210 at 8 knots visibility 2 miles with light wind. report established on ILS Runway 23.\nQuestion: What is the cloud cover at 5000 ft?",
+      "audioText": "Heathrow Information C, cloud scattered at 3000ft, broken at 5000ft, wind 210 at 8 knots visibility 2 miles with light wind. Report established on ILS Runway 23.\nQuestion: What is the cloud cover at 5000 ft?",
       "audioTextZh": "希思罗通播C：3000ft有疏云，5000ft有碎云；风向210度、风速8 knots，能见度2 miles，有微风。建立ILS Runway 23后报告。\n问题：5000 ft高度的云量如何？",
       "referenceText": "正确答案：A. Broken layer.",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-07-q16.mp3",
@@ -4698,14 +4698,14 @@
         "Inspect the engine, airframe, and systems",
         "Consult the engine, airframe, and systems",
         "Replace the engine, airframe, and systems",
-        "Replace the engine, airframe, and systems"
+        "Repair the engine, airframe, and systems"
       ],
       "correctChoiceIndex": 0,
       "choicesZh": [
         "检查发动机、机体和各系统",
         "查阅发动机、机体和各系统",
         "更换发动机、机体和各系统",
-        "更换发动机、机体和各系统"
+        "修理发动机、机体和各系统"
       ]
     },
     {
@@ -4732,7 +4732,7 @@
     {
       "id": "listening-main-1031",
       "taskTitle": "20s航空英语-226",
-      "audioText": "There was a very scare accident on the flight to Hawaii. During takeoff, there was dense cloud but no thunder or lightning, but about 20 seconds later, as the plane climbing, there was a tremmendous flash outside the plane and a large bang. Immediately, the engines throttles back and we levelled off. We looked out of the window and the engines were there and there was no fire.\nQuestion: What probably caused the large bang?",
+      "audioText": "There was a very scary accident on the flight to Hawaii. During takeoff, there was dense cloud but no thunder or lightning, but about 20 seconds later, as the plane was climbing, there was a tremendous flash outside the plane and a large bang. Immediately, the engines throttled back and we levelled off. We looked out of the window and the engines were there and there was no fire.\nQuestion: What probably caused the large bang?",
       "audioTextZh": "飞往夏威夷的航班上发生了一起非常惊险的事故。起飞时有浓云，但没有雷声或闪电；约20秒后，飞机正在爬升时，机外出现一道强烈闪光并伴随一声巨响。发动机随即减小推力，我们改为平飞。我们向窗外看去，发动机仍在，也没有起火。\n问题：巨响可能是什么造成的？",
       "referenceText": "正确答案：D. A lightning strike",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-08-q08.mp3",
@@ -4816,7 +4816,7 @@
     {
       "id": "listening-main-1036",
       "taskTitle": "20s航空英语-230",
-      "audioText": "Pilot: Hey, do you know how the electrical system in our aircraft works?\nCo-pilot: Well, it's quite complex.The primary source of electrical power is the generators driven by the engines.\nPilot: I see.And what about the auxiliary power unit(APU)?\nCo-pilot: The APU can provide electrical power when the engines aren't running, like during ground operations or as a backup in flight.\nQuestion: What is the primary source of electrical power in the aircraft?",
+      "audioText": "Pilot: Hey, do you know how the electrical system in our aircraft works?\nCo-pilot: Well, it's quite complex. The primary source of electrical power is the generators driven by the engines.\nPilot: I see. And what about the auxiliary power unit (APU)?\nCo-pilot: The APU can provide electrical power when the engines aren't running, like during ground operations or as a backup in flight.\nQuestion: What is the primary source of electrical power in the aircraft?",
       "audioTextZh": "Pilot: 嘿，你知道我们航空器的电气系统如何工作吗？\nCo-pilot: 嗯，它很复杂。主要电源是由发动机驱动的发电机。\nPilot: 明白了。那么辅助动力装置（APU）呢？\nCo-pilot: 发动机不运行时，例如地面运行期间，或在飞行中作为备用电源时，APU可以提供电力。\n问题：航空器的主要电源是什么？",
       "referenceText": "正确答案：B. The engines.",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-08-q15.mp3",
@@ -4837,7 +4837,7 @@
     {
       "id": "listening-main-1037",
       "taskTitle": "20s航空英语-231",
-      "audioText": "Mechanic: We need to check the electrical system before the flight.\nPilot: Sure, what are we looking for?\nMechanic: Mainly the circuit breakers.If any of them are tripped, it could indicate a fault.\nPilot: And what about the redundancy in the system?\nMechanic: Each critical system has multiple power sources.For example, the Boeing 747-400 can get power from any of its four engines.\nQuestion: Why do they check the circuit breakers in the electrical system?",
+      "audioText": "Mechanic: We need to check the electrical system before the flight.\nPilot: Sure, what are we looking for?\nMechanic: Mainly the circuit breakers. If any of them are tripped, it could indicate a fault.\nPilot: And what about the redundancy in the system?\nMechanic: Each critical system has multiple power sources. For example, the Boeing 747-400 can get power from any of its four engines.\nQuestion: Why do they check the circuit breakers in the electrical system?",
       "audioTextZh": "Mechanic: 我们需要在飞行前检查电气系统。\nPilot: 好的，要检查什么？\nMechanic: 主要检查断路器。如果其中任何一个跳开，可能表明存在故障。\nPilot: 那么系统冗余呢？\nMechanic: 每个关键系统都有多个电源。例如，Boeing 747-400可以由它的四台发动机中的任何一台供电。\n问题：为什么要检查电气系统中的断路器？",
       "referenceText": "正确答案：B. To identify potential faults.",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-08-q16.mp3",
@@ -4858,7 +4858,7 @@
     {
       "id": "listening-main-1038",
       "taskTitle": "20s航空英语-232",
-      "audioText": "Instructor: Let's talk about the types of power in an electrical system.There's active power, reactive power, and apparent power.\nStudent: What's the difference between them?\nInstructor: Active power is the power that does actual work, like running motors.Reactive power is associated with energy storage components like capacitors and inductors.Apparent power is the total power supplied by the source.\nQuestion: What is active power in an electrical system?",
+      "audioText": "Instructor: Let's talk about the types of power in an electrical system. There's active power, reactive power, and apparent power.\nStudent: What's the difference between them?\nInstructor: Active power is the power that does actual work, like running motors. Reactive power is associated with energy storage components like capacitors and inductors. Apparent power is the total power supplied by the source.\nQuestion: What is active power in an electrical system?",
       "audioTextZh": "Instructor: 我们来谈谈电气系统中的功率类型，包括有功功率、无功功率和视在功率。\nStudent: 它们有什么区别？\nInstructor: 有功功率是实际做功的功率，例如驱动电动机。无功功率与电容器和电感器等储能元件有关。视在功率是电源提供的总功率。\n问题：电气系统中的有功功率是什么？",
       "referenceText": "正确答案：B. Power that does actual work.",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-08-q17.mp3",
@@ -4879,7 +4879,7 @@
     {
       "id": "listening-main-1039",
       "taskTitle": "20s航空英语-233",
-      "audioText": "Engineer: The electrical system in modern aircraft uses alternating current(AC)for most applications.\nTechnician: Right.AC has some advantages over direct current(DC), like easier voltage transformation with transformers.\nEngineer: And in AC circuits, the power can be categorized into real, reactive, and apparent power.\nQuestion: Why is AC preferred over DC in aircraft electrical systems?",
+      "audioText": "Engineer: The electrical system in modern aircraft uses alternating current (AC) for most applications.\nTechnician: Right. AC has some advantages over direct current (DC), like easier voltage transformation with transformers.\nEngineer: And in AC circuits, the power can be categorized into real, reactive, and apparent power.\nQuestion: Why is AC preferred over DC in aircraft electrical systems?",
       "audioTextZh": "Engineer: 现代航空器电气系统的大多数应用使用交流电（AC）。\nTechnician: 对。与直流电（DC）相比，AC具有一些优势，例如可以利用变压器更容易地进行电压变换。\nEngineer: 在AC电路中，功率可分为有功功率、无功功率和视在功率。\n问题：为什么航空器电气系统更常使用AC而不是DC？",
       "referenceText": "正确答案：B. It allows easier voltage transformation.",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-08-q18.mp3",
@@ -4984,7 +4984,7 @@
     {
       "id": "listening-main-1212",
       "taskTitle": "20s航空英语-238",
-      "audioText": "About 75% of all aviation accidents are caused by human-related factors. Sources of pilots' errors in the IFR environment include misunderstanding a chart, failure to understand a clearance, inability to use equipment properly and lack of co2ordination among crewmembers.\nQuestion: Which of the following is not mentioned?",
+      "audioText": "About 75% of all aviation accidents are caused by human-related factors. Sources of pilots' errors in the IFR environment include misunderstanding a chart, failure to understand a clearance, inability to use equipment properly and lack of coordination among crewmembers.\nQuestion: Which of the following is not mentioned?",
       "audioTextZh": "约75%的航空事故由人为相关因素造成。IFR环境中的飞行员错误来源包括误解航图、未能理解放行许可、无法正确使用设备，以及机组成员之间缺乏协调。\n问题：以下哪一项未被提及？",
       "referenceText": "正确答案：A. Loss of situational awareness.",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-09-q03.mp3",
@@ -5074,14 +5074,14 @@
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-09-q09.mp3",
       "choices": [
         "Glass Cockpit Layout",
-        "Glass Cockpit Layout",
+        "Hybrid Cockpit Layout",
         "Six Pack Instrument Layout",
         "Digital Dashboard Arrangement"
       ],
       "correctChoiceIndex": 2,
       "choicesZh": [
         "玻璃驾驶舱布局",
-        "玻璃驾驶舱布局",
+        "混合式驾驶舱布局",
         "传统六仪表布局",
         "数字仪表板布局"
       ]

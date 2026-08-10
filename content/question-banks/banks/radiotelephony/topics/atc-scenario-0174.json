@@ -27,7 +27,7 @@
       "taskTitle": "UAL 221-3",
       "audioText": "you are encountering severe turbulence at 11,300 meters, contact Shanghai Control and check if any higher level is available.",
       "audioTextZh": "你在 11,300 米遭遇严重颠簸，联系上海管制并核实是否有任何更高高度可用。",
-      "referenceText": "Shanghai Control, UAL 221, we are encountering severe turbulence at 11 thoudand 300 meters, is higher level available?",
+      "referenceText": "Shanghai Control, UAL 221, we are encountering severe turbulence at 11,300 meters, is higher level available?",
       "referenceTextZh": "上海管制，UAL 221，我们在 11300 米遭遇严重颠簸，是否有更高高度可用？",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-074-ual221-q03.mp3"
     },
@@ -36,8 +36,8 @@
       "taskTitle": "UAL 221-4",
       "audioText": "C: UAL 221, 13100m is available now, say your intention.\nB: tell the controller you are unable to accept 13100m because of performance.",
       "audioTextZh": "C： UAL 221，13100m 当前可用，请说明你的意图。\nB： 告诉管制员，由于性能原因你无法接受 13100m。",
-      "referenceText": "negative, we are unable to accept 4001 hudnred due performance, UAL 221.",
-      "referenceTextZh": "不行，由于性能原因，我们无法接受 4001 hudnred，UAL 221。",
+      "referenceText": "negative, we are unable to accept 13,100 meters due to performance, UAL 221.",
+      "referenceTextZh": "不行，由于性能原因，我们无法接受 13,100 米，UAL 221。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-074-ual221-q04.mp3"
     },
     {

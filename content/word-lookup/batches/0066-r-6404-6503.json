@@ -1,105 +1,485 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"removed","ipa":"/rɪˈmuːvd/","aviationMeaning":"adj. 已移除的；障碍物、冰雪、设备或故障部件已清除","generalMeaning":"adj. 已移除的；被搬走的"},
-    {"word":"removes","ipa":"/rɪˈmuːvz/","aviationMeaning":"v. 移除；清除障碍物、冰雪、设备或故障部件","generalMeaning":"v. 移除；搬走"},
-    {"word":"removing","ipa":"/rɪˈmuːvɪŋ/","aviationMeaning":"v. 正移除；正在清除障碍物、冰雪或故障部件","generalMeaning":"v. 正移除；搬走"},
-    {"word":"rendering","ipa":"/ˈrendərɪŋ/","aviationMeaning":"v. 使成为；使系统、设备或航空器处于某种状态","generalMeaning":"v. 使成为；呈现"},
-    {"word":"renewable","ipa":"/rɪˈnuːəbəl/","aviationMeaning":"adj. 可再生的；与机场或航空运营能源相关","generalMeaning":"adj. 可再生的；可更新的"},
-    {"word":"renob","ipa":"/ˈriːnɑːb/","aviationMeaning":"n. 疑似专有名称或原文缩写；需结合原文","generalMeaning":"n. 疑似专有名称；请结合原文"},
-    {"word":"reopened","ipa":"/ˌriːˈoʊpənd/","aviationMeaning":"adj. 已重新开放的；跑道、空域、机场或程序恢复可用","generalMeaning":"adj. 已重新打开的"},
-    {"word":"reorganize","ipa":"/ˌriːˈɔːrɡənaɪz/","aviationMeaning":"v. 重新组织；调整运行、人员或资源安排","generalMeaning":"v. 重新组织；改组"},
-    {"word":"repair","ipa":"/rɪˈper/","aviationMeaning":"v. 修理；修复航空器、设备、道面或系统故障","generalMeaning":"v. 修理；n. 修理"},
-    {"word":"repaired","ipa":"/rɪˈperd/","aviationMeaning":"adj. 已修复的；航空器、设备、道面或系统故障已处理","generalMeaning":"adj. 已修理的"},
-    {"word":"repairing","ipa":"/rɪˈperɪŋ/","aviationMeaning":"v. 正修理；正在修复航空器、设备或系统故障","generalMeaning":"v. 正修理"},
-    {"word":"repairs","ipa":"/rɪˈperz/","aviationMeaning":"n. 修理（复数）；对航空器、设备、道面的修复工作","generalMeaning":"n. 修理（复数）；v. 修理"},
-    {"word":"repeat","ipa":"/rɪˈpiːt/","aviationMeaning":"v. 重复；再次通报、复述或执行指令","generalMeaning":"v. 重复；n. 重复"},
-    {"word":"repeatable","ipa":"/rɪˈpiːtəbəl/","aviationMeaning":"adj. 可重复的；程序或测试可稳定再次执行的","generalMeaning":"adj. 可重复的"},
-    {"word":"repeated","ipa":"/rɪˈpiːtɪd/","aviationMeaning":"adj. 重复的；通话、告警、故障或操作再次出现的","generalMeaning":"adj. 重复的"},
-    {"word":"repeatedly","ipa":"/rɪˈpiːtɪdli/","aviationMeaning":"adv. 反复地；多次通报、执行或发生","generalMeaning":"adv. 反复地；再三地"},
-    {"word":"repeating","ipa":"/rɪˈpiːtɪŋ/","aviationMeaning":"v. 正重复；正在再次通报、复述或执行指令","generalMeaning":"v. 正重复"},
-    {"word":"repeats","ipa":"/rɪˈpiːts/","aviationMeaning":"v. 重复；再次通报、复述或执行指令","generalMeaning":"v. 重复"},
-    {"word":"repetition","ipa":"/ˌrepəˈtɪʃən/","aviationMeaning":"n. 重复；对关键通话、检查或训练内容的再次执行","generalMeaning":"n. 重复；反复"},
-    {"word":"repetitive","ipa":"/rɪˈpetətɪv/","aviationMeaning":"adj. 重复性的；持续反复的操作、任务或告警","generalMeaning":"adj. 重复的；反复的"},
-    {"word":"replace","ipa":"/rɪˈpleɪs/","aviationMeaning":"v. 更换；替换故障部件、设备、机组或资料","generalMeaning":"v. 替换；取代"},
-    {"word":"replaced","ipa":"/rɪˈpleɪst/","aviationMeaning":"adj. 已更换的；故障部件、设备或资料已替换","generalMeaning":"adj. 已替换的"},
-    {"word":"replacement","ipa":"/rɪˈpleɪsmənt/","aviationMeaning":"n. 更换；替代部件、设备、机组或资料","generalMeaning":"n. 替换；替代物"},
-    {"word":"replacements","ipa":"/rɪˈpleɪsmənts/","aviationMeaning":"n. 替代品（复数）；多个更换的部件、设备或人员","generalMeaning":"n. 替换；替代物（复数）"},
-    {"word":"replaces","ipa":"/rɪˈpleɪsɪz/","aviationMeaning":"v. 更换；替换故障部件、设备、机组或资料","generalMeaning":"v. 替换；取代"},
-    {"word":"replacing","ipa":"/rɪˈpleɪsɪŋ/","aviationMeaning":"v. 正更换；正在替换故障部件、设备或资料","generalMeaning":"v. 正替换；取代"},
-    {"word":"replay","ipa":"/ˌriːˈpleɪ/","aviationMeaning":"v. 重放；再次播放通信、录音或训练音频","generalMeaning":"v. 重放；再播放"},
-    {"word":"replied","ipa":"/rɪˈplaɪd/","aviationMeaning":"v. 已答复；已回应管制、机组或地面单位通话","generalMeaning":"v. 已答复；回复"},
-    {"word":"replies","ipa":"/rɪˈplaɪz/","aviationMeaning":"v. 答复；回应管制、机组或地面单位通话","generalMeaning":"v. 答复；n. 回复（复数）"},
-    {"word":"reply","ipa":"/rɪˈplaɪ/","aviationMeaning":"v. 答复；回应管制、机组或地面单位通话","generalMeaning":"v. 答复；n. 回复"},
-    {"word":"reponse","ipa":"/rɪˈspɑːns/","aviationMeaning":"n. 疑似 response 的拼写错误；响应或答复","generalMeaning":"n. 疑似拼写错误；答复"},
-    {"word":"report","ipa":"/rɪˈpɔːrt/","aviationMeaning":"v. 报告；通报位置、天气、故障或运行情况","generalMeaning":"v. 报告；n. 报告"},
-    {"word":"reported","ipa":"/rɪˈpɔːrtɪd/","aviationMeaning":"adj. 已报告的；已通报的位置、天气、故障或事件","generalMeaning":"adj. 已报告的"},
-    {"word":"reportedly","ipa":"/rɪˈpɔːrtɪdli/","aviationMeaning":"adv. 据报道；根据尚待核实的通报信息","generalMeaning":"adv. 据报道；据称"},
-    {"word":"reporter","ipa":"/rɪˈpɔːrtər/","aviationMeaning":"n. 报告人；提供飞行、天气或事件信息的人员","generalMeaning":"n. 记者；报告人"},
-    {"word":"reporting","ipa":"/rɪˈpɔːrtɪŋ/","aviationMeaning":"n. 报告；通报位置、天气、故障或运行状态","generalMeaning":"n. 报告；报道"},
-    {"word":"reports","ipa":"/rɪˈpɔːrts/","aviationMeaning":"n. 报告（复数）；飞行、天气、故障或事件通报","generalMeaning":"n. 报告（复数）；v. 报告"},
-    {"word":"repositioned","ipa":"/ˌriːpəˈzɪʃənd/","aviationMeaning":"adj. 已重新定位的；航空器、人员或设备已转移到新位置","generalMeaning":"adj. 已重新定位的"},
-    {"word":"represent","ipa":"/ˌreprɪˈzent/","aviationMeaning":"v. 表示；图表、数据或信号表示某种飞行状态","generalMeaning":"v. 代表；表示"},
-    {"word":"representative","ipa":"/ˌreprɪˈzentətɪv/","aviationMeaning":"n. 代表；航空公司、机场或服务机构的联络人员","generalMeaning":"n. 代表；adj. 典型的"},
-    {"word":"represented","ipa":"/ˌreprɪˈzentɪd/","aviationMeaning":"v. 被表示；飞行状态、数据或风险已在图表中体现","generalMeaning":"v. 被代表；被表示"},
-    {"word":"represents","ipa":"/ˌreprɪˈzents/","aviationMeaning":"v. 表示；图表、数据或信号表示飞行状态","generalMeaning":"v. 代表；表示"},
-    {"word":"reproduce","ipa":"/ˌriːprəˈduːs/","aviationMeaning":"v. 重现；重新产生故障、现象或测试结果","generalMeaning":"v. 再现；繁殖"},
-    {"word":"reprogram","ipa":"/ˌriːˈproʊɡræm/","aviationMeaning":"v. 重新编程；修改航电、设备或系统的软件设置","generalMeaning":"v. 重新编程"},
-    {"word":"republic","ipa":"/rɪˈpʌblɪk/","aviationMeaning":"n. 共和国；机场、空域或航线所在国名称组成部分","generalMeaning":"n. 共和国"},
-    {"word":"request","ipa":"/rɪˈkwest/","aviationMeaning":"v. 请求；请求高度、航向、许可、服务或信息","generalMeaning":"v. 请求；n. 请求"},
-    {"word":"requested","ipa":"/rɪˈkwestɪd/","aviationMeaning":"adj. 被请求的；机组或管制已提出要求的","generalMeaning":"adj. 被请求的"},
-    {"word":"requesting","ipa":"/rɪˈkwestɪŋ/","aviationMeaning":"v. 正请求；正在请求高度、航向、许可或服务","generalMeaning":"v. 正请求"},
-    {"word":"requests","ipa":"/rɪˈkwests/","aviationMeaning":"n. 请求（复数）；高度、航向、许可或服务的申请","generalMeaning":"n. 请求（复数）；v. 请求"},
-    {"word":"require","ipa":"/rɪˈkwaɪər/","aviationMeaning":"v. 要求；规定必须执行检查、程序或限制","generalMeaning":"v. 要求；需要"},
-    {"word":"required","ipa":"/rɪˈkwaɪərd/","aviationMeaning":"adj. 必需的；法规、程序或安全标准要求的","generalMeaning":"adj. 必需的；被要求的"},
-    {"word":"requirement","ipa":"/rɪˈkwaɪərmənt/","aviationMeaning":"n. 要求；飞行、适航、培训或运行必须满足的条件","generalMeaning":"n. 要求；必要条件"},
-    {"word":"requirements","ipa":"/rɪˈkwaɪərmənts/","aviationMeaning":"n. 要求（复数）；飞行、适航、培训或运行条件","generalMeaning":"n. 要求；必要条件（复数）"},
-    {"word":"requires","ipa":"/rɪˈkwaɪərz/","aviationMeaning":"v. 要求；规定必须执行检查、程序或限制","generalMeaning":"v. 要求；需要"},
-    {"word":"requiring","ipa":"/rɪˈkwaɪərɪŋ/","aviationMeaning":"v. 需要；要求执行检查、程序或限制","generalMeaning":"v. 要求；需要"},
-    {"word":"requset","ipa":"/rɪˈkwest/","aviationMeaning":"n. 疑似 request 的拼写错误；请求","generalMeaning":"n. 疑似拼写错误；请求"},
-    {"word":"rerouted","ipa":"/ˌriːˈraʊtɪd/","aviationMeaning":"adj. 已改航的；航空器已获指令改飞另一航路或目的地","generalMeaning":"adj. 已改道的"},
-    {"word":"reroutes","ipa":"/ˌriːˈraʊts/","aviationMeaning":"v. 改航；将航空器改飞另一航路或目的地","generalMeaning":"v. 改道；改线"},
-    {"word":"rerouting","ipa":"/ˌriːˈraʊtɪŋ/","aviationMeaning":"n. 改航；改变航空器原定航路或目的地的过程","generalMeaning":"n. 改道；改线"},
-    {"word":"rescue","ipa":"/ˈreskjuː/","aviationMeaning":"n. 救援；对遇险航空器、旅客或机组的搜救行动","generalMeaning":"n. 救援；v. 救援"},
-    {"word":"research","ipa":"/rɪˈsɜːrtʃ/","aviationMeaning":"n. 研究；对航空安全、性能或运行问题的调查研究","generalMeaning":"n. 研究；v. 研究"},
-    {"word":"resequence","ipa":"/ˌriːˈsiːkwəns/","aviationMeaning":"v. 重新排序；调整进近、起飞或滑行航空器的顺序","generalMeaning":"v. 重新排序"},
-    {"word":"reservation","ipa":"/ˌrezərˈveɪʃən/","aviationMeaning":"n. 预订；旅客航班座位或服务的保留记录","generalMeaning":"n. 预订；保留"},
-    {"word":"reserve","ipa":"/rɪˈzɜːrv/","aviationMeaning":"n. 备用量；预留燃油、容量、人员或设备","generalMeaning":"n. 储备；v. 保留"},
-    {"word":"reserved","ipa":"/rɪˈzɜːrvd/","aviationMeaning":"adj. 已预留的；备用燃油、座位、频率或资源","generalMeaning":"adj. 已预订的；保留的"},
-    {"word":"reserves","ipa":"/rɪˈzɜːrvz/","aviationMeaning":"n. 储备（复数）；备用燃油、人员或设备资源","generalMeaning":"n. 储备（复数）；v. 保留"},
-    {"word":"reservoir","ipa":"/ˈrezərvwɑːr/","aviationMeaning":"n. 储液罐；液压、燃油或氧气系统储存介质的容器","generalMeaning":"n. 水库；储液罐"},
-    {"word":"reset","ipa":"/ˌriːˈset/","aviationMeaning":"v. 重置；将系统、开关或设备恢复到初始或正常状态","generalMeaning":"v. 重置；复位"},
-    {"word":"resets","ipa":"/ˌriːˈsets/","aviationMeaning":"v. 重置；使系统、开关或设备恢复初始状态","generalMeaning":"v. 重置；复位"},
-    {"word":"residential","ipa":"/ˌrezɪˈdenʃəl/","aviationMeaning":"adj. 住宅区的；机场周边有人居住的区域","generalMeaning":"adj. 住宅的；居住的"},
-    {"word":"residual","ipa":"/rɪˈzɪdʒuəl/","aviationMeaning":"adj. 残余的；剩余燃油、压力、污染物或风险","generalMeaning":"adj. 残余的；剩余的"},
-    {"word":"residue","ipa":"/ˈrezɪduː/","aviationMeaning":"n. 残留物；燃油、污染物、除冰液或材料残余","generalMeaning":"n. 残留物；残渣"},
-    {"word":"resilience","ipa":"/rɪˈzɪliəns/","aviationMeaning":"n. 韧性；机组、系统或组织在扰动后恢复安全运行的能力","generalMeaning":"n. 韧性；恢复力"},
-    {"word":"resilient","ipa":"/rɪˈzɪliənt/","aviationMeaning":"adj. 有韧性的；能在故障、压力或扰动后恢复的","generalMeaning":"adj. 有韧性的；有弹性的"},
-    {"word":"resistance","ipa":"/rɪˈzɪstəns/","aviationMeaning":"n. 阻力；空气阻力、电阻或对操作变化的抵抗","generalMeaning":"n. 抵抗；阻力"},
-    {"word":"resolution","ipa":"/ˌrezəˈluːʃən/","aviationMeaning":"n. 解决；防撞系统的决断提示或问题处置结果","generalMeaning":"n. 解决；决议；分辨率"},
-    {"word":"resolve","ipa":"/rɪˈzɑːlv/","aviationMeaning":"v. 解决；处理故障、冲突、告警或运行问题","generalMeaning":"v. 解决；决定"},
-    {"word":"resolved","ipa":"/rɪˈzɑːlvd/","aviationMeaning":"adj. 已解决的；故障、告警或运行问题已处理","generalMeaning":"adj. 已解决的"},
-    {"word":"resolves","ipa":"/rɪˈzɑːlvz/","aviationMeaning":"v. 解决；处理故障、冲突、告警或运行问题","generalMeaning":"v. 解决；决定"},
-    {"word":"resource","ipa":"/ˈriːsɔːrs/","aviationMeaning":"n. 资源；可用于飞行、维修、救援或运行的人员与设备","generalMeaning":"n. 资源；财力"},
-    {"word":"resources","ipa":"/ˈriːsɔːrsɪz/","aviationMeaning":"n. 资源（复数）；人员、设备、燃油或救援能力","generalMeaning":"n. 资源（复数）"},
-    {"word":"respect","ipa":"/rɪˈspekt/","aviationMeaning":"v. 遵守；尊重安全限制、程序或他人职责","generalMeaning":"v. 尊重；n. 尊敬"},
-    {"word":"respectful","ipa":"/rɪˈspektfəl/","aviationMeaning":"adj. 尊重的；在机组协作和通信中保持礼貌专业的","generalMeaning":"adj. 尊敬的；有礼貌的"},
-    {"word":"respectfully","ipa":"/rɪˈspektfəli/","aviationMeaning":"adv. 尊重地；以礼貌专业的方式提出意见或请求","generalMeaning":"adv. 尊敬地；有礼貌地"},
-    {"word":"respecting","ipa":"/rɪˈspektɪŋ/","aviationMeaning":"prep. 关于；涉及某项飞行、设备或程序","generalMeaning":"prep. 关于；涉及"},
-    {"word":"respond","ipa":"/rɪˈspɑːnd/","aviationMeaning":"v. 响应；对管制指令、告警或紧急情况作出反应","generalMeaning":"v. 回应；反应"},
-    {"word":"responded","ipa":"/rɪˈspɑːndɪd/","aviationMeaning":"v. 已响应；已对指令、告警或紧急情况作出反应","generalMeaning":"v. 已回应；反应"},
-    {"word":"responders","ipa":"/rɪˈspɑːndərz/","aviationMeaning":"n. 应急响应人员；参与事故、医疗或救援处置的人员","generalMeaning":"n. 响应者（复数）"},
-    {"word":"responding","ipa":"/rɪˈspɑːndɪŋ/","aviationMeaning":"v. 正响应；正在对指令、告警或紧急情况作出反应","generalMeaning":"v. 正回应；反应"},
-    {"word":"response","ipa":"/rɪˈspɑːns/","aviationMeaning":"n. 响应；对管制、告警、故障或紧急情况的反应","generalMeaning":"n. 回应；反应"},
-    {"word":"responses","ipa":"/rɪˈspɑːnsɪz/","aviationMeaning":"n. 响应（复数）；对多项指令、告警或事件的反应","generalMeaning":"n. 回应；反应（复数）"},
-    {"word":"responsibilities","ipa":"/rɪˌspɑːnsəˈbɪlətiz/","aviationMeaning":"n. 职责（复数）；机组、管制、维修或运行单位的责任","generalMeaning":"n. 责任；职责（复数）"},
-    {"word":"responsibility","ipa":"/rɪˌspɑːnsəˈbɪləti/","aviationMeaning":"n. 职责；对飞行、航空器或安全承担的责任","generalMeaning":"n. 责任；职责"},
-    {"word":"responsible","ipa":"/rɪˈspɑːnsəbəl/","aviationMeaning":"adj. 负责的；对飞行、设备或安全承担责任的","generalMeaning":"adj. 负责的；有责任的"},
-    {"word":"responsive","ipa":"/rɪˈspɑːnsɪv/","aviationMeaning":"adj. 响应灵敏的；系统、操纵或人员能及时反应的","generalMeaning":"adj. 响应的；反应敏捷的"},
-    {"word":"rest","ipa":"/rest/","aviationMeaning":"n. 休息；机组为避免疲劳而获得的休息时间","generalMeaning":"n. 休息；剩余部分"},
-    {"word":"restart","ipa":"/ˌriːˈstɑːrt/","aviationMeaning":"v. 重新启动；使发动机、系统或程序再次开始运行","generalMeaning":"v. 重新开始；重启"},
-    {"word":"restarted","ipa":"/ˌriːˈstɑːrtɪd/","aviationMeaning":"adj. 已重新启动的；发动机、系统或程序恢复运行","generalMeaning":"adj. 已重新开始的"},
-    {"word":"restarts","ipa":"/ˌriːˈstɑːrts/","aviationMeaning":"v. 重新启动；使发动机、系统或程序再次开始运行","generalMeaning":"v. 重新开始；重启"},
-    {"word":"rested","ipa":"/ˈrestɪd/","aviationMeaning":"adj. 已休息的；机组满足休息要求、具备执行任务状态","generalMeaning":"adj. 已休息的"}
+    {
+      "word": "removed",
+      "ipa": "/rɪˈmuːvd/",
+      "aviationMeaning": "adj. 已移除的；障碍物、冰雪、设备或故障部件已清除",
+      "generalMeaning": "adj. 已移除的；被搬走的"
+    },
+    {
+      "word": "removes",
+      "ipa": "/rɪˈmuːvz/",
+      "aviationMeaning": "v. 移除；清除障碍物、冰雪、设备或故障部件",
+      "generalMeaning": "v. 移除；搬走"
+    },
+    {
+      "word": "removing",
+      "ipa": "/rɪˈmuːvɪŋ/",
+      "aviationMeaning": "v. 正移除；正在清除障碍物、冰雪或故障部件",
+      "generalMeaning": "v. 正移除；搬走"
+    },
+    {
+      "word": "rendering",
+      "ipa": "/ˈrendərɪŋ/",
+      "aviationMeaning": "v. 使成为；使系统、设备或航空器处于某种状态",
+      "generalMeaning": "v. 使成为；呈现"
+    },
+    {
+      "word": "renewable",
+      "ipa": "/rɪˈnuːəbəl/",
+      "aviationMeaning": "adj. 可再生的；与机场或航空运营能源相关",
+      "generalMeaning": "adj. 可再生的；可更新的"
+    },
+    {
+      "word": "renob",
+      "ipa": "/ˈriːnɑːb/",
+      "aviationMeaning": "n. 疑似专有名称或原文缩写；需结合原文",
+      "generalMeaning": "n. 疑似专有名称；请结合原文"
+    },
+    {
+      "word": "reopened",
+      "ipa": "/ˌriːˈoʊpənd/",
+      "aviationMeaning": "adj. 已重新开放的；跑道、空域、机场或程序恢复可用",
+      "generalMeaning": "adj. 已重新打开的"
+    },
+    {
+      "word": "repair",
+      "ipa": "/rɪˈper/",
+      "aviationMeaning": "v. 修理；修复航空器、设备、道面或系统故障",
+      "generalMeaning": "v. 修理；n. 修理"
+    },
+    {
+      "word": "repaired",
+      "ipa": "/rɪˈperd/",
+      "aviationMeaning": "adj. 已修复的；航空器、设备、道面或系统故障已处理",
+      "generalMeaning": "adj. 已修理的"
+    },
+    {
+      "word": "repairing",
+      "ipa": "/rɪˈperɪŋ/",
+      "aviationMeaning": "v. 正修理；正在修复航空器、设备或系统故障",
+      "generalMeaning": "v. 正修理"
+    },
+    {
+      "word": "repairs",
+      "ipa": "/rɪˈperz/",
+      "aviationMeaning": "n. 修理（复数）；对航空器、设备、道面的修复工作",
+      "generalMeaning": "n. 修理（复数）；v. 修理"
+    },
+    {
+      "word": "repeat",
+      "ipa": "/rɪˈpiːt/",
+      "aviationMeaning": "v. 重复；再次通报、复述或执行指令",
+      "generalMeaning": "v. 重复；n. 重复"
+    },
+    {
+      "word": "repeated",
+      "ipa": "/rɪˈpiːtɪd/",
+      "aviationMeaning": "adj. 重复的；通话、告警、故障或操作再次出现的",
+      "generalMeaning": "adj. 重复的"
+    },
+    {
+      "word": "repeatedly",
+      "ipa": "/rɪˈpiːtɪdli/",
+      "aviationMeaning": "adv. 反复地；多次通报、执行或发生",
+      "generalMeaning": "adv. 反复地；再三地"
+    },
+    {
+      "word": "repeating",
+      "ipa": "/rɪˈpiːtɪŋ/",
+      "aviationMeaning": "v. 正重复；正在再次通报、复述或执行指令",
+      "generalMeaning": "v. 正重复"
+    },
+    {
+      "word": "repeats",
+      "ipa": "/rɪˈpiːts/",
+      "aviationMeaning": "v. 重复；再次通报、复述或执行指令",
+      "generalMeaning": "v. 重复"
+    },
+    {
+      "word": "replace",
+      "ipa": "/rɪˈpleɪs/",
+      "aviationMeaning": "v. 更换；替换故障部件、设备、机组或资料",
+      "generalMeaning": "v. 替换；取代"
+    },
+    {
+      "word": "replaced",
+      "ipa": "/rɪˈpleɪst/",
+      "aviationMeaning": "adj. 已更换的；故障部件、设备或资料已替换",
+      "generalMeaning": "adj. 已替换的"
+    },
+    {
+      "word": "replacement",
+      "ipa": "/rɪˈpleɪsmənt/",
+      "aviationMeaning": "n. 更换；替代部件、设备、机组或资料",
+      "generalMeaning": "n. 替换；替代物"
+    },
+    {
+      "word": "replaces",
+      "ipa": "/rɪˈpleɪsɪz/",
+      "aviationMeaning": "v. 更换；替换故障部件、设备、机组或资料",
+      "generalMeaning": "v. 替换；取代"
+    },
+    {
+      "word": "replacing",
+      "ipa": "/rɪˈpleɪsɪŋ/",
+      "aviationMeaning": "v. 正更换；正在替换故障部件、设备或资料",
+      "generalMeaning": "v. 正替换；取代"
+    },
+    {
+      "word": "replied",
+      "ipa": "/rɪˈplaɪd/",
+      "aviationMeaning": "v. 已答复；已回应管制、机组或地面单位通话",
+      "generalMeaning": "v. 已答复；回复"
+    },
+    {
+      "word": "replies",
+      "ipa": "/rɪˈplaɪz/",
+      "aviationMeaning": "v. 答复；回应管制、机组或地面单位通话",
+      "generalMeaning": "v. 答复；n. 回复（复数）"
+    },
+    {
+      "word": "reply",
+      "ipa": "/rɪˈplaɪ/",
+      "aviationMeaning": "v. 答复；回应管制、机组或地面单位通话",
+      "generalMeaning": "v. 答复；n. 回复"
+    },
+    {
+      "word": "report",
+      "ipa": "/rɪˈpɔːrt/",
+      "aviationMeaning": "v. 报告；通报位置、天气、故障或运行情况",
+      "generalMeaning": "v. 报告；n. 报告"
+    },
+    {
+      "word": "reported",
+      "ipa": "/rɪˈpɔːrtɪd/",
+      "aviationMeaning": "adj. 已报告的；已通报的位置、天气、故障或事件",
+      "generalMeaning": "adj. 已报告的"
+    },
+    {
+      "word": "reportedly",
+      "ipa": "/rɪˈpɔːrtɪdli/",
+      "aviationMeaning": "adv. 据报道；根据尚待核实的通报信息",
+      "generalMeaning": "adv. 据报道；据称"
+    },
+    {
+      "word": "reporter",
+      "ipa": "/rɪˈpɔːrtər/",
+      "aviationMeaning": "n. 报告人；提供飞行、天气或事件信息的人员",
+      "generalMeaning": "n. 记者；报告人"
+    },
+    {
+      "word": "reporting",
+      "ipa": "/rɪˈpɔːrtɪŋ/",
+      "aviationMeaning": "n. 报告；通报位置、天气、故障或运行状态",
+      "generalMeaning": "n. 报告；报道"
+    },
+    {
+      "word": "reports",
+      "ipa": "/rɪˈpɔːrts/",
+      "aviationMeaning": "n. 报告（复数）；飞行、天气、故障或事件通报",
+      "generalMeaning": "n. 报告（复数）；v. 报告"
+    },
+    {
+      "word": "repositioned",
+      "ipa": "/ˌriːpəˈzɪʃənd/",
+      "aviationMeaning": "adj. 已重新定位的；航空器、人员或设备已转移到新位置",
+      "generalMeaning": "adj. 已重新定位的"
+    },
+    {
+      "word": "represent",
+      "ipa": "/ˌreprɪˈzent/",
+      "aviationMeaning": "v. 表示；图表、数据或信号表示某种飞行状态",
+      "generalMeaning": "v. 代表；表示"
+    },
+    {
+      "word": "represents",
+      "ipa": "/ˌreprɪˈzents/",
+      "aviationMeaning": "v. 表示；图表、数据或信号表示飞行状态",
+      "generalMeaning": "v. 代表；表示"
+    },
+    {
+      "word": "reprogram",
+      "ipa": "/ˌriːˈproʊɡræm/",
+      "aviationMeaning": "v. 重新编程；修改航电、设备或系统的软件设置",
+      "generalMeaning": "v. 重新编程"
+    },
+    {
+      "word": "republic",
+      "ipa": "/rɪˈpʌblɪk/",
+      "aviationMeaning": "n. 共和国；机场、空域或航线所在国名称组成部分",
+      "generalMeaning": "n. 共和国"
+    },
+    {
+      "word": "request",
+      "ipa": "/rɪˈkwest/",
+      "aviationMeaning": "v. 请求；请求高度、航向、许可、服务或信息",
+      "generalMeaning": "v. 请求；n. 请求"
+    },
+    {
+      "word": "requested",
+      "ipa": "/rɪˈkwestɪd/",
+      "aviationMeaning": "adj. 被请求的；机组或管制已提出要求的",
+      "generalMeaning": "adj. 被请求的"
+    },
+    {
+      "word": "requesting",
+      "ipa": "/rɪˈkwestɪŋ/",
+      "aviationMeaning": "v. 正请求；正在请求高度、航向、许可或服务",
+      "generalMeaning": "v. 正请求"
+    },
+    {
+      "word": "requests",
+      "ipa": "/rɪˈkwests/",
+      "aviationMeaning": "n. 请求（复数）；高度、航向、许可或服务的申请",
+      "generalMeaning": "n. 请求（复数）；v. 请求"
+    },
+    {
+      "word": "require",
+      "ipa": "/rɪˈkwaɪər/",
+      "aviationMeaning": "v. 要求；规定必须执行检查、程序或限制",
+      "generalMeaning": "v. 要求；需要"
+    },
+    {
+      "word": "required",
+      "ipa": "/rɪˈkwaɪərd/",
+      "aviationMeaning": "adj. 必需的；法规、程序或安全标准要求的",
+      "generalMeaning": "adj. 必需的；被要求的"
+    },
+    {
+      "word": "requirement",
+      "ipa": "/rɪˈkwaɪərmənt/",
+      "aviationMeaning": "n. 要求；飞行、适航、培训或运行必须满足的条件",
+      "generalMeaning": "n. 要求；必要条件"
+    },
+    {
+      "word": "requirements",
+      "ipa": "/rɪˈkwaɪərmənts/",
+      "aviationMeaning": "n. 要求（复数）；飞行、适航、培训或运行条件",
+      "generalMeaning": "n. 要求；必要条件（复数）"
+    },
+    {
+      "word": "requires",
+      "ipa": "/rɪˈkwaɪərz/",
+      "aviationMeaning": "v. 要求；规定必须执行检查、程序或限制",
+      "generalMeaning": "v. 要求；需要"
+    },
+    {
+      "word": "requiring",
+      "ipa": "/rɪˈkwaɪərɪŋ/",
+      "aviationMeaning": "v. 需要；要求执行检查、程序或限制",
+      "generalMeaning": "v. 要求；需要"
+    },
+    {
+      "word": "rerouted",
+      "ipa": "/ˌriːˈraʊtɪd/",
+      "aviationMeaning": "adj. 已改航的；航空器已获指令改飞另一航路或目的地",
+      "generalMeaning": "adj. 已改道的"
+    },
+    {
+      "word": "rerouting",
+      "ipa": "/ˌriːˈraʊtɪŋ/",
+      "aviationMeaning": "n. 改航；改变航空器原定航路或目的地的过程",
+      "generalMeaning": "n. 改道；改线"
+    },
+    {
+      "word": "rescue",
+      "ipa": "/ˈreskjuː/",
+      "aviationMeaning": "n. 救援；对遇险航空器、旅客或机组的搜救行动",
+      "generalMeaning": "n. 救援；v. 救援"
+    },
+    {
+      "word": "research",
+      "ipa": "/rɪˈsɜːrtʃ/",
+      "aviationMeaning": "n. 研究；对航空安全、性能或运行问题的调查研究",
+      "generalMeaning": "n. 研究；v. 研究"
+    },
+    {
+      "word": "resequence",
+      "ipa": "/ˌriːˈsiːkwəns/",
+      "aviationMeaning": "v. 重新排序；调整进近、起飞或滑行航空器的顺序",
+      "generalMeaning": "v. 重新排序"
+    },
+    {
+      "word": "reservation",
+      "ipa": "/ˌrezərˈveɪʃən/",
+      "aviationMeaning": "n. 预订；旅客航班座位或服务的保留记录",
+      "generalMeaning": "n. 预订；保留"
+    },
+    {
+      "word": "reserve",
+      "ipa": "/rɪˈzɜːrv/",
+      "aviationMeaning": "n. 备用量；预留燃油、容量、人员或设备",
+      "generalMeaning": "n. 储备；v. 保留"
+    },
+    {
+      "word": "reserves",
+      "ipa": "/rɪˈzɜːrvz/",
+      "aviationMeaning": "n. 储备（复数）；备用燃油、人员或设备资源",
+      "generalMeaning": "n. 储备（复数）；v. 保留"
+    },
+    {
+      "word": "reservoir",
+      "ipa": "/ˈrezərvwɑːr/",
+      "aviationMeaning": "n. 储液罐；液压、燃油或氧气系统储存介质的容器",
+      "generalMeaning": "n. 水库；储液罐"
+    },
+    {
+      "word": "reset",
+      "ipa": "/ˌriːˈset/",
+      "aviationMeaning": "v. 重置；将系统、开关或设备恢复到初始或正常状态",
+      "generalMeaning": "v. 重置；复位"
+    },
+    {
+      "word": "residential",
+      "ipa": "/ˌrezɪˈdenʃəl/",
+      "aviationMeaning": "adj. 住宅区的；机场周边有人居住的区域",
+      "generalMeaning": "adj. 住宅的；居住的"
+    },
+    {
+      "word": "residue",
+      "ipa": "/ˈrezɪduː/",
+      "aviationMeaning": "n. 残留物；燃油、污染物、除冰液或材料残余",
+      "generalMeaning": "n. 残留物；残渣"
+    },
+    {
+      "word": "resistance",
+      "ipa": "/rɪˈzɪstəns/",
+      "aviationMeaning": "n. 阻力；空气阻力、电阻或对操作变化的抵抗",
+      "generalMeaning": "n. 抵抗；阻力"
+    },
+    {
+      "word": "resolution",
+      "ipa": "/ˌrezəˈluːʃən/",
+      "aviationMeaning": "n. 解决；防撞系统的决断提示或问题处置结果",
+      "generalMeaning": "n. 解决；决议；分辨率"
+    },
+    {
+      "word": "resolve",
+      "ipa": "/rɪˈzɑːlv/",
+      "aviationMeaning": "v. 解决；处理故障、冲突、告警或运行问题",
+      "generalMeaning": "v. 解决；决定"
+    },
+    {
+      "word": "resolved",
+      "ipa": "/rɪˈzɑːlvd/",
+      "aviationMeaning": "adj. 已解决的；故障、告警或运行问题已处理",
+      "generalMeaning": "adj. 已解决的"
+    },
+    {
+      "word": "resolves",
+      "ipa": "/rɪˈzɑːlvz/",
+      "aviationMeaning": "v. 解决；处理故障、冲突、告警或运行问题",
+      "generalMeaning": "v. 解决；决定"
+    },
+    {
+      "word": "resource",
+      "ipa": "/ˈriːsɔːrs/",
+      "aviationMeaning": "n. 资源；可用于飞行、维修、救援或运行的人员与设备",
+      "generalMeaning": "n. 资源；财力"
+    },
+    {
+      "word": "resources",
+      "ipa": "/ˈriːsɔːrsɪz/",
+      "aviationMeaning": "n. 资源（复数）；人员、设备、燃油或救援能力",
+      "generalMeaning": "n. 资源（复数）"
+    },
+    {
+      "word": "respect",
+      "ipa": "/rɪˈspekt/",
+      "aviationMeaning": "v. 遵守；尊重安全限制、程序或他人职责",
+      "generalMeaning": "v. 尊重；n. 尊敬"
+    },
+    {
+      "word": "respecting",
+      "ipa": "/rɪˈspektɪŋ/",
+      "aviationMeaning": "prep. 关于；涉及某项飞行、设备或程序",
+      "generalMeaning": "prep. 关于；涉及"
+    },
+    {
+      "word": "respond",
+      "ipa": "/rɪˈspɑːnd/",
+      "aviationMeaning": "v. 响应；对管制指令、告警或紧急情况作出反应",
+      "generalMeaning": "v. 回应；反应"
+    },
+    {
+      "word": "responded",
+      "ipa": "/rɪˈspɑːndɪd/",
+      "aviationMeaning": "v. 已响应；已对指令、告警或紧急情况作出反应",
+      "generalMeaning": "v. 已回应；反应"
+    },
+    {
+      "word": "responders",
+      "ipa": "/rɪˈspɑːndərz/",
+      "aviationMeaning": "n. 应急响应人员；参与事故、医疗或救援处置的人员",
+      "generalMeaning": "n. 响应者（复数）"
+    },
+    {
+      "word": "responding",
+      "ipa": "/rɪˈspɑːndɪŋ/",
+      "aviationMeaning": "v. 正响应；正在对指令、告警或紧急情况作出反应",
+      "generalMeaning": "v. 正回应；反应"
+    },
+    {
+      "word": "response",
+      "ipa": "/rɪˈspɑːns/",
+      "aviationMeaning": "n. 响应；对管制、告警、故障或紧急情况的反应",
+      "generalMeaning": "n. 回应；反应"
+    },
+    {
+      "word": "responses",
+      "ipa": "/rɪˈspɑːnsɪz/",
+      "aviationMeaning": "n. 响应（复数）；对多项指令、告警或事件的反应",
+      "generalMeaning": "n. 回应；反应（复数）"
+    },
+    {
+      "word": "responsibilities",
+      "ipa": "/rɪˌspɑːnsəˈbɪlətiz/",
+      "aviationMeaning": "n. 职责（复数）；机组、管制、维修或运行单位的责任",
+      "generalMeaning": "n. 责任；职责（复数）"
+    },
+    {
+      "word": "responsibility",
+      "ipa": "/rɪˌspɑːnsəˈbɪləti/",
+      "aviationMeaning": "n. 职责；对飞行、航空器或安全承担的责任",
+      "generalMeaning": "n. 责任；职责"
+    },
+    {
+      "word": "responsible",
+      "ipa": "/rɪˈspɑːnsəbəl/",
+      "aviationMeaning": "adj. 负责的；对飞行、设备或安全承担责任的",
+      "generalMeaning": "adj. 负责的；有责任的"
+    },
+    {
+      "word": "responsive",
+      "ipa": "/rɪˈspɑːnsɪv/",
+      "aviationMeaning": "adj. 响应灵敏的；系统、操纵或人员能及时反应的",
+      "generalMeaning": "adj. 响应的；反应敏捷的"
+    },
+    {
+      "word": "rest",
+      "ipa": "/rest/",
+      "aviationMeaning": "n. 休息；机组为避免疲劳而获得的休息时间",
+      "generalMeaning": "n. 休息；剩余部分"
+    },
+    {
+      "word": "restart",
+      "ipa": "/ˌriːˈstɑːrt/",
+      "aviationMeaning": "v. 重新启动；使发动机、系统或程序再次开始运行",
+      "generalMeaning": "v. 重新开始；重启"
+    },
+    {
+      "word": "restarted",
+      "ipa": "/ˌriːˈstɑːrtɪd/",
+      "aviationMeaning": "adj. 已重新启动的；发动机、系统或程序恢复运行",
+      "generalMeaning": "adj. 已重新开始的"
+    },
+    {
+      "word": "rested",
+      "ipa": "/ˈrestɪd/",
+      "aviationMeaning": "adj. 已休息的；机组满足休息要求、具备执行任务状态",
+      "generalMeaning": "adj. 已休息的"
+    }
   ]
 }

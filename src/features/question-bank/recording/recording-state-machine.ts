@@ -14,6 +14,7 @@ export type RecordingEvent =
   | { type: 'BEGIN_REPLACEMENT' }
   | { type: 'REQUEST_START' }
   | { type: 'PERMISSION_GRANTED' }
+  | { type: 'PERMISSION_PRIMED' }
   | { type: 'RECORDING_STARTED' }
   | { type: 'INTERRUPTED' }
   | { type: 'STOP_REQUESTED' }
@@ -38,6 +39,13 @@ export function recordingReducer(state: RecordingState, event: RecordingEvent): 
       return { ...state, error: undefined, phase: 'requestingPermission', replacing: state.replacing || Boolean(state.asset) };
     case 'PERMISSION_GRANTED':
       return state.phase === 'requestingPermission' ? { ...state, phase: 'preparing' } : state;
+    case 'PERMISSION_PRIMED':
+      if (state.phase !== 'requestingPermission') return state;
+      return {
+        asset: state.asset,
+        phase: state.asset && !state.replacing ? 'ready' : 'idle',
+        replacing: state.replacing,
+      };
     case 'RECORDING_STARTED':
       return state.phase === 'preparing' ? { ...state, phase: 'recording' } : state;
     case 'INTERRUPTED':

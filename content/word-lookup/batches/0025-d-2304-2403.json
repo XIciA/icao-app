@@ -1,105 +1,527 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"divides","ipa":"/dɪˈvaɪdz/","aviationMeaning":"v. 分开空域、流量或任务","generalMeaning":"v. 分开；划分"},
-    {"word":"dividing","ipa":"/dɪˈvaɪdɪŋ/","aviationMeaning":"v. 正分开空域、流量或任务","generalMeaning":"v. 正分开；划分"},
-    {"word":"division","ipa":"/dɪˈvɪʒən/","aviationMeaning":"n. 划分；管制区、部门或任务分工","generalMeaning":"n. 划分；部门"},
-    {"word":"dizziness","ipa":"/ˈdɪzinəs/","aviationMeaning":"n. 头晕；机组或旅客医疗状态","generalMeaning":"n. 头晕；眩晕"},
-    {"word":"dizzy","ipa":"/ˈdɪzi/","aviationMeaning":"adj. 头晕的；可能影响飞行适任性","generalMeaning":"adj. 头晕的"},
-    {"word":"dlh","ipa":"/ˌdiː el ˈeɪtʃ/","aviationMeaning":"n. 汉莎航空代码；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"dme","ipa":"/ˌdiː em ˈiː/","aviationMeaning":"n. 测距设备（缩写）","generalMeaning":"n. 测距设备"},
-    {"word":"do","ipa":"/duː/","aviationMeaning":"v. 做、执行程序或操作","generalMeaning":"v. 做；执行"},
-    {"word":"doctor","ipa":"/ˈdɑːktər/","aviationMeaning":"n. 医生；机上医疗支持人员","generalMeaning":"n. 医生；博士"},
-    {"word":"doctors","ipa":"/ˈdɑːktərz/","aviationMeaning":"n. 医生（复数）；机上医疗支持人员","generalMeaning":"n. 医生；博士（复数）"},
-    {"word":"document","ipa":"/ˈdɑːkjəmənt/","aviationMeaning":"n. 文件；运行、维修或适航文件","generalMeaning":"n. 文件；文档"},
-    {"word":"documentation","ipa":"/ˌdɑːkjəmenˈteɪʃən/","aviationMeaning":"n. 文件资料；运行、维修或适航记录","generalMeaning":"n. 文件；文档资料"},
-    {"word":"documented","ipa":"/ˈdɑːkjəmentɪd/","aviationMeaning":"adj. 已记录的；有文件证明的","generalMeaning":"adj. 已记录的"},
-    {"word":"documents","ipa":"/ˈdɑːkjəmənts/","aviationMeaning":"n. 文件；运行、维修或适航文件（复数）","generalMeaning":"n. 文件；文档（复数）"},
-    {"word":"does","ipa":"/dʌz/","aviationMeaning":"v. 做、执行或产生某结果","generalMeaning":"v. 做（do 的第三人称形式）"},
-    {"word":"doesn't","ipa":"/ˈdʌzənt/","aviationMeaning":"v. 不做；不满足某运行条件","generalMeaning":"v. 不（does not 的缩写）"},
-    {"word":"doesn’t","ipa":"/ˈdʌzənt/","aviationMeaning":"v. 不做；不满足某运行条件","generalMeaning":"v. 不（does not 的缩写）"},
-    {"word":"dog","ipa":"/dɔːɡ/","aviationMeaning":"n. 狗；机场动物侵入风险对象","generalMeaning":"n. 狗"},
-    {"word":"dogar","ipa":"/doʊˈɡɑːr/","aviationMeaning":"n. 多格拉；机场或地区名称","generalMeaning":"n. 专有地名"},
-    {"word":"doha","ipa":"/ˈdoʊhə/","aviationMeaning":"n. 多哈；机场所在城市","generalMeaning":"n. 多哈（卡塔尔首都）"},
-    {"word":"doing","ipa":"/ˈduːɪŋ/","aviationMeaning":"v. 正执行飞行、程序或操作","generalMeaning":"v. 正做；执行"},
-    {"word":"dollars","ipa":"/ˈdɑːlərz/","aviationMeaning":"n. 美元等货币（复数）；票价或成本单位","generalMeaning":"n. 美元（复数）"},
-    {"word":"domestic","ipa":"/dəˈmestɪk/","aviationMeaning":"adj. 国内的；国内航班或运行的","generalMeaning":"adj. 国内的；家庭的"},
-    {"word":"domestically","ipa":"/dəˈmestɪkli/","aviationMeaning":"adv. 在国内；用于国内运行","generalMeaning":"adv. 在国内；家庭式地"},
-    {"word":"dominate","ipa":"/ˈdɑːməneɪt/","aviationMeaning":"v. 占主导；影响主要运行趋势","generalMeaning":"v. 支配；占主导"},
-    {"word":"dominated","ipa":"/ˈdɑːməneɪtɪd/","aviationMeaning":"adj. 受主导影响的；由某因素主导的","generalMeaning":"adj. 被支配的"},
-    {"word":"don","ipa":"/dɑːn/","aviationMeaning":"n. 人名、呼号或专有名称","generalMeaning":"n. 唐（人名）"},
-    {"word":"don't","ipa":"/doʊnt/","aviationMeaning":"v. 不要；不执行某项操作","generalMeaning":"v. 不（do not 的缩写）"},
-    {"word":"don’t","ipa":"/doʊnt/","aviationMeaning":"v. 不要；不执行某项操作","generalMeaning":"v. 不（do not 的缩写）"},
-    {"word":"done","ipa":"/dʌn/","aviationMeaning":"adj. 已完成的；操作已结束","generalMeaning":"adj. 完成的；做好的"},
-    {"word":"donned","ipa":"/dɑːnd/","aviationMeaning":"v. 已穿戴防护装备或氧气面罩","generalMeaning":"v. 已穿上"},
-    {"word":"door","ipa":"/dɔːr/","aviationMeaning":"n. 舱门；驾驶舱门或货舱门","generalMeaning":"n. 门"},
-    {"word":"door-control","ipa":"/dɔːr kənˈtroʊl/","aviationMeaning":"n. 舱门控制","generalMeaning":"n. 门控制"},
-    {"word":"door-status","ipa":"/dɔːr ˈsteɪtəs/","aviationMeaning":"n. 舱门状态","generalMeaning":"n. 门状态"},
-    {"word":"doors","ipa":"/dɔːrz/","aviationMeaning":"n. 舱门（复数）","generalMeaning":"n. 门（复数）"},
-    {"word":"dosson","ipa":"/ˈdɑːsən/","aviationMeaning":"n. 航路点、呼号或专有名称","generalMeaning":"n. 专有名称；请结合原文"},
-    {"word":"double","ipa":"/ˈdʌbəl/","aviationMeaning":"adj. 双重的；v. 加倍；如双发动机","generalMeaning":"adj. 双倍的；v. 加倍"},
-    {"word":"double-checking","ipa":"/ˌdʌbəl ˈtʃekɪŋ/","aviationMeaning":"n. 双重检查；重复核对","generalMeaning":"n. 再次检查"},
-    {"word":"doubles","ipa":"/ˈdʌbəlz/","aviationMeaning":"v. 加倍；n. 双打或成对物","generalMeaning":"v. 加倍；n. 双打"},
-    {"word":"doubt","ipa":"/daʊt/","aviationMeaning":"n. 疑问；对信息或状态不确定","generalMeaning":"n. 怀疑；v. 怀疑"},
-    {"word":"doubtful","ipa":"/ˈdaʊtfəl/","aviationMeaning":"adj. 不确定的；可能不满足运行条件的","generalMeaning":"adj. 怀疑的；不确定的"},
-    {"word":"doused","ipa":"/daʊst/","aviationMeaning":"v. 已扑灭火焰或浇湿","generalMeaning":"v. 已浇灭；浸湿"},
-    {"word":"dove","ipa":"/doʊv/","aviationMeaning":"v. 俯冲；过去式形式","generalMeaning":"v. 潜水；俯冲"},
-    {"word":"down","ipa":"/daʊn/","aviationMeaning":"adv. 向下；下降；不可用的","generalMeaning":"adv. 向下；adj. 向下的"},
-    {"word":"down-and-locked","ipa":"/daʊn ænd lɑːkt/","aviationMeaning":"adj. 已放下并锁定的；通常指起落架","generalMeaning":"adj. 向下并锁定的"},
-    {"word":"down-slope","ipa":"/daʊn sloʊp/","aviationMeaning":"n. 下坡；下坡跑道坡度","generalMeaning":"n. 下坡"},
-    {"word":"downdraft","ipa":"/ˈdaʊndrɑːft/","aviationMeaning":"n. 下沉气流","generalMeaning":"n. 下沉气流"},
-    {"word":"downdrafts","ipa":"/ˈdaʊndrɑːfts/","aviationMeaning":"n. 下沉气流（复数）","generalMeaning":"n. 下沉气流（复数）"},
-    {"word":"downgrade","ipa":"/ˈdaʊnɡreɪd/","aviationMeaning":"v. 降级系统、能力或服务","generalMeaning":"v. 降级；降低"},
-    {"word":"downgraded","ipa":"/ˈdaʊnɡreɪdɪd/","aviationMeaning":"adj. 已降级的；系统或能力受限的","generalMeaning":"adj. 已降级的"},
-    {"word":"downhill","ipa":"/ˌdaʊnˈhɪl/","aviationMeaning":"adj. 下坡的；下坡跑道方向","generalMeaning":"adj. 下坡的"},
-    {"word":"downslope","ipa":"/ˈdaʊnsloʊp/","aviationMeaning":"n. 下坡；下坡跑道坡度","generalMeaning":"n. 下坡"},
-    {"word":"downstream","ipa":"/ˌdaʊnˈstriːm/","aviationMeaning":"adj. 下游的；后续流程或航路段的","generalMeaning":"adj. 下游的；后续的"},
-    {"word":"downward","ipa":"/ˈdaʊnwərd/","aviationMeaning":"adj. 向下的；下降方向的","generalMeaning":"adj. 向下的"},
-    {"word":"downwind","ipa":"/ˌdaʊnˈwɪnd/","aviationMeaning":"n. 顺风航段；顺风方向","generalMeaning":"adv. 顺风地"},
-    {"word":"draft","ipa":"/dræft/","aviationMeaning":"n. 草案；气流；v. 起草","generalMeaning":"n. 草稿；气流"},
-    {"word":"drag","ipa":"/dræɡ/","aviationMeaning":"n. 阻力；v. 拖拽","generalMeaning":"n. 拖拽；阻力"},
-    {"word":"dragon","ipa":"/ˈdræɡən/","aviationMeaning":"n. 龙；可能为呼号或名称","generalMeaning":"n. 龙"},
-    {"word":"drain","ipa":"/dreɪn/","aviationMeaning":"v. 排放燃油、液体或电力；n. 排水口","generalMeaning":"v. 排出；n. 下水道"},
-    {"word":"drainage","ipa":"/ˈdreɪnɪdʒ/","aviationMeaning":"n. 排水；跑道排水系统","generalMeaning":"n. 排水；排水系统"},
-    {"word":"drains","ipa":"/dreɪnz/","aviationMeaning":"v. 排放；n. 排水口（复数）","generalMeaning":"v. 排出；n. 下水道（复数）"},
-    {"word":"dramatic","ipa":"/drəˈmætɪk/","aviationMeaning":"adj. 剧烈的；显著的变化或事件","generalMeaning":"adj. 戏剧性的；显著的"},
-    {"word":"draw","ipa":"/drɔː/","aviationMeaning":"v. 绘制、吸入或消耗电流；n. 平局","generalMeaning":"v. 画；拉；n. 平局"},
-    {"word":"drawn","ipa":"/drɔːn/","aviationMeaning":"adj. 已绘制的；已拉出或已消耗的","generalMeaning":"adj. 已画出的；被拉的"},
-    {"word":"draws","ipa":"/drɔːz/","aviationMeaning":"v. 绘制、吸入或消耗电流","generalMeaning":"v. 画；拉"},
-    {"word":"drealmlifter","ipa":"/ˈdriːmˌlɪftər/","aviationMeaning":"n. 题库原文中 Dreamlifter 的疑似拼写错误","generalMeaning":"n. 疑似专有名词拼写错误；请结合原文"},
-    {"word":"drift","ipa":"/drɪft/","aviationMeaning":"n. 漂移；侧风漂移；v. 漂移","generalMeaning":"n. 漂流；v. 漂移"},
-    {"word":"drift-down","ipa":"/drɪft daʊn/","aviationMeaning":"n. 漂降；单发失效后的缓慢下降","generalMeaning":"n. 漂降"},
-    {"word":"drifted","ipa":"/ˈdrɪftɪd/","aviationMeaning":"v. 已漂移；受风偏移","generalMeaning":"v. 已漂流；漂移"},
-    {"word":"drifting","ipa":"/ˈdrɪftɪŋ/","aviationMeaning":"v. 正漂移；受风偏移","generalMeaning":"v. 正漂流；漂移"},
-    {"word":"drill","ipa":"/drɪl/","aviationMeaning":"n. 演练；训练程序；v. 钻孔","generalMeaning":"n. 钻头；演练；v. 钻孔"},
-    {"word":"drills","ipa":"/drɪlz/","aviationMeaning":"n. 演练（复数）；v. 钻孔","generalMeaning":"n. 演练；钻头（复数）"},
-    {"word":"drink","ipa":"/drɪŋk/","aviationMeaning":"n. 饮料；v. 饮用；客舱服务","generalMeaning":"n. 饮料；v. 喝"},
-    {"word":"drinking","ipa":"/ˈdrɪŋkɪŋ/","aviationMeaning":"n. 饮酒或饮水；影响飞行安全的酒精语境","generalMeaning":"n. 喝酒；饮水"},
-    {"word":"drinks","ipa":"/drɪŋks/","aviationMeaning":"n. 饮料（复数）；客舱服务","generalMeaning":"n. 饮料（复数）"},
-    {"word":"dripping","ipa":"/ˈdrɪpɪŋ/","aviationMeaning":"v. 正滴漏；液体系统泄漏迹象","generalMeaning":"v. 正滴落"},
-    {"word":"drips","ipa":"/drɪps/","aviationMeaning":"n. 滴漏（复数）；v. 滴下","generalMeaning":"n. 水滴（复数）；v. 滴下"},
-    {"word":"drive","ipa":"/draɪv/","aviationMeaning":"v. 驱动；驾驶地面车辆；n. 驱动装置","generalMeaning":"v. 驾驶；驱动"},
-    {"word":"driven","ipa":"/ˈdrɪvən/","aviationMeaning":"adj. 由系统驱动的；数据驱动的","generalMeaning":"adj. 被驱动的"},
-    {"word":"driver","ipa":"/ˈdraɪvər/","aviationMeaning":"n. 驾驶员；机场地面车辆驾驶员","generalMeaning":"n. 司机；驱动程序"},
-    {"word":"drivers","ipa":"/ˈdraɪvərz/","aviationMeaning":"n. 地面车辆驾驶员（复数）","generalMeaning":"n. 司机；驱动程序（复数）"},
-    {"word":"drives","ipa":"/draɪvz/","aviationMeaning":"v. 驱动系统或驾驶车辆","generalMeaning":"v. 驾驶；驱动"},
-    {"word":"driving","ipa":"/ˈdraɪvɪŋ/","aviationMeaning":"n. 驾驶地面车辆；驱动过程","generalMeaning":"n. 驾驶；驱动力"},
-    {"word":"drizzle","ipa":"/ˈdrɪzəl/","aviationMeaning":"n. 毛毛雨；轻微降水","generalMeaning":"n. 毛毛雨；v. 下毛毛雨"},
-    {"word":"drone","ipa":"/droʊn/","aviationMeaning":"n. 无人机；无人航空系统","generalMeaning":"n. 无人机；雄蜂"},
-    {"word":"drone's","ipa":"/droʊnz/","aviationMeaning":"n. 无人机的；表示所属关系","generalMeaning":"n. 无人机的；表示所属关系"},
-    {"word":"drones","ipa":"/droʊnz/","aviationMeaning":"n. 无人机（复数）","generalMeaning":"n. 无人机；雄蜂（复数）"},
-    {"word":"drop","ipa":"/drɑːp/","aviationMeaning":"v. 降低高度、投放物资；n. 下降","generalMeaning":"v. 掉落；n. 水滴"},
-    {"word":"droplets","ipa":"/ˈdrɑːpləts/","aviationMeaning":"n. 液滴；云、雾或降水微滴（复数）","generalMeaning":"n. 小水滴（复数）"},
-    {"word":"dropped","ipa":"/drɑːpt/","aviationMeaning":"v. 已下降、投放或掉落","generalMeaning":"v. 已掉落；下降"},
-    {"word":"dropping","ipa":"/ˈdrɑːpɪŋ/","aviationMeaning":"v. 正下降、投放或掉落","generalMeaning":"v. 正掉落；下降"},
-    {"word":"drops","ipa":"/drɑːps/","aviationMeaning":"n. 下降或液滴（复数）；v. 下降","generalMeaning":"n. 水滴（复数）；v. 掉落"},
-    {"word":"drowning","ipa":"/ˈdraʊnɪŋ/","aviationMeaning":"n. 溺水；水上迫降后的救援风险","generalMeaning":"n. 溺水"},
-    {"word":"drug","ipa":"/drʌɡ/","aviationMeaning":"n. 药物；飞行适任性与违禁药物","generalMeaning":"n. 药物；毒品"},
-    {"word":"drugs","ipa":"/drʌɡz/","aviationMeaning":"n. 药物或毒品（复数）；飞行适任性相关","generalMeaning":"n. 药物；毒品（复数）"},
-    {"word":"drunk","ipa":"/drʌŋk/","aviationMeaning":"adj. 醉酒的；不适合执行飞行任务","generalMeaning":"adj. 醉的"},
-    {"word":"dry","ipa":"/draɪ/","aviationMeaning":"adj. 干燥的；跑道无污染的","generalMeaning":"adj. 干的；v. 变干"},
-    {"word":"dry-air","ipa":"/draɪ er/","aviationMeaning":"n. 干空气；低湿度空气团","generalMeaning":"n. 干燥空气"},
-    {"word":"dry-runway","ipa":"/draɪ ˈrʌnweɪ/","aviationMeaning":"n. 干跑道；无可见污染物的跑道","generalMeaning":"n. 干燥跑道"},
-    {"word":"dsg","ipa":"/ˌdiː es ˈdʒiː/","aviationMeaning":"n. 航空资料中的缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"}
+    {
+      "word": "dividing",
+      "ipa": "/dɪˈvaɪdɪŋ/",
+      "aviationMeaning": "v. 正分开空域、流量或任务",
+      "generalMeaning": "v. 正分开；划分"
+    },
+    {
+      "word": "division",
+      "ipa": "/dɪˈvɪʒən/",
+      "aviationMeaning": "n. 划分；管制区、部门或任务分工",
+      "generalMeaning": "n. 划分；部门"
+    },
+    {
+      "word": "dizziness",
+      "ipa": "/ˈdɪzinəs/",
+      "aviationMeaning": "n. 头晕；机组或旅客医疗状态",
+      "generalMeaning": "n. 头晕；眩晕"
+    },
+    {
+      "word": "dizzy",
+      "ipa": "/ˈdɪzi/",
+      "aviationMeaning": "adj. 头晕的；可能影响飞行适任性",
+      "generalMeaning": "adj. 头晕的"
+    },
+    {
+      "word": "dlh",
+      "ipa": "/ˌdiː el ˈeɪtʃ/",
+      "aviationMeaning": "n. 汉莎航空代码；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "dme",
+      "ipa": "/ˌdiː em ˈiː/",
+      "aviationMeaning": "n. 测距设备（缩写）",
+      "generalMeaning": "n. 测距设备"
+    },
+    {
+      "word": "do",
+      "ipa": "/duː/",
+      "aviationMeaning": "v. 做、执行程序或操作",
+      "generalMeaning": "v. 做；执行"
+    },
+    {
+      "word": "doctor",
+      "ipa": "/ˈdɑːktər/",
+      "aviationMeaning": "n. 医生；机上医疗支持人员",
+      "generalMeaning": "n. 医生；博士"
+    },
+    {
+      "word": "doctors",
+      "ipa": "/ˈdɑːktərz/",
+      "aviationMeaning": "n. 医生（复数）；机上医疗支持人员",
+      "generalMeaning": "n. 医生；博士（复数）"
+    },
+    {
+      "word": "document",
+      "ipa": "/ˈdɑːkjəmənt/",
+      "aviationMeaning": "n. 文件；运行、维修或适航文件",
+      "generalMeaning": "n. 文件；文档"
+    },
+    {
+      "word": "documentation",
+      "ipa": "/ˌdɑːkjəmenˈteɪʃən/",
+      "aviationMeaning": "n. 文件资料；运行、维修或适航记录",
+      "generalMeaning": "n. 文件；文档资料"
+    },
+    {
+      "word": "documented",
+      "ipa": "/ˈdɑːkjəmentɪd/",
+      "aviationMeaning": "adj. 已记录的；有文件证明的",
+      "generalMeaning": "adj. 已记录的"
+    },
+    {
+      "word": "documents",
+      "ipa": "/ˈdɑːkjəmənts/",
+      "aviationMeaning": "n. 文件；运行、维修或适航文件（复数）",
+      "generalMeaning": "n. 文件；文档（复数）"
+    },
+    {
+      "word": "does",
+      "ipa": "/dʌz/",
+      "aviationMeaning": "v. 做、执行或产生某结果",
+      "generalMeaning": "v. 做（do 的第三人称形式）"
+    },
+    {
+      "word": "doesn't",
+      "ipa": "/ˈdʌzənt/",
+      "aviationMeaning": "v. 不做；不满足某运行条件",
+      "generalMeaning": "v. 不（does not 的缩写）"
+    },
+    {
+      "word": "doesn’t",
+      "ipa": "/ˈdʌzənt/",
+      "aviationMeaning": "v. 不做；不满足某运行条件",
+      "generalMeaning": "v. 不（does not 的缩写）"
+    },
+    {
+      "word": "dog",
+      "ipa": "/dɔːɡ/",
+      "aviationMeaning": "n. 狗；机场动物侵入风险对象",
+      "generalMeaning": "n. 狗"
+    },
+    {
+      "word": "dogar",
+      "ipa": "/doʊˈɡɑːr/",
+      "aviationMeaning": "n. 多格拉；机场或地区名称",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "doha",
+      "ipa": "/ˈdoʊhə/",
+      "aviationMeaning": "n. 多哈；机场所在城市",
+      "generalMeaning": "n. 多哈（卡塔尔首都）"
+    },
+    {
+      "word": "doing",
+      "ipa": "/ˈduːɪŋ/",
+      "aviationMeaning": "v. 正执行飞行、程序或操作",
+      "generalMeaning": "v. 正做；执行"
+    },
+    {
+      "word": "dollars",
+      "ipa": "/ˈdɑːlərz/",
+      "aviationMeaning": "n. 美元等货币（复数）；票价或成本单位",
+      "generalMeaning": "n. 美元（复数）"
+    },
+    {
+      "word": "domestic",
+      "ipa": "/dəˈmestɪk/",
+      "aviationMeaning": "adj. 国内的；国内航班或运行的",
+      "generalMeaning": "adj. 国内的；家庭的"
+    },
+    {
+      "word": "domestically",
+      "ipa": "/dəˈmestɪkli/",
+      "aviationMeaning": "adv. 在国内；用于国内运行",
+      "generalMeaning": "adv. 在国内；家庭式地"
+    },
+    {
+      "word": "dominate",
+      "ipa": "/ˈdɑːməneɪt/",
+      "aviationMeaning": "v. 占主导；影响主要运行趋势",
+      "generalMeaning": "v. 支配；占主导"
+    },
+    {
+      "word": "dominated",
+      "ipa": "/ˈdɑːməneɪtɪd/",
+      "aviationMeaning": "adj. 受主导影响的；由某因素主导的",
+      "generalMeaning": "adj. 被支配的"
+    },
+    {
+      "word": "don",
+      "ipa": "/dɑːn/",
+      "aviationMeaning": "n. 人名、呼号或专有名称",
+      "generalMeaning": "n. 唐（人名）"
+    },
+    {
+      "word": "don't",
+      "ipa": "/doʊnt/",
+      "aviationMeaning": "v. 不要；不执行某项操作",
+      "generalMeaning": "v. 不（do not 的缩写）"
+    },
+    {
+      "word": "don’t",
+      "ipa": "/doʊnt/",
+      "aviationMeaning": "v. 不要；不执行某项操作",
+      "generalMeaning": "v. 不（do not 的缩写）"
+    },
+    {
+      "word": "done",
+      "ipa": "/dʌn/",
+      "aviationMeaning": "adj. 已完成的；操作已结束",
+      "generalMeaning": "adj. 完成的；做好的"
+    },
+    {
+      "word": "donned",
+      "ipa": "/dɑːnd/",
+      "aviationMeaning": "v. 已穿戴防护装备或氧气面罩",
+      "generalMeaning": "v. 已穿上"
+    },
+    {
+      "word": "door",
+      "ipa": "/dɔːr/",
+      "aviationMeaning": "n. 舱门；驾驶舱门或货舱门",
+      "generalMeaning": "n. 门"
+    },
+    {
+      "word": "doors",
+      "ipa": "/dɔːrz/",
+      "aviationMeaning": "n. 舱门（复数）",
+      "generalMeaning": "n. 门（复数）"
+    },
+    {
+      "word": "dosson",
+      "ipa": "/ˈdɑːsən/",
+      "aviationMeaning": "n. 航路点、呼号或专有名称",
+      "generalMeaning": "n. 专有名称；请结合原文"
+    },
+    {
+      "word": "double",
+      "ipa": "/ˈdʌbəl/",
+      "aviationMeaning": "adj. 双重的；v. 加倍；如双发动机",
+      "generalMeaning": "adj. 双倍的；v. 加倍"
+    },
+    {
+      "word": "double-checking",
+      "ipa": "/ˌdʌbəl ˈtʃekɪŋ/",
+      "aviationMeaning": "n. 双重检查；重复核对",
+      "generalMeaning": "n. 再次检查"
+    },
+    {
+      "word": "doubles",
+      "ipa": "/ˈdʌbəlz/",
+      "aviationMeaning": "v. 加倍；n. 双打或成对物",
+      "generalMeaning": "v. 加倍；n. 双打"
+    },
+    {
+      "word": "doubt",
+      "ipa": "/daʊt/",
+      "aviationMeaning": "n. 疑问；对信息或状态不确定",
+      "generalMeaning": "n. 怀疑；v. 怀疑"
+    },
+    {
+      "word": "doused",
+      "ipa": "/daʊst/",
+      "aviationMeaning": "v. 已扑灭火焰或浇湿",
+      "generalMeaning": "v. 已浇灭；浸湿"
+    },
+    {
+      "word": "dove",
+      "ipa": "/doʊv/",
+      "aviationMeaning": "v. 俯冲；过去式形式",
+      "generalMeaning": "v. 潜水；俯冲"
+    },
+    {
+      "word": "down",
+      "ipa": "/daʊn/",
+      "aviationMeaning": "adv. 向下；下降；不可用的",
+      "generalMeaning": "adv. 向下；adj. 向下的"
+    },
+    {
+      "word": "down-slope",
+      "ipa": "/daʊn sloʊp/",
+      "aviationMeaning": "n. 下坡；下坡跑道坡度",
+      "generalMeaning": "n. 下坡"
+    },
+    {
+      "word": "downdraft",
+      "ipa": "/ˈdaʊndrɑːft/",
+      "aviationMeaning": "n. 下沉气流",
+      "generalMeaning": "n. 下沉气流"
+    },
+    {
+      "word": "downdrafts",
+      "ipa": "/ˈdaʊndrɑːfts/",
+      "aviationMeaning": "n. 下沉气流（复数）",
+      "generalMeaning": "n. 下沉气流（复数）"
+    },
+    {
+      "word": "downgrade",
+      "ipa": "/ˈdaʊnɡreɪd/",
+      "aviationMeaning": "v. 降级系统、能力或服务",
+      "generalMeaning": "v. 降级；降低"
+    },
+    {
+      "word": "downgraded",
+      "ipa": "/ˈdaʊnɡreɪdɪd/",
+      "aviationMeaning": "adj. 已降级的；系统或能力受限的",
+      "generalMeaning": "adj. 已降级的"
+    },
+    {
+      "word": "downhill",
+      "ipa": "/ˌdaʊnˈhɪl/",
+      "aviationMeaning": "adj. 下坡的；下坡跑道方向",
+      "generalMeaning": "adj. 下坡的"
+    },
+    {
+      "word": "downslope",
+      "ipa": "/ˈdaʊnsloʊp/",
+      "aviationMeaning": "n. 下坡；下坡跑道坡度",
+      "generalMeaning": "n. 下坡"
+    },
+    {
+      "word": "downstream",
+      "ipa": "/ˌdaʊnˈstriːm/",
+      "aviationMeaning": "adj. 下游的；后续流程或航路段的",
+      "generalMeaning": "adj. 下游的；后续的"
+    },
+    {
+      "word": "downward",
+      "ipa": "/ˈdaʊnwərd/",
+      "aviationMeaning": "adj. 向下的；下降方向的",
+      "generalMeaning": "adj. 向下的"
+    },
+    {
+      "word": "downwind",
+      "ipa": "/ˌdaʊnˈwɪnd/",
+      "aviationMeaning": "n. 顺风航段；顺风方向",
+      "generalMeaning": "adv. 顺风地"
+    },
+    {
+      "word": "draft",
+      "ipa": "/dræft/",
+      "aviationMeaning": "n. 草案；气流；v. 起草",
+      "generalMeaning": "n. 草稿；气流"
+    },
+    {
+      "word": "drag",
+      "ipa": "/dræɡ/",
+      "aviationMeaning": "n. 阻力；v. 拖拽",
+      "generalMeaning": "n. 拖拽；阻力"
+    },
+    {
+      "word": "dragon",
+      "ipa": "/ˈdræɡən/",
+      "aviationMeaning": "n. 龙；可能为呼号或名称",
+      "generalMeaning": "n. 龙"
+    },
+    {
+      "word": "drain",
+      "ipa": "/dreɪn/",
+      "aviationMeaning": "v. 排放燃油、液体或电力；n. 排水口",
+      "generalMeaning": "v. 排出；n. 下水道"
+    },
+    {
+      "word": "drainage",
+      "ipa": "/ˈdreɪnɪdʒ/",
+      "aviationMeaning": "n. 排水；跑道排水系统",
+      "generalMeaning": "n. 排水；排水系统"
+    },
+    {
+      "word": "drains",
+      "ipa": "/dreɪnz/",
+      "aviationMeaning": "v. 排放；n. 排水口（复数）",
+      "generalMeaning": "v. 排出；n. 下水道（复数）"
+    },
+    {
+      "word": "dramatic",
+      "ipa": "/drəˈmætɪk/",
+      "aviationMeaning": "adj. 剧烈的；显著的变化或事件",
+      "generalMeaning": "adj. 戏剧性的；显著的"
+    },
+    {
+      "word": "drawn",
+      "ipa": "/drɔːn/",
+      "aviationMeaning": "adj. 已绘制的；已拉出或已消耗的",
+      "generalMeaning": "adj. 已画出的；被拉的"
+    },
+    {
+      "word": "draws",
+      "ipa": "/drɔːz/",
+      "aviationMeaning": "v. 绘制、吸入或消耗电流",
+      "generalMeaning": "v. 画；拉"
+    },
+    {
+      "word": "drift",
+      "ipa": "/drɪft/",
+      "aviationMeaning": "n. 漂移；侧风漂移；v. 漂移",
+      "generalMeaning": "n. 漂流；v. 漂移"
+    },
+    {
+      "word": "drifted",
+      "ipa": "/ˈdrɪftɪd/",
+      "aviationMeaning": "v. 已漂移；受风偏移",
+      "generalMeaning": "v. 已漂流；漂移"
+    },
+    {
+      "word": "drifting",
+      "ipa": "/ˈdrɪftɪŋ/",
+      "aviationMeaning": "v. 正漂移；受风偏移",
+      "generalMeaning": "v. 正漂流；漂移"
+    },
+    {
+      "word": "drills",
+      "ipa": "/drɪlz/",
+      "aviationMeaning": "n. 演练（复数）；v. 钻孔",
+      "generalMeaning": "n. 演练；钻头（复数）"
+    },
+    {
+      "word": "drink",
+      "ipa": "/drɪŋk/",
+      "aviationMeaning": "n. 饮料；v. 饮用；客舱服务",
+      "generalMeaning": "n. 饮料；v. 喝"
+    },
+    {
+      "word": "drinking",
+      "ipa": "/ˈdrɪŋkɪŋ/",
+      "aviationMeaning": "n. 饮酒或饮水；影响飞行安全的酒精语境",
+      "generalMeaning": "n. 喝酒；饮水"
+    },
+    {
+      "word": "drinks",
+      "ipa": "/drɪŋks/",
+      "aviationMeaning": "n. 饮料（复数）；客舱服务",
+      "generalMeaning": "n. 饮料（复数）"
+    },
+    {
+      "word": "dripping",
+      "ipa": "/ˈdrɪpɪŋ/",
+      "aviationMeaning": "v. 正滴漏；液体系统泄漏迹象",
+      "generalMeaning": "v. 正滴落"
+    },
+    {
+      "word": "drips",
+      "ipa": "/drɪps/",
+      "aviationMeaning": "n. 滴漏（复数）；v. 滴下",
+      "generalMeaning": "n. 水滴（复数）；v. 滴下"
+    },
+    {
+      "word": "drive",
+      "ipa": "/draɪv/",
+      "aviationMeaning": "v. 驱动；驾驶地面车辆；n. 驱动装置",
+      "generalMeaning": "v. 驾驶；驱动"
+    },
+    {
+      "word": "driven",
+      "ipa": "/ˈdrɪvən/",
+      "aviationMeaning": "adj. 由系统驱动的；数据驱动的",
+      "generalMeaning": "adj. 被驱动的"
+    },
+    {
+      "word": "driver",
+      "ipa": "/ˈdraɪvər/",
+      "aviationMeaning": "n. 驾驶员；机场地面车辆驾驶员",
+      "generalMeaning": "n. 司机；驱动程序"
+    },
+    {
+      "word": "drivers",
+      "ipa": "/ˈdraɪvərz/",
+      "aviationMeaning": "n. 地面车辆驾驶员（复数）",
+      "generalMeaning": "n. 司机；驱动程序（复数）"
+    },
+    {
+      "word": "driving",
+      "ipa": "/ˈdraɪvɪŋ/",
+      "aviationMeaning": "n. 驾驶地面车辆；驱动过程",
+      "generalMeaning": "n. 驾驶；驱动力"
+    },
+    {
+      "word": "drizzle",
+      "ipa": "/ˈdrɪzəl/",
+      "aviationMeaning": "n. 毛毛雨；轻微降水",
+      "generalMeaning": "n. 毛毛雨；v. 下毛毛雨"
+    },
+    {
+      "word": "drone",
+      "ipa": "/droʊn/",
+      "aviationMeaning": "n. 无人机；无人航空系统",
+      "generalMeaning": "n. 无人机；雄蜂"
+    },
+    {
+      "word": "drone's",
+      "ipa": "/droʊnz/",
+      "aviationMeaning": "n. 无人机的；表示所属关系",
+      "generalMeaning": "n. 无人机的；表示所属关系"
+    },
+    {
+      "word": "drones",
+      "ipa": "/droʊnz/",
+      "aviationMeaning": "n. 无人机（复数）",
+      "generalMeaning": "n. 无人机；雄蜂（复数）"
+    },
+    {
+      "word": "drop",
+      "ipa": "/drɑːp/",
+      "aviationMeaning": "v. 降低高度、投放物资；n. 下降",
+      "generalMeaning": "v. 掉落；n. 水滴"
+    },
+    {
+      "word": "droplets",
+      "ipa": "/ˈdrɑːpləts/",
+      "aviationMeaning": "n. 液滴；云、雾或降水微滴（复数）",
+      "generalMeaning": "n. 小水滴（复数）"
+    },
+    {
+      "word": "dropped",
+      "ipa": "/drɑːpt/",
+      "aviationMeaning": "v. 已下降、投放或掉落",
+      "generalMeaning": "v. 已掉落；下降"
+    },
+    {
+      "word": "dropping",
+      "ipa": "/ˈdrɑːpɪŋ/",
+      "aviationMeaning": "v. 正下降、投放或掉落",
+      "generalMeaning": "v. 正掉落；下降"
+    },
+    {
+      "word": "drops",
+      "ipa": "/drɑːps/",
+      "aviationMeaning": "n. 下降或液滴（复数）；v. 下降",
+      "generalMeaning": "n. 水滴（复数）；v. 掉落"
+    },
+    {
+      "word": "drug",
+      "ipa": "/drʌɡ/",
+      "aviationMeaning": "n. 药物；飞行适任性与违禁药物",
+      "generalMeaning": "n. 药物；毒品"
+    },
+    {
+      "word": "drugs",
+      "ipa": "/drʌɡz/",
+      "aviationMeaning": "n. 药物或毒品（复数）；飞行适任性相关",
+      "generalMeaning": "n. 药物；毒品（复数）"
+    },
+    {
+      "word": "drunk",
+      "ipa": "/drʌŋk/",
+      "aviationMeaning": "adj. 醉酒的；不适合执行飞行任务",
+      "generalMeaning": "adj. 醉的"
+    },
+    {
+      "word": "dry",
+      "ipa": "/draɪ/",
+      "aviationMeaning": "adj. 干燥的；跑道无污染的",
+      "generalMeaning": "adj. 干的；v. 变干"
+    },
+    {
+      "word": "dsg",
+      "ipa": "/ˌdiː es ˈdʒiː/",
+      "aviationMeaning": "n. 航空资料中的缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    }
   ]
 }

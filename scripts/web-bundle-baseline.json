@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "capturedFrom": "pre-phase-2 source-map web export",
+  "mainBundle": {
+    "rawBytes": 12688649,
+    "gzipBytes": 2462167,
+    "brotliQ6Bytes": 1972126
+  },
+  "limits": {
+    "mainJavaScriptFiles": 1,
+    "lucideIconModules": 110,
+    "minimumRawReductionBytes": 1000000,
+    "minimumGzipReductionBytes": 100000,
+    "minimumBrotliQ6ReductionBytes": 100000
+  },
+  "allowedDuplicatePackages": {
+    "react-is": ["16.7.0", "19.2.7"],
+    "react-native-is-edge-to-edge": ["1.2.1", "1.3.1"],
+    "use-latest-callback": ["0.2.1", "0.2.4"]
+  }
+}

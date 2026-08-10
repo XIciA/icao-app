@@ -54,7 +54,7 @@
       "taskTitle": "ACA 123-6",
       "audioText": "C: ACA 123, have you received departure information?\nB: You have got information K, but you don’t know the present information code. You ask about it.",
       "audioTextZh": "C: ACA 123，你收到离场信息了吗？\nB: 你已收到信息 K，但不知道当前信息代码。你询问。",
-      "referenceText": "We have received Information K. What is the current information ? ACA 123.",
+      "referenceText": "We have received Information K. What is the current information? ACA 123.",
       "referenceTextZh": "我们已收到信息 K。当前信息是什么？ACA 123。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1843.mp3"
     },
@@ -81,7 +81,7 @@
       "taskTitle": "ACA 123-9",
       "audioText": "C: ACA 123, you would expect a delay of 1 hour if you don’t make this slot.\nB: Tell the controller that the moving walkway has been fixed. All the passengers will be on the aircraft in a few minutes, but the luggage loading is too slow due an old fashioned loader, you request the controller to inform the ground handling and send a new loader as soon as possible.",
       "audioTextZh": "C: ACA 123，如果你赶不上这个时刻，预计会延误 1 小时。\nB: 告诉管制员自动步道已经修好。所有旅客几分钟内会上机，但由于一台老式装载机，行李装载太慢，你请求管制员通知地服并尽快派一台新装载机。",
-      "referenceText": "Ground, ACA 123, the moving jet-way has been fixed. All the passengers will finish boarding in a couple of minutes, but luggage loading has not completed due a slow moving loader, please inform the ground handling to send another 1 as quickly as possible.",
+      "referenceText": "Ground, ACA 123, the moving jet-way has been fixed. All the passengers will finish boarding in a couple of minutes, but luggage loading has not been completed due to a slow-moving loader. Please inform the ground handling to send another one as quickly as possible.",
       "referenceTextZh": "地面，ACA 123，自动步道已经修好。所有旅客几分钟内完成登机，但由于装载机移动慢，行李装载尚未完成，请通知地服尽快再派一台。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1846.mp3"
     },

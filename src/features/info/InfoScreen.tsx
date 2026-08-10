@@ -16,7 +16,7 @@ import {
   Star,
   Upload,
   X,
-} from 'lucide-react-native';
+} from '@/components/ui/icons';
 import { useEffect, useMemo, useState } from 'react';
 import { Alert, Image, Linking, Platform, Pressable, Share, StyleSheet, View } from 'react-native';
 
@@ -68,7 +68,7 @@ function InfoHub() {
       <View style={styles.content}>
         <Section title="帮助">
           <Row icon={HelpCircle} label="帮助中心" hint="查看常见问题" first onPress={() => router.push('/info/help')} />
-          <Row icon={Info} label="关于飞猪 ICAO" hint={`版本 ${APP_DISPLAY_VERSION}`} onPress={() => router.push('/info/about')} />
+          <Row icon={Info} label="关于听你五个" hint={`版本 ${APP_DISPLAY_VERSION}`} onPress={() => router.push('/info/about')} />
         </Section>
         <Section title="法律条款">
           <Row icon={FileText} label="用户协议" first onPress={() => router.push('/info/agreement')} />
@@ -84,7 +84,7 @@ function HelpPage() {
   const faqs = [
     ['如何切换不同的题库？', '在题库首页进入对应模块，即可切换学习内容。'],
     ['我的标注和笔记会同步吗？', Platform.OS === 'web' ? 'Web 体验版只保存在当前浏览器，不与 App 同步；清理浏览器数据后会丢失。' : '登录后，支持的学习数据会通过现有同步服务保存。'],
-    ['随身听支持后台播放吗？', '后台播放能力以当前 Development Build 的系统行为为准。'],
+    ['随身听支持后台播放吗？', '支持后台播放和系统媒体控制；具体表现取决于系统设置与当前 App 版本。'],
     ['如何提交内容纠错？', '在刷题学习页顶部点击“纠错”，系统会自动附带当前题目信息。'],
   ];
   return (
@@ -349,20 +349,20 @@ function AboutPage() {
   const router = useRouter();
 
   async function handleRate() {
-    const url = Platform.OS === 'ios' ? 'https://apps.apple.com' : 'market://details?id=com.icao.app';
+    const url = Platform.OS === 'ios' ? 'https://apps.apple.com' : 'market://details?id=com.readyoufife.app';
     const can = await Linking.canOpenURL(url).catch(() => false);
     if (can) {
       await Linking.openURL(url);
     } else {
-      Alert.alert('感谢支持', '当前处于内测阶段，暂未上线 App Store 应用商店。');
+      Alert.alert('暂时无法打开应用商店', '请稍后在对应应用商店中搜索“听你五个”。');
     }
   }
 
   async function handleShare() {
     try {
       await Share.share({
-        message: `飞猪 ICAO - 航空英语·陆空通话备考助手\n版本：${APP_DISPLAY_VERSION}\n与我一起高效备考 ICAO 英语！`,
-        title: '飞猪 ICAO 备考助手',
+        message: `听你五个（Read You 5）- 航空英语·陆空通话备考助手\n版本：${APP_DISPLAY_VERSION}\n与我一起高效备考 ICAO 英语！`,
+        title: '听你五个备考助手',
       });
     } catch {
       // ignore
@@ -370,20 +370,21 @@ function AboutPage() {
   }
 
   function handleCheckUpdate() {
-    Alert.alert('检查更新', `当前版本（${APP_DISPLAY_VERSION}）已是最新版本。`);
+    Alert.alert('检查更新', `当前版本为 ${APP_DISPLAY_VERSION}。请前往对应应用商店查看是否有可用更新。`);
   }
 
   return (
-    <Page title="关于飞猪 ICAO">
+    <Page title="关于听你五个">
       <View style={styles.aboutHero}>
         <View style={styles.logo}><Upload color={colors.primaryForeground} size={28} style={{ transform: [{ rotate: '-45deg' }] }} /></View>
-        <AppText variant="sectionTitle">飞猪 ICAO</AppText>
+        <AppText variant="sectionTitle">听你五个</AppText>
+        <AppText variant="micro">Read You 5</AppText>
         <AppText variant="caption">航空英语 · 陆空通话备考助手</AppText>
         <View style={styles.versionPill}><AppText variant="micro">版本 {APP_DISPLAY_VERSION}</AppText></View>
       </View>
       <View style={styles.content}>
         <Section>
-          <Row first icon={RefreshCcw} label="检查更新" onPress={handleCheckUpdate} value="已是最新版本" />
+          <Row first icon={RefreshCcw} label="检查更新" onPress={handleCheckUpdate} value={`当前 ${APP_DISPLAY_VERSION}`} />
           <Row hint="去应用商店支持我们" icon={Star} label="给我们评分" onPress={() => void handleRate()} />
           <Row icon={Upload} label="分享给朋友" onPress={() => void handleShare()} />
         </Section>
@@ -391,7 +392,7 @@ function AboutPage() {
           <Row first icon={FileText} label="用户协议" onPress={() => router.push('/info/agreement')} />
           <Row icon={ShieldCheck} label="隐私政策" onPress={() => router.push('/info/privacy')} />
         </Section>
-        <AppText style={styles.copyright} variant="micro">Copyright © 2026 飞猪 ICAO{`\n`}All rights reserved</AppText>
+        <AppText style={styles.copyright} variant="micro">Copyright © 2026 听你五个{`\n`}All rights reserved</AppText>
       </View>
     </Page>
   );
@@ -400,24 +401,34 @@ function AboutPage() {
 function LegalPage({ page }: { page: 'agreement' | 'privacy' }) {
   const isAgreement = page === 'agreement';
   const intro = isAgreement
-    ? '欢迎使用飞猪 ICAO。在注册或使用本应用前，请仔细阅读并充分理解本协议各条款。'
-    : '我们非常重视您的个人信息与隐私保护。本政策说明我们如何收集、使用、存储和保护您的信息，请您仔细阅读。';
+    ? '欢迎使用由云启航科（成都）科技有限公司提供的听你五个。在登录或使用本应用前，请仔细阅读并充分理解本协议。'
+    : '云启航科（成都）科技有限公司重视您的个人信息与隐私。本政策按听你五个当前实际功能说明数据的收集、使用、存储、共享和删除方式。';
   const clauses = isAgreement ? [
-    ['协议的接受与变更', '本协议构成您与本应用之间就使用服务达成的完整约定。我们可能根据业务需要不时更新本协议。'],
-    ['账号注册与使用', '您应提供真实、准确的注册信息，并妥善保管账号与密码。因保管不当造成的损失由您自行承担。'],
-    ['学习内容与知识产权', '应用内题库、音频、课程及文章等内容受知识产权法律保护，仅供个人学习使用。'],
-    ['用户行为规范', '不得利用本服务从事违法违规活动，不得干扰平台正常运行。'],
+    ['协议主体与适用范围', '本协议是您与云启航科（成都）科技有限公司就使用听你五个 iOS、Android 应用及其相关服务达成的约定。您开始使用服务即表示已阅读并同意本协议及隐私政策。'],
+    ['账号与邀请码', '本应用目前通过专属邀请码建立账号。您应妥善保管邀请码和登录状态，不得转售、出租或以其他方式允许未经授权的第三方使用。发现异常登录时，请及时退出全部设备并联系支持。'],
+    ['学习服务与 AI 边界', '本应用提供航空英语题库、音频、录音、转写和 AI 辅助反馈。练习结果仅供学习参考，不代表 ICAO、民航监管机构、考试机构或用人单位的官方评分、认证或专业结论。'],
+    ['内容与知识产权', '题库、音频、课程、文章、界面、软件及相关成果受知识产权法律保护。除法律允许或另有书面授权外，仅限个人学习使用，不得批量复制、抓取、传播、出售、反向工程或用于训练其他模型。'],
+    ['用户内容与反馈', '您应确保提交的回答、录音、文字、图片和联系方式合法且不侵犯他人权益。您授权我们在提供转写、分析、同步、客服和故障处理所必需的范围内处理这些内容，具体规则见隐私政策。'],
+    ['使用规范', '不得利用本服务实施违法活动、攻击或绕过访问控制、干扰服务器、冒用他人身份、传播恶意程序，或以自动化方式消耗超出正常学习所需的资源。'],
+    ['服务变更与可用性', '我们会尽力保障服务连续和数据安全，但网络、设备、第三方服务、维护或不可抗力可能造成暂时中断。涉及重要功能、收费或个人信息处理规则的重大变化，将依法提前告知并在需要时重新取得同意。'],
+    ['退出、注销与责任', '您可以退出账号、退出全部设备或在应用内申请注销。注销会删除账号及依法无需继续保留的关联数据，且通常无法恢复。任何一方违反本协议或法律规定的，应依法承担相应责任。'],
+    ['联系与争议处理', '产品支持请联系 support@yunqihangke.com，法律事务请联系 legal@yunqihangke.com。本协议适用中华人民共和国法律；争议应先友好协商，协商不成的，依法向有管辖权的人民法院处理。'],
   ] : [
-    ['我们收集的信息', '账号信息：注册时的账号与昵称等基础资料。学习数据：您的做题记录、收藏、标注与学习进度。'],
-    ['信息的使用', '我们仅在提供学习服务、优化学习体验和保障账号安全的范围内使用上述信息。'],
-    ['信息的存储与保护', '反馈文字进入业务数据库；反馈图片进入私有存储，提交后保留一年，账号注销时随账号数据删除。'],
-    ['信息的共享', '除法律法规要求外，我们不会向无关第三方出售或共享您的个人信息。'],
+    ['处理者与联系方式', '个人信息处理者为云启航科（成都）科技有限公司，注册地址为成都未来科技城（成都东部新区未来大道118号3层9号-3）。隐私问题、权利请求或投诉请联系 privacy@yunqihangke.com。'],
+    ['账号与安全信息', '我们处理邀请码账号标识、昵称、登录时间、会话和安全记录，用于登录、账号保护、设备会话管理和防止滥用。认证会话保存在设备安全存储中；我们不要求您提供手机号、通讯录或定位信息。'],
+    ['学习与本地数据', '我们处理做题状态、学习进度、收藏、标注、笔记、回答、学习记录和用户文档，用于本机学习和登录后的云端同步。部分数据先保存在设备本地；登录时会提示您确认旧本机数据归属。'],
+    ['麦克风、录音与 AI', '只有您主动开始口语练习时才申请麦克风权限。录音先保存在应用缓存；只有您点击“转写”并明确同意后，录音才会经我们的服务器发送至腾讯云语音识别。回答文本只在您主动请求分析时发送至阿里云百炼通义千问。音频签名链接默认有效 10 分钟，处理完成后删除，异常残留最长保留 24 小时。您可以拒绝或在“设置—AI 与隐私”撤回同意，不影响无需 AI 的功能。'],
+    ['反馈与相册权限', '提交反馈时，我们处理反馈内容、可选联系方式、来源页面、App/系统版本、错误编号及关联题目。只有您主动添加图片时才调用系统照片选择器；图片存入私有存储并默认保留 365 天，反馈文字用于工单处理，账号注销时会删除依法无需继续保留的关联数据。'],
+    ['AI 记录与保存期限', 'AI 用量日志记录账号、请求编号、功能、状态、模型、提示版本、耗时和用量，不记录录音或完整回答内容。AI 单词查询缓存默认保留 30 天。账号和学习数据在账号存续及提供同步服务所需期间保存；达到目的、保存期届满、您撤回同意或注销账号后，我们会依法删除或停止处理。'],
+    ['第三方处理与共享', '我们使用阿里云基础设施、腾讯云语音识别、阿里云百炼及 Apple/Android 操作系统和分发平台提供必要的托管、AI、系统权限和分发能力。我们仅在实现对应功能所需范围内提供数据，不出售个人信息；除取得您的同意、履行合同所必需或法律法规另有要求外，不向无关第三方提供。正式第三方清单和链接将在公开隐私政策中持续更新。'],
+    ['您的权利与账号注销', '您可以在应用中查看和修改部分学习数据、撤回 AI 同意、退出当前或全部设备，并在账号安全页面申请注销。您也可通过 privacy@yunqihangke.com 请求查阅、复制、更正、补充、删除或解释个人信息处理规则，我们会依法核验身份并处理。'],
+    ['未成年人、保护措施与更新', '本应用主要面向成年航空英语学习者。不满十四周岁的用户应在监护人同意和指导下使用。我们采用访问控制、加密传输、受限存储、备份和日志审计保护数据；如发生可能影响您权益的安全事件，将依法采取补救并告知。政策发生重要变化时会显著提示，并在依法需要时重新取得同意。'],
   ];
   return (
     <Page title={isAgreement ? '用户协议' : '隐私政策'}>
       <View style={styles.legal}>
         <AppText variant="pageTitle">{isAgreement ? '用户服务协议' : '隐私政策'}</AppText>
-        <AppText variant="micro">版本 v2.4 · 更新于 2026-06-01 · 生效于 2026-06-15</AppText>
+        <AppText variant="micro">{isAgreement ? '版本 v3.0 · 更新于 2026-08-07 · 生效于 2026-08-07' : '版本 v3.1 · 更新于 2026-08-09 · 生效于 2026-08-09'}</AppText>
         <Card style={styles.intro}><AppText>{intro}</AppText></Card>
         {clauses.map(([title, body], index) => (
           <View key={title} style={styles.clause}>
@@ -428,7 +439,7 @@ function LegalPage({ page }: { page: 'agreement' | 'privacy' }) {
             <AppText style={styles.clauseBody}>{body}</AppText>
           </View>
         ))}
-        <AppText style={styles.center} variant="micro">— 本文档为示例文案，非正式法律文本 —</AppText>
+        <AppText style={styles.center} variant="micro">云启航科（成都）科技有限公司 · {isAgreement ? 'legal' : 'privacy'}@yunqihangke.com</AppText>
       </View>
     </Page>
   );

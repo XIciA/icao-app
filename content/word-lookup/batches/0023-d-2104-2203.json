@@ -1,104 +1,485 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"deter","ipa":"/dɪˈtɜːr/","aviationMeaning":"v. 阻止不安全行为或风险事件","generalMeaning":"v. 阻止；威慑"},
-    {"word":"deteriorated","ipa":"/dɪˈtɪriəreɪtɪd/","aviationMeaning":"adj. 已恶化的；天气、性能或状况变差的","generalMeaning":"adj. 已恶化的"},
-    {"word":"deteriorating","ipa":"/dɪˈtɪriəreɪtɪŋ/","aviationMeaning":"v. 正恶化；天气、性能或状况变差","generalMeaning":"v. 正恶化"},
-    {"word":"deterioration","ipa":"/dɪˌtɪriəˈreɪʃən/","aviationMeaning":"n. 恶化；天气、性能或设备状况下降","generalMeaning":"n. 恶化；退化"},
-    {"word":"determination","ipa":"/dɪˌtɜːrmɪˈneɪʃən/","aviationMeaning":"n. 判定；位置、性能或资格判定","generalMeaning":"n. 决心；确定"},
-    {"word":"determine","ipa":"/dɪˈtɜːrmɪn/","aviationMeaning":"v. 确定位置、性能、风险或程序","generalMeaning":"v. 确定；决定"},
-    {"word":"determined","ipa":"/dɪˈtɜːrmɪnd/","aviationMeaning":"adj. 已确定的；经计算或判定的","generalMeaning":"adj. 已确定的；坚决的"},
-    {"word":"determines","ipa":"/dɪˈtɜːrmɪnz/","aviationMeaning":"v. 确定位置、性能、风险或程序","generalMeaning":"v. 确定；决定"},
-    {"word":"determining","ipa":"/dɪˈtɜːrmɪnɪŋ/","aviationMeaning":"v. 正确定位置、性能、风险或程序","generalMeaning":"v. 正确定；决定"},
-    {"word":"deterrent","ipa":"/dɪˈtɜːrənt/","aviationMeaning":"n. 威慑措施；防范风险的障碍","generalMeaning":"n. 威慑物；阻止因素"},
-    {"word":"detonate","ipa":"/ˈdetəneɪt/","aviationMeaning":"v. 引爆；爆炸物安保事件","generalMeaning":"v. 引爆；爆炸"},
-    {"word":"detonation","ipa":"/ˌdetəˈneɪʃən/","aviationMeaning":"n. 爆炸；爆轰或发动机爆震","generalMeaning":"n. 爆炸；引爆"},
-    {"word":"detour","ipa":"/ˈdiːtʊr/","aviationMeaning":"n. 绕飞；备选航路；v. 绕行","generalMeaning":"n. 绕路；v. 绕行"},
-    {"word":"detouring","ipa":"/ˈdiːtʊrɪŋ/","aviationMeaning":"v. 正绕飞天气、限制区或障碍","generalMeaning":"v. 正绕行"},
-    {"word":"detroit","ipa":"/dɪˈtrɔɪt/","aviationMeaning":"n. 底特律；机场所在城市","generalMeaning":"n. 底特律（美国城市）"},
-    {"word":"develop","ipa":"/dɪˈveləp/","aviationMeaning":"v. 发展天气、故障或运行能力","generalMeaning":"v. 发展；开发"},
-    {"word":"developed","ipa":"/dɪˈveləpt/","aviationMeaning":"adj. 已发展的；已形成的","generalMeaning":"adj. 已发展的；发达的"},
-    {"word":"developing","ipa":"/dɪˈveləpɪŋ/","aviationMeaning":"v. 正发展；天气或故障正在形成","generalMeaning":"v. 正发展"},
-    {"word":"development","ipa":"/dɪˈveləpmənt/","aviationMeaning":"n. 发展；天气、系统或能力发展","generalMeaning":"n. 发展；开发"},
-    {"word":"develops","ipa":"/dɪˈveləps/","aviationMeaning":"v. 发展天气、故障或运行能力","generalMeaning":"v. 发展；开发"},
-    {"word":"deviate","ipa":"/ˈdiːvieɪt/","aviationMeaning":"v. 偏离航向、程序或航路","generalMeaning":"v. 偏离；背离"},
-    {"word":"deviated","ipa":"/ˈdiːvieɪtɪd/","aviationMeaning":"adj. 已偏离航向、程序或航路的","generalMeaning":"adj. 已偏离的"},
-    {"word":"deviates","ipa":"/ˈdiːvieɪts/","aviationMeaning":"v. 偏离航向、程序或航路","generalMeaning":"v. 偏离；背离"},
-    {"word":"deviating","ipa":"/ˈdiːvieɪtɪŋ/","aviationMeaning":"v. 正偏离航向、程序或航路","generalMeaning":"v. 正偏离"},
-    {"word":"deviations","ipa":"/ˌdiːviˈeɪʃənz/","aviationMeaning":"n. 偏离；航向、程序或性能偏差（复数）","generalMeaning":"n. 偏离；偏差（复数）"},
-    {"word":"device","ipa":"/dɪˈvaɪs/","aviationMeaning":"n. 设备；航空电子或安全装置","generalMeaning":"n. 设备；装置"},
-    {"word":"devices","ipa":"/dɪˈvaɪsɪz/","aviationMeaning":"n. 设备；航空电子或安全装置（复数）","generalMeaning":"n. 设备；装置（复数）"},
-    {"word":"devimal","ipa":"/ˈdesɪməl/","aviationMeaning":"n. 题库原文中 decimal 的疑似拼写错误","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"dew","ipa":"/duː/","aviationMeaning":"n. 露；露点相关气象现象","generalMeaning":"n. 露水"},
-    {"word":"dg","ipa":"/ˌdiː ˈdʒiː/","aviationMeaning":"n. 危险品（Dangerous Goods）缩写","generalMeaning":"n. 危险品缩写"},
-    {"word":"dhaka","ipa":"/ˈdɑːkə/","aviationMeaning":"n. 达卡；机场所在城市","generalMeaning":"n. 达卡（孟加拉国首都）"},
-    {"word":"dhaka's","ipa":"/ˈdɑːkəz/","aviationMeaning":"n. 达卡的；表示所属关系","generalMeaning":"n. 达卡的；表示所属关系"},
-    {"word":"dhl","ipa":"/ˌdiː eɪtʃ ˈel/","aviationMeaning":"n. DHL 快递航空名称","generalMeaning":"n. DHL（品牌）"},
-    {"word":"diagnose","ipa":"/ˌdaɪəɡˈnoʊs/","aviationMeaning":"v. 诊断故障、系统问题或疾病","generalMeaning":"v. 诊断；判断"},
-    {"word":"diagnosed","ipa":"/ˌdaɪəɡˈnoʊzd/","aviationMeaning":"adj. 已诊断的；故障或疾病已确认","generalMeaning":"adj. 已诊断的"},
-    {"word":"diagnoses","ipa":"/ˌdaɪəɡˈnoʊsiːz/","aviationMeaning":"n. 诊断结果（复数）；v. 诊断","generalMeaning":"n. 诊断（复数）"},
-    {"word":"diagnosis","ipa":"/ˌdaɪəɡˈnoʊsɪs/","aviationMeaning":"n. 故障或医疗诊断","generalMeaning":"n. 诊断"},
-    {"word":"diagnostic","ipa":"/ˌdaɪəɡˈnɑːstɪk/","aviationMeaning":"adj. 诊断用的；故障检测的","generalMeaning":"adj. 诊断的"},
-    {"word":"diagnostics","ipa":"/ˌdaɪəɡˈnɑːstɪks/","aviationMeaning":"n. 诊断程序；故障检测系统","generalMeaning":"n. 诊断技术"},
-    {"word":"diagram","ipa":"/ˈdaɪəɡræm/","aviationMeaning":"n. 图示；系统或程序示意图","generalMeaning":"n. 图表；示意图"},
-    {"word":"dialogue","ipa":"/ˈdaɪəlɔːɡ/","aviationMeaning":"n. 对话；机组或空地沟通","generalMeaning":"n. 对话；对白"},
-    {"word":"diarrhea","ipa":"/ˌdaɪəˈriːə/","aviationMeaning":"n. 腹泻；机组或旅客医疗状态","generalMeaning":"n. 腹泻"},
-    {"word":"did","ipa":"/dɪd/","aviationMeaning":"v. 做；用于确认已完成操作","generalMeaning":"v. 做（do 的过去式）"},
-    {"word":"didn","ipa":"/ˈdɪdən/","aviationMeaning":"n. 题库原文中 didn't 的不完整词形","generalMeaning":"n. 不完整词形；请结合原文"},
-    {"word":"didn't","ipa":"/ˈdɪdənt/","aviationMeaning":"v. 没有；未完成某项操作","generalMeaning":"v. 没有（did not 的缩写）"},
-    {"word":"didn’t","ipa":"/ˈdɪdənt/","aviationMeaning":"v. 没有；未完成某项操作","generalMeaning":"v. 没有（did not 的缩写）"},
-    {"word":"didn'tdevelop","ipa":"/ˈdɪdənt dɪˈveləp/","aviationMeaning":"n. 题库原文中 didn't develop 的疑似粘连","generalMeaning":"n. 疑似词语粘连；请结合原文"},
-    {"word":"didnt","ipa":"/ˈdɪdənt/","aviationMeaning":"n. 题库原文中 didn't 的缺省撇号形式","generalMeaning":"n. 非标准拼写；表示“没有”"},
-    {"word":"died","ipa":"/daɪd/","aviationMeaning":"v. 死亡；也可指设备失效","generalMeaning":"v. 死亡；消失"},
-    {"word":"diego","ipa":"/diˈeɪɡoʊ/","aviationMeaning":"n. 圣迭戈等地名中的组成词","generalMeaning":"n. 迭戈（人名）"},
-    {"word":"dietary","ipa":"/ˈdaɪəteri/","aviationMeaning":"adj. 饮食的；旅客餐食需求","generalMeaning":"adj. 饮食的"},
-    {"word":"differ","ipa":"/ˈdɪfər/","aviationMeaning":"v. 不同；参数、程序或状态存在差异","generalMeaning":"v. 不同；相异"},
-    {"word":"difference","ipa":"/ˈdɪfərəns/","aviationMeaning":"n. 差异；高度、时间或性能差","generalMeaning":"n. 差异；不同"},
-    {"word":"differences","ipa":"/ˈdɪfərənsɪz/","aviationMeaning":"n. 差异；高度、时间或性能差（复数）","generalMeaning":"n. 差异；不同（复数）"},
-    {"word":"different","ipa":"/ˈdɪfərənt/","aviationMeaning":"adj. 不同的；不同机型或程序的","generalMeaning":"adj. 不同的"},
-    {"word":"differential","ipa":"/ˌdɪfəˈrenʃəl/","aviationMeaning":"adj. 差动的；差压或差动制动的","generalMeaning":"adj. 差异的；微分的"},
-    {"word":"differently","ipa":"/ˈdɪfərəntli/","aviationMeaning":"adv. 以不同方式；采用不同程序地","generalMeaning":"adv. 不同地"},
-    {"word":"differs","ipa":"/ˈdɪfərz/","aviationMeaning":"v. 不同；参数、程序或状态存在差异","generalMeaning":"v. 不同；相异"},
-    {"word":"difficult","ipa":"/ˈdɪfɪkəlt/","aviationMeaning":"adj. 困难的；复杂或高工作负荷的","generalMeaning":"adj. 困难的；不易的"},
-    {"word":"difficulties","ipa":"/ˈdɪfɪkəltiz/","aviationMeaning":"n. 困难；技术或运行问题（复数）","generalMeaning":"n. 困难（复数）"},
-    {"word":"difficulty","ipa":"/ˈdɪfɪkəlti/","aviationMeaning":"n. 困难；技术或运行问题","generalMeaning":"n. 困难；难题"},
-    {"word":"digital","ipa":"/ˈdɪdʒɪtəl/","aviationMeaning":"adj. 数字化的；数字航电或通信的","generalMeaning":"adj. 数字的；数码的"},
-    {"word":"diluting","ipa":"/daɪˈluːtɪŋ/","aviationMeaning":"v. 正稀释液体、气体或浓度","generalMeaning":"v. 正稀释"},
-    {"word":"dim","ipa":"/dɪm/","aviationMeaning":"adj. 昏暗的；v. 调暗显示或灯光","generalMeaning":"adj. 昏暗的；v. 变暗"},
-    {"word":"dimensions","ipa":"/dɪˈmenʃənz/","aviationMeaning":"n. 尺寸；航空器、跑道或货物尺寸（复数）","generalMeaning":"n. 尺寸；方面（复数）"},
-    {"word":"dimmed","ipa":"/dɪmd/","aviationMeaning":"adj. 已调暗的；显示或灯光亮度降低的","generalMeaning":"adj. 变暗的"},
-    {"word":"dioxide","ipa":"/daɪˈɑːksaɪd/","aviationMeaning":"n. 二氧化物；如二氧化碳","generalMeaning":"n. 二氧化物"},
-    {"word":"dip","ipa":"/dɪp/","aviationMeaning":"n. 下降、凹陷；v. 短暂降低","generalMeaning":"v. 浸；n. 下降"},
-    {"word":"direct","ipa":"/dəˈrekt/","aviationMeaning":"v. 指引航空器；adj. 直接的","generalMeaning":"v. 指导；adj. 直接的"},
-    {"word":"directed","ipa":"/dəˈrektɪd/","aviationMeaning":"adj. 已指引的；收到管制指示的","generalMeaning":"adj. 被指导的"},
-    {"word":"directing","ipa":"/dəˈrektɪŋ/","aviationMeaning":"v. 正指引航空器、人员或流量","generalMeaning":"v. 正指导"},
-    {"word":"direction","ipa":"/dəˈrekʃən/","aviationMeaning":"n. 方向；航向、风向或管制指令方向","generalMeaning":"n. 方向；指导"},
-    {"word":"directional","ipa":"/dəˈrekʃənəl/","aviationMeaning":"adj. 定向的；方向控制或导航的","generalMeaning":"adj. 方向的；定向的"},
-    {"word":"directional-control","ipa":"/dəˈrekʃənəl kənˈtroʊl/","aviationMeaning":"n. 方向控制","generalMeaning":"n. 方向控制"},
-    {"word":"directions","ipa":"/dəˈrekʃənz/","aviationMeaning":"n. 方向、指示或路线说明（复数）","generalMeaning":"n. 方向；指示（复数）"},
-    {"word":"directly","ipa":"/dəˈrektli/","aviationMeaning":"adv. 直接地；沿直线航路或立即执行地","generalMeaning":"adv. 直接地；立刻"},
-    {"word":"directness","ipa":"/dəˈrektnəs/","aviationMeaning":"n. 直接性；航路直达程度或沟通明确性","generalMeaning":"n. 直接；直率"},
-    {"word":"director","ipa":"/dəˈrektər/","aviationMeaning":"n. 主管；飞行运行或机构负责人","generalMeaning":"n. 主任；导演"},
-    {"word":"directors","ipa":"/dəˈrektərz/","aviationMeaning":"n. 主管、负责人（复数）","generalMeaning":"n. 主任；导演（复数）"},
-    {"word":"directory","ipa":"/dəˈrektəri/","aviationMeaning":"n. 目录；机场、航路或联系人目录","generalMeaning":"n. 目录；名录"},
-    {"word":"directs","ipa":"/dəˈrekts/","aviationMeaning":"v. 指引航空器、人员或流量","generalMeaning":"v. 指导；指向"},
-    {"word":"dirt","ipa":"/dɜːrt/","aviationMeaning":"n. 污物；跑道或系统污染物","generalMeaning":"n. 泥土；污垢"},
-    {"word":"dirty","ipa":"/ˈdɜːrti/","aviationMeaning":"adj. 有污染的；如污染跑道或飞机表面","generalMeaning":"adj. 脏的；污秽的"},
-    {"word":"dis","ipa":"/dɪs/","aviationMeaning":"n. 航空资料中的缩写或词根；需结合原文","generalMeaning":"n. 缩写或前缀；请结合原文"},
-    {"word":"disable","ipa":"/dɪsˈeɪbəl/","aviationMeaning":"v. 使系统失效、停用功能","generalMeaning":"v. 使失去能力；停用"},
-    {"word":"disabled","ipa":"/dɪsˈeɪbəld/","aviationMeaning":"adj. 已停用的；系统失效的","generalMeaning":"adj. 残疾的；停用的"},
-    {"word":"disadvantages","ipa":"/ˌdɪsədˈvæntɪdʒɪz/","aviationMeaning":"n. 不利因素；运行限制（复数）","generalMeaning":"n. 缺点；不利条件（复数）"},
-    {"word":"disagree","ipa":"/ˌdɪsəˈɡriː/","aviationMeaning":"v. 意见不一致；对许可或判断有分歧","generalMeaning":"v. 不同意；有分歧"},
-    {"word":"disagreed","ipa":"/ˌdɪsəˈɡriːd/","aviationMeaning":"v. 已产生分歧；意见不一致","generalMeaning":"v. 已不同意"},
-    {"word":"disagreeing","ipa":"/ˌdɪsəˈɡriːɪŋ/","aviationMeaning":"v. 正产生分歧；意见不一致","generalMeaning":"v. 正不同意"},
-    {"word":"disagreement","ipa":"/ˌdɪsəˈɡriːmənt/","aviationMeaning":"n. 分歧；机组或空地意见不一致","generalMeaning":"n. 不同意；争论"},
-    {"word":"disappear","ipa":"/ˌdɪsəˈpɪr/","aviationMeaning":"v. 消失；从雷达或显示上消失","generalMeaning":"v. 消失；不见"},
-    {"word":"disappeared","ipa":"/ˌdɪsəˈpɪrd/","aviationMeaning":"v. 已消失；从雷达或显示上消失","generalMeaning":"v. 已消失"},
-    {"word":"disappears","ipa":"/ˌdɪsəˈpɪrz/","aviationMeaning":"v. 消失；从雷达或显示上消失","generalMeaning":"v. 消失"},
-    {"word":"disarming","ipa":"/dɪsˈɑːrmɪŋ/","aviationMeaning":"n. 解除预位；使系统退出武装状态","generalMeaning":"n. 解除武装"},
-    {"word":"disaster","ipa":"/dɪˈzæstər/","aviationMeaning":"n. 灾难；重大航空事故或应急事件","generalMeaning":"n. 灾难；祸害"},
-    {"word":"disc","ipa":"/dɪsk/","aviationMeaning":"n. 盘；制动盘或数据盘","generalMeaning":"n. 圆盘；唱片"},
-    {"word":"discharge","ipa":"/dɪsˈtʃɑːrdʒ/","aviationMeaning":"v. 放电、排放或下机；n. 放电","generalMeaning":"v. 排出；放电；n. 排放"},
-    {"word":"discharged","ipa":"/dɪsˈtʃɑːrdʒd/","aviationMeaning":"adj. 已放电的；已排放的","generalMeaning":"adj. 已排出的；已放电的"}
+    {
+      "word": "deteriorated",
+      "ipa": "/dɪˈtɪriəreɪtɪd/",
+      "aviationMeaning": "adj. 已恶化的；天气、性能或状况变差的",
+      "generalMeaning": "adj. 已恶化的"
+    },
+    {
+      "word": "deteriorating",
+      "ipa": "/dɪˈtɪriəreɪtɪŋ/",
+      "aviationMeaning": "v. 正恶化；天气、性能或状况变差",
+      "generalMeaning": "v. 正恶化"
+    },
+    {
+      "word": "determine",
+      "ipa": "/dɪˈtɜːrmɪn/",
+      "aviationMeaning": "v. 确定位置、性能、风险或程序",
+      "generalMeaning": "v. 确定；决定"
+    },
+    {
+      "word": "determined",
+      "ipa": "/dɪˈtɜːrmɪnd/",
+      "aviationMeaning": "adj. 已确定的；经计算或判定的",
+      "generalMeaning": "adj. 已确定的；坚决的"
+    },
+    {
+      "word": "determines",
+      "ipa": "/dɪˈtɜːrmɪnz/",
+      "aviationMeaning": "v. 确定位置、性能、风险或程序",
+      "generalMeaning": "v. 确定；决定"
+    },
+    {
+      "word": "determining",
+      "ipa": "/dɪˈtɜːrmɪnɪŋ/",
+      "aviationMeaning": "v. 正确定位置、性能、风险或程序",
+      "generalMeaning": "v. 正确定；决定"
+    },
+    {
+      "word": "deterrent",
+      "ipa": "/dɪˈtɜːrənt/",
+      "aviationMeaning": "n. 威慑措施；防范风险的障碍",
+      "generalMeaning": "n. 威慑物；阻止因素"
+    },
+    {
+      "word": "detonate",
+      "ipa": "/ˈdetəneɪt/",
+      "aviationMeaning": "v. 引爆；爆炸物安保事件",
+      "generalMeaning": "v. 引爆；爆炸"
+    },
+    {
+      "word": "detonation",
+      "ipa": "/ˌdetəˈneɪʃən/",
+      "aviationMeaning": "n. 爆炸；爆轰或发动机爆震",
+      "generalMeaning": "n. 爆炸；引爆"
+    },
+    {
+      "word": "detour",
+      "ipa": "/ˈdiːtʊr/",
+      "aviationMeaning": "n. 绕飞；备选航路；v. 绕行",
+      "generalMeaning": "n. 绕路；v. 绕行"
+    },
+    {
+      "word": "detouring",
+      "ipa": "/ˈdiːtʊrɪŋ/",
+      "aviationMeaning": "v. 正绕飞天气、限制区或障碍",
+      "generalMeaning": "v. 正绕行"
+    },
+    {
+      "word": "detroit",
+      "ipa": "/dɪˈtrɔɪt/",
+      "aviationMeaning": "n. 底特律；机场所在城市",
+      "generalMeaning": "n. 底特律（美国城市）"
+    },
+    {
+      "word": "develop",
+      "ipa": "/dɪˈveləp/",
+      "aviationMeaning": "v. 发展天气、故障或运行能力",
+      "generalMeaning": "v. 发展；开发"
+    },
+    {
+      "word": "developed",
+      "ipa": "/dɪˈveləpt/",
+      "aviationMeaning": "adj. 已发展的；已形成的",
+      "generalMeaning": "adj. 已发展的；发达的"
+    },
+    {
+      "word": "developing",
+      "ipa": "/dɪˈveləpɪŋ/",
+      "aviationMeaning": "v. 正发展；天气或故障正在形成",
+      "generalMeaning": "v. 正发展"
+    },
+    {
+      "word": "development",
+      "ipa": "/dɪˈveləpmənt/",
+      "aviationMeaning": "n. 发展；天气、系统或能力发展",
+      "generalMeaning": "n. 发展；开发"
+    },
+    {
+      "word": "develops",
+      "ipa": "/dɪˈveləps/",
+      "aviationMeaning": "v. 发展天气、故障或运行能力",
+      "generalMeaning": "v. 发展；开发"
+    },
+    {
+      "word": "deviate",
+      "ipa": "/ˈdiːvieɪt/",
+      "aviationMeaning": "v. 偏离航向、程序或航路",
+      "generalMeaning": "v. 偏离；背离"
+    },
+    {
+      "word": "deviated",
+      "ipa": "/ˈdiːvieɪtɪd/",
+      "aviationMeaning": "adj. 已偏离航向、程序或航路的",
+      "generalMeaning": "adj. 已偏离的"
+    },
+    {
+      "word": "deviates",
+      "ipa": "/ˈdiːvieɪts/",
+      "aviationMeaning": "v. 偏离航向、程序或航路",
+      "generalMeaning": "v. 偏离；背离"
+    },
+    {
+      "word": "deviating",
+      "ipa": "/ˈdiːvieɪtɪŋ/",
+      "aviationMeaning": "v. 正偏离航向、程序或航路",
+      "generalMeaning": "v. 正偏离"
+    },
+    {
+      "word": "deviations",
+      "ipa": "/ˌdiːviˈeɪʃənz/",
+      "aviationMeaning": "n. 偏离；航向、程序或性能偏差（复数）",
+      "generalMeaning": "n. 偏离；偏差（复数）"
+    },
+    {
+      "word": "device",
+      "ipa": "/dɪˈvaɪs/",
+      "aviationMeaning": "n. 设备；航空电子或安全装置",
+      "generalMeaning": "n. 设备；装置"
+    },
+    {
+      "word": "devices",
+      "ipa": "/dɪˈvaɪsɪz/",
+      "aviationMeaning": "n. 设备；航空电子或安全装置（复数）",
+      "generalMeaning": "n. 设备；装置（复数）"
+    },
+    {
+      "word": "dew",
+      "ipa": "/duː/",
+      "aviationMeaning": "n. 露；露点相关气象现象",
+      "generalMeaning": "n. 露水"
+    },
+    {
+      "word": "dg",
+      "ipa": "/ˌdiː ˈdʒiː/",
+      "aviationMeaning": "n. 危险品（Dangerous Goods）缩写",
+      "generalMeaning": "n. 危险品缩写"
+    },
+    {
+      "word": "dhaka",
+      "ipa": "/ˈdɑːkə/",
+      "aviationMeaning": "n. 达卡；机场所在城市",
+      "generalMeaning": "n. 达卡（孟加拉国首都）"
+    },
+    {
+      "word": "dhaka's",
+      "ipa": "/ˈdɑːkəz/",
+      "aviationMeaning": "n. 达卡的；表示所属关系",
+      "generalMeaning": "n. 达卡的；表示所属关系"
+    },
+    {
+      "word": "dhl",
+      "ipa": "/ˌdiː eɪtʃ ˈel/",
+      "aviationMeaning": "n. DHL 快递航空名称",
+      "generalMeaning": "n. DHL（品牌）"
+    },
+    {
+      "word": "diagnosed",
+      "ipa": "/ˌdaɪəɡˈnoʊzd/",
+      "aviationMeaning": "adj. 已诊断的；故障或疾病已确认",
+      "generalMeaning": "adj. 已诊断的"
+    },
+    {
+      "word": "diagnostic",
+      "ipa": "/ˌdaɪəɡˈnɑːstɪk/",
+      "aviationMeaning": "adj. 诊断用的；故障检测的",
+      "generalMeaning": "adj. 诊断的"
+    },
+    {
+      "word": "diagnostics",
+      "ipa": "/ˌdaɪəɡˈnɑːstɪks/",
+      "aviationMeaning": "n. 诊断程序；故障检测系统",
+      "generalMeaning": "n. 诊断技术"
+    },
+    {
+      "word": "diagram",
+      "ipa": "/ˈdaɪəɡræm/",
+      "aviationMeaning": "n. 图示；系统或程序示意图",
+      "generalMeaning": "n. 图表；示意图"
+    },
+    {
+      "word": "dialogue",
+      "ipa": "/ˈdaɪəlɔːɡ/",
+      "aviationMeaning": "n. 对话；机组或空地沟通",
+      "generalMeaning": "n. 对话；对白"
+    },
+    {
+      "word": "diarrhea",
+      "ipa": "/ˌdaɪəˈriːə/",
+      "aviationMeaning": "n. 腹泻；机组或旅客医疗状态",
+      "generalMeaning": "n. 腹泻"
+    },
+    {
+      "word": "did",
+      "ipa": "/dɪd/",
+      "aviationMeaning": "v. 做；用于确认已完成操作",
+      "generalMeaning": "v. 做（do 的过去式）"
+    },
+    {
+      "word": "didn't",
+      "ipa": "/ˈdɪdənt/",
+      "aviationMeaning": "v. 没有；未完成某项操作",
+      "generalMeaning": "v. 没有（did not 的缩写）"
+    },
+    {
+      "word": "didn’t",
+      "ipa": "/ˈdɪdənt/",
+      "aviationMeaning": "v. 没有；未完成某项操作",
+      "generalMeaning": "v. 没有（did not 的缩写）"
+    },
+    {
+      "word": "died",
+      "ipa": "/daɪd/",
+      "aviationMeaning": "v. 死亡；也可指设备失效",
+      "generalMeaning": "v. 死亡；消失"
+    },
+    {
+      "word": "diego",
+      "ipa": "/diˈeɪɡoʊ/",
+      "aviationMeaning": "n. 圣迭戈等地名中的组成词",
+      "generalMeaning": "n. 迭戈（人名）"
+    },
+    {
+      "word": "dietary",
+      "ipa": "/ˈdaɪəteri/",
+      "aviationMeaning": "adj. 饮食的；旅客餐食需求",
+      "generalMeaning": "adj. 饮食的"
+    },
+    {
+      "word": "differ",
+      "ipa": "/ˈdɪfər/",
+      "aviationMeaning": "v. 不同；参数、程序或状态存在差异",
+      "generalMeaning": "v. 不同；相异"
+    },
+    {
+      "word": "difference",
+      "ipa": "/ˈdɪfərəns/",
+      "aviationMeaning": "n. 差异；高度、时间或性能差",
+      "generalMeaning": "n. 差异；不同"
+    },
+    {
+      "word": "differences",
+      "ipa": "/ˈdɪfərənsɪz/",
+      "aviationMeaning": "n. 差异；高度、时间或性能差（复数）",
+      "generalMeaning": "n. 差异；不同（复数）"
+    },
+    {
+      "word": "different",
+      "ipa": "/ˈdɪfərənt/",
+      "aviationMeaning": "adj. 不同的；不同机型或程序的",
+      "generalMeaning": "adj. 不同的"
+    },
+    {
+      "word": "differential",
+      "ipa": "/ˌdɪfəˈrenʃəl/",
+      "aviationMeaning": "adj. 差动的；差压或差动制动的",
+      "generalMeaning": "adj. 差异的；微分的"
+    },
+    {
+      "word": "differently",
+      "ipa": "/ˈdɪfərəntli/",
+      "aviationMeaning": "adv. 以不同方式；采用不同程序地",
+      "generalMeaning": "adv. 不同地"
+    },
+    {
+      "word": "difficult",
+      "ipa": "/ˈdɪfɪkəlt/",
+      "aviationMeaning": "adj. 困难的；复杂或高工作负荷的",
+      "generalMeaning": "adj. 困难的；不易的"
+    },
+    {
+      "word": "difficulties",
+      "ipa": "/ˈdɪfɪkəltiz/",
+      "aviationMeaning": "n. 困难；技术或运行问题（复数）",
+      "generalMeaning": "n. 困难（复数）"
+    },
+    {
+      "word": "difficulty",
+      "ipa": "/ˈdɪfɪkəlti/",
+      "aviationMeaning": "n. 困难；技术或运行问题",
+      "generalMeaning": "n. 困难；难题"
+    },
+    {
+      "word": "digital",
+      "ipa": "/ˈdɪdʒɪtəl/",
+      "aviationMeaning": "adj. 数字化的；数字航电或通信的",
+      "generalMeaning": "adj. 数字的；数码的"
+    },
+    {
+      "word": "dim",
+      "ipa": "/dɪm/",
+      "aviationMeaning": "adj. 昏暗的；v. 调暗显示或灯光",
+      "generalMeaning": "adj. 昏暗的；v. 变暗"
+    },
+    {
+      "word": "dimensions",
+      "ipa": "/dɪˈmenʃənz/",
+      "aviationMeaning": "n. 尺寸；航空器、跑道或货物尺寸（复数）",
+      "generalMeaning": "n. 尺寸；方面（复数）"
+    },
+    {
+      "word": "dimmed",
+      "ipa": "/dɪmd/",
+      "aviationMeaning": "adj. 已调暗的；显示或灯光亮度降低的",
+      "generalMeaning": "adj. 变暗的"
+    },
+    {
+      "word": "dioxide",
+      "ipa": "/daɪˈɑːksaɪd/",
+      "aviationMeaning": "n. 二氧化物；如二氧化碳",
+      "generalMeaning": "n. 二氧化物"
+    },
+    {
+      "word": "dip",
+      "ipa": "/dɪp/",
+      "aviationMeaning": "n. 下降、凹陷；v. 短暂降低",
+      "generalMeaning": "v. 浸；n. 下降"
+    },
+    {
+      "word": "direct",
+      "ipa": "/dəˈrekt/",
+      "aviationMeaning": "v. 指引航空器；adj. 直接的",
+      "generalMeaning": "v. 指导；adj. 直接的"
+    },
+    {
+      "word": "directed",
+      "ipa": "/dəˈrektɪd/",
+      "aviationMeaning": "adj. 已指引的；收到管制指示的",
+      "generalMeaning": "adj. 被指导的"
+    },
+    {
+      "word": "directing",
+      "ipa": "/dəˈrektɪŋ/",
+      "aviationMeaning": "v. 正指引航空器、人员或流量",
+      "generalMeaning": "v. 正指导"
+    },
+    {
+      "word": "direction",
+      "ipa": "/dəˈrekʃən/",
+      "aviationMeaning": "n. 方向；航向、风向或管制指令方向",
+      "generalMeaning": "n. 方向；指导"
+    },
+    {
+      "word": "directional",
+      "ipa": "/dəˈrekʃənəl/",
+      "aviationMeaning": "adj. 定向的；方向控制或导航的",
+      "generalMeaning": "adj. 方向的；定向的"
+    },
+    {
+      "word": "directions",
+      "ipa": "/dəˈrekʃənz/",
+      "aviationMeaning": "n. 方向、指示或路线说明（复数）",
+      "generalMeaning": "n. 方向；指示（复数）"
+    },
+    {
+      "word": "directly",
+      "ipa": "/dəˈrektli/",
+      "aviationMeaning": "adv. 直接地；沿直线航路或立即执行地",
+      "generalMeaning": "adv. 直接地；立刻"
+    },
+    {
+      "word": "director",
+      "ipa": "/dəˈrektər/",
+      "aviationMeaning": "n. 主管；飞行运行或机构负责人",
+      "generalMeaning": "n. 主任；导演"
+    },
+    {
+      "word": "directors",
+      "ipa": "/dəˈrektərz/",
+      "aviationMeaning": "n. 主管、负责人（复数）",
+      "generalMeaning": "n. 主任；导演（复数）"
+    },
+    {
+      "word": "directory",
+      "ipa": "/dəˈrektəri/",
+      "aviationMeaning": "n. 目录；机场、航路或联系人目录",
+      "generalMeaning": "n. 目录；名录"
+    },
+    {
+      "word": "dirt",
+      "ipa": "/dɜːrt/",
+      "aviationMeaning": "n. 污物；跑道或系统污染物",
+      "generalMeaning": "n. 泥土；污垢"
+    },
+    {
+      "word": "dirty",
+      "ipa": "/ˈdɜːrti/",
+      "aviationMeaning": "adj. 有污染的；如污染跑道或飞机表面",
+      "generalMeaning": "adj. 脏的；污秽的"
+    },
+    {
+      "word": "dis",
+      "ipa": "/dɪs/",
+      "aviationMeaning": "n. 航空资料中的缩写或词根；需结合原文",
+      "generalMeaning": "n. 缩写或前缀；请结合原文"
+    },
+    {
+      "word": "disabled",
+      "ipa": "/dɪsˈeɪbəld/",
+      "aviationMeaning": "adj. 已停用的；系统失效的",
+      "generalMeaning": "adj. 残疾的；停用的"
+    },
+    {
+      "word": "disadvantages",
+      "ipa": "/ˌdɪsədˈvæntɪdʒɪz/",
+      "aviationMeaning": "n. 不利因素；运行限制（复数）",
+      "generalMeaning": "n. 缺点；不利条件（复数）"
+    },
+    {
+      "word": "disagree",
+      "ipa": "/ˌdɪsəˈɡriː/",
+      "aviationMeaning": "v. 意见不一致；对许可或判断有分歧",
+      "generalMeaning": "v. 不同意；有分歧"
+    },
+    {
+      "word": "disagreed",
+      "ipa": "/ˌdɪsəˈɡriːd/",
+      "aviationMeaning": "v. 已产生分歧；意见不一致",
+      "generalMeaning": "v. 已不同意"
+    },
+    {
+      "word": "disagreeing",
+      "ipa": "/ˌdɪsəˈɡriːɪŋ/",
+      "aviationMeaning": "v. 正产生分歧；意见不一致",
+      "generalMeaning": "v. 正不同意"
+    },
+    {
+      "word": "disappeared",
+      "ipa": "/ˌdɪsəˈpɪrd/",
+      "aviationMeaning": "v. 已消失；从雷达或显示上消失",
+      "generalMeaning": "v. 已消失"
+    },
+    {
+      "word": "disappears",
+      "ipa": "/ˌdɪsəˈpɪrz/",
+      "aviationMeaning": "v. 消失；从雷达或显示上消失",
+      "generalMeaning": "v. 消失"
+    },
+    {
+      "word": "disaster",
+      "ipa": "/dɪˈzæstər/",
+      "aviationMeaning": "n. 灾难；重大航空事故或应急事件",
+      "generalMeaning": "n. 灾难；祸害"
+    },
+    {
+      "word": "disc",
+      "ipa": "/dɪsk/",
+      "aviationMeaning": "n. 盘；制动盘或数据盘",
+      "generalMeaning": "n. 圆盘；唱片"
+    },
+    {
+      "word": "discharge",
+      "ipa": "/dɪsˈtʃɑːrdʒ/",
+      "aviationMeaning": "v. 放电、排放或下机；n. 放电",
+      "generalMeaning": "v. 排出；放电；n. 排放"
+    },
+    {
+      "word": "discharged",
+      "ipa": "/dɪsˈtʃɑːrdʒd/",
+      "aviationMeaning": "adj. 已放电的；已排放的",
+      "generalMeaning": "adj. 已排出的；已放电的"
+    }
   ]
 }

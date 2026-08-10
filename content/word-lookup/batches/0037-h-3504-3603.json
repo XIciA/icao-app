@@ -1,105 +1,557 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"harm","ipa":"/hɑːrm/","aviationMeaning":"n. 损害；伤害；v. 危害人员、航空器或运行","generalMeaning":"n. 伤害；v. 伤害"},
-    {"word":"harmed","ipa":"/hɑːrmd/","aviationMeaning":"v. 已伤害；已对人员、航空器或运行造成损害","generalMeaning":"v. 已伤害"},
-    {"word":"harmful","ipa":"/ˈhɑːrmfəl/","aviationMeaning":"adj. 有害的；危及安全、健康或环境的","generalMeaning":"adj. 有害的"},
-    {"word":"harmless","ipa":"/ˈhɑːrmləs/","aviationMeaning":"adj. 无害的；不影响安全或健康的","generalMeaning":"adj. 无害的"},
-    {"word":"harmonized","ipa":"/ˈhɑːrmənaɪzd/","aviationMeaning":"adj. 协调一致的；标准或程序统一的","generalMeaning":"adj. 协调的；和谐的"},
-    {"word":"harms","ipa":"/hɑːrmz/","aviationMeaning":"v. 危害；n. 损害（复数）","generalMeaning":"v. 伤害；n. 损害（复数）"},
-    {"word":"harness","ipa":"/ˈhɑːrnəs/","aviationMeaning":"n. 安全带；线束；v. 利用或固定","generalMeaning":"n. 线束；马具；v. 利用"},
-    {"word":"has","ipa":"/hæz/","aviationMeaning":"v. 有；具备；发生或拥有某状态","generalMeaning":"v. 有；拥有"},
-    {"word":"hasn't","ipa":"/ˈhæzənt/","aviationMeaning":"v. 没有；现在完成或一般现在否定形式","generalMeaning":"v. 没有"},
-    {"word":"hat","ipa":"/hæt/","aviationMeaning":"n. 帽子；制服或旅客物品描述","generalMeaning":"n. 帽子"},
-    {"word":"havana","ipa":"/həˈvænə/","aviationMeaning":"n. 哈瓦那；机场或地名","generalMeaning":"n. 专有地名"},
-    {"word":"have","ipa":"/hæv/","aviationMeaning":"v. 有；持有；经历或执行","generalMeaning":"v. 有；拥有"},
-    {"word":"haven't","ipa":"/ˈhævənt/","aviationMeaning":"v. 没有；现在完成或一般现在否定形式","generalMeaning":"v. 没有"},
-    {"word":"having","ipa":"/ˈhævɪŋ/","aviationMeaning":"v. 有；正在经历或执行某事","generalMeaning":"v. 有；拥有"},
-    {"word":"hawaii","ipa":"/həˈwaɪi/","aviationMeaning":"n. 夏威夷；地区或航线目的地","generalMeaning":"n. 夏威夷"},
-    {"word":"hawaiian","ipa":"/həˈwaɪən/","aviationMeaning":"adj. 夏威夷的；航空公司或地区名称组成部分","generalMeaning":"adj. 夏威夷的"},
-    {"word":"hawk","ipa":"/hɔːk/","aviationMeaning":"n. 鹰；鸟击风险鸟类或航空器名称","generalMeaning":"n. 鹰；v. 兜售"},
-    {"word":"hawker","ipa":"/ˈhɔːkər/","aviationMeaning":"n. 霍克；航空器制造商或机型名称","generalMeaning":"n. 叫卖者；专有名称"},
-    {"word":"hazard","ipa":"/ˈhæzərd/","aviationMeaning":"n. 危险源；可能导致事故的条件或物体","generalMeaning":"n. 危险；危害"},
-    {"word":"hazardous","ipa":"/ˈhæzərdəs/","aviationMeaning":"adj. 危险的；如危险品或危险操作","generalMeaning":"adj. 危险的；有害的"},
-    {"word":"hazards","ipa":"/ˈhæzərdz/","aviationMeaning":"n. 危险源（复数）；运行风险因素","generalMeaning":"n. 危险；危害（复数）"},
-    {"word":"haze","ipa":"/heɪz/","aviationMeaning":"n. 霾；影响能见度的悬浮颗粒天气","generalMeaning":"n. 薄雾；霾"},
-    {"word":"hda","ipa":"/ˌeɪtʃ diː ˈeɪ/","aviationMeaning":"n. 高度或进近相关缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"he","ipa":"/hiː/","aviationMeaning":"pron. 他；人员描述","generalMeaning":"pron. 他"},
-    {"word":"he'll","ipa":"/hiːl/","aviationMeaning":"v. 他将；口语缩写，需结合原文","generalMeaning":"v. 他将"},
-    {"word":"he’ll","ipa":"/hiːl/","aviationMeaning":"v. 他将；口语缩写，需结合原文","generalMeaning":"v. 他将"},
-    {"word":"he's","ipa":"/hiːz/","aviationMeaning":"v. 他是或他已；口语缩写，需结合原文","generalMeaning":"v. 他是；他已"},
-    {"word":"head","ipa":"/hed/","aviationMeaning":"n. 头；机头方向；v. 朝向","generalMeaning":"n. 头；v. 朝向"},
-    {"word":"head-up","ipa":"/hed ʌp/","aviationMeaning":"adj. 平视的；如平视显示器 HUD","generalMeaning":"adj. 抬头的"},
-    {"word":"head-worn","ipa":"/hed wɔːrn/","aviationMeaning":"adj. 头戴式的；头戴耳机或显示设备","generalMeaning":"adj. 头戴式的"},
-    {"word":"headache","ipa":"/ˈhedeɪk/","aviationMeaning":"n. 头痛；可能影响机组适任性的症状","generalMeaning":"n. 头痛；麻烦"},
-    {"word":"heading","ipa":"/ˈhedɪŋ/","aviationMeaning":"n. 航向；航空器机头所指方向","generalMeaning":"n. 标题；方向"},
-    {"word":"headings","ipa":"/ˈhedɪŋz/","aviationMeaning":"n. 航向（复数）；航空器机头所指方向","generalMeaning":"n. 标题；方向（复数）"},
-    {"word":"headset","ipa":"/ˈhedset/","aviationMeaning":"n. 耳机；机组通信耳机","generalMeaning":"n. 耳机；头戴式设备"},
-    {"word":"headwind","ipa":"/ˈhedwɪnd/","aviationMeaning":"n. 逆风；与飞行方向相反的风","generalMeaning":"n. 逆风；阻力"},
-    {"word":"headwinds","ipa":"/ˈhedwɪndz/","aviationMeaning":"n. 逆风（复数）；与飞行方向相反的风","generalMeaning":"n. 逆风；阻力（复数）"},
-    {"word":"health","ipa":"/helθ/","aviationMeaning":"n. 健康；机组适任性与旅客医疗状态","generalMeaning":"n. 健康；卫生"},
-    {"word":"healthy","ipa":"/ˈhelθi/","aviationMeaning":"adj. 健康的；适合履行职责的","generalMeaning":"adj. 健康的"},
-    {"word":"hear","ipa":"/hɪr/","aviationMeaning":"v. 听到；接收无线电通信或警报","generalMeaning":"v. 听到；听说"},
-    {"word":"hearback","ipa":"/ˈhɪrbæk/","aviationMeaning":"n. 复诵监听；空管确认飞行员读回内容","generalMeaning":"n. 回听；复诵监听"},
-    {"word":"heard","ipa":"/hɜːrd/","aviationMeaning":"v. 已听到；已接收无线电通信或警报","generalMeaning":"v. 听到（过去式）"},
-    {"word":"hearing","ipa":"/ˈhɪrɪŋ/","aviationMeaning":"n. 听力；无线电接收能力或听证","generalMeaning":"n. 听力；听证"},
-    {"word":"hears","ipa":"/hɪrz/","aviationMeaning":"v. 听到；接收无线电通信或警报","generalMeaning":"v. 听到；听说"},
-    {"word":"heart","ipa":"/hɑːrt/","aviationMeaning":"n. 心脏；旅客或机组医疗语境","generalMeaning":"n. 心脏；中心"},
-    {"word":"heartbeat","ipa":"/ˈhɑːrtbiːt/","aviationMeaning":"n. 心跳；医疗监测或生命体征","generalMeaning":"n. 心跳"},
-    {"word":"heat","ipa":"/hiːt/","aviationMeaning":"n. 热；加热；发动机、制动器或环境温度","generalMeaning":"n. 热；v. 加热"},
-    {"word":"heat-exchangers","ipa":"/hiːt ɪksˈtʃeɪndʒərz/","aviationMeaning":"n. 热交换器（复数）；航空器环境或发动机系统部件","generalMeaning":"n. 热交换器（复数）"},
-    {"word":"heat-resistant","ipa":"/hiːt rɪˈzɪstənt/","aviationMeaning":"adj. 耐热的；符合高温环境要求的","generalMeaning":"adj. 耐热的"},
-    {"word":"heated","ipa":"/ˈhiːtɪd/","aviationMeaning":"adj. 已加热的；防冰、客舱或部件加温的","generalMeaning":"adj. 已加热的；激烈的"},
-    {"word":"heater","ipa":"/ˈhiːtər/","aviationMeaning":"n. 加热器；客舱、除冰或系统加温设备","generalMeaning":"n. 加热器"},
-    {"word":"heaters","ipa":"/ˈhiːtərz/","aviationMeaning":"n. 加热器（复数）；客舱、除冰或系统加温设备","generalMeaning":"n. 加热器（复数）"},
-    {"word":"heathrew","ipa":"/ˈhiːθroʊ/","aviationMeaning":"n. 题库原文中 Heathrow 的疑似拼写错误","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"heathrow","ipa":"/ˈhiːθroʊ/","aviationMeaning":"n. 希思罗；伦敦机场名称","generalMeaning":"n. 专有地名"},
-    {"word":"heathrow's","ipa":"/ˈhiːθroʊz/","aviationMeaning":"n. Heathrow 的所有格形式；机场名称组成部分","generalMeaning":"n. 专有地名的所有格形式"},
-    {"word":"heating","ipa":"/ˈhiːtɪŋ/","aviationMeaning":"n. 加热；客舱、除冰或系统加温","generalMeaning":"n. 加热；供暖"},
-    {"word":"heavier","ipa":"/ˈheviər/","aviationMeaning":"adj. 更重的；重量、降水或交通量更大的","generalMeaning":"adj. 更重的；更严重的"},
-    {"word":"heavily","ipa":"/ˈhevɪli/","aviationMeaning":"adv. 大量地；严重地；如大雨或高负荷","generalMeaning":"adv. 沉重地；严重地"},
-    {"word":"heavy","ipa":"/ˈhevi/","aviationMeaning":"adj. 重的；如重型航空器、强降水或高工作负荷","generalMeaning":"adj. 重的；严重的"},
-    {"word":"heavy-loaded","ipa":"/ˈhevi ˈloʊdɪd/","aviationMeaning":"adj. 重载的；载荷或重量较大的","generalMeaning":"adj. 重载的"},
-    {"word":"hectopascal","ipa":"/ˈhektəˌpæskəl/","aviationMeaning":"n. 百帕；气压单位","generalMeaning":"n. 百帕"},
-    {"word":"hectopascals","ipa":"/ˈhektəˌpæskəlz/","aviationMeaning":"n. 百帕（复数）；气压单位","generalMeaning":"n. 百帕（复数）"},
-    {"word":"hefei","ipa":"/həˈfeɪ/","aviationMeaning":"n. 合肥；机场或地名","generalMeaning":"n. 专有地名"},
-    {"word":"height","ipa":"/haɪt/","aviationMeaning":"n. 高度；距地面或物体基准的垂直距离","generalMeaning":"n. 高度；身高"},
-    {"word":"height-keeping","ipa":"/haɪt ˈkiːpɪŋ/","aviationMeaning":"n. 保持高度；飞行控制性能","generalMeaning":"n. 保持高度"},
-    {"word":"heights","ipa":"/haɪts/","aviationMeaning":"n. 高度（复数）；垂直距离或高处","generalMeaning":"n. 高度；高处（复数）"},
-    {"word":"hekou","ipa":"/həˈkoʊ/","aviationMeaning":"n. 河口；航路点或地名","generalMeaning":"n. 专有地名"},
-    {"word":"held","ipa":"/held/","aviationMeaning":"v. 已保持；已拿住；如保持高度或等待","generalMeaning":"v. 保持；拿住（过去式）"},
-    {"word":"helicopter","ipa":"/ˈhelɪˌkɑːptər/","aviationMeaning":"n. 直升机；旋翼航空器","generalMeaning":"n. 直升机"},
-    {"word":"helicopters","ipa":"/ˈhelɪˌkɑːptərz/","aviationMeaning":"n. 直升机（复数）；旋翼航空器","generalMeaning":"n. 直升机（复数）"},
-    {"word":"hello","ipa":"/həˈloʊ/","aviationMeaning":"int. 你好；非标准无线电问候语","generalMeaning":"int. 你好"},
-    {"word":"help","ipa":"/help/","aviationMeaning":"v. 协助；n. 帮助；紧急情况求助","generalMeaning":"v. 帮助；n. 帮助"},
-    {"word":"helped","ipa":"/helpt/","aviationMeaning":"v. 已协助；已提供帮助或支持","generalMeaning":"v. 已帮助"},
-    {"word":"helpers","ipa":"/ˈhelpərz/","aviationMeaning":"n. 协助人员；地面或客舱支持人员","generalMeaning":"n. 助手（复数）"},
-    {"word":"helpful","ipa":"/ˈhelpfəl/","aviationMeaning":"adj. 有帮助的；有助于安全或操作的","generalMeaning":"adj. 有帮助的"},
-    {"word":"helping","ipa":"/ˈhelpɪŋ/","aviationMeaning":"v. 正协助；正在提供帮助或支持","generalMeaning":"v. 正帮助"},
-    {"word":"helps","ipa":"/helps/","aviationMeaning":"v. 协助；有助于安全或操作","generalMeaning":"v. 帮助；有助于"},
-    {"word":"helsinki","ipa":"/ˈhelsɪŋki/","aviationMeaning":"n. 赫尔辛基；机场或地名","generalMeaning":"n. 专有地名"},
-    {"word":"helsinki's","ipa":"/ˈhelsɪŋkiz/","aviationMeaning":"n. Helsinki 的所有格形式；机场或地名组成部分","generalMeaning":"n. 专有地名的所有格形式"},
-    {"word":"helvetic","ipa":"/helˈvetɪk/","aviationMeaning":"adj. 瑞士的；航空公司或地区名称组成部分","generalMeaning":"adj. 瑞士的；赫尔维蒂的"},
-    {"word":"hemisphere","ipa":"/ˈhemɪsfɪr/","aviationMeaning":"n. 半球；全球航路、季节和气象区域","generalMeaning":"n. 半球"},
-    {"word":"hemorrhage","ipa":"/ˈhemərɪdʒ/","aviationMeaning":"n. 出血；机上医疗紧急情况","generalMeaning":"n. 出血；大出血"},
-    {"word":"hence","ipa":"/hens/","aviationMeaning":"adv. 因此；从此；用于因果说明","generalMeaning":"adv. 因此；从此"},
-    {"word":"her","ipa":"/hɜːr/","aviationMeaning":"pron. 她；她的；人员描述","generalMeaning":"pron. 她；她的"},
-    {"word":"herald","ipa":"/ˈherəld/","aviationMeaning":"v. 预示；n. 信使；事件或变化的前兆","generalMeaning":"v. 预示；n. 使者"},
-    {"word":"hercules","ipa":"/ˈhɜːrkjəliz/","aviationMeaning":"n. 大力神；运输机型号或专有名称","generalMeaning":"n. 赫拉克勒斯；专有名称"},
-    {"word":"here","ipa":"/hɪr/","aviationMeaning":"adv. 此处；当前地点或位置","generalMeaning":"adv. 这里；此处"},
-    {"word":"hermosillo","ipa":"/ˌerməˈsiːjoʊ/","aviationMeaning":"n. 埃莫西约；机场或地名","generalMeaning":"n. 专有地名"},
-    {"word":"hermosillo's","ipa":"/ˌerməˈsiːjoʊz/","aviationMeaning":"n. Hermosillo 的所有格形式；机场或地名组成部分","generalMeaning":"n. 专有地名的所有格形式"},
-    {"word":"herself","ipa":"/hɜːrˈself/","aviationMeaning":"pron. 她自己；人员描述","generalMeaning":"pron. 她自己"},
-    {"word":"hesitated","ipa":"/ˈhezɪteɪtɪd/","aviationMeaning":"v. 已犹豫；决策或操作延迟","generalMeaning":"v. 已犹豫"},
-    {"word":"hesitation","ipa":"/ˌhezɪˈteɪʃən/","aviationMeaning":"n. 犹豫；可能影响及时决策的延迟","generalMeaning":"n. 犹豫"},
-    {"word":"hey","ipa":"/heɪ/","aviationMeaning":"int. 嘿；非标准通信称呼","generalMeaning":"int. 嘿"},
-    {"word":"hf","ipa":"/ˌeɪtʃ ˈef/","aviationMeaning":"n. 高频通信（缩写）","generalMeaning":"n. 高频缩写"},
-    {"word":"hfe","ipa":"/ˌeɪtʃ ef ˈiː/","aviationMeaning":"n. 航空资料缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"hg","ipa":"/ˌeɪtʃ ˈdʒiː/","aviationMeaning":"n. 汞柱英寸或汞（缩写）；气压单位相关","generalMeaning":"n. 汞缩写"},
-    {"word":"hgb","ipa":"/ˌeɪtʃ dʒiː ˈbiː/","aviationMeaning":"n. 血红蛋白（缩写）；医疗语境","generalMeaning":"n. 血红蛋白缩写"},
-    {"word":"hi","ipa":"/haɪ/","aviationMeaning":"int. 你好；非标准无线电问候语","generalMeaning":"int. 你好"},
-    {"word":"hid","ipa":"/hɪd/","aviationMeaning":"v. 已隐藏；显示、故障或物件未被察觉","generalMeaning":"v. 隐藏（过去式）"},
-    {"word":"hidden","ipa":"/ˈhɪdən/","aviationMeaning":"adj. 隐藏的；未被发现的故障或障碍","generalMeaning":"adj. 隐藏的"},
-    {"word":"hide","ipa":"/haɪd/","aviationMeaning":"v. 隐藏；遮蔽显示、故障或物件","generalMeaning":"v. 隐藏"}
+    {
+      "word": "harm",
+      "ipa": "/hɑːrm/",
+      "aviationMeaning": "n. 损害；伤害；v. 危害人员、航空器或运行",
+      "generalMeaning": "n. 伤害；v. 伤害"
+    },
+    {
+      "word": "harmed",
+      "ipa": "/hɑːrmd/",
+      "aviationMeaning": "v. 已伤害；已对人员、航空器或运行造成损害",
+      "generalMeaning": "v. 已伤害"
+    },
+    {
+      "word": "harmful",
+      "ipa": "/ˈhɑːrmfəl/",
+      "aviationMeaning": "adj. 有害的；危及安全、健康或环境的",
+      "generalMeaning": "adj. 有害的"
+    },
+    {
+      "word": "harms",
+      "ipa": "/hɑːrmz/",
+      "aviationMeaning": "v. 危害；n. 损害（复数）",
+      "generalMeaning": "v. 伤害；n. 损害（复数）"
+    },
+    {
+      "word": "harness",
+      "ipa": "/ˈhɑːrnəs/",
+      "aviationMeaning": "n. 安全带；线束；v. 利用或固定",
+      "generalMeaning": "n. 线束；马具；v. 利用"
+    },
+    {
+      "word": "has",
+      "ipa": "/hæz/",
+      "aviationMeaning": "v. 有；具备；发生或拥有某状态",
+      "generalMeaning": "v. 有；拥有"
+    },
+    {
+      "word": "hasn't",
+      "ipa": "/ˈhæzənt/",
+      "aviationMeaning": "v. 没有；现在完成或一般现在否定形式",
+      "generalMeaning": "v. 没有"
+    },
+    {
+      "word": "hat",
+      "ipa": "/hæt/",
+      "aviationMeaning": "n. 帽子；制服或旅客物品描述",
+      "generalMeaning": "n. 帽子"
+    },
+    {
+      "word": "havana",
+      "ipa": "/həˈvænə/",
+      "aviationMeaning": "n. 哈瓦那；机场或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "have",
+      "ipa": "/hæv/",
+      "aviationMeaning": "v. 有；持有；经历或执行",
+      "generalMeaning": "v. 有；拥有"
+    },
+    {
+      "word": "haven't",
+      "ipa": "/ˈhævənt/",
+      "aviationMeaning": "v. 没有；现在完成或一般现在否定形式",
+      "generalMeaning": "v. 没有"
+    },
+    {
+      "word": "having",
+      "ipa": "/ˈhævɪŋ/",
+      "aviationMeaning": "v. 有；正在经历或执行某事",
+      "generalMeaning": "v. 有；拥有"
+    },
+    {
+      "word": "hawaii",
+      "ipa": "/həˈwaɪi/",
+      "aviationMeaning": "n. 夏威夷；地区或航线目的地",
+      "generalMeaning": "n. 夏威夷"
+    },
+    {
+      "word": "hawaiian",
+      "ipa": "/həˈwaɪən/",
+      "aviationMeaning": "adj. 夏威夷的；航空公司或地区名称组成部分",
+      "generalMeaning": "adj. 夏威夷的"
+    },
+    {
+      "word": "hawk",
+      "ipa": "/hɔːk/",
+      "aviationMeaning": "n. 鹰；鸟击风险鸟类或航空器名称",
+      "generalMeaning": "n. 鹰；v. 兜售"
+    },
+    {
+      "word": "hawker",
+      "ipa": "/ˈhɔːkər/",
+      "aviationMeaning": "n. 霍克；航空器制造商或机型名称",
+      "generalMeaning": "n. 叫卖者；专有名称"
+    },
+    {
+      "word": "hazard",
+      "ipa": "/ˈhæzərd/",
+      "aviationMeaning": "n. 危险源；可能导致事故的条件或物体",
+      "generalMeaning": "n. 危险；危害"
+    },
+    {
+      "word": "hazardous",
+      "ipa": "/ˈhæzərdəs/",
+      "aviationMeaning": "adj. 危险的；如危险品或危险操作",
+      "generalMeaning": "adj. 危险的；有害的"
+    },
+    {
+      "word": "hazards",
+      "ipa": "/ˈhæzərdz/",
+      "aviationMeaning": "n. 危险源（复数）；运行风险因素",
+      "generalMeaning": "n. 危险；危害（复数）"
+    },
+    {
+      "word": "haze",
+      "ipa": "/heɪz/",
+      "aviationMeaning": "n. 霾；影响能见度的悬浮颗粒天气",
+      "generalMeaning": "n. 薄雾；霾"
+    },
+    {
+      "word": "hda",
+      "ipa": "/ˌeɪtʃ diː ˈeɪ/",
+      "aviationMeaning": "n. 高度或进近相关缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "he",
+      "ipa": "/hiː/",
+      "aviationMeaning": "pron. 他；人员描述",
+      "generalMeaning": "pron. 他"
+    },
+    {
+      "word": "he'll",
+      "ipa": "/hiːl/",
+      "aviationMeaning": "v. 他将；口语缩写，需结合原文",
+      "generalMeaning": "v. 他将"
+    },
+    {
+      "word": "he’ll",
+      "ipa": "/hiːl/",
+      "aviationMeaning": "v. 他将；口语缩写，需结合原文",
+      "generalMeaning": "v. 他将"
+    },
+    {
+      "word": "he's",
+      "ipa": "/hiːz/",
+      "aviationMeaning": "v. 他是或他已；口语缩写，需结合原文",
+      "generalMeaning": "v. 他是；他已"
+    },
+    {
+      "word": "head",
+      "ipa": "/hed/",
+      "aviationMeaning": "n. 头；机头方向；v. 朝向",
+      "generalMeaning": "n. 头；v. 朝向"
+    },
+    {
+      "word": "head-up",
+      "ipa": "/hed ʌp/",
+      "aviationMeaning": "adj. 平视的；如平视显示器 HUD",
+      "generalMeaning": "adj. 抬头的"
+    },
+    {
+      "word": "headache",
+      "ipa": "/ˈhedeɪk/",
+      "aviationMeaning": "n. 头痛；可能影响机组适任性的症状",
+      "generalMeaning": "n. 头痛；麻烦"
+    },
+    {
+      "word": "heading",
+      "ipa": "/ˈhedɪŋ/",
+      "aviationMeaning": "n. 航向；航空器机头所指方向",
+      "generalMeaning": "n. 标题；方向"
+    },
+    {
+      "word": "headings",
+      "ipa": "/ˈhedɪŋz/",
+      "aviationMeaning": "n. 航向（复数）；航空器机头所指方向",
+      "generalMeaning": "n. 标题；方向（复数）"
+    },
+    {
+      "word": "headset",
+      "ipa": "/ˈhedset/",
+      "aviationMeaning": "n. 耳机；机组通信耳机",
+      "generalMeaning": "n. 耳机；头戴式设备"
+    },
+    {
+      "word": "headwind",
+      "ipa": "/ˈhedwɪnd/",
+      "aviationMeaning": "n. 逆风；与飞行方向相反的风",
+      "generalMeaning": "n. 逆风；阻力"
+    },
+    {
+      "word": "headwinds",
+      "ipa": "/ˈhedwɪndz/",
+      "aviationMeaning": "n. 逆风（复数）；与飞行方向相反的风",
+      "generalMeaning": "n. 逆风；阻力（复数）"
+    },
+    {
+      "word": "health",
+      "ipa": "/helθ/",
+      "aviationMeaning": "n. 健康；机组适任性与旅客医疗状态",
+      "generalMeaning": "n. 健康；卫生"
+    },
+    {
+      "word": "healthy",
+      "ipa": "/ˈhelθi/",
+      "aviationMeaning": "adj. 健康的；适合履行职责的",
+      "generalMeaning": "adj. 健康的"
+    },
+    {
+      "word": "hear",
+      "ipa": "/hɪr/",
+      "aviationMeaning": "v. 听到；接收无线电通信或警报",
+      "generalMeaning": "v. 听到；听说"
+    },
+    {
+      "word": "heard",
+      "ipa": "/hɜːrd/",
+      "aviationMeaning": "v. 已听到；已接收无线电通信或警报",
+      "generalMeaning": "v. 听到（过去式）"
+    },
+    {
+      "word": "hearing",
+      "ipa": "/ˈhɪrɪŋ/",
+      "aviationMeaning": "n. 听力；无线电接收能力或听证",
+      "generalMeaning": "n. 听力；听证"
+    },
+    {
+      "word": "hears",
+      "ipa": "/hɪrz/",
+      "aviationMeaning": "v. 听到；接收无线电通信或警报",
+      "generalMeaning": "v. 听到；听说"
+    },
+    {
+      "word": "heart",
+      "ipa": "/hɑːrt/",
+      "aviationMeaning": "n. 心脏；旅客或机组医疗语境",
+      "generalMeaning": "n. 心脏；中心"
+    },
+    {
+      "word": "heartbeat",
+      "ipa": "/ˈhɑːrtbiːt/",
+      "aviationMeaning": "n. 心跳；医疗监测或生命体征",
+      "generalMeaning": "n. 心跳"
+    },
+    {
+      "word": "heat",
+      "ipa": "/hiːt/",
+      "aviationMeaning": "n. 热；加热；发动机、制动器或环境温度",
+      "generalMeaning": "n. 热；v. 加热"
+    },
+    {
+      "word": "heat-exchangers",
+      "ipa": "/hiːt ɪksˈtʃeɪndʒərz/",
+      "aviationMeaning": "n. 热交换器（复数）；航空器环境或发动机系统部件",
+      "generalMeaning": "n. 热交换器（复数）"
+    },
+    {
+      "word": "heat-resistant",
+      "ipa": "/hiːt rɪˈzɪstənt/",
+      "aviationMeaning": "adj. 耐热的；符合高温环境要求的",
+      "generalMeaning": "adj. 耐热的"
+    },
+    {
+      "word": "heated",
+      "ipa": "/ˈhiːtɪd/",
+      "aviationMeaning": "adj. 已加热的；防冰、客舱或部件加温的",
+      "generalMeaning": "adj. 已加热的；激烈的"
+    },
+    {
+      "word": "heaters",
+      "ipa": "/ˈhiːtərz/",
+      "aviationMeaning": "n. 加热器（复数）；客舱、除冰或系统加温设备",
+      "generalMeaning": "n. 加热器（复数）"
+    },
+    {
+      "word": "heathrow",
+      "ipa": "/ˈhiːθroʊ/",
+      "aviationMeaning": "n. 希思罗；伦敦机场名称",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "heathrow's",
+      "ipa": "/ˈhiːθroʊz/",
+      "aviationMeaning": "n. Heathrow 的所有格形式；机场名称组成部分",
+      "generalMeaning": "n. 专有地名的所有格形式"
+    },
+    {
+      "word": "heating",
+      "ipa": "/ˈhiːtɪŋ/",
+      "aviationMeaning": "n. 加热；客舱、除冰或系统加温",
+      "generalMeaning": "n. 加热；供暖"
+    },
+    {
+      "word": "heavier",
+      "ipa": "/ˈheviər/",
+      "aviationMeaning": "adj. 更重的；重量、降水或交通量更大的",
+      "generalMeaning": "adj. 更重的；更严重的"
+    },
+    {
+      "word": "heavily",
+      "ipa": "/ˈhevɪli/",
+      "aviationMeaning": "adv. 大量地；严重地；如大雨或高负荷",
+      "generalMeaning": "adv. 沉重地；严重地"
+    },
+    {
+      "word": "heavy",
+      "ipa": "/ˈhevi/",
+      "aviationMeaning": "adj. 重的；如重型航空器、强降水或高工作负荷",
+      "generalMeaning": "adj. 重的；严重的"
+    },
+    {
+      "word": "heavy-loaded",
+      "ipa": "/ˈhevi ˈloʊdɪd/",
+      "aviationMeaning": "adj. 重载的；载荷或重量较大的",
+      "generalMeaning": "adj. 重载的"
+    },
+    {
+      "word": "hectopascal",
+      "ipa": "/ˈhektəˌpæskəl/",
+      "aviationMeaning": "n. 百帕；气压单位",
+      "generalMeaning": "n. 百帕"
+    },
+    {
+      "word": "hectopascals",
+      "ipa": "/ˈhektəˌpæskəlz/",
+      "aviationMeaning": "n. 百帕（复数）；气压单位",
+      "generalMeaning": "n. 百帕（复数）"
+    },
+    {
+      "word": "hefei",
+      "ipa": "/həˈfeɪ/",
+      "aviationMeaning": "n. 合肥；机场或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "height",
+      "ipa": "/haɪt/",
+      "aviationMeaning": "n. 高度；距地面或物体基准的垂直距离",
+      "generalMeaning": "n. 高度；身高"
+    },
+    {
+      "word": "heights",
+      "ipa": "/haɪts/",
+      "aviationMeaning": "n. 高度（复数）；垂直距离或高处",
+      "generalMeaning": "n. 高度；高处（复数）"
+    },
+    {
+      "word": "hekou",
+      "ipa": "/həˈkoʊ/",
+      "aviationMeaning": "n. 河口；航路点或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "held",
+      "ipa": "/held/",
+      "aviationMeaning": "v. 已保持；已拿住；如保持高度或等待",
+      "generalMeaning": "v. 保持；拿住（过去式）"
+    },
+    {
+      "word": "helicopter",
+      "ipa": "/ˈhelɪˌkɑːptər/",
+      "aviationMeaning": "n. 直升机；旋翼航空器",
+      "generalMeaning": "n. 直升机"
+    },
+    {
+      "word": "helicopters",
+      "ipa": "/ˈhelɪˌkɑːptərz/",
+      "aviationMeaning": "n. 直升机（复数）；旋翼航空器",
+      "generalMeaning": "n. 直升机（复数）"
+    },
+    {
+      "word": "hello",
+      "ipa": "/həˈloʊ/",
+      "aviationMeaning": "int. 你好；非标准无线电问候语",
+      "generalMeaning": "int. 你好"
+    },
+    {
+      "word": "help",
+      "ipa": "/help/",
+      "aviationMeaning": "v. 协助；n. 帮助；紧急情况求助",
+      "generalMeaning": "v. 帮助；n. 帮助"
+    },
+    {
+      "word": "helped",
+      "ipa": "/helpt/",
+      "aviationMeaning": "v. 已协助；已提供帮助或支持",
+      "generalMeaning": "v. 已帮助"
+    },
+    {
+      "word": "helpful",
+      "ipa": "/ˈhelpfəl/",
+      "aviationMeaning": "adj. 有帮助的；有助于安全或操作的",
+      "generalMeaning": "adj. 有帮助的"
+    },
+    {
+      "word": "helping",
+      "ipa": "/ˈhelpɪŋ/",
+      "aviationMeaning": "v. 正协助；正在提供帮助或支持",
+      "generalMeaning": "v. 正帮助"
+    },
+    {
+      "word": "helps",
+      "ipa": "/helps/",
+      "aviationMeaning": "v. 协助；有助于安全或操作",
+      "generalMeaning": "v. 帮助；有助于"
+    },
+    {
+      "word": "helsinki",
+      "ipa": "/ˈhelsɪŋki/",
+      "aviationMeaning": "n. 赫尔辛基；机场或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "helsinki's",
+      "ipa": "/ˈhelsɪŋkiz/",
+      "aviationMeaning": "n. Helsinki 的所有格形式；机场或地名组成部分",
+      "generalMeaning": "n. 专有地名的所有格形式"
+    },
+    {
+      "word": "helvetic",
+      "ipa": "/helˈvetɪk/",
+      "aviationMeaning": "adj. 瑞士的；航空公司或地区名称组成部分",
+      "generalMeaning": "adj. 瑞士的；赫尔维蒂的"
+    },
+    {
+      "word": "hemisphere",
+      "ipa": "/ˈhemɪsfɪr/",
+      "aviationMeaning": "n. 半球；全球航路、季节和气象区域",
+      "generalMeaning": "n. 半球"
+    },
+    {
+      "word": "hemorrhage",
+      "ipa": "/ˈhemərɪdʒ/",
+      "aviationMeaning": "n. 出血；机上医疗紧急情况",
+      "generalMeaning": "n. 出血；大出血"
+    },
+    {
+      "word": "hence",
+      "ipa": "/hens/",
+      "aviationMeaning": "adv. 因此；从此；用于因果说明",
+      "generalMeaning": "adv. 因此；从此"
+    },
+    {
+      "word": "her",
+      "ipa": "/hɜːr/",
+      "aviationMeaning": "pron. 她；她的；人员描述",
+      "generalMeaning": "pron. 她；她的"
+    },
+    {
+      "word": "herald",
+      "ipa": "/ˈherəld/",
+      "aviationMeaning": "v. 预示；n. 信使；事件或变化的前兆",
+      "generalMeaning": "v. 预示；n. 使者"
+    },
+    {
+      "word": "hercules",
+      "ipa": "/ˈhɜːrkjəliz/",
+      "aviationMeaning": "n. 大力神；运输机型号或专有名称",
+      "generalMeaning": "n. 赫拉克勒斯；专有名称"
+    },
+    {
+      "word": "here",
+      "ipa": "/hɪr/",
+      "aviationMeaning": "adv. 此处；当前地点或位置",
+      "generalMeaning": "adv. 这里；此处"
+    },
+    {
+      "word": "hermosillo",
+      "ipa": "/ˌerməˈsiːjoʊ/",
+      "aviationMeaning": "n. 埃莫西约；机场或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "hermosillo's",
+      "ipa": "/ˌerməˈsiːjoʊz/",
+      "aviationMeaning": "n. Hermosillo 的所有格形式；机场或地名组成部分",
+      "generalMeaning": "n. 专有地名的所有格形式"
+    },
+    {
+      "word": "herself",
+      "ipa": "/hɜːrˈself/",
+      "aviationMeaning": "pron. 她自己；人员描述",
+      "generalMeaning": "pron. 她自己"
+    },
+    {
+      "word": "hesitated",
+      "ipa": "/ˈhezɪteɪtɪd/",
+      "aviationMeaning": "v. 已犹豫；决策或操作延迟",
+      "generalMeaning": "v. 已犹豫"
+    },
+    {
+      "word": "hesitation",
+      "ipa": "/ˌhezɪˈteɪʃən/",
+      "aviationMeaning": "n. 犹豫；可能影响及时决策的延迟",
+      "generalMeaning": "n. 犹豫"
+    },
+    {
+      "word": "hey",
+      "ipa": "/heɪ/",
+      "aviationMeaning": "int. 嘿；非标准通信称呼",
+      "generalMeaning": "int. 嘿"
+    },
+    {
+      "word": "hf",
+      "ipa": "/ˌeɪtʃ ˈef/",
+      "aviationMeaning": "n. 高频通信（缩写）",
+      "generalMeaning": "n. 高频缩写"
+    },
+    {
+      "word": "hfe",
+      "ipa": "/ˌeɪtʃ ef ˈiː/",
+      "aviationMeaning": "n. 航空资料缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "hg",
+      "ipa": "/ˌeɪtʃ ˈdʒiː/",
+      "aviationMeaning": "n. 汞柱英寸或汞（缩写）；气压单位相关",
+      "generalMeaning": "n. 汞缩写"
+    },
+    {
+      "word": "hgb",
+      "ipa": "/ˌeɪtʃ dʒiː ˈbiː/",
+      "aviationMeaning": "n. 血红蛋白（缩写）；医疗语境",
+      "generalMeaning": "n. 血红蛋白缩写"
+    },
+    {
+      "word": "hi",
+      "ipa": "/haɪ/",
+      "aviationMeaning": "int. 你好；非标准无线电问候语",
+      "generalMeaning": "int. 你好"
+    },
+    {
+      "word": "hid",
+      "ipa": "/hɪd/",
+      "aviationMeaning": "v. 已隐藏；显示、故障或物件未被察觉",
+      "generalMeaning": "v. 隐藏（过去式）"
+    },
+    {
+      "word": "hidden",
+      "ipa": "/ˈhɪdən/",
+      "aviationMeaning": "adj. 隐藏的；未被发现的故障或障碍",
+      "generalMeaning": "adj. 隐藏的"
+    },
+    {
+      "word": "hide",
+      "ipa": "/haɪd/",
+      "aviationMeaning": "v. 隐藏；遮蔽显示、故障或物件",
+      "generalMeaning": "v. 隐藏"
+    }
   ]
 }

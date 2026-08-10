@@ -1,4 +1,4 @@
-import { Clock, Layers, LineChart, Sparkles, Target, Zap } from 'lucide-react-native';
+import { Clock, Layers, LineChart, Sparkles, Target, Zap } from '@/components/ui/icons';
 import { StyleSheet, View } from 'react-native';
 
 import { TopBar } from '@/components/navigation/TopBar';

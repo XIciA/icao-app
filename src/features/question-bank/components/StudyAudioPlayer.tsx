@@ -1,5 +1,5 @@
 import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
-import { AlertCircle, Check, Headphones, Pause, Play, RotateCcw } from 'lucide-react-native';
+import { AlertCircle, Check, Headphones, Pause, Play, RotateCcw } from '@/components/ui/icons';
 import { type ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, AppState, Platform, Pressable, StyleSheet, View } from 'react-native';
 import type { GestureType } from 'react-native-gesture-handler';

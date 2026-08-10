@@ -11,7 +11,7 @@ import {
   TrendingUp,
   Users,
   type LucideIcon,
-} from 'lucide-react-native';
+} from '@/components/ui/icons';
 import { useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 

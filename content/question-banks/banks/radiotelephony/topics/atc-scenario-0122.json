@@ -72,8 +72,8 @@
       "taskTitle": "SIA 308-8",
       "audioText": "SIA 308, Wuhan Departure, radar contact, cancel SID, turn right, direct to ZF, climb to and maintain 4,500 meters.",
       "audioTextZh": "SIA 308，武汉离场，雷达识别，取消 SID，右转直飞 ZF，爬升至并保持 4,500 米。",
-      "referenceText": "cancel SID, turn right, direct to ZF, climb to and maintain four thounsand 500 meters, SIA 308.",
-      "referenceTextZh": "取消 SID，右转直飞 ZF，爬升至并保持 four thounsand 500 米，SIA 308。",
+      "referenceText": "cancel SID, turn right, direct to ZF, climb to and maintain 4,500 meters, SIA 308.",
+      "referenceTextZh": "取消 SID，右转直飞 ZF，爬升至并保持 4,500 米，SIA 308。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-019-sia308-q08.mp3"
     },
     {

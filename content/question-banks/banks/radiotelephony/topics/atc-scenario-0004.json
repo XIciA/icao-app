@@ -79,10 +79,10 @@
     {
       "id": "atc-scenario-0004-card-main-066",
       "taskTitle": "QFA 029-9",
-      "audioText": "B: You have a problem: during pushback, the tow-bar is bent and you have to wait for another 1. Tell the controller.",
-      "audioTextZh": "B：你有一个问题：推出期间，拖把弯曲，你必须等待另一个。告诉管制员。",
-      "referenceText": "Beijing Ground, QFA 029, the tow bar is bent and we have to wait for another 1.",
-      "referenceTextZh": "北京地面，QFA 029，拖把弯曲，我们必须等待另一个。",
+      "audioText": "B: You have a problem: during pushback, the tow-bar is bent and you have to wait for another one. Tell the controller.",
+      "audioTextZh": "B：你有一个问题：推出期间，牵引杆弯曲，你必须等待另一根。告诉管制员。",
+      "referenceText": "Beijing Ground, QFA 029, the tow bar is bent and we have to wait for another one.",
+      "referenceTextZh": "北京地面，QFA 029，牵引杆弯曲，我们必须等待另一根。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/066.mp3"
     },
     {

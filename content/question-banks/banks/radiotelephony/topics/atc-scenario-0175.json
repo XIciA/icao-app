@@ -52,7 +52,7 @@
     {
       "id": "atc-scenario-0175-card-main-3018",
       "taskTitle": "UAL 817-6",
-      "audioText": "C: UAL 817, wind 200, 8 meters per second.\nB: the tailwind exceeds your takeoff limit, contact Wuhan Tower to change to Runway 22and state the reason.",
+      "audioText": "C: UAL 817, wind 200, 8 meters per second.\nB: the tailwind exceeds your takeoff limit, contact Wuhan Tower to change to Runway 22 and state the reason.",
       "audioTextZh": "C： UAL 817，风向 200，风速 8 米/秒。\nB： 顺风超过你的起飞限制，联系武汉塔台请求更换至 Runway 22 并说明原因。",
       "referenceText": "Wuhan Tower, UAL 817, the tailwind exceeds our takeoff limit, request change to Runway 22.",
       "referenceTextZh": "武汉塔台，UAL 817，顺风超过我们的起飞限制，请求更换至 Runway 22。",

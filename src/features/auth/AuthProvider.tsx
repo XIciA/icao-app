@@ -3,6 +3,7 @@ import { AppState, StyleSheet, View } from 'react-native';
 
 import { AppModal } from '@/components/platform/AppModal';
 import { AppText, Button } from '@/components/ui';
+import { clearLocalAiConsent } from '@/features/ai/ai-client';
 import { apiFetch, apiRequest, setApiAccessTokenProvider, setApiAuthRecovery } from '@/platform/api-client';
 import { archiveAndBindEmptyLearningSync, bindEmptyLearningSync, bindLearningSync, clearPersonalLearningData, inspectLearningSyncBinding, runLearningSync, setLearningSyncActiveUser } from '@/features/sync/learning-sync';
 import { colors, radii, spacing } from '@/theme';
@@ -71,6 +72,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       onInvalidated: async () => {
         setLearningSyncActiveUser(undefined);
         await service.signOut('local').catch(() => undefined);
+        await clearLocalAiConsent().catch(() => undefined);
         setSession(undefined);
         setAccountReady(false);
       },
@@ -171,6 +173,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const revokeAllAndClear = useCallback(async () => {
     await apiRequest<{ revoked: true }>('/v1/account/sessions/revoke-all', { method: 'POST' });
     await service?.signOut('local').catch(() => undefined);
+    await clearLocalAiConsent().catch(() => undefined);
     setSession(undefined);
     setAccountReady(false);
   }, [service]);
@@ -196,7 +199,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     },
     rememberPendingPath(path) { if (!path.startsWith('/auth/') && !path.startsWith('/legal/')) setPendingPath(path); },
     async signIn(inviteCode) { if (!service) return unavailable(); setAccountReady(false); setUiAcceptanceMode(false); setSession(await service.signInWithInviteCode(inviteCode)); },
-    async signOut() { if (!service) return unavailable(); await service.signOut('local'); setSession(undefined); setAccountReady(false); },
+    async signOut() { if (!service) return unavailable(); await service.signOut('local'); await clearLocalAiConsent().catch(() => undefined); setSession(undefined); setAccountReady(false); },
     async signOutAll() { if (!service) return unavailable(); await revokeAllAndClear(); },
     async deleteAccount(inviteCode) {
       if (!service) return unavailable();
@@ -210,6 +213,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         throw new Error(body?.error?.code ?? `api_http_${response.status}`);
       }
       await service.signOut('local').catch(() => undefined);
+      await clearLocalAiConsent().catch(() => undefined);
       await clearPersonalLearningData();
       setSession(undefined);
       setAccountReady(false);

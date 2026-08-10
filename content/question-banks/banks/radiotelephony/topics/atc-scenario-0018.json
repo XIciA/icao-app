@@ -162,7 +162,7 @@
       "taskTitle": "AFR 126-18",
       "audioText": "C: AFR 126, snow is getting heavier, you have to hold about 1 hour.\nB: The remaining fuel can hold for half hour, you have to request diversion.",
       "audioTextZh": "管制员：AFR 126，雪越来越大，你们需要等待约1小时。剩余油量只能等待半小时，你必须申请备降。",
-      "referenceText": "Our endurance is 30 minutes, request  diversion, AFR 126.",
+      "referenceText": "Our endurance is 30 minutes, request diversion, AFR 126.",
       "referenceTextZh": "我们续航时间30分钟，申请备降，AFR 126。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/314.mp3"
     },
@@ -171,7 +171,7 @@
       "taskTitle": "AFR 126-19",
       "audioText": "C: AFR 126, stand by.\nB: Your fuel temperature indicates\nabnormal, you can only hold 10 minutes, request diversion to Dalian airport.",
       "audioTextZh": "管制员：AFR 126，请稍等。你的燃油温度指示异常，只能再等待10分钟，申请备降大连机场。",
-      "referenceText": "Beijing Approach, AFR 126, our fuel temperature indicates abnormal,  endurance only 10 minutes, request divert to Dalian airport.",
+      "referenceText": "Beijing Approach, AFR 126, our fuel temperature indicates abnormal, endurance only 10 minutes, request divert to Dalian airport.",
       "referenceTextZh": "北京进近，AFR 126，我们燃油温度指示异常，续航只剩10分钟，申请备降大连机场。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/315.mp3"
     },

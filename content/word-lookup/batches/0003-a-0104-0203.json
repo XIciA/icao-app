@@ -1,105 +1,485 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"activates","ipa":"/ˈæktəveɪts/","aviationMeaning":"v. 启动设备、系统或程序","generalMeaning":"v. 激活；启动"},
-    {"word":"activation","ipa":"/ˌæktəˈveɪʃən/","aviationMeaning":"n. 系统、程序或告警的启动","generalMeaning":"n. 激活；启动"},
-    {"word":"active","ipa":"/ˈæktɪv/","aviationMeaning":"adj. 正在使用的；有效的","generalMeaning":"adj. 积极的；活跃的；有效的"},
-    {"word":"actively","ipa":"/ˈæktɪvli/","aviationMeaning":"adv. 主动地；正在运行地","generalMeaning":"adv. 积极地；活跃地"},
-    {"word":"activities","ipa":"/ækˈtɪvətiz/","aviationMeaning":"n. 飞行、地面或运行活动（复数）","generalMeaning":"n. 活动（复数）"},
-    {"word":"activity","ipa":"/ækˈtɪvəti/","aviationMeaning":"n. 飞行、地面或运行活动","generalMeaning":"n. 活动；行动"},
-    {"word":"acts","ipa":"/ækts/","aviationMeaning":"v. 执行操作；起作用","generalMeaning":"v. 行动；起作用"},
-    {"word":"actual","ipa":"/ˈæktʃuəl/","aviationMeaning":"adj. 实际的；实测的","generalMeaning":"adj. 实际的；真实的"},
-    {"word":"actually","ipa":"/ˈæktʃuəli/","aviationMeaning":"adv. 实际上；按实测情况","generalMeaning":"adv. 实际上；事实上"},
-    {"word":"actuates","ipa":"/ˈæktʃuˌeɪts/","aviationMeaning":"v. 驱动控制面、阀门或机构","generalMeaning":"v. 使动作；驱动"},
-    {"word":"actuator","ipa":"/ˈæktʃuˌeɪtər/","aviationMeaning":"n. 作动器；执行机构","generalMeaning":"n. 执行器；致动器"},
-    {"word":"actuators","ipa":"/ˈæktʃuˌeɪtərz/","aviationMeaning":"n. 作动器；执行机构（复数）","generalMeaning":"n. 执行器；致动器（复数）"},
-    {"word":"acute","ipa":"/əˈkjuːt/","aviationMeaning":"adj. 急性的；严重的","generalMeaning":"adj. 严重的；急性的；敏锐的"},
-    {"word":"ad","ipa":"/ˌeɪ ˈdiː/","aviationMeaning":"n. 民航文本中的字母缩写","generalMeaning":"n. 广告；字母缩写"},
-    {"word":"adapt","ipa":"/əˈdæpt/","aviationMeaning":"v. 适应运行条件或调整程序","generalMeaning":"v. 适应；改编；调整"},
-    {"word":"adaptation","ipa":"/ˌædæpˈteɪʃən/","aviationMeaning":"n. 对运行环境或设备的适应","generalMeaning":"n. 适应；改编"},
-    {"word":"adapted","ipa":"/əˈdæptɪd/","aviationMeaning":"adj. 已适应运行条件的；已调整的","generalMeaning":"adj. 已适应的；改编的"},
-    {"word":"adapts","ipa":"/əˈdæpts/","aviationMeaning":"v. 适应运行条件或调整程序","generalMeaning":"v. 适应；调整"},
-    {"word":"adcs","ipa":"/ˌeɪ diː siː ˈes/","aviationMeaning":"n. 空气数据计算系统（缩写）","generalMeaning":"n. 系统名称缩写"},
-    {"word":"add","ipa":"/æd/","aviationMeaning":"v. 增加高度、速度、燃油或备注","generalMeaning":"v. 添加；增加"},
-    {"word":"added","ipa":"/ˈædɪd/","aviationMeaning":"v. 已增加；已加入运行信息","generalMeaning":"v. 已添加；已增加"},
-    {"word":"adding","ipa":"/ˈædɪŋ/","aviationMeaning":"v. 正在增加或加入运行信息","generalMeaning":"v. 正在添加；增加"},
-    {"word":"addition","ipa":"/əˈdɪʃən/","aviationMeaning":"n. 增加项；附加设备或信息","generalMeaning":"n. 增加；附加物"},
-    {"word":"additional","ipa":"/əˈdɪʃənəl/","aviationMeaning":"adj. 额外的；附加的","generalMeaning":"adj. 额外的；附加的"},
-    {"word":"additives","ipa":"/ˈædətɪvz/","aviationMeaning":"n. 燃油或液体添加剂（复数）","generalMeaning":"n. 添加剂（复数）"},
-    {"word":"address","ipa":"/əˈdres/","aviationMeaning":"v. 处理告警、故障或运行问题","generalMeaning":"v. 处理；应对；致辞"},
-    {"word":"addressed","ipa":"/əˈdrest/","aviationMeaning":"v. 已处理告警、故障或运行问题","generalMeaning":"v. 已处理；已解决"},
-    {"word":"addressing","ipa":"/əˈdresɪŋ/","aviationMeaning":"v. 正在处理告警、故障或运行问题","generalMeaning":"v. 正在处理；应对"},
-    {"word":"adds","ipa":"/ædz/","aviationMeaning":"v. 增加高度、速度、燃油或备注","generalMeaning":"v. 添加；增加"},
-    {"word":"adele","ipa":"/əˈdɛl/","aviationMeaning":"n. 人名或呼号中的名称","generalMeaning":"n. 阿黛尔（人名）"},
-    {"word":"adequacy","ipa":"/ˈædɪkwəsi/","aviationMeaning":"n. 跑道、燃油或程序的充足性","generalMeaning":"n. 充足；适当"},
-    {"word":"adequate","ipa":"/ˈædɪkwət/","aviationMeaning":"adj. 满足运行要求的；充足的","generalMeaning":"adj. 足够的；适当的"},
-    {"word":"adequately","ipa":"/ˈædɪkwətli/","aviationMeaning":"adv. 充分地；满足运行要求地","generalMeaning":"adv. 充分地；适当地"},
-    {"word":"adf","ipa":"/ˌeɪ diː ˈef/","aviationMeaning":"n. 自动定向仪（缩写）","generalMeaning":"n. 设备名称缩写"},
-    {"word":"adherence","ipa":"/ədˈhɪrəns/","aviationMeaning":"n. 对程序、航迹或限制的遵守","generalMeaning":"n. 遵守；坚持；附着"},
-    {"word":"adhering","ipa":"/ədˈhɪrɪŋ/","aviationMeaning":"v. 正在遵守程序、航迹或限制","generalMeaning":"v. 坚持；遵守；附着"},
-    {"word":"adjacent","ipa":"/əˈdʒeɪsənt/","aviationMeaning":"adj. 相邻的；毗连跑道或区域的","generalMeaning":"adj. 邻近的；毗连的"},
-    {"word":"adjust","ipa":"/əˈdʒʌst/","aviationMeaning":"v. 调整高度、速度、航向或设备","generalMeaning":"v. 调整；适应"},
-    {"word":"adjustable","ipa":"/əˈdʒʌstəbəl/","aviationMeaning":"adj. 可调节的；可设定的","generalMeaning":"adj. 可调整的；可调节的"},
-    {"word":"adjusted","ipa":"/əˈdʒʌstɪd/","aviationMeaning":"adj. 已调整的；已设定的","generalMeaning":"adj. 已调整的；适应的"},
-    {"word":"adjusting","ipa":"/əˈdʒʌstɪŋ/","aviationMeaning":"v. 正在调整高度、速度、航向或设备","generalMeaning":"v. 正在调整；适应"},
-    {"word":"adjustment","ipa":"/əˈdʒʌstmənt/","aviationMeaning":"n. 对高度、速度、设备或计划的调整","generalMeaning":"n. 调整；调节"},
-    {"word":"adjustments","ipa":"/əˈdʒʌstmənts/","aviationMeaning":"n. 对高度、速度、设备或计划的调整（复数）","generalMeaning":"n. 调整；调节（复数）"},
-    {"word":"adjusts","ipa":"/əˈdʒʌsts/","aviationMeaning":"v. 调整高度、速度、航向或设备","generalMeaning":"v. 调整；适应"},
-    {"word":"administration","ipa":"/ədˌmɪnəˈstreɪʃən/","aviationMeaning":"n. 航空管理机构；运行管理","generalMeaning":"n. 管理；行政机构"},
-    {"word":"administrative","ipa":"/ədˈmɪnəˌstreɪtɪv/","aviationMeaning":"adj. 行政管理的；非飞行运行的","generalMeaning":"adj. 行政的；管理的"},
-    {"word":"adopted","ipa":"/əˈdɑːptɪd/","aviationMeaning":"adj. 已采用的程序、标准或措施","generalMeaning":"adj. 被采用的；被收养的"},
-    {"word":"adopting","ipa":"/əˈdɑːptɪŋ/","aviationMeaning":"v. 正在采用程序、标准或措施","generalMeaning":"v. 正在采用；采纳"},
-    {"word":"ads-b","ipa":"/ˌeɪ diː ɛs ˈbiː/","aviationMeaning":"n. 广播式自动相关监视（缩写）","generalMeaning":"n. 航空监视系统缩写"},
-    {"word":"adult","ipa":"/əˈdʌlt/","aviationMeaning":"n. 成年旅客；成人","generalMeaning":"n. 成人；adj. 成年的"},
-    {"word":"advance","ipa":"/ədˈvæns/","aviationMeaning":"v. 提前推进；向前移动","generalMeaning":"v. 前进；推进；n. 进展"},
-    {"word":"advanced","ipa":"/ədˈvænst/","aviationMeaning":"adj. 先进的；高级运行或培训的","generalMeaning":"adj. 先进的；高级的"},
-    {"word":"advancements","ipa":"/ədˈvænsmənts/","aviationMeaning":"n. 航空技术或运行进步（复数）","generalMeaning":"n. 进步；发展（复数）"},
-    {"word":"advancing","ipa":"/ədˈvænsɪŋ/","aviationMeaning":"v. 正在推进航行、程序或技术","generalMeaning":"v. 正在前进；推进"},
-    {"word":"advantage","ipa":"/ədˈvæntɪdʒ/","aviationMeaning":"n. 运行、性能或安全优势","generalMeaning":"n. 优势；好处"},
-    {"word":"advantages","ipa":"/ədˈvæntɪdʒɪz/","aviationMeaning":"n. 运行、性能或安全优势（复数）","generalMeaning":"n. 优势；好处（复数）"},
-    {"word":"advection","ipa":"/ædˈvekʃən/","aviationMeaning":"n. 平流；气团的水平输送","generalMeaning":"n. 平流；输送"},
-    {"word":"advent","ipa":"/ˈædvent/","aviationMeaning":"n. 新技术或新规程的出现","generalMeaning":"n. 出现；来临"},
-    {"word":"adverse","ipa":"/ædˈvɜːrs/","aviationMeaning":"adj. 不利的；恶劣的","generalMeaning":"adj. 不利的；有害的"},
-    {"word":"adverse-weather","ipa":"/ædˈvɜːrs ˈwɛðər/","aviationMeaning":"n. 恶劣天气","generalMeaning":"n. 恶劣天气；不良天气"},
-    {"word":"advice","ipa":"/ədˈvaɪs/","aviationMeaning":"n. 运行建议；气象或安全提示","generalMeaning":"n. 建议；忠告"},
-    {"word":"advise","ipa":"/ədˈvaɪz/","aviationMeaning":"v. 通知；建议报告运行信息","generalMeaning":"v. 建议；通知"},
-    {"word":"advised","ipa":"/ədˈvaɪzd/","aviationMeaning":"v. 已通知；已建议报告","generalMeaning":"v. 已建议；已通知"},
-    {"word":"advises","ipa":"/ədˈvaɪzɪz/","aviationMeaning":"v. 通知；建议报告运行信息","generalMeaning":"v. 建议；通知"},
-    {"word":"advising","ipa":"/ədˈvaɪzɪŋ/","aviationMeaning":"v. 正在通知或建议报告","generalMeaning":"v. 正在建议；通知"},
-    {"word":"advisories","ipa":"/ədˈvaɪzəriz/","aviationMeaning":"n. 航行、气象或安全通告（复数）","generalMeaning":"n. 公告；建议（复数）"},
-    {"word":"advisory","ipa":"/ədˈvaɪzəri/","aviationMeaning":"n. 航行、气象或安全通告","generalMeaning":"n. 公告；建议"},
-    {"word":"aero","ipa":"/ˈɛroʊ/","aviationMeaning":"adj. 航空的；空气动力相关的","generalMeaning":"adj. 航空的；空气的"},
-    {"word":"aerobic","ipa":"/erˈoʊbɪk/","aviationMeaning":"adj. 需氧的；与机组体能相关的","generalMeaning":"adj. 有氧的"},
-    {"word":"aerocivil","ipa":"/ˌeroʊsɪˈvɪl/","aviationMeaning":"n. 民航主管机构名称","generalMeaning":"n. 机构名称"},
-    {"word":"aerodrome","ipa":"/ˈɛrəˌdroʊm/","aviationMeaning":"n. 飞行场；机场","generalMeaning":"n. 飞行场；机场"},
-    {"word":"aerodromes","ipa":"/ˈɛrəˌdroʊmz/","aviationMeaning":"n. 飞行场；机场（复数）","generalMeaning":"n. 飞行场；机场（复数）"},
-    {"word":"aerodynamic","ipa":"/ˌɛroʊdaɪˈnæmɪk/","aviationMeaning":"adj. 空气动力学的","generalMeaning":"adj. 空气动力学的"},
-    {"word":"aerodynamics","ipa":"/ˌɛroʊdaɪˈnæmɪks/","aviationMeaning":"n. 空气动力学","generalMeaning":"n. 空气动力学"},
-    {"word":"aerologic","ipa":"/ˌɛrəˈlɑːdʒɪk/","aviationMeaning":"adj. 高空气象的","generalMeaning":"adj. 气象学的"},
-    {"word":"aeromexico","ipa":"/ˌɛroʊˈmeksɪkoʊ/","aviationMeaning":"n. 墨西哥航空（航空公司名称）","generalMeaning":"n. 墨西哥航空（名称）"},
-    {"word":"aeronautical","ipa":"/ˌɛrəˈnɔːtɪkəl/","aviationMeaning":"adj. 航空学的；飞行运行的","generalMeaning":"adj. 航空的；飞行学的"},
-    {"word":"aeroplane","ipa":"/ˈɛrəˌpleɪn/","aviationMeaning":"n. 飞机（英式用语）","generalMeaning":"n. 飞机"},
-    {"word":"aeroplanes","ipa":"/ˈɛrəˌpleɪnz/","aviationMeaning":"n. 飞机（复数，英式用语）","generalMeaning":"n. 飞机（复数）"},
-    {"word":"aesthetic","ipa":"/esˈθetɪk/","aviationMeaning":"adj. 与客舱或界面美观相关的","generalMeaning":"adj. 美学的；审美的"},
-    {"word":"afaster","ipa":"/əˈfæstər/","aviationMeaning":"n. 题库原文中的疑似拼写粘连","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"affect","ipa":"/əˈfekt/","aviationMeaning":"v. 影响飞行性能、运行或安全","generalMeaning":"v. 影响；使改变"},
-    {"word":"affected","ipa":"/əˈfektɪd/","aviationMeaning":"adj. 受天气、故障或限制影响的","generalMeaning":"adj. 受影响的；假装的"},
-    {"word":"affecting","ipa":"/əˈfektɪŋ/","aviationMeaning":"v. 正在影响飞行性能、运行或安全","generalMeaning":"v. 正在影响；感动"},
-    {"word":"affects","ipa":"/əˈfekts/","aviationMeaning":"v. 影响飞行性能、运行或安全","generalMeaning":"v. 影响；使改变"},
-    {"word":"affirm","ipa":"/əˈfɜːrm/","aviationMeaning":"v. 确认；肯定回复","generalMeaning":"v. 确认；断言"},
-    {"word":"affirmative","ipa":"/əˈfɜːrmətɪv/","aviationMeaning":"adj. 肯定的；用于确认的","generalMeaning":"adj. 肯定的；积极的"},
-    {"word":"affirmed","ipa":"/əˈfɜːrmd/","aviationMeaning":"v. 已确认；已肯定回复","generalMeaning":"v. 已确认；已断言"},
-    {"word":"afforded","ipa":"/əˈfɔːrdɪd/","aviationMeaning":"v. 提供了运行条件或机会","generalMeaning":"v. 提供；负担得起"},
-    {"word":"afghan","ipa":"/ˈæfɡæn/","aviationMeaning":"adj. 阿富汗的；与航线地点相关的","generalMeaning":"adj. 阿富汗的；n. 阿富汗人"},
-    {"word":"afm","ipa":"/ˌeɪ ɛf ˈem/","aviationMeaning":"n. 飞机飞行手册（缩写）","generalMeaning":"n. 手册名称缩写"},
-    {"word":"afr","ipa":"/ˌeɪ ɛf ˈɑːr/","aviationMeaning":"n. 法国航空呼号缩写","generalMeaning":"n. 字母缩写"},
-    {"word":"afraid","ipa":"/əˈfreɪd/","aviationMeaning":"adj. 担心的；表示不利消息的礼貌用语","generalMeaning":"adj. 害怕的；担心的"},
-    {"word":"africa","ipa":"/ˈæfrɪkə/","aviationMeaning":"n. 非洲；航线或区域名称","generalMeaning":"n. 非洲"},
-    {"word":"african","ipa":"/ˈæfrɪkən/","aviationMeaning":"adj. 非洲的；与航线区域相关的","generalMeaning":"adj. 非洲的；n. 非洲人"},
-    {"word":"aft","ipa":"/æft/","aviationMeaning":"adv. 向机尾；在后部","generalMeaning":"adv. 向后；在后部"},
-    {"word":"after","ipa":"/ˈæftər/","aviationMeaning":"prep. 在…之后；随后","generalMeaning":"prep. 在…之后；追随"},
-    {"word":"after-start","ipa":"/ˈæftər stɑːrt/","aviationMeaning":"adj. 发动机启动后的","generalMeaning":"adj. 开始后的"},
-    {"word":"after-takeoff","ipa":"/ˈæftər ˈteɪkɔːf/","aviationMeaning":"adj. 起飞后的","generalMeaning":"adj. 起飞后的"},
-    {"word":"afterchecking","ipa":"/ˈæftər ˈtʃekɪŋ/","aviationMeaning":"n. 题库原文中的疑似拼写粘连","generalMeaning":"n. 疑似拼写错误；请结合原文"}
+    {
+      "word": "activates",
+      "ipa": "/ˈæktəveɪts/",
+      "aviationMeaning": "v. 启动设备、系统或程序",
+      "generalMeaning": "v. 激活；启动"
+    },
+    {
+      "word": "activation",
+      "ipa": "/ˌæktəˈveɪʃən/",
+      "aviationMeaning": "n. 系统、程序或告警的启动",
+      "generalMeaning": "n. 激活；启动"
+    },
+    {
+      "word": "active",
+      "ipa": "/ˈæktɪv/",
+      "aviationMeaning": "adj. 正在使用的；有效的",
+      "generalMeaning": "adj. 积极的；活跃的；有效的"
+    },
+    {
+      "word": "activities",
+      "ipa": "/ækˈtɪvətiz/",
+      "aviationMeaning": "n. 飞行、地面或运行活动（复数）",
+      "generalMeaning": "n. 活动（复数）"
+    },
+    {
+      "word": "activity",
+      "ipa": "/ækˈtɪvəti/",
+      "aviationMeaning": "n. 飞行、地面或运行活动",
+      "generalMeaning": "n. 活动；行动"
+    },
+    {
+      "word": "acts",
+      "ipa": "/ækts/",
+      "aviationMeaning": "v. 执行操作；起作用",
+      "generalMeaning": "v. 行动；起作用"
+    },
+    {
+      "word": "actual",
+      "ipa": "/ˈæktʃuəl/",
+      "aviationMeaning": "adj. 实际的；实测的",
+      "generalMeaning": "adj. 实际的；真实的"
+    },
+    {
+      "word": "actually",
+      "ipa": "/ˈæktʃuəli/",
+      "aviationMeaning": "adv. 实际上；按实测情况",
+      "generalMeaning": "adv. 实际上；事实上"
+    },
+    {
+      "word": "actuates",
+      "ipa": "/ˈæktʃuˌeɪts/",
+      "aviationMeaning": "v. 驱动控制面、阀门或机构",
+      "generalMeaning": "v. 使动作；驱动"
+    },
+    {
+      "word": "actuator",
+      "ipa": "/ˈæktʃuˌeɪtər/",
+      "aviationMeaning": "n. 作动器；执行机构",
+      "generalMeaning": "n. 执行器；致动器"
+    },
+    {
+      "word": "actuators",
+      "ipa": "/ˈæktʃuˌeɪtərz/",
+      "aviationMeaning": "n. 作动器；执行机构（复数）",
+      "generalMeaning": "n. 执行器；致动器（复数）"
+    },
+    {
+      "word": "acute",
+      "ipa": "/əˈkjuːt/",
+      "aviationMeaning": "adj. 急性的；严重的",
+      "generalMeaning": "adj. 严重的；急性的；敏锐的"
+    },
+    {
+      "word": "ad",
+      "ipa": "/ˌeɪ ˈdiː/",
+      "aviationMeaning": "n. 民航文本中的字母缩写",
+      "generalMeaning": "n. 广告；字母缩写"
+    },
+    {
+      "word": "adapt",
+      "ipa": "/əˈdæpt/",
+      "aviationMeaning": "v. 适应运行条件或调整程序",
+      "generalMeaning": "v. 适应；改编；调整"
+    },
+    {
+      "word": "adcs",
+      "ipa": "/ˌeɪ diː siː ˈes/",
+      "aviationMeaning": "n. 空气数据计算系统（缩写）",
+      "generalMeaning": "n. 系统名称缩写"
+    },
+    {
+      "word": "add",
+      "ipa": "/æd/",
+      "aviationMeaning": "v. 增加高度、速度、燃油或备注",
+      "generalMeaning": "v. 添加；增加"
+    },
+    {
+      "word": "added",
+      "ipa": "/ˈædɪd/",
+      "aviationMeaning": "v. 已增加；已加入运行信息",
+      "generalMeaning": "v. 已添加；已增加"
+    },
+    {
+      "word": "adding",
+      "ipa": "/ˈædɪŋ/",
+      "aviationMeaning": "v. 正在增加或加入运行信息",
+      "generalMeaning": "v. 正在添加；增加"
+    },
+    {
+      "word": "addition",
+      "ipa": "/əˈdɪʃən/",
+      "aviationMeaning": "n. 增加项；附加设备或信息",
+      "generalMeaning": "n. 增加；附加物"
+    },
+    {
+      "word": "additional",
+      "ipa": "/əˈdɪʃənəl/",
+      "aviationMeaning": "adj. 额外的；附加的",
+      "generalMeaning": "adj. 额外的；附加的"
+    },
+    {
+      "word": "address",
+      "ipa": "/əˈdres/",
+      "aviationMeaning": "v. 处理告警、故障或运行问题",
+      "generalMeaning": "v. 处理；应对；致辞"
+    },
+    {
+      "word": "addressing",
+      "ipa": "/əˈdresɪŋ/",
+      "aviationMeaning": "v. 正在处理告警、故障或运行问题",
+      "generalMeaning": "v. 正在处理；应对"
+    },
+    {
+      "word": "adds",
+      "ipa": "/ædz/",
+      "aviationMeaning": "v. 增加高度、速度、燃油或备注",
+      "generalMeaning": "v. 添加；增加"
+    },
+    {
+      "word": "adequate",
+      "ipa": "/ˈædɪkwət/",
+      "aviationMeaning": "adj. 满足运行要求的；充足的",
+      "generalMeaning": "adj. 足够的；适当的"
+    },
+    {
+      "word": "adequately",
+      "ipa": "/ˈædɪkwətli/",
+      "aviationMeaning": "adv. 充分地；满足运行要求地",
+      "generalMeaning": "adv. 充分地；适当地"
+    },
+    {
+      "word": "adf",
+      "ipa": "/ˌeɪ diː ˈef/",
+      "aviationMeaning": "n. 自动定向仪（缩写）",
+      "generalMeaning": "n. 设备名称缩写"
+    },
+    {
+      "word": "adherence",
+      "ipa": "/ədˈhɪrəns/",
+      "aviationMeaning": "n. 对程序、航迹或限制的遵守",
+      "generalMeaning": "n. 遵守；坚持；附着"
+    },
+    {
+      "word": "adjacent",
+      "ipa": "/əˈdʒeɪsənt/",
+      "aviationMeaning": "adj. 相邻的；毗连跑道或区域的",
+      "generalMeaning": "adj. 邻近的；毗连的"
+    },
+    {
+      "word": "adjust",
+      "ipa": "/əˈdʒʌst/",
+      "aviationMeaning": "v. 调整高度、速度、航向或设备",
+      "generalMeaning": "v. 调整；适应"
+    },
+    {
+      "word": "adjusted",
+      "ipa": "/əˈdʒʌstɪd/",
+      "aviationMeaning": "adj. 已调整的；已设定的",
+      "generalMeaning": "adj. 已调整的；适应的"
+    },
+    {
+      "word": "adjusting",
+      "ipa": "/əˈdʒʌstɪŋ/",
+      "aviationMeaning": "v. 正在调整高度、速度、航向或设备",
+      "generalMeaning": "v. 正在调整；适应"
+    },
+    {
+      "word": "adjustment",
+      "ipa": "/əˈdʒʌstmənt/",
+      "aviationMeaning": "n. 对高度、速度、设备或计划的调整",
+      "generalMeaning": "n. 调整；调节"
+    },
+    {
+      "word": "adjustments",
+      "ipa": "/əˈdʒʌstmənts/",
+      "aviationMeaning": "n. 对高度、速度、设备或计划的调整（复数）",
+      "generalMeaning": "n. 调整；调节（复数）"
+    },
+    {
+      "word": "adjusts",
+      "ipa": "/əˈdʒʌsts/",
+      "aviationMeaning": "v. 调整高度、速度、航向或设备",
+      "generalMeaning": "v. 调整；适应"
+    },
+    {
+      "word": "adopted",
+      "ipa": "/əˈdɑːptɪd/",
+      "aviationMeaning": "adj. 已采用的程序、标准或措施",
+      "generalMeaning": "adj. 被采用的；被收养的"
+    },
+    {
+      "word": "ads-b",
+      "ipa": "/ˌeɪ diː ɛs ˈbiː/",
+      "aviationMeaning": "n. 广播式自动相关监视（缩写）",
+      "generalMeaning": "n. 航空监视系统缩写"
+    },
+    {
+      "word": "adult",
+      "ipa": "/əˈdʌlt/",
+      "aviationMeaning": "n. 成年旅客；成人",
+      "generalMeaning": "n. 成人；adj. 成年的"
+    },
+    {
+      "word": "advance",
+      "ipa": "/ədˈvæns/",
+      "aviationMeaning": "v. 提前推进；向前移动",
+      "generalMeaning": "v. 前进；推进；n. 进展"
+    },
+    {
+      "word": "advanced",
+      "ipa": "/ədˈvænst/",
+      "aviationMeaning": "adj. 先进的；高级运行或培训的",
+      "generalMeaning": "adj. 先进的；高级的"
+    },
+    {
+      "word": "advancements",
+      "ipa": "/ədˈvænsmənts/",
+      "aviationMeaning": "n. 航空技术或运行进步（复数）",
+      "generalMeaning": "n. 进步；发展（复数）"
+    },
+    {
+      "word": "advancing",
+      "ipa": "/ədˈvænsɪŋ/",
+      "aviationMeaning": "v. 正在推进航行、程序或技术",
+      "generalMeaning": "v. 正在前进；推进"
+    },
+    {
+      "word": "advantage",
+      "ipa": "/ədˈvæntɪdʒ/",
+      "aviationMeaning": "n. 运行、性能或安全优势",
+      "generalMeaning": "n. 优势；好处"
+    },
+    {
+      "word": "advantages",
+      "ipa": "/ədˈvæntɪdʒɪz/",
+      "aviationMeaning": "n. 运行、性能或安全优势（复数）",
+      "generalMeaning": "n. 优势；好处（复数）"
+    },
+    {
+      "word": "advection",
+      "ipa": "/ædˈvekʃən/",
+      "aviationMeaning": "n. 平流；气团的水平输送",
+      "generalMeaning": "n. 平流；输送"
+    },
+    {
+      "word": "advent",
+      "ipa": "/ˈædvent/",
+      "aviationMeaning": "n. 新技术或新规程的出现",
+      "generalMeaning": "n. 出现；来临"
+    },
+    {
+      "word": "adverse",
+      "ipa": "/ædˈvɜːrs/",
+      "aviationMeaning": "adj. 不利的；恶劣的",
+      "generalMeaning": "adj. 不利的；有害的"
+    },
+    {
+      "word": "advice",
+      "ipa": "/ədˈvaɪs/",
+      "aviationMeaning": "n. 运行建议；气象或安全提示",
+      "generalMeaning": "n. 建议；忠告"
+    },
+    {
+      "word": "advise",
+      "ipa": "/ədˈvaɪz/",
+      "aviationMeaning": "v. 通知；建议报告运行信息",
+      "generalMeaning": "v. 建议；通知"
+    },
+    {
+      "word": "advised",
+      "ipa": "/ədˈvaɪzd/",
+      "aviationMeaning": "v. 已通知；已建议报告",
+      "generalMeaning": "v. 已建议；已通知"
+    },
+    {
+      "word": "advises",
+      "ipa": "/ədˈvaɪzɪz/",
+      "aviationMeaning": "v. 通知；建议报告运行信息",
+      "generalMeaning": "v. 建议；通知"
+    },
+    {
+      "word": "advising",
+      "ipa": "/ədˈvaɪzɪŋ/",
+      "aviationMeaning": "v. 正在通知或建议报告",
+      "generalMeaning": "v. 正在建议；通知"
+    },
+    {
+      "word": "advisories",
+      "ipa": "/ədˈvaɪzəriz/",
+      "aviationMeaning": "n. 航行、气象或安全通告（复数）",
+      "generalMeaning": "n. 公告；建议（复数）"
+    },
+    {
+      "word": "advisory",
+      "ipa": "/ədˈvaɪzəri/",
+      "aviationMeaning": "n. 航行、气象或安全通告",
+      "generalMeaning": "n. 公告；建议"
+    },
+    {
+      "word": "aero",
+      "ipa": "/ˈɛroʊ/",
+      "aviationMeaning": "adj. 航空的；空气动力相关的",
+      "generalMeaning": "adj. 航空的；空气的"
+    },
+    {
+      "word": "aerocivil",
+      "ipa": "/ˌeroʊsɪˈvɪl/",
+      "aviationMeaning": "n. 民航主管机构名称",
+      "generalMeaning": "n. 机构名称"
+    },
+    {
+      "word": "aerodrome",
+      "ipa": "/ˈɛrəˌdroʊm/",
+      "aviationMeaning": "n. 飞行场；机场",
+      "generalMeaning": "n. 飞行场；机场"
+    },
+    {
+      "word": "aerodromes",
+      "ipa": "/ˈɛrəˌdroʊmz/",
+      "aviationMeaning": "n. 飞行场；机场（复数）",
+      "generalMeaning": "n. 飞行场；机场（复数）"
+    },
+    {
+      "word": "aerodynamic",
+      "ipa": "/ˌɛroʊdaɪˈnæmɪk/",
+      "aviationMeaning": "adj. 空气动力学的",
+      "generalMeaning": "adj. 空气动力学的"
+    },
+    {
+      "word": "aerodynamics",
+      "ipa": "/ˌɛroʊdaɪˈnæmɪks/",
+      "aviationMeaning": "n. 空气动力学",
+      "generalMeaning": "n. 空气动力学"
+    },
+    {
+      "word": "aerologic",
+      "ipa": "/ˌɛrəˈlɑːdʒɪk/",
+      "aviationMeaning": "adj. 高空气象的",
+      "generalMeaning": "adj. 气象学的"
+    },
+    {
+      "word": "aeromexico",
+      "ipa": "/ˌɛroʊˈmeksɪkoʊ/",
+      "aviationMeaning": "n. 墨西哥航空（航空公司名称）",
+      "generalMeaning": "n. 墨西哥航空（名称）"
+    },
+    {
+      "word": "aeronautical",
+      "ipa": "/ˌɛrəˈnɔːtɪkəl/",
+      "aviationMeaning": "adj. 航空学的；飞行运行的",
+      "generalMeaning": "adj. 航空的；飞行学的"
+    },
+    {
+      "word": "aeroplane",
+      "ipa": "/ˈɛrəˌpleɪn/",
+      "aviationMeaning": "n. 飞机（英式用语）",
+      "generalMeaning": "n. 飞机"
+    },
+    {
+      "word": "aeroplanes",
+      "ipa": "/ˈɛrəˌpleɪnz/",
+      "aviationMeaning": "n. 飞机（复数，英式用语）",
+      "generalMeaning": "n. 飞机（复数）"
+    },
+    {
+      "word": "aesthetic",
+      "ipa": "/esˈθetɪk/",
+      "aviationMeaning": "adj. 与客舱或界面美观相关的",
+      "generalMeaning": "adj. 美学的；审美的"
+    },
+    {
+      "word": "affect",
+      "ipa": "/əˈfekt/",
+      "aviationMeaning": "v. 影响飞行性能、运行或安全",
+      "generalMeaning": "v. 影响；使改变"
+    },
+    {
+      "word": "affected",
+      "ipa": "/əˈfektɪd/",
+      "aviationMeaning": "adj. 受天气、故障或限制影响的",
+      "generalMeaning": "adj. 受影响的；假装的"
+    },
+    {
+      "word": "affecting",
+      "ipa": "/əˈfektɪŋ/",
+      "aviationMeaning": "v. 正在影响飞行性能、运行或安全",
+      "generalMeaning": "v. 正在影响；感动"
+    },
+    {
+      "word": "affects",
+      "ipa": "/əˈfekts/",
+      "aviationMeaning": "v. 影响飞行性能、运行或安全",
+      "generalMeaning": "v. 影响；使改变"
+    },
+    {
+      "word": "affirm",
+      "ipa": "/əˈfɜːrm/",
+      "aviationMeaning": "v. 确认；肯定回复",
+      "generalMeaning": "v. 确认；断言"
+    },
+    {
+      "word": "affirmative",
+      "ipa": "/əˈfɜːrmətɪv/",
+      "aviationMeaning": "adj. 肯定的；用于确认的",
+      "generalMeaning": "adj. 肯定的；积极的"
+    },
+    {
+      "word": "affirmed",
+      "ipa": "/əˈfɜːrmd/",
+      "aviationMeaning": "v. 已确认；已肯定回复",
+      "generalMeaning": "v. 已确认；已断言"
+    },
+    {
+      "word": "afforded",
+      "ipa": "/əˈfɔːrdɪd/",
+      "aviationMeaning": "v. 提供了运行条件或机会",
+      "generalMeaning": "v. 提供；负担得起"
+    },
+    {
+      "word": "afghan",
+      "ipa": "/ˈæfɡæn/",
+      "aviationMeaning": "adj. 阿富汗的；与航线地点相关的",
+      "generalMeaning": "adj. 阿富汗的；n. 阿富汗人"
+    },
+    {
+      "word": "afr",
+      "ipa": "/ˌeɪ ɛf ˈɑːr/",
+      "aviationMeaning": "n. 法国航空呼号缩写",
+      "generalMeaning": "n. 字母缩写"
+    },
+    {
+      "word": "afraid",
+      "ipa": "/əˈfreɪd/",
+      "aviationMeaning": "adj. 担心的；表示不利消息的礼貌用语",
+      "generalMeaning": "adj. 害怕的；担心的"
+    },
+    {
+      "word": "africa",
+      "ipa": "/ˈæfrɪkə/",
+      "aviationMeaning": "n. 非洲；航线或区域名称",
+      "generalMeaning": "n. 非洲"
+    },
+    {
+      "word": "african",
+      "ipa": "/ˈæfrɪkən/",
+      "aviationMeaning": "adj. 非洲的；与航线区域相关的",
+      "generalMeaning": "adj. 非洲的；n. 非洲人"
+    },
+    {
+      "word": "aft",
+      "ipa": "/æft/",
+      "aviationMeaning": "adv. 向机尾；在后部",
+      "generalMeaning": "adv. 向后；在后部"
+    },
+    {
+      "word": "after",
+      "ipa": "/ˈæftər/",
+      "aviationMeaning": "prep. 在…之后；随后",
+      "generalMeaning": "prep. 在…之后；追随"
+    }
   ]
 }

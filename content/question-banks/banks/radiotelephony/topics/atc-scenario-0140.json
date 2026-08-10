@@ -16,19 +16,19 @@
     {
       "id": "atc-scenario-0140-card-main-2415",
       "taskTitle": "CES 209-2",
-      "audioText": "CES 209, Shanghai Control, radar contact, climb to 1400 meters.",
-      "audioTextZh": "CES 209，上海管制，雷达识别，爬升至 1400 米。",
-      "referenceText": "climb to 1400 meters, CES 209.",
-      "referenceTextZh": "爬升至 1400 米，CES 209。",
+      "audioText": "CES 209, Shanghai Control, radar contact, climb to 10,400 meters.",
+      "audioTextZh": "CES 209，上海管制，雷达识别，爬升至 10,400 米。",
+      "referenceText": "climb to 10,400 meters, CES 209.",
+      "referenceTextZh": "爬升至 10,400 米，CES 209。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-038-ces209-q02.mp3"
     },
     {
       "id": "atc-scenario-0140-card-main-2416",
       "taskTitle": "CES 209-3",
-      "audioText": "now you are cruising at 1400 meters, your instruments indicate left pack has malfunctioned, contact Shanghai Control and request descend to lower levels.",
-      "audioTextZh": "现在你正以 1400 米巡航，仪表显示左组件故障，联系上海管制并请求下降至较低高度。",
-      "referenceText": "Shanghai Control, CES 209, maintaining 1400 meters, 10400 meters our instruments indicate our left pack has malfunctioned, request descent to lower levels.",
-      "referenceTextZh": "上海管制，CES 209，正保持 1400 米，10400 米，我们的仪表显示左组件故障，请求下降至较低高度。",
+      "audioText": "now you are cruising at 10,400 meters, your instruments indicate left pack has malfunctioned, contact Shanghai Control and request descend to lower levels.",
+      "audioTextZh": "现在你正以 10,400 米巡航，仪表显示左组件故障，联系上海管制并请求下降至较低高度。",
+      "referenceText": "Shanghai Control, CES 209, maintaining 10,400 meters, our instruments indicate our left pack has malfunctioned, request descent to lower levels.",
+      "referenceTextZh": "上海管制，CES 209，正保持 10,400 米，我们的仪表显示左组件故障，请求下降至较低高度。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-038-ces209-q03.mp3"
     },
     {
@@ -36,8 +36,8 @@
       "taskTitle": "CES 209-4",
       "audioText": "CES 209, turn right heading 240, descend to 8900 meters initially.",
       "audioTextZh": "CES 209，右转航向 240，先下降至 8900 米。",
-      "referenceText": "turn right heading 240, descend to 8900 meters initially, 1400.",
-      "referenceTextZh": "右转航向 240，先下降至 8900 米，1400。",
+      "referenceText": "turn right heading 240, descend to 8,900 meters initially, CES 209.",
+      "referenceTextZh": "右转航向 240，先下降至 8,900 米，CES 209。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-038-ces209-q04.mp3"
     },
     {
@@ -99,8 +99,8 @@
       "taskTitle": "CES 209-11",
       "audioText": "CES 209, ambulances will be ready upon arrival.",
       "audioTextZh": "CES 209，救护车将在到达时就位。",
-      "referenceText": "roger, thanks, 1400.",
-      "referenceTextZh": "收到，谢谢，1400。",
+      "referenceText": "roger, thanks, CES 209.",
+      "referenceTextZh": "收到，谢谢，CES 209。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-038-ces209-q11.mp3"
     },
     {
@@ -135,8 +135,8 @@
       "taskTitle": "CES 209-15",
       "audioText": "Now you have established on ILS approach Runway 06.",
       "audioTextZh": "现在你已建立 ILS 进近 Runway 06。",
-      "referenceText": "Hangzhou Tower, 1400, established ILS approach Runway 06.",
-      "referenceTextZh": "杭州塔台，1400，已建立 ILS 进近 Runway 06。",
+      "referenceText": "Hangzhou Tower, CES 209, established ILS approach Runway 06.",
+      "referenceTextZh": "杭州塔台，CES 209，已建立 ILS 进近 Runway 06。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-038-ces209-q15.mp3"
     }
   ]

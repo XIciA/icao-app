@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "ruleVersion": "question-bank-text-audit-v1.0.0",
+  "decisions": [
+    {
+      "key": "content/question-banks/banks/listening/topics/listening-topic-01.json#/cards/153/audioText#AUDIO_DEPENDENT_ELLIPSIS",
+      "status": "manual-review",
+      "rule": "AUDIO_DEPENDENT_ELLIPSIS",
+      "textSha256": "ce3b80c76b9ce0f1c7352e06a36449471c611c077b526049f22595f1b5f290c2"
+    },
+    {
+      "key": "content/question-banks/banks/listening/topics/listening-topic-01.json#/cards/38/audioText#AUDIO_DEPENDENT_ELLIPSIS",
+      "status": "manual-review",
+      "rule": "AUDIO_DEPENDENT_ELLIPSIS",
+      "textSha256": "ce3b80c76b9ce0f1c7352e06a36449471c611c077b526049f22595f1b5f290c2"
+    },
+    {
+      "key": "content/question-banks/banks/listening/topics/listening-topic-01.json#/cards/92/audioText#AUDIO_DEPENDENT_ELLIPSIS",
+      "status": "manual-review",
+      "rule": "AUDIO_DEPENDENT_ELLIPSIS",
+      "textSha256": "5756b6637387f9393d48771c42074c426121b6cbfea2b60d1ea423dd57bea082"
+    },
+    {
+      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/121/audioText#AUDIO_DEPENDENT_ELLIPSIS",
+      "status": "manual-review",
+      "rule": "AUDIO_DEPENDENT_ELLIPSIS",
+      "textSha256": "88af21db634aa38e88daf70b7748f129579be7118e0b9ff53e96a7d9703ee2f8"
+    },
+    {
+      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/146/audioText#AUDIO_DEPENDENT_ELLIPSIS",
+      "status": "manual-review",
+      "rule": "AUDIO_DEPENDENT_ELLIPSIS",
+      "textSha256": "46e46055fdd4a02ef52e772205075efa7ebb95c036b97f2ff125295938733248"
+    },
+    {
+      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/149/audioText#AUDIO_DEPENDENT_ELLIPSIS",
+      "status": "manual-review",
+      "rule": "AUDIO_DEPENDENT_ELLIPSIS",
+      "textSha256": "e45b985743a5da63b1305f4914e0091bacbb8c5b57bda033b7ce28678c9db4ee"
+    },
+    {
+      "key": "content/question-banks/banks/listening/topics/listening-topic-02.json#/cards/156/audioText#AUDIO_DEPENDENT_ELLIPSIS",
+      "status": "manual-review",
+      "rule": "AUDIO_DEPENDENT_ELLIPSIS",
+      "textSha256": "d3bbd413869e480330204281609873f103aba74fe186596e7c3a6ff739d0f6a9"
+    },
+    {
+      "key": "content/question-banks/banks/listening/topics/listening-topic-03.json#/cards/112/audioText#AUDIO_DEPENDENT_ELLIPSIS",
+      "status": "manual-review",
+      "rule": "AUDIO_DEPENDENT_ELLIPSIS",
+      "textSha256": "561ee6089238e467cdc2bc41940db7479fb3e9075fa239aff288a24cf1d42aa8"
+    },
+    {
+      "key": "content/question-banks/banks/listening/topics/listening-topic-03.json#/cards/150/choices/3#DUPLICATE_CHOICE",
+      "status": "manual-review",
+      "rule": "DUPLICATE_CHOICE",
+      "textSha256": "e9aed2d1be98da76f07177f9de714a76bf7dec2414d5476d74ae53deb67d5334"
+    },
+    {
+      "key": "content/question-banks/banks/listening/topics/listening-topic-03.json#/cards/150/choicesZh/3#DUPLICATE_CHOICE",
+      "status": "manual-review",
+      "rule": "DUPLICATE_CHOICE",
+      "textSha256": "546c9c878b92b59298d3cf30fafa378198d049d24b7fd6b95d595426a7b55b83"
+    },
+    {
+      "key": "content/question-banks/banks/listening/topics/listening-topic-03.json#/cards/211/audioText#AUDIO_DEPENDENT_ELLIPSIS",
+      "status": "manual-review",
+      "rule": "AUDIO_DEPENDENT_ELLIPSIS",
+      "textSha256": "44e25e613331b44e457b84acdc08d0d6a18acc4183d6410d22b47f494842f2ea"
+    },
+    {
+      "key": "content/question-banks/banks/listening/topics/listening-topic-03.json#/cards/212/audioText#AUDIO_DEPENDENT_ELLIPSIS",
+      "status": "manual-review",
+      "rule": "AUDIO_DEPENDENT_ELLIPSIS",
+      "textSha256": "ffcd11a4a73a037484f3439cf3f4f37df8f9841863b3ca892a4d2f94ff98ac2b"
+    },
+    {
+      "key": "content/question-banks/banks/listening/topics/listening-topic-03.json#/cards/220/audioText#AUDIO_DEPENDENT_ELLIPSIS",
+      "status": "manual-review",
+      "rule": "AUDIO_DEPENDENT_ELLIPSIS",
+      "textSha256": "a361c36daea1f939e50bff19323933147219b3cef3ce24824ac1b895fa78633f"
+    },
+    {
+      "key": "content/question-banks/banks/listening/topics/listening-topic-04.json#/cards/94/audioText#AUDIO_DEPENDENT_ELLIPSIS",
+      "status": "manual-review",
+      "rule": "AUDIO_DEPENDENT_ELLIPSIS",
+      "textSha256": "ee1131ea849b6191250b0eab12992b405be7b17daad55242af8621817b64a26f"
+    }
+  ]
+}

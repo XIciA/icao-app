@@ -108,8 +108,8 @@
       "taskTitle": "ACA 452-12",
       "audioText": "ACA 452, what's the situation like onboard?\ntell the controller you need one minute to perform the checklist and will advise.",
       "audioTextZh": "ACA 452，机上情况如何？\n告诉管制员你需要一分钟执行检查单，稍后报告。",
-      "referenceText": "Wuhan Control, ACA 452, we need one minute to perform the checklist and will advise. we need one minute to perform the checklist and will advise, ACA 452.",
-      "referenceTextZh": "武汉管制，ACA 452，我们需要一分钟执行检查单，稍后报告。我们需要一分钟执行检查单，稍后报告，ACA 452。",
+      "referenceText": "Wuhan Control, ACA 452, we need one minute to perform the checklist and will advise.",
+      "referenceTextZh": "武汉管制，ACA 452，我们需要一分钟执行检查单，稍后报告。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-026-aca452-q12.mp3"
     },
     {
@@ -144,8 +144,8 @@
       "taskTitle": "ACA 452-16",
       "audioText": "ACA 452, when able, advise your intention.\nTell the control you will maintain 8100m and divert to Beijing.",
       "audioTextZh": "ACA 452，可以时报告意图。\n告诉管制员你将保持 8100m 并备降北京。",
-      "referenceText": "Wuhan Control, ACA 452, request maintain 8400 meters and divert to Beijing. request maintain 8100 meters and divert to Beijing, ACA 452.",
-      "referenceTextZh": "武汉管制，ACA 452，请求保持 8400 米并备降北京。请求保持 8100 米并备降北京，ACA 452。",
+      "referenceText": "Wuhan Control, ACA 452, request maintain 8,100 meters and divert to Beijing.",
+      "referenceTextZh": "武汉管制，ACA 452，请求保持 8,100 米并备降北京。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-026-aca452-q16.mp3"
     },
     {

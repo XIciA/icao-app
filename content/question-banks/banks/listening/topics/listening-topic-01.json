@@ -133,7 +133,7 @@
     {
       "id": "listening-main-025",
       "taskTitle": "10s航空英语-7",
-      "audioText": "BAW 564, stop and hold position. A  B737 has taken a wrong turning and is blocking the taxiway.\nQuestion: Why was the pilot instructed to stop?",
+      "audioText": "BAW 564, stop and hold position. A B737 has taken a wrong turning and is blocking the taxiway.\nQuestion: Why was the pilot instructed to stop?",
       "audioTextZh": "BAW 564，停止并保持当前位置。一架B737转错了弯，正在堵塞滑行道。\n问题：为什么飞行员被指示停止？",
       "referenceText": "正确答案：B. Because another traffic has taken a wrong turning.",
       "audio": "/question-bank-assets/audio/listening/main/025.mp3",
@@ -217,7 +217,7 @@
     {
       "id": "listening-main-043",
       "taskTitle": "10s航空英语-11",
-      "audioText": "Cockpit to ground , negative startup. There are some water drops dripping from the overhead electronic panel. No idea where they are from. We need to carry out a check.\nQuestion: Why cannot the pilots startup?",
+      "audioText": "Cockpit to ground, negative startup. There are some water drops dripping from the overhead electronic panel. No idea where they are from. We need to carry out a check.\nQuestion: Why can’t the pilots start up?",
       "audioTextZh": "驾驶舱呼叫地面，不能启动。头顶电子面板上有水滴滴下来，不知道水是从哪里来的。我们需要进行检查。\n问题：飞行员为什么不能启动？",
       "referenceText": "正确答案：B. The overhead panel drips",
       "audio": "/question-bank-assets/audio/listening/main/043.mp3",
@@ -385,7 +385,7 @@
     {
       "id": "listening-main-075",
       "taskTitle": "10s航空英语-19",
-      "audioText": "AFR 526, takeoff aborted due engine failure. We are on the stopway . We just managed to stop short of the ILS antennas. Every body on board seems to be all right. We’ll just need coaches to take the passengers back to the terminal.\nQuestion: Where is the aircraft?",
+      "audioText": "AFR 526, takeoff aborted due engine failure. We are on the stopway. We just managed to stop short of the ILS antennas. Everybody on board seems to be all right. We’ll just need coaches to take the passengers back to the terminal.\nQuestion: Where is the aircraft?",
       "audioTextZh": "AFR 526，由于发动机故障中断起飞。我们停在停止道上，刚好在ILS天线前停住。机上所有人看起来都没事。我们只需要客车把乘客送回航站楼。\n问题：飞机在哪里？",
       "referenceText": "正确答案：D. Out of the runway",
       "audio": "/question-bank-assets/audio/listening/main/075.mp3",
@@ -574,7 +574,7 @@
     {
       "id": "listening-main-103",
       "taskTitle": "10s航空英语-28",
-      "audioText": "If you are busy and ATC is constantly changing your speed, altitude, heading and frequencies. It can be distracting and frustrating .\nQuestion: What is the main idea of the sentence?",
+      "audioText": "If you are busy and ATC is constantly changing your speed, altitude, heading and frequencies. It can be distracting and frustrating.\nQuestion: What is the main idea of the sentence?",
       "audioTextZh": "如果你正忙，而空中交通管制不断改变你的速度、高度、航向和频率，这会分散注意力并让人感到沮丧。\n问题：这句话的中心意思是什么？",
       "referenceText": "正确答案：C. It is not easy to focus on one thing",
       "audio": "/question-bank-assets/audio/listening/main/103.mp3",
@@ -639,10 +639,10 @@
       "taskTitle": "10s航空英语-31",
       "audioText": "First Officer: Captain, the controller inquired whether you could maintain visual on the Northwest DC-9 after takeoff for minimum separation. Captain: I can keep the deck angle high and not let the speed build up to increase the separation.\nQuestion: What did the controller ask for?",
       "audioTextZh": "副驾驶：机长，管制员询问你起飞后能否与西北航空的DC-9保持目视，以满足最低间隔。机长：我可以保持较大的机头仰角，不让速度增加，以增大间隔。\n问题：管制员提出了什么要求？",
-      "referenceText": "正确答案：A. To keep minimum separation with takeoff  traffic",
+      "referenceText": "正确答案：A. To keep minimum separation with takeoff traffic",
       "audio": "/question-bank-assets/audio/listening/main/113.mp3",
       "choices": [
-        "To keep minimum separation with takeoff  traffic",
+        "To keep minimum separation with takeoff traffic",
         "To increase speed",
         "To increase the separation with the traffic",
         "To maintain IFR with the takeoff traffic"
@@ -912,13 +912,13 @@
       "taskTitle": "10s航空英语-44",
       "audioText": "The pilot gave an incorrect readback and switched the radio frequency before being corrected. As a result, the aircraft crossed the active runway without clearance.\nQuestion: Why wasn't the readback corrected?",
       "audioTextZh": "飞行员进行了错误复诵，并在管制员纠正之前切换了无线电频率。结果，飞机未经许可穿越了正在使用的跑道。\n问题：错误复诵为什么没有得到纠正？",
-      "referenceText": "正确答案：D. The pilot swithed to another frequency.",
+      "referenceText": "正确答案：D. The pilot switched to another frequency.",
       "audio": "/question-bank-assets/audio/listening/main/145.mp3",
       "choices": [
         "The controller didn't notice the error.",
         "The runway wasn't active.",
         "The readback was correct.",
-        "The pilot swithed to another frequency."
+        "The pilot switched to another frequency."
       ],
       "correctChoiceIndex": 3,
       "choicesZh": [
@@ -1091,8 +1091,8 @@
       "correctChoiceIndex": 0,
       "choicesZh": [
         "马赫数",
-        "海里",
-        "海里",
+        "海上英里（Sea miles）",
+        "海里（Nautical miles）",
         "法定英里"
       ]
     },
@@ -1435,7 +1435,7 @@
     {
       "id": "listening-main-214",
       "taskTitle": "10s航空英语-69",
-      "audioText": "P: Tower, NWA 14, declaring an emergency, we have a fire in No. 1 engine, we need to return to the airport Runway 28L.\nQuestion: What are they  requesting?",
+      "audioText": "P: Tower, NWA 14, declaring an emergency, we have a fire in No. 1 engine, we need to return to the airport Runway 28L.\nQuestion: What are they requesting?",
       "audioTextZh": "飞行员：塔台，NWA 14，宣布紧急情况。我们的1号发动机着火，需要返回机场并在28L跑道着陆。\n问题：他们正在请求什么？",
       "referenceText": "正确答案：A. they want to land on R/W 28 L",
       "audio": "/question-bank-assets/audio/listening/main/214.mp3",
@@ -1624,7 +1624,7 @@
     {
       "id": "listening-main-243",
       "taskTitle": "10s航空英语-78",
-      "audioText": "The weather at destination was below minima,the captain make a decision to fly to the alternate airport, which was not far away from the military airport.\nQuestion: Which airport did the captain decide to fly to?",
+      "audioText": "The weather at destination was below minima, the captain made a decision to fly to the alternate airport, which was not far away from the military airport.\nQuestion: Which airport did the captain decide to fly to?",
       "audioTextZh": "目的地机场的天气低于最低标准，机长决定飞往备降机场，该机场距军用机场不远。\n问题：机长决定飞往哪个机场？",
       "referenceText": "正确答案：C. To the alternate airport.",
       "audio": "/question-bank-assets/audio/listening/main/243.mp3",
@@ -1792,7 +1792,7 @@
     {
       "id": "listening-main-265",
       "taskTitle": "10s航空英语-86",
-      "audioText": "Checklists are only used to verify that the critical (=significant/important) ) items affect the safety have been completed.\nQuestion: What kind of items will be checked in checklists?",
+      "audioText": "Checklists are used to verify that critical (= significant/important) items affecting safety have been completed.\nQuestion: What kind of items will be checked in checklists?",
       "audioTextZh": "检查单只用于核实影响安全的关键项目是否已经完成。\n问题：检查单会检查哪类项目？",
       "referenceText": "正确答案：A. Significant items",
       "audio": "/question-bank-assets/audio/listening/main/265.mp3",
@@ -2575,7 +2575,7 @@
       "audio": "/question-bank-assets/audio/listening/main/364.mp3",
       "choices": [
         "Aircraft Engines",
-        "An Aircrafts undercarriage",
+        "An Aircraft's undercarriage",
         "High lift devices",
         "An Aircraft Rudder"
       ],
@@ -3388,7 +3388,7 @@
     {
       "id": "listening-main-452",
       "taskTitle": "10s航空英语-162",
-      "audioText": "B: There is no Scan pattern that works for all pilots ，professional instrument pilot scan all the instruments with the attitude indicator getting up to two thirds of the scan  time\nQuestion: On which instrument will pilots spend up to 2/3 of the scan time?",
+      "audioText": "B: There is no scan pattern that works for all pilots. Professional instrument pilots scan all the instruments, with the attitude indicator taking up to two thirds of the scan time.\nQuestion: On which instrument will pilots spend up to 2/3 of the scan time?",
       "audioTextZh": "说话人：没有一种仪表扫视模式适用于所有飞行员。专业仪表飞行员会扫视所有仪表，其中姿态指示器最多可占扫视时间的三分之二。\n问题：飞行员会把多达三分之二的扫视时间用于哪个仪表？",
       "referenceText": "正确答案：A. Attitude indicator.",
       "audio": "/question-bank-assets/audio/listening/main/452.mp3",
@@ -3516,11 +3516,11 @@
       "taskTitle": "10s航空英语-168",
       "audioText": "Incorrect or inadequate clearance, such as improper tower ground controllers coordination, use of non-standard phraseology, pilot's readback error not detected by controller, might probably result in disaster.\nQuestion: which factor is not mentioned in the statement?",
       "audioTextZh": "不正确或不充分的许可，例如塔台与地面管制员之间的协调不当、使用非标准术语、管制员未检测到飞行员复诵错误，都有可能导致灾难。\n问题：上述陈述中未提及的因素是什么？",
-      "referenceText": "正确答案：B. Poor situtatonal awareness of the pilots",
+      "referenceText": "正确答案：B. Poor situational awareness of the pilots",
       "audio": "/question-bank-assets/audio/listening/main/462.mp3",
       "choices": [
         "use of non-standard phraseology.",
-        "Poor situtatonal awareness of the pilots",
+        "Poor situational awareness of the pilots",
         "Improper Tower/Ground controllers' coordination.",
         "Pilots readback error not detected."
       ],
@@ -3669,7 +3669,7 @@
         "A day before the flight.",
         "Some days before the flight.",
         "When the flight begins.",
-        "When the planning begines."
+        "When the planning begins."
       ],
       "correctChoiceIndex": 1,
       "choicesZh": [
@@ -3703,7 +3703,7 @@
     {
       "id": "listening-main-486",
       "taskTitle": "10s航空英语-177",
-      "audioText": "For the takeoff roll is started, the auto brake system of the aircraft, if available, is set to the RTO mode. The auto brake system will automatically apply maximum brakes if the throttle was reduced to idle or reverse thrust during the takeoff roll below V1.\nQuestion: what will the auto brake System be set to before takeoff？",
+      "audioText": "Before the takeoff roll is started, the auto brake system of the aircraft, if available, is set to the RTO mode. The auto brake system will automatically apply maximum brakes if the throttle is reduced to idle or reverse thrust during the takeoff roll below V1.\nQuestion: what will the auto brake System be set to before takeoff?",
       "audioTextZh": "当开始起飞滑跑时，如果飞机配备自动刹车系统，应将其设置为中断起飞（RTO）模式。如果在起飞滑跑过程中，速度低于中断起飞速度（V1）时将油门减小至慢车或使用反推，自动刹车系统将自动施加最大刹车力。\n问题：起飞前自动刹车系统应设置为什么模式？",
       "referenceText": "正确答案：C. Rejected takeoff mode.",
       "audio": "/question-bank-assets/audio/listening/main/486.mp3",
@@ -3940,7 +3940,7 @@
       "audio": "/question-bank-assets/audio/listening/main/521.mp3",
       "choices": [
         "Flap retraction speed.",
-        "Speed  for maximum control deflection.",
+        "Speed for maximum control deflection.",
         "Speed at which the aircraft's nose wheel leaves the ground.",
         "Stall speed."
       ],
@@ -3997,14 +3997,14 @@
     {
       "id": "listening-main-526",
       "taskTitle": "10s航空英语-191",
-      "audioText": "When an aircraft requires crossing or joining airways, the request will provide the following information. Aircraft identification and type, position and heading, level and flight conditions, crossing position, and requested crossing level. an estimate for crossing position.\nQuestion: what information shall not be reported when requesting crossing or joining airways?",
+      "audioText": "When an aircraft requires crossing or joining airways, the request will provide the following information. Aircraft identification and type, position and heading, level and flight conditions, crossing position, and requested crossing level. An estimate for crossing position.\nQuestion: what information shall not be reported when requesting crossing or joining airways?",
       "audioTextZh": "当一架飞机需要穿越或加入航路时，其申请应提供以下信息：飞机识别信息和机型、位置和航向、飞行高度和飞行条件、穿越位置以及申请的穿越高度、预计的穿越位置。\n问题：在申请穿越或加入航路时，哪些信息不需要报告？",
       "referenceText": "正确答案：D. Crossing heading.",
       "audio": "/question-bank-assets/audio/listening/main/526.mp3",
       "choices": [
         "Aircraft information.",
         "Present position, level and heading.",
-        "Crossing level, etimating time for crossing position.",
+        "Crossing level, estimating time for crossing position.",
         "Crossing heading."
       ],
       "correctChoiceIndex": 3,
@@ -4025,7 +4025,7 @@
       "choices": [
         "True airspeed.",
         "Outside air temperature.",
-        "RPM and maniford pressure.",
+        "RPM and manifold pressure.",
         "Vertical acceleration."
       ],
       "correctChoiceIndex": 0,
@@ -4081,7 +4081,7 @@
     {
       "id": "listening-main-533",
       "taskTitle": "10s航空英语-195",
-      "audioText": "MAYDAY MAYDAY MAYDAY, HGB 303 , left engine on fire, emergency slides are released, request fire services and first aid.\nQuestion: What might the crew be doing now?",
+      "audioText": "MAYDAY MAYDAY MAYDAY, HGB 303, left engine on fire, emergency slides are released, request fire services and first aid.\nQuestion: What might the crew be doing now?",
       "audioTextZh": "MAYDAY MAYDAY MAYDAY, HGB 303，左发动机着火，应急滑梯已放出，请求消防服务和急救。\n问题：机组人员现在可能在做什么？",
       "referenceText": "正确答案：C. Executing the evacuation.",
       "audio": "/question-bank-assets/audio/listening/main/533.mp3",
@@ -4396,7 +4396,7 @@
     {
       "id": "listening-main-569",
       "taskTitle": "10s航空英语-210",
-      "audioText": "-I was wondering whether you know the windshear. -Yes, the most hazardous windshear is a microburst. It can occur beneath a thunderstorm, rain shower, or cumulus cloud.\nQuestion: what kind of winshare is the most dangerous?",
+      "audioText": "-I was wondering whether you know the windshear. -Yes, the most hazardous windshear is a microburst. It can occur beneath a thunderstorm, rain shower, or cumulus cloud.\nQuestion: what kind of windshear is the most dangerous?",
       "audioTextZh": "——我想知道你是否了解风切变。\n——是的，最危险的风切变是微下击暴流。它可能发生在雷暴、阵雨或积云下方。\n问题：哪种风切变是最危险的？",
       "referenceText": "正确答案：A. Microburst.",
       "audio": "/question-bank-assets/audio/listening/main/569.mp3",
@@ -4529,7 +4529,7 @@
       "choices": [
         "Continue to land.",
         "Divert to another airport to land.",
-        "Confort the passengers.",
+        "Comfort the passengers.",
         "Regain attitude."
       ],
       "correctChoiceIndex": 1,
@@ -4543,7 +4543,7 @@
     {
       "id": "listening-main-582",
       "taskTitle": "10s航空英语-217",
-      "audioText": "In a teardrop entry, the aircraft flies to the holding fix, turns into the protected area, flies for one minute, and then turns back inbound, proceeds to the fix, and continues from there.\nQuestion: how long would the aircraft fly into the protected area in a teardrop entry？",
+      "audioText": "In a teardrop entry, the aircraft flies to the holding fix, turns into the protected area, flies for one minute, and then turns back inbound, proceeds to the fix, and continues from there.\nQuestion: how long would the aircraft fly into the protected area in a teardrop entry?",
       "audioTextZh": "在偏置进入等待航线时，飞机飞到等待定位点，转向进入保护区，飞行一分钟，然后转向朝内飞行，前往定位点，并从那里继续飞行。\n问题：在偏置进入等待航线时，飞机飞入保护区会飞行多长时间？",
       "referenceText": "正确答案：D. 1 minutes.",
       "audio": "/question-bank-assets/audio/listening/main/582.mp3",
@@ -4984,7 +4984,7 @@
     {
       "id": "listening-main-621",
       "taskTitle": "10s航空英语-238",
-      "audioText": "MAYDAY MAYDAY MAYDAY, Wuhan approach, NWA 808, smoke in the cockpit, request vector to Wuhan for landing.\nQuestion: why did the crew declare MAYDAY ?",
+      "audioText": "MAYDAY MAYDAY MAYDAY, Wuhan approach, NWA 808, smoke in the cockpit, request vector to Wuhan for landing.\nQuestion: why did the crew declare MAYDAY?",
       "audioTextZh": "MAYDAY MAYDAY MAYDAY, 武汉进近，NWA 808，驾驶舱内冒烟，请求引导飞往武汉降落。\n问题：机组为什么发出遇险呼叫（“MAYDAY”）？",
       "referenceText": "正确答案：C. Smoke in the cockpit.",
       "audio": "/question-bank-assets/audio/listening/main/621.mp3",
@@ -5782,15 +5782,15 @@
     {
       "id": "listening-main-675",
       "taskTitle": "10s航空英语-276",
-      "audioText": "On March 30, 2022, Flight 205 went around due to unsafe left main gear indication, the the aircraft positioned for a low approach to Runway 13R after go around.\nQuestion: Why did Flight 205 go around?",
+      "audioText": "On March 30, 2022, Flight 205 went around due to unsafe left main gear indication, the aircraft positioned for a low approach to Runway 13R after go around.\nQuestion: Why did Flight 205 go around?",
       "audioTextZh": "2022年3月30日，205航班因左主起落架出现不安全指示而复飞；复飞后，航空器为低空进近Runway 13R进行定位。\n问题：205航班为什么复飞？",
-      "referenceText": "正确答案：D. Due to usafe landing gear indication.",
+      "referenceText": "正确答案：D. Due to unsafe landing gear indication.",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-03-q07.mp3",
       "choices": [
         "Due to low visibility.",
         "Due to ATC instructions.",
         "Due to localizer fluctuation.",
-        "Due to usafe landing gear indication."
+        "Due to unsafe landing gear indication."
       ],
       "correctChoiceIndex": 3,
       "choicesZh": [
@@ -5824,7 +5824,7 @@
     {
       "id": "listening-main-677",
       "taskTitle": "10s航空英语-278",
-      "audioText": "According to the provisions in ICAO Annex 6 \"Operation of Aircraft\", Fixed-wing aeroplanes and helicopters shall be equipped with a cockpit voice recorder with a recording duration of at least 30 minutes of its operation.\nQuestion: What's the CVR's recording duration requirement of fix-wing airplanes and helicopters?",
+      "audioText": "According to the provisions in ICAO Annex 6 \"Operation of Aircraft\", Fixed-wing aeroplanes and helicopters shall be equipped with a cockpit voice recorder with a recording duration of at least 30 minutes of its operation.\nQuestion: What's the CVR's recording duration requirement of fixed-wing airplanes and helicopters?",
       "audioTextZh": "根据ICAO附件6《航空器运行》的规定，固定翼飞机和直升机应配备驾驶舱话音记录器，其运行记录时长至少为30分钟。\n问题：固定翼飞机和直升机的CVR记录时长要求是什么？",
       "referenceText": "正确答案：D. At least 30 minutes.",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-03-q09.mp3",
@@ -6580,7 +6580,7 @@
     {
       "id": "listening-main-731",
       "taskTitle": "10s航空英语-314",
-      "audioText": "A: Mr. Li. do you know if there is a word that pilot will use when he wishes to change the course or the destination while he is flying?\nB: Yes there is.\nQuestion: What is word that a pilot will use?",
+      "audioText": "A: Mr. Li. Do you know if there is a word that pilot will use when he wishes to change the course or the destination while he is flying?\nB: Yes there is.\nQuestion: What is word that a pilot will use?",
       "audioTextZh": "A: 李先生，你知道飞行员在飞行中希望改变航线或目的地时会使用哪个词吗？\nB: 是的，有这样一个词。\n问题：飞行员会使用哪个词？",
       "referenceText": "正确答案：D. Divert.",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-08-q19.mp3",
@@ -6651,14 +6651,14 @@
         "Flight route must be clear of obstacles.",
         "Flight route must have the highest features.",
         "Flight route must be below the flight line.",
-        "Flight route must be below the flight line."
+        "Flight route must follow the highest features."
       ],
       "correctChoiceIndex": 0,
       "choicesZh": [
         "飞行航路必须避开障碍物",
         "飞行航路必须具有最高地形",
         "飞行航路必须低于飞行航线",
-        "飞行航路必须低于飞行航线"
+        "飞行航路必须沿最高地物飞行"
       ]
     },
     {
@@ -6832,7 +6832,7 @@
     {
       "id": "listening-main-745",
       "taskTitle": "10s航空英语-326",
-      "audioText": "The standard phrase used to indicate a go-around is 'going around', which alerts air traffic control and other nearby aircraft of the decision.\nQuestion: In aviation terminology, which radio call sign indicates a pilot initiating a go-around? ​",
+      "audioText": "The standard phrase used to indicate a go-around is 'going around', which alerts air traffic control and other nearby aircraft of the decision.\nQuestion: In aviation terminology, which radio call sign indicates a pilot initiating a go-around?",
       "audioTextZh": "表示复飞的标准用语是“going around”，用于向空中交通管制和附近其他航空器通报这一决定。\n问题：在航空术语中，飞行员开始复飞时使用哪个无线电通话用语？",
       "referenceText": "正确答案：B. Going around.",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-09-q20.mp3",
@@ -6853,7 +6853,7 @@
     {
       "id": "listening-main-748",
       "taskTitle": "10s航空英语-327",
-      "audioText": "A low and unstable approach necessitates a go-around to ensure the aircraft reaches a safe and controlled state for a subsequent landing.\nQuestion: How should a pilot respond if the aircraft is too low on final approach and not in a stable position to land?\n​",
+      "audioText": "A low and unstable approach necessitates a go-around to ensure the aircraft reaches a safe and controlled state for a subsequent landing.\nQuestion: How should a pilot respond if the aircraft is too low on final approach and not in a stable position to land?",
       "audioTextZh": "低且不稳定的进近需要实施复飞，以确保航空器恢复到安全、可控的状态，再进行后续着陆。\n问题：如果航空器在最后进近时高度过低且未处于稳定着陆状态，飞行员应当如何处置？",
       "referenceText": "正确答案：C. Initiate a go-around to regain altitude and stability.",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-10-q03.mp3",
@@ -6937,7 +6937,7 @@
     {
       "id": "listening-main-752",
       "taskTitle": "10s航空英语-331",
-      "audioText": "​The go-around is a critical safety maneuver that allows pilots to abort a landing if the approach does not meet safety standards, such as unstable approaches or runway incursions.\nQuestion: What is the primary purpose of a go-around procedure in aviation?",
+      "audioText": "The go-around is a critical safety maneuver that allows pilots to abort a landing if the approach does not meet safety standards, such as unstable approaches or runway incursions.\nQuestion: What is the primary purpose of a go-around procedure in aviation?",
       "audioTextZh": "复飞是一项关键安全机动。当进近不符合安全标准时，例如进近不稳定或发生跑道侵入，飞行员可以中止着陆。\n问题：航空中复飞程序的主要目的是什么？",
       "referenceText": "正确答案：C. To ensure flight safety when landing conditions are unsafe.",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-10-q07.mp3",
@@ -7357,7 +7357,7 @@
     {
       "id": "listening-main-777",
       "taskTitle": "10s航空英语-351",
-      "audioText": "Analog-to-Digital Converters (ADCs) play a central role in digital flight systems by converting sensor data into digital signals for processing and display on EFIS screens.\nQuestion: What do odern digital flight instruments often use to synthesize and process data from various sensors?",
+      "audioText": "Analog-to-Digital Converters (ADCs) play a central role in digital flight systems by converting sensor data into digital signals for processing and display on EFIS screens.\nQuestion: What do modern digital flight instruments often use to synthesize and process data from various sensors?",
       "audioTextZh": "模数转换器（ADCs）在数字飞行系统中发挥核心作用，将传感器数据转换成数字信号，以便处理并显示在EFIS屏幕上。\n问题：现代数字飞行仪表通常使用什么来汇总并处理各种传感器的数据？",
       "referenceText": "正确答案：A. Analog-to-Digital Converters (ADCs)",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-11-q12.mp3",
@@ -8344,15 +8344,15 @@
     {
       "id": "listening-main-833",
       "taskTitle": "10s航空英语-398",
-      "audioText": "Wake turbulence tends to sink and drift sideways, making it most hazardous to aircraft that are flying below and slightly behind the aircraft that generated it.\nQuestion: When is wake turbulence is most dangerous to following aircraft ​",
+      "audioText": "Wake turbulence tends to sink and drift sideways, making it most hazardous to aircraft that are flying below and slightly behind the aircraft that generated it.\nQuestion: When is wake turbulence most dangerous to following aircraft?",
       "audioTextZh": "尾流湍流往往会下沉并向侧方漂移，因此对在产生尾流的航空器下方和稍后方飞行的航空器最危险。\n问题：尾流湍流在什么情况下对后续航空器最危险？",
-      "referenceText": "正确答案：A. When they are flying below and behind the generating aircraft.​",
+      "referenceText": "正确答案：A. When they are flying below and behind the generating aircraft.",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-14-q09.mp3",
       "choices": [
-        "When they are flying below and behind the generating aircraft.​",
-        "When they are flying above and behind the generating aircraft.​",
-        "When they are flying below and in front of the generating aircraft.​",
-        "When they are flying above and in front of the generating aircraft.​"
+        "When they are flying below and behind the generating aircraft.",
+        "When they are flying above and behind the generating aircraft.",
+        "When they are flying below and in front of the generating aircraft.",
+        "When they are flying above and in front of the generating aircraft."
       ],
       "correctChoiceIndex": 0,
       "choicesZh": [
@@ -8538,7 +8538,7 @@
       "referenceText": "正确答案：B. To maintain system pressure during pump failure",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-14-q18.mp3",
       "choices": [
-        "To store excess hydraulic fluid for later use ​",
+        "To store excess hydraulic fluid for later use",
         "To maintain system pressure during pump failure",
         "To filter out impurities from the hydraulic fluid",
         "To cool the hydraulic fluid before it reaches the actuators"
@@ -8811,7 +8811,7 @@
       "referenceText": "正确答案：B. Performing a gear cycle test while on the ground",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-15-q11.mp3",
       "choices": [
-        "Visually inspecting the tires for wear ​",
+        "Visually inspecting the tires for wear",
         "Performing a gear cycle test while on the ground",
         "Listening for abnormal engine sounds",
         "Measuring the fuel level in the tanks"
@@ -9023,7 +9023,7 @@
       "choices": [
         "Incorrect calibration of the altimeter",
         "Blockage due to ice accumulation",
-        "Overheating of the flight instruments ​",
+        "Overheating of the flight instruments",
         "Incorrect fuel mixture settings"
       ],
       "correctChoiceIndex": 1,
@@ -9148,7 +9148,7 @@
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-16-q11.mp3",
       "choices": [
         "The FMS provides the autopilot with guidance commands based on the flight plan",
-        "The autopilot provides the FMS with flight plan data ​",
+        "The autopilot provides the FMS with flight plan data",
         "The FMS and autopilot operate independently",
         "The FMS is a backup system for the autopilot"
       ],
@@ -9270,11 +9270,11 @@
       "taskTitle": "10s航空英语-442",
       "audioText": "The APU provides essential electrical power and pneumatic support for systems like cabin conditioning, avionics, and engine start without requiring the main engines to be running.\nQuestion: What is the primary function of the APU (Auxiliary Power Unit) on modern aircraft?",
       "audioTextZh": "无需主发动机运行，APU即可为客舱调节、航空电子设备和发动机启动等系统提供必要的电力和气源支持。\n问题：现代航空器上APU（辅助动力装置）的主要功能是什么？",
-      "referenceText": "正确答案：B. To supply electrical power and compressed air when the main engines are off ​",
+      "referenceText": "正确答案：B. To supply electrical power and compressed air when the main engines are off",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s01-section-16-q18.mp3",
       "choices": [
         "To provide additional thrust during takeoff",
-        "To supply electrical power and compressed air when the main engines are off ​",
+        "To supply electrical power and compressed air when the main engines are off",
         "To assist with flight control surfaces",
         "To increase fuel efficiency during cruise"
       ],
@@ -10738,7 +10738,7 @@
     {
       "id": "listening-main-1024",
       "taskTitle": "10s航空英语-512",
-      "audioText": "Clearway is defined area on the ground or water under control of appropriate authority, the length of clearway should not exceed 50% of the length takeoff runway available(TORA).\nQuestion: How long should a clearway be according to what you have heard?",
+      "audioText": "A clearway is a defined area on the ground or water under the control of the appropriate authority. The length of the clearway should not exceed 50% of the takeoff runway available (TORA).\nQuestion: How long should a clearway be according to what you have heard?",
       "audioTextZh": "净空道是由有关当局控制、位于陆地或水面上的规定区域。净空道长度不得超过可用起飞跑道长度（TORA）的50%。\n问题：根据所听内容，净空道应有多长？",
       "referenceText": "正确答案：B. Less than half the distance of TORA.",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s02-section-07-q17.mp3",
@@ -10998,14 +10998,14 @@
         "Taxi to the holding point Runway 18via taxiway B2, B3",
         "Taxi to the holding point Runway 08via taxiway B2, B3",
         "Taxi to the holding point Runway 18via taxiway B2, B1",
-        "Taxi to the holding point Runway 08via taxiway B2, B3"
+        "Taxi to the holding point Runway 08 via taxiway B2, B1"
       ],
       "correctChoiceIndex": 2,
       "choicesZh": [
         "经B2、B3滑行道滑行至18跑道等待点",
         "经B2、B3滑行道滑行至08跑道等待点",
         "经B2、B1滑行道滑行至18跑道等待点",
-        "经B2、B3滑行道滑行至08跑道等待点"
+        "经B2、B1滑行道滑行至08跑道等待点"
       ]
     },
     {
@@ -11080,14 +11080,14 @@
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-06-q17.mp3",
       "choices": [
         "They may have encountered adverse weather",
-        "They may have encountered adverse weather",
+        "They may have encountered a bird strike",
         "They may have encountered vortex",
         "They may have encountered conflict traffic"
       ],
       "correctChoiceIndex": 2,
       "choicesZh": [
         "他们可能遭遇恶劣天气",
-        "他们可能遭遇恶劣天气",
+        "他们可能遭遇鸟击",
         "他们可能遭遇尾流涡",
         "他们可能遭遇冲突航空器"
       ]
@@ -11179,7 +11179,7 @@
     {
       "id": "listening-main-1136",
       "taskTitle": "10s航空英语-533",
-      "audioText": "GP Eecho, cleared to FL190, expedite passing FL270.\nQuestion: How will GPE pass FL270?",
+      "audioText": "GP Echo, cleared to FL190, expedite passing FL270.\nQuestion: How will GPE pass FL270?",
       "audioTextZh": "GPE，许可下降至FL190，加速通过FL270。\n问题：GPE将如何通过FL270？",
       "referenceText": "正确答案：A. At a higher descent speed.",
       "audio": "/question-bank-assets/audio/listening/web-v5/pepec-listening-s03-section-07-q05.mp3",

@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "releaseVersion": 12,
+  "total": 4,
+  "items": [
+    {
+      "cardId": "listening-main-1152",
+      "file": "content/question-banks/banks/listening/topics/listening-topic-02.json",
+      "observation": "audioText 表述为需要立即下降，但 correctChoiceIndex 与 referenceText 指向 “Maintain altitude”。",
+      "reason": "需要判断专业答案正确性；本次只修复重复选项标签等确定性显示错误，不改变答案索引或教学结论。",
+      "status": "out-of-scope"
+    },
+    {
+      "cardId": "listening-main-927",
+      "relatedCardId": "listening-main-1031",
+      "file": "content/question-banks/banks/listening/topics/listening-topic-03.json",
+      "observation": "两张卡的叙述和问题相同，但一张答案为 fuel tank explosion，另一张答案为 lightning strike。",
+      "reason": "仓库文本无法唯一确定哪张卡的专业答案正确，且修改可能改变教学目标与正确答案。",
+      "status": "out-of-scope"
+    },
+    {
+      "scope": "listening",
+      "observation": "审查过程中发现少量音频时长与文本量的疑似异常。",
+      "reason": "本任务明确不读取、播放或识别音频，也不修改时长、路径、映射或资源文件。",
+      "status": "out-of-scope"
+    },
+    {
+      "scope": "all-question-banks",
+      "observation": "存在少量表达生硬、翻译风格不统一或可进一步润色的文本。",
+      "reason": "内容仍可理解，不属于乱码、编码、拼写、OCR、符号或确定性低级语法错误；为避免改变题意与 ICAO 通话风格，本次不做文风重写。",
+      "status": "out-of-scope"
+    }
+  ]
+}

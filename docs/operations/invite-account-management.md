@@ -3,7 +3,7 @@
 仅在 ECS 上操作；不要直接在 Supabase Dashboard 创建或删除 Auth 用户。
 
 ```bash
-ssh -i ~/.ssh/icao_app_codex root@47.109.132.161
+ssh -i ~/.ssh/icao_app_codex root@47.108.90.19
 ```
 
 ## 创建

@@ -1,4 +1,4 @@
-export type RecordingFormat = 'm4a' | 'wav' | 'webm';
+export type RecordingFormat = 'm4a' | 'ogg' | 'wav' | 'webm';
 
 export type RecordingAsset = {
   byteSize: number;
@@ -16,13 +16,19 @@ export type RawRecording = {
   format: RecordingFormat;
   minBytesPerMillisecond: number;
   uri: string;
+  webBlob?: Blob;
 };
 
 export type RecordingFailureCode =
   | 'microphone_permission_denied'
+  | 'microphone_device_missing'
+  | 'microphone_device_unavailable'
   | 'record_prepare_failed'
   | 'record_start_failed'
   | 'record_stop_failed'
+  | 'recording_browser_unsupported'
+  | 'recording_finalization_timeout'
+  | 'recording_interrupted'
   | 'recording_too_short'
   | 'recording_file_incomplete'
   | 'recording_asset_missing'

@@ -45,8 +45,8 @@
       "taskTitle": "CCA 985-5",
       "audioText": "C: roger, CCA 985, advise when you are ready.\nB: you decide the maintenance are needed before departure, tell Wuhan Ground you want to return to Gate 221 to have plane checked by engineers.",
       "audioTextZh": "C： 收到，CCA 985，准备好时报告。\nB： 你认为离场前需要维修，告诉武汉地面你想返回 221 登机口，让工程师检查航空器。",
-      "referenceText": "Wuhan Ground, CCA 985, request taxi back to Gate 221 for maintenance check. request taxi back to Gate 221 for maintenance check, CCA 985.",
-      "referenceTextZh": "武汉地面，CCA 985，请求滑回 221 登机口进行维修检查。请求滑回 221 登机口进行维修检查，CCA 985。",
+      "referenceText": "Wuhan Ground, CCA 985, request taxi back to Gate 221 for a maintenance check.",
+      "referenceTextZh": "武汉地面，CCA 985，请求滑回 221 登机口进行维修检查。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-042-cca985-q05.mp3"
     },
     {

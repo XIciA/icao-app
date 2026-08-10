@@ -1,189 +1,60 @@
-# ICAO App 常用命令速查
+# ICAO App 常用命令
 
-> 归类：开发指南。总导航见 `docs/README.md`。
+所有命令默认在仓库根目录运行。以 `package.json` 的 scripts 为准，本页只列稳定入口。
 
-所有命令默认在项目根目录运行：
+## 启动
 
-```bash
-cd /Users/zhouyide/Desktop/icao-app
-```
-
-
-当前错误变成了 Xcode 签名团队未选择。
-下一步先只执行：
-open ios/ICAO.xcworkspace
-然后在 Xcode 中：
-左侧点击蓝色的 ICAO 项目。
-选择 TARGETS → ICAO。
-打开 Signing & Capabilities。
-勾选 Automatically manage signing。
-在 Team 中选择 益德 周 (Personal Team)，团队编号为 4DPKHJKP5V。
-保持手机解锁，再回到终端运行：
-pnpm ios:standalone
-
-pnpm ios:standalone
-会重新：
-用最新代码生成 Release 包；
-注入当前公网 HTTPS 地址；
-覆盖安装到同一个 iPhone；
-自动启动新版 App。
-
-## 最常用
-
-| 使用场景 | 命令 |
+| 场景 | 命令 |
 | --- | --- |
-| 模拟器连接云端服务器 | `pnpm ios:phase2a` |
-| iPhone 首次安装或原生重编译 | `pnpm exec expo run:ios --device` |
-| iPhone 日常调试，仅启动 Metro | `pnpm start` |
-| 完整项目检查 | `pnpm check` |
+| 启动 Development Build 的 Metro | `pnpm start` |
+| iOS 编译、安装与运行 | `pnpm ios` |
+| iOS 连接正式云端环境 | `pnpm ios:phase2a` |
+| iOS 重新编译云端 Development Build | `pnpm ios:phase2a:build` |
+| Android 模拟器 | `pnpm android:emulator` |
+| Android 编译、安装与运行 | `pnpm android` |
+| Web 本地开发 | `pnpm web` |
+| Web 免登录 UI 验收 | `pnpm web:acceptance` |
 
-## Web 本地验收
+只修改页面、样式、TypeScript 或业务逻辑且 Development Build 已安装时，通常只需 Metro。
+修改 Expo 插件、权限、原生依赖、`app.json` 或原生工程配置后需要重新编译目标平台。
 
-免登录检查 Web 页面、手机宽度和桌面宽度时，先导出专用验收构建：
+iOS Development Build 使用 `com.readyoufife.app.dev`，显示为“听你五个 Dev”；独立 Release
+继续使用 `com.readyoufife.app`，显示为“听你五个”。两者可同时安装，日常调试不会再覆盖可独立
+启动的真机 Release。`pnpm ios` 和 `pnpm ios:phase2a:build` 会先用开发变体同步 CNG 工程，
+`pnpm ios:standalone` 则显式使用生产变体。
 
-```bash
-pnpm web:acceptance:export
-pnpm web:serve
-```
+## Web 导出与检查
 
-浏览器打开 `http://127.0.0.1:4173`，点击登录页右下角“开发者 · 免登录验收”。该模式只放开本地 UI 路由，不创建账号会话，也不能代替认证、同步、AI 或账号能力验收；刷新页面后会自动退出。
+| 场景 | 命令 |
+| --- | --- |
+| 普通 Web 导出 | `pnpm web:export` |
+| 验收 Web 导出 | `pnpm web:acceptance:export` |
+| 生成正式同源部署产物 | `pnpm web:deploy:export` |
+| 本地服务导出物 | `pnpm web:serve` |
+| Web 边界完整检查 | `pnpm check:web` |
 
-需要热更新时使用：
+免登录验收只用于本地 UI 路径，不代表认证、同步、AI 或正式运行时已经通过。
 
-```bash
-pnpm web:acceptance
-```
+## 定向检查
 
-正常 Web 生产导出继续使用 `pnpm web:export`。验收和正常命令都会清理 Metro 缓存，确保开关切换生效；正常导出会强制关闭免登录入口。
+| 范围 | 命令 |
+| --- | --- |
+| TypeScript | `pnpm typecheck` |
+| lint | `pnpm lint` |
+| Jest | `pnpm test` |
+| App 聚合检查 | `pnpm check:app` |
+| 音频边界 | `pnpm check:audio` |
+| API / contracts | `pnpm check:api` / `pnpm check:contracts` |
+| 完整仓库 | `pnpm check` |
+| Expo 诊断 | `pnpm doctor` |
 
-杀进程
-lsof -tiTCP:8081 -sTCP:LISTEN | xargs kill
-pnpm ios:phase2a
+验证范围按 `docs/engineering/verification-matrix.md` 选择；不要把完整仓库检查当成所有局部或
+文档改动的固定成本。
 
-## iOS 模拟器
+## 发布入口
 
-首次运行，或修改了原生依赖、权限、`app.json` 后：
+`pnpm release:android`、`pnpm release:ios` 和 `pnpm release:dual` 只在当前任务明确包含发布时
+使用。生产 API、Web 和数据库的权限边界见 `docs/operations/deployment-and-runtime-rules.md`。
 
-```bash
-pnpm ios
-```
-
-连接云端 API、Supabase 和云端音频进行测试：
-
-```bash
-pnpm ios:phase2a
-```
-
-连接云端服务器，同时重新编译 Development Build：
-
-```bash
-pnpm ios:phase2a:build
-```
-
-## iPhone 真机
-
-用数据线连接并解锁 iPhone，首次安装或需要原生重编译时：
-
-```bash
-pnpm exec expo run:ios --device
-```
-
-按提示选择已连接的 iPhone。也可以直接指定设备名，例如：
-
-```bash
-pnpm exec expo run:ios --device "OOMG"
-```
-
-Development Build 已安装后，日常修改页面、样式或 TypeScript 代码只需：
-
-```bash
-pnpm start
-```
-
-在 iPhone 上打开“飞猪 ICAO”。如果没有自动发现 Metro，点击 **Enter URL manually**，输入：
-
-```text
-http://Mac的局域网IP:8081
-```
-
-查看 Mac 当前局域网 IP：
-
-```bash
-ipconfig getifaddr en0
-```
-
-真机需要访问云端 API、账号、同步或云端音频时：
-
-```bash
-pnpm ios:phase2a
-```
-
-脚本可能同时打开模拟器，不影响真机使用；在 iPhone 上打开已安装的 Development Build，连接终端显示的 Metro 地址即可。
-
-## 本地音频备用方式
-
-不连接云端服务器、只使用设计仓库中的本地音频时，打开两个终端：
-
-终端 1：
-
-```bash
-pnpm assets:serve
-```
-
-终端 2：
-
-```bash
-pnpm start
-```
-
-## Android
-
-启动 Android 模拟器：
-
-```bash
-pnpm android:emulator
-```
-
-编译、安装并运行 Android Development Build：
-
-```bash
-pnpm android
-```
-
-当前日常开发与真机验收以 iOS 为主，Android 保留构建和必要的冒烟检查。
-
-## 检查与诊断
-
-完整检查：
-
-```bash
-pnpm check
-```
-
-仅检查 App：
-
-```bash
-pnpm check:app
-```
-
-仅运行 TypeScript 检查：
-
-```bash
-pnpm typecheck
-```
-
-检查 Expo 环境和依赖：
-
-```bash
-pnpm doctor
-```
-
-## 何时需要重新编译
-
-以下变化需要重新运行 `pnpm ios` 或真机安装命令：
-
-- 修改 `app.json` 或 Expo 插件；
-- 新增或升级包含原生代码的依赖；
-- 修改权限、图标、启动屏或 `ios/` 原生配置。
-
-只修改页面、样式、TypeScript 或业务逻辑时，通常只需运行 `pnpm start`。
+本机 Xcode 签名、设备名、个人 Team、端口清理等可变信息见 `docs/developer-notes/`；使用前
+人工核对，不把个人环境写成项目级强制规则。

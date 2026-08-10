@@ -1,5 +1,6 @@
 import type { GrammarReviewResult } from '@icao/contracts';
 import {
+  Fragment,
   forwardRef,
   type ReactNode,
   useCallback,
@@ -8,11 +9,12 @@ import {
   useRef,
   useState,
 } from 'react';
-import { BookOpenCheck, MessageSquareText, NotebookPen } from 'lucide-react-native';
+import { BookOpenCheck, MessageSquareText, NotebookPen } from '@/components/ui/icons';
 import { Keyboard, Platform, Pressable, StyleSheet, TextInput, View } from 'react-native';
 import { GestureDetector, type GestureType } from 'react-native-gesture-handler';
 
-import { AppText } from '@/components/ui';
+import { AppModal } from '@/components/platform/AppModal';
+import { AppText, Button } from '@/components/ui';
 import { acceptAiConsent, grammarReview, hasAiConsent, polishExpression, transcribeRecording } from '@/features/ai/ai-client';
 import { exactMatch } from '@/features/ai/exact-match';
 import { TRANSCRIPTION_ACTION_ENABLED } from '@/features/ai/transcription-ui-capability';
@@ -38,6 +40,9 @@ function transcriptionFailure(error: unknown, aborted: boolean) {
   if (code === 'ai_consent_required') {
     return { code, message: 'AI 使用授权状态未同步，请重试转写。' };
   }
+  if (code === 'asr_model_unavailable') {
+    return { code, message: '当前 ASR 模型没有可用额度，请在“设置—AI 与隐私”中切换模型。' };
+  }
   if (code === 'missing_bearer_token' || code === 'invalid_session' || code === 'invite_account_required') {
     return { code, message: '登录状态已失效，请重新登录后转写。' };
   }
@@ -56,6 +61,8 @@ type AutoSaveSnapshot = {
   fingerprint: string;
   record: Omit<LearningRecord, 'updatedAt'>;
 };
+
+type AiConsentKind = 'audio' | 'text';
 
 type Props = {
   cardKey: string;
@@ -129,6 +136,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   const [failedAction, setFailedAction] = useState<'transcribe' | 'review'>();
   const [autoSaveError, setAutoSaveError] = useState<string>();
   const [consented, setConsented] = useState(false);
+  const [consentKind, setConsentKind] = useState<AiConsentKind>();
   const [answerInputHeight, setAnswerInputHeight] = useState(92);
   const [noteInputHeight, setNoteInputHeight] = useState(92);
   const [saveRevision, setSaveRevision] = useState(0);
@@ -140,6 +148,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   const latestSnapshot = useRef<AutoSaveSnapshot | undefined>(undefined);
   const lastSavedFingerprints = useRef(new Map<string, string>());
   const saveQueue = useRef<Promise<void>>(Promise.resolve());
+  const consentResolver = useRef<((accepted: boolean) => void) | undefined>(undefined);
 
   currentCardKey.current = cardKey;
 
@@ -250,6 +259,8 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     const controller = activeRequest.current;
     activeRequest.current = undefined;
     controller?.abort();
+    consentResolver.current?.(false);
+    consentResolver.current = undefined;
   }, []);
 
   useEffect(() => { void hasAiConsent().then(setConsented); }, []);
@@ -260,13 +271,29 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     return () => clearTimeout(timeout);
   }, [persistCurrent, saveRevision]);
 
-  const ensureConsent = useCallback(async () => {
+  const requestAiConsent = useCallback((kind: AiConsentKind) => new Promise<boolean>((resolve) => {
+    consentResolver.current?.(false);
+    consentResolver.current = resolve;
+    setConsentKind(kind);
+  }), []);
+
+  const completeAiConsent = useCallback((accepted: boolean) => {
+    const resolve = consentResolver.current;
+    consentResolver.current = undefined;
+    setConsentKind(undefined);
+    resolve?.(accepted);
+  }, []);
+
+  const ensureConsent = useCallback(async (kind: AiConsentKind) => {
     // The local acknowledgement is intentionally only a UI hint. Server
     // consent is account-scoped, so re-register it idempotently before every
     // AI action to survive account switches, revocation, and restored storage.
+    const acknowledged = consented || await hasAiConsent();
+    if (!acknowledged && !await requestAiConsent(kind)) return false;
     await acceptAiConsent();
     setConsented(true);
-  }, []);
+    return true;
+  }, [consented, requestAiConsent]);
 
   const changeAnswer = useCallback((text: string) => {
     setGrammar(undefined);
@@ -288,7 +315,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     const controller = new AbortController();
     activeRequest.current = controller;
     try {
-      await ensureConsent();
+      if (!await ensureConsent('audio')) return;
       const result = await transcribeRecording(recordingUri, controller.signal);
       if (controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
       changeAnswer(result.transcript);
@@ -333,7 +360,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
         markDirty();
         return;
       }
-      await ensureConsent();
+      if (!await ensureConsent('text')) return;
       const module = bankId === 'radiotelephony' ? 'atc' : bankId === 'storytelling' ? 'story' : 'opi';
       const input = { module, questionId: cardKey, questionText, transcript: answerText } as const;
       if (reviewKind === 'opi-analysis') {
@@ -399,7 +426,8 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   const showAiRegion = busy === 'review' || Boolean(reviewError || aiPrimaryText || aiExplanation);
 
   return (
-    <GestureDetector gesture={swipeGesture}>
+    <Fragment>
+      <GestureDetector gesture={swipeGesture}>
       <View>
         <View style={styles.header} testID="study-workbench-header">
           <View style={styles.headerTitle}>
@@ -481,7 +509,23 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
           </View>
         </View>
       </View>
-    </GestureDetector>
+      </GestureDetector>
+      <AppModal animationType="fade" onRequestClose={() => completeAiConsent(false)} transparent visible={Boolean(consentKind)}>
+        <View style={styles.consentOverlay}>
+          <View accessibilityLabel="AI 数据处理提示" style={styles.consentDialog}>
+            <AppText variant="sectionTitle">AI 数据处理提示</AppText>
+            <AppText>
+              {consentKind === 'audio'
+                ? '继续后，本次录音会经听你五个服务器发送至腾讯云语音识别，用于语音转写。我们的暂存录音会在处理完成后删除，异常残留最长保留 24 小时。'
+                : '继续后，本次回答文本会经听你五个服务器发送至阿里云百炼，用于语法分析和表达优化。'}
+            </AppText>
+            <AppText color={colors.mutedForeground} variant="caption">AI 服务使用日志仅记录功能、状态、模型、耗时和用量；回答与分析结果仍可能作为学习记录同步到你的账号。你可在“设置—AI 与隐私”撤回同意。</AppText>
+            <Button onPress={() => completeAiConsent(true)}>同意并继续</Button>
+            <Button onPress={() => completeAiConsent(false)} variant="outline">暂不使用</Button>
+          </View>
+        </View>
+      </AppModal>
+    </Fragment>
   );
 });
 
@@ -510,5 +554,7 @@ const styles = StyleSheet.create({
   dotActive: { backgroundColor: colors.primary, height: 4, opacity: 1, width: 10 },
   actions: { alignItems: 'center', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'flex-end' },
   action: { alignItems: 'center', borderRadius: radii.full, justifyContent: 'center', minHeight: 44, paddingHorizontal: spacing[2.5] },
+  consentOverlay: { alignItems: 'center', backgroundColor: colors.overlay, flex: 1, justifyContent: 'center', padding: spacing[5] },
+  consentDialog: { backgroundColor: colors.card, borderRadius: radii.xl, gap: spacing[4], maxWidth: 420, padding: spacing[5], width: '100%' },
   pressed: { opacity: 0.72 },
 });

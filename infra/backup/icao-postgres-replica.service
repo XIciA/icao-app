@@ -1,0 +1,13 @@
+[Unit]
+Description=Optionally replicate Read You 5 PostgreSQL backup to an explicit remote target
+After=network-online.target icao-postgres-backup.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+UMask=0077
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+TimeoutStartSec=30min
+ExecStart=/bin/sh /opt/icao/runtime/source/infra/backup/replicate-postgres.sh

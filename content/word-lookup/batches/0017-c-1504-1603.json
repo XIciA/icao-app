@@ -1,105 +1,521 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"complete","ipa":"/kəmˈpliːt/","aviationMeaning":"adj. 完整的；v. 完成程序或飞行","generalMeaning":"adj. 完整的；v. 完成"},
-    {"word":"completed","ipa":"/kəmˈpliːtɪd/","aviationMeaning":"adj. 已完成的程序、飞行或检查","generalMeaning":"adj. 已完成的"},
-    {"word":"completely","ipa":"/kəmˈpliːtli/","aviationMeaning":"adv. 完全地；全部完成地","generalMeaning":"adv. 完全地"},
-    {"word":"completes","ipa":"/kəmˈpliːts/","aviationMeaning":"v. 完成程序、飞行或检查","generalMeaning":"v. 完成"},
-    {"word":"completing","ipa":"/kəmˈpliːtɪŋ/","aviationMeaning":"v. 正完成程序、飞行或检查","generalMeaning":"v. 正完成"},
-    {"word":"completion","ipa":"/kəmˈpliːʃən/","aviationMeaning":"n. 完成；程序、任务或飞行完成","generalMeaning":"n. 完成；结束"},
-    {"word":"complex","ipa":"/kəmˈpleks/","aviationMeaning":"adj. 复杂的；n. 综合体","generalMeaning":"adj. 复杂的；n. 复合体"},
-    {"word":"complexities","ipa":"/kəmˈpleksətiz/","aviationMeaning":"n. 复杂性；运行系统复杂因素（复数）","generalMeaning":"n. 复杂性（复数）"},
-    {"word":"complexity","ipa":"/kəmˈpleksəti/","aviationMeaning":"n. 复杂性；运行系统复杂程度","generalMeaning":"n. 复杂性"},
-    {"word":"compliance","ipa":"/kəmˈplaɪəns/","aviationMeaning":"n. 合规；遵守法规和程序","generalMeaning":"n. 遵从；合规"},
-    {"word":"complicate","ipa":"/ˈkɑːmplɪkeɪt/","aviationMeaning":"v. 使运行、故障或决策复杂化","generalMeaning":"v. 使复杂化"},
-    {"word":"complicated","ipa":"/ˈkɑːmplɪkeɪtɪd/","aviationMeaning":"adj. 复杂的；处理困难的","generalMeaning":"adj. 复杂的；难懂的"},
-    {"word":"complied","ipa":"/kəmˈplaɪd/","aviationMeaning":"v. 已遵守许可、法规或程序","generalMeaning":"v. 已遵从"},
-    {"word":"comply","ipa":"/kəmˈplaɪ/","aviationMeaning":"v. 遵守许可、法规或程序","generalMeaning":"v. 遵从；服从"},
-    {"word":"component","ipa":"/kəmˈpoʊnənt/","aviationMeaning":"n. 部件；系统组件","generalMeaning":"n. 组成部分；部件"},
-    {"word":"components","ipa":"/kəmˈpoʊnənts/","aviationMeaning":"n. 部件；系统组件（复数）","generalMeaning":"n. 组成部分；部件（复数）"},
-    {"word":"composite","ipa":"/kəmˈpɑːzɪt/","aviationMeaning":"n. 复合材料；adj. 复合的","generalMeaning":"n. 合成物；adj. 复合的"},
-    {"word":"composure","ipa":"/kəmˈpoʊʒər/","aviationMeaning":"n. 镇定；机组压力下的沉着","generalMeaning":"n. 镇静；沉着"},
-    {"word":"compound","ipa":"/ˈkɑːmpaʊnd/","aviationMeaning":"n. 化合物；v. 加重或混合","generalMeaning":"n. 化合物；v. 加重"},
-    {"word":"compounded","ipa":"/kəmˈpaʊndɪd/","aviationMeaning":"adj. 已加重或混合的","generalMeaning":"adj. 复合的；加重的"},
-    {"word":"comprehensive","ipa":"/ˌkɑːmprɪˈhensɪv/","aviationMeaning":"adj. 全面的；覆盖完整运行事项的","generalMeaning":"adj. 全面的；综合的"},
-    {"word":"compress","ipa":"/kəmˈpres/","aviationMeaning":"v. 压缩空气、数据或时间","generalMeaning":"v. 压缩；浓缩"},
-    {"word":"compressed","ipa":"/kəmˈprest/","aviationMeaning":"adj. 已压缩的；压缩空气的","generalMeaning":"adj. 已压缩的"},
-    {"word":"compressed-air","ipa":"/kəmˈprest er/","aviationMeaning":"n. 压缩空气","generalMeaning":"n. 压缩空气"},
-    {"word":"compression","ipa":"/kəmˈpreʃən/","aviationMeaning":"n. 压缩；发动机压缩过程","generalMeaning":"n. 压缩；浓缩"},
-    {"word":"compressor","ipa":"/kəmˈpresər/","aviationMeaning":"n. 压气机；发动机部件","generalMeaning":"n. 压缩机"},
-    {"word":"compressors","ipa":"/kəmˈpresərz/","aviationMeaning":"n. 压气机；发动机部件（复数）","generalMeaning":"n. 压缩机（复数）"},
-    {"word":"compromise","ipa":"/ˈkɑːmprəmaɪz/","aviationMeaning":"v. 危及安全或完整性；n. 折中","generalMeaning":"v. 妥协；n. 妥协"},
-    {"word":"compromised","ipa":"/ˈkɑːmprəmaɪzd/","aviationMeaning":"adj. 已受损害的；安全性受影响的","generalMeaning":"adj. 已妥协的；受损的"},
-    {"word":"compulsory","ipa":"/kəmˈpʌlsəri/","aviationMeaning":"adj. 强制的；法规或程序要求的","generalMeaning":"adj. 强制的；必须的"},
-    {"word":"computations","ipa":"/ˌkɑːmpjuˈteɪʃənz/","aviationMeaning":"n. 性能、燃油或导航计算（复数）","generalMeaning":"n. 计算（复数）"},
-    {"word":"computed","ipa":"/kəmˈpjuːtɪd/","aviationMeaning":"adj. 已计算的；由系统计算的","generalMeaning":"adj. 已计算的"},
-    {"word":"computer","ipa":"/kəmˈpjuːtər/","aviationMeaning":"n. 计算机；飞行管理或航电计算机","generalMeaning":"n. 计算机"},
-    {"word":"computers","ipa":"/kəmˈpjuːtərz/","aviationMeaning":"n. 计算机；航电计算机（复数）","generalMeaning":"n. 计算机（复数）"},
-    {"word":"computing","ipa":"/kəmˈpjuːtɪŋ/","aviationMeaning":"n. 计算；v. 正计算","generalMeaning":"n. 计算；计算技术"},
-    {"word":"concealed","ipa":"/kənˈsiːld/","aviationMeaning":"adj. 被遮蔽的；不可见的","generalMeaning":"adj. 隐藏的；隐蔽的"},
-    {"word":"concentrate","ipa":"/ˈkɑːnsəntreɪt/","aviationMeaning":"v. 集中注意力；n. 浓缩物","generalMeaning":"v. 集中；浓缩"},
-    {"word":"concentrated","ipa":"/ˈkɑːnsəntreɪtɪd/","aviationMeaning":"adj. 集中的；高密度的","generalMeaning":"adj. 集中的；浓缩的"},
-    {"word":"concentrating","ipa":"/ˈkɑːnsəntreɪtɪŋ/","aviationMeaning":"v. 正集中注意力或资源","generalMeaning":"v. 正集中"},
-    {"word":"concentration","ipa":"/ˌkɑːnsənˈtreɪʃən/","aviationMeaning":"n. 注意力集中；浓度；交通密度","generalMeaning":"n. 集中；浓度"},
-    {"word":"concept","ipa":"/ˈkɑːnsept/","aviationMeaning":"n. 概念；运行或系统设计理念","generalMeaning":"n. 概念；观念"},
-    {"word":"concern","ipa":"/kənˈsɜːrn/","aviationMeaning":"n. 关注事项；安全担忧；v. 涉及","generalMeaning":"n. 担心；v. 涉及"},
-    {"word":"concerned","ipa":"/kənˈsɜːrnd/","aviationMeaning":"adj. 关注的；涉及某运行事项的","generalMeaning":"adj. 担心的；相关的"},
-    {"word":"concerning","ipa":"/kənˈsɜːrnɪŋ/","aviationMeaning":"prep. 关于；涉及运行事项","generalMeaning":"prep. 关于；令人担心的"},
-    {"word":"concerns","ipa":"/kənˈsɜːrnz/","aviationMeaning":"n. 关注事项（复数）；v. 涉及","generalMeaning":"n. 担心（复数）；v. 涉及"},
-    {"word":"concise","ipa":"/kənˈsaɪs/","aviationMeaning":"adj. 简明的；符合标准通话的","generalMeaning":"adj. 简洁的；简明的"},
-    {"word":"concluded","ipa":"/kənˈkluːdɪd/","aviationMeaning":"v. 已结束或得出结论","generalMeaning":"v. 已结束；得出结论"},
-    {"word":"concluding","ipa":"/kənˈkluːdɪŋ/","aviationMeaning":"v. 正结束或得出结论","generalMeaning":"v. 正结束；得出结论"},
-    {"word":"condensation","ipa":"/ˌkɑːndenˈseɪʃən/","aviationMeaning":"n. 凝结；水汽凝结现象","generalMeaning":"n. 凝结；冷凝"},
-    {"word":"condenser","ipa":"/kənˈdensər/","aviationMeaning":"n. 冷凝器；环境控制系统部件","generalMeaning":"n. 冷凝器"},
-    {"word":"condition","ipa":"/kənˈdɪʃən/","aviationMeaning":"n. 状况；飞行、天气或设备条件","generalMeaning":"n. 条件；状态"},
-    {"word":"conditional","ipa":"/kənˈdɪʃənəl/","aviationMeaning":"adj. 有条件的；条件许可的","generalMeaning":"adj. 有条件的"},
-    {"word":"conditioned","ipa":"/kənˈdɪʃənd/","aviationMeaning":"adj. 已调节的；如空调空气","generalMeaning":"adj. 有条件的；已调节的"},
-    {"word":"conditioner","ipa":"/kənˈdɪʃənər/","aviationMeaning":"n. 调节器；空气调节设备","generalMeaning":"n. 调节器；护发素"},
-    {"word":"conditioning","ipa":"/kənˈdɪʃənɪŋ/","aviationMeaning":"n. 调节；空调或人员状态训练","generalMeaning":"n. 调节；条件作用"},
-    {"word":"conditions","ipa":"/kənˈdɪʃənz/","aviationMeaning":"n. 飞行、天气或设备条件（复数）","generalMeaning":"n. 条件；状态（复数）"},
-    {"word":"condor","ipa":"/ˈkɑːndɔːr/","aviationMeaning":"n. 秃鹰；鸟击风险对象或航空公司名称","generalMeaning":"n. 神鹰；秃鹰"},
-    {"word":"conduct","ipa":"/kənˈdʌkt/","aviationMeaning":"v. 实施飞行、检查或试验；n. 行为","generalMeaning":"v. 进行；n. 行为"},
-    {"word":"conducted","ipa":"/kənˈdʌktɪd/","aviationMeaning":"v. 已实施飞行、检查或试验","generalMeaning":"v. 已进行"},
-    {"word":"conducting","ipa":"/kənˈdʌktɪŋ/","aviationMeaning":"v. 正实施飞行、检查或试验","generalMeaning":"v. 正进行"},
-    {"word":"conductor","ipa":"/kənˈdʌktər/","aviationMeaning":"n. 导体；电气线路部件","generalMeaning":"n. 指挥；导体"},
-    {"word":"conducts","ipa":"/kənˈdʌkts/","aviationMeaning":"v. 实施飞行、检查或试验","generalMeaning":"v. 进行；引导"},
-    {"word":"cone","ipa":"/koʊn/","aviationMeaning":"n. 锥体；风向袋、发动机或障碍物锥形部件","generalMeaning":"n. 圆锥；蛋卷"},
-    {"word":"confidence","ipa":"/ˈkɑːnfɪdəns/","aviationMeaning":"n. 信心；机组操作自信","generalMeaning":"n. 信心；信任"},
-    {"word":"confident","ipa":"/ˈkɑːnfɪdənt/","aviationMeaning":"adj. 有信心的；确信运行情况的","generalMeaning":"adj. 自信的；确信的"},
-    {"word":"confidential","ipa":"/ˌkɑːnfɪˈdenʃəl/","aviationMeaning":"adj. 保密的；安全报告或人员资料","generalMeaning":"adj. 保密的；机密的"},
-    {"word":"confidently","ipa":"/ˈkɑːnfɪdəntli/","aviationMeaning":"adv. 有信心地；清晰果断地通话","generalMeaning":"adv. 自信地"},
-    {"word":"configuration","ipa":"/kənˌfɪɡjəˈreɪʃən/","aviationMeaning":"n. 构型；航空器系统或飞行构型","generalMeaning":"n. 配置；构造"},
-    {"word":"configuration-related","ipa":"/kənˌfɪɡjəˈreɪʃən rɪˈleɪtɪd/","aviationMeaning":"adj. 与航空器构型有关的","generalMeaning":"adj. 与配置有关的"},
-    {"word":"configurations","ipa":"/kənˌfɪɡjəˈreɪʃənz/","aviationMeaning":"n. 航空器系统或飞行构型（复数）","generalMeaning":"n. 配置；构造（复数）"},
-    {"word":"configure","ipa":"/kənˈfɪɡjər/","aviationMeaning":"v. 配置系统或设定航空器构型","generalMeaning":"v. 配置；设定"},
-    {"word":"configured","ipa":"/kənˈfɪɡjərd/","aviationMeaning":"adj. 已配置的；已设定构型的","generalMeaning":"adj. 已配置的"},
-    {"word":"confined","ipa":"/kənˈfaɪnd/","aviationMeaning":"adj. 受限于某区域、条件或空间的","generalMeaning":"adj. 受限制的；封闭的"},
-    {"word":"confirm","ipa":"/kənˈfɜːrm/","aviationMeaning":"v. 确认许可、位置、数据或意图","generalMeaning":"v. 确认；证实"},
-    {"word":"confirmation","ipa":"/ˌkɑːnfərˈmeɪʃən/","aviationMeaning":"n. 确认；许可或信息确认","generalMeaning":"n. 确认；证实"},
-    {"word":"confirmatory","ipa":"/kənˈfɜːrmətɔːri/","aviationMeaning":"adj. 用于确认的；确认性通话","generalMeaning":"adj. 确认的；证实性的"},
-    {"word":"confirmed","ipa":"/kənˈfɜːrmd/","aviationMeaning":"adj. 已确认的；已证实的","generalMeaning":"adj. 已确认的；证实的"},
-    {"word":"confirming","ipa":"/kənˈfɜːrmɪŋ/","aviationMeaning":"v. 正确认许可、位置、数据或意图","generalMeaning":"v. 正确认；证实"},
-    {"word":"confirms","ipa":"/kənˈfɜːrmz/","aviationMeaning":"v. 确认许可、位置、数据或意图","generalMeaning":"v. 确认；证实"},
-    {"word":"conflict","ipa":"/ˈkɑːnflɪkt/","aviationMeaning":"n. 冲突；航空器间隔冲突","generalMeaning":"n. 冲突；矛盾"},
-    {"word":"conflicting","ipa":"/kənˈflɪktɪŋ/","aviationMeaning":"adj. 相冲突的；不一致的许可或信息","generalMeaning":"adj. 矛盾的；冲突的"},
-    {"word":"conflicts","ipa":"/ˈkɑːnflɪkts/","aviationMeaning":"n. 冲突（复数）；v. 冲突","generalMeaning":"n. 冲突（复数）；v. 冲突"},
-    {"word":"conform","ipa":"/kənˈfɔːrm/","aviationMeaning":"v. 符合标准、程序或构型要求","generalMeaning":"v. 符合；遵从"},
-    {"word":"confort","ipa":"/ˈkʌmfərt/","aviationMeaning":"n. 题库原文中 comfort 的疑似拼写错误","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"confrontation","ipa":"/ˌkɑːnfrənˈteɪʃən/","aviationMeaning":"n. 对抗；可能影响机组协作的冲突","generalMeaning":"n. 对抗；冲突"},
-    {"word":"confused","ipa":"/kənˈfjuːzd/","aviationMeaning":"adj. 困惑的；对许可或状态理解不清的","generalMeaning":"adj. 困惑的；混乱的"},
-    {"word":"confusing","ipa":"/kənˈfjuːzɪŋ/","aviationMeaning":"adj. 令人困惑的；通话或程序不清晰的","generalMeaning":"adj. 令人困惑的"},
-    {"word":"confusion","ipa":"/kənˈfjuːʒən/","aviationMeaning":"n. 困惑；指令或态势理解混乱","generalMeaning":"n. 困惑；混乱"},
-    {"word":"congested","ipa":"/kənˈdʒestɪd/","aviationMeaning":"adj. 拥挤的；交通流量密集的","generalMeaning":"adj. 拥挤的；堵塞的"},
-    {"word":"congestion","ipa":"/kənˈdʒestʃən/","aviationMeaning":"n. 拥堵；机场、空域或地面交通拥堵","generalMeaning":"n. 拥挤；堵塞"},
-    {"word":"connect","ipa":"/kəˈnekt/","aviationMeaning":"v. 连接系统、航段或航班","generalMeaning":"v. 连接；联系"},
-    {"word":"connected","ipa":"/kəˈnektɪd/","aviationMeaning":"adj. 已连接的；联程的","generalMeaning":"adj. 连接的；相关的"},
-    {"word":"connecting","ipa":"/kəˈnektɪŋ/","aviationMeaning":"v. 正连接；adj. 联程的","generalMeaning":"v. 正连接；adj. 连接的"},
-    {"word":"connection","ipa":"/kəˈnekʃən/","aviationMeaning":"n. 连接；转机衔接；系统连接","generalMeaning":"n. 连接；关系"},
-    {"word":"connections","ipa":"/kəˈnekʃənz/","aviationMeaning":"n. 连接；转机衔接（复数）","generalMeaning":"n. 连接；关系（复数）"},
-    {"word":"connectivity","ipa":"/ˌkɑːnekˈtɪvəti/","aviationMeaning":"n. 连通性；航空数据通信能力","generalMeaning":"n. 连接性；连通性"},
-    {"word":"consciousness","ipa":"/ˈkɑːnʃəsnəs/","aviationMeaning":"n. 意识；医疗急症中的意识状态","generalMeaning":"n. 意识；知觉"},
-    {"word":"consequence","ipa":"/ˈkɑːnsəkwens/","aviationMeaning":"n. 后果；运行或安全后果","generalMeaning":"n. 后果；结果"},
-    {"word":"consequences","ipa":"/ˈkɑːnsəkwensɪz/","aviationMeaning":"n. 后果；运行或安全后果（复数）","generalMeaning":"n. 后果；结果（复数）"},
-    {"word":"conservative","ipa":"/kənˈsɜːrvətɪv/","aviationMeaning":"adj. 保守的；留有安全裕度的","generalMeaning":"adj. 保守的；守旧的"}
+    {
+      "word": "complete",
+      "ipa": "/kəmˈpliːt/",
+      "aviationMeaning": "adj. 完整的；v. 完成程序或飞行",
+      "generalMeaning": "adj. 完整的；v. 完成"
+    },
+    {
+      "word": "completed",
+      "ipa": "/kəmˈpliːtɪd/",
+      "aviationMeaning": "adj. 已完成的程序、飞行或检查",
+      "generalMeaning": "adj. 已完成的"
+    },
+    {
+      "word": "completely",
+      "ipa": "/kəmˈpliːtli/",
+      "aviationMeaning": "adv. 完全地；全部完成地",
+      "generalMeaning": "adv. 完全地"
+    },
+    {
+      "word": "completes",
+      "ipa": "/kəmˈpliːts/",
+      "aviationMeaning": "v. 完成程序、飞行或检查",
+      "generalMeaning": "v. 完成"
+    },
+    {
+      "word": "completing",
+      "ipa": "/kəmˈpliːtɪŋ/",
+      "aviationMeaning": "v. 正完成程序、飞行或检查",
+      "generalMeaning": "v. 正完成"
+    },
+    {
+      "word": "completion",
+      "ipa": "/kəmˈpliːʃən/",
+      "aviationMeaning": "n. 完成；程序、任务或飞行完成",
+      "generalMeaning": "n. 完成；结束"
+    },
+    {
+      "word": "complex",
+      "ipa": "/kəmˈpleks/",
+      "aviationMeaning": "adj. 复杂的；n. 综合体",
+      "generalMeaning": "adj. 复杂的；n. 复合体"
+    },
+    {
+      "word": "complexities",
+      "ipa": "/kəmˈpleksətiz/",
+      "aviationMeaning": "n. 复杂性；运行系统复杂因素（复数）",
+      "generalMeaning": "n. 复杂性（复数）"
+    },
+    {
+      "word": "complexity",
+      "ipa": "/kəmˈpleksəti/",
+      "aviationMeaning": "n. 复杂性；运行系统复杂程度",
+      "generalMeaning": "n. 复杂性"
+    },
+    {
+      "word": "compliance",
+      "ipa": "/kəmˈplaɪəns/",
+      "aviationMeaning": "n. 合规；遵守法规和程序",
+      "generalMeaning": "n. 遵从；合规"
+    },
+    {
+      "word": "complicated",
+      "ipa": "/ˈkɑːmplɪkeɪtɪd/",
+      "aviationMeaning": "adj. 复杂的；处理困难的",
+      "generalMeaning": "adj. 复杂的；难懂的"
+    },
+    {
+      "word": "complied",
+      "ipa": "/kəmˈplaɪd/",
+      "aviationMeaning": "v. 已遵守许可、法规或程序",
+      "generalMeaning": "v. 已遵从"
+    },
+    {
+      "word": "comply",
+      "ipa": "/kəmˈplaɪ/",
+      "aviationMeaning": "v. 遵守许可、法规或程序",
+      "generalMeaning": "v. 遵从；服从"
+    },
+    {
+      "word": "component",
+      "ipa": "/kəmˈpoʊnənt/",
+      "aviationMeaning": "n. 部件；系统组件",
+      "generalMeaning": "n. 组成部分；部件"
+    },
+    {
+      "word": "components",
+      "ipa": "/kəmˈpoʊnənts/",
+      "aviationMeaning": "n. 部件；系统组件（复数）",
+      "generalMeaning": "n. 组成部分；部件（复数）"
+    },
+    {
+      "word": "composite",
+      "ipa": "/kəmˈpɑːzɪt/",
+      "aviationMeaning": "n. 复合材料；adj. 复合的",
+      "generalMeaning": "n. 合成物；adj. 复合的"
+    },
+    {
+      "word": "composure",
+      "ipa": "/kəmˈpoʊʒər/",
+      "aviationMeaning": "n. 镇定；机组压力下的沉着",
+      "generalMeaning": "n. 镇静；沉着"
+    },
+    {
+      "word": "compounded",
+      "ipa": "/kəmˈpaʊndɪd/",
+      "aviationMeaning": "adj. 已加重或混合的",
+      "generalMeaning": "adj. 复合的；加重的"
+    },
+    {
+      "word": "comprehensive",
+      "ipa": "/ˌkɑːmprɪˈhensɪv/",
+      "aviationMeaning": "adj. 全面的；覆盖完整运行事项的",
+      "generalMeaning": "adj. 全面的；综合的"
+    },
+    {
+      "word": "compress",
+      "ipa": "/kəmˈpres/",
+      "aviationMeaning": "v. 压缩空气、数据或时间",
+      "generalMeaning": "v. 压缩；浓缩"
+    },
+    {
+      "word": "compressed",
+      "ipa": "/kəmˈprest/",
+      "aviationMeaning": "adj. 已压缩的；压缩空气的",
+      "generalMeaning": "adj. 已压缩的"
+    },
+    {
+      "word": "compression",
+      "ipa": "/kəmˈpreʃən/",
+      "aviationMeaning": "n. 压缩；发动机压缩过程",
+      "generalMeaning": "n. 压缩；浓缩"
+    },
+    {
+      "word": "compressor",
+      "ipa": "/kəmˈpresər/",
+      "aviationMeaning": "n. 压气机；发动机部件",
+      "generalMeaning": "n. 压缩机"
+    },
+    {
+      "word": "compromise",
+      "ipa": "/ˈkɑːmprəmaɪz/",
+      "aviationMeaning": "v. 危及安全或完整性；n. 折中",
+      "generalMeaning": "v. 妥协；n. 妥协"
+    },
+    {
+      "word": "compromised",
+      "ipa": "/ˈkɑːmprəmaɪzd/",
+      "aviationMeaning": "adj. 已受损害的；安全性受影响的",
+      "generalMeaning": "adj. 已妥协的；受损的"
+    },
+    {
+      "word": "compulsory",
+      "ipa": "/kəmˈpʌlsəri/",
+      "aviationMeaning": "adj. 强制的；法规或程序要求的",
+      "generalMeaning": "adj. 强制的；必须的"
+    },
+    {
+      "word": "computations",
+      "ipa": "/ˌkɑːmpjuˈteɪʃənz/",
+      "aviationMeaning": "n. 性能、燃油或导航计算（复数）",
+      "generalMeaning": "n. 计算（复数）"
+    },
+    {
+      "word": "computed",
+      "ipa": "/kəmˈpjuːtɪd/",
+      "aviationMeaning": "adj. 已计算的；由系统计算的",
+      "generalMeaning": "adj. 已计算的"
+    },
+    {
+      "word": "computer",
+      "ipa": "/kəmˈpjuːtər/",
+      "aviationMeaning": "n. 计算机；飞行管理或航电计算机",
+      "generalMeaning": "n. 计算机"
+    },
+    {
+      "word": "computers",
+      "ipa": "/kəmˈpjuːtərz/",
+      "aviationMeaning": "n. 计算机；航电计算机（复数）",
+      "generalMeaning": "n. 计算机（复数）"
+    },
+    {
+      "word": "computing",
+      "ipa": "/kəmˈpjuːtɪŋ/",
+      "aviationMeaning": "n. 计算；v. 正计算",
+      "generalMeaning": "n. 计算；计算技术"
+    },
+    {
+      "word": "concealed",
+      "ipa": "/kənˈsiːld/",
+      "aviationMeaning": "adj. 被遮蔽的；不可见的",
+      "generalMeaning": "adj. 隐藏的；隐蔽的"
+    },
+    {
+      "word": "concentrate",
+      "ipa": "/ˈkɑːnsəntreɪt/",
+      "aviationMeaning": "v. 集中注意力；n. 浓缩物",
+      "generalMeaning": "v. 集中；浓缩"
+    },
+    {
+      "word": "concentrated",
+      "ipa": "/ˈkɑːnsəntreɪtɪd/",
+      "aviationMeaning": "adj. 集中的；高密度的",
+      "generalMeaning": "adj. 集中的；浓缩的"
+    },
+    {
+      "word": "concentrating",
+      "ipa": "/ˈkɑːnsəntreɪtɪŋ/",
+      "aviationMeaning": "v. 正集中注意力或资源",
+      "generalMeaning": "v. 正集中"
+    },
+    {
+      "word": "concentration",
+      "ipa": "/ˌkɑːnsənˈtreɪʃən/",
+      "aviationMeaning": "n. 注意力集中；浓度；交通密度",
+      "generalMeaning": "n. 集中；浓度"
+    },
+    {
+      "word": "concept",
+      "ipa": "/ˈkɑːnsept/",
+      "aviationMeaning": "n. 概念；运行或系统设计理念",
+      "generalMeaning": "n. 概念；观念"
+    },
+    {
+      "word": "concern",
+      "ipa": "/kənˈsɜːrn/",
+      "aviationMeaning": "n. 关注事项；安全担忧；v. 涉及",
+      "generalMeaning": "n. 担心；v. 涉及"
+    },
+    {
+      "word": "concerned",
+      "ipa": "/kənˈsɜːrnd/",
+      "aviationMeaning": "adj. 关注的；涉及某运行事项的",
+      "generalMeaning": "adj. 担心的；相关的"
+    },
+    {
+      "word": "concerning",
+      "ipa": "/kənˈsɜːrnɪŋ/",
+      "aviationMeaning": "prep. 关于；涉及运行事项",
+      "generalMeaning": "prep. 关于；令人担心的"
+    },
+    {
+      "word": "concerns",
+      "ipa": "/kənˈsɜːrnz/",
+      "aviationMeaning": "n. 关注事项（复数）；v. 涉及",
+      "generalMeaning": "n. 担心（复数）；v. 涉及"
+    },
+    {
+      "word": "concise",
+      "ipa": "/kənˈsaɪs/",
+      "aviationMeaning": "adj. 简明的；符合标准通话的",
+      "generalMeaning": "adj. 简洁的；简明的"
+    },
+    {
+      "word": "concluded",
+      "ipa": "/kənˈkluːdɪd/",
+      "aviationMeaning": "v. 已结束或得出结论",
+      "generalMeaning": "v. 已结束；得出结论"
+    },
+    {
+      "word": "condensation",
+      "ipa": "/ˌkɑːndenˈseɪʃən/",
+      "aviationMeaning": "n. 凝结；水汽凝结现象",
+      "generalMeaning": "n. 凝结；冷凝"
+    },
+    {
+      "word": "condenser",
+      "ipa": "/kənˈdensər/",
+      "aviationMeaning": "n. 冷凝器；环境控制系统部件",
+      "generalMeaning": "n. 冷凝器"
+    },
+    {
+      "word": "condition",
+      "ipa": "/kənˈdɪʃən/",
+      "aviationMeaning": "n. 状况；飞行、天气或设备条件",
+      "generalMeaning": "n. 条件；状态"
+    },
+    {
+      "word": "conditioner",
+      "ipa": "/kənˈdɪʃənər/",
+      "aviationMeaning": "n. 调节器；空气调节设备",
+      "generalMeaning": "n. 调节器；护发素"
+    },
+    {
+      "word": "conditioning",
+      "ipa": "/kənˈdɪʃənɪŋ/",
+      "aviationMeaning": "n. 调节；空调或人员状态训练",
+      "generalMeaning": "n. 调节；条件作用"
+    },
+    {
+      "word": "conditions",
+      "ipa": "/kənˈdɪʃənz/",
+      "aviationMeaning": "n. 飞行、天气或设备条件（复数）",
+      "generalMeaning": "n. 条件；状态（复数）"
+    },
+    {
+      "word": "condor",
+      "ipa": "/ˈkɑːndɔːr/",
+      "aviationMeaning": "n. 秃鹰；鸟击风险对象或航空公司名称",
+      "generalMeaning": "n. 神鹰；秃鹰"
+    },
+    {
+      "word": "conduct",
+      "ipa": "/kənˈdʌkt/",
+      "aviationMeaning": "v. 实施飞行、检查或试验；n. 行为",
+      "generalMeaning": "v. 进行；n. 行为"
+    },
+    {
+      "word": "conducted",
+      "ipa": "/kənˈdʌktɪd/",
+      "aviationMeaning": "v. 已实施飞行、检查或试验",
+      "generalMeaning": "v. 已进行"
+    },
+    {
+      "word": "conducting",
+      "ipa": "/kənˈdʌktɪŋ/",
+      "aviationMeaning": "v. 正实施飞行、检查或试验",
+      "generalMeaning": "v. 正进行"
+    },
+    {
+      "word": "conductor",
+      "ipa": "/kənˈdʌktər/",
+      "aviationMeaning": "n. 导体；电气线路部件",
+      "generalMeaning": "n. 指挥；导体"
+    },
+    {
+      "word": "conducts",
+      "ipa": "/kənˈdʌkts/",
+      "aviationMeaning": "v. 实施飞行、检查或试验",
+      "generalMeaning": "v. 进行；引导"
+    },
+    {
+      "word": "cone",
+      "ipa": "/koʊn/",
+      "aviationMeaning": "n. 锥体；风向袋、发动机或障碍物锥形部件",
+      "generalMeaning": "n. 圆锥；蛋卷"
+    },
+    {
+      "word": "confidence",
+      "ipa": "/ˈkɑːnfɪdəns/",
+      "aviationMeaning": "n. 信心；机组操作自信",
+      "generalMeaning": "n. 信心；信任"
+    },
+    {
+      "word": "confident",
+      "ipa": "/ˈkɑːnfɪdənt/",
+      "aviationMeaning": "adj. 有信心的；确信运行情况的",
+      "generalMeaning": "adj. 自信的；确信的"
+    },
+    {
+      "word": "configuration",
+      "ipa": "/kənˌfɪɡjəˈreɪʃən/",
+      "aviationMeaning": "n. 构型；航空器系统或飞行构型",
+      "generalMeaning": "n. 配置；构造"
+    },
+    {
+      "word": "configurations",
+      "ipa": "/kənˌfɪɡjəˈreɪʃənz/",
+      "aviationMeaning": "n. 航空器系统或飞行构型（复数）",
+      "generalMeaning": "n. 配置；构造（复数）"
+    },
+    {
+      "word": "configure",
+      "ipa": "/kənˈfɪɡjər/",
+      "aviationMeaning": "v. 配置系统或设定航空器构型",
+      "generalMeaning": "v. 配置；设定"
+    },
+    {
+      "word": "configured",
+      "ipa": "/kənˈfɪɡjərd/",
+      "aviationMeaning": "adj. 已配置的；已设定构型的",
+      "generalMeaning": "adj. 已配置的"
+    },
+    {
+      "word": "confined",
+      "ipa": "/kənˈfaɪnd/",
+      "aviationMeaning": "adj. 受限于某区域、条件或空间的",
+      "generalMeaning": "adj. 受限制的；封闭的"
+    },
+    {
+      "word": "confirm",
+      "ipa": "/kənˈfɜːrm/",
+      "aviationMeaning": "v. 确认许可、位置、数据或意图",
+      "generalMeaning": "v. 确认；证实"
+    },
+    {
+      "word": "confirmation",
+      "ipa": "/ˌkɑːnfərˈmeɪʃən/",
+      "aviationMeaning": "n. 确认；许可或信息确认",
+      "generalMeaning": "n. 确认；证实"
+    },
+    {
+      "word": "confirmatory",
+      "ipa": "/kənˈfɜːrmətɔːri/",
+      "aviationMeaning": "adj. 用于确认的；确认性通话",
+      "generalMeaning": "adj. 确认的；证实性的"
+    },
+    {
+      "word": "confirmed",
+      "ipa": "/kənˈfɜːrmd/",
+      "aviationMeaning": "adj. 已确认的；已证实的",
+      "generalMeaning": "adj. 已确认的；证实的"
+    },
+    {
+      "word": "confirming",
+      "ipa": "/kənˈfɜːrmɪŋ/",
+      "aviationMeaning": "v. 正确认许可、位置、数据或意图",
+      "generalMeaning": "v. 正确认；证实"
+    },
+    {
+      "word": "confirms",
+      "ipa": "/kənˈfɜːrmz/",
+      "aviationMeaning": "v. 确认许可、位置、数据或意图",
+      "generalMeaning": "v. 确认；证实"
+    },
+    {
+      "word": "conflict",
+      "ipa": "/ˈkɑːnflɪkt/",
+      "aviationMeaning": "n. 冲突；航空器间隔冲突",
+      "generalMeaning": "n. 冲突；矛盾"
+    },
+    {
+      "word": "conflicting",
+      "ipa": "/kənˈflɪktɪŋ/",
+      "aviationMeaning": "adj. 相冲突的；不一致的许可或信息",
+      "generalMeaning": "adj. 矛盾的；冲突的"
+    },
+    {
+      "word": "conflicts",
+      "ipa": "/ˈkɑːnflɪkts/",
+      "aviationMeaning": "n. 冲突（复数）；v. 冲突",
+      "generalMeaning": "n. 冲突（复数）；v. 冲突"
+    },
+    {
+      "word": "conform",
+      "ipa": "/kənˈfɔːrm/",
+      "aviationMeaning": "v. 符合标准、程序或构型要求",
+      "generalMeaning": "v. 符合；遵从"
+    },
+    {
+      "word": "confused",
+      "ipa": "/kənˈfjuːzd/",
+      "aviationMeaning": "adj. 困惑的；对许可或状态理解不清的",
+      "generalMeaning": "adj. 困惑的；混乱的"
+    },
+    {
+      "word": "confusing",
+      "ipa": "/kənˈfjuːzɪŋ/",
+      "aviationMeaning": "adj. 令人困惑的；通话或程序不清晰的",
+      "generalMeaning": "adj. 令人困惑的"
+    },
+    {
+      "word": "confusion",
+      "ipa": "/kənˈfjuːʒən/",
+      "aviationMeaning": "n. 困惑；指令或态势理解混乱",
+      "generalMeaning": "n. 困惑；混乱"
+    },
+    {
+      "word": "congested",
+      "ipa": "/kənˈdʒestɪd/",
+      "aviationMeaning": "adj. 拥挤的；交通流量密集的",
+      "generalMeaning": "adj. 拥挤的；堵塞的"
+    },
+    {
+      "word": "congestion",
+      "ipa": "/kənˈdʒestʃən/",
+      "aviationMeaning": "n. 拥堵；机场、空域或地面交通拥堵",
+      "generalMeaning": "n. 拥挤；堵塞"
+    },
+    {
+      "word": "connect",
+      "ipa": "/kəˈnekt/",
+      "aviationMeaning": "v. 连接系统、航段或航班",
+      "generalMeaning": "v. 连接；联系"
+    },
+    {
+      "word": "connected",
+      "ipa": "/kəˈnektɪd/",
+      "aviationMeaning": "adj. 已连接的；联程的",
+      "generalMeaning": "adj. 连接的；相关的"
+    },
+    {
+      "word": "connecting",
+      "ipa": "/kəˈnektɪŋ/",
+      "aviationMeaning": "v. 正连接；adj. 联程的",
+      "generalMeaning": "v. 正连接；adj. 连接的"
+    },
+    {
+      "word": "connection",
+      "ipa": "/kəˈnekʃən/",
+      "aviationMeaning": "n. 连接；转机衔接；系统连接",
+      "generalMeaning": "n. 连接；关系"
+    },
+    {
+      "word": "consciousness",
+      "ipa": "/ˈkɑːnʃəsnəs/",
+      "aviationMeaning": "n. 意识；医疗急症中的意识状态",
+      "generalMeaning": "n. 意识；知觉"
+    },
+    {
+      "word": "consequence",
+      "ipa": "/ˈkɑːnsəkwens/",
+      "aviationMeaning": "n. 后果；运行或安全后果",
+      "generalMeaning": "n. 后果；结果"
+    },
+    {
+      "word": "consequences",
+      "ipa": "/ˈkɑːnsəkwensɪz/",
+      "aviationMeaning": "n. 后果；运行或安全后果（复数）",
+      "generalMeaning": "n. 后果；结果（复数）"
+    },
+    {
+      "word": "conservative",
+      "ipa": "/kənˈsɜːrvətɪv/",
+      "aviationMeaning": "adj. 保守的；留有安全裕度的",
+      "generalMeaning": "adj. 保守的；守旧的"
+    }
   ]
 }

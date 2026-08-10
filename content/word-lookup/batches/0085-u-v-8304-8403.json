@@ -1,3 +1,521 @@
-{"schemaVersion":1,"entries":[
-{"word":"user","ipa":"/ˈjuzər/","aviationMeaning":"n. 使用者；系统或设备使用人员","generalMeaning":"n. 用户；使用者"},{"word":"users","ipa":"/ˈjuzərz/","aviationMeaning":"n. 使用者（复数）；系统用户","generalMeaning":"n. 用户（复数）"},{"word":"uses","ipa":"/ˈjuzɪz/","aviationMeaning":"v. 使用；n. 用途（复数）","generalMeaning":"v. 使用；n. 用途"},{"word":"using","ipa":"/ˈjuzɪŋ/","aviationMeaning":"v. 正在使用；采用设备或程序","generalMeaning":"v. 使用"},{"word":"usual","ipa":"/ˈjuʒuəl/","aviationMeaning":"adj. 通常的；正常运行的","generalMeaning":"adj. 通常的；平常的"},{"word":"usually","ipa":"/ˈjuʒuəli/","aviationMeaning":"adv. 通常；一般情况下","generalMeaning":"adv. 通常；平常"},{"word":"utc","ipa":"/ˌjuː tiː ˈsiː/","aviationMeaning":"n. 协调世界时；航空运行通用时间基准","generalMeaning":"n. 协调世界时"},{"word":"utility","ipa":"/juˈtɪləti/","aviationMeaning":"n. 实用性；公用设备；辅助功能","generalMeaning":"n. 实用；公用事业"},{"word":"utilization","ipa":"/ˌjuːtələˈzeɪʃən/","aviationMeaning":"n. 利用率；设备、机场或机组利用情况","generalMeaning":"n. 利用；使用"},{"word":"utilize","ipa":"/ˈjuːtəlaɪz/","aviationMeaning":"v. 利用；使用资源或设备","generalMeaning":"v. 利用；使用"},{"word":"utmost","ipa":"/ˈʌtmoʊst/","aviationMeaning":"adj. 最大的；最高程度的","generalMeaning":"adj. 极度的；最大的"},{"word":"uxk","ipa":"/ˌjuː eks ˈkeɪ/","aviationMeaning":"n. 疑似缩略语；需依原题解释","generalMeaning":"n. 字母缩略语"},{"word":"uzpln","ipa":"/ˌjuː ziː piː el en/","aviationMeaning":"n. 疑似缩略语；需依原题解释","generalMeaning":"n. 字母缩略语"},{"word":"v","ipa":"/vi/","aviationMeaning":"n. 字母 V；速度、伏特等代码前缀","generalMeaning":"n. 英文字母 V"},{"word":"v-speeds","ipa":"/ˈvi spidz/","aviationMeaning":"n. V 速度；航空器性能限定速度组","generalMeaning":"n. V 速度"},{"word":"vacant","ipa":"/ˈveɪkənt/","aviationMeaning":"adj. 空闲的；可用的停机位或频率","generalMeaning":"adj. 空的；空缺的"},{"word":"vacate","ipa":"/ˈveɪkeɪt/","aviationMeaning":"v. 脱离；离开跑道、空域或位置","generalMeaning":"v. 离开；腾出"},{"word":"vacated","ipa":"/ˈveɪkeɪtɪd/","aviationMeaning":"v. 已脱离；已离开跑道或高度","generalMeaning":"v. 离开；腾出（过去式）"},{"word":"vacating","ipa":"/ˈveɪkeɪtɪŋ/","aviationMeaning":"v. 正在脱离；离开跑道或空域","generalMeaning":"v. 离开；腾出"},{"word":"vain","ipa":"/veɪn/","aviationMeaning":"adj. 徒劳的；无效的","generalMeaning":"adj. 徒劳的；自负的"},{"word":"valid","ipa":"/ˈvælɪd/","aviationMeaning":"adj. 有效的；许可、证件或数据有效","generalMeaning":"adj. 有效的；正当的"},{"word":"validation","ipa":"/ˌvæləˈdeɪʃən/","aviationMeaning":"n. 验证；确认数据或程序有效","generalMeaning":"n. 验证；确认"},{"word":"validity","ipa":"/vəˈlɪdəti/","aviationMeaning":"n. 有效性；证书或信息的有效状态","generalMeaning":"n. 有效性；正当性"},{"word":"valuable","ipa":"/ˈvæljuəbəl/","aviationMeaning":"adj. 有价值的；重要的运行信息","generalMeaning":"adj. 有价值的；宝贵的"},{"word":"value","ipa":"/ˈvælju/","aviationMeaning":"n. 数值；参数值；v. 重视","generalMeaning":"n. 价值；数值；v. 重视"},{"word":"values","ipa":"/ˈvæljuz/","aviationMeaning":"n. 数值（复数）；系统参数","generalMeaning":"n. 价值；数值（复数）"},{"word":"valve","ipa":"/vælv/","aviationMeaning":"n. 阀；液压、燃油或气动系统部件","generalMeaning":"n. 阀；瓣膜"},{"word":"valves","ipa":"/vælvz/","aviationMeaning":"n. 阀（复数）；系统控制部件","generalMeaning":"n. 阀；瓣膜（复数）"},{"word":"van","ipa":"/væn/","aviationMeaning":"n. 厢式车；机场地面保障车辆","generalMeaning":"n. 厢式货车"},{"word":"vancouver","ipa":"/vænˈkuvər/","aviationMeaning":"n. 温哥华；加拿大机场或空域地名","generalMeaning":"n. 温哥华"},{"word":"vancouver's","ipa":"/vænˈkuvərz/","aviationMeaning":"n. 温哥华的；或 Vancouver is 的缩略","generalMeaning":"n. 温哥华的"},{"word":"vapor","ipa":"/ˈveɪpər/","aviationMeaning":"n. 蒸气；燃油蒸气或水汽","generalMeaning":"n. 蒸气；水汽"},{"word":"variability","ipa":"/ˌveriəˈbɪləti/","aviationMeaning":"n. 可变性；气象或性能变化程度","generalMeaning":"n. 变化性；可变性"},{"word":"variable","ipa":"/ˈveriəbəl/","aviationMeaning":"adj. 可变的；n. 变量；变化的气象因素","generalMeaning":"adj. 可变的；n. 变量"},{"word":"variables","ipa":"/ˈveriəbəlz/","aviationMeaning":"n. 变量（复数）；影响运行的参数","generalMeaning":"n. 变量（复数）"},{"word":"variant","ipa":"/ˈveriənt/","aviationMeaning":"n. 变型；机型或程序的变体","generalMeaning":"n. 变体；变种"},{"word":"variation","ipa":"/ˌveriˈeɪʃən/","aviationMeaning":"n. 变化；磁差；数值偏差","generalMeaning":"n. 变化；变动"},{"word":"varied","ipa":"/ˈverid/","aviationMeaning":"v. 改变；adj. 多样的","generalMeaning":"v. 改变；adj. 各种各样的"},{"word":"varies","ipa":"/ˈveriz/","aviationMeaning":"v. 变化；因条件而不同","generalMeaning":"v. 改变；变化"},{"word":"variety","ipa":"/vəˈraɪəti/","aviationMeaning":"n. 多样性；不同类型或状况","generalMeaning":"n. 多样；种类"},{"word":"various","ipa":"/ˈveriəs/","aviationMeaning":"adj. 各种的；不同的","generalMeaning":"adj. 各种各样的"},{"word":"vary","ipa":"/ˈveri/","aviationMeaning":"v. 变化；随条件改变","generalMeaning":"v. 改变；变化"},{"word":"vasi","ipa":"/ˈvæsi/","aviationMeaning":"n. 目视进近坡度指示器；VASI 的小写形式","generalMeaning":"n. 缩略语；目视坡度指示器"},{"word":"ve","ipa":"/vi/","aviationMeaning":"n. 疑似 have 的缩略尾部；用于还原文本","generalMeaning":"n. 缩略尾部；需依语境解释"},{"word":"vector","ipa":"/ˈvektər/","aviationMeaning":"n. 雷达引导航向；v. 向航空器提供雷达引导","generalMeaning":"n. 矢量；向量；v. 引导"},{"word":"vectored","ipa":"/ˈvektərd/","aviationMeaning":"v. 已被雷达引导；已给予航向","generalMeaning":"v. 引导（过去式）"},{"word":"vectoring","ipa":"/ˈvektərɪŋ/","aviationMeaning":"n. 雷达引导；按航向引导航空器","generalMeaning":"n. 引导；向量化"},{"word":"vectors","ipa":"/ˈvektərz/","aviationMeaning":"n. 雷达引导航向（复数）；v. 引导","generalMeaning":"n. 向量（复数）"},{"word":"veer","ipa":"/vɪr/","aviationMeaning":"v. 转向；风向或航空器偏转","generalMeaning":"v. 转向；改变方向"},{"word":"veered","ipa":"/vɪrd/","aviationMeaning":"v. 已转向；已偏离","generalMeaning":"v. 转向（过去式）"},{"word":"vegas","ipa":"/ˈveɪɡəs/","aviationMeaning":"n. 拉斯维加斯；机场或航路地名","generalMeaning":"n. 拉斯维加斯"},{"word":"vehicle","ipa":"/ˈviɪkəl/","aviationMeaning":"n. 车辆；机场地面车辆","generalMeaning":"n. 车辆；工具"},{"word":"vehicles","ipa":"/ˈviɪkəlz/","aviationMeaning":"n. 车辆（复数）；地面保障车辆","generalMeaning":"n. 车辆（复数）"},{"word":"velocities","ipa":"/vəˈlɑsətiz/","aviationMeaning":"n. 速度（复数）；飞行速度参数","generalMeaning":"n. 速度（复数）"},{"word":"velocity","ipa":"/vəˈlɑsəti/","aviationMeaning":"n. 速度；方向和速率构成的运动量","generalMeaning":"n. 速度；速率"},{"word":"venice","ipa":"/ˈvenɪs/","aviationMeaning":"n. 威尼斯；意大利机场地名","generalMeaning":"n. 威尼斯"},{"word":"vent","ipa":"/vent/","aviationMeaning":"n. 通风口；v. 通风；系统泄压口","generalMeaning":"n. 通风口；v. 发泄"},{"word":"ventilate","ipa":"/ˈventəleɪt/","aviationMeaning":"v. 通风；为客舱或设备换气","generalMeaning":"v. 通风；使通气"},{"word":"ventilated","ipa":"/ˈventəleɪtɪd/","aviationMeaning":"adj. 已通风的；v. 通风（过去式）","generalMeaning":"adj. 通风的；v. 通风"},{"word":"ventilating","ipa":"/ˈventəleɪtɪŋ/","aviationMeaning":"v. 正通风；换气","generalMeaning":"v. 通风；换气"},{"word":"ventilation","ipa":"/ˌventəˈleɪʃən/","aviationMeaning":"n. 通风；客舱或设备通风系统","generalMeaning":"n. 通风；换气"},{"word":"vents","ipa":"/vents/","aviationMeaning":"n. 通风口（复数）；v. 通风","generalMeaning":"n. 通风口（复数）"},{"word":"ventura","ipa":"/venˈtʊrə/","aviationMeaning":"n. 文图拉；地点名称","generalMeaning":"n. 文图拉；地名"},{"word":"verbal","ipa":"/ˈvɜrbəl/","aviationMeaning":"adj. 口头的；口头通话或指令","generalMeaning":"adj. 口头的；言语的"},{"word":"verification","ipa":"/ˌverɪfɪˈkeɪʃən/","aviationMeaning":"n. 核实；确认；程序或数据验证","generalMeaning":"n. 验证；核实"},{"word":"verifications","ipa":"/ˌverɪfɪˈkeɪʃənz/","aviationMeaning":"n. 核实（复数）；确认步骤","generalMeaning":"n. 验证（复数）"},{"word":"verified","ipa":"/ˈverɪfaɪd/","aviationMeaning":"v. 已核实；已确认","generalMeaning":"v. 证实；核实（过去式）"},{"word":"verifies","ipa":"/ˈverɪfaɪz/","aviationMeaning":"v. 核实；确认","generalMeaning":"v. 证实；核实"},{"word":"verify","ipa":"/ˈverɪfaɪ/","aviationMeaning":"v. 核实；确认信息、状态或程序","generalMeaning":"v. 证实；核查"},{"word":"verifying","ipa":"/ˈverɪfaɪɪŋ/","aviationMeaning":"v. 正核实；确认","generalMeaning":"v. 验证；核查"},{"word":"version","ipa":"/ˈvɜrʒən/","aviationMeaning":"n. 版本；程序、软件或文件版本","generalMeaning":"n. 版本；说法"},{"word":"vertical","ipa":"/ˈvɜrtɪkəl/","aviationMeaning":"adj. 垂直的；垂直方向或垂直间隔","generalMeaning":"adj. 垂直的；竖直的"},{"word":"vertical-path","ipa":"/ˈvɜrtɪkəl pæθ/","aviationMeaning":"n. 垂直航径；进近时的垂直飞行轨迹","generalMeaning":"n. 垂直路径"},{"word":"vertical-profile","ipa":"/ˈvɜrtɪkəl ˈproʊfaɪl/","aviationMeaning":"n. 垂直剖面；飞行高度随距离的分布","generalMeaning":"n. 垂直剖面"},{"word":"vertically","ipa":"/ˈvɜrtɪkli/","aviationMeaning":"adv. 垂直地；按垂直方向","generalMeaning":"adv. 垂直地"},{"word":"very","ipa":"/ˈveri/","aviationMeaning":"adv. 非常；极其","generalMeaning":"adv. 很；非常"},{"word":"vests","ipa":"/vests/","aviationMeaning":"n. 背心（复数）；救生衣或反光背心","generalMeaning":"n. 背心（复数）"},{"word":"vetting","ipa":"/ˈvetɪŋ/","aviationMeaning":"n. 审查；对人员或资料进行核查","generalMeaning":"n. 审查；核查"},{"word":"vfr","ipa":"/ˌviː ef ˈɑr/","aviationMeaning":"n. 目视飞行规则；按目视条件飞行的规则","generalMeaning":"n. 目视飞行规则"},{"word":"vhf","ipa":"/ˌviː eɪtʃ ˈef/","aviationMeaning":"n. 甚高频；航空语音通信常用频段","generalMeaning":"n. 甚高频"},{"word":"via","ipa":"/ˈvaɪə/","aviationMeaning":"prep. 经由；通过某航路、点或频率","generalMeaning":"prep. 经由；通过"},{"word":"vibrate","ipa":"/ˈvaɪbreɪt/","aviationMeaning":"v. 振动；设备或结构发生振动","generalMeaning":"v. 振动；颤动"},{"word":"vibrating","ipa":"/ˈvaɪbreɪtɪŋ/","aviationMeaning":"v. 正振动；adj. 振动的","generalMeaning":"v. 振动；颤动"},{"word":"vibration","ipa":"/vaɪˈbreɪʃən/","aviationMeaning":"n. 振动；发动机、机体或设备振动","generalMeaning":"n. 振动；颤动"},{"word":"vibrations","ipa":"/vaɪˈbreɪʃənz/","aviationMeaning":"n. 振动（复数）；异常振动现象","generalMeaning":"n. 振动（复数）"},{"word":"vice","ipa":"/vaɪs/","aviationMeaning":"n. 副职；缺点；如副驾驶相关前缀","generalMeaning":"n. 缺点；副职；老虎钳"},{"word":"vicinity","ipa":"/vəˈsɪnəti/","aviationMeaning":"n. 附近；机场或航路附近区域","generalMeaning":"n. 附近；周围"},{"word":"victim","ipa":"/ˈvɪktɪm/","aviationMeaning":"n. 受害者；事故或紧急情况涉及人员","generalMeaning":"n. 受害者；牺牲者"},{"word":"victims","ipa":"/ˈvɪktɪmz/","aviationMeaning":"n. 受害者（复数）；事故涉及人员","generalMeaning":"n. 受害者（复数）"},{"word":"victor","ipa":"/ˈvɪktər/","aviationMeaning":"n. 字母 V 的 ICAO 拼读词；胜利者","generalMeaning":"n. 胜利者；维克托"},{"word":"victor-november","ipa":"/ˈvɪktər noʊˈvembər/","aviationMeaning":"n. Victor November；字母 V、N 的 ICAO 拼读组合","generalMeaning":"n. 字母拼读组合"},{"word":"video","ipa":"/ˈvɪdioʊ/","aviationMeaning":"n. 视频；记录或培训影像","generalMeaning":"n. 视频；录像"},{"word":"videos","ipa":"/ˈvɪdioʊz/","aviationMeaning":"n. 视频（复数）；培训影像","generalMeaning":"n. 视频（复数）"},{"word":"vietnam","ipa":"/ˌvjɛtˈnɑm/","aviationMeaning":"n. 越南；国家或空域地名","generalMeaning":"n. 越南"},{"word":"view","ipa":"/vju/","aviationMeaning":"n. 视野；视图；v. 查看","generalMeaning":"n. 看法；景色；v. 看"},{"word":"viewed","ipa":"/vjud/","aviationMeaning":"v. 已查看；已观察","generalMeaning":"v. 看待；查看（过去式）"},{"word":"viewer","ipa":"/ˈvjuər/","aviationMeaning":"n. 查看者；显示或查看工具","generalMeaning":"n. 观看者；查看器"},{"word":"viewing","ipa":"/ˈvjuɪŋ/","aviationMeaning":"n. 查看；观察；v. 正查看","generalMeaning":"n. 观看；查看"},{"word":"views","ipa":"/vjuz/","aviationMeaning":"n. 视图（复数）；意见；v. 查看","generalMeaning":"n. 景色；观点（复数）"},{"word":"vigilance","ipa":"/ˈvɪdʒələns/","aviationMeaning":"n. 警觉；持续监控运行状态的能力","generalMeaning":"n. 警觉；警戒"}
-]}
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "word": "uses",
+      "ipa": "/ˈjuzɪz/",
+      "aviationMeaning": "v. 使用；n. 用途（复数）",
+      "generalMeaning": "v. 使用；n. 用途"
+    },
+    {
+      "word": "using",
+      "ipa": "/ˈjuzɪŋ/",
+      "aviationMeaning": "v. 正在使用；采用设备或程序",
+      "generalMeaning": "v. 使用"
+    },
+    {
+      "word": "usual",
+      "ipa": "/ˈjuʒuəl/",
+      "aviationMeaning": "adj. 通常的；正常运行的",
+      "generalMeaning": "adj. 通常的；平常的"
+    },
+    {
+      "word": "usually",
+      "ipa": "/ˈjuʒuəli/",
+      "aviationMeaning": "adv. 通常；一般情况下",
+      "generalMeaning": "adv. 通常；平常"
+    },
+    {
+      "word": "utc",
+      "ipa": "/ˌjuː tiː ˈsiː/",
+      "aviationMeaning": "n. 协调世界时；航空运行通用时间基准",
+      "generalMeaning": "n. 协调世界时"
+    },
+    {
+      "word": "utilization",
+      "ipa": "/ˌjuːtələˈzeɪʃən/",
+      "aviationMeaning": "n. 利用率；设备、机场或机组利用情况",
+      "generalMeaning": "n. 利用；使用"
+    },
+    {
+      "word": "utilize",
+      "ipa": "/ˈjuːtəlaɪz/",
+      "aviationMeaning": "v. 利用；使用资源或设备",
+      "generalMeaning": "v. 利用；使用"
+    },
+    {
+      "word": "utmost",
+      "ipa": "/ˈʌtmoʊst/",
+      "aviationMeaning": "adj. 最大的；最高程度的",
+      "generalMeaning": "adj. 极度的；最大的"
+    },
+    {
+      "word": "uxk",
+      "ipa": "/ˌjuː eks ˈkeɪ/",
+      "aviationMeaning": "n. 疑似缩略语；需依原题解释",
+      "generalMeaning": "n. 字母缩略语"
+    },
+    {
+      "word": "uzpln",
+      "ipa": "/ˌjuː ziː piː el en/",
+      "aviationMeaning": "n. 疑似缩略语；需依原题解释",
+      "generalMeaning": "n. 字母缩略语"
+    },
+    {
+      "word": "v",
+      "ipa": "/vi/",
+      "aviationMeaning": "n. 字母 V；速度、伏特等代码前缀",
+      "generalMeaning": "n. 英文字母 V"
+    },
+    {
+      "word": "v-speeds",
+      "ipa": "/ˈvi spidz/",
+      "aviationMeaning": "n. V 速度；航空器性能限定速度组",
+      "generalMeaning": "n. V 速度"
+    },
+    {
+      "word": "vacant",
+      "ipa": "/ˈveɪkənt/",
+      "aviationMeaning": "adj. 空闲的；可用的停机位或频率",
+      "generalMeaning": "adj. 空的；空缺的"
+    },
+    {
+      "word": "vacate",
+      "ipa": "/ˈveɪkeɪt/",
+      "aviationMeaning": "v. 脱离；离开跑道、空域或位置",
+      "generalMeaning": "v. 离开；腾出"
+    },
+    {
+      "word": "vacated",
+      "ipa": "/ˈveɪkeɪtɪd/",
+      "aviationMeaning": "v. 已脱离；已离开跑道或高度",
+      "generalMeaning": "v. 离开；腾出（过去式）"
+    },
+    {
+      "word": "vacating",
+      "ipa": "/ˈveɪkeɪtɪŋ/",
+      "aviationMeaning": "v. 正在脱离；离开跑道或空域",
+      "generalMeaning": "v. 离开；腾出"
+    },
+    {
+      "word": "vain",
+      "ipa": "/veɪn/",
+      "aviationMeaning": "adj. 徒劳的；无效的",
+      "generalMeaning": "adj. 徒劳的；自负的"
+    },
+    {
+      "word": "valid",
+      "ipa": "/ˈvælɪd/",
+      "aviationMeaning": "adj. 有效的；许可、证件或数据有效",
+      "generalMeaning": "adj. 有效的；正当的"
+    },
+    {
+      "word": "value",
+      "ipa": "/ˈvælju/",
+      "aviationMeaning": "n. 数值；参数值；v. 重视",
+      "generalMeaning": "n. 价值；数值；v. 重视"
+    },
+    {
+      "word": "values",
+      "ipa": "/ˈvæljuz/",
+      "aviationMeaning": "n. 数值（复数）；系统参数",
+      "generalMeaning": "n. 价值；数值（复数）"
+    },
+    {
+      "word": "valve",
+      "ipa": "/vælv/",
+      "aviationMeaning": "n. 阀；液压、燃油或气动系统部件",
+      "generalMeaning": "n. 阀；瓣膜"
+    },
+    {
+      "word": "valves",
+      "ipa": "/vælvz/",
+      "aviationMeaning": "n. 阀（复数）；系统控制部件",
+      "generalMeaning": "n. 阀；瓣膜（复数）"
+    },
+    {
+      "word": "van",
+      "ipa": "/væn/",
+      "aviationMeaning": "n. 厢式车；机场地面保障车辆",
+      "generalMeaning": "n. 厢式货车"
+    },
+    {
+      "word": "vancouver",
+      "ipa": "/vænˈkuvər/",
+      "aviationMeaning": "n. 温哥华；加拿大机场或空域地名",
+      "generalMeaning": "n. 温哥华"
+    },
+    {
+      "word": "vancouver's",
+      "ipa": "/vænˈkuvərz/",
+      "aviationMeaning": "n. 温哥华的；或 Vancouver is 的缩略",
+      "generalMeaning": "n. 温哥华的"
+    },
+    {
+      "word": "vapor",
+      "ipa": "/ˈveɪpər/",
+      "aviationMeaning": "n. 蒸气；燃油蒸气或水汽",
+      "generalMeaning": "n. 蒸气；水汽"
+    },
+    {
+      "word": "variable",
+      "ipa": "/ˈveriəbəl/",
+      "aviationMeaning": "adj. 可变的；n. 变量；变化的气象因素",
+      "generalMeaning": "adj. 可变的；n. 变量"
+    },
+    {
+      "word": "variables",
+      "ipa": "/ˈveriəbəlz/",
+      "aviationMeaning": "n. 变量（复数）；影响运行的参数",
+      "generalMeaning": "n. 变量（复数）"
+    },
+    {
+      "word": "variant",
+      "ipa": "/ˈveriənt/",
+      "aviationMeaning": "n. 变型；机型或程序的变体",
+      "generalMeaning": "n. 变体；变种"
+    },
+    {
+      "word": "varied",
+      "ipa": "/ˈverid/",
+      "aviationMeaning": "v. 改变；adj. 多样的",
+      "generalMeaning": "v. 改变；adj. 各种各样的"
+    },
+    {
+      "word": "varies",
+      "ipa": "/ˈveriz/",
+      "aviationMeaning": "v. 变化；因条件而不同",
+      "generalMeaning": "v. 改变；变化"
+    },
+    {
+      "word": "variety",
+      "ipa": "/vəˈraɪəti/",
+      "aviationMeaning": "n. 多样性；不同类型或状况",
+      "generalMeaning": "n. 多样；种类"
+    },
+    {
+      "word": "various",
+      "ipa": "/ˈveriəs/",
+      "aviationMeaning": "adj. 各种的；不同的",
+      "generalMeaning": "adj. 各种各样的"
+    },
+    {
+      "word": "vary",
+      "ipa": "/ˈveri/",
+      "aviationMeaning": "v. 变化；随条件改变",
+      "generalMeaning": "v. 改变；变化"
+    },
+    {
+      "word": "vasi",
+      "ipa": "/ˈvæsi/",
+      "aviationMeaning": "n. 目视进近坡度指示器；VASI 的小写形式",
+      "generalMeaning": "n. 缩略语；目视坡度指示器"
+    },
+    {
+      "word": "ve",
+      "ipa": "/vi/",
+      "aviationMeaning": "n. 疑似 have 的缩略尾部；用于还原文本",
+      "generalMeaning": "n. 缩略尾部；需依语境解释"
+    },
+    {
+      "word": "vector",
+      "ipa": "/ˈvektər/",
+      "aviationMeaning": "n. 雷达引导航向；v. 向航空器提供雷达引导",
+      "generalMeaning": "n. 矢量；向量；v. 引导"
+    },
+    {
+      "word": "vectored",
+      "ipa": "/ˈvektərd/",
+      "aviationMeaning": "v. 已被雷达引导；已给予航向",
+      "generalMeaning": "v. 引导（过去式）"
+    },
+    {
+      "word": "vectoring",
+      "ipa": "/ˈvektərɪŋ/",
+      "aviationMeaning": "n. 雷达引导；按航向引导航空器",
+      "generalMeaning": "n. 引导；向量化"
+    },
+    {
+      "word": "vectors",
+      "ipa": "/ˈvektərz/",
+      "aviationMeaning": "n. 雷达引导航向（复数）；v. 引导",
+      "generalMeaning": "n. 向量（复数）"
+    },
+    {
+      "word": "veer",
+      "ipa": "/vɪr/",
+      "aviationMeaning": "v. 转向；风向或航空器偏转",
+      "generalMeaning": "v. 转向；改变方向"
+    },
+    {
+      "word": "veered",
+      "ipa": "/vɪrd/",
+      "aviationMeaning": "v. 已转向；已偏离",
+      "generalMeaning": "v. 转向（过去式）"
+    },
+    {
+      "word": "vegas",
+      "ipa": "/ˈveɪɡəs/",
+      "aviationMeaning": "n. 拉斯维加斯；机场或航路地名",
+      "generalMeaning": "n. 拉斯维加斯"
+    },
+    {
+      "word": "vehicle",
+      "ipa": "/ˈviɪkəl/",
+      "aviationMeaning": "n. 车辆；机场地面车辆",
+      "generalMeaning": "n. 车辆；工具"
+    },
+    {
+      "word": "vehicles",
+      "ipa": "/ˈviɪkəlz/",
+      "aviationMeaning": "n. 车辆（复数）；地面保障车辆",
+      "generalMeaning": "n. 车辆（复数）"
+    },
+    {
+      "word": "velocities",
+      "ipa": "/vəˈlɑsətiz/",
+      "aviationMeaning": "n. 速度（复数）；飞行速度参数",
+      "generalMeaning": "n. 速度（复数）"
+    },
+    {
+      "word": "velocity",
+      "ipa": "/vəˈlɑsəti/",
+      "aviationMeaning": "n. 速度；方向和速率构成的运动量",
+      "generalMeaning": "n. 速度；速率"
+    },
+    {
+      "word": "venice",
+      "ipa": "/ˈvenɪs/",
+      "aviationMeaning": "n. 威尼斯；意大利机场地名",
+      "generalMeaning": "n. 威尼斯"
+    },
+    {
+      "word": "vent",
+      "ipa": "/vent/",
+      "aviationMeaning": "n. 通风口；v. 通风；系统泄压口",
+      "generalMeaning": "n. 通风口；v. 发泄"
+    },
+    {
+      "word": "ventilate",
+      "ipa": "/ˈventəleɪt/",
+      "aviationMeaning": "v. 通风；为客舱或设备换气",
+      "generalMeaning": "v. 通风；使通气"
+    },
+    {
+      "word": "ventilated",
+      "ipa": "/ˈventəleɪtɪd/",
+      "aviationMeaning": "adj. 已通风的；v. 通风（过去式）",
+      "generalMeaning": "adj. 通风的；v. 通风"
+    },
+    {
+      "word": "ventilating",
+      "ipa": "/ˈventəleɪtɪŋ/",
+      "aviationMeaning": "v. 正通风；换气",
+      "generalMeaning": "v. 通风；换气"
+    },
+    {
+      "word": "ventilation",
+      "ipa": "/ˌventəˈleɪʃən/",
+      "aviationMeaning": "n. 通风；客舱或设备通风系统",
+      "generalMeaning": "n. 通风；换气"
+    },
+    {
+      "word": "ventura",
+      "ipa": "/venˈtʊrə/",
+      "aviationMeaning": "n. 文图拉；地点名称",
+      "generalMeaning": "n. 文图拉；地名"
+    },
+    {
+      "word": "verbal",
+      "ipa": "/ˈvɜrbəl/",
+      "aviationMeaning": "adj. 口头的；口头通话或指令",
+      "generalMeaning": "adj. 口头的；言语的"
+    },
+    {
+      "word": "verifications",
+      "ipa": "/ˌverɪfɪˈkeɪʃənz/",
+      "aviationMeaning": "n. 核实（复数）；确认步骤",
+      "generalMeaning": "n. 验证（复数）"
+    },
+    {
+      "word": "verified",
+      "ipa": "/ˈverɪfaɪd/",
+      "aviationMeaning": "v. 已核实；已确认",
+      "generalMeaning": "v. 证实；核实（过去式）"
+    },
+    {
+      "word": "verifies",
+      "ipa": "/ˈverɪfaɪz/",
+      "aviationMeaning": "v. 核实；确认",
+      "generalMeaning": "v. 证实；核实"
+    },
+    {
+      "word": "verify",
+      "ipa": "/ˈverɪfaɪ/",
+      "aviationMeaning": "v. 核实；确认信息、状态或程序",
+      "generalMeaning": "v. 证实；核查"
+    },
+    {
+      "word": "verifying",
+      "ipa": "/ˈverɪfaɪɪŋ/",
+      "aviationMeaning": "v. 正核实；确认",
+      "generalMeaning": "v. 验证；核查"
+    },
+    {
+      "word": "version",
+      "ipa": "/ˈvɜrʒən/",
+      "aviationMeaning": "n. 版本；程序、软件或文件版本",
+      "generalMeaning": "n. 版本；说法"
+    },
+    {
+      "word": "vertical",
+      "ipa": "/ˈvɜrtɪkəl/",
+      "aviationMeaning": "adj. 垂直的；垂直方向或垂直间隔",
+      "generalMeaning": "adj. 垂直的；竖直的"
+    },
+    {
+      "word": "vertically",
+      "ipa": "/ˈvɜrtɪkli/",
+      "aviationMeaning": "adv. 垂直地；按垂直方向",
+      "generalMeaning": "adv. 垂直地"
+    },
+    {
+      "word": "very",
+      "ipa": "/ˈveri/",
+      "aviationMeaning": "adv. 非常；极其",
+      "generalMeaning": "adv. 很；非常"
+    },
+    {
+      "word": "vests",
+      "ipa": "/vests/",
+      "aviationMeaning": "n. 背心（复数）；救生衣或反光背心",
+      "generalMeaning": "n. 背心（复数）"
+    },
+    {
+      "word": "vfr",
+      "ipa": "/ˌviː ef ˈɑr/",
+      "aviationMeaning": "n. 目视飞行规则；按目视条件飞行的规则",
+      "generalMeaning": "n. 目视飞行规则"
+    },
+    {
+      "word": "vhf",
+      "ipa": "/ˌviː eɪtʃ ˈef/",
+      "aviationMeaning": "n. 甚高频；航空语音通信常用频段",
+      "generalMeaning": "n. 甚高频"
+    },
+    {
+      "word": "via",
+      "ipa": "/ˈvaɪə/",
+      "aviationMeaning": "prep. 经由；通过某航路、点或频率",
+      "generalMeaning": "prep. 经由；通过"
+    },
+    {
+      "word": "vibrate",
+      "ipa": "/ˈvaɪbreɪt/",
+      "aviationMeaning": "v. 振动；设备或结构发生振动",
+      "generalMeaning": "v. 振动；颤动"
+    },
+    {
+      "word": "vibrating",
+      "ipa": "/ˈvaɪbreɪtɪŋ/",
+      "aviationMeaning": "v. 正振动；adj. 振动的",
+      "generalMeaning": "v. 振动；颤动"
+    },
+    {
+      "word": "vibration",
+      "ipa": "/vaɪˈbreɪʃən/",
+      "aviationMeaning": "n. 振动；发动机、机体或设备振动",
+      "generalMeaning": "n. 振动；颤动"
+    },
+    {
+      "word": "vibrations",
+      "ipa": "/vaɪˈbreɪʃənz/",
+      "aviationMeaning": "n. 振动（复数）；异常振动现象",
+      "generalMeaning": "n. 振动（复数）"
+    },
+    {
+      "word": "vice",
+      "ipa": "/vaɪs/",
+      "aviationMeaning": "n. 副职；缺点；如副驾驶相关前缀",
+      "generalMeaning": "n. 缺点；副职；老虎钳"
+    },
+    {
+      "word": "vicinity",
+      "ipa": "/vəˈsɪnəti/",
+      "aviationMeaning": "n. 附近；机场或航路附近区域",
+      "generalMeaning": "n. 附近；周围"
+    },
+    {
+      "word": "victim",
+      "ipa": "/ˈvɪktɪm/",
+      "aviationMeaning": "n. 受害者；事故或紧急情况涉及人员",
+      "generalMeaning": "n. 受害者；牺牲者"
+    },
+    {
+      "word": "victims",
+      "ipa": "/ˈvɪktɪmz/",
+      "aviationMeaning": "n. 受害者（复数）；事故涉及人员",
+      "generalMeaning": "n. 受害者（复数）"
+    },
+    {
+      "word": "victor",
+      "ipa": "/ˈvɪktər/",
+      "aviationMeaning": "n. 字母 V 的 ICAO 拼读词；胜利者",
+      "generalMeaning": "n. 胜利者；维克托"
+    },
+    {
+      "word": "victor-november",
+      "ipa": "/ˈvɪktər noʊˈvembər/",
+      "aviationMeaning": "n. Victor November；字母 V、N 的 ICAO 拼读组合",
+      "generalMeaning": "n. 字母拼读组合"
+    },
+    {
+      "word": "video",
+      "ipa": "/ˈvɪdioʊ/",
+      "aviationMeaning": "n. 视频；记录或培训影像",
+      "generalMeaning": "n. 视频；录像"
+    },
+    {
+      "word": "videos",
+      "ipa": "/ˈvɪdioʊz/",
+      "aviationMeaning": "n. 视频（复数）；培训影像",
+      "generalMeaning": "n. 视频（复数）"
+    },
+    {
+      "word": "vietnam",
+      "ipa": "/ˌvjɛtˈnɑm/",
+      "aviationMeaning": "n. 越南；国家或空域地名",
+      "generalMeaning": "n. 越南"
+    },
+    {
+      "word": "view",
+      "ipa": "/vju/",
+      "aviationMeaning": "n. 视野；视图；v. 查看",
+      "generalMeaning": "n. 看法；景色；v. 看"
+    },
+    {
+      "word": "viewed",
+      "ipa": "/vjud/",
+      "aviationMeaning": "v. 已查看；已观察",
+      "generalMeaning": "v. 看待；查看（过去式）"
+    },
+    {
+      "word": "viewing",
+      "ipa": "/ˈvjuɪŋ/",
+      "aviationMeaning": "n. 查看；观察；v. 正查看",
+      "generalMeaning": "n. 观看；查看"
+    },
+    {
+      "word": "views",
+      "ipa": "/vjuz/",
+      "aviationMeaning": "n. 视图（复数）；意见；v. 查看",
+      "generalMeaning": "n. 景色；观点（复数）"
+    },
+    {
+      "word": "vigilance",
+      "ipa": "/ˈvɪdʒələns/",
+      "aviationMeaning": "n. 警觉；持续监控运行状态的能力",
+      "generalMeaning": "n. 警觉；警戒"
+    }
+  ]
+}

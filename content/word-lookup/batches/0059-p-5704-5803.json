@@ -1,105 +1,533 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"pireps","ipa":"/ˈpaɪreps/","aviationMeaning":"n. 飞行员报告（复数）；关于实际天气或飞行状况的报告","generalMeaning":"n. 缩写复数；请结合原文"},
-    {"word":"pisa","ipa":"/ˈpiːzə/","aviationMeaning":"n. 比萨；机场或地名","generalMeaning":"n. 比萨；地名"},
-    {"word":"piston","ipa":"/ˈpɪstən/","aviationMeaning":"n. 活塞；往复式发动机中往复运动的部件","generalMeaning":"n. 活塞"},
-    {"word":"piston-engine","ipa":"/ˈpɪstən ˈendʒɪn/","aviationMeaning":"n. 活塞发动机；通过活塞往复运动输出动力的发动机","generalMeaning":"n. 活塞发动机"},
-    {"word":"piston-ring","ipa":"/ˈpɪstən rɪŋ/","aviationMeaning":"n. 活塞环；安装在发动机活塞上的密封环","generalMeaning":"n. 活塞环"},
-    {"word":"pistons","ipa":"/ˈpɪstənz/","aviationMeaning":"n. 活塞（复数）；往复式发动机中的多个活塞","generalMeaning":"n. 活塞（复数）"},
-    {"word":"pitch","ipa":"/pɪtʃ/","aviationMeaning":"n. 俯仰；航空器绕横轴的姿态角度","generalMeaning":"n. 音高；投掷；沥青"},
-    {"word":"pitch-and-power","ipa":"/pɪtʃ ænd ˈpaʊər/","aviationMeaning":"n. 姿态与功率；通过俯仰和推力控制飞行路径的方法","generalMeaning":"n. 姿态与功率"},
-    {"word":"pitch-limit","ipa":"/pɪtʃ ˈlɪmɪt/","aviationMeaning":"n. 俯仰限制；允许或保护的最大、最小俯仰角","generalMeaning":"n. 俯仰限制"},
-    {"word":"pitch-up","ipa":"/pɪtʃ ʌp/","aviationMeaning":"n. 抬头；航空器机头上仰的动作或趋势","generalMeaning":"n. 抬头；向上倾斜"},
-    {"word":"pitching","ipa":"/ˈpɪtʃɪŋ/","aviationMeaning":"n. 俯仰运动；航空器机头上下摆动","generalMeaning":"n. 俯仰；投掷"},
-    {"word":"pitot","ipa":"/ˈpiːtoʊ/","aviationMeaning":"n. 皮托管；测量空速所需动压的探头","generalMeaning":"n. 皮托管"},
-    {"word":"pitot-system","ipa":"/ˈpiːtoʊ ˈsɪstəm/","aviationMeaning":"n. 皮托系统；为速度测量提供动压的管路与探头系统","generalMeaning":"n. 皮托系统"},
-    {"word":"pits","ipa":"/pɪts/","aviationMeaning":"n. 凹坑（复数）；道面或部件表面的坑洼","generalMeaning":"n. 坑；凹陷（复数）"},
-    {"word":"placards","ipa":"/ˈplækərdz/","aviationMeaning":"n. 标牌（复数）；驾驶舱、客舱或设备上的限制与说明标识","generalMeaning":"n. 标语牌；告示牌（复数）"},
-    {"word":"place","ipa":"/pleɪs/","aviationMeaning":"n. 位置；指定的停机位、座位或地点","generalMeaning":"n. 地方；v. 放置"},
-    {"word":"placed","ipa":"/pleɪst/","aviationMeaning":"v. 已放置；已将设备、货物或航空器置于指定位置","generalMeaning":"v. 已放置"},
-    {"word":"placement","ipa":"/ˈpleɪsmənt/","aviationMeaning":"n. 放置；设备、货物或航空器安排到指定位置","generalMeaning":"n. 放置；安置"},
-    {"word":"places","ipa":"/ˈpleɪsɪz/","aviationMeaning":"n. 地点（复数）；多个机场、位置或区域","generalMeaning":"n. 地方（复数）；v. 放置"},
-    {"word":"plain","ipa":"/pleɪn/","aviationMeaning":"adj. 平坦的；地形平坦、无明显障碍物的","generalMeaning":"adj. 平坦的；朴素的"},
-    {"word":"plan","ipa":"/plæn/","aviationMeaning":"n. 计划；飞行计划、运行计划或应急处置方案","generalMeaning":"n. 计划；v. 计划"},
-    {"word":"plan-continuation","ipa":"/plæn kənˌtɪnjuˈeɪʃən/","aviationMeaning":"n. 计划延续；继续按既定飞行或处置计划执行","generalMeaning":"n. 计划延续"},
-    {"word":"plane","ipa":"/pleɪn/","aviationMeaning":"n. 飞机；固定翼航空器的常用非正式称呼","generalMeaning":"n. 飞机；平面"},
-    {"word":"plane's","ipa":"/pleɪnz/","aviationMeaning":"n. plane 的所有格形式；飞机的","generalMeaning":"n. 飞机的所有格形式"},
-    {"word":"plane’s","ipa":"/pleɪnz/","aviationMeaning":"n. plane 的所有格形式；飞机的","generalMeaning":"n. 飞机的所有格形式"},
-    {"word":"planes","ipa":"/pleɪnz/","aviationMeaning":"n. 飞机（复数）；多架固定翼航空器","generalMeaning":"n. 飞机；平面（复数）"},
-    {"word":"planned","ipa":"/plænd/","aviationMeaning":"adj. 已计划的；在飞行计划、运行计划中安排的","generalMeaning":"adj. 已计划的"},
-    {"word":"planners","ipa":"/ˈplænərz/","aviationMeaning":"n. 计划人员；负责航班、运行或资源安排的人员","generalMeaning":"n. 计划者（复数）"},
-    {"word":"planning","ipa":"/ˈplænɪŋ/","aviationMeaning":"n. 计划；飞行、运行、燃油或应急处置的策划","generalMeaning":"n. 计划；规划"},
-    {"word":"plans","ipa":"/plænz/","aviationMeaning":"n. 计划（复数）；飞行、运行或应急处置方案","generalMeaning":"n. 计划（复数）；v. 计划"},
-    {"word":"plant","ipa":"/plænt/","aviationMeaning":"n. 工厂；机场供能、制造或维修设施","generalMeaning":"n. 植物；工厂"},
-    {"word":"planted","ipa":"/ˈplæntɪd/","aviationMeaning":"v. 已种植；或已固定放置；需结合原文","generalMeaning":"v. 已种植；已放置"},
-    {"word":"plate","ipa":"/pleɪt/","aviationMeaning":"n. 航图页；进近图、机场图或程序图的一页","generalMeaning":"n. 盘子；板；金属片"},
-    {"word":"play","ipa":"/pleɪ/","aviationMeaning":"v. 播放；播放音频、通话记录或训练材料","generalMeaning":"v. 玩；播放"},
-    {"word":"played","ipa":"/pleɪd/","aviationMeaning":"v. 已播放；已播放音频、通话记录或训练材料","generalMeaning":"v. 已玩；已播放"},
-    {"word":"player","ipa":"/ˈpleɪər/","aviationMeaning":"n. 播放器；用于播放音频或训练材料的设备或控件","generalMeaning":"n. 玩者；播放器"},
-    {"word":"playing","ipa":"/ˈpleɪɪŋ/","aviationMeaning":"v. 正播放；音频、通话记录或训练材料正在播放","generalMeaning":"v. 正玩；正播放"},
-    {"word":"plays","ipa":"/pleɪz/","aviationMeaning":"v. 播放；使音频、通话记录或训练材料开始播放","generalMeaning":"v. 玩；播放"},
-    {"word":"please","ipa":"/pliːz/","aviationMeaning":"interj. 请；用于礼貌请求或指示","generalMeaning":"interj. 请；v. 使高兴"},
-    {"word":"plotting","ipa":"/ˈplɑːtɪŋ/","aviationMeaning":"n. 标绘；在航图、雷达或显示器上记录位置与轨迹","generalMeaning":"n. 绘图；策划"},
-    {"word":"plt","ipa":"/ˌpiː el ˈtiː/","aviationMeaning":"n. 航空资料缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"plugged","ipa":"/plʌɡd/","aviationMeaning":"adj. 堵塞的；管路、探头、排水孔或接口被阻塞的","generalMeaning":"adj. 堵塞的；已插入的"},
-    {"word":"plunged","ipa":"/plʌndʒd/","aviationMeaning":"v. 急剧下降；高度、速度或数值快速降低","generalMeaning":"v. 跳入；猛跌"},
-    {"word":"plus","ipa":"/plʌs/","aviationMeaning":"prep. 加；正值；用于高度、温度或数量表达","generalMeaning":"prep. 加；n. 加号"},
-    {"word":"pm","ipa":"/ˌpiː ˈem/","aviationMeaning":"n. 监控飞行员；或下午时间标记，需结合原文","generalMeaning":"n. 下午；缩写"},
-    {"word":"pneumatic","ipa":"/nuːˈmætɪk/","aviationMeaning":"adj. 气动的；由压缩空气驱动或控制的系统","generalMeaning":"adj. 气动的；充气的"},
-    {"word":"pnf","ipa":"/ˌpiː en ˈef/","aviationMeaning":"n. 非操纵飞行员；旧称，指负责监控和通信的飞行员","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"pno","ipa":"/ˌpiː en ˈoʊ/","aviationMeaning":"n. 航空资料缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"pob","ipa":"/ˌpiː oʊ ˈbiː/","aviationMeaning":"n. 机上人数；航空器上所有人员的数量","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"pohang","ipa":"/poʊˈhæŋ/","aviationMeaning":"n. 浦项；机场或地名","generalMeaning":"n. 专有地名"},
-    {"word":"point","ipa":"/pɔɪnt/","aviationMeaning":"n. 点；航路点、报告点、位置或指向","generalMeaning":"n. 点；要点；v. 指向"},
-    {"word":"point-to-point","ipa":"/pɔɪnt tə pɔɪnt/","aviationMeaning":"adj. 点对点的；从一个机场或位置直接到另一个的","generalMeaning":"adj. 点对点的"},
-    {"word":"pointed","ipa":"/ˈpɔɪntɪd/","aviationMeaning":"v. 已指向；已把指针、航空器或注意力指向某处","generalMeaning":"v. 已指向；adj. 尖的"},
-    {"word":"pointer","ipa":"/ˈpɔɪntər/","aviationMeaning":"n. 指针；仪表上指示数值或方向的可动标记","generalMeaning":"n. 指针；指示者"},
-    {"word":"pointers","ipa":"/ˈpɔɪntərz/","aviationMeaning":"n. 指针（复数）；多个仪表上的指示标记","generalMeaning":"n. 指针；提示（复数）"},
-    {"word":"points","ipa":"/pɔɪnts/","aviationMeaning":"n. 点（复数）；航路点、报告点或位置","generalMeaning":"n. 点；要点（复数）"},
-    {"word":"poisoning","ipa":"/ˈpɔɪzənɪŋ/","aviationMeaning":"n. 中毒；一氧化碳、食物或化学物暴露导致的健康风险","generalMeaning":"n. 中毒"},
-    {"word":"poland","ipa":"/ˈpoʊlənd/","aviationMeaning":"n. 波兰；机场、空域或航线所在国","generalMeaning":"n. 波兰"},
-    {"word":"polar","ipa":"/ˈpoʊlər/","aviationMeaning":"adj. 极地的；靠近地球两极的空域、路线或天气","generalMeaning":"adj. 极地的；两极的"},
-    {"word":"pole","ipa":"/poʊl/","aviationMeaning":"n. 杆；天线、标杆或支撑结构","generalMeaning":"n. 杆；极地"},
-    {"word":"poles","ipa":"/poʊlz/","aviationMeaning":"n. 杆（复数）；天线、标杆或支撑结构","generalMeaning":"n. 杆；极地（复数）"},
-    {"word":"police","ipa":"/pəˈliːs/","aviationMeaning":"n. 警察；机场安保、事件处置或执法人员","generalMeaning":"n. 警察；v. 维持治安"},
-    {"word":"policemen","ipa":"/pəˈliːsmən/","aviationMeaning":"n. 警察（复数）；机场安保或执法人员","generalMeaning":"n. 男警察（复数）"},
-    {"word":"policies","ipa":"/ˈpɑːləsiz/","aviationMeaning":"n. 政策（复数）；运行、安全或公司管理规定","generalMeaning":"n. 政策（复数）"},
-    {"word":"policy","ipa":"/ˈpɑːləsi/","aviationMeaning":"n. 政策；运行、安全或公司管理规定","generalMeaning":"n. 政策；方针"},
-    {"word":"pollutants","ipa":"/pəˈluːtənts/","aviationMeaning":"n. 污染物（复数）；发动机排放或空气中的有害物质","generalMeaning":"n. 污染物（复数）"},
-    {"word":"poor","ipa":"/pʊr/","aviationMeaning":"adj. 差的；能见度、性能、通信或天气状况不佳","generalMeaning":"adj. 差的；贫穷的"},
-    {"word":"poor-quality","ipa":"/pʊr ˈkwɑːləti/","aviationMeaning":"adj. 质量差的；资料、通信、燃油或部件不符合要求的","generalMeaning":"adj. 质量差的"},
-    {"word":"poorer","ipa":"/ˈpʊrər/","aviationMeaning":"adj. 更差的；能见度、性能或通信质量进一步下降的","generalMeaning":"adj. 更差的；更贫穷的"},
-    {"word":"poorly","ipa":"/ˈpʊrli/","aviationMeaning":"adv. 差地；系统、程序或人员表现不佳地","generalMeaning":"adv. 差地；不充分地"},
-    {"word":"pop","ipa":"/pɑːp/","aviationMeaning":"n. 爆裂声；设备、通信或结构发出的短促声响","generalMeaning":"n. 爆裂声；流行音乐"},
-    {"word":"popping","ipa":"/ˈpɑːpɪŋ/","aviationMeaning":"adj. 爆裂的；设备、通信或结构持续发出短促声响","generalMeaning":"adj. 爆裂的；突然出现的"},
-    {"word":"populated","ipa":"/ˈpɑːpjəleɪtɪd/","aviationMeaning":"adj. 人口稠密的；飞越或邻近有人居住地区的","generalMeaning":"adj. 人口稠密的；有居民的"},
-    {"word":"porous","ipa":"/ˈpɔːrəs/","aviationMeaning":"adj. 多孔的；材料表面有细小孔隙，可能影响密封或强度","generalMeaning":"adj. 多孔的；渗水的"},
-    {"word":"port","ipa":"/pɔːrt/","aviationMeaning":"n. 左舷；航空器左侧；也可指接口","generalMeaning":"n. 港口；端口；左舷"},
-    {"word":"portable","ipa":"/ˈpɔːrtəbəl/","aviationMeaning":"adj. 便携的；可携带的通信、氧气或检查设备","generalMeaning":"adj. 便携的"},
-    {"word":"portion","ipa":"/ˈpɔːrʃən/","aviationMeaning":"n. 部分；程序、航路或系统的一段","generalMeaning":"n. 部分；一份"},
-    {"word":"portland","ipa":"/ˈpɔːrtlənd/","aviationMeaning":"n. 波特兰；机场或地名","generalMeaning":"n. 波特兰"},
-    {"word":"porto","ipa":"/ˈpɔːrtoʊ/","aviationMeaning":"n. 波尔图；机场或地名","generalMeaning":"n. 波尔图；地名"},
-    {"word":"ports","ipa":"/pɔːrts/","aviationMeaning":"n. 接口（复数）；设备连接口、左舷或港口；需结合原文","generalMeaning":"n. 港口；端口；左舷（复数）"},
-    {"word":"portugal","ipa":"/ˈpɔːrtʃəɡəl/","aviationMeaning":"n. 葡萄牙；机场、空域或航线所在国","generalMeaning":"n. 葡萄牙"},
-    {"word":"portugal's","ipa":"/ˈpɔːrtʃəɡəlz/","aviationMeaning":"n. Portugal 的所有格形式；葡萄牙的","generalMeaning":"n. 专有地名的所有格形式"},
-    {"word":"portugalia","ipa":"/pɔːrˈtuːɡəliə/","aviationMeaning":"n. 葡航；航空公司名称或呼号相关","generalMeaning":"n. 专有名称；请结合原文"},
-    {"word":"pose","ipa":"/poʊz/","aviationMeaning":"v. 造成；造成安全、运行或健康风险","generalMeaning":"v. 摆姿势；造成"},
-    {"word":"poses","ipa":"/ˈpoʊzɪz/","aviationMeaning":"v. 造成；造成安全、运行或健康风险","generalMeaning":"v. 摆姿势；造成"},
-    {"word":"position","ipa":"/pəˈzɪʃən/","aviationMeaning":"n. 位置；航空器、人员、开关或控制面的所在位置","generalMeaning":"n. 位置；职位"},
-    {"word":"positioned","ipa":"/pəˈzɪʃənd/","aviationMeaning":"adj. 已定位的；航空器、人员、开关或控制面在指定位置","generalMeaning":"adj. 已定位的；被放置的"},
-    {"word":"positioning","ipa":"/pəˈzɪʃənɪŋ/","aviationMeaning":"n. 定位；确定或更新航空器位置的过程","generalMeaning":"n. 定位；放置"},
-    {"word":"positions","ipa":"/pəˈzɪʃənz/","aviationMeaning":"n. 位置（复数）；多个航空器、人员或开关的位置","generalMeaning":"n. 位置；职位（复数）"},
-    {"word":"positive","ipa":"/ˈpɑːzətɪv/","aviationMeaning":"adj. 正的；明确的；如正爬升、正确认或正压力","generalMeaning":"adj. 积极的；正的"},
-    {"word":"positively","ipa":"/ˈpɑːzətɪvli/","aviationMeaning":"adv. 明确地；肯定地确认或表明","generalMeaning":"adv. 积极地；明确地"},
-    {"word":"possibility","ipa":"/ˌpɑːsəˈbɪləti/","aviationMeaning":"n. 可能性；某种天气、故障或运行结果发生的概率","generalMeaning":"n. 可能性"},
-    {"word":"possible","ipa":"/ˈpɑːsəbəl/","aviationMeaning":"adj. 可能的；在性能、天气或运行条件下可实现的","generalMeaning":"adj. 可能的"},
-    {"word":"possibly","ipa":"/ˈpɑːsəbli/","aviationMeaning":"adv. 可能地；表达不确定的运行判断","generalMeaning":"adv. 可能地；也许"},
-    {"word":"post","ipa":"/poʊst/","aviationMeaning":"n. 岗位；机场、管制或安保人员的工作位置","generalMeaning":"n. 岗位；邮件；柱子"},
-    {"word":"post-crash","ipa":"/poʊst kræʃ/","aviationMeaning":"adj. 事故后的；坠毁或碰撞事件发生之后的","generalMeaning":"adj. 事故后的"},
-    {"word":"post-flight","ipa":"/poʊst flaɪt/","aviationMeaning":"adj. 飞行后的；航后检查、记录或维护相关","generalMeaning":"adj. 飞行后的"},
-    {"word":"posted","ipa":"/ˈpoʊstɪd/","aviationMeaning":"v. 已发布；已张贴或录入通告、限制或信息","generalMeaning":"v. 已张贴；已发布"},
-    {"word":"postponed","ipa":"/poʊstˈpoʊnd/","aviationMeaning":"adj. 已延期的；航班、检查、维护或培训改至以后","generalMeaning":"adj. 已延期的"},
-    {"word":"posture","ipa":"/ˈpɑːstʃər/","aviationMeaning":"n. 姿态；人员身体姿势或安全防护状态","generalMeaning":"n. 姿势；态度"}
+    {
+      "word": "pireps",
+      "ipa": "/ˈpaɪreps/",
+      "aviationMeaning": "n. 飞行员报告（复数）；关于实际天气或飞行状况的报告",
+      "generalMeaning": "n. 缩写复数；请结合原文"
+    },
+    {
+      "word": "pisa",
+      "ipa": "/ˈpiːzə/",
+      "aviationMeaning": "n. 比萨；机场或地名",
+      "generalMeaning": "n. 比萨；地名"
+    },
+    {
+      "word": "piston",
+      "ipa": "/ˈpɪstən/",
+      "aviationMeaning": "n. 活塞；往复式发动机中往复运动的部件",
+      "generalMeaning": "n. 活塞"
+    },
+    {
+      "word": "piston-engine",
+      "ipa": "/ˈpɪstən ˈendʒɪn/",
+      "aviationMeaning": "n. 活塞发动机；通过活塞往复运动输出动力的发动机",
+      "generalMeaning": "n. 活塞发动机"
+    },
+    {
+      "word": "pitch",
+      "ipa": "/pɪtʃ/",
+      "aviationMeaning": "n. 俯仰；航空器绕横轴的姿态角度",
+      "generalMeaning": "n. 音高；投掷；沥青"
+    },
+    {
+      "word": "pitch-and-power",
+      "ipa": "/pɪtʃ ænd ˈpaʊər/",
+      "aviationMeaning": "n. 姿态与功率；通过俯仰和推力控制飞行路径的方法",
+      "generalMeaning": "n. 姿态与功率"
+    },
+    {
+      "word": "pitch-up",
+      "ipa": "/pɪtʃ ʌp/",
+      "aviationMeaning": "n. 抬头；航空器机头上仰的动作或趋势",
+      "generalMeaning": "n. 抬头；向上倾斜"
+    },
+    {
+      "word": "pitching",
+      "ipa": "/ˈpɪtʃɪŋ/",
+      "aviationMeaning": "n. 俯仰运动；航空器机头上下摆动",
+      "generalMeaning": "n. 俯仰；投掷"
+    },
+    {
+      "word": "pitot",
+      "ipa": "/ˈpiːtoʊ/",
+      "aviationMeaning": "n. 皮托管；测量空速所需动压的探头",
+      "generalMeaning": "n. 皮托管"
+    },
+    {
+      "word": "pitot-system",
+      "ipa": "/ˈpiːtoʊ ˈsɪstəm/",
+      "aviationMeaning": "n. 皮托系统；为速度测量提供动压的管路与探头系统",
+      "generalMeaning": "n. 皮托系统"
+    },
+    {
+      "word": "placards",
+      "ipa": "/ˈplækərdz/",
+      "aviationMeaning": "n. 标牌（复数）；驾驶舱、客舱或设备上的限制与说明标识",
+      "generalMeaning": "n. 标语牌；告示牌（复数）"
+    },
+    {
+      "word": "place",
+      "ipa": "/pleɪs/",
+      "aviationMeaning": "n. 位置；指定的停机位、座位或地点",
+      "generalMeaning": "n. 地方；v. 放置"
+    },
+    {
+      "word": "placed",
+      "ipa": "/pleɪst/",
+      "aviationMeaning": "v. 已放置；已将设备、货物或航空器置于指定位置",
+      "generalMeaning": "v. 已放置"
+    },
+    {
+      "word": "placement",
+      "ipa": "/ˈpleɪsmənt/",
+      "aviationMeaning": "n. 放置；设备、货物或航空器安排到指定位置",
+      "generalMeaning": "n. 放置；安置"
+    },
+    {
+      "word": "places",
+      "ipa": "/ˈpleɪsɪz/",
+      "aviationMeaning": "n. 地点（复数）；多个机场、位置或区域",
+      "generalMeaning": "n. 地方（复数）；v. 放置"
+    },
+    {
+      "word": "plan",
+      "ipa": "/plæn/",
+      "aviationMeaning": "n. 计划；飞行计划、运行计划或应急处置方案",
+      "generalMeaning": "n. 计划；v. 计划"
+    },
+    {
+      "word": "plane",
+      "ipa": "/pleɪn/",
+      "aviationMeaning": "n. 飞机；固定翼航空器的常用非正式称呼",
+      "generalMeaning": "n. 飞机；平面"
+    },
+    {
+      "word": "plane's",
+      "ipa": "/pleɪnz/",
+      "aviationMeaning": "n. plane 的所有格形式；飞机的",
+      "generalMeaning": "n. 飞机的所有格形式"
+    },
+    {
+      "word": "plane’s",
+      "ipa": "/pleɪnz/",
+      "aviationMeaning": "n. plane 的所有格形式；飞机的",
+      "generalMeaning": "n. 飞机的所有格形式"
+    },
+    {
+      "word": "planes",
+      "ipa": "/pleɪnz/",
+      "aviationMeaning": "n. 飞机（复数）；多架固定翼航空器",
+      "generalMeaning": "n. 飞机；平面（复数）"
+    },
+    {
+      "word": "planned",
+      "ipa": "/plænd/",
+      "aviationMeaning": "adj. 已计划的；在飞行计划、运行计划中安排的",
+      "generalMeaning": "adj. 已计划的"
+    },
+    {
+      "word": "planners",
+      "ipa": "/ˈplænərz/",
+      "aviationMeaning": "n. 计划人员；负责航班、运行或资源安排的人员",
+      "generalMeaning": "n. 计划者（复数）"
+    },
+    {
+      "word": "planning",
+      "ipa": "/ˈplænɪŋ/",
+      "aviationMeaning": "n. 计划；飞行、运行、燃油或应急处置的策划",
+      "generalMeaning": "n. 计划；规划"
+    },
+    {
+      "word": "plans",
+      "ipa": "/plænz/",
+      "aviationMeaning": "n. 计划（复数）；飞行、运行或应急处置方案",
+      "generalMeaning": "n. 计划（复数）；v. 计划"
+    },
+    {
+      "word": "plant",
+      "ipa": "/plænt/",
+      "aviationMeaning": "n. 工厂；机场供能、制造或维修设施",
+      "generalMeaning": "n. 植物；工厂"
+    },
+    {
+      "word": "planted",
+      "ipa": "/ˈplæntɪd/",
+      "aviationMeaning": "v. 已种植；或已固定放置；需结合原文",
+      "generalMeaning": "v. 已种植；已放置"
+    },
+    {
+      "word": "plate",
+      "ipa": "/pleɪt/",
+      "aviationMeaning": "n. 航图页；进近图、机场图或程序图的一页",
+      "generalMeaning": "n. 盘子；板；金属片"
+    },
+    {
+      "word": "play",
+      "ipa": "/pleɪ/",
+      "aviationMeaning": "v. 播放；播放音频、通话记录或训练材料",
+      "generalMeaning": "v. 玩；播放"
+    },
+    {
+      "word": "played",
+      "ipa": "/pleɪd/",
+      "aviationMeaning": "v. 已播放；已播放音频、通话记录或训练材料",
+      "generalMeaning": "v. 已玩；已播放"
+    },
+    {
+      "word": "player",
+      "ipa": "/ˈpleɪər/",
+      "aviationMeaning": "n. 播放器；用于播放音频或训练材料的设备或控件",
+      "generalMeaning": "n. 玩者；播放器"
+    },
+    {
+      "word": "playing",
+      "ipa": "/ˈpleɪɪŋ/",
+      "aviationMeaning": "v. 正播放；音频、通话记录或训练材料正在播放",
+      "generalMeaning": "v. 正玩；正播放"
+    },
+    {
+      "word": "plays",
+      "ipa": "/pleɪz/",
+      "aviationMeaning": "v. 播放；使音频、通话记录或训练材料开始播放",
+      "generalMeaning": "v. 玩；播放"
+    },
+    {
+      "word": "please",
+      "ipa": "/pliːz/",
+      "aviationMeaning": "interj. 请；用于礼貌请求或指示",
+      "generalMeaning": "interj. 请；v. 使高兴"
+    },
+    {
+      "word": "plotting",
+      "ipa": "/ˈplɑːtɪŋ/",
+      "aviationMeaning": "n. 标绘；在航图、雷达或显示器上记录位置与轨迹",
+      "generalMeaning": "n. 绘图；策划"
+    },
+    {
+      "word": "plt",
+      "ipa": "/ˌpiː el ˈtiː/",
+      "aviationMeaning": "n. 航空资料缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "plugged",
+      "ipa": "/plʌɡd/",
+      "aviationMeaning": "adj. 堵塞的；管路、探头、排水孔或接口被阻塞的",
+      "generalMeaning": "adj. 堵塞的；已插入的"
+    },
+    {
+      "word": "plunged",
+      "ipa": "/plʌndʒd/",
+      "aviationMeaning": "v. 急剧下降；高度、速度或数值快速降低",
+      "generalMeaning": "v. 跳入；猛跌"
+    },
+    {
+      "word": "plus",
+      "ipa": "/plʌs/",
+      "aviationMeaning": "prep. 加；正值；用于高度、温度或数量表达",
+      "generalMeaning": "prep. 加；n. 加号"
+    },
+    {
+      "word": "pm",
+      "ipa": "/ˌpiː ˈem/",
+      "aviationMeaning": "n. 监控飞行员；或下午时间标记，需结合原文",
+      "generalMeaning": "n. 下午；缩写"
+    },
+    {
+      "word": "pneumatic",
+      "ipa": "/nuːˈmætɪk/",
+      "aviationMeaning": "adj. 气动的；由压缩空气驱动或控制的系统",
+      "generalMeaning": "adj. 气动的；充气的"
+    },
+    {
+      "word": "pnf",
+      "ipa": "/ˌpiː en ˈef/",
+      "aviationMeaning": "n. 非操纵飞行员；旧称，指负责监控和通信的飞行员",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "pno",
+      "ipa": "/ˌpiː en ˈoʊ/",
+      "aviationMeaning": "n. 航空资料缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "pob",
+      "ipa": "/ˌpiː oʊ ˈbiː/",
+      "aviationMeaning": "n. 机上人数；航空器上所有人员的数量",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "pohang",
+      "ipa": "/poʊˈhæŋ/",
+      "aviationMeaning": "n. 浦项；机场或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "point",
+      "ipa": "/pɔɪnt/",
+      "aviationMeaning": "n. 点；航路点、报告点、位置或指向",
+      "generalMeaning": "n. 点；要点；v. 指向"
+    },
+    {
+      "word": "pointed",
+      "ipa": "/ˈpɔɪntɪd/",
+      "aviationMeaning": "v. 已指向；已把指针、航空器或注意力指向某处",
+      "generalMeaning": "v. 已指向；adj. 尖的"
+    },
+    {
+      "word": "pointers",
+      "ipa": "/ˈpɔɪntərz/",
+      "aviationMeaning": "n. 指针（复数）；多个仪表上的指示标记",
+      "generalMeaning": "n. 指针；提示（复数）"
+    },
+    {
+      "word": "points",
+      "ipa": "/pɔɪnts/",
+      "aviationMeaning": "n. 点（复数）；航路点、报告点或位置",
+      "generalMeaning": "n. 点；要点（复数）"
+    },
+    {
+      "word": "poisoning",
+      "ipa": "/ˈpɔɪzənɪŋ/",
+      "aviationMeaning": "n. 中毒；一氧化碳、食物或化学物暴露导致的健康风险",
+      "generalMeaning": "n. 中毒"
+    },
+    {
+      "word": "poland",
+      "ipa": "/ˈpoʊlənd/",
+      "aviationMeaning": "n. 波兰；机场、空域或航线所在国",
+      "generalMeaning": "n. 波兰"
+    },
+    {
+      "word": "polar",
+      "ipa": "/ˈpoʊlər/",
+      "aviationMeaning": "adj. 极地的；靠近地球两极的空域、路线或天气",
+      "generalMeaning": "adj. 极地的；两极的"
+    },
+    {
+      "word": "pole",
+      "ipa": "/poʊl/",
+      "aviationMeaning": "n. 杆；天线、标杆或支撑结构",
+      "generalMeaning": "n. 杆；极地"
+    },
+    {
+      "word": "poles",
+      "ipa": "/poʊlz/",
+      "aviationMeaning": "n. 杆（复数）；天线、标杆或支撑结构",
+      "generalMeaning": "n. 杆；极地（复数）"
+    },
+    {
+      "word": "police",
+      "ipa": "/pəˈliːs/",
+      "aviationMeaning": "n. 警察；机场安保、事件处置或执法人员",
+      "generalMeaning": "n. 警察；v. 维持治安"
+    },
+    {
+      "word": "policemen",
+      "ipa": "/pəˈliːsmən/",
+      "aviationMeaning": "n. 警察（复数）；机场安保或执法人员",
+      "generalMeaning": "n. 男警察（复数）"
+    },
+    {
+      "word": "policies",
+      "ipa": "/ˈpɑːləsiz/",
+      "aviationMeaning": "n. 政策（复数）；运行、安全或公司管理规定",
+      "generalMeaning": "n. 政策（复数）"
+    },
+    {
+      "word": "policy",
+      "ipa": "/ˈpɑːləsi/",
+      "aviationMeaning": "n. 政策；运行、安全或公司管理规定",
+      "generalMeaning": "n. 政策；方针"
+    },
+    {
+      "word": "pollutants",
+      "ipa": "/pəˈluːtənts/",
+      "aviationMeaning": "n. 污染物（复数）；发动机排放或空气中的有害物质",
+      "generalMeaning": "n. 污染物（复数）"
+    },
+    {
+      "word": "poor",
+      "ipa": "/pʊr/",
+      "aviationMeaning": "adj. 差的；能见度、性能、通信或天气状况不佳",
+      "generalMeaning": "adj. 差的；贫穷的"
+    },
+    {
+      "word": "poorer",
+      "ipa": "/ˈpʊrər/",
+      "aviationMeaning": "adj. 更差的；能见度、性能或通信质量进一步下降的",
+      "generalMeaning": "adj. 更差的；更贫穷的"
+    },
+    {
+      "word": "poorly",
+      "ipa": "/ˈpʊrli/",
+      "aviationMeaning": "adv. 差地；系统、程序或人员表现不佳地",
+      "generalMeaning": "adv. 差地；不充分地"
+    },
+    {
+      "word": "popping",
+      "ipa": "/ˈpɑːpɪŋ/",
+      "aviationMeaning": "adj. 爆裂的；设备、通信或结构持续发出短促声响",
+      "generalMeaning": "adj. 爆裂的；突然出现的"
+    },
+    {
+      "word": "populated",
+      "ipa": "/ˈpɑːpjəleɪtɪd/",
+      "aviationMeaning": "adj. 人口稠密的；飞越或邻近有人居住地区的",
+      "generalMeaning": "adj. 人口稠密的；有居民的"
+    },
+    {
+      "word": "port",
+      "ipa": "/pɔːrt/",
+      "aviationMeaning": "n. 左舷；航空器左侧；也可指接口",
+      "generalMeaning": "n. 港口；端口；左舷"
+    },
+    {
+      "word": "portable",
+      "ipa": "/ˈpɔːrtəbəl/",
+      "aviationMeaning": "adj. 便携的；可携带的通信、氧气或检查设备",
+      "generalMeaning": "adj. 便携的"
+    },
+    {
+      "word": "portion",
+      "ipa": "/ˈpɔːrʃən/",
+      "aviationMeaning": "n. 部分；程序、航路或系统的一段",
+      "generalMeaning": "n. 部分；一份"
+    },
+    {
+      "word": "portland",
+      "ipa": "/ˈpɔːrtlənd/",
+      "aviationMeaning": "n. 波特兰；机场或地名",
+      "generalMeaning": "n. 波特兰"
+    },
+    {
+      "word": "porto",
+      "ipa": "/ˈpɔːrtoʊ/",
+      "aviationMeaning": "n. 波尔图；机场或地名",
+      "generalMeaning": "n. 波尔图；地名"
+    },
+    {
+      "word": "ports",
+      "ipa": "/pɔːrts/",
+      "aviationMeaning": "n. 接口（复数）；设备连接口、左舷或港口；需结合原文",
+      "generalMeaning": "n. 港口；端口；左舷（复数）"
+    },
+    {
+      "word": "portugal",
+      "ipa": "/ˈpɔːrtʃəɡəl/",
+      "aviationMeaning": "n. 葡萄牙；机场、空域或航线所在国",
+      "generalMeaning": "n. 葡萄牙"
+    },
+    {
+      "word": "portugal's",
+      "ipa": "/ˈpɔːrtʃəɡəlz/",
+      "aviationMeaning": "n. Portugal 的所有格形式；葡萄牙的",
+      "generalMeaning": "n. 专有地名的所有格形式"
+    },
+    {
+      "word": "portugalia",
+      "ipa": "/pɔːrˈtuːɡəliə/",
+      "aviationMeaning": "n. 葡航；航空公司名称或呼号相关",
+      "generalMeaning": "n. 专有名称；请结合原文"
+    },
+    {
+      "word": "pose",
+      "ipa": "/poʊz/",
+      "aviationMeaning": "v. 造成；造成安全、运行或健康风险",
+      "generalMeaning": "v. 摆姿势；造成"
+    },
+    {
+      "word": "poses",
+      "ipa": "/ˈpoʊzɪz/",
+      "aviationMeaning": "v. 造成；造成安全、运行或健康风险",
+      "generalMeaning": "v. 摆姿势；造成"
+    },
+    {
+      "word": "position",
+      "ipa": "/pəˈzɪʃən/",
+      "aviationMeaning": "n. 位置；航空器、人员、开关或控制面的所在位置",
+      "generalMeaning": "n. 位置；职位"
+    },
+    {
+      "word": "positioned",
+      "ipa": "/pəˈzɪʃənd/",
+      "aviationMeaning": "adj. 已定位的；航空器、人员、开关或控制面在指定位置",
+      "generalMeaning": "adj. 已定位的；被放置的"
+    },
+    {
+      "word": "positioning",
+      "ipa": "/pəˈzɪʃənɪŋ/",
+      "aviationMeaning": "n. 定位；确定或更新航空器位置的过程",
+      "generalMeaning": "n. 定位；放置"
+    },
+    {
+      "word": "positions",
+      "ipa": "/pəˈzɪʃənz/",
+      "aviationMeaning": "n. 位置（复数）；多个航空器、人员或开关的位置",
+      "generalMeaning": "n. 位置；职位（复数）"
+    },
+    {
+      "word": "positive",
+      "ipa": "/ˈpɑːzətɪv/",
+      "aviationMeaning": "adj. 正的；明确的；如正爬升、正确认或正压力",
+      "generalMeaning": "adj. 积极的；正的"
+    },
+    {
+      "word": "positively",
+      "ipa": "/ˈpɑːzətɪvli/",
+      "aviationMeaning": "adv. 明确地；肯定地确认或表明",
+      "generalMeaning": "adv. 积极地；明确地"
+    },
+    {
+      "word": "possibility",
+      "ipa": "/ˌpɑːsəˈbɪləti/",
+      "aviationMeaning": "n. 可能性；某种天气、故障或运行结果发生的概率",
+      "generalMeaning": "n. 可能性"
+    },
+    {
+      "word": "possible",
+      "ipa": "/ˈpɑːsəbəl/",
+      "aviationMeaning": "adj. 可能的；在性能、天气或运行条件下可实现的",
+      "generalMeaning": "adj. 可能的"
+    },
+    {
+      "word": "possibly",
+      "ipa": "/ˈpɑːsəbli/",
+      "aviationMeaning": "adv. 可能地；表达不确定的运行判断",
+      "generalMeaning": "adv. 可能地；也许"
+    },
+    {
+      "word": "post",
+      "ipa": "/poʊst/",
+      "aviationMeaning": "n. 岗位；机场、管制或安保人员的工作位置",
+      "generalMeaning": "n. 岗位；邮件；柱子"
+    },
+    {
+      "word": "post-crash",
+      "ipa": "/poʊst kræʃ/",
+      "aviationMeaning": "adj. 事故后的；坠毁或碰撞事件发生之后的",
+      "generalMeaning": "adj. 事故后的"
+    },
+    {
+      "word": "post-flight",
+      "ipa": "/poʊst flaɪt/",
+      "aviationMeaning": "adj. 飞行后的；航后检查、记录或维护相关",
+      "generalMeaning": "adj. 飞行后的"
+    },
+    {
+      "word": "posted",
+      "ipa": "/ˈpoʊstɪd/",
+      "aviationMeaning": "v. 已发布；已张贴或录入通告、限制或信息",
+      "generalMeaning": "v. 已张贴；已发布"
+    },
+    {
+      "word": "postponed",
+      "ipa": "/poʊstˈpoʊnd/",
+      "aviationMeaning": "adj. 已延期的；航班、检查、维护或培训改至以后",
+      "generalMeaning": "adj. 已延期的"
+    }
   ]
 }

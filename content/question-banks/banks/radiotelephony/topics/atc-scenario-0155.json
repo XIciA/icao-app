@@ -9,8 +9,8 @@
       "taskTitle": "CSN 3109-1",
       "audioText": "Your call sign is CSN 3109, you are approaching VYK, maintaining 4500 meters, squawking 3125, make initial contact with Beijing Control.",
       "audioTextZh": "你的呼号是 CSN 3109，正接近 VYK，保持 4500 米，应答机 3125，与北京管制首次联系。",
-      "referenceText": "Beijing Control, CSN 3109, approaching VYK, maintaining 4005 hunderd meters, squawking 3215.",
-      "referenceTextZh": "北京管制，CSN 3109，正接近 VYK，保持 4005 hunderd 米，应答机 3215。",
+      "referenceText": "Beijing Control, CSN 3109, approaching VYK, maintaining 4,500 meters, squawking 3125.",
+      "referenceTextZh": "北京管制，CSN 3109，正接近 VYK，保持 4,500 米，应答机 3125。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-054-csn3109-q01.mp3"
     },
     {
@@ -115,9 +115,9 @@
     {
       "id": "atc-scenario-0155-card-main-2683",
       "taskTitle": "CSN 3109-13",
-      "audioText": "B: During approach, neither of you can see through the windshield due to crack windshield, you ask Beijing Tower if Beijing Airport permits auto-land.",
+      "audioText": "B: During approach, neither of you can see through the windshield due to a cracked windshield, you ask Beijing Tower if Beijing Airport permits auto-land.",
       "audioTextZh": "B：进近中，由于风挡开裂，你们两人都无法透过风挡看清，询问北京塔台北京机场是否允许自动着陆。",
-      "referenceText": "Beijing Tower, CSN 3109, neither of us can see through the windshield due to crack windshield, does your airport permit auto-land ?",
+      "referenceText": "Beijing Tower, CSN 3109, neither of us can see through the windshield due to a cracked windshield, does your airport permit auto-land?",
       "referenceTextZh": "北京塔台，CSN 3109，由于风挡开裂，我们两人都无法透过风挡看清，你机场是否允许自动着陆？",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-054-csn3109-q13.mp3"
     },

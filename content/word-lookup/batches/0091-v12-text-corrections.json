@@ -1,0 +1,2917 @@
+{
+  "schemaVersion": 1,
+  "sourceReleaseVersion": 12,
+  "reason": "Only words newly introduced by the reviewed v12 text corrections.",
+  "entries": [
+    {
+      "word": "add-on",
+      "ipa": "/æd ɒn/",
+      "aviationMeaning": "n. 追加；附加",
+      "generalMeaning": "n. 追加；附加"
+    },
+    {
+      "word": "admire",
+      "ipa": "/əd'maɪə(r)/",
+      "aviationMeaning": "vt. 钦佩；赞美；羡慕；欣赏",
+      "generalMeaning": "vt. 钦佩；赞美；羡慕；欣赏"
+    },
+    {
+      "word": "affordable",
+      "ipa": "/ə'fɔːdəbl/",
+      "aviationMeaning": "adj. 支付得起的；不太昂贵的",
+      "generalMeaning": "adj. 支付得起的；不太昂贵的"
+    },
+    {
+      "word": "agricultural",
+      "ipa": "/ˌæɡrɪ'kʌltʃərəl/",
+      "aviationMeaning": "adj. 农业的",
+      "generalMeaning": "adj. 农业的"
+    },
+    {
+      "word": "aircraft-handling",
+      "ipa": "/ˈerkræft ˈhændlɪŋ/",
+      "aviationMeaning": "n. 航空器操纵与地面保障",
+      "generalMeaning": "n. 航空器处理"
+    },
+    {
+      "word": "aircraft-maintenance",
+      "ipa": "/ˈerkræft ˈmeɪntənəns/",
+      "aviationMeaning": "n. 航空器维修",
+      "generalMeaning": "n. 飞机维护"
+    },
+    {
+      "word": "aircraft-system",
+      "ipa": "/ˈerkræft ˈsɪstəm/",
+      "aviationMeaning": "n. 航空器系统",
+      "generalMeaning": "n. 飞机系统"
+    },
+    {
+      "word": "airline-aircraft",
+      "ipa": "/ˈerlaɪn ˈerkræft/",
+      "aviationMeaning": "n. 航空公司运营的航空器",
+      "generalMeaning": "n. 航空公司飞机"
+    },
+    {
+      "word": "airline’s",
+      "ipa": "/'eəlaɪn/",
+      "aviationMeaning": "n. 航线；航空公司",
+      "generalMeaning": "n. 航线；航空公司"
+    },
+    {
+      "word": "alarming",
+      "ipa": "/ə'lɑːmɪŋ/",
+      "aviationMeaning": "adj. 惊人的；吓人的",
+      "generalMeaning": "adj. 惊人的；吓人的"
+    },
+    {
+      "word": "alternator",
+      "ipa": "/'ɔːltəneɪtə(r)/",
+      "aviationMeaning": "n. 交流发电机",
+      "generalMeaning": "n. 交流发电机"
+    },
+    {
+      "word": "analyse",
+      "ipa": "/'ænəlaɪz/",
+      "aviationMeaning": "vt. 分析；细察",
+      "generalMeaning": "vt. 分析；细察"
+    },
+    {
+      "word": "analysed",
+      "ipa": "/'ænəlaɪz/",
+      "aviationMeaning": "vt. 分析；细察",
+      "generalMeaning": "vt. 分析；细察"
+    },
+    {
+      "word": "anchors",
+      "ipa": "/'æŋkə(r)/",
+      "aviationMeaning": "n. 锚；锚状物；依靠；新闻节目主播；压阵队员",
+      "generalMeaning": "n. 锚；锚状物；依靠；新闻节目主播；压阵队员"
+    },
+    {
+      "word": "ancient",
+      "ipa": "/'eɪnʃənt/",
+      "aviationMeaning": "adj. 古老的；古代的",
+      "generalMeaning": "adj. 古老的；古代的"
+    },
+    {
+      "word": "another's",
+      "ipa": "/ə'nʌðə(r)/",
+      "aviationMeaning": "adj. 另一的；再一个的",
+      "generalMeaning": "adj. 另一的；再一个的"
+    },
+    {
+      "word": "anti-authority",
+      "ipa": "/ˌænti əˈθɔːrəti/",
+      "aviationMeaning": "adj. 反权威型的",
+      "generalMeaning": "adj. 反对权威的"
+    },
+    {
+      "word": "appreciate",
+      "ipa": "/ə'priːʃieɪt/",
+      "aviationMeaning": "vt. 欣赏；赏识；感激；领会；意识到",
+      "generalMeaning": "vt. 欣赏；赏识；感激；领会；意识到"
+    },
+    {
+      "word": "ar",
+      "ipa": "/ˌeɪ ˈɑːr/",
+      "aviationMeaning": "abbr. 增强现实（Augmented Reality）",
+      "generalMeaning": "abbr. 增强现实"
+    },
+    {
+      "word": "arguing",
+      "ipa": "/'ɑrgjʊɪŋ/",
+      "aviationMeaning": "n. 争吵",
+      "generalMeaning": "n. 争吵"
+    },
+    {
+      "word": "assemble",
+      "ipa": "/ə'sembl/",
+      "aviationMeaning": "v. 集合；收集；装配",
+      "generalMeaning": "v. 集合；收集；装配"
+    },
+    {
+      "word": "asymmetry",
+      "ipa": "/ˌeɪ'sɪmətri/",
+      "aviationMeaning": "n. 不对称",
+      "generalMeaning": "n. 不对称"
+    },
+    {
+      "word": "atpl",
+      "ipa": "/ˌeɪ tiː piː ˈel/",
+      "aviationMeaning": "abbr. 航线运输驾驶员执照（Airline Transport Pilot Licence）",
+      "generalMeaning": "abbr. 航线运输驾驶员执照"
+    },
+    {
+      "word": "attends",
+      "ipa": "/ə'tend/",
+      "aviationMeaning": "v. 出席；参加；照料；注意；专心于",
+      "generalMeaning": "v. 出席；参加；照料；注意；专心于"
+    },
+    {
+      "word": "attractions",
+      "ipa": "/ə'trækʃn/",
+      "aviationMeaning": "n. 吸引；吸引力；有吸引力的人或事物",
+      "generalMeaning": "n. 吸引；吸引力；有吸引力的人或事物"
+    },
+    {
+      "word": "audible",
+      "ipa": "/'ɔːdəbl/",
+      "aviationMeaning": "adj. 听得见的",
+      "generalMeaning": "adj. 听得见的"
+    },
+    {
+      "word": "authorisation",
+      "ipa": "/ˌɔːθərɑɪ'zeɪʃən/",
+      "aviationMeaning": "n. 授权；委任；核准；审定；认可",
+      "generalMeaning": "n. 授权；委任；核准；审定；认可"
+    },
+    {
+      "word": "authorised",
+      "ipa": "/'ɔːθərˌaɪzd/",
+      "aviationMeaning": "adj. 授权的",
+      "generalMeaning": "adj. 授权的"
+    },
+    {
+      "word": "automatic-landing",
+      "ipa": "/ˌɔːtəˈmætɪk ˈlændɪŋ/",
+      "aviationMeaning": "n. 自动着陆",
+      "generalMeaning": "n. 自动降落"
+    },
+    {
+      "word": "badminton",
+      "ipa": "/'bædmɪntən/",
+      "aviationMeaning": "n. 羽毛球",
+      "generalMeaning": "n. 羽毛球"
+    },
+    {
+      "word": "baggage-handling",
+      "ipa": "/ˈbæɡɪdʒ ˈhændlɪŋ/",
+      "aviationMeaning": "n. 行李处理与装卸",
+      "generalMeaning": "n. 行李处理"
+    },
+    {
+      "word": "balances",
+      "ipa": "/'bæləns/",
+      "aviationMeaning": "n. 平衡；天平；平静；结余；差额；调和；制衡",
+      "generalMeaning": "n. 平衡；天平；平静；结余；差额；调和；制衡"
+    },
+    {
+      "word": "bandaging",
+      "ipa": "/'bændɪdʒɪŋ/",
+      "aviationMeaning": "n. 用绷带包扎",
+      "generalMeaning": "n. 用绷带包扎"
+    },
+    {
+      "word": "bases",
+      "ipa": "/beɪs/",
+      "aviationMeaning": "n. 底部；基地；基础；基数；基线；(棒球)垒；[化]碱",
+      "generalMeaning": "n. 底部；基地；基础；基数；基线；(棒球)垒；[化]碱"
+    },
+    {
+      "word": "before-takeoff",
+      "ipa": "/bɪˈfɔːr ˈteɪkɔːf/",
+      "aviationMeaning": "adj. 起飞前的",
+      "generalMeaning": "adj. 起飞前的"
+    },
+    {
+      "word": "behaviors",
+      "ipa": "/bɪ'heɪvjə/",
+      "aviationMeaning": "n. 行为；举止；习性；态度",
+      "generalMeaning": "n. 行为；举止；习性；态度"
+    },
+    {
+      "word": "behaviours",
+      "ipa": "/bɪ'heɪvjə(r)/",
+      "aviationMeaning": "n. 行为；举止；品行",
+      "generalMeaning": "n. 行为；举止；品行"
+    },
+    {
+      "word": "belongings",
+      "ipa": "/bɪ'lɒŋɪŋz/",
+      "aviationMeaning": "n. 财产；所有物；物件；东西",
+      "generalMeaning": "n. 财产；所有物；物件；东西"
+    },
+    {
+      "word": "berths",
+      "ipa": "/bɜːθ/",
+      "aviationMeaning": "n. 停泊处；锚位；卧铺；职位",
+      "generalMeaning": "n. 停泊处；锚位；卧铺；职位"
+    },
+    {
+      "word": "bird-control",
+      "ipa": "/bɜːrd kənˈtroʊl/",
+      "aviationMeaning": "n. 机场鸟害防治",
+      "generalMeaning": "n. 鸟类控制"
+    },
+    {
+      "word": "blended",
+      "ipa": "/'blendɪd/",
+      "aviationMeaning": "adj. 混合的；混杂的",
+      "generalMeaning": "adj. 混合的；混杂的"
+    },
+    {
+      "word": "blocks",
+      "ipa": "/'blɒks/",
+      "aviationMeaning": "n. 街区",
+      "generalMeaning": "n. 街区"
+    },
+    {
+      "word": "blurred",
+      "ipa": "/blɜːd/",
+      "aviationMeaning": "adj. 模糊的；难辨的；记不清的",
+      "generalMeaning": "adj. 模糊的；难辨的；记不清的"
+    },
+    {
+      "word": "books",
+      "ipa": "/'bʊks/",
+      "aviationMeaning": "n. 帐目；书",
+      "generalMeaning": "n. 帐目；书"
+    },
+    {
+      "word": "brake-failure",
+      "ipa": "/breɪk ˈfeɪljər/",
+      "aviationMeaning": "n. 刹车失效",
+      "generalMeaning": "n. 制动故障"
+    },
+    {
+      "word": "breeding",
+      "ipa": "/'briːdɪŋ/",
+      "aviationMeaning": "n. 生养；教养；抚养；繁殖；血统；育种",
+      "generalMeaning": "n. 生养；教养；抚养；繁殖；血统；育种"
+    },
+    {
+      "word": "broadcasts",
+      "ipa": "/'brɔːdkɑːst/",
+      "aviationMeaning": "v. 广播；散布；撒播",
+      "generalMeaning": "v. 广播；散布；撒播"
+    },
+    {
+      "word": "broadens",
+      "ipa": "/'brɔːdn/",
+      "aviationMeaning": "v. 变宽；扩大；开阔",
+      "generalMeaning": "v. 变宽；扩大；开阔"
+    },
+    {
+      "word": "bryant",
+      "ipa": "/ˈbraɪənt/",
+      "aviationMeaning": "proper. 布莱恩特（人名）",
+      "generalMeaning": "proper. 布莱恩特"
+    },
+    {
+      "word": "cabin-pressure",
+      "ipa": "/ˈkæbɪn ˈpreʃər/",
+      "aviationMeaning": "n. 客舱压力",
+      "generalMeaning": "n. 舱内压力"
+    },
+    {
+      "word": "calmed",
+      "ipa": "/kɑːm/",
+      "aviationMeaning": "adj. 平静的；冷静的",
+      "generalMeaning": "adj. 平静的；冷静的"
+    },
+    {
+      "word": "calmest",
+      "ipa": "/kɑːm/",
+      "aviationMeaning": "adj. 平静的；冷静的",
+      "generalMeaning": "adj. 平静的；冷静的"
+    },
+    {
+      "word": "capsizing",
+      "ipa": "/kæp'saɪz/",
+      "aviationMeaning": "v. 倾覆；翻转",
+      "generalMeaning": "v. 倾覆；翻转"
+    },
+    {
+      "word": "cardiovascular",
+      "ipa": "/ˌkɑːdiəʊ'væskjələ(r)/",
+      "aviationMeaning": "adj. 心脏血管的",
+      "generalMeaning": "adj. 心脏血管的"
+    },
+    {
+      "word": "cargo-hold",
+      "ipa": "/ˈkɑːrɡoʊ hoʊld/",
+      "aviationMeaning": "n. 货舱",
+      "generalMeaning": "n. 货物舱"
+    },
+    {
+      "word": "cartoons",
+      "ipa": "/kaː'tuːnz/",
+      "aviationMeaning": "n. 卡通画；动画片",
+      "generalMeaning": "n. 卡通画；动画片"
+    },
+  {
+    "word": "casings",
+    "ipa": "/'keɪsɪŋ/",
+    "aviationMeaning": "n. 航空设备的防护壳体；外壳",
+    "generalMeaning": "n. 套；罩；匣；盒；[经](石油)套管；包装"
+    },
+    {
+      "word": "cautiously",
+      "ipa": "/'kɔːʃəsli/",
+      "aviationMeaning": "adv. 慎重地；谨慎的",
+      "generalMeaning": "adv. 慎重地；谨慎的"
+    },
+    {
+      "word": "center-of-gravity",
+      "ipa": "/ˈsentər əv ˈɡrævəti/",
+      "aviationMeaning": "n. 重心",
+      "generalMeaning": "n. 重心"
+    },
+    {
+      "word": "centres",
+      "ipa": "/'sentə(r)/",
+      "aviationMeaning": "n. 中心；集中点",
+      "generalMeaning": "n. 中心；集中点"
+    },
+    {
+      "word": "charming",
+      "ipa": "/'tʃɑːmɪŋ/",
+      "aviationMeaning": "adj. 迷人的",
+      "generalMeaning": "adj. 迷人的"
+    },
+    {
+      "word": "check-ins",
+      "ipa": "/ˈtʃek ɪn/",
+      "aviationMeaning": "n. 值机手续；报到",
+      "generalMeaning": "n. 登记手续"
+    },
+    {
+      "word": "cheerful",
+      "ipa": "/'tʃɪəfl/",
+      "aviationMeaning": "adj. 高兴的；快乐的",
+      "generalMeaning": "adj. 高兴的；快乐的"
+    },
+    {
+      "word": "chemically",
+      "ipa": "/'kemɪkli/",
+      "aviationMeaning": "adv. 用化学；以化学方法",
+      "generalMeaning": "adv. 用化学；以化学方法"
+    },
+    {
+      "word": "chinese-designed",
+      "ipa": "/ˌtʃaɪˈniːz dɪˈzaɪnd/",
+      "aviationMeaning": "adj. 中国设计的",
+      "generalMeaning": "adj. 中国设计的"
+    },
+    {
+      "word": "chittagong's",
+      "ipa": "/ˌtʃɪtəˈɡɒŋz/",
+      "aviationMeaning": "proper. 吉大港的",
+      "generalMeaning": "proper. 吉大港的"
+    },
+    {
+      "word": "chou",
+      "ipa": "/dʒoʊ/",
+      "aviationMeaning": "proper. 周（姓氏或地名音译）",
+      "generalMeaning": "proper. 周"
+    },
+    {
+      "word": "circular",
+      "ipa": "/'sɜːkjələ(r)/",
+      "aviationMeaning": "adj. 圆形的；循环的",
+      "generalMeaning": "adj. 圆形的；循环的"
+    },
+    {
+      "word": "classes",
+      "ipa": "/klɑːsɪz/",
+      "aviationMeaning": "n. 阶级",
+      "generalMeaning": "n. 阶级"
+    },
+    {
+      "word": "closures",
+      "ipa": "/'kləʊʒə(r)/",
+      "aviationMeaning": "n. 关闭；关口；讨论终结；终结",
+      "generalMeaning": "n. 关闭；关口；讨论终结；终结"
+    },
+    {
+      "word": "cockpit-system",
+      "ipa": "/ˈkɑːkpɪt ˈsɪstəm/",
+      "aviationMeaning": "n. 驾驶舱系统",
+      "generalMeaning": "n. 座舱系统"
+    },
+    {
+      "word": "colleagues",
+      "ipa": "/'kɒliːɡ/",
+      "aviationMeaning": "n. 同事",
+      "generalMeaning": "n. 同事"
+    },
+    {
+      "word": "collecting",
+      "ipa": "/kə'lekt/",
+      "aviationMeaning": "v. 收集；聚集；募捐；运走；使（自己）镇定",
+      "generalMeaning": "v. 收集；聚集；募捐；运走；使（自己）镇定"
+    },
+    {
+      "word": "columns",
+      "ipa": "/'kɒləm/",
+      "aviationMeaning": "n. 栏；专栏；列；圆柱；柱；柱形物",
+      "generalMeaning": "n. 栏；专栏；列；圆柱；柱；柱形物"
+    },
+    {
+      "word": "comedies",
+      "ipa": "/'kɒmədi/",
+      "aviationMeaning": "n. 喜剧；滑稽；幽默事件",
+      "generalMeaning": "n. 喜剧；滑稽；幽默事件"
+    },
+    {
+      "word": "common-sense",
+      "ipa": "/ˈkɑːmən sens/",
+      "aviationMeaning": "n. 常识性判断",
+      "generalMeaning": "n. 常识"
+    },
+    {
+      "word": "company-specific",
+      "ipa": "/ˈkʌmpəni spəˈsɪfɪk/",
+      "aviationMeaning": "adj. 公司特定的",
+      "generalMeaning": "adj. 某公司专用的"
+    },
+    {
+      "word": "competing",
+      "ipa": "/kəm'piːtɪŋ/",
+      "aviationMeaning": "adj. 竞争的；抵触的；相互矛盾的",
+      "generalMeaning": "adj. 竞争的；抵触的；相互矛盾的"
+    },
+    {
+      "word": "complacency",
+      "ipa": "/kəm'pleɪsnsi/",
+      "aviationMeaning": "n. 自满；沾沾自喜",
+      "generalMeaning": "n. 自满；沾沾自喜"
+    },
+    {
+      "word": "complements",
+      "ipa": "/'kɒmplɪment/",
+      "aviationMeaning": "vt. 相辅相成",
+      "generalMeaning": "vt. 相辅相成"
+    },
+    {
+      "word": "complex-airport",
+      "ipa": "/kəmˈpleks ˈerpɔːrt/",
+      "aviationMeaning": "n. 运行环境复杂的机场",
+      "generalMeaning": "n. 复杂机场"
+    },
+    {
+      "word": "concentrates",
+      "ipa": "/'kɒnsntreɪt/",
+      "aviationMeaning": "v. 专心；集中；浓缩",
+      "generalMeaning": "v. 专心；集中；浓缩"
+    },
+    {
+      "word": "concepts",
+      "ipa": "/'kɒnsept/",
+      "aviationMeaning": "n. 观念；概念；想法",
+      "generalMeaning": "n. 观念；概念；想法"
+    },
+    {
+      "word": "condenses",
+      "ipa": "/kən'densɪz/",
+      "aviationMeaning": "v. 浓缩；压缩；精简",
+      "generalMeaning": "v. 浓缩；压缩；精简"
+    },
+    {
+      "word": "conscious",
+      "ipa": "/'kɒnʃəs/",
+      "aviationMeaning": "adj. 神志清醒的；意识到的；自觉的；有意的",
+      "generalMeaning": "adj. 神志清醒的；意识到的；自觉的；有意的"
+    },
+    {
+      "word": "consecutive",
+      "ipa": "/kən'sekjətɪv/",
+      "aviationMeaning": "adj. 连续的；连贯的",
+      "generalMeaning": "adj. 连续的；连贯的"
+    },
+    {
+      "word": "consuming",
+      "ipa": "/kən'sjuːmɪŋ/",
+      "aviationMeaning": "adj. 消费的；强烈的；引人入胜的",
+      "generalMeaning": "adj. 消费的；强烈的；引人入胜的"
+    },
+    {
+      "word": "contracted",
+      "ipa": "/kən'træktɪd/",
+      "aviationMeaning": "adj. 收缩了的；简约的；契约的",
+      "generalMeaning": "adj. 收缩了的；简约的；契约的"
+    },
+    {
+      "word": "control-surface",
+      "ipa": "/kənˈtroʊl ˈsɜːrfɪs/",
+      "aviationMeaning": "n. 飞行操纵面",
+      "generalMeaning": "n. 控制面"
+    },
+    {
+      "word": "conveys",
+      "ipa": "/kən'veɪ/",
+      "aviationMeaning": "vt. 表达；传达；运输；转移",
+      "generalMeaning": "vt. 表达；传达；运输；转移"
+    },
+    {
+      "word": "cook",
+      "ipa": "/kʊk/",
+      "aviationMeaning": "n. 厨师；炊事员",
+      "generalMeaning": "n. 厨师；炊事员"
+    },
+    {
+      "word": "cooking",
+      "ipa": "/'kʊkɪŋ/",
+      "aviationMeaning": "adj. 烹饪的",
+      "generalMeaning": "adj. 烹饪的"
+    },
+    {
+      "word": "corporation",
+      "ipa": "/ˌkɔːpə'reɪʃn/",
+      "aviationMeaning": "n. 公司；法人",
+      "generalMeaning": "n. 公司；法人"
+    },
+  {
+    "word": "crab",
+    "ipa": "/kræb/",
+    "aviationMeaning": "n. 侧风进近中的偏航修正；蟹形法",
+    "generalMeaning": "n. 蟹；阴虱；爱争吵的人；[植]山楂子"
+    },
+    {
+      "word": "cross-cultural",
+      "ipa": "/krɔːs ˈkʌltʃərəl/",
+      "aviationMeaning": "adj. 跨文化的",
+      "generalMeaning": "adj. 跨文化的"
+    },
+    {
+      "word": "cross-like",
+      "ipa": "/krɔːs laɪk/",
+      "aviationMeaning": "adj. 十字形的",
+      "generalMeaning": "adj. 类似十字的"
+    },
+    {
+      "word": "crosses",
+      "ipa": "/krɒs/",
+      "aviationMeaning": "v. 穿过；交叉；杂交；反对；勾掉；碰见；阻挠",
+      "generalMeaning": "v. 穿过；交叉；杂交；反对；勾掉；碰见；阻挠"
+    },
+    {
+      "word": "currency",
+      "ipa": "/'kʌrənsi/",
+      "aviationMeaning": "n. 货币；流通",
+      "generalMeaning": "n. 货币；流通"
+    },
+    {
+      "word": "curtains",
+      "ipa": "/'kɜːtnz/",
+      "aviationMeaning": "n. 窗帘；门帘",
+      "generalMeaning": "n. 窗帘；门帘"
+    },
+    {
+      "word": "customization",
+      "ipa": "/'kʌstəmaɪzeɪʃən/",
+      "aviationMeaning": "n. 用户化；定制化",
+      "generalMeaning": "n. 用户化；定制化"
+    },
+    {
+      "word": "data-based",
+      "ipa": "/'deɪtəb'eɪst/",
+      "aviationMeaning": "adj. 基于数据的；根据观察的",
+      "generalMeaning": "adj. 基于数据的；根据观察的"
+    },
+    {
+      "word": "data-security",
+      "ipa": "/ˈdeɪtə sɪˈkjʊrəti/",
+      "aviationMeaning": "n. 航空数据安全",
+      "generalMeaning": "n. 数据安全"
+    },
+    {
+      "word": "databases",
+      "ipa": "/'deɪtəbeɪs/",
+      "aviationMeaning": "n. 数据库",
+      "generalMeaning": "n. 数据库"
+    },
+    {
+      "word": "datalink",
+      "ipa": "/'deɪtəlɪŋk/",
+      "aviationMeaning": "n. 数据链",
+      "generalMeaning": "n. 数据链"
+    },
+    {
+      "word": "de-escalate",
+      "ipa": "/diː'eskəˌleɪt/",
+      "aviationMeaning": "v. (使)逐步降级；减少",
+      "generalMeaning": "v. (使)逐步降级；减少"
+    },
+    {
+      "word": "deals",
+      "ipa": "/diːl/",
+      "aviationMeaning": "n. 协定；交易；大量",
+      "generalMeaning": "n. 协定；交易；大量"
+    },
+    {
+      "word": "decelerate",
+      "ipa": "/ˌdiː'seləreɪt/",
+      "aviationMeaning": "v. (使)减速",
+      "generalMeaning": "v. (使)减速"
+    },
+    {
+      "word": "deferred-defect",
+      "ipa": "/dɪˈfɜːrd ˈdiːfekt/",
+      "aviationMeaning": "n. 延期修复的故障",
+      "generalMeaning": "n. 延期缺陷"
+    },
+    {
+      "word": "deformation",
+      "ipa": "/ˌdiːfɔː'meɪʃn/",
+      "aviationMeaning": "n. 变形；畸形",
+      "generalMeaning": "n. 变形；畸形"
+    },
+    {
+      "word": "deliveries",
+      "ipa": "/dɪ'lɪvərɪz/",
+      "aviationMeaning": "n. 递送的货物；分娩（名词delivery的复数形式）",
+      "generalMeaning": "n. 递送的货物；分娩（名词delivery的复数形式）"
+    },
+    {
+      "word": "demonstrate",
+      "ipa": "/'demənstreɪt/",
+      "aviationMeaning": "vt. 证明；演示；示范",
+      "generalMeaning": "vt. 证明；演示；示范"
+    },
+    {
+      "word": "desirable",
+      "ipa": "/dɪ'zaɪərəbl/",
+      "aviationMeaning": "adj. 令人满意的；性感的；有吸引力的；值得的；令人向往的",
+      "generalMeaning": "adj. 令人满意的；性感的；有吸引力的；值得的；令人向往的"
+    },
+    {
+      "word": "detectors",
+      "ipa": "/dɪ'tektə(r)/",
+      "aviationMeaning": "n. 探测器",
+      "generalMeaning": "n. 探测器"
+    },
+    {
+      "word": "deteriorate",
+      "ipa": "/dɪ'tɪəriəreɪt/",
+      "aviationMeaning": "v. 恶化；变质；衰退",
+      "generalMeaning": "v. 恶化；变质；衰退"
+    },
+    {
+      "word": "diet",
+      "ipa": "/'daɪət/",
+      "aviationMeaning": "n. 日常食物；规定饮食；节食",
+      "generalMeaning": "n. 日常食物；规定饮食；节食"
+    },
+    {
+      "word": "digitizes",
+      "ipa": "/'dɪdʒɪtaɪz/",
+      "aviationMeaning": "vt. 使数字化",
+      "generalMeaning": "vt. 使数字化"
+    },
+  {
+    "word": "dipstick",
+    "ipa": "/'dɪpstɪk/",
+    "aviationMeaning": "n. 燃油量油尺；油尺",
+    "generalMeaning": "n. 量油尺；蠢蛋"
+    },
+    {
+      "word": "disadvantage",
+      "ipa": "/ˌdɪsəd'vɑːntɪdʒ/",
+      "aviationMeaning": "n. 不利；不利条件；损害；损失",
+      "generalMeaning": "n. 不利；不利条件；损害；损失"
+    },
+    {
+      "word": "disclose",
+      "ipa": "/dɪs'kləʊz/",
+      "aviationMeaning": "vt. 揭露；使某物显露；公开",
+      "generalMeaning": "vt. 揭露；使某物显露；公开"
+    },
+    {
+      "word": "discovery",
+      "ipa": "/dɪ'skʌvəri/",
+      "aviationMeaning": "n. 发现；发现物",
+      "generalMeaning": "n. 发现；发现物"
+    },
+    {
+      "word": "discussing",
+      "ipa": "/dɪ'skʌs/",
+      "aviationMeaning": "v. 讨论；论述；商量",
+      "generalMeaning": "v. 讨论；论述；商量"
+    },
+    {
+      "word": "discussions",
+      "ipa": "/dɪ'skʌʃn/",
+      "aviationMeaning": "n. 讨论；谈论",
+      "generalMeaning": "n. 讨论；谈论"
+    },
+    {
+      "word": "dismissed",
+      "ipa": "/dɪs'mɪst/",
+      "aviationMeaning": "adj. 解散的；摒弃的；解雇的",
+      "generalMeaning": "adj. 解散的；摒弃的；解雇的"
+    },
+    {
+      "word": "disperse",
+      "ipa": "/dɪ'spɜːs/",
+      "aviationMeaning": "v. 分散；散开",
+      "generalMeaning": "v. 分散；散开"
+    },
+    {
+      "word": "distractions",
+      "ipa": "/dɪ'strækʃn/",
+      "aviationMeaning": "n. 分心；分心的事物；注意力分散；娱乐；消遣；发狂",
+      "generalMeaning": "n. 分心；分心的事物；注意力分散；娱乐；消遣；发狂"
+    },
+    {
+      "word": "distressed",
+      "ipa": "/dɪ'strest/",
+      "aviationMeaning": "adj. 痛苦的",
+      "generalMeaning": "adj. 痛苦的"
+    },
+    {
+      "word": "distributed",
+      "ipa": "/dɪs'trɪbjuːtɪd/",
+      "aviationMeaning": "adj. 分布的；分散式的",
+      "generalMeaning": "adj. 分布的；分散式的"
+    },
+    {
+      "word": "documentaries",
+      "ipa": "/dɒkjʊ'mənteəriːz/",
+      "aviationMeaning": "n. 记录片",
+      "generalMeaning": "n. 记录片"
+    },
+    {
+      "word": "downtown",
+      "ipa": "/daʊn'taʊn/",
+      "aviationMeaning": "n. 市中心区；市中心",
+      "generalMeaning": "n. 市中心区；市中心"
+    },
+    {
+      "word": "drag-producing",
+      "ipa": "/dræɡ prəˈduːsɪŋ/",
+      "aviationMeaning": "adj. 产生阻力的",
+      "generalMeaning": "adj. 产生拖曳力的"
+    },
+    {
+      "word": "dreamlifter",
+      "ipa": "/ˈdriːmˌlɪftər/",
+      "aviationMeaning": "proper. 波音“梦想运输者”货机",
+      "generalMeaning": "proper. 梦想运输者"
+    },
+    {
+      "word": "dujiangyan",
+      "ipa": "/ˌduːdʒiːˈɑːŋjæn/",
+      "aviationMeaning": "proper. 都江堰",
+      "generalMeaning": "proper. 都江堰"
+    },
+    {
+      "word": "duly",
+      "ipa": "/'djuːli/",
+      "aviationMeaning": "adv. 的确；当然地；适当地",
+      "generalMeaning": "adv. 的确；当然地；适当地"
+    },
+    {
+      "word": "durable",
+      "ipa": "/'djʊərəbl/",
+      "aviationMeaning": "adj. 耐用持久的",
+      "generalMeaning": "adj. 耐用持久的"
+    },
+    {
+      "word": "durations",
+      "ipa": "/dju'reɪʃn/",
+      "aviationMeaning": "n. 持续时间；期间",
+      "generalMeaning": "n. 持续时间；期间"
+    },
+    {
+      "word": "earliest",
+      "ipa": "/'ɜːliɪst/",
+      "aviationMeaning": "n. 最早",
+      "generalMeaning": "n. 最早"
+    },
+    {
+      "word": "educate",
+      "ipa": "/'edʒukeɪt/",
+      "aviationMeaning": "v. 教育；培养；训练",
+      "generalMeaning": "v. 教育；培养；训练"
+    },
+    {
+      "word": "eight-hour",
+      "ipa": "/'eɪt'aʊər/",
+      "aviationMeaning": "adj. 8小时的",
+      "generalMeaning": "adj. 8小时的"
+    },
+    {
+      "word": "electrical-system",
+      "ipa": "/ɪˈlektrɪkəl ˈsɪstəm/",
+      "aviationMeaning": "n. 航空器电气系统",
+      "generalMeaning": "n. 电气系统"
+    },
+    {
+      "word": "eliminating",
+      "ipa": "/ɪ'lɪmɪneɪt/",
+      "aviationMeaning": "v. 除去；剔除；忽略；淘汰",
+      "generalMeaning": "v. 除去；剔除；忽略；淘汰"
+    },
+    {
+      "word": "emphasis",
+      "ipa": "/'emfəsɪs/",
+      "aviationMeaning": "n. 强调；重点；[语]加强语气",
+      "generalMeaning": "n. 强调；重点；[语]加强语气"
+    },
+    {
+      "word": "enforce",
+      "ipa": "/ɪn'fɔːs/",
+      "aviationMeaning": "vt. 强迫；强制；实施；执行；加强",
+      "generalMeaning": "vt. 强迫；强制；实施；执行；加强"
+    },
+    {
+      "word": "engagement",
+      "ipa": "/ɪn'ɡeɪdʒmənt/",
+      "aviationMeaning": "n. 约会；约定；订婚；婚约；雇用；交战；(机器零件等)啮合",
+      "generalMeaning": "n. 约会；约定；订婚；婚约；雇用；交战；(机器零件等)啮合"
+    },
+    {
+      "word": "equip",
+      "ipa": "/ɪ'kwɪp/",
+      "aviationMeaning": "vt. 装备；具备；准备；穿",
+      "generalMeaning": "vt. 装备；具备；准备；穿"
+    },
+    {
+      "word": "evaluations",
+      "ipa": "/ɪˌvælju'eɪʃn/",
+      "aviationMeaning": "n. 估价；评价",
+      "generalMeaning": "n. 估价；评价"
+    },
+    {
+      "word": "examiner's",
+      "ipa": "/ɪɡ'zæmɪnə(r)/",
+      "aviationMeaning": "n. 主考者；审查员",
+      "generalMeaning": "n. 主考者；审查员"
+    },
+    {
+      "word": "expertise",
+      "ipa": "/ˌekspɜː'tiːz/",
+      "aviationMeaning": "n. 专门知识；专门技术；专家的意见",
+      "generalMeaning": "n. 专门知识；专门技术；专家的意见"
+    },
+    {
+      "word": "explosive",
+      "ipa": "/ɪk'spləʊsɪv/",
+      "aviationMeaning": "adj. 爆炸(性)的；引发争论的；大声的",
+      "generalMeaning": "adj. 爆炸(性)的；引发争论的；大声的"
+    },
+    {
+      "word": "expression",
+      "ipa": "/ɪk'spreʃn/",
+      "aviationMeaning": "n. 表情；表示；表达；词句；措辞；表现；挤压",
+      "generalMeaning": "n. 表情；表示；表达；词句；措辞；表现；挤压"
+    },
+    {
+      "word": "fares",
+      "ipa": "/'feəz/",
+      "aviationMeaning": "n. 车费；船费；运费",
+      "generalMeaning": "n. 车费；船费；运费"
+    },
+    {
+      "word": "fats",
+      "ipa": "/fæt/",
+      "aviationMeaning": "adj. 肥胖的；多脂肪的；丰满的",
+      "generalMeaning": "adj. 肥胖的；多脂肪的；丰满的"
+    },
+    {
+      "word": "favorites",
+      "ipa": "/'feɪvərɪts/",
+      "aviationMeaning": "n. 特别喜爱的人或物；收藏夹",
+      "generalMeaning": "n. 特别喜爱的人或物；收藏夹"
+    },
+    {
+      "word": "favourite",
+      "ipa": "/'feɪvərɪt/",
+      "aviationMeaning": "adj. 最喜爱的",
+      "generalMeaning": "adj. 最喜爱的"
+    },
+    {
+      "word": "fcom",
+      "ipa": "/ˈef kɒm/",
+      "aviationMeaning": "abbr. 飞行机组操作手册（Flight Crew Operating Manual）",
+      "generalMeaning": "abbr. 飞行机组操作手册"
+    },
+    {
+      "word": "findings",
+      "ipa": "/'faɪndɪŋz/",
+      "aviationMeaning": "n. 调查(或研究)的结果",
+      "generalMeaning": "n. 调查(或研究)的结果"
+    },
+    {
+      "word": "fire-extinguishing",
+      "ipa": "/faɪr ɪkˈstɪŋɡwɪʃɪŋ/",
+      "aviationMeaning": "adj. 灭火用的",
+      "generalMeaning": "adj. 用于灭火的"
+    },
+    {
+      "word": "fire-suppression",
+      "ipa": "/faɪr səˈpreʃən/",
+      "aviationMeaning": "n. 火灾抑制",
+      "generalMeaning": "n. 灭火抑制"
+    },
+    {
+      "word": "fireworks",
+      "ipa": "/'faɪəwɜːks/",
+      "aviationMeaning": "n. 烟火",
+      "generalMeaning": "n. 烟火"
+    },
+    {
+      "word": "fixes",
+      "ipa": "/fɪks/",
+      "aviationMeaning": "v. 使 ... 固定；修理，处理，解决；确定；准备；操纵",
+      "generalMeaning": "v. 使 ... 固定；修理，处理，解决；确定；准备；操纵"
+    },
+    {
+      "word": "flashlight",
+      "ipa": "/'flæʃlaɪt/",
+      "aviationMeaning": "n. 手电筒；闪光灯",
+      "generalMeaning": "n. 手电筒；闪光灯"
+    },
+    {
+      "word": "flight-control-system",
+      "ipa": "/flaɪt kənˈtroʊl ˈsɪstəm/",
+      "aviationMeaning": "n. 飞行操纵系统",
+      "generalMeaning": "n. 飞行控制系统"
+    },
+    {
+      "word": "flight-discipline",
+      "ipa": "/flaɪt ˈdɪsəplɪn/",
+      "aviationMeaning": "n. 飞行纪律",
+      "generalMeaning": "n. 飞行纪律"
+    },
+    {
+      "word": "flight-duty-time",
+      "ipa": "/flaɪt ˈduːti taɪm/",
+      "aviationMeaning": "n. 飞行值勤期",
+      "generalMeaning": "n. 飞行值勤时间"
+    },
+    {
+      "word": "flight-school",
+      "ipa": "/flaɪt skuːl/",
+      "aviationMeaning": "n. 飞行学校",
+      "generalMeaning": "n. 飞行培训学校"
+    },
+    {
+      "word": "flight-training",
+      "ipa": "/flaɪt ˈtreɪnɪŋ/",
+      "aviationMeaning": "n. 飞行训练",
+      "generalMeaning": "n. 飞行培训"
+    },
+    {
+      "word": "flocks",
+      "ipa": "/f'lɒks/",
+      "aviationMeaning": "n. 兽群；鸟群；人群；群集",
+      "generalMeaning": "n. 兽群；鸟群；人群；群集"
+    },
+    {
+      "word": "fluctuates",
+      "ipa": "/'flʌktʃueɪt/",
+      "aviationMeaning": "vi. 波动；动摇；起伏",
+      "generalMeaning": "vi. 波动；动摇；起伏"
+    },
+    {
+      "word": "fluent",
+      "ipa": "/'fluːənt/",
+      "aviationMeaning": "adj. 流利的；流畅的",
+      "generalMeaning": "adj. 流利的；流畅的"
+    },
+    {
+      "word": "fluid's",
+      "ipa": "/'fluːɪd/",
+      "aviationMeaning": "n. 液体；流体",
+      "generalMeaning": "n. 液体；流体"
+    },
+    {
+      "word": "forgetful",
+      "ipa": "/fə'ɡetfl/",
+      "aviationMeaning": "adj. 健忘的；疏忽的",
+      "generalMeaning": "adj. 健忘的；疏忽的"
+    },
+    {
+      "word": "forgets",
+      "ipa": "/fə'ɡet/",
+      "aviationMeaning": "v. 忘记；忽略",
+      "generalMeaning": "v. 忘记；忽略"
+    },
+    {
+      "word": "forgotten",
+      "ipa": "/fə'ɡet/",
+      "aviationMeaning": "v. 忘记；忽略",
+      "generalMeaning": "v. 忘记；忽略"
+    },
+    {
+      "word": "fuel-burn",
+      "ipa": "/ˈfjuːəl bɜːrn/",
+      "aviationMeaning": "n. 燃油消耗量",
+      "generalMeaning": "n. 燃料消耗"
+    },
+    {
+      "word": "fuel-consumption",
+      "ipa": "/ˈfjuːəl kənˈsʌmpʃən/",
+      "aviationMeaning": "n. 燃油消耗",
+      "generalMeaning": "n. 燃料消耗"
+    },
+    {
+      "word": "fuel-dumping",
+      "ipa": "/ˈfjuːəl dʌmp/",
+      "aviationMeaning": "n. 放油",
+      "generalMeaning": "n. 燃油倾倒"
+    },
+    {
+      "word": "fuel-emergency",
+      "ipa": "/ˈfjuːəl ɪˈmɜːrdʒənsi/",
+      "aviationMeaning": "n. 燃油紧急情况",
+      "generalMeaning": "n. 燃料紧急情况"
+    },
+  {
+    "word": "fuel-jettison",
+    "ipa": "/fjuːəld'ʒetɪsn/",
+    "aviationMeaning": "n. 空中放油；放油程序",
+    "generalMeaning": "n. 排放燃油"
+    },
+    {
+      "word": "fuel-quantity",
+      "ipa": "/ˈfjuːəl ˈkwɑːntəti/",
+      "aviationMeaning": "n. 燃油量",
+      "generalMeaning": "n. 燃料数量"
+    },
+    {
+      "word": "fuels",
+      "ipa": "/fjʊəlz/",
+      "aviationMeaning": "n. 燃料",
+      "generalMeaning": "n. 燃料"
+    },
+    {
+      "word": "full-body",
+      "ipa": "/fʊl ˈbɑːdi/",
+      "aviationMeaning": "adj. 全身式的",
+      "generalMeaning": "adj. 全身的"
+    },
+    {
+      "word": "gallons",
+      "ipa": "/'ɡælənz/",
+      "aviationMeaning": "n. 加仑",
+      "generalMeaning": "n. 加仑"
+    },
+    {
+      "word": "games",
+      "ipa": "/geɪmz/",
+      "aviationMeaning": "n. [计算机] 游戏程序",
+      "generalMeaning": "n. [计算机] 游戏程序"
+    },
+    {
+      "word": "gasoline",
+      "ipa": "/'ɡæsəliːn/",
+      "aviationMeaning": "n. 汽油",
+      "generalMeaning": "n. 汽油"
+    },
+    {
+      "word": "gear-up",
+      "ipa": "/ɡɪr ʌp/",
+      "aviationMeaning": "adj. 起落架收上的",
+      "generalMeaning": "adj. 齿轮向上的"
+    },
+    {
+      "word": "gestures",
+      "ipa": "/'dʒestʃə(r)/",
+      "aviationMeaning": "n. 手势；姿势",
+      "generalMeaning": "n. 手势；姿势"
+    },
+    {
+      "word": "giant",
+      "ipa": "/'dʒaɪənt/",
+      "aviationMeaning": "n. 巨人；巨物；大公司",
+      "generalMeaning": "n. 巨人；巨物；大公司"
+    },
+    {
+      "word": "grew",
+      "ipa": "/ɡrəʊ/",
+      "aviationMeaning": "v. 增加；生长；变成；种植；逐渐开始",
+      "generalMeaning": "v. 增加；生长；变成；种植；逐渐开始"
+    },
+    {
+      "word": "ground-operation",
+      "ipa": "/ɡraʊnd ˌɑːpəˈreɪʃən/",
+      "aviationMeaning": "n. 地面运行",
+      "generalMeaning": "n. 地面作业"
+    },
+    {
+      "word": "grow",
+      "ipa": "/ɡrəʊ/",
+      "aviationMeaning": "v. 增加；生长；变成；种植；逐渐开始",
+      "generalMeaning": "v. 增加；生长；变成；种植；逐渐开始"
+    },
+    {
+      "word": "guides",
+      "ipa": "/gaɪdz/",
+      "aviationMeaning": "n. 导架",
+      "generalMeaning": "n. 导架"
+    },
+    {
+      "word": "haikou",
+      "ipa": "/ˌhaɪˈkoʊ/",
+      "aviationMeaning": "proper. 海口",
+      "generalMeaning": "proper. 海口"
+    },
+    {
+      "word": "halotron",
+      "ipa": "/ˈhælətrɒn/",
+      "aviationMeaning": "proper. Halotron 洁净气体灭火剂",
+      "generalMeaning": "proper. Halotron 灭火剂"
+    },
+    {
+      "word": "handsome",
+      "ipa": "/'hænsəm/",
+      "aviationMeaning": "adj. 可观的；英俊的；慷慨大方的；灵巧的",
+      "generalMeaning": "adj. 可观的；英俊的；慷慨大方的；灵巧的"
+    },
+    {
+      "word": "hasty",
+      "ipa": "/'heɪsti/",
+      "aviationMeaning": "adj. 匆匆的；轻率的；急忙的",
+      "generalMeaning": "adj. 匆匆的；轻率的；急忙的"
+    },
+    {
+      "word": "hero",
+      "ipa": "/'hɪərəʊ/",
+      "aviationMeaning": "n. 英雄",
+      "generalMeaning": "n. 英雄"
+    },
+    {
+      "word": "higher-density",
+      "ipa": "/ˈhaɪər ˈdensəti/",
+      "aviationMeaning": "adj. 密度更高的",
+      "generalMeaning": "adj. 更高密度的"
+    },
+    {
+      "word": "horror",
+      "ipa": "/'hɒrə(r)/",
+      "aviationMeaning": "n. 恐怖；战栗；厌恶；震惊",
+      "generalMeaning": "n. 恐怖；战栗；厌恶；震惊"
+    },
+    {
+      "word": "household",
+      "ipa": "/'haʊshəʊld/",
+      "aviationMeaning": "n. 家庭；户",
+      "generalMeaning": "n. 家庭；户"
+    },
+    {
+      "word": "human-factor",
+      "ipa": "/ˈhjuːmən ˈfæktər/",
+      "aviationMeaning": "n. 人为因素",
+      "generalMeaning": "n. 人的因素"
+    },
+    {
+      "word": "hybrid",
+      "ipa": "/'haɪbrɪd/",
+      "aviationMeaning": "n. 混合物；杂种；混血儿",
+      "generalMeaning": "n. 混合物；杂种；混血儿"
+    },
+    {
+      "word": "hydraulic-leak",
+      "ipa": "/haɪˈdrɔːlɪk liːk/",
+      "aviationMeaning": "n. 液压系统泄漏",
+      "generalMeaning": "n. 液压泄漏"
+    },
+    {
+      "word": "hydraulically",
+      "ipa": "/haɪ'drɔːlɪk/",
+      "aviationMeaning": "adj. 水力的；水压的；液压的",
+      "generalMeaning": "adj. 水力的；水压的；液压的"
+    },
+    {
+      "word": "hygienic",
+      "ipa": "/haɪ'dʒiːnɪk/",
+      "aviationMeaning": "adj. 卫生的；卫生学的",
+      "generalMeaning": "adj. 卫生的；卫生学的"
+    },
+    {
+      "word": "ideas",
+      "ipa": "/aɪ'dɪə/",
+      "aviationMeaning": "n. 主意；想法；印象；意见；看法；观念；感觉；目标",
+      "generalMeaning": "n. 主意；想法；印象；意见；看法；观念；感觉；目标"
+    },
+    {
+      "word": "identity-check",
+      "ipa": "/aɪˈdentəti tʃek/",
+      "aviationMeaning": "n. 身份核验",
+      "generalMeaning": "n. 身份检查"
+    },
+    {
+      "word": "impact-resistant",
+      "ipa": "/ˈɪmpækt rɪˈzɪstənt/",
+      "aviationMeaning": "adj. 抗冲击的",
+      "generalMeaning": "adj. 耐冲击的"
+    },
+    {
+      "word": "impartially",
+      "ipa": "/ˌɪmˌpɑːʃəli/",
+      "aviationMeaning": "adv. 公平地；无私地",
+      "generalMeaning": "adv. 公平地；无私地"
+    },
+    {
+      "word": "impulsivity",
+      "ipa": "/ɪmpʌl'sɪvɪtɪ/",
+      "aviationMeaning": "n. 冲动性",
+      "generalMeaning": "n. 冲动性"
+    },
+    {
+      "word": "imsafe",
+      "ipa": "/ˈaɪm seɪf/",
+      "aviationMeaning": "abbr. IMSAFE 飞行员自我评估清单",
+      "generalMeaning": "abbr. IMSAFE 自我评估"
+    },
+    {
+      "word": "indexing",
+      "ipa": "/'ɪndeksɪŋ/",
+      "aviationMeaning": "n. 索引",
+      "generalMeaning": "n. 索引"
+    },
+    {
+      "word": "inductors",
+      "ipa": "/ɪn'dʌktə/",
+      "aviationMeaning": "n. 授职者；[电]感应器；[化]感应物质",
+      "generalMeaning": "n. 授职者；[电]感应器；[化]感应物质"
+    },
+    {
+      "word": "industrial",
+      "ipa": "/ɪn'dʌstriəl/",
+      "aviationMeaning": "adj. 工业的；产业的",
+      "generalMeaning": "adj. 工业的；产业的"
+    },
+    {
+      "word": "inertia",
+      "ipa": "/ɪ'nɜːʃə/",
+      "aviationMeaning": "n. 惯性；惰性",
+      "generalMeaning": "n. 惯性；惰性"
+    },
+    {
+      "word": "informational",
+      "ipa": "/ˌɪnfə'meɪʃənl/",
+      "aviationMeaning": "adj. 信息的；介绍情况的",
+      "generalMeaning": "adj. 信息的；介绍情况的"
+    },
+  {
+    "word": "init",
+    "ipa": "/'aɪnɪt/",
+    "aviationMeaning": "abbr. 飞行管理系统初始化（INIT）页面",
+    "generalMeaning": "abbr. [计]初始化（=initialization）"
+    },
+    {
+      "word": "institutions",
+      "ipa": "/ɪnstɪt'juːʃnz/",
+      "aviationMeaning": "n. 体系",
+      "generalMeaning": "n. 体系"
+    },
+    {
+      "word": "instructional",
+      "ipa": "/ɪn'strʌkʃənl/",
+      "aviationMeaning": "adj. 指导的；教育的；教学的",
+      "generalMeaning": "adj. 指导的；教育的；教学的"
+    },
+    {
+      "word": "intakes",
+      "ipa": "/'ɪnteɪk/",
+      "aviationMeaning": "n. 吸入；招收；入口；通风口",
+      "generalMeaning": "n. 吸入；招收；入口；通风口"
+    },
+    {
+      "word": "integrating",
+      "ipa": "/'ɪntɪɡreɪtɪŋ/",
+      "aviationMeaning": "n. 集成化；综合化",
+      "generalMeaning": "n. 集成化；综合化"
+    },
+    {
+      "word": "intellectual",
+      "ipa": "/ˌɪntə'lektʃuəl/",
+      "aviationMeaning": "n. 凭理智做事者；知识分子",
+      "generalMeaning": "n. 凭理智做事者；知识分子"
+    },
+    {
+      "word": "intelligent",
+      "ipa": "/ɪn'telɪdʒənt/",
+      "aviationMeaning": "adj. 聪明的；智能的",
+      "generalMeaning": "adj. 聪明的；智能的"
+    },
+    {
+      "word": "intensely",
+      "ipa": "/ɪn'tensli/",
+      "aviationMeaning": "adv. 强烈地；热切地",
+      "generalMeaning": "adv. 强烈地；热切地"
+    },
+    {
+      "word": "interview",
+      "ipa": "/'ɪntəvjuː/",
+      "aviationMeaning": "n. 面谈；会见；面试；接见",
+      "generalMeaning": "n. 面谈；会见；面试；接见"
+    },
+    {
+      "word": "inversion-related",
+      "ipa": "/ɪnˈvɜːrʒən rɪˈleɪtɪd/",
+      "aviationMeaning": "adj. 与逆温有关的",
+      "generalMeaning": "adj. 与倒置有关的"
+    },
+    {
+      "word": "invulnerability",
+      "ipa": "/ɪnˌvʌlnərə'bɪləti/",
+      "aviationMeaning": "n. 不受伤害；刀枪不入",
+      "generalMeaning": "n. 不受伤害；刀枪不入"
+    },
+    {
+      "word": "irrelevant",
+      "ipa": "/ɪ'reləvənt/",
+      "aviationMeaning": "adj. 不恰当的；无关系的；不相干的",
+      "generalMeaning": "adj. 不恰当的；无关系的；不相干的"
+    },
+    {
+      "word": "irrigation",
+      "ipa": "/ˌɪrɪ'ɡeɪʃn/",
+      "aviationMeaning": "n. 灌溉；[医]冲洗",
+      "generalMeaning": "n. 灌溉；[医]冲洗"
+    },
+  {
+    "word": "jams",
+    "ipa": "/dʒæmz/",
+    "aviationMeaning": "n. 交通拥堵；堵塞",
+    "generalMeaning": "n. 堵塞；拥挤；果酱（复数）"
+    },
+    {
+      "word": "jay",
+      "ipa": "/dʒeɪ/",
+      "aviationMeaning": "n. 松鸦；喋喋不休的人",
+      "generalMeaning": "n. 松鸦；喋喋不休的人"
+    },
+    {
+      "word": "jinli",
+      "ipa": "/ˌdʒɪnˈliː/",
+      "aviationMeaning": "proper. 锦里",
+      "generalMeaning": "proper. 锦里"
+    },
+    {
+      "word": "jiutian",
+      "ipa": "/ˌdʒoʊˈtjɛn/",
+      "aviationMeaning": "proper. 九天",
+      "generalMeaning": "proper. 九天"
+    },
+    {
+      "word": "jogging",
+      "ipa": "/'dʒɒɡɪŋ/",
+      "aviationMeaning": "n. 慢跑",
+      "generalMeaning": "n. 慢跑"
+    },
+    {
+      "word": "judging",
+      "ipa": "/dʒʌdʒɪŋ/",
+      "aviationMeaning": "n. 判决",
+      "generalMeaning": "n. 判决"
+    },
+    {
+      "word": "kits",
+      "ipa": "/kɪt/",
+      "aviationMeaning": "n. 成套工具；工具箱；装备",
+      "generalMeaning": "n. 成套工具；工具箱；装备"
+    },
+    {
+      "word": "kobe",
+      "ipa": "/ˈkoʊbeɪ/",
+      "aviationMeaning": "proper. 神户",
+      "generalMeaning": "proper. 神户"
+    },
+    {
+      "word": "labeling",
+      "ipa": "/ˈleɪbəl/",
+      "aviationMeaning": "n. 危险品标签标识",
+      "generalMeaning": "n. 标签标注"
+    },
+    {
+      "word": "laboratory",
+      "ipa": "/lə'bɒrətri/",
+      "aviationMeaning": "n. 实验室",
+      "generalMeaning": "n. 实验室"
+    },
+    {
+      "word": "laptops",
+      "ipa": "/'læptɒp/",
+      "aviationMeaning": "n. 便携式电脑；笔记本电脑",
+      "generalMeaning": "n. 便携式电脑；笔记本电脑"
+    },
+    {
+      "word": "lasts",
+      "ipa": "/lɑːst/",
+      "aviationMeaning": "v. 持续；维持",
+      "generalMeaning": "v. 持续；维持"
+    },
+  {
+    "word": "latch",
+    "ipa": "/lætʃ/",
+    "aviationMeaning": "n. 舱门、舷窗或面板的锁扣",
+    "generalMeaning": "n. 门闩；碰锁；弹簧锁"
+    },
+    {
+      "word": "leaders",
+      "ipa": "/liːdəs/",
+      "aviationMeaning": "n. [计算机]前导字符；领袖；领导者",
+      "generalMeaning": "n. [计算机]前导字符；领袖；领导者"
+    },
+    {
+      "word": "licences",
+      "ipa": "/'laɪsns/",
+      "aviationMeaning": "n. 执照；许可；特许；自由；放纵",
+      "generalMeaning": "n. 执照；许可；特许；自由；放纵"
+    },
+    {
+      "word": "lifecycle",
+      "ipa": "/'laɪfˌsaɪkl/",
+      "aviationMeaning": "n. 生命周期；生命循环；生活过程",
+      "generalMeaning": "n. 生命周期；生命循环；生活过程"
+    },
+    {
+      "word": "lighters",
+      "ipa": "/'laɪtə(r)/",
+      "aviationMeaning": "n. 打火机，点火器；点火者，点灯者；驳船",
+      "generalMeaning": "n. 打火机，点火器；点火者，点灯者；驳船"
+    },
+    {
+      "word": "limbs",
+      "ipa": "/lɪmz/",
+      "aviationMeaning": "n. 枝干；肢；翼",
+      "generalMeaning": "n. 枝干；肢；翼"
+    },
+    {
+      "word": "logbooks",
+      "ipa": "/ˈlɔːɡbʊk/",
+      "aviationMeaning": "n. 飞行或维修日志簿",
+      "generalMeaning": "n. 日志簿"
+    },
+    {
+      "word": "long-distance",
+      "ipa": "/lɒŋ 'dɪstəns/",
+      "aviationMeaning": "adj. 长途的",
+      "generalMeaning": "adj. 长途的"
+    },
+  {
+    "word": "loop",
+    "ipa": "/luːp/",
+    "aviationMeaning": "n. 连续循环录音；反馈回路",
+    "generalMeaning": "n. 环；圈；回路；环形线路"
+    },
+    {
+      "word": "low-light",
+      "ipa": "/'ləʊl'aɪt/",
+      "aviationMeaning": "adj. 低照度的",
+      "generalMeaning": "adj. 低照度的"
+    },
+    {
+      "word": "lower-density",
+      "ipa": "/ˈloʊər ˈdensəti/",
+      "aviationMeaning": "adj. 密度更低的",
+      "generalMeaning": "adj. 更低密度的"
+    },
+    {
+      "word": "lubber",
+      "ipa": "/'lʌbə/",
+      "aviationMeaning": "n. 傻大个儿(大而笨拙)",
+      "generalMeaning": "n. 傻大个儿(大而笨拙)"
+    },
+    {
+      "word": "machines",
+      "ipa": "/mə'ʃiːn/",
+      "aviationMeaning": "n. 机器；做事效率高的人；工具；车辆",
+      "generalMeaning": "n. 机器；做事效率高的人；工具；车辆"
+    },
+    {
+      "word": "macho",
+      "ipa": "/'mætʃəʊ/",
+      "aviationMeaning": "adj. 大男子气概的",
+      "generalMeaning": "adj. 大男子气概的"
+    },
+    {
+      "word": "magnetic-compass",
+      "ipa": "/mæɡˈnetɪk ˈkʌmpəs/",
+      "aviationMeaning": "n. 磁罗盘",
+      "generalMeaning": "n. 磁指南针"
+    },
+    {
+      "word": "main-gear",
+      "ipa": "/meɪn ɡɪr/",
+      "aviationMeaning": "n. 主起落架",
+      "generalMeaning": "n. 主齿轮"
+    },
+    {
+      "word": "maneuverability",
+      "ipa": "/məˌnuːvərə'bɪlɪtɪ/",
+      "aviationMeaning": "n. 可操作性；机动性",
+      "generalMeaning": "n. 可操作性；机动性"
+    },
+    {
+      "word": "manoeuvres",
+      "ipa": "/mə'nuːvə(r)/",
+      "aviationMeaning": "n. 调动；策略",
+      "generalMeaning": "n. 调动；策略"
+    },
+    {
+      "word": "mapo",
+      "ipa": "/ˈmɑːpoʊ/",
+      "aviationMeaning": "proper. 麻婆（如麻婆豆腐）",
+      "generalMeaning": "proper. 麻婆"
+    },
+    {
+      "word": "mediate",
+      "ipa": "/'miːdieɪt/",
+      "aviationMeaning": "v. 调停；斡旋",
+      "generalMeaning": "v. 调停；斡旋"
+    },
+    {
+      "word": "melodies",
+      "ipa": "/'melədi/",
+      "aviationMeaning": "n. 旋律；曲子；曲调；美妙的音乐",
+      "generalMeaning": "n. 旋律；曲子；曲调；美妙的音乐"
+    },
+    {
+      "word": "member’s",
+      "ipa": "/'membə(r)/",
+      "aviationMeaning": "n. 成员；会员；部分",
+      "generalMeaning": "n. 成员；会员；部分"
+    },
+    {
+      "word": "metars",
+      "ipa": "/ˈmiːtɑːrz/",
+      "aviationMeaning": "abbr. 多份机场例行天气报告（METAR）",
+      "generalMeaning": "abbr. METAR 报告的复数"
+    },
+    {
+      "word": "microwave",
+      "ipa": "/'maɪkrəweɪv/",
+      "aviationMeaning": "n. 微波；微波炉",
+      "generalMeaning": "n. 微波；微波炉"
+    },
+    {
+      "word": "mirrors",
+      "ipa": "/'mɪrə(r)/",
+      "aviationMeaning": "n. 镜子；反映",
+      "generalMeaning": "n. 镜子；反映"
+    },
+    {
+      "word": "mishear",
+      "ipa": "/ˌmɪs'hɪə(r)/",
+      "aviationMeaning": "vt. 听错",
+      "generalMeaning": "vt. 听错"
+    },
+    {
+      "word": "misjudgment",
+      "ipa": "/mɪs'dʒʌdʒmənt/",
+      "aviationMeaning": "n. 估计错误；判断不公",
+      "generalMeaning": "n. 估计错误；判断不公"
+    },
+    {
+      "word": "misjudgments",
+      "ipa": "/mɪs'dʒʌdʒmənt/",
+      "aviationMeaning": "n. 估计错误；判断不公",
+      "generalMeaning": "n. 估计错误；判断不公"
+    },
+    {
+      "word": "mislead",
+      "ipa": "/ˌmɪs'liːd/",
+      "aviationMeaning": "vt. 误导；使产生错误印象；欺骗；使误入歧途",
+      "generalMeaning": "vt. 误导；使产生错误印象；欺骗；使误入歧途"
+    },
+    {
+      "word": "mockingbird",
+      "ipa": "/ˈmɒkɪŋbɜːrd/",
+      "aviationMeaning": "n. 模仿鸟；反舌鸟",
+      "generalMeaning": "n. 模仿鸟"
+    },
+    {
+      "word": "modest",
+      "ipa": "/'mɒdɪst/",
+      "aviationMeaning": "adj. 谦虚的；适度的；端庄的；有节制的",
+      "generalMeaning": "adj. 谦虚的；适度的；端庄的；有节制的"
+    },
+    {
+      "word": "moist",
+      "ipa": "/mɔɪst/",
+      "aviationMeaning": "adj. 潮湿的；湿润的；[医]湿性的",
+      "generalMeaning": "adj. 潮湿的；湿润的；[医]湿性的"
+    },
+    {
+      "word": "mornings",
+      "ipa": "/'mɔːnɪŋz/",
+      "aviationMeaning": "n. 每天上午；在任何上午",
+      "generalMeaning": "n. 每天上午；在任何上午"
+    },
+    {
+      "word": "motors",
+      "ipa": "/mɒtərs/",
+      "aviationMeaning": "n. 马达；电动机；汽车公司证券",
+      "generalMeaning": "n. 马达；电动机；汽车公司证券"
+    },
+    {
+      "word": "multirotor",
+      "ipa": "/ˌmʌltiˈroʊtər/",
+      "aviationMeaning": "n. 多旋翼航空器",
+      "generalMeaning": "n. 多旋翼飞行器"
+    },
+    {
+      "word": "museums",
+      "ipa": "/m'juːziəmz/",
+      "aviationMeaning": "n. 博物馆，展览馆（名词museum的复数形式）",
+      "generalMeaning": "n. 博物馆，展览馆（名词museum的复数形式）"
+    },
+    {
+      "word": "mutual",
+      "ipa": "/'mjuːtʃuəl/",
+      "aviationMeaning": "adj. 共同的；相互的",
+      "generalMeaning": "adj. 共同的；相互的"
+    },
+    {
+      "word": "navigation-aid",
+      "ipa": "/ˌnævɪˈɡeɪʃən eɪd/",
+      "aviationMeaning": "n. 导航设施；导航设备",
+      "generalMeaning": "n. 导航辅助设备"
+    },
+    {
+      "word": "neat",
+      "ipa": "/niːt/",
+      "aviationMeaning": "adj. 整洁的；简洁的；利索的",
+      "generalMeaning": "adj. 整洁的；简洁的；利索的"
+    },
+    {
+      "word": "night-work",
+      "ipa": "/'naɪtw'ɜːk/",
+      "aviationMeaning": "n. 夜工",
+      "generalMeaning": "n. 夜工"
+    },
+    {
+      "word": "night's",
+      "ipa": "/naɪt/",
+      "aviationMeaning": "n. 夜晚",
+      "generalMeaning": "n. 夜晚"
+    },
+    {
+      "word": "non-alcoholic",
+      "ipa": "/ˌnɒn ˌælkəˈhɒlɪk/",
+      "aviationMeaning": "adj. 不含酒精的",
+      "generalMeaning": "adj. 无酒精的"
+    },
+    {
+      "word": "non-conductive",
+      "ipa": "/ˌnɒn kənˈdʌktɪv/",
+      "aviationMeaning": "adj. 不导电的",
+      "generalMeaning": "adj. 非导电的"
+    },
+    {
+      "word": "non-grooved",
+      "ipa": "/ˌnɒn ɡruːvd/",
+      "aviationMeaning": "adj. 无刻槽的",
+      "generalMeaning": "adj. 未开槽的"
+    },
+    {
+      "word": "non-routine",
+      "ipa": "/ˌnɒn ruːˈtiːn/",
+      "aviationMeaning": "adj. 非例行的",
+      "generalMeaning": "adj. 非常规的"
+    },
+    {
+      "word": "northerly",
+      "ipa": "/'nɔːðəli/",
+      "aviationMeaning": "adj. 北方的；向北的；来自北方的",
+      "generalMeaning": "adj. 北方的；向北的；来自北方的"
+    },
+    {
+      "word": "noses",
+      "ipa": "/nəʊzɪz/",
+      "aviationMeaning": "n. 鼻子",
+      "generalMeaning": "n. 鼻子"
+    },
+    {
+      "word": "officially",
+      "ipa": "/ə'fɪʃəli/",
+      "aviationMeaning": "adv. 官方地；正式地；公务上；职务上",
+      "generalMeaning": "adv. 官方地；正式地；公务上；职务上"
+    },
+    {
+      "word": "openly",
+      "ipa": "/'əʊpənli/",
+      "aviationMeaning": "adv. 公开地；公然地；直率地",
+      "generalMeaning": "adv. 公开地；公然地；直率地"
+    },
+    {
+      "word": "opinions",
+      "ipa": "/ə'pɪnjən/",
+      "aviationMeaning": "n. 意见；主张；看法；判断",
+      "generalMeaning": "n. 意见；主张；看法；判断"
+    },
+    {
+      "word": "optimize",
+      "ipa": "/'ɒptɪmaɪz/",
+      "aviationMeaning": "vt. 使完善；使优化",
+      "generalMeaning": "vt. 使完善；使优化"
+    },
+    {
+      "word": "oscillate",
+      "ipa": "/'ɒsɪleɪt/",
+      "aviationMeaning": "v. 振动；摆动；彷徨；犹豫",
+      "generalMeaning": "v. 振动；摆动；彷徨；犹豫"
+    },
+    {
+      "word": "outline",
+      "ipa": "/'aʊtlaɪn/",
+      "aviationMeaning": "n. 大纲；轮廓",
+      "generalMeaning": "n. 大纲；轮廓"
+    },
+    {
+      "word": "over-control",
+      "ipa": "/ˈoʊvər kənˈtroʊl/",
+      "aviationMeaning": "v. 操纵过度",
+      "generalMeaning": "v. 过度控制"
+    },
+    {
+      "word": "over-controlling",
+      "ipa": "/ˈoʊvər kənˈtroʊlɪŋ/",
+      "aviationMeaning": "adj. 操纵过度的",
+      "generalMeaning": "adj. 控制过度的"
+    },
+    {
+      "word": "over-reliant",
+      "ipa": "/'əʊvə rɪ'laɪənt/",
+      "aviationMeaning": "adj. 过度依赖的",
+      "generalMeaning": "adj. 过度依赖的"
+    },
+    {
+      "word": "over-rotation",
+      "ipa": "/ˈoʊvər roʊˈteɪʃən/",
+      "aviationMeaning": "n. 抬前轮过度",
+      "generalMeaning": "n. 旋转过度"
+    },
+    {
+      "word": "overlapping",
+      "ipa": "/əʊvə'læpɪŋ/",
+      "aviationMeaning": "adj. 相互重叠的",
+      "generalMeaning": "adj. 相互重叠的"
+    },
+    {
+      "word": "paint",
+      "ipa": "/peɪnt/",
+      "aviationMeaning": "v. 油漆；绘画",
+      "generalMeaning": "v. 油漆；绘画"
+    },
+    {
+      "word": "panda",
+      "ipa": "/'pændə/",
+      "aviationMeaning": "n. 熊猫",
+      "generalMeaning": "n. 熊猫"
+    },
+    {
+      "word": "pandas",
+      "ipa": "/'pændə/",
+      "aviationMeaning": "n. 熊猫",
+      "generalMeaning": "n. 熊猫"
+    },
+    {
+      "word": "partial-flap",
+      "ipa": "/ˈpɑːrʃəl flæp/",
+      "aviationMeaning": "n. 部分襟翼构型",
+      "generalMeaning": "n. 部分襟翼"
+    },
+    {
+      "word": "passenger-address",
+      "ipa": "/ˈpæsɪndʒər əˈdres/",
+      "aviationMeaning": "n. 客舱广播",
+      "generalMeaning": "n. 面向旅客的广播"
+    },
+    {
+      "word": "passenger-related",
+      "ipa": "/ˈpæsɪndʒər rɪˈleɪtɪd/",
+      "aviationMeaning": "adj. 与旅客有关的",
+      "generalMeaning": "adj. 乘客相关的"
+    },
+    {
+      "word": "passport",
+      "ipa": "/'pɑːspɔːt/",
+      "aviationMeaning": "n. 护照；手段",
+      "generalMeaning": "n. 护照；手段"
+    },
+    {
+      "word": "perf",
+      "ipa": "/pɜːrf/",
+      "aviationMeaning": "abbr. 飞行管理系统性能页面（PERF）",
+      "generalMeaning": "abbr. 性能页面"
+    },
+    {
+      "word": "performance-limited",
+      "ipa": "/pərˈfɔːrməns ˈlɪmɪtɪd/",
+      "aviationMeaning": "adj. 受性能限制的",
+      "generalMeaning": "adj. 性能受限的"
+    },
+    {
+      "word": "pilot-performance",
+      "ipa": "/ˈpaɪlət pərˈfɔːrməns/",
+      "aviationMeaning": "n. 飞行员表现",
+      "generalMeaning": "n. 驾驶员表现"
+    },
+    {
+      "word": "plain-english",
+      "ipa": "/pleɪn ˈɪŋɡlɪʃ/",
+      "aviationMeaning": "n. 明语英语；非标准通话用普通英语",
+      "generalMeaning": "n. 通俗英语"
+    },
+    {
+      "word": "plenty",
+      "ipa": "/'plenti/",
+      "aviationMeaning": "n. 丰富；大量；充足",
+      "generalMeaning": "n. 丰富；大量；充足"
+    },
+    {
+      "word": "pocket",
+      "ipa": "/'pɒkɪt/",
+      "aviationMeaning": "n. 口袋；袋子；球袋；钱；小块地方；在...掌握之中；保障金",
+      "generalMeaning": "n. 口袋；袋子；球袋；钱；小块地方；在...掌握之中；保障金"
+    },
+    {
+      "word": "polite",
+      "ipa": "/pə'laɪt/",
+      "aviationMeaning": "adj. 有礼貌的；客气的；有教养的；文雅的",
+      "generalMeaning": "adj. 有礼貌的；客气的；有教养的；文雅的"
+    },
+    {
+      "word": "portable-device",
+      "ipa": "/ˈpɔːrtəbəl dɪˈvaɪs/",
+      "aviationMeaning": "n. 便携式电子设备",
+      "generalMeaning": "n. 便携设备"
+    },
+    {
+      "word": "pot",
+      "ipa": "/pɒt/",
+      "aviationMeaning": "n. 罐；壶；一大笔(钱)；奖杯（尤指银杯）；大麻",
+      "generalMeaning": "n. 罐；壶；一大笔(钱)；奖杯（尤指银杯）；大麻"
+    },
+    {
+      "word": "predictably",
+      "ipa": "/prɪˌdɪktəbli/",
+      "aviationMeaning": "adv. 可预言地；不出所料地",
+      "generalMeaning": "adv. 可预言地；不出所料地"
+    },
+    {
+      "word": "prepares",
+      "ipa": "/prɪ'peə(r)/",
+      "aviationMeaning": "v. 预备；准备",
+      "generalMeaning": "v. 预备；准备"
+    },
+    {
+      "word": "presenting",
+      "ipa": "/'preznt/",
+      "aviationMeaning": "n. 礼物；现在",
+      "generalMeaning": "n. 礼物；现在"
+    },
+    {
+      "word": "pressurisation",
+      "ipa": "/ˌpreʃərəˈzeɪʃən/",
+      "aviationMeaning": "n. 增压；客舱增压",
+      "generalMeaning": "n. 加压"
+    },
+    {
+      "word": "pressurised",
+      "ipa": "/p'reʃəraɪz/",
+      "aviationMeaning": "vt. 对 ... 施加压力； 对 ... 加压； 使(飞机座舱)增压； 密封； 使 ... 耐压",
+      "generalMeaning": "vt. 对 ... 施加压力； 对 ... 加压； 使(飞机座舱)增压； 密封； 使 ... 耐压"
+    },
+    {
+      "word": "pressurization-system",
+      "ipa": "/ˌpreʃərəˈzeɪʃən ˈsɪstəm/",
+      "aviationMeaning": "n. 航空器增压系统",
+      "generalMeaning": "n. 加压系统"
+    },
+    {
+      "word": "prioritise",
+      "ipa": "/praɪ'ɒrəˌtaɪz/",
+      "aviationMeaning": "v. 优化",
+      "generalMeaning": "v. 优化"
+    },
+    {
+      "word": "proactively",
+      "ipa": "/ˌprəʊ'æktɪv/",
+      "aviationMeaning": "adj. 先发制人的；积极的",
+      "generalMeaning": "adj. 先发制人的；积极的"
+    },
+    {
+      "word": "profit",
+      "ipa": "/'prɒfɪt/",
+      "aviationMeaning": "n. 利润；收益；利益",
+      "generalMeaning": "n. 利润；收益；利益"
+    },
+    {
+      "word": "prohibiting",
+      "ipa": "/prə'hɪbɪt/",
+      "aviationMeaning": "vt. 禁止；妨碍",
+      "generalMeaning": "vt. 禁止；妨碍"
+    },
+    {
+      "word": "projects",
+      "ipa": "/'prɒdʒekt/",
+      "aviationMeaning": "n. 计划；工程；项目；课题；专题研究；住房工程",
+      "generalMeaning": "n. 计划；工程；项目；课题；专题研究；住房工程"
+    },
+    {
+      "word": "propel",
+      "ipa": "/prə'pel/",
+      "aviationMeaning": "v. 推进；驱使",
+      "generalMeaning": "v. 推进；驱使"
+    },
+    {
+      "word": "proud",
+      "ipa": "/praʊd/",
+      "aviationMeaning": "adj. 自豪的；自尊的；自傲的；壮观盛大的",
+      "generalMeaning": "adj. 自豪的；自尊的；自傲的；壮观盛大的"
+    },
+    {
+      "word": "psychological",
+      "ipa": "/ˌsaɪkə'lɒdʒɪkl/",
+      "aviationMeaning": "adj. 心理(学)的",
+      "generalMeaning": "adj. 心理(学)的"
+    },
+  {
+    "word": "pulses",
+    "ipa": "/pʌls/",
+    "aviationMeaning": "n. 雷达脉冲；脉冲信号",
+    "generalMeaning": "n. 脉搏；脉冲；[植]豆类"
+    },
+    {
+      "word": "punctual",
+      "ipa": "/'pʌŋktʃuəl/",
+      "aviationMeaning": "adj. 准时的；严守时刻的；正点的",
+      "generalMeaning": "adj. 准时的；严守时刻的；正点的"
+    },
+    {
+      "word": "radio-altimeter",
+      "ipa": "/ˈreɪdioʊ ælˈtɪmɪtər/",
+      "aviationMeaning": "n. 无线电高度表",
+      "generalMeaning": "n. 无线电测高仪"
+    },
+    {
+      "word": "radio-failure",
+      "ipa": "/ˈreɪdioʊ ˈfeɪljər/",
+      "aviationMeaning": "n. 无线电通信失效",
+      "generalMeaning": "n. 无线电故障"
+    },
+    {
+      "word": "rainwater",
+      "ipa": "/'reɪnwɔːtə(r)/",
+      "aviationMeaning": "n. 雨水",
+      "generalMeaning": "n. 雨水"
+    },
+    {
+      "word": "raised",
+      "ipa": "/reɪzd/",
+      "aviationMeaning": "adj. 凸起的；发酵的；起毛的",
+      "generalMeaning": "adj. 凸起的；发酵的；起毛的"
+    },
+    {
+      "word": "raising",
+      "ipa": "/'reɪzɪŋ/",
+      "aviationMeaning": "adj. 举起的；增加的",
+      "generalMeaning": "adj. 举起的；增加的"
+    },
+    {
+      "word": "rapid-depressurisation",
+      "ipa": "/ˈræpɪd diːˌpreʃərəˈzeɪʃən/",
+      "aviationMeaning": "n. 快速失压",
+      "generalMeaning": "n. 快速减压"
+    },
+    {
+      "word": "re-ignite",
+      "ipa": "/riː ɪɡˈnaɪt/",
+      "aviationMeaning": "v. 重新点火",
+      "generalMeaning": "v. 重新点燃"
+    },
+    {
+      "word": "re-ignition",
+      "ipa": "/riː ɪɡˈnɪʃən/",
+      "aviationMeaning": "n. 重新点火",
+      "generalMeaning": "n. 再次点燃"
+    },
+    {
+      "word": "re-treatment",
+      "ipa": "/'reɪtr'iːtmənt/",
+      "aviationMeaning": "n. 再精制",
+      "generalMeaning": "n. 再精制"
+    },
+    {
+      "word": "reactions",
+      "ipa": "/ri'ækʃənz/",
+      "aviationMeaning": "n. 反应（reaction的复数）",
+      "generalMeaning": "n. 反应（reaction的复数）"
+    },
+  {
+    "word": "reads",
+    "ipa": "/riːd/",
+    "aviationMeaning": "v. 读出仪表；宣读并执行检查单",
+    "generalMeaning": "v. 识字；阅读；朗读；理解；读到；猜测；读唇语；写着；读起来（给人以某种印象）；显示；看读数；听到；将...改为；攻读；（计算机）读盘"
+    },
+    {
+      "word": "reassessed",
+      "ipa": "/ˌriːə'ses/",
+      "aviationMeaning": "v. 再评价；再摊派；再课税",
+      "generalMeaning": "v. 再评价；再摊派；再课税"
+    },
+    {
+      "word": "reassign",
+      "ipa": "/ˌriːə'saɪn/",
+      "aviationMeaning": "vt. 再交付；交还；再分配",
+      "generalMeaning": "vt. 再交付；交还；再分配"
+    },
+    {
+      "word": "reassigned",
+      "ipa": "/ˌriːə'saɪn/",
+      "aviationMeaning": "vt. 再交付；交还；再分配",
+      "generalMeaning": "vt. 再交付；交还；再分配"
+    },
+    {
+      "word": "recalculates",
+      "ipa": "/'riː'kælkjʊleɪt/",
+      "aviationMeaning": "vt. 再计算；再核算；再估计；换算",
+      "generalMeaning": "vt. 再计算；再核算；再估计；换算"
+    },
+    {
+      "word": "recipes",
+      "ipa": "/'rɪsɪp/",
+      "aviationMeaning": "abbr. 互相起作用(=reciprocity)",
+      "generalMeaning": "abbr. 互相起作用(=reciprocity)"
+    },
+    {
+      "word": "recognise",
+      "ipa": "/'rekəgnaɪz/",
+      "aviationMeaning": "v. 承认；识别，认出；认可",
+      "generalMeaning": "v. 承认；识别，认出；认可"
+    },
+    {
+      "word": "recovering",
+      "ipa": "/rɪ'kʌvərɪŋ/",
+      "aviationMeaning": "n. 恢复；复原",
+      "generalMeaning": "n. 恢复；复原"
+    },
+    {
+      "word": "red-and-white",
+      "ipa": "/red ænd waɪt/",
+      "aviationMeaning": "adj. 红白相间的",
+      "generalMeaning": "adj. 红色和白色的"
+    },
+    {
+      "word": "redistribute",
+      "ipa": "/ˌriːdɪ'strɪbjuːt/",
+      "aviationMeaning": "v. 重新分配；再区分",
+      "generalMeaning": "v. 重新分配；再区分"
+    },
+    {
+      "word": "refresh",
+      "ipa": "/rɪ'freʃ/",
+      "aviationMeaning": "v. （使）恢复精神；提神；提醒",
+      "generalMeaning": "v. （使）恢复精神；提神；提醒"
+    },
+    {
+      "word": "refreshments",
+      "ipa": "/rɪf'reʃmənts/",
+      "aviationMeaning": "n. 茶点；饮料；点心",
+      "generalMeaning": "n. 茶点；饮料；点心"
+    },
+    {
+      "word": "reinforces",
+      "ipa": "/ˌriːɪn'fɔːs/",
+      "aviationMeaning": "vt. 加固；加强；增强；使更具说服力",
+      "generalMeaning": "vt. 加固；加强；增强；使更具说服力"
+    },
+    {
+      "word": "relaxed",
+      "ipa": "/rɪ'lækst/",
+      "aviationMeaning": "adj. 放松的；松懈的；随意的",
+      "generalMeaning": "adj. 放松的；松懈的；随意的"
+    },
+    {
+      "word": "remind",
+      "ipa": "/rɪ'maɪnd/",
+      "aviationMeaning": "vt. 使想起；提醒",
+      "generalMeaning": "vt. 使想起；提醒"
+    },
+    {
+      "word": "representatives",
+      "ipa": "/reprɪ'zentətɪvz/",
+      "aviationMeaning": "n. 众议院议员；代表",
+      "generalMeaning": "n. 众议院议员；代表"
+    },
+    {
+      "word": "reputable",
+      "ipa": "/'repjətəbl/",
+      "aviationMeaning": "adj. 声誉好的；规范的；可尊敬或信赖的",
+      "generalMeaning": "adj. 声誉好的；规范的；可尊敬或信赖的"
+    },
+    {
+      "word": "reschedule",
+      "ipa": "/ˌriː'ʃedjuːl/",
+      "aviationMeaning": "v. 重新排定",
+      "generalMeaning": "v. 重新排定"
+    },
+    {
+      "word": "rescuers",
+      "ipa": "/'reskjuːə(r)/",
+      "aviationMeaning": "n. 救援者",
+      "generalMeaning": "n. 救援者"
+    },
+    {
+      "word": "resetting",
+      "ipa": "/ˌriːˈsetɪŋ/",
+      "aviationMeaning": "v. 复位；重新设置",
+      "generalMeaning": "v. 重新设置"
+    },
+    {
+      "word": "resignation",
+      "ipa": "/ˌrezɪɡ'neɪʃn/",
+      "aviationMeaning": "n. 辞职；辞呈；顺从",
+      "generalMeaning": "n. 辞职；辞呈；顺从"
+    },
+    {
+      "word": "respiratory",
+      "ipa": "/rə'spɪrətri/",
+      "aviationMeaning": "adj. 呼吸的；与呼吸有关的",
+      "generalMeaning": "adj. 呼吸的；与呼吸有关的"
+    },
+    {
+      "word": "restrain",
+      "ipa": "/rɪ'streɪn/",
+      "aviationMeaning": "vt. 抑制；阻止；束缚；剥夺",
+      "generalMeaning": "vt. 抑制；阻止；束缚；剥夺"
+    },
+    {
+      "word": "revealing",
+      "ipa": "/rɪ'viːlɪŋ/",
+      "aviationMeaning": "adj. 有启迪作用的；透露内情的；袒露身体的",
+      "generalMeaning": "adj. 有启迪作用的；透露内情的；袒露身体的"
+    },
+    {
+      "word": "rhythms",
+      "ipa": "/'rɪðəm/",
+      "aviationMeaning": "n. 节奏；节律；（事件或过程）有规律的反复出现",
+      "generalMeaning": "n. 节奏；节律；（事件或过程）有规律的反复出现"
+    },
+    {
+      "word": "romances",
+      "ipa": "/rəʊ'mæns/",
+      "aviationMeaning": "n. 浪漫史；爱情故事；冒险故事；传奇文学；虚构",
+      "generalMeaning": "n. 浪漫史；爱情故事；冒险故事；传奇文学；虚构"
+    },
+    {
+      "word": "ropes",
+      "ipa": "/rəʊps/",
+      "aviationMeaning": "n. 栏绳",
+      "generalMeaning": "n. 栏绳"
+    },
+    {
+      "word": "rostering",
+      "ipa": "/ˈrɑːstər/",
+      "aviationMeaning": "n. 机组排班",
+      "generalMeaning": "n. 排班"
+    },
+    {
+      "word": "rote",
+      "ipa": "/rəʊt/",
+      "aviationMeaning": "n. 死记硬背；机械的做法",
+      "generalMeaning": "n. 死记硬背；机械的做法"
+    },
+    {
+      "word": "routines",
+      "ipa": "/ruː'tiːnz/",
+      "aviationMeaning": "n. 常规性工作；例行公事；日常事务",
+      "generalMeaning": "n. 常规性工作；例行公事；日常事务"
+    },
+    {
+      "word": "rubbish",
+      "ipa": "/'rʌbɪʃ/",
+      "aviationMeaning": "n. 垃圾；废物；废话；碎屑",
+      "generalMeaning": "n. 垃圾；废物；废话；碎屑"
+    },
+    {
+      "word": "salvage",
+      "ipa": "/'sælvɪdʒ/",
+      "aviationMeaning": "vt. 救助；打捞；抢救",
+      "generalMeaning": "vt. 救助；打捞；抢救"
+    },
+    {
+      "word": "saving",
+      "ipa": "/'seɪvɪŋ/",
+      "aviationMeaning": "n. 节约； 挽救",
+      "generalMeaning": "n. 节约； 挽救"
+    },
+    {
+      "word": "schiphol",
+      "ipa": "/ˈskɪpɒl/",
+      "aviationMeaning": "proper. 史基浦机场",
+      "generalMeaning": "proper. 史基浦"
+    },
+    {
+      "word": "school's",
+      "ipa": "/skuːl/",
+      "aviationMeaning": "n. 学校；学派；院系；鱼群",
+      "generalMeaning": "n. 学校；学派；院系；鱼群"
+    },
+    {
+      "word": "science-based",
+      "ipa": "/ˈsaɪəns beɪst/",
+      "aviationMeaning": "adj. 基于科学证据的",
+      "generalMeaning": "adj. 基于科学的"
+    },
+    {
+      "word": "screened",
+      "ipa": "/'skriːnd/",
+      "aviationMeaning": "adj. 遮蔽的；筛过的；上映的",
+      "generalMeaning": "adj. 遮蔽的；筛过的；上映的"
+    },
+    {
+      "word": "secure-door",
+      "ipa": "/sɪˈkjʊr dɔːr/",
+      "aviationMeaning": "n. 安全锁闭的舱门",
+      "generalMeaning": "n. 安全门"
+    },
+    {
+      "word": "securely",
+      "ipa": "/sɪ'kjʊəlɪ/",
+      "aviationMeaning": "adv. 安全地；牢固地；确实地",
+      "generalMeaning": "adv. 安全地；牢固地；确实地"
+    },
+    {
+      "word": "segments",
+      "ipa": "/seɡ'mənts/",
+      "aviationMeaning": "n. 段",
+      "generalMeaning": "n. 段"
+    },
+    {
+      "word": "self-awareness",
+      "ipa": "/ˌself əˈwernəs/",
+      "aviationMeaning": "n. 情景中的自我认知",
+      "generalMeaning": "n. 自我意识"
+    },
+    {
+      "word": "self-contained",
+      "ipa": "/self kən'teɪnd/",
+      "aviationMeaning": "adj. 自足的；完备的；沉默寡言的",
+      "generalMeaning": "adj. 自足的；完备的；沉默寡言的"
+    },
+    {
+      "word": "sentences",
+      "ipa": "/'sentəns/",
+      "aviationMeaning": "n. 句子；判决",
+      "generalMeaning": "n. 句子；判决"
+    },
+    {
+      "word": "separator",
+      "ipa": "/'sepəreɪtə(r)/",
+      "aviationMeaning": "n. 分隔符；分离器",
+      "generalMeaning": "n. 分隔符；分离器"
+    },
+    {
+      "word": "severe-damage",
+      "ipa": "/səˈvɪr ˈdæmɪdʒ/",
+      "aviationMeaning": "n. 严重损伤",
+      "generalMeaning": "n. 严重损坏"
+    },
+    {
+      "word": "shadow",
+      "ipa": "/'ʃædəʊ/",
+      "aviationMeaning": "n. 影子；阴影；阴暗；荫；暗处",
+      "generalMeaning": "n. 影子；阴影；阴暗；荫；暗处"
+    },
+    {
+      "word": "shadowing",
+      "ipa": "/'ʃædəʊɪŋ/",
+      "aviationMeaning": "n. 遮蔽；跟随；加阴影",
+      "generalMeaning": "n. 遮蔽；跟随；加阴影"
+    },
+    {
+      "word": "ship",
+      "ipa": "/ʃɪp/",
+      "aviationMeaning": "n. 船；舰",
+      "generalMeaning": "n. 船；舰"
+    },
+    {
+      "word": "short-circuited",
+      "ipa": "/ʃɔːrt ˈsɜːrkɪt/",
+      "aviationMeaning": "adj. 发生短路的",
+      "generalMeaning": "adj. 短路的"
+    },
+    {
+      "word": "short-lived",
+      "ipa": "/ʃɔːrt lɪvd/",
+      "aviationMeaning": "adj. 持续时间短的",
+      "generalMeaning": "adj. 短暂的"
+    },
+    {
+      "word": "shortens",
+      "ipa": "/'ʃɔːtn/",
+      "aviationMeaning": "v. 弄短；变短",
+      "generalMeaning": "v. 弄短；变短"
+    },
+    {
+      "word": "side-stick",
+      "ipa": "/saɪd stɪk/",
+      "aviationMeaning": "n. 侧杆操纵器",
+      "generalMeaning": "n. 侧置操纵杆"
+    },
+    {
+      "word": "side-sticks",
+      "ipa": "/saɪd stɪks/",
+      "aviationMeaning": "n. 侧杆操纵器（复数）",
+      "generalMeaning": "n. 侧置操纵杆（复数）"
+    },
+  {
+    "word": "sideslip",
+    "ipa": "/'saɪdslɪp/",
+    "aviationMeaning": "v. 侧滑；使用侧滑法修正侧风",
+    "generalMeaning": "v. 侧滑；横滑下"
+    },
+    {
+      "word": "signalling",
+      "ipa": "/'sɪgnəlɪŋ/",
+      "aviationMeaning": "n. 发信号；信号设备",
+      "generalMeaning": "n. 发信号；信号设备"
+    },
+    {
+      "word": "signatures",
+      "ipa": "/'sɪgnətʃə/",
+      "aviationMeaning": "n. 签名；署名",
+      "generalMeaning": "n. 签名；署名"
+    },
+    {
+      "word": "simulators",
+      "ipa": "/'sɪmjuleɪtə(r)/",
+      "aviationMeaning": "n. 模拟器",
+      "generalMeaning": "n. 模拟器"
+    },
+    {
+      "word": "sinking",
+      "ipa": "/'sɪŋkɪŋ/",
+      "aviationMeaning": "adj. 下沉的",
+      "generalMeaning": "adj. 下沉的"
+    },
+    {
+      "word": "sinuses",
+      "ipa": "/'sɪnɜːses/",
+      "aviationMeaning": "n. 鼻窦；鼻窦炎",
+      "generalMeaning": "n. 鼻窦；鼻窦炎"
+    },
+    {
+      "word": "sites",
+      "ipa": "/saɪt/",
+      "aviationMeaning": "n. 地点；位置；现场",
+      "generalMeaning": "n. 地点；位置；现场"
+    },
+    {
+      "word": "sleeping",
+      "ipa": "/'sliːpɪŋ/",
+      "aviationMeaning": "adj. 睡着的",
+      "generalMeaning": "adj. 睡着的"
+    },
+    {
+      "word": "sleeps",
+      "ipa": "/sliːp/",
+      "aviationMeaning": "v. 睡觉",
+      "generalMeaning": "v. 睡觉"
+    },
+    {
+      "word": "slipping",
+      "ipa": "/'slɪpɪŋ/",
+      "aviationMeaning": "n. 滑动",
+      "generalMeaning": "n. 滑动"
+    },
+    {
+      "word": "snowtams",
+      "ipa": "/ˈsnoʊtæmz/",
+      "aviationMeaning": "abbr. 多份雪情通告（SNOWTAM）",
+      "generalMeaning": "abbr. SNOWTAM 通告的复数"
+    },
+    {
+      "word": "snowy",
+      "ipa": "/'snəʊi/",
+      "aviationMeaning": "adj. 多雪的；被雪所覆盖著的；下雪的",
+      "generalMeaning": "adj. 多雪的；被雪所覆盖著的；下雪的"
+    },
+    {
+      "word": "soothing",
+      "ipa": "/suːðɪŋ/",
+      "aviationMeaning": "adj. 安慰的；慰藉的；镇静的",
+      "generalMeaning": "adj. 安慰的；慰藉的；镇静的"
+    },
+    {
+      "word": "southerly",
+      "ipa": "/'sʌðəli/",
+      "aviationMeaning": "adj. 向南的；来自南方的",
+      "generalMeaning": "adj. 向南的；来自南方的"
+    },
+    {
+      "word": "spoken-english",
+      "ipa": "/ˈspoʊkən ˈɪŋɡlɪʃ/",
+      "aviationMeaning": "n. 英语口语",
+      "generalMeaning": "n. 口语英语"
+    },
+    {
+      "word": "stabilised",
+      "ipa": "/ˌsteɪbɪlaɪzd/",
+      "aviationMeaning": "adj. 稳定的；稳固的",
+      "generalMeaning": "adj. 稳定的；稳固的"
+    },
+    {
+      "word": "stabilised-approach",
+      "ipa": "/ˌsteɪbɪlaɪzd əˈproʊtʃ/",
+      "aviationMeaning": "n. 稳定进近",
+      "generalMeaning": "n. 稳定的进近"
+    },
+    {
+      "word": "staircase",
+      "ipa": "/'steəkeɪs/",
+      "aviationMeaning": "n. 楼梯",
+      "generalMeaning": "n. 楼梯"
+    },
+    {
+      "word": "stall-warning",
+      "ipa": "/stɔːl ˈwɔrnɪŋ/",
+      "aviationMeaning": "n. 失速警告",
+      "generalMeaning": "n. 失速警报"
+    },
+    {
+      "word": "standardize",
+      "ipa": "/'stændədaɪz/",
+      "aviationMeaning": "vt. 使标准化；使合规格",
+      "generalMeaning": "vt. 使标准化；使合规格"
+    },
+    {
+      "word": "star-like",
+      "ipa": "/stɑːr laɪk/",
+      "aviationMeaning": "adj. 星形的",
+      "generalMeaning": "adj. 类似星星的"
+    },
+    {
+      "word": "steadier",
+      "ipa": "/'stedɪə/",
+      "aviationMeaning": "n. 支架；支座；底座",
+      "generalMeaning": "n. 支架；支座；底座"
+    },
+    {
+      "word": "steadily",
+      "ipa": "/'stedɪlɪ/",
+      "aviationMeaning": "adv. 稳定地；稳固地；逐步地",
+      "generalMeaning": "adv. 稳定地；稳固地；逐步地"
+    },
+    {
+      "word": "stop-or-go",
+      "ipa": "/stɑːp ɔːr ɡoʊ/",
+      "aviationMeaning": "adj. 中止或继续决策的",
+      "generalMeaning": "adj. 停或继续的"
+    },
+    {
+      "word": "street",
+      "ipa": "/striːt/",
+      "aviationMeaning": "n. 街道；马路",
+      "generalMeaning": "n. 街道；马路"
+    },
+    {
+      "word": "strengthened",
+      "ipa": "/'streŋθn/",
+      "aviationMeaning": "v. 加强；变坚固",
+      "generalMeaning": "v. 加强；变坚固"
+    },
+  {
+    "word": "strobe",
+    "ipa": "/strəʊb/",
+    "aviationMeaning": "n. 航空器防撞频闪灯",
+    "generalMeaning": "n. 频闪闪光灯；频闪观测器；频闪放电管"
+    },
+    {
+      "word": "structures",
+      "ipa": "/st'rʌktʃəz/",
+      "aviationMeaning": "n. 结构",
+      "generalMeaning": "n. 结构"
+    },
+    {
+      "word": "students",
+      "ipa": "/'stjuːdnt/",
+      "aviationMeaning": "n. 学生；学者",
+      "generalMeaning": "n. 学生；学者"
+    },
+    {
+      "word": "suburban",
+      "ipa": "/sə'bɜːbən/",
+      "aviationMeaning": "adj. 市郊的；郊区的",
+      "generalMeaning": "adj. 市郊的；郊区的"
+    },
+    {
+      "word": "subway",
+      "ipa": "/'sʌbweɪ/",
+      "aviationMeaning": "n. 地铁；地下通道",
+      "generalMeaning": "n. 地铁；地下通道"
+    },
+    {
+      "word": "suining",
+      "ipa": "/ˌsweɪˈnɪŋ/",
+      "aviationMeaning": "proper. 遂宁",
+      "generalMeaning": "proper. 遂宁"
+    },
+    {
+      "word": "sulfur-oxide",
+      "ipa": "/ˈsʌlfər ˈɒksaɪd/",
+      "aviationMeaning": "n. 硫氧化物",
+      "generalMeaning": "n. 硫的氧化物"
+    },
+    {
+      "word": "sully",
+      "ipa": "/'sʌli/",
+      "aviationMeaning": "v. 玷污；弄脏",
+      "generalMeaning": "v. 玷污；弄脏"
+    },
+    {
+      "word": "sully's",
+      "ipa": "/'sʌli/",
+      "aviationMeaning": "v. 玷污；弄脏",
+      "generalMeaning": "v. 玷污；弄脏"
+    },
+    {
+      "word": "suppress",
+      "ipa": "/sə'pres/",
+      "aviationMeaning": "vt. 镇压；隐瞒；压制；止住；禁止",
+      "generalMeaning": "vt. 镇压；隐瞒；压制；止住；禁止"
+    },
+    {
+      "word": "swim",
+      "ipa": "/swɪm/",
+      "aviationMeaning": "v. 游泳",
+      "generalMeaning": "v. 游泳"
+    },
+    {
+      "word": "swollen",
+      "ipa": "/'swəʊlən/",
+      "aviationMeaning": "adj. 肿大的；水涨的",
+      "generalMeaning": "adj. 肿大的；水涨的"
+    },
+    {
+      "word": "symbols",
+      "ipa": "/'sɪmbəls/",
+      "aviationMeaning": "n. 标志；符号",
+      "generalMeaning": "n. 标志；符号"
+    },
+    {
+      "word": "takeovers",
+      "ipa": "/'teɪkəʊvə(r)/",
+      "aviationMeaning": "n. 收购；接管",
+      "generalMeaning": "n. 收购；接管"
+    },
+    {
+      "word": "taobao",
+      "ipa": "/'tɑʊˌbɑʊ/",
+      "aviationMeaning": "n. 淘宝网",
+      "generalMeaning": "n. 淘宝网"
+    },
+    {
+      "word": "teachers",
+      "ipa": "/'tɪtʃɚs/",
+      "aviationMeaning": "n. 教师(总称)",
+      "generalMeaning": "n. 教师(总称)"
+    },
+    {
+      "word": "tension",
+      "ipa": "/'tenʃn/",
+      "aviationMeaning": "n. 紧张；拉力；张力；紧张状态；[电]电压",
+      "generalMeaning": "n. 紧张；拉力；张力；紧张状态；[电]电压"
+    },
+    {
+      "word": "terrain-collision",
+      "ipa": "/təˈreɪn kəˈlɪʒən/",
+      "aviationMeaning": "n. 与地形相撞",
+      "generalMeaning": "n. 地形碰撞"
+    },
+    {
+      "word": "textiles",
+      "ipa": "/'tekstaɪlz/",
+      "aviationMeaning": "n. 纺织品",
+      "generalMeaning": "n. 纺织品"
+    },
+    {
+      "word": "theory",
+      "ipa": "/'θɪəri/",
+      "aviationMeaning": "n. 学说；理论；原理；意见",
+      "generalMeaning": "n. 学说；理论；原理；意见"
+    },
+    {
+      "word": "three-engine",
+      "ipa": "/θri ˈendʒɪn/",
+      "aviationMeaning": "adj. 三发的",
+      "generalMeaning": "adj. 三台发动机的"
+    },
+    {
+      "word": "thrust-reverser",
+      "ipa": "/θrʌst rɪˈvɜːrsər/",
+      "aviationMeaning": "n. 反推装置",
+      "generalMeaning": "n. 推力反向器"
+    },
+    {
+      "word": "time-consuming",
+      "ipa": "/taɪm kən'sjuːmɪŋ/",
+      "aviationMeaning": "adj. 耗费时间的",
+      "generalMeaning": "adj. 耗费时间的"
+    },
+    {
+      "word": "time-related",
+      "ipa": "/taɪm rɪˈleɪtɪd/",
+      "aviationMeaning": "adj. 与时间有关的",
+      "generalMeaning": "adj. 时间相关的"
+    },
+    {
+      "word": "tofu",
+      "ipa": "/'təʊfuː/",
+      "aviationMeaning": "n. 豆腐",
+      "generalMeaning": "n. 豆腐"
+    },
+  {
+    "word": "toga",
+    "ipa": "/'təʊɡə/",
+    "aviationMeaning": "abbr. 起飞/复飞推力（Takeoff/Go-around）",
+    "generalMeaning": "n. 托加袍(古罗马男子穿的宽松罩袍)；官服"
+    },
+    {
+      "word": "tool-control",
+      "ipa": "/tul kənˈtroʊl/",
+      "aviationMeaning": "n. 维修工具管控",
+      "generalMeaning": "n. 工具控制"
+    },
+    {
+      "word": "toxic-gas",
+      "ipa": "/ˈtɑksɪk ɡæs/",
+      "aviationMeaning": "n. 有毒气体",
+      "generalMeaning": "n. 毒性气体"
+    },
+    {
+      "word": "traffic-circuit",
+      "ipa": "/ˈtræfɪk ˈsɜːrkɪt/",
+      "aviationMeaning": "n. 机场起落航线",
+      "generalMeaning": "n. 交通环线"
+    },
+    {
+      "word": "transitioned",
+      "ipa": "/træn'zɪʃnd/",
+      "aviationMeaning": "v. 转变",
+      "generalMeaning": "v. 转变"
+    },
+    {
+      "word": "travelled",
+      "ipa": "/'trævld/",
+      "aviationMeaning": "adj. 有旅行经验的；旅客多的",
+      "generalMeaning": "adj. 有旅行经验的；旅客多的"
+    },
+    {
+      "word": "type-certification",
+      "ipa": "/taɪp ˌsɜːrtɪfɪˈkeɪʃən/",
+      "aviationMeaning": "n. 型号合格审定",
+      "generalMeaning": "n. 类型认证"
+    },
+    {
+      "word": "tyre-to-pavement",
+      "ipa": "/taɪr tu ˈpeɪvmənt/",
+      "aviationMeaning": "adj. 轮胎与道面之间的",
+      "generalMeaning": "adj. 轮胎到路面的"
+    },
+    {
+      "word": "tyre-to-runway",
+      "ipa": "/taɪr tu ˈrʌnweɪ/",
+      "aviationMeaning": "adj. 轮胎与跑道之间的",
+      "generalMeaning": "adj. 轮胎到跑道的"
+    },
+    {
+      "word": "unauthorised",
+      "ipa": "/ʌn'ɔːθəraɪzd/",
+      "aviationMeaning": "adj. 未经授权的；未经批准的",
+      "generalMeaning": "adj. 未经授权的；未经批准的"
+    },
+    {
+      "word": "unclearly",
+      "ipa": "/ʌnk'liəlɪ/",
+      "aviationMeaning": "adv. 不清楚地",
+      "generalMeaning": "adv. 不清楚地"
+    },
+    {
+      "word": "unconsciousness",
+      "ipa": "/ʌn'kɒnʃəsnəs/",
+      "aviationMeaning": "n. 无意识；意识不清；失去知觉",
+      "generalMeaning": "n. 无意识；意识不清；失去知觉"
+    },
+    {
+      "word": "uncoordinated",
+      "ipa": "/ˌʌnkəʊ'ɔːdɪneɪtɪd/",
+      "aviationMeaning": "adj. 协调能力差的；不协调的；不同等的",
+      "generalMeaning": "adj. 协调能力差的；不协调的；不同等的"
+    },
+    {
+      "word": "undergoing",
+      "ipa": "/ˌʌndə'ɡəʊ/",
+      "aviationMeaning": "vt. 经历；经受；遭受",
+      "generalMeaning": "vt. 经历；经受；遭受"
+    },
+    {
+      "word": "undisciplined",
+      "ipa": "/ˌʌn'dɪsəplɪnd/",
+      "aviationMeaning": "adj. 不遵守纪律的；难控制的；未受过训练的；无修养的",
+      "generalMeaning": "adj. 不遵守纪律的；难控制的；未受过训练的；无修养的"
+    },
+    {
+      "word": "unfairly",
+      "ipa": "/ʌnˈferli/",
+      "aviationMeaning": "adv. 以不公正方式",
+      "generalMeaning": "adv. 不公平地"
+    },
+    {
+      "word": "unfamiliarity",
+      "ipa": "/ˌʌnfəˌmɪli'ærəti/",
+      "aviationMeaning": "n. 陌生；不熟悉",
+      "generalMeaning": "n. 陌生；不熟悉"
+    },
+    {
+      "word": "unintelligible",
+      "ipa": "/ˌʌnɪn'telɪdʒəbl/",
+      "aviationMeaning": "adj. 难以理解的",
+      "generalMeaning": "adj. 难以理解的"
+    },
+  {
+    "word": "vacuum",
+    "ipa": "/'vækjuəm/",
+    "aviationMeaning": "n. 驱动陀螺仪表的真空；真空系统",
+    "generalMeaning": "n. 真空；真空吸尘器；空白"
+    },
+    {
+      "word": "vapors",
+      "ipa": "/'veɪpə/",
+      "aviationMeaning": "n. 蒸汽；水蒸汽",
+      "generalMeaning": "n. 蒸汽；水蒸汽"
+    },
+    {
+      "word": "veer-off",
+      "ipa": "/vɪr ɔːf/",
+      "aviationMeaning": "v. 偏出跑道或滑行道",
+      "generalMeaning": "v. 突然转向离开"
+    },
+    {
+      "word": "verbally",
+      "ipa": "/'vɜːbəli/",
+      "aviationMeaning": "adv. 口头地；词句地；逐字地",
+      "generalMeaning": "adv. 口头地；词句地；逐字地"
+    },
+    {
+      "word": "versions",
+      "ipa": "/'vɜːʃəns/",
+      "aviationMeaning": "n. 版本",
+      "generalMeaning": "n. 版本"
+    },
+    {
+      "word": "violations",
+      "ipa": "/vaɪə'leɪʃnz/",
+      "aviationMeaning": "n. 侵害，违反（名词violation的复数形式）",
+      "generalMeaning": "n. 侵害，违反（名词violation的复数形式）"
+    },
+    {
+      "word": "volunteers",
+      "ipa": "/ˌvɒlən'tɪə(r)/",
+      "aviationMeaning": "n. 志愿者；(自行生长的)植物",
+      "generalMeaning": "n. 志愿者；(自行生长的)植物"
+    },
+    {
+      "word": "watches",
+      "ipa": "/wɒtʃ/",
+      "aviationMeaning": "v. 注视；看守；观看",
+      "generalMeaning": "v. 注视；看守；观看"
+    },
+    {
+      "word": "water-survival",
+      "ipa": "/ˈwɔtər sərˈvaɪvəl/",
+      "aviationMeaning": "n. 水上迫降生存",
+      "generalMeaning": "n. 水中求生"
+    },
+    {
+      "word": "weather-avoidance",
+      "ipa": "/ˈweðər əˈvɔɪdəns/",
+      "aviationMeaning": "n. 危险天气绕飞",
+      "generalMeaning": "n. 天气规避"
+    },
+    {
+      "word": "weather-detection",
+      "ipa": "/ˈweðər dɪˈtekʃən/",
+      "aviationMeaning": "n. 天气探测",
+      "generalMeaning": "n. 气象检测"
+    },
+    {
+      "word": "weather-radar",
+      "ipa": "/ˈweðər ˈreɪdɑːr/",
+      "aviationMeaning": "n. 机载气象雷达",
+      "generalMeaning": "n. 天气雷达"
+    },
+    {
+      "word": "weekday",
+      "ipa": "/'wiːkdeɪ/",
+      "aviationMeaning": "n. 工作日",
+      "generalMeaning": "n. 工作日"
+    },
+    {
+      "word": "weekends",
+      "ipa": "/'wiːkendz/",
+      "aviationMeaning": "adv. 每周未地",
+      "generalMeaning": "adv. 每周未地"
+    },
+    {
+      "word": "weight-and-balance",
+      "ipa": "/weɪt ænd ˈbæləns/",
+      "aviationMeaning": "n. 载重与平衡",
+      "generalMeaning": "n. 重量和平衡"
+    },
+    {
+      "word": "weights",
+      "ipa": "/weɪts/",
+      "aviationMeaning": "n. 砝码",
+      "generalMeaning": "n. 砝码"
+    },
+    {
+      "word": "wetlands",
+      "ipa": "/'wetlændz/",
+      "aviationMeaning": "n. 湿地；沼泽地",
+      "generalMeaning": "n. 湿地；沼泽地"
+    },
+    {
+      "word": "winter-weather",
+      "ipa": "/ˈwɪntər ˈweðər/",
+      "aviationMeaning": "n. 冬季运行天气",
+      "generalMeaning": "n. 冬季天气"
+    },
+    {
+      "word": "wisdom",
+      "ipa": "/'wɪzdəm/",
+      "aviationMeaning": "n. 智慧；明智；才智；聪明；至理名言",
+      "generalMeaning": "n. 智慧；明智；才智；聪明；至理名言"
+    },
+    {
+      "word": "women",
+      "ipa": "/'wɪmɪn/",
+      "aviationMeaning": "n. 女人们；妇女",
+      "generalMeaning": "n. 女人们；妇女"
+    },
+    {
+      "word": "wood",
+      "ipa": "/wʊd/",
+      "aviationMeaning": "n. 木材；木头；树林",
+      "generalMeaning": "n. 木材；木头；树林"
+    },
+    {
+      "word": "workloads",
+      "ipa": "/'wɜːkləʊd/",
+      "aviationMeaning": "n. 工作量",
+      "generalMeaning": "n. 工作量"
+    },
+    {
+      "word": "yichang",
+      "ipa": "/ˌjiːˈtʃɑːŋ/",
+      "aviationMeaning": "proper. 宜昌",
+      "generalMeaning": "proper. 宜昌"
+    },
+    {
+      "word": "zhanghe",
+      "ipa": "/ˌdʒɑːŋˈhɜː/",
+      "aviationMeaning": "proper. 漳河",
+      "generalMeaning": "proper. 漳河"
+    }
+  ]
+}

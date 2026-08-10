@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router';
-import { ArrowLeft, ChevronRight } from 'lucide-react-native';
+import { ArrowLeft, ChevronRight } from '@/components/ui/icons';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 import type { PropsWithChildren } from 'react';
 

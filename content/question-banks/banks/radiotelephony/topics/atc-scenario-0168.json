@@ -18,7 +18,7 @@
       "taskTitle": "UAL 831-2",
       "audioText": "UAL 831, taxi to holding point Runway 04via taxiway F, A7 and A.",
       "audioTextZh": "UAL 831，经 F、A7 和 A 滑行道滑行至 Runway 04 等待点。",
-      "referenceText": "taxi to holding point Runway 04via taxiway F, A seven and A, UAL 83 one1.",
+      "referenceText": "taxi to holding point Runway 04 via taxiway F, A seven and A, UAL 831.",
       "referenceTextZh": "经 F、A7 和 A 滑行道滑行至 Runway 04 等待点，UAL 831。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-068-ual831-q02.mp3"
     },
@@ -144,8 +144,8 @@
       "taskTitle": "UAL 831-16",
       "audioText": "C: UAL 831, turn left heading 210, descend to 3,300 meters.\nB: read back ATC instructions and request the nearest suitable airport for landing.",
       "audioTextZh": "C： UAL 831，左转航向 210，下降至 3,300 米。\nB： 复诵空中交通管制指令，并请求最近的合适机场落地。",
-      "referenceText": "turn left heading 210, descend to 3300 meters, request the nearest suitable airport for landing, UAL 831.\nor\nturn left heading 210, descend to 3,300 meters, request the nearest suitable airport for landing, UAL 831.",
-      "referenceTextZh": "左转航向 210，下降至 3,300 米，请求最近的合适机场落地，UAL 831。\n或\n左转航向 210，下降至 3,300 米，请求最近的合适机场落地，UAL 831。",
+      "referenceText": "turn left heading 210, descend to 3,300 meters, request the nearest suitable airport for landing, UAL 831.",
+      "referenceTextZh": "左转航向 210，下降至 3,300 米，请求最近的合适机场落地，UAL 831。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-068-ual831-q16.mp3"
     },
     {

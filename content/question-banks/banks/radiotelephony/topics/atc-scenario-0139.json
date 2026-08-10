@@ -9,7 +9,7 @@
       "taskTitle": "CES 529-1",
       "audioText": "B: Your call sign is CES 529, you are maintaining 8400 meters, make an initial contact with Shanghai Control.",
       "audioTextZh": "B：你的呼号是 CES 529，保持 8400 米，与上海管制首次联系。",
-      "referenceText": "Shanghai Control, CES 529, maintaining 8400 meters,.",
+      "referenceText": "Shanghai Control, CES 529, maintaining 8,400 meters.",
       "referenceTextZh": "上海管制，CES 529，保持 8400 米。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-037-ces529-q01.mp3"
     },
@@ -18,8 +18,8 @@
       "taskTitle": "CES 529-2",
       "audioText": "CES 529, Shanghai Control, radar contact, climb to 10,400 meters.",
       "audioTextZh": "CES 529，上海管制，雷达识别，爬升至 10,400 米。",
-      "referenceText": "climb to 10400 meters, CES 529. climb to 1400 meters, CES 529.",
-      "referenceTextZh": "爬升至 10400 米，CES 529。爬升至 1400 米，CES 529。",
+      "referenceText": "climb to 10,400 meters, CES 529.",
+      "referenceTextZh": "爬升至 10,400 米，CES 529。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-037-ces529-q02.mp3"
     },
     {
@@ -27,8 +27,8 @@
       "taskTitle": "CES 529-3",
       "audioText": "now you are cruising at 10,400 meters, your instruments indicate left pack has malfunctioned, contact Shanghai Control and request descend to lower levels.",
       "audioTextZh": "现在你正以 10,400 米巡航，仪表显示左组件故障，联系上海管制并请求下降至较低高度。",
-      "referenceText": "Shanghai Control, CES 529, maintaining 1400 meters, 10400 meters our instruments indicate left pack has malfunctioned, request descent to lower levels.",
-      "referenceTextZh": "上海管制，CES 529，正保持 1400 米，10400 米，我们的仪表显示左组件故障，请求下降至较低高度。",
+      "referenceText": "Shanghai Control, CES 529, maintaining 10,400 meters, our instruments indicate the left pack has malfunctioned, request descent to lower levels.",
+      "referenceTextZh": "上海管制，CES 529，正保持 10,400 米，我们的仪表显示左组件故障，请求下降至较低高度。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-037-ces529-q03.mp3"
     },
     {
@@ -99,8 +99,8 @@
       "taskTitle": "CES 529-11",
       "audioText": "CES 529, roger, ambulance will be ready upon arrival.",
       "audioTextZh": "CES 529，收到，救护车将在到达时就位。",
-      "referenceText": "roger, thanks, CES 529. CES 529",
-      "referenceTextZh": "收到，谢谢，CES 529。CES 529。",
+      "referenceText": "roger, thanks, CES 529.",
+      "referenceTextZh": "收到，谢谢，CES 529。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-037-ces529-q11.mp3"
     },
     {

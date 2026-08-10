@@ -1,105 +1,491 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"antalya","ipa":"/ænˈtɑːljə/","aviationMeaning":"n. 安塔利亚；机场所在城市","generalMeaning":"n. 安塔利亚（土耳其城市）"},
-    {"word":"antenna","ipa":"/ænˈtenə/","aviationMeaning":"n. 天线；通信、导航或监视设备部件","generalMeaning":"n. 天线"},
-    {"word":"antennas","ipa":"/ænˈtenəz/","aviationMeaning":"n. 天线（复数）","generalMeaning":"n. 天线（复数）"},
-    {"word":"anti-ice","ipa":"/ˌænti ˈaɪs/","aviationMeaning":"n. 防冰；防冰系统或操作","generalMeaning":"n. 防冰措施"},
-    {"word":"anti-icing","ipa":"/ˌænti ˈaɪsɪŋ/","aviationMeaning":"n. 防冰处理；防止结冰","generalMeaning":"n. 防冰；防冻"},
-    {"word":"anti-lock","ipa":"/ˌænti ˈlɑːk/","aviationMeaning":"adj. 防抱死的，如防抱死制动","generalMeaning":"adj. 防抱死的"},
-    {"word":"anti-missile","ipa":"/ˌænti ˈmɪsəl/","aviationMeaning":"adj. 反导弹的；与军事航空防护有关","generalMeaning":"adj. 反导弹的"},
-    {"word":"anti-skid","ipa":"/ˌænti ˈskɪd/","aviationMeaning":"n. 防滑刹车系统","generalMeaning":"adj. 防滑的"},
-    {"word":"anti-slip","ipa":"/ˌænti ˈslɪp/","aviationMeaning":"adj. 防滑的，如地面或设备表面","generalMeaning":"adj. 防滑的"},
-    {"word":"anticipate","ipa":"/ænˈtɪsəpeɪt/","aviationMeaning":"v. 预计天气、流量或运行变化","generalMeaning":"v. 预期；预料"},
-    {"word":"anticipated","ipa":"/ænˈtɪsəpeɪtɪd/","aviationMeaning":"adj. 已预期的天气、流量或运行变化","generalMeaning":"adj. 预期的；预计的"},
-    {"word":"anticipating","ipa":"/ænˈtɪsəpeɪtɪŋ/","aviationMeaning":"v. 正在预判天气、流量或运行变化","generalMeaning":"v. 预期；预料"},
-    {"word":"antigua","ipa":"/ænˈtiːɡə/","aviationMeaning":"n. 安提瓜；机场或航路地名","generalMeaning":"n. 安提瓜（地名）"},
-    {"word":"antigua's","ipa":"/ænˈtiːɡəz/","aviationMeaning":"n. 安提瓜的；表示所属关系","generalMeaning":"n. 安提瓜的；表示所属关系"},
-    {"word":"antonio","ipa":"/ænˈtoʊnioʊ/","aviationMeaning":"n. 圣安东尼奥等地名中的组成词","generalMeaning":"n. 安东尼奥（人名）"},
-    {"word":"antonio's","ipa":"/ænˈtoʊnioʊz/","aviationMeaning":"n. 安东尼奥的；表示所属关系","generalMeaning":"n. 安东尼奥的；表示所属关系"},
-    {"word":"anvil","ipa":"/ˈænvɪl/","aviationMeaning":"n. 砧状云顶；强对流云结构","generalMeaning":"n. 铁砧"},
-    {"word":"anxiety","ipa":"/æŋˈzaɪəti/","aviationMeaning":"n. 焦虑；可能影响机组表现的心理状态","generalMeaning":"n. 焦虑；忧虑"},
-    {"word":"anxious","ipa":"/ˈæŋkʃəs/","aviationMeaning":"adj. 焦虑的；担心运行状况的","generalMeaning":"adj. 焦虑的；担心的"},
-    {"word":"any","ipa":"/ˈeni/","aviationMeaning":"det. 任一架、任一项或任何数量的","generalMeaning":"det. 任何的；任一的"},
-    {"word":"anymore","ipa":"/ˌeniˈmɔːr/","aviationMeaning":"adv. 再也；不再处于某运行状态","generalMeaning":"adv. 再也；不再"},
-    {"word":"anyone","ipa":"/ˈeniwʌn/","aviationMeaning":"pron. 任何人员；任何一名飞行员或管制员","generalMeaning":"pron. 任何人"},
-    {"word":"anything","ipa":"/ˈeniθɪŋ/","aviationMeaning":"pron. 任何事项、故障或请求","generalMeaning":"pron. 任何事物"},
-    {"word":"anythirng","ipa":"/ˈeniθɪŋ/","aviationMeaning":"n. 题库原文中 anything 的疑似拼写错误","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"anyway","ipa":"/ˈeniweɪ/","aviationMeaning":"adv. 无论如何；用于继续通话或说明","generalMeaning":"adv. 无论如何；反正"},
-    {"word":"aot","ipa":"/ˌeɪ oʊ ˈtiː/","aviationMeaning":"n. 航空运行相关缩写；需结合原文","generalMeaning":"n. 不明缩写；请结合原文"},
-    {"word":"apart","ipa":"/əˈpɑːrt/","aviationMeaning":"adv. 分开；保持航空器或部件间隔","generalMeaning":"adv. 分开地；相隔"},
-    {"word":"apha","ipa":"/ˈæfə/","aviationMeaning":"n. 题库原文中 alpha 的疑似拼写错误","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"apologies","ipa":"/əˈpɑːlədʒiz/","aviationMeaning":"n. 致歉；用于通话礼貌表达","generalMeaning":"n. 道歉（复数）"},
-    {"word":"apologize","ipa":"/əˈpɑːlədʒaɪz/","aviationMeaning":"v. 为延误、误解或操作致歉","generalMeaning":"v. 道歉"},
-    {"word":"apologized","ipa":"/əˈpɑːlədʒaɪzd/","aviationMeaning":"v. 已为延误、误解或操作致歉","generalMeaning":"v. 已道歉"},
-    {"word":"app","ipa":"/æp/","aviationMeaning":"n. 航空运行、导航或服务应用程序","generalMeaning":"n. 应用程序"},
-    {"word":"apparent","ipa":"/əˈpærənt/","aviationMeaning":"adj. 表观的，如表观风或明显的状态","generalMeaning":"adj. 明显的；表面上的"},
-    {"word":"appear","ipa":"/əˈpɪr/","aviationMeaning":"v. 出现于雷达、显示器或视野中","generalMeaning":"v. 出现；显得"},
-    {"word":"appearance","ipa":"/əˈpɪrəns/","aviationMeaning":"n. 航空器、云层或显示信息的外观","generalMeaning":"n. 外观；出现"},
-    {"word":"appeared","ipa":"/əˈpɪrd/","aviationMeaning":"v. 已出现于雷达、显示器或视野中","generalMeaning":"v. 出现；显得"},
-    {"word":"appearing","ipa":"/əˈpɪrɪŋ/","aviationMeaning":"v. 正在出现于雷达、显示器或视野中","generalMeaning":"v. 出现；显得"},
-    {"word":"appears","ipa":"/əˈpɪrz/","aviationMeaning":"v. 出现于雷达、显示器或视野中","generalMeaning":"v. 出现；显得"},
-    {"word":"appetite","ipa":"/ˈæpətaɪt/","aviationMeaning":"n. 食欲；与机组健康状态有关","generalMeaning":"n. 食欲；胃口"},
-    {"word":"applicability","ipa":"/əˌplɪkəˈbɪləti/","aviationMeaning":"n. 程序、通告或限制的适用性","generalMeaning":"n. 适用性"},
-    {"word":"applicable","ipa":"/ˈæplɪkəbəl/","aviationMeaning":"adj. 适用于该航空器、航班或运行条件的","generalMeaning":"adj. 适用的；可应用的"},
-    {"word":"application","ipa":"/ˌæplɪˈkeɪʃən/","aviationMeaning":"n. 申请；系统应用；程序的应用","generalMeaning":"n. 申请；应用程序；应用"},
-    {"word":"applications","ipa":"/ˌæplɪˈkeɪʃənz/","aviationMeaning":"n. 申请或系统应用（复数）","generalMeaning":"n. 申请；应用程序（复数）"},
-    {"word":"applied","ipa":"/əˈplaɪd/","aviationMeaning":"adj. 已应用于程序、设置或限制的","generalMeaning":"adj. 已应用的；实用的"},
-    {"word":"applies","ipa":"/əˈplaɪz/","aviationMeaning":"v. 适用于该航空器、航班或条件","generalMeaning":"v. 适用；申请"},
-    {"word":"apply","ipa":"/əˈplaɪ/","aviationMeaning":"v. 应用程序、制动或限制；提出申请","generalMeaning":"v. 应用；申请"},
-    {"word":"applying","ipa":"/əˈplaɪɪŋ/","aviationMeaning":"v. 正在应用程序、制动或限制","generalMeaning":"v. 应用；申请"},
-    {"word":"approach","ipa":"/əˈproʊtʃ/","aviationMeaning":"n. 进近；v. 接近","generalMeaning":"n. 方法；接近；v. 接近"},
-    {"word":"approach-light","ipa":"/əˈproʊtʃ laɪt/","aviationMeaning":"n. 进近灯光系统","generalMeaning":"n. 进近灯"},
-    {"word":"approach's","ipa":"/əˈproʊtʃɪz/","aviationMeaning":"n. 进近的；表示所属关系","generalMeaning":"n. 接近方式的；表示所属关系"},
-    {"word":"approached","ipa":"/əˈproʊtʃt/","aviationMeaning":"v. 已接近机场、跑道或目标高度","generalMeaning":"v. 已接近"},
-    {"word":"approaches","ipa":"/əˈproʊtʃɪz/","aviationMeaning":"n. 进近程序（复数）；v. 接近","generalMeaning":"n. 方法（复数）；v. 接近"},
-    {"word":"approaching","ipa":"/əˈproʊtʃɪŋ/","aviationMeaning":"v. 正在接近机场、跑道或目标高度","generalMeaning":"v. 正在接近"},
-    {"word":"appropriate","ipa":"/əˈproʊpriət/","aviationMeaning":"adj. 符合运行条件或程序要求的","generalMeaning":"adj. 适当的；合适的"},
-    {"word":"appropriately","ipa":"/əˈproʊpriətli/","aviationMeaning":"adv. 按程序或适当方式地","generalMeaning":"adv. 适当地；恰当地"},
-    {"word":"approval","ipa":"/əˈpruːvəl/","aviationMeaning":"n. 对飞行、维修或运行的批准","generalMeaning":"n. 批准；认可"},
-    {"word":"approvals","ipa":"/əˈpruːvəlz/","aviationMeaning":"n. 飞行、维修或运行批准（复数）","generalMeaning":"n. 批准；认可（复数）"},
-    {"word":"approve","ipa":"/əˈpruːv/","aviationMeaning":"v. 批准飞行、维修或运行安排","generalMeaning":"v. 批准；同意"},
-    {"word":"approved","ipa":"/əˈpruːvd/","aviationMeaning":"adj. 已获批准的飞行、维修或运行安排","generalMeaning":"adj. 已批准的；认可的"},
-    {"word":"approximately","ipa":"/əˈprɑːksɪmətli/","aviationMeaning":"adv. 大约；用于时间、距离或高度报告","generalMeaning":"adv. 大约；近似地"},
-    {"word":"apr","ipa":"/ˌeɪ piː ˈɑːr/","aviationMeaning":"n. 进近雷达或其他航空缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"april","ipa":"/ˈeɪprəl/","aviationMeaning":"n. 四月；运行日期中的月份","generalMeaning":"n. 四月"},
-    {"word":"aproach","ipa":"/əˈproʊtʃ/","aviationMeaning":"n. 题库原文中 approach 的疑似拼写错误","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"apron","ipa":"/ˈeɪprən/","aviationMeaning":"n. 停机坪；机坪","generalMeaning":"n. 围裙；停机坪"},
-    {"word":"aprons","ipa":"/ˈeɪprənz/","aviationMeaning":"n. 停机坪；机坪（复数）","generalMeaning":"n. 围裙；停机坪（复数）"},
-    {"word":"apu","ipa":"/ˌeɪ piː ˈjuː/","aviationMeaning":"n. 辅助动力装置（缩写）","generalMeaning":"n. 辅助动力装置"},
-    {"word":"arab","ipa":"/ˈærəb/","aviationMeaning":"adj. 阿拉伯的；n. 阿拉伯人或地区名称","generalMeaning":"adj. 阿拉伯的；n. 阿拉伯人"},
-    {"word":"arabia","ipa":"/əˈreɪbiə/","aviationMeaning":"n. 阿拉伯地区；航路或航空公司名称组成词","generalMeaning":"n. 阿拉伯半岛"},
-    {"word":"arabian","ipa":"/əˈreɪbiən/","aviationMeaning":"adj. 阿拉伯的；用于地区或航空公司名称","generalMeaning":"adj. 阿拉伯的"},
-    {"word":"aradabil","ipa":"/ˌɑːrədəˈbɪl/","aviationMeaning":"n. 题库原文中 Ardabil 的疑似拼写错误","generalMeaning":"n. 疑似地名拼写错误；请结合原文"},
-    {"word":"arch","ipa":"/ɑːrtʃ/","aviationMeaning":"n. 拱形结构；雷达航迹或飞行轨迹的弧段","generalMeaning":"n. 拱；弓形结构"},
-    {"word":"architecture","ipa":"/ˈɑːrkɪtektʃər/","aviationMeaning":"n. 航电、信息或系统架构","generalMeaning":"n. 建筑；结构；体系"},
-    {"word":"arcing","ipa":"/ˈɑːrsɪŋ/","aviationMeaning":"n. 电弧放电；电气故障现象","generalMeaning":"n. 弧形运动；电弧"},
-    {"word":"ardabil","ipa":"/ˌɑːrdəˈbiːl/","aviationMeaning":"n. 阿尔达比勒；机场或地区名称","generalMeaning":"n. 阿尔达比勒（伊朗城市）"},
-    {"word":"ardabil's","ipa":"/ˌɑːrdəˈbiːlz/","aviationMeaning":"n. 阿尔达比勒的；表示所属关系","generalMeaning":"n. 阿尔达比勒的；表示所属关系"},
-    {"word":"are","ipa":"/ɑːr/","aviationMeaning":"v. 是；用于状态或位置报告","generalMeaning":"v. 是（be 的复数形式）"},
-    {"word":"area","ipa":"/ˈeriə/","aviationMeaning":"n. 区域；管制区、天气区或机坪区域","generalMeaning":"n. 区域；面积"},
-    {"word":"area's","ipa":"/ˈeriəz/","aviationMeaning":"n. 区域的；表示所属关系","generalMeaning":"n. 区域的；表示所属关系"},
-    {"word":"areas","ipa":"/ˈeriəz/","aviationMeaning":"n. 区域、空域或责任区（复数）","generalMeaning":"n. 区域；面积（复数）"},
-    {"word":"aren't","ipa":"/ɑːrnt/","aviationMeaning":"v. 不是；用于否定状态报告","generalMeaning":"v. 不是（are not 的缩写）"},
-    {"word":"arenas","ipa":"/əˈriːnəz/","aviationMeaning":"n. 场馆；可能用于目的地或地标描述","generalMeaning":"n. 竞技场（复数）"},
-    {"word":"arepaired","ipa":"/ə rɪˈperd/","aviationMeaning":"n. 题库原文中 are repaired 的疑似粘连","generalMeaning":"n. 疑似词语粘连；请结合原文"},
-    {"word":"argentina","ipa":"/ˌɑːrdʒənˈtiːnə/","aviationMeaning":"n. 阿根廷；运行区域或航空公司国别","generalMeaning":"n. 阿根廷"},
-    {"word":"argentina's","ipa":"/ˌɑːrdʒənˈtiːnəz/","aviationMeaning":"n. 阿根廷的；表示所属关系","generalMeaning":"n. 阿根廷的；表示所属关系"},
-    {"word":"argumentative","ipa":"/ˌɑːrɡjəˈmentətɪv/","aviationMeaning":"adj. 好争论的；可能影响驾驶舱沟通","generalMeaning":"adj. 好争论的；爱辩论的"},
-    {"word":"arise","ipa":"/əˈraɪz/","aviationMeaning":"v. 发生，如故障、冲突或天气问题","generalMeaning":"v. 出现；产生"},
-    {"word":"arises","ipa":"/əˈraɪzɪz/","aviationMeaning":"v. 发生，如故障、冲突或天气问题","generalMeaning":"v. 出现；产生"},
-    {"word":"arlington","ipa":"/ˈɑːrlɪŋtən/","aviationMeaning":"n. 阿灵顿；机场或地区名称","generalMeaning":"n. 阿灵顿（地名）"},
-    {"word":"armed","ipa":"/ɑːrmd/","aviationMeaning":"adj. 已预位、已武装或携带武器的","generalMeaning":"adj. 武装的；配备的"},
-    {"word":"arming","ipa":"/ˈɑːrmɪŋ/","aviationMeaning":"n. 系统预位；如自动刹车或应急设备预位","generalMeaning":"n. 武装；配备"},
-    {"word":"armrest","ipa":"/ˈɑːrmrest/","aviationMeaning":"n. 客舱座椅扶手","generalMeaning":"n. 扶手"},
-    {"word":"army","ipa":"/ˈɑːrmi/","aviationMeaning":"n. 陆军；军事航空单位","generalMeaning":"n. 陆军；军队"},
-    {"word":"arose","ipa":"/əˈroʊz/","aviationMeaning":"v. 已发生，如故障、冲突或天气问题","generalMeaning":"v. 出现；产生（arise 的过去式）"},
-    {"word":"around","ipa":"/əˈraʊnd/","aviationMeaning":"prep. 围绕；在某区域附近；adv. 周围","generalMeaning":"prep. 围绕；adv. 周围"},
-    {"word":"arrange","ipa":"/əˈreɪndʒ/","aviationMeaning":"v. 安排航班、服务或运行协调","generalMeaning":"v. 安排；整理"},
-    {"word":"arranged","ipa":"/əˈreɪndʒd/","aviationMeaning":"adj. 已安排的航班、服务或协调","generalMeaning":"adj. 已安排的；已整理的"},
-    {"word":"arrangement","ipa":"/əˈreɪndʒmənt/","aviationMeaning":"n. 航班、服务或运行协调安排","generalMeaning":"n. 安排；布置"},
-    {"word":"arrangements","ipa":"/əˈreɪndʒmənts/","aviationMeaning":"n. 航班、服务或运行协调安排（复数）","generalMeaning":"n. 安排；布置（复数）"},
-    {"word":"arranges","ipa":"/əˈreɪndʒɪz/","aviationMeaning":"v. 安排航班、服务或运行协调","generalMeaning":"v. 安排；整理"},
-    {"word":"arranging","ipa":"/əˈreɪndʒɪŋ/","aviationMeaning":"v. 正在安排航班、服务或运行协调","generalMeaning":"v. 安排；整理"}
+    {
+      "word": "antalya",
+      "ipa": "/ænˈtɑːljə/",
+      "aviationMeaning": "n. 安塔利亚；机场所在城市",
+      "generalMeaning": "n. 安塔利亚（土耳其城市）"
+    },
+    {
+      "word": "antenna",
+      "ipa": "/ænˈtenə/",
+      "aviationMeaning": "n. 天线；通信、导航或监视设备部件",
+      "generalMeaning": "n. 天线"
+    },
+    {
+      "word": "antennas",
+      "ipa": "/ænˈtenəz/",
+      "aviationMeaning": "n. 天线（复数）",
+      "generalMeaning": "n. 天线（复数）"
+    },
+    {
+      "word": "anti-ice",
+      "ipa": "/ˌænti ˈaɪs/",
+      "aviationMeaning": "n. 防冰；防冰系统或操作",
+      "generalMeaning": "n. 防冰措施"
+    },
+    {
+      "word": "anti-icing",
+      "ipa": "/ˌænti ˈaɪsɪŋ/",
+      "aviationMeaning": "n. 防冰处理；防止结冰",
+      "generalMeaning": "n. 防冰；防冻"
+    },
+    {
+      "word": "anti-lock",
+      "ipa": "/ˌænti ˈlɑːk/",
+      "aviationMeaning": "adj. 防抱死的，如防抱死制动",
+      "generalMeaning": "adj. 防抱死的"
+    },
+    {
+      "word": "anti-missile",
+      "ipa": "/ˌænti ˈmɪsəl/",
+      "aviationMeaning": "adj. 反导弹的；与军事航空防护有关",
+      "generalMeaning": "adj. 反导弹的"
+    },
+    {
+      "word": "anti-slip",
+      "ipa": "/ˌænti ˈslɪp/",
+      "aviationMeaning": "adj. 防滑的，如地面或设备表面",
+      "generalMeaning": "adj. 防滑的"
+    },
+    {
+      "word": "anticipate",
+      "ipa": "/ænˈtɪsəpeɪt/",
+      "aviationMeaning": "v. 预计天气、流量或运行变化",
+      "generalMeaning": "v. 预期；预料"
+    },
+    {
+      "word": "anticipating",
+      "ipa": "/ænˈtɪsəpeɪtɪŋ/",
+      "aviationMeaning": "v. 正在预判天气、流量或运行变化",
+      "generalMeaning": "v. 预期；预料"
+    },
+    {
+      "word": "antigua",
+      "ipa": "/ænˈtiːɡə/",
+      "aviationMeaning": "n. 安提瓜；机场或航路地名",
+      "generalMeaning": "n. 安提瓜（地名）"
+    },
+    {
+      "word": "antigua's",
+      "ipa": "/ænˈtiːɡəz/",
+      "aviationMeaning": "n. 安提瓜的；表示所属关系",
+      "generalMeaning": "n. 安提瓜的；表示所属关系"
+    },
+    {
+      "word": "antonio",
+      "ipa": "/ænˈtoʊnioʊ/",
+      "aviationMeaning": "n. 圣安东尼奥等地名中的组成词",
+      "generalMeaning": "n. 安东尼奥（人名）"
+    },
+    {
+      "word": "antonio's",
+      "ipa": "/ænˈtoʊnioʊz/",
+      "aviationMeaning": "n. 安东尼奥的；表示所属关系",
+      "generalMeaning": "n. 安东尼奥的；表示所属关系"
+    },
+    {
+      "word": "anxiety",
+      "ipa": "/æŋˈzaɪəti/",
+      "aviationMeaning": "n. 焦虑；可能影响机组表现的心理状态",
+      "generalMeaning": "n. 焦虑；忧虑"
+    },
+    {
+      "word": "anxious",
+      "ipa": "/ˈæŋkʃəs/",
+      "aviationMeaning": "adj. 焦虑的；担心运行状况的",
+      "generalMeaning": "adj. 焦虑的；担心的"
+    },
+    {
+      "word": "any",
+      "ipa": "/ˈeni/",
+      "aviationMeaning": "det. 任一架、任一项或任何数量的",
+      "generalMeaning": "det. 任何的；任一的"
+    },
+    {
+      "word": "anymore",
+      "ipa": "/ˌeniˈmɔːr/",
+      "aviationMeaning": "adv. 再也；不再处于某运行状态",
+      "generalMeaning": "adv. 再也；不再"
+    },
+    {
+      "word": "anyone",
+      "ipa": "/ˈeniwʌn/",
+      "aviationMeaning": "pron. 任何人员；任何一名飞行员或管制员",
+      "generalMeaning": "pron. 任何人"
+    },
+    {
+      "word": "anything",
+      "ipa": "/ˈeniθɪŋ/",
+      "aviationMeaning": "pron. 任何事项、故障或请求",
+      "generalMeaning": "pron. 任何事物"
+    },
+    {
+      "word": "anyway",
+      "ipa": "/ˈeniweɪ/",
+      "aviationMeaning": "adv. 无论如何；用于继续通话或说明",
+      "generalMeaning": "adv. 无论如何；反正"
+    },
+    {
+      "word": "apart",
+      "ipa": "/əˈpɑːrt/",
+      "aviationMeaning": "adv. 分开；保持航空器或部件间隔",
+      "generalMeaning": "adv. 分开地；相隔"
+    },
+    {
+      "word": "apologies",
+      "ipa": "/əˈpɑːlədʒiz/",
+      "aviationMeaning": "n. 致歉；用于通话礼貌表达",
+      "generalMeaning": "n. 道歉（复数）"
+    },
+    {
+      "word": "apologize",
+      "ipa": "/əˈpɑːlədʒaɪz/",
+      "aviationMeaning": "v. 为延误、误解或操作致歉",
+      "generalMeaning": "v. 道歉"
+    },
+    {
+      "word": "apologized",
+      "ipa": "/əˈpɑːlədʒaɪzd/",
+      "aviationMeaning": "v. 已为延误、误解或操作致歉",
+      "generalMeaning": "v. 已道歉"
+    },
+    {
+      "word": "app",
+      "ipa": "/æp/",
+      "aviationMeaning": "n. 航空运行、导航或服务应用程序",
+      "generalMeaning": "n. 应用程序"
+    },
+    {
+      "word": "apparent",
+      "ipa": "/əˈpærənt/",
+      "aviationMeaning": "adj. 表观的，如表观风或明显的状态",
+      "generalMeaning": "adj. 明显的；表面上的"
+    },
+    {
+      "word": "appear",
+      "ipa": "/əˈpɪr/",
+      "aviationMeaning": "v. 出现于雷达、显示器或视野中",
+      "generalMeaning": "v. 出现；显得"
+    },
+    {
+      "word": "appearance",
+      "ipa": "/əˈpɪrəns/",
+      "aviationMeaning": "n. 航空器、云层或显示信息的外观",
+      "generalMeaning": "n. 外观；出现"
+    },
+    {
+      "word": "appeared",
+      "ipa": "/əˈpɪrd/",
+      "aviationMeaning": "v. 已出现于雷达、显示器或视野中",
+      "generalMeaning": "v. 出现；显得"
+    },
+    {
+      "word": "appears",
+      "ipa": "/əˈpɪrz/",
+      "aviationMeaning": "v. 出现于雷达、显示器或视野中",
+      "generalMeaning": "v. 出现；显得"
+    },
+    {
+      "word": "appetite",
+      "ipa": "/ˈæpətaɪt/",
+      "aviationMeaning": "n. 食欲；与机组健康状态有关",
+      "generalMeaning": "n. 食欲；胃口"
+    },
+    {
+      "word": "applicable",
+      "ipa": "/ˈæplɪkəbəl/",
+      "aviationMeaning": "adj. 适用于该航空器、航班或运行条件的",
+      "generalMeaning": "adj. 适用的；可应用的"
+    },
+    {
+      "word": "application",
+      "ipa": "/ˌæplɪˈkeɪʃən/",
+      "aviationMeaning": "n. 申请；系统应用；程序的应用",
+      "generalMeaning": "n. 申请；应用程序；应用"
+    },
+    {
+      "word": "applications",
+      "ipa": "/ˌæplɪˈkeɪʃənz/",
+      "aviationMeaning": "n. 申请或系统应用（复数）",
+      "generalMeaning": "n. 申请；应用程序（复数）"
+    },
+    {
+      "word": "applied",
+      "ipa": "/əˈplaɪd/",
+      "aviationMeaning": "adj. 已应用于程序、设置或限制的",
+      "generalMeaning": "adj. 已应用的；实用的"
+    },
+    {
+      "word": "applies",
+      "ipa": "/əˈplaɪz/",
+      "aviationMeaning": "v. 适用于该航空器、航班或条件",
+      "generalMeaning": "v. 适用；申请"
+    },
+    {
+      "word": "apply",
+      "ipa": "/əˈplaɪ/",
+      "aviationMeaning": "v. 应用程序、制动或限制；提出申请",
+      "generalMeaning": "v. 应用；申请"
+    },
+    {
+      "word": "applying",
+      "ipa": "/əˈplaɪɪŋ/",
+      "aviationMeaning": "v. 正在应用程序、制动或限制",
+      "generalMeaning": "v. 应用；申请"
+    },
+    {
+      "word": "approach",
+      "ipa": "/əˈproʊtʃ/",
+      "aviationMeaning": "n. 进近；v. 接近",
+      "generalMeaning": "n. 方法；接近；v. 接近"
+    },
+    {
+      "word": "approached",
+      "ipa": "/əˈproʊtʃt/",
+      "aviationMeaning": "v. 已接近机场、跑道或目标高度",
+      "generalMeaning": "v. 已接近"
+    },
+    {
+      "word": "approaches",
+      "ipa": "/əˈproʊtʃɪz/",
+      "aviationMeaning": "n. 进近程序（复数）；v. 接近",
+      "generalMeaning": "n. 方法（复数）；v. 接近"
+    },
+    {
+      "word": "approaching",
+      "ipa": "/əˈproʊtʃɪŋ/",
+      "aviationMeaning": "v. 正在接近机场、跑道或目标高度",
+      "generalMeaning": "v. 正在接近"
+    },
+    {
+      "word": "appropriate",
+      "ipa": "/əˈproʊpriət/",
+      "aviationMeaning": "adj. 符合运行条件或程序要求的",
+      "generalMeaning": "adj. 适当的；合适的"
+    },
+    {
+      "word": "appropriately",
+      "ipa": "/əˈproʊpriətli/",
+      "aviationMeaning": "adv. 按程序或适当方式地",
+      "generalMeaning": "adv. 适当地；恰当地"
+    },
+    {
+      "word": "approval",
+      "ipa": "/əˈpruːvəl/",
+      "aviationMeaning": "n. 对飞行、维修或运行的批准",
+      "generalMeaning": "n. 批准；认可"
+    },
+    {
+      "word": "approve",
+      "ipa": "/əˈpruːv/",
+      "aviationMeaning": "v. 批准飞行、维修或运行安排",
+      "generalMeaning": "v. 批准；同意"
+    },
+    {
+      "word": "approved",
+      "ipa": "/əˈpruːvd/",
+      "aviationMeaning": "adj. 已获批准的飞行、维修或运行安排",
+      "generalMeaning": "adj. 已批准的；认可的"
+    },
+    {
+      "word": "approximately",
+      "ipa": "/əˈprɑːksɪmətli/",
+      "aviationMeaning": "adv. 大约；用于时间、距离或高度报告",
+      "generalMeaning": "adv. 大约；近似地"
+    },
+    {
+      "word": "apr",
+      "ipa": "/ˌeɪ piː ˈɑːr/",
+      "aviationMeaning": "n. 进近雷达或其他航空缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "april",
+      "ipa": "/ˈeɪprəl/",
+      "aviationMeaning": "n. 四月；运行日期中的月份",
+      "generalMeaning": "n. 四月"
+    },
+    {
+      "word": "apron",
+      "ipa": "/ˈeɪprən/",
+      "aviationMeaning": "n. 停机坪；机坪",
+      "generalMeaning": "n. 围裙；停机坪"
+    },
+    {
+      "word": "aprons",
+      "ipa": "/ˈeɪprənz/",
+      "aviationMeaning": "n. 停机坪；机坪（复数）",
+      "generalMeaning": "n. 围裙；停机坪（复数）"
+    },
+    {
+      "word": "apu",
+      "ipa": "/ˌeɪ piː ˈjuː/",
+      "aviationMeaning": "n. 辅助动力装置（缩写）",
+      "generalMeaning": "n. 辅助动力装置"
+    },
+    {
+      "word": "arab",
+      "ipa": "/ˈærəb/",
+      "aviationMeaning": "adj. 阿拉伯的；n. 阿拉伯人或地区名称",
+      "generalMeaning": "adj. 阿拉伯的；n. 阿拉伯人"
+    },
+    {
+      "word": "arabia",
+      "ipa": "/əˈreɪbiə/",
+      "aviationMeaning": "n. 阿拉伯地区；航路或航空公司名称组成词",
+      "generalMeaning": "n. 阿拉伯半岛"
+    },
+    {
+      "word": "arabian",
+      "ipa": "/əˈreɪbiən/",
+      "aviationMeaning": "adj. 阿拉伯的；用于地区或航空公司名称",
+      "generalMeaning": "adj. 阿拉伯的"
+    },
+    {
+      "word": "arch",
+      "ipa": "/ɑːrtʃ/",
+      "aviationMeaning": "n. 拱形结构；雷达航迹或飞行轨迹的弧段",
+      "generalMeaning": "n. 拱；弓形结构"
+    },
+    {
+      "word": "arcing",
+      "ipa": "/ˈɑːrsɪŋ/",
+      "aviationMeaning": "n. 电弧放电；电气故障现象",
+      "generalMeaning": "n. 弧形运动；电弧"
+    },
+    {
+      "word": "ardabil",
+      "ipa": "/ˌɑːrdəˈbiːl/",
+      "aviationMeaning": "n. 阿尔达比勒；机场或地区名称",
+      "generalMeaning": "n. 阿尔达比勒（伊朗城市）"
+    },
+    {
+      "word": "ardabil's",
+      "ipa": "/ˌɑːrdəˈbiːlz/",
+      "aviationMeaning": "n. 阿尔达比勒的；表示所属关系",
+      "generalMeaning": "n. 阿尔达比勒的；表示所属关系"
+    },
+    {
+      "word": "are",
+      "ipa": "/ɑːr/",
+      "aviationMeaning": "v. 是；用于状态或位置报告",
+      "generalMeaning": "v. 是（be 的复数形式）"
+    },
+    {
+      "word": "area",
+      "ipa": "/ˈeriə/",
+      "aviationMeaning": "n. 区域；管制区、天气区或机坪区域",
+      "generalMeaning": "n. 区域；面积"
+    },
+    {
+      "word": "area's",
+      "ipa": "/ˈeriəz/",
+      "aviationMeaning": "n. 区域的；表示所属关系",
+      "generalMeaning": "n. 区域的；表示所属关系"
+    },
+    {
+      "word": "areas",
+      "ipa": "/ˈeriəz/",
+      "aviationMeaning": "n. 区域、空域或责任区（复数）",
+      "generalMeaning": "n. 区域；面积（复数）"
+    },
+    {
+      "word": "aren't",
+      "ipa": "/ɑːrnt/",
+      "aviationMeaning": "v. 不是；用于否定状态报告",
+      "generalMeaning": "v. 不是（are not 的缩写）"
+    },
+    {
+      "word": "arenas",
+      "ipa": "/əˈriːnəz/",
+      "aviationMeaning": "n. 场馆；可能用于目的地或地标描述",
+      "generalMeaning": "n. 竞技场（复数）"
+    },
+    {
+      "word": "argentina",
+      "ipa": "/ˌɑːrdʒənˈtiːnə/",
+      "aviationMeaning": "n. 阿根廷；运行区域或航空公司国别",
+      "generalMeaning": "n. 阿根廷"
+    },
+    {
+      "word": "argentina's",
+      "ipa": "/ˌɑːrdʒənˈtiːnəz/",
+      "aviationMeaning": "n. 阿根廷的；表示所属关系",
+      "generalMeaning": "n. 阿根廷的；表示所属关系"
+    },
+    {
+      "word": "arise",
+      "ipa": "/əˈraɪz/",
+      "aviationMeaning": "v. 发生，如故障、冲突或天气问题",
+      "generalMeaning": "v. 出现；产生"
+    },
+    {
+      "word": "arlington",
+      "ipa": "/ˈɑːrlɪŋtən/",
+      "aviationMeaning": "n. 阿灵顿；机场或地区名称",
+      "generalMeaning": "n. 阿灵顿（地名）"
+    },
+    {
+      "word": "armed",
+      "ipa": "/ɑːrmd/",
+      "aviationMeaning": "adj. 已预位、已武装或携带武器的",
+      "generalMeaning": "adj. 武装的；配备的"
+    },
+    {
+      "word": "armrest",
+      "ipa": "/ˈɑːrmrest/",
+      "aviationMeaning": "n. 客舱座椅扶手",
+      "generalMeaning": "n. 扶手"
+    },
+    {
+      "word": "army",
+      "ipa": "/ˈɑːrmi/",
+      "aviationMeaning": "n. 陆军；军事航空单位",
+      "generalMeaning": "n. 陆军；军队"
+    },
+    {
+      "word": "arose",
+      "ipa": "/əˈroʊz/",
+      "aviationMeaning": "v. 已发生，如故障、冲突或天气问题",
+      "generalMeaning": "v. 出现；产生（arise 的过去式）"
+    },
+    {
+      "word": "around",
+      "ipa": "/əˈraʊnd/",
+      "aviationMeaning": "prep. 围绕；在某区域附近；adv. 周围",
+      "generalMeaning": "prep. 围绕；adv. 周围"
+    },
+    {
+      "word": "arrange",
+      "ipa": "/əˈreɪndʒ/",
+      "aviationMeaning": "v. 安排航班、服务或运行协调",
+      "generalMeaning": "v. 安排；整理"
+    },
+    {
+      "word": "arranged",
+      "ipa": "/əˈreɪndʒd/",
+      "aviationMeaning": "adj. 已安排的航班、服务或协调",
+      "generalMeaning": "adj. 已安排的；已整理的"
+    },
+    {
+      "word": "arrangement",
+      "ipa": "/əˈreɪndʒmənt/",
+      "aviationMeaning": "n. 航班、服务或运行协调安排",
+      "generalMeaning": "n. 安排；布置"
+    },
+    {
+      "word": "arranges",
+      "ipa": "/əˈreɪndʒɪz/",
+      "aviationMeaning": "v. 安排航班、服务或运行协调",
+      "generalMeaning": "v. 安排；整理"
+    },
+    {
+      "word": "arranging",
+      "ipa": "/əˈreɪndʒɪŋ/",
+      "aviationMeaning": "v. 正在安排航班、服务或运行协调",
+      "generalMeaning": "v. 安排；整理"
+    }
   ]
 }

@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router';
-import { ChevronRight, Flame, MapPin } from 'lucide-react-native';
+import { ChevronRight, Flame, MapPin } from '@/components/ui/icons';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import { TopBar } from '@/components/navigation/TopBar';

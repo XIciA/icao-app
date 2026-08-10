@@ -6,13 +6,14 @@
 
 ## 1. 文档职责
 
-开始处理任何录音问题前，必须依次阅读：
+开始处理录音问题时，按需读取：
 
-1. [`docs/guides/audio-lifecycle-and-change-rules.md`](../../guides/audio-lifecycle-and-change-rules.md)：唯一架构规范和强制验收矩阵。
+1. [`docs/guides/audio-lifecycle-and-change-rules.md`](../../guides/audio-lifecycle-and-change-rules.md)：音频生命周期变更时的唯一架构规范和验收矩阵。
 2. 本文：长期排障方法、注意事项和维护要求。
 3. 本目录中与现象最接近的历史事故记录。
 
 本目录不得定义第二套音频 owner、播放器、录音资产、文件清理或状态机。需要修改架构不变量时，先修改主指南，再在事故记录中链接变更。
+非音频任务、只改无关文案/样式的任务不需要读取本目录。
 
 ## 2. 长期解决原则
 
@@ -121,30 +122,25 @@ permission
 - 是否能用静态门禁或测试阻止同类代码再次出现？
 - 若只能局部处理，限制和后续架构工作是否明确记录？
 
-## 6. 强制验证
+## 6. 风险匹配验证
 
-最低要求：
+音频生命周期或行为变化的最低自动化：
 
 ```text
 pnpm check:audio
-pnpm check
 git diff --check
 ```
 
-根据变更范围继续执行：
-
-- 相关 recorder、repository、orchestrator、playback、workbench 测试。
-- iOS/Android Development Build。
-- `pnpm audio:e2e:ios` 或 `pnpm audio:e2e:android`，刷新对应平台指纹。
-- 独立 Release 构建，验证内嵌公共运行时且不含 loopback/LAN 地址。
-- 手机本体执行：按住说话至少 2–3 秒 → 松开 → 回放 → 转写 → 重录 → 再回放。
-- 后台/前台、拒绝权限、快速松手、连续两次录音和切题后的清理验证。
+- 运行与改动直接相关的 recorder、repository、orchestrator、playback 或 workbench 测试。
+- 只在受影响平台重新构建 Development Build；原生配置和发布敏感变化按主指南扩大。
+- 发布敏感变化用 `pnpm audio:e2e:ios` 或 `pnpm audio:e2e:android` 刷新对应平台指纹。
+- 真实麦克风、后台/前台、拒绝权限、快速松手、连续录音和切题检查按受影响链路选择。
 
 验收记录必须区分“自动化通过”“构建安装通过”和“真实麦克风闭环通过”。
 
 ## 7. 事故维护流程
 
-每次录音故障：
+新的可复现故障、可复用根因或旧结论被推翻时：
 
 1. 从 [`incident-template.md`](./incident-template.md) 复制新事故文件。
 2. 调查开始时先填环境、现象和假设，避免结论倒推证据。
@@ -159,4 +155,3 @@ git diff --check
 - [`incident-2026-07-28-web-study-audio-first-frame.md`](./incident-2026-07-28-web-study-audio-first-frame.md)：Web 首次自动播放、用户手势和首帧看门狗的前两轮修复；真实 iPhone 后续证据已转入下一记录。
 - [`incident-2026-07-28-web-study-audio-mobile-safari.md`](./incident-2026-07-28-web-study-audio-mobile-safari.md)：移动 Safari 因 `loadeddata/isLoaded` 播放门槛无法启动题卡参考音频。
 - [`incident-2026-07-28-web-study-audio-mainland-delivery.md`](./incident-2026-07-28-web-study-audio-mainland-delivery.md)：中国大陆网络直连十个 `*.vercel.app` 分片导致题卡音频缓慢，迁移为 Git 构建生成的主站同域静态资源。
-- [`incident-2026-07-28-web-study-audio-first-frame.md`](./incident-2026-07-28-web-study-audio-first-frame.md)：Web 新浏览器首次题卡音频停在 0 秒且无限转圈。

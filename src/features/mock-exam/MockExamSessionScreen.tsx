@@ -1,4 +1,4 @@
-import { Check, ChevronLeft, Grid3X3, X } from 'lucide-react-native';
+import { Check, ChevronLeft, Grid3X3, X } from '@/components/ui/icons';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { Gesture } from 'react-native-gesture-handler';

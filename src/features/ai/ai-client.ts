@@ -3,8 +3,9 @@ import Storage from '@/platform/storage';
 
 import { apiAccessToken, apiRequest, getApiBaseUrl, recoverApiUnauthorized, rememberApiError } from '@/platform/api-client';
 import { createAudioUploadForm } from '@/platform/audio-upload';
+import { getAsrModel } from './asr-model-preference';
 
-const POLICY_VERSION = 'ai-learning-privacy-v1';
+const POLICY_VERSION = 'ai-learning-privacy-v3';
 const CONSENT_KEY = `icao.ai.consent.${POLICY_VERSION}`;
 const lookupCache = new Map<string, WordLookupResult>();
 const AUDIO_E2E_ENABLED = __DEV__ && process.env.EXPO_PUBLIC_ICAO_AUDIO_E2E === '1';
@@ -26,6 +27,10 @@ export async function acceptAiConsent() {
 
 export async function withdrawAiConsent() {
   await apiRequest<{ revoked: true }>('/v1/ai/consent', { method: 'DELETE' });
+  await clearLocalAiConsent();
+}
+
+export async function clearLocalAiConsent() {
   await Storage.removeItem(CONSENT_KEY);
 }
 
@@ -47,7 +52,8 @@ export async function transcribeRecording(uri: string, signal?: AbortSignal) {
       transcript: 'Audio lifecycle test transcript.',
     } satisfies TranscribeResult;
   }
-  const { fetch: audioFetch, form } = await createAudioUploadForm(uri);
+  const model = await getAsrModel();
+  const { fetch: audioFetch, form } = await createAudioUploadForm(uri, model);
   const baseUrl = getApiBaseUrl();
   if (!baseUrl) throw new Error('api_not_configured');
   const token = await apiAccessToken();

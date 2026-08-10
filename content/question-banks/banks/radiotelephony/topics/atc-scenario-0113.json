@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0113-card-main-1939",
       "taskTitle": "CSN 542-2",
-      "audioText": "CSN 542, Chengdu delivery, good afternoon. Information B is valid. Cleared to destination via flight planned route. Runway 02. After departure turn right direct BHS. Initial climb to 1,200 meterson QNH 1021. After departure contact 125.6.",
+      "audioText": "CSN 542, Chengdu delivery, good afternoon. Information B is valid. Cleared to destination via flight planned route. Runway 02. After departure turn right direct BHS. Initial climb to 1,200 meters on QNH 1021. After departure contact 125.6.",
       "audioTextZh": "CSN 542，成都放行，下午好。B 情报有效。许可按飞行计划航路飞往目的地。Runway 02。离场后右转直飞 BHS。在 QNH 1021 上初始爬升至 1,200 米。离场后联系 125.6。",
       "referenceText": "Information B Cleared to destination via flight planned route. Runway 02. After departure turn right direct BHS. Initial climb to 1200 meters on QNH 1021. 125.6, CSN 542.",
       "referenceTextZh": "B 情报，许可按飞行计划航路飞往目的地。Runway 02。离场后右转直飞 BHS。在 QNH 1021 上初始爬升至 1200 米。125.6，CSN 542。",
@@ -52,7 +52,7 @@
     {
       "id": "atc-scenario-0113-card-main-1943",
       "taskTitle": "CSN 542-6",
-      "audioText": "C: CSN 542, we just had reports of a bomb left in your first class passenger section. Please advise your intensions.\nB: acknowledge the transmission and tell the controller you have the crew check the first-class cabin.",
+      "audioText": "C: CSN 542, we just had reports of a bomb left in your first class passenger section. Please advise your intentions.\nB: acknowledge the transmission and tell the controller you have the crew check the first-class cabin.",
       "audioTextZh": "C： CSN 542，我们刚刚收到报告，你的头等舱客舱内被放置了一枚炸弹。请告知你的意图。\nB： 确认收到，并告诉管制员你将让机组检查头等舱。",
       "referenceText": "roger, we will have the crew member check the first-class cabin, CSN 542.",
       "referenceTextZh": "收到，我们将让一名机组成员检查头等舱，CSN 542。",
@@ -144,8 +144,8 @@
       "taskTitle": "CSN 542-16",
       "audioText": "CSN 542, roger Pan, turn left heading 200, descend to 1,200 meters. All Runways available for landing.",
       "audioTextZh": "CSN 542，收到 PAN，左转航向 200，下降至 1,200 米。所有跑道均可落地。",
-      "referenceText": "turn left heading 200, descend to 1002 hundredmeters, roger, CSN 542.",
-      "referenceTextZh": "左转航向 200，下降至 1002 hundredmeters，收到，CSN 542。",
+      "referenceText": "turn left heading 200, descend to 1,200 meters, roger, CSN 542.",
+      "referenceTextZh": "左转航向 200，下降至 1,200 米，收到，CSN 542。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-009-csn542-q16.mp3"
     },
     {

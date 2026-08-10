@@ -25,7 +25,7 @@
     {
       "id": "atc-scenario-0116-card-main-1999",
       "taskTitle": "CSN 3102-3",
-      "audioText": "CSN 3102, readback correct, contact Beijing Ground on 121.95when ready for pushback and startup.",
+      "audioText": "CSN 3102, readback correct, contact Beijing Ground on 121.95 when ready for pushback and startup.",
       "audioTextZh": "CSN 3102，复诵正确，准备好推出和开车时联系北京地面 121.95。",
       "referenceText": "121.95, CSN 3102.",
       "referenceTextZh": "121.95，CSN 3102。",
@@ -61,7 +61,7 @@
     {
       "id": "atc-scenario-0116-card-main-2003",
       "taskTitle": "CSN 3102-7",
-      "audioText": "During engine startup, your Auxilary Power Unit has malfunctioned, ask Beijing Ground to start one engine at the gate.",
+      "audioText": "During engine startup, your Auxiliary Power Unit has malfunctioned, ask Beijing Ground to start one engine at the gate.",
       "audioTextZh": "发动机启动期间，你的辅助动力装置发生故障，请求北京地面允许在登机口启动一台发动机。",
       "referenceText": "Beijing Ground, CSN 3102, request start one engine at the gate due APU malfunction.",
       "referenceTextZh": "北京地面，CSN 3102，因 APU 故障，请求在登机口启动一台发动机。",

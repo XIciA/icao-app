@@ -1,17 +1,17 @@
 {
   "expo": {
-    "name": "飞猪 ICAO",
-    "slug": "icao-app",
+    "name": "听你五个",
+    "slug": "readyoufife",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "feizhuicao",
+    "scheme": "readyoufife",
     "userInterfaceStyle": "light",
     "ios": {
       "icon": "./assets/expo.icon",
       "supportsTablet": false,
-      "bundleIdentifier": "com.anonymous.icao-app",
-      "buildNumber": "3449008",
+      "bundleIdentifier": "com.readyoufife.app",
+      "buildNumber": "3470175",
       "config": {
         "usesNonExemptEncryption": false
       },
@@ -29,8 +29,8 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "com.feizhuicao.app",
-      "versionCode": 3449008
+      "package": "com.readyoufife.app",
+      "versionCode": 3470175
     },
     "web": {
       "output": "single",
@@ -51,6 +51,7 @@
       [
         "expo-audio",
         {
+          "microphonePermission": "允许听你五个使用麦克风录制口语练习；录音仅在你主动点击转写并明确同意后发送至 AI 服务。",
           "enableBackgroundPlayback": false,
           "enableBackgroundRecording": false
         }
@@ -61,11 +62,12 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "允许飞猪 ICAO 选择图片并随反馈提交。",
+          "photosPermission": "允许听你五个选择图片并随反馈提交。",
           "cameraPermission": false
         }
       ],
-      "./plugins/with-android-release-signing"
+      "./plugins/with-android-release-signing",
+      "./plugins/with-ios-release-integrity"
     ],
     "experiments": {
       "typedRoutes": true,

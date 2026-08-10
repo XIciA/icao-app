@@ -126,7 +126,7 @@
       "taskTitle": "CSN 3102-14",
       "audioText": "CSN 3102, negative due traffic, maintain 1,800 meters until advised.",
       "audioTextZh": "CSN 3102，不行，因交通原因，保持 1,800 米直至通知。",
-      "referenceText": "roger, maintain maintain 1800 meters until advised, CSN 3102.",
+      "referenceText": "roger, maintain 1800 meters until advised, CSN 3102.",
       "referenceTextZh": "收到，保持、保持 1800 米直至通知，CSN 3102。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-011-csn3102-q14.mp3"
     },

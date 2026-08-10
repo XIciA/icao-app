@@ -27,7 +27,7 @@
       "taskTitle": "ACA 517-3",
       "audioText": "B: There is moderate turbulence at 10100 meters, ask Wuhan Control if there is any turbulence reported at 10700 meters.",
       "audioTextZh": "B: 10100 米有中度颠簸，询问 武汉管制 10700 米是否有颠簸报告。",
-      "referenceText": "Wuhan Control, ACA 517, there is moderate turbulence at 10100 meters, is there any turbulence reported at 10700 meters ?",
+      "referenceText": "Wuhan Control, ACA 517, there is moderate turbulence at 10100 meters, is there any turbulence reported at 10700 meters?",
       "referenceTextZh": "武汉管制，ACA 517，10100 米有中度颠簸，10700 米是否有颠簸报告？",
       "audio": "/question-bank-assets/audio/radiotelephony/main/856.mp3"
     },

@@ -1,9 +1,8 @@
 import { Asset } from 'expo-asset';
 
+import { clampRadioInterval } from './radio-interval';
 import type { RadioBankId, RadioPlaybackMode } from './types';
 
-export const RADIO_INTERVAL_MAX_SECONDS = 30;
-export const RADIO_INTERVAL_PRESETS = [0, 3, 5, 10, 15, 30] as const;
 export const RADIO_INTERVAL_SILENCE_DURATION_SECONDS = 30;
 
 const radioIntervalSilenceAsset = Asset.fromModule(require('../../../assets/audio/radio-interval-silence-30s.wav'));
@@ -39,11 +38,6 @@ export type NativeRadioIntervalTrack = {
 };
 
 export type NativeRadioTrack = NativeRadioContentTrack | NativeRadioIntervalTrack;
-
-export function clampRadioInterval(value: number) {
-  if (!Number.isFinite(value)) return 0;
-  return Math.max(0, Math.min(RADIO_INTERVAL_MAX_SECONDS, Math.round(value)));
-}
 
 export function radioIntervalStartPosition(seconds: number) {
   return RADIO_INTERVAL_SILENCE_DURATION_SECONDS - clampRadioInterval(seconds);

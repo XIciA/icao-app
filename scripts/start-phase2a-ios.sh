@@ -4,7 +4,7 @@ set -eu
 
 SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 PROJECT_ROOT=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)
-ECS_HOST=${ICAO_ECS_HOST:-47.109.132.161}
+ECS_HOST=${ICAO_ECS_HOST:-47.108.90.19}
 ECS_USER=${ICAO_ECS_USER:-root}
 SSH_KEY=${ICAO_ECS_SSH_KEY:-$HOME/.ssh/icao_app_codex}
 API_PORT=${ICAO_API_PORT:-3101}
@@ -89,6 +89,7 @@ fi
 export EXPO_PUBLIC_ICAO_API_URL="http://$HOST_IP:$API_PORT"
 export EXPO_PUBLIC_SUPABASE_URL="http://$HOST_IP:$SUPABASE_PORT"
 export EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY="$PUBLISHABLE_KEY"
+export ICAO_APP_VARIANT=development
 
 echo "API: $EXPO_PUBLIC_ICAO_API_URL"
 echo "Supabase: $EXPO_PUBLIC_SUPABASE_URL"
@@ -97,6 +98,11 @@ echo 'The publishable key was loaded from ECS without writing it to the reposito
 
 cd "$PROJECT_ROOT"
 if [ "${ICAO_PHASE2A_BUILD:-0}" = 1 ]; then
+  pnpm exec expo prebuild --platform ios --no-install
+  (
+    cd "$PROJECT_ROOT/ios"
+    pod install
+  )
   pnpm exec expo run:ios --port "$METRO_PORT"
 else
   pnpm exec expo start --dev-client --lan --port "$METRO_PORT" --ios

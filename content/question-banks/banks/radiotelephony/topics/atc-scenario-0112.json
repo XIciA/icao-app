@@ -25,7 +25,7 @@
     {
       "id": "atc-scenario-0112-card-main-1922",
       "taskTitle": "CSN 557-3",
-      "audioText": "CSN 557, wind calm, contact approach on 119.25when airborne, cleared for takeoff Runway 36L.",
+      "audioText": "CSN 557, wind calm, contact approach on 119.25 when airborne, cleared for takeoff Runway 36L.",
       "audioTextZh": "CSN 557，静风，离地后联系进近 119.25，许可从 Runway 36L 起飞。",
       "referenceText": "119.25, cleared for takeoff Runway 36L, CSN 557.",
       "referenceTextZh": "119.25，许可从 Runway 36L 起飞，CSN 557。",
@@ -45,8 +45,8 @@
       "taskTitle": "CSN 557-5",
       "audioText": "CSN 557, climb and maintain 1,200 meters, speed 180 knots approved, advise intentions when able.",
       "audioTextZh": "CSN 557，爬升并保持 1,200 米，批准速度 180 节，可以时报告意图。",
-      "referenceText": "climb and maintain 1002 hudnred meters, speed 180 knots, CSN 557.",
-      "referenceTextZh": "爬升并保持 1002 hudnred 米，速度 180 节，CSN 557。",
+      "referenceText": "climb and maintain 1,200 meters, speed 180 knots, CSN 557.",
+      "referenceTextZh": "爬升并保持 1,200 米，速度 180 节，CSN 557。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-008-csn557-q05.mp3"
     },
     {

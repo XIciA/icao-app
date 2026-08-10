@@ -1,8 +1,13 @@
 [Unit]
-Description=ICAO PostgreSQL local backup
+Description=Read You 5 PostgreSQL local backup
 After=docker.service
 Requires=docker.service
 
 [Service]
 Type=oneshot
+UMask=0077
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+TimeoutStartSec=30min
 ExecStart=/bin/sh /opt/icao/runtime/source/infra/backup/backup-postgres.sh

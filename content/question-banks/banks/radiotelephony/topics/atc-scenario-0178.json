@@ -18,7 +18,7 @@
       "taskTitle": "QFA 160-2",
       "audioText": "QFA 160, Zhengzhou Control, radar contact, descend and maintain 10,400 meters.",
       "audioTextZh": "QFA 160，郑州管制，雷达识别，下降至并保持 10,400 米。",
-      "referenceText": "descend and maintain 10 thounsand 400 meters, QFA 160.",
+      "referenceText": "descend and maintain 10,400 meters, QFA 160.",
       "referenceTextZh": "下降至并保持 10,400 米，QFA 160。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-078-qfa160-q02.mp3"
     },
@@ -27,7 +27,7 @@
       "taskTitle": "QFA 160-3",
       "audioText": "B: You wish to know until what time you can expect high level, ask Zhengzhou Control.",
       "audioTextZh": "B：你想知道什么时候可以预期高高度，询问郑州管制。",
-      "referenceText": "Zhengzhou Control, QFA 160, until what time we can expect high level ?",
+      "referenceText": "Zhengzhou Control, QFA 160, until what time we can expect high level?",
       "referenceTextZh": "郑州管制，QFA 160，我们什么时候可以预期高高度？",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-078-qfa160-q03.mp3"
     },

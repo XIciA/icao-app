@@ -1,105 +1,491 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"independent","ipa":"/ˌɪndɪˈpendənt/","aviationMeaning":"adj. 独立的；独立运行、检查或导航的","generalMeaning":"adj. 独立的；自主的"},
-    {"word":"independently","ipa":"/ˌɪndɪˈpendəntli/","aviationMeaning":"adv. 独立地；不依赖其他系统或人员地","generalMeaning":"adv. 独立地"},
-    {"word":"index","ipa":"/ˈɪndeks/","aviationMeaning":"n. 指数；索引；仪表或手册定位标记","generalMeaning":"n. 索引；指数"},
-    {"word":"india","ipa":"/ˈɪndiə/","aviationMeaning":"n. India；ICAO 字母 I 的拼读词；也指印度","generalMeaning":"n. 印度；字母拼读词"},
-    {"word":"india-delta","ipa":"/ˈɪndiə ˈdeltə/","aviationMeaning":"n. India Delta；无线电字母组合 ID","generalMeaning":"n. 字母拼读组合"},
-    {"word":"india-hotel","ipa":"/ˈɪndiə hoʊˈtel/","aviationMeaning":"n. India Hotel；无线电字母组合 IH","generalMeaning":"n. 字母拼读组合"},
-    {"word":"india's","ipa":"/ˈɪndiəz/","aviationMeaning":"n. India 的所有格形式；国家或字母拼读词相关","generalMeaning":"n. 印度的所有格形式"},
-    {"word":"indian","ipa":"/ˈɪndiən/","aviationMeaning":"adj. 印度的；印度语的；航线或地区描述","generalMeaning":"adj. 印度的；n. 印度人"},
-    {"word":"indianapolis","ipa":"/ˌɪndiəˈnæpəlɪs/","aviationMeaning":"n. 印第安纳波利斯；机场或地名","generalMeaning":"n. 专有地名"},
-    {"word":"indicate","ipa":"/ˈɪndɪkeɪt/","aviationMeaning":"v. 指示；显示仪表状态、位置或趋势","generalMeaning":"v. 指示；表明"},
-    {"word":"indicated","ipa":"/ˈɪndɪkeɪtɪd/","aviationMeaning":"adj. 已指示的；仪表显示的；如指示空速","generalMeaning":"adj. 已表明的"},
-    {"word":"indicated-airspeed","ipa":"/ˈɪndɪkeɪtɪd ˈerˌspiːd/","aviationMeaning":"n. 指示空速；空速表显示的速度","generalMeaning":"n. 指示速度"},
-    {"word":"indicates","ipa":"/ˈɪndɪkeɪts/","aviationMeaning":"v. 指示；显示仪表状态、位置或趋势","generalMeaning":"v. 指示；表明"},
-    {"word":"indicating","ipa":"/ˈɪndɪkeɪtɪŋ/","aviationMeaning":"v. 正指示；正在显示状态、位置或趋势","generalMeaning":"v. 正指示；表明"},
-    {"word":"indication","ipa":"/ˌɪndɪˈkeɪʃən/","aviationMeaning":"n. 指示；仪表读数、告警或迹象","generalMeaning":"n. 指示；迹象"},
-    {"word":"indications","ipa":"/ˌɪndɪˈkeɪʃənz/","aviationMeaning":"n. 指示（复数）；仪表读数、告警或迹象","generalMeaning":"n. 指示；迹象（复数）"},
-    {"word":"indicationss","ipa":"/ˌɪndɪˈkeɪʃənz/","aviationMeaning":"n. 题库原文中 indications 的疑似拼写错误","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"indicator","ipa":"/ˈɪndɪkeɪtər/","aviationMeaning":"n. 指示器；仪表或告警显示部件","generalMeaning":"n. 指示器；指标"},
-    {"word":"indicators","ipa":"/ˈɪndɪkeɪtərz/","aviationMeaning":"n. 指示器（复数）；仪表或告警显示部件","generalMeaning":"n. 指示器；指标（复数）"},
-    {"word":"indices","ipa":"/ˈɪndəˌsiz/","aviationMeaning":"n. 指数或索引（复数）；数据或手册索引","generalMeaning":"n. 指数；索引（复数）"},
-    {"word":"individual","ipa":"/ˌɪndɪˈvɪdʒuəl/","aviationMeaning":"n. 个体；人员；adj. 单独的","generalMeaning":"n. 个人；adj. 单独的"},
-    {"word":"individuals","ipa":"/ˌɪndɪˈvɪdʒuəlz/","aviationMeaning":"n. 个体（复数）；人员","generalMeaning":"n. 个人（复数）"},
-    {"word":"indonesia","ipa":"/ˌɪndoʊˈniːʒə/","aviationMeaning":"n. 印度尼西亚；国家或航线目的地","generalMeaning":"n. 印度尼西亚"},
-    {"word":"induction","ipa":"/ɪnˈdʌkʃən/","aviationMeaning":"n. 感应；引入；发动机进气或电气感应","generalMeaning":"n. 感应；引导"},
-    {"word":"industry","ipa":"/ˈɪndəstri/","aviationMeaning":"n. 行业；航空业或制造业","generalMeaning":"n. 工业；行业"},
-    {"word":"ineffective","ipa":"/ˌɪnɪˈfektɪv/","aviationMeaning":"adj. 无效的；未达到安全或操作目的的","generalMeaning":"adj. 无效的"},
-    {"word":"inefficent","ipa":"/ɪnɪˈfɪʃənt/","aviationMeaning":"n. 题库原文中 inefficient 的疑似拼写错误","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"inefficient","ipa":"/ˌɪnɪˈfɪʃənt/","aviationMeaning":"adj. 效率低的；耗油或流程不佳的","generalMeaning":"adj. 效率低的"},
-    {"word":"inertial","ipa":"/ɪˈnɜːrʃəl/","aviationMeaning":"adj. 惯性的；惯性导航或参考系统相关","generalMeaning":"adj. 惯性的"},
-    {"word":"inexpensive","ipa":"/ˌɪnɪkˈspensɪv/","aviationMeaning":"adj. 不昂贵的；成本较低的","generalMeaning":"adj. 不贵的"},
-    {"word":"infant","ipa":"/ˈɪnfənt/","aviationMeaning":"n. 婴儿；需特别照护的旅客","generalMeaning":"n. 婴儿"},
-    {"word":"infants","ipa":"/ˈɪnfənts/","aviationMeaning":"n. 婴儿（复数）；需特别照护的旅客","generalMeaning":"n. 婴儿（复数）"},
-    {"word":"infection","ipa":"/ɪnˈfekʃən/","aviationMeaning":"n. 感染；机组或旅客医疗状况","generalMeaning":"n. 感染"},
-    {"word":"infectious","ipa":"/ɪnˈfekʃəs/","aviationMeaning":"adj. 传染性的；公共卫生和旅客医疗风险","generalMeaning":"adj. 传染性的"},
-    {"word":"infer","ipa":"/ɪnˈfɜːr/","aviationMeaning":"v. 推断；根据数据或迹象作出判断","generalMeaning":"v. 推断；推论"},
-    {"word":"inflamed","ipa":"/ɪnˈfleɪmd/","aviationMeaning":"adj. 发炎的；医疗症状描述","generalMeaning":"adj. 发炎的；激怒的"},
-    {"word":"inflation","ipa":"/ɪnˈfleɪʃən/","aviationMeaning":"n. 充气；轮胎、救生设备或经济成本上涨","generalMeaning":"n. 通货膨胀；充气"},
-    {"word":"inflight","ipa":"/ɪn flaɪt/","aviationMeaning":"adj. 飞行中的；在空中运行期间的","generalMeaning":"adj. 飞行中的"},
-    {"word":"influence","ipa":"/ˈɪnfluəns/","aviationMeaning":"n. 影响；v. 影响安全、性能或决策","generalMeaning":"n. 影响；v. 影响"},
-    {"word":"influenced","ipa":"/ˈɪnfluənst/","aviationMeaning":"v. 已影响；已改变安全、性能或决策","generalMeaning":"v. 已影响"},
-    {"word":"influencing","ipa":"/ˈɪnfluənsɪŋ/","aviationMeaning":"v. 正影响；正在改变安全、性能或决策","generalMeaning":"v. 正影响"},
-    {"word":"inform","ipa":"/ɪnˈfɔːrm/","aviationMeaning":"v. 通知；向空管、机组或旅客提供信息","generalMeaning":"v. 通知；告知"},
-    {"word":"informal","ipa":"/ɪnˈfɔːrməl/","aviationMeaning":"adj. 非正式的；不属于标准通话或书面程序的","generalMeaning":"adj. 非正式的"},
-    {"word":"information","ipa":"/ˌɪnfərˈmeɪʃən/","aviationMeaning":"n. 信息；飞行、气象、运行或安全资料","generalMeaning":"n. 信息；资料"},
-    {"word":"informed","ipa":"/ɪnˈfɔːrmd/","aviationMeaning":"v. 已通知；已向相关方提供信息","generalMeaning":"v. 已通知"},
-    {"word":"informing","ipa":"/ɪnˈfɔːrmɪŋ/","aviationMeaning":"v. 正通知；正向相关方提供信息","generalMeaning":"v. 正通知"},
-    {"word":"informs","ipa":"/ɪnˈfɔːrmz/","aviationMeaning":"v. 通知；向相关方提供信息","generalMeaning":"v. 通知；告知"},
-    {"word":"infrastructure","ipa":"/ˈɪnfrəˌstrʌktʃər/","aviationMeaning":"n. 基础设施；机场、导航和空管设施","generalMeaning":"n. 基础设施"},
-    {"word":"ingest","ipa":"/ɪnˈdʒest/","aviationMeaning":"v. 吸入或吞入；发动机吸入异物的风险","generalMeaning":"v. 摄入；吞咽"},
-    {"word":"ingested","ipa":"/ɪnˈdʒestɪd/","aviationMeaning":"v. 已吸入；发动机已吸入异物","generalMeaning":"v. 已摄入；吞咽"},
-    {"word":"ingestion","ipa":"/ɪnˈdʒestʃən/","aviationMeaning":"n. 吸入；发动机吸入异物或人员摄入物质","generalMeaning":"n. 摄入；吞咽"},
-    {"word":"ingests","ipa":"/ɪnˈdʒests/","aviationMeaning":"v. 吸入或吞入；发动机吸入异物","generalMeaning":"v. 摄入；吞咽"},
-    {"word":"ingredients","ipa":"/ɪnˈɡriːdiənts/","aviationMeaning":"n. 成分（复数）；机上餐食或危险品物质组成","generalMeaning":"n. 成分；原料（复数）"},
-    {"word":"ingress","ipa":"/ˈɪnɡres/","aviationMeaning":"n. 进入；进水、进气或进入某空域","generalMeaning":"n. 进入；入口"},
-    {"word":"inhalation","ipa":"/ˌɪnhəˈleɪʃən/","aviationMeaning":"n. 吸入；烟雾、有害气体或医疗处置","generalMeaning":"n. 吸入；吸气"},
-    {"word":"initial","ipa":"/ɪˈnɪʃəl/","aviationMeaning":"adj. 初始的；最初的；n. 首字母","generalMeaning":"adj. 最初的；n. 首字母"},
-    {"word":"initialization","ipa":"/ɪˌnɪʃələˈzeɪʃən/","aviationMeaning":"n. 初始化；系统启动时的设置过程","generalMeaning":"n. 初始化"},
-    {"word":"initially","ipa":"/ɪˈnɪʃəli/","aviationMeaning":"adv. 最初；开始时","generalMeaning":"adv. 最初；起初"},
-    {"word":"initiate","ipa":"/ɪˈnɪʃieɪt/","aviationMeaning":"v. 启动；发起程序、检查或操作","generalMeaning":"v. 开始；发起"},
-    {"word":"initiated","ipa":"/ɪˈnɪʃieɪtɪd/","aviationMeaning":"adj. 已启动的；程序、检查或操作已开始","generalMeaning":"adj. 已发起的"},
-    {"word":"initiates","ipa":"/ɪˈnɪʃieɪts/","aviationMeaning":"v. 启动；发起程序、检查或操作","generalMeaning":"v. 开始；发起"},
-    {"word":"initiating","ipa":"/ɪˈnɪʃieɪtɪŋ/","aviationMeaning":"v. 正启动；正发起程序、检查或操作","generalMeaning":"v. 正开始；发起"},
-    {"word":"inject","ipa":"/ɪnˈdʒekt/","aviationMeaning":"v. 注入；喷射燃油、液体或医疗药物","generalMeaning":"v. 注射；注入"},
-    {"word":"injection","ipa":"/ɪnˈdʒekʃən/","aviationMeaning":"n. 注入；燃油喷射或医疗注射","generalMeaning":"n. 注射；注入"},
-    {"word":"injectors","ipa":"/ɪnˈdʒektərz/","aviationMeaning":"n. 喷油器（复数）；发动机燃油喷射部件","generalMeaning":"n. 注射器；喷射器（复数）"},
-    {"word":"injure","ipa":"/ˈɪndʒər/","aviationMeaning":"v. 使受伤；事故、颠簸或医疗事件造成伤害","generalMeaning":"v. 伤害；使受伤"},
-    {"word":"injured","ipa":"/ˈɪndʒərd/","aviationMeaning":"adj. 受伤的；事故、颠簸或医疗事件中的人员","generalMeaning":"adj. 受伤的"},
-    {"word":"injuries","ipa":"/ˈɪndʒəriz/","aviationMeaning":"n. 伤害（复数）；事故、颠簸或医疗事件后果","generalMeaning":"n. 伤害（复数）"},
-    {"word":"injury","ipa":"/ˈɪndʒəri/","aviationMeaning":"n. 伤害；事故、颠簸或医疗事件后果","generalMeaning":"n. 伤害"},
-    {"word":"inlet","ipa":"/ˈɪnlet/","aviationMeaning":"n. 进气口；发动机或系统空气入口","generalMeaning":"n. 入口；小湾"},
-    {"word":"inlets","ipa":"/ˈɪnlets/","aviationMeaning":"n. 进气口（复数）；发动机或系统空气入口","generalMeaning":"n. 入口；小湾（复数）"},
-    {"word":"inner","ipa":"/ˈɪnər/","aviationMeaning":"adj. 内侧的；靠近机身或内部的","generalMeaning":"adj. 内部的；内侧的"},
-    {"word":"inoperative","ipa":"/ɪnˈɑːpərətɪv/","aviationMeaning":"adj. 不工作的；失效的；不适用的","generalMeaning":"adj. 不起作用的"},
-    {"word":"input","ipa":"/ˈɪnpʊt/","aviationMeaning":"n. 输入；系统、传感器或机组提供的数据","generalMeaning":"n. 输入；投入"},
-    {"word":"inputs","ipa":"/ˈɪnpʊts/","aviationMeaning":"n. 输入（复数）；系统、传感器或机组提供的数据","generalMeaning":"n. 输入；投入（复数）"},
-    {"word":"inquired","ipa":"/ɪnˈkwaɪərd/","aviationMeaning":"v. 已询问；询问状态、许可或信息","generalMeaning":"v. 已询问"},
-    {"word":"ins","ipa":"/ˌaɪ en ˈes/","aviationMeaning":"n. 惯性导航系统（缩写）","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"inserted","ipa":"/ɪnˈsɜːrtɪd/","aviationMeaning":"v. 已插入；已将数据、部件或指令装入系统","generalMeaning":"v. 已插入"},
-    {"word":"inserts","ipa":"/ɪnˈsɜːrts/","aviationMeaning":"v. 插入；n. 插入物（复数）","generalMeaning":"v. 插入；n. 插页（复数）"},
-    {"word":"inside","ipa":"/ˌɪnˈsaɪd/","aviationMeaning":"prep. 在……内部；客舱、机体或区域内","generalMeaning":"prep. 在……里面；adv. 内部"},
-    {"word":"insight","ipa":"/ˈɪnsaɪt/","aviationMeaning":"n. 洞察；对风险、运行或事件的理解","generalMeaning":"n. 洞察；见解"},
-    {"word":"insisted","ipa":"/ɪnˈsɪstɪd/","aviationMeaning":"v. 已坚持；坚持某项要求、程序或判断","generalMeaning":"v. 已坚持"},
-    {"word":"inspect","ipa":"/ɪnˈspekt/","aviationMeaning":"v. 检查；检查航空器、跑道、设备或文件","generalMeaning":"v. 检查；视察"},
-    {"word":"inspected","ipa":"/ɪnˈspektɪd/","aviationMeaning":"adj. 已检查的；航空器、跑道或设备已完成检查","generalMeaning":"adj. 已检查的"},
-    {"word":"inspecting","ipa":"/ɪnˈspektɪŋ/","aviationMeaning":"v. 正检查；检查航空器、跑道、设备或文件","generalMeaning":"v. 正检查"},
-    {"word":"inspection","ipa":"/ɪnˈspekʃən/","aviationMeaning":"n. 检查；航空器、跑道、设备或文件检查","generalMeaning":"n. 检查；视察"},
-    {"word":"inspections","ipa":"/ɪnˈspekʃənz/","aviationMeaning":"n. 检查（复数）；航空器、跑道、设备或文件检查","generalMeaning":"n. 检查；视察（复数）"},
-    {"word":"inspector","ipa":"/ɪnˈspektər/","aviationMeaning":"n. 检查员；适航、安保或运行监察人员","generalMeaning":"n. 检查员；检验员"},
-    {"word":"inspector's","ipa":"/ɪnˈspektərz/","aviationMeaning":"n. inspector 的所有格形式；检查员相关","generalMeaning":"n. 检查员的所有格形式"},
-    {"word":"inspectors","ipa":"/ɪnˈspektərz/","aviationMeaning":"n. 检查员（复数）；适航、安保或运行监察人员","generalMeaning":"n. 检查员（复数）"},
-    {"word":"install","ipa":"/ɪnˈstɔːl/","aviationMeaning":"v. 安装；安装航空器部件、软件或设备","generalMeaning":"v. 安装；设置"},
-    {"word":"installation","ipa":"/ˌɪnstəˈleɪʃən/","aviationMeaning":"n. 安装；已安装的设备或设施","generalMeaning":"n. 安装；装置"},
-    {"word":"installations","ipa":"/ˌɪnstəˈleɪʃənz/","aviationMeaning":"n. 安装或设施（复数）；设备配置","generalMeaning":"n. 安装；装置（复数）"},
-    {"word":"installed","ipa":"/ɪnˈstɔːld/","aviationMeaning":"adj. 已安装的；部件、软件或设备已装配","generalMeaning":"adj. 已安装的"},
-    {"word":"installing","ipa":"/ɪnˈstɔːlɪŋ/","aviationMeaning":"v. 正安装；装配部件、软件或设备","generalMeaning":"v. 正安装"},
-    {"word":"instantly","ipa":"/ˈɪnstəntli/","aviationMeaning":"adv. 立即；无延迟地","generalMeaning":"adv. 立即；马上"},
-    {"word":"instead","ipa":"/ɪnˈsted/","aviationMeaning":"adv. 代替；表示替代程序、航路或动作","generalMeaning":"adv. 代替；反而"},
-    {"word":"instruct","ipa":"/ɪnˈstrʌkt/","aviationMeaning":"v. 指示；向机组或飞行员下达操作指令","generalMeaning":"v. 指示；教导"},
-    {"word":"instructed","ipa":"/ɪnˈstrʌktɪd/","aviationMeaning":"v. 已指示；已向机组或飞行员下达指令","generalMeaning":"v. 已指示；教导"},
-    {"word":"instructing","ipa":"/ɪnˈstrʌktɪŋ/","aviationMeaning":"v. 正指示；正向机组或飞行员下达指令","generalMeaning":"v. 正指示；教导"}
+    {
+      "word": "independent",
+      "ipa": "/ˌɪndɪˈpendənt/",
+      "aviationMeaning": "adj. 独立的；独立运行、检查或导航的",
+      "generalMeaning": "adj. 独立的；自主的"
+    },
+    {
+      "word": "independently",
+      "ipa": "/ˌɪndɪˈpendəntli/",
+      "aviationMeaning": "adv. 独立地；不依赖其他系统或人员地",
+      "generalMeaning": "adv. 独立地"
+    },
+    {
+      "word": "index",
+      "ipa": "/ˈɪndeks/",
+      "aviationMeaning": "n. 指数；索引；仪表或手册定位标记",
+      "generalMeaning": "n. 索引；指数"
+    },
+    {
+      "word": "india",
+      "ipa": "/ˈɪndiə/",
+      "aviationMeaning": "n. India；ICAO 字母 I 的拼读词；也指印度",
+      "generalMeaning": "n. 印度；字母拼读词"
+    },
+    {
+      "word": "india-delta",
+      "ipa": "/ˈɪndiə ˈdeltə/",
+      "aviationMeaning": "n. India Delta；无线电字母组合 ID",
+      "generalMeaning": "n. 字母拼读组合"
+    },
+    {
+      "word": "india-hotel",
+      "ipa": "/ˈɪndiə hoʊˈtel/",
+      "aviationMeaning": "n. India Hotel；无线电字母组合 IH",
+      "generalMeaning": "n. 字母拼读组合"
+    },
+    {
+      "word": "indian",
+      "ipa": "/ˈɪndiən/",
+      "aviationMeaning": "adj. 印度的；印度语的；航线或地区描述",
+      "generalMeaning": "adj. 印度的；n. 印度人"
+    },
+    {
+      "word": "indianapolis",
+      "ipa": "/ˌɪndiəˈnæpəlɪs/",
+      "aviationMeaning": "n. 印第安纳波利斯；机场或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "indicate",
+      "ipa": "/ˈɪndɪkeɪt/",
+      "aviationMeaning": "v. 指示；显示仪表状态、位置或趋势",
+      "generalMeaning": "v. 指示；表明"
+    },
+    {
+      "word": "indicated",
+      "ipa": "/ˈɪndɪkeɪtɪd/",
+      "aviationMeaning": "adj. 已指示的；仪表显示的；如指示空速",
+      "generalMeaning": "adj. 已表明的"
+    },
+    {
+      "word": "indicates",
+      "ipa": "/ˈɪndɪkeɪts/",
+      "aviationMeaning": "v. 指示；显示仪表状态、位置或趋势",
+      "generalMeaning": "v. 指示；表明"
+    },
+    {
+      "word": "indicating",
+      "ipa": "/ˈɪndɪkeɪtɪŋ/",
+      "aviationMeaning": "v. 正指示；正在显示状态、位置或趋势",
+      "generalMeaning": "v. 正指示；表明"
+    },
+    {
+      "word": "indication",
+      "ipa": "/ˌɪndɪˈkeɪʃən/",
+      "aviationMeaning": "n. 指示；仪表读数、告警或迹象",
+      "generalMeaning": "n. 指示；迹象"
+    },
+    {
+      "word": "indications",
+      "ipa": "/ˌɪndɪˈkeɪʃənz/",
+      "aviationMeaning": "n. 指示（复数）；仪表读数、告警或迹象",
+      "generalMeaning": "n. 指示；迹象（复数）"
+    },
+    {
+      "word": "indicator",
+      "ipa": "/ˈɪndɪkeɪtər/",
+      "aviationMeaning": "n. 指示器；仪表或告警显示部件",
+      "generalMeaning": "n. 指示器；指标"
+    },
+    {
+      "word": "indicators",
+      "ipa": "/ˈɪndɪkeɪtərz/",
+      "aviationMeaning": "n. 指示器（复数）；仪表或告警显示部件",
+      "generalMeaning": "n. 指示器；指标（复数）"
+    },
+    {
+      "word": "indices",
+      "ipa": "/ˈɪndəˌsiz/",
+      "aviationMeaning": "n. 指数或索引（复数）；数据或手册索引",
+      "generalMeaning": "n. 指数；索引（复数）"
+    },
+    {
+      "word": "individual",
+      "ipa": "/ˌɪndɪˈvɪdʒuəl/",
+      "aviationMeaning": "n. 个体；人员；adj. 单独的",
+      "generalMeaning": "n. 个人；adj. 单独的"
+    },
+    {
+      "word": "indonesia",
+      "ipa": "/ˌɪndoʊˈniːʒə/",
+      "aviationMeaning": "n. 印度尼西亚；国家或航线目的地",
+      "generalMeaning": "n. 印度尼西亚"
+    },
+    {
+      "word": "induction",
+      "ipa": "/ɪnˈdʌkʃən/",
+      "aviationMeaning": "n. 感应；引入；发动机进气或电气感应",
+      "generalMeaning": "n. 感应；引导"
+    },
+    {
+      "word": "industry",
+      "ipa": "/ˈɪndəstri/",
+      "aviationMeaning": "n. 行业；航空业或制造业",
+      "generalMeaning": "n. 工业；行业"
+    },
+    {
+      "word": "ineffective",
+      "ipa": "/ˌɪnɪˈfektɪv/",
+      "aviationMeaning": "adj. 无效的；未达到安全或操作目的的",
+      "generalMeaning": "adj. 无效的"
+    },
+    {
+      "word": "inefficient",
+      "ipa": "/ˌɪnɪˈfɪʃənt/",
+      "aviationMeaning": "adj. 效率低的；耗油或流程不佳的",
+      "generalMeaning": "adj. 效率低的"
+    },
+    {
+      "word": "inertial",
+      "ipa": "/ɪˈnɜːrʃəl/",
+      "aviationMeaning": "adj. 惯性的；惯性导航或参考系统相关",
+      "generalMeaning": "adj. 惯性的"
+    },
+    {
+      "word": "inexpensive",
+      "ipa": "/ˌɪnɪkˈspensɪv/",
+      "aviationMeaning": "adj. 不昂贵的；成本较低的",
+      "generalMeaning": "adj. 不贵的"
+    },
+    {
+      "word": "infant",
+      "ipa": "/ˈɪnfənt/",
+      "aviationMeaning": "n. 婴儿；需特别照护的旅客",
+      "generalMeaning": "n. 婴儿"
+    },
+    {
+      "word": "infants",
+      "ipa": "/ˈɪnfənts/",
+      "aviationMeaning": "n. 婴儿（复数）；需特别照护的旅客",
+      "generalMeaning": "n. 婴儿（复数）"
+    },
+    {
+      "word": "infectious",
+      "ipa": "/ɪnˈfekʃəs/",
+      "aviationMeaning": "adj. 传染性的；公共卫生和旅客医疗风险",
+      "generalMeaning": "adj. 传染性的"
+    },
+    {
+      "word": "inflamed",
+      "ipa": "/ɪnˈfleɪmd/",
+      "aviationMeaning": "adj. 发炎的；医疗症状描述",
+      "generalMeaning": "adj. 发炎的；激怒的"
+    },
+    {
+      "word": "inflation",
+      "ipa": "/ɪnˈfleɪʃən/",
+      "aviationMeaning": "n. 充气；轮胎、救生设备或经济成本上涨",
+      "generalMeaning": "n. 通货膨胀；充气"
+    },
+    {
+      "word": "inflight",
+      "ipa": "/ɪn flaɪt/",
+      "aviationMeaning": "adj. 飞行中的；在空中运行期间的",
+      "generalMeaning": "adj. 飞行中的"
+    },
+    {
+      "word": "influence",
+      "ipa": "/ˈɪnfluəns/",
+      "aviationMeaning": "n. 影响；v. 影响安全、性能或决策",
+      "generalMeaning": "n. 影响；v. 影响"
+    },
+    {
+      "word": "influenced",
+      "ipa": "/ˈɪnfluənst/",
+      "aviationMeaning": "v. 已影响；已改变安全、性能或决策",
+      "generalMeaning": "v. 已影响"
+    },
+    {
+      "word": "influencing",
+      "ipa": "/ˈɪnfluənsɪŋ/",
+      "aviationMeaning": "v. 正影响；正在改变安全、性能或决策",
+      "generalMeaning": "v. 正影响"
+    },
+    {
+      "word": "inform",
+      "ipa": "/ɪnˈfɔːrm/",
+      "aviationMeaning": "v. 通知；向空管、机组或旅客提供信息",
+      "generalMeaning": "v. 通知；告知"
+    },
+    {
+      "word": "information",
+      "ipa": "/ˌɪnfərˈmeɪʃən/",
+      "aviationMeaning": "n. 信息；飞行、气象、运行或安全资料",
+      "generalMeaning": "n. 信息；资料"
+    },
+    {
+      "word": "informed",
+      "ipa": "/ɪnˈfɔːrmd/",
+      "aviationMeaning": "v. 已通知；已向相关方提供信息",
+      "generalMeaning": "v. 已通知"
+    },
+    {
+      "word": "informing",
+      "ipa": "/ɪnˈfɔːrmɪŋ/",
+      "aviationMeaning": "v. 正通知；正向相关方提供信息",
+      "generalMeaning": "v. 正通知"
+    },
+    {
+      "word": "informs",
+      "ipa": "/ɪnˈfɔːrmz/",
+      "aviationMeaning": "v. 通知；向相关方提供信息",
+      "generalMeaning": "v. 通知；告知"
+    },
+    {
+      "word": "infrastructure",
+      "ipa": "/ˈɪnfrəˌstrʌktʃər/",
+      "aviationMeaning": "n. 基础设施；机场、导航和空管设施",
+      "generalMeaning": "n. 基础设施"
+    },
+    {
+      "word": "ingested",
+      "ipa": "/ɪnˈdʒestɪd/",
+      "aviationMeaning": "v. 已吸入；发动机已吸入异物",
+      "generalMeaning": "v. 已摄入；吞咽"
+    },
+    {
+      "word": "ingestion",
+      "ipa": "/ɪnˈdʒestʃən/",
+      "aviationMeaning": "n. 吸入；发动机吸入异物或人员摄入物质",
+      "generalMeaning": "n. 摄入；吞咽"
+    },
+    {
+      "word": "ingests",
+      "ipa": "/ɪnˈdʒests/",
+      "aviationMeaning": "v. 吸入或吞入；发动机吸入异物",
+      "generalMeaning": "v. 摄入；吞咽"
+    },
+    {
+      "word": "inhalation",
+      "ipa": "/ˌɪnhəˈleɪʃən/",
+      "aviationMeaning": "n. 吸入；烟雾、有害气体或医疗处置",
+      "generalMeaning": "n. 吸入；吸气"
+    },
+    {
+      "word": "initial",
+      "ipa": "/ɪˈnɪʃəl/",
+      "aviationMeaning": "adj. 初始的；最初的；n. 首字母",
+      "generalMeaning": "adj. 最初的；n. 首字母"
+    },
+    {
+      "word": "initially",
+      "ipa": "/ɪˈnɪʃəli/",
+      "aviationMeaning": "adv. 最初；开始时",
+      "generalMeaning": "adv. 最初；起初"
+    },
+    {
+      "word": "initiate",
+      "ipa": "/ɪˈnɪʃieɪt/",
+      "aviationMeaning": "v. 启动；发起程序、检查或操作",
+      "generalMeaning": "v. 开始；发起"
+    },
+    {
+      "word": "initiated",
+      "ipa": "/ɪˈnɪʃieɪtɪd/",
+      "aviationMeaning": "adj. 已启动的；程序、检查或操作已开始",
+      "generalMeaning": "adj. 已发起的"
+    },
+    {
+      "word": "initiating",
+      "ipa": "/ɪˈnɪʃieɪtɪŋ/",
+      "aviationMeaning": "v. 正启动；正发起程序、检查或操作",
+      "generalMeaning": "v. 正开始；发起"
+    },
+    {
+      "word": "inject",
+      "ipa": "/ɪnˈdʒekt/",
+      "aviationMeaning": "v. 注入；喷射燃油、液体或医疗药物",
+      "generalMeaning": "v. 注射；注入"
+    },
+    {
+      "word": "injection",
+      "ipa": "/ɪnˈdʒekʃən/",
+      "aviationMeaning": "n. 注入；燃油喷射或医疗注射",
+      "generalMeaning": "n. 注射；注入"
+    },
+    {
+      "word": "injectors",
+      "ipa": "/ɪnˈdʒektərz/",
+      "aviationMeaning": "n. 喷油器（复数）；发动机燃油喷射部件",
+      "generalMeaning": "n. 注射器；喷射器（复数）"
+    },
+    {
+      "word": "injure",
+      "ipa": "/ˈɪndʒər/",
+      "aviationMeaning": "v. 使受伤；事故、颠簸或医疗事件造成伤害",
+      "generalMeaning": "v. 伤害；使受伤"
+    },
+    {
+      "word": "injured",
+      "ipa": "/ˈɪndʒərd/",
+      "aviationMeaning": "adj. 受伤的；事故、颠簸或医疗事件中的人员",
+      "generalMeaning": "adj. 受伤的"
+    },
+    {
+      "word": "injuries",
+      "ipa": "/ˈɪndʒəriz/",
+      "aviationMeaning": "n. 伤害（复数）；事故、颠簸或医疗事件后果",
+      "generalMeaning": "n. 伤害（复数）"
+    },
+    {
+      "word": "injury",
+      "ipa": "/ˈɪndʒəri/",
+      "aviationMeaning": "n. 伤害；事故、颠簸或医疗事件后果",
+      "generalMeaning": "n. 伤害"
+    },
+    {
+      "word": "inlet",
+      "ipa": "/ˈɪnlet/",
+      "aviationMeaning": "n. 进气口；发动机或系统空气入口",
+      "generalMeaning": "n. 入口；小湾"
+    },
+    {
+      "word": "inner",
+      "ipa": "/ˈɪnər/",
+      "aviationMeaning": "adj. 内侧的；靠近机身或内部的",
+      "generalMeaning": "adj. 内部的；内侧的"
+    },
+    {
+      "word": "inoperative",
+      "ipa": "/ɪnˈɑːpərətɪv/",
+      "aviationMeaning": "adj. 不工作的；失效的；不适用的",
+      "generalMeaning": "adj. 不起作用的"
+    },
+    {
+      "word": "input",
+      "ipa": "/ˈɪnpʊt/",
+      "aviationMeaning": "n. 输入；系统、传感器或机组提供的数据",
+      "generalMeaning": "n. 输入；投入"
+    },
+    {
+      "word": "inputs",
+      "ipa": "/ˈɪnpʊts/",
+      "aviationMeaning": "n. 输入（复数）；系统、传感器或机组提供的数据",
+      "generalMeaning": "n. 输入；投入（复数）"
+    },
+    {
+      "word": "inquired",
+      "ipa": "/ɪnˈkwaɪərd/",
+      "aviationMeaning": "v. 已询问；询问状态、许可或信息",
+      "generalMeaning": "v. 已询问"
+    },
+    {
+      "word": "ins",
+      "ipa": "/ˌaɪ en ˈes/",
+      "aviationMeaning": "n. 惯性导航系统（缩写）",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "inserted",
+      "ipa": "/ɪnˈsɜːrtɪd/",
+      "aviationMeaning": "v. 已插入；已将数据、部件或指令装入系统",
+      "generalMeaning": "v. 已插入"
+    },
+    {
+      "word": "inside",
+      "ipa": "/ˌɪnˈsaɪd/",
+      "aviationMeaning": "prep. 在……内部；客舱、机体或区域内",
+      "generalMeaning": "prep. 在……里面；adv. 内部"
+    },
+    {
+      "word": "insight",
+      "ipa": "/ˈɪnsaɪt/",
+      "aviationMeaning": "n. 洞察；对风险、运行或事件的理解",
+      "generalMeaning": "n. 洞察；见解"
+    },
+    {
+      "word": "insisted",
+      "ipa": "/ɪnˈsɪstɪd/",
+      "aviationMeaning": "v. 已坚持；坚持某项要求、程序或判断",
+      "generalMeaning": "v. 已坚持"
+    },
+    {
+      "word": "inspect",
+      "ipa": "/ɪnˈspekt/",
+      "aviationMeaning": "v. 检查；检查航空器、跑道、设备或文件",
+      "generalMeaning": "v. 检查；视察"
+    },
+    {
+      "word": "inspected",
+      "ipa": "/ɪnˈspektɪd/",
+      "aviationMeaning": "adj. 已检查的；航空器、跑道或设备已完成检查",
+      "generalMeaning": "adj. 已检查的"
+    },
+    {
+      "word": "inspecting",
+      "ipa": "/ɪnˈspektɪŋ/",
+      "aviationMeaning": "v. 正检查；检查航空器、跑道、设备或文件",
+      "generalMeaning": "v. 正检查"
+    },
+    {
+      "word": "inspection",
+      "ipa": "/ɪnˈspekʃən/",
+      "aviationMeaning": "n. 检查；航空器、跑道、设备或文件检查",
+      "generalMeaning": "n. 检查；视察"
+    },
+    {
+      "word": "inspections",
+      "ipa": "/ɪnˈspekʃənz/",
+      "aviationMeaning": "n. 检查（复数）；航空器、跑道、设备或文件检查",
+      "generalMeaning": "n. 检查；视察（复数）"
+    },
+    {
+      "word": "inspector",
+      "ipa": "/ɪnˈspektər/",
+      "aviationMeaning": "n. 检查员；适航、安保或运行监察人员",
+      "generalMeaning": "n. 检查员；检验员"
+    },
+    {
+      "word": "inspectors",
+      "ipa": "/ɪnˈspektərz/",
+      "aviationMeaning": "n. 检查员（复数）；适航、安保或运行监察人员",
+      "generalMeaning": "n. 检查员（复数）"
+    },
+    {
+      "word": "install",
+      "ipa": "/ɪnˈstɔːl/",
+      "aviationMeaning": "v. 安装；安装航空器部件、软件或设备",
+      "generalMeaning": "v. 安装；设置"
+    },
+    {
+      "word": "installation",
+      "ipa": "/ˌɪnstəˈleɪʃən/",
+      "aviationMeaning": "n. 安装；已安装的设备或设施",
+      "generalMeaning": "n. 安装；装置"
+    },
+    {
+      "word": "installed",
+      "ipa": "/ɪnˈstɔːld/",
+      "aviationMeaning": "adj. 已安装的；部件、软件或设备已装配",
+      "generalMeaning": "adj. 已安装的"
+    },
+    {
+      "word": "installing",
+      "ipa": "/ɪnˈstɔːlɪŋ/",
+      "aviationMeaning": "v. 正安装；装配部件、软件或设备",
+      "generalMeaning": "v. 正安装"
+    },
+    {
+      "word": "instead",
+      "ipa": "/ɪnˈsted/",
+      "aviationMeaning": "adv. 代替；表示替代程序、航路或动作",
+      "generalMeaning": "adv. 代替；反而"
+    },
+    {
+      "word": "instruct",
+      "ipa": "/ɪnˈstrʌkt/",
+      "aviationMeaning": "v. 指示；向机组或飞行员下达操作指令",
+      "generalMeaning": "v. 指示；教导"
+    },
+    {
+      "word": "instructed",
+      "ipa": "/ɪnˈstrʌktɪd/",
+      "aviationMeaning": "v. 已指示；已向机组或飞行员下达指令",
+      "generalMeaning": "v. 已指示；教导"
+    }
   ]
 }

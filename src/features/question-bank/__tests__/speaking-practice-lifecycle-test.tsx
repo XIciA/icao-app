@@ -1,5 +1,5 @@
 import { act, cleanup, fireEvent, render, waitFor } from '@testing-library/react-native';
-import { AppState } from 'react-native';
+import { AppState, Platform } from 'react-native';
 
 import type { RecordingAsset, RawRecording } from '../recording/types';
 import { SpeakingPracticePanel } from '../components/SpeakingPracticePanel';
@@ -34,7 +34,10 @@ const mockRecorder = {
   cancel: jest.fn(async () => undefined as string | undefined),
   durationMillis: 3_000,
   isRecording: jest.fn(() => false),
+  lifecycleRevision: 0,
+  permissionReady: false,
   prepare: jest.fn(async () => undefined),
+  primePermission: jest.fn(async () => true),
   requestPermission: jest.fn(async () => true),
   start: jest.fn(),
   stop: jest.fn(async () => rawRecording),
@@ -55,6 +58,15 @@ const mockDiscardRaw = jest.fn((_uri?: unknown) => undefined);
 const mockAcquire = jest.fn(async (owner: string, _reason: string) => ({ owner, token: 1 }));
 const mockRelease = jest.fn(async (_lease?: unknown) => undefined);
 let previousAppState = AppState.currentState;
+const initialPlatform = Platform.OS;
+
+function setPlatform(platform: typeof Platform.OS) {
+  Object.defineProperty(Platform, 'OS', { configurable: true, value: platform });
+}
+
+function recorderFailure(code: string) {
+  return Object.assign(new Error(code), { code });
+}
 
 jest.mock('lucide-react-native', () => {
   const { View } = jest.requireActual('react-native');
@@ -111,8 +123,12 @@ describe('SpeakingPracticePanel lifecycle', () => {
     (AppState as unknown as { currentState: typeof AppState.currentState }).currentState = 'active';
     commonProps.onClear = jest.fn();
     commonProps.onRecorded = jest.fn();
+    mockRecorder.cancel.mockResolvedValue(undefined);
     mockRecorder.isRecording.mockReturnValue(false);
+    mockRecorder.lifecycleRevision = 0;
+    mockRecorder.permissionReady = false;
     mockRecorder.prepare.mockResolvedValue(undefined);
+    mockRecorder.primePermission.mockResolvedValue(true);
     mockRecorder.requestPermission.mockResolvedValue(true);
     mockRecorder.start.mockImplementation(() => { mockRecorder.isRecording.mockReturnValue(true); });
     mockRecorder.stop.mockImplementation(async () => {
@@ -132,6 +148,8 @@ describe('SpeakingPracticePanel lifecycle', () => {
 
   afterEach(async () => {
     await cleanup();
+    jest.useRealTimers();
+    setPlatform(initialPlatform);
     (AppState as unknown as { currentState: typeof AppState.currentState }).currentState = previousAppState;
     jest.restoreAllMocks();
   });
@@ -313,6 +331,32 @@ describe('SpeakingPracticePanel lifecycle', () => {
     await screen.unmount();
   });
 
+  it('notifies the question player before a Web recording-preview lease settles', async () => {
+    setPlatform('web');
+    const acquired = deferred<{ owner: string; token: number }>();
+    mockAcquire.mockReturnValue(acquired.promise);
+    mockPlaybackStatus = { currentTime: 0, didJustFinish: false, duration: 3, isLoaded: true, playbackState: 'readyToPlay', playing: false };
+    const onPreviewPlaybackStart = jest.fn();
+    const screen = await render(<SpeakingPracticePanel {...commonProps} onPreviewPlaybackStart={onPreviewPlaybackStart} recording={committedAsset} />);
+
+    await act(async () => {
+      fireEvent.press(screen.getByLabelText('播放我的录音'));
+      await Promise.resolve();
+    });
+
+    expect(onPreviewPlaybackStart).toHaveBeenCalledTimes(1);
+    expect(mockPlayback.play).not.toHaveBeenCalled();
+
+    await act(async () => {
+      acquired.resolve({ owner: 'recordingPlayback', token: 8 });
+      await acquired.promise;
+      await Promise.resolve();
+    });
+    expect(mockPlayback.play).toHaveBeenCalledTimes(1);
+    expect(onPreviewPlaybackStart).toHaveBeenCalledTimes(1);
+    await screen.unmount();
+  });
+
   it('does not start playback when a pause request makes an acquired lease stale', async () => {
     const acquired = deferred<{ owner: string; token: number }>();
     mockAcquire.mockReturnValue(acquired.promise);
@@ -330,6 +374,332 @@ describe('SpeakingPracticePanel lifecycle', () => {
 
     expect(mockPlayback.play).not.toHaveBeenCalled();
     expect(mockRelease).toHaveBeenCalledWith({ owner: 'recordingPlayback', token: 9 });
+    await screen.unmount();
+  });
+
+  it('primes Web microphone permission with a click before enabling hold-to-record', async () => {
+    setPlatform('web');
+    const screen = await render(<SpeakingPracticePanel {...commonProps} />);
+
+    await act(async () => { fireEvent.press(screen.getByLabelText('启用麦克风')); });
+
+    expect(mockRecorder.primePermission).toHaveBeenCalledTimes(1);
+    expect(mockRecorder.prepare).not.toHaveBeenCalled();
+    expect(mockRecorder.start).not.toHaveBeenCalled();
+    expect(screen.getByText('麦克风已启用，请按住录音')).toBeTruthy();
+
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
+    await waitFor(() => expect(mockRecorder.start).toHaveBeenCalledTimes(1));
+    await act(async () => { fireEvent(screen.getByLabelText('松开结束录音'), 'pressOut'); });
+    await waitFor(() => expect(commonProps.onRecorded).toHaveBeenCalledWith(committedAsset));
+    await screen.unmount();
+  });
+
+  it('releases the Web permission stream when the user lets go before permission completes', async () => {
+    setPlatform('web');
+    const permission = deferred<boolean>();
+    mockRecorder.cancel.mockResolvedValue('blob:unused-permission-stream');
+    const screen = await render(<SpeakingPracticePanel {...commonProps} />);
+
+    await act(async () => { fireEvent.press(screen.getByLabelText('启用麦克风')); });
+    mockRecorder.requestPermission.mockReturnValue(permission.promise);
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
+    await act(async () => {
+      fireEvent(screen.getByLabelText('按住说话'), 'pressOut');
+      permission.resolve(true);
+      await permission.promise;
+      await Promise.resolve();
+    });
+
+    await waitFor(() => expect(mockRecorder.cancel).toHaveBeenCalled());
+    expect(mockDiscardRaw).toHaveBeenCalledWith('blob:unused-permission-stream');
+    expect(mockRecorder.prepare).not.toHaveBeenCalled();
+    expect(mockRecorder.start).not.toHaveBeenCalled();
+    await screen.unmount();
+  });
+
+  it('releases the Web permission stream and lease when the user lets go during lease acquisition', async () => {
+    setPlatform('web');
+    const acquired = deferred<{ owner: string; token: number }>();
+    mockAcquire.mockReturnValue(acquired.promise);
+    mockRecorder.cancel.mockResolvedValue('blob:unused-lease-stream');
+    const screen = await render(<SpeakingPracticePanel {...commonProps} />);
+
+    await act(async () => { fireEvent.press(screen.getByLabelText('启用麦克风')); });
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
+    await waitFor(() => expect(mockAcquire).toHaveBeenCalledWith('recording', 'recording-start'));
+    await act(async () => {
+      fireEvent(screen.getByLabelText('按住说话'), 'pressOut');
+      acquired.resolve({ owner: 'recording', token: 17 });
+      await acquired.promise;
+      await Promise.resolve();
+    });
+
+    await waitFor(() => expect(mockRecorder.cancel).toHaveBeenCalled());
+    expect(mockDiscardRaw).toHaveBeenCalledWith('blob:unused-lease-stream');
+    expect(mockRelease).toHaveBeenCalledWith({ owner: 'recording', token: 17 });
+    expect(mockRecorder.prepare).not.toHaveBeenCalled();
+    expect(mockRecorder.start).not.toHaveBeenCalled();
+    await screen.unmount();
+  });
+
+  it('offers a non-blocking cancel action when Web permission remains unanswered for ten seconds', async () => {
+    setPlatform('web');
+    const permission = deferred<boolean>();
+    const originalSetTimeout = globalThis.setTimeout;
+    const timeoutSpy = jest.spyOn(globalThis, 'setTimeout').mockImplementation(((callback: () => void, delay?: number) => {
+      if (delay === 10_000) {
+        callback();
+        return 1 as unknown as ReturnType<typeof setTimeout>;
+      }
+      return originalSetTimeout(callback, delay);
+    }) as typeof setTimeout);
+    mockRecorder.primePermission.mockReturnValue(permission.promise);
+    const screen = await render(<SpeakingPracticePanel {...commonProps} />);
+
+    fireEvent.press(screen.getByLabelText('启用麦克风'));
+    timeoutSpy.mockRestore();
+
+    await waitFor(() => expect(screen.getByText('仍在等待浏览器授权')).toBeTruthy());
+    await act(async () => { fireEvent.press(screen.getByLabelText('取消麦克风授权等待')); });
+    await waitFor(() => expect(screen.queryByText('仍在等待浏览器授权')).toBeNull());
+    expect(screen.getByLabelText('启用麦克风')).toBeTruthy();
+    expect(mockRecorder.cancel).toHaveBeenCalled();
+    await act(async () => {
+      permission.resolve(true);
+      await permission.promise;
+      await Promise.resolve();
+    });
+    expect(screen.queryByText('麦克风已启用，请按住录音')).toBeNull();
+    expect(screen.getByLabelText('启用麦克风')).toBeTruthy();
+    expect(mockRecorder.prepare).not.toHaveBeenCalled();
+    await screen.unmount();
+  });
+
+  it('keeps the retry timer owned by a new Web permission request when the cancelled request resolves late', async () => {
+    jest.useFakeTimers();
+    setPlatform('web');
+    const firstPermission = deferred<boolean>();
+    const secondPermission = deferred<boolean>();
+    mockRecorder.primePermission
+      .mockReturnValueOnce(firstPermission.promise)
+      .mockReturnValueOnce(secondPermission.promise);
+    const screen = await render(<SpeakingPracticePanel {...commonProps} />);
+
+    await act(async () => {
+      fireEvent.press(screen.getByLabelText('启用麦克风'));
+      await Promise.resolve();
+    });
+    await act(async () => { await jest.advanceTimersByTimeAsync(10_000); });
+    expect(screen.getByText('仍在等待浏览器授权')).toBeTruthy();
+    await act(async () => { fireEvent.press(screen.getByLabelText('取消麦克风授权等待')); });
+
+    await act(async () => {
+      fireEvent.press(screen.getByLabelText('启用麦克风'));
+      await Promise.resolve();
+    });
+    await act(async () => {
+      mockRecorder.permissionReady = true;
+      firstPermission.resolve(true);
+      await firstPermission.promise;
+      await Promise.resolve();
+    });
+    await screen.rerender(<SpeakingPracticePanel {...commonProps} />);
+    const activePrimerButton = screen.getByLabelText('启用麦克风');
+    expect(activePrimerButton.props.accessibilityState.disabled).toBe(true);
+    expect(screen.getByText('正在等待麦克风授权…')).toBeTruthy();
+    fireEvent(activePrimerButton, 'pressIn');
+    expect(mockRecorder.requestPermission).not.toHaveBeenCalled();
+    await act(async () => { await jest.advanceTimersByTimeAsync(10_000); });
+
+    expect(screen.getByText('仍在等待浏览器授权')).toBeTruthy();
+    await act(async () => {
+      fireEvent.press(screen.getByLabelText('取消麦克风授权等待'));
+      secondPermission.resolve(true);
+      await secondPermission.promise;
+      await Promise.resolve();
+    });
+    await screen.unmount();
+  });
+
+  it('opens the guided compatibility dialog for a hard unsupported Web recorder', async () => {
+    setPlatform('web');
+    mockRecorder.primePermission.mockRejectedValue(recorderFailure('recording_browser_unsupported'));
+    const screen = await render(<SpeakingPracticePanel {...commonProps} />);
+
+    await act(async () => { fireEvent.press(screen.getByLabelText('启用麦克风')); });
+
+    await waitFor(() => expect(screen.getByText('当前浏览器暂不支持网页录音')).toBeTruthy());
+    expect(screen.getByText(/iPhone\/iPad 请使用最新版 Safari/)).toBeTruthy();
+    expect(screen.getByText('复制链接')).toBeTruthy();
+    expect(screen.getByText('继续学习')).toBeTruthy();
+    expect(screen.queryByText('新录音无效，已保留原录音。')).toBeNull();
+
+    await act(async () => { fireEvent.press(screen.getByText('继续学习')); });
+    await waitFor(() => expect(screen.queryByText('当前浏览器暂不支持网页录音')).toBeNull());
+    expect(screen.getByText('当前浏览器无法完成网页录音，请使用推荐浏览器继续。')).toBeTruthy();
+    await screen.unmount();
+  });
+
+  it('upgrades two consecutive Web preparation failures to compatibility guidance', async () => {
+    setPlatform('web');
+    mockRecorder.prepare.mockRejectedValue(new Error('encoder setup failed'));
+    const screen = await render(<SpeakingPracticePanel {...commonProps} />);
+
+    await act(async () => { fireEvent.press(screen.getByLabelText('启用麦克风')); });
+    for (let attempt = 0; attempt < 2; attempt += 1) {
+      await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
+      await waitFor(() => expect(mockRecorder.prepare).toHaveBeenCalledTimes(attempt + 1));
+      await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressOut'); });
+      if (attempt === 0) expect(screen.queryByText('当前浏览器暂不支持网页录音')).toBeNull();
+    }
+
+    await waitFor(() => expect(screen.getByText('当前浏览器暂不支持网页录音')).toBeTruthy());
+    expect(screen.queryByText('新录音无效，已保留原录音。')).toBeNull();
+    await screen.unmount();
+  });
+
+  it('keeps an old Web recording playable and uses amber guidance when permission is denied', async () => {
+    setPlatform('web');
+    mockRecorder.primePermission.mockResolvedValue(false);
+    mockPlaybackStatus = { currentTime: 0, didJustFinish: false, duration: 3, isLoaded: true, playbackState: 'readyToPlay', playing: false };
+    const screen = await render(<SpeakingPracticePanel {...commonProps} recording={committedAsset} variant="integrated" />);
+
+    await act(async () => { fireEvent.press(screen.getByLabelText('启用麦克风')); });
+
+    await waitFor(() => expect(screen.getByText('请在浏览器的网站设置中允许麦克风，然后重新检测。若网站设置已允许但仍无法录音，请使用推荐浏览器打开。原录音已保留。')).toBeTruthy());
+    expect(screen.queryByText('未获得麦克风权限，已保留原录音。')).toBeNull();
+    expect(screen.queryByText('新录音无效，已保留原录音。')).toBeNull();
+    expect(screen.getByLabelText('回放我的录音').props.accessibilityState.disabled).toBe(false);
+    await screen.unmount();
+  });
+
+  it('turns a Web background interruption into guidance instead of silently cancelling', async () => {
+    setPlatform('web');
+    const appStateListeners: ((state: 'active' | 'background' | 'inactive') => void)[] = [];
+    jest.spyOn(AppState, 'addEventListener').mockImplementation((_type, listener) => {
+      appStateListeners.push(listener);
+      return { remove: jest.fn() };
+    });
+    const screen = await render(<SpeakingPracticePanel {...commonProps} />);
+
+    await act(async () => { fireEvent.press(screen.getByLabelText('启用麦克风')); });
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
+    await waitFor(() => expect(mockRecorder.start).toHaveBeenCalled());
+    await act(async () => {
+      appStateListeners.forEach((listener) => listener('background'));
+      await Promise.resolve();
+    });
+
+    await waitFor(() => expect(screen.getByText('本次录音已停止，请让页面保持在前台后重试。')).toBeTruthy());
+    expect(mockCommitRaw).not.toHaveBeenCalled();
+    expect(screen.queryByText('新录音无效，已保留原录音。')).toBeNull();
+    await screen.unmount();
+  });
+
+  it('keeps Web recording busy until background cleanup finishes and blocks an immediate retry', async () => {
+    setPlatform('web');
+    const cancelled = deferred<string | undefined>();
+    const appStateListeners: ((state: 'active' | 'background' | 'inactive') => void)[] = [];
+    mockRecorder.cancel.mockReturnValue(cancelled.promise);
+    jest.spyOn(AppState, 'addEventListener').mockImplementation((_type, listener) => {
+      appStateListeners.push(listener);
+      return { remove: jest.fn() };
+    });
+    const screen = await render(<SpeakingPracticePanel {...commonProps} />);
+
+    await act(async () => { fireEvent.press(screen.getByLabelText('启用麦克风')); });
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
+    await waitFor(() => expect(mockRecorder.start).toHaveBeenCalledTimes(1));
+    await act(async () => {
+      appStateListeners.forEach((listener) => listener('background'));
+      await Promise.resolve();
+    });
+
+    const busyButton = screen.getByLabelText('按住说话');
+    expect(busyButton.props.accessibilityState.disabled).toBe(true);
+    expect(screen.getByText('正在保存录音…')).toBeTruthy();
+    fireEvent(busyButton, 'pressIn');
+    expect(mockRecorder.start).toHaveBeenCalledTimes(1);
+    expect(screen.queryByText('本次录音已停止，请让页面保持在前台后重试。')).toBeNull();
+
+    await act(async () => {
+      cancelled.resolve(undefined);
+      await cancelled.promise;
+      await Promise.resolve();
+    });
+    await waitFor(() => expect(screen.getByText('本次录音已停止，请让页面保持在前台后重试。')).toBeTruthy());
+    await screen.unmount();
+  });
+
+  it('observes an immediate Web recorder stop through its lifecycle revision without a duration tick', async () => {
+    setPlatform('web');
+    mockRecorder.stop.mockRejectedValue(recorderFailure('recording_interrupted'));
+    const screen = await render(<SpeakingPracticePanel {...commonProps} />);
+
+    await act(async () => { fireEvent.press(screen.getByLabelText('启用麦克风')); });
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
+    await waitFor(() => expect(mockRecorder.start).toHaveBeenCalledTimes(1));
+    mockRecorder.isRecording.mockReturnValue(false);
+    mockRecorder.lifecycleRevision += 1;
+    await screen.rerender(<SpeakingPracticePanel {...commonProps} />);
+
+    await waitFor(() => expect(screen.getByText('本次录音已停止，请让页面保持在前台后重试。')).toBeTruthy());
+    expect(mockRecorder.cancel).toHaveBeenCalled();
+    expect(mockCommitRaw).not.toHaveBeenCalled();
+    await screen.unmount();
+  });
+
+  it('opens compatibility guidance when an immediate Web recorder error reports an unsupported encoder', async () => {
+    setPlatform('web');
+    mockRecorder.stop.mockRejectedValue(recorderFailure('recording_browser_unsupported'));
+    const screen = await render(<SpeakingPracticePanel {...commonProps} />);
+
+    await act(async () => { fireEvent.press(screen.getByLabelText('启用麦克风')); });
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
+    await waitFor(() => expect(mockRecorder.start).toHaveBeenCalledTimes(1));
+    mockRecorder.isRecording.mockReturnValue(false);
+    mockRecorder.lifecycleRevision += 1;
+    await screen.rerender(<SpeakingPracticePanel {...commonProps} />);
+
+    await waitFor(() => expect(screen.getByText('当前浏览器暂不支持网页录音')).toBeTruthy());
+    expect(mockCommitRaw).not.toHaveBeenCalled();
+    await screen.unmount();
+  });
+
+  it('discards a late Web replacement commit after backgrounding and keeps the old recording', async () => {
+    setPlatform('web');
+    const committed = deferred<RecordingAsset>();
+    const appStateListeners: ((state: 'active' | 'background' | 'inactive') => void)[] = [];
+    mockCommitRaw.mockReturnValue(committed.promise);
+    mockPlaybackStatus = { currentTime: 0, didJustFinish: false, duration: 3, isLoaded: true, playbackState: 'readyToPlay', playing: false };
+    jest.spyOn(AppState, 'addEventListener').mockImplementation((_type, listener) => {
+      appStateListeners.push(listener);
+      return { remove: jest.fn() };
+    });
+    const screen = await render(<SpeakingPracticePanel {...commonProps} recording={committedAsset} variant="integrated" />);
+
+    expect(screen.getByText('启用麦克风')).toBeTruthy();
+    await act(async () => { fireEvent.press(screen.getByLabelText('启用麦克风')); });
+    await waitFor(() => expect(screen.getByText('按住重录')).toBeTruthy());
+    await act(async () => { fireEvent(screen.getByLabelText('按住重新录音'), 'pressIn'); });
+    await waitFor(() => expect(mockRecorder.start).toHaveBeenCalled());
+    await act(async () => { fireEvent(screen.getByLabelText('松开结束录音'), 'pressOut'); });
+    await waitFor(() => expect(mockCommitRaw).toHaveBeenCalledTimes(1));
+    await act(async () => {
+      appStateListeners.forEach((listener) => listener('background'));
+      await Promise.resolve();
+    });
+    await act(async () => {
+      committed.resolve({ ...committedAsset, id: 'late-asset', uri: 'blob:late' });
+      await committed.promise;
+      await Promise.resolve();
+    });
+
+    await waitFor(() => expect(mockDiscard).toHaveBeenCalledWith(expect.objectContaining({ id: 'late-asset' })));
+    expect(commonProps.onRecorded).not.toHaveBeenCalled();
+    expect(screen.getByText('本次录音已停止，请让页面保持在前台后重试。原录音已保留。')).toBeTruthy();
+    expect(screen.getByLabelText('回放我的录音').props.accessibilityState.disabled).toBe(false);
     await screen.unmount();
   });
 });

@@ -1,105 +1,455 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"swelling","ipa":"/ˈswelɪŋ/","aviationMeaning":"n. 肿胀；旅客或机组受伤、过敏或疾病可能出现的症状","generalMeaning":"n. 肿胀；膨胀"},
-    {"word":"swells","ipa":"/swelz/","aviationMeaning":"v. 膨胀；人员组织、材料或液体体积增加","generalMeaning":"v. 膨胀；肿胀"},
-    {"word":"swept","ipa":"/swept/","aviationMeaning":"adj. 后掠的；机翼或其他翼面相对机身轴线后掠的","generalMeaning":"adj. 被扫过的；sweep 的过去式"},
-    {"word":"swept-wing","ipa":"/swept wɪŋ/","aviationMeaning":"adj. 后掠翼的；机翼前缘相对机身轴线向后倾斜的","generalMeaning":"adj. 后掠翼的"},
-    {"word":"swift","ipa":"/swɪft/","aviationMeaning":"adj. 快速的；对天气、告警或运行变化迅速响应的","generalMeaning":"adj. 快的；迅速的"},
-    {"word":"swiftly","ipa":"/ˈswɪftli/","aviationMeaning":"adv. 快速地；迅速执行指令、检查或异常处置","generalMeaning":"adv. 快速地；迅速地"},
-    {"word":"swimming","ipa":"/ˈswɪmɪŋ/","aviationMeaning":"n. 游泳；水上迫降或救援后的人员生存技能","generalMeaning":"n. 游泳"},
-    {"word":"swing","ipa":"/swɪŋ/","aviationMeaning":"n. 摆动；航空器、部件或仪表在两个方向间运动","generalMeaning":"n. 摆动；v. 摆动"},
-    {"word":"swirls","ipa":"/swɜːrlz/","aviationMeaning":"n. 涡流（复数）；风、烟雾或液体形成的旋涡状运动","generalMeaning":"n. 涡流；漩涡（复数）"},
-    {"word":"swiss","ipa":"/swɪs/","aviationMeaning":"adj. 瑞士的；机场、空域、航空公司或航线相关","generalMeaning":"adj. 瑞士的；n. 瑞士人"},
-    {"word":"swissair","ipa":"/ˈswɪser/","aviationMeaning":"n. 瑞士航空；航空公司名称或呼号相关","generalMeaning":"n. 专有名称"},
-    {"word":"switch","ipa":"/swɪtʃ/","aviationMeaning":"n. 开关；控制电气、液压或航电系统状态的装置","generalMeaning":"n. 开关；v. 切换"},
-    {"word":"switched","ipa":"/swɪtʃt/","aviationMeaning":"adj. 已切换的；开关、系统、频率或模式已改变","generalMeaning":"adj. 已切换的"},
-    {"word":"switches","ipa":"/ˈswɪtʃɪz/","aviationMeaning":"n. 开关（复数）；多个控制电气、液压或航电系统的装置","generalMeaning":"n. 开关（复数）；v. 切换"},
-    {"word":"switching","ipa":"/ˈswɪtʃɪŋ/","aviationMeaning":"v. 正切换；正在改变系统、频率、开关或模式","generalMeaning":"v. 正切换"},
-    {"word":"swithed","ipa":"/swɪtʃt/","aviationMeaning":"adj. 疑似 switched 的拼写错误；已切换的","generalMeaning":"adj. 疑似拼写错误；已切换的"},
-    {"word":"switzerland","ipa":"/ˈswɪtsərlənd/","aviationMeaning":"n. 瑞士；机场、空域或航线所在国","generalMeaning":"n. 瑞士"},
-    {"word":"switzerland's","ipa":"/ˈswɪtsərləndz/","aviationMeaning":"n. Switzerland 的所有格形式；瑞士的","generalMeaning":"n. 专有地名的所有格形式"},
-    {"word":"swung","ipa":"/swʌŋ/","aviationMeaning":"v. 已摆动；航空器、部件或仪表已在方向间运动","generalMeaning":"v. swing 的过去式；摆动"},
-    {"word":"sy","ipa":"/saɪ/","aviationMeaning":"n. 航空资料缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"sydeny","ipa":"/ˈsɪdni/","aviationMeaning":"n. 疑似 Sydney 的拼写错误；悉尼","generalMeaning":"n. 疑似拼写错误；悉尼"},
-    {"word":"sydney","ipa":"/ˈsɪdni/","aviationMeaning":"n. 悉尼；机场、空域或航线地名","generalMeaning":"n. 悉尼"},
-    {"word":"syllabus","ipa":"/ˈsɪləbəs/","aviationMeaning":"n. 教学大纲；飞行、维修或航空英语训练计划","generalMeaning":"n. 教学大纲；课程纲要"},
-    {"word":"symbol","ipa":"/ˈsɪmbəl/","aviationMeaning":"n. 符号；航图、显示器、检查单或告警使用的图形标记","generalMeaning":"n. 符号；象征"},
-    {"word":"symbolism","ipa":"/ˈsɪmbəlɪzəm/","aviationMeaning":"n. 符号含义；航图或显示器图形所代表的意义","generalMeaning":"n. 象征意义；符号学"},
-    {"word":"symbology","ipa":"/sɪmˈbɑːlədʒi/","aviationMeaning":"n. 符号系统；航图、显示器或告警使用的标准图形集合","generalMeaning":"n. 符号学；符号系统"},
-    {"word":"symmetry","ipa":"/ˈsɪmətri/","aviationMeaning":"n. 对称性；航空器结构、载荷或操纵两侧的平衡关系","generalMeaning":"n. 对称；匀称"},
-    {"word":"symotomsof","ipa":"/ˈsɪmptəmz əv/","aviationMeaning":"n. 疑似 symptoms of 的连写或拼写错误；症状","generalMeaning":"n. 疑似连写；症状"},
-    {"word":"symptom","ipa":"/ˈsɪmptəm/","aviationMeaning":"n. 症状；机组或旅客身体不适、疾病或缺氧的表现","generalMeaning":"n. 症状；征兆"},
-    {"word":"symptoms","ipa":"/ˈsɪmptəmz/","aviationMeaning":"n. 症状（复数）；人员身体不适、疾病或缺氧的表现","generalMeaning":"n. 症状；征兆（复数）"},
-    {"word":"synoptics","ipa":"/sɪˈnɑːptɪks/","aviationMeaning":"n. 概略天气图；综合展示大范围天气系统的图表","generalMeaning":"n. 概览；提要"},
-    {"word":"syntax","ipa":"/ˈsɪntæks/","aviationMeaning":"n. 语法；数据报文、程序或指令的结构规则","generalMeaning":"n. 句法；语法"},
-    {"word":"synthesize","ipa":"/ˈsɪnθəsaɪz/","aviationMeaning":"v. 综合；综合天气、性能、风险或运行数据形成判断","generalMeaning":"v. 综合；合成"},
-    {"word":"synthetic","ipa":"/sɪnˈθetɪk/","aviationMeaning":"adj. 合成的；合成材料、合成视觉或模拟数据相关","generalMeaning":"adj. 合成的；人造的"},
-    {"word":"system","ipa":"/ˈsɪstəm/","aviationMeaning":"n. 系统；航空器、机场或运行中相互连接的设备和程序","generalMeaning":"n. 系统；体系"},
-    {"word":"system's","ipa":"/ˈsɪstəmz/","aviationMeaning":"n. system 的所有格形式；系统的","generalMeaning":"n. 系统的所有格形式"},
-    {"word":"systematic","ipa":"/ˌsɪstəˈmætɪk/","aviationMeaning":"adj. 系统的；按固定方法全面执行检查、分析或处置的","generalMeaning":"adj. 系统的；有条理的"},
-    {"word":"systemic","ipa":"/sɪˈstemɪk/","aviationMeaning":"adj. 系统性的；影响整个组织、系统或运行链条的","generalMeaning":"adj. 系统性的；全身性的"},
-    {"word":"systems","ipa":"/ˈsɪstəmz/","aviationMeaning":"n. 系统（复数）；多个航空器、机场或运行设备系统","generalMeaning":"n. 系统；体系（复数）"},
-    {"word":"t","ipa":"/tiː/","aviationMeaning":"n. 字母 T；可能为航图、程序或缩写组成部分","generalMeaning":"n. 英文字母 T"},
-    {"word":"ta","ipa":"/tiː eɪ/","aviationMeaning":"n. 航空资料缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"tab","ipa":"/tæb/","aviationMeaning":"n. 标签页；航电、电子飞行包或资料界面中的选项卡","generalMeaning":"n. 标签；选项卡"},
-    {"word":"tables","ipa":"/ˈteɪbəlz/","aviationMeaning":"n. 表格（复数）；性能、燃油、限制或运行数据表","generalMeaning":"n. 桌子；表格（复数）"},
-    {"word":"tabriz","ipa":"/təˈbriːz/","aviationMeaning":"n. 大不里士；机场或地名","generalMeaning":"n. 大不里士"},
-    {"word":"tabs","ipa":"/tæbz/","aviationMeaning":"n. 标签页（复数）；航电或资料界面中的多个选项卡","generalMeaning":"n. 标签；选项卡（复数）"},
-    {"word":"tachometer","ipa":"/tæˈkɑːmɪtər/","aviationMeaning":"n. 转速表；显示发动机、螺旋桨或转子转速的仪表","generalMeaning":"n. 转速表"},
-    {"word":"tacoma","ipa":"/təˈkoʊmə/","aviationMeaning":"n. 塔科马；机场或地名","generalMeaning":"n. 塔科马"},
-    {"word":"tacs","ipa":"/tæks/","aviationMeaning":"n. 交通告警与防撞系统；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"tactical","ipa":"/ˈtæktɪkəl/","aviationMeaning":"adj. 战术的；针对当前运行、天气或流量的短期处置","generalMeaning":"adj. 战术的；策略性的"},
-    {"word":"tactics","ipa":"/ˈtæktɪks/","aviationMeaning":"n. 战术（复数）；处理当前飞行、天气或运行问题的具体方法","generalMeaning":"n. 战术；策略（复数）"},
-    {"word":"tactile","ipa":"/ˈtæktaɪl/","aviationMeaning":"adj. 触觉的；通过操纵器振动、压力或表面感知信息的","generalMeaning":"adj. 触觉的"},
-    {"word":"tail","ipa":"/teɪl/","aviationMeaning":"n. 尾部；航空器后部的尾翼、尾锥和相关结构","generalMeaning":"n. 尾巴；尾部"},
-    {"word":"tail-clearance","ipa":"/teɪl ˈklɪrəns/","aviationMeaning":"n. 尾部间隙；航空器尾部与地面或障碍物之间的安全距离","generalMeaning":"n. 尾部间隙"},
-    {"word":"tail-mounted","ipa":"/teɪl ˈmaʊntɪd/","aviationMeaning":"adj. 尾部安装的；发动机、稳定面或设备装在航空器尾部的","generalMeaning":"adj. 尾部安装的"},
-    {"word":"tail-strike","ipa":"/teɪl straɪk/","aviationMeaning":"n. 尾擦；起飞或着陆时航空器尾部碰撞跑道的事件","generalMeaning":"n. 尾部撞击"},
-    {"word":"tails","ipa":"/teɪlz/","aviationMeaning":"n. 尾部（复数）；多个航空器或结构的后部","generalMeaning":"n. 尾巴；尾部（复数）"},
-    {"word":"tailskid","ipa":"/ˈteɪlskɪd/","aviationMeaning":"n. 尾撬；保护航空器尾部防止擦地的装置","generalMeaning":"n. 尾撬"},
-    {"word":"tailwind","ipa":"/ˈteɪlwɪnd/","aviationMeaning":"n. 顺风；从航空器后方吹来、增加地速的风","generalMeaning":"n. 顺风；有利条件"},
-    {"word":"tailwinds","ipa":"/ˈteɪlwɪndz/","aviationMeaning":"n. 顺风（复数）；多个航段或高度层中从后方吹来的风","generalMeaning":"n. 顺风；有利条件（复数）"},
-    {"word":"taipei","ipa":"/ˌtaɪˈpeɪ/","aviationMeaning":"n. 台北；机场、空域或航线地名","generalMeaning":"n. 台北"},
-    {"word":"taipeiand","ipa":"/ˌtaɪˈpeɪ ænd/","aviationMeaning":"n. 疑似 Taipei and 的连写；需结合原文","generalMeaning":"n. 疑似连写；请结合原文"},
-    {"word":"taiwan","ipa":"/taɪˈwɑːn/","aviationMeaning":"n. 台湾；机场、空域或航线相关地区","generalMeaning":"n. 台湾"},
-    {"word":"taiwan-based","ipa":"/taɪˈwɑːn beɪst/","aviationMeaning":"adj. 以台湾为基地的；航空公司或运营单位所在地相关","generalMeaning":"adj. 以台湾为基地的"},
-    {"word":"taiyuan","ipa":"/taɪˈjuːæn/","aviationMeaning":"n. 太原；机场或地名","generalMeaning":"n. 太原"},
-    {"word":"tak","ipa":"/tæk/","aviationMeaning":"n. 航空资料缩写或航路点；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"take","ipa":"/teɪk/","aviationMeaning":"v. 采取；开始执行飞行、程序、动作或处置","generalMeaning":"v. 拿；采取"},
-    {"word":"take-off","ipa":"/ˈteɪk ɔːf/","aviationMeaning":"n. 起飞；航空器从跑道加速、离地进入飞行的阶段","generalMeaning":"n. 起飞；脱下"},
-    {"word":"taken","ipa":"/ˈteɪkən/","aviationMeaning":"v. 已采取；已执行某项飞行、程序或处置行动","generalMeaning":"v. take 的过去分词；拿"},
-    {"word":"takeoff","ipa":"/ˈteɪkɔːf/","aviationMeaning":"n. 起飞；航空器从跑道加速离地进入飞行的阶段","generalMeaning":"n. 起飞"},
-    {"word":"takeoff-decision","ipa":"/ˈteɪkɔːf dɪˈsɪʒən/","aviationMeaning":"n. 起飞决策；决定继续或中断起飞的判断","generalMeaning":"n. 起飞决策"},
-    {"word":"takeoff-performance","ipa":"/ˈteɪkɔːf pərˈfɔːrməns/","aviationMeaning":"n. 起飞性能；航空器在起飞中所需距离、速度和爬升能力","generalMeaning":"n. 起飞性能"},
-    {"word":"takeoffs","ipa":"/ˈteɪkɔːfs/","aviationMeaning":"n. 起飞（复数）；多个航空器的起飞动作或航班","generalMeaning":"n. 起飞（复数）"},
-    {"word":"takes","ipa":"/teɪks/","aviationMeaning":"v. 采取；开始执行飞行、程序、动作或处置","generalMeaning":"v. 拿；采取"},
-    {"word":"taking","ipa":"/ˈteɪkɪŋ/","aviationMeaning":"v. 正采取；正在执行飞行、程序、动作或处置","generalMeaning":"v. 正拿；采取"},
-    {"word":"talk","ipa":"/tɔːk/","aviationMeaning":"v. 通话；通过无线电或面对面交流飞行信息","generalMeaning":"v. 谈话；n. 谈话"},
-    {"word":"talked","ipa":"/tɔːkt/","aviationMeaning":"v. 已通话；已通过无线电或面对面交流信息","generalMeaning":"v. 已谈话"},
-    {"word":"talking","ipa":"/ˈtɔːkɪŋ/","aviationMeaning":"v. 正通话；正在通过无线电或面对面交流信息","generalMeaning":"v. 正谈话"},
-    {"word":"tall","ipa":"/tɔːl/","aviationMeaning":"adj. 高的；建筑物、障碍物、地形或人员高度较大的","generalMeaning":"adj. 高的；高大的"},
-    {"word":"talons","ipa":"/ˈtælənz/","aviationMeaning":"n. 爪；需结合原文","generalMeaning":"n. 爪（复数）"},
-    {"word":"tampa","ipa":"/ˈtæmpə/","aviationMeaning":"n. 坦帕；机场或地名","generalMeaning":"n. 坦帕"},
-    {"word":"tampa's","ipa":"/ˈtæmpəz/","aviationMeaning":"n. Tampa 的所有格形式；坦帕的","generalMeaning":"n. 专有地名的所有格形式"},
-    {"word":"tango","ipa":"/ˈtæŋɡoʊ/","aviationMeaning":"n. 探戈；字母 T 的无线电拼写字母","generalMeaning":"n. 探戈舞"},
-    {"word":"tank","ipa":"/tæŋk/","aviationMeaning":"n. 油箱；储存燃油、液压油或水的容器","generalMeaning":"n. 罐；坦克"},
-    {"word":"tank's","ipa":"/tæŋks/","aviationMeaning":"n. tank 的所有格形式；油箱的","generalMeaning":"n. 油箱的所有格形式"},
-    {"word":"tankering","ipa":"/ˈtæŋkərɪŋ/","aviationMeaning":"n. 加载额外燃油；因价格、供应或运行考虑多带燃油的做法","generalMeaning":"n. 额外载油；请结合原文"},
-    {"word":"tanks","ipa":"/tæŋks/","aviationMeaning":"n. 油箱（复数）；多个储存燃油、液压油或水的容器","generalMeaning":"n. 罐；坦克（复数）"},
-    {"word":"tape","ipa":"/teɪp/","aviationMeaning":"n. 胶带；维修、标记或临时固定使用的带状材料","generalMeaning":"n. 胶带；磁带"},
-    {"word":"tapes","ipa":"/teɪps/","aviationMeaning":"n. 胶带（复数）；维修、标记或临时固定材料","generalMeaning":"n. 胶带；磁带（复数）"},
-    {"word":"target","ipa":"/ˈtɑːrɡɪt/","aviationMeaning":"n. 目标；预定高度、速度、航向、位置或性能目标","generalMeaning":"n. 目标；靶子"},
-    {"word":"targeted","ipa":"/ˈtɑːrɡɪtɪd/","aviationMeaning":"adj. 有针对性的；针对特定机场、风险、人员或任务的","generalMeaning":"adj. 有针对性的"},
-    {"word":"targets","ipa":"/ˈtɑːrɡɪts/","aviationMeaning":"n. 目标（复数）；多个高度、速度、位置或性能目标","generalMeaning":"n. 目标；靶子（复数）"},
-    {"word":"tarmac","ipa":"/ˈtɑːrmæk/","aviationMeaning":"n. 停机坪；机场供航空器停放、服务和滑行的铺装区域","generalMeaning":"n. 柏油路面；停机坪"},
-    {"word":"task","ipa":"/tæsk/","aviationMeaning":"n. 任务；飞行、检查、维护或地面作业中需完成的工作","generalMeaning":"n. 任务；工作"},
-    {"word":"tasked","ipa":"/tæskt/","aviationMeaning":"adj. 被指派的；机组或人员已获分配任务","generalMeaning":"adj. 被指派的"},
-    {"word":"tasks","ipa":"/tæsks/","aviationMeaning":"n. 任务（复数）；飞行、检查、维护或地面作业工作项","generalMeaning":"n. 任务；工作（复数）"},
-    {"word":"taste","ipa":"/teɪst/","aviationMeaning":"n. 味道；旅客餐食或异常物质感知，需结合原文","generalMeaning":"n. 味道；v. 品尝"},
-    {"word":"taught","ipa":"/tɔːt/","aviationMeaning":"v. 已教授；已进行飞行、维护或安全培训","generalMeaning":"v. teach 的过去式；教授"},
-    {"word":"taws","ipa":"/tɔːz/","aviationMeaning":"n. 航空资料缩写或专有名称；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"tax","ipa":"/tæks/","aviationMeaning":"n. 税；机票、燃油、机场或服务费用中的税费","generalMeaning":"n. 税；v. 征税"},
-    {"word":"taxi","ipa":"/ˈtæksi/","aviationMeaning":"v. 滑行；航空器在地面利用自身动力移动","generalMeaning":"v. 乘出租车；n. 出租车"}
+    {
+      "word": "swelling",
+      "ipa": "/ˈswelɪŋ/",
+      "aviationMeaning": "n. 肿胀；旅客或机组受伤、过敏或疾病可能出现的症状",
+      "generalMeaning": "n. 肿胀；膨胀"
+    },
+    {
+      "word": "swept",
+      "ipa": "/swept/",
+      "aviationMeaning": "adj. 后掠的；机翼或其他翼面相对机身轴线后掠的",
+      "generalMeaning": "adj. 被扫过的；sweep 的过去式"
+    },
+    {
+      "word": "swept-wing",
+      "ipa": "/swept wɪŋ/",
+      "aviationMeaning": "adj. 后掠翼的；机翼前缘相对机身轴线向后倾斜的",
+      "generalMeaning": "adj. 后掠翼的"
+    },
+    {
+      "word": "swift",
+      "ipa": "/swɪft/",
+      "aviationMeaning": "adj. 快速的；对天气、告警或运行变化迅速响应的",
+      "generalMeaning": "adj. 快的；迅速的"
+    },
+    {
+      "word": "swiftly",
+      "ipa": "/ˈswɪftli/",
+      "aviationMeaning": "adv. 快速地；迅速执行指令、检查或异常处置",
+      "generalMeaning": "adv. 快速地；迅速地"
+    },
+    {
+      "word": "swimming",
+      "ipa": "/ˈswɪmɪŋ/",
+      "aviationMeaning": "n. 游泳；水上迫降或救援后的人员生存技能",
+      "generalMeaning": "n. 游泳"
+    },
+    {
+      "word": "swing",
+      "ipa": "/swɪŋ/",
+      "aviationMeaning": "n. 摆动；航空器、部件或仪表在两个方向间运动",
+      "generalMeaning": "n. 摆动；v. 摆动"
+    },
+    {
+      "word": "swirls",
+      "ipa": "/swɜːrlz/",
+      "aviationMeaning": "n. 涡流（复数）；风、烟雾或液体形成的旋涡状运动",
+      "generalMeaning": "n. 涡流；漩涡（复数）"
+    },
+    {
+      "word": "swiss",
+      "ipa": "/swɪs/",
+      "aviationMeaning": "adj. 瑞士的；机场、空域、航空公司或航线相关",
+      "generalMeaning": "adj. 瑞士的；n. 瑞士人"
+    },
+    {
+      "word": "switch",
+      "ipa": "/swɪtʃ/",
+      "aviationMeaning": "n. 开关；控制电气、液压或航电系统状态的装置",
+      "generalMeaning": "n. 开关；v. 切换"
+    },
+    {
+      "word": "switched",
+      "ipa": "/swɪtʃt/",
+      "aviationMeaning": "adj. 已切换的；开关、系统、频率或模式已改变",
+      "generalMeaning": "adj. 已切换的"
+    },
+    {
+      "word": "switches",
+      "ipa": "/ˈswɪtʃɪz/",
+      "aviationMeaning": "n. 开关（复数）；多个控制电气、液压或航电系统的装置",
+      "generalMeaning": "n. 开关（复数）；v. 切换"
+    },
+    {
+      "word": "switzerland",
+      "ipa": "/ˈswɪtsərlənd/",
+      "aviationMeaning": "n. 瑞士；机场、空域或航线所在国",
+      "generalMeaning": "n. 瑞士"
+    },
+    {
+      "word": "switzerland's",
+      "ipa": "/ˈswɪtsərləndz/",
+      "aviationMeaning": "n. Switzerland 的所有格形式；瑞士的",
+      "generalMeaning": "n. 专有地名的所有格形式"
+    },
+    {
+      "word": "swung",
+      "ipa": "/swʌŋ/",
+      "aviationMeaning": "v. 已摆动；航空器、部件或仪表已在方向间运动",
+      "generalMeaning": "v. swing 的过去式；摆动"
+    },
+    {
+      "word": "sy",
+      "ipa": "/saɪ/",
+      "aviationMeaning": "n. 航空资料缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "sydney",
+      "ipa": "/ˈsɪdni/",
+      "aviationMeaning": "n. 悉尼；机场、空域或航线地名",
+      "generalMeaning": "n. 悉尼"
+    },
+    {
+      "word": "syllabus",
+      "ipa": "/ˈsɪləbəs/",
+      "aviationMeaning": "n. 教学大纲；飞行、维修或航空英语训练计划",
+      "generalMeaning": "n. 教学大纲；课程纲要"
+    },
+    {
+      "word": "symptom",
+      "ipa": "/ˈsɪmptəm/",
+      "aviationMeaning": "n. 症状；机组或旅客身体不适、疾病或缺氧的表现",
+      "generalMeaning": "n. 症状；征兆"
+    },
+    {
+      "word": "symptoms",
+      "ipa": "/ˈsɪmptəmz/",
+      "aviationMeaning": "n. 症状（复数）；人员身体不适、疾病或缺氧的表现",
+      "generalMeaning": "n. 症状；征兆（复数）"
+    },
+    {
+      "word": "syntax",
+      "ipa": "/ˈsɪntæks/",
+      "aviationMeaning": "n. 语法；数据报文、程序或指令的结构规则",
+      "generalMeaning": "n. 句法；语法"
+    },
+    {
+      "word": "synthesize",
+      "ipa": "/ˈsɪnθəsaɪz/",
+      "aviationMeaning": "v. 综合；综合天气、性能、风险或运行数据形成判断",
+      "generalMeaning": "v. 综合；合成"
+    },
+    {
+      "word": "system",
+      "ipa": "/ˈsɪstəm/",
+      "aviationMeaning": "n. 系统；航空器、机场或运行中相互连接的设备和程序",
+      "generalMeaning": "n. 系统；体系"
+    },
+    {
+      "word": "system's",
+      "ipa": "/ˈsɪstəmz/",
+      "aviationMeaning": "n. system 的所有格形式；系统的",
+      "generalMeaning": "n. 系统的所有格形式"
+    },
+    {
+      "word": "systems",
+      "ipa": "/ˈsɪstəmz/",
+      "aviationMeaning": "n. 系统（复数）；多个航空器、机场或运行设备系统",
+      "generalMeaning": "n. 系统；体系（复数）"
+    },
+    {
+      "word": "t",
+      "ipa": "/tiː/",
+      "aviationMeaning": "n. 字母 T；可能为航图、程序或缩写组成部分",
+      "generalMeaning": "n. 英文字母 T"
+    },
+    {
+      "word": "ta",
+      "ipa": "/tiː eɪ/",
+      "aviationMeaning": "n. 航空资料缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "tab",
+      "ipa": "/tæb/",
+      "aviationMeaning": "n. 标签页；航电、电子飞行包或资料界面中的选项卡",
+      "generalMeaning": "n. 标签；选项卡"
+    },
+    {
+      "word": "tabriz",
+      "ipa": "/təˈbriːz/",
+      "aviationMeaning": "n. 大不里士；机场或地名",
+      "generalMeaning": "n. 大不里士"
+    },
+    {
+      "word": "tabs",
+      "ipa": "/tæbz/",
+      "aviationMeaning": "n. 标签页（复数）；航电或资料界面中的多个选项卡",
+      "generalMeaning": "n. 标签；选项卡（复数）"
+    },
+    {
+      "word": "tachometer",
+      "ipa": "/tæˈkɑːmɪtər/",
+      "aviationMeaning": "n. 转速表；显示发动机、螺旋桨或转子转速的仪表",
+      "generalMeaning": "n. 转速表"
+    },
+    {
+      "word": "tacoma",
+      "ipa": "/təˈkoʊmə/",
+      "aviationMeaning": "n. 塔科马；机场或地名",
+      "generalMeaning": "n. 塔科马"
+    },
+    {
+      "word": "tail",
+      "ipa": "/teɪl/",
+      "aviationMeaning": "n. 尾部；航空器后部的尾翼、尾锥和相关结构",
+      "generalMeaning": "n. 尾巴；尾部"
+    },
+    {
+      "word": "tail-mounted",
+      "ipa": "/teɪl ˈmaʊntɪd/",
+      "aviationMeaning": "adj. 尾部安装的；发动机、稳定面或设备装在航空器尾部的",
+      "generalMeaning": "adj. 尾部安装的"
+    },
+    {
+      "word": "tail-strike",
+      "ipa": "/teɪl straɪk/",
+      "aviationMeaning": "n. 尾擦；起飞或着陆时航空器尾部碰撞跑道的事件",
+      "generalMeaning": "n. 尾部撞击"
+    },
+    {
+      "word": "tails",
+      "ipa": "/teɪlz/",
+      "aviationMeaning": "n. 尾部（复数）；多个航空器或结构的后部",
+      "generalMeaning": "n. 尾巴；尾部（复数）"
+    },
+    {
+      "word": "tailskid",
+      "ipa": "/ˈteɪlskɪd/",
+      "aviationMeaning": "n. 尾撬；保护航空器尾部防止擦地的装置",
+      "generalMeaning": "n. 尾撬"
+    },
+    {
+      "word": "tailwind",
+      "ipa": "/ˈteɪlwɪnd/",
+      "aviationMeaning": "n. 顺风；从航空器后方吹来、增加地速的风",
+      "generalMeaning": "n. 顺风；有利条件"
+    },
+    {
+      "word": "tailwinds",
+      "ipa": "/ˈteɪlwɪndz/",
+      "aviationMeaning": "n. 顺风（复数）；多个航段或高度层中从后方吹来的风",
+      "generalMeaning": "n. 顺风；有利条件（复数）"
+    },
+    {
+      "word": "taipei",
+      "ipa": "/ˌtaɪˈpeɪ/",
+      "aviationMeaning": "n. 台北；机场、空域或航线地名",
+      "generalMeaning": "n. 台北"
+    },
+    {
+      "word": "taiwan",
+      "ipa": "/taɪˈwɑːn/",
+      "aviationMeaning": "n. 台湾；机场、空域或航线相关地区",
+      "generalMeaning": "n. 台湾"
+    },
+    {
+      "word": "taiwan-based",
+      "ipa": "/taɪˈwɑːn beɪst/",
+      "aviationMeaning": "adj. 以台湾为基地的；航空公司或运营单位所在地相关",
+      "generalMeaning": "adj. 以台湾为基地的"
+    },
+    {
+      "word": "taiyuan",
+      "ipa": "/taɪˈjuːæn/",
+      "aviationMeaning": "n. 太原；机场或地名",
+      "generalMeaning": "n. 太原"
+    },
+    {
+      "word": "tak",
+      "ipa": "/tæk/",
+      "aviationMeaning": "n. 航空资料缩写或航路点；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "take",
+      "ipa": "/teɪk/",
+      "aviationMeaning": "v. 采取；开始执行飞行、程序、动作或处置",
+      "generalMeaning": "v. 拿；采取"
+    },
+    {
+      "word": "take-off",
+      "ipa": "/ˈteɪk ɔːf/",
+      "aviationMeaning": "n. 起飞；航空器从跑道加速、离地进入飞行的阶段",
+      "generalMeaning": "n. 起飞；脱下"
+    },
+    {
+      "word": "taken",
+      "ipa": "/ˈteɪkən/",
+      "aviationMeaning": "v. 已采取；已执行某项飞行、程序或处置行动",
+      "generalMeaning": "v. take 的过去分词；拿"
+    },
+    {
+      "word": "takeoff",
+      "ipa": "/ˈteɪkɔːf/",
+      "aviationMeaning": "n. 起飞；航空器从跑道加速离地进入飞行的阶段",
+      "generalMeaning": "n. 起飞"
+    },
+    {
+      "word": "takeoffs",
+      "ipa": "/ˈteɪkɔːfs/",
+      "aviationMeaning": "n. 起飞（复数）；多个航空器的起飞动作或航班",
+      "generalMeaning": "n. 起飞（复数）"
+    },
+    {
+      "word": "takes",
+      "ipa": "/teɪks/",
+      "aviationMeaning": "v. 采取；开始执行飞行、程序、动作或处置",
+      "generalMeaning": "v. 拿；采取"
+    },
+    {
+      "word": "taking",
+      "ipa": "/ˈteɪkɪŋ/",
+      "aviationMeaning": "v. 正采取；正在执行飞行、程序、动作或处置",
+      "generalMeaning": "v. 正拿；采取"
+    },
+    {
+      "word": "talk",
+      "ipa": "/tɔːk/",
+      "aviationMeaning": "v. 通话；通过无线电或面对面交流飞行信息",
+      "generalMeaning": "v. 谈话；n. 谈话"
+    },
+    {
+      "word": "talked",
+      "ipa": "/tɔːkt/",
+      "aviationMeaning": "v. 已通话；已通过无线电或面对面交流信息",
+      "generalMeaning": "v. 已谈话"
+    },
+    {
+      "word": "talking",
+      "ipa": "/ˈtɔːkɪŋ/",
+      "aviationMeaning": "v. 正通话；正在通过无线电或面对面交流信息",
+      "generalMeaning": "v. 正谈话"
+    },
+    {
+      "word": "tall",
+      "ipa": "/tɔːl/",
+      "aviationMeaning": "adj. 高的；建筑物、障碍物、地形或人员高度较大的",
+      "generalMeaning": "adj. 高的；高大的"
+    },
+    {
+      "word": "talons",
+      "ipa": "/ˈtælənz/",
+      "aviationMeaning": "n. 爪；需结合原文",
+      "generalMeaning": "n. 爪（复数）"
+    },
+    {
+      "word": "tampa",
+      "ipa": "/ˈtæmpə/",
+      "aviationMeaning": "n. 坦帕；机场或地名",
+      "generalMeaning": "n. 坦帕"
+    },
+    {
+      "word": "tampa's",
+      "ipa": "/ˈtæmpəz/",
+      "aviationMeaning": "n. Tampa 的所有格形式；坦帕的",
+      "generalMeaning": "n. 专有地名的所有格形式"
+    },
+    {
+      "word": "tango",
+      "ipa": "/ˈtæŋɡoʊ/",
+      "aviationMeaning": "n. 探戈；字母 T 的无线电拼写字母",
+      "generalMeaning": "n. 探戈舞"
+    },
+    {
+      "word": "tank",
+      "ipa": "/tæŋk/",
+      "aviationMeaning": "n. 油箱；储存燃油、液压油或水的容器",
+      "generalMeaning": "n. 罐；坦克"
+    },
+    {
+      "word": "tanks",
+      "ipa": "/tæŋks/",
+      "aviationMeaning": "n. 油箱（复数）；多个储存燃油、液压油或水的容器",
+      "generalMeaning": "n. 罐；坦克（复数）"
+    },
+    {
+      "word": "tape",
+      "ipa": "/teɪp/",
+      "aviationMeaning": "n. 胶带；维修、标记或临时固定使用的带状材料",
+      "generalMeaning": "n. 胶带；磁带"
+    },
+    {
+      "word": "tapes",
+      "ipa": "/teɪps/",
+      "aviationMeaning": "n. 胶带（复数）；维修、标记或临时固定材料",
+      "generalMeaning": "n. 胶带；磁带（复数）"
+    },
+    {
+      "word": "target",
+      "ipa": "/ˈtɑːrɡɪt/",
+      "aviationMeaning": "n. 目标；预定高度、速度、航向、位置或性能目标",
+      "generalMeaning": "n. 目标；靶子"
+    },
+    {
+      "word": "targeted",
+      "ipa": "/ˈtɑːrɡɪtɪd/",
+      "aviationMeaning": "adj. 有针对性的；针对特定机场、风险、人员或任务的",
+      "generalMeaning": "adj. 有针对性的"
+    },
+    {
+      "word": "targets",
+      "ipa": "/ˈtɑːrɡɪts/",
+      "aviationMeaning": "n. 目标（复数）；多个高度、速度、位置或性能目标",
+      "generalMeaning": "n. 目标；靶子（复数）"
+    },
+    {
+      "word": "tarmac",
+      "ipa": "/ˈtɑːrmæk/",
+      "aviationMeaning": "n. 停机坪；机场供航空器停放、服务和滑行的铺装区域",
+      "generalMeaning": "n. 柏油路面；停机坪"
+    },
+    {
+      "word": "task",
+      "ipa": "/tæsk/",
+      "aviationMeaning": "n. 任务；飞行、检查、维护或地面作业中需完成的工作",
+      "generalMeaning": "n. 任务；工作"
+    },
+    {
+      "word": "tasked",
+      "ipa": "/tæskt/",
+      "aviationMeaning": "adj. 被指派的；机组或人员已获分配任务",
+      "generalMeaning": "adj. 被指派的"
+    },
+    {
+      "word": "tasks",
+      "ipa": "/tæsks/",
+      "aviationMeaning": "n. 任务（复数）；飞行、检查、维护或地面作业工作项",
+      "generalMeaning": "n. 任务；工作（复数）"
+    },
+    {
+      "word": "taste",
+      "ipa": "/teɪst/",
+      "aviationMeaning": "n. 味道；旅客餐食或异常物质感知，需结合原文",
+      "generalMeaning": "n. 味道；v. 品尝"
+    },
+    {
+      "word": "taught",
+      "ipa": "/tɔːt/",
+      "aviationMeaning": "v. 已教授；已进行飞行、维护或安全培训",
+      "generalMeaning": "v. teach 的过去式；教授"
+    },
+    {
+      "word": "taws",
+      "ipa": "/tɔːz/",
+      "aviationMeaning": "n. 航空资料缩写或专有名称；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "tax",
+      "ipa": "/tæks/",
+      "aviationMeaning": "n. 税；机票、燃油、机场或服务费用中的税费",
+      "generalMeaning": "n. 税；v. 征税"
+    },
+    {
+      "word": "taxi",
+      "ipa": "/ˈtæksi/",
+      "aviationMeaning": "v. 滑行；航空器在地面利用自身动力移动",
+      "generalMeaning": "v. 乘出租车；n. 出租车"
+    }
   ]
 }

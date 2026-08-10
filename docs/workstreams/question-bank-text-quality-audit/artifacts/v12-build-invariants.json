@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "releaseVersion": 12,
+  "releasedAt": "2026-07-30T16:52:28Z",
+  "totals": {
+    "banks": 5,
+    "topics": 341,
+    "cards": 6865,
+    "correctionPointers": 766
+  },
+  "resources": {
+    "version": 5,
+    "file": "resources/manifest.json",
+    "checksum": "94525c1fd882667345b733d2e26885c2f761e725b0f3b454b4e4c914e3533693",
+    "files": 6081,
+    "sizeBytes": 814518693,
+    "expectedManifestChecksum": "94525c1fd882667345b733d2e26885c2f761e725b0f3b454b4e4c914e3533693",
+    "unchanged": true
+  },
+  "banks": [
+    {
+      "bankId": "listening",
+      "cards": 1223,
+      "correctionPointers": 207,
+      "v12Checksum": "2bc4fc17fef484ef52e2f736fa646068758a0ffa397a004330f8fd4a59ae057b",
+      "reverseToV11Checksum": "7e01b547cb17f11eb7cd5a8802be6fc5edf2243ef6f53358fabf6f02d635c6f3",
+      "expectedV11Checksum": "7e01b547cb17f11eb7cd5a8802be6fc5edf2243ef6f53358fabf6f02d635c6f3",
+      "reverseMatchesV11": true
+    },
+    {
+      "bankId": "sentences900",
+      "cards": 900,
+      "correctionPointers": 113,
+      "v12Checksum": "0a21b6d238f3a9748ab74c49604c2910a03f4713d2ecad52c4499e7daf4b6ae3",
+      "reverseToV11Checksum": "9a4a7db5f9ff76482caea7433fc1ec2a6789c0de0f15db07d36fa4f5a899f84b",
+      "expectedV11Checksum": "9a4a7db5f9ff76482caea7433fc1ec2a6789c0de0f15db07d36fa4f5a899f84b",
+      "reverseMatchesV11": true
+    },
+    {
+      "bankId": "radiotelephony",
+      "cards": 3216,
+      "correctionPointers": 253,
+      "v12Checksum": "dd211915b197b5919d59b17db42fbb516685c05a33f5382f86e167382e48d811",
+      "reverseToV11Checksum": "3f1caafa8d4d5842aacf0e311b14055907c893dbc1b034f218e146ce5de0d393",
+      "expectedV11Checksum": "3f1caafa8d4d5842aacf0e311b14055907c893dbc1b034f218e146ce5de0d393",
+      "reverseMatchesV11": true
+    },
+    {
+      "bankId": "opi",
+      "cards": 1090,
+      "correctionPointers": 0,
+      "v12Checksum": "7d8ffe589858c1049bf5bbb3d6e537176f1d05e1012e431e475c727069ecab24",
+      "reverseToV11Checksum": "7d8ffe589858c1049bf5bbb3d6e537176f1d05e1012e431e475c727069ecab24",
+      "expectedV11Checksum": "7d8ffe589858c1049bf5bbb3d6e537176f1d05e1012e431e475c727069ecab24",
+      "reverseMatchesV11": true
+    },
+    {
+      "bankId": "storytelling",
+      "cards": 436,
+      "correctionPointers": 193,
+      "v12Checksum": "7695e6d281165e2bae64547d0d4a855f46b1f8f9cfa69abc6aad36acefbb5dc5",
+      "reverseToV11Checksum": "c25c00f82556e3312bd3c08f8983583639049b2c554df941ad6803f9be86f190",
+      "expectedV11Checksum": "c25c00f82556e3312bd3c08f8983583639049b2c554df941ad6803f9be86f190",
+      "reverseMatchesV11": true
+    }
+  ],
+  "allReverseMatchV11": true
+}

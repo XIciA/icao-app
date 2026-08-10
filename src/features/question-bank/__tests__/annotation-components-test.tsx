@@ -1,9 +1,9 @@
-import { fireEvent, render, waitFor } from '@testing-library/react-native';
+import { fireEvent, render, waitFor, within } from '@testing-library/react-native';
 import { useState } from 'react';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, Pressable, StyleSheet, View } from 'react-native';
 
 import { DEFAULT_ANNOTATION_HIGHLIGHTS, DEFAULT_ANNOTATION_TAGS } from '../annotations/types';
-import { AnnotationToolbar } from '../components/AnnotationToolbar';
+import { AnnotationFloatingPanel, AnnotationToolbar } from '../components/AnnotationToolbar';
 import { InteractiveStudyText } from '../components/InteractiveStudyText';
 
 jest.mock('lucide-react-native', () => {
@@ -13,28 +13,50 @@ jest.mock('lucide-react-native', () => {
 });
 
 describe('annotation study controls', () => {
-  function StatefulToolbar() {
-    const [mode, setMode] = useState<'dictionary' | 'highlight'>();
+  function StatefulToolbar({ initialMode, initialTags = [] }: { initialMode?: 'dictionary' | 'highlight' | 'tags'; initialTags?: string[] }) {
+    const [mode, setMode] = useState<'dictionary' | 'highlight' | 'tags' | undefined>(initialMode);
     const [highlightId, setHighlightId] = useState('green');
+    const [selectedTags, setSelectedTags] = useState(initialTags);
+    const toggleTag = (id: string) => setSelectedTags((current) => current.includes(id) ? current.filter((item) => item !== id) : [...current, id]);
     return (
-      <AnnotationToolbar
-        activeHighlightId={highlightId}
-        dictionaryMode={mode === 'dictionary'}
-        highlightDefinitions={DEFAULT_ANNOTATION_HIGHLIGHTS}
-        highlightMode={mode === 'highlight'}
-        onCreateHighlight={jest.fn()}
-        onCreateTag={jest.fn()}
-        onDictionaryModeChange={(value) => setMode(value ? 'dictionary' : undefined)}
-        onHighlightChange={setHighlightId}
-        onHighlightModeChange={(value) => setMode(value ? 'highlight' : undefined)}
-        onTagToggle={jest.fn()}
-        resetToken="card-stateful"
-        selectedTags={[]}
-        showDictionary
-        showHighlights
-        showTags={false}
-        tagDefinitions={DEFAULT_ANNOTATION_TAGS}
-      />
+      <View>
+        <AnnotationToolbar
+          activeHighlightId={highlightId}
+          dictionaryMode={mode === 'dictionary'}
+          highlightDefinitions={DEFAULT_ANNOTATION_HIGHLIGHTS}
+          highlightMode={mode === 'highlight'}
+          onCreateHighlight={jest.fn()}
+          onCreateTag={jest.fn()}
+          onDictionaryModeChange={(value) => setMode(value ? 'dictionary' : undefined)}
+          onHighlightChange={setHighlightId}
+          onHighlightModeChange={(value) => setMode(value ? 'highlight' : undefined)}
+          onTagModeChange={(value) => setMode(value ? 'tags' : undefined)}
+          onTagToggle={toggleTag}
+          resetToken="card-stateful"
+          selectedTags={selectedTags}
+          showDictionary
+          showHighlights
+          showTags
+          tagDefinitions={DEFAULT_ANNOTATION_TAGS}
+          tagMode={mode === 'tags'}
+        />
+        <Pressable accessibilityLabel="正文操作" onPress={jest.fn()} />
+        <AnnotationFloatingPanel
+          activeHighlightId={highlightId}
+          highlightDefinitions={DEFAULT_ANNOTATION_HIGHLIGHTS}
+          left={20}
+          mode={mode === 'highlight' || mode === 'tags' ? mode : undefined}
+          onCreateHighlight={jest.fn()}
+          onCreateTag={jest.fn()}
+          onHighlightChange={setHighlightId}
+          onTagToggle={toggleTag}
+          resetToken="card-stateful"
+          selectedTags={selectedTags}
+          tagDefinitions={DEFAULT_ANNOTATION_TAGS}
+          top={70}
+          width={350}
+        />
+      </View>
     );
   }
 
@@ -191,57 +213,54 @@ describe('annotation study controls', () => {
     expect(second.marginRight).toBe(4);
   });
 
-  it('closes highlight mode when the tag panel opens and exposes custom creation', async () => {
-    const onDictionaryModeChange = jest.fn();
-    const onHighlightModeChange = jest.fn();
-    const screen = await render(
-      <AnnotationToolbar
-        activeHighlightId="green"
-        dictionaryMode={false}
-        highlightDefinitions={DEFAULT_ANNOTATION_HIGHLIGHTS}
-        highlightMode
-        onCreateHighlight={jest.fn()}
-        onCreateTag={jest.fn()}
-        onDictionaryModeChange={onDictionaryModeChange}
-        onHighlightChange={jest.fn()}
-        onHighlightModeChange={onHighlightModeChange}
-        onTagToggle={jest.fn()}
-        resetToken="card-1"
-        selectedTags={['good']}
-        showDictionary
-        showHighlights
-        showTags
-        tagDefinitions={DEFAULT_ANNOTATION_TAGS}
-      />,
-    );
-    expect(screen.getByText('标签')).toBeTruthy();
-    expect(screen.queryByText('标签 0')).toBeNull();
-    expect(screen.queryByText('标签 1')).toBeNull();
-    fireEvent.press(screen.getByLabelText('打开标签面板'));
-    expect(onHighlightModeChange).toHaveBeenCalledWith(false);
-    await waitFor(() => expect(screen.getByTestId('annotation-picker-panel')).toBeTruthy());
-    expect(screen.getAllByLabelText('新建标注定义')).not.toHaveLength(0);
-  });
-
-  it('keeps highlight in a strict off/on state with a persistent color panel', async () => {
-    const screen = await render(<StatefulToolbar />);
+  it('keeps native highlight and tags in strict, directly switchable tool states', async () => {
+    const screen = await render(<StatefulToolbar initialTags={['good']} />);
 
     expect(screen.queryByTestId('highlight-color-panel')).toBeNull();
-    fireEvent.press(screen.getByLabelText('开启查词模式'));
+    expect(screen.getByLabelText('开启标签模式').props.accessibilityState.selected).toBe(false);
+    await fireEvent.press(screen.getByLabelText('开启查词模式'));
     await waitFor(() => expect(screen.getByLabelText('关闭查词模式')).toBeTruthy());
 
-    fireEvent.press(screen.getByLabelText('开启高亮模式'));
+    await fireEvent.press(screen.getByLabelText('开启高亮模式'));
     await waitFor(() => expect(screen.getByTestId('highlight-color-panel')).toBeTruthy());
     expect(screen.getByLabelText('开启查词模式')).toBeTruthy();
     expect(screen.queryByTestId('annotation-picker-panel')).toBeNull();
     expect(screen.getByText('高亮')).toBeTruthy();
+    expect(within(screen.getByTestId('annotation-toolbar')).queryByTestId('highlight-color-panel')).toBeNull();
+    expect(StyleSheet.flatten(screen.getByTestId('annotation-floating-layer').props.style)).toMatchObject({ bottom: 0, left: 0, position: 'absolute', right: 0, top: 0 });
+    expect(screen.getByTestId('annotation-floating-layer').props.pointerEvents).toBe('box-none');
 
-    fireEvent.press(screen.getByLabelText('使用记忆高亮'));
+    await fireEvent.press(screen.getByLabelText('使用记忆高亮'));
     await waitFor(() => expect(screen.getByTestId('highlight-color-panel')).toBeTruthy());
     expect(screen.queryByTestId('highlight-mode-status')).toBeNull();
     expect(screen.getByLabelText('关闭高亮模式')).toBeTruthy();
+    await fireEvent.press(screen.getByLabelText('正文操作'));
+    expect(screen.getByTestId('highlight-color-panel')).toBeTruthy();
 
-    fireEvent.press(screen.getByLabelText('关闭高亮模式'));
+    await fireEvent.press(screen.getByLabelText('开启标签模式'));
+    await waitFor(() => expect(screen.getByTestId('annotation-picker-panel')).toBeTruthy());
+    expect(screen.queryByTestId('highlight-color-panel')).toBeNull();
+    expect(screen.getByLabelText('关闭标签模式').props.accessibilityState.selected).toBe(true);
+
+    await fireEvent.press(screen.getByLabelText('关闭标签模式'));
+    await waitFor(() => expect(screen.queryByTestId('annotation-picker-panel')).toBeNull());
+    expect(screen.getByLabelText('开启标签模式').props.accessibilityState.selected).toBe(false);
+
+    await fireEvent.press(screen.getByLabelText('开启标签模式'));
+    await waitFor(() => expect(screen.getByLabelText('取消选择好题')).toBeTruthy());
+    await fireEvent.press(screen.getByLabelText('新建标注定义'));
+    expect(screen.getByLabelText('新标签名称')).toBeTruthy();
+    await fireEvent.changeText(screen.getByLabelText('新标签名称'), '复习');
+    await fireEvent.press(screen.getByLabelText('取消新建'));
+    expect(screen.getByTestId('annotation-picker-panel')).toBeTruthy();
+    await fireEvent.press(screen.getByLabelText('取消选择好题'));
+    expect(screen.getByTestId('annotation-picker-panel')).toBeTruthy();
+    expect(screen.getByLabelText('关闭标签模式')).toBeTruthy();
+
+    await fireEvent.press(screen.getByLabelText('开启高亮模式'));
+    await waitFor(() => expect(screen.getByTestId('highlight-color-panel')).toBeTruthy());
+    expect(screen.queryByTestId('annotation-picker-panel')).toBeNull();
+    await fireEvent.press(screen.getByLabelText('关闭高亮模式'));
     await waitFor(() => expect(screen.getByLabelText('开启高亮模式')).toBeTruthy());
     expect(screen.queryByTestId('highlight-color-panel')).toBeNull();
   });

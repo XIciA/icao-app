@@ -70,6 +70,7 @@ function Harness({ store }: { store: LearningStore }) {
       <Pressable accessibilityLabel="previous" onPress={() => session.goTo(0)} />
       <Pressable accessibilityLabel="answer" onPress={session.toggleAnswers} />
       <Pressable accessibilityLabel="dictionary" onPress={() => session.setToolMode('dictionary')} />
+      <Pressable accessibilityLabel="tags" onPress={() => session.setToolMode('tags')} />
       <Pressable accessibilityLabel="clear-tool" onPress={() => session.setToolMode(undefined)} />
       <Pressable accessibilityLabel="finish" onPress={() => { void session.finish('complete').catch(() => undefined); }} />
       <Pressable accessibilityLabel="record" onPress={() => session.recordAnswer(recording('asset-1'))} />
@@ -120,6 +121,10 @@ describe('useStudySession', () => {
     fireEvent.press(screen.getByLabelText('dictionary'));
     await waitFor(() => expect(screen.getByText('tool:dictionary')).toBeTruthy());
     fireEvent.press(screen.getByLabelText('clear-tool'));
+    await waitFor(() => expect(screen.getByText('tool:none')).toBeTruthy());
+    await fireEvent.press(screen.getByLabelText('tags'));
+    await waitFor(() => expect(screen.getByText('tool:tags')).toBeTruthy());
+    await fireEvent.press(screen.getByLabelText('next'));
     await waitFor(() => expect(screen.getByText('tool:none')).toBeTruthy());
   });
 

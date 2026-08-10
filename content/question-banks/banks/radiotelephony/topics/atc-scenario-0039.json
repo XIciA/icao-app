@@ -27,7 +27,7 @@
       "taskTitle": "UAL 835-3",
       "audioText": "B: During descent, your TCAS warning was triggered, you are executing TCAS climbing, inform this situation to Shanghai Control.",
       "audioTextZh": "B：下降过程中 TCAS 告警触发，你正在按 TCAS 爬升，向上海管制报告。",
-      "referenceText": "Shanghai Control, UAL 835, our TACS warning was triggered, TCAS climbing.",
+      "referenceText": "Shanghai Control, UAL 835, our TCAS warning was triggered, TCAS climbing.",
       "referenceTextZh": "上海管制，UAL 835，TCAS 告警触发，正在按 TCAS 爬升。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/664.mp3"
     },

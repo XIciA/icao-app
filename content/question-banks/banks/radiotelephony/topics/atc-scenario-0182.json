@@ -2,7 +2,7 @@
   "categoryId": "atc-jal",
   "id": "atc-scenario-0182",
   "name": "JAL 220 鸟击 积冰/防冰 乘客医疗",
-  "declaredCardCount": 15,
+  "declaredCardCount": 14,
   "cards": [
     {
       "id": "atc-scenario-0182-card-main-3131",
@@ -14,17 +14,8 @@
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-083-jal220-q01.mp3"
     },
     {
-      "id": "atc-scenario-0182-card-main-3132",
-      "taskTitle": "JAL 220-2",
-      "audioText": "C: CCA 105, Xiamen Approach, report your current position and altitude.\nB: tell Xiamen approach that CCA 105's current position is 10 miles NWA of FQG, altitude is 9800m.",
-      "audioTextZh": "C： CCA 105，厦门进近，报告你当前的位置和高度。\nB： 告诉厦门进近，CCA 105 当前位于 FQG 的 NWA 方向 10 英里处，高度 9800m。",
-      "referenceText": "Xiamen Approach, JAL 220, CCA 105's position 10 miles NWA of FQG, maintaining 9800 meters.",
-      "referenceTextZh": "厦门进近，JAL 220，CCA 105 位于 FQG 的 NWA 方向 10 英里处，保持 9800 米。",
-      "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-083-jal220-q02.mp3"
-    },
-    {
       "id": "atc-scenario-0182-card-main-3133",
-      "taskTitle": "JAL 220-3",
+      "taskTitle": "JAL 220-2",
       "audioText": "C: JAL 220, maintain present heading, maintain 9800 meters, contact Hongkong Center on 112.5.",
       "audioTextZh": "C：JAL 220，保持当前航向，保持 9800 米，联系香港管制112.5。",
       "referenceText": "Maintain present heading, maintain 9800 meters, contact Hongkong Center on 112.5, JAL 220.",
@@ -33,7 +24,7 @@
     },
     {
       "id": "atc-scenario-0182-card-main-3134",
-      "taskTitle": "JAL 220-4",
+      "taskTitle": "JAL 220-3",
       "audioText": "B: Now you are maintaining FL320, you are over FISHA, your transponder code is 3062, make an initial contact with Hongkong Center.",
       "audioTextZh": "B：你现在保持飞行高度层 320，飞越 FISHA，应答机代码 3062，首次联系香港管制。",
       "referenceText": "Hongkong Center, JAL 220, maintaining FL320, over FISHA, squawking 3062.",
@@ -42,7 +33,7 @@
     },
     {
       "id": "atc-scenario-0182-card-main-3135",
-      "taskTitle": "JAL 220-5",
+      "taskTitle": "JAL 220-4",
       "audioText": "Suddenly, you encountered foreign object ingestion, possibly bird ingestion, your starboard engine is overheating. You ask Hongkong Center for emergency descent to FL220 and radar vectors to Hongkong for priority landing.",
       "audioTextZh": "突然，你遭遇外来物吸入，可能是鸟类吸入，右发动机过热。向香港管制请求紧急下降至 FL220，并请求雷达引导至香港优先着陆。",
       "referenceText": "Hongkong Center, JAL 220, we encountered foreign object ingestion, possibly bird ingestion, our starboard engine is overheating, request emergency descent to FL220 radar vector to Hongkong priority landing.",
@@ -51,7 +42,7 @@
     },
     {
       "id": "atc-scenario-0182-card-main-3136",
-      "taskTitle": "JAL 220-6",
+      "taskTitle": "JAL 220-5",
       "audioText": "C: JAL 220, roger, FL220 is not available due to traffic, maintain FL320, turn right, direct to TD, contact Hongkong Approach on 123.8.",
       "audioTextZh": "C: JAL 220，收到，由于交通原因，飞行高度层 220 不可用，保持飞行高度层 320，右转，直飞 TD，联系香港进近123.8。",
       "referenceText": "Maintain FL320, turn right, direct to TD, 123.8, JAL 220.",
@@ -60,7 +51,7 @@
     },
     {
       "id": "atc-scenario-0182-card-main-3137",
-      "taskTitle": "JAL 220-7",
+      "taskTitle": "JAL 220-6",
       "audioText": "Now you are 5 miles south of TD VOR, state your situation to Hongkong Approach and ask for straight in ILS approach Runway 07L and priority landing.",
       "audioTextZh": "现在你位于 TD VOR 以南 5 英里，向香港进近说明情况，并请求直进 ILS 进近 Runway 07L 和优先着陆。",
       "referenceText": "Hongkong Approach, JAL 220, we encountered foreign object ingestion, possibly bird ingestion, request straight in ILS approach Runway 07L priority landing, position five miles south of T DAL VOR.",
@@ -69,7 +60,7 @@
     },
     {
       "id": "atc-scenario-0182-card-main-3138",
-      "taskTitle": "JAL 220-8",
+      "taskTitle": "JAL 220-7",
       "audioText": "C: JAL 220, Hongkong Approach, turn right heading 240 to intercept TD VOR 030 radial inbound, descend to FL110.",
       "audioTextZh": "C: JAL 220，香港进近，右转航向 240，切入 TD VOR 030 径向线向台，下降到飞行高度层 110。",
       "referenceText": "Turn right heading 240 to intercept TD VOR 030 radial inbound, descend to FL110, JAL 220.",
@@ -78,7 +69,7 @@
     },
     {
       "id": "atc-scenario-0182-card-main-3139",
-      "taskTitle": "JAL 220-9",
+      "taskTitle": "JAL 220-8",
       "audioText": "C: JAL 220, when able, state persons on board.\nB: Tell the controller the persons on board is 188, including 4 children.",
       "audioTextZh": "C: JAL 220，可以时报告机上人数。\nB: 告诉管制员机上人数 188，包括 4 名儿童。",
       "referenceText": "POB 188, including 4 children, JAL 220.",
@@ -87,7 +78,7 @@
     },
     {
       "id": "atc-scenario-0182-card-main-3140",
-      "taskTitle": "JAL 220-10",
+      "taskTitle": "JAL 220-9",
       "audioText": "JAL 220, cleared straight in ILS approach Runway 07L, you are no. 1 to land.",
       "audioTextZh": "JAL 220，许可直进 ILS 进近 Runway 07L，你是第 1 个着陆。",
       "referenceText": "cleared straight in ILS approach Runway 07L, JAL 220.",
@@ -96,7 +87,7 @@
     },
     {
       "id": "atc-scenario-0182-card-main-3141",
-      "taskTitle": "JAL 220-11",
+      "taskTitle": "JAL 220-10",
       "audioText": "C: JAL 220, surface wind 090, 20 knots.\nB: Because of strong tailwind, you want to change to Runway 25.",
       "audioTextZh": "C: JAL 220，地面风 090，20 节。\nB: 由于强顺风，你想改用跑道 25。",
       "referenceText": "Hongkong Approach, JAL 220, request change to Runway 25 due strong tailwind.",
@@ -105,7 +96,7 @@
     },
     {
       "id": "atc-scenario-0182-card-main-3142",
-      "taskTitle": "JAL 220-12",
+      "taskTitle": "JAL 220-11",
       "audioText": "C: JAL 220, change to Runway 25 approved, maintain 6000 feet, turn right to TD, you are number 1.",
       "audioTextZh": "C: JAL 220，批准改用跑道 25，保持 6000 英尺，右转至 TD，你是第 1 架。",
       "referenceText": "Change to Runway 25 approved, maintain 6000 feet, turn right to TD, JAL 220.",
@@ -114,7 +105,7 @@
     },
     {
       "id": "atc-scenario-0182-card-main-3143",
-      "taskTitle": "JAL 220-13",
+      "taskTitle": "JAL 220-12",
       "audioText": "B: After landing, you find your APU has failed, tell the situation to Hongkong Ground and ask for ground power unit.",
       "audioTextZh": "B: 着陆后，你发现 APU 失效，向香港地面说明情况并请求地面电源车。",
       "referenceText": "Hongkong Ground, JAL 220, our APU has failed, request ground power unit.",
@@ -123,7 +114,7 @@
     },
     {
       "id": "atc-scenario-0182-card-main-3144",
-      "taskTitle": "JAL 220-14",
+      "taskTitle": "JAL 220-13",
       "audioText": "C: JAL 220, Hongkong Ground, roger, do you need any other service?\nB: Tell the controller you need a tow truck to tow you to the apron.",
       "audioTextZh": "C: JAL 220，香港地面，收到，还需要其他服务吗？\nB: 告诉管制员你需要拖车把你拖到停机坪。",
       "referenceText": "Affirm, request a tow truck to tow us to the apron, JAL 220.",
@@ -132,7 +123,7 @@
     },
     {
       "id": "atc-scenario-0182-card-main-3145",
-      "taskTitle": "JAL 220-15",
+      "taskTitle": "JAL 220-14",
       "audioText": "C: JAL 220, roger, do you need medical assistance at the ramp?\nB: Tell the controller you need medical assistance at the ramp.",
       "audioTextZh": "C: JAL 220，收到，你在停机坪需要医疗援助吗？\nB: 告诉管制员你在停机坪需要医疗援助。",
       "referenceText": "Affirm, request need medical assistance at the ramp, JAL 220.",

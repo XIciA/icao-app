@@ -61,10 +61,10 @@
     {
       "id": "atc-scenario-0109-card-main-1877",
       "taskTitle": "SIA 123-7",
-      "audioText": "SIA 123, wind 220 degrees, 8 meters per second.\nthe tailwind exceeds your takeoff limit, contact tower to change to Runway 18L and state the reason.",
+      "audioText": "SIA 123, wind 220 degrees, 8 meters per second.\nThe tailwind exceeds your takeoff limit, contact tower to change to Runway 18L and state the reason.",
       "audioTextZh": "SIA 123，风向 220 度，风速 8 米/秒。\n顺风超过你的起飞限制，联系塔台更换至 Runway 18L 并说明原因。",
-      "referenceText": "Tower, SIA 123, the tailwind exceeds our takeoff limit, request change to Runway 18L. the tailwind exceeds our takeoff limit, request change to Runway 18L, SIA 123.",
-      "referenceTextZh": "塔台，SIA 123，顺风超过我们的起飞限制，请求更换至 Runway 18L。顺风超过我们的起飞限制，请求更换至 Runway 18L，SIA 123。",
+      "referenceText": "Tower, SIA 123, the tailwind exceeds our takeoff limit, request change to Runway 18L.",
+      "referenceTextZh": "塔台，SIA 123，顺风超过我们的起飞限制，请求更换至 Runway 18L。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-002-sia123-q08.mp3"
     },
     {

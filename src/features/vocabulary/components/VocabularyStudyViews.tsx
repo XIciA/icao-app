@@ -1,4 +1,4 @@
-import { CheckCircle2, ChevronLeft, RotateCcw, Star, Volume2 } from 'lucide-react-native';
+import { CheckCircle2, ChevronLeft, RotateCcw, Star, Volume2 } from '@/components/ui/icons';
 import { useEffect } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';

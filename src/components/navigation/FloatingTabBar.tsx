@@ -1,5 +1,5 @@
 import type { MaterialTopTabBarProps } from '@react-navigation/material-top-tabs';
-import { Compass, Library, UserRound, type LucideIcon } from 'lucide-react-native';
+import { Compass, Library, UserRound, type LucideIcon } from '@/components/ui/icons';
 import { Animated, Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 

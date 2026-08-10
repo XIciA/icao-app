@@ -57,3 +57,6 @@ app-example
 /.generated/
 /.vercel/
 .env*
+
+# Local Netlify folder
+.netlify

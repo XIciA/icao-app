@@ -1,105 +1,491 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"queues","ipa":"/kjuːz/","aviationMeaning":"n. 队列（复数）；等待起飞、滑行、进近或服务的航空器序列","generalMeaning":"n. 队列；排队（复数）"},
-    {"word":"quick","ipa":"/kwɪk/","aviationMeaning":"adj. 快速的；对告警、指令或异常迅速响应的","generalMeaning":"adj. 快的；迅速的"},
-    {"word":"quick-donning","ipa":"/kwɪk ˈdɑːnɪŋ/","aviationMeaning":"adj. 快速佩戴的；可迅速戴上的氧气面罩","generalMeaning":"adj. 快速穿戴的"},
-    {"word":"quick-reference","ipa":"/kwɪk ˈrefrəns/","aviationMeaning":"adj. 快速参考的；用于快速查阅异常处置步骤的","generalMeaning":"adj. 快速参考的"},
-    {"word":"quicker","ipa":"/ˈkwɪkər/","aviationMeaning":"adj. 更快的；响应、处置或运行速度更高的","generalMeaning":"adj. 更快的"},
-    {"word":"quickly","ipa":"/ˈkwɪkli/","aviationMeaning":"adv. 快速地；迅速执行指令、检查或异常处置","generalMeaning":"adv. 快速地"},
-    {"word":"quiet","ipa":"/ˈkwaɪət/","aviationMeaning":"adj. 安静的；通信频率、机场或客舱活动较少的","generalMeaning":"adj. 安静的；平静的"},
-    {"word":"quieter","ipa":"/ˈkwaɪətər/","aviationMeaning":"adj. 更安静的；通信频率、机场或客舱活动更少的","generalMeaning":"adj. 更安静的"},
-    {"word":"quietly","ipa":"/ˈkwaɪətli/","aviationMeaning":"adv. 安静地；低噪声或不引起注意地实施操作","generalMeaning":"adv. 安静地"},
-    {"word":"quit","ipa":"/kwɪt/","aviationMeaning":"v. 停止；退出系统、任务或操作","generalMeaning":"v. 停止；离开"},
-    {"word":"quite","ipa":"/kwaɪt/","aviationMeaning":"adv. 相当；用于程度说明","generalMeaning":"adv. 相当；十分"},
-    {"word":"quote","ipa":"/kwoʊt/","aviationMeaning":"v. 报价；说明费用、时间或数值","generalMeaning":"v. 引用；报价"},
-    {"word":"qzss","ipa":"/ˌkjuː ziː es ˈes/","aviationMeaning":"n. 准天顶卫星系统；日本区域卫星导航系统","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"r","ipa":"/ɑːr/","aviationMeaning":"n. 字母 R；可能为跑道、航图或缩写组成部分","generalMeaning":"n. 英文字母 R"},
-    {"word":"ra","ipa":"/ˌɑːr ˈeɪ/","aviationMeaning":"n. 决断提示；防撞系统提供的垂直机动指令","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"rabbit","ipa":"/ˈræbɪt/","aviationMeaning":"n. 兔；机场野生动物，可能构成跑道侵入风险","generalMeaning":"n. 兔子"},
-    {"word":"radar","ipa":"/ˈreɪdɑːr/","aviationMeaning":"n. 雷达；用于监视航空器、天气或地面目标的系统","generalMeaning":"n. 雷达"},
-    {"word":"radial","ipa":"/ˈreɪdiəl/","aviationMeaning":"n. 径向线；从 VOR 导航台向外延伸的方位线","generalMeaning":"adj. 放射状的；n. 径向线"},
-    {"word":"radiation","ipa":"/ˌreɪdiˈeɪʃən/","aviationMeaning":"n. 辐射；高空宇宙辐射或电磁辐射暴露","generalMeaning":"n. 辐射；放射线"},
-    {"word":"radiator","ipa":"/ˈreɪdieɪtər/","aviationMeaning":"n. 散热器；用于散去发动机或系统热量的装置","generalMeaning":"n. 散热器；暖气片"},
-    {"word":"radio","ipa":"/ˈreɪdioʊ/","aviationMeaning":"n. 无线电；机组与管制、地面单位通信的设备","generalMeaning":"n. 收音机；无线电"},
-    {"word":"radioactive","ipa":"/ˌreɪdioʊˈæktɪv/","aviationMeaning":"adj. 放射性的；放射性物质运输或暴露相关","generalMeaning":"adj. 放射性的"},
-    {"word":"radioed","ipa":"/ˈreɪdioʊd/","aviationMeaning":"v. 已无线电通报；已通过无线电发送信息","generalMeaning":"v. 已无线电联系"},
-    {"word":"radios","ipa":"/ˈreɪdioʊz/","aviationMeaning":"n. 无线电设备（复数）；多个通信或导航无线电台","generalMeaning":"n. 收音机；无线电设备（复数）"},
-    {"word":"radiotelephony","ipa":"/ˌreɪdioʊtəˈlefəni/","aviationMeaning":"n. 无线电电话通信；航空器与管制之间的语音通信","generalMeaning":"n. 无线电电话"},
-    {"word":"radius","ipa":"/ˈreɪdiəs/","aviationMeaning":"n. 半径；转弯、保护区或运行范围的半径","generalMeaning":"n. 半径"},
-    {"word":"radome","ipa":"/ˈreɪdoʊm/","aviationMeaning":"n. 雷达罩；覆盖雷达天线的透波保护罩","generalMeaning":"n. 雷达罩"},
-    {"word":"raft","ipa":"/ræft/","aviationMeaning":"n. 救生筏；水上迫降或撤离时使用的充气救生设备","generalMeaning":"n. 木筏；橡皮筏"},
-    {"word":"rafts","ipa":"/ræfts/","aviationMeaning":"n. 救生筏（复数）；水上撤离使用的多个充气救生设备","generalMeaning":"n. 木筏；橡皮筏（复数）"},
-    {"word":"raim","ipa":"/reɪm/","aviationMeaning":"n. 接收机自主完整性监测；GNSS 导航完整性监测功能","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"rain","ipa":"/reɪn/","aviationMeaning":"n. 雨；影响能见度、跑道制动、雷达与飞行性能的降水","generalMeaning":"n. 雨；v. 下雨"},
-    {"word":"raining","ipa":"/ˈreɪnɪŋ/","aviationMeaning":"v. 正下雨；降水正在影响能见度、跑道或飞行性能","generalMeaning":"v. 正下雨"},
-    {"word":"rains","ipa":"/reɪnz/","aviationMeaning":"v. 下雨；降水影响能见度、跑道或飞行性能","generalMeaning":"v. 下雨；n. 雨（复数）"},
-    {"word":"rainy","ipa":"/ˈreɪni/","aviationMeaning":"adj. 下雨的；伴有降水并可能影响运行的","generalMeaning":"adj. 下雨的；多雨的"},
-    {"word":"raise","ipa":"/reɪz/","aviationMeaning":"v. 增加；提高高度、功率、温度或警觉性","generalMeaning":"v. 举起；提高"},
-    {"word":"raises","ipa":"/ˈreɪzɪz/","aviationMeaning":"v. 增加；提高高度、功率、温度或警觉性","generalMeaning":"v. 举起；提高"},
-    {"word":"ram","ipa":"/ræm/","aviationMeaning":"n. 冲压；高速气流产生的压力；也可指冲撞","generalMeaning":"n. 公羊；v. 猛撞"},
-    {"word":"ram-air-turbine-driven","ipa":"/ræm er ˈtɜːrbaɪn ˈdrɪvən/","aviationMeaning":"adj. 冲压空气涡轮驱动的；由应急冲压空气涡轮供能的","generalMeaning":"adj. 冲压空气涡轮驱动的"},
-    {"word":"ramp","ipa":"/ræmp/","aviationMeaning":"n. 机坪；航空器停放、装卸、加油与地面服务区域","generalMeaning":"n. 坡道；斜坡"},
-    {"word":"ran","ipa":"/ræn/","aviationMeaning":"v. 运行；执行；如发动机或系统曾经工作","generalMeaning":"v. run 的过去式；跑"},
-    {"word":"random","ipa":"/ˈrændəm/","aviationMeaning":"adj. 随机的；非固定顺序或不可预测发生的","generalMeaning":"adj. 随机的；任意的"},
-    {"word":"randomly","ipa":"/ˈrændəmli/","aviationMeaning":"adv. 随机地；无固定顺序或规律地","generalMeaning":"adv. 随机地；任意地"},
-    {"word":"range","ipa":"/reɪndʒ/","aviationMeaning":"n. 航程；无线电或雷达的有效距离范围","generalMeaning":"n. 范围；v. 变化"},
-    {"word":"ranges","ipa":"/ˈreɪndʒɪz/","aviationMeaning":"n. 范围（复数）；多个航程、频率或性能范围","generalMeaning":"n. 范围（复数）；v. 变化"},
-    {"word":"ranging","ipa":"/ˈreɪndʒɪŋ/","aviationMeaning":"v. 测距；确定航空器与导航台、目标或障碍物的距离","generalMeaning":"v. 变化；测距"},
-    {"word":"rank","ipa":"/ræŋk/","aviationMeaning":"n. 级别；机组、运行或组织中的职务等级","generalMeaning":"n. 等级；v. 排名"},
-    {"word":"rapid","ipa":"/ˈræpɪd/","aviationMeaning":"adj. 快速的；高度、压力、速度或天气变化很快的","generalMeaning":"adj. 快速的；急速的"},
-    {"word":"rapid-depressurization","ipa":"/ˈræpɪd diːˌpreʃərəˈzeɪʃən/","aviationMeaning":"n. 快速失压；客舱压力在短时间内显著下降","generalMeaning":"n. 快速失压"},
-    {"word":"rapid-exit","ipa":"/ˈræpɪd ˈeɡzɪt/","aviationMeaning":"n. 快速脱离道；供着陆航空器迅速离开跑道的滑行道","generalMeaning":"n. 快速出口"},
-    {"word":"rapidly","ipa":"/ˈræpɪdli/","aviationMeaning":"adv. 快速地；高度、压力、速度或天气迅速变化","generalMeaning":"adv. 快速地；迅速地"},
-    {"word":"rare","ipa":"/rer/","aviationMeaning":"adj. 罕见的；很少发生的天气、故障或运行事件","generalMeaning":"adj. 罕见的；稀有的"},
-    {"word":"rarely","ipa":"/ˈrerli/","aviationMeaning":"adv. 很少；不经常发生或出现","generalMeaning":"adv. 很少；难得"},
-    {"word":"ras","ipa":"/ræs/","aviationMeaning":"n. 跑道咨询服务；机场提供跑道使用信息的服务，需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"rate","ipa":"/reɪt/","aviationMeaning":"n. 速率；爬升率、下降率、转弯率或燃油消耗率","generalMeaning":"n. 比率；v. 评价"},
-    {"word":"rated","ipa":"/ˈreɪtɪd/","aviationMeaning":"adj. 评级的；具备特定机型、仪表或设备操作资格的","generalMeaning":"adj. 被评价的；定级的"},
-    {"word":"rates","ipa":"/reɪts/","aviationMeaning":"n. 速率（复数）；多种爬升、下降、转弯或消耗速率","generalMeaning":"n. 比率（复数）；v. 评价"},
-    {"word":"rather","ipa":"/ˈræðər/","aviationMeaning":"adv. 而是；用于比较两种操作或选择","generalMeaning":"adv. 相当；宁愿"},
-    {"word":"rating","ipa":"/ˈreɪtɪŋ/","aviationMeaning":"n. 等级；飞行员机型、仪表或运行资格","generalMeaning":"n. 等级；评价"},
-    {"word":"ratings","ipa":"/ˈreɪtɪŋz/","aviationMeaning":"n. 等级（复数）；飞行员拥有的多个机型或仪表资格","generalMeaning":"n. 等级；评价（复数）"},
-    {"word":"ratio","ipa":"/ˈreɪʃioʊ/","aviationMeaning":"n. 比率；燃油、混合气、功重或资源配置比例","generalMeaning":"n. 比率；比例"},
-    {"word":"raw","ipa":"/rɔː/","aviationMeaning":"adj. 原始的；未经处理的传感器、雷达或飞行数据","generalMeaning":"adj. 生的；原始的"},
-    {"word":"re","ipa":"/riː/","aviationMeaning":"prefix. 再；表示重新执行、恢复或返回","generalMeaning":"prefix. 再；重新"},
-    {"word":"re-boarded","ipa":"/ˌriːˈbɔːrdɪd/","aviationMeaning":"v. 已重新登机；旅客或机组再次进入航空器","generalMeaning":"v. 已重新登上"},
-    {"word":"re-calculate","ipa":"/ˌriːˈkælkjəleɪt/","aviationMeaning":"v. 重新计算；更新性能、燃油、航迹或时间数据","generalMeaning":"v. 重新计算"},
-    {"word":"re-capture","ipa":"/ˌriːˈkæptʃər/","aviationMeaning":"v. 重新捕获；自动驾驶或导航系统重新跟踪目标航径","generalMeaning":"v. 重新捕获"},
-    {"word":"re-cleared","ipa":"/ˌriːˈklɪrd/","aviationMeaning":"adj. 重新放行的；航空器已获新的管制许可","generalMeaning":"adj. 重新批准的"},
-    {"word":"re-enter","ipa":"/ˌriːˈentər/","aviationMeaning":"v. 再次进入；重新进入空域、程序、航路或系统","generalMeaning":"v. 再进入"},
-    {"word":"re-establish","ipa":"/ˌriːɪˈstæblɪʃ/","aviationMeaning":"v. 重新建立；恢复通信、航迹、系统或正常程序","generalMeaning":"v. 重新建立"},
-    {"word":"re-establishing","ipa":"/ˌriːɪˈstæblɪʃɪŋ/","aviationMeaning":"v. 正重新建立；正在恢复通信、航迹或系统","generalMeaning":"v. 正重新建立"},
-    {"word":"re-release","ipa":"/ˌriːrɪˈliːs/","aviationMeaning":"v. 重新放行；重新签发飞行放行或运行许可","generalMeaning":"v. 重新发布；释放"},
-    {"word":"re-seating","ipa":"/ˌriːˈsiːtɪŋ/","aviationMeaning":"n. 重新就座；将旅客重新安排到座位","generalMeaning":"n. 重新就座"},
-    {"word":"reach","ipa":"/riːtʃ/","aviationMeaning":"v. 到达；到达高度、航路点、机场或通信范围","generalMeaning":"v. 到达；伸手够到"},
-    {"word":"reachable","ipa":"/ˈriːtʃəbəl/","aviationMeaning":"adj. 可到达的；在燃油、性能或通信范围内可抵达的","generalMeaning":"adj. 可到达的"},
-    {"word":"reached","ipa":"/riːtʃt/","aviationMeaning":"v. 已到达；已到达高度、航路点、机场或通信范围","generalMeaning":"v. 已到达；够到"},
-    {"word":"reaches","ipa":"/ˈriːtʃɪz/","aviationMeaning":"v. 到达；达到高度、航路点、机场或通信范围","generalMeaning":"v. 到达；够到"},
-    {"word":"reaching","ipa":"/ˈriːtʃɪŋ/","aviationMeaning":"v. 正到达；正接近高度、航路点、机场或通信范围","generalMeaning":"v. 正到达；够到"},
-    {"word":"react","ipa":"/riˈækt/","aviationMeaning":"v. 反应；对告警、指令、天气或异常作出响应","generalMeaning":"v. 反应；起反应"},
-    {"word":"reacted","ipa":"/riˈæktɪd/","aviationMeaning":"v. 已反应；已对告警、指令或异常作出响应","generalMeaning":"v. 已反应"},
-    {"word":"reaction","ipa":"/riˈækʃən/","aviationMeaning":"n. 反应；机组或系统对告警、指令或异常的响应","generalMeaning":"n. 反应；反作用"},
-    {"word":"reactive","ipa":"/riˈæktɪv/","aviationMeaning":"adj. 被动反应的；在事件发生后才响应的","generalMeaning":"adj. 反应性的"},
-    {"word":"reacts","ipa":"/riˈækts/","aviationMeaning":"v. 反应；对告警、指令、天气或异常作出响应","generalMeaning":"v. 反应；起反应"},
-    {"word":"read","ipa":"/riːd/","aviationMeaning":"v. 读取；阅读仪表、检查单、通告或资料","generalMeaning":"v. 阅读；读取"},
-    {"word":"read-back","ipa":"/ˈriːd bæk/","aviationMeaning":"n. 复诵；飞行员重复管制许可或指令以确认理解","generalMeaning":"n. 读回；复诵"},
-    {"word":"readability","ipa":"/ˌriːdəˈbɪləti/","aviationMeaning":"n. 可读性；通信信号或显示文字易于听清、辨认的程度","generalMeaning":"n. 可读性"},
-    {"word":"readable","ipa":"/ˈriːdəbəl/","aviationMeaning":"adj. 可读的；显示、资料或通信内容可清楚辨认的","generalMeaning":"adj. 可读的"},
-    {"word":"readback","ipa":"/ˈriːdbæk/","aviationMeaning":"n. 复诵；飞行员重复管制许可或指令以确认理解","generalMeaning":"n. 读回；复诵"},
-    {"word":"readbacks","ipa":"/ˈriːdbæks/","aviationMeaning":"n. 复诵（复数）；多次对管制许可或指令的重复确认","generalMeaning":"n. 读回；复诵（复数）"},
-    {"word":"reader","ipa":"/ˈriːdər/","aviationMeaning":"n. 读取器；读取数据、卡片或资料的设备或人员","generalMeaning":"n. 读者；读取器"},
-    {"word":"readily","ipa":"/ˈredɪli/","aviationMeaning":"adv. 容易地；可迅速获得、识别或实施","generalMeaning":"adv. 容易地；乐意地"},
-    {"word":"readiness","ipa":"/ˈredinəs/","aviationMeaning":"n. 准备状态；机组、航空器或应急资源的就绪程度","generalMeaning":"n. 准备就绪；乐意"},
-    {"word":"reading","ipa":"/ˈriːdɪŋ/","aviationMeaning":"n. 读数；仪表、传感器或显示器显示的数值","generalMeaning":"n. 阅读；读数"},
-    {"word":"readings","ipa":"/ˈriːdɪŋz/","aviationMeaning":"n. 读数（复数）；多个仪表、传感器或显示器数值","generalMeaning":"n. 阅读；读数（复数）"},
-    {"word":"ready","ipa":"/ˈredi/","aviationMeaning":"adj. 准备好的；机组、航空器或系统可开始下一项操作","generalMeaning":"adj. 准备好的；愿意的"},
-    {"word":"reagan","ipa":"/ˈreɪɡən/","aviationMeaning":"n. 里根；机场或地名组成部分","generalMeaning":"n. 专有地名"},
-    {"word":"real","ipa":"/ˈriːəl/","aviationMeaning":"adj. 真实的；实际发生或实际测得的","generalMeaning":"adj. 真实的；实际的"},
-    {"word":"real-time","ipa":"/ˌriːəl ˈtaɪm/","aviationMeaning":"adj. 实时的；随当前飞行或系统状态即时更新的","generalMeaning":"adj. 实时的"},
-    {"word":"real-world","ipa":"/ˌriːəl ˈwɜːrld/","aviationMeaning":"adj. 真实环境的；实际飞行运行场景中的","generalMeaning":"adj. 真实世界的"},
-    {"word":"realigned","ipa":"/ˌriːəˈlaɪnd/","aviationMeaning":"adj. 已重新对准的；航迹、系统或部件已恢复正确对齐","generalMeaning":"adj. 已重新对齐的"},
-    {"word":"realistic","ipa":"/ˌriːəˈlɪstɪk/","aviationMeaning":"adj. 现实的；符合实际飞行或运行条件的","generalMeaning":"adj. 现实的；逼真的"},
-    {"word":"reality","ipa":"/riˈæləti/","aviationMeaning":"n. 实际情况；真实的飞行、运行或安全状态","generalMeaning":"n. 现实；真实"}
+    {
+      "word": "queues",
+      "ipa": "/kjuːz/",
+      "aviationMeaning": "n. 队列（复数）；等待起飞、滑行、进近或服务的航空器序列",
+      "generalMeaning": "n. 队列；排队（复数）"
+    },
+    {
+      "word": "quick",
+      "ipa": "/kwɪk/",
+      "aviationMeaning": "adj. 快速的；对告警、指令或异常迅速响应的",
+      "generalMeaning": "adj. 快的；迅速的"
+    },
+    {
+      "word": "quick-donning",
+      "ipa": "/kwɪk ˈdɑːnɪŋ/",
+      "aviationMeaning": "adj. 快速佩戴的；可迅速戴上的氧气面罩",
+      "generalMeaning": "adj. 快速穿戴的"
+    },
+    {
+      "word": "quickly",
+      "ipa": "/ˈkwɪkli/",
+      "aviationMeaning": "adv. 快速地；迅速执行指令、检查或异常处置",
+      "generalMeaning": "adv. 快速地"
+    },
+    {
+      "word": "quietly",
+      "ipa": "/ˈkwaɪətli/",
+      "aviationMeaning": "adv. 安静地；低噪声或不引起注意地实施操作",
+      "generalMeaning": "adv. 安静地"
+    },
+    {
+      "word": "quit",
+      "ipa": "/kwɪt/",
+      "aviationMeaning": "v. 停止；退出系统、任务或操作",
+      "generalMeaning": "v. 停止；离开"
+    },
+    {
+      "word": "quite",
+      "ipa": "/kwaɪt/",
+      "aviationMeaning": "adv. 相当；用于程度说明",
+      "generalMeaning": "adv. 相当；十分"
+    },
+    {
+      "word": "r",
+      "ipa": "/ɑːr/",
+      "aviationMeaning": "n. 字母 R；可能为跑道、航图或缩写组成部分",
+      "generalMeaning": "n. 英文字母 R"
+    },
+    {
+      "word": "ra",
+      "ipa": "/ˌɑːr ˈeɪ/",
+      "aviationMeaning": "n. 决断提示；防撞系统提供的垂直机动指令",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "rabbit",
+      "ipa": "/ˈræbɪt/",
+      "aviationMeaning": "n. 兔；机场野生动物，可能构成跑道侵入风险",
+      "generalMeaning": "n. 兔子"
+    },
+    {
+      "word": "radar",
+      "ipa": "/ˈreɪdɑːr/",
+      "aviationMeaning": "n. 雷达；用于监视航空器、天气或地面目标的系统",
+      "generalMeaning": "n. 雷达"
+    },
+    {
+      "word": "radial",
+      "ipa": "/ˈreɪdiəl/",
+      "aviationMeaning": "n. 径向线；从 VOR 导航台向外延伸的方位线",
+      "generalMeaning": "adj. 放射状的；n. 径向线"
+    },
+    {
+      "word": "radiation",
+      "ipa": "/ˌreɪdiˈeɪʃən/",
+      "aviationMeaning": "n. 辐射；高空宇宙辐射或电磁辐射暴露",
+      "generalMeaning": "n. 辐射；放射线"
+    },
+    {
+      "word": "radiator",
+      "ipa": "/ˈreɪdieɪtər/",
+      "aviationMeaning": "n. 散热器；用于散去发动机或系统热量的装置",
+      "generalMeaning": "n. 散热器；暖气片"
+    },
+    {
+      "word": "radio",
+      "ipa": "/ˈreɪdioʊ/",
+      "aviationMeaning": "n. 无线电；机组与管制、地面单位通信的设备",
+      "generalMeaning": "n. 收音机；无线电"
+    },
+    {
+      "word": "radioactive",
+      "ipa": "/ˌreɪdioʊˈæktɪv/",
+      "aviationMeaning": "adj. 放射性的；放射性物质运输或暴露相关",
+      "generalMeaning": "adj. 放射性的"
+    },
+    {
+      "word": "radioed",
+      "ipa": "/ˈreɪdioʊd/",
+      "aviationMeaning": "v. 已无线电通报；已通过无线电发送信息",
+      "generalMeaning": "v. 已无线电联系"
+    },
+    {
+      "word": "radios",
+      "ipa": "/ˈreɪdioʊz/",
+      "aviationMeaning": "n. 无线电设备（复数）；多个通信或导航无线电台",
+      "generalMeaning": "n. 收音机；无线电设备（复数）"
+    },
+    {
+      "word": "radiotelephony",
+      "ipa": "/ˌreɪdioʊtəˈlefəni/",
+      "aviationMeaning": "n. 无线电电话通信；航空器与管制之间的语音通信",
+      "generalMeaning": "n. 无线电电话"
+    },
+    {
+      "word": "radius",
+      "ipa": "/ˈreɪdiəs/",
+      "aviationMeaning": "n. 半径；转弯、保护区或运行范围的半径",
+      "generalMeaning": "n. 半径"
+    },
+    {
+      "word": "raft",
+      "ipa": "/ræft/",
+      "aviationMeaning": "n. 救生筏；水上迫降或撤离时使用的充气救生设备",
+      "generalMeaning": "n. 木筏；橡皮筏"
+    },
+    {
+      "word": "rafts",
+      "ipa": "/ræfts/",
+      "aviationMeaning": "n. 救生筏（复数）；水上撤离使用的多个充气救生设备",
+      "generalMeaning": "n. 木筏；橡皮筏（复数）"
+    },
+    {
+      "word": "raim",
+      "ipa": "/reɪm/",
+      "aviationMeaning": "n. 接收机自主完整性监测；GNSS 导航完整性监测功能",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "rain",
+      "ipa": "/reɪn/",
+      "aviationMeaning": "n. 雨；影响能见度、跑道制动、雷达与飞行性能的降水",
+      "generalMeaning": "n. 雨；v. 下雨"
+    },
+    {
+      "word": "raining",
+      "ipa": "/ˈreɪnɪŋ/",
+      "aviationMeaning": "v. 正下雨；降水正在影响能见度、跑道或飞行性能",
+      "generalMeaning": "v. 正下雨"
+    },
+    {
+      "word": "rains",
+      "ipa": "/reɪnz/",
+      "aviationMeaning": "v. 下雨；降水影响能见度、跑道或飞行性能",
+      "generalMeaning": "v. 下雨；n. 雨（复数）"
+    },
+    {
+      "word": "rainy",
+      "ipa": "/ˈreɪni/",
+      "aviationMeaning": "adj. 下雨的；伴有降水并可能影响运行的",
+      "generalMeaning": "adj. 下雨的；多雨的"
+    },
+    {
+      "word": "raise",
+      "ipa": "/reɪz/",
+      "aviationMeaning": "v. 增加；提高高度、功率、温度或警觉性",
+      "generalMeaning": "v. 举起；提高"
+    },
+    {
+      "word": "raises",
+      "ipa": "/ˈreɪzɪz/",
+      "aviationMeaning": "v. 增加；提高高度、功率、温度或警觉性",
+      "generalMeaning": "v. 举起；提高"
+    },
+    {
+      "word": "ram",
+      "ipa": "/ræm/",
+      "aviationMeaning": "n. 冲压；高速气流产生的压力；也可指冲撞",
+      "generalMeaning": "n. 公羊；v. 猛撞"
+    },
+    {
+      "word": "ramp",
+      "ipa": "/ræmp/",
+      "aviationMeaning": "n. 机坪；航空器停放、装卸、加油与地面服务区域",
+      "generalMeaning": "n. 坡道；斜坡"
+    },
+    {
+      "word": "ran",
+      "ipa": "/ræn/",
+      "aviationMeaning": "v. 运行；执行；如发动机或系统曾经工作",
+      "generalMeaning": "v. run 的过去式；跑"
+    },
+    {
+      "word": "randomly",
+      "ipa": "/ˈrændəmli/",
+      "aviationMeaning": "adv. 随机地；无固定顺序或规律地",
+      "generalMeaning": "adv. 随机地；任意地"
+    },
+    {
+      "word": "range",
+      "ipa": "/reɪndʒ/",
+      "aviationMeaning": "n. 航程；无线电或雷达的有效距离范围",
+      "generalMeaning": "n. 范围；v. 变化"
+    },
+    {
+      "word": "ranges",
+      "ipa": "/ˈreɪndʒɪz/",
+      "aviationMeaning": "n. 范围（复数）；多个航程、频率或性能范围",
+      "generalMeaning": "n. 范围（复数）；v. 变化"
+    },
+    {
+      "word": "ranging",
+      "ipa": "/ˈreɪndʒɪŋ/",
+      "aviationMeaning": "v. 测距；确定航空器与导航台、目标或障碍物的距离",
+      "generalMeaning": "v. 变化；测距"
+    },
+    {
+      "word": "rapid",
+      "ipa": "/ˈræpɪd/",
+      "aviationMeaning": "adj. 快速的；高度、压力、速度或天气变化很快的",
+      "generalMeaning": "adj. 快速的；急速的"
+    },
+    {
+      "word": "rapid-exit",
+      "ipa": "/ˈræpɪd ˈeɡzɪt/",
+      "aviationMeaning": "n. 快速脱离道；供着陆航空器迅速离开跑道的滑行道",
+      "generalMeaning": "n. 快速出口"
+    },
+    {
+      "word": "rapidly",
+      "ipa": "/ˈræpɪdli/",
+      "aviationMeaning": "adv. 快速地；高度、压力、速度或天气迅速变化",
+      "generalMeaning": "adv. 快速地；迅速地"
+    },
+    {
+      "word": "rate",
+      "ipa": "/reɪt/",
+      "aviationMeaning": "n. 速率；爬升率、下降率、转弯率或燃油消耗率",
+      "generalMeaning": "n. 比率；v. 评价"
+    },
+    {
+      "word": "rated",
+      "ipa": "/ˈreɪtɪd/",
+      "aviationMeaning": "adj. 评级的；具备特定机型、仪表或设备操作资格的",
+      "generalMeaning": "adj. 被评价的；定级的"
+    },
+    {
+      "word": "rates",
+      "ipa": "/reɪts/",
+      "aviationMeaning": "n. 速率（复数）；多种爬升、下降、转弯或消耗速率",
+      "generalMeaning": "n. 比率（复数）；v. 评价"
+    },
+    {
+      "word": "rather",
+      "ipa": "/ˈræðər/",
+      "aviationMeaning": "adv. 而是；用于比较两种操作或选择",
+      "generalMeaning": "adv. 相当；宁愿"
+    },
+    {
+      "word": "rating",
+      "ipa": "/ˈreɪtɪŋ/",
+      "aviationMeaning": "n. 等级；飞行员机型、仪表或运行资格",
+      "generalMeaning": "n. 等级；评价"
+    },
+    {
+      "word": "ratings",
+      "ipa": "/ˈreɪtɪŋz/",
+      "aviationMeaning": "n. 等级（复数）；飞行员拥有的多个机型或仪表资格",
+      "generalMeaning": "n. 等级；评价（复数）"
+    },
+    {
+      "word": "ratio",
+      "ipa": "/ˈreɪʃioʊ/",
+      "aviationMeaning": "n. 比率；燃油、混合气、功重或资源配置比例",
+      "generalMeaning": "n. 比率；比例"
+    },
+    {
+      "word": "raw",
+      "ipa": "/rɔː/",
+      "aviationMeaning": "adj. 原始的；未经处理的传感器、雷达或飞行数据",
+      "generalMeaning": "adj. 生的；原始的"
+    },
+    {
+      "word": "re",
+      "ipa": "/riː/",
+      "aviationMeaning": "prefix. 再；表示重新执行、恢复或返回",
+      "generalMeaning": "prefix. 再；重新"
+    },
+    {
+      "word": "re-boarded",
+      "ipa": "/ˌriːˈbɔːrdɪd/",
+      "aviationMeaning": "v. 已重新登机；旅客或机组再次进入航空器",
+      "generalMeaning": "v. 已重新登上"
+    },
+    {
+      "word": "re-calculate",
+      "ipa": "/ˌriːˈkælkjəleɪt/",
+      "aviationMeaning": "v. 重新计算；更新性能、燃油、航迹或时间数据",
+      "generalMeaning": "v. 重新计算"
+    },
+    {
+      "word": "re-capture",
+      "ipa": "/ˌriːˈkæptʃər/",
+      "aviationMeaning": "v. 重新捕获；自动驾驶或导航系统重新跟踪目标航径",
+      "generalMeaning": "v. 重新捕获"
+    },
+    {
+      "word": "re-cleared",
+      "ipa": "/ˌriːˈklɪrd/",
+      "aviationMeaning": "adj. 重新放行的；航空器已获新的管制许可",
+      "generalMeaning": "adj. 重新批准的"
+    },
+    {
+      "word": "re-enter",
+      "ipa": "/ˌriːˈentər/",
+      "aviationMeaning": "v. 再次进入；重新进入空域、程序、航路或系统",
+      "generalMeaning": "v. 再进入"
+    },
+    {
+      "word": "re-establish",
+      "ipa": "/ˌriːɪˈstæblɪʃ/",
+      "aviationMeaning": "v. 重新建立；恢复通信、航迹、系统或正常程序",
+      "generalMeaning": "v. 重新建立"
+    },
+    {
+      "word": "re-establishing",
+      "ipa": "/ˌriːɪˈstæblɪʃɪŋ/",
+      "aviationMeaning": "v. 正重新建立；正在恢复通信、航迹或系统",
+      "generalMeaning": "v. 正重新建立"
+    },
+    {
+      "word": "re-release",
+      "ipa": "/ˌriːrɪˈliːs/",
+      "aviationMeaning": "v. 重新放行；重新签发飞行放行或运行许可",
+      "generalMeaning": "v. 重新发布；释放"
+    },
+    {
+      "word": "re-seating",
+      "ipa": "/ˌriːˈsiːtɪŋ/",
+      "aviationMeaning": "n. 重新就座；将旅客重新安排到座位",
+      "generalMeaning": "n. 重新就座"
+    },
+    {
+      "word": "reach",
+      "ipa": "/riːtʃ/",
+      "aviationMeaning": "v. 到达；到达高度、航路点、机场或通信范围",
+      "generalMeaning": "v. 到达；伸手够到"
+    },
+    {
+      "word": "reached",
+      "ipa": "/riːtʃt/",
+      "aviationMeaning": "v. 已到达；已到达高度、航路点、机场或通信范围",
+      "generalMeaning": "v. 已到达；够到"
+    },
+    {
+      "word": "reaches",
+      "ipa": "/ˈriːtʃɪz/",
+      "aviationMeaning": "v. 到达；达到高度、航路点、机场或通信范围",
+      "generalMeaning": "v. 到达；够到"
+    },
+    {
+      "word": "reaching",
+      "ipa": "/ˈriːtʃɪŋ/",
+      "aviationMeaning": "v. 正到达；正接近高度、航路点、机场或通信范围",
+      "generalMeaning": "v. 正到达；够到"
+    },
+    {
+      "word": "react",
+      "ipa": "/riˈækt/",
+      "aviationMeaning": "v. 反应；对告警、指令、天气或异常作出响应",
+      "generalMeaning": "v. 反应；起反应"
+    },
+    {
+      "word": "reacted",
+      "ipa": "/riˈæktɪd/",
+      "aviationMeaning": "v. 已反应；已对告警、指令或异常作出响应",
+      "generalMeaning": "v. 已反应"
+    },
+    {
+      "word": "reaction",
+      "ipa": "/riˈækʃən/",
+      "aviationMeaning": "n. 反应；机组或系统对告警、指令或异常的响应",
+      "generalMeaning": "n. 反应；反作用"
+    },
+    {
+      "word": "reactive",
+      "ipa": "/riˈæktɪv/",
+      "aviationMeaning": "adj. 被动反应的；在事件发生后才响应的",
+      "generalMeaning": "adj. 反应性的"
+    },
+    {
+      "word": "reacts",
+      "ipa": "/riˈækts/",
+      "aviationMeaning": "v. 反应；对告警、指令、天气或异常作出响应",
+      "generalMeaning": "v. 反应；起反应"
+    },
+    {
+      "word": "read",
+      "ipa": "/riːd/",
+      "aviationMeaning": "v. 读取；阅读仪表、检查单、通告或资料",
+      "generalMeaning": "v. 阅读；读取"
+    },
+    {
+      "word": "read-back",
+      "ipa": "/ˈriːd bæk/",
+      "aviationMeaning": "n. 复诵；飞行员重复管制许可或指令以确认理解",
+      "generalMeaning": "n. 读回；复诵"
+    },
+    {
+      "word": "readability",
+      "ipa": "/ˌriːdəˈbɪləti/",
+      "aviationMeaning": "n. 可读性；通信信号或显示文字易于听清、辨认的程度",
+      "generalMeaning": "n. 可读性"
+    },
+    {
+      "word": "readable",
+      "ipa": "/ˈriːdəbəl/",
+      "aviationMeaning": "adj. 可读的；显示、资料或通信内容可清楚辨认的",
+      "generalMeaning": "adj. 可读的"
+    },
+    {
+      "word": "readback",
+      "ipa": "/ˈriːdbæk/",
+      "aviationMeaning": "n. 复诵；飞行员重复管制许可或指令以确认理解",
+      "generalMeaning": "n. 读回；复诵"
+    },
+    {
+      "word": "readbacks",
+      "ipa": "/ˈriːdbæks/",
+      "aviationMeaning": "n. 复诵（复数）；多次对管制许可或指令的重复确认",
+      "generalMeaning": "n. 读回；复诵（复数）"
+    },
+    {
+      "word": "reader",
+      "ipa": "/ˈriːdər/",
+      "aviationMeaning": "n. 读取器；读取数据、卡片或资料的设备或人员",
+      "generalMeaning": "n. 读者；读取器"
+    },
+    {
+      "word": "reading",
+      "ipa": "/ˈriːdɪŋ/",
+      "aviationMeaning": "n. 读数；仪表、传感器或显示器显示的数值",
+      "generalMeaning": "n. 阅读；读数"
+    },
+    {
+      "word": "readings",
+      "ipa": "/ˈriːdɪŋz/",
+      "aviationMeaning": "n. 读数（复数）；多个仪表、传感器或显示器数值",
+      "generalMeaning": "n. 阅读；读数（复数）"
+    },
+    {
+      "word": "ready",
+      "ipa": "/ˈredi/",
+      "aviationMeaning": "adj. 准备好的；机组、航空器或系统可开始下一项操作",
+      "generalMeaning": "adj. 准备好的；愿意的"
+    },
+    {
+      "word": "reagan",
+      "ipa": "/ˈreɪɡən/",
+      "aviationMeaning": "n. 里根；机场或地名组成部分",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "real",
+      "ipa": "/ˈriːəl/",
+      "aviationMeaning": "adj. 真实的；实际发生或实际测得的",
+      "generalMeaning": "adj. 真实的；实际的"
+    },
+    {
+      "word": "real-time",
+      "ipa": "/ˌriːəl ˈtaɪm/",
+      "aviationMeaning": "adj. 实时的；随当前飞行或系统状态即时更新的",
+      "generalMeaning": "adj. 实时的"
+    },
+    {
+      "word": "realistic",
+      "ipa": "/ˌriːəˈlɪstɪk/",
+      "aviationMeaning": "adj. 现实的；符合实际飞行或运行条件的",
+      "generalMeaning": "adj. 现实的；逼真的"
+    },
+    {
+      "word": "reality",
+      "ipa": "/riˈæləti/",
+      "aviationMeaning": "n. 实际情况；真实的飞行、运行或安全状态",
+      "generalMeaning": "n. 现实；真实"
+    }
   ]
 }

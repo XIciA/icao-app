@@ -16,8 +16,8 @@
     {
       "id": "atc-scenario-0134-card-main-2308",
       "taskTitle": "CES 728-2",
-      "audioText": "CES 728, cleared to Guangzhou via flight planned route, departure Runway 36R, LKO-02 departure, initially climb 1,200 meters, cruising level 9008 hunderd meters, when airborne, contact 119.6, squawk 3615.",
-      "audioTextZh": "CES 728，许可按飞行计划航路飞往广州，离场使用 Runway 36R，执行 LKO-02 离场，初始爬升至 1,200 米，巡航高度 9008 hunderd 米，离地后联系 119.6，应答机 3615。",
+      "audioText": "CES 728, cleared to Guangzhou via flight planned route, departure Runway 36R, LKO-02 departure, initially climb 1,200 meters, cruising level 9,800 meters, when airborne, contact 119.6, squawk 3615.",
+      "audioTextZh": "CES 728，许可按飞行计划航路飞往广州，离场使用 Runway 36R，执行 LKO-02 离场，初始爬升至 1,200 米，巡航高度 9,800 米，离地后联系 119.6，应答机 3615。",
       "referenceText": "cleared to Guangzhou via flight planned route, departure Runway 36R, LKO-02 departure, initially climb 1200 meters, cruising level 9800 meters, when airborne, contact 119.6, squawk 3615, CES 728.",
       "referenceTextZh": "许可按飞行计划航路飞往广州，离场使用 Runway 36R，执行 LKO-02 离场，初始爬升至 1200 米，巡航高度 9800 米，离地后联系 119.6，应答机 3615，CES 728。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-032-ces728-q02.mp3"
@@ -81,8 +81,8 @@
       "taskTitle": "CES 728-9",
       "audioText": "It's much later in the flight, you are at cruising level, ask Wuhan Control if 10,400 meters is available and if there is any turbulence reported by preceding aircraft on that level.",
       "audioTextZh": "飞行已过很长时间，你正处于巡航高度，询问武汉管制 10,400 米是否可用，以及前机是否在该高度报告过颠簸。",
-      "referenceText": "Wuhan Control, CES 728, is 1400 meters available? Is there is any turbulence reported by preceding aircraft on that level?",
-      "referenceTextZh": "武汉管制，CES 728，1400 米是否可用？前机是否在该高度报告过颠簸？",
+      "referenceText": "Wuhan Control, CES 728, is 10,400 meters available? Is there any turbulence reported by preceding aircraft at that level?",
+      "referenceTextZh": "武汉管制，CES 728，10,400 米是否可用？前机是否在该高度报告过颠簸？",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-032-ces728-q09.mp3"
     },
     {
@@ -90,8 +90,8 @@
       "taskTitle": "CES 728-10",
       "audioText": "CES 72810400 meters is available, there is no turbulence report at 10,400 meters.\nTell the controller you want to climb to 10,400 meters.",
       "audioTextZh": "CES 728，10400 米可用，10,400 米没有颠簸报告。\n告诉管制员你想爬升至 10,400 米。",
-      "referenceText": "Wuhan Control, CES 728, request climb to 1400 meters. request climb to 1400 meters, CES 728.",
-      "referenceTextZh": "武汉管制，CES 728，请求爬升至 1400 米。请求爬升至 1400 米，CES 728。",
+      "referenceText": "Wuhan Control, CES 728, request climb to 10,400 meters.",
+      "referenceTextZh": "武汉管制，CES 728，请求爬升至 10,400 米。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-032-ces728-q10.mp3"
     },
     {

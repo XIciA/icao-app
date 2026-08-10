@@ -70,7 +70,7 @@
     {
       "id": "atc-scenario-0025-card-main-434",
       "taskTitle": "BAW 038-8",
-      "audioText": "C: BAW 038, roger, can you execute normal landing? do you require fuel dumping?\nB: You can land normally and no need for fuel dumping.",
+      "audioText": "C: BAW 038, roger, can you execute normal landing? Do you require fuel dumping?\nB: You can land normally and no need for fuel dumping.",
       "audioTextZh": "管制员：BAW 038，收到，能否正常着陆？是否需要放油？\n你可以正常着陆，不需要放油。",
       "referenceText": "We can make a normal landing without dumping fuel, BAW 038.",
       "referenceTextZh": "我们可以正常着陆，不需要放油，BAW 038。",
@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0025-card-main-438",
       "taskTitle": "BAW 038-12",
-      "audioText": "C:BAW 038, turn right heading 340, report established localizer.",
+      "audioText": "C: BAW 038, turn right heading 340, report established localizer.",
       "audioTextZh": "管制员：BAW 038，右转航向340，建立航向道后报告。",
       "referenceText": "Turn right heading 340, report established localizer, BAW 038.",
       "referenceTextZh": "右转航向340，建立航向道后报告，BAW 038。",

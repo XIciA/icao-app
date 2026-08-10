@@ -1,4 +1,4 @@
-import { BookOpen, RefreshCw, Star, WifiOff } from 'lucide-react-native';
+import { BookOpen, RefreshCw, Star, WifiOff } from '@/components/ui/icons';
 import { useEffect, useMemo, useState } from 'react';
 import { FlatList, Pressable, StyleSheet, View } from 'react-native';
 

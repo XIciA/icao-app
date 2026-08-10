@@ -18,7 +18,7 @@
       "taskTitle": "QFA 432-2",
       "audioText": "QFA 432, cleared to Beijing via flight planned route, runway in use Runway 26, HZ01D, initial climb to 600 meters on QNH, after departure contact 128.75, squawk 3421.",
       "audioTextZh": "QFA 432，许可按飞行计划航路飞往北京，当前使用 Runway 26，执行 HZ-01D，按 QNH 初始爬升至 600 米，离场后联系 128.75，应答机 3421。",
-      "referenceText": "cleared to Beijing via flight planned route, runway in use Runway 26, HZ-01 departure, initial climb to six hunderd meters on QNH, 128.75, squawk 3421, QFA 432.",
+      "referenceText": "cleared to Beijing via flight planned route, runway in use Runway 26, HZ-01 departure, initial climb to 600 meters on QNH, 128.75, squawk 3421, QFA 432.",
       "referenceTextZh": "许可按飞行计划航路飞往北京，当前使用 Runway 26，执行 HZ-01 离场，按 QNH 初始爬升至 600 米，128.75，应答机 3421，QFA 432。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-080-qfa432-q02.mp3"
     },
@@ -144,8 +144,8 @@
       "taskTitle": "QFA 432-16",
       "audioText": "you are cleared to 1,200 meters, the sky is turning dark, the visibility is deteriorating, you suspect a sandstorm, tell Beijing Approach this situation and ask ATC if there is sandstorm forecast.",
       "audioTextZh": "你已获准下降至 1,200 米，天空正在变暗，能见度正在恶化，你怀疑出现沙尘暴，向北京进近报告这一情况，并询问空中交通管制是否有沙尘暴预报。",
-      "referenceText": "Beijing Approach, QFA 432, descend to 1002 hudnred meters, the sky is turning dark, the visibility is deteriorating, we suspect a sandstorm, is there sandstorm forecast?",
-      "referenceTextZh": "北京进近，QFA 432，下降至 1002 百米，天空正在变暗，能见度正在恶化，我们怀疑出现沙尘暴，是否有沙尘暴预报？",
+      "referenceText": "Beijing Approach, QFA 432, descend to 1,200 meters, the sky is turning dark, the visibility is deteriorating, we suspect a sandstorm, is there sandstorm forecast?",
+      "referenceTextZh": "北京进近，QFA 432，下降至 1,200 米，天空正在变暗，能见度正在恶化，我们怀疑出现沙尘暴，是否有沙尘暴预报？",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-080-qfa432-q16.mp3"
     },
     {

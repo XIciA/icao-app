@@ -1,102 +1,515 @@
-{"schemaVersion":1,"entries":[
-{"word":"tobacco","ipa":"/təˈbækoʊ/","aviationMeaning":"n. 烟草；机上禁烟与危险品管理相关物品","generalMeaning":"n. 烟草；烟叶"},
-{"word":"tocounter","ipa":"/tə ˈkaʊntər/","aviationMeaning":"n. 疑似 to counter 的连写；用于还原原文","generalMeaning":"n. 疑似 to counter 的连写"},
-{"word":"toda","ipa":"/ˈtoʊdə/","aviationMeaning":"n. 起飞可用距离；TODA 的小写形式","generalMeaning":"n. 缩略语；需依语境解释"},
-{"word":"today","ipa":"/təˈdeɪ/","aviationMeaning":"adv. 今天；当前运行日","generalMeaning":"adv. 今天；现今"},
-{"word":"today's","ipa":"/təˈdeɪz/","aviationMeaning":"adj. 今天的；当日的运行或天气","generalMeaning":"adj. 今天的；当今的"},
-{"word":"tog","ipa":"/tɑɡ/","aviationMeaning":"n. 疑似缩略语；需依原题语境解释","generalMeaning":"n. 衣物；非正式用语"},
-{"word":"together","ipa":"/təˈɡeðər/","aviationMeaning":"adv. 一起；同时；联合处置","generalMeaning":"adv. 一起；共同"},
-{"word":"toilet","ipa":"/ˈtɔɪlət/","aviationMeaning":"n. 洗手间；航空器卫生间","generalMeaning":"n. 厕所；洗手间"},
-{"word":"toilets","ipa":"/ˈtɔɪləts/","aviationMeaning":"n. 洗手间（复数）；航空器卫生设施","generalMeaning":"n. 厕所；洗手间（复数）"},
-{"word":"tokyo","ipa":"/ˈtoʊkioʊ/","aviationMeaning":"n. 东京；日本机场或空域相关地名","generalMeaning":"n. 东京"},
-{"word":"tol","ipa":"/tɑl/","aviationMeaning":"n. 疑似缩略语；需依原题语境解释","generalMeaning":"n. 缩略语；需依语境解释"},
-{"word":"told","ipa":"/toʊld/","aviationMeaning":"v. 告知；tell 的过去式或过去分词","generalMeaning":"v. 告诉；告知"},
-{"word":"tolerance","ipa":"/ˈtɑlərəns/","aviationMeaning":"n. 容差；允许偏差范围","generalMeaning":"n. 容忍；公差"},
-{"word":"tolerate","ipa":"/ˈtɑləreɪt/","aviationMeaning":"v. 容许；在限制内接受偏差","generalMeaning":"v. 容忍；忍受"},
-{"word":"tom","ipa":"/tɑm/","aviationMeaning":"n. 汤姆；人员姓名","generalMeaning":"n. 汤姆；男子名"},
-{"word":"ton","ipa":"/tʌn/","aviationMeaning":"n. 吨；质量或载荷单位","generalMeaning":"n. 吨；大量"},
-{"word":"tongzhou","ipa":"/tʊŋˈdʒoʊ/","aviationMeaning":"n. 通州；地点名称","generalMeaning":"n. 通州；地名"},
-{"word":"tons","ipa":"/tʌnz/","aviationMeaning":"n. 吨（复数）；大量载荷","generalMeaning":"n. 吨；大量"},
-{"word":"too","ipa":"/tu/","aviationMeaning":"adv. 也；过于；如过于高或过于低","generalMeaning":"adv. 也；太；过于"},
-{"word":"took","ipa":"/tʊk/","aviationMeaning":"v. 采取；take 的过去式；如采取动作","generalMeaning":"v. 拿；带；花费（过去式）"},
-{"word":"tool","ipa":"/tul/","aviationMeaning":"n. 工具；维护或操作工具","generalMeaning":"n. 工具；器具"},
-{"word":"tools","ipa":"/tulz/","aviationMeaning":"n. 工具（复数）；维护设备","generalMeaning":"n. 工具；器具（复数）"},
-{"word":"top","ipa":"/tɑp/","aviationMeaning":"n. 顶部；云顶；最高点；adj. 顶部的","generalMeaning":"n. 顶部；首位；adj. 顶部的"},
-{"word":"topic","ipa":"/ˈtɑpɪk/","aviationMeaning":"n. 主题；训练或通话讨论事项","generalMeaning":"n. 话题；主题"},
-{"word":"topics","ipa":"/ˈtɑpɪks/","aviationMeaning":"n. 主题（复数）；训练事项","generalMeaning":"n. 话题；主题（复数）"},
-{"word":"tops","ipa":"/tɑps/","aviationMeaning":"n. 顶部（复数）；云顶高度等","generalMeaning":"n. 顶部；首位（复数）"},
-{"word":"tora","ipa":"/ˈtɔrə/","aviationMeaning":"n. 起飞滑跑可用距离；TORA 的小写形式","generalMeaning":"n. 缩略语；需依语境解释"},
-{"word":"tornado","ipa":"/tɔrˈneɪdoʊ/","aviationMeaning":"n. 龙卷风；严重危及飞行的强对流天气","generalMeaning":"n. 龙卷风"},
-{"word":"tornadoes","ipa":"/tɔrˈneɪdoʊz/","aviationMeaning":"n. 龙卷风（复数）；强对流天气现象","generalMeaning":"n. 龙卷风（复数）"},
-{"word":"toronto","ipa":"/təˈrɑntoʊ/","aviationMeaning":"n. 多伦多；加拿大机场或空域地名","generalMeaning":"n. 多伦多"},
-{"word":"toronto's","ipa":"/təˈrɑntoʊz/","aviationMeaning":"n. 多伦多的；或 Toronto is 的缩略","generalMeaning":"n. 多伦多的；多伦多是的缩略"},
-{"word":"total","ipa":"/ˈtoʊtəl/","aviationMeaning":"adj. 总的；n. 总数；总飞行时间或总量","generalMeaning":"adj. 总的；n. 总数；v. 合计"},
-{"word":"touch","ipa":"/tʌtʃ/","aviationMeaning":"v. 接触；触地；n. 触感","generalMeaning":"v. 触摸；接触；n. 触碰"},
-{"word":"touch-down","ipa":"/ˈtʌtʃ daʊn/","aviationMeaning":"n. 接地；航空器主轮首次接触跑道","generalMeaning":"n. 着陆；接触地面"},
-{"word":"touchdown","ipa":"/ˈtʌtʃdaʊn/","aviationMeaning":"n. 接地；航空器主轮首次接触跑道","generalMeaning":"n. 着陆；触地"},
-{"word":"touchdown-zone","ipa":"/ˈtʌtʃdaʊn zoʊn/","aviationMeaning":"n. 接地区；跑道上预定接地的区域","generalMeaning":"n. 接地区"},
-{"word":"touched","ipa":"/tʌtʃt/","aviationMeaning":"v. 已接触；已触地","generalMeaning":"v. 触摸（过去式）；感动"},
-{"word":"touches","ipa":"/ˈtʌtʃɪz/","aviationMeaning":"v. 接触；触及；n. 接触点","generalMeaning":"v. 触摸；n. 触碰"},
-{"word":"touching","ipa":"/ˈtʌtʃɪŋ/","aviationMeaning":"v. 正接触；adj. 接触的","generalMeaning":"v. 触摸；adj. 感人的"},
-{"word":"tougher","ipa":"/ˈtʌfər/","aviationMeaning":"adj. 更困难的；更严苛的运行条件","generalMeaning":"adj. 更坚韧的；更困难的"},
-{"word":"toulouse","ipa":"/tuˈluz/","aviationMeaning":"n. 图卢兹；法国航空业相关地名","generalMeaning":"n. 图卢兹"},
-{"word":"tourists","ipa":"/ˈtʊrɪsts/","aviationMeaning":"n. 游客（复数）；旅客类型之一","generalMeaning":"n. 游客（复数）"},
-{"word":"tow","ipa":"/toʊ/","aviationMeaning":"v. 牵引；用牵引车移动航空器；n. 牵引","generalMeaning":"v. 拖；牵引；n. 拖运"},
-{"word":"tow-bar","ipa":"/ˈtoʊ bɑr/","aviationMeaning":"n. 牵引杆；连接牵引车与航空器的设备","generalMeaning":"n. 牵引杆"},
-{"word":"toward","ipa":"/tɔrd/","aviationMeaning":"prep. 朝向；向着某航向、地点或目标","generalMeaning":"prep. 朝；向；对于"},
-{"word":"towards","ipa":"/tɔrdz/","aviationMeaning":"prep. 朝向；向着某航向、地点或目标","generalMeaning":"prep. 朝；向；对于"},
-{"word":"towbar","ipa":"/ˈtoʊbɑr/","aviationMeaning":"n. 牵引杆；连接牵引车与航空器的设备","generalMeaning":"n. 牵引杆"},
-{"word":"towbarless","ipa":"/ˈtoʊbɑrləs/","aviationMeaning":"adj. 无牵引杆的；采用无杆牵引车的","generalMeaning":"adj. 无牵引杆的"},
-{"word":"towed","ipa":"/toʊd/","aviationMeaning":"v. 已牵引；航空器已由牵引车移动","generalMeaning":"v. 拖；牵引（过去式）"},
-{"word":"tower","ipa":"/ˈtaʊər/","aviationMeaning":"n. 塔台；机场管制塔台；v. 高耸","generalMeaning":"n. 塔；高楼；v. 高耸"},
-{"word":"towercontroller","ipa":"/ˈtaʊər kənˈtroʊlər/","aviationMeaning":"n. 疑似 tower controller 的连写；塔台管制员","generalMeaning":"n. 疑似 tower controller 的连写"},
-{"word":"towers","ipa":"/ˈtaʊərz/","aviationMeaning":"n. 塔台（复数）；管制塔","generalMeaning":"n. 塔；高楼（复数）"},
-{"word":"towing","ipa":"/ˈtoʊɪŋ/","aviationMeaning":"n. 牵引；航空器地面牵引作业","generalMeaning":"n. 拖运；牵引"},
-{"word":"town","ipa":"/taʊn/","aviationMeaning":"n. 城镇；机场附近地面参照点","generalMeaning":"n. 城镇；市区"},
-{"word":"toxic","ipa":"/ˈtɑksɪk/","aviationMeaning":"adj. 有毒的；危险品或烟雾危害","generalMeaning":"adj. 有毒的；有害的"},
-{"word":"tp","ipa":"/ˌtiː ˈpiː/","aviationMeaning":"n. 疑似缩略语；需依原题语境解释","generalMeaning":"n. 字母缩略语"},
-{"word":"trace","ipa":"/treɪs/","aviationMeaning":"v. 追踪；n. 痕迹；记录链路","generalMeaning":"v. 追踪；n. 痕迹；微量"},
-{"word":"traceability","ipa":"/ˌtreɪsəˈbɪləti/","aviationMeaning":"n. 可追溯性；记录可回溯至来源的能力","generalMeaning":"n. 可追溯性"},
-{"word":"traceable","ipa":"/ˈtreɪsəbəl/","aviationMeaning":"adj. 可追溯的；可查明来源的","generalMeaning":"adj. 可追踪的；可追溯的"},
-{"word":"track","ipa":"/træk/","aviationMeaning":"n. 航迹；v. 跟踪；地面航迹方向","generalMeaning":"n. 轨道；踪迹；v. 跟踪"},
-{"word":"tracking","ipa":"/ˈtrækɪŋ/","aviationMeaning":"n. 跟踪；监视航空器位置和航迹","generalMeaning":"n. 跟踪；追踪"},
-{"word":"tracks","ipa":"/træks/","aviationMeaning":"n. 航迹（复数）；v. 跟踪","generalMeaning":"n. 轨道；踪迹（复数）"},
-{"word":"tractor","ipa":"/ˈtræktər/","aviationMeaning":"n. 牵引车；用于推拖航空器的地面车辆","generalMeaning":"n. 拖拉机；牵引车"},
-{"word":"trade","ipa":"/treɪd/","aviationMeaning":"n. 贸易；行业；v. 交易","generalMeaning":"n. 贸易；职业；v. 交易"},
-{"word":"tradition","ipa":"/trəˈdɪʃən/","aviationMeaning":"n. 传统；既有运行惯例","generalMeaning":"n. 传统；惯例"},
-{"word":"traditional","ipa":"/trəˈdɪʃənəl/","aviationMeaning":"adj. 传统的；常规的运行方式","generalMeaning":"adj. 传统的；惯例的"},
-{"word":"traditionally","ipa":"/trəˈdɪʃənəli/","aviationMeaning":"adv. 按传统；通常按既有做法","generalMeaning":"adv. 传统上；通常"},
-{"word":"traffc","ipa":"/ˈtræfɪk/","aviationMeaning":"n. 疑似 traffic 的拼写错误；空中交通","generalMeaning":"n. 疑似 traffic 的拼写错误"},
-{"word":"traffic","ipa":"/ˈtræfɪk/","aviationMeaning":"n. 空中交通；航空器流量；交通情报","generalMeaning":"n. 交通；流量；贸易"},
-{"word":"traffic-flow","ipa":"/ˈtræfɪk floʊ/","aviationMeaning":"n. 交通流；空中交通流量及其组织","generalMeaning":"n. 交通流"},
-{"word":"traffic-resolution","ipa":"/ˈtræfɪk ˌrezəˈluʃən/","aviationMeaning":"n. 交通冲突解脱；消除交通冲突的指令或措施","generalMeaning":"n. 交通问题解决"},
-{"word":"tragedy","ipa":"/ˈtrædʒədi/","aviationMeaning":"n. 悲剧；严重事故造成的灾难性后果","generalMeaning":"n. 悲剧；惨案"},
-{"word":"tragic","ipa":"/ˈtrædʒɪk/","aviationMeaning":"adj. 悲惨的；灾难性的","generalMeaning":"adj. 悲惨的；悲剧的"},
-{"word":"tragically","ipa":"/ˈtrædʒɪkli/","aviationMeaning":"adv. 悲惨地；不幸地","generalMeaning":"adv. 悲惨地；不幸地"},
-{"word":"trail","ipa":"/treɪl/","aviationMeaning":"n. 痕迹；尾迹；v. 跟随","generalMeaning":"n. 小径；痕迹；v. 跟随"},
-{"word":"trailing","ipa":"/ˈtreɪlɪŋ/","aviationMeaning":"adj. 后缘的；拖曳的；如后缘襟翼","generalMeaning":"adj. 尾随的；拖曳的"},
-{"word":"trailing-edge-down","ipa":"/ˈtreɪlɪŋ edʒ daʊn/","aviationMeaning":"adj. 后缘向下的；描述操纵面或翼面位置","generalMeaning":"adj. 后缘向下的"},
-{"word":"trails","ipa":"/treɪlz/","aviationMeaning":"n. 痕迹（复数）；尾迹；v. 跟随","generalMeaning":"n. 小径；痕迹（复数）"},
-{"word":"train","ipa":"/treɪn/","aviationMeaning":"v. 培训；n. 列车；训练航班或训练过程","generalMeaning":"v. 训练；n. 火车"},
-{"word":"trained","ipa":"/treɪnd/","aviationMeaning":"adj. 受过训练的；v. 培训（过去式）","generalMeaning":"adj. 受训的；v. 训练（过去式）"},
-{"word":"trainee","ipa":"/ˌtreɪˈni/","aviationMeaning":"n. 受训人员；飞行或管制学员","generalMeaning":"n. 受训者；实习生"},
-{"word":"trainee's","ipa":"/ˌtreɪˈniz/","aviationMeaning":"n. 受训人员的；或 trainee is 的缩略","generalMeaning":"n. 受训者的；受训者是的缩略"},
-{"word":"trainees","ipa":"/ˌtreɪˈniz/","aviationMeaning":"n. 受训人员（复数）；学员","generalMeaning":"n. 受训者；实习生（复数）"},
-{"word":"trainer","ipa":"/ˈtreɪnər/","aviationMeaning":"n. 教员；训练设备；飞行教练机","generalMeaning":"n. 教练；训练者"},
-{"word":"trainers","ipa":"/ˈtreɪnərz/","aviationMeaning":"n. 教员（复数）；训练设备","generalMeaning":"n. 教练；训练者（复数）"},
-{"word":"training","ipa":"/ˈtreɪnɪŋ/","aviationMeaning":"n. 训练；飞行、管制或机务训练","generalMeaning":"n. 训练；培训"},
-{"word":"trains","ipa":"/treɪnz/","aviationMeaning":"n. 列车（复数）；v. 培训","generalMeaning":"n. 火车（复数）；v. 训练"},
-{"word":"trajectory","ipa":"/trəˈdʒektəri/","aviationMeaning":"n. 轨迹；航空器的飞行轨迹","generalMeaning":"n. 轨迹；弹道"},
-{"word":"trang","ipa":"/træŋ/","aviationMeaning":"n. 董里；泰国地点名称","generalMeaning":"n. 董里；地名"},
-{"word":"transat","ipa":"/trænzˈæt/","aviationMeaning":"n. 越洋航空；航空公司名称或跨大西洋运行","generalMeaning":"n. 越洋航空；专有名称"},
-{"word":"transavia","ipa":"/trænzˈeɪviə/","aviationMeaning":"n. 泛航航空；航空公司名称","generalMeaning":"n. 航空公司名称"},
-{"word":"transfer","ipa":"/trænsˈfɜr/","aviationMeaning":"v. 移交；转移；n. 移交或转机","generalMeaning":"v. 转移；n. 转让；换乘"},
-{"word":"transferred","ipa":"/trænsˈfɜrd/","aviationMeaning":"v. 已移交；已转移控制权","generalMeaning":"v. 转移（过去式）"},
-{"word":"transfers","ipa":"/trænsˈfɜrz/","aviationMeaning":"n. 移交（复数）；v. 移交；转移","generalMeaning":"n. 转让；换乘；v. 转移"},
-{"word":"transformation","ipa":"/ˌtrænsfərˈmeɪʃən/","aviationMeaning":"n. 转变；运行或系统的变革","generalMeaning":"n. 转变；变形"},
-{"word":"transformer","ipa":"/trænsˈfɔrmər/","aviationMeaning":"n. 变压器；电气系统转换设备","generalMeaning":"n. 变压器；转换者"},
-{"word":"transformers","ipa":"/trænsˈfɔrmərz/","aviationMeaning":"n. 变压器（复数）；电气设备","generalMeaning":"n. 变压器（复数）"},
-{"word":"transient","ipa":"/ˈtrænʃənt/","aviationMeaning":"adj. 瞬态的；短暂出现的；n. 临时旅客","generalMeaning":"adj. 短暂的；n. 过客"},
-{"word":"transit","ipa":"/ˈtrænsɪt/","aviationMeaning":"n. 过境；中转；在空域内通过","generalMeaning":"n. 运输；过境；中转"},
-{"word":"transition","ipa":"/trænˈzɪʃən/","aviationMeaning":"n. 过渡；转换；如过渡高度或运行状态转换","generalMeaning":"n. 过渡；转变"}
-]}
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "word": "toda",
+      "ipa": "/ˈtoʊdə/",
+      "aviationMeaning": "n. 起飞可用距离；TODA 的小写形式",
+      "generalMeaning": "n. 缩略语；需依语境解释"
+    },
+    {
+      "word": "today",
+      "ipa": "/təˈdeɪ/",
+      "aviationMeaning": "adv. 今天；当前运行日",
+      "generalMeaning": "adv. 今天；现今"
+    },
+    {
+      "word": "today's",
+      "ipa": "/təˈdeɪz/",
+      "aviationMeaning": "adj. 今天的；当日的运行或天气",
+      "generalMeaning": "adj. 今天的；当今的"
+    },
+    {
+      "word": "tog",
+      "ipa": "/tɑɡ/",
+      "aviationMeaning": "n. 疑似缩略语；需依原题语境解释",
+      "generalMeaning": "n. 衣物；非正式用语"
+    },
+    {
+      "word": "together",
+      "ipa": "/təˈɡeðər/",
+      "aviationMeaning": "adv. 一起；同时；联合处置",
+      "generalMeaning": "adv. 一起；共同"
+    },
+    {
+      "word": "toilet",
+      "ipa": "/ˈtɔɪlət/",
+      "aviationMeaning": "n. 洗手间；航空器卫生间",
+      "generalMeaning": "n. 厕所；洗手间"
+    },
+    {
+      "word": "toilets",
+      "ipa": "/ˈtɔɪləts/",
+      "aviationMeaning": "n. 洗手间（复数）；航空器卫生设施",
+      "generalMeaning": "n. 厕所；洗手间（复数）"
+    },
+    {
+      "word": "tokyo",
+      "ipa": "/ˈtoʊkioʊ/",
+      "aviationMeaning": "n. 东京；日本机场或空域相关地名",
+      "generalMeaning": "n. 东京"
+    },
+    {
+      "word": "tol",
+      "ipa": "/tɑl/",
+      "aviationMeaning": "n. 疑似缩略语；需依原题语境解释",
+      "generalMeaning": "n. 缩略语；需依语境解释"
+    },
+    {
+      "word": "told",
+      "ipa": "/toʊld/",
+      "aviationMeaning": "v. 告知；tell 的过去式或过去分词",
+      "generalMeaning": "v. 告诉；告知"
+    },
+    {
+      "word": "tom",
+      "ipa": "/tɑm/",
+      "aviationMeaning": "n. 汤姆；人员姓名",
+      "generalMeaning": "n. 汤姆；男子名"
+    },
+    {
+      "word": "ton",
+      "ipa": "/tʌn/",
+      "aviationMeaning": "n. 吨；质量或载荷单位",
+      "generalMeaning": "n. 吨；大量"
+    },
+    {
+      "word": "tongzhou",
+      "ipa": "/tʊŋˈdʒoʊ/",
+      "aviationMeaning": "n. 通州；地点名称",
+      "generalMeaning": "n. 通州；地名"
+    },
+    {
+      "word": "tons",
+      "ipa": "/tʌnz/",
+      "aviationMeaning": "n. 吨（复数）；大量载荷",
+      "generalMeaning": "n. 吨；大量"
+    },
+    {
+      "word": "too",
+      "ipa": "/tu/",
+      "aviationMeaning": "adv. 也；过于；如过于高或过于低",
+      "generalMeaning": "adv. 也；太；过于"
+    },
+    {
+      "word": "took",
+      "ipa": "/tʊk/",
+      "aviationMeaning": "v. 采取；take 的过去式；如采取动作",
+      "generalMeaning": "v. 拿；带；花费（过去式）"
+    },
+    {
+      "word": "tool",
+      "ipa": "/tul/",
+      "aviationMeaning": "n. 工具；维护或操作工具",
+      "generalMeaning": "n. 工具；器具"
+    },
+    {
+      "word": "tools",
+      "ipa": "/tulz/",
+      "aviationMeaning": "n. 工具（复数）；维护设备",
+      "generalMeaning": "n. 工具；器具（复数）"
+    },
+    {
+      "word": "top",
+      "ipa": "/tɑp/",
+      "aviationMeaning": "n. 顶部；云顶；最高点；adj. 顶部的",
+      "generalMeaning": "n. 顶部；首位；adj. 顶部的"
+    },
+    {
+      "word": "topic",
+      "ipa": "/ˈtɑpɪk/",
+      "aviationMeaning": "n. 主题；训练或通话讨论事项",
+      "generalMeaning": "n. 话题；主题"
+    },
+    {
+      "word": "topics",
+      "ipa": "/ˈtɑpɪks/",
+      "aviationMeaning": "n. 主题（复数）；训练事项",
+      "generalMeaning": "n. 话题；主题（复数）"
+    },
+    {
+      "word": "tops",
+      "ipa": "/tɑps/",
+      "aviationMeaning": "n. 顶部（复数）；云顶高度等",
+      "generalMeaning": "n. 顶部；首位（复数）"
+    },
+    {
+      "word": "tora",
+      "ipa": "/ˈtɔrə/",
+      "aviationMeaning": "n. 起飞滑跑可用距离；TORA 的小写形式",
+      "generalMeaning": "n. 缩略语；需依语境解释"
+    },
+    {
+      "word": "tornado",
+      "ipa": "/tɔrˈneɪdoʊ/",
+      "aviationMeaning": "n. 龙卷风；严重危及飞行的强对流天气",
+      "generalMeaning": "n. 龙卷风"
+    },
+    {
+      "word": "tornadoes",
+      "ipa": "/tɔrˈneɪdoʊz/",
+      "aviationMeaning": "n. 龙卷风（复数）；强对流天气现象",
+      "generalMeaning": "n. 龙卷风（复数）"
+    },
+    {
+      "word": "toronto",
+      "ipa": "/təˈrɑntoʊ/",
+      "aviationMeaning": "n. 多伦多；加拿大机场或空域地名",
+      "generalMeaning": "n. 多伦多"
+    },
+    {
+      "word": "toronto's",
+      "ipa": "/təˈrɑntoʊz/",
+      "aviationMeaning": "n. 多伦多的；或 Toronto is 的缩略",
+      "generalMeaning": "n. 多伦多的；多伦多是的缩略"
+    },
+    {
+      "word": "total",
+      "ipa": "/ˈtoʊtəl/",
+      "aviationMeaning": "adj. 总的；n. 总数；总飞行时间或总量",
+      "generalMeaning": "adj. 总的；n. 总数；v. 合计"
+    },
+    {
+      "word": "touch",
+      "ipa": "/tʌtʃ/",
+      "aviationMeaning": "v. 接触；触地；n. 触感",
+      "generalMeaning": "v. 触摸；接触；n. 触碰"
+    },
+    {
+      "word": "touch-down",
+      "ipa": "/ˈtʌtʃ daʊn/",
+      "aviationMeaning": "n. 接地；航空器主轮首次接触跑道",
+      "generalMeaning": "n. 着陆；接触地面"
+    },
+    {
+      "word": "touchdown",
+      "ipa": "/ˈtʌtʃdaʊn/",
+      "aviationMeaning": "n. 接地；航空器主轮首次接触跑道",
+      "generalMeaning": "n. 着陆；触地"
+    },
+    {
+      "word": "touchdown-zone",
+      "ipa": "/ˈtʌtʃdaʊn zoʊn/",
+      "aviationMeaning": "n. 接地区；跑道上预定接地的区域",
+      "generalMeaning": "n. 接地区"
+    },
+    {
+      "word": "touched",
+      "ipa": "/tʌtʃt/",
+      "aviationMeaning": "v. 已接触；已触地",
+      "generalMeaning": "v. 触摸（过去式）；感动"
+    },
+    {
+      "word": "touches",
+      "ipa": "/ˈtʌtʃɪz/",
+      "aviationMeaning": "v. 接触；触及；n. 接触点",
+      "generalMeaning": "v. 触摸；n. 触碰"
+    },
+    {
+      "word": "touching",
+      "ipa": "/ˈtʌtʃɪŋ/",
+      "aviationMeaning": "v. 正接触；adj. 接触的",
+      "generalMeaning": "v. 触摸；adj. 感人的"
+    },
+    {
+      "word": "tougher",
+      "ipa": "/ˈtʌfər/",
+      "aviationMeaning": "adj. 更困难的；更严苛的运行条件",
+      "generalMeaning": "adj. 更坚韧的；更困难的"
+    },
+    {
+      "word": "toulouse",
+      "ipa": "/tuˈluz/",
+      "aviationMeaning": "n. 图卢兹；法国航空业相关地名",
+      "generalMeaning": "n. 图卢兹"
+    },
+    {
+      "word": "tourists",
+      "ipa": "/ˈtʊrɪsts/",
+      "aviationMeaning": "n. 游客（复数）；旅客类型之一",
+      "generalMeaning": "n. 游客（复数）"
+    },
+    {
+      "word": "tow",
+      "ipa": "/toʊ/",
+      "aviationMeaning": "v. 牵引；用牵引车移动航空器；n. 牵引",
+      "generalMeaning": "v. 拖；牵引；n. 拖运"
+    },
+    {
+      "word": "tow-bar",
+      "ipa": "/ˈtoʊ bɑr/",
+      "aviationMeaning": "n. 牵引杆；连接牵引车与航空器的设备",
+      "generalMeaning": "n. 牵引杆"
+    },
+    {
+      "word": "toward",
+      "ipa": "/tɔrd/",
+      "aviationMeaning": "prep. 朝向；向着某航向、地点或目标",
+      "generalMeaning": "prep. 朝；向；对于"
+    },
+    {
+      "word": "towards",
+      "ipa": "/tɔrdz/",
+      "aviationMeaning": "prep. 朝向；向着某航向、地点或目标",
+      "generalMeaning": "prep. 朝；向；对于"
+    },
+    {
+      "word": "towbar",
+      "ipa": "/ˈtoʊbɑr/",
+      "aviationMeaning": "n. 牵引杆；连接牵引车与航空器的设备",
+      "generalMeaning": "n. 牵引杆"
+    },
+    {
+      "word": "towbarless",
+      "ipa": "/ˈtoʊbɑrləs/",
+      "aviationMeaning": "adj. 无牵引杆的；采用无杆牵引车的",
+      "generalMeaning": "adj. 无牵引杆的"
+    },
+    {
+      "word": "towed",
+      "ipa": "/toʊd/",
+      "aviationMeaning": "v. 已牵引；航空器已由牵引车移动",
+      "generalMeaning": "v. 拖；牵引（过去式）"
+    },
+    {
+      "word": "tower",
+      "ipa": "/ˈtaʊər/",
+      "aviationMeaning": "n. 塔台；机场管制塔台；v. 高耸",
+      "generalMeaning": "n. 塔；高楼；v. 高耸"
+    },
+    {
+      "word": "towers",
+      "ipa": "/ˈtaʊərz/",
+      "aviationMeaning": "n. 塔台（复数）；管制塔",
+      "generalMeaning": "n. 塔；高楼（复数）"
+    },
+    {
+      "word": "towing",
+      "ipa": "/ˈtoʊɪŋ/",
+      "aviationMeaning": "n. 牵引；航空器地面牵引作业",
+      "generalMeaning": "n. 拖运；牵引"
+    },
+    {
+      "word": "town",
+      "ipa": "/taʊn/",
+      "aviationMeaning": "n. 城镇；机场附近地面参照点",
+      "generalMeaning": "n. 城镇；市区"
+    },
+    {
+      "word": "toxic",
+      "ipa": "/ˈtɑksɪk/",
+      "aviationMeaning": "adj. 有毒的；危险品或烟雾危害",
+      "generalMeaning": "adj. 有毒的；有害的"
+    },
+    {
+      "word": "tp",
+      "ipa": "/ˌtiː ˈpiː/",
+      "aviationMeaning": "n. 疑似缩略语；需依原题语境解释",
+      "generalMeaning": "n. 字母缩略语"
+    },
+    {
+      "word": "trace",
+      "ipa": "/treɪs/",
+      "aviationMeaning": "v. 追踪；n. 痕迹；记录链路",
+      "generalMeaning": "v. 追踪；n. 痕迹；微量"
+    },
+    {
+      "word": "track",
+      "ipa": "/træk/",
+      "aviationMeaning": "n. 航迹；v. 跟踪；地面航迹方向",
+      "generalMeaning": "n. 轨道；踪迹；v. 跟踪"
+    },
+    {
+      "word": "tracking",
+      "ipa": "/ˈtrækɪŋ/",
+      "aviationMeaning": "n. 跟踪；监视航空器位置和航迹",
+      "generalMeaning": "n. 跟踪；追踪"
+    },
+    {
+      "word": "tractor",
+      "ipa": "/ˈtræktər/",
+      "aviationMeaning": "n. 牵引车；用于推拖航空器的地面车辆",
+      "generalMeaning": "n. 拖拉机；牵引车"
+    },
+    {
+      "word": "tradition",
+      "ipa": "/trəˈdɪʃən/",
+      "aviationMeaning": "n. 传统；既有运行惯例",
+      "generalMeaning": "n. 传统；惯例"
+    },
+    {
+      "word": "traditional",
+      "ipa": "/trəˈdɪʃənəl/",
+      "aviationMeaning": "adj. 传统的；常规的运行方式",
+      "generalMeaning": "adj. 传统的；惯例的"
+    },
+    {
+      "word": "traditionally",
+      "ipa": "/trəˈdɪʃənəli/",
+      "aviationMeaning": "adv. 按传统；通常按既有做法",
+      "generalMeaning": "adv. 传统上；通常"
+    },
+    {
+      "word": "traffic",
+      "ipa": "/ˈtræfɪk/",
+      "aviationMeaning": "n. 空中交通；航空器流量；交通情报",
+      "generalMeaning": "n. 交通；流量；贸易"
+    },
+    {
+      "word": "traffic-flow",
+      "ipa": "/ˈtræfɪk floʊ/",
+      "aviationMeaning": "n. 交通流；空中交通流量及其组织",
+      "generalMeaning": "n. 交通流"
+    },
+    {
+      "word": "tragedy",
+      "ipa": "/ˈtrædʒədi/",
+      "aviationMeaning": "n. 悲剧；严重事故造成的灾难性后果",
+      "generalMeaning": "n. 悲剧；惨案"
+    },
+    {
+      "word": "tragic",
+      "ipa": "/ˈtrædʒɪk/",
+      "aviationMeaning": "adj. 悲惨的；灾难性的",
+      "generalMeaning": "adj. 悲惨的；悲剧的"
+    },
+    {
+      "word": "tragically",
+      "ipa": "/ˈtrædʒɪkli/",
+      "aviationMeaning": "adv. 悲惨地；不幸地",
+      "generalMeaning": "adv. 悲惨地；不幸地"
+    },
+    {
+      "word": "trail",
+      "ipa": "/treɪl/",
+      "aviationMeaning": "n. 痕迹；尾迹；v. 跟随",
+      "generalMeaning": "n. 小径；痕迹；v. 跟随"
+    },
+    {
+      "word": "trailing",
+      "ipa": "/ˈtreɪlɪŋ/",
+      "aviationMeaning": "adj. 后缘的；拖曳的；如后缘襟翼",
+      "generalMeaning": "adj. 尾随的；拖曳的"
+    },
+    {
+      "word": "trailing-edge-down",
+      "ipa": "/ˈtreɪlɪŋ edʒ daʊn/",
+      "aviationMeaning": "adj. 后缘向下的；描述操纵面或翼面位置",
+      "generalMeaning": "adj. 后缘向下的"
+    },
+    {
+      "word": "trails",
+      "ipa": "/treɪlz/",
+      "aviationMeaning": "n. 痕迹（复数）；尾迹；v. 跟随",
+      "generalMeaning": "n. 小径；痕迹（复数）"
+    },
+    {
+      "word": "train",
+      "ipa": "/treɪn/",
+      "aviationMeaning": "v. 培训；n. 列车；训练航班或训练过程",
+      "generalMeaning": "v. 训练；n. 火车"
+    },
+    {
+      "word": "trained",
+      "ipa": "/treɪnd/",
+      "aviationMeaning": "adj. 受过训练的；v. 培训（过去式）",
+      "generalMeaning": "adj. 受训的；v. 训练（过去式）"
+    },
+    {
+      "word": "trainee",
+      "ipa": "/ˌtreɪˈni/",
+      "aviationMeaning": "n. 受训人员；飞行或管制学员",
+      "generalMeaning": "n. 受训者；实习生"
+    },
+    {
+      "word": "trainee's",
+      "ipa": "/ˌtreɪˈniz/",
+      "aviationMeaning": "n. 受训人员的；或 trainee is 的缩略",
+      "generalMeaning": "n. 受训者的；受训者是的缩略"
+    },
+    {
+      "word": "trainees",
+      "ipa": "/ˌtreɪˈniz/",
+      "aviationMeaning": "n. 受训人员（复数）；学员",
+      "generalMeaning": "n. 受训者；实习生（复数）"
+    },
+    {
+      "word": "training",
+      "ipa": "/ˈtreɪnɪŋ/",
+      "aviationMeaning": "n. 训练；飞行、管制或机务训练",
+      "generalMeaning": "n. 训练；培训"
+    },
+    {
+      "word": "trajectory",
+      "ipa": "/trəˈdʒektəri/",
+      "aviationMeaning": "n. 轨迹；航空器的飞行轨迹",
+      "generalMeaning": "n. 轨迹；弹道"
+    },
+    {
+      "word": "trang",
+      "ipa": "/træŋ/",
+      "aviationMeaning": "n. 董里；泰国地点名称",
+      "generalMeaning": "n. 董里；地名"
+    },
+    {
+      "word": "transat",
+      "ipa": "/trænzˈæt/",
+      "aviationMeaning": "n. 越洋航空；航空公司名称或跨大西洋运行",
+      "generalMeaning": "n. 越洋航空；专有名称"
+    },
+    {
+      "word": "transavia",
+      "ipa": "/trænzˈeɪviə/",
+      "aviationMeaning": "n. 泛航航空；航空公司名称",
+      "generalMeaning": "n. 航空公司名称"
+    },
+    {
+      "word": "transfer",
+      "ipa": "/trænsˈfɜr/",
+      "aviationMeaning": "v. 移交；转移；n. 移交或转机",
+      "generalMeaning": "v. 转移；n. 转让；换乘"
+    },
+    {
+      "word": "transferred",
+      "ipa": "/trænsˈfɜrd/",
+      "aviationMeaning": "v. 已移交；已转移控制权",
+      "generalMeaning": "v. 转移（过去式）"
+    },
+    {
+      "word": "transformation",
+      "ipa": "/ˌtrænsfərˈmeɪʃən/",
+      "aviationMeaning": "n. 转变；运行或系统的变革",
+      "generalMeaning": "n. 转变；变形"
+    },
+    {
+      "word": "transformer",
+      "ipa": "/trænsˈfɔrmər/",
+      "aviationMeaning": "n. 变压器；电气系统转换设备",
+      "generalMeaning": "n. 变压器；转换者"
+    },
+    {
+      "word": "transformers",
+      "ipa": "/trænsˈfɔrmərz/",
+      "aviationMeaning": "n. 变压器（复数）；电气设备",
+      "generalMeaning": "n. 变压器（复数）"
+    },
+    {
+      "word": "transient",
+      "ipa": "/ˈtrænʃənt/",
+      "aviationMeaning": "adj. 瞬态的；短暂出现的；n. 临时旅客",
+      "generalMeaning": "adj. 短暂的；n. 过客"
+    },
+    {
+      "word": "transit",
+      "ipa": "/ˈtrænsɪt/",
+      "aviationMeaning": "n. 过境；中转；在空域内通过",
+      "generalMeaning": "n. 运输；过境；中转"
+    },
+    {
+      "word": "transition",
+      "ipa": "/trænˈzɪʃən/",
+      "aviationMeaning": "n. 过渡；转换；如过渡高度或运行状态转换",
+      "generalMeaning": "n. 过渡；转变"
+    }
+  ]
+}

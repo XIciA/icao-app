@@ -18,8 +18,8 @@
       "taskTitle": "CSN 1310-2",
       "audioText": "CSN 1310, Beijing Delivery, cleared to Guangzhou via flight planned route, BOBAK-03 departure, departure Runway 36R, initial climb 1800 meters, cruising level 9500 meters, squawk 2536.\nBOBAK\nVYK\nSOSID\nRENOB\nGUVBA",
       "audioTextZh": "CSN 1310，北京放行，许可按飞行计划航路飞往广州，执行 BOBAK-03 离场，离场使用 Runway 36R，初始爬升至 1800 米，巡航高度 9500 米，应答机 2536。",
-      "referenceText": "cleared to Guangzhou, BOBAK-03 departure, departure Runway 36R, 1800 meters, 9500 meters, squawk 2536, CSN 3001.",
-      "referenceTextZh": "许可飞往广州，执行 BOBAK-03 离场，离场使用 Runway 36R，初始爬升至 1800 米，巡航高度 9500 米，应答机 2536，CSN 3001。",
+      "referenceText": "cleared to Guangzhou, BOBAK-03 departure, departure Runway 36R, 1800 meters, 9500 meters, squawk 2536, CSN 1310.",
+      "referenceTextZh": "许可飞往广州，执行 BOBAK-03 离场，离场使用 Runway 36R，初始爬升至 1800 米，巡航高度 9500 米，应答机 2536，CSN 1310。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-056-csn1310-q02.mp3"
     },
     {
@@ -54,8 +54,8 @@
       "taskTitle": "CSN 1310-6",
       "audioText": "CSN 1310, Beijing Ground, pushback approved, facing east.",
       "audioTextZh": "CSN 1310，北京地面，推出批准，机头朝东。",
-      "referenceText": "pushback approved, facing east, CSN 3001.",
-      "referenceTextZh": "推出批准，机头朝东，CSN 3001。",
+      "referenceText": "pushback approved, facing east, CSN 1310.",
+      "referenceTextZh": "推出批准，机头朝东，CSN 1310。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-056-csn1310-q06.mp3"
     },
     {
@@ -72,8 +72,8 @@
       "taskTitle": "CSN 1310-8",
       "audioText": "CSN 1310, your slot time has expired, your new slot time is 0325, start up at own discretion.",
       "audioTextZh": "CSN 1310，你的时隙时间已失效，新的时隙时间为 0325，自主决定开车。",
-      "referenceText": "slot time, 0325, start up at own discretion, CSN 3001.",
-      "referenceTextZh": "时隙时间 0325，自主决定开车，CSN 3001。",
+      "referenceText": "slot time, 0325, start up at own discretion, CSN 1310.",
+      "referenceTextZh": "时隙时间 0325，自主决定开车，CSN 1310。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-056-csn1310-q08.mp3"
     },
     {

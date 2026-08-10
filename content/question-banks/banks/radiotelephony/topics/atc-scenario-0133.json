@@ -9,8 +9,8 @@
       "taskTitle": "CES 565-1",
       "audioText": "Your call sign is CES 565, from Wuhan to Los Angeles, you are parking at Gate 227, with information M, request ATC clearance.",
       "audioTextZh": "你的呼号是 CES 565，从武汉飞往洛杉矶，停在 227 登机口，已收到 M 情报，申请 ATC 放行许可。",
-      "referenceText": "Wuhan Delivery, CES 565, Gate two tgwo seven, information M, request ATC clearance to Los Angeles.",
-      "referenceTextZh": "武汉放行，CES 565，two tgwo seven 登机口，M 情报，申请前往洛杉矶的 ATC 放行许可。",
+      "referenceText": "Wuhan Delivery, CES 565, Gate 227, information M, request ATC clearance to Los Angeles.",
+      "referenceTextZh": "武汉放行，CES 565，227 登机口，M 情报，申请前往洛杉矶的 ATC 放行许可。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-031-ces565-q01.mp3"
     },
     {
@@ -160,8 +160,8 @@
     {
       "id": "atc-scenario-0133-card-main-2306",
       "taskTitle": "CES 565-18",
-      "audioText": "CES 565, change Runway 36R, continue present heading, descend to niner hudnred meters.",
-      "audioTextZh": "CES 565，改用 Runway 36R，保持当前航向，下降至 niner hudnred 米。",
+      "audioText": "CES 565, change Runway 36R, continue present heading, descend to 900 meters.",
+      "audioTextZh": "CES 565，改用 Runway 36R，保持当前航向，下降至 900 米。",
       "referenceText": "Runway 36R, continue present heading, descend to 900 meters, CES 565.",
       "referenceTextZh": "Runway 36R，保持当前航向，下降至 900 米，CES 565。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-031-ces565-q18.mp3"

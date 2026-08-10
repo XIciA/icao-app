@@ -4,8 +4,8 @@ set -eu
 
 PLATFORM=${1:-}
 case "$PLATFORM" in
-  ios) APP_ID=com.anonymous.icao-app ;;
-  android) APP_ID=com.feizhuicao.app ;;
+  ios) APP_ID=com.readyoufife.app ;;
+  android) APP_ID=com.readyoufife.app ;;
   *) echo 'Usage: run-audio-e2e.sh <ios|android>' >&2; exit 2 ;;
 esac
 

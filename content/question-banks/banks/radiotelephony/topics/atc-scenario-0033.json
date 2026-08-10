@@ -27,7 +27,7 @@
       "taskTitle": "UAL 221-3",
       "audioText": "B: You are encountering severe turbulence at 9200 meters, contact Shanghai Control and check if any higher level is available.",
       "audioTextZh": "B：你在 9200 米遭遇严重颠簸，联系上海管制，询问是否有更高高度可用。",
-      "referenceText": "Shanghai Control, UAL 221, we are encountering severe turbulence at 9200 meters, is higher level available ?",
+      "referenceText": "Shanghai Control, UAL 221, we are encountering severe turbulence at 9200 meters, is higher level available?",
       "referenceTextZh": "上海管制，UAL 221，我们在 9200 米遭遇严重颠簸，是否有更高高度可用？",
       "audio": "/question-bank-assets/audio/radiotelephony/main/564.mp3"
     },

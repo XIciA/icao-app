@@ -22,6 +22,7 @@ const editorialReleaseRoot = join(root, 'dist/editorial-release');
 const outputPath = join(root, '.generated/web-content/current-release.json');
 const releaseVersionArgumentIndex = process.argv.indexOf('--release-version');
 const reuseAssetsPointerArgumentIndex = process.argv.indexOf('--reuse-assets-pointer');
+const reuseSameOriginAssetsArgumentIndex = process.argv.indexOf('--reuse-same-origin-assets');
 const expectedReleaseVersion = Number(
   releaseVersionArgumentIndex >= 0
     ? process.argv[releaseVersionArgumentIndex + 1]
@@ -29,6 +30,9 @@ const expectedReleaseVersion = Number(
 );
 const reuseAssetsPointerUrl = reuseAssetsPointerArgumentIndex >= 0
   ? process.argv[reuseAssetsPointerArgumentIndex + 1]
+  : undefined;
+const reuseSameOriginAssetsBaseUrl = reuseSameOriginAssetsArgumentIndex >= 0
+  ? process.argv[reuseSameOriginAssetsArgumentIndex + 1]
   : undefined;
 const prepareOnly = process.argv.includes('--prepare-only');
 const defaultAssetShardCount = 10;
@@ -176,7 +180,7 @@ function validReusePointer(value) {
     && value.assetShardTemplate.includes('{shard}');
 }
 
-async function loadReusableAssets(localResourceManifestBytes) {
+async function loadReusableAssets(localResourceManifestBytes, resourceSource) {
   if (!reuseAssetsPointerUrl) return undefined;
   if (!reuseAssetsPointerUrl.startsWith('https://')) fail('web_content_reuse_pointer_invalid');
   const pointerBytes = await fetchBytes(reuseAssetsPointerUrl, 'pointer');
@@ -189,6 +193,42 @@ async function loadReusableAssets(localResourceManifestBytes) {
   const remoteChecksum = sha256(remoteManifestBytes);
   if (localChecksum !== remoteChecksum) {
     fail(`web_content_reuse_manifest_mismatch:local=${localChecksum}:remote=${remoteChecksum}`);
+  }
+
+  if (reuseSameOriginAssetsBaseUrl) {
+    let sameOriginAssetsBaseUrl;
+    try {
+      const parsed = new URL(reuseSameOriginAssetsBaseUrl);
+      if (parsed.protocol !== 'https:' || parsed.username || parsed.password || parsed.search || parsed.hash) {
+        fail('web_content_same_origin_assets_invalid');
+      }
+      sameOriginAssetsBaseUrl = parsed.href.replace(/\/+$/u, '');
+    } catch {
+      fail('web_content_same_origin_assets_invalid');
+    }
+    const markerBytes = await fetchBytes(
+      `${sameOriginAssetsBaseUrl}/question-bank-assets/release.json`,
+      'same_origin_asset_marker',
+    );
+    const marker = JSON.parse(markerBytes.toString('utf8'));
+    const expectedFiles = resourceSource.files.length;
+    const expectedSizeBytes = resourceSource.files.reduce((sum, item) => sum + item.sizeBytes, 0);
+    if (
+      marker.releaseId !== pointer.releaseId
+      || marker.resourceManifestChecksum !== localChecksum
+      || marker.files !== expectedFiles
+      || marker.sizeBytes !== expectedSizeBytes
+    ) {
+      fail('web_content_same_origin_assets_mismatch');
+    }
+    return {
+      assetShardCount: pointer.assetShardCount,
+      assetShardTemplate: `${sameOriginAssetsBaseUrl}/asset-shard-{shard}/..`,
+      manifestChecksum: localChecksum,
+      pointerUrl: reuseAssetsPointerUrl,
+      releaseId: pointer.releaseId,
+      sameOriginAssetsBaseUrl,
+    };
   }
 
   await Promise.all(Array.from({ length: pointer.assetShardCount }, async (_, index) => {
@@ -225,7 +265,7 @@ async function prepareRelease() {
   }
   const resourceSource = readJson(join(questionBankRoot, 'resources/manifest.source.json'));
   const resourceManifestBytes = readFileSync(join(questionBankReleaseRoot, 'resources/manifest.json'));
-  const reusedAssets = await loadReusableAssets(resourceManifestBytes);
+  const reusedAssets = await loadReusableAssets(resourceManifestBytes, resourceSource);
   const assetShardCount = reusedAssets?.assetShardCount ?? defaultAssetShardCount;
   const vocabularyBytes = readFileSync(join(root, 'content/vocabulary/dataset.json'));
   const editorialManifestBytes = readFileSync(join(editorialReleaseRoot, 'manifest.json'));

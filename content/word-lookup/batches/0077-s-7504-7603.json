@@ -1,105 +1,515 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"sufficient","ipa":"/səˈfɪʃənt/","aviationMeaning":"adj. 足够的；燃油、性能、人员或资源满足运行要求的","generalMeaning":"adj. 足够的；充分的"},
-    {"word":"sufficiently","ipa":"/səˈfɪʃəntli/","aviationMeaning":"adv. 足够地；达到安全、性能或运行所需程度","generalMeaning":"adv. 足够地；充分地"},
-    {"word":"suffocated","ipa":"/ˈsʌfəkeɪtɪd/","aviationMeaning":"v. 窒息；人员因缺氧、烟雾或阻塞无法正常呼吸","generalMeaning":"v. 窒息；使窒息"},
-    {"word":"suggest","ipa":"/səˈdʒest/","aviationMeaning":"v. 建议；建议航路、处置、程序或安全措施","generalMeaning":"v. 建议；暗示"},
-    {"word":"suggested","ipa":"/səˈdʒestɪd/","aviationMeaning":"adj. 建议的；提出但尚未最终决定的航路或处置","generalMeaning":"adj. 被建议的"},
-    {"word":"suggesting","ipa":"/səˈdʒestɪŋ/","aviationMeaning":"v. 正建议；正在提出航路、处置或安全措施","generalMeaning":"v. 正建议；暗示"},
-    {"word":"suggestion","ipa":"/səˈdʒestʃən/","aviationMeaning":"n. 建议；有关航路、处置、程序或安全的意见","generalMeaning":"n. 建议；提议"},
-    {"word":"suggestions","ipa":"/səˈdʒestʃənz/","aviationMeaning":"n. 建议（复数）；多项航路、处置或安全意见","generalMeaning":"n. 建议；提议（复数）"},
-    {"word":"suggests","ipa":"/səˈdʒests/","aviationMeaning":"v. 建议；提出航路、处置、程序或安全措施","generalMeaning":"v. 建议；暗示"},
-    {"word":"suit","ipa":"/suːt/","aviationMeaning":"n. 防护服；飞行、救生或防火用服装","generalMeaning":"n. 西装；v. 适合"},
-    {"word":"suitability","ipa":"/ˌsuːtəˈbɪləti/","aviationMeaning":"n. 适用性；机场、跑道、设备或程序是否适合当前运行","generalMeaning":"n. 适用性；合适"},
-    {"word":"suitable","ipa":"/ˈsuːtəbəl/","aviationMeaning":"adj. 合适的；机场、跑道、设备或程序可安全用于当前运行","generalMeaning":"adj. 合适的；适宜的"},
-    {"word":"suitable-airport","ipa":"/ˈsuːtəbəl ˈerpɔːrt/","aviationMeaning":"n. 合适机场；满足性能、天气、跑道和服务要求的备降机场","generalMeaning":"n. 合适机场"},
-    {"word":"suitably","ipa":"/ˈsuːtəbli/","aviationMeaning":"adv. 合适地；按安全、性能和运行需要实施","generalMeaning":"adv. 合适地；适当地"},
-    {"word":"suitcase","ipa":"/ˈsuːtkeɪs/","aviationMeaning":"n. 手提箱；旅客行李，需符合客舱或托运行李规定","generalMeaning":"n. 手提箱；行李箱"},
-    {"word":"suited","ipa":"/ˈsuːtɪd/","aviationMeaning":"adj. 适合的；机场、跑道、设备或程序适用于当前运行","generalMeaning":"adj. 适合的；合适的"},
-    {"word":"summer","ipa":"/ˈsʌmər/","aviationMeaning":"n. 夏季；影响高温、雷暴、性能和运行流量的季节","generalMeaning":"n. 夏天；夏季"},
-    {"word":"summers","ipa":"/ˈsʌmərz/","aviationMeaning":"n. 夏季（复数）；多个年度的高温、雷暴运行时期","generalMeaning":"n. 夏天；夏季（复数）"},
-    {"word":"summoned","ipa":"/ˈsʌmənd/","aviationMeaning":"v. 已召集；已要求救援、维修、安保或医疗人员到场","generalMeaning":"v. 已召唤；传唤"},
-    {"word":"sun","ipa":"/sʌn/","aviationMeaning":"n. 太阳；影响能见度、眩光、温度和太阳辐射的天体","generalMeaning":"n. 太阳；阳光"},
-    {"word":"sunday","ipa":"/ˈsʌndeɪ/","aviationMeaning":"n. 星期日；航班计划或运行日期","generalMeaning":"n. 星期日"},
-    {"word":"sunglasses","ipa":"/ˈsʌnɡlæsɪz/","aviationMeaning":"n. 太阳镜；用于减少驾驶舱或地面作业眩光的眼镜","generalMeaning":"n. 太阳镜"},
-    {"word":"sunlight","ipa":"/ˈsʌnlaɪt/","aviationMeaning":"n. 阳光；可能造成驾驶舱眩光或影响目视观察","generalMeaning":"n. 阳光；日光"},
-    {"word":"sunny","ipa":"/ˈsʌni/","aviationMeaning":"adj. 晴朗的；日照充足、云量较少的天气","generalMeaning":"adj. 阳光充足的；晴朗的"},
-    {"word":"sunrise","ipa":"/ˈsʌnraɪz/","aviationMeaning":"n. 日出；日间运行开始和眩光变化的时间点","generalMeaning":"n. 日出；朝霞"},
-    {"word":"sunshine","ipa":"/ˈsʌnʃaɪn/","aviationMeaning":"n. 日照；影响能见度、眩光和天气状态的阳光","generalMeaning":"n. 阳光；日照"},
-    {"word":"sunshine's","ipa":"/ˈsʌnʃaɪnz/","aviationMeaning":"n. sunshine 的所有格形式；日照的","generalMeaning":"n. 阳光的所有格形式"},
-    {"word":"sunshines","ipa":"/ˈsʌnʃaɪnz/","aviationMeaning":"v. 阳光照耀；需结合原文","generalMeaning":"v. 阳光照耀"},
-    {"word":"sunwing","ipa":"/ˈsʌnwɪŋ/","aviationMeaning":"n. 阳翼航空；航空公司名称或呼号相关","generalMeaning":"n. 专有名称"},
-    {"word":"super-cell","ipa":"/ˈsuːpər sel/","aviationMeaning":"n. 超级单体；具有强上升气流和严重天气的强对流雷暴单体","generalMeaning":"n. 超级单体"},
-    {"word":"superchargers","ipa":"/ˈsuːpərtʃɑːrdʒərz/","aviationMeaning":"n. 增压器（复数）；提高发动机进气压力和功率的装置","generalMeaning":"n. 增压器；超级充电器（复数）"},
-    {"word":"supercooled","ipa":"/ˌsuːpərˈkuːld/","aviationMeaning":"adj. 过冷的；温度低于冰点但仍为液态的小水滴","generalMeaning":"adj. 过冷的"},
-    {"word":"superior","ipa":"/suːˈpɪriər/","aviationMeaning":"adj. 上方的；上部结构、上侧表面或较优性能的","generalMeaning":"adj. 更好的；上级的"},
-    {"word":"supersede","ipa":"/ˌsuːpərˈsiːd/","aviationMeaning":"v. 取代；新程序、通告或部件替代旧版本","generalMeaning":"v. 取代；代替"},
-    {"word":"supersedes","ipa":"/ˌsuːpərˈsiːdz/","aviationMeaning":"v. 取代；新程序、通告或部件替代旧版本","generalMeaning":"v. 取代；代替"},
-    {"word":"supersonic","ipa":"/ˌsuːpərˈsɑːnɪk/","aviationMeaning":"adj. 超音速的；速度超过音速的飞行状态","generalMeaning":"adj. 超音速的"},
-    {"word":"supervised","ipa":"/ˈsuːpərvaɪzd/","aviationMeaning":"adj. 受监督的；飞行、维护或培训在授权人员监控下进行","generalMeaning":"adj. 受监督的"},
-    {"word":"supervising","ipa":"/ˈsuːpərvaɪzɪŋ/","aviationMeaning":"v. 正监督；正在监控飞行、维护或培训活动","generalMeaning":"v. 正监督"},
-    {"word":"supervision","ipa":"/ˌsuːpərˈvɪʒən/","aviationMeaning":"n. 监督；授权人员对飞行、维护或培训的监控","generalMeaning":"n. 监督；管理"},
-    {"word":"supervisor","ipa":"/ˈsuːpərvaɪzər/","aviationMeaning":"n. 主管；负责监督运行、维护、培训或地面作业的人员","generalMeaning":"n. 主管；监督人"},
-    {"word":"supplement","ipa":"/ˈsʌpləmənt/","aviationMeaning":"n. 补充文件；对手册、航图或程序增加的信息","generalMeaning":"n. 补充物；v. 补充"},
-    {"word":"supplemental","ipa":"/ˌsʌpləˈmentəl/","aviationMeaning":"adj. 补充的；作为手册、程序或训练附加内容的","generalMeaning":"adj. 补充的；附加的"},
-    {"word":"supplementary","ipa":"/ˌsʌpləˈmentəri/","aviationMeaning":"adj. 补充的；作为手册、程序或训练附加内容的","generalMeaning":"adj. 补充的；附加的"},
-    {"word":"supplements","ipa":"/ˈsʌpləmənts/","aviationMeaning":"n. 补充文件（复数）；手册、航图或程序的附加资料","generalMeaning":"n. 补充物（复数）；v. 补充"},
-    {"word":"supplied","ipa":"/səˈplaɪd/","aviationMeaning":"adj. 已供应的；燃油、物资、设备或信息已提供","generalMeaning":"adj. 已供应的；提供的"},
-    {"word":"supplies","ipa":"/səˈplaɪz/","aviationMeaning":"n. 物资（复数）；燃油、医疗、餐食或维护备用物品","generalMeaning":"n. 物资；用品（复数）"},
-    {"word":"supply","ipa":"/səˈplaɪ/","aviationMeaning":"v. 供应；提供燃油、物资、电力、空气或信息","generalMeaning":"v. 供应；n. 供给"},
-    {"word":"supply-chain","ipa":"/səˈplaɪ tʃeɪn/","aviationMeaning":"n. 供应链；设备、部件、燃油和物资从供应方到使用方的流程","generalMeaning":"n. 供应链"},
-    {"word":"supplying","ipa":"/səˈplaɪɪŋ/","aviationMeaning":"v. 正供应；正在提供燃油、物资、电力或信息","generalMeaning":"v. 正供应"},
-    {"word":"support","ipa":"/səˈpɔːrt/","aviationMeaning":"v. 支持；为飞行、人员、系统或运行提供协助","generalMeaning":"v. 支持；n. 支撑"},
-    {"word":"supported","ipa":"/səˈpɔːrtɪd/","aviationMeaning":"adj. 被支持的；飞行、人员、系统或运行已获协助","generalMeaning":"adj. 被支持的"},
-    {"word":"supporting","ipa":"/səˈpɔːrtɪŋ/","aviationMeaning":"v. 正支持；正在为飞行、人员、系统或运行提供协助","generalMeaning":"v. 正支持"},
-    {"word":"supportive","ipa":"/səˈpɔːrtɪv/","aviationMeaning":"adj. 支持性的；有助于安全协作、训练或运行的","generalMeaning":"adj. 支持性的；鼓励的"},
-    {"word":"supports","ipa":"/səˈpɔːrts/","aviationMeaning":"v. 支持；为飞行、人员、系统或运行提供协助","generalMeaning":"v. 支持；n. 支撑物（复数）"},
-    {"word":"supposed","ipa":"/səˈpoʊzd/","aviationMeaning":"adj. 应当的；按程序、计划或预期应发生的","generalMeaning":"adj. 被认为的；应该的"},
-    {"word":"suppression","ipa":"/səˈpreʃən/","aviationMeaning":"n. 抑制；灭火、噪声抑制或系统保护中压制不良状态","generalMeaning":"n. 抑制；压制"},
-    {"word":"sure","ipa":"/ʃʊr/","aviationMeaning":"adj. 确定的；对飞行状态、指令或操作有明确确认的","generalMeaning":"adj. 确定的；确信的"},
-    {"word":"surface","ipa":"/ˈsɜːrfɪs/","aviationMeaning":"n. 表面；跑道、滑行道、机体或水面的外层","generalMeaning":"n. 表面；v. 出现"},
-    {"word":"surface-wind","ipa":"/ˈsɜːrfɪs wɪnd/","aviationMeaning":"n. 地面风；机场地面附近测得的风向和风速","generalMeaning":"n. 地面风"},
-    {"word":"surfaced","ipa":"/ˈsɜːrfɪst/","aviationMeaning":"adj. 有铺面的；跑道、滑行道或区域表面已铺装的","generalMeaning":"adj. 浮出水面的；有表面的"},
-    {"word":"surfaces","ipa":"/ˈsɜːrfɪsɪz/","aviationMeaning":"n. 表面（复数）；跑道、滑行道、机体或水面的外层","generalMeaning":"n. 表面（复数）；v. 出现"},
-    {"word":"surge","ipa":"/sɜːrdʒ/","aviationMeaning":"n. 喘振；发动机压气机气流失稳引起的压力和流量波动","generalMeaning":"n. 涌动；激增"},
-    {"word":"surprise","ipa":"/sərˈpraɪz/","aviationMeaning":"n. 意外；非预期天气、故障或运行事件","generalMeaning":"n. 惊讶；意外"},
-    {"word":"surprised","ipa":"/sərˈpraɪzd/","aviationMeaning":"adj. 惊讶的；人员对非预期天气、故障或事件感到意外","generalMeaning":"adj. 惊讶的"},
-    {"word":"surprises","ipa":"/sərˈpraɪzɪz/","aviationMeaning":"n. 意外（复数）；多个非预期天气、故障或事件","generalMeaning":"n. 惊讶；意外（复数）"},
-    {"word":"surprisingly","ipa":"/sərˈpraɪzɪŋli/","aviationMeaning":"adv. 出人意料地；以与预期不同的方式或程度","generalMeaning":"adv. 出人意料地"},
-    {"word":"surrendered","ipa":"/səˈrendərd/","aviationMeaning":"v. 已交出；已放弃控制权、许可或责任","generalMeaning":"v. 已投降；交出"},
-    {"word":"surrendering","ipa":"/səˈrendərɪŋ/","aviationMeaning":"v. 正交出；正在放弃控制权、许可或责任","generalMeaning":"v. 正投降；交出"},
-    {"word":"surrounding","ipa":"/səˈraʊndɪŋ/","aviationMeaning":"adj. 周边的；机场、跑道或事故地点附近的","generalMeaning":"adj. 周围的；环绕的"},
-    {"word":"surroundings","ipa":"/səˈraʊndɪŋz/","aviationMeaning":"n. 周边环境；机场、跑道或事故地点附近区域","generalMeaning":"n. 周围环境"},
-    {"word":"surveillance","ipa":"/sərˈveɪləns/","aviationMeaning":"n. 监视；利用雷达、ADS-B等跟踪航空器位置和状态","generalMeaning":"n. 监视；监督"},
-    {"word":"surveillence","ipa":"/sərˈveɪləns/","aviationMeaning":"n. 疑似 surveillance 的拼写错误；监视","generalMeaning":"n. 疑似拼写错误；监视"},
-    {"word":"survivable","ipa":"/sərˈvaɪvəbəl/","aviationMeaning":"adj. 可生存的；事故冲击和环境条件仍有人员生还可能的","generalMeaning":"adj. 可生存的"},
-    {"word":"survival","ipa":"/sərˈvaɪvəl/","aviationMeaning":"n. 生存；事故、迫降或撤离后维持生命的能力与装备","generalMeaning":"n. 生存；幸存"},
-    {"word":"survive","ipa":"/sərˈvaɪv/","aviationMeaning":"v. 生存；在事故、迫降或恶劣环境后继续存活","generalMeaning":"v. 生存；幸存"},
-    {"word":"survived","ipa":"/sərˈvaɪvd/","aviationMeaning":"v. 已生存；已在事故、迫降或恶劣环境后存活","generalMeaning":"v. 已生存；幸存"},
-    {"word":"surviving","ipa":"/sərˈvaɪvɪŋ/","aviationMeaning":"v. 正生存；在事故、迫降或恶劣环境后继续存活","generalMeaning":"v. 正生存；幸存"},
-    {"word":"survivors","ipa":"/sərˈvaɪvərz/","aviationMeaning":"n. 幸存者（复数）；事故、迫降或紧急事件后的生还人员","generalMeaning":"n. 幸存者（复数）"},
-    {"word":"susan","ipa":"/ˈsuːzən/","aviationMeaning":"n. 苏珊；专有名称，需结合原文","generalMeaning":"n. 苏珊；女子名"},
-    {"word":"susceptibility","ipa":"/səˌseptəˈbɪləti/","aviationMeaning":"n. 易感性；系统或人员易受干扰、故障或风险影响的程度","generalMeaning":"n. 易感性；敏感性"},
-    {"word":"suspect","ipa":"/səˈspekt/","aviationMeaning":"v. 怀疑；怀疑存在故障、风险、泄漏或非法干扰","generalMeaning":"v. 怀疑；n. 嫌疑人"},
-    {"word":"suspected","ipa":"/səˈspektɪd/","aviationMeaning":"adj. 被怀疑的；可能存在故障、风险或异常但尚未确认的","generalMeaning":"adj. 被怀疑的"},
-    {"word":"suspects","ipa":"/səˈspekts/","aviationMeaning":"v. 怀疑；认为可能存在故障、风险或异常","generalMeaning":"v. 怀疑；n. 嫌疑人（复数）"},
-    {"word":"suspend","ipa":"/səˈspend/","aviationMeaning":"v. 暂停；暂停运行、程序、服务或设备使用","generalMeaning":"v. 暂停；悬挂"},
-    {"word":"suspended","ipa":"/səˈspendɪd/","aviationMeaning":"adj. 已暂停的；运行、程序、服务或设备使用已中止","generalMeaning":"adj. 已暂停的；悬挂的"},
-    {"word":"suspends","ipa":"/səˈspendz/","aviationMeaning":"v. 暂停；中止运行、程序、服务或设备使用","generalMeaning":"v. 暂停；悬挂"},
-    {"word":"suspension","ipa":"/səˈspenʃən/","aviationMeaning":"n. 暂停；运行、服务或设备使用暂时中止","generalMeaning":"n. 暂停；悬挂"},
-    {"word":"suspicious","ipa":"/səˈspɪʃəs/","aviationMeaning":"adj. 可疑的；可能涉及安保、非法干扰或异常风险的","generalMeaning":"adj. 可疑的；多疑的"},
-    {"word":"sust","ipa":"/sʌst/","aviationMeaning":"n. 航空资料缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"sustain","ipa":"/səˈsteɪn/","aviationMeaning":"v. 维持；维持飞行、推力、速度、系统或安全运行","generalMeaning":"v. 维持；支撑"},
-    {"word":"sustainability","ipa":"/səˌsteɪnəˈbɪləti/","aviationMeaning":"n. 可持续性；航空运营在环境、资源和经济方面长期维持的能力","generalMeaning":"n. 可持续性"},
-    {"word":"sustainable","ipa":"/səˈsteɪnəbəl/","aviationMeaning":"adj. 可持续的；在环境、资源和经济上可长期维持的航空运行","generalMeaning":"adj. 可持续的"},
-    {"word":"sustained","ipa":"/səˈsteɪnd/","aviationMeaning":"adj. 持续的；风、推力、振动或运行状态长时间保持的","generalMeaning":"adj. 持续的；维持的"},
-    {"word":"swa","ipa":"/ˌes dʌbəljuː ˈeɪ/","aviationMeaning":"n. 西南航空代码或相关缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"swapped","ipa":"/swɑːpt/","aviationMeaning":"v. 已交换；已更换设备、任务、座位或资源","generalMeaning":"v. 已交换；调换"},
-    {"word":"swear","ipa":"/swer/","aviationMeaning":"v. 发誓；需结合原文","generalMeaning":"v. 发誓；咒骂"},
-    {"word":"swearingen","ipa":"/ˈswerɪndʒən/","aviationMeaning":"n. 斯韦林根；航空器制造商或机型名称","generalMeaning":"n. 专有名称"},
-    {"word":"sweating","ipa":"/ˈswetɪŋ/","aviationMeaning":"n. 出汗；人员紧张、热应激或医疗状况症状","generalMeaning":"n. 出汗；流汗"},
-    {"word":"sweep","ipa":"/swiːp/","aviationMeaning":"v. 扫掠；雷达波束、机翼或检查范围横向扫过","generalMeaning":"v. 扫；掠过"},
-    {"word":"swell","ipa":"/swel/","aviationMeaning":"n. 涌浪；海面长周期波浪，影响水上迫降和海上救援","generalMeaning":"n. 膨胀；涌浪"}
+    {
+      "word": "sufficient",
+      "ipa": "/səˈfɪʃənt/",
+      "aviationMeaning": "adj. 足够的；燃油、性能、人员或资源满足运行要求的",
+      "generalMeaning": "adj. 足够的；充分的"
+    },
+    {
+      "word": "sufficiently",
+      "ipa": "/səˈfɪʃəntli/",
+      "aviationMeaning": "adv. 足够地；达到安全、性能或运行所需程度",
+      "generalMeaning": "adv. 足够地；充分地"
+    },
+    {
+      "word": "suffocated",
+      "ipa": "/ˈsʌfəkeɪtɪd/",
+      "aviationMeaning": "v. 窒息；人员因缺氧、烟雾或阻塞无法正常呼吸",
+      "generalMeaning": "v. 窒息；使窒息"
+    },
+    {
+      "word": "suggest",
+      "ipa": "/səˈdʒest/",
+      "aviationMeaning": "v. 建议；建议航路、处置、程序或安全措施",
+      "generalMeaning": "v. 建议；暗示"
+    },
+    {
+      "word": "suggested",
+      "ipa": "/səˈdʒestɪd/",
+      "aviationMeaning": "adj. 建议的；提出但尚未最终决定的航路或处置",
+      "generalMeaning": "adj. 被建议的"
+    },
+    {
+      "word": "suggesting",
+      "ipa": "/səˈdʒestɪŋ/",
+      "aviationMeaning": "v. 正建议；正在提出航路、处置或安全措施",
+      "generalMeaning": "v. 正建议；暗示"
+    },
+    {
+      "word": "suggestion",
+      "ipa": "/səˈdʒestʃən/",
+      "aviationMeaning": "n. 建议；有关航路、处置、程序或安全的意见",
+      "generalMeaning": "n. 建议；提议"
+    },
+    {
+      "word": "suggestions",
+      "ipa": "/səˈdʒestʃənz/",
+      "aviationMeaning": "n. 建议（复数）；多项航路、处置或安全意见",
+      "generalMeaning": "n. 建议；提议（复数）"
+    },
+    {
+      "word": "suggests",
+      "ipa": "/səˈdʒests/",
+      "aviationMeaning": "v. 建议；提出航路、处置、程序或安全措施",
+      "generalMeaning": "v. 建议；暗示"
+    },
+    {
+      "word": "suit",
+      "ipa": "/suːt/",
+      "aviationMeaning": "n. 防护服；飞行、救生或防火用服装",
+      "generalMeaning": "n. 西装；v. 适合"
+    },
+    {
+      "word": "suitable",
+      "ipa": "/ˈsuːtəbəl/",
+      "aviationMeaning": "adj. 合适的；机场、跑道、设备或程序可安全用于当前运行",
+      "generalMeaning": "adj. 合适的；适宜的"
+    },
+    {
+      "word": "suitably",
+      "ipa": "/ˈsuːtəbli/",
+      "aviationMeaning": "adv. 合适地；按安全、性能和运行需要实施",
+      "generalMeaning": "adv. 合适地；适当地"
+    },
+    {
+      "word": "suitcase",
+      "ipa": "/ˈsuːtkeɪs/",
+      "aviationMeaning": "n. 手提箱；旅客行李，需符合客舱或托运行李规定",
+      "generalMeaning": "n. 手提箱；行李箱"
+    },
+    {
+      "word": "summer",
+      "ipa": "/ˈsʌmər/",
+      "aviationMeaning": "n. 夏季；影响高温、雷暴、性能和运行流量的季节",
+      "generalMeaning": "n. 夏天；夏季"
+    },
+    {
+      "word": "summers",
+      "ipa": "/ˈsʌmərz/",
+      "aviationMeaning": "n. 夏季（复数）；多个年度的高温、雷暴运行时期",
+      "generalMeaning": "n. 夏天；夏季（复数）"
+    },
+    {
+      "word": "summoned",
+      "ipa": "/ˈsʌmənd/",
+      "aviationMeaning": "v. 已召集；已要求救援、维修、安保或医疗人员到场",
+      "generalMeaning": "v. 已召唤；传唤"
+    },
+    {
+      "word": "sun",
+      "ipa": "/sʌn/",
+      "aviationMeaning": "n. 太阳；影响能见度、眩光、温度和太阳辐射的天体",
+      "generalMeaning": "n. 太阳；阳光"
+    },
+    {
+      "word": "sunday",
+      "ipa": "/ˈsʌndeɪ/",
+      "aviationMeaning": "n. 星期日；航班计划或运行日期",
+      "generalMeaning": "n. 星期日"
+    },
+    {
+      "word": "sunglasses",
+      "ipa": "/ˈsʌnɡlæsɪz/",
+      "aviationMeaning": "n. 太阳镜；用于减少驾驶舱或地面作业眩光的眼镜",
+      "generalMeaning": "n. 太阳镜"
+    },
+    {
+      "word": "sunlight",
+      "ipa": "/ˈsʌnlaɪt/",
+      "aviationMeaning": "n. 阳光；可能造成驾驶舱眩光或影响目视观察",
+      "generalMeaning": "n. 阳光；日光"
+    },
+    {
+      "word": "sunny",
+      "ipa": "/ˈsʌni/",
+      "aviationMeaning": "adj. 晴朗的；日照充足、云量较少的天气",
+      "generalMeaning": "adj. 阳光充足的；晴朗的"
+    },
+    {
+      "word": "sunshine",
+      "ipa": "/ˈsʌnʃaɪn/",
+      "aviationMeaning": "n. 日照；影响能见度、眩光和天气状态的阳光",
+      "generalMeaning": "n. 阳光；日照"
+    },
+    {
+      "word": "sunshine's",
+      "ipa": "/ˈsʌnʃaɪnz/",
+      "aviationMeaning": "n. sunshine 的所有格形式；日照的",
+      "generalMeaning": "n. 阳光的所有格形式"
+    },
+    {
+      "word": "sunshines",
+      "ipa": "/ˈsʌnʃaɪnz/",
+      "aviationMeaning": "v. 阳光照耀；需结合原文",
+      "generalMeaning": "v. 阳光照耀"
+    },
+    {
+      "word": "sunwing",
+      "ipa": "/ˈsʌnwɪŋ/",
+      "aviationMeaning": "n. 阳翼航空；航空公司名称或呼号相关",
+      "generalMeaning": "n. 专有名称"
+    },
+    {
+      "word": "super-cell",
+      "ipa": "/ˈsuːpər sel/",
+      "aviationMeaning": "n. 超级单体；具有强上升气流和严重天气的强对流雷暴单体",
+      "generalMeaning": "n. 超级单体"
+    },
+    {
+      "word": "superchargers",
+      "ipa": "/ˈsuːpərtʃɑːrdʒərz/",
+      "aviationMeaning": "n. 增压器（复数）；提高发动机进气压力和功率的装置",
+      "generalMeaning": "n. 增压器；超级充电器（复数）"
+    },
+    {
+      "word": "supercooled",
+      "ipa": "/ˌsuːpərˈkuːld/",
+      "aviationMeaning": "adj. 过冷的；温度低于冰点但仍为液态的小水滴",
+      "generalMeaning": "adj. 过冷的"
+    },
+    {
+      "word": "superior",
+      "ipa": "/suːˈpɪriər/",
+      "aviationMeaning": "adj. 上方的；上部结构、上侧表面或较优性能的",
+      "generalMeaning": "adj. 更好的；上级的"
+    },
+    {
+      "word": "supersede",
+      "ipa": "/ˌsuːpərˈsiːd/",
+      "aviationMeaning": "v. 取代；新程序、通告或部件替代旧版本",
+      "generalMeaning": "v. 取代；代替"
+    },
+    {
+      "word": "supersedes",
+      "ipa": "/ˌsuːpərˈsiːdz/",
+      "aviationMeaning": "v. 取代；新程序、通告或部件替代旧版本",
+      "generalMeaning": "v. 取代；代替"
+    },
+    {
+      "word": "supersonic",
+      "ipa": "/ˌsuːpərˈsɑːnɪk/",
+      "aviationMeaning": "adj. 超音速的；速度超过音速的飞行状态",
+      "generalMeaning": "adj. 超音速的"
+    },
+    {
+      "word": "supervised",
+      "ipa": "/ˈsuːpərvaɪzd/",
+      "aviationMeaning": "adj. 受监督的；飞行、维护或培训在授权人员监控下进行",
+      "generalMeaning": "adj. 受监督的"
+    },
+    {
+      "word": "supervising",
+      "ipa": "/ˈsuːpərvaɪzɪŋ/",
+      "aviationMeaning": "v. 正监督；正在监控飞行、维护或培训活动",
+      "generalMeaning": "v. 正监督"
+    },
+    {
+      "word": "supervision",
+      "ipa": "/ˌsuːpərˈvɪʒən/",
+      "aviationMeaning": "n. 监督；授权人员对飞行、维护或培训的监控",
+      "generalMeaning": "n. 监督；管理"
+    },
+    {
+      "word": "supervisor",
+      "ipa": "/ˈsuːpərvaɪzər/",
+      "aviationMeaning": "n. 主管；负责监督运行、维护、培训或地面作业的人员",
+      "generalMeaning": "n. 主管；监督人"
+    },
+    {
+      "word": "supplemental",
+      "ipa": "/ˌsʌpləˈmentəl/",
+      "aviationMeaning": "adj. 补充的；作为手册、程序或训练附加内容的",
+      "generalMeaning": "adj. 补充的；附加的"
+    },
+    {
+      "word": "supplementary",
+      "ipa": "/ˌsʌpləˈmentəri/",
+      "aviationMeaning": "adj. 补充的；作为手册、程序或训练附加内容的",
+      "generalMeaning": "adj. 补充的；附加的"
+    },
+    {
+      "word": "supplements",
+      "ipa": "/ˈsʌpləmənts/",
+      "aviationMeaning": "n. 补充文件（复数）；手册、航图或程序的附加资料",
+      "generalMeaning": "n. 补充物（复数）；v. 补充"
+    },
+    {
+      "word": "supplied",
+      "ipa": "/səˈplaɪd/",
+      "aviationMeaning": "adj. 已供应的；燃油、物资、设备或信息已提供",
+      "generalMeaning": "adj. 已供应的；提供的"
+    },
+    {
+      "word": "supplies",
+      "ipa": "/səˈplaɪz/",
+      "aviationMeaning": "n. 物资（复数）；燃油、医疗、餐食或维护备用物品",
+      "generalMeaning": "n. 物资；用品（复数）"
+    },
+    {
+      "word": "supply",
+      "ipa": "/səˈplaɪ/",
+      "aviationMeaning": "v. 供应；提供燃油、物资、电力、空气或信息",
+      "generalMeaning": "v. 供应；n. 供给"
+    },
+    {
+      "word": "supplying",
+      "ipa": "/səˈplaɪɪŋ/",
+      "aviationMeaning": "v. 正供应；正在提供燃油、物资、电力或信息",
+      "generalMeaning": "v. 正供应"
+    },
+    {
+      "word": "support",
+      "ipa": "/səˈpɔːrt/",
+      "aviationMeaning": "v. 支持；为飞行、人员、系统或运行提供协助",
+      "generalMeaning": "v. 支持；n. 支撑"
+    },
+    {
+      "word": "supported",
+      "ipa": "/səˈpɔːrtɪd/",
+      "aviationMeaning": "adj. 被支持的；飞行、人员、系统或运行已获协助",
+      "generalMeaning": "adj. 被支持的"
+    },
+    {
+      "word": "supporting",
+      "ipa": "/səˈpɔːrtɪŋ/",
+      "aviationMeaning": "v. 正支持；正在为飞行、人员、系统或运行提供协助",
+      "generalMeaning": "v. 正支持"
+    },
+    {
+      "word": "supportive",
+      "ipa": "/səˈpɔːrtɪv/",
+      "aviationMeaning": "adj. 支持性的；有助于安全协作、训练或运行的",
+      "generalMeaning": "adj. 支持性的；鼓励的"
+    },
+    {
+      "word": "supports",
+      "ipa": "/səˈpɔːrts/",
+      "aviationMeaning": "v. 支持；为飞行、人员、系统或运行提供协助",
+      "generalMeaning": "v. 支持；n. 支撑物（复数）"
+    },
+    {
+      "word": "supposed",
+      "ipa": "/səˈpoʊzd/",
+      "aviationMeaning": "adj. 应当的；按程序、计划或预期应发生的",
+      "generalMeaning": "adj. 被认为的；应该的"
+    },
+    {
+      "word": "suppression",
+      "ipa": "/səˈpreʃən/",
+      "aviationMeaning": "n. 抑制；灭火、噪声抑制或系统保护中压制不良状态",
+      "generalMeaning": "n. 抑制；压制"
+    },
+    {
+      "word": "sure",
+      "ipa": "/ʃʊr/",
+      "aviationMeaning": "adj. 确定的；对飞行状态、指令或操作有明确确认的",
+      "generalMeaning": "adj. 确定的；确信的"
+    },
+    {
+      "word": "surface",
+      "ipa": "/ˈsɜːrfɪs/",
+      "aviationMeaning": "n. 表面；跑道、滑行道、机体或水面的外层",
+      "generalMeaning": "n. 表面；v. 出现"
+    },
+    {
+      "word": "surfaced",
+      "ipa": "/ˈsɜːrfɪst/",
+      "aviationMeaning": "adj. 有铺面的；跑道、滑行道或区域表面已铺装的",
+      "generalMeaning": "adj. 浮出水面的；有表面的"
+    },
+    {
+      "word": "surfaces",
+      "ipa": "/ˈsɜːrfɪsɪz/",
+      "aviationMeaning": "n. 表面（复数）；跑道、滑行道、机体或水面的外层",
+      "generalMeaning": "n. 表面（复数）；v. 出现"
+    },
+    {
+      "word": "surge",
+      "ipa": "/sɜːrdʒ/",
+      "aviationMeaning": "n. 喘振；发动机压气机气流失稳引起的压力和流量波动",
+      "generalMeaning": "n. 涌动；激增"
+    },
+    {
+      "word": "surprised",
+      "ipa": "/sərˈpraɪzd/",
+      "aviationMeaning": "adj. 惊讶的；人员对非预期天气、故障或事件感到意外",
+      "generalMeaning": "adj. 惊讶的"
+    },
+    {
+      "word": "surprisingly",
+      "ipa": "/sərˈpraɪzɪŋli/",
+      "aviationMeaning": "adv. 出人意料地；以与预期不同的方式或程度",
+      "generalMeaning": "adv. 出人意料地"
+    },
+    {
+      "word": "surrendered",
+      "ipa": "/səˈrendərd/",
+      "aviationMeaning": "v. 已交出；已放弃控制权、许可或责任",
+      "generalMeaning": "v. 已投降；交出"
+    },
+    {
+      "word": "surrounding",
+      "ipa": "/səˈraʊndɪŋ/",
+      "aviationMeaning": "adj. 周边的；机场、跑道或事故地点附近的",
+      "generalMeaning": "adj. 周围的；环绕的"
+    },
+    {
+      "word": "surroundings",
+      "ipa": "/səˈraʊndɪŋz/",
+      "aviationMeaning": "n. 周边环境；机场、跑道或事故地点附近区域",
+      "generalMeaning": "n. 周围环境"
+    },
+    {
+      "word": "surveillance",
+      "ipa": "/sərˈveɪləns/",
+      "aviationMeaning": "n. 监视；利用雷达、ADS-B等跟踪航空器位置和状态",
+      "generalMeaning": "n. 监视；监督"
+    },
+    {
+      "word": "survival",
+      "ipa": "/sərˈvaɪvəl/",
+      "aviationMeaning": "n. 生存；事故、迫降或撤离后维持生命的能力与装备",
+      "generalMeaning": "n. 生存；幸存"
+    },
+    {
+      "word": "survive",
+      "ipa": "/sərˈvaɪv/",
+      "aviationMeaning": "v. 生存；在事故、迫降或恶劣环境后继续存活",
+      "generalMeaning": "v. 生存；幸存"
+    },
+    {
+      "word": "survived",
+      "ipa": "/sərˈvaɪvd/",
+      "aviationMeaning": "v. 已生存；已在事故、迫降或恶劣环境后存活",
+      "generalMeaning": "v. 已生存；幸存"
+    },
+    {
+      "word": "surviving",
+      "ipa": "/sərˈvaɪvɪŋ/",
+      "aviationMeaning": "v. 正生存；在事故、迫降或恶劣环境后继续存活",
+      "generalMeaning": "v. 正生存；幸存"
+    },
+    {
+      "word": "survivors",
+      "ipa": "/sərˈvaɪvərz/",
+      "aviationMeaning": "n. 幸存者（复数）；事故、迫降或紧急事件后的生还人员",
+      "generalMeaning": "n. 幸存者（复数）"
+    },
+    {
+      "word": "susan",
+      "ipa": "/ˈsuːzən/",
+      "aviationMeaning": "n. 苏珊；专有名称，需结合原文",
+      "generalMeaning": "n. 苏珊；女子名"
+    },
+    {
+      "word": "susceptibility",
+      "ipa": "/səˌseptəˈbɪləti/",
+      "aviationMeaning": "n. 易感性；系统或人员易受干扰、故障或风险影响的程度",
+      "generalMeaning": "n. 易感性；敏感性"
+    },
+    {
+      "word": "suspect",
+      "ipa": "/səˈspekt/",
+      "aviationMeaning": "v. 怀疑；怀疑存在故障、风险、泄漏或非法干扰",
+      "generalMeaning": "v. 怀疑；n. 嫌疑人"
+    },
+    {
+      "word": "suspected",
+      "ipa": "/səˈspektɪd/",
+      "aviationMeaning": "adj. 被怀疑的；可能存在故障、风险或异常但尚未确认的",
+      "generalMeaning": "adj. 被怀疑的"
+    },
+    {
+      "word": "suspects",
+      "ipa": "/səˈspekts/",
+      "aviationMeaning": "v. 怀疑；认为可能存在故障、风险或异常",
+      "generalMeaning": "v. 怀疑；n. 嫌疑人（复数）"
+    },
+    {
+      "word": "suspend",
+      "ipa": "/səˈspend/",
+      "aviationMeaning": "v. 暂停；暂停运行、程序、服务或设备使用",
+      "generalMeaning": "v. 暂停；悬挂"
+    },
+    {
+      "word": "suspended",
+      "ipa": "/səˈspendɪd/",
+      "aviationMeaning": "adj. 已暂停的；运行、程序、服务或设备使用已中止",
+      "generalMeaning": "adj. 已暂停的；悬挂的"
+    },
+    {
+      "word": "suspension",
+      "ipa": "/səˈspenʃən/",
+      "aviationMeaning": "n. 暂停；运行、服务或设备使用暂时中止",
+      "generalMeaning": "n. 暂停；悬挂"
+    },
+    {
+      "word": "suspicious",
+      "ipa": "/səˈspɪʃəs/",
+      "aviationMeaning": "adj. 可疑的；可能涉及安保、非法干扰或异常风险的",
+      "generalMeaning": "adj. 可疑的；多疑的"
+    },
+    {
+      "word": "sust",
+      "ipa": "/sʌst/",
+      "aviationMeaning": "n. 航空资料缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "sustain",
+      "ipa": "/səˈsteɪn/",
+      "aviationMeaning": "v. 维持；维持飞行、推力、速度、系统或安全运行",
+      "generalMeaning": "v. 维持；支撑"
+    },
+    {
+      "word": "sustainable",
+      "ipa": "/səˈsteɪnəbəl/",
+      "aviationMeaning": "adj. 可持续的；在环境、资源和经济上可长期维持的航空运行",
+      "generalMeaning": "adj. 可持续的"
+    },
+    {
+      "word": "sustained",
+      "ipa": "/səˈsteɪnd/",
+      "aviationMeaning": "adj. 持续的；风、推力、振动或运行状态长时间保持的",
+      "generalMeaning": "adj. 持续的；维持的"
+    },
+    {
+      "word": "swa",
+      "ipa": "/ˌes dʌbəljuː ˈeɪ/",
+      "aviationMeaning": "n. 西南航空代码或相关缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "swapped",
+      "ipa": "/swɑːpt/",
+      "aviationMeaning": "v. 已交换；已更换设备、任务、座位或资源",
+      "generalMeaning": "v. 已交换；调换"
+    },
+    {
+      "word": "swear",
+      "ipa": "/swer/",
+      "aviationMeaning": "v. 发誓；需结合原文",
+      "generalMeaning": "v. 发誓；咒骂"
+    },
+    {
+      "word": "swearingen",
+      "ipa": "/ˈswerɪndʒən/",
+      "aviationMeaning": "n. 斯韦林根；航空器制造商或机型名称",
+      "generalMeaning": "n. 专有名称"
+    },
+    {
+      "word": "sweating",
+      "ipa": "/ˈswetɪŋ/",
+      "aviationMeaning": "n. 出汗；人员紧张、热应激或医疗状况症状",
+      "generalMeaning": "n. 出汗；流汗"
+    },
+    {
+      "word": "sweep",
+      "ipa": "/swiːp/",
+      "aviationMeaning": "v. 扫掠；雷达波束、机翼或检查范围横向扫过",
+      "generalMeaning": "v. 扫；掠过"
+    }
   ]
 }

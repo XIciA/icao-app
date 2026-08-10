@@ -1,16 +1,17 @@
 # AI 开发文档
 
-状态：第一版
+状态：当前入口
+更新时间：2026-07-30
 
-本目录是 ICAO App 后续 AI 功能开发的规范入口。当前只管理两类内容：AI 能力要求和 AI 基础资产。
-
-历史需求文档不迁移、不引用，也不作为后续开发依据；需要的新规则在本目录重新整理。
+本目录说明产品能力与维护入口。服务端实际装载的 prompt/领域资产以
+`services/api/src/ai/assets/` 及其 manifest 为运行时来源；不要在文档目录建立第二份运行副本。
+早期迁出包及评测样例保存在 `docs/archive/ai/AI-requirement-out/`，仅用于追溯和选择性复用。
 
 ## 1. AI 能力要求
 
 | 能力 | 适用题库 | 文档 |
 | --- | --- | --- |
-| 上下文查词 | 听力、900句、陆空通话、OPI、故事复诵 | [`capabilities/contextual-word-lookup.md`](capabilities/contextual-word-lookup.md) |
+| 上下文查词 | 听力、900句、陆空通话、OPI、故事复诵 | [`word-lookup-v1` 运行时资产](../../services/api/src/ai/assets/capabilities/word-lookup-v1.md) |
 | 录音转写 | 900句、陆空通话、OPI、故事复诵 | [`capabilities/recording-transcription.md`](capabilities/recording-transcription.md) |
 | 语法复核 | 陆空通话、故事复诵、OPI | [`capabilities/grammar-review.md`](capabilities/grammar-review.md) |
 | 表达润色 | OPI | [`capabilities/expression-polish.md`](capabilities/expression-polish.md) |
@@ -40,4 +41,7 @@
 - 一类基础资产只在对应的 `assets/` 文档中维护。
 - 表格一行只表达一个规则或资产；新增内容时优先追加行，不写长段落。
 - 当前实现与文档不一致时，先记录差异并确认目标，再决定修改实现还是修改文档。
-- 录音转写的实施、同步和维护流程以 [`workstreams/aviation-asr-optimization/closeout.md`](../workstreams/aviation-asr-optimization/closeout.md) 为准。
+- 录音转写的历史实施证据见
+  [`workstreams/aviation-asr-optimization/closeout.md`](../workstreams/aviation-asr-optimization/closeout.md)；
+  当前行为以代码、contracts、运行时资产和测试为准。
+- 修改运行时资产后运行 `pnpm ai:assets:check`；只修改产品说明时不复制运行时内容到本目录。

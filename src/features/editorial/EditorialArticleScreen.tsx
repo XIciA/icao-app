@@ -1,6 +1,6 @@
 import type { EditorialBlock } from '@icao/contracts';
 import { Image } from 'expo-image';
-import { ExternalLink, FileQuestion, WifiOff } from 'lucide-react-native';
+import { ExternalLink, FileQuestion, WifiOff } from '@/components/ui/icons';
 import { Linking, Pressable, StyleSheet, View } from 'react-native';
 
 import { TopBar } from '@/components/navigation/TopBar';

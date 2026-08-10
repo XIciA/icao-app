@@ -1,85 +1,88 @@
-# 部署与运行规则
+# 部署与运行时规则
 
-> 归类：运行与运维。总导航见 `docs/README.md`。
+状态：当前运维基线
+更新时间：2026-08-07
 
-## 核心原则
+仓库是实现来源，但本地、预览和生产是不同运行状态。代码修改本身不授权生产部署。
 
-项目只有一套源代码，但本地与 ECS 是两个运行实例。代码在本地通过，不代表真机或模拟器正在使用该版本。
+## 1. 运行时地图
 
-```text
-真机 / 模拟器
-→ Mac 局域网地址:3101
-→ SSH 隧道
-→ ECS 127.0.0.1:3101
-→ icao-api
-→ Supabase / PostgreSQL
-```
+### Native
 
-SSH 隧道只转发请求，不同步代码。
+`iOS / Android → ECS API → Supabase / PostgreSQL / 受保护服务`
 
-## 修改类型与完成标准
+- ECS 运行 API 容器，运行时密钥只存在受保护环境中。
+- 公司主生产 ECS 为 `47.108.90.19`，Native 正式域名为
+  `api.readyoufife.com` 与 `cloud.readyoufife.com`。
+- 旧 `feizhuicao.com` API/Cloud 域名和旧 ECS 已退出 Native 运行时；正式包只允许
+  使用 `readyoufife.com` 新域名，不接受后续兼容发布。
+- SSH 隧道只转发请求，不同步本地代码。
 
-| 修改类型 | 完成标准 |
-| --- | --- |
-| React Native 页面、样式、普通 TS 逻辑 | Metro 加载并完成界面或行为验证 |
-| `services/api` | 本地检查、干净范围部署 ECS、重启、健康检查、真实接口验证 |
-| Expo 插件、权限、原生依赖或原生配置 | Prebuild/原生编译并安装 Development Build |
-| 数据库 Schema 或 Migration | 备份、迁移审核、执行、数据与接口验证 |
-| 文档、离线评测脚本 | 不部署，除非它们属于服务器运行时 |
+### Web
 
-## API 部署门槛
+`Browser → Vercel 同源 Functions / 静态内容 / 题库资源`
 
-1. 确认部署范围，不携带无关未提交改动。
-2. 运行 `pnpm check`。
-3. 从目标提交或已复核文件集生成部署包。
-4. 保留当前 ECS 镜像和源码备份。
-5. 构建新镜像，构建成功后再切换容器。
-6. 验证 `/health/ready` 中 API 和数据库均为 `ok`。
-7. 用本次修改对应的真实接口请求验证结果，不能只看容器启动成功。
-8. 验证失败时回滚旧镜像和源码。
+- Web 不调用 ECS API 或 Supabase，不参与 Native 云同步。
+- `vercel.json`、`api/` 和物化后的 Web 导出物共同定义正式部署边界。
+- Web secret 只用于 Vercel 服务端 Functions，不得进入 client bundle。
 
-## ECS 运行位置
+详细边界见 `docs/current/runtime-topology.md`。
 
-| 内容 | 位置 |
-| --- | --- |
-| API 运行环境变量 | `/opt/icao/runtime/api/.env` |
-| 当前部署源码 | `/opt/icao/runtime/source` |
-| 部署包 | `/opt/icao/runtime/releases` |
-| 回滚备份 | `/opt/icao/backups` |
-| API 容器 | `icao-api` |
-| API 镜像 | `icao-api:phase2a` |
+## 2. 何时需要部署
 
-不得覆盖、输出或提交 ECS 环境变量和密钥。
+| 修改类型 | 本地完成标准 | 生产动作 |
+| --- | --- | --- |
+| 文档、测试、离线工具 | 对应检查 | 默认不部署 |
+| React Native 页面与普通 TS | Metro/测试/目标端行为 | 默认不部署 |
+| 原生依赖、权限、插件、配置 | 目标平台 Development Build | 不等于生产 API 部署 |
+| `services/api` / contracts | workspace 检查和代表性本地请求 | 当前任务明确包含线上时部署 ECS |
+| `api/`、Web 路由或部署配置 | `pnpm check:web` 和预览检查 | 当前任务明确包含线上时发布 Vercel |
+| 数据库 schema/migration | 迁移检查和计划 | 独立备份、审批、执行与验证 |
 
-## 验收证据
+## 3. ECS API 部署门槛
 
-每次 API 部署至少记录：
+获得当前任务的生产授权后：
 
-- 本地目标提交或明确文件范围；
-- 本地检查结果；
-- ECS 镜像和容器健康状态；
-- `/health/ready` 结果；
-- 与修改直接相关的线上接口结果；
-- 回滚镜像或源码备份是否存在。
+1. 确认目标提交或明确文件集，不携带无关工作区改动。
+2. 运行 API/contracts 直接检查，并按风险扩大到相关 App 检查。
+3. 保留当前镜像和源码回滚点。
+4. 构建新镜像，成功后再切换容器。
+5. 验证 `/health/ready` 中 API 和数据库状态。
+6. 用与改动直接相关的代表性线上请求验证。
+7. 验证失败时恢复旧镜像/源码并再次检查健康状态。
 
-## 边界
+生产路径、镜像标签和密钥位置属于受控运行环境信息，不应作为 Codex 的日常必读内容；
+部署时以现有脚本和人工确认的目标环境为准，且不得输出环境文件。
 
-- 普通前端修改不触发 ECS 部署。
-- 未完成、未复核或与当前任务无关的工作区改动不得进入部署。
-- API 部署不得顺带执行数据库 Migration。
-- 正式生产发布、域名、证书、支付和不可逆数据操作仍需单独授权。
+## 4. Vercel Web 发布门槛
 
-## Web 在线版
+获得当前任务的生产授权后：
 
-```text
-浏览器 → feizhuicao.com（Vercel SPA）
-       → api.feizhuicao.com（ECS API）
-       → cloud.feizhuicao.com（Supabase/Auth/资源）
-```
+1. 运行 `pnpm web:deploy:export`，物化同源内容和题库资源。
+2. 运行 `pnpm check:web:assets`、`pnpm check:web:content` 与
+   `pnpm check:web:network`。
+3. 使用预览部署验证邀请码、关键路由、刷新、内容、题库资源、窄屏与宽屏。
+4. 确认客户端网络边界没有 ECS/Supabase 依赖，服务端 secret 未进入导出物。
+5. 保留上一条可回滚 production deployment，再提升已验证版本。
+6. 从正式域名复核关键路径、响应头和静态资源；失败时 rollback/promote 上一版本。
 
-- 仓库仍是 Web、iOS、Android 的唯一代码源；Vercel 只托管导出的静态前端，不保存题库或服务端用户数据。
-- Web 生产环境只允许公开 API/Supabase URL 与 publishable key；服务端 secret、service-role key、AI key 不得进入 Vercel client bundle。
-- API CORS 使用精确来源白名单。新增或移除正式/预览来源属于 API 运行配置变更，需备份环境、重启容器并验证 `/health/ready` 和代表性预检/条件请求。
-- Web 发布前保留上一条 Vercel production deployment；发布失败使用 Vercel Rollback/Promote 恢复，不删除域名或 DNS。
-- `vercel.json` 负责 SPA fallback、安全头和 hash 静态资源缓存；入口 HTML 不得被长期 immutable 缓存。
-- 具体命令、验证和回滚顺序见 `docs/workstreams/app-web-online-edition/deployment-runbook.md`。
+内容同步与回滚步骤见 `docs/operations/web-content-sync.md`。
+
+## 5. 部署证据
+
+至少记录：
+
+- 目标提交或已复核文件范围；
+- 与变更直接相关的检查结果；
+- 部署目标和产物标识；
+- 健康检查或预览/正式域名结果；
+- 代表性业务请求或关键路径结果；
+- 可用的回滚点及实际回滚结果（若发生）。
+
+## 6. 不随普通部署继承的权限
+
+- 数据库迁移、数据删除和不可逆修复；
+- 域名、DNS、证书、支付或账号治理变更；
+- 将本地密钥、签名材料或环境文件上传到任何部署包；
+- 携带与当前任务无关的未提交修改；
+- 因为“API 文件已改”而自动推断生产部署授权。

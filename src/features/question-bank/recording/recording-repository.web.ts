@@ -17,6 +17,16 @@ function createId() {
   return `rec-web-${Date.now().toString(36)}-${idSequence.toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
 }
 
+function formatForWebBlob(blob: Blob): RawRecording['format'] | undefined {
+  const mimeType = blob.type.toLowerCase().split(';', 1)[0]?.trim();
+  if (mimeType === 'audio/webm') return 'webm';
+  if (mimeType === 'audio/ogg') return 'ogg';
+  if (mimeType === 'audio/mp4'
+    || mimeType === 'audio/m4a'
+    || mimeType === 'audio/x-m4a') return 'm4a';
+  return undefined;
+}
+
 type StoredAsset = { asset: RecordingAsset; createdAt: number };
 
 export class RecordingRepository {
@@ -27,14 +37,16 @@ export class RecordingRepository {
       if (input.durationMillis < MIN_RECORDING_DURATION_MS) {
         throw new RecordingRepositoryError('recording_too_short');
       }
-      const response = await fetch(input.uri);
-      if (!response.ok) throw new RecordingRepositoryError('recording_commit_failed');
-      const blob = await response.blob();
+      if (!input.uri.startsWith('blob:')) throw new RecordingRepositoryError('recording_commit_failed');
+      const blob = input.webBlob;
+      if (!blob) throw new RecordingRepositoryError('recording_commit_failed');
+      if (formatForWebBlob(blob) !== input.format) {
+        throw new RecordingRepositoryError('recording_file_incomplete');
+      }
       const minimumSize = Math.max(MIN_RECORDING_BYTES, Math.round(input.durationMillis * input.minBytesPerMillisecond));
       if (blob.size < minimumSize) throw new RecordingRepositoryError('recording_file_incomplete');
 
       const id = createId();
-      const uri = URL.createObjectURL(blob);
       const createdAt = Date.now();
       const asset = {
         byteSize: blob.size,
@@ -44,10 +56,9 @@ export class RecordingRepository {
         format: input.format,
         id,
         sessionId: input.sessionId,
-        uri,
+        uri: input.uri,
       } satisfies RecordingAsset;
       this.assets.set(id, { asset, createdAt });
-      if (input.uri.startsWith('blob:')) URL.revokeObjectURL(input.uri);
       emitAudioDiagnostic({ code: 'recording_committed', level: 'info', phase: 'ready', scope: 'recording' });
       return asset;
     } catch (error) {

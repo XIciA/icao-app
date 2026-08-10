@@ -18,8 +18,8 @@
       "taskTitle": "BAW 817-2",
       "audioText": "Tell the controller it's Airbus 3 30.",
       "audioTextZh": "告诉管制员，这是 Airbus 330。",
-      "referenceText": "Wuhan Ground, BAW 817, it's Airbus 330. It's Airbus 330, BAW 817",
-      "referenceTextZh": "武汉地面，BAW 817，这是 Airbus 330。这是 Airbus 330，BAW 817。",
+      "referenceText": "Wuhan Ground, BAW 817, it's an Airbus 330.",
+      "referenceTextZh": "武汉地面，BAW 817，这是 Airbus 330。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-023-baw817-q02.mp3"
     },
     {
@@ -52,10 +52,10 @@
     {
       "id": "atc-scenario-0126-card-main-2174",
       "taskTitle": "BAW 817-6",
-      "audioText": "C: BAW 817, wind 200, 8 meters per second.\nB: the tailwind exceeds your takeoff limit, contact Wuhan Tower to change to Runway 22and state the reason.",
+      "audioText": "C: BAW 817, wind 200, 8 meters per second.\nB: the tailwind exceeds your takeoff limit, contact Wuhan Tower to change to Runway 22 and state the reason.",
       "audioTextZh": "C： BAW 817，风向 200，风速 8 米/秒。\nB： 顺风超过你的起飞限制，联系武汉塔台请求更换至 Runway 22 并说明原因。",
-      "referenceText": "Wuhan Tower, BAW 817, the tailwind exceeds our takeoff limit, request change to Runway 22. the tailwind exceeds our takeoff limit, request change to Runway 22, BAW 817.",
-      "referenceTextZh": "武汉塔台，BAW 817，顺风超过我们的起飞限制，请求更换至 Runway 22。顺风超过我们的起飞限制，请求更换至 Runway 22，BAW 817。",
+      "referenceText": "Wuhan Tower, BAW 817, the tailwind exceeds our takeoff limit, request change to Runway 22.",
+      "referenceTextZh": "武汉塔台，BAW 817，顺风超过我们的起飞限制，请求更换至 Runway 22。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-023-baw817-q06.mp3"
     },
     {
@@ -72,8 +72,8 @@
       "taskTitle": "BAW 817-8",
       "audioText": "tell the controller you want to dump fuel and return to land.",
       "audioTextZh": "告诉管制员你想放油并返场落地。",
-      "referenceText": "Wuhan Departure, BAW 817, request dump fuel and return to land. request dump fuel and return to land, BAW 817.",
-      "referenceTextZh": "武汉离场，BAW 817，请求放油并返场落地。请求放油并返场落地，BAW 817。",
+      "referenceText": "Wuhan Departure, BAW 817, request fuel dumping and return to land.",
+      "referenceTextZh": "武汉离场，BAW 817，请求放油并返场落地。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-023-baw817-q08.mp3"
     },
     {
@@ -108,8 +108,8 @@
       "taskTitle": "BAW 817-12",
       "audioText": "C: BAW 817, how long do you need to dump fuel?\nB: tell the controller you need approximately 25 minutes.",
       "audioTextZh": "C： BAW 817，你需要多长时间放油？\nB： 告诉管制员你大约需要 25 分钟。",
-      "referenceText": "BAW 817, we need about 25 minutes. We need about 25 minutes, BAW 817.",
-      "referenceTextZh": "BAW 817，我们大约需要 25 分钟。我们大约需要 25 分钟，BAW 817。",
+      "referenceText": "BAW 817, we need about 25 minutes.",
+      "referenceTextZh": "BAW 817，我们大约需要 25 分钟。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-023-baw817-q12.mp3"
     },
     {
