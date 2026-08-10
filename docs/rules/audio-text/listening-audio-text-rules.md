@@ -1,6 +1,6 @@
 # 听力题库音频文本规则
 
-> 当前执行状态：暂停使用 Whisper，不生成新的 Whisper 候选，也不依据既有 Whisper 结果修改题库。音频疑点改由人工复听确认；历史候选、快照和报告继续保留。三类题库共性规则见 `docs/rules/audio-text/audio-text-unified-rules.md`。
+> 当前执行状态：暂停使用 Whisper，不生成新的 Whisper 候选，也不依据既有 Whisper 结果修改题库。首轮 631 题校准工具已退役，不可用于当前 1223 题题库；音频疑点改由人工复听确认，历史候选、快照和报告继续保留。三类题库共性规则见 `docs/rules/audio-text/audio-text-unified-rules.md`。
 
 ## 1. 文档目的
 
@@ -13,7 +13,6 @@
 - 题库：听力（`listening`）。
 - 目标字段：`audioText`、`audioTextZh`、`choices`、`correctChoiceIndex`、`referenceText`。
 - 首轮校准历史基线：631 题，四类数量为 245 / 114 / 95 / 177；后续经独立迁移工作流批准的净新增不受该固定总数限制。
-- 规则工具：`tools/listening-text-calibration.mjs`。
 - 独立记录：`docs/workstreams/listening-text-calibration-v1/`。
 
 以下内容保持不变：
@@ -141,20 +140,16 @@
 
 ## 9. 执行流程
 
-```bash
-node tools/listening-text-calibration.mjs audit
-node tools/listening-text-calibration.mjs apply
-node tools/listening-text-calibration.mjs verify
-```
-
-1. `audit` 保存快照并生成格式与答案候选。
+1. 为本次修改建立独立 workstream，记录范围、音频证据和逐题决定。
 2. 人工复核格式候选、重复题和答案变化；涉及音频事实的内容必须人工复听。
-3. `apply` 只写入已批准的差异并同步内嵌题库。
-4. `verify` 检查幂等、字段同步、非目标摘要、历史报告和残留规则。
+3. 只修改正式内容源，再运行 `pnpm content:build` 同步 App 内嵌题库。
+4. 运行 `pnpm content:check:full`、`pnpm check:audio` 和 `pnpm check`。
+
+历史脚本及其固定 631 题校验已从当前代码树移除；如需复盘，使用对应 workstream 和 Git 历史，不得把历史脚本直接用于当前题库。
 
 ## 10. 验收标准
 
-- 对首轮校准重跑时，题目总数保持 631，分类数量保持 245 / 114 / 95 / 177；对独立增量迁移，验证“历史 631 题不变 + 经批准实际新增数”。
+- 当前题量和分类数量以正式 registry 为准，不在校准规则中硬编码；历史 631 题及其四类数量只作为首轮记录保留。
 - 历史 631 个稳定 ID 和音频路径保持不变；新增卡片使用独立稳定 ID 和唯一音频路径，动态音频映射验证通过。
 - 全部活动听力题均有英文原文、中文翻译、四个选项、有效索引和匹配参考答案。
 - 未复核人工候选为 0；已复核且决定保持原文的记录允许存在。

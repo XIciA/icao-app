@@ -55,6 +55,9 @@ app-example
 
 # large local workflow snapshots and resumable caches
 /.generated/
+
+# local delivery exports; durable evidence belongs under docs/workstreams
+/outputs/
 /.vercel/
 .env*
 

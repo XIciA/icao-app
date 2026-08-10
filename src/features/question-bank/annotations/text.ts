@@ -27,7 +27,7 @@ export function tokenizeStudyText(text: string): StudyTextToken[] {
   });
 }
 
-export function sentenceAround(text: string, start: number, end: number) {
+export function sentenceAround(text: string, start: number) {
   const before = text.slice(0, start);
   const fromStart = text.slice(start);
   const leftBoundary = Math.max(
@@ -45,7 +45,7 @@ export function sentenceAround(text: string, start: number, end: number) {
 export function wordContextAt(text: string, targetWordIndex: number) {
   for (const token of tokenizeStudyText(text)) {
     if (token.wordIndex === targetWordIndex) {
-      return { quote: token.text, sentence: sentenceAround(text, token.start, token.end) };
+      return { quote: token.text, sentence: sentenceAround(text, token.start) };
     }
   }
   return undefined;
@@ -56,11 +56,11 @@ export function sentenceWordRangeAt(text: string, targetWordIndex: number) {
   const targetPosition = words.findIndex((token) => token.wordIndex === targetWordIndex);
   if (targetPosition < 0) return undefined;
   const target = words[targetPosition];
-  const sentence = sentenceAround(text, target.start, target.end);
+  const sentence = sentenceAround(text, target.start);
   let first = targetPosition;
   let last = targetPosition;
-  while (first > 0 && sentenceAround(text, words[first - 1].start, words[first - 1].end) === sentence) first -= 1;
-  while (last < words.length - 1 && sentenceAround(text, words[last + 1].start, words[last + 1].end) === sentence) last += 1;
+  while (first > 0 && sentenceAround(text, words[first - 1].start) === sentence) first -= 1;
+  while (last < words.length - 1 && sentenceAround(text, words[last + 1].start) === sentence) last += 1;
   return {
     endWordIndex: words[last].wordIndex!,
     sentence,
