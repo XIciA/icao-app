@@ -189,7 +189,7 @@ export function SpeakingPracticePanel({
       : '请复制浏览器地址栏中的链接，再到推荐浏览器打开。');
   }
 
-  const webNotice = isWeb && (controller.permissionPrimerWaiting || error || controller.permissionPrimedNotice) ? (
+  const webNotice = isWeb && (controller.permissionPrimerWaiting || error) ? (
     <View style={[styles.webNotice, variant === 'integrated' ? styles.webNoticeIntegrated : null]}>
       <ShieldAlert color={colors.accent} size={18} />
       <View style={styles.webNoticeCopy}>
@@ -198,8 +198,6 @@ export function SpeakingPracticePanel({
             <AppText variant="button">仍在等待浏览器授权</AppText>
             <AppText variant="caption">请在浏览器弹窗中选择“允许”；也可以先取消，继续学习其它内容。</AppText>
           </>
-        ) : controller.permissionPrimedNotice ? (
-          <AppText variant="caption">麦克风已启用，请按住录音</AppText>
         ) : (
           <AppText variant="caption">{error}</AppText>
         )}

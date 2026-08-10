@@ -379,14 +379,14 @@ describe('SpeakingPracticePanel lifecycle', () => {
 
   it('primes Web microphone permission with a click before enabling hold-to-record', async () => {
     setPlatform('web');
-    const screen = await render(<SpeakingPracticePanel {...commonProps} />);
+    const screen = await render(<SpeakingPracticePanel {...commonProps} variant="integrated" />);
 
     await act(async () => { fireEvent.press(screen.getByLabelText('启用麦克风')); });
 
     expect(mockRecorder.primePermission).toHaveBeenCalledTimes(1);
     expect(mockRecorder.prepare).not.toHaveBeenCalled();
     expect(mockRecorder.start).not.toHaveBeenCalled();
-    expect(screen.getByText('麦克风已启用，请按住录音')).toBeTruthy();
+    expect(screen.queryByText('麦克风已启用，请按住录音')).toBeNull();
 
     await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
     await waitFor(() => expect(mockRecorder.start).toHaveBeenCalledTimes(1));
