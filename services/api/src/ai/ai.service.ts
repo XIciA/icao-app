@@ -1,14 +1,13 @@
 import { BadRequestException, HttpException, Injectable } from '@nestjs/common';
 import { createHash } from 'node:crypto';
 import { and, eq, gt } from 'drizzle-orm';
-import type { AiConsent, GrammarReviewRequest, PolishRequest, PolishResult, WordLookupRequest, WordLookupResult } from '@icao/contracts';
+import type { AiConsent, GrammarReviewRequest, PolishRequest, PolishResult, TencentAsrModel, WordLookupRequest, WordLookupResult } from '@icao/contracts';
 
 import { DatabaseService } from '../database/database.service';
 import { aiConsents, aiUsageLogs, aiWordCache } from '../database/schema';
 import { AiAssetsService } from './ai-assets.service';
 import { AiProviderService, type ProviderMeta } from './ai-provider.service';
-import { AVIATION_TRANSCRIPT_NORMALIZATION_VERSION, normalizeAviationTranscript } from './aviation-transcript-normalization';
-import { FunAsrService } from './fun-asr.service';
+import { TencentAsrService } from './tencent-asr.service';
 import { GRAMMAR_REVIEW_PROMPT, OPI_POLISH_PROMPT } from './ai-prompts';
 import { grammarResultSchema, polishResultSchema, wordLookupResultSchema } from './ai.schemas';
 
@@ -26,7 +25,7 @@ export class AiService {
     private readonly database: DatabaseService,
     private readonly assets: AiAssetsService,
     private readonly provider: AiProviderService,
-    private readonly asr: FunAsrService,
+    private readonly asr: TencentAsrService,
   ) {}
 
   async acceptConsent(userId: string, policyVersion: string): Promise<AiConsent> {
@@ -106,15 +105,15 @@ export class AiService {
     return response;
   }
 
-  async transcribe(userId: string, requestId: string, audio: Buffer, mimeType: string, signal?: AbortSignal) {
+  async transcribe(userId: string, requestId: string, audio: Buffer, mimeType: string, model: TencentAsrModel, signal?: AbortSignal) {
     await this.requireConsent(userId);
     if (!audio.length || audio.length > 8 * 1024 * 1024) throw new BadRequestException('invalid_audio');
     return this.run({
-      userId, requestId, capability: 'transcribe', model: this.asr.model(),
-      promptVersion: `${this.asr.hotwordsVersion()}+${AVIATION_TRANSCRIPT_NORMALIZATION_VERSION}`, units: 3,
+      userId, requestId, capability: 'transcribe', model,
+      promptVersion: 'tencent-asr:raw:v1', units: 3,
       action: async () => {
-        const result = await this.asr.transcribe(audio, mimeType, signal);
-        return { data: { transcript: normalizeAviationTranscript(result.rawTranscript) }, meta: result.meta };
+        const result = await this.asr.transcribe(audio, mimeType, model, signal);
+        return { data: { transcript: result.rawTranscript }, meta: result.meta };
       },
     });
   }

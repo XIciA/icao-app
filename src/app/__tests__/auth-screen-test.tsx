@@ -5,6 +5,8 @@ import { LoginScreen, loginErrorMessage } from '@/components/auth/login-screen';
 
 let mockUiAcceptanceAvailable = false;
 const mockEnterUiAcceptanceMode = jest.fn();
+const mockBack = jest.fn();
+const mockCanGoBack = jest.fn();
 const mockReplace = jest.fn();
 
 jest.mock('lucide-react-native', () => {
@@ -15,7 +17,7 @@ jest.mock('lucide-react-native', () => {
 
 jest.mock('expo-router', () => ({
   useLocalSearchParams: () => ({ slug: 'login' }),
-  useRouter: () => ({ back: jest.fn(), push: jest.fn(), replace: mockReplace }),
+  useRouter: () => ({ back: mockBack, canGoBack: mockCanGoBack, push: jest.fn(), replace: mockReplace }),
 }));
 
 jest.mock('@/features/auth/AuthProvider', () => ({
@@ -29,8 +31,38 @@ jest.mock('@/features/auth/AuthProvider', () => ({
 describe('<LoginScreen />', () => {
   beforeEach(() => {
     mockEnterUiAcceptanceMode.mockClear();
+    mockBack.mockClear();
+    mockCanGoBack.mockReset();
     mockReplace.mockClear();
     mockUiAcceptanceAvailable = false;
+  });
+
+  it('returns to the welcome screen when login is the navigation root', async () => {
+    mockCanGoBack.mockReturnValue(false);
+    const screen = await render(
+      <SafeAreaProvider initialMetrics={{ frame: { height: 812, width: 375, x: 0, y: 0 }, insets: { bottom: 34, left: 0, right: 0, top: 47 } }}>
+        <LoginScreen />
+      </SafeAreaProvider>,
+    );
+
+    fireEvent.press(screen.getByLabelText('返回'));
+
+    expect(mockBack).not.toHaveBeenCalled();
+    expect(mockReplace).toHaveBeenCalledWith('/auth/splash');
+  });
+
+  it('uses navigator history when the login screen has a previous route', async () => {
+    mockCanGoBack.mockReturnValue(true);
+    const screen = await render(
+      <SafeAreaProvider initialMetrics={{ frame: { height: 812, width: 375, x: 0, y: 0 }, insets: { bottom: 34, left: 0, right: 0, top: 47 } }}>
+        <LoginScreen />
+      </SafeAreaProvider>,
+    );
+
+    fireEvent.press(screen.getByLabelText('返回'));
+
+    expect(mockBack).toHaveBeenCalledTimes(1);
+    expect(mockReplace).not.toHaveBeenCalled();
   });
 
   it('renders the controlled invite-code login entry', async () => {
@@ -42,7 +74,7 @@ describe('<LoginScreen />', () => {
 
     expect(screen.getByText('欢迎回来')).toBeTruthy();
     expect(screen.getByText('登录以继续你的 ICAO 备考进度')).toBeTruthy();
-    expect(screen.getByText('当前为受控内测，请向管理员获取专属邀请码。')).toBeTruthy();
+    expect(screen.getByText('当前使用专属邀请码登录，请向管理员获取邀请码。')).toBeTruthy();
     expect(screen.getByText('邀请码可在多台设备登录，学习数据会自动同步。')).toBeTruthy();
     expect(screen.queryByText('开发者 · 免登录验收')).toBeNull();
   });

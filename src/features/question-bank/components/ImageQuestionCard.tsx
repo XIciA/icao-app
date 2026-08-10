@@ -1,5 +1,5 @@
 import { Image } from 'expo-image';
-import { AlertCircle, ImageIcon, RotateCcw } from 'lucide-react-native';
+import { AlertCircle, ImageIcon, RotateCcw } from '@/components/ui/icons';
 import { useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
 

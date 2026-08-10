@@ -18,8 +18,8 @@
       "taskTitle": "BAW 931-2",
       "audioText": "BAW 931, Wuhan Delivery, cleared to London, via flight planned route. ZF05 DAL departure, initial climb to 1,500 meters, cruising level 10,700 meters. runway in use 18 Left, after departure, contact 124.7, squawk 4503.",
       "audioTextZh": "BAW 931，武汉放行，许可按飞行计划航路飞往伦敦。执行 ZF-05 DAL 离场，初始爬升至 1,500 米，巡航高度 10,700 米。使用 Runway 18L，离场后联系 124.7，应答机 4503。",
-      "referenceText": "cleared to London, via flight planned route, ZF05 DAL departure, initial climb to 1005 hudnred meters, cruising level 1700 meters. runway in use 18 Left, after departure, contact 124.7, squawk 4503, BAW 931.",
-      "referenceTextZh": "许可按飞行计划航路飞往伦敦，执行 ZF-05 DAL 离场，初始爬升至 1005 hudnred 米，巡航高度 1700 米。使用 Runway 18L，离场后联系 124.7，应答机 4503，BAW 931。",
+      "referenceText": "cleared to London, via flight planned route, ZF05 DAL departure, initial climb to 1,500 meters, cruising level 10,700 meters. runway in use 18 Left, after departure, contact 124.7, squawk 4503, BAW 931.",
+      "referenceTextZh": "许可按飞行计划航路飞往伦敦，执行 ZF-05 DAL 离场，初始爬升至 1,500 米，巡航高度 10,700 米。使用 Runway 18L，离场后联系 124.7，应答机 4503，BAW 931。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-020-baw931-q02.mp3"
     },
     {

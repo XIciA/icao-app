@@ -36,7 +36,7 @@ describe('<CourseCatalogScreen />', () => {
   it('renders the verified promotion content and defaults to the summer category', async () => {
     const screen = await renderScreen();
 
-    expect(screen.getByText('飞猪 ICAO 体系课程')).toBeTruthy();
+    expect(screen.getByText('听你五个体系课程')).toBeTruthy();
     expect(screen.getByText('7 大课程')).toBeTruthy();
     expect(screen.getByText('超高性价比')).toBeTruthy();
     expect(screen.getByText('暑期特价小班基础班')).toBeTruthy();

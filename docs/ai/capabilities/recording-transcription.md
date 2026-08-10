@@ -37,24 +37,25 @@
 
 ## 当前实现
 
-当前线上工作流固定为：
+当前代码工作流为：
 
 ```text
-App multipart 音频
-→ 服务端私有临时存储
-→ fun-asr-2025-11-07 + aviation-hotwords:v2（无热词）
-→ 供应商原始文本
-→ aviation-normalization:v7
+App 选择腾讯 ASR 模型并提交音频
+→ Native API 私有临时存储并生成短期签名地址 / Web API 提交受限大小的音频数据
+→ 腾讯云录音文件识别 CreateRecTask
+→ 轮询 DescribeTaskStatus
+→ 去除供应商结果中的时间戳包装
 → transcript
 ```
 
 - App 继续使用原有 `/v1/ai/transcribe`，不直接调用供应商。
+- 用户可在“设置—AI 与隐私”选择 `16k_zh_en_2.0`、`16k_en_large` 或 `16k_en`，选择保存在本机并从下一次转写开始生效。
 - 临时音频使用短期签名地址，请求结束立即回收，并有残留对象兜底清理。
-- ASR 热词的唯一运行时来源是 `docs/ai/assets/asr-hotwords.json`。
-- 数字和 ICAO 字母不依靠整表热词替换，而由 `aviation-transcript-normalization.ts` 在明确民航上下文中规范化。
+- 当前请求不携带热词、词汇替换、自学习模型或其他优化参数。
+- `aviation-transcript-normalization.ts` 不再进入运行时转写链路；腾讯云结果除协议时间戳清理外直接返回。
 - 供应商原文、任务状态和内部版本不进入用户结果契约。
 
-实现与维护记录见 [`aviation-asr-optimization/closeout.md`](../../workstreams/aviation-asr-optimization/closeout.md)，五轮证据见 [`evidence/campaign-01/README.md`](../../workstreams/aviation-asr-optimization/evidence/campaign-01/README.md)。
+旧 Fun-ASR、热词和规则化实验记录保留为历史证据，不代表当前运行时。
 
 ## 后续性能验收资产：900句
 
@@ -94,10 +95,10 @@ App multipart 音频
 ## 后续优化顺序
 
 1. 冻结 900 句评测清单并划分开发集和盲测集。
-2. 以当前 Fun-ASR、热词和规范化版本建立基线。
-3. 分别迭代热词资产和确定性规范化规则，并记录版本。
-4. 使用同一冻结样本验证最终文本是否提升且没有回退。
-5. 只有现有扩展点无法解决明显领域错误时，才重新评估模型、部署或微调方向。
+2. 分别为三个腾讯云模型建立无优化基线。
+3. 先验证基础模型选择，再按独立变量测试热词、词汇替换或自学习模型。
+4. 仅在云端能力无法稳定解决明确格式需求时，才增加保守的规则化脚本。
+5. 使用同一冻结样本验证最终文本是否提升且没有回退。
 
 不预设必须继续使用当前模型、当前 API 或当前后处理方案。唯一判断标准是：最终文本是否更接近 900句的 `audioText`。
 

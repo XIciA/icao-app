@@ -63,7 +63,7 @@
       "taskTitle": "CCA 101-7",
       "audioText": "C: CCA 101, stop immediately, a catering truck has just knocked an engine of your plane.\nB: Ask Ground which engine it is.",
       "audioTextZh": "C: CCA 101，立即停止，一辆配餐车刚撞到了你飞机的一台发动机。\nB: 询问 地面 是哪台发动机。",
-      "referenceText": "Roger，Which engine has been knocked ? CCA 101.",
+      "referenceText": "Roger, which engine has been knocked? CCA 101.",
       "referenceTextZh": "收到，哪台发动机被撞？CCA 101。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1140.mp3"
     },

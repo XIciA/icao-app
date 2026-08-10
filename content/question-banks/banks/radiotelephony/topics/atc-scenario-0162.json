@@ -7,7 +7,7 @@
     {
       "id": "atc-scenario-0162-card-main-2793",
       "taskTitle": "AFR 941-1",
-      "audioText": "Your call sign is AFR 941, you are descending through 3900m for 3600 meters.Contact Wuhan approach.",
+      "audioText": "Your call sign is AFR 941, you are descending through 3900m for 3600 meters. Contact Wuhan approach.",
       "audioTextZh": "你的呼号是 AFR 941，正通过 3900m 下降至 3600 米。联系武汉进近。",
       "referenceText": "Approach, AFR 941, 3900, 3600 meters.",
       "referenceTextZh": "进近，AFR 941，3900，3600 米。",
@@ -16,7 +16,7 @@
     {
       "id": "atc-scenario-0162-card-main-2794",
       "taskTitle": "AFR 941-2",
-      "audioText": "AFR 941, Wuhan approach, radar identified, information E is current, descend to and maintain 3000 meterson QNH 1004.",
+      "audioText": "AFR 941, Wuhan approach, radar identified, information E is current, descend to and maintain 3000 meters on QNH 1004.",
       "audioTextZh": "AFR 941，武汉进近，雷达识别，E 情报有效，在 QNH 1004 上下降至并保持 3000 米。",
       "referenceText": "information E, descend, 3000 meters, QNH, 1004, AFR 941.",
       "referenceTextZh": "E 情报，下降，3000 米，QNH 1004，AFR 941。",

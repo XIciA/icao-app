@@ -60,3 +60,6 @@ app-example
 /outputs/
 /.vercel/
 .env*
+
+# Local Netlify folder
+.netlify

@@ -88,10 +88,10 @@
     {
       "id": "atc-scenario-0136-card-main-2354",
       "taskTitle": "CES 2151-10",
-      "audioText": "CES 2151, wind 200 degrees, 8 meters per second.\nthe tailwind exceeds your takeoff limit, contact tower to change to Runway 18L and state the reason.",
+      "audioText": "CES 2151, wind 200 degrees, 8 meters per second.\nThe tailwind exceeds your takeoff limit, contact tower to change to Runway 18L and state the reason.",
       "audioTextZh": "CES 2151，风向 200 度，风速 8 米/秒。\n顺风超过你的起飞限制，联系塔台请求更换至 Runway 18L 并说明原因。",
-      "referenceText": "Wuhan Tower, CES 2151, request change to Runway 18L due tail wind exceeds takeoff limits. request change to Runway 18L due tail wind exceeds takeoff limits, CES 2151.",
-      "referenceTextZh": "武汉塔台，CES 2151，因顺风超过起飞限制，请求更换至 Runway 18L。因顺风超过起飞限制，请求更换至 Runway 18L，CES 2151。",
+      "referenceText": "Wuhan Tower, CES 2151, the tailwind exceeds our takeoff limits, request change to Runway 18L.",
+      "referenceTextZh": "武汉塔台，CES 2151，因顺风超过起飞限制，请求更换至 Runway 18L。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-034-ces2151-q10.mp3"
     },
     {

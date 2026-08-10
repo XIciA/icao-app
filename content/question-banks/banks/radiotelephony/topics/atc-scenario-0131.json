@@ -108,7 +108,7 @@
       "taskTitle": "ACA 521-12",
       "audioText": "B: Your TCAS indicates there is a conflicting traffic at 2 o'clock, 300 meters above your level, confirm with Wuhan Control if it is in conflict with your aircraft.",
       "audioTextZh": "B: 你的 TCAS 显示 2 点钟方向有冲突交通，在你高度上方 300 米，向武汉管制确认是否与你的飞机冲突。",
-      "referenceText": "Wuhan Control, ACA 521, our TCAS indicates there is a conflicting traffic at 2 o'clock, 300 meters above our level, is it in conflict with us ?",
+      "referenceText": "Wuhan Control, ACA 521, our TCAS indicates there is a conflicting traffic at 2 o'clock, 300 meters above our level, is it in conflict with us?",
       "referenceTextZh": "武汉管制，ACA 521，我们的 TCAS 显示 2 点钟方向有冲突交通，在我们高度上方 300 米，是否与我们冲突？",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-028-aca521-q12.mp3"
     },

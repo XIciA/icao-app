@@ -141,7 +141,7 @@ describe('API foundation', () => {
     expect(() => loadConfig({ ...base, CORS_ORIGINS: 'https://feizhuicao.com/path' })).toThrow('invalid_api_configuration:CORS_ORIGINS');
   });
 
-  it('requires the production hotword mode and vocabulary configuration to agree', () => {
+  it('requires Tencent Cloud credentials to be configured as a pair', () => {
     const base = {
       NODE_ENV: 'production',
       DATABASE_URL: process.env.DATABASE_URL,
@@ -150,20 +150,16 @@ describe('API foundation', () => {
       SUPABASE_PUBLISHABLE_KEY: process.env.SUPABASE_PUBLISHABLE_KEY,
       SUPABASE_SECRET_KEY: process.env.SUPABASE_SECRET_KEY,
       INVITE_AUTH_SECRET: process.env.INVITE_AUTH_SECRET,
-      DASHSCOPE_API_KEY: 'test-dashscope-key',
     };
     expect(loadConfig({
       ...base,
-      AI_ASR_HOTWORDS_MODE: 'none',
-      AI_ASR_HOTWORDS_VERSION: 'aviation-hotwords:v2',
-    }).aiAsrHotwordsMode).toBe('none');
-    expect(() => loadConfig({ ...base, AI_ASR_HOTWORDS_MODE: 'vocabulary' }))
-      .toThrow('invalid_api_configuration:AI_ASR_VOCABULARY_ID');
+      TENCENT_CLOUD_SECRET_ID: 'test-tencent-secret-id',
+      TENCENT_CLOUD_SECRET_KEY: 'test-tencent-secret-key',
+    }).tencentAsrEndpoint).toBe('asr.tencentcloudapi.com');
     expect(() => loadConfig({
       ...base,
-      AI_ASR_HOTWORDS_MODE: 'none',
-      AI_ASR_VOCABULARY_ID: 'should-not-be-ignored',
-    })).toThrow('invalid_api_configuration:AI_ASR_HOTWORDS_MODE');
+      TENCENT_CLOUD_SECRET_ID: 'test-tencent-secret-id',
+    })).toThrow('invalid_api_configuration:TENCENT_CLOUD_CREDENTIALS');
   });
 
   it('returns live and ready health envelopes', async () => {

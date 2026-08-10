@@ -36,7 +36,7 @@
       "taskTitle": "CCA 101-4",
       "audioText": "B: During taxiing, you observed a cone marker in front of you on the taxiway E, you have stopped the aircraft, report the situation to ATC and confirm if the taxiway E is closed.",
       "audioTextZh": "B: 滑行中，你在滑行道 E 前方看到一个锥形标志，你已停住飞机，向 ATC 报告情况并确认滑行道 E 是否关闭。",
-      "referenceText": "Beijing Ground, CCA 101, a cone marker in front of us on the taxiway E, we have stopped, is the taxiway E closed ?",
+      "referenceText": "Beijing Ground, CCA 101, a cone marker in front of us on the taxiway E, we have stopped, is the taxiway E closed?",
       "referenceTextZh": "北京地面，CCA 101，滑行道 E 上我们前方有一个锥形标志，我们已停住，滑行道 E 是否关闭？",
       "audio": "/question-bank-assets/audio/radiotelephony/main/889.mp3"
     },
@@ -108,7 +108,7 @@
       "taskTitle": "CCA 101-12",
       "audioText": "B: You were cleared to 5000 meters but notice the sky turning dark and visibility is getting worse quickly, you suspect a sand storm. Tell HongKong Approach this situation and ask ATC if there is a sandstorm forecast.",
       "audioTextZh": "B: 你获准下降到 5000 米，但注意到天空变暗、能见度迅速变差，你怀疑有沙尘暴。向香港进近说明情况，并询问 ATC 是否有沙尘暴预报。",
-      "referenceText": "HongKong Approach, CCA 101, the sky turning dark and visibility is getting worse quickly, we suspect a sandstorm, is there a sandstorm forecast ?",
+      "referenceText": "HongKong Approach, CCA 101, the sky turning dark and visibility is getting worse quickly, we suspect a sandstorm, is there a sandstorm forecast?",
       "referenceTextZh": "香港进近，CCA 101，天空变暗，能见度迅速变差，我们怀疑有沙尘暴，是否有沙尘暴预报？",
       "audio": "/question-bank-assets/audio/radiotelephony/main/897.mp3"
     },
@@ -126,7 +126,7 @@
       "taskTitle": "CCA 101-14",
       "audioText": "C: CCA 101, climb and maintain 7000 meters and turn right heading 210.",
       "audioTextZh": "C: CCA 101，爬升并保持 7000 米，右转航向 210。",
-      "referenceText": "Climb and maintain 7000m，turn right heading 210, CCA 101.",
+      "referenceText": "Climb and maintain 7000m, turn right heading 210, CCA 101.",
       "referenceTextZh": "爬升并保持 7000 米，右转航向 210，CCA 101。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/899.mp3"
     },

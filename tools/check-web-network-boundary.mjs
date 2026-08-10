@@ -4,6 +4,9 @@ import { join, resolve } from 'node:path';
 const root = resolve(import.meta.dirname, '..');
 const dist = join(root, 'dist');
 const forbidden = [
+  'api.readyoufife.com',
+  'cloud.readyoufife.com',
+  '47.108.90.19',
   'api.feizhuicao.com',
   'cloud.feizhuicao.com',
   '47.109.132.161',

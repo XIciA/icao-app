@@ -1,10 +1,11 @@
-# 双端独立版本发布
+# 双端独立版本构建与发布
 
-> 适用范围：Apple Development 签名的当前 iPhone，以及通过 `download.feizhuicao.com` 小规模分发的 Android APK。
+> 适用范围：Apple Development 签名的当前 iPhone，以及在本机生成并校验的 Android
+> Release APK。项目不再维护公开 APK 下载站，也不从 Android 构建命令部署任何 ECS。
 
 ## 日常发布命令
 
-Android 与 iOS 已完全拆分，任一平台失败不会阻止另一平台发布。
+Android 与 iOS 已完全拆分。Android 命令只生成本地制品；iOS 命令只处理连接的设备。
 
 代码修改完成并提交后，发布 Android：
 
@@ -12,7 +13,10 @@ Android 与 iOS 已完全拆分，任一平台失败不会阻止另一平台发�
 pnpm release:android
 ```
 
-命令会完成版本更新、完整检查、必要的 API 部署、Android 正式签名构建、APK 上传和下载入口验证。已有公开 APK 后，工作区不干净会直接停止，防止半成品发布。
+命令要求 Git 工作区干净，然后完成版本更新、完整检查、Android 正式签名构建与本地 APK
+校验。制品保存在 `.generated/releases/android/<版本>/`，同时生成 SHA-256、签名报告和
+`android-release.json`。命令不会连接旧 ECS、不会上传 APK，也不会部署或重启公司主生产
+ECS；API 发布必须作为单独任务明确授权。
 
 连接并解锁 iPhone 后，单独发布 iOS：
 
@@ -20,37 +24,37 @@ pnpm release:android
 pnpm release:ios
 ```
 
-如确实希望连续尝试两个平台，可以运行 `pnpm release:dual`。该命令先发布 Android，再尝试 iOS；即使 iPhone 离线导致后半段失败，已经上线的 Android 版本不会回滚。
+如确实希望连续构建两个平台，可以运行 `pnpm release:dual`。该命令先生成 Android 本地
+制品，再尝试 iOS；iPhone 离线导致后半段失败时，已生成的 Android 制品仍会保留。
 
-若服务端 API 指纹没有变化，命令不会重启 ECS API。若检测到数据库 Migration 文件变化，命令会停止并要求先完成数据库备份和迁移审核。
+服务端 API 发布使用独立的生产部署流程。数据库 Migration 仍必须单独完成备份、审核、
+执行与验收，不能由移动端构建命令隐式触发。
 
-## 下载入口
+## Android 制品边界
 
-- 网页：`https://download.feizhuicao.com`
-- 固定最新版：`https://download.feizhuicao.com/latest.apk`
-- 页面展示版本、更新时间、安装包大小、更新说明和 SHA-256。
-- 页面无密码，但同时使用 HTML robots meta 与 `X-Robots-Tag` 禁止搜索引擎收录。
-- 首版没有 App 内检查更新；测试者需要重新打开网页下载新包。Android 会把同包名、同签名且更高 `versionCode` 的 APK 识别为覆盖更新。
+- 仓库只负责生成和校验正式签名 APK，不提供公开下载 URL 或“最新版”重定向。
+- 若需要把 APK 交给测试者，必须使用当次明确批准的受控传输方式，并人工核对
+  `android-release.json` 和 SHA-256。
+- 同包名、同正式签名且更高 `versionCode` 的 APK 可覆盖升级并保留本地数据；变更签名或
+  包名会产生新的安装边界。
 
 ## 标识与数据边界
 
-- iOS Bundle ID 固定为 `com.anonymous.icao-app`，发布脚本带有自动守卫，防止误改后形成第二个 App。
-- Android 包名固定为 `com.feizhuicao.app`。
-- Android 首次从 Debug 版切换到正式签名版时需要卸载 Debug 版；正式版之间可以覆盖升级并保留应用本地数据。
+- 听你五个 / Read You 5 的 iOS Bundle ID 与 Android 包名均固定为 `com.readyoufife.app`，发布门禁禁止漂移。
+- 该正式包名与旧内测包不同，因此会作为一个新 App 安装；登录同一账号后可恢复已同步的云端数据，但旧包内尚未同步的本地数据不会由操作系统自动迁入。
+- 同一正式包名、同一正式签名且更高构建号的后续版本可以覆盖升级并保留本地数据。
+- App 备案和商店建档必须使用正式 Release 安装包提取的包名、签名、公钥/证书信息，不能使用旧内测包或 Debug 签名。
 
 ## Android 密钥保管
 
-- 主密钥：`~/Library/Application Support/Feizhu ICAO/Signing/android-release.p12`
-- 密码：macOS Keychain 中的 `com.feizhuicao.android-signing`
-- 加密备份：iCloud Drive 的 `Feizhu ICAO/Signing Backup/android-release.p12`
 - 密钥、密码、证书和本机环境文件均不得加入 Git、聊天内容或服务器部署包。
-
-若丢失该密钥或密码，已有 Android 安装无法再由新密钥覆盖升级。迁移电脑前必须同时确认 PKCS#12 备份和 Keychain 密码可以恢复。
+- 人工开发者的本机密钥位置、Xcode Team 和迁移检查见
+  `docs/developer-notes/local-signing-and-device.md`；该笔记不是自动授权，使用前需人工核对。
+- 若丢失 Android 正式签名密钥或密码，已有安装无法再由新密钥覆盖升级。
 
 ## 失败安全
 
-- `pnpm check`、API 验证或 Android 构建任一步失败，公开 `latest.apk` 都不会切换；iOS 状态不参与 Android 发布门禁。
-- API 部署先保留回滚镜像和源码备份，健康检查或真实同步验证失败时自动恢复旧镜像。
-- 下载网关修改前备份 Caddy 配置；新配置先通过 Compose 与 Caddy 校验。
-- 发布后从公网重新读取页面、响应头和 APK，并复核 SHA-256。
-- 自动验收使用域名 SNI 直连 ECS 公网 IP，避免本机代理 DNS 的 `198.18.*` 映射把新域名误判为不可用；权威 DNS 记录仍须单独保持正确。
+- `pnpm check` 或 Android 构建任一步失败，都不会产生可交付的新制品；iOS 状态不参与
+  Android 构建门禁。
+- Android 命令不修改 DNS、Caddy、Vercel 或任何 ECS 进程，因此构建失败不会改变线上状态。
+- 对外传输前从本地元数据复核包名、版本号、正式签名和 SHA-256。

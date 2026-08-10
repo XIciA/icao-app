@@ -1,5 +1,5 @@
-import type { LucideIcon } from 'lucide-react-native';
-import { RefreshCw } from 'lucide-react-native';
+import type { LucideIcon } from '@/components/ui/icons';
+import { RefreshCw } from '@/components/ui/icons';
 import type { ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 

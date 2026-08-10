@@ -1,5 +1,8 @@
 # Web 内容跟随 App 操作手册
 
+> 状态：workstream 历史版本。当前稳定手册已提升到
+> `docs/operations/web-content-sync.md`；下方固定版本、数量和 pointer 只代表当次发布。
+
 ## 单一来源
 
 - App 已确认的提交是题库、热点、音频映射和文本的唯一真实来源。

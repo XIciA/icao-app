@@ -27,8 +27,8 @@
       "taskTitle": "AFR 896-3",
       "audioText": "C: AFR 896, you are the first aircraft in my sector. There is no report here.\nB: Tell the controller you want to descent to 10,700 meters.",
       "audioTextZh": "C： AFR 896，你是我管制区内的第一架航空器。这里没有报告。\nB： 告诉管制员你想下降至 10,700 米。",
-      "referenceText": "request descend to 1700 meters, AFR 896, .",
-      "referenceTextZh": "请求下降至 1700 米，AFR 896。",
+      "referenceText": "request descend to 10,700 meters, AFR 896.",
+      "referenceTextZh": "请求下降至 10,700 米，AFR 896。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-061-afr896-q03.mp3"
     },
     {
@@ -45,8 +45,8 @@
       "taskTitle": "AFR 896-5",
       "audioText": "You are experiencing severe turbulence at 10,700 meters. The pitot static heating feature has malfunctioned. You want to fly back to 11300 meters to avoid turbulence and ice area. This is an urgent call.",
       "audioTextZh": "你在 10,700 米遭遇严重颠簸。空速管静压加温功能发生故障。你想爬升回 11300 米，以避开颠簸和结冰区。这是紧急呼叫。",
-      "referenceText": "PANPAN, PANPAN, PANPAN, Control, AFR 896, severe turbulence, 1007 hudnred meters, pitot static heating feature malfunctioned, request climb to 2300 meters.",
-      "referenceTextZh": "PANPAN，PANPAN，PANPAN，管制，AFR 896，严重颠簸，1007 hudnred 米，空速管静压加温功能发生故障，请求爬升至 2300 米。",
+      "referenceText": "PANPAN, PANPAN, PANPAN, Control, AFR 896, severe turbulence, 10,700 meters, pitot static heating feature malfunctioned, request climb to 11,300 meters.",
+      "referenceTextZh": "PANPAN，PANPAN，PANPAN，管制，AFR 896，严重颠簸，10,700 米，空速管静压加温功能发生故障，请求爬升至 11,300 米。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-061-afr896-q05.mp3"
     },
     {
@@ -115,7 +115,7 @@
     {
       "id": "atc-scenario-0161-card-main-2785",
       "taskTitle": "AFR 896-13",
-      "audioText": "Tell controller that your GPS altitude and groundspeed is not accurate compared to barometric indications, but you can still maintain a stable flight. request descend to leave icing area.",
+      "audioText": "Tell controller that your GPS altitude and groundspeed is not accurate compared to barometric indications, but you can still maintain a stable flight. Request descend to leave icing area.",
       "audioTextZh": "告诉管制员，与气压指示相比，你的 GPS 高度和地速不准确，但仍能保持稳定飞行。请求下降以离开结冰区。",
       "referenceText": "AFR 896, our GPS altitude and groundspeed, not accurate, maintain a stable flight, request descent.",
       "referenceTextZh": "AFR 896，我们的 GPS 高度和地速不准确，能够保持稳定飞行，请求下降。",

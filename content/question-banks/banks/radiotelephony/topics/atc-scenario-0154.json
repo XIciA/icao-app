@@ -18,7 +18,7 @@
       "taskTitle": "CSN 319-2",
       "audioText": "CSN 319, cleared to Guangzhou via flight planned route, departure Runway 36R, follow LKO-01 departure, initially climb to 1,200 meters, cruising level 9800 meters, when airborne, contact 119.7, squawk 2515.",
       "audioTextZh": "CSN 319，许可按飞行计划航路飞往广州，离场使用 Runway 36R，执行 LKO-01 离场，初始爬升至 1,200 米，巡航高度 9800 米，离地后联系 119.7，应答机 2515。",
-      "referenceText": "cleared to Guangzhou via flight planned route, departure Runway 36R, LKO-01 departure, one thousan 200 meters, cruising level niner thousan 800 meters, 119.7, squawk 2515, CSN 319.",
+      "referenceText": "cleared to Guangzhou via flight planned route, departure Runway 36R, LKO-01 departure, 1,200 meters, cruising level 9,800 meters, 119.7, squawk 2515, CSN 319.",
       "referenceTextZh": "许可按飞行计划航路飞往广州，离场使用 Runway 36R，执行 LKO-01 离场，初始爬升至 1200 米，巡航高度 9800 米，119.7，应答机 2515，CSN 319。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-052-csn319-q02.mp3"
     },

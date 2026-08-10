@@ -108,8 +108,8 @@
       "taskTitle": "UAL 182-12",
       "audioText": "C: UAL 182, what's your intention?\nB: Tell ATC you still need to land at the nearest airport because the running engine is not stable.",
       "audioTextZh": "C： UAL 182，你的意图是什么？\nB： 告诉空中交通管制，由于仍在运转的发动机不稳定，你仍需在最近的机场着陆。",
-      "referenceText": "London Control, UAL 182, request land at the nearest airport due the running engine is not stable. request land at the nearest airport due the running engine is not stable, UAL 182",
-      "referenceTextZh": "伦敦管制，UAL 182，由于仍在运转的发动机不稳定，请求在最近的机场着陆。由于仍在运转的发动机不稳定，请求在最近的机场着陆，UAL 182。",
+      "referenceText": "London Control, UAL 182, request landing at the nearest airport because the operating engine is unstable.",
+      "referenceTextZh": "伦敦管制，UAL 182，由于仍在运转的发动机不稳定，请求在最近的机场着陆。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-069-ual182-q12.mp3"
     },
     {
@@ -117,8 +117,8 @@
       "taskTitle": "UAL 182-13",
       "audioText": "C: UAL 182, continue descent to 9000 feet, expect to land at Beatle airport.\nB: Tell controller you are not familiar with Beatle airport. Request airport information.",
       "audioTextZh": "C： UAL 182，继续下降至 9,000 英尺，预计在 Beatle Airport 着陆。\nB： 告诉管制员你不熟悉 Beatle Airport，请求机场资料。",
-      "referenceText": "London Control, UAL 182, continue descent to 9000 feet, we are not familiar with Beatle airport. Request airport information. continue descent to 9000 feet, we are not familiar with Beatle airport, UAL 182.",
-      "referenceTextZh": "伦敦管制，UAL 182，继续下降至 9,000 英尺，我们不熟悉 Beatle Airport，请求机场资料。继续下降至 9,000 英尺，我们不熟悉 Beatle Airport，UAL 182。",
+      "referenceText": "London Control, UAL 182, continue descent to 9000 feet. We are not familiar with Beatle Airport; request airport information.",
+      "referenceTextZh": "伦敦管制，UAL 182，继续下降至 9,000 英尺。我们不熟悉 Beatle Airport，请求机场资料。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-069-ual182-q13.mp3"
     },
     {
@@ -153,8 +153,8 @@
       "taskTitle": "UAL 182-17",
       "audioText": "C: UAL 182, roger your situation. RWY is at your 2 o'clock, 10 miles, report airfield in sight.\nB: Tell ATC you see the airport.",
       "audioTextZh": "C： UAL 182，收到你的情况。跑道在你 2 点钟方向、距离 10 英里，看到机场后报告。\nB： 告诉空中交通管制你已看到机场。",
-      "referenceText": "London Approach, UAL 182, airfield in sight. airfield in sight, UAL 182.",
-      "referenceTextZh": "伦敦进近，UAL 182，已看到机场。已看到机场，UAL 182。",
+      "referenceText": "London Approach, UAL 182, airfield in sight.",
+      "referenceTextZh": "伦敦进近，UAL 182，已看到机场。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-069-ual182-q17.mp3"
     },
     {

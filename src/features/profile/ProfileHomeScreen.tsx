@@ -1,5 +1,5 @@
 import { useFocusEffect, useRouter } from 'expo-router';
-import { Bookmark, ChevronRight, History, MessageCircle, Settings, Star, UserRound } from 'lucide-react-native';
+import { Bookmark, ChevronRight, History, MessageCircle, Settings, Star, UserRound } from '@/components/ui/icons';
 import { useCallback, useMemo, useState } from 'react';
 import { Platform, Pressable, StyleSheet, View } from 'react-native';
 
@@ -41,7 +41,7 @@ export function ProfileHomeScreen() {
   const accountLabel = auth.restoring
     ? '正在确认账号…'
     : auth.session?.user.displayName
-      ? `${Platform.OS === 'web' ? 'Web 体验版' : '内测账号'} · ${auth.session.user.displayName}`
+      ? `${Platform.OS === 'web' ? 'Web 体验版' : '听你五个账号'} · ${auth.session.user.displayName}`
       : '尚未登录';
 
   function open(slug: string) {
@@ -104,7 +104,7 @@ export function ProfileHomeScreen() {
         </RowGroup>
       </View>
       <AppText style={styles.footer} variant="caption">
-        © 2026 飞猪 ICAO · {APP_DISPLAY_VERSION}{Platform.OS === 'web' ? ' · 数据仅存本机' : ''}
+        © 2026 听你五个 · {APP_DISPLAY_VERSION}{Platform.OS === 'web' ? ' · 数据仅存本机' : ''}
       </AppText>
     </AccountScreen>
   );

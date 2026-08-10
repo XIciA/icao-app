@@ -1,105 +1,503 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"road","ipa":"/roʊd/","aviationMeaning":"n. 道路；机场陆侧、跑道周边或服务车辆通行道路","generalMeaning":"n. 道路；公路"},
-    {"word":"roads","ipa":"/roʊdz/","aviationMeaning":"n. 道路（复数）；机场陆侧或周边服务道路","generalMeaning":"n. 道路；公路（复数）"},
-    {"word":"robot","ipa":"/ˈroʊbɑːt/","aviationMeaning":"n. 机器人；机场或维修中使用的自动化装置","generalMeaning":"n. 机器人"},
-    {"word":"robust","ipa":"/roʊˈbʌst/","aviationMeaning":"adj. 稳健的；系统、程序或安全措施在多种条件下可靠的","generalMeaning":"adj. 强健的；稳固的"},
-    {"word":"rochester","ipa":"/ˈrɑːtʃestər/","aviationMeaning":"n. 罗切斯特；机场或地名","generalMeaning":"n. 专有地名"},
-    {"word":"rochester's","ipa":"/ˈrɑːtʃestərz/","aviationMeaning":"n. Rochester 的所有格形式；罗切斯特的","generalMeaning":"n. 专有地名的所有格形式"},
-    {"word":"rocket","ipa":"/ˈrɑːkɪt/","aviationMeaning":"n. 火箭；火箭推进飞行器或发射物","generalMeaning":"n. 火箭；v. 猛增"},
-    {"word":"rocking","ipa":"/ˈrɑːkɪŋ/","aviationMeaning":"adj. 摇摆的；航空器、发动机或座椅反复摆动的","generalMeaning":"adj. 摇摆的；摇滚的"},
-    {"word":"roer","ipa":"/ˈroʊər/","aviationMeaning":"n. 疑似地名或原文缩写；需结合原文","generalMeaning":"n. 疑似专有名称；请结合原文"},
-    {"word":"roger","ipa":"/ˈrɑːdʒər/","aviationMeaning":"interj. 收到；表示已收到通话，但不表示同意或遵照","generalMeaning":"interj. 收到；男子名"},
-    {"word":"role","ipa":"/roʊl/","aviationMeaning":"n. 角色；机组、管制员或地面人员在运行中的职责","generalMeaning":"n. 角色；作用"},
-    {"word":"roles","ipa":"/roʊlz/","aviationMeaning":"n. 角色（复数）；机组、管制或地面人员的职责分工","generalMeaning":"n. 角色；作用（复数）"},
-    {"word":"roll","ipa":"/roʊl/","aviationMeaning":"n. 横滚；航空器绕纵轴的姿态运动","generalMeaning":"n. 卷；滚动；v. 滚动"},
-    {"word":"roll-control","ipa":"/roʊl kənˈtroʊl/","aviationMeaning":"n. 横滚控制；控制航空器绕纵轴滚转的操纵功能","generalMeaning":"n. 横滚控制"},
-    {"word":"roll-off","ipa":"/roʊl ɔːf/","aviationMeaning":"n. 衰减；信号或性能随频率、距离等逐步降低","generalMeaning":"n. 滚落；衰减"},
-    {"word":"rolled","ipa":"/roʊld/","aviationMeaning":"v. 已横滚；航空器已绕纵轴发生滚转","generalMeaning":"v. 已滚动；卷起"},
-    {"word":"rolling","ipa":"/ˈroʊlɪŋ/","aviationMeaning":"v. 正横滚；航空器正绕纵轴滚转；也可指滑跑中","generalMeaning":"v. 正滚动；滚动的"},
-    {"word":"rollout","ipa":"/ˈroʊlaʊt/","aviationMeaning":"n. 着陆滑跑；航空器着陆后沿跑道减速滑行阶段","generalMeaning":"n. 推出；展开"},
-    {"word":"romania","ipa":"/roʊˈmeɪniə/","aviationMeaning":"n. 罗马尼亚；机场、空域或航线所在国","generalMeaning":"n. 罗马尼亚"},
-    {"word":"rome","ipa":"/roʊm/","aviationMeaning":"n. 罗马；机场、空域或航线地名","generalMeaning":"n. 罗马"},
-    {"word":"romeo","ipa":"/ˈroʊmioʊ/","aviationMeaning":"n. 罗密欧；字母 R 的无线电拼写字母","generalMeaning":"n. 罗密欧；男子名"},
-    {"word":"ronald","ipa":"/ˈrɑːnəld/","aviationMeaning":"n. 罗纳德；机场或地名组成部分","generalMeaning":"n. 专有地名"},
-    {"word":"room","ipa":"/ruːm/","aviationMeaning":"n. 空间；客舱、驾驶舱、行李或操作所需的余量","generalMeaning":"n. 房间；空间"},
-    {"word":"rooms","ipa":"/ruːmz/","aviationMeaning":"n. 房间（复数）；机场、酒店或设施内多个房间","generalMeaning":"n. 房间；空间（复数）"},
-    {"word":"root","ipa":"/ruːt/","aviationMeaning":"n. 根本原因；故障或事件的根源","generalMeaning":"n. 根；根源"},
-    {"word":"rope","ipa":"/roʊp/","aviationMeaning":"n. 绳索；地面固定、救援或货物约束用绳","generalMeaning":"n. 绳子"},
-    {"word":"rose","ipa":"/roʊz/","aviationMeaning":"v. 上升；高度、温度、压力或数值已增加","generalMeaning":"v. rise 的过去式；上升"},
-    {"word":"roster","ipa":"/ˈrɑːstər/","aviationMeaning":"n. 排班表；机组、地勤或维护人员的工作安排","generalMeaning":"n. 名册；值班表"},
-    {"word":"rostered","ipa":"/ˈrɑːstərd/","aviationMeaning":"adj. 已排班的；机组或人员已列入值勤安排","generalMeaning":"adj. 已列入名册的"},
-    {"word":"rosters","ipa":"/ˈrɑːstərz/","aviationMeaning":"n. 排班表（复数）；多个机组或人员工作安排","generalMeaning":"n. 名册；值班表（复数）"},
-    {"word":"rotate","ipa":"/ˈroʊteɪt/","aviationMeaning":"v. 抬轮；起飞滑跑中使机头抬起进入离地姿态","generalMeaning":"v. 旋转；轮换"},
-    {"word":"rotated","ipa":"/ˈroʊteɪtɪd/","aviationMeaning":"v. 已抬轮；已使航空器在起飞中进入离地姿态","generalMeaning":"v. 已旋转；轮换"},
-    {"word":"rotates","ipa":"/ˈroʊteɪts/","aviationMeaning":"v. 抬轮；在起飞滑跑中使机头抬起","generalMeaning":"v. 旋转；轮换"},
-    {"word":"rotating","ipa":"/ˈroʊteɪtɪŋ/","aviationMeaning":"v. 正抬轮；起飞滑跑中正在使机头抬起","generalMeaning":"v. 正旋转；轮换"},
-    {"word":"rotation","ipa":"/roʊˈteɪʃən/","aviationMeaning":"n. 抬轮；起飞滑跑达到抬轮速度时的动作","generalMeaning":"n. 旋转；轮换"},
-    {"word":"rotational","ipa":"/roʊˈteɪʃənəl/","aviationMeaning":"adj. 旋转的；与发动机、螺旋桨或部件转动有关的","generalMeaning":"adj. 旋转的；轮换的"},
-    {"word":"rotor","ipa":"/ˈroʊtər/","aviationMeaning":"n. 旋翼；直升机产生升力和推进力的旋转翼面","generalMeaning":"n. 转子；旋翼"},
-    {"word":"rotors","ipa":"/ˈroʊtərz/","aviationMeaning":"n. 旋翼（复数）；直升机或发动机的多个旋转部件","generalMeaning":"n. 转子；旋翼（复数）"},
-    {"word":"rouge","ipa":"/ruːʒ/","aviationMeaning":"n. 鲁日；机场或地名组成部分","generalMeaning":"n. 胭脂；红色"},
-    {"word":"rough","ipa":"/rʌf/","aviationMeaning":"adj. 颠簸的；气流、跑道表面或运行条件不平稳的","generalMeaning":"adj. 粗糙的；艰难的"},
-    {"word":"roughly","ipa":"/ˈrʌfli/","aviationMeaning":"adv. 大约；对时间、距离、高度或数量作近似说明","generalMeaning":"adv. 粗略地；大约"},
-    {"word":"roughness","ipa":"/ˈrʌfnəs/","aviationMeaning":"n. 粗糙度；跑道、道面或材料表面不平整程度","generalMeaning":"n. 粗糙；崎岖"},
-    {"word":"round","ipa":"/raʊnd/","aviationMeaning":"adj. 圆形的；环绕的；也可表示一轮操作","generalMeaning":"adj. 圆的；prep. 围绕"},
-    {"word":"round-trip","ipa":"/ˌraʊnd ˈtrɪp/","aviationMeaning":"n. 往返；从出发地到目的地再返回的航程","generalMeaning":"n. 往返旅行"},
-    {"word":"rounded","ipa":"/ˈraʊndɪd/","aviationMeaning":"adj. 圆形的；数值经四舍五入处理的","generalMeaning":"adj. 圆的；完整的"},
-    {"word":"route","ipa":"/ruːt/","aviationMeaning":"n. 航路；航空器飞往目的地所遵循的计划路径","generalMeaning":"n. 路线；v. 按路线发送"},
-    {"word":"route-specific","ipa":"/ruːt spəˈsɪfɪk/","aviationMeaning":"adj. 特定航路的；仅适用于某一航线或航段的","generalMeaning":"adj. 特定路线的"},
-    {"word":"routes","ipa":"/ruːts/","aviationMeaning":"n. 航路（复数）；多条计划或指定飞行路径","generalMeaning":"n. 路线（复数）；v. 按路线发送"},
-    {"word":"routine","ipa":"/ruːˈtiːn/","aviationMeaning":"adj. 常规的；按日常程序执行的飞行、检查或维护","generalMeaning":"adj. 常规的；n. 例行程序"},
-    {"word":"routinely","ipa":"/ruːˈtiːnli/","aviationMeaning":"adv. 常规地；按日常程序或固定周期执行","generalMeaning":"adv. 通常地；例行地"},
-    {"word":"routing","ipa":"/ˈruːtɪŋ/","aviationMeaning":"n. 航路安排；为航空器指定或规划飞行路径","generalMeaning":"n. 路由；路线安排"},
-    {"word":"row","ipa":"/roʊ/","aviationMeaning":"n. 排；客舱座位、货物或设备的一排","generalMeaning":"n. 一排；行"},
-    {"word":"rows","ipa":"/roʊz/","aviationMeaning":"n. 排（复数）；客舱座位、货物或设备的多排","generalMeaning":"n. 一排；行（复数）"},
-    {"word":"rpm","ipa":"/ˌɑːr piː ˈem/","aviationMeaning":"n. 每分钟转数；发动机、螺旋桨或转子转速单位","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"rtd","ipa":"/ˌɑːr tiː ˈdiː/","aviationMeaning":"n. 航空资料缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"rtf","ipa":"/ˌɑːr tiː ˈef/","aviationMeaning":"n. 无线电电话；航空无线电语音通信相关缩写","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"rto","ipa":"/ˌɑːr tiː ˈoʊ/","aviationMeaning":"n. 中断起飞；在起飞滑跑中停止起飞的缩写","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"rubber","ipa":"/ˈrʌbər/","aviationMeaning":"n. 橡胶；轮胎、密封件或减振部件的材料","generalMeaning":"n. 橡胶；橡皮"},
-    {"word":"rucksack","ipa":"/ˈrʌksæk/","aviationMeaning":"n. 背包；旅客或机组随身携带的行李","generalMeaning":"n. 背包"},
-    {"word":"rudder","ipa":"/ˈrʌdər/","aviationMeaning":"n. 方向舵；控制航空器偏航运动的舵面","generalMeaning":"n. 舵；方向舵"},
-    {"word":"rule","ipa":"/ruːl/","aviationMeaning":"n. 规则；飞行、空管、安全或适航规定","generalMeaning":"n. 规则；v. 统治"},
-    {"word":"ruled","ipa":"/ruːld/","aviationMeaning":"v. 已规定；已按规则判定或限制","generalMeaning":"v. 已统治；规定"},
-    {"word":"rules","ipa":"/ruːlz/","aviationMeaning":"n. 规则（复数）；飞行、空管、安全或适航规定","generalMeaning":"n. 规则（复数）；v. 统治"},
-    {"word":"run","ipa":"/rʌn/","aviationMeaning":"v. 运行；执行发动机、系统、程序或航班","generalMeaning":"v. 跑；运行"},
-    {"word":"run-away","ipa":"/ˈrʌn əˌweɪ/","aviationMeaning":"adj. 失控的；系统、车辆或过程自行加速失去控制的","generalMeaning":"adj. 失控的；逃跑的"},
-    {"word":"run-up","ipa":"/ˈrʌn ʌp/","aviationMeaning":"n. 发动机试车；起飞前提高发动机功率进行检查","generalMeaning":"n. 上升；准备阶段"},
-    {"word":"runaway","ipa":"/ˈrʌnəweɪ/","aviationMeaning":"adj. 失控的；系统、车辆或过程自行加速失控的","generalMeaning":"adj. 失控的；逃跑的"},
-    {"word":"rune","ipa":"/ruːn/","aviationMeaning":"n. 符号；需结合原文","generalMeaning":"n. 古代北欧字母；神秘符号"},
-    {"word":"running","ipa":"/ˈrʌnɪŋ/","aviationMeaning":"adj. 运行中的；发动机、系统或程序正在工作","generalMeaning":"adj. 跑步的；运行中的"},
-    {"word":"runs","ipa":"/rʌnz/","aviationMeaning":"v. 运行；执行发动机、系统、程序或航班","generalMeaning":"v. 跑；运行"},
-    {"word":"runup","ipa":"/ˈrʌnʌp/","aviationMeaning":"n. 发动机试车；起飞前提高发动机功率进行检查","generalMeaning":"n. 上升；准备阶段"},
-    {"word":"runway","ipa":"/ˈrʌnweɪ/","aviationMeaning":"n. 跑道；航空器起飞和着陆使用的地面带状区域","generalMeaning":"n. 跑道；伸展台"},
-    {"word":"runway-condition","ipa":"/ˈrʌnweɪ kənˈdɪʃən/","aviationMeaning":"n. 跑道状况；道面污染、湿滑、积雪或制动性能信息","generalMeaning":"n. 跑道状况"},
-    {"word":"runway-end","ipa":"/ˈrʌnweɪ end/","aviationMeaning":"n. 跑道端；跑道的起点或终点区域","generalMeaning":"n. 跑道端"},
-    {"word":"runway-incursion","ipa":"/ˈrʌnweɪ ɪnˈkɜːrʒən/","aviationMeaning":"n. 跑道侵入；未授权航空器、车辆或人员进入跑道的事件","generalMeaning":"n. 跑道侵入"},
-    {"word":"runway's","ipa":"/ˈrʌnweɪz/","aviationMeaning":"n. runway 的所有格形式；跑道的","generalMeaning":"n. 跑道的所有格形式"},
-    {"word":"runways","ipa":"/ˈrʌnweɪz/","aviationMeaning":"n. 跑道（复数）；机场内多条起飞着陆跑道","generalMeaning":"n. 跑道；伸展台（复数）"},
-    {"word":"rupture","ipa":"/ˈrʌptʃər/","aviationMeaning":"n. 破裂；轮胎、管路、结构或舱体发生裂开","generalMeaning":"n. 破裂；断裂"},
-    {"word":"rural","ipa":"/ˈrʊrəl/","aviationMeaning":"adj. 农村的；机场或飞行区域周边人口稀少的","generalMeaning":"adj. 农村的；乡村的"},
-    {"word":"rush","ipa":"/rʌʃ/","aviationMeaning":"v. 匆忙；在飞行或地面操作中因时间压力过快行动","generalMeaning":"v. 冲；匆忙"},
-    {"word":"rushed","ipa":"/rʌʃt/","aviationMeaning":"adj. 匆忙的；因时间压力而过快完成的","generalMeaning":"adj. 匆忙的"},
-    {"word":"rushing","ipa":"/ˈrʌʃɪŋ/","aviationMeaning":"v. 正匆忙；因时间压力过快行动","generalMeaning":"v. 正冲；匆忙"},
-    {"word":"russia","ipa":"/ˈrʌʃə/","aviationMeaning":"n. 俄罗斯；机场、空域或航线所在国","generalMeaning":"n. 俄罗斯"},
-    {"word":"russia's","ipa":"/ˈrʌʃəz/","aviationMeaning":"n. Russia 的所有格形式；俄罗斯的","generalMeaning":"n. 专有地名的所有格形式"},
-    {"word":"russian","ipa":"/ˈrʌʃən/","aviationMeaning":"adj. 俄罗斯的；机场、空域或航空运行相关","generalMeaning":"adj. 俄罗斯的；n. 俄罗斯人"},
-    {"word":"rust","ipa":"/rʌst/","aviationMeaning":"n. 锈蚀；金属部件氧化造成的腐蚀","generalMeaning":"n. 铁锈；v. 生锈"},
-    {"word":"ruts","ipa":"/rʌts/","aviationMeaning":"n. 车辙；道面因车辆或环境形成的沟槽","generalMeaning":"n. 车辙；老路（复数）"},
-    {"word":"rvr","ipa":"/ˌɑːr viː ˈɑːr/","aviationMeaning":"n. 跑道视程；飞行员在跑道中心线可见标志或灯光的距离","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"rvrs","ipa":"/ˌɑːr viː ˈɑːrz/","aviationMeaning":"n. 跑道视程（复数）；多个跑道端的视程报告","generalMeaning":"n. 缩写复数；请结合原文"},
-    {"word":"rvsm","ipa":"/ˌɑːr viː es ˈem/","aviationMeaning":"n. 缩小垂直间隔；高空采用较小高度层间隔的运行标准","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"rw","ipa":"/ˌɑːr ˈdʌbəljuː/","aviationMeaning":"n. 跑道的常用缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"rwy","ipa":"/ˈrʌnweɪ/","aviationMeaning":"n. 跑道；runway 的常用缩写","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"ryanair","ipa":"/ˌraɪəˈner/","aviationMeaning":"n. 瑞安航空；航空公司名称或呼号相关","generalMeaning":"n. 专有名称"},
-    {"word":"s","ipa":"/es/","aviationMeaning":"n. 字母 S；可能为航图、程序或缩写组成部分","generalMeaning":"n. 英文字母 S"},
-    {"word":"sa","ipa":"/ˌes ˈeɪ/","aviationMeaning":"n. 航空资料缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"sabem","ipa":"/ˈseɪbəm/","aviationMeaning":"n. 航路点或专有名称；需结合原文","generalMeaning":"n. 专有名称；请结合原文"},
-    {"word":"saben","ipa":"/ˈseɪbən/","aviationMeaning":"n. 航路点或专有名称；需结合原文","generalMeaning":"n. 专有名称；请结合原文"},
-    {"word":"sabotage","ipa":"/ˈsæbətɑːʒ/","aviationMeaning":"n. 蓄意破坏；针对航空器、机场或设施的故意破坏行为","generalMeaning":"n. 蓄意破坏；v. 破坏"},
-    {"word":"sacked","ipa":"/sækt/","aviationMeaning":"v. 已解雇；需结合原文","generalMeaning":"v. 已解雇；洗劫"},
-    {"word":"sacramento","ipa":"/ˌsækrəˈmentoʊ/","aviationMeaning":"n. 萨克拉门托；机场或地名","generalMeaning":"n. 萨克拉门托"}
+    {
+      "word": "road",
+      "ipa": "/roʊd/",
+      "aviationMeaning": "n. 道路；机场陆侧、跑道周边或服务车辆通行道路",
+      "generalMeaning": "n. 道路；公路"
+    },
+    {
+      "word": "robot",
+      "ipa": "/ˈroʊbɑːt/",
+      "aviationMeaning": "n. 机器人；机场或维修中使用的自动化装置",
+      "generalMeaning": "n. 机器人"
+    },
+    {
+      "word": "rochester",
+      "ipa": "/ˈrɑːtʃestər/",
+      "aviationMeaning": "n. 罗切斯特；机场或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "rochester's",
+      "ipa": "/ˈrɑːtʃestərz/",
+      "aviationMeaning": "n. Rochester 的所有格形式；罗切斯特的",
+      "generalMeaning": "n. 专有地名的所有格形式"
+    },
+    {
+      "word": "rocket",
+      "ipa": "/ˈrɑːkɪt/",
+      "aviationMeaning": "n. 火箭；火箭推进飞行器或发射物",
+      "generalMeaning": "n. 火箭；v. 猛增"
+    },
+    {
+      "word": "rocking",
+      "ipa": "/ˈrɑːkɪŋ/",
+      "aviationMeaning": "adj. 摇摆的；航空器、发动机或座椅反复摆动的",
+      "generalMeaning": "adj. 摇摆的；摇滚的"
+    },
+    {
+      "word": "roger",
+      "ipa": "/ˈrɑːdʒər/",
+      "aviationMeaning": "interj. 收到；表示已收到通话，但不表示同意或遵照",
+      "generalMeaning": "interj. 收到；男子名"
+    },
+    {
+      "word": "role",
+      "ipa": "/roʊl/",
+      "aviationMeaning": "n. 角色；机组、管制员或地面人员在运行中的职责",
+      "generalMeaning": "n. 角色；作用"
+    },
+    {
+      "word": "roles",
+      "ipa": "/roʊlz/",
+      "aviationMeaning": "n. 角色（复数）；机组、管制或地面人员的职责分工",
+      "generalMeaning": "n. 角色；作用（复数）"
+    },
+    {
+      "word": "roll",
+      "ipa": "/roʊl/",
+      "aviationMeaning": "n. 横滚；航空器绕纵轴的姿态运动",
+      "generalMeaning": "n. 卷；滚动；v. 滚动"
+    },
+    {
+      "word": "rolled",
+      "ipa": "/roʊld/",
+      "aviationMeaning": "v. 已横滚；航空器已绕纵轴发生滚转",
+      "generalMeaning": "v. 已滚动；卷起"
+    },
+    {
+      "word": "rolling",
+      "ipa": "/ˈroʊlɪŋ/",
+      "aviationMeaning": "v. 正横滚；航空器正绕纵轴滚转；也可指滑跑中",
+      "generalMeaning": "v. 正滚动；滚动的"
+    },
+    {
+      "word": "rollout",
+      "ipa": "/ˈroʊlaʊt/",
+      "aviationMeaning": "n. 着陆滑跑；航空器着陆后沿跑道减速滑行阶段",
+      "generalMeaning": "n. 推出；展开"
+    },
+    {
+      "word": "romania",
+      "ipa": "/roʊˈmeɪniə/",
+      "aviationMeaning": "n. 罗马尼亚；机场、空域或航线所在国",
+      "generalMeaning": "n. 罗马尼亚"
+    },
+    {
+      "word": "rome",
+      "ipa": "/roʊm/",
+      "aviationMeaning": "n. 罗马；机场、空域或航线地名",
+      "generalMeaning": "n. 罗马"
+    },
+    {
+      "word": "romeo",
+      "ipa": "/ˈroʊmioʊ/",
+      "aviationMeaning": "n. 罗密欧；字母 R 的无线电拼写字母",
+      "generalMeaning": "n. 罗密欧；男子名"
+    },
+    {
+      "word": "ronald",
+      "ipa": "/ˈrɑːnəld/",
+      "aviationMeaning": "n. 罗纳德；机场或地名组成部分",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "room",
+      "ipa": "/ruːm/",
+      "aviationMeaning": "n. 空间；客舱、驾驶舱、行李或操作所需的余量",
+      "generalMeaning": "n. 房间；空间"
+    },
+    {
+      "word": "rooms",
+      "ipa": "/ruːmz/",
+      "aviationMeaning": "n. 房间（复数）；机场、酒店或设施内多个房间",
+      "generalMeaning": "n. 房间；空间（复数）"
+    },
+    {
+      "word": "root",
+      "ipa": "/ruːt/",
+      "aviationMeaning": "n. 根本原因；故障或事件的根源",
+      "generalMeaning": "n. 根；根源"
+    },
+    {
+      "word": "rope",
+      "ipa": "/roʊp/",
+      "aviationMeaning": "n. 绳索；地面固定、救援或货物约束用绳",
+      "generalMeaning": "n. 绳子"
+    },
+    {
+      "word": "rose",
+      "ipa": "/roʊz/",
+      "aviationMeaning": "v. 上升；高度、温度、压力或数值已增加",
+      "generalMeaning": "v. rise 的过去式；上升"
+    },
+    {
+      "word": "rotate",
+      "ipa": "/ˈroʊteɪt/",
+      "aviationMeaning": "v. 抬轮；起飞滑跑中使机头抬起进入离地姿态",
+      "generalMeaning": "v. 旋转；轮换"
+    },
+    {
+      "word": "rotated",
+      "ipa": "/ˈroʊteɪtɪd/",
+      "aviationMeaning": "v. 已抬轮；已使航空器在起飞中进入离地姿态",
+      "generalMeaning": "v. 已旋转；轮换"
+    },
+    {
+      "word": "rotates",
+      "ipa": "/ˈroʊteɪts/",
+      "aviationMeaning": "v. 抬轮；在起飞滑跑中使机头抬起",
+      "generalMeaning": "v. 旋转；轮换"
+    },
+    {
+      "word": "rotating",
+      "ipa": "/ˈroʊteɪtɪŋ/",
+      "aviationMeaning": "v. 正抬轮；起飞滑跑中正在使机头抬起",
+      "generalMeaning": "v. 正旋转；轮换"
+    },
+    {
+      "word": "rotation",
+      "ipa": "/roʊˈteɪʃən/",
+      "aviationMeaning": "n. 抬轮；起飞滑跑达到抬轮速度时的动作",
+      "generalMeaning": "n. 旋转；轮换"
+    },
+    {
+      "word": "rotational",
+      "ipa": "/roʊˈteɪʃənəl/",
+      "aviationMeaning": "adj. 旋转的；与发动机、螺旋桨或部件转动有关的",
+      "generalMeaning": "adj. 旋转的；轮换的"
+    },
+    {
+      "word": "rouge",
+      "ipa": "/ruːʒ/",
+      "aviationMeaning": "n. 鲁日；机场或地名组成部分",
+      "generalMeaning": "n. 胭脂；红色"
+    },
+    {
+      "word": "rough",
+      "ipa": "/rʌf/",
+      "aviationMeaning": "adj. 颠簸的；气流、跑道表面或运行条件不平稳的",
+      "generalMeaning": "adj. 粗糙的；艰难的"
+    },
+    {
+      "word": "round",
+      "ipa": "/raʊnd/",
+      "aviationMeaning": "adj. 圆形的；环绕的；也可表示一轮操作",
+      "generalMeaning": "adj. 圆的；prep. 围绕"
+    },
+    {
+      "word": "round-trip",
+      "ipa": "/ˌraʊnd ˈtrɪp/",
+      "aviationMeaning": "n. 往返；从出发地到目的地再返回的航程",
+      "generalMeaning": "n. 往返旅行"
+    },
+    {
+      "word": "route",
+      "ipa": "/ruːt/",
+      "aviationMeaning": "n. 航路；航空器飞往目的地所遵循的计划路径",
+      "generalMeaning": "n. 路线；v. 按路线发送"
+    },
+    {
+      "word": "routes",
+      "ipa": "/ruːts/",
+      "aviationMeaning": "n. 航路（复数）；多条计划或指定飞行路径",
+      "generalMeaning": "n. 路线（复数）；v. 按路线发送"
+    },
+    {
+      "word": "routine",
+      "ipa": "/ruːˈtiːn/",
+      "aviationMeaning": "adj. 常规的；按日常程序执行的飞行、检查或维护",
+      "generalMeaning": "adj. 常规的；n. 例行程序"
+    },
+    {
+      "word": "routinely",
+      "ipa": "/ruːˈtiːnli/",
+      "aviationMeaning": "adv. 常规地；按日常程序或固定周期执行",
+      "generalMeaning": "adv. 通常地；例行地"
+    },
+    {
+      "word": "routing",
+      "ipa": "/ˈruːtɪŋ/",
+      "aviationMeaning": "n. 航路安排；为航空器指定或规划飞行路径",
+      "generalMeaning": "n. 路由；路线安排"
+    },
+    {
+      "word": "row",
+      "ipa": "/roʊ/",
+      "aviationMeaning": "n. 排；客舱座位、货物或设备的一排",
+      "generalMeaning": "n. 一排；行"
+    },
+    {
+      "word": "rows",
+      "ipa": "/roʊz/",
+      "aviationMeaning": "n. 排（复数）；客舱座位、货物或设备的多排",
+      "generalMeaning": "n. 一排；行（复数）"
+    },
+    {
+      "word": "rpm",
+      "ipa": "/ˌɑːr piː ˈem/",
+      "aviationMeaning": "n. 每分钟转数；发动机、螺旋桨或转子转速单位",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "rtd",
+      "ipa": "/ˌɑːr tiː ˈdiː/",
+      "aviationMeaning": "n. 航空资料缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "rtf",
+      "ipa": "/ˌɑːr tiː ˈef/",
+      "aviationMeaning": "n. 无线电电话；航空无线电语音通信相关缩写",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "rto",
+      "ipa": "/ˌɑːr tiː ˈoʊ/",
+      "aviationMeaning": "n. 中断起飞；在起飞滑跑中停止起飞的缩写",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "rubber",
+      "ipa": "/ˈrʌbər/",
+      "aviationMeaning": "n. 橡胶；轮胎、密封件或减振部件的材料",
+      "generalMeaning": "n. 橡胶；橡皮"
+    },
+    {
+      "word": "rucksack",
+      "ipa": "/ˈrʌksæk/",
+      "aviationMeaning": "n. 背包；旅客或机组随身携带的行李",
+      "generalMeaning": "n. 背包"
+    },
+    {
+      "word": "rudder",
+      "ipa": "/ˈrʌdər/",
+      "aviationMeaning": "n. 方向舵；控制航空器偏航运动的舵面",
+      "generalMeaning": "n. 舵；方向舵"
+    },
+    {
+      "word": "rule",
+      "ipa": "/ruːl/",
+      "aviationMeaning": "n. 规则；飞行、空管、安全或适航规定",
+      "generalMeaning": "n. 规则；v. 统治"
+    },
+    {
+      "word": "ruled",
+      "ipa": "/ruːld/",
+      "aviationMeaning": "v. 已规定；已按规则判定或限制",
+      "generalMeaning": "v. 已统治；规定"
+    },
+    {
+      "word": "rules",
+      "ipa": "/ruːlz/",
+      "aviationMeaning": "n. 规则（复数）；飞行、空管、安全或适航规定",
+      "generalMeaning": "n. 规则（复数）；v. 统治"
+    },
+    {
+      "word": "run",
+      "ipa": "/rʌn/",
+      "aviationMeaning": "v. 运行；执行发动机、系统、程序或航班",
+      "generalMeaning": "v. 跑；运行"
+    },
+    {
+      "word": "run-away",
+      "ipa": "/ˈrʌn əˌweɪ/",
+      "aviationMeaning": "adj. 失控的；系统、车辆或过程自行加速失去控制的",
+      "generalMeaning": "adj. 失控的；逃跑的"
+    },
+    {
+      "word": "run-up",
+      "ipa": "/ˈrʌn ʌp/",
+      "aviationMeaning": "n. 发动机试车；起飞前提高发动机功率进行检查",
+      "generalMeaning": "n. 上升；准备阶段"
+    },
+    {
+      "word": "runaway",
+      "ipa": "/ˈrʌnəweɪ/",
+      "aviationMeaning": "adj. 失控的；系统、车辆或过程自行加速失控的",
+      "generalMeaning": "adj. 失控的；逃跑的"
+    },
+    {
+      "word": "rune",
+      "ipa": "/ruːn/",
+      "aviationMeaning": "n. 符号；需结合原文",
+      "generalMeaning": "n. 古代北欧字母；神秘符号"
+    },
+    {
+      "word": "running",
+      "ipa": "/ˈrʌnɪŋ/",
+      "aviationMeaning": "adj. 运行中的；发动机、系统或程序正在工作",
+      "generalMeaning": "adj. 跑步的；运行中的"
+    },
+    {
+      "word": "runs",
+      "ipa": "/rʌnz/",
+      "aviationMeaning": "v. 运行；执行发动机、系统、程序或航班",
+      "generalMeaning": "v. 跑；运行"
+    },
+    {
+      "word": "runup",
+      "ipa": "/ˈrʌnʌp/",
+      "aviationMeaning": "n. 发动机试车；起飞前提高发动机功率进行检查",
+      "generalMeaning": "n. 上升；准备阶段"
+    },
+    {
+      "word": "runway",
+      "ipa": "/ˈrʌnweɪ/",
+      "aviationMeaning": "n. 跑道；航空器起飞和着陆使用的地面带状区域",
+      "generalMeaning": "n. 跑道；伸展台"
+    },
+    {
+      "word": "runway-condition",
+      "ipa": "/ˈrʌnweɪ kənˈdɪʃən/",
+      "aviationMeaning": "n. 跑道状况；道面污染、湿滑、积雪或制动性能信息",
+      "generalMeaning": "n. 跑道状况"
+    },
+    {
+      "word": "runway-end",
+      "ipa": "/ˈrʌnweɪ end/",
+      "aviationMeaning": "n. 跑道端；跑道的起点或终点区域",
+      "generalMeaning": "n. 跑道端"
+    },
+    {
+      "word": "runway-incursion",
+      "ipa": "/ˈrʌnweɪ ɪnˈkɜːrʒən/",
+      "aviationMeaning": "n. 跑道侵入；未授权航空器、车辆或人员进入跑道的事件",
+      "generalMeaning": "n. 跑道侵入"
+    },
+    {
+      "word": "runway's",
+      "ipa": "/ˈrʌnweɪz/",
+      "aviationMeaning": "n. runway 的所有格形式；跑道的",
+      "generalMeaning": "n. 跑道的所有格形式"
+    },
+    {
+      "word": "runways",
+      "ipa": "/ˈrʌnweɪz/",
+      "aviationMeaning": "n. 跑道（复数）；机场内多条起飞着陆跑道",
+      "generalMeaning": "n. 跑道；伸展台（复数）"
+    },
+    {
+      "word": "rupture",
+      "ipa": "/ˈrʌptʃər/",
+      "aviationMeaning": "n. 破裂；轮胎、管路、结构或舱体发生裂开",
+      "generalMeaning": "n. 破裂；断裂"
+    },
+    {
+      "word": "rush",
+      "ipa": "/rʌʃ/",
+      "aviationMeaning": "v. 匆忙；在飞行或地面操作中因时间压力过快行动",
+      "generalMeaning": "v. 冲；匆忙"
+    },
+    {
+      "word": "rushed",
+      "ipa": "/rʌʃt/",
+      "aviationMeaning": "adj. 匆忙的；因时间压力而过快完成的",
+      "generalMeaning": "adj. 匆忙的"
+    },
+    {
+      "word": "rushing",
+      "ipa": "/ˈrʌʃɪŋ/",
+      "aviationMeaning": "v. 正匆忙；因时间压力过快行动",
+      "generalMeaning": "v. 正冲；匆忙"
+    },
+    {
+      "word": "russia",
+      "ipa": "/ˈrʌʃə/",
+      "aviationMeaning": "n. 俄罗斯；机场、空域或航线所在国",
+      "generalMeaning": "n. 俄罗斯"
+    },
+    {
+      "word": "russian",
+      "ipa": "/ˈrʌʃən/",
+      "aviationMeaning": "adj. 俄罗斯的；机场、空域或航空运行相关",
+      "generalMeaning": "adj. 俄罗斯的；n. 俄罗斯人"
+    },
+    {
+      "word": "ruts",
+      "ipa": "/rʌts/",
+      "aviationMeaning": "n. 车辙；道面因车辆或环境形成的沟槽",
+      "generalMeaning": "n. 车辙；老路（复数）"
+    },
+    {
+      "word": "rvr",
+      "ipa": "/ˌɑːr viː ˈɑːr/",
+      "aviationMeaning": "n. 跑道视程；飞行员在跑道中心线可见标志或灯光的距离",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "rvrs",
+      "ipa": "/ˌɑːr viː ˈɑːrz/",
+      "aviationMeaning": "n. 跑道视程（复数）；多个跑道端的视程报告",
+      "generalMeaning": "n. 缩写复数；请结合原文"
+    },
+    {
+      "word": "rvsm",
+      "ipa": "/ˌɑːr viː es ˈem/",
+      "aviationMeaning": "n. 缩小垂直间隔；高空采用较小高度层间隔的运行标准",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "rw",
+      "ipa": "/ˌɑːr ˈdʌbəljuː/",
+      "aviationMeaning": "n. 跑道的常用缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "rwy",
+      "ipa": "/ˈrʌnweɪ/",
+      "aviationMeaning": "n. 跑道；runway 的常用缩写",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "ryanair",
+      "ipa": "/ˌraɪəˈner/",
+      "aviationMeaning": "n. 瑞安航空；航空公司名称或呼号相关",
+      "generalMeaning": "n. 专有名称"
+    },
+    {
+      "word": "s",
+      "ipa": "/es/",
+      "aviationMeaning": "n. 字母 S；可能为航图、程序或缩写组成部分",
+      "generalMeaning": "n. 英文字母 S"
+    },
+    {
+      "word": "sa",
+      "ipa": "/ˌes ˈeɪ/",
+      "aviationMeaning": "n. 航空资料缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "sabem",
+      "ipa": "/ˈseɪbəm/",
+      "aviationMeaning": "n. 航路点或专有名称；需结合原文",
+      "generalMeaning": "n. 专有名称；请结合原文"
+    },
+    {
+      "word": "saben",
+      "ipa": "/ˈseɪbən/",
+      "aviationMeaning": "n. 航路点或专有名称；需结合原文",
+      "generalMeaning": "n. 专有名称；请结合原文"
+    },
+    {
+      "word": "sabotage",
+      "ipa": "/ˈsæbətɑːʒ/",
+      "aviationMeaning": "n. 蓄意破坏；针对航空器、机场或设施的故意破坏行为",
+      "generalMeaning": "n. 蓄意破坏；v. 破坏"
+    },
+    {
+      "word": "sacked",
+      "ipa": "/sækt/",
+      "aviationMeaning": "v. 已解雇；需结合原文",
+      "generalMeaning": "v. 已解雇；洗劫"
+    },
+    {
+      "word": "sacramento",
+      "ipa": "/ˌsækrəˈmentoʊ/",
+      "aviationMeaning": "n. 萨克拉门托；机场或地名",
+      "generalMeaning": "n. 萨克拉门托"
+    }
   ]
 }

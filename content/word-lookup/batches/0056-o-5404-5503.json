@@ -1,105 +1,497 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"orly","ipa":"/ˈɔːrli/","aviationMeaning":"n. 奥利；巴黎奥利机场或地名","generalMeaning":"n. 专有地名"},
-    {"word":"orographic","ipa":"/ˌɔːrəˈɡræfɪk/","aviationMeaning":"adj. 地形的；地形抬升形成的云、降水或湍流相关","generalMeaning":"adj. 地形的；地貌的"},
-    {"word":"oscar","ipa":"/ˈɑːskər/","aviationMeaning":"n. 奥斯卡；字母 O 的无线电拼写字母","generalMeaning":"n. 奥斯卡；男子名"},
-    {"word":"oscillates","ipa":"/ˈɑːsəleɪts/","aviationMeaning":"v. 振荡；指针、读数或系统在两个值间摆动","generalMeaning":"v. 振荡；摆动"},
-    {"word":"oscillating","ipa":"/ˈɑːsəleɪtɪŋ/","aviationMeaning":"adj. 振荡的；仪表读数、信号或系统反复摆动的","generalMeaning":"adj. 振荡的；摆动的"},
-    {"word":"oscillation","ipa":"/ˌɑːsəˈleɪʃən/","aviationMeaning":"n. 振荡；仪表、信号或飞行控制系统的周期性摆动","generalMeaning":"n. 振荡；摆动"},
-    {"word":"other","ipa":"/ˈʌðər/","aviationMeaning":"adj. 其他的；另一架航空器、跑道或程序","generalMeaning":"adj. 其他的；另外的"},
-    {"word":"other's","ipa":"/ˈʌðərz/","aviationMeaning":"pron. other 的所有格形式；其他单位或人员的","generalMeaning":"pron. 其他人的所有格形式"},
-    {"word":"other’s","ipa":"/ˈʌðərz/","aviationMeaning":"pron. other 的所有格形式；其他单位或人员的","generalMeaning":"pron. 其他人的所有格形式"},
-    {"word":"others","ipa":"/ˈʌðərz/","aviationMeaning":"pron. 其他人；其他航空器、单位或项目","generalMeaning":"pron. 其他人；其他事物"},
-    {"word":"otherwise","ipa":"/ˈʌðərwaɪz/","aviationMeaning":"adv. 否则；不按要求执行时的替代后果","generalMeaning":"adv. 否则；另外"},
-    {"word":"otopeni","ipa":"/ˌoʊtoʊˈpeɪni/","aviationMeaning":"n. 奥托佩尼；机场或地名","generalMeaning":"n. 专有地名"},
-    {"word":"ottawa","ipa":"/ˈɑːtəwə/","aviationMeaning":"n. 渥太华；机场或地名","generalMeaning":"n. 渥太华"},
-    {"word":"our","ipa":"/ˈaʊər/","aviationMeaning":"pron. 我们的；本机组、本公司或本单位的","generalMeaning":"pron. 我们的"},
-    {"word":"ours","ipa":"/ˈaʊərz/","aviationMeaning":"pron. 我们的；属于本机组、本公司或本单位的","generalMeaning":"pron. 我们的"},
-    {"word":"out","ipa":"/aʊt/","aviationMeaning":"adv. 出；失效；如灯光、系统或发动机熄灭","generalMeaning":"adv. 外出；adj. 熄灭的"},
-    {"word":"outage","ipa":"/ˈaʊtɪdʒ/","aviationMeaning":"n. 停运；通信、导航、灯光或系统不可用的时段","generalMeaning":"n. 停电；中断"},
-    {"word":"outboard","ipa":"/ˈaʊtbɔːrd/","aviationMeaning":"adj. 外侧的；靠近机翼翼尖或发动机外侧的","generalMeaning":"adj. 外侧的；舷外的"},
-    {"word":"outbound","ipa":"/ˈaʊtbaʊnd/","aviationMeaning":"adj. 出港的；离开机场或导航台的航段","generalMeaning":"adj. 向外的；离境的"},
-    {"word":"outcome","ipa":"/ˈaʊtkʌm/","aviationMeaning":"n. 结果；飞行处置、调查或训练的结果","generalMeaning":"n. 结果；结局"},
-    {"word":"outcomes","ipa":"/ˈaʊtkʌmz/","aviationMeaning":"n. 结果（复数）；不同处置或训练的结果","generalMeaning":"n. 结果（复数）"},
-    {"word":"outdated","ipa":"/ˌaʊtˈdeɪtɪd/","aviationMeaning":"adj. 过时的；资料、程序或设备已不适用的","generalMeaning":"adj. 过时的；陈旧的"},
-    {"word":"outdoor","ipa":"/ˈaʊtdɔːr/","aviationMeaning":"adj. 户外的；露天机场作业或设施相关","generalMeaning":"adj. 户外的；露天的"},
-    {"word":"outer","ipa":"/ˈaʊtər/","aviationMeaning":"adj. 外侧的；外部结构、外圈或外侧发动机","generalMeaning":"adj. 外面的；外部的"},
-    {"word":"outflow","ipa":"/ˈaʊtfloʊ/","aviationMeaning":"n. 外流；客舱空气经外流活门排出的气流","generalMeaning":"n. 外流；流出"},
-    {"word":"outflow-valve","ipa":"/ˈaʊtfloʊ vælv/","aviationMeaning":"n. 外流活门；用于调节客舱排气和压力的阀门","generalMeaning":"n. 外流阀"},
-    {"word":"outlook","ipa":"/ˈaʊtlʊk/","aviationMeaning":"n. 展望；天气、运行或业务的预期","generalMeaning":"n. 展望；观点"},
-    {"word":"outpost","ipa":"/ˈaʊtpoʊst/","aviationMeaning":"n. 前哨；偏远机场、站点或支援点","generalMeaning":"n. 前哨；边远据点"},
-    {"word":"output","ipa":"/ˈaʊtpʊt/","aviationMeaning":"n. 输出；发动机、系统或传感器产生的信号或功率","generalMeaning":"n. 输出；产量"},
-    {"word":"outputs","ipa":"/ˈaʊtpʊts/","aviationMeaning":"n. 输出（复数）；系统、传感器或设备的输出结果","generalMeaning":"n. 输出（复数）"},
-    {"word":"outrageous","ipa":"/aʊtˈreɪdʒəs/","aviationMeaning":"adj. 极端的；描述不合理或不可接受的情况","generalMeaning":"adj. 骇人的；过分的"},
-    {"word":"outs","ipa":"/aʊts/","aviationMeaning":"n. 退出或外部状态（复数）；需结合原文","generalMeaning":"n. 退出；外部状态（复数）"},
-    {"word":"outside","ipa":"/ˌaʊtˈsaɪd/","aviationMeaning":"prep. 在……外；如跑道、空域或限制范围之外","generalMeaning":"prep. 在……外；adv. 在外面"},
-    {"word":"outstanding","ipa":"/aʊtˈstændɪŋ/","aviationMeaning":"adj. 未完成的；尚待处理的缺陷、项目或许可","generalMeaning":"adj. 杰出的；未解决的"},
-    {"word":"outward","ipa":"/ˈaʊtwərd/","aviationMeaning":"adj. 向外的；离开中心线、机场或导航台的方向","generalMeaning":"adj. 向外的；外表的"},
-    {"word":"ovation","ipa":"/oʊˈveɪʃən/","aviationMeaning":"n. 欢呼；需结合原文","generalMeaning":"n. 欢呼；喝彩"},
-    {"word":"oven","ipa":"/ˈʌvən/","aviationMeaning":"n. 烤箱；机上餐食加热设备","generalMeaning":"n. 烤箱"},
-    {"word":"over","ipa":"/ˈoʊvər/","aviationMeaning":"prep. 在……上方；结束；无线电通话中表示请答复","generalMeaning":"prep. 在……上方；adv. 结束"},
-    {"word":"over-wing","ipa":"/ˈoʊvər wɪŋ/","aviationMeaning":"adj. 机翼上方的；翼上出口或翼上区域","generalMeaning":"adj. 在机翼上方的"},
-    {"word":"overall","ipa":"/ˌoʊvərˈɔːl/","aviationMeaning":"adj. 总体的；飞行、检查或运行的整体情况","generalMeaning":"adj. 总体的；全面的"},
-    {"word":"overcast","ipa":"/ˈoʊvərkæst/","aviationMeaning":"adj. 阴天的；天空被云层完全遮蔽的","generalMeaning":"adj. 阴天的；被覆盖的"},
-    {"word":"overcome","ipa":"/ˌoʊvərˈkʌm/","aviationMeaning":"v. 克服；排除飞行中的困难、故障或不利条件","generalMeaning":"v. 克服；战胜"},
-    {"word":"overdose","ipa":"/ˈoʊvərdoʊs/","aviationMeaning":"n. 过量用药；飞行员健康与适航风险相关","generalMeaning":"n. 过量用药"},
-    {"word":"overfly","ipa":"/ˌoʊvərˈflaɪ/","aviationMeaning":"v. 飞越；从某地点、空域或设施上空通过","generalMeaning":"v. 飞越"},
-    {"word":"overflying","ipa":"/ˌoʊvərˈflaɪɪŋ/","aviationMeaning":"v. 正飞越；从地点、空域或设施上空通过","generalMeaning":"v. 正飞越"},
-    {"word":"overhead","ipa":"/ˈoʊvərhed/","aviationMeaning":"adv. 在头顶上方；如航空器、灯光或顶板位置","generalMeaning":"adv. 在头顶上方；adj. 架空的"},
-    {"word":"overheat","ipa":"/ˌoʊvərˈhiːt/","aviationMeaning":"v. 过热；发动机、刹车、电气或设备温度过高","generalMeaning":"v. 使过热；过热"},
-    {"word":"overheated","ipa":"/ˌoʊvərˈhiːtɪd/","aviationMeaning":"adj. 过热的；发动机、刹车或设备温度过高","generalMeaning":"adj. 过热的"},
-    {"word":"overheating","ipa":"/ˌoʊvərˈhiːtɪŋ/","aviationMeaning":"n. 过热；发动机、刹车、电气或设备温度异常升高","generalMeaning":"n. 过热"},
-    {"word":"overheats","ipa":"/ˌoʊvərˈhiːts/","aviationMeaning":"v. 过热；发动机、刹车或设备温度变得过高","generalMeaning":"v. 过热"},
-    {"word":"overlap","ipa":"/ˌoʊvərˈlæp/","aviationMeaning":"n. 重叠；程序、空域、班次或时间段相互覆盖","generalMeaning":"n. 重叠；v. 重叠"},
-    {"word":"overlays","ipa":"/ˌoʊvərˈleɪz/","aviationMeaning":"v. 覆盖；在地图、显示器或资料上叠加信息","generalMeaning":"v. 覆盖；叠加"},
-    {"word":"overload","ipa":"/ˌoʊvərˈloʊd/","aviationMeaning":"n. 超载；系统、电路或航空器承受超过限制的负荷","generalMeaning":"n. 超载；v. 使超载"},
-    {"word":"overloading","ipa":"/ˌoʊvərˈloʊdɪŋ/","aviationMeaning":"n. 超载；系统、电路或航空器负荷超过限制","generalMeaning":"n. 超载；过载"},
-    {"word":"overlooked","ipa":"/ˌoʊvərˈlʊkt/","aviationMeaning":"adj. 被忽略的；检查、通报或程序中遗漏的","generalMeaning":"adj. 被忽略的；被遗漏的"},
-    {"word":"overnight","ipa":"/ˌoʊvərˈnaɪt/","aviationMeaning":"adv. 过夜；航空器、机组或维修工作在夜间停留","generalMeaning":"adv. 过夜；一夜之间"},
-    {"word":"overran","ipa":"/ˌoʊvərˈræn/","aviationMeaning":"v. 冲出；航空器在跑道末端外继续滑行","generalMeaning":"v. 超过；侵占"},
-    {"word":"overreliance","ipa":"/ˌoʊvər rɪˈlaɪəns/","aviationMeaning":"n. 过度依赖；对自动化、设备或单一信息源的过分依赖","generalMeaning":"n. 过度依赖"},
-    {"word":"override","ipa":"/ˌoʊvərˈraɪd/","aviationMeaning":"v. 覆盖；人工越过自动系统或保护逻辑","generalMeaning":"v. 推翻；优先于"},
-    {"word":"overrun","ipa":"/ˈoʊvərˌrʌn/","aviationMeaning":"n. 冲出跑道；航空器超过可用跑道末端的事件","generalMeaning":"n. 超限；侵占"},
-    {"word":"oversee","ipa":"/ˌoʊvərˈsiː/","aviationMeaning":"v. 监督；监管飞行运行、维修或培训","generalMeaning":"v. 监督；管理"},
-    {"word":"overshoot","ipa":"/ˌoʊvərˈʃuːt/","aviationMeaning":"v. 冲过；超过目标高度、航向或跑道接地点","generalMeaning":"v. 超过；越过"},
-    {"word":"overshooting","ipa":"/ˌoʊvərˈʃuːtɪŋ/","aviationMeaning":"v. 正冲过；超过目标高度、航向或跑道接地点","generalMeaning":"v. 正超过；越过"},
-    {"word":"overshot","ipa":"/ˌoʊvərˈʃɑːt/","aviationMeaning":"v. 已冲过；已超过目标高度、航向或跑道接地点","generalMeaning":"v. 已超过；越过"},
-    {"word":"oversight","ipa":"/ˈoʊvərsaɪt/","aviationMeaning":"n. 监督；或疏忽；运行管理与安全检查相关","generalMeaning":"n. 监督；疏忽"},
-    {"word":"oversized","ipa":"/ˈoʊvərsaɪzd/","aviationMeaning":"adj. 超大尺寸的；超过正常装载或运输尺寸限制的","generalMeaning":"adj. 过大的"},
-    {"word":"overspeed","ipa":"/ˈoʊvərspiːd/","aviationMeaning":"n. 超速；航空器超过规定速度限制的状态","generalMeaning":"n. 超速"},
-    {"word":"overtake","ipa":"/ˌoʊvərˈteɪk/","aviationMeaning":"v. 超越；追上并超过另一架航空器、车辆或目标","generalMeaning":"v. 超过；赶上"},
-    {"word":"overtaking","ipa":"/ˌoʊvərˈteɪkɪŋ/","aviationMeaning":"v. 正超越；追上并超过另一架航空器、车辆或目标","generalMeaning":"v. 正超过；赶上"},
-    {"word":"overtime","ipa":"/ˈoʊvərtaɪm/","aviationMeaning":"n. 加班；机组、维修或地面人员的额外工作时间","generalMeaning":"n. 加班；加班时间"},
-    {"word":"overwater","ipa":"/ˌoʊvərˈwɔːtər/","aviationMeaning":"adj. 越水的；在水面上空飞行的","generalMeaning":"adj. 在水面上方的"},
-    {"word":"overweight","ipa":"/ˌoʊvərˈweɪt/","aviationMeaning":"adj. 超重的；航空器重量超过正常限制或计划重量的","generalMeaning":"adj. 超重的"},
-    {"word":"overweight-landing","ipa":"/ˌoʊvərˈweɪt ˈlændɪŋ/","aviationMeaning":"n. 超重着陆；重量超过最大着陆重量时的着陆","generalMeaning":"n. 超重着陆"},
-    {"word":"overwhelm","ipa":"/ˌoʊvərˈwelm/","aviationMeaning":"v. 使难以应对；信息、告警或工作负荷超过处理能力","generalMeaning":"v. 压倒；使不知所措"},
-    {"word":"overwhelmed","ipa":"/ˌoʊvərˈwelmd/","aviationMeaning":"adj. 难以应对的；被告警、工作负荷或情况压倒的","generalMeaning":"adj. 被压倒的；不知所措的"},
-    {"word":"overwhelming","ipa":"/ˌoʊvərˈwelmɪŋ/","aviationMeaning":"adj. 压倒性的；告警、信息或证据数量极大的","generalMeaning":"adj. 压倒性的；难以抗拒的"},
-    {"word":"overwing","ipa":"/ˈoʊvərwɪŋ/","aviationMeaning":"adj. 机翼上方的；翼上出口或翼上区域","generalMeaning":"adj. 在机翼上方的"},
-    {"word":"overwork","ipa":"/ˌoʊvərˈwɜːrk/","aviationMeaning":"v. 过度工作；机组或人员工作时间超过合理限度","generalMeaning":"v. 使过度劳累；n. 过度工作"},
-    {"word":"overworked","ipa":"/ˌoʊvərˈwɜːrkt/","aviationMeaning":"adj. 过度劳累的；机组或人员因工作负荷过大而疲劳的","generalMeaning":"adj. 过度劳累的"},
-    {"word":"own","ipa":"/oʊn/","aviationMeaning":"adj. 自己的；本单位、本机组或本航空器的","generalMeaning":"adj. 自己的；v. 拥有"},
-    {"word":"owner","ipa":"/ˈoʊnər/","aviationMeaning":"n. 所有人；航空器、设备或资料的所有者","generalMeaning":"n. 所有人；物主"},
-    {"word":"owning","ipa":"/ˈoʊnɪŋ/","aviationMeaning":"v. 拥有；持有航空器、设备或产权","generalMeaning":"v. 拥有；持有"},
-    {"word":"oxygen","ipa":"/ˈɑːksɪdʒən/","aviationMeaning":"n. 氧气；航空器应急供氧或呼吸系统用气体","generalMeaning":"n. 氧气"},
-    {"word":"oxygen-mask","ipa":"/ˈɑːksɪdʒən mæsk/","aviationMeaning":"n. 氧气面罩；失压或烟雾时供氧使用的面罩","generalMeaning":"n. 氧气面罩"},
-    {"word":"p","ipa":"/piː/","aviationMeaning":"n. 字母 P；可能为航图、程序或缩写组成部分","generalMeaning":"n. 英文字母 P"},
-    {"word":"pa","ipa":"/piː eɪ/","aviationMeaning":"n. 机上广播；公共广播系统","generalMeaning":"n. 公共广播系统；助理"},
-    {"word":"pace","ipa":"/peɪs/","aviationMeaning":"n. 节奏；操作、训练或工作推进的速度","generalMeaning":"n. 步伐；速度"},
-    {"word":"pacific","ipa":"/pəˈsɪfɪk/","aviationMeaning":"n. 太平洋；太平洋空域或航线区域","generalMeaning":"n. 太平洋；adj. 和平的"},
-    {"word":"pack","ipa":"/pæk/","aviationMeaning":"n. 空调组件；航空器环境控制系统的空气循环设备","generalMeaning":"n. 包；v. 打包"},
-    {"word":"package","ipa":"/ˈpækɪdʒ/","aviationMeaning":"n. 组件；一组设备、文件或服务的组合","generalMeaning":"n. 包裹；套装"},
-    {"word":"packaging","ipa":"/ˈpækɪdʒɪŋ/","aviationMeaning":"n. 包装；货物、设备或备件的包装处理","generalMeaning":"n. 包装；包装材料"},
-    {"word":"packs","ipa":"/pæks/","aviationMeaning":"n. 空调组件（复数）；环境控制系统的多个组件","generalMeaning":"n. 包（复数）；v. 打包"},
-    {"word":"pad","ipa":"/pæd/","aviationMeaning":"n. 停机坪；直升机或特定航空器起降区域","generalMeaning":"n. 垫；便笺本"},
-    {"word":"pads","ipa":"/pædz/","aviationMeaning":"n. 停机坪或垫（复数）；多个起降区域或缓冲垫","generalMeaning":"n. 垫（复数）"},
-    {"word":"page","ipa":"/peɪdʒ/","aviationMeaning":"n. 页面；电子飞行包、手册或显示器的一页","generalMeaning":"n. 页；页面"},
-    {"word":"pages","ipa":"/ˈpeɪdʒɪz/","aviationMeaning":"n. 页面（复数）；手册、显示器或电子资料的多页","generalMeaning":"n. 页（复数）"},
-    {"word":"paid","ipa":"/peɪd/","aviationMeaning":"v. 已支付；已付费用、赔偿或服务款项","generalMeaning":"v. 已支付；adj. 有报酬的"},
-    {"word":"pain","ipa":"/peɪn/","aviationMeaning":"n. 疼痛；机组或乘客健康状况与适航风险相关","generalMeaning":"n. 疼痛；痛苦"},
-    {"word":"pains","ipa":"/peɪnz/","aviationMeaning":"n. 疼痛（复数）；身体不适或健康症状","generalMeaning":"n. 疼痛（复数）；辛苦"},
-    {"word":"painted","ipa":"/ˈpeɪntɪd/","aviationMeaning":"adj. 已涂漆的；机体、标线或部件已喷涂的","generalMeaning":"adj. 已画的；已涂漆的"}
+    {
+      "word": "orly",
+      "ipa": "/ˈɔːrli/",
+      "aviationMeaning": "n. 奥利；巴黎奥利机场或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "oscar",
+      "ipa": "/ˈɑːskər/",
+      "aviationMeaning": "n. 奥斯卡；字母 O 的无线电拼写字母",
+      "generalMeaning": "n. 奥斯卡；男子名"
+    },
+    {
+      "word": "oscillates",
+      "ipa": "/ˈɑːsəleɪts/",
+      "aviationMeaning": "v. 振荡；指针、读数或系统在两个值间摆动",
+      "generalMeaning": "v. 振荡；摆动"
+    },
+    {
+      "word": "oscillating",
+      "ipa": "/ˈɑːsəleɪtɪŋ/",
+      "aviationMeaning": "adj. 振荡的；仪表读数、信号或系统反复摆动的",
+      "generalMeaning": "adj. 振荡的；摆动的"
+    },
+    {
+      "word": "other",
+      "ipa": "/ˈʌðər/",
+      "aviationMeaning": "adj. 其他的；另一架航空器、跑道或程序",
+      "generalMeaning": "adj. 其他的；另外的"
+    },
+    {
+      "word": "other's",
+      "ipa": "/ˈʌðərz/",
+      "aviationMeaning": "pron. other 的所有格形式；其他单位或人员的",
+      "generalMeaning": "pron. 其他人的所有格形式"
+    },
+    {
+      "word": "other’s",
+      "ipa": "/ˈʌðərz/",
+      "aviationMeaning": "pron. other 的所有格形式；其他单位或人员的",
+      "generalMeaning": "pron. 其他人的所有格形式"
+    },
+    {
+      "word": "others",
+      "ipa": "/ˈʌðərz/",
+      "aviationMeaning": "pron. 其他人；其他航空器、单位或项目",
+      "generalMeaning": "pron. 其他人；其他事物"
+    },
+    {
+      "word": "otherwise",
+      "ipa": "/ˈʌðərwaɪz/",
+      "aviationMeaning": "adv. 否则；不按要求执行时的替代后果",
+      "generalMeaning": "adv. 否则；另外"
+    },
+    {
+      "word": "otopeni",
+      "ipa": "/ˌoʊtoʊˈpeɪni/",
+      "aviationMeaning": "n. 奥托佩尼；机场或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "ottawa",
+      "ipa": "/ˈɑːtəwə/",
+      "aviationMeaning": "n. 渥太华；机场或地名",
+      "generalMeaning": "n. 渥太华"
+    },
+    {
+      "word": "our",
+      "ipa": "/ˈaʊər/",
+      "aviationMeaning": "pron. 我们的；本机组、本公司或本单位的",
+      "generalMeaning": "pron. 我们的"
+    },
+    {
+      "word": "ours",
+      "ipa": "/ˈaʊərz/",
+      "aviationMeaning": "pron. 我们的；属于本机组、本公司或本单位的",
+      "generalMeaning": "pron. 我们的"
+    },
+    {
+      "word": "out",
+      "ipa": "/aʊt/",
+      "aviationMeaning": "adv. 出；失效；如灯光、系统或发动机熄灭",
+      "generalMeaning": "adv. 外出；adj. 熄灭的"
+    },
+    {
+      "word": "outboard",
+      "ipa": "/ˈaʊtbɔːrd/",
+      "aviationMeaning": "adj. 外侧的；靠近机翼翼尖或发动机外侧的",
+      "generalMeaning": "adj. 外侧的；舷外的"
+    },
+    {
+      "word": "outbound",
+      "ipa": "/ˈaʊtbaʊnd/",
+      "aviationMeaning": "adj. 出港的；离开机场或导航台的航段",
+      "generalMeaning": "adj. 向外的；离境的"
+    },
+    {
+      "word": "outcomes",
+      "ipa": "/ˈaʊtkʌmz/",
+      "aviationMeaning": "n. 结果（复数）；不同处置或训练的结果",
+      "generalMeaning": "n. 结果（复数）"
+    },
+    {
+      "word": "outdoor",
+      "ipa": "/ˈaʊtdɔːr/",
+      "aviationMeaning": "adj. 户外的；露天机场作业或设施相关",
+      "generalMeaning": "adj. 户外的；露天的"
+    },
+    {
+      "word": "outer",
+      "ipa": "/ˈaʊtər/",
+      "aviationMeaning": "adj. 外侧的；外部结构、外圈或外侧发动机",
+      "generalMeaning": "adj. 外面的；外部的"
+    },
+    {
+      "word": "outflow",
+      "ipa": "/ˈaʊtfloʊ/",
+      "aviationMeaning": "n. 外流；客舱空气经外流活门排出的气流",
+      "generalMeaning": "n. 外流；流出"
+    },
+    {
+      "word": "outflow-valve",
+      "ipa": "/ˈaʊtfloʊ vælv/",
+      "aviationMeaning": "n. 外流活门；用于调节客舱排气和压力的阀门",
+      "generalMeaning": "n. 外流阀"
+    },
+    {
+      "word": "outpost",
+      "ipa": "/ˈaʊtpoʊst/",
+      "aviationMeaning": "n. 前哨；偏远机场、站点或支援点",
+      "generalMeaning": "n. 前哨；边远据点"
+    },
+    {
+      "word": "output",
+      "ipa": "/ˈaʊtpʊt/",
+      "aviationMeaning": "n. 输出；发动机、系统或传感器产生的信号或功率",
+      "generalMeaning": "n. 输出；产量"
+    },
+    {
+      "word": "outputs",
+      "ipa": "/ˈaʊtpʊts/",
+      "aviationMeaning": "n. 输出（复数）；系统、传感器或设备的输出结果",
+      "generalMeaning": "n. 输出（复数）"
+    },
+    {
+      "word": "outrageous",
+      "ipa": "/aʊtˈreɪdʒəs/",
+      "aviationMeaning": "adj. 极端的；描述不合理或不可接受的情况",
+      "generalMeaning": "adj. 骇人的；过分的"
+    },
+    {
+      "word": "outs",
+      "ipa": "/aʊts/",
+      "aviationMeaning": "n. 退出或外部状态（复数）；需结合原文",
+      "generalMeaning": "n. 退出；外部状态（复数）"
+    },
+    {
+      "word": "outside",
+      "ipa": "/ˌaʊtˈsaɪd/",
+      "aviationMeaning": "prep. 在……外；如跑道、空域或限制范围之外",
+      "generalMeaning": "prep. 在……外；adv. 在外面"
+    },
+    {
+      "word": "outstanding",
+      "ipa": "/aʊtˈstændɪŋ/",
+      "aviationMeaning": "adj. 未完成的；尚待处理的缺陷、项目或许可",
+      "generalMeaning": "adj. 杰出的；未解决的"
+    },
+    {
+      "word": "outward",
+      "ipa": "/ˈaʊtwərd/",
+      "aviationMeaning": "adj. 向外的；离开中心线、机场或导航台的方向",
+      "generalMeaning": "adj. 向外的；外表的"
+    },
+    {
+      "word": "ovation",
+      "ipa": "/oʊˈveɪʃən/",
+      "aviationMeaning": "n. 欢呼；需结合原文",
+      "generalMeaning": "n. 欢呼；喝彩"
+    },
+    {
+      "word": "oven",
+      "ipa": "/ˈʌvən/",
+      "aviationMeaning": "n. 烤箱；机上餐食加热设备",
+      "generalMeaning": "n. 烤箱"
+    },
+    {
+      "word": "over",
+      "ipa": "/ˈoʊvər/",
+      "aviationMeaning": "prep. 在……上方；结束；无线电通话中表示请答复",
+      "generalMeaning": "prep. 在……上方；adv. 结束"
+    },
+    {
+      "word": "over-wing",
+      "ipa": "/ˈoʊvər wɪŋ/",
+      "aviationMeaning": "adj. 机翼上方的；翼上出口或翼上区域",
+      "generalMeaning": "adj. 在机翼上方的"
+    },
+    {
+      "word": "overall",
+      "ipa": "/ˌoʊvərˈɔːl/",
+      "aviationMeaning": "adj. 总体的；飞行、检查或运行的整体情况",
+      "generalMeaning": "adj. 总体的；全面的"
+    },
+    {
+      "word": "overcast",
+      "ipa": "/ˈoʊvərkæst/",
+      "aviationMeaning": "adj. 阴天的；天空被云层完全遮蔽的",
+      "generalMeaning": "adj. 阴天的；被覆盖的"
+    },
+    {
+      "word": "overcome",
+      "ipa": "/ˌoʊvərˈkʌm/",
+      "aviationMeaning": "v. 克服；排除飞行中的困难、故障或不利条件",
+      "generalMeaning": "v. 克服；战胜"
+    },
+    {
+      "word": "overdose",
+      "ipa": "/ˈoʊvərdoʊs/",
+      "aviationMeaning": "n. 过量用药；飞行员健康与适航风险相关",
+      "generalMeaning": "n. 过量用药"
+    },
+    {
+      "word": "overfly",
+      "ipa": "/ˌoʊvərˈflaɪ/",
+      "aviationMeaning": "v. 飞越；从某地点、空域或设施上空通过",
+      "generalMeaning": "v. 飞越"
+    },
+    {
+      "word": "overflying",
+      "ipa": "/ˌoʊvərˈflaɪɪŋ/",
+      "aviationMeaning": "v. 正飞越；从地点、空域或设施上空通过",
+      "generalMeaning": "v. 正飞越"
+    },
+    {
+      "word": "overhead",
+      "ipa": "/ˈoʊvərhed/",
+      "aviationMeaning": "adv. 在头顶上方；如航空器、灯光或顶板位置",
+      "generalMeaning": "adv. 在头顶上方；adj. 架空的"
+    },
+    {
+      "word": "overheat",
+      "ipa": "/ˌoʊvərˈhiːt/",
+      "aviationMeaning": "v. 过热；发动机、刹车、电气或设备温度过高",
+      "generalMeaning": "v. 使过热；过热"
+    },
+    {
+      "word": "overheated",
+      "ipa": "/ˌoʊvərˈhiːtɪd/",
+      "aviationMeaning": "adj. 过热的；发动机、刹车或设备温度过高",
+      "generalMeaning": "adj. 过热的"
+    },
+    {
+      "word": "overheating",
+      "ipa": "/ˌoʊvərˈhiːtɪŋ/",
+      "aviationMeaning": "n. 过热；发动机、刹车、电气或设备温度异常升高",
+      "generalMeaning": "n. 过热"
+    },
+    {
+      "word": "overheats",
+      "ipa": "/ˌoʊvərˈhiːts/",
+      "aviationMeaning": "v. 过热；发动机、刹车或设备温度变得过高",
+      "generalMeaning": "v. 过热"
+    },
+    {
+      "word": "overload",
+      "ipa": "/ˌoʊvərˈloʊd/",
+      "aviationMeaning": "n. 超载；系统、电路或航空器承受超过限制的负荷",
+      "generalMeaning": "n. 超载；v. 使超载"
+    },
+    {
+      "word": "overloading",
+      "ipa": "/ˌoʊvərˈloʊdɪŋ/",
+      "aviationMeaning": "n. 超载；系统、电路或航空器负荷超过限制",
+      "generalMeaning": "n. 超载；过载"
+    },
+    {
+      "word": "overran",
+      "ipa": "/ˌoʊvərˈræn/",
+      "aviationMeaning": "v. 冲出；航空器在跑道末端外继续滑行",
+      "generalMeaning": "v. 超过；侵占"
+    },
+    {
+      "word": "override",
+      "ipa": "/ˌoʊvərˈraɪd/",
+      "aviationMeaning": "v. 覆盖；人工越过自动系统或保护逻辑",
+      "generalMeaning": "v. 推翻；优先于"
+    },
+    {
+      "word": "overrun",
+      "ipa": "/ˈoʊvərˌrʌn/",
+      "aviationMeaning": "n. 冲出跑道；航空器超过可用跑道末端的事件",
+      "generalMeaning": "n. 超限；侵占"
+    },
+    {
+      "word": "oversee",
+      "ipa": "/ˌoʊvərˈsiː/",
+      "aviationMeaning": "v. 监督；监管飞行运行、维修或培训",
+      "generalMeaning": "v. 监督；管理"
+    },
+    {
+      "word": "overshoot",
+      "ipa": "/ˌoʊvərˈʃuːt/",
+      "aviationMeaning": "v. 冲过；超过目标高度、航向或跑道接地点",
+      "generalMeaning": "v. 超过；越过"
+    },
+    {
+      "word": "overshooting",
+      "ipa": "/ˌoʊvərˈʃuːtɪŋ/",
+      "aviationMeaning": "v. 正冲过；超过目标高度、航向或跑道接地点",
+      "generalMeaning": "v. 正超过；越过"
+    },
+    {
+      "word": "overshot",
+      "ipa": "/ˌoʊvərˈʃɑːt/",
+      "aviationMeaning": "v. 已冲过；已超过目标高度、航向或跑道接地点",
+      "generalMeaning": "v. 已超过；越过"
+    },
+    {
+      "word": "oversight",
+      "ipa": "/ˈoʊvərsaɪt/",
+      "aviationMeaning": "n. 监督；或疏忽；运行管理与安全检查相关",
+      "generalMeaning": "n. 监督；疏忽"
+    },
+    {
+      "word": "oversized",
+      "ipa": "/ˈoʊvərsaɪzd/",
+      "aviationMeaning": "adj. 超大尺寸的；超过正常装载或运输尺寸限制的",
+      "generalMeaning": "adj. 过大的"
+    },
+    {
+      "word": "overtake",
+      "ipa": "/ˌoʊvərˈteɪk/",
+      "aviationMeaning": "v. 超越；追上并超过另一架航空器、车辆或目标",
+      "generalMeaning": "v. 超过；赶上"
+    },
+    {
+      "word": "overtaking",
+      "ipa": "/ˌoʊvərˈteɪkɪŋ/",
+      "aviationMeaning": "v. 正超越；追上并超过另一架航空器、车辆或目标",
+      "generalMeaning": "v. 正超过；赶上"
+    },
+    {
+      "word": "overwater",
+      "ipa": "/ˌoʊvərˈwɔːtər/",
+      "aviationMeaning": "adj. 越水的；在水面上空飞行的",
+      "generalMeaning": "adj. 在水面上方的"
+    },
+    {
+      "word": "overweight",
+      "ipa": "/ˌoʊvərˈweɪt/",
+      "aviationMeaning": "adj. 超重的；航空器重量超过正常限制或计划重量的",
+      "generalMeaning": "adj. 超重的"
+    },
+    {
+      "word": "overwing",
+      "ipa": "/ˈoʊvərwɪŋ/",
+      "aviationMeaning": "adj. 机翼上方的；翼上出口或翼上区域",
+      "generalMeaning": "adj. 在机翼上方的"
+    },
+    {
+      "word": "overwork",
+      "ipa": "/ˌoʊvərˈwɜːrk/",
+      "aviationMeaning": "v. 过度工作；机组或人员工作时间超过合理限度",
+      "generalMeaning": "v. 使过度劳累；n. 过度工作"
+    },
+    {
+      "word": "overworked",
+      "ipa": "/ˌoʊvərˈwɜːrkt/",
+      "aviationMeaning": "adj. 过度劳累的；机组或人员因工作负荷过大而疲劳的",
+      "generalMeaning": "adj. 过度劳累的"
+    },
+    {
+      "word": "own",
+      "ipa": "/oʊn/",
+      "aviationMeaning": "adj. 自己的；本单位、本机组或本航空器的",
+      "generalMeaning": "adj. 自己的；v. 拥有"
+    },
+    {
+      "word": "owner",
+      "ipa": "/ˈoʊnər/",
+      "aviationMeaning": "n. 所有人；航空器、设备或资料的所有者",
+      "generalMeaning": "n. 所有人；物主"
+    },
+    {
+      "word": "owning",
+      "ipa": "/ˈoʊnɪŋ/",
+      "aviationMeaning": "v. 拥有；持有航空器、设备或产权",
+      "generalMeaning": "v. 拥有；持有"
+    },
+    {
+      "word": "oxygen",
+      "ipa": "/ˈɑːksɪdʒən/",
+      "aviationMeaning": "n. 氧气；航空器应急供氧或呼吸系统用气体",
+      "generalMeaning": "n. 氧气"
+    },
+    {
+      "word": "p",
+      "ipa": "/piː/",
+      "aviationMeaning": "n. 字母 P；可能为航图、程序或缩写组成部分",
+      "generalMeaning": "n. 英文字母 P"
+    },
+    {
+      "word": "pa",
+      "ipa": "/piː eɪ/",
+      "aviationMeaning": "n. 机上广播；公共广播系统",
+      "generalMeaning": "n. 公共广播系统；助理"
+    },
+    {
+      "word": "pace",
+      "ipa": "/peɪs/",
+      "aviationMeaning": "n. 节奏；操作、训练或工作推进的速度",
+      "generalMeaning": "n. 步伐；速度"
+    },
+    {
+      "word": "pacific",
+      "ipa": "/pəˈsɪfɪk/",
+      "aviationMeaning": "n. 太平洋；太平洋空域或航线区域",
+      "generalMeaning": "n. 太平洋；adj. 和平的"
+    },
+    {
+      "word": "pack",
+      "ipa": "/pæk/",
+      "aviationMeaning": "n. 空调组件；航空器环境控制系统的空气循环设备",
+      "generalMeaning": "n. 包；v. 打包"
+    },
+    {
+      "word": "package",
+      "ipa": "/ˈpækɪdʒ/",
+      "aviationMeaning": "n. 组件；一组设备、文件或服务的组合",
+      "generalMeaning": "n. 包裹；套装"
+    },
+    {
+      "word": "packaging",
+      "ipa": "/ˈpækɪdʒɪŋ/",
+      "aviationMeaning": "n. 包装；货物、设备或备件的包装处理",
+      "generalMeaning": "n. 包装；包装材料"
+    },
+    {
+      "word": "packs",
+      "ipa": "/pæks/",
+      "aviationMeaning": "n. 空调组件（复数）；环境控制系统的多个组件",
+      "generalMeaning": "n. 包（复数）；v. 打包"
+    },
+    {
+      "word": "pad",
+      "ipa": "/pæd/",
+      "aviationMeaning": "n. 停机坪；直升机或特定航空器起降区域",
+      "generalMeaning": "n. 垫；便笺本"
+    },
+    {
+      "word": "pads",
+      "ipa": "/pædz/",
+      "aviationMeaning": "n. 停机坪或垫（复数）；多个起降区域或缓冲垫",
+      "generalMeaning": "n. 垫（复数）"
+    },
+    {
+      "word": "page",
+      "ipa": "/peɪdʒ/",
+      "aviationMeaning": "n. 页面；电子飞行包、手册或显示器的一页",
+      "generalMeaning": "n. 页；页面"
+    },
+    {
+      "word": "pages",
+      "ipa": "/ˈpeɪdʒɪz/",
+      "aviationMeaning": "n. 页面（复数）；手册、显示器或电子资料的多页",
+      "generalMeaning": "n. 页（复数）"
+    },
+    {
+      "word": "paid",
+      "ipa": "/peɪd/",
+      "aviationMeaning": "v. 已支付；已付费用、赔偿或服务款项",
+      "generalMeaning": "v. 已支付；adj. 有报酬的"
+    },
+    {
+      "word": "pain",
+      "ipa": "/peɪn/",
+      "aviationMeaning": "n. 疼痛；机组或乘客健康状况与适航风险相关",
+      "generalMeaning": "n. 疼痛；痛苦"
+    },
+    {
+      "word": "pains",
+      "ipa": "/peɪnz/",
+      "aviationMeaning": "n. 疼痛（复数）；身体不适或健康症状",
+      "generalMeaning": "n. 疼痛（复数）；辛苦"
+    },
+    {
+      "word": "painted",
+      "ipa": "/ˈpeɪntɪd/",
+      "aviationMeaning": "adj. 已涂漆的；机体、标线或部件已喷涂的",
+      "generalMeaning": "adj. 已画的；已涂漆的"
+    }
   ]
 }

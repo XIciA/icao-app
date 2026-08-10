@@ -1,98 +1,51 @@
 # ICAO App project instructions
 
-## Required references
+## Document authority
 
-Before changing implementation, read the current stage documents and the relevant
-sections of the read-only design repository:
+- The current user request defines the goal. The repository code, configuration, tests, and
+  generated manifests define the implemented facts.
+- Use [docs/README.md](docs/README.md) as the document router. Read only the documents relevant
+  to the task; do not preload the full strategy, workstream, incident, or design history.
+- `docs/archive/` is historical evidence and has no authority over current work.
+- `docs/developer-notes/` is optional human reference. Codex does not need to read or follow it
+  unless the user asks or the task specifically involves a documented local/manual procedure.
+- When current documents conflict with code, verify the code and update the stale document in
+  the same task when that is in scope. Do not silently preserve contradictory rules.
 
-- `/Users/zhouyide/Desktop/icao设计稿/战略/总战略文档.md`
-- `/Users/zhouyide/Desktop/icao设计稿/战略/architecture-decisions.md`
-- `/Users/zhouyide/Desktop/icao设计稿/战略/阶段执行管理总则.md`
-- `/Users/zhouyide/Desktop/icao设计稿/战略/第一阶段-ReactNativeApp复刻与基础能力/`
-- `/Users/zhouyide/Desktop/icao设计稿/docs/ui-style-guide.md`
-- `/Users/zhouyide/Desktop/icao设计稿/docs/bigandsmall-workflows/orchestration-loop.md`
+## Durable product and engineering boundaries
 
-The design repository is read-only. All React Native code, configuration, tests,
-phase logs, and closeout records belong in this repository.
+- Native iOS and Android use React Native, Expo, and TypeScript with Development Builds and
+  CNG/Prebuild. Web uses the repository's Expo Web target.
+- Do not introduce WebView or a second application stack without an explicit architecture
+  decision.
+- Preserve the approved visual identity and learning-flow semantics. For UI work, follow
+  `docs/design/ui-style-guide.md` and the code-native tokens and shared components it names.
+- Audit for an existing source of truth before adding feature-specific data, resource loading,
+  playback, persistence, or UI infrastructure. Do not create competing owners for question-bank
+  content, audio mappings, recording lifecycle, account state, or runtime configuration.
+- Keep secrets, certificates, signing material, and local environment files out of the repository,
+  logs, and chat. Do not revert unrelated user changes.
+- Use pnpm and repository-locked versions.
 
-## Product and technical boundaries
+## Task workflow and verification
 
-- Build native iOS and Android with React Native, Expo, and TypeScript.
-- Use Development Builds and CNG/Prebuild. Expo Go is not the capability boundary.
-- Never use WebView or migrate Web UI, CSS, DOM, or browser APIs.
-- Treat the Web project as a visual, content, interaction, state, and business-rule reference.
-- Preserve the approved brand colors, typography roles, navigation model, component tone,
-  and core learning flow.
-- Do not add real Supabase auth, cloud sync, complete AI, payments, memberships, downloads,
-  or offline learning during phase 1.
-- Keep future account, sync, AI, and commercialization integrations replaceable.
-- Do not bundle the full audio library without an explicit resource plan.
+- Use `docs/bigandsmall-workflows/orchestration-loop.md` for ordinary changes. Use the large-flow
+  sections of `document-driven-development-workflow.md` only when the change is cross-system,
+  high-risk, long-running, or needs durable product/architecture decisions.
+- Choose checks by risk and affected surface using `docs/engineering/verification-matrix.md`.
+  A successful build alone is not visual acceptance for UI work.
+- Read the exact Expo SDK 55 documentation before changing Expo APIs, plugins, permissions, or
+  native configuration: <https://docs.expo.dev/versions/v55.0.0/>.
+- Update `src/config/app-version.ts` only when the task changes shipped user-visible behavior or
+  content, runtime behavior, or release output, or when the user explicitly requests a version
+  bump. Documentation-only, test-only, and internal-tooling-only changes do not bump it.
 
-## Engineering workflow
+## Conditional rules
 
-- Read the exact Expo SDK documentation at https://docs.expo.dev/versions/v55.0.0/
-  before using or changing Expo APIs.
-- Use pnpm and the versions locked by this repository.
-- Work in the current roadmap stage only, in the smallest independently verifiable loop.
-- Before adding feature-specific data, state, resource loading, playback, persistence, or UI
-  infrastructure, first audit the repository for an existing shared source of truth and reusable
-  implementation. Prefer extending shared question-bank data, metadata indexes, asset resolution,
-  audio coordination, storage, and UI primitives over copying them into an isolated feature.
-- Do not create parallel copies of question-bank content, audio mappings, duration metadata,
-  subtitle text, playback state, or resource-resolution logic. A separate implementation is
-  allowed only when the existing abstraction cannot satisfy the product behavior; record that
-  limitation and the new ownership boundary in the relevant technical or closeout document.
-- Stage reviews must identify which existing shared modules and assets were reused, and verify
-  that the change did not introduce a second source of truth or competing lifecycle owner.
-- Do not revert unrelated changes. Do not commit secrets, certificates, local environment
-  files, or signing material.
-- After TypeScript or React Native changes, run `pnpm check` and the relevant native build.
-- Review Git diff and generated files before each stage checkpoint.
-- UI work requires rendered checks against the design baseline; a successful build alone
-  is not visual acceptance.
-
-## Audio lifecycle changes
-
-- Before changing an audio dependency, permission, native session profile, player, recorder,
-  recording file, playback behavior, or transcription trigger, read
-  `docs/guides/audio-lifecycle-and-change-rules.md` completely.
-- Reuse `AudioSessionOrchestrator`, the Expo recorder adapter, `RecordingRepository`, and
-  `RecordingAsset`; do not introduce another audio owner registry, recording lifecycle owner,
-  recording asset type, file deletion path, or direct `setAudioModeAsync` caller.
-- Run `pnpm check:audio` and the guide's applicable unit, local Maestro, Development Build,
-  and physical-device checks. Audio-sensitive release changes require fresh platform-specific
-  fingerprint evidence generated by `pnpm audio:e2e:ios` or `pnpm audio:e2e:android`.
-
-## App display version
-
-- Every task that changes repository files must finish by updating
-  `src/config/app-version.ts` to the final modification time in the `Asia/Shanghai`
-  timezone, using the exact format `vYYYY.MM.DD.HHmm`.
-- Update the display version after the final intended code or document edit. If later fixes
-  change repository files, refresh the timestamp again before delivery.
-- All user-visible version text under “我的” and “关于飞猪 ICAO” must read the shared
-  `APP_DISPLAY_VERSION` value instead of hard-coding independent versions. This display
-  timestamp does not replace the native release versions in `app.json` or `package.json`.
-- Every final task report that includes repository changes must state the resulting display
-  version explicitly.
-
-## Runtime deployment and acceptance
-
-- Treat the repository as the single source of truth, but distinguish local code from the
-  version currently running on ECS.
-- Changes under `services/api` are not complete for simulator, physical-device, or integrated
-  testing until the intended clean version is deployed to ECS, the API container is restarted,
-  `/health/ready` passes, and the changed live endpoint is verified with a representative request.
-- ECS deployment is the default final step after an authorized `services/api` change unless the
-  user explicitly limits the task to local work. Never deploy unrelated dirty-worktree changes;
-  build from the intended commit or an explicitly reviewed file set and preserve a rollback image
-  and source backup.
-- React Native JavaScript and TypeScript UI changes normally use Metro and do not require ECS
-  deployment. Native dependency, Expo plugin, permission, or native configuration changes require
-  a rebuilt Development Build.
-- Database schema or migration changes are not covered by ordinary API deployment. They require
-  a database backup, explicit migration review, execution, and post-migration verification.
-- Never copy secrets into the repository, deployment archive, logs, or chat. Keep runtime secrets
-  in the existing protected ECS environment files.
-- Follow `docs/operations/deployment-and-runtime-rules.md` for the runtime map, deployment evidence, and
-  rollback requirements.
+- Before audio lifecycle, permission, player, recorder, recording-file, or transcription-trigger
+  changes, read `docs/guides/audio-lifecycle-and-change-rules.md` completely and reuse the existing
+  orchestrator, recorder adapter, repository, and asset types.
+- For runtime topology and deployment work, follow
+  `docs/operations/deployment-and-runtime-rules.md`. Local API changes are not automatically
+  authorized for production deployment; deploy only when the task includes the live environment.
+- Database migrations require explicit review, backup, execution, and post-migration verification.

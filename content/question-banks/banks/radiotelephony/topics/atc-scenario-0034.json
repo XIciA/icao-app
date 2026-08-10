@@ -81,7 +81,7 @@
       "taskTitle": "UAL 403-9",
       "audioText": "B: Ask Guangzhou Control if there is any turbulence reported from preceding aircraft at 11300 meters.",
       "audioTextZh": "B：询问广州管制，前机是否报告 11300 米有颠簸。",
-      "referenceText": "Guangzhou Control, UAL 403, is there any turbulence reported from preceding aircraft at 11300 meters ?",
+      "referenceText": "Guangzhou Control, UAL 403, is there any turbulence reported from preceding aircraft at 11300 meters?",
       "referenceTextZh": "广州管制，UAL 403，前机是否报告 11300 米有颠簸？",
       "audio": "/question-bank-assets/audio/radiotelephony/main/586.mp3"
     },

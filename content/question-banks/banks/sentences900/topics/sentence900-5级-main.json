@@ -8,7 +8,7 @@
       "id": "sentence900-main-068",
       "taskTitle": "Sentence68",
       "audioText": "Approach clearance canceled, turn left direct to DA, climb to 4000 feet, hold as published, expect further clearance at time 50.",
-      "audioTextZh": "取消近进许可，左转直飞DA，爬升到4000英尺，按公布程序等待预计进一步许可时间50分",
+      "audioTextZh": "取消进近许可，左转直飞DA，爬升到4000英尺，按公布程序等待预计进一步许可时间50分",
       "audio": "/question-bank-assets/audio/sentence900/main/068.mp3"
     },
     {
@@ -22,7 +22,7 @@
       "id": "sentence900-main-075",
       "taskTitle": "Sentence75",
       "audioText": "Cleared to the 180 radial of PER VOR at 15 DME. Hold south, left hand pattern, outbound time 2 minutes, expect approach clearance at 37.",
-      "audioTextZh": "可以在PER VOR台180度径向线DME15海里处向南，左等待，出航时间2分钟，预计近进许可时间37分",
+      "audioTextZh": "可以在PER VOR台180度径向线DME15海里处向南，左等待，出航时间2分钟，预计进近许可时间37分",
       "audio": "/question-bank-assets/audio/sentence900/main/075.mp3"
     },
     {
@@ -64,7 +64,7 @@
       "id": "sentence900-main-316",
       "taskTitle": "Sentence316",
       "audioText": "Hold on the 265 radial of BKM VOR between 25 and 30 miles DME, FL100, inbound track 085, right hand pattern, expected approach time 1022.",
-      "audioTextZh": "在BKM VOR台265度径向线，DME距离25至30海里之间等待，高度层100，向台航迹085，右等待，预计近进时间1022",
+      "audioTextZh": "在BKM VOR台265度径向线，DME距离25至30海里之间等待，高度层100，向台航迹085，右等待，预计进近时间1022",
       "audio": "/question-bank-assets/audio/sentence900/main/316.mp3"
     },
     {
@@ -85,7 +85,7 @@
       "id": "sentence900-main-426",
       "taskTitle": "Sentence426",
       "audioText": "Radar service is terminated due technical failure. Maintain Mach number decimal 81 or less for separation.",
-      "audioTextZh": "由于技术故障雷达服务终止，保持马赫数.81 或更小以保持间隔。（4-5",
+      "audioTextZh": "由于技术故障雷达服务终止，保持马赫数.81 或更小以保持间隔。（4-5级）",
       "audio": "/question-bank-assets/audio/sentence900/main/426.mp3"
     },
     {
@@ -98,7 +98,7 @@
     {
       "id": "sentence900-main-434",
       "taskTitle": "Sentence434",
-      "audioText": "Position 42N（North） 165E (East) at 0800, FL390, estimating 44N 180E at 0900 45N 170W next.",
+      "audioText": "Position 42N (North) 165E (East) at 0800, FL390, estimating 44N 180E at 0900 45N 170W next.",
       "audioTextZh": "当前位置北纬42 度，东经165 度，时间0800，高度层390，预计到达北纬44 度、东经180度，时间0900，下一位置北纬45 度、西经170 度(5-6级)",
       "audio": "/question-bank-assets/audio/sentence900/main/434.mp3"
     },
@@ -134,14 +134,14 @@
       "id": "sentence900-main-470",
       "taskTitle": "Sentence470",
       "audioText": "The Morse code for the VOR is different from the approach chart. Confirm the VOR is fully operational.",
-      "audioTextZh": "VOR台莫尔斯码与近进图上不一致，证实VOR台正常运行中",
+      "audioTextZh": "VOR台莫尔斯码与进近图上不一致，证实VOR台正常运行中",
       "audio": "/question-bank-assets/audio/sentence900/main/470.mp3"
     },
     {
       "id": "sentence900-main-472",
       "taskTitle": "Sentence472",
       "audioText": "The approach lights for Runway 36L are a bit different from those shown on the airport diagram.",
-      "audioTextZh": "跑道 36 左近进灯与机场图上显示有点不同",
+      "audioTextZh": "跑道 36 左进近灯与机场图上显示有点不同",
       "audio": "/question-bank-assets/audio/sentence900/main/472.mp3"
     },
     {
@@ -183,7 +183,7 @@
       "id": "sentence900-main-515",
       "taskTitle": "Sentence515",
       "audioText": "The windshield suddenly had electrical arcing. We need to pull the circuit breakers and delay the approach.",
-      "audioTextZh": "风挡突然出现电弧，我们需要拔出跳开关，推迟近进",
+      "audioTextZh": "风挡突然出现电弧，我们需要拔出跳开关，推迟进近",
       "audio": "/question-bank-assets/audio/sentence900/main/515.mp3"
     },
     {
@@ -197,7 +197,7 @@
       "id": "sentence900-main-517",
       "taskTitle": "Sentence517",
       "audioText": "We had to go around due pilot seat moving. We’ll try to reset the circuit breaker before making another approach.",
-      "audioTextZh": "因为飞行员座椅移动，我们不得不复飞。我们试着近进前，重置跳开关",
+      "audioTextZh": "因为飞行员座椅移动，我们不得不复飞。我们试着进近前，重置跳开关",
       "audio": "/question-bank-assets/audio/sentence900/main/517.mp3"
     },
     {
@@ -218,7 +218,7 @@
       "id": "sentence900-main-521",
       "taskTitle": "Sentence521",
       "audioText": "The APU fire seems to be extinguished. Request fire trucks on standby and stairs vehicle to disembark the passengers.",
-      "audioTextZh": "APU起火似乎被扑灭了，请求消防车待命，请求客梯车以便下客。（4-5",
+      "audioTextZh": "APU起火似乎被扑灭了，请求消防车待命，请求客梯车以便下客。（4-5级）",
       "audio": "/question-bank-assets/audio/sentence900/main/521.mp3"
     },
     {
@@ -266,7 +266,7 @@
     {
       "id": "sentence900-main-540",
       "taskTitle": "Sentence540",
-      "audioText": "Request return to FL250.We just had an air-upset situation and lost a lot of altitude.",
+      "audioText": "Request return to FL250. We just had an air-upset situation and lost a lot of altitude.",
       "audioTextZh": "请求回到高度 250，我们刚才有空中异常姿态情况，而且掉了很多高度",
       "audio": "/question-bank-assets/audio/sentence900/main/540.mp3"
     },
@@ -316,7 +316,7 @@
       "id": "sentence900-main-551",
       "taskTitle": "Sentence551",
       "audioText": "The ground crew reports that we are leaking a significant amount of fuel from the bottom of Number Three engine. We have just shut it down.",
-      "audioTextZh": "地面人员报告，三发下面漏油严重，我们刚刚将三发关车了。（5-6",
+      "audioTextZh": "地面人员报告，三发下面漏油严重，我们刚刚将三发关车了。（5-6级）",
       "audio": "/question-bank-assets/audio/sentence900/main/551.mp3"
     },
     {
@@ -337,7 +337,7 @@
       "id": "sentence900-main-555",
       "taskTitle": "Sentence555",
       "audioText": "We have fumes in the cabin, possibly due to a fuel leak. We are anticipating an immediate evacuation after landing.",
-      "audioTextZh": "我们客舱有烟味，可能是漏油了，预计会在落地后立即撤离。（4-5",
+      "audioTextZh": "我们客舱有烟味，可能是漏油了，预计会在落地后立即撤离。（4-5级）",
       "audio": "/question-bank-assets/audio/sentence900/main/555.mp3"
     },
     {
@@ -351,7 +351,7 @@
       "id": "sentence900-main-569",
       "taskTitle": "Sentence569",
       "audioText": "Our hydraulic fluid is dangerously low, possibly due to a leak. Request descent to lower levels to extend flaps.",
-      "audioTextZh": "液压油低得可怕，可能是漏油。请示下降到低高度放出襟翼。（4+",
+      "audioTextZh": "液压油低得可怕，可能是漏油。请示下降到低高度放出襟翼。（4+级）",
       "audio": "/question-bank-assets/audio/sentence900/main/569.mp3"
     },
     {
@@ -372,7 +372,7 @@
       "id": "sentence900-main-577",
       "taskTitle": "Sentence577",
       "audioText": "We had electrical arcing on the windshield and pulled the circuit breakers according to the checklist. Will advise when ready for approach.",
-      "audioTextZh": "风挡出现电弧，我们已按检查单拔出跳开关。准备好近进时会通知。",
+      "audioTextZh": "风挡出现电弧，我们已按检查单拔出跳开关。准备好进近时会通知。",
       "audio": "/question-bank-assets/audio/sentence900/main/577.mp3"
     },
     {
@@ -386,7 +386,7 @@
       "id": "sentence900-main-580",
       "taskTitle": "Sentence580",
       "audioText": "We made the overshoot because of a stall warning, probably caused by a defective angle of attack probe.",
-      "audioTextZh": "因为失速告警，可能是由于迎角探头误报造成的，我们复飞了。（4-5",
+      "audioTextZh": "因为失速告警，可能是由于迎角探头误报造成的，我们复飞了。（4-5级）",
       "audio": "/question-bank-assets/audio/sentence900/main/580.mp3"
     },
     {
@@ -414,7 +414,7 @@
       "id": "sentence900-main-617",
       "taskTitle": "Sentence617",
       "audioText": "It seems some of the spoilers cannot be retracted. We have to re-calculate our landing distance before we start our approach, standby.",
-      "audioTextZh": "似乎部分扰流板无法收回。开始近进前我们必须重新计算着陆距离，请稍等。",
+      "audioTextZh": "似乎部分扰流板无法收回。开始进近前我们必须重新计算着陆距离，请稍等。",
       "audio": "/question-bank-assets/audio/sentence900/main/617.mp3"
     },
     {
@@ -449,7 +449,7 @@
       "id": "sentence900-main-638",
       "taskTitle": "Sentence638",
       "audioText": "We made a go-around due to head-up display problem. We’ll inform you when we are ready for the approach.",
-      "audioTextZh": "因为平显故障，我们复飞乐。准备好近进时，我们将通知你们。(4-5",
+      "audioTextZh": "因为平显故障，我们复飞了。准备好进近时，我们将通知你们。（4-5级）",
       "audio": "/question-bank-assets/audio/sentence900/main/638.mp3"
     },
     {
@@ -547,7 +547,7 @@
       "id": "sentence900-main-666",
       "taskTitle": "Sentence666",
       "audioText": "Another aircraft has seen a lot of smoke coming from our APU. We are evacuating. Request emergency services.",
-      "audioTextZh": "另一架飞机看到我们APU区域有很多烟雾冒出,我们正在紧急撤离请求紧急服务",
+      "audioTextZh": "另一架飞机看到我们APU区域有很多烟雾冒出，我们正在紧急撤离请求紧急服务",
       "audio": "/question-bank-assets/audio/sentence900/main/666.mp3"
     },
     {
@@ -582,7 +582,7 @@
       "id": "sentence900-main-679",
       "taskTitle": "Sentence679",
       "audioText": "Our thrust lever is not responsive. We cannot reduce thrust on engine Number One. Request holding.",
-      "audioTextZh": "我们推力手柄没有反应，我们无法减小一发推力，请求等待。（4-5",
+      "audioTextZh": "我们推力手柄没有反应，我们无法减小一发推力，请求等待。（4-5级）",
       "audio": "/question-bank-assets/audio/sentence900/main/679.mp3"
     },
     {
@@ -596,7 +596,7 @@
       "id": "sentence900-main-682",
       "taskTitle": "Sentence682",
       "audioText": "We still cannot retract the thrust reverser. Our approach speed will be higher than normal. Request vectors for the longest Runway.",
-      "audioTextZh": "我们仍无法收回反推。近进速度将高于正常值。请求雷达引导至最长跑道。",
+      "audioTextZh": "我们仍无法收回反推。进近速度将高于正常值。请求雷达引导至最长跑道。",
       "audio": "/question-bank-assets/audio/sentence900/main/682.mp3"
     },
     {
@@ -694,7 +694,7 @@
       "id": "sentence900-main-716",
       "taskTitle": "Sentence716",
       "audioText": "We are flying near our maximum altitude. We cannot maintain airspeed in this turbulence. Request immediate descent.",
-      "audioTextZh": "我们接近最大高度飞行，遇到颠簸无法保持空速，请求马上下降。(4-5",
+      "audioTextZh": "我们接近最大高度飞行，遇到颠簸无法保持空速，请求马上下降。（4-5级）",
       "audio": "/question-bank-assets/audio/sentence900/main/716.mp3"
     },
     {
@@ -743,7 +743,7 @@
       "id": "sentence900-main-729",
       "taskTitle": "Sentence729",
       "audioText": "The latest weather says that frontal weather and freezing rain is now stationary over the airport. Request diversion.",
-      "audioTextZh": "最新气象报说，锋面天气和冻雨正在机场上空停留，请求备降。（4-5",
+      "audioTextZh": "最新气象报说，锋面天气和冻雨正在机场上空停留，请求备降。（4-5级）",
       "audio": "/question-bank-assets/audio/sentence900/main/729.mp3"
     },
     {
@@ -757,7 +757,7 @@
       "id": "sentence900-main-731",
       "taskTitle": "Sentence731",
       "audioText": "We can see dust swirls approaching the airport and we’re concerned about low level wind-shear. Request holding.",
-      "audioTextZh": "我们能看到尘埃涡流接近机场，我们担心低空风切变，请求等待。（4-5",
+      "audioTextZh": "我们能看到尘埃涡流接近机场，我们担心低空风切变，请求等待。（4-5级）",
       "audio": "/question-bank-assets/audio/sentence900/main/731.mp3"
     },
     {
@@ -799,7 +799,7 @@
       "id": "sentence900-main-740",
       "taskTitle": "Sentence740",
       "audioText": "Request to cancel our approach. Braking action is poor and we’re concerned about hydroplaning during rollout.",
-      "audioTextZh": "请求取消近进。刹车效应差，我们担心着陆滑跑时发生水滑。",
+      "audioTextZh": "请求取消进近。刹车效应差，我们担心着陆滑跑时发生水滑。",
       "audio": "/question-bank-assets/audio/sentence900/main/740.mp3"
     },
     {
@@ -820,7 +820,7 @@
       "id": "sentence900-main-745",
       "taskTitle": "Sentence745",
       "audioText": "Heavy blowing snow is expected to last for another 30 minutes. Request to terminate approach and holding instructions.",
-      "audioTextZh": "较大的风吹雪预计持续 30 分钟，请求终止近进、等待指令。（4-5",
+      "audioTextZh": "较大的风吹雪预计持续 30 分钟，请求终止进近、等待指令。（4-5级）",
       "audio": "/question-bank-assets/audio/sentence900/main/745.mp3"
     },
     {
@@ -869,7 +869,7 @@
       "id": "sentence900-main-755",
       "taskTitle": "Sentence755",
       "audioText": "We are landing into the sun in heavy haze. Can you turn on the approach lights to maximum intensity?",
-      "audioTextZh": "我们在严重霾中迎太阳着陆，能把近进灯调到最大强度吗？",
+      "audioTextZh": "我们在严重霾中迎太阳着陆，能把进近灯调到最大强度吗？",
       "audio": "/question-bank-assets/audio/sentence900/main/755.mp3"
     },
     {
@@ -946,14 +946,14 @@
       "id": "sentence900-main-771",
       "taskTitle": "Sentence771",
       "audioText": "We have discovered leakage of dangerous goods in the cargo hold. Can you alert hazardous material specialists?",
-      "audioTextZh": "我们已发现货舱里的危险品泄露，你们能通知危险品专家吗？（4-5",
+      "audioTextZh": "我们已发现货舱里的危险品泄露，你们能通知危险品专家吗？（4-5级）",
       "audio": "/question-bank-assets/audio/sentence900/main/771.mp3"
     },
     {
       "id": "sentence900-main-773",
       "taskTitle": "Sentence773",
       "audioText": "The outer main landing gear might have rolled over runway lights when we made the one eighty turn. Request personnel to inspect.",
-      "audioTextZh": "我们180 度转弯时主起落架可能擦到了跑道灯，请求人员检查。(4-5",
+      "audioTextZh": "我们180 度转弯时主起落架可能擦到了跑道灯，请求人员检查。（4-5级）",
       "audio": "/question-bank-assets/audio/sentence900/main/773.mp3"
     },
     {
@@ -1058,7 +1058,7 @@
       "id": "sentence900-main-814",
       "taskTitle": "Sentence814",
       "audioText": "An elderly passenger has passed away. We will continue to our destination. Request ambulance on arrival.",
-      "audioTextZh": "一位年长的乘客去世了，我们将继续到目的地，请求救护车到场。（4-5",
+      "audioTextZh": "一位年长的乘客去世了，我们将继续到目的地，请求救护车到场。（4-5级）",
       "audio": "/question-bank-assets/audio/sentence900/main/814.mp3"
     },
     {
@@ -1149,7 +1149,7 @@
       "id": "sentence900-main-842",
       "taskTitle": "Sentence842",
       "audioText": "A ramp inspection discovered crates of lithium batteries in the cargo hold. We are verifying. Request delay pushback.",
-      "audioTextZh": "机坪检查发现货舱有数箱锂电池，我们正在核实，请求延迟推出。（4-5",
+      "audioTextZh": "机坪检查发现货舱有数箱锂电池，我们正在核实，请求延迟推出。（4-5级）",
       "audio": "/question-bank-assets/audio/sentence900/main/842.mp3"
     },
     {

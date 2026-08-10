@@ -8,9 +8,8 @@ const apiBase = process.env.API_BASE ?? 'http://127.0.0.1:3101';
 const audioFile = process.env.AI_VERIFY_AUDIO_FILE ?? '/tmp/icao-asr-sample.mp3';
 const audioMimeType = process.env.AI_VERIFY_AUDIO_MIME ?? 'audio/mpeg';
 const bucketName = process.env.AI_ASR_STAGING_BUCKET ?? 'ai-transcription-inputs';
-const expectedModel = process.env.AI_ASR_MODEL ?? 'fun-asr-2025-11-07';
-const expectedHotwords = process.env.AI_ASR_HOTWORDS_VERSION ?? 'aviation-hotwords:v1';
-const expectedNormalization = 'aviation-normalization:v7';
+const expectedModel = process.env.AI_VERIFY_ASR_MODEL ?? '16k_en';
+const expectedWorkflow = 'tencent-asr:raw:v1';
 const supabaseUrl = process.env.SUPABASE_URL;
 const publishableKey = process.env.SUPABASE_PUBLISHABLE_KEY;
 const secretKey = process.env.SUPABASE_SECRET_KEY;
@@ -67,12 +66,13 @@ try {
 
   await api('/v1/ai/consent', token, {
     method: 'POST',
-    body: JSON.stringify({ accepted: true, policyVersion: 'ai-learning-privacy-v1' }),
+    body: JSON.stringify({ accepted: true, policyVersion: 'ai-learning-privacy-v3' }),
   });
 
   const objectsBefore = await listStagedObjects();
   const audio = await readFile(audioFile);
   const form = new FormData();
+  form.append('model', expectedModel);
   form.append('audio', new File([audio], basename(audioFile), { type: audioMimeType }));
   const result = await api('/v1/ai/transcribe', token, { method: 'POST', body: form });
   assert(typeof result.transcript === 'string' && result.transcript.trim().length > 0, 'empty_transcript');
@@ -87,7 +87,7 @@ try {
   `;
   assert(usage.length === 1 && usage[0].status === 'success', 'usage_log_missing');
   assert(usage[0].model === expectedModel, 'unexpected_model');
-  assert(usage[0].prompt_version === `${expectedHotwords}+${expectedNormalization}`, 'unexpected_workflow_version');
+  assert(usage[0].prompt_version === expectedWorkflow, 'unexpected_workflow_version');
 
   const objectsAfter = await listStagedObjects();
   assert([...objectsAfter].every((name) => objectsBefore.has(name)), 'temporary_audio_not_removed');
@@ -95,8 +95,7 @@ try {
   console.log(JSON.stringify({
     status: 'ok',
     model: expectedModel,
-    hotwords: expectedHotwords,
-    normalization: expectedNormalization,
+    workflow: expectedWorkflow,
     transcriptCharacters: result.transcript.length,
     temporaryAudioRemoved: true,
     publicContract: ['transcript'],

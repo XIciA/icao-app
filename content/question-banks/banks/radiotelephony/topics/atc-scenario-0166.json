@@ -27,8 +27,8 @@
       "taskTitle": "AFR 101-3",
       "audioText": "You decide that 10700 meters is not acceptable due to heavy weight, ask if 9500 meters is available.",
       "audioTextZh": "你认为由于重量过大，10700 米不可接受，询问 9500 米是否可用。",
-      "referenceText": "Wuhan Delivery, AFR 101, 1007 hudnred meters is not acceptable due to heavy weight, is 9500 meters available?",
-      "referenceTextZh": "武汉放行，AFR 101，由于重量过大，1007 hudnred 米不可接受，9500 米是否可用？",
+      "referenceText": "Wuhan Delivery, AFR 101, 10,700 meters is not acceptable due to heavy weight, is 9500 meters available?",
+      "referenceTextZh": "武汉放行，AFR 101，由于重量过大，10,700 米不可接受，9500 米是否可用？",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-066-afr101-q03.mp3"
     },
     {
@@ -99,7 +99,7 @@
       "taskTitle": "AFR 101-11",
       "audioText": "AFR 101, radar contact, turn left, direct to DAL A, climb to 3000 meters on QNH1015.",
       "audioTextZh": "AFR 101，雷达识别，左转直飞 DAL A，在 QNH 1015 上爬升至 3000 米。",
-      "referenceText": "turn left, direct to DAL A, climb to 3000 meters QNH 1015, AFR 10 one1.",
+      "referenceText": "turn left, direct to DAL A, climb to 3000 meters QNH 1015, AFR 101.",
       "referenceTextZh": "左转，直飞 DAL A，在 QNH 1015 上爬升至 3000 米，AFR 101。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-066-afr101-q11.mp3"
     },

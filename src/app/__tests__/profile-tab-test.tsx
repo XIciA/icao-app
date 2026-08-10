@@ -43,7 +43,7 @@ describe('<ProfileTab />', () => {
     expect(screen.getByText('飞行学员')).toBeTruthy();
     expect(screen.getByText('尚未登录')).toBeTruthy();
     expect(screen.getAllByText('0')).toHaveLength(2);
-    expect(screen.getByText(`© 2026 飞猪 ICAO · ${APP_DISPLAY_VERSION}`)).toBeTruthy();
+    expect(screen.getByText(`© 2026 听你五个 · ${APP_DISPLAY_VERSION}`)).toBeTruthy();
   });
 
   it('shows the current invite-account name in the profile card', async () => {
@@ -54,7 +54,7 @@ describe('<ProfileTab />', () => {
 
     const screen = await render(<ProfileTab />);
 
-    expect(screen.getByText('内测账号 · 起落平安')).toBeTruthy();
+    expect(screen.getByText('听你五个账号 · 起落平安')).toBeTruthy();
   });
 
   it('shows a confirmation state while the local session is restoring', async () => {

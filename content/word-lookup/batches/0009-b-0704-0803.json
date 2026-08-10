@@ -1,105 +1,557 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"balked","ipa":"/bɔːlkt/","aviationMeaning":"v. 中止动作；如中止着陆尝试","generalMeaning":"v. 犹豫而停止；阻碍"},
-    {"word":"balloon","ipa":"/bəˈluːn/","aviationMeaning":"n. 气球；v. 着陆时上飘","generalMeaning":"n. 气球；v. 膨胀"},
-    {"word":"balloons","ipa":"/bəˈluːnz/","aviationMeaning":"n. 气球（复数）；v. 上飘","generalMeaning":"n. 气球（复数）"},
-    {"word":"ban","ipa":"/bæn/","aviationMeaning":"n. 禁令；v. 禁止某项运行","generalMeaning":"n. 禁令；v. 禁止"},
-    {"word":"band","ipa":"/bænd/","aviationMeaning":"n. 频段；信号频带","generalMeaning":"n. 乐队；带；范围"},
-    {"word":"bang","ipa":"/bæŋ/","aviationMeaning":"n. 巨响；可能用于异常事件报告","generalMeaning":"n. 砰声；v. 猛击"},
-    {"word":"bangkok","ipa":"/ˈbæŋkɑːk/","aviationMeaning":"n. 曼谷；机场所在城市","generalMeaning":"n. 曼谷（泰国首都）"},
-    {"word":"bangkok's","ipa":"/ˈbæŋkɑːks/","aviationMeaning":"n. 曼谷的；表示所属关系","generalMeaning":"n. 曼谷的；表示所属关系"},
-    {"word":"bangs","ipa":"/bæŋz/","aviationMeaning":"n. 巨响（复数）；v. 猛击","generalMeaning":"n. 砰声（复数）；v. 猛击"},
-    {"word":"bank","ipa":"/bæŋk/","aviationMeaning":"n. 倾斜角；v. 倾斜转弯","generalMeaning":"n. 银行；岸；v. 倾斜"},
-    {"word":"bank's","ipa":"/bæŋks/","aviationMeaning":"n. 倾斜的；表示所属关系","generalMeaning":"n. 银行的；表示所属关系"},
-    {"word":"banked","ipa":"/bæŋkt/","aviationMeaning":"adj. 已倾斜转弯的","generalMeaning":"adj. 倾斜的；存入银行的"},
-    {"word":"banking","ipa":"/ˈbæŋkɪŋ/","aviationMeaning":"n. 倾斜飞行；转弯坡度","generalMeaning":"n. 银行业；倾斜"},
-    {"word":"banks","ipa":"/bæŋks/","aviationMeaning":"n. 倾斜角或河岸（复数）；v. 倾斜转弯","generalMeaning":"n. 银行；岸（复数）"},
-    {"word":"banning","ipa":"/ˈbænɪŋ/","aviationMeaning":"v. 正在禁止某项运行或携带物","generalMeaning":"v. 正在禁止"},
-    {"word":"bar","ipa":"/bɑːr/","aviationMeaning":"n. 条、杆；气压单位毫巴的组成词","generalMeaning":"n. 条；酒吧；栏杆"},
-    {"word":"barcelona","ipa":"/ˌbɑːrsəˈloʊnə/","aviationMeaning":"n. 巴塞罗那；机场所在城市","generalMeaning":"n. 巴塞罗那（西班牙城市）"},
-    {"word":"barely","ipa":"/ˈberli/","aviationMeaning":"adv. 勉强；几乎不能满足限制","generalMeaning":"adv. 勉强；几乎不"},
-    {"word":"barometric","ipa":"/ˌbærəˈmetrɪk/","aviationMeaning":"adj. 气压的；如气压高度","generalMeaning":"adj. 气压的"},
-    {"word":"barrier","ipa":"/ˈbæriər/","aviationMeaning":"n. 障碍物；安全隔离屏障","generalMeaning":"n. 障碍；屏障"},
-    {"word":"barriers","ipa":"/ˈbæriərz/","aviationMeaning":"n. 障碍物；安全隔离屏障（复数）","generalMeaning":"n. 障碍；屏障（复数）"},
-    {"word":"bars","ipa":"/bɑːrz/","aviationMeaning":"n. 条、杆或气压单位（复数）","generalMeaning":"n. 条；酒吧；栏杆（复数）"},
-    {"word":"base","ipa":"/beɪs/","aviationMeaning":"n. 基地；云底；基础；v. 以……为基地","generalMeaning":"n. 基础；基地；v. 以……为基础"},
-    {"word":"based","ipa":"/beɪst/","aviationMeaning":"adj. 驻扎在某机场或基于某资料的","generalMeaning":"adj. 基于的；以……为基地的"},
-    {"word":"basel","ipa":"/ˈbɑːzəl/","aviationMeaning":"n. 巴塞尔；机场所在城市","generalMeaning":"n. 巴塞尔（瑞士城市）"},
-    {"word":"basel's","ipa":"/ˈbɑːzəlz/","aviationMeaning":"n. 巴塞尔的；表示所属关系","generalMeaning":"n. 巴塞尔的；表示所属关系"},
-    {"word":"baseline","ipa":"/ˈbeɪslaɪn/","aviationMeaning":"n. 基准线；基线性能或安全水平","generalMeaning":"n. 基线；基准"},
-    {"word":"basic","ipa":"/ˈbeɪsɪk/","aviationMeaning":"adj. 基本的；基础飞行或程序的","generalMeaning":"adj. 基本的；基础的"},
-    {"word":"basis","ipa":"/ˈbeɪsɪs/","aviationMeaning":"n. 依据；运行决策或计算基础","generalMeaning":"n. 基础；依据"},
-    {"word":"basketball","ipa":"/ˈbæskɪtbɔːl/","aviationMeaning":"n. 篮球；可能用于旅客或地标语境","generalMeaning":"n. 篮球"},
-    {"word":"batman","ipa":"/ˈbætmæn/","aviationMeaning":"n. 题库中的人名、呼号或引导员称谓","generalMeaning":"n. 蝙蝠侠；勤务兵"},
-    {"word":"batteries","ipa":"/ˈbætəriz/","aviationMeaning":"n. 电池组（复数）","generalMeaning":"n. 电池（复数）"},
-    {"word":"battering","ipa":"/ˈbætərɪŋ/","aviationMeaning":"n. 强烈冲击；如湍流对机体的冲击","generalMeaning":"n. 猛击；痛打"},
-    {"word":"battery","ipa":"/ˈbætəri/","aviationMeaning":"n. 蓄电池；机载电源","generalMeaning":"n. 电池；一组设备"},
-    {"word":"battery-powered","ipa":"/ˈbætəri ˈpaʊərd/","aviationMeaning":"adj. 由电池供电的","generalMeaning":"adj. 电池供电的"},
-    {"word":"baw","ipa":"/bɔː/","aviationMeaning":"n. 题库中的专有缩写或词形；需结合原文","generalMeaning":"n. 不明缩写；请结合原文"},
-    {"word":"bay","ipa":"/beɪ/","aviationMeaning":"n. 舱位、停机位或海湾","generalMeaning":"n. 海湾；隔间"},
-    {"word":"bay's","ipa":"/beɪz/","aviationMeaning":"n. 舱位或海湾的；表示所属关系","generalMeaning":"n. 海湾的；表示所属关系"},
-    {"word":"bazar","ipa":"/bəˈzɑːr/","aviationMeaning":"n. 集市；可能作为地标或目的地描述","generalMeaning":"n. 集市；市场"},
-    {"word":"bazar's","ipa":"/bəˈzɑːrz/","aviationMeaning":"n. 集市的；表示所属关系","generalMeaning":"n. 集市的；表示所属关系"},
-    {"word":"bcf","ipa":"/ˌbiː siː ˈef/","aviationMeaning":"n. 航空资料中的缩写；需结合原文","generalMeaning":"n. 不明缩写；请结合原文"},
-    {"word":"bde","ipa":"/ˌbiː diː ˈiː/","aviationMeaning":"n. 航空资料中的缩写；需结合原文","generalMeaning":"n. 不明缩写；请结合原文"},
-    {"word":"be","ipa":"/biː/","aviationMeaning":"v. 是；处于某状态或位置","generalMeaning":"v. 是；存在"},
-    {"word":"bea","ipa":"/ˌbiː iː ˈeɪ/","aviationMeaning":"n. 航空公司或机构缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"beach","ipa":"/biːtʃ/","aviationMeaning":"n. 海滩；可能作为地标、目的地或迫降区域","generalMeaning":"n. 海滩；沙滩"},
-    {"word":"beacon","ipa":"/ˈbiːkən/","aviationMeaning":"n. 信标；导航信标","generalMeaning":"n. 信标；灯塔"},
-    {"word":"beacons","ipa":"/ˈbiːkənz/","aviationMeaning":"n. 信标；导航信标（复数）","generalMeaning":"n. 信标；灯塔（复数）"},
-    {"word":"beam","ipa":"/biːm/","aviationMeaning":"n. 波束；航向道/下滑道信号波束","generalMeaning":"n. 梁；光束"},
-    {"word":"bearing","ipa":"/ˈberɪŋ/","aviationMeaning":"n. 方位；方位角；轴承","generalMeaning":"n. 方位；轴承；举止"},
-    {"word":"beatle","ipa":"/ˈbiːtəl/","aviationMeaning":"n. 题库中的专有名称或疑似拼写；需结合原文","generalMeaning":"n. 甲虫；可能为专有名词"},
-    {"word":"beautiful","ipa":"/ˈbjuːtəfəl/","aviationMeaning":"adj. 美丽的；可能用于景象或天气描述","generalMeaning":"adj. 美丽的；出色的"},
-    {"word":"became","ipa":"/bɪˈkeɪm/","aviationMeaning":"v. 变成；进入某状态","generalMeaning":"v. 成为；变得"},
-    {"word":"because","ipa":"/bɪˈkɔːz/","aviationMeaning":"conj. 因为；说明运行原因","generalMeaning":"conj. 因为"},
-    {"word":"become","ipa":"/bɪˈkʌm/","aviationMeaning":"v. 变成；进入某状态","generalMeaning":"v. 成为；变得"},
-    {"word":"becomes","ipa":"/bɪˈkʌmz/","aviationMeaning":"v. 变成；进入某状态","generalMeaning":"v. 成为；变得"},
-    {"word":"becoming","ipa":"/bɪˈkʌmɪŋ/","aviationMeaning":"v. 正变成；正在进入某状态","generalMeaning":"v. 正成为；变得"},
-    {"word":"bed","ipa":"/bed/","aviationMeaning":"n. 床位；可能用于机组休息或旅客医疗语境","generalMeaning":"n. 床；河床"},
-    {"word":"beech","ipa":"/biːtʃ/","aviationMeaning":"n. 山毛榉；也可指 Beechcraft 名称组成词","generalMeaning":"n. 山毛榉"},
-    {"word":"been","ipa":"/bɪn/","aviationMeaning":"v. 已经处于或到过；用于完成时状态报告","generalMeaning":"v. 是（be 的过去分词）"},
-    {"word":"beer","ipa":"/bɪr/","aviationMeaning":"n. 啤酒；飞行安全中受限制的酒精饮料","generalMeaning":"n. 啤酒"},
-    {"word":"before","ipa":"/bɪˈfɔːr/","aviationMeaning":"prep. 在……之前；用于程序顺序","generalMeaning":"prep. 在……之前"},
-    {"word":"began","ipa":"/bɪˈɡæn/","aviationMeaning":"v. 开始；启动程序或事件","generalMeaning":"v. 开始（begin 的过去式）"},
-    {"word":"begin","ipa":"/bɪˈɡɪn/","aviationMeaning":"v. 开始执行飞行、程序或操作","generalMeaning":"v. 开始"},
-    {"word":"begines","ipa":"/bɪˈɡɪnz/","aviationMeaning":"n. 题库原文中 begins 的疑似拼写错误","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"beginning","ipa":"/bɪˈɡɪnɪŋ/","aviationMeaning":"n. 开始；程序或航段起点","generalMeaning":"n. 开始；开端"},
-    {"word":"begins","ipa":"/bɪˈɡɪnz/","aviationMeaning":"v. 开始执行飞行、程序或操作","generalMeaning":"v. 开始"},
-    {"word":"begun","ipa":"/bɪˈɡʌn/","aviationMeaning":"v. 已开始；已启动","generalMeaning":"v. 已开始（begin 的过去分词）"},
-    {"word":"behalf","ipa":"/bɪˈhæf/","aviationMeaning":"n. 代表；代表机组、运营人或当局","generalMeaning":"n. 代表；为了……利益"},
-    {"word":"behave","ipa":"/bɪˈheɪv/","aviationMeaning":"v. 按预期运行；表现","generalMeaning":"v. 表现；行为举止"},
-    {"word":"behaves","ipa":"/bɪˈheɪvz/","aviationMeaning":"v. 按预期运行；表现","generalMeaning":"v. 表现；行为举止"},
-    {"word":"behaving","ipa":"/bɪˈheɪvɪŋ/","aviationMeaning":"v. 正按预期运行或表现","generalMeaning":"v. 正表现；行为举止"},
-    {"word":"behavior","ipa":"/bɪˈheɪvjər/","aviationMeaning":"n. 飞机、系统或人员行为特性","generalMeaning":"n. 行为；表现"},
-    {"word":"behavioral","ipa":"/bɪˈheɪvjərəl/","aviationMeaning":"adj. 与人员行为或系统行为有关的","generalMeaning":"adj. 行为的"},
-    {"word":"behaviour","ipa":"/bɪˈheɪvjər/","aviationMeaning":"n. 飞机、系统或人员行为特性","generalMeaning":"n. 行为；表现"},
-    {"word":"behind","ipa":"/bɪˈhaɪnd/","aviationMeaning":"prep. 在后方；落后于前机或计划","generalMeaning":"prep. 在后面；落后于"},
-    {"word":"beidou","ipa":"/ˈbeɪdoʊ/","aviationMeaning":"n. 北斗卫星导航系统","generalMeaning":"n. 北斗卫星导航系统"},
-    {"word":"beijing","ipa":"/ˌbeɪˈdʒɪŋ/","aviationMeaning":"n. 北京；机场所在城市","generalMeaning":"n. 北京"},
-    {"word":"being","ipa":"/ˈbiːɪŋ/","aviationMeaning":"v. 正处于；n. 存在状态","generalMeaning":"v. 正是；n. 生物；存在"},
-    {"word":"bekol","ipa":"/bəˈkoʊl/","aviationMeaning":"n. 航路点、呼号或专有名称","generalMeaning":"n. 专有名称；请结合原文"},
-    {"word":"belgium","ipa":"/ˈbeldʒəm/","aviationMeaning":"n. 比利时；运行区域或国别","generalMeaning":"n. 比利时"},
-    {"word":"believe","ipa":"/bɪˈliːv/","aviationMeaning":"v. 认为；基于信息作出判断","generalMeaning":"v. 相信；认为"},
-    {"word":"believed","ipa":"/bɪˈliːvd/","aviationMeaning":"v. 已认为；被相信的","generalMeaning":"v. 已相信；认为"},
-    {"word":"believes","ipa":"/bɪˈliːvz/","aviationMeaning":"v. 认为；基于信息作出判断","generalMeaning":"v. 相信；认为"},
-    {"word":"belly","ipa":"/ˈbeli/","aviationMeaning":"n. 机腹；航空器下部","generalMeaning":"n. 腹部；肚子"},
-    {"word":"belong","ipa":"/bɪˈlɔːŋ/","aviationMeaning":"v. 属于某航空器、公司或区域","generalMeaning":"v. 属于；应归入"},
-    {"word":"belongs","ipa":"/bɪˈlɔːŋz/","aviationMeaning":"v. 属于某航空器、公司或区域","generalMeaning":"v. 属于；应归入"},
-    {"word":"below","ipa":"/bɪˈloʊ/","aviationMeaning":"prep. 在……以下；低于高度、限制或位置","generalMeaning":"prep. 在……下面；低于"},
-    {"word":"belt","ipa":"/belt/","aviationMeaning":"n. 安全带；传动带","generalMeaning":"n. 腰带；带状物"},
-    {"word":"belted","ipa":"/ˈbeltɪd/","aviationMeaning":"adj. 已系好安全带的","generalMeaning":"adj. 系腰带的"},
-    {"word":"belts","ipa":"/belts/","aviationMeaning":"n. 安全带或传动带（复数）","generalMeaning":"n. 腰带；带状物（复数）"},
-    {"word":"bend","ipa":"/bend/","aviationMeaning":"v. 弯曲；n. 弯道或弯曲部位","generalMeaning":"v. 弯曲；n. 弯道"},
-    {"word":"beneath","ipa":"/bɪˈniːθ/","aviationMeaning":"prep. 在……下方；低于某高度或物体","generalMeaning":"prep. 在……下面"},
-    {"word":"benefit","ipa":"/ˈbenəfɪt/","aviationMeaning":"n. 益处；安全或运行效益","generalMeaning":"n. 好处；利益"},
-    {"word":"benefits","ipa":"/ˈbenəfɪts/","aviationMeaning":"n. 益处；安全或运行效益（复数）","generalMeaning":"n. 好处；利益（复数）"},
-    {"word":"bent","ipa":"/bent/","aviationMeaning":"adj. 弯曲的；部件变形的","generalMeaning":"adj. 弯曲的；弯的"},
-    {"word":"bergamo","ipa":"/berˈɡɑːmoʊ/","aviationMeaning":"n. 贝加莫；机场所在城市","generalMeaning":"n. 贝加莫（意大利城市）"},
-    {"word":"bergen","ipa":"/ˈberɡən/","aviationMeaning":"n. 卑尔根；机场所在城市","generalMeaning":"n. 卑尔根（挪威城市）"},
-    {"word":"bergerac","ipa":"/ˌberʒəˈræk/","aviationMeaning":"n. 贝尔热拉克；机场所在城市","generalMeaning":"n. 贝尔热拉克（法国城市）"},
-    {"word":"bergerac's","ipa":"/ˌberʒəˈræks/","aviationMeaning":"n. 贝尔热拉克的；表示所属关系","generalMeaning":"n. 贝尔热拉克的；表示所属关系"},
-    {"word":"berlin","ipa":"/bərˈlɪn/","aviationMeaning":"n. 柏林；机场所在城市","generalMeaning":"n. 柏林（德国首都）"}
+    {
+      "word": "balked",
+      "ipa": "/bɔːlkt/",
+      "aviationMeaning": "v. 中止动作；如中止着陆尝试",
+      "generalMeaning": "v. 犹豫而停止；阻碍"
+    },
+    {
+      "word": "balloon",
+      "ipa": "/bəˈluːn/",
+      "aviationMeaning": "n. 气球；v. 着陆时上飘",
+      "generalMeaning": "n. 气球；v. 膨胀"
+    },
+    {
+      "word": "balloons",
+      "ipa": "/bəˈluːnz/",
+      "aviationMeaning": "n. 气球（复数）；v. 上飘",
+      "generalMeaning": "n. 气球（复数）"
+    },
+    {
+      "word": "band",
+      "ipa": "/bænd/",
+      "aviationMeaning": "n. 频段；信号频带",
+      "generalMeaning": "n. 乐队；带；范围"
+    },
+    {
+      "word": "bang",
+      "ipa": "/bæŋ/",
+      "aviationMeaning": "n. 巨响；可能用于异常事件报告",
+      "generalMeaning": "n. 砰声；v. 猛击"
+    },
+    {
+      "word": "bangkok",
+      "ipa": "/ˈbæŋkɑːk/",
+      "aviationMeaning": "n. 曼谷；机场所在城市",
+      "generalMeaning": "n. 曼谷（泰国首都）"
+    },
+    {
+      "word": "bangkok's",
+      "ipa": "/ˈbæŋkɑːks/",
+      "aviationMeaning": "n. 曼谷的；表示所属关系",
+      "generalMeaning": "n. 曼谷的；表示所属关系"
+    },
+    {
+      "word": "bangs",
+      "ipa": "/bæŋz/",
+      "aviationMeaning": "n. 巨响（复数）；v. 猛击",
+      "generalMeaning": "n. 砰声（复数）；v. 猛击"
+    },
+    {
+      "word": "bank",
+      "ipa": "/bæŋk/",
+      "aviationMeaning": "n. 倾斜角；v. 倾斜转弯",
+      "generalMeaning": "n. 银行；岸；v. 倾斜"
+    },
+    {
+      "word": "bank's",
+      "ipa": "/bæŋks/",
+      "aviationMeaning": "n. 倾斜的；表示所属关系",
+      "generalMeaning": "n. 银行的；表示所属关系"
+    },
+    {
+      "word": "banked",
+      "ipa": "/bæŋkt/",
+      "aviationMeaning": "adj. 已倾斜转弯的",
+      "generalMeaning": "adj. 倾斜的；存入银行的"
+    },
+    {
+      "word": "banking",
+      "ipa": "/ˈbæŋkɪŋ/",
+      "aviationMeaning": "n. 倾斜飞行；转弯坡度",
+      "generalMeaning": "n. 银行业；倾斜"
+    },
+    {
+      "word": "banks",
+      "ipa": "/bæŋks/",
+      "aviationMeaning": "n. 倾斜角或河岸（复数）；v. 倾斜转弯",
+      "generalMeaning": "n. 银行；岸（复数）"
+    },
+    {
+      "word": "banning",
+      "ipa": "/ˈbænɪŋ/",
+      "aviationMeaning": "v. 正在禁止某项运行或携带物",
+      "generalMeaning": "v. 正在禁止"
+    },
+    {
+      "word": "bar",
+      "ipa": "/bɑːr/",
+      "aviationMeaning": "n. 条、杆；气压单位毫巴的组成词",
+      "generalMeaning": "n. 条；酒吧；栏杆"
+    },
+    {
+      "word": "barcelona",
+      "ipa": "/ˌbɑːrsəˈloʊnə/",
+      "aviationMeaning": "n. 巴塞罗那；机场所在城市",
+      "generalMeaning": "n. 巴塞罗那（西班牙城市）"
+    },
+    {
+      "word": "barely",
+      "ipa": "/ˈberli/",
+      "aviationMeaning": "adv. 勉强；几乎不能满足限制",
+      "generalMeaning": "adv. 勉强；几乎不"
+    },
+    {
+      "word": "barometric",
+      "ipa": "/ˌbærəˈmetrɪk/",
+      "aviationMeaning": "adj. 气压的；如气压高度",
+      "generalMeaning": "adj. 气压的"
+    },
+    {
+      "word": "barriers",
+      "ipa": "/ˈbæriərz/",
+      "aviationMeaning": "n. 障碍物；安全隔离屏障（复数）",
+      "generalMeaning": "n. 障碍；屏障（复数）"
+    },
+    {
+      "word": "bars",
+      "ipa": "/bɑːrz/",
+      "aviationMeaning": "n. 条、杆或气压单位（复数）",
+      "generalMeaning": "n. 条；酒吧；栏杆（复数）"
+    },
+    {
+      "word": "base",
+      "ipa": "/beɪs/",
+      "aviationMeaning": "n. 基地；云底；基础；v. 以……为基地",
+      "generalMeaning": "n. 基础；基地；v. 以……为基础"
+    },
+    {
+      "word": "based",
+      "ipa": "/beɪst/",
+      "aviationMeaning": "adj. 驻扎在某机场或基于某资料的",
+      "generalMeaning": "adj. 基于的；以……为基地的"
+    },
+    {
+      "word": "basel",
+      "ipa": "/ˈbɑːzəl/",
+      "aviationMeaning": "n. 巴塞尔；机场所在城市",
+      "generalMeaning": "n. 巴塞尔（瑞士城市）"
+    },
+    {
+      "word": "basel's",
+      "ipa": "/ˈbɑːzəlz/",
+      "aviationMeaning": "n. 巴塞尔的；表示所属关系",
+      "generalMeaning": "n. 巴塞尔的；表示所属关系"
+    },
+    {
+      "word": "basic",
+      "ipa": "/ˈbeɪsɪk/",
+      "aviationMeaning": "adj. 基本的；基础飞行或程序的",
+      "generalMeaning": "adj. 基本的；基础的"
+    },
+    {
+      "word": "basis",
+      "ipa": "/ˈbeɪsɪs/",
+      "aviationMeaning": "n. 依据；运行决策或计算基础",
+      "generalMeaning": "n. 基础；依据"
+    },
+    {
+      "word": "basketball",
+      "ipa": "/ˈbæskɪtbɔːl/",
+      "aviationMeaning": "n. 篮球；可能用于旅客或地标语境",
+      "generalMeaning": "n. 篮球"
+    },
+    {
+      "word": "batman",
+      "ipa": "/ˈbætmæn/",
+      "aviationMeaning": "n. 题库中的人名、呼号或引导员称谓",
+      "generalMeaning": "n. 蝙蝠侠；勤务兵"
+    },
+    {
+      "word": "batteries",
+      "ipa": "/ˈbætəriz/",
+      "aviationMeaning": "n. 电池组（复数）",
+      "generalMeaning": "n. 电池（复数）"
+    },
+    {
+      "word": "battering",
+      "ipa": "/ˈbætərɪŋ/",
+      "aviationMeaning": "n. 强烈冲击；如湍流对机体的冲击",
+      "generalMeaning": "n. 猛击；痛打"
+    },
+    {
+      "word": "battery",
+      "ipa": "/ˈbætəri/",
+      "aviationMeaning": "n. 蓄电池；机载电源",
+      "generalMeaning": "n. 电池；一组设备"
+    },
+    {
+      "word": "battery-powered",
+      "ipa": "/ˈbætəri ˈpaʊərd/",
+      "aviationMeaning": "adj. 由电池供电的",
+      "generalMeaning": "adj. 电池供电的"
+    },
+    {
+      "word": "baw",
+      "ipa": "/bɔː/",
+      "aviationMeaning": "n. 题库中的专有缩写或词形；需结合原文",
+      "generalMeaning": "n. 不明缩写；请结合原文"
+    },
+    {
+      "word": "bay",
+      "ipa": "/beɪ/",
+      "aviationMeaning": "n. 舱位、停机位或海湾",
+      "generalMeaning": "n. 海湾；隔间"
+    },
+    {
+      "word": "bay's",
+      "ipa": "/beɪz/",
+      "aviationMeaning": "n. 舱位或海湾的；表示所属关系",
+      "generalMeaning": "n. 海湾的；表示所属关系"
+    },
+    {
+      "word": "bazar",
+      "ipa": "/bəˈzɑːr/",
+      "aviationMeaning": "n. 集市；可能作为地标或目的地描述",
+      "generalMeaning": "n. 集市；市场"
+    },
+    {
+      "word": "bazar's",
+      "ipa": "/bəˈzɑːrz/",
+      "aviationMeaning": "n. 集市的；表示所属关系",
+      "generalMeaning": "n. 集市的；表示所属关系"
+    },
+    {
+      "word": "bcf",
+      "ipa": "/ˌbiː siː ˈef/",
+      "aviationMeaning": "n. 航空资料中的缩写；需结合原文",
+      "generalMeaning": "n. 不明缩写；请结合原文"
+    },
+    {
+      "word": "bde",
+      "ipa": "/ˌbiː diː ˈiː/",
+      "aviationMeaning": "n. 航空资料中的缩写；需结合原文",
+      "generalMeaning": "n. 不明缩写；请结合原文"
+    },
+    {
+      "word": "be",
+      "ipa": "/biː/",
+      "aviationMeaning": "v. 是；处于某状态或位置",
+      "generalMeaning": "v. 是；存在"
+    },
+    {
+      "word": "bea",
+      "ipa": "/ˌbiː iː ˈeɪ/",
+      "aviationMeaning": "n. 航空公司或机构缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "beach",
+      "ipa": "/biːtʃ/",
+      "aviationMeaning": "n. 海滩；可能作为地标、目的地或迫降区域",
+      "generalMeaning": "n. 海滩；沙滩"
+    },
+    {
+      "word": "beacon",
+      "ipa": "/ˈbiːkən/",
+      "aviationMeaning": "n. 信标；导航信标",
+      "generalMeaning": "n. 信标；灯塔"
+    },
+    {
+      "word": "beacons",
+      "ipa": "/ˈbiːkənz/",
+      "aviationMeaning": "n. 信标；导航信标（复数）",
+      "generalMeaning": "n. 信标；灯塔（复数）"
+    },
+    {
+      "word": "beam",
+      "ipa": "/biːm/",
+      "aviationMeaning": "n. 波束；航向道/下滑道信号波束",
+      "generalMeaning": "n. 梁；光束"
+    },
+    {
+      "word": "bearing",
+      "ipa": "/ˈberɪŋ/",
+      "aviationMeaning": "n. 方位；方位角；轴承",
+      "generalMeaning": "n. 方位；轴承；举止"
+    },
+    {
+      "word": "beatle",
+      "ipa": "/ˈbiːtəl/",
+      "aviationMeaning": "n. 题库中的专有名称或疑似拼写；需结合原文",
+      "generalMeaning": "n. 甲虫；可能为专有名词"
+    },
+    {
+      "word": "beautiful",
+      "ipa": "/ˈbjuːtəfəl/",
+      "aviationMeaning": "adj. 美丽的；可能用于景象或天气描述",
+      "generalMeaning": "adj. 美丽的；出色的"
+    },
+    {
+      "word": "became",
+      "ipa": "/bɪˈkeɪm/",
+      "aviationMeaning": "v. 变成；进入某状态",
+      "generalMeaning": "v. 成为；变得"
+    },
+    {
+      "word": "because",
+      "ipa": "/bɪˈkɔːz/",
+      "aviationMeaning": "conj. 因为；说明运行原因",
+      "generalMeaning": "conj. 因为"
+    },
+    {
+      "word": "become",
+      "ipa": "/bɪˈkʌm/",
+      "aviationMeaning": "v. 变成；进入某状态",
+      "generalMeaning": "v. 成为；变得"
+    },
+    {
+      "word": "becomes",
+      "ipa": "/bɪˈkʌmz/",
+      "aviationMeaning": "v. 变成；进入某状态",
+      "generalMeaning": "v. 成为；变得"
+    },
+    {
+      "word": "becoming",
+      "ipa": "/bɪˈkʌmɪŋ/",
+      "aviationMeaning": "v. 正变成；正在进入某状态",
+      "generalMeaning": "v. 正成为；变得"
+    },
+    {
+      "word": "bed",
+      "ipa": "/bed/",
+      "aviationMeaning": "n. 床位；可能用于机组休息或旅客医疗语境",
+      "generalMeaning": "n. 床；河床"
+    },
+    {
+      "word": "beech",
+      "ipa": "/biːtʃ/",
+      "aviationMeaning": "n. 山毛榉；也可指 Beechcraft 名称组成词",
+      "generalMeaning": "n. 山毛榉"
+    },
+    {
+      "word": "been",
+      "ipa": "/bɪn/",
+      "aviationMeaning": "v. 已经处于或到过；用于完成时状态报告",
+      "generalMeaning": "v. 是（be 的过去分词）"
+    },
+    {
+      "word": "beer",
+      "ipa": "/bɪr/",
+      "aviationMeaning": "n. 啤酒；飞行安全中受限制的酒精饮料",
+      "generalMeaning": "n. 啤酒"
+    },
+    {
+      "word": "before",
+      "ipa": "/bɪˈfɔːr/",
+      "aviationMeaning": "prep. 在……之前；用于程序顺序",
+      "generalMeaning": "prep. 在……之前"
+    },
+    {
+      "word": "began",
+      "ipa": "/bɪˈɡæn/",
+      "aviationMeaning": "v. 开始；启动程序或事件",
+      "generalMeaning": "v. 开始（begin 的过去式）"
+    },
+    {
+      "word": "begin",
+      "ipa": "/bɪˈɡɪn/",
+      "aviationMeaning": "v. 开始执行飞行、程序或操作",
+      "generalMeaning": "v. 开始"
+    },
+    {
+      "word": "beginning",
+      "ipa": "/bɪˈɡɪnɪŋ/",
+      "aviationMeaning": "n. 开始；程序或航段起点",
+      "generalMeaning": "n. 开始；开端"
+    },
+    {
+      "word": "begins",
+      "ipa": "/bɪˈɡɪnz/",
+      "aviationMeaning": "v. 开始执行飞行、程序或操作",
+      "generalMeaning": "v. 开始"
+    },
+    {
+      "word": "begun",
+      "ipa": "/bɪˈɡʌn/",
+      "aviationMeaning": "v. 已开始；已启动",
+      "generalMeaning": "v. 已开始（begin 的过去分词）"
+    },
+    {
+      "word": "behalf",
+      "ipa": "/bɪˈhæf/",
+      "aviationMeaning": "n. 代表；代表机组、运营人或当局",
+      "generalMeaning": "n. 代表；为了……利益"
+    },
+    {
+      "word": "behaving",
+      "ipa": "/bɪˈheɪvɪŋ/",
+      "aviationMeaning": "v. 正按预期运行或表现",
+      "generalMeaning": "v. 正表现；行为举止"
+    },
+    {
+      "word": "behavior",
+      "ipa": "/bɪˈheɪvjər/",
+      "aviationMeaning": "n. 飞机、系统或人员行为特性",
+      "generalMeaning": "n. 行为；表现"
+    },
+    {
+      "word": "behaviour",
+      "ipa": "/bɪˈheɪvjər/",
+      "aviationMeaning": "n. 飞机、系统或人员行为特性",
+      "generalMeaning": "n. 行为；表现"
+    },
+    {
+      "word": "behind",
+      "ipa": "/bɪˈhaɪnd/",
+      "aviationMeaning": "prep. 在后方；落后于前机或计划",
+      "generalMeaning": "prep. 在后面；落后于"
+    },
+    {
+      "word": "beidou",
+      "ipa": "/ˈbeɪdoʊ/",
+      "aviationMeaning": "n. 北斗卫星导航系统",
+      "generalMeaning": "n. 北斗卫星导航系统"
+    },
+    {
+      "word": "beijing",
+      "ipa": "/ˌbeɪˈdʒɪŋ/",
+      "aviationMeaning": "n. 北京；机场所在城市",
+      "generalMeaning": "n. 北京"
+    },
+    {
+      "word": "being",
+      "ipa": "/ˈbiːɪŋ/",
+      "aviationMeaning": "v. 正处于；n. 存在状态",
+      "generalMeaning": "v. 正是；n. 生物；存在"
+    },
+    {
+      "word": "bekol",
+      "ipa": "/bəˈkoʊl/",
+      "aviationMeaning": "n. 航路点、呼号或专有名称",
+      "generalMeaning": "n. 专有名称；请结合原文"
+    },
+    {
+      "word": "belgium",
+      "ipa": "/ˈbeldʒəm/",
+      "aviationMeaning": "n. 比利时；运行区域或国别",
+      "generalMeaning": "n. 比利时"
+    },
+    {
+      "word": "believe",
+      "ipa": "/bɪˈliːv/",
+      "aviationMeaning": "v. 认为；基于信息作出判断",
+      "generalMeaning": "v. 相信；认为"
+    },
+    {
+      "word": "believed",
+      "ipa": "/bɪˈliːvd/",
+      "aviationMeaning": "v. 已认为；被相信的",
+      "generalMeaning": "v. 已相信；认为"
+    },
+    {
+      "word": "believes",
+      "ipa": "/bɪˈliːvz/",
+      "aviationMeaning": "v. 认为；基于信息作出判断",
+      "generalMeaning": "v. 相信；认为"
+    },
+    {
+      "word": "belly",
+      "ipa": "/ˈbeli/",
+      "aviationMeaning": "n. 机腹；航空器下部",
+      "generalMeaning": "n. 腹部；肚子"
+    },
+    {
+      "word": "belong",
+      "ipa": "/bɪˈlɔːŋ/",
+      "aviationMeaning": "v. 属于某航空器、公司或区域",
+      "generalMeaning": "v. 属于；应归入"
+    },
+    {
+      "word": "belongs",
+      "ipa": "/bɪˈlɔːŋz/",
+      "aviationMeaning": "v. 属于某航空器、公司或区域",
+      "generalMeaning": "v. 属于；应归入"
+    },
+    {
+      "word": "below",
+      "ipa": "/bɪˈloʊ/",
+      "aviationMeaning": "prep. 在……以下；低于高度、限制或位置",
+      "generalMeaning": "prep. 在……下面；低于"
+    },
+    {
+      "word": "belt",
+      "ipa": "/belt/",
+      "aviationMeaning": "n. 安全带；传动带",
+      "generalMeaning": "n. 腰带；带状物"
+    },
+    {
+      "word": "belted",
+      "ipa": "/ˈbeltɪd/",
+      "aviationMeaning": "adj. 已系好安全带的",
+      "generalMeaning": "adj. 系腰带的"
+    },
+    {
+      "word": "belts",
+      "ipa": "/belts/",
+      "aviationMeaning": "n. 安全带或传动带（复数）",
+      "generalMeaning": "n. 腰带；带状物（复数）"
+    },
+    {
+      "word": "beneath",
+      "ipa": "/bɪˈniːθ/",
+      "aviationMeaning": "prep. 在……下方；低于某高度或物体",
+      "generalMeaning": "prep. 在……下面"
+    },
+    {
+      "word": "benefit",
+      "ipa": "/ˈbenəfɪt/",
+      "aviationMeaning": "n. 益处；安全或运行效益",
+      "generalMeaning": "n. 好处；利益"
+    },
+    {
+      "word": "benefits",
+      "ipa": "/ˈbenəfɪts/",
+      "aviationMeaning": "n. 益处；安全或运行效益（复数）",
+      "generalMeaning": "n. 好处；利益（复数）"
+    },
+    {
+      "word": "bent",
+      "ipa": "/bent/",
+      "aviationMeaning": "adj. 弯曲的；部件变形的",
+      "generalMeaning": "adj. 弯曲的；弯的"
+    },
+    {
+      "word": "bergamo",
+      "ipa": "/berˈɡɑːmoʊ/",
+      "aviationMeaning": "n. 贝加莫；机场所在城市",
+      "generalMeaning": "n. 贝加莫（意大利城市）"
+    },
+    {
+      "word": "bergen",
+      "ipa": "/ˈberɡən/",
+      "aviationMeaning": "n. 卑尔根；机场所在城市",
+      "generalMeaning": "n. 卑尔根（挪威城市）"
+    },
+    {
+      "word": "bergerac",
+      "ipa": "/ˌberʒəˈræk/",
+      "aviationMeaning": "n. 贝尔热拉克；机场所在城市",
+      "generalMeaning": "n. 贝尔热拉克（法国城市）"
+    },
+    {
+      "word": "bergerac's",
+      "ipa": "/ˌberʒəˈræks/",
+      "aviationMeaning": "n. 贝尔热拉克的；表示所属关系",
+      "generalMeaning": "n. 贝尔热拉克的；表示所属关系"
+    },
+    {
+      "word": "berlin",
+      "ipa": "/bərˈlɪn/",
+      "aviationMeaning": "n. 柏林；机场所在城市",
+      "generalMeaning": "n. 柏林（德国首都）"
+    }
   ]
 }

@@ -18,8 +18,8 @@
       "taskTitle": "CSN 371-2",
       "audioText": "CSN 371, cleared to Moscow via flight planned route, follow ZF-01 departure, cruising level 8,900 meters, initial climb 1,500 meters, departure frequency 119.45, squawk 3223.",
       "audioTextZh": "CSN 371，许可按飞行计划航路飞往莫斯科，执行 ZF-01 离场，巡航高度 8,900 米，初始爬升至 1,500 米，离场频率 119.45，应答机 3223。",
-      "referenceText": "cleared to Moscow via flight planned route, ZF-01 departure, cruising level 8900 meters, initial climb 1500 meters, departure frequency 119 devimal 45, squawk 3223, CSN 371.",
-      "referenceTextZh": "许可按飞行计划航路飞往莫斯科，执行 ZF-01 离场，巡航高度 8900 米，初始爬升至 1500 米，离场频率 119 devimal 45，应答机 3223，CSN 371。",
+      "referenceText": "cleared to Moscow via flight planned route, ZF-01 departure, cruising level 8900 meters, initial climb 1500 meters, departure frequency 119.45, squawk 3223, CSN 371.",
+      "referenceTextZh": "许可按飞行计划航路飞往莫斯科，执行 ZF-01 离场，巡航高度 8900 米，初始爬升至 1500 米，离场频率 119.45，应答机 3223，CSN 371。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-014-csn371-q02.mp3"
     },
     {

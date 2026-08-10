@@ -36,7 +36,7 @@
       "taskTitle": "ACA 219-4",
       "audioText": "B: During descent, your TCAS indicates there is a converging traffic at your 2 o'clock, below, climbing, confirm with Wuhan Control if it is in conflict with you.",
       "audioTextZh": "B: 下降过程中，你的 TCAS 显示 2 点钟方向有交叉交通，在下方，正在爬升，向武汉管制确认是否与你冲突。",
-      "referenceText": "Wuhan Control, ACA 219, our TCAS indicates there is a converging traffic at our 2 o'clock, below, climbing, is it in conflict with us ?",
+      "referenceText": "Wuhan Control, ACA 219, our TCAS indicates there is a converging traffic at our 2 o'clock, below, climbing, is it in conflict with us?",
       "referenceTextZh": "武汉管制，ACA 219，我们的 TCAS 显示 2 点钟方向有交叉交通，在我们下方，正在爬升，是否与我们冲突？",
       "audio": "/question-bank-assets/audio/radiotelephony/main/782.mp3"
     },
@@ -54,7 +54,7 @@
       "taskTitle": "ACA 219-6",
       "audioText": "B: You have just received the latest ATIS, saying the visibility at Wuhan is low, you want to know if your alternate airport Changsha is available for diversion.",
       "audioTextZh": "B: 你刚收到最新 ATIS，说 Wuhan 能见度低，你想知道备降机场 Changsha 是否可用于改航。",
-      "referenceText": "Wuhan Control, ACA 219, the latest ATIS says the visibility at Wuhan is low, is Changsha available for diversion ?",
+      "referenceText": "Wuhan Control, ACA 219, the latest ATIS says the visibility at Wuhan is low, is Changsha available for diversion?",
       "referenceTextZh": "武汉管制，ACA 219，最新 ATIS 说 Wuhan 能见度低，Changsha 是否可用于改航？",
       "audio": "/question-bank-assets/audio/radiotelephony/main/784.mp3"
     },
@@ -135,8 +135,8 @@
       "taskTitle": "ACA 219-15",
       "audioText": "B: At the minimum, you are unable to see approach lights, you are carrying out a missed approach, advise Tower.",
       "audioTextZh": "B: 在最低标准高度，你看不到进近灯，正在执行复飞，通知塔台。",
-      "referenceText": "Wuhan Tower, ACA 219, we are unable to see approach lights at minimum, going around.\n         (no contact at the minimum)",
-      "referenceTextZh": "武汉塔台，ACA 219，我们在最低标准高度看不到进近灯，复飞。\n         （最低标准高度无目视）",
+      "referenceText": "Wuhan Tower, ACA 219, we are unable to see approach lights at minimum, going around.\n(no contact at the minimum)",
+      "referenceTextZh": "武汉塔台，ACA 219，我们在最低标准高度看不到进近灯，复飞。\n（最低标准高度无目视）",
       "audio": "/question-bank-assets/audio/radiotelephony/main/793.mp3"
     },
     {

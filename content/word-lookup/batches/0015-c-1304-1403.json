@@ -1,104 +1,497 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"circulate","ipa":"/ˈsɜːrkjəleɪt/","aviationMeaning":"v. 循环流动；传阅运行资料","generalMeaning":"v. 循环；流传"},
-    {"word":"circulates","ipa":"/ˈsɜːrkjəleɪts/","aviationMeaning":"v. 循环流动；传阅运行资料","generalMeaning":"v. 循环；流传"},
-    {"word":"circulating","ipa":"/ˈsɜːrkjəleɪtɪŋ/","aviationMeaning":"v. 正循环流动或传阅","generalMeaning":"v. 正循环；流传"},
-    {"word":"circulation","ipa":"/ˌsɜːrkjəˈleɪʃən/","aviationMeaning":"n. 循环；空气、油液或资料流通","generalMeaning":"n. 循环；流通"},
-    {"word":"circumnavigate","ipa":"/ˌsɜːrkəmˈnævɪɡeɪt/","aviationMeaning":"v. 环绕飞行；绕开区域","generalMeaning":"v. 环绕航行"},
-    {"word":"circumnavigation","ipa":"/ˌsɜːrkəmˌnævɪˈɡeɪʃən/","aviationMeaning":"n. 环绕飞行；环球航行","generalMeaning":"n. 环球航行"},
-    {"word":"circumstance","ipa":"/ˈsɜːrkəmstæns/","aviationMeaning":"n. 情况；运行事件条件","generalMeaning":"n. 情况；环境"},
-    {"word":"circumstances","ipa":"/ˈsɜːrkəmstænsɪz/","aviationMeaning":"n. 情况；运行事件条件（复数）","generalMeaning":"n. 情况；环境（复数）"},
-    {"word":"citation","ipa":"/saɪˈteɪʃən/","aviationMeaning":"n. 引用；违规传票或表彰","generalMeaning":"n. 引用；嘉奖；传票"},
-    {"word":"cities","ipa":"/ˈsɪtiz/","aviationMeaning":"n. 城市；机场服务城市（复数）","generalMeaning":"n. 城市（复数）"},
-    {"word":"citizen","ipa":"/ˈsɪtɪzən/","aviationMeaning":"n. 公民；旅客国籍或证件语境","generalMeaning":"n. 公民；市民"},
-    {"word":"city","ipa":"/ˈsɪti/","aviationMeaning":"n. 城市；机场服务城市","generalMeaning":"n. 城市"},
-    {"word":"cityjet","ipa":"/ˈsɪti dʒet/","aviationMeaning":"n. CityJet 航空公司名称","generalMeaning":"n. 专有名称"},
-    {"word":"cityline","ipa":"/ˈsɪti laɪn/","aviationMeaning":"n. 城市线；可能为航空公司名称组成词","generalMeaning":"n. 城市边界线"},
-    {"word":"civil","ipa":"/ˈsɪvəl/","aviationMeaning":"adj. 民用的；民航的","generalMeaning":"adj. 公民的；民用的"},
-    {"word":"civilian","ipa":"/səˈvɪliən/","aviationMeaning":"n. 平民；非军用人员","generalMeaning":"n. 平民；adj. 民用的"},
-    {"word":"ck","ipa":"/ˌsiː ˈkeɪ/","aviationMeaning":"n. 检查或机场代码缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"claim","ipa":"/kleɪm/","aviationMeaning":"n. 申报、索赔；v. 声称或申领","generalMeaning":"n. 声称；索赔；v. 声称"},
-    {"word":"claimed","ipa":"/kleɪmd/","aviationMeaning":"v. 已申领、声称或索赔","generalMeaning":"v. 已声称；已索赔"},
-    {"word":"claims","ipa":"/kleɪmz/","aviationMeaning":"n. 申报、索赔（复数）；v. 声称","generalMeaning":"n. 声称；索赔（复数）"},
-    {"word":"clarance","ipa":"/ˈklɪrəns/","aviationMeaning":"n. 题库原文中 clearance 的疑似拼写错误","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"clarification","ipa":"/ˌklærəfɪˈkeɪʃən/","aviationMeaning":"n. 澄清；对许可或指令的确认","generalMeaning":"n. 澄清；说明"},
-    {"word":"clarify","ipa":"/ˈklærəfaɪ/","aviationMeaning":"v. 澄清许可、指令或运行信息","generalMeaning":"v. 澄清；阐明"},
-    {"word":"clarity","ipa":"/ˈklærəti/","aviationMeaning":"n. 清晰度；通话或显示清晰度","generalMeaning":"n. 清晰；明确"},
-    {"word":"class","ipa":"/klæs/","aviationMeaning":"n. 类别；航空器、空域或服务等级","generalMeaning":"n. 班级；类别"},
-    {"word":"classification","ipa":"/ˌklæsɪfɪˈkeɪʃən/","aviationMeaning":"n. 分类；空域或事件分类","generalMeaning":"n. 分类；类别"},
-    {"word":"classified","ipa":"/ˈklæsɪfaɪd/","aviationMeaning":"adj. 已分类的；保密分级的","generalMeaning":"adj. 已分类的；保密的"},
-    {"word":"classify","ipa":"/ˈklæsɪfaɪ/","aviationMeaning":"v. 对空域、事件或资料分类","generalMeaning":"v. 分类；归类"},
-    {"word":"classroom","ipa":"/ˈklæsruːm/","aviationMeaning":"n. 教室；飞行理论培训场所","generalMeaning":"n. 教室"},
-    {"word":"clean","ipa":"/kliːn/","aviationMeaning":"adj. 干净的；无污染或无故障的；v. 清洁","generalMeaning":"adj. 干净的；v. 清洁"},
-    {"word":"clean-agent","ipa":"/kliːn ˈeɪdʒənt/","aviationMeaning":"n. 清洁灭火剂；不留残渣的灭火剂","generalMeaning":"n. 清洁剂"},
-    {"word":"clean-aircraft","ipa":"/kliːn ˈerkræft/","aviationMeaning":"n. 无冰雪污染的航空器","generalMeaning":"n. 清洁的航空器"},
-    {"word":"cleaned","ipa":"/kliːnd/","aviationMeaning":"adj. 已清洁的；已清除污染物的","generalMeaning":"adj. 已清洁的"},
-    {"word":"cleaner","ipa":"/ˈkliːnər/","aviationMeaning":"n. 清洁人员；adj. 更清洁的","generalMeaning":"n. 清洁工；adj. 更干净的"},
-    {"word":"cleaning","ipa":"/ˈkliːnɪŋ/","aviationMeaning":"n. 清洁；航空器或客舱清洁","generalMeaning":"n. 清洁"},
-    {"word":"clear","ipa":"/klɪr/","aviationMeaning":"v. 批准；清除；adj. 晴朗、无障碍的","generalMeaning":"adj. 清楚的；v. 清除"},
-    {"word":"clear-air","ipa":"/klɪr er/","aviationMeaning":"adj. 晴空中的；如晴空湍流","generalMeaning":"adj. 清澈空气的"},
-    {"word":"clearance-limit","ipa":"/ˈklɪrəns ˈlɪmɪt/","aviationMeaning":"n. 许可终点","generalMeaning":"n. 许可限度"},
-    {"word":"clearances","ipa":"/ˈklɪrənsɪz/","aviationMeaning":"n. 空中交通管制许可（复数）","generalMeaning":"n. 许可；净空（复数）"},
-    {"word":"cleared","ipa":"/klɪrd/","aviationMeaning":"adj. 已获许可的；已清除的","generalMeaning":"adj. 已清除的；已批准的"},
-    {"word":"clearer","ipa":"/ˈklɪrər/","aviationMeaning":"adj. 更清楚的；更晴朗的","generalMeaning":"adj. 更清楚的"},
-    {"word":"clearing","ipa":"/ˈklɪrɪŋ/","aviationMeaning":"v. 正批准、清除或放行","generalMeaning":"v. 正清除；批准"},
-    {"word":"clearly","ipa":"/ˈklɪrli/","aviationMeaning":"adv. 清楚地；用于通话和指令表达","generalMeaning":"adv. 清楚地；明显地"},
-    {"word":"clears","ipa":"/klɪrz/","aviationMeaning":"v. 批准、清除或放行","generalMeaning":"v. 清除；批准"},
-    {"word":"clearway","ipa":"/ˈklɪrweɪ/","aviationMeaning":"n. 净空道","generalMeaning":"n. 净空区域"},
-    {"word":"climate","ipa":"/ˈklaɪmət/","aviationMeaning":"n. 气候；长期航空气象条件","generalMeaning":"n. 气候；环境"},
-    {"word":"climatology","ipa":"/ˌklaɪməˈtɑːlədʒi/","aviationMeaning":"n. 气候学；机场气候资料","generalMeaning":"n. 气候学"},
-    {"word":"climb","ipa":"/klaɪm/","aviationMeaning":"n. 爬升；v. 爬升","generalMeaning":"v. 攀登；n. 攀登"},
-    {"word":"climb-out","ipa":"/ˈklaɪm aʊt/","aviationMeaning":"n. 起飞后爬升阶段","generalMeaning":"n. 向外爬升"},
-    {"word":"climbed","ipa":"/klaɪmd/","aviationMeaning":"v. 已爬升","generalMeaning":"v. 已攀登"},
-    {"word":"climbing","ipa":"/ˈklaɪmɪŋ/","aviationMeaning":"v. 正在爬升；n. 爬升状态","generalMeaning":"v. 正攀登"},
-    {"word":"climbout","ipa":"/ˈklaɪmaʊt/","aviationMeaning":"n. 起飞后爬升阶段","generalMeaning":"n. 向外爬升"},
-    {"word":"climbs","ipa":"/klaɪmz/","aviationMeaning":"v. 爬升","generalMeaning":"v. 攀登"},
-    {"word":"clinton","ipa":"/ˈklɪntən/","aviationMeaning":"n. 地名、人名或呼号中的名称","generalMeaning":"n. 克林顿（人名）"},
-    {"word":"clock","ipa":"/klɑːk/","aviationMeaning":"n. 时钟；驾驶舱计时器","generalMeaning":"n. 时钟"},
-    {"word":"clog","ipa":"/klɑːɡ/","aviationMeaning":"v. 堵塞管路、过滤器或系统","generalMeaning":"v. 堵塞；阻塞"},
-    {"word":"clogged","ipa":"/klɑːɡd/","aviationMeaning":"adj. 已堵塞的；不可用的","generalMeaning":"adj. 被堵塞的"},
-    {"word":"close","ipa":"/kloʊs/","aviationMeaning":"v. 关闭跑道、舱门或系统；adj. 接近的","generalMeaning":"v. 关闭；adj. 接近的"},
-    {"word":"close-range","ipa":"/kloʊs reɪndʒ/","aviationMeaning":"adj. 近距离的；近距监视或接近","generalMeaning":"adj. 近距离的"},
-    {"word":"close-spaced","ipa":"/kloʊs speɪst/","aviationMeaning":"adj. 间距很小的；近距平行运行的","generalMeaning":"adj. 间隔很小的"},
-    {"word":"closed","ipa":"/kloʊzd/","aviationMeaning":"adj. 已关闭的；不可用的","generalMeaning":"adj. 关闭的"},
-    {"word":"closely","ipa":"/ˈkloʊsli/","aviationMeaning":"adv. 密切地；紧密监视","generalMeaning":"adv. 紧密地；仔细地"},
-    {"word":"closer","ipa":"/ˈkloʊsər/","aviationMeaning":"adj. 更近的；间隔更小的","generalMeaning":"adj. 更近的"},
-    {"word":"closes","ipa":"/ˈkloʊzɪz/","aviationMeaning":"v. 关闭跑道、舱门或系统","generalMeaning":"v. 关闭"},
-    {"word":"closest","ipa":"/ˈkloʊsɪst/","aviationMeaning":"adj. 最近的；间隔最小的","generalMeaning":"adj. 最近的"},
-    {"word":"closing","ipa":"/ˈkloʊzɪŋ/","aviationMeaning":"v. 正关闭；n. 关闭动作","generalMeaning":"v. 正关闭"},
-    {"word":"closure","ipa":"/ˈkloʊʒər/","aviationMeaning":"n. 关闭；跑道、机场或空域关闭","generalMeaning":"n. 关闭；结束"},
-    {"word":"clothes","ipa":"/kloʊðz/","aviationMeaning":"n. 衣物；旅客物品","generalMeaning":"n. 衣服"},
-    {"word":"clothing","ipa":"/ˈkloʊðɪŋ/","aviationMeaning":"n. 衣物；防护服或旅客物品","generalMeaning":"n. 衣服；服装"},
-    {"word":"cloud","ipa":"/klaʊd/","aviationMeaning":"n. 云；影响飞行的气象要素","generalMeaning":"n. 云；云状物"},
-    {"word":"clouds","ipa":"/klaʊdz/","aviationMeaning":"n. 云（复数）；影响飞行的气象要素","generalMeaning":"n. 云（复数）"},
-    {"word":"cloudy","ipa":"/ˈklaʊdi/","aviationMeaning":"adj. 多云的；云量较多的","generalMeaning":"adj. 多云的；浑浊的"},
-    {"word":"club","ipa":"/klʌb/","aviationMeaning":"n. 俱乐部；可能作为地面地标","generalMeaning":"n. 俱乐部；棍棒"},
-    {"word":"clues","ipa":"/kluːz/","aviationMeaning":"n. 线索；事故调查或故障诊断线索（复数）","generalMeaning":"n. 线索（复数）"},
-    {"word":"cluj","ipa":"/kluːʒ/","aviationMeaning":"n. 克卢日；机场所在城市","generalMeaning":"n. 克卢日（罗马尼亚城市）"},
-    {"word":"cluj's","ipa":"/kluːʒz/","aviationMeaning":"n. 克卢日的；表示所属关系","generalMeaning":"n. 克卢日的；表示所属关系"},
-    {"word":"clutter","ipa":"/ˈklʌtər/","aviationMeaning":"n. 杂波；雷达回波干扰","generalMeaning":"n. 杂乱物；凌乱"},
-    {"word":"clutters","ipa":"/ˈklʌtərz/","aviationMeaning":"n. 杂波（复数）；v. 使杂乱","generalMeaning":"n. 杂乱物（复数）；v. 使凌乱"},
-    {"word":"cm","ipa":"/ˌsiː ˈem/","aviationMeaning":"n. 厘米或通信管理缩写；需结合原文","generalMeaning":"n. 厘米缩写"},
-    {"word":"co-pilot","ipa":"/ˈkoʊˌpaɪlət/","aviationMeaning":"n. 副驾驶","generalMeaning":"n. 副驾驶员"},
-    {"word":"co-pilot's","ipa":"/ˈkoʊˌpaɪləts/","aviationMeaning":"n. 副驾驶的；表示所属关系","generalMeaning":"n. 副驾驶员的；表示所属关系"},
-    {"word":"co-pilots","ipa":"/ˈkoʊˌpaɪləts/","aviationMeaning":"n. 副驾驶（复数）","generalMeaning":"n. 副驾驶员（复数）"},
-    {"word":"coached","ipa":"/koʊtʃt/","aviationMeaning":"v. 已指导飞行员或学员","generalMeaning":"v. 已指导；训练"},
-    {"word":"coaches","ipa":"/ˈkoʊtʃɪz/","aviationMeaning":"n. 教练（复数）；v. 指导飞行员或学员","generalMeaning":"n. 教练（复数）；v. 指导"},
-    {"word":"coaching","ipa":"/ˈkoʊtʃɪŋ/","aviationMeaning":"n. 飞行训练指导","generalMeaning":"n. 指导；教练工作"},
-    {"word":"coast","ipa":"/koʊst/","aviationMeaning":"n. 海岸；v. 滑行、惯性飞行","generalMeaning":"n. 海岸；v. 滑行"},
-    {"word":"coastal","ipa":"/ˈkoʊstəl/","aviationMeaning":"adj. 沿海的；沿海机场或天气","generalMeaning":"adj. 海岸的；沿海的"},
-    {"word":"coastline","ipa":"/ˈkoʊstlaɪn/","aviationMeaning":"n. 海岸线；目视导航地标","generalMeaning":"n. 海岸线"},
-    {"word":"coca-cola","ipa":"/ˌkoʊkə ˈkoʊlə/","aviationMeaning":"n. 可口可乐；客舱饮料品牌","generalMeaning":"n. 可口可乐（品牌）"},
-    {"word":"cockpit","ipa":"/ˈkɑːkpɪt/","aviationMeaning":"n. 驾驶舱","generalMeaning":"n. 驾驶舱；控制中心"},
-    {"word":"cockpits","ipa":"/ˈkɑːkpɪts/","aviationMeaning":"n. 驾驶舱（复数）","generalMeaning":"n. 驾驶舱（复数）"},
-    {"word":"code","ipa":"/koʊd/","aviationMeaning":"n. 代码；机场、航班或系统代码","generalMeaning":"n. 代码；法规"},
-    {"word":"coded","ipa":"/ˈkoʊdɪd/","aviationMeaning":"adj. 已编码的；以代码表示的","generalMeaning":"adj. 已编码的"},
-    {"word":"codes","ipa":"/koʊdz/","aviationMeaning":"n. 代码；机场、航班或系统代码（复数）","generalMeaning":"n. 代码；法规（复数）"},
-    {"word":"coffee","ipa":"/ˈkɔːfi/","aviationMeaning":"n. 咖啡；机组餐饮与疲劳管理语境","generalMeaning":"n. 咖啡"},
-    {"word":"cog","ipa":"/kɑːɡ/","aviationMeaning":"n. 齿轮；机构部件","generalMeaning":"n. 齿轮"},
-    {"word":"cognitive","ipa":"/ˈkɑːɡnətɪv/","aviationMeaning":"adj. 认知的；飞行员认知负荷相关","generalMeaning":"adj. 认知的"},
-    {"word":"coherent","ipa":"/koʊˈhɪrənt/","aviationMeaning":"adj. 连贯的；通话或程序逻辑清楚的","generalMeaning":"adj. 连贯的；有条理的"},
-    {"word":"cohesive","ipa":"/koʊˈhiːsɪv/","aviationMeaning":"adj. 协调一致的；机组团队协作良好的","generalMeaning":"adj. 有凝聚力的；连贯的"}
+    {
+      "word": "circulate",
+      "ipa": "/ˈsɜːrkjəleɪt/",
+      "aviationMeaning": "v. 循环流动；传阅运行资料",
+      "generalMeaning": "v. 循环；流传"
+    },
+    {
+      "word": "circulates",
+      "ipa": "/ˈsɜːrkjəleɪts/",
+      "aviationMeaning": "v. 循环流动；传阅运行资料",
+      "generalMeaning": "v. 循环；流传"
+    },
+    {
+      "word": "circulating",
+      "ipa": "/ˈsɜːrkjəleɪtɪŋ/",
+      "aviationMeaning": "v. 正循环流动或传阅",
+      "generalMeaning": "v. 正循环；流传"
+    },
+    {
+      "word": "circulation",
+      "ipa": "/ˌsɜːrkjəˈleɪʃən/",
+      "aviationMeaning": "n. 循环；空气、油液或资料流通",
+      "generalMeaning": "n. 循环；流通"
+    },
+    {
+      "word": "circumnavigate",
+      "ipa": "/ˌsɜːrkəmˈnævɪɡeɪt/",
+      "aviationMeaning": "v. 环绕飞行；绕开区域",
+      "generalMeaning": "v. 环绕航行"
+    },
+    {
+      "word": "circumnavigation",
+      "ipa": "/ˌsɜːrkəmˌnævɪˈɡeɪʃən/",
+      "aviationMeaning": "n. 环绕飞行；环球航行",
+      "generalMeaning": "n. 环球航行"
+    },
+    {
+      "word": "circumstances",
+      "ipa": "/ˈsɜːrkəmstænsɪz/",
+      "aviationMeaning": "n. 情况；运行事件条件（复数）",
+      "generalMeaning": "n. 情况；环境（复数）"
+    },
+    {
+      "word": "citation",
+      "ipa": "/saɪˈteɪʃən/",
+      "aviationMeaning": "n. 引用；违规传票或表彰",
+      "generalMeaning": "n. 引用；嘉奖；传票"
+    },
+    {
+      "word": "cities",
+      "ipa": "/ˈsɪtiz/",
+      "aviationMeaning": "n. 城市；机场服务城市（复数）",
+      "generalMeaning": "n. 城市（复数）"
+    },
+    {
+      "word": "citizen",
+      "ipa": "/ˈsɪtɪzən/",
+      "aviationMeaning": "n. 公民；旅客国籍或证件语境",
+      "generalMeaning": "n. 公民；市民"
+    },
+    {
+      "word": "city",
+      "ipa": "/ˈsɪti/",
+      "aviationMeaning": "n. 城市；机场服务城市",
+      "generalMeaning": "n. 城市"
+    },
+    {
+      "word": "cityjet",
+      "ipa": "/ˈsɪti dʒet/",
+      "aviationMeaning": "n. CityJet 航空公司名称",
+      "generalMeaning": "n. 专有名称"
+    },
+    {
+      "word": "cityline",
+      "ipa": "/ˈsɪti laɪn/",
+      "aviationMeaning": "n. 城市线；可能为航空公司名称组成词",
+      "generalMeaning": "n. 城市边界线"
+    },
+    {
+      "word": "civil",
+      "ipa": "/ˈsɪvəl/",
+      "aviationMeaning": "adj. 民用的；民航的",
+      "generalMeaning": "adj. 公民的；民用的"
+    },
+    {
+      "word": "civilian",
+      "ipa": "/səˈvɪliən/",
+      "aviationMeaning": "n. 平民；非军用人员",
+      "generalMeaning": "n. 平民；adj. 民用的"
+    },
+    {
+      "word": "ck",
+      "ipa": "/ˌsiː ˈkeɪ/",
+      "aviationMeaning": "n. 检查或机场代码缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "claim",
+      "ipa": "/kleɪm/",
+      "aviationMeaning": "n. 申报、索赔；v. 声称或申领",
+      "generalMeaning": "n. 声称；索赔；v. 声称"
+    },
+    {
+      "word": "claimed",
+      "ipa": "/kleɪmd/",
+      "aviationMeaning": "v. 已申领、声称或索赔",
+      "generalMeaning": "v. 已声称；已索赔"
+    },
+    {
+      "word": "claims",
+      "ipa": "/kleɪmz/",
+      "aviationMeaning": "n. 申报、索赔（复数）；v. 声称",
+      "generalMeaning": "n. 声称；索赔（复数）"
+    },
+    {
+      "word": "clarification",
+      "ipa": "/ˌklærəfɪˈkeɪʃən/",
+      "aviationMeaning": "n. 澄清；对许可或指令的确认",
+      "generalMeaning": "n. 澄清；说明"
+    },
+    {
+      "word": "clarify",
+      "ipa": "/ˈklærəfaɪ/",
+      "aviationMeaning": "v. 澄清许可、指令或运行信息",
+      "generalMeaning": "v. 澄清；阐明"
+    },
+    {
+      "word": "clarity",
+      "ipa": "/ˈklærəti/",
+      "aviationMeaning": "n. 清晰度；通话或显示清晰度",
+      "generalMeaning": "n. 清晰；明确"
+    },
+    {
+      "word": "class",
+      "ipa": "/klæs/",
+      "aviationMeaning": "n. 类别；航空器、空域或服务等级",
+      "generalMeaning": "n. 班级；类别"
+    },
+    {
+      "word": "classified",
+      "ipa": "/ˈklæsɪfaɪd/",
+      "aviationMeaning": "adj. 已分类的；保密分级的",
+      "generalMeaning": "adj. 已分类的；保密的"
+    },
+    {
+      "word": "classify",
+      "ipa": "/ˈklæsɪfaɪ/",
+      "aviationMeaning": "v. 对空域、事件或资料分类",
+      "generalMeaning": "v. 分类；归类"
+    },
+    {
+      "word": "clean",
+      "ipa": "/kliːn/",
+      "aviationMeaning": "adj. 干净的；无污染或无故障的；v. 清洁",
+      "generalMeaning": "adj. 干净的；v. 清洁"
+    },
+    {
+      "word": "clean-agent",
+      "ipa": "/kliːn ˈeɪdʒənt/",
+      "aviationMeaning": "n. 清洁灭火剂；不留残渣的灭火剂",
+      "generalMeaning": "n. 清洁剂"
+    },
+    {
+      "word": "cleaned",
+      "ipa": "/kliːnd/",
+      "aviationMeaning": "adj. 已清洁的；已清除污染物的",
+      "generalMeaning": "adj. 已清洁的"
+    },
+    {
+      "word": "cleaner",
+      "ipa": "/ˈkliːnər/",
+      "aviationMeaning": "n. 清洁人员；adj. 更清洁的",
+      "generalMeaning": "n. 清洁工；adj. 更干净的"
+    },
+    {
+      "word": "cleaning",
+      "ipa": "/ˈkliːnɪŋ/",
+      "aviationMeaning": "n. 清洁；航空器或客舱清洁",
+      "generalMeaning": "n. 清洁"
+    },
+    {
+      "word": "clear",
+      "ipa": "/klɪr/",
+      "aviationMeaning": "v. 批准；清除；adj. 晴朗、无障碍的",
+      "generalMeaning": "adj. 清楚的；v. 清除"
+    },
+    {
+      "word": "clear-air",
+      "ipa": "/klɪr er/",
+      "aviationMeaning": "adj. 晴空中的；如晴空湍流",
+      "generalMeaning": "adj. 清澈空气的"
+    },
+    {
+      "word": "clearances",
+      "ipa": "/ˈklɪrənsɪz/",
+      "aviationMeaning": "n. 空中交通管制许可（复数）",
+      "generalMeaning": "n. 许可；净空（复数）"
+    },
+    {
+      "word": "cleared",
+      "ipa": "/klɪrd/",
+      "aviationMeaning": "adj. 已获许可的；已清除的",
+      "generalMeaning": "adj. 已清除的；已批准的"
+    },
+    {
+      "word": "clearer",
+      "ipa": "/ˈklɪrər/",
+      "aviationMeaning": "adj. 更清楚的；更晴朗的",
+      "generalMeaning": "adj. 更清楚的"
+    },
+    {
+      "word": "clearing",
+      "ipa": "/ˈklɪrɪŋ/",
+      "aviationMeaning": "v. 正批准、清除或放行",
+      "generalMeaning": "v. 正清除；批准"
+    },
+    {
+      "word": "clearly",
+      "ipa": "/ˈklɪrli/",
+      "aviationMeaning": "adv. 清楚地；用于通话和指令表达",
+      "generalMeaning": "adv. 清楚地；明显地"
+    },
+    {
+      "word": "clears",
+      "ipa": "/klɪrz/",
+      "aviationMeaning": "v. 批准、清除或放行",
+      "generalMeaning": "v. 清除；批准"
+    },
+    {
+      "word": "clearway",
+      "ipa": "/ˈklɪrweɪ/",
+      "aviationMeaning": "n. 净空道",
+      "generalMeaning": "n. 净空区域"
+    },
+    {
+      "word": "climate",
+      "ipa": "/ˈklaɪmət/",
+      "aviationMeaning": "n. 气候；长期航空气象条件",
+      "generalMeaning": "n. 气候；环境"
+    },
+    {
+      "word": "climb",
+      "ipa": "/klaɪm/",
+      "aviationMeaning": "n. 爬升；v. 爬升",
+      "generalMeaning": "v. 攀登；n. 攀登"
+    },
+    {
+      "word": "climb-out",
+      "ipa": "/ˈklaɪm aʊt/",
+      "aviationMeaning": "n. 起飞后爬升阶段",
+      "generalMeaning": "n. 向外爬升"
+    },
+    {
+      "word": "climbed",
+      "ipa": "/klaɪmd/",
+      "aviationMeaning": "v. 已爬升",
+      "generalMeaning": "v. 已攀登"
+    },
+    {
+      "word": "climbing",
+      "ipa": "/ˈklaɪmɪŋ/",
+      "aviationMeaning": "v. 正在爬升；n. 爬升状态",
+      "generalMeaning": "v. 正攀登"
+    },
+    {
+      "word": "climbout",
+      "ipa": "/ˈklaɪmaʊt/",
+      "aviationMeaning": "n. 起飞后爬升阶段",
+      "generalMeaning": "n. 向外爬升"
+    },
+    {
+      "word": "climbs",
+      "ipa": "/klaɪmz/",
+      "aviationMeaning": "v. 爬升",
+      "generalMeaning": "v. 攀登"
+    },
+    {
+      "word": "clinton",
+      "ipa": "/ˈklɪntən/",
+      "aviationMeaning": "n. 地名、人名或呼号中的名称",
+      "generalMeaning": "n. 克林顿（人名）"
+    },
+    {
+      "word": "clock",
+      "ipa": "/klɑːk/",
+      "aviationMeaning": "n. 时钟；驾驶舱计时器",
+      "generalMeaning": "n. 时钟"
+    },
+    {
+      "word": "clog",
+      "ipa": "/klɑːɡ/",
+      "aviationMeaning": "v. 堵塞管路、过滤器或系统",
+      "generalMeaning": "v. 堵塞；阻塞"
+    },
+    {
+      "word": "clogged",
+      "ipa": "/klɑːɡd/",
+      "aviationMeaning": "adj. 已堵塞的；不可用的",
+      "generalMeaning": "adj. 被堵塞的"
+    },
+    {
+      "word": "close",
+      "ipa": "/kloʊs/",
+      "aviationMeaning": "v. 关闭跑道、舱门或系统；adj. 接近的",
+      "generalMeaning": "v. 关闭；adj. 接近的"
+    },
+    {
+      "word": "closed",
+      "ipa": "/kloʊzd/",
+      "aviationMeaning": "adj. 已关闭的；不可用的",
+      "generalMeaning": "adj. 关闭的"
+    },
+    {
+      "word": "closely",
+      "ipa": "/ˈkloʊsli/",
+      "aviationMeaning": "adv. 密切地；紧密监视",
+      "generalMeaning": "adv. 紧密地；仔细地"
+    },
+    {
+      "word": "closer",
+      "ipa": "/ˈkloʊsər/",
+      "aviationMeaning": "adj. 更近的；间隔更小的",
+      "generalMeaning": "adj. 更近的"
+    },
+    {
+      "word": "closes",
+      "ipa": "/ˈkloʊzɪz/",
+      "aviationMeaning": "v. 关闭跑道、舱门或系统",
+      "generalMeaning": "v. 关闭"
+    },
+    {
+      "word": "closest",
+      "ipa": "/ˈkloʊsɪst/",
+      "aviationMeaning": "adj. 最近的；间隔最小的",
+      "generalMeaning": "adj. 最近的"
+    },
+    {
+      "word": "closing",
+      "ipa": "/ˈkloʊzɪŋ/",
+      "aviationMeaning": "v. 正关闭；n. 关闭动作",
+      "generalMeaning": "v. 正关闭"
+    },
+    {
+      "word": "closure",
+      "ipa": "/ˈkloʊʒər/",
+      "aviationMeaning": "n. 关闭；跑道、机场或空域关闭",
+      "generalMeaning": "n. 关闭；结束"
+    },
+    {
+      "word": "clothes",
+      "ipa": "/kloʊðz/",
+      "aviationMeaning": "n. 衣物；旅客物品",
+      "generalMeaning": "n. 衣服"
+    },
+    {
+      "word": "cloud",
+      "ipa": "/klaʊd/",
+      "aviationMeaning": "n. 云；影响飞行的气象要素",
+      "generalMeaning": "n. 云；云状物"
+    },
+    {
+      "word": "clouds",
+      "ipa": "/klaʊdz/",
+      "aviationMeaning": "n. 云（复数）；影响飞行的气象要素",
+      "generalMeaning": "n. 云（复数）"
+    },
+    {
+      "word": "cloudy",
+      "ipa": "/ˈklaʊdi/",
+      "aviationMeaning": "adj. 多云的；云量较多的",
+      "generalMeaning": "adj. 多云的；浑浊的"
+    },
+    {
+      "word": "club",
+      "ipa": "/klʌb/",
+      "aviationMeaning": "n. 俱乐部；可能作为地面地标",
+      "generalMeaning": "n. 俱乐部；棍棒"
+    },
+    {
+      "word": "clues",
+      "ipa": "/kluːz/",
+      "aviationMeaning": "n. 线索；事故调查或故障诊断线索（复数）",
+      "generalMeaning": "n. 线索（复数）"
+    },
+    {
+      "word": "cluj",
+      "ipa": "/kluːʒ/",
+      "aviationMeaning": "n. 克卢日；机场所在城市",
+      "generalMeaning": "n. 克卢日（罗马尼亚城市）"
+    },
+    {
+      "word": "cluj's",
+      "ipa": "/kluːʒz/",
+      "aviationMeaning": "n. 克卢日的；表示所属关系",
+      "generalMeaning": "n. 克卢日的；表示所属关系"
+    },
+    {
+      "word": "clutters",
+      "ipa": "/ˈklʌtərz/",
+      "aviationMeaning": "n. 杂波（复数）；v. 使杂乱",
+      "generalMeaning": "n. 杂乱物（复数）；v. 使凌乱"
+    },
+    {
+      "word": "cm",
+      "ipa": "/ˌsiː ˈem/",
+      "aviationMeaning": "n. 厘米或通信管理缩写；需结合原文",
+      "generalMeaning": "n. 厘米缩写"
+    },
+    {
+      "word": "co-pilot",
+      "ipa": "/ˈkoʊˌpaɪlət/",
+      "aviationMeaning": "n. 副驾驶",
+      "generalMeaning": "n. 副驾驶员"
+    },
+    {
+      "word": "co-pilot's",
+      "ipa": "/ˈkoʊˌpaɪləts/",
+      "aviationMeaning": "n. 副驾驶的；表示所属关系",
+      "generalMeaning": "n. 副驾驶员的；表示所属关系"
+    },
+    {
+      "word": "co-pilots",
+      "ipa": "/ˈkoʊˌpaɪləts/",
+      "aviationMeaning": "n. 副驾驶（复数）",
+      "generalMeaning": "n. 副驾驶员（复数）"
+    },
+    {
+      "word": "coaches",
+      "ipa": "/ˈkoʊtʃɪz/",
+      "aviationMeaning": "n. 教练（复数）；v. 指导飞行员或学员",
+      "generalMeaning": "n. 教练（复数）；v. 指导"
+    },
+    {
+      "word": "coast",
+      "ipa": "/koʊst/",
+      "aviationMeaning": "n. 海岸；v. 滑行、惯性飞行",
+      "generalMeaning": "n. 海岸；v. 滑行"
+    },
+    {
+      "word": "coastal",
+      "ipa": "/ˈkoʊstəl/",
+      "aviationMeaning": "adj. 沿海的；沿海机场或天气",
+      "generalMeaning": "adj. 海岸的；沿海的"
+    },
+    {
+      "word": "coca-cola",
+      "ipa": "/ˌkoʊkə ˈkoʊlə/",
+      "aviationMeaning": "n. 可口可乐；客舱饮料品牌",
+      "generalMeaning": "n. 可口可乐（品牌）"
+    },
+    {
+      "word": "cockpit",
+      "ipa": "/ˈkɑːkpɪt/",
+      "aviationMeaning": "n. 驾驶舱",
+      "generalMeaning": "n. 驾驶舱；控制中心"
+    },
+    {
+      "word": "cockpits",
+      "ipa": "/ˈkɑːkpɪts/",
+      "aviationMeaning": "n. 驾驶舱（复数）",
+      "generalMeaning": "n. 驾驶舱（复数）"
+    },
+    {
+      "word": "code",
+      "ipa": "/koʊd/",
+      "aviationMeaning": "n. 代码；机场、航班或系统代码",
+      "generalMeaning": "n. 代码；法规"
+    },
+    {
+      "word": "coffee",
+      "ipa": "/ˈkɔːfi/",
+      "aviationMeaning": "n. 咖啡；机组餐饮与疲劳管理语境",
+      "generalMeaning": "n. 咖啡"
+    },
+    {
+      "word": "cog",
+      "ipa": "/kɑːɡ/",
+      "aviationMeaning": "n. 齿轮；机构部件",
+      "generalMeaning": "n. 齿轮"
+    },
+    {
+      "word": "cognitive",
+      "ipa": "/ˈkɑːɡnətɪv/",
+      "aviationMeaning": "adj. 认知的；飞行员认知负荷相关",
+      "generalMeaning": "adj. 认知的"
+    },
+    {
+      "word": "cohesive",
+      "ipa": "/koʊˈhiːsɪv/",
+      "aviationMeaning": "adj. 协调一致的；机组团队协作良好的",
+      "generalMeaning": "adj. 有凝聚力的；连贯的"
+    }
   ]
 }

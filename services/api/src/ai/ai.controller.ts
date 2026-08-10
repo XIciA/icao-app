@@ -1,5 +1,5 @@
 import { BadRequestException, Body, Controller, Delete, Post, Req, UseGuards } from '@nestjs/common';
-import type { ApiSuccessEnvelope, AiConsent, GrammarReviewRequest, GrammarReviewResult, PolishRequest, PolishResult, TranscribeResult, WordLookupRequest, WordLookupResult } from '@icao/contracts';
+import { isTencentAsrModel, type ApiSuccessEnvelope, type AiConsent, type GrammarReviewRequest, type GrammarReviewResult, type PolishRequest, type PolishResult, type TranscribeResult, type WordLookupRequest, type WordLookupResult } from '@icao/contracts';
 import type { MultipartFile } from '@fastify/multipart';
 
 import type { AuthenticatedRequest } from '../auth/auth.types';
@@ -14,6 +14,14 @@ function cancellationSignal(request: AiRequest) {
   const controller = new AbortController();
   request.raw.once('aborted', () => controller.abort());
   return controller.signal;
+}
+
+function multipartModel(file: MultipartFile) {
+  const field = file.fields.model;
+  const part = Array.isArray(field) ? field[0] : field;
+  const value = part?.type === 'field' ? part.value : undefined;
+  if (!isTencentAsrModel(value)) throw new BadRequestException('invalid_asr_model');
+  return value;
 }
 
 @Controller('v1/ai')
@@ -45,7 +53,7 @@ export class AiController {
     const file = await request.file({ limits: { fileSize: 8 * 1024 * 1024, files: 1, fields: 8 } });
     if (!file || !file.mimetype.startsWith('audio/')) throw new BadRequestException('invalid_audio');
     const audio = await file.toBuffer();
-    return { requestId: request.id, data: await this.ai.transcribe(request.user!.id, request.id, audio, file.mimetype, cancellationSignal(request)) };
+    return { requestId: request.id, data: await this.ai.transcribe(request.user!.id, request.id, audio, file.mimetype, multipartModel(file), cancellationSignal(request)) };
   }
 
   @Post('grammar-review')

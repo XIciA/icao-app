@@ -27,7 +27,7 @@
       "taskTitle": "QFA 701-3",
       "audioText": "B: There is a thunderstorm buildup near LKO, asked how the preceding aircraft avoided the weather.",
       "audioTextZh": "B：LKO 附近有雷暴发展，询问前机如何避开天气。",
-      "referenceText": "Wuhan Control, QFA 701, there is a thunderstorm buildup near LKO, how did the preceding aircraft avoid the weather ?",
+      "referenceText": "Wuhan Control, QFA 701, there is a thunderstorm buildup near LKO, how did the preceding aircraft avoid the weather?",
       "referenceTextZh": "武汉管制，QFA 701，LKO 附近有雷暴发展，前机如何避开天气？",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-077-qfa701-q03.mp3"
     },

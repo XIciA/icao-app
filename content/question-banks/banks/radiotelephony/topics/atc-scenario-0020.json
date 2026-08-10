@@ -27,7 +27,7 @@
       "taskTitle": "AFR 101-3",
       "audioText": "B: You decide 10700 meters is not acceptable due to heavy weight, ask if 9500 meters is available.",
       "audioTextZh": "你认为因重量较大，10700米不可接受，询问9500米是否可用。",
-      "referenceText": "Wuhan Delivery, AFR 101, 10700 meters is not acceptable due to heavy weight, is 9500 meters available ?",
+      "referenceText": "Wuhan Delivery, AFR 101, 10700 meters is not acceptable due to heavy weight, is 9500 meters available?",
       "referenceTextZh": "武汉放行，AFR 101，因重量较大，10700米不可接受，请问9500米是否可用？",
       "audio": "/question-bank-assets/audio/radiotelephony/main/340.mp3"
     },
@@ -108,7 +108,7 @@
       "taskTitle": "AFR 101-12",
       "audioText": "C: AFR 101, climb to and maintain 6000 meters, expedite until passing 3900 meters.",
       "audioTextZh": "管制员：AFR 101，爬升并保持6000米，通过3900米前加快爬升。",
-      "referenceText": "Climb to and maintain 6000 meters, expedite until passing  3900 meters, AFR 101.",
+      "referenceText": "Climb to and maintain 6000 meters, expedite until passing 3900 meters, AFR 101.",
       "referenceTextZh": "爬升并保持6000米，通过3900米前加快爬升，AFR 101。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/349.mp3"
     },

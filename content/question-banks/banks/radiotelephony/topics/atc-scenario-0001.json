@@ -1,7 +1,7 @@
 {
   "categoryId": "atc-qfa",
   "id": "atc-scenario-0001",
-  "name": "QFA 432 沙暴 1发,2发失效",
+  "name": "QFA 432 沙暴 1发，2发失效",
   "declaredCardCount": 20,
   "cards": [
     {
@@ -144,7 +144,7 @@
       "taskTitle": "QFA 432-16",
       "audioText": "B: You are cleared to 1200 meters, the sky is turning dark, the visibility is deteriorating, you suspect a sandstorm, tell Beijing Approach the situation and ask ATC if there is sandstorm forecast.",
       "audioTextZh": "B：你已获准下降至 1200 米，天空变暗，能见度变差，你怀疑有沙尘暴，告诉北京进近情况，并询问 ATC 是否有沙尘暴预报。",
-      "referenceText": "Beijing Approach, QFA 432, descending to 1200 meters, the sky is turning dark, the visibility is deteriorating, we suspect a sandstorm, is there sandstorm forecast ?",
+      "referenceText": "Beijing Approach, QFA 432, descending to 1200 meters, the sky is turning dark, the visibility is deteriorating, we suspect a sandstorm, is there sandstorm forecast?",
       "referenceTextZh": "北京进近，QFA 432，正下降至 1200 米，天空变暗，能见度变差，我们怀疑有沙尘暴，是否有沙尘暴预报？",
       "audio": "/question-bank-assets/audio/radiotelephony/main/016.mp3"
     },

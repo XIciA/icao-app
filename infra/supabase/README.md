@@ -11,4 +11,4 @@
 
 部署时必须从固定提交复制官方 `docker/` 目录，再叠加 `docker-compose.override.yml`；不得把官方示例密钥用于运行环境。
 
-阶段 C 的服务器 `.env` 使用 `SMTP_HOST=mailpit`、`SMTP_PORT=1025`、空的 `SMTP_USER`/`SMTP_PASS`、测试发件地址，并把 `feizhuicao://auth/callback*` 加入 Auth redirect allow list，以允许带流程参数的 PKCE 回调。真实值仍只保存在服务器。
+阶段 C 的服务器 `.env` 使用 `SMTP_HOST=mailpit`、`SMTP_PORT=1025`、空的 `SMTP_USER`/`SMTP_PASS`、测试发件地址，并把 `readyoufife://auth/callback*` 加入 Auth redirect allow list，以允许带流程参数的 PKCE 回调。真实值仍只保存在服务器。

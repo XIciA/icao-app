@@ -18,8 +18,8 @@
       "taskTitle": "CSN 3235-2",
       "audioText": "CSN 3235, Beijing Delivery, cleared to Shanghai Hongqiao via flight planned route, departure Runway 08L, LMN-41 departure, initial climb 1,500 meters, cruising level 9200 meters, after departure, contact 119.8, squawk 3223.",
       "audioTextZh": "CSN 3235，北京放行，许可按飞行计划航路飞往上海虹桥，离场使用 Runway 08L，执行 LMN-41 离场，初始爬升至 1,500 米，巡航高度 9,200 米，离场后联系 119.8，应答机 3223。",
-      "referenceText": "cleared to Shanghai, flight planned route, 08 left, LMN-41 departure, 1500 meters, 9002 hudnred meters, 119.8, squawk 3223, CSN 3235.",
-      "referenceTextZh": "许可按飞行计划航路飞往上海，Runway 08L，LMN-41 离场，1,500 米，9002 百米，119.8，应答机 3223，CSN 3235。",
+      "referenceText": "cleared to Shanghai, flight planned route, 08 left, LMN-41 departure, 1500 meters, 9,200 meters, 119.8, squawk 3223, CSN 3235.",
+      "referenceTextZh": "许可按飞行计划航路飞往上海，Runway 08L，LMN-41 离场，1,500 米，9,200 米，119.8，应答机 3223，CSN 3235。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-058-csn3235-q02.mp3"
     },
     {

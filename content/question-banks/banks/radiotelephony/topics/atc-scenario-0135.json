@@ -27,8 +27,8 @@
       "taskTitle": "CES 556-3",
       "audioText": "Near TOL, you are experiencing moderate to severe clear air turbulence between 6000 meters and 10,400 meters, contact Shanghai Control and request climb.",
       "audioTextZh": "在 TOL 附近，你在 6000 米至 10,400 米之间遭遇中度至严重晴空颠簸，联系上海管制并请求爬升。",
-      "referenceText": "Shanghai Control, CES 556, we are experiencing moderate to severe clear air turbulence near TOL between 6000 meters and 1400 meters, request climb.",
-      "referenceTextZh": "上海管制，CES 556，我们在 TOL 附近的 6000 米至 1400 米之间遭遇中度至严重晴空颠簸，请求爬升。",
+      "referenceText": "Shanghai Control, CES 556, we are experiencing moderate to severe clear air turbulence near TOL between 6,000 meters and 10,400 meters, request climb.",
+      "referenceTextZh": "上海管制，CES 556，我们在 TOL 附近的 6,000 米至 10,400 米之间遭遇中度至严重晴空颠簸，请求爬升。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-033-ces556-q03.mp3"
     },
     {
@@ -36,8 +36,8 @@
       "taskTitle": "CES 556-4",
       "audioText": "CES 556, the alternative level is 11,600 meters, what's your intention?\ntell the controller you can accept 11,600 meters.",
       "audioTextZh": "CES 556，可用的备选高度为 11,600 米，你的意图是什么？\n告诉管制员你可以接受 11,600 米。",
-      "referenceText": "Shanghai Control, CES 556, we can accept 2600 meters. we can accept 2600 meters, CES 556.",
-      "referenceTextZh": "上海管制，CES 556，我们可以接受 2600 米。我们可以接受 2600 米，CES 556。",
+      "referenceText": "Shanghai Control, CES 556, we can accept 11,600 meters.",
+      "referenceTextZh": "上海管制，CES 556，我们可以接受 11,600 米。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-033-ces556-q04.mp3"
     },
     {
@@ -63,8 +63,8 @@
       "taskTitle": "CES 556-7",
       "audioText": "CES 556, maintain 11,600 meters due to airspace congestion, reduce speed to mach.75.",
       "audioTextZh": "CES 556，因空域拥堵保持 11,600 米，将速度减至 Mach 0.75。",
-      "referenceText": "maintain 11006 hunderd meters, reduce speed to mach decimal seven five, CES 556.",
-      "referenceTextZh": "保持 11006 hunderd 米，将速度减至 Mach 0.75，CES 556。",
+      "referenceText": "maintain 11,600 meters, reduce speed to mach decimal seven five, CES 556.",
+      "referenceTextZh": "保持 11,600 米，将速度减至 Mach 0.75，CES 556。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-033-ces556-q07.mp3"
     },
     {

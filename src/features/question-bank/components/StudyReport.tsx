@@ -1,4 +1,4 @@
-import { CheckCircle2, Clock3, Flag, Highlighter, NotebookPen, Sparkles, Target } from 'lucide-react-native';
+import { CheckCircle2, Clock3, Flag, Highlighter, NotebookPen, Sparkles, Target } from '@/components/ui/icons';
 import { StyleSheet, View } from 'react-native';
 
 import { AppText, Button, Card, Screen, Tag } from '@/components/ui';

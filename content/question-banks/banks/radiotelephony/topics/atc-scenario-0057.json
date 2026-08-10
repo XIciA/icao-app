@@ -27,8 +27,8 @@
       "taskTitle": "CCA 101-3",
       "audioText": "B: You want to check with Wuhan Ground for NOTAM bulletin A0011.",
       "audioTextZh": "B: 你想向武汉地面确认 NOTAM 通告 A0011。",
-      "referenceText": "Wuhan Ground, CCA 124, confirm NOTAM A0011.",
-      "referenceTextZh": "武汉地面，CCA 124，确认 NOTAM A0011。",
+      "referenceText": "Wuhan Ground, CCA 101, confirm NOTAM A0011.",
+      "referenceTextZh": "武汉地面，CCA 101，确认 NOTAM A0011。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/976.mp3"
     },
     {

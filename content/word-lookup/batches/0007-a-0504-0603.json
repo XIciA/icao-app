@@ -1,105 +1,509 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"array","ipa":"/əˈreɪ/","aviationMeaning":"n. 阵列；天线、传感器或显示元素阵列","generalMeaning":"n. 阵列；一系列"},
-    {"word":"arrest","ipa":"/əˈrest/","aviationMeaning":"n. 拦阻；v. 制止或拘留","generalMeaning":"n. 逮捕；v. 逮捕；制止"},
-    {"word":"arrival","ipa":"/əˈraɪvəl/","aviationMeaning":"n. 到达；进场航班","generalMeaning":"n. 到达；抵达者"},
-    {"word":"arrival-management","ipa":"/əˈraɪvəl ˈmænɪdʒmənt/","aviationMeaning":"n. 到达管理；进场流量管理","generalMeaning":"n. 到达管理"},
-    {"word":"arrivals","ipa":"/əˈraɪvəlz/","aviationMeaning":"n. 到达航班；进场航班（复数）","generalMeaning":"n. 到达；抵达者（复数）"},
-    {"word":"arrive","ipa":"/əˈraɪv/","aviationMeaning":"v. 到达机场、航路点或目标位置","generalMeaning":"v. 到达；抵达"},
-    {"word":"arrived","ipa":"/əˈraɪvd/","aviationMeaning":"v. 已到达机场、航路点或目标位置","generalMeaning":"v. 已到达；抵达"},
-    {"word":"arrives","ipa":"/əˈraɪvz/","aviationMeaning":"v. 到达机场、航路点或目标位置","generalMeaning":"v. 到达；抵达"},
-    {"word":"arriving","ipa":"/əˈraɪvɪŋ/","aviationMeaning":"v. 正在到达；进场中的","generalMeaning":"v. 正在到达"},
-    {"word":"articles","ipa":"/ˈɑːrtɪkəlz/","aviationMeaning":"n. 条款、文章或物品（复数）","generalMeaning":"n. 文章；物品；条款（复数）"},
-    {"word":"artificial","ipa":"/ˌɑːrtɪˈfɪʃəl/","aviationMeaning":"adj. 人工的，如人工地平仪或人工照明","generalMeaning":"adj. 人工的；人造的"},
-    {"word":"as","ipa":"/æz/","aviationMeaning":"prep. 作为；conj. 当……时","generalMeaning":"prep. 作为；conj. 当……时"},
-    {"word":"asa","ipa":"/ˌeɪ es ˈeɪ/","aviationMeaning":"n. 航空相关组织或程序缩写；需结合原文","generalMeaning":"n. 不明缩写；请结合原文"},
-    {"word":"asava","ipa":"/əˈsɑːvə/","aviationMeaning":"n. 题库中的专有名称或缩写；需结合原文","generalMeaning":"n. 不明专有词；请结合原文"},
-    {"word":"ascend","ipa":"/əˈsend/","aviationMeaning":"v. 爬升；上升","generalMeaning":"v. 上升；攀登"},
-    {"word":"ascends","ipa":"/əˈsendz/","aviationMeaning":"v. 爬升；上升","generalMeaning":"v. 上升；攀登"},
-    {"word":"ascent","ipa":"/əˈsent/","aviationMeaning":"n. 爬升；上升航段","generalMeaning":"n. 上升；攀登"},
-    {"word":"ascheduled","ipa":"/ə ˈskedʒuːld/","aviationMeaning":"n. 题库原文中 as scheduled 的疑似粘连","generalMeaning":"n. 疑似词语粘连；请结合原文"},
-    {"word":"asda","ipa":"/ˈæzdə/","aviationMeaning":"n. 加速停止距离可用距离（缩写）","generalMeaning":"n. 运行距离缩写"},
-    {"word":"ash","ipa":"/æʃ/","aviationMeaning":"n. 火山灰；航空气象危险物","generalMeaning":"n. 灰；灰烬"},
-    {"word":"asia","ipa":"/ˈeɪʒə/","aviationMeaning":"n. 亚洲；航路或运行区域","generalMeaning":"n. 亚洲"},
-    {"word":"asiana","ipa":"/ˌeɪʃiˈɑːnə/","aviationMeaning":"n. 韩亚航空（航空公司名称）","generalMeaning":"n. 韩亚航空（名称）"},
-    {"word":"ask","ipa":"/æsk/","aviationMeaning":"v. 询问许可、信息或运行状态","generalMeaning":"v. 询问；请求"},
-    {"word":"asked","ipa":"/æskt/","aviationMeaning":"v. 已询问许可、信息或运行状态","generalMeaning":"v. 已询问；已请求"},
-    {"word":"asking","ipa":"/ˈæskɪŋ/","aviationMeaning":"v. 正在询问许可、信息或运行状态","generalMeaning":"v. 正在询问；请求"},
-    {"word":"asks","ipa":"/æsks/","aviationMeaning":"v. 询问许可、信息或运行状态","generalMeaning":"v. 询问；请求"},
-    {"word":"asouthwest","ipa":"/ə ˌsaʊθˈwest/","aviationMeaning":"n. 题库原文中 a Southwest 的疑似粘连","generalMeaning":"n. 疑似词语粘连；请结合原文"},
-    {"word":"aspects","ipa":"/ˈæspekts/","aviationMeaning":"n. 运行、安全或系统方面（复数）","generalMeaning":"n. 方面；特征（复数）"},
-    {"word":"assembled","ipa":"/əˈsembəld/","aviationMeaning":"adj. 已装配的；已集合的机组或部件","generalMeaning":"adj. 已组装的；已集合的"},
-    {"word":"assembly","ipa":"/əˈsembli/","aviationMeaning":"n. 组件总成；装配作业","generalMeaning":"n. 集会；装配；组件"},
-    {"word":"assertive","ipa":"/əˈsɜːrtɪv/","aviationMeaning":"adj. 坚定表达的；有助于驾驶舱沟通","generalMeaning":"adj. 坚定自信的；果断的"},
-    {"word":"assess","ipa":"/əˈses/","aviationMeaning":"v. 评估天气、风险或运行状况","generalMeaning":"v. 评估；评价"},
-    {"word":"assessed","ipa":"/əˈsest/","aviationMeaning":"adj. 已评估的天气、风险或运行状况","generalMeaning":"adj. 已评估的"},
-    {"word":"assesses","ipa":"/əˈsesɪz/","aviationMeaning":"v. 评估天气、风险或运行状况","generalMeaning":"v. 评估；评价"},
-    {"word":"assessing","ipa":"/əˈsesɪŋ/","aviationMeaning":"v. 正在评估天气、风险或运行状况","generalMeaning":"v. 评估；评价"},
-    {"word":"assessment","ipa":"/əˈsesmənt/","aviationMeaning":"n. 风险、性能或运行评估","generalMeaning":"n. 评估；评价"},
-    {"word":"assessments","ipa":"/əˈsesmənts/","aviationMeaning":"n. 风险、性能或运行评估（复数）","generalMeaning":"n. 评估；评价（复数）"},
-    {"word":"assign","ipa":"/əˈsaɪn/","aviationMeaning":"v. 指派高度、航向、跑道或任务","generalMeaning":"v. 分配；指派"},
-    {"word":"assigned","ipa":"/əˈsaɪnd/","aviationMeaning":"adj. 已指派的高度、航向、跑道或任务","generalMeaning":"adj. 已分配的；已指派的"},
-    {"word":"assignment","ipa":"/əˈsaɪnmənt/","aviationMeaning":"n. 高度、航向、跑道或任务指派","generalMeaning":"n. 任务；分配"},
-    {"word":"assignments","ipa":"/əˈsaɪnmənts/","aviationMeaning":"n. 高度、航向、跑道或任务指派（复数）","generalMeaning":"n. 任务；分配（复数）"},
-    {"word":"assist","ipa":"/əˈsɪst/","aviationMeaning":"v. 协助飞行、地面服务或应急行动","generalMeaning":"v. 协助；帮助"},
-    {"word":"assistance","ipa":"/əˈsɪstəns/","aviationMeaning":"n. 飞行、地面服务或应急援助","generalMeaning":"n. 帮助；援助"},
-    {"word":"assisted","ipa":"/əˈsɪstɪd/","aviationMeaning":"v. 已协助飞行、地面服务或应急行动","generalMeaning":"v. 已协助；帮助"},
-    {"word":"assists","ipa":"/əˈsɪsts/","aviationMeaning":"v. 协助飞行、地面服务或应急行动","generalMeaning":"v. 协助；帮助"},
-    {"word":"associated","ipa":"/əˈsoʊsieɪtɪd/","aviationMeaning":"adj. 与某航空器、系统或事件相关联的","generalMeaning":"adj. 有关联的；相关的"},
-    {"word":"association","ipa":"/əˌsoʊsiˈeɪʃən/","aviationMeaning":"n. 协会；关联关系","generalMeaning":"n. 协会；联系"},
-    {"word":"assume","ipa":"/əˈsuːm/","aviationMeaning":"v. 假定；接管管制、责任或操作","generalMeaning":"v. 假定；承担"},
-    {"word":"assumed","ipa":"/əˈsuːmd/","aviationMeaning":"adj. 已假定的；已接管的责任或操作","generalMeaning":"adj. 假定的；承担的"},
-    {"word":"assuming","ipa":"/əˈsuːmɪŋ/","aviationMeaning":"v. 正在假定；接管责任或操作","generalMeaning":"v. 假定；承担"},
-    {"word":"assumingthe","ipa":"/əˈsuːmɪŋ ðə/","aviationMeaning":"n. 题库原文中 assuming the 的疑似粘连","generalMeaning":"n. 疑似词语粘连；请结合原文"},
-    {"word":"assumption","ipa":"/əˈsʌmpʃən/","aviationMeaning":"n. 运行计划、性能计算中的假设","generalMeaning":"n. 假设；设想"},
-    {"word":"assumptions","ipa":"/əˈsʌmpʃənz/","aviationMeaning":"n. 运行计划、性能计算中的假设（复数）","generalMeaning":"n. 假设；设想（复数）"},
-    {"word":"assured","ipa":"/əˈʃʊrd/","aviationMeaning":"adj. 已确认保障的，如安全或服务","generalMeaning":"adj. 确定的；有把握的"},
-    {"word":"astana","ipa":"/əˈstɑːnə/","aviationMeaning":"n. 阿斯塔纳；机场所在城市","generalMeaning":"n. 阿斯塔纳（哈萨克斯坦首都）"},
-    {"word":"astana's","ipa":"/əˈstɑːnəz/","aviationMeaning":"n. 阿斯塔纳的；表示所属关系","generalMeaning":"n. 阿斯塔纳的；表示所属关系"},
-    {"word":"asthma","ipa":"/ˈæsmə/","aviationMeaning":"n. 哮喘；机组健康状况","generalMeaning":"n. 哮喘"},
-    {"word":"asymmetric","ipa":"/ˌeɪsɪˈmetrɪk/","aviationMeaning":"adj. 不对称的，如推力或机翼状态","generalMeaning":"adj. 不对称的"},
-    {"word":"at","ipa":"/æt/","aviationMeaning":"prep. 在某机场、时间、高度或位置","generalMeaning":"prep. 在；于"},
-    {"word":"ata","ipa":"/ˌeɪ tiː ˈeɪ/","aviationMeaning":"n. 航空运输协会；ATA 章节系统（缩写）","generalMeaning":"n. 机构或分类缩写"},
-    {"word":"ataga","ipa":"/əˈtɑːɡə/","aviationMeaning":"n. 题库中的航路点、呼号或专有名称","generalMeaning":"n. 专有名称；请结合原文"},
-    {"word":"atc","ipa":"/ˌeɪ tiː ˈsiː/","aviationMeaning":"n. 空中交通管制（缩写）","generalMeaning":"n. 空中交通管制"},
-    {"word":"atc's","ipa":"/ˌeɪ tiː ˈsiːz/","aviationMeaning":"n. 空中交通管制的；表示所属关系","generalMeaning":"n. 空中交通管制的；表示所属关系"},
-    {"word":"atention","ipa":"/əˈtenʃən/","aviationMeaning":"n. 题库原文中 attention 的疑似拼写错误","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"athens","ipa":"/ˈæθənz/","aviationMeaning":"n. 雅典；机场所在城市","generalMeaning":"n. 雅典（希腊首都）"},
-    {"word":"athlete","ipa":"/ˈæθliːt/","aviationMeaning":"n. 运动员；可能用于旅客或训练语境","generalMeaning":"n. 运动员"},
-    {"word":"atis","ipa":"/ˈeɪtɪs/","aviationMeaning":"n. 航站自动情报服务（缩写）","generalMeaning":"n. 自动情报服务"},
-    {"word":"atlanta","ipa":"/ætˈlæntə/","aviationMeaning":"n. 亚特兰大；机场所在城市","generalMeaning":"n. 亚特兰大（美国城市）"},
-    {"word":"atlantic","ipa":"/ətˈlæntɪk/","aviationMeaning":"adj. 大西洋的；如北大西洋航路","generalMeaning":"adj. 大西洋的"},
-    {"word":"atlas","ipa":"/ˈætləs/","aviationMeaning":"n. 地图集；也可为航空器或系统名称","generalMeaning":"n. 地图册；图集"},
-    {"word":"atmosphere","ipa":"/ˈætməsfɪr/","aviationMeaning":"n. 大气；飞行环境","generalMeaning":"n. 大气；气氛"},
-    {"word":"atmospheric","ipa":"/ˌætməsˈferɪk/","aviationMeaning":"adj. 大气的；与气象环境有关的","generalMeaning":"adj. 大气的；大气层的"},
-    {"word":"atr","ipa":"/ˌeɪ tiː ˈɑːr/","aviationMeaning":"n. ATR 飞机制造商/机型名称","generalMeaning":"n. 专有名称缩写"},
-    {"word":"ats","ipa":"/ˌeɪ tiː ˈes/","aviationMeaning":"n. 空中交通服务（缩写）","generalMeaning":"n. 空中交通服务"},
-    {"word":"atsb","ipa":"/ˌeɪ tiː es ˈbiː/","aviationMeaning":"n. 澳大利亚运输安全局（缩写）","generalMeaning":"n. 机构名称缩写"},
-    {"word":"attachment","ipa":"/əˈtætʃmənt/","aviationMeaning":"n. 附件；装接件","generalMeaning":"n. 附件；依恋"},
-    {"word":"attack","ipa":"/əˈtæk/","aviationMeaning":"n. 攻击；如迎角中的 attack；v. 攻击","generalMeaning":"n. 攻击；v. 攻击"},
-    {"word":"attacked","ipa":"/əˈtækt/","aviationMeaning":"v. 已遭攻击；用于安全事件描述","generalMeaning":"v. 已攻击"},
-    {"word":"attacks","ipa":"/əˈtæks/","aviationMeaning":"n. 攻击事件（复数）；v. 攻击","generalMeaning":"n. 攻击（复数）；v. 攻击"},
-    {"word":"attempt","ipa":"/əˈtempt/","aviationMeaning":"n. 尝试，如复飞或着陆尝试；v. 尝试","generalMeaning":"n. 尝试；v. 尝试"},
-    {"word":"attempte","ipa":"/əˈtempt/","aviationMeaning":"n. 题库原文中 attempt 的疑似拼写错误","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"attempted","ipa":"/əˈtemptɪd/","aviationMeaning":"v. 已尝试执行程序、着陆或操作","generalMeaning":"v. 已尝试"},
-    {"word":"attempteed","ipa":"/əˈtemptɪd/","aviationMeaning":"n. 题库原文中 attempted 的疑似拼写错误","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"attempting","ipa":"/əˈtemptɪŋ/","aviationMeaning":"v. 正在尝试执行程序、着陆或操作","generalMeaning":"v. 正在尝试"},
-    {"word":"attempts","ipa":"/əˈtempts/","aviationMeaning":"n. 尝试次数；v. 尝试","generalMeaning":"n. 尝试（复数）；v. 尝试"},
-    {"word":"attend","ipa":"/əˈtend/","aviationMeaning":"v. 参加训练、会议或处置事件","generalMeaning":"v. 参加；照料"},
-    {"word":"attendance","ipa":"/əˈtendəns/","aviationMeaning":"n. 出席；训练或会议出勤","generalMeaning":"n. 出席；出勤"},
-    {"word":"attendant","ipa":"/əˈtendənt/","aviationMeaning":"n. 乘务员；服务人员","generalMeaning":"n. 服务员；随从"},
-    {"word":"attendant's","ipa":"/əˈtendənts/","aviationMeaning":"n. 乘务员的；表示所属关系","generalMeaning":"n. 服务员的；表示所属关系"},
-    {"word":"attendants","ipa":"/əˈtendənts/","aviationMeaning":"n. 乘务员；服务人员（复数）","generalMeaning":"n. 服务员；随从（复数）"},
-    {"word":"attended","ipa":"/əˈtendɪd/","aviationMeaning":"v. 已参加训练、会议或处置事件","generalMeaning":"v. 已参加；已照料"},
-    {"word":"attending","ipa":"/əˈtendɪŋ/","aviationMeaning":"v. 正在参加训练、会议或处置事件","generalMeaning":"v. 正在参加；照料"},
-    {"word":"attention","ipa":"/əˈtenʃən/","aviationMeaning":"n. 注意力；飞行和管制中的重要认知资源","generalMeaning":"n. 注意；关注"},
-    {"word":"attenuate","ipa":"/əˈtenjueɪt/","aviationMeaning":"v. 减弱信号、噪声或风险影响","generalMeaning":"v. 减弱；降低"},
-    {"word":"attenuation","ipa":"/əˌtenjuˈeɪʃən/","aviationMeaning":"n. 信号、噪声或影响的衰减","generalMeaning":"n. 减弱；衰减"},
-    {"word":"attitude","ipa":"/ˈætɪtuːd/","aviationMeaning":"n. 飞行姿态；机身相对地平线的方向","generalMeaning":"n. 态度；姿势"},
-    {"word":"attitude-and-thrust","ipa":"/ˈætɪtuːd ænd θrʌst/","aviationMeaning":"n. 姿态与推力；失速恢复原则","generalMeaning":"n. 姿态和推力"},
-    {"word":"attitudes","ipa":"/ˈætɪtuːdz/","aviationMeaning":"n. 飞行姿态或态度（复数）","generalMeaning":"n. 态度；姿势（复数）"},
-    {"word":"attract","ipa":"/əˈtrækt/","aviationMeaning":"v. 吸引鸟类、地面人员或注意力","generalMeaning":"v. 吸引；招引"},
-    {"word":"attractants","ipa":"/əˈtræktənts/","aviationMeaning":"n. 吸引物；可能增加机场鸟击风险","generalMeaning":"n. 吸引物（复数）"}
+    {
+      "word": "array",
+      "ipa": "/əˈreɪ/",
+      "aviationMeaning": "n. 阵列；天线、传感器或显示元素阵列",
+      "generalMeaning": "n. 阵列；一系列"
+    },
+    {
+      "word": "arrest",
+      "ipa": "/əˈrest/",
+      "aviationMeaning": "n. 拦阻；v. 制止或拘留",
+      "generalMeaning": "n. 逮捕；v. 逮捕；制止"
+    },
+    {
+      "word": "arrival",
+      "ipa": "/əˈraɪvəl/",
+      "aviationMeaning": "n. 到达；进场航班",
+      "generalMeaning": "n. 到达；抵达者"
+    },
+    {
+      "word": "arrivals",
+      "ipa": "/əˈraɪvəlz/",
+      "aviationMeaning": "n. 到达航班；进场航班（复数）",
+      "generalMeaning": "n. 到达；抵达者（复数）"
+    },
+    {
+      "word": "arrive",
+      "ipa": "/əˈraɪv/",
+      "aviationMeaning": "v. 到达机场、航路点或目标位置",
+      "generalMeaning": "v. 到达；抵达"
+    },
+    {
+      "word": "arrived",
+      "ipa": "/əˈraɪvd/",
+      "aviationMeaning": "v. 已到达机场、航路点或目标位置",
+      "generalMeaning": "v. 已到达；抵达"
+    },
+    {
+      "word": "arrives",
+      "ipa": "/əˈraɪvz/",
+      "aviationMeaning": "v. 到达机场、航路点或目标位置",
+      "generalMeaning": "v. 到达；抵达"
+    },
+    {
+      "word": "arriving",
+      "ipa": "/əˈraɪvɪŋ/",
+      "aviationMeaning": "v. 正在到达；进场中的",
+      "generalMeaning": "v. 正在到达"
+    },
+    {
+      "word": "articles",
+      "ipa": "/ˈɑːrtɪkəlz/",
+      "aviationMeaning": "n. 条款、文章或物品（复数）",
+      "generalMeaning": "n. 文章；物品；条款（复数）"
+    },
+    {
+      "word": "artificial",
+      "ipa": "/ˌɑːrtɪˈfɪʃəl/",
+      "aviationMeaning": "adj. 人工的，如人工地平仪或人工照明",
+      "generalMeaning": "adj. 人工的；人造的"
+    },
+    {
+      "word": "as",
+      "ipa": "/æz/",
+      "aviationMeaning": "prep. 作为；conj. 当……时",
+      "generalMeaning": "prep. 作为；conj. 当……时"
+    },
+    {
+      "word": "asa",
+      "ipa": "/ˌeɪ es ˈeɪ/",
+      "aviationMeaning": "n. 航空相关组织或程序缩写；需结合原文",
+      "generalMeaning": "n. 不明缩写；请结合原文"
+    },
+    {
+      "word": "asava",
+      "ipa": "/əˈsɑːvə/",
+      "aviationMeaning": "n. 题库中的专有名称或缩写；需结合原文",
+      "generalMeaning": "n. 不明专有词；请结合原文"
+    },
+    {
+      "word": "ascend",
+      "ipa": "/əˈsend/",
+      "aviationMeaning": "v. 爬升；上升",
+      "generalMeaning": "v. 上升；攀登"
+    },
+    {
+      "word": "ascends",
+      "ipa": "/əˈsendz/",
+      "aviationMeaning": "v. 爬升；上升",
+      "generalMeaning": "v. 上升；攀登"
+    },
+    {
+      "word": "ascent",
+      "ipa": "/əˈsent/",
+      "aviationMeaning": "n. 爬升；上升航段",
+      "generalMeaning": "n. 上升；攀登"
+    },
+    {
+      "word": "asda",
+      "ipa": "/ˈæzdə/",
+      "aviationMeaning": "n. 加速停止距离可用距离（缩写）",
+      "generalMeaning": "n. 运行距离缩写"
+    },
+    {
+      "word": "ash",
+      "ipa": "/æʃ/",
+      "aviationMeaning": "n. 火山灰；航空气象危险物",
+      "generalMeaning": "n. 灰；灰烬"
+    },
+    {
+      "word": "asia",
+      "ipa": "/ˈeɪʒə/",
+      "aviationMeaning": "n. 亚洲；航路或运行区域",
+      "generalMeaning": "n. 亚洲"
+    },
+    {
+      "word": "asiana",
+      "ipa": "/ˌeɪʃiˈɑːnə/",
+      "aviationMeaning": "n. 韩亚航空（航空公司名称）",
+      "generalMeaning": "n. 韩亚航空（名称）"
+    },
+    {
+      "word": "ask",
+      "ipa": "/æsk/",
+      "aviationMeaning": "v. 询问许可、信息或运行状态",
+      "generalMeaning": "v. 询问；请求"
+    },
+    {
+      "word": "asked",
+      "ipa": "/æskt/",
+      "aviationMeaning": "v. 已询问许可、信息或运行状态",
+      "generalMeaning": "v. 已询问；已请求"
+    },
+    {
+      "word": "asking",
+      "ipa": "/ˈæskɪŋ/",
+      "aviationMeaning": "v. 正在询问许可、信息或运行状态",
+      "generalMeaning": "v. 正在询问；请求"
+    },
+    {
+      "word": "asks",
+      "ipa": "/æsks/",
+      "aviationMeaning": "v. 询问许可、信息或运行状态",
+      "generalMeaning": "v. 询问；请求"
+    },
+    {
+      "word": "aspects",
+      "ipa": "/ˈæspekts/",
+      "aviationMeaning": "n. 运行、安全或系统方面（复数）",
+      "generalMeaning": "n. 方面；特征（复数）"
+    },
+    {
+      "word": "assembled",
+      "ipa": "/əˈsembəld/",
+      "aviationMeaning": "adj. 已装配的；已集合的机组或部件",
+      "generalMeaning": "adj. 已组装的；已集合的"
+    },
+    {
+      "word": "assembly",
+      "ipa": "/əˈsembli/",
+      "aviationMeaning": "n. 组件总成；装配作业",
+      "generalMeaning": "n. 集会；装配；组件"
+    },
+    {
+      "word": "assess",
+      "ipa": "/əˈses/",
+      "aviationMeaning": "v. 评估天气、风险或运行状况",
+      "generalMeaning": "v. 评估；评价"
+    },
+    {
+      "word": "assessed",
+      "ipa": "/əˈsest/",
+      "aviationMeaning": "adj. 已评估的天气、风险或运行状况",
+      "generalMeaning": "adj. 已评估的"
+    },
+    {
+      "word": "assessing",
+      "ipa": "/əˈsesɪŋ/",
+      "aviationMeaning": "v. 正在评估天气、风险或运行状况",
+      "generalMeaning": "v. 评估；评价"
+    },
+    {
+      "word": "assessment",
+      "ipa": "/əˈsesmənt/",
+      "aviationMeaning": "n. 风险、性能或运行评估",
+      "generalMeaning": "n. 评估；评价"
+    },
+    {
+      "word": "assessments",
+      "ipa": "/əˈsesmənts/",
+      "aviationMeaning": "n. 风险、性能或运行评估（复数）",
+      "generalMeaning": "n. 评估；评价（复数）"
+    },
+    {
+      "word": "assign",
+      "ipa": "/əˈsaɪn/",
+      "aviationMeaning": "v. 指派高度、航向、跑道或任务",
+      "generalMeaning": "v. 分配；指派"
+    },
+    {
+      "word": "assigned",
+      "ipa": "/əˈsaɪnd/",
+      "aviationMeaning": "adj. 已指派的高度、航向、跑道或任务",
+      "generalMeaning": "adj. 已分配的；已指派的"
+    },
+    {
+      "word": "assignment",
+      "ipa": "/əˈsaɪnmənt/",
+      "aviationMeaning": "n. 高度、航向、跑道或任务指派",
+      "generalMeaning": "n. 任务；分配"
+    },
+    {
+      "word": "assignments",
+      "ipa": "/əˈsaɪnmənts/",
+      "aviationMeaning": "n. 高度、航向、跑道或任务指派（复数）",
+      "generalMeaning": "n. 任务；分配（复数）"
+    },
+    {
+      "word": "assist",
+      "ipa": "/əˈsɪst/",
+      "aviationMeaning": "v. 协助飞行、地面服务或应急行动",
+      "generalMeaning": "v. 协助；帮助"
+    },
+    {
+      "word": "assistance",
+      "ipa": "/əˈsɪstəns/",
+      "aviationMeaning": "n. 飞行、地面服务或应急援助",
+      "generalMeaning": "n. 帮助；援助"
+    },
+    {
+      "word": "assisted",
+      "ipa": "/əˈsɪstɪd/",
+      "aviationMeaning": "v. 已协助飞行、地面服务或应急行动",
+      "generalMeaning": "v. 已协助；帮助"
+    },
+    {
+      "word": "assists",
+      "ipa": "/əˈsɪsts/",
+      "aviationMeaning": "v. 协助飞行、地面服务或应急行动",
+      "generalMeaning": "v. 协助；帮助"
+    },
+    {
+      "word": "associated",
+      "ipa": "/əˈsoʊsieɪtɪd/",
+      "aviationMeaning": "adj. 与某航空器、系统或事件相关联的",
+      "generalMeaning": "adj. 有关联的；相关的"
+    },
+    {
+      "word": "assume",
+      "ipa": "/əˈsuːm/",
+      "aviationMeaning": "v. 假定；接管管制、责任或操作",
+      "generalMeaning": "v. 假定；承担"
+    },
+    {
+      "word": "assumed",
+      "ipa": "/əˈsuːmd/",
+      "aviationMeaning": "adj. 已假定的；已接管的责任或操作",
+      "generalMeaning": "adj. 假定的；承担的"
+    },
+    {
+      "word": "assuming",
+      "ipa": "/əˈsuːmɪŋ/",
+      "aviationMeaning": "v. 正在假定；接管责任或操作",
+      "generalMeaning": "v. 假定；承担"
+    },
+    {
+      "word": "assured",
+      "ipa": "/əˈʃʊrd/",
+      "aviationMeaning": "adj. 已确认保障的，如安全或服务",
+      "generalMeaning": "adj. 确定的；有把握的"
+    },
+    {
+      "word": "astana",
+      "ipa": "/əˈstɑːnə/",
+      "aviationMeaning": "n. 阿斯塔纳；机场所在城市",
+      "generalMeaning": "n. 阿斯塔纳（哈萨克斯坦首都）"
+    },
+    {
+      "word": "astana's",
+      "ipa": "/əˈstɑːnəz/",
+      "aviationMeaning": "n. 阿斯塔纳的；表示所属关系",
+      "generalMeaning": "n. 阿斯塔纳的；表示所属关系"
+    },
+    {
+      "word": "asthma",
+      "ipa": "/ˈæsmə/",
+      "aviationMeaning": "n. 哮喘；机组健康状况",
+      "generalMeaning": "n. 哮喘"
+    },
+    {
+      "word": "asymmetric",
+      "ipa": "/ˌeɪsɪˈmetrɪk/",
+      "aviationMeaning": "adj. 不对称的，如推力或机翼状态",
+      "generalMeaning": "adj. 不对称的"
+    },
+    {
+      "word": "at",
+      "ipa": "/æt/",
+      "aviationMeaning": "prep. 在某机场、时间、高度或位置",
+      "generalMeaning": "prep. 在；于"
+    },
+    {
+      "word": "ataga",
+      "ipa": "/əˈtɑːɡə/",
+      "aviationMeaning": "n. 题库中的航路点、呼号或专有名称",
+      "generalMeaning": "n. 专有名称；请结合原文"
+    },
+    {
+      "word": "atc",
+      "ipa": "/ˌeɪ tiː ˈsiː/",
+      "aviationMeaning": "n. 空中交通管制（缩写）",
+      "generalMeaning": "n. 空中交通管制"
+    },
+    {
+      "word": "atc's",
+      "ipa": "/ˌeɪ tiː ˈsiːz/",
+      "aviationMeaning": "n. 空中交通管制的；表示所属关系",
+      "generalMeaning": "n. 空中交通管制的；表示所属关系"
+    },
+    {
+      "word": "athens",
+      "ipa": "/ˈæθənz/",
+      "aviationMeaning": "n. 雅典；机场所在城市",
+      "generalMeaning": "n. 雅典（希腊首都）"
+    },
+    {
+      "word": "athlete",
+      "ipa": "/ˈæθliːt/",
+      "aviationMeaning": "n. 运动员；可能用于旅客或训练语境",
+      "generalMeaning": "n. 运动员"
+    },
+    {
+      "word": "atis",
+      "ipa": "/ˈeɪtɪs/",
+      "aviationMeaning": "n. 航站自动情报服务（缩写）",
+      "generalMeaning": "n. 自动情报服务"
+    },
+    {
+      "word": "atlanta",
+      "ipa": "/ætˈlæntə/",
+      "aviationMeaning": "n. 亚特兰大；机场所在城市",
+      "generalMeaning": "n. 亚特兰大（美国城市）"
+    },
+    {
+      "word": "atlantic",
+      "ipa": "/ətˈlæntɪk/",
+      "aviationMeaning": "adj. 大西洋的；如北大西洋航路",
+      "generalMeaning": "adj. 大西洋的"
+    },
+    {
+      "word": "atlas",
+      "ipa": "/ˈætləs/",
+      "aviationMeaning": "n. 地图集；也可为航空器或系统名称",
+      "generalMeaning": "n. 地图册；图集"
+    },
+    {
+      "word": "atmosphere",
+      "ipa": "/ˈætməsfɪr/",
+      "aviationMeaning": "n. 大气；飞行环境",
+      "generalMeaning": "n. 大气；气氛"
+    },
+    {
+      "word": "atmospheric",
+      "ipa": "/ˌætməsˈferɪk/",
+      "aviationMeaning": "adj. 大气的；与气象环境有关的",
+      "generalMeaning": "adj. 大气的；大气层的"
+    },
+    {
+      "word": "atr",
+      "ipa": "/ˌeɪ tiː ˈɑːr/",
+      "aviationMeaning": "n. ATR 飞机制造商/机型名称",
+      "generalMeaning": "n. 专有名称缩写"
+    },
+    {
+      "word": "ats",
+      "ipa": "/ˌeɪ tiː ˈes/",
+      "aviationMeaning": "n. 空中交通服务（缩写）",
+      "generalMeaning": "n. 空中交通服务"
+    },
+    {
+      "word": "atsb",
+      "ipa": "/ˌeɪ tiː es ˈbiː/",
+      "aviationMeaning": "n. 澳大利亚运输安全局（缩写）",
+      "generalMeaning": "n. 机构名称缩写"
+    },
+    {
+      "word": "attack",
+      "ipa": "/əˈtæk/",
+      "aviationMeaning": "n. 攻击；如迎角中的 attack；v. 攻击",
+      "generalMeaning": "n. 攻击；v. 攻击"
+    },
+    {
+      "word": "attacked",
+      "ipa": "/əˈtækt/",
+      "aviationMeaning": "v. 已遭攻击；用于安全事件描述",
+      "generalMeaning": "v. 已攻击"
+    },
+    {
+      "word": "attacks",
+      "ipa": "/əˈtæks/",
+      "aviationMeaning": "n. 攻击事件（复数）；v. 攻击",
+      "generalMeaning": "n. 攻击（复数）；v. 攻击"
+    },
+    {
+      "word": "attempt",
+      "ipa": "/əˈtempt/",
+      "aviationMeaning": "n. 尝试，如复飞或着陆尝试；v. 尝试",
+      "generalMeaning": "n. 尝试；v. 尝试"
+    },
+    {
+      "word": "attempted",
+      "ipa": "/əˈtemptɪd/",
+      "aviationMeaning": "v. 已尝试执行程序、着陆或操作",
+      "generalMeaning": "v. 已尝试"
+    },
+    {
+      "word": "attempting",
+      "ipa": "/əˈtemptɪŋ/",
+      "aviationMeaning": "v. 正在尝试执行程序、着陆或操作",
+      "generalMeaning": "v. 正在尝试"
+    },
+    {
+      "word": "attempts",
+      "ipa": "/əˈtempts/",
+      "aviationMeaning": "n. 尝试次数；v. 尝试",
+      "generalMeaning": "n. 尝试（复数）；v. 尝试"
+    },
+    {
+      "word": "attend",
+      "ipa": "/əˈtend/",
+      "aviationMeaning": "v. 参加训练、会议或处置事件",
+      "generalMeaning": "v. 参加；照料"
+    },
+    {
+      "word": "attendance",
+      "ipa": "/əˈtendəns/",
+      "aviationMeaning": "n. 出席；训练或会议出勤",
+      "generalMeaning": "n. 出席；出勤"
+    },
+    {
+      "word": "attendant",
+      "ipa": "/əˈtendənt/",
+      "aviationMeaning": "n. 乘务员；服务人员",
+      "generalMeaning": "n. 服务员；随从"
+    },
+    {
+      "word": "attendant's",
+      "ipa": "/əˈtendənts/",
+      "aviationMeaning": "n. 乘务员的；表示所属关系",
+      "generalMeaning": "n. 服务员的；表示所属关系"
+    },
+    {
+      "word": "attendants",
+      "ipa": "/əˈtendənts/",
+      "aviationMeaning": "n. 乘务员；服务人员（复数）",
+      "generalMeaning": "n. 服务员；随从（复数）"
+    },
+    {
+      "word": "attended",
+      "ipa": "/əˈtendɪd/",
+      "aviationMeaning": "v. 已参加训练、会议或处置事件",
+      "generalMeaning": "v. 已参加；已照料"
+    },
+    {
+      "word": "attending",
+      "ipa": "/əˈtendɪŋ/",
+      "aviationMeaning": "v. 正在参加训练、会议或处置事件",
+      "generalMeaning": "v. 正在参加；照料"
+    },
+    {
+      "word": "attention",
+      "ipa": "/əˈtenʃən/",
+      "aviationMeaning": "n. 注意力；飞行和管制中的重要认知资源",
+      "generalMeaning": "n. 注意；关注"
+    },
+    {
+      "word": "attenuate",
+      "ipa": "/əˈtenjueɪt/",
+      "aviationMeaning": "v. 减弱信号、噪声或风险影响",
+      "generalMeaning": "v. 减弱；降低"
+    },
+    {
+      "word": "attenuation",
+      "ipa": "/əˌtenjuˈeɪʃən/",
+      "aviationMeaning": "n. 信号、噪声或影响的衰减",
+      "generalMeaning": "n. 减弱；衰减"
+    },
+    {
+      "word": "attitude",
+      "ipa": "/ˈætɪtuːd/",
+      "aviationMeaning": "n. 飞行姿态；机身相对地平线的方向",
+      "generalMeaning": "n. 态度；姿势"
+    },
+    {
+      "word": "attitudes",
+      "ipa": "/ˈætɪtuːdz/",
+      "aviationMeaning": "n. 飞行姿态或态度（复数）",
+      "generalMeaning": "n. 态度；姿势（复数）"
+    },
+    {
+      "word": "attract",
+      "ipa": "/əˈtrækt/",
+      "aviationMeaning": "v. 吸引鸟类、地面人员或注意力",
+      "generalMeaning": "v. 吸引；招引"
+    }
   ]
 }

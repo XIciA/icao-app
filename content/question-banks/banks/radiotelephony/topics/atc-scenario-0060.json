@@ -135,7 +135,7 @@
       "taskTitle": "CCA 725-15",
       "audioText": "B: Now the lady's condition is deteriorating, you confirm with the controller if the medical service will be ready at the gate.",
       "audioTextZh": "B: 现在这位女士情况正在恶化，你向管制员确认登机口医疗服务是否准备好。",
-      "referenceText": "Wuhan Ground, CCA 725, the lady's condition is deteriorating, is medical service ready at the gate ?",
+      "referenceText": "Wuhan Ground, CCA 725, the lady's condition is deteriorating, is medical service ready at the gate?",
       "referenceTextZh": "武汉地面，CCA 725，这位女士情况正在恶化，登机口医疗服务准备好了吗？",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1043.mp3"
     },

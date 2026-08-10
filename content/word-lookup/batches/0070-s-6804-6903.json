@@ -1,105 +1,473 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"sea-breeze","ipa":"/ˈsiː briːz/","aviationMeaning":"n. 海风；白天由海向陆吹的局地风，可能影响机场跑道风","generalMeaning":"n. 海风"},
-    {"word":"sea-level","ipa":"/ˈsiː levəl/","aviationMeaning":"n. 海平面；高度、气压和飞行性能的参考基准","generalMeaning":"n. 海平面"},
-    {"word":"sea-state","ipa":"/ˈsiː steɪt/","aviationMeaning":"n. 海况；海面波浪和风浪状态，影响水上作业与迫降","generalMeaning":"n. 海况"},
-    {"word":"seabirds","ipa":"/ˈsiːbɜːrdz/","aviationMeaning":"n. 海鸟（复数）；可能造成鸟击风险的鸟类","generalMeaning":"n. 海鸟（复数）"},
-    {"word":"seal","ipa":"/siːl/","aviationMeaning":"n. 密封件；防止液体、气体或压力泄漏的部件","generalMeaning":"n. 密封；海豹"},
-    {"word":"sealants","ipa":"/ˈsiːlənts/","aviationMeaning":"n. 密封剂（复数）；用于封闭结构、燃油箱或管路接缝的材料","generalMeaning":"n. 密封剂（复数）"},
-    {"word":"sealed","ipa":"/siːld/","aviationMeaning":"adj. 已密封的；舱体、管路、容器或结构接缝已封闭","generalMeaning":"adj. 已密封的"},
-    {"word":"sealing","ipa":"/ˈsiːlɪŋ/","aviationMeaning":"n. 密封；封闭舱体、管路、容器或结构接缝的过程","generalMeaning":"n. 密封；封口"},
-    {"word":"seals","ipa":"/siːlz/","aviationMeaning":"n. 密封件（复数）；防止液体、气体或压力泄漏的部件","generalMeaning":"n. 密封；海豹（复数）"},
-    {"word":"seamless","ipa":"/ˈsiːmləs/","aviationMeaning":"adj. 无缝的；交接、系统或运行流程顺畅连续的","generalMeaning":"adj. 无缝的；顺畅的"},
-    {"word":"search","ipa":"/sɜːrtʃ/","aviationMeaning":"v. 搜索；查找航空器、人员、物品或信息","generalMeaning":"v. 搜索；n. 搜索"},
-    {"word":"search-and-rescue","ipa":"/ˌsɜːrtʃ ən ˈreskjuː/","aviationMeaning":"n. 搜索与救援；寻找并救助遇险航空器或人员的行动","generalMeaning":"n. 搜索与救援"},
-    {"word":"searchable","ipa":"/ˈsɜːrtʃəbəl/","aviationMeaning":"adj. 可搜索的；可通过系统查找的记录、资料或数据","generalMeaning":"adj. 可搜索的"},
-    {"word":"searched","ipa":"/sɜːrtʃt/","aviationMeaning":"v. 已搜索；已查找航空器、人员、物品或信息","generalMeaning":"v. 已搜索"},
-    {"word":"searches","ipa":"/ˈsɜːrtʃɪz/","aviationMeaning":"n. 搜索（复数）；对航空器、人员或信息的多次查找","generalMeaning":"n. 搜索（复数）；v. 搜索"},
-    {"word":"searching","ipa":"/ˈsɜːrtʃɪŋ/","aviationMeaning":"v. 正搜索；正在查找航空器、人员、物品或信息","generalMeaning":"v. 正搜索"},
-    {"word":"seas","ipa":"/siːz/","aviationMeaning":"n. 海域（复数）；越水飞行或海上天气涉及的水域","generalMeaning":"n. 海；海洋（复数）"},
-    {"word":"season","ipa":"/ˈsiːzən/","aviationMeaning":"n. 季节；影响天气、流量和运行特点的年度时期","generalMeaning":"n. 季节；时节"},
-    {"word":"seasonal","ipa":"/ˈsiːzənəl/","aviationMeaning":"adj. 季节性的；随季节变化的天气、流量或风险","generalMeaning":"adj. 季节性的"},
-    {"word":"seasons","ipa":"/ˈsiːzənz/","aviationMeaning":"n. 季节（复数）；不同年度时期的天气和运行条件","generalMeaning":"n. 季节（复数）"},
-    {"word":"seat","ipa":"/siːt/","aviationMeaning":"n. 座位；客舱或驾驶舱中供人员乘坐的位置","generalMeaning":"n. 座位；v. 使就座"},
-    {"word":"seat-belt","ipa":"/ˈsiːt belt/","aviationMeaning":"n. 安全带；固定乘员以防止颠簸或事故伤害的约束装置","generalMeaning":"n. 安全带"},
-    {"word":"seatbelt","ipa":"/ˈsiːtbelt/","aviationMeaning":"n. 安全带；固定乘员以防止颠簸或事故伤害的约束装置","generalMeaning":"n. 安全带"},
-    {"word":"seatbelts","ipa":"/ˈsiːtbelts/","aviationMeaning":"n. 安全带（复数）；客舱或驾驶舱人员的约束装置","generalMeaning":"n. 安全带（复数）"},
-    {"word":"seated","ipa":"/ˈsiːtɪd/","aviationMeaning":"adj. 已就座的；旅客或机组已坐在指定座位","generalMeaning":"adj. 已就座的"},
-    {"word":"seating","ipa":"/ˈsiːtɪŋ/","aviationMeaning":"n. 座位安排；旅客在客舱内的座位配置","generalMeaning":"n. 座位；就座"},
-    {"word":"seats","ipa":"/siːts/","aviationMeaning":"n. 座位（复数）；客舱或驾驶舱内多个乘坐位置","generalMeaning":"n. 座位（复数）；v. 使就座"},
-    {"word":"seattle","ipa":"/siˈætəl/","aviationMeaning":"n. 西雅图；机场、空域或航线地名","generalMeaning":"n. 西雅图"},
-    {"word":"second","ipa":"/ˈsekənd/","aviationMeaning":"n. 秒；时间单位；也可指第二个的","generalMeaning":"n. 秒；adj. 第二的"},
-    {"word":"second-hand","ipa":"/ˌsekənd ˈhænd/","aviationMeaning":"adj. 二手的；已使用过的设备、部件或资料","generalMeaning":"adj. 二手的；间接的"},
-    {"word":"secondary","ipa":"/ˈsekənderi/","aviationMeaning":"adj. 次要的；辅助的系统、任务或信息","generalMeaning":"adj. 次要的；第二的"},
-    {"word":"secondly","ipa":"/ˈsekəndli/","aviationMeaning":"adv. 第二；用于列举第二项说明","generalMeaning":"adv. 第二；其次"},
-    {"word":"seconds","ipa":"/ˈsekəndz/","aviationMeaning":"n. 秒（复数）；时间、间隔或反应时间单位","generalMeaning":"n. 秒（复数）；v. 支持"},
-    {"word":"section","ipa":"/ˈsekʃən/","aviationMeaning":"n. 段；航路、手册、跑道或程序的一部分","generalMeaning":"n. 部分；章节"},
-    {"word":"sections","ipa":"/ˈsekʃənz/","aviationMeaning":"n. 段（复数）；航路、手册或程序的多个部分","generalMeaning":"n. 部分；章节（复数）"},
-    {"word":"sector","ipa":"/ˈsektər/","aviationMeaning":"n. 扇区；空中交通管制划分的空域责任区域","generalMeaning":"n. 扇形；部门"},
-    {"word":"sectors","ipa":"/ˈsektərz/","aviationMeaning":"n. 扇区（复数）；多个管制空域责任区域","generalMeaning":"n. 扇形；部门（复数）"},
-    {"word":"secure","ipa":"/sɪˈkjʊr/","aviationMeaning":"v. 固定；固定货物、设备、舱门或人员安全装置","generalMeaning":"v. 固定；获得；adj. 安全的"},
-    {"word":"secured","ipa":"/sɪˈkjʊrd/","aviationMeaning":"adj. 已固定的；货物、设备、舱门或安全装置已可靠固定","generalMeaning":"adj. 已固定的；安全的"},
-    {"word":"secures","ipa":"/sɪˈkjʊrz/","aviationMeaning":"v. 固定；使货物、设备、舱门或安全装置可靠固定","generalMeaning":"v. 固定；获得"},
-    {"word":"securing","ipa":"/sɪˈkjʊrɪŋ/","aviationMeaning":"v. 正固定；正在固定货物、设备、舱门或人员","generalMeaning":"v. 正固定；获得"},
-    {"word":"security","ipa":"/sɪˈkjʊrəti/","aviationMeaning":"n. 安保；保护航空器、机场和人员免受非法干扰的措施","generalMeaning":"n. 安全；保障"},
-    {"word":"security-sensitive","ipa":"/sɪˈkjʊrəti ˈsensətɪv/","aviationMeaning":"adj. 安保敏感的；涉及机场、航空器或人员安全保护的","generalMeaning":"adj. 安保敏感的"},
-    {"word":"see","ipa":"/siː/","aviationMeaning":"v. 看见；观察到航空器、天气、跑道或仪表信息","generalMeaning":"v. 看见；明白"},
-    {"word":"seeing","ipa":"/ˈsiːɪŋ/","aviationMeaning":"v. 正看见；正在观察航空器、天气或仪表信息","generalMeaning":"v. 正看见；观察"},
-    {"word":"seek","ipa":"/siːk/","aviationMeaning":"v. 寻求；寻求许可、信息、帮助或替代机场","generalMeaning":"v. 寻找；寻求"},
-    {"word":"seem","ipa":"/siːm/","aviationMeaning":"v. 似乎；表示对飞行或运行状况的判断","generalMeaning":"v. 似乎；好像"},
-    {"word":"seemed","ipa":"/siːmd/","aviationMeaning":"v. 似乎；表示先前对飞行或运行状况的判断","generalMeaning":"v. 似乎；好像"},
-    {"word":"seems","ipa":"/siːmz/","aviationMeaning":"v. 似乎；表示对飞行或运行状况的判断","generalMeaning":"v. 似乎；好像"},
-    {"word":"seen","ipa":"/siːn/","aviationMeaning":"adj. 已看到的；航空器、天气或目标已经观察到","generalMeaning":"adj. 已看见的"},
-    {"word":"sees","ipa":"/siːz/","aviationMeaning":"v. 看见；观察到航空器、天气或仪表信息","generalMeaning":"v. 看见；明白"},
-    {"word":"seg","ipa":"/seɡ/","aviationMeaning":"n. 段的缩写；航路、程序或资料的一个部分","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"segment","ipa":"/ˈseɡmənt/","aviationMeaning":"n. 航段；飞行、航路、程序或市场中的一段","generalMeaning":"n. 部分；段"},
-    {"word":"seized","ipa":"/siːzd/","aviationMeaning":"adj. 卡死的；发动机、轴承或机械部件因故障无法运动","generalMeaning":"adj. 被抓住的；卡死的"},
-    {"word":"seizure","ipa":"/ˈsiːʒər/","aviationMeaning":"n. 发作；人员突发癫痫等医疗紧急状况","generalMeaning":"n. 夺取；发作"},
-    {"word":"selcal","ipa":"/ˈselkæl/","aviationMeaning":"n. 选择呼叫系统；通过编码提示航空器机组收听无线电的系统","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"select","ipa":"/sɪˈlekt/","aviationMeaning":"v. 选择；选择频率、航路、模式、跑道或系统选项","generalMeaning":"v. 选择；挑选"},
-    {"word":"selected","ipa":"/sɪˈlektɪd/","aviationMeaning":"adj. 已选择的；频率、航路、模式或系统选项已设定","generalMeaning":"adj. 已选择的"},
-    {"word":"selecting","ipa":"/sɪˈlektɪŋ/","aviationMeaning":"v. 正选择；正在选择频率、航路、模式或选项","generalMeaning":"v. 正选择；挑选"},
-    {"word":"selection","ipa":"/sɪˈlekʃən/","aviationMeaning":"n. 选择；对频率、航路、跑道或系统模式的选取","generalMeaning":"n. 选择；挑选"},
-    {"word":"selections","ipa":"/sɪˈlekʃənz/","aviationMeaning":"n. 选择项（复数）；多个频率、航路或系统选项","generalMeaning":"n. 选择；挑选（复数）"},
-    {"word":"selector","ipa":"/sɪˈlektər/","aviationMeaning":"n. 选择器；用于选定系统模式、频率或位置的控制件","generalMeaning":"n. 选择器；选择者"},
-    {"word":"selects","ipa":"/sɪˈlekts/","aviationMeaning":"v. 选择；选定频率、航路、模式、跑道或系统选项","generalMeaning":"v. 选择；挑选"},
-    {"word":"self-assessment","ipa":"/ˌself əˈsesmənt/","aviationMeaning":"n. 自我评估；机组对自身状态、能力或风险的判断","generalMeaning":"n. 自我评估"},
-    {"word":"self-explanatory","ipa":"/ˌself ɪkˈsplænətɔːri/","aviationMeaning":"adj. 不言自明的；说明或界面无需额外解释的","generalMeaning":"adj. 不言自明的"},
-    {"word":"self-positioning","ipa":"/ˌself pəˈzɪʃənɪŋ/","aviationMeaning":"n. 自主定位；航空器自行确定并报告位置的能力","generalMeaning":"n. 自主定位"},
-    {"word":"self-removal","ipa":"/ˌself rɪˈmuːvəl/","aviationMeaning":"n. 自行移除；人员或物品自行离开指定位置的情况","generalMeaning":"n. 自行移除"},
-    {"word":"self-satisfied","ipa":"/ˌself ˈsætɪsfaɪd/","aviationMeaning":"adj. 自满的；可能降低警觉性和安全意识的","generalMeaning":"adj. 自满的"},
-    {"word":"self-service","ipa":"/ˌself ˈsɜːrvɪs/","aviationMeaning":"n. 自助服务；旅客或运营人自行完成的服务流程","generalMeaning":"n. 自助服务"},
-    {"word":"self-sustained","ipa":"/ˌself səˈsteɪnd/","aviationMeaning":"adj. 自持的；系统无需外部持续支持即可维持运行的","generalMeaning":"adj. 自持的；自给自足的"},
-    {"word":"selfie","ipa":"/ˈselfi/","aviationMeaning":"n. 自拍；需结合原文","generalMeaning":"n. 自拍照"},
-    {"word":"seller","ipa":"/ˈselər/","aviationMeaning":"n. 销售方；出售航空服务、票务或设备的单位","generalMeaning":"n. 卖方；销售者"},
-    {"word":"selling","ipa":"/ˈselɪŋ/","aviationMeaning":"n. 销售；出售航空服务、票务或设备","generalMeaning":"n. 销售；售卖"},
-    {"word":"semi-truck","ipa":"/ˈsemi trʌk/","aviationMeaning":"n. 半挂卡车；机场货运或地面运输车辆","generalMeaning":"n. 半挂卡车"},
-    {"word":"send","ipa":"/send/","aviationMeaning":"v. 发送；发送通话、数据、报文或信息","generalMeaning":"v. 发送；派遣"},
-    {"word":"sending","ipa":"/ˈsendɪŋ/","aviationMeaning":"v. 正发送；正在发送通话、数据或报文","generalMeaning":"v. 正发送；派遣"},
-    {"word":"sends","ipa":"/sendz/","aviationMeaning":"v. 发送；发送通话、数据、报文或信息","generalMeaning":"v. 发送；派遣"},
-    {"word":"senior","ipa":"/ˈsiːniər/","aviationMeaning":"adj. 高级的；资深机组、维护或管理人员","generalMeaning":"adj. 年长的；高级的"},
-    {"word":"sensation","ipa":"/senˈseɪʃən/","aviationMeaning":"n. 感觉；机组或旅客感受到的加速度、颠簸或身体状态","generalMeaning":"n. 感觉；轰动"},
-    {"word":"sensations","ipa":"/senˈseɪʃənz/","aviationMeaning":"n. 感觉（复数）；人员感受到的运动、加速度或身体症状","generalMeaning":"n. 感觉；轰动（复数）"},
-    {"word":"sense","ipa":"/sens/","aviationMeaning":"n. 感知；对姿态、高度、方向或风险的判断能力","generalMeaning":"n. 感觉；意义"},
-    {"word":"senses","ipa":"/ˈsensɪz/","aviationMeaning":"n. 感官（复数）；人员用于感知飞行和环境的能力","generalMeaning":"n. 感觉；意义（复数）"},
-    {"word":"sensibly","ipa":"/ˈsensəbli/","aviationMeaning":"adv. 明智地；按安全和运行常识实施操作","generalMeaning":"adv. 明智地；合理地"},
-    {"word":"sensing","ipa":"/ˈsensɪŋ/","aviationMeaning":"n. 感测；系统或人员检测飞行、环境或设备状态","generalMeaning":"n. 感觉；感测"},
-    {"word":"sensitive","ipa":"/ˈsensətɪv/","aviationMeaning":"adj. 灵敏的；传感器、控制或安全信息对微小变化敏感的","generalMeaning":"adj. 敏感的；灵敏的"},
-    {"word":"sensor","ipa":"/ˈsensər/","aviationMeaning":"n. 传感器；测量温度、压力、位置、速度等参数的装置","generalMeaning":"n. 传感器"},
-    {"word":"sensors","ipa":"/ˈsensərz/","aviationMeaning":"n. 传感器（复数）；多个测量飞行或系统参数的装置","generalMeaning":"n. 传感器（复数）"},
-    {"word":"sensory","ipa":"/ˈsensəri/","aviationMeaning":"adj. 感官的；与视觉、听觉、前庭等人体感知有关的","generalMeaning":"adj. 感觉的；感官的"},
-    {"word":"sent","ipa":"/sent/","aviationMeaning":"v. 已发送；通话、数据、报文或信息已传出","generalMeaning":"v. send 的过去式；发送"},
-    {"word":"sentence","ipa":"/ˈsentəns/","aviationMeaning":"n. 句子；通话、训练材料或说明中的完整表达","generalMeaning":"n. 句子；判决"},
-    {"word":"seoul","ipa":"/soʊl/","aviationMeaning":"n. 首尔；机场、空域或航线地名","generalMeaning":"n. 首尔"},
-    {"word":"sep","ipa":"/sep/","aviationMeaning":"n. 分隔的缩写；可能指间隔或九月，需结合原文","generalMeaning":"n. 九月缩写；请结合原文"},
-    {"word":"separate","ipa":"/ˈsepəreɪt/","aviationMeaning":"v. 分隔；保持航空器、人员或物体之间的规定间隔","generalMeaning":"v. 分开；adj. 单独的"},
-    {"word":"separated","ipa":"/ˈsepəreɪtɪd/","aviationMeaning":"adj. 已分隔的；航空器、人员或物体保持规定间隔","generalMeaning":"adj. 已分开的"},
-    {"word":"separately","ipa":"/ˈsepərətli/","aviationMeaning":"adv. 分别地；将项目、航空器或任务单独处理","generalMeaning":"adv. 分别地；单独地"},
-    {"word":"separates","ipa":"/ˈsepəreɪts/","aviationMeaning":"v. 分隔；保持航空器、人员或物体之间的规定间隔","generalMeaning":"v. 分开；分隔"},
-    {"word":"separating","ipa":"/ˈsepəreɪtɪŋ/","aviationMeaning":"v. 正分隔；正在保持航空器或人员之间的间隔","generalMeaning":"v. 正分开；分隔"},
-    {"word":"separation","ipa":"/ˌsepəˈreɪʃən/","aviationMeaning":"n. 间隔；空管为防止航空器相撞而保持的距离或时间差","generalMeaning":"n. 分离；间隔"},
-    {"word":"sept","ipa":"/sept/","aviationMeaning":"n. 九月的缩写；航班计划或运行日期","generalMeaning":"n. 九月缩写"},
-    {"word":"september","ipa":"/sepˈtembər/","aviationMeaning":"n. 九月；航班计划或运行日期","generalMeaning":"n. 九月"}
+    {
+      "word": "sea-level",
+      "ipa": "/ˈsiː levəl/",
+      "aviationMeaning": "n. 海平面；高度、气压和飞行性能的参考基准",
+      "generalMeaning": "n. 海平面"
+    },
+    {
+      "word": "seabirds",
+      "ipa": "/ˈsiːbɜːrdz/",
+      "aviationMeaning": "n. 海鸟（复数）；可能造成鸟击风险的鸟类",
+      "generalMeaning": "n. 海鸟（复数）"
+    },
+    {
+      "word": "seal",
+      "ipa": "/siːl/",
+      "aviationMeaning": "n. 密封件；防止液体、气体或压力泄漏的部件",
+      "generalMeaning": "n. 密封；海豹"
+    },
+    {
+      "word": "sealed",
+      "ipa": "/siːld/",
+      "aviationMeaning": "adj. 已密封的；舱体、管路、容器或结构接缝已封闭",
+      "generalMeaning": "adj. 已密封的"
+    },
+    {
+      "word": "sealing",
+      "ipa": "/ˈsiːlɪŋ/",
+      "aviationMeaning": "n. 密封；封闭舱体、管路、容器或结构接缝的过程",
+      "generalMeaning": "n. 密封；封口"
+    },
+    {
+      "word": "seamless",
+      "ipa": "/ˈsiːmləs/",
+      "aviationMeaning": "adj. 无缝的；交接、系统或运行流程顺畅连续的",
+      "generalMeaning": "adj. 无缝的；顺畅的"
+    },
+    {
+      "word": "search",
+      "ipa": "/sɜːrtʃ/",
+      "aviationMeaning": "v. 搜索；查找航空器、人员、物品或信息",
+      "generalMeaning": "v. 搜索；n. 搜索"
+    },
+    {
+      "word": "search-and-rescue",
+      "ipa": "/ˌsɜːrtʃ ən ˈreskjuː/",
+      "aviationMeaning": "n. 搜索与救援；寻找并救助遇险航空器或人员的行动",
+      "generalMeaning": "n. 搜索与救援"
+    },
+    {
+      "word": "searchable",
+      "ipa": "/ˈsɜːrtʃəbəl/",
+      "aviationMeaning": "adj. 可搜索的；可通过系统查找的记录、资料或数据",
+      "generalMeaning": "adj. 可搜索的"
+    },
+    {
+      "word": "searched",
+      "ipa": "/sɜːrtʃt/",
+      "aviationMeaning": "v. 已搜索；已查找航空器、人员、物品或信息",
+      "generalMeaning": "v. 已搜索"
+    },
+    {
+      "word": "searching",
+      "ipa": "/ˈsɜːrtʃɪŋ/",
+      "aviationMeaning": "v. 正搜索；正在查找航空器、人员、物品或信息",
+      "generalMeaning": "v. 正搜索"
+    },
+    {
+      "word": "season",
+      "ipa": "/ˈsiːzən/",
+      "aviationMeaning": "n. 季节；影响天气、流量和运行特点的年度时期",
+      "generalMeaning": "n. 季节；时节"
+    },
+    {
+      "word": "seasonal",
+      "ipa": "/ˈsiːzənəl/",
+      "aviationMeaning": "adj. 季节性的；随季节变化的天气、流量或风险",
+      "generalMeaning": "adj. 季节性的"
+    },
+    {
+      "word": "seasons",
+      "ipa": "/ˈsiːzənz/",
+      "aviationMeaning": "n. 季节（复数）；不同年度时期的天气和运行条件",
+      "generalMeaning": "n. 季节（复数）"
+    },
+    {
+      "word": "seat",
+      "ipa": "/siːt/",
+      "aviationMeaning": "n. 座位；客舱或驾驶舱中供人员乘坐的位置",
+      "generalMeaning": "n. 座位；v. 使就座"
+    },
+    {
+      "word": "seat-belt",
+      "ipa": "/ˈsiːt belt/",
+      "aviationMeaning": "n. 安全带；固定乘员以防止颠簸或事故伤害的约束装置",
+      "generalMeaning": "n. 安全带"
+    },
+    {
+      "word": "seatbelt",
+      "ipa": "/ˈsiːtbelt/",
+      "aviationMeaning": "n. 安全带；固定乘员以防止颠簸或事故伤害的约束装置",
+      "generalMeaning": "n. 安全带"
+    },
+    {
+      "word": "seatbelts",
+      "ipa": "/ˈsiːtbelts/",
+      "aviationMeaning": "n. 安全带（复数）；客舱或驾驶舱人员的约束装置",
+      "generalMeaning": "n. 安全带（复数）"
+    },
+    {
+      "word": "seated",
+      "ipa": "/ˈsiːtɪd/",
+      "aviationMeaning": "adj. 已就座的；旅客或机组已坐在指定座位",
+      "generalMeaning": "adj. 已就座的"
+    },
+    {
+      "word": "seating",
+      "ipa": "/ˈsiːtɪŋ/",
+      "aviationMeaning": "n. 座位安排；旅客在客舱内的座位配置",
+      "generalMeaning": "n. 座位；就座"
+    },
+    {
+      "word": "seats",
+      "ipa": "/siːts/",
+      "aviationMeaning": "n. 座位（复数）；客舱或驾驶舱内多个乘坐位置",
+      "generalMeaning": "n. 座位（复数）；v. 使就座"
+    },
+    {
+      "word": "seattle",
+      "ipa": "/siˈætəl/",
+      "aviationMeaning": "n. 西雅图；机场、空域或航线地名",
+      "generalMeaning": "n. 西雅图"
+    },
+    {
+      "word": "second",
+      "ipa": "/ˈsekənd/",
+      "aviationMeaning": "n. 秒；时间单位；也可指第二个的",
+      "generalMeaning": "n. 秒；adj. 第二的"
+    },
+    {
+      "word": "secondary",
+      "ipa": "/ˈsekənderi/",
+      "aviationMeaning": "adj. 次要的；辅助的系统、任务或信息",
+      "generalMeaning": "adj. 次要的；第二的"
+    },
+    {
+      "word": "secondly",
+      "ipa": "/ˈsekəndli/",
+      "aviationMeaning": "adv. 第二；用于列举第二项说明",
+      "generalMeaning": "adv. 第二；其次"
+    },
+    {
+      "word": "seconds",
+      "ipa": "/ˈsekəndz/",
+      "aviationMeaning": "n. 秒（复数）；时间、间隔或反应时间单位",
+      "generalMeaning": "n. 秒（复数）；v. 支持"
+    },
+    {
+      "word": "section",
+      "ipa": "/ˈsekʃən/",
+      "aviationMeaning": "n. 段；航路、手册、跑道或程序的一部分",
+      "generalMeaning": "n. 部分；章节"
+    },
+    {
+      "word": "sections",
+      "ipa": "/ˈsekʃənz/",
+      "aviationMeaning": "n. 段（复数）；航路、手册或程序的多个部分",
+      "generalMeaning": "n. 部分；章节（复数）"
+    },
+    {
+      "word": "sector",
+      "ipa": "/ˈsektər/",
+      "aviationMeaning": "n. 扇区；空中交通管制划分的空域责任区域",
+      "generalMeaning": "n. 扇形；部门"
+    },
+    {
+      "word": "secure",
+      "ipa": "/sɪˈkjʊr/",
+      "aviationMeaning": "v. 固定；固定货物、设备、舱门或人员安全装置",
+      "generalMeaning": "v. 固定；获得；adj. 安全的"
+    },
+    {
+      "word": "secured",
+      "ipa": "/sɪˈkjʊrd/",
+      "aviationMeaning": "adj. 已固定的；货物、设备、舱门或安全装置已可靠固定",
+      "generalMeaning": "adj. 已固定的；安全的"
+    },
+    {
+      "word": "secures",
+      "ipa": "/sɪˈkjʊrz/",
+      "aviationMeaning": "v. 固定；使货物、设备、舱门或安全装置可靠固定",
+      "generalMeaning": "v. 固定；获得"
+    },
+    {
+      "word": "securing",
+      "ipa": "/sɪˈkjʊrɪŋ/",
+      "aviationMeaning": "v. 正固定；正在固定货物、设备、舱门或人员",
+      "generalMeaning": "v. 正固定；获得"
+    },
+    {
+      "word": "security",
+      "ipa": "/sɪˈkjʊrəti/",
+      "aviationMeaning": "n. 安保；保护航空器、机场和人员免受非法干扰的措施",
+      "generalMeaning": "n. 安全；保障"
+    },
+    {
+      "word": "see",
+      "ipa": "/siː/",
+      "aviationMeaning": "v. 看见；观察到航空器、天气、跑道或仪表信息",
+      "generalMeaning": "v. 看见；明白"
+    },
+    {
+      "word": "seeing",
+      "ipa": "/ˈsiːɪŋ/",
+      "aviationMeaning": "v. 正看见；正在观察航空器、天气或仪表信息",
+      "generalMeaning": "v. 正看见；观察"
+    },
+    {
+      "word": "seem",
+      "ipa": "/siːm/",
+      "aviationMeaning": "v. 似乎；表示对飞行或运行状况的判断",
+      "generalMeaning": "v. 似乎；好像"
+    },
+    {
+      "word": "seemed",
+      "ipa": "/siːmd/",
+      "aviationMeaning": "v. 似乎；表示先前对飞行或运行状况的判断",
+      "generalMeaning": "v. 似乎；好像"
+    },
+    {
+      "word": "seems",
+      "ipa": "/siːmz/",
+      "aviationMeaning": "v. 似乎；表示对飞行或运行状况的判断",
+      "generalMeaning": "v. 似乎；好像"
+    },
+    {
+      "word": "seen",
+      "ipa": "/siːn/",
+      "aviationMeaning": "adj. 已看到的；航空器、天气或目标已经观察到",
+      "generalMeaning": "adj. 已看见的"
+    },
+    {
+      "word": "sees",
+      "ipa": "/siːz/",
+      "aviationMeaning": "v. 看见；观察到航空器、天气或仪表信息",
+      "generalMeaning": "v. 看见；明白"
+    },
+    {
+      "word": "seg",
+      "ipa": "/seɡ/",
+      "aviationMeaning": "n. 段的缩写；航路、程序或资料的一个部分",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "segment",
+      "ipa": "/ˈseɡmənt/",
+      "aviationMeaning": "n. 航段；飞行、航路、程序或市场中的一段",
+      "generalMeaning": "n. 部分；段"
+    },
+    {
+      "word": "seized",
+      "ipa": "/siːzd/",
+      "aviationMeaning": "adj. 卡死的；发动机、轴承或机械部件因故障无法运动",
+      "generalMeaning": "adj. 被抓住的；卡死的"
+    },
+    {
+      "word": "seizure",
+      "ipa": "/ˈsiːʒər/",
+      "aviationMeaning": "n. 发作；人员突发癫痫等医疗紧急状况",
+      "generalMeaning": "n. 夺取；发作"
+    },
+    {
+      "word": "selcal",
+      "ipa": "/ˈselkæl/",
+      "aviationMeaning": "n. 选择呼叫系统；通过编码提示航空器机组收听无线电的系统",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "select",
+      "ipa": "/sɪˈlekt/",
+      "aviationMeaning": "v. 选择；选择频率、航路、模式、跑道或系统选项",
+      "generalMeaning": "v. 选择；挑选"
+    },
+    {
+      "word": "selected",
+      "ipa": "/sɪˈlektɪd/",
+      "aviationMeaning": "adj. 已选择的；频率、航路、模式或系统选项已设定",
+      "generalMeaning": "adj. 已选择的"
+    },
+    {
+      "word": "selecting",
+      "ipa": "/sɪˈlektɪŋ/",
+      "aviationMeaning": "v. 正选择；正在选择频率、航路、模式或选项",
+      "generalMeaning": "v. 正选择；挑选"
+    },
+    {
+      "word": "selector",
+      "ipa": "/sɪˈlektər/",
+      "aviationMeaning": "n. 选择器；用于选定系统模式、频率或位置的控制件",
+      "generalMeaning": "n. 选择器；选择者"
+    },
+    {
+      "word": "selects",
+      "ipa": "/sɪˈlekts/",
+      "aviationMeaning": "v. 选择；选定频率、航路、模式、跑道或系统选项",
+      "generalMeaning": "v. 选择；挑选"
+    },
+    {
+      "word": "self-positioning",
+      "ipa": "/ˌself pəˈzɪʃənɪŋ/",
+      "aviationMeaning": "n. 自主定位；航空器自行确定并报告位置的能力",
+      "generalMeaning": "n. 自主定位"
+    },
+    {
+      "word": "self-satisfied",
+      "ipa": "/ˌself ˈsætɪsfaɪd/",
+      "aviationMeaning": "adj. 自满的；可能降低警觉性和安全意识的",
+      "generalMeaning": "adj. 自满的"
+    },
+    {
+      "word": "self-sustained",
+      "ipa": "/ˌself səˈsteɪnd/",
+      "aviationMeaning": "adj. 自持的；系统无需外部持续支持即可维持运行的",
+      "generalMeaning": "adj. 自持的；自给自足的"
+    },
+    {
+      "word": "selfie",
+      "ipa": "/ˈselfi/",
+      "aviationMeaning": "n. 自拍；需结合原文",
+      "generalMeaning": "n. 自拍照"
+    },
+    {
+      "word": "selling",
+      "ipa": "/ˈselɪŋ/",
+      "aviationMeaning": "n. 销售；出售航空服务、票务或设备",
+      "generalMeaning": "n. 销售；售卖"
+    },
+    {
+      "word": "semi-truck",
+      "ipa": "/ˈsemi trʌk/",
+      "aviationMeaning": "n. 半挂卡车；机场货运或地面运输车辆",
+      "generalMeaning": "n. 半挂卡车"
+    },
+    {
+      "word": "send",
+      "ipa": "/send/",
+      "aviationMeaning": "v. 发送；发送通话、数据、报文或信息",
+      "generalMeaning": "v. 发送；派遣"
+    },
+    {
+      "word": "sending",
+      "ipa": "/ˈsendɪŋ/",
+      "aviationMeaning": "v. 正发送；正在发送通话、数据或报文",
+      "generalMeaning": "v. 正发送；派遣"
+    },
+    {
+      "word": "sends",
+      "ipa": "/sendz/",
+      "aviationMeaning": "v. 发送；发送通话、数据、报文或信息",
+      "generalMeaning": "v. 发送；派遣"
+    },
+    {
+      "word": "senior",
+      "ipa": "/ˈsiːniər/",
+      "aviationMeaning": "adj. 高级的；资深机组、维护或管理人员",
+      "generalMeaning": "adj. 年长的；高级的"
+    },
+    {
+      "word": "sense",
+      "ipa": "/sens/",
+      "aviationMeaning": "n. 感知；对姿态、高度、方向或风险的判断能力",
+      "generalMeaning": "n. 感觉；意义"
+    },
+    {
+      "word": "senses",
+      "ipa": "/ˈsensɪz/",
+      "aviationMeaning": "n. 感官（复数）；人员用于感知飞行和环境的能力",
+      "generalMeaning": "n. 感觉；意义（复数）"
+    },
+    {
+      "word": "sensing",
+      "ipa": "/ˈsensɪŋ/",
+      "aviationMeaning": "n. 感测；系统或人员检测飞行、环境或设备状态",
+      "generalMeaning": "n. 感觉；感测"
+    },
+    {
+      "word": "sensitive",
+      "ipa": "/ˈsensətɪv/",
+      "aviationMeaning": "adj. 灵敏的；传感器、控制或安全信息对微小变化敏感的",
+      "generalMeaning": "adj. 敏感的；灵敏的"
+    },
+    {
+      "word": "sensor",
+      "ipa": "/ˈsensər/",
+      "aviationMeaning": "n. 传感器；测量温度、压力、位置、速度等参数的装置",
+      "generalMeaning": "n. 传感器"
+    },
+    {
+      "word": "sensors",
+      "ipa": "/ˈsensərz/",
+      "aviationMeaning": "n. 传感器（复数）；多个测量飞行或系统参数的装置",
+      "generalMeaning": "n. 传感器（复数）"
+    },
+    {
+      "word": "sent",
+      "ipa": "/sent/",
+      "aviationMeaning": "v. 已发送；通话、数据、报文或信息已传出",
+      "generalMeaning": "v. send 的过去式；发送"
+    },
+    {
+      "word": "sentence",
+      "ipa": "/ˈsentəns/",
+      "aviationMeaning": "n. 句子；通话、训练材料或说明中的完整表达",
+      "generalMeaning": "n. 句子；判决"
+    },
+    {
+      "word": "seoul",
+      "ipa": "/soʊl/",
+      "aviationMeaning": "n. 首尔；机场、空域或航线地名",
+      "generalMeaning": "n. 首尔"
+    },
+    {
+      "word": "sep",
+      "ipa": "/sep/",
+      "aviationMeaning": "n. 分隔的缩写；可能指间隔或九月，需结合原文",
+      "generalMeaning": "n. 九月缩写；请结合原文"
+    },
+    {
+      "word": "separate",
+      "ipa": "/ˈsepəreɪt/",
+      "aviationMeaning": "v. 分隔；保持航空器、人员或物体之间的规定间隔",
+      "generalMeaning": "v. 分开；adj. 单独的"
+    },
+    {
+      "word": "separated",
+      "ipa": "/ˈsepəreɪtɪd/",
+      "aviationMeaning": "adj. 已分隔的；航空器、人员或物体保持规定间隔",
+      "generalMeaning": "adj. 已分开的"
+    },
+    {
+      "word": "separately",
+      "ipa": "/ˈsepərətli/",
+      "aviationMeaning": "adv. 分别地；将项目、航空器或任务单独处理",
+      "generalMeaning": "adv. 分别地；单独地"
+    },
+    {
+      "word": "separates",
+      "ipa": "/ˈsepəreɪts/",
+      "aviationMeaning": "v. 分隔；保持航空器、人员或物体之间的规定间隔",
+      "generalMeaning": "v. 分开；分隔"
+    },
+    {
+      "word": "separation",
+      "ipa": "/ˌsepəˈreɪʃən/",
+      "aviationMeaning": "n. 间隔；空管为防止航空器相撞而保持的距离或时间差",
+      "generalMeaning": "n. 分离；间隔"
+    },
+    {
+      "word": "sept",
+      "ipa": "/sept/",
+      "aviationMeaning": "n. 九月的缩写；航班计划或运行日期",
+      "generalMeaning": "n. 九月缩写"
+    },
+    {
+      "word": "september",
+      "ipa": "/sepˈtembər/",
+      "aviationMeaning": "n. 九月；航班计划或运行日期",
+      "generalMeaning": "n. 九月"
+    }
   ]
 }

@@ -72,8 +72,8 @@
       "taskTitle": "CES 769-8",
       "audioText": "CES 769, recleared to Amsterdam, initial climb 2,100 meters, HZ-02 departure, cruising level 10,400 meters, the rest unchanged.",
       "audioTextZh": "CES 769，重新许可飞往阿姆斯特丹，初始爬升至 2,100 米，执行 HZ-02 离场，巡航高度 10,400 米，其余不变。",
-      "referenceText": "recleared to Amsterdam, initial climb 2100 meters, HZ-02 departure, cruising level 1400 meters, 10004 hudnred meters the rest unchanged, CES 769.",
-      "referenceTextZh": "重新许可飞往阿姆斯特丹，初始爬升至 2100 米，执行 HZ-02 离场，巡航高度 1400 米，10004 hudnred 米，其余不变，CES 769。",
+      "referenceText": "recleared to Amsterdam, initial climb 2100 meters, HZ-02 departure, cruising level 10,400 meters, the rest unchanged, CES 769.",
+      "referenceTextZh": "重新许可飞往阿姆斯特丹，初始爬升至 2100 米，执行 HZ-02 离场，巡航高度 10,400 米，其余不变，CES 769。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-036-ces769-q08.mp3"
     },
     {
@@ -81,7 +81,7 @@
       "taskTitle": "CES 769-9",
       "audioText": "B: Now you are holding at holding point W2 Runway 36, contact Wuhan Tower and ask the permission to cross Runway 36.",
       "audioTextZh": "B：现在你在跑道 36 W2 等待点等待，联系武汉塔台并请求穿越跑道 36。",
-      "referenceText": "Wuhan Tower, CES 769, holding point W2 runway36, request cross Runway 36.",
+      "referenceText": "Wuhan Tower, CES 769, holding point W2 runway 36, request cross Runway 36.",
       "referenceTextZh": "武汉塔台，CES 769，跑道 36 W2 等待点，请求穿越跑道 36。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-036-ces769-q09.mp3"
     },

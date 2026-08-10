@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-07-30T16:05:11Z",
+  "gitHead": "5dad439b34dcd215cf8cdb1011c3b5544b09edc5",
+  "releaseVersion": 11,
+  "releasedAt": "2026-07-30T16:05:11Z",
+  "totals": {
+    "banks": 5,
+    "categories": 28,
+    "topics": 341,
+    "cards": 6865,
+    "textValues": 40564
+  },
+  "banks": {
+    "listening": {
+      "topics": 4,
+      "cards": 1223,
+      "releaseChecksum": "7e01b547cb17f11eb7cd5a8802be6fc5edf2243ef6f53358fabf6f02d635c6f3",
+      "structuralProjectionSha256": "2ca6e1e7f23f58844adccdf0317eee926f0328452494d16bbde85a520b6f3a43"
+    },
+    "sentences900": {
+      "topics": 3,
+      "cards": 900,
+      "releaseChecksum": "9a4a7db5f9ff76482caea7433fc1ec2a6789c0de0f15db07d36fa4f5a899f84b",
+      "structuralProjectionSha256": "fc56c01b48079adba10f12df1c051d8502380460bae300b3bf2c2d469d667802"
+    },
+    "radiotelephony": {
+      "topics": 186,
+      "cards": 3216,
+      "releaseChecksum": "3f1caafa8d4d5842aacf0e311b14055907c893dbc1b034f218e146ce5de0d393",
+      "structuralProjectionSha256": "1710812e1b5a54fa85e2f100f824d68fbc67d92a726ea4f753dd4bba85fef1ea"
+    },
+    "opi": {
+      "topics": 144,
+      "cards": 1090,
+      "releaseChecksum": "7d8ffe589858c1049bf5bbb3d6e537176f1d05e1012e431e475c727069ecab24",
+      "structuralProjectionSha256": "35e6840d2f984eb154ca6bc41320b9a159d5cf7d926148196acfce255ed08e98"
+    },
+    "storytelling": {
+      "topics": 4,
+      "cards": 436,
+      "releaseChecksum": "c25c00f82556e3312bd3c08f8983583639049b2c554df941ad6803f9be86f190",
+      "structuralProjectionSha256": "107ecc8d55bf9a873d9ea3513607df07066f5fcfbf8e2fdd97ae19a0357eec84"
+    }
+  },
+  "resources": {
+    "version": 5,
+    "files": 6081,
+    "sizeBytes": 814518693,
+    "manifestSha256": "94525c1fd882667345b733d2e26885c2f761e725b0f3b454b4e4c914e3533693"
+  },
+  "notes": [
+    "本基线冻结于陆空通话 v11 本地交接之后、全量文本 v12 构建之前。",
+    "结构投影只含分类/话题/卡片顺序、稳定 ID、题型、正确答案索引、音频路径和图片路径；生成时注入的音频时长由资源清单单独约束。",
+    "题库正文此时已进入文本审查写入窗口，因此 v11 release checksum 来自交接时已验证的 dist 产物。"
+  ]
+}

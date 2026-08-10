@@ -1,5 +1,4 @@
 import {
-  clampRadioInterval,
   createNativeRadioIntervalTrack,
   getRadioNativeQueueBehavior,
   isNativeRadioContentTrack,
@@ -10,7 +9,7 @@ import {
 
 const source: NativeRadioContentTrack = {
   album: '听力 · 题组一',
-  artist: '飞猪 ICAO',
+  artist: '听你五个',
   duration: 12,
   id: 'native-content-1',
   radioBankId: 'listening',
@@ -21,18 +20,6 @@ const source: NativeRadioContentTrack = {
 };
 
 describe('radio native interval queue metadata', () => {
-  it.each([
-    [-1, 0],
-    [0, 0],
-    [1, 1],
-    [5, 5],
-    [30, 30],
-    [31, 30],
-    [4.6, 5],
-  ])('normalizes %s seconds to %s', (input, expected) => {
-    expect(clampRadioInterval(input)).toBe(expected);
-  });
-
   it.each([
     [1, 29],
     [5, 25],

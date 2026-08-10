@@ -1,104 +1,479 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"deicing","ipa":"/diːˈaɪsɪŋ/","aviationMeaning":"n. 除冰；航空器除冰作业","generalMeaning":"n. 除冰"},
-    {"word":"delay","ipa":"/dɪˈleɪ/","aviationMeaning":"n. 延误；v. 延迟航班或操作","generalMeaning":"n. 延误；v. 延迟"},
-    {"word":"delayed","ipa":"/dɪˈleɪd/","aviationMeaning":"adj. 已延误的；延迟起飞或到达的","generalMeaning":"adj. 延迟的"},
-    {"word":"delaying","ipa":"/dɪˈleɪɪŋ/","aviationMeaning":"v. 正延迟航班、放行或操作","generalMeaning":"v. 正延迟"},
-    {"word":"delays","ipa":"/dɪˈleɪz/","aviationMeaning":"n. 延误（复数）；v. 延迟","generalMeaning":"n. 延误（复数）；v. 延迟"},
-    {"word":"delegate","ipa":"/ˈdelɪɡeɪt/","aviationMeaning":"v. 委派任务、责任或权限","generalMeaning":"v. 委派；授权"},
-    {"word":"deliberate","ipa":"/dɪˈlɪbərət/","aviationMeaning":"adj. 有意的；经过审慎考虑的","generalMeaning":"adj. 故意的；深思熟虑的"},
-    {"word":"deliberately","ipa":"/dɪˈlɪbərətli/","aviationMeaning":"adv. 有意地；谨慎计划地","generalMeaning":"adv. 故意地；审慎地"},
-    {"word":"deliver","ipa":"/dɪˈlɪvər/","aviationMeaning":"v. 交付货物、传达服务或产生推力","generalMeaning":"v. 递送；交付"},
-    {"word":"delivered","ipa":"/dɪˈlɪvərd/","aviationMeaning":"v. 已交付货物或传达服务","generalMeaning":"v. 已递送；交付"},
-    {"word":"delivering","ipa":"/dɪˈlɪvərɪŋ/","aviationMeaning":"v. 正交付货物、传达服务或产生推力","generalMeaning":"v. 正递送；交付"},
-    {"word":"delivery","ipa":"/dɪˈlɪvəri/","aviationMeaning":"n. 交付；航空器交付、货物配送或通话传送","generalMeaning":"n. 递送；交付"},
-    {"word":"delta","ipa":"/ˈdeltə/","aviationMeaning":"n. 字母 D 的 ICAO 拼读词；三角洲","generalMeaning":"n. 三角洲；希腊字母德尔塔"},
-    {"word":"demand","ipa":"/dɪˈmænd/","aviationMeaning":"n. 需求；交通流量需求；v. 要求","generalMeaning":"n. 要求；需求；v. 要求"},
-    {"word":"demanded","ipa":"/dɪˈmændɪd/","aviationMeaning":"v. 已要求某项操作、服务或资源","generalMeaning":"v. 已要求"},
-    {"word":"demanding","ipa":"/dɪˈmændɪŋ/","aviationMeaning":"adj. 要求高的；运行负荷大的","generalMeaning":"adj. 苛刻的；要求高的"},
-    {"word":"demands","ipa":"/dɪˈmændz/","aviationMeaning":"n. 需求、要求（复数）；v. 要求","generalMeaning":"n. 要求；需求（复数）"},
-    {"word":"demonstrated","ipa":"/ˈdemənstreɪtɪd/","aviationMeaning":"v. 已展示或证明飞行能力","generalMeaning":"v. 已展示；证明"},
-    {"word":"demonstration","ipa":"/ˌdemənˈstreɪʃən/","aviationMeaning":"n. 演示；飞行或系统演示","generalMeaning":"n. 演示；示范"},
-    {"word":"demonstrations","ipa":"/ˌdemənˈstreɪʃənz/","aviationMeaning":"n. 演示；飞行或系统演示（复数）","generalMeaning":"n. 演示；示范（复数）"},
-    {"word":"denied","ipa":"/dɪˈnaɪd/","aviationMeaning":"v. 已拒绝许可、服务或请求","generalMeaning":"v. 已否认；拒绝"},
-    {"word":"denis","ipa":"/dəˈniː/","aviationMeaning":"n. 人名、呼号或地名中的名称","generalMeaning":"n. 丹尼斯（人名）"},
-    {"word":"denmark","ipa":"/ˈdenmɑːrk/","aviationMeaning":"n. 丹麦；运行区域或国别","generalMeaning":"n. 丹麦"},
-    {"word":"dense","ipa":"/dens/","aviationMeaning":"adj. 稠密的；高密度交通或空气密度大的","generalMeaning":"adj. 稠密的；浓的"},
-    {"word":"densely","ipa":"/ˈdensli/","aviationMeaning":"adv. 稠密地；交通或云层密集地","generalMeaning":"adv. 稠密地"},
-    {"word":"denser","ipa":"/ˈdensər/","aviationMeaning":"adj. 更稠密的；空气密度更大的","generalMeaning":"adj. 更稠密的"},
-    {"word":"density","ipa":"/ˈdensəti/","aviationMeaning":"n. 密度；空气密度或交通密度","generalMeaning":"n. 密度；浓度"},
-    {"word":"dent","ipa":"/dent/","aviationMeaning":"n. 凹痕；结构损伤","generalMeaning":"n. 凹痕；v. 使凹陷"},
-    {"word":"denver","ipa":"/ˈdenvər/","aviationMeaning":"n. 丹佛；机场所在城市","generalMeaning":"n. 丹佛（美国城市）"},
-    {"word":"denver's","ipa":"/ˈdenvərz/","aviationMeaning":"n. 丹佛的；表示所属关系","generalMeaning":"n. 丹佛的；表示所属关系"},
-    {"word":"deny","ipa":"/dɪˈnaɪ/","aviationMeaning":"v. 拒绝许可、服务或请求","generalMeaning":"v. 否认；拒绝"},
-    {"word":"depart","ipa":"/dɪˈpɑːrt/","aviationMeaning":"v. 起飞离场；偏离程序或航向","generalMeaning":"v. 离开；出发"},
-    {"word":"departed","ipa":"/dɪˈpɑːrtɪd/","aviationMeaning":"v. 已离场或已起飞","generalMeaning":"v. 已离开；出发"},
-    {"word":"departing","ipa":"/dɪˈpɑːrtɪŋ/","aviationMeaning":"v. 正离场或起飞的","generalMeaning":"v. 正离开；出发"},
-    {"word":"department","ipa":"/dɪˈpɑːrtmənt/","aviationMeaning":"n. 部门；航空公司或机场职能部门","generalMeaning":"n. 部门；系"},
-    {"word":"departments","ipa":"/dɪˈpɑːrtmənts/","aviationMeaning":"n. 部门；航空公司或机场职能部门（复数）","generalMeaning":"n. 部门；系（复数）"},
-    {"word":"departs","ipa":"/dɪˈpɑːrts/","aviationMeaning":"v. 离场、起飞或偏离","generalMeaning":"v. 离开；出发"},
-    {"word":"departure","ipa":"/dɪˈpɑːrtʃər/","aviationMeaning":"n. 离场；起飞；离场程序","generalMeaning":"n. 离开；出发"},
-    {"word":"departures","ipa":"/dɪˈpɑːrtʃərz/","aviationMeaning":"n. 离场航班；离场程序（复数）","generalMeaning":"n. 离开；出发（复数）"},
-    {"word":"depend","ipa":"/dɪˈpend/","aviationMeaning":"v. 取决于天气、性能或运行条件","generalMeaning":"v. 依赖；取决于"},
-    {"word":"dependence","ipa":"/dɪˈpendəns/","aviationMeaning":"n. 依赖性；对系统或资源依赖","generalMeaning":"n. 依赖；依靠"},
-    {"word":"dependent","ipa":"/dɪˈpendənt/","aviationMeaning":"adj. 依赖于条件、系统或资源的","generalMeaning":"adj. 依赖的"},
-    {"word":"depending","ipa":"/dɪˈpendɪŋ/","aviationMeaning":"v. 取决于；根据运行条件而定","generalMeaning":"v. 依赖；取决于"},
-    {"word":"depends","ipa":"/dɪˈpendz/","aviationMeaning":"v. 取决于天气、性能或运行条件","generalMeaning":"v. 依赖；取决于"},
-    {"word":"depict","ipa":"/dɪˈpɪkt/","aviationMeaning":"v. 描绘航图、程序或运行状态","generalMeaning":"v. 描绘；描述"},
-    {"word":"depiction","ipa":"/dɪˈpɪkʃən/","aviationMeaning":"n. 描绘；航图或显示呈现","generalMeaning":"n. 描绘；描述"},
-    {"word":"deplane","ipa":"/diːˈpleɪn/","aviationMeaning":"v. 下机；让旅客离开航空器","generalMeaning":"v. 下飞机"},
-    {"word":"deplaned","ipa":"/diːˈpleɪnd/","aviationMeaning":"v. 已下机；旅客已离开航空器","generalMeaning":"v. 已下飞机"},
-    {"word":"deplaning","ipa":"/diːˈpleɪnɪŋ/","aviationMeaning":"n. 下机；旅客离开航空器过程","generalMeaning":"n. 下飞机"},
-    {"word":"deploy","ipa":"/dɪˈplɔɪ/","aviationMeaning":"v. 部署设备、应急资源或襟翼","generalMeaning":"v. 部署；展开"},
-    {"word":"deployed","ipa":"/dɪˈplɔɪd/","aviationMeaning":"adj. 已部署或展开的","generalMeaning":"adj. 已部署的"},
-    {"word":"deploying","ipa":"/dɪˈplɔɪɪŋ/","aviationMeaning":"v. 正部署设备、应急资源或襟翼","generalMeaning":"v. 正部署"},
-    {"word":"deployment","ipa":"/dɪˈplɔɪmənt/","aviationMeaning":"n. 部署；设备或应急资源展开","generalMeaning":"n. 部署；展开"},
-    {"word":"deposition","ipa":"/ˌdepəˈzɪʃən/","aviationMeaning":"n. 沉积；污染物或冰霜沉积","generalMeaning":"n. 沉积；证词"},
-    {"word":"deposits","ipa":"/dɪˈpɑːzɪts/","aviationMeaning":"n. 沉积物（复数）；v. 沉积或存放","generalMeaning":"n. 存款；沉积物（复数）"},
-    {"word":"depressurization","ipa":"/diːˌpreʃərəˈzeɪʃən/","aviationMeaning":"n. 失压；座舱压力下降","generalMeaning":"n. 减压；失压"},
-    {"word":"depressurize","ipa":"/diːˈpreʃəraɪz/","aviationMeaning":"v. 使座舱或系统失压","generalMeaning":"v. 减压"},
-    {"word":"depressurized","ipa":"/diːˈpreʃəraɪzd/","aviationMeaning":"adj. 已失压的；座舱压力降低的","generalMeaning":"adj. 已减压的"},
-    {"word":"depth","ipa":"/depθ/","aviationMeaning":"n. 深度；积雪、跑道污染物或水深","generalMeaning":"n. 深度"},
-    {"word":"descend","ipa":"/dɪˈsend/","aviationMeaning":"v. 下降；按许可降低高度","generalMeaning":"v. 下降；下去"},
-    {"word":"descended","ipa":"/dɪˈsendɪd/","aviationMeaning":"v. 已下降；已降低高度","generalMeaning":"v. 已下降"},
-    {"word":"descending","ipa":"/dɪˈsendɪŋ/","aviationMeaning":"v. 正在下降；下降中的","generalMeaning":"v. 正在下降"},
-    {"word":"descends","ipa":"/dɪˈsendz/","aviationMeaning":"v. 下降；按许可降低高度","generalMeaning":"v. 下降"},
-    {"word":"descents","ipa":"/dɪˈsents/","aviationMeaning":"n. 下降；下降航段（复数）","generalMeaning":"n. 下降（复数）"},
-    {"word":"describe","ipa":"/dɪˈskraɪb/","aviationMeaning":"v. 描述位置、故障或运行状况","generalMeaning":"v. 描述；形容"},
-    {"word":"described","ipa":"/dɪˈskraɪbd/","aviationMeaning":"v. 已描述位置、故障或运行状况","generalMeaning":"v. 已描述"},
-    {"word":"describes","ipa":"/dɪˈskraɪbz/","aviationMeaning":"v. 描述位置、故障或运行状况","generalMeaning":"v. 描述；形容"},
-    {"word":"describing","ipa":"/dɪˈskraɪbɪŋ/","aviationMeaning":"v. 正描述位置、故障或运行状况","generalMeaning":"v. 正描述"},
-    {"word":"description","ipa":"/dɪˈskrɪpʃən/","aviationMeaning":"n. 描述；故障或运行状况说明","generalMeaning":"n. 描述；说明"},
-    {"word":"descriptions","ipa":"/dɪˈskrɪpʃənz/","aviationMeaning":"n. 描述；说明（复数）","generalMeaning":"n. 描述；说明（复数）"},
-    {"word":"descriptive","ipa":"/dɪˈskrɪptɪv/","aviationMeaning":"adj. 描述性的；用于说明状态的","generalMeaning":"adj. 描述性的"},
-    {"word":"desend","ipa":"/dɪˈsend/","aviationMeaning":"n. 题库原文中 descend 的疑似拼写错误","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"deserve","ipa":"/dɪˈzɜːrv/","aviationMeaning":"v. 值得；需要得到关注或处置","generalMeaning":"v. 值得；应得"},
-    {"word":"design","ipa":"/dɪˈzaɪn/","aviationMeaning":"n. 设计；航空器或系统设计；v. 设计","generalMeaning":"n. 设计；v. 设计"},
-    {"word":"designated","ipa":"/ˈdezɪɡneɪtɪd/","aviationMeaning":"adj. 指定的；如指定跑道或备降场","generalMeaning":"adj. 指定的"},
-    {"word":"designed","ipa":"/dɪˈzaɪnd/","aviationMeaning":"adj. 已设计的；为特定用途设计的","generalMeaning":"adj. 设计的"},
-    {"word":"designers","ipa":"/dɪˈzaɪnərz/","aviationMeaning":"n. 设计人员；航空器或系统设计师（复数）","generalMeaning":"n. 设计师（复数）"},
-    {"word":"designs","ipa":"/dɪˈzaɪnz/","aviationMeaning":"n. 设计（复数）；v. 设计","generalMeaning":"n. 设计（复数）；v. 设计"},
-    {"word":"desired","ipa":"/dɪˈzaɪərd/","aviationMeaning":"adj. 所需的；目标高度、速度或状态","generalMeaning":"adj. 渴望的；期望的"},
-    {"word":"desk","ipa":"/desk/","aviationMeaning":"n. 工作台；管制席位或调度台","generalMeaning":"n. 书桌；服务台"},
-    {"word":"despite","ipa":"/dɪˈspaɪt/","aviationMeaning":"prep. 尽管；用于说明不利运行条件","generalMeaning":"prep. 尽管"},
-    {"word":"destination","ipa":"/ˌdestəˈneɪʃən/","aviationMeaning":"n. 目的地；目的地机场","generalMeaning":"n. 目的地"},
-    {"word":"destination-alternate","ipa":"/ˌdestəˈneɪʃən ɔːlˈtɜːrnət/","aviationMeaning":"n. 目的地备降机场","generalMeaning":"n. 目的地备用方案"},
-    {"word":"destinations","ipa":"/ˌdestəˈneɪʃənz/","aviationMeaning":"n. 目的地机场（复数）","generalMeaning":"n. 目的地（复数）"},
-    {"word":"destroyed","ipa":"/dɪˈstrɔɪd/","aviationMeaning":"adj. 已损毁的；航空器或设备毁坏的","generalMeaning":"adj. 被毁坏的"},
-    {"word":"destruction","ipa":"/dɪˈstrʌkʃən/","aviationMeaning":"n. 损毁；事故造成的毁坏","generalMeaning":"n. 破坏；毁灭"},
-    {"word":"destructive","ipa":"/dɪˈstrʌktɪv/","aviationMeaning":"adj. 破坏性的；对航空器或设施有害的","generalMeaning":"adj. 破坏性的"},
-    {"word":"detach","ipa":"/dɪˈtætʃ/","aviationMeaning":"v. 脱开、分离部件或断开连接","generalMeaning":"v. 分离；拆下"},
-    {"word":"detail","ipa":"/ˈdiːteɪl/","aviationMeaning":"n. 细节；运行、故障或程序详情","generalMeaning":"n. 细节；详情"},
-    {"word":"detailed","ipa":"/dɪˈteɪld/","aviationMeaning":"adj. 详细的；完整说明的","generalMeaning":"adj. 详细的"},
-    {"word":"details","ipa":"/ˈdiːteɪlz/","aviationMeaning":"n. 细节；运行、故障或程序详情（复数）","generalMeaning":"n. 细节；详情（复数）"},
-    {"word":"detain","ipa":"/dɪˈteɪn/","aviationMeaning":"v. 滞留人员或延迟放行","generalMeaning":"v. 扣留；耽搁"},
-    {"word":"detained","ipa":"/dɪˈteɪnd/","aviationMeaning":"adj. 被滞留的；延误离开的","generalMeaning":"adj. 被扣留的"},
-    {"word":"detect","ipa":"/dɪˈtekt/","aviationMeaning":"v. 探测故障、航空器、天气或危险","generalMeaning":"v. 发现；探测"},
-    {"word":"detected","ipa":"/dɪˈtektɪd/","aviationMeaning":"adj. 已探测到的；已发现的","generalMeaning":"adj. 已发现的"},
-    {"word":"detecting","ipa":"/dɪˈtektɪŋ/","aviationMeaning":"v. 正探测故障、航空器、天气或危险","generalMeaning":"v. 正发现；探测"},
-    {"word":"detection","ipa":"/dɪˈtekʃən/","aviationMeaning":"n. 探测；故障、航空器或危险探测","generalMeaning":"n. 发现；探测"},
-    {"word":"detector","ipa":"/dɪˈtektər/","aviationMeaning":"n. 探测器；烟雾、火警或金属探测设备","generalMeaning":"n. 探测器"},
-    {"word":"detects","ipa":"/dɪˈtekts/","aviationMeaning":"v. 探测故障、航空器、天气或危险","generalMeaning":"v. 发现；探测"}
+    {
+      "word": "deicing",
+      "ipa": "/diːˈaɪsɪŋ/",
+      "aviationMeaning": "n. 除冰；航空器除冰作业",
+      "generalMeaning": "n. 除冰"
+    },
+    {
+      "word": "delay",
+      "ipa": "/dɪˈleɪ/",
+      "aviationMeaning": "n. 延误；v. 延迟航班或操作",
+      "generalMeaning": "n. 延误；v. 延迟"
+    },
+    {
+      "word": "delayed",
+      "ipa": "/dɪˈleɪd/",
+      "aviationMeaning": "adj. 已延误的；延迟起飞或到达的",
+      "generalMeaning": "adj. 延迟的"
+    },
+    {
+      "word": "delaying",
+      "ipa": "/dɪˈleɪɪŋ/",
+      "aviationMeaning": "v. 正延迟航班、放行或操作",
+      "generalMeaning": "v. 正延迟"
+    },
+    {
+      "word": "delays",
+      "ipa": "/dɪˈleɪz/",
+      "aviationMeaning": "n. 延误（复数）；v. 延迟",
+      "generalMeaning": "n. 延误（复数）；v. 延迟"
+    },
+    {
+      "word": "deliver",
+      "ipa": "/dɪˈlɪvər/",
+      "aviationMeaning": "v. 交付货物、传达服务或产生推力",
+      "generalMeaning": "v. 递送；交付"
+    },
+    {
+      "word": "delivered",
+      "ipa": "/dɪˈlɪvərd/",
+      "aviationMeaning": "v. 已交付货物或传达服务",
+      "generalMeaning": "v. 已递送；交付"
+    },
+    {
+      "word": "delivering",
+      "ipa": "/dɪˈlɪvərɪŋ/",
+      "aviationMeaning": "v. 正交付货物、传达服务或产生推力",
+      "generalMeaning": "v. 正递送；交付"
+    },
+    {
+      "word": "delivery",
+      "ipa": "/dɪˈlɪvəri/",
+      "aviationMeaning": "n. 交付；航空器交付、货物配送或通话传送",
+      "generalMeaning": "n. 递送；交付"
+    },
+    {
+      "word": "delta",
+      "ipa": "/ˈdeltə/",
+      "aviationMeaning": "n. 字母 D 的 ICAO 拼读词；三角洲",
+      "generalMeaning": "n. 三角洲；希腊字母德尔塔"
+    },
+    {
+      "word": "demand",
+      "ipa": "/dɪˈmænd/",
+      "aviationMeaning": "n. 需求；交通流量需求；v. 要求",
+      "generalMeaning": "n. 要求；需求；v. 要求"
+    },
+    {
+      "word": "demanded",
+      "ipa": "/dɪˈmændɪd/",
+      "aviationMeaning": "v. 已要求某项操作、服务或资源",
+      "generalMeaning": "v. 已要求"
+    },
+    {
+      "word": "demanding",
+      "ipa": "/dɪˈmændɪŋ/",
+      "aviationMeaning": "adj. 要求高的；运行负荷大的",
+      "generalMeaning": "adj. 苛刻的；要求高的"
+    },
+    {
+      "word": "demands",
+      "ipa": "/dɪˈmændz/",
+      "aviationMeaning": "n. 需求、要求（复数）；v. 要求",
+      "generalMeaning": "n. 要求；需求（复数）"
+    },
+    {
+      "word": "demonstrated",
+      "ipa": "/ˈdemənstreɪtɪd/",
+      "aviationMeaning": "v. 已展示或证明飞行能力",
+      "generalMeaning": "v. 已展示；证明"
+    },
+    {
+      "word": "demonstrations",
+      "ipa": "/ˌdemənˈstreɪʃənz/",
+      "aviationMeaning": "n. 演示；飞行或系统演示（复数）",
+      "generalMeaning": "n. 演示；示范（复数）"
+    },
+    {
+      "word": "denied",
+      "ipa": "/dɪˈnaɪd/",
+      "aviationMeaning": "v. 已拒绝许可、服务或请求",
+      "generalMeaning": "v. 已否认；拒绝"
+    },
+    {
+      "word": "denis",
+      "ipa": "/dəˈniː/",
+      "aviationMeaning": "n. 人名、呼号或地名中的名称",
+      "generalMeaning": "n. 丹尼斯（人名）"
+    },
+    {
+      "word": "denmark",
+      "ipa": "/ˈdenmɑːrk/",
+      "aviationMeaning": "n. 丹麦；运行区域或国别",
+      "generalMeaning": "n. 丹麦"
+    },
+    {
+      "word": "dense",
+      "ipa": "/dens/",
+      "aviationMeaning": "adj. 稠密的；高密度交通或空气密度大的",
+      "generalMeaning": "adj. 稠密的；浓的"
+    },
+    {
+      "word": "densely",
+      "ipa": "/ˈdensli/",
+      "aviationMeaning": "adv. 稠密地；交通或云层密集地",
+      "generalMeaning": "adv. 稠密地"
+    },
+    {
+      "word": "density",
+      "ipa": "/ˈdensəti/",
+      "aviationMeaning": "n. 密度；空气密度或交通密度",
+      "generalMeaning": "n. 密度；浓度"
+    },
+    {
+      "word": "dent",
+      "ipa": "/dent/",
+      "aviationMeaning": "n. 凹痕；结构损伤",
+      "generalMeaning": "n. 凹痕；v. 使凹陷"
+    },
+    {
+      "word": "denver",
+      "ipa": "/ˈdenvər/",
+      "aviationMeaning": "n. 丹佛；机场所在城市",
+      "generalMeaning": "n. 丹佛（美国城市）"
+    },
+    {
+      "word": "denver's",
+      "ipa": "/ˈdenvərz/",
+      "aviationMeaning": "n. 丹佛的；表示所属关系",
+      "generalMeaning": "n. 丹佛的；表示所属关系"
+    },
+    {
+      "word": "deny",
+      "ipa": "/dɪˈnaɪ/",
+      "aviationMeaning": "v. 拒绝许可、服务或请求",
+      "generalMeaning": "v. 否认；拒绝"
+    },
+    {
+      "word": "depart",
+      "ipa": "/dɪˈpɑːrt/",
+      "aviationMeaning": "v. 起飞离场；偏离程序或航向",
+      "generalMeaning": "v. 离开；出发"
+    },
+    {
+      "word": "departed",
+      "ipa": "/dɪˈpɑːrtɪd/",
+      "aviationMeaning": "v. 已离场或已起飞",
+      "generalMeaning": "v. 已离开；出发"
+    },
+    {
+      "word": "departing",
+      "ipa": "/dɪˈpɑːrtɪŋ/",
+      "aviationMeaning": "v. 正离场或起飞的",
+      "generalMeaning": "v. 正离开；出发"
+    },
+    {
+      "word": "department",
+      "ipa": "/dɪˈpɑːrtmənt/",
+      "aviationMeaning": "n. 部门；航空公司或机场职能部门",
+      "generalMeaning": "n. 部门；系"
+    },
+    {
+      "word": "departments",
+      "ipa": "/dɪˈpɑːrtmənts/",
+      "aviationMeaning": "n. 部门；航空公司或机场职能部门（复数）",
+      "generalMeaning": "n. 部门；系（复数）"
+    },
+    {
+      "word": "departs",
+      "ipa": "/dɪˈpɑːrts/",
+      "aviationMeaning": "v. 离场、起飞或偏离",
+      "generalMeaning": "v. 离开；出发"
+    },
+    {
+      "word": "departure",
+      "ipa": "/dɪˈpɑːrtʃər/",
+      "aviationMeaning": "n. 离场；起飞；离场程序",
+      "generalMeaning": "n. 离开；出发"
+    },
+    {
+      "word": "departures",
+      "ipa": "/dɪˈpɑːrtʃərz/",
+      "aviationMeaning": "n. 离场航班；离场程序（复数）",
+      "generalMeaning": "n. 离开；出发（复数）"
+    },
+    {
+      "word": "depend",
+      "ipa": "/dɪˈpend/",
+      "aviationMeaning": "v. 取决于天气、性能或运行条件",
+      "generalMeaning": "v. 依赖；取决于"
+    },
+    {
+      "word": "dependent",
+      "ipa": "/dɪˈpendənt/",
+      "aviationMeaning": "adj. 依赖于条件、系统或资源的",
+      "generalMeaning": "adj. 依赖的"
+    },
+    {
+      "word": "depending",
+      "ipa": "/dɪˈpendɪŋ/",
+      "aviationMeaning": "v. 取决于；根据运行条件而定",
+      "generalMeaning": "v. 依赖；取决于"
+    },
+    {
+      "word": "depends",
+      "ipa": "/dɪˈpendz/",
+      "aviationMeaning": "v. 取决于天气、性能或运行条件",
+      "generalMeaning": "v. 依赖；取决于"
+    },
+    {
+      "word": "deplane",
+      "ipa": "/diːˈpleɪn/",
+      "aviationMeaning": "v. 下机；让旅客离开航空器",
+      "generalMeaning": "v. 下飞机"
+    },
+    {
+      "word": "deplaned",
+      "ipa": "/diːˈpleɪnd/",
+      "aviationMeaning": "v. 已下机；旅客已离开航空器",
+      "generalMeaning": "v. 已下飞机"
+    },
+    {
+      "word": "deploy",
+      "ipa": "/dɪˈplɔɪ/",
+      "aviationMeaning": "v. 部署设备、应急资源或襟翼",
+      "generalMeaning": "v. 部署；展开"
+    },
+    {
+      "word": "deployed",
+      "ipa": "/dɪˈplɔɪd/",
+      "aviationMeaning": "adj. 已部署或展开的",
+      "generalMeaning": "adj. 已部署的"
+    },
+    {
+      "word": "deploying",
+      "ipa": "/dɪˈplɔɪɪŋ/",
+      "aviationMeaning": "v. 正部署设备、应急资源或襟翼",
+      "generalMeaning": "v. 正部署"
+    },
+    {
+      "word": "deployment",
+      "ipa": "/dɪˈplɔɪmənt/",
+      "aviationMeaning": "n. 部署；设备或应急资源展开",
+      "generalMeaning": "n. 部署；展开"
+    },
+    {
+      "word": "depressurization",
+      "ipa": "/diːˌpreʃərəˈzeɪʃən/",
+      "aviationMeaning": "n. 失压；座舱压力下降",
+      "generalMeaning": "n. 减压；失压"
+    },
+    {
+      "word": "depressurize",
+      "ipa": "/diːˈpreʃəraɪz/",
+      "aviationMeaning": "v. 使座舱或系统失压",
+      "generalMeaning": "v. 减压"
+    },
+    {
+      "word": "depressurized",
+      "ipa": "/diːˈpreʃəraɪzd/",
+      "aviationMeaning": "adj. 已失压的；座舱压力降低的",
+      "generalMeaning": "adj. 已减压的"
+    },
+    {
+      "word": "depth",
+      "ipa": "/depθ/",
+      "aviationMeaning": "n. 深度；积雪、跑道污染物或水深",
+      "generalMeaning": "n. 深度"
+    },
+    {
+      "word": "descend",
+      "ipa": "/dɪˈsend/",
+      "aviationMeaning": "v. 下降；按许可降低高度",
+      "generalMeaning": "v. 下降；下去"
+    },
+    {
+      "word": "descended",
+      "ipa": "/dɪˈsendɪd/",
+      "aviationMeaning": "v. 已下降；已降低高度",
+      "generalMeaning": "v. 已下降"
+    },
+    {
+      "word": "descending",
+      "ipa": "/dɪˈsendɪŋ/",
+      "aviationMeaning": "v. 正在下降；下降中的",
+      "generalMeaning": "v. 正在下降"
+    },
+    {
+      "word": "descends",
+      "ipa": "/dɪˈsendz/",
+      "aviationMeaning": "v. 下降；按许可降低高度",
+      "generalMeaning": "v. 下降"
+    },
+    {
+      "word": "descents",
+      "ipa": "/dɪˈsents/",
+      "aviationMeaning": "n. 下降；下降航段（复数）",
+      "generalMeaning": "n. 下降（复数）"
+    },
+    {
+      "word": "describe",
+      "ipa": "/dɪˈskraɪb/",
+      "aviationMeaning": "v. 描述位置、故障或运行状况",
+      "generalMeaning": "v. 描述；形容"
+    },
+    {
+      "word": "described",
+      "ipa": "/dɪˈskraɪbd/",
+      "aviationMeaning": "v. 已描述位置、故障或运行状况",
+      "generalMeaning": "v. 已描述"
+    },
+    {
+      "word": "describes",
+      "ipa": "/dɪˈskraɪbz/",
+      "aviationMeaning": "v. 描述位置、故障或运行状况",
+      "generalMeaning": "v. 描述；形容"
+    },
+    {
+      "word": "description",
+      "ipa": "/dɪˈskrɪpʃən/",
+      "aviationMeaning": "n. 描述；故障或运行状况说明",
+      "generalMeaning": "n. 描述；说明"
+    },
+    {
+      "word": "design",
+      "ipa": "/dɪˈzaɪn/",
+      "aviationMeaning": "n. 设计；航空器或系统设计；v. 设计",
+      "generalMeaning": "n. 设计；v. 设计"
+    },
+    {
+      "word": "designated",
+      "ipa": "/ˈdezɪɡneɪtɪd/",
+      "aviationMeaning": "adj. 指定的；如指定跑道或备降场",
+      "generalMeaning": "adj. 指定的"
+    },
+    {
+      "word": "designed",
+      "ipa": "/dɪˈzaɪnd/",
+      "aviationMeaning": "adj. 已设计的；为特定用途设计的",
+      "generalMeaning": "adj. 设计的"
+    },
+    {
+      "word": "designs",
+      "ipa": "/dɪˈzaɪnz/",
+      "aviationMeaning": "n. 设计（复数）；v. 设计",
+      "generalMeaning": "n. 设计（复数）；v. 设计"
+    },
+    {
+      "word": "desired",
+      "ipa": "/dɪˈzaɪərd/",
+      "aviationMeaning": "adj. 所需的；目标高度、速度或状态",
+      "generalMeaning": "adj. 渴望的；期望的"
+    },
+    {
+      "word": "desk",
+      "ipa": "/desk/",
+      "aviationMeaning": "n. 工作台；管制席位或调度台",
+      "generalMeaning": "n. 书桌；服务台"
+    },
+    {
+      "word": "despite",
+      "ipa": "/dɪˈspaɪt/",
+      "aviationMeaning": "prep. 尽管；用于说明不利运行条件",
+      "generalMeaning": "prep. 尽管"
+    },
+    {
+      "word": "destination",
+      "ipa": "/ˌdestəˈneɪʃən/",
+      "aviationMeaning": "n. 目的地；目的地机场",
+      "generalMeaning": "n. 目的地"
+    },
+    {
+      "word": "destinations",
+      "ipa": "/ˌdestəˈneɪʃənz/",
+      "aviationMeaning": "n. 目的地机场（复数）",
+      "generalMeaning": "n. 目的地（复数）"
+    },
+    {
+      "word": "destroyed",
+      "ipa": "/dɪˈstrɔɪd/",
+      "aviationMeaning": "adj. 已损毁的；航空器或设备毁坏的",
+      "generalMeaning": "adj. 被毁坏的"
+    },
+    {
+      "word": "destructive",
+      "ipa": "/dɪˈstrʌktɪv/",
+      "aviationMeaning": "adj. 破坏性的；对航空器或设施有害的",
+      "generalMeaning": "adj. 破坏性的"
+    },
+    {
+      "word": "detail",
+      "ipa": "/ˈdiːteɪl/",
+      "aviationMeaning": "n. 细节；运行、故障或程序详情",
+      "generalMeaning": "n. 细节；详情"
+    },
+    {
+      "word": "detailed",
+      "ipa": "/dɪˈteɪld/",
+      "aviationMeaning": "adj. 详细的；完整说明的",
+      "generalMeaning": "adj. 详细的"
+    },
+    {
+      "word": "details",
+      "ipa": "/ˈdiːteɪlz/",
+      "aviationMeaning": "n. 细节；运行、故障或程序详情（复数）",
+      "generalMeaning": "n. 细节；详情（复数）"
+    },
+    {
+      "word": "detain",
+      "ipa": "/dɪˈteɪn/",
+      "aviationMeaning": "v. 滞留人员或延迟放行",
+      "generalMeaning": "v. 扣留；耽搁"
+    },
+    {
+      "word": "detained",
+      "ipa": "/dɪˈteɪnd/",
+      "aviationMeaning": "adj. 被滞留的；延误离开的",
+      "generalMeaning": "adj. 被扣留的"
+    },
+    {
+      "word": "detect",
+      "ipa": "/dɪˈtekt/",
+      "aviationMeaning": "v. 探测故障、航空器、天气或危险",
+      "generalMeaning": "v. 发现；探测"
+    },
+    {
+      "word": "detected",
+      "ipa": "/dɪˈtektɪd/",
+      "aviationMeaning": "adj. 已探测到的；已发现的",
+      "generalMeaning": "adj. 已发现的"
+    },
+    {
+      "word": "detecting",
+      "ipa": "/dɪˈtektɪŋ/",
+      "aviationMeaning": "v. 正探测故障、航空器、天气或危险",
+      "generalMeaning": "v. 正发现；探测"
+    },
+    {
+      "word": "detection",
+      "ipa": "/dɪˈtekʃən/",
+      "aviationMeaning": "n. 探测；故障、航空器或危险探测",
+      "generalMeaning": "n. 发现；探测"
+    },
+    {
+      "word": "detector",
+      "ipa": "/dɪˈtektər/",
+      "aviationMeaning": "n. 探测器；烟雾、火警或金属探测设备",
+      "generalMeaning": "n. 探测器"
+    },
+    {
+      "word": "detects",
+      "ipa": "/dɪˈtekts/",
+      "aviationMeaning": "v. 探测故障、航空器、天气或危险",
+      "generalMeaning": "v. 发现；探测"
+    }
   ]
 }

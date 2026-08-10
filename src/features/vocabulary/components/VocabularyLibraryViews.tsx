@@ -11,7 +11,7 @@ import {
   Star,
   Volume2,
   WifiOff,
-} from 'lucide-react-native';
+} from '@/components/ui/icons';
 import { useMemo, useState } from 'react';
 import { Alert, FlatList, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';

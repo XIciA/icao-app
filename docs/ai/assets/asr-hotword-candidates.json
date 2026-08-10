@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "version": "aviation-hotword-candidates:v1",
   "source": {
-    "registryReleaseVersion": 10,
-    "registryReleasedAt": "2026-07-28T05:29:16Z",
+    "registryReleaseVersion": 12,
+    "registryReleasedAt": "2026-07-30T16:52:28Z",
     "reviewVersion": "aviation-hotword-candidate-review:v1",
-    "recordCount": 5621,
+    "recordCount": 5619,
     "specs": [
       {
         "bankId": "sentences900",
@@ -19,8 +19,8 @@
         "bankId": "radiotelephony",
         "field": "referenceText",
         "label": "radiotelephony reference answer",
-        "totalCards": 3218,
-        "validText": 3218,
+        "totalCards": 3216,
+        "validText": 3216,
         "missingText": 0
       },
       {
@@ -518,7 +518,7 @@
       "category": "air-traffic-control",
       "evidence": {
         "questionCount": 181,
-        "totalOccurrences": 268,
+        "totalOccurrences": 271,
         "sourceCount": 3,
         "sources": [
           {
@@ -565,7 +565,7 @@
             "bankId": "storytelling",
             "field": "audioText",
             "questionCount": 71,
-            "totalOccurrences": 136,
+            "totalOccurrences": 139,
             "exampleCardIds": [
               "story-koala-015",
               "story-koala-055",
@@ -1332,14 +1332,14 @@
       "category": "air-traffic-control",
       "evidence": {
         "questionCount": 74,
-        "totalOccurrences": 75,
+        "totalOccurrences": 74,
         "sourceCount": 1,
         "sources": [
           {
             "bankId": "radiotelephony",
             "field": "referenceText",
             "questionCount": 74,
-            "totalOccurrences": 75,
+            "totalOccurrences": 74,
             "exampleCardIds": [
               "atc-scenario-0003-card-main-040",
               "atc-scenario-0007-card-main-112",
@@ -1809,14 +1809,14 @@
       "category": "aircraft-systems",
       "evidence": {
         "questionCount": 15,
-        "totalOccurrences": 44,
+        "totalOccurrences": 47,
         "sourceCount": 1,
         "sources": [
           {
             "bankId": "storytelling",
             "field": "audioText",
             "questionCount": 15,
-            "totalOccurrences": 44,
+            "totalOccurrences": 47,
             "exampleCardIds": [
               "story-koala-025",
               "story-koala-038",
@@ -2974,7 +2974,7 @@
       "category": "aircraft-systems",
       "evidence": {
         "questionCount": 46,
-        "totalOccurrences": 60,
+        "totalOccurrences": 62,
         "sourceCount": 4,
         "sources": [
           {
@@ -3001,7 +3001,7 @@
             "bankId": "radiotelephony",
             "field": "referenceText",
             "questionCount": 13,
-            "totalOccurrences": 13,
+            "totalOccurrences": 15,
             "exampleCardIds": [
               "atc-scenario-0029-card-main-500",
               "atc-scenario-0038-card-main-650",
@@ -3419,15 +3419,15 @@
       "kind": "phrase",
       "category": "airport-operations",
       "evidence": {
-        "questionCount": 148,
-        "totalOccurrences": 158,
+        "questionCount": 149,
+        "totalOccurrences": 159,
         "sourceCount": 2,
         "sources": [
           {
             "bankId": "radiotelephony",
             "field": "referenceText",
-            "questionCount": 144,
-            "totalOccurrences": 151,
+            "questionCount": 145,
+            "totalOccurrences": 152,
             "exampleCardIds": [
               "atc-scenario-0001-card-main-004",
               "atc-scenario-0001-card-main-005",
@@ -3638,14 +3638,14 @@
       "category": "communications",
       "evidence": {
         "questionCount": 257,
-        "totalOccurrences": 263,
+        "totalOccurrences": 261,
         "sourceCount": 2,
         "sources": [
           {
             "bankId": "radiotelephony",
             "field": "referenceText",
             "questionCount": 256,
-            "totalOccurrences": 258,
+            "totalOccurrences": 256,
             "exampleCardIds": [
               "atc-scenario-0045-card-main-761",
               "atc-scenario-0045-card-main-762",
@@ -3787,14 +3787,14 @@
       "category": "communications",
       "evidence": {
         "questionCount": 202,
-        "totalOccurrences": 207,
+        "totalOccurrences": 203,
         "sourceCount": 1,
         "sources": [
           {
             "bankId": "radiotelephony",
             "field": "referenceText",
             "questionCount": 202,
-            "totalOccurrences": 207,
+            "totalOccurrences": 203,
             "exampleCardIds": [
               "atc-scenario-0025-card-main-427",
               "atc-scenario-0025-card-main-428",
@@ -3825,18 +3825,17 @@
       "kind": "callsign",
       "category": "communications",
       "evidence": {
-        "questionCount": 594,
-        "totalOccurrences": 605,
+        "questionCount": 592,
+        "totalOccurrences": 601,
         "sourceCount": 2,
         "sources": [
           {
             "bankId": "radiotelephony",
             "field": "referenceText",
-            "questionCount": 588,
-            "totalOccurrences": 592,
+            "questionCount": 586,
+            "totalOccurrences": 588,
             "exampleCardIds": [
               "atc-scenario-0044-card-main-746",
-              "atc-scenario-0044-card-main-747",
               "atc-scenario-0052-card-main-886",
               "atc-scenario-0052-card-main-887",
               "atc-scenario-0052-card-main-888",
@@ -3846,7 +3845,8 @@
               "atc-scenario-0052-card-main-892",
               "atc-scenario-0052-card-main-893",
               "atc-scenario-0052-card-main-894",
-              "atc-scenario-0052-card-main-895"
+              "atc-scenario-0052-card-main-895",
+              "atc-scenario-0052-card-main-896"
             ]
           },
           {
@@ -3878,15 +3878,15 @@
       "kind": "callsign",
       "category": "communications",
       "evidence": {
-        "questionCount": 351,
-        "totalOccurrences": 360,
+        "questionCount": 354,
+        "totalOccurrences": 354,
         "sourceCount": 1,
         "sources": [
           {
             "bankId": "radiotelephony",
             "field": "referenceText",
-            "questionCount": 351,
-            "totalOccurrences": 360,
+            "questionCount": 354,
+            "totalOccurrences": 354,
             "exampleCardIds": [
               "atc-scenario-0015-card-main-245",
               "atc-scenario-0089-card-main-1530",
@@ -3963,14 +3963,14 @@
       "category": "communications",
       "evidence": {
         "questionCount": 622,
-        "totalOccurrences": 640,
+        "totalOccurrences": 630,
         "sourceCount": 2,
         "sources": [
           {
             "bankId": "radiotelephony",
             "field": "referenceText",
             "questionCount": 619,
-            "totalOccurrences": 629,
+            "totalOccurrences": 619,
             "exampleCardIds": [
               "atc-scenario-0036-card-main-613",
               "atc-scenario-0059-card-main-1016",
@@ -4119,15 +4119,15 @@
       "kind": "callsign",
       "category": "communications",
       "evidence": {
-        "questionCount": 61,
-        "totalOccurrences": 63,
+        "questionCount": 59,
+        "totalOccurrences": 61,
         "sourceCount": 2,
         "sources": [
           {
             "bankId": "radiotelephony",
             "field": "referenceText",
-            "questionCount": 60,
-            "totalOccurrences": 60,
+            "questionCount": 58,
+            "totalOccurrences": 58,
             "exampleCardIds": [
               "atc-scenario-0043-card-main-731",
               "atc-scenario-0043-card-main-732",
@@ -4630,14 +4630,14 @@
       "category": "communications",
       "evidence": {
         "questionCount": 271,
-        "totalOccurrences": 292,
+        "totalOccurrences": 290,
         "sourceCount": 2,
         "sources": [
           {
             "bankId": "radiotelephony",
             "field": "referenceText",
             "questionCount": 261,
-            "totalOccurrences": 270,
+            "totalOccurrences": 268,
             "exampleCardIds": [
               "atc-scenario-0007-card-main-112",
               "atc-scenario-0007-card-main-113",
@@ -4944,14 +4944,14 @@
       "category": "communications",
       "evidence": {
         "questionCount": 315,
-        "totalOccurrences": 331,
+        "totalOccurrences": 323,
         "sourceCount": 2,
         "sources": [
           {
             "bankId": "radiotelephony",
             "field": "referenceText",
             "questionCount": 313,
-            "totalOccurrences": 321,
+            "totalOccurrences": 313,
             "exampleCardIds": [
               "atc-scenario-0033-card-main-562",
               "atc-scenario-0033-card-main-563",
@@ -6008,8 +6008,8 @@
       "kind": "phrase",
       "category": "emergency",
       "evidence": {
-        "questionCount": 28,
-        "totalOccurrences": 41,
+        "questionCount": 29,
+        "totalOccurrences": 42,
         "sourceCount": 4,
         "sources": [
           {
@@ -6047,9 +6047,10 @@
           {
             "bankId": "storytelling",
             "field": "audioText",
-            "questionCount": 20,
-            "totalOccurrences": 33,
+            "questionCount": 21,
+            "totalOccurrences": 34,
             "exampleCardIds": [
+              "story-koala-091",
               "story-koala-100",
               "story-kongguan-079",
               "story-kongguan-094",
@@ -6060,8 +6061,7 @@
               "story-pepec-0037",
               "story-pepec-0063",
               "story-pepec-0070",
-              "story-pepec-0090",
-              "story-pepec-0092"
+              "story-pepec-0090"
             ]
           }
         ]
@@ -7278,8 +7278,8 @@
       "kind": "phrase",
       "category": "navigation",
       "evidence": {
-        "questionCount": 26,
-        "totalOccurrences": 45,
+        "questionCount": 27,
+        "totalOccurrences": 46,
         "sourceCount": 2,
         "sources": [
           {
@@ -7296,8 +7296,8 @@
           {
             "bankId": "storytelling",
             "field": "audioText",
-            "questionCount": 23,
-            "totalOccurrences": 41,
+            "questionCount": 24,
+            "totalOccurrences": 42,
             "exampleCardIds": [
               "story-koala-088",
               "story-kongguan-056",
@@ -7322,35 +7322,6 @@
         "semanticImportance": "high"
       },
       "rationale": "跨题目复用的民航固定表达，整体语义比单个普通词更稳定且更重要。"
-    },
-    {
-      "text": "FQG",
-      "kind": "proper-name",
-      "category": "navigation",
-      "evidence": {
-        "questionCount": 2,
-        "totalOccurrences": 2,
-        "sourceCount": 1,
-        "sources": [
-          {
-            "bankId": "radiotelephony",
-            "field": "referenceText",
-            "questionCount": 2,
-            "totalOccurrences": 2,
-            "exampleCardIds": [
-              "atc-scenario-0044-card-main-747",
-              "atc-scenario-0182-card-main-3132"
-            ]
-          }
-        ]
-      },
-      "assessment": {
-        "domainSpecificity": "high",
-        "recognitionDifficulty": "high",
-        "ambiguityRisk": "medium",
-        "semanticImportance": "high"
-      },
-      "rationale": "航路点、导航台或机场代码缺少通用语言先验，错误会改变位置含义。"
     },
     {
       "text": "GNSS",
@@ -7478,15 +7449,15 @@
       "kind": "proper-name",
       "category": "navigation",
       "evidence": {
-        "questionCount": 109,
-        "totalOccurrences": 111,
+        "questionCount": 110,
+        "totalOccurrences": 112,
         "sourceCount": 2,
         "sources": [
           {
             "bankId": "radiotelephony",
             "field": "referenceText",
-            "questionCount": 106,
-            "totalOccurrences": 106,
+            "questionCount": 107,
+            "totalOccurrences": 107,
             "exampleCardIds": [
               "atc-scenario-0002-card-main-028",
               "atc-scenario-0034-card-main-583",
@@ -7495,11 +7466,11 @@
               "atc-scenario-0034-card-main-589",
               "atc-scenario-0034-card-main-591",
               "atc-scenario-0034-card-main-593",
+              "atc-scenario-0053-card-main-903",
               "atc-scenario-0059-card-main-1012",
               "atc-scenario-0059-card-main-1013",
               "atc-scenario-0059-card-main-1021",
-              "atc-scenario-0059-card-main-1025",
-              "atc-scenario-0059-card-main-1027"
+              "atc-scenario-0059-card-main-1025"
             ]
           },
           {
@@ -7924,7 +7895,7 @@
       "category": "navigation",
       "evidence": {
         "questionCount": 231,
-        "totalOccurrences": 237,
+        "totalOccurrences": 236,
         "sourceCount": 4,
         "sources": [
           {
@@ -7983,7 +7954,7 @@
             "bankId": "storytelling",
             "field": "audioText",
             "questionCount": 24,
-            "totalOccurrences": 29,
+            "totalOccurrences": 28,
             "exampleCardIds": [
               "story-koala-017",
               "story-koala-026",
@@ -9812,14 +9783,14 @@
       "category": "navigation",
       "evidence": {
         "questionCount": 862,
-        "totalOccurrences": 903,
+        "totalOccurrences": 902,
         "sourceCount": 2,
         "sources": [
           {
             "bankId": "radiotelephony",
             "field": "referenceText",
             "questionCount": 861,
-            "totalOccurrences": 901,
+            "totalOccurrences": 900,
             "exampleCardIds": [
               "atc-scenario-0002-card-main-032",
               "atc-scenario-0002-card-main-033",
@@ -10453,8 +10424,8 @@
       "kind": "phrase",
       "category": "procedure",
       "evidence": {
-        "questionCount": 16,
-        "totalOccurrences": 18,
+        "questionCount": 17,
+        "totalOccurrences": 19,
         "sourceCount": 4,
         "sources": [
           {
@@ -10469,8 +10440,8 @@
           {
             "bankId": "radiotelephony",
             "field": "referenceText",
-            "questionCount": 10,
-            "totalOccurrences": 10,
+            "questionCount": 11,
+            "totalOccurrences": 11,
             "exampleCardIds": [
               "atc-scenario-0008-card-main-140",
               "atc-scenario-0030-card-main-524",
@@ -10479,6 +10450,7 @@
               "atc-scenario-0063-card-main-1097",
               "atc-scenario-0104-card-main-1788",
               "atc-scenario-0109-card-main-1884",
+              "atc-scenario-0126-card-main-2176",
               "atc-scenario-0126-card-main-2181",
               "atc-scenario-0145-card-main-2512",
               "atc-scenario-0175-card-main-3025"

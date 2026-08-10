@@ -13,8 +13,8 @@ export function SplashScreen() {
       <SoftGlow intensity={0.9} size={350} style={styles.glow} />
       <View style={styles.splashMain}>
         <BrandMark large />
-        <AppText style={styles.brandName} variant="pageTitle">飞猪 ICAO</AppText>
-        <AppText color={colors.primary} style={styles.brandEnglish} variant="micro">AVIATION ENGLISH</AppText>
+        <AppText style={styles.brandName} variant="pageTitle">听你五个</AppText>
+        <AppText color={colors.primary} style={styles.brandEnglish} variant="micro">READ YOU 5 · AVIATION ENGLISH</AppText>
         <AppText style={styles.slogan} variant="caption">在职飞行员一站一站学，助你稳稳拿下{'\n'}ICAO 4 级</AppText>
       </View>
       <View style={styles.actions}>

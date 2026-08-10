@@ -1,105 +1,503 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"miscarried","ipa":"/ˌmɪsˈkærid/","aviationMeaning":"v. 未能成功实施；也指流产，需结合原文","generalMeaning":"v. 流产；失败"},
-    {"word":"miscarrying","ipa":"/ˌmɪsˈkæriɪŋ/","aviationMeaning":"v. 未能成功实施；也指流产过程，需结合原文","generalMeaning":"v. 流产；失败"},
-    {"word":"miscommunication","ipa":"/ˌmɪskəˌmjuːnɪˈkeɪʃən/","aviationMeaning":"n. 沟通错误；机组或空管信息传递不一致","generalMeaning":"n. 沟通不良；误传"},
-    {"word":"misconception","ipa":"/ˌmɪskənˈsepʃən/","aviationMeaning":"n. 误解；对程序、系统或风险的错误认识","generalMeaning":"n. 误解；错误观念"},
-    {"word":"misconfigured","ipa":"/ˌmɪskənˈfɪɡjərd/","aviationMeaning":"adj. 配置错误的；系统、设备或数据设置不正确的","generalMeaning":"adj. 配置错误的"},
-    {"word":"miserable","ipa":"/ˈmɪzərəbəl/","aviationMeaning":"adj. 很差的；令人不适的；天气或人员状态描述","generalMeaning":"adj. 悲惨的；难受的"},
-    {"word":"misfiring","ipa":"/ˌmɪsˈfaɪərɪŋ/","aviationMeaning":"n. 点火失火；发动机燃烧异常","generalMeaning":"n. 失火；误动作"},
-    {"word":"mishandled","ipa":"/ˌmɪsˈhændəld/","aviationMeaning":"v. 已处理不当；未按程序管理事件或设备","generalMeaning":"v. 已处理不当"},
-    {"word":"misheard","ipa":"/ˌmɪsˈhɜːrd/","aviationMeaning":"v. 听错；无线电通话或指令被错误听取","generalMeaning":"v. 听错"},
-    {"word":"misidentified","ipa":"/ˌmɪsaɪˈdentɪfaɪd/","aviationMeaning":"v. 误识别；错误确认航空器、跑道、故障或目标","generalMeaning":"v. 误认；识别错误"},
-    {"word":"misinterpreted","ipa":"/ˌmɪsɪnˈtɜːrprətɪd/","aviationMeaning":"v. 误解；错误解释数据、通话或程序","generalMeaning":"v. 误解；曲解"},
-    {"word":"misjudge","ipa":"/ˌmɪsˈdʒʌdʒ/","aviationMeaning":"v. 误判；错误评估高度、距离、速度或风险","generalMeaning":"v. 误判"},
-    {"word":"misjudged","ipa":"/ˌmɪsˈdʒʌdʒd/","aviationMeaning":"v. 已误判；错误评估高度、距离、速度或风险","generalMeaning":"v. 已误判"},
-    {"word":"misleading","ipa":"/mɪsˈliːdɪŋ/","aviationMeaning":"adj. 误导性的；数据、标志或信息可能导致错误判断","generalMeaning":"adj. 误导的"},
-    {"word":"mismanagement","ipa":"/ˌmɪsˈmænɪdʒmənt/","aviationMeaning":"n. 管理不当；资源、风险或运行管理失误","generalMeaning":"n. 管理不善"},
-    {"word":"mismanaging","ipa":"/ˌmɪsˈmænɪdʒɪŋ/","aviationMeaning":"v. 正管理不当；错误处理资源、风险或运行","generalMeaning":"v. 正管理不善"},
-    {"word":"mismatch","ipa":"/ˌmɪsˈmætʃ/","aviationMeaning":"n. 不匹配；数据、部件、设定或预期不一致","generalMeaning":"n. 不匹配；不相称"},
-    {"word":"misoperation","ipa":"/ˌmɪsˌɑːpəˈreɪʃən/","aviationMeaning":"n. 误操作；未按正确程序操作系统或设备","generalMeaning":"n. 错误操作"},
-    {"word":"misreading","ipa":"/ˌmɪsˈriːdɪŋ/","aviationMeaning":"n. 误读；错误读取仪表、图表或通话内容","generalMeaning":"n. 误读"},
-    {"word":"miss","ipa":"/mɪs/","aviationMeaning":"v. 错过；未能捕获航向道、进近点或通信","generalMeaning":"v. 错过；想念"},
-    {"word":"missed","ipa":"/mɪst/","aviationMeaning":"v. 已错过；未能捕获航向道、进近点或通信","generalMeaning":"v. 已错过"},
-    {"word":"missed-approach","ipa":"/mɪst əˈproʊtʃ/","aviationMeaning":"n. 复飞程序；未继续着陆时的规定爬升航迹","generalMeaning":"n. 未完成进近"},
-    {"word":"misses","ipa":"/ˈmɪsɪz/","aviationMeaning":"v. 错过；未能捕获航向道、进近点或通信","generalMeaning":"v. 错过"},
-    {"word":"missile","ipa":"/ˈmɪsəl/","aviationMeaning":"n. 导弹；军用空域或安全威胁相关","generalMeaning":"n. 导弹"},
-    {"word":"missing","ipa":"/ˈmɪsɪŋ/","aviationMeaning":"adj. 缺失的；丢失的；未出现的部件、数据或人员","generalMeaning":"adj. 缺少的；失踪的"},
-    {"word":"mission","ipa":"/ˈmɪʃən/","aviationMeaning":"n. 任务；飞行、运输、救援或军用任务","generalMeaning":"n. 任务；使命"},
-    {"word":"mission-specific","ipa":"/ˈmɪʃən spəˈsɪfɪk/","aviationMeaning":"adj. 任务特定的；为某飞行任务设计的","generalMeaning":"adj. 任务特定的"},
-    {"word":"mist","ipa":"/mɪst/","aviationMeaning":"n. 薄雾；影响能见度的天气现象","generalMeaning":"n. 薄雾；水汽"},
-    {"word":"mistake","ipa":"/mɪˈsteɪk/","aviationMeaning":"n. 错误；v. 误认；程序、通话或操作失误","generalMeaning":"n. 错误；v. 弄错"},
-    {"word":"mistakenly","ipa":"/mɪˈsteɪkənli/","aviationMeaning":"adv. 错误地；误把数据、目标或程序当作其他内容","generalMeaning":"adv. 错误地"},
-    {"word":"mistakes","ipa":"/mɪˈsteɪks/","aviationMeaning":"n. 错误（复数）；程序、通话或操作失误","generalMeaning":"n. 错误（复数）"},
-    {"word":"misunderstand","ipa":"/ˌmɪsʌndərˈstænd/","aviationMeaning":"v. 误解；错误理解通话、程序或意图","generalMeaning":"v. 误解"},
-    {"word":"misunderstanding","ipa":"/ˌmɪsʌndərˈstændɪŋ/","aviationMeaning":"n. 误解；机组或空管对信息理解不一致","generalMeaning":"n. 误解；误会"},
-    {"word":"misunderstandings","ipa":"/ˌmɪsʌndərˈstændɪŋz/","aviationMeaning":"n. 误解（复数）；机组或空管对信息理解不一致","generalMeaning":"n. 误解；误会（复数）"},
-    {"word":"misunderstood","ipa":"/ˌmɪsʌndərˈstʊd/","aviationMeaning":"v. 已误解；错误理解通话、程序或意图","generalMeaning":"v. 已误解"},
-    {"word":"misuse","ipa":"/ˌmɪsˈjuːs/","aviationMeaning":"n. 误用；v. 不当使用设备、程序或信息","generalMeaning":"n. 误用；v. 滥用"},
-    {"word":"mitigate","ipa":"/ˈmɪtɪɡeɪt/","aviationMeaning":"v. 减轻；降低风险、影响或后果","generalMeaning":"v. 减轻；缓和"},
-    {"word":"mix","ipa":"/mɪks/","aviationMeaning":"v. 混合；n. 混合物；燃油、化学品或通信混杂","generalMeaning":"v. 混合；n. 混合物"},
-    {"word":"mixed","ipa":"/mɪkst/","aviationMeaning":"adj. 已混合的；如混合交通、燃油或天气","generalMeaning":"adj. 混合的"},
-    {"word":"mixing","ipa":"/ˈmɪksɪŋ/","aviationMeaning":"v. 正混合；混合燃油、化学品或交通流","generalMeaning":"v. 正混合"},
-    {"word":"mixture","ipa":"/ˈmɪkstʃər/","aviationMeaning":"n. 混合比；发动机燃油与空气混合物","generalMeaning":"n. 混合物；混合"},
-    {"word":"mixture-related","ipa":"/ˈmɪkstʃər rɪˈleɪtɪd/","aviationMeaning":"adj. 混合比相关的；发动机燃油空气混合物相关","generalMeaning":"adj. 混合物相关的"},
-    {"word":"ml","ipa":"/ˌem ˈel/","aviationMeaning":"n. 毫升（milliliter 缩写）；容量单位","generalMeaning":"n. 毫升缩写"},
-    {"word":"mlt","ipa":"/ˌem el ˈtiː/","aviationMeaning":"n. 航空资料缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"mobile","ipa":"/ˈmoʊbəl/","aviationMeaning":"adj. 移动的；移动设备或可移动地面服务","generalMeaning":"adj. 移动的；可动的"},
-    {"word":"mobility","ipa":"/moʊˈbɪləti/","aviationMeaning":"n. 移动能力；旅客行动能力或设备机动性","generalMeaning":"n. 移动性；流动性"},
-    {"word":"mode","ipa":"/moʊd/","aviationMeaning":"n. 模式；自动飞行、通信或系统工作模式","generalMeaning":"n. 模式；方式"},
-    {"word":"mode-s","ipa":"/moʊd es/","aviationMeaning":"n. S 模式；二次监视雷达应答机模式","generalMeaning":"n. 模式 S"},
-    {"word":"model","ipa":"/ˈmɑːdl/","aviationMeaning":"n. 型号；模型；航空器或系统型号","generalMeaning":"n. 模型；型号"},
-    {"word":"models","ipa":"/ˈmɑːdlz/","aviationMeaning":"n. 型号（复数）；航空器或系统型号","generalMeaning":"n. 模型；型号（复数）"},
-    {"word":"moderate","ipa":"/ˈmɑːdərət/","aviationMeaning":"adj. 中度的；如中度颠簸、中等风或降水","generalMeaning":"adj. 中等的；适度的"},
-    {"word":"modern","ipa":"/ˈmɑːdərn/","aviationMeaning":"adj. 现代的；现代航空系统或程序","generalMeaning":"adj. 现代的"},
-    {"word":"modernization","ipa":"/ˌmɑːdərnəˈzeɪʃən/","aviationMeaning":"n. 现代化；机场、空管或机队升级","generalMeaning":"n. 现代化"},
-    {"word":"modes","ipa":"/moʊdz/","aviationMeaning":"n. 模式（复数）；自动飞行、通信或系统工作模式","generalMeaning":"n. 模式；方式（复数）"},
-    {"word":"modification","ipa":"/ˌmɑːdɪfɪˈkeɪʃən/","aviationMeaning":"n. 改装；对航空器、部件或程序的更改","generalMeaning":"n. 修改；改装"},
-    {"word":"modifications","ipa":"/ˌmɑːdɪfɪˈkeɪʃənz/","aviationMeaning":"n. 改装（复数）；对航空器、部件或程序的更改","generalMeaning":"n. 修改；改装（复数）"},
-    {"word":"modify","ipa":"/ˈmɑːdɪfaɪ/","aviationMeaning":"v. 修改；更改航空器、部件、程序或航路","generalMeaning":"v. 修改；改变"},
-    {"word":"modulating","ipa":"/ˈmɑːdʒəleɪtɪŋ/","aviationMeaning":"v. 调制；调整无线电信号或系统输出","generalMeaning":"v. 调节；调制"},
-    {"word":"module","ipa":"/ˈmɑːdʒuːl/","aviationMeaning":"n. 模块；航空电子或系统功能单元","generalMeaning":"n. 模块；单元"},
-    {"word":"modules","ipa":"/ˈmɑːdʒuːlz/","aviationMeaning":"n. 模块（复数）；航空电子或系统功能单元","generalMeaning":"n. 模块；单元（复数）"},
-    {"word":"mogadishu","ipa":"/ˌmoʊɡəˈdiːʃuː/","aviationMeaning":"n. 摩加迪沙；机场或地名","generalMeaning":"n. 专有地名"},
-    {"word":"moisture","ipa":"/ˈmɔɪstʃər/","aviationMeaning":"n. 水分；湿气；影响结冰、腐蚀和能见度","generalMeaning":"n. 水分；湿气"},
-    {"word":"molecules","ipa":"/ˈmɑːlɪkjuːlz/","aviationMeaning":"n. 分子（复数）；大气、化学品或燃油语境","generalMeaning":"n. 分子（复数）"},
-    {"word":"moment","ipa":"/ˈmoʊmənt/","aviationMeaning":"n. 时刻；力矩；如俯仰力矩或短暂时间","generalMeaning":"n. 时刻；瞬间"},
-    {"word":"momentarily","ipa":"/ˌmoʊmənˈterəli/","aviationMeaning":"adv. 片刻地；短暂地；即将发生地","generalMeaning":"adv. 瞬间地；片刻地"},
-    {"word":"moments","ipa":"/ˈmoʊmənts/","aviationMeaning":"n. 时刻或力矩（复数）；短暂时间或气动力矩","generalMeaning":"n. 时刻；瞬间（复数）"},
-    {"word":"monday","ipa":"/ˈmʌndeɪ/","aviationMeaning":"n. 星期一；日期和排班信息","generalMeaning":"n. 星期一"},
-    {"word":"money","ipa":"/ˈmʌni/","aviationMeaning":"n. 资金；航空公司、机场或运营成本","generalMeaning":"n. 钱；货币"},
-    {"word":"monitor","ipa":"/ˈmɑːnɪtər/","aviationMeaning":"v. 监控；n. 显示器；监视参数、通信或系统","generalMeaning":"v. 监控；n. 显示器"},
-    {"word":"monitored","ipa":"/ˈmɑːnɪtərd/","aviationMeaning":"adj. 已监控的；参数、通信或系统被持续观察","generalMeaning":"adj. 被监控的"},
-    {"word":"monitoring","ipa":"/ˈmɑːnɪtərɪŋ/","aviationMeaning":"n. 监控；持续观察参数、通信或系统","generalMeaning":"n. 监控；监督"},
-    {"word":"monitors","ipa":"/ˈmɑːnɪtərz/","aviationMeaning":"n. 显示器（复数）；v. 监控参数、通信或系统","generalMeaning":"n. 显示器（复数）；v. 监控"},
-    {"word":"monotonous","ipa":"/məˈnɑːtənəs/","aviationMeaning":"adj. 单调的；可能降低警觉性的持续任务","generalMeaning":"adj. 单调的"},
-    {"word":"monoxide","ipa":"/məˈnɑːksaɪd/","aviationMeaning":"n. 一氧化物；如一氧化碳中毒风险","generalMeaning":"n. 一氧化物"},
-    {"word":"montego","ipa":"/mɑːnˈtiːɡoʊ/","aviationMeaning":"n. 蒙特哥；机场或地名组成部分","generalMeaning":"n. 专有地名"},
-    {"word":"month","ipa":"/mʌnθ/","aviationMeaning":"n. 月；日期、排班或维护周期单位","generalMeaning":"n. 月"},
-    {"word":"months","ipa":"/mʌnθs/","aviationMeaning":"n. 月（复数）；日期、排班或维护周期单位","generalMeaning":"n. 月（复数）"},
-    {"word":"montreal","ipa":"/ˌmʌntriˈɔːl/","aviationMeaning":"n. 蒙特利尔；ICAO 所在地或机场地名","generalMeaning":"n. 专有地名"},
-    {"word":"montt","ipa":"/mɑːnt/","aviationMeaning":"n. 蒙特；地名组成部分","generalMeaning":"n. 专有名称"},
-    {"word":"montt's","ipa":"/mɑːnts/","aviationMeaning":"n. Montt 的所有格形式；地名相关","generalMeaning":"n. 专有名称的所有格形式"},
-    {"word":"mood","ipa":"/muːd/","aviationMeaning":"n. 情绪；机组心理状态和协作表现","generalMeaning":"n. 心情；情绪"},
-    {"word":"more","ipa":"/mɔːr/","aviationMeaning":"adj. 更多的；更大的；如更多燃油、时间或间隔","generalMeaning":"adj. 更多的；adv. 更"},
-    {"word":"moreover","ipa":"/mɔːrˈoʊvər/","aviationMeaning":"adv. 此外；用于补充说明","generalMeaning":"adv. 此外；而且"},
-    {"word":"morning","ipa":"/ˈmɔːrnɪŋ/","aviationMeaning":"n. 早晨；运行、天气或排班时间段","generalMeaning":"n. 早晨；上午"},
-    {"word":"morse","ipa":"/mɔːrs/","aviationMeaning":"n. 莫尔斯；导航台和通信的摩尔斯电码","generalMeaning":"n. 莫尔斯；摩尔斯电码"},
-    {"word":"moscow","ipa":"/ˈmɑːskaʊ/","aviationMeaning":"n. 莫斯科；机场或地名","generalMeaning":"n. 专有地名"},
-    {"word":"most","ipa":"/moʊst/","aviationMeaning":"adj. 大多数的；最大程度的","generalMeaning":"adj. 大多数的；最多的"},
-    {"word":"mostly","ipa":"/ˈmoʊstli/","aviationMeaning":"adv. 大部分地；主要地","generalMeaning":"adv. 大部分地；主要地"},
-    {"word":"motion","ipa":"/ˈmoʊʃən/","aviationMeaning":"n. 运动；动作；航空器姿态和运动状态","generalMeaning":"n. 运动；动作"},
-    {"word":"motivated","ipa":"/ˈmoʊtɪveɪtɪd/","aviationMeaning":"adj. 有动机的；受激励的；人员表现描述","generalMeaning":"adj. 有动力的；受激励的"},
-    {"word":"motor","ipa":"/ˈmoʊtər/","aviationMeaning":"n. 电机；发动机；驱动执行机构的电动装置","generalMeaning":"n. 电动机；发动机"},
-    {"word":"motor-driven","ipa":"/ˈmoʊtər ˈdrɪvən/","aviationMeaning":"adj. 电机驱动的；由电动机带动的","generalMeaning":"adj. 电机驱动的"},
-    {"word":"mountain","ipa":"/ˈmaʊntən/","aviationMeaning":"n. 山；地形障碍物和气象风险","generalMeaning":"n. 山；山脉"},
-    {"word":"mountain-related","ipa":"/ˈmaʊntən rɪˈleɪtɪd/","aviationMeaning":"adj. 山地相关的；地形、波动或天气风险","generalMeaning":"adj. 山地相关的"},
-    {"word":"mountain-wave","ipa":"/ˈmaʊntən weɪv/","aviationMeaning":"n. 山地波；山地背风侧大气波动和颠簸","generalMeaning":"n. 山地波"},
-    {"word":"mountainous","ipa":"/ˈmaʊntənəs/","aviationMeaning":"adj. 多山的；山地机场或航路环境","generalMeaning":"adj. 多山的"},
-    {"word":"mountains","ipa":"/ˈmaʊntənz/","aviationMeaning":"n. 山脉（复数）；地形障碍物和气象风险","generalMeaning":"n. 山脉（复数）"},
-    {"word":"mounted","ipa":"/ˈmaʊntɪd/","aviationMeaning":"adj. 已安装的；部件、设备或传感器已固定","generalMeaning":"adj. 已安装的；骑上的"},
-    {"word":"mounting","ipa":"/ˈmaʊntɪŋ/","aviationMeaning":"n. 安装；固定件；部件或设备的固定方式","generalMeaning":"n. 安装；固定"},
-    {"word":"mouths","ipa":"/maʊðz/","aviationMeaning":"n. 嘴（复数）；人员医疗或客舱描述","generalMeaning":"n. 嘴（复数）"}
+    {
+      "word": "miscarried",
+      "ipa": "/ˌmɪsˈkærid/",
+      "aviationMeaning": "v. 未能成功实施；也指流产，需结合原文",
+      "generalMeaning": "v. 流产；失败"
+    },
+    {
+      "word": "miscarrying",
+      "ipa": "/ˌmɪsˈkæriɪŋ/",
+      "aviationMeaning": "v. 未能成功实施；也指流产过程，需结合原文",
+      "generalMeaning": "v. 流产；失败"
+    },
+    {
+      "word": "miscommunication",
+      "ipa": "/ˌmɪskəˌmjuːnɪˈkeɪʃən/",
+      "aviationMeaning": "n. 沟通错误；机组或空管信息传递不一致",
+      "generalMeaning": "n. 沟通不良；误传"
+    },
+    {
+      "word": "misconception",
+      "ipa": "/ˌmɪskənˈsepʃən/",
+      "aviationMeaning": "n. 误解；对程序、系统或风险的错误认识",
+      "generalMeaning": "n. 误解；错误观念"
+    },
+    {
+      "word": "misconfigured",
+      "ipa": "/ˌmɪskənˈfɪɡjərd/",
+      "aviationMeaning": "adj. 配置错误的；系统、设备或数据设置不正确的",
+      "generalMeaning": "adj. 配置错误的"
+    },
+    {
+      "word": "miserable",
+      "ipa": "/ˈmɪzərəbəl/",
+      "aviationMeaning": "adj. 很差的；令人不适的；天气或人员状态描述",
+      "generalMeaning": "adj. 悲惨的；难受的"
+    },
+    {
+      "word": "misfiring",
+      "ipa": "/ˌmɪsˈfaɪərɪŋ/",
+      "aviationMeaning": "n. 点火失火；发动机燃烧异常",
+      "generalMeaning": "n. 失火；误动作"
+    },
+    {
+      "word": "misheard",
+      "ipa": "/ˌmɪsˈhɜːrd/",
+      "aviationMeaning": "v. 听错；无线电通话或指令被错误听取",
+      "generalMeaning": "v. 听错"
+    },
+    {
+      "word": "misidentified",
+      "ipa": "/ˌmɪsaɪˈdentɪfaɪd/",
+      "aviationMeaning": "v. 误识别；错误确认航空器、跑道、故障或目标",
+      "generalMeaning": "v. 误认；识别错误"
+    },
+    {
+      "word": "misinterpreted",
+      "ipa": "/ˌmɪsɪnˈtɜːrprətɪd/",
+      "aviationMeaning": "v. 误解；错误解释数据、通话或程序",
+      "generalMeaning": "v. 误解；曲解"
+    },
+    {
+      "word": "misjudged",
+      "ipa": "/ˌmɪsˈdʒʌdʒd/",
+      "aviationMeaning": "v. 已误判；错误评估高度、距离、速度或风险",
+      "generalMeaning": "v. 已误判"
+    },
+    {
+      "word": "misoperation",
+      "ipa": "/ˌmɪsˌɑːpəˈreɪʃən/",
+      "aviationMeaning": "n. 误操作；未按正确程序操作系统或设备",
+      "generalMeaning": "n. 错误操作"
+    },
+    {
+      "word": "miss",
+      "ipa": "/mɪs/",
+      "aviationMeaning": "v. 错过；未能捕获航向道、进近点或通信",
+      "generalMeaning": "v. 错过；想念"
+    },
+    {
+      "word": "missed",
+      "ipa": "/mɪst/",
+      "aviationMeaning": "v. 已错过；未能捕获航向道、进近点或通信",
+      "generalMeaning": "v. 已错过"
+    },
+    {
+      "word": "missed-approach",
+      "ipa": "/mɪst əˈproʊtʃ/",
+      "aviationMeaning": "n. 复飞程序；未继续着陆时的规定爬升航迹",
+      "generalMeaning": "n. 未完成进近"
+    },
+    {
+      "word": "misses",
+      "ipa": "/ˈmɪsɪz/",
+      "aviationMeaning": "v. 错过；未能捕获航向道、进近点或通信",
+      "generalMeaning": "v. 错过"
+    },
+    {
+      "word": "missile",
+      "ipa": "/ˈmɪsəl/",
+      "aviationMeaning": "n. 导弹；军用空域或安全威胁相关",
+      "generalMeaning": "n. 导弹"
+    },
+    {
+      "word": "missing",
+      "ipa": "/ˈmɪsɪŋ/",
+      "aviationMeaning": "adj. 缺失的；丢失的；未出现的部件、数据或人员",
+      "generalMeaning": "adj. 缺少的；失踪的"
+    },
+    {
+      "word": "mission",
+      "ipa": "/ˈmɪʃən/",
+      "aviationMeaning": "n. 任务；飞行、运输、救援或军用任务",
+      "generalMeaning": "n. 任务；使命"
+    },
+    {
+      "word": "mission-specific",
+      "ipa": "/ˈmɪʃən spəˈsɪfɪk/",
+      "aviationMeaning": "adj. 任务特定的；为某飞行任务设计的",
+      "generalMeaning": "adj. 任务特定的"
+    },
+    {
+      "word": "mist",
+      "ipa": "/mɪst/",
+      "aviationMeaning": "n. 薄雾；影响能见度的天气现象",
+      "generalMeaning": "n. 薄雾；水汽"
+    },
+    {
+      "word": "mistake",
+      "ipa": "/mɪˈsteɪk/",
+      "aviationMeaning": "n. 错误；v. 误认；程序、通话或操作失误",
+      "generalMeaning": "n. 错误；v. 弄错"
+    },
+    {
+      "word": "mistakenly",
+      "ipa": "/mɪˈsteɪkənli/",
+      "aviationMeaning": "adv. 错误地；误把数据、目标或程序当作其他内容",
+      "generalMeaning": "adv. 错误地"
+    },
+    {
+      "word": "mistakes",
+      "ipa": "/mɪˈsteɪks/",
+      "aviationMeaning": "n. 错误（复数）；程序、通话或操作失误",
+      "generalMeaning": "n. 错误（复数）"
+    },
+    {
+      "word": "misunderstand",
+      "ipa": "/ˌmɪsʌndərˈstænd/",
+      "aviationMeaning": "v. 误解；错误理解通话、程序或意图",
+      "generalMeaning": "v. 误解"
+    },
+    {
+      "word": "misunderstanding",
+      "ipa": "/ˌmɪsʌndərˈstændɪŋ/",
+      "aviationMeaning": "n. 误解；机组或空管对信息理解不一致",
+      "generalMeaning": "n. 误解；误会"
+    },
+    {
+      "word": "misunderstandings",
+      "ipa": "/ˌmɪsʌndərˈstændɪŋz/",
+      "aviationMeaning": "n. 误解（复数）；机组或空管对信息理解不一致",
+      "generalMeaning": "n. 误解；误会（复数）"
+    },
+    {
+      "word": "misunderstood",
+      "ipa": "/ˌmɪsʌndərˈstʊd/",
+      "aviationMeaning": "v. 已误解；错误理解通话、程序或意图",
+      "generalMeaning": "v. 已误解"
+    },
+    {
+      "word": "mitigate",
+      "ipa": "/ˈmɪtɪɡeɪt/",
+      "aviationMeaning": "v. 减轻；降低风险、影响或后果",
+      "generalMeaning": "v. 减轻；缓和"
+    },
+    {
+      "word": "mix",
+      "ipa": "/mɪks/",
+      "aviationMeaning": "v. 混合；n. 混合物；燃油、化学品或通信混杂",
+      "generalMeaning": "v. 混合；n. 混合物"
+    },
+    {
+      "word": "mixed",
+      "ipa": "/mɪkst/",
+      "aviationMeaning": "adj. 已混合的；如混合交通、燃油或天气",
+      "generalMeaning": "adj. 混合的"
+    },
+    {
+      "word": "mixture",
+      "ipa": "/ˈmɪkstʃər/",
+      "aviationMeaning": "n. 混合比；发动机燃油与空气混合物",
+      "generalMeaning": "n. 混合物；混合"
+    },
+    {
+      "word": "ml",
+      "ipa": "/ˌem ˈel/",
+      "aviationMeaning": "n. 毫升（milliliter 缩写）；容量单位",
+      "generalMeaning": "n. 毫升缩写"
+    },
+    {
+      "word": "mlt",
+      "ipa": "/ˌem el ˈtiː/",
+      "aviationMeaning": "n. 航空资料缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "mobile",
+      "ipa": "/ˈmoʊbəl/",
+      "aviationMeaning": "adj. 移动的；移动设备或可移动地面服务",
+      "generalMeaning": "adj. 移动的；可动的"
+    },
+    {
+      "word": "mobility",
+      "ipa": "/moʊˈbɪləti/",
+      "aviationMeaning": "n. 移动能力；旅客行动能力或设备机动性",
+      "generalMeaning": "n. 移动性；流动性"
+    },
+    {
+      "word": "mode",
+      "ipa": "/moʊd/",
+      "aviationMeaning": "n. 模式；自动飞行、通信或系统工作模式",
+      "generalMeaning": "n. 模式；方式"
+    },
+    {
+      "word": "mode-s",
+      "ipa": "/moʊd es/",
+      "aviationMeaning": "n. S 模式；二次监视雷达应答机模式",
+      "generalMeaning": "n. 模式 S"
+    },
+    {
+      "word": "model",
+      "ipa": "/ˈmɑːdl/",
+      "aviationMeaning": "n. 型号；模型；航空器或系统型号",
+      "generalMeaning": "n. 模型；型号"
+    },
+    {
+      "word": "moderate",
+      "ipa": "/ˈmɑːdərət/",
+      "aviationMeaning": "adj. 中度的；如中度颠簸、中等风或降水",
+      "generalMeaning": "adj. 中等的；适度的"
+    },
+    {
+      "word": "modern",
+      "ipa": "/ˈmɑːdərn/",
+      "aviationMeaning": "adj. 现代的；现代航空系统或程序",
+      "generalMeaning": "adj. 现代的"
+    },
+    {
+      "word": "modernization",
+      "ipa": "/ˌmɑːdərnəˈzeɪʃən/",
+      "aviationMeaning": "n. 现代化；机场、空管或机队升级",
+      "generalMeaning": "n. 现代化"
+    },
+    {
+      "word": "modes",
+      "ipa": "/moʊdz/",
+      "aviationMeaning": "n. 模式（复数）；自动飞行、通信或系统工作模式",
+      "generalMeaning": "n. 模式；方式（复数）"
+    },
+    {
+      "word": "modification",
+      "ipa": "/ˌmɑːdɪfɪˈkeɪʃən/",
+      "aviationMeaning": "n. 改装；对航空器、部件或程序的更改",
+      "generalMeaning": "n. 修改；改装"
+    },
+    {
+      "word": "modifications",
+      "ipa": "/ˌmɑːdɪfɪˈkeɪʃənz/",
+      "aviationMeaning": "n. 改装（复数）；对航空器、部件或程序的更改",
+      "generalMeaning": "n. 修改；改装（复数）"
+    },
+    {
+      "word": "modify",
+      "ipa": "/ˈmɑːdɪfaɪ/",
+      "aviationMeaning": "v. 修改；更改航空器、部件、程序或航路",
+      "generalMeaning": "v. 修改；改变"
+    },
+    {
+      "word": "modulating",
+      "ipa": "/ˈmɑːdʒəleɪtɪŋ/",
+      "aviationMeaning": "v. 调制；调整无线电信号或系统输出",
+      "generalMeaning": "v. 调节；调制"
+    },
+    {
+      "word": "module",
+      "ipa": "/ˈmɑːdʒuːl/",
+      "aviationMeaning": "n. 模块；航空电子或系统功能单元",
+      "generalMeaning": "n. 模块；单元"
+    },
+    {
+      "word": "mogadishu",
+      "ipa": "/ˌmoʊɡəˈdiːʃuː/",
+      "aviationMeaning": "n. 摩加迪沙；机场或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "moisture",
+      "ipa": "/ˈmɔɪstʃər/",
+      "aviationMeaning": "n. 水分；湿气；影响结冰、腐蚀和能见度",
+      "generalMeaning": "n. 水分；湿气"
+    },
+    {
+      "word": "molecules",
+      "ipa": "/ˈmɑːlɪkjuːlz/",
+      "aviationMeaning": "n. 分子（复数）；大气、化学品或燃油语境",
+      "generalMeaning": "n. 分子（复数）"
+    },
+    {
+      "word": "moment",
+      "ipa": "/ˈmoʊmənt/",
+      "aviationMeaning": "n. 时刻；力矩；如俯仰力矩或短暂时间",
+      "generalMeaning": "n. 时刻；瞬间"
+    },
+    {
+      "word": "moments",
+      "ipa": "/ˈmoʊmənts/",
+      "aviationMeaning": "n. 时刻或力矩（复数）；短暂时间或气动力矩",
+      "generalMeaning": "n. 时刻；瞬间（复数）"
+    },
+    {
+      "word": "monday",
+      "ipa": "/ˈmʌndeɪ/",
+      "aviationMeaning": "n. 星期一；日期和排班信息",
+      "generalMeaning": "n. 星期一"
+    },
+    {
+      "word": "money",
+      "ipa": "/ˈmʌni/",
+      "aviationMeaning": "n. 资金；航空公司、机场或运营成本",
+      "generalMeaning": "n. 钱；货币"
+    },
+    {
+      "word": "monitor",
+      "ipa": "/ˈmɑːnɪtər/",
+      "aviationMeaning": "v. 监控；n. 显示器；监视参数、通信或系统",
+      "generalMeaning": "v. 监控；n. 显示器"
+    },
+    {
+      "word": "monitored",
+      "ipa": "/ˈmɑːnɪtərd/",
+      "aviationMeaning": "adj. 已监控的；参数、通信或系统被持续观察",
+      "generalMeaning": "adj. 被监控的"
+    },
+    {
+      "word": "monitoring",
+      "ipa": "/ˈmɑːnɪtərɪŋ/",
+      "aviationMeaning": "n. 监控；持续观察参数、通信或系统",
+      "generalMeaning": "n. 监控；监督"
+    },
+    {
+      "word": "monitors",
+      "ipa": "/ˈmɑːnɪtərz/",
+      "aviationMeaning": "n. 显示器（复数）；v. 监控参数、通信或系统",
+      "generalMeaning": "n. 显示器（复数）；v. 监控"
+    },
+    {
+      "word": "monoxide",
+      "ipa": "/məˈnɑːksaɪd/",
+      "aviationMeaning": "n. 一氧化物；如一氧化碳中毒风险",
+      "generalMeaning": "n. 一氧化物"
+    },
+    {
+      "word": "montego",
+      "ipa": "/mɑːnˈtiːɡoʊ/",
+      "aviationMeaning": "n. 蒙特哥；机场或地名组成部分",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "month",
+      "ipa": "/mʌnθ/",
+      "aviationMeaning": "n. 月；日期、排班或维护周期单位",
+      "generalMeaning": "n. 月"
+    },
+    {
+      "word": "months",
+      "ipa": "/mʌnθs/",
+      "aviationMeaning": "n. 月（复数）；日期、排班或维护周期单位",
+      "generalMeaning": "n. 月（复数）"
+    },
+    {
+      "word": "montreal",
+      "ipa": "/ˌmʌntriˈɔːl/",
+      "aviationMeaning": "n. 蒙特利尔；ICAO 所在地或机场地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "montt",
+      "ipa": "/mɑːnt/",
+      "aviationMeaning": "n. 蒙特；地名组成部分",
+      "generalMeaning": "n. 专有名称"
+    },
+    {
+      "word": "montt's",
+      "ipa": "/mɑːnts/",
+      "aviationMeaning": "n. Montt 的所有格形式；地名相关",
+      "generalMeaning": "n. 专有名称的所有格形式"
+    },
+    {
+      "word": "mood",
+      "ipa": "/muːd/",
+      "aviationMeaning": "n. 情绪；机组心理状态和协作表现",
+      "generalMeaning": "n. 心情；情绪"
+    },
+    {
+      "word": "more",
+      "ipa": "/mɔːr/",
+      "aviationMeaning": "adj. 更多的；更大的；如更多燃油、时间或间隔",
+      "generalMeaning": "adj. 更多的；adv. 更"
+    },
+    {
+      "word": "moreover",
+      "ipa": "/mɔːrˈoʊvər/",
+      "aviationMeaning": "adv. 此外；用于补充说明",
+      "generalMeaning": "adv. 此外；而且"
+    },
+    {
+      "word": "morning",
+      "ipa": "/ˈmɔːrnɪŋ/",
+      "aviationMeaning": "n. 早晨；运行、天气或排班时间段",
+      "generalMeaning": "n. 早晨；上午"
+    },
+    {
+      "word": "morse",
+      "ipa": "/mɔːrs/",
+      "aviationMeaning": "n. 莫尔斯；导航台和通信的摩尔斯电码",
+      "generalMeaning": "n. 莫尔斯；摩尔斯电码"
+    },
+    {
+      "word": "moscow",
+      "ipa": "/ˈmɑːskaʊ/",
+      "aviationMeaning": "n. 莫斯科；机场或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "most",
+      "ipa": "/moʊst/",
+      "aviationMeaning": "adj. 大多数的；最大程度的",
+      "generalMeaning": "adj. 大多数的；最多的"
+    },
+    {
+      "word": "mostly",
+      "ipa": "/ˈmoʊstli/",
+      "aviationMeaning": "adv. 大部分地；主要地",
+      "generalMeaning": "adv. 大部分地；主要地"
+    },
+    {
+      "word": "motion",
+      "ipa": "/ˈmoʊʃən/",
+      "aviationMeaning": "n. 运动；动作；航空器姿态和运动状态",
+      "generalMeaning": "n. 运动；动作"
+    },
+    {
+      "word": "motor",
+      "ipa": "/ˈmoʊtər/",
+      "aviationMeaning": "n. 电机；发动机；驱动执行机构的电动装置",
+      "generalMeaning": "n. 电动机；发动机"
+    },
+    {
+      "word": "motor-driven",
+      "ipa": "/ˈmoʊtər ˈdrɪvən/",
+      "aviationMeaning": "adj. 电机驱动的；由电动机带动的",
+      "generalMeaning": "adj. 电机驱动的"
+    },
+    {
+      "word": "mountain",
+      "ipa": "/ˈmaʊntən/",
+      "aviationMeaning": "n. 山；地形障碍物和气象风险",
+      "generalMeaning": "n. 山；山脉"
+    },
+    {
+      "word": "mountain-wave",
+      "ipa": "/ˈmaʊntən weɪv/",
+      "aviationMeaning": "n. 山地波；山地背风侧大气波动和颠簸",
+      "generalMeaning": "n. 山地波"
+    },
+    {
+      "word": "mountainous",
+      "ipa": "/ˈmaʊntənəs/",
+      "aviationMeaning": "adj. 多山的；山地机场或航路环境",
+      "generalMeaning": "adj. 多山的"
+    },
+    {
+      "word": "mountains",
+      "ipa": "/ˈmaʊntənz/",
+      "aviationMeaning": "n. 山脉（复数）；地形障碍物和气象风险",
+      "generalMeaning": "n. 山脉（复数）"
+    },
+    {
+      "word": "mounted",
+      "ipa": "/ˈmaʊntɪd/",
+      "aviationMeaning": "adj. 已安装的；部件、设备或传感器已固定",
+      "generalMeaning": "adj. 已安装的；骑上的"
+    },
+    {
+      "word": "mouths",
+      "ipa": "/maʊðz/",
+      "aviationMeaning": "n. 嘴（复数）；人员医疗或客舱描述",
+      "generalMeaning": "n. 嘴（复数）"
+    }
   ]
 }

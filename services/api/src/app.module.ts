@@ -22,7 +22,7 @@ import { AiController } from './ai/ai.controller';
 import { AiAssetsService } from './ai/ai-assets.service';
 import { AiProviderService } from './ai/ai-provider.service';
 import { AsrAudioStorageService } from './ai/asr-audio-storage.service';
-import { FunAsrService } from './ai/fun-asr.service';
+import { TencentAsrService } from './ai/tencent-asr.service';
 import { AiService } from './ai/ai.service';
 import { VocabularyController } from './vocabulary/vocabulary.controller';
 import { VocabularyService } from './vocabulary/vocabulary.service';
@@ -51,7 +51,7 @@ import { FeedbackService } from './feedback/feedback.service';
     AiAssetsService,
     AiProviderService,
     AsrAudioStorageService,
-    FunAsrService,
+    TencentAsrService,
     AiService,
     VocabularyService,
     FeedbackAttachmentStorage,

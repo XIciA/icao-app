@@ -1,105 +1,551 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"stored","ipa":"/stɔːrd/","aviationMeaning":"adj. 已储存的；燃油、货物、设备或数据已妥善存放","generalMeaning":"adj. 已储存的"},
-    {"word":"stores","ipa":"/stɔːrz/","aviationMeaning":"n. 储备品（复数）；航空器、机场或救援使用的物资","generalMeaning":"n. 商店；储备品（复数）"},
-    {"word":"stories","ipa":"/ˈstɔːriz/","aviationMeaning":"n. 事件经过（复数）；需结合原文","generalMeaning":"n. 故事；楼层（复数）"},
-    {"word":"storm","ipa":"/stɔːrm/","aviationMeaning":"n. 风暴；强风、雷暴、降水等严重天气系统","generalMeaning":"n. 风暴；v. 猛攻"},
-    {"word":"storms","ipa":"/stɔːrmz/","aviationMeaning":"n. 风暴（复数）；多个强风、雷暴或严重天气系统","generalMeaning":"n. 风暴（复数）"},
-    {"word":"stormy","ipa":"/ˈstɔːrmi/","aviationMeaning":"adj. 暴风雨的；伴有强风、雷暴或显著颠簸的","generalMeaning":"adj. 暴风雨的；激烈的"},
-    {"word":"story","ipa":"/ˈstɔːri/","aviationMeaning":"n. 事件经过；需结合原文","generalMeaning":"n. 故事；楼层"},
-    {"word":"stowage","ipa":"/ˈstoʊɪdʒ/","aviationMeaning":"n. 装载存放；货物、设备或客舱物品的固定和放置","generalMeaning":"n. 装载；存放"},
-    {"word":"stowaway","ipa":"/ˈstoʊəweɪ/","aviationMeaning":"n. 偷渡者；未经许可藏匿在航空器或货物中的人员","generalMeaning":"n. 偷渡者；藏匿者"},
-    {"word":"stowed","ipa":"/stoʊd/","aviationMeaning":"adj. 已存放的；货物、设备或客舱物品已固定放好","generalMeaning":"adj. 已存放的"},
-    {"word":"straight","ipa":"/streɪt/","aviationMeaning":"adj. 直的；保持直线航迹、跑道方向或不转弯进近","generalMeaning":"adj. 直的；正直的"},
-    {"word":"straight-in","ipa":"/ˌstreɪt ˈɪn/","aviationMeaning":"adj. 直进的；直接从最终进近航迹进入跑道的进近方式","generalMeaning":"adj. 直进的"},
-    {"word":"straits","ipa":"/streɪts/","aviationMeaning":"n. 海峡（复数）；越水飞行或地理航路中的狭窄水道","generalMeaning":"n. 海峡；困境（复数）"},
-    {"word":"stranded","ipa":"/ˈstrændɪd/","aviationMeaning":"adj. 滞留的；旅客、航空器或车辆因故障、天气等无法继续移动","generalMeaning":"adj. 滞留的；搁浅的"},
-    {"word":"strange","ipa":"/streɪndʒ/","aviationMeaning":"adj. 异常的；不熟悉或不符合预期的声音、状态或现象","generalMeaning":"adj. 奇怪的；陌生的"},
-    {"word":"strangely","ipa":"/ˈstreɪndʒli/","aviationMeaning":"adv. 异常地；以不符合预期的方式","generalMeaning":"adv. 奇怪地"},
-    {"word":"strap","ipa":"/stræp/","aviationMeaning":"n. 固定带；用于固定人员、货物或设备的带状约束件","generalMeaning":"n. 带子；皮带"},
-    {"word":"strategies","ipa":"/ˈstrætədʒiz/","aviationMeaning":"n. 策略（复数）；处理安全、流量、天气或运行问题的方案","generalMeaning":"n. 策略；战略（复数）"},
-    {"word":"strategy","ipa":"/ˈstrætədʒi/","aviationMeaning":"n. 策略；处理安全、流量、天气或运行问题的总体方案","generalMeaning":"n. 策略；战略"},
-    {"word":"strayed","ipa":"/streɪd/","aviationMeaning":"v. 已偏离；航空器、人员或车辆已偏离指定航路或区域","generalMeaning":"v. 已走失；偏离"},
-    {"word":"straying","ipa":"/ˈstreɪɪŋ/","aviationMeaning":"v. 正偏离；正在离开指定航路、区域或程序","generalMeaning":"v. 正走失；偏离"},
-    {"word":"streak","ipa":"/striːk/","aviationMeaning":"n. 条纹；机体表面、云层或显示器上的细长痕迹","generalMeaning":"n. 条纹；v. 飞跑"},
-    {"word":"streaks","ipa":"/striːks/","aviationMeaning":"n. 条纹（复数）；机体、云层或表面上的细长痕迹","generalMeaning":"n. 条纹（复数）；v. 飞跑"},
-    {"word":"stream","ipa":"/striːm/","aviationMeaning":"n. 气流；连续流动的空气、数据或交通流","generalMeaning":"n. 小溪；流"},
-    {"word":"streamline","ipa":"/ˈstriːmlaɪn/","aviationMeaning":"v. 简化；优化运行、程序或信息流以提高效率","generalMeaning":"v. 简化；使流线型化"},
-    {"word":"streams","ipa":"/striːmz/","aviationMeaning":"n. 气流（复数）；多股连续流动的空气或数据流","generalMeaning":"n. 小溪；流（复数）"},
-    {"word":"streets","ipa":"/striːts/","aviationMeaning":"n. 街道（复数）；机场周边城市道路或地面参照","generalMeaning":"n. 街道（复数）"},
-    {"word":"strength","ipa":"/streŋθ/","aviationMeaning":"n. 强度；风、材料、信号或结构承受力的大小","generalMeaning":"n. 力量；强度"},
-    {"word":"strengthen","ipa":"/ˈstreŋθən/","aviationMeaning":"v. 加强；加强结构、安全措施、训练或系统可靠性","generalMeaning":"v. 加强；巩固"},
-    {"word":"strengthening","ipa":"/ˈstreŋθənɪŋ/","aviationMeaning":"v. 正加强；正在增强结构、安全措施或系统可靠性","generalMeaning":"v. 正加强；巩固"},
-    {"word":"strengths","ipa":"/streŋθs/","aviationMeaning":"n. 强度（复数）；多项风、材料、信号或结构指标","generalMeaning":"n. 力量；强项（复数）"},
-    {"word":"stress","ipa":"/stres/","aviationMeaning":"n. 应力；结构承受的力；也指人员工作压力","generalMeaning":"n. 压力；应力"},
-    {"word":"stressed","ipa":"/strest/","aviationMeaning":"adj. 压力大的；机组或人员承受较高工作压力的","generalMeaning":"adj. 紧张的；强调的"},
-    {"word":"stressful","ipa":"/ˈstresfəl/","aviationMeaning":"adj. 压力大的；飞行、应急或高工作负荷情景造成紧张的","generalMeaning":"adj. 压力大的；紧张的"},
-    {"word":"stressing","ipa":"/ˈstresɪŋ/","aviationMeaning":"v. 正强调；正在突出安全、程序或运行重点","generalMeaning":"v. 正强调；使紧张"},
-    {"word":"stretch","ipa":"/stretʃ/","aviationMeaning":"n. 一段；跑道、航路或飞行时间的一段距离","generalMeaning":"n. 伸展；一段"},
-    {"word":"stretcher","ipa":"/ˈstretʃər/","aviationMeaning":"n. 担架；运输受伤或患病旅客、机组人员的医疗设备","generalMeaning":"n. 担架；拉伸者"},
-    {"word":"strict","ipa":"/strɪkt/","aviationMeaning":"adj. 严格的；必须精确遵守的安全、程序或限制要求","generalMeaning":"adj. 严格的；严厉的"},
-    {"word":"stricter","ipa":"/ˈstrɪktər/","aviationMeaning":"adj. 更严格的；对安全、程序或限制提出更高要求的","generalMeaning":"adj. 更严格的"},
-    {"word":"strictest","ipa":"/ˈstrɪktɪst/","aviationMeaning":"adj. 最严格的；要求最高的安全、程序或限制标准","generalMeaning":"adj. 最严格的"},
-    {"word":"strike","ipa":"/straɪk/","aviationMeaning":"n. 撞击；如鸟击、雷击、尾击或结构撞击事件","generalMeaning":"n. 罢工；v. 打击"},
-    {"word":"strikes","ipa":"/straɪks/","aviationMeaning":"n. 撞击（复数）；鸟击、雷击或其他碰撞事件","generalMeaning":"n. 罢工；撞击（复数）"},
-    {"word":"striking","ipa":"/ˈstraɪkɪŋ/","aviationMeaning":"v. 正撞击；鸟、雷电或物体正在碰撞航空器或设施","generalMeaning":"v. 正打击；adj. 显著的"},
-    {"word":"strip","ipa":"/strɪp/","aviationMeaning":"n. 带状区域；跑道带、航图条带或管制进程单","generalMeaning":"n. 条；带；v. 剥去"},
-    {"word":"stroke","ipa":"/stroʊk/","aviationMeaning":"n. 中风；旅客或机组突发神经系统医疗紧急状况","generalMeaning":"n. 中风；一击"},
-    {"word":"strong","ipa":"/strɔːŋ/","aviationMeaning":"adj. 强的；风、信号、结构或动力强度较大的","generalMeaning":"adj. 强壮的；强的"},
-    {"word":"strong-crosswind","ipa":"/strɔːŋ ˈkrɔːswɪnd/","aviationMeaning":"n. 强侧风；横向风分量很大、显著影响起降控制的风","generalMeaning":"n. 强侧风"},
-    {"word":"stronger","ipa":"/ˈstrɔːŋɡər/","aviationMeaning":"adj. 更强的；风、信号、结构或动力强度更大的","generalMeaning":"adj. 更强壮的；更强的"},
-    {"word":"stronger-than-expected","ipa":"/ˈstrɔːŋɡər ðæn ɪkˈspektɪd/","aviationMeaning":"adj. 比预期强的；风、颠簸、需求或参数超过预测的","generalMeaning":"adj. 比预期强的"},
-    {"word":"strongest","ipa":"/ˈstrɔːŋɡɪst/","aviationMeaning":"adj. 最强的；风、信号或动力强度最大的","generalMeaning":"adj. 最强壮的；最强的"},
-    {"word":"strongly","ipa":"/ˈstrɔːŋli/","aviationMeaning":"adv. 强烈地；显著影响飞行、运行或安全地","generalMeaning":"adv. 强烈地；坚决地"},
-    {"word":"struck","ipa":"/strʌk/","aviationMeaning":"v. 已撞击；鸟、雷电或物体已经碰撞航空器或设施","generalMeaning":"v. strike 的过去式；打击"},
-    {"word":"structural","ipa":"/ˈstrʌktʃərəl/","aviationMeaning":"adj. 结构的；与机体、机翼、机身或承力部件有关的","generalMeaning":"adj. 结构的；构造上的"},
-    {"word":"structure","ipa":"/ˈstrʌktʃər/","aviationMeaning":"n. 结构；航空器、机场设施或设备的组成框架","generalMeaning":"n. 结构；构造"},
-    {"word":"structured","ipa":"/ˈstrʌktʃərd/","aviationMeaning":"adj. 结构化的；按明确程序、层次或格式组织的","generalMeaning":"adj. 结构化的；有组织的"},
-    {"word":"struggle","ipa":"/ˈstrʌɡəl/","aviationMeaning":"v. 困难应对；机组或系统难以维持控制或完成任务","generalMeaning":"v. 奋斗；挣扎"},
-    {"word":"struggling","ipa":"/ˈstrʌɡəlɪŋ/","aviationMeaning":"v. 正困难应对；机组或系统正难以维持控制或完成任务","generalMeaning":"v. 正挣扎；奋斗"},
-    {"word":"strut","ipa":"/strʌt/","aviationMeaning":"n. 支柱；起落架或结构中承受载荷的支撑构件","generalMeaning":"n. 支柱；v. 趾高气扬地走"},
-    {"word":"struts","ipa":"/strʌts/","aviationMeaning":"n. 支柱（复数）；起落架或结构中多个承载支撑构件","generalMeaning":"n. 支柱（复数）"},
-    {"word":"stuck","ipa":"/stʌk/","aviationMeaning":"adj. 卡住的；开关、部件、车辆或航空器无法正常移动的","generalMeaning":"adj. 卡住的；困住的"},
-    {"word":"student","ipa":"/ˈstuːdənt/","aviationMeaning":"n. 学员；正在接受飞行、维修或航空培训的人员","generalMeaning":"n. 学生"},
-    {"word":"studied","ipa":"/ˈstʌdid/","aviationMeaning":"v. 已学习；已研究飞行、程序或安全资料","generalMeaning":"v. 已学习；研究"},
-    {"word":"studies","ipa":"/ˈstʌdiz/","aviationMeaning":"n. 研究（复数）；航空安全、性能或人因相关研究","generalMeaning":"n. 学习；研究（复数）"},
-    {"word":"study","ipa":"/ˈstʌdi/","aviationMeaning":"v. 学习；学习飞行、程序、航图或安全资料","generalMeaning":"v. 学习；n. 研究"},
-    {"word":"studying","ipa":"/ˈstʌdiɪŋ/","aviationMeaning":"v. 正学习；正在学习飞行、程序或安全资料","generalMeaning":"v. 正学习；研究"},
-    {"word":"stuff","ipa":"/stʌf/","aviationMeaning":"n. 物品；客舱、货舱或设备中的各类物件","generalMeaning":"n. 东西；物品"},
-    {"word":"stumbled","ipa":"/ˈstʌmbəld/","aviationMeaning":"v. 绊倒；人员在机坪、客舱或撤离中失去平衡","generalMeaning":"v. 绊倒；结巴"},
-    {"word":"style","ipa":"/staɪl/","aviationMeaning":"n. 方式；飞行操纵、通话或运行管理的做法","generalMeaning":"n. 风格；样式"},
-    {"word":"subject","ipa":"/ˈsʌbdʒekt/","aviationMeaning":"n. 主题；培训、报告或讨论涉及的事项","generalMeaning":"n. 主题；科目"},
-    {"word":"subjective","ipa":"/səbˈdʒektɪv/","aviationMeaning":"adj. 主观的；基于个人感受而非客观数据的判断","generalMeaning":"adj. 主观的"},
-    {"word":"subjects","ipa":"/ˈsʌbdʒekts/","aviationMeaning":"n. 主题（复数）；多个培训、报告或讨论事项","generalMeaning":"n. 主题；科目（复数）"},
-    {"word":"submerging","ipa":"/səbˈmɜːrdʒɪŋ/","aviationMeaning":"v. 正淹没；航空器、设备或人员正进入水中","generalMeaning":"v. 正淹没；浸没"},
-    {"word":"submit","ipa":"/səbˈmɪt/","aviationMeaning":"v. 提交；提交飞行计划、报告、申请或维修记录","generalMeaning":"v. 提交；服从"},
-    {"word":"submitted","ipa":"/səbˈmɪtɪd/","aviationMeaning":"adj. 已提交的；飞行计划、报告或申请已递交","generalMeaning":"adj. 已提交的"},
-    {"word":"subsequent","ipa":"/ˈsʌbsɪkwənt/","aviationMeaning":"adj. 随后的；在当前飞行、步骤或事件之后发生的","generalMeaning":"adj. 随后的；后来的"},
-    {"word":"subsequently","ipa":"/ˈsʌbsɪkwəntli/","aviationMeaning":"adv. 随后；在当前飞行、步骤或事件之后","generalMeaning":"adv. 随后；后来"},
-    {"word":"subsided","ipa":"/səbˈsaɪdɪd/","aviationMeaning":"v. 已减弱；风、颠簸、告警或症状已降低","generalMeaning":"v. 已减弱；下沉"},
-    {"word":"substance","ipa":"/ˈsʌbstəns/","aviationMeaning":"n. 物质；燃油、液压油、化学品或危险品材料","generalMeaning":"n. 物质；实质"},
-    {"word":"substances","ipa":"/ˈsʌbstənsɪz/","aviationMeaning":"n. 物质（复数）；燃油、化学品或危险品材料","generalMeaning":"n. 物质；实质（复数）"},
-    {"word":"substantial","ipa":"/səbˈstænʃəl/","aviationMeaning":"adj. 大量的；对燃油、载荷、风险或性能有明显影响的","generalMeaning":"adj. 大量的；实质性的"},
-    {"word":"substantially","ipa":"/səbˈstænʃəli/","aviationMeaning":"adv. 大幅地；以对燃油、载荷、风险或性能有明显影响的程度","generalMeaning":"adv. 大幅地；实质上"},
-    {"word":"substitute","ipa":"/ˈsʌbstɪtuːt/","aviationMeaning":"n. 替代物；替代机场、部件、人员或程序","generalMeaning":"n. 替代物；v. 替换"},
-    {"word":"subsystems","ipa":"/ˈsʌbsɪstəmz/","aviationMeaning":"n. 子系统（复数）；大型航空器或设备系统中的组成部分","generalMeaning":"n. 子系统（复数）"},
-    {"word":"subtle","ipa":"/ˈsʌtəl/","aviationMeaning":"adj. 细微的；不易察觉但可能影响飞行或系统状态的","generalMeaning":"adj. 微妙的；细微的"},
-    {"word":"succeed","ipa":"/səkˈsiːd/","aviationMeaning":"v. 成功；成功完成飞行、训练、处置或任务","generalMeaning":"v. 成功；继承"},
-    {"word":"succeeding","ipa":"/səkˈsiːdɪŋ/","aviationMeaning":"v. 正成功完成；正在完成飞行、训练或任务","generalMeaning":"v. 正成功；继承"},
-    {"word":"success","ipa":"/səkˈses/","aviationMeaning":"n. 成功；飞行、训练、处置或运行达到预期目标","generalMeaning":"n. 成功；成就"},
-    {"word":"successful","ipa":"/səkˈsesfəl/","aviationMeaning":"adj. 成功的；飞行、训练、处置或运行达到预期目标的","generalMeaning":"adj. 成功的"},
-    {"word":"successfully","ipa":"/səkˈsesfəli/","aviationMeaning":"adv. 成功地；按预期完成飞行、训练或处置","generalMeaning":"adv. 成功地"},
-    {"word":"succession","ipa":"/səkˈseʃən/","aviationMeaning":"n. 连续；按先后顺序发生的航班、事件或操作","generalMeaning":"n. 连续；继承"},
-    {"word":"successive","ipa":"/səkˈsesɪv/","aviationMeaning":"adj. 连续的；一个接一个发生的航班、事件或操作","generalMeaning":"adj. 连续的；相继的"},
-    {"word":"such","ipa":"/sʌtʃ/","aviationMeaning":"adj. 这样的；指代前述飞行、设备或运行情况","generalMeaning":"adj. 这样的；如此的"},
-    {"word":"sucked","ipa":"/sʌkt/","aviationMeaning":"v. 已吸入；发动机或系统已将空气、燃油或异物吸入","generalMeaning":"v. 已吸；很差"},
-    {"word":"sudan","ipa":"/suːˈdɑːn/","aviationMeaning":"n. 苏丹；机场、空域或航线所在国","generalMeaning":"n. 苏丹"},
-    {"word":"sudden","ipa":"/ˈsʌdən/","aviationMeaning":"adj. 突然的；高度、速度、天气或系统状态快速变化的","generalMeaning":"adj. 突然的"},
-    {"word":"suddenly","ipa":"/ˈsʌdənli/","aviationMeaning":"adv. 突然地；高度、速度、天气或系统状态快速变化","generalMeaning":"adv. 突然地"},
-    {"word":"suffer","ipa":"/ˈsʌfər/","aviationMeaning":"v. 遭受；遭受故障、损伤、延误或性能下降","generalMeaning":"v. 遭受；受苦"},
-    {"word":"suffered","ipa":"/ˈsʌfərd/","aviationMeaning":"v. 已遭受；已发生故障、损伤、延误或性能下降","generalMeaning":"v. 已遭受；受苦"},
-    {"word":"suffering","ipa":"/ˈsʌfərɪŋ/","aviationMeaning":"v. 正遭受；正在出现故障、损伤或性能下降","generalMeaning":"v. 正遭受；受苦"},
-    {"word":"suffers","ipa":"/ˈsʌfərz/","aviationMeaning":"v. 遭受；发生故障、损伤、延误或性能下降","generalMeaning":"v. 遭受；受苦"}
+    {
+      "word": "stored",
+      "ipa": "/stɔːrd/",
+      "aviationMeaning": "adj. 已储存的；燃油、货物、设备或数据已妥善存放",
+      "generalMeaning": "adj. 已储存的"
+    },
+    {
+      "word": "stores",
+      "ipa": "/stɔːrz/",
+      "aviationMeaning": "n. 储备品（复数）；航空器、机场或救援使用的物资",
+      "generalMeaning": "n. 商店；储备品（复数）"
+    },
+    {
+      "word": "stories",
+      "ipa": "/ˈstɔːriz/",
+      "aviationMeaning": "n. 事件经过（复数）；需结合原文",
+      "generalMeaning": "n. 故事；楼层（复数）"
+    },
+    {
+      "word": "storm",
+      "ipa": "/stɔːrm/",
+      "aviationMeaning": "n. 风暴；强风、雷暴、降水等严重天气系统",
+      "generalMeaning": "n. 风暴；v. 猛攻"
+    },
+    {
+      "word": "storms",
+      "ipa": "/stɔːrmz/",
+      "aviationMeaning": "n. 风暴（复数）；多个强风、雷暴或严重天气系统",
+      "generalMeaning": "n. 风暴（复数）"
+    },
+    {
+      "word": "stormy",
+      "ipa": "/ˈstɔːrmi/",
+      "aviationMeaning": "adj. 暴风雨的；伴有强风、雷暴或显著颠簸的",
+      "generalMeaning": "adj. 暴风雨的；激烈的"
+    },
+    {
+      "word": "story",
+      "ipa": "/ˈstɔːri/",
+      "aviationMeaning": "n. 事件经过；需结合原文",
+      "generalMeaning": "n. 故事；楼层"
+    },
+    {
+      "word": "stowage",
+      "ipa": "/ˈstoʊɪdʒ/",
+      "aviationMeaning": "n. 装载存放；货物、设备或客舱物品的固定和放置",
+      "generalMeaning": "n. 装载；存放"
+    },
+    {
+      "word": "stowaway",
+      "ipa": "/ˈstoʊəweɪ/",
+      "aviationMeaning": "n. 偷渡者；未经许可藏匿在航空器或货物中的人员",
+      "generalMeaning": "n. 偷渡者；藏匿者"
+    },
+    {
+      "word": "stowed",
+      "ipa": "/stoʊd/",
+      "aviationMeaning": "adj. 已存放的；货物、设备或客舱物品已固定放好",
+      "generalMeaning": "adj. 已存放的"
+    },
+    {
+      "word": "straight",
+      "ipa": "/streɪt/",
+      "aviationMeaning": "adj. 直的；保持直线航迹、跑道方向或不转弯进近",
+      "generalMeaning": "adj. 直的；正直的"
+    },
+    {
+      "word": "straight-in",
+      "ipa": "/ˌstreɪt ˈɪn/",
+      "aviationMeaning": "adj. 直进的；直接从最终进近航迹进入跑道的进近方式",
+      "generalMeaning": "adj. 直进的"
+    },
+    {
+      "word": "straits",
+      "ipa": "/streɪts/",
+      "aviationMeaning": "n. 海峡（复数）；越水飞行或地理航路中的狭窄水道",
+      "generalMeaning": "n. 海峡；困境（复数）"
+    },
+    {
+      "word": "stranded",
+      "ipa": "/ˈstrændɪd/",
+      "aviationMeaning": "adj. 滞留的；旅客、航空器或车辆因故障、天气等无法继续移动",
+      "generalMeaning": "adj. 滞留的；搁浅的"
+    },
+    {
+      "word": "strange",
+      "ipa": "/streɪndʒ/",
+      "aviationMeaning": "adj. 异常的；不熟悉或不符合预期的声音、状态或现象",
+      "generalMeaning": "adj. 奇怪的；陌生的"
+    },
+    {
+      "word": "strangely",
+      "ipa": "/ˈstreɪndʒli/",
+      "aviationMeaning": "adv. 异常地；以不符合预期的方式",
+      "generalMeaning": "adv. 奇怪地"
+    },
+    {
+      "word": "strap",
+      "ipa": "/stræp/",
+      "aviationMeaning": "n. 固定带；用于固定人员、货物或设备的带状约束件",
+      "generalMeaning": "n. 带子；皮带"
+    },
+    {
+      "word": "strategies",
+      "ipa": "/ˈstrætədʒiz/",
+      "aviationMeaning": "n. 策略（复数）；处理安全、流量、天气或运行问题的方案",
+      "generalMeaning": "n. 策略；战略（复数）"
+    },
+    {
+      "word": "strategy",
+      "ipa": "/ˈstrætədʒi/",
+      "aviationMeaning": "n. 策略；处理安全、流量、天气或运行问题的总体方案",
+      "generalMeaning": "n. 策略；战略"
+    },
+    {
+      "word": "strayed",
+      "ipa": "/streɪd/",
+      "aviationMeaning": "v. 已偏离；航空器、人员或车辆已偏离指定航路或区域",
+      "generalMeaning": "v. 已走失；偏离"
+    },
+    {
+      "word": "straying",
+      "ipa": "/ˈstreɪɪŋ/",
+      "aviationMeaning": "v. 正偏离；正在离开指定航路、区域或程序",
+      "generalMeaning": "v. 正走失；偏离"
+    },
+    {
+      "word": "streak",
+      "ipa": "/striːk/",
+      "aviationMeaning": "n. 条纹；机体表面、云层或显示器上的细长痕迹",
+      "generalMeaning": "n. 条纹；v. 飞跑"
+    },
+    {
+      "word": "streaks",
+      "ipa": "/striːks/",
+      "aviationMeaning": "n. 条纹（复数）；机体、云层或表面上的细长痕迹",
+      "generalMeaning": "n. 条纹（复数）；v. 飞跑"
+    },
+    {
+      "word": "streamline",
+      "ipa": "/ˈstriːmlaɪn/",
+      "aviationMeaning": "v. 简化；优化运行、程序或信息流以提高效率",
+      "generalMeaning": "v. 简化；使流线型化"
+    },
+    {
+      "word": "streams",
+      "ipa": "/striːmz/",
+      "aviationMeaning": "n. 气流（复数）；多股连续流动的空气或数据流",
+      "generalMeaning": "n. 小溪；流（复数）"
+    },
+    {
+      "word": "strength",
+      "ipa": "/streŋθ/",
+      "aviationMeaning": "n. 强度；风、材料、信号或结构承受力的大小",
+      "generalMeaning": "n. 力量；强度"
+    },
+    {
+      "word": "strengthen",
+      "ipa": "/ˈstreŋθən/",
+      "aviationMeaning": "v. 加强；加强结构、安全措施、训练或系统可靠性",
+      "generalMeaning": "v. 加强；巩固"
+    },
+    {
+      "word": "strengthening",
+      "ipa": "/ˈstreŋθənɪŋ/",
+      "aviationMeaning": "v. 正加强；正在增强结构、安全措施或系统可靠性",
+      "generalMeaning": "v. 正加强；巩固"
+    },
+    {
+      "word": "strengths",
+      "ipa": "/streŋθs/",
+      "aviationMeaning": "n. 强度（复数）；多项风、材料、信号或结构指标",
+      "generalMeaning": "n. 力量；强项（复数）"
+    },
+    {
+      "word": "stress",
+      "ipa": "/stres/",
+      "aviationMeaning": "n. 应力；结构承受的力；也指人员工作压力",
+      "generalMeaning": "n. 压力；应力"
+    },
+    {
+      "word": "stressed",
+      "ipa": "/strest/",
+      "aviationMeaning": "adj. 压力大的；机组或人员承受较高工作压力的",
+      "generalMeaning": "adj. 紧张的；强调的"
+    },
+    {
+      "word": "stressful",
+      "ipa": "/ˈstresfəl/",
+      "aviationMeaning": "adj. 压力大的；飞行、应急或高工作负荷情景造成紧张的",
+      "generalMeaning": "adj. 压力大的；紧张的"
+    },
+    {
+      "word": "stressing",
+      "ipa": "/ˈstresɪŋ/",
+      "aviationMeaning": "v. 正强调；正在突出安全、程序或运行重点",
+      "generalMeaning": "v. 正强调；使紧张"
+    },
+    {
+      "word": "stretch",
+      "ipa": "/stretʃ/",
+      "aviationMeaning": "n. 一段；跑道、航路或飞行时间的一段距离",
+      "generalMeaning": "n. 伸展；一段"
+    },
+    {
+      "word": "stretcher",
+      "ipa": "/ˈstretʃər/",
+      "aviationMeaning": "n. 担架；运输受伤或患病旅客、机组人员的医疗设备",
+      "generalMeaning": "n. 担架；拉伸者"
+    },
+    {
+      "word": "strict",
+      "ipa": "/strɪkt/",
+      "aviationMeaning": "adj. 严格的；必须精确遵守的安全、程序或限制要求",
+      "generalMeaning": "adj. 严格的；严厉的"
+    },
+    {
+      "word": "stricter",
+      "ipa": "/ˈstrɪktər/",
+      "aviationMeaning": "adj. 更严格的；对安全、程序或限制提出更高要求的",
+      "generalMeaning": "adj. 更严格的"
+    },
+    {
+      "word": "strike",
+      "ipa": "/straɪk/",
+      "aviationMeaning": "n. 撞击；如鸟击、雷击、尾击或结构撞击事件",
+      "generalMeaning": "n. 罢工；v. 打击"
+    },
+    {
+      "word": "strikes",
+      "ipa": "/straɪks/",
+      "aviationMeaning": "n. 撞击（复数）；鸟击、雷击或其他碰撞事件",
+      "generalMeaning": "n. 罢工；撞击（复数）"
+    },
+    {
+      "word": "striking",
+      "ipa": "/ˈstraɪkɪŋ/",
+      "aviationMeaning": "v. 正撞击；鸟、雷电或物体正在碰撞航空器或设施",
+      "generalMeaning": "v. 正打击；adj. 显著的"
+    },
+    {
+      "word": "strip",
+      "ipa": "/strɪp/",
+      "aviationMeaning": "n. 带状区域；跑道带、航图条带或管制进程单",
+      "generalMeaning": "n. 条；带；v. 剥去"
+    },
+    {
+      "word": "stroke",
+      "ipa": "/stroʊk/",
+      "aviationMeaning": "n. 中风；旅客或机组突发神经系统医疗紧急状况",
+      "generalMeaning": "n. 中风；一击"
+    },
+    {
+      "word": "strong",
+      "ipa": "/strɔːŋ/",
+      "aviationMeaning": "adj. 强的；风、信号、结构或动力强度较大的",
+      "generalMeaning": "adj. 强壮的；强的"
+    },
+    {
+      "word": "stronger",
+      "ipa": "/ˈstrɔːŋɡər/",
+      "aviationMeaning": "adj. 更强的；风、信号、结构或动力强度更大的",
+      "generalMeaning": "adj. 更强壮的；更强的"
+    },
+    {
+      "word": "stronger-than-expected",
+      "ipa": "/ˈstrɔːŋɡər ðæn ɪkˈspektɪd/",
+      "aviationMeaning": "adj. 比预期强的；风、颠簸、需求或参数超过预测的",
+      "generalMeaning": "adj. 比预期强的"
+    },
+    {
+      "word": "strongest",
+      "ipa": "/ˈstrɔːŋɡɪst/",
+      "aviationMeaning": "adj. 最强的；风、信号或动力强度最大的",
+      "generalMeaning": "adj. 最强壮的；最强的"
+    },
+    {
+      "word": "strongly",
+      "ipa": "/ˈstrɔːŋli/",
+      "aviationMeaning": "adv. 强烈地；显著影响飞行、运行或安全地",
+      "generalMeaning": "adv. 强烈地；坚决地"
+    },
+    {
+      "word": "struck",
+      "ipa": "/strʌk/",
+      "aviationMeaning": "v. 已撞击；鸟、雷电或物体已经碰撞航空器或设施",
+      "generalMeaning": "v. strike 的过去式；打击"
+    },
+    {
+      "word": "structural",
+      "ipa": "/ˈstrʌktʃərəl/",
+      "aviationMeaning": "adj. 结构的；与机体、机翼、机身或承力部件有关的",
+      "generalMeaning": "adj. 结构的；构造上的"
+    },
+    {
+      "word": "structure",
+      "ipa": "/ˈstrʌktʃər/",
+      "aviationMeaning": "n. 结构；航空器、机场设施或设备的组成框架",
+      "generalMeaning": "n. 结构；构造"
+    },
+    {
+      "word": "structured",
+      "ipa": "/ˈstrʌktʃərd/",
+      "aviationMeaning": "adj. 结构化的；按明确程序、层次或格式组织的",
+      "generalMeaning": "adj. 结构化的；有组织的"
+    },
+    {
+      "word": "struggle",
+      "ipa": "/ˈstrʌɡəl/",
+      "aviationMeaning": "v. 困难应对；机组或系统难以维持控制或完成任务",
+      "generalMeaning": "v. 奋斗；挣扎"
+    },
+    {
+      "word": "struggling",
+      "ipa": "/ˈstrʌɡəlɪŋ/",
+      "aviationMeaning": "v. 正困难应对；机组或系统正难以维持控制或完成任务",
+      "generalMeaning": "v. 正挣扎；奋斗"
+    },
+    {
+      "word": "strut",
+      "ipa": "/strʌt/",
+      "aviationMeaning": "n. 支柱；起落架或结构中承受载荷的支撑构件",
+      "generalMeaning": "n. 支柱；v. 趾高气扬地走"
+    },
+    {
+      "word": "struts",
+      "ipa": "/strʌts/",
+      "aviationMeaning": "n. 支柱（复数）；起落架或结构中多个承载支撑构件",
+      "generalMeaning": "n. 支柱（复数）"
+    },
+    {
+      "word": "stuck",
+      "ipa": "/stʌk/",
+      "aviationMeaning": "adj. 卡住的；开关、部件、车辆或航空器无法正常移动的",
+      "generalMeaning": "adj. 卡住的；困住的"
+    },
+    {
+      "word": "student",
+      "ipa": "/ˈstuːdənt/",
+      "aviationMeaning": "n. 学员；正在接受飞行、维修或航空培训的人员",
+      "generalMeaning": "n. 学生"
+    },
+    {
+      "word": "studied",
+      "ipa": "/ˈstʌdid/",
+      "aviationMeaning": "v. 已学习；已研究飞行、程序或安全资料",
+      "generalMeaning": "v. 已学习；研究"
+    },
+    {
+      "word": "studies",
+      "ipa": "/ˈstʌdiz/",
+      "aviationMeaning": "n. 研究（复数）；航空安全、性能或人因相关研究",
+      "generalMeaning": "n. 学习；研究（复数）"
+    },
+    {
+      "word": "study",
+      "ipa": "/ˈstʌdi/",
+      "aviationMeaning": "v. 学习；学习飞行、程序、航图或安全资料",
+      "generalMeaning": "v. 学习；n. 研究"
+    },
+    {
+      "word": "studying",
+      "ipa": "/ˈstʌdiɪŋ/",
+      "aviationMeaning": "v. 正学习；正在学习飞行、程序或安全资料",
+      "generalMeaning": "v. 正学习；研究"
+    },
+    {
+      "word": "stuff",
+      "ipa": "/stʌf/",
+      "aviationMeaning": "n. 物品；客舱、货舱或设备中的各类物件",
+      "generalMeaning": "n. 东西；物品"
+    },
+    {
+      "word": "stumbled",
+      "ipa": "/ˈstʌmbəld/",
+      "aviationMeaning": "v. 绊倒；人员在机坪、客舱或撤离中失去平衡",
+      "generalMeaning": "v. 绊倒；结巴"
+    },
+    {
+      "word": "style",
+      "ipa": "/staɪl/",
+      "aviationMeaning": "n. 方式；飞行操纵、通话或运行管理的做法",
+      "generalMeaning": "n. 风格；样式"
+    },
+    {
+      "word": "subject",
+      "ipa": "/ˈsʌbdʒekt/",
+      "aviationMeaning": "n. 主题；培训、报告或讨论涉及的事项",
+      "generalMeaning": "n. 主题；科目"
+    },
+    {
+      "word": "subjects",
+      "ipa": "/ˈsʌbdʒekts/",
+      "aviationMeaning": "n. 主题（复数）；多个培训、报告或讨论事项",
+      "generalMeaning": "n. 主题；科目（复数）"
+    },
+    {
+      "word": "submerging",
+      "ipa": "/səbˈmɜːrdʒɪŋ/",
+      "aviationMeaning": "v. 正淹没；航空器、设备或人员正进入水中",
+      "generalMeaning": "v. 正淹没；浸没"
+    },
+    {
+      "word": "submit",
+      "ipa": "/səbˈmɪt/",
+      "aviationMeaning": "v. 提交；提交飞行计划、报告、申请或维修记录",
+      "generalMeaning": "v. 提交；服从"
+    },
+    {
+      "word": "submitted",
+      "ipa": "/səbˈmɪtɪd/",
+      "aviationMeaning": "adj. 已提交的；飞行计划、报告或申请已递交",
+      "generalMeaning": "adj. 已提交的"
+    },
+    {
+      "word": "subsequent",
+      "ipa": "/ˈsʌbsɪkwənt/",
+      "aviationMeaning": "adj. 随后的；在当前飞行、步骤或事件之后发生的",
+      "generalMeaning": "adj. 随后的；后来的"
+    },
+    {
+      "word": "subsequently",
+      "ipa": "/ˈsʌbsɪkwəntli/",
+      "aviationMeaning": "adv. 随后；在当前飞行、步骤或事件之后",
+      "generalMeaning": "adv. 随后；后来"
+    },
+    {
+      "word": "subsided",
+      "ipa": "/səbˈsaɪdɪd/",
+      "aviationMeaning": "v. 已减弱；风、颠簸、告警或症状已降低",
+      "generalMeaning": "v. 已减弱；下沉"
+    },
+    {
+      "word": "substances",
+      "ipa": "/ˈsʌbstənsɪz/",
+      "aviationMeaning": "n. 物质（复数）；燃油、化学品或危险品材料",
+      "generalMeaning": "n. 物质；实质（复数）"
+    },
+    {
+      "word": "substantial",
+      "ipa": "/səbˈstænʃəl/",
+      "aviationMeaning": "adj. 大量的；对燃油、载荷、风险或性能有明显影响的",
+      "generalMeaning": "adj. 大量的；实质性的"
+    },
+    {
+      "word": "substantially",
+      "ipa": "/səbˈstænʃəli/",
+      "aviationMeaning": "adv. 大幅地；以对燃油、载荷、风险或性能有明显影响的程度",
+      "generalMeaning": "adv. 大幅地；实质上"
+    },
+    {
+      "word": "subsystems",
+      "ipa": "/ˈsʌbsɪstəmz/",
+      "aviationMeaning": "n. 子系统（复数）；大型航空器或设备系统中的组成部分",
+      "generalMeaning": "n. 子系统（复数）"
+    },
+    {
+      "word": "succeeding",
+      "ipa": "/səkˈsiːdɪŋ/",
+      "aviationMeaning": "v. 正成功完成；正在完成飞行、训练或任务",
+      "generalMeaning": "v. 正成功；继承"
+    },
+    {
+      "word": "success",
+      "ipa": "/səkˈses/",
+      "aviationMeaning": "n. 成功；飞行、训练、处置或运行达到预期目标",
+      "generalMeaning": "n. 成功；成就"
+    },
+    {
+      "word": "successful",
+      "ipa": "/səkˈsesfəl/",
+      "aviationMeaning": "adj. 成功的；飞行、训练、处置或运行达到预期目标的",
+      "generalMeaning": "adj. 成功的"
+    },
+    {
+      "word": "successfully",
+      "ipa": "/səkˈsesfəli/",
+      "aviationMeaning": "adv. 成功地；按预期完成飞行、训练或处置",
+      "generalMeaning": "adv. 成功地"
+    },
+    {
+      "word": "succession",
+      "ipa": "/səkˈseʃən/",
+      "aviationMeaning": "n. 连续；按先后顺序发生的航班、事件或操作",
+      "generalMeaning": "n. 连续；继承"
+    },
+    {
+      "word": "successive",
+      "ipa": "/səkˈsesɪv/",
+      "aviationMeaning": "adj. 连续的；一个接一个发生的航班、事件或操作",
+      "generalMeaning": "adj. 连续的；相继的"
+    },
+    {
+      "word": "such",
+      "ipa": "/sʌtʃ/",
+      "aviationMeaning": "adj. 这样的；指代前述飞行、设备或运行情况",
+      "generalMeaning": "adj. 这样的；如此的"
+    },
+    {
+      "word": "sucked",
+      "ipa": "/sʌkt/",
+      "aviationMeaning": "v. 已吸入；发动机或系统已将空气、燃油或异物吸入",
+      "generalMeaning": "v. 已吸；很差"
+    },
+    {
+      "word": "sudan",
+      "ipa": "/suːˈdɑːn/",
+      "aviationMeaning": "n. 苏丹；机场、空域或航线所在国",
+      "generalMeaning": "n. 苏丹"
+    },
+    {
+      "word": "sudden",
+      "ipa": "/ˈsʌdən/",
+      "aviationMeaning": "adj. 突然的；高度、速度、天气或系统状态快速变化的",
+      "generalMeaning": "adj. 突然的"
+    },
+    {
+      "word": "suddenly",
+      "ipa": "/ˈsʌdənli/",
+      "aviationMeaning": "adv. 突然地；高度、速度、天气或系统状态快速变化",
+      "generalMeaning": "adv. 突然地"
+    },
+    {
+      "word": "suffer",
+      "ipa": "/ˈsʌfər/",
+      "aviationMeaning": "v. 遭受；遭受故障、损伤、延误或性能下降",
+      "generalMeaning": "v. 遭受；受苦"
+    },
+    {
+      "word": "suffered",
+      "ipa": "/ˈsʌfərd/",
+      "aviationMeaning": "v. 已遭受；已发生故障、损伤、延误或性能下降",
+      "generalMeaning": "v. 已遭受；受苦"
+    },
+    {
+      "word": "suffering",
+      "ipa": "/ˈsʌfərɪŋ/",
+      "aviationMeaning": "v. 正遭受；正在出现故障、损伤或性能下降",
+      "generalMeaning": "v. 正遭受；受苦"
+    },
+    {
+      "word": "suffers",
+      "ipa": "/ˈsʌfərz/",
+      "aviationMeaning": "v. 遭受；发生故障、损伤、延误或性能下降",
+      "generalMeaning": "v. 遭受；受苦"
+    }
   ]
 }

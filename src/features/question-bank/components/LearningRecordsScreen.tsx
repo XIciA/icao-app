@@ -1,4 +1,4 @@
-import { Clock3, History, Sparkles, Target } from 'lucide-react-native';
+import { Clock3, History, Sparkles, Target } from '@/components/ui/icons';
 import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 

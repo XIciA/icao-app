@@ -1,105 +1,509 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"dapro","ipa":"/ˈdæproʊ/","aviationMeaning":"n. 航路点、呼号或专有名称","generalMeaning":"n. 专有名称；请结合原文"},
-    {"word":"dark","ipa":"/dɑːrk/","aviationMeaning":"adj. 黑暗的；夜航或照明不足的","generalMeaning":"adj. 黑暗的"},
-    {"word":"darkest","ipa":"/ˈdɑːrkɪst/","aviationMeaning":"adj. 最黑暗的；最低照明的","generalMeaning":"adj. 最黑暗的"},
-    {"word":"darkness","ipa":"/ˈdɑːrknəs/","aviationMeaning":"n. 黑暗；夜间飞行环境","generalMeaning":"n. 黑暗"},
-    {"word":"darwin","ipa":"/ˈdɑːrwɪn/","aviationMeaning":"n. 达尔文；机场所在城市","generalMeaning":"n. 达尔文（澳大利亚城市）"},
-    {"word":"dash","ipa":"/dæʃ/","aviationMeaning":"n. 短划线；仪表板；v. 冲刺","generalMeaning":"n. 短划线；猛冲"},
-    {"word":"dashboard","ipa":"/ˈdæʃbɔːrd/","aviationMeaning":"n. 仪表板；运行监控面板","generalMeaning":"n. 仪表盘；控制面板"},
-    {"word":"data","ipa":"/ˈdeɪtə/","aviationMeaning":"n. 数据；飞行、性能或运行数据","generalMeaning":"n. 数据；资料"},
-    {"word":"data-driven","ipa":"/ˈdeɪtə ˈdrɪvən/","aviationMeaning":"adj. 数据驱动的；基于运行数据的","generalMeaning":"adj. 数据驱动的"},
-    {"word":"data-link","ipa":"/ˈdeɪtə lɪŋk/","aviationMeaning":"n. 数据链；空地数据通信","generalMeaning":"n. 数据链路"},
-    {"word":"data-source","ipa":"/ˈdeɪtə sɔːrs/","aviationMeaning":"n. 数据源；飞行或运行信息来源","generalMeaning":"n. 数据来源"},
-    {"word":"database","ipa":"/ˈdeɪtəbeɪs/","aviationMeaning":"n. 数据库；导航、性能或运行数据库","generalMeaning":"n. 数据库"},
-    {"word":"date","ipa":"/deɪt/","aviationMeaning":"n. 日期；运行计划日期","generalMeaning":"n. 日期；约会"},
-    {"word":"dates","ipa":"/deɪts/","aviationMeaning":"n. 日期（复数）；排班或计划日期","generalMeaning":"n. 日期（复数）"},
-    {"word":"daughter","ipa":"/ˈdɔːtər/","aviationMeaning":"n. 女儿；旅客关系描述","generalMeaning":"n. 女儿"},
-    {"word":"dawn","ipa":"/dɔːn/","aviationMeaning":"n. 黎明；低照度飞行时段","generalMeaning":"n. 黎明；v. 开始明白"},
-    {"word":"day","ipa":"/deɪ/","aviationMeaning":"n. 日；白天运行时段","generalMeaning":"n. 日；白天"},
-    {"word":"daylight","ipa":"/ˈdeɪlaɪt/","aviationMeaning":"n. 日光；白天目视飞行条件","generalMeaning":"n. 日光；白昼"},
-    {"word":"days","ipa":"/deɪz/","aviationMeaning":"n. 天数；运行或维修日程（复数）","generalMeaning":"n. 日子（复数）"},
-    {"word":"daytime","ipa":"/ˈdeɪtaɪm/","aviationMeaning":"n. 白天；日间飞行时段","generalMeaning":"n. 白天"},
-    {"word":"dc","ipa":"/ˌdiː ˈsiː/","aviationMeaning":"n. 直流电（缩写）","generalMeaning":"n. 直流电"},
-    {"word":"de","ipa":"/də/","aviationMeaning":"n. 航空资料中的前缀或缩写；需结合原文","generalMeaning":"n. 前缀或缩写；请结合原文"},
-    {"word":"de-ice","ipa":"/diː aɪs/","aviationMeaning":"v. 除冰；清除航空器冰雪","generalMeaning":"v. 除冰"},
-    {"word":"de-icing","ipa":"/diː ˈaɪsɪŋ/","aviationMeaning":"n. 除冰；航空器除冰作业","generalMeaning":"n. 除冰"},
-    {"word":"de-identified","ipa":"/diː aɪˈdentɪfaɪd/","aviationMeaning":"adj. 已去标识化的；安全数据隐私处理的","generalMeaning":"adj. 已去除身份信息的"},
-    {"word":"dead","ipa":"/ded/","aviationMeaning":"adj. 无效的；断电的；失去生命体征的","generalMeaning":"adj. 死的；无效的"},
-    {"word":"deadliest","ipa":"/ˈdedliɪst/","aviationMeaning":"adj. 最致命的；事故严重程度描述","generalMeaning":"adj. 最致命的"},
-    {"word":"deal","ipa":"/diːl/","aviationMeaning":"v. 处理故障、天气或事件；n. 协议","generalMeaning":"v. 处理；n. 交易"},
-    {"word":"dealing","ipa":"/ˈdiːlɪŋ/","aviationMeaning":"v. 正处理故障、天气或事件","generalMeaning":"v. 正处理"},
-    {"word":"dear","ipa":"/dɪr/","aviationMeaning":"adj. 昂贵的；通话礼貌称呼","generalMeaning":"adj. 亲爱的；昂贵的"},
-    {"word":"death","ipa":"/deθ/","aviationMeaning":"n. 死亡；事故或医疗事件结果","generalMeaning":"n. 死亡"},
-    {"word":"debrief","ipa":"/diːˈbriːf/","aviationMeaning":"v. 复盘；n. 飞行后讲评","generalMeaning":"v. 询问情况；n. 讲评"},
-    {"word":"debriefed","ipa":"/diːˈbriːft/","aviationMeaning":"v. 已完成飞行后讲评","generalMeaning":"v. 已询问情况"},
-    {"word":"debriefing","ipa":"/diːˈbriːfɪŋ/","aviationMeaning":"n. 飞行后讲评；事件复盘","generalMeaning":"n. 讲评；情况汇报"},
-    {"word":"debriefings","ipa":"/diːˈbriːfɪŋz/","aviationMeaning":"n. 飞行后讲评（复数）","generalMeaning":"n. 讲评（复数）"},
-    {"word":"debris","ipa":"/dəˈbriː/","aviationMeaning":"n. 碎片；跑道异物或事故残骸","generalMeaning":"n. 碎片；残骸"},
-    {"word":"dec","ipa":"/dek/","aviationMeaning":"n. 十二月的缩写；运行日期月份","generalMeaning":"n. 十二月（缩写）"},
-    {"word":"decade","ipa":"/ˈdekeɪd/","aviationMeaning":"n. 十年；长期安全数据周期","generalMeaning":"n. 十年"},
-    {"word":"decades","ipa":"/ˈdekeɪdz/","aviationMeaning":"n. 十年（复数）；长期运行历史","generalMeaning":"n. 十年（复数）"},
-    {"word":"decay","ipa":"/dɪˈkeɪ/","aviationMeaning":"n. 衰减；信号、材料或性能衰退","generalMeaning":"n. 腐烂；衰退"},
-    {"word":"deceleration","ipa":"/diːˌseləˈreɪʃən/","aviationMeaning":"n. 减速；着陆后减速","generalMeaning":"n. 减速"},
-    {"word":"december","ipa":"/dɪˈsembər/","aviationMeaning":"n. 十二月；运行日期月份","generalMeaning":"n. 十二月"},
-    {"word":"decent","ipa":"/ˈdiːsənt/","aviationMeaning":"adj. 足够好的；可接受的运行条件","generalMeaning":"adj. 体面的；不错的"},
-    {"word":"decide","ipa":"/dɪˈsaɪd/","aviationMeaning":"v. 决定航路、运行方案或应急行动","generalMeaning":"v. 决定；判断"},
-    {"word":"decided","ipa":"/dɪˈsaɪdɪd/","aviationMeaning":"adj. 已决定的；已作出运行决策的","generalMeaning":"adj. 已决定的"},
-    {"word":"decides","ipa":"/dɪˈsaɪdz/","aviationMeaning":"v. 决定航路、运行方案或应急行动","generalMeaning":"v. 决定；判断"},
-    {"word":"deciding","ipa":"/dɪˈsaɪdɪŋ/","aviationMeaning":"v. 正决定航路、运行方案或应急行动","generalMeaning":"v. 正决定"},
-    {"word":"decimal","ipa":"/ˈdesɪməl/","aviationMeaning":"n. 小数；频率或数据中的小数位","generalMeaning":"n. 小数；adj. 十进制的"},
-    {"word":"decision","ipa":"/dɪˈsɪʒən/","aviationMeaning":"n. 决策；飞行运行决定","generalMeaning":"n. 决定；决心"},
-    {"word":"decision-maker","ipa":"/dɪˈsɪʒən ˌmeɪkər/","aviationMeaning":"n. 决策者；运行决策人员","generalMeaning":"n. 决策者"},
-    {"word":"decision-making","ipa":"/dɪˈsɪʒən ˌmeɪkɪŋ/","aviationMeaning":"n. 决策；机组决策能力","generalMeaning":"n. 决策"},
-    {"word":"decisions","ipa":"/dɪˈsɪʒənz/","aviationMeaning":"n. 决策（复数）；飞行运行决定","generalMeaning":"n. 决定（复数）"},
-    {"word":"decisive","ipa":"/dɪˈsaɪsɪv/","aviationMeaning":"adj. 果断的；对结果起决定作用的","generalMeaning":"adj. 决定性的；果断的"},
-    {"word":"deck","ipa":"/dek/","aviationMeaning":"n. 甲板；飞行甲板","generalMeaning":"n. 甲板；一副牌"},
-    {"word":"decks","ipa":"/deks/","aviationMeaning":"n. 飞行甲板或甲板（复数）","generalMeaning":"n. 甲板（复数）"},
-    {"word":"declaration","ipa":"/ˌdekləˈreɪʃən/","aviationMeaning":"n. 声明；紧急状态或燃油声明","generalMeaning":"n. 声明；宣言"},
-    {"word":"declare","ipa":"/dɪˈkler/","aviationMeaning":"v. 声明紧急状态、燃油状态或货物","generalMeaning":"v. 声明；宣布"},
-    {"word":"declared","ipa":"/dɪˈklerd/","aviationMeaning":"adj. 已声明的；已宣布紧急状态的","generalMeaning":"adj. 已宣布的"},
-    {"word":"declares","ipa":"/dɪˈklerz/","aviationMeaning":"v. 声明紧急状态、燃油状态或货物","generalMeaning":"v. 声明；宣布"},
-    {"word":"declaring","ipa":"/dɪˈklerɪŋ/","aviationMeaning":"v. 正声明紧急状态、燃油状态或货物","generalMeaning":"v. 正声明"},
-    {"word":"decline","ipa":"/dɪˈklaɪn/","aviationMeaning":"v. 拒绝许可或服务；n. 下降、衰退","generalMeaning":"v. 拒绝；n. 下降"},
-    {"word":"declined","ipa":"/dɪˈklaɪnd/","aviationMeaning":"v. 已拒绝许可或服务；已下降","generalMeaning":"v. 已拒绝；已下降"},
-    {"word":"declining","ipa":"/dɪˈklaɪnɪŋ/","aviationMeaning":"v. 正拒绝或下降；性能下降的","generalMeaning":"v. 正拒绝；下降"},
-    {"word":"decompression","ipa":"/ˌdiːkəmˈpreʃən/","aviationMeaning":"n. 失压；座舱压力快速下降","generalMeaning":"n. 减压；解压"},
-    {"word":"decrease","ipa":"/dɪˈkriːs/","aviationMeaning":"v. 减少推力、速度或高度；n. 减少","generalMeaning":"v. 减少；n. 减少"},
-    {"word":"decreased","ipa":"/dɪˈkriːst/","aviationMeaning":"adj. 已减少的；降低的","generalMeaning":"adj. 已减少的"},
-    {"word":"decreases","ipa":"/dɪˈkriːsɪz/","aviationMeaning":"v. 减少推力、速度或高度","generalMeaning":"v. 减少"},
-    {"word":"decreasing","ipa":"/dɪˈkriːsɪŋ/","aviationMeaning":"v. 正减少；下降的","generalMeaning":"v. 正减少；下降"},
-    {"word":"dedicated","ipa":"/ˈdedɪkeɪtɪd/","aviationMeaning":"adj. 专用的；专门配置的","generalMeaning":"adj. 专注的；专用的"},
-    {"word":"deemed","ipa":"/diːmd/","aviationMeaning":"v. 被视为；按程序认定","generalMeaning":"v. 被认为；视为"},
-    {"word":"deep","ipa":"/diːp/","aviationMeaning":"adj. 深的；深度或高度差大的","generalMeaning":"adj. 深的；深刻的"},
-    {"word":"defect","ipa":"/ˈdiːfekt/","aviationMeaning":"n. 缺陷；设备或结构故障","generalMeaning":"n. 缺点；缺陷"},
-    {"word":"defective","ipa":"/dɪˈfektɪv/","aviationMeaning":"adj. 有缺陷的；不适航的","generalMeaning":"adj. 有缺陷的"},
-    {"word":"defects","ipa":"/ˈdiːfekts/","aviationMeaning":"n. 缺陷；设备或结构故障（复数）","generalMeaning":"n. 缺点；缺陷（复数）"},
-    {"word":"defenses","ipa":"/dɪˈfensɪz/","aviationMeaning":"n. 防御层；安全屏障（复数）","generalMeaning":"n. 防御；防务（复数）"},
-    {"word":"defensive","ipa":"/dɪˈfensɪv/","aviationMeaning":"adj. 防御性的；防御性驾驶或飞行的","generalMeaning":"adj. 防御的"},
-    {"word":"defensively","ipa":"/dɪˈfensɪvli/","aviationMeaning":"adv. 防御性地；以安全裕度方式操作","generalMeaning":"adv. 防御性地"},
-    {"word":"deferred","ipa":"/dɪˈfɜːrd/","aviationMeaning":"adj. 已延期的；按 MEL 延后的维修","generalMeaning":"adj. 延期的；推迟的"},
-    {"word":"defi","ipa":"/ˌdiː iː ef ˈaɪ/","aviationMeaning":"n. 除颤器的非正式缩写","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"defibrilator","ipa":"/diːˈfɪbrəleɪtər/","aviationMeaning":"n. 题库原文中 defibrillator 的疑似拼写错误","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"defibrillator","ipa":"/diːˈfɪbrəleɪtər/","aviationMeaning":"n. 除颤器；机上医疗急救设备","generalMeaning":"n. 除颤器"},
-    {"word":"define","ipa":"/dɪˈfaɪn/","aviationMeaning":"v. 界定程序、限制或参数","generalMeaning":"v. 定义；界定"},
-    {"word":"defined","ipa":"/dɪˈfaɪnd/","aviationMeaning":"adj. 已界定的；明确规定的","generalMeaning":"adj. 已定义的"},
-    {"word":"defines","ipa":"/dɪˈfaɪnz/","aviationMeaning":"v. 界定程序、限制或参数","generalMeaning":"v. 定义；界定"},
-    {"word":"definitely","ipa":"/ˈdefɪnətli/","aviationMeaning":"adv. 确定地；明确确认的","generalMeaning":"adv. 肯定地；确实"},
-    {"word":"definition","ipa":"/ˌdefɪˈnɪʃən/","aviationMeaning":"n. 定义；程序、术语或参数定义","generalMeaning":"n. 定义；释义"},
-    {"word":"definitions","ipa":"/ˌdefɪˈnɪʃənz/","aviationMeaning":"n. 定义；术语释义（复数）","generalMeaning":"n. 定义；释义（复数）"},
-    {"word":"deflated","ipa":"/dɪˈfleɪtɪd/","aviationMeaning":"adj. 已放气的；轮胎或救生设备失压的","generalMeaning":"adj. 瘪的；泄气的"},
-    {"word":"deflection","ipa":"/dɪˈflekʃən/","aviationMeaning":"n. 偏转；操纵面或指针偏转","generalMeaning":"n. 偏转；偏斜"},
-    {"word":"deform","ipa":"/dɪˈfɔːrm/","aviationMeaning":"v. 使结构或部件变形","generalMeaning":"v. 使变形"},
-    {"word":"deformed","ipa":"/dɪˈfɔːrmd/","aviationMeaning":"adj. 已变形的；结构受损的","generalMeaning":"adj. 已变形的"},
-    {"word":"degradation","ipa":"/ˌdeɡrəˈdeɪʃən/","aviationMeaning":"n. 降级；系统、性能或服务退化","generalMeaning":"n. 降级；退化"},
-    {"word":"degrade","ipa":"/dɪˈɡreɪd/","aviationMeaning":"v. 使系统、性能或服务降级","generalMeaning":"v. 降低；退化"},
-    {"word":"degraded","ipa":"/dɪˈɡreɪdɪd/","aviationMeaning":"adj. 已降级的；性能下降的","generalMeaning":"adj. 退化的；降级的"},
-    {"word":"degraded-system","ipa":"/dɪˈɡreɪdɪd ˈsɪstəm/","aviationMeaning":"n. 降级系统；部分功能失效状态","generalMeaning":"n. 降级的系统"},
-    {"word":"degrades","ipa":"/dɪˈɡreɪdz/","aviationMeaning":"v. 使系统、性能或服务降级","generalMeaning":"v. 降低；退化"},
-    {"word":"degree","ipa":"/dɪˈɡriː/","aviationMeaning":"n. 度；温度、航向或角度单位","generalMeaning":"n. 度；程度；学位"},
-    {"word":"degrees","ipa":"/dɪˈɡriːz/","aviationMeaning":"n. 度（复数）；角度或温度单位","generalMeaning":"n. 度；程度（复数）"},
-    {"word":"dehydration","ipa":"/ˌdiːhaɪˈdreɪʃən/","aviationMeaning":"n. 脱水；机组或旅客医疗状态","generalMeaning":"n. 脱水"},
-    {"word":"deice","ipa":"/diːˈaɪs/","aviationMeaning":"v. 除冰；清除航空器冰雪","generalMeaning":"v. 除冰"}
+    {
+      "word": "dapro",
+      "ipa": "/ˈdæproʊ/",
+      "aviationMeaning": "n. 航路点、呼号或专有名称",
+      "generalMeaning": "n. 专有名称；请结合原文"
+    },
+    {
+      "word": "dark",
+      "ipa": "/dɑːrk/",
+      "aviationMeaning": "adj. 黑暗的；夜航或照明不足的",
+      "generalMeaning": "adj. 黑暗的"
+    },
+    {
+      "word": "darwin",
+      "ipa": "/ˈdɑːrwɪn/",
+      "aviationMeaning": "n. 达尔文；机场所在城市",
+      "generalMeaning": "n. 达尔文（澳大利亚城市）"
+    },
+    {
+      "word": "dash",
+      "ipa": "/dæʃ/",
+      "aviationMeaning": "n. 短划线；仪表板；v. 冲刺",
+      "generalMeaning": "n. 短划线；猛冲"
+    },
+    {
+      "word": "dashboard",
+      "ipa": "/ˈdæʃbɔːrd/",
+      "aviationMeaning": "n. 仪表板；运行监控面板",
+      "generalMeaning": "n. 仪表盘；控制面板"
+    },
+    {
+      "word": "data",
+      "ipa": "/ˈdeɪtə/",
+      "aviationMeaning": "n. 数据；飞行、性能或运行数据",
+      "generalMeaning": "n. 数据；资料"
+    },
+    {
+      "word": "data-driven",
+      "ipa": "/ˈdeɪtə ˈdrɪvən/",
+      "aviationMeaning": "adj. 数据驱动的；基于运行数据的",
+      "generalMeaning": "adj. 数据驱动的"
+    },
+    {
+      "word": "data-link",
+      "ipa": "/ˈdeɪtə lɪŋk/",
+      "aviationMeaning": "n. 数据链；空地数据通信",
+      "generalMeaning": "n. 数据链路"
+    },
+    {
+      "word": "database",
+      "ipa": "/ˈdeɪtəbeɪs/",
+      "aviationMeaning": "n. 数据库；导航、性能或运行数据库",
+      "generalMeaning": "n. 数据库"
+    },
+    {
+      "word": "date",
+      "ipa": "/deɪt/",
+      "aviationMeaning": "n. 日期；运行计划日期",
+      "generalMeaning": "n. 日期；约会"
+    },
+    {
+      "word": "dates",
+      "ipa": "/deɪts/",
+      "aviationMeaning": "n. 日期（复数）；排班或计划日期",
+      "generalMeaning": "n. 日期（复数）"
+    },
+    {
+      "word": "daughter",
+      "ipa": "/ˈdɔːtər/",
+      "aviationMeaning": "n. 女儿；旅客关系描述",
+      "generalMeaning": "n. 女儿"
+    },
+    {
+      "word": "dawn",
+      "ipa": "/dɔːn/",
+      "aviationMeaning": "n. 黎明；低照度飞行时段",
+      "generalMeaning": "n. 黎明；v. 开始明白"
+    },
+    {
+      "word": "day",
+      "ipa": "/deɪ/",
+      "aviationMeaning": "n. 日；白天运行时段",
+      "generalMeaning": "n. 日；白天"
+    },
+    {
+      "word": "daylight",
+      "ipa": "/ˈdeɪlaɪt/",
+      "aviationMeaning": "n. 日光；白天目视飞行条件",
+      "generalMeaning": "n. 日光；白昼"
+    },
+    {
+      "word": "days",
+      "ipa": "/deɪz/",
+      "aviationMeaning": "n. 天数；运行或维修日程（复数）",
+      "generalMeaning": "n. 日子（复数）"
+    },
+    {
+      "word": "daytime",
+      "ipa": "/ˈdeɪtaɪm/",
+      "aviationMeaning": "n. 白天；日间飞行时段",
+      "generalMeaning": "n. 白天"
+    },
+    {
+      "word": "dc",
+      "ipa": "/ˌdiː ˈsiː/",
+      "aviationMeaning": "n. 直流电（缩写）",
+      "generalMeaning": "n. 直流电"
+    },
+    {
+      "word": "de",
+      "ipa": "/də/",
+      "aviationMeaning": "n. 航空资料中的前缀或缩写；需结合原文",
+      "generalMeaning": "n. 前缀或缩写；请结合原文"
+    },
+    {
+      "word": "de-ice",
+      "ipa": "/diː aɪs/",
+      "aviationMeaning": "v. 除冰；清除航空器冰雪",
+      "generalMeaning": "v. 除冰"
+    },
+    {
+      "word": "de-icing",
+      "ipa": "/diː ˈaɪsɪŋ/",
+      "aviationMeaning": "n. 除冰；航空器除冰作业",
+      "generalMeaning": "n. 除冰"
+    },
+    {
+      "word": "dead",
+      "ipa": "/ded/",
+      "aviationMeaning": "adj. 无效的；断电的；失去生命体征的",
+      "generalMeaning": "adj. 死的；无效的"
+    },
+    {
+      "word": "deadliest",
+      "ipa": "/ˈdedliɪst/",
+      "aviationMeaning": "adj. 最致命的；事故严重程度描述",
+      "generalMeaning": "adj. 最致命的"
+    },
+    {
+      "word": "deal",
+      "ipa": "/diːl/",
+      "aviationMeaning": "v. 处理故障、天气或事件；n. 协议",
+      "generalMeaning": "v. 处理；n. 交易"
+    },
+    {
+      "word": "dealing",
+      "ipa": "/ˈdiːlɪŋ/",
+      "aviationMeaning": "v. 正处理故障、天气或事件",
+      "generalMeaning": "v. 正处理"
+    },
+    {
+      "word": "dear",
+      "ipa": "/dɪr/",
+      "aviationMeaning": "adj. 昂贵的；通话礼貌称呼",
+      "generalMeaning": "adj. 亲爱的；昂贵的"
+    },
+    {
+      "word": "death",
+      "ipa": "/deθ/",
+      "aviationMeaning": "n. 死亡；事故或医疗事件结果",
+      "generalMeaning": "n. 死亡"
+    },
+    {
+      "word": "debriefing",
+      "ipa": "/diːˈbriːfɪŋ/",
+      "aviationMeaning": "n. 飞行后讲评；事件复盘",
+      "generalMeaning": "n. 讲评；情况汇报"
+    },
+    {
+      "word": "debriefings",
+      "ipa": "/diːˈbriːfɪŋz/",
+      "aviationMeaning": "n. 飞行后讲评（复数）",
+      "generalMeaning": "n. 讲评（复数）"
+    },
+    {
+      "word": "debris",
+      "ipa": "/dəˈbriː/",
+      "aviationMeaning": "n. 碎片；跑道异物或事故残骸",
+      "generalMeaning": "n. 碎片；残骸"
+    },
+    {
+      "word": "dec",
+      "ipa": "/dek/",
+      "aviationMeaning": "n. 十二月的缩写；运行日期月份",
+      "generalMeaning": "n. 十二月（缩写）"
+    },
+    {
+      "word": "decade",
+      "ipa": "/ˈdekeɪd/",
+      "aviationMeaning": "n. 十年；长期安全数据周期",
+      "generalMeaning": "n. 十年"
+    },
+    {
+      "word": "decades",
+      "ipa": "/ˈdekeɪdz/",
+      "aviationMeaning": "n. 十年（复数）；长期运行历史",
+      "generalMeaning": "n. 十年（复数）"
+    },
+    {
+      "word": "decay",
+      "ipa": "/dɪˈkeɪ/",
+      "aviationMeaning": "n. 衰减；信号、材料或性能衰退",
+      "generalMeaning": "n. 腐烂；衰退"
+    },
+    {
+      "word": "deceleration",
+      "ipa": "/diːˌseləˈreɪʃən/",
+      "aviationMeaning": "n. 减速；着陆后减速",
+      "generalMeaning": "n. 减速"
+    },
+    {
+      "word": "december",
+      "ipa": "/dɪˈsembər/",
+      "aviationMeaning": "n. 十二月；运行日期月份",
+      "generalMeaning": "n. 十二月"
+    },
+    {
+      "word": "decent",
+      "ipa": "/ˈdiːsənt/",
+      "aviationMeaning": "adj. 足够好的；可接受的运行条件",
+      "generalMeaning": "adj. 体面的；不错的"
+    },
+    {
+      "word": "decide",
+      "ipa": "/dɪˈsaɪd/",
+      "aviationMeaning": "v. 决定航路、运行方案或应急行动",
+      "generalMeaning": "v. 决定；判断"
+    },
+    {
+      "word": "decided",
+      "ipa": "/dɪˈsaɪdɪd/",
+      "aviationMeaning": "adj. 已决定的；已作出运行决策的",
+      "generalMeaning": "adj. 已决定的"
+    },
+    {
+      "word": "decides",
+      "ipa": "/dɪˈsaɪdz/",
+      "aviationMeaning": "v. 决定航路、运行方案或应急行动",
+      "generalMeaning": "v. 决定；判断"
+    },
+    {
+      "word": "deciding",
+      "ipa": "/dɪˈsaɪdɪŋ/",
+      "aviationMeaning": "v. 正决定航路、运行方案或应急行动",
+      "generalMeaning": "v. 正决定"
+    },
+    {
+      "word": "decimal",
+      "ipa": "/ˈdesɪməl/",
+      "aviationMeaning": "n. 小数；频率或数据中的小数位",
+      "generalMeaning": "n. 小数；adj. 十进制的"
+    },
+    {
+      "word": "decision",
+      "ipa": "/dɪˈsɪʒən/",
+      "aviationMeaning": "n. 决策；飞行运行决定",
+      "generalMeaning": "n. 决定；决心"
+    },
+    {
+      "word": "decision-maker",
+      "ipa": "/dɪˈsɪʒən ˌmeɪkər/",
+      "aviationMeaning": "n. 决策者；运行决策人员",
+      "generalMeaning": "n. 决策者"
+    },
+    {
+      "word": "decision-making",
+      "ipa": "/dɪˈsɪʒən ˌmeɪkɪŋ/",
+      "aviationMeaning": "n. 决策；机组决策能力",
+      "generalMeaning": "n. 决策"
+    },
+    {
+      "word": "decisions",
+      "ipa": "/dɪˈsɪʒənz/",
+      "aviationMeaning": "n. 决策（复数）；飞行运行决定",
+      "generalMeaning": "n. 决定（复数）"
+    },
+    {
+      "word": "deck",
+      "ipa": "/dek/",
+      "aviationMeaning": "n. 甲板；飞行甲板",
+      "generalMeaning": "n. 甲板；一副牌"
+    },
+    {
+      "word": "decks",
+      "ipa": "/deks/",
+      "aviationMeaning": "n. 飞行甲板或甲板（复数）",
+      "generalMeaning": "n. 甲板（复数）"
+    },
+    {
+      "word": "declaration",
+      "ipa": "/ˌdekləˈreɪʃən/",
+      "aviationMeaning": "n. 声明；紧急状态或燃油声明",
+      "generalMeaning": "n. 声明；宣言"
+    },
+    {
+      "word": "declare",
+      "ipa": "/dɪˈkler/",
+      "aviationMeaning": "v. 声明紧急状态、燃油状态或货物",
+      "generalMeaning": "v. 声明；宣布"
+    },
+    {
+      "word": "declared",
+      "ipa": "/dɪˈklerd/",
+      "aviationMeaning": "adj. 已声明的；已宣布紧急状态的",
+      "generalMeaning": "adj. 已宣布的"
+    },
+    {
+      "word": "declares",
+      "ipa": "/dɪˈklerz/",
+      "aviationMeaning": "v. 声明紧急状态、燃油状态或货物",
+      "generalMeaning": "v. 声明；宣布"
+    },
+    {
+      "word": "declaring",
+      "ipa": "/dɪˈklerɪŋ/",
+      "aviationMeaning": "v. 正声明紧急状态、燃油状态或货物",
+      "generalMeaning": "v. 正声明"
+    },
+    {
+      "word": "declined",
+      "ipa": "/dɪˈklaɪnd/",
+      "aviationMeaning": "v. 已拒绝许可或服务；已下降",
+      "generalMeaning": "v. 已拒绝；已下降"
+    },
+    {
+      "word": "declining",
+      "ipa": "/dɪˈklaɪnɪŋ/",
+      "aviationMeaning": "v. 正拒绝或下降；性能下降的",
+      "generalMeaning": "v. 正拒绝；下降"
+    },
+    {
+      "word": "decompression",
+      "ipa": "/ˌdiːkəmˈpreʃən/",
+      "aviationMeaning": "n. 失压；座舱压力快速下降",
+      "generalMeaning": "n. 减压；解压"
+    },
+    {
+      "word": "decrease",
+      "ipa": "/dɪˈkriːs/",
+      "aviationMeaning": "v. 减少推力、速度或高度；n. 减少",
+      "generalMeaning": "v. 减少；n. 减少"
+    },
+    {
+      "word": "decreased",
+      "ipa": "/dɪˈkriːst/",
+      "aviationMeaning": "adj. 已减少的；降低的",
+      "generalMeaning": "adj. 已减少的"
+    },
+    {
+      "word": "decreases",
+      "ipa": "/dɪˈkriːsɪz/",
+      "aviationMeaning": "v. 减少推力、速度或高度",
+      "generalMeaning": "v. 减少"
+    },
+    {
+      "word": "decreasing",
+      "ipa": "/dɪˈkriːsɪŋ/",
+      "aviationMeaning": "v. 正减少；下降的",
+      "generalMeaning": "v. 正减少；下降"
+    },
+    {
+      "word": "dedicated",
+      "ipa": "/ˈdedɪkeɪtɪd/",
+      "aviationMeaning": "adj. 专用的；专门配置的",
+      "generalMeaning": "adj. 专注的；专用的"
+    },
+    {
+      "word": "deemed",
+      "ipa": "/diːmd/",
+      "aviationMeaning": "v. 被视为；按程序认定",
+      "generalMeaning": "v. 被认为；视为"
+    },
+    {
+      "word": "deep",
+      "ipa": "/diːp/",
+      "aviationMeaning": "adj. 深的；深度或高度差大的",
+      "generalMeaning": "adj. 深的；深刻的"
+    },
+    {
+      "word": "defect",
+      "ipa": "/ˈdiːfekt/",
+      "aviationMeaning": "n. 缺陷；设备或结构故障",
+      "generalMeaning": "n. 缺点；缺陷"
+    },
+    {
+      "word": "defective",
+      "ipa": "/dɪˈfektɪv/",
+      "aviationMeaning": "adj. 有缺陷的；不适航的",
+      "generalMeaning": "adj. 有缺陷的"
+    },
+    {
+      "word": "defects",
+      "ipa": "/ˈdiːfekts/",
+      "aviationMeaning": "n. 缺陷；设备或结构故障（复数）",
+      "generalMeaning": "n. 缺点；缺陷（复数）"
+    },
+    {
+      "word": "deferred",
+      "ipa": "/dɪˈfɜːrd/",
+      "aviationMeaning": "adj. 已延期的；按 MEL 延后的维修",
+      "generalMeaning": "adj. 延期的；推迟的"
+    },
+    {
+      "word": "defibrillator",
+      "ipa": "/diːˈfɪbrəleɪtər/",
+      "aviationMeaning": "n. 除颤器；机上医疗急救设备",
+      "generalMeaning": "n. 除颤器"
+    },
+    {
+      "word": "define",
+      "ipa": "/dɪˈfaɪn/",
+      "aviationMeaning": "v. 界定程序、限制或参数",
+      "generalMeaning": "v. 定义；界定"
+    },
+    {
+      "word": "defined",
+      "ipa": "/dɪˈfaɪnd/",
+      "aviationMeaning": "adj. 已界定的；明确规定的",
+      "generalMeaning": "adj. 已定义的"
+    },
+    {
+      "word": "defines",
+      "ipa": "/dɪˈfaɪnz/",
+      "aviationMeaning": "v. 界定程序、限制或参数",
+      "generalMeaning": "v. 定义；界定"
+    },
+    {
+      "word": "definitely",
+      "ipa": "/ˈdefɪnətli/",
+      "aviationMeaning": "adv. 确定地；明确确认的",
+      "generalMeaning": "adv. 肯定地；确实"
+    },
+    {
+      "word": "definition",
+      "ipa": "/ˌdefɪˈnɪʃən/",
+      "aviationMeaning": "n. 定义；程序、术语或参数定义",
+      "generalMeaning": "n. 定义；释义"
+    },
+    {
+      "word": "definitions",
+      "ipa": "/ˌdefɪˈnɪʃənz/",
+      "aviationMeaning": "n. 定义；术语释义（复数）",
+      "generalMeaning": "n. 定义；释义（复数）"
+    },
+    {
+      "word": "deflated",
+      "ipa": "/dɪˈfleɪtɪd/",
+      "aviationMeaning": "adj. 已放气的；轮胎或救生设备失压的",
+      "generalMeaning": "adj. 瘪的；泄气的"
+    },
+    {
+      "word": "deflection",
+      "ipa": "/dɪˈflekʃən/",
+      "aviationMeaning": "n. 偏转；操纵面或指针偏转",
+      "generalMeaning": "n. 偏转；偏斜"
+    },
+    {
+      "word": "deformed",
+      "ipa": "/dɪˈfɔːrmd/",
+      "aviationMeaning": "adj. 已变形的；结构受损的",
+      "generalMeaning": "adj. 已变形的"
+    },
+    {
+      "word": "degradation",
+      "ipa": "/ˌdeɡrəˈdeɪʃən/",
+      "aviationMeaning": "n. 降级；系统、性能或服务退化",
+      "generalMeaning": "n. 降级；退化"
+    },
+    {
+      "word": "degrade",
+      "ipa": "/dɪˈɡreɪd/",
+      "aviationMeaning": "v. 使系统、性能或服务降级",
+      "generalMeaning": "v. 降低；退化"
+    },
+    {
+      "word": "degraded",
+      "ipa": "/dɪˈɡreɪdɪd/",
+      "aviationMeaning": "adj. 已降级的；性能下降的",
+      "generalMeaning": "adj. 退化的；降级的"
+    },
+    {
+      "word": "degree",
+      "ipa": "/dɪˈɡriː/",
+      "aviationMeaning": "n. 度；温度、航向或角度单位",
+      "generalMeaning": "n. 度；程度；学位"
+    },
+    {
+      "word": "degrees",
+      "ipa": "/dɪˈɡriːz/",
+      "aviationMeaning": "n. 度（复数）；角度或温度单位",
+      "generalMeaning": "n. 度；程度（复数）"
+    },
+    {
+      "word": "dehydration",
+      "ipa": "/ˌdiːhaɪˈdreɪʃən/",
+      "aviationMeaning": "n. 脱水；机组或旅客医疗状态",
+      "generalMeaning": "n. 脱水"
+    },
+    {
+      "word": "deice",
+      "ipa": "/diːˈaɪs/",
+      "aviationMeaning": "v. 除冰；清除航空器冰雪",
+      "generalMeaning": "v. 除冰"
+    }
   ]
 }

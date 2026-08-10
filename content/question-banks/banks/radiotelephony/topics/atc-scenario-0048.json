@@ -162,7 +162,7 @@
       "taskTitle": "ACA 909-18",
       "audioText": "C: ACA 909, Wuhan Approach, roger, radar contact, follow ZF-1A arrival and descend to 1800 meters on QNH 1013, information D is valid.\nB: Read back the controller's instruction and ask the detail of Information D, because you could not receive the Information on the radio.",
       "audioTextZh": "C: ACA 909，武汉进近，收到，雷达识别，执行 ZF-1A 进场，按 QNH 1013 下降到 1800 米，信息 D 有效。\nB: 复诵管制员指令，并询问信息 D 的详情，因为你无法通过无线电接收该信息。",
-      "referenceText": "Follow ZF-1A arrival, descend to 1800 meters on QNH 1013, can you repeat the ATIS ? being unable to pick up on the radio.",
+      "referenceText": "Follow ZF-1A arrival, descend to 1800 meters on QNH 1013, can you repeat the ATIS? We are unable to pick it up on the radio.",
       "referenceTextZh": "执行 ZF-1A 进场，按 QNH 1013 下降到 1800 米，请重复 ATIS？无线电无法收到。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/834.mp3"
     },

@@ -1,105 +1,521 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"afternoon","ipa":"/ˌæftərˈnuːn/","aviationMeaning":"n. 下午时段；航班运行时间","generalMeaning":"n. 下午"},
-    {"word":"afterward","ipa":"/ˈæftərwərd/","aviationMeaning":"adv. 在飞行、程序或事件之后","generalMeaning":"adv. 后来；随后"},
-    {"word":"afterwards","ipa":"/ˈæftərwərdz/","aviationMeaning":"adv. 在飞行、程序或事件之后","generalMeaning":"adv. 后来；随后"},
-    {"word":"aftmost","ipa":"/ˈæftmoʊst/","aviationMeaning":"adj. 最靠近机尾的","generalMeaning":"adj. 最后的；最靠后的"},
-    {"word":"again","ipa":"/əˈɡen/","aviationMeaning":"adv. 再次；要求重复通话或操作","generalMeaning":"adv. 再；又"},
-    {"word":"against","ipa":"/əˈɡenst/","aviationMeaning":"prep. 逆着风、限制或参照物","generalMeaning":"prep. 反对；靠着；逆着"},
-    {"word":"age","ipa":"/eɪdʒ/","aviationMeaning":"n. 航空器、部件或人员的年限","generalMeaning":"n. 年龄；时代"},
-    {"word":"aged","ipa":"/eɪdʒd/","aviationMeaning":"adj. 已服役一定年限的；老化的","generalMeaning":"adj. 年老的；陈年的"},
-    {"word":"agent","ipa":"/ˈeɪdʒənt/","aviationMeaning":"n. 地面服务代理人；航空代理","generalMeaning":"n. 代理人；特工；作用剂"},
-    {"word":"agents","ipa":"/ˈeɪdʒənts/","aviationMeaning":"n. 地面服务代理人；航空代理（复数）","generalMeaning":"n. 代理人；作用剂（复数）"},
-    {"word":"aggressive","ipa":"/əˈɡresɪv/","aviationMeaning":"adj. 过于激进的；强烈的","generalMeaning":"adj. 好斗的；积极进取的"},
-    {"word":"aging","ipa":"/ˈeɪdʒɪŋ/","aviationMeaning":"n. 航空器或部件老化","generalMeaning":"n. 老化；变老"},
-    {"word":"agl","ipa":"/ˌeɪ dʒiː ˈel/","aviationMeaning":"n. 距地高度（缩写）","generalMeaning":"n. 高度表示缩写"},
-    {"word":"ago","ipa":"/əˈɡoʊ/","aviationMeaning":"adv. 以前；用于报告已过去的时间","generalMeaning":"adv. 以前"},
-    {"word":"agree","ipa":"/əˈɡriː/","aviationMeaning":"v. 同意许可、计划或协调安排","generalMeaning":"v. 同意；一致"},
-    {"word":"agreed","ipa":"/əˈɡriːd/","aviationMeaning":"adj. 已协调一致的；已同意的","generalMeaning":"adj. 已同意的；一致的"},
-    {"word":"agreeing","ipa":"/əˈɡriːɪŋ/","aviationMeaning":"v. 正在同意许可、计划或协调安排","generalMeaning":"v. 正在同意；达成一致"},
-    {"word":"agreement","ipa":"/əˈɡriːmənt/","aviationMeaning":"n. 运行协调协议；一致意见","generalMeaning":"n. 协议；一致"},
-    {"word":"ah","ipa":"/ɑː/","aviationMeaning":"interj. 通话中的犹豫或确认语气词","generalMeaning":"interj. 啊；呀"},
-    {"word":"ahead","ipa":"/əˈhed/","aviationMeaning":"adv. 在前方；继续执行","generalMeaning":"adv. 在前面；向前"},
-    {"word":"ahmedabad","ipa":"/ˌɑːmədɑːˈbɑːd/","aviationMeaning":"n. 艾哈迈达巴德（机场所在城市）","generalMeaning":"n. 艾哈迈达巴德（印度城市）"},
-    {"word":"ai","ipa":"/ˌeɪ ˈaɪ/","aviationMeaning":"n. 人工智能；航空系统智能化能力","generalMeaning":"n. 人工智能（缩写）"},
-    {"word":"aib","ipa":"/ˌeɪ aɪ ˈbiː/","aviationMeaning":"n. 航空事故调查机构（缩写）","generalMeaning":"n. 机构名称缩写"},
-    {"word":"aid","ipa":"/eɪd/","aviationMeaning":"n. 导航辅助设备；援助","generalMeaning":"n. 帮助；援助；辅助物"},
-    {"word":"aids","ipa":"/eɪdz/","aviationMeaning":"n. 导航辅助设备；援助（复数）","generalMeaning":"n. 帮助；辅助物（复数）"},
-    {"word":"aiebus","ipa":"/ˈerbʌs/","aviationMeaning":"n. 题库原文中的 Airbus 疑似拼写错误","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"aileron","ipa":"/ˈeɪlərɑːn/","aviationMeaning":"n. 副翼","generalMeaning":"n. 副翼"},
-    {"word":"ailerons","ipa":"/ˈeɪlərɑːnz/","aviationMeaning":"n. 副翼（复数）","generalMeaning":"n. 副翼（复数）"},
-    {"word":"aim","ipa":"/eɪm/","aviationMeaning":"n. 飞行、训练或安全目标","generalMeaning":"n. 目标；v. 瞄准；旨在"},
-    {"word":"aims","ipa":"/eɪmz/","aviationMeaning":"v. 以运行、训练或安全目标为目的","generalMeaning":"v. 旨在；瞄准"},
-    {"word":"aip","ipa":"/ˌeɪ aɪ ˈpiː/","aviationMeaning":"n. 航空资料汇编（缩写）","generalMeaning":"n. 文件名称缩写"},
-    {"word":"air","ipa":"/er/","aviationMeaning":"n. 空气；空域；航空运行","generalMeaning":"n. 空气；天空；气氛"},
-    {"word":"air-conditioning","ipa":"/ˈer kəndɪʃənɪŋ/","aviationMeaning":"n. 飞机空调与环境控制","generalMeaning":"n. 空调"},
-    {"word":"air-data","ipa":"/ˈer ˌdeɪtə/","aviationMeaning":"n. 空气数据；大气参数","generalMeaning":"n. 空气数据"},
-    {"word":"air-ground","ipa":"/ˈer ˈɡraʊnd/","aviationMeaning":"adj. 空地通信或空地协同的","generalMeaning":"adj. 空中与地面的"},
-    {"word":"air-to-air","ipa":"/ˈer tə ˈer/","aviationMeaning":"adj. 空对空通信或运行的","generalMeaning":"adj. 空对空的"},
-    {"word":"air-upset","ipa":"/ˈer ʌpˌset/","aviationMeaning":"n. 飞机异常姿态；失控状态","generalMeaning":"n. 空中异常状态"},
-    {"word":"airasia","ipa":"/ˌer ˈeɪʒə/","aviationMeaning":"n. 亚洲航空（航空公司名称）","generalMeaning":"n. 亚洲航空（名称）"},
-    {"word":"airbase","ipa":"/ˈerbeɪs/","aviationMeaning":"n. 空军基地；航空基地","generalMeaning":"n. 空军基地；空军机场"},
-    {"word":"airborne","ipa":"/ˈerbɔːrn/","aviationMeaning":"adj. 已离地飞行的；机载的","generalMeaning":"adj. 空运的；空中的"},
-    {"word":"airbrake","ipa":"/ˈerbreɪk/","aviationMeaning":"n. 空气制动器；减速板","generalMeaning":"n. 空气制动器"},
-    {"word":"airbus","ipa":"/ˈerbʌs/","aviationMeaning":"n. 空中客车（飞机制造商）","generalMeaning":"n. 空中客车（名称）"},
-    {"word":"aircraft","ipa":"/ˈerkræft/","aviationMeaning":"n. 航空器；飞机","generalMeaning":"n. 飞行器；飞机"},
-    {"word":"aircraft-specific","ipa":"/ˈerkræft spəˈsɪfɪk/","aviationMeaning":"adj. 特定机型的","generalMeaning":"adj. 特定航空器的"},
-    {"word":"aircraft-status","ipa":"/ˈerkræft ˈsteɪtəs/","aviationMeaning":"n. 航空器状态","generalMeaning":"n. 飞机状态"},
-    {"word":"aircraft-type","ipa":"/ˈerkræft taɪp/","aviationMeaning":"n. 航空器类型；机型","generalMeaning":"n. 飞机类型"},
-    {"word":"aircraft's","ipa":"/ˈerkræfts/","aviationMeaning":"n. 航空器的；表示所属关系","generalMeaning":"n. 飞机的；表示所属关系"},
-    {"word":"aircraft’s","ipa":"/ˈerkræfts/","aviationMeaning":"n. 航空器的；表示所属关系","generalMeaning":"n. 飞机的；表示所属关系"},
-    {"word":"aircraftdidn't","ipa":"/ˈerkræft ˈdɪdənt/","aviationMeaning":"n. 题库原文中的疑似词语粘连","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"aircrafts","ipa":"/ˈerkræfts/","aviationMeaning":"n. 航空器；飞机（复数形式）","generalMeaning":"n. 飞行器；飞机（复数）"},
-    {"word":"aires","ipa":"/ˈaɪriz/","aviationMeaning":"n. 布宜诺斯艾利斯等地名中的组成词","generalMeaning":"n. 地名组成部分"},
-    {"word":"airfield","ipa":"/ˈerfiːld/","aviationMeaning":"n. 飞机场；飞行场","generalMeaning":"n. 飞机场；飞行场"},
-    {"word":"airfields","ipa":"/ˈerfiːldz/","aviationMeaning":"n. 飞机场；飞行场（复数）","generalMeaning":"n. 飞机场；飞行场（复数）"},
-    {"word":"airflow","ipa":"/ˈerfloʊ/","aviationMeaning":"n. 气流；空气流动","generalMeaning":"n. 气流；空气流动"},
-    {"word":"airframe","ipa":"/ˈerfreɪm/","aviationMeaning":"n. 机体结构","generalMeaning":"n. 飞机机身结构"},
-    {"word":"airline","ipa":"/ˈerlaɪn/","aviationMeaning":"n. 航空公司；航线","generalMeaning":"n. 航空公司；航线"},
-    {"word":"airline-controlled","ipa":"/ˈerlaɪn kənˈtroʊld/","aviationMeaning":"adj. 由航空公司控制的","generalMeaning":"adj. 由航空公司管理的"},
-    {"word":"airline's","ipa":"/ˈerlaɪnz/","aviationMeaning":"n. 航空公司的；表示所属关系","generalMeaning":"n. 航空公司的；表示所属关系"},
-    {"word":"airliner","ipa":"/ˈerlaɪnər/","aviationMeaning":"n. 客机；大型民用飞机","generalMeaning":"n. 客机"},
-    {"word":"airlines","ipa":"/ˈerlaɪnz/","aviationMeaning":"n. 航空公司（复数）","generalMeaning":"n. 航空公司（复数）"},
-    {"word":"airlines-departed","ipa":"/ˈerlaɪnz dɪˈpɑːrtɪd/","aviationMeaning":"n. 题库原文中的疑似词语粘连","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"airlines's","ipa":"/ˈerlaɪnzɪz/","aviationMeaning":"n. 题库原文中的疑似词形错误","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"airmen","ipa":"/ˈermen/","aviationMeaning":"n. 飞行人员；航空从业人员（复数）","generalMeaning":"n. 飞行员；空军人员（复数）"},
-    {"word":"airplane","ipa":"/ˈerpleɪn/","aviationMeaning":"n. 飞机；固定翼航空器","generalMeaning":"n. 飞机"},
-    {"word":"airplane's","ipa":"/ˈerpleɪnz/","aviationMeaning":"n. 飞机的；表示所属关系","generalMeaning":"n. 飞机的；表示所属关系"},
-    {"word":"airplane’s","ipa":"/ˈerpleɪnz/","aviationMeaning":"n. 飞机的；表示所属关系","generalMeaning":"n. 飞机的；表示所属关系"},
-    {"word":"airplanes","ipa":"/ˈerpleɪnz/","aviationMeaning":"n. 飞机（复数）","generalMeaning":"n. 飞机（复数）"},
-    {"word":"airport","ipa":"/ˈerpɔːrt/","aviationMeaning":"n. 机场","generalMeaning":"n. 机场"},
-    {"word":"airport's","ipa":"/ˈerpɔːrts/","aviationMeaning":"n. 机场的；表示所属关系","generalMeaning":"n. 机场的；表示所属关系"},
-    {"word":"airports","ipa":"/ˈerpɔːrts/","aviationMeaning":"n. 机场（复数）","generalMeaning":"n. 机场（复数）"},
-    {"word":"airprox","ipa":"/ˈerpɹɑːks/","aviationMeaning":"n. 空中接近事件；空中危险接近报告","generalMeaning":"n. 空中接近事件"},
-    {"word":"airship","ipa":"/ˈerʃɪp/","aviationMeaning":"n. 飞艇","generalMeaning":"n. 飞艇"},
-    {"word":"airspace","ipa":"/ˈerspeɪs/","aviationMeaning":"n. 空域","generalMeaning":"n. 空域；天空范围"},
-    {"word":"airspeed","ipa":"/ˈerspiːd/","aviationMeaning":"n. 空速","generalMeaning":"n. 空速"},
-    {"word":"airspeeds","ipa":"/ˈerspiːdz/","aviationMeaning":"n. 空速（复数）","generalMeaning":"n. 空速（复数）"},
-    {"word":"airstream","ipa":"/ˈerstriːm/","aviationMeaning":"n. 气流；来流","generalMeaning":"n. 气流"},
-    {"word":"airstrip","ipa":"/ˈerstrɪp/","aviationMeaning":"n. 简易跑道；小型机场跑道","generalMeaning":"n. 简易机场；跑道"},
-    {"word":"airway","ipa":"/ˈerweɪ/","aviationMeaning":"n. 航路；气道","generalMeaning":"n. 航线；呼吸道"},
-    {"word":"airways","ipa":"/ˈerweɪz/","aviationMeaning":"n. 航路；航空公司名称（复数）","generalMeaning":"n. 航线；呼吸道（复数）"},
-    {"word":"airworthiness","ipa":"/ˈerˌwɜːrðinəs/","aviationMeaning":"n. 适航性","generalMeaning":"n. 适航性；适用性"},
-    {"word":"airworthy","ipa":"/ˈerˌwɜːrði/","aviationMeaning":"adj. 适航的","generalMeaning":"adj. 适于飞行的；可靠的"},
-    {"word":"ais","ipa":"/ˌeɪ aɪ ˈes/","aviationMeaning":"n. 航空情报服务（缩写）","generalMeaning":"n. 服务名称缩写"},
-    {"word":"aisle","ipa":"/aɪl/","aviationMeaning":"n. 客舱过道","generalMeaning":"n. 过道；走廊"},
-    {"word":"ajet","ipa":"/ˈeɪ dʒet/","aviationMeaning":"n. 航空公司名称或呼号","generalMeaning":"n. 名称；专有名词"},
-    {"word":"ak","ipa":"/ˌeɪ ˈkeɪ/","aviationMeaning":"n. 民航文本中的字母或地点缩写","generalMeaning":"n. 字母缩写"},
-    {"word":"ako","ipa":"/ˈɑːkoʊ/","aviationMeaning":"n. 人名、地点或呼号中的名称","generalMeaning":"n. 专有名称"},
-    {"word":"akoma","ipa":"/əˈkoʊmə/","aviationMeaning":"n. 人名、地点或呼号中的名称","generalMeaning":"n. 专有名称"},
-    {"word":"alarm","ipa":"/əˈlɑːrm/","aviationMeaning":"n. 告警；警报","generalMeaning":"n. 警报；惊慌"},
-    {"word":"alarms","ipa":"/əˈlɑːrmz/","aviationMeaning":"n. 告警；警报（复数）","generalMeaning":"n. 警报（复数）"},
-    {"word":"alaska","ipa":"/əˈlæskə/","aviationMeaning":"n. 阿拉斯加；航路或运行区域","generalMeaning":"n. 阿拉斯加"},
-    {"word":"albuquerque","ipa":"/ˈælbəkɜːrki/","aviationMeaning":"n. 阿尔伯克基（机场所在城市）","generalMeaning":"n. 阿尔伯克基（美国城市）"},
-    {"word":"alcohol","ipa":"/ˈælkəhɔːl/","aviationMeaning":"n. 酒精；飞行安全中的禁用物质","generalMeaning":"n. 酒精；乙醇"},
-    {"word":"alert","ipa":"/əˈlɜːrt/","aviationMeaning":"n. 告警；v. 警告；adj. 警觉的","generalMeaning":"n. 警报；adj. 警觉的"},
-    {"word":"alerted","ipa":"/əˈlɜːrtɪd/","aviationMeaning":"v. 已警告；已发出告警","generalMeaning":"v. 已警告；已提醒"},
-    {"word":"alerting","ipa":"/əˈlɜːrtɪŋ/","aviationMeaning":"v. 正在警告；发出告警","generalMeaning":"v. 正在提醒；警告"},
-    {"word":"alertness","ipa":"/əˈlɜːrtnəs/","aviationMeaning":"n. 飞行员警觉性","generalMeaning":"n. 警觉；机敏"},
-    {"word":"alerts","ipa":"/əˈlɜːrts/","aviationMeaning":"n. 告警；警报（复数）","generalMeaning":"n. 警报；提醒（复数）"},
-    {"word":"algorithms","ipa":"/ˈælɡəˌrɪðəmz/","aviationMeaning":"n. 航电、监视或调度算法（复数）","generalMeaning":"n. 算法（复数）"},
-    {"word":"align","ipa":"/əˈlaɪn/","aviationMeaning":"v. 对准跑道、航向或系统","generalMeaning":"v. 对齐；使一致"},
-    {"word":"aligned","ipa":"/əˈlaɪnd/","aviationMeaning":"adj. 已对准跑道、航向或系统的","generalMeaning":"adj. 对齐的；一致的"}
+    {
+      "word": "afternoon",
+      "ipa": "/ˌæftərˈnuːn/",
+      "aviationMeaning": "n. 下午时段；航班运行时间",
+      "generalMeaning": "n. 下午"
+    },
+    {
+      "word": "afterward",
+      "ipa": "/ˈæftərwərd/",
+      "aviationMeaning": "adv. 在飞行、程序或事件之后",
+      "generalMeaning": "adv. 后来；随后"
+    },
+    {
+      "word": "afterwards",
+      "ipa": "/ˈæftərwərdz/",
+      "aviationMeaning": "adv. 在飞行、程序或事件之后",
+      "generalMeaning": "adv. 后来；随后"
+    },
+    {
+      "word": "aftmost",
+      "ipa": "/ˈæftmoʊst/",
+      "aviationMeaning": "adj. 最靠近机尾的",
+      "generalMeaning": "adj. 最后的；最靠后的"
+    },
+    {
+      "word": "again",
+      "ipa": "/əˈɡen/",
+      "aviationMeaning": "adv. 再次；要求重复通话或操作",
+      "generalMeaning": "adv. 再；又"
+    },
+    {
+      "word": "against",
+      "ipa": "/əˈɡenst/",
+      "aviationMeaning": "prep. 逆着风、限制或参照物",
+      "generalMeaning": "prep. 反对；靠着；逆着"
+    },
+    {
+      "word": "aged",
+      "ipa": "/eɪdʒd/",
+      "aviationMeaning": "adj. 已服役一定年限的；老化的",
+      "generalMeaning": "adj. 年老的；陈年的"
+    },
+    {
+      "word": "agent",
+      "ipa": "/ˈeɪdʒənt/",
+      "aviationMeaning": "n. 地面服务代理人；航空代理",
+      "generalMeaning": "n. 代理人；特工；作用剂"
+    },
+    {
+      "word": "agents",
+      "ipa": "/ˈeɪdʒənts/",
+      "aviationMeaning": "n. 地面服务代理人；航空代理（复数）",
+      "generalMeaning": "n. 代理人；作用剂（复数）"
+    },
+    {
+      "word": "aggressive",
+      "ipa": "/əˈɡresɪv/",
+      "aviationMeaning": "adj. 过于激进的；强烈的",
+      "generalMeaning": "adj. 好斗的；积极进取的"
+    },
+    {
+      "word": "aging",
+      "ipa": "/ˈeɪdʒɪŋ/",
+      "aviationMeaning": "n. 航空器或部件老化",
+      "generalMeaning": "n. 老化；变老"
+    },
+    {
+      "word": "agl",
+      "ipa": "/ˌeɪ dʒiː ˈel/",
+      "aviationMeaning": "n. 距地高度（缩写）",
+      "generalMeaning": "n. 高度表示缩写"
+    },
+    {
+      "word": "ago",
+      "ipa": "/əˈɡoʊ/",
+      "aviationMeaning": "adv. 以前；用于报告已过去的时间",
+      "generalMeaning": "adv. 以前"
+    },
+    {
+      "word": "agree",
+      "ipa": "/əˈɡriː/",
+      "aviationMeaning": "v. 同意许可、计划或协调安排",
+      "generalMeaning": "v. 同意；一致"
+    },
+    {
+      "word": "agreed",
+      "ipa": "/əˈɡriːd/",
+      "aviationMeaning": "adj. 已协调一致的；已同意的",
+      "generalMeaning": "adj. 已同意的；一致的"
+    },
+    {
+      "word": "agreement",
+      "ipa": "/əˈɡriːmənt/",
+      "aviationMeaning": "n. 运行协调协议；一致意见",
+      "generalMeaning": "n. 协议；一致"
+    },
+    {
+      "word": "ah",
+      "ipa": "/ɑː/",
+      "aviationMeaning": "interj. 通话中的犹豫或确认语气词",
+      "generalMeaning": "interj. 啊；呀"
+    },
+    {
+      "word": "ahead",
+      "ipa": "/əˈhed/",
+      "aviationMeaning": "adv. 在前方；继续执行",
+      "generalMeaning": "adv. 在前面；向前"
+    },
+    {
+      "word": "ahmedabad",
+      "ipa": "/ˌɑːmədɑːˈbɑːd/",
+      "aviationMeaning": "n. 艾哈迈达巴德（机场所在城市）",
+      "generalMeaning": "n. 艾哈迈达巴德（印度城市）"
+    },
+    {
+      "word": "ai",
+      "ipa": "/ˌeɪ ˈaɪ/",
+      "aviationMeaning": "n. 人工智能；航空系统智能化能力",
+      "generalMeaning": "n. 人工智能（缩写）"
+    },
+    {
+      "word": "aib",
+      "ipa": "/ˌeɪ aɪ ˈbiː/",
+      "aviationMeaning": "n. 航空事故调查机构（缩写）",
+      "generalMeaning": "n. 机构名称缩写"
+    },
+    {
+      "word": "aid",
+      "ipa": "/eɪd/",
+      "aviationMeaning": "n. 导航辅助设备；援助",
+      "generalMeaning": "n. 帮助；援助；辅助物"
+    },
+    {
+      "word": "aids",
+      "ipa": "/eɪdz/",
+      "aviationMeaning": "n. 导航辅助设备；援助（复数）",
+      "generalMeaning": "n. 帮助；辅助物（复数）"
+    },
+    {
+      "word": "aileron",
+      "ipa": "/ˈeɪlərɑːn/",
+      "aviationMeaning": "n. 副翼",
+      "generalMeaning": "n. 副翼"
+    },
+    {
+      "word": "ailerons",
+      "ipa": "/ˈeɪlərɑːnz/",
+      "aviationMeaning": "n. 副翼（复数）",
+      "generalMeaning": "n. 副翼（复数）"
+    },
+    {
+      "word": "aim",
+      "ipa": "/eɪm/",
+      "aviationMeaning": "n. 飞行、训练或安全目标",
+      "generalMeaning": "n. 目标；v. 瞄准；旨在"
+    },
+    {
+      "word": "aims",
+      "ipa": "/eɪmz/",
+      "aviationMeaning": "v. 以运行、训练或安全目标为目的",
+      "generalMeaning": "v. 旨在；瞄准"
+    },
+    {
+      "word": "air",
+      "ipa": "/er/",
+      "aviationMeaning": "n. 空气；空域；航空运行",
+      "generalMeaning": "n. 空气；天空；气氛"
+    },
+    {
+      "word": "air-conditioning",
+      "ipa": "/ˈer kəndɪʃənɪŋ/",
+      "aviationMeaning": "n. 飞机空调与环境控制",
+      "generalMeaning": "n. 空调"
+    },
+    {
+      "word": "air-ground",
+      "ipa": "/ˈer ˈɡraʊnd/",
+      "aviationMeaning": "adj. 空地通信或空地协同的",
+      "generalMeaning": "adj. 空中与地面的"
+    },
+    {
+      "word": "air-to-air",
+      "ipa": "/ˈer tə ˈer/",
+      "aviationMeaning": "adj. 空对空通信或运行的",
+      "generalMeaning": "adj. 空对空的"
+    },
+    {
+      "word": "air-upset",
+      "ipa": "/ˈer ʌpˌset/",
+      "aviationMeaning": "n. 飞机异常姿态；失控状态",
+      "generalMeaning": "n. 空中异常状态"
+    },
+    {
+      "word": "airasia",
+      "ipa": "/ˌer ˈeɪʒə/",
+      "aviationMeaning": "n. 亚洲航空（航空公司名称）",
+      "generalMeaning": "n. 亚洲航空（名称）"
+    },
+    {
+      "word": "airbase",
+      "ipa": "/ˈerbeɪs/",
+      "aviationMeaning": "n. 空军基地；航空基地",
+      "generalMeaning": "n. 空军基地；空军机场"
+    },
+    {
+      "word": "airborne",
+      "ipa": "/ˈerbɔːrn/",
+      "aviationMeaning": "adj. 已离地飞行的；机载的",
+      "generalMeaning": "adj. 空运的；空中的"
+    },
+    {
+      "word": "airbrake",
+      "ipa": "/ˈerbreɪk/",
+      "aviationMeaning": "n. 空气制动器；减速板",
+      "generalMeaning": "n. 空气制动器"
+    },
+    {
+      "word": "airbus",
+      "ipa": "/ˈerbʌs/",
+      "aviationMeaning": "n. 空中客车（飞机制造商）",
+      "generalMeaning": "n. 空中客车（名称）"
+    },
+    {
+      "word": "aircraft",
+      "ipa": "/ˈerkræft/",
+      "aviationMeaning": "n. 航空器；飞机",
+      "generalMeaning": "n. 飞行器；飞机"
+    },
+    {
+      "word": "aircraft-specific",
+      "ipa": "/ˈerkræft spəˈsɪfɪk/",
+      "aviationMeaning": "adj. 特定机型的",
+      "generalMeaning": "adj. 特定航空器的"
+    },
+    {
+      "word": "aircraft's",
+      "ipa": "/ˈerkræfts/",
+      "aviationMeaning": "n. 航空器的；表示所属关系",
+      "generalMeaning": "n. 飞机的；表示所属关系"
+    },
+    {
+      "word": "aircraft’s",
+      "ipa": "/ˈerkræfts/",
+      "aviationMeaning": "n. 航空器的；表示所属关系",
+      "generalMeaning": "n. 飞机的；表示所属关系"
+    },
+    {
+      "word": "aires",
+      "ipa": "/ˈaɪriz/",
+      "aviationMeaning": "n. 布宜诺斯艾利斯等地名中的组成词",
+      "generalMeaning": "n. 地名组成部分"
+    },
+    {
+      "word": "airfield",
+      "ipa": "/ˈerfiːld/",
+      "aviationMeaning": "n. 飞机场；飞行场",
+      "generalMeaning": "n. 飞机场；飞行场"
+    },
+    {
+      "word": "airfields",
+      "ipa": "/ˈerfiːldz/",
+      "aviationMeaning": "n. 飞机场；飞行场（复数）",
+      "generalMeaning": "n. 飞机场；飞行场（复数）"
+    },
+    {
+      "word": "airflow",
+      "ipa": "/ˈerfloʊ/",
+      "aviationMeaning": "n. 气流；空气流动",
+      "generalMeaning": "n. 气流；空气流动"
+    },
+    {
+      "word": "airframe",
+      "ipa": "/ˈerfreɪm/",
+      "aviationMeaning": "n. 机体结构",
+      "generalMeaning": "n. 飞机机身结构"
+    },
+    {
+      "word": "airline",
+      "ipa": "/ˈerlaɪn/",
+      "aviationMeaning": "n. 航空公司；航线",
+      "generalMeaning": "n. 航空公司；航线"
+    },
+    {
+      "word": "airline's",
+      "ipa": "/ˈerlaɪnz/",
+      "aviationMeaning": "n. 航空公司的；表示所属关系",
+      "generalMeaning": "n. 航空公司的；表示所属关系"
+    },
+    {
+      "word": "airliner",
+      "ipa": "/ˈerlaɪnər/",
+      "aviationMeaning": "n. 客机；大型民用飞机",
+      "generalMeaning": "n. 客机"
+    },
+    {
+      "word": "airlines",
+      "ipa": "/ˈerlaɪnz/",
+      "aviationMeaning": "n. 航空公司（复数）",
+      "generalMeaning": "n. 航空公司（复数）"
+    },
+    {
+      "word": "airmen",
+      "ipa": "/ˈermen/",
+      "aviationMeaning": "n. 飞行人员；航空从业人员（复数）",
+      "generalMeaning": "n. 飞行员；空军人员（复数）"
+    },
+    {
+      "word": "airplane",
+      "ipa": "/ˈerpleɪn/",
+      "aviationMeaning": "n. 飞机；固定翼航空器",
+      "generalMeaning": "n. 飞机"
+    },
+    {
+      "word": "airplane's",
+      "ipa": "/ˈerpleɪnz/",
+      "aviationMeaning": "n. 飞机的；表示所属关系",
+      "generalMeaning": "n. 飞机的；表示所属关系"
+    },
+    {
+      "word": "airplane’s",
+      "ipa": "/ˈerpleɪnz/",
+      "aviationMeaning": "n. 飞机的；表示所属关系",
+      "generalMeaning": "n. 飞机的；表示所属关系"
+    },
+    {
+      "word": "airplanes",
+      "ipa": "/ˈerpleɪnz/",
+      "aviationMeaning": "n. 飞机（复数）",
+      "generalMeaning": "n. 飞机（复数）"
+    },
+    {
+      "word": "airport",
+      "ipa": "/ˈerpɔːrt/",
+      "aviationMeaning": "n. 机场",
+      "generalMeaning": "n. 机场"
+    },
+    {
+      "word": "airport's",
+      "ipa": "/ˈerpɔːrts/",
+      "aviationMeaning": "n. 机场的；表示所属关系",
+      "generalMeaning": "n. 机场的；表示所属关系"
+    },
+    {
+      "word": "airports",
+      "ipa": "/ˈerpɔːrts/",
+      "aviationMeaning": "n. 机场（复数）",
+      "generalMeaning": "n. 机场（复数）"
+    },
+    {
+      "word": "airprox",
+      "ipa": "/ˈerpɹɑːks/",
+      "aviationMeaning": "n. 空中接近事件；空中危险接近报告",
+      "generalMeaning": "n. 空中接近事件"
+    },
+    {
+      "word": "airship",
+      "ipa": "/ˈerʃɪp/",
+      "aviationMeaning": "n. 飞艇",
+      "generalMeaning": "n. 飞艇"
+    },
+    {
+      "word": "airspace",
+      "ipa": "/ˈerspeɪs/",
+      "aviationMeaning": "n. 空域",
+      "generalMeaning": "n. 空域；天空范围"
+    },
+    {
+      "word": "airspeed",
+      "ipa": "/ˈerspiːd/",
+      "aviationMeaning": "n. 空速",
+      "generalMeaning": "n. 空速"
+    },
+    {
+      "word": "airspeeds",
+      "ipa": "/ˈerspiːdz/",
+      "aviationMeaning": "n. 空速（复数）",
+      "generalMeaning": "n. 空速（复数）"
+    },
+    {
+      "word": "airstream",
+      "ipa": "/ˈerstriːm/",
+      "aviationMeaning": "n. 气流；来流",
+      "generalMeaning": "n. 气流"
+    },
+    {
+      "word": "airstrip",
+      "ipa": "/ˈerstrɪp/",
+      "aviationMeaning": "n. 简易跑道；小型机场跑道",
+      "generalMeaning": "n. 简易机场；跑道"
+    },
+    {
+      "word": "airway",
+      "ipa": "/ˈerweɪ/",
+      "aviationMeaning": "n. 航路；气道",
+      "generalMeaning": "n. 航线；呼吸道"
+    },
+    {
+      "word": "airways",
+      "ipa": "/ˈerweɪz/",
+      "aviationMeaning": "n. 航路；航空公司名称（复数）",
+      "generalMeaning": "n. 航线；呼吸道（复数）"
+    },
+    {
+      "word": "airworthiness",
+      "ipa": "/ˈerˌwɜːrðinəs/",
+      "aviationMeaning": "n. 适航性",
+      "generalMeaning": "n. 适航性；适用性"
+    },
+    {
+      "word": "airworthy",
+      "ipa": "/ˈerˌwɜːrði/",
+      "aviationMeaning": "adj. 适航的",
+      "generalMeaning": "adj. 适于飞行的；可靠的"
+    },
+    {
+      "word": "ais",
+      "ipa": "/ˌeɪ aɪ ˈes/",
+      "aviationMeaning": "n. 航空情报服务（缩写）",
+      "generalMeaning": "n. 服务名称缩写"
+    },
+    {
+      "word": "aisle",
+      "ipa": "/aɪl/",
+      "aviationMeaning": "n. 客舱过道",
+      "generalMeaning": "n. 过道；走廊"
+    },
+    {
+      "word": "ajet",
+      "ipa": "/ˈeɪ dʒet/",
+      "aviationMeaning": "n. 航空公司名称或呼号",
+      "generalMeaning": "n. 名称；专有名词"
+    },
+    {
+      "word": "ak",
+      "ipa": "/ˌeɪ ˈkeɪ/",
+      "aviationMeaning": "n. 民航文本中的字母或地点缩写",
+      "generalMeaning": "n. 字母缩写"
+    },
+    {
+      "word": "ako",
+      "ipa": "/ˈɑːkoʊ/",
+      "aviationMeaning": "n. 人名、地点或呼号中的名称",
+      "generalMeaning": "n. 专有名称"
+    },
+    {
+      "word": "akoma",
+      "ipa": "/əˈkoʊmə/",
+      "aviationMeaning": "n. 人名、地点或呼号中的名称",
+      "generalMeaning": "n. 专有名称"
+    },
+    {
+      "word": "alarm",
+      "ipa": "/əˈlɑːrm/",
+      "aviationMeaning": "n. 告警；警报",
+      "generalMeaning": "n. 警报；惊慌"
+    },
+    {
+      "word": "alaska",
+      "ipa": "/əˈlæskə/",
+      "aviationMeaning": "n. 阿拉斯加；航路或运行区域",
+      "generalMeaning": "n. 阿拉斯加"
+    },
+    {
+      "word": "albuquerque",
+      "ipa": "/ˈælbəkɜːrki/",
+      "aviationMeaning": "n. 阿尔伯克基（机场所在城市）",
+      "generalMeaning": "n. 阿尔伯克基（美国城市）"
+    },
+    {
+      "word": "alcohol",
+      "ipa": "/ˈælkəhɔːl/",
+      "aviationMeaning": "n. 酒精；飞行安全中的禁用物质",
+      "generalMeaning": "n. 酒精；乙醇"
+    },
+    {
+      "word": "alert",
+      "ipa": "/əˈlɜːrt/",
+      "aviationMeaning": "n. 告警；v. 警告；adj. 警觉的",
+      "generalMeaning": "n. 警报；adj. 警觉的"
+    },
+    {
+      "word": "alerted",
+      "ipa": "/əˈlɜːrtɪd/",
+      "aviationMeaning": "v. 已警告；已发出告警",
+      "generalMeaning": "v. 已警告；已提醒"
+    },
+    {
+      "word": "alerting",
+      "ipa": "/əˈlɜːrtɪŋ/",
+      "aviationMeaning": "v. 正在警告；发出告警",
+      "generalMeaning": "v. 正在提醒；警告"
+    },
+    {
+      "word": "alertness",
+      "ipa": "/əˈlɜːrtnəs/",
+      "aviationMeaning": "n. 飞行员警觉性",
+      "generalMeaning": "n. 警觉；机敏"
+    },
+    {
+      "word": "alerts",
+      "ipa": "/əˈlɜːrts/",
+      "aviationMeaning": "n. 告警；警报（复数）",
+      "generalMeaning": "n. 警报；提醒（复数）"
+    },
+    {
+      "word": "align",
+      "ipa": "/əˈlaɪn/",
+      "aviationMeaning": "v. 对准跑道、航向或系统",
+      "generalMeaning": "v. 对齐；使一致"
+    },
+    {
+      "word": "aligned",
+      "ipa": "/əˈlaɪnd/",
+      "aviationMeaning": "adj. 已对准跑道、航向或系统的",
+      "generalMeaning": "adj. 对齐的；一致的"
+    }
   ]
 }

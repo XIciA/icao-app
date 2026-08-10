@@ -1,105 +1,503 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"taxied","ipa":"/ˈtæksid/","aviationMeaning":"v. 已滑行；航空器已在地面利用自身动力移动","generalMeaning":"v. 已乘出租车；滑行"},
-    {"word":"taxies","ipa":"/ˈtæksiz/","aviationMeaning":"v. 滑行；航空器在地面利用自身动力移动","generalMeaning":"v. 乘出租车；n. 出租车（复数）"},
-    {"word":"taxiing","ipa":"/ˈtæksiɪŋ/","aviationMeaning":"v. 正滑行；航空器正在地面利用自身动力移动","generalMeaning":"v. 正乘出租车；滑行"},
-    {"word":"taxing","ipa":"/ˈtæksɪŋ/","aviationMeaning":"v. 正滑行；航空器在地面移动的另一拼写形式","generalMeaning":"v. 征税；费力的"},
-    {"word":"taxis","ipa":"/ˈtæksiz/","aviationMeaning":"v. 滑行；航空器在地面利用自身动力移动","generalMeaning":"n. 出租车（复数）；v. 乘出租车"},
-    {"word":"taxiway","ipa":"/ˈtæksiweɪ/","aviationMeaning":"n. 滑行道；连接跑道、停机位和机坪供航空器地面滑行的道路","generalMeaning":"n. 滑行道"},
-    {"word":"taxiways","ipa":"/ˈtæksiweɪz/","aviationMeaning":"n. 滑行道（复数）；机场内多条连接跑道和停机位的道路","generalMeaning":"n. 滑行道（复数）"},
-    {"word":"tb","ipa":"/ˌtiː ˈbiː/","aviationMeaning":"n. 结核病；机组或旅客健康与适航风险相关","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"tcas","ipa":"/ˈtiːkæs/","aviationMeaning":"n. 交通告警与防撞系统；监视附近航空器并提供防撞建议的系统","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"td","ipa":"/ˌtiː ˈdiː/","aviationMeaning":"n. 航空资料缩写；可能指露点、着陆距离等，需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"tea","ipa":"/tiː/","aviationMeaning":"n. 茶；客舱服务中的饮品","generalMeaning":"n. 茶"},
-    {"word":"teach","ipa":"/tiːtʃ/","aviationMeaning":"v. 教授；教授飞行、维护、通话或安全知识","generalMeaning":"v. 教；教授"},
-    {"word":"teaches","ipa":"/ˈtiːtʃɪz/","aviationMeaning":"v. 教授；教授飞行、维护或安全知识","generalMeaning":"v. 教；教授"},
-    {"word":"teaching","ipa":"/ˈtiːtʃɪŋ/","aviationMeaning":"n. 教学；飞行、维护、通话或安全知识培训","generalMeaning":"n. 教学；教导"},
-    {"word":"team","ipa":"/tiːm/","aviationMeaning":"n. 团队；机组、管制、地勤、维修或救援人员协作小组","generalMeaning":"n. 团队；队伍"},
-    {"word":"teams","ipa":"/tiːmz/","aviationMeaning":"n. 团队（复数）；多个机组、地勤、维修或救援小组","generalMeaning":"n. 团队；队伍（复数）"},
-    {"word":"teamwork","ipa":"/ˈtiːmwɜːrk/","aviationMeaning":"n. 团队协作；机组资源管理和跨岗位配合能力","generalMeaning":"n. 团队合作"},
-    {"word":"tear","ipa":"/ter/","aviationMeaning":"n. 撕裂；结构、材料或部件发生裂口的损伤","generalMeaning":"n. 眼泪；撕裂"},
-    {"word":"teardown","ipa":"/ˈterdaʊn/","aviationMeaning":"n. 拆解；对发动机、设备或部件进行拆卸检查","generalMeaning":"n. 拆除；拆解"},
-    {"word":"teardrop","ipa":"/ˈtɪrdrɑːp/","aviationMeaning":"n. 水滴形；进近等待或航迹中呈泪滴形的机动","generalMeaning":"n. 泪滴；水滴形"},
-    {"word":"technical","ipa":"/ˈteknɪkəl/","aviationMeaning":"adj. 技术的；涉及航空器、系统、维修或运行细节的","generalMeaning":"adj. 技术的；专门的"},
-    {"word":"technically","ipa":"/ˈteknɪkli/","aviationMeaning":"adv. 技术上；从航空器、系统或程序细节角度","generalMeaning":"adv. 技术上；严格说来"},
-    {"word":"technician","ipa":"/tekˈnɪʃən/","aviationMeaning":"n. 技术员；负责航空器、设备或系统维护的专业人员","generalMeaning":"n. 技术员；技师"},
-    {"word":"technicians","ipa":"/tekˈnɪʃənz/","aviationMeaning":"n. 技术员（复数）；多个负责维护航空器或设备的人员","generalMeaning":"n. 技术员；技师（复数）"},
-    {"word":"technique","ipa":"/tekˈniːk/","aviationMeaning":"n. 技术；飞行操纵、进近、通话或维修的具体方法","generalMeaning":"n. 技巧；技术"},
-    {"word":"techniques","ipa":"/tekˈniːks/","aviationMeaning":"n. 技术（复数）；多种飞行操纵、通话或维修方法","generalMeaning":"n. 技巧；技术（复数）"},
-    {"word":"technological","ipa":"/ˌteknəˈlɑːdʒɪkəl/","aviationMeaning":"adj. 技术性的；与航空技术、航电或设备发展有关的","generalMeaning":"adj. 技术的；科技的"},
-    {"word":"technologies","ipa":"/tekˈnɑːlədʒiz/","aviationMeaning":"n. 技术（复数）；航空器、航电、通信或安全相关技术","generalMeaning":"n. 技术；科技（复数）"},
-    {"word":"technology","ipa":"/tekˈnɑːlədʒi/","aviationMeaning":"n. 技术；航空器、航电、通信或安全相关技术","generalMeaning":"n. 技术；科技"},
-    {"word":"ted","ipa":"/ted/","aviationMeaning":"n. 特德；专有名称，需结合原文","generalMeaning":"n. 特德；男子名"},
-    {"word":"tegel","ipa":"/ˈteɪɡəl/","aviationMeaning":"n. 泰格尔；机场或地名","generalMeaning":"n. 专有地名"},
-    {"word":"tegel's","ipa":"/ˈteɪɡəlz/","aviationMeaning":"n. Tegel 的所有格形式；泰格尔的","generalMeaning":"n. 专有地名的所有格形式"},
-    {"word":"tehran","ipa":"/teɪˈrɑːn/","aviationMeaning":"n. 德黑兰；机场、空域或航线地名","generalMeaning":"n. 德黑兰"},
-    {"word":"tel","ipa":"/tel/","aviationMeaning":"n. 电话的缩写；地面协调或联系号码相关","generalMeaning":"n. 电话缩写；请结合原文"},
-    {"word":"telephone","ipa":"/ˈteləfoʊn/","aviationMeaning":"n. 电话；地面协调、调度或紧急联络设备","generalMeaning":"n. 电话；v. 打电话"},
-    {"word":"tell","ipa":"/tel/","aviationMeaning":"v. 告诉；通报飞行、天气、程序或安全信息","generalMeaning":"v. 告诉；分辨"},
-    {"word":"telling","ipa":"/ˈtelɪŋ/","aviationMeaning":"v. 正告诉；正在通报飞行、天气或安全信息","generalMeaning":"v. 正告诉；分辨"},
-    {"word":"tells","ipa":"/telz/","aviationMeaning":"v. 告诉；通报飞行、天气、程序或安全信息","generalMeaning":"v. 告诉；分辨"},
-    {"word":"temperature","ipa":"/ˈtemprətʃər/","aviationMeaning":"n. 温度；影响发动机、性能、结冰和天气的重要参数","generalMeaning":"n. 温度；体温"},
-    {"word":"temperature-dew","ipa":"/ˈtemprətʃər duː/","aviationMeaning":"n. 温度与露点；用于判断湿度、云雾和结冰条件的数据","generalMeaning":"n. 温度与露点"},
-    {"word":"temperatures","ipa":"/ˈtemprətʃərz/","aviationMeaning":"n. 温度（复数）；不同高度、部件或天气区域的温度数据","generalMeaning":"n. 温度（复数）"},
-    {"word":"temporarily","ipa":"/ˈtempərerəli/","aviationMeaning":"adv. 暂时地；在一段有限时间内改变运行或系统状态","generalMeaning":"adv. 暂时地"},
-    {"word":"temporary","ipa":"/ˈtempəreri/","aviationMeaning":"adj. 临时的；短期生效的运行、程序、设施或限制","generalMeaning":"adj. 临时的；暂时的"},
-    {"word":"temptation","ipa":"/tempˈteɪʃən/","aviationMeaning":"n. 诱惑；可能促使人员偏离安全程序的因素","generalMeaning":"n. 诱惑；引诱"},
-    {"word":"ten","ipa":"/ten/","aviationMeaning":"num. 十；无线电通话中的数字十","generalMeaning":"num. 十"},
-    {"word":"ten-ninety","ipa":"/ten ˈnaɪnti/","aviationMeaning":"n. 一千零九十；数值或频率表达，需结合原文","generalMeaning":"n. 一千零九十"},
-    {"word":"tendency","ipa":"/ˈtendənsi/","aviationMeaning":"n. 趋势；天气、系统、飞行参数或人员行为的发展方向","generalMeaning":"n. 趋势；倾向"},
-    {"word":"tends","ipa":"/tendz/","aviationMeaning":"v. 倾向于；天气、系统或参数通常表现出某种趋势","generalMeaning":"v. 倾向于；照料"},
-    {"word":"tenerife","ipa":"/ˌtenəˈriːf/","aviationMeaning":"n. 特内里费；机场或地名","generalMeaning":"n. 特内里费"},
-    {"word":"tennessee","ipa":"/ˌtenəˈsiː/","aviationMeaning":"n. 田纳西；机场或地名所在州","generalMeaning":"n. 田纳西"},
-    {"word":"term","ipa":"/tɜːrm/","aviationMeaning":"n. 术语；飞行、维修、空管或安全领域使用的专业词汇","generalMeaning":"n. 术语；时期"},
-    {"word":"terminal","ipa":"/ˈtɜːrmɪnəl/","aviationMeaning":"n. 航站楼；旅客办理、候机、到达和离开的机场建筑","generalMeaning":"n. 终点站；终端"},
-    {"word":"terminal-airspace","ipa":"/ˈtɜːrmɪnəl ˈerspeɪs/","aviationMeaning":"n. 终端空域；机场附近由进近或塔台管制的空域","generalMeaning":"n. 终端空域"},
-    {"word":"terminals","ipa":"/ˈtɜːrmɪnəlz/","aviationMeaning":"n. 航站楼（复数）；机场内多个旅客处理建筑","generalMeaning":"n. 终点站；终端（复数）"},
-    {"word":"terminate","ipa":"/ˈtɜːrmɪneɪt/","aviationMeaning":"v. 终止；结束飞行、程序、服务或系统运行","generalMeaning":"v. 终止；结束"},
-    {"word":"terminated","ipa":"/ˈtɜːrmɪneɪtɪd/","aviationMeaning":"adj. 已终止的；飞行、程序、服务或系统运行已结束","generalMeaning":"adj. 已终止的"},
-    {"word":"terminating","ipa":"/ˈtɜːrmɪneɪtɪŋ/","aviationMeaning":"v. 正终止；正在结束飞行、程序、服务或系统运行","generalMeaning":"v. 正终止；结束"},
-    {"word":"terminology","ipa":"/ˌtɜːrməˈnɑːlədʒi/","aviationMeaning":"n. 术语体系；航空运行、维修和通话中规范使用的词汇","generalMeaning":"n. 术语；术语学"},
-    {"word":"terms","ipa":"/tɜːrmz/","aviationMeaning":"n. 术语（复数）；飞行、维修、空管或安全领域的专业词汇","generalMeaning":"n. 术语；时期（复数）"},
-    {"word":"terrain","ipa":"/təˈreɪn/","aviationMeaning":"n. 地形；地面高程、山脉、建筑等影响飞行安全的环境","generalMeaning":"n. 地形；地势"},
-    {"word":"terrain-awareness","ipa":"/təˈreɪn əˈwernəs/","aviationMeaning":"n. 地形意识；机组对周围地形、障碍物和高度关系的认知","generalMeaning":"n. 地形意识"},
-    {"word":"terrain-constrained","ipa":"/təˈreɪn kənˈstreɪnd/","aviationMeaning":"adj. 受地形限制的；航路、进近或运行受周围地形约束","generalMeaning":"adj. 受地形限制的"},
-    {"word":"terrain-safe","ipa":"/təˈreɪn seɪf/","aviationMeaning":"adj. 地形安全的；具有足够地形和障碍物间隔的","generalMeaning":"adj. 地形安全的"},
-    {"word":"terrain-warning","ipa":"/təˈreɪn ˈwɔːrnɪŋ/","aviationMeaning":"n. 地形警告；提醒航空器接近地形或障碍物的告警","generalMeaning":"n. 地形警告"},
-    {"word":"terrible","ipa":"/ˈterəbəl/","aviationMeaning":"adj. 很差的；天气、性能、通信或运行状况极差的","generalMeaning":"adj. 可怕的；很差的"},
-    {"word":"terrified","ipa":"/ˈterəfaɪd/","aviationMeaning":"adj. 极度害怕的；旅客或人员因事件、颠簸或故障恐惧","generalMeaning":"adj. 极度害怕的"},
-    {"word":"territory","ipa":"/ˈterətɔːri/","aviationMeaning":"n. 领空区域；国家、管制单位或机场负责的地理区域","generalMeaning":"n. 领土；领域"},
-    {"word":"terrorist","ipa":"/ˈterərɪst/","aviationMeaning":"n. 恐怖分子；可能对航空安保构成非法干扰威胁的人员","generalMeaning":"n. 恐怖分子"},
-    {"word":"terrorists","ipa":"/ˈterərɪsts/","aviationMeaning":"n. 恐怖分子（复数）；可能对航空安保构成威胁的人员","generalMeaning":"n. 恐怖分子（复数）"},
-    {"word":"test","ipa":"/test/","aviationMeaning":"n. 测试；测试航空器、系统、设备、性能或人员能力","generalMeaning":"n. 测试；v. 测试"},
-    {"word":"tested","ipa":"/ˈtestɪd/","aviationMeaning":"adj. 已测试的；航空器、系统、设备或程序已接受测试","generalMeaning":"adj. 已测试的"},
-    {"word":"testing","ipa":"/ˈtestɪŋ/","aviationMeaning":"n. 测试；对航空器、系统、设备或程序进行检验","generalMeaning":"n. 测试；考验"},
-    {"word":"tests","ipa":"/tests/","aviationMeaning":"n. 测试（复数）；多项航空器、系统或人员能力检验","generalMeaning":"n. 测试（复数）；v. 测试"},
-    {"word":"texas","ipa":"/ˈteksəs/","aviationMeaning":"n. 得克萨斯；机场或地名所在州","generalMeaning":"n. 得克萨斯"},
-    {"word":"text","ipa":"/tekst/","aviationMeaning":"n. 文本；飞行计划、通告、程序或电子信息内容","generalMeaning":"n. 文本；短信"},
-    {"word":"texture","ipa":"/ˈtekstʃər/","aviationMeaning":"n. 纹理；道面、材料、云层或显示图像的表面特征","generalMeaning":"n. 质地；纹理"},
-    {"word":"tgwo","ipa":"/ˌtiː dʒiː ˈdʌbəljuː oʊ/","aviationMeaning":"n. 航空资料缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"thai","ipa":"/taɪ/","aviationMeaning":"adj. 泰国的；机场、空域、航线或航空公司相关","generalMeaning":"adj. 泰国的；n. 泰语"},
-    {"word":"thailand","ipa":"/ˈtaɪlænd/","aviationMeaning":"n. 泰国；机场、空域或航线所在国","generalMeaning":"n. 泰国"},
-    {"word":"thailand's","ipa":"/ˈtaɪlændz/","aviationMeaning":"n. Thailand 的所有格形式；泰国的","generalMeaning":"n. 专有地名的所有格形式"},
-    {"word":"than","ipa":"/ðæn/","aviationMeaning":"conj. 比；用于高度、速度、距离或性能比较","generalMeaning":"conj. 比；超过"},
-    {"word":"thank","ipa":"/θæŋk/","aviationMeaning":"v. 感谢；通话中礼貌结束或确认协作","generalMeaning":"v. 感谢"},
-    {"word":"thanks","ipa":"/θæŋks/","aviationMeaning":"interj. 谢谢；通话中礼貌表达感谢","generalMeaning":"interj. 谢谢；n. 感谢"},
-    {"word":"that","ipa":"/ðæt/","aviationMeaning":"pron. 那个；指代前述飞行、设备、指令或情况","generalMeaning":"pron. 那个；conj. 那么"},
-    {"word":"that's","ipa":"/ðæts/","aviationMeaning":"pron. that is 的缩写；指代当前说明或确认","generalMeaning":"pron. 那是；that is 的缩写"},
-    {"word":"that’s","ipa":"/ðæts/","aviationMeaning":"pron. that is 的缩写；指代当前说明或确认","generalMeaning":"pron. 那是；that is 的缩写"},
-    {"word":"the","ipa":"/ðə/","aviationMeaning":"art. 这；特指某一航空器、跑道、系统或程序","generalMeaning":"art. 这；那；该"},
-    {"word":"theaircraft","ipa":"/ði ˈerkræft/","aviationMeaning":"n. 疑似 the aircraft 的连写；该航空器","generalMeaning":"n. 疑似连写；请结合原文"},
-    {"word":"theairplane","ipa":"/ði ˈerpleɪn/","aviationMeaning":"n. 疑似 the airplane 的连写；该飞机","generalMeaning":"n. 疑似连写；请结合原文"},
-    {"word":"thecaptain","ipa":"/ðə ˈkæptən/","aviationMeaning":"n. 疑似 the captain 的连写；机长","generalMeaning":"n. 疑似连写；请结合原文"},
-    {"word":"thecrew","ipa":"/ðə kruː/","aviationMeaning":"n. 疑似 the crew 的连写；机组","generalMeaning":"n. 疑似连写；请结合原文"},
-    {"word":"thee","ipa":"/ðiː/","aviationMeaning":"pron. 你；古体用法，需结合原文","generalMeaning":"pron. 你；古体用法"},
-    {"word":"theexamination","ipa":"/ði ɪɡˌzæməˈneɪʃən/","aviationMeaning":"n. 疑似 the examination 的连写；检查或考试","generalMeaning":"n. 疑似连写；请结合原文"},
-    {"word":"theflight","ipa":"/ðə flaɪt/","aviationMeaning":"n. 疑似 the flight 的连写；该航班","generalMeaning":"n. 疑似连写；请结合原文"},
-    {"word":"theglideslope","ipa":"/ðə ˈɡlaɪdsloʊp/","aviationMeaning":"n. 疑似 the glideslope 的连写；下滑道","generalMeaning":"n. 疑似连写；请结合原文"},
-    {"word":"theinvestigation","ipa":"/ði ɪnˌvestəˈɡeɪʃən/","aviationMeaning":"n. 疑似 the investigation 的连写；调查","generalMeaning":"n. 疑似连写；请结合原文"},
-    {"word":"their","ipa":"/ðer/","aviationMeaning":"pron. 他们的；旅客、机组、运营人或单位的","generalMeaning":"pron. 他们的；她们的；它们的"},
-    {"word":"them","ipa":"/ðem/","aviationMeaning":"pron. 他们；指代旅客、机组、人员或物品","generalMeaning":"pron. 他们；她们；它们"},
-    {"word":"themselves","ipa":"/ðəmˈselvz/","aviationMeaning":"pron. 他们自己；旅客、机组或人员自身","generalMeaning":"pron. 他们自己；她们自己"},
-    {"word":"then","ipa":"/ðen/","aviationMeaning":"adv. 然后；表示飞行、程序或通话中的下一步骤","generalMeaning":"adv. 然后；当时"}
+    {
+      "word": "taxied",
+      "ipa": "/ˈtæksid/",
+      "aviationMeaning": "v. 已滑行；航空器已在地面利用自身动力移动",
+      "generalMeaning": "v. 已乘出租车；滑行"
+    },
+    {
+      "word": "taxies",
+      "ipa": "/ˈtæksiz/",
+      "aviationMeaning": "v. 滑行；航空器在地面利用自身动力移动",
+      "generalMeaning": "v. 乘出租车；n. 出租车（复数）"
+    },
+    {
+      "word": "taxiing",
+      "ipa": "/ˈtæksiɪŋ/",
+      "aviationMeaning": "v. 正滑行；航空器正在地面利用自身动力移动",
+      "generalMeaning": "v. 正乘出租车；滑行"
+    },
+    {
+      "word": "taxing",
+      "ipa": "/ˈtæksɪŋ/",
+      "aviationMeaning": "v. 正滑行；航空器在地面移动的另一拼写形式",
+      "generalMeaning": "v. 征税；费力的"
+    },
+    {
+      "word": "taxis",
+      "ipa": "/ˈtæksiz/",
+      "aviationMeaning": "v. 滑行；航空器在地面利用自身动力移动",
+      "generalMeaning": "n. 出租车（复数）；v. 乘出租车"
+    },
+    {
+      "word": "taxiway",
+      "ipa": "/ˈtæksiweɪ/",
+      "aviationMeaning": "n. 滑行道；连接跑道、停机位和机坪供航空器地面滑行的道路",
+      "generalMeaning": "n. 滑行道"
+    },
+    {
+      "word": "taxiways",
+      "ipa": "/ˈtæksiweɪz/",
+      "aviationMeaning": "n. 滑行道（复数）；机场内多条连接跑道和停机位的道路",
+      "generalMeaning": "n. 滑行道（复数）"
+    },
+    {
+      "word": "tb",
+      "ipa": "/ˌtiː ˈbiː/",
+      "aviationMeaning": "n. 结核病；机组或旅客健康与适航风险相关",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "tcas",
+      "ipa": "/ˈtiːkæs/",
+      "aviationMeaning": "n. 交通告警与防撞系统；监视附近航空器并提供防撞建议的系统",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "td",
+      "ipa": "/ˌtiː ˈdiː/",
+      "aviationMeaning": "n. 航空资料缩写；可能指露点、着陆距离等，需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "teach",
+      "ipa": "/tiːtʃ/",
+      "aviationMeaning": "v. 教授；教授飞行、维护、通话或安全知识",
+      "generalMeaning": "v. 教；教授"
+    },
+    {
+      "word": "teaches",
+      "ipa": "/ˈtiːtʃɪz/",
+      "aviationMeaning": "v. 教授；教授飞行、维护或安全知识",
+      "generalMeaning": "v. 教；教授"
+    },
+    {
+      "word": "teaching",
+      "ipa": "/ˈtiːtʃɪŋ/",
+      "aviationMeaning": "n. 教学；飞行、维护、通话或安全知识培训",
+      "generalMeaning": "n. 教学；教导"
+    },
+    {
+      "word": "team",
+      "ipa": "/tiːm/",
+      "aviationMeaning": "n. 团队；机组、管制、地勤、维修或救援人员协作小组",
+      "generalMeaning": "n. 团队；队伍"
+    },
+    {
+      "word": "teams",
+      "ipa": "/tiːmz/",
+      "aviationMeaning": "n. 团队（复数）；多个机组、地勤、维修或救援小组",
+      "generalMeaning": "n. 团队；队伍（复数）"
+    },
+    {
+      "word": "teamwork",
+      "ipa": "/ˈtiːmwɜːrk/",
+      "aviationMeaning": "n. 团队协作；机组资源管理和跨岗位配合能力",
+      "generalMeaning": "n. 团队合作"
+    },
+    {
+      "word": "tear",
+      "ipa": "/ter/",
+      "aviationMeaning": "n. 撕裂；结构、材料或部件发生裂口的损伤",
+      "generalMeaning": "n. 眼泪；撕裂"
+    },
+    {
+      "word": "teardown",
+      "ipa": "/ˈterdaʊn/",
+      "aviationMeaning": "n. 拆解；对发动机、设备或部件进行拆卸检查",
+      "generalMeaning": "n. 拆除；拆解"
+    },
+    {
+      "word": "teardrop",
+      "ipa": "/ˈtɪrdrɑːp/",
+      "aviationMeaning": "n. 水滴形；进近等待或航迹中呈泪滴形的机动",
+      "generalMeaning": "n. 泪滴；水滴形"
+    },
+    {
+      "word": "technical",
+      "ipa": "/ˈteknɪkəl/",
+      "aviationMeaning": "adj. 技术的；涉及航空器、系统、维修或运行细节的",
+      "generalMeaning": "adj. 技术的；专门的"
+    },
+    {
+      "word": "technically",
+      "ipa": "/ˈteknɪkli/",
+      "aviationMeaning": "adv. 技术上；从航空器、系统或程序细节角度",
+      "generalMeaning": "adv. 技术上；严格说来"
+    },
+    {
+      "word": "technician",
+      "ipa": "/tekˈnɪʃən/",
+      "aviationMeaning": "n. 技术员；负责航空器、设备或系统维护的专业人员",
+      "generalMeaning": "n. 技术员；技师"
+    },
+    {
+      "word": "technicians",
+      "ipa": "/tekˈnɪʃənz/",
+      "aviationMeaning": "n. 技术员（复数）；多个负责维护航空器或设备的人员",
+      "generalMeaning": "n. 技术员；技师（复数）"
+    },
+    {
+      "word": "technique",
+      "ipa": "/tekˈniːk/",
+      "aviationMeaning": "n. 技术；飞行操纵、进近、通话或维修的具体方法",
+      "generalMeaning": "n. 技巧；技术"
+    },
+    {
+      "word": "techniques",
+      "ipa": "/tekˈniːks/",
+      "aviationMeaning": "n. 技术（复数）；多种飞行操纵、通话或维修方法",
+      "generalMeaning": "n. 技巧；技术（复数）"
+    },
+    {
+      "word": "technological",
+      "ipa": "/ˌteknəˈlɑːdʒɪkəl/",
+      "aviationMeaning": "adj. 技术性的；与航空技术、航电或设备发展有关的",
+      "generalMeaning": "adj. 技术的；科技的"
+    },
+    {
+      "word": "technologies",
+      "ipa": "/tekˈnɑːlədʒiz/",
+      "aviationMeaning": "n. 技术（复数）；航空器、航电、通信或安全相关技术",
+      "generalMeaning": "n. 技术；科技（复数）"
+    },
+    {
+      "word": "technology",
+      "ipa": "/tekˈnɑːlədʒi/",
+      "aviationMeaning": "n. 技术；航空器、航电、通信或安全相关技术",
+      "generalMeaning": "n. 技术；科技"
+    },
+    {
+      "word": "ted",
+      "ipa": "/ted/",
+      "aviationMeaning": "n. 特德；专有名称，需结合原文",
+      "generalMeaning": "n. 特德；男子名"
+    },
+    {
+      "word": "tegel",
+      "ipa": "/ˈteɪɡəl/",
+      "aviationMeaning": "n. 泰格尔；机场或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "tegel's",
+      "ipa": "/ˈteɪɡəlz/",
+      "aviationMeaning": "n. Tegel 的所有格形式；泰格尔的",
+      "generalMeaning": "n. 专有地名的所有格形式"
+    },
+    {
+      "word": "tehran",
+      "ipa": "/teɪˈrɑːn/",
+      "aviationMeaning": "n. 德黑兰；机场、空域或航线地名",
+      "generalMeaning": "n. 德黑兰"
+    },
+    {
+      "word": "tel",
+      "ipa": "/tel/",
+      "aviationMeaning": "n. 电话的缩写；地面协调或联系号码相关",
+      "generalMeaning": "n. 电话缩写；请结合原文"
+    },
+    {
+      "word": "telephone",
+      "ipa": "/ˈteləfoʊn/",
+      "aviationMeaning": "n. 电话；地面协调、调度或紧急联络设备",
+      "generalMeaning": "n. 电话；v. 打电话"
+    },
+    {
+      "word": "tell",
+      "ipa": "/tel/",
+      "aviationMeaning": "v. 告诉；通报飞行、天气、程序或安全信息",
+      "generalMeaning": "v. 告诉；分辨"
+    },
+    {
+      "word": "telling",
+      "ipa": "/ˈtelɪŋ/",
+      "aviationMeaning": "v. 正告诉；正在通报飞行、天气或安全信息",
+      "generalMeaning": "v. 正告诉；分辨"
+    },
+    {
+      "word": "tells",
+      "ipa": "/telz/",
+      "aviationMeaning": "v. 告诉；通报飞行、天气、程序或安全信息",
+      "generalMeaning": "v. 告诉；分辨"
+    },
+    {
+      "word": "temperature",
+      "ipa": "/ˈtemprətʃər/",
+      "aviationMeaning": "n. 温度；影响发动机、性能、结冰和天气的重要参数",
+      "generalMeaning": "n. 温度；体温"
+    },
+    {
+      "word": "temperature-dew",
+      "ipa": "/ˈtemprətʃər duː/",
+      "aviationMeaning": "n. 温度与露点；用于判断湿度、云雾和结冰条件的数据",
+      "generalMeaning": "n. 温度与露点"
+    },
+    {
+      "word": "temperatures",
+      "ipa": "/ˈtemprətʃərz/",
+      "aviationMeaning": "n. 温度（复数）；不同高度、部件或天气区域的温度数据",
+      "generalMeaning": "n. 温度（复数）"
+    },
+    {
+      "word": "temporarily",
+      "ipa": "/ˈtempərerəli/",
+      "aviationMeaning": "adv. 暂时地；在一段有限时间内改变运行或系统状态",
+      "generalMeaning": "adv. 暂时地"
+    },
+    {
+      "word": "temporary",
+      "ipa": "/ˈtempəreri/",
+      "aviationMeaning": "adj. 临时的；短期生效的运行、程序、设施或限制",
+      "generalMeaning": "adj. 临时的；暂时的"
+    },
+    {
+      "word": "ten",
+      "ipa": "/ten/",
+      "aviationMeaning": "num. 十；无线电通话中的数字十",
+      "generalMeaning": "num. 十"
+    },
+    {
+      "word": "ten-ninety",
+      "ipa": "/ten ˈnaɪnti/",
+      "aviationMeaning": "n. 一千零九十；数值或频率表达，需结合原文",
+      "generalMeaning": "n. 一千零九十"
+    },
+    {
+      "word": "tendency",
+      "ipa": "/ˈtendənsi/",
+      "aviationMeaning": "n. 趋势；天气、系统、飞行参数或人员行为的发展方向",
+      "generalMeaning": "n. 趋势；倾向"
+    },
+    {
+      "word": "tends",
+      "ipa": "/tendz/",
+      "aviationMeaning": "v. 倾向于；天气、系统或参数通常表现出某种趋势",
+      "generalMeaning": "v. 倾向于；照料"
+    },
+    {
+      "word": "tenerife",
+      "ipa": "/ˌtenəˈriːf/",
+      "aviationMeaning": "n. 特内里费；机场或地名",
+      "generalMeaning": "n. 特内里费"
+    },
+    {
+      "word": "tennessee",
+      "ipa": "/ˌtenəˈsiː/",
+      "aviationMeaning": "n. 田纳西；机场或地名所在州",
+      "generalMeaning": "n. 田纳西"
+    },
+    {
+      "word": "term",
+      "ipa": "/tɜːrm/",
+      "aviationMeaning": "n. 术语；飞行、维修、空管或安全领域使用的专业词汇",
+      "generalMeaning": "n. 术语；时期"
+    },
+    {
+      "word": "terminal",
+      "ipa": "/ˈtɜːrmɪnəl/",
+      "aviationMeaning": "n. 航站楼；旅客办理、候机、到达和离开的机场建筑",
+      "generalMeaning": "n. 终点站；终端"
+    },
+    {
+      "word": "terminals",
+      "ipa": "/ˈtɜːrmɪnəlz/",
+      "aviationMeaning": "n. 航站楼（复数）；机场内多个旅客处理建筑",
+      "generalMeaning": "n. 终点站；终端（复数）"
+    },
+    {
+      "word": "terminate",
+      "ipa": "/ˈtɜːrmɪneɪt/",
+      "aviationMeaning": "v. 终止；结束飞行、程序、服务或系统运行",
+      "generalMeaning": "v. 终止；结束"
+    },
+    {
+      "word": "terminated",
+      "ipa": "/ˈtɜːrmɪneɪtɪd/",
+      "aviationMeaning": "adj. 已终止的；飞行、程序、服务或系统运行已结束",
+      "generalMeaning": "adj. 已终止的"
+    },
+    {
+      "word": "terminating",
+      "ipa": "/ˈtɜːrmɪneɪtɪŋ/",
+      "aviationMeaning": "v. 正终止；正在结束飞行、程序、服务或系统运行",
+      "generalMeaning": "v. 正终止；结束"
+    },
+    {
+      "word": "terminology",
+      "ipa": "/ˌtɜːrməˈnɑːlədʒi/",
+      "aviationMeaning": "n. 术语体系；航空运行、维修和通话中规范使用的词汇",
+      "generalMeaning": "n. 术语；术语学"
+    },
+    {
+      "word": "terms",
+      "ipa": "/tɜːrmz/",
+      "aviationMeaning": "n. 术语（复数）；飞行、维修、空管或安全领域的专业词汇",
+      "generalMeaning": "n. 术语；时期（复数）"
+    },
+    {
+      "word": "terrain",
+      "ipa": "/təˈreɪn/",
+      "aviationMeaning": "n. 地形；地面高程、山脉、建筑等影响飞行安全的环境",
+      "generalMeaning": "n. 地形；地势"
+    },
+    {
+      "word": "terrible",
+      "ipa": "/ˈterəbəl/",
+      "aviationMeaning": "adj. 很差的；天气、性能、通信或运行状况极差的",
+      "generalMeaning": "adj. 可怕的；很差的"
+    },
+    {
+      "word": "terrified",
+      "ipa": "/ˈterəfaɪd/",
+      "aviationMeaning": "adj. 极度害怕的；旅客或人员因事件、颠簸或故障恐惧",
+      "generalMeaning": "adj. 极度害怕的"
+    },
+    {
+      "word": "territory",
+      "ipa": "/ˈterətɔːri/",
+      "aviationMeaning": "n. 领空区域；国家、管制单位或机场负责的地理区域",
+      "generalMeaning": "n. 领土；领域"
+    },
+    {
+      "word": "terrorist",
+      "ipa": "/ˈterərɪst/",
+      "aviationMeaning": "n. 恐怖分子；可能对航空安保构成非法干扰威胁的人员",
+      "generalMeaning": "n. 恐怖分子"
+    },
+    {
+      "word": "terrorists",
+      "ipa": "/ˈterərɪsts/",
+      "aviationMeaning": "n. 恐怖分子（复数）；可能对航空安保构成威胁的人员",
+      "generalMeaning": "n. 恐怖分子（复数）"
+    },
+    {
+      "word": "test",
+      "ipa": "/test/",
+      "aviationMeaning": "n. 测试；测试航空器、系统、设备、性能或人员能力",
+      "generalMeaning": "n. 测试；v. 测试"
+    },
+    {
+      "word": "tested",
+      "ipa": "/ˈtestɪd/",
+      "aviationMeaning": "adj. 已测试的；航空器、系统、设备或程序已接受测试",
+      "generalMeaning": "adj. 已测试的"
+    },
+    {
+      "word": "testing",
+      "ipa": "/ˈtestɪŋ/",
+      "aviationMeaning": "n. 测试；对航空器、系统、设备或程序进行检验",
+      "generalMeaning": "n. 测试；考验"
+    },
+    {
+      "word": "tests",
+      "ipa": "/tests/",
+      "aviationMeaning": "n. 测试（复数）；多项航空器、系统或人员能力检验",
+      "generalMeaning": "n. 测试（复数）；v. 测试"
+    },
+    {
+      "word": "texas",
+      "ipa": "/ˈteksəs/",
+      "aviationMeaning": "n. 得克萨斯；机场或地名所在州",
+      "generalMeaning": "n. 得克萨斯"
+    },
+    {
+      "word": "text",
+      "ipa": "/tekst/",
+      "aviationMeaning": "n. 文本；飞行计划、通告、程序或电子信息内容",
+      "generalMeaning": "n. 文本；短信"
+    },
+    {
+      "word": "thai",
+      "ipa": "/taɪ/",
+      "aviationMeaning": "adj. 泰国的；机场、空域、航线或航空公司相关",
+      "generalMeaning": "adj. 泰国的；n. 泰语"
+    },
+    {
+      "word": "thailand",
+      "ipa": "/ˈtaɪlænd/",
+      "aviationMeaning": "n. 泰国；机场、空域或航线所在国",
+      "generalMeaning": "n. 泰国"
+    },
+    {
+      "word": "thailand's",
+      "ipa": "/ˈtaɪlændz/",
+      "aviationMeaning": "n. Thailand 的所有格形式；泰国的",
+      "generalMeaning": "n. 专有地名的所有格形式"
+    },
+    {
+      "word": "than",
+      "ipa": "/ðæn/",
+      "aviationMeaning": "conj. 比；用于高度、速度、距离或性能比较",
+      "generalMeaning": "conj. 比；超过"
+    },
+    {
+      "word": "thank",
+      "ipa": "/θæŋk/",
+      "aviationMeaning": "v. 感谢；通话中礼貌结束或确认协作",
+      "generalMeaning": "v. 感谢"
+    },
+    {
+      "word": "thanks",
+      "ipa": "/θæŋks/",
+      "aviationMeaning": "interj. 谢谢；通话中礼貌表达感谢",
+      "generalMeaning": "interj. 谢谢；n. 感谢"
+    },
+    {
+      "word": "that",
+      "ipa": "/ðæt/",
+      "aviationMeaning": "pron. 那个；指代前述飞行、设备、指令或情况",
+      "generalMeaning": "pron. 那个；conj. 那么"
+    },
+    {
+      "word": "that's",
+      "ipa": "/ðæts/",
+      "aviationMeaning": "pron. that is 的缩写；指代当前说明或确认",
+      "generalMeaning": "pron. 那是；that is 的缩写"
+    },
+    {
+      "word": "that’s",
+      "ipa": "/ðæts/",
+      "aviationMeaning": "pron. that is 的缩写；指代当前说明或确认",
+      "generalMeaning": "pron. 那是；that is 的缩写"
+    },
+    {
+      "word": "the",
+      "ipa": "/ðə/",
+      "aviationMeaning": "art. 这；特指某一航空器、跑道、系统或程序",
+      "generalMeaning": "art. 这；那；该"
+    },
+    {
+      "word": "thee",
+      "ipa": "/ðiː/",
+      "aviationMeaning": "pron. 你；古体用法，需结合原文",
+      "generalMeaning": "pron. 你；古体用法"
+    },
+    {
+      "word": "their",
+      "ipa": "/ðer/",
+      "aviationMeaning": "pron. 他们的；旅客、机组、运营人或单位的",
+      "generalMeaning": "pron. 他们的；她们的；它们的"
+    },
+    {
+      "word": "them",
+      "ipa": "/ðem/",
+      "aviationMeaning": "pron. 他们；指代旅客、机组、人员或物品",
+      "generalMeaning": "pron. 他们；她们；它们"
+    },
+    {
+      "word": "themselves",
+      "ipa": "/ðəmˈselvz/",
+      "aviationMeaning": "pron. 他们自己；旅客、机组或人员自身",
+      "generalMeaning": "pron. 他们自己；她们自己"
+    },
+    {
+      "word": "then",
+      "ipa": "/ðen/",
+      "aviationMeaning": "adv. 然后；表示飞行、程序或通话中的下一步骤",
+      "generalMeaning": "adv. 然后；当时"
+    }
   ]
 }

@@ -9,7 +9,7 @@ import {
   LineChart,
   Radio,
   type LucideIcon,
-} from 'lucide-react-native';
+} from '@/components/ui/icons';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import { AppText, Card, Screen } from '@/components/ui';

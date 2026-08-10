@@ -1,105 +1,503 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"conversation","ipa":"/ˌkɑːnvərˈseɪʃən/","aviationMeaning":"n. 对话；机组或空地通信交流","generalMeaning":"n. 谈话；交谈"},
-    {"word":"conversations","ipa":"/ˌkɑːnvərˈseɪʃənz/","aviationMeaning":"n. 对话；机组或空地通信交流（复数）","generalMeaning":"n. 谈话；交谈（复数）"},
-    {"word":"conversion","ipa":"/kənˈvɜːrʒən/","aviationMeaning":"n. 转换；单位、系统或机型转换","generalMeaning":"n. 转换；转变"},
-    {"word":"convert","ipa":"/kənˈvɜːrt/","aviationMeaning":"v. 转换单位、系统或飞行模式","generalMeaning":"v. 转换；改造"},
-    {"word":"converters","ipa":"/kənˈvɜːrtərz/","aviationMeaning":"n. 转换器；电气或信号转换部件（复数）","generalMeaning":"n. 转换器（复数）"},
-    {"word":"converting","ipa":"/kənˈvɜːrtɪŋ/","aviationMeaning":"v. 正转换单位、系统或飞行模式","generalMeaning":"v. 正转换"},
-    {"word":"converts","ipa":"/kənˈvɜːrts/","aviationMeaning":"v. 转换单位、系统或飞行模式","generalMeaning":"v. 转换"},
-    {"word":"convey","ipa":"/kənˈveɪ/","aviationMeaning":"v. 传达意图、信息或指令","generalMeaning":"v. 传达；运输"},
-    {"word":"cool","ipa":"/kuːl/","aviationMeaning":"adj. 凉的；v. 冷却设备或发动机","generalMeaning":"adj. 凉爽的；v. 冷却"},
-    {"word":"cooled","ipa":"/kuːld/","aviationMeaning":"adj. 已冷却的；温度降低的","generalMeaning":"adj. 已冷却的"},
-    {"word":"cooler","ipa":"/ˈkuːlər/","aviationMeaning":"n. 冷却器；adj. 更冷的","generalMeaning":"n. 冷却器；adj. 更凉的"},
-    {"word":"cooling","ipa":"/ˈkuːlɪŋ/","aviationMeaning":"n. 冷却；设备、发动机或刹车冷却","generalMeaning":"n. 冷却"},
-    {"word":"cooperate","ipa":"/koʊˈɑːpəreɪt/","aviationMeaning":"v. 协作；机组和管制协同","generalMeaning":"v. 合作；协作"},
-    {"word":"cooperated","ipa":"/koʊˈɑːpəreɪtɪd/","aviationMeaning":"v. 已协作；已完成协调","generalMeaning":"v. 已合作"},
-    {"word":"cooperating","ipa":"/koʊˈɑːpəreɪtɪŋ/","aviationMeaning":"v. 正协作；正在协调","generalMeaning":"v. 正合作"},
-    {"word":"cooperation","ipa":"/koʊˌɑːpəˈreɪʃən/","aviationMeaning":"n. 协作；机组和管制协同","generalMeaning":"n. 合作；协作"},
-    {"word":"coordinate","ipa":"/koʊˈɔːrdəneɪt/","aviationMeaning":"v. 协调航班、管制或地面服务","generalMeaning":"v. 协调；使配合"},
-    {"word":"coordinated","ipa":"/koʊˈɔːrdəneɪtɪd/","aviationMeaning":"adj. 已协调的；一致安排的","generalMeaning":"adj. 已协调的"},
-    {"word":"coordinates","ipa":"/koʊˈɔːrdəneɪts/","aviationMeaning":"n. 坐标（复数）；v. 协调","generalMeaning":"n. 坐标（复数）；v. 协调"},
-    {"word":"coordinating","ipa":"/koʊˈɔːrdəneɪtɪŋ/","aviationMeaning":"v. 正协调航班、管制或地面服务","generalMeaning":"v. 正协调"},
-    {"word":"coordination","ipa":"/koʊˌɔːrdəˈneɪʃən/","aviationMeaning":"n. 协调；空地和机组协调","generalMeaning":"n. 协调；配合"},
-    {"word":"coordinator","ipa":"/koʊˈɔːrdəneɪtər/","aviationMeaning":"n. 协调员；运行协调人员","generalMeaning":"n. 协调人"},
-    {"word":"copenhagen","ipa":"/ˌkoʊpənˈheɪɡən/","aviationMeaning":"n. 哥本哈根；机场所在城市","generalMeaning":"n. 哥本哈根（丹麦首都）"},
-    {"word":"copied","ipa":"/ˈkɑːpid/","aviationMeaning":"v. 已抄收；已复制资料","generalMeaning":"v. 已复制；抄写"},
-    {"word":"copilot","ipa":"/ˈkoʊˌpaɪlət/","aviationMeaning":"n. 副驾驶","generalMeaning":"n. 副驾驶员"},
-    {"word":"copy","ipa":"/ˈkɑːpi/","aviationMeaning":"v. 抄收通话；n. 副本","generalMeaning":"n. 副本；v. 复制"},
-    {"word":"core","ipa":"/kɔːr/","aviationMeaning":"n. 核心；发动机核心或主要部分","generalMeaning":"n. 核心；中心"},
-    {"word":"corner","ipa":"/ˈkɔːrnər/","aviationMeaning":"n. 角落；机坪或驾驶舱角部","generalMeaning":"n. 角；角落"},
-    {"word":"corporate","ipa":"/ˈkɔːrpərət/","aviationMeaning":"adj. 公司层面的；企业航空的","generalMeaning":"adj. 公司的；法人的"},
-    {"word":"corporation's","ipa":"/ˌkɔːrpəˈreɪʃənz/","aviationMeaning":"n. 公司的；表示所属关系","generalMeaning":"n. 公司的；表示所属关系"},
-    {"word":"corporationsaircraft","ipa":"/ˌkɔːrpəˈreɪʃənz ˈerkræft/","aviationMeaning":"n. 题库原文中 corporation's aircraft 的疑似粘连","generalMeaning":"n. 疑似词语粘连；请结合原文"},
-    {"word":"correct","ipa":"/kəˈrekt/","aviationMeaning":"adj. 正确的；v. 修正数据、指令或偏差","generalMeaning":"adj. 正确的；v. 改正"},
-    {"word":"corrected","ipa":"/kəˈrektɪd/","aviationMeaning":"adj. 已修正的；如修正高度或数据","generalMeaning":"adj. 已改正的"},
-    {"word":"correcting","ipa":"/kəˈrektɪŋ/","aviationMeaning":"v. 正修正数据、指令或偏差","generalMeaning":"v. 正改正"},
-    {"word":"correction","ipa":"/kəˈrekʃən/","aviationMeaning":"n. 修正；高度、温度或位置修正","generalMeaning":"n. 改正；校正"},
-    {"word":"corrections","ipa":"/kəˈrekʃənz/","aviationMeaning":"n. 修正（复数）；参数或数据修正","generalMeaning":"n. 改正（复数）"},
-    {"word":"corrective","ipa":"/kəˈrektɪv/","aviationMeaning":"adj. 纠正性的；用于改正偏差的","generalMeaning":"adj. 纠正的；矫正的"},
-    {"word":"correctly","ipa":"/kəˈrektli/","aviationMeaning":"adv. 正确地；按程序准确执行","generalMeaning":"adv. 正确地"},
-    {"word":"corrects","ipa":"/kəˈrekts/","aviationMeaning":"v. 修正数据、指令或偏差","generalMeaning":"v. 改正；纠正"},
-    {"word":"correlate","ipa":"/ˈkɔːrəleɪt/","aviationMeaning":"v. 关联飞行数据、事件或信号","generalMeaning":"v. 关联；相关"},
-    {"word":"corresponding","ipa":"/ˌkɔːrəˈspɑːndɪŋ/","aviationMeaning":"adj. 对应的；相应的参数或程序","generalMeaning":"adj. 相应的；对应的"},
-    {"word":"corrode","ipa":"/kəˈroʊd/","aviationMeaning":"v. 腐蚀金属结构或部件","generalMeaning":"v. 腐蚀；侵蚀"},
-    {"word":"corrosion","ipa":"/kəˈroʊʒən/","aviationMeaning":"n. 腐蚀；航空器结构腐蚀","generalMeaning":"n. 腐蚀；侵蚀"},
-    {"word":"corrosive","ipa":"/kəˈroʊsɪv/","aviationMeaning":"adj. 腐蚀性的；危险品性质","generalMeaning":"adj. 腐蚀性的"},
-    {"word":"corruption","ipa":"/kəˈrʌpʃən/","aviationMeaning":"n. 数据损坏；信息失真","generalMeaning":"n. 腐败；损坏"},
-    {"word":"cost","ipa":"/kɔːst/","aviationMeaning":"n. 成本；v. 花费；运行成本","generalMeaning":"n. 成本；v. 花费"},
-    {"word":"cost-index","ipa":"/kɔːst ˈɪndeks/","aviationMeaning":"n. 成本指数；飞行管理系统经济速度参数","generalMeaning":"n. 成本指数"},
-    {"word":"cost-saving","ipa":"/kɔːst ˈseɪvɪŋ/","aviationMeaning":"adj. 节约成本的；提高运行效率的","generalMeaning":"adj. 节约成本的"},
-    {"word":"costly","ipa":"/ˈkɔːstli/","aviationMeaning":"adj. 成本高的；代价大的","generalMeaning":"adj. 昂贵的；代价高的"},
-    {"word":"costs","ipa":"/kɔːsts/","aviationMeaning":"n. 成本（复数）；v. 花费","generalMeaning":"n. 成本（复数）；v. 花费"},
-    {"word":"coughing","ipa":"/ˈkɔːfɪŋ/","aviationMeaning":"n. 咳嗽；机组或旅客医疗状态","generalMeaning":"n. 咳嗽"},
-    {"word":"could","ipa":"/kʊd/","aviationMeaning":"v. 能够；表示可能性、能力或建议","generalMeaning":"v. 能；可能"},
-    {"word":"couldn","ipa":"/ˈkʊdən/","aviationMeaning":"n. 题库原文中 couldn't 的不完整词形","generalMeaning":"n. 不完整词形；请结合原文"},
-    {"word":"couldn't","ipa":"/ˈkʊdənt/","aviationMeaning":"v. 不能；未能满足运行条件","generalMeaning":"v. 不能（could not 的缩写）"},
-    {"word":"count","ipa":"/kaʊnt/","aviationMeaning":"v. 计数；n. 数量或计数","generalMeaning":"v. 计数；n. 数目"},
-    {"word":"counter","ipa":"/ˈkaʊntər/","aviationMeaning":"n. 柜台；计数器；v. 对抗","generalMeaning":"n. 柜台；计数器"},
-    {"word":"counter-rotating","ipa":"/ˌkaʊntər ˈroʊteɪtɪŋ/","aviationMeaning":"adj. 反向旋转的；如反转螺旋桨","generalMeaning":"adj. 反向旋转的"},
-    {"word":"counteract","ipa":"/ˌkaʊntərˈækt/","aviationMeaning":"v. 抵消不利影响、偏差或风险","generalMeaning":"v. 抵消；对抗"},
-    {"word":"countermeasures","ipa":"/ˈkaʊntərˌmeʒərz/","aviationMeaning":"n. 对策；风险或安全防范措施（复数）","generalMeaning":"n. 对策；反制措施（复数）"},
-    {"word":"counterparts","ipa":"/ˈkaʊntərpɑːrts/","aviationMeaning":"n. 对应人员或单位（复数）","generalMeaning":"n. 对应物；同行（复数）"},
-    {"word":"counting","ipa":"/ˈkaʊntɪŋ/","aviationMeaning":"v. 正计数；n. 计数","generalMeaning":"v. 正计数；n. 计数"},
-    {"word":"countries","ipa":"/ˈkʌntriz/","aviationMeaning":"n. 国家；飞行涉及的国家（复数）","generalMeaning":"n. 国家（复数）"},
-    {"word":"country","ipa":"/ˈkʌntri/","aviationMeaning":"n. 国家；运行所在国","generalMeaning":"n. 国家；乡村"},
-    {"word":"county","ipa":"/ˈkaʊnti/","aviationMeaning":"n. 县；可能作为机场所在行政区","generalMeaning":"n. 县；郡"},
-    {"word":"couple","ipa":"/ˈkʌpəl/","aviationMeaning":"n. 一对；v. 连接系统或部件","generalMeaning":"n. 一对；v. 连接"},
-    {"word":"coupling","ipa":"/ˈkʌplɪŋ/","aviationMeaning":"n. 耦合；系统或机械连接","generalMeaning":"n. 连接；耦合"},
-    {"word":"course","ipa":"/kɔːrs/","aviationMeaning":"n. 航向；航线；训练课程","generalMeaning":"n. 课程；路线"},
-    {"word":"courses","ipa":"/ˈkɔːrsɪz/","aviationMeaning":"n. 航向、航线或训练课程（复数）","generalMeaning":"n. 课程；路线（复数）"},
-    {"word":"cover","ipa":"/ˈkʌvər/","aviationMeaning":"v. 覆盖；n. 覆盖物或保险范围","generalMeaning":"v. 覆盖；n. 盖子"},
-    {"word":"coverage","ipa":"/ˈkʌvərɪdʒ/","aviationMeaning":"n. 覆盖范围；雷达、通信或保险覆盖","generalMeaning":"n. 覆盖；报道范围"},
-    {"word":"covered","ipa":"/ˈkʌvərd/","aviationMeaning":"adj. 已覆盖的；已投保的","generalMeaning":"adj. 被覆盖的"},
-    {"word":"covering","ipa":"/ˈkʌvərɪŋ/","aviationMeaning":"v. 正覆盖；n. 覆盖物","generalMeaning":"v. 正覆盖；n. 覆盖物"},
-    {"word":"covers","ipa":"/ˈkʌvərz/","aviationMeaning":"v. 覆盖航路、区域或事项","generalMeaning":"v. 覆盖；包括"},
-    {"word":"covington's","ipa":"/ˈkʌvɪŋtənz/","aviationMeaning":"n. 科温顿的；表示所属关系","generalMeaning":"n. 科温顿的；表示所属关系"},
-    {"word":"cowl","ipa":"/kaʊl/","aviationMeaning":"n. 整流罩；发动机罩","generalMeaning":"n. 罩；头巾"},
-    {"word":"cowling","ipa":"/ˈkaʊlɪŋ/","aviationMeaning":"n. 整流罩；发动机外罩","generalMeaning":"n. 罩；整流罩"},
-    {"word":"cowls","ipa":"/kaʊlz/","aviationMeaning":"n. 整流罩；发动机罩（复数）","generalMeaning":"n. 罩（复数）"},
-    {"word":"cox's","ipa":"/kɑːksɪz/","aviationMeaning":"n. 人名的；表示所属关系","generalMeaning":"n. 科克斯的；表示所属关系"},
-    {"word":"cpc","ipa":"/ˌsiː piː ˈsiː/","aviationMeaning":"n. 航空资料中的缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"cpdlc","ipa":"/ˌsiː piː diː el ˈsiː/","aviationMeaning":"n. 管制员—飞行员数据链通信（缩写）","generalMeaning":"n. 航空通信系统缩写"},
-    {"word":"cpr","ipa":"/ˌsiː piː ˈɑːr/","aviationMeaning":"n. 心肺复苏（缩写）","generalMeaning":"n. 心肺复苏"},
-    {"word":"crack","ipa":"/kræk/","aviationMeaning":"n. 裂纹；v. 开裂","generalMeaning":"n. 裂缝；v. 裂开"},
-    {"word":"cracked","ipa":"/krækt/","aviationMeaning":"adj. 已开裂的；部件有裂纹的","generalMeaning":"adj. 有裂缝的"},
-    {"word":"cracking","ipa":"/ˈkrækɪŋ/","aviationMeaning":"n. 开裂；结构或部件损伤","generalMeaning":"n. 开裂；破裂"},
-    {"word":"cracks","ipa":"/kræks/","aviationMeaning":"n. 裂纹（复数）；v. 开裂","generalMeaning":"n. 裂缝（复数）；v. 裂开"},
-    {"word":"crane","ipa":"/kreɪn/","aviationMeaning":"n. 起重机；机场施工设备","generalMeaning":"n. 起重机；鹤"},
-    {"word":"crank","ipa":"/kræŋk/","aviationMeaning":"v. 转动发动机；n. 曲柄","generalMeaning":"n. 曲柄；v. 转动"},
-    {"word":"cranked","ipa":"/kræŋkt/","aviationMeaning":"v. 已转动、启动发动机","generalMeaning":"v. 已转动"},
-    {"word":"crash","ipa":"/kræʃ/","aviationMeaning":"n. 坠毁；v. 坠毁或碰撞","generalMeaning":"n. 碰撞；v. 崩溃"},
-    {"word":"crash-protected","ipa":"/kræʃ prəˈtektɪd/","aviationMeaning":"adj. 防撞保护的；耐坠毁的","generalMeaning":"adj. 防碰撞保护的"},
-    {"word":"crashed","ipa":"/kræʃt/","aviationMeaning":"v. 已坠毁或碰撞","generalMeaning":"v. 已碰撞；崩溃"},
-    {"word":"crates","ipa":"/kreɪts/","aviationMeaning":"n. 板条箱；货物包装箱（复数）","generalMeaning":"n. 大木箱（复数）"},
-    {"word":"creases","ipa":"/ˈkriːsɪz/","aviationMeaning":"n. 折痕；材料或文件折痕（复数）","generalMeaning":"n. 折痕（复数）"},
-    {"word":"create","ipa":"/kriˈeɪt/","aviationMeaning":"v. 产生风险、航迹或运行计划","generalMeaning":"v. 创造；产生"},
-    {"word":"creates","ipa":"/kriˈeɪts/","aviationMeaning":"v. 产生风险、航迹或运行计划","generalMeaning":"v. 创造；产生"},
-    {"word":"creating","ipa":"/kriˈeɪtɪŋ/","aviationMeaning":"v. 正产生风险、航迹或运行计划","generalMeaning":"v. 正创造；产生"},
-    {"word":"credibility","ipa":"/ˌkredəˈbɪləti/","aviationMeaning":"n. 可信度；运行信息或报告可信度","generalMeaning":"n. 可信度；可靠性"},
-    {"word":"credible","ipa":"/ˈkredəbəl/","aviationMeaning":"adj. 可信的；运行信息可靠的","generalMeaning":"adj. 可信的；可靠的"},
-    {"word":"credit","ipa":"/ˈkredɪt/","aviationMeaning":"n. 信用；培训学分或认可","generalMeaning":"n. 信用；学分"},
-    {"word":"credits","ipa":"/ˈkredɪts/","aviationMeaning":"n. 培训学分或认可（复数）","generalMeaning":"n. 信用；学分（复数）"}
+    {
+      "word": "conversation",
+      "ipa": "/ˌkɑːnvərˈseɪʃən/",
+      "aviationMeaning": "n. 对话；机组或空地通信交流",
+      "generalMeaning": "n. 谈话；交谈"
+    },
+    {
+      "word": "conversations",
+      "ipa": "/ˌkɑːnvərˈseɪʃənz/",
+      "aviationMeaning": "n. 对话；机组或空地通信交流（复数）",
+      "generalMeaning": "n. 谈话；交谈（复数）"
+    },
+    {
+      "word": "conversion",
+      "ipa": "/kənˈvɜːrʒən/",
+      "aviationMeaning": "n. 转换；单位、系统或机型转换",
+      "generalMeaning": "n. 转换；转变"
+    },
+    {
+      "word": "convert",
+      "ipa": "/kənˈvɜːrt/",
+      "aviationMeaning": "v. 转换单位、系统或飞行模式",
+      "generalMeaning": "v. 转换；改造"
+    },
+    {
+      "word": "converters",
+      "ipa": "/kənˈvɜːrtərz/",
+      "aviationMeaning": "n. 转换器；电气或信号转换部件（复数）",
+      "generalMeaning": "n. 转换器（复数）"
+    },
+    {
+      "word": "converting",
+      "ipa": "/kənˈvɜːrtɪŋ/",
+      "aviationMeaning": "v. 正转换单位、系统或飞行模式",
+      "generalMeaning": "v. 正转换"
+    },
+    {
+      "word": "converts",
+      "ipa": "/kənˈvɜːrts/",
+      "aviationMeaning": "v. 转换单位、系统或飞行模式",
+      "generalMeaning": "v. 转换"
+    },
+    {
+      "word": "convey",
+      "ipa": "/kənˈveɪ/",
+      "aviationMeaning": "v. 传达意图、信息或指令",
+      "generalMeaning": "v. 传达；运输"
+    },
+    {
+      "word": "cool",
+      "ipa": "/kuːl/",
+      "aviationMeaning": "adj. 凉的；v. 冷却设备或发动机",
+      "generalMeaning": "adj. 凉爽的；v. 冷却"
+    },
+    {
+      "word": "cooled",
+      "ipa": "/kuːld/",
+      "aviationMeaning": "adj. 已冷却的；温度降低的",
+      "generalMeaning": "adj. 已冷却的"
+    },
+    {
+      "word": "cooling",
+      "ipa": "/ˈkuːlɪŋ/",
+      "aviationMeaning": "n. 冷却；设备、发动机或刹车冷却",
+      "generalMeaning": "n. 冷却"
+    },
+    {
+      "word": "cooperate",
+      "ipa": "/koʊˈɑːpəreɪt/",
+      "aviationMeaning": "v. 协作；机组和管制协同",
+      "generalMeaning": "v. 合作；协作"
+    },
+    {
+      "word": "cooperated",
+      "ipa": "/koʊˈɑːpəreɪtɪd/",
+      "aviationMeaning": "v. 已协作；已完成协调",
+      "generalMeaning": "v. 已合作"
+    },
+    {
+      "word": "cooperating",
+      "ipa": "/koʊˈɑːpəreɪtɪŋ/",
+      "aviationMeaning": "v. 正协作；正在协调",
+      "generalMeaning": "v. 正合作"
+    },
+    {
+      "word": "cooperation",
+      "ipa": "/koʊˌɑːpəˈreɪʃən/",
+      "aviationMeaning": "n. 协作；机组和管制协同",
+      "generalMeaning": "n. 合作；协作"
+    },
+    {
+      "word": "coordinate",
+      "ipa": "/koʊˈɔːrdəneɪt/",
+      "aviationMeaning": "v. 协调航班、管制或地面服务",
+      "generalMeaning": "v. 协调；使配合"
+    },
+    {
+      "word": "coordinated",
+      "ipa": "/koʊˈɔːrdəneɪtɪd/",
+      "aviationMeaning": "adj. 已协调的；一致安排的",
+      "generalMeaning": "adj. 已协调的"
+    },
+    {
+      "word": "coordinates",
+      "ipa": "/koʊˈɔːrdəneɪts/",
+      "aviationMeaning": "n. 坐标（复数）；v. 协调",
+      "generalMeaning": "n. 坐标（复数）；v. 协调"
+    },
+    {
+      "word": "coordinating",
+      "ipa": "/koʊˈɔːrdəneɪtɪŋ/",
+      "aviationMeaning": "v. 正协调航班、管制或地面服务",
+      "generalMeaning": "v. 正协调"
+    },
+    {
+      "word": "coordination",
+      "ipa": "/koʊˌɔːrdəˈneɪʃən/",
+      "aviationMeaning": "n. 协调；空地和机组协调",
+      "generalMeaning": "n. 协调；配合"
+    },
+    {
+      "word": "coordinator",
+      "ipa": "/koʊˈɔːrdəneɪtər/",
+      "aviationMeaning": "n. 协调员；运行协调人员",
+      "generalMeaning": "n. 协调人"
+    },
+    {
+      "word": "copenhagen",
+      "ipa": "/ˌkoʊpənˈheɪɡən/",
+      "aviationMeaning": "n. 哥本哈根；机场所在城市",
+      "generalMeaning": "n. 哥本哈根（丹麦首都）"
+    },
+    {
+      "word": "copied",
+      "ipa": "/ˈkɑːpid/",
+      "aviationMeaning": "v. 已抄收；已复制资料",
+      "generalMeaning": "v. 已复制；抄写"
+    },
+    {
+      "word": "copilot",
+      "ipa": "/ˈkoʊˌpaɪlət/",
+      "aviationMeaning": "n. 副驾驶",
+      "generalMeaning": "n. 副驾驶员"
+    },
+    {
+      "word": "copy",
+      "ipa": "/ˈkɑːpi/",
+      "aviationMeaning": "v. 抄收通话；n. 副本",
+      "generalMeaning": "n. 副本；v. 复制"
+    },
+    {
+      "word": "core",
+      "ipa": "/kɔːr/",
+      "aviationMeaning": "n. 核心；发动机核心或主要部分",
+      "generalMeaning": "n. 核心；中心"
+    },
+    {
+      "word": "corner",
+      "ipa": "/ˈkɔːrnər/",
+      "aviationMeaning": "n. 角落；机坪或驾驶舱角部",
+      "generalMeaning": "n. 角；角落"
+    },
+    {
+      "word": "corporate",
+      "ipa": "/ˈkɔːrpərət/",
+      "aviationMeaning": "adj. 公司层面的；企业航空的",
+      "generalMeaning": "adj. 公司的；法人的"
+    },
+    {
+      "word": "corporation's",
+      "ipa": "/ˌkɔːrpəˈreɪʃənz/",
+      "aviationMeaning": "n. 公司的；表示所属关系",
+      "generalMeaning": "n. 公司的；表示所属关系"
+    },
+    {
+      "word": "correct",
+      "ipa": "/kəˈrekt/",
+      "aviationMeaning": "adj. 正确的；v. 修正数据、指令或偏差",
+      "generalMeaning": "adj. 正确的；v. 改正"
+    },
+    {
+      "word": "corrected",
+      "ipa": "/kəˈrektɪd/",
+      "aviationMeaning": "adj. 已修正的；如修正高度或数据",
+      "generalMeaning": "adj. 已改正的"
+    },
+    {
+      "word": "correcting",
+      "ipa": "/kəˈrektɪŋ/",
+      "aviationMeaning": "v. 正修正数据、指令或偏差",
+      "generalMeaning": "v. 正改正"
+    },
+    {
+      "word": "correction",
+      "ipa": "/kəˈrekʃən/",
+      "aviationMeaning": "n. 修正；高度、温度或位置修正",
+      "generalMeaning": "n. 改正；校正"
+    },
+    {
+      "word": "corrections",
+      "ipa": "/kəˈrekʃənz/",
+      "aviationMeaning": "n. 修正（复数）；参数或数据修正",
+      "generalMeaning": "n. 改正（复数）"
+    },
+    {
+      "word": "corrective",
+      "ipa": "/kəˈrektɪv/",
+      "aviationMeaning": "adj. 纠正性的；用于改正偏差的",
+      "generalMeaning": "adj. 纠正的；矫正的"
+    },
+    {
+      "word": "correctly",
+      "ipa": "/kəˈrektli/",
+      "aviationMeaning": "adv. 正确地；按程序准确执行",
+      "generalMeaning": "adv. 正确地"
+    },
+    {
+      "word": "corresponding",
+      "ipa": "/ˌkɔːrəˈspɑːndɪŋ/",
+      "aviationMeaning": "adj. 对应的；相应的参数或程序",
+      "generalMeaning": "adj. 相应的；对应的"
+    },
+    {
+      "word": "corrosive",
+      "ipa": "/kəˈroʊsɪv/",
+      "aviationMeaning": "adj. 腐蚀性的；危险品性质",
+      "generalMeaning": "adj. 腐蚀性的"
+    },
+    {
+      "word": "corruption",
+      "ipa": "/kəˈrʌpʃən/",
+      "aviationMeaning": "n. 数据损坏；信息失真",
+      "generalMeaning": "n. 腐败；损坏"
+    },
+    {
+      "word": "cost",
+      "ipa": "/kɔːst/",
+      "aviationMeaning": "n. 成本；v. 花费；运行成本",
+      "generalMeaning": "n. 成本；v. 花费"
+    },
+    {
+      "word": "cost-saving",
+      "ipa": "/kɔːst ˈseɪvɪŋ/",
+      "aviationMeaning": "adj. 节约成本的；提高运行效率的",
+      "generalMeaning": "adj. 节约成本的"
+    },
+    {
+      "word": "costly",
+      "ipa": "/ˈkɔːstli/",
+      "aviationMeaning": "adj. 成本高的；代价大的",
+      "generalMeaning": "adj. 昂贵的；代价高的"
+    },
+    {
+      "word": "costs",
+      "ipa": "/kɔːsts/",
+      "aviationMeaning": "n. 成本（复数）；v. 花费",
+      "generalMeaning": "n. 成本（复数）；v. 花费"
+    },
+    {
+      "word": "coughing",
+      "ipa": "/ˈkɔːfɪŋ/",
+      "aviationMeaning": "n. 咳嗽；机组或旅客医疗状态",
+      "generalMeaning": "n. 咳嗽"
+    },
+    {
+      "word": "could",
+      "ipa": "/kʊd/",
+      "aviationMeaning": "v. 能够；表示可能性、能力或建议",
+      "generalMeaning": "v. 能；可能"
+    },
+    {
+      "word": "couldn't",
+      "ipa": "/ˈkʊdənt/",
+      "aviationMeaning": "v. 不能；未能满足运行条件",
+      "generalMeaning": "v. 不能（could not 的缩写）"
+    },
+    {
+      "word": "counter",
+      "ipa": "/ˈkaʊntər/",
+      "aviationMeaning": "n. 柜台；计数器；v. 对抗",
+      "generalMeaning": "n. 柜台；计数器"
+    },
+    {
+      "word": "counteract",
+      "ipa": "/ˌkaʊntərˈækt/",
+      "aviationMeaning": "v. 抵消不利影响、偏差或风险",
+      "generalMeaning": "v. 抵消；对抗"
+    },
+    {
+      "word": "counterparts",
+      "ipa": "/ˈkaʊntərpɑːrts/",
+      "aviationMeaning": "n. 对应人员或单位（复数）",
+      "generalMeaning": "n. 对应物；同行（复数）"
+    },
+    {
+      "word": "country",
+      "ipa": "/ˈkʌntri/",
+      "aviationMeaning": "n. 国家；运行所在国",
+      "generalMeaning": "n. 国家；乡村"
+    },
+    {
+      "word": "county",
+      "ipa": "/ˈkaʊnti/",
+      "aviationMeaning": "n. 县；可能作为机场所在行政区",
+      "generalMeaning": "n. 县；郡"
+    },
+    {
+      "word": "couple",
+      "ipa": "/ˈkʌpəl/",
+      "aviationMeaning": "n. 一对；v. 连接系统或部件",
+      "generalMeaning": "n. 一对；v. 连接"
+    },
+    {
+      "word": "coupling",
+      "ipa": "/ˈkʌplɪŋ/",
+      "aviationMeaning": "n. 耦合；系统或机械连接",
+      "generalMeaning": "n. 连接；耦合"
+    },
+    {
+      "word": "course",
+      "ipa": "/kɔːrs/",
+      "aviationMeaning": "n. 航向；航线；训练课程",
+      "generalMeaning": "n. 课程；路线"
+    },
+    {
+      "word": "courses",
+      "ipa": "/ˈkɔːrsɪz/",
+      "aviationMeaning": "n. 航向、航线或训练课程（复数）",
+      "generalMeaning": "n. 课程；路线（复数）"
+    },
+    {
+      "word": "cover",
+      "ipa": "/ˈkʌvər/",
+      "aviationMeaning": "v. 覆盖；n. 覆盖物或保险范围",
+      "generalMeaning": "v. 覆盖；n. 盖子"
+    },
+    {
+      "word": "coverage",
+      "ipa": "/ˈkʌvərɪdʒ/",
+      "aviationMeaning": "n. 覆盖范围；雷达、通信或保险覆盖",
+      "generalMeaning": "n. 覆盖；报道范围"
+    },
+    {
+      "word": "covered",
+      "ipa": "/ˈkʌvərd/",
+      "aviationMeaning": "adj. 已覆盖的；已投保的",
+      "generalMeaning": "adj. 被覆盖的"
+    },
+    {
+      "word": "covering",
+      "ipa": "/ˈkʌvərɪŋ/",
+      "aviationMeaning": "v. 正覆盖；n. 覆盖物",
+      "generalMeaning": "v. 正覆盖；n. 覆盖物"
+    },
+    {
+      "word": "covers",
+      "ipa": "/ˈkʌvərz/",
+      "aviationMeaning": "v. 覆盖航路、区域或事项",
+      "generalMeaning": "v. 覆盖；包括"
+    },
+    {
+      "word": "covington's",
+      "ipa": "/ˈkʌvɪŋtənz/",
+      "aviationMeaning": "n. 科温顿的；表示所属关系",
+      "generalMeaning": "n. 科温顿的；表示所属关系"
+    },
+    {
+      "word": "cowl",
+      "ipa": "/kaʊl/",
+      "aviationMeaning": "n. 整流罩；发动机罩",
+      "generalMeaning": "n. 罩；头巾"
+    },
+    {
+      "word": "cowling",
+      "ipa": "/ˈkaʊlɪŋ/",
+      "aviationMeaning": "n. 整流罩；发动机外罩",
+      "generalMeaning": "n. 罩；整流罩"
+    },
+    {
+      "word": "cowls",
+      "ipa": "/kaʊlz/",
+      "aviationMeaning": "n. 整流罩；发动机罩（复数）",
+      "generalMeaning": "n. 罩（复数）"
+    },
+    {
+      "word": "cox's",
+      "ipa": "/kɑːksɪz/",
+      "aviationMeaning": "n. 人名的；表示所属关系",
+      "generalMeaning": "n. 科克斯的；表示所属关系"
+    },
+    {
+      "word": "cpc",
+      "ipa": "/ˌsiː piː ˈsiː/",
+      "aviationMeaning": "n. 航空资料中的缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "cpdlc",
+      "ipa": "/ˌsiː piː diː el ˈsiː/",
+      "aviationMeaning": "n. 管制员—飞行员数据链通信（缩写）",
+      "generalMeaning": "n. 航空通信系统缩写"
+    },
+    {
+      "word": "cpr",
+      "ipa": "/ˌsiː piː ˈɑːr/",
+      "aviationMeaning": "n. 心肺复苏（缩写）",
+      "generalMeaning": "n. 心肺复苏"
+    },
+    {
+      "word": "crack",
+      "ipa": "/kræk/",
+      "aviationMeaning": "n. 裂纹；v. 开裂",
+      "generalMeaning": "n. 裂缝；v. 裂开"
+    },
+    {
+      "word": "cracked",
+      "ipa": "/krækt/",
+      "aviationMeaning": "adj. 已开裂的；部件有裂纹的",
+      "generalMeaning": "adj. 有裂缝的"
+    },
+    {
+      "word": "cracking",
+      "ipa": "/ˈkrækɪŋ/",
+      "aviationMeaning": "n. 开裂；结构或部件损伤",
+      "generalMeaning": "n. 开裂；破裂"
+    },
+    {
+      "word": "cracks",
+      "ipa": "/kræks/",
+      "aviationMeaning": "n. 裂纹（复数）；v. 开裂",
+      "generalMeaning": "n. 裂缝（复数）；v. 裂开"
+    },
+    {
+      "word": "crane",
+      "ipa": "/kreɪn/",
+      "aviationMeaning": "n. 起重机；机场施工设备",
+      "generalMeaning": "n. 起重机；鹤"
+    },
+    {
+      "word": "crank",
+      "ipa": "/kræŋk/",
+      "aviationMeaning": "v. 转动发动机；n. 曲柄",
+      "generalMeaning": "n. 曲柄；v. 转动"
+    },
+    {
+      "word": "cranked",
+      "ipa": "/kræŋkt/",
+      "aviationMeaning": "v. 已转动、启动发动机",
+      "generalMeaning": "v. 已转动"
+    },
+    {
+      "word": "crash",
+      "ipa": "/kræʃ/",
+      "aviationMeaning": "n. 坠毁；v. 坠毁或碰撞",
+      "generalMeaning": "n. 碰撞；v. 崩溃"
+    },
+    {
+      "word": "crashed",
+      "ipa": "/kræʃt/",
+      "aviationMeaning": "v. 已坠毁或碰撞",
+      "generalMeaning": "v. 已碰撞；崩溃"
+    },
+    {
+      "word": "crates",
+      "ipa": "/kreɪts/",
+      "aviationMeaning": "n. 板条箱；货物包装箱（复数）",
+      "generalMeaning": "n. 大木箱（复数）"
+    },
+    {
+      "word": "creases",
+      "ipa": "/ˈkriːsɪz/",
+      "aviationMeaning": "n. 折痕；材料或文件折痕（复数）",
+      "generalMeaning": "n. 折痕（复数）"
+    },
+    {
+      "word": "create",
+      "ipa": "/kriˈeɪt/",
+      "aviationMeaning": "v. 产生风险、航迹或运行计划",
+      "generalMeaning": "v. 创造；产生"
+    },
+    {
+      "word": "creates",
+      "ipa": "/kriˈeɪts/",
+      "aviationMeaning": "v. 产生风险、航迹或运行计划",
+      "generalMeaning": "v. 创造；产生"
+    },
+    {
+      "word": "creating",
+      "ipa": "/kriˈeɪtɪŋ/",
+      "aviationMeaning": "v. 正产生风险、航迹或运行计划",
+      "generalMeaning": "v. 正创造；产生"
+    },
+    {
+      "word": "credibility",
+      "ipa": "/ˌkredəˈbɪləti/",
+      "aviationMeaning": "n. 可信度；运行信息或报告可信度",
+      "generalMeaning": "n. 可信度；可靠性"
+    }
   ]
 }

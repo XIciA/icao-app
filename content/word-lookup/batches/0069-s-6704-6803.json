@@ -1,105 +1,491 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"sacramento's","ipa":"/ˌsækrəˈmentoʊz/","aviationMeaning":"n. Sacramento 的所有格形式；萨克拉门托的","generalMeaning":"n. 专有地名的所有格形式"},
-    {"word":"sae","ipa":"/ˌes eɪ ˈiː/","aviationMeaning":"n. 汽车工程师学会；材料、油液或标准资料相关缩写","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"saf","ipa":"/ˌes eɪ ˈef/","aviationMeaning":"n. 可持续航空燃料；低碳航空燃料相关缩写","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"safe","ipa":"/seɪf/","aviationMeaning":"adj. 安全的；符合安全裕度、程序与运行要求的","generalMeaning":"adj. 安全的；n. 保险箱"},
-    {"word":"safeguards","ipa":"/ˈseɪfɡɑːrdz/","aviationMeaning":"n. 保障措施（复数）；用于防止安全风险的保护机制","generalMeaning":"n. 保障；防护措施（复数）"},
-    {"word":"safely","ipa":"/ˈseɪfli/","aviationMeaning":"adv. 安全地；在不危及人员、航空器或运行的情况下","generalMeaning":"adv. 安全地"},
-    {"word":"safer","ipa":"/ˈseɪfər/","aviationMeaning":"adj. 更安全的；风险更低或安全裕度更大的","generalMeaning":"adj. 更安全的"},
-    {"word":"safest","ipa":"/ˈseɪfɪst/","aviationMeaning":"adj. 最安全的；在可选方案中风险最低的","generalMeaning":"adj. 最安全的"},
-    {"word":"safety","ipa":"/ˈseɪfti/","aviationMeaning":"n. 安全；防止事故、伤害和运行风险的状态与管理","generalMeaning":"n. 安全；安全性"},
-    {"word":"safety-critical","ipa":"/ˈseɪfti ˈkrɪtɪkəl/","aviationMeaning":"adj. 安全关键的；失效可能直接危及飞行安全的","generalMeaning":"adj. 安全关键的"},
-    {"word":"safety-relevant","ipa":"/ˈseɪfti ˈreləvənt/","aviationMeaning":"adj. 与安全相关的；可能影响飞行安全的信息或事项","generalMeaning":"adj. 与安全相关的"},
-    {"word":"safety's","ipa":"/ˈseɪftiz/","aviationMeaning":"n. safety 的所有格形式；安全的","generalMeaning":"n. 安全的所有格形式"},
-    {"word":"saga","ipa":"/ˈsɑːɡə/","aviationMeaning":"n. 漫长事件；需结合原文","generalMeaning":"n. 长篇故事；历险记"},
-    {"word":"said","ipa":"/sed/","aviationMeaning":"v. 说过；通话中已表达或传达的信息","generalMeaning":"v. say 的过去式；说"},
-    {"word":"saint","ipa":"/seɪnt/","aviationMeaning":"n. 圣；机场或地名组成部分","generalMeaning":"n. 圣人；圣徒"},
-    {"word":"sake","ipa":"/seɪk/","aviationMeaning":"n. 目的；为安全、运行或人员利益而采取行动","generalMeaning":"n. 缘故；目的"},
-    {"word":"salt","ipa":"/sɔːlt/","aviationMeaning":"n. 盐；除冰、防冰或环境中的盐分可能造成腐蚀","generalMeaning":"n. 盐；v. 加盐"},
-    {"word":"salzburg","ipa":"/ˈsɔːltsbɜːrɡ/","aviationMeaning":"n. 萨尔茨堡；机场或地名","generalMeaning":"n. 萨尔茨堡"},
-    {"word":"salzburg's","ipa":"/ˈsɔːltsbɜːrɡz/","aviationMeaning":"n. Salzburg 的所有格形式；萨尔茨堡的","generalMeaning":"n. 专有地名的所有格形式"},
-    {"word":"same","ipa":"/seɪm/","aviationMeaning":"adj. 相同的；同一航班、机型、程序或状态","generalMeaning":"adj. 相同的；同样的"},
-    {"word":"same-model","ipa":"/seɪm ˈmɑːdəl/","aviationMeaning":"adj. 同型号的；同一机型或设备型号的","generalMeaning":"adj. 同型号的"},
-    {"word":"sample","ipa":"/ˈsæmpəl/","aviationMeaning":"n. 样本；燃油、油液、材料或数据的取样","generalMeaning":"n. 样品；样本"},
-    {"word":"samples","ipa":"/ˈsæmpəlz/","aviationMeaning":"n. 样本（复数）；燃油、油液、材料或数据的多个取样","generalMeaning":"n. 样品；样本（复数）"},
-    {"word":"sampling","ipa":"/ˈsæmplɪŋ/","aviationMeaning":"n. 取样；采集燃油、油液、材料或数据以供分析","generalMeaning":"n. 取样；抽样"},
-    {"word":"samui","ipa":"/səˈmuːi/","aviationMeaning":"n. 苏梅；机场或地名","generalMeaning":"n. 专有地名"},
-    {"word":"san","ipa":"/sæn/","aviationMeaning":"n. 圣；机场或地名组成部分","generalMeaning":"n. 专有名称组成部分"},
-    {"word":"sand","ipa":"/sænd/","aviationMeaning":"n. 沙；跑道污染、发动机吸入或沙尘天气相关","generalMeaning":"n. 沙；v. 用砂纸磨"},
-    {"word":"sandstorm","ipa":"/ˈsændstɔːrm/","aviationMeaning":"n. 沙尘暴；严重降低能见度并可能损伤发动机的天气现象","generalMeaning":"n. 沙尘暴"},
-    {"word":"sandy","ipa":"/ˈsændi/","aviationMeaning":"adj. 多沙的；跑道、机坪或周边地面有沙土的","generalMeaning":"adj. 多沙的；沙色的"},
-    {"word":"sanitizer","ipa":"/ˈsænətaɪzər/","aviationMeaning":"n. 消毒剂；客舱、机场或医疗卫生使用的清洁消毒用品","generalMeaning":"n. 消毒剂"},
-    {"word":"santiago","ipa":"/ˌsæntiˈɑːɡoʊ/","aviationMeaning":"n. 圣地亚哥；机场或地名","generalMeaning":"n. 圣地亚哥"},
-    {"word":"sanya","ipa":"/ˈsɑːnjɑː/","aviationMeaning":"n. 三亚；机场或地名","generalMeaning":"n. 三亚"},
-    {"word":"sao","ipa":"/saʊ/","aviationMeaning":"n. 圣保罗等地名组成部分；需结合原文","generalMeaning":"n. 专有名称组成部分"},
-    {"word":"sarat","ipa":"/ˈsærət/","aviationMeaning":"n. 航路点或专有名称；需结合原文","generalMeaning":"n. 专有名称；请结合原文"},
-    {"word":"sas","ipa":"/ˌes eɪ ˈes/","aviationMeaning":"n. 北欧航空或航空资料缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"saskatoon","ipa":"/ˌsæskəˈtuːn/","aviationMeaning":"n. 萨斯卡通；机场或地名","generalMeaning":"n. 萨斯卡通"},
-    {"word":"sat","ipa":"/sæt/","aviationMeaning":"v. sit 的过去式；坐在；需结合原文","generalMeaning":"v. sit 的过去式；坐"},
-    {"word":"satcom","ipa":"/ˈsætkɑːm/","aviationMeaning":"n. 卫星通信；通过卫星进行语音或数据通信的系统","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"satellite","ipa":"/ˈsætəlaɪt/","aviationMeaning":"n. 卫星；用于导航、通信、天气监测的空间飞行器","generalMeaning":"n. 卫星；人造卫星"},
-    {"word":"satellite-based","ipa":"/ˈsætəlaɪt beɪst/","aviationMeaning":"adj. 基于卫星的；依靠卫星导航、通信或监测的","generalMeaning":"adj. 基于卫星的"},
-    {"word":"satellite-navigation","ipa":"/ˈsætəlaɪt ˌnævəˈɡeɪʃən/","aviationMeaning":"n. 卫星导航；利用卫星信号确定位置、速度和时间","generalMeaning":"n. 卫星导航"},
-    {"word":"satellites","ipa":"/ˈsætəlaɪts/","aviationMeaning":"n. 卫星（复数）；多颗用于导航、通信或天气监测的卫星","generalMeaning":"n. 卫星（复数）"},
-    {"word":"satisfaction","ipa":"/ˌsætɪsˈfækʃən/","aviationMeaning":"n. 满足；达到运行、安全或客户服务要求的程度","generalMeaning":"n. 满意；满足"},
-    {"word":"satisfactory","ipa":"/ˌsætɪsˈfæktəri/","aviationMeaning":"adj. 满意的；检查、性能或运行结果符合要求的","generalMeaning":"adj. 令人满意的"},
-    {"word":"satisfied","ipa":"/ˈsætɪsfaɪd/","aviationMeaning":"adj. 已满足的；运行、性能或安全要求已经达到","generalMeaning":"adj. 满意的；得到满足的"},
-    {"word":"satisfy","ipa":"/ˈsætɪsfaɪ/","aviationMeaning":"v. 满足；达到运行、性能、适航或安全要求","generalMeaning":"v. 满足；使满意"},
-    {"word":"saturday","ipa":"/ˈsætərdeɪ/","aviationMeaning":"n. 星期六；航班计划或运行日期","generalMeaning":"n. 星期六"},
-    {"word":"saudi","ipa":"/ˈsaʊdi/","aviationMeaning":"adj. 沙特的；机场、空域、航线或航空公司相关","generalMeaning":"adj. 沙特阿拉伯的"},
-    {"word":"save","ipa":"/seɪv/","aviationMeaning":"v. 节省；保留燃油、时间、资源或数据","generalMeaning":"v. 节省；保存"},
-    {"word":"saved","ipa":"/seɪvd/","aviationMeaning":"adj. 已保存的；燃油、时间、资源或数据已保留","generalMeaning":"adj. 已节省的；已保存的"},
-    {"word":"savings","ipa":"/ˈseɪvɪŋz/","aviationMeaning":"n. 节省（复数）；燃油、时间、成本或资源的减少量","generalMeaning":"n. 储蓄；节省（复数）"},
-    {"word":"saw","ipa":"/sɔː/","aviationMeaning":"v. see 的过去式；观察到航空器、天气或状况","generalMeaning":"v. see 的过去式；看见"},
-    {"word":"say","ipa":"/seɪ/","aviationMeaning":"v. 说；通过无线电或面对面通报信息","generalMeaning":"v. 说；表达"},
-    {"word":"saying","ipa":"/ˈseɪɪŋ/","aviationMeaning":"v. 正说；正在通过无线电或面对面通报","generalMeaning":"v. 正说；n. 谚语"},
-    {"word":"says","ipa":"/sez/","aviationMeaning":"v. 说；通报或表示信息","generalMeaning":"v. 说；表达"},
-    {"word":"sbu","ipa":"/ˌes biː ˈjuː/","aviationMeaning":"n. 航空资料缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"scalded","ipa":"/ˈskɔːldɪd/","aviationMeaning":"adj. 被烫伤的；热饮、蒸汽或热液体造成的机上医疗伤害","generalMeaning":"adj. 被烫伤的"},
-    {"word":"scale","ipa":"/skeɪl/","aviationMeaning":"n. 比例尺；航图、性能或测量中的比例关系","generalMeaning":"n. 比例；刻度；v. 攀登"},
-    {"word":"scale-up","ipa":"/skeɪl ʌp/","aviationMeaning":"v. 扩大；增加运行能力、资源或系统容量","generalMeaning":"v. 扩大；增加规模"},
-    {"word":"scales","ipa":"/skeɪlz/","aviationMeaning":"n. 刻度（复数）；仪表或测量设备的读数标尺","generalMeaning":"n. 刻度；天平（复数）"},
-    {"word":"scan","ipa":"/skæn/","aviationMeaning":"v. 扫描；系统性查看仪表、空域、天气或设备","generalMeaning":"v. 扫描；浏览"},
-    {"word":"scandinavian","ipa":"/ˌskændəˈneɪviən/","aviationMeaning":"adj. 斯堪的纳维亚的；机场、空域或航空公司相关","generalMeaning":"adj. 斯堪的纳维亚的"},
-    {"word":"scanner","ipa":"/ˈskænər/","aviationMeaning":"n. 扫描器；用于安检、文件、行李或设备检测的装置","generalMeaning":"n. 扫描器"},
-    {"word":"scanning","ipa":"/ˈskænɪŋ/","aviationMeaning":"n. 扫描；系统性观察仪表、空域、天气或设备的过程","generalMeaning":"n. 扫描"},
-    {"word":"scare","ipa":"/sker/","aviationMeaning":"n. 惊吓；突发事件造成的安全担忧或恐慌","generalMeaning":"n. 惊吓；v. 吓唬"},
-    {"word":"scared","ipa":"/skerd/","aviationMeaning":"adj. 害怕的；旅客或人员因事件、颠簸或故障感到恐惧","generalMeaning":"adj. 害怕的"},
-    {"word":"scary","ipa":"/ˈskeri/","aviationMeaning":"adj. 吓人的；事件、天气或故障引起恐惧的","generalMeaning":"adj. 可怕的"},
-    {"word":"scattered","ipa":"/ˈskætərd/","aviationMeaning":"adj. 零散的；云层、降水、障碍物或信息分布不连续的","generalMeaning":"adj. 分散的；零星的"},
-    {"word":"scenario","ipa":"/səˈnerioʊ/","aviationMeaning":"n. 情景；训练、应急处置或运行分析设定的情况","generalMeaning":"n. 情景；方案"},
-    {"word":"scenario-based","ipa":"/səˈnerioʊ beɪst/","aviationMeaning":"adj. 基于情景的；以模拟运行情景开展的训练","generalMeaning":"adj. 基于情景的"},
-    {"word":"scenarios","ipa":"/səˈnerioʊz/","aviationMeaning":"n. 情景（复数）；多个训练、应急或运行分析情况","generalMeaning":"n. 情景；方案（复数）"},
-    {"word":"scene","ipa":"/siːn/","aviationMeaning":"n. 现场；事故、紧急或地面事件发生地点","generalMeaning":"n. 场景；现场"},
-    {"word":"scenery","ipa":"/ˈsiːnəri/","aviationMeaning":"n. 景观；飞行中可见的地面或自然景色","generalMeaning":"n. 风景；景色"},
-    {"word":"schedule","ipa":"/ˈskedʒuːl/","aviationMeaning":"n. 时刻表；航班、机组、维护或资源安排","generalMeaning":"n. 日程；时间表"},
-    {"word":"schedule-recovery","ipa":"/ˈskedʒuːl rɪˈkʌvəri/","aviationMeaning":"n. 计划恢复；延误后恢复航班时刻和资源安排的工作","generalMeaning":"n. 计划恢复"},
-    {"word":"scheduled","ipa":"/ˈskedʒuːld/","aviationMeaning":"adj. 已安排的；按航班时刻、维护或资源计划确定的","generalMeaning":"adj. 已安排的"},
-    {"word":"schedules","ipa":"/ˈskedʒuːlz/","aviationMeaning":"n. 时刻表（复数）；多项航班、机组或维护安排","generalMeaning":"n. 日程；时间表（复数）"},
-    {"word":"scheduling","ipa":"/ˈskedʒuːlɪŋ/","aviationMeaning":"n. 排班；安排航班、机组、维护或资源时间","generalMeaning":"n. 安排；排程"},
-    {"word":"scheme","ipa":"/skiːm/","aviationMeaning":"n. 方案；运行、导航、培训或安全管理安排","generalMeaning":"n. 方案；计划"},
-    {"word":"schipol","ipa":"/ˈskɪpɔːl/","aviationMeaning":"n. 史基浦；阿姆斯特丹史基浦机场或地名","generalMeaning":"n. 专有地名"},
-    {"word":"schoenefeld","ipa":"/ˈʃøːnəfeld/","aviationMeaning":"n. 舍讷费尔德；机场或地名","generalMeaning":"n. 专有地名"},
-    {"word":"school","ipa":"/skuːl/","aviationMeaning":"n. 学校；飞行学校或培训机构","generalMeaning":"n. 学校；学院"},
-    {"word":"schools","ipa":"/skuːlz/","aviationMeaning":"n. 学校（复数）；多个飞行学校或培训机构","generalMeaning":"n. 学校；学院（复数）"},
-    {"word":"science","ipa":"/ˈsaɪəns/","aviationMeaning":"n. 科学；航空、气象、材料或人因研究的科学基础","generalMeaning":"n. 科学"},
-    {"word":"science-fiction","ipa":"/ˈsaɪəns ˈfɪkʃən/","aviationMeaning":"n. 科幻；需结合原文","generalMeaning":"n. 科幻小说；科幻"},
-    {"word":"scientists","ipa":"/ˈsaɪəntɪsts/","aviationMeaning":"n. 科学家（复数）；研究航空、气象或材料的人员","generalMeaning":"n. 科学家（复数）"},
-    {"word":"scoot","ipa":"/skuːt/","aviationMeaning":"n. 酷航；航空公司名称或呼号相关","generalMeaning":"n. 专有名称；v. 快速移动"},
-    {"word":"scope","ipa":"/skoʊp/","aviationMeaning":"n. 范围；飞行、检查、维修或调查所覆盖的边界","generalMeaning":"n. 范围；机会"},
-    {"word":"scotia","ipa":"/ˈskoʊʃə/","aviationMeaning":"n. 斯科舍；机场或地名组成部分","generalMeaning":"n. 专有地名"},
-    {"word":"scott","ipa":"/skɑːt/","aviationMeaning":"n. 斯科特；机场或地名组成部分","generalMeaning":"n. 专有地名"},
-    {"word":"scowled","ipa":"/skaʊld/","aviationMeaning":"v. 皱眉；需结合原文","generalMeaning":"v. 皱眉；怒视"},
-    {"word":"scrape","ipa":"/skreɪp/","aviationMeaning":"v. 擦碰；航空器或设备表面与障碍物发生轻微刮擦","generalMeaning":"v. 刮；擦"},
-    {"word":"scraped","ipa":"/skreɪpt/","aviationMeaning":"adj. 被刮擦的；航空器或设备表面出现擦痕","generalMeaning":"adj. 被刮擦的"},
-    {"word":"scraping","ipa":"/ˈskreɪpɪŋ/","aviationMeaning":"n. 刮擦；表面与障碍物摩擦造成的损伤","generalMeaning":"n. 刮；擦"},
-    {"word":"screen","ipa":"/skriːn/","aviationMeaning":"n. 屏幕；驾驶舱显示器、安检或信息显示设备","generalMeaning":"n. 屏幕；v. 筛查"},
-    {"word":"screening","ipa":"/ˈskriːnɪŋ/","aviationMeaning":"n. 筛查；机场安检或对人员、行李、货物的检查","generalMeaning":"n. 筛查；放映"},
-    {"word":"screens","ipa":"/skriːnz/","aviationMeaning":"n. 屏幕（复数）；多个驾驶舱、客舱或安检显示设备","generalMeaning":"n. 屏幕（复数）；v. 筛查"},
-    {"word":"screw","ipa":"/skruː/","aviationMeaning":"n. 螺钉；用于固定航空器结构或设备的紧固件","generalMeaning":"n. 螺丝；v. 拧"},
-    {"word":"script","ipa":"/skrɪpt/","aviationMeaning":"n. 脚本；训练通话、应急演练或系统操作文字流程","generalMeaning":"n. 脚本；手稿"},
-    {"word":"sea","ipa":"/siː/","aviationMeaning":"n. 海；越水飞行、海上天气或水上迫降相关","generalMeaning":"n. 海；海洋"}
+    {
+      "word": "sacramento's",
+      "ipa": "/ˌsækrəˈmentoʊz/",
+      "aviationMeaning": "n. Sacramento 的所有格形式；萨克拉门托的",
+      "generalMeaning": "n. 专有地名的所有格形式"
+    },
+    {
+      "word": "saf",
+      "ipa": "/ˌes eɪ ˈef/",
+      "aviationMeaning": "n. 可持续航空燃料；低碳航空燃料相关缩写",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "safe",
+      "ipa": "/seɪf/",
+      "aviationMeaning": "adj. 安全的；符合安全裕度、程序与运行要求的",
+      "generalMeaning": "adj. 安全的；n. 保险箱"
+    },
+    {
+      "word": "safely",
+      "ipa": "/ˈseɪfli/",
+      "aviationMeaning": "adv. 安全地；在不危及人员、航空器或运行的情况下",
+      "generalMeaning": "adv. 安全地"
+    },
+    {
+      "word": "safer",
+      "ipa": "/ˈseɪfər/",
+      "aviationMeaning": "adj. 更安全的；风险更低或安全裕度更大的",
+      "generalMeaning": "adj. 更安全的"
+    },
+    {
+      "word": "safest",
+      "ipa": "/ˈseɪfɪst/",
+      "aviationMeaning": "adj. 最安全的；在可选方案中风险最低的",
+      "generalMeaning": "adj. 最安全的"
+    },
+    {
+      "word": "safety",
+      "ipa": "/ˈseɪfti/",
+      "aviationMeaning": "n. 安全；防止事故、伤害和运行风险的状态与管理",
+      "generalMeaning": "n. 安全；安全性"
+    },
+    {
+      "word": "safety's",
+      "ipa": "/ˈseɪftiz/",
+      "aviationMeaning": "n. safety 的所有格形式；安全的",
+      "generalMeaning": "n. 安全的所有格形式"
+    },
+    {
+      "word": "saga",
+      "ipa": "/ˈsɑːɡə/",
+      "aviationMeaning": "n. 漫长事件；需结合原文",
+      "generalMeaning": "n. 长篇故事；历险记"
+    },
+    {
+      "word": "said",
+      "ipa": "/sed/",
+      "aviationMeaning": "v. 说过；通话中已表达或传达的信息",
+      "generalMeaning": "v. say 的过去式；说"
+    },
+    {
+      "word": "saint",
+      "ipa": "/seɪnt/",
+      "aviationMeaning": "n. 圣；机场或地名组成部分",
+      "generalMeaning": "n. 圣人；圣徒"
+    },
+    {
+      "word": "sake",
+      "ipa": "/seɪk/",
+      "aviationMeaning": "n. 目的；为安全、运行或人员利益而采取行动",
+      "generalMeaning": "n. 缘故；目的"
+    },
+    {
+      "word": "salt",
+      "ipa": "/sɔːlt/",
+      "aviationMeaning": "n. 盐；除冰、防冰或环境中的盐分可能造成腐蚀",
+      "generalMeaning": "n. 盐；v. 加盐"
+    },
+    {
+      "word": "salzburg",
+      "ipa": "/ˈsɔːltsbɜːrɡ/",
+      "aviationMeaning": "n. 萨尔茨堡；机场或地名",
+      "generalMeaning": "n. 萨尔茨堡"
+    },
+    {
+      "word": "salzburg's",
+      "ipa": "/ˈsɔːltsbɜːrɡz/",
+      "aviationMeaning": "n. Salzburg 的所有格形式；萨尔茨堡的",
+      "generalMeaning": "n. 专有地名的所有格形式"
+    },
+    {
+      "word": "same",
+      "ipa": "/seɪm/",
+      "aviationMeaning": "adj. 相同的；同一航班、机型、程序或状态",
+      "generalMeaning": "adj. 相同的；同样的"
+    },
+    {
+      "word": "same-model",
+      "ipa": "/seɪm ˈmɑːdəl/",
+      "aviationMeaning": "adj. 同型号的；同一机型或设备型号的",
+      "generalMeaning": "adj. 同型号的"
+    },
+    {
+      "word": "sample",
+      "ipa": "/ˈsæmpəl/",
+      "aviationMeaning": "n. 样本；燃油、油液、材料或数据的取样",
+      "generalMeaning": "n. 样品；样本"
+    },
+    {
+      "word": "samui",
+      "ipa": "/səˈmuːi/",
+      "aviationMeaning": "n. 苏梅；机场或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "san",
+      "ipa": "/sæn/",
+      "aviationMeaning": "n. 圣；机场或地名组成部分",
+      "generalMeaning": "n. 专有名称组成部分"
+    },
+    {
+      "word": "sand",
+      "ipa": "/sænd/",
+      "aviationMeaning": "n. 沙；跑道污染、发动机吸入或沙尘天气相关",
+      "generalMeaning": "n. 沙；v. 用砂纸磨"
+    },
+    {
+      "word": "sandstorm",
+      "ipa": "/ˈsændstɔːrm/",
+      "aviationMeaning": "n. 沙尘暴；严重降低能见度并可能损伤发动机的天气现象",
+      "generalMeaning": "n. 沙尘暴"
+    },
+    {
+      "word": "sandy",
+      "ipa": "/ˈsændi/",
+      "aviationMeaning": "adj. 多沙的；跑道、机坪或周边地面有沙土的",
+      "generalMeaning": "adj. 多沙的；沙色的"
+    },
+    {
+      "word": "sanitizer",
+      "ipa": "/ˈsænətaɪzər/",
+      "aviationMeaning": "n. 消毒剂；客舱、机场或医疗卫生使用的清洁消毒用品",
+      "generalMeaning": "n. 消毒剂"
+    },
+    {
+      "word": "santiago",
+      "ipa": "/ˌsæntiˈɑːɡoʊ/",
+      "aviationMeaning": "n. 圣地亚哥；机场或地名",
+      "generalMeaning": "n. 圣地亚哥"
+    },
+    {
+      "word": "sanya",
+      "ipa": "/ˈsɑːnjɑː/",
+      "aviationMeaning": "n. 三亚；机场或地名",
+      "generalMeaning": "n. 三亚"
+    },
+    {
+      "word": "sao",
+      "ipa": "/saʊ/",
+      "aviationMeaning": "n. 圣保罗等地名组成部分；需结合原文",
+      "generalMeaning": "n. 专有名称组成部分"
+    },
+    {
+      "word": "sarat",
+      "ipa": "/ˈsærət/",
+      "aviationMeaning": "n. 航路点或专有名称；需结合原文",
+      "generalMeaning": "n. 专有名称；请结合原文"
+    },
+    {
+      "word": "sas",
+      "ipa": "/ˌes eɪ ˈes/",
+      "aviationMeaning": "n. 北欧航空或航空资料缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "saskatoon",
+      "ipa": "/ˌsæskəˈtuːn/",
+      "aviationMeaning": "n. 萨斯卡通；机场或地名",
+      "generalMeaning": "n. 萨斯卡通"
+    },
+    {
+      "word": "sat",
+      "ipa": "/sæt/",
+      "aviationMeaning": "v. sit 的过去式；坐在；需结合原文",
+      "generalMeaning": "v. sit 的过去式；坐"
+    },
+    {
+      "word": "satellite",
+      "ipa": "/ˈsætəlaɪt/",
+      "aviationMeaning": "n. 卫星；用于导航、通信、天气监测的空间飞行器",
+      "generalMeaning": "n. 卫星；人造卫星"
+    },
+    {
+      "word": "satellite-based",
+      "ipa": "/ˈsætəlaɪt beɪst/",
+      "aviationMeaning": "adj. 基于卫星的；依靠卫星导航、通信或监测的",
+      "generalMeaning": "adj. 基于卫星的"
+    },
+    {
+      "word": "satellites",
+      "ipa": "/ˈsætəlaɪts/",
+      "aviationMeaning": "n. 卫星（复数）；多颗用于导航、通信或天气监测的卫星",
+      "generalMeaning": "n. 卫星（复数）"
+    },
+    {
+      "word": "satisfaction",
+      "ipa": "/ˌsætɪsˈfækʃən/",
+      "aviationMeaning": "n. 满足；达到运行、安全或客户服务要求的程度",
+      "generalMeaning": "n. 满意；满足"
+    },
+    {
+      "word": "satisfactory",
+      "ipa": "/ˌsætɪsˈfæktəri/",
+      "aviationMeaning": "adj. 满意的；检查、性能或运行结果符合要求的",
+      "generalMeaning": "adj. 令人满意的"
+    },
+    {
+      "word": "satisfied",
+      "ipa": "/ˈsætɪsfaɪd/",
+      "aviationMeaning": "adj. 已满足的；运行、性能或安全要求已经达到",
+      "generalMeaning": "adj. 满意的；得到满足的"
+    },
+    {
+      "word": "saturday",
+      "ipa": "/ˈsætərdeɪ/",
+      "aviationMeaning": "n. 星期六；航班计划或运行日期",
+      "generalMeaning": "n. 星期六"
+    },
+    {
+      "word": "saudi",
+      "ipa": "/ˈsaʊdi/",
+      "aviationMeaning": "adj. 沙特的；机场、空域、航线或航空公司相关",
+      "generalMeaning": "adj. 沙特阿拉伯的"
+    },
+    {
+      "word": "save",
+      "ipa": "/seɪv/",
+      "aviationMeaning": "v. 节省；保留燃油、时间、资源或数据",
+      "generalMeaning": "v. 节省；保存"
+    },
+    {
+      "word": "saved",
+      "ipa": "/seɪvd/",
+      "aviationMeaning": "adj. 已保存的；燃油、时间、资源或数据已保留",
+      "generalMeaning": "adj. 已节省的；已保存的"
+    },
+    {
+      "word": "savings",
+      "ipa": "/ˈseɪvɪŋz/",
+      "aviationMeaning": "n. 节省（复数）；燃油、时间、成本或资源的减少量",
+      "generalMeaning": "n. 储蓄；节省（复数）"
+    },
+    {
+      "word": "saw",
+      "ipa": "/sɔː/",
+      "aviationMeaning": "v. see 的过去式；观察到航空器、天气或状况",
+      "generalMeaning": "v. see 的过去式；看见"
+    },
+    {
+      "word": "say",
+      "ipa": "/seɪ/",
+      "aviationMeaning": "v. 说；通过无线电或面对面通报信息",
+      "generalMeaning": "v. 说；表达"
+    },
+    {
+      "word": "saying",
+      "ipa": "/ˈseɪɪŋ/",
+      "aviationMeaning": "v. 正说；正在通过无线电或面对面通报",
+      "generalMeaning": "v. 正说；n. 谚语"
+    },
+    {
+      "word": "says",
+      "ipa": "/sez/",
+      "aviationMeaning": "v. 说；通报或表示信息",
+      "generalMeaning": "v. 说；表达"
+    },
+    {
+      "word": "sbu",
+      "ipa": "/ˌes biː ˈjuː/",
+      "aviationMeaning": "n. 航空资料缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "scalded",
+      "ipa": "/ˈskɔːldɪd/",
+      "aviationMeaning": "adj. 被烫伤的；热饮、蒸汽或热液体造成的机上医疗伤害",
+      "generalMeaning": "adj. 被烫伤的"
+    },
+    {
+      "word": "scale",
+      "ipa": "/skeɪl/",
+      "aviationMeaning": "n. 比例尺；航图、性能或测量中的比例关系",
+      "generalMeaning": "n. 比例；刻度；v. 攀登"
+    },
+    {
+      "word": "scales",
+      "ipa": "/skeɪlz/",
+      "aviationMeaning": "n. 刻度（复数）；仪表或测量设备的读数标尺",
+      "generalMeaning": "n. 刻度；天平（复数）"
+    },
+    {
+      "word": "scan",
+      "ipa": "/skæn/",
+      "aviationMeaning": "v. 扫描；系统性查看仪表、空域、天气或设备",
+      "generalMeaning": "v. 扫描；浏览"
+    },
+    {
+      "word": "scandinavian",
+      "ipa": "/ˌskændəˈneɪviən/",
+      "aviationMeaning": "adj. 斯堪的纳维亚的；机场、空域或航空公司相关",
+      "generalMeaning": "adj. 斯堪的纳维亚的"
+    },
+    {
+      "word": "scanner",
+      "ipa": "/ˈskænər/",
+      "aviationMeaning": "n. 扫描器；用于安检、文件、行李或设备检测的装置",
+      "generalMeaning": "n. 扫描器"
+    },
+    {
+      "word": "scanning",
+      "ipa": "/ˈskænɪŋ/",
+      "aviationMeaning": "n. 扫描；系统性观察仪表、空域、天气或设备的过程",
+      "generalMeaning": "n. 扫描"
+    },
+    {
+      "word": "scared",
+      "ipa": "/skerd/",
+      "aviationMeaning": "adj. 害怕的；旅客或人员因事件、颠簸或故障感到恐惧",
+      "generalMeaning": "adj. 害怕的"
+    },
+    {
+      "word": "scary",
+      "ipa": "/ˈskeri/",
+      "aviationMeaning": "adj. 吓人的；事件、天气或故障引起恐惧的",
+      "generalMeaning": "adj. 可怕的"
+    },
+    {
+      "word": "scattered",
+      "ipa": "/ˈskætərd/",
+      "aviationMeaning": "adj. 零散的；云层、降水、障碍物或信息分布不连续的",
+      "generalMeaning": "adj. 分散的；零星的"
+    },
+    {
+      "word": "scenario",
+      "ipa": "/səˈnerioʊ/",
+      "aviationMeaning": "n. 情景；训练、应急处置或运行分析设定的情况",
+      "generalMeaning": "n. 情景；方案"
+    },
+    {
+      "word": "scenarios",
+      "ipa": "/səˈnerioʊz/",
+      "aviationMeaning": "n. 情景（复数）；多个训练、应急或运行分析情况",
+      "generalMeaning": "n. 情景；方案（复数）"
+    },
+    {
+      "word": "scene",
+      "ipa": "/siːn/",
+      "aviationMeaning": "n. 现场；事故、紧急或地面事件发生地点",
+      "generalMeaning": "n. 场景；现场"
+    },
+    {
+      "word": "scenery",
+      "ipa": "/ˈsiːnəri/",
+      "aviationMeaning": "n. 景观；飞行中可见的地面或自然景色",
+      "generalMeaning": "n. 风景；景色"
+    },
+    {
+      "word": "schedule",
+      "ipa": "/ˈskedʒuːl/",
+      "aviationMeaning": "n. 时刻表；航班、机组、维护或资源安排",
+      "generalMeaning": "n. 日程；时间表"
+    },
+    {
+      "word": "scheduled",
+      "ipa": "/ˈskedʒuːld/",
+      "aviationMeaning": "adj. 已安排的；按航班时刻、维护或资源计划确定的",
+      "generalMeaning": "adj. 已安排的"
+    },
+    {
+      "word": "schedules",
+      "ipa": "/ˈskedʒuːlz/",
+      "aviationMeaning": "n. 时刻表（复数）；多项航班、机组或维护安排",
+      "generalMeaning": "n. 日程；时间表（复数）"
+    },
+    {
+      "word": "scheme",
+      "ipa": "/skiːm/",
+      "aviationMeaning": "n. 方案；运行、导航、培训或安全管理安排",
+      "generalMeaning": "n. 方案；计划"
+    },
+    {
+      "word": "schoenefeld",
+      "ipa": "/ˈʃøːnəfeld/",
+      "aviationMeaning": "n. 舍讷费尔德；机场或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "school",
+      "ipa": "/skuːl/",
+      "aviationMeaning": "n. 学校；飞行学校或培训机构",
+      "generalMeaning": "n. 学校；学院"
+    },
+    {
+      "word": "schools",
+      "ipa": "/skuːlz/",
+      "aviationMeaning": "n. 学校（复数）；多个飞行学校或培训机构",
+      "generalMeaning": "n. 学校；学院（复数）"
+    },
+    {
+      "word": "science",
+      "ipa": "/ˈsaɪəns/",
+      "aviationMeaning": "n. 科学；航空、气象、材料或人因研究的科学基础",
+      "generalMeaning": "n. 科学"
+    },
+    {
+      "word": "scientists",
+      "ipa": "/ˈsaɪəntɪsts/",
+      "aviationMeaning": "n. 科学家（复数）；研究航空、气象或材料的人员",
+      "generalMeaning": "n. 科学家（复数）"
+    },
+    {
+      "word": "scoot",
+      "ipa": "/skuːt/",
+      "aviationMeaning": "n. 酷航；航空公司名称或呼号相关",
+      "generalMeaning": "n. 专有名称；v. 快速移动"
+    },
+    {
+      "word": "scott",
+      "ipa": "/skɑːt/",
+      "aviationMeaning": "n. 斯科特；机场或地名组成部分",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "scowled",
+      "ipa": "/skaʊld/",
+      "aviationMeaning": "v. 皱眉；需结合原文",
+      "generalMeaning": "v. 皱眉；怒视"
+    },
+    {
+      "word": "scrape",
+      "ipa": "/skreɪp/",
+      "aviationMeaning": "v. 擦碰；航空器或设备表面与障碍物发生轻微刮擦",
+      "generalMeaning": "v. 刮；擦"
+    },
+    {
+      "word": "scraped",
+      "ipa": "/skreɪpt/",
+      "aviationMeaning": "adj. 被刮擦的；航空器或设备表面出现擦痕",
+      "generalMeaning": "adj. 被刮擦的"
+    },
+    {
+      "word": "scraping",
+      "ipa": "/ˈskreɪpɪŋ/",
+      "aviationMeaning": "n. 刮擦；表面与障碍物摩擦造成的损伤",
+      "generalMeaning": "n. 刮；擦"
+    },
+    {
+      "word": "screen",
+      "ipa": "/skriːn/",
+      "aviationMeaning": "n. 屏幕；驾驶舱显示器、安检或信息显示设备",
+      "generalMeaning": "n. 屏幕；v. 筛查"
+    },
+    {
+      "word": "screening",
+      "ipa": "/ˈskriːnɪŋ/",
+      "aviationMeaning": "n. 筛查；机场安检或对人员、行李、货物的检查",
+      "generalMeaning": "n. 筛查；放映"
+    },
+    {
+      "word": "screens",
+      "ipa": "/skriːnz/",
+      "aviationMeaning": "n. 屏幕（复数）；多个驾驶舱、客舱或安检显示设备",
+      "generalMeaning": "n. 屏幕（复数）；v. 筛查"
+    },
+    {
+      "word": "screw",
+      "ipa": "/skruː/",
+      "aviationMeaning": "n. 螺钉；用于固定航空器结构或设备的紧固件",
+      "generalMeaning": "n. 螺丝；v. 拧"
+    },
+    {
+      "word": "sea",
+      "ipa": "/siː/",
+      "aviationMeaning": "n. 海；越水飞行、海上天气或水上迫降相关",
+      "generalMeaning": "n. 海；海洋"
+    }
   ]
 }

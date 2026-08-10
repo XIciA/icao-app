@@ -15,8 +15,8 @@ import { useAuth } from '@/features/auth/AuthProvider';
 import { audioSessionOrchestrator, type AudioLease } from '@/platform/audio';
 
 import { getEmbeddedRadioCatalogs, loadRadioCatalogs } from './catalog';
+import { clampRadioInterval } from './radio-interval';
 import {
-  clampRadioInterval,
   createNativeRadioIntervalTrack,
   ensureRadioIntervalSilenceAsset,
   getRadioNativeQueueBehavior,
@@ -169,7 +169,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
       id: `radio:${track.bankId}:${track.id}:${generation.current}:${nativeTrackInstance.current += 1}`,
       url: uri,
       title: track.title,
-      artist: '飞猪 ICAO',
+      artist: '听你五个',
       album: `${track.bankTitle} · ${track.topicTitle}`,
       duration: track.durationSeconds,
       radioTrackId: track.id,

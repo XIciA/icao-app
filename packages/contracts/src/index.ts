@@ -328,6 +328,14 @@ export type SyncPullResponse = {
 export type AiModule = 'listening' | 'sentence900' | 'atc' | 'opi' | 'story';
 export type AiCapability = 'word_lookup' | 'transcribe' | 'grammar_review' | 'polish';
 
+export const TENCENT_ASR_MODELS = ['16k_zh_en_2.0', '16k_en_large', '16k_en'] as const;
+export type TencentAsrModel = typeof TENCENT_ASR_MODELS[number];
+export const DEFAULT_TENCENT_ASR_MODEL: TencentAsrModel = '16k_en';
+
+export function isTencentAsrModel(value: unknown): value is TencentAsrModel {
+  return typeof value === 'string' && TENCENT_ASR_MODELS.includes(value as TencentAsrModel);
+}
+
 export type AiConsentRequest = {
   policyVersion: string;
   accepted: boolean;

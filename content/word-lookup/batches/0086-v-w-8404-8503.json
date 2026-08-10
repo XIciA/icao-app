@@ -1,3 +1,557 @@
-{"schemaVersion":1,"entries":[
-{"word":"vigilant","ipa":"/ˈvɪdʒələnt/","aviationMeaning":"adj. 警觉的；持续监视风险的","generalMeaning":"adj. 警觉的；警惕的"},{"word":"village","ipa":"/ˈvɪlɪdʒ/","aviationMeaning":"n. 村庄；地面参照点或障碍物附近区域","generalMeaning":"n. 村庄"},{"word":"vim","ipa":"/vɪm/","aviationMeaning":"n. 活力；非运行专用词","generalMeaning":"n. 精力；活力"},{"word":"vine","ipa":"/vaɪn/","aviationMeaning":"n. 藤；地面植被或障碍物","generalMeaning":"n. 藤；藤本植物"},{"word":"vini","ipa":"/ˈvini/","aviationMeaning":"n. 疑似专名或缩略语；需依语境解释","generalMeaning":"n. 专有名称"},{"word":"violating","ipa":"/ˈvaɪəleɪtɪŋ/","aviationMeaning":"v. 违反；违反规则、限制或间隔","generalMeaning":"v. 违反；侵犯"},{"word":"violation","ipa":"/ˌvaɪəˈleɪʃən/","aviationMeaning":"n. 违规；违反空域、程序或安全规则","generalMeaning":"n. 违反；侵犯"},{"word":"violent","ipa":"/ˈvaɪələnt/","aviationMeaning":"adj. 剧烈的；猛烈的，如剧烈颠簸","generalMeaning":"adj. 暴力的；猛烈的"},{"word":"violently","ipa":"/ˈvaɪələntli/","aviationMeaning":"adv. 剧烈地；猛烈地","generalMeaning":"adv. 暴力地；猛烈地"},{"word":"vip","ipa":"/ˌviː aɪ ˈpiː/","aviationMeaning":"n. 贵宾；重要旅客","generalMeaning":"n. 贵宾；要人"},{"word":"virga","ipa":"/ˈvɜrɡə/","aviationMeaning":"n. 幡状云降水；未落至地面的降水条带","generalMeaning":"n. 幡状云降水"},{"word":"virgin","ipa":"/ˈvɜrdʒɪn/","aviationMeaning":"adj. 未使用的；维珍航空相关名称","generalMeaning":"adj. 未经使用的；处女的"},{"word":"virtual","ipa":"/ˈvɜrtʃuəl/","aviationMeaning":"adj. 虚拟的；仿真训练或虚拟系统","generalMeaning":"adj. 虚拟的；实际上的"},{"word":"viscous","ipa":"/ˈvɪskəs/","aviationMeaning":"adj. 黏性的；液体黏度相关","generalMeaning":"adj. 黏性的；黏稠的"},{"word":"visibility","ipa":"/ˌvɪzəˈbɪləti/","aviationMeaning":"n. 能见度；可见距离","generalMeaning":"n. 能见度；可见性"},{"word":"visible","ipa":"/ˈvɪzəbəl/","aviationMeaning":"adj. 可见的；可从驾驶舱或地面看到的","generalMeaning":"adj. 看得见的；明显的"},{"word":"vision","ipa":"/ˈvɪʒən/","aviationMeaning":"n. 视力；视觉；运行愿景","generalMeaning":"n. 视力；想象；愿景"},{"word":"visit","ipa":"/ˈvɪzɪt/","aviationMeaning":"v. 到访；n. 访问；到机场或设施","generalMeaning":"v. 访问；n. 参观"},{"word":"visiting","ipa":"/ˈvɪzɪtɪŋ/","aviationMeaning":"v. 正到访；访问相关","generalMeaning":"v. 访问；参观"},{"word":"visitors","ipa":"/ˈvɪzɪtərz/","aviationMeaning":"n. 访客（复数）；机场或设施访客","generalMeaning":"n. 访客（复数）"},{"word":"visual","ipa":"/ˈvɪʒuəl/","aviationMeaning":"adj. 目视的；依靠目视观察的","generalMeaning":"adj. 视觉的；可见的"},{"word":"visualize","ipa":"/ˈvɪʒuəlaɪz/","aviationMeaning":"v. 可视化；在脑中或屏幕上呈现","generalMeaning":"v. 想象；使形象化"},{"word":"visually","ipa":"/ˈvɪʒuəli/","aviationMeaning":"adv. 目视地；通过视觉","generalMeaning":"adv. 视觉上地"},{"word":"vital","ipa":"/ˈvaɪtəl/","aviationMeaning":"adj. 至关重要的；涉及飞行安全的","generalMeaning":"adj. 极其重要的；有生命力的"},{"word":"vmb","ipa":"/ˌviː em ˈbiː/","aviationMeaning":"n. 疑似缩略语；需依语境解释","generalMeaning":"n. 字母缩略语"},{"word":"vmc","ipa":"/ˌviː em ˈsiː/","aviationMeaning":"n. 目视气象条件；Visual Meteorological Conditions","generalMeaning":"n. 目视气象条件"},{"word":"vnukovo","ipa":"/ˈvnuːkəvoʊ/","aviationMeaning":"n. 伏努科沃；莫斯科机场名称","generalMeaning":"n. 伏努科沃；地名"},{"word":"vocabulary","ipa":"/voʊˈkæbjələri/","aviationMeaning":"n. 词汇；航空英语词汇","generalMeaning":"n. 词汇；词汇量"},{"word":"voice","ipa":"/vɔɪs/","aviationMeaning":"n. 语音；无线电语音通信；v. 表达","generalMeaning":"n. 声音；嗓音；v. 表达"},{"word":"voices","ipa":"/ˈvɔɪsɪz/","aviationMeaning":"n. 语音（复数）；多人通话声音","generalMeaning":"n. 声音；嗓音（复数）"},{"word":"volaris","ipa":"/voʊˈlɑrɪs/","aviationMeaning":"n. 沃拉里斯航空；航空公司名称","generalMeaning":"n. 专有名称"},{"word":"volcanic","ipa":"/vɑlˈkænɪk/","aviationMeaning":"adj. 火山的；火山灰相关","generalMeaning":"adj. 火山的"},{"word":"volcanic-ash","ipa":"/vɑlˈkænɪk æʃ/","aviationMeaning":"n. 火山灰；严重危害发动机与飞行安全的火山喷发产物","generalMeaning":"n. 火山灰"},{"word":"volcano","ipa":"/vɑlˈkeɪnoʊ/","aviationMeaning":"n. 火山；火山喷发影响航路和机场","generalMeaning":"n. 火山"},{"word":"volmet","ipa":"/ˈvɑlmet/","aviationMeaning":"n. VOLMET；供航空器使用的气象信息广播","generalMeaning":"n. 航空气象广播"},{"word":"voltage","ipa":"/ˈvoʊltɪdʒ/","aviationMeaning":"n. 电压；航空器电气系统参数","generalMeaning":"n. 电压"},{"word":"volume","ipa":"/ˈvɑljum/","aviationMeaning":"n. 音量；容量；交通量","generalMeaning":"n. 体积；音量；容量"},{"word":"vomited","ipa":"/ˈvɑmɪtɪd/","aviationMeaning":"v. 已呕吐；旅客医疗事件","generalMeaning":"v. 呕吐（过去式）"},{"word":"vomiting","ipa":"/ˈvɑmɪtɪŋ/","aviationMeaning":"n. 呕吐；v. 正呕吐；旅客医疗症状","generalMeaning":"n. 呕吐；v. 呕吐"},{"word":"vomits","ipa":"/ˈvɑmɪts/","aviationMeaning":"v. 呕吐；医疗症状","generalMeaning":"v. 呕吐"},{"word":"vor","ipa":"/vɔr/","aviationMeaning":"n. 甚高频全向信标；VOR 导航设施","generalMeaning":"n. 甚高频全向信标"},{"word":"vor-dme","ipa":"/ˌviː ɔr diː em ˈiː/","aviationMeaning":"n. VOR/DME；全向信标与测距设备组合","generalMeaning":"n. 导航设施组合"},{"word":"vortac","ipa":"/ˈvɔrtæk/","aviationMeaning":"n. VORTAC；VOR 与 TACAN 组合导航台","generalMeaning":"n. 组合导航台"},{"word":"vortex","ipa":"/ˈvɔrteks/","aviationMeaning":"n. 涡流；机翼或旋翼形成的旋涡","generalMeaning":"n. 漩涡；涡流"},{"word":"vortices","ipa":"/ˈvɔrtəˌsiz/","aviationMeaning":"n. 涡流（复数）；翼尖涡流","generalMeaning":"n. 漩涡；涡流（复数）"},{"word":"vr","ipa":"/ˌviː ˈɑr/","aviationMeaning":"n. 抬轮速度；起飞时开始抬前轮的 V 速度","generalMeaning":"n. 缩略语；虚拟现实"},{"word":"vref","ipa":"/ˈvi rɛf/","aviationMeaning":"n. 着陆基准速度；进近着陆用参考速度","generalMeaning":"n. 参考速度"},{"word":"vsi","ipa":"/ˌviː es ˈaɪ/","aviationMeaning":"n. 垂直速度指示器；显示爬升或下降率的仪表","generalMeaning":"n. 垂直速度指示器"},{"word":"vueling","ipa":"/ˈvwelɪŋ/","aviationMeaning":"n. 伏林航空；航空公司名称","generalMeaning":"n. 专有名称"},{"word":"vulnerable","ipa":"/ˈvʌlnərəbəl/","aviationMeaning":"adj. 脆弱的；易受天气或故障影响的","generalMeaning":"adj. 脆弱的；易受攻击的"},{"word":"vulture","ipa":"/ˈvʌltʃər/","aviationMeaning":"n. 秃鹫；鸟击风险相关鸟类","generalMeaning":"n. 秃鹫"},{"word":"vx","ipa":"/ˌviː ˈeks/","aviationMeaning":"n. 最佳角度爬升速度；Vx","generalMeaning":"n. 缩略语；最佳角度速度"},{"word":"vy","ipa":"/ˌviː ˈwaɪ/","aviationMeaning":"n. 最佳爬升率速度；Vy","generalMeaning":"n. 缩略语；最佳爬升率速度"},{"word":"vyk","ipa":"/ˌviː waɪ ˈkeɪ/","aviationMeaning":"n. 疑似缩略语；需依语境解释","generalMeaning":"n. 字母缩略语"},{"word":"w","ipa":"/ˈdʌbəlju/","aviationMeaning":"n. 字母 W；代码或缩略语组成","generalMeaning":"n. 英文字母 W"},{"word":"wa","ipa":"/wɑ/","aviationMeaning":"n. 疑似缩略语；需依语境解释","generalMeaning":"n. 字母缩略语"},{"word":"wait","ipa":"/weɪt/","aviationMeaning":"v. 等待；保持等待状态","generalMeaning":"v. 等待；n. 等候"},{"word":"waited","ipa":"/ˈweɪtɪd/","aviationMeaning":"v. 已等待；wait 的过去式","generalMeaning":"v. 等待（过去式）"},{"word":"waiting","ipa":"/ˈweɪtɪŋ/","aviationMeaning":"v. 正在等待；n. 等候","generalMeaning":"v. 等待；n. 等候"},{"word":"waits","ipa":"/weɪts/","aviationMeaning":"v. 等待；n. 等候时间","generalMeaning":"v. 等待"},{"word":"wake","ipa":"/weɪk/","aviationMeaning":"n. 尾流；v. 醒来；航空器后方扰动气流","generalMeaning":"n. 醒来；尾迹；v. 醒来"},{"word":"wake-turbulence","ipa":"/ˈweɪk ˈtɜrbyələns/","aviationMeaning":"n. 尾流颠簸；前机产生的危险涡流","generalMeaning":"n. 尾流扰动"},{"word":"wake-up","ipa":"/ˈweɪk ʌp/","aviationMeaning":"n. 唤醒；叫醒；v. 醒来","generalMeaning":"n. 唤醒；v. 醒来"},{"word":"waking","ipa":"/ˈweɪkɪŋ/","aviationMeaning":"v. 正醒来；唤醒相关","generalMeaning":"v. 醒来；唤醒"},{"word":"walk","ipa":"/wɔk/","aviationMeaning":"v. 步行；n. 步行；如绕机检查","generalMeaning":"v. 走；步行；n. 散步"},{"word":"walk-around","ipa":"/ˈwɔk əˌraʊnd/","aviationMeaning":"n. 复飞；终止着陆并重新爬升的程序","generalMeaning":"n. 绕行；复飞"},{"word":"walk-arounds","ipa":"/ˈwɔk əˌraʊndz/","aviationMeaning":"n. 复飞（复数）；多次终止着陆程序","generalMeaning":"n. 绕行；复飞（复数）"},{"word":"walked","ipa":"/wɔkt/","aviationMeaning":"v. 已步行；已绕机检查","generalMeaning":"v. 走；步行（过去式）"},{"word":"walkers","ipa":"/ˈwɔkərz/","aviationMeaning":"n. 步行者（复数）；地面人员","generalMeaning":"n. 步行者（复数）"},{"word":"walkie-talkie","ipa":"/ˈwɔki ˌtɔki/","aviationMeaning":"n. 对讲机；地面短距离通信设备","generalMeaning":"n. 对讲机"},{"word":"walking","ipa":"/ˈwɔkɪŋ/","aviationMeaning":"v. 正步行；执行绕机检查","generalMeaning":"v. 走；步行"},{"word":"walks","ipa":"/wɔks/","aviationMeaning":"v. 步行；n. 步行路线","generalMeaning":"v. 走；n. 散步"},{"word":"walkway","ipa":"/ˈwɔkweɪ/","aviationMeaning":"n. 人行道；机坪行人通道","generalMeaning":"n. 人行道；走道"},{"word":"wall","ipa":"/wɔl/","aviationMeaning":"n. 墙；建筑物或障碍物","generalMeaning":"n. 墙；壁"},{"word":"walls","ipa":"/wɔlz/","aviationMeaning":"n. 墙（复数）；建筑物障碍","generalMeaning":"n. 墙；壁（复数）"},{"word":"wands","ipa":"/wɑndz/","aviationMeaning":"n. 指挥棒（复数）；地面引导员使用的灯棒","generalMeaning":"n. 棒；魔杖（复数）"},{"word":"wang","ipa":"/wɑŋ/","aviationMeaning":"n. 王；人员姓氏或地名成分","generalMeaning":"n. 王；姓氏"},{"word":"waning","ipa":"/ˈweɪnɪŋ/","aviationMeaning":"adj. 减弱的；如能见度或风力减弱","generalMeaning":"adj. 减弱的；衰退的"},{"word":"wanna","ipa":"/ˈwɑnə/","aviationMeaning":"v. want to 的口语缩略；非标准通话用语","generalMeaning":"v. 想要的口语缩略"},{"word":"want","ipa":"/wɑnt/","aviationMeaning":"v. 想要；需要；请求","generalMeaning":"v. 想要；需要"},{"word":"wanted","ipa":"/ˈwɑntɪd/","aviationMeaning":"v. 想要；需要（过去式）","generalMeaning":"v. 想要；通缉（过去式）"},{"word":"wants","ipa":"/wɑnts/","aviationMeaning":"v. 想要；需要","generalMeaning":"v. 想要；需要"},{"word":"warm","ipa":"/wɔrm/","aviationMeaning":"adj. 温暖的；v. 预热；如发动机暖机","generalMeaning":"adj. 温暖的；v. 使温暖"},{"word":"warm-up","ipa":"/ˈwɔrm ʌp/","aviationMeaning":"n. 预热；发动机或设备升温过程","generalMeaning":"n. 热身；预热"},{"word":"warmer","ipa":"/ˈwɔrmər/","aviationMeaning":"adj. 更暖的；气温较高的","generalMeaning":"adj. 更温暖的"},{"word":"warmhearted","ipa":"/ˌwɔrmˈhɑrtɪd/","aviationMeaning":"adj. 热心的；非运行专用词","generalMeaning":"adj. 热心的；亲切的"},{"word":"warn","ipa":"/wɔrn/","aviationMeaning":"v. 警告；发出风险提示","generalMeaning":"v. 警告；提醒"},{"word":"warned","ipa":"/wɔrnd/","aviationMeaning":"v. 已警告；已提示风险","generalMeaning":"v. 警告（过去式）"},{"word":"warning","ipa":"/ˈwɔrnɪŋ/","aviationMeaning":"n. 警告；告警；系统警告信息","generalMeaning":"n. 警告；预告"},{"word":"warnings","ipa":"/ˈwɔrnɪŋz/","aviationMeaning":"n. 警告（复数）；多个告警信息","generalMeaning":"n. 警告（复数）"},{"word":"warns","ipa":"/wɔrnz/","aviationMeaning":"v. 警告；提示风险","generalMeaning":"v. 警告；提醒"},{"word":"warsaw","ipa":"/ˈwɔrsɔ/","aviationMeaning":"n. 华沙；波兰机场或空域地名","generalMeaning":"n. 华沙"},{"word":"was","ipa":"/wʌz/","aviationMeaning":"v. 是；be 的过去式；用于状态描述","generalMeaning":"v. 是（过去式）"},{"word":"washing","ipa":"/ˈwɑʃɪŋ/","aviationMeaning":"n. 清洗；v. 正清洗航空器或部件","generalMeaning":"n. 洗涤；v. 洗"},{"word":"washington","ipa":"/ˈwɑʃɪŋtən/","aviationMeaning":"n. 华盛顿；美国机场或空域地名","generalMeaning":"n. 华盛顿"},{"word":"washington's","ipa":"/ˈwɑʃɪŋtənz/","aviationMeaning":"n. 华盛顿的；或 Washington is 的缩略","generalMeaning":"n. 华盛顿的"},{"word":"wasn't","ipa":"/ˈwʌzənt/","aviationMeaning":"v. was not 的缩略；不是","generalMeaning":"v. was not 的缩写"},{"word":"wasn’t","ipa":"/ˈwʌzənt/","aviationMeaning":"v. was not 的缩略；不是","generalMeaning":"v. was not 的缩写"},{"word":"wasn'tcoming","ipa":"/ˈwʌzənt ˈkʌmɪŋ/","aviationMeaning":"n. 疑似 wasn't coming 的连写；没有到来","generalMeaning":"n. 疑似 wasn't coming 的连写"},{"word":"waste","ipa":"/weɪst/","aviationMeaning":"n. 废弃物；v. 浪费；航空垃圾或资源浪费","generalMeaning":"n. 浪费；废物；v. 浪费"}
-]}
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "word": "vigilant",
+      "ipa": "/ˈvɪdʒələnt/",
+      "aviationMeaning": "adj. 警觉的；持续监视风险的",
+      "generalMeaning": "adj. 警觉的；警惕的"
+    },
+    {
+      "word": "village",
+      "ipa": "/ˈvɪlɪdʒ/",
+      "aviationMeaning": "n. 村庄；地面参照点或障碍物附近区域",
+      "generalMeaning": "n. 村庄"
+    },
+    {
+      "word": "vim",
+      "ipa": "/vɪm/",
+      "aviationMeaning": "n. 活力；非运行专用词",
+      "generalMeaning": "n. 精力；活力"
+    },
+    {
+      "word": "vine",
+      "ipa": "/vaɪn/",
+      "aviationMeaning": "n. 藤；地面植被或障碍物",
+      "generalMeaning": "n. 藤；藤本植物"
+    },
+    {
+      "word": "vini",
+      "ipa": "/ˈvini/",
+      "aviationMeaning": "n. 疑似专名或缩略语；需依语境解释",
+      "generalMeaning": "n. 专有名称"
+    },
+    {
+      "word": "violating",
+      "ipa": "/ˈvaɪəleɪtɪŋ/",
+      "aviationMeaning": "v. 违反；违反规则、限制或间隔",
+      "generalMeaning": "v. 违反；侵犯"
+    },
+    {
+      "word": "violation",
+      "ipa": "/ˌvaɪəˈleɪʃən/",
+      "aviationMeaning": "n. 违规；违反空域、程序或安全规则",
+      "generalMeaning": "n. 违反；侵犯"
+    },
+    {
+      "word": "violent",
+      "ipa": "/ˈvaɪələnt/",
+      "aviationMeaning": "adj. 剧烈的；猛烈的，如剧烈颠簸",
+      "generalMeaning": "adj. 暴力的；猛烈的"
+    },
+    {
+      "word": "violently",
+      "ipa": "/ˈvaɪələntli/",
+      "aviationMeaning": "adv. 剧烈地；猛烈地",
+      "generalMeaning": "adv. 暴力地；猛烈地"
+    },
+    {
+      "word": "vip",
+      "ipa": "/ˌviː aɪ ˈpiː/",
+      "aviationMeaning": "n. 贵宾；重要旅客",
+      "generalMeaning": "n. 贵宾；要人"
+    },
+    {
+      "word": "virga",
+      "ipa": "/ˈvɜrɡə/",
+      "aviationMeaning": "n. 幡状云降水；未落至地面的降水条带",
+      "generalMeaning": "n. 幡状云降水"
+    },
+    {
+      "word": "virgin",
+      "ipa": "/ˈvɜrdʒɪn/",
+      "aviationMeaning": "adj. 未使用的；维珍航空相关名称",
+      "generalMeaning": "adj. 未经使用的；处女的"
+    },
+    {
+      "word": "virtual",
+      "ipa": "/ˈvɜrtʃuəl/",
+      "aviationMeaning": "adj. 虚拟的；仿真训练或虚拟系统",
+      "generalMeaning": "adj. 虚拟的；实际上的"
+    },
+    {
+      "word": "viscous",
+      "ipa": "/ˈvɪskəs/",
+      "aviationMeaning": "adj. 黏性的；液体黏度相关",
+      "generalMeaning": "adj. 黏性的；黏稠的"
+    },
+    {
+      "word": "visibility",
+      "ipa": "/ˌvɪzəˈbɪləti/",
+      "aviationMeaning": "n. 能见度；可见距离",
+      "generalMeaning": "n. 能见度；可见性"
+    },
+    {
+      "word": "visible",
+      "ipa": "/ˈvɪzəbəl/",
+      "aviationMeaning": "adj. 可见的；可从驾驶舱或地面看到的",
+      "generalMeaning": "adj. 看得见的；明显的"
+    },
+    {
+      "word": "vision",
+      "ipa": "/ˈvɪʒən/",
+      "aviationMeaning": "n. 视力；视觉；运行愿景",
+      "generalMeaning": "n. 视力；想象；愿景"
+    },
+    {
+      "word": "visit",
+      "ipa": "/ˈvɪzɪt/",
+      "aviationMeaning": "v. 到访；n. 访问；到机场或设施",
+      "generalMeaning": "v. 访问；n. 参观"
+    },
+    {
+      "word": "visiting",
+      "ipa": "/ˈvɪzɪtɪŋ/",
+      "aviationMeaning": "v. 正到访；访问相关",
+      "generalMeaning": "v. 访问；参观"
+    },
+    {
+      "word": "visitors",
+      "ipa": "/ˈvɪzɪtərz/",
+      "aviationMeaning": "n. 访客（复数）；机场或设施访客",
+      "generalMeaning": "n. 访客（复数）"
+    },
+    {
+      "word": "visual",
+      "ipa": "/ˈvɪʒuəl/",
+      "aviationMeaning": "adj. 目视的；依靠目视观察的",
+      "generalMeaning": "adj. 视觉的；可见的"
+    },
+    {
+      "word": "visually",
+      "ipa": "/ˈvɪʒuəli/",
+      "aviationMeaning": "adv. 目视地；通过视觉",
+      "generalMeaning": "adv. 视觉上地"
+    },
+    {
+      "word": "vital",
+      "ipa": "/ˈvaɪtəl/",
+      "aviationMeaning": "adj. 至关重要的；涉及飞行安全的",
+      "generalMeaning": "adj. 极其重要的；有生命力的"
+    },
+    {
+      "word": "vmb",
+      "ipa": "/ˌviː em ˈbiː/",
+      "aviationMeaning": "n. 疑似缩略语；需依语境解释",
+      "generalMeaning": "n. 字母缩略语"
+    },
+    {
+      "word": "vmc",
+      "ipa": "/ˌviː em ˈsiː/",
+      "aviationMeaning": "n. 目视气象条件；Visual Meteorological Conditions",
+      "generalMeaning": "n. 目视气象条件"
+    },
+    {
+      "word": "vnukovo",
+      "ipa": "/ˈvnuːkəvoʊ/",
+      "aviationMeaning": "n. 伏努科沃；莫斯科机场名称",
+      "generalMeaning": "n. 伏努科沃；地名"
+    },
+    {
+      "word": "voice",
+      "ipa": "/vɔɪs/",
+      "aviationMeaning": "n. 语音；无线电语音通信；v. 表达",
+      "generalMeaning": "n. 声音；嗓音；v. 表达"
+    },
+    {
+      "word": "voices",
+      "ipa": "/ˈvɔɪsɪz/",
+      "aviationMeaning": "n. 语音（复数）；多人通话声音",
+      "generalMeaning": "n. 声音；嗓音（复数）"
+    },
+    {
+      "word": "volaris",
+      "ipa": "/voʊˈlɑrɪs/",
+      "aviationMeaning": "n. 沃拉里斯航空；航空公司名称",
+      "generalMeaning": "n. 专有名称"
+    },
+    {
+      "word": "volcanic",
+      "ipa": "/vɑlˈkænɪk/",
+      "aviationMeaning": "adj. 火山的；火山灰相关",
+      "generalMeaning": "adj. 火山的"
+    },
+    {
+      "word": "volcano",
+      "ipa": "/vɑlˈkeɪnoʊ/",
+      "aviationMeaning": "n. 火山；火山喷发影响航路和机场",
+      "generalMeaning": "n. 火山"
+    },
+    {
+      "word": "volmet",
+      "ipa": "/ˈvɑlmet/",
+      "aviationMeaning": "n. VOLMET；供航空器使用的气象信息广播",
+      "generalMeaning": "n. 航空气象广播"
+    },
+    {
+      "word": "voltage",
+      "ipa": "/ˈvoʊltɪdʒ/",
+      "aviationMeaning": "n. 电压；航空器电气系统参数",
+      "generalMeaning": "n. 电压"
+    },
+    {
+      "word": "volume",
+      "ipa": "/ˈvɑljum/",
+      "aviationMeaning": "n. 音量；容量；交通量",
+      "generalMeaning": "n. 体积；音量；容量"
+    },
+    {
+      "word": "vomited",
+      "ipa": "/ˈvɑmɪtɪd/",
+      "aviationMeaning": "v. 已呕吐；旅客医疗事件",
+      "generalMeaning": "v. 呕吐（过去式）"
+    },
+    {
+      "word": "vomiting",
+      "ipa": "/ˈvɑmɪtɪŋ/",
+      "aviationMeaning": "n. 呕吐；v. 正呕吐；旅客医疗症状",
+      "generalMeaning": "n. 呕吐；v. 呕吐"
+    },
+    {
+      "word": "vomits",
+      "ipa": "/ˈvɑmɪts/",
+      "aviationMeaning": "v. 呕吐；医疗症状",
+      "generalMeaning": "v. 呕吐"
+    },
+    {
+      "word": "vor",
+      "ipa": "/vɔr/",
+      "aviationMeaning": "n. 甚高频全向信标；VOR 导航设施",
+      "generalMeaning": "n. 甚高频全向信标"
+    },
+    {
+      "word": "vor-dme",
+      "ipa": "/ˌviː ɔr diː em ˈiː/",
+      "aviationMeaning": "n. VOR/DME；全向信标与测距设备组合",
+      "generalMeaning": "n. 导航设施组合"
+    },
+    {
+      "word": "vortac",
+      "ipa": "/ˈvɔrtæk/",
+      "aviationMeaning": "n. VORTAC；VOR 与 TACAN 组合导航台",
+      "generalMeaning": "n. 组合导航台"
+    },
+    {
+      "word": "vortex",
+      "ipa": "/ˈvɔrteks/",
+      "aviationMeaning": "n. 涡流；机翼或旋翼形成的旋涡",
+      "generalMeaning": "n. 漩涡；涡流"
+    },
+    {
+      "word": "vortices",
+      "ipa": "/ˈvɔrtəˌsiz/",
+      "aviationMeaning": "n. 涡流（复数）；翼尖涡流",
+      "generalMeaning": "n. 漩涡；涡流（复数）"
+    },
+    {
+      "word": "vr",
+      "ipa": "/ˌviː ˈɑr/",
+      "aviationMeaning": "n. 抬轮速度；起飞时开始抬前轮的 V 速度",
+      "generalMeaning": "n. 缩略语；虚拟现实"
+    },
+    {
+      "word": "vref",
+      "ipa": "/ˈvi rɛf/",
+      "aviationMeaning": "n. 着陆基准速度；进近着陆用参考速度",
+      "generalMeaning": "n. 参考速度"
+    },
+    {
+      "word": "vsi",
+      "ipa": "/ˌviː es ˈaɪ/",
+      "aviationMeaning": "n. 垂直速度指示器；显示爬升或下降率的仪表",
+      "generalMeaning": "n. 垂直速度指示器"
+    },
+    {
+      "word": "vueling",
+      "ipa": "/ˈvwelɪŋ/",
+      "aviationMeaning": "n. 伏林航空；航空公司名称",
+      "generalMeaning": "n. 专有名称"
+    },
+    {
+      "word": "vulnerable",
+      "ipa": "/ˈvʌlnərəbəl/",
+      "aviationMeaning": "adj. 脆弱的；易受天气或故障影响的",
+      "generalMeaning": "adj. 脆弱的；易受攻击的"
+    },
+    {
+      "word": "vulture",
+      "ipa": "/ˈvʌltʃər/",
+      "aviationMeaning": "n. 秃鹫；鸟击风险相关鸟类",
+      "generalMeaning": "n. 秃鹫"
+    },
+    {
+      "word": "vx",
+      "ipa": "/ˌviː ˈeks/",
+      "aviationMeaning": "n. 最佳角度爬升速度；Vx",
+      "generalMeaning": "n. 缩略语；最佳角度速度"
+    },
+    {
+      "word": "vy",
+      "ipa": "/ˌviː ˈwaɪ/",
+      "aviationMeaning": "n. 最佳爬升率速度；Vy",
+      "generalMeaning": "n. 缩略语；最佳爬升率速度"
+    },
+    {
+      "word": "vyk",
+      "ipa": "/ˌviː waɪ ˈkeɪ/",
+      "aviationMeaning": "n. 疑似缩略语；需依语境解释",
+      "generalMeaning": "n. 字母缩略语"
+    },
+    {
+      "word": "w",
+      "ipa": "/ˈdʌbəlju/",
+      "aviationMeaning": "n. 字母 W；代码或缩略语组成",
+      "generalMeaning": "n. 英文字母 W"
+    },
+    {
+      "word": "wa",
+      "ipa": "/wɑ/",
+      "aviationMeaning": "n. 疑似缩略语；需依语境解释",
+      "generalMeaning": "n. 字母缩略语"
+    },
+    {
+      "word": "wait",
+      "ipa": "/weɪt/",
+      "aviationMeaning": "v. 等待；保持等待状态",
+      "generalMeaning": "v. 等待；n. 等候"
+    },
+    {
+      "word": "waited",
+      "ipa": "/ˈweɪtɪd/",
+      "aviationMeaning": "v. 已等待；wait 的过去式",
+      "generalMeaning": "v. 等待（过去式）"
+    },
+    {
+      "word": "waiting",
+      "ipa": "/ˈweɪtɪŋ/",
+      "aviationMeaning": "v. 正在等待；n. 等候",
+      "generalMeaning": "v. 等待；n. 等候"
+    },
+    {
+      "word": "waits",
+      "ipa": "/weɪts/",
+      "aviationMeaning": "v. 等待；n. 等候时间",
+      "generalMeaning": "v. 等待"
+    },
+    {
+      "word": "wake",
+      "ipa": "/weɪk/",
+      "aviationMeaning": "n. 尾流；v. 醒来；航空器后方扰动气流",
+      "generalMeaning": "n. 醒来；尾迹；v. 醒来"
+    },
+    {
+      "word": "wake-turbulence",
+      "ipa": "/ˈweɪk ˈtɜrbyələns/",
+      "aviationMeaning": "n. 尾流颠簸；前机产生的危险涡流",
+      "generalMeaning": "n. 尾流扰动"
+    },
+    {
+      "word": "wake-up",
+      "ipa": "/ˈweɪk ʌp/",
+      "aviationMeaning": "n. 唤醒；叫醒；v. 醒来",
+      "generalMeaning": "n. 唤醒；v. 醒来"
+    },
+    {
+      "word": "waking",
+      "ipa": "/ˈweɪkɪŋ/",
+      "aviationMeaning": "v. 正醒来；唤醒相关",
+      "generalMeaning": "v. 醒来；唤醒"
+    },
+    {
+      "word": "walk",
+      "ipa": "/wɔk/",
+      "aviationMeaning": "v. 步行；n. 步行；如绕机检查",
+      "generalMeaning": "v. 走；步行；n. 散步"
+    },
+    {
+      "word": "walk-around",
+      "ipa": "/ˈwɔk əˌraʊnd/",
+      "aviationMeaning": "n. 复飞；终止着陆并重新爬升的程序",
+      "generalMeaning": "n. 绕行；复飞"
+    },
+    {
+      "word": "walked",
+      "ipa": "/wɔkt/",
+      "aviationMeaning": "v. 已步行；已绕机检查",
+      "generalMeaning": "v. 走；步行（过去式）"
+    },
+    {
+      "word": "walkie-talkie",
+      "ipa": "/ˈwɔki ˌtɔki/",
+      "aviationMeaning": "n. 对讲机；地面短距离通信设备",
+      "generalMeaning": "n. 对讲机"
+    },
+    {
+      "word": "walking",
+      "ipa": "/ˈwɔkɪŋ/",
+      "aviationMeaning": "v. 正步行；执行绕机检查",
+      "generalMeaning": "v. 走；步行"
+    },
+    {
+      "word": "walks",
+      "ipa": "/wɔks/",
+      "aviationMeaning": "v. 步行；n. 步行路线",
+      "generalMeaning": "v. 走；n. 散步"
+    },
+    {
+      "word": "walkway",
+      "ipa": "/ˈwɔkweɪ/",
+      "aviationMeaning": "n. 人行道；机坪行人通道",
+      "generalMeaning": "n. 人行道；走道"
+    },
+    {
+      "word": "wall",
+      "ipa": "/wɔl/",
+      "aviationMeaning": "n. 墙；建筑物或障碍物",
+      "generalMeaning": "n. 墙；壁"
+    },
+    {
+      "word": "walls",
+      "ipa": "/wɔlz/",
+      "aviationMeaning": "n. 墙（复数）；建筑物障碍",
+      "generalMeaning": "n. 墙；壁（复数）"
+    },
+    {
+      "word": "wands",
+      "ipa": "/wɑndz/",
+      "aviationMeaning": "n. 指挥棒（复数）；地面引导员使用的灯棒",
+      "generalMeaning": "n. 棒；魔杖（复数）"
+    },
+    {
+      "word": "wang",
+      "ipa": "/wɑŋ/",
+      "aviationMeaning": "n. 王；人员姓氏或地名成分",
+      "generalMeaning": "n. 王；姓氏"
+    },
+    {
+      "word": "waning",
+      "ipa": "/ˈweɪnɪŋ/",
+      "aviationMeaning": "adj. 减弱的；如能见度或风力减弱",
+      "generalMeaning": "adj. 减弱的；衰退的"
+    },
+    {
+      "word": "wanna",
+      "ipa": "/ˈwɑnə/",
+      "aviationMeaning": "v. want to 的口语缩略；非标准通话用语",
+      "generalMeaning": "v. 想要的口语缩略"
+    },
+    {
+      "word": "want",
+      "ipa": "/wɑnt/",
+      "aviationMeaning": "v. 想要；需要；请求",
+      "generalMeaning": "v. 想要；需要"
+    },
+    {
+      "word": "wanted",
+      "ipa": "/ˈwɑntɪd/",
+      "aviationMeaning": "v. 想要；需要（过去式）",
+      "generalMeaning": "v. 想要；通缉（过去式）"
+    },
+    {
+      "word": "wants",
+      "ipa": "/wɑnts/",
+      "aviationMeaning": "v. 想要；需要",
+      "generalMeaning": "v. 想要；需要"
+    },
+    {
+      "word": "warm",
+      "ipa": "/wɔrm/",
+      "aviationMeaning": "adj. 温暖的；v. 预热；如发动机暖机",
+      "generalMeaning": "adj. 温暖的；v. 使温暖"
+    },
+    {
+      "word": "warmhearted",
+      "ipa": "/ˌwɔrmˈhɑrtɪd/",
+      "aviationMeaning": "adj. 热心的；非运行专用词",
+      "generalMeaning": "adj. 热心的；亲切的"
+    },
+    {
+      "word": "warn",
+      "ipa": "/wɔrn/",
+      "aviationMeaning": "v. 警告；发出风险提示",
+      "generalMeaning": "v. 警告；提醒"
+    },
+    {
+      "word": "warned",
+      "ipa": "/wɔrnd/",
+      "aviationMeaning": "v. 已警告；已提示风险",
+      "generalMeaning": "v. 警告（过去式）"
+    },
+    {
+      "word": "warning",
+      "ipa": "/ˈwɔrnɪŋ/",
+      "aviationMeaning": "n. 警告；告警；系统警告信息",
+      "generalMeaning": "n. 警告；预告"
+    },
+    {
+      "word": "warnings",
+      "ipa": "/ˈwɔrnɪŋz/",
+      "aviationMeaning": "n. 警告（复数）；多个告警信息",
+      "generalMeaning": "n. 警告（复数）"
+    },
+    {
+      "word": "warns",
+      "ipa": "/wɔrnz/",
+      "aviationMeaning": "v. 警告；提示风险",
+      "generalMeaning": "v. 警告；提醒"
+    },
+    {
+      "word": "warsaw",
+      "ipa": "/ˈwɔrsɔ/",
+      "aviationMeaning": "n. 华沙；波兰机场或空域地名",
+      "generalMeaning": "n. 华沙"
+    },
+    {
+      "word": "was",
+      "ipa": "/wʌz/",
+      "aviationMeaning": "v. 是；be 的过去式；用于状态描述",
+      "generalMeaning": "v. 是（过去式）"
+    },
+    {
+      "word": "washing",
+      "ipa": "/ˈwɑʃɪŋ/",
+      "aviationMeaning": "n. 清洗；v. 正清洗航空器或部件",
+      "generalMeaning": "n. 洗涤；v. 洗"
+    },
+    {
+      "word": "washington",
+      "ipa": "/ˈwɑʃɪŋtən/",
+      "aviationMeaning": "n. 华盛顿；美国机场或空域地名",
+      "generalMeaning": "n. 华盛顿"
+    },
+    {
+      "word": "washington's",
+      "ipa": "/ˈwɑʃɪŋtənz/",
+      "aviationMeaning": "n. 华盛顿的；或 Washington is 的缩略",
+      "generalMeaning": "n. 华盛顿的"
+    },
+    {
+      "word": "wasn't",
+      "ipa": "/ˈwʌzənt/",
+      "aviationMeaning": "v. was not 的缩略；不是",
+      "generalMeaning": "v. was not 的缩写"
+    },
+    {
+      "word": "wasn’t",
+      "ipa": "/ˈwʌzənt/",
+      "aviationMeaning": "v. was not 的缩略；不是",
+      "generalMeaning": "v. was not 的缩写"
+    },
+    {
+      "word": "waste",
+      "ipa": "/weɪst/",
+      "aviationMeaning": "n. 废弃物；v. 浪费；航空垃圾或资源浪费",
+      "generalMeaning": "n. 浪费；废物；v. 浪费"
+    }
+  ]
+}

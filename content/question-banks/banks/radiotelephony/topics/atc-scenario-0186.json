@@ -61,7 +61,7 @@
     {
       "id": "atc-scenario-0186-card-main-3208",
       "taskTitle": "SIA 223-7",
-      "audioText": "SIA 223, cleared low pass left of Runway 36R over the apron, expect Runway 04for emergency landing.",
+      "audioText": "SIA 223, cleared low pass left of Runway 36R over the apron, expect Runway 04 for emergency landing.",
       "audioTextZh": "SIA 223，许可在 Runway 36R 左侧、机坪上空实施低空通场，预计使用 Runway 04 紧急着陆。",
       "referenceText": "cleared low pass on the left side of Runway 36R over the apron, emergency landing Runway 04, SIA 223.",
       "referenceTextZh": "许可在 Runway 36R 左侧、机坪上空实施低空通场，使用 Runway 04 紧急着陆，SIA 223。",
@@ -99,7 +99,7 @@
       "taskTitle": "SIA 223-11",
       "audioText": "SIA 223, I say again, cleared low pass over the left of Runway 36R, I'll keep you advised.",
       "audioTextZh": "SIA 223，我再说一遍，许可从 Runway 36R 左侧低空通场，我会随时向你通报。",
-      "referenceText": "roer, cleared low pass on the left hand side of runway, SIA 223.",
+      "referenceText": "roger, cleared low pass on the left hand side of runway, SIA 223.",
       "referenceTextZh": "收到，许可从跑道左侧低空通场，SIA 223。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-088-sia223-q11.mp3"
     },

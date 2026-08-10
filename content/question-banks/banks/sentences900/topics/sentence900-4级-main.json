@@ -8,21 +8,21 @@
       "id": "sentence900-main-018",
       "taskTitle": "Sentence18",
       "audioText": "Right heading 330, descending to 3000 feet, cleared for ILS approach Runway 36R.",
-      "audioTextZh": "右转航向330，下降到3000英尺，可以ILS近进，跑道36右",
+      "audioTextZh": "右转航向330，下降到3000英尺，可以ILS进近，跑道36右",
       "audio": "/question-bank-assets/audio/sentence900/main/018.mp3"
     },
     {
       "id": "sentence900-main-067",
       "taskTitle": "Sentence67",
       "audioText": "Cleared to exit the hold, fly direct to ML. Contact Approach on 128.35.",
-      "audioTextZh": "可以离开等待，直飞ML，联系近进128.35",
+      "audioTextZh": "可以离开等待，直飞ML，联系进近128.35",
       "audio": "/question-bank-assets/audio/sentence900/main/067.mp3"
     },
     {
       "id": "sentence900-main-071",
       "taskTitle": "Sentence71",
       "audioText": "After passing SY VOR, leave the hold on heading 250, cleared for VOR approach Runway 06.",
-      "audioTextZh": "过SY VOR台后，离开等待，航向250，可以VOR近进跑道06",
+      "audioTextZh": "过SY VOR台后，离开等待，航向250，可以VOR进近跑道06",
       "audio": "/question-bank-assets/audio/sentence900/main/071.mp3"
     },
     {
@@ -99,7 +99,7 @@
       "id": "sentence900-main-323",
       "taskTitle": "Sentence323",
       "audioText": "Reduce to minimum approach speed, turn right heading 230, cleared for ILS approach Runway 27.",
-      "audioTextZh": "减速到最小近进速度，右转航向230，可以ILS近进，跑道27",
+      "audioTextZh": "减速到最小进近速度，右转航向230，可以ILS进近，跑道27",
       "audio": "/question-bank-assets/audio/sentence900/main/323.mp3"
     },
     {
@@ -168,7 +168,7 @@
     {
       "id": "sentence900-main-443",
       "taskTitle": "Sentence443",
-      "audioText": "All our air conditioning packs have malfunctioned. Request rapid descent to MEA .",
+      "audioText": "All our air conditioning packs have malfunctioned. Request rapid descent to MEA.",
       "audioTextZh": "所有空调组件故障，请求立即下降到最低航路高度",
       "audio": "/question-bank-assets/audio/sentence900/main/443.mp3"
     },
@@ -204,21 +204,21 @@
       "id": "sentence900-main-459",
       "taskTitle": "Sentence459",
       "audioText": "We have an avionics ventilation problem. The skin heat-exchangers and blower fan have failed.",
-      "audioTextZh": "电子设备通风系统有问题，蒙皮热交换器和鼓风机发生故障。（4-5",
+      "audioTextZh": "电子设备通风系统有问题，蒙皮热交换器和鼓风机发生故障。（4-5级）",
       "audio": "/question-bank-assets/audio/sentence900/main/459.mp3"
     },
     {
       "id": "sentence900-main-468",
       "taskTitle": "Sentence468",
       "audioText": "We have a navigation map shift, unable to perform the RNAV approach. Request radar vectors.",
-      "audioTextZh": "我们导航地图漂移，无法执行 RNAV 近进，请求雷达引导",
+      "audioTextZh": "我们导航地图漂移，无法执行 RNAV 进近，请求雷达引导",
       "audio": "/question-bank-assets/audio/sentence900/main/468.mp3"
     },
     {
       "id": "sentence900-main-469",
       "taskTitle": "Sentence469",
       "audioText": "Inertial reference system has failed. We are navigating on raw data. Request conventional approach.",
-      "audioTextZh": "惯性参考系统失效，我们靠原始数据导航，请求传统近进",
+      "audioTextZh": "惯性参考系统失效，我们靠原始数据导航，请求传统进近",
       "audio": "/question-bank-assets/audio/sentence900/main/469.mp3"
     },
     {
@@ -232,7 +232,7 @@
       "id": "sentence900-main-475",
       "taskTitle": "Sentence475",
       "audioText": "The ILS signal was unstable. Request approach to another runway or request another type of approach.",
-      "audioTextZh": "ILS 信号不稳定，请求使用另一条跑道近进，或请求另一种近进方式",
+      "audioTextZh": "ILS 信号不稳定，请求使用另一条跑道进近，或请求另一种进近方式",
       "audio": "/question-bank-assets/audio/sentence900/main/475.mp3"
     },
     {
@@ -259,7 +259,7 @@
     {
       "id": "sentence900-main-480",
       "taskTitle": "Sentence480",
-      "audioText": "We are now flying with basic navigation due to systems failure.Request radar vectors.",
+      "audioText": "We are now flying with basic navigation due to systems failure. Request radar vectors.",
       "audioTextZh": "由于系统失效，我们正靠基础导航飞行，请求雷达引导",
       "audio": "/question-bank-assets/audio/sentence900/main/480.mp3"
     },
@@ -267,7 +267,7 @@
       "id": "sentence900-main-487",
       "taskTitle": "Sentence487",
       "audioText": "We are not qualified for CAT IIIB approach and auto-land. Request diversion.",
-      "audioTextZh": "我们不具备 IIIB 类近进和自动落地资格，请求备降",
+      "audioTextZh": "我们不具备 IIIB 类进近和自动落地资格，请求备降",
       "audio": "/question-bank-assets/audio/sentence900/main/487.mp3"
     },
     {
@@ -372,7 +372,7 @@
       "id": "sentence900-main-531",
       "taskTitle": "Sentence531",
       "audioText": "Our flight control computers are not functioning well. We are having difficulty maintaining level flight, unable RVSM.",
-      "audioTextZh": "飞行控制计算机工作不太理想，保持平飞有困难，不能再RVSM。（4-5",
+      "audioTextZh": "飞行控制计算机工作不太理想，保持平飞有困难，不能再RVSM。（4-5级）",
       "audio": "/question-bank-assets/audio/sentence900/main/531.mp3"
     },
     {
@@ -386,7 +386,7 @@
       "id": "sentence900-main-537",
       "taskTitle": "Sentence537",
       "audioText": "Request high speed approach. Part of our flight control surfaces have separated from the wing.",
-      "audioTextZh": "请求大速度近进，部分飞行操纵面与机翼分离",
+      "audioTextZh": "请求大速度进近，部分飞行操纵面与机翼分离",
       "audio": "/question-bank-assets/audio/sentence900/main/537.mp3"
     },
     {
@@ -435,7 +435,7 @@
       "id": "sentence900-main-559",
       "taskTitle": "Sentence559",
       "audioText": "We need about 18 minutes to jettison fuel before coming in for the approach.",
-      "audioTextZh": "我们在近进前需要大概18分钟放油",
+      "audioTextZh": "我们在进近前需要大概18分钟放油",
       "audio": "/question-bank-assets/audio/sentence900/main/559.mp3"
     },
     {
@@ -603,7 +603,7 @@
       "id": "sentence900-main-620",
       "taskTitle": "Sentence620",
       "audioText": "Our brakes have seized. The tyres might burst during touchdown. Request fire trucks on arrival.",
-      "audioTextZh": "我们的刹车卡死了，接地时可能发生爆胎，请求消防车到场。（4-5",
+      "audioTextZh": "我们的刹车卡死了，接地时可能发生爆胎，请求消防车到场。（4-5级）",
       "audio": "/question-bank-assets/audio/sentence900/main/620.mp3"
     },
     {
@@ -624,7 +624,7 @@
       "id": "sentence900-main-630",
       "taskTitle": "Sentence630",
       "audioText": "Our inertial reference system has failed, unable GPS approach. Request ILS or VOR approach.",
-      "audioTextZh": "我们惯导失效了，无法 GPS 近进，请求 ILS 或 VOR 近进",
+      "audioTextZh": "我们惯导失效了，无法 GPS 进近，请求 ILS 或 VOR 进近",
       "audio": "/question-bank-assets/audio/sentence900/main/630.mp3"
     },
     {
@@ -665,7 +665,7 @@
     {
       "id": "sentence900-main-645",
       "taskTitle": "Sentence645",
-      "audioText": "We do not have that route in our database. Which heading should we maintain for now？",
+      "audioText": "We do not have that route in our database. Which heading should we maintain for now?",
       "audioTextZh": "我们数据库里没有那个航路，我们现在应该保持什么航向？",
       "audio": "/question-bank-assets/audio/sentence900/main/645.mp3"
     },
@@ -834,7 +834,7 @@
       "id": "sentence900-main-726",
       "taskTitle": "Sentence726",
       "audioText": "We made the go-around because strong convective currents on short final made our approach unstable.",
-      "audioTextZh": "因为短五边强对流使近进不稳定，我们复飞了",
+      "audioTextZh": "因为短五边强对流使进近不稳定，我们复飞了",
       "audio": "/question-bank-assets/audio/sentence900/main/726.mp3"
     },
     {
@@ -848,14 +848,14 @@
       "id": "sentence900-main-739",
       "taskTitle": "Sentence739",
       "audioText": "Request to cancel our approach. The runway is not long enough and there are water patches.",
-      "audioTextZh": "请求取消近进。跑道不够长且有积水。",
+      "audioTextZh": "请求取消进近。跑道不够长且有积水。",
       "audio": "/question-bank-assets/audio/sentence900/main/739.mp3"
     },
     {
       "id": "sentence900-main-741",
       "taskTitle": "Sentence741",
       "audioText": "Request holding instructions. We’ll attempt another approach when the rain showers become lighter.",
-      "audioTextZh": "请求等待指令，阵雨变小时，我们将重新近进",
+      "audioTextZh": "请求等待指令，阵雨变小时，我们将重新进近",
       "audio": "/question-bank-assets/audio/sentence900/main/741.mp3"
     },
     {
@@ -876,7 +876,7 @@
       "id": "sentence900-main-752",
       "taskTitle": "Sentence752",
       "audioText": "A Pilot overflying reported seeing virga above the runways. Request to terminate our approach.",
-      "audioTextZh": "一名飞越的飞行员报告，在跑道上空看见了雨幡，请求终止近进。（4-5",
+      "audioTextZh": "一名飞越的飞行员报告，在跑道上空看见了雨幡，请求终止进近。（4-5级）",
       "audio": "/question-bank-assets/audio/sentence900/main/752.mp3"
     },
     {
@@ -932,7 +932,7 @@
       "id": "sentence900-main-782",
       "taskTitle": "Sentence782",
       "audioText": "The center of gravity is disturbed. We will relocate passengers prior to approach. Request holding.",
-      "audioTextZh": "重心受到影响。近进前我们将重新安排旅客座位，请求等待。",
+      "audioTextZh": "重心受到影响。进近前我们将重新安排旅客座位，请求等待。",
       "audio": "/question-bank-assets/audio/sentence900/main/782.mp3"
     },
     {

@@ -1,4 +1,4 @@
-import { ArrowLeft, Check, ChevronDown, ChevronRight, type LucideIcon } from 'lucide-react-native';
+import { ArrowLeft, Check, ChevronDown, ChevronRight, type LucideIcon } from '@/components/ui/icons';
 import { useMemo, useState, type ReactNode } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 

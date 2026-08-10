@@ -1,105 +1,509 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"english","ipa":"/ˈɪŋɡlɪʃ/","aviationMeaning":"n. 英语；国际民航通信用语","generalMeaning":"n. 英语；adj. 英格兰的"},
-    {"word":"enh","ipa":"/ˌiː en ˈeɪtʃ/","aviationMeaning":"n. 增强的缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"enhance","ipa":"/ɪnˈhæns/","aviationMeaning":"v. 增强安全、性能或系统能力","generalMeaning":"v. 增强；提高"},
-    {"word":"enhanced","ipa":"/ɪnˈhænstd/","aviationMeaning":"adj. 已增强的；改进性能的","generalMeaning":"adj. 增强的；提高的"},
-    {"word":"enhanced-vision","ipa":"/ɪnˈhænstd ˈvɪʒən/","aviationMeaning":"n. 增强视景；低能见度辅助视景系统","generalMeaning":"n. 增强视觉"},
-    {"word":"enhances","ipa":"/ɪnˈhænsɪz/","aviationMeaning":"v. 增强安全、性能或系统能力","generalMeaning":"v. 增强；提高"},
-    {"word":"enhancing","ipa":"/ɪnˈhænsɪŋ/","aviationMeaning":"v. 正增强安全、性能或系统能力","generalMeaning":"v. 正增强；提高"},
-    {"word":"enjoy","ipa":"/ɪnˈdʒɔɪ/","aviationMeaning":"v. 享受；非技术性旅客服务语境","generalMeaning":"v. 喜欢；享受"},
-    {"word":"enough","ipa":"/ɪˈnʌf/","aviationMeaning":"adj. 足够的；满足燃油、时间或间隔要求","generalMeaning":"adj. 足够的；adv. 足够地"},
-    {"word":"enriching","ipa":"/ɪnˈrɪtʃɪŋ/","aviationMeaning":"adj. 有益的；培训或经历丰富的","generalMeaning":"adj. 使丰富的"},
-    {"word":"enroute","ipa":"/ˌen ˈruːt/","aviationMeaning":"adj. 航路上的；巡航阶段的","generalMeaning":"adj. 在途中的"},
-    {"word":"enshi","ipa":"/ˈenʃi/","aviationMeaning":"n. 航路点、呼号或专有名称","generalMeaning":"n. 专有名称；请结合原文"},
-    {"word":"ensuing","ipa":"/ɪnˈsuːɪŋ/","aviationMeaning":"adj. 随后的；后续运行阶段的","generalMeaning":"adj. 随后的"},
-    {"word":"ensure","ipa":"/ɪnˈʃʊr/","aviationMeaning":"v. 确保安全、合规或系统状态","generalMeaning":"v. 确保；保证"},
-    {"word":"ensures","ipa":"/ɪnˈʃʊrz/","aviationMeaning":"v. 确保安全、合规或系统状态","generalMeaning":"v. 确保；保证"},
-    {"word":"ensuring","ipa":"/ɪnˈʃʊrɪŋ/","aviationMeaning":"v. 正确保安全、合规或系统状态","generalMeaning":"v. 正确保；保证"},
-    {"word":"enter","ipa":"/ˈentər/","aviationMeaning":"v. 进入空域、航路、跑道或数据","generalMeaning":"v. 进入；输入"},
-    {"word":"entered","ipa":"/ˈentərd/","aviationMeaning":"v. 已进入空域、航路或数据系统","generalMeaning":"v. 已进入；输入"},
-    {"word":"entering","ipa":"/ˈentərɪŋ/","aviationMeaning":"v. 正进入空域、航路、跑道或数据","generalMeaning":"v. 正进入；输入"},
-    {"word":"enters","ipa":"/ˈentərz/","aviationMeaning":"v. 进入空域、航路、跑道或数据","generalMeaning":"v. 进入；输入"},
-    {"word":"entertaining","ipa":"/ˌentərˈteɪnɪŋ/","aviationMeaning":"adj. 娱乐性的；客舱娱乐内容","generalMeaning":"adj. 有趣的；娱乐性的"},
-    {"word":"entertainment","ipa":"/ˌentərˈteɪnmənt/","aviationMeaning":"n. 客舱娱乐；旅客娱乐服务","generalMeaning":"n. 娱乐；文娱"},
-    {"word":"entire","ipa":"/ɪnˈtaɪər/","aviationMeaning":"adj. 整个的；全程或全部系统的","generalMeaning":"adj. 整个的；完全的"},
-    {"word":"entirely","ipa":"/ɪnˈtaɪərli/","aviationMeaning":"adv. 完全地；整个运行范围内","generalMeaning":"adv. 完全地；全部地"},
-    {"word":"entitlement","ipa":"/ɪnˈtaɪtəlmənt/","aviationMeaning":"n. 权利；人员资格或服务权益","generalMeaning":"n. 权利；资格"},
-    {"word":"entrance","ipa":"/ˈentrəns/","aviationMeaning":"n. 入口；机场、跑道或设施入口","generalMeaning":"n. 入口；进入"},
-    {"word":"entries","ipa":"/ˈentriz/","aviationMeaning":"n. 进入记录、数据条目或入口（复数）","generalMeaning":"n. 条目；入口（复数）"},
-    {"word":"entry","ipa":"/ˈentri/","aviationMeaning":"n. 进入；空域入口、数据条目","generalMeaning":"n. 进入；条目"},
-    {"word":"envelope","ipa":"/ˈenvəloʊp/","aviationMeaning":"n. 飞行包线；允许的性能范围","generalMeaning":"n. 信封；外层"},
-    {"word":"envelopes","ipa":"/ˈenvəloʊps/","aviationMeaning":"n. 飞行包线或允许性能范围（复数）","generalMeaning":"n. 信封（复数）"},
-    {"word":"environment","ipa":"/ɪnˈvaɪrənmənt/","aviationMeaning":"n. 环境；飞行、机场或驾驶舱环境","generalMeaning":"n. 环境"},
-    {"word":"environmental","ipa":"/ɪnˌvaɪrənˈmentəl/","aviationMeaning":"adj. 环境的；航空环境影响相关","generalMeaning":"adj. 环境的"},
-    {"word":"environments","ipa":"/ɪnˈvaɪrənmənts/","aviationMeaning":"n. 环境；飞行或机场环境（复数）","generalMeaning":"n. 环境（复数）"},
-    {"word":"epr","ipa":"/ˌiː piː ˈɑːr/","aviationMeaning":"n. 发动机压力比（缩写）","generalMeaning":"n. 发动机参数缩写"},
-    {"word":"equal","ipa":"/ˈiːkwəl/","aviationMeaning":"adj. 相等的；v. 等于或均衡","generalMeaning":"adj. 相等的；v. 等于"},
-    {"word":"equalize","ipa":"/ˈiːkwəlaɪz/","aviationMeaning":"v. 均压；使压力或数值相等","generalMeaning":"v. 使相等；均衡"},
-    {"word":"equals","ipa":"/ˈiːkwəlz/","aviationMeaning":"v. 等于；达到相同数值","generalMeaning":"v. 等于"},
-    {"word":"equilibrates","ipa":"/ˌiːkwɪˈlaɪbreɪts/","aviationMeaning":"v. 达到平衡；压力或系统状态均衡","generalMeaning":"v. 达到平衡"},
-    {"word":"equipment","ipa":"/ɪˈkwɪpmənt/","aviationMeaning":"n. 设备；航空器、机场或应急设备","generalMeaning":"n. 设备；器材"},
-    {"word":"equipped","ipa":"/ɪˈkwɪpt/","aviationMeaning":"adj. 配备的；装有设备的","generalMeaning":"adj. 配备的"},
-    {"word":"equips","ipa":"/ɪˈkwɪps/","aviationMeaning":"v. 配备设备、系统或人员","generalMeaning":"v. 配备；装备"},
-    {"word":"equivalent","ipa":"/ɪˈkwɪvələnt/","aviationMeaning":"adj. 等效的；性能或设备相当的","generalMeaning":"adj. 等同的；相当的"},
-    {"word":"er","ipa":"/ɜːr/","aviationMeaning":"interj. 通话中的犹豫语气词","generalMeaning":"interj. 呃"},
-    {"word":"erase","ipa":"/ɪˈreɪs/","aviationMeaning":"v. 擦除数据、记录或显示内容","generalMeaning":"v. 擦除；抹去"},
-    {"word":"ergine","ipa":"/ˈendʒɪn/","aviationMeaning":"n. 题库原文中 engine 的疑似拼写错误","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"erj","ipa":"/ˌiː ɑːr ˈdʒeɪ/","aviationMeaning":"n. 巴航工业支线喷气机（缩写）","generalMeaning":"n. 专有机型缩写"},
-    {"word":"erj's","ipa":"/ˌiː ɑːr ˈdʒeɪz/","aviationMeaning":"n. ERJ 的；表示所属关系","generalMeaning":"n. 专有机型缩写的；表示所属关系"},
-    {"word":"erratic","ipa":"/ɪˈrætɪk/","aviationMeaning":"adj. 不稳定的；航迹或天气变化无规律的","generalMeaning":"adj. 不规则的；反复无常的"},
-    {"word":"erroneous","ipa":"/ɪˈroʊniəs/","aviationMeaning":"adj. 错误的；不正确的指令或数据","generalMeaning":"adj. 错误的"},
-    {"word":"error","ipa":"/ˈerər/","aviationMeaning":"n. 错误；飞行、导航或系统误差","generalMeaning":"n. 错误；误差"},
-    {"word":"errors","ipa":"/ˈerərz/","aviationMeaning":"n. 错误；飞行、导航或系统误差（复数）","generalMeaning":"n. 错误；误差（复数）"},
-    {"word":"erupted","ipa":"/ɪˈrʌptɪd/","aviationMeaning":"v. 已喷发；火山活动影响航空","generalMeaning":"v. 已喷发；爆发"},
-    {"word":"erupting","ipa":"/ɪˈrʌptɪŋ/","aviationMeaning":"v. 正喷发；火山活动影响航空","generalMeaning":"v. 正喷发"},
-    {"word":"eruption","ipa":"/ɪˈrʌpʃən/","aviationMeaning":"n. 火山喷发；火山灰航空风险","generalMeaning":"n. 喷发；爆发"},
-    {"word":"escalate","ipa":"/ˈeskəleɪt/","aviationMeaning":"v. 升级事件、风险或应急响应","generalMeaning":"v. 升级；加剧"},
-    {"word":"escalating","ipa":"/ˈeskəleɪtɪŋ/","aviationMeaning":"v. 正升级；风险或事件加剧","generalMeaning":"v. 正升级；加剧"},
-    {"word":"escape","ipa":"/ɪˈskeɪp/","aviationMeaning":"v. 逃离危险；n. 逃生通道","generalMeaning":"v. 逃跑；n. 逃离"},
-    {"word":"escaping","ipa":"/ɪˈskeɪpɪŋ/","aviationMeaning":"v. 正逃离危险或泄漏","generalMeaning":"v. 正逃离"},
-    {"word":"escort","ipa":"/ˈeskɔːrt/","aviationMeaning":"v. 护送旅客或航空器；n. 护航","generalMeaning":"v. 护送；n. 护卫"},
-    {"word":"escorted","ipa":"/ˈeskɔːrtɪd/","aviationMeaning":"v. 已护送旅客或航空器","generalMeaning":"v. 已护送"},
-    {"word":"especially","ipa":"/ɪˈspeʃəli/","aviationMeaning":"adv. 尤其；强调特定运行条件","generalMeaning":"adv. 尤其；特别"},
-    {"word":"essential","ipa":"/ɪˈsenʃəl/","aviationMeaning":"adj. 必要的；关键设备或操作的","generalMeaning":"adj. 必要的；本质的"},
-    {"word":"establish","ipa":"/ɪˈstæblɪʃ/","aviationMeaning":"v. 建立通信、航迹或程序","generalMeaning":"v. 建立；确立"},
-    {"word":"established","ipa":"/ɪˈstæblɪʃt/","aviationMeaning":"adj. 已建立的；通信、航迹或程序已形成的","generalMeaning":"adj. 已建立的"},
-    {"word":"establishes","ipa":"/ɪˈstæblɪʃɪz/","aviationMeaning":"v. 建立通信、航迹或程序","generalMeaning":"v. 建立；确立"},
-    {"word":"establishing","ipa":"/ɪˈstæblɪʃɪŋ/","aviationMeaning":"v. 正建立通信、航迹或程序","generalMeaning":"v. 正建立"},
-    {"word":"estimate","ipa":"/ˈestəmeɪt/","aviationMeaning":"n. 估计；预计到达时间；v. 估算","generalMeaning":"n. 估计；v. 估算"},
-    {"word":"estimated","ipa":"/ˈestəmeɪtɪd/","aviationMeaning":"adj. 预计的；估算的时间、燃油或距离","generalMeaning":"adj. 估计的"},
-    {"word":"estimating","ipa":"/ˈestəmeɪtɪŋ/","aviationMeaning":"v. 正估算时间、燃油、距离或性能","generalMeaning":"v. 正估算"},
-    {"word":"eta","ipa":"/ˌiː tiː ˈeɪ/","aviationMeaning":"n. 预计到达时间（缩写）","generalMeaning":"n. 预计到达时间"},
-    {"word":"etc","ipa":"/et ˈsetərə/","aviationMeaning":"adv. 等等；用于列举其他运行项目","generalMeaning":"adv. 等等"},
-    {"word":"etimating","ipa":"/ˈestəmeɪtɪŋ/","aviationMeaning":"n. 题库原文中 estimating 的疑似拼写错误","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"etops","ipa":"/ˈiːtɑːps/","aviationMeaning":"n. 延程运行（缩写）","generalMeaning":"n. 航空运行标准缩写"},
-    {"word":"etops-related","ipa":"/ˈiːtɑːps rɪˈleɪtɪd/","aviationMeaning":"adj. 与延程运行有关的","generalMeaning":"adj. 与延程运行有关的"},
-    {"word":"europe","ipa":"/ˈjʊrəp/","aviationMeaning":"n. 欧洲；运行区域","generalMeaning":"n. 欧洲"},
-    {"word":"europe's","ipa":"/ˈjʊrəps/","aviationMeaning":"n. 欧洲的；表示所属关系","generalMeaning":"n. 欧洲的；表示所属关系"},
-    {"word":"european","ipa":"/ˌjʊrəˈpiːən/","aviationMeaning":"adj. 欧洲的；欧洲航空运行相关","generalMeaning":"adj. 欧洲的；n. 欧洲人"},
-    {"word":"eurowings","ipa":"/ˈjʊroʊwɪŋz/","aviationMeaning":"n. 欧洲之翼航空公司名称","generalMeaning":"n. 专有名称"},
-    {"word":"eva","ipa":"/ˌiː viː ˈeɪ/","aviationMeaning":"n. 长荣航空名称或缩写","generalMeaning":"n. 专有名称"},
-    {"word":"evacuate","ipa":"/ɪˈvækjueɪt/","aviationMeaning":"v. 撤离航空器、机场或危险区域","generalMeaning":"v. 疏散；撤离"},
-    {"word":"evacuated","ipa":"/ɪˈvækjueɪtɪd/","aviationMeaning":"adj. 已撤离的；航空器或区域已清空的","generalMeaning":"adj. 已疏散的"},
-    {"word":"evacuating","ipa":"/ɪˈvækjueɪtɪŋ/","aviationMeaning":"v. 正撤离航空器、机场或危险区域","generalMeaning":"v. 正疏散；撤离"},
-    {"word":"evacuation","ipa":"/ɪˌvækjuˈeɪʃən/","aviationMeaning":"n. 紧急撤离；航空器撤离程序","generalMeaning":"n. 疏散；撤离"},
-    {"word":"evacuations","ipa":"/ɪˌvækjuˈeɪʃənz/","aviationMeaning":"n. 紧急撤离（复数）","generalMeaning":"n. 疏散；撤离（复数）"},
-    {"word":"evaluate","ipa":"/ɪˈvæljueɪt/","aviationMeaning":"v. 评估风险、性能或运行状态","generalMeaning":"v. 评估；评价"},
-    {"word":"evaluated","ipa":"/ɪˈvæljueɪtɪd/","aviationMeaning":"adj. 已评估的；风险或性能已审查的","generalMeaning":"adj. 已评估的"},
-    {"word":"evaluates","ipa":"/ɪˈvæljueɪts/","aviationMeaning":"v. 评估风险、性能或运行状态","generalMeaning":"v. 评估；评价"},
-    {"word":"evaluating","ipa":"/ɪˈvæljueɪtɪŋ/","aviationMeaning":"v. 正评估风险、性能或运行状态","generalMeaning":"v. 正评估；评价"},
-    {"word":"evaporates","ipa":"/ɪˈvæpəreɪts/","aviationMeaning":"v. 蒸发；液体转为气体","generalMeaning":"v. 蒸发"},
-    {"word":"evaporator","ipa":"/ɪˈvæpəreɪtər/","aviationMeaning":"n. 蒸发器；空调或制冷系统部件","generalMeaning":"n. 蒸发器"},
-    {"word":"evasive","ipa":"/ɪˈveɪsɪv/","aviationMeaning":"adj. 规避性的；避让机动的","generalMeaning":"adj. 逃避的；含糊的"},
-    {"word":"even","ipa":"/ˈiːvən/","aviationMeaning":"adv. 甚至；adj. 平稳的、均匀的","generalMeaning":"adv. 甚至；adj. 平坦的"},
-    {"word":"evening","ipa":"/ˈiːvnɪŋ/","aviationMeaning":"n. 傍晚；晚间运行时段","generalMeaning":"n. 傍晚；晚上"},
-    {"word":"event","ipa":"/ɪˈvent/","aviationMeaning":"n. 事件；安全或运行事件","generalMeaning":"n. 事件；活动"},
-    {"word":"events","ipa":"/ɪˈvents/","aviationMeaning":"n. 事件；安全或运行事件（复数）","generalMeaning":"n. 事件；活动（复数）"},
-    {"word":"eventually","ipa":"/ɪˈventʃuəli/","aviationMeaning":"adv. 最终；在一段运行过程后","generalMeaning":"adv. 最终；终于"},
-    {"word":"ever","ipa":"/ˈevər/","aviationMeaning":"adv. 曾经；在任何时候","generalMeaning":"adv. 曾经；永远"},
-    {"word":"every","ipa":"/ˈevri/","aviationMeaning":"det. 每一；每架、每次或每项","generalMeaning":"det. 每一；每个"},
-    {"word":"everybody","ipa":"/ˈevribɑːdi/","aviationMeaning":"pron. 每个人；全体人员","generalMeaning":"pron. 每个人"},
-    {"word":"everyday","ipa":"/ˈevrideɪ/","aviationMeaning":"adj. 日常的；例行运行的","generalMeaning":"adj. 日常的；普通的"}
+    {
+      "word": "english",
+      "ipa": "/ˈɪŋɡlɪʃ/",
+      "aviationMeaning": "n. 英语；国际民航通信用语",
+      "generalMeaning": "n. 英语；adj. 英格兰的"
+    },
+    {
+      "word": "enh",
+      "ipa": "/ˌiː en ˈeɪtʃ/",
+      "aviationMeaning": "n. 增强的缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "enhance",
+      "ipa": "/ɪnˈhæns/",
+      "aviationMeaning": "v. 增强安全、性能或系统能力",
+      "generalMeaning": "v. 增强；提高"
+    },
+    {
+      "word": "enhanced",
+      "ipa": "/ɪnˈhænstd/",
+      "aviationMeaning": "adj. 已增强的；改进性能的",
+      "generalMeaning": "adj. 增强的；提高的"
+    },
+    {
+      "word": "enhances",
+      "ipa": "/ɪnˈhænsɪz/",
+      "aviationMeaning": "v. 增强安全、性能或系统能力",
+      "generalMeaning": "v. 增强；提高"
+    },
+    {
+      "word": "enhancing",
+      "ipa": "/ɪnˈhænsɪŋ/",
+      "aviationMeaning": "v. 正增强安全、性能或系统能力",
+      "generalMeaning": "v. 正增强；提高"
+    },
+    {
+      "word": "enjoy",
+      "ipa": "/ɪnˈdʒɔɪ/",
+      "aviationMeaning": "v. 享受；非技术性旅客服务语境",
+      "generalMeaning": "v. 喜欢；享受"
+    },
+    {
+      "word": "enough",
+      "ipa": "/ɪˈnʌf/",
+      "aviationMeaning": "adj. 足够的；满足燃油、时间或间隔要求",
+      "generalMeaning": "adj. 足够的；adv. 足够地"
+    },
+    {
+      "word": "enriching",
+      "ipa": "/ɪnˈrɪtʃɪŋ/",
+      "aviationMeaning": "adj. 有益的；培训或经历丰富的",
+      "generalMeaning": "adj. 使丰富的"
+    },
+    {
+      "word": "enroute",
+      "ipa": "/ˌen ˈruːt/",
+      "aviationMeaning": "adj. 航路上的；巡航阶段的",
+      "generalMeaning": "adj. 在途中的"
+    },
+    {
+      "word": "enshi",
+      "ipa": "/ˈenʃi/",
+      "aviationMeaning": "n. 航路点、呼号或专有名称",
+      "generalMeaning": "n. 专有名称；请结合原文"
+    },
+    {
+      "word": "ensuing",
+      "ipa": "/ɪnˈsuːɪŋ/",
+      "aviationMeaning": "adj. 随后的；后续运行阶段的",
+      "generalMeaning": "adj. 随后的"
+    },
+    {
+      "word": "ensure",
+      "ipa": "/ɪnˈʃʊr/",
+      "aviationMeaning": "v. 确保安全、合规或系统状态",
+      "generalMeaning": "v. 确保；保证"
+    },
+    {
+      "word": "ensures",
+      "ipa": "/ɪnˈʃʊrz/",
+      "aviationMeaning": "v. 确保安全、合规或系统状态",
+      "generalMeaning": "v. 确保；保证"
+    },
+    {
+      "word": "ensuring",
+      "ipa": "/ɪnˈʃʊrɪŋ/",
+      "aviationMeaning": "v. 正确保安全、合规或系统状态",
+      "generalMeaning": "v. 正确保；保证"
+    },
+    {
+      "word": "enter",
+      "ipa": "/ˈentər/",
+      "aviationMeaning": "v. 进入空域、航路、跑道或数据",
+      "generalMeaning": "v. 进入；输入"
+    },
+    {
+      "word": "entered",
+      "ipa": "/ˈentərd/",
+      "aviationMeaning": "v. 已进入空域、航路或数据系统",
+      "generalMeaning": "v. 已进入；输入"
+    },
+    {
+      "word": "entering",
+      "ipa": "/ˈentərɪŋ/",
+      "aviationMeaning": "v. 正进入空域、航路、跑道或数据",
+      "generalMeaning": "v. 正进入；输入"
+    },
+    {
+      "word": "enters",
+      "ipa": "/ˈentərz/",
+      "aviationMeaning": "v. 进入空域、航路、跑道或数据",
+      "generalMeaning": "v. 进入；输入"
+    },
+    {
+      "word": "entertainment",
+      "ipa": "/ˌentərˈteɪnmənt/",
+      "aviationMeaning": "n. 客舱娱乐；旅客娱乐服务",
+      "generalMeaning": "n. 娱乐；文娱"
+    },
+    {
+      "word": "entire",
+      "ipa": "/ɪnˈtaɪər/",
+      "aviationMeaning": "adj. 整个的；全程或全部系统的",
+      "generalMeaning": "adj. 整个的；完全的"
+    },
+    {
+      "word": "entirely",
+      "ipa": "/ɪnˈtaɪərli/",
+      "aviationMeaning": "adv. 完全地；整个运行范围内",
+      "generalMeaning": "adv. 完全地；全部地"
+    },
+    {
+      "word": "entrance",
+      "ipa": "/ˈentrəns/",
+      "aviationMeaning": "n. 入口；机场、跑道或设施入口",
+      "generalMeaning": "n. 入口；进入"
+    },
+    {
+      "word": "entries",
+      "ipa": "/ˈentriz/",
+      "aviationMeaning": "n. 进入记录、数据条目或入口（复数）",
+      "generalMeaning": "n. 条目；入口（复数）"
+    },
+    {
+      "word": "entry",
+      "ipa": "/ˈentri/",
+      "aviationMeaning": "n. 进入；空域入口、数据条目",
+      "generalMeaning": "n. 进入；条目"
+    },
+    {
+      "word": "environment",
+      "ipa": "/ɪnˈvaɪrənmənt/",
+      "aviationMeaning": "n. 环境；飞行、机场或驾驶舱环境",
+      "generalMeaning": "n. 环境"
+    },
+    {
+      "word": "environmental",
+      "ipa": "/ɪnˌvaɪrənˈmentəl/",
+      "aviationMeaning": "adj. 环境的；航空环境影响相关",
+      "generalMeaning": "adj. 环境的"
+    },
+    {
+      "word": "environments",
+      "ipa": "/ɪnˈvaɪrənmənts/",
+      "aviationMeaning": "n. 环境；飞行或机场环境（复数）",
+      "generalMeaning": "n. 环境（复数）"
+    },
+    {
+      "word": "epr",
+      "ipa": "/ˌiː piː ˈɑːr/",
+      "aviationMeaning": "n. 发动机压力比（缩写）",
+      "generalMeaning": "n. 发动机参数缩写"
+    },
+    {
+      "word": "equal",
+      "ipa": "/ˈiːkwəl/",
+      "aviationMeaning": "adj. 相等的；v. 等于或均衡",
+      "generalMeaning": "adj. 相等的；v. 等于"
+    },
+    {
+      "word": "equalize",
+      "ipa": "/ˈiːkwəlaɪz/",
+      "aviationMeaning": "v. 均压；使压力或数值相等",
+      "generalMeaning": "v. 使相等；均衡"
+    },
+    {
+      "word": "equals",
+      "ipa": "/ˈiːkwəlz/",
+      "aviationMeaning": "v. 等于；达到相同数值",
+      "generalMeaning": "v. 等于"
+    },
+    {
+      "word": "equilibrates",
+      "ipa": "/ˌiːkwɪˈlaɪbreɪts/",
+      "aviationMeaning": "v. 达到平衡；压力或系统状态均衡",
+      "generalMeaning": "v. 达到平衡"
+    },
+    {
+      "word": "equipment",
+      "ipa": "/ɪˈkwɪpmənt/",
+      "aviationMeaning": "n. 设备；航空器、机场或应急设备",
+      "generalMeaning": "n. 设备；器材"
+    },
+    {
+      "word": "equipped",
+      "ipa": "/ɪˈkwɪpt/",
+      "aviationMeaning": "adj. 配备的；装有设备的",
+      "generalMeaning": "adj. 配备的"
+    },
+    {
+      "word": "equips",
+      "ipa": "/ɪˈkwɪps/",
+      "aviationMeaning": "v. 配备设备、系统或人员",
+      "generalMeaning": "v. 配备；装备"
+    },
+    {
+      "word": "equivalent",
+      "ipa": "/ɪˈkwɪvələnt/",
+      "aviationMeaning": "adj. 等效的；性能或设备相当的",
+      "generalMeaning": "adj. 等同的；相当的"
+    },
+    {
+      "word": "er",
+      "ipa": "/ɜːr/",
+      "aviationMeaning": "interj. 通话中的犹豫语气词",
+      "generalMeaning": "interj. 呃"
+    },
+    {
+      "word": "erj",
+      "ipa": "/ˌiː ɑːr ˈdʒeɪ/",
+      "aviationMeaning": "n. 巴航工业支线喷气机（缩写）",
+      "generalMeaning": "n. 专有机型缩写"
+    },
+    {
+      "word": "erj's",
+      "ipa": "/ˌiː ɑːr ˈdʒeɪz/",
+      "aviationMeaning": "n. ERJ 的；表示所属关系",
+      "generalMeaning": "n. 专有机型缩写的；表示所属关系"
+    },
+    {
+      "word": "erratic",
+      "ipa": "/ɪˈrætɪk/",
+      "aviationMeaning": "adj. 不稳定的；航迹或天气变化无规律的",
+      "generalMeaning": "adj. 不规则的；反复无常的"
+    },
+    {
+      "word": "erroneous",
+      "ipa": "/ɪˈroʊniəs/",
+      "aviationMeaning": "adj. 错误的；不正确的指令或数据",
+      "generalMeaning": "adj. 错误的"
+    },
+    {
+      "word": "error",
+      "ipa": "/ˈerər/",
+      "aviationMeaning": "n. 错误；飞行、导航或系统误差",
+      "generalMeaning": "n. 错误；误差"
+    },
+    {
+      "word": "errors",
+      "ipa": "/ˈerərz/",
+      "aviationMeaning": "n. 错误；飞行、导航或系统误差（复数）",
+      "generalMeaning": "n. 错误；误差（复数）"
+    },
+    {
+      "word": "erupted",
+      "ipa": "/ɪˈrʌptɪd/",
+      "aviationMeaning": "v. 已喷发；火山活动影响航空",
+      "generalMeaning": "v. 已喷发；爆发"
+    },
+    {
+      "word": "erupting",
+      "ipa": "/ɪˈrʌptɪŋ/",
+      "aviationMeaning": "v. 正喷发；火山活动影响航空",
+      "generalMeaning": "v. 正喷发"
+    },
+    {
+      "word": "eruption",
+      "ipa": "/ɪˈrʌpʃən/",
+      "aviationMeaning": "n. 火山喷发；火山灰航空风险",
+      "generalMeaning": "n. 喷发；爆发"
+    },
+    {
+      "word": "escape",
+      "ipa": "/ɪˈskeɪp/",
+      "aviationMeaning": "v. 逃离危险；n. 逃生通道",
+      "generalMeaning": "v. 逃跑；n. 逃离"
+    },
+    {
+      "word": "escort",
+      "ipa": "/ˈeskɔːrt/",
+      "aviationMeaning": "v. 护送旅客或航空器；n. 护航",
+      "generalMeaning": "v. 护送；n. 护卫"
+    },
+    {
+      "word": "escorted",
+      "ipa": "/ˈeskɔːrtɪd/",
+      "aviationMeaning": "v. 已护送旅客或航空器",
+      "generalMeaning": "v. 已护送"
+    },
+    {
+      "word": "especially",
+      "ipa": "/ɪˈspeʃəli/",
+      "aviationMeaning": "adv. 尤其；强调特定运行条件",
+      "generalMeaning": "adv. 尤其；特别"
+    },
+    {
+      "word": "essential",
+      "ipa": "/ɪˈsenʃəl/",
+      "aviationMeaning": "adj. 必要的；关键设备或操作的",
+      "generalMeaning": "adj. 必要的；本质的"
+    },
+    {
+      "word": "establish",
+      "ipa": "/ɪˈstæblɪʃ/",
+      "aviationMeaning": "v. 建立通信、航迹或程序",
+      "generalMeaning": "v. 建立；确立"
+    },
+    {
+      "word": "established",
+      "ipa": "/ɪˈstæblɪʃt/",
+      "aviationMeaning": "adj. 已建立的；通信、航迹或程序已形成的",
+      "generalMeaning": "adj. 已建立的"
+    },
+    {
+      "word": "establishing",
+      "ipa": "/ɪˈstæblɪʃɪŋ/",
+      "aviationMeaning": "v. 正建立通信、航迹或程序",
+      "generalMeaning": "v. 正建立"
+    },
+    {
+      "word": "estimate",
+      "ipa": "/ˈestəmeɪt/",
+      "aviationMeaning": "n. 估计；预计到达时间；v. 估算",
+      "generalMeaning": "n. 估计；v. 估算"
+    },
+    {
+      "word": "estimated",
+      "ipa": "/ˈestəmeɪtɪd/",
+      "aviationMeaning": "adj. 预计的；估算的时间、燃油或距离",
+      "generalMeaning": "adj. 估计的"
+    },
+    {
+      "word": "estimating",
+      "ipa": "/ˈestəmeɪtɪŋ/",
+      "aviationMeaning": "v. 正估算时间、燃油、距离或性能",
+      "generalMeaning": "v. 正估算"
+    },
+    {
+      "word": "eta",
+      "ipa": "/ˌiː tiː ˈeɪ/",
+      "aviationMeaning": "n. 预计到达时间（缩写）",
+      "generalMeaning": "n. 预计到达时间"
+    },
+    {
+      "word": "etc",
+      "ipa": "/et ˈsetərə/",
+      "aviationMeaning": "adv. 等等；用于列举其他运行项目",
+      "generalMeaning": "adv. 等等"
+    },
+    {
+      "word": "etops",
+      "ipa": "/ˈiːtɑːps/",
+      "aviationMeaning": "n. 延程运行（缩写）",
+      "generalMeaning": "n. 航空运行标准缩写"
+    },
+    {
+      "word": "europe",
+      "ipa": "/ˈjʊrəp/",
+      "aviationMeaning": "n. 欧洲；运行区域",
+      "generalMeaning": "n. 欧洲"
+    },
+    {
+      "word": "european",
+      "ipa": "/ˌjʊrəˈpiːən/",
+      "aviationMeaning": "adj. 欧洲的；欧洲航空运行相关",
+      "generalMeaning": "adj. 欧洲的；n. 欧洲人"
+    },
+    {
+      "word": "eurowings",
+      "ipa": "/ˈjʊroʊwɪŋz/",
+      "aviationMeaning": "n. 欧洲之翼航空公司名称",
+      "generalMeaning": "n. 专有名称"
+    },
+    {
+      "word": "eva",
+      "ipa": "/ˌiː viː ˈeɪ/",
+      "aviationMeaning": "n. 长荣航空名称或缩写",
+      "generalMeaning": "n. 专有名称"
+    },
+    {
+      "word": "evacuate",
+      "ipa": "/ɪˈvækjueɪt/",
+      "aviationMeaning": "v. 撤离航空器、机场或危险区域",
+      "generalMeaning": "v. 疏散；撤离"
+    },
+    {
+      "word": "evacuated",
+      "ipa": "/ɪˈvækjueɪtɪd/",
+      "aviationMeaning": "adj. 已撤离的；航空器或区域已清空的",
+      "generalMeaning": "adj. 已疏散的"
+    },
+    {
+      "word": "evacuating",
+      "ipa": "/ɪˈvækjueɪtɪŋ/",
+      "aviationMeaning": "v. 正撤离航空器、机场或危险区域",
+      "generalMeaning": "v. 正疏散；撤离"
+    },
+    {
+      "word": "evacuation",
+      "ipa": "/ɪˌvækjuˈeɪʃən/",
+      "aviationMeaning": "n. 紧急撤离；航空器撤离程序",
+      "generalMeaning": "n. 疏散；撤离"
+    },
+    {
+      "word": "evacuations",
+      "ipa": "/ɪˌvækjuˈeɪʃənz/",
+      "aviationMeaning": "n. 紧急撤离（复数）",
+      "generalMeaning": "n. 疏散；撤离（复数）"
+    },
+    {
+      "word": "evaluate",
+      "ipa": "/ɪˈvæljueɪt/",
+      "aviationMeaning": "v. 评估风险、性能或运行状态",
+      "generalMeaning": "v. 评估；评价"
+    },
+    {
+      "word": "evaluated",
+      "ipa": "/ɪˈvæljueɪtɪd/",
+      "aviationMeaning": "adj. 已评估的；风险或性能已审查的",
+      "generalMeaning": "adj. 已评估的"
+    },
+    {
+      "word": "evaluating",
+      "ipa": "/ɪˈvæljueɪtɪŋ/",
+      "aviationMeaning": "v. 正评估风险、性能或运行状态",
+      "generalMeaning": "v. 正评估；评价"
+    },
+    {
+      "word": "evaporator",
+      "ipa": "/ɪˈvæpəreɪtər/",
+      "aviationMeaning": "n. 蒸发器；空调或制冷系统部件",
+      "generalMeaning": "n. 蒸发器"
+    },
+    {
+      "word": "evasive",
+      "ipa": "/ɪˈveɪsɪv/",
+      "aviationMeaning": "adj. 规避性的；避让机动的",
+      "generalMeaning": "adj. 逃避的；含糊的"
+    },
+    {
+      "word": "even",
+      "ipa": "/ˈiːvən/",
+      "aviationMeaning": "adv. 甚至；adj. 平稳的、均匀的",
+      "generalMeaning": "adv. 甚至；adj. 平坦的"
+    },
+    {
+      "word": "evening",
+      "ipa": "/ˈiːvnɪŋ/",
+      "aviationMeaning": "n. 傍晚；晚间运行时段",
+      "generalMeaning": "n. 傍晚；晚上"
+    },
+    {
+      "word": "event",
+      "ipa": "/ɪˈvent/",
+      "aviationMeaning": "n. 事件；安全或运行事件",
+      "generalMeaning": "n. 事件；活动"
+    },
+    {
+      "word": "events",
+      "ipa": "/ɪˈvents/",
+      "aviationMeaning": "n. 事件；安全或运行事件（复数）",
+      "generalMeaning": "n. 事件；活动（复数）"
+    },
+    {
+      "word": "eventually",
+      "ipa": "/ɪˈventʃuəli/",
+      "aviationMeaning": "adv. 最终；在一段运行过程后",
+      "generalMeaning": "adv. 最终；终于"
+    },
+    {
+      "word": "ever",
+      "ipa": "/ˈevər/",
+      "aviationMeaning": "adv. 曾经；在任何时候",
+      "generalMeaning": "adv. 曾经；永远"
+    },
+    {
+      "word": "every",
+      "ipa": "/ˈevri/",
+      "aviationMeaning": "det. 每一；每架、每次或每项",
+      "generalMeaning": "det. 每一；每个"
+    },
+    {
+      "word": "everybody",
+      "ipa": "/ˈevribɑːdi/",
+      "aviationMeaning": "pron. 每个人；全体人员",
+      "generalMeaning": "pron. 每个人"
+    },
+    {
+      "word": "everyday",
+      "ipa": "/ˈevrideɪ/",
+      "aviationMeaning": "adj. 日常的；例行运行的",
+      "generalMeaning": "adj. 日常的；普通的"
+    }
   ]
 }

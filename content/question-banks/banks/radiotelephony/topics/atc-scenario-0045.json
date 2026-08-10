@@ -88,8 +88,8 @@
     {
       "id": "atc-scenario-0045-card-main-770",
       "taskTitle": "ACA 121-10",
-      "audioText": "B: You have 3 green lights, the PAPI appears to be a little bit low but actually your aircraft is high on the glide path. Report to the Tower.\n\n\n(PAPI: precision approach path indicator)",
-      "audioTextZh": "B: 你有 3 个绿灯，PAPI 看起来有点低，但实际上飞机在下滑道上方。向塔台报告。\n\n\n（PAPI：精密进近航径指示器）",
+      "audioText": "B: You have 3 green lights, the PAPI appears to be a little bit low but actually your aircraft is high on the glide path. Report to the Tower.\n\n(PAPI: precision approach path indicator)",
+      "audioTextZh": "B: 你有 3 个绿灯，PAPI 看起来有点低，但实际上飞机在下滑道上方。向塔台报告。\n\n（PAPI：精密进近航径指示器）",
       "referenceText": "Wuhan Tower, ACA 121, we have 3 green lights on, the PAPI appears a little bit low but we are high on the glide path.",
       "referenceTextZh": "武汉塔台，ACA 121，我们有 3 个绿灯，PAPI 看起来有点低，但我们在下滑道上方。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/770.mp3"
@@ -144,7 +144,7 @@
       "taskTitle": "ACA 121-16",
       "audioText": "C: ACA 121, I am sorry to inform you that Runway 36R is closed, there are patches of snow and much debris on the runway. Use Runway 04 instead, fly heading 134 to intercept Localizer of Runway 04.",
       "audioTextZh": "C: ACA 121，很抱歉通知你，跑道 36R 关闭，跑道上有片状积雪和大量碎片。改用跑道 04，飞航向 134 切入跑道 04 航向道。",
-      "referenceText": "Runway 04, heading 134 to intercept localizer of runway04, ACA 121.",
+      "referenceText": "Runway 04, heading 134 to intercept localizer of runway 04, ACA 121.",
       "referenceTextZh": "跑道 04，航向 134 切入跑道 04 航向道，ACA 121。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/776.mp3"
     },

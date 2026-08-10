@@ -84,6 +84,10 @@ if grep -aEq '127\.0\.0\.1:(3101|8000)|https?://(10\.[0-9.]+|192\.168\.[0-9.]+|1
   echo 'The Android Release bundle contains a loopback or private-LAN service URL.' >&2
   exit 1
 fi
+if grep -aEq '47\.109\.132\.161|api\.feizhuicao\.com|cloud\.feizhuicao\.com' "$TMP_BUNDLE"; then
+  echo 'The Android Release bundle contains a retired legacy API host or the old ECS.' >&2
+  exit 1
+fi
 
 OUTPUT_DIR=$PROJECT_ROOT/.generated/releases/android/$DISPLAY_VERSION
 mkdir -p "$OUTPUT_DIR"

@@ -84,7 +84,7 @@ export const coursePromoCatalog = {
   },
   hero: {
     eyebrow: 'CURRICULUM SYSTEM',
-    title: '飞猪 ICAO 体系课程',
+    title: '听你五个体系课程',
     description: '团队全员由icao5在职飞行员组成，打造完整 ICAO 备考体系——以超高通过率、个性化定制与全程一对一教学，陪你稳稳拿下目标等级。',
     primaryAction: '查看培训模式',
     secondaryAction: '了解核心优势',
@@ -492,6 +492,6 @@ export const coursePromoCatalog = {
     quote: '「愿每位飞行同僚都能在自己的飞行道路上披荆斩棘，我们自会顶峰相见。」',
     label: '咨询请添加微信',
     wechatIds: ['15736231388', '17367473982'],
-    footer: '© 2026 飞猪 ICAO 英语培训团队 · 在职飞行员一对一线上教学',
+    footer: '© 2026 听你五个英语培训团队 · 在职飞行员一对一线上教学',
   },
 } as const satisfies CoursePromoCatalog;

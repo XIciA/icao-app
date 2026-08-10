@@ -26,13 +26,17 @@ require_public_https_url() {
     echo "$name must not use localhost, loopback, or a private-LAN address." >&2
     exit 1
   fi
+  if printf '%s\n' "$value" | grep -Eq '(^|//)(api|cloud)\.feizhuicao\.com([/:]|$)|47\.109\.132\.161'; then
+    echo "$name must not use a retired legacy API host or the old ECS." >&2
+    exit 1
+  fi
 }
 
 load_release_runtime() {
-  API_URL=${EXPO_PUBLIC_ICAO_API_URL:-https://api.feizhuicao.com}
-  SUPABASE_URL=${EXPO_PUBLIC_SUPABASE_URL:-https://cloud.feizhuicao.com}
+  API_URL=${EXPO_PUBLIC_ICAO_API_URL:-https://api.readyoufife.com}
+  SUPABASE_URL=${EXPO_PUBLIC_SUPABASE_URL:-https://cloud.readyoufife.com}
   PUBLISHABLE_KEY=${EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY:-}
-  ECS_HOST=${ICAO_ECS_HOST:-47.109.132.161}
+  ECS_HOST=${ICAO_ECS_HOST:-47.108.90.19}
   ECS_USER=${ICAO_ECS_USER:-root}
   SSH_KEY=${ICAO_ECS_SSH_KEY:-${HOME:?}/.ssh/icao_app_codex}
 

@@ -27,7 +27,7 @@
       "taskTitle": "CSN 817-3",
       "audioText": "B: Now you have completed push back and engine have been started up, contact Wuhan Ground for taxiing instructions.",
       "audioTextZh": "B：现在你已完成推出并已开车，联系武汉地面获取滑行指令。",
-      "referenceText": "Wuhan Ground, CSN 817, push backand start up completed, request taxi.",
+      "referenceText": "Wuhan Ground, CSN 817, push back and start up completed, request taxi.",
       "referenceTextZh": "武汉地面，CSN 817，推出和开车完成，请求滑行。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/1269.mp3"
     },

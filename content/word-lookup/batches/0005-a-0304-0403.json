@@ -1,105 +1,473 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"alitalia","ipa":"/ˌælɪˈtɑːliə/","aviationMeaning":"n. 意大利航空公司名称","generalMeaning":"n. 意大利航空（名称）"},
-    {"word":"alive","ipa":"/əˈlaɪv/","aviationMeaning":"adj. 仍在运行、有效或有生命体征的","generalMeaning":"adj. 活着的；仍存在的"},
-    {"word":"all","ipa":"/ɔːl/","aviationMeaning":"det. 全部航空器、人员或项目","generalMeaning":"det. 全部；所有"},
-    {"word":"allegation","ipa":"/ˌæləˈɡeɪʃən/","aviationMeaning":"n. 对运行事件的未经证实指称","generalMeaning":"n. 指控；说法"},
-    {"word":"allergic","ipa":"/əˈlɜːrdʒɪk/","aviationMeaning":"adj. 对药物或物质过敏的","generalMeaning":"adj. 过敏的；反感的"},
-    {"word":"allocate","ipa":"/ˈæləkeɪt/","aviationMeaning":"v. 分配时隙、跑道、资源或空域","generalMeaning":"v. 分配；划拨"},
-    {"word":"allocation","ipa":"/ˌæləˈkeɪʃən/","aviationMeaning":"n. 时隙、资源或空域的分配","generalMeaning":"n. 分配；配额"},
-    {"word":"allow","ipa":"/əˈlaʊ/","aviationMeaning":"v. 允许某项飞行、操作或进入","generalMeaning":"v. 允许；准许"},
-    {"word":"allowable","ipa":"/əˈlaʊəbəl/","aviationMeaning":"adj. 在限制或程序内允许的","generalMeaning":"adj. 允许的；可接受的"},
-    {"word":"allowed","ipa":"/əˈlaʊd/","aviationMeaning":"adj. 已获准的；允许的","generalMeaning":"adj. 被允许的"},
-    {"word":"allowing","ipa":"/əˈlaʊɪŋ/","aviationMeaning":"v. 正在允许或留出运行条件","generalMeaning":"v. 允许；使能够"},
-    {"word":"allows","ipa":"/əˈlaʊz/","aviationMeaning":"v. 允许某项飞行、操作或进入","generalMeaning":"v. 允许；准许"},
-    {"word":"allthe","ipa":"/ɔːl ði/","aviationMeaning":"n. 题库原文中 all the 的疑似粘连","generalMeaning":"n. 疑似词语粘连；请结合原文"},
-    {"word":"almost","ipa":"/ˈɔːlmoʊst/","aviationMeaning":"adv. 几乎达到规定高度、速度或状态","generalMeaning":"adv. 几乎；差不多"},
-    {"word":"alnd","ipa":"/ænd/","aviationMeaning":"n. 题库原文中 and 的疑似拼写错误","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"alone","ipa":"/əˈloʊn/","aviationMeaning":"adj. 单独的；不与其他系统或飞机结合的","generalMeaning":"adj. 独自的；单独的"},
-    {"word":"along","ipa":"/əˈlɔːŋ/","aviationMeaning":"prep. 沿着航路、跑道或边界","generalMeaning":"prep. 沿着；顺着"},
-    {"word":"aloud","ipa":"/əˈlaʊd/","aviationMeaning":"adv. 出声地；用于读出检查单或通话内容","generalMeaning":"adv. 大声地；出声地"},
-    {"word":"alpha","ipa":"/ˈælfə/","aviationMeaning":"n. 字母 A 的 ICAO 拼读词；迎角","generalMeaning":"n. 希腊字母阿尔法"},
-    {"word":"alphabet","ipa":"/ˈælfəbet/","aviationMeaning":"n. 通话拼读字母表","generalMeaning":"n. 字母表"},
-    {"word":"alphabetic","ipa":"/ˌælfəˈbetɪk/","aviationMeaning":"adj. 按字母顺序排列的","generalMeaning":"adj. 字母的；按字母顺序的"},
-    {"word":"already","ipa":"/ɔːlˈredi/","aviationMeaning":"adv. 已经完成、存在或生效","generalMeaning":"adv. 已经；早已"},
-    {"word":"also","ipa":"/ˈɔːlsoʊ/","aviationMeaning":"adv. 也；另有一项运行条件","generalMeaning":"adv. 也；而且"},
-    {"word":"alter","ipa":"/ˈɔːltər/","aviationMeaning":"v. 改变航向、高度、计划或设置","generalMeaning":"v. 改变；修改"},
-    {"word":"alternate","ipa":"/ˈɔːltərnət/","aviationMeaning":"n. 备降机场；adj. 备用的","generalMeaning":"n. 替代项；adj. 交替的；备用的"},
-    {"word":"alternate-extension","ipa":"/ˈɔːltərnət ɪkˈstenʃən/","aviationMeaning":"n. 备降相关的延伸程序或距离","generalMeaning":"n. 备用方案的延伸"},
-    {"word":"alternates","ipa":"/ˈɔːltərneɪts/","aviationMeaning":"n. 备降机场（复数）；v. 交替","generalMeaning":"n. 替代项（复数）；v. 交替"},
-    {"word":"alternating","ipa":"/ˈɔːltərneɪtɪŋ/","aviationMeaning":"adj. 交替使用的；轮换的","generalMeaning":"adj. 交替的；轮流的"},
-    {"word":"alternative","ipa":"/ɔːlˈtɜːrnətɪv/","aviationMeaning":"n. 可替代的航路、机场或程序","generalMeaning":"n. 替代方案；adj. 可替代的"},
-    {"word":"alternatives","ipa":"/ɔːlˈtɜːrnətɪvz/","aviationMeaning":"n. 替代航路、机场或程序（复数）","generalMeaning":"n. 替代方案（复数）"},
-    {"word":"although","ipa":"/ɔːlˈðoʊ/","aviationMeaning":"conj. 虽然；用于说明运行条件的转折","generalMeaning":"conj. 虽然；尽管"},
-    {"word":"altimeter","ipa":"/ælˈtɪmɪtər/","aviationMeaning":"n. 高度表","generalMeaning":"n. 高度计"},
-    {"word":"altimeter-setting","ipa":"/ælˈtɪmɪtər ˈsetɪŋ/","aviationMeaning":"n. 高度表拨正值","generalMeaning":"n. 高度计设定值"},
-    {"word":"altimeters","ipa":"/ælˈtɪmɪtərz/","aviationMeaning":"n. 高度表（复数）","generalMeaning":"n. 高度计（复数）"},
-    {"word":"altimetry","ipa":"/ælˈtɪmətri/","aviationMeaning":"n. 高度测量；高度测量学","generalMeaning":"n. 高度测量"},
-    {"word":"altitude","ipa":"/ˈæltɪtuːd/","aviationMeaning":"n. 高度；海拔高度","generalMeaning":"n. 高度；海拔"},
-    {"word":"altitude-alerting","ipa":"/ˈæltɪtuːd əˈlɜːrtɪŋ/","aviationMeaning":"n. 高度告警功能","generalMeaning":"n. 高度提醒功能"},
-    {"word":"altitude-control","ipa":"/ˈæltɪtuːd kənˈtroʊl/","aviationMeaning":"n. 高度控制","generalMeaning":"n. 高度控制"},
-    {"word":"altitude-setting","ipa":"/ˈæltɪtuːd ˈsetɪŋ/","aviationMeaning":"n. 目标高度设定","generalMeaning":"n. 高度设定"},
-    {"word":"altitudes","ipa":"/ˈæltɪtuːdz/","aviationMeaning":"n. 高度（复数）","generalMeaning":"n. 高度；海拔（复数）"},
-    {"word":"aluminum","ipa":"/əˈluːmɪnəm/","aviationMeaning":"n. 航空器结构常用的铝材","generalMeaning":"n. 铝"},
-    {"word":"always","ipa":"/ˈɔːlweɪz/","aviationMeaning":"adv. 始终；每次运行均如此","generalMeaning":"adv. 总是；一直"},
-    {"word":"am","ipa":"/æm/","aviationMeaning":"v. 是；用于状态报告","generalMeaning":"v. 是（be 的第一人称形式）"},
-    {"word":"amakusa","ipa":"/ˌɑːməkˈuːsə/","aviationMeaning":"n. 天草（日本机场或地区名称）","generalMeaning":"n. 天草（日本地名）"},
-    {"word":"amakusa's","ipa":"/ˌɑːməkˈuːsəz/","aviationMeaning":"n. 天草的；表示所属关系","generalMeaning":"n. 天草的；表示所属关系"},
-    {"word":"amazed","ipa":"/əˈmeɪzd/","aviationMeaning":"adj. 对运行事件感到惊讶的","generalMeaning":"adj. 惊讶的；惊奇的"},
-    {"word":"amazon","ipa":"/ˈæməzɑːn/","aviationMeaning":"n. 亚马孙地区或同名公司/航线名称","generalMeaning":"n. 亚马孙河；亚马孙地区"},
-    {"word":"amber","ipa":"/ˈæmbər/","aviationMeaning":"adj. 琥珀色；用于告警灯状态","generalMeaning":"n. 琥珀；adj. 琥珀色的"},
-    {"word":"ambient","ipa":"/ˈæmbiənt/","aviationMeaning":"adj. 周围环境的，如环境温度或噪声","generalMeaning":"adj. 周围的；环境的"},
-    {"word":"ambiguity","ipa":"/ˌæmbɪˈɡjuːəti/","aviationMeaning":"n. 通话、程序或指令中的歧义","generalMeaning":"n. 含糊不清；歧义"},
-    {"word":"ambition","ipa":"/æmˈbɪʃən/","aviationMeaning":"n. 职业或训练目标","generalMeaning":"n. 抱负；志向"},
-    {"word":"ambulance","ipa":"/ˈæmbjələns/","aviationMeaning":"n. 机场医疗救护车","generalMeaning":"n. 救护车"},
-    {"word":"ambulances","ipa":"/ˈæmbjələnsɪz/","aviationMeaning":"n. 机场医疗救护车（复数）","generalMeaning":"n. 救护车（复数）"},
-    {"word":"amended","ipa":"/əˈmendɪd/","aviationMeaning":"adj. 已修订的，如修订的飞行计划","generalMeaning":"adj. 已修改的；已修正的"},
-    {"word":"american","ipa":"/əˈmerɪkən/","aviationMeaning":"adj. 美国的；n. 美国航空等名称中的组成词","generalMeaning":"adj. 美国的；n. 美国人"},
-    {"word":"among","ipa":"/əˈmʌŋ/","aviationMeaning":"prep. 在多架航空器、人员或项目之中","generalMeaning":"prep. 在……之中"},
-    {"word":"amongst","ipa":"/əˈmʌŋst/","aviationMeaning":"prep. 在多架航空器、人员或项目之中","generalMeaning":"prep. 在……之中"},
-    {"word":"amount","ipa":"/əˈmaʊnt/","aviationMeaning":"n. 燃油、载荷或数值的数量","generalMeaning":"n. 数量；总额"},
-    {"word":"ams","ipa":"/ˌeɪ em ˈes/","aviationMeaning":"n. 自动化或机场系统缩写；需结合原文","generalMeaning":"n. 名称或系统缩写"},
-    {"word":"amsterdam","ipa":"/ˈæmstərdæm/","aviationMeaning":"n. 阿姆斯特丹；机场所在城市","generalMeaning":"n. 阿姆斯特丹（荷兰首都）"},
-    {"word":"amsterdam's","ipa":"/ˈæmstərdæmz/","aviationMeaning":"n. 阿姆斯特丹的；表示所属关系","generalMeaning":"n. 阿姆斯特丹的；表示所属关系"},
-    {"word":"an","ipa":"/æn/","aviationMeaning":"det. 一个；用于以元音音素开头的名词前","generalMeaning":"det. 一个"},
-    {"word":"analog","ipa":"/ˈænəlɔːɡ/","aviationMeaning":"adj. 模拟式的，如模拟仪表或信号","generalMeaning":"adj. 模拟的；类似的"},
-    {"word":"analog-to-digital","ipa":"/ˈænəlɔːɡ tə ˈdɪdʒɪtəl/","aviationMeaning":"adj. 模拟到数字的信号转换","generalMeaning":"adj. 模拟到数字的"},
-    {"word":"analyses","ipa":"/əˈnæləsiːz/","aviationMeaning":"n. 安全、性能或事件分析（复数）","generalMeaning":"n. 分析（复数）"},
-    {"word":"analysis","ipa":"/əˈnæləsɪs/","aviationMeaning":"n. 运行、安全或性能分析","generalMeaning":"n. 分析"},
-    {"word":"analyze","ipa":"/ˈænəlaɪz/","aviationMeaning":"v. 分析飞行数据、事件或风险","generalMeaning":"v. 分析；解析"},
-    {"word":"analyzed","ipa":"/ˈænəlaɪzd/","aviationMeaning":"adj. 已分析的飞行数据或事件","generalMeaning":"adj. 已分析的"},
-    {"word":"anchorage","ipa":"/ˈæŋkərɪdʒ/","aviationMeaning":"n. 安克雷奇；机场所在城市","generalMeaning":"n. 锚地；安克雷奇（美国城市）"},
-    {"word":"and","ipa":"/ænd/","aviationMeaning":"conj. 和；连接通话、程序或条件","generalMeaning":"conj. 和；以及"},
-    {"word":"andautothrust","ipa":"/ænd ˈɔːtoʊθrʌst/","aviationMeaning":"n. 题库原文中 and autothrust 的疑似粘连","generalMeaning":"n. 疑似词语粘连；请结合原文"},
-    {"word":"andres","ipa":"/ɑːnˈdres/","aviationMeaning":"n. 人名、地点或呼号中的名称","generalMeaning":"n. 安德烈斯（人名）"},
-    {"word":"andthe","ipa":"/ænd ðə/","aviationMeaning":"n. 题库原文中 and the 的疑似粘连","generalMeaning":"n. 疑似词语粘连；请结合原文"},
-    {"word":"angeles","ipa":"/ˈændʒələs/","aviationMeaning":"n. 洛杉矶等地名中的组成词","generalMeaning":"n. 天使；地名组成部分"},
-    {"word":"angeles's","ipa":"/ˈændʒələsɪz/","aviationMeaning":"n. 洛杉矶的；表示所属关系","generalMeaning":"n. 洛杉矶的；表示所属关系"},
-    {"word":"anglais","ipa":"/ɑːŋˈɡleɪ/","aviationMeaning":"n. 法语中“英语”；可能见于国际资料","generalMeaning":"n. 法语中“英语”"},
-    {"word":"angle","ipa":"/ˈæŋɡəl/","aviationMeaning":"n. 角度；如俯仰角、坡度或转弯角","generalMeaning":"n. 角；角度"},
-    {"word":"angle-of-attack-related","ipa":"/ˈæŋɡəl əv əˈtæk rɪˈleɪtɪd/","aviationMeaning":"adj. 与迎角有关的","generalMeaning":"adj. 与攻击角有关的"},
-    {"word":"angles","ipa":"/ˈæŋɡəlz/","aviationMeaning":"n. 飞行姿态或几何角度（复数）","generalMeaning":"n. 角；角度（复数）"},
-    {"word":"angry","ipa":"/ˈæŋɡri/","aviationMeaning":"adj. 愤怒的；可能影响机组沟通状态","generalMeaning":"adj. 生气的；愤怒的"},
-    {"word":"animal","ipa":"/ˈænɪməl/","aviationMeaning":"n. 动物；跑道侵入或野生动物风险对象","generalMeaning":"n. 动物"},
-    {"word":"ankle","ipa":"/ˈæŋkəl/","aviationMeaning":"n. 脚踝；可能用于伤病报告","generalMeaning":"n. 脚踝"},
-    {"word":"annex","ipa":"/ˈæneks/","aviationMeaning":"n. ICAO 附件；附属建筑","generalMeaning":"n. 附件；附录；附属建筑"},
-    {"word":"annotate","ipa":"/ˈænəteɪt/","aviationMeaning":"v. 在飞行记录、图表或资料上标注","generalMeaning":"v. 注释；标注"},
-    {"word":"announce","ipa":"/əˈnaʊns/","aviationMeaning":"v. 发布机场、航班或安全信息","generalMeaning":"v. 宣布；通告"},
-    {"word":"announced","ipa":"/əˈnaʊnst/","aviationMeaning":"adj. 已公布的机场、航班或安全信息","generalMeaning":"adj. 已宣布的；已公布的"},
-    {"word":"announcement","ipa":"/əˈnaʊnsmənt/","aviationMeaning":"n. 机场、客舱或运行通告","generalMeaning":"n. 公告；宣布"},
-    {"word":"announcements","ipa":"/əˈnaʊnsmənts/","aviationMeaning":"n. 机场、客舱或运行通告（复数）","generalMeaning":"n. 公告（复数）"},
-    {"word":"announces","ipa":"/əˈnaʊnsɪz/","aviationMeaning":"v. 发布机场、航班或安全信息","generalMeaning":"v. 宣布；通告"},
-    {"word":"announved","ipa":"/əˈnaʊnst/","aviationMeaning":"n. 题库原文中 announced 的疑似拼写错误","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"annoyed","ipa":"/əˈnɔɪd/","aviationMeaning":"adj. 感到烦恼的；可能影响沟通状态","generalMeaning":"adj. 烦恼的；恼火的"},
-    {"word":"annual","ipa":"/ˈænjuəl/","aviationMeaning":"adj. 每年的，如年度检查或训练","generalMeaning":"adj. 每年的；年度的"},
-    {"word":"anomalies","ipa":"/əˈnɑːməliz/","aviationMeaning":"n. 飞行数据、系统或运行异常（复数）","generalMeaning":"n. 异常；反常现象（复数）"},
-    {"word":"anomaly","ipa":"/əˈnɑːməli/","aviationMeaning":"n. 飞行数据、系统或运行异常","generalMeaning":"n. 异常；反常现象"},
-    {"word":"anonymous","ipa":"/əˈnɑːnɪməs/","aviationMeaning":"adj. 匿名的，如匿名安全报告","generalMeaning":"adj. 匿名的；无名的"},
-    {"word":"another","ipa":"/əˈnʌðər/","aviationMeaning":"det. 另一架航空器、另一项指令或选择","generalMeaning":"det. 另一个；再一个"},
-    {"word":"anrat","ipa":"/ˈæn ræt/","aviationMeaning":"n. 题库中的专有缩写或疑似拼写；需结合原文","generalMeaning":"n. 不明专有词；请结合原文"},
-    {"word":"answer","ipa":"/ˈænsər/","aviationMeaning":"n. 对通话、问题或告警的答复；v. 回答","generalMeaning":"n. 答案；v. 回答"},
-    {"word":"answered","ipa":"/ˈænsərd/","aviationMeaning":"v. 已答复通话、问题或告警","generalMeaning":"v. 已回答；已答复"},
-    {"word":"answers","ipa":"/ˈænsərz/","aviationMeaning":"n. 通话或问题的答复（复数）；v. 回答","generalMeaning":"n. 答案（复数）；v. 回答"}
+    {
+      "word": "alitalia",
+      "ipa": "/ˌælɪˈtɑːliə/",
+      "aviationMeaning": "n. 意大利航空公司名称",
+      "generalMeaning": "n. 意大利航空（名称）"
+    },
+    {
+      "word": "alive",
+      "ipa": "/əˈlaɪv/",
+      "aviationMeaning": "adj. 仍在运行、有效或有生命体征的",
+      "generalMeaning": "adj. 活着的；仍存在的"
+    },
+    {
+      "word": "all",
+      "ipa": "/ɔːl/",
+      "aviationMeaning": "det. 全部航空器、人员或项目",
+      "generalMeaning": "det. 全部；所有"
+    },
+    {
+      "word": "allegation",
+      "ipa": "/ˌæləˈɡeɪʃən/",
+      "aviationMeaning": "n. 对运行事件的未经证实指称",
+      "generalMeaning": "n. 指控；说法"
+    },
+    {
+      "word": "allocate",
+      "ipa": "/ˈæləkeɪt/",
+      "aviationMeaning": "v. 分配时隙、跑道、资源或空域",
+      "generalMeaning": "v. 分配；划拨"
+    },
+    {
+      "word": "allocation",
+      "ipa": "/ˌæləˈkeɪʃən/",
+      "aviationMeaning": "n. 时隙、资源或空域的分配",
+      "generalMeaning": "n. 分配；配额"
+    },
+    {
+      "word": "allow",
+      "ipa": "/əˈlaʊ/",
+      "aviationMeaning": "v. 允许某项飞行、操作或进入",
+      "generalMeaning": "v. 允许；准许"
+    },
+    {
+      "word": "allowable",
+      "ipa": "/əˈlaʊəbəl/",
+      "aviationMeaning": "adj. 在限制或程序内允许的",
+      "generalMeaning": "adj. 允许的；可接受的"
+    },
+    {
+      "word": "allowed",
+      "ipa": "/əˈlaʊd/",
+      "aviationMeaning": "adj. 已获准的；允许的",
+      "generalMeaning": "adj. 被允许的"
+    },
+    {
+      "word": "allowing",
+      "ipa": "/əˈlaʊɪŋ/",
+      "aviationMeaning": "v. 正在允许或留出运行条件",
+      "generalMeaning": "v. 允许；使能够"
+    },
+    {
+      "word": "allows",
+      "ipa": "/əˈlaʊz/",
+      "aviationMeaning": "v. 允许某项飞行、操作或进入",
+      "generalMeaning": "v. 允许；准许"
+    },
+    {
+      "word": "almost",
+      "ipa": "/ˈɔːlmoʊst/",
+      "aviationMeaning": "adv. 几乎达到规定高度、速度或状态",
+      "generalMeaning": "adv. 几乎；差不多"
+    },
+    {
+      "word": "alone",
+      "ipa": "/əˈloʊn/",
+      "aviationMeaning": "adj. 单独的；不与其他系统或飞机结合的",
+      "generalMeaning": "adj. 独自的；单独的"
+    },
+    {
+      "word": "along",
+      "ipa": "/əˈlɔːŋ/",
+      "aviationMeaning": "prep. 沿着航路、跑道或边界",
+      "generalMeaning": "prep. 沿着；顺着"
+    },
+    {
+      "word": "alpha",
+      "ipa": "/ˈælfə/",
+      "aviationMeaning": "n. 字母 A 的 ICAO 拼读词；迎角",
+      "generalMeaning": "n. 希腊字母阿尔法"
+    },
+    {
+      "word": "alphabet",
+      "ipa": "/ˈælfəbet/",
+      "aviationMeaning": "n. 通话拼读字母表",
+      "generalMeaning": "n. 字母表"
+    },
+    {
+      "word": "alphabetic",
+      "ipa": "/ˌælfəˈbetɪk/",
+      "aviationMeaning": "adj. 按字母顺序排列的",
+      "generalMeaning": "adj. 字母的；按字母顺序的"
+    },
+    {
+      "word": "already",
+      "ipa": "/ɔːlˈredi/",
+      "aviationMeaning": "adv. 已经完成、存在或生效",
+      "generalMeaning": "adv. 已经；早已"
+    },
+    {
+      "word": "also",
+      "ipa": "/ˈɔːlsoʊ/",
+      "aviationMeaning": "adv. 也；另有一项运行条件",
+      "generalMeaning": "adv. 也；而且"
+    },
+    {
+      "word": "alter",
+      "ipa": "/ˈɔːltər/",
+      "aviationMeaning": "v. 改变航向、高度、计划或设置",
+      "generalMeaning": "v. 改变；修改"
+    },
+    {
+      "word": "alternate",
+      "ipa": "/ˈɔːltərnət/",
+      "aviationMeaning": "n. 备降机场；adj. 备用的",
+      "generalMeaning": "n. 替代项；adj. 交替的；备用的"
+    },
+    {
+      "word": "alternates",
+      "ipa": "/ˈɔːltərneɪts/",
+      "aviationMeaning": "n. 备降机场（复数）；v. 交替",
+      "generalMeaning": "n. 替代项（复数）；v. 交替"
+    },
+    {
+      "word": "alternating",
+      "ipa": "/ˈɔːltərneɪtɪŋ/",
+      "aviationMeaning": "adj. 交替使用的；轮换的",
+      "generalMeaning": "adj. 交替的；轮流的"
+    },
+    {
+      "word": "alternative",
+      "ipa": "/ɔːlˈtɜːrnətɪv/",
+      "aviationMeaning": "n. 可替代的航路、机场或程序",
+      "generalMeaning": "n. 替代方案；adj. 可替代的"
+    },
+    {
+      "word": "although",
+      "ipa": "/ɔːlˈðoʊ/",
+      "aviationMeaning": "conj. 虽然；用于说明运行条件的转折",
+      "generalMeaning": "conj. 虽然；尽管"
+    },
+    {
+      "word": "altimeter",
+      "ipa": "/ælˈtɪmɪtər/",
+      "aviationMeaning": "n. 高度表",
+      "generalMeaning": "n. 高度计"
+    },
+    {
+      "word": "altimeters",
+      "ipa": "/ælˈtɪmɪtərz/",
+      "aviationMeaning": "n. 高度表（复数）",
+      "generalMeaning": "n. 高度计（复数）"
+    },
+    {
+      "word": "altitude",
+      "ipa": "/ˈæltɪtuːd/",
+      "aviationMeaning": "n. 高度；海拔高度",
+      "generalMeaning": "n. 高度；海拔"
+    },
+    {
+      "word": "altitudes",
+      "ipa": "/ˈæltɪtuːdz/",
+      "aviationMeaning": "n. 高度（复数）",
+      "generalMeaning": "n. 高度；海拔（复数）"
+    },
+    {
+      "word": "aluminum",
+      "ipa": "/əˈluːmɪnəm/",
+      "aviationMeaning": "n. 航空器结构常用的铝材",
+      "generalMeaning": "n. 铝"
+    },
+    {
+      "word": "always",
+      "ipa": "/ˈɔːlweɪz/",
+      "aviationMeaning": "adv. 始终；每次运行均如此",
+      "generalMeaning": "adv. 总是；一直"
+    },
+    {
+      "word": "am",
+      "ipa": "/æm/",
+      "aviationMeaning": "v. 是；用于状态报告",
+      "generalMeaning": "v. 是（be 的第一人称形式）"
+    },
+    {
+      "word": "amakusa",
+      "ipa": "/ˌɑːməkˈuːsə/",
+      "aviationMeaning": "n. 天草（日本机场或地区名称）",
+      "generalMeaning": "n. 天草（日本地名）"
+    },
+    {
+      "word": "amakusa's",
+      "ipa": "/ˌɑːməkˈuːsəz/",
+      "aviationMeaning": "n. 天草的；表示所属关系",
+      "generalMeaning": "n. 天草的；表示所属关系"
+    },
+    {
+      "word": "amazed",
+      "ipa": "/əˈmeɪzd/",
+      "aviationMeaning": "adj. 对运行事件感到惊讶的",
+      "generalMeaning": "adj. 惊讶的；惊奇的"
+    },
+    {
+      "word": "amazon",
+      "ipa": "/ˈæməzɑːn/",
+      "aviationMeaning": "n. 亚马孙地区或同名公司/航线名称",
+      "generalMeaning": "n. 亚马孙河；亚马孙地区"
+    },
+    {
+      "word": "amber",
+      "ipa": "/ˈæmbər/",
+      "aviationMeaning": "adj. 琥珀色；用于告警灯状态",
+      "generalMeaning": "n. 琥珀；adj. 琥珀色的"
+    },
+    {
+      "word": "ambient",
+      "ipa": "/ˈæmbiənt/",
+      "aviationMeaning": "adj. 周围环境的，如环境温度或噪声",
+      "generalMeaning": "adj. 周围的；环境的"
+    },
+    {
+      "word": "ambulance",
+      "ipa": "/ˈæmbjələns/",
+      "aviationMeaning": "n. 机场医疗救护车",
+      "generalMeaning": "n. 救护车"
+    },
+    {
+      "word": "ambulances",
+      "ipa": "/ˈæmbjələnsɪz/",
+      "aviationMeaning": "n. 机场医疗救护车（复数）",
+      "generalMeaning": "n. 救护车（复数）"
+    },
+    {
+      "word": "amended",
+      "ipa": "/əˈmendɪd/",
+      "aviationMeaning": "adj. 已修订的，如修订的飞行计划",
+      "generalMeaning": "adj. 已修改的；已修正的"
+    },
+    {
+      "word": "american",
+      "ipa": "/əˈmerɪkən/",
+      "aviationMeaning": "adj. 美国的；n. 美国航空等名称中的组成词",
+      "generalMeaning": "adj. 美国的；n. 美国人"
+    },
+    {
+      "word": "among",
+      "ipa": "/əˈmʌŋ/",
+      "aviationMeaning": "prep. 在多架航空器、人员或项目之中",
+      "generalMeaning": "prep. 在……之中"
+    },
+    {
+      "word": "amongst",
+      "ipa": "/əˈmʌŋst/",
+      "aviationMeaning": "prep. 在多架航空器、人员或项目之中",
+      "generalMeaning": "prep. 在……之中"
+    },
+    {
+      "word": "amount",
+      "ipa": "/əˈmaʊnt/",
+      "aviationMeaning": "n. 燃油、载荷或数值的数量",
+      "generalMeaning": "n. 数量；总额"
+    },
+    {
+      "word": "ams",
+      "ipa": "/ˌeɪ em ˈes/",
+      "aviationMeaning": "n. 自动化或机场系统缩写；需结合原文",
+      "generalMeaning": "n. 名称或系统缩写"
+    },
+    {
+      "word": "amsterdam",
+      "ipa": "/ˈæmstərdæm/",
+      "aviationMeaning": "n. 阿姆斯特丹；机场所在城市",
+      "generalMeaning": "n. 阿姆斯特丹（荷兰首都）"
+    },
+    {
+      "word": "amsterdam's",
+      "ipa": "/ˈæmstərdæmz/",
+      "aviationMeaning": "n. 阿姆斯特丹的；表示所属关系",
+      "generalMeaning": "n. 阿姆斯特丹的；表示所属关系"
+    },
+    {
+      "word": "an",
+      "ipa": "/æn/",
+      "aviationMeaning": "det. 一个；用于以元音音素开头的名词前",
+      "generalMeaning": "det. 一个"
+    },
+    {
+      "word": "analog",
+      "ipa": "/ˈænəlɔːɡ/",
+      "aviationMeaning": "adj. 模拟式的，如模拟仪表或信号",
+      "generalMeaning": "adj. 模拟的；类似的"
+    },
+    {
+      "word": "analog-to-digital",
+      "ipa": "/ˈænəlɔːɡ tə ˈdɪdʒɪtəl/",
+      "aviationMeaning": "adj. 模拟到数字的信号转换",
+      "generalMeaning": "adj. 模拟到数字的"
+    },
+    {
+      "word": "analysis",
+      "ipa": "/əˈnæləsɪs/",
+      "aviationMeaning": "n. 运行、安全或性能分析",
+      "generalMeaning": "n. 分析"
+    },
+    {
+      "word": "analyze",
+      "ipa": "/ˈænəlaɪz/",
+      "aviationMeaning": "v. 分析飞行数据、事件或风险",
+      "generalMeaning": "v. 分析；解析"
+    },
+    {
+      "word": "analyzed",
+      "ipa": "/ˈænəlaɪzd/",
+      "aviationMeaning": "adj. 已分析的飞行数据或事件",
+      "generalMeaning": "adj. 已分析的"
+    },
+    {
+      "word": "anchorage",
+      "ipa": "/ˈæŋkərɪdʒ/",
+      "aviationMeaning": "n. 安克雷奇；机场所在城市",
+      "generalMeaning": "n. 锚地；安克雷奇（美国城市）"
+    },
+    {
+      "word": "and",
+      "ipa": "/ænd/",
+      "aviationMeaning": "conj. 和；连接通话、程序或条件",
+      "generalMeaning": "conj. 和；以及"
+    },
+    {
+      "word": "andres",
+      "ipa": "/ɑːnˈdres/",
+      "aviationMeaning": "n. 人名、地点或呼号中的名称",
+      "generalMeaning": "n. 安德烈斯（人名）"
+    },
+    {
+      "word": "angeles",
+      "ipa": "/ˈændʒələs/",
+      "aviationMeaning": "n. 洛杉矶等地名中的组成词",
+      "generalMeaning": "n. 天使；地名组成部分"
+    },
+    {
+      "word": "angeles's",
+      "ipa": "/ˈændʒələsɪz/",
+      "aviationMeaning": "n. 洛杉矶的；表示所属关系",
+      "generalMeaning": "n. 洛杉矶的；表示所属关系"
+    },
+    {
+      "word": "anglais",
+      "ipa": "/ɑːŋˈɡleɪ/",
+      "aviationMeaning": "n. 法语中“英语”；可能见于国际资料",
+      "generalMeaning": "n. 法语中“英语”"
+    },
+    {
+      "word": "angle",
+      "ipa": "/ˈæŋɡəl/",
+      "aviationMeaning": "n. 角度；如俯仰角、坡度或转弯角",
+      "generalMeaning": "n. 角；角度"
+    },
+    {
+      "word": "angles",
+      "ipa": "/ˈæŋɡəlz/",
+      "aviationMeaning": "n. 飞行姿态或几何角度（复数）",
+      "generalMeaning": "n. 角；角度（复数）"
+    },
+    {
+      "word": "angry",
+      "ipa": "/ˈæŋɡri/",
+      "aviationMeaning": "adj. 愤怒的；可能影响机组沟通状态",
+      "generalMeaning": "adj. 生气的；愤怒的"
+    },
+    {
+      "word": "animal",
+      "ipa": "/ˈænɪməl/",
+      "aviationMeaning": "n. 动物；跑道侵入或野生动物风险对象",
+      "generalMeaning": "n. 动物"
+    },
+    {
+      "word": "ankle",
+      "ipa": "/ˈæŋkəl/",
+      "aviationMeaning": "n. 脚踝；可能用于伤病报告",
+      "generalMeaning": "n. 脚踝"
+    },
+    {
+      "word": "annex",
+      "ipa": "/ˈæneks/",
+      "aviationMeaning": "n. ICAO 附件；附属建筑",
+      "generalMeaning": "n. 附件；附录；附属建筑"
+    },
+    {
+      "word": "announce",
+      "ipa": "/əˈnaʊns/",
+      "aviationMeaning": "v. 发布机场、航班或安全信息",
+      "generalMeaning": "v. 宣布；通告"
+    },
+    {
+      "word": "announced",
+      "ipa": "/əˈnaʊnst/",
+      "aviationMeaning": "adj. 已公布的机场、航班或安全信息",
+      "generalMeaning": "adj. 已宣布的；已公布的"
+    },
+    {
+      "word": "announcement",
+      "ipa": "/əˈnaʊnsmənt/",
+      "aviationMeaning": "n. 机场、客舱或运行通告",
+      "generalMeaning": "n. 公告；宣布"
+    },
+    {
+      "word": "announcements",
+      "ipa": "/əˈnaʊnsmənts/",
+      "aviationMeaning": "n. 机场、客舱或运行通告（复数）",
+      "generalMeaning": "n. 公告（复数）"
+    },
+    {
+      "word": "annoyed",
+      "ipa": "/əˈnɔɪd/",
+      "aviationMeaning": "adj. 感到烦恼的；可能影响沟通状态",
+      "generalMeaning": "adj. 烦恼的；恼火的"
+    },
+    {
+      "word": "anomalies",
+      "ipa": "/əˈnɑːməliz/",
+      "aviationMeaning": "n. 飞行数据、系统或运行异常（复数）",
+      "generalMeaning": "n. 异常；反常现象（复数）"
+    },
+    {
+      "word": "anomaly",
+      "ipa": "/əˈnɑːməli/",
+      "aviationMeaning": "n. 飞行数据、系统或运行异常",
+      "generalMeaning": "n. 异常；反常现象"
+    },
+    {
+      "word": "anonymous",
+      "ipa": "/əˈnɑːnɪməs/",
+      "aviationMeaning": "adj. 匿名的，如匿名安全报告",
+      "generalMeaning": "adj. 匿名的；无名的"
+    },
+    {
+      "word": "another",
+      "ipa": "/əˈnʌðər/",
+      "aviationMeaning": "det. 另一架航空器、另一项指令或选择",
+      "generalMeaning": "det. 另一个；再一个"
+    },
+    {
+      "word": "anrat",
+      "ipa": "/ˈæn ræt/",
+      "aviationMeaning": "n. 题库中的专有缩写或疑似拼写；需结合原文",
+      "generalMeaning": "n. 不明专有词；请结合原文"
+    },
+    {
+      "word": "answer",
+      "ipa": "/ˈænsər/",
+      "aviationMeaning": "n. 对通话、问题或告警的答复；v. 回答",
+      "generalMeaning": "n. 答案；v. 回答"
+    },
+    {
+      "word": "answered",
+      "ipa": "/ˈænsərd/",
+      "aviationMeaning": "v. 已答复通话、问题或告警",
+      "generalMeaning": "v. 已回答；已答复"
+    }
   ]
 }

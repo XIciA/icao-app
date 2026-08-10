@@ -1,105 +1,497 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"potential","ipa":"/pəˈtenʃəl/","aviationMeaning":"n. 潜在风险；可能影响飞行安全或运行的因素","generalMeaning":"n. 潜力；adj. 潜在的"},
-    {"word":"potentially","ipa":"/pəˈtenʃəli/","aviationMeaning":"adv. 潜在地；可能对飞行安全或运行产生影响","generalMeaning":"adv. 潜在地；可能地"},
-    {"word":"potomac","ipa":"/pəˈtoʊmək/","aviationMeaning":"n. 波托马克；河流、航路点或地名","generalMeaning":"n. 波托马克河；地名"},
-    {"word":"pou","ipa":"/puː/","aviationMeaning":"n. 航空资料缩写或专有名称；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"pounds","ipa":"/paʊndz/","aviationMeaning":"n. 磅（复数）；重量、推力或燃油重量单位","generalMeaning":"n. 磅（复数）；v. 重击"},
-    {"word":"power","ipa":"/ˈpaʊər/","aviationMeaning":"n. 功率；发动机推力或电气系统输出","generalMeaning":"n. 力量；电力；权力"},
-    {"word":"power-to-weight","ipa":"/ˈpaʊər tə weɪt/","aviationMeaning":"n. 功重比；发动机功率与航空器重量的比例","generalMeaning":"n. 功重比"},
-    {"word":"power-transfer","ipa":"/ˈpaʊər trænsˌfɜːr/","aviationMeaning":"n. 电源转换；在电源或系统之间转移供电","generalMeaning":"n. 能量转移"},
-    {"word":"powerbank","ipa":"/ˈpaʊərbæŋk/","aviationMeaning":"n. 充电宝；便携电池，运输时可能受危险品限制","generalMeaning":"n. 充电宝；移动电源"},
-    {"word":"powered","ipa":"/ˈpaʊərd/","aviationMeaning":"adj. 有动力的；由发动机、电力或气动系统驱动的","generalMeaning":"adj. 有动力的；通电的"},
-    {"word":"powerful","ipa":"/ˈpaʊərfəl/","aviationMeaning":"adj. 强劲的；发动机、风或信号具有较大功率或强度","generalMeaning":"adj. 强大的；有力的"},
-    {"word":"powerplant","ipa":"/ˈpaʊərplænt/","aviationMeaning":"n. 动力装置；航空器发动机及其相关系统","generalMeaning":"n. 发电厂；动力装置"},
-    {"word":"powers","ipa":"/ˈpaʊərz/","aviationMeaning":"n. 功率（复数）；多台发动机或多个系统的输出能力","generalMeaning":"n. 力量；权力（复数）"},
-    {"word":"practicable","ipa":"/ˈpræktɪkəbəl/","aviationMeaning":"adj. 可行的；在当前天气、性能或程序条件下能实施的","generalMeaning":"adj. 可行的；可实行的"},
-    {"word":"practical","ipa":"/ˈpræktɪkəl/","aviationMeaning":"adj. 实用的；适合实际飞行运行或训练的","generalMeaning":"adj. 实用的；实际的"},
-    {"word":"practicality","ipa":"/ˌpræktɪˈkæləti/","aviationMeaning":"n. 实用性；方案在实际飞行运行中的可行程度","generalMeaning":"n. 实用性；实际性"},
-    {"word":"practically","ipa":"/ˈpræktɪkli/","aviationMeaning":"adv. 实际上；从实际运行角度看","generalMeaning":"adv. 实际上；几乎"},
-    {"word":"practice","ipa":"/ˈpræktɪs/","aviationMeaning":"n. 练习；飞行、通话或应急程序训练","generalMeaning":"n. 练习；实践"},
-    {"word":"practiceable","ipa":"/ˈpræktɪsəbəl/","aviationMeaning":"adj. 可练习的；可通过训练掌握的飞行或通话技能","generalMeaning":"adj. 可练习的；请结合原文"},
-    {"word":"practiced","ipa":"/ˈpræktɪst/","aviationMeaning":"v. 已练习；已训练飞行、通话或应急程序","generalMeaning":"v. 已练习；adj. 熟练的"},
-    {"word":"practices","ipa":"/ˈpræktɪsɪz/","aviationMeaning":"n. 做法（复数）；飞行、维修或安全的惯常做法","generalMeaning":"n. 做法；练习（复数）"},
-    {"word":"practicing","ipa":"/ˈpræktɪsɪŋ/","aviationMeaning":"v. 正练习；正在训练飞行、通话或应急程序","generalMeaning":"v. 正练习"},
-    {"word":"practise","ipa":"/ˈpræktɪs/","aviationMeaning":"v. 练习；训练飞行、通话或应急程序的英式拼写","generalMeaning":"v. 练习；实行"},
-    {"word":"practised","ipa":"/ˈpræktɪst/","aviationMeaning":"v. 已练习；已训练飞行、通话或应急程序的英式拼写","generalMeaning":"v. 已练习；adj. 熟练的"},
-    {"word":"practising","ipa":"/ˈpræktɪsɪŋ/","aviationMeaning":"v. 正练习；正在训练飞行、通话或应急程序的英式拼写","generalMeaning":"v. 正练习"},
-    {"word":"prague","ipa":"/prɑːɡ/","aviationMeaning":"n. 布拉格；机场、空域或航线地名","generalMeaning":"n. 布拉格"},
-    {"word":"prague's","ipa":"/prɑːɡz/","aviationMeaning":"n. Prague 的所有格形式；布拉格的","generalMeaning":"n. 专有地名的所有格形式"},
-    {"word":"pratt","ipa":"/præt/","aviationMeaning":"n. 普惠；发动机制造商名称组成部分","generalMeaning":"n. 专有名称"},
-    {"word":"prayed","ipa":"/preɪd/","aviationMeaning":"v. 祈祷；需结合原文","generalMeaning":"v. 祈祷"},
-    {"word":"pre","ipa":"/priː/","aviationMeaning":"prefix. 前；表示飞行、起飞或检查之前","generalMeaning":"prefix. 前；在……之前"},
-    {"word":"pre-approved","ipa":"/ˌpriː əˈpruːvd/","aviationMeaning":"adj. 预先批准的；在操作前已获许可的","generalMeaning":"adj. 预先批准的"},
-    {"word":"pre-descent","ipa":"/ˌpriː dɪˈsent/","aviationMeaning":"adj. 下降前的；开始下降之前的准备阶段","generalMeaning":"adj. 下降前的"},
-    {"word":"pre-existing","ipa":"/ˌpriː ɪɡˈzɪstɪŋ/","aviationMeaning":"adj. 既有的；在事件或飞行前已存在的条件、故障或状况","generalMeaning":"adj. 预先存在的"},
-    {"word":"pre-flight","ipa":"/ˌpriː ˈflaɪt/","aviationMeaning":"adj. 飞行前的；起飞前检查、准备或简报相关","generalMeaning":"adj. 飞行前的"},
-    {"word":"pre-start","ipa":"/ˌpriː stɑːrt/","aviationMeaning":"adj. 启动前的；发动机启动之前的检查或准备","generalMeaning":"adj. 启动前的"},
-    {"word":"pre-takeoff","ipa":"/ˌpriː ˈteɪkɔːf/","aviationMeaning":"adj. 起飞前的；起飞前检查、简报或准备相关","generalMeaning":"adj. 起飞前的"},
-    {"word":"precaution","ipa":"/prɪˈkɔːʃən/","aviationMeaning":"n. 预防措施；为避免飞行、地面或维护风险采取的措施","generalMeaning":"n. 预防措施；谨慎"},
-    {"word":"precautionary","ipa":"/prɪˈkɔːʃəneri/","aviationMeaning":"adj. 预防性的；为避免风险而采取的","generalMeaning":"adj. 预防性的"},
-    {"word":"precautions","ipa":"/prɪˈkɔːʃənz/","aviationMeaning":"n. 预防措施（复数）；为避免运行风险采取的措施","generalMeaning":"n. 预防措施（复数）"},
-    {"word":"preceding","ipa":"/prɪˈsiːdɪŋ/","aviationMeaning":"adj. 前面的；上一段航程、先前步骤或前一架航空器的","generalMeaning":"adj. 先前的；前面的"},
-    {"word":"precession","ipa":"/prɪˈseʃən/","aviationMeaning":"n. 进动；陀螺仪受力后旋转轴方向变化的现象","generalMeaning":"n. 进动"},
-    {"word":"precipitation","ipa":"/prɪˌsɪpəˈteɪʃən/","aviationMeaning":"n. 降水；雨、雪、冰粒等从大气落下的水凝物","generalMeaning":"n. 降水；沉淀"},
-    {"word":"precise","ipa":"/prɪˈsaɪs/","aviationMeaning":"adj. 精确的；航向、高度、时间或通话表达准确的","generalMeaning":"adj. 精确的；明确的"},
-    {"word":"precisely","ipa":"/prɪˈsaɪsli/","aviationMeaning":"adv. 精确地；按规定数值、位置或时间执行","generalMeaning":"adv. 精确地；恰好"},
-    {"word":"precision","ipa":"/prɪˈsɪʒən/","aviationMeaning":"n. 精度；导航、进近、测量或操纵的准确程度","generalMeaning":"n. 精确；精度"},
-    {"word":"predefined","ipa":"/ˌpriːdɪˈfaɪnd/","aviationMeaning":"adj. 预定义的；系统、程序或航路中预先设定的","generalMeaning":"adj. 预先定义的"},
-    {"word":"predetermined","ipa":"/ˌpriːdɪˈtɜːrmɪnd/","aviationMeaning":"adj. 预先确定的；在飞行或操作前已确定的数值或方案","generalMeaning":"adj. 预先确定的"},
-    {"word":"predicament","ipa":"/prɪˈdɪkəmənt/","aviationMeaning":"n. 困境；机组、航空器或运行面临的困难局面","generalMeaning":"n. 困境；窘境"},
-    {"word":"predict","ipa":"/prɪˈdɪkt/","aviationMeaning":"v. 预测；预报天气、性能、流量或风险","generalMeaning":"v. 预测；预言"},
-    {"word":"predictable","ipa":"/prɪˈdɪktəbəl/","aviationMeaning":"adj. 可预测的；天气、流量或系统反应可预见的","generalMeaning":"adj. 可预测的"},
-    {"word":"predicted","ipa":"/prɪˈdɪktɪd/","aviationMeaning":"adj. 已预测的；天气、性能或运行结果预报的","generalMeaning":"adj. 已预测的"},
-    {"word":"prediction","ipa":"/prɪˈdɪkʃən/","aviationMeaning":"n. 预测；对天气、性能、流量或风险的预报","generalMeaning":"n. 预测；预言"},
-    {"word":"predictions","ipa":"/prɪˈdɪkʃənz/","aviationMeaning":"n. 预测（复数）；多种天气、性能或运行预报","generalMeaning":"n. 预测（复数）"},
-    {"word":"predictive","ipa":"/prɪˈdɪktɪv/","aviationMeaning":"adj. 预测性的；用于提前判断天气、地形或系统风险的","generalMeaning":"adj. 预测性的"},
-    {"word":"prefer","ipa":"/prɪˈfɜːr/","aviationMeaning":"v. 偏好；优先选择某条航路、跑道或处置方式","generalMeaning":"v. 更喜欢；宁愿"},
-    {"word":"preferable","ipa":"/ˈprefrəbəl/","aviationMeaning":"adj. 更可取的；在安全或运行上更合适的","generalMeaning":"adj. 更可取的；更合适的"},
-    {"word":"preferably","ipa":"/ˈprefrəbli/","aviationMeaning":"adv. 最好；建议优先采用某种运行方式","generalMeaning":"adv. 最好；更可取地"},
-    {"word":"preference","ipa":"/ˈprefrəns/","aviationMeaning":"n. 偏好；对跑道、航路、座位或处置方案的优先选择","generalMeaning":"n. 偏爱；偏好"},
-    {"word":"preferred","ipa":"/prɪˈfɜːrd/","aviationMeaning":"adj. 优选的；运行或安全上优先采用的","generalMeaning":"adj. 更受喜欢的；优选的"},
-    {"word":"prefers","ipa":"/prɪˈfɜːrz/","aviationMeaning":"v. 偏好；优先选择某条航路、跑道或处置方式","generalMeaning":"v. 更喜欢；宁愿"},
-    {"word":"prefix","ipa":"/ˈpriːfɪks/","aviationMeaning":"n. 前缀；呼号、编号或术语前的组成部分","generalMeaning":"n. 前缀；v. 加前缀"},
-    {"word":"preflight","ipa":"/ˈpriːflaɪt/","aviationMeaning":"n. 飞行前准备；起飞前检查、简报和资料确认","generalMeaning":"n. 飞行前准备"},
-    {"word":"pregnant","ipa":"/ˈpreɡnənt/","aviationMeaning":"adj. 怀孕的；旅客或机组人员健康与飞行限制相关","generalMeaning":"adj. 怀孕的；充满的"},
-    {"word":"preliminary","ipa":"/prɪˈlɪməneri/","aviationMeaning":"adj. 初步的；在正式结论、放行或报告前的","generalMeaning":"adj. 初步的；预备的"},
-    {"word":"premature","ipa":"/ˌpriːməˈtʃʊr/","aviationMeaning":"adj. 过早的；在规定时机之前发生的操作或行动","generalMeaning":"adj. 过早的；不成熟的"},
-    {"word":"prematurely","ipa":"/ˌpriːməˈtʃʊrli/","aviationMeaning":"adv. 过早地；在规定时机之前执行或发生","generalMeaning":"adv. 过早地"},
-    {"word":"preparation","ipa":"/ˌprepəˈreɪʃən/","aviationMeaning":"n. 准备；飞行、起飞、进近或应急处置的准备工作","generalMeaning":"n. 准备；预备"},
-    {"word":"preparations","ipa":"/ˌprepəˈreɪʃənz/","aviationMeaning":"n. 准备工作（复数）；飞行、起飞或应急处置的准备事项","generalMeaning":"n. 准备工作（复数）"},
-    {"word":"prepare","ipa":"/prɪˈper/","aviationMeaning":"v. 准备；准备飞行、起飞、进近或应急处置","generalMeaning":"v. 准备；预备"},
-    {"word":"prepared","ipa":"/prɪˈperd/","aviationMeaning":"adj. 准备好的；飞行、起飞、进近或应急处置已就绪","generalMeaning":"adj. 准备好的"},
-    {"word":"preparing","ipa":"/prɪˈperɪŋ/","aviationMeaning":"v. 正准备；正在准备飞行、起飞或应急处置","generalMeaning":"v. 正准备"},
-    {"word":"prescribed","ipa":"/prɪˈskraɪbd/","aviationMeaning":"adj. 规定的；由程序、法规或手册明确要求的","generalMeaning":"adj. 规定的；开处方的"},
-    {"word":"presence","ipa":"/ˈprezəns/","aviationMeaning":"n. 存在；航空器、障碍物、污染物或人员出现的状态","generalMeaning":"n. 存在；出席"},
-    {"word":"present","ipa":"/ˈprezənt/","aviationMeaning":"adj. 存在的；当前在机上、机场或系统中的","generalMeaning":"adj. 现在的；出席的"},
-    {"word":"presented","ipa":"/prɪˈzentɪd/","aviationMeaning":"v. 已显示；已在仪表、显示器或简报中呈现","generalMeaning":"v. 已展示；已提交"},
-    {"word":"presents","ipa":"/prɪˈzents/","aviationMeaning":"v. 显示；在仪表、显示器或简报中呈现信息","generalMeaning":"v. 展示；提交"},
-    {"word":"preserve","ipa":"/prɪˈzɜːrv/","aviationMeaning":"v. 保持；维持安全裕度、航迹、燃油或证据","generalMeaning":"v. 保存；保护"},
-    {"word":"preserves","ipa":"/prɪˈzɜːrvz/","aviationMeaning":"v. 保持；维持安全裕度、航迹、燃油或证据","generalMeaning":"v. 保存；保护"},
-    {"word":"preserving","ipa":"/prɪˈzɜːrvɪŋ/","aviationMeaning":"v. 正保持；维持安全裕度、航迹、燃油或证据","generalMeaning":"v. 正保存；保护"},
-    {"word":"preset","ipa":"/ˌpriːˈset/","aviationMeaning":"adj. 预设的；飞行管理、显示或设备中事先设定的","generalMeaning":"adj. 预设的；v. 预设"},
-    {"word":"president","ipa":"/ˈprezɪdənt/","aviationMeaning":"n. 主席；机构或公司的负责人","generalMeaning":"n. 总统；主席"},
-    {"word":"press","ipa":"/pres/","aviationMeaning":"v. 按下；操作驾驶舱按钮、开关或显示器控件","generalMeaning":"v. 按；压；n. 新闻界"},
-    {"word":"pressing","ipa":"/ˈpresɪŋ/","aviationMeaning":"v. 正按下；正在操作按钮、开关或显示器控件","generalMeaning":"v. 正按；adj. 紧急的"},
-    {"word":"pressure","ipa":"/ˈpreʃər/","aviationMeaning":"n. 压力；客舱、液压、气动或大气压力","generalMeaning":"n. 压力；压迫"},
-    {"word":"pressure-control","ipa":"/ˈpreʃər kənˈtroʊl/","aviationMeaning":"n. 压力控制；调节客舱、液压或气动压力的系统","generalMeaning":"n. 压力控制"},
-    {"word":"pressure-refueled","ipa":"/ˈpreʃər riˈfjuːəld/","aviationMeaning":"adj. 压力加油的；通过压力系统加注燃油的","generalMeaning":"adj. 压力加注的"},
-    {"word":"pressure-refueling","ipa":"/ˈpreʃər riˈfjuːəlɪŋ/","aviationMeaning":"n. 压力加油；通过压力接口向航空器加注燃油","generalMeaning":"n. 压力加注燃油"},
-    {"word":"pressure-related","ipa":"/ˈpreʃər rɪˈleɪtɪd/","aviationMeaning":"adj. 与压力相关的；涉及客舱、液压、气动或大气压力","generalMeaning":"adj. 与压力相关的"},
-    {"word":"pressured","ipa":"/ˈpreʃərd/","aviationMeaning":"adj. 受压的；受到时间、工作负荷或系统压力影响的","generalMeaning":"adj. 受压的；有压力的"},
-    {"word":"pressures","ipa":"/ˈpreʃərz/","aviationMeaning":"n. 压力（复数）；客舱、液压、气动或大气压力读数","generalMeaning":"n. 压力（复数）"},
-    {"word":"pressurization","ipa":"/ˌpreʃərəˈzeɪʃən/","aviationMeaning":"n. 增压；维持航空器客舱适宜压力的系统与过程","generalMeaning":"n. 加压；增压"},
-    {"word":"pressurize","ipa":"/ˈpreʃəraɪz/","aviationMeaning":"v. 增压；使客舱或系统达到规定压力","generalMeaning":"v. 加压；增压"},
-    {"word":"pressurized","ipa":"/ˈpreʃəraɪzd/","aviationMeaning":"adj. 已增压的；客舱或系统已达到规定压力","generalMeaning":"adj. 加压的；增压的"},
-    {"word":"pressurizes","ipa":"/ˈpreʃəraɪzɪz/","aviationMeaning":"v. 增压；使客舱或系统达到规定压力","generalMeaning":"v. 加压；增压"},
-    {"word":"pressurizing","ipa":"/ˈpreʃəraɪzɪŋ/","aviationMeaning":"v. 正增压；正在使客舱或系统达到规定压力","generalMeaning":"v. 正加压；正增压"},
-    {"word":"prestwick","ipa":"/ˈprestwɪk/","aviationMeaning":"n. 普雷斯特维克；机场或地名","generalMeaning":"n. 专有地名"},
-    {"word":"prestwick's","ipa":"/ˈprestwɪks/","aviationMeaning":"n. Prestwick 的所有格形式；普雷斯特维克的","generalMeaning":"n. 专有地名的所有格形式"},
-    {"word":"presumably","ipa":"/prɪˈzuːməbli/","aviationMeaning":"adv. 推测地；根据现有信息作出的暂定判断","generalMeaning":"adv. 大概；推测地"},
-    {"word":"pretence","ipa":"/prɪˈtens/","aviationMeaning":"n. 假象；需结合原文","generalMeaning":"n. 假装；借口"},
-    {"word":"pretending","ipa":"/prɪˈtendɪŋ/","aviationMeaning":"v. 假装；需结合原文","generalMeaning":"v. 假装；佯装"}
+    {
+      "word": "potential",
+      "ipa": "/pəˈtenʃəl/",
+      "aviationMeaning": "n. 潜在风险；可能影响飞行安全或运行的因素",
+      "generalMeaning": "n. 潜力；adj. 潜在的"
+    },
+    {
+      "word": "potentially",
+      "ipa": "/pəˈtenʃəli/",
+      "aviationMeaning": "adv. 潜在地；可能对飞行安全或运行产生影响",
+      "generalMeaning": "adv. 潜在地；可能地"
+    },
+    {
+      "word": "potomac",
+      "ipa": "/pəˈtoʊmək/",
+      "aviationMeaning": "n. 波托马克；河流、航路点或地名",
+      "generalMeaning": "n. 波托马克河；地名"
+    },
+    {
+      "word": "pou",
+      "ipa": "/puː/",
+      "aviationMeaning": "n. 航空资料缩写或专有名称；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "pounds",
+      "ipa": "/paʊndz/",
+      "aviationMeaning": "n. 磅（复数）；重量、推力或燃油重量单位",
+      "generalMeaning": "n. 磅（复数）；v. 重击"
+    },
+    {
+      "word": "power",
+      "ipa": "/ˈpaʊər/",
+      "aviationMeaning": "n. 功率；发动机推力或电气系统输出",
+      "generalMeaning": "n. 力量；电力；权力"
+    },
+    {
+      "word": "powerbank",
+      "ipa": "/ˈpaʊərbæŋk/",
+      "aviationMeaning": "n. 充电宝；便携电池，运输时可能受危险品限制",
+      "generalMeaning": "n. 充电宝；移动电源"
+    },
+    {
+      "word": "powered",
+      "ipa": "/ˈpaʊərd/",
+      "aviationMeaning": "adj. 有动力的；由发动机、电力或气动系统驱动的",
+      "generalMeaning": "adj. 有动力的；通电的"
+    },
+    {
+      "word": "powerful",
+      "ipa": "/ˈpaʊərfəl/",
+      "aviationMeaning": "adj. 强劲的；发动机、风或信号具有较大功率或强度",
+      "generalMeaning": "adj. 强大的；有力的"
+    },
+    {
+      "word": "powerplant",
+      "ipa": "/ˈpaʊərplænt/",
+      "aviationMeaning": "n. 动力装置；航空器发动机及其相关系统",
+      "generalMeaning": "n. 发电厂；动力装置"
+    },
+    {
+      "word": "powers",
+      "ipa": "/ˈpaʊərz/",
+      "aviationMeaning": "n. 功率（复数）；多台发动机或多个系统的输出能力",
+      "generalMeaning": "n. 力量；权力（复数）"
+    },
+    {
+      "word": "practicable",
+      "ipa": "/ˈpræktɪkəbəl/",
+      "aviationMeaning": "adj. 可行的；在当前天气、性能或程序条件下能实施的",
+      "generalMeaning": "adj. 可行的；可实行的"
+    },
+    {
+      "word": "practical",
+      "ipa": "/ˈpræktɪkəl/",
+      "aviationMeaning": "adj. 实用的；适合实际飞行运行或训练的",
+      "generalMeaning": "adj. 实用的；实际的"
+    },
+    {
+      "word": "practically",
+      "ipa": "/ˈpræktɪkli/",
+      "aviationMeaning": "adv. 实际上；从实际运行角度看",
+      "generalMeaning": "adv. 实际上；几乎"
+    },
+    {
+      "word": "practice",
+      "ipa": "/ˈpræktɪs/",
+      "aviationMeaning": "n. 练习；飞行、通话或应急程序训练",
+      "generalMeaning": "n. 练习；实践"
+    },
+    {
+      "word": "practiced",
+      "ipa": "/ˈpræktɪst/",
+      "aviationMeaning": "v. 已练习；已训练飞行、通话或应急程序",
+      "generalMeaning": "v. 已练习；adj. 熟练的"
+    },
+    {
+      "word": "practices",
+      "ipa": "/ˈpræktɪsɪz/",
+      "aviationMeaning": "n. 做法（复数）；飞行、维修或安全的惯常做法",
+      "generalMeaning": "n. 做法；练习（复数）"
+    },
+    {
+      "word": "practicing",
+      "ipa": "/ˈpræktɪsɪŋ/",
+      "aviationMeaning": "v. 正练习；正在训练飞行、通话或应急程序",
+      "generalMeaning": "v. 正练习"
+    },
+    {
+      "word": "practise",
+      "ipa": "/ˈpræktɪs/",
+      "aviationMeaning": "v. 练习；训练飞行、通话或应急程序的英式拼写",
+      "generalMeaning": "v. 练习；实行"
+    },
+    {
+      "word": "practised",
+      "ipa": "/ˈpræktɪst/",
+      "aviationMeaning": "v. 已练习；已训练飞行、通话或应急程序的英式拼写",
+      "generalMeaning": "v. 已练习；adj. 熟练的"
+    },
+    {
+      "word": "practising",
+      "ipa": "/ˈpræktɪsɪŋ/",
+      "aviationMeaning": "v. 正练习；正在训练飞行、通话或应急程序的英式拼写",
+      "generalMeaning": "v. 正练习"
+    },
+    {
+      "word": "prague",
+      "ipa": "/prɑːɡ/",
+      "aviationMeaning": "n. 布拉格；机场、空域或航线地名",
+      "generalMeaning": "n. 布拉格"
+    },
+    {
+      "word": "prague's",
+      "ipa": "/prɑːɡz/",
+      "aviationMeaning": "n. Prague 的所有格形式；布拉格的",
+      "generalMeaning": "n. 专有地名的所有格形式"
+    },
+    {
+      "word": "prayed",
+      "ipa": "/preɪd/",
+      "aviationMeaning": "v. 祈祷；需结合原文",
+      "generalMeaning": "v. 祈祷"
+    },
+    {
+      "word": "pre",
+      "ipa": "/priː/",
+      "aviationMeaning": "prefix. 前；表示飞行、起飞或检查之前",
+      "generalMeaning": "prefix. 前；在……之前"
+    },
+    {
+      "word": "pre-descent",
+      "ipa": "/ˌpriː dɪˈsent/",
+      "aviationMeaning": "adj. 下降前的；开始下降之前的准备阶段",
+      "generalMeaning": "adj. 下降前的"
+    },
+    {
+      "word": "pre-flight",
+      "ipa": "/ˌpriː ˈflaɪt/",
+      "aviationMeaning": "adj. 飞行前的；起飞前检查、准备或简报相关",
+      "generalMeaning": "adj. 飞行前的"
+    },
+    {
+      "word": "pre-start",
+      "ipa": "/ˌpriː stɑːrt/",
+      "aviationMeaning": "adj. 启动前的；发动机启动之前的检查或准备",
+      "generalMeaning": "adj. 启动前的"
+    },
+    {
+      "word": "pre-takeoff",
+      "ipa": "/ˌpriː ˈteɪkɔːf/",
+      "aviationMeaning": "adj. 起飞前的；起飞前检查、简报或准备相关",
+      "generalMeaning": "adj. 起飞前的"
+    },
+    {
+      "word": "precaution",
+      "ipa": "/prɪˈkɔːʃən/",
+      "aviationMeaning": "n. 预防措施；为避免飞行、地面或维护风险采取的措施",
+      "generalMeaning": "n. 预防措施；谨慎"
+    },
+    {
+      "word": "precautionary",
+      "ipa": "/prɪˈkɔːʃəneri/",
+      "aviationMeaning": "adj. 预防性的；为避免风险而采取的",
+      "generalMeaning": "adj. 预防性的"
+    },
+    {
+      "word": "precautions",
+      "ipa": "/prɪˈkɔːʃənz/",
+      "aviationMeaning": "n. 预防措施（复数）；为避免运行风险采取的措施",
+      "generalMeaning": "n. 预防措施（复数）"
+    },
+    {
+      "word": "preceding",
+      "ipa": "/prɪˈsiːdɪŋ/",
+      "aviationMeaning": "adj. 前面的；上一段航程、先前步骤或前一架航空器的",
+      "generalMeaning": "adj. 先前的；前面的"
+    },
+    {
+      "word": "precipitation",
+      "ipa": "/prɪˌsɪpəˈteɪʃən/",
+      "aviationMeaning": "n. 降水；雨、雪、冰粒等从大气落下的水凝物",
+      "generalMeaning": "n. 降水；沉淀"
+    },
+    {
+      "word": "precise",
+      "ipa": "/prɪˈsaɪs/",
+      "aviationMeaning": "adj. 精确的；航向、高度、时间或通话表达准确的",
+      "generalMeaning": "adj. 精确的；明确的"
+    },
+    {
+      "word": "precisely",
+      "ipa": "/prɪˈsaɪsli/",
+      "aviationMeaning": "adv. 精确地；按规定数值、位置或时间执行",
+      "generalMeaning": "adv. 精确地；恰好"
+    },
+    {
+      "word": "precision",
+      "ipa": "/prɪˈsɪʒən/",
+      "aviationMeaning": "n. 精度；导航、进近、测量或操纵的准确程度",
+      "generalMeaning": "n. 精确；精度"
+    },
+    {
+      "word": "predefined",
+      "ipa": "/ˌpriːdɪˈfaɪnd/",
+      "aviationMeaning": "adj. 预定义的；系统、程序或航路中预先设定的",
+      "generalMeaning": "adj. 预先定义的"
+    },
+    {
+      "word": "predetermined",
+      "ipa": "/ˌpriːdɪˈtɜːrmɪnd/",
+      "aviationMeaning": "adj. 预先确定的；在飞行或操作前已确定的数值或方案",
+      "generalMeaning": "adj. 预先确定的"
+    },
+    {
+      "word": "predicament",
+      "ipa": "/prɪˈdɪkəmənt/",
+      "aviationMeaning": "n. 困境；机组、航空器或运行面临的困难局面",
+      "generalMeaning": "n. 困境；窘境"
+    },
+    {
+      "word": "predict",
+      "ipa": "/prɪˈdɪkt/",
+      "aviationMeaning": "v. 预测；预报天气、性能、流量或风险",
+      "generalMeaning": "v. 预测；预言"
+    },
+    {
+      "word": "predictable",
+      "ipa": "/prɪˈdɪktəbəl/",
+      "aviationMeaning": "adj. 可预测的；天气、流量或系统反应可预见的",
+      "generalMeaning": "adj. 可预测的"
+    },
+    {
+      "word": "predicted",
+      "ipa": "/prɪˈdɪktɪd/",
+      "aviationMeaning": "adj. 已预测的；天气、性能或运行结果预报的",
+      "generalMeaning": "adj. 已预测的"
+    },
+    {
+      "word": "prediction",
+      "ipa": "/prɪˈdɪkʃən/",
+      "aviationMeaning": "n. 预测；对天气、性能、流量或风险的预报",
+      "generalMeaning": "n. 预测；预言"
+    },
+    {
+      "word": "predictions",
+      "ipa": "/prɪˈdɪkʃənz/",
+      "aviationMeaning": "n. 预测（复数）；多种天气、性能或运行预报",
+      "generalMeaning": "n. 预测（复数）"
+    },
+    {
+      "word": "predictive",
+      "ipa": "/prɪˈdɪktɪv/",
+      "aviationMeaning": "adj. 预测性的；用于提前判断天气、地形或系统风险的",
+      "generalMeaning": "adj. 预测性的"
+    },
+    {
+      "word": "prefer",
+      "ipa": "/prɪˈfɜːr/",
+      "aviationMeaning": "v. 偏好；优先选择某条航路、跑道或处置方式",
+      "generalMeaning": "v. 更喜欢；宁愿"
+    },
+    {
+      "word": "preferable",
+      "ipa": "/ˈprefrəbəl/",
+      "aviationMeaning": "adj. 更可取的；在安全或运行上更合适的",
+      "generalMeaning": "adj. 更可取的；更合适的"
+    },
+    {
+      "word": "preference",
+      "ipa": "/ˈprefrəns/",
+      "aviationMeaning": "n. 偏好；对跑道、航路、座位或处置方案的优先选择",
+      "generalMeaning": "n. 偏爱；偏好"
+    },
+    {
+      "word": "preferred",
+      "ipa": "/prɪˈfɜːrd/",
+      "aviationMeaning": "adj. 优选的；运行或安全上优先采用的",
+      "generalMeaning": "adj. 更受喜欢的；优选的"
+    },
+    {
+      "word": "prefers",
+      "ipa": "/prɪˈfɜːrz/",
+      "aviationMeaning": "v. 偏好；优先选择某条航路、跑道或处置方式",
+      "generalMeaning": "v. 更喜欢；宁愿"
+    },
+    {
+      "word": "preflight",
+      "ipa": "/ˈpriːflaɪt/",
+      "aviationMeaning": "n. 飞行前准备；起飞前检查、简报和资料确认",
+      "generalMeaning": "n. 飞行前准备"
+    },
+    {
+      "word": "pregnant",
+      "ipa": "/ˈpreɡnənt/",
+      "aviationMeaning": "adj. 怀孕的；旅客或机组人员健康与飞行限制相关",
+      "generalMeaning": "adj. 怀孕的；充满的"
+    },
+    {
+      "word": "preliminary",
+      "ipa": "/prɪˈlɪməneri/",
+      "aviationMeaning": "adj. 初步的；在正式结论、放行或报告前的",
+      "generalMeaning": "adj. 初步的；预备的"
+    },
+    {
+      "word": "premature",
+      "ipa": "/ˌpriːməˈtʃʊr/",
+      "aviationMeaning": "adj. 过早的；在规定时机之前发生的操作或行动",
+      "generalMeaning": "adj. 过早的；不成熟的"
+    },
+    {
+      "word": "prematurely",
+      "ipa": "/ˌpriːməˈtʃʊrli/",
+      "aviationMeaning": "adv. 过早地；在规定时机之前执行或发生",
+      "generalMeaning": "adv. 过早地"
+    },
+    {
+      "word": "preparation",
+      "ipa": "/ˌprepəˈreɪʃən/",
+      "aviationMeaning": "n. 准备；飞行、起飞、进近或应急处置的准备工作",
+      "generalMeaning": "n. 准备；预备"
+    },
+    {
+      "word": "preparations",
+      "ipa": "/ˌprepəˈreɪʃənz/",
+      "aviationMeaning": "n. 准备工作（复数）；飞行、起飞或应急处置的准备事项",
+      "generalMeaning": "n. 准备工作（复数）"
+    },
+    {
+      "word": "prepare",
+      "ipa": "/prɪˈper/",
+      "aviationMeaning": "v. 准备；准备飞行、起飞、进近或应急处置",
+      "generalMeaning": "v. 准备；预备"
+    },
+    {
+      "word": "prepared",
+      "ipa": "/prɪˈperd/",
+      "aviationMeaning": "adj. 准备好的；飞行、起飞、进近或应急处置已就绪",
+      "generalMeaning": "adj. 准备好的"
+    },
+    {
+      "word": "preparing",
+      "ipa": "/prɪˈperɪŋ/",
+      "aviationMeaning": "v. 正准备；正在准备飞行、起飞或应急处置",
+      "generalMeaning": "v. 正准备"
+    },
+    {
+      "word": "prescribed",
+      "ipa": "/prɪˈskraɪbd/",
+      "aviationMeaning": "adj. 规定的；由程序、法规或手册明确要求的",
+      "generalMeaning": "adj. 规定的；开处方的"
+    },
+    {
+      "word": "presence",
+      "ipa": "/ˈprezəns/",
+      "aviationMeaning": "n. 存在；航空器、障碍物、污染物或人员出现的状态",
+      "generalMeaning": "n. 存在；出席"
+    },
+    {
+      "word": "present",
+      "ipa": "/ˈprezənt/",
+      "aviationMeaning": "adj. 存在的；当前在机上、机场或系统中的",
+      "generalMeaning": "adj. 现在的；出席的"
+    },
+    {
+      "word": "presented",
+      "ipa": "/prɪˈzentɪd/",
+      "aviationMeaning": "v. 已显示；已在仪表、显示器或简报中呈现",
+      "generalMeaning": "v. 已展示；已提交"
+    },
+    {
+      "word": "presents",
+      "ipa": "/prɪˈzents/",
+      "aviationMeaning": "v. 显示；在仪表、显示器或简报中呈现信息",
+      "generalMeaning": "v. 展示；提交"
+    },
+    {
+      "word": "president",
+      "ipa": "/ˈprezɪdənt/",
+      "aviationMeaning": "n. 主席；机构或公司的负责人",
+      "generalMeaning": "n. 总统；主席"
+    },
+    {
+      "word": "press",
+      "ipa": "/pres/",
+      "aviationMeaning": "v. 按下；操作驾驶舱按钮、开关或显示器控件",
+      "generalMeaning": "v. 按；压；n. 新闻界"
+    },
+    {
+      "word": "pressing",
+      "ipa": "/ˈpresɪŋ/",
+      "aviationMeaning": "v. 正按下；正在操作按钮、开关或显示器控件",
+      "generalMeaning": "v. 正按；adj. 紧急的"
+    },
+    {
+      "word": "pressure",
+      "ipa": "/ˈpreʃər/",
+      "aviationMeaning": "n. 压力；客舱、液压、气动或大气压力",
+      "generalMeaning": "n. 压力；压迫"
+    },
+    {
+      "word": "pressure-related",
+      "ipa": "/ˈpreʃər rɪˈleɪtɪd/",
+      "aviationMeaning": "adj. 与压力相关的；涉及客舱、液压、气动或大气压力",
+      "generalMeaning": "adj. 与压力相关的"
+    },
+    {
+      "word": "pressures",
+      "ipa": "/ˈpreʃərz/",
+      "aviationMeaning": "n. 压力（复数）；客舱、液压、气动或大气压力读数",
+      "generalMeaning": "n. 压力（复数）"
+    },
+    {
+      "word": "pressurization",
+      "ipa": "/ˌpreʃərəˈzeɪʃən/",
+      "aviationMeaning": "n. 增压；维持航空器客舱适宜压力的系统与过程",
+      "generalMeaning": "n. 加压；增压"
+    },
+    {
+      "word": "pressurize",
+      "ipa": "/ˈpreʃəraɪz/",
+      "aviationMeaning": "v. 增压；使客舱或系统达到规定压力",
+      "generalMeaning": "v. 加压；增压"
+    },
+    {
+      "word": "pressurized",
+      "ipa": "/ˈpreʃəraɪzd/",
+      "aviationMeaning": "adj. 已增压的；客舱或系统已达到规定压力",
+      "generalMeaning": "adj. 加压的；增压的"
+    },
+    {
+      "word": "pressurizes",
+      "ipa": "/ˈpreʃəraɪzɪz/",
+      "aviationMeaning": "v. 增压；使客舱或系统达到规定压力",
+      "generalMeaning": "v. 加压；增压"
+    },
+    {
+      "word": "pressurizing",
+      "ipa": "/ˈpreʃəraɪzɪŋ/",
+      "aviationMeaning": "v. 正增压；正在使客舱或系统达到规定压力",
+      "generalMeaning": "v. 正加压；正增压"
+    },
+    {
+      "word": "prestwick",
+      "ipa": "/ˈprestwɪk/",
+      "aviationMeaning": "n. 普雷斯特维克；机场或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "prestwick's",
+      "ipa": "/ˈprestwɪks/",
+      "aviationMeaning": "n. Prestwick 的所有格形式；普雷斯特维克的",
+      "generalMeaning": "n. 专有地名的所有格形式"
+    },
+    {
+      "word": "presumably",
+      "ipa": "/prɪˈzuːməbli/",
+      "aviationMeaning": "adv. 推测地；根据现有信息作出的暂定判断",
+      "generalMeaning": "adv. 大概；推测地"
+    },
+    {
+      "word": "pretence",
+      "ipa": "/prɪˈtens/",
+      "aviationMeaning": "n. 假象；需结合原文",
+      "generalMeaning": "n. 假装；借口"
+    },
+    {
+      "word": "pretending",
+      "ipa": "/prɪˈtendɪŋ/",
+      "aviationMeaning": "v. 假装；需结合原文",
+      "generalMeaning": "v. 假装；佯装"
+    }
   ]
 }

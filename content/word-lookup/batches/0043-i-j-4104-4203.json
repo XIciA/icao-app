@@ -1,105 +1,515 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"investment","ipa":"/ɪnˈvestmənt/","aviationMeaning":"n. 投资；机场、机队或安全项目资金投入","generalMeaning":"n. 投资；投入"},
-    {"word":"invite","ipa":"/ɪnˈvaɪt/","aviationMeaning":"v. 邀请；邀请参与培训、沟通或协作","generalMeaning":"v. 邀请"},
-    {"word":"involve","ipa":"/ɪnˈvɑːlv/","aviationMeaning":"v. 涉及；包含人员、系统或风险","generalMeaning":"v. 涉及；包含"},
-    {"word":"involved","ipa":"/ɪnˈvɑːlvd/","aviationMeaning":"adj. 涉及的；参与某事件、程序或运行的","generalMeaning":"adj. 涉及的；参与的"},
-    {"word":"involvement","ipa":"/ɪnˈvɑːlvmənt/","aviationMeaning":"n. 参与；与事件、程序或运行的关联","generalMeaning":"n. 参与；介入"},
-    {"word":"involves","ipa":"/ɪnˈvɑːlvz/","aviationMeaning":"v. 涉及；包含人员、系统或风险","generalMeaning":"v. 涉及；包含"},
-    {"word":"involving","ipa":"/ɪnˈvɑːlvɪŋ/","aviationMeaning":"v. 正涉及；包含人员、系统或风险","generalMeaning":"v. 正涉及；包含"},
-    {"word":"invulnerable","ipa":"/ɪnˈvʌlnərəbəl/","aviationMeaning":"adj. 不易受损的；不受某种风险影响的","generalMeaning":"adj. 不易受伤害的"},
-    {"word":"ion","ipa":"/ˈaɪən/","aviationMeaning":"n. 离子；大气、电气或电离层语境","generalMeaning":"n. 离子"},
-    {"word":"ionospheric","ipa":"/ˌaɪənoʊˈsferɪk/","aviationMeaning":"adj. 电离层的；影响高频通信和导航的","generalMeaning":"adj. 电离层的"},
-    {"word":"ip","ipa":"/ˌaɪ ˈpiː/","aviationMeaning":"n. 仪表进近点或网络协议缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"ira","ipa":"/ˌaɪ ɑːr ˈeɪ/","aviationMeaning":"n. 航空资料缩写或专有名称；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"iran","ipa":"/ɪˈrɑːn/","aviationMeaning":"n. 伊朗；国家或航线目的地","generalMeaning":"n. 伊朗"},
-    {"word":"iran's","ipa":"/ɪˈrɑːnz/","aviationMeaning":"n. Iran 的所有格形式；国家名称组成部分","generalMeaning":"n. 专有地名的所有格形式"},
-    {"word":"ireland","ipa":"/ˈaɪərlənd/","aviationMeaning":"n. 爱尔兰；国家或航线目的地","generalMeaning":"n. 爱尔兰"},
-    {"word":"irrationally","ipa":"/ɪˈræʃənəli/","aviationMeaning":"adv. 不理性地；不按程序或证据判断地","generalMeaning":"adv. 不理性地"},
-    {"word":"irregular","ipa":"/ɪˈreɡjələr/","aviationMeaning":"adj. 不规则的；不正常的运行、节律或形状","generalMeaning":"adj. 不规则的；不正常的"},
-    {"word":"irregularities","ipa":"/ɪˌreɡjəˈlærətiz/","aviationMeaning":"n. 异常（复数）；程序、记录或运行中的不规则情况","generalMeaning":"n. 不规则；异常（复数）"},
-    {"word":"irritability","ipa":"/ˌɪrɪtəˈbɪləti/","aviationMeaning":"n. 易怒；疲劳或压力下的心理状态","generalMeaning":"n. 易怒；烦躁"},
-    {"word":"irritable","ipa":"/ˈɪrɪtəbəl/","aviationMeaning":"adj. 易怒的；疲劳或压力下的心理状态","generalMeaning":"adj. 易怒的；烦躁的"},
-    {"word":"irritate","ipa":"/ˈɪrɪteɪt/","aviationMeaning":"v. 刺激；使眼睛、呼吸道或人员不适","generalMeaning":"v. 刺激；使恼怒"},
-    {"word":"is","ipa":"/ɪz/","aviationMeaning":"v. 是；表示状态或位置","generalMeaning":"v. 是"},
-    {"word":"isgod","ipa":"/ɪz ɡɑːd/","aviationMeaning":"n. 题库中 is god 的疑似连写；需结合原文","generalMeaning":"n. 疑似连写；请结合原文"},
-    {"word":"islamabad","ipa":"/ɪzˈlæməbæd/","aviationMeaning":"n. 伊斯兰堡；机场或地名","generalMeaning":"n. 专有地名"},
-    {"word":"island","ipa":"/ˈaɪlənd/","aviationMeaning":"n. 岛屿；地理环境或航线区域","generalMeaning":"n. 岛；岛屿"},
-    {"word":"isn't","ipa":"/ˈɪzənt/","aviationMeaning":"v. 不是；口语否定形式","generalMeaning":"v. 不是"},
-    {"word":"isolate","ipa":"/ˈaɪsəleɪt/","aviationMeaning":"v. 隔离；隔离故障、系统或人员","generalMeaning":"v. 隔离；孤立"},
-    {"word":"isolated","ipa":"/ˈaɪsəleɪtɪd/","aviationMeaning":"adj. 已隔离的；故障、系统或人员被隔开","generalMeaning":"adj. 被隔离的；孤立的"},
-    {"word":"isolates","ipa":"/ˈaɪsəleɪts/","aviationMeaning":"v. 隔离；隔离故障、系统或人员","generalMeaning":"v. 隔离；孤立"},
-    {"word":"isolating","ipa":"/ˈaɪsəleɪtɪŋ/","aviationMeaning":"v. 正隔离；隔离故障、系统或人员","generalMeaning":"v. 正隔离；孤立"},
-    {"word":"isolation","ipa":"/ˌaɪsəˈleɪʃən/","aviationMeaning":"n. 隔离；故障、系统或人员的隔离状态","generalMeaning":"n. 隔离；孤立"},
-    {"word":"isotherm","ipa":"/ˈaɪsəθɜːrm/","aviationMeaning":"n. 等温线；气象图上的同温度连线","generalMeaning":"n. 等温线"},
-    {"word":"issue","ipa":"/ˈɪʃuː/","aviationMeaning":"n. 问题；v. 发布许可、文件或指令","generalMeaning":"n. 问题；v. 发布"},
-    {"word":"issued","ipa":"/ˈɪʃuːd/","aviationMeaning":"v. 已发布；许可、文件或指令已发出","generalMeaning":"v. 已发布"},
-    {"word":"issues","ipa":"/ˈɪʃuːz/","aviationMeaning":"n. 问题（复数）；v. 发布许可、文件或指令","generalMeaning":"n. 问题（复数）；v. 发布"},
-    {"word":"issuing","ipa":"/ˈɪʃuːɪŋ/","aviationMeaning":"v. 正发布；正发出许可、文件或指令","generalMeaning":"v. 正发布"},
-    {"word":"istanbul","ipa":"/ˌɪstænˈbuːl/","aviationMeaning":"n. 伊斯坦布尔；机场或地名","generalMeaning":"n. 专有地名"},
-    {"word":"it","ipa":"/ɪt/","aviationMeaning":"pron. 它；指代航空器、系统、物件或情况","generalMeaning":"pron. 它"},
-    {"word":"it's","ipa":"/ɪts/","aviationMeaning":"v. 它是或它已；口语缩写，需结合原文","generalMeaning":"v. 它是；它已"},
-    {"word":"it’s","ipa":"/ɪts/","aviationMeaning":"v. 它是或它已；口语缩写，需结合原文","generalMeaning":"v. 它是；它已"},
-    {"word":"italy","ipa":"/ˈɪtəli/","aviationMeaning":"n. 意大利；国家或航线目的地","generalMeaning":"n. 意大利"},
-    {"word":"item","ipa":"/ˈaɪtəm/","aviationMeaning":"n. 项目；检查单、设备或报告中的一项","generalMeaning":"n. 项目；物品"},
-    {"word":"items","ipa":"/ˈaɪtəmz/","aviationMeaning":"n. 项目（复数）；检查单、设备或报告中的各项","generalMeaning":"n. 项目；物品（复数）"},
-    {"word":"itinerary","ipa":"/aɪˈtɪnəreri/","aviationMeaning":"n. 行程；航班、机组或旅客旅行安排","generalMeaning":"n. 行程；旅行计划"},
-    {"word":"its","ipa":"/ɪts/","aviationMeaning":"pron. 它的；指代航空器、系统或物件","generalMeaning":"pron. 它的"},
-    {"word":"itself","ipa":"/ɪtˈself/","aviationMeaning":"pron. 它自己；指代航空器、系统或物件","generalMeaning":"pron. 它自己"},
-    {"word":"itsubsequently","ipa":"/ɪt ˈsʌbsɪkwəntli/","aviationMeaning":"n. 题库中 it subsequently 的疑似连写；需结合原文","generalMeaning":"n. 疑似连写；请结合原文"},
-    {"word":"iv","ipa":"/fɔːr/","aviationMeaning":"n. IV；罗马数字四，等级或类别标记","generalMeaning":"n. 罗马数字四"},
-    {"word":"ivory","ipa":"/ˈaɪvəri/","aviationMeaning":"n. 象牙色；颜色或非技术性描述","generalMeaning":"n. 象牙；象牙色"},
-    {"word":"j","ipa":"/dʒeɪ/","aviationMeaning":"n. 字母 J；ICAO 拼读词 Juliett 对应字母","generalMeaning":"n. 英文字母 J"},
-    {"word":"jabara","ipa":"/dʒəˈbɑːrə/","aviationMeaning":"n. 贾巴拉；机场或地名","generalMeaning":"n. 专有地名"},
-    {"word":"jackets","ipa":"/ˈdʒækɪts/","aviationMeaning":"n. 夹克或救生衣（复数）；客舱安全用品","generalMeaning":"n. 夹克（复数）"},
-    {"word":"jacksonville","ipa":"/ˈdʒæksənvɪl/","aviationMeaning":"n. 杰克逊维尔；机场或地名","generalMeaning":"n. 专有地名"},
-    {"word":"jal","ipa":"/dʒæl/","aviationMeaning":"n. 日本航空（缩写）","generalMeaning":"n. 专有缩写"},
-    {"word":"jam","ipa":"/dʒæm/","aviationMeaning":"n. 卡阻；v. 卡住；如操纵面或设备卡阻","generalMeaning":"n. 果酱；堵塞；v. 卡住"},
-    {"word":"jamaica","ipa":"/dʒəˈmeɪkə/","aviationMeaning":"n. 牙买加；国家或航线目的地","generalMeaning":"n. 牙买加"},
-    {"word":"jammed","ipa":"/dʒæmd/","aviationMeaning":"adj. 卡住的；操纵面或设备无法移动的","generalMeaning":"adj. 堵塞的；卡住的"},
-    {"word":"jan","ipa":"/dʒæn/","aviationMeaning":"n. 一月（缩写）；日期信息","generalMeaning":"n. 一月（缩写）"},
-    {"word":"janeiro","ipa":"/dʒəˈnɪroʊ/","aviationMeaning":"n. 热内卢；机场或地名组成部分","generalMeaning":"n. 专有地名"},
-    {"word":"january","ipa":"/ˈdʒænjueri/","aviationMeaning":"n. 一月；日期和排班信息","generalMeaning":"n. 一月"},
-    {"word":"japan","ipa":"/dʒəˈpæn/","aviationMeaning":"n. 日本；国家或航线目的地","generalMeaning":"n. 日本"},
-    {"word":"japan's","ipa":"/dʒəˈpænz/","aviationMeaning":"n. Japan 的所有格形式；国家名称组成部分","generalMeaning":"n. 专有地名的所有格形式"},
-    {"word":"japanair","ipa":"/dʒəˈpæn er/","aviationMeaning":"n. Japan Air 的连写或航空公司名称，需结合原文","generalMeaning":"n. 专有名称；请结合原文"},
-    {"word":"jar","ipa":"/dʒɑːr/","aviationMeaning":"v. 震动；n. 罐；可能表示冲击或颠簸","generalMeaning":"n. 罐；v. 震动"},
-    {"word":"jargon","ipa":"/ˈdʒɑːrɡən/","aviationMeaning":"n. 行话；专业航空术语","generalMeaning":"n. 行话；术语"},
-    {"word":"jarring","ipa":"/ˈdʒɑːrɪŋ/","aviationMeaning":"adj. 震动强烈的；颠簸或撞击造成不适的","generalMeaning":"adj. 刺耳的；震动的"},
-    {"word":"jazz","ipa":"/dʒæz/","aviationMeaning":"n. 爵士乐；非技术性描述","generalMeaning":"n. 爵士乐"},
-    {"word":"jebel-boma","ipa":"/ˈdʒebəl ˈboʊmə/","aviationMeaning":"n. 杰贝勒博马；航路点或地名","generalMeaning":"n. 专有地名"},
-    {"word":"jeddah","ipa":"/ˈdʒedə/","aviationMeaning":"n. 吉达；机场或地名","generalMeaning":"n. 专有地名"},
-    {"word":"jemmy","ipa":"/ˈdʒemi/","aviationMeaning":"n. 专有名称或口语词；需结合原文","generalMeaning":"n. 专有名称；请结合原文"},
-    {"word":"jeopardize","ipa":"/ˈdʒepərdaɪz/","aviationMeaning":"v. 危及；使安全、运行或人员处于风险","generalMeaning":"v. 危及；损害"},
-    {"word":"jeopardizes","ipa":"/ˈdʒepərdaɪzɪz/","aviationMeaning":"v. 危及；使安全、运行或人员处于风险","generalMeaning":"v. 危及；损害"},
-    {"word":"jersey","ipa":"/ˈdʒɜːrzi/","aviationMeaning":"n. 泽西；机场、岛屿或地名","generalMeaning":"n. 运动衫；泽西"},
-    {"word":"jet","ipa":"/dʒet/","aviationMeaning":"n. 喷气机；喷流；v. 喷射","generalMeaning":"n. 喷气机；喷流"},
-    {"word":"jet-blast","ipa":"/dʒet blæst/","aviationMeaning":"n. 喷气尾流；发动机排气产生的强气流","generalMeaning":"n. 喷气冲击"},
-    {"word":"jet-stream","ipa":"/dʒet striːm/","aviationMeaning":"n. 急流；高空快速气流带","generalMeaning":"n. 喷射气流；急流"},
-    {"word":"jet-way","ipa":"/dʒet weɪ/","aviationMeaning":"n. 登机廊桥；连接航站楼与航空器的通道","generalMeaning":"n. 登机廊桥"},
-    {"word":"jet's","ipa":"/dʒets/","aviationMeaning":"n. jet 的所有格形式；喷气机或喷流相关","generalMeaning":"n. 喷气机的所有格形式"},
-    {"word":"jetblue","ipa":"/ˈdʒetbluː/","aviationMeaning":"n. 捷蓝航空；航空公司名称","generalMeaning":"n. 专有名称"},
-    {"word":"jetliner","ipa":"/ˈdʒetˌlaɪnər/","aviationMeaning":"n. 喷气客机；定期航线大型喷气航空器","generalMeaning":"n. 喷气客机"},
-    {"word":"jets","ipa":"/dʒets/","aviationMeaning":"n. 喷气机或喷流（复数）","generalMeaning":"n. 喷气机；喷流（复数）"},
-    {"word":"jettison","ipa":"/ˈdʒetɪsən/","aviationMeaning":"v. 抛弃；紧急抛投燃油、货物或设备","generalMeaning":"v. 抛弃；丢弃"},
-    {"word":"jettisoning","ipa":"/ˈdʒetɪsənɪŋ/","aviationMeaning":"n. 抛弃；紧急抛投燃油、货物或设备","generalMeaning":"n. 抛弃；丢弃"},
-    {"word":"jfk","ipa":"/ˌdʒeɪ ef ˈkeɪ/","aviationMeaning":"n. 约翰·F·肯尼迪国际机场代码或名称","generalMeaning":"n. 专有缩写"},
-    {"word":"jfk's","ipa":"/ˌdʒeɪ ef ˈkeɪz/","aviationMeaning":"n. JFK 的所有格形式；机场相关","generalMeaning":"n. 专有缩写的所有格形式"},
-    {"word":"jin","ipa":"/dʒɪn/","aviationMeaning":"n. 金；人名、地名或航路点组成部分","generalMeaning":"n. 专有名称"},
-    {"word":"jinan","ipa":"/ˈdʒiːnæn/","aviationMeaning":"n. 济南；机场或地名","generalMeaning":"n. 专有地名"},
-    {"word":"jinxiu","ipa":"/ˈdʒiːnʃjoʊ/","aviationMeaning":"n. 锦绣；航路点或地名","generalMeaning":"n. 专有地名"},
-    {"word":"jiuhuang","ipa":"/ˈdʒjoʊhwɑːŋ/","aviationMeaning":"n. 九黄；机场或地名简称","generalMeaning":"n. 专有地名"},
-    {"word":"jiuzhai","ipa":"/ˈdʒjoʊdʒaɪ/","aviationMeaning":"n. 九寨；机场或地名组成部分","generalMeaning":"n. 专有地名"},
-    {"word":"jiuzhaigou","ipa":"/ˌdʒjoʊdʒaɪˈɡoʊ/","aviationMeaning":"n. 九寨沟；机场或地名","generalMeaning":"n. 专有地名"},
-    {"word":"jmu","ipa":"/ˌdʒeɪ em ˈjuː/","aviationMeaning":"n. 航空资料缩写或机场代码；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"jo","ipa":"/dʒoʊ/","aviationMeaning":"n. 乔；人名或专有名称","generalMeaning":"n. 专有名称"},
-    {"word":"job","ipa":"/dʒɑːb/","aviationMeaning":"n. 工作；机组、地勤或维护任务","generalMeaning":"n. 工作；职业"},
-    {"word":"jobs","ipa":"/dʒɑːbz/","aviationMeaning":"n. 工作（复数）；机组、地勤或维护任务","generalMeaning":"n. 工作；职业（复数）"},
-    {"word":"jog","ipa":"/dʒɑːɡ/","aviationMeaning":"v. 轻推；使部件短暂移动；n. 慢跑","generalMeaning":"v. 慢跑；轻推"},
-    {"word":"johannesburg","ipa":"/dʒoʊˈhænɪsbɜːrɡ/","aviationMeaning":"n. 约翰内斯堡；机场或地名","generalMeaning":"n. 专有地名"},
-    {"word":"johannesburg's","ipa":"/dʒoʊˈhænɪsbɜːrɡz/","aviationMeaning":"n. Johannesburg 的所有格形式；机场或地名组成部分","generalMeaning":"n. 专有地名的所有格形式"},
-    {"word":"john","ipa":"/dʒɑːn/","aviationMeaning":"n. 约翰；人名或机场名称组成部分","generalMeaning":"n. 专有名称"},
-    {"word":"johntook","ipa":"/dʒɑːn tʊk/","aviationMeaning":"n. 题库中 John took 的疑似连写；需结合原文","generalMeaning":"n. 疑似连写；请结合原文"}
+    {
+      "word": "investment",
+      "ipa": "/ɪnˈvestmənt/",
+      "aviationMeaning": "n. 投资；机场、机队或安全项目资金投入",
+      "generalMeaning": "n. 投资；投入"
+    },
+    {
+      "word": "involve",
+      "ipa": "/ɪnˈvɑːlv/",
+      "aviationMeaning": "v. 涉及；包含人员、系统或风险",
+      "generalMeaning": "v. 涉及；包含"
+    },
+    {
+      "word": "involved",
+      "ipa": "/ɪnˈvɑːlvd/",
+      "aviationMeaning": "adj. 涉及的；参与某事件、程序或运行的",
+      "generalMeaning": "adj. 涉及的；参与的"
+    },
+    {
+      "word": "involvement",
+      "ipa": "/ɪnˈvɑːlvmənt/",
+      "aviationMeaning": "n. 参与；与事件、程序或运行的关联",
+      "generalMeaning": "n. 参与；介入"
+    },
+    {
+      "word": "involves",
+      "ipa": "/ɪnˈvɑːlvz/",
+      "aviationMeaning": "v. 涉及；包含人员、系统或风险",
+      "generalMeaning": "v. 涉及；包含"
+    },
+    {
+      "word": "involving",
+      "ipa": "/ɪnˈvɑːlvɪŋ/",
+      "aviationMeaning": "v. 正涉及；包含人员、系统或风险",
+      "generalMeaning": "v. 正涉及；包含"
+    },
+    {
+      "word": "ion",
+      "ipa": "/ˈaɪən/",
+      "aviationMeaning": "n. 离子；大气、电气或电离层语境",
+      "generalMeaning": "n. 离子"
+    },
+    {
+      "word": "ip",
+      "ipa": "/ˌaɪ ˈpiː/",
+      "aviationMeaning": "n. 仪表进近点或网络协议缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "ira",
+      "ipa": "/ˌaɪ ɑːr ˈeɪ/",
+      "aviationMeaning": "n. 航空资料缩写或专有名称；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "iran",
+      "ipa": "/ɪˈrɑːn/",
+      "aviationMeaning": "n. 伊朗；国家或航线目的地",
+      "generalMeaning": "n. 伊朗"
+    },
+    {
+      "word": "iran's",
+      "ipa": "/ɪˈrɑːnz/",
+      "aviationMeaning": "n. Iran 的所有格形式；国家名称组成部分",
+      "generalMeaning": "n. 专有地名的所有格形式"
+    },
+    {
+      "word": "ireland",
+      "ipa": "/ˈaɪərlənd/",
+      "aviationMeaning": "n. 爱尔兰；国家或航线目的地",
+      "generalMeaning": "n. 爱尔兰"
+    },
+    {
+      "word": "irrationally",
+      "ipa": "/ɪˈræʃənəli/",
+      "aviationMeaning": "adv. 不理性地；不按程序或证据判断地",
+      "generalMeaning": "adv. 不理性地"
+    },
+    {
+      "word": "irregular",
+      "ipa": "/ɪˈreɡjələr/",
+      "aviationMeaning": "adj. 不规则的；不正常的运行、节律或形状",
+      "generalMeaning": "adj. 不规则的；不正常的"
+    },
+    {
+      "word": "irregularities",
+      "ipa": "/ɪˌreɡjəˈlærətiz/",
+      "aviationMeaning": "n. 异常（复数）；程序、记录或运行中的不规则情况",
+      "generalMeaning": "n. 不规则；异常（复数）"
+    },
+    {
+      "word": "irritability",
+      "ipa": "/ˌɪrɪtəˈbɪləti/",
+      "aviationMeaning": "n. 易怒；疲劳或压力下的心理状态",
+      "generalMeaning": "n. 易怒；烦躁"
+    },
+    {
+      "word": "irritable",
+      "ipa": "/ˈɪrɪtəbəl/",
+      "aviationMeaning": "adj. 易怒的；疲劳或压力下的心理状态",
+      "generalMeaning": "adj. 易怒的；烦躁的"
+    },
+    {
+      "word": "is",
+      "ipa": "/ɪz/",
+      "aviationMeaning": "v. 是；表示状态或位置",
+      "generalMeaning": "v. 是"
+    },
+    {
+      "word": "isgod",
+      "ipa": "/ɪz ɡɑːd/",
+      "aviationMeaning": "n. 题库中 is god 的疑似连写；需结合原文",
+      "generalMeaning": "n. 疑似连写；请结合原文"
+    },
+    {
+      "word": "islamabad",
+      "ipa": "/ɪzˈlæməbæd/",
+      "aviationMeaning": "n. 伊斯兰堡；机场或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "island",
+      "ipa": "/ˈaɪlənd/",
+      "aviationMeaning": "n. 岛屿；地理环境或航线区域",
+      "generalMeaning": "n. 岛；岛屿"
+    },
+    {
+      "word": "isn't",
+      "ipa": "/ˈɪzənt/",
+      "aviationMeaning": "v. 不是；口语否定形式",
+      "generalMeaning": "v. 不是"
+    },
+    {
+      "word": "isolate",
+      "ipa": "/ˈaɪsəleɪt/",
+      "aviationMeaning": "v. 隔离；隔离故障、系统或人员",
+      "generalMeaning": "v. 隔离；孤立"
+    },
+    {
+      "word": "isolated",
+      "ipa": "/ˈaɪsəleɪtɪd/",
+      "aviationMeaning": "adj. 已隔离的；故障、系统或人员被隔开",
+      "generalMeaning": "adj. 被隔离的；孤立的"
+    },
+    {
+      "word": "isolating",
+      "ipa": "/ˈaɪsəleɪtɪŋ/",
+      "aviationMeaning": "v. 正隔离；隔离故障、系统或人员",
+      "generalMeaning": "v. 正隔离；孤立"
+    },
+    {
+      "word": "isolation",
+      "ipa": "/ˌaɪsəˈleɪʃən/",
+      "aviationMeaning": "n. 隔离；故障、系统或人员的隔离状态",
+      "generalMeaning": "n. 隔离；孤立"
+    },
+    {
+      "word": "isotherm",
+      "ipa": "/ˈaɪsəθɜːrm/",
+      "aviationMeaning": "n. 等温线；气象图上的同温度连线",
+      "generalMeaning": "n. 等温线"
+    },
+    {
+      "word": "issue",
+      "ipa": "/ˈɪʃuː/",
+      "aviationMeaning": "n. 问题；v. 发布许可、文件或指令",
+      "generalMeaning": "n. 问题；v. 发布"
+    },
+    {
+      "word": "issued",
+      "ipa": "/ˈɪʃuːd/",
+      "aviationMeaning": "v. 已发布；许可、文件或指令已发出",
+      "generalMeaning": "v. 已发布"
+    },
+    {
+      "word": "issues",
+      "ipa": "/ˈɪʃuːz/",
+      "aviationMeaning": "n. 问题（复数）；v. 发布许可、文件或指令",
+      "generalMeaning": "n. 问题（复数）；v. 发布"
+    },
+    {
+      "word": "issuing",
+      "ipa": "/ˈɪʃuːɪŋ/",
+      "aviationMeaning": "v. 正发布；正发出许可、文件或指令",
+      "generalMeaning": "v. 正发布"
+    },
+    {
+      "word": "istanbul",
+      "ipa": "/ˌɪstænˈbuːl/",
+      "aviationMeaning": "n. 伊斯坦布尔；机场或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "it",
+      "ipa": "/ɪt/",
+      "aviationMeaning": "pron. 它；指代航空器、系统、物件或情况",
+      "generalMeaning": "pron. 它"
+    },
+    {
+      "word": "it's",
+      "ipa": "/ɪts/",
+      "aviationMeaning": "v. 它是或它已；口语缩写，需结合原文",
+      "generalMeaning": "v. 它是；它已"
+    },
+    {
+      "word": "it’s",
+      "ipa": "/ɪts/",
+      "aviationMeaning": "v. 它是或它已；口语缩写，需结合原文",
+      "generalMeaning": "v. 它是；它已"
+    },
+    {
+      "word": "italy",
+      "ipa": "/ˈɪtəli/",
+      "aviationMeaning": "n. 意大利；国家或航线目的地",
+      "generalMeaning": "n. 意大利"
+    },
+    {
+      "word": "item",
+      "ipa": "/ˈaɪtəm/",
+      "aviationMeaning": "n. 项目；检查单、设备或报告中的一项",
+      "generalMeaning": "n. 项目；物品"
+    },
+    {
+      "word": "items",
+      "ipa": "/ˈaɪtəmz/",
+      "aviationMeaning": "n. 项目（复数）；检查单、设备或报告中的各项",
+      "generalMeaning": "n. 项目；物品（复数）"
+    },
+    {
+      "word": "its",
+      "ipa": "/ɪts/",
+      "aviationMeaning": "pron. 它的；指代航空器、系统或物件",
+      "generalMeaning": "pron. 它的"
+    },
+    {
+      "word": "itself",
+      "ipa": "/ɪtˈself/",
+      "aviationMeaning": "pron. 它自己；指代航空器、系统或物件",
+      "generalMeaning": "pron. 它自己"
+    },
+    {
+      "word": "iv",
+      "ipa": "/fɔːr/",
+      "aviationMeaning": "n. IV；罗马数字四，等级或类别标记",
+      "generalMeaning": "n. 罗马数字四"
+    },
+    {
+      "word": "ivory",
+      "ipa": "/ˈaɪvəri/",
+      "aviationMeaning": "n. 象牙色；颜色或非技术性描述",
+      "generalMeaning": "n. 象牙；象牙色"
+    },
+    {
+      "word": "j",
+      "ipa": "/dʒeɪ/",
+      "aviationMeaning": "n. 字母 J；ICAO 拼读词 Juliett 对应字母",
+      "generalMeaning": "n. 英文字母 J"
+    },
+    {
+      "word": "jabara",
+      "ipa": "/dʒəˈbɑːrə/",
+      "aviationMeaning": "n. 贾巴拉；机场或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "jacksonville",
+      "ipa": "/ˈdʒæksənvɪl/",
+      "aviationMeaning": "n. 杰克逊维尔；机场或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "jal",
+      "ipa": "/dʒæl/",
+      "aviationMeaning": "n. 日本航空（缩写）",
+      "generalMeaning": "n. 专有缩写"
+    },
+    {
+      "word": "jam",
+      "ipa": "/dʒæm/",
+      "aviationMeaning": "n. 卡阻；v. 卡住；如操纵面或设备卡阻",
+      "generalMeaning": "n. 果酱；堵塞；v. 卡住"
+    },
+    {
+      "word": "jamaica",
+      "ipa": "/dʒəˈmeɪkə/",
+      "aviationMeaning": "n. 牙买加；国家或航线目的地",
+      "generalMeaning": "n. 牙买加"
+    },
+    {
+      "word": "jammed",
+      "ipa": "/dʒæmd/",
+      "aviationMeaning": "adj. 卡住的；操纵面或设备无法移动的",
+      "generalMeaning": "adj. 堵塞的；卡住的"
+    },
+    {
+      "word": "jan",
+      "ipa": "/dʒæn/",
+      "aviationMeaning": "n. 一月（缩写）；日期信息",
+      "generalMeaning": "n. 一月（缩写）"
+    },
+    {
+      "word": "janeiro",
+      "ipa": "/dʒəˈnɪroʊ/",
+      "aviationMeaning": "n. 热内卢；机场或地名组成部分",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "january",
+      "ipa": "/ˈdʒænjueri/",
+      "aviationMeaning": "n. 一月；日期和排班信息",
+      "generalMeaning": "n. 一月"
+    },
+    {
+      "word": "japan",
+      "ipa": "/dʒəˈpæn/",
+      "aviationMeaning": "n. 日本；国家或航线目的地",
+      "generalMeaning": "n. 日本"
+    },
+    {
+      "word": "japan's",
+      "ipa": "/dʒəˈpænz/",
+      "aviationMeaning": "n. Japan 的所有格形式；国家名称组成部分",
+      "generalMeaning": "n. 专有地名的所有格形式"
+    },
+    {
+      "word": "japanair",
+      "ipa": "/dʒəˈpæn er/",
+      "aviationMeaning": "n. Japan Air 的连写或航空公司名称，需结合原文",
+      "generalMeaning": "n. 专有名称；请结合原文"
+    },
+    {
+      "word": "jar",
+      "ipa": "/dʒɑːr/",
+      "aviationMeaning": "v. 震动；n. 罐；可能表示冲击或颠簸",
+      "generalMeaning": "n. 罐；v. 震动"
+    },
+    {
+      "word": "jargon",
+      "ipa": "/ˈdʒɑːrɡən/",
+      "aviationMeaning": "n. 行话；专业航空术语",
+      "generalMeaning": "n. 行话；术语"
+    },
+    {
+      "word": "jarring",
+      "ipa": "/ˈdʒɑːrɪŋ/",
+      "aviationMeaning": "adj. 震动强烈的；颠簸或撞击造成不适的",
+      "generalMeaning": "adj. 刺耳的；震动的"
+    },
+    {
+      "word": "jazz",
+      "ipa": "/dʒæz/",
+      "aviationMeaning": "n. 爵士乐；非技术性描述",
+      "generalMeaning": "n. 爵士乐"
+    },
+    {
+      "word": "jebel-boma",
+      "ipa": "/ˈdʒebəl ˈboʊmə/",
+      "aviationMeaning": "n. 杰贝勒博马；航路点或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "jeddah",
+      "ipa": "/ˈdʒedə/",
+      "aviationMeaning": "n. 吉达；机场或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "jemmy",
+      "ipa": "/ˈdʒemi/",
+      "aviationMeaning": "n. 专有名称或口语词；需结合原文",
+      "generalMeaning": "n. 专有名称；请结合原文"
+    },
+    {
+      "word": "jersey",
+      "ipa": "/ˈdʒɜːrzi/",
+      "aviationMeaning": "n. 泽西；机场、岛屿或地名",
+      "generalMeaning": "n. 运动衫；泽西"
+    },
+    {
+      "word": "jet",
+      "ipa": "/dʒet/",
+      "aviationMeaning": "n. 喷气机；喷流；v. 喷射",
+      "generalMeaning": "n. 喷气机；喷流"
+    },
+    {
+      "word": "jet-way",
+      "ipa": "/dʒet weɪ/",
+      "aviationMeaning": "n. 登机廊桥；连接航站楼与航空器的通道",
+      "generalMeaning": "n. 登机廊桥"
+    },
+    {
+      "word": "jet's",
+      "ipa": "/dʒets/",
+      "aviationMeaning": "n. jet 的所有格形式；喷气机或喷流相关",
+      "generalMeaning": "n. 喷气机的所有格形式"
+    },
+    {
+      "word": "jetblue",
+      "ipa": "/ˈdʒetbluː/",
+      "aviationMeaning": "n. 捷蓝航空；航空公司名称",
+      "generalMeaning": "n. 专有名称"
+    },
+    {
+      "word": "jetliner",
+      "ipa": "/ˈdʒetˌlaɪnər/",
+      "aviationMeaning": "n. 喷气客机；定期航线大型喷气航空器",
+      "generalMeaning": "n. 喷气客机"
+    },
+    {
+      "word": "jets",
+      "ipa": "/dʒets/",
+      "aviationMeaning": "n. 喷气机或喷流（复数）",
+      "generalMeaning": "n. 喷气机；喷流（复数）"
+    },
+    {
+      "word": "jettison",
+      "ipa": "/ˈdʒetɪsən/",
+      "aviationMeaning": "v. 抛弃；紧急抛投燃油、货物或设备",
+      "generalMeaning": "v. 抛弃；丢弃"
+    },
+    {
+      "word": "jfk",
+      "ipa": "/ˌdʒeɪ ef ˈkeɪ/",
+      "aviationMeaning": "n. 约翰·F·肯尼迪国际机场代码或名称",
+      "generalMeaning": "n. 专有缩写"
+    },
+    {
+      "word": "jfk's",
+      "ipa": "/ˌdʒeɪ ef ˈkeɪz/",
+      "aviationMeaning": "n. JFK 的所有格形式；机场相关",
+      "generalMeaning": "n. 专有缩写的所有格形式"
+    },
+    {
+      "word": "jin",
+      "ipa": "/dʒɪn/",
+      "aviationMeaning": "n. 金；人名、地名或航路点组成部分",
+      "generalMeaning": "n. 专有名称"
+    },
+    {
+      "word": "jinan",
+      "ipa": "/ˈdʒiːnæn/",
+      "aviationMeaning": "n. 济南；机场或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "jinxiu",
+      "ipa": "/ˈdʒiːnʃjoʊ/",
+      "aviationMeaning": "n. 锦绣；航路点或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "jiuhuang",
+      "ipa": "/ˈdʒjoʊhwɑːŋ/",
+      "aviationMeaning": "n. 九黄；机场或地名简称",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "jiuzhai",
+      "ipa": "/ˈdʒjoʊdʒaɪ/",
+      "aviationMeaning": "n. 九寨；机场或地名组成部分",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "jiuzhaigou",
+      "ipa": "/ˌdʒjoʊdʒaɪˈɡoʊ/",
+      "aviationMeaning": "n. 九寨沟；机场或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "jmu",
+      "ipa": "/ˌdʒeɪ em ˈjuː/",
+      "aviationMeaning": "n. 航空资料缩写或机场代码；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "jo",
+      "ipa": "/dʒoʊ/",
+      "aviationMeaning": "n. 乔；人名或专有名称",
+      "generalMeaning": "n. 专有名称"
+    },
+    {
+      "word": "job",
+      "ipa": "/dʒɑːb/",
+      "aviationMeaning": "n. 工作；机组、地勤或维护任务",
+      "generalMeaning": "n. 工作；职业"
+    },
+    {
+      "word": "jog",
+      "ipa": "/dʒɑːɡ/",
+      "aviationMeaning": "v. 轻推；使部件短暂移动；n. 慢跑",
+      "generalMeaning": "v. 慢跑；轻推"
+    },
+    {
+      "word": "johannesburg",
+      "ipa": "/dʒoʊˈhænɪsbɜːrɡ/",
+      "aviationMeaning": "n. 约翰内斯堡；机场或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "johannesburg's",
+      "ipa": "/dʒoʊˈhænɪsbɜːrɡz/",
+      "aviationMeaning": "n. Johannesburg 的所有格形式；机场或地名组成部分",
+      "generalMeaning": "n. 专有地名的所有格形式"
+    },
+    {
+      "word": "john",
+      "ipa": "/dʒɑːn/",
+      "aviationMeaning": "n. 约翰；人名或机场名称组成部分",
+      "generalMeaning": "n. 专有名称"
+    }
   ]
 }

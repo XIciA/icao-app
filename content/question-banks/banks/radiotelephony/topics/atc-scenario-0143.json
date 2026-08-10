@@ -117,8 +117,8 @@
       "taskTitle": "CCA 725-13",
       "audioText": "C: CCA 725, what assistance do you need?\nB: Tell the controller you need a tug to tow you back to the terminal.",
       "audioTextZh": "C： CCA 725，你需要什么协助？\nB： 告诉管制员你需要一辆牵引车将你拖回航站楼。",
-      "referenceText": "Wuhan Tower, CCA 725, request a tug to tow us back to the terminal. request a tug to tow us back to the terminal, CCA 725",
-      "referenceTextZh": "武汉塔台，CCA 725，请求一辆牵引车将我们拖回航站楼。请求一辆牵引车将我们拖回航站楼，CCA 725。",
+      "referenceText": "Wuhan Tower, CCA 725, request a tug to tow us back to the terminal.",
+      "referenceTextZh": "武汉塔台，CCA 725，请求一辆牵引车将我们拖回航站楼。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-041-cca725-q13.mp3"
     },
     {
@@ -135,7 +135,7 @@
       "taskTitle": "CCA 725-15",
       "audioText": "B: Now the lady's condition is deteriorating, you confirm with the controller if the medical service will be ready at the gate.",
       "audioTextZh": "B: 现在这位女士情况正在恶化，你向管制员确认登机口医疗服务是否准备好。",
-      "referenceText": "Wuhan Ground, CCA 725, the lady's condition is deteriorating, is medical service ready at the gate ?",
+      "referenceText": "Wuhan Ground, CCA 725, the lady's condition is deteriorating, is medical service ready at the gate?",
       "referenceTextZh": "武汉地面，CCA 725，这位女士情况正在恶化，登机口医疗服务准备好了吗？",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-041-cca725-q15.mp3"
     },

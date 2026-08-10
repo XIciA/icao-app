@@ -1,105 +1,479 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"reflectivity","ipa":"/ˌriːflekˈtɪvəti/","aviationMeaning":"n. 反射率；天气雷达回波强度，用于判断降水强弱","generalMeaning":"n. 反射率"},
-    {"word":"reflects","ipa":"/rɪˈflekts/","aviationMeaning":"v. 反映；显示飞行状态、天气或系统状况","generalMeaning":"v. 反射；反映"},
-    {"word":"refocus","ipa":"/ˌriːˈfoʊkəs/","aviationMeaning":"v. 重新聚焦；重新把注意力或设备焦点放到当前任务上","generalMeaning":"v. 重新聚焦"},
-    {"word":"refrigerant","ipa":"/rɪˈfrɪdʒərənt/","aviationMeaning":"n. 制冷剂；空调或冷却系统中吸热循环的介质","generalMeaning":"n. 制冷剂"},
-    {"word":"refuel","ipa":"/ˌriːˈfjuːəl/","aviationMeaning":"v. 加油；为航空器重新补充燃油","generalMeaning":"v. 重新加油"},
-    {"word":"refueled","ipa":"/ˌriːˈfjuːəld/","aviationMeaning":"adj. 已加油的；航空器已重新补充燃油","generalMeaning":"adj. 已重新加油的"},
-    {"word":"refueling","ipa":"/ˌriːˈfjuːəlɪŋ/","aviationMeaning":"n. 加油；向航空器补充燃油的地面作业","generalMeaning":"n. 重新加油"},
-    {"word":"refuelling","ipa":"/ˌriːˈfjuːəlɪŋ/","aviationMeaning":"n. 加油；向航空器补充燃油的英式拼写","generalMeaning":"n. 重新加油"},
-    {"word":"refusal","ipa":"/rɪˈfjuːzəl/","aviationMeaning":"n. 拒绝；对指令、许可或请求不予接受","generalMeaning":"n. 拒绝；回绝"},
-    {"word":"refuse","ipa":"/rɪˈfjuːz/","aviationMeaning":"v. 拒绝；拒绝接受指令、许可或请求","generalMeaning":"v. 拒绝；n. 垃圾"},
-    {"word":"refused","ipa":"/rɪˈfjuːzd/","aviationMeaning":"v. 已拒绝；已不接受指令、许可或请求","generalMeaning":"v. 已拒绝"},
-    {"word":"refuses","ipa":"/rɪˈfjuːzɪz/","aviationMeaning":"v. 拒绝；不接受指令、许可或请求","generalMeaning":"v. 拒绝"},
-    {"word":"regain","ipa":"/rɪˈɡeɪn/","aviationMeaning":"v. 恢复；重新获得高度、航向、通信或控制权","generalMeaning":"v. 重新获得；恢复"},
-    {"word":"regained","ipa":"/rɪˈɡeɪnd/","aviationMeaning":"v. 已恢复；已重新获得高度、航向或控制权","generalMeaning":"v. 已重新获得；恢复"},
-    {"word":"regard","ipa":"/rɪˈɡɑːrd/","aviationMeaning":"v. 视为；把某情况视作风险、限制或重点","generalMeaning":"v. 看待；n. 关注"},
-    {"word":"regarded","ipa":"/rɪˈɡɑːrdɪd/","aviationMeaning":"v. 被视为；被认为是某种风险、限制或状态","generalMeaning":"v. 被看待；被认为"},
-    {"word":"regarding","ipa":"/rɪˈɡɑːrdɪŋ/","aviationMeaning":"prep. 关于；涉及飞行、系统、天气或程序","generalMeaning":"prep. 关于；至于"},
-    {"word":"regardless","ipa":"/rɪˈɡɑːrdləs/","aviationMeaning":"adv. 不管；不受某一条件或因素影响地","generalMeaning":"adv. 不管；不顾"},
-    {"word":"regards","ipa":"/rɪˈɡɑːrdz/","aviationMeaning":"v. 视为；涉及；需结合原文","generalMeaning":"v. 看待；问候（复数）"},
-    {"word":"region","ipa":"/ˈriːdʒən/","aviationMeaning":"n. 区域；飞行情报区、天气区或运行区域","generalMeaning":"n. 地区；区域"},
-    {"word":"region's","ipa":"/ˈriːdʒənz/","aviationMeaning":"n. region 的所有格形式；区域的","generalMeaning":"n. 地区的所有格形式"},
-    {"word":"regional","ipa":"/ˈriːdʒənəl/","aviationMeaning":"adj. 区域性的；地区机场、航线或空域相关","generalMeaning":"adj. 区域的；地方的"},
-    {"word":"regions","ipa":"/ˈriːdʒənz/","aviationMeaning":"n. 区域（复数）；多个飞行情报区、天气区或运行区域","generalMeaning":"n. 地区；区域（复数）"},
-    {"word":"registered","ipa":"/ˈredʒɪstərd/","aviationMeaning":"adj. 已登记的；航空器、设备或人员已在正式记录中注册","generalMeaning":"adj. 已登记的；已注册的"},
-    {"word":"registration","ipa":"/ˌredʒɪˈstreɪʃən/","aviationMeaning":"n. 登记；航空器注册号或正式登记过程","generalMeaning":"n. 登记；注册"},
-    {"word":"regular","ipa":"/ˈreɡjələr/","aviationMeaning":"adj. 定期的；按固定时刻、周期或程序进行的","generalMeaning":"adj. 定期的；规则的"},
-    {"word":"regularly","ipa":"/ˈreɡjələrli/","aviationMeaning":"adv. 定期地；按计划周期执行检查、训练或维护","generalMeaning":"adv. 定期地；经常"},
-    {"word":"regulate","ipa":"/ˈreɡjəleɪt/","aviationMeaning":"v. 调节；控制压力、温度、流量、速度或运行活动","generalMeaning":"v. 调节；管理"},
-    {"word":"regulated","ipa":"/ˈreɡjəleɪtɪd/","aviationMeaning":"adj. 受调节的；压力、温度或运行已受到控制","generalMeaning":"adj. 受管制的；受调节的"},
-    {"word":"regulates","ipa":"/ˈreɡjəleɪts/","aviationMeaning":"v. 调节；控制压力、温度、流量或运行活动","generalMeaning":"v. 调节；管理"},
-    {"word":"regulating","ipa":"/ˈreɡjəleɪtɪŋ/","aviationMeaning":"v. 正调节；正在控制压力、温度、流量或运行活动","generalMeaning":"v. 正调节；管理"},
-    {"word":"regulation","ipa":"/ˌreɡjəˈleɪʃən/","aviationMeaning":"n. 规章；航空运行、安全或适航的正式规则","generalMeaning":"n. 规章；调节"},
-    {"word":"regulations","ipa":"/ˌreɡjəˈleɪʃənz/","aviationMeaning":"n. 规章（复数）；航空运行、安全或适航的正式规则","generalMeaning":"n. 规章（复数）"},
-    {"word":"regulator","ipa":"/ˈreɡjəleɪtər/","aviationMeaning":"n. 调节器；控制压力、流量、电压或温度的装置","generalMeaning":"n. 调节器；监管者"},
-    {"word":"regulators","ipa":"/ˈreɡjəleɪtərz/","aviationMeaning":"n. 调节器（复数）；多个控制压力、电压或流量的装置","generalMeaning":"n. 调节器；监管者（复数）"},
-    {"word":"regulatory","ipa":"/ˈreɡjələtɔːri/","aviationMeaning":"adj. 监管的；与航空法规、适航或运行管制有关的","generalMeaning":"adj. 监管的；调节的"},
-    {"word":"reignite","ipa":"/ˌriːɪɡˈnaɪt/","aviationMeaning":"v. 再点火；使发动机燃烧室恢复燃烧","generalMeaning":"v. 再点燃"},
-    {"word":"reigniting","ipa":"/ˌriːɪɡˈnaɪtɪŋ/","aviationMeaning":"v. 正再点火；正在使发动机恢复燃烧","generalMeaning":"v. 正再点燃"},
-    {"word":"reignition","ipa":"/ˌriːɪɡˈnɪʃən/","aviationMeaning":"n. 再点火；发动机火焰熄灭后重新建立燃烧","generalMeaning":"n. 再点燃"},
-    {"word":"reinforce","ipa":"/ˌriːɪnˈfɔːrs/","aviationMeaning":"v. 加强；加强结构、安全措施、培训或信息","generalMeaning":"v. 加强；增援"},
-    {"word":"reinforced","ipa":"/ˌriːɪnˈfɔːrst/","aviationMeaning":"adj. 已加强的；结构、安全措施或培训已增强","generalMeaning":"adj. 加强的；增援的"},
-    {"word":"reject","ipa":"/rɪˈdʒekt/","aviationMeaning":"v. 中止；拒绝起飞或不接受指令、选项","generalMeaning":"v. 拒绝；排斥"},
-    {"word":"rejected","ipa":"/rɪˈdʒektɪd/","aviationMeaning":"adj. 被拒绝的；或已中止的起飞、方案或请求","generalMeaning":"adj. 被拒绝的"},
-    {"word":"rejected-takeoff","ipa":"/rɪˈdʒektɪd ˈteɪkɔːf/","aviationMeaning":"n. 中断起飞；在达到决断速度前停止起飞的动作","generalMeaning":"n. 中断起飞"},
-    {"word":"rejecteed","ipa":"/rɪˈdʒektɪd/","aviationMeaning":"adj. 疑似 rejected 的拼写错误；被拒绝的或已中止的","generalMeaning":"adj. 疑似拼写错误；被拒绝的"},
-    {"word":"rejecting","ipa":"/rɪˈdʒektɪŋ/","aviationMeaning":"v. 正拒绝；正中止起飞或不接受指令、选项","generalMeaning":"v. 正拒绝；排斥"},
-    {"word":"rejection","ipa":"/rɪˈdʒekʃən/","aviationMeaning":"n. 拒绝；中断起飞或不接受申请、指令的行为","generalMeaning":"n. 拒绝；排斥"},
-    {"word":"rejects","ipa":"/rɪˈdʒekts/","aviationMeaning":"v. 拒绝；中止起飞或不接受指令、选项","generalMeaning":"v. 拒绝；排斥"},
-    {"word":"rejoin","ipa":"/ˌriːˈdʒɔɪn/","aviationMeaning":"v. 重新加入；重新截获航路、航迹或编队","generalMeaning":"v. 重新加入"},
-    {"word":"relate","ipa":"/rɪˈleɪt/","aviationMeaning":"v. 有关；把信息、事件或风险与飞行运行联系起来","generalMeaning":"v. 有关；讲述"},
-    {"word":"related","ipa":"/rɪˈleɪtɪd/","aviationMeaning":"adj. 相关的；与飞行、设备、天气或程序有关的","generalMeaning":"adj. 有关的；相关的"},
-    {"word":"relates","ipa":"/rɪˈleɪts/","aviationMeaning":"v. 有关；把信息、事件或风险与飞行运行联系起来","generalMeaning":"v. 有关；讲述"},
-    {"word":"relation","ipa":"/rɪˈleɪʃən/","aviationMeaning":"n. 关系；飞行参数、事件或系统之间的关联","generalMeaning":"n. 关系；关联"},
-    {"word":"relationship","ipa":"/rɪˈleɪʃənʃɪp/","aviationMeaning":"n. 关系；飞行参数、事件或系统之间的相互联系","generalMeaning":"n. 关系；联系"},
-    {"word":"relationships","ipa":"/rɪˈleɪʃənʃɪps/","aviationMeaning":"n. 关系（复数）；多个飞行参数、事件或系统关联","generalMeaning":"n. 关系；联系（复数）"},
-    {"word":"relative","ipa":"/ˈrelətɪv/","aviationMeaning":"adj. 相对的；相对高度、相对方位或相对速度","generalMeaning":"adj. 相对的；n. 亲属"},
-    {"word":"relatively","ipa":"/ˈrelətɪvli/","aviationMeaning":"adv. 相对地；与其他条件相比程度较低或较高","generalMeaning":"adv. 相对地；比较地"},
-    {"word":"relax","ipa":"/rɪˈlæks/","aviationMeaning":"v. 放松；解除紧张或松开控制输入，需结合原文","generalMeaning":"v. 放松；松弛"},
-    {"word":"relaxing","ipa":"/rɪˈlæksɪŋ/","aviationMeaning":"v. 正放松；解除紧张或松开控制输入","generalMeaning":"v. 正放松；松弛"},
-    {"word":"relay","ipa":"/ˈriːleɪ/","aviationMeaning":"v. 转发；转递管制、天气或紧急通信信息","generalMeaning":"v. 转发；n. 继电器"},
-    {"word":"relayed","ipa":"/ˈriːleɪd/","aviationMeaning":"v. 已转发；已转递管制、天气或紧急信息","generalMeaning":"v. 已转发；传递"},
-    {"word":"relays","ipa":"/ˈriːleɪz/","aviationMeaning":"n. 继电器（复数）；控制电路中切换电流的装置","generalMeaning":"n. 接力；继电器（复数）"},
-    {"word":"release","ipa":"/rɪˈliːs/","aviationMeaning":"v. 放行；解除停放、限制或向航空器签发许可","generalMeaning":"v. 释放；发布"},
-    {"word":"released","ipa":"/rɪˈliːst/","aviationMeaning":"adj. 已释放的；已解除限制或已签发放行","generalMeaning":"adj. 已释放的；已发布的"},
-    {"word":"releases","ipa":"/rɪˈliːsɪz/","aviationMeaning":"v. 放行；解除限制或签发许可","generalMeaning":"v. 释放；发布"},
-    {"word":"releasing","ipa":"/rɪˈliːsɪŋ/","aviationMeaning":"v. 正放行；正在解除限制或签发许可","generalMeaning":"v. 正释放；发布"},
-    {"word":"relevant","ipa":"/ˈreləvənt/","aviationMeaning":"adj. 相关的；与当前飞行、风险或程序直接有关的","generalMeaning":"adj. 相关的；切题的"},
-    {"word":"reliability","ipa":"/rɪˌlaɪəˈbɪləti/","aviationMeaning":"n. 可靠性；设备、系统或运行持续正确工作的能力","generalMeaning":"n. 可靠性；可信赖性"},
-    {"word":"reliable","ipa":"/rɪˈlaɪəbəl/","aviationMeaning":"adj. 可靠的；设备、系统、数据或人员值得信赖的","generalMeaning":"adj. 可靠的；可信赖的"},
-    {"word":"reliably","ipa":"/rɪˈlaɪəbli/","aviationMeaning":"adv. 可靠地；系统、设备或人员持续正确地工作","generalMeaning":"adv. 可靠地"},
-    {"word":"reliance","ipa":"/rɪˈlaɪəns/","aviationMeaning":"n. 依赖；对自动化、系统或信息源的依靠","generalMeaning":"n. 依赖；信赖"},
-    {"word":"relied","ipa":"/rɪˈlaɪd/","aviationMeaning":"v. 已依赖；已依靠自动化、系统或信息源","generalMeaning":"v. 已依赖；信赖"},
-    {"word":"relies","ipa":"/rɪˈlaɪz/","aviationMeaning":"v. 依赖；依靠自动化、系统或信息源","generalMeaning":"v. 依赖；信赖"},
-    {"word":"relight","ipa":"/ˌriːˈlaɪt/","aviationMeaning":"v. 再点火；重新点燃发动机燃烧室","generalMeaning":"v. 再点燃"},
-    {"word":"relinquished","ipa":"/rɪˈlɪŋkwɪʃt/","aviationMeaning":"v. 已交出；已放弃控制权、责任或许可","generalMeaning":"v. 已放弃；交出"},
-    {"word":"relit","ipa":"/ˌriːˈlɪt/","aviationMeaning":"v. 已再点火；发动机燃烧已重新建立","generalMeaning":"v. 已再点燃"},
-    {"word":"relocate","ipa":"/ˌriːˈloʊkeɪt/","aviationMeaning":"v. 重新定位；将航空器、人员、设备或资源转移到新位置","generalMeaning":"v. 搬迁；重新安置"},
-    {"word":"reluctance","ipa":"/rɪˈlʌktəns/","aviationMeaning":"n. 不愿；对某项飞行、运行或处置行动的犹豫","generalMeaning":"n. 不情愿；勉强"},
-    {"word":"rely","ipa":"/rɪˈlaɪ/","aviationMeaning":"v. 依赖；依靠自动化、系统或信息源","generalMeaning":"v. 依赖；信赖"},
-    {"word":"relying","ipa":"/rɪˈlaɪɪŋ/","aviationMeaning":"v. 正依赖；正在依靠自动化、系统或信息源","generalMeaning":"v. 正依赖；信赖"},
-    {"word":"remain","ipa":"/rɪˈmeɪn/","aviationMeaning":"v. 保持；继续处于指定高度、航向、位置或状态","generalMeaning":"v. 保持；剩余"},
-    {"word":"remainder","ipa":"/rɪˈmeɪndər/","aviationMeaning":"n. 剩余部分；剩余燃油、航程、时间或项目","generalMeaning":"n. 剩余；余数"},
-    {"word":"remained","ipa":"/rɪˈmeɪnd/","aviationMeaning":"v. 保持；继续处于指定高度、航向或状态","generalMeaning":"v. 保持；剩余"},
-    {"word":"remaining","ipa":"/rɪˈmeɪnɪŋ/","aviationMeaning":"adj. 剩余的；未使用的燃油、航程、时间或项目","generalMeaning":"adj. 剩余的"},
-    {"word":"remains","ipa":"/rɪˈmeɪnz/","aviationMeaning":"v. 保持；继续处于指定高度、航向或状态","generalMeaning":"v. 保持；剩余"},
-    {"word":"remarkable","ipa":"/rɪˈmɑːrkəbəl/","aviationMeaning":"adj. 显著的；值得特别注意的运行、性能或事件","generalMeaning":"adj. 非凡的；显著的"},
-    {"word":"remarkably","ipa":"/rɪˈmɑːrkəbli/","aviationMeaning":"adv. 显著地；以值得注意的程度","generalMeaning":"adv. 非凡地；显著地"},
-    {"word":"remarks","ipa":"/rɪˈmɑːrks/","aviationMeaning":"n. 备注；飞行计划、通告或报告中的附加说明","generalMeaning":"n. 评论；备注（复数）"},
-    {"word":"remember","ipa":"/rɪˈmembər/","aviationMeaning":"v. 记住；记住检查单、程序、限制或指令","generalMeaning":"v. 记得；记住"},
-    {"word":"remembered","ipa":"/rɪˈmembərd/","aviationMeaning":"v. 已记住；已回想检查单、程序或限制","generalMeaning":"v. 已记得；记住"},
-    {"word":"remembers","ipa":"/rɪˈmembərz/","aviationMeaning":"v. 记住；回想检查单、程序、限制或指令","generalMeaning":"v. 记得；记住"},
-    {"word":"reminded","ipa":"/rɪˈmaɪndɪd/","aviationMeaning":"v. 已提醒；已提示机组或人员注意程序、限制或风险","generalMeaning":"v. 已提醒"},
-    {"word":"reminder","ipa":"/rɪˈmaɪndər/","aviationMeaning":"n. 提醒；用于提示机组或人员注意程序、限制或风险的信息","generalMeaning":"n. 提醒；提示物"},
-    {"word":"reminding","ipa":"/rɪˈmaɪndɪŋ/","aviationMeaning":"v. 正提醒；正在提示机组或人员注意程序或风险","generalMeaning":"v. 正提醒"},
-    {"word":"reminds","ipa":"/rɪˈmaɪndz/","aviationMeaning":"v. 提醒；提示机组或人员注意程序、限制或风险","generalMeaning":"v. 提醒"},
-    {"word":"remote","ipa":"/rɪˈmoʊt/","aviationMeaning":"adj. 偏远的；远离主要机场、支援设施或通信覆盖的","generalMeaning":"adj. 遥远的；远程的"},
-    {"word":"remote-area","ipa":"/rɪˈmoʊt ˈeriə/","aviationMeaning":"n. 偏远地区；远离主要机场、支援或通信覆盖的区域","generalMeaning":"n. 偏远地区"},
-    {"word":"remotely","ipa":"/rɪˈmoʊtli/","aviationMeaning":"adv. 远程地；通过远程通信或控制系统实施","generalMeaning":"adv. 远程地；遥远地"},
-    {"word":"removal","ipa":"/rɪˈmuːvəl/","aviationMeaning":"n. 移除；移除障碍物、设备、冰雪或故障部件","generalMeaning":"n. 移除；搬迁"},
-    {"word":"remove","ipa":"/rɪˈmuːv/","aviationMeaning":"v. 移除；移除障碍物、设备、冰雪或故障部件","generalMeaning":"v. 移除；搬走"}
+    {
+      "word": "reflects",
+      "ipa": "/rɪˈflekts/",
+      "aviationMeaning": "v. 反映；显示飞行状态、天气或系统状况",
+      "generalMeaning": "v. 反射；反映"
+    },
+    {
+      "word": "refrigerant",
+      "ipa": "/rɪˈfrɪdʒərənt/",
+      "aviationMeaning": "n. 制冷剂；空调或冷却系统中吸热循环的介质",
+      "generalMeaning": "n. 制冷剂"
+    },
+    {
+      "word": "refuel",
+      "ipa": "/ˌriːˈfjuːəl/",
+      "aviationMeaning": "v. 加油；为航空器重新补充燃油",
+      "generalMeaning": "v. 重新加油"
+    },
+    {
+      "word": "refueled",
+      "ipa": "/ˌriːˈfjuːəld/",
+      "aviationMeaning": "adj. 已加油的；航空器已重新补充燃油",
+      "generalMeaning": "adj. 已重新加油的"
+    },
+    {
+      "word": "refueling",
+      "ipa": "/ˌriːˈfjuːəlɪŋ/",
+      "aviationMeaning": "n. 加油；向航空器补充燃油的地面作业",
+      "generalMeaning": "n. 重新加油"
+    },
+    {
+      "word": "refuelling",
+      "ipa": "/ˌriːˈfjuːəlɪŋ/",
+      "aviationMeaning": "n. 加油；向航空器补充燃油的英式拼写",
+      "generalMeaning": "n. 重新加油"
+    },
+    {
+      "word": "refuse",
+      "ipa": "/rɪˈfjuːz/",
+      "aviationMeaning": "v. 拒绝；拒绝接受指令、许可或请求",
+      "generalMeaning": "v. 拒绝；n. 垃圾"
+    },
+    {
+      "word": "refused",
+      "ipa": "/rɪˈfjuːzd/",
+      "aviationMeaning": "v. 已拒绝；已不接受指令、许可或请求",
+      "generalMeaning": "v. 已拒绝"
+    },
+    {
+      "word": "refuses",
+      "ipa": "/rɪˈfjuːzɪz/",
+      "aviationMeaning": "v. 拒绝；不接受指令、许可或请求",
+      "generalMeaning": "v. 拒绝"
+    },
+    {
+      "word": "regain",
+      "ipa": "/rɪˈɡeɪn/",
+      "aviationMeaning": "v. 恢复；重新获得高度、航向、通信或控制权",
+      "generalMeaning": "v. 重新获得；恢复"
+    },
+    {
+      "word": "regained",
+      "ipa": "/rɪˈɡeɪnd/",
+      "aviationMeaning": "v. 已恢复；已重新获得高度、航向或控制权",
+      "generalMeaning": "v. 已重新获得；恢复"
+    },
+    {
+      "word": "regarded",
+      "ipa": "/rɪˈɡɑːrdɪd/",
+      "aviationMeaning": "v. 被视为；被认为是某种风险、限制或状态",
+      "generalMeaning": "v. 被看待；被认为"
+    },
+    {
+      "word": "regarding",
+      "ipa": "/rɪˈɡɑːrdɪŋ/",
+      "aviationMeaning": "prep. 关于；涉及飞行、系统、天气或程序",
+      "generalMeaning": "prep. 关于；至于"
+    },
+    {
+      "word": "regardless",
+      "ipa": "/rɪˈɡɑːrdləs/",
+      "aviationMeaning": "adv. 不管；不受某一条件或因素影响地",
+      "generalMeaning": "adv. 不管；不顾"
+    },
+    {
+      "word": "regards",
+      "ipa": "/rɪˈɡɑːrdz/",
+      "aviationMeaning": "v. 视为；涉及；需结合原文",
+      "generalMeaning": "v. 看待；问候（复数）"
+    },
+    {
+      "word": "region",
+      "ipa": "/ˈriːdʒən/",
+      "aviationMeaning": "n. 区域；飞行情报区、天气区或运行区域",
+      "generalMeaning": "n. 地区；区域"
+    },
+    {
+      "word": "regional",
+      "ipa": "/ˈriːdʒənəl/",
+      "aviationMeaning": "adj. 区域性的；地区机场、航线或空域相关",
+      "generalMeaning": "adj. 区域的；地方的"
+    },
+    {
+      "word": "regions",
+      "ipa": "/ˈriːdʒənz/",
+      "aviationMeaning": "n. 区域（复数）；多个飞行情报区、天气区或运行区域",
+      "generalMeaning": "n. 地区；区域（复数）"
+    },
+    {
+      "word": "registration",
+      "ipa": "/ˌredʒɪˈstreɪʃən/",
+      "aviationMeaning": "n. 登记；航空器注册号或正式登记过程",
+      "generalMeaning": "n. 登记；注册"
+    },
+    {
+      "word": "regular",
+      "ipa": "/ˈreɡjələr/",
+      "aviationMeaning": "adj. 定期的；按固定时刻、周期或程序进行的",
+      "generalMeaning": "adj. 定期的；规则的"
+    },
+    {
+      "word": "regularly",
+      "ipa": "/ˈreɡjələrli/",
+      "aviationMeaning": "adv. 定期地；按计划周期执行检查、训练或维护",
+      "generalMeaning": "adv. 定期地；经常"
+    },
+    {
+      "word": "regulate",
+      "ipa": "/ˈreɡjəleɪt/",
+      "aviationMeaning": "v. 调节；控制压力、温度、流量、速度或运行活动",
+      "generalMeaning": "v. 调节；管理"
+    },
+    {
+      "word": "regulated",
+      "ipa": "/ˈreɡjəleɪtɪd/",
+      "aviationMeaning": "adj. 受调节的；压力、温度或运行已受到控制",
+      "generalMeaning": "adj. 受管制的；受调节的"
+    },
+    {
+      "word": "regulates",
+      "ipa": "/ˈreɡjəleɪts/",
+      "aviationMeaning": "v. 调节；控制压力、温度、流量或运行活动",
+      "generalMeaning": "v. 调节；管理"
+    },
+    {
+      "word": "regulating",
+      "ipa": "/ˈreɡjəleɪtɪŋ/",
+      "aviationMeaning": "v. 正调节；正在控制压力、温度、流量或运行活动",
+      "generalMeaning": "v. 正调节；管理"
+    },
+    {
+      "word": "regulation",
+      "ipa": "/ˌreɡjəˈleɪʃən/",
+      "aviationMeaning": "n. 规章；航空运行、安全或适航的正式规则",
+      "generalMeaning": "n. 规章；调节"
+    },
+    {
+      "word": "regulations",
+      "ipa": "/ˌreɡjəˈleɪʃənz/",
+      "aviationMeaning": "n. 规章（复数）；航空运行、安全或适航的正式规则",
+      "generalMeaning": "n. 规章（复数）"
+    },
+    {
+      "word": "regulator",
+      "ipa": "/ˈreɡjəleɪtər/",
+      "aviationMeaning": "n. 调节器；控制压力、流量、电压或温度的装置",
+      "generalMeaning": "n. 调节器；监管者"
+    },
+    {
+      "word": "regulators",
+      "ipa": "/ˈreɡjəleɪtərz/",
+      "aviationMeaning": "n. 调节器（复数）；多个控制压力、电压或流量的装置",
+      "generalMeaning": "n. 调节器；监管者（复数）"
+    },
+    {
+      "word": "regulatory",
+      "ipa": "/ˈreɡjələtɔːri/",
+      "aviationMeaning": "adj. 监管的；与航空法规、适航或运行管制有关的",
+      "generalMeaning": "adj. 监管的；调节的"
+    },
+    {
+      "word": "reigniting",
+      "ipa": "/ˌriːɪɡˈnaɪtɪŋ/",
+      "aviationMeaning": "v. 正再点火；正在使发动机恢复燃烧",
+      "generalMeaning": "v. 正再点燃"
+    },
+    {
+      "word": "reinforce",
+      "ipa": "/ˌriːɪnˈfɔːrs/",
+      "aviationMeaning": "v. 加强；加强结构、安全措施、培训或信息",
+      "generalMeaning": "v. 加强；增援"
+    },
+    {
+      "word": "reject",
+      "ipa": "/rɪˈdʒekt/",
+      "aviationMeaning": "v. 中止；拒绝起飞或不接受指令、选项",
+      "generalMeaning": "v. 拒绝；排斥"
+    },
+    {
+      "word": "rejected",
+      "ipa": "/rɪˈdʒektɪd/",
+      "aviationMeaning": "adj. 被拒绝的；或已中止的起飞、方案或请求",
+      "generalMeaning": "adj. 被拒绝的"
+    },
+    {
+      "word": "rejected-takeoff",
+      "ipa": "/rɪˈdʒektɪd ˈteɪkɔːf/",
+      "aviationMeaning": "n. 中断起飞；在达到决断速度前停止起飞的动作",
+      "generalMeaning": "n. 中断起飞"
+    },
+    {
+      "word": "rejecting",
+      "ipa": "/rɪˈdʒektɪŋ/",
+      "aviationMeaning": "v. 正拒绝；正中止起飞或不接受指令、选项",
+      "generalMeaning": "v. 正拒绝；排斥"
+    },
+    {
+      "word": "rejection",
+      "ipa": "/rɪˈdʒekʃən/",
+      "aviationMeaning": "n. 拒绝；中断起飞或不接受申请、指令的行为",
+      "generalMeaning": "n. 拒绝；排斥"
+    },
+    {
+      "word": "rejoin",
+      "ipa": "/ˌriːˈdʒɔɪn/",
+      "aviationMeaning": "v. 重新加入；重新截获航路、航迹或编队",
+      "generalMeaning": "v. 重新加入"
+    },
+    {
+      "word": "relate",
+      "ipa": "/rɪˈleɪt/",
+      "aviationMeaning": "v. 有关；把信息、事件或风险与飞行运行联系起来",
+      "generalMeaning": "v. 有关；讲述"
+    },
+    {
+      "word": "related",
+      "ipa": "/rɪˈleɪtɪd/",
+      "aviationMeaning": "adj. 相关的；与飞行、设备、天气或程序有关的",
+      "generalMeaning": "adj. 有关的；相关的"
+    },
+    {
+      "word": "relates",
+      "ipa": "/rɪˈleɪts/",
+      "aviationMeaning": "v. 有关；把信息、事件或风险与飞行运行联系起来",
+      "generalMeaning": "v. 有关；讲述"
+    },
+    {
+      "word": "relation",
+      "ipa": "/rɪˈleɪʃən/",
+      "aviationMeaning": "n. 关系；飞行参数、事件或系统之间的关联",
+      "generalMeaning": "n. 关系；关联"
+    },
+    {
+      "word": "relationship",
+      "ipa": "/rɪˈleɪʃənʃɪp/",
+      "aviationMeaning": "n. 关系；飞行参数、事件或系统之间的相互联系",
+      "generalMeaning": "n. 关系；联系"
+    },
+    {
+      "word": "relationships",
+      "ipa": "/rɪˈleɪʃənʃɪps/",
+      "aviationMeaning": "n. 关系（复数）；多个飞行参数、事件或系统关联",
+      "generalMeaning": "n. 关系；联系（复数）"
+    },
+    {
+      "word": "relative",
+      "ipa": "/ˈrelətɪv/",
+      "aviationMeaning": "adj. 相对的；相对高度、相对方位或相对速度",
+      "generalMeaning": "adj. 相对的；n. 亲属"
+    },
+    {
+      "word": "relatively",
+      "ipa": "/ˈrelətɪvli/",
+      "aviationMeaning": "adv. 相对地；与其他条件相比程度较低或较高",
+      "generalMeaning": "adv. 相对地；比较地"
+    },
+    {
+      "word": "relax",
+      "ipa": "/rɪˈlæks/",
+      "aviationMeaning": "v. 放松；解除紧张或松开控制输入，需结合原文",
+      "generalMeaning": "v. 放松；松弛"
+    },
+    {
+      "word": "relaxing",
+      "ipa": "/rɪˈlæksɪŋ/",
+      "aviationMeaning": "v. 正放松；解除紧张或松开控制输入",
+      "generalMeaning": "v. 正放松；松弛"
+    },
+    {
+      "word": "relay",
+      "ipa": "/ˈriːleɪ/",
+      "aviationMeaning": "v. 转发；转递管制、天气或紧急通信信息",
+      "generalMeaning": "v. 转发；n. 继电器"
+    },
+    {
+      "word": "relayed",
+      "ipa": "/ˈriːleɪd/",
+      "aviationMeaning": "v. 已转发；已转递管制、天气或紧急信息",
+      "generalMeaning": "v. 已转发；传递"
+    },
+    {
+      "word": "relays",
+      "ipa": "/ˈriːleɪz/",
+      "aviationMeaning": "n. 继电器（复数）；控制电路中切换电流的装置",
+      "generalMeaning": "n. 接力；继电器（复数）"
+    },
+    {
+      "word": "release",
+      "ipa": "/rɪˈliːs/",
+      "aviationMeaning": "v. 放行；解除停放、限制或向航空器签发许可",
+      "generalMeaning": "v. 释放；发布"
+    },
+    {
+      "word": "released",
+      "ipa": "/rɪˈliːst/",
+      "aviationMeaning": "adj. 已释放的；已解除限制或已签发放行",
+      "generalMeaning": "adj. 已释放的；已发布的"
+    },
+    {
+      "word": "releasing",
+      "ipa": "/rɪˈliːsɪŋ/",
+      "aviationMeaning": "v. 正放行；正在解除限制或签发许可",
+      "generalMeaning": "v. 正释放；发布"
+    },
+    {
+      "word": "relevant",
+      "ipa": "/ˈreləvənt/",
+      "aviationMeaning": "adj. 相关的；与当前飞行、风险或程序直接有关的",
+      "generalMeaning": "adj. 相关的；切题的"
+    },
+    {
+      "word": "reliability",
+      "ipa": "/rɪˌlaɪəˈbɪləti/",
+      "aviationMeaning": "n. 可靠性；设备、系统或运行持续正确工作的能力",
+      "generalMeaning": "n. 可靠性；可信赖性"
+    },
+    {
+      "word": "reliable",
+      "ipa": "/rɪˈlaɪəbəl/",
+      "aviationMeaning": "adj. 可靠的；设备、系统、数据或人员值得信赖的",
+      "generalMeaning": "adj. 可靠的；可信赖的"
+    },
+    {
+      "word": "reliance",
+      "ipa": "/rɪˈlaɪəns/",
+      "aviationMeaning": "n. 依赖；对自动化、系统或信息源的依靠",
+      "generalMeaning": "n. 依赖；信赖"
+    },
+    {
+      "word": "relied",
+      "ipa": "/rɪˈlaɪd/",
+      "aviationMeaning": "v. 已依赖；已依靠自动化、系统或信息源",
+      "generalMeaning": "v. 已依赖；信赖"
+    },
+    {
+      "word": "relies",
+      "ipa": "/rɪˈlaɪz/",
+      "aviationMeaning": "v. 依赖；依靠自动化、系统或信息源",
+      "generalMeaning": "v. 依赖；信赖"
+    },
+    {
+      "word": "relinquished",
+      "ipa": "/rɪˈlɪŋkwɪʃt/",
+      "aviationMeaning": "v. 已交出；已放弃控制权、责任或许可",
+      "generalMeaning": "v. 已放弃；交出"
+    },
+    {
+      "word": "relit",
+      "ipa": "/ˌriːˈlɪt/",
+      "aviationMeaning": "v. 已再点火；发动机燃烧已重新建立",
+      "generalMeaning": "v. 已再点燃"
+    },
+    {
+      "word": "relocate",
+      "ipa": "/ˌriːˈloʊkeɪt/",
+      "aviationMeaning": "v. 重新定位；将航空器、人员、设备或资源转移到新位置",
+      "generalMeaning": "v. 搬迁；重新安置"
+    },
+    {
+      "word": "rely",
+      "ipa": "/rɪˈlaɪ/",
+      "aviationMeaning": "v. 依赖；依靠自动化、系统或信息源",
+      "generalMeaning": "v. 依赖；信赖"
+    },
+    {
+      "word": "relying",
+      "ipa": "/rɪˈlaɪɪŋ/",
+      "aviationMeaning": "v. 正依赖；正在依靠自动化、系统或信息源",
+      "generalMeaning": "v. 正依赖；信赖"
+    },
+    {
+      "word": "remain",
+      "ipa": "/rɪˈmeɪn/",
+      "aviationMeaning": "v. 保持；继续处于指定高度、航向、位置或状态",
+      "generalMeaning": "v. 保持；剩余"
+    },
+    {
+      "word": "remainder",
+      "ipa": "/rɪˈmeɪndər/",
+      "aviationMeaning": "n. 剩余部分；剩余燃油、航程、时间或项目",
+      "generalMeaning": "n. 剩余；余数"
+    },
+    {
+      "word": "remained",
+      "ipa": "/rɪˈmeɪnd/",
+      "aviationMeaning": "v. 保持；继续处于指定高度、航向或状态",
+      "generalMeaning": "v. 保持；剩余"
+    },
+    {
+      "word": "remaining",
+      "ipa": "/rɪˈmeɪnɪŋ/",
+      "aviationMeaning": "adj. 剩余的；未使用的燃油、航程、时间或项目",
+      "generalMeaning": "adj. 剩余的"
+    },
+    {
+      "word": "remains",
+      "ipa": "/rɪˈmeɪnz/",
+      "aviationMeaning": "v. 保持；继续处于指定高度、航向或状态",
+      "generalMeaning": "v. 保持；剩余"
+    },
+    {
+      "word": "remarkable",
+      "ipa": "/rɪˈmɑːrkəbəl/",
+      "aviationMeaning": "adj. 显著的；值得特别注意的运行、性能或事件",
+      "generalMeaning": "adj. 非凡的；显著的"
+    },
+    {
+      "word": "remarkably",
+      "ipa": "/rɪˈmɑːrkəbli/",
+      "aviationMeaning": "adv. 显著地；以值得注意的程度",
+      "generalMeaning": "adv. 非凡地；显著地"
+    },
+    {
+      "word": "remember",
+      "ipa": "/rɪˈmembər/",
+      "aviationMeaning": "v. 记住；记住检查单、程序、限制或指令",
+      "generalMeaning": "v. 记得；记住"
+    },
+    {
+      "word": "reminded",
+      "ipa": "/rɪˈmaɪndɪd/",
+      "aviationMeaning": "v. 已提醒；已提示机组或人员注意程序、限制或风险",
+      "generalMeaning": "v. 已提醒"
+    },
+    {
+      "word": "reminding",
+      "ipa": "/rɪˈmaɪndɪŋ/",
+      "aviationMeaning": "v. 正提醒；正在提示机组或人员注意程序或风险",
+      "generalMeaning": "v. 正提醒"
+    },
+    {
+      "word": "reminds",
+      "ipa": "/rɪˈmaɪndz/",
+      "aviationMeaning": "v. 提醒；提示机组或人员注意程序、限制或风险",
+      "generalMeaning": "v. 提醒"
+    },
+    {
+      "word": "remote",
+      "ipa": "/rɪˈmoʊt/",
+      "aviationMeaning": "adj. 偏远的；远离主要机场、支援设施或通信覆盖的",
+      "generalMeaning": "adj. 遥远的；远程的"
+    },
+    {
+      "word": "removal",
+      "ipa": "/rɪˈmuːvəl/",
+      "aviationMeaning": "n. 移除；移除障碍物、设备、冰雪或故障部件",
+      "generalMeaning": "n. 移除；搬迁"
+    },
+    {
+      "word": "remove",
+      "ipa": "/rɪˈmuːv/",
+      "aviationMeaning": "v. 移除；移除障碍物、设备、冰雪或故障部件",
+      "generalMeaning": "v. 移除；搬走"
+    }
   ]
 }

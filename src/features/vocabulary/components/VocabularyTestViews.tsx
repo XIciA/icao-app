@@ -1,4 +1,4 @@
-import { ArrowLeft, BarChart3, Check, Clock3, RotateCcw, Volume2, X } from 'lucide-react-native';
+import { ArrowLeft, BarChart3, Check, Clock3, RotateCcw, Volume2, X } from '@/components/ui/icons';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';

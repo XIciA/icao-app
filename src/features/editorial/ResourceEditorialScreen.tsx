@@ -1,6 +1,6 @@
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
-import { ArrowRight, CalendarDays, FileText, WifiOff } from 'lucide-react-native';
+import { ArrowRight, CalendarDays, FileText, WifiOff } from '@/components/ui/icons';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import { TopBar } from '@/components/navigation/TopBar';

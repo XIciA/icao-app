@@ -61,7 +61,10 @@ export type ExpoRecorderAdapter = {
   cancel: () => Promise<string | undefined>;
   durationMillis: number;
   isRecording: () => boolean;
+  lifecycleRevision?: number;
+  permissionReady?: boolean;
   prepare: () => Promise<void>;
+  primePermission?: () => Promise<boolean>;
   requestPermission: () => Promise<boolean>;
   start: () => void;
   stop: () => Promise<RawRecording>;

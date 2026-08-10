@@ -1,105 +1,545 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"dual","ipa":"/ˈduːəl/","aviationMeaning":"adj. 双重的；双系统或双操纵的","generalMeaning":"adj. 双重的；双的"},
-    {"word":"dubai","ipa":"/duːˈbaɪ/","aviationMeaning":"n. 迪拜；机场所在城市","generalMeaning":"n. 迪拜（阿联酋城市）"},
-    {"word":"dublin","ipa":"/ˈdʌblɪn/","aviationMeaning":"n. 都柏林；机场所在城市","generalMeaning":"n. 都柏林（爱尔兰首都）"},
-    {"word":"duck","ipa":"/dʌk/","aviationMeaning":"v. 低头躲避；n. 鸭；机场野生动物","generalMeaning":"n. 鸭；v. 躲避"},
-    {"word":"duct","ipa":"/dʌkt/","aviationMeaning":"n. 导管；空气、液压或燃油管道","generalMeaning":"n. 管道；导管"},
-    {"word":"ducts","ipa":"/dʌkts/","aviationMeaning":"n. 导管；空气、液压或燃油管道（复数）","generalMeaning":"n. 管道；导管（复数）"},
-    {"word":"ductwork","ipa":"/ˈdʌktwɜːrk/","aviationMeaning":"n. 管道系统；环境控制系统管路","generalMeaning":"n. 管道工程"},
-    {"word":"due","ipa":"/duː/","aviationMeaning":"adj. 应到的；预计时间或到期的","generalMeaning":"adj. 应到的；应得的"},
-    {"word":"duely","ipa":"/ˈduːli/","aviationMeaning":"n. 题库原文中 duly 的疑似拼写错误","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"dulles","ipa":"/ˈdʌləs/","aviationMeaning":"n. 杜勒斯；机场名称","generalMeaning":"n. 专有地名"},
-    {"word":"dumet","ipa":"/duːˈmet/","aviationMeaning":"n. 航路点、呼号或专有名称","generalMeaning":"n. 专有名称；请结合原文"},
-    {"word":"dump","ipa":"/dʌmp/","aviationMeaning":"v. 放油、倾倒；n. 倾倒点","generalMeaning":"v. 倾倒；n. 垃圾场"},
-    {"word":"dumped","ipa":"/dʌmpt/","aviationMeaning":"v. 已放油或倾倒","generalMeaning":"v. 已倾倒"},
-    {"word":"dumping","ipa":"/ˈdʌmpɪŋ/","aviationMeaning":"n. 放油；v. 正倾倒或排放","generalMeaning":"n. 倾倒；垃圾倾倒"},
-    {"word":"duplicated","ipa":"/ˈduːplɪkeɪtɪd/","aviationMeaning":"adj. 重复的；冗余系统或重复记录","generalMeaning":"adj. 重复的；复制的"},
-    {"word":"durango","ipa":"/dʊˈræŋɡoʊ/","aviationMeaning":"n. 杜兰戈；机场所在城市","generalMeaning":"n. 杜兰戈（地名）"},
-    {"word":"durango's","ipa":"/dʊˈræŋɡoʊz/","aviationMeaning":"n. 杜兰戈的；表示所属关系","generalMeaning":"n. 杜兰戈的；表示所属关系"},
-    {"word":"duration","ipa":"/duˈreɪʃən/","aviationMeaning":"n. 持续时间；飞行、等待或程序时长","generalMeaning":"n. 持续时间"},
-    {"word":"duress","ipa":"/duˈres/","aviationMeaning":"n. 胁迫；安保或非法干扰语境","generalMeaning":"n. 胁迫；压力"},
-    {"word":"during","ipa":"/ˈdʊrɪŋ/","aviationMeaning":"prep. 在……期间；飞行或操作期间","generalMeaning":"prep. 在……期间"},
-    {"word":"duringlanding","ipa":"/ˈdʊrɪŋ ˈlændɪŋ/","aviationMeaning":"n. 题库原文中 during landing 的疑似粘连","generalMeaning":"n. 疑似词语粘连；请结合原文"},
-    {"word":"dusk","ipa":"/dʌsk/","aviationMeaning":"n. 黄昏；低照度飞行时段","generalMeaning":"n. 黄昏"},
-    {"word":"dust","ipa":"/dʌst/","aviationMeaning":"n. 尘土；跑道、发动机或能见度污染物","generalMeaning":"n. 灰尘；尘土"},
-    {"word":"duties","ipa":"/ˈduːtiz/","aviationMeaning":"n. 职责；机组或地勤职责（复数）","generalMeaning":"n. 职责；税（复数）"},
-    {"word":"duty","ipa":"/ˈduːti/","aviationMeaning":"n. 职责；值勤；飞行执勤时间","generalMeaning":"n. 职责；税"},
-    {"word":"duty-free","ipa":"/ˌduːti ˈfriː/","aviationMeaning":"adj. 免税的；机场免税商品","generalMeaning":"adj. 免税的"},
-    {"word":"duty-related","ipa":"/ˈduːti rɪˈleɪtɪd/","aviationMeaning":"adj. 与执勤职责有关的","generalMeaning":"adj. 与职责有关的"},
-    {"word":"duty-time","ipa":"/ˈduːti taɪm/","aviationMeaning":"n. 值勤时间","generalMeaning":"n. 工作时间"},
-    {"word":"dxg","ipa":"/ˌdiː eks ˈdʒiː/","aviationMeaning":"n. 航空资料中的缩写；需结合原文","generalMeaning":"n. 不明缩写；请结合原文"},
-    {"word":"dynamic","ipa":"/daɪˈnæmɪk/","aviationMeaning":"adj. 动态的；运行状态不断变化的","generalMeaning":"adj. 动态的；有活力的"},
-    {"word":"dynamically","ipa":"/daɪˈnæmɪkli/","aviationMeaning":"adv. 动态地；随运行状态变化地","generalMeaning":"adv. 动态地"},
-    {"word":"dynamics","ipa":"/daɪˈnæmɪks/","aviationMeaning":"n. 动力学；飞行或流体动力学","generalMeaning":"n. 动力学；动态"},
-    {"word":"e","ipa":"/iː/","aviationMeaning":"n. 字母 E；ICAO 拼读词 Echo 对应字母","generalMeaning":"n. 英文字母 E"},
-    {"word":"e-cigarette","ipa":"/ˌiː sɪɡəˈret/","aviationMeaning":"n. 电子烟；航空运输受限制物品","generalMeaning":"n. 电子烟"},
-    {"word":"e-game","ipa":"/ˈiː ɡeɪm/","aviationMeaning":"n. 电子游戏；客舱娱乐内容","generalMeaning":"n. 电子游戏"},
-    {"word":"each","ipa":"/iːtʃ/","aviationMeaning":"det. 每个；每架航空器或每名人员","generalMeaning":"det. 每个；各自"},
-    {"word":"eagle","ipa":"/ˈiːɡəl/","aviationMeaning":"n. 鹰；鸟击风险对象或呼号名称","generalMeaning":"n. 鹰"},
-    {"word":"eal","ipa":"/ˌiː eɪ ˈel/","aviationMeaning":"n. 航空资料中的缩写；需结合原文","generalMeaning":"n. 不明缩写；请结合原文"},
-    {"word":"ear","ipa":"/ɪr/","aviationMeaning":"n. 耳朵；气压伤或听觉告警语境","generalMeaning":"n. 耳朵"},
-    {"word":"earlier","ipa":"/ˈɜːrliər/","aviationMeaning":"adj. 更早的；较早航班或时刻","generalMeaning":"adj. 更早的"},
-    {"word":"early","ipa":"/ˈɜːrli/","aviationMeaning":"adj. 早的；提前到达或起飞的","generalMeaning":"adj. 早的；adv. 早"},
-    {"word":"ears","ipa":"/ɪrz/","aviationMeaning":"n. 耳朵（复数）；气压伤或听觉告警语境","generalMeaning":"n. 耳朵（复数）"},
-    {"word":"earth's","ipa":"/ɜːrθs/","aviationMeaning":"n. 地球的；表示所属关系","generalMeaning":"n. 地球的；表示所属关系"},
-    {"word":"easier","ipa":"/ˈiːziər/","aviationMeaning":"adj. 更容易的；工作负荷更低的","generalMeaning":"adj. 更容易的"},
-    {"word":"easiest","ipa":"/ˈiːziɪst/","aviationMeaning":"adj. 最容易的；最简单的","generalMeaning":"adj. 最容易的"},
-    {"word":"easily","ipa":"/ˈiːzɪli/","aviationMeaning":"adv. 容易地；可轻易执行或识别地","generalMeaning":"adv. 容易地"},
-    {"word":"east","ipa":"/iːst/","aviationMeaning":"n. 东；东方航向或区域","generalMeaning":"n. 东方；东部"},
-    {"word":"eastar","ipa":"/ˈiːstɑːr/","aviationMeaning":"n. Eastar 航空公司名称","generalMeaning":"n. 专有名称"},
-    {"word":"eastern","ipa":"/ˈiːstərn/","aviationMeaning":"adj. 东方的；东部航路或地区的","generalMeaning":"adj. 东方的；东部的"},
-    {"word":"eastnortheast","ipa":"/ˌiːst nɔːrθˈiːst/","aviationMeaning":"n. 东北偏东；风向或航向","generalMeaning":"n. 东北偏东"},
-    {"word":"eastsoutheast","ipa":"/ˌiːst saʊθˈiːst/","aviationMeaning":"n. 东南偏东；风向或航向","generalMeaning":"n. 东南偏东"},
-    {"word":"eastward","ipa":"/ˈiːstwərd/","aviationMeaning":"adj. 向东的；东向航路或飞行","generalMeaning":"adj. 向东的"},
-    {"word":"easy","ipa":"/ˈiːzi/","aviationMeaning":"adj. 容易的；低工作负荷的","generalMeaning":"adj. 容易的；轻松的"},
-    {"word":"easyjet","ipa":"/ˈiːzi dʒet/","aviationMeaning":"n. 易捷航空公司名称","generalMeaning":"n. 专有名称"},
-    {"word":"eat","ipa":"/iːt/","aviationMeaning":"v. 吃；机组或旅客餐饮语境","generalMeaning":"v. 吃"},
-    {"word":"eating","ipa":"/ˈiːtɪŋ/","aviationMeaning":"n. 进食；机组或旅客餐饮语境","generalMeaning":"n. 吃；进食"},
-    {"word":"eb","ipa":"/ˌiː ˈbiː/","aviationMeaning":"n. 东向（eastbound）缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"ebt","ipa":"/ˌiː biː ˈtiː/","aviationMeaning":"n. 基于证据的训练（缩写）","generalMeaning":"n. 培训方法缩写"},
-    {"word":"ebt-style","ipa":"/ˌiː biː ˈtiː staɪl/","aviationMeaning":"adj. 基于证据的训练风格","generalMeaning":"adj. 基于证据训练的"},
-    {"word":"ec","ipa":"/ˌiː ˈsiː/","aviationMeaning":"n. 欧洲共同体或电子控制缩写；需结合原文","generalMeaning":"n. 缩写；请结合原文"},
-    {"word":"ecam","ipa":"/ˈiːkæm/","aviationMeaning":"n. 电子集中飞机监控系统（缩写）","generalMeaning":"n. 航电监控系统缩写"},
-    {"word":"echo","ipa":"/ˈekoʊ/","aviationMeaning":"n. 回波；字母 E 的 ICAO 拼读词","generalMeaning":"n. 回声；回响"},
-    {"word":"echoed","ipa":"/ˈekoʊd/","aviationMeaning":"v. 已回响；已复述通话","generalMeaning":"v. 已回响；重复"},
-    {"word":"economic","ipa":"/ˌiːkəˈnɑːmɪk/","aviationMeaning":"adj. 经济的；燃油或运营成本相关","generalMeaning":"adj. 经济的"},
-    {"word":"economical","ipa":"/ˌiːkəˈnɑːmɪkəl/","aviationMeaning":"adj. 节约的；经济速度或燃油效率高的","generalMeaning":"adj. 节约的；经济的"},
-    {"word":"economics","ipa":"/ˌiːkəˈnɑːmɪks/","aviationMeaning":"n. 航空经济；运行成本分析","generalMeaning":"n. 经济学"},
-    {"word":"economy","ipa":"/ɪˈkɑːnəmi/","aviationMeaning":"n. 经济性；经济舱；燃油经济性","generalMeaning":"n. 经济；节约"},
-    {"word":"edge","ipa":"/edʒ/","aviationMeaning":"n. 边缘；跑道、机翼或显示边缘","generalMeaning":"n. 边缘；优势"},
-    {"word":"edges","ipa":"/ˈedʒɪz/","aviationMeaning":"n. 边缘（复数）；跑道、机翼边缘","generalMeaning":"n. 边缘（复数）"},
-    {"word":"edinburg","ipa":"/ˈedɪnbɜːrɡ/","aviationMeaning":"n. 题库原文中 Edinburgh 的疑似拼写错误","generalMeaning":"n. 疑似地名拼写错误；请结合原文"},
-    {"word":"edinburgh","ipa":"/ˈedɪnbɜːrə/","aviationMeaning":"n. 爱丁堡；机场所在城市","generalMeaning":"n. 爱丁堡（苏格兰城市）"},
-    {"word":"edinburgh's","ipa":"/ˈedɪnbɜːrz/","aviationMeaning":"n. 爱丁堡的；表示所属关系","generalMeaning":"n. 爱丁堡的；表示所属关系"},
-    {"word":"edmonton","ipa":"/ˈedmənˌtɑːn/","aviationMeaning":"n. 埃德蒙顿；机场所在城市","generalMeaning":"n. 埃德蒙顿（加拿大城市）"},
-    {"word":"education","ipa":"/ˌedʒəˈkeɪʃən/","aviationMeaning":"n. 教育；飞行培训和安全教育","generalMeaning":"n. 教育"},
-    {"word":"eecho","ipa":"/ˈekoʊ/","aviationMeaning":"n. 题库原文中 echo 的疑似拼写错误","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"efb","ipa":"/ˌiː ef ˈbiː/","aviationMeaning":"n. 电子飞行包（缩写）","generalMeaning":"n. 电子飞行包"},
-    {"word":"effect","ipa":"/ɪˈfekt/","aviationMeaning":"n. 影响；天气、系统或操作效应","generalMeaning":"n. 效果；影响"},
-    {"word":"effective","ipa":"/ɪˈfektɪv/","aviationMeaning":"adj. 有效的；生效的；可发挥作用的","generalMeaning":"adj. 有效的；生效的"},
-    {"word":"effectively","ipa":"/ɪˈfektɪvli/","aviationMeaning":"adv. 有效地；按预期发挥作用地","generalMeaning":"adv. 有效地；实际上"},
-    {"word":"effectiveness","ipa":"/ɪˈfektɪvnəs/","aviationMeaning":"n. 有效性；安全措施或系统效能","generalMeaning":"n. 有效性；效力"},
-    {"word":"effects","ipa":"/ɪˈfekts/","aviationMeaning":"n. 影响；天气、系统或操作效应（复数）","generalMeaning":"n. 效果；影响（复数）"},
-    {"word":"effg","ipa":"/ˌiː ef ef ˈdʒiː/","aviationMeaning":"n. 航空资料中的缩写；需结合原文","generalMeaning":"n. 不明缩写；请结合原文"},
-    {"word":"efficiency","ipa":"/ɪˈfɪʃənsi/","aviationMeaning":"n. 效率；燃油、运行或系统效率","generalMeaning":"n. 效率；效能"},
-    {"word":"efficient","ipa":"/ɪˈfɪʃənt/","aviationMeaning":"adj. 高效的；燃油或运行效率高的","generalMeaning":"adj. 有效率的"},
-    {"word":"efficiently","ipa":"/ɪˈfɪʃəntli/","aviationMeaning":"adv. 高效地；以低资源消耗运行","generalMeaning":"adv. 有效率地"},
-    {"word":"effort","ipa":"/ˈefərt/","aviationMeaning":"n. 努力；操纵力或安全改进投入","generalMeaning":"n. 努力；气力"},
-    {"word":"efforts","ipa":"/ˈefərts/","aviationMeaning":"n. 努力；安全改进投入（复数）","generalMeaning":"n. 努力（复数）"},
-    {"word":"efis","ipa":"/ˈiːfɪs/","aviationMeaning":"n. 电子飞行仪表系统（缩写）","generalMeaning":"n. 电子飞行仪表系统"},
-    {"word":"eftand","ipa":"/eft ænd/","aviationMeaning":"n. 题库原文中的疑似词语粘连或拼写错误","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"efvs","ipa":"/ˌiː ef viː ˈes/","aviationMeaning":"n. 增强飞行视景系统（缩写）","generalMeaning":"n. 航电系统缩写"},
-    {"word":"egde","ipa":"/edʒ/","aviationMeaning":"n. 题库原文中 edge 的疑似拼写错误","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"egpws","ipa":"/ˌiː dʒiː piː dʌbəljuː ˈes/","aviationMeaning":"n. 增强型近地警告系统（缩写）","generalMeaning":"n. 航电告警系统缩写"},
-    {"word":"egt","ipa":"/ˌiː dʒiː ˈtiː/","aviationMeaning":"n. 排气温度（缩写）","generalMeaning":"n. 排气温度缩写"},
-    {"word":"egypt","ipa":"/ˈiːdʒɪpt/","aviationMeaning":"n. 埃及；运行区域或国别","generalMeaning":"n. 埃及"},
-    {"word":"egypt's","ipa":"/ˈiːdʒɪpts/","aviationMeaning":"n. 埃及的；表示所属关系","generalMeaning":"n. 埃及的；表示所属关系"},
-    {"word":"eh","ipa":"/eɪ/","aviationMeaning":"interj. 通话中的犹豫语气词","generalMeaning":"interj. 呃；啊"},
-    {"word":"eicas","ipa":"/ˈiːkæs/","aviationMeaning":"n. 发动机指示与机组告警系统（缩写）","generalMeaning":"n. 航电告警系统缩写"},
-    {"word":"eight","ipa":"/eɪt/","aviationMeaning":"num. 八；通话数字读法","generalMeaning":"num. 八"},
-    {"word":"eight-tenths","ipa":"/eɪt tenθs/","aviationMeaning":"n. 八分之十；数值或云量表达","generalMeaning":"n. 十分之八"},
-    {"word":"eighty","ipa":"/ˈeɪti/","aviationMeaning":"num. 八十；通话数字读法","generalMeaning":"num. 八十"}
+    {
+      "word": "dual",
+      "ipa": "/ˈduːəl/",
+      "aviationMeaning": "adj. 双重的；双系统或双操纵的",
+      "generalMeaning": "adj. 双重的；双的"
+    },
+    {
+      "word": "dubai",
+      "ipa": "/duːˈbaɪ/",
+      "aviationMeaning": "n. 迪拜；机场所在城市",
+      "generalMeaning": "n. 迪拜（阿联酋城市）"
+    },
+    {
+      "word": "dublin",
+      "ipa": "/ˈdʌblɪn/",
+      "aviationMeaning": "n. 都柏林；机场所在城市",
+      "generalMeaning": "n. 都柏林（爱尔兰首都）"
+    },
+    {
+      "word": "duck",
+      "ipa": "/dʌk/",
+      "aviationMeaning": "v. 低头躲避；n. 鸭；机场野生动物",
+      "generalMeaning": "n. 鸭；v. 躲避"
+    },
+    {
+      "word": "duct",
+      "ipa": "/dʌkt/",
+      "aviationMeaning": "n. 导管；空气、液压或燃油管道",
+      "generalMeaning": "n. 管道；导管"
+    },
+    {
+      "word": "ducts",
+      "ipa": "/dʌkts/",
+      "aviationMeaning": "n. 导管；空气、液压或燃油管道（复数）",
+      "generalMeaning": "n. 管道；导管（复数）"
+    },
+    {
+      "word": "ductwork",
+      "ipa": "/ˈdʌktwɜːrk/",
+      "aviationMeaning": "n. 管道系统；环境控制系统管路",
+      "generalMeaning": "n. 管道工程"
+    },
+    {
+      "word": "due",
+      "ipa": "/duː/",
+      "aviationMeaning": "adj. 应到的；预计时间或到期的",
+      "generalMeaning": "adj. 应到的；应得的"
+    },
+    {
+      "word": "dulles",
+      "ipa": "/ˈdʌləs/",
+      "aviationMeaning": "n. 杜勒斯；机场名称",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "dumet",
+      "ipa": "/duːˈmet/",
+      "aviationMeaning": "n. 航路点、呼号或专有名称",
+      "generalMeaning": "n. 专有名称；请结合原文"
+    },
+    {
+      "word": "dump",
+      "ipa": "/dʌmp/",
+      "aviationMeaning": "v. 放油、倾倒；n. 倾倒点",
+      "generalMeaning": "v. 倾倒；n. 垃圾场"
+    },
+    {
+      "word": "dumped",
+      "ipa": "/dʌmpt/",
+      "aviationMeaning": "v. 已放油或倾倒",
+      "generalMeaning": "v. 已倾倒"
+    },
+    {
+      "word": "dumping",
+      "ipa": "/ˈdʌmpɪŋ/",
+      "aviationMeaning": "n. 放油；v. 正倾倒或排放",
+      "generalMeaning": "n. 倾倒；垃圾倾倒"
+    },
+    {
+      "word": "durango",
+      "ipa": "/dʊˈræŋɡoʊ/",
+      "aviationMeaning": "n. 杜兰戈；机场所在城市",
+      "generalMeaning": "n. 杜兰戈（地名）"
+    },
+    {
+      "word": "durango's",
+      "ipa": "/dʊˈræŋɡoʊz/",
+      "aviationMeaning": "n. 杜兰戈的；表示所属关系",
+      "generalMeaning": "n. 杜兰戈的；表示所属关系"
+    },
+    {
+      "word": "duration",
+      "ipa": "/duˈreɪʃən/",
+      "aviationMeaning": "n. 持续时间；飞行、等待或程序时长",
+      "generalMeaning": "n. 持续时间"
+    },
+    {
+      "word": "duress",
+      "ipa": "/duˈres/",
+      "aviationMeaning": "n. 胁迫；安保或非法干扰语境",
+      "generalMeaning": "n. 胁迫；压力"
+    },
+    {
+      "word": "during",
+      "ipa": "/ˈdʊrɪŋ/",
+      "aviationMeaning": "prep. 在……期间；飞行或操作期间",
+      "generalMeaning": "prep. 在……期间"
+    },
+    {
+      "word": "dusk",
+      "ipa": "/dʌsk/",
+      "aviationMeaning": "n. 黄昏；低照度飞行时段",
+      "generalMeaning": "n. 黄昏"
+    },
+    {
+      "word": "dust",
+      "ipa": "/dʌst/",
+      "aviationMeaning": "n. 尘土；跑道、发动机或能见度污染物",
+      "generalMeaning": "n. 灰尘；尘土"
+    },
+    {
+      "word": "duties",
+      "ipa": "/ˈduːtiz/",
+      "aviationMeaning": "n. 职责；机组或地勤职责（复数）",
+      "generalMeaning": "n. 职责；税（复数）"
+    },
+    {
+      "word": "duty",
+      "ipa": "/ˈduːti/",
+      "aviationMeaning": "n. 职责；值勤；飞行执勤时间",
+      "generalMeaning": "n. 职责；税"
+    },
+    {
+      "word": "duty-related",
+      "ipa": "/ˈduːti rɪˈleɪtɪd/",
+      "aviationMeaning": "adj. 与执勤职责有关的",
+      "generalMeaning": "adj. 与职责有关的"
+    },
+    {
+      "word": "duty-time",
+      "ipa": "/ˈduːti taɪm/",
+      "aviationMeaning": "n. 值勤时间",
+      "generalMeaning": "n. 工作时间"
+    },
+    {
+      "word": "dxg",
+      "ipa": "/ˌdiː eks ˈdʒiː/",
+      "aviationMeaning": "n. 航空资料中的缩写；需结合原文",
+      "generalMeaning": "n. 不明缩写；请结合原文"
+    },
+    {
+      "word": "dynamic",
+      "ipa": "/daɪˈnæmɪk/",
+      "aviationMeaning": "adj. 动态的；运行状态不断变化的",
+      "generalMeaning": "adj. 动态的；有活力的"
+    },
+    {
+      "word": "dynamically",
+      "ipa": "/daɪˈnæmɪkli/",
+      "aviationMeaning": "adv. 动态地；随运行状态变化地",
+      "generalMeaning": "adv. 动态地"
+    },
+    {
+      "word": "dynamics",
+      "ipa": "/daɪˈnæmɪks/",
+      "aviationMeaning": "n. 动力学；飞行或流体动力学",
+      "generalMeaning": "n. 动力学；动态"
+    },
+    {
+      "word": "e",
+      "ipa": "/iː/",
+      "aviationMeaning": "n. 字母 E；ICAO 拼读词 Echo 对应字母",
+      "generalMeaning": "n. 英文字母 E"
+    },
+    {
+      "word": "e-cigarette",
+      "ipa": "/ˌiː sɪɡəˈret/",
+      "aviationMeaning": "n. 电子烟；航空运输受限制物品",
+      "generalMeaning": "n. 电子烟"
+    },
+    {
+      "word": "e-game",
+      "ipa": "/ˈiː ɡeɪm/",
+      "aviationMeaning": "n. 电子游戏；客舱娱乐内容",
+      "generalMeaning": "n. 电子游戏"
+    },
+    {
+      "word": "each",
+      "ipa": "/iːtʃ/",
+      "aviationMeaning": "det. 每个；每架航空器或每名人员",
+      "generalMeaning": "det. 每个；各自"
+    },
+    {
+      "word": "eagle",
+      "ipa": "/ˈiːɡəl/",
+      "aviationMeaning": "n. 鹰；鸟击风险对象或呼号名称",
+      "generalMeaning": "n. 鹰"
+    },
+    {
+      "word": "eal",
+      "ipa": "/ˌiː eɪ ˈel/",
+      "aviationMeaning": "n. 航空资料中的缩写；需结合原文",
+      "generalMeaning": "n. 不明缩写；请结合原文"
+    },
+    {
+      "word": "ear",
+      "ipa": "/ɪr/",
+      "aviationMeaning": "n. 耳朵；气压伤或听觉告警语境",
+      "generalMeaning": "n. 耳朵"
+    },
+    {
+      "word": "earlier",
+      "ipa": "/ˈɜːrliər/",
+      "aviationMeaning": "adj. 更早的；较早航班或时刻",
+      "generalMeaning": "adj. 更早的"
+    },
+    {
+      "word": "early",
+      "ipa": "/ˈɜːrli/",
+      "aviationMeaning": "adj. 早的；提前到达或起飞的",
+      "generalMeaning": "adj. 早的；adv. 早"
+    },
+    {
+      "word": "ears",
+      "ipa": "/ɪrz/",
+      "aviationMeaning": "n. 耳朵（复数）；气压伤或听觉告警语境",
+      "generalMeaning": "n. 耳朵（复数）"
+    },
+    {
+      "word": "earth's",
+      "ipa": "/ɜːrθs/",
+      "aviationMeaning": "n. 地球的；表示所属关系",
+      "generalMeaning": "n. 地球的；表示所属关系"
+    },
+    {
+      "word": "easier",
+      "ipa": "/ˈiːziər/",
+      "aviationMeaning": "adj. 更容易的；工作负荷更低的",
+      "generalMeaning": "adj. 更容易的"
+    },
+    {
+      "word": "easiest",
+      "ipa": "/ˈiːziɪst/",
+      "aviationMeaning": "adj. 最容易的；最简单的",
+      "generalMeaning": "adj. 最容易的"
+    },
+    {
+      "word": "easily",
+      "ipa": "/ˈiːzɪli/",
+      "aviationMeaning": "adv. 容易地；可轻易执行或识别地",
+      "generalMeaning": "adv. 容易地"
+    },
+    {
+      "word": "east",
+      "ipa": "/iːst/",
+      "aviationMeaning": "n. 东；东方航向或区域",
+      "generalMeaning": "n. 东方；东部"
+    },
+    {
+      "word": "eastar",
+      "ipa": "/ˈiːstɑːr/",
+      "aviationMeaning": "n. Eastar 航空公司名称",
+      "generalMeaning": "n. 专有名称"
+    },
+    {
+      "word": "eastern",
+      "ipa": "/ˈiːstərn/",
+      "aviationMeaning": "adj. 东方的；东部航路或地区的",
+      "generalMeaning": "adj. 东方的；东部的"
+    },
+    {
+      "word": "eastnortheast",
+      "ipa": "/ˌiːst nɔːrθˈiːst/",
+      "aviationMeaning": "n. 东北偏东；风向或航向",
+      "generalMeaning": "n. 东北偏东"
+    },
+    {
+      "word": "eastsoutheast",
+      "ipa": "/ˌiːst saʊθˈiːst/",
+      "aviationMeaning": "n. 东南偏东；风向或航向",
+      "generalMeaning": "n. 东南偏东"
+    },
+    {
+      "word": "eastward",
+      "ipa": "/ˈiːstwərd/",
+      "aviationMeaning": "adj. 向东的；东向航路或飞行",
+      "generalMeaning": "adj. 向东的"
+    },
+    {
+      "word": "easy",
+      "ipa": "/ˈiːzi/",
+      "aviationMeaning": "adj. 容易的；低工作负荷的",
+      "generalMeaning": "adj. 容易的；轻松的"
+    },
+    {
+      "word": "easyjet",
+      "ipa": "/ˈiːzi dʒet/",
+      "aviationMeaning": "n. 易捷航空公司名称",
+      "generalMeaning": "n. 专有名称"
+    },
+    {
+      "word": "eat",
+      "ipa": "/iːt/",
+      "aviationMeaning": "v. 吃；机组或旅客餐饮语境",
+      "generalMeaning": "v. 吃"
+    },
+    {
+      "word": "eating",
+      "ipa": "/ˈiːtɪŋ/",
+      "aviationMeaning": "n. 进食；机组或旅客餐饮语境",
+      "generalMeaning": "n. 吃；进食"
+    },
+    {
+      "word": "eb",
+      "ipa": "/ˌiː ˈbiː/",
+      "aviationMeaning": "n. 东向（eastbound）缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "ebt",
+      "ipa": "/ˌiː biː ˈtiː/",
+      "aviationMeaning": "n. 基于证据的训练（缩写）",
+      "generalMeaning": "n. 培训方法缩写"
+    },
+    {
+      "word": "ebt-style",
+      "ipa": "/ˌiː biː ˈtiː staɪl/",
+      "aviationMeaning": "adj. 基于证据的训练风格",
+      "generalMeaning": "adj. 基于证据训练的"
+    },
+    {
+      "word": "ec",
+      "ipa": "/ˌiː ˈsiː/",
+      "aviationMeaning": "n. 欧洲共同体或电子控制缩写；需结合原文",
+      "generalMeaning": "n. 缩写；请结合原文"
+    },
+    {
+      "word": "ecam",
+      "ipa": "/ˈiːkæm/",
+      "aviationMeaning": "n. 电子集中飞机监控系统（缩写）",
+      "generalMeaning": "n. 航电监控系统缩写"
+    },
+    {
+      "word": "echo",
+      "ipa": "/ˈekoʊ/",
+      "aviationMeaning": "n. 回波；字母 E 的 ICAO 拼读词",
+      "generalMeaning": "n. 回声；回响"
+    },
+    {
+      "word": "echoed",
+      "ipa": "/ˈekoʊd/",
+      "aviationMeaning": "v. 已回响；已复述通话",
+      "generalMeaning": "v. 已回响；重复"
+    },
+    {
+      "word": "economic",
+      "ipa": "/ˌiːkəˈnɑːmɪk/",
+      "aviationMeaning": "adj. 经济的；燃油或运营成本相关",
+      "generalMeaning": "adj. 经济的"
+    },
+    {
+      "word": "economical",
+      "ipa": "/ˌiːkəˈnɑːmɪkəl/",
+      "aviationMeaning": "adj. 节约的；经济速度或燃油效率高的",
+      "generalMeaning": "adj. 节约的；经济的"
+    },
+    {
+      "word": "economy",
+      "ipa": "/ɪˈkɑːnəmi/",
+      "aviationMeaning": "n. 经济性；经济舱；燃油经济性",
+      "generalMeaning": "n. 经济；节约"
+    },
+    {
+      "word": "edge",
+      "ipa": "/edʒ/",
+      "aviationMeaning": "n. 边缘；跑道、机翼或显示边缘",
+      "generalMeaning": "n. 边缘；优势"
+    },
+    {
+      "word": "edges",
+      "ipa": "/ˈedʒɪz/",
+      "aviationMeaning": "n. 边缘（复数）；跑道、机翼边缘",
+      "generalMeaning": "n. 边缘（复数）"
+    },
+    {
+      "word": "edinburgh",
+      "ipa": "/ˈedɪnbɜːrə/",
+      "aviationMeaning": "n. 爱丁堡；机场所在城市",
+      "generalMeaning": "n. 爱丁堡（苏格兰城市）"
+    },
+    {
+      "word": "edinburgh's",
+      "ipa": "/ˈedɪnbɜːrz/",
+      "aviationMeaning": "n. 爱丁堡的；表示所属关系",
+      "generalMeaning": "n. 爱丁堡的；表示所属关系"
+    },
+    {
+      "word": "edmonton",
+      "ipa": "/ˈedmənˌtɑːn/",
+      "aviationMeaning": "n. 埃德蒙顿；机场所在城市",
+      "generalMeaning": "n. 埃德蒙顿（加拿大城市）"
+    },
+    {
+      "word": "education",
+      "ipa": "/ˌedʒəˈkeɪʃən/",
+      "aviationMeaning": "n. 教育；飞行培训和安全教育",
+      "generalMeaning": "n. 教育"
+    },
+    {
+      "word": "efb",
+      "ipa": "/ˌiː ef ˈbiː/",
+      "aviationMeaning": "n. 电子飞行包（缩写）",
+      "generalMeaning": "n. 电子飞行包"
+    },
+    {
+      "word": "effect",
+      "ipa": "/ɪˈfekt/",
+      "aviationMeaning": "n. 影响；天气、系统或操作效应",
+      "generalMeaning": "n. 效果；影响"
+    },
+    {
+      "word": "effective",
+      "ipa": "/ɪˈfektɪv/",
+      "aviationMeaning": "adj. 有效的；生效的；可发挥作用的",
+      "generalMeaning": "adj. 有效的；生效的"
+    },
+    {
+      "word": "effectively",
+      "ipa": "/ɪˈfektɪvli/",
+      "aviationMeaning": "adv. 有效地；按预期发挥作用地",
+      "generalMeaning": "adv. 有效地；实际上"
+    },
+    {
+      "word": "effectiveness",
+      "ipa": "/ɪˈfektɪvnəs/",
+      "aviationMeaning": "n. 有效性；安全措施或系统效能",
+      "generalMeaning": "n. 有效性；效力"
+    },
+    {
+      "word": "effects",
+      "ipa": "/ɪˈfekts/",
+      "aviationMeaning": "n. 影响；天气、系统或操作效应（复数）",
+      "generalMeaning": "n. 效果；影响（复数）"
+    },
+    {
+      "word": "effg",
+      "ipa": "/ˌiː ef ef ˈdʒiː/",
+      "aviationMeaning": "n. 航空资料中的缩写；需结合原文",
+      "generalMeaning": "n. 不明缩写；请结合原文"
+    },
+    {
+      "word": "efficiency",
+      "ipa": "/ɪˈfɪʃənsi/",
+      "aviationMeaning": "n. 效率；燃油、运行或系统效率",
+      "generalMeaning": "n. 效率；效能"
+    },
+    {
+      "word": "efficient",
+      "ipa": "/ɪˈfɪʃənt/",
+      "aviationMeaning": "adj. 高效的；燃油或运行效率高的",
+      "generalMeaning": "adj. 有效率的"
+    },
+    {
+      "word": "efficiently",
+      "ipa": "/ɪˈfɪʃəntli/",
+      "aviationMeaning": "adv. 高效地；以低资源消耗运行",
+      "generalMeaning": "adv. 有效率地"
+    },
+    {
+      "word": "effort",
+      "ipa": "/ˈefərt/",
+      "aviationMeaning": "n. 努力；操纵力或安全改进投入",
+      "generalMeaning": "n. 努力；气力"
+    },
+    {
+      "word": "efforts",
+      "ipa": "/ˈefərts/",
+      "aviationMeaning": "n. 努力；安全改进投入（复数）",
+      "generalMeaning": "n. 努力（复数）"
+    },
+    {
+      "word": "efis",
+      "ipa": "/ˈiːfɪs/",
+      "aviationMeaning": "n. 电子飞行仪表系统（缩写）",
+      "generalMeaning": "n. 电子飞行仪表系统"
+    },
+    {
+      "word": "egpws",
+      "ipa": "/ˌiː dʒiː piː dʌbəljuː ˈes/",
+      "aviationMeaning": "n. 增强型近地警告系统（缩写）",
+      "generalMeaning": "n. 航电告警系统缩写"
+    },
+    {
+      "word": "egt",
+      "ipa": "/ˌiː dʒiː ˈtiː/",
+      "aviationMeaning": "n. 排气温度（缩写）",
+      "generalMeaning": "n. 排气温度缩写"
+    },
+    {
+      "word": "egypt",
+      "ipa": "/ˈiːdʒɪpt/",
+      "aviationMeaning": "n. 埃及；运行区域或国别",
+      "generalMeaning": "n. 埃及"
+    },
+    {
+      "word": "egypt's",
+      "ipa": "/ˈiːdʒɪpts/",
+      "aviationMeaning": "n. 埃及的；表示所属关系",
+      "generalMeaning": "n. 埃及的；表示所属关系"
+    },
+    {
+      "word": "eh",
+      "ipa": "/eɪ/",
+      "aviationMeaning": "interj. 通话中的犹豫语气词",
+      "generalMeaning": "interj. 呃；啊"
+    },
+    {
+      "word": "eicas",
+      "ipa": "/ˈiːkæs/",
+      "aviationMeaning": "n. 发动机指示与机组告警系统（缩写）",
+      "generalMeaning": "n. 航电告警系统缩写"
+    },
+    {
+      "word": "eight",
+      "ipa": "/eɪt/",
+      "aviationMeaning": "num. 八；通话数字读法",
+      "generalMeaning": "num. 八"
+    },
+    {
+      "word": "eight-tenths",
+      "ipa": "/eɪt tenθs/",
+      "aviationMeaning": "n. 八分之十；数值或云量表达",
+      "generalMeaning": "n. 十分之八"
+    },
+    {
+      "word": "eighty",
+      "ipa": "/ˈeɪti/",
+      "aviationMeaning": "num. 八十；通话数字读法",
+      "generalMeaning": "num. 八十"
+    }
   ]
 }

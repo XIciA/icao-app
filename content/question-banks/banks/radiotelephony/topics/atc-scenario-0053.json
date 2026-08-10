@@ -18,7 +18,7 @@
       "taskTitle": "CCA 105-2",
       "audioText": "C: CCA 105, cruising level 9200 meters, LKO-1D departure, squawk 2052, contact Wuhan Approach on 118.9 when airborne.",
       "audioTextZh": "C: CCA 105，巡航高度 9200 米，LKO-1D 离场，应答机 2052，离地后联系武汉进近118.9。",
-      "referenceText": "Cleared to Guangzho via flight planned route, cruising level 9200 meters, LKO-1D departure, squawk 2052, contact Wuhan Approach on 118.9 when airborne, CCA 105.",
+      "referenceText": "Cleared to Guangzhou via flight planned route, cruising level 9200 meters, LKO-1D departure, squawk 2052, contact Wuhan Approach on 118.9 when airborne, CCA 105.",
       "referenceTextZh": "可以按计划航路前往 Guangzhou，巡航高度 9200 米，LKO-1D 离场，应答机 2052，离地后联系武汉进近118.9，CCA 105。",
       "audio": "/question-bank-assets/audio/radiotelephony/main/903.mp3"
     },
@@ -106,7 +106,7 @@
     {
       "id": "atc-scenario-0053-card-main-913",
       "taskTitle": "CCA 105-12",
-      "audioText": "C: CCA 105, Wuhan Approach, radar contact, is there any damage to the aircraft? report your intentions.\nB: Tell the Approach controller that you want to land at Wuhan Airport, and you don't know about any damage.",
+      "audioText": "C: CCA 105, Wuhan Approach, radar contact, is there any damage to the aircraft? Report your intentions.\nB: Tell the Approach controller that you want to land at Wuhan Airport, and you don't know about any damage.",
       "audioTextZh": "C: CCA 105，武汉进近，雷达识别，飞机是否受损？报告你的意图。\nB: 告诉进近管制员你想在 Wuhan Airport 着陆，不知道是否有损伤。",
       "referenceText": "We want to land at Wuhan Airport, and we are not sure about any damage, CCA 105.",
       "referenceTextZh": "我们想在 Wuhan Airport 着陆，不确定是否有损伤，CCA 105。",

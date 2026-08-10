@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router';
-import { Calendar, MapPin, Sparkles } from 'lucide-react-native';
+import { Calendar, MapPin, Sparkles } from '@/components/ui/icons';
 import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 

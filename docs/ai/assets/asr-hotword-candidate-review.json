@@ -155,7 +155,6 @@
     { "text": "DME", "profile": "abbreviation", "category": "navigation" },
     { "text": "DOGAR", "profile": "waypoint", "category": "navigation" },
     { "text": "FISHA", "profile": "waypoint", "category": "navigation" },
-    { "text": "FQG", "profile": "waypoint", "category": "navigation" },
     { "text": "GNSS", "profile": "abbreviation", "category": "navigation" },
     { "text": "GPS", "profile": "abbreviation", "category": "navigation" },
     { "text": "GUVBA", "profile": "waypoint", "category": "navigation" },

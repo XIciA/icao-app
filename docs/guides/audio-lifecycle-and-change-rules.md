@@ -110,12 +110,20 @@ stateDiagram-v2
 - 原生录音器意外结束会发 `INTERRUPTED` 并进入 finalizing；如果停止结果无效，进入显式失败态。
 - reducer 对非法转换返回原 state，不“猜测”调用者意图。
 
+### Web 浏览器录音边界
+
+- Web 首次录音必须先用一次普通点击完成麦克风授权；授权成功后关闭临时音轨，等待用户再次按住录音。权限弹窗不得与按住/松开手势共用同一次操作；取消后重试时，旧权限请求的迟到结果不得清除新请求的等待计时或解锁录音按钮。
+- `MediaRecorder.isTypeSupported()` 只能用于缩小候选范围，不能作为唯一能力判定。现有 WebM/Opus、WebM、MP4 的 128 kbps 成功路径保持优先；显式构造失败后才尝试无固定码率和浏览器默认格式。
+- `dataavailable`、`error`、`stop` 和音轨 `ended` 必须在 start 前监听。主动停止、浏览器意外停止和重复 stop 共用一个幂等终结器；终结器必须更新独立 lifecycle revision，不能依赖时长变化触发 controller 观察。
+- `requestData()` 只是尽力 flush；它失败时仍必须调用 `stop()`。停止等待最终数据最多 5 秒，超时、意外停止或页面失活都要释放轨道和 lease，并且不得替换旧资产。
+- Web adapter 可以把原始 `Blob` 交给既有 repository 校验并转移 Blob URL 所有权；Blob 的 MIME 标签规范为 `audio/webm`、`audio/ogg` 或 `audio/mp4`，避免 codecs 参数破坏既有 Vercel data URL 协议，编码字节不得重写。UI 仍不得持有 Blob、撤销 URL 或决定提交成功。
+
 ## 5. 文件提交、替换与清理
 
 `commitRaw` 的固定顺序：
 
 1. 检查停止时长至少 400 ms。
-2. 等待文件大小稳定，检查文件存在和格式对应的最低 bytes/ms。Native WAV 最低 10 KB；Web 压缩 Blob 使用独立的 1 KB 合理下限，不能以 WAV 文件大小误判有效 WebM/Opus 录音。
+2. 等待文件大小稳定，检查文件存在和格式对应的最低 bytes/ms。Native WAV 最低 10 KB；Web 压缩 Blob 使用独立的 256 B 容器下限并叠加 encoder bytes/ms，不能以 WAV 文件大小误判有效 WebM/Opus 录音。
 3. 复制到 `Paths.cache/icao-recordings/<sessionId>/<assetId>.<format>.pending`。
 4. 校验 pending 大小与 raw 一致。
 5. 原子 move 为正式文件，再校验目标。
@@ -125,12 +133,14 @@ stateDiagram-v2
 
 ## 6. 回放与转写隔离
 
-- 回放使用 `useAudioPlayer(null)` 创建稳定实例，每次只通过 `replace(uri)` 装载。
+- iOS/Android 录音回放使用 `useAudioPlayer(null)` 创建稳定实例，每次只通过 `replace(uri)` 装载；Web 录音回放使用平台文件中的单个持久 `HTMLAudioElement`，但仍属于既有 `recordingPlayback` owner。
 - `useAudioPlayer` 自己拥有 native shared object 的释放；组件仍挂载时不得调用 `player.remove()`。无资产时只暂停并等待，后续资产仍由同一个实例 `replace(uri)`。
-- 4 秒加载超时或 native error 只设置 `playback_load_failed`；确认文件被系统清理时设置 `asset_missing`。
+- Native 的 4 秒加载超时或 native error 只设置 `playback_load_failed`；确认文件被系统清理时设置 `asset_missing`。
+- Web 不得在用户点击前因 metadata 延迟而判定 Blob 失效；点击栈内同步 `play()` 后，播放 Promise 与 lease 获取共同受 4 秒启动上限约束，超时只显示可重试引导且不得删除录音。
 - `asset_missing` 也只禁用回放，已经展开的答案和已有转写仍保留。
 - 每次播放前获取 `recordingPlayback` lease；完成、暂停、后台、错误或卸载后释放。
 - 转写只能由用户点击“转写”发起；同一时刻只允许该资产的一次在途请求。失败后由用户再次点击“转写”重试，重录成功后使用新资产 ID。
+- 首次使用 AI 或同意政策版本变化时，必须在上传录音或发送回答文本前显示本次数据去向、用途和保留期限；只有用户明确选择“同意并继续”才能发起请求，拒绝或关闭弹窗不得上传。
 - 本地 AI 同意只用于界面提示，不能作为当前账号已经完成服务端登记的证据；每次 AI 操作前都要幂等同步账号级服务端同意，避免换号、撤回或恢复本地存储后产生假阳性。
 - API 暂存录音前必须把 `audio/x-wav`、`audio/wave`、`audio/vnd.wave`、`audio/x-pn-wav` 规范为 `audio/wav`，把 `audio/x-m4a` 规范为 `audio/mp4`；content type 与扩展名必须同步规范化。
 - 新资产有新 ID，因此重录成功只对新 ID 触发；重录失败仍保留旧 ID 和旧结果。
@@ -140,7 +150,7 @@ stateDiagram-v2
 | 范围 | 主要错误码 | 首先检查 |
 | --- | --- | --- |
 | session | `owner_pause_timeout`, `owner_pause_failed`, `mode_switch_failed`, `recording_exclusive` | 当前 owner、deactivate 是否 await、原生 mode 调用 |
-| recorder | `microphone_permission_denied`, `record_prepare_failed`, `record_start_failed`, `record_stop_failed`, `recording_interrupted` | 权限、Development Build、AppState、generation |
+| recorder | `microphone_permission_denied`, `microphone_device_missing`, `microphone_device_unavailable`, `recording_browser_unsupported`, `record_prepare_failed`, `record_start_failed`, `record_stop_failed`, `recording_interrupted`, `recording_finalization_timeout` | 权限、Web 能力、设备占用、Development Build、AppState、generation |
 | repository | `recording_too_short`, `recording_file_incomplete`, `recording_commit_failed`, `recording_asset_missing` | duration、稳定 size、pending/目标大小、cache 清理 |
 | playback | `playback_load_failed`, `playback_start_failed`, `asset_missing` | asset 是否存在、replace 是否唯一、lease 获取 |
 | transcription | `transcription_completed`, `transcription_failed`, `transcription_cancelled` | asset ID、multipart MIME 及规范化、账号级 AI 同意、登录状态、网络/AI API |
@@ -156,18 +166,20 @@ stateDiagram-v2
 ### Web 有声播放的用户手势边界
 
 - iOS 浏览器首次有声播放必须在用户点击处理函数的同步调用栈内发出，不能在 `await` 音频 lease、模式切换或其他 Promise 之后再调用 `play()`。
-- `StudyAudioPlayer` 的 Web 首次手动播放仍先发起既有 `study` lease 申请，但必须在同一次点击回调内同步调用稳定 Expo player；不得为此新增 HTML audio、第二 player 或第二 session owner。
+- `StudyAudioPlayer.web.tsx` 必须复用其既有持久 `HTMLAudioElement`。首次手动播放仍先发起既有 `study` lease 申请，但要在同一次点击回调内同步调用该元素的 `play()`；不得再新增第二 player 或第二 session owner。
+- `use-recording-playback.web.ts` 对用户录音遵守同一规则：复用一个持久 `HTMLAudioElement`，在同一次点击回调内同步调用 `play()`，并行获取既有 `recordingPlayback` lease；回放失败不得删除或回滚已提交录音。
 - lease 获取失败、页面失活、题卡切换或 generation 过期时，必须暂停该次播放并释放迟到的 lease。Native 和后续已解锁的切题自动播放继续遵守“lease 获取完成后播放”的原有顺序。
 - 回归测试必须让 Web mode 切换 Promise 保持 pending，并断言 `play()` 已在 Promise 完成前调用；只验证最终播放状态不足以覆盖浏览器用户手势约束。
 
-## 8. 强制验收矩阵
+## 8. 风险分级验收矩阵
 
 | 变更 | Jest / 静态 | iOS | Android | 发布证据 |
 | --- | --- | --- | --- | --- |
-| UI 文案/样式且不碰敏感文件 | `pnpm check` + 渲染对比 | Simulator 渲染 | Emulator 渲染 | 无新增音频证据 |
-| controller/repository/playback/session | `pnpm check` + 相关竞态测试 | Development Build + 真机录音冒烟 | Emulator Maestro + Development Build 录音冒烟 | 两平台指纹都需刷新 |
-| Expo Audio/权限/preset/native config | 上述全部 + Expo Doctor | 重建 Development Build + 真机 | 重建 Development Build + 模拟器/真机 | 两平台指纹都需刷新 |
-| Track Player/后台/锁屏 | queue/session 测试 | 真机锁屏/控制中心 | 媒体通知/后台 | 两平台指纹都需刷新 |
+| UI 文案/样式且不碰音频行为或敏感文件 | 通用验证矩阵 + 渲染对比 | 只检查受影响目标端 | 只检查受影响目标端 | 无新增音频证据 |
+| Web 题卡播放、手势或资源解析 | `pnpm check:audio` + 相关测试 + `pnpm check:web` | 移动 Safari 目标路径 | 按受影响浏览器检查 | 发布前保留 Web 代表性证据 |
+| controller/repository/playback/session | `pnpm check:audio` + 相关竞态测试 | 受影响时 Development Build + 真机冒烟 | 受影响时 Development Build / Maestro | 音频敏感发布时刷新目标平台指纹 |
+| Expo Audio/权限/preset/native config | 上述全部 + Expo Doctor | 重建 Development Build + 真机 | 重建 Development Build + 模拟器/真机 | 受影响平台指纹必须刷新 |
+| Track Player/后台/锁屏 | queue/session 测试 | 真机锁屏/控制中心 | 媒体通知/后台 | 受影响平台指纹必须刷新 |
 
 确定性 E2E：`pnpm audio:e2e:ios`、`pnpm audio:e2e:android`。它只在 `__DEV__` 且 `EXPO_PUBLIC_ICAO_AUDIO_E2E=1` 时生成静音 WAV 和固定转写；Release 构建脚本明确拒绝该标志。确定性 adapter 不替代真实麦克风冒烟。
 
@@ -176,7 +188,7 @@ stateDiagram-v2
 ## 9. 修改前检查表
 
 - [ ] 已读本指南和 Expo SDK 55 对应 Audio/FileSystem 文档。
-- [ ] 已读 `docs/common-errors/audio-recording/README.md` 和相关历史事故。
+- [ ] 已按当前症状检索 `docs/common-errors/audio-recording/` 中相关事故；无相关症状时不要求全量阅读。
 - [ ] 已确认没有可复用的 owner、repository、asset、player 或状态事件。
 - [ ] 没有新增 `setAudioModeAsync`、recorder hook、权限或 preset 入口。
 - [ ] 没有让 UI 直接 import Expo FileSystem 或删除录音。
@@ -191,7 +203,7 @@ stateDiagram-v2
 
 ## 10. 故障知识维护
 
-- 所有真机录音、回放或转写回归都必须在 `docs/common-errors/audio-recording/` 创建或更新英文文件名的事故记录。
+- 只有出现新的可复现故障、发现可复用根因，或现有事故结论需要修正时，才在 `docs/common-errors/audio-recording/` 创建或更新事故记录；普通实现任务和重复验证不创建新事故文档。
 - 事故记录使用 `incident-template.md`，至少包含环境、复现、证据、根因、排除项、长期修复、自动化门禁、真机验证和剩余风险。
 - 事故目录保存排障知识，本文继续保存唯一架构不变量；禁止在事故文件中建立第二套生命周期规范。
 - 修复若没有恢复明确不变量，或没有增加可复现测试、静态门禁、类型化诊断、设备证据中的至少一项，默认不得标记为长期解决。

@@ -28,6 +28,7 @@ jest.mock('lucide-react-native', () => {
 describe('AI speaking workbench', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    mockHasAiConsent.mockResolvedValue(true);
   });
 
   it('waits for an explicit transcribe action before processing a completed recording', async () => {
@@ -91,6 +92,69 @@ describe('AI speaking workbench', () => {
     expect(screen.getByTestId('study-workbench-transcribe-action')).toBeTruthy();
     expect(screen.queryByText('原始识别文本（只读）')).toBeNull();
     expect(screen.queryByText('raw aviation transcript')).toBeNull();
+  });
+
+  it('does not upload audio until the user explicitly accepts AI data processing', async () => {
+    mockHasAiConsent.mockResolvedValue(false);
+    const screen = await render(
+      <StudyWorkbench
+        activeTab="mine"
+        answerText=""
+        bankId="opi"
+        bankTitle="OPI"
+        cardKey="opi-card-explicit-consent"
+        categoryTitle="运行"
+        learningStore={{ addRecord: mockAddRecord }}
+        noteText=""
+        onAnswerChange={jest.fn()}
+        onEditingTabChange={jest.fn()}
+        onFeedback={jest.fn()}
+        onNoteChange={jest.fn()}
+        onRetrySave={jest.fn()}
+        onTabChange={jest.fn()}
+        questionText="Question"
+        recordingUri="file:///private-recording.wav"
+        referenceContent={null}
+        referenceLabel="参考答案"
+        reviewKind="opi-analysis"
+        sessionId="study-test-session"
+        sessionStartedAt="2026-07-15T00:00:00.000Z"
+        swipeGesture={Gesture.Pan().enabled(false)}
+        tabs={['mine']}
+        topicTitle="燃油"
+      />,
+    );
+
+    await waitFor(() => expect(mockHasAiConsent).toHaveBeenCalled());
+    await act(async () => {
+      fireEvent.press(screen.getByLabelText('转写'));
+      await Promise.resolve();
+    });
+    await waitFor(() => expect(screen.getByLabelText('AI 数据处理提示')).toBeTruthy());
+    expect(screen.getByText(/发送至腾讯云语音识别/u)).toBeTruthy();
+    expect(mockAcceptAiConsent).not.toHaveBeenCalled();
+    expect(mockTranscribeRecording).not.toHaveBeenCalled();
+
+    await act(async () => {
+      fireEvent.press(screen.getByText('暂不使用'));
+      await Promise.resolve();
+    });
+    await waitFor(() => expect(screen.queryByLabelText('AI 数据处理提示')).toBeNull());
+    expect(mockAcceptAiConsent).not.toHaveBeenCalled();
+    expect(mockTranscribeRecording).not.toHaveBeenCalled();
+
+    await act(async () => {
+      fireEvent.press(screen.getByLabelText('转写'));
+      await Promise.resolve();
+    });
+    await waitFor(() => expect(screen.getByLabelText('AI 数据处理提示')).toBeTruthy());
+    await act(async () => {
+      fireEvent.press(screen.getByText('同意并继续'));
+      await Promise.resolve();
+    });
+
+    await waitFor(() => expect(mockAcceptAiConsent).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockTranscribeRecording).toHaveBeenCalledTimes(1));
   });
 
   it('explains when the provider detects no speech in the recording', async () => {

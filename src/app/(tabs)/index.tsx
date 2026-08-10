@@ -8,7 +8,7 @@ import {
   Mic2,
   RadioTower,
   UserRound,
-} from 'lucide-react-native';
+} from '@/components/ui/icons';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';

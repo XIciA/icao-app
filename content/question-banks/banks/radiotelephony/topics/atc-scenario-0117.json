@@ -126,8 +126,8 @@
       "taskTitle": "CSN 6682-14",
       "audioText": "CSN 6682, roger PAN, turn right heading 240, descend to 2,400 meters, expect radar vector for ILS approach Runway 36R.",
       "audioTextZh": "CSN 6682，收到 PAN，右转航向 240，下降至 2,400 米，预计雷达引导 ILS 进近 Runway 36R。",
-      "referenceText": "turn right heading 240, descend to 2004 hunderd meters, expect radar vector for ILS approach Runway 36R, CSN 6682.",
-      "referenceTextZh": "右转航向 240，下降至 2004 hunderd 米，预计雷达引导 ILS 进近 Runway 36R，CSN 6682。",
+      "referenceText": "turn right heading 240, descend to 2,400 meters, expect radar vector for ILS approach Runway 36R, CSN 6682.",
+      "referenceTextZh": "右转航向 240，下降至 2,400 米，预计雷达引导 ILS 进近 Runway 36R，CSN 6682。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-013-csn6682-q14.mp3"
     },
     {

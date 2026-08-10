@@ -1,4 +1,4 @@
-import { clampRadioInterval } from './native-queue';
+import { clampRadioInterval } from './radio-interval';
 
 export function migrateRadioIntervalSeconds(snapshot: unknown) {
   if (!snapshot || typeof snapshot !== 'object' || !('intervalSeconds' in snapshot)) return 0;

@@ -1,105 +1,503 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"a","ipa":"/eɪ/","aviationMeaning":"art. 一；某一架或某一项","generalMeaning":"art. 一（不定冠词）"},
-    {"word":"aabout","ipa":"/əˈbaʊt/","aviationMeaning":"n. 题库原文中的疑似拼写粘连","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"aaib","ipa":"/ˌeɪ eɪ aɪ ˈbiː/","aviationMeaning":"n. 航空事故调查机构（缩写）","generalMeaning":"n. 机构名称缩写"},
-    {"word":"aaid","ipa":"/ˌeɪ eɪ aɪ ˈdiː/","aviationMeaning":"n. 航空事故调查部门（缩写）","generalMeaning":"n. 机构名称缩写"},
-    {"word":"ab","ipa":"/ˌeɪ ˈbiː/","aviationMeaning":"n. 民航文本中的字母缩写","generalMeaning":"n. 字母组合；缩写"},
-    {"word":"abandoned","ipa":"/əˈbændənd/","aviationMeaning":"adj. 已放弃的；已中止的","generalMeaning":"adj. 被遗弃的；被放弃的"},
-    {"word":"abatement","ipa":"/əˈbeɪtmənt/","aviationMeaning":"n. 降低；减噪；消减","generalMeaning":"n. 减少；缓和；减轻"},
-    {"word":"abbreviation","ipa":"/əˌbriːviˈeɪʃən/","aviationMeaning":"n. 航空缩略语","generalMeaning":"n. 缩写；缩略形式"},
-    {"word":"abeam","ipa":"/əˈbiːm/","aviationMeaning":"adv. 正横；位于航空器正侧方","generalMeaning":"adv. 在正横方向"},
-    {"word":"abidjan","ipa":"/ˌæbɪˈdʒɑːn/","aviationMeaning":"n. 阿比让（机场所在城市）","generalMeaning":"n. 阿比让（科特迪瓦城市）"},
-    {"word":"abilities","ipa":"/əˈbɪlətiz/","aviationMeaning":"n. 飞行或操作能力（复数）","generalMeaning":"n. 能力；才能（复数）"},
-    {"word":"ability","ipa":"/əˈbɪləti/","aviationMeaning":"n. 飞行、操作或应急处置能力","generalMeaning":"n. 能力；本领"},
-    {"word":"ablaze","ipa":"/əˈbleɪz/","aviationMeaning":"adj. 起火燃烧的","generalMeaning":"adj. 着火的；明亮的"},
-    {"word":"able","ipa":"/ˈeɪbəl/","aviationMeaning":"adj. 能够执行或操作的","generalMeaning":"adj. 能够的；有能力的"},
-    {"word":"abnormal","ipa":"/æbˈnɔːrməl/","aviationMeaning":"adj. 非正常的；异常的","generalMeaning":"adj. 不正常的；异常的"},
-    {"word":"abnormally","ipa":"/æbˈnɔːrməli/","aviationMeaning":"adv. 异常地；非正常地","generalMeaning":"adv. 不正常地；异常地"},
-    {"word":"aboard","ipa":"/əˈbɔːrd/","aviationMeaning":"adv. 在机上；登机","generalMeaning":"adv. 在船（车、飞机）上；上船"},
-    {"word":"abort","ipa":"/əˈbɔːrt/","aviationMeaning":"v. 中止起飞、进近或程序","generalMeaning":"v. 中止；夭折"},
-    {"word":"aborted","ipa":"/əˈbɔːrtɪd/","aviationMeaning":"adj. 已中止的；已终止的","generalMeaning":"adj. 已中止的；已夭折的"},
-    {"word":"aborting","ipa":"/əˈbɔːrtɪŋ/","aviationMeaning":"v. 正在中止起飞、进近或程序","generalMeaning":"v. 正在中止"},
-    {"word":"about","ipa":"/əˈbaʊt/","aviationMeaning":"prep. 关于；大约","generalMeaning":"prep. 关于；大约；在…周围"},
-    {"word":"above","ipa":"/əˈbʌv/","aviationMeaning":"prep. 在…上方；高于","generalMeaning":"prep. 在…上方；超过"},
-    {"word":"abroad","ipa":"/əˈbrɔːd/","aviationMeaning":"adv. 在国外；飞往国外","generalMeaning":"adv. 在国外；到国外"},
-    {"word":"abrupt","ipa":"/əˈbrʌpt/","aviationMeaning":"adj. 突然的；陡峭的","generalMeaning":"adj. 突然的；唐突的"},
-    {"word":"abruptly","ipa":"/əˈbrʌptli/","aviationMeaning":"adv. 突然地；急剧地","generalMeaning":"adv. 突然地；唐突地"},
-    {"word":"abs","ipa":"/ˌeɪ biː ˈes/","aviationMeaning":"n. 防抱死制动系统（缩写）","generalMeaning":"n. 腹肌；防抱死制动系统"},
-    {"word":"absence","ipa":"/ˈæbsəns/","aviationMeaning":"n. 缺失；不在场；无该信号","generalMeaning":"n. 缺席；缺乏"},
-    {"word":"absorb","ipa":"/əbˈzɔːrb/","aviationMeaning":"v. 吸收能量、冲击或液体","generalMeaning":"v. 吸收；吸引；理解"},
-    {"word":"absorber","ipa":"/əbˈzɔːrbər/","aviationMeaning":"n. 减震器；吸收装置","generalMeaning":"n. 吸收器；减震器"},
-    {"word":"absorbers","ipa":"/əbˈzɔːrbərz/","aviationMeaning":"n. 减震器；吸收装置（复数）","generalMeaning":"n. 吸收器；减震器（复数）"},
-    {"word":"absorbing","ipa":"/əbˈzɔːrbɪŋ/","aviationMeaning":"v. 正在吸收能量或冲击","generalMeaning":"adj. 引人入胜的；v. 正在吸收"},
-    {"word":"absorbs","ipa":"/əbˈzɔːrbz/","aviationMeaning":"v. 吸收能量、冲击或液体","generalMeaning":"v. 吸收；理解"},
-    {"word":"ac","ipa":"/ˌeɪ ˈsiː/","aviationMeaning":"n. 交流电；空调（缩写）","generalMeaning":"n. 交流电；空调"},
-    {"word":"aca","ipa":"/ˌeɪ siː ˈeɪ/","aviationMeaning":"n. 民航机构或程序缩写","generalMeaning":"n. 机构名称缩写"},
-    {"word":"academy","ipa":"/əˈkædəmi/","aviationMeaning":"n. 航空学院；培训机构","generalMeaning":"n. 学院；研究院"},
-    {"word":"acc","ipa":"/ˌeɪ siː ˈsiː/","aviationMeaning":"n. 区域管制中心（缩写）","generalMeaning":"n. 机构或技术缩写"},
-    {"word":"accelerate","ipa":"/əkˈseləreɪt/","aviationMeaning":"v. 加速；提高速度","generalMeaning":"v. 加速；促进"},
-    {"word":"accelerate-stop","ipa":"/əkˈseləreɪt stɑːp/","aviationMeaning":"n. 加速—停止距离","generalMeaning":"n. 加速与停止的过程"},
-    {"word":"accelerated","ipa":"/əkˈseləreɪtɪd/","aviationMeaning":"adj. 已加速的；加快的","generalMeaning":"adj. 加速的；加快的"},
-    {"word":"accelerating","ipa":"/əkˈseləreɪtɪŋ/","aviationMeaning":"v. 正在加速","generalMeaning":"v. 正在加速；促进"},
-    {"word":"acceleration","ipa":"/əkˌseləˈreɪʃən/","aviationMeaning":"n. 加速度；加速过程","generalMeaning":"n. 加速；加速度"},
-    {"word":"accelerometers","ipa":"/əkˌseləˈrɑːmɪtərz/","aviationMeaning":"n. 加速度计（复数）","generalMeaning":"n. 加速度计（复数）"},
-    {"word":"accent","ipa":"/ˈæksent/","aviationMeaning":"n. 通话口音；重音","generalMeaning":"n. 口音；重音；强调"},
-    {"word":"accents","ipa":"/ˈæksents/","aviationMeaning":"n. 通话口音；重音（复数）","generalMeaning":"n. 口音；重音（复数）"},
-    {"word":"accept","ipa":"/əkˈsept/","aviationMeaning":"v. 接受许可、指令或移交","generalMeaning":"v. 接受；同意"},
-    {"word":"acceptable","ipa":"/əkˈseptəbəl/","aviationMeaning":"adj. 符合运行要求的；可接受的","generalMeaning":"adj. 可接受的；合意的"},
-    {"word":"acceptance","ipa":"/əkˈseptəns/","aviationMeaning":"n. 对许可、移交或条件的接受","generalMeaning":"n. 接受；认可"},
-    {"word":"accepted","ipa":"/əkˈseptɪd/","aviationMeaning":"adj. 已接受的；获准的","generalMeaning":"adj. 被接受的；公认的"},
-    {"word":"accepting","ipa":"/əkˈseptɪŋ/","aviationMeaning":"v. 正在接受许可、指令或移交","generalMeaning":"v. 正在接受；认可"},
-    {"word":"accepts","ipa":"/əkˈsepts/","aviationMeaning":"v. 接受许可、指令或移交","generalMeaning":"v. 接受；同意"},
-    {"word":"access","ipa":"/ˈækses/","aviationMeaning":"n. 进入跑道、系统或空域的权限","generalMeaning":"n. 进入；使用权；通道"},
-    {"word":"access-controlled","ipa":"/ˈækses kənˈtroʊld/","aviationMeaning":"adj. 受访问控制的","generalMeaning":"adj. 受访问控制的"},
-    {"word":"accessibility","ipa":"/ækˌsesəˈbɪləti/","aviationMeaning":"n. 对设施或信息的可达性","generalMeaning":"n. 可接近性；无障碍性"},
-    {"word":"accessible","ipa":"/ækˈsesəbəl/","aviationMeaning":"adj. 可进入、可使用的","generalMeaning":"adj. 可进入的；易理解的"},
-    {"word":"accessories","ipa":"/əkˈsesəriz/","aviationMeaning":"n. 飞机附件；配件（复数）","generalMeaning":"n. 附件；配饰（复数）"},
-    {"word":"accessory","ipa":"/əkˈsesəri/","aviationMeaning":"n. 飞机附件；配件","generalMeaning":"n. 附件；配饰"},
-    {"word":"accicdent","ipa":"/ˈæksɪdənt/","aviationMeaning":"n. 题库原文中的 accident 疑似拼写错误","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"accident","ipa":"/ˈæksɪdənt/","aviationMeaning":"n. 航空事故","generalMeaning":"n. 事故；意外"},
-    {"word":"accidental","ipa":"/ˌæksɪˈdentl/","aviationMeaning":"adj. 意外发生的；非故意的","generalMeaning":"adj. 意外的；偶然的"},
-    {"word":"accidentally","ipa":"/ˌæksɪˈdentəli/","aviationMeaning":"adv. 意外地；非故意地","generalMeaning":"adv. 偶然地；意外地"},
-    {"word":"accidents","ipa":"/ˈæksɪdənts/","aviationMeaning":"n. 航空事故（复数）","generalMeaning":"n. 事故；意外（复数）"},
-    {"word":"accommodate","ipa":"/əˈkɑːmədeɪt/","aviationMeaning":"v. 容纳；协调运行需求","generalMeaning":"v. 容纳；适应；为…提供空间"},
-    {"word":"accommodation","ipa":"/əˌkɑːməˈdeɪʃən/","aviationMeaning":"n. 容量安排；运行协调","generalMeaning":"n. 住宿；容纳；适应"},
-    {"word":"accommodations","ipa":"/əˌkɑːməˈdeɪʃənz/","aviationMeaning":"n. 容量安排；保障条件（复数）","generalMeaning":"n. 住宿；便利设施（复数）"},
-    {"word":"accompanied","ipa":"/əˈkʌmpənid/","aviationMeaning":"v. 伴随；由…陪同","generalMeaning":"v. 陪同；伴随"},
-    {"word":"accomplishing","ipa":"/əˈkɑːmplɪʃɪŋ/","aviationMeaning":"v. 正在完成飞行或操作任务","generalMeaning":"v. 正在完成；实现"},
-    {"word":"accordance","ipa":"/əˈkɔːrdəns/","aviationMeaning":"n. 按照程序或规定","generalMeaning":"n. 一致；符合"},
-    {"word":"according","ipa":"/əˈkɔːrdɪŋ/","aviationMeaning":"prep. 按照；依据程序","generalMeaning":"prep. 根据；按照"},
-    {"word":"accordingly","ipa":"/əˈkɔːrdɪŋli/","aviationMeaning":"adv. 因此；相应地","generalMeaning":"adv. 因此；相应地"},
-    {"word":"account","ipa":"/əˈkaʊnt/","aviationMeaning":"n. 记录；说明；账户","generalMeaning":"n. 账户；叙述；原因"},
-    {"word":"accountable","ipa":"/əˈkaʊntəbəl/","aviationMeaning":"adj. 对运行结果负责的","generalMeaning":"adj. 应负责的；可解释的"},
-    {"word":"accounted","ipa":"/əˈkaʊntɪd/","aviationMeaning":"v. 已计入；已说明","generalMeaning":"v. 已解释；已计入"},
-    {"word":"accounting","ipa":"/əˈkaʊntɪŋ/","aviationMeaning":"n. 记录与核算","generalMeaning":"n. 会计；核算"},
-    {"word":"accra","ipa":"/əˈkrɑː/","aviationMeaning":"n. 阿克拉（机场所在城市）","generalMeaning":"n. 阿克拉（加纳首都）"},
-    {"word":"accumulate","ipa":"/əˈkjuːmjəleɪt/","aviationMeaning":"v. 积聚冰、雪、误差或数据","generalMeaning":"v. 积累；积聚"},
-    {"word":"accumulated","ipa":"/əˈkjuːmjəleɪtɪd/","aviationMeaning":"adj. 已积聚的；累计的","generalMeaning":"adj. 累积的；积聚的"},
-    {"word":"accumulating","ipa":"/əˈkjuːmjəleɪtɪŋ/","aviationMeaning":"v. 正在积聚冰、雪、误差或数据","generalMeaning":"v. 正在积累；积聚"},
-    {"word":"accumulation","ipa":"/əˌkjuːmjəˈleɪʃən/","aviationMeaning":"n. 冰、雪、误差或工作量的积聚","generalMeaning":"n. 积累；积聚"},
-    {"word":"accumulator","ipa":"/əˈkjuːmjəleɪtər/","aviationMeaning":"n. 液压蓄能器；蓄电装置","generalMeaning":"n. 累积器；蓄能器"},
-    {"word":"accuracy","ipa":"/ˈækjərəsi/","aviationMeaning":"n. 导航、定位或报告准确度","generalMeaning":"n. 准确性；精确度"},
-    {"word":"accurate","ipa":"/ˈækjərət/","aviationMeaning":"adj. 准确的；精确的","generalMeaning":"adj. 准确的；精确的"},
-    {"word":"accurately","ipa":"/ˈækjərətli/","aviationMeaning":"adv. 准确地；精确地","generalMeaning":"adv. 准确地；精确地"},
-    {"word":"accusation","ipa":"/ˌækjəˈzeɪʃən/","aviationMeaning":"n. 对运行责任的指控","generalMeaning":"n. 指控；控告"},
-    {"word":"achieve","ipa":"/əˈtʃiːv/","aviationMeaning":"v. 达到规定高度、速度或目标","generalMeaning":"v. 达到；完成"},
-    {"word":"achievea","ipa":"/əˈtʃiːv/","aviationMeaning":"n. 题库原文中的 achieve 疑似拼写粘连","generalMeaning":"n. 疑似拼写错误；请结合原文"},
-    {"word":"achieved","ipa":"/əˈtʃiːvd/","aviationMeaning":"v. 已达到规定高度、速度或目标","generalMeaning":"v. 已达到；已完成"},
-    {"word":"achieving","ipa":"/əˈtʃiːvɪŋ/","aviationMeaning":"v. 正在达到规定高度、速度或目标","generalMeaning":"v. 正在达到；实现"},
-    {"word":"acknowledge","ipa":"/əkˈnɑːlɪdʒ/","aviationMeaning":"v. 确认收到管制指令或信息","generalMeaning":"v. 承认；确认收到"},
-    {"word":"acknowledged","ipa":"/əkˈnɑːlɪdʒd/","aviationMeaning":"v. 已确认收到指令或信息","generalMeaning":"v. 已承认；已确认"},
-    {"word":"acknowledges","ipa":"/əkˈnɑːlɪdʒɪz/","aviationMeaning":"v. 确认收到管制指令或信息","generalMeaning":"v. 承认；确认"},
-    {"word":"acquisition","ipa":"/ˌækwɪˈzɪʃən/","aviationMeaning":"n. 目标捕获；设备购置","generalMeaning":"n. 获得；收购"},
-    {"word":"acrid","ipa":"/ˈækrɪd/","aviationMeaning":"adj. 刺鼻的（如烟雾气味）","generalMeaning":"adj. 刺鼻的；尖刻的"},
-    {"word":"acronym","ipa":"/ˈækrənɪm/","aviationMeaning":"n. 航空首字母缩略词","generalMeaning":"n. 首字母缩略词"},
-    {"word":"across","ipa":"/əˈkrɔːs/","aviationMeaning":"prep. 横越跑道、航路或区域","generalMeaning":"prep. 穿过；横跨"},
-    {"word":"act","ipa":"/ækt/","aviationMeaning":"v. 操作；采取行动","generalMeaning":"v. 行动；表现；起作用"},
-    {"word":"acting","ipa":"/ˈæktɪŋ/","aviationMeaning":"adj. 代行职责的；正在起作用的","generalMeaning":"n. 表演；adj. 临时代理的"},
-    {"word":"action","ipa":"/ˈækʃən/","aviationMeaning":"n. 操作；处置行动","generalMeaning":"n. 行动；行为；诉讼"},
-    {"word":"actions","ipa":"/ˈækʃənz/","aviationMeaning":"n. 操作；处置行动（复数）","generalMeaning":"n. 行动；行为（复数）"},
-    {"word":"activate","ipa":"/ˈæktəveɪt/","aviationMeaning":"v. 启动设备、系统或程序","generalMeaning":"v. 激活；启动"},
-    {"word":"activated","ipa":"/ˈæktəveɪtɪd/","aviationMeaning":"adj. 已启动的；已激活的","generalMeaning":"adj. 已激活的；已启动的"}
+    {
+      "word": "a",
+      "ipa": "/eɪ/",
+      "aviationMeaning": "art. 一；某一架或某一项",
+      "generalMeaning": "art. 一（不定冠词）"
+    },
+    {
+      "word": "aaib",
+      "ipa": "/ˌeɪ eɪ aɪ ˈbiː/",
+      "aviationMeaning": "n. 航空事故调查机构（缩写）",
+      "generalMeaning": "n. 机构名称缩写"
+    },
+    {
+      "word": "aaid",
+      "ipa": "/ˌeɪ eɪ aɪ ˈdiː/",
+      "aviationMeaning": "n. 航空事故调查部门（缩写）",
+      "generalMeaning": "n. 机构名称缩写"
+    },
+    {
+      "word": "ab",
+      "ipa": "/ˌeɪ ˈbiː/",
+      "aviationMeaning": "n. 民航文本中的字母缩写",
+      "generalMeaning": "n. 字母组合；缩写"
+    },
+    {
+      "word": "abandoned",
+      "ipa": "/əˈbændənd/",
+      "aviationMeaning": "adj. 已放弃的；已中止的",
+      "generalMeaning": "adj. 被遗弃的；被放弃的"
+    },
+    {
+      "word": "abatement",
+      "ipa": "/əˈbeɪtmənt/",
+      "aviationMeaning": "n. 降低；减噪；消减",
+      "generalMeaning": "n. 减少；缓和；减轻"
+    },
+    {
+      "word": "abbreviation",
+      "ipa": "/əˌbriːviˈeɪʃən/",
+      "aviationMeaning": "n. 航空缩略语",
+      "generalMeaning": "n. 缩写；缩略形式"
+    },
+    {
+      "word": "abeam",
+      "ipa": "/əˈbiːm/",
+      "aviationMeaning": "adv. 正横；位于航空器正侧方",
+      "generalMeaning": "adv. 在正横方向"
+    },
+    {
+      "word": "abidjan",
+      "ipa": "/ˌæbɪˈdʒɑːn/",
+      "aviationMeaning": "n. 阿比让（机场所在城市）",
+      "generalMeaning": "n. 阿比让（科特迪瓦城市）"
+    },
+    {
+      "word": "ability",
+      "ipa": "/əˈbɪləti/",
+      "aviationMeaning": "n. 飞行、操作或应急处置能力",
+      "generalMeaning": "n. 能力；本领"
+    },
+    {
+      "word": "ablaze",
+      "ipa": "/əˈbleɪz/",
+      "aviationMeaning": "adj. 起火燃烧的",
+      "generalMeaning": "adj. 着火的；明亮的"
+    },
+    {
+      "word": "able",
+      "ipa": "/ˈeɪbəl/",
+      "aviationMeaning": "adj. 能够执行或操作的",
+      "generalMeaning": "adj. 能够的；有能力的"
+    },
+    {
+      "word": "abnormal",
+      "ipa": "/æbˈnɔːrməl/",
+      "aviationMeaning": "adj. 非正常的；异常的",
+      "generalMeaning": "adj. 不正常的；异常的"
+    },
+    {
+      "word": "abnormally",
+      "ipa": "/æbˈnɔːrməli/",
+      "aviationMeaning": "adv. 异常地；非正常地",
+      "generalMeaning": "adv. 不正常地；异常地"
+    },
+    {
+      "word": "aboard",
+      "ipa": "/əˈbɔːrd/",
+      "aviationMeaning": "adv. 在机上；登机",
+      "generalMeaning": "adv. 在船（车、飞机）上；上船"
+    },
+    {
+      "word": "abort",
+      "ipa": "/əˈbɔːrt/",
+      "aviationMeaning": "v. 中止起飞、进近或程序",
+      "generalMeaning": "v. 中止；夭折"
+    },
+    {
+      "word": "aborted",
+      "ipa": "/əˈbɔːrtɪd/",
+      "aviationMeaning": "adj. 已中止的；已终止的",
+      "generalMeaning": "adj. 已中止的；已夭折的"
+    },
+    {
+      "word": "aborting",
+      "ipa": "/əˈbɔːrtɪŋ/",
+      "aviationMeaning": "v. 正在中止起飞、进近或程序",
+      "generalMeaning": "v. 正在中止"
+    },
+    {
+      "word": "about",
+      "ipa": "/əˈbaʊt/",
+      "aviationMeaning": "prep. 关于；大约",
+      "generalMeaning": "prep. 关于；大约；在…周围"
+    },
+    {
+      "word": "above",
+      "ipa": "/əˈbʌv/",
+      "aviationMeaning": "prep. 在…上方；高于",
+      "generalMeaning": "prep. 在…上方；超过"
+    },
+    {
+      "word": "abroad",
+      "ipa": "/əˈbrɔːd/",
+      "aviationMeaning": "adv. 在国外；飞往国外",
+      "generalMeaning": "adv. 在国外；到国外"
+    },
+    {
+      "word": "abrupt",
+      "ipa": "/əˈbrʌpt/",
+      "aviationMeaning": "adj. 突然的；陡峭的",
+      "generalMeaning": "adj. 突然的；唐突的"
+    },
+    {
+      "word": "abruptly",
+      "ipa": "/əˈbrʌptli/",
+      "aviationMeaning": "adv. 突然地；急剧地",
+      "generalMeaning": "adv. 突然地；唐突地"
+    },
+    {
+      "word": "abs",
+      "ipa": "/ˌeɪ biː ˈes/",
+      "aviationMeaning": "n. 防抱死制动系统（缩写）",
+      "generalMeaning": "n. 腹肌；防抱死制动系统"
+    },
+    {
+      "word": "absence",
+      "ipa": "/ˈæbsəns/",
+      "aviationMeaning": "n. 缺失；不在场；无该信号",
+      "generalMeaning": "n. 缺席；缺乏"
+    },
+    {
+      "word": "absorb",
+      "ipa": "/əbˈzɔːrb/",
+      "aviationMeaning": "v. 吸收能量、冲击或液体",
+      "generalMeaning": "v. 吸收；吸引；理解"
+    },
+    {
+      "word": "absorber",
+      "ipa": "/əbˈzɔːrbər/",
+      "aviationMeaning": "n. 减震器；吸收装置",
+      "generalMeaning": "n. 吸收器；减震器"
+    },
+    {
+      "word": "absorbers",
+      "ipa": "/əbˈzɔːrbərz/",
+      "aviationMeaning": "n. 减震器；吸收装置（复数）",
+      "generalMeaning": "n. 吸收器；减震器（复数）"
+    },
+    {
+      "word": "absorbing",
+      "ipa": "/əbˈzɔːrbɪŋ/",
+      "aviationMeaning": "v. 正在吸收能量或冲击",
+      "generalMeaning": "adj. 引人入胜的；v. 正在吸收"
+    },
+    {
+      "word": "absorbs",
+      "ipa": "/əbˈzɔːrbz/",
+      "aviationMeaning": "v. 吸收能量、冲击或液体",
+      "generalMeaning": "v. 吸收；理解"
+    },
+    {
+      "word": "ac",
+      "ipa": "/ˌeɪ ˈsiː/",
+      "aviationMeaning": "n. 交流电；空调（缩写）",
+      "generalMeaning": "n. 交流电；空调"
+    },
+    {
+      "word": "aca",
+      "ipa": "/ˌeɪ siː ˈeɪ/",
+      "aviationMeaning": "n. 民航机构或程序缩写",
+      "generalMeaning": "n. 机构名称缩写"
+    },
+    {
+      "word": "acc",
+      "ipa": "/ˌeɪ siː ˈsiː/",
+      "aviationMeaning": "n. 区域管制中心（缩写）",
+      "generalMeaning": "n. 机构或技术缩写"
+    },
+    {
+      "word": "accelerate",
+      "ipa": "/əkˈseləreɪt/",
+      "aviationMeaning": "v. 加速；提高速度",
+      "generalMeaning": "v. 加速；促进"
+    },
+    {
+      "word": "accelerate-stop",
+      "ipa": "/əkˈseləreɪt stɑːp/",
+      "aviationMeaning": "n. 加速—停止距离",
+      "generalMeaning": "n. 加速与停止的过程"
+    },
+    {
+      "word": "accelerated",
+      "ipa": "/əkˈseləreɪtɪd/",
+      "aviationMeaning": "adj. 已加速的；加快的",
+      "generalMeaning": "adj. 加速的；加快的"
+    },
+    {
+      "word": "accelerating",
+      "ipa": "/əkˈseləreɪtɪŋ/",
+      "aviationMeaning": "v. 正在加速",
+      "generalMeaning": "v. 正在加速；促进"
+    },
+    {
+      "word": "acceleration",
+      "ipa": "/əkˌseləˈreɪʃən/",
+      "aviationMeaning": "n. 加速度；加速过程",
+      "generalMeaning": "n. 加速；加速度"
+    },
+    {
+      "word": "accelerometers",
+      "ipa": "/əkˌseləˈrɑːmɪtərz/",
+      "aviationMeaning": "n. 加速度计（复数）",
+      "generalMeaning": "n. 加速度计（复数）"
+    },
+    {
+      "word": "accent",
+      "ipa": "/ˈæksent/",
+      "aviationMeaning": "n. 通话口音；重音",
+      "generalMeaning": "n. 口音；重音；强调"
+    },
+    {
+      "word": "accept",
+      "ipa": "/əkˈsept/",
+      "aviationMeaning": "v. 接受许可、指令或移交",
+      "generalMeaning": "v. 接受；同意"
+    },
+    {
+      "word": "acceptable",
+      "ipa": "/əkˈseptəbəl/",
+      "aviationMeaning": "adj. 符合运行要求的；可接受的",
+      "generalMeaning": "adj. 可接受的；合意的"
+    },
+    {
+      "word": "accepted",
+      "ipa": "/əkˈseptɪd/",
+      "aviationMeaning": "adj. 已接受的；获准的",
+      "generalMeaning": "adj. 被接受的；公认的"
+    },
+    {
+      "word": "accepting",
+      "ipa": "/əkˈseptɪŋ/",
+      "aviationMeaning": "v. 正在接受许可、指令或移交",
+      "generalMeaning": "v. 正在接受；认可"
+    },
+    {
+      "word": "accepts",
+      "ipa": "/əkˈsepts/",
+      "aviationMeaning": "v. 接受许可、指令或移交",
+      "generalMeaning": "v. 接受；同意"
+    },
+    {
+      "word": "access",
+      "ipa": "/ˈækses/",
+      "aviationMeaning": "n. 进入跑道、系统或空域的权限",
+      "generalMeaning": "n. 进入；使用权；通道"
+    },
+    {
+      "word": "accessible",
+      "ipa": "/ækˈsesəbəl/",
+      "aviationMeaning": "adj. 可进入、可使用的",
+      "generalMeaning": "adj. 可进入的；易理解的"
+    },
+    {
+      "word": "accessory",
+      "ipa": "/əkˈsesəri/",
+      "aviationMeaning": "n. 飞机附件；配件",
+      "generalMeaning": "n. 附件；配饰"
+    },
+    {
+      "word": "accident",
+      "ipa": "/ˈæksɪdənt/",
+      "aviationMeaning": "n. 航空事故",
+      "generalMeaning": "n. 事故；意外"
+    },
+    {
+      "word": "accidental",
+      "ipa": "/ˌæksɪˈdentl/",
+      "aviationMeaning": "adj. 意外发生的；非故意的",
+      "generalMeaning": "adj. 意外的；偶然的"
+    },
+    {
+      "word": "accidentally",
+      "ipa": "/ˌæksɪˈdentəli/",
+      "aviationMeaning": "adv. 意外地；非故意地",
+      "generalMeaning": "adv. 偶然地；意外地"
+    },
+    {
+      "word": "accidents",
+      "ipa": "/ˈæksɪdənts/",
+      "aviationMeaning": "n. 航空事故（复数）",
+      "generalMeaning": "n. 事故；意外（复数）"
+    },
+    {
+      "word": "accommodate",
+      "ipa": "/əˈkɑːmədeɪt/",
+      "aviationMeaning": "v. 容纳；协调运行需求",
+      "generalMeaning": "v. 容纳；适应；为…提供空间"
+    },
+    {
+      "word": "accommodation",
+      "ipa": "/əˌkɑːməˈdeɪʃən/",
+      "aviationMeaning": "n. 容量安排；运行协调",
+      "generalMeaning": "n. 住宿；容纳；适应"
+    },
+    {
+      "word": "accommodations",
+      "ipa": "/əˌkɑːməˈdeɪʃənz/",
+      "aviationMeaning": "n. 容量安排；保障条件（复数）",
+      "generalMeaning": "n. 住宿；便利设施（复数）"
+    },
+    {
+      "word": "accompanied",
+      "ipa": "/əˈkʌmpənid/",
+      "aviationMeaning": "v. 伴随；由…陪同",
+      "generalMeaning": "v. 陪同；伴随"
+    },
+    {
+      "word": "accomplishing",
+      "ipa": "/əˈkɑːmplɪʃɪŋ/",
+      "aviationMeaning": "v. 正在完成飞行或操作任务",
+      "generalMeaning": "v. 正在完成；实现"
+    },
+    {
+      "word": "accordance",
+      "ipa": "/əˈkɔːrdəns/",
+      "aviationMeaning": "n. 按照程序或规定",
+      "generalMeaning": "n. 一致；符合"
+    },
+    {
+      "word": "according",
+      "ipa": "/əˈkɔːrdɪŋ/",
+      "aviationMeaning": "prep. 按照；依据程序",
+      "generalMeaning": "prep. 根据；按照"
+    },
+    {
+      "word": "accordingly",
+      "ipa": "/əˈkɔːrdɪŋli/",
+      "aviationMeaning": "adv. 因此；相应地",
+      "generalMeaning": "adv. 因此；相应地"
+    },
+    {
+      "word": "accounted",
+      "ipa": "/əˈkaʊntɪd/",
+      "aviationMeaning": "v. 已计入；已说明",
+      "generalMeaning": "v. 已解释；已计入"
+    },
+    {
+      "word": "accra",
+      "ipa": "/əˈkrɑː/",
+      "aviationMeaning": "n. 阿克拉（机场所在城市）",
+      "generalMeaning": "n. 阿克拉（加纳首都）"
+    },
+    {
+      "word": "accumulate",
+      "ipa": "/əˈkjuːmjəleɪt/",
+      "aviationMeaning": "v. 积聚冰、雪、误差或数据",
+      "generalMeaning": "v. 积累；积聚"
+    },
+    {
+      "word": "accumulated",
+      "ipa": "/əˈkjuːmjəleɪtɪd/",
+      "aviationMeaning": "adj. 已积聚的；累计的",
+      "generalMeaning": "adj. 累积的；积聚的"
+    },
+    {
+      "word": "accumulating",
+      "ipa": "/əˈkjuːmjəleɪtɪŋ/",
+      "aviationMeaning": "v. 正在积聚冰、雪、误差或数据",
+      "generalMeaning": "v. 正在积累；积聚"
+    },
+    {
+      "word": "accumulation",
+      "ipa": "/əˌkjuːmjəˈleɪʃən/",
+      "aviationMeaning": "n. 冰、雪、误差或工作量的积聚",
+      "generalMeaning": "n. 积累；积聚"
+    },
+    {
+      "word": "accumulator",
+      "ipa": "/əˈkjuːmjəleɪtər/",
+      "aviationMeaning": "n. 液压蓄能器；蓄电装置",
+      "generalMeaning": "n. 累积器；蓄能器"
+    },
+    {
+      "word": "accuracy",
+      "ipa": "/ˈækjərəsi/",
+      "aviationMeaning": "n. 导航、定位或报告准确度",
+      "generalMeaning": "n. 准确性；精确度"
+    },
+    {
+      "word": "accurate",
+      "ipa": "/ˈækjərət/",
+      "aviationMeaning": "adj. 准确的；精确的",
+      "generalMeaning": "adj. 准确的；精确的"
+    },
+    {
+      "word": "accurately",
+      "ipa": "/ˈækjərətli/",
+      "aviationMeaning": "adv. 准确地；精确地",
+      "generalMeaning": "adv. 准确地；精确地"
+    },
+    {
+      "word": "achieve",
+      "ipa": "/əˈtʃiːv/",
+      "aviationMeaning": "v. 达到规定高度、速度或目标",
+      "generalMeaning": "v. 达到；完成"
+    },
+    {
+      "word": "achieving",
+      "ipa": "/əˈtʃiːvɪŋ/",
+      "aviationMeaning": "v. 正在达到规定高度、速度或目标",
+      "generalMeaning": "v. 正在达到；实现"
+    },
+    {
+      "word": "acknowledge",
+      "ipa": "/əkˈnɑːlɪdʒ/",
+      "aviationMeaning": "v. 确认收到管制指令或信息",
+      "generalMeaning": "v. 承认；确认收到"
+    },
+    {
+      "word": "acknowledged",
+      "ipa": "/əkˈnɑːlɪdʒd/",
+      "aviationMeaning": "v. 已确认收到指令或信息",
+      "generalMeaning": "v. 已承认；已确认"
+    },
+    {
+      "word": "acrid",
+      "ipa": "/ˈækrɪd/",
+      "aviationMeaning": "adj. 刺鼻的（如烟雾气味）",
+      "generalMeaning": "adj. 刺鼻的；尖刻的"
+    },
+    {
+      "word": "acronym",
+      "ipa": "/ˈækrənɪm/",
+      "aviationMeaning": "n. 航空首字母缩略词",
+      "generalMeaning": "n. 首字母缩略词"
+    },
+    {
+      "word": "across",
+      "ipa": "/əˈkrɔːs/",
+      "aviationMeaning": "prep. 横越跑道、航路或区域",
+      "generalMeaning": "prep. 穿过；横跨"
+    },
+    {
+      "word": "act",
+      "ipa": "/ækt/",
+      "aviationMeaning": "v. 操作；采取行动",
+      "generalMeaning": "v. 行动；表现；起作用"
+    },
+    {
+      "word": "acting",
+      "ipa": "/ˈæktɪŋ/",
+      "aviationMeaning": "adj. 代行职责的；正在起作用的",
+      "generalMeaning": "n. 表演；adj. 临时代理的"
+    },
+    {
+      "word": "action",
+      "ipa": "/ˈækʃən/",
+      "aviationMeaning": "n. 操作；处置行动",
+      "generalMeaning": "n. 行动；行为；诉讼"
+    },
+    {
+      "word": "actions",
+      "ipa": "/ˈækʃənz/",
+      "aviationMeaning": "n. 操作；处置行动（复数）",
+      "generalMeaning": "n. 行动；行为（复数）"
+    },
+    {
+      "word": "activate",
+      "ipa": "/ˈæktəveɪt/",
+      "aviationMeaning": "v. 启动设备、系统或程序",
+      "generalMeaning": "v. 激活；启动"
+    },
+    {
+      "word": "activated",
+      "ipa": "/ˈæktəveɪtɪd/",
+      "aviationMeaning": "adj. 已启动的；已激活的",
+      "generalMeaning": "adj. 已激活的；已启动的"
+    }
   ]
 }

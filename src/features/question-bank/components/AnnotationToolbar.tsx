@@ -1,4 +1,4 @@
-import { Check, Highlighter, Plus, Search, Tags, X } from 'lucide-react-native';
+import { Check, Highlighter, Plus, Search, Tags, X } from '@/components/ui/icons';
 import type { ReactNode } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
@@ -50,6 +50,8 @@ export function AnnotationToolbar({
   showTags: boolean;
   tagDefinitions: AnnotationDefinition[];
   resetToken: string | number;
+  tagMode?: boolean;
+  onTagModeChange?: (value: boolean) => void;
 }) {
   const { width: windowWidth } = useAppViewportDimensions();
   const toolbarRef = useRef<View>(null);
@@ -214,6 +216,24 @@ export function AnnotationToolbar({
       </AppModal>
     </View>
   );
+}
+
+export function AnnotationFloatingPanel(_props: {
+  activeHighlightId: string;
+  highlightDefinitions: AnnotationDefinition[];
+  left: number;
+  mode?: 'highlight' | 'tags';
+  onCreateHighlight: (label: string, color: AnnotationToneKey) => void;
+  onCreateTag: (label: string, color: AnnotationToneKey) => void;
+  onHighlightChange: (id: string) => void;
+  onTagToggle: (id: string) => void;
+  resetToken: string | number;
+  selectedTags: string[];
+  tagDefinitions: AnnotationDefinition[];
+  top: number;
+  width: number;
+}) {
+  return null;
 }
 
 function ToolOptions({ definitions, onCreate, onSelect, selectedIds, singleSelection }: {

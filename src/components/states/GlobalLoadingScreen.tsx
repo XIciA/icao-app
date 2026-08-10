@@ -6,7 +6,7 @@ import { AppText } from '../ui';
 
 export function GlobalLoadingScreen() {
   return (
-    <View style={styles.root}>
+    <View style={styles.root} testID="global-loading-screen">
       <View style={styles.mark}>
         <AppText color={colors.primary} style={styles.letter} variant="sectionTitle">
           ICAO

@@ -70,14 +70,14 @@ describe('embeddedQuestionBankRepository', () => {
     });
   });
 
-  it('keeps all 6,867 cards and canonical media references reconcilable', () => {
+  it('keeps all 6,865 cards and canonical media references reconcilable', () => {
     const resources = new Map(resourceManifest.files.map((resource) => [resource.publicPath, resource]));
 
     const banks = getEmbeddedQuestionBankIds().map((id) => embeddedQuestionBankRepository.getDataset(id));
     return Promise.all(banks).then((datasets) => {
       const cards = datasets.flatMap((dataset) => dataset?.categories.flatMap((category) => category.topics.flatMap((topic) => topic.cards.map((card) => ({ bankId: dataset.id, card })))) ?? []);
-      expect(datasets.map((dataset) => dataset?.declaredCardCount)).toEqual([1223, 900, 3218, 1090, 436]);
-      expect(cards).toHaveLength(6867);
+      expect(datasets.map((dataset) => dataset?.declaredCardCount)).toEqual([1223, 900, 3216, 1090, 436]);
+      expect(cards).toHaveLength(6865);
       expect(resourceManifest.files).toHaveLength(6081);
       expect(cards.filter(({ card }) => card.audio && !resources.has(card.audio))).toEqual([]);
 
@@ -99,12 +99,12 @@ describe('embeddedQuestionBankRepository', () => {
       expect(legacyCards.filter(({ bankId, card }) => card.audio !== expectedAudio(bankId, card.id))).toEqual([]);
 
       const webCards = cards.filter(({ card }) => card.audio?.includes('/web-v5/') || card.audio?.includes('/web-v6/'));
-      expect(webCards).toHaveLength(2099);
+      expect(webCards).toHaveLength(2098);
       expect(webCards.every(({ bankId, card }) =>
         new RegExp(`^/question-bank-assets/audio/${bankId}/web-v[56]/pepec-[a-z0-9_-]+\\.mp3$`).test(card.audio ?? ''))).toBe(true);
       expect(cards.filter(({ bankId, card }) => bankId === 'radiotelephony' && card.audio?.includes('/web-v5/'))).toHaveLength(0);
-      expect(cards.filter(({ bankId, card }) => bankId === 'radiotelephony' && card.audio?.includes('/web-v6/'))).toHaveLength(1367);
-      expect(new Set(webCards.map(({ card }) => card.audio)).size).toBe(2099);
+      expect(cards.filter(({ bankId, card }) => bankId === 'radiotelephony' && card.audio?.includes('/web-v6/'))).toHaveLength(1366);
+      expect(new Set(webCards.map(({ card }) => card.audio)).size).toBe(2098);
 
       expect(resources.get('/question-bank-assets/audio/listening/main/454.mp3')).toMatchObject({ sizeBytes: 128300 });
       expect(resources.get('/question-bank-assets/audio/listening/main/595.mp3')).toMatchObject({ sizeBytes: 404780 });

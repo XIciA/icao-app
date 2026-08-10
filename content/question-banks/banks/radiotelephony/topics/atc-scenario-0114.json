@@ -180,7 +180,7 @@
       "taskTitle": "CSN 3102-20",
       "audioText": "B: Now you confirm if the medical service will be ready at the gate.",
       "audioTextZh": "B：现在你确认医疗服务是否会在登机口准备好。",
-      "referenceText": "Guangzhou Tower, CSN 3102, is medical service ready at the gate ?",
+      "referenceText": "Guangzhou Tower, CSN 3102, is medical service ready at the gate?",
       "referenceTextZh": "广州塔台，CSN 3102，医疗服务是否已在登机口准备好？",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-010-csn3102-q20.mp3"
     }

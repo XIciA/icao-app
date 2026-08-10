@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "releaseVersion": 12,
+  "status": "open",
+  "total": 14,
+  "scopeReason": "其中 12 个 audioText 字段只有通过听音才能判断三点省略号表示自然停顿、可补全词语还是不可辨识内容；另有 1 张卡的中英文干扰项各存在 1 个重复值，但仓库内部没有足以唯一决定替代文本的证据。",
+  "possibleActions": [
+    "确认是自然停顿并保留",
+    "听音后补全可可靠辨识的词语",
+    "若确认受到无线电干扰且内容不可辨识，改为可读的干扰占位文本",
+    "由内容负责人为重复干扰项提供一个不同且不改变正确答案位置的中英文选项"
+  ],
+  "items": [
+    {
+      "cardId": "listening-main-430",
+      "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
+      "pointer": "/cards/153/audioText",
+      "textSha256": "ce3b80c76b9ce0f1c7352e06a36449471c611c077b526049f22595f1b5f290c2",
+      "context": "P: On landing, I noticed the landing gear had a little shimmy. M: Okay, we will check it. The ... is good, ... in the center, the gear is not locked down properly.\nQuestion: What was the problem with the nose gear on landing?"
+    },
+    {
+      "cardId": "listening-main-129",
+      "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
+      "pointer": "/cards/38/audioText",
+      "textSha256": "ce3b80c76b9ce0f1c7352e06a36449471c611c077b526049f22595f1b5f290c2",
+      "context": "P: On landing, I noticed the landing gear had a little shimmy. M: Okay, we will check it. The ... is good, ... in the center, the gear is not locked down properly.\nQuestion: What was the problem with the nose gear on landing?"
+    },
+    {
+      "cardId": "listening-main-285",
+      "file": "content/question-banks/banks/listening/topics/listening-topic-01.json",
+      "pointer": "/cards/92/audioText",
+      "textSha256": "5756b6637387f9393d48771c42074c426121b6cbfea2b60d1ea423dd57bea082",
+      "context": "M1: The wear of carbon brakes is related to the number of applications and the pressure applied. M2: Yes, the proper use of carbon brakes will ... of them.\nQuestion: What is the main idea of the conversation?"
+    },
+    {
+      "cardId": "listening-main-1066",
+      "file": "content/question-banks/banks/listening/topics/listening-topic-02.json",
+      "pointer": "/cards/121/audioText",
+      "textSha256": "88af21db634aa38e88daf70b7748f129579be7118e0b9ff53e96a7d9703ee2f8",
+      "context": "P: MAYDAY, MAYDAY, MAYDAY, AFR 214, we have fire in the rear toilet, descending to FL40, request emergency landing, position 45 northwest of..., heading 150.\nC: AFR 214, roger MAYDAY. Break, break, all stations, stop transmitting MAYDAY.\nQuestion: What is the current situation of the aircraft?"
+    },
+    {
+      "cardId": "listening-main-1165",
+      "file": "content/question-banks/banks/listening/topics/listening-topic-02.json",
+      "pointer": "/cards/146/audioText",
+      "textSha256": "46e46055fdd4a02ef52e772205075efa7ebb95c036b97f2ff125295938733248",
+      "context": "NWA 18 is taxiing to Runway 23R via taxiway TP: NWA 18, holding short of Runway 16.\nC: NWA 18, couldn't cross runway for a... delay, traffic 3 miles final.\nP: NWA 18, unable to expedite, we are stopped.\nC: NWA 18, hold short of Runway 16, taxiing clearance cancelled.\nP: NWA 18, holding short.\nQuestion: Describe what happened."
+    },
+    {
+      "cardId": "listening-main-1168",
+      "file": "content/question-banks/banks/listening/topics/listening-topic-02.json",
+      "pointer": "/cards/149/audioText",
+      "textSha256": "e45b985743a5da63b1305f4914e0091bacbb8c5b57bda033b7ce28678c9db4ee",
+      "context": "P: Wuhan Tower, BAW 70, we have lost steering capability, and we can't vacate the runway on our own.\nC: roger, advise your intention.\nP: we need a maintenance crew to examine our nose wheel and...a tow back to the terminal, BAW 70.\nQuestion: What happened to BAW 70?"
+    },
+    {
+      "cardId": "listening-main-1175",
+      "file": "content/question-banks/banks/listening/topics/listening-topic-02.json",
+      "pointer": "/cards/156/audioText",
+      "textSha256": "d3bbd413869e480330204281609873f103aba74fe186596e7c3a6ff739d0f6a9",
+      "context": "P1: Take the next right.\nP2: Are you sure, this is the runway. We must missed the turn. Tell Ground, we are holding for instruction.\nC: CCA0011just... call you, you missed Tango, you may proceed down 5L, which is not active, turn left on E, turn right on S to the runway, turn not miss S, or you will be on active runway.\nQuestion: What did the crew do wrong?"
+    },
+    {
+      "cardId": "listening-main-690",
+      "file": "content/question-banks/banks/listening/topics/listening-topic-03.json",
+      "pointer": "/cards/112/audioText",
+      "textSha256": "561ee6089238e467cdc2bc41940db7479fb3e9075fa239aff288a24cf1d42aa8",
+      "context": "M1: The wear of carbon brakes is related to more numbers of application and pressure applications.\nM2: Yes, the proper use of carbon brakes will... of them.\nQuestion: What is the main idea of the conversation?"
+    },
+    {
+      "cardId": "listening-main-926",
+      "file": "content/question-banks/banks/listening/topics/listening-topic-03.json",
+      "pointer": "/cards/150/choices/3",
+      "textSha256": "e9aed2d1be98da76f07177f9de714a76bf7dec2414d5476d74ae53deb67d5334",
+      "reason": "英文 D 选项与 C 选项仅末尾标点不同，规范化后均为 “Weather conditions”。题干能确定 A 为正确答案，但不能唯一推导 D 应替换成什么干扰项。",
+      "possibleOptions": [
+        "由内容负责人提供新的英文 D 干扰项",
+        "重新设计整组干扰项，同时保持 correctChoiceIndex 为 0"
+      ],
+      "context": "AFR 145 is currently en route from Paris to London Heathrow. The aircraft is descending to 3000ft and request diverting to TLA. ATC is unable to grant the request due to conflicting traffic at 3000ft.\nQuestion: Why did Air Traffic Control deny the request of AFR 145?\nChoices: Conflicting Traffic | Military activity | Weather conditions | Weather conditions."
+    },
+    {
+      "cardId": "listening-main-926",
+      "file": "content/question-banks/banks/listening/topics/listening-topic-03.json",
+      "pointer": "/cards/150/choicesZh/3",
+      "textSha256": "546c9c878b92b59298d3cf30fafa378198d049d24b7fd6b95d595426a7b55b83",
+      "reason": "中文 D 选项与 C 选项均为“天气状况”。英文同样重复，仓库内部没有唯一、可靠的替代文本。",
+      "possibleOptions": [
+        "按最终英文 D 干扰项提供对应中文",
+        "重新设计整组中英文干扰项，同时保持 correctChoiceIndex 为 0"
+      ],
+      "context": "AFR 145目前正在从巴黎飞往伦敦希思罗机场。航空器正下降至3000ft，并申请改航至TLA。由于在3000ft存在冲突航空器，ATC无法批准该请求。\n问题：空中交通管制为什么拒绝AFR 145的请求？\n选项：冲突航空器 | 军事活动 | 天气状况 | 天气状况"
+    },
+    {
+      "cardId": "listening-main-1016",
+      "file": "content/question-banks/banks/listening/topics/listening-topic-03.json",
+      "pointer": "/cards/211/audioText",
+      "textSha256": "44e25e613331b44e457b84acdc08d0d6a18acc4183d6410d22b47f494842f2ea",
+      "context": "P1: Did you hear what captain Mike said? There was something about the date when the flight plan reports would be chosen.\nP2: Yes, he said we should hand the flight plan report when we finished the... But they must be finished on N13. If not before.\nQuestion: When would the flight plan reports be given to the captain?"
+    },
+    {
+      "cardId": "listening-main-1017",
+      "file": "content/question-banks/banks/listening/topics/listening-topic-03.json",
+      "pointer": "/cards/212/audioText",
+      "textSha256": "ffcd11a4a73a037484f3439cf3f4f37df8f9841863b3ca892a4d2f94ff98ac2b",
+      "context": "Obstacle clearance is based on aircraft climbing at 200ft per nm crossing the end of runway at 35ft AGL and climbing to 400ft above airport elevation before turning less specified... procedure.\nQuestion: What is the limitation of obstacle clearance when the airplane is crossing the end of the runway?"
+    },
+    {
+      "cardId": "listening-main-1026",
+      "file": "content/question-banks/banks/listening/topics/listening-topic-03.json",
+      "pointer": "/cards/220/audioText",
+      "textSha256": "a361c36daea1f939e50bff19323933147219b3cef3ce24824ac1b895fa78633f",
+      "context": "M1: Have you heard the ATC broadcast RVSM operations will begin in 30 minutes?\nM2: Yes, all aircraft departing from the... China...airspace need to follow the level between 8900m and 12600m in cruising in accordance with China RVSM level allocation.\nQuestion: What was the conversation about?"
+    },
+    {
+      "cardId": "listening-main-293",
+      "file": "content/question-banks/banks/listening/topics/listening-topic-04.json",
+      "pointer": "/cards/94/audioText",
+      "textSha256": "ee1131ea849b6191250b0eab12992b405be7b17daad55242af8621817b64a26f",
+      "context": "P: MAYDAY, MAYDAY, MAYDAY, AFR 214, we have fire in the rear toilet, descending to FL40, request emergency landing, position 45 miles northwest of ..., heading 150. C: AFR 214, roger MAYDAY. Break, break, all stations, stop transmitting, MAYDAY.\nQuestion: What is the current situation of the aircraft?"
+    }
+  ]
+}

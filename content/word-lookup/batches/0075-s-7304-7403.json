@@ -1,105 +1,521 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"stabilator","ipa":"/stəˈbɪləteɪtər/","aviationMeaning":"n. 全动平尾；兼具水平安定面和升降舵功能的可动翼面","generalMeaning":"n. 全动平尾"},
-    {"word":"stability","ipa":"/stəˈbɪləti/","aviationMeaning":"n. 稳定性；航空器保持或恢复预定飞行状态的能力","generalMeaning":"n. 稳定性；安定"},
-    {"word":"stabilization","ipa":"/ˌsteɪbələˈzeɪʃən/","aviationMeaning":"n. 稳定；使航空器、进近、系统或参数达到稳定状态","generalMeaning":"n. 稳定；安定"},
-    {"word":"stabilize","ipa":"/ˈsteɪbəlaɪz/","aviationMeaning":"v. 稳定；使航空器、进近、系统或参数保持稳定","generalMeaning":"v. 稳定；使安定"},
-    {"word":"stabilized","ipa":"/ˈsteɪbəlaɪzd/","aviationMeaning":"adj. 已稳定的；航空器、进近或系统已处于稳定状态","generalMeaning":"adj. 已稳定的"},
-    {"word":"stabilized-approach","ipa":"/ˈsteɪbəlaɪzd əˈproʊtʃ/","aviationMeaning":"n. 稳定进近；满足航径、速度、构型和下降率标准的进近","generalMeaning":"n. 稳定进近"},
-    {"word":"stabilizer","ipa":"/ˈsteɪbəlaɪzər/","aviationMeaning":"n. 安定面；帮助航空器保持姿态稳定的翼面或装置","generalMeaning":"n. 稳定器；安定器"},
-    {"word":"stabilizes","ipa":"/ˈsteɪbəlaɪzɪz/","aviationMeaning":"v. 稳定；使航空器、进近或系统保持稳定","generalMeaning":"v. 稳定；使安定"},
-    {"word":"stabilizing","ipa":"/ˈsteɪbəlaɪzɪŋ/","aviationMeaning":"v. 正稳定；正在使航空器、进近或系统趋于稳定","generalMeaning":"v. 正稳定；使安定"},
-    {"word":"stable","ipa":"/ˈsteɪbəl/","aviationMeaning":"adj. 稳定的；航空器、进近、天气或系统状态没有明显变化","generalMeaning":"adj. 稳定的；牢固的"},
-    {"word":"stable-approach","ipa":"/ˈsteɪbəl əˈproʊtʃ/","aviationMeaning":"n. 稳定进近；满足规定速度、航径和构型的进近状态","generalMeaning":"n. 稳定进近"},
-    {"word":"staff","ipa":"/stæf/","aviationMeaning":"n. 工作人员；机组、管制、机场、维修或地勤人员","generalMeaning":"n. 职员；员工"},
-    {"word":"staffing","ipa":"/ˈstæfɪŋ/","aviationMeaning":"n. 人员配置；运行所需机组、管制或地勤人员安排","generalMeaning":"n. 人员配置"},
-    {"word":"stage","ipa":"/steɪdʒ/","aviationMeaning":"n. 阶段；飞行、进近、维护或处置过程中的一个步骤","generalMeaning":"n. 阶段；舞台"},
-    {"word":"stages","ipa":"/ˈsteɪdʒɪz/","aviationMeaning":"n. 阶段（复数）；飞行、维护或处置的多个步骤","generalMeaning":"n. 阶段；舞台（复数）"},
-    {"word":"stair","ipa":"/ster/","aviationMeaning":"n. 舷梯；供旅客或机组登离航空器的阶梯","generalMeaning":"n. 楼梯；阶梯"},
-    {"word":"stairs","ipa":"/sterz/","aviationMeaning":"n. 阶梯（复数）；供旅客或机组登离航空器的多级阶梯","generalMeaning":"n. 楼梯；阶梯（复数）"},
-    {"word":"stall","ipa":"/stɔːl/","aviationMeaning":"n. 失速；机翼迎角超过临界值导致升力显著下降的状态","generalMeaning":"n. 停顿；v. 失速"},
-    {"word":"stalled","ipa":"/stɔːld/","aviationMeaning":"adj. 已失速的；机翼迎角超过临界值、升力下降的","generalMeaning":"adj. 停顿的；失速的"},
-    {"word":"stalling","ipa":"/ˈstɔːlɪŋ/","aviationMeaning":"v. 正失速；机翼迎角接近或超过临界值导致升力下降","generalMeaning":"v. 正停顿；失速"},
-    {"word":"stalls","ipa":"/stɔːlz/","aviationMeaning":"v. 失速；机翼迎角超过临界值导致升力下降","generalMeaning":"v. 停顿；失速"},
-    {"word":"stamp","ipa":"/stæmp/","aviationMeaning":"n. 印章；文件、货物或维护记录的认证标记","generalMeaning":"n. 邮票；印章"},
-    {"word":"stamped","ipa":"/stæmpt/","aviationMeaning":"adj. 已盖章的；文件、货物或记录已经认证标记","generalMeaning":"adj. 已盖章的"},
-    {"word":"stand","ipa":"/stænd/","aviationMeaning":"n. 停机位；航空器在机坪上的指定停放位置","generalMeaning":"n. 站立；展台"},
-    {"word":"stand-off","ipa":"/ˈstænd ɔːf/","aviationMeaning":"n. 对峙；或保持安全距离，需结合原文","generalMeaning":"n. 对峙；僵局"},
-    {"word":"standard","ipa":"/ˈstændərd/","aviationMeaning":"n. 标准；飞行、适航、性能或运行的规定要求","generalMeaning":"n. 标准；adj. 标准的"},
-    {"word":"standardized","ipa":"/ˈstændərdaɪzd/","aviationMeaning":"adj. 标准化的；按统一程序、格式或规范执行的","generalMeaning":"adj. 标准化的"},
-    {"word":"standards","ipa":"/ˈstændərdz/","aviationMeaning":"n. 标准（复数）；飞行、适航、性能或运行的规定要求","generalMeaning":"n. 标准（复数）"},
-    {"word":"standby","ipa":"/ˈstændbaɪ/","aviationMeaning":"adj. 待命的；备用系统、人员或航空器准备随时使用的","generalMeaning":"adj. 待命的；备用的"},
-    {"word":"standing","ipa":"/ˈstændɪŋ/","aviationMeaning":"adj. 静止的；航空器、车辆或人员停在原地的","generalMeaning":"adj. 站立的；长期存在的"},
-    {"word":"stands","ipa":"/stændz/","aviationMeaning":"n. 停机位（复数）；机坪上多个航空器停放位置","generalMeaning":"n. 站立；展台（复数）"},
-    {"word":"standstill","ipa":"/ˈstændstɪl/","aviationMeaning":"n. 停止状态；航空器、车辆、系统或运行完全停止","generalMeaning":"n. 停顿；停止"},
-    {"word":"stanfield","ipa":"/ˈstænfiːld/","aviationMeaning":"n. 斯坦菲尔德；机场或地名","generalMeaning":"n. 专有地名"},
-    {"word":"stansted","ipa":"/ˈstænstd/","aviationMeaning":"n. 斯坦斯特德；机场或地名","generalMeaning":"n. 斯坦斯特德"},
-    {"word":"star","ipa":"/stɑːr/","aviationMeaning":"n. 标准仪表进场程序；通往机场的规定到达航路","generalMeaning":"n. 星；明星"},
-    {"word":"starboard","ipa":"/ˈstɑːrbɔːrd/","aviationMeaning":"n. 右舷；航空器或船舶的右侧","generalMeaning":"n. 右舷"},
-    {"word":"start","ipa":"/stɑːrt/","aviationMeaning":"v. 启动；启动发动机、系统、程序或操作","generalMeaning":"v. 开始；启动"},
-    {"word":"start-up","ipa":"/ˈstɑːrt ʌp/","aviationMeaning":"n. 启动；发动机、系统或运行从停止到工作的过程","generalMeaning":"n. 启动；初创"},
-    {"word":"started","ipa":"/ˈstɑːrtɪd/","aviationMeaning":"v. 已启动；发动机、系统或程序已开始运行","generalMeaning":"v. 已开始；启动"},
-    {"word":"starter","ipa":"/ˈstɑːrtər/","aviationMeaning":"n. 起动机；使发动机开始旋转并点火的装置","generalMeaning":"n. 起动器；开胃菜"},
-    {"word":"starters","ipa":"/ˈstɑːrtərz/","aviationMeaning":"n. 起动机（复数）；多个发动机启动装置","generalMeaning":"n. 起动器；开胃菜（复数）"},
-    {"word":"starting","ipa":"/ˈstɑːrtɪŋ/","aviationMeaning":"v. 正启动；发动机、系统或程序正在开始运行","generalMeaning":"v. 正开始；启动"},
-    {"word":"starts","ipa":"/stɑːrts/","aviationMeaning":"v. 启动；使发动机、系统或程序开始运行","generalMeaning":"v. 开始；启动"},
-    {"word":"startup","ipa":"/ˈstɑːrtʌp/","aviationMeaning":"n. 启动；发动机、系统或运行开始工作的过程","generalMeaning":"n. 启动；初创企业"},
-    {"word":"starvation","ipa":"/stɑːrˈveɪʃən/","aviationMeaning":"n. 供给不足；发动机因燃油、空气或润滑不足不能正常工作","generalMeaning":"n. 饥饿；匮乏"},
-    {"word":"starve","ipa":"/stɑːrv/","aviationMeaning":"v. 使供给不足；使发动机缺少燃油、空气或润滑","generalMeaning":"v. 挨饿；使匮乏"},
-    {"word":"state","ipa":"/steɪt/","aviationMeaning":"n. 状态；航空器、系统、天气或运行的当前情况","generalMeaning":"n. 状态；州；v. 陈述"},
-    {"word":"stated","ipa":"/ˈsteɪtɪd/","aviationMeaning":"adj. 已说明的；在通告、程序或通话中明确表达的","generalMeaning":"adj. 已陈述的"},
-    {"word":"statement","ipa":"/ˈsteɪtmənt/","aviationMeaning":"n. 声明；通告、事件报告或正式说明中的陈述","generalMeaning":"n. 声明；陈述"},
-    {"word":"statements","ipa":"/ˈsteɪtmənts/","aviationMeaning":"n. 声明（复数）；通告、报告或正式说明中的多项陈述","generalMeaning":"n. 声明；陈述（复数）"},
-    {"word":"states","ipa":"/steɪts/","aviationMeaning":"n. 状态（复数）；多个系统、天气或运行情况","generalMeaning":"n. 状态；州（复数）"},
-    {"word":"static","ipa":"/ˈstætɪk/","aviationMeaning":"adj. 静态的；不随时间变化的；也指静电干扰","generalMeaning":"adj. 静态的；静止的"},
-    {"word":"static-protection","ipa":"/ˈstætɪk prəˈtekʃən/","aviationMeaning":"n. 静电防护；减少航空器静电积聚和通信干扰的措施","generalMeaning":"n. 静电防护"},
-    {"word":"stating","ipa":"/ˈsteɪtɪŋ/","aviationMeaning":"v. 正说明；正在通过通话、通告或文件明确表达","generalMeaning":"v. 正陈述；说明"},
-    {"word":"station","ipa":"/ˈsteɪʃən/","aviationMeaning":"n. 台站；导航、通信、气象或地面服务设施","generalMeaning":"n. 车站；站点"},
-    {"word":"stationary","ipa":"/ˈsteɪʃəneri/","aviationMeaning":"adj. 静止的；航空器、车辆、物体或天气系统不移动的","generalMeaning":"adj. 静止的；固定的"},
-    {"word":"stations","ipa":"/ˈsteɪʃənz/","aviationMeaning":"n. 台站（复数）；多个导航、通信、气象或服务设施","generalMeaning":"n. 车站；站点（复数）"},
-    {"word":"status","ipa":"/ˈsteɪtəs/","aviationMeaning":"n. 状态；航空器、系统、机场或运行的当前可用情况","generalMeaning":"n. 状态；地位"},
-    {"word":"statute","ipa":"/ˈstætʃuːt/","aviationMeaning":"n. 法规；政府制定的航空、安保或运行法律","generalMeaning":"n. 法规；法令"},
-    {"word":"stavanger","ipa":"/stəˈvæŋər/","aviationMeaning":"n. 斯塔万格；机场或地名","generalMeaning":"n. 斯塔万格"},
-    {"word":"stavanger's","ipa":"/stəˈvæŋərz/","aviationMeaning":"n. Stavanger 的所有格形式；斯塔万格的","generalMeaning":"n. 专有地名的所有格形式"},
-    {"word":"stay","ipa":"/steɪ/","aviationMeaning":"v. 保持；保持高度、航向、位置或状态","generalMeaning":"v. 停留；保持"},
-    {"word":"stayed","ipa":"/steɪd/","aviationMeaning":"v. 已保持；已保持高度、航向、位置或状态","generalMeaning":"v. 已停留；保持"},
-    {"word":"staying","ipa":"/ˈsteɪɪŋ/","aviationMeaning":"v. 正保持；正在保持高度、航向、位置或状态","generalMeaning":"v. 正停留；保持"},
-    {"word":"steady","ipa":"/ˈstedi/","aviationMeaning":"adj. 稳定的；速度、高度、风或系统参数保持不变的","generalMeaning":"adj. 稳定的；平稳的"},
-    {"word":"stealth","ipa":"/stelθ/","aviationMeaning":"n. 隐身；降低航空器被探测概率的技术","generalMeaning":"n. 隐秘；偷偷行动"},
-    {"word":"steel","ipa":"/stiːl/","aviationMeaning":"n. 钢；航空器、设备或机场设施使用的金属材料","generalMeaning":"n. 钢；钢铁"},
-    {"word":"steep","ipa":"/stiːp/","aviationMeaning":"adj. 陡的；下降角、爬升角、地形或跑道坡度较大的","generalMeaning":"adj. 陡峭的；急剧的"},
-    {"word":"steeply","ipa":"/ˈstiːpli/","aviationMeaning":"adv. 陡峭地；以较大下降或爬升角度飞行","generalMeaning":"adv. 陡峭地；急剧地"},
-    {"word":"steer","ipa":"/stɪr/","aviationMeaning":"v. 引导；控制航空器、车辆或设备的方向","generalMeaning":"v. 驾驶；引导"},
-    {"word":"steered","ipa":"/stɪrd/","aviationMeaning":"v. 已引导；已控制航空器、车辆或设备方向","generalMeaning":"v. 已驾驶；引导"},
-    {"word":"steering","ipa":"/ˈstɪrɪŋ/","aviationMeaning":"n. 转向；控制航空器地面车辆或设备方向的系统","generalMeaning":"n. 转向；操纵"},
-    {"word":"step","ipa":"/step/","aviationMeaning":"n. 步骤；检查单、程序或应急处置中的一个动作","generalMeaning":"n. 步骤；台阶"},
-    {"word":"step-down","ipa":"/ˈstep daʊn/","aviationMeaning":"n. 逐级下降；按规定高度限制分段下降的程序","generalMeaning":"n. 逐步下降"},
-    {"word":"stepping","ipa":"/ˈstepɪŋ/","aviationMeaning":"v. 正执行步骤；正在按程序逐项操作","generalMeaning":"v. 正迈步；执行步骤"},
-    {"word":"steps","ipa":"/steps/","aviationMeaning":"n. 步骤（复数）；检查单、程序或应急处置的多个动作","generalMeaning":"n. 步骤；台阶（复数）"},
-    {"word":"sterile","ipa":"/ˈsterəl/","aviationMeaning":"adj. 无干扰的；在关键飞行阶段仅进行必要操作和通话的","generalMeaning":"adj. 无菌的；无干扰的"},
-    {"word":"sterile-cockpit","ipa":"/ˈsterəl ˈkɑːkpɪt/","aviationMeaning":"n. 无干扰驾驶舱；关键飞行阶段禁止非必要活动和交谈的规定","generalMeaning":"n. 无干扰驾驶舱"},
-    {"word":"steward","ipa":"/ˈstuːərd/","aviationMeaning":"n. 男乘务员；负责客舱安全与服务的机组成员","generalMeaning":"n. 管家；男乘务员"},
-    {"word":"stewardesses","ipa":"/ˈstuːərdəsɪz/","aviationMeaning":"n. 女乘务员（复数）；负责客舱安全与服务的机组成员","generalMeaning":"n. 女乘务员（复数）"},
-    {"word":"stick","ipa":"/stɪk/","aviationMeaning":"n. 操纵杆；飞行员用于控制俯仰和横滚的操纵器","generalMeaning":"n. 棍；v. 粘住"},
-    {"word":"sticks","ipa":"/stɪks/","aviationMeaning":"n. 操纵杆（复数）；驾驶舱多个飞行操纵器","generalMeaning":"n. 棍；操纵杆（复数）"},
-    {"word":"stigma","ipa":"/ˈstɪɡmə/","aviationMeaning":"n. 污名；可能影响人员报告健康或安全问题的负面标签","generalMeaning":"n. 污名；耻辱"},
-    {"word":"still","ipa":"/stɪl/","aviationMeaning":"adv. 仍然；航空器、系统或状况继续保持某状态","generalMeaning":"adv. 仍然；adj. 静止的"},
-    {"word":"stimulants","ipa":"/ˈstɪmjələnts/","aviationMeaning":"n. 兴奋剂（复数）；可能影响机组健康与适航判断的物质","generalMeaning":"n. 兴奋剂（复数）"},
-    {"word":"stomachache","ipa":"/ˈstʌməkeɪk/","aviationMeaning":"n. 胃痛；旅客或机组可能需要医疗协助的症状","generalMeaning":"n. 胃痛；腹痛"},
-    {"word":"stone","ipa":"/stoʊn/","aviationMeaning":"n. 石块；道面、跑道或地面异物，可能损伤航空器","generalMeaning":"n. 石头；宝石"},
-    {"word":"stones","ipa":"/stoʊnz/","aviationMeaning":"n. 石块（复数）；道面或地面异物，可能损伤航空器","generalMeaning":"n. 石头；宝石（复数）"},
-    {"word":"stood","ipa":"/stʊd/","aviationMeaning":"v. 处于；航空器、人员或设备处于某状态或位置","generalMeaning":"v. stand 的过去式；站立"},
-    {"word":"stop","ipa":"/stɑːp/","aviationMeaning":"v. 停止；停止发动机、滑行、操作或程序","generalMeaning":"v. 停止；n. 停止"},
-    {"word":"stop-bar","ipa":"/ˈstɑːp bɑːr/","aviationMeaning":"n. 停止排灯；红色地面灯光，用于禁止进入跑道或敏感区域","generalMeaning":"n. 停止排灯"},
-    {"word":"stop-end","ipa":"/ˈstɑːp end/","aviationMeaning":"n. 停止端；运行或滑行中必须停止的位置终点","generalMeaning":"n. 停止端"},
-    {"word":"stopend","ipa":"/ˈstɑːp end/","aviationMeaning":"n. 停止端；stop end 的连写形式","generalMeaning":"n. 停止端"},
-    {"word":"stopped","ipa":"/stɑːpt/","aviationMeaning":"adj. 已停止的；发动机、航空器、系统或操作已经停止","generalMeaning":"adj. 已停止的"},
-    {"word":"stopping","ipa":"/ˈstɑːpɪŋ/","aviationMeaning":"v. 正停止；正在停止发动机、滑行、操作或程序","generalMeaning":"v. 正停止"},
-    {"word":"stopping-distance","ipa":"/ˈstɑːpɪŋ ˈdɪstəns/","aviationMeaning":"n. 停止距离；航空器从某速度减速至停止所需的距离","generalMeaning":"n. 停止距离"},
-    {"word":"stops","ipa":"/stɑːps/","aviationMeaning":"v. 停止；使发动机、航空器、系统或操作停止","generalMeaning":"v. 停止；n. 停止（复数）"},
-    {"word":"stopway","ipa":"/ˈstɑːpweɪ/","aviationMeaning":"n. 停机道；跑道末端供中断起飞航空器停止使用的区域","generalMeaning":"n. 停机道"},
-    {"word":"storage","ipa":"/ˈstɔːrɪdʒ/","aviationMeaning":"n. 储存；燃油、货物、设备、记录或物资的存放","generalMeaning":"n. 储存；仓库"},
-    {"word":"store","ipa":"/stɔːr/","aviationMeaning":"v. 储存；存放燃油、货物、设备或数据","generalMeaning":"v. 储存；n. 商店"}
+    {
+      "word": "stability",
+      "ipa": "/stəˈbɪləti/",
+      "aviationMeaning": "n. 稳定性；航空器保持或恢复预定飞行状态的能力",
+      "generalMeaning": "n. 稳定性；安定"
+    },
+    {
+      "word": "stabilization",
+      "ipa": "/ˌsteɪbələˈzeɪʃən/",
+      "aviationMeaning": "n. 稳定；使航空器、进近、系统或参数达到稳定状态",
+      "generalMeaning": "n. 稳定；安定"
+    },
+    {
+      "word": "stabilize",
+      "ipa": "/ˈsteɪbəlaɪz/",
+      "aviationMeaning": "v. 稳定；使航空器、进近、系统或参数保持稳定",
+      "generalMeaning": "v. 稳定；使安定"
+    },
+    {
+      "word": "stabilized",
+      "ipa": "/ˈsteɪbəlaɪzd/",
+      "aviationMeaning": "adj. 已稳定的；航空器、进近或系统已处于稳定状态",
+      "generalMeaning": "adj. 已稳定的"
+    },
+    {
+      "word": "stabilizer",
+      "ipa": "/ˈsteɪbəlaɪzər/",
+      "aviationMeaning": "n. 安定面；帮助航空器保持姿态稳定的翼面或装置",
+      "generalMeaning": "n. 稳定器；安定器"
+    },
+    {
+      "word": "stabilizing",
+      "ipa": "/ˈsteɪbəlaɪzɪŋ/",
+      "aviationMeaning": "v. 正稳定；正在使航空器、进近或系统趋于稳定",
+      "generalMeaning": "v. 正稳定；使安定"
+    },
+    {
+      "word": "stable",
+      "ipa": "/ˈsteɪbəl/",
+      "aviationMeaning": "adj. 稳定的；航空器、进近、天气或系统状态没有明显变化",
+      "generalMeaning": "adj. 稳定的；牢固的"
+    },
+    {
+      "word": "staff",
+      "ipa": "/stæf/",
+      "aviationMeaning": "n. 工作人员；机组、管制、机场、维修或地勤人员",
+      "generalMeaning": "n. 职员；员工"
+    },
+    {
+      "word": "staffing",
+      "ipa": "/ˈstæfɪŋ/",
+      "aviationMeaning": "n. 人员配置；运行所需机组、管制或地勤人员安排",
+      "generalMeaning": "n. 人员配置"
+    },
+    {
+      "word": "stage",
+      "ipa": "/steɪdʒ/",
+      "aviationMeaning": "n. 阶段；飞行、进近、维护或处置过程中的一个步骤",
+      "generalMeaning": "n. 阶段；舞台"
+    },
+    {
+      "word": "stages",
+      "ipa": "/ˈsteɪdʒɪz/",
+      "aviationMeaning": "n. 阶段（复数）；飞行、维护或处置的多个步骤",
+      "generalMeaning": "n. 阶段；舞台（复数）"
+    },
+    {
+      "word": "stair",
+      "ipa": "/ster/",
+      "aviationMeaning": "n. 舷梯；供旅客或机组登离航空器的阶梯",
+      "generalMeaning": "n. 楼梯；阶梯"
+    },
+    {
+      "word": "stairs",
+      "ipa": "/sterz/",
+      "aviationMeaning": "n. 阶梯（复数）；供旅客或机组登离航空器的多级阶梯",
+      "generalMeaning": "n. 楼梯；阶梯（复数）"
+    },
+    {
+      "word": "stall",
+      "ipa": "/stɔːl/",
+      "aviationMeaning": "n. 失速；机翼迎角超过临界值导致升力显著下降的状态",
+      "generalMeaning": "n. 停顿；v. 失速"
+    },
+    {
+      "word": "stalled",
+      "ipa": "/stɔːld/",
+      "aviationMeaning": "adj. 已失速的；机翼迎角超过临界值、升力下降的",
+      "generalMeaning": "adj. 停顿的；失速的"
+    },
+    {
+      "word": "stalling",
+      "ipa": "/ˈstɔːlɪŋ/",
+      "aviationMeaning": "v. 正失速；机翼迎角接近或超过临界值导致升力下降",
+      "generalMeaning": "v. 正停顿；失速"
+    },
+    {
+      "word": "stalls",
+      "ipa": "/stɔːlz/",
+      "aviationMeaning": "v. 失速；机翼迎角超过临界值导致升力下降",
+      "generalMeaning": "v. 停顿；失速"
+    },
+    {
+      "word": "stamp",
+      "ipa": "/stæmp/",
+      "aviationMeaning": "n. 印章；文件、货物或维护记录的认证标记",
+      "generalMeaning": "n. 邮票；印章"
+    },
+    {
+      "word": "stamped",
+      "ipa": "/stæmpt/",
+      "aviationMeaning": "adj. 已盖章的；文件、货物或记录已经认证标记",
+      "generalMeaning": "adj. 已盖章的"
+    },
+    {
+      "word": "stand",
+      "ipa": "/stænd/",
+      "aviationMeaning": "n. 停机位；航空器在机坪上的指定停放位置",
+      "generalMeaning": "n. 站立；展台"
+    },
+    {
+      "word": "stand-off",
+      "ipa": "/ˈstænd ɔːf/",
+      "aviationMeaning": "n. 对峙；或保持安全距离，需结合原文",
+      "generalMeaning": "n. 对峙；僵局"
+    },
+    {
+      "word": "standard",
+      "ipa": "/ˈstændərd/",
+      "aviationMeaning": "n. 标准；飞行、适航、性能或运行的规定要求",
+      "generalMeaning": "n. 标准；adj. 标准的"
+    },
+    {
+      "word": "standardized",
+      "ipa": "/ˈstændərdaɪzd/",
+      "aviationMeaning": "adj. 标准化的；按统一程序、格式或规范执行的",
+      "generalMeaning": "adj. 标准化的"
+    },
+    {
+      "word": "standards",
+      "ipa": "/ˈstændərdz/",
+      "aviationMeaning": "n. 标准（复数）；飞行、适航、性能或运行的规定要求",
+      "generalMeaning": "n. 标准（复数）"
+    },
+    {
+      "word": "standby",
+      "ipa": "/ˈstændbaɪ/",
+      "aviationMeaning": "adj. 待命的；备用系统、人员或航空器准备随时使用的",
+      "generalMeaning": "adj. 待命的；备用的"
+    },
+    {
+      "word": "standing",
+      "ipa": "/ˈstændɪŋ/",
+      "aviationMeaning": "adj. 静止的；航空器、车辆或人员停在原地的",
+      "generalMeaning": "adj. 站立的；长期存在的"
+    },
+    {
+      "word": "stands",
+      "ipa": "/stændz/",
+      "aviationMeaning": "n. 停机位（复数）；机坪上多个航空器停放位置",
+      "generalMeaning": "n. 站立；展台（复数）"
+    },
+    {
+      "word": "standstill",
+      "ipa": "/ˈstændstɪl/",
+      "aviationMeaning": "n. 停止状态；航空器、车辆、系统或运行完全停止",
+      "generalMeaning": "n. 停顿；停止"
+    },
+    {
+      "word": "stanfield",
+      "ipa": "/ˈstænfiːld/",
+      "aviationMeaning": "n. 斯坦菲尔德；机场或地名",
+      "generalMeaning": "n. 专有地名"
+    },
+    {
+      "word": "stansted",
+      "ipa": "/ˈstænstd/",
+      "aviationMeaning": "n. 斯坦斯特德；机场或地名",
+      "generalMeaning": "n. 斯坦斯特德"
+    },
+    {
+      "word": "star",
+      "ipa": "/stɑːr/",
+      "aviationMeaning": "n. 标准仪表进场程序；通往机场的规定到达航路",
+      "generalMeaning": "n. 星；明星"
+    },
+    {
+      "word": "starboard",
+      "ipa": "/ˈstɑːrbɔːrd/",
+      "aviationMeaning": "n. 右舷；航空器或船舶的右侧",
+      "generalMeaning": "n. 右舷"
+    },
+    {
+      "word": "start",
+      "ipa": "/stɑːrt/",
+      "aviationMeaning": "v. 启动；启动发动机、系统、程序或操作",
+      "generalMeaning": "v. 开始；启动"
+    },
+    {
+      "word": "start-up",
+      "ipa": "/ˈstɑːrt ʌp/",
+      "aviationMeaning": "n. 启动；发动机、系统或运行从停止到工作的过程",
+      "generalMeaning": "n. 启动；初创"
+    },
+    {
+      "word": "started",
+      "ipa": "/ˈstɑːrtɪd/",
+      "aviationMeaning": "v. 已启动；发动机、系统或程序已开始运行",
+      "generalMeaning": "v. 已开始；启动"
+    },
+    {
+      "word": "starter",
+      "ipa": "/ˈstɑːrtər/",
+      "aviationMeaning": "n. 起动机；使发动机开始旋转并点火的装置",
+      "generalMeaning": "n. 起动器；开胃菜"
+    },
+    {
+      "word": "starters",
+      "ipa": "/ˈstɑːrtərz/",
+      "aviationMeaning": "n. 起动机（复数）；多个发动机启动装置",
+      "generalMeaning": "n. 起动器；开胃菜（复数）"
+    },
+    {
+      "word": "starting",
+      "ipa": "/ˈstɑːrtɪŋ/",
+      "aviationMeaning": "v. 正启动；发动机、系统或程序正在开始运行",
+      "generalMeaning": "v. 正开始；启动"
+    },
+    {
+      "word": "starts",
+      "ipa": "/stɑːrts/",
+      "aviationMeaning": "v. 启动；使发动机、系统或程序开始运行",
+      "generalMeaning": "v. 开始；启动"
+    },
+    {
+      "word": "startup",
+      "ipa": "/ˈstɑːrtʌp/",
+      "aviationMeaning": "n. 启动；发动机、系统或运行开始工作的过程",
+      "generalMeaning": "n. 启动；初创企业"
+    },
+    {
+      "word": "starvation",
+      "ipa": "/stɑːrˈveɪʃən/",
+      "aviationMeaning": "n. 供给不足；发动机因燃油、空气或润滑不足不能正常工作",
+      "generalMeaning": "n. 饥饿；匮乏"
+    },
+    {
+      "word": "starve",
+      "ipa": "/stɑːrv/",
+      "aviationMeaning": "v. 使供给不足；使发动机缺少燃油、空气或润滑",
+      "generalMeaning": "v. 挨饿；使匮乏"
+    },
+    {
+      "word": "state",
+      "ipa": "/steɪt/",
+      "aviationMeaning": "n. 状态；航空器、系统、天气或运行的当前情况",
+      "generalMeaning": "n. 状态；州；v. 陈述"
+    },
+    {
+      "word": "stated",
+      "ipa": "/ˈsteɪtɪd/",
+      "aviationMeaning": "adj. 已说明的；在通告、程序或通话中明确表达的",
+      "generalMeaning": "adj. 已陈述的"
+    },
+    {
+      "word": "statement",
+      "ipa": "/ˈsteɪtmənt/",
+      "aviationMeaning": "n. 声明；通告、事件报告或正式说明中的陈述",
+      "generalMeaning": "n. 声明；陈述"
+    },
+    {
+      "word": "statements",
+      "ipa": "/ˈsteɪtmənts/",
+      "aviationMeaning": "n. 声明（复数）；通告、报告或正式说明中的多项陈述",
+      "generalMeaning": "n. 声明；陈述（复数）"
+    },
+    {
+      "word": "states",
+      "ipa": "/steɪts/",
+      "aviationMeaning": "n. 状态（复数）；多个系统、天气或运行情况",
+      "generalMeaning": "n. 状态；州（复数）"
+    },
+    {
+      "word": "static",
+      "ipa": "/ˈstætɪk/",
+      "aviationMeaning": "adj. 静态的；不随时间变化的；也指静电干扰",
+      "generalMeaning": "adj. 静态的；静止的"
+    },
+    {
+      "word": "stating",
+      "ipa": "/ˈsteɪtɪŋ/",
+      "aviationMeaning": "v. 正说明；正在通过通话、通告或文件明确表达",
+      "generalMeaning": "v. 正陈述；说明"
+    },
+    {
+      "word": "station",
+      "ipa": "/ˈsteɪʃən/",
+      "aviationMeaning": "n. 台站；导航、通信、气象或地面服务设施",
+      "generalMeaning": "n. 车站；站点"
+    },
+    {
+      "word": "stationary",
+      "ipa": "/ˈsteɪʃəneri/",
+      "aviationMeaning": "adj. 静止的；航空器、车辆、物体或天气系统不移动的",
+      "generalMeaning": "adj. 静止的；固定的"
+    },
+    {
+      "word": "stations",
+      "ipa": "/ˈsteɪʃənz/",
+      "aviationMeaning": "n. 台站（复数）；多个导航、通信、气象或服务设施",
+      "generalMeaning": "n. 车站；站点（复数）"
+    },
+    {
+      "word": "status",
+      "ipa": "/ˈsteɪtəs/",
+      "aviationMeaning": "n. 状态；航空器、系统、机场或运行的当前可用情况",
+      "generalMeaning": "n. 状态；地位"
+    },
+    {
+      "word": "statute",
+      "ipa": "/ˈstætʃuːt/",
+      "aviationMeaning": "n. 法规；政府制定的航空、安保或运行法律",
+      "generalMeaning": "n. 法规；法令"
+    },
+    {
+      "word": "stavanger",
+      "ipa": "/stəˈvæŋər/",
+      "aviationMeaning": "n. 斯塔万格；机场或地名",
+      "generalMeaning": "n. 斯塔万格"
+    },
+    {
+      "word": "stavanger's",
+      "ipa": "/stəˈvæŋərz/",
+      "aviationMeaning": "n. Stavanger 的所有格形式；斯塔万格的",
+      "generalMeaning": "n. 专有地名的所有格形式"
+    },
+    {
+      "word": "stay",
+      "ipa": "/steɪ/",
+      "aviationMeaning": "v. 保持；保持高度、航向、位置或状态",
+      "generalMeaning": "v. 停留；保持"
+    },
+    {
+      "word": "stayed",
+      "ipa": "/steɪd/",
+      "aviationMeaning": "v. 已保持；已保持高度、航向、位置或状态",
+      "generalMeaning": "v. 已停留；保持"
+    },
+    {
+      "word": "staying",
+      "ipa": "/ˈsteɪɪŋ/",
+      "aviationMeaning": "v. 正保持；正在保持高度、航向、位置或状态",
+      "generalMeaning": "v. 正停留；保持"
+    },
+    {
+      "word": "steady",
+      "ipa": "/ˈstedi/",
+      "aviationMeaning": "adj. 稳定的；速度、高度、风或系统参数保持不变的",
+      "generalMeaning": "adj. 稳定的；平稳的"
+    },
+    {
+      "word": "stealth",
+      "ipa": "/stelθ/",
+      "aviationMeaning": "n. 隐身；降低航空器被探测概率的技术",
+      "generalMeaning": "n. 隐秘；偷偷行动"
+    },
+    {
+      "word": "steel",
+      "ipa": "/stiːl/",
+      "aviationMeaning": "n. 钢；航空器、设备或机场设施使用的金属材料",
+      "generalMeaning": "n. 钢；钢铁"
+    },
+    {
+      "word": "steep",
+      "ipa": "/stiːp/",
+      "aviationMeaning": "adj. 陡的；下降角、爬升角、地形或跑道坡度较大的",
+      "generalMeaning": "adj. 陡峭的；急剧的"
+    },
+    {
+      "word": "steeply",
+      "ipa": "/ˈstiːpli/",
+      "aviationMeaning": "adv. 陡峭地；以较大下降或爬升角度飞行",
+      "generalMeaning": "adv. 陡峭地；急剧地"
+    },
+    {
+      "word": "steer",
+      "ipa": "/stɪr/",
+      "aviationMeaning": "v. 引导；控制航空器、车辆或设备的方向",
+      "generalMeaning": "v. 驾驶；引导"
+    },
+    {
+      "word": "steered",
+      "ipa": "/stɪrd/",
+      "aviationMeaning": "v. 已引导；已控制航空器、车辆或设备方向",
+      "generalMeaning": "v. 已驾驶；引导"
+    },
+    {
+      "word": "steering",
+      "ipa": "/ˈstɪrɪŋ/",
+      "aviationMeaning": "n. 转向；控制航空器地面车辆或设备方向的系统",
+      "generalMeaning": "n. 转向；操纵"
+    },
+    {
+      "word": "step",
+      "ipa": "/step/",
+      "aviationMeaning": "n. 步骤；检查单、程序或应急处置中的一个动作",
+      "generalMeaning": "n. 步骤；台阶"
+    },
+    {
+      "word": "step-down",
+      "ipa": "/ˈstep daʊn/",
+      "aviationMeaning": "n. 逐级下降；按规定高度限制分段下降的程序",
+      "generalMeaning": "n. 逐步下降"
+    },
+    {
+      "word": "stepping",
+      "ipa": "/ˈstepɪŋ/",
+      "aviationMeaning": "v. 正执行步骤；正在按程序逐项操作",
+      "generalMeaning": "v. 正迈步；执行步骤"
+    },
+    {
+      "word": "steps",
+      "ipa": "/steps/",
+      "aviationMeaning": "n. 步骤（复数）；检查单、程序或应急处置的多个动作",
+      "generalMeaning": "n. 步骤；台阶（复数）"
+    },
+    {
+      "word": "steward",
+      "ipa": "/ˈstuːərd/",
+      "aviationMeaning": "n. 男乘务员；负责客舱安全与服务的机组成员",
+      "generalMeaning": "n. 管家；男乘务员"
+    },
+    {
+      "word": "stewardesses",
+      "ipa": "/ˈstuːərdəsɪz/",
+      "aviationMeaning": "n. 女乘务员（复数）；负责客舱安全与服务的机组成员",
+      "generalMeaning": "n. 女乘务员（复数）"
+    },
+    {
+      "word": "stick",
+      "ipa": "/stɪk/",
+      "aviationMeaning": "n. 操纵杆；飞行员用于控制俯仰和横滚的操纵器",
+      "generalMeaning": "n. 棍；v. 粘住"
+    },
+    {
+      "word": "still",
+      "ipa": "/stɪl/",
+      "aviationMeaning": "adv. 仍然；航空器、系统或状况继续保持某状态",
+      "generalMeaning": "adv. 仍然；adj. 静止的"
+    },
+    {
+      "word": "stomachache",
+      "ipa": "/ˈstʌməkeɪk/",
+      "aviationMeaning": "n. 胃痛；旅客或机组可能需要医疗协助的症状",
+      "generalMeaning": "n. 胃痛；腹痛"
+    },
+    {
+      "word": "stood",
+      "ipa": "/stʊd/",
+      "aviationMeaning": "v. 处于；航空器、人员或设备处于某状态或位置",
+      "generalMeaning": "v. stand 的过去式；站立"
+    },
+    {
+      "word": "stop",
+      "ipa": "/stɑːp/",
+      "aviationMeaning": "v. 停止；停止发动机、滑行、操作或程序",
+      "generalMeaning": "v. 停止；n. 停止"
+    },
+    {
+      "word": "stop-bar",
+      "ipa": "/ˈstɑːp bɑːr/",
+      "aviationMeaning": "n. 停止排灯；红色地面灯光，用于禁止进入跑道或敏感区域",
+      "generalMeaning": "n. 停止排灯"
+    },
+    {
+      "word": "stop-end",
+      "ipa": "/ˈstɑːp end/",
+      "aviationMeaning": "n. 停止端；运行或滑行中必须停止的位置终点",
+      "generalMeaning": "n. 停止端"
+    },
+    {
+      "word": "stopped",
+      "ipa": "/stɑːpt/",
+      "aviationMeaning": "adj. 已停止的；发动机、航空器、系统或操作已经停止",
+      "generalMeaning": "adj. 已停止的"
+    },
+    {
+      "word": "stopping",
+      "ipa": "/ˈstɑːpɪŋ/",
+      "aviationMeaning": "v. 正停止；正在停止发动机、滑行、操作或程序",
+      "generalMeaning": "v. 正停止"
+    },
+    {
+      "word": "stops",
+      "ipa": "/stɑːps/",
+      "aviationMeaning": "v. 停止；使发动机、航空器、系统或操作停止",
+      "generalMeaning": "v. 停止；n. 停止（复数）"
+    },
+    {
+      "word": "stopway",
+      "ipa": "/ˈstɑːpweɪ/",
+      "aviationMeaning": "n. 停机道；跑道末端供中断起飞航空器停止使用的区域",
+      "generalMeaning": "n. 停机道"
+    },
+    {
+      "word": "storage",
+      "ipa": "/ˈstɔːrɪdʒ/",
+      "aviationMeaning": "n. 储存；燃油、货物、设备、记录或物资的存放",
+      "generalMeaning": "n. 储存；仓库"
+    },
+    {
+      "word": "store",
+      "ipa": "/stɔːr/",
+      "aviationMeaning": "v. 储存；存放燃油、货物、设备或数据",
+      "generalMeaning": "v. 储存；n. 商店"
+    }
   ]
 }

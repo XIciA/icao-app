@@ -1,105 +1,503 @@
 {
   "schemaVersion": 1,
   "entries": [
-    {"word":"either","ipa":"/ˈiːðər/","aviationMeaning":"det. 任一；两者之一","generalMeaning":"det. 任一；两者之一"},
-    {"word":"ejr","ipa":"/ˌiː dʒeɪ ˈɑːr/","aviationMeaning":"n. 航空资料中的缩写；需结合原文","generalMeaning":"n. 不明缩写；请结合原文"},
-    {"word":"el","ipa":"/el/","aviationMeaning":"n. 高程或电子相关缩写；需结合原文","generalMeaning":"n. 字母 L 的名称；缩写"},
-    {"word":"elderly","ipa":"/ˈeldərli/","aviationMeaning":"adj. 年长的；老年旅客服务语境","generalMeaning":"adj. 年长的；上了年纪的"},
-    {"word":"elect","ipa":"/ɪˈlekt/","aviationMeaning":"v. 选择；选定运行方案","generalMeaning":"v. 选举；选择"},
-    {"word":"elected","ipa":"/ɪˈlektɪd/","aviationMeaning":"adj. 已选定的；被选择的","generalMeaning":"adj. 当选的；选定的"},
-    {"word":"electric","ipa":"/ɪˈlektrɪk/","aviationMeaning":"adj. 电动的；电气系统的","generalMeaning":"adj. 电的；电动的"},
-    {"word":"electrical","ipa":"/ɪˈlektrɪkəl/","aviationMeaning":"adj. 电气的；航空器电力系统的","generalMeaning":"adj. 电的；电气的"},
-    {"word":"electrically","ipa":"/ɪˈlektrɪkli/","aviationMeaning":"adv. 通过电力地；电气方式地","generalMeaning":"adv. 用电地；电气地"},
-    {"word":"electricity","ipa":"/ɪˌlekˈtrɪsəti/","aviationMeaning":"n. 电力；航空器电源","generalMeaning":"n. 电；电力"},
-    {"word":"electrics","ipa":"/ɪˈlektrɪks/","aviationMeaning":"n. 电气系统；航空器电路","generalMeaning":"n. 电气装置"},
-    {"word":"electrified","ipa":"/ɪˈlektrɪfaɪd/","aviationMeaning":"adj. 已通电的；电气化的","generalMeaning":"adj. 带电的；兴奋的"},
-    {"word":"electromagnetic","ipa":"/ɪˌlektroʊmæɡˈnetɪk/","aviationMeaning":"adj. 电磁的；导航、通信或干扰相关","generalMeaning":"adj. 电磁的"},
-    {"word":"electronic","ipa":"/ɪˌlekˈtrɑːnɪk/","aviationMeaning":"adj. 电子的；航电系统的","generalMeaning":"adj. 电子的"},
-    {"word":"electronic-flight-bag","ipa":"/ɪˌlekˈtrɑːnɪk flaɪt bæɡ/","aviationMeaning":"n. 电子飞行包","generalMeaning":"n. 电子飞行包"},
-    {"word":"electronically","ipa":"/ɪˌlekˈtrɑːnɪkli/","aviationMeaning":"adv. 以电子方式；通过航电系统地","generalMeaning":"adv. 电子地"},
-    {"word":"element","ipa":"/ˈeləmənt/","aviationMeaning":"n. 要素；系统、天气或程序组成部分","generalMeaning":"n. 要素；元素"},
-    {"word":"elements","ipa":"/ˈeləmənts/","aviationMeaning":"n. 要素；系统、天气或程序组成部分（复数）","generalMeaning":"n. 要素；元素（复数）"},
-    {"word":"elevation","ipa":"/ˌeləˈveɪʃən/","aviationMeaning":"n. 标高；机场或跑道海拔高度","generalMeaning":"n. 高度；海拔"},
-    {"word":"elevator","ipa":"/ˈeləveɪtər/","aviationMeaning":"n. 升降舵","generalMeaning":"n. 电梯；升降机"},
-    {"word":"elevators","ipa":"/ˈeləveɪtərz/","aviationMeaning":"n. 升降舵（复数）","generalMeaning":"n. 电梯；升降机（复数）"},
-    {"word":"eleven","ipa":"/ɪˈlevən/","aviationMeaning":"num. 十一；通话数字读法","generalMeaning":"num. 十一"},
-    {"word":"eliminate","ipa":"/ɪˈlɪməneɪt/","aviationMeaning":"v. 消除风险、故障或不确定性","generalMeaning":"v. 消除；淘汰"},
-    {"word":"elimination","ipa":"/ɪˌlɪməˈneɪʃən/","aviationMeaning":"n. 消除；风险或故障排除","generalMeaning":"n. 消除；淘汰"},
-    {"word":"else","ipa":"/els/","aviationMeaning":"adv. 其他；另外的运行选项","generalMeaning":"adv. 其他；否则"},
-    {"word":"elt","ipa":"/ˌiː el ˈtiː/","aviationMeaning":"n. 应急定位发射机（缩写）","generalMeaning":"n. 应急定位发射机"},
-    {"word":"embankment","ipa":"/ɪmˈbæŋkmənt/","aviationMeaning":"n. 路堤；机场周边地形或障碍物","generalMeaning":"n. 堤坝；路堤"},
-    {"word":"embark","ipa":"/ɪmˈbɑːrk/","aviationMeaning":"v. 登机；开始执行飞行或行动","generalMeaning":"v. 登上；开始"},
-    {"word":"embarrassing","ipa":"/ɪmˈbærəsɪŋ/","aviationMeaning":"adj. 令人尴尬的；非技术性事件描述","generalMeaning":"adj. 令人尴尬的"},
-    {"word":"embarrassment","ipa":"/ɪmˈbærəsmənt/","aviationMeaning":"n. 尴尬；非技术性描述","generalMeaning":"n. 尴尬；难堪"},
-    {"word":"embraer","ipa":"/emˈbrɛr/","aviationMeaning":"n. 巴西航空工业公司；飞机制造商名称","generalMeaning":"n. 巴航工业（名称）"},
-    {"word":"embraer's","ipa":"/emˈbrɛrz/","aviationMeaning":"n. 巴航工业的；表示所属关系","generalMeaning":"n. 专有名称的；表示所属关系"},
-    {"word":"emergencies","ipa":"/ɪˈmɜːrdʒənsiz/","aviationMeaning":"n. 紧急情况（复数）","generalMeaning":"n. 紧急情况（复数）"},
-    {"word":"emergency","ipa":"/ɪˈmɜːrdʒənsi/","aviationMeaning":"n. 紧急情况；航空器紧急状态","generalMeaning":"n. 紧急情况"},
-    {"word":"emergency-descent","ipa":"/ɪˈmɜːrdʒənsi dɪˈsent/","aviationMeaning":"n. 紧急下降","generalMeaning":"n. 紧急下降"},
-    {"word":"emergency-equipment","ipa":"/ɪˈmɜːrdʒənsi ɪˈkwɪpmənt/","aviationMeaning":"n. 应急设备","generalMeaning":"n. 紧急设备"},
-    {"word":"emergent","ipa":"/ɪˈmɜːrdʒənt/","aviationMeaning":"adj. 新出现的；突发的","generalMeaning":"adj. 新兴的；突现的"},
-    {"word":"emirates","ipa":"/ˈemɪrəts/","aviationMeaning":"n. 阿联酋航空公司名称","generalMeaning":"n. 阿联酋；专有名称"},
-    {"word":"emissions","ipa":"/ɪˈmɪʃənz/","aviationMeaning":"n. 排放；航空碳排放（复数）","generalMeaning":"n. 排放；散发（复数）"},
-    {"word":"emit","ipa":"/ɪˈmɪt/","aviationMeaning":"v. 发射信号、光或排放气体","generalMeaning":"v. 发出；排放"},
-    {"word":"emitted","ipa":"/ɪˈmɪtɪd/","aviationMeaning":"v. 已发射信号、光或排放气体","generalMeaning":"v. 已发出；排放"},
-    {"word":"emitting","ipa":"/ɪˈmɪtɪŋ/","aviationMeaning":"v. 正发射信号、光或排放气体","generalMeaning":"v. 正发出；排放"},
-    {"word":"emotion","ipa":"/ɪˈmoʊʃən/","aviationMeaning":"n. 情绪；影响机组决策的心理状态","generalMeaning":"n. 情绪；情感"},
-    {"word":"empennage","ipa":"/ˌempəˈnɑːʒ/","aviationMeaning":"n. 尾翼；航空器尾部组件","generalMeaning":"n. 尾翼"},
-    {"word":"emphasize","ipa":"/ˈemfəsaɪz/","aviationMeaning":"v. 强调安全要点、程序或限制","generalMeaning":"v. 强调"},
-    {"word":"emphasized","ipa":"/ˈemfəsaɪzd/","aviationMeaning":"v. 已强调安全要点、程序或限制","generalMeaning":"v. 已强调"},
-    {"word":"emphasizes","ipa":"/ˈemfəsaɪzɪz/","aviationMeaning":"v. 强调安全要点、程序或限制","generalMeaning":"v. 强调"},
-    {"word":"employed","ipa":"/ɪmˈplɔɪd/","aviationMeaning":"adj. 被采用的；受雇的","generalMeaning":"adj. 被雇用的；使用的"},
-    {"word":"employees","ipa":"/ɪmˈplɔɪiz/","aviationMeaning":"n. 员工；航空公司或机场雇员（复数）","generalMeaning":"n. 雇员（复数）"},
-    {"word":"employer","ipa":"/ɪmˈplɔɪər/","aviationMeaning":"n. 雇主；航空运营人或机场单位","generalMeaning":"n. 雇主"},
-    {"word":"employment","ipa":"/ɪmˈplɔɪmənt/","aviationMeaning":"n. 雇佣；飞行人员就业","generalMeaning":"n. 就业；雇佣"},
-    {"word":"emptied","ipa":"/ˈemptid/","aviationMeaning":"v. 已清空燃油、货舱或容器","generalMeaning":"v. 已清空"},
-    {"word":"empty","ipa":"/ˈempti/","aviationMeaning":"adj. 空的；v. 清空燃油、货舱或容器","generalMeaning":"adj. 空的；v. 清空"},
-    {"word":"en","ipa":"/en/","aviationMeaning":"n. 航空资料中的前缀或缩写；需结合原文","generalMeaning":"n. 前缀或缩写；请结合原文"},
-    {"word":"en-route","ipa":"/ˌen ˈruːt/","aviationMeaning":"adj. 航路上的；巡航阶段的","generalMeaning":"adj. 在途中"},
-    {"word":"enable","ipa":"/ɪˈneɪbəl/","aviationMeaning":"v. 使系统或程序能够执行","generalMeaning":"v. 使能够"},
-    {"word":"enables","ipa":"/ɪˈneɪbəlz/","aviationMeaning":"v. 使系统或程序能够执行","generalMeaning":"v. 使能够"},
-    {"word":"enabling","ipa":"/ɪˈneɪblɪŋ/","aviationMeaning":"v. 正使系统或程序能够执行","generalMeaning":"v. 正使能够"},
-    {"word":"encounter","ipa":"/ɪnˈkaʊntər/","aviationMeaning":"v. 遭遇天气、湍流、故障或风险","generalMeaning":"v. 遇到；遭遇"},
-    {"word":"encountered","ipa":"/ɪnˈkaʊntərd/","aviationMeaning":"v. 已遭遇天气、湍流、故障或风险","generalMeaning":"v. 已遇到；遭遇"},
-    {"word":"encountering","ipa":"/ɪnˈkaʊntərɪŋ/","aviationMeaning":"v. 正遭遇天气、湍流、故障或风险","generalMeaning":"v. 正遇到；遭遇"},
-    {"word":"encounters","ipa":"/ɪnˈkaʊntərz/","aviationMeaning":"n. 遭遇（复数）；v. 遭遇","generalMeaning":"n. 遭遇（复数）；v. 遇到"},
-    {"word":"encourage","ipa":"/ɪnˈkɜːrɪdʒ/","aviationMeaning":"v. 鼓励安全报告、协作或培训","generalMeaning":"v. 鼓励"},
-    {"word":"encouraged","ipa":"/ɪnˈkɜːrɪdʒd/","aviationMeaning":"v. 已鼓励安全报告、协作或培训","generalMeaning":"v. 已鼓励"},
-    {"word":"encourages","ipa":"/ɪnˈkɜːrɪdʒɪz/","aviationMeaning":"v. 鼓励安全报告、协作或培训","generalMeaning":"v. 鼓励"},
-    {"word":"encouraging","ipa":"/ɪnˈkɜːrɪdʒɪŋ/","aviationMeaning":"adj. 积极的；令人鼓舞的运行迹象","generalMeaning":"adj. 鼓舞人心的"},
-    {"word":"end","ipa":"/end/","aviationMeaning":"n. 终点；跑道端；v. 结束","generalMeaning":"n. 末端；v. 结束"},
-    {"word":"endanger","ipa":"/ɪnˈdeɪndʒər/","aviationMeaning":"v. 危及航空器、人员或运行安全","generalMeaning":"v. 危及；使有危险"},
-    {"word":"endangering","ipa":"/ɪnˈdeɪndʒərɪŋ/","aviationMeaning":"v. 正危及航空器、人员或运行安全","generalMeaning":"v. 正危及"},
-    {"word":"endangers","ipa":"/ɪnˈdeɪndʒərz/","aviationMeaning":"v. 危及航空器、人员或运行安全","generalMeaning":"v. 危及"},
-    {"word":"endeavor","ipa":"/ɪnˈdevər/","aviationMeaning":"n. 努力；v. 努力执行任务","generalMeaning":"n. 努力；v. 尝试"},
-    {"word":"ended","ipa":"/ˈendɪd/","aviationMeaning":"adj. 已结束的；程序或运行完成的","generalMeaning":"adj. 已结束的"},
-    {"word":"endpoint","ipa":"/ˈendpɔɪnt/","aviationMeaning":"n. 终点；航路、许可或系统终点","generalMeaning":"n. 终点"},
-    {"word":"ends","ipa":"/endz/","aviationMeaning":"n. 终点（复数）；v. 结束","generalMeaning":"n. 末端（复数）；v. 结束"},
-    {"word":"endurance","ipa":"/ɪnˈdʊrəns/","aviationMeaning":"n. 续航时间；耐力","generalMeaning":"n. 耐力；持久"},
-    {"word":"endured","ipa":"/ɪnˈdʊrd/","aviationMeaning":"v. 已承受长时间飞行、压力或条件","generalMeaning":"v. 已忍受；承受"},
-    {"word":"enemy","ipa":"/ˈenəmi/","aviationMeaning":"n. 敌方；军事航空语境","generalMeaning":"n. 敌人；敌对者"},
-    {"word":"energized","ipa":"/ˈenərdʒaɪzd/","aviationMeaning":"adj. 已通电的；有电的","generalMeaning":"adj. 精力充沛的；通电的"},
-    {"word":"energy","ipa":"/ˈenərdʒi/","aviationMeaning":"n. 能量；飞行能量管理","generalMeaning":"n. 能量；精力"},
-    {"word":"enforced","ipa":"/ɪnˈfɔːrst/","aviationMeaning":"adj. 已执行的；法规或限制强制实施的","generalMeaning":"adj. 被强制执行的"},
-    {"word":"enforcement","ipa":"/ɪnˈfɔːrsmənt/","aviationMeaning":"n. 执行；法规、安保或程序执法","generalMeaning":"n. 执行；实施"},
-    {"word":"engage","ipa":"/ɪnˈɡeɪdʒ/","aviationMeaning":"v. 接通自动系统、啮合装置或参与操作","generalMeaning":"v. 参与；接合"},
-    {"word":"engaged","ipa":"/ɪnˈɡeɪdʒd/","aviationMeaning":"adj. 已接通的；已啮合的","generalMeaning":"adj. 已订婚的；参与的"},
-    {"word":"engine","ipa":"/ˈendʒɪn/","aviationMeaning":"n. 发动机","generalMeaning":"n. 引擎；发动机"},
-    {"word":"engine-area","ipa":"/ˈendʒɪn ˈeriə/","aviationMeaning":"n. 发动机区域","generalMeaning":"n. 发动机区域"},
-    {"word":"engine-compartment","ipa":"/ˈendʒɪn kəmˈpɑːrtmənt/","aviationMeaning":"n. 发动机舱","generalMeaning":"n. 发动机隔舱"},
-    {"word":"engine-damage","ipa":"/ˈendʒɪn ˈdæmɪdʒ/","aviationMeaning":"n. 发动机损伤","generalMeaning":"n. 发动机损坏"},
-    {"word":"engine-driven","ipa":"/ˈendʒɪn ˈdrɪvən/","aviationMeaning":"adj. 由发动机驱动的","generalMeaning":"adj. 发动机驱动的"},
-    {"word":"engine-failure","ipa":"/ˈendʒɪn ˈfeɪljər/","aviationMeaning":"n. 发动机失效","generalMeaning":"n. 发动机故障"},
-    {"word":"engine-fire","ipa":"/ˈendʒɪn faɪr/","aviationMeaning":"n. 发动机火警；发动机起火","generalMeaning":"n. 发动机火灾"},
-    {"word":"engine-out","ipa":"/ˈendʒɪn aʊt/","aviationMeaning":"adj. 发动机失效的；单发运行的","generalMeaning":"adj. 发动机停机的"},
-    {"word":"engine-running","ipa":"/ˈendʒɪn ˈrʌnɪŋ/","aviationMeaning":"adj. 发动机运转中的","generalMeaning":"adj. 发动机运行的"},
-    {"word":"engine-start","ipa":"/ˈendʒɪn stɑːrt/","aviationMeaning":"n. 发动机启动","generalMeaning":"n. 发动机启动"},
-    {"word":"engine-vibration","ipa":"/ˈendʒɪn vaɪˈbreɪʃən/","aviationMeaning":"n. 发动机振动","generalMeaning":"n. 发动机振动"},
-    {"word":"engine's","ipa":"/ˈendʒɪnz/","aviationMeaning":"n. 发动机的；表示所属关系","generalMeaning":"n. 发动机的；表示所属关系"},
-    {"word":"engineer","ipa":"/ˌendʒəˈnɪr/","aviationMeaning":"n. 工程师；飞行工程师","generalMeaning":"n. 工程师"},
-    {"word":"engineering","ipa":"/ˌendʒəˈnɪrɪŋ/","aviationMeaning":"n. 工程；航空工程和维修工程","generalMeaning":"n. 工程学；工程"},
-    {"word":"engineers","ipa":"/ˌendʒəˈnɪrz/","aviationMeaning":"n. 工程师；飞行工程师（复数）","generalMeaning":"n. 工程师（复数）"},
-    {"word":"engines","ipa":"/ˈendʒɪnz/","aviationMeaning":"n. 发动机（复数）","generalMeaning":"n. 引擎；发动机（复数）"},
-    {"word":"england","ipa":"/ˈɪŋɡlənd/","aviationMeaning":"n. 英格兰；运行区域或地名","generalMeaning":"n. 英格兰"}
+    {
+      "word": "either",
+      "ipa": "/ˈiːðər/",
+      "aviationMeaning": "det. 任一；两者之一",
+      "generalMeaning": "det. 任一；两者之一"
+    },
+    {
+      "word": "ejr",
+      "ipa": "/ˌiː dʒeɪ ˈɑːr/",
+      "aviationMeaning": "n. 航空资料中的缩写；需结合原文",
+      "generalMeaning": "n. 不明缩写；请结合原文"
+    },
+    {
+      "word": "el",
+      "ipa": "/el/",
+      "aviationMeaning": "n. 高程或电子相关缩写；需结合原文",
+      "generalMeaning": "n. 字母 L 的名称；缩写"
+    },
+    {
+      "word": "elderly",
+      "ipa": "/ˈeldərli/",
+      "aviationMeaning": "adj. 年长的；老年旅客服务语境",
+      "generalMeaning": "adj. 年长的；上了年纪的"
+    },
+    {
+      "word": "elect",
+      "ipa": "/ɪˈlekt/",
+      "aviationMeaning": "v. 选择；选定运行方案",
+      "generalMeaning": "v. 选举；选择"
+    },
+    {
+      "word": "elected",
+      "ipa": "/ɪˈlektɪd/",
+      "aviationMeaning": "adj. 已选定的；被选择的",
+      "generalMeaning": "adj. 当选的；选定的"
+    },
+    {
+      "word": "electric",
+      "ipa": "/ɪˈlektrɪk/",
+      "aviationMeaning": "adj. 电动的；电气系统的",
+      "generalMeaning": "adj. 电的；电动的"
+    },
+    {
+      "word": "electrical",
+      "ipa": "/ɪˈlektrɪkəl/",
+      "aviationMeaning": "adj. 电气的；航空器电力系统的",
+      "generalMeaning": "adj. 电的；电气的"
+    },
+    {
+      "word": "electricity",
+      "ipa": "/ɪˌlekˈtrɪsəti/",
+      "aviationMeaning": "n. 电力；航空器电源",
+      "generalMeaning": "n. 电；电力"
+    },
+    {
+      "word": "electrics",
+      "ipa": "/ɪˈlektrɪks/",
+      "aviationMeaning": "n. 电气系统；航空器电路",
+      "generalMeaning": "n. 电气装置"
+    },
+    {
+      "word": "electrified",
+      "ipa": "/ɪˈlektrɪfaɪd/",
+      "aviationMeaning": "adj. 已通电的；电气化的",
+      "generalMeaning": "adj. 带电的；兴奋的"
+    },
+    {
+      "word": "electromagnetic",
+      "ipa": "/ɪˌlektroʊmæɡˈnetɪk/",
+      "aviationMeaning": "adj. 电磁的；导航、通信或干扰相关",
+      "generalMeaning": "adj. 电磁的"
+    },
+    {
+      "word": "electronic",
+      "ipa": "/ɪˌlekˈtrɑːnɪk/",
+      "aviationMeaning": "adj. 电子的；航电系统的",
+      "generalMeaning": "adj. 电子的"
+    },
+    {
+      "word": "electronically",
+      "ipa": "/ɪˌlekˈtrɑːnɪkli/",
+      "aviationMeaning": "adv. 以电子方式；通过航电系统地",
+      "generalMeaning": "adv. 电子地"
+    },
+    {
+      "word": "element",
+      "ipa": "/ˈeləmənt/",
+      "aviationMeaning": "n. 要素；系统、天气或程序组成部分",
+      "generalMeaning": "n. 要素；元素"
+    },
+    {
+      "word": "elements",
+      "ipa": "/ˈeləmənts/",
+      "aviationMeaning": "n. 要素；系统、天气或程序组成部分（复数）",
+      "generalMeaning": "n. 要素；元素（复数）"
+    },
+    {
+      "word": "elevation",
+      "ipa": "/ˌeləˈveɪʃən/",
+      "aviationMeaning": "n. 标高；机场或跑道海拔高度",
+      "generalMeaning": "n. 高度；海拔"
+    },
+    {
+      "word": "elevator",
+      "ipa": "/ˈeləveɪtər/",
+      "aviationMeaning": "n. 升降舵",
+      "generalMeaning": "n. 电梯；升降机"
+    },
+    {
+      "word": "elevators",
+      "ipa": "/ˈeləveɪtərz/",
+      "aviationMeaning": "n. 升降舵（复数）",
+      "generalMeaning": "n. 电梯；升降机（复数）"
+    },
+    {
+      "word": "eleven",
+      "ipa": "/ɪˈlevən/",
+      "aviationMeaning": "num. 十一；通话数字读法",
+      "generalMeaning": "num. 十一"
+    },
+    {
+      "word": "eliminate",
+      "ipa": "/ɪˈlɪməneɪt/",
+      "aviationMeaning": "v. 消除风险、故障或不确定性",
+      "generalMeaning": "v. 消除；淘汰"
+    },
+    {
+      "word": "elimination",
+      "ipa": "/ɪˌlɪməˈneɪʃən/",
+      "aviationMeaning": "n. 消除；风险或故障排除",
+      "generalMeaning": "n. 消除；淘汰"
+    },
+    {
+      "word": "else",
+      "ipa": "/els/",
+      "aviationMeaning": "adv. 其他；另外的运行选项",
+      "generalMeaning": "adv. 其他；否则"
+    },
+    {
+      "word": "elt",
+      "ipa": "/ˌiː el ˈtiː/",
+      "aviationMeaning": "n. 应急定位发射机（缩写）",
+      "generalMeaning": "n. 应急定位发射机"
+    },
+    {
+      "word": "embankment",
+      "ipa": "/ɪmˈbæŋkmənt/",
+      "aviationMeaning": "n. 路堤；机场周边地形或障碍物",
+      "generalMeaning": "n. 堤坝；路堤"
+    },
+    {
+      "word": "embark",
+      "ipa": "/ɪmˈbɑːrk/",
+      "aviationMeaning": "v. 登机；开始执行飞行或行动",
+      "generalMeaning": "v. 登上；开始"
+    },
+    {
+      "word": "embarrassing",
+      "ipa": "/ɪmˈbærəsɪŋ/",
+      "aviationMeaning": "adj. 令人尴尬的；非技术性事件描述",
+      "generalMeaning": "adj. 令人尴尬的"
+    },
+    {
+      "word": "embraer",
+      "ipa": "/emˈbrɛr/",
+      "aviationMeaning": "n. 巴西航空工业公司；飞机制造商名称",
+      "generalMeaning": "n. 巴航工业（名称）"
+    },
+    {
+      "word": "embraer's",
+      "ipa": "/emˈbrɛrz/",
+      "aviationMeaning": "n. 巴航工业的；表示所属关系",
+      "generalMeaning": "n. 专有名称的；表示所属关系"
+    },
+    {
+      "word": "emergencies",
+      "ipa": "/ɪˈmɜːrdʒənsiz/",
+      "aviationMeaning": "n. 紧急情况（复数）",
+      "generalMeaning": "n. 紧急情况（复数）"
+    },
+    {
+      "word": "emergency",
+      "ipa": "/ɪˈmɜːrdʒənsi/",
+      "aviationMeaning": "n. 紧急情况；航空器紧急状态",
+      "generalMeaning": "n. 紧急情况"
+    },
+    {
+      "word": "emergent",
+      "ipa": "/ɪˈmɜːrdʒənt/",
+      "aviationMeaning": "adj. 新出现的；突发的",
+      "generalMeaning": "adj. 新兴的；突现的"
+    },
+    {
+      "word": "emirates",
+      "ipa": "/ˈemɪrəts/",
+      "aviationMeaning": "n. 阿联酋航空公司名称",
+      "generalMeaning": "n. 阿联酋；专有名称"
+    },
+    {
+      "word": "emissions",
+      "ipa": "/ɪˈmɪʃənz/",
+      "aviationMeaning": "n. 排放；航空碳排放（复数）",
+      "generalMeaning": "n. 排放；散发（复数）"
+    },
+    {
+      "word": "emit",
+      "ipa": "/ɪˈmɪt/",
+      "aviationMeaning": "v. 发射信号、光或排放气体",
+      "generalMeaning": "v. 发出；排放"
+    },
+    {
+      "word": "emitted",
+      "ipa": "/ɪˈmɪtɪd/",
+      "aviationMeaning": "v. 已发射信号、光或排放气体",
+      "generalMeaning": "v. 已发出；排放"
+    },
+    {
+      "word": "emitting",
+      "ipa": "/ɪˈmɪtɪŋ/",
+      "aviationMeaning": "v. 正发射信号、光或排放气体",
+      "generalMeaning": "v. 正发出；排放"
+    },
+    {
+      "word": "empennage",
+      "ipa": "/ˌempəˈnɑːʒ/",
+      "aviationMeaning": "n. 尾翼；航空器尾部组件",
+      "generalMeaning": "n. 尾翼"
+    },
+    {
+      "word": "emphasize",
+      "ipa": "/ˈemfəsaɪz/",
+      "aviationMeaning": "v. 强调安全要点、程序或限制",
+      "generalMeaning": "v. 强调"
+    },
+    {
+      "word": "emphasized",
+      "ipa": "/ˈemfəsaɪzd/",
+      "aviationMeaning": "v. 已强调安全要点、程序或限制",
+      "generalMeaning": "v. 已强调"
+    },
+    {
+      "word": "emphasizes",
+      "ipa": "/ˈemfəsaɪzɪz/",
+      "aviationMeaning": "v. 强调安全要点、程序或限制",
+      "generalMeaning": "v. 强调"
+    },
+    {
+      "word": "employed",
+      "ipa": "/ɪmˈplɔɪd/",
+      "aviationMeaning": "adj. 被采用的；受雇的",
+      "generalMeaning": "adj. 被雇用的；使用的"
+    },
+    {
+      "word": "employees",
+      "ipa": "/ɪmˈplɔɪiz/",
+      "aviationMeaning": "n. 员工；航空公司或机场雇员（复数）",
+      "generalMeaning": "n. 雇员（复数）"
+    },
+    {
+      "word": "employer",
+      "ipa": "/ɪmˈplɔɪər/",
+      "aviationMeaning": "n. 雇主；航空运营人或机场单位",
+      "generalMeaning": "n. 雇主"
+    },
+    {
+      "word": "employment",
+      "ipa": "/ɪmˈplɔɪmənt/",
+      "aviationMeaning": "n. 雇佣；飞行人员就业",
+      "generalMeaning": "n. 就业；雇佣"
+    },
+    {
+      "word": "emptied",
+      "ipa": "/ˈemptid/",
+      "aviationMeaning": "v. 已清空燃油、货舱或容器",
+      "generalMeaning": "v. 已清空"
+    },
+    {
+      "word": "empty",
+      "ipa": "/ˈempti/",
+      "aviationMeaning": "adj. 空的；v. 清空燃油、货舱或容器",
+      "generalMeaning": "adj. 空的；v. 清空"
+    },
+    {
+      "word": "en",
+      "ipa": "/en/",
+      "aviationMeaning": "n. 航空资料中的前缀或缩写；需结合原文",
+      "generalMeaning": "n. 前缀或缩写；请结合原文"
+    },
+    {
+      "word": "en-route",
+      "ipa": "/ˌen ˈruːt/",
+      "aviationMeaning": "adj. 航路上的；巡航阶段的",
+      "generalMeaning": "adj. 在途中"
+    },
+    {
+      "word": "enable",
+      "ipa": "/ɪˈneɪbəl/",
+      "aviationMeaning": "v. 使系统或程序能够执行",
+      "generalMeaning": "v. 使能够"
+    },
+    {
+      "word": "enables",
+      "ipa": "/ɪˈneɪbəlz/",
+      "aviationMeaning": "v. 使系统或程序能够执行",
+      "generalMeaning": "v. 使能够"
+    },
+    {
+      "word": "enabling",
+      "ipa": "/ɪˈneɪblɪŋ/",
+      "aviationMeaning": "v. 正使系统或程序能够执行",
+      "generalMeaning": "v. 正使能够"
+    },
+    {
+      "word": "encounter",
+      "ipa": "/ɪnˈkaʊntər/",
+      "aviationMeaning": "v. 遭遇天气、湍流、故障或风险",
+      "generalMeaning": "v. 遇到；遭遇"
+    },
+    {
+      "word": "encountered",
+      "ipa": "/ɪnˈkaʊntərd/",
+      "aviationMeaning": "v. 已遭遇天气、湍流、故障或风险",
+      "generalMeaning": "v. 已遇到；遭遇"
+    },
+    {
+      "word": "encountering",
+      "ipa": "/ɪnˈkaʊntərɪŋ/",
+      "aviationMeaning": "v. 正遭遇天气、湍流、故障或风险",
+      "generalMeaning": "v. 正遇到；遭遇"
+    },
+    {
+      "word": "encounters",
+      "ipa": "/ɪnˈkaʊntərz/",
+      "aviationMeaning": "n. 遭遇（复数）；v. 遭遇",
+      "generalMeaning": "n. 遭遇（复数）；v. 遇到"
+    },
+    {
+      "word": "encourage",
+      "ipa": "/ɪnˈkɜːrɪdʒ/",
+      "aviationMeaning": "v. 鼓励安全报告、协作或培训",
+      "generalMeaning": "v. 鼓励"
+    },
+    {
+      "word": "encouraged",
+      "ipa": "/ɪnˈkɜːrɪdʒd/",
+      "aviationMeaning": "v. 已鼓励安全报告、协作或培训",
+      "generalMeaning": "v. 已鼓励"
+    },
+    {
+      "word": "end",
+      "ipa": "/end/",
+      "aviationMeaning": "n. 终点；跑道端；v. 结束",
+      "generalMeaning": "n. 末端；v. 结束"
+    },
+    {
+      "word": "endanger",
+      "ipa": "/ɪnˈdeɪndʒər/",
+      "aviationMeaning": "v. 危及航空器、人员或运行安全",
+      "generalMeaning": "v. 危及；使有危险"
+    },
+    {
+      "word": "endangering",
+      "ipa": "/ɪnˈdeɪndʒərɪŋ/",
+      "aviationMeaning": "v. 正危及航空器、人员或运行安全",
+      "generalMeaning": "v. 正危及"
+    },
+    {
+      "word": "endeavor",
+      "ipa": "/ɪnˈdevər/",
+      "aviationMeaning": "n. 努力；v. 努力执行任务",
+      "generalMeaning": "n. 努力；v. 尝试"
+    },
+    {
+      "word": "ended",
+      "ipa": "/ˈendɪd/",
+      "aviationMeaning": "adj. 已结束的；程序或运行完成的",
+      "generalMeaning": "adj. 已结束的"
+    },
+    {
+      "word": "endpoint",
+      "ipa": "/ˈendpɔɪnt/",
+      "aviationMeaning": "n. 终点；航路、许可或系统终点",
+      "generalMeaning": "n. 终点"
+    },
+    {
+      "word": "ends",
+      "ipa": "/endz/",
+      "aviationMeaning": "n. 终点（复数）；v. 结束",
+      "generalMeaning": "n. 末端（复数）；v. 结束"
+    },
+    {
+      "word": "endurance",
+      "ipa": "/ɪnˈdʊrəns/",
+      "aviationMeaning": "n. 续航时间；耐力",
+      "generalMeaning": "n. 耐力；持久"
+    },
+    {
+      "word": "endured",
+      "ipa": "/ɪnˈdʊrd/",
+      "aviationMeaning": "v. 已承受长时间飞行、压力或条件",
+      "generalMeaning": "v. 已忍受；承受"
+    },
+    {
+      "word": "enemy",
+      "ipa": "/ˈenəmi/",
+      "aviationMeaning": "n. 敌方；军事航空语境",
+      "generalMeaning": "n. 敌人；敌对者"
+    },
+    {
+      "word": "energy",
+      "ipa": "/ˈenərdʒi/",
+      "aviationMeaning": "n. 能量；飞行能量管理",
+      "generalMeaning": "n. 能量；精力"
+    },
+    {
+      "word": "engage",
+      "ipa": "/ɪnˈɡeɪdʒ/",
+      "aviationMeaning": "v. 接通自动系统、啮合装置或参与操作",
+      "generalMeaning": "v. 参与；接合"
+    },
+    {
+      "word": "engaged",
+      "ipa": "/ɪnˈɡeɪdʒd/",
+      "aviationMeaning": "adj. 已接通的；已啮合的",
+      "generalMeaning": "adj. 已订婚的；参与的"
+    },
+    {
+      "word": "engine",
+      "ipa": "/ˈendʒɪn/",
+      "aviationMeaning": "n. 发动机",
+      "generalMeaning": "n. 引擎；发动机"
+    },
+    {
+      "word": "engine-compartment",
+      "ipa": "/ˈendʒɪn kəmˈpɑːrtmənt/",
+      "aviationMeaning": "n. 发动机舱",
+      "generalMeaning": "n. 发动机隔舱"
+    },
+    {
+      "word": "engine-driven",
+      "ipa": "/ˈendʒɪn ˈdrɪvən/",
+      "aviationMeaning": "adj. 由发动机驱动的",
+      "generalMeaning": "adj. 发动机驱动的"
+    },
+    {
+      "word": "engine-failure",
+      "ipa": "/ˈendʒɪn ˈfeɪljər/",
+      "aviationMeaning": "n. 发动机失效",
+      "generalMeaning": "n. 发动机故障"
+    },
+    {
+      "word": "engine-fire",
+      "ipa": "/ˈendʒɪn faɪr/",
+      "aviationMeaning": "n. 发动机火警；发动机起火",
+      "generalMeaning": "n. 发动机火灾"
+    },
+    {
+      "word": "engine-start",
+      "ipa": "/ˈendʒɪn stɑːrt/",
+      "aviationMeaning": "n. 发动机启动",
+      "generalMeaning": "n. 发动机启动"
+    },
+    {
+      "word": "engine's",
+      "ipa": "/ˈendʒɪnz/",
+      "aviationMeaning": "n. 发动机的；表示所属关系",
+      "generalMeaning": "n. 发动机的；表示所属关系"
+    },
+    {
+      "word": "engineer",
+      "ipa": "/ˌendʒəˈnɪr/",
+      "aviationMeaning": "n. 工程师；飞行工程师",
+      "generalMeaning": "n. 工程师"
+    },
+    {
+      "word": "engineering",
+      "ipa": "/ˌendʒəˈnɪrɪŋ/",
+      "aviationMeaning": "n. 工程；航空工程和维修工程",
+      "generalMeaning": "n. 工程学；工程"
+    },
+    {
+      "word": "engineers",
+      "ipa": "/ˌendʒəˈnɪrz/",
+      "aviationMeaning": "n. 工程师；飞行工程师（复数）",
+      "generalMeaning": "n. 工程师（复数）"
+    },
+    {
+      "word": "engines",
+      "ipa": "/ˈendʒɪnz/",
+      "aviationMeaning": "n. 发动机（复数）",
+      "generalMeaning": "n. 引擎；发动机（复数）"
+    },
+    {
+      "word": "england",
+      "ipa": "/ˈɪŋɡlənd/",
+      "aviationMeaning": "n. 英格兰；运行区域或地名",
+      "generalMeaning": "n. 英格兰"
+    }
   ]
 }

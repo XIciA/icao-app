@@ -9,6 +9,7 @@ import Storage from '@/platform/storage';
 
 import { getEmbeddedRadioCatalogs, loadRadioCatalogs } from './catalog';
 import { nextManualTrack, nextTrack, previousTrack, selectShuffleTrack, type ShuffleState } from './queue';
+import { clampRadioInterval } from './radio-interval';
 import type { RadioBankId, RadioCatalog, RadioPlaybackMode, RadioPlayerContextValue, RadioSubtitleMode, RadioTrack } from './types';
 
 const STORAGE_KEY = 'icao.radio-player.v1';
@@ -31,10 +32,6 @@ function findTrack(catalogs: RadioCatalog[], bankId: RadioBankId, trackId: strin
   const catalog = catalogs.find((item) => item.bankId === bankId) ?? catalogs[0];
   const track = catalog?.tracks.find((item) => item.id === trackId) ?? catalog?.tracks[0];
   return { catalog, track };
-}
-
-function clampInterval(value: number) {
-  return Number.isFinite(value) ? Math.max(0, Math.min(30, Math.round(value))) : 0;
 }
 
 export function RadioPlayerProvider({ children }: PropsWithChildren) {
@@ -213,7 +210,7 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
         setModeState(['order', 'repeatOne', 'shuffle'].includes(value.mode) ? value.mode : 'order');
         setSubtitleMode(['english', 'bilingual', 'off'].includes(value.subtitleMode) ? value.subtitleMode : 'off');
         setRateState(speedOptions.includes(value.rate as (typeof speedOptions)[number]) ? value.rate : 1);
-        setIntervalSecondsState(clampInterval(value.intervalSeconds));
+        setIntervalSecondsState(clampRadioInterval(value.intervalSeconds));
         setShuffle({ history: [track.id], cursor: 0 });
         pendingSeek.current = Math.max(0, value.position || 0);
       } catch {
@@ -336,7 +333,7 @@ export function RadioPlayerProvider({ children }: PropsWithChildren) {
   }, [player]);
 
   const setIntervalSeconds = useCallback((value: number) => {
-    const nextInterval = clampInterval(value);
+    const nextInterval = clampRadioInterval(value);
     setIntervalSecondsState(nextInterval);
     stateRef.current.intervalSeconds = nextInterval;
     if (waitingForNext && nextInterval === 0) {

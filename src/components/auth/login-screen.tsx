@@ -56,7 +56,7 @@ export function LoginScreen() {
         {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
         <Button disabled={submitting} onPress={() => void submit()} size="lg">{submitting ? '登录中…' : '登录'}</Button>
       </View>
-      <AppText style={styles.scopeNote} variant="caption">当前为受控内测，请向管理员获取专属邀请码。</AppText>
+      <AppText style={styles.scopeNote} variant="caption">当前使用专属邀请码登录，请向管理员获取邀请码。</AppText>
       {auth.uiAcceptanceAvailable ? (
         <Pressable
           accessibilityLabel="进入 UI 验收模式"

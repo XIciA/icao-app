@@ -1,5 +1,5 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Bookmark, Info, LogOut, Shield, UserRound } from 'lucide-react-native';
+import { Bookmark, Info, LogOut, Shield, UserRound } from '@/components/ui/icons';
 import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
