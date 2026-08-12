@@ -1,7 +1,19 @@
 import { questionBankRepository } from '@/features/question-bank/data/repository';
-import type { QuestionBankCard, QuestionBankCategory, QuestionBankDataset, QuestionBankId, QuestionBankTopic } from '@/features/question-bank/types';
+import type {
+  QuestionBankCard,
+  QuestionBankCategory,
+  QuestionBankDataset,
+  QuestionBankId,
+  QuestionBankStudyPackage,
+  QuestionBankTopic,
+} from '@/features/question-bank/types';
 
-import { MOCK_EXAM_MODULE_ORDER, MOCK_EXAM_MODULES, MOCK_EXAM_MODULE_LABELS } from './rules';
+import {
+  MOCK_EXAM_MODULE_LABELS,
+  MOCK_EXAM_MODULE_ORDER,
+  MOCK_EXAM_MODULES,
+  MOCK_EXAM_TYPE_LABELS,
+} from './rules';
 import type { MockExamConfig, MockExamModuleId, MockExamSection, MockExamSession } from './types';
 
 function random(seed: number) { let state = seed >>> 0; return () => { state += 0x6d2b79f5; let value = state; value = Math.imul(value ^ (value >>> 15), value | 1); value ^= value + Math.imul(value ^ (value >>> 7), value | 61); return ((value ^ (value >>> 14)) >>> 0) / 4294967296; }; }
@@ -35,4 +47,43 @@ export async function buildMockExamSession(config: MockExamConfig, providedSeed?
   let number = 0;
   const sections: MockExamSection[] = rawSections.map((entry) => ({ id: entry.id, moduleId: entry.moduleId, title: entry.title, items: entry.cards.map((card) => { number += 1; return { id: `exam-${entry.moduleId}-${entry.id}-${number}-${card.id}`, number, moduleId: entry.moduleId, sectionId: entry.id, source: { bankId: entry.dataset.id, categoryId: entry.category.id, topicId: entry.topic.id, cardId: card.id }, dataset: entry.dataset, category: entry.category, topic: entry.topic, card }; }) }));
   return { id: `mock-exam-${seed.toString(16)}-${Date.now().toString(36)}`, seed, startedAt: new Date().toISOString(), config: { examType: config.examType, modules: selected }, mode: selected.length === allowed.length ? 'complete' : 'custom', sections, items: sections.flatMap((entry) => entry.items) };
+}
+
+export function toQuestionBankStudyPackage(session: MockExamSession): QuestionBankStudyPackage {
+  const sectionTitles = new Map(session.sections.map((entry) => [entry.id, entry.title]));
+
+  return {
+    id: session.id,
+    startedAt: session.startedAt,
+    progressMode: 'session-only',
+    items: session.items.map((item) => ({
+      id: item.id,
+      dataset: item.dataset,
+      category: item.category,
+      topic: item.topic,
+      card: item.card,
+      sectionId: item.sectionId,
+      sectionTitle: sectionTitles.get(item.sectionId),
+    })),
+    record: {
+      id: `mock-exam-record-${session.id}`,
+      bankId: 'mock_exam',
+      bankTitle: 'AI 模考',
+      categoryTitle: MOCK_EXAM_TYPE_LABELS[session.config.examType],
+      topicTitle: session.mode === 'complete'
+        ? '按考试规则组卷'
+        : `自选模考 · ${session.config.modules.map((id) => MOCK_EXAM_MODULE_LABELS[id]).join('、')}`,
+      recordType: 'mock_exam',
+      mockExam: {
+        examType: session.config.examType,
+        mode: session.mode,
+        moduleIds: session.config.modules,
+        sectionCounts: session.sections.map((entry) => ({
+          id: entry.id,
+          title: entry.title,
+          total: entry.items.length,
+        })),
+      },
+    },
+  };
 }

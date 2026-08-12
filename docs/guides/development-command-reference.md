@@ -18,8 +18,8 @@
 只修改页面、样式、TypeScript 或业务逻辑且 Development Build 已安装时，通常只需 Metro。
 修改 Expo 插件、权限、原生依赖、`app.json` 或原生工程配置后需要重新编译目标平台。
 
-iOS Development Build 使用 `com.readyoufife.app.dev`，显示为“听你五个 Dev”；独立 Release
-继续使用 `com.readyoufife.app`，显示为“听你五个”。两者可同时安装，日常调试不会再覆盖可独立
+iOS Development Build 使用 `com.readyoufife.ios.dev`，显示为“听你五个 Dev”；独立 Release
+使用 `com.readyoufife.ios`，显示为“听你五个”。两者可同时安装，日常调试不会再覆盖可独立
 启动的真机 Release。`pnpm ios` 和 `pnpm ios:phase2a:build` 会先用开发变体同步 CNG 工程，
 `pnpm ios:standalone` 则显式使用生产变体。
 

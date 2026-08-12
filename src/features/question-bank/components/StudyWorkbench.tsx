@@ -66,6 +66,7 @@ type AiConsentKind = 'audio' | 'text';
 
 type Props = {
   cardKey: string;
+  sourceCardId?: string;
   sessionId: string;
   sessionStartedAt: string;
   bankId: QuestionBankId;
@@ -124,6 +125,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     saveError,
     sessionId,
     sessionStartedAt,
+    sourceCardId = cardKey,
     swipeGesture,
     tabs,
     topicTitle,
@@ -166,7 +168,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
       schemaVersion: 3,
       id: resultId,
       sessionId,
-      cardId: cardKey,
+      cardId: sourceCardId,
       bankId,
       bankTitle,
       categoryTitle,
@@ -180,7 +182,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
       createdAt: sessionStartedAt,
       recordType: 'ai_result',
       aiResult: {
-        questionId: cardKey,
+        questionId: sourceCardId,
         transcript: answerText,
         grammar: grammar ? {
           correctedText: grammar.correctedText,
@@ -362,7 +364,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
       }
       if (!await ensureConsent('text')) return;
       const module = bankId === 'radiotelephony' ? 'atc' : bankId === 'storytelling' ? 'story' : 'opi';
-      const input = { module, questionId: cardKey, questionText, transcript: answerText } as const;
+      const input = { module, questionId: sourceCardId, questionText, transcript: answerText } as const;
       if (reviewKind === 'opi-analysis') {
         const grammarResult = grammar ?? await grammarReview(input, controller.signal);
         if (controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;

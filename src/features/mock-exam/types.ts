@@ -28,8 +28,3 @@ export type MockExamSession = {
   sections: MockExamSection[];
   items: MockExamItem[];
 };
-
-export type MockExamDraft = Pick<MockExamSession, 'id' | 'startedAt' | 'config' | 'mode'> & {
-  sections: { id: string; title: string; items: { id: string }[] }[];
-  answeredItemIds: string[];
-};

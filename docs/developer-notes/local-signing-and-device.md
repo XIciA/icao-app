@@ -6,7 +6,8 @@
 ## iOS
 
 - Xcode 工作区：`ios/ICAO.xcworkspace`。
-- 当前独立真机构建默认使用的 Team ID 为 `4DPKHJKP5V`；如本机账号或证书变化，使用
+- 当前独立真机构建默认使用的公司 Team ID 为 `3FX69S3S8P`，正式 Bundle ID 为
+  `com.readyoufife.ios`；如本机账号或证书变化，使用
   `ICAO_IOS_TEAM_ID` 覆盖并在 Xcode 中重新核对。
 - 在 Xcode 的 ICAO target → Signing & Capabilities 中核对 Automatically manage signing
   和 Team；保持设备解锁后再执行真机/standalone 构建。

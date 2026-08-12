@@ -16,7 +16,7 @@
 | 内容分类 | 教育 / 语言学习（航空英语） | 以阿里云页面实际可选项为准，不选择学历教育或官方考试认证 |
 | 是否对外提供 SDK | 否 | App 不向其他 App 提供可调用 SDK |
 | Android 包名 | `com.readyoufife.app` | `app.json` 与发布门禁一致 |
-| iOS Bundle ID | `com.readyoufife.app` | `app.json` 与发布门禁一致 |
+| iOS Bundle ID | `com.readyoufife.ios` | `app.json` 与发布门禁一致 |
 | URL Scheme | `readyoufife` | iOS/Android 生成配置一致 |
 | 正式版本候选 | `v2026.08.07.0415` | 当前 Release 元数据；最终包构建时可更新 |
 

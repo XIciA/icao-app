@@ -5,7 +5,7 @@ import { fireGestureHandler, getByGestureTestId } from 'react-native-gesture-han
 
 import { QuestionBankStudyScreen } from '../components/QuestionBankStudyScreen';
 import { useStudySession } from '../hooks/useStudySession';
-import type { LearningRecord, QuestionBankCategory, QuestionBankDataset, QuestionBankTopic } from '../types';
+import type { LearningRecord, QuestionBankCategory, QuestionBankDataset, QuestionBankStudyPackage, QuestionBankTopic } from '../types';
 
 const mockFinish = jest.fn();
 const mockGoTo = jest.fn();
@@ -14,6 +14,8 @@ const mockDismissTo = jest.fn();
 const mockReplace = jest.fn();
 let mockPreventRemoveHandler: (() => void) | undefined;
 let mockTaskKind: 'choices' | 'recording' = 'choices';
+let mockAnnotationTarget: unknown;
+let mockWorkbenchProps: { persistAiResult?: boolean } | undefined;
 
 jest.mock('@react-navigation/native', () => ({
   usePreventRemove: (_prevent: boolean, handler: () => void) => { mockPreventRemoveHandler = handler; },
@@ -46,7 +48,9 @@ jest.mock('@/components/ui', () => {
 jest.mock('../hooks/useStudySession', () => ({ useStudySession: jest.fn() }));
 jest.mock('../hooks/useQuestionBankAsset', () => ({ useQuestionBankAsset: () => ({ resolving: false, retry: jest.fn() }) }));
 jest.mock('../annotations/use-question-annotations', () => ({
-  useQuestionAnnotations: () => ({
+  useQuestionAnnotations: (target: unknown) => {
+    mockAnnotationTarget = target;
+    return {
     entry: undefined,
     highlightDefinitions: [],
     tagDefinitions: [],
@@ -57,7 +61,8 @@ jest.mock('../annotations/use-question-annotations', () => ({
     toggleTag: jest.fn(),
     saveNote: jest.fn(),
     retrySave: jest.fn(),
-  }),
+    };
+  },
 }));
 jest.mock('../platform/network-service', () => ({
   getConnectivity: async () => 'online',
@@ -92,7 +97,8 @@ jest.mock('../components/StudyTaskRenderer', () => {
 jest.mock('../components/StudyWorkbench', () => {
   const { forwardRef: mockForwardRef, useImperativeHandle: mockUseImperativeHandle } = jest.requireActual('react');
   return {
-    StudyWorkbench: mockForwardRef((_props: object, ref: React.ForwardedRef<{ flushAutoSave: () => Promise<boolean> }>) => {
+    StudyWorkbench: mockForwardRef((props: { persistAiResult?: boolean }, ref: React.ForwardedRef<{ flushAutoSave: () => Promise<boolean> }>) => {
+      mockWorkbenchProps = props;
       mockUseImperativeHandle(ref, () => ({ flushAutoSave: mockFlush }));
       return null;
     }),
@@ -130,13 +136,19 @@ describe('study exit flow', () => {
     mockDismissTo.mockReset();
     mockReplace.mockReset();
     mockPreventRemoveHandler = undefined;
+    mockAnnotationTarget = undefined;
+    mockWorkbenchProps = undefined;
     mockTaskKind = 'choices';
-    (useStudySession as jest.Mock).mockImplementation(() => {
+    (useStudySession as jest.Mock).mockImplementation((input: { studyPackage?: QuestionBankStudyPackage }) => {
       const [studyReport, setStudyReport] = useState<LearningRecord>();
+      const items = input.studyPackage?.items ?? topic.cards.map((card) => ({ id: card.id, dataset, category, topic, card }));
+      const currentItem = items[0];
       return {
         hydrated: true,
         report: studyReport,
-        card: topic.cards[0],
+        items,
+        item: currentItem,
+        card: currentItem.card,
         cardState: undefined,
         behavior: { taskKind: mockTaskKind, recordingMode: mockTaskKind === 'recording' ? 'speaking' : undefined, transcriptLabel: '音频原文', referenceLabel: '参考答案', workbenchTabs: ['notes'] },
         currentIndex: 0,
@@ -205,6 +217,39 @@ describe('study exit flow', () => {
     await waitFor(() => expect(mockDismissTo).toHaveBeenCalledWith(returnHref));
     expect(mockFinish).not.toHaveBeenCalled();
     expect(mockFlush).toHaveBeenCalledTimes(1);
+  });
+
+  it('returns an in-memory study package through its callback and keeps annotations on the original question', async () => {
+    const packageTopic: QuestionBankTopic = {
+      id: 'opi-source-topic',
+      name: 'OPI source topic',
+      declaredCardCount: 1,
+      cards: [{ id: 'opi-source-card', taskTitle: 'OPI card', audioText: 'Question' }],
+    };
+    const packageCategory: QuestionBankCategory = { id: 'opi-source-category', name: 'OPI category', declaredTopicCount: 1, declaredCardCount: 1, topics: [packageTopic] };
+    const packageDataset: QuestionBankDataset = { ...dataset, id: 'opi', title: 'OPI', categories: [packageCategory] };
+    const studyPackage: QuestionBankStudyPackage = {
+      id: 'mock-exam-test',
+      startedAt: '2026-08-12T00:00:00.000Z',
+      progressMode: 'session-only',
+      items: [{ id: 'mock-item-1', dataset: packageDataset, category: packageCategory, topic: packageTopic, card: packageTopic.cards[0] }],
+      record: { bankId: 'mock_exam', bankTitle: 'AI 模考', categoryTitle: 'ICAO 4 初考', topicTitle: '按考试规则组卷', recordType: 'mock_exam' },
+    };
+    const onReturn = jest.fn();
+    const screen = await render(<QuestionBankStudyScreen onReturn={onReturn} returnLabel="返回 AI 模考" studyPackage={studyPackage} />);
+
+    expect(mockAnnotationTarget).toEqual({
+      bankId: 'opi',
+      categoryId: 'opi-source-category',
+      topicId: 'opi-source-topic',
+      cardId: 'opi-source-card',
+    });
+    expect(mockWorkbenchProps?.persistAiResult).toBe(false);
+    await act(async () => { fireEvent.press(screen.getByLabelText('返回 AI 模考')); });
+    await waitFor(() => expect(onReturn).toHaveBeenCalledTimes(1));
+    expect(mockFinish).not.toHaveBeenCalled();
+    expect(mockReplace).not.toHaveBeenCalled();
+    expect(mockDismissTo).not.toHaveBeenCalled();
   });
 
   it('returns to the paused radio session without ending the study session when opened from radio', async () => {

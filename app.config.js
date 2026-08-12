@@ -1,5 +1,5 @@
 const DEVELOPMENT_VARIANT = 'development';
-const DEVELOPMENT_IOS_BUNDLE_IDENTIFIER = 'com.readyoufife.app.dev';
+const DEVELOPMENT_IOS_BUNDLE_IDENTIFIER = 'com.readyoufife.ios.dev';
 
 module.exports = ({ config }) => {
   const isDevelopment = process.env.ICAO_APP_VARIANT === DEVELOPMENT_VARIANT;

@@ -66,9 +66,9 @@
 | 学习进度、收藏、标注、笔记与记录 | 已同步云端数据完整保留，冲突/幂等规则不变 | 数据库逐表哈希与 v1→v2 同步验收通过 |
 | 题库、音频与私有资源 | 对象内容和签名访问链路不变 | 6,761 个文件逐文件哈希一致 |
 | AI、反馈与账号注销 | 后端数据和接口迁移；正式版新增合规所需的显式 AI 同意 | API 镜像一致、客户端回归通过、级联删除已验证 |
-| 已安装旧版 App | 不再支持 | 正式包只允许 `com.readyoufife.app` 与新域名 |
+| 已安装旧版 App | 不再支持 | 正式 iOS 只允许 `com.readyoufife.ios`，Android 只允许 `com.readyoufife.app`，并统一使用新域名 |
 
-正式包名 `com.readyoufife.app` 与旧内测包不同，因此操作系统会把它视为新 App。登录同一账号后，云端已同步数据会恢复；只存在旧包本机且从未同步的数据无法由服务器迁移。这是包名变更边界，不是服务器数据丢失。
+正式 iOS Bundle ID `com.readyoufife.ios` 与 Android 包名 `com.readyoufife.app` 均与旧内测包不同，因此操作系统会把它们视为新 App。登录同一账号后，云端已同步数据会恢复；只存在旧包本机且从未同步的数据无法由服务器迁移。这是包名变更边界，不是服务器数据丢失。
 
 ## 安全基线
 
@@ -123,7 +123,7 @@
 - 新域名 HTTPS、新机本地 API/Supabase、五套活动题库、6,761 个 Storage 对象及其扩展属性、
   五套代表音频 Range 请求和每日 PostgreSQL 本地备份均已复核通过。
 - 两个异机复制定时器处于 `disabled/inactive`，运行配置、Caddy 和正式 Bundle 均不再引用旧
-  ECS 或旧 API 域名。旧 ECS 被停机或释放不会影响新版 `com.readyoufife.app`。
+  ECS 或旧 API 域名。旧 ECS 被停机或释放不会影响新版 iOS `com.readyoufife.ios` 或 Android `com.readyoufife.app`。
 - 旧内测 APK 下载子域名和仓库发布入口已退役；旧机磁盘残留不构成运行依赖。若以后需要
   物理删除，必须先明确选择“短时续费后定点删除”或“释放整机”，并重新评估同机其他遗留
   数据，不能把该操作并入普通 Native/Web 发布。

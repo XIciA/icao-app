@@ -35,11 +35,12 @@ jest.mock('../static-word-lookup/repository', () => ({
 }));
 jest.mock('../hooks/useQuestionBankAsset', () => ({ useQuestionBankAsset: () => ({ resolving: false, retry: jest.fn() }) }));
 jest.mock('../hooks/useStudySession', () => ({
-  useStudySession: ({ dataset, topic }: { dataset: QuestionBankDataset; topic: QuestionBankTopic }) => {
+  useStudySession: ({ category, dataset, topic }: { category: QuestionBankCategory; dataset: QuestionBankDataset; topic: QuestionBankTopic }) => {
     const { useState } = jest.requireActual('react');
     const [toolMode, setToolMode] = useState();
+    const items = topic.cards.map((card) => ({ id: card.id, dataset, category, topic, card }));
     return {
-      activeTab: 'notes', answerText: '', card: topic.cards[0], cardState: undefined, clearRecording: jest.fn(), collapseAnswers: jest.fn(),
+      activeTab: 'notes', answerText: '', card: topic.cards[0], cardState: undefined, clearRecording: jest.fn(), collapseAnswers: jest.fn(), item: items[0], items,
       behavior: { generatedAudio: false, referenceLabel: dataset.study.copy.referenceLabel, reviewKind: 'none', taskKind: 'choices', transcriptLabel: dataset.study.copy.transcriptLabel, workbenchTabs: ['notes'] },
       chooseOption: jest.fn(), currentIndex: 0, finish: jest.fn(), goTo: jest.fn(), hydrated: true, markCompleted: jest.fn(), markFeedback: jest.fn(), playRequestToken: 0,
       recording: undefined, report: undefined, revealCurrent: jest.fn(), revealed: true, setActiveTab: jest.fn(), setToolMode, toggleAnswers: jest.fn(), toolMode,

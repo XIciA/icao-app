@@ -72,7 +72,7 @@ const sitemap = await readFile(sitemapPath, 'utf8');
 for (const page of pages) requireFragment(sitemap, `${publicBase}${page.route.slice('/apps/readyoufife'.length)}`, sitemapPath);
 
 const app = JSON.parse(await readFile(path.join(root, 'app.json'), 'utf8'));
-if (app.expo.name !== appName || app.expo.ios.bundleIdentifier !== 'com.readyoufife.app' || app.expo.android.package !== 'com.readyoufife.app') {
+if (app.expo.name !== appName || app.expo.ios.bundleIdentifier !== 'com.readyoufife.ios' || app.expo.android.package !== 'com.readyoufife.app') {
   throw new Error('App name or native identifiers no longer match the public legal pages.');
 }
 
