@@ -6,7 +6,11 @@ import type {
   LearningRecord,
   QuestionBankCategory,
   QuestionBankDataset,
+  QuestionBankStudyItem,
+  QuestionBankStudyPackage,
+  QuestionBankStudyRecordDescriptor,
   QuestionBankTopic,
+  StudyBehavior,
   StudyConsoleTab,
   StudyToolMode,
 } from '../types';
@@ -15,6 +19,30 @@ import { recordingRepository } from '../recording/recording-repository';
 import type { RecordingAsset } from '../recording/types';
 
 type SaveFailure = { cardId: string; message: string };
+
+type LegacyStudySessionOptions = {
+  dataset: QuestionBankDataset;
+  category: QuestionBankCategory;
+  topic: QuestionBankTopic;
+  initialCardId?: string;
+  store?: LearningStore;
+};
+
+type PackageStudySessionOptions = {
+  studyPackage: QuestionBankStudyPackage;
+  store?: LearningStore;
+};
+
+export type UseStudySessionOptions = LegacyStudySessionOptions | PackageStudySessionOptions;
+
+const EMPTY_STUDY_BEHAVIOR: StudyBehavior = {
+  taskKind: 'recording',
+  workbenchTabs: [],
+  reviewKind: 'none',
+  generatedAudio: false,
+  transcriptLabel: '音频原文',
+  referenceLabel: '参考答案',
+};
 
 function createEmptyCardState(): CardLearningState {
   return {
@@ -25,29 +53,69 @@ function createEmptyCardState(): CardLearningState {
   };
 }
 
+function sourceKey(item: QuestionBankStudyItem) {
+  return `${item.dataset.id}\u0000${item.category.id}\u0000${item.topic.id}`;
+}
+
+async function hydratePersistentStates(store: LearningStore, items: readonly QuestionBankStudyItem[]) {
+  const topics = new Map<string, QuestionBankTopic>();
+  items.forEach((item) => topics.set(sourceKey(item), item.topic));
+  const loaded = new Map(await Promise.all(Array.from(topics, async ([key, topic]) => (
+    [key, await store.getTopicStates(topic)] as const
+  ))));
+
+  return Object.fromEntries(items.flatMap((item) => {
+    const state = loaded.get(sourceKey(item))?.[item.card.id];
+    return state ? [[item.id, state]] : [];
+  }));
+}
+
 export function preferredWorkbenchTab(tabs: StudyConsoleTab[]) {
   return tabs.includes('reference') ? 'reference' : tabs[0] ?? 'notes';
 }
 
-export function useStudySession({
-  dataset,
-  category,
-  topic,
-  initialCardId,
-  store = sqliteLearningStore,
-}: {
-  dataset: QuestionBankDataset;
-  category: QuestionBankCategory;
-  topic: QuestionBankTopic;
-  initialCardId?: string;
-  store?: LearningStore;
-}) {
-  const behavior = useMemo(() => getStudyBehavior(dataset), [dataset]);
-  const startingIndex = Math.max(0, initialCardId ? topic.cards.findIndex((item) => item.id === initialCardId) : 0);
-  const startedAt = useRef(Date.now());
-  const sessionId = useRef(`study-${startedAt.current.toString(36)}-${Math.random().toString(36).slice(2, 8)}`).current;
-  const sessionStartedAt = useRef(new Date(startedAt.current).toISOString()).current;
+export function useStudySession(options: UseStudySessionOptions) {
+  const packageInput = 'studyPackage' in options ? options.studyPackage : undefined;
+  const legacyDataset = 'studyPackage' in options ? undefined : options.dataset;
+  const legacyCategory = 'studyPackage' in options ? undefined : options.category;
+  const legacyTopic = 'studyPackage' in options ? undefined : options.topic;
+  const initialCardId = 'studyPackage' in options ? undefined : options.initialCardId;
+  const store = options.store ?? sqliteLearningStore;
+  const legacyItems = useMemo<QuestionBankStudyItem[]>(() => {
+    if (!legacyDataset || !legacyCategory || !legacyTopic) return [];
+    return legacyTopic.cards.map((card) => ({
+      id: card.id,
+      dataset: legacyDataset,
+      category: legacyCategory,
+      topic: legacyTopic,
+      card,
+    }));
+  }, [legacyCategory, legacyDataset, legacyTopic]);
+  const items = useMemo(
+    () => packageInput?.items ?? legacyItems,
+    [legacyItems, packageInput],
+  );
+  const progressMode = packageInput?.progressMode ?? 'persistent';
+  const recordDescriptor: QuestionBankStudyRecordDescriptor | undefined = packageInput?.record;
+  const startingIndex = Math.max(0, initialCardId ? items.findIndex((item) => item.card.id === initialCardId) : 0);
+  const initialItem = items[startingIndex];
+  const initialBehavior = useMemo(
+    () => initialItem ? getStudyBehavior(initialItem.dataset) : EMPTY_STUDY_BEHAVIOR,
+    [initialItem],
+  );
+  const configuredStartedAt = packageInput?.startedAt;
+  const configuredStartedAtMillis = configuredStartedAt ? Date.parse(configuredStartedAt) : Number.NaN;
+  const startedAt = useRef(Number.isFinite(configuredStartedAtMillis) ? configuredStartedAtMillis : Date.now()).current;
+  const sessionId = useRef(
+    packageInput?.id ?? `study-${startedAt.toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
+  ).current;
+  const sessionStartedAt = useRef(
+    Number.isFinite(configuredStartedAtMillis) && configuredStartedAt
+      ? configuredStartedAt
+      : new Date(startedAt).toISOString(),
+  ).current;
   const finishedAt = useRef<string | undefined>(undefined);
+  const committedReport = useRef<LearningRecord | undefined>(undefined);
   const [states, setStates] = useState<Record<string, CardLearningState>>({});
   const statesRef = useRef(states);
   const [hydrated, setHydrated] = useState(false);
@@ -59,7 +127,7 @@ export function useStudySession({
   const [completedCardIds, setCompletedCardIds] = useState<Set<string>>(() => new Set());
   const [revealed, setRevealed] = useState(false);
   const [autoReveal, setAutoReveal] = useState(false);
-  const [activeTab, setActiveTab] = useState<StudyConsoleTab>(() => preferredWorkbenchTab(behavior.workbenchTabs));
+  const [activeTab, setActiveTab] = useState<StudyConsoleTab>(() => preferredWorkbenchTab(initialBehavior.workbenchTabs));
   const [toolMode, setToolModeState] = useState<StudyToolMode>();
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [recordings, setRecordings] = useState<Record<string, RecordingAsset>>({});
@@ -71,22 +139,42 @@ export function useStudySession({
   statesRef.current = states;
   recordingsRef.current = recordings;
 
-  const card = topic.cards[currentIndex];
-  const cardState = card ? states[card.id] : undefined;
+  const item = items[currentIndex];
+  const card = item?.card;
+  const behavior = useMemo(
+    () => item ? getStudyBehavior(item.dataset) : EMPTY_STUDY_BEHAVIOR,
+    [item],
+  );
+  const cardState = item ? states[item.id] : undefined;
 
   useEffect(() => {
     let active = true;
     setHydrated(false);
     setLoadError(undefined);
-    void store.getTopicStates(topic).then((saved) => {
+
+    if (progressMode === 'session-only') {
+      statesRef.current = {};
+      setStates({});
+      setCurrentIndex(startingIndex);
+      setVisitedIndexes(new Set([startingIndex]));
+      setCompletedCardIds(new Set());
+      setRevealed(false);
+      setAutoReveal(false);
+      setActiveTab(preferredWorkbenchTab(initialBehavior.workbenchTabs));
+      setHydrated(true);
+      return () => { active = false; };
+    }
+
+    void hydratePersistentStates(store, items).then((saved) => {
       if (!active) return;
+      statesRef.current = saved;
       setStates(saved);
       setCurrentIndex(startingIndex);
       setVisitedIndexes(new Set([startingIndex]));
       setCompletedCardIds(new Set());
       setRevealed(false);
       setAutoReveal(false);
-      setActiveTab(preferredWorkbenchTab(behavior.workbenchTabs));
+      setActiveTab(preferredWorkbenchTab(initialBehavior.workbenchTabs));
       setHydrated(true);
     }).catch(() => {
       if (!active) return;
@@ -94,47 +182,60 @@ export function useStudySession({
       setHydrated(true);
     });
     return () => { active = false; };
-  }, [behavior.workbenchTabs, loadAttempt, startingIndex, store, topic]);
+  }, [initialBehavior, items, loadAttempt, progressMode, startingIndex, store]);
 
-  const persistCard = useCallback((cardId: string, patch: Partial<CardLearningState>) => {
-    const current = statesRef.current[cardId] ?? createEmptyCardState();
+  const resolveItem = useCallback((itemOrCardId: string) => {
+    if (item && (item.id === itemOrCardId || item.card.id === itemOrCardId)) return item;
+    return items.find((candidate) => candidate.id === itemOrCardId)
+      ?? items.find((candidate) => candidate.card.id === itemOrCardId);
+  }, [item, items]);
+
+  const persistCard = useCallback((itemOrCardId: string, patch: Partial<CardLearningState>) => {
+    const target = resolveItem(itemOrCardId);
+    if (!target) return undefined;
+    const current = statesRef.current[target.id] ?? createEmptyCardState();
     const next = migrateLegacyCardState({
       ...current,
       ...patch,
       visited: current.visited || Boolean(patch.visited) || Object.keys(patch).length > 0,
       updatedAt: new Date().toISOString(),
     });
-    const nextStates = { ...statesRef.current, [cardId]: next };
+    const nextStates = { ...statesRef.current, [target.id]: next };
     statesRef.current = nextStates;
     setStates(nextStates);
     setSaveFailure(undefined);
-    void store.saveCardState(topic.id, cardId, next).catch(() => {
-      setSaveFailure({ cardId, message: '保存失败，内容仍保留在当前页面。' });
-    });
+    if (progressMode === 'persistent') {
+      void store.saveCardState(target.topic.id, target.card.id, next).catch(() => {
+        setSaveFailure({ cardId: target.id, message: '保存失败，内容仍保留在当前页面。' });
+      });
+    }
     return next;
-  }, [store, topic.id]);
+  }, [progressMode, resolveItem, store]);
 
   const retrySave = useCallback(() => {
-    if (!saveFailure) return;
+    if (!saveFailure || progressMode !== 'persistent') return;
+    const target = resolveItem(saveFailure.cardId);
     const latest = statesRef.current[saveFailure.cardId];
-    if (!latest) return;
+    if (!target || !latest) return;
     setSaveFailure(undefined);
-    void store.saveCardState(topic.id, saveFailure.cardId, latest).catch(() => {
+    void store.saveCardState(target.topic.id, target.card.id, latest).catch(() => {
       setSaveFailure({ cardId: saveFailure.cardId, message: '再次保存失败，请稍后重试。' });
     });
-  }, [saveFailure, store, topic.id]);
+  }, [progressMode, resolveItem, saveFailure, store]);
 
-  const markCompleted = useCallback((cardId: string) => {
-    setCompletedCardIds((current) => new Set(current).add(cardId));
-    persistCard(cardId, { completed: true });
-  }, [persistCard]);
+  const markCompleted = useCallback((itemOrCardId: string) => {
+    const target = resolveItem(itemOrCardId);
+    if (!target) return;
+    setCompletedCardIds((current) => new Set(current).add(target.id));
+    persistCard(target.id, { completed: true });
+  }, [persistCard, resolveItem]);
 
   const revealCurrent = useCallback((persistAcrossCards = false) => {
-    if (!card) return;
+    if (!item) return;
     if (persistAcrossCards) setAutoReveal(true);
     setRevealed(true);
-    markCompleted(card.id);
-  }, [card, markCompleted]);
+    markCompleted(item.id);
+  }, [item, markCompleted]);
 
   const collapseAnswers = useCallback(() => {
     setAutoReveal(false);
@@ -153,99 +254,113 @@ export function useStudySession({
   }, [revealCurrent, revealed]);
 
   const goTo = useCallback((nextIndex: number) => {
-    if (nextIndex < 0 || nextIndex >= topic.cards.length || nextIndex === currentIndex) return;
+    if (nextIndex < 0 || nextIndex >= items.length || nextIndex === currentIndex) return;
+    const nextItem = items[nextIndex];
+    const nextBehavior = getStudyBehavior(nextItem.dataset);
     setCurrentIndex(nextIndex);
     setVisitedIndexes((current) => new Set(current).add(nextIndex));
     setPlayRequestToken((current) => current + 1);
     setToolModeState(undefined);
-    setActiveTab(preferredWorkbenchTab(behavior.workbenchTabs));
+    setActiveTab(preferredWorkbenchTab(nextBehavior.workbenchTabs));
     setRevealed(autoReveal);
-    if (autoReveal) markCompleted(topic.cards[nextIndex].id);
-  }, [autoReveal, behavior.workbenchTabs, currentIndex, markCompleted, topic.cards]);
+    if (autoReveal) markCompleted(nextItem.id);
+  }, [autoReveal, currentIndex, items, markCompleted]);
 
   const chooseOption = useCallback((choiceIndex: number) => {
-    if (!card) return;
-    persistCard(card.id, { selectedChoiceIndex: choiceIndex, completed: true });
-    setCompletedCardIds((current) => new Set(current).add(card.id));
+    if (!item) return;
+    persistCard(item.id, { selectedChoiceIndex: choiceIndex, completed: true });
+    setCompletedCardIds((current) => new Set(current).add(item.id));
     setRevealed(true);
-  }, [card, persistCard]);
+  }, [item, persistCard]);
 
   const recordAnswer = useCallback((recording: RecordingAsset) => {
-    if (!card) return;
-    const previous = recordingsRef.current[card.id];
-    setRecordings((current) => ({ ...current, [card.id]: recording }));
+    if (!item) return;
+    const previous = recordingsRef.current[item.id];
+    setRecordings((current) => ({ ...current, [item.id]: recording }));
     if (previous && previous.id !== recording.id) recordingRepository.discard(previous);
-    persistCard(card.id, { recorded: true, recordingDurationMillis: recording.durationMillis, completed: true });
-    setCompletedCardIds((current) => new Set(current).add(card.id));
+    persistCard(item.id, { recorded: true, recordingDurationMillis: recording.durationMillis, completed: true });
+    setCompletedCardIds((current) => new Set(current).add(item.id));
     setRevealed(true);
     if (behavior.workbenchTabs.includes('mine')) setActiveTab('mine');
-  }, [behavior.workbenchTabs, card, persistCard]);
+  }, [behavior.workbenchTabs, item, persistCard]);
 
   const clearRecording = useCallback(() => {
-    if (!card) return;
-    const previous = recordingsRef.current[card.id];
+    if (!item) return;
+    const previous = recordingsRef.current[item.id];
     setRecordings((current) => {
       const next = { ...current };
-      delete next[card.id];
+      delete next[item.id];
       return next;
     });
     if (previous) recordingRepository.discard(previous);
-  }, [card]);
+  }, [item]);
 
   const updateAnswer = useCallback((text: string) => {
-    if (!card) return;
-    setAnswers((current) => ({ ...current, [card.id]: text }));
-  }, [card]);
+    if (!item) return;
+    setAnswers((current) => ({ ...current, [item.id]: text }));
+  }, [item]);
 
   const markFeedback = useCallback(() => {
-    if (!card) return;
-    setFeedbackCardIds((current) => new Set(current).add(card.id));
-  }, [card]);
+    if (!item) return;
+    setFeedbackCardIds((current) => new Set(current).add(item.id));
+  }, [item]);
 
   const finish = useCallback(async (
     reason: 'abort' | 'complete',
     metrics?: { annotationCount?: number; noteCount?: number },
   ) => {
-    const sessionCardIds = new Set(
-      Array.from(visitedIndexes).flatMap((index) => topic.cards[index]?.id ?? []),
+    if (committedReport.current) return committedReport.current;
+    const sessionItemIds = new Set(
+      Array.from(visitedIndexes).flatMap((index) => items[index]?.id ?? []),
     );
-    const sessionStates = Object.entries(statesRef.current).filter(([cardId]) => sessionCardIds.has(cardId));
+    const sessionStates = Object.entries(statesRef.current).filter(([itemId]) => sessionItemIds.has(itemId));
     const legacyAnnotationCount = sessionStates.reduce(
       (count, [, state]) => count + (state.tagIds?.length ?? 0) + (state.highlights?.length ?? 0),
       0,
     );
     const legacyNoteCount = sessionStates.filter(([, state]) => state.note.trim()).length;
-    const correctCount = topic.cards.reduce(
-      (count, item) => count + (sessionCardIds.has(item.id) && statesRef.current[item.id]?.selectedChoiceIndex === item.correctChoiceIndex ? 1 : 0),
-      0,
-    );
+    const correctCount = items.reduce((count, studyItem) => {
+      if (!sessionItemIds.has(studyItem.id)) return count;
+      const selectedChoiceIndex = statesRef.current[studyItem.id]?.selectedChoiceIndex;
+      if (packageInput && studyItem.card.correctChoiceIndex === undefined) return count;
+      return count + (selectedChoiceIndex === studyItem.card.correctChoiceIndex ? 1 : 0);
+    }, 0);
     const updatedAt = new Date().toISOString();
     finishedAt.current ??= updatedAt;
+    const descriptor = recordDescriptor ?? {
+      bankId: legacyDataset?.id ?? 'mock_exam',
+      bankTitle: legacyDataset?.title ?? '',
+      categoryTitle: legacyCategory?.name ?? '',
+      topicTitle: legacyTopic?.name ?? '',
+      recordType: 'session' as const,
+    };
     const nextReport: LearningRecord = {
       schemaVersion: 3,
-      id: `session-${sessionId}`,
+      id: descriptor.id ?? `session-${sessionId}`,
       sessionId,
-      bankId: dataset.id,
-      bankTitle: dataset.title,
-      categoryTitle: category.name,
-      topicTitle: topic.name,
+      bankId: descriptor.bankId,
+      bankTitle: descriptor.bankTitle,
+      categoryTitle: descriptor.categoryTitle,
+      topicTitle: descriptor.topicTitle,
       completedCount: completedCardIds.size,
-      totalCount: topic.cards.length,
+      totalCount: items.length,
       correctCount,
       annotationCount: metrics?.annotationCount ?? legacyAnnotationCount,
       noteCount: metrics?.noteCount ?? legacyNoteCount,
       feedbackCount: feedbackCardIds.size,
-      durationSeconds: Math.max(1, Math.round((Date.now() - startedAt.current) / 1000)),
+      durationSeconds: Math.max(1, Math.round((Date.now() - startedAt) / 1000)),
       reason,
       createdAt: finishedAt.current,
       updatedAt,
-      recordType: 'session',
+      recordType: descriptor.recordType ?? (descriptor.mockExam ? 'mock_exam' : 'session'),
+      ...(descriptor.mockExam ? { mockExam: descriptor.mockExam } : {}),
     };
     await store.addRecord(nextReport);
+    committedReport.current = nextReport;
     setReport(nextReport);
     recordingRepository.cleanupSession(sessionId);
     return nextReport;
-  }, [category.name, completedCardIds.size, dataset.id, dataset.title, feedbackCardIds.size, sessionId, store, topic.cards, topic.name, visitedIndexes]);
+  }, [completedCardIds.size, feedbackCardIds.size, items, legacyCategory?.name, legacyDataset?.id, legacyDataset?.title, legacyTopic?.name, packageInput, recordDescriptor, sessionId, startedAt, store, visitedIndexes]);
 
   useEffect(() => () => recordingRepository.cleanupSession(sessionId), [sessionId]);
 
@@ -256,6 +371,8 @@ export function useStudySession({
     hydrated,
     loadError,
     retryHydration: () => setLoadAttempt((current) => current + 1),
+    items,
+    item,
     states,
     card,
     cardState,
@@ -269,9 +386,9 @@ export function useStudySession({
     toolMode,
     setToolMode,
     answers,
-    answerText: card ? answers[card.id] ?? '' : '',
+    answerText: item ? answers[item.id] ?? '' : '',
     recordings,
-    recording: card ? recordings[card.id] : undefined,
+    recording: item ? recordings[item.id] : undefined,
     playRequestToken,
     report,
     saveFailure,

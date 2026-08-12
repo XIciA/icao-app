@@ -4,7 +4,12 @@ import { Pressable, Text, View } from 'react-native';
 import { useStudySession } from '../hooks/useStudySession';
 import type { LearningStore } from '../platform/learning-store';
 import type { RecordingAsset } from '../recording/types';
-import type { QuestionBankCategory, QuestionBankDataset, QuestionBankTopic } from '../types';
+import type {
+  QuestionBankCategory,
+  QuestionBankDataset,
+  QuestionBankStudyPackage,
+  QuestionBankTopic,
+} from '../types';
 
 jest.mock('../recording/recording-repository', () => ({
   recordingRepository: {
@@ -29,6 +34,49 @@ const dataset: QuestionBankDataset = {
   id: 'sentences900', title: '900句', nameEn: 'Sentences', description: '', summary: '', enabled: true, statusLabel: '', icon: 'sentences', declaredTopicCount: 1, declaredCardCount: 2, categoryUnit: '类', topicUnit: '组', cardUnit: '句', categories: [category],
   study: { interaction: 'speaking', tools: { recorder: true, choices: false, notes: true, dictionary: true, highlights: true, tags: true }, copy: { transcriptLabel: '音频原文', referenceLabel: '参考答案' }, audioTitlePattern: 'card-title', consoleTabs: ['mine', 'notes'] },
 };
+
+const listeningTopic: QuestionBankTopic = {
+  id: 'listening-topic', name: 'Listening topic', declaredCardCount: 1,
+  cards: [
+    { id: 'a', taskTitle: 'Listening A', audioText: 'Question', choices: ['No', 'Yes'], correctChoiceIndex: 1 },
+  ],
+};
+const listeningCategory: QuestionBankCategory = {
+  id: 'listening-category', name: 'Listening category', declaredTopicCount: 1, declaredCardCount: 1, topics: [listeningTopic],
+};
+const listeningDataset: QuestionBankDataset = {
+  id: 'listening', title: '听力', nameEn: 'Listening', description: '', summary: '', enabled: true, statusLabel: '', icon: 'headphones', declaredTopicCount: 1, declaredCardCount: 1, categoryUnit: '类', topicUnit: '组', cardUnit: '题', categories: [listeningCategory],
+  study: { interaction: 'choices', tools: { recorder: false, choices: true, notes: true, dictionary: false, highlights: false, tags: true }, copy: { transcriptLabel: '听力原文', referenceLabel: '答案' }, audioTitlePattern: 'card-title', consoleTabs: ['reference', 'notes'] },
+};
+
+function studyPackage(progressMode: QuestionBankStudyPackage['progressMode'] = 'session-only'): QuestionBankStudyPackage {
+  return {
+    id: 'mock-package-1',
+    startedAt: new Date().toISOString(),
+    progressMode,
+    items: [
+      { id: 'speaking-item', dataset, category, topic, card: topic.cards[0], sectionId: 'sentences900', sectionTitle: '900 句' },
+      { id: 'listening-item', dataset: listeningDataset, category: listeningCategory, topic: listeningTopic, card: listeningTopic.cards[0], sectionId: 'listening', sectionTitle: '听力' },
+    ],
+    record: {
+      id: 'mock-record-1',
+      bankId: 'mock_exam',
+      bankTitle: 'AI 模考',
+      categoryTitle: 'ICAO 4 初考',
+      topicTitle: '完整模考',
+      recordType: 'mock_exam',
+      mockExam: {
+        examType: 'icao4-first',
+        mode: 'complete',
+        moduleIds: ['sentences900', 'listening'],
+        sectionCounts: [
+          { id: 'sentences900', title: '900 句', total: 1 },
+          { id: 'listening', title: '听力', total: 1 },
+        ],
+      },
+    },
+  };
+}
 
 function recording(id: string): RecordingAsset {
   return {
@@ -76,6 +124,24 @@ function Harness({ store }: { store: LearningStore }) {
       <Pressable accessibilityLabel="record" onPress={() => session.recordAnswer(recording('asset-1'))} />
       <Pressable accessibilityLabel="replace-recording" onPress={() => session.recordAnswer(recording('asset-2'))} />
       <Pressable accessibilityLabel="clear-recording" onPress={session.clearRecording} />
+    </View>
+  );
+}
+
+function PackageHarness({ packageValue, store }: { packageValue: QuestionBankStudyPackage; store: LearningStore }) {
+  const session = useStudySession({ studyPackage: packageValue, store });
+  if (!session.hydrated) return <Text>loading</Text>;
+  return (
+    <View>
+      <Text>{`item:${session.item?.id ?? 'none'}`}</Text>
+      <Text>{`task:${session.behavior.taskKind}`}</Text>
+      <Text>{`tab:${session.activeTab}`}</Text>
+      <Text>{`completed:${session.completedCardIds.size}`}</Text>
+      <Text>{`state-keys:${Object.keys(session.states).sort().join(',')}`}</Text>
+      <Pressable accessibilityLabel="package-next" onPress={() => session.goTo(1)} />
+      <Pressable accessibilityLabel="package-record" onPress={() => session.recordAnswer(recording('package-recording'))} />
+      <Pressable accessibilityLabel="package-choose" onPress={() => session.chooseOption(1)} />
+      <Pressable accessibilityLabel="package-finish" onPress={() => { void session.finish('complete').catch(() => undefined); }} />
     </View>
   );
 }
@@ -164,5 +230,72 @@ describe('useStudySession', () => {
     fireEvent.press(screen.getByLabelText('clear-recording'));
     await waitFor(() => expect(screen.getByText('recording:none')).toBeTruthy());
     expect(mockRecordingRepository.discard).toHaveBeenCalledWith(expect.objectContaining({ id: 'asset-2' }));
+  });
+
+  it('switches behavior from each current study item dataset', async () => {
+    const screen = await render(<PackageHarness packageValue={studyPackage()} store={createStore()} />);
+    await waitFor(() => expect(screen.getByText('item:speaking-item')).toBeTruthy());
+    expect(screen.getByText('task:recording')).toBeTruthy();
+    expect(screen.getByText('tab:mine')).toBeTruthy();
+
+    fireEvent.press(screen.getByLabelText('package-next'));
+    await waitFor(() => expect(screen.getByText('item:listening-item')).toBeTruthy());
+    expect(screen.getByText('task:choices')).toBeTruthy();
+    expect(screen.getByText('tab:notes')).toBeTruthy();
+  });
+
+  it('keeps session-only package progress in item-keyed memory without progress reads or writes', async () => {
+    const store = createStore();
+    const screen = await render(<PackageHarness packageValue={studyPackage()} store={store} />);
+    await waitFor(() => expect(screen.getByText('item:speaking-item')).toBeTruthy());
+    expect(store.getCardState).not.toHaveBeenCalled();
+    expect(store.getTopicStates).not.toHaveBeenCalled();
+
+    fireEvent.press(screen.getByLabelText('package-record'));
+    await waitFor(() => expect(screen.getByText('state-keys:speaking-item')).toBeTruthy());
+    fireEvent.press(screen.getByLabelText('package-next'));
+    await waitFor(() => expect(screen.getByText('item:listening-item')).toBeTruthy());
+    fireEvent.press(screen.getByLabelText('package-choose'));
+    await waitFor(() => expect(screen.getByText('state-keys:listening-item,speaking-item')).toBeTruthy());
+
+    expect(store.saveCardState).not.toHaveBeenCalled();
+    expect(store.getCardState).not.toHaveBeenCalled();
+    expect(store.getTopicStates).not.toHaveBeenCalled();
+  });
+
+  it('creates one package mock-exam record with descriptor metadata and dynamic counts', async () => {
+    const store = createStore();
+    const packageValue = studyPackage();
+    const screen = await render(<PackageHarness packageValue={packageValue} store={store} />);
+    await waitFor(() => expect(screen.getByText('item:speaking-item')).toBeTruthy());
+
+    fireEvent.press(screen.getByLabelText('package-record'));
+    await waitFor(() => expect(screen.getByText('completed:1')).toBeTruthy());
+    fireEvent.press(screen.getByLabelText('package-next'));
+    await waitFor(() => expect(screen.getByText('item:listening-item')).toBeTruthy());
+    fireEvent.press(screen.getByLabelText('package-choose'));
+    await waitFor(() => expect(screen.getByText('completed:2')).toBeTruthy());
+    await act(async () => { fireEvent.press(screen.getByLabelText('package-finish')); await Promise.resolve(); });
+    await waitFor(() => expect(store.addRecord).toHaveBeenCalledTimes(1));
+
+    expect(store.addRecord).toHaveBeenCalledWith(expect.objectContaining({
+      id: 'mock-record-1',
+      sessionId: packageValue.id,
+      bankId: 'mock_exam',
+      bankTitle: 'AI 模考',
+      categoryTitle: 'ICAO 4 初考',
+      topicTitle: '完整模考',
+      recordType: 'mock_exam',
+      mockExam: packageValue.record.mockExam,
+      completedCount: 2,
+      totalCount: 2,
+      correctCount: 1,
+      reason: 'complete',
+      durationSeconds: expect.any(Number),
+    }));
+
+    await act(async () => { fireEvent.press(screen.getByLabelText('package-finish')); await Promise.resolve(); });
+    await waitFor(() => expect(store.addRecord).toHaveBeenCalledTimes(1));
+    expect(mockRecordingRepository.cleanupSession).toHaveBeenCalledWith(packageValue.id);
   });
 });

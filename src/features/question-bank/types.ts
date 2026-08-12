@@ -101,6 +101,16 @@ export type QuestionBankDataset = {
   categories: QuestionBankCategory[];
 };
 
+export type QuestionBankStudyItem = {
+  id: string;
+  dataset: QuestionBankDataset;
+  category: QuestionBankCategory;
+  topic: QuestionBankTopic;
+  card: QuestionBankCard;
+  sectionId?: string;
+  sectionTitle?: string;
+};
+
 export type CardLearningState = {
   visited: boolean;
   completed: boolean;
@@ -123,6 +133,24 @@ export type MockExamRecordMeta = {
   mode: 'complete' | 'custom';
   moduleIds: QuestionBankId[];
   sectionCounts: { id: string; title: string; total: number }[];
+};
+
+export type QuestionBankStudyRecordDescriptor = {
+  id?: string;
+  bankId: QuestionBankId | 'mock_exam';
+  bankTitle: string;
+  categoryTitle: string;
+  topicTitle: string;
+  recordType?: 'session' | 'ai_result' | 'mock_exam';
+  mockExam?: MockExamRecordMeta;
+};
+
+export type QuestionBankStudyPackage = {
+  id: string;
+  startedAt: string;
+  items: QuestionBankStudyItem[];
+  progressMode: 'persistent' | 'session-only';
+  record: QuestionBankStudyRecordDescriptor;
 };
 
 export type LearningRecord = {

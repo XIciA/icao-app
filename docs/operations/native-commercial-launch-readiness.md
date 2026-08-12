@@ -18,7 +18,7 @@
 | 中文名 / 英文名 | 听你五个 / Read You 5 |
 | 主域名 | `readyoufife.com` |
 | Native API / Supabase | `api.readyoufife.com` / `cloud.readyoufife.com` |
-| iOS Bundle ID | `com.readyoufife.app` |
+| iOS Bundle ID | `com.readyoufife.ios` |
 | Android 包名 | `com.readyoufife.app` |
 | URL Scheme | `readyoufife` |
 | 运营主体 | 云启航科（成都）科技有限公司 |
@@ -75,7 +75,7 @@
 ### Android（按目标渠道）
 
 - 至少确定首发渠道并注册对应的公司开发者账号；中国大陆各安卓商店的企业认证和材料要求分别办理。
-- 各渠道统一使用 `com.readyoufife.app`、同一正式签名和同一个 App 备案号，避免形成不能覆盖升级的安装包。
+- iOS 固定使用 `com.readyoufife.ios`，Android 固定使用 `com.readyoufife.app`；各平台分别保持同一正式签名和连续升级链，并共用同一个 App 备案号。
 - 若同时上 Google Play，再单独完成 Google Play 企业开发者注册、身份验证、数据安全表和测试/发布要求。
 
 ## 隐私与数据披露基线

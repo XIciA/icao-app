@@ -4,11 +4,12 @@ import { Pressable, StyleSheet, View } from 'react-native';
 
 import { TopBar } from '@/components/navigation/TopBar';
 import { AppText, Button, Card, Screen } from '@/components/ui';
-import { MockExamSessionScreen } from '@/features/mock-exam/MockExamSessionScreen';
-import { buildMockExamSession } from '@/features/mock-exam/build-session';
+import { buildMockExamSession, toQuestionBankStudyPackage } from '@/features/mock-exam/build-session';
+import { discardLegacyMockExamDraft } from '@/features/mock-exam/legacy-draft-cleanup';
 import { MOCK_EXAM_MODULES, MOCK_EXAM_TYPE_LABELS } from '@/features/mock-exam/rules';
-import { recoverInterruptedMockExam } from '@/features/mock-exam/session-storage';
-import type { MockExamModuleId, MockExamSession, MockExamType } from '@/features/mock-exam/types';
+import type { MockExamModuleId, MockExamType } from '@/features/mock-exam/types';
+import { QuestionBankStudyScreen } from '@/features/question-bank/components/QuestionBankStudyScreen';
+import type { QuestionBankStudyPackage } from '@/features/question-bank/types';
 import { colors, radii, spacing } from '@/theme';
 
 const modules: { id: MockExamModuleId; title: string; icon: typeof Headphones }[] = [
@@ -18,18 +19,16 @@ const modules: { id: MockExamModuleId; title: string; icon: typeof Headphones }[
 export function MockExamScreen() {
   const [examType, setExamType] = useState<MockExamType>('icao4-first');
   const [selected, setSelected] = useState<Set<MockExamModuleId>>(() => new Set(MOCK_EXAM_MODULES['icao4-first']));
-  const [session, setSession] = useState<MockExamSession>();
+  const [studyPackage, setStudyPackage] = useState<QuestionBankStudyPackage>();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string>();
-  const [completed, setCompleted] = useState<{ reason: 'abort' | 'complete'; answered: number; total: number }>();
-  useEffect(() => { void recoverInterruptedMockExam(); }, []);
+  useEffect(() => { void discardLegacyMockExamDraft(); }, []);
   const allowed = MOCK_EXAM_MODULES[examType];
   const selectedIds = allowed.filter((id) => selected.has(id));
   const complete = selectedIds.length === allowed.length;
   const chooseType = (next: MockExamType) => { setExamType(next); setSelected(new Set(MOCK_EXAM_MODULES[next])); setError(undefined); };
-  const start = async () => { if (!selectedIds.length) return; setBusy(true); setError(undefined); try { setSession(await buildMockExamSession({ examType, modules: selectedIds })); } catch (value) { setError(value instanceof Error ? value.message : '试卷生成失败，请重试。'); } finally { setBusy(false); } };
-  if (session) return <MockExamSessionScreen session={session} onDone={(reason, answered) => { setCompleted({ reason, answered, total: session.items.length }); setSession(undefined); }} />;
-  if (completed) return <Completion reason={completed.reason} answered={completed.answered} total={completed.total} onRestart={() => setCompleted(undefined)} />;
+  const start = async () => { if (!selectedIds.length) return; setBusy(true); setError(undefined); try { setStudyPackage(toQuestionBankStudyPackage(await buildMockExamSession({ examType, modules: selectedIds }))); } catch (value) { setError(value instanceof Error ? value.message : '试卷生成失败，请重试。'); } finally { setBusy(false); } };
+  if (studyPackage) return <QuestionBankStudyScreen onReturn={() => setStudyPackage(undefined)} returnLabel="返回 AI 模考" sourceRoute="/content/mock-exam" studyPackage={studyPackage} />;
   return <Screen scroll contentStyle={styles.screen}><TopBar title="AI 模考" /><View style={styles.setup}>
     <View style={styles.hero}><AppText color={colors.primary} variant="micro">LEARNING MOCK EXAM</AppText><AppText variant="pageTitle">学习型模考</AppText><AppText>按考试规则组卷，作答和复盘沿用题库学习页。本功能不提供官方等级或评分。</AppText></View>
     <Section title="考试类型"><View style={styles.types}>{(Object.keys(MOCK_EXAM_MODULES) as MockExamType[]).map((id) => <Pressable key={id} onPress={() => chooseType(id)} style={[styles.type, examType === id && styles.active]}>{examType === id ? <View style={styles.typeCheck}><Check color={colors.primaryForeground} size={10} /></View> : null}<AppText style={styles.center} variant="sectionTitle">{MOCK_EXAM_TYPE_LABELS[id].replace(' 初考', '').replace(' 复考', '')}</AppText><AppText color={examType === id ? colors.primary : colors.mutedForeground} variant="caption">{id.endsWith('recert') ? '复考' : '初考'}</AppText></Pressable>)}</View></Section>
@@ -39,6 +38,5 @@ export function MockExamScreen() {
   </View></Screen>;
 }
 
-function Completion({ reason, answered, total, onRestart }: { reason: 'abort' | 'complete'; answered: number; total: number; onRestart: () => void }) { return <Screen contentStyle={styles.screen}><TopBar title="AI 模考" /><View style={styles.completion}><Card elevated style={styles.completionCard}><AppText color={colors.primary} variant="micro">MOCK EXAM SAVED</AppText><AppText style={styles.center} variant="pageTitle">{reason === 'complete' ? '本次模考已完成' : '本次模考已结束'}</AppText><AppText style={styles.center}>已作答 {answered}/{total} 题，已保存为一条学习记录。</AppText><AppText style={styles.center} variant="caption">本功能不提供官方 ICAO 评分或等级结论。</AppText></Card><Button onPress={onRestart} size="lg">重新设置模考</Button></View></Screen>; }
 function Section({ title, right, children }: { title: string; right?: string; children: React.ReactNode }) { return <View style={styles.section}><View style={styles.row}><AppText variant="sectionTitle">{title}</AppText>{right ? <AppText variant="micro">{right}</AppText> : null}</View>{children}</View>; }
-const styles = StyleSheet.create({ screen: { paddingHorizontal: 0 }, setup: { gap: spacing[5], padding: spacing[5], paddingBottom: spacing[6] }, hero: { gap: spacing[2] }, section: { gap: spacing[2] }, row: { alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' }, types: { flexDirection: 'row', gap: spacing[2] }, type: { alignItems: 'center', backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.xl, borderWidth: 1, flex: 1, gap: 1, justifyContent: 'center', minHeight: 68, position: 'relative' }, typeCheck: { alignItems: 'center', backgroundColor: colors.primary, borderRadius: radii.full, height: 18, justifyContent: 'center', position: 'absolute', right: 6, top: 6, width: 18 }, active: { backgroundColor: colors.primary06, borderColor: colors.primary }, center: { textAlign: 'center' }, moduleGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing[2] }, module: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.xl, borderWidth: 1, flexDirection: 'row', gap: spacing[2], minHeight: 58, padding: spacing[2], width: '48%' }, moduleIcon: { alignItems: 'center', backgroundColor: colors.primary08, borderRadius: radii.lg, height: 36, justifyContent: 'center', width: 36 }, copy: { flex: 1 }, checkBox: { alignItems: 'center', borderColor: colors.border, borderRadius: 6, borderWidth: 1, height: 20, justifyContent: 'center', width: 20 }, checkBoxActive: { backgroundColor: colors.primary, borderColor: colors.primary }, notice: { gap: spacing[2] }, completion: { flex: 1, gap: spacing[5], justifyContent: 'center', padding: spacing[5] }, completionCard: { alignItems: 'center', gap: spacing[3], paddingVertical: spacing[6] }, });
+const styles = StyleSheet.create({ screen: { paddingHorizontal: 0 }, setup: { gap: spacing[5], padding: spacing[5], paddingBottom: spacing[6] }, hero: { gap: spacing[2] }, section: { gap: spacing[2] }, row: { alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' }, types: { flexDirection: 'row', gap: spacing[2] }, type: { alignItems: 'center', backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.xl, borderWidth: 1, flex: 1, gap: 1, justifyContent: 'center', minHeight: 68, position: 'relative' }, typeCheck: { alignItems: 'center', backgroundColor: colors.primary, borderRadius: radii.full, height: 18, justifyContent: 'center', position: 'absolute', right: 6, top: 6, width: 18 }, active: { backgroundColor: colors.primary06, borderColor: colors.primary }, center: { textAlign: 'center' }, moduleGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing[2] }, module: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.xl, borderWidth: 1, flexDirection: 'row', gap: spacing[2], minHeight: 58, padding: spacing[2], width: '48%' }, moduleIcon: { alignItems: 'center', backgroundColor: colors.primary08, borderRadius: radii.lg, height: 36, justifyContent: 'center', width: 36 }, copy: { flex: 1 }, checkBox: { alignItems: 'center', borderColor: colors.border, borderRadius: 6, borderWidth: 1, height: 20, justifyContent: 'center', width: 20 }, checkBoxActive: { backgroundColor: colors.primary, borderColor: colors.primary }, notice: { gap: spacing[2] }, });

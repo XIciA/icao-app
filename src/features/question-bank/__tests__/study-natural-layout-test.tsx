@@ -349,6 +349,28 @@ describe('study workbench natural layout', () => {
     }));
   });
 
+  it('keeps a package item identity separate from the original question id in saved AI results', async () => {
+    const addRecord = jest.fn(async () => undefined);
+    const ref = createRef<StudyWorkbenchHandle>();
+    function Harness() {
+      const [answerText, setAnswerText] = useState('');
+      return <StudyWorkbench {...baseProps} ref={ref} activeTab="mine" answerText={answerText} cardKey="mock-item-17" editingTab="mine" learningStore={{ addRecord }} onAnswerChange={setAnswerText} sourceCardId="opi-original-card-17" tabs={['mine']} />;
+    }
+    const screen = await render(<Harness />);
+
+    fireEvent.changeText(screen.getByLabelText('我的回答'), 'package answer');
+    await waitFor(() => expect(screen.getByLabelText('我的回答').props.value).toBe('package answer'));
+    let saved: boolean | undefined;
+    await act(async () => { saved = await ref.current?.flushAutoSave(); });
+
+    expect(saved).toBe(true);
+    expect(addRecord).toHaveBeenCalledWith(expect.objectContaining({
+      cardId: 'opi-original-card-17',
+      aiResult: expect.objectContaining({ questionId: 'opi-original-card-17' }),
+    }));
+    await screen.unmount();
+  });
+
   it('keeps flushing when a newer answer arrives during the active write', async () => {
     let releaseFirstWrite!: () => void;
     let signalFirstWrite!: () => void;

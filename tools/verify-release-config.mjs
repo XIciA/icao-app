@@ -35,8 +35,8 @@ if (process.env.EXPO_PUBLIC_ICAO_AUDIO_E2E === '1') {
 if (app.expo.name !== '听你五个' || app.expo.slug !== 'readyoufife' || app.expo.scheme !== 'readyoufife') {
   throw new Error('The formal Read You 5 name, slug, or URL scheme is inconsistent.');
 }
-if (app.expo.ios.bundleIdentifier !== 'com.readyoufife.app') {
-  throw new Error('The iOS Bundle ID must be com.readyoufife.app.');
+if (app.expo.ios.bundleIdentifier !== 'com.readyoufife.ios') {
+  throw new Error('The iOS Bundle ID must be com.readyoufife.ios.');
 }
 if (app.expo.android.package !== 'com.readyoufife.app') {
   throw new Error('The Android release package must be com.readyoufife.app.');

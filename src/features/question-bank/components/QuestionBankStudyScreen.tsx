@@ -23,6 +23,7 @@ import { colors, fonts, motion, radii, spacing } from '@/theme';
 import { useWordFavorites } from '@/features/vocabulary/progress-store';
 
 import { annotationToneColors } from '../annotations/colors';
+import { questionBankCardTargetKey } from '../annotations/card-index';
 import { useQuestionAnnotations } from '../annotations/use-question-annotations';
 import type { AnnotationTextBlockId } from '../annotations/types';
 import { useStudySession } from '../hooks/useStudySession';
@@ -31,7 +32,12 @@ import { useQuestionBankAudioPreload } from '../hooks/useQuestionBankAudioPreloa
 import { resolveWordLookupInteraction, showsWordLookupModeToggle } from '../lib/word-lookup-interaction';
 import { getConnectivity, subscribeConnectivity, type Connectivity } from '../platform/network-service';
 import { findStaticWordLookup, hasStaticWordLookup, type StaticWordLookupEntry } from '../static-word-lookup/repository';
-import type { QuestionBankCategory, QuestionBankDataset, QuestionBankTopic } from '../types';
+import type {
+  QuestionBankCategory,
+  QuestionBankDataset,
+  QuestionBankStudyPackage,
+  QuestionBankTopic,
+} from '../types';
 import { boundedHorizontalSwipe } from '../lib/study-gestures';
 import { AnnotationFloatingPanel, AnnotationToolbar } from './AnnotationToolbar';
 import { AnswerCardSheet } from './AnswerCardSheet';
@@ -43,23 +49,42 @@ import { StudyReport } from './StudyReport';
 import { StudyTaskRenderer } from './StudyTaskRenderer';
 import { StudyWorkbench, type StudyWorkbenchHandle } from './StudyWorkbench';
 
-type Props = {
-  dataset: QuestionBankDataset;
-  category: QuestionBankCategory;
-  topic: QuestionBankTopic;
-  initialCardId?: string;
+type NavigationProps = {
+  onReturn?: () => void;
   returnTo?: 'annotations' | 'radio';
   returnHref?: Href;
   returnLabel?: string;
   sourceRoute?: string;
 };
 
-export function QuestionBankStudyScreen({ dataset, category, topic, initialCardId, returnTo, returnHref, returnLabel, sourceRoute }: Props) {
+type Props = NavigationProps & ({
+  dataset: QuestionBankDataset;
+  category: QuestionBankCategory;
+  topic: QuestionBankTopic;
+  initialCardId?: string;
+  studyPackage?: never;
+} | {
+  dataset?: never;
+  category?: never;
+  topic?: never;
+  initialCardId?: never;
+  studyPackage: QuestionBankStudyPackage;
+});
+
+export function QuestionBankStudyScreen(props: Props) {
+  const { onReturn, returnTo, returnHref, returnLabel, sourceRoute } = props;
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const { width: viewportWidth } = useAppViewportDimensions();
   const reduceMotion = useReducedMotion();
-  const session = useStudySession({ dataset, category, topic, initialCardId });
+  const session = useStudySession(props.studyPackage
+    ? { studyPackage: props.studyPackage }
+    : {
+      dataset: props.dataset,
+      category: props.category,
+      topic: props.topic,
+      initialCardId: props.initialCardId,
+    });
   const wordFavorites = useWordFavorites();
   const [answerCardVisible, setAnswerCardVisible] = useState(false);
   const [connectivity, setConnectivity] = useState<Connectivity>('unknown');
@@ -77,23 +102,38 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
   const [questionAudioPauseRequest, setQuestionAudioPauseRequest] = useState(0);
   const [recordingPreviewPauseRequest, setRecordingPreviewPauseRequest] = useState(0);
   const [dismissMediaControlsRequest, setDismissMediaControlsRequest] = useState(0);
-  const [readyAudioCardId, setReadyAudioCardId] = useState<string>();
+  const [readyAudioItemId, setReadyAudioItemId] = useState<string>();
   const finishInFlight = useRef(false);
   const cardTransitionInFlight = useRef(false);
   const workbenchRef = useRef<StudyWorkbenchHandle>(null);
   const bodyScrollRef = useRef<ScrollView>(null);
   const questionOffsetX = useSharedValue(0);
-  const card = session.card;
+  const item = session.item;
+  const card = item?.card;
+  const dataset = item?.dataset;
+  const category = item?.category;
+  const topic = item?.topic;
+  const totalItems = session.items.length;
+  const sessionCards = useMemo(() => session.items.map((entry) => entry.card), [session.items]);
   const imageCard = card?.kind === 'image';
   const audioAsset = useQuestionBankAsset(card?.audio);
   useQuestionBankAudioPreload(
-    topic.cards,
+    sessionCards,
     session.currentIndex,
-    Platform.OS === 'web' && readyAudioCardId === card?.id,
+    Platform.OS === 'web' && readyAudioItemId === item?.id,
   );
-  const target = card && !imageCard ? { bankId: dataset.id, categoryId: category.id, topicId: topic.id, cardId: card.id } : undefined;
+  const target = item && card && !imageCard ? {
+    bankId: item.dataset.id,
+    categoryId: item.category.id,
+    topicId: item.topic.id,
+    cardId: card.id,
+  } : undefined;
   const annotations = useQuestionAnnotations(target);
   const navigateAfterStudy = useCallback(() => {
+    if (onReturn) {
+      onReturn();
+      return;
+    }
     if (returnHref) {
       router.dismissTo(returnHref);
       return;
@@ -106,8 +146,8 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
       router.replace('/content/radio');
       return;
     }
-    router.replace({ pathname: '/question-bank/[bankId]', params: { bankId: dataset.id } });
-  }, [dataset.id, returnHref, returnTo, router]);
+    if (dataset) router.replace({ pathname: '/question-bank/[bankId]', params: { bankId: dataset.id } });
+  }, [dataset, onReturn, returnHref, returnTo, router]);
 
   usePreventRemove(!session.report && !leavingStudy, () => { void leaveStudy(); });
 
@@ -131,7 +171,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
     setDismissMediaControlsRequest((request) => request + 1);
     setSwipeBoundaryMessage(undefined);
     Keyboard.dismiss();
-  }, [card?.id]);
+  }, [item?.id]);
 
   useEffect(() => {
     if (!swipeBoundaryMessage) return;
@@ -203,7 +243,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
 
   const goToCard = useCallback(async (index: number, requestedDirection?: -1 | 1) => {
     if (index === session.currentIndex) return true;
-    if (index < 0 || index >= topic.cards.length) return false;
+    if (index < 0 || index >= totalItems) return false;
     if (taskInteractionActive || finishInFlight.current || cardTransitionInFlight.current) return false;
     cardTransitionInFlight.current = true;
     setCardTransitionActive(true);
@@ -232,7 +272,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
       finishCardTransition();
       return false;
     }
-  }, [animateCardChange, finishCardTransition, finishWorkbenchEditing, questionOffsetX, reduceMotion, resetQuestionOffset, session, taskInteractionActive, topic.cards.length]);
+  }, [animateCardChange, finishCardTransition, finishWorkbenchEditing, questionOffsetX, reduceMotion, resetQuestionOffset, session, taskInteractionActive, totalItems]);
 
   const collapseWorkbench = useCallback(async () => {
     if (finishInFlight.current || cardTransitionInFlight.current) return false;
@@ -263,7 +303,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
   }, [collapseWorkbench, finishWorkbenchEditing, session]);
 
   const handleQuestionSwipe = useCallback((translationX: number, velocityX: number) => {
-    const result = boundedHorizontalSwipe(session.currentIndex, topic.cards.length, translationX, velocityX);
+    const result = boundedHorizontalSwipe(session.currentIndex, totalItems, translationX, velocityX);
     if (result.direction === 0) {
       resetQuestionOffset();
       return;
@@ -277,7 +317,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
     void goToCard(result.index, result.direction).then((changed) => {
       if (!changed) resetQuestionOffset();
     });
-  }, [finishWorkbenchEditing, goToCard, resetQuestionOffset, session.currentIndex, topic.cards.length]);
+  }, [finishWorkbenchEditing, goToCard, resetQuestionOffset, session.currentIndex, totalItems]);
 
   const questionBodyAnimatedStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: questionOffsetX.value }],
@@ -299,7 +339,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
       .failOffsetY([-14, 14])
       .onUpdate(({ translationX }) => {
         const atFirstBoundary = session.currentIndex === 0 && translationX > 0;
-        const atLastBoundary = session.currentIndex === topic.cards.length - 1 && translationX < 0;
+        const atLastBoundary = session.currentIndex === totalItems - 1 && translationX < 0;
         questionOffsetX.value = atFirstBoundary || atLastBoundary ? translationX * 0.28 : translationX;
       })
       .onEnd(({ translationX, velocityX }) => {
@@ -334,7 +374,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
       recordingInteractionGesture: recordingGesture,
       workbenchSwipeGesture: consoleGesture,
     };
-  }, [activeWorkbenchTab, editingWorkbenchTab, handleQuestionSwipe, questionOffsetX, questionSwipeEnabled, session.currentIndex, session.toolMode, setActiveWorkbenchTab, topic.cards.length, workbenchTabs]);
+  }, [activeWorkbenchTab, editingWorkbenchTab, handleQuestionSwipe, questionOffsetX, questionSwipeEnabled, session.currentIndex, session.toolMode, setActiveWorkbenchTab, totalItems, workbenchTabs]);
 
   const selectedTagColors = useMemo(() => (annotations.entry?.tagIds ?? []).flatMap((id) => {
     const definition = annotations.tagDefinitions.find((item) => item.id === id);
@@ -354,20 +394,28 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
   }
 
   function toggleHighlight(value: { blockId: AnnotationTextBlockId; wordIndex: number; quote: string; sentence: string; sourceText: string }) {
-    if (!card) return;
-    session.markCompleted(card.id);
+    if (!item) return;
+    session.markCompleted(item.id);
     void annotations.toggleHighlight({ ...value, colorId: activeHighlightId });
   }
 
   function applyHighlightRange(value: { action: 'apply' | 'remove'; blockId: AnnotationTextBlockId; endWordIndex: number; sourceText: string; startWordIndex: number }) {
-    if (!card) return;
-    session.markCompleted(card.id);
+    if (!item) return;
+    session.markCompleted(item.id);
     void annotations.applyHighlightRange({ ...value, colorId: activeHighlightId });
   }
 
   function sessionAnnotationMetrics() {
-    const cardIds = new Set(Array.from(session.visitedIndexes).flatMap((index) => topic.cards[index]?.id ?? []));
-    const entries = Object.values(annotations.store.entries).filter((entry) => entry.bankId === dataset.id && entry.categoryId === category.id && entry.topicId === topic.id && cardIds.has(entry.cardId));
+    const targetKeys = new Set(Array.from(session.visitedIndexes).flatMap((index) => {
+      const visited = session.items[index];
+      return visited ? [questionBankCardTargetKey({
+        bankId: visited.dataset.id,
+        categoryId: visited.category.id,
+        topicId: visited.topic.id,
+        cardId: visited.card.id,
+      })] : [];
+    }));
+    const entries = Object.values(annotations.store.entries).filter((entry) => targetKeys.has(questionBankCardTargetKey(entry)));
     return {
       annotationCount: entries.reduce((count, entry) => count + entry.tagIds.length + entry.highlights.length, 0),
       noteCount: entries.filter((entry) => entry.note.trim()).length,
@@ -401,7 +449,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
   }
 
   async function openCorrectionFeedback() {
-    if (!card || taskInteractionActive || finishInFlight.current || cardTransitionInFlight.current) return;
+    if (!item || taskInteractionActive || finishInFlight.current || cardTransitionInFlight.current) return;
     finishInFlight.current = true;
     setFinishError(undefined);
     finishWorkbenchEditing();
@@ -419,11 +467,11 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
         params: {
           slug: 'feedback',
           source: 'study',
-          sourceRoute: sourceRoute ?? `/question-bank/${dataset.id}/study/${category.id}/${topic.id}`,
-          bankId: dataset.id,
-          categoryId: category.id,
-          topicId: topic.id,
-          cardId: card.id,
+          sourceRoute: sourceRoute ?? `/question-bank/${item.dataset.id}/study/${item.category.id}/${item.topic.id}`,
+          bankId: item.dataset.id,
+          categoryId: item.category.id,
+          topicId: item.topic.id,
+          cardId: item.card.id,
         },
       });
     } catch {
@@ -462,10 +510,10 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
   }
 
   if (session.report) {
-    return <StudyReport interaction={dataset.study.interaction} noteCount={session.report.noteCount ?? 0} onReturn={navigateAfterStudy} record={session.report} />;
+    return <StudyReport interaction={dataset?.study.interaction ?? 'speaking'} noteCount={session.report.noteCount ?? 0} onReturn={navigateAfterStudy} record={session.report} returnLabel={returnLabel} />;
   }
   if (!session.hydrated) return <SafeAreaView style={styles.state}><AppText variant="caption">正在恢复学习进度…</AppText></SafeAreaView>;
-  if (session.loadError || !card) return <SafeAreaView style={styles.state}><CenteredState actionLabel="重新加载" description={session.loadError ?? '当前题目不存在，请返回题库后重试。'} onAction={session.retryHydration} title="学习内容加载失败" tone="destructive" /></SafeAreaView>;
+  if (session.loadError || !item || !card || !dataset || !category || !topic) return <SafeAreaView style={styles.state}><CenteredState actionLabel="重新加载" description={session.loadError ?? '当前题目不存在，请返回题库后重试。'} onAction={session.retryHydration} title="学习内容加载失败" tone="destructive" /></SafeAreaView>;
 
   const entry = annotations.entry;
   const transcript = card.kind === 'image' ? null : (
@@ -489,7 +537,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
       card={card}
       interactionGesture={recordingInteractionGesture}
       isLookupAvailable={hasStaticWordLookup}
-      key={card.id}
+      key={item.id}
       lookupInteraction={lookupInteraction}
       onChoose={session.chooseOption}
       onLookupWord={lookupWord}
@@ -514,12 +562,12 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
         <Pressable accessibilityLabel={returnLabel ?? (returnTo === 'radio' ? '返回随身听' : returnTo === 'annotations' ? '返回我的标注' : '返回题库目录')} disabled={finishing || taskInteractionActive} onPress={() => void leaveStudy()} style={({ pressed }) => [returnTo === 'radio' ? styles.returnToRadioButton : styles.circleButton, pressed ? styles.topBarPressed : null]}><ChevronLeft color={colors.foreground} size={21} />{returnTo === 'radio' ? <AppText variant="button">返回随身听</AppText> : null}</Pressable>
         <View style={styles.topSpacer} />
         <Pressable accessibilityLabel="纠正当前题目内容" disabled={finishing || taskInteractionActive || cardTransitionActive} hitSlop={5} onPress={() => void openCorrectionFeedback()} style={({ pressed }) => [styles.correctionButton, pressed ? styles.counterPressed : null]}><Flag color={colors.mutedForeground} size={13} /><AppText color={colors.mutedForeground} variant="micro">纠错</AppText></Pressable>
-        <Pressable accessibilityLabel="打开答题卡" disabled={taskInteractionActive} onPress={() => { finishWorkbenchEditing(); setAnswerCardVisible(true); }} style={({ pressed }) => [styles.counterButton, pressed ? styles.counterPressed : null]}><Grid3X3 color={colors.mutedForeground} size={15} /><AppText style={styles.counter} variant="button">{session.currentIndex + 1} / {topic.cards.length}</AppText></Pressable>
+        <Pressable accessibilityLabel="打开答题卡" disabled={taskInteractionActive} onPress={() => { finishWorkbenchEditing(); setAnswerCardVisible(true); }} style={({ pressed }) => [styles.counterButton, pressed ? styles.counterPressed : null]}><Grid3X3 color={colors.mutedForeground} size={15} /><AppText style={styles.counter} variant="button">{session.currentIndex + 1} / {totalItems}</AppText></Pressable>
       </View>
       {connectivity === 'offline' ? <View style={styles.offline}><WifiOff color={colors.mutedForeground} size={15} /><AppText style={styles.offlineCopy} variant="micro">当前处于离线状态；文字学习和本机标注仍可使用。</AppText></View> : null}
 
       {!imageCard ? <View onLayout={({ nativeEvent }) => { if (Platform.OS !== 'web') setAnnotationPanelTop(nativeEvent.layout.y + nativeEvent.layout.height); }} style={styles.tools}>
-        <AnnotationToolbar activeHighlightId={activeHighlightId} dictionaryMode={dictionaryMode} highlightDefinitions={annotations.highlightDefinitions} highlightMode={session.toolMode === 'highlight'} leading={<Pressable accessibilityLabel={session.revealed ? '收起答案' : '显示答案'} onPress={toggleAnswers} style={({ pressed }) => [styles.answerTool, session.revealed ? styles.toolActive : null, pressed ? styles.toolPressed : null]}><Check color={session.revealed ? colors.primary : colors.mutedForeground} size={14} /><AppText color={session.revealed ? colors.primary : colors.mutedForeground} variant="caption">答案</AppText></Pressable>} onCreateHighlight={(label, color) => { finishWorkbenchEditing(); void annotations.addHighlightDefinition(label, color).then((id) => { if (id) setActiveHighlightId(id); }); }} onCreateTag={(label, color) => { finishWorkbenchEditing(); void annotations.addTagDefinition(label, color); }} onDictionaryModeChange={(value) => { finishWorkbenchEditing(); session.setToolMode(value ? 'dictionary' : undefined); }} onHighlightChange={(value) => { finishWorkbenchEditing(); setActiveHighlightId(value); }} onHighlightModeChange={(value) => { finishWorkbenchEditing(); session.setToolMode(value ? 'highlight' : undefined); }} onTagModeChange={(value) => { finishWorkbenchEditing(); session.setToolMode(value ? 'tags' : undefined); }} onTagToggle={(id) => { finishWorkbenchEditing(); void annotations.toggleTag(id); }} resetToken={card.id} selectedTags={entry?.tagIds ?? []} showDictionary={showsWordLookupModeToggle(Platform.OS) && dataset.study.tools.dictionary} showHighlights={dataset.study.tools.highlights} showTags={dataset.study.tools.tags} tagDefinitions={annotations.tagDefinitions} tagMode={session.toolMode === 'tags'} />
+        <AnnotationToolbar activeHighlightId={activeHighlightId} dictionaryMode={dictionaryMode} highlightDefinitions={annotations.highlightDefinitions} highlightMode={session.toolMode === 'highlight'} leading={<Pressable accessibilityLabel={session.revealed ? '收起答案' : '显示答案'} onPress={toggleAnswers} style={({ pressed }) => [styles.answerTool, session.revealed ? styles.toolActive : null, pressed ? styles.toolPressed : null]}><Check color={session.revealed ? colors.primary : colors.mutedForeground} size={14} /><AppText color={session.revealed ? colors.primary : colors.mutedForeground} variant="caption">答案</AppText></Pressable>} onCreateHighlight={(label, color) => { finishWorkbenchEditing(); void annotations.addHighlightDefinition(label, color).then((id) => { if (id) setActiveHighlightId(id); }); }} onCreateTag={(label, color) => { finishWorkbenchEditing(); void annotations.addTagDefinition(label, color); }} onDictionaryModeChange={(value) => { finishWorkbenchEditing(); session.setToolMode(value ? 'dictionary' : undefined); }} onHighlightChange={(value) => { finishWorkbenchEditing(); setActiveHighlightId(value); }} onHighlightModeChange={(value) => { finishWorkbenchEditing(); session.setToolMode(value ? 'highlight' : undefined); }} onTagModeChange={(value) => { finishWorkbenchEditing(); session.setToolMode(value ? 'tags' : undefined); }} onTagToggle={(id) => { finishWorkbenchEditing(); void annotations.toggleTag(id); }} resetToken={item.id} selectedTags={entry?.tagIds ?? []} showDictionary={showsWordLookupModeToggle(Platform.OS) && dataset.study.tools.dictionary} showHighlights={dataset.study.tools.highlights} showTags={dataset.study.tools.tags} tagDefinitions={annotations.tagDefinitions} tagMode={session.toolMode === 'tags'} />
       </View> : null}
 
       {!imageCard && annotationPanelTop !== undefined ? (
@@ -532,7 +580,7 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
           onCreateTag={(label, color) => { finishWorkbenchEditing(); void annotations.addTagDefinition(label, color); }}
           onHighlightChange={(value) => { finishWorkbenchEditing(); setActiveHighlightId(value); }}
           onTagToggle={(id) => { finishWorkbenchEditing(); void annotations.toggleTag(id); }}
-          resetToken={card.id}
+          resetToken={item.id}
           selectedTags={entry?.tagIds ?? []}
           tagDefinitions={annotations.tagDefinitions}
           top={annotationPanelTop}
@@ -544,9 +592,9 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
         <Animated.View style={[styles.bodyGesture, questionBodyAnimatedStyle]}>
           <ScrollView automaticallyAdjustKeyboardInsets contentContainerStyle={styles.bodyContent} keyboardDismissMode="on-drag" keyboardShouldPersistTaps="handled" onScrollBeginDrag={handleBodyScrollBegin} ref={bodyScrollRef} showsVerticalScrollIndicator={false} style={styles.body} testID="study-body-scroll">
             {card.kind === 'image' ? (
-              <ImageQuestionCard imageAlt={card.imageAlt} imagePath={card.image} onDisplayed={() => session.markCompleted(card.id)} />
+              <ImageQuestionCard imageAlt={card.imageAlt} imagePath={card.image} onDisplayed={() => session.markCompleted(item.id)} />
             ) : (
-              <StudyCardStack onCollapse={() => { void collapseWorkbench(); }} onReveal={() => session.revealCurrent(true)} primary={<View style={styles.primaryContent}><StudyAudioPlayer autoPlayRequest={session.playRequestToken} blockedExternalGesture={questionSwipeGesture} dismissControlsRequest={dismissMediaControlsRequest} durationHint={Platform.OS === 'web' ? card.audioDurationSeconds : undefined} generatedAudio={session.behavior.generatedAudio && !card.audio} label={card.taskTitle} onPlaybackStart={handleQuestionPlaybackStart} onReady={Platform.OS === 'web' ? () => setReadyAudioCardId(card.id) : undefined} onRetry={audioAsset.retry} onSeekInteractionChange={setSeekInteractionActive} pauseRequest={questionAudioPauseRequest} playbackKey={card.id} practiceControls={integratedRecordingLayout ? taskContent : undefined} resolving={audioAsset.resolving} tagColors={selectedTagColors} uri={audioAsset.uri} variant={integratedRecordingLayout ? 'integrated-recording' : 'default'} />{integratedRecordingLayout ? null : <><View style={styles.divider} />{taskContent}</>}</View>} revealed={session.revealed} transcript={transcript} workbench={<StudyWorkbench ref={workbenchRef} activeTab={session.activeTab} answerText={session.answerText} bankId={dataset.id} bankTitle={dataset.title} cardKey={card.id} categoryTitle={category.name} editingTab={editingWorkbenchTab} noteText={entry?.note ?? ''} onAnswerChange={session.updateAnswer} onEditingTabChange={setEditingWorkbenchTab} onFeedback={session.markFeedback} onNoteChange={(note) => { void annotations.saveNote(note); }} onRetrySave={() => { void annotations.retrySave(); }} onTabChange={session.setActiveTab} questionText={card.audioText} recordingUri={session.recording?.uri} referenceContent={referenceContent} referenceLabel={session.behavior.referenceLabel} reviewKind={session.behavior.reviewKind} saveError={annotations.saveErrorMessage} sessionId={session.sessionId} sessionStartedAt={session.sessionStartedAt} swipeGesture={workbenchSwipeGesture} tabs={session.behavior.workbenchTabs} topicTitle={topic.name} />} />
+              <StudyCardStack onCollapse={() => { void collapseWorkbench(); }} onReveal={() => session.revealCurrent(true)} primary={<View style={styles.primaryContent}><StudyAudioPlayer autoPlayRequest={session.playRequestToken} blockedExternalGesture={questionSwipeGesture} dismissControlsRequest={dismissMediaControlsRequest} durationHint={Platform.OS === 'web' ? card.audioDurationSeconds : undefined} generatedAudio={session.behavior.generatedAudio && !card.audio} label={card.taskTitle} onPlaybackStart={handleQuestionPlaybackStart} onReady={Platform.OS === 'web' ? () => setReadyAudioItemId(item.id) : undefined} onRetry={audioAsset.retry} onSeekInteractionChange={setSeekInteractionActive} pauseRequest={questionAudioPauseRequest} playbackKey={item.id} practiceControls={integratedRecordingLayout ? taskContent : undefined} resolving={audioAsset.resolving} tagColors={selectedTagColors} uri={audioAsset.uri} variant={integratedRecordingLayout ? 'integrated-recording' : 'default'} />{integratedRecordingLayout ? null : <><View style={styles.divider} />{taskContent}</>}</View>} revealed={session.revealed} transcript={transcript} workbench={<StudyWorkbench ref={workbenchRef} activeTab={session.activeTab} answerText={session.answerText} bankId={dataset.id} bankTitle={dataset.title} cardKey={item.id} categoryTitle={category.name} editingTab={editingWorkbenchTab} noteText={entry?.note ?? ''} onAnswerChange={session.updateAnswer} onEditingTabChange={setEditingWorkbenchTab} onFeedback={session.markFeedback} onNoteChange={(note) => { void annotations.saveNote(note); }} onRetrySave={() => { void annotations.retrySave(); }} onTabChange={session.setActiveTab} persistAiResult={props.studyPackage?.progressMode !== 'session-only'} questionText={card.audioText} recordingUri={session.recording?.uri} referenceContent={referenceContent} referenceLabel={session.behavior.referenceLabel} reviewKind={session.behavior.reviewKind} saveError={annotations.saveErrorMessage} sessionId={session.sessionId} sessionStartedAt={session.sessionStartedAt} sourceCardId={card.id} swipeGesture={workbenchSwipeGesture} tabs={session.behavior.workbenchTabs} topicTitle={topic.name} />} />
             )}
           </ScrollView>
           {swipeBoundaryMessage ? <View accessibilityLiveRegion="polite" pointerEvents="none" style={styles.swipeBoundary}><AppText variant="micro">{swipeBoundaryMessage}</AppText></View> : null}
@@ -558,12 +606,12 @@ export function QuestionBankStudyScreen({ dataset, category, topic, initialCardI
         <View style={styles.footer}>
           <Button disabled={finishing || taskInteractionActive || cardTransitionActive} leading={<Flag color={colors.foreground} size={18} />} onPress={() => void finish('abort')} size="sm" style={styles.footerFinish} testID="study-footer-finish" variant="outline">{finishing ? '生成中…' : '结束'}</Button>
           <Button disabled={finishing || taskInteractionActive || cardTransitionActive || session.currentIndex === 0} leading={<ChevronLeft color={colors.foreground} size={20} />} onPress={() => { void goToCard(session.currentIndex - 1, -1); }} size="sm" style={styles.footerPrevious} testID="study-footer-previous" variant="outline">上一题</Button>
-          <Button accessibilityLabel={session.currentIndex < topic.cards.length - 1 ? '下一题' : '完成'} disabled={finishing || taskInteractionActive || cardTransitionActive} onPress={() => { if (session.currentIndex < topic.cards.length - 1) void goToCard(session.currentIndex + 1, 1); else void finish('complete'); }} size="sm" style={styles.footerPrimary} testID="study-footer-next">{finishing ? '生成中…' : session.currentIndex < topic.cards.length - 1 ? '下一题' : '完成'} <ChevronRight color={colors.primaryForeground} size={20} /></Button>
+          <Button accessibilityLabel={session.currentIndex < totalItems - 1 ? '下一题' : '完成'} disabled={finishing || taskInteractionActive || cardTransitionActive} onPress={() => { if (session.currentIndex < totalItems - 1) void goToCard(session.currentIndex + 1, 1); else void finish('complete'); }} size="sm" style={styles.footerPrimary} testID="study-footer-next">{finishing ? '生成中…' : session.currentIndex < totalItems - 1 ? '下一题' : '完成'} <ChevronRight color={colors.primaryForeground} size={20} /></Button>
         </View>
       </View>
       </AppContentFrame>
 
-      <AnswerCardSheet current={session.currentIndex} onClose={() => setAnswerCardVisible(false)} onSelect={(index) => { void goToCard(index).then((changed) => { if (changed) setAnswerCardVisible(false); }); }} total={topic.cards.length} visible={answerCardVisible} visited={session.visitedIndexes} />
+      <AnswerCardSheet current={session.currentIndex} onClose={() => setAnswerCardVisible(false)} onSelect={(index) => { void goToCard(index).then((changed) => { if (changed) setAnswerCardVisible(false); }); }} total={totalItems} visible={answerCardVisible} visited={session.visitedIndexes} />
       <BottomSheet accessibilityLabel="查词结果" onClose={() => setLookup(undefined)} scrollable={false} visible={Boolean(lookup)}>
         <View style={styles.sheetContent}>
           <View style={styles.lookupTitleRow}>

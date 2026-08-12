@@ -12,7 +12,7 @@ AI 辅助反馈、学习记录和内容资源浏览。视觉与交互延续既�
 ## Native（iOS / Android）
 
 - React Native + Expo + TypeScript 是正式移动端实现。
-- 正式 iOS Bundle ID 与 Android 包名均为 `com.readyoufife.app`，正式 URL Scheme 为 `readyoufife`。
+- 正式 iOS Bundle ID 为 `com.readyoufife.ios`，Android 包名为 `com.readyoufife.app`，正式 URL Scheme 为 `readyoufife`。
 - 当前账号入口采用邀请码机制；账号、学习记录与需要联网的正式能力连接 ECS API 与 Supabase。
 - 正式题库、音频、录音、AI 和真实反馈能力由各自现有共享模块负责，不建立功能内的平行副本。
 - Development Build 是能力边界；原生依赖、权限、插件或配置改变时需要重新构建。

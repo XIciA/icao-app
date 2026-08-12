@@ -10,7 +10,7 @@
 | --- | --- |
 | 中文名称 | 听你五个 |
 | 英文名称 | Read You 5 |
-| iOS Bundle ID | `com.readyoufife.app` |
+| iOS Bundle ID | `com.readyoufife.ios` |
 | Android 包名 | `com.readyoufife.app` |
 | URL Scheme | `readyoufife` |
 | 运营主体 | 云启航科（成都）科技有限公司 |

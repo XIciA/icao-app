@@ -10,7 +10,7 @@
     "ios": {
       "icon": "./assets/expo.icon",
       "supportsTablet": false,
-      "bundleIdentifier": "com.readyoufife.app",
+      "bundleIdentifier": "com.readyoufife.ios",
       "buildNumber": "3470175",
       "config": {
         "usesNonExemptEncryption": false

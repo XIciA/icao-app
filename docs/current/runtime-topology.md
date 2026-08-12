@@ -11,7 +11,7 @@
   `https://api.readyoufife.com` 与 `https://cloud.readyoufife.com`。
 - 新版 Native App 不再兼容 `api.feizhuicao.com`、`cloud.feizhuicao.com` 或旧 ECS
   `47.109.132.161`；两条旧域名 A 记录和新机 Caddy 旧别名均已删除，旧安装包停止服务不
-  影响正式包 `com.readyoufife.app`。
+  影响正式 iOS 包 `com.readyoufife.ios` 或 Android 包 `com.readyoufife.app`。
 - 账号、云端学习记录、正式 AI 与真实反馈属于这条链路。
 - 本地 API 修改不等于线上已更新；线上验收需要明确的部署授权与部署证据。
 
