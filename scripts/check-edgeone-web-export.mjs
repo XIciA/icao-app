@@ -13,6 +13,7 @@ async function files(directory) {
 
 const outputFiles = await files(output);
 const index = await readFile(join(output, 'index.html'), 'utf8');
+const uploadConfig = JSON.parse(await readFile(join(output, 'edgeone.json'), 'utf8'));
 const javascript = (await Promise.all(
   outputFiles.filter((path) => path.endsWith('.js')).map((path) => readFile(path, 'utf8')),
 )).join('\n');
@@ -27,6 +28,13 @@ for (const marker of required) {
 }
 
 if (!index.includes('/_expo/static/js/web/')) throw new Error('edgeone_export_boot_script_missing');
+
+for (const forbidden of ['buildCommand', 'installCommand', 'name', 'outputDirectory']) {
+  if (uploadConfig[forbidden] !== undefined) throw new Error(`edgeone_upload_config_forbidden:${forbidden}`);
+}
+if (!Array.isArray(uploadConfig.rewrites) || !Array.isArray(uploadConfig.headers)) {
+  throw new Error('edgeone_upload_config_runtime_rules_missing');
+}
 
 const totalBytes = (await Promise.all(outputFiles.map(async (path) => (await stat(path)).size)))
   .reduce((total, size) => total + size, 0);

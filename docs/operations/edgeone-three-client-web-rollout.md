@@ -28,7 +28,8 @@ EdgeOne Web ─┘
 - EdgeOne 项目构建：`pnpm web:edgeone:export`
 - 输出目录：`dist`
 - Node：`.nvmrc` 锁定仓库支持版本；pnpm 使用仓库锁定的 `11.7.0`
-- SPA fallback、安全响应头和静态缓存：`edgeone.json`
+- SPA fallback、安全响应头和静态缓存：`edgeone.json`。本地导出会自动生成仅含运行时规则的
+  `dist/edgeone.json`，避免直接上传环境误执行 Git 安装/构建命令。
 - 必需公开环境变量：
   - `EXPO_PUBLIC_ICAO_API_URL=https://api.readyoufife.com`
   - `EXPO_PUBLIC_SUPABASE_URL=https://cloud.readyoufife.com`
