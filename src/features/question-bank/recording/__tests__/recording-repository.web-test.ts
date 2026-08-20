@@ -1,95 +1,64 @@
 jest.mock('@/platform/audio/audio-diagnostics', () => ({ emitAudioDiagnostic: jest.fn() }));
 
-// The platform suffix is intentional: browser recordings are compressed Blob assets,
-// so they have a lower valid-size floor than native WAV recordings.
 // eslint-disable-next-line import/first
 import { RecordingRepository } from '../recording-repository.web';
 
 let urlSequence = 0;
 
-function rawBlobUri(size: number) {
-  const uri = `blob:raw-${urlSequence += 1}`;
-  const webBlob = new Blob([new Uint8Array(size)], { type: 'audio/webm;codecs=opus' });
-  return { uri, webBlob };
+function raw(size: number, durationMs = 900, mimeType = 'audio/webm') {
+  return {
+    blob: new Blob([new Uint8Array(size)], { type: mimeType }),
+    cardId: 'card-1',
+    durationMs,
+    format: 'webm' as const,
+    kind: 'web-blob' as const,
+    mimeType,
+    recorderMimeType: 'audio/webm;codecs=opus',
+    sessionId: 'session-1',
+  };
 }
 
 describe('Web RecordingRepository', () => {
   beforeEach(() => {
     jest.spyOn(URL, 'createObjectURL').mockImplementation(() => `blob:committed-${urlSequence += 1}`);
     jest.spyOn(URL, 'revokeObjectURL').mockImplementation(() => undefined);
-    jest.spyOn(globalThis, 'fetch');
   });
 
-  afterEach(() => {
-    jest.restoreAllMocks();
-  });
+  afterEach(() => jest.restoreAllMocks());
 
-  it('commits a valid compressed WebM recording below the native WAV size floor', async () => {
-    const raw = rawBlobUri(600);
-    const asset = await new RecordingRepository().commitRaw({
-      cardId: 'card-1',
-      durationMillis: 900,
-      format: 'webm',
-      sessionId: 'session-1',
-      ...raw,
-    });
-
+  it('creates the only Blob URL when committing a valid compressed recording', async () => {
+    const asset = await new RecordingRepository().commitRaw(raw(600));
     expect(asset).toMatchObject({
       byteSize: 600,
-      cardId: 'card-1',
       durationMillis: 900,
       format: 'webm',
-      sessionId: 'session-1',
+      mimeType: 'audio/webm',
+      storageKind: 'web-blob',
     });
-    expect(asset.uri).toMatch(/^blob:/);
-    expect(asset.uri).toBe(raw.uri);
-    expect(fetch).not.toHaveBeenCalled();
-    expect(URL.createObjectURL).not.toHaveBeenCalled();
+    expect(asset.uri).toMatch(/^blob:/u);
+    expect(URL.createObjectURL).toHaveBeenCalledTimes(1);
     expect(URL.revokeObjectURL).not.toHaveBeenCalled();
   });
 
-  it('still rejects an empty or header-only browser recording', async () => {
-    const raw = rawBlobUri(128);
-
-    await expect(new RecordingRepository().commitRaw({
-      cardId: 'card-1',
-      durationMillis: 2_000,
-      format: 'webm',
-      sessionId: 'session-1',
-      ...raw,
-    })).rejects.toMatchObject({ code: 'recording_file_incomplete' });
+  it('does not use a bytes-per-millisecond estimate', async () => {
+    await expect(new RecordingRepository().commitRaw(raw(600, 180_000))).resolves.toMatchObject({ byteSize: 600 });
   });
 
-  it('rejects a Web raw asset that did not transfer its Blob', async () => {
-    await expect(new RecordingRepository().commitRaw({
-      cardId: 'card-1',
-      durationMillis: 2_000,
-      format: 'webm',
-      sessionId: 'session-1',
-      uri: 'blob:missing-transfer',
-    })).rejects.toMatchObject({ code: 'recording_commit_failed' });
-    expect(fetch).not.toHaveBeenCalled();
+  it('rejects an empty or header-only browser recording', async () => {
+    await expect(new RecordingRepository().commitRaw(raw(128, 2_000))).rejects.toMatchObject({ code: 'recording_file_incomplete' });
+    expect(URL.createObjectURL).not.toHaveBeenCalled();
   });
 
-  it('rejects a non-Blob URI instead of registering an unplayable asset', async () => {
-    await expect(new RecordingRepository().commitRaw({
-      cardId: 'card-1',
-      durationMillis: 2_000,
-      format: 'webm',
-      sessionId: 'session-1',
-      uri: 'https://example.test/recording.webm',
-      webBlob: new Blob([new Uint8Array(600)], { type: 'audio/webm' }),
-    })).rejects.toMatchObject({ code: 'recording_commit_failed' });
+  it('rejects a mismatched or unknown Blob MIME type', async () => {
+    await expect(new RecordingRepository().commitRaw(raw(600, 2_000, ''))).rejects.toMatchObject({ code: 'recording_file_incomplete' });
   });
 
-  it('rejects an empty or unknown Web Blob MIME type', async () => {
-    await expect(new RecordingRepository().commitRaw({
-      cardId: 'card-1',
-      durationMillis: 2_000,
-      format: 'webm',
-      sessionId: 'session-1',
-      uri: 'blob:unknown-mime',
-      webBlob: new Blob([new Uint8Array(600)]),
-    })).rejects.toMatchObject({ code: 'recording_file_incomplete' });
+  it('revokes only URLs belonging to committed assets', async () => {
+    const repo = new RecordingRepository();
+    const asset = await repo.commitRaw(raw(600));
+    repo.discard({ ...asset, uri: 'blob:other' });
+    expect(URL.revokeObjectURL).not.toHaveBeenCalled();
+    repo.discard(asset);
+    expect(URL.revokeObjectURL).toHaveBeenCalledWith(asset.uri);
   });
 });

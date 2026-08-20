@@ -8,6 +8,9 @@ const recorderAdapter = 'src/features/question-bank/recording/expo-recorder-adap
 const recorderAdapterWeb = 'src/features/question-bank/recording/expo-recorder-adapter.web.ts';
 const repository = 'src/features/question-bank/recording/recording-repository.ts';
 const repositoryWeb = 'src/features/question-bank/recording/recording-repository.web.ts';
+const recordingEngine = 'src/features/question-bank/recording/recording-engine.ts';
+const containerValidator = 'src/features/question-bank/recording/recording-container-validator.ts';
+const retiredRecordingStateMachine = 'src/features/question-bank/recording/recording-state-machine.ts';
 const productionExtensions = new Set(['.ts', '.tsx']);
 
 async function sourceFiles(directory) {
@@ -37,6 +40,9 @@ function reject(file, content, pattern, allowed, message) {
 for (const file of files) {
   const name = relative(file);
   const content = await readFile(file, 'utf8');
+  if (name === retiredRecordingStateMachine) {
+    failures.push(`${name}: RecordingEngine is the only recording lifecycle owner; do not restore the retired reducer`);
+  }
   reject(file, content, /\bsetAudioModeAsync\b/, [orchestrator], 'setAudioModeAsync is owned by AudioSessionOrchestrator');
   reject(
     file,
@@ -50,17 +56,37 @@ for (const file of files) {
   reject(file, content, /\b(?:type|interface)\s+RecordingAsset\b/, ['src/features/question-bank/recording/types.ts'], 'RecordingAsset must have one definition');
   reject(file, content, /\bclass\s+AudioSessionOrchestrator\b/, [orchestrator], 'the audio session orchestrator must have one implementation');
   reject(file, content, /\bclass\s+RecordingRepository\b/, [repository, repositoryWeb], 'the recording repository must have one platform implementation');
+  reject(file, content, /\bclass\s+RecordingEngine\b/, [recordingEngine], 'RecordingEngine must have one implementation');
   reject(file, content, /\ballowsRecording\s*:/, [orchestrator], 'audio profiles must be defined only by the orchestrator');
 
   if (name === recorderAdapter && /\brecorder\.currentTime\b/.test(content)) {
     failures.push(`${name}: recorder.currentTime has platform-divergent units; use RecorderState.durationMillis and elapsed wall time`);
+  }
+  if (name === recorderAdapter && !/IOSOutputFormat\.MPEG4AAC/.test(content)) {
+    failures.push(`${name}: iOS production recording must keep the M4A/AAC candidate`);
+  }
+  if (name === recorderAdapter && /IOSOutputFormat\.LINEARPCM/.test(content)) {
+    failures.push(`${name}: WAV/LINEARPCM is diagnostic-only and must not become the production default`);
+  }
+  if ((name === repository || name === containerValidator) && /minBytesPerMillisecond|MIN_BYTES_PER_MILLISECOND/.test(content)) {
+    failures.push(`${name}: recording validity must not be inferred from bitrate or bytes per millisecond`);
+  }
+  if (name === repository && !/inspectRecordingContainer/.test(content)) {
+    failures.push(`${name}: native commits must preserve deterministic container validation`);
+  }
+  if (name.startsWith('src/features/question-bank/recording/')
+    && name !== repositoryWeb
+    && !name.includes('/__tests__/')
+    && /URL\.createObjectURL\s*\(/.test(content)) {
+    failures.push(`${name}: Web RecordingRepository is the only Blob URL owner`);
   }
   if (name === 'src/features/question-bank/recording/use-recording-playback.ts' && /\bplayer\.remove\s*\(/.test(content)) {
     failures.push(`${name}: useAudioPlayer owns native player disposal; do not deregister a mounted playback consumer`);
   }
 
   if (name.startsWith('src/features/question-bank/recording/') && ![repository, repositoryWeb, recorderAdapter, recorderAdapterWeb].includes(name) && !name.includes('/__tests__/')) {
-    if (/from\s+['"]expo-file-system['"]/.test(content) || /\.delete\s*\(/.test(content)) {
+    if (/from\s+['"]expo-file-system(?:\/[^'"]*)?['"]/.test(content)
+      || /require\s*\(\s*['"]expo-file-system(?:\/[^'"]*)?['"]\s*\)/.test(content)) {
       failures.push(`${name}: recording file creation and deletion belong to RecordingRepository`);
     }
   }

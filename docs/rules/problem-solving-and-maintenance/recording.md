@@ -48,8 +48,10 @@ idle → starting → recording → stopping/finalizing → ready
                   ↘ interruption/error → cleanup → idle/error
 ```
 
-每次操作必须有独立标识。快速松手必须等待启动链清理；重复停止必须幂等；录音器自行结束必须
-能进入状态机；超时和迟到结果只能清理自己的资源，不能发布到新的录音。
+每次操作必须有独立 `operationId` 和 `runtimeEpoch`。快速松手必须等待启动链清理；重复停止必须
+幂等；录音器自行结束必须能进入状态机；超时和迟到结果只能清理自己的资源，不能发布到新的
+录音。底层 Promise 超时后将该 runtime 标记为污染，等待迟到结果完成清理，再通过 keyed
+RuntimeHost 重建 recorder；不能在同一个不确定 runtime 上继续尝试。
 
 ## 三端技术边界
 
@@ -91,6 +93,7 @@ idle → starting → recording → stopping/finalizing → ready
 - 全局音频会话：`src/platform/audio/audio-session-orchestrator.ts`
 - 学习会话中的录音替换：`src/features/question-bank/hooks/useStudySession.ts`
 - 音频边界门禁：`tools/check-audio-boundaries.mjs`
+- 聚焦录音验证：`pnpm test:recording`、`pnpm check:ios:testflight`
 - 录音故障、根因和修复记录：`docs/records/incidents/audio-recording/README.md`
 - 更早的事故和已结束方案：`docs/records/archive/audio/`
 

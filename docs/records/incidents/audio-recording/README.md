@@ -11,7 +11,7 @@
 
 开始处理录音问题时，按需读取：
 
-1. [`docs/rules/conditional/audio-lifecycle-and-change-rules.md`](../../../rules/conditional/audio-lifecycle-and-change-rules.md)：音频生命周期变更时的架构规范和验收矩阵。
+1. [`docs/rules/problem-solving-and-maintenance/recording.md`](../../../rules/problem-solving-and-maintenance/recording.md)：录音生命周期的当前架构规范和验收边界。
 2. 本文：唯一现行排障方法、诊断编号、已知根因和真机验收入口。
 3. `docs/records/archive/audio/`：只在需要追溯时读取的历史事故和已结束工作流。
 
@@ -56,7 +56,8 @@ permission
 ## 3. 不得破坏的边界
 
 - `AudioSessionOrchestrator` 是唯一全局 session 协调者。
-- `useSpeakingRecordingController` 是唯一录音生命周期控制器。
+- `RecordingEngine` 是三端唯一录音生命周期控制器；`useSpeakingRecordingController` 只连接
+  React/UI 与 Engine。
 - Expo recorder adapter 只负责原生录音，不发布业务资产。
 - `RecordingRepository` 是已提交录音文件的唯一仓库和删除 owner。
 - `RecordingAsset` 是录音成功后的唯一业务事实。
@@ -93,7 +94,9 @@ permission
 | `recording_media_services_reset` | iOS 音频服务在准备或录音中重置 | recorder generation、临时资源清理 |
 | `recording_native_start_failed` | prepare 成功但开始录音失败 | `record()` 调用与 recorder 状态 |
 
-对已确认可恢复的 iOS prepare 状态只允许一次受控恢复：清理本次未提交 raw 文件、释放旧 recording lease、恢复 idle、重新获取 session 并重新 prepare。第二次失败立即停止；未知错误不得盲目重试。整个过程不得删除上一份已提交录音。
+底层 prepare/start/stop Promise 超时或系统音频服务重置后，Engine 必须清理本次未提交 raw
+文件、释放 recording lease，并以 `operationId` / `runtimeEpoch` 隔离迟到结果。被污染的 runtime
+只能在迟到 Promise 完成后重建；未知错误不得盲目重试，整个过程不得删除上一份已提交录音。
 
 Audio owner 的 `deactivate()` 必须可重复调用并等待真实暂停完成。原生 session 切换或 owner 暂停超过上限后，orchestrator 在迟到调用真正结束前会让后续请求立即返回同一稳定超时码，禁止后续操作永久等待或越过迟到调用。迟到调用完成后，下一次显式重试会重新执行幂等暂停和 profile 切换；若底层调用始终不返回，只能由用户重启 App 重新建立原生音频会话，不能在同一进程内盲目解除保护。
 
@@ -178,11 +181,15 @@ Audio owner 的 `deactivate()` 必须可重复调用并等待真实暂停完成�
 
 ```text
 pnpm check:audio
+pnpm test:recording
+pnpm typecheck
+pnpm check:ios:testflight
 git diff --check
 ```
 
 - 运行与改动直接相关的 recorder、repository、orchestrator、playback 或 workbench 测试。
-- 只在受影响平台重新构建 Development Build；原生配置和发布敏感变化按主指南扩大。
+- 用户以 TestFlight 为最终验收环境时，聚焦检查通过后直接构建并上传同一提交的候选包；只有直接
+  路径被阻塞或必须回答底层诊断问题时，才增加 Development Build。
 - 发布敏感变化用 `pnpm audio:e2e:ios` 或 `pnpm audio:e2e:android` 刷新对应平台指纹。
 - 真实麦克风、后台/前台、拒绝权限、快速松手、连续录音和切题检查按受影响链路选择。
 
@@ -197,15 +204,19 @@ git diff --check
 - 自动门禁：容器、延迟 finalization、文件缺失、错误容器、header-only、partial copy 和 native 时长契约均有测试；TestFlight 不允许绕过音频指纹。
 - 待完成：`com.readyoufife.ios.dev` 真机矩阵与随后新的 TestFlight 真机矩阵。构建或自动化通过不得写成真机通过。
 
-## 8. 当前 TestFlight 准备阶段故障（2026-08-14）
+## 8. TestFlight 准备阶段故障与收口（2026-08-14—2026-08-20）
 
 - 环境：iPhone TestFlight 正式测试包，学习题卡按住说话。
 - 现象：界面显示“录音准备失败，请稍后重试。（诊断编号：`R-MVIOF-07`）”。
 - 已知事实：该编号对应当次操作在 native start 之前失败；现有笼统错误可能来自上一个 owner 暂停、session/profile 切换或 recorder prepare。
 - 未知项：当前证据不能证明是哪个子阶段，也不能证明 M4A 文件机制再次失效。不得沿用 2026-08-12 的文件 finalization 根因解释本次错误。
-- 当前代码候选：分阶段类型化错误、一次受控恢复、精确关联诊断和主动提交入口已经实现并通过自动检查；尚未上传到 TestFlight，因此已安装的旧 TestFlight 仍可能显示旧编号和旧统一文案。
-- 当前根因状态：根因未定，等待同一代码候选的 Development Build 在真机复现并返回具体阶段编号；在拿到证据前不得把文件格式、音频 Session 或 Recorder 中任一项写成根因。
-- 发布约束：未完成同一源代码和原生配置的 Development Build 真机矩阵前，不得把新的 TestFlight 构建标记为录音通过。
+- 收口实现：三端生命周期统一迁入 `RecordingEngine`；adapter、repository 和
+  `RecordingAsset` 保持单一所有权，以 operation/runtime 隔离快速松手、重复停止、中断、超时和
+  迟到结果；Native M4A 容器在提交前做确定性校验。
+- 发布结果：`1.0.0 (3470179)` 已上传 App Store Connect，处理状态为 `VALID`，并加入既有内部
+  TestFlight 分组；显示版本为 `v2026.08.20.0014`。
+- 验收状态：自动化、Archive、签名、IPA、正式运行时地址和麦克风权限检查已通过；手机本体的
+  真实麦克风、回放和转写闭环仍需测试者安装该构建后完成，未确认前不得写成真机通过。
 
 ### 本次必须完成的真机矩阵
 

@@ -31,7 +31,6 @@ function uint32LittleEndian(bytes: Uint8Array, offset: number) {
 function inspectM4a(bytes: Uint8Array): RecordingContainerInspection {
   if (bytes.length < 12) return { mediaBytes: 0, status: 'incomplete' };
   if (ascii(bytes, 4, 4) !== 'ftyp') return { mediaBytes: 0, status: 'invalid' };
-
   let offset = 0;
   let sawFtyp = false;
   let sawMoov = false;
@@ -52,9 +51,7 @@ function inspectM4a(bytes: Uint8Array): RecordingContainerInspection {
     } else if (size32 === 0) {
       boxSize = bytes.length - offset;
     }
-    if (!Number.isSafeInteger(boxSize) || boxSize < headerSize) {
-      return { mediaBytes, status: 'invalid' };
-    }
+    if (!Number.isSafeInteger(boxSize) || boxSize < headerSize) return { mediaBytes, status: 'invalid' };
     if (offset + boxSize > bytes.length) return { mediaBytes, status: 'incomplete' };
     if (type === 'ftyp') sawFtyp = true;
     if (type === 'moov') sawMoov = true;
@@ -62,11 +59,8 @@ function inspectM4a(bytes: Uint8Array): RecordingContainerInspection {
     offset += boxSize;
     boxes += 1;
   }
-
   if (!sawFtyp) return { mediaBytes, status: 'invalid' };
-  if (!sawMoov || mediaBytes <= 0 || offset !== bytes.length) {
-    return { mediaBytes, status: 'incomplete' };
-  }
+  if (!sawMoov || mediaBytes <= 0 || offset !== bytes.length) return { mediaBytes, status: 'incomplete' };
   return { mediaBytes, status: 'valid' };
 }
 
@@ -77,7 +71,6 @@ function inspectWav(bytes: Uint8Array): RecordingContainerInspection {
   }
   const riffSize = uint32LittleEndian(bytes, 4);
   if (riffSize === undefined || riffSize + 8 > bytes.length) return { mediaBytes: 0, status: 'incomplete' };
-
   let offset = 12;
   let sawFormat = false;
   let mediaBytes = 0;

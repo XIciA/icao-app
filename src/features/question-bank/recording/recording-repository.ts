@@ -35,7 +35,7 @@ function bestEffortDelete(file?: File) {
   try {
     file.delete();
   } catch {
-    // The repository is the only deletion owner; native readers may release asynchronously.
+    // The repository is the only physical deletion owner.
   }
 }
 
@@ -52,13 +52,12 @@ export class RecordingRepository {
   }
 
   async commitRaw(input: RawRecording & { cardId: string; diagnosticId?: string; sessionId: string }): Promise<RecordingAsset> {
+    if (input.kind !== 'native-file') throw new RecordingRepositoryError('recording_commit_failed');
     const source = new File(input.uri);
     let pending: File | undefined;
     let destination: File | undefined;
     try {
-      if (input.durationMillis < MIN_RECORDING_DURATION_MS) {
-        throw new RecordingRepositoryError('recording_too_short');
-      }
+      if (input.durationMs < MIN_RECORDING_DURATION_MS) throw new RecordingRepositoryError('recording_too_short');
       const sourceSize = await this.validatedSettledSize(source, input.format, input.diagnosticId);
 
       this.root.create({ idempotent: true, intermediates: true });
@@ -68,29 +67,28 @@ export class RecordingRepository {
       pending = new File(sessionDirectory, `${safeSegment(id)}.${input.format}.pending`);
       destination = new File(sessionDirectory, `${safeSegment(id)}.${input.format}`);
       source.copy(pending);
-      if (!pending.exists || pending.size !== sourceSize) {
-        throw new RecordingRepositoryError('recording_commit_failed');
-      }
+      if (!pending.exists || pending.size !== sourceSize) throw new RecordingRepositoryError('recording_commit_failed');
       pending.move(destination);
-      if (!destination.exists || destination.size !== sourceSize) {
-        throw new RecordingRepositoryError('recording_commit_failed');
-      }
-      bestEffortDelete(source);
+      if (!destination.exists || destination.size !== sourceSize) throw new RecordingRepositoryError('recording_commit_failed');
+
       const asset = {
         byteSize: sourceSize,
         cardId: input.cardId,
         createdAt: new Date(this.now()).toISOString(),
-        durationMillis: input.durationMillis,
+        durationMillis: input.durationMs,
         format: input.format,
         id,
+        mimeType: input.mimeType,
+        recorderMimeType: input.recorderMimeType,
         sessionId: input.sessionId,
+        storageKind: 'native-file',
         uri: destination.uri,
       } satisfies RecordingAsset;
       emitAudioDiagnostic({
         byteSize: sourceSize,
         code: 'recording_committed',
         diagnosticId: input.diagnosticId,
-        durationMillis: input.durationMillis,
+        durationMillis: input.durationMs,
         format: input.format,
         level: 'info',
         meteringDetected: input.meteringDetected,
@@ -105,7 +103,7 @@ export class RecordingRepository {
       emitAudioDiagnostic({
         code,
         diagnosticId: input.diagnosticId,
-        durationMillis: input.durationMillis,
+        durationMillis: input.durationMs,
         format: input.format,
         level: 'error',
         meteringDetected: input.meteringDetected,
@@ -113,22 +111,25 @@ export class RecordingRepository {
         scope: 'recording',
       });
       throw error instanceof RecordingRepositoryError ? error : new RecordingRepositoryError(code);
+    } finally {
+      bestEffortDelete(source);
     }
   }
 
   discard(asset: RecordingAsset) {
     const rootPrefix = this.root.uri.endsWith('/') ? this.root.uri : `${this.root.uri}/`;
-    if (!asset.uri.startsWith(rootPrefix)) return;
+    if (asset.storageKind !== 'native-file' || !asset.uri.startsWith(rootPrefix)) return;
     bestEffortDelete(new File(asset.uri));
     emitAudioDiagnostic({ code: 'recording_discarded', level: 'info', scope: 'recording' });
   }
 
-  discardRaw(uri?: string) {
-    if (!uri) return;
-    bestEffortDelete(new File(uri));
+  discardRaw(raw?: RawRecording) {
+    if (raw?.kind !== 'native-file') return;
+    bestEffortDelete(new File(raw.uri));
   }
 
   assetExists(asset: RecordingAsset) {
+    if (asset.storageKind !== 'native-file') return false;
     try {
       return new File(asset.uri).exists;
     } catch {
@@ -142,7 +143,7 @@ export class RecordingRepository {
     try {
       directory.delete();
     } catch {
-      // A player or upload may still have a handle; the orphan sweep will retry later.
+      // Active readers can defer physical deletion until the orphan sweep.
     }
   }
 
@@ -161,7 +162,11 @@ export class RecordingRepository {
     }
   }
 
-  private async validatedSettledSize(file: File, format: RawRecording['format'], diagnosticId?: string) {
+  private async validatedSettledSize(
+    file: File,
+    format: Extract<RawRecording, { kind: 'native-file' }>['format'],
+    diagnosticId?: string,
+  ) {
     let previous = -1;
     let current = 0;
     let existed = false;

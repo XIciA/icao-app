@@ -6,19 +6,19 @@ import {
   requestRecordingPermissionsAsync,
   useAudioRecorder,
   useAudioRecorderState,
+  type RecordingStatus,
 } from 'expo-audio';
 import { File, Paths } from 'expo-file-system';
-import { useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { Platform } from 'react-native';
 
-import type { RawRecording, RecordingFormat } from './types';
-
-export type RecorderSnapshot = {
-  canRecord: boolean;
-  isRecording: boolean;
-  mediaServicesDidReset: boolean;
-  state: 'idle' | 'prepared' | 'recording' | 'reset';
-};
+import type {
+  RawRecording,
+  RecorderPort,
+  RecorderRuntimeEvent,
+  RecorderSnapshot,
+  RecordingOperationContext,
+} from './types';
 
 export type NativeRecorderFailureCode =
   | 'recording_media_services_reset'
@@ -60,10 +60,11 @@ const VOICE_RECORDING_OPTIONS = Platform.OS === 'ios'
   ? IOS_VOICE_RECORDING_OPTIONS
   : ANDROID_VOICE_RECORDING_OPTIONS;
 const E2E_ENABLED = __DEV__ && process.env.EXPO_PUBLIC_ICAO_AUDIO_E2E === '1';
+const NATIVE_MIME_TYPE = 'audio/mp4';
 
-function createSilentWave(durationMillis: number) {
+function createSilentWave(durationMs: number) {
   const sampleRate = 16_000;
-  const sampleCount = Math.ceil(sampleRate * durationMillis / 1_000);
+  const sampleCount = Math.ceil(sampleRate * durationMs / 1_000);
   const bytes = new Uint8Array(44 + sampleCount * 2);
   const view = new DataView(bytes.buffer);
   const writeText = (offset: number, value: string) => {
@@ -85,19 +86,7 @@ function createSilentWave(durationMillis: number) {
   return bytes;
 }
 
-export type ExpoRecorderAdapter = {
-  cancel: () => Promise<string | undefined>;
-  durationMillis: number;
-  getSnapshot: () => RecorderSnapshot;
-  isRecording: () => boolean;
-  lifecycleRevision?: number;
-  permissionReady?: boolean;
-  prepare: () => Promise<void>;
-  primePermission?: () => Promise<boolean>;
-  requestPermission: () => Promise<boolean>;
-  start: () => void;
-  stop: () => Promise<RawRecording>;
-};
+export type ExpoRecorderAdapter = RecorderPort;
 
 export async function getMicrophonePermission() {
   return getRecordingPermissionsAsync();
@@ -108,61 +97,35 @@ export async function requestMicrophonePermission() {
 }
 
 export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
-  const recorder = useAudioRecorder(VOICE_RECORDING_OPTIONS);
-  const recorderState = useAudioRecorderState(recorder, 200);
-  const format: RecordingFormat = 'm4a';
-  const e2e = useRef({ prepared: false, recording: false, startedAt: 0, uri: undefined as string | undefined });
+  const listeners = useRef(new Set<(event: RecorderRuntimeEvent) => void>());
+  const activeContext = useRef<RecordingOperationContext | undefined>(undefined);
+  const suppressedTerminalContext = useRef<RecordingOperationContext | undefined>(undefined);
+  const recorderRef = useRef<ReturnType<typeof useAudioRecorder> | undefined>(undefined);
+  const startPoll = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const startSettlement = useRef<{
+    reject: (error: unknown) => void;
+    resolve: () => void;
+  } | undefined>(undefined);
   const nativeStartedAt = useRef<number | undefined>(undefined);
   const meteringDetected = useRef(false);
-  const currentMeteringDetected = typeof recorderState.metering === 'number' && recorderState.metering > -160;
-  if (recorderState.isRecording && currentMeteringDetected) meteringDetected.current = true;
+  const e2e = useRef({ prepared: false, recording: false, startedAt: 0, uri: undefined as string | undefined });
 
-  if (E2E_ENABLED) {
-    const getE2eSnapshot = (): RecorderSnapshot => ({
-      canRecord: e2e.current.prepared,
-      isRecording: e2e.current.recording,
-      mediaServicesDidReset: false,
-      state: e2e.current.recording ? 'recording' : e2e.current.prepared ? 'prepared' : 'idle',
-    });
-    return {
-      async cancel() {
-        e2e.current.prepared = false;
-        e2e.current.recording = false;
-        return e2e.current.uri;
-      },
-      durationMillis: e2e.current.recording ? Math.max(0, Date.now() - e2e.current.startedAt) : 0,
-      getSnapshot: getE2eSnapshot,
-      isRecording: () => e2e.current.recording,
-      async prepare() {
-        e2e.current.prepared = true;
-        e2e.current.uri = undefined;
-      },
-      requestPermission: async () => true,
-      start() {
-        if (!e2e.current.prepared) {
-          throw new NativeRecorderError('recording_native_start_failed', getE2eSnapshot());
-        }
-        e2e.current.recording = true;
-        e2e.current.startedAt = Date.now();
-      },
-      async stop() {
-        if (!e2e.current.recording) throw new Error('record_stop_failed');
-        const durationMillis = Math.max(1_200, Date.now() - e2e.current.startedAt);
-        const file = new File(Paths.cache, `icao-audio-e2e-${Date.now()}.wav`);
-        file.write(createSilentWave(durationMillis));
-        e2e.current.prepared = false;
-        e2e.current.recording = false;
-        e2e.current.uri = file.uri;
-        return { durationMillis, format: 'wav', meteringDetected: false, uri: file.uri };
-      },
-    };
-  }
-
-  const getSnapshot = (): RecorderSnapshot => {
+  const snapshotFromRecorder = useCallback((): RecorderSnapshot => {
+    if (E2E_ENABLED) {
+      return {
+        canRecord: e2e.current.prepared,
+        durationMs: e2e.current.recording ? Math.max(0, Date.now() - e2e.current.startedAt) : 0,
+        isRecording: e2e.current.recording,
+        mediaServicesDidReset: false,
+        state: e2e.current.recording ? 'recording' : e2e.current.prepared ? 'prepared' : 'idle',
+      };
+    }
     try {
-      const status = recorder.getStatus();
+      const status = recorderRef.current?.getStatus();
+      if (!status) throw new Error('recorder unavailable');
       return {
         canRecord: status.canRecord,
+        durationMs: status.durationMillis,
         isRecording: status.isRecording,
         mediaServicesDidReset: status.mediaServicesDidReset,
         state: status.mediaServicesDidReset
@@ -176,42 +139,132 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
     } catch {
       return {
         canRecord: false,
+        durationMs: 0,
         isRecording: false,
         mediaServicesDidReset: false,
         state: 'idle',
       };
     }
+  }, []);
+
+  const emit = useCallback((event: RecorderRuntimeEvent) => {
+    listeners.current.forEach((listener) => listener(event));
+  }, []);
+
+  const handleStatus = useCallback((status: RecordingStatus) => {
+    const context = activeContext.current;
+    const snapshot = snapshotFromRecorder();
+    emit({ context, snapshot, type: 'status' });
+    const suppressed = suppressedTerminalContext.current;
+    if (suppressed
+      && context?.operationId === suppressed.operationId
+      && context.runtimeEpoch === suppressed.runtimeEpoch
+      && (status.mediaServicesDidReset || status.hasError || status.isFinished)) return;
+    if (status.mediaServicesDidReset) {
+      startSettlement.current?.reject(new NativeRecorderError('recording_media_services_reset', snapshot));
+      startSettlement.current = undefined;
+      emit({ context, reason: 'media-services-reset', type: 'interrupted' });
+      return;
+    }
+    if (status.hasError) {
+      startSettlement.current?.reject(new NativeRecorderError('recording_native_start_failed', snapshot));
+      startSettlement.current = undefined;
+      emit({ code: 'recording_interrupted', context, type: 'error' });
+      return;
+    }
+    if (status.isFinished) emit({ context, type: 'finished' });
+  }, [emit, snapshotFromRecorder]);
+
+  const recorder = useAudioRecorder(VOICE_RECORDING_OPTIONS, handleStatus);
+  recorderRef.current = recorder;
+  const recorderState = useAudioRecorderState(recorder, 100);
+  if (recorderState.isRecording && typeof recorderState.metering === 'number' && recorderState.metering > -160) {
+    meteringDetected.current = true;
+  }
+
+  const clearStartPoll = () => {
+    if (startPoll.current) clearTimeout(startPoll.current);
+    startPoll.current = undefined;
   };
 
+  const rawFromNativeUri = (uri: string, durationMs: number): RawRecording => ({
+    durationMs,
+    format: 'm4a',
+    kind: 'native-file',
+    meteringDetected: meteringDetected.current,
+    mimeType: NATIVE_MIME_TYPE,
+    recorderMimeType: NATIVE_MIME_TYPE,
+    uri,
+  });
+
+  useEffect(() => () => {
+    clearStartPoll();
+    startSettlement.current?.reject(new Error('recording_interrupted'));
+    startSettlement.current = undefined;
+    listeners.current.clear();
+  }, []);
+
   return {
-    async cancel() {
+    async cancel(context) {
+      activeContext.current = context;
+      suppressedTerminalContext.current = context;
+      clearStartPoll();
+      startSettlement.current?.reject(new Error('recording_interrupted'));
+      startSettlement.current = undefined;
+      if (E2E_ENABLED) {
+        const uri = e2e.current.uri;
+        const durationMs = e2e.current.recording ? Math.max(0, Date.now() - e2e.current.startedAt) : 0;
+        e2e.current.prepared = false;
+        e2e.current.recording = false;
+        return uri ? {
+          durationMs,
+          format: 'wav',
+          kind: 'native-file',
+          mimeType: 'audio/wav',
+          recorderMimeType: 'audio/wav',
+          uri,
+        } : undefined;
+      }
       let uri: string | undefined;
+      let durationMs = Math.max(recorderState.durationMillis, snapshotFromRecorder().durationMs);
       try {
-        if (recorder.isRecording) await recorder.stop();
-        uri = recorder.uri ?? undefined;
+        const snapshot = snapshotFromRecorder();
+        if (snapshot.isRecording || snapshot.canRecord) await recorder.stop();
+        const status = recorder.getStatus();
+        uri = status.url ?? recorder.uri ?? undefined;
+        durationMs = Math.max(durationMs, status.durationMillis);
       } catch {
         uri = recorder.uri ?? undefined;
       } finally {
         nativeStartedAt.current = undefined;
       }
-      return uri;
+      return uri ? rawFromNativeUri(uri, durationMs) : undefined;
     },
-    durationMillis: recorderState.durationMillis,
-    getSnapshot,
-    isRecording: () => {
-      try {
-        return recorder.isRecording;
-      } catch {
-        return false;
+    async dispose() {
+      clearStartPoll();
+      startSettlement.current?.reject(new Error('recording_interrupted'));
+      startSettlement.current = undefined;
+      const snapshot = snapshotFromRecorder();
+      if (!E2E_ENABLED && (snapshot.isRecording || snapshot.canRecord)) {
+        await recorder.stop().catch(() => undefined);
       }
     },
-    async prepare() {
+    getSnapshot: snapshotFromRecorder,
+    isWeb: false,
+    async prepare(context) {
+      activeContext.current = context;
+      suppressedTerminalContext.current = undefined;
       nativeStartedAt.current = undefined;
       meteringDetected.current = false;
+      if (E2E_ENABLED) {
+        e2e.current.prepared = true;
+        e2e.current.uri = undefined;
+        return;
+      }
       try {
         await recorder.prepareToRecordAsync();
       } catch {
-        const snapshot = getSnapshot();
+        const snapshot = snapshotFromRecorder();
         throw new NativeRecorderError(
           snapshot.mediaServicesDidReset
             ? 'recording_media_services_reset'
@@ -219,49 +272,79 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
           snapshot,
         );
       }
-      const snapshot = getSnapshot();
-      if (snapshot.mediaServicesDidReset) {
-        throw new NativeRecorderError('recording_media_services_reset', snapshot);
-      }
-      if (!snapshot.canRecord) {
-        throw new NativeRecorderError('recording_native_prepare_failed', snapshot);
-      }
+      const snapshot = snapshotFromRecorder();
+      if (snapshot.mediaServicesDidReset) throw new NativeRecorderError('recording_media_services_reset', snapshot);
+      if (!snapshot.canRecord) throw new NativeRecorderError('recording_native_prepare_failed', snapshot);
     },
     async requestPermission() {
       const permission = await requestMicrophonePermission();
       return permission.granted;
     },
-    start() {
+    start(context) {
+      activeContext.current = context;
+      if (E2E_ENABLED) {
+        if (!e2e.current.prepared) {
+          return Promise.reject(new NativeRecorderError('recording_native_start_failed', snapshotFromRecorder()));
+        }
+        e2e.current.recording = true;
+        e2e.current.startedAt = Date.now();
+        return Promise.resolve();
+      }
       try {
         recorder.record();
       } catch {
-        const snapshot = getSnapshot();
-        throw new NativeRecorderError(
+        const snapshot = snapshotFromRecorder();
+        return Promise.reject(new NativeRecorderError(
           snapshot.mediaServicesDidReset
             ? 'recording_media_services_reset'
             : 'recording_native_start_failed',
           snapshot,
-        );
-      }
-      const snapshot = getSnapshot();
-      if (snapshot.mediaServicesDidReset) {
-        throw new NativeRecorderError('recording_media_services_reset', snapshot);
-      }
-      if (!snapshot.isRecording) {
-        throw new NativeRecorderError('recording_native_start_failed', snapshot);
+        ));
       }
       nativeStartedAt.current = Date.now();
+      return new Promise<void>((resolve, reject) => {
+        startSettlement.current = { reject, resolve };
+        const poll = () => {
+          const snapshot = snapshotFromRecorder();
+          emit({ context, snapshot, type: 'status' });
+          if (snapshot.mediaServicesDidReset) {
+            startSettlement.current = undefined;
+            reject(new NativeRecorderError('recording_media_services_reset', snapshot));
+            return;
+          }
+          if (snapshot.isRecording) {
+            startSettlement.current = undefined;
+            resolve();
+            return;
+          }
+          startPoll.current = setTimeout(poll, 25);
+        };
+        poll();
+      }).finally(clearStartPoll);
     },
-    async stop() {
+    async stop(context) {
+      activeContext.current = context;
+      if (E2E_ENABLED) {
+        if (!e2e.current.recording) throw new Error('record_stop_failed');
+        const durationMs = Math.max(1_200, Date.now() - e2e.current.startedAt);
+        const file = new File(Paths.cache, `icao-audio-e2e-${Date.now()}.wav`);
+        file.write(createSilentWave(durationMs));
+        e2e.current.prepared = false;
+        e2e.current.recording = false;
+        e2e.current.uri = file.uri;
+        return {
+          durationMs,
+          format: 'wav',
+          kind: 'native-file',
+          meteringDetected: false,
+          mimeType: 'audio/wav',
+          recorderMimeType: 'audio/wav',
+          uri: file.uri,
+        };
+      }
       const statusBeforeStop = recorder.getStatus();
-      const elapsedMillis = nativeStartedAt.current === undefined
-        ? 0
-        : Math.max(0, Date.now() - nativeStartedAt.current);
-      const durationBeforeStop = Math.max(
-        elapsedMillis,
-        recorderState.durationMillis,
-        statusBeforeStop.durationMillis,
-      );
+      const elapsedMs = nativeStartedAt.current === undefined ? 0 : Math.max(0, Date.now() - nativeStartedAt.current);
+      const durationBeforeStop = Math.max(elapsedMs, recorderState.durationMillis, statusBeforeStop.durationMillis);
       if (statusBeforeStop.mediaServicesDidReset) throw new Error('recording_interrupted');
       try {
         await recorder.stop();
@@ -269,15 +352,14 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
         if (status.mediaServicesDidReset) throw new Error('recording_interrupted');
         const uri = status.url ?? recorder.uri ?? undefined;
         if (!uri) throw new Error('record_stop_failed');
-        return {
-          durationMillis: Math.max(durationBeforeStop, status.durationMillis),
-          format,
-          meteringDetected: meteringDetected.current || currentMeteringDetected,
-          uri,
-        };
+        return rawFromNativeUri(uri, Math.max(durationBeforeStop, status.durationMillis));
       } finally {
         nativeStartedAt.current = undefined;
       }
+    },
+    subscribe(listener) {
+      listeners.current.add(listener);
+      return () => listeners.current.delete(listener);
     },
   };
 }

@@ -104,7 +104,9 @@ const firstAsset: RecordingAsset = {
   durationMillis: 3_000,
   format: 'webm',
   id: 'asset-1',
+  mimeType: 'audio/webm',
   sessionId: 'session-1',
+  storageKind: 'web-blob',
   uri: 'blob:https://feizhuicao.com/asset-1',
 };
 

@@ -1,6 +1,15 @@
 import { act, renderHook } from '@testing-library/react-native';
 
-import type { RawRecording } from '../types';
+import type { RawRecording, RecorderRuntimeEvent } from '../types';
+
+let mockStatusListener: ((status: {
+  error: string | null;
+  hasError: boolean;
+  id: string;
+  isFinished: boolean;
+  mediaServicesDidReset?: boolean;
+  url: string | null;
+}) => void) | undefined;
 
 const mockRecorder = {
   currentTime: 0,
@@ -18,17 +27,21 @@ jest.mock('expo-audio', () => ({
   IOSOutputFormat: { MPEG4AAC: 'aac' },
   RecordingPresets: { HIGH_QUALITY: { ios: {} } },
   requestRecordingPermissionsAsync: jest.fn(async () => ({ granted: true })),
-  useAudioRecorder: () => mockRecorder,
+  useAudioRecorder: (_options: unknown, listener?: typeof mockStatusListener) => {
+    mockStatusListener = listener;
+    return mockRecorder;
+  },
   useAudioRecorderState: () => ({ durationMillis: 2_000, isRecording: mockRecorder.isRecording, metering: -30 }),
 }));
 
 // Import after the Expo module mock so this test exercises only the adapter contract.
 // eslint-disable-next-line import/first
-import { NativeRecorderError, useExpoRecorderAdapter } from '../expo-recorder-adapter';
+import { useExpoRecorderAdapter } from '../expo-recorder-adapter';
 
 describe('ExpoRecorderAdapter native duration contract', () => {
   let now = 1_000;
   let prepared = false;
+  const context = { operationId: 1, runtimeEpoch: 0 };
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -38,7 +51,10 @@ describe('ExpoRecorderAdapter native duration contract', () => {
     mockRecorder.isRecording = false;
     mockRecorder.prepareToRecordAsync.mockImplementation(async () => { prepared = true; });
     mockRecorder.record.mockImplementation(() => { mockRecorder.isRecording = true; });
-    mockRecorder.stop.mockImplementation(async () => { mockRecorder.isRecording = false; });
+    mockRecorder.stop.mockImplementation(async () => {
+      mockRecorder.isRecording = false;
+      prepared = false;
+    });
     mockRecorder.getStatus.mockImplementation(() => ({
       canRecord: prepared || mockRecorder.isRecording,
       durationMillis: mockRecorder.isRecording ? 2_000 : 0,
@@ -52,63 +68,89 @@ describe('ExpoRecorderAdapter native duration contract', () => {
     });
   });
 
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => {
+    jest.useRealTimers();
+    jest.restoreAllMocks();
+  });
 
   it('uses millisecond status and elapsed time without reading platform-divergent currentTime', async () => {
     const { result, unmount } = await renderHook(() => useExpoRecorderAdapter());
 
-    await act(async () => { await result.current.prepare(); });
-    await act(() => { result.current.start(); });
+    await act(async () => { await result.current.prepare(context); });
+    await act(async () => { await result.current.start(context); });
     now = 3_000;
 
     let raw: RawRecording | undefined;
-    await act(async () => { raw = await result.current.stop(); });
+    await act(async () => { raw = await result.current.stop(context); });
 
     expect(raw).toMatchObject({
-      durationMillis: 2_000,
+      durationMs: 2_000,
       format: 'm4a',
-      meteringDetected: true,
+      kind: 'native-file',
+      mimeType: 'audio/mp4',
       uri: mockRecorder.uri,
     });
     await unmount();
   });
 
-  it('classifies a media-services reset during prepare without exposing the native error', async () => {
-    mockRecorder.prepareToRecordAsync.mockRejectedValueOnce(new Error('/private/cache/recording.m4a failed'));
-    mockRecorder.getStatus.mockReturnValue({
-      canRecord: false,
-      durationMillis: 0,
-      isRecording: false,
-      mediaServicesDidReset: true,
-      url: null,
-    });
+  it('waits for an explicit recording-state acknowledgement', async () => {
+    jest.useFakeTimers();
+    mockRecorder.record.mockImplementationOnce(() => undefined);
     const { result, unmount } = await renderHook(() => useExpoRecorderAdapter());
+    await act(async () => { await result.current.prepare(context); });
 
-    const error = await result.current.prepare().catch((failure) => failure);
-    expect(error).toBeInstanceOf(NativeRecorderError);
-    expect(error).toEqual(expect.objectContaining({
-      code: 'recording_media_services_reset',
-      name: 'NativeRecorderError',
-    }));
-    expect(error.message).not.toContain('/private/cache');
+    let started!: Promise<void>;
+    await act(() => { started = result.current.start(context); });
+    let settled = false;
+    void started.then(() => { settled = true; });
+    await Promise.resolve();
+    expect(settled).toBe(false);
+    mockRecorder.isRecording = true;
+    await act(async () => { await jest.advanceTimersByTimeAsync(25); });
+    await expect(started).resolves.toBeUndefined();
+    await unmount();
+    jest.useRealTimers();
+  });
+
+  it('releases a prepared Android-style recorder during cancellation without surfacing its stop error', async () => {
+    const events: RecorderRuntimeEvent[] = [];
+    const { result, unmount } = await renderHook(() => useExpoRecorderAdapter());
+    result.current.subscribe((event) => events.push(event));
+    await act(async () => { await result.current.prepare(context); });
+
+    let raw: RawRecording | undefined;
+    await act(async () => { raw = await result.current.cancel(context); });
+    await act(() => {
+      mockStatusListener?.({
+        error: 'stop failed before start',
+        hasError: true,
+        id: 'native-1',
+        isFinished: true,
+        url: null,
+      });
+    });
+
+    expect(mockRecorder.stop).toHaveBeenCalledTimes(1);
+    expect(raw).toMatchObject({ kind: 'native-file', uri: mockRecorder.uri });
+    expect(events.some((event) => event.type === 'error' || event.type === 'finished')).toBe(false);
     await unmount();
   });
 
-  it('classifies a recorder that did not enter recording state as a native start failure', async () => {
-    mockRecorder.getStatus.mockReturnValue({
-      canRecord: true,
-      durationMillis: 0,
-      isRecording: false,
-      mediaServicesDidReset: false,
-      url: mockRecorder.uri,
-    });
-    mockRecorder.record.mockImplementationOnce(() => undefined);
+  it('forwards native finish, error, and media-service reset events with operation context', async () => {
+    const events: RecorderRuntimeEvent[] = [];
     const { result, unmount } = await renderHook(() => useExpoRecorderAdapter());
+    result.current.subscribe((event) => events.push(event));
+    await act(async () => { await result.current.prepare(context); });
+    await act(async () => { await result.current.start(context); });
 
-    await act(async () => { await result.current.prepare(); });
-    expect(() => result.current.start()).toThrow(expect.objectContaining({
-      code: 'recording_native_start_failed',
-    }));
+    const base = { error: null, hasError: false, id: 'native-1', isFinished: false, url: mockRecorder.uri };
+    await act(() => { mockStatusListener?.({ ...base, isFinished: true }); });
+    await act(() => { mockStatusListener?.({ ...base, error: 'redacted', hasError: true }); });
+    await act(() => { mockStatusListener?.({ ...base, mediaServicesDidReset: true }); });
+
+    expect(events).toContainEqual({ context, type: 'finished' });
+    expect(events).toContainEqual({ code: 'recording_interrupted', context, type: 'error' });
+    expect(events).toContainEqual({ context, reason: 'media-services-reset', type: 'interrupted' });
     await unmount();
   });
 });

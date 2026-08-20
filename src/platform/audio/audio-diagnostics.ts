@@ -18,6 +18,7 @@ export type AudioDiagnosticEvent = {
   phase?: string;
   reason?: string;
   recorderState?: string;
+  runtimeEpoch?: number;
   scope: 'session' | 'recording' | 'playback' | 'transcription';
 };
 

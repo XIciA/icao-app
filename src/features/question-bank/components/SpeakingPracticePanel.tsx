@@ -10,7 +10,10 @@ import { colors, fonts, radii, shadows, spacing } from '@/theme';
 
 import type { RecordingAsset } from '../recording/types';
 import { useRecordingPlayback } from '../recording/use-recording-playback';
-import { useSpeakingRecordingController } from '../recording/use-speaking-recording-controller';
+import {
+  SpeakingRecordingControllerHost,
+  type SpeakingRecordingController,
+} from '../recording/use-speaking-recording-controller';
 import { AudioTimeline } from './AudioTimeline';
 
 function formatDuration(milliseconds: number) {
@@ -19,7 +22,7 @@ function formatDuration(milliseconds: number) {
 }
 
 function recordingErrorMessage(
-  error: ReturnType<typeof useSpeakingRecordingController>['error'],
+  error: SpeakingRecordingController['error'],
   hasRecording: boolean,
   isWeb: boolean,
 ) {
@@ -61,21 +64,9 @@ function recordingErrorMessage(
     }
   }
   const diagnosticSuffix = error.diagnosticId ? `（诊断编号：${error.diagnosticId}）` : '';
-  const nativeMessages: Partial<Record<typeof error.code, string>> = {
-    recording_owner_pause_failed: '上一段音频未能暂停，请确认题目音频或随身听已停止后重试。',
-    recording_owner_pause_timeout: '上一段音频暂停超时，请稍后重试。',
-    recording_audio_mode_failed: 'iPhone 暂时无法切换到录音模式，请稍后重试。',
-    recording_audio_mode_timeout: 'iPhone 切换录音模式超时，请稍后重试。',
-    recording_native_prepare_failed: 'iPhone 录音器准备失败，请稍后重试。',
-    recording_media_services_reset: 'iPhone 音频服务刚刚重置，请重新按住录音。',
-    recording_native_start_failed: 'iPhone 录音器未能启动，请稍后重试。',
-  };
-  const nativeMessage = nativeMessages[error.code];
   if (!hasRecording) return `${error.message}${diagnosticSuffix}`;
   if (error.code === 'microphone_permission_denied') return '未获得麦克风权限，已保留原录音。';
-  return nativeMessage
-    ? `${nativeMessage}原录音已保留。${diagnosticSuffix}`
-    : `新录音无效，已保留原录音。${diagnosticSuffix}`;
+  return `新录音无效，已保留原录音。${diagnosticSuffix}`;
 }
 
 function playbackErrorMessage(error: ReturnType<typeof useRecordingPlayback>['error'], isWeb: boolean) {
@@ -118,21 +109,7 @@ async function copyCurrentWebLink() {
   }
 }
 
-export function SpeakingPracticePanel({
-  blockedExternalGesture,
-  cardId,
-  interactionGesture,
-  mode,
-  onClear,
-  onInteractionChange,
-  onPreviewPlaybackStart,
-  onRecorded,
-  onRecordingIntent,
-  previewPauseRequest = 0,
-  recording,
-  sessionId,
-  variant = 'default',
-}: {
+type SpeakingPracticePanelProps = {
   blockedExternalGesture?: GestureType;
   cardId: string;
   interactionGesture?: GestureType;
@@ -146,18 +123,37 @@ export function SpeakingPracticePanel({
   recording?: RecordingAsset;
   sessionId: string;
   variant?: 'default' | 'integrated';
-}) {
+};
+
+export function SpeakingPracticePanel(props: SpeakingPracticePanelProps) {
+  return (
+    <SpeakingRecordingControllerHost
+      cardId={props.cardId}
+      onClear={props.onClear}
+      onInteractionChange={props.onInteractionChange}
+      onRecorded={props.onRecorded}
+      recording={props.recording}
+      sessionId={props.sessionId}
+    >
+      {(controller) => <SpeakingPracticePanelContent {...props} controller={controller} />}
+    </SpeakingRecordingControllerHost>
+  );
+}
+
+function SpeakingPracticePanelContent({
+  blockedExternalGesture,
+  controller,
+  interactionGesture,
+  mode,
+  onInteractionChange,
+  onPreviewPlaybackStart,
+  onRecordingIntent,
+  previewPauseRequest = 0,
+  variant = 'default',
+}: SpeakingPracticePanelProps & { controller: SpeakingRecordingController }) {
   const router = useRouter();
   const isWeb = Platform.OS === 'web';
   const [copyLinkFeedback, setCopyLinkFeedback] = useState<string | undefined>(undefined);
-  const controller = useSpeakingRecordingController({
-    cardId,
-    onClear,
-    onInteractionChange,
-    onRecorded,
-    recording,
-    sessionId,
-  });
   const playback = useRecordingPlayback(controller.asset, previewPauseRequest);
   const isRecording = controller.phase === 'recording';
   const isBusy = ['requestingPermission', 'preparing', 'finalizing'].includes(controller.phase);

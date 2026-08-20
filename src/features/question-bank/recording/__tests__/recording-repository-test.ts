@@ -6,7 +6,7 @@ let mockCopiedSize: number | undefined;
 
 function mockJoinPath(first: { uri: string } | string, ...parts: string[]) {
   const base = typeof first === 'string' ? first : first.uri;
-  return [base.replace(/\/$/, ''), ...parts.map((part) => part.replace(/^\//, ''))].join('/');
+  return [base.replace(/\/$/u, ''), ...parts.map((part) => part.replace(/^\//u, ''))].join('/');
 }
 
 jest.mock('expo-file-system', () => {
@@ -82,6 +82,18 @@ function wave(dataBytes: number) {
   return bytes;
 }
 
+function raw(uri: string, durationMs = 2_000) {
+  return {
+    cardId: 'card-1',
+    durationMs,
+    format: 'wav' as const,
+    kind: 'native-file' as const,
+    mimeType: 'audio/wav',
+    sessionId: 'session-1',
+    uri,
+  };
+}
+
 describe('RecordingRepository', () => {
   beforeEach(() => {
     mockFiles.clear();
@@ -100,33 +112,42 @@ describe('RecordingRepository', () => {
 
   it('commits a container-verified raw file through a pending destination', async () => {
     mockFiles.set('file:///raw.wav', { bytes: wave(64_000) });
-    const asset = await repository().commitRaw({ cardId: 'card-1', durationMillis: 2_000, format: 'wav', sessionId: 'session-1', uri: 'file:///raw.wav' });
-    expect(asset).toMatchObject({ byteSize: 64_044, format: 'wav', id: 'asset-1' });
+    const asset = await repository().commitRaw(raw('file:///raw.wav'));
+    expect(asset).toMatchObject({
+      byteSize: 64_044,
+      durationMillis: 2_000,
+      format: 'wav',
+      id: 'asset-1',
+      mimeType: 'audio/wav',
+      storageKind: 'native-file',
+    });
     expect(mockFiles.has('file:///raw.wav')).toBe(false);
     expect(mockFiles.get(asset.uri)?.bytes.length).toBe(64_044);
   });
 
-  it('waits for delayed native finalization instead of accepting the first stable small file', async () => {
+  it('waits for delayed native finalization before accepting the file', async () => {
     const partial = wave(0);
     const complete = wave(32_000);
     mockFiles.set('file:///delayed.wav', { bytes: partial, growth: [partial, partial, complete, complete] });
-    const asset = await repository().commitRaw({ cardId: 'card-1', durationMillis: 1_000, format: 'wav', sessionId: 'session-1', uri: 'file:///delayed.wav' });
+    const asset = await repository().commitRaw(raw('file:///delayed.wav', 1_000));
     expect(asset.byteSize).toBe(32_044);
   });
 
-  it('distinguishes missing, invalid-container, and incomplete files', async () => {
-    await expect(repository().commitRaw({ cardId: 'card-1', durationMillis: 2_000, format: 'wav', sessionId: 'session-1', uri: 'file:///missing.wav' })).rejects.toMatchObject({ code: 'recording_source_missing' });
+  it('distinguishes missing, invalid-container, and incomplete files and consumes each raw', async () => {
+    await expect(repository().commitRaw(raw('file:///missing.wav'))).rejects.toMatchObject({ code: 'recording_source_missing' });
     mockFiles.set('file:///invalid.wav', { bytes: new Uint8Array(512) });
-    await expect(repository().commitRaw({ cardId: 'card-1', durationMillis: 2_000, format: 'wav', sessionId: 'session-1', uri: 'file:///invalid.wav' })).rejects.toMatchObject({ code: 'recording_container_invalid' });
+    await expect(repository().commitRaw(raw('file:///invalid.wav'))).rejects.toMatchObject({ code: 'recording_container_invalid' });
+    expect(mockFiles.has('file:///invalid.wav')).toBe(false);
     mockFiles.set('file:///header.wav', { bytes: wave(0) });
-    await expect(repository().commitRaw({ cardId: 'card-1', durationMillis: 2_000, format: 'wav', sessionId: 'session-1', uri: 'file:///header.wav' })).rejects.toMatchObject({ code: 'recording_file_incomplete' });
+    await expect(repository().commitRaw(raw('file:///header.wav'))).rejects.toMatchObject({ code: 'recording_file_incomplete' });
+    expect(mockFiles.has('file:///header.wav')).toBe(false);
   });
 
-  it('rejects a partial pending copy without publishing a destination', async () => {
+  it('consumes the raw and removes a partial pending copy after commit failure', async () => {
     mockFiles.set('file:///raw.wav', { bytes: wave(64_000) });
     mockCopiedSize = 32_000;
-    await expect(repository().commitRaw({ cardId: 'card-1', durationMillis: 2_000, format: 'wav', sessionId: 'session-1', uri: 'file:///raw.wav' })).rejects.toMatchObject({ code: 'recording_commit_failed' });
-    expect(mockFiles.has('file:///raw.wav')).toBe(true);
+    await expect(repository().commitRaw(raw('file:///raw.wav'))).rejects.toMatchObject({ code: 'recording_commit_failed' });
+    expect(mockFiles.has('file:///raw.wav')).toBe(false);
     expect(mockFiles.has('file:///cache/icao-recordings/session-1/asset-1.wav.pending')).toBe(false);
     expect(mockFiles.has('file:///cache/icao-recordings/session-1/asset-1.wav')).toBe(false);
   });
@@ -134,7 +155,7 @@ describe('RecordingRepository', () => {
   it('only discards committed files owned by the repository', async () => {
     mockFiles.set('file:///raw.wav', { bytes: wave(64_000) });
     const repo = repository();
-    const asset = await repo.commitRaw({ cardId: 'card-1', durationMillis: 2_000, format: 'wav', sessionId: 'session-1', uri: 'file:///raw.wav' });
+    const asset = await repo.commitRaw(raw('file:///raw.wav'));
     mockFiles.set('file:///someone-else.wav', { bytes: new Uint8Array(1) });
     repo.discard({ ...asset, uri: 'file:///someone-else.wav' });
     expect(mockFiles.has('file:///someone-else.wav')).toBe(true);
