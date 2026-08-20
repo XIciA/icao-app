@@ -19,12 +19,13 @@ function token(payload: object) {
   ].join('.');
 }
 
-function verifier(userMetadata?: Record<string, unknown>) {
+function verifier(userMetadata?: Record<string, unknown>, phone?: string) {
   const getUser = vi.fn().mockResolvedValue({
     data: {
       user: {
         id: '11111111-1111-4111-8111-111111111111',
         identities: [{ id: 'apple-subject', provider: 'apple' }],
+        phone,
         user_metadata: userMetadata,
       },
     },
@@ -107,5 +108,18 @@ describe('SupabaseAuthVerifier authentication time', () => {
     supabase.createClient.mockReset();
     const { verifier: malformed } = verifier({ password_set: 'false' });
     await expect(malformed.verify(accessToken)).resolves.toEqual(expect.objectContaining({ passwordSet: undefined }));
+  });
+
+  it('normalizes Supabase phone identities before account resolution', async () => {
+    const accessToken = token({
+      amr: [{ method: 'otp', timestamp: 1_800_003_600 }],
+      iat: 1_800_003_600,
+      session_id: '22222222-2222-4222-8222-222222222222',
+    });
+    const { verifier: service } = verifier(undefined, '8613800138000');
+
+    await expect(service.verify(accessToken)).resolves.toEqual(expect.objectContaining({
+      user: expect.objectContaining({ phone: '+8613800138000' }),
+    }));
   });
 });

@@ -1,4 +1,5 @@
 import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
+import { normalizeChinaMobile } from '@icao/contracts';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { API_CONFIG, type ApiConfig } from '../config';
 import type { AuthVerifier, VerifiedAuthSession } from './auth.types';
@@ -71,7 +72,11 @@ export class SupabaseAuthVerifier implements AuthVerifier {
         ? data.user.user_metadata.password_set
         : undefined,
       sessionId: claims.session_id,
-      user: { id: data.user.id, email: data.user.email, phone: data.user.phone },
+      user: {
+        id: data.user.id,
+        email: data.user.email,
+        phone: typeof data.user.phone === 'string' ? normalizeChinaMobile(data.user.phone) : undefined,
+      },
     };
   }
 }
