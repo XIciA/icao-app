@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-set -eu
+set -euo pipefail
 
 if [ "${EXPO_PUBLIC_ICAO_AUDIO_E2E:-0}" = '1' ]; then
   echo 'EXPO_PUBLIC_ICAO_AUDIO_E2E is forbidden in TestFlight builds.' >&2
@@ -50,6 +50,12 @@ if [ "$KEY_MODE" != '600' ]; then
   echo 'App Store Connect private-key permissions must be 0600.' >&2
   exit 1
 fi
+
+redact_asc_output() {
+  sed \
+    -e "s/${APP_STORE_CONNECT_KEY_ID}/[redacted-key-id]/g" \
+    -e "s/${APP_STORE_CONNECT_ISSUER_ID}/[redacted-issuer-id]/g"
+}
 
 require_command pnpm
 require_command pod
@@ -109,7 +115,7 @@ xcodebuild \
   PRODUCT_BUNDLE_IDENTIFIER="$IOS_BUNDLE_ID" \
   MARKETING_VERSION="$MARKETING_VERSION" \
   CURRENT_PROJECT_VERSION="$IOS_BUILD_NUMBER" \
-  archive
+  archive 2>&1 | redact_asc_output
 
 APP_PATH=$(find "$ARCHIVE_PATH/Products/Applications" -maxdepth 1 -type d -name '*.app' -print -quit)
 if [ -z "$APP_PATH" ]; then
@@ -158,7 +164,8 @@ xcodebuild \
   -allowProvisioningUpdates \
   -authenticationKeyPath "$APP_STORE_CONNECT_KEY_PATH" \
   -authenticationKeyID "$APP_STORE_CONNECT_KEY_ID" \
-  -authenticationKeyIssuerID "$APP_STORE_CONNECT_ISSUER_ID"
+  -authenticationKeyIssuerID "$APP_STORE_CONNECT_ISSUER_ID" \
+  2>&1 | redact_asc_output
 
 IPA_PATH=$(find "$EXPORT_PATH" -maxdepth 1 -type f -name '*.ipa' -print -quit)
 if [ -z "$IPA_PATH" ]; then
@@ -170,11 +177,13 @@ node tools/create-testflight-candidate.mjs "$ARCHIVE_PATH" "$IPA_PATH"
 xcrun altool --validate-app "$IPA_PATH" --type ios \
   --api-key "$APP_STORE_CONNECT_KEY_ID" \
   --api-issuer "$APP_STORE_CONNECT_ISSUER_ID" \
-  --p8-file-path "$APP_STORE_CONNECT_KEY_PATH"
+  --p8-file-path "$APP_STORE_CONNECT_KEY_PATH" \
+  2>&1 | redact_asc_output
 xcrun altool --upload-app -f "$IPA_PATH" --type ios --wait \
   --api-key "$APP_STORE_CONNECT_KEY_ID" \
   --api-issuer "$APP_STORE_CONNECT_ISSUER_ID" \
-  --p8-file-path "$APP_STORE_CONNECT_KEY_PATH"
+  --p8-file-path "$APP_STORE_CONNECT_KEY_PATH" \
+  2>&1 | redact_asc_output
 
 node tools/app-store-connect-testflight.mjs assign-groups
 printf '%s\n' "$ARCHIVE_PATH" > "$PROJECT_ROOT/.generated/last-testflight-archive.txt"
