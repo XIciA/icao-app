@@ -1,5 +1,7 @@
 import type { ApiErrorEnvelope, ApiSuccessEnvelope } from '@icao/contracts';
 
+import { isEdgeOneProductionWeb } from '@/config/web-runtime';
+
 let accessTokenProvider: (() => Promise<string | undefined>) | undefined;
 let accessTokenRefresher: (() => Promise<string | undefined>) | undefined;
 let sessionInvalidatedHandler: (() => Promise<void> | void) | undefined;
@@ -39,6 +41,7 @@ export function setApiAuthRecovery(options?: {
 }
 
 export function getApiBaseUrl() {
+  if (isEdgeOneProductionWeb()) return process.env.EXPO_PUBLIC_ICAO_API_URL?.replace(/\/$/u, '');
   return '/api';
 }
 
@@ -53,15 +56,18 @@ function route(path: string) {
   return routes[path] ?? `/api/unavailable?path=${encodeURIComponent(path)}`;
 }
 
-async function fetchOnce(path: string, init: RequestInit) {
+async function fetchOnce(path: string, init: RequestInit, token?: string) {
   const headers = new Headers(init.headers);
   headers.set('accept', 'application/json');
+  if (isEdgeOneProductionWeb() && token) headers.set('authorization', `Bearer ${token}`);
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 45_000);
   try {
-    return await fetch(route(path), {
+    const baseUrl = getApiBaseUrl();
+    if (!baseUrl) throw new Error('api_not_configured');
+    return await fetch(isEdgeOneProductionWeb() ? `${baseUrl}${path}` : route(path), {
       ...init,
-      credentials: 'include',
+      credentials: isEdgeOneProductionWeb() ? 'omit' : 'include',
       headers,
       signal: init.signal ?? controller.signal,
     });
@@ -71,8 +77,8 @@ async function fetchOnce(path: string, init: RequestInit) {
 }
 
 export async function apiFetch(path: string, init: RequestInit = {}) {
-  let response = await fetchOnce(path, init);
-  return recoverApiUnauthorized(response, () => fetchOnce(path, init));
+  let response = await fetchOnce(path, init, await accessTokenProvider?.());
+  return recoverApiUnauthorized(response, (token) => fetchOnce(path, init, token));
 }
 
 export async function recoverApiUnauthorized(

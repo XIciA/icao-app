@@ -5,6 +5,7 @@ import Storage from '@/platform/storage';
 import type { ApiSuccessEnvelope, QuestionBankRelease } from '@icao/contracts';
 
 import { loadWebContentRelease } from '@/features/web-content/release';
+import { isEdgeOneProductionWeb } from '@/config/web-runtime';
 import type { QuestionBankDataset, QuestionBankId, QuestionBankTopic } from '../types';
 import { apiFetch, getApiBaseUrl } from '@/platform/api-client';
 
@@ -159,7 +160,7 @@ async function loadQuestionBankForWeb(id: QuestionBankId): Promise<QuestionBankL
 }
 
 export async function loadQuestionBank(id: QuestionBankId): Promise<QuestionBankLoadResult | undefined> {
-  if (Platform.OS === 'web') return loadQuestionBankForWeb(id);
+  if (Platform.OS === 'web' && !isEdgeOneProductionWeb()) return loadQuestionBankForWeb(id);
   if (getApiBaseUrl()) {
     try {
       const remote = await remoteQuestionBankRepository.getDataset(id);

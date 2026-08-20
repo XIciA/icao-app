@@ -18,6 +18,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { TopBar } from '@/components/navigation/TopBar';
 import { AppText, Button, Card, Screen, Tag } from '@/components/ui';
+import { isEdgeOneProductionWeb } from '@/config/web-runtime';
 import { colors, radii, spacing } from '@/theme';
 
 import { speakVocabularyWithFeedback } from '../speech';
@@ -128,7 +129,7 @@ export function VocabularyBooksView({
             );
           })}
         </View>
-        {Object.keys(state.words).length ? <AppText style={styles.center} variant="caption">{Platform.OS === 'web' ? '学习状态已保存在当前浏览器，不与 App 同步。' : '学习状态已保存在当前账号，并纳入学习数据同步。'}</AppText> : null}
+        {Object.keys(state.words).length ? <AppText style={styles.center} variant="caption">{Platform.OS === 'web' && !isEdgeOneProductionWeb() ? '学习状态已保存在当前浏览器，不与 App 同步。' : '学习状态已保存在当前账号，并纳入学习数据同步。'}</AppText> : null}
       </ScrollView>
       <View style={[styles.sticky, { paddingBottom: Math.max(insets.bottom, spacing[4]) }]}>
         <AppText style={styles.center}>{selected.size ? `已选择 ${selected.size} 本词书` : '请选择至少一本词书'}</AppText>

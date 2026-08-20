@@ -1,7 +1,7 @@
 # 部署与运行时规则
 
 状态：当前运维基线
-更新时间：2026-08-07
+更新时间：2026-08-20
 
 仓库是实现来源，但本地、预览和生产是不同运行状态。代码修改本身不授权生产部署。
 
@@ -20,11 +20,14 @@
 
 ### Web
 
-`Browser → Vercel 同源 Functions / 静态内容 / 题库资源`
+Web 有两条显式隔离的发布链路：
 
-- Web 不调用 ECS API 或 Supabase，不参与 Native 云同步。
-- `vercel.json`、`api/` 和物化后的 Web 导出物共同定义正式部署边界。
-- Web secret 只用于 Vercel 服务端 Functions，不得进入 client bundle。
+- `vercel-legacy`：`Browser → Vercel 同源 Functions / 静态内容 / 题库资源`，不参与
+  Native 云同步。
+- `edgeone-production`：`Browser → EdgeOne Pages → ECS API → Supabase`，与 Native
+  共用正式账号、题库和学习同步。
+- 两条链路共用 Expo Web 源码，但由构建时运行模式隔离；不得把服务端 secret 放入任一
+  客户端包。
 
 详细边界见 `docs/current/runtime-topology.md`。
 
@@ -37,6 +40,7 @@
 | 原生依赖、权限、插件、配置 | 目标平台 Development Build | 不等于生产 API 部署 |
 | `services/api` / contracts | workspace 检查和代表性本地请求 | 当前任务明确包含线上时部署 ECS |
 | `api/`、Web 路由或部署配置 | `pnpm check:web` 和预览检查 | 当前任务明确包含线上时发布 Vercel |
+| EdgeOne Web 运行时或部署配置 | `pnpm check:web:edgeone` 和宽/窄屏预览 | 当前任务明确包含线上时发布 EdgeOne |
 | 数据库 schema/migration | 迁移检查和计划 | 独立备份、审批、执行与验证 |
 
 ## 3. ECS API 部署门槛
@@ -79,7 +83,16 @@
 - 代表性业务请求或关键路径结果；
 - 可用的回滚点及实际回滚结果（若发生）。
 
-## 6. 不随普通部署继承的权限
+## 6. EdgeOne 三端同步站发布门槛
+
+1. 在 EdgeOne 环境配置三个公开构建变量：正式 API URL、Supabase URL 和 publishable key。
+2. 运行 `pnpm check:web:edgeone`；构建必须保持轻量，不物化私有题库音频。
+3. 先验证 EdgeOne Preview 的登录页、刷新、窄屏/宽屏、HTTPS 和安全响应头。
+4. Preview 通过后，才把 `readyoufife.com` 加入 API CORS 白名单并绑定正式域名。
+5. 用真实手机号验证登录、题库、签名音频和学习同步；旧 Vercel 域名保持不变。
+6. 回滚优先恢复上一条 EdgeOne deployment；DNS 变更保留原记录快照。
+
+## 7. 不随普通部署继承的权限
 
 - 数据库迁移、数据删除和不可逆修复；
 - 域名、DNS、证书、支付或账号治理变更；

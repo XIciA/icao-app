@@ -78,7 +78,7 @@ if (app.expo.name !== appName || app.expo.ios.bundleIdentifier !== 'com.readyouf
 
 const infoPath = path.join(root, 'src/features/info/InfoScreen.tsx');
 const info = await readFile(infoPath, 'utf8');
-for (const fragment of [company, appName, '版本 v3.1', '腾讯云语音识别', '阿里云百炼通义千问', 'privacy@yunqihangke.com']) {
+for (const fragment of [company, appName, '版本 v4.0', '手机号', '腾讯云 EdgeOne', '腾讯云语音识别', '阿里云百炼通义千问', 'privacy@yunqihangke.com']) {
   requireFragment(info, fragment, infoPath);
 }
 
