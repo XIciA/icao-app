@@ -1,13 +1,15 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { ExpoRecorderAdapter } from './expo-recorder-adapter';
-import type { RawRecording, RecordingFailureCode, RecordingFormat } from './types';
+import type {
+  RawRecording,
+  RecorderRuntimeEvent,
+  RecordingFailureCode,
+  RecordingFormat,
+  RecordingOperationContext,
+} from './types';
 
-type WebRecordingFormat = {
-  format: RecordingFormat;
-  mimeType: string;
-};
-
+type WebRecordingFormat = { format: RecordingFormat; mimeType: string };
 type RecordingAdapterError = Error & { code: RecordingFailureCode };
 type Finalization =
   | { ok: true; raw: RawRecording }
@@ -16,10 +18,10 @@ type Finalization =
 type WebRecordingSession = {
   chunks: Blob[];
   completion: Promise<Finalization>;
+  context: RecordingOperationContext;
   finalization?: Finalization;
   finalize: (result: Finalization) => void;
   format?: WebRecordingFormat;
-  rawTransferred: boolean;
   recorder: MediaRecorder;
   startedAt: number;
   stoppedAt?: number;
@@ -32,10 +34,10 @@ type WebRecordingSession = {
 const WEB_RECORDING_FORMATS: readonly WebRecordingFormat[] = [
   { format: 'webm', mimeType: 'audio/webm;codecs=opus' },
   { format: 'webm', mimeType: 'audio/webm' },
+  { format: 'ogg', mimeType: 'audio/ogg;codecs=opus' },
   { format: 'm4a', mimeType: 'audio/mp4' },
 ];
 const WEB_RECORDING_BITS_PER_SECOND = 128_000;
-const MIN_BYTES_PER_MILLISECOND = 0.05;
 const CHUNK_INTERVAL_MS = 250;
 const STOP_TIMEOUT_MS = 5_000;
 let webPermissionPrimed = false;
@@ -62,9 +64,7 @@ function microphoneError(error: unknown): RecordingAdapterError {
   const typedCode = (error as { code?: unknown } | undefined)?.code;
   if (typeof typedCode === 'string') return error as RecordingAdapterError;
   const name = errorName(error);
-  if (name === 'NotAllowedError') {
-    return recordingError('microphone_permission_denied', error);
-  }
+  if (name === 'NotAllowedError') return recordingError('microphone_permission_denied', error);
   if (name === 'SecurityError' || name === 'NotSupportedError' || name === 'TypeError') {
     return recordingError('recording_browser_unsupported', error);
   }
@@ -122,17 +122,13 @@ function createMediaRecorder(stream: MediaStream) {
       lastError = error;
     }
     try {
-      return {
-        format,
-        recorder: new MediaRecorder(stream, { mimeType: format.mimeType }),
-      };
+      return { format, recorder: new MediaRecorder(stream, { mimeType: format.mimeType }) };
     } catch (error) {
       lastError = error;
     }
   }
-  let defaultRecorder: MediaRecorder;
   try {
-    defaultRecorder = new MediaRecorder(stream);
+    return { format: undefined, recorder: new MediaRecorder(stream) };
   } catch (error) {
     lastError = error;
     throw recordingError(
@@ -140,21 +136,20 @@ function createMediaRecorder(stream: MediaStream) {
       lastError,
     );
   }
-  return { format: undefined, recorder: defaultRecorder };
 }
 
 function formatForMimeType(mimeType: string): RecordingFormat | undefined {
   const normalized = mimeType.toLowerCase().split(';', 1)[0]?.trim();
   if (normalized === 'audio/webm') return 'webm';
   if (normalized === 'audio/ogg') return 'ogg';
-  if (normalized === 'audio/mp4'
-    || normalized === 'audio/m4a'
-    || normalized === 'audio/x-m4a') return 'm4a';
+  if (normalized === 'audio/mp4' || normalized === 'audio/m4a' || normalized === 'audio/x-m4a') return 'm4a';
   return undefined;
 }
 
-function recorderState(recorder: MediaRecorder) {
-  return recorder.state as string;
+function normalizedMimeType(format: 'm4a' | 'ogg' | 'webm') {
+  if (format === 'm4a') return 'audio/mp4';
+  if (format === 'ogg') return 'audio/ogg';
+  return 'audio/webm';
 }
 
 function bestEffortStopRecorder(recorder: MediaRecorder) {
@@ -162,14 +157,12 @@ function bestEffortStopRecorder(recorder: MediaRecorder) {
   try {
     recorder.stop();
   } catch {
-    // Tracks are also stopped by the finalizer, so capture resources are still released.
+    // Finalization also stops every track.
   }
 }
 
-function abandonSession(session?: WebRecordingSession) {
-  if (!session || session.finalization) return;
-  session.finalize({ error: recordingError('recording_interrupted'), ok: false });
-  bestEffortStopRecorder(session.recorder);
+function recorderState(recorder: MediaRecorder) {
+  return recorder.state as string;
 }
 
 export async function getMicrophonePermission() {
@@ -196,29 +189,41 @@ export async function requestMicrophonePermission() {
 }
 
 export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
+  const listenersRef = useRef(new Set<(event: RecorderRuntimeEvent) => void>());
   const sessionRef = useRef<WebRecordingSession | undefined>(undefined);
   const grantedStreamRef = useRef<MediaStream | undefined>(undefined);
   const mountedRef = useRef(true);
   const permissionMutationRef = useRef(0);
-  const [durationMillis, setDurationMillis] = useState(0);
-  const [lifecycleRevision, setLifecycleRevision] = useState(0);
+  const [durationMs, setDurationMs] = useState(0);
   const [permissionReady, setPermissionReady] = useState(webPermissionPrimed);
 
-  const updatePermissionReady = (ready: boolean) => {
+  const emit = useCallback((event: RecorderRuntimeEvent) => {
+    listenersRef.current.forEach((listener) => listener(event));
+  }, []);
+
+  const updatePermissionReady = useCallback((ready: boolean) => {
     webPermissionPrimed = ready;
     permissionMutationRef.current += 1;
     if (mountedRef.current) setPermissionReady(ready);
-  };
+  }, []);
 
-  const clearCurrentSession = () => {
+  const abandonSession = useCallback((session?: WebRecordingSession) => {
+    if (!session || session.finalization) return;
+    session.finalize({ error: recordingError('recording_interrupted'), ok: false });
+    emit({ context: session.context, reason: 'track-ended', type: 'interrupted' });
+    bestEffortStopRecorder(session.recorder);
+  }, [emit]);
+
+  const clearCurrentSession = useCallback(() => {
     const session = sessionRef.current;
     sessionRef.current = undefined;
     abandonSession(session);
-  };
+  }, [abandonSession]);
 
   const createSession = (
     recorder: MediaRecorder,
     stream: MediaStream,
+    context: RecordingOperationContext,
     format?: WebRecordingFormat,
   ): WebRecordingSession => {
     let resolveCompletion!: (result: Finalization) => void;
@@ -226,9 +231,9 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
     const session: WebRecordingSession = {
       chunks: [],
       completion,
+      context,
       finalize: () => undefined,
       format,
-      rawTransferred: false,
       recorder,
       startedAt: 0,
       stopRequested: false,
@@ -243,46 +248,41 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
       const name = errorName(cause);
       const code = name === 'NotSupportedError' || name === 'SecurityError'
         ? 'recording_browser_unsupported'
-        : session.stopRequested
-          ? 'record_stop_failed'
-          : 'recording_interrupted';
+        : session.stopRequested ? 'record_stop_failed' : 'recording_interrupted';
       session.finalize({ error: recordingError(code, cause), ok: false });
+      emit({ code, context: session.context, type: 'error' });
       bestEffortStopRecorder(recorder);
     };
     const handleStop = () => {
       if (!session.stopRequested) {
         session.finalize({ error: recordingError('recording_interrupted'), ok: false });
+        emit({ context: session.context, reason: 'track-ended', type: 'interrupted' });
         return;
       }
       try {
         const chunkMimeType = session.chunks.find((chunk) => Boolean(chunk.type))?.type ?? '';
-        const recognizedMime = [recorder.mimeType, chunkMimeType, format?.mimeType]
+        const recognized = [recorder.mimeType, chunkMimeType, format?.mimeType]
           .map((mimeType) => ({ format: mimeType ? formatForMimeType(mimeType) : undefined, mimeType }))
           .find((candidate) => candidate.format);
-        if (!recognizedMime?.format) {
+        if (!recognized?.format || recognized.format === 'wav') {
           session.finalize({ error: recordingError('recording_browser_unsupported'), ok: false });
           return;
         }
-        const recordingFormat = recognizedMime.format;
-        const normalizedMimeType = recordingFormat === 'm4a'
-          ? 'audio/mp4'
-          : recordingFormat === 'ogg'
-            ? 'audio/ogg'
-            : 'audio/webm';
-        const webBlob = new Blob(session.chunks, { type: normalizedMimeType });
-        if (!webBlob.size) {
+        const mimeType = normalizedMimeType(recognized.format);
+        const blob = new Blob(session.chunks, { type: mimeType });
+        if (!blob.size) {
           session.finalize({ error: recordingError('record_stop_failed'), ok: false });
           return;
         }
-        const uri = URL.createObjectURL(webBlob);
         session.finalize({
           ok: true,
           raw: {
-            durationMillis: Math.max(0, (session.stoppedAt ?? Date.now()) - session.startedAt),
-            format: recordingFormat,
-            minBytesPerMillisecond: MIN_BYTES_PER_MILLISECOND,
-            uri,
-            webBlob,
+            blob,
+            durationMs: Math.max(0, (session.stoppedAt ?? Date.now()) - session.startedAt),
+            format: recognized.format,
+            kind: 'web-blob',
+            mimeType,
+            recorderMimeType: recognized.mimeType,
           },
         });
       } catch (error) {
@@ -292,6 +292,7 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
     const handleTrackEnded = () => {
       if (session.stopRequested || session.finalization) return;
       session.finalize({ error: recordingError('recording_interrupted'), ok: false });
+      emit({ context: session.context, reason: 'track-ended', type: 'interrupted' });
       bestEffortStopRecorder(recorder);
     };
     const detach = () => {
@@ -308,10 +309,7 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
       detach();
       stopTracks(stream);
       session.chunks = [];
-      if (mountedRef.current) {
-        setDurationMillis(0);
-        setLifecycleRevision((current) => current + 1);
-      }
+      if (mountedRef.current) setDurationMs(0);
       resolveCompletion(result);
     };
 
@@ -324,7 +322,7 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
 
   const stopSession = (session: WebRecordingSession) => {
     if (session.stopPromise) return session.stopPromise;
-    session.stopPromise = (async () => {
+    const promise = (async () => {
       if (!session.finalization) {
         if (recorderState(session.recorder) !== 'recording' && recorderState(session.recorder) !== 'paused') {
           session.finalize({ error: recordingError('recording_interrupted'), ok: false });
@@ -338,7 +336,7 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
           try {
             session.recorder.requestData();
           } catch {
-            // The stop event itself must emit the final dataavailable event.
+            // stop must still emit the final dataavailable event.
           }
           try {
             session.recorder.stop();
@@ -353,11 +351,13 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
       if (!result.ok) throw result.error;
       return result.raw;
     })();
-    return session.stopPromise;
+    session.stopPromise = promise;
+    return promise;
   };
 
   useEffect(() => {
     mountedRef.current = true;
+    const listeners = listenersRef.current;
     const queriedAtMutation = permissionMutationRef.current;
     if (typeof navigator !== 'undefined' && navigator.permissions?.query) {
       void navigator.permissions.query({ name: 'microphone' as PermissionName }).then((status) => {
@@ -369,49 +369,52 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
     const interval = setInterval(() => {
       const session = sessionRef.current;
       if (!session || session.recorder.state !== 'recording') return;
-      setDurationMillis(Math.max(0, Date.now() - session.startedAt));
+      setDurationMs(Math.max(0, Date.now() - session.startedAt));
     }, 100);
     return () => {
       mountedRef.current = false;
       clearInterval(interval);
-      const session = sessionRef.current;
-      sessionRef.current = undefined;
-      abandonSession(session);
+      clearCurrentSession();
       stopTracks(grantedStreamRef.current);
       grantedStreamRef.current = undefined;
+      listeners.clear();
     };
-  }, []);
+  }, [clearCurrentSession, updatePermissionReady]);
 
   return {
     async cancel() {
       const session = sessionRef.current;
-      let rawUri: string | undefined;
+      let raw: RawRecording | undefined;
       if (session && (session.recorder.state === 'recording' || session.recorder.state === 'paused')) {
-        try {
-          const raw = await stopSession(session);
-          if (!session.rawTransferred) {
-            session.rawTransferred = true;
-            rawUri = raw.uri;
-          }
-        } catch {
-          // External interruption and failed finalization do not produce a committable raw asset.
-        }
-      } else if (session?.finalization?.ok && !session.rawTransferred) {
-        session.rawTransferred = true;
-        rawUri = session.finalization.raw.uri;
+        raw = await stopSession(session).catch(() => undefined);
+      } else if (session?.finalization?.ok) {
+        raw = session.finalization.raw;
       } else {
         abandonSession(session);
       }
       if (sessionRef.current === session) sessionRef.current = undefined;
       stopTracks(grantedStreamRef.current);
       grantedStreamRef.current = undefined;
-      return rawUri;
+      return raw;
     },
-    durationMillis,
-    isRecording: () => sessionRef.current?.recorder.state === 'recording',
-    lifecycleRevision,
+    async dispose() {
+      clearCurrentSession();
+      stopTracks(grantedStreamRef.current);
+      grantedStreamRef.current = undefined;
+    },
+    getSnapshot: () => {
+      const state = sessionRef.current?.recorder.state;
+      return {
+        canRecord: state === 'inactive' || state === 'recording' || state === 'paused',
+        durationMs,
+        isRecording: state === 'recording',
+        mediaServicesDidReset: false,
+        state: state === 'recording' ? 'recording' : state === 'inactive' ? 'prepared' : 'idle',
+      };
+    },
+    isWeb: true,
     permissionReady,
-    async prepare() {
+    async prepare(context) {
       clearCurrentSession();
       let stream: MediaStream | undefined;
       try {
@@ -419,7 +422,7 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
         stream = grantedStreamRef.current ?? await getAudioStream();
         grantedStreamRef.current = undefined;
         const { format, recorder } = createMediaRecorder(stream);
-        sessionRef.current = createSession(recorder, stream, format);
+        sessionRef.current = createSession(recorder, stream, context, format);
         updatePermissionReady(true);
       } catch (error) {
         stopTracks(stream);
@@ -466,11 +469,12 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
         throw typed;
       }
     },
-    start() {
+    async start(context) {
       const session = sessionRef.current;
       if (!session || session.finalization || recorderState(session.recorder) !== 'inactive') {
         throw recordingError('record_start_failed');
       }
+      session.context = context;
       session.startedAt = Date.now();
       try {
         session.recorder.start(CHUNK_INTERVAL_MS);
@@ -491,13 +495,17 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
         session.finalize({ error: recordingError('record_start_failed'), ok: false });
         throw recordingError('record_start_failed');
       }
-      setDurationMillis(0);
+      setDurationMs(0);
     },
-    stop() {
+    stop(context) {
       const session = sessionRef.current;
       if (!session) return Promise.reject(recordingError('record_stop_failed'));
-      session.rawTransferred = true;
+      session.context = context;
       return stopSession(session);
+    },
+    subscribe(listener) {
+      listenersRef.current.add(listener);
+      return () => listenersRef.current.delete(listener);
     },
   };
 }

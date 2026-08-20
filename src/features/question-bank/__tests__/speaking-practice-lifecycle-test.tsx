@@ -19,28 +19,39 @@ const committedAsset: RecordingAsset = {
   durationMillis: 3_000,
   format: 'wav',
   id: 'asset-1',
+  mimeType: 'audio/wav',
   sessionId: 'session-1',
+  storageKind: 'native-file',
   uri: 'file:///cache/icao-recordings/session-1/asset-1.wav',
 };
 
 const rawRecording: RawRecording = {
-  durationMillis: 3_000,
+  durationMs: 3_000,
   format: 'wav',
-  minBytesPerMillisecond: 6.4,
+  kind: 'native-file',
+  mimeType: 'audio/wav',
   uri: 'file:///raw.wav',
 };
 
+let mockRuntimeListener: ((event: import('../recording/types').RecorderRuntimeEvent) => void) | undefined;
+
 const mockRecorder = {
-  cancel: jest.fn(async () => undefined as string | undefined),
-  durationMillis: 3_000,
+  cancel: jest.fn(async () => undefined as RawRecording | undefined),
+  dispose: jest.fn(async () => undefined),
+  get isWeb() { return Platform.OS === 'web'; },
+  getSnapshot: jest.fn(() => ({ canRecord: true, durationMs: 3_000, isRecording: false, mediaServicesDidReset: false, state: 'prepared' as const })),
   isRecording: jest.fn(() => false),
   lifecycleRevision: 0,
   permissionReady: false,
   prepare: jest.fn(async () => undefined),
   primePermission: jest.fn(async () => true),
   requestPermission: jest.fn(async () => true),
-  start: jest.fn(),
+  start: jest.fn(async () => undefined),
   stop: jest.fn(async () => rawRecording),
+  subscribe: jest.fn((listener: (event: import('../recording/types').RecorderRuntimeEvent) => void) => {
+    mockRuntimeListener = listener;
+    return () => { if (mockRuntimeListener === listener) mockRuntimeListener = undefined; };
+  }),
 };
 
 const mockPlayback = {
@@ -120,6 +131,11 @@ describe('SpeakingPracticePanel lifecycle', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     previousAppState = AppState.currentState;
+    let monotonicNow = 0;
+    jest.spyOn(globalThis.performance, 'now').mockImplementation(() => {
+      monotonicNow += 1_000;
+      return monotonicNow;
+    });
     (AppState as unknown as { currentState: typeof AppState.currentState }).currentState = 'active';
     commonProps.onClear = jest.fn();
     commonProps.onRecorded = jest.fn();
@@ -127,10 +143,14 @@ describe('SpeakingPracticePanel lifecycle', () => {
     mockRecorder.isRecording.mockReturnValue(false);
     mockRecorder.lifecycleRevision = 0;
     mockRecorder.permissionReady = false;
+    mockRuntimeListener = undefined;
     mockRecorder.prepare.mockResolvedValue(undefined);
-    mockRecorder.primePermission.mockResolvedValue(true);
+    mockRecorder.primePermission.mockImplementation(async () => {
+      mockRecorder.permissionReady = true;
+      return true;
+    });
     mockRecorder.requestPermission.mockResolvedValue(true);
-    mockRecorder.start.mockImplementation(() => { mockRecorder.isRecording.mockReturnValue(true); });
+    mockRecorder.start.mockImplementation(async () => { mockRecorder.isRecording.mockReturnValue(true); });
     mockRecorder.stop.mockImplementation(async () => {
       mockRecorder.isRecording.mockReturnValue(false);
       return rawRecording;
@@ -170,7 +190,7 @@ describe('SpeakingPracticePanel lifecycle', () => {
     await screen.unmount();
   });
 
-  it('asks the repository to discard the raw file after a commit failure', async () => {
+  it('leaves Raw cleanup with the repository after commit ownership transfers', async () => {
     mockCommitRaw.mockRejectedValue(new Error('copy failed'));
     const screen = await render(<SpeakingPracticePanel {...commonProps} />);
 
@@ -178,7 +198,7 @@ describe('SpeakingPracticePanel lifecycle', () => {
     await waitFor(() => expect(mockRecorder.start).toHaveBeenCalled());
     await act(async () => { fireEvent(screen.getByLabelText('松开结束录音'), 'pressOut'); });
 
-    await waitFor(() => expect(mockDiscardRaw).toHaveBeenCalledWith(rawRecording.uri));
+    expect(mockDiscardRaw).not.toHaveBeenCalledWith(rawRecording);
     expect(commonProps.onRecorded).not.toHaveBeenCalled();
     await screen.unmount();
   });
@@ -247,7 +267,7 @@ describe('SpeakingPracticePanel lifecycle', () => {
   });
 
   it('coalesces repeated release events into one native stop and one commit', async () => {
-    const stopped = deferred<RawRecording>();
+    const stopped = deferred<Extract<RawRecording, { kind: 'native-file' }>>();
     mockRecorder.stop.mockImplementation(async () => {
       const raw = await stopped.promise;
       mockRecorder.isRecording.mockReturnValue(false);
@@ -398,7 +418,7 @@ describe('SpeakingPracticePanel lifecycle', () => {
   it('releases the Web permission stream when the user lets go before permission completes', async () => {
     setPlatform('web');
     const permission = deferred<boolean>();
-    mockRecorder.cancel.mockResolvedValue('blob:unused-permission-stream');
+    mockRecorder.cancel.mockResolvedValue(rawRecording);
     const screen = await render(<SpeakingPracticePanel {...commonProps} />);
 
     await act(async () => { fireEvent.press(screen.getByLabelText('启用麦克风')); });
@@ -412,7 +432,7 @@ describe('SpeakingPracticePanel lifecycle', () => {
     });
 
     await waitFor(() => expect(mockRecorder.cancel).toHaveBeenCalled());
-    expect(mockDiscardRaw).toHaveBeenCalledWith('blob:unused-permission-stream');
+    expect(mockDiscardRaw).toHaveBeenCalledWith(rawRecording);
     expect(mockRecorder.prepare).not.toHaveBeenCalled();
     expect(mockRecorder.start).not.toHaveBeenCalled();
     await screen.unmount();
@@ -422,7 +442,7 @@ describe('SpeakingPracticePanel lifecycle', () => {
     setPlatform('web');
     const acquired = deferred<{ owner: string; token: number }>();
     mockAcquire.mockReturnValue(acquired.promise);
-    mockRecorder.cancel.mockResolvedValue('blob:unused-lease-stream');
+    mockRecorder.cancel.mockResolvedValue(rawRecording);
     const screen = await render(<SpeakingPracticePanel {...commonProps} />);
 
     await act(async () => { fireEvent.press(screen.getByLabelText('启用麦克风')); });
@@ -436,7 +456,7 @@ describe('SpeakingPracticePanel lifecycle', () => {
     });
 
     await waitFor(() => expect(mockRecorder.cancel).toHaveBeenCalled());
-    expect(mockDiscardRaw).toHaveBeenCalledWith('blob:unused-lease-stream');
+    expect(mockDiscardRaw).toHaveBeenCalledWith(rawRecording);
     expect(mockRelease).toHaveBeenCalledWith({ owner: 'recording', token: 17 });
     expect(mockRecorder.prepare).not.toHaveBeenCalled();
     expect(mockRecorder.start).not.toHaveBeenCalled();
@@ -464,7 +484,7 @@ describe('SpeakingPracticePanel lifecycle', () => {
     await act(async () => { fireEvent.press(screen.getByLabelText('取消麦克风授权等待')); });
     await waitFor(() => expect(screen.queryByText('仍在等待浏览器授权')).toBeNull());
     expect(screen.getByLabelText('启用麦克风')).toBeTruthy();
-    expect(mockRecorder.cancel).toHaveBeenCalled();
+    expect(mockRecorder.cancel).not.toHaveBeenCalled();
     await act(async () => {
       permission.resolve(true);
       await permission.promise;
@@ -599,9 +619,9 @@ describe('SpeakingPracticePanel lifecycle', () => {
 
   it('keeps Web recording busy until background cleanup finishes and blocks an immediate retry', async () => {
     setPlatform('web');
-    const cancelled = deferred<string | undefined>();
+    const stopped = deferred<Extract<RawRecording, { kind: 'native-file' }>>();
     const appStateListeners: ((state: 'active' | 'background' | 'inactive') => void)[] = [];
-    mockRecorder.cancel.mockReturnValue(cancelled.promise);
+    mockRecorder.stop.mockReturnValue(stopped.promise);
     jest.spyOn(AppState, 'addEventListener').mockImplementation((_type, listener) => {
       appStateListeners.push(listener);
       return { remove: jest.fn() };
@@ -624,15 +644,15 @@ describe('SpeakingPracticePanel lifecycle', () => {
     expect(screen.queryByText('本次录音已停止，请让页面保持在前台后重试。')).toBeNull();
 
     await act(async () => {
-      cancelled.resolve(undefined);
-      await cancelled.promise;
+      stopped.resolve(rawRecording);
+      await stopped.promise;
       await Promise.resolve();
     });
     await waitFor(() => expect(screen.getByText('本次录音已停止，请让页面保持在前台后重试。')).toBeTruthy());
     await screen.unmount();
   });
 
-  it('observes an immediate Web recorder stop through its lifecycle revision without a duration tick', async () => {
+  it('observes an immediate Web recorder stop through its runtime event without a duration tick', async () => {
     setPlatform('web');
     mockRecorder.stop.mockRejectedValue(recorderFailure('recording_interrupted'));
     const screen = await render(<SpeakingPracticePanel {...commonProps} />);
@@ -640,9 +660,10 @@ describe('SpeakingPracticePanel lifecycle', () => {
     await act(async () => { fireEvent.press(screen.getByLabelText('启用麦克风')); });
     await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
     await waitFor(() => expect(mockRecorder.start).toHaveBeenCalledTimes(1));
-    mockRecorder.isRecording.mockReturnValue(false);
-    mockRecorder.lifecycleRevision += 1;
-    await screen.rerender(<SpeakingPracticePanel {...commonProps} />);
+    await act(async () => {
+      mockRuntimeListener?.({ reason: 'track-ended', type: 'interrupted' });
+      await Promise.resolve();
+    });
 
     await waitFor(() => expect(screen.getByText('本次录音已停止，请让页面保持在前台后重试。')).toBeTruthy());
     expect(mockRecorder.cancel).toHaveBeenCalled();
@@ -658,9 +679,10 @@ describe('SpeakingPracticePanel lifecycle', () => {
     await act(async () => { fireEvent.press(screen.getByLabelText('启用麦克风')); });
     await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
     await waitFor(() => expect(mockRecorder.start).toHaveBeenCalledTimes(1));
-    mockRecorder.isRecording.mockReturnValue(false);
-    mockRecorder.lifecycleRevision += 1;
-    await screen.rerender(<SpeakingPracticePanel {...commonProps} />);
+    await act(async () => {
+      mockRuntimeListener?.({ code: 'recording_browser_unsupported', type: 'error' });
+      await Promise.resolve();
+    });
 
     await waitFor(() => expect(screen.getByText('当前浏览器暂不支持网页录音')).toBeTruthy());
     expect(mockCommitRaw).not.toHaveBeenCalled();

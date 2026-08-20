@@ -9,7 +9,10 @@ import { colors, fonts, radii, shadows, spacing } from '@/theme';
 
 import type { RecordingAsset } from '../recording/types';
 import { useRecordingPlayback } from '../recording/use-recording-playback';
-import { useSpeakingRecordingController } from '../recording/use-speaking-recording-controller';
+import {
+  SpeakingRecordingControllerHost,
+  type SpeakingRecordingController,
+} from '../recording/use-speaking-recording-controller';
 import { AudioTimeline } from './AudioTimeline';
 
 function formatDuration(milliseconds: number) {
@@ -18,7 +21,7 @@ function formatDuration(milliseconds: number) {
 }
 
 function recordingErrorMessage(
-  error: ReturnType<typeof useSpeakingRecordingController>['error'],
+  error: SpeakingRecordingController['error'],
   hasRecording: boolean,
   isWeb: boolean,
 ) {
@@ -100,21 +103,7 @@ async function copyCurrentWebLink() {
   }
 }
 
-export function SpeakingPracticePanel({
-  blockedExternalGesture,
-  cardId,
-  interactionGesture,
-  mode,
-  onClear,
-  onInteractionChange,
-  onPreviewPlaybackStart,
-  onRecorded,
-  onRecordingIntent,
-  previewPauseRequest = 0,
-  recording,
-  sessionId,
-  variant = 'default',
-}: {
+type SpeakingPracticePanelProps = {
   blockedExternalGesture?: GestureType;
   cardId: string;
   interactionGesture?: GestureType;
@@ -128,17 +117,36 @@ export function SpeakingPracticePanel({
   recording?: RecordingAsset;
   sessionId: string;
   variant?: 'default' | 'integrated';
-}) {
+};
+
+export function SpeakingPracticePanel(props: SpeakingPracticePanelProps) {
+  return (
+    <SpeakingRecordingControllerHost
+      cardId={props.cardId}
+      onClear={props.onClear}
+      onInteractionChange={props.onInteractionChange}
+      onRecorded={props.onRecorded}
+      recording={props.recording}
+      sessionId={props.sessionId}
+    >
+      {(controller) => <SpeakingPracticePanelContent {...props} controller={controller} />}
+    </SpeakingRecordingControllerHost>
+  );
+}
+
+function SpeakingPracticePanelContent({
+  blockedExternalGesture,
+  controller,
+  interactionGesture,
+  mode,
+  onInteractionChange,
+  onPreviewPlaybackStart,
+  onRecordingIntent,
+  previewPauseRequest = 0,
+  variant = 'default',
+}: SpeakingPracticePanelProps & { controller: SpeakingRecordingController }) {
   const isWeb = Platform.OS === 'web';
   const [copyLinkFeedback, setCopyLinkFeedback] = useState<string | undefined>(undefined);
-  const controller = useSpeakingRecordingController({
-    cardId,
-    onClear,
-    onInteractionChange,
-    onRecorded,
-    recording,
-    sessionId,
-  });
   const playback = useRecordingPlayback(controller.asset, previewPauseRequest);
   const isRecording = controller.phase === 'recording';
   const isBusy = ['requestingPermission', 'preparing', 'finalizing'].includes(controller.phase);

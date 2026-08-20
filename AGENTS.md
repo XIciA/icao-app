@@ -43,8 +43,10 @@
 ## Conditional rules
 
 - Before audio lifecycle, permission, player, recorder, recording-file, or transcription-trigger
-  changes, read `docs/guides/audio-lifecycle-and-change-rules.md` completely and reuse the existing
-  orchestrator, recorder adapter, repository, and asset types.
+  changes, first read `docs/rules/problem-solving-and-maintenance/recording.md`, then read
+  `docs/guides/audio-lifecycle-and-change-rules.md` completely. Reuse the existing Recording
+  Engine, orchestrator, recorder adapter, repository, and asset types; do not restore a second
+  controller or patch platform timing guesses into UI code.
 - For runtime topology and deployment work, follow
   `docs/operations/deployment-and-runtime-rules.md`. Local API changes are not automatically
   authorized for production deployment; deploy only when the task includes the live environment.

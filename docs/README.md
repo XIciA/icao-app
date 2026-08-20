@@ -17,6 +17,7 @@ Markdown；先从本页选择与任务直接相关的文档。
 - 跨系统或高风险任务：[文档驱动大流程](bigandsmall-workflows/document-driven-development-workflow.md)。
 - 验证范围选择：[验证矩阵](engineering/verification-matrix.md)。
 - 音频生命周期变更：[音频生命周期与变更规则](guides/audio-lifecycle-and-change-rules.md)。
+- 录音问题维护入口：[录音问题解决与维护](rules/problem-solving-and-maintenance/recording.md)。
 - 运行时或部署：[部署与运行时规则](operations/deployment-and-runtime-rules.md)。
 - 2026-08-07 Native 生产迁移：
   [迁移记录与回滚边界](operations/native-production-migration-2026-08-07.md)。

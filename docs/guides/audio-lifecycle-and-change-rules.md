@@ -7,7 +7,7 @@
 ## 1. 不变量
 
 1. 全局音频 session 只有 `AudioSessionOrchestrator` 一个协调者，只有它能调用 `setAudioModeAsync`。
-2. 录音生命周期只有 `useSpeakingRecordingController` 一个控制器；UI 不持有原生 recorder，也不删除文件。
+2. 录音生命周期只有 `RecordingEngine` 一个 owner；`useSpeakingRecordingController` 只是 React 连接层，UI 不持有原生 recorder，也不删除文件。
 3. `RecordingRepository` 是提交后录音文件的唯一仓库和删除 owner；原生 adapter 只产出 raw 文件。
 4. `RecordingAsset` 在 `recording/types.ts` 只有一个定义，asset ID 是转写幂等键。
 5. 录音提交成功即写入学习会话、展开答案、切到“我的回答”；回放和转写是互不回滚的消费者。
@@ -25,7 +25,7 @@
 | 全局 session/profile | `src/platform/audio/audio-session-orchestrator.ts` | Expo Audio mode API、诊断 | UI/Provider 直接改 mode；第二 owner registry |
 | 随身听引擎 | `RadioPlayerProvider` + Track Player | orchestrator lease、共享题库/资源 resolver | 私有题库或私有音频 session |
 | 题卡音频 | `StudyAudioPlayer` | orchestrator lease、平台稳定 player | 录音中抢占播放；自行恢复随身听 |
-| 录音生命周期 | `useSpeakingRecordingController` | recorder adapter、repository、orchestrator | UI 管 recorder、依赖回放状态判成功 |
+| 录音生命周期 | `RecordingEngine` | recorder adapter、repository、orchestrator | UI/Hook 再建状态机、依赖回放状态判成功 |
 | 原生录音 | `expo-recorder-adapter.ts` | Expo recorder/权限/preset；仅 E2E raw WAV 写入 | 提交资产、删除已提交资产、业务发布 |
 | 录音资产 | `RecordingRepository` | Expo FileSystem | 组件直接删除；URI 充当身份 |
 | 录音回放 | `useRecordingPlayback` | stable player、repository existence、orchestrator | 加载失败清 asset；initial source 与 replace 双驱动 |
@@ -35,7 +35,7 @@
 
 ```mermaid
 flowchart LR
-  UI["SpeakingPracticePanel\n手势与渲染"] --> Controller["Recording controller\n状态机与 generation"]
+  UI["SpeakingPracticePanel\n手势与渲染"] --> Controller["Recording Engine\noperationId 与 runtimeEpoch"]
   Controller --> Adapter["Expo recorder adapter\nraw recording"]
   Controller --> Repo["RecordingRepository\ncommit / replace / cleanup"]
   Controller --> Session["AudioSessionOrchestrator\nserialized leases"]
@@ -104,17 +104,17 @@ stateDiagram-v2
 ```
 
 - stop 必须幂等；同一次操作的重复松手共享同一个 Promise。
-- 每次 start 增加 generation。权限、prepare、stop、commit 的异步结果只有 generation 仍匹配时才能发布。
+- 每次 start 创建新的 operation ID。权限、prepare、stop、commit 的异步结果只有 operation 与 runtime epoch 仍匹配时才能发布。
 - Native 录音时长只能由 stop 前的 `RecorderState.durationMillis` 与 adapter 自己记录的实际经过时间交叉校验；不得使用 `AudioRecorder.currentTime` 推导毫秒。Expo 原生实现曾在 iOS / Android 暴露不同单位，重复换算会把有效文件误判为不完整。
-- 后台、卸载、被其它 owner 取代会使 generation 失效并清理 raw/新提交的过期资产。
+- 后台、卸载、被其它 owner 取代会使 operation 失效并清理 raw/新提交的过期资产。
 - 原生录音器意外结束会发 `INTERRUPTED` 并进入 finalizing；如果停止结果无效，进入显式失败态。
-- reducer 对非法转换返回原 state，不“猜测”调用者意图。
+- Native Promise 超时后 runtime 标记为 tainted，旧 Promise 只负责迟到清理；只有其 settle 并完成清理后才能增加 runtime epoch、重建 recorder。
 
 ### Web 浏览器录音边界
 
 - Web 首次录音必须先用一次普通点击完成麦克风授权；授权成功后关闭临时音轨，等待用户再次按住录音。权限弹窗不得与按住/松开手势共用同一次操作；取消后重试时，旧权限请求的迟到结果不得清除新请求的等待计时或解锁录音按钮。
 - `MediaRecorder.isTypeSupported()` 只能用于缩小候选范围，不能作为唯一能力判定。现有 WebM/Opus、WebM、MP4 的 128 kbps 成功路径保持优先；显式构造失败后才尝试无固定码率和浏览器默认格式。
-- `dataavailable`、`error`、`stop` 和音轨 `ended` 必须在 start 前监听。主动停止、浏览器意外停止和重复 stop 共用一个幂等终结器；终结器必须更新独立 lifecycle revision，不能依赖时长变化触发 controller 观察。
+- `dataavailable`、`error`、`stop` 和音轨 `ended` 必须在 start 前监听。主动停止、浏览器意外停止和重复 stop 共用一个幂等终结器；adapter 必须通过运行事件通知 Engine，不能依赖时长变化观察中断。
 - `requestData()` 只是尽力 flush；它失败时仍必须调用 `stop()`。停止等待最终数据最多 5 秒，超时、意外停止或页面失活都要释放轨道和 lease，并且不得替换旧资产。
 - Web adapter 可以把原始 `Blob` 交给既有 repository 校验并转移 Blob URL 所有权；Blob 的 MIME 标签规范为 `audio/webm`、`audio/ogg` 或 `audio/mp4`，避免 codecs 参数破坏既有 Vercel data URL 协议，编码字节不得重写。UI 仍不得持有 Blob、撤销 URL 或决定提交成功。
 
@@ -123,10 +123,10 @@ stateDiagram-v2
 `commitRaw` 的固定顺序：
 
 1. 检查停止时长至少 400 ms。
-2. 等待文件大小稳定，检查文件存在和格式对应的最低 bytes/ms。Native WAV 最低 10 KB；Web 压缩 Blob 使用独立的 256 B 容器下限并叠加 encoder bytes/ms，不能以 WAV 文件大小误判有效 WebM/Opus 录音。
+2. 等待文件写入稳定；Native M4A 检查 `ftyp`、`moov` 和非空 `mdat`，不得按码率或 bytes/ms 猜有效性。Web 只做格式、MIME 和非空 Blob 基础校验。
 3. 复制到 `Paths.cache/icao-recordings/<sessionId>/<assetId>.<format>.pending`。
 4. 校验 pending 大小与 raw 一致。
-5. 原子 move 为正式文件，再校验目标。
+5. 同目录 pending move 为正式文件，再校验目标；这是事务式提交，不宣称跨平台原子 rename。
 6. 只有目标有效后删除 raw 并返回 `RecordingAsset`。
 
 任何步骤失败都清理 raw/pending/不完整目标，但不得碰旧 `RecordingAsset`。学习会话 finish/unmount 时清目录；App 启动时清理超过 24 小时的孤儿 session。录音保持学习会话级，不承诺跨重启恢复。
@@ -150,7 +150,7 @@ stateDiagram-v2
 | 范围 | 主要错误码 | 首先检查 |
 | --- | --- | --- |
 | session | `owner_pause_timeout`, `owner_pause_failed`, `mode_switch_failed`, `recording_exclusive` | 当前 owner、deactivate 是否 await、原生 mode 调用 |
-| recorder | `microphone_permission_denied`, `microphone_device_missing`, `microphone_device_unavailable`, `recording_browser_unsupported`, `record_prepare_failed`, `record_start_failed`, `record_stop_failed`, `recording_interrupted`, `recording_finalization_timeout` | 权限、Web 能力、设备占用、Development Build、AppState、generation |
+| recorder | `microphone_permission_denied`, `microphone_device_missing`, `microphone_device_unavailable`, `recording_browser_unsupported`, `record_prepare_failed`, `record_start_failed`, `record_stop_failed`, `recording_interrupted`, `recording_finalization_timeout` | 权限、Web 能力、设备占用、TestFlight build、AppState、operation/runtime epoch |
 | repository | `recording_too_short`, `recording_file_incomplete`, `recording_commit_failed`, `recording_asset_missing` | duration、稳定 size、pending/目标大小、cache 清理 |
 | playback | `playback_load_failed`, `playback_start_failed`, `asset_missing` | asset 是否存在、replace 是否唯一、lease 获取 |
 | transcription | `transcription_completed`, `transcription_failed`, `transcription_cancelled` | asset ID、multipart MIME 及规范化、账号级 AI 同意、登录状态、网络/AI API |
@@ -160,7 +160,7 @@ stateDiagram-v2
 1. 从内存环形诊断读取 owner 切换和 recording phase，不读取或打印录音内容/URI。
 2. 确认 `RecordingAsset` 是否已经 commit；若已 commit，禁止从 playback/ASR 错误回滚。
 3. 确认当前 owner/lease token 和旧 owner 的实际 pause 结果。
-4. 确认 generation 是否过期、stop 是否被合并、AppState 是否触发取消。
+4. 确认 operation/runtime epoch 是否过期、stop 是否被合并、AppState 是否触发取消。
 5. 最后再检查 player load 或服务端 ASR；不能先改 UI 状态掩盖生命周期错误。
 
 ### Web 有声播放的用户手势边界
@@ -177,8 +177,8 @@ stateDiagram-v2
 | --- | --- | --- | --- | --- |
 | UI 文案/样式且不碰音频行为或敏感文件 | 通用验证矩阵 + 渲染对比 | 只检查受影响目标端 | 只检查受影响目标端 | 无新增音频证据 |
 | Web 题卡播放、手势或资源解析 | `pnpm check:audio` + 相关测试 + `pnpm check:web` | 移动 Safari 目标路径 | 按受影响浏览器检查 | 发布前保留 Web 代表性证据 |
-| controller/repository/playback/session | `pnpm check:audio` + 相关竞态测试 | 受影响时 Development Build + 真机冒烟 | 受影响时 Development Build / Maestro | 音频敏感发布时刷新目标平台指纹 |
-| Expo Audio/权限/preset/native config | 上述全部 + Expo Doctor | 重建 Development Build + 真机 | 重建 Development Build + 模拟器/真机 | 受影响平台指纹必须刷新 |
+| Engine/repository/playback/session | `pnpm check:audio` + 聚焦竞态测试 + typecheck | iOS 用户可见变更直接进入同一 commit 的 TestFlight 真机验收 | 合同测试；发布任务再做目标端真机 | 保存候选 commit、build、archive/IPA checksum |
+| Expo Audio/权限/preset/native config | 上述全部 + SDK 55 API 核对 | Release archive + TestFlight 真机 | 发布任务做 Release/真机 | 受影响平台候选证据必须刷新 |
 | Track Player/后台/锁屏 | queue/session 测试 | 真机锁屏/控制中心 | 媒体通知/后台 | 受影响平台指纹必须刷新 |
 
 确定性 E2E：`pnpm audio:e2e:ios`、`pnpm audio:e2e:android`。它只在 `__DEV__` 且 `EXPO_PUBLIC_ICAO_AUDIO_E2E=1` 时生成静音 WAV 和固定转写；Release 构建脚本明确拒绝该标志。确定性 adapter 不替代真实麦克风冒烟。
@@ -195,11 +195,11 @@ stateDiagram-v2
 - [ ] stable player 仍由 `useAudioPlayer` 释放，未在挂载期间调用 `player.remove()`。
 - [ ] 新录音格式或 preset 的 MIME alias 已在 API 规范化，并有真实格式的 live verifier 证据。
 - [ ] 成功判定不依赖 player load、转写或组件渲染。
-- [ ] 新异步步骤有 generation/lease token 或明确幂等键。
+- [ ] 新异步步骤有 operation ID、runtime epoch、lease token 或明确幂等键。
 - [ ] 错误不会删除旧资产，不会自动恢复旧音频。
 - [ ] 诊断事件不含内容、URI、令牌或身份信息。
 - [ ] 新的错误码、状态、owner 或文件阶段已更新测试和本指南。
-- [ ] 已运行适用的自动化、Development Build、真机矩阵并记录真实证据。
+- [ ] 已运行适用自动化；iOS 用户可见录音变更已由同一 commit 的 TestFlight 真机记录真实结果。
 
 ## 10. 故障知识维护
 

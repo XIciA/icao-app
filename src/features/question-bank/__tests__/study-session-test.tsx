@@ -85,9 +85,11 @@ function recording(id: string): RecordingAsset {
     cardId: 'a',
     uri: `file:///recordings/${id}.wav`,
     format: 'wav',
+    mimeType: 'audio/wav',
     durationMillis: 1_200,
     byteSize: 32_044,
     createdAt: '2026-07-16T00:00:00.000Z',
+    storageKind: 'native-file',
   };
 }
 

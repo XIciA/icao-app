@@ -36,19 +36,19 @@ permission
 长期修复至少满足以下一项，最好同时满足多项：
 
 - 消除重复 owner 或重复 source of truth。
-- 把隐式时序改为明确状态机、generation、lease token 或幂等操作。
+- 把隐式时序改为明确 Engine 状态、operation ID、runtime epoch、lease token 或幂等操作。
 - 将平台差异隔离在 adapter，不让 UI 猜测原生单位或状态。
 - 将故障转为稳定、可诊断的错误码，不用“网络错误”覆盖所有失败。
 - 添加能复现真实状态转换的回归测试，而不只测试最终渲染。
 - 添加静态门禁，阻止已经确认的危险调用重新进入。
-- 刷新 Development Build、真机和平台指纹证据。
+- 刷新目标 Release/TestFlight、真机和候选指纹证据。
 
 只增加重试、延时、条件判断、吞掉异常或修改报错文案，默认视为补丁，除非事故记录证明它恢复了明确的不变量。
 
 ## 3. 不得破坏的边界
 
 - `AudioSessionOrchestrator` 是唯一全局 session 协调者。
-- `useSpeakingRecordingController` 是唯一录音生命周期控制器。
+- `RecordingEngine` 是唯一录音生命周期 owner；`useSpeakingRecordingController` 只连接 React/UI。
 - Expo recorder adapter 只负责原生录音，不发布业务资产。
 - `RecordingRepository` 是已提交录音文件的唯一仓库和删除 owner。
 - `RecordingAsset` 是录音成功后的唯一业务事实。
@@ -67,7 +67,7 @@ permission
 
 - App 显示版本、native build number、commit 或明确文件集。
 - iOS/Android、系统版本、设备型号。
-- Development Build 或 Release，是否依赖 Metro。
+- TestFlight/Release build number、commit，是否仍意外依赖 Metro。
 - 实际 API/Supabase 地址，不能只看 `.env.local`。
 - 当前账号类型、登录状态、麦克风权限和网络。
 
@@ -78,7 +78,7 @@ permission
 1. recorder 是否进入 recording 和 finalizing。
 2. stop 是否返回有效 URI、时长和格式。
 3. raw 文件是否存在、大小是否稳定。
-4. repository 是否完成 pending、原子 move 和最终校验。
+4. repository 是否完成 pending → 正式文件的事务式提交和最终容器校验。
 5. `RecordingAsset` 是否已发布到学习会话。
 6. 真机文件是否包含可识别的 RIFF/WAVE 或目标格式头、合理采样率/声道和实际语音电平。
 
@@ -132,8 +132,8 @@ git diff --check
 ```
 
 - 运行与改动直接相关的 recorder、repository、orchestrator、playback 或 workbench 测试。
-- 只在受影响平台重新构建 Development Build；原生配置和发布敏感变化按主指南扩大。
-- 发布敏感变化用 `pnpm audio:e2e:ios` 或 `pnpm audio:e2e:android` 刷新对应平台指纹。
+- iOS 用户可见录音修复通过聚焦门禁后直接生成同一 commit 的 Release/TestFlight 候选；不把模拟器或 Development Build 设为固定前置阶梯。
+- Android/Web 本轮未发布时只做共享 Engine 与 adapter 合同测试；对应发布任务再扩大到目标端真机。
 - 真实麦克风、后台/前台、拒绝权限、快速松手、连续录音和切题检查按受影响链路选择。
 
 验收记录必须区分“自动化通过”“构建安装通过”和“真实麦克风闭环通过”。

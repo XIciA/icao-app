@@ -2,11 +2,17 @@ export type AudioDiagnosticLevel = 'info' | 'warning' | 'error';
 
 export type AudioDiagnosticEvent = {
   at: string;
+  byteSize?: number;
   code: string;
+  diagnosticId?: string;
+  durationMillis?: number;
+  format?: string;
   level: AudioDiagnosticLevel;
+  meteringDetected?: boolean;
   owner?: string;
   phase?: string;
   reason?: string;
+  runtimeEpoch?: number;
   scope: 'session' | 'recording' | 'playback' | 'transcription';
 };
 
