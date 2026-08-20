@@ -81,8 +81,10 @@ async function api(credentialsValue, pathname, options = {}) {
   });
   if (!response.ok) {
     const body = await response.json().catch(() => undefined);
-    const detail = body?.errors?.[0]?.detail ?? `HTTP ${response.status}`;
-    throw new Error(`App Store Connect request failed: ${detail}`);
+    const issue = body?.errors?.[0];
+    const code = issue?.code ? `, ${issue.code}` : '';
+    const detail = issue?.detail ?? 'No response detail';
+    throw new Error(`App Store Connect request failed (HTTP ${response.status}${code}): ${detail}`);
   }
   if (response.status === 204) return undefined;
   return response.json();
@@ -144,17 +146,30 @@ async function assignInternalGroups() {
   if (!target) throw new Error('The uploaded TestFlight build is not visible in App Store Connect yet.');
   let groups = [];
   for (const previous of builds.filter((build) => build.id !== target.id)) {
-    const related = await api(credentialsValue, `/v1/builds/${previous.id}/betaGroups?limit=200`);
+    const related = await api(
+      credentialsValue,
+      `/v1/betaGroups?filter%5Bbuilds%5D=${encodeURIComponent(previous.id)}&filter%5BisInternalGroup%5D=true&limit=200`,
+    );
     groups = (related.data ?? []).filter((group) => group.attributes?.isInternalGroup === true);
     if (groups.length > 0) break;
   }
-  for (const group of groups) {
-    await api(credentialsValue, `/v1/betaGroups/${group.id}/relationships/builds`, {
-      body: JSON.stringify({ data: [{ id: target.id, type: 'builds' }] }),
+  const targetGroups = await api(
+    credentialsValue,
+    `/v1/betaGroups?filter%5Bbuilds%5D=${encodeURIComponent(target.id)}&filter%5BisInternalGroup%5D=true&limit=200`,
+  );
+  const targetGroupIds = new Set((targetGroups.data ?? []).map((group) => group.id));
+  const missingGroups = groups.filter(
+    (group) => group.attributes?.hasAccessToAllBuilds !== true && !targetGroupIds.has(group.id),
+  );
+  if (missingGroups.length > 0) {
+    await api(credentialsValue, `/v1/builds/${target.id}/relationships/betaGroups`, {
+      body: JSON.stringify({ data: missingGroups.map((group) => ({ id: group.id, type: 'betaGroups' })) }),
       method: 'POST',
     });
   }
-  console.log(`Assigned the uploaded build to ${groups.length} existing internal TestFlight group(s).`);
+  console.log(
+    `Uploaded build is available to ${groups.length} existing internal TestFlight group(s); added ${missingGroups.length}.`,
+  );
 }
 
 if (command === 'prepare') await prepareBuild();
