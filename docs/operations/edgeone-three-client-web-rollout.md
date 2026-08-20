@@ -1,6 +1,6 @@
 # EdgeOne 三端同步 Web 上线方案
 
-状态：执行中
+状态：生产上线完成（真实短信验证码登录待人工验收）
 日期：2026-08-20
 
 ## 目标结构
@@ -39,14 +39,30 @@ EdgeOne 的构建、环境变量和 SPA fallback 规则以官方文档为准：
 [构建指南](https://pages.edgeone.ai/document/build-guide)、
 [edgeone.json](https://pages.edgeone.ai/document/edgeone-json)。
 
+## 生产结果
+
+- Makers 项目：`tingniwuge-web`（`makers-4khvzoj9ywnq`）。
+- 当前生产部署：`dpw5cihk42zw`；项目临时域名为
+  `tingniwuge-web-hxnvmxob.edgeone.cool`。
+- `readyoufife.com` 与 `www.readyoufife.com` 已绑定并接入 EdgeOne：
+  - 根域名 CNAME：`readyoufife.com.pages.dnsoe6.com`
+  - `www` CNAME：`www.readyoufife.com.pages.dnsoe4.com`
+- 两个域名均使用 EdgeOne 自动更新的免费 HTTPS 证书，并启用 HTTP 到 HTTPS 的 301；
+  `www` 再由版本化 `edgeone.json` 规则 301 到根域名并保留路径。
+- ECS API CORS 已保留旧 Vercel 来源，并增加 EdgeOne 临时域名、根域名和 `www`；
+  API 与数据库健康检查正常，不涉及数据库迁移。
+- 生产验收：根域名与深链接返回 200，安全响应头生效；1248px 桌面视口内容宽度为
+  1098px（88%），390px 手机视口无横向溢出。
+- 唯一待人工验收项是真实手机号短信验证码登录，以及登录后的题库、音频和同步抽查。
+
 ## 外部变更顺序
 
-1. 推送独立分支并创建 EdgeOne Preview。
-2. 验证 Preview 构建、路由刷新、登录 UI 和请求目标。
-3. 在 ECS API 的 `CORS_ORIGINS` 增加 `https://readyoufife.com` 与
+1. 已推送独立分支，并用直接上传方式完成 EdgeOne Production 部署。
+2. 已验证构建、路由刷新、登录 UI 和请求目标。
+3. 已在 ECS API 的 `CORS_ORIGINS` 增加 `https://readyoufife.com` 与
    `https://www.readyoufife.com`，重建 API 容器并验证健康状态。
-4. EdgeOne 绑定已备案域名并按控制台要求添加阿里云 DNS 记录。
-5. HTTPS 生效后，用真实验证码完成登录、题库、音频和同步验收。
+4. 已绑定备案域名、添加阿里云 DNS 记录并完成免费 HTTPS 证书部署。
+5. 待用户接管真实短信验证码后，完成登录、题库、音频和同步抽查。
 
 ## 回滚
 
