@@ -3,6 +3,13 @@
   "installCommand": "corepack prepare pnpm@11.7.0 --activate && pnpm install --frozen-lockfile",
   "buildCommand": "pnpm web:edgeone:export",
   "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "$wwwhost",
+      "destination": "$host",
+      "statusCode": 301
+    }
+  ],
   "rewrites": [
     {
       "source": "/*",

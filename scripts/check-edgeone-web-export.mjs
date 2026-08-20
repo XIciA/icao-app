@@ -35,6 +35,13 @@ for (const forbidden of ['buildCommand', 'installCommand', 'name', 'outputDirect
 if (!Array.isArray(uploadConfig.rewrites) || !Array.isArray(uploadConfig.headers)) {
   throw new Error('edgeone_upload_config_runtime_rules_missing');
 }
+if (!uploadConfig.redirects?.some((redirect) => (
+  redirect.source === '$wwwhost'
+  && redirect.destination === '$host'
+  && redirect.statusCode === 301
+))) {
+  throw new Error('edgeone_upload_config_www_redirect_missing');
+}
 
 const totalBytes = (await Promise.all(outputFiles.map(async (path) => (await stat(path)).size)))
   .reduce((total, size) => total + size, 0);
