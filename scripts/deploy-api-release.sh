@@ -48,7 +48,7 @@ cd "$SOURCE_ROOT"
 git ls-files -co --exclude-standard -z -- \
   package.json pnpm-lock.yaml pnpm-workspace.yaml \
   patches packages/contracts services/api content/vocabulary infra/api \
-  | tar --null -T - -czf "$ARCHIVE"
+  | COPYFILE_DISABLE=1 tar --null -T - -czf "$ARCHIVE"
 shasum -a 256 "$ARCHIVE" > "$ARCHIVE.sha256"
 
 REMOTE_RELEASE=/opt/icao/runtime/releases/api-$RELEASE_ID
@@ -66,6 +66,7 @@ candidate_image=icao-api:candidate-$release_id
 backup_dir=/opt/icao/backups/api-$release_id
 runtime_compose=/opt/icao/runtime/api/docker-compose.yml
 
+rm -rf "$source_dir"
 mkdir -p "$source_dir" "$backup_dir"
 tar -xzf "$release_dir/source.tar.gz" -C "$source_dir"
 if [ -d /opt/icao/runtime/source ]; then
