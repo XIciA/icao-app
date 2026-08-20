@@ -6,6 +6,7 @@ import { StyleSheet, View } from 'react-native';
 import { TopBar } from '@/components/navigation/TopBar';
 import { AppText, Button, Card, Screen, Tag } from '@/components/ui';
 import { APP_DISPLAY_VERSION } from '@/config/app-version';
+import { isEdgeOneProductionWeb } from '@/config/web-runtime';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { readAnnotationStore } from '@/features/question-bank/annotations/annotation-store';
 import { sqliteLearningStore } from '@/features/question-bank/platform/learning-store';
@@ -24,37 +25,39 @@ function Page({ title, children }: { title: string; children: React.ReactNode })
 
 function ExperienceAccountPage() {
   const auth = useAuth();
+  const cloud = isEdgeOneProductionWeb();
   const [counts, setCounts] = useState({ annotations: 0, records: 0 });
   const [contentRelease, setContentRelease] = useState('读取中…');
   useEffect(() => {
     let active = true;
-    void Promise.all([sqliteLearningStore.getRecords(), readAnnotationStore(), loadWebContentRelease()])
-      .then(([records, annotations, release]) => {
+    const release = cloud ? Promise.resolve(undefined) : loadWebContentRelease();
+    void Promise.all([sqliteLearningStore.getRecords(), readAnnotationStore(), release])
+      .then(([records, annotations, loadedRelease]) => {
         if (active) setCounts({ records: records.length, annotations: Object.keys(annotations.entries).length });
-        if (active) setContentRelease(release.releaseId ?? '已发布');
+        if (active) setContentRelease(cloud ? '与 App 共用云端题库' : loadedRelease?.releaseId ?? '已发布');
       })
       .catch(() => { if (active) setContentRelease('暂不可用'); });
     return () => { active = false; };
-  }, []);
+  }, [cloud]);
   return (
-    <Page title="Web 体验账号">
+    <Page title={cloud ? '我的账号' : 'Web 体验账号'}>
       <View style={styles.hero}>
         <View style={styles.avatar}><UserRound color={colors.primary} size={30} /></View>
         <AppText variant="pageTitle">{auth.session?.user.displayName ?? '飞行学员'}</AppText>
-        <Tag>Web 体验版</Tag>
+        <Tag>{cloud ? '三端同步' : 'Web 体验版'}</Tag>
       </View>
       <View style={styles.content}>
         <Card style={styles.notice}>
-          <AppText variant="button">数据保存在当前浏览器</AppText>
-          <AppText variant="caption">不与 iOS、Android 同步；清理浏览器数据或更换设备后记录会丢失。</AppText>
+          <AppText variant="button">{cloud ? '学习数据已启用云同步' : '数据保存在当前浏览器'}</AppText>
+          <AppText variant="caption">{cloud ? '使用同一手机号登录 iOS、Android 和网页，即可读取同一份学习进度。录音文件仍只保存在录制设备。' : '不与 iOS、Android 同步；清理浏览器数据或更换设备后记录会丢失。'}</AppText>
         </Card>
         <Card style={styles.rows}>
           <Row icon={Bookmark} label="本机标注与笔记" value={`${counts.annotations} 项`} />
           <Row icon={Info} label="本机学习记录" value={`${counts.records} 条`} />
-          <Row icon={Info} label="内容镜像" value={contentRelease} />
-          <Row icon={Shield} label="完整账户与云同步" value="体验版不提供" />
+          <Row icon={Info} label={cloud ? '题库来源' : '内容镜像'} value={contentRelease} />
+          <Row icon={Shield} label="完整账户与云同步" value={cloud ? '已启用' : '体验版不提供'} />
         </Card>
-        <AppText variant="caption">App 是正式学习产品；网页用于独立体验核心题库、音频和 AI 能力。</AppText>
+        <AppText variant="caption">{cloud ? '网页与 App 共用正式账号、题库和学习数据。' : 'App 是正式学习产品；网页用于独立体验核心题库、音频和 AI 能力。'}</AppText>
       </View>
     </Page>
   );
@@ -63,6 +66,7 @@ function ExperienceAccountPage() {
 function SettingsPage() {
   const auth = useAuth();
   const router = useRouter();
+  const cloud = isEdgeOneProductionWeb();
   async function signOut() {
     await auth.signOut();
     router.replace('/auth/login');
@@ -71,8 +75,8 @@ function SettingsPage() {
     <Page title="设置">
       <View style={styles.content}>
         <Card style={styles.notice}>
-          <AppText variant="button">Web 体验版</AppText>
-          <AppText variant="caption">版本 {APP_DISPLAY_VERSION} · 本机保存 · 不提供云同步和完整账号管理。</AppText>
+          <AppText variant="button">{cloud ? '听你五个 Web' : 'Web 体验版'}</AppText>
+          <AppText variant="caption">版本 {APP_DISPLAY_VERSION} · {cloud ? '手机号账号 · 三端云同步。' : '本机保存 · 不提供云同步和完整账号管理。'}</AppText>
         </Card>
         <Button leading={<LogOut color={colors.destructive} size={16} />} onPress={() => void signOut()} variant="outline">退出当前浏览器</Button>
       </View>

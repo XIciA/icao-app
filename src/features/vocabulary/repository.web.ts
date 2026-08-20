@@ -1,10 +1,13 @@
-import type { VocabularyDataset } from '@icao/contracts';
+import type { ApiSuccessEnvelope, VocabularyDataset, VocabularyRelease } from '@icao/contracts';
 
+import { isEdgeOneProductionWeb } from '@/config/web-runtime';
 import { loadWebContentRelease, resolveWebContentUrl } from '@/features/web-content/release';
+import { apiFetch } from '@/platform/api-client';
 import Storage from '@/platform/storage';
 
 const CACHE_KEY = 'icao.web.content.v1.vocabulary';
 const REQUEST_TIMEOUT_MILLISECONDS = 10_000;
+const CLOUD_CACHE_KEY = 'icao.content.v1.vocabulary';
 
 type CachedVocabulary = {
   releaseIdentity: string;
@@ -79,7 +82,44 @@ async function fetchVocabulary(identity: string) {
   return dataset;
 }
 
+type CachedCloudRelease = VocabularyRelease & { cachedAt: string };
+
+async function readCloudCache() {
+  const raw = await Storage.getItem(CLOUD_CACHE_KEY);
+  if (!raw) return undefined;
+  try {
+    const value = JSON.parse(raw) as CachedCloudRelease;
+    validateVocabularyDataset(value.dataset);
+    return value;
+  } catch {
+    return undefined;
+  }
+}
+
+async function loadCloudVocabulary(): Promise<VocabularyLoadResult> {
+  const local = await readCloudCache();
+  try {
+    const response = await apiFetch('/v1/vocabulary', {
+      headers: local ? { 'if-none-match': `"${local.checksum}"` } : undefined,
+    });
+    if (response.status === 304 && local) return { dataset: local.dataset, source: 'cache' };
+    if (!response.ok) throw new Error(`vocabulary_http_${response.status}`);
+    const body = await response.json() as ApiSuccessEnvelope<VocabularyRelease>;
+    const release = body.data;
+    validateVocabularyDataset(release.dataset);
+    await Storage.setItem(CLOUD_CACHE_KEY, JSON.stringify({
+      ...release,
+      cachedAt: new Date().toISOString(),
+    } satisfies CachedCloudRelease));
+    return { dataset: release.dataset, source: 'remote' };
+  } catch (error) {
+    if (local) return { dataset: local.dataset, source: 'cache', warning: 'vocabulary_remote_unavailable' };
+    throw error;
+  }
+}
+
 export async function loadVocabulary(): Promise<VocabularyLoadResult> {
+  if (isEdgeOneProductionWeb()) return loadCloudVocabulary();
   const release = await loadWebContentRelease();
   const identity = releaseIdentity(release);
   const local = await cached();

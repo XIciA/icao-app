@@ -63,3 +63,7 @@ app-example
 
 # Local Netlify folder
 .netlify
+
+# Local Tencent EdgeOne CLI state
+.edgeone/*
+.tef_dist/*
