@@ -33,7 +33,7 @@ class FakeAuthVerifier implements AuthVerifier {
   }
 }
 
-async function testApp({ revoked = false }: { revoked?: boolean } = {}) {
+async function testApp({ accountBlocked = false, revoked = false }: { accountBlocked?: boolean; revoked?: boolean } = {}) {
   const module = await Test.createTestingModule({ imports: [AppModule] })
     .overrideProvider(DatabaseService)
     .useValue({ ping: async () => undefined })
@@ -43,7 +43,7 @@ async function testApp({ revoked = false }: { revoked?: boolean } = {}) {
     .useValue({ assertActive: async () => { if (revoked) throw new UnauthorizedException('session_revoked'); }, revokeAll: async () => undefined })
     .overrideProvider(InviteAuthService)
     .useValue({
-      assertActiveAccount: async () => undefined,
+      assertAccountAccess: async () => { if (accountBlocked) throw new UnauthorizedException('invite_account_disabled'); },
       deleteAccount: async () => undefined,
       exchange: async () => ({
         accessToken: 'invite-access-token',
@@ -189,6 +189,21 @@ describe('API foundation', () => {
     const response = await app.inject({ method: 'GET', url: '/v1/me', headers: { authorization: 'Bearer valid-token' } });
     expect(response.statusCode).toBe(200);
     expect(response.json().data).toEqual({ id: '00000000-0000-4000-8000-000000000001', email: 'tester@example.com' });
+    await app.close();
+  });
+
+  it('allows a valid Supabase phone account without an invite record', async () => {
+    const app = await testApp();
+    const response = await app.inject({ method: 'GET', url: '/v1/me', headers: { authorization: 'Bearer valid-token' } });
+    expect(response.statusCode).toBe(200);
+    await app.close();
+  });
+
+  it('continues to reject disabled legacy invite accounts', async () => {
+    const app = await testApp({ accountBlocked: true });
+    const response = await app.inject({ method: 'GET', url: '/v1/me', headers: { authorization: 'Bearer valid-token' } });
+    expect(response.statusCode).toBe(401);
+    expect(response.json().error.code).toBe('invite_account_disabled');
     await app.close();
   });
 

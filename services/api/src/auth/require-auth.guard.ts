@@ -22,7 +22,7 @@ export class RequireAuthGuard implements CanActivate {
     if (!token) throw new UnauthorizedException('missing_bearer_token');
     const auth = await this.verifier.verify(token);
     await this.sessions.assertActive(auth);
-    await this.invites.assertActiveAccount(auth.user.id);
+    await this.invites.assertAccountAccess(auth.user.id);
     request.auth = auth;
     request.user = auth.user;
     return true;

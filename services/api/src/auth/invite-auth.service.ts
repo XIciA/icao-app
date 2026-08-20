@@ -64,10 +64,10 @@ export class InviteAuthService {
     };
   }
 
-  async assertActiveAccount(userId: string) {
-    const [invite] = await this.database.db.select({ userId: inviteAccounts.userId }).from(inviteAccounts)
-      .where(and(eq(inviteAccounts.userId, userId), eq(inviteAccounts.status, 'active'))).limit(1);
-    if (!invite) throw new UnauthorizedException('invite_account_required');
+  async assertAccountAccess(userId: string) {
+    const [invite] = await this.database.db.select({ status: inviteAccounts.status }).from(inviteAccounts)
+      .where(eq(inviteAccounts.userId, userId)).limit(1);
+    if (invite && invite.status !== 'active') throw new UnauthorizedException('invite_account_disabled');
   }
 
   async deleteAccount(userId: string, rawCode: string) {
