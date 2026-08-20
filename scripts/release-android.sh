@@ -18,6 +18,7 @@ git status --short
 pnpm release:prepare
 node tools/create-release-manifest.mjs
 pnpm check
+node tools/critical-capability-release-evidence.mjs verify android android
 node tools/audio-sensitive-fingerprint.mjs verify android
 pnpm android:standalone
 

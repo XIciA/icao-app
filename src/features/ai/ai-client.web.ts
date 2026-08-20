@@ -1,5 +1,7 @@
 import type {
   AiConsent,
+  AiReviewRequest,
+  AiReviewResult,
   GrammarReviewRequest,
   GrammarReviewResult,
   PolishRequest,
@@ -9,8 +11,9 @@ import type {
 
 import Storage from '@/platform/storage';
 import { apiRequest } from '@/platform/api-client';
+import { toAiOperationFailure } from './ai-operation-failure';
 
-const POLICY_VERSION = 'ai-learning-privacy-v1';
+const POLICY_VERSION = 'ai-learning-privacy-v4';
 const CONSENT_KEY = `icao.ai.consent.${POLICY_VERSION}`;
 const MAXIMUM_TRANSCRIPTION_BYTES = 3_000_000;
 
@@ -45,32 +48,70 @@ function audioDataUrl(audio: Blob) {
 }
 
 export async function transcribeRecording(uri: string, signal?: AbortSignal) {
-  const response = await fetch(uri, { signal });
-  if (!response.ok) throw new Error('recording_asset_missing');
-  const audio = await response.blob();
-  if (!audio.size || audio.size > MAXIMUM_TRANSCRIPTION_BYTES) throw new Error('recording_too_large_for_web');
-  return apiRequest<TranscribeResult>('/v1/ai/transcribe', {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ dataUrl: await audioDataUrl(audio) }),
-    signal,
-  });
+  try {
+    const response = await fetch(uri, { signal });
+    if (!response.ok) throw new Error('recording_asset_missing');
+    const audio = await response.blob();
+    if (!audio.size || audio.size > MAXIMUM_TRANSCRIPTION_BYTES) throw new Error('recording_too_large_for_web');
+    return await apiRequest<TranscribeResult>('/v1/ai/transcribe', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ dataUrl: await audioDataUrl(audio) }),
+      signal,
+    });
+  } catch (error) {
+    throw toAiOperationFailure(error, 'transcribe', 'upload');
+  }
 }
 
-export function grammarReview(input: GrammarReviewRequest, signal?: AbortSignal) {
-  return apiRequest<GrammarReviewResult>('/v1/ai/grammar-review', {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify(input),
-    signal,
-  });
+export async function grammarReview(input: GrammarReviewRequest, signal?: AbortSignal) {
+  try {
+    return await apiRequest<GrammarReviewResult>('/v1/ai/grammar-review', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(input),
+      signal,
+    });
+  } catch (error) {
+    throw toAiOperationFailure(error, 'grammar');
+  }
 }
 
-export function polishExpression(input: PolishRequest, signal?: AbortSignal) {
-  return apiRequest<PolishResult>('/v1/ai/polish', {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify(input),
-    signal,
-  });
+export async function polishExpression(input: PolishRequest, signal?: AbortSignal) {
+  try {
+    return await apiRequest<PolishResult>('/v1/ai/polish', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(input),
+      signal,
+    });
+  } catch (error) {
+    throw toAiOperationFailure(error, 'polish');
+  }
+}
+
+export async function reviewExpression(input: AiReviewRequest, signal?: AbortSignal): Promise<AiReviewResult> {
+  const capability = input.mode === 'opi' ? 'polish' : 'grammar';
+  try {
+    const legacyInput = {
+      module: input.module,
+      questionId: input.questionId,
+      questionText: '',
+      transcript: input.transcript,
+    } as const;
+    const grammar = await grammarReview(legacyInput, signal);
+    const polished = input.mode === 'opi'
+      ? await polishExpression({ ...legacyInput, module: 'opi', correctedText: grammar.correctedText }, signal)
+      : undefined;
+    return {
+      grammar: {
+        correctedText: grammar.correctedText,
+        issues: grammar.issues.map((issue) => ({ before: issue, after: issue, reasonZh: '' })),
+      },
+      ...(polished ? { polishedText: polished.polishedText } : {}),
+      promptVersion: 'deepseek-review:v1',
+    };
+  } catch (error) {
+    throw toAiOperationFailure(error, capability);
+  }
 }

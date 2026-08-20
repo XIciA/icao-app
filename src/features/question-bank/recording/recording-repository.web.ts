@@ -5,9 +5,10 @@ import type { RawRecording, RecordingAsset } from './types';
 
 const MIN_RECORDING_DURATION_MS = 400;
 // WebM/Opus is compressed and Chromium may produce a valid short recording
-// below 1 KB. Keep only a small container floor; duration and the encoder's
-// bytes-per-millisecond hint provide the remaining integrity check.
+// below 1 KB. Keep only a small container floor; duration and this repository's
+// compressed-format threshold provide the remaining integrity check.
 const MIN_RECORDING_BYTES = 256;
+const MIN_WEB_BYTES_PER_MILLISECOND = 0.05;
 const ORPHAN_MAX_AGE_MS = 24 * 60 * 60 * 1_000;
 
 let idSequence = 0;
@@ -43,7 +44,7 @@ export class RecordingRepository {
       if (formatForWebBlob(blob) !== input.format) {
         throw new RecordingRepositoryError('recording_file_incomplete');
       }
-      const minimumSize = Math.max(MIN_RECORDING_BYTES, Math.round(input.durationMillis * input.minBytesPerMillisecond));
+      const minimumSize = Math.max(MIN_RECORDING_BYTES, Math.round(input.durationMillis * MIN_WEB_BYTES_PER_MILLISECOND));
       if (blob.size < minimumSize) throw new RecordingRepositoryError('recording_file_incomplete');
 
       const id = createId();

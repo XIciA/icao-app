@@ -26,13 +26,13 @@ const committedAsset: RecordingAsset = {
 const rawRecording: RawRecording = {
   durationMillis: 3_000,
   format: 'wav',
-  minBytesPerMillisecond: 6.4,
   uri: 'file:///raw.wav',
 };
 
 const mockRecorder = {
   cancel: jest.fn(async () => undefined as string | undefined),
   durationMillis: 3_000,
+  getSnapshot: jest.fn(() => ({ canRecord: true, isRecording: false, mediaServicesDidReset: false, state: 'prepared' as const })),
   isRecording: jest.fn(() => false),
   lifecycleRevision: 0,
   permissionReady: false,
@@ -42,7 +42,6 @@ const mockRecorder = {
   start: jest.fn(),
   stop: jest.fn(async () => rawRecording),
 };
-
 const mockPlayback = {
   pause: jest.fn(),
   play: jest.fn(),
@@ -59,6 +58,7 @@ const mockAcquire = jest.fn(async (owner: string, _reason: string) => ({ owner, 
 const mockRelease = jest.fn(async (_lease?: unknown) => undefined);
 let previousAppState = AppState.currentState;
 const initialPlatform = Platform.OS;
+const mockRouterPush = jest.fn();
 
 function setPlatform(platform: typeof Platform.OS) {
   Object.defineProperty(Platform, 'OS', { configurable: true, value: platform });
@@ -79,9 +79,12 @@ jest.mock('expo-audio', () => ({
   useAudioPlayerStatus: () => mockPlaybackStatus,
 }));
 
+jest.mock('expo-router', () => ({ useRouter: () => ({ push: mockRouterPush }) }));
+
 jest.mock('@/platform/audio', () => ({
   audioSessionOrchestrator: {
     acquire: (owner: string, reason: string) => mockAcquire(owner, reason),
+    getActiveOwner: jest.fn(() => 'recording'),
     register: jest.fn(() => jest.fn()),
     release: (lease: unknown) => mockRelease(lease),
   },
@@ -304,6 +307,88 @@ describe('SpeakingPracticePanel lifecycle', () => {
     await waitFor(() => expect(screen.getByText('未获得麦克风权限，已保留原录音。')).toBeTruthy());
     expect(commonProps.onClear).not.toHaveBeenCalled();
     expect(mockDiscard).not.toHaveBeenCalled();
+    await screen.unmount();
+  });
+
+  it('performs exactly one controlled iOS recovery after a media-services reset', async () => {
+    setPlatform('ios');
+    mockRecorder.prepare
+      .mockRejectedValueOnce(recorderFailure('recording_media_services_reset'))
+      .mockResolvedValueOnce(undefined);
+    const screen = await render(<SpeakingPracticePanel {...commonProps} />);
+
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
+    await waitFor(() => expect(mockRecorder.start).toHaveBeenCalledTimes(1));
+
+    expect(mockRecorder.prepare).toHaveBeenCalledTimes(2);
+    expect(mockAcquire).toHaveBeenCalledTimes(2);
+    expect(mockRelease).toHaveBeenCalledTimes(1);
+    expect(screen.queryByText(/音频服务刚刚重置/u)).toBeNull();
+
+    await act(async () => { fireEvent(screen.getByLabelText('松开结束录音'), 'pressOut'); });
+    await waitFor(() => expect(commonProps.onRecorded).toHaveBeenCalledWith(committedAsset));
+    await screen.unmount();
+  });
+
+  it('does not blindly retry an unknown native prepare failure', async () => {
+    setPlatform('ios');
+    mockRecorder.prepare.mockRejectedValue(recorderFailure('recording_native_prepare_failed'));
+    const screen = await render(<SpeakingPracticePanel {...commonProps} />);
+
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
+
+    await waitFor(() => expect(screen.getByText(/iPhone 录音器准备失败.*诊断编号/u)).toBeTruthy());
+    expect(mockRecorder.prepare).toHaveBeenCalledTimes(1);
+    expect(mockRecorder.start).not.toHaveBeenCalled();
+    expect(screen.getByLabelText('提交录音诊断')).toBeTruthy();
+    await act(async () => {
+      fireEvent.press(screen.getByLabelText('提交录音诊断'));
+      await Promise.resolve();
+    });
+    expect(mockRouterPush).toHaveBeenCalledWith({
+      pathname: '/info/[slug]',
+      params: expect.objectContaining({
+        correlationId: expect.stringMatching(/^R-[A-Z0-9]+-[A-Z0-9]{2}$/u),
+        feature: 'recording',
+      }),
+    });
+    await screen.unmount();
+  });
+
+  it('reports a native recording interruption when the app backgrounds', async () => {
+    setPlatform('ios');
+    const appStateListeners: ((state: 'active' | 'background' | 'inactive') => void)[] = [];
+    jest.spyOn(AppState, 'addEventListener').mockImplementation((_type, listener) => {
+      appStateListeners.push(listener);
+      return { remove: jest.fn() };
+    });
+    const screen = await render(<SpeakingPracticePanel {...commonProps} />);
+
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
+    await waitFor(() => expect(mockRecorder.start).toHaveBeenCalledTimes(1));
+    await act(async () => {
+      appStateListeners.forEach((listener) => listener('background'));
+      await Promise.resolve();
+    });
+
+    await waitFor(() => expect(screen.getByText(/录音已中断.*诊断编号/u)).toBeTruthy());
+    expect(mockRecorder.cancel).toHaveBeenCalled();
+    expect(mockRelease).toHaveBeenCalled();
+    expect(commonProps.onRecorded).not.toHaveBeenCalled();
+    expect(screen.getByLabelText('提交录音诊断')).toBeTruthy();
+    await screen.unmount();
+  });
+
+  it('keeps an owner-pause timeout distinct from native recorder preparation', async () => {
+    setPlatform('ios');
+    mockAcquire.mockRejectedValue(recorderFailure('owner_pause_timeout'));
+    const screen = await render(<SpeakingPracticePanel {...commonProps} />);
+
+    await act(async () => { fireEvent(screen.getByLabelText('按住说话'), 'pressIn'); });
+
+    await waitFor(() => expect(screen.getByText(/上一段音频暂停超时.*诊断编号/u)).toBeTruthy());
+    expect(mockRecorder.prepare).not.toHaveBeenCalled();
+    expect(mockRecorder.start).not.toHaveBeenCalled();
     await screen.unmount();
   });
 

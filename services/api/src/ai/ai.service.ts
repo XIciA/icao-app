@@ -1,30 +1,34 @@
-import { BadRequestException, HttpException, Injectable } from '@nestjs/common';
+import { BadRequestException, HttpException, Injectable, Logger } from '@nestjs/common';
 import { createHash } from 'node:crypto';
 import { and, eq, gt } from 'drizzle-orm';
-import type { AiConsent, GrammarReviewRequest, PolishRequest, PolishResult, TencentAsrModel, WordLookupRequest, WordLookupResult } from '@icao/contracts';
+import type { AiConsent, AiReviewRequest, AiReviewResult, GrammarReviewRequest, PolishRequest, PolishResult, TencentAsrModel, WordLookupRequest, WordLookupResult } from '@icao/contracts';
 
 import { DatabaseService } from '../database/database.service';
 import { aiConsents, aiUsageLogs, aiWordCache } from '../database/schema';
 import { AiAssetsService } from './ai-assets.service';
 import { AiProviderService, type ProviderMeta } from './ai-provider.service';
+import { DeepSeekReviewProviderService } from './deepseek-review-provider.service';
 import { TencentAsrService } from './tencent-asr.service';
-import { GRAMMAR_REVIEW_PROMPT, OPI_POLISH_PROMPT } from './ai-prompts';
-import { grammarResultSchema, polishResultSchema, wordLookupResultSchema } from './ai.schemas';
+import { reviewSystemPrompt, REVIEW_PROMPT_VERSION } from './deepseek-review-prompts';
+import { legacyIssueText, parseAndValidateReview, withReviewPromptVersion } from './review-harness';
+import { wordLookupResultSchema } from './ai.schemas';
+import { aiFailureObservation } from './ai-error-observability';
 
 const PROMPTS = {
   word: 'word-lookup-v1',
-  grammar: 'grammar-review:v2',
-  polish: 'polish:v2',
 } as const;
 
 type UsageCapability = 'word_lookup' | 'transcribe' | 'grammar_review' | 'polish';
 
 @Injectable()
 export class AiService {
+  private readonly logger = new Logger(AiService.name);
+
   constructor(
     private readonly database: DatabaseService,
     private readonly assets: AiAssetsService,
     private readonly provider: AiProviderService,
+    private readonly reviewProvider: DeepSeekReviewProviderService,
     private readonly asr: TencentAsrService,
   ) {}
 
@@ -48,20 +52,24 @@ export class AiService {
   private async logUsage(input: {
     userId: string; requestId: string; capability: UsageCapability; status: string; model: string;
     promptVersion: string; latencyMs: number; quotaUnits: number; meta?: ProviderMeta;
+    failureCode?: string; upstreamStatus?: string; attemptCount?: number;
   }) {
     await this.database.db.insert(aiUsageLogs).values({
       ...input,
       inputTokens: input.meta?.inputTokens,
       outputTokens: input.meta?.outputTokens,
       costMicrounits: null,
+      failureCode: input.failureCode,
+      upstreamStatus: input.upstreamStatus ?? input.meta?.upstreamStatus,
+      attemptCount: input.attemptCount ?? input.meta?.attemptCount ?? 1,
     }).onConflictDoNothing();
   }
 
   private status(error: unknown) {
-    const message = error instanceof HttpException ? String(error.getResponse()) : '';
-    if (message.includes('limited')) return 'limited';
-    if (message.includes('timeout')) return 'timeout';
-    if (message.includes('cancelled')) return 'cancelled';
+    const observation = aiFailureObservation(error);
+    if (observation.upstreamStatus === 'limited') return 'limited';
+    if (observation.upstreamStatus === 'timeout') return 'timeout';
+    if (observation.upstreamStatus === 'cancelled') return 'cancelled';
     return 'failed';
   }
 
@@ -72,10 +80,28 @@ export class AiService {
     const started = Date.now();
     try {
       const result = await input.action();
-      await this.logUsage({ ...input, status: 'success', latencyMs: Date.now() - started, quotaUnits: input.units, meta: result.meta });
+      await this.logUsage({ ...input, status: 'success', latencyMs: Date.now() - started, quotaUnits: input.units, meta: result.meta })
+        .catch(() => this.logger.error(`ai_usage_log_failed capability=${input.capability} status=success`));
       return result.data;
     } catch (error) {
-      await this.logUsage({ ...input, status: this.status(error), latencyMs: Date.now() - started, quotaUnits: 0 }).catch(() => undefined);
+      const observation = aiFailureObservation(error);
+      const meteredFailure = Boolean(
+        observation.meta
+        && ((observation.meta.inputTokens ?? 0) > 0 || (observation.meta.outputTokens ?? 0) > 0),
+      );
+      await this.logUsage({
+        ...input,
+        status: this.status(error),
+        latencyMs: Date.now() - started,
+        // User quota is charged only for a usable result. Provider token metadata
+        // remains available for internal cost reconciliation when an upstream
+        // response was metered but failed validation.
+        quotaUnits: 0,
+        ...observation,
+      }).catch(() => this.logger.error(`ai_usage_log_failed capability=${input.capability} status=failed metered=${meteredFailure}`));
+      if (observation.failureCode === 'internal_error') {
+        throw new HttpException('ai_upstream_failed', 503);
+      }
       throw error;
     }
   }
@@ -112,7 +138,7 @@ export class AiService {
       userId, requestId, capability: 'transcribe', model,
       promptVersion: 'tencent-asr:raw:v1', units: 3,
       action: async () => {
-        const result = await this.asr.transcribe(audio, mimeType, model, signal);
+        const result = await this.asr.transcribe(audio, mimeType, model, signal, requestId);
         return { data: { transcript: result.rawTranscript }, meta: result.meta };
       },
     });
@@ -121,24 +147,52 @@ export class AiService {
   async grammarReview(userId: string, requestId: string, input: GrammarReviewRequest, signal?: AbortSignal) {
     await this.requireConsent(userId);
     const result = await this.run({
-      userId, requestId, capability: 'grammar_review', model: this.provider.textModel(), promptVersion: PROMPTS.grammar, units: 2,
-      action: async () => {
-        const generated = await this.provider.generateJson<unknown>(GRAMMAR_REVIEW_PROMPT, JSON.stringify({ transcript: input.transcript }), signal);
-        return { data: grammarResultSchema.parse(generated.data), meta: generated.meta };
-      },
+      userId, requestId, capability: 'grammar_review', model: this.reviewProvider.textModel('grammar'), promptVersion: REVIEW_PROMPT_VERSION, units: 2,
+      action: () => this.generateReview(userId, {
+        mode: 'grammar', module: input.module, questionId: input.questionId, transcript: input.transcript,
+      }, signal),
     });
-    return { ...result, promptVersion: PROMPTS.grammar };
+    return {
+      correctedText: result.grammar.correctedText,
+      issues: result.grammar.issues.map(legacyIssueText),
+      promptVersion: REVIEW_PROMPT_VERSION,
+    };
   }
 
   async polish(userId: string, requestId: string, input: PolishRequest, signal?: AbortSignal): Promise<PolishResult> {
     await this.requireConsent(userId);
+    const transcript = input.correctedText ?? input.transcript;
     const result = await this.run({
-      userId, requestId, capability: 'polish', model: this.provider.textModel(), promptVersion: PROMPTS.polish, units: 2,
-      action: async () => {
-        const generated = await this.provider.generateJson<unknown>(OPI_POLISH_PROMPT, JSON.stringify({ transcript: input.transcript, ...(input.correctedText ? { correctedText: input.correctedText } : {}) }), signal);
-        return { data: polishResultSchema.parse(generated.data), meta: generated.meta };
-      },
+      userId, requestId, capability: 'polish', model: this.reviewProvider.textModel('opi'), promptVersion: REVIEW_PROMPT_VERSION, units: 2,
+      action: () => this.generateReview(userId, {
+        mode: 'opi', module: 'opi', questionId: input.questionId, transcript,
+      }, signal),
     });
-    return { ...result, promptVersion: PROMPTS.polish };
+    return { polishedText: result.polishedText!, promptVersion: REVIEW_PROMPT_VERSION };
+  }
+
+  private generateReview(userId: string, input: AiReviewRequest, signal?: AbortSignal) {
+    return this.reviewProvider.generateValidated({
+      mode: input.mode,
+      system: reviewSystemPrompt(input.mode),
+      prompt: JSON.stringify({ transcript: input.transcript }),
+      userId,
+      signal,
+      validate: (data) => parseAndValidateReview(data, input),
+    });
+  }
+
+  async review(userId: string, requestId: string, input: AiReviewRequest, signal?: AbortSignal): Promise<AiReviewResult> {
+    await this.requireConsent(userId);
+    const result = await this.run({
+      userId,
+      requestId,
+      capability: input.mode === 'opi' ? 'polish' : 'grammar_review',
+      model: this.reviewProvider.textModel(input.mode),
+      promptVersion: REVIEW_PROMPT_VERSION,
+      units: input.mode === 'opi' ? 3 : 2,
+      action: () => this.generateReview(userId, input, signal),
+    });
+    return withReviewPromptVersion(result);
   }
 }

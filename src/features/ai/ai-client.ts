@@ -1,13 +1,33 @@
-import type { AiConsent, GrammarReviewRequest, GrammarReviewResult, PolishRequest, PolishResult, TranscribeResult } from '@icao/contracts';
+import type { AiConsent, AiReviewRequest, AiReviewResult, GrammarReviewRequest, GrammarReviewResult, PolishRequest, PolishResult, TranscribeResult } from '@icao/contracts';
 import Storage from '@/platform/storage';
 
-import { apiAccessToken, apiRequest, getApiBaseUrl, recoverApiUnauthorized, rememberApiError } from '@/platform/api-client';
+import {
+  apiAccessToken,
+  apiRequest,
+  getApiBaseUrl,
+  recoverApiUnauthorized,
+  rememberApiError,
+  withApiRequestTimeout,
+} from '@/platform/api-client';
 import { createAudioUploadForm } from '@/platform/audio-upload';
+import { toAiOperationFailure } from './ai-operation-failure';
 import { getAsrModel } from './asr-model-preference';
 
-const POLICY_VERSION = 'ai-learning-privacy-v3';
+const POLICY_VERSION = 'ai-learning-privacy-v4';
 const CONSENT_KEY = `icao.ai.consent.${POLICY_VERSION}`;
 const AUDIO_E2E_ENABLED = __DEV__ && process.env.EXPO_PUBLIC_ICAO_AUDIO_E2E === '1';
+
+async function withConsentRecovery<T>(action: () => Promise<T>) {
+  try {
+    return await action();
+  } catch (error) {
+    if (error && typeof error === 'object' && 'code' in error && error.code === 'ai_consent_required') {
+      await acceptAiConsent();
+      return action();
+    }
+    throw error;
+  }
+}
 
 export async function hasAiConsent() {
   if (AUDIO_E2E_ENABLED) return true;
@@ -40,34 +60,72 @@ export async function transcribeRecording(uri: string, signal?: AbortSignal) {
       transcript: 'Audio lifecycle test transcript.',
     } satisfies TranscribeResult;
   }
-  const model = await getAsrModel();
-  const { fetch: audioFetch, form } = await createAudioUploadForm(uri, model);
-  const baseUrl = getApiBaseUrl();
-  if (!baseUrl) throw new Error('api_not_configured');
-  const token = await apiAccessToken();
-  if (!token) throw new Error('missing_bearer_token');
-  const send = (accessToken: string) => audioFetch(`${baseUrl}/v1/ai/transcribe`, {
-    method: 'POST',
-    headers: { accept: 'application/json', authorization: `Bearer ${accessToken}` },
-    body: form,
-    signal,
-  }) as Promise<Response>;
-  const response = await recoverApiUnauthorized(await send(token), send);
-  const payload = await response.json() as { requestId?: string; data?: TranscribeResult; error?: { code?: string } };
-  if (!response.ok || !payload.data) {
-    throw rememberApiError(payload.error?.code ?? `api_http_${response.status}`, response.status, payload.requestId);
+  try {
+    return await withConsentRecovery(async () => {
+      const baseUrl = getApiBaseUrl();
+      if (!baseUrl) throw new Error('api_not_configured');
+      const token = await apiAccessToken();
+      if (!token) throw new Error('missing_bearer_token');
+      let audioUpload: Awaited<ReturnType<typeof createAudioUploadForm>>;
+      try {
+        audioUpload = await createAudioUploadForm(uri, await getAsrModel());
+      } catch (error) {
+        throw toAiOperationFailure(error, 'transcribe', 'upload');
+      }
+      const send = async (accessToken: string) => {
+        const upload = await createAudioUploadForm(uri, await getAsrModel());
+        return withApiRequestTimeout((requestSignal) => upload.fetch(`${baseUrl}/v1/ai/transcribe`, {
+          method: 'POST',
+          headers: { accept: 'application/json', authorization: `Bearer ${accessToken}` },
+          body: upload.form,
+          signal: requestSignal,
+        }) as Promise<Response>, signal);
+      };
+      const firstResponse = await withApiRequestTimeout((requestSignal) => audioUpload.fetch(`${baseUrl}/v1/ai/transcribe`, {
+        method: 'POST',
+        headers: { accept: 'application/json', authorization: `Bearer ${token}` },
+        body: audioUpload.form,
+        signal: requestSignal,
+      }) as Promise<Response>, signal);
+      const response = await recoverApiUnauthorized(firstResponse, send);
+      const payload = await response.json().catch(() => undefined) as { requestId?: string; data?: TranscribeResult; error?: { code?: string } } | undefined;
+      if (!response.ok || !payload?.data) {
+        throw rememberApiError(payload?.error?.code ?? `api_http_${response.status}`, response.status, payload?.requestId);
+      }
+      return payload.data;
+    });
+  } catch (error) {
+    throw toAiOperationFailure(error, 'transcribe');
   }
-  return payload.data;
 }
 
-export function grammarReview(input: GrammarReviewRequest, signal?: AbortSignal) {
-  return apiRequest<GrammarReviewResult>('/v1/ai/grammar-review', {
-    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input), signal,
-  });
+export async function grammarReview(input: GrammarReviewRequest, signal?: AbortSignal) {
+  try {
+    return await withConsentRecovery(() => apiRequest<GrammarReviewResult>('/v1/ai/grammar-review', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input), signal,
+    }));
+  } catch (error) {
+    throw toAiOperationFailure(error, 'grammar');
+  }
 }
 
-export function polishExpression(input: PolishRequest, signal?: AbortSignal) {
-  return apiRequest<PolishResult>('/v1/ai/polish', {
-    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input), signal,
-  });
+export async function polishExpression(input: PolishRequest, signal?: AbortSignal) {
+  try {
+    return await withConsentRecovery(() => apiRequest<PolishResult>('/v1/ai/polish', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input), signal,
+    }));
+  } catch (error) {
+    throw toAiOperationFailure(error, 'polish');
+  }
+}
+
+export async function reviewExpression(input: AiReviewRequest, signal?: AbortSignal) {
+  const capability = input.mode === 'opi' ? 'polish' : 'grammar';
+  try {
+    return await withConsentRecovery(() => apiRequest<AiReviewResult>('/v1/ai/review', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input), signal,
+    }));
+  } catch (error) {
+    throw toAiOperationFailure(error, capability);
+  }
 }

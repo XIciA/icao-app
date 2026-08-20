@@ -5,7 +5,7 @@ import { dirname, join, resolve } from 'node:path';
 const root = resolve(import.meta.dirname, '..');
 const topicRoot = join(root, 'content/question-banks/banks/radiotelephony/topics');
 const embeddedPath = join(root, 'src/features/question-bank/data/question-bank.json');
-const workstreamRoot = join(root, 'docs/workstreams/radiotelephony-text-unification-v2');
+const workstreamRoot = join(root, 'docs/records/workstreams/radiotelephony-text-unification-v2');
 const snapshotPath = join(workstreamRoot, 'source-snapshot.json');
 const reportPath = join(workstreamRoot, 'candidate-report.json');
 const reportMarkdownPath = join(workstreamRoot, 'candidate-report.md');
@@ -40,9 +40,9 @@ const phoneticWordPattern = `(?:${phoneticEntries.map(([pattern]) => pattern).jo
 const phoneticSequencePattern = `${phoneticWordPattern}(?:\\s+${phoneticWordPattern})*`;
 const legacyPaths = [
   'tools/radiotelephony-text-correction.mjs',
-  'docs/workstreams/radiotelephony-text-correction/source-snapshot.json',
-  'docs/workstreams/radiotelephony-text-correction/candidate-report.json',
-  'docs/workstreams/radiotelephony-text-correction/candidate-report.md',
+  'docs/records/workstreams/radiotelephony-text-correction/source-snapshot.json',
+  'docs/records/workstreams/radiotelephony-text-correction/candidate-report.json',
+  'docs/records/workstreams/radiotelephony-text-correction/candidate-report.md',
 ];
 
 function fail(message) {

@@ -1,7 +1,12 @@
 packages:
   - packages/*
   - services/*
+overrides:
+  'ini@<1.3.6': 1.3.8
 allowBuilds:
+  # The published package already includes dist/. Its postinstall only selects
+  # legacy TypeScript versions for Node 10/12 and is unnecessary on Node 22+.
+  '@alicloud/openapi-core': false
   esbuild: true
 patchedDependencies:
   react-native-track-player@4.1.2: patches/react-native-track-player@4.1.2.patch

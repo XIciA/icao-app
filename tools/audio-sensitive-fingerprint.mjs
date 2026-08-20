@@ -11,6 +11,7 @@ if (!['print', 'write', 'verify'].includes(action) || (action !== 'print' && !['
 const root = process.cwd();
 const inputs = [
   'app.json',
+  'app.config.js',
   'eslint.config.js',
   'package.json',
   'src/app/_layout.tsx',
@@ -31,6 +32,8 @@ const inputs = [
   'scripts/run-audio-e2e.sh',
   'scripts/build-standalone-android.sh',
   'scripts/build-standalone-ios.sh',
+  'scripts/archive-ios-testflight.sh',
+  'scripts/release-ios-testflight.sh',
   'scripts/release-android.sh',
   'scripts/release-ios.sh',
   'tools/verify-release-config.mjs',

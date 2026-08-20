@@ -15,7 +15,7 @@ trap cleanup EXIT INT TERM
 
 scp -i "$SSH_KEY" -q \
   "$PROJECT_ROOT/tools/prepare-asr-cloud.mjs" \
-  "$PROJECT_ROOT/docs/ai/assets/asr-hotwords.json" \
+  "$PROJECT_ROOT/docs/resources/ai/assets/asr-hotwords.json" \
   "$ECS_USER@$ECS_HOST:$REMOTE_STAGE/"
 
 ssh -i "$SSH_KEY" -o BatchMode=yes "$ECS_USER@$ECS_HOST" sh -s -- "$REMOTE_STAGE" <<'REMOTE'

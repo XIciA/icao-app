@@ -7,9 +7,9 @@
     {
       "id": "atc-scenario-0172-card-main-2966",
       "taskTitle": "UAL 811-1",
-      "audioText": "B: Your call sign is UAL 811, from Los Angeles to Wuhan, you have received an Urgency call from AFR 103, AFR 103 had a pressurization problem and the cabin altitude was rising rapidly, relay the message to Zhengzhou Control.",
+      "audioText": "B: Your call sign is UAL 811, from Los Angeles to Wuhan, you have received an Urgency call from AFR 103, AFR 103 had a pressurization problem and the cabin altitude was rising slowly, relay the message to Zhengzhou Control.",
       "audioTextZh": "B：你的呼号是 UAL 811，从洛杉矶飞往武汉，你收到 AFR 103 的紧急呼叫，AFR 103 出现增压问题且客舱高度快速上升，将该信息转报给郑州管制。",
-      "referenceText": "PANPAN PANPAN PANPAN, Zhengzhou Control, UAL 811, we have intercepted an Urgency call from AFR 103, AFR 103 had a pressurization problem and the cabin altitude was rising rapidly.",
+      "referenceText": "PANPAN PANPAN PANPAN, Zhengzhou Control, UAL 811, we have intercepted an Urgency call from AFR 103, AFR 103 had a pressurization problem and the cabin altitude was rising slowly.",
       "referenceTextZh": "PANPAN PANPAN PANPAN，郑州管制，UAL 811，我们截收到 AFR 103 的紧急呼叫，AFR 103 出现增压问题，客舱高度快速上升。",
       "audio": "/question-bank-assets/audio/radiotelephony/web-v6/pepec-radiotelephony-072-ual811-q01.mp3"
     },

@@ -1,4 +1,9 @@
-import type { FeedbackCategory, FeedbackQuestionContext, FeedbackSource } from '@icao/contracts';
+import type {
+  FeedbackCategory,
+  FeedbackDiagnosticFeature,
+  FeedbackQuestionContext,
+  FeedbackSource,
+} from '@icao/contracts';
 import { useNavigation, usePreventRemove } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -116,6 +121,8 @@ function HelpPage() {
 type FeedbackParams = {
   source?: FeedbackSource;
   sourceRoute?: string;
+  feature?: FeedbackDiagnosticFeature;
+  correlationId?: string;
   bankId?: string;
   categoryId?: string;
   topicId?: string;
@@ -127,6 +134,20 @@ function FeedbackPage() {
   const navigation = useNavigation();
   const params = useLocalSearchParams<FeedbackParams>();
   const source: FeedbackSource = params.source === 'study' ? 'study' : 'profile';
+  const diagnosticCorrelationId = typeof params.correlationId === 'string' && params.correlationId.length > 0
+    ? params.correlationId
+    : undefined;
+  const diagnosticFeature: FeedbackDiagnosticFeature | undefined = diagnosticCorrelationId && (params.feature === 'recording' || params.feature === 'ai')
+    ? params.feature
+    : undefined;
+  const initialCategory: FeedbackCategory = diagnosticFeature
+    ? 'other'
+    : source === 'study' ? 'content_correction' : 'feature_suggestion';
+  const initialDescription = diagnosticFeature === 'recording'
+    ? '录音功能出现异常，请协助排查。'
+    : diagnosticFeature === 'ai'
+      ? 'AI 转写或分析功能出现异常，请协助排查。'
+      : '';
   const question = useMemo<FeedbackQuestionContext | undefined>(() => (
     source === 'study' && params.bankId && params.categoryId && params.topicId && params.cardId
       ? {
@@ -138,8 +159,8 @@ function FeedbackPage() {
       : undefined
   ), [params.bankId, params.cardId, params.categoryId, params.topicId, source]);
   const [clientSubmissionId, setClientSubmissionId] = useState(createClientSubmissionId);
-  const [category, setCategory] = useState<FeedbackCategory>(source === 'study' ? 'content_correction' : 'feature_suggestion');
-  const [description, setDescription] = useState('');
+  const [category, setCategory] = useState<FeedbackCategory>(initialCategory);
+  const [description, setDescription] = useState(initialDescription);
   const [contact, setContact] = useState('');
   const [images, setImages] = useState<ImagePicker.ImagePickerAsset[]>([]);
   const [submitting, setSubmitting] = useState(false);
@@ -149,13 +170,13 @@ function FeedbackPage() {
 
   useEffect(() => {
     setClientSubmissionId(createClientSubmissionId());
-    setCategory(source === 'study' ? 'content_correction' : 'feature_suggestion');
-    setDescription('');
+    setCategory(initialCategory);
+    setDescription(initialDescription);
     setContact('');
     setImages([]);
     setError('');
     setTicketNumber('');
-  }, [params.bankId, params.cardId, params.categoryId, params.topicId, source]);
+  }, [diagnosticCorrelationId, initialCategory, initialDescription, params.bankId, params.cardId, params.categoryId, params.topicId, source]);
 
   usePreventRemove(dirty && !ticketNumber, ({ data }) => {
     Alert.alert('放弃本次反馈？', '未提交的文字和图片不会保存。', [
@@ -223,6 +244,8 @@ function FeedbackPage() {
         sourceRoute: params.sourceRoute ?? (source === 'study' ? '/question-bank/study' : '/profile'),
         question,
         images,
+        diagnosticFeature,
+        diagnosticCorrelationId,
       });
       setTicketNumber(result.ticketNumber);
     } catch (cause) {
@@ -234,8 +257,8 @@ function FeedbackPage() {
 
   function reset() {
     setClientSubmissionId(createClientSubmissionId());
-    setCategory(source === 'study' ? 'content_correction' : 'feature_suggestion');
-    setDescription('');
+    setCategory(initialCategory);
+    setDescription(initialDescription);
     setContact('');
     setImages([]);
     setError('');
@@ -266,6 +289,17 @@ function FeedbackPage() {
           <View style={styles.context}>
             <AppText color={colors.primary} variant="button">已关联当前题目</AppText>
             <AppText numberOfLines={1} variant="micro">{question.bankId} · {question.cardId}</AppText>
+          </View>
+        ) : null}
+        {diagnosticFeature ? (
+          <View style={styles.diagnosticNotice}>
+            <ShieldCheck color={colors.primary} size={18} />
+            <View style={styles.flex}>
+              <AppText variant="button">将附带本次故障的脱敏诊断</AppText>
+              <AppText variant="micro">
+                只有你点击“提交反馈”后，才会尝试附带本机仍保留且与本次错误编号完全一致的诊断，最多 30 条技术事件；不包含录音、回答、文件地址、Token 或账号信息。
+              </AppText>
+            </View>
           </View>
         ) : null}
         <Choice options={CATEGORY_OPTIONS} value={category} onChange={setCategory} />
@@ -400,6 +434,13 @@ function AboutPage() {
 
 function LegalPage({ page }: { page: 'agreement' | 'privacy' }) {
   const isAgreement = page === 'agreement';
+  const isWeb = Platform.OS === 'web';
+  const textAiDescription = isWeb
+    ? '回答文本只在您主动请求分析时发送至阿里云百炼通义千问。'
+    : '回答文本只在您主动请求分析时发送至 DeepSeek 开放平台，用于语法纠错和表达润色。';
+  const thirdPartyDescription = isWeb
+    ? '我们使用阿里云基础设施、腾讯云语音识别、阿里云百炼及 Apple/Android 操作系统和分发平台提供必要的托管、AI、系统权限和分发能力。'
+    : '我们使用阿里云基础设施、腾讯云语音识别、杭州深度求索人工智能基础技术研究有限公司提供的 DeepSeek 开放平台，以及 Apple/Android 操作系统和分发平台提供必要的托管、AI、系统权限和分发能力。';
   const intro = isAgreement
     ? '欢迎使用由云启航科（成都）科技有限公司提供的听你五个。在登录或使用本应用前，请仔细阅读并充分理解本协议。'
     : '云启航科（成都）科技有限公司重视您的个人信息与隐私。本政策按听你五个当前实际功能说明数据的收集、使用、存储、共享和删除方式。';
@@ -417,10 +458,10 @@ function LegalPage({ page }: { page: 'agreement' | 'privacy' }) {
     ['处理者与联系方式', '个人信息处理者为云启航科（成都）科技有限公司，注册地址为成都未来科技城（成都东部新区未来大道118号3层9号-3）。隐私问题、权利请求或投诉请联系 privacy@yunqihangke.com。'],
     ['账号与安全信息', '我们处理邀请码账号标识、昵称、登录时间、会话和安全记录，用于登录、账号保护、设备会话管理和防止滥用。认证会话保存在设备安全存储中；我们不要求您提供手机号、通讯录或定位信息。'],
     ['学习与本地数据', '我们处理做题状态、学习进度、收藏、标注、笔记、回答、学习记录和用户文档，用于本机学习和登录后的云端同步。部分数据先保存在设备本地；登录时会提示您确认旧本机数据归属。'],
-    ['麦克风、录音与 AI', '只有您主动开始口语练习时才申请麦克风权限。录音先保存在应用缓存；只有您点击“转写”并明确同意后，录音才会经我们的服务器发送至腾讯云语音识别。回答文本只在您主动请求分析时发送至阿里云百炼通义千问。音频签名链接默认有效 10 分钟，处理完成后删除，异常残留最长保留 24 小时。您可以拒绝或在“设置—AI 与隐私”撤回同意，不影响无需 AI 的功能。'],
-    ['反馈与相册权限', '提交反馈时，我们处理反馈内容、可选联系方式、来源页面、App/系统版本、错误编号及关联题目。只有您主动添加图片时才调用系统照片选择器；图片存入私有存储并默认保留 365 天，反馈文字用于工单处理，账号注销时会删除依法无需继续保留的关联数据。'],
+    ['麦克风、录音与 AI', `只有您主动开始口语练习时才申请麦克风权限。录音先保存在应用缓存；只有您点击“转写”并明确同意后，录音才会经我们的服务器发送至腾讯云语音识别。${textAiDescription}音频签名链接默认有效 10 分钟，处理完成后删除，异常残留最长保留 24 小时。您可以拒绝或在“设置—AI 与隐私”撤回同意，不影响无需 AI 的功能。`],
+    ['反馈、诊断与相册权限', '提交反馈时，我们处理反馈内容、可选联系方式、来源页面、App/系统版本、错误编号及关联题目。只有您从录音或 AI 错误区域点击“提交诊断”并继续提交反馈时，才会随工单附带与本次故障错误编号完全一致的脱敏技术事件。允许字段限于功能类型、诊断编号、App/构建/平台/系统版本、相对时间、处理阶段、稳定错误码、状态、耗时、大小、格式及必要的请求编号；单次最多 30 条，本机最多保留 50 条并在 24 小时后自动清除，服务端诊断最长保留 365 天并由定时任务清除。诊断不包含录音、回答、文件地址（URI）、Token 或账号信息。只有您主动添加图片时才调用系统照片选择器；图片存入私有存储并按当前政策期限清理，反馈文字用于工单处理，账号注销时会删除依法无需继续保留的关联数据。'],
     ['AI 记录与保存期限', 'AI 用量日志记录账号、请求编号、功能、状态、模型、提示版本、耗时和用量，不记录录音或完整回答内容。AI 单词查询缓存默认保留 30 天。账号和学习数据在账号存续及提供同步服务所需期间保存；达到目的、保存期届满、您撤回同意或注销账号后，我们会依法删除或停止处理。'],
-    ['第三方处理与共享', '我们使用阿里云基础设施、腾讯云语音识别、阿里云百炼及 Apple/Android 操作系统和分发平台提供必要的托管、AI、系统权限和分发能力。我们仅在实现对应功能所需范围内提供数据，不出售个人信息；除取得您的同意、履行合同所必需或法律法规另有要求外，不向无关第三方提供。正式第三方清单和链接将在公开隐私政策中持续更新。'],
+    ['第三方处理与共享', `${thirdPartyDescription}我们仅在实现对应功能所需范围内提供数据，不出售个人信息；除取得您的同意、履行合同所必需或法律法规另有要求外，不向无关第三方提供。正式第三方清单和链接将在公开隐私政策中持续更新。`],
     ['您的权利与账号注销', '您可以在应用中查看和修改部分学习数据、撤回 AI 同意、退出当前或全部设备，并在账号安全页面申请注销。您也可通过 privacy@yunqihangke.com 请求查阅、复制、更正、补充、删除或解释个人信息处理规则，我们会依法核验身份并处理。'],
     ['未成年人、保护措施与更新', '本应用主要面向成年航空英语学习者。不满十四周岁的用户应在监护人同意和指导下使用。我们采用访问控制、加密传输、受限存储、备份和日志审计保护数据；如发生可能影响您权益的安全事件，将依法采取补救并告知。政策发生重要变化时会显著提示，并在依法需要时重新取得同意。'],
   ];
@@ -428,7 +469,7 @@ function LegalPage({ page }: { page: 'agreement' | 'privacy' }) {
     <Page title={isAgreement ? '用户协议' : '隐私政策'}>
       <View style={styles.legal}>
         <AppText variant="pageTitle">{isAgreement ? '用户服务协议' : '隐私政策'}</AppText>
-        <AppText variant="micro">{isAgreement ? '版本 v3.0 · 更新于 2026-08-07 · 生效于 2026-08-07' : '版本 v3.1 · 更新于 2026-08-09 · 生效于 2026-08-09'}</AppText>
+        <AppText variant="micro">{isAgreement ? '版本 v3.0 · 更新于 2026-08-07 · 生效于 2026-08-07' : '版本 v3.3 · 更新于 2026-08-14 · 生效于 2026-08-14'}</AppText>
         <Card style={styles.intro}><AppText>{intro}</AppText></Card>
         {clauses.map(([title, body], index) => (
           <View key={title} style={styles.clause}>
@@ -522,6 +563,7 @@ const styles = StyleSheet.create({
   answer: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth, paddingTop: spacing[3] },
   feedback: { gap: spacing[4], padding: spacing[5] },
   context: { backgroundColor: colors.primary06, borderColor: colors.primary, borderRadius: radii.md, borderWidth: 1, gap: spacing[1], padding: spacing[3] },
+  diagnosticNotice: { alignItems: 'flex-start', backgroundColor: colors.primary06, borderColor: colors.primary20, borderRadius: radii.md, borderWidth: 1, flexDirection: 'row', gap: spacing[2.5], padding: spacing[3] },
   choice: { gap: spacing[2] },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing[2] },
   chip: { backgroundColor: colors.secondary, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, paddingHorizontal: spacing[3], paddingVertical: spacing[2] },

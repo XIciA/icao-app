@@ -35,7 +35,6 @@ const WEB_RECORDING_FORMATS: readonly WebRecordingFormat[] = [
   { format: 'm4a', mimeType: 'audio/mp4' },
 ];
 const WEB_RECORDING_BITS_PER_SECOND = 128_000;
-const MIN_BYTES_PER_MILLISECOND = 0.05;
 const CHUNK_INTERVAL_MS = 250;
 const STOP_TIMEOUT_MS = 5_000;
 let webPermissionPrimed = false;
@@ -280,7 +279,6 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
           raw: {
             durationMillis: Math.max(0, (session.stoppedAt ?? Date.now()) - session.startedAt),
             format: recordingFormat,
-            minBytesPerMillisecond: MIN_BYTES_PER_MILLISECOND,
             uri,
             webBlob,
           },
@@ -408,6 +406,15 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
       return rawUri;
     },
     durationMillis,
+    getSnapshot: () => {
+      const state = sessionRef.current?.recorder.state;
+      return {
+        canRecord: state === 'inactive' || state === 'recording' || state === 'paused',
+        isRecording: state === 'recording',
+        mediaServicesDidReset: false,
+        state: state === 'recording' ? 'recording' : state === 'inactive' ? 'prepared' : 'idle',
+      };
+    },
     isRecording: () => sessionRef.current?.recorder.state === 'recording',
     lifecycleRevision,
     permissionReady,

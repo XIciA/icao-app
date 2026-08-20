@@ -2,13 +2,13 @@ import { Directory, File, Paths } from 'expo-file-system';
 
 import { emitAudioDiagnostic } from '@/platform/audio/audio-diagnostics';
 
+import { inspectRecordingContainer } from './recording-container-validator';
 import { RecordingRepositoryError } from './recording-repository-error';
 import type { RawRecording, RecordingAsset } from './types';
 
 const MIN_RECORDING_DURATION_MS = 400;
-const MIN_RECORDING_BYTES = 10_000;
 const FILE_SETTLE_INTERVAL_MS = 100;
-const MAX_SETTLE_ATTEMPTS = 8;
+const MAX_SETTLE_ATTEMPTS = 20;
 const ORPHAN_MAX_AGE_MS = 24 * 60 * 60 * 1_000;
 
 export { RecordingRepositoryError } from './recording-repository-error';
@@ -51,7 +51,7 @@ export class RecordingRepository {
     this.wait = dependencies.wait ?? ((milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds)));
   }
 
-  async commitRaw(input: RawRecording & { cardId: string; sessionId: string }): Promise<RecordingAsset> {
+  async commitRaw(input: RawRecording & { cardId: string; diagnosticId?: string; sessionId: string }): Promise<RecordingAsset> {
     const source = new File(input.uri);
     let pending: File | undefined;
     let destination: File | undefined;
@@ -59,14 +59,7 @@ export class RecordingRepository {
       if (input.durationMillis < MIN_RECORDING_DURATION_MS) {
         throw new RecordingRepositoryError('recording_too_short');
       }
-      const sourceSize = await this.settledSize(source);
-      const minimumSize = Math.max(
-        MIN_RECORDING_BYTES,
-        Math.round(input.durationMillis * input.minBytesPerMillisecond),
-      );
-      if (sourceSize < minimumSize) {
-        throw new RecordingRepositoryError('recording_file_incomplete');
-      }
+      const sourceSize = await this.validatedSettledSize(source, input.format, input.diagnosticId);
 
       this.root.create({ idempotent: true, intermediates: true });
       const sessionDirectory = new Directory(this.root, safeSegment(input.sessionId));
@@ -93,13 +86,32 @@ export class RecordingRepository {
         sessionId: input.sessionId,
         uri: destination.uri,
       } satisfies RecordingAsset;
-      emitAudioDiagnostic({ code: 'recording_committed', level: 'info', phase: 'ready', scope: 'recording' });
+      emitAudioDiagnostic({
+        byteSize: sourceSize,
+        code: 'recording_committed',
+        diagnosticId: input.diagnosticId,
+        durationMillis: input.durationMillis,
+        format: input.format,
+        level: 'info',
+        meteringDetected: input.meteringDetected,
+        phase: 'ready',
+        scope: 'recording',
+      });
       return asset;
     } catch (error) {
       bestEffortDelete(pending);
       bestEffortDelete(destination);
       const code = error instanceof RecordingRepositoryError ? error.code : 'recording_commit_failed';
-      emitAudioDiagnostic({ code, level: 'error', phase: 'finalizing', scope: 'recording' });
+      emitAudioDiagnostic({
+        code,
+        diagnosticId: input.diagnosticId,
+        durationMillis: input.durationMillis,
+        format: input.format,
+        level: 'error',
+        meteringDetected: input.meteringDetected,
+        phase: 'finalizing',
+        scope: 'recording',
+      });
       throw error instanceof RecordingRepositoryError ? error : new RecordingRepositoryError(code);
     }
   }
@@ -149,20 +161,37 @@ export class RecordingRepository {
     }
   }
 
-  private async settledSize(file: File) {
+  private async validatedSettledSize(file: File, format: RawRecording['format'], diagnosticId?: string) {
     let previous = -1;
-    let stableReads = 0;
     let current = 0;
+    let existed = false;
     for (let attempt = 0; attempt < MAX_SETTLE_ATTEMPTS; attempt += 1) {
       await this.wait(FILE_SETTLE_INTERVAL_MS);
-      if (!file.exists) return 0;
+      if (!file.exists) continue;
+      existed = true;
       current = file.size;
-      if (current > 0 && current === previous) stableReads += 1;
-      else stableReads = 0;
-      if (stableReads >= 2) return current;
+      if (current > 0 && current === previous) {
+        const inspection = inspectRecordingContainer(file.bytesSync(), format);
+        if (inspection.status === 'valid') {
+          emitAudioDiagnostic({
+            byteSize: current,
+            code: 'recording_container_validated',
+            diagnosticId,
+            format,
+            level: 'info',
+            phase: 'finalizing',
+            scope: 'recording',
+          });
+          return current;
+        }
+      }
       previous = current;
     }
-    return current;
+    if (!existed) throw new RecordingRepositoryError('recording_source_missing');
+    if (current <= 0) throw new RecordingRepositoryError('recording_file_incomplete');
+    const inspection = inspectRecordingContainer(file.bytesSync(), format);
+    if (inspection.status === 'invalid') throw new RecordingRepositoryError('recording_container_invalid');
+    throw new RecordingRepositoryError('recording_file_incomplete');
   }
 }
 

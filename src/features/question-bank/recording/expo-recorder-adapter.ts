@@ -13,24 +13,52 @@ import { Platform } from 'react-native';
 
 import type { RawRecording, RecordingFormat } from './types';
 
-const VOICE_RECORDING_OPTIONS = {
+export type RecorderSnapshot = {
+  canRecord: boolean;
+  isRecording: boolean;
+  mediaServicesDidReset: boolean;
+  state: 'idle' | 'prepared' | 'recording' | 'reset';
+};
+
+export type NativeRecorderFailureCode =
+  | 'recording_media_services_reset'
+  | 'recording_native_prepare_failed'
+  | 'recording_native_start_failed';
+
+export class NativeRecorderError extends Error {
+  constructor(
+    readonly code: NativeRecorderFailureCode,
+    readonly snapshot: RecorderSnapshot,
+  ) {
+    super(code);
+    this.name = 'NativeRecorderError';
+  }
+}
+
+const ANDROID_VOICE_RECORDING_OPTIONS = {
   ...RecordingPresets.HIGH_QUALITY,
   bitRate: 256_000,
   isMeteringEnabled: true,
   numberOfChannels: 1,
+};
+
+const IOS_VOICE_RECORDING_OPTIONS = {
+  ...RecordingPresets.HIGH_QUALITY,
+  bitRate: 64_000,
+  extension: '.m4a',
+  isMeteringEnabled: true,
+  numberOfChannels: 1,
+  sampleRate: 16_000,
   ios: {
     ...RecordingPresets.HIGH_QUALITY.ios,
     audioQuality: AudioQuality.HIGH,
-    extension: '.wav',
-    linearPCMBitDepth: 16,
-    linearPCMIsBigEndian: false,
-    linearPCMIsFloat: false,
-    outputFormat: IOSOutputFormat.LINEARPCM,
-    sampleRate: 16_000,
+    outputFormat: IOSOutputFormat.MPEG4AAC,
   },
 };
 
-const MIN_BYTES_PER_MILLISECOND = 6.4;
+const VOICE_RECORDING_OPTIONS = Platform.OS === 'ios'
+  ? IOS_VOICE_RECORDING_OPTIONS
+  : ANDROID_VOICE_RECORDING_OPTIONS;
 const E2E_ENABLED = __DEV__ && process.env.EXPO_PUBLIC_ICAO_AUDIO_E2E === '1';
 
 function createSilentWave(durationMillis: number) {
@@ -60,6 +88,7 @@ function createSilentWave(durationMillis: number) {
 export type ExpoRecorderAdapter = {
   cancel: () => Promise<string | undefined>;
   durationMillis: number;
+  getSnapshot: () => RecorderSnapshot;
   isRecording: () => boolean;
   lifecycleRevision?: number;
   permissionReady?: boolean;
@@ -81,11 +110,20 @@ export async function requestMicrophonePermission() {
 export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
   const recorder = useAudioRecorder(VOICE_RECORDING_OPTIONS);
   const recorderState = useAudioRecorderState(recorder, 200);
-  const format: RecordingFormat = Platform.OS === 'ios' ? 'wav' : 'm4a';
+  const format: RecordingFormat = 'm4a';
   const e2e = useRef({ prepared: false, recording: false, startedAt: 0, uri: undefined as string | undefined });
   const nativeStartedAt = useRef<number | undefined>(undefined);
+  const meteringDetected = useRef(false);
+  const currentMeteringDetected = typeof recorderState.metering === 'number' && recorderState.metering > -160;
+  if (recorderState.isRecording && currentMeteringDetected) meteringDetected.current = true;
 
   if (E2E_ENABLED) {
+    const getE2eSnapshot = (): RecorderSnapshot => ({
+      canRecord: e2e.current.prepared,
+      isRecording: e2e.current.recording,
+      mediaServicesDidReset: false,
+      state: e2e.current.recording ? 'recording' : e2e.current.prepared ? 'prepared' : 'idle',
+    });
     return {
       async cancel() {
         e2e.current.prepared = false;
@@ -93,6 +131,7 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
         return e2e.current.uri;
       },
       durationMillis: e2e.current.recording ? Math.max(0, Date.now() - e2e.current.startedAt) : 0,
+      getSnapshot: getE2eSnapshot,
       isRecording: () => e2e.current.recording,
       async prepare() {
         e2e.current.prepared = true;
@@ -100,7 +139,9 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
       },
       requestPermission: async () => true,
       start() {
-        if (!e2e.current.prepared) throw new Error('record_prepare_failed');
+        if (!e2e.current.prepared) {
+          throw new NativeRecorderError('recording_native_start_failed', getE2eSnapshot());
+        }
         e2e.current.recording = true;
         e2e.current.startedAt = Date.now();
       },
@@ -112,10 +153,35 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
         e2e.current.prepared = false;
         e2e.current.recording = false;
         e2e.current.uri = file.uri;
-        return { durationMillis, format: 'wav', minBytesPerMillisecond: MIN_BYTES_PER_MILLISECOND, uri: file.uri };
+        return { durationMillis, format: 'wav', meteringDetected: false, uri: file.uri };
       },
     };
   }
+
+  const getSnapshot = (): RecorderSnapshot => {
+    try {
+      const status = recorder.getStatus();
+      return {
+        canRecord: status.canRecord,
+        isRecording: status.isRecording,
+        mediaServicesDidReset: status.mediaServicesDidReset,
+        state: status.mediaServicesDidReset
+          ? 'reset'
+          : status.isRecording
+            ? 'recording'
+            : status.canRecord
+              ? 'prepared'
+              : 'idle',
+      };
+    } catch {
+      return {
+        canRecord: false,
+        isRecording: false,
+        mediaServicesDidReset: false,
+        state: 'idle',
+      };
+    }
+  };
 
   return {
     async cancel() {
@@ -131,6 +197,7 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
       return uri;
     },
     durationMillis: recorderState.durationMillis,
+    getSnapshot,
     isRecording: () => {
       try {
         return recorder.isRecording;
@@ -140,15 +207,49 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
     },
     async prepare() {
       nativeStartedAt.current = undefined;
-      await recorder.prepareToRecordAsync();
+      meteringDetected.current = false;
+      try {
+        await recorder.prepareToRecordAsync();
+      } catch {
+        const snapshot = getSnapshot();
+        throw new NativeRecorderError(
+          snapshot.mediaServicesDidReset
+            ? 'recording_media_services_reset'
+            : 'recording_native_prepare_failed',
+          snapshot,
+        );
+      }
+      const snapshot = getSnapshot();
+      if (snapshot.mediaServicesDidReset) {
+        throw new NativeRecorderError('recording_media_services_reset', snapshot);
+      }
+      if (!snapshot.canRecord) {
+        throw new NativeRecorderError('recording_native_prepare_failed', snapshot);
+      }
     },
     async requestPermission() {
       const permission = await requestMicrophonePermission();
       return permission.granted;
     },
     start() {
-      recorder.record();
-      if (!recorder.isRecording) throw new Error('record_start_failed');
+      try {
+        recorder.record();
+      } catch {
+        const snapshot = getSnapshot();
+        throw new NativeRecorderError(
+          snapshot.mediaServicesDidReset
+            ? 'recording_media_services_reset'
+            : 'recording_native_start_failed',
+          snapshot,
+        );
+      }
+      const snapshot = getSnapshot();
+      if (snapshot.mediaServicesDidReset) {
+        throw new NativeRecorderError('recording_media_services_reset', snapshot);
+      }
+      if (!snapshot.isRecording) {
+        throw new NativeRecorderError('recording_native_start_failed', snapshot);
+      }
       nativeStartedAt.current = Date.now();
     },
     async stop() {
@@ -161,15 +262,17 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
         recorderState.durationMillis,
         statusBeforeStop.durationMillis,
       );
+      if (statusBeforeStop.mediaServicesDidReset) throw new Error('recording_interrupted');
       try {
         await recorder.stop();
         const status = recorder.getStatus();
+        if (status.mediaServicesDidReset) throw new Error('recording_interrupted');
         const uri = status.url ?? recorder.uri ?? undefined;
         if (!uri) throw new Error('record_stop_failed');
         return {
           durationMillis: Math.max(durationBeforeStop, status.durationMillis),
           format,
-          minBytesPerMillisecond: MIN_BYTES_PER_MILLISECOND,
+          meteringDetected: meteringDetected.current || currentMeteringDetected,
           uri,
         };
       } finally {

@@ -8,7 +8,13 @@ type Completion = {
   error?: { message?: string };
 };
 
-export type ProviderMeta = { audioDurationSeconds?: number; inputTokens?: number; outputTokens?: number };
+export type ProviderMeta = {
+  attemptCount?: number;
+  audioDurationSeconds?: number;
+  inputTokens?: number;
+  outputTokens?: number;
+  upstreamStatus?: string;
+};
 
 @Injectable()
 export class AiProviderService {

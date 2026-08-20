@@ -3,16 +3,15 @@ import { createRef, useState } from 'react';
 import { Platform, StyleSheet } from 'react-native';
 import { Gesture } from 'react-native-gesture-handler';
 
-import { grammarReview, polishExpression } from '@/features/ai/ai-client';
+import { reviewExpression } from '@/features/ai/ai-client';
 import { colors } from '@/theme';
 
 import { StudyWorkbench, type StudyWorkbenchHandle } from '../components/StudyWorkbench';
 
 jest.mock('@/features/ai/ai-client', () => ({
   acceptAiConsent: jest.fn(async () => undefined),
-  grammarReview: jest.fn(),
   hasAiConsent: jest.fn(async () => true),
-  polishExpression: jest.fn(),
+  reviewExpression: jest.fn(),
   transcribeRecording: jest.fn(),
 }));
 
@@ -22,8 +21,7 @@ jest.mock('lucide-react-native', () => {
   return { BookOpenCheck: Icon, Check: Icon, Eraser: Icon, MessageSquareText: Icon, Mic: Icon, NotebookPen: Icon, Pencil: Icon, Save: Icon, Sparkles: Icon };
 });
 
-const mockGrammarReview = jest.mocked(grammarReview);
-const mockPolishExpression = jest.mocked(polishExpression);
+const mockReviewExpression = jest.mocked(reviewExpression);
 
 const baseProps = {
   answerText: '',
@@ -232,41 +230,49 @@ describe('study workbench natural layout', () => {
     expect(screen.queryByText('更自然的民航口语表达')).toBeNull();
   });
 
-  it('uses corrected grammar as the primary output and lists each grammar issue', async () => {
-    mockGrammarReview.mockResolvedValueOnce({
-      correctedText: 'The crew should request an amended heading.',
-      issues: ['Use amended heading in radiotelephony.'],
-      promptVersion: 'grammar-review:v2',
+  it('renders the complete grammar correction structure', async () => {
+    mockReviewExpression.mockResolvedValueOnce({
+      grammar: {
+        correctedText: 'The crew should request an amended heading.',
+        issues: [{ before: 'crew request', after: 'crew should request', reasonZh: '情态表达需要补充 should。' }],
+      },
+      promptVersion: 'deepseek-review:v1',
     });
     const screen = await render(<StudyWorkbench {...baseProps} activeTab="mine" answerText="The crew request new heading." reviewKind="grammar" tabs={['mine', 'notes']} />);
 
     await act(async () => { fireEvent.press(screen.getByLabelText('分析表达')); });
 
-    await waitFor(() => expect(screen.getByTestId('study-workbench-ai-primary').props.children).toBe('The crew should request an amended heading.'));
-    expect(screen.getByTestId('study-workbench-ai-explanation').props.children).toBe('Use amended heading in radiotelephony.');
+    await waitFor(() => expect(screen.getByText('语法纠错')).toBeTruthy());
+    expect(screen.getByText('1. crew request → crew should request')).toBeTruthy();
+    expect(screen.getByText('情态表达需要补充 should。')).toBeTruthy();
+    expect(screen.getByText('正确句子')).toBeTruthy();
+    expect(screen.getByText('The crew should request an amended heading.')).toBeTruthy();
     expect(screen.getAllByTestId('study-workbench-ai-region')).toHaveLength(1);
   });
 
-  it('gives polished OPI text priority over corrected grammar without splitting the AI output', async () => {
-    mockGrammarReview.mockResolvedValueOnce({
-      correctedText: 'The corrected grammar output.',
-      issues: ['One concise issue.'],
-      promptVersion: 'grammar-review:v2',
+  it('renders grammar and polished OPI output from one review call', async () => {
+    mockReviewExpression.mockResolvedValueOnce({
+      grammar: {
+        correctedText: 'The corrected grammar output.',
+        issues: [{ before: 'draft answer', after: 'corrected answer', reasonZh: '修正明确语法错误。' }],
+      },
+      polishedText: 'The polished OPI output.',
+      promptVersion: 'deepseek-review:v1',
     });
-    mockPolishExpression.mockResolvedValueOnce({ polishedText: 'The polished OPI output.', promptVersion: 'polish:v2' });
     const screen = await render(<StudyWorkbench {...baseProps} activeTab="mine" answerText="My draft answer." tabs={['mine', 'reference', 'notes']} />);
 
     await act(async () => { fireEvent.press(screen.getByLabelText('分析表达')); });
 
-    await waitFor(() => expect(screen.getByTestId('study-workbench-ai-primary').props.children).toBe('The polished OPI output.'));
-    expect(screen.queryByText('The corrected grammar output.')).toBeNull();
-    expect(screen.getByTestId('study-workbench-ai-explanation').props.children).toBe('One concise issue.');
+    await waitFor(() => expect(screen.getByText('The polished OPI output.')).toBeTruthy());
+    expect(screen.getByText('The corrected grammar output.')).toBeTruthy();
+    expect(screen.getByText('润色后的表达')).toBeTruthy();
+    expect(mockReviewExpression).toHaveBeenCalledTimes(1);
     expect(screen.getAllByTestId('study-workbench-ai-region')).toHaveLength(1);
   });
 
   it('keeps analysis progress and retryable errors inside the same blue region', async () => {
     let rejectReview!: (reason: Error) => void;
-    mockGrammarReview.mockImplementationOnce(() => new Promise((_, reject) => { rejectReview = reject; }));
+    mockReviewExpression.mockImplementationOnce(() => new Promise((_, reject) => { rejectReview = reject; }));
     const screen = await render(<StudyWorkbench {...baseProps} activeTab="mine" answerText="Answer ready for review." reviewKind="grammar" tabs={['mine', 'notes']} />);
 
     await act(async () => { fireEvent.press(screen.getByLabelText('分析表达')); });
@@ -274,15 +280,31 @@ describe('study workbench natural layout', () => {
     expect(screen.getAllByTestId('study-workbench-ai-region')).toHaveLength(1);
 
     await act(async () => { rejectReview(new Error('offline')); });
-    await waitFor(() => expect(screen.getByText('AI 分析暂时失败，请稍后重试。')).toBeTruthy());
+    await waitFor(() => expect(screen.getByText(/AI 请求失败，请检查网络后重试。.*A-/u)).toBeTruthy());
     expect(screen.getByLabelText('重试分析表达')).toBeTruthy();
     expect(screen.getAllByTestId('study-workbench-ai-region')).toHaveLength(1);
 
-    mockGrammarReview.mockResolvedValueOnce({ correctedText: 'Retry succeeded.', issues: [], promptVersion: 'grammar-review:v2' });
+    mockReviewExpression.mockResolvedValueOnce({ grammar: { correctedText: 'Retry succeeded.', issues: [] }, promptVersion: 'deepseek-review:v1' });
     await act(async () => { fireEvent.press(screen.getByLabelText('重试分析表达')); });
-    await waitFor(() => expect(screen.getByTestId('study-workbench-ai-primary').props.children).toBe('Retry succeeded.'));
-    expect(screen.queryByText('AI 分析暂时失败，请稍后重试。')).toBeNull();
-    expect(screen.getByTestId('study-workbench-ai-explanation').props.children).toBe('未发现明确语法问题');
+    await waitFor(() => expect(screen.getByText('Retry succeeded.')).toBeTruthy());
+    expect(screen.queryByText(/AI 请求失败，请检查网络后重试。/u)).toBeNull();
+    expect(screen.getByText('未发现明确语法问题。')).toBeTruthy();
+  });
+
+  it('keeps the previous successful AI result visible when a later retry fails', async () => {
+    mockReviewExpression.mockResolvedValueOnce({
+      grammar: { correctedText: 'Previous validated result.', issues: [] },
+      promptVersion: 'deepseek-review:v1',
+    });
+    const screen = await render(<StudyWorkbench {...baseProps} activeTab="mine" answerText="Answer ready for review." reviewKind="grammar" tabs={['mine', 'notes']} />);
+
+    await act(async () => { fireEvent.press(screen.getByLabelText('分析表达')); });
+    await waitFor(() => expect(screen.getByText('Previous validated result.')).toBeTruthy());
+
+    mockReviewExpression.mockRejectedValueOnce(new Error('offline'));
+    await act(async () => { fireEvent.press(screen.getByLabelText('分析表达')); });
+    await waitFor(() => expect(screen.getByText(/AI 请求失败，请检查网络后重试。.*A-/u)).toBeTruthy());
+    expect(screen.getByText('Previous validated result.')).toBeTruthy();
   });
 
   it('uses compact dots for multi-section navigation and keeps the active state accessible', async () => {

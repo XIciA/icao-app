@@ -1,6 +1,7 @@
 import {
   Inject,
   Injectable,
+  Logger,
   ServiceUnavailableException,
   UnprocessableEntityException,
 } from '@nestjs/common';
@@ -25,6 +26,7 @@ function cleanTranscript(result: string | undefined) {
 
 @Injectable()
 export class TencentAsrService {
+  private readonly logger = new Logger(TencentAsrService.name);
   private client?: InstanceType<typeof AsrClient>;
 
   constructor(
@@ -108,11 +110,17 @@ export class TencentAsrService {
     if (/RequestLimitExceeded|LimitExceeded|429/iu.test(detail)) {
       throw new ServiceUnavailableException('ai_upstream_limited');
     }
-    if (/FailedOperation\.UserHasNoAmount/iu.test(detail)) {
-      throw new ServiceUnavailableException('asr_model_unavailable');
+    if (/AuthFailure|InvalidCredential|InvalidParameter\.Secret|Unauthorized|401/iu.test(detail)) {
+      throw new ServiceUnavailableException('ai_upstream_auth_failed');
+    }
+    if (/FailedOperation\.UserHasNoAmount|InsufficientBalance|NoAmount|PaymentRequired|402/iu.test(detail)) {
+      throw new ServiceUnavailableException('ai_upstream_balance_insufficient');
     }
     if (/NoUsefulAudio|no useful audio|no (?:valid )?(?:voice|speech)|无有效|无语音|静音/iu.test(detail)) {
       throw new UnprocessableEntityException('no_speech_detected');
+    }
+    if (/RequestTimeout|DeadlineExceeded|ETIMEDOUT|timed?\s*out/iu.test(detail)) {
+      throw new ServiceUnavailableException('ai_timeout');
     }
     throw new ServiceUnavailableException('ai_upstream_failed');
   }
@@ -139,7 +147,11 @@ export class TencentAsrService {
           if (!transcript) throw new UnprocessableEntityException('no_speech_detected');
           return {
             rawTranscript: transcript,
-            meta: { audioDurationSeconds: response.Data?.AudioDuration } satisfies ProviderMeta,
+            meta: {
+              attemptCount: 1,
+              audioDurationSeconds: response.Data?.AudioDuration,
+              upstreamStatus: 'success',
+            } satisfies ProviderMeta,
           };
         }
         if (status === 3) this.mapProviderError(new Error(response.Data?.ErrorMsg || 'asr_task_failed'));
@@ -151,12 +163,19 @@ export class TencentAsrService {
     }
   }
 
-  async transcribe(audio: Buffer, mimeType: string, model: TencentAsrModel, signal?: AbortSignal) {
-    const staged = await this.audioStorage.stage(audio, mimeType);
+  async transcribe(
+    audio: Buffer,
+    mimeType: string,
+    model: TencentAsrModel,
+    signal?: AbortSignal,
+    correlationId?: string,
+  ) {
+    const staged = await this.audioStorage.stage(audio, mimeType, correlationId);
     try {
       return await this.recognize(staged.url, model, signal);
     } finally {
-      await this.audioStorage.remove(staged.objectKey).catch(() => undefined);
+      await this.audioStorage.remove(staged.objectKey)
+        .catch(() => this.logger.warn('asr_audio_cleanup_failed stage=request_finally'));
     }
   }
 }

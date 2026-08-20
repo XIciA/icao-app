@@ -78,11 +78,11 @@ if (app.expo.name !== appName || app.expo.ios.bundleIdentifier !== 'com.readyouf
 
 const infoPath = path.join(root, 'src/features/info/InfoScreen.tsx');
 const info = await readFile(infoPath, 'utf8');
-for (const fragment of [company, appName, '版本 v3.1', '腾讯云语音识别', '阿里云百炼通义千问', 'privacy@yunqihangke.com']) {
+for (const fragment of [company, appName, '版本 v3.0', '版本 v3.3', '腾讯云语音识别', '阿里云百炼通义千问', 'DeepSeek 开放平台', '杭州深度求索人工智能基础技术研究有限公司', '单次最多 30 条', '本机最多保留 50 条', '诊断不包含录音、回答、文件地址（URI）、Token 或账号信息', 'privacy@yunqihangke.com']) {
   requireFragment(info, fragment, infoPath);
 }
 
-const storePath = path.join(root, 'docs/operations/native-store-submission-materials.md');
+const storePath = path.join(root, 'docs/resources/operations/native-store-submission-materials.md');
 const store = await readFile(storePath, 'utf8');
 for (const page of pages) requireFragment(store, `${publicBase}${page.route.slice('/apps/readyoufife'.length)}`, storePath);
 

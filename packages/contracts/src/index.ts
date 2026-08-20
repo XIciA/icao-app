@@ -16,8 +16,93 @@ export type ApiSuccessEnvelope<T> = {
 
 export type AuthenticatedUser = {
   id: string;
+  authUserId?: string;
   email?: string;
+  phone?: string;
+  providers?: AuthIdentityProvider[];
 };
+
+export type AuthIdentityProvider = 'phone' | 'apple' | 'wechat';
+
+export type AccountSummary = {
+  accountId: string;
+  phone?: string;
+  providers: AuthIdentityProvider[];
+  phoneBound: boolean;
+};
+
+export type MergePhoneAccountRequest = {
+  phone: string;
+  token: string;
+};
+
+export type StartPhoneBindingRequest = {
+  phone: string;
+};
+
+export type StartPhoneBindingResponse = {
+  sent: true;
+};
+
+export type StartPhoneOtpRequest = {
+  phone: string;
+};
+
+export type StartPhoneOtpResponse = {
+  accepted: true;
+};
+
+export type AuthorizePasswordRecoveryResponse = {
+  authorized: true;
+  expiresAt: number;
+};
+
+export type UpdatePhonePasswordRequest = {
+  password: string;
+  currentPassword?: string;
+};
+
+export type UpdatePhonePasswordResponse = {
+  session: SocialAuthSessionResponse;
+  updated: true;
+};
+
+export type WechatSessionRequest = {
+  code: string;
+};
+
+export type SocialAuthSessionResponse = {
+  accessToken: string;
+  refreshToken: string;
+  expiresAt?: number;
+};
+
+export type MergePhoneAccountResponse = {
+  account: AccountSummary;
+  session: SocialAuthSessionResponse;
+};
+
+const CHINA_MOBILE_LOCAL_PATTERN = /^1[3-9]\d{9}$/u;
+
+export function normalizeChinaMobile(input: string): string | undefined {
+  const compact = input.trim().replace(/[\s-]/gu, '');
+  const local = compact.startsWith('+86')
+    ? compact.slice(3)
+    : compact.startsWith('86') && compact.length === 13
+      ? compact.slice(2)
+      : compact;
+  return CHINA_MOBILE_LOCAL_PATTERN.test(local) ? `+86${local}` : undefined;
+}
+
+export function isChinaMobileE164(input: string | undefined): input is string {
+  return Boolean(input && /^\+861[3-9]\d{9}$/u.test(input));
+}
+
+export function maskChinaMobile(input: string | undefined): string {
+  if (!isChinaMobileE164(input)) return '未绑定';
+  const local = input.slice(3);
+  return `+86 ${local.slice(0, 3)}****${local.slice(-4)}`;
+}
 
 export type InviteSessionResponse = {
   accessToken: string;
@@ -29,7 +114,6 @@ export type InviteSessionResponse = {
 export type RevokeAllSessionsResponse = { revoked: true };
 
 export type DeleteAccountRequest = {
-  inviteCode: string;
   confirmation: '注销账号';
 };
 
@@ -81,6 +165,40 @@ export type FeedbackErrorContext = {
   requestId?: string;
 };
 
+export type FeedbackDiagnosticFeature = 'recording' | 'ai';
+
+export type FeedbackDiagnosticEvent = {
+  offsetMs: number;
+  stage: string;
+  code: string;
+  level: 'info' | 'warning' | 'error';
+  durationMs?: number;
+  byteSize?: number;
+  format?: 'm4a' | 'wav' | 'unknown';
+  owner?: 'radio' | 'study' | 'recording' | 'recordingPlayback';
+  recorderState?: 'idle' | 'prepared' | 'preparing' | 'recording' | 'stopping' | 'unknown';
+  meteringDetected?: boolean;
+  mediaServicesDidReset?: boolean;
+  canRecord?: boolean;
+  isRecording?: boolean;
+  capability?: 'transcribe' | 'grammar' | 'polish';
+  requestId?: string;
+  retryable?: boolean;
+  httpStatus?: number;
+  attempt?: number;
+};
+
+export type FeedbackDiagnosticBundle = {
+  schemaVersion: 1;
+  feature: FeedbackDiagnosticFeature;
+  correlationId: string;
+  appVersion: string;
+  build: string;
+  platform: 'web' | 'ios' | 'android';
+  osVersion: string;
+  events: FeedbackDiagnosticEvent[];
+};
+
 export type FeedbackSubmissionPayload = {
   clientSubmissionId: string;
   category: FeedbackCategory;
@@ -94,6 +212,7 @@ export type FeedbackSubmissionPayload = {
   osVersion?: string;
   question?: FeedbackQuestionContext;
   error?: FeedbackErrorContext;
+  diagnostics?: FeedbackDiagnosticBundle;
 };
 
 export type FeedbackSubmissionResponse = {
@@ -326,7 +445,7 @@ export type SyncPullResponse = {
 };
 
 export type AiModule = 'listening' | 'sentence900' | 'atc' | 'opi' | 'story';
-export type AiCapability = 'word_lookup' | 'transcribe' | 'grammar_review' | 'polish';
+export type AiCapability = 'word_lookup' | 'transcribe' | 'grammar_review' | 'polish' | 'review';
 
 export const TENCENT_ASR_MODELS = ['16k_zh_en_2.0', '16k_en_large', '16k_en'] as const;
 export type TencentAsrModel = typeof TENCENT_ASR_MODELS[number];
@@ -390,6 +509,28 @@ export type GrammarReviewResult = {
   correctedText: string;
   issues: string[];
   promptVersion: string;
+};
+
+export type GrammarCorrectionIssue = {
+  before: string;
+  after: string;
+  reasonZh: string;
+};
+
+export type AiReviewRequest = {
+  mode: 'grammar' | 'opi';
+  module: 'atc' | 'story' | 'opi';
+  questionId: string;
+  transcript: string;
+};
+
+export type AiReviewResult = {
+  grammar: {
+    issues: GrammarCorrectionIssue[];
+    correctedText: string;
+  };
+  polishedText?: string;
+  promptVersion: 'deepseek-review:v1';
 };
 
 export type PolishRequest = {

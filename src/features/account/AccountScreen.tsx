@@ -1,5 +1,5 @@
 import * as ImagePicker from 'expo-image-picker';
-import { DEFAULT_TENCENT_ASR_MODEL, type TencentAsrModel } from '@icao/contracts';
+import { DEFAULT_TENCENT_ASR_MODEL, maskChinaMobile, normalizeChinaMobile, type TencentAsrModel } from '@icao/contracts';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { AlertTriangle, Bookmark, Check, CheckCircle2, ChevronRight, Cloud, History, Info, LogOut, MapPin, Pencil, RefreshCcw, Shield, Trash2, UserRound } from '@/components/ui/icons';
 import { useCallback, useEffect, useState } from 'react';
@@ -7,9 +7,11 @@ import { ActivityIndicator, Alert, Image, Pressable, StyleSheet, View } from 're
 
 import { TopBar } from '@/components/navigation/TopBar';
 import { AppModal } from '@/components/platform/AppModal';
+import { AuthField, CodeField, PasswordField } from '@/components/auth/auth-ui';
 import { AppText, BottomSheet, Button, Card, Screen, Tag, TextField } from '@/components/ui';
 import { APP_DISPLAY_VERSION } from '@/config/app-version';
 import { useAuth } from '@/features/auth/AuthProvider';
+import { isValidPhonePassword, type PhoneBindingChallenge } from '@/features/auth/auth-service';
 import { hasAiConsent, withdrawAiConsent } from '@/features/ai/ai-client';
 import { ASR_MODEL_OPTIONS, getAsrModel, setAsrModel } from '@/features/ai/asr-model-preference';
 import { readAnnotationStore } from '@/features/question-bank/annotations/annotation-store';
@@ -19,8 +21,8 @@ import { colors, radii, spacing } from '@/theme';
 import { SESSION_STORAGE_LABEL } from '@/platform/session-storage-capabilities';
 import { updateProfile, useProfile } from './profile-store';
 
-type AccountSlug = 'profile' | 'edit-profile' | 'settings' | 'sync' | 'security' | 'delete-account';
-const pages: AccountSlug[] = ['profile', 'edit-profile', 'settings', 'sync', 'security', 'delete-account'];
+type AccountSlug = 'profile' | 'edit-profile' | 'settings' | 'sync' | 'security' | 'bind-phone' | 'password' | 'delete-account';
+const pages: AccountSlug[] = ['profile', 'edit-profile', 'settings', 'sync', 'security', 'bind-phone', 'password', 'delete-account'];
 
 export function AccountScreen() {
   const { slug } = useLocalSearchParams<{ slug: AccountSlug }>();
@@ -30,6 +32,8 @@ export function AccountScreen() {
   if (page === 'settings') return <SettingsPage />;
   if (page === 'sync') return <SyncPage />;
   if (page === 'security') return <SecurityPage />;
+  if (page === 'bind-phone') return <BindPhonePage />;
+  if (page === 'password') return <PasswordPage />;
   if (page === 'delete-account') return <DeleteAccountPage />;
   return <ProfilePage />;
 }
@@ -48,7 +52,7 @@ function ProfilePage() {
       <View style={styles.profileHero}>
         <Avatar uri={profile.avatarUri} />
         <AppText variant="pageTitle">{displayName}</AppText>
-        <AppText variant="caption">账号 ID：{auth.session?.user.id.slice(0, 8)}</AppText>
+        <AppText variant="caption">账号 ID：{auth.account?.accountId.slice(0, 8) ?? '同步中'}</AppText>
         <Tag>听你五个账号</Tag>
       </View>
       <View style={styles.content}>
@@ -59,9 +63,9 @@ function ProfilePage() {
           <Row icon={Bookmark} label="个性签名" value={profile.signature} />
         </Section>
         <Section title="登录账号">
-          <Row first icon={Shield} label="邀请码登录" value="已启用" />
+          <Row first icon={Shield} label="手机号" value={maskChinaMobile(auth.account?.phone)} />
         </Section>
-        <AppText variant="caption">账户名称由专属邀请码确定，用于账号归属与跨设备同步。</AppText>
+        <AppText variant="caption">学习与权益跟随永久账号 ID；手机号用于找回和安全验证。</AppText>
         <Button leading={<Pencil color={colors.primaryForeground} size={16} />} onPress={() => router.push('/account/edit-profile')}>编辑资料</Button>
       </View>
     </Page>
@@ -130,7 +134,7 @@ function EditProfilePage() {
       </View>
       <View style={styles.form}>
         <TextField editable={false} label="账户名称" value={auth.session?.user.displayName ?? '飞行学员'} />
-        <AppText variant="micro">账户名称由邀请码确定，如需调整请联系管理员。</AppText>
+        <AppText variant="micro">TestFlight 阶段暂用默认账户名称，不影响手机号登录和数据同步。</AppText>
         <Choice label="性别" onChange={setGender} options={['男', '女', '保密']} value={gender} />
         <TextField label="所在地区" onChangeText={setRegion} value={region} />
         <Choice compact label="目标等级" onChange={setTargetLevel} options={['ICAO 4 级', 'ICAO 5 级', 'ICAO 6 级']} value={targetLevel} />
@@ -191,7 +195,7 @@ function SettingsPage() {
     <Page title="设置">
       <View style={styles.content}>
         <Section title="账号">
-          <Row first hint="邀请码与会话" icon={Shield} label="账号安全" onPress={() => router.push('/account/security')} />
+          <Row first hint="手机号与会话" icon={Shield} label="账号安全" onPress={() => router.push('/account/security')} />
         </Section>
         <Section title="AI 与隐私">
           <Row first hint="切换后从下一次转写开始生效" icon={Cloud} label="腾讯 ASR 模型" onPress={() => setAsrPickerVisible(true)} value={asrModel} />
@@ -232,18 +236,19 @@ function SyncPage() {
     ]);
     setStatus(nextStatus);
     setLocalCounts({ records: records.length, annotations: Object.keys(annotations.entries).length });
-    if (auth.session) setNeedsBinding((await inspectLearningSyncBinding(auth.session.user.id)).needsConfirmation);
-  }, [auth.session]);
+    if (auth.account) setNeedsBinding((await inspectLearningSyncBinding(auth.account.accountId)).needsConfirmation);
+  }, [auth.account]);
 
   useEffect(() => { void refresh(); }, [refresh]);
 
   async function sync() {
     if (!auth.session) { router.push('/auth/login'); return; }
+    if (!auth.account) { setError('账号信息正在同步，请稍后重试。'); return; }
     setPhase('syncing');
     setError('');
     try {
-      if (needsBinding || status.boundUserId !== auth.session.user.id) await bindLearningSync(auth.session.user.id, 'upload-local');
-      else await runLearningSync(auth.session.user.id);
+      if (needsBinding || status.boundUserId !== auth.account.accountId) await bindLearningSync(auth.account.accountId, 'upload-local');
+      else await runLearningSync(auth.account.accountId);
       await refresh();
       setNeedsBinding(false);
       setPhase('success');
@@ -254,7 +259,7 @@ function SyncPage() {
     }
   }
 
-  const bound = Boolean(auth.session && status.boundUserId === auth.session.user.id);
+  const bound = Boolean(auth.account && status.boundUserId === auth.account.accountId);
   const copy = !auth.session
     ? ['登录后启用云同步', '未登录时继续使用本机学习数据。']
     : phase === 'syncing'
@@ -270,15 +275,369 @@ function SyncPage() {
 function SecurityPage() {
   const auth = useAuth();
   const router = useRouter();
-  return <Page title="账号安全"><View style={styles.content}><Section title="登录与绑定"><Row first icon={Shield} label="登录方式" value="专属邀请码" /><Row icon={UserRound} label="账户名称" value={auth.session?.user.displayName ?? '未登录'} /></Section><Section title="安全"><Row first icon={Shield} label="会话存储" value={SESSION_STORAGE_LABEL} /></Section><Section title="危险操作"><Row danger first icon={Trash2} label="注销账号" hint="永久删除账号与活跃数据" onPress={() => router.push('/account/delete-account')} /></Section></View></Page>;
+  const hasPassword = auth.session?.user.hasPassword === true;
+  const phoneBound = auth.account?.phoneBound === true;
+  const providerLabel = auth.account?.providers.map((provider) => provider === 'wechat' ? '微信' : provider === 'apple' ? 'Apple' : '手机号').join(' + ') || '正在同步';
+  const [startingPasswordSetup, setStartingPasswordSetup] = useState(false);
+  const [passwordSetupError, setPasswordSetupError] = useState('');
+
+  async function openPasswordSettings() {
+    if (!phoneBound) {
+      router.push('/account/bind-phone');
+      return;
+    }
+    if (hasPassword) {
+      router.push('/account/password');
+      return;
+    }
+    if (startingPasswordSetup) return;
+    setStartingPasswordSetup(true);
+    setPasswordSetupError('');
+    try {
+      await auth.signOut();
+      router.replace('/auth/login?mode=recovery');
+    } catch {
+      setPasswordSetupError('暂时无法开始短信验证，请稍后重试');
+    } finally {
+      setStartingPasswordSetup(false);
+    }
+  }
+
+  return (
+    <Page title="账号安全">
+      <View style={styles.content}>
+        <Section title="登录与绑定">
+          <Row first icon={Shield} label="已绑定方式" value={providerLabel} />
+          <Row
+            hint={phoneBound ? '用于找回密码和敏感操作验证' : '推荐绑定，稍后也可以继续使用微信或 Apple 登录'}
+            icon={UserRound}
+            label="绑定手机号"
+            onPress={phoneBound ? undefined : () => router.push('/account/bind-phone')}
+            value={maskChinaMobile(auth.account?.phone)}
+          />
+          <Row
+            hint={!phoneBound ? '先绑定手机号后即可设置' : hasPassword ? '验证当前密码后设置新密码' : '短信验证后设置，可使用手机号和密码登录'}
+            icon={Shield}
+            label={hasPassword ? '修改登录密码' : '设置登录密码'}
+            onPress={() => void openPasswordSettings()}
+          />
+        </Section>
+        {passwordSetupError ? <AppText color={colors.destructive} variant="caption">{passwordSetupError}</AppText> : null}
+        <Section title="安全">
+          <Row first icon={Shield} label="会话存储" value={SESSION_STORAGE_LABEL} />
+        </Section>
+        <Section title="危险操作">
+          <Row danger first icon={Trash2} label="注销账号" hint="永久删除账号与活跃数据" onPress={() => router.push('/account/delete-account')} />
+        </Section>
+      </View>
+    </Page>
+  );
+}
+
+function BindPhonePage() {
+  const auth = useAuth();
+  const router = useRouter();
+  const [phone, setPhone] = useState('');
+  const [code, setCode] = useState('');
+  const [challenge, setChallenge] = useState<PhoneBindingChallenge>();
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
+  const [recentAuthRequired, setRecentAuthRequired] = useState(false);
+  const [resendDeadline, setResendDeadline] = useState(0);
+  const [clockNow, setClockNow] = useState(() => Date.now());
+
+  useEffect(() => {
+    if (!resendDeadline) return undefined;
+    const timer = setInterval(() => {
+      const next = Date.now();
+      setClockNow(next);
+      if (next >= resendDeadline) clearInterval(timer);
+    }, 250);
+    return () => clearInterval(timer);
+  }, [resendDeadline]);
+
+  const remainingSeconds = Math.max(0, Math.ceil((resendDeadline - clockNow) / 1_000));
+
+  function startCountdown() {
+    const now = Date.now();
+    setClockNow(now);
+    setResendDeadline(now + 60_000);
+  }
+
+  function updatePhone(value: string) {
+    const digits = value.replace(/\D/gu, '');
+    setPhone((digits.startsWith('86') && digits.length > 11 ? digits.slice(2) : digits).slice(0, 11));
+  }
+
+  async function requestCode() {
+    if (!normalizeChinaMobile(phone)) { setError('请输入正确的中国大陆手机号'); return; }
+    setSubmitting(true);
+    setError('');
+    setRecentAuthRequired(false);
+    try {
+      setChallenge(await auth.requestPhoneBindingOtp(phone));
+      setCode('');
+      startCountdown();
+    } catch (cause) {
+      const code = cause instanceof Error ? cause.message : '';
+      setRecentAuthRequired(code === 'recent_social_auth_required');
+      setError(code === 'recent_social_auth_required'
+        ? '为保护账号安全，请先重新使用微信或 Apple 登录验证身份，再绑定手机号'
+        : '暂时无法发送验证码，请检查手机号或稍后重试');
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  async function resendCode() {
+    if (!challenge || remainingSeconds > 0) return;
+    setSubmitting(true);
+    setError('');
+    setRecentAuthRequired(false);
+    try {
+      await auth.resendPhoneBindingOtp(challenge);
+      setCode('');
+      startCountdown();
+    } catch {
+      setError('暂时无法重新发送验证码，请稍后重试');
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  async function verify() {
+    if (!challenge || !/^\d{6}$/u.test(code)) { setError('请输入6位短信验证码'); return; }
+    setSubmitting(true);
+    setError('');
+    try {
+      await auth.verifyPhoneBindingOtp(challenge, code);
+      router.replace('/account/security');
+    } catch (cause) {
+      const code = cause instanceof Error ? cause.message : '';
+      setRecentAuthRequired(code === 'recent_social_auth_required');
+      setError(code === 'account_identity_conflict'
+        ? '该账号存在无法自动处理的身份冲突，请稍后联系客服'
+        : code === 'recent_social_auth_required'
+          ? '为保护账号安全，请先重新使用微信或 Apple 登录验证身份，再绑定手机号'
+        : code === 'invalid_phone_otp'
+          ? '验证码错误或已过期，请重新输入'
+          : '绑定未完成，请稍后重试');
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  async function reauthenticate() {
+    setSubmitting(true);
+    setError('');
+    try {
+      await auth.signOut();
+      router.replace('/auth/login');
+    } catch {
+      setError('暂时无法重新验证，请稍后重试');
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  if (auth.account?.phoneBound) {
+    return <Page title="绑定手机号"><View style={styles.form}><Card><AppText variant="sectionTitle">手机号已绑定</AppText><AppText variant="caption">{maskChinaMobile(auth.account.phone)}</AppText></Card><Button onPress={() => router.replace('/account/security')}>返回账号安全</Button></View></Page>;
+  }
+
+  return (
+    <Page title="绑定手机号">
+      <View style={styles.form}>
+        <View style={styles.passwordIntro}>
+          <AppText variant="sectionTitle">绑定中国大陆手机号</AppText>
+          <AppText variant="caption">绑定后可使用验证码或密码登录，也可用于账号找回。普通学习不强制绑定。</AppText>
+        </View>
+        <AuthField autoCapitalize="none" keyboardType="phone-pad" label="手机号" maxLength={14} onChangeText={updatePhone} placeholder="请输入11位手机号" prefix="+86" value={phone} />
+        {challenge ? (
+          <>
+            <CodeField onChangeText={(value) => setCode(value.replace(/\D/gu, '').slice(0, 6))} value={code} />
+            <AppText variant="caption">验证码已发送至 {maskChinaMobile(challenge.phone)}</AppText>
+            <AppText variant="caption">验证成功后将安全绑定到你的听你五个账号，学习记录与权益保持不变。</AppText>
+          </>
+        ) : null}
+        {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
+        {recentAuthRequired ? <Button disabled={submitting} onPress={() => void reauthenticate()} variant="outline">重新验证身份</Button> : null}
+        {challenge ? (
+          <>
+            <Button disabled={submitting || code.length !== 6} loading={submitting} onPress={() => void verify()} size="lg">验证并完成绑定</Button>
+            <Button disabled={submitting || remainingSeconds > 0} onPress={() => void resendCode()} variant="outline">
+              {remainingSeconds > 0 ? `${remainingSeconds} 秒后可重新获取` : '重新获取验证码'}
+            </Button>
+            <Button disabled={submitting} onPress={() => { setChallenge(undefined); setCode(''); setError(''); setRecentAuthRequired(false); }} variant="ghost">更换手机号</Button>
+          </>
+        ) : (
+          <Button disabled={submitting} loading={submitting} onPress={() => void requestCode()} size="lg">获取验证码</Button>
+        )}
+      </View>
+    </Page>
+  );
+}
+
+function PasswordPage() {
+  const { mode } = useLocalSearchParams<{ mode?: string }>();
+  const auth = useAuth();
+  const router = useRouter();
+  const setup = mode === 'setup' && auth.passwordChangePurpose === 'setup';
+  const recovery = mode === 'recovery' && auth.passwordChangePurpose === 'recovery';
+  const hasPassword = auth.session?.user.hasPassword === true;
+  const requiresCurrentPassword = hasPassword && !recovery && !setup;
+  const title = setup ? '完成注册' : recovery ? '重置登录密码' : hasPassword ? '修改登录密码' : '设置登录密码';
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmation, setConfirmation] = useState('');
+  const [saving, setSaving] = useState(false);
+  const [startingRecovery, setStartingRecovery] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    if (((mode === 'setup' || mode === 'recovery') && !setup && !recovery) || (!hasPassword && !setup && !recovery)) {
+      router.replace('/account/security');
+    }
+  }, [hasPassword, mode, recovery, router, setup]);
+
+  const passwordError = getPasswordPolicyError(newPassword);
+  const confirmationError = confirmation && confirmation !== newPassword ? '两次输入的密码不一致' : '';
+  const ready = Boolean(
+    (!requiresCurrentPassword || currentPassword)
+      && newPassword
+      && !passwordError
+      && confirmation === newPassword,
+  );
+
+  async function savePassword() {
+    if (!ready) return;
+    setSaving(true);
+    setError('');
+    try {
+      await auth.updatePassword(newPassword, requiresCurrentPassword ? currentPassword : undefined);
+      setSaved(true);
+    } catch (cause) {
+      setError(getPasswordUpdateError(cause));
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  async function startSmsRecovery() {
+    setStartingRecovery(true);
+    setError('');
+    try {
+      await auth.signOut();
+      router.replace('/auth/login?mode=recovery');
+    } catch {
+      setError('暂时无法开始短信验证，请稍后重试');
+    } finally {
+      setStartingRecovery(false);
+    }
+  }
+
+  function finish() {
+    setSaved(false);
+    router.replace(setup ? '/(tabs)' : '/account/security');
+  }
+
+  return (
+    <Page title={title}>
+      <View style={styles.passwordForm}>
+        <View style={styles.passwordIntro}>
+          <AppText variant="sectionTitle">登录密码</AppText>
+          <AppText variant="caption">
+            {setup
+              ? '手机号验证已通过，设置登录密码即可完成注册。'
+              : recovery
+              ? '手机号验证已通过，请为当前账号设置一个新密码。'
+              : requiresCurrentPassword
+                ? '验证当前密码后，新密码会用于后续手机号密码登录。'
+                : '设置后，验证码登录和密码登录仍使用同一个账号。'}
+          </AppText>
+        </View>
+        {requiresCurrentPassword ? (
+          <>
+            <PasswordField
+              label="当前密码"
+              onChangeText={setCurrentPassword}
+              placeholder="请输入当前密码"
+              value={currentPassword}
+            />
+            <Button
+              disabled={saving || startingRecovery}
+              loading={startingRecovery}
+              onPress={() => void startSmsRecovery()}
+              variant="ghost"
+            >
+              忘记当前密码？使用短信验证
+            </Button>
+          </>
+        ) : null}
+        <PasswordField
+          label="新密码"
+          onChangeText={setNewPassword}
+          placeholder="请输入 10–64 位新密码"
+          value={newPassword}
+        />
+        <AppText color={passwordError ? colors.destructive : colors.mutedForeground} variant="micro">
+          {passwordError || '密码为 10–64 位，且至少包含一个字母和一个数字。'}
+        </AppText>
+        <PasswordField
+          label="确认新密码"
+          onChangeText={setConfirmation}
+          placeholder="请再次输入新密码"
+          value={confirmation}
+        />
+        {confirmationError ? <AppText color={colors.destructive} variant="caption">{confirmationError}</AppText> : null}
+        {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
+        <Button
+          disabled={!ready || saving}
+          loading={saving}
+          onPress={() => void savePassword()}
+          size="lg"
+          testID="password-submit"
+        >
+          {setup ? '完成注册' : '保存密码'}
+        </Button>
+        <AppText style={styles.center} variant="micro">密码仅用于身份验证，不会写入学习资料或本机日志。</AppText>
+      </View>
+      <BottomSheet onClose={finish} visible={saved}>
+        <SheetResult
+          actionLabel={setup ? '进入 App' : undefined}
+          body={setup ? '账号注册已完成，现在可以使用验证码或密码登录。' : '登录密码已更新，可以继续使用验证码或密码登录。'}
+          onPress={finish}
+          title={setup ? '注册完成' : '密码已保存'}
+        />
+      </BottomSheet>
+    </Page>
+  );
+}
+
+function getPasswordPolicyError(password: string) {
+  if (!password) return '';
+  if (isValidPhonePassword(password)) return '';
+  const length = Array.from(password).length;
+  if (length < 10 || length > 64) return '密码长度需要为 10–64 位';
+  if (!/[A-Za-z]/u.test(password) || !/[0-9]/u.test(password)) return '密码必须同时包含字母和数字';
+  return '';
+}
+
+function getPasswordUpdateError(cause: unknown) {
+  const code = cause instanceof Error ? cause.message : '';
+  if (code === 'invalid_phone_or_password' || code === 'invalid_current_password' || code === 'invalid_credentials') return '当前密码不正确，请重新输入';
+  if (code === 'password_unchanged' || code === 'same_password') return '新密码不能与当前密码相同';
+  if (code === 'invalid_phone_password' || code === 'password_too_weak') return '新密码不符合安全要求，请更换后重试';
+  if (code === 'phone_reauthentication_required') return '登录验证已过期，请通过短信验证码验证后重试';
+  return '密码保存失败，请稍后重试';
 }
 
 function DeleteAccountPage() {
-  const router = useRouter(); const auth = useAuth(); const [agreed, setAgreed] = useState(false); const [inviteCode, setInviteCode] = useState(''); const [confirmation, setConfirmation] = useState(''); const [error, setError] = useState(''); const [deleting, setDeleting] = useState(false);
-  const risks = ['学习记录、标注、笔记、同步数据与 AI 账号数据将从活跃数据库删除', '本机个人数据、会话与待同步队列将清除', '操作不可撤销；数据库备份最多保留 7 天后自然过期'];
-  const ready = agreed && /^[\u3400-\u9fff]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}$/u.test(inviteCode.trim()) && confirmation === '注销账号';
-  async function remove() { if (!ready) return; setDeleting(true); setError(''); try { await auth.deleteAccount(inviteCode); router.replace('/auth/login'); } catch (cause) { setError(cause instanceof Error && cause.message === 'invalid_invite_code' ? '邀请码错误，账号未删除' : '注销失败，账号与本机数据均未删除'); } finally { setDeleting(false); } }
-  return <Page title="注销账号"><View style={styles.delete}><View style={styles.dangerHero}><View style={styles.dangerIcon}><AlertTriangle color={colors.destructive} size={30} /></View><AppText variant="sectionTitle">此操作不可撤销</AppText><AppText style={styles.center}>注销账号会永久删除当前账号的活跃数据。</AppText></View><Card style={styles.risks}>{risks.map((risk) => <View key={risk} style={styles.risk}><View style={styles.riskDot}><AppText color={colors.destructive} variant="micro">×</AppText></View><AppText style={styles.flex}>{risk}</AppText></View>)}</Card><TextField autoCapitalize="characters" label="确认邀请码" onChangeText={setInviteCode} placeholder="请输入完整邀请码" value={inviteCode} /><TextField label="确认文字" onChangeText={setConfirmation} placeholder="请输入：注销账号" value={confirmation} /><Pressable onPress={() => setAgreed(!agreed)} style={styles.consent}><View style={[styles.checkbox, agreed && styles.checkboxOn]}>{agreed ? <Check color={colors.primaryForeground} size={12} /> : null}</View><AppText variant="caption">我已知晓上述风险，仍要注销账号</AppText></Pressable>{error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}<Button disabled={!ready || deleting} onPress={() => void remove()} size="lg" variant="destructive">{deleting ? '正在注销…' : '永久注销账号'}</Button><Button disabled={deleting} onPress={router.back} size="lg" variant="outline">放弃，返回</Button></View></Page>;
+  const router = useRouter(); const auth = useAuth(); const [agreed, setAgreed] = useState(false); const [confirmation, setConfirmation] = useState(''); const [error, setError] = useState(''); const [deleting, setDeleting] = useState(false);
+  const risks = ['学习记录、标注、笔记、同步数据与 AI 账号数据将从活跃系统删除', '本机个人数据、会话与待同步队列将清除', '操作不可撤销；同一手机号再次注册将获得新的账号'];
+  const ready = agreed && confirmation === '注销账号';
+  async function remove() { if (!ready) return; setDeleting(true); setError(''); try { await auth.deleteAccount(); router.replace('/auth/login'); } catch { setError('注销失败，账号与本机数据均未删除'); } finally { setDeleting(false); } }
+  return <Page title="注销账号"><View style={styles.delete}><View style={styles.dangerHero}><View style={styles.dangerIcon}><AlertTriangle color={colors.destructive} size={30} /></View><AppText variant="sectionTitle">此操作不可撤销</AppText><AppText style={styles.center}>注销账号会永久删除当前账号及其活跃数据。</AppText></View><Card style={styles.risks}>{risks.map((risk) => <View key={risk} style={styles.risk}><View style={styles.riskDot}><AppText color={colors.destructive} variant="micro">×</AppText></View><AppText style={styles.flex}>{risk}</AppText></View>)}</Card><TextField label="确认文字" onChangeText={setConfirmation} placeholder="请输入：注销账号" value={confirmation} /><Pressable onPress={() => setAgreed(!agreed)} style={styles.consent}><View style={[styles.checkbox, agreed && styles.checkboxOn]}>{agreed ? <Check color={colors.primaryForeground} size={12} /> : null}</View><AppText variant="caption">我已知晓上述风险，仍要注销账号</AppText></Pressable>{error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}<Button disabled={!ready || deleting} onPress={() => void remove()} size="lg" variant="destructive">{deleting ? '正在注销…' : '永久注销账号'}</Button><Button disabled={deleting} onPress={router.back} size="lg" variant="outline">放弃，返回</Button></View></Page>;
 }
 
 function Avatar({ uri, small = false }: { uri?: string | null; small?: boolean }) {
@@ -299,10 +658,10 @@ function Avatar({ uri, small = false }: { uri?: string | null; small?: boolean }
 function Choice({ label, options, value, onChange, compact = false }: { label: string; options: string[]; value: string; onChange: (value: string) => void; compact?: boolean }) { return <View style={styles.choice}><AppText variant="button">{label}</AppText><View style={styles.choiceRow}>{options.map((option) => <Pressable key={option} onPress={() => onChange(option)} style={[styles.choiceButton, value === option && styles.choiceSelected]}><AppText color={value === option ? colors.primary : colors.mutedForeground} variant={compact ? 'micro' : 'caption'}>{option}</AppText></Pressable>)}</View></View>; }
 function Section({ title, children }: { title: string; children: React.ReactNode }) { return <View style={styles.section}><AppText variant="caption">{title}</AppText><Card style={styles.rows}>{children}</Card></View>; }
 function Row({ icon: Icon, label, hint, value, onPress, first = false, danger = false, trailing }: { icon: typeof UserRound; label: string; hint?: string; value?: string; onPress?: () => void; first?: boolean; danger?: boolean; trailing?: React.ReactNode }) { const content = <View style={[styles.row, !first && styles.rowBorder]}><View style={[styles.rowIcon, danger && styles.rowIconDanger]}><Icon color={danger ? colors.destructive : colors.primary} size={16} /></View><View style={styles.flex}><AppText color={danger ? colors.destructive : colors.foreground} variant="button">{label}</AppText>{hint ? <AppText variant="micro">{hint}</AppText> : null}</View>{value ? <AppText variant="caption">{value}</AppText> : null}{trailing}{onPress ? <ChevronRight color={colors.mutedForeground} size={16} /> : null}</View>; return onPress ? <Pressable onPress={onPress}>{content}</Pressable> : content; }
-function SheetResult({ title, body, onPress }: { title: string; body: string; onPress: () => void }) { return <View style={styles.sheet}><CheckCircle2 color={colors.primary} size={38} /><AppText variant="sectionTitle">{title}</AppText><AppText style={styles.center}>{body}</AppText><Button onPress={onPress}>我知道了</Button></View>; }
+function SheetResult({ title, body, actionLabel = '我知道了', onPress }: { title: string; body: string; actionLabel?: string; onPress: () => void }) { return <View style={styles.sheet}><CheckCircle2 color={colors.primary} size={38} /><AppText variant="sectionTitle">{title}</AppText><AppText style={styles.center}>{body}</AppText><Button onPress={onPress}>{actionLabel}</Button></View>; }
 function AsrModelSheet({ visible, current, onClose, onSelect }: { visible: boolean; current: TencentAsrModel; onClose: () => void; onSelect: (model: TencentAsrModel) => void }) { return <BottomSheet accessibilityLabel="选择腾讯 ASR 模型" onClose={onClose} visible={visible}><View style={styles.modelSheet}><AppText variant="sectionTitle">选择转写模型</AppText><AppText variant="caption">选择只保存在本机，并从下一次转写开始生效。</AppText><View style={styles.modelOptions}>{ASR_MODEL_OPTIONS.map((option) => { const selected = option.model === current; return <Pressable accessibilityLabel={`使用 ${option.model}`} accessibilityState={{ selected }} key={option.model} onPress={() => onSelect(option.model)} style={[styles.modelOption, selected && styles.modelOptionSelected]}><View style={styles.flex}><AppText color={selected ? colors.primary : colors.foreground} variant="button">{option.model}</AppText><AppText variant="micro">{option.title} · {option.description}</AppText></View>{selected ? <Check color={colors.primary} size={18} /> : null}</Pressable>; })}</View><AppText variant="micro">当前未启用热词、词汇替换、自学习模型或航空规则化脚本。</AppText></View></BottomSheet>; }
 function LogoutDialog({ visible, onCancel, onCurrent, onAll }: { visible: boolean; onCancel: () => void; onCurrent: () => void; onAll: () => void }) { return <AppModal animationType="slide" onRequestClose={onCancel} transparent visible={visible}><Pressable onPress={onCancel} style={styles.overlay}><Pressable onPress={() => undefined} style={styles.logout}><View style={styles.handle} /><View style={styles.dangerIcon}><LogOut color={colors.destructive} size={26} /></View><AppText variant="sectionTitle">退出登录</AppText><AppText style={styles.center}>退出不会删除学习数据；未同步变更会保留在本机。</AppText><Button onPress={onCurrent} size="lg">仅退出当前设备</Button><Button onPress={onAll} size="lg" variant="destructive">退出全部设备</Button><Button onPress={onCancel} size="lg" variant="outline">取消</Button></Pressable></Pressable></AppModal>; }
 
 const styles = StyleSheet.create({
-  screen: { paddingHorizontal: 0 }, content: { gap: spacing[5], padding: spacing[5] }, profileHero: { alignItems: 'center', gap: spacing[2], paddingHorizontal: spacing[5], paddingTop: spacing[5] }, avatar: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.full, height: 74, justifyContent: 'center', overflow: 'hidden', position: 'relative', width: 74 }, avatarSmall: { height: 58, width: 58 }, avatarImage: { borderRadius: radii.full, height: 74, width: 74 }, avatarSmallImage: { height: 58, width: 58 }, editBadge: { alignItems: 'center', backgroundColor: colors.primary, borderColor: colors.card, borderRadius: radii.full, borderWidth: 2, bottom: 0, height: 20, justifyContent: 'center', position: 'absolute', right: 0, width: 20, zIndex: 2 }, avatarEdit: { alignItems: 'center', gap: spacing[2], paddingTop: spacing[5] }, form: { gap: spacing[4], padding: spacing[5] }, formNoPad: { gap: spacing[4] }, textarea: { minHeight: 72, textAlignVertical: 'top' }, center: { textAlign: 'center' }, section: { gap: spacing[2] }, rows: { padding: 0 }, row: { alignItems: 'center', flexDirection: 'row', gap: spacing[3], minHeight: 58, paddingHorizontal: spacing[3] }, rowBorder: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth }, rowIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.md, height: 34, justifyContent: 'center', width: 34 }, rowIconDanger: { backgroundColor: 'rgba(219,43,51,0.08)' }, flex: { flex: 1 }, choice: { gap: spacing[2] }, choiceRow: { flexDirection: 'row', gap: spacing[2] }, choiceButton: { alignItems: 'center', backgroundColor: colors.card, borderColor: colors.input, borderRadius: radii.md, borderWidth: 1, flex: 1, justifyContent: 'center', minHeight: 40, paddingHorizontal: spacing[1] }, choiceSelected: { backgroundColor: colors.primary10, borderColor: colors.primary }, modelSheet: { gap: spacing[4] }, modelOptions: { gap: spacing[2] }, modelOption: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.lg, borderWidth: 1, flexDirection: 'row', gap: spacing[3], minHeight: 68, padding: spacing[3] }, modelOptionSelected: { backgroundColor: colors.primary10, borderColor: colors.primary }, syncCard: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[3] }, syncIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.md, height: 44, justifyContent: 'center', width: 44 }, current: { alignItems: 'center', flexDirection: 'row', gap: spacing[3] }, softIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.md, height: 40, justifyContent: 'center', width: 40 }, delete: { gap: spacing[3], padding: spacing[5] }, dangerHero: { alignItems: 'center', gap: spacing[2] }, dangerIcon: { alignItems: 'center', backgroundColor: 'rgba(219,43,51,0.10)', borderRadius: radii.full, height: 62, justifyContent: 'center', width: 62 }, risks: { backgroundColor: 'rgba(219,43,51,0.04)', borderColor: 'rgba(219,43,51,0.22)', gap: spacing[3] }, risk: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[2] }, riskDot: { alignItems: 'center', backgroundColor: 'rgba(219,43,51,0.10)', borderRadius: radii.full, height: 18, justifyContent: 'center', width: 18 }, consent: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] }, checkbox: { alignItems: 'center', borderColor: colors.input, borderRadius: radii.sm, borderWidth: 1, height: 18, justifyContent: 'center', width: 18 }, checkboxOn: { backgroundColor: colors.primary, borderColor: colors.primary }, sheet: { alignItems: 'center', gap: spacing[3], paddingBottom: spacing[3] }, overlay: { backgroundColor: colors.overlay, flex: 1, justifyContent: 'flex-end' }, logout: { alignItems: 'stretch', backgroundColor: colors.card, borderTopLeftRadius: radii.xxl, borderTopRightRadius: radii.xxl, gap: spacing[3], padding: spacing[5], paddingBottom: spacing[8] }, handle: { alignSelf: 'center', backgroundColor: colors.border, borderRadius: radii.full, height: 4, marginBottom: spacing[1], width: 40 },
+  screen: { paddingHorizontal: 0 }, content: { gap: spacing[5], padding: spacing[5] }, profileHero: { alignItems: 'center', gap: spacing[2], paddingHorizontal: spacing[5], paddingTop: spacing[5] }, avatar: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.full, height: 74, justifyContent: 'center', overflow: 'hidden', position: 'relative', width: 74 }, avatarSmall: { height: 58, width: 58 }, avatarImage: { borderRadius: radii.full, height: 74, width: 74 }, avatarSmallImage: { height: 58, width: 58 }, editBadge: { alignItems: 'center', backgroundColor: colors.primary, borderColor: colors.card, borderRadius: radii.full, borderWidth: 2, bottom: 0, height: 20, justifyContent: 'center', position: 'absolute', right: 0, width: 20, zIndex: 2 }, avatarEdit: { alignItems: 'center', gap: spacing[2], paddingTop: spacing[5] }, form: { gap: spacing[4], padding: spacing[5] }, formNoPad: { gap: spacing[4] }, passwordForm: { gap: spacing[4], padding: spacing[5] }, passwordIntro: { gap: spacing[2] }, textarea: { minHeight: 72, textAlignVertical: 'top' }, center: { textAlign: 'center' }, section: { gap: spacing[2] }, rows: { padding: 0 }, row: { alignItems: 'center', flexDirection: 'row', gap: spacing[3], minHeight: 58, paddingHorizontal: spacing[3] }, rowBorder: { borderTopColor: colors.border, borderTopWidth: StyleSheet.hairlineWidth }, rowIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.md, height: 34, justifyContent: 'center', width: 34 }, rowIconDanger: { backgroundColor: 'rgba(219,43,51,0.08)' }, flex: { flex: 1 }, choice: { gap: spacing[2] }, choiceRow: { flexDirection: 'row', gap: spacing[2] }, choiceButton: { alignItems: 'center', backgroundColor: colors.card, borderColor: colors.input, borderRadius: radii.md, borderWidth: 1, flex: 1, justifyContent: 'center', minHeight: 40, paddingHorizontal: spacing[1] }, choiceSelected: { backgroundColor: colors.primary10, borderColor: colors.primary }, modelSheet: { gap: spacing[4] }, modelOptions: { gap: spacing[2] }, modelOption: { alignItems: 'center', borderColor: colors.border, borderRadius: radii.lg, borderWidth: 1, flexDirection: 'row', gap: spacing[3], minHeight: 68, padding: spacing[3] }, modelOptionSelected: { backgroundColor: colors.primary10, borderColor: colors.primary }, syncCard: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[3] }, syncIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.md, height: 44, justifyContent: 'center', width: 44 }, current: { alignItems: 'center', flexDirection: 'row', gap: spacing[3] }, softIcon: { alignItems: 'center', backgroundColor: colors.primary10, borderRadius: radii.md, height: 40, justifyContent: 'center', width: 40 }, delete: { gap: spacing[3], padding: spacing[5] }, dangerHero: { alignItems: 'center', gap: spacing[2] }, dangerIcon: { alignItems: 'center', backgroundColor: 'rgba(219,43,51,0.10)', borderRadius: radii.full, height: 62, justifyContent: 'center', width: 62 }, risks: { backgroundColor: 'rgba(219,43,51,0.04)', borderColor: 'rgba(219,43,51,0.22)', gap: spacing[3] }, risk: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[2] }, riskDot: { alignItems: 'center', backgroundColor: 'rgba(219,43,51,0.10)', borderRadius: radii.full, height: 18, justifyContent: 'center', width: 18 }, consent: { alignItems: 'center', flexDirection: 'row', gap: spacing[2] }, checkbox: { alignItems: 'center', borderColor: colors.input, borderRadius: radii.sm, borderWidth: 1, height: 18, justifyContent: 'center', width: 18 }, checkboxOn: { backgroundColor: colors.primary, borderColor: colors.primary }, sheet: { alignItems: 'center', gap: spacing[3], paddingBottom: spacing[3] }, overlay: { backgroundColor: colors.overlay, flex: 1, justifyContent: 'flex-end' }, logout: { alignItems: 'stretch', backgroundColor: colors.card, borderTopLeftRadius: radii.xxl, borderTopRightRadius: radii.xxl, gap: spacing[3], padding: spacing[5], paddingBottom: spacing[8] }, handle: { alignSelf: 'center', backgroundColor: colors.border, borderRadius: radii.full, height: 4, marginBottom: spacing[1], width: 40 },
 });

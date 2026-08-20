@@ -1,0 +1,24 @@
+services:
+  auth:
+    environment:
+      # Production-like real-SMS overlay. Do not combine with the TestFlight
+      # fixed-OTP overlay. Values are injected outside Git after approval.
+      GOTRUE_DISABLE_SIGNUP: "false"
+      GOTRUE_EXTERNAL_PHONE_ENABLED: "true"
+      GOTRUE_SMS_AUTOCONFIRM: "false"
+      GOTRUE_SMS_MAX_FREQUENCY: "60s"
+      GOTRUE_SMS_OTP_EXP: "300"
+      GOTRUE_SMS_OTP_LENGTH: "6"
+      GOTRUE_PASSWORD_MIN_LENGTH: "10"
+      GOTRUE_PASSWORD_REQUIRED_CHARACTERS: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ:0123456789"
+      GOTRUE_SECURITY_UPDATE_PASSWORD_REQUIRE_CURRENT_PASSWORD: "true"
+      GOTRUE_SECURITY_UPDATE_PASSWORD_REQUIRE_REAUTHENTICATION: "true"
+      GOTRUE_RATE_LIMIT_SMS_SENT: "30"
+      GOTRUE_RATE_LIMIT_OTP: "30"
+      GOTRUE_RATE_LIMIT_VERIFY: "30"
+      # OTP start requests are accepted only by the trusted API, which replaces
+      # this header with the normalized client IP before calling GoTrue.
+      GOTRUE_SECURITY_SB_FORWARDED_FOR_ENABLED: "true"
+      GOTRUE_HOOK_SEND_SMS_ENABLED: "true"
+      GOTRUE_HOOK_SEND_SMS_URI: "${ICAO_SUPABASE_SMS_HOOK_URI:?set the private API hook URL}"
+      GOTRUE_HOOK_SEND_SMS_SECRETS: "${ICAO_SUPABASE_SMS_HOOK_SECRET:?set v1,whsec_base64 secret}"

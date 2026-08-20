@@ -71,6 +71,41 @@
       "when": 1784894401000,
       "tag": "0009_editorial_releases",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1786546968823,
+      "tag": "0010_common_virginia_dare",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1786612192331,
+      "tag": "0011_easy_iron_fist",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1786637881505,
+      "tag": "0012_dry_sleeper",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1786638091485,
+      "tag": "0013_futuristic_wilson_fisk",
+      "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1786686969246,
+      "tag": "0014_feedback_ticket_retention",
+      "breakpoints": true
     }
   ]
 }

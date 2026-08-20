@@ -18,5 +18,20 @@ api.readyoufife.com {
 
 cloud.readyoufife.com {
 	import icao_security_headers
-	reverse_proxy 127.0.0.1:8000
+	@blocked_auth_start path /auth/v1/otp /auth/v1/otp/ /auth/v1/resend /auth/v1/resend/ /auth/v1/signup /auth/v1/signup/
+	handle @blocked_auth_start {
+		respond 404
+	}
+	@blocked_auth_user_update {
+		path /auth/v1/user /auth/v1/user/
+		method PUT PATCH
+	}
+	handle @blocked_auth_user_update {
+		respond 404
+	}
+	handle {
+		reverse_proxy 127.0.0.1:8000 {
+			header_up -Sb-Forwarded-For
+		}
+	}
 }

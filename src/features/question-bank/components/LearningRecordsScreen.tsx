@@ -8,9 +8,22 @@ import { colors, fonts, spacing } from '@/theme';
 
 import { sqliteLearningStore } from '../platform/learning-store';
 import type { LearningRecord } from '../types';
+import { AiReviewResultView } from './AiReviewResultView';
 
 function duration(value: number) {
   return value < 60 ? `${value} 秒` : `${Math.floor(value / 60)} 分 ${value % 60} 秒`;
+}
+
+function savedReview(result: NonNullable<LearningRecord['aiResult']>) {
+  if (!result.grammar || !result.grammar.issues.every((issue) => typeof issue !== 'string')) return undefined;
+  return {
+    grammar: {
+      correctedText: result.grammar.correctedText,
+      issues: result.grammar.issues.filter((issue) => typeof issue !== 'string'),
+    },
+    ...(result.polishedText ? { polishedText: result.polishedText } : {}),
+    promptVersion: 'deepseek-review:v1' as const,
+  };
 }
 
 export function LearningRecordsScreen() {
@@ -40,7 +53,7 @@ export function LearningRecordsScreen() {
               {record.recordType === 'ai_result' ? <View style={styles.metric}><Sparkles color={colors.primary} size={14} /><AppText variant="micro">回答与反馈</AppText></View> : <><View style={styles.metric}><Target color={colors.primary} size={14} /><AppText variant="micro">{record.completedCount}/{record.totalCount}</AppText></View><View style={styles.metric}><Clock3 color={colors.primary} size={14} /><AppText variant="micro">{duration(record.durationSeconds)}</AppText></View></>}
               <AppText style={styles.date} variant="micro">{new Date(record.createdAt).toLocaleString('zh-CN')}</AppText>
             </View>
-            {record.recordType === 'ai_result' && record.aiResult ? <View style={styles.aiResult}><AppText variant="button">我的回答</AppText><AppText>{record.aiResult.transcript}</AppText>{record.aiResult.grammar ? <><AppText variant="button">语法反馈</AppText><AppText>{record.aiResult.grammar.correctedText}</AppText>{record.aiResult.grammar.issues.length ? record.aiResult.grammar.issues.map((issue) => <AppText key={issue} variant="caption">{issue}</AppText>) : <AppText variant="caption">未发现明确语法问题</AppText>}</> : null}{record.aiResult.polishedText ? <><AppText variant="button">润色表达</AppText><AppText>{record.aiResult.polishedText}</AppText></> : null}</View> : null}
+            {record.recordType === 'ai_result' && record.aiResult ? <View style={styles.aiResult}><AppText variant="button">我的回答</AppText><AppText>{record.aiResult.transcript}</AppText>{savedReview(record.aiResult) ? <AiReviewResultView result={savedReview(record.aiResult)!} /> : record.aiResult.grammar ? <><AppText variant="button">语法反馈</AppText><AppText>{record.aiResult.grammar.correctedText}</AppText>{record.aiResult.grammar.issues.length ? record.aiResult.grammar.issues.map((issue, index) => <AppText key={`${index}-${typeof issue === 'string' ? issue : issue.before}`} variant="caption">{typeof issue === 'string' ? issue : `${issue.before} → ${issue.after}：${issue.reasonZh}`}</AppText>) : <AppText variant="caption">未发现明确语法问题</AppText>}</> : null}{!savedReview(record.aiResult) && record.aiResult.polishedText ? <><AppText variant="button">润色表达</AppText><AppText>{record.aiResult.polishedText}</AppText></> : null}</View> : null}
             {record.recordType === 'mock_exam' && record.mockExam ? <AppText color={colors.mutedForeground} variant="caption">{record.mockExam.mode === 'complete' ? '按考试规则组卷' : '自选板块'} · {record.mockExam.moduleIds.length} 个板块</AppText> : null}
           </Card>
         )) : records ? (

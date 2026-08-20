@@ -30,7 +30,6 @@ describe('Web RecordingRepository', () => {
       cardId: 'card-1',
       durationMillis: 900,
       format: 'webm',
-      minBytesPerMillisecond: 0.05,
       sessionId: 'session-1',
       ...raw,
     });
@@ -56,7 +55,6 @@ describe('Web RecordingRepository', () => {
       cardId: 'card-1',
       durationMillis: 2_000,
       format: 'webm',
-      minBytesPerMillisecond: 0.05,
       sessionId: 'session-1',
       ...raw,
     })).rejects.toMatchObject({ code: 'recording_file_incomplete' });
@@ -67,7 +65,6 @@ describe('Web RecordingRepository', () => {
       cardId: 'card-1',
       durationMillis: 2_000,
       format: 'webm',
-      minBytesPerMillisecond: 0.05,
       sessionId: 'session-1',
       uri: 'blob:missing-transfer',
     })).rejects.toMatchObject({ code: 'recording_commit_failed' });
@@ -79,7 +76,6 @@ describe('Web RecordingRepository', () => {
       cardId: 'card-1',
       durationMillis: 2_000,
       format: 'webm',
-      minBytesPerMillisecond: 0.05,
       sessionId: 'session-1',
       uri: 'https://example.test/recording.webm',
       webBlob: new Blob([new Uint8Array(600)], { type: 'audio/webm' }),
@@ -91,7 +87,6 @@ describe('Web RecordingRepository', () => {
       cardId: 'card-1',
       durationMillis: 2_000,
       format: 'webm',
-      minBytesPerMillisecond: 0.05,
       sessionId: 'session-1',
       uri: 'blob:unknown-mime',
       webBlob: new Blob([new Uint8Array(600)]),

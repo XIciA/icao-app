@@ -4,7 +4,7 @@ import { join, resolve } from 'node:path';
 const root = resolve(import.meta.dirname, '..');
 const topicRoot = join(root, 'content/question-banks/banks/radiotelephony/topics');
 const embeddedPath = join(root, 'src/features/question-bank/data/question-bank.json');
-const workstreamRoot = join(root, 'docs/workstreams/radiotelephony-text-correction');
+const workstreamRoot = join(root, 'docs/records/workstreams/radiotelephony-text-correction');
 const snapshotPath = join(workstreamRoot, 'source-snapshot.json');
 const reportPath = join(workstreamRoot, 'candidate-report.json');
 const reportMarkdownPath = join(workstreamRoot, 'candidate-report.md');

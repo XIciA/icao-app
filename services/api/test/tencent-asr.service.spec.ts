@@ -4,13 +4,14 @@ import type { TencentAsrModel } from '@icao/contracts';
 
 import type { ApiConfig } from '../src/config';
 import {
+  AsrAudioStorageService,
   resolveAsrAudioFormat,
-  type AsrAudioStorageService,
 } from '../src/ai/asr-audio-storage.service';
 import { TencentAsrService } from '../src/ai/tencent-asr.service';
 
 function config(): ApiConfig {
   return {
+    apiReleaseId: 'test',
     databaseUrl: 'postgresql://postgres:test@127.0.0.1:5432/postgres',
     host: '127.0.0.1',
     nodeEnv: 'test',
@@ -20,9 +21,16 @@ function config(): ApiConfig {
     supabaseSecretKey: 'test-secret-key-that-is-long-enough',
     supabaseUrl: 'http://supabase.internal:8000',
     inviteAuthSecret: 'test-invite-auth-secret-that-is-long-enough',
+    accountIdentityHashSecret: 'test-account-identity-secret-that-is-long-enough',
     dashscopeApiKey: 'test-dashscope-key',
     dashscopeBaseUrl: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
     aiTextModel: 'qwen-turbo',
+    aiTextProvider: 'deepseek',
+    deepseekApiKey: 'test-deepseek-key',
+    deepseekBaseUrl: 'https://api.deepseek.com',
+    aiGrammarModel: 'deepseek-v4-flash',
+    aiPolishModel: 'deepseek-v4-flash',
+    aiReviewMaxConcurrency: 50,
     tencentCloudSecretId: 'test-tencent-secret-id',
     tencentCloudSecretKey: 'test-tencent-secret-key',
     tencentAsrEndpoint: 'asr.tencentcloudapi.com',
@@ -65,7 +73,13 @@ describe('TencentAsrService', () => {
       };
       const { fakeStorage, instance } = service(client);
 
-      const result = await instance.transcribe(Buffer.from('audio'), 'audio/wav', model);
+      const result = await instance.transcribe(
+        Buffer.from('audio'),
+        'audio/wav',
+        model,
+        undefined,
+        'request-42',
+      );
 
       expect(result.rawTranscript).toBe('cleared to land runway two seven');
       expect(result.meta.audioDurationSeconds).toBe(2.5);
@@ -77,6 +91,11 @@ describe('TencentAsrService', () => {
         Url: 'https://cloud.example.com/signed-audio',
       });
       expect(fakeStorage.remove).toHaveBeenCalledWith('temporary-audio.wav');
+      expect(fakeStorage.stage).toHaveBeenCalledWith(
+        Buffer.from('audio'),
+        'audio/wav',
+        'request-42',
+      );
     },
   );
 
@@ -102,14 +121,89 @@ describe('TencentAsrService', () => {
     expect(fakeStorage.remove).toHaveBeenCalledWith('temporary-audio.wav');
   });
 
-  it('reports when the selected Tencent model has no activated quota', async () => {
+  it('maps an unavailable Tencent balance to the stable non-retryable error', async () => {
     const { instance } = service({
       CreateRecTask: vi.fn(async () => { throw Object.assign(new Error('no package'), { code: 'FailedOperation.UserHasNoAmount' }); }),
       DescribeTaskStatus: vi.fn(),
     });
 
     await expect(instance.transcribe(Buffer.from('audio'), 'audio/wav', '16k_zh_en_2.0'))
-      .rejects.toThrow('asr_model_unavailable');
+      .rejects.toThrow('ai_upstream_balance_insufficient');
+  });
+
+  it.each([
+    ['AuthFailure.SignatureFailure', 'ai_upstream_auth_failed'],
+    ['RequestTimeout', 'ai_timeout'],
+  ])('maps Tencent error %s to %s', async (providerCode, expectedCode) => {
+    const { fakeStorage, instance } = service({
+      CreateRecTask: vi.fn(async () => { throw Object.assign(new Error(providerCode), { code: providerCode }); }),
+      DescribeTaskStatus: vi.fn(),
+    });
+
+    await expect(instance.transcribe(Buffer.from('audio'), 'audio/m4a', '16k_en'))
+      .rejects.toThrow(expectedCode);
+    expect(fakeStorage.remove).toHaveBeenCalledWith('temporary-audio.wav');
+  });
+
+  it('keeps a successful transcript while surfacing a safe cleanup warning', async () => {
+    const { fakeStorage, instance } = service({
+      CreateRecTask: vi.fn(async () => ({ Data: { TaskId: 44 } })),
+      DescribeTaskStatus: vi.fn(async () => ({ Data: { Status: 2, Result: 'ready for departure' } })),
+    });
+    fakeStorage.remove.mockRejectedValueOnce(new Error('storage provider detail'));
+    const logger = Reflect.get(instance, 'logger') as { warn: (message: string) => void };
+    const warning = vi.spyOn(logger, 'warn').mockImplementation(() => undefined);
+
+    await expect(instance.transcribe(Buffer.from('audio'), 'audio/m4a', '16k_en'))
+      .resolves.toMatchObject({ rawTranscript: 'ready for departure' });
+    expect(warning).toHaveBeenCalledWith('asr_audio_cleanup_failed stage=request_finally');
+  });
+});
+
+describe('AsrAudioStorageService stale cleanup', () => {
+  it('runs stale cleanup on service startup and releases its timer on shutdown', async () => {
+    const instance = new AsrAudioStorageService({ ...config(), nodeEnv: 'production' });
+    const cleanup = vi.spyOn(instance, 'cleanupStale').mockResolvedValue(undefined);
+
+    instance.onModuleInit();
+    await vi.waitFor(() => expect(cleanup).toHaveBeenCalledTimes(1));
+    expect(Reflect.get(instance, 'cleanupTimer')).toBeDefined();
+
+    instance.onModuleDestroy();
+  });
+
+  it('re-reads the oldest page until every stale object in the bounded pass is removed', async () => {
+    const staleCreatedAt = new Date(Date.now() - 2 * 24 * 60 * 60 * 1_000).toISOString();
+    const firstPage = Array.from({ length: 100 }, (_, index) => ({
+      created_at: staleCreatedAt,
+      name: `stale-${index}.m4a`,
+    }));
+    const secondPage = [{ created_at: staleCreatedAt, name: 'stale-final.m4a' }];
+    const bucket = {
+      list: vi.fn()
+        .mockResolvedValueOnce({ data: firstPage, error: null })
+        .mockResolvedValueOnce({ data: secondPage, error: null }),
+      remove: vi.fn(async () => ({ data: [], error: null })),
+    };
+    const instance = new AsrAudioStorageService(config());
+    Reflect.set(instance, 'storage', { storage: { from: () => bucket } });
+
+    await instance.cleanupStale();
+
+    expect(bucket.list).toHaveBeenCalledTimes(2);
+    expect(bucket.remove).toHaveBeenNthCalledWith(1, firstPage.map((entry) => entry.name));
+    expect(bucket.remove).toHaveBeenNthCalledWith(2, ['stale-final.m4a']);
+  });
+
+  it('does not silently accept a failed stale-object listing', async () => {
+    const bucket = {
+      list: vi.fn(async () => ({ data: null, error: new Error('provider detail') })),
+      remove: vi.fn(),
+    };
+    const instance = new AsrAudioStorageService(config());
+    Reflect.set(instance, 'storage', { storage: { from: () => bucket } });
+
+    await expect(instance.cleanupStale()).rejects.toThrow('asr_audio_cleanup_list_failed');
   });
 });
 

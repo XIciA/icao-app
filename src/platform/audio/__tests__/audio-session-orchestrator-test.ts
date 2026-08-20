@@ -79,12 +79,90 @@ describe('AudioSessionOrchestrator', () => {
     jest.useRealTimers();
   });
 
+  it('reconciles a late owner pause by requiring the idempotent pause again on retry', async () => {
+    jest.useFakeTimers();
+    const session = new AudioSessionOrchestrator();
+    let finishLatePause!: () => void;
+    const latePause = new Promise<void>((resolve) => { finishLatePause = resolve; });
+    const deactivate = jest.fn()
+      .mockImplementationOnce(() => latePause)
+      .mockResolvedValueOnce(undefined);
+    session.register('radio', { deactivate });
+    await session.acquire('radio', 'initial');
+
+    const first = session.acquire('study', 'study-play');
+    await jest.advanceTimersByTimeAsync(2_000);
+    await expect(first).rejects.toMatchObject({ code: 'owner_pause_timeout' });
+    await expect(session.acquire('study', 'study-play')).rejects.toMatchObject({ code: 'owner_pause_timeout' });
+
+    finishLatePause();
+    await latePause;
+    await Promise.resolve();
+    await expect(session.acquire('study', 'study-play-retry')).resolves.toMatchObject({ owner: 'study' });
+    expect(deactivate).toHaveBeenCalledTimes(2);
+    jest.useRealTimers();
+  });
+
   it('does not publish a new owner when the native mode switch fails', async () => {
     const session = new AudioSessionOrchestrator();
     mockSetAudioModeAsync.mockRejectedValueOnce(new Error('native failure'));
 
     await expect(session.acquire('study', 'study-play')).rejects.toMatchObject({ code: 'mode_switch_failed' });
     expect(session.getActiveLeaseForTests()).toBeUndefined();
+  });
+
+  it('distinguishes a native mode switch timeout from an immediate failure', async () => {
+    jest.useFakeTimers();
+    const session = new AudioSessionOrchestrator();
+    mockSetAudioModeAsync.mockImplementationOnce(() => new Promise<undefined>(() => undefined));
+    const transition = session.acquire('recording', 'recording-start');
+
+    await jest.advanceTimersByTimeAsync(2_000);
+
+    await expect(transition).rejects.toMatchObject({ code: 'mode_switch_timeout' });
+    expect(session.getActiveLeaseForTests()).toBeUndefined();
+    jest.useRealTimers();
+  });
+
+  it('fails later owners quickly until a timed-out native mode switch really settles', async () => {
+    jest.useFakeTimers();
+    const session = new AudioSessionOrchestrator();
+    let finishLateSwitch!: () => void;
+    const lateSwitch = new Promise<undefined>((resolve) => {
+      finishLateSwitch = () => resolve(undefined);
+    });
+    mockSetAudioModeAsync
+      .mockImplementationOnce(() => lateSwitch)
+      .mockResolvedValueOnce(undefined);
+    const first = session.acquire('recording', 'recording-start');
+    await jest.advanceTimersByTimeAsync(2_000);
+    await expect(first).rejects.toMatchObject({ code: 'mode_switch_timeout' });
+
+    const second = session.acquire('study', 'study-play');
+    await expect(second).rejects.toMatchObject({ code: 'mode_switch_timeout' });
+    expect(mockSetAudioModeAsync).toHaveBeenCalledTimes(1);
+
+    finishLateSwitch();
+    await lateSwitch;
+    await Promise.resolve();
+    await expect(session.acquire('study', 'study-play')).resolves.toMatchObject({ owner: 'study' });
+    expect(mockSetAudioModeAsync).toHaveBeenCalledTimes(2);
+    jest.useRealTimers();
+  });
+
+  it('does not leave a second request pending forever when a native switch never settles', async () => {
+    jest.useFakeTimers();
+    const session = new AudioSessionOrchestrator();
+    mockSetAudioModeAsync.mockImplementationOnce(() => new Promise<undefined>(() => undefined));
+    const first = session.acquire('recording', 'recording-start');
+    await jest.advanceTimersByTimeAsync(2_000);
+    await expect(first).rejects.toMatchObject({ code: 'mode_switch_timeout' });
+
+    await expect(session.acquire('study', 'study-play')).rejects.toMatchObject({
+      code: 'mode_switch_timeout',
+    });
+    expect(mockSetAudioModeAsync).toHaveBeenCalledTimes(1);
+    jest.useRealTimers();
   });
 
   it('fails closed when the previous owner rejects deactivation', async () => {

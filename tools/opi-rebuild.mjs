@@ -41,11 +41,11 @@ const batchRoot = join(generatedRoot, 'batches');
 const batchInputManifestRoot = join(generatedRoot, 'batch-input-manifests');
 const artifactRoot = join(
   projectRoot,
-  'docs/workstreams/opi-question-bank-text-reconstruction/artifacts',
+  'docs/records/workstreams/opi-question-bank-text-reconstruction/artifacts',
 );
 const groundedWorkstreamRoot = join(
   projectRoot,
-  'docs/workstreams/opi-english-answer-v1-grounded-reconstruction',
+  'docs/records/workstreams/opi-english-answer-v1-grounded-reconstruction',
 );
 const groundedArtifactRoot = join(groundedWorkstreamRoot, 'artifacts');
 const groundedGeneratedRoot = join(projectRoot, '.generated/opi-answer-v1-grounded');
@@ -95,19 +95,19 @@ const groundedCrossBatchAuditPath = join(
 );
 const groundedMappingArtifactPath = join(
   projectRoot,
-  'docs/workstreams/opi-question-bank-text-reconstruction/artifacts/card-target-mapping.json',
+  'docs/records/workstreams/opi-question-bank-text-reconstruction/artifacts/card-target-mapping.json',
 );
 const groundedDeferredArtifactPath = join(
   projectRoot,
-  'docs/workstreams/opi-question-bank-text-reconstruction/artifacts/deferred-image-answers.json',
+  'docs/records/workstreams/opi-question-bank-text-reconstruction/artifacts/deferred-image-answers.json',
 );
 const groundedProductionV8ArtifactPath = join(
   projectRoot,
-  'docs/workstreams/opi-question-bank-text-reconstruction/artifacts/production-release-v8.json',
+  'docs/records/workstreams/opi-question-bank-text-reconstruction/artifacts/production-release-v8.json',
 );
 const completionWorkstreamRoot = join(
   projectRoot,
-  'docs/workstreams/opi-answer-completion-and-bilingualization',
+  'docs/records/workstreams/opi-answer-completion-and-bilingualization',
 );
 const completionArtifactRoot = join(completionWorkstreamRoot, 'artifacts');
 const completionGeneratedRoot = join(projectRoot, '.generated/opi-answer-completion');

@@ -19,11 +19,11 @@ const releaseBankPath = join(releaseRoot, 'banks/radiotelephony.json');
 const releaseResourceManifestPath = join(releaseRoot, 'resources/manifest.json');
 const reportPath = join(
   root,
-  'docs/workstreams/web-question-bank-content-migration/reports/radiotelephony-callsign-correction-review.md',
+  'docs/records/workstreams/web-question-bank-content-migration/reports/radiotelephony-callsign-correction-review.md',
 );
 const ledgerPath = join(
   root,
-  'docs/workstreams/web-question-bank-content-migration/reports/radiotelephony-callsign-correction-ledger.json',
+  'docs/records/workstreams/web-question-bank-content-migration/reports/radiotelephony-callsign-correction-ledger.json',
 );
 
 const baselineReleaseVersion = 10;
@@ -624,7 +624,7 @@ function verifyHandoff() {
   run('pnpm', ['content:radiotelephony:text-audit:check']);
   run(process.execPath, ['tools/radiotelephony-audio-text-context-audit.mjs', '--self-test']);
   const auditReport = readFileSync(
-    join(root, 'docs/workstreams/web-question-bank-content-migration/reports/radiotelephony-audio-text-context-audit.md'),
+    join(root, 'docs/records/workstreams/web-question-bank-content-migration/reports/radiotelephony-audio-text-context-audit.md'),
     'utf8',
   );
   if (!/候选卡：\d+（P0 0、P1 0、P2 \d+、P3 \d+）。/u.test(auditReport)) {
