@@ -11,7 +11,7 @@
       "icon": "./assets/expo.icon",
       "supportsTablet": false,
       "bundleIdentifier": "com.readyoufife.ios",
-      "buildNumber": "3470175",
+      "buildNumber": "3470179",
       "config": {
         "usesNonExemptEncryption": false
       },
