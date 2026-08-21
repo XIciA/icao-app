@@ -1,5 +1,6 @@
 import { emitAudioDiagnostic } from '@/platform/audio/audio-diagnostics';
 
+import { recordingMediaProbe, type RecordingMediaProbe } from './recording-media-probe';
 import { RecordingRepositoryError } from './recording-repository-error';
 import type { RawRecording, RecordingAsset } from './types';
 
@@ -26,24 +27,40 @@ type StoredAsset = { asset: RecordingAsset; createdAt: number };
 
 export class RecordingRepository {
   private readonly assets = new Map<string, StoredAsset>();
+  private readonly mediaProbe: RecordingMediaProbe;
 
-  async commitRaw(input: RawRecording & { cardId: string; sessionId: string }): Promise<RecordingAsset> {
+  constructor(dependencies: { mediaProbe?: RecordingMediaProbe } = {}) {
+    this.mediaProbe = dependencies.mediaProbe ?? recordingMediaProbe;
+  }
+
+  async commitRaw(input: RawRecording & { cardId: string; operationDurationMs: number; sessionId: string }): Promise<RecordingAsset> {
+    let uri: string | undefined;
     try {
       if (input.kind !== 'web-blob') throw new RecordingRepositoryError('recording_commit_failed');
-      if (input.durationMs < MIN_RECORDING_DURATION_MS) throw new RecordingRepositoryError('recording_too_short');
+      if (input.operationDurationMs < MIN_RECORDING_DURATION_MS) throw new RecordingRepositoryError('recording_too_short');
       if (formatForWebBlob(input.blob) !== input.format || input.mimeType !== input.blob.type) {
         throw new RecordingRepositoryError('recording_file_incomplete');
       }
       if (input.blob.size < MIN_RECORDING_BYTES) throw new RecordingRepositoryError('recording_file_incomplete');
+      uri = URL.createObjectURL(input.blob);
+      const probe = await this.mediaProbe.probe(input, uri).catch(() => {
+        throw new RecordingRepositoryError('recording_media_unreadable');
+      });
+      if (!probe.playable || !probe.hasAudioTrack) throw new RecordingRepositoryError('recording_media_unreadable');
+      const mediaDurationMs = probe.durationMs ?? input.operationDurationMs;
+      const tolerance = Math.max(500, Math.max(mediaDurationMs, input.operationDurationMs) * 0.2);
+      if (mediaDurationMs < MIN_RECORDING_DURATION_MS
+        || Math.abs(mediaDurationMs - input.operationDurationMs) > tolerance) {
+        throw new RecordingRepositoryError('recording_media_duration_mismatch');
+      }
 
       const id = createId();
       const createdAt = Date.now();
-      const uri = URL.createObjectURL(input.blob);
       const asset = {
         byteSize: input.blob.size,
         cardId: input.cardId,
         createdAt: new Date(createdAt).toISOString(),
-        durationMillis: input.durationMs,
+        durationMillis: Math.round(mediaDurationMs),
         format: input.format,
         id,
         mimeType: input.mimeType,
@@ -53,9 +70,19 @@ export class RecordingRepository {
         uri,
       } satisfies RecordingAsset;
       this.assets.set(id, { asset, createdAt });
-      emitAudioDiagnostic({ code: 'recording_committed', level: 'info', phase: 'ready', scope: 'recording' });
+      uri = undefined;
+      emitAudioDiagnostic({
+        code: 'recording_committed',
+        level: 'info',
+        mediaDurationMillis: probe.durationMs,
+        operationDurationMillis: input.operationDurationMs,
+        phase: 'ready',
+        recorderDurationMillis: input.recorderDurationMs,
+        scope: 'recording',
+      });
       return asset;
     } catch (error) {
+      if (uri) URL.revokeObjectURL(uri);
       const code = error instanceof RecordingRepositoryError ? error.code : 'recording_commit_failed';
       emitAudioDiagnostic({ code, level: 'error', phase: 'finalizing', scope: 'recording' });
       throw error instanceof RecordingRepositoryError ? error : new RecordingRepositoryError(code);

@@ -41,6 +41,11 @@
 4. **RecordingRepository**：唯一文件提交和删除者，验证容器后生成正式资产。
 5. **RecordingAsset**：录音成功后的唯一业务事实；回放和转写只能消费它。
 
+标准流程中的启动必须读取底层 `recorder.isRecording`，不能只用包装层
+`getStatus().isRecording` 确认；停止后依次完成容器、音轨和解码校验，再提交并发布资产。
+操作时长、录音器时长和文件真实音轨时长必须分开保存，`RecordingAsset.durationMillis`
+只能来自已经通过解码检查的媒体时长。
+
 最低状态骨架：
 
 ```text

@@ -25,11 +25,11 @@ const committedAsset: RecordingAsset = {
   uri: 'file:///cache/icao-recordings/session-1/asset-1.wav',
 };
 
-const rawRecording: RawRecording = {
-  durationMs: 3_000,
+const rawRecording: Extract<RawRecording, { kind: 'native-file' }> = {
   format: 'wav',
   kind: 'native-file',
   mimeType: 'audio/wav',
+  recorderDurationMs: 3_000,
   uri: 'file:///raw.wav',
 };
 

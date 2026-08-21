@@ -85,21 +85,21 @@ describe('ExpoRecorderAdapter native duration contract', () => {
     jest.restoreAllMocks();
   });
 
-  it('uses millisecond status and elapsed time without reading platform-divergent currentTime', async () => {
+  it('keeps native recorder duration independent from wall-clock operation time', async () => {
     const { result, unmount } = await renderHook(() => useExpoRecorderAdapter());
 
     await act(async () => { await result.current.prepare(context); });
     await act(async () => { await result.current.start(context); });
-    now = 3_000;
+    now = 10_000;
 
     let raw: RawRecording | undefined;
     await act(async () => { raw = await result.current.stop(context); });
 
     expect(raw).toMatchObject({
-      durationMs: 2_000,
       format: 'm4a',
       kind: 'native-file',
       mimeType: 'audio/mp4',
+      recorderDurationMs: 2_000,
       uri: mockRecorder.uri,
     });
     await unmount();
@@ -161,6 +161,33 @@ describe('ExpoRecorderAdapter native duration contract', () => {
     void started.then(() => { settled = true; });
     await Promise.resolve();
     expect(settled).toBe(false);
+    mockRecorder.isRecording = true;
+    await act(async () => { await jest.advanceTimersByTimeAsync(25); });
+    await expect(started).resolves.toBeUndefined();
+    await unmount();
+    jest.useRealTimers();
+  });
+
+  it('does not trust an optimistic status snapshot when the native recorder is not active', async () => {
+    jest.useFakeTimers();
+    mockRecorder.record.mockImplementationOnce(() => undefined);
+    mockRecorder.getStatus.mockImplementation(() => ({
+      canRecord: true,
+      durationMillis: 2_000,
+      isRecording: true,
+      mediaServicesDidReset: false,
+      url: mockRecorder.uri,
+    }));
+    const { result, unmount } = await renderHook(() => useExpoRecorderAdapter());
+    await act(async () => { await result.current.prepare(context); });
+
+    let started!: Promise<void>;
+    await act(() => { started = result.current.start(context); });
+    let settled = false;
+    void started.then(() => { settled = true; });
+    await act(async () => { await jest.advanceTimersByTimeAsync(50); });
+    expect(settled).toBe(false);
+
     mockRecorder.isRecording = true;
     await act(async () => { await jest.advanceTimersByTimeAsync(25); });
     await expect(started).resolves.toBeUndefined();

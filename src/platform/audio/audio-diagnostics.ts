@@ -15,9 +15,13 @@ export type AudioDiagnosticEvent = {
   mediaServicesDidReset?: boolean;
   meteringDetected?: boolean;
   owner?: string;
+  mediaDurationMillis?: number;
+  operationDurationMillis?: number;
   phase?: string;
+  playbackDurationMillis?: number;
   reason?: string;
   recorderState?: string;
+  recorderDurationMillis?: number;
   runtimeEpoch?: number;
   scope: 'session' | 'recording' | 'playback' | 'transcription';
 };

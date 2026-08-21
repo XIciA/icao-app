@@ -105,7 +105,6 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
     reject: (error: unknown) => void;
     resolve: () => void;
   } | undefined>(undefined);
-  const nativeStartedAt = useRef<number | undefined>(undefined);
   const meteringDetected = useRef(false);
   const e2e = useRef({ prepared: false, recording: false, startedAt: 0, uri: undefined as string | undefined });
 
@@ -122,14 +121,15 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
     try {
       const status = recorderRef.current?.getStatus();
       if (!status) throw new Error('recorder unavailable');
+      const isRecording = recorderRef.current?.isRecording === true;
       return {
         canRecord: status.canRecord,
         durationMs: status.durationMillis,
-        isRecording: status.isRecording,
+        isRecording,
         mediaServicesDidReset: status.mediaServicesDidReset,
         state: status.mediaServicesDidReset
           ? 'reset'
-          : status.isRecording
+          : isRecording
             ? 'recording'
             : status.canRecord
               ? 'prepared'
@@ -186,12 +186,12 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
     startPoll.current = undefined;
   };
 
-  const rawFromNativeUri = (uri: string, durationMs: number): RawRecording => ({
-    durationMs,
+  const rawFromNativeUri = (uri: string, recorderDurationMs: number): RawRecording => ({
     format: 'm4a',
     kind: 'native-file',
     meteringDetected: meteringDetected.current,
     mimeType: NATIVE_MIME_TYPE,
+    recorderDurationMs,
     recorderMimeType: NATIVE_MIME_TYPE,
     uri,
   });
@@ -216,10 +216,10 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
         e2e.current.prepared = false;
         e2e.current.recording = false;
         return uri ? {
-          durationMs,
           format: 'wav',
           kind: 'native-file',
           mimeType: 'audio/wav',
+          recorderDurationMs: durationMs,
           recorderMimeType: 'audio/wav',
           uri,
         } : undefined;
@@ -234,8 +234,6 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
         durationMs = Math.max(durationMs, status.durationMillis);
       } catch {
         uri = recorder.uri ?? undefined;
-      } finally {
-        nativeStartedAt.current = undefined;
       }
       return uri ? rawFromNativeUri(uri, durationMs) : undefined;
     },
@@ -253,7 +251,6 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
     async prepare(context) {
       activeContext.current = context;
       suppressedTerminalContext.current = undefined;
-      nativeStartedAt.current = undefined;
       meteringDetected.current = false;
       if (E2E_ENABLED) {
         e2e.current.prepared = true;
@@ -300,7 +297,6 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
           snapshot,
         ));
       }
-      nativeStartedAt.current = Date.now();
       return new Promise<void>((resolve, reject) => {
         startSettlement.current = { reject, resolve };
         const poll = () => {
@@ -332,29 +328,24 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
         e2e.current.recording = false;
         e2e.current.uri = file.uri;
         return {
-          durationMs,
           format: 'wav',
           kind: 'native-file',
           meteringDetected: false,
           mimeType: 'audio/wav',
+          recorderDurationMs: durationMs,
           recorderMimeType: 'audio/wav',
           uri: file.uri,
         };
       }
       const statusBeforeStop = recorder.getStatus();
-      const elapsedMs = nativeStartedAt.current === undefined ? 0 : Math.max(0, Date.now() - nativeStartedAt.current);
-      const durationBeforeStop = Math.max(elapsedMs, recorderState.durationMillis, statusBeforeStop.durationMillis);
+      const durationBeforeStop = Math.max(recorderState.durationMillis, statusBeforeStop.durationMillis);
       if (statusBeforeStop.mediaServicesDidReset) throw new Error('recording_interrupted');
-      try {
-        await recorder.stop();
-        const status = recorder.getStatus();
-        if (status.mediaServicesDidReset) throw new Error('recording_interrupted');
-        const uri = status.url ?? recorder.uri ?? undefined;
-        if (!uri) throw new Error('record_stop_failed');
-        return rawFromNativeUri(uri, Math.max(durationBeforeStop, status.durationMillis));
-      } finally {
-        nativeStartedAt.current = undefined;
-      }
+      await recorder.stop();
+      const status = recorder.getStatus();
+      if (status.mediaServicesDidReset) throw new Error('recording_interrupted');
+      const uri = status.url ?? recorder.uri ?? undefined;
+      if (!uri) throw new Error('record_stop_failed');
+      return rawFromNativeUri(uri, Math.max(durationBeforeStop, status.durationMillis));
     },
     subscribe(listener) {
       listeners.current.add(listener);

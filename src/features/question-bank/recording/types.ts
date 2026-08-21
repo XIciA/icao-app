@@ -15,9 +15,9 @@ export type RecordingAsset = {
 };
 
 type RawRecordingBase = {
-  durationMs: number;
   meteringDetected?: boolean;
   mimeType: string;
+  recorderDurationMs?: number;
   recorderMimeType?: string;
 };
 
@@ -91,6 +91,8 @@ export type RecordingFailureCode =
   | 'recording_source_missing'
   | 'recording_container_invalid'
   | 'recording_file_incomplete'
+  | 'recording_media_duration_mismatch'
+  | 'recording_media_unreadable'
   | 'recording_asset_missing'
   | 'recording_commit_failed';
 

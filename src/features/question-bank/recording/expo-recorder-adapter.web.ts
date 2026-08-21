@@ -278,10 +278,10 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
           ok: true,
           raw: {
             blob,
-            durationMs: Math.max(0, (session.stoppedAt ?? Date.now()) - session.startedAt),
             format: recognized.format,
             kind: 'web-blob',
             mimeType,
+            recorderDurationMs: Math.max(0, (session.stoppedAt ?? Date.now()) - session.startedAt),
             recorderMimeType: recognized.mimeType,
           },
         });
