@@ -10,8 +10,12 @@ export type AudioDiagnosticEvent = {
   level: AudioDiagnosticLevel;
   meteringDetected?: boolean;
   owner?: string;
+  mediaDurationMillis?: number;
+  operationDurationMillis?: number;
   phase?: string;
+  playbackDurationMillis?: number;
   reason?: string;
+  recorderDurationMillis?: number;
   runtimeEpoch?: number;
   scope: 'session' | 'recording' | 'playback' | 'transcription';
 };

@@ -13,6 +13,8 @@
 - 只有 Repository 校验并提交后的 `RecordingAsset` 才是成功录音。回放或转写失败不得撤销它。
 - 重录顺序固定为：提交新资产 → 发布到学习会话 → 删除旧资产。新录音失败时旧资产不变。
 - 时长统一使用毫秒。单调时钟负责操作时长，Native `durationMillis` 只做交叉检查；禁止再乘除 `1000` 或按码率猜文件有效性。
+- 操作时长、录音器时长和文件真实音轨时长必须分开保存；`RecordingAsset.durationMillis` 只能来自已经通过解码检查的媒体时长。
+- Native 启动成功必须读取底层 `recorder.isRecording`，不能用包装层 `getStatus().isRecording` 单独确认。
 - iOS 默认直接使用 Expo SDK 55 `RecordingPresets.HIGH_QUALITY` 的 M4A/AAC，不覆写采样率、声道或码率；Android 使用既有 M4A 配置，Web 使用浏览器实际 MIME。
 - 格式选择服务于稳定性。生命周期修复与格式实验必须分开；只有明确的真机 prepare、容器或编码证据才能更换 preset，不因单次故障盲目改 WAV。
 
@@ -30,7 +32,7 @@ SpeakingPracticePanel
       → 转写（独立消费者）
 ```
 
-标准流程：权限 → 获取音频会话 → prepare → start → recording → stop → 容器校验与提交 → 发布资产 → 释放资源。
+标准流程：权限 → 获取音频会话 → prepare → 底层 start 确认 → recording → stop → 容器/音轨/解码校验 → 提交 → 发布资产 → 释放资源。
 
 快速松手、后台、中断和超时都必须沿同一流程清理；迟到结果只能被丢弃，不能覆盖下一次录音。
 

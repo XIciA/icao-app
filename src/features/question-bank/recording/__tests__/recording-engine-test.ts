@@ -22,10 +22,10 @@ function deferred<T>(): Deferred<T> {
 }
 
 const rawRecording: Extract<RawRecording, { kind: 'native-file' }> = {
-  durationMs: 1_000,
   format: 'm4a',
   kind: 'native-file',
   mimeType: 'audio/mp4',
+  recorderDurationMs: 1_000,
   recorderMimeType: 'audio/mp4',
   uri: 'file:///raw.m4a',
 };
@@ -338,11 +338,14 @@ describe('RecordingEngine lifecycle contract', () => {
 
   it('uses monotonic duration when native duration violates the unit contract', async () => {
     const { engine, repository, runtime, setNow } = setup();
-    runtime.stop.mockResolvedValue({ ...rawRecording, durationMs: 1_000_000 });
+    runtime.stop.mockResolvedValue({ ...rawRecording, recorderDurationMs: 1_000_000 });
     engine.pressIn();
     await flush();
     setNow(2_000);
     await engine.pressOut();
-    expect(repository.commitRaw).toHaveBeenCalledWith(expect.objectContaining({ durationMs: 2_000 }));
+    expect(repository.commitRaw).toHaveBeenCalledWith(expect.objectContaining({
+      operationDurationMs: 2_000,
+      recorderDurationMs: 1_000_000,
+    }));
   });
 });

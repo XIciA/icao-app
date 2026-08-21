@@ -10,6 +10,7 @@ const repository = 'src/features/question-bank/recording/recording-repository.ts
 const repositoryWeb = 'src/features/question-bank/recording/recording-repository.web.ts';
 const recordingEngine = 'src/features/question-bank/recording/recording-engine.ts';
 const containerValidator = 'src/features/question-bank/recording/recording-container-validator.ts';
+const mediaProbe = 'src/features/question-bank/recording/recording-media-probe.ts';
 const retiredRecordingStateMachine = 'src/features/question-bank/recording/recording-state-machine.ts';
 const productionExtensions = new Set(['.ts', '.tsx']);
 
@@ -60,11 +61,14 @@ for (const file of files) {
   reject(file, content, /\ballowsRecording\s*:/, [orchestrator], 'audio profiles must be defined only by the orchestrator');
 
   if (name === recorderAdapter && /\brecorder\.currentTime\b/.test(content)) {
-    failures.push(`${name}: recorder.currentTime has platform-divergent units; use RecorderState.durationMillis and elapsed wall time`);
+    failures.push(`${name}: recorder.currentTime has platform-divergent units; use RecorderState.durationMillis and keep operation time in RecordingEngine`);
   }
   if (name === recorderAdapter
     && !/export\s+const\s+IOS_VOICE_RECORDING_OPTIONS\s*=\s*RecordingPresets\.HIGH_QUALITY\s*;/.test(content)) {
     failures.push(`${name}: iOS production recording must bind directly to the Expo HIGH_QUALITY preset without encoding overrides`);
+  }
+  if (name === recorderAdapter && !/recorderRef\.current\?\.isRecording\s*===\s*true/.test(content)) {
+    failures.push(`${name}: native start acknowledgement must read the underlying recorder.isRecording fact`);
   }
   if (name === recorderAdapter && /IOSOutputFormat\.LINEARPCM/.test(content)) {
     failures.push(`${name}: WAV/LINEARPCM is diagnostic-only and must not become the production default`);
@@ -74,6 +78,15 @@ for (const file of files) {
   }
   if (name === repository && !/inspectRecordingContainer/.test(content)) {
     failures.push(`${name}: native commits must preserve deterministic container validation`);
+  }
+  if (name === repository && !/recordingMediaProbe/.test(content)) {
+    failures.push(`${name}: native commits must verify decoder-readable media before publication`);
+  }
+  if (name === containerValidator && !/mediaDurationMs/.test(content)) {
+    failures.push(`${name}: container validation must expose real audio-track duration`);
+  }
+  if (name === mediaProbe && !/createAudioPlayer/.test(content)) {
+    failures.push(`${name}: native media probing must use the platform decoder without playing`);
   }
   if (name.startsWith('src/features/question-bank/recording/')
     && name !== repositoryWeb

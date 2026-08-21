@@ -178,10 +178,10 @@ describe('ExpoRecorderAdapter Web runtime contract', () => {
     let raw: RawRecording | undefined;
     await act(async () => { raw = await result.current.stop(context); });
     expect(raw).toMatchObject({
-      durationMs: 1_000,
       format: 'webm',
       kind: 'web-blob',
       mimeType: 'audio/webm',
+      recorderDurationMs: 1_000,
       recorderMimeType: 'audio/webm;codecs=opus',
     });
     expect(raw?.kind === 'web-blob' ? raw.blob.size : 0).toBe(600);
@@ -240,7 +240,7 @@ describe('ExpoRecorderAdapter Web runtime contract', () => {
     await act(() => { stopPromise = result.current.stop(context); });
     now = 6_000;
     await act(() => { recorderInstances[0]?.completeStop(); });
-    await expect(stopPromise).resolves.toMatchObject({ durationMs: 1_000 });
+    await expect(stopPromise).resolves.toMatchObject({ recorderDurationMs: 1_000 });
     await unmount();
   });
 

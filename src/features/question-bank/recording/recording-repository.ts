@@ -2,7 +2,8 @@ import { Directory, File, Paths } from 'expo-file-system';
 
 import { emitAudioDiagnostic } from '@/platform/audio/audio-diagnostics';
 
-import { inspectRecordingContainer } from './recording-container-validator';
+import { inspectRecordingContainer, type RecordingContainerInspection } from './recording-container-validator';
+import { recordingMediaProbe, type RecordingMediaProbe } from './recording-media-probe';
 import { RecordingRepositoryError } from './recording-repository-error';
 import type { RawRecording, RecordingAsset } from './types';
 
@@ -15,8 +16,16 @@ export { RecordingRepositoryError } from './recording-repository-error';
 
 type RecordingRepositoryDependencies = {
   createId?: () => string;
+  mediaProbe?: RecordingMediaProbe;
   now?: () => number;
   wait?: (milliseconds: number) => Promise<void>;
+};
+
+type RecordingCommitInput = RawRecording & {
+  cardId: string;
+  diagnosticId?: string;
+  operationDurationMs: number;
+  sessionId: string;
 };
 
 let idSequence = 0;
@@ -28,6 +37,11 @@ function defaultId() {
 
 function safeSegment(value: string) {
   return value.replace(/[^a-zA-Z0-9_-]+/g, '-').slice(0, 100) || 'unknown';
+}
+
+function durationsAgree(leftMs: number, rightMs: number) {
+  const tolerance = Math.max(500, Math.max(leftMs, rightMs) * 0.2);
+  return Math.abs(leftMs - rightMs) <= tolerance;
 }
 
 function bestEffortDelete(file?: File) {
@@ -42,23 +56,41 @@ function bestEffortDelete(file?: File) {
 export class RecordingRepository {
   private readonly root = new Directory(Paths.cache, 'icao-recordings');
   private readonly createId: () => string;
+  private readonly mediaProbe: RecordingMediaProbe;
   private readonly now: () => number;
   private readonly wait: (milliseconds: number) => Promise<void>;
 
   constructor(dependencies: RecordingRepositoryDependencies = {}) {
     this.createId = dependencies.createId ?? defaultId;
+    this.mediaProbe = dependencies.mediaProbe ?? recordingMediaProbe;
     this.now = dependencies.now ?? Date.now;
     this.wait = dependencies.wait ?? ((milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds)));
   }
 
-  async commitRaw(input: RawRecording & { cardId: string; diagnosticId?: string; sessionId: string }): Promise<RecordingAsset> {
+  async commitRaw(input: RecordingCommitInput): Promise<RecordingAsset> {
     if (input.kind !== 'native-file') throw new RecordingRepositoryError('recording_commit_failed');
     const source = new File(input.uri);
     let pending: File | undefined;
     let destination: File | undefined;
+    let mediaDurationMs: number | undefined;
+    let playbackDurationMs: number | undefined;
     try {
-      if (input.durationMs < MIN_RECORDING_DURATION_MS) throw new RecordingRepositoryError('recording_too_short');
-      const sourceSize = await this.validatedSettledSize(source, input.format, input.diagnosticId);
+      if (input.operationDurationMs < MIN_RECORDING_DURATION_MS) throw new RecordingRepositoryError('recording_too_short');
+      const { inspection, sourceSize } = await this.validatedSettledFile(source, input.format, input.diagnosticId);
+      const probe = await this.mediaProbe.probe(input).catch(() => {
+        throw new RecordingRepositoryError('recording_media_unreadable');
+      });
+      playbackDurationMs = probe.durationMs;
+      if (!probe.playable || !probe.hasAudioTrack || !inspection.mediaDurationMs || !probe.durationMs) {
+        throw new RecordingRepositoryError('recording_media_unreadable');
+      }
+      const containerDurationMs = inspection.mediaDurationMs;
+      mediaDurationMs = probe.durationMs;
+      if (mediaDurationMs < MIN_RECORDING_DURATION_MS
+        || !durationsAgree(containerDurationMs, mediaDurationMs)
+        || !durationsAgree(mediaDurationMs, input.operationDurationMs)) {
+        throw new RecordingRepositoryError('recording_media_duration_mismatch');
+      }
 
       this.root.create({ idempotent: true, intermediates: true });
       const sessionDirectory = new Directory(this.root, safeSegment(input.sessionId));
@@ -75,7 +107,7 @@ export class RecordingRepository {
         byteSize: sourceSize,
         cardId: input.cardId,
         createdAt: new Date(this.now()).toISOString(),
-        durationMillis: input.durationMs,
+        durationMillis: Math.round(mediaDurationMs),
         format: input.format,
         id,
         mimeType: input.mimeType,
@@ -88,11 +120,14 @@ export class RecordingRepository {
         byteSize: sourceSize,
         code: 'recording_committed',
         diagnosticId: input.diagnosticId,
-        durationMillis: input.durationMs,
+        durationMillis: mediaDurationMs,
         format: input.format,
         level: 'info',
+        mediaDurationMillis: mediaDurationMs,
         meteringDetected: input.meteringDetected,
+        operationDurationMillis: input.operationDurationMs,
         phase: 'ready',
+        recorderDurationMillis: input.recorderDurationMs,
         scope: 'recording',
       });
       return asset;
@@ -103,11 +138,15 @@ export class RecordingRepository {
       emitAudioDiagnostic({
         code,
         diagnosticId: input.diagnosticId,
-        durationMillis: input.durationMs,
+        durationMillis: input.operationDurationMs,
         format: input.format,
         level: 'error',
         meteringDetected: input.meteringDetected,
+        operationDurationMillis: input.operationDurationMs,
         phase: 'finalizing',
+        playbackDurationMillis: playbackDurationMs,
+        recorderDurationMillis: input.recorderDurationMs,
+        mediaDurationMillis: mediaDurationMs,
         scope: 'recording',
       });
       throw error instanceof RecordingRepositoryError ? error : new RecordingRepositoryError(code);
@@ -162,11 +201,11 @@ export class RecordingRepository {
     }
   }
 
-  private async validatedSettledSize(
+  private async validatedSettledFile(
     file: File,
     format: Extract<RawRecording, { kind: 'native-file' }>['format'],
     diagnosticId?: string,
-  ) {
+  ): Promise<{ inspection: RecordingContainerInspection; sourceSize: number }> {
     let previous = -1;
     let current = 0;
     let existed = false;
@@ -187,7 +226,7 @@ export class RecordingRepository {
             phase: 'finalizing',
             scope: 'recording',
           });
-          return current;
+          return { inspection, sourceSize: current };
         }
       }
       previous = current;

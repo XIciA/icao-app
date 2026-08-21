@@ -19,6 +19,13 @@ export function useRecordingPlayback(asset?: RecordingAsset, pauseRequest = 0) {
   const leaseRef = useRef<AudioLease | undefined>(undefined);
   const resumeAfterScrub = useRef(false);
   const operationGeneration = useRef(0);
+  const sourceGeneration = useRef(0);
+  const activePlayback = useRef<{
+    generation: number;
+    sourceGeneration: number;
+    startedAt: number;
+    sawProgress: boolean;
+  } | undefined>(undefined);
   const appStateRef = useRef(AppState.currentState || 'active');
 
   const tryPausePlayer = useCallback(() => {
@@ -46,6 +53,7 @@ export function useRecordingPlayback(asset?: RecordingAsset, pauseRequest = 0) {
 
   const pause = useCallback(() => {
     operationGeneration.current += 1;
+    activePlayback.current = undefined;
     const lease = leaseRef.current;
     tryPausePlayer();
     resumeAfterScrub.current = false;
@@ -62,6 +70,7 @@ export function useRecordingPlayback(asset?: RecordingAsset, pauseRequest = 0) {
 
   useEffect(() => {
     pause();
+    sourceGeneration.current += 1;
     setError(undefined);
     if (!asset) {
       // useAudioPlayer owns this shared object's lifetime. Calling remove() here
@@ -76,6 +85,41 @@ export function useRecordingPlayback(asset?: RecordingAsset, pauseRequest = 0) {
       setError(!recordingRepository.assetExists(asset) ? 'asset_missing' : 'playback_load_failed');
     }
   }, [asset, pause, player, retryToken]);
+
+  useEffect(() => {
+    if (!asset) return;
+    const generation = sourceGeneration.current;
+    const timeout = setTimeout(() => {
+      if (generation !== sourceGeneration.current) return;
+      let loaded = { duration: status.duration, isLoaded: status.isLoaded };
+      try {
+        loaded = player.currentStatus;
+      } catch {
+        // The regular load timeout handles an unavailable player status.
+      }
+      if (!loaded.isLoaded || !Number.isFinite(loaded.duration) || loaded.duration <= 0) return;
+      const playbackDurationMillis = loaded.duration * 1_000;
+      const tolerance = Math.max(500, Math.max(playbackDurationMillis, asset.durationMillis) * 0.2);
+      emitAudioDiagnostic({
+        code: 'playback_media_loaded',
+        level: 'info',
+        phase: 'loading',
+        playbackDurationMillis,
+        scope: 'playback',
+      });
+      if (Math.abs(playbackDurationMillis - asset.durationMillis) <= tolerance) return;
+      setError('playback_load_failed');
+      emitAudioDiagnostic({
+        code: 'playback_duration_mismatch',
+        durationMillis: asset.durationMillis,
+        level: 'error',
+        phase: 'loading',
+        playbackDurationMillis,
+        scope: 'playback',
+      });
+    }, 150);
+    return () => clearTimeout(timeout);
+  }, [asset, player, retryToken, status.duration, status.isLoaded]);
 
   useEffect(() => {
     if (!asset || status.isLoaded) return;
@@ -104,8 +148,20 @@ export function useRecordingPlayback(asset?: RecordingAsset, pauseRequest = 0) {
   }, [pause]);
 
   useEffect(() => {
-    if (!status.didJustFinish) return;
+    const active = activePlayback.current;
+    if (active && active.generation === operationGeneration.current
+      && active.sourceGeneration === sourceGeneration.current
+      && !status.didJustFinish
+      && (status.playing || status.currentTime > active.startedAt + 0.01)) {
+      active.sawProgress = true;
+    }
+  }, [status.currentTime, status.didJustFinish, status.playing]);
+
+  useEffect(() => {
+    const active = activePlayback.current;
+    if (!status.didJustFinish || !active?.sawProgress) return;
     operationGeneration.current += 1;
+    activePlayback.current = undefined;
     emitAudioDiagnostic({ code: 'playback_completed', level: 'info', phase: 'ready', scope: 'playback' });
     void releaseLease();
   }, [releaseLease, status.didJustFinish]);
@@ -135,11 +191,18 @@ export function useRecordingPlayback(asset?: RecordingAsset, pauseRequest = 0) {
       if ((status.didJustFinish || status.currentTime >= status.duration) && !await trySeekPlayer(0)) {
         throw new Error('recording_playback_seek_failed');
       }
+      activePlayback.current = {
+        generation,
+        sawProgress: false,
+        sourceGeneration: sourceGeneration.current,
+        startedAt: status.currentTime,
+      };
       player.play();
       setError(undefined);
       emitAudioDiagnostic({ code: 'playback_started', level: 'info', phase: 'playing', scope: 'playback' });
       return true;
     } catch {
+      if (activePlayback.current?.generation === generation) activePlayback.current = undefined;
       if (lease) await releaseLease(lease);
       setError('playback_start_failed');
       emitAudioDiagnostic({ code: 'playback_start_failed', level: 'error', phase: 'ready', scope: 'playback' });

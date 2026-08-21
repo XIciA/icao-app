@@ -106,7 +106,7 @@ stateDiagram-v2
 - stop 必须幂等；同一次操作的重复松手共享同一个 Promise。
 - 每次 start 创建新的 operation ID。权限、prepare、stop、commit 的异步结果只有 operation 与 runtime epoch 仍匹配时才能发布。
 - iOS 生产录音默认直接使用 Expo SDK 55 `RecordingPresets.HIGH_QUALITY`，不得在生命周期修复中同时覆写采样率、声道、码率或编码器。若要更换 preset，必须作为独立变更取得同一候选的真机证据。
-- Native `prepareToRecordAsync()` 成功就是录音器准备合同，不再用一次 `canRecord` 快照二次否决；`record()` 后仍必须等待明确的 `isRecording` 才发布 recording 状态。
+- Native `prepareToRecordAsync()` 成功就是录音器准备合同，不再用一次 `canRecord` 快照二次否决；`record()` 后必须等待公开的 `recorder.isRecording` 底层事实，不能用 Expo 包装层 `getStatus().isRecording` 单独确认。
 - Native prepare 拒绝只保留 `audio-session-configuration | native-recorder-prepare | unknown-native-prepare` 三类脱敏原因，不记录原生错误原文、URI 或录音内容。
 - Native 录音时长只能由 stop 前的 `RecorderState.durationMillis` 与 adapter 自己记录的实际经过时间交叉校验；不得使用 `AudioRecorder.currentTime` 推导毫秒。Expo 原生实现曾在 iOS / Android 暴露不同单位，重复换算会把有效文件误判为不完整。
 - 后台、卸载、被其它 owner 取代会使 operation 失效并清理 raw/新提交的过期资产。
@@ -125,12 +125,13 @@ stateDiagram-v2
 
 `commitRaw` 的固定顺序：
 
-1. 检查停止时长至少 400 ms。
-2. 等待文件写入稳定；Native M4A 检查 `ftyp`、`moov` 和非空 `mdat`，不得按码率或 bytes/ms 猜有效性。Web 只做格式、MIME 和非空 Blob 基础校验。
-3. 复制到 `Paths.cache/icao-recordings/<sessionId>/<assetId>.<format>.pending`。
-4. 校验 pending 大小与 raw 一致。
-5. 同目录 pending move 为正式文件，再校验目标；这是事务式提交，不宣称跨平台原子 rename。
-6. 只有目标有效后删除 raw 并返回 `RecordingAsset`。
+1. 检查单调时钟记录的操作时长至少 400 ms；不得把它写回媒体时长。
+2. 等待文件写入稳定；Native M4A 检查 `ftyp`、`moov`、非空 `mdat`、`soun` 音轨及 `mdhd` 时长，WAV 从格式头计算时长，不得按码率或 bytes/ms 猜有效性。
+3. 使用独立、只加载不播放的媒体探针确认目标平台解码器能读取文件；媒体时长与操作时长差异不得超过 `max(500 ms, 20%)`。Web 探针借用 Repository 创建的唯一 Blob URL。
+4. 复制到 `Paths.cache/icao-recordings/<sessionId>/<assetId>.<format>.pending`。
+5. 校验 pending 大小与 raw 一致。
+6. 同目录 pending move 为正式文件，再校验目标；这是事务式提交，不宣称跨平台原子 rename。
+7. 只有目标有效后删除 raw 并返回 `RecordingAsset`；其 `durationMillis` 使用解码器读取的媒体时长。
 
 任何步骤失败都清理 raw/pending/不完整目标，但不得碰旧 `RecordingAsset`。学习会话 finish/unmount 时清目录；App 启动时清理超过 24 小时的孤儿 session。录音保持学习会话级，不承诺跨重启恢复。
 
@@ -197,7 +198,7 @@ stateDiagram-v2
 - [ ] 没有让 UI 直接 import Expo FileSystem 或删除录音。
 - [ ] stable player 仍由 `useAudioPlayer` 释放，未在挂载期间调用 `player.remove()`。
 - [ ] 新录音格式或 preset 的 MIME alias 已在 API 规范化，并有真实格式的 live verifier 证据。
-- [ ] 成功判定不依赖 player load、转写或组件渲染。
+- [ ] 成功判定包含 Repository 控制的非播放媒体探针，但不依赖业务回放、转写或组件渲染。
 - [ ] 新异步步骤有 operation ID、runtime epoch、lease token 或明确幂等键。
 - [ ] 错误不会删除旧资产，不会自动恢复旧音频。
 - [ ] 诊断事件不含内容、URI、令牌或身份信息。

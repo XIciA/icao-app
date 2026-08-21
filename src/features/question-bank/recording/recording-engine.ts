@@ -40,7 +40,12 @@ export type RecordingEngineSnapshot = {
 };
 
 type RecordingRepositoryPort = {
-  commitRaw(input: RawRecording & { cardId: string; diagnosticId?: string; sessionId: string }): Promise<RecordingAsset>;
+  commitRaw(input: RawRecording & {
+    cardId: string;
+    diagnosticId?: string;
+    operationDurationMs: number;
+    sessionId: string;
+  }): Promise<RecordingAsset>;
   discard(asset: RecordingAsset): void;
   discardRaw(raw?: RawRecording): void;
 };
@@ -123,6 +128,8 @@ const FAILURE_MESSAGES: Record<RecordingFailureCode, string> = {
   recording_file_incomplete: '没有生成有效录音文件，请重新录制。',
   recording_finalization_timeout: '录音保存等待超时，请重新录制。',
   recording_interrupted: '录音已中断，请保持页面在前台后重试。',
+  recording_media_duration_mismatch: '录音文件的实际时长异常，请重新录制。',
+  recording_media_unreadable: '录音文件无法读取，请重新录制。',
   recording_media_services_reset: '系统音频服务已重置，请重新录制。',
   recording_native_prepare_failed: 'iPhone 录音器准备失败，请稍后重试。',
   recording_native_prepare_timeout: 'iPhone 录音器准备超时，请重新录制。',
@@ -152,6 +159,11 @@ function diagnosticId() {
 
 function defaultNow() {
   return globalThis.performance?.now?.() ?? Date.now();
+}
+
+function durationsAgree(leftMs: number, rightMs: number) {
+  const tolerance = Math.max(500, Math.max(leftMs, rightMs) * 0.2);
+  return Math.abs(leftMs - rightMs) <= tolerance;
 }
 
 const defaultScheduler: SchedulerPort = {
@@ -546,7 +558,10 @@ export class RecordingEngine {
           await this.releaseLease(operation);
         },
       );
-      raw = this.reconcileDuration(raw, operation);
+      const operationDurationMs = Math.max(0, this.now() - (operation.startedAt ?? this.now()));
+      if (raw.recorderDurationMs && !durationsAgree(raw.recorderDurationMs, operationDurationMs)) {
+        this.report('duration_contract_mismatch', 'duration', operation, 'warning', operationDurationMs);
+      }
       await this.releaseLease(operation);
       if (!commit || operation.cancelled || !this.isCurrent(operation)) {
         this.repository.discardRaw(raw);
@@ -555,7 +570,7 @@ export class RecordingEngine {
         if (cleanupFailure) this.fail(cleanupFailure, operation.diagnosticId, operation);
         return;
       }
-      if (raw.durationMs < MIN_DURATION_MS) {
+      if (operationDurationMs < MIN_DURATION_MS) {
         this.repository.discardRaw(raw);
         throw new RecordingEngineError('recording_too_short');
       }
@@ -565,6 +580,7 @@ export class RecordingEngine {
         ...repositoryOwnedRaw,
         cardId: operation.cardId,
         diagnosticId: operation.diagnosticId,
+        operationDurationMs,
         sessionId: operation.sessionId,
       });
       raw = undefined;
@@ -606,16 +622,6 @@ export class RecordingEngine {
       this.finishOperation(operation);
       this.fail(code, operation.diagnosticId, operation);
     }
-  }
-
-  private reconcileDuration(raw: RawRecording, operation: ActiveOperation): RawRecording {
-    const monotonicDuration = Math.max(0, this.now() - (operation.startedAt ?? this.now()));
-    if (raw.kind !== 'native-file') return { ...raw, durationMs: monotonicDuration };
-    const nativeDuration = raw.durationMs;
-    const tolerance = Math.max(500, monotonicDuration * 0.2);
-    if (nativeDuration > 0 && Math.abs(nativeDuration - monotonicDuration) <= tolerance) return raw;
-    this.report('duration_contract_mismatch', 'duration', operation, 'warning', monotonicDuration);
-    return { ...raw, durationMs: monotonicDuration };
   }
 
   private withTimeout<T>(

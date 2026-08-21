@@ -55,6 +55,9 @@ jest.mock('expo-file-system', () => {
 });
 
 jest.mock('@/platform/audio/audio-diagnostics', () => ({ emitAudioDiagnostic: jest.fn() }));
+jest.mock('../recording-media-probe', () => ({
+  recordingMediaProbe: { probe: jest.fn() },
+}));
 
 // eslint-disable-next-line import/first
 import { RecordingRepository } from '../recording-repository';
@@ -85,10 +88,11 @@ function wave(dataBytes: number) {
 function raw(uri: string, durationMs = 2_000) {
   return {
     cardId: 'card-1',
-    durationMs,
     format: 'wav' as const,
     kind: 'native-file' as const,
     mimeType: 'audio/wav',
+    operationDurationMs: durationMs,
+    recorderDurationMs: durationMs,
     sessionId: 'session-1',
     uri,
   };
@@ -105,6 +109,13 @@ describe('RecordingRepository', () => {
   function repository() {
     return new RecordingRepository({
       createId: () => 'asset-1',
+      mediaProbe: {
+        probe: async (input) => ({
+          durationMs: input.recorderDurationMs,
+          hasAudioTrack: true,
+          playable: true,
+        }),
+      },
       now: () => Date.parse('2026-07-16T00:00:00.000Z'),
       wait: async () => undefined,
     });
@@ -131,6 +142,13 @@ describe('RecordingRepository', () => {
     mockFiles.set('file:///delayed.wav', { bytes: partial, growth: [partial, partial, complete, complete] });
     const asset = await repository().commitRaw(raw('file:///delayed.wav', 1_000));
     expect(asset.byteSize).toBe(32_044);
+  });
+
+  it('rejects a structurally valid file whose real media duration contradicts the operation', async () => {
+    mockFiles.set('file:///short.wav', { bytes: wave(2_912) });
+    await expect(repository().commitRaw(raw('file:///short.wav', 3_000)))
+      .rejects.toMatchObject({ code: 'recording_media_duration_mismatch' });
+    expect(mockFiles.has('file:///short.wav')).toBe(false);
   });
 
   it('distinguishes missing, invalid-container, and incomplete files and consumes each raw', async () => {
