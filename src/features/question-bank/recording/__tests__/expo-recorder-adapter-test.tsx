@@ -22,10 +22,22 @@ const mockRecorder = {
 };
 
 jest.mock('expo-audio', () => ({
-  AudioQuality: { HIGH: 96 },
   getRecordingPermissionsAsync: jest.fn(),
-  IOSOutputFormat: { MPEG4AAC: 'aac' },
-  RecordingPresets: { HIGH_QUALITY: { ios: {} } },
+  RecordingPresets: {
+    HIGH_QUALITY: {
+      bitRate: 128_000,
+      extension: '.m4a',
+      ios: {
+        audioQuality: 127,
+        linearPCMBitDepth: 16,
+        linearPCMIsBigEndian: false,
+        linearPCMIsFloat: false,
+        outputFormat: 'aac',
+      },
+      numberOfChannels: 2,
+      sampleRate: 44_100,
+    },
+  },
   requestRecordingPermissionsAsync: jest.fn(async () => ({ granted: true })),
   useAudioRecorder: (_options: unknown, listener?: typeof mockStatusListener) => {
     mockStatusListener = listener;
@@ -36,7 +48,7 @@ jest.mock('expo-audio', () => ({
 
 // Import after the Expo module mock so this test exercises only the adapter contract.
 // eslint-disable-next-line import/first
-import { useExpoRecorderAdapter } from '../expo-recorder-adapter';
+import { IOS_VOICE_RECORDING_OPTIONS, useExpoRecorderAdapter } from '../expo-recorder-adapter';
 
 describe('ExpoRecorderAdapter native duration contract', () => {
   let now = 1_000;
@@ -89,6 +101,50 @@ describe('ExpoRecorderAdapter native duration contract', () => {
       kind: 'native-file',
       mimeType: 'audio/mp4',
       uri: mockRecorder.uri,
+    });
+    await unmount();
+  });
+
+  it('uses the unmodified Expo high-quality preset on iOS', async () => {
+    const { RecordingPresets: mockRecordingPresets } = jest.requireMock('expo-audio') as {
+      RecordingPresets: { HIGH_QUALITY: unknown };
+    };
+
+    expect(IOS_VOICE_RECORDING_OPTIONS).toBe(mockRecordingPresets.HIGH_QUALITY);
+    expect(IOS_VOICE_RECORDING_OPTIONS).toMatchObject({
+      bitRate: 128_000,
+      extension: '.m4a',
+      numberOfChannels: 2,
+      sampleRate: 44_100,
+    });
+    expect(IOS_VOICE_RECORDING_OPTIONS).not.toEqual(expect.objectContaining({
+      bitRate: 64_000,
+      numberOfChannels: 1,
+      sampleRate: 16_000,
+    }));
+  });
+
+  it('accepts a resolved native prepare promise without a second canRecord veto', async () => {
+    mockRecorder.prepareToRecordAsync.mockResolvedValueOnce(undefined);
+    const { result, unmount } = await renderHook(() => useExpoRecorderAdapter());
+
+    await expect(result.current.prepare(context)).resolves.toBeUndefined();
+    expect(mockRecorder.getStatus()).toMatchObject({ canRecord: false });
+    await unmount();
+  });
+
+  it.each([
+    ['Failed to configure audio session: route unavailable', 'audio-session-configuration'],
+    ['Failed to prepare recorder', 'native-recorder-prepare'],
+    ['Native recorder rejected the request', 'unknown-native-prepare'],
+  ] as const)('classifies native prepare failures without retaining their raw message', async (message, reason) => {
+    mockRecorder.prepareToRecordAsync.mockRejectedValueOnce(new Error(message));
+    const { result, unmount } = await renderHook(() => useExpoRecorderAdapter());
+
+    await expect(result.current.prepare(context)).rejects.toMatchObject({
+      code: 'recording_native_prepare_failed',
+      diagnosticReason: reason,
+      message: 'recording_native_prepare_failed',
     });
     await unmount();
   });

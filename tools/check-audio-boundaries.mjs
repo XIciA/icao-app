@@ -62,8 +62,9 @@ for (const file of files) {
   if (name === recorderAdapter && /\brecorder\.currentTime\b/.test(content)) {
     failures.push(`${name}: recorder.currentTime has platform-divergent units; use RecorderState.durationMillis and elapsed wall time`);
   }
-  if (name === recorderAdapter && !/IOSOutputFormat\.MPEG4AAC/.test(content)) {
-    failures.push(`${name}: iOS production recording must keep the M4A/AAC candidate`);
+  if (name === recorderAdapter
+    && !/export\s+const\s+IOS_VOICE_RECORDING_OPTIONS\s*=\s*RecordingPresets\.HIGH_QUALITY\s*;/.test(content)) {
+    failures.push(`${name}: iOS production recording must bind directly to the Expo HIGH_QUALITY preset without encoding overrides`);
   }
   if (name === recorderAdapter && /IOSOutputFormat\.LINEARPCM/.test(content)) {
     failures.push(`${name}: WAV/LINEARPCM is diagnostic-only and must not become the production default`);

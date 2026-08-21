@@ -1,7 +1,5 @@
 import {
-  AudioQuality,
   getRecordingPermissionsAsync,
-  IOSOutputFormat,
   RecordingPresets,
   requestRecordingPermissionsAsync,
   useAudioRecorder,
@@ -25,10 +23,16 @@ export type NativeRecorderFailureCode =
   | 'recording_native_prepare_failed'
   | 'recording_native_start_failed';
 
+export type NativePrepareFailureReason =
+  | 'audio-session-configuration'
+  | 'native-recorder-prepare'
+  | 'unknown-native-prepare';
+
 export class NativeRecorderError extends Error {
   constructor(
     readonly code: NativeRecorderFailureCode,
     readonly snapshot: RecorderSnapshot,
+    readonly diagnosticReason?: NativePrepareFailureReason,
   ) {
     super(code);
     this.name = 'NativeRecorderError';
@@ -42,25 +46,20 @@ const ANDROID_VOICE_RECORDING_OPTIONS = {
   numberOfChannels: 1,
 };
 
-const IOS_VOICE_RECORDING_OPTIONS = {
-  ...RecordingPresets.HIGH_QUALITY,
-  bitRate: 64_000,
-  extension: '.m4a',
-  isMeteringEnabled: true,
-  numberOfChannels: 1,
-  sampleRate: 16_000,
-  ios: {
-    ...RecordingPresets.HIGH_QUALITY.ios,
-    audioQuality: AudioQuality.HIGH,
-    outputFormat: IOSOutputFormat.MPEG4AAC,
-  },
-};
+export const IOS_VOICE_RECORDING_OPTIONS = RecordingPresets.HIGH_QUALITY;
 
 const VOICE_RECORDING_OPTIONS = Platform.OS === 'ios'
   ? IOS_VOICE_RECORDING_OPTIONS
   : ANDROID_VOICE_RECORDING_OPTIONS;
 const E2E_ENABLED = __DEV__ && process.env.EXPO_PUBLIC_ICAO_AUDIO_E2E === '1';
 const NATIVE_MIME_TYPE = 'audio/mp4';
+
+function prepareFailureReason(error: unknown): NativePrepareFailureReason {
+  const message = error instanceof Error ? error.message : '';
+  if (message.includes('Failed to configure audio session')) return 'audio-session-configuration';
+  if (message.includes('Failed to prepare recorder')) return 'native-recorder-prepare';
+  return 'unknown-native-prepare';
+}
 
 function createSilentWave(durationMs: number) {
   const sampleRate = 16_000;
@@ -263,18 +262,18 @@ export function useExpoRecorderAdapter(): ExpoRecorderAdapter {
       }
       try {
         await recorder.prepareToRecordAsync();
-      } catch {
+      } catch (error) {
         const snapshot = snapshotFromRecorder();
         throw new NativeRecorderError(
           snapshot.mediaServicesDidReset
             ? 'recording_media_services_reset'
             : 'recording_native_prepare_failed',
           snapshot,
+          snapshot.mediaServicesDidReset ? undefined : prepareFailureReason(error),
         );
       }
       const snapshot = snapshotFromRecorder();
       if (snapshot.mediaServicesDidReset) throw new NativeRecorderError('recording_media_services_reset', snapshot);
-      if (!snapshot.canRecord) throw new NativeRecorderError('recording_native_prepare_failed', snapshot);
     },
     async requestPermission() {
       const permission = await requestMicrophonePermission();

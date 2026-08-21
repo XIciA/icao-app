@@ -53,16 +53,22 @@ idle → starting → recording → stopping/finalizing → ready
 录音。底层 Promise 超时后将该 runtime 标记为污染，等待迟到结果完成清理，再通过 keyed
 RuntimeHost 重建 recorder；不能在同一个不确定 runtime 上继续尝试。
 
+Native `prepareToRecordAsync()` 成功就是录音器准备合同，不再用一次 `canRecord` 快照二次否决；
+`record()` 后仍必须等待明确的 `isRecording` 才发布 recording 状态。prepare 拒绝只保留
+`audio-session-configuration | native-recorder-prepare | unknown-native-prepare` 三类脱敏原因，
+不得记录原生错误原文、URI 或录音内容。
+
 ## 三端技术边界
 
 | 平台 | 平台层 | 正式输出原则 |
 | --- | --- | --- |
-| iOS | Expo Audio adapter | 优先 M4A/AAC；等待原生停止完成，再由 repository 校验容器 |
+| iOS | Expo Audio adapter | 直接使用 Expo SDK 55 `RecordingPresets.HIGH_QUALITY` 的 M4A/AAC；等待原生停止完成，再由 repository 校验容器 |
 | Android | Expo Audio adapter | 优先统一 M4A/AAC；没有真机证据前不增加厂商分支 |
 | Web | MediaRecorder adapter | 使用浏览器实际支持的压缩格式；等待最终数据事件并释放全部音轨 |
 
 三端共享 Engine、状态合同、资产模型和提交规则，但不强行共享平台 API。WAV 只可用于受控诊断，
-不得把它当成生命周期问题的默认解法。
+不得把它当成生命周期问题的默认解法。iOS 生命周期修复不得同时覆写采样率、声道、码率或
+编码器；更换 preset 必须作为独立变更取得同一候选的真机证据。
 
 ## 长期维护原则
 

@@ -181,6 +181,14 @@ function codeForError(
   return fallback;
 }
 
+function diagnosticReasonForError(error: unknown) {
+  const reason = (error as { diagnosticReason?: unknown } | undefined)?.diagnosticReason;
+  if (reason === 'audio-session-configuration'
+    || reason === 'native-recorder-prepare'
+    || reason === 'unknown-native-prepare') return reason;
+  return undefined;
+}
+
 function isSameContext(
   context: RecordingOperationContext | undefined,
   operation: ActiveOperation,
@@ -506,7 +514,7 @@ export class RecordingEngine {
       } else {
         this.finishOperation(operation);
       }
-      this.fail(code, operation.diagnosticId, operation);
+      this.fail(code, operation.diagnosticId, operation, diagnosticReasonForError(error));
     }
   }
 
@@ -776,6 +784,7 @@ export class RecordingEngine {
     code: RecordingFailureCode,
     operationDiagnosticId?: string,
     failedOperation?: ActiveOperation,
+    diagnosticReason?: string,
   ) {
     const runtime = this.runtime ?? this.activeOperation?.runtime ?? failedOperation?.runtime;
     if (runtime?.isWeb) {
@@ -803,7 +812,7 @@ export class RecordingEngine {
       replacing: false,
     });
     const operation = failedOperation ?? this.activeOperation;
-    if (operation) this.report(code, 'recording', operation, 'error');
+    if (operation) this.report(code, 'recording', operation, 'error', undefined, undefined, diagnosticReason);
   }
 
   private report(
@@ -813,6 +822,7 @@ export class RecordingEngine {
     level: 'info' | 'warning' | 'error',
     durationMs?: number,
     byteSize?: number,
+    reason?: string,
   ) {
     let snapshot: ReturnType<RecorderPort['getSnapshot']> | undefined;
     try {
@@ -829,6 +839,7 @@ export class RecordingEngine {
       level,
       owner,
       phase: stage,
+      reason,
       runtimeEpoch: operation.runtimeEpoch,
       scope: 'recording',
     });
