@@ -2,6 +2,8 @@
 
 状态：调查中
 
+用途：仅供复杂问题调查期间临时使用。问题关闭后，将可复用结论合并到本目录 `README.md`，再删除本文件的实例。
+
 日期：YYYY-MM-DD
 
 ## User-visible symptoms

@@ -1,157 +1,46 @@
-# Audio Recording Guidance and Precautions
+# 录音与相邻音频问题历史台账
 
-状态：长期维护
+状态：关闭问题的唯一摘要入口；不定义现行架构
 
-适用范围：按住说话、麦克风权限、Expo recorder、录音停止与提交、录音回放、音频 session、录音上传及语音转写。
+现行录音方案以 [`录音问题解决与维护`](../../rules/problem-solving-and-maintenance/recording.md) 和 [`音频生命周期与变更规则`](../../guides/audio-lifecycle-and-change-rules.md) 为准。本页只回答“以前哪里错过、为什么错、现在用什么合同防止复发”。
 
-## 1. 文档职责
+## 当前结论
 
-开始处理录音问题时，按需读取：
+- 已验证正确基线：iOS TestFlight build `3470181`，显示版本 `v2026.08.20.0016`，commit `a0ca177c452a25786827f5c92126b9803a563148`。
+- 2026-08-21 用户已确认苹果真机录音、停止、保存和回放正常。
+- 当前 iOS 使用官方 M4A/AAC preset；正确性由生命周期、真实启动状态和媒体校验共同保证，不依赖切换为 WAV。
 
-1. [`docs/guides/audio-lifecycle-and-change-rules.md`](../../guides/audio-lifecycle-and-change-rules.md)：音频生命周期变更时的唯一架构规范和验收矩阵。
-2. 本文：长期排障方法、注意事项和维护要求。
-3. 本目录中与现象最接近的历史事故记录。
+## 历史问题总表
 
-本目录不得定义第二套音频 owner、播放器、录音资产、文件清理或状态机。需要修改架构不变量时，先修改主指南，再在事故记录中链接变更。
-非音频任务、只改无关文案/样式的任务不需要读取本目录。
+| 时间 | 表现 | 本质原因 | 已固定的长期合同 |
+| --- | --- | --- | --- |
+| 2026-07-16 | 录音、播放和文件清理相互影响，问题反复出现 | 生命周期、音频 session、文件和消费者所有权不清 | 唯一 `RecordingEngine`、`AudioSessionOrchestrator`、`RecordingRepository` 和 `RecordingAsset` |
+| 2026-07-22 | 真机已经生成有效录音，却提示文件不完整 | 读取平台含义不一致的 `AudioRecorder.currentTime`，又乘 `1000`，把时长放大 | 禁止读取该字段推导毫秒；操作、Recorder、媒体时长分离 |
+| 2026-07-28 | 首次没有录音，录完后回放仍停在 `0:00` | 空资产阶段调用 `player.remove()`，注销了仍挂载的原生播放器 | `useAudioPlayer` 独占释放；资产变化只用 `replace(uri)`；静态门禁禁止提前 remove |
+| 2026-07-28 | 有效录音能回放但转写失败 | 本地同意与账号级同意漂移；等价 WAV/M4A MIME 未在服务端规范化 | 转写是独立消费者；账号同意幂等同步；MIME 与扩展名一起规范化，不回滚录音 |
+| 2026-07-28 | Web 题卡音频首次播放不可用或加载缓慢 | 浏览器用户手势、`loadeddata` 门槛和跨域静态分片交付混在共享播放路径 | Web 题卡使用平台专用持久 `HTMLAudioElement`；点击同步 `play()`；资源走已验证同域交付。这不是录音器故障 |
+| 2026-08-20 | TestFlight 在原生 prepare 阶段失败 | 自定义 iOS 参数扩大了变量，且原始错误曾被压平，无法证明具体失败层 | iOS 回到 Expo SDK 55 官方 HIGH_QUALITY preset；prepare 错误保留脱敏阶段分类 |
+| 2026-08-21 | 可以录音，但点击回放立即结束 | 包装层过早报告 recording；Engine 用操作时长掩盖短音轨；Repository 只检查顶层 M4A；回放可能接收旧完成事件 | 底层 `recorder.isRecording`；三类时长独立；容器+音轨+系统解码探针；回放 source/attempt 隔离 |
 
-## 2. 长期解决原则
+## 已排除的错误方向
 
-录音链路必须按以下独立阶段看待：
+- 录音异常就盲目切 WAV，或同时维护 M4A/WAV 自动回退。
+- 用固定延时、重复重试、文件字节/码率或任意 `×1000`、`÷1000` 猜测成功。
+- 因回放或转写失败删除已经提交的录音。
+- 在 UI/Hook 中新增第二套状态机、Recorder、文件目录或 Audio Session owner。
+- 把模拟器、Development Build、成功 Archive 或历史正常版本当作本次 TestFlight 真机验收。
+- 从已关闭 workstream 或事故记录复制旧实现覆盖当前基线。
 
-```text
-permission
-  -> native recording
-  -> stop result
-  -> file validation and commit
-  -> RecordingAsset publication
-  -> playback
-  -> upload
-  -> account consent and authentication
-  -> transcription
-```
+## 维护方式
 
-界面上同时出现“无法回放”和“无法转写”，不代表麦克风损坏。一个已提交的有效录音可以被两个下游消费者分别弄坏。诊断和修复必须保留阶段边界。
-
-长期修复至少满足以下一项，最好同时满足多项：
-
-- 消除重复 owner 或重复 source of truth。
-- 把隐式时序改为明确 Engine 状态、operation ID、runtime epoch、lease token 或幂等操作。
-- 将平台差异隔离在 adapter，不让 UI 猜测原生单位或状态。
-- 将故障转为稳定、可诊断的错误码，不用“网络错误”覆盖所有失败。
-- 添加能复现真实状态转换的回归测试，而不只测试最终渲染。
-- 添加静态门禁，阻止已经确认的危险调用重新进入。
-- 刷新目标 Release/TestFlight、真机和候选指纹证据。
-
-只增加重试、延时、条件判断、吞掉异常或修改报错文案，默认视为补丁，除非事故记录证明它恢复了明确的不变量。
-
-## 3. 不得破坏的边界
-
-- `AudioSessionOrchestrator` 是唯一全局 session 协调者。
-- `RecordingEngine` 是唯一录音生命周期 owner；`useSpeakingRecordingController` 只连接 React/UI。
-- Expo recorder adapter 只负责原生录音，不发布业务资产。
-- `RecordingRepository` 是已提交录音文件的唯一仓库和删除 owner。
-- `RecordingAsset` 是录音成功后的唯一业务事实。
-- 回放和转写是独立消费者；任一失败都不得撤销或删除已提交录音。
-- `useAudioPlayer` 管理播放器释放。组件挂载期间不得手动调用 `player.remove()`。
-- 原生时长使用 `RecorderState.durationMillis` 和 adapter 经过时间交叉校验，不使用平台单位不一致的 `AudioRecorder.currentTime` 推导毫秒。
-- 本地 AI 同意只可作为界面提示；每次 AI 操作前必须幂等同步当前账号的服务端同意。
-- 服务端暂存录音前必须把 iOS/浏览器报告的等价 MIME alias 规范化为存储桶和 ASR 支持的标准类型；不能只改文件扩展名。
-- 禁止新增直接 `setAudioModeAsync` 调用、第二 recorder hook、第二录音文件目录或第二清理路径。
-
-## 4. 标准排障顺序
-
-### A. 固定测试环境
-
-记录以下信息：
-
-- App 显示版本、native build number、commit 或明确文件集。
-- iOS/Android、系统版本、设备型号。
-- TestFlight/Release build number、commit，是否仍意外依赖 Metro。
-- 实际 API/Supabase 地址，不能只看 `.env.local`。
-- 当前账号类型、登录状态、麦克风权限和网络。
-
-### B. 判断录音是否真实生成
-
-依次确认：
-
-1. recorder 是否进入 recording 和 finalizing。
-2. stop 是否返回有效 URI、时长和格式。
-3. raw 文件是否存在、大小是否稳定。
-4. repository 是否完成 pending → 正式文件的事务式提交和最终容器校验。
-5. `RecordingAsset` 是否已发布到学习会话。
-6. 真机文件是否包含可识别的 RIFF/WAVE 或目标格式头、合理采样率/声道和实际语音电平。
-
-不要因为回放失败就推断文件无效，也不要因为播放器显示 `0:00` 就删除文件。
-
-### C. 独立检查回放
-
-- 录音 URI 只通过稳定 player 的 `replace(uri)` 装载。
-- 确认 player 没有被提前 `remove()` 或被第二生命周期 owner 接管。
-- 播放前后检查 `recordingPlayback` lease 的获取与释放。
-- 检查文件仍存在；播放器错误不能触发 repository 删除。
-- 检查加载错误、播放错误和 session 抢占错误是否分别记录。
-
-### D. 独立检查转写
-
-- 确认上传的是已提交资产，而不是 recorder 临时 URI。
-- 确认运行包实际访问公网或预期测试端点。
-- 先幂等同步当前账号 AI 同意，再检查 bearer token、邀请账号约束和接口错误码。
-- 对照检查 multipart MIME、规范化后的 content type、暂存对象扩展名和存储桶允许类型；`audio/x-wav` 等价于 `audio/wav`，不能以未知 `.audio` 对象暂存。
-- 区分 `no_speech_detected`、`invalid_audio`、`ai_consent_required`、会话失效和网络错误。
-- 服务健康只说明后端可用，不能证明当前账号、文件和请求链路通过。
-
-### E. 排除环境假象
-
-- iPhone Mirroring 不能代替手机本体麦克风验收。
-- 模拟器、静音确定性 E2E、历史成功请求和构建成功都不能代替本轮真机录音。
-- Development Build 能通过 Metro 运行，不代表独立 Release 已内嵌正确运行时地址。
-- `.env.local` 的值不等于已安装包实际使用的值，应以 bundle 或真机网络证据为准。
-
-## 5. 修复设计审查
-
-提交实现前逐项回答：
-
-- 根因位于哪个阶段，证据是什么？
-- 哪些相邻阶段已经被证据排除？
-- 修复恢复了哪条既有不变量？
-- 是否新增第二 owner、第二状态事实或第二文件清理路径？
-- 失败是否仍会错误地回滚有效录音？
-- 是否覆盖“初始无资产，随后录音成功”的真实渲染转换？
-- 换号、权限变化、后台切换、重复松手、快速重录和组件卸载是否安全？
-- 是否能用静态门禁或测试阻止同类代码再次出现？
-- 若只能局部处理，限制和后续架构工作是否明确记录？
-
-## 6. 风险匹配验证
-
-音频生命周期或行为变化的最低自动化：
+- 出现新症状时先在本表查同类根因，再按当前指南和代码取证；不要遍历旧 workstream。
+- 调查中的复杂故障可以临时使用 [`incident-template.md`](./incident-template.md)，但关闭后必须把结论合并进本表，并删除临时事故文档。
+- 只有新的可复现根因、现有结论被证据推翻，或已验证基线更新时才修改本表。
+- 详细历史证据通过 Git 查询，不再维护多份长期事故正文：
 
 ```text
-pnpm check:audio
-git diff --check
+git log -- docs/common-errors/audio-recording
+git log -p -- src/features/question-bank/recording src/platform/audio
 ```
 
-- 运行与改动直接相关的 recorder、repository、orchestrator、playback 或 workbench 测试。
-- iOS 用户可见录音修复通过聚焦门禁后直接生成同一 commit 的 Release/TestFlight 候选；不把模拟器或 Development Build 设为固定前置阶梯。
-- Android/Web 本轮未发布时只做共享 Engine 与 adapter 合同测试；对应发布任务再扩大到目标端真机。
-- 真实麦克风、后台/前台、拒绝权限、快速松手、连续录音和切题检查按受影响链路选择。
-
-验收记录必须区分“自动化通过”“构建安装通过”和“真实麦克风闭环通过”。
-
-## 7. 事故维护流程
-
-新的可复现故障、可复用根因或旧结论被推翻时：
-
-1. 从 [`incident-template.md`](./incident-template.md) 复制新事故文件。
-2. 调查开始时先填环境、现象和假设，避免结论倒推证据。
-3. 调查完成后填根因、排除项、代码所有权和长期门禁。
-4. 把本次新增的不变量同步到主音频指南。
-5. 把测试命令、真机设备、平台指纹和未完成项写清。
-6. 若历史事故的结论被推翻，直接修正文档并说明新证据，不能并列保留两个互相冲突的结论。
-
-## 8. 已记录事故
-
-- [`incident-2026-07-28-playback-transcription.md`](./incident-2026-07-28-playback-transcription.md)：有效真机录音无法稳定回放，账号同意漂移导致转写不可用。
-- [`incident-2026-07-28-web-study-audio-first-frame.md`](./incident-2026-07-28-web-study-audio-first-frame.md)：Web 首次自动播放、用户手势和首帧看门狗的前两轮修复；真实 iPhone 后续证据已转入下一记录。
-- [`incident-2026-07-28-web-study-audio-mobile-safari.md`](./incident-2026-07-28-web-study-audio-mobile-safari.md)：移动 Safari 因 `loadeddata/isLoaded` 播放门槛无法启动题卡参考音频。
-- [`incident-2026-07-28-web-study-audio-mainland-delivery.md`](./incident-2026-07-28-web-study-audio-mainland-delivery.md)：中国大陆网络直连十个 `*.vercel.app` 分片导致题卡音频缓慢，迁移为 Git 构建生成的主站同域静态资源。
+历史证据不能覆盖当前代码、测试和最新真机结论。

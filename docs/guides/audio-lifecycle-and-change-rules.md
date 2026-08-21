@@ -108,7 +108,7 @@ stateDiagram-v2
 - iOS 生产录音默认直接使用 Expo SDK 55 `RecordingPresets.HIGH_QUALITY`，不得在生命周期修复中同时覆写采样率、声道、码率或编码器。若要更换 preset，必须作为独立变更取得同一候选的真机证据。
 - Native `prepareToRecordAsync()` 成功就是录音器准备合同，不再用一次 `canRecord` 快照二次否决；`record()` 后必须等待公开的 `recorder.isRecording` 底层事实，不能用 Expo 包装层 `getStatus().isRecording` 单独确认。
 - Native prepare 拒绝只保留 `audio-session-configuration | native-recorder-prepare | unknown-native-prepare` 三类脱敏原因，不记录原生错误原文、URI 或录音内容。
-- Native 录音时长只能由 stop 前的 `RecorderState.durationMillis` 与 adapter 自己记录的实际经过时间交叉校验；不得使用 `AudioRecorder.currentTime` 推导毫秒。Expo 原生实现曾在 iOS / Android 暴露不同单位，重复换算会把有效文件误判为不完整。
+- Native 的 Recorder 时长只读取 stop 前后的 `RecorderState.durationMillis`；Engine 用单调时钟独立记录操作时长，Repository 用容器和平台解码器取得媒体时长。三者只能交叉检查，不能互相覆盖；不得使用 `AudioRecorder.currentTime` 推导毫秒。
 - 后台、卸载、被其它 owner 取代会使 operation 失效并清理 raw/新提交的过期资产。
 - 原生录音器意外结束会发 `INTERRUPTED` 并进入 finalizing；如果停止结果无效，进入显式失败态。
 - Native Promise 超时后 runtime 标记为 tainted，旧 Promise 只负责迟到清理；只有其 settle 并完成清理后才能增加 runtime epoch、重建 recorder。
@@ -155,7 +155,7 @@ stateDiagram-v2
 | --- | --- | --- |
 | session | `owner_pause_timeout`, `owner_pause_failed`, `mode_switch_failed`, `recording_exclusive` | 当前 owner、deactivate 是否 await、原生 mode 调用 |
 | recorder | `microphone_permission_denied`, `microphone_device_missing`, `microphone_device_unavailable`, `recording_browser_unsupported`, `record_prepare_failed`, `record_start_failed`, `record_stop_failed`, `recording_interrupted`, `recording_finalization_timeout` | 权限、Web 能力、设备占用、TestFlight build、AppState、operation/runtime epoch |
-| repository | `recording_too_short`, `recording_file_incomplete`, `recording_commit_failed`, `recording_asset_missing` | duration、稳定 size、pending/目标大小、cache 清理 |
+| repository | `recording_too_short`, `recording_file_incomplete`, `recording_container_invalid`, `recording_media_unreadable`, `recording_media_duration_mismatch`, `recording_commit_failed`, `recording_asset_missing` | 操作/Recorder/媒体时长、容器音轨、平台解码、pending/目标大小、cache 清理 |
 | playback | `playback_load_failed`, `playback_start_failed`, `asset_missing` | asset 是否存在、replace 是否唯一、lease 获取 |
 | transcription | `transcription_completed`, `transcription_failed`, `transcription_cancelled` | asset ID、multipart MIME 及规范化、账号级 AI 同意、登录状态、网络/AI API |
 
@@ -192,7 +192,7 @@ stateDiagram-v2
 ## 9. 修改前检查表
 
 - [ ] 已读本指南和 Expo SDK 55 对应 Audio/FileSystem 文档。
-- [ ] 已按当前症状检索 `docs/common-errors/audio-recording/` 中相关事故；无相关症状时不要求全量阅读。
+- [ ] 已在 `docs/common-errors/audio-recording/README.md` 的单一历史台账中检索相同症状；不遍历旧 workstream 或已删除事故长文。
 - [ ] 已确认没有可复用的 owner、repository、asset、player 或状态事件。
 - [ ] 没有新增 `setAudioModeAsync`、recorder hook、权限或 preset 入口。
 - [ ] 没有让 UI 直接 import Expo FileSystem 或删除录音。
@@ -207,8 +207,8 @@ stateDiagram-v2
 
 ## 10. 故障知识维护
 
-- 只有出现新的可复现故障、发现可复用根因，或现有事故结论需要修正时，才在 `docs/common-errors/audio-recording/` 创建或更新事故记录；普通实现任务和重复验证不创建新事故文档。
-- 事故记录使用 `incident-template.md`，至少包含环境、复现、证据、根因、排除项、长期修复、自动化门禁、真机验证和剩余风险。
-- 事故目录保存排障知识，本文继续保存唯一架构不变量；禁止在事故文件中建立第二套生命周期规范。
+- `docs/common-errors/audio-recording/README.md` 是关闭问题的唯一历史台账；普通实现、重复验证和同类回归只更新现有条目，不创建长期事故长文。
+- 复杂调查可以临时使用 `incident-template.md` 记录环境、复现、证据、根因和验证；问题关闭后必须把可复用结论合并进台账，并删除临时文档。
+- 历史台账只保存症状、根因和防复发合同；本文继续保存唯一架构不变量。详细证据通过 Git 历史追溯，不复制第二套生命周期规范。
 - 修复若没有恢复明确不变量，或没有增加可复现测试、静态门禁、类型化诊断、设备证据中的至少一项，默认不得标记为长期解决。
 - 构建成功、模拟器成功、确定性 E2E 和历史请求成功不得代替当前版本的手机本体麦克风闭环。

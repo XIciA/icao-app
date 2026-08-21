@@ -31,7 +31,7 @@ Markdown；先从本页选择与任务直接相关的文档。
 
 - `docs/workstreams/` 保存专题工作的需求、技术决策和验收记录；只有当前任务明确选中的
   workstream 才具有任务约束力，详见 [工作流目录说明](workstreams/README.md)。
-- `docs/common-errors/` 是按症状查询的事故记录，不是每个任务的必读规则。
+- `docs/common-errors/` 是按能力维护的历史问题台账，不是现行架构规则；录音历史只从对应 `README.md` 查询。
 - `docs/developer-notes/` 是给人工开发者的可选笔记，不是 Codex 的默认上下文或执行要求。
 - `docs/archive/` 保存被替代的战略、规则、阶段与设计基线，只用于追溯，不得覆盖当前文档。
 
