@@ -8,6 +8,10 @@ import type {
 
 jest.mock('@/platform/audio', () => ({ emitAudioDiagnostic: jest.fn() }));
 
+const { emitAudioDiagnostic: mockEmitAudioDiagnostic } = jest.requireMock('@/platform/audio') as {
+  emitAudioDiagnostic: jest.Mock;
+};
+
 type Deferred<T> = { promise: Promise<T>; reject: (error: unknown) => void; resolve: (value: T) => void };
 
 function deferred<T>(): Deferred<T> {
@@ -103,6 +107,10 @@ describe('RecordingEngine lifecycle contract', () => {
     jest.restoreAllMocks();
   });
 
+  beforeEach(() => {
+    mockEmitAudioDiagnostic.mockClear();
+  });
+
   it('cancels cleanly when released during permission', async () => {
     const permission = deferred<boolean>();
     const { audioSession, engine, repository, runtime } = setup();
@@ -146,6 +154,28 @@ describe('RecordingEngine lifecycle contract', () => {
     expect(runtime.cancel).toHaveBeenCalledTimes(1);
     expect(audioSession.release).toHaveBeenCalledTimes(1);
     expect(engine.getSnapshot().runtimeEpoch).toBe(1);
+  });
+
+  it('releases the audio session and reports only the sanitized native prepare reason', async () => {
+    const nativeFailure = Object.assign(new Error('recording_native_prepare_failed'), {
+      code: 'recording_native_prepare_failed',
+      diagnosticReason: 'native-recorder-prepare',
+    });
+    const { audioSession, engine, runtime } = setup();
+    runtime.prepare.mockRejectedValueOnce(nativeFailure);
+
+    engine.pressIn();
+    await flush();
+
+    expect(audioSession.release).toHaveBeenCalledTimes(1);
+    expect(engine.getSnapshot().error?.code).toBe('recording_native_prepare_failed');
+    expect(mockEmitAudioDiagnostic).toHaveBeenCalledWith(expect.objectContaining({
+      code: 'recording_native_prepare_failed',
+      reason: 'native-recorder-prepare',
+    }));
+    expect(mockEmitAudioDiagnostic).not.toHaveBeenCalledWith(expect.objectContaining({
+      reason: expect.stringContaining('recording_native_prepare_failed'),
+    }));
   });
 
   it('stops and discards when start acknowledges after the finger was released', async () => {

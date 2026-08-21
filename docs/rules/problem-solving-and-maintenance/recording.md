@@ -13,7 +13,8 @@
 - 只有 Repository 校验并提交后的 `RecordingAsset` 才是成功录音。回放或转写失败不得撤销它。
 - 重录顺序固定为：提交新资产 → 发布到学习会话 → 删除旧资产。新录音失败时旧资产不变。
 - 时长统一使用毫秒。单调时钟负责操作时长，Native `durationMillis` 只做交叉检查；禁止再乘除 `1000` 或按码率猜文件有效性。
-- iOS/Android 默认 M4A/AAC，Web 使用浏览器实际 MIME。格式选择服务于稳定性，不因单次故障盲目改 WAV。
+- iOS 默认直接使用 Expo SDK 55 `RecordingPresets.HIGH_QUALITY` 的 M4A/AAC，不覆写采样率、声道或码率；Android 使用既有 M4A 配置，Web 使用浏览器实际 MIME。
+- 格式选择服务于稳定性。生命周期修复与格式实验必须分开；只有明确的真机 prepare、容器或编码证据才能更换 preset，不因单次故障盲目改 WAV。
 
 ## 技术骨干
 

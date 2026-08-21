@@ -105,6 +105,9 @@ stateDiagram-v2
 
 - stop 必须幂等；同一次操作的重复松手共享同一个 Promise。
 - 每次 start 创建新的 operation ID。权限、prepare、stop、commit 的异步结果只有 operation 与 runtime epoch 仍匹配时才能发布。
+- iOS 生产录音默认直接使用 Expo SDK 55 `RecordingPresets.HIGH_QUALITY`，不得在生命周期修复中同时覆写采样率、声道、码率或编码器。若要更换 preset，必须作为独立变更取得同一候选的真机证据。
+- Native `prepareToRecordAsync()` 成功就是录音器准备合同，不再用一次 `canRecord` 快照二次否决；`record()` 后仍必须等待明确的 `isRecording` 才发布 recording 状态。
+- Native prepare 拒绝只保留 `audio-session-configuration | native-recorder-prepare | unknown-native-prepare` 三类脱敏原因，不记录原生错误原文、URI 或录音内容。
 - Native 录音时长只能由 stop 前的 `RecorderState.durationMillis` 与 adapter 自己记录的实际经过时间交叉校验；不得使用 `AudioRecorder.currentTime` 推导毫秒。Expo 原生实现曾在 iOS / Android 暴露不同单位，重复换算会把有效文件误判为不完整。
 - 后台、卸载、被其它 owner 取代会使 operation 失效并清理 raw/新提交的过期资产。
 - 原生录音器意外结束会发 `INTERRUPTED` 并进入 finalizing；如果停止结果无效，进入显式失败态。
