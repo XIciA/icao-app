@@ -42,7 +42,7 @@ EdgeOne 的构建、环境变量和 SPA fallback 规则以官方文档为准：
 ## 生产结果
 
 - Makers 项目：`tingniwuge-web`（`makers-4khvzoj9ywnq`）。
-- 当前生产部署：`dpw5cihk42zw`；项目临时域名为
+- 当前生产部署：`dpmbct7ivcoy`，来源为集成提交 `04778bc` 的已验证直接上传产物；项目临时域名为
   `tingniwuge-web-hxnvmxob.edgeone.cool`。
 - `readyoufife.com` 与 `www.readyoufife.com` 已绑定并接入 EdgeOne：
   - 根域名 CNAME：`readyoufife.com.pages.dnsoe6.com`
