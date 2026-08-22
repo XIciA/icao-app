@@ -584,7 +584,7 @@ export class RecordingEngine {
       }
       const repositoryOwnedRaw = raw;
       raw = undefined;
-      this.report('recording_commit_requested', 'commit', operation, 'info', repositoryOwnedRaw.durationMs);
+      this.report('recording_commit_requested', 'commit', operation, 'info', operationDurationMs);
       const asset = await this.repository.commitRaw({
         ...repositoryOwnedRaw,
         cardId: operation.cardId,
