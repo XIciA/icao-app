@@ -13,6 +13,8 @@ PROJECT_ROOT=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)
 . "$SCRIPT_DIR/lib/ios-release-product.sh"
 cd "$PROJECT_ROOT"
 
+node tools/check-mainline-release.mjs
+
 if [ -n "$(git status --porcelain --untracked-files=all)" ]; then
   echo 'TestFlight release requires a clean, reviewed Git worktree.' >&2
   exit 1

@@ -12,20 +12,7 @@ PROJECT_ROOT=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)
 . "$SCRIPT_DIR/lib/release-common.sh"
 . "$SCRIPT_DIR/lib/ios-release-product.sh"
 
-# The formal release entry prepares only the version/build files. Everything
-# else must already be committed; this keeps the lower-level archive command
-# from becoming a dirty-worktree escape hatch.
-UNREVIEWED_CHANGES=$(git -C "$PROJECT_ROOT" status --porcelain --untracked-files=all -- \
-  . \
-  ':(exclude)app.json' \
-  ':(exclude)src/config/app-version.ts' \
-  ':(exclude)src/config/app-version.ios.ts' \
-  ':(exclude)src/config/app-version.android.ts')
-if [ -n "$UNREVIEWED_CHANGES" ]; then
-  echo 'TestFlight archive inputs contain changes outside the prepared version/build files.' >&2
-  echo 'Use pnpm release:ios:testflight from a clean reviewed worktree.' >&2
-  exit 1
-fi
+node "$PROJECT_ROOT/tools/check-mainline-release.mjs" --root "$PROJECT_ROOT"
 
 IOS_SCHEME=${ICAO_IOS_SCHEME:-ICAO}
 IOS_TEAM_ID=${ICAO_IOS_TEAM_ID:-3FX69S3S8P}

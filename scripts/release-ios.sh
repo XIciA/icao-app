@@ -6,12 +6,14 @@ SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 PROJECT_ROOT=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)
 cd "$PROJECT_ROOT"
 
+node tools/check-mainline-release.mjs
+
 if [ "${ICAO_RELEASE_ALREADY_PREPARED:-0}" != '1' ]; then
   if [ -n "$(git status --porcelain)" ]; then
     echo 'pnpm release:ios requires a clean Git worktree.' >&2
     exit 1
   fi
-  pnpm release:prepare
+  pnpm release:materialize
   node tools/create-release-manifest.mjs
   pnpm check
 fi

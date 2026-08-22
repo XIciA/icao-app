@@ -12,6 +12,7 @@
 - [Native 商业化 D1—D9 决策](rules/decisions/)
 - [录音问题的解决与维护](rules/problem-solving-and-maintenance/recording.md)
 - [交付与验收最简规则](rules/problem-solving-and-maintenance/delivery-and-acceptance.md)
+- [GitHub 单主干与版本维护规则](rules/repository-and-github-management.md)
 - [普通任务小流程](rules/bigandsmall-workflows/orchestration-loop.md)
 - [复杂任务大流程](rules/bigandsmall-workflows/document-driven-development-workflow.md)
 - [大流程 / 小流程启动模板](rules/bigandsmall-workflows/workflow-start-prompt-template.md)

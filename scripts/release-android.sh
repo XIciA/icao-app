@@ -6,6 +6,8 @@ SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 PROJECT_ROOT=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)
 cd "$PROJECT_ROOT"
 
+node tools/check-mainline-release.mjs
+
 if [ -n "$(git status --porcelain)" ]; then
   echo 'Android Release builds require a clean Git worktree.' >&2
   echo 'Commit or otherwise finish the current changes before building.' >&2
@@ -15,7 +17,7 @@ fi
 echo 'Android release scope (local signed APK only):'
 git status --short
 
-pnpm release:prepare
+pnpm release:materialize
 node tools/create-release-manifest.mjs
 pnpm check
 node tools/critical-capability-release-evidence.mjs verify android android

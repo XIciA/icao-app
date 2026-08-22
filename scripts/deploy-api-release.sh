@@ -20,15 +20,7 @@ if [ "$SOURCE_GIT_ROOT" != "$SOURCE_ROOT" ]; then
   exit 1
 fi
 
-SOURCE_CHANGES=$(git -C "$SOURCE_ROOT" status --porcelain=v1 --untracked-files=all -- \
-  package.json pnpm-lock.yaml pnpm-workspace.yaml \
-  patches packages/contracts services/api content/vocabulary infra/api)
-if [ -n "$SOURCE_CHANGES" ] && [ "${ICAO_API_RELEASE_ALLOW_DIRTY:-0}" != '1' ]; then
-  echo 'API release inputs contain uncommitted or untracked changes.' >&2
-  echo 'Build a clean candidate worktree from the production baseline, apply only the reviewed release patch, and set ICAO_API_RELEASE_SOURCE_ROOT to that worktree.' >&2
-  echo 'ICAO_API_RELEASE_ALLOW_DIRTY=1 is an explicit escape hatch and must only be used after exact file-scope review.' >&2
-  exit 1
-fi
+node "$SOURCE_ROOT/tools/check-mainline-release.mjs" --root "$SOURCE_ROOT"
 
 load_release_runtime
 

@@ -15,6 +15,10 @@
 
 ## 项目长期边界
 
+- `main` 是仓库唯一长期分支。任何 Git 分支、提交、标签、PR、发布或清理操作开始前，必须读取
+  `docs/rules/repository-and-github-management.md`；临时任务分支合入 `main` 后立即删除。
+- TestFlight、App Store、Android 正式制品、EdgeOne、Vercel、ECS API 和数据库迁移只能来自
+  已进入 `origin/main` 的提交。正式交付代码不得只存在于本机、worktree 或未合并分支。
 - iOS 和 Android 使用 React Native、Expo 和 TypeScript，通过 Development Build 与
   CNG/Prebuild 开发；Web 使用仓库中的 Expo Web 目标。
 - 未经明确架构决策，不得引入 WebView 或第二套应用技术栈。
@@ -28,6 +32,8 @@
 
 ## 任务路由
 
+- GitHub、分支、提交、标签、PR、版本整理和发布来源：
+  `docs/rules/repository-and-github-management.md`。
 - 普通任务：`docs/rules/bigandsmall-workflows/orchestration-loop.md`。
 - 跨系统、高风险、长周期或需要重要决策的任务：
   `docs/rules/bigandsmall-workflows/document-driven-development-workflow.md`。

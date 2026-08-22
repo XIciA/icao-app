@@ -108,6 +108,8 @@ const releaseCommon = await readFile('scripts/lib/release-common.sh', 'utf8');
 const packageJsonSource = await readFile('package.json', 'utf8');
 const iosDevelopment = await readFile('scripts/run-ios-development.sh', 'utf8');
 const criticalReleaseEvidence = await readFile('tools/critical-capability-release-evidence.mjs', 'utf8');
+const mainlineReleaseGuard = await readFile('tools/check-mainline-release.mjs', 'utf8');
+const prepareRelease = await readFile('tools/prepare-release.mjs', 'utf8');
 const apiRelease = await readFile('scripts/deploy-api-release.sh', 'utf8');
 if (!caddy.includes('api.readyoufife.com') || !caddy.includes('cloud.readyoufife.com')) {
   throw new Error('The production gateway is missing the Read You 5 API or Supabase host.');
@@ -148,6 +150,37 @@ if (!androidRelease.includes('audio-sensitive-fingerprint.mjs verify android')) 
 }
 if (!androidRelease.includes('critical-capability-release-evidence.mjs verify android android')) {
   throw new Error('The Android release is missing its critical-capability evidence gate.');
+}
+for (const [name, source] of [
+  ['iOS release', iosRelease],
+  ['iOS standalone', iosStandalone],
+  ['TestFlight release', iosTestFlightRelease],
+  ['TestFlight archive', iosTestFlightArchive],
+  ['App Store handoff', iosAppStoreRelease],
+  ['Android release', androidRelease],
+  ['Android standalone', androidStandalone],
+  ['API release', apiRelease],
+]) {
+  if (!source.includes('check-mainline-release.mjs')) {
+    throw new Error(`${name} must reject release sources outside origin/main.`);
+  }
+}
+if (
+  !mainlineReleaseGuard.includes("branch !== 'main'")
+  || !mainlineReleaseGuard.includes('release_source_not_origin_main')
+  || !mainlineReleaseGuard.includes("status', '--porcelain', '--untracked-files=all")
+) {
+  throw new Error('The shared mainline release guard is incomplete.');
+}
+if (
+  !prepareRelease.includes('release_prepare_requires_task_branch')
+  || !prepareRelease.includes("process.argv.includes('--materialize')")
+  || !packageJsonSource.includes('release:materialize')
+) {
+  throw new Error('Version preparation must be committed before mainline release materialization.');
+}
+if (apiRelease.includes('ICAO_API_RELEASE_ALLOW_DIRTY')) {
+  throw new Error('The API release must not retain a dirty-source escape hatch.');
 }
 for (const retiredReference of [
   '47.109.132.161',
@@ -229,8 +262,7 @@ if (
   !iosTestFlightArchive.includes('ApplicationProperties:Team') ||
   !iosTestFlightArchive.includes('check_release_runtime apple') ||
   !iosTestFlightArchive.includes('EXPO_PUBLIC_ICAO_AUDIO_E2E is forbidden') ||
-  !iosTestFlightArchive.includes('git -C "$PROJECT_ROOT" status --porcelain') ||
-  !iosTestFlightArchive.includes('changes outside the prepared version/build files')
+  !iosTestFlightArchive.includes('check-mainline-release.mjs')
 ) {
   throw new Error('The TestFlight archive is missing its production identity or product integrity gate.');
 }
