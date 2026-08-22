@@ -62,14 +62,14 @@
       "idx": 8,
       "version": "7",
       "when": 1784894400000,
-      "tag": "0008_invite_accounts",
+      "tag": "0008_editorial_releases",
       "breakpoints": true
     },
     {
       "idx": 9,
       "version": "7",
       "when": 1784894401000,
-      "tag": "0009_editorial_releases",
+      "tag": "0009_invite_accounts",
       "breakpoints": true
     },
     {
