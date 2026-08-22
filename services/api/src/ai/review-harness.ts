@@ -9,6 +9,27 @@ function normalized(value: string) {
   return value.replace(/\s+/gu, ' ').trim();
 }
 
+function withoutNoOpIssues(data: unknown): unknown {
+  if (!data || typeof data !== 'object' || Array.isArray(data)) return data;
+  const grammar = (data as { grammar?: unknown }).grammar;
+  if (!grammar || typeof grammar !== 'object' || Array.isArray(grammar)) return data;
+  const issues = (grammar as { issues?: unknown }).issues;
+  if (!Array.isArray(issues)) return data;
+
+  return {
+    ...data,
+    grammar: {
+      ...grammar,
+      issues: issues.filter((issue) => {
+        if (!issue || typeof issue !== 'object' || Array.isArray(issue)) return true;
+        const { before, after } = issue as { before?: unknown; after?: unknown };
+        if (typeof before !== 'string' || typeof after !== 'string') return true;
+        return normalized(before).toLocaleLowerCase() !== normalized(after).toLocaleLowerCase();
+      }),
+    },
+  };
+}
+
 function sortedMatches(value: string, pattern: RegExp) {
   return [...value.matchAll(pattern)].map((match) => match[0].toLocaleUpperCase()).sort();
 }
@@ -48,13 +69,14 @@ function assertIssues(source: string, correctedText: string, issues: GrammarCorr
 }
 
 export function parseAndValidateReview(data: unknown, input: AiReviewRequest): ReviewBody {
+  const candidate = withoutNoOpIssues(data);
   if (input.mode === 'grammar') {
-    const parsed = grammarModeReviewResultSchema.parse(data);
+    const parsed = grammarModeReviewResultSchema.parse(candidate);
     assertIssues(input.transcript, parsed.grammar.correctedText, parsed.grammar.issues);
     assertProtectedMeaning(input.transcript, parsed.grammar.correctedText);
     return parsed;
   }
-  const parsed = opiModeReviewResultSchema.parse(data);
+  const parsed = opiModeReviewResultSchema.parse(candidate);
   assertIssues(input.transcript, parsed.grammar.correctedText, parsed.grammar.issues);
   assertProtectedMeaning(input.transcript, parsed.grammar.correctedText);
   assertProtectedMeaning(input.transcript, parsed.polishedText);
