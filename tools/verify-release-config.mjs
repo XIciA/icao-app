@@ -184,6 +184,12 @@ if (
 if (apiRelease.includes('ICAO_API_RELEASE_ALLOW_DIRTY')) {
   throw new Error('The API release must not retain a dirty-source escape hatch.');
 }
+if (
+  !apiRelease.includes('.generated/release/current.json')
+  || apiRelease.includes('.generated/release/current-manifest.json')
+) {
+  throw new Error('The API release must use materialized current release metadata.');
+}
 for (const retiredReference of [
   '47.109.132.161',
   'download.feizhuicao.com',

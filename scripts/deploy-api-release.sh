@@ -6,9 +6,9 @@ SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 PROJECT_ROOT=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)
 . "$SCRIPT_DIR/lib/release-common.sh"
 
-CURRENT_MANIFEST=$PROJECT_ROOT/.generated/release/current-manifest.json
-if [ -z "${ICAO_API_RELEASE_ID:-}" ] && [ ! -f "$CURRENT_MANIFEST" ]; then
-  echo 'Release manifest is missing.' >&2
+CURRENT_RELEASE=$PROJECT_ROOT/.generated/release/current.json
+if [ -z "${ICAO_API_RELEASE_ID:-}" ] && [ ! -f "$CURRENT_RELEASE" ]; then
+  echo 'Current release metadata is missing.' >&2
   exit 1
 fi
 
@@ -24,7 +24,7 @@ node "$SOURCE_ROOT/tools/check-mainline-release.mjs" --root "$SOURCE_ROOT"
 
 load_release_runtime
 
-DISPLAY_VERSION=${ICAO_API_RELEASE_ID:-$(node -p "require('$CURRENT_MANIFEST').displayVersion")}
+DISPLAY_VERSION=${ICAO_API_RELEASE_ID:-$(node -p "require('$CURRENT_RELEASE').displayVersion")}
 case "$DISPLAY_VERSION" in
   ''|*[!A-Za-z0-9._-]*)
     echo 'ICAO_API_RELEASE_ID must contain only letters, numbers, dots, underscores, or hyphens.' >&2
