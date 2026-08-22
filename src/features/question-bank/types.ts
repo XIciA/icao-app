@@ -1,3 +1,5 @@
+import type { GrammarCorrectionIssue } from '@icao/contracts';
+
 export type QuestionBankId = 'listening' | 'sentences900' | 'radiotelephony' | 'opi' | 'storytelling';
 
 export type QuestionBankIconKey = 'headphones' | 'sentences' | 'radioTower' | 'mic' | 'story';
@@ -154,7 +156,7 @@ export type QuestionBankStudyPackage = {
 };
 
 export type LearningRecord = {
-  schemaVersion?: 1 | 2 | 3;
+  schemaVersion?: 1 | 2 | 3 | 4;
   id: string;
   sessionId?: string;
   cardId?: string;
@@ -178,7 +180,7 @@ export type LearningRecord = {
     questionId: string;
     rawTranscript?: string;
     transcript: string;
-    grammar?: { correctedText: string; issues: string[] };
+    grammar?: { correctedText: string; issues: (string | GrammarCorrectionIssue)[] };
     polishedText?: string;
   };
 };

@@ -11,6 +11,7 @@ SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 PROJECT_ROOT=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)
 . "$SCRIPT_DIR/lib/release-common.sh"
 . "$SCRIPT_DIR/lib/android-signing.sh"
+node "$PROJECT_ROOT/tools/check-mainline-release.mjs" --root "$PROJECT_ROOT"
 
 load_release_runtime
 check_release_runtime
@@ -18,7 +19,7 @@ load_android_release_signing
 export NODE_ENV=production
 
 if [ ! -f "$PROJECT_ROOT/.generated/release/current.json" ]; then
-  echo 'Release metadata is missing; run pnpm release:prepare first.' >&2
+  echo 'Release metadata is missing; run pnpm release:materialize first.' >&2
   exit 1
 fi
 

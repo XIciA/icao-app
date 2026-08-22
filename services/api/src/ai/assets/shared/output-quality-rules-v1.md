@@ -1,6 +1,6 @@
 # Word Lookup Output Rules v1
 
-本文档仅管理 `word-lookup` 的运行时输出规则。语法复核和 OPI 表达润色使用服务端固定 Prompt 与严格 Zod Schema，不加载领域资产或本文件。
+本文档仅管理 `word-lookup` 的运行时输出规则。语法纠错和表达润色使用服务端固定 Prompt 与严格 Zod Schema，不加载领域资产或本文件。
 
 - ID: OQ-001
   Applies To: word-lookup

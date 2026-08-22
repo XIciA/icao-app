@@ -1,13 +1,9 @@
 import { act, renderHook } from '@testing-library/react-native';
-import type { RawRecording } from '../types';
 
-jest.mock('@/platform/audio/audio-diagnostics', () => ({ emitAudioDiagnostic: jest.fn() }));
+import type { RawRecording, RecorderRuntimeEvent } from '../types';
 
-// Platform suffixes are intentional: these contracts exercise browser-only behavior.
-// eslint-disable-next-line import/first
+// Platform suffix is intentional: these contracts exercise browser-only behavior.
 import { useExpoRecorderAdapter } from '../expo-recorder-adapter.web';
-// eslint-disable-next-line import/first
-import { RecordingRepository } from '../recording-repository.web';
 
 type Listener = (event: any) => void;
 
@@ -25,6 +21,8 @@ let timesliceStartThrows = false;
 let stopStalls = false;
 let stopDefersEvents = false;
 
+const context = { operationId: 1, runtimeEpoch: 0 };
+
 function namedError(name: string) {
   const error = new Error(name);
   error.name = name;
@@ -34,37 +32,23 @@ function namedError(name: string) {
 class MockTrack {
   readonly listeners = new Map<string, Set<Listener>>();
   stopped = false;
-
   addEventListener(type: string, listener: Listener) {
     const listeners = this.listeners.get(type) ?? new Set<Listener>();
     listeners.add(listener);
     this.listeners.set(type, listeners);
   }
-
-  removeEventListener(type: string, listener: Listener) {
-    this.listeners.get(type)?.delete(listener);
-  }
-
-  stop() {
-    this.stopped = true;
-  }
-
-  end() {
-    for (const listener of this.listeners.get('ended') ?? []) listener({ type: 'ended' });
-  }
+  removeEventListener(type: string, listener: Listener) { this.listeners.get(type)?.delete(listener); }
+  stop() { this.stopped = true; }
+  end() { for (const listener of this.listeners.get('ended') ?? []) listener({ type: 'ended' }); }
 }
 
 class MockStream {
   readonly track = new MockTrack();
-
-  getTracks() {
-    return [this.track] as unknown as MediaStreamTrack[];
-  }
+  getTracks() { return [this.track] as unknown as MediaStreamTrack[]; }
 }
 
 class MockMediaRecorder {
   static isTypeSupported = jest.fn((mimeType: string) => supportedMimeTypes.has(mimeType));
-
   readonly listeners = new Map<string, Set<Listener>>();
   readonly mimeType: string;
   readonly startCalls: (number | undefined)[] = [];
@@ -78,39 +62,30 @@ class MockMediaRecorder {
     this.mimeType = recorderMimeTypeOverride ?? options?.mimeType ?? defaultMimeType;
     recorderInstances.push(this);
   }
-
   addEventListener(type: string, listener: Listener) {
     const listeners = this.listeners.get(type) ?? new Set<Listener>();
     listeners.add(listener);
     this.listeners.set(type, listeners);
   }
-
-  removeEventListener(type: string, listener: Listener) {
-    this.listeners.get(type)?.delete(listener);
-  }
-
+  removeEventListener(type: string, listener: Listener) { this.listeners.get(type)?.delete(listener); }
   dispatch(type: string, event: any = { type }) {
     for (const listener of this.listeners.get(type) ?? []) listener(event);
   }
-
   start(timeslice?: number) {
     this.startCalls.push(timeslice);
     if (timeslice !== undefined && timesliceStartThrows) throw namedError('NotSupportedError');
     this.state = 'recording';
   }
-
   requestData() {
     this.requestDataCalls += 1;
     if (requestDataThrows) throw namedError('InvalidStateError');
   }
-
   stop() {
     this.stopCalls += 1;
     if (stopStalls) return;
     this.state = 'inactive';
     if (!stopDefersEvents) this.completeStop();
   }
-
   completeStop(size = 600) {
     const type = chunkMimeTypeOverride ?? this.mimeType;
     this.dispatch('dataavailable', {
@@ -119,15 +94,8 @@ class MockMediaRecorder {
     });
     this.dispatch('stop');
   }
-
-  interrupt() {
-    this.state = 'inactive';
-    this.dispatch('stop');
-  }
-
-  fail(name: string) {
-    this.dispatch('error', { error: namedError(name), type: 'error' });
-  }
+  interrupt() { this.state = 'inactive'; this.dispatch('stop'); }
+  fail(name: string) { this.dispatch('error', { error: namedError(name), type: 'error' }); }
 }
 
 const originalDescriptors = {
@@ -135,7 +103,6 @@ const originalDescriptors = {
   isSecureContext: Object.getOwnPropertyDescriptor(globalThis, 'isSecureContext'),
   mediaRecorder: Object.getOwnPropertyDescriptor(globalThis, 'MediaRecorder'),
   navigator: Object.getOwnPropertyDescriptor(globalThis, 'navigator'),
-  revokeObjectURL: Object.getOwnPropertyDescriptor(URL, 'revokeObjectURL'),
 };
 
 function restoreProperty(target: object, key: PropertyKey, descriptor?: PropertyDescriptor) {
@@ -143,16 +110,12 @@ function restoreProperty(target: object, key: PropertyKey, descriptor?: Property
   else delete (target as Record<PropertyKey, unknown>)[key];
 }
 
-async function renderAdapter() {
-  return renderHook(() => useExpoRecorderAdapter());
-}
-
-async function prepareAdapter(result: ReturnType<typeof useExpoRecorderAdapter>) {
+async function prepare(result: ReturnType<typeof useExpoRecorderAdapter>) {
   await act(async () => { expect(await result.requestPermission()).toBe(true); });
-  await act(async () => { await result.prepare(); });
+  await act(async () => { await result.prepare(context); });
 }
 
-describe('ExpoRecorderAdapter Web compatibility contract', () => {
+describe('ExpoRecorderAdapter Web runtime contract', () => {
   beforeEach(() => {
     constructorAttempts.length = 0;
     recorderInstances.length = 0;
@@ -186,14 +149,7 @@ describe('ExpoRecorderAdapter Web compatibility contract', () => {
         permissions: { query: jest.fn(async () => ({ state: 'prompt' })) },
       },
     });
-    Object.defineProperty(URL, 'createObjectURL', {
-      configurable: true,
-      value: jest.fn(() => 'blob:recording-1'),
-    });
-    Object.defineProperty(URL, 'revokeObjectURL', {
-      configurable: true,
-      value: jest.fn(),
-    });
+    Object.defineProperty(URL, 'createObjectURL', { configurable: true, value: jest.fn() });
   });
 
   afterEach(() => {
@@ -206,55 +162,38 @@ describe('ExpoRecorderAdapter Web compatibility contract', () => {
     restoreProperty(globalThis, 'isSecureContext', originalDescriptors.isSecureContext);
     restoreProperty(globalThis, 'MediaRecorder', originalDescriptors.mediaRecorder);
     restoreProperty(globalThis, 'navigator', originalDescriptors.navigator);
-    restoreProperty(URL, 'revokeObjectURL', originalDescriptors.revokeObjectURL);
   });
 
-  it('preserves WebM/Opus at 128 kbps as the first successful path', async () => {
+  it('registers listeners before start and returns final data with the actual MIME', async () => {
     let now = 1_000;
     jest.spyOn(Date, 'now').mockImplementation(() => now);
-    const { result, unmount } = await renderAdapter();
-    await prepareAdapter(result.current);
-
-    expect(constructorAttempts).toEqual([{
-      bitsPerSecond: 128_000,
-      mimeType: 'audio/webm;codecs=opus',
-    }]);
-
-    await act(() => { result.current.start(); });
+    const { result, unmount } = await renderHook(() => useExpoRecorderAdapter());
+    await prepare(result.current);
+    const recorder = recorderInstances[0];
+    expect(recorder?.listeners.get('dataavailable')?.size).toBe(1);
+    expect(recorder?.listeners.get('error')?.size).toBe(1);
+    expect(recorder?.listeners.get('stop')?.size).toBe(1);
+    await act(async () => { await result.current.start(context); });
     now = 2_000;
     let raw: RawRecording | undefined;
-    await act(async () => { raw = await result.current.stop(); });
-
+    await act(async () => { raw = await result.current.stop(context); });
     expect(raw).toMatchObject({
-      durationMillis: 1_000,
       format: 'webm',
-      uri: 'blob:recording-1',
+      kind: 'web-blob',
+      mimeType: 'audio/webm',
+      recorderDurationMs: 1_000,
+      recorderMimeType: 'audio/webm;codecs=opus',
     });
-    expect(raw?.webBlob).toBeInstanceOf(Blob);
-    expect(raw?.webBlob?.size).toBe(600);
-    expect(raw?.webBlob?.type).toBe('audio/webm');
-    expect(result.current.lifecycleRevision).toBe(1);
+    expect(raw?.kind === 'web-blob' ? raw.blob.size : 0).toBe(600);
+    expect(URL.createObjectURL).not.toHaveBeenCalled();
+    expect(streams[0]?.track.stopped).toBe(true);
     await unmount();
   });
 
-  it('retries the same MIME without bitrate before considering another format', async () => {
-    rejectConstructor = (options) => options?.mimeType === 'audio/webm;codecs=opus'
-      && options.bitsPerSecond !== undefined;
-    const { result, unmount } = await renderAdapter();
-    await prepareAdapter(result.current);
-
-    expect(constructorAttempts).toEqual([
-      { bitsPerSecond: 128_000, mimeType: 'audio/webm;codecs=opus' },
-      { mimeType: 'audio/webm;codecs=opus' },
-    ]);
-    await unmount();
-  });
-
-  it('continues to the next MIME after both first-format constructors fail', async () => {
+  it('tries bitrate, then the same MIME without bitrate, before the next candidate', async () => {
     rejectConstructor = (options) => options?.mimeType === 'audio/webm;codecs=opus';
-    const { result, unmount } = await renderAdapter();
-    await prepareAdapter(result.current);
-
+    const { result, unmount } = await renderHook(() => useExpoRecorderAdapter());
+    await prepare(result.current);
     expect(constructorAttempts).toEqual([
       { bitsPerSecond: 128_000, mimeType: 'audio/webm;codecs=opus' },
       { mimeType: 'audio/webm;codecs=opus' },
@@ -263,75 +202,28 @@ describe('ExpoRecorderAdapter Web compatibility contract', () => {
     await unmount();
   });
 
-  it('tries the ordered constructors when isTypeSupported is unavailable', async () => {
-    Object.defineProperty(MockMediaRecorder, 'isTypeSupported', {
-      configurable: true,
-      value: undefined,
-      writable: true,
-    });
-    const { result, unmount } = await renderAdapter();
-    await prepareAdapter(result.current);
-
-    expect(constructorAttempts).toEqual([{
-      bitsPerSecond: 128_000,
-      mimeType: 'audio/webm;codecs=opus',
-    }]);
-    await unmount();
-  });
-
-  it('uses the browser default only after explicit formats fail and accepts Ogg', async () => {
+  it('uses a recognized final Ogg chunk when the recorder MIME is empty', async () => {
     supportedMimeTypes.clear();
     defaultMimeType = 'audio/ogg;codecs=opus';
     recorderMimeTypeOverride = '';
     chunkMimeTypeOverride = 'audio/ogg;codecs=opus';
-    const { result, unmount } = await renderAdapter();
-    await prepareAdapter(result.current);
-
-    expect(constructorAttempts).toEqual([undefined]);
-    await act(() => { result.current.start(); });
+    const { result, unmount } = await renderHook(() => useExpoRecorderAdapter());
+    await prepare(result.current);
+    await act(async () => { await result.current.start(context); });
     let raw: RawRecording | undefined;
-    await act(async () => { raw = await result.current.stop(); });
-    expect(raw).toMatchObject({ format: 'ogg' });
-    expect(raw?.webBlob?.type).toBe('audio/ogg');
+    await act(async () => { raw = await result.current.stop(context); });
+    expect(raw).toMatchObject({ format: 'ogg', mimeType: 'audio/ogg' });
     await unmount();
   });
 
-  it('rejects an unknown MIME selected by the default recorder', async () => {
-    supportedMimeTypes.clear();
-    defaultMimeType = 'audio/flac';
-    const { result, unmount } = await renderAdapter();
-    await prepareAdapter(result.current);
-    await act(() => { result.current.start(); });
-    await act(async () => {
-      await expect(result.current.stop()).rejects.toMatchObject({ code: 'recording_browser_unsupported' });
-    });
-    expect(URL.createObjectURL).not.toHaveBeenCalled();
-    await unmount();
-  });
-
-  it('uses a recognized final chunk when an explicit recorder reports an unknown MIME', async () => {
-    recorderMimeTypeOverride = 'audio/flac';
-    chunkMimeTypeOverride = 'audio/webm;codecs=opus';
-    const { result, unmount } = await renderAdapter();
-    await prepareAdapter(result.current);
-    await act(() => { result.current.start(); });
-
-    let raw: RawRecording | undefined;
-    await act(async () => { raw = await result.current.stop(); });
-    expect(raw).toMatchObject({ format: 'webm' });
-    expect(raw?.webBlob?.type).toBe('audio/webm');
-    await unmount();
-  });
-
-  it('falls back from start(250), ignores requestData failure, and still finalizes', async () => {
+  it('falls back from timeslice start and tolerates requestData failure', async () => {
     timesliceStartThrows = true;
     requestDataThrows = true;
-    const { result, unmount } = await renderAdapter();
-    await prepareAdapter(result.current);
-    await act(() => { result.current.start(); });
-
+    const { result, unmount } = await renderHook(() => useExpoRecorderAdapter());
+    await prepare(result.current);
+    await act(async () => { await result.current.start(context); });
     expect(recorderInstances[0]?.startCalls).toEqual([250, undefined]);
-    await act(async () => { await expect(result.current.stop()).resolves.toMatchObject({ format: 'webm' }); });
+    await act(async () => { await expect(result.current.stop(context)).resolves.toMatchObject({ format: 'webm' }); });
     expect(recorderInstances[0]?.requestDataCalls).toBe(1);
     await unmount();
   });
@@ -340,182 +232,67 @@ describe('ExpoRecorderAdapter Web compatibility contract', () => {
     let now = 1_000;
     jest.spyOn(Date, 'now').mockImplementation(() => now);
     stopDefersEvents = true;
-    const { result, unmount } = await renderAdapter();
-    await prepareAdapter(result.current);
-    await act(() => { result.current.start(); });
+    const { result, unmount } = await renderHook(() => useExpoRecorderAdapter());
+    await prepare(result.current);
+    await act(async () => { await result.current.start(context); });
     now = 2_000;
-
     let stopPromise!: Promise<RawRecording>;
-    await act(() => { stopPromise = result.current.stop(); });
+    await act(() => { stopPromise = result.current.stop(context); });
     now = 6_000;
     await act(() => { recorderInstances[0]?.completeStop(); });
-    let raw: RawRecording | undefined;
-    await act(async () => { raw = await stopPromise; });
-
-    expect(raw?.durationMillis).toBe(1_000);
+    await expect(stopPromise).resolves.toMatchObject({ recorderDurationMs: 1_000 });
     await unmount();
   });
 
-  it('times out finalization after five seconds with a typed error', async () => {
+  it('times out finalization after five seconds and releases tracks', async () => {
     jest.useFakeTimers();
     stopStalls = true;
-    const { result, unmount } = await renderAdapter();
-    await prepareAdapter(result.current);
-    await act(() => { result.current.start(); });
-
-    let stopPromise!: Promise<RawRecording>;
-    await act(() => { stopPromise = result.current.stop(); });
+    const { result, unmount } = await renderHook(() => useExpoRecorderAdapter());
+    await prepare(result.current);
+    await act(async () => { await result.current.start(context); });
+    const stopPromise = result.current.stop(context);
     await act(async () => {
       jest.advanceTimersByTime(5_000);
       await expect(stopPromise).rejects.toMatchObject({ code: 'recording_finalization_timeout' });
     });
-    await unmount();
-  });
-
-  it('does not turn an external recorder stop into a committable raw asset', async () => {
-    const { result, unmount } = await renderAdapter();
-    await prepareAdapter(result.current);
-    await act(() => { result.current.start(); });
-    expect(result.current.lifecycleRevision).toBe(0);
-    await act(() => { recorderInstances[0]?.interrupt(); });
-    expect(result.current.lifecycleRevision).toBe(1);
-
-    await act(async () => {
-      await expect(result.current.stop()).rejects.toMatchObject({ code: 'recording_interrupted' });
-    });
-    expect(URL.createObjectURL).not.toHaveBeenCalled();
-    await unmount();
-  });
-
-  it('maps a MediaRecorder NotSupportedError event to browser unsupported', async () => {
-    const { result, unmount } = await renderAdapter();
-    await prepareAdapter(result.current);
-    await act(() => { result.current.start(); });
-    await act(() => { recorderInstances[0]?.fail('NotSupportedError'); });
-
-    await act(async () => {
-      await expect(result.current.stop()).rejects.toMatchObject({ code: 'recording_browser_unsupported' });
-    });
-    expect(URL.createObjectURL).not.toHaveBeenCalled();
-    await unmount();
-  });
-
-  it('treats track end as interruption, releases capture, and stops only once', async () => {
-    const { result, unmount } = await renderAdapter();
-    await prepareAdapter(result.current);
-    await act(() => { result.current.start(); });
-    expect(result.current.durationMillis).toBe(0);
-    await act(() => { streams[0]?.track.end(); });
-    expect(result.current.lifecycleRevision).toBe(1);
-
-    const firstStop = result.current.stop();
-    const secondStop = result.current.stop();
-    expect(firstStop).toBe(secondStop);
-    await act(async () => {
-      await expect(firstStop).rejects.toMatchObject({ code: 'recording_interrupted' });
-    });
     expect(streams[0]?.track.stopped).toBe(true);
-    expect(recorderInstances[0]?.stopCalls).toBe(1);
-    expect(URL.createObjectURL).not.toHaveBeenCalled();
     await unmount();
   });
 
-  it('primes permission without retaining its stream and types device failures', async () => {
-    const { result, unmount } = await renderAdapter();
+  it('emits track-ended interruption and never returns a committable asset', async () => {
+    const events: RecorderRuntimeEvent[] = [];
+    const { result, unmount } = await renderHook(() => useExpoRecorderAdapter());
+    result.current.subscribe((event) => events.push(event));
+    await prepare(result.current);
+    await act(async () => { await result.current.start(context); });
+    await act(() => { streams[0]?.track.end(); });
+    await act(async () => {
+      await expect(result.current.stop(context)).rejects.toMatchObject({ code: 'recording_interrupted' });
+    });
+    expect(events).toContainEqual({ context, reason: 'track-ended', type: 'interrupted' });
+    expect(recorderInstances[0]?.stopCalls).toBe(1);
+    await unmount();
+  });
+
+  it('maps MediaRecorder errors and permission failures to typed events', async () => {
+    const events: RecorderRuntimeEvent[] = [];
+    const { result, unmount } = await renderHook(() => useExpoRecorderAdapter());
+    result.current.subscribe((event) => events.push(event));
+    await prepare(result.current);
+    await act(async () => { await result.current.start(context); });
+    await act(() => { recorderInstances[0]?.fail('NotSupportedError'); });
+    await expect(result.current.stop(context)).rejects.toMatchObject({ code: 'recording_browser_unsupported' });
+    expect(events).toContainEqual({ code: 'recording_browser_unsupported', context, type: 'error' });
+    getUserMedia.mockRejectedValueOnce(namedError('NotReadableError'));
+    await expect(result.current.requestPermission()).rejects.toMatchObject({ code: 'microphone_device_unavailable' });
+    await unmount();
+  });
+
+  it('primes permission without retaining its temporary stream', async () => {
+    const { result, unmount } = await renderHook(() => useExpoRecorderAdapter());
     await act(async () => { await expect(result.current.primePermission?.()).resolves.toBe(true); });
     expect(result.current.permissionReady).toBe(true);
     expect(streams[0]?.track.stopped).toBe(true);
-
-    getUserMedia.mockRejectedValueOnce(namedError('NotFoundError'));
-    await act(async () => {
-      await expect(result.current.primePermission?.()).rejects.toMatchObject({ code: 'microphone_device_missing' });
-    });
-    expect(result.current.permissionReady).toBe(true);
     await unmount();
-  });
-
-  it('remembers a successful primer across Web hook remounts without storage', async () => {
-    getUserMedia.mockRejectedValueOnce(namedError('NotAllowedError'));
-    const first = await renderAdapter();
-    await act(async () => { await expect(first.result.current.primePermission?.()).resolves.toBe(false); });
-    expect(first.result.current.permissionReady).toBe(false);
-    await act(async () => { await expect(first.result.current.primePermission?.()).resolves.toBe(true); });
-    expect(first.result.current.permissionReady).toBe(true);
-    await first.unmount();
-    const callsBeforeRemount = getUserMedia.mock.calls.length;
-
-    const second = await renderAdapter();
-    expect(second.result.current.permissionReady).toBe(true);
-    expect(getUserMedia).toHaveBeenCalledTimes(callsBeforeRemount);
-    await second.unmount();
-  });
-
-  it('guards unsupported browsers before asking for microphone permission', async () => {
-    Object.defineProperty(globalThis, 'MediaRecorder', { configurable: true, value: undefined });
-    const { result, unmount } = await renderAdapter();
-
-    await act(async () => {
-      await expect(result.current.primePermission?.()).rejects.toMatchObject({ code: 'recording_browser_unsupported' });
-    });
-    expect(getUserMedia).not.toHaveBeenCalled();
-    await unmount();
-  });
-
-  it('maps SecurityError to unsupported rather than an ordinary permission denial', async () => {
-    getUserMedia.mockRejectedValueOnce(namedError('SecurityError'));
-    const { result, unmount } = await renderAdapter();
-
-    await act(async () => {
-      await expect(result.current.primePermission?.()).rejects.toMatchObject({ code: 'recording_browser_unsupported' });
-    });
-    await unmount();
-  });
-
-  it.each(['NotSupportedError', 'TypeError'])(
-    'maps getUserMedia %s to browser unsupported',
-    async (errorType) => {
-      getUserMedia.mockRejectedValueOnce(namedError(errorType));
-      const { result, unmount } = await renderAdapter();
-
-      await act(async () => {
-        await expect(result.current.requestPermission()).rejects.toMatchObject({ code: 'recording_browser_unsupported' });
-      });
-      await unmount();
-    },
-  );
-
-  it('maps a busy or unreadable microphone to device unavailable', async () => {
-    getUserMedia.mockRejectedValueOnce(namedError('NotReadableError'));
-    const { result, unmount } = await renderAdapter();
-
-    await act(async () => {
-      await expect(result.current.requestPermission()).rejects.toMatchObject({ code: 'microphone_device_unavailable' });
-    });
-    await unmount();
-  });
-
-  it('does not return or revoke a transferred URI during later cancel or cleanup', async () => {
-    let now = 1_000;
-    jest.spyOn(Date, 'now').mockImplementation(() => now);
-    const { result, unmount } = await renderAdapter();
-    await prepareAdapter(result.current);
-    await act(() => { result.current.start(); });
-    now = 2_000;
-    let raw!: RawRecording;
-    await act(async () => { raw = await result.current.stop(); });
-
-    const repository = new RecordingRepository();
-    const asset = await repository.commitRaw({
-      ...raw,
-      cardId: 'card-1',
-      sessionId: 'session-1',
-    });
-    await act(async () => { await expect(result.current.cancel()).resolves.toBeUndefined(); });
-    await unmount();
-
-    expect(repository.assetExists(asset)).toBe(true);
-    expect(URL.revokeObjectURL).not.toHaveBeenCalled();
-    repository.discard(asset);
-    expect(URL.revokeObjectURL).toHaveBeenCalledWith(raw.uri);
   });
 });

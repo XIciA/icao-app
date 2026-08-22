@@ -30,6 +30,17 @@ function ticketNumber(id: string, createdAt: Date) {
   return `FB-${date}-${id.replaceAll('-', '').slice(0, 8).toUpperCase()}`;
 }
 
+export function diagnosticsExpirationForSubmission(
+  createdAt: Date,
+  diagnostics: FeedbackSubmissionPayload['diagnostics'],
+) {
+  return diagnostics ? retentionAtForFeedback(createdAt) : null;
+}
+
+export function retentionAtForFeedback(createdAt: Date) {
+  return new Date(createdAt.getTime() + RETENTION_MILLISECONDS);
+}
+
 export function parseUserAgent(userAgent: string | undefined): BrowserContext {
   if (!userAgent) return {};
   const browserPatterns: Array<[string, RegExp]> = [
@@ -89,6 +100,7 @@ export class FeedbackService {
     const browser = payload.platform === 'web' ? parseUserAgent(userAgent) : {};
     const question = await this.resolveQuestion(payload.question);
     const stored = await this.attachments.upload(images);
+    const retentionAt = retentionAtForFeedback(createdAt);
 
     try {
       await this.database.db.transaction(async (transaction) => {
@@ -111,6 +123,9 @@ export class FeedbackService {
           osVersion: payload.osVersion ?? browser.osVersion ?? null,
           errorCode: payload.error?.code ?? null,
           errorRequestId: payload.error?.requestId ?? null,
+          diagnostics: payload.diagnostics ?? null,
+          diagnosticsExpiresAt: diagnosticsExpirationForSubmission(createdAt, payload.diagnostics),
+          retentionAt,
           bankId: payload.question?.bankId ?? null,
           bankVersion: question.version ?? null,
           bankChecksum: question.checksum ?? null,
@@ -122,14 +137,13 @@ export class FeedbackService {
           updatedAt: createdAt,
         });
         if (stored.length > 0) {
-          const expiresAt = new Date(createdAt.getTime() + RETENTION_MILLISECONDS);
           await transaction.insert(feedbackAttachments).values(stored.map((image) => ({
             ticketId: id,
             objectKey: image.objectKey,
             mimeType: image.mimeType,
             sizeBytes: image.buffer.length,
             checksum: image.checksum,
-            expiresAt,
+            expiresAt: retentionAt,
           })));
         }
       });

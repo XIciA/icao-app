@@ -276,22 +276,23 @@ export function useStudySession(options: UseStudySessionOptions) {
   const recordAnswer = useCallback((recording: RecordingAsset) => {
     if (!item) return;
     const previous = recordingsRef.current[item.id];
-    setRecordings((current) => ({ ...current, [item.id]: recording }));
-    if (previous && previous.id !== recording.id) recordingRepository.discard(previous);
+    const nextRecordings = { ...recordingsRef.current, [item.id]: recording };
+    recordingsRef.current = nextRecordings;
+    setRecordings(nextRecordings);
     persistCard(item.id, { recorded: true, recordingDurationMillis: recording.durationMillis, completed: true });
     setCompletedCardIds((current) => new Set(current).add(item.id));
     setRevealed(true);
     if (behavior.workbenchTabs.includes('mine')) setActiveTab('mine');
+    if (previous && previous.id !== recording.id) recordingRepository.discard(previous);
   }, [behavior.workbenchTabs, item, persistCard]);
 
   const clearRecording = useCallback(() => {
     if (!item) return;
     const previous = recordingsRef.current[item.id];
-    setRecordings((current) => {
-      const next = { ...current };
-      delete next[item.id];
-      return next;
-    });
+    const nextRecordings = { ...recordingsRef.current };
+    delete nextRecordings[item.id];
+    recordingsRef.current = nextRecordings;
+    setRecordings(nextRecordings);
     if (previous) recordingRepository.discard(previous);
   }, [item]);
 

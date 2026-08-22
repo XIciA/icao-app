@@ -1,0 +1,60 @@
+# Required at runtime: APP_ID, TEST_PHONE (11 digits), TEST_OTP (6 digits).
+appId: ${APP_ID}
+---
+- launchApp:
+    clearState: true
+- runFlow:
+    when:
+      visible: "听你五个"
+    commands:
+      - tapOn: "登录 / 注册"
+- assertVisible: "登录 / 注册"
+- assertVisible: "验证码登录"
+- assertVisible: "中国大陆手机号"
+- assertNotVisible: "邀请码"
+- scrollUntilVisible:
+    element:
+      text: "请输入11位手机号"
+    direction: DOWN
+- tapOn: "请输入11位手机号"
+- inputText: ${TEST_PHONE}
+- hideKeyboard
+- scrollUntilVisible:
+    element:
+      text: "我已年满14周岁，并同意用户协议与隐私政策"
+    direction: DOWN
+- tapOn: "我已年满14周岁，并同意用户协议与隐私政策"
+- assertVisible:
+    text: "我已年满14周岁，并同意用户协议与隐私政策"
+    checked: true
+- scrollUntilVisible:
+    element:
+      text: "获取验证码"
+    direction: UP
+- tapOn:
+    text: "获取验证码"
+    enabled: true
+- extendedWaitUntil:
+    visible: "输入验证码"
+    timeout: 20000
+- assertVisible: "验证码5分钟内有效，请勿转发给他人。"
+- assertVisible:
+    text: "验证并进入"
+    enabled: false
+- assertVisible:
+    text: ".*秒后可重新获取"
+    enabled: false
+- assertVisible:
+    text: "更换手机号"
+    enabled: true
+- assertVisible:
+    text: "返回"
+    enabled: true
+- tapOn: "输入短信验证码"
+- assertVisible:
+    text: "短信验证码"
+    focused: true
+- inputText: ${TEST_OTP}
+- assertVisible:
+    text: "验证并进入"
+    enabled: true

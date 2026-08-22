@@ -1,4 +1,5 @@
-import type { GrammarReviewResult } from '@icao/contracts';
+import type { AiReviewResult } from '@icao/contracts';
+import { useRouter } from 'expo-router';
 import {
   Fragment,
   forwardRef,
@@ -15,39 +16,20 @@ import { GestureDetector, type GestureType } from 'react-native-gesture-handler'
 
 import { AppModal } from '@/components/platform/AppModal';
 import { AppText, Button } from '@/components/ui';
-import { acceptAiConsent, grammarReview, hasAiConsent, polishExpression, transcribeRecording } from '@/features/ai/ai-client';
+import { acceptAiConsent, hasAiConsent, reviewExpression, transcribeRecording } from '@/features/ai/ai-client';
+import { aiFailureDisplayMessage, toAiOperationFailure, type AiCapability } from '@/features/ai/ai-operation-failure';
 import { exactMatch } from '@/features/ai/exact-match';
 import { TRANSCRIPTION_ACTION_ENABLED } from '@/features/ai/transcription-ui-capability';
-import { ApiClientError } from '@/platform/api-client';
 import { emitAudioDiagnostic } from '@/platform/audio/audio-diagnostics';
+import { recordSafeDiagnosticEvent } from '@/platform/diagnostics/safe-diagnostic-store';
 import { colors, radii, spacing } from '@/theme';
 
 import { sqliteLearningStore, type LearningStore } from '../platform/learning-store';
 import type { LearningRecord, QuestionBankId, StudyConsoleTab, StudyReviewKind } from '../types';
+import { AiReviewResultView } from './AiReviewResultView';
 
 const labels: Record<StudyConsoleTab, string> = { mine: '我的回答', reference: '参考答案', notes: '我的笔记' };
 const AUTO_SAVE_DELAY_MS = 600;
-
-function transcriptionFailure(error: unknown, aborted: boolean) {
-  if (aborted) return { code: 'transcription_cancelled', message: '已取消转写' };
-  const code = error instanceof ApiClientError ? error.code : error instanceof Error ? error.message : 'transcription_failed';
-  if (code === 'no_speech_detected') {
-    return { code, message: '未检测到清晰语音，请回放录音并检查麦克风后重新录制。' };
-  }
-  if (code === 'invalid_audio') {
-    return { code, message: '录音文件格式无效，请重新录制后转写。' };
-  }
-  if (code === 'ai_consent_required') {
-    return { code, message: 'AI 使用授权状态未同步，请重试转写。' };
-  }
-  if (code === 'asr_model_unavailable') {
-    return { code, message: '当前 ASR 模型没有可用额度，请在“设置—AI 与隐私”中切换模型。' };
-  }
-  if (code === 'missing_bearer_token' || code === 'invalid_session' || code === 'invite_account_required') {
-    return { code, message: '登录状态已失效，请重新登录后转写。' };
-  }
-  return { code, message: '语音转写失败，请检查网络后重试。' };
-}
 
 function stableResultId(sessionId: string, cardKey: string) {
   let hash = 2166136261;
@@ -100,6 +82,7 @@ export type StudyWorkbenchHandle = {
 };
 
 export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function StudyWorkbench(props, ref) {
+  const router = useRouter();
   const {
     activeTab,
     answerText,
@@ -130,12 +113,12 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     tabs,
     topicTitle,
   } = props;
-  const [grammar, setGrammar] = useState<GrammarReviewResult>();
-  const [polishedText, setPolishedText] = useState<string>();
+  const [aiReview, setAiReview] = useState<AiReviewResult>();
   const [matchMessage, setMatchMessage] = useState<string>();
   const [busy, setBusy] = useState<'transcribe' | 'review'>();
   const [error, setError] = useState<string>();
   const [failedAction, setFailedAction] = useState<'transcribe' | 'review'>();
+  const [failureDiagnosticId, setFailureDiagnosticId] = useState<string>();
   const [autoSaveError, setAutoSaveError] = useState<string>();
   const [consented, setConsented] = useState(false);
   const [consentKind, setConsentKind] = useState<AiConsentKind>();
@@ -157,15 +140,14 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   const resultId = stableResultId(sessionId, cardKey);
   const fingerprint = JSON.stringify({
     answerText,
-    grammar,
+    aiReview,
     matchMessage,
-    polishedText,
   });
   latestSnapshot.current = {
     cardKey,
     fingerprint,
     record: {
-      schemaVersion: 3,
+      schemaVersion: 4,
       id: resultId,
       sessionId,
       cardId: sourceCardId,
@@ -176,7 +158,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
       completedCount: 1,
       totalCount: 1,
       correctCount: 0,
-      feedbackCount: grammar || polishedText || matchMessage ? 1 : 0,
+      feedbackCount: aiReview || matchMessage ? 1 : 0,
       durationSeconds: Math.max(0, Math.round((Date.now() - Date.parse(sessionStartedAt)) / 1000)),
       reason: 'complete',
       createdAt: sessionStartedAt,
@@ -184,11 +166,11 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
       aiResult: {
         questionId: sourceCardId,
         transcript: answerText,
-        grammar: grammar ? {
-          correctedText: grammar.correctedText,
-          issues: grammar.issues,
+        grammar: aiReview ? {
+          correctedText: aiReview.grammar.correctedText,
+          issues: aiReview.grammar.issues,
         } : undefined,
-        polishedText,
+        polishedText: aiReview?.polishedText,
       },
     },
   };
@@ -245,11 +227,11 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   useEffect(() => {
     const controller = activeRequest.current;
     if (controller) controller.abort();
-    setGrammar(undefined);
-    setPolishedText(undefined);
+    setAiReview(undefined);
     setMatchMessage(undefined);
     setError(undefined);
     setFailedAction(undefined);
+    setFailureDiagnosticId(undefined);
     setAutoSaveError(undefined);
     setBusy(undefined);
     setAnswerInputHeight(92);
@@ -298,11 +280,11 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   }, [consented, requestAiConsent]);
 
   const changeAnswer = useCallback((text: string) => {
-    setGrammar(undefined);
-    setPolishedText(undefined);
+    setAiReview(undefined);
     setMatchMessage(undefined);
     setError(undefined);
     setFailedAction(undefined);
+    setFailureDiagnosticId(undefined);
     onAnswerChange(text);
     markDirty();
   }, [markDirty, onAnswerChange]);
@@ -314,6 +296,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     setBusy('transcribe');
     setError(undefined);
     setFailedAction(undefined);
+    setFailureDiagnosticId(undefined);
     const controller = new AbortController();
     activeRequest.current = controller;
     try {
@@ -324,12 +307,25 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
       emitAudioDiagnostic({ code: 'transcription_completed', level: 'info', scope: 'transcription' });
     } catch (error) {
       if (activeRequest.current === controller && currentCardKey.current === requestCardKey) {
-        const failure = transcriptionFailure(error, controller.signal.aborted);
+        const failure = toAiOperationFailure(error, 'transcribe');
+        if (controller.signal.aborted || failure.cancelled) return;
+        void recordSafeDiagnosticEvent({
+          feature: 'ai',
+          correlationId: failure.diagnosticId,
+          stage: failure.stage,
+          code: failure.code,
+          level: 'error',
+          capability: failure.capability,
+          httpStatus: failure.status,
+          requestId: failure.requestId,
+          retryable: failure.retryable,
+        });
         setFailedAction('transcribe');
-        setError(failure.message);
+        setFailureDiagnosticId(failure.diagnosticId);
+        setError(aiFailureDisplayMessage(failure));
         emitAudioDiagnostic({
-          code: controller.signal.aborted ? 'transcription_cancelled' : 'transcription_failed',
-          level: controller.signal.aborted ? 'info' : 'warning',
+          code: 'transcription_failed',
+          level: 'warning',
           reason: failure.code,
           scope: 'transcription',
         });
@@ -349,6 +345,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     setBusy('review');
     setError(undefined);
     setFailedAction(undefined);
+    setFailureDiagnosticId(undefined);
     onFeedback();
     const controller = new AbortController();
     activeRequest.current = controller;
@@ -364,27 +361,34 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
       }
       if (!await ensureConsent('text')) return;
       const module = bankId === 'radiotelephony' ? 'atc' : bankId === 'storytelling' ? 'story' : 'opi';
-      const input = { module, questionId: sourceCardId, questionText, transcript: answerText } as const;
-      if (reviewKind === 'opi-analysis') {
-        const grammarResult = grammar ?? await grammarReview(input, controller.signal);
-        if (controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
-        setGrammar(grammarResult);
-        markDirty();
-        const polished = await polishExpression({ ...input, module: 'opi', correctedText: grammarResult.correctedText }, controller.signal);
-        if (controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
-        setPolishedText(polished.polishedText);
-        markDirty();
-      } else {
-        const result = await grammarReview(input, controller.signal);
-        if (controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
-        setGrammar(result);
-        setPolishedText(undefined);
-        markDirty();
-      }
-    } catch {
+      const result = await reviewExpression({
+        mode: reviewKind === 'opi-analysis' ? 'opi' : 'grammar',
+        module,
+        questionId: sourceCardId,
+        transcript: answerText,
+      }, controller.signal);
+      if (controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
+      setAiReview(result);
+      markDirty();
+    } catch (error) {
       if (activeRequest.current === controller && currentCardKey.current === requestCardKey) {
+        const capability: AiCapability = reviewKind === 'opi-analysis' ? 'polish' : 'grammar';
+        const failure = toAiOperationFailure(error, capability);
+        if (controller.signal.aborted || failure.cancelled) return;
+        void recordSafeDiagnosticEvent({
+          feature: 'ai',
+          correlationId: failure.diagnosticId,
+          stage: failure.stage,
+          code: failure.code,
+          level: 'error',
+          capability: failure.capability,
+          httpStatus: failure.status,
+          requestId: failure.requestId,
+          retryable: failure.retryable,
+        });
         setFailedAction('review');
-        setError(controller.signal.aborted ? '已取消分析' : 'AI 分析暂时失败，请稍后重试。');
+        setFailureDiagnosticId(failure.diagnosticId);
+        setError(aiFailureDisplayMessage(failure));
       }
     } finally {
       if (activeRequest.current === controller) {
@@ -413,6 +417,20 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     onTabChange(tab);
   }
 
+  function openAiDiagnosticFeedback() {
+    if (!failureDiagnosticId) return;
+    router.push({
+      pathname: '/info/[slug]',
+      params: {
+        slug: 'feedback',
+        source: 'profile',
+        sourceRoute: '/question-bank/study',
+        feature: 'ai',
+        correlationId: failureDiagnosticId,
+      },
+    });
+  }
+
   const aiBusy = busy === 'transcribe' || busy === 'review';
   const showRetry = activeTab === 'mine' ? Boolean(autoSaveError) : activeTab === 'notes' ? Boolean(saveError) : false;
   const showReviewAction = activeTab === 'mine' && reviewKind !== 'none';
@@ -421,11 +439,9 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   const reviewDisabled = !answerText.trim() || editing || aiBusy;
   const reviewError = failedAction === 'review' ? error : undefined;
   const transcriptionError = failedAction === 'transcribe' ? error : undefined;
-  const aiPrimaryText = polishedText || grammar?.correctedText || (matchMessage ? questionText : undefined);
-  const aiExplanation = matchMessage ?? (grammar
-    ? grammar.issues.length ? grammar.issues.map((item) => item.trim()).filter(Boolean).join('\n') : '未发现明确语法问题'
-    : undefined);
-  const showAiRegion = busy === 'review' || Boolean(reviewError || aiPrimaryText || aiExplanation);
+  const aiPrimaryText = matchMessage ? questionText : undefined;
+  const aiExplanation = matchMessage;
+  const showAiRegion = busy === 'review' || Boolean(reviewError || aiReview || aiPrimaryText || aiExplanation);
 
   return (
     <Fragment>
@@ -481,14 +497,21 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
             <View style={styles.responseSection}>
               {Platform.OS !== 'web' && recordingUri && !consented ? <AppText variant="micro">录音仅用于本次转写。</AppText> : null}
               {editing ? <TextInput accessibilityLabel="我的回答" autoFocus multiline onBlur={() => { onEditingTabChange(undefined); void persistCurrent(); }} onChangeText={changeAnswer} onContentSizeChange={({ nativeEvent }) => setAnswerInputHeight(Math.max(92, Math.ceil(nativeEvent.contentSize.height)))} placeholder={busy === 'transcribe' ? '正在转写…' : '输入回答'} placeholderTextColor={colors.mutedForeground} ref={answerInputRef} scrollEnabled={false} style={[styles.input, { height: answerInputHeight }]} textAlignVertical="top" value={answerText} /> : <View accessibilityLabel="我的回答内容" style={styles.input}><AppText color={answerText ? colors.foreground : colors.mutedForeground}>{answerText || (busy === 'transcribe' ? '正在转写…' : Platform.OS === 'web' ? '回答会显示在这里' : '录音或编辑后，回答会显示在这里')}</AppText></View>}
-              {transcriptionError ? <AppText color={colors.destructive} variant="caption">{transcriptionError}</AppText> : null}
+              {transcriptionError ? <View style={styles.aiErrorActions}>
+                <AppText color={colors.destructive} style={styles.aiErrorCopy} variant="caption">{transcriptionError}</AppText>
+                <Pressable accessibilityLabel="提交 AI 诊断" accessibilityRole="button" onPress={openAiDiagnosticFeedback} style={({ pressed }) => [styles.aiRetry, pressed ? styles.pressed : null]}><AppText color={colors.primary} variant="caption">提交诊断</AppText></Pressable>
+              </View> : null}
               {autoSaveError ? <AppText accessibilityLiveRegion="assertive" color={colors.destructive} variant="micro">{autoSaveError}</AppText> : null}
             </View>
             {showAiRegion ? <View style={styles.aiRegion} testID="study-workbench-ai-region">
               {busy === 'review' ? <AppText color={colors.mutedForeground}>正在分析表达…</AppText> : reviewError ? <>
                 <AppText accessibilityLiveRegion="assertive" color={colors.destructive}>{reviewError}</AppText>
-                <Pressable accessibilityLabel="重试分析表达" accessibilityRole="button" onPress={() => void reviewAnswer()} style={({ pressed }) => [styles.aiRetry, pressed ? styles.pressed : null]} testID="study-workbench-ai-retry"><AppText color={colors.primary} variant="caption">重试</AppText></Pressable>
-              </> : <>
+                <View style={styles.aiErrorButtons}>
+                  <Pressable accessibilityLabel="重试分析表达" accessibilityRole="button" onPress={() => void reviewAnswer()} style={({ pressed }) => [styles.aiRetry, pressed ? styles.pressed : null]} testID="study-workbench-ai-retry"><AppText color={colors.primary} variant="caption">重试</AppText></Pressable>
+                  <Pressable accessibilityLabel="提交 AI 诊断" accessibilityRole="button" onPress={openAiDiagnosticFeedback} style={({ pressed }) => [styles.aiRetry, pressed ? styles.pressed : null]}><AppText color={colors.primary} variant="caption">提交诊断</AppText></Pressable>
+                </View>
+                {aiReview ? <AiReviewResultView result={aiReview} /> : null}
+              </> : aiReview ? <AiReviewResultView result={aiReview} /> : <>
                 {aiPrimaryText ? <AppText style={styles.aiPrimaryText} testID="study-workbench-ai-primary" variant="button">{aiPrimaryText}</AppText> : null}
                 {aiExplanation ? <><View style={styles.aiDivider} testID="study-workbench-ai-divider" /><AppText color={colors.mutedForeground} style={styles.aiExplanation} testID="study-workbench-ai-explanation">{aiExplanation}</AppText></> : null}
               </>}
@@ -519,7 +542,9 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
             <AppText>
               {consentKind === 'audio'
                 ? '继续后，本次录音会经听你五个服务器发送至腾讯云语音识别，用于语音转写。我们的暂存录音会在处理完成后删除，异常残留最长保留 24 小时。'
-                : '继续后，本次回答文本会经听你五个服务器发送至阿里云百炼，用于语法分析和表达优化。'}
+                : Platform.OS === 'web'
+                  ? '继续后，本次回答文本会经听你五个服务器发送至阿里云百炼，用于语法分析和表达优化。'
+                  : '继续后，本次回答文本会经听你五个服务器发送至 DeepSeek，用于语法纠错和表达润色。'}
             </AppText>
             <AppText color={colors.mutedForeground} variant="caption">AI 服务使用日志仅记录功能、状态、模型、耗时和用量；回答与分析结果仍可能作为学习记录同步到你的账号。你可在“设置—AI 与隐私”撤回同意。</AppText>
             <Button onPress={() => completeAiConsent(true)}>同意并继续</Button>
@@ -548,6 +573,9 @@ const styles = StyleSheet.create({
   aiPrimaryText: { lineHeight: 24 },
   aiDivider: { backgroundColor: colors.primary20, height: StyleSheet.hairlineWidth, width: '100%' },
   aiExplanation: { lineHeight: 22 },
+  aiErrorActions: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[2], justifyContent: 'space-between' },
+  aiErrorButtons: { alignItems: 'center', flexDirection: 'row', flexWrap: 'wrap', gap: spacing[2] },
+  aiErrorCopy: { flex: 1, paddingTop: spacing[2] },
   aiRetry: { alignItems: 'center', alignSelf: 'flex-start', borderRadius: radii.full, justifyContent: 'center', minHeight: 36, paddingHorizontal: spacing[2] },
   footer: { alignItems: 'flex-end', flexDirection: 'row', justifyContent: 'space-between', minHeight: 32, paddingBottom: spacing[1.5], paddingHorizontal: spacing[3], paddingTop: spacing[1] },
   dots: { alignItems: 'center', backgroundColor: 'transparent', borderWidth: 0, flexDirection: 'row', height: 28 },

@@ -2,6 +2,7 @@ import type {
   ApiErrorEnvelope,
   ApiSuccessEnvelope,
   FeedbackCategory,
+  FeedbackDiagnosticFeature,
   FeedbackQuestionContext,
   FeedbackSource,
   FeedbackSubmissionPayload,
@@ -9,6 +10,7 @@ import type {
 } from '@icao/contracts';
 import * as Device from 'expo-device';
 import type { ImagePickerAsset } from 'expo-image-picker';
+import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 
 import { APP_DISPLAY_VERSION } from '@/config/app-version';
@@ -20,6 +22,10 @@ import {
   rememberApiError,
 } from '@/platform/api-client';
 import { createFeedbackUploadForm } from '@/platform/feedback-upload';
+import {
+  clearSafeDiagnosticCorrelation,
+  getSafeDiagnosticBundleForCorrelation,
+} from '@/platform/diagnostics/safe-diagnostic-store';
 
 export type SubmitFeedbackInput = {
   clientSubmissionId: string;
@@ -30,6 +36,8 @@ export type SubmitFeedbackInput = {
   sourceRoute: string;
   question?: FeedbackQuestionContext;
   images: ImagePickerAsset[];
+  diagnosticFeature?: FeedbackDiagnosticFeature;
+  diagnosticCorrelationId?: string;
 };
 
 export function createClientSubmissionId() {
@@ -44,6 +52,14 @@ export function createClientSubmissionId() {
 
 export async function submitFeedback(input: SubmitFeedbackInput) {
   const platform = Platform.OS === 'web' ? 'web' : Platform.OS === 'ios' ? 'ios' : 'android';
+  const diagnostics = input.diagnosticFeature && input.diagnosticCorrelationId
+    ? await getSafeDiagnosticBundleForCorrelation({
+        appVersion: APP_DISPLAY_VERSION,
+        build: buildVersion(platform),
+        platform,
+        osVersion: Device.osVersion ?? 'unknown',
+      }, input.diagnosticFeature, input.diagnosticCorrelationId)
+    : undefined;
   const payload: FeedbackSubmissionPayload = {
     clientSubmissionId: input.clientSubmissionId,
     category: input.category,
@@ -57,6 +73,7 @@ export async function submitFeedback(input: SubmitFeedbackInput) {
     osVersion: Device.osVersion ?? undefined,
     question: input.question,
     error: getRecentApiError(),
+    diagnostics,
   };
   const baseUrl = getApiBaseUrl();
   if (!baseUrl) throw new Error('api_not_configured');
@@ -78,5 +95,13 @@ export async function submitFeedback(input: SubmitFeedbackInput) {
     const code = 'error' in body ? body.error.code : `api_http_${response.status}`;
     throw rememberApiError(code, response.status, body.requestId);
   }
+  if (diagnostics) await clearSafeDiagnosticCorrelation(diagnostics.feature, diagnostics.correlationId);
   return body.data;
+}
+
+function buildVersion(platform: FeedbackSubmissionPayload['platform']) {
+  if (Constants.nativeBuildVersion) return Constants.nativeBuildVersion;
+  if (platform === 'ios') return Constants.expoConfig?.ios?.buildNumber ?? 'unknown';
+  if (platform === 'android') return String(Constants.expoConfig?.android?.versionCode ?? 'unknown');
+  return Constants.expoConfig?.version ?? 'unknown';
 }

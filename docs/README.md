@@ -1,45 +1,57 @@
 # ICAO App 文档入口
 
-本目录按“当前事实、稳定规范、任务记录、人工笔记、历史档案”分层。Codex 不需要遍历全部
-Markdown；先从本页选择与任务直接相关的文档。
+文档只分为三类：人工维护规则、信息资源和过程记录。Codex 应从本页选择与当前任务直接相关
+的少量文档，不得遍历整个文档目录。
 
-## 当前事实
+## 1. 人工维护规则：`docs/rules/`
 
-- [当前产品状态](current/product-state.md)：产品能力、账号模式与各端定位。
-- [运行时拓扑](current/runtime-topology.md)：Native、Web、ECS、Supabase 与 Vercel 的边界。
-- [架构决策](../战略/architecture-decisions.md)：仍然有效的长期决策及变更方式。
-- [总战略](../战略/总战略文档.md)：当前目标、阶段方向和优先级。
+这是唯一对 Codex 有持续约束力的文档区域。规则由用户明确制定；Codex 不得自行创建、扩写或
+提升长期规则。
 
-## 按任务读取
+- [UI 风格与实现规范](rules/ui-style-guide.md)
+- [Native 商业化 D1—D9 决策](rules/decisions/)
+- [录音问题的解决与维护](rules/problem-solving-and-maintenance/recording.md)
+- [交付与验收最简规则](rules/problem-solving-and-maintenance/delivery-and-acceptance.md)
+- [GitHub 单主干与版本维护规则](rules/repository-and-github-management.md)
+- [普通任务小流程](rules/bigandsmall-workflows/orchestration-loop.md)
+- [复杂任务大流程](rules/bigandsmall-workflows/document-driven-development-workflow.md)
+- [大流程 / 小流程启动模板](rules/bigandsmall-workflows/workflow-start-prompt-template.md)
 
-- UI、交互、响应式布局：[UI 风格与实现规范](design/ui-style-guide.md)。
-- 普通开发任务：[小循环](bigandsmall-workflows/orchestration-loop.md)。
-- 跨系统或高风险任务：[文档驱动大流程](bigandsmall-workflows/document-driven-development-workflow.md)。
-- 验证范围选择：[验证矩阵](engineering/verification-matrix.md)。
-- 音频生命周期变更：[音频生命周期与变更规则](guides/audio-lifecycle-and-change-rules.md)。
-- 运行时或部署：[部署与运行时规则](operations/deployment-and-runtime-rules.md)。
-- 2026-08-07 Native 生产迁移：
-  [迁移记录与回滚边界](operations/native-production-migration-2026-08-07.md)。
-- Native 商业上线：[技术、备案与负责人最小清单](operations/native-commercial-launch-readiness.md)。
-- App 备案填报：[可验证技术字段与第三方服务清单](operations/native-app-filing-fields.md)。
-- Native 商店填报：[App Store/Google Play 文案、隐私问卷与审核材料](operations/native-store-submission-materials.md)。
-- 常用命令：[开发命令参考](guides/development-command-reference.md)。
-- AI 能力与运行时资产：[AI 文档入口](ai/README.md)。
+只读取与任务匹配的规则。商业化决策只在任务涉及对应产品范围时读取相关文件，不默认加载
+D1—D9 全部内容。
 
-## 任务与历史
+## 2. 信息资源：`docs/resources/`
 
-- `docs/workstreams/` 保存专题工作的需求、技术决策和验收记录；只有当前任务明确选中的
-  workstream 才具有任务约束力，详见 [工作流目录说明](workstreams/README.md)。
-- `docs/common-errors/` 是按症状查询的事故记录，不是每个任务的必读规则。
-- `docs/developer-notes/` 是给人工开发者的可选笔记，不是 Codex 的默认上下文或执行要求。
-- `docs/archive/` 保存被替代的战略、规则、阶段与设计基线，只用于追溯，不得覆盖当前文档。
+这里保存产品事实、ICAO 与航空领域资料、AI 能力说明、内容规范、运维参考和开发者参考。
+它们帮助理解任务，但不会自行授予部署、发布、数据修改或规则变更权限。
 
-## 权威判定
+- `resources/project/`：当前产品状态与运行时拓扑。
+- `resources/domain/`：ICAO 考试、题库结构和音频文本等领域资料。
+- `resources/ai/`：AI 能力说明和领域资产入口；运行时事实仍以代码及 manifest 为准。
+- `resources/operations/`：发布、备案、账号与内容同步等按需操作参考。
+- `resources/developer/`：命令、本机操作、签名和人工清单。
 
-1. 当前用户目标决定本次要改变什么。
-2. 代码、配置、测试和生成清单决定“目前实际是什么”。
-3. 本页列出的当前事实与稳定规范决定持续边界。
-4. 被明确选中的 workstream 决定本任务的局部验收目标。
-5. 开发者笔记和历史档案不具有规范性。
+## 3. 过程记录：`docs/records/`
 
-发现现行文档与代码冲突时，应核对实现并修正文档或明确升级决策；不要同时保留两套现行说法。
+这里保存 AI 和开发过程中的任务资料、日志、报告、截图、事故、迁移记录和旧文档，只用于
+回溯、审计、排障或回滚，不得约束新的开发任务。
+
+- `records/workstreams/`：专题任务的需求、计划、阶段日志和收口材料。
+- `records/evidence/`：历史截图、构建和验收证据。
+- `records/incidents/`：历史故障与排障记录。
+- `records/migrations/`：迁移、发布与回滚记录。
+- `records/archive/`：已经被替代的规则、战略、设计和阶段材料。
+
+未被用户明确指定的记录不读取。记录中的旧命令、状态、限制和结论不能覆盖当前代码、当前
+用户目标或 `docs/rules/`。
+
+## 权威顺序
+
+1. 当前用户请求决定本次目标与权限。
+2. 代码、配置、测试和生成清单决定当前实现事实。
+3. 与任务直接相关的 `docs/rules/` 决定长期边界。
+4. `docs/resources/` 提供按需参考。
+5. `docs/records/` 只提供历史证据。
+
+普通任务不要求创建 workstream、phase log、technical plan 或 closeout。发现资料与实现冲突
+时，先核对事实并报告差异；未经用户明确要求，不把过程结论提升为新规则。

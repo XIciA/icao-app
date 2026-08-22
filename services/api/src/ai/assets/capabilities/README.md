@@ -1,6 +1,6 @@
 # Capability Content Assets
 
-本目录管理仍由内容资产驱动的单个 AI 能力说明。固定后端 Prompt 的语法复核和表达润色见 `docs/ai/capabilities/` 与后端代码。
+本目录管理仍由内容资产驱动的单个 AI 能力说明。固定后端 Prompt 的语法纠错和表达润色见 `docs/resources/ai/capabilities/` 与后端代码。
 
 ## 1. 当前能力
 

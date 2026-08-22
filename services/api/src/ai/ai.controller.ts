@@ -1,11 +1,11 @@
 import { BadRequestException, Body, Controller, Delete, Post, Req, UseGuards } from '@nestjs/common';
-import { isTencentAsrModel, type ApiSuccessEnvelope, type AiConsent, type GrammarReviewRequest, type GrammarReviewResult, type PolishRequest, type PolishResult, type TranscribeResult, type WordLookupRequest, type WordLookupResult } from '@icao/contracts';
+import { isTencentAsrModel, type AiReviewRequest, type AiReviewResult, type ApiSuccessEnvelope, type AiConsent, type GrammarReviewRequest, type GrammarReviewResult, type PolishRequest, type PolishResult, type TranscribeResult, type WordLookupRequest, type WordLookupResult } from '@icao/contracts';
 import type { MultipartFile } from '@fastify/multipart';
 
 import type { AuthenticatedRequest } from '../auth/auth.types';
 import { RequireAuthGuard } from '../auth/require-auth.guard';
 import { AiService } from './ai.service';
-import { consentSchema, grammarSchema, polishSchema, wordLookupSchema } from './ai.schemas';
+import { consentSchema, grammarSchema, polishSchema, reviewSchema, wordLookupSchema } from './ai.schemas';
 
 type AiRequest = AuthenticatedRequest & { raw: { once(event: 'aborted', listener: () => void): void } };
 type MultipartRequest = AiRequest & { file(options?: object): Promise<MultipartFile | undefined> };
@@ -68,5 +68,12 @@ export class AiController {
     const parsed = polishSchema.safeParse(body);
     if (!parsed.success) throw new BadRequestException('invalid_polish');
     return { requestId: request.id, data: await this.ai.polish(request.user!.id, request.id, parsed.data, cancellationSignal(request)) };
+  }
+
+  @Post('review')
+  async review(@Body() body: AiReviewRequest, @Req() request: AiRequest): Promise<ApiSuccessEnvelope<AiReviewResult>> {
+    const parsed = reviewSchema.safeParse(body);
+    if (!parsed.success) throw new BadRequestException('invalid_ai_review');
+    return { requestId: request.id, data: await this.ai.review(request.user!.id, request.id, parsed.data, cancellationSignal(request)) };
   }
 }

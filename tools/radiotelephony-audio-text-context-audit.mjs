@@ -8,7 +8,7 @@ const radiotelephonyRoot = join(root, 'content/question-banks/banks/radiotelepho
 const embeddedPath = join(root, 'src/features/question-bank/data/question-bank.json');
 const reportPath = join(
   root,
-  'docs/workstreams/web-question-bank-content-migration/reports/radiotelephony-audio-text-context-audit.md',
+  'docs/records/workstreams/web-question-bank-content-migration/reports/radiotelephony-audio-text-context-audit.md',
 );
 
 const airlineCodes = ['QFA', 'SIA', 'AFR', 'BAW', 'UAL', 'KLM', 'JAL', 'ACA', 'CCA', 'CSN', 'CES'];

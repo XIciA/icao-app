@@ -29,6 +29,17 @@ export const polishSchema = z.object({
   correctedText: z.string().trim().min(1).max(5000).optional(),
 }).strict();
 
+export const reviewSchema = z.object({
+  mode: z.enum(['grammar', 'opi']),
+  module: z.enum(['atc', 'story', 'opi']),
+  questionId: z.string().trim().min(1).max(160),
+  transcript: z.string().trim().min(1).max(4000),
+}).strict().superRefine((value, context) => {
+  if (value.mode === 'opi' && value.module !== 'opi') {
+    context.addIssue({ code: 'custom', message: 'opi_mode_requires_opi_module', path: ['module'] });
+  }
+});
+
 export const wordLookupResultSchema = z.object({
   definition: z.string().trim().min(1).max(800),
   contextExplanationZh: z.string().trim().min(1).max(1200),
@@ -40,5 +51,25 @@ export const grammarResultSchema = z.object({
 }).strict();
 
 export const polishResultSchema = z.object({
+  polishedText: z.string().trim().min(1).max(5000),
+}).strict();
+
+export const grammarCorrectionIssueSchema = z.object({
+  before: z.string().trim().min(1).max(500),
+  after: z.string().trim().min(1).max(500),
+  reasonZh: z.string().trim().min(1).max(500).refine((value) => /[\u3400-\u9fff]/u.test(value), 'reason_must_be_chinese'),
+}).strict();
+
+export const grammarCorrectionSchema = z.object({
+  issues: z.array(grammarCorrectionIssueSchema).max(30),
+  correctedText: z.string().trim().min(1).max(5000),
+}).strict();
+
+export const grammarModeReviewResultSchema = z.object({
+  grammar: grammarCorrectionSchema,
+}).strict();
+
+export const opiModeReviewResultSchema = z.object({
+  grammar: grammarCorrectionSchema,
   polishedText: z.string().trim().min(1).max(5000),
 }).strict();

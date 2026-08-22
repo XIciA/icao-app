@@ -28,7 +28,7 @@ export class FeedbackController {
     try {
       for await (const part of request.parts({
         limits: {
-          fieldSize: 16 * 1024,
+          fieldSize: 64 * 1024,
           fields: 1,
           fileSize: feedbackImageLimits.fileSize,
           files: feedbackImageLimits.count,
@@ -70,4 +70,3 @@ export class FeedbackController {
     };
   }
 }
-

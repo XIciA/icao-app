@@ -10,12 +10,18 @@ const mockTranscribeRecording = jest.fn(async (_uri: string, _signal?: AbortSign
 const mockAcceptAiConsent = jest.fn(async () => ({ policyVersion: 'v1', acceptedAt: new Date().toISOString() }));
 const mockHasAiConsent = jest.fn(async () => true);
 const mockAddRecord = jest.fn(async () => undefined);
+const mockReviewExpression = jest.fn(async (_input: unknown, _signal?: AbortSignal) => ({
+  grammar: { correctedText: 'He has informed ATC.', issues: [{ before: 'He have', after: 'He has', reasonZh: '主谓一致错误。' }] },
+  promptVersion: 'deepseek-review:v1' as const,
+}));
+const mockRouterPush = jest.fn();
+
+jest.mock('expo-router', () => ({ useRouter: () => ({ push: mockRouterPush }) }));
 
 jest.mock('@/features/ai/ai-client', () => ({
   acceptAiConsent: () => mockAcceptAiConsent(),
-  grammarReview: jest.fn(),
   hasAiConsent: () => mockHasAiConsent(),
-  polishExpression: jest.fn(),
+  reviewExpression: (input: unknown, signal?: AbortSignal) => mockReviewExpression(input, signal),
   transcribeRecording: (uri: string, signal?: AbortSignal) => mockTranscribeRecording(uri, signal),
 }));
 
@@ -85,7 +91,7 @@ describe('AI speaking workbench', () => {
     await waitFor(() => expect(mockAddRecord).toHaveBeenCalledWith(expect.objectContaining({
       cardId: 'opi-card-1',
       id: expect.stringContaining('study-test-session'),
-      schemaVersion: 3,
+      schemaVersion: 4,
       aiResult: expect.objectContaining({ transcript: 'normalized aviation transcript' }),
     })));
     expect(screen.queryByLabelText('我的回答')).toBeNull();
@@ -157,6 +163,46 @@ describe('AI speaking workbench', () => {
     await waitFor(() => expect(mockTranscribeRecording).toHaveBeenCalledTimes(1));
   });
 
+  it('discloses DeepSeek before sending Native text for review', async () => {
+    mockHasAiConsent.mockResolvedValue(false);
+    const screen = await render(
+      <StudyWorkbench
+        activeTab="mine"
+        answerText="He have informed ATC."
+        bankId="opi"
+        bankTitle="OPI"
+        cardKey="opi-card-text-consent"
+        categoryTitle="运行"
+        learningStore={{ addRecord: mockAddRecord }}
+        noteText=""
+        onAnswerChange={jest.fn()}
+        onEditingTabChange={jest.fn()}
+        onFeedback={jest.fn()}
+        onNoteChange={jest.fn()}
+        onRetrySave={jest.fn()}
+        onTabChange={jest.fn()}
+        questionText="Question"
+        referenceContent={null}
+        referenceLabel="参考答案"
+        reviewKind="grammar"
+        sessionId="study-test-session"
+        sessionStartedAt="2026-07-15T00:00:00.000Z"
+        swipeGesture={Gesture.Pan().enabled(false)}
+        tabs={['mine']}
+        topicTitle="燃油"
+      />,
+    );
+
+    await waitFor(() => expect(mockHasAiConsent).toHaveBeenCalled());
+    await act(async () => { fireEvent.press(screen.getByLabelText('分析表达')); });
+    await waitFor(() => expect(screen.getByText(/发送至 DeepSeek/u)).toBeTruthy());
+    expect(mockReviewExpression).not.toHaveBeenCalled();
+
+    await act(async () => { fireEvent.press(screen.getByText('同意并继续')); });
+    await waitFor(() => expect(mockReviewExpression).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(screen.getByText('语法纠错')).toBeTruthy());
+  });
+
   it('explains when the provider detects no speech in the recording', async () => {
     mockTranscribeRecording.mockRejectedValueOnce(new Error('no_speech_detected'));
     const screen = await render(
@@ -193,7 +239,56 @@ describe('AI speaking workbench', () => {
       fireEvent.press(screen.getByLabelText('转写'));
       await Promise.resolve();
     });
-    await waitFor(() => expect(screen.getByText('未检测到清晰语音，请回放录音并检查麦克风后重新录制。')).toBeTruthy());
+    await waitFor(() => expect(screen.getByText(/未检测到清晰语音，请回放录音并检查麦克风后重新录制。.*A-/u)).toBeTruthy());
+    fireEvent.press(screen.getByLabelText('提交 AI 诊断'));
+    expect(mockRouterPush).toHaveBeenCalledWith({
+      pathname: '/info/[slug]',
+      params: expect.objectContaining({
+        correlationId: expect.stringMatching(/^A-[A-Z0-9]{5}-[A-Z0-9]{2}$/u),
+        feature: 'ai',
+        slug: 'feedback',
+      }),
+    });
+  });
+
+  it('does not show an AI fault when an in-flight transcription is cancelled', async () => {
+    mockTranscribeRecording.mockImplementationOnce((_uri, signal) => new Promise((_, reject) => {
+      signal?.addEventListener('abort', () => reject(new Error('ai_cancelled')), { once: true });
+    }));
+    const screen = await render(
+      <StudyWorkbench
+        activeTab="mine"
+        answerText=""
+        bankId="opi"
+        bankTitle="OPI"
+        cardKey="opi-card-cancel-transcription"
+        categoryTitle="运行"
+        learningStore={{ addRecord: mockAddRecord }}
+        noteText=""
+        onAnswerChange={jest.fn()}
+        onEditingTabChange={jest.fn()}
+        onFeedback={jest.fn()}
+        onNoteChange={jest.fn()}
+        onRetrySave={jest.fn()}
+        onTabChange={jest.fn()}
+        questionText="Question"
+        recordingUri="file:///recording.m4a"
+        referenceContent={null}
+        referenceLabel="参考答案"
+        reviewKind="opi-analysis"
+        sessionId="study-test-session"
+        sessionStartedAt="2026-07-15T00:00:00.000Z"
+        swipeGesture={Gesture.Pan().enabled(false)}
+        tabs={['mine']}
+        topicTitle="燃油"
+      />,
+    );
+
+    await act(async () => { fireEvent.press(screen.getByLabelText('转写')); });
+    await waitFor(() => expect(screen.getByLabelText('取消当前 AI 操作')).toBeTruthy());
+    await act(async () => { fireEvent.press(screen.getByLabelText('取消当前 AI 操作')); });
+    await waitFor(() => expect(screen.queryByLabelText('取消当前 AI 操作')).toBeNull());
+    expect(screen.queryByText(/诊断编号：A-/u)).toBeNull();
   });
 
   it('re-registers account-scoped consent even when the local acknowledgement exists', async () => {

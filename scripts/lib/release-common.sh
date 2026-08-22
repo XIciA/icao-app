@@ -63,16 +63,38 @@ load_release_runtime() {
 }
 
 check_release_runtime() {
+  required_social_provider=${1:-}
   node_binary=${NODE_BINARY:-$(command -v node)}
-  CHECK_API_URL=$API_URL CHECK_SUPABASE_URL=$SUPABASE_URL CHECK_PUBLISHABLE_KEY=$PUBLISHABLE_KEY "$node_binary" <<'NODE'
-const checks = [
-  ['ICAO API', `${process.env.CHECK_API_URL}/health/ready`, {}],
-  ['Supabase Auth', `${process.env.CHECK_SUPABASE_URL}/auth/v1/settings`, { apikey: process.env.CHECK_PUBLISHABLE_KEY }],
-];
+  CHECK_API_URL=$API_URL CHECK_SUPABASE_URL=$SUPABASE_URL CHECK_PUBLISHABLE_KEY=$PUBLISHABLE_KEY CHECK_SOCIAL_PROVIDER=$required_social_provider "$node_binary" <<'NODE'
+const api = await fetch(`${process.env.CHECK_API_URL}/health/ready`, {
+  signal: AbortSignal.timeout(10_000),
+});
+if (!api.ok) throw new Error(`ICAO API responded with HTTP ${api.status}`);
 
-for (const [label, url, headers] of checks) {
-  const response = await fetch(url, { headers, signal: AbortSignal.timeout(10_000) });
-  if (!response.ok) throw new Error(`${label} responded with HTTP ${response.status}`);
+const auth = await fetch(`${process.env.CHECK_SUPABASE_URL}/auth/v1/settings`, {
+  headers: { apikey: process.env.CHECK_PUBLISHABLE_KEY },
+  signal: AbortSignal.timeout(10_000),
+});
+if (!auth.ok) throw new Error(`Supabase Auth responded with HTTP ${auth.status}`);
+const settings = await auth.json();
+if (settings.disable_signup === true || settings.external?.phone !== true || settings.phone_autoconfirm === true) {
+  throw new Error('Supabase Auth is not ready for real Native phone signup.');
+}
+if (process.env.CHECK_SOCIAL_PROVIDER && settings.external?.[process.env.CHECK_SOCIAL_PROVIDER] !== true) {
+  throw new Error(`Supabase Auth provider is not enabled: ${process.env.CHECK_SOCIAL_PROVIDER}`);
+}
+
+for (const path of ['/v1/auth/phone/otp/start', '/v1/auth/phone/recovery/start']) {
+  const response = await fetch(`${process.env.CHECK_API_URL}${path}`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ phone: 'invalid-release-probe' }),
+    signal: AbortSignal.timeout(10_000),
+  });
+  const body = await response.json().catch(() => undefined);
+  if (response.status !== 400 || body?.error?.code !== 'invalid_phone_number') {
+    throw new Error(`Server-owned phone OTP route is not ready: ${path}`);
+  }
 }
 NODE
 }

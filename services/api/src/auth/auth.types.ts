@@ -8,7 +8,15 @@ export type AuthVerifier = {
 
 export type VerifiedAuthSession = {
   accessToken: string;
+  authenticationMethods: Array<{
+    method: string;
+    provider?: string;
+    timestamp: number;
+  }>;
+  authUserId: string;
+  identities: Array<{ provider: string; subject: string }>;
   issuedAt: number;
+  passwordSet?: boolean;
   sessionId: string;
   user: AuthenticatedUser;
 };

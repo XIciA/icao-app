@@ -87,7 +87,7 @@ type Summary = {
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(here, '../../..');
-const evidenceRoot = join(repoRoot, 'docs/workstreams/asr-postprocessing-optimization/evidence');
+const evidenceRoot = join(repoRoot, 'docs/records/workstreams/asr-postprocessing-optimization/evidence');
 const manifestPath = join(evidenceRoot, 'manifest.json');
 const cachePath = join(evidenceRoot, 'raw-transcripts.json');
 const referenceReviewPath = join(evidenceRoot, 'reference-review.json');

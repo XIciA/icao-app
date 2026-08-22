@@ -8,7 +8,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const WORKSTREAM = path.join(ROOT, 'docs/workstreams/web-question-bank-content-migration');
+const WORKSTREAM = path.join(ROOT, 'docs/records/workstreams/web-question-bank-content-migration');
 const GENERATED = path.join(ROOT, '.generated/web-question-bank-content-migration');
 const SNAPSHOT_ROOT = path.join(GENERATED, 'source-snapshot');
 const SOURCE_ROOT = process.env.WEB_QUESTION_BANK_ROOT

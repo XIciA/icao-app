@@ -1,0 +1,7 @@
+services:
+  auth:
+    environment:
+      # Native iOS ID-token flow only. Browser OAuth settings and secrets are
+      # intentionally absent because Web remains outside this auth rollout.
+      GOTRUE_EXTERNAL_APPLE_ENABLED: "true"
+      GOTRUE_EXTERNAL_APPLE_CLIENT_ID: "com.readyoufife.ios"

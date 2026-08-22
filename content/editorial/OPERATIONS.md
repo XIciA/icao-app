@@ -80,7 +80,7 @@ remaining gate: <下一步唯一门禁>
 7. 部署并验证 Vercel preview，再提升 production。
 8. 仅在以上线上验证通过后，将状态改为 `published`。
 
-数据库、ECS 与 Vercel 的具体备份、部署和回滚要求以 [部署与运行规则](../../docs/operations/deployment-and-runtime-rules.md) 为准。
+数据库、ECS 与 Vercel 的具体备份、部署和回滚要求以 [部署与运行规则](../../docs/rules/conditional/deployment-and-runtime-rules.md) 为准。
 
 ## 安全与禁止项
 

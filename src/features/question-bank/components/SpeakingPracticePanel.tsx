@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from 'expo-router';
 import { Mic, Pause, Play, RotateCcw, ShieldAlert, Square, X } from '@/components/ui/icons';
 import { Platform, Pressable, StyleSheet, View } from 'react-native';
 import { GestureDetector, type GestureType } from 'react-native-gesture-handler';
@@ -9,7 +10,10 @@ import { colors, fonts, radii, shadows, spacing } from '@/theme';
 
 import type { RecordingAsset } from '../recording/types';
 import { useRecordingPlayback } from '../recording/use-recording-playback';
-import { useSpeakingRecordingController } from '../recording/use-speaking-recording-controller';
+import {
+  SpeakingRecordingControllerHost,
+  type SpeakingRecordingController,
+} from '../recording/use-speaking-recording-controller';
 import { AudioTimeline } from './AudioTimeline';
 
 function formatDuration(milliseconds: number) {
@@ -18,7 +22,7 @@ function formatDuration(milliseconds: number) {
 }
 
 function recordingErrorMessage(
-  error: ReturnType<typeof useSpeakingRecordingController>['error'],
+  error: SpeakingRecordingController['error'],
   hasRecording: boolean,
   isWeb: boolean,
 ) {
@@ -40,6 +44,10 @@ function recordingErrorMessage(
         return `录音保存等待时间较长，请重新录制或使用推荐浏览器。${preserved}`;
       case 'recording_too_short':
         return `录音时间较短，请按住说完后再松开。${preserved}`;
+      case 'recording_source_missing':
+        return `没有找到这次录音文件，请重新录制。${preserved}`;
+      case 'recording_container_invalid':
+        return `这次录音格式无效，请重新录制。${preserved}`;
       case 'recording_file_incomplete':
         return `这次录音内容不完整，请重新录制。${preserved}`;
       case 'record_prepare_failed':
@@ -55,9 +63,10 @@ function recordingErrorMessage(
         return `暂时未能完成录音，请重新尝试。${preserved}`;
     }
   }
-  if (!hasRecording) return error.message;
+  const diagnosticSuffix = error.diagnosticId ? `（诊断编号：${error.diagnosticId}）` : '';
+  if (!hasRecording) return `${error.message}${diagnosticSuffix}`;
   if (error.code === 'microphone_permission_denied') return '未获得麦克风权限，已保留原录音。';
-  return '新录音无效，已保留原录音。';
+  return `新录音无效，已保留原录音。${diagnosticSuffix}`;
 }
 
 function playbackErrorMessage(error: ReturnType<typeof useRecordingPlayback>['error'], isWeb: boolean) {
@@ -100,21 +109,7 @@ async function copyCurrentWebLink() {
   }
 }
 
-export function SpeakingPracticePanel({
-  blockedExternalGesture,
-  cardId,
-  interactionGesture,
-  mode,
-  onClear,
-  onInteractionChange,
-  onPreviewPlaybackStart,
-  onRecorded,
-  onRecordingIntent,
-  previewPauseRequest = 0,
-  recording,
-  sessionId,
-  variant = 'default',
-}: {
+type SpeakingPracticePanelProps = {
   blockedExternalGesture?: GestureType;
   cardId: string;
   interactionGesture?: GestureType;
@@ -128,17 +123,37 @@ export function SpeakingPracticePanel({
   recording?: RecordingAsset;
   sessionId: string;
   variant?: 'default' | 'integrated';
-}) {
+};
+
+export function SpeakingPracticePanel(props: SpeakingPracticePanelProps) {
+  return (
+    <SpeakingRecordingControllerHost
+      cardId={props.cardId}
+      onClear={props.onClear}
+      onInteractionChange={props.onInteractionChange}
+      onRecorded={props.onRecorded}
+      recording={props.recording}
+      sessionId={props.sessionId}
+    >
+      {(controller) => <SpeakingPracticePanelContent {...props} controller={controller} />}
+    </SpeakingRecordingControllerHost>
+  );
+}
+
+function SpeakingPracticePanelContent({
+  blockedExternalGesture,
+  controller,
+  interactionGesture,
+  mode,
+  onInteractionChange,
+  onPreviewPlaybackStart,
+  onRecordingIntent,
+  previewPauseRequest = 0,
+  variant = 'default',
+}: SpeakingPracticePanelProps & { controller: SpeakingRecordingController }) {
+  const router = useRouter();
   const isWeb = Platform.OS === 'web';
   const [copyLinkFeedback, setCopyLinkFeedback] = useState<string | undefined>(undefined);
-  const controller = useSpeakingRecordingController({
-    cardId,
-    onClear,
-    onInteractionChange,
-    onRecorded,
-    recording,
-    sessionId,
-  });
   const playback = useRecordingPlayback(controller.asset, previewPauseRequest);
   const isRecording = controller.phase === 'recording';
   const isBusy = ['requestingPermission', 'preparing', 'finalizing'].includes(controller.phase);
@@ -188,6 +203,28 @@ export function SpeakingPracticePanel({
       ? '链接已复制，请在推荐浏览器中粘贴打开。'
       : '请复制浏览器地址栏中的链接，再到推荐浏览器打开。');
   }
+
+  function openRecordingDiagnosticFeedback() {
+    const correlationId = controller.error?.diagnosticId;
+    if (!correlationId) return;
+    router.push({
+      pathname: '/info/[slug]',
+      params: {
+        slug: 'feedback',
+        source: 'profile',
+        sourceRoute: '/question-bank/study',
+        feature: 'recording',
+        correlationId,
+      },
+    });
+  }
+
+  const nativeDiagnosticError = !isWeb && error ? (
+    <View style={styles.diagnosticError}>
+      <AppText color={colors.destructive} style={styles.diagnosticErrorCopy} variant="caption">{error}</AppText>
+      {controller.error?.diagnosticId ? <Button accessibilityLabel="提交录音诊断" onPress={openRecordingDiagnosticFeedback} size="sm" variant="ghost">提交诊断</Button> : null}
+    </View>
+  ) : null;
 
   const webNotice = isWeb && (controller.permissionPrimerWaiting || error) ? (
     <View style={[styles.webNotice, variant === 'integrated' ? styles.webNoticeIntegrated : null]}>
@@ -302,7 +339,7 @@ export function SpeakingPracticePanel({
           ) : null}
 
           {webNotice}
-          {!isWeb && error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
+          {nativeDiagnosticError}
           {playbackError ? <AppText color={isWeb ? colors.accent : colors.destructive} variant="caption">{playbackError}</AppText> : null}
         </View>
         {compatibilityModal}
@@ -319,6 +356,7 @@ export function SpeakingPracticePanel({
           <AppText variant="caption">允许后即可录制；题目、原文和参考答案仍可正常学习。</AppText>
           <View style={styles.permissionActions}>
             <Button onPress={() => void controller.retryPermission()} size="sm" variant="outline">重试</Button>
+            {controller.error?.diagnosticId ? <Button accessibilityLabel="提交录音诊断" onPress={openRecordingDiagnosticFeedback} size="sm" variant="ghost">提交诊断</Button> : null}
             {controller.replacing ? <Button onPress={controller.cancelReplacement} size="sm" variant="ghost">保留原录音</Button> : null}
           </View>
         </View>
@@ -379,7 +417,7 @@ export function SpeakingPracticePanel({
         ) : null}
 
         {webNotice}
-        {!isWeb && error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
+        {nativeDiagnosticError}
         {playbackError ? <AppText color={isWeb ? colors.accent : colors.destructive} variant="caption">{playbackError}</AppText> : null}
       </View>
       {compatibilityModal}
@@ -403,6 +441,8 @@ const styles = StyleSheet.create({
   resultHeader: { alignItems: 'center', flexDirection: 'row', gap: spacing[2], justifyContent: 'space-between' },
   resultTitle: { alignItems: 'center', flex: 1, flexDirection: 'row', gap: spacing[1.5] },
   duration: { color: colors.mutedForeground, fontFamily: fonts.monoRegular },
+  diagnosticError: { alignItems: 'flex-start', flexDirection: 'row', gap: spacing[2], justifyContent: 'space-between' },
+  diagnosticErrorCopy: { flex: 1, paddingTop: spacing[2] },
   playbackRow: { alignItems: 'center', flexDirection: 'row', gap: spacing[3] },
   playbackButton: { alignItems: 'center', backgroundColor: colors.card, borderColor: colors.border, borderRadius: radii.full, borderWidth: 1, height: 42, justifyContent: 'center', width: 42 },
   playbackPending: { opacity: 0.45 },
@@ -412,7 +452,7 @@ const styles = StyleSheet.create({
   cancelReplacement: { alignItems: 'center', flexDirection: 'row', gap: spacing[1], minHeight: 36, paddingHorizontal: spacing[2] },
   permission: { alignItems: 'flex-start', backgroundColor: 'rgba(183,118,16,0.08)', borderRadius: radii.xl, flexDirection: 'row', gap: spacing[2.5], padding: spacing[3] },
   permissionCopy: { flex: 1 },
-  permissionActions: { flexDirection: 'row', gap: spacing[2], marginTop: spacing[2] },
+  permissionActions: { alignItems: 'center', flexDirection: 'row', flexWrap: 'wrap', gap: spacing[2], marginTop: spacing[2] },
   webNotice: { alignItems: 'flex-start', backgroundColor: 'rgba(183,118,16,0.08)', borderColor: 'rgba(183,118,16,0.2)', borderRadius: radii.lg, borderWidth: 1, flexDirection: 'row', gap: spacing[2], padding: spacing[3] },
   webNoticeIntegrated: { padding: spacing[2.5] },
   webNoticeCopy: { flex: 1, gap: spacing[1.5] },

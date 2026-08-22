@@ -1,0 +1,70 @@
+import type { AiReviewRequest, AiReviewResult, GrammarCorrectionIssue } from '@icao/contracts';
+
+import { grammarModeReviewResultSchema, opiModeReviewResultSchema } from './ai.schemas';
+import { REVIEW_PROMPT_VERSION } from './deepseek-review-prompts';
+
+type ReviewBody = Omit<AiReviewResult, 'promptVersion'>;
+
+function normalized(value: string) {
+  return value.replace(/\s+/gu, ' ').trim();
+}
+
+function sortedMatches(value: string, pattern: RegExp) {
+  return [...value.matchAll(pattern)].map((match) => match[0].toLocaleUpperCase()).sort();
+}
+
+function sameProtectedTokens(source: string, output: string) {
+  const patterns = [
+    /\b(?:FL\s?\d+|\d+(?:\.\d+)?)\b/giu,
+    /\b[A-Z]{2,}\b/gu,
+    /\b[A-Z][A-Za-z]+\s+\d+\b/gu,
+    /\b[A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+)*\s+(?:Control|Approach|Tower|Ground|Departure|Center|Centre)\b/gu,
+  ];
+  return patterns.every((pattern) => JSON.stringify(sortedMatches(source, pattern)) === JSON.stringify(sortedMatches(output, pattern)));
+}
+
+const UNCERTAINTY = /\b(?:think|believe|may|might|could|maybe|perhaps|possibly|probably|likely|seems?|appears?)\b/iu;
+
+function assertProtectedMeaning(source: string, output: string) {
+  if (!sameProtectedTokens(source, output)) throw new Error('review_protected_tokens_changed');
+  if (UNCERTAINTY.test(source) && !UNCERTAINTY.test(output)) throw new Error('review_uncertainty_removed');
+}
+
+function includesSpan(text: string, span: string) {
+  return normalized(text).toLocaleLowerCase().includes(normalized(span).toLocaleLowerCase());
+}
+
+function assertIssues(source: string, correctedText: string, issues: GrammarCorrectionIssue[]) {
+  if (issues.length === 0) {
+    if (normalized(correctedText) !== normalized(source)) throw new Error('review_no_issue_text_changed');
+    return;
+  }
+  if (normalized(correctedText) === normalized(source)) throw new Error('review_issues_without_change');
+  for (const issue of issues) {
+    if (normalized(issue.before).toLocaleLowerCase() === normalized(issue.after).toLocaleLowerCase()) throw new Error('review_issue_without_change');
+    if (!includesSpan(source, issue.before)) throw new Error('review_issue_source_missing');
+    if (!includesSpan(correctedText, issue.after)) throw new Error('review_issue_replacement_missing');
+  }
+}
+
+export function parseAndValidateReview(data: unknown, input: AiReviewRequest): ReviewBody {
+  if (input.mode === 'grammar') {
+    const parsed = grammarModeReviewResultSchema.parse(data);
+    assertIssues(input.transcript, parsed.grammar.correctedText, parsed.grammar.issues);
+    assertProtectedMeaning(input.transcript, parsed.grammar.correctedText);
+    return parsed;
+  }
+  const parsed = opiModeReviewResultSchema.parse(data);
+  assertIssues(input.transcript, parsed.grammar.correctedText, parsed.grammar.issues);
+  assertProtectedMeaning(input.transcript, parsed.grammar.correctedText);
+  assertProtectedMeaning(input.transcript, parsed.polishedText);
+  return parsed;
+}
+
+export function withReviewPromptVersion(result: ReviewBody): AiReviewResult {
+  return { ...result, promptVersion: REVIEW_PROMPT_VERSION };
+}
+
+export function legacyIssueText(issue: GrammarCorrectionIssue) {
+  return `“${issue.before}” → “${issue.after}”：${issue.reasonZh}`;
+}

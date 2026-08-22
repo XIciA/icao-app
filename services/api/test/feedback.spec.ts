@@ -2,7 +2,11 @@ import { describe, expect, it } from 'vitest';
 
 import { feedbackSubmissionSchema } from '../src/feedback/feedback.schemas';
 import { validateFeedbackImage } from '../src/feedback/feedback-image';
-import { parseUserAgent } from '../src/feedback/feedback.service';
+import {
+  diagnosticsExpirationForSubmission,
+  parseUserAgent,
+  retentionAtForFeedback,
+} from '../src/feedback/feedback.service';
 
 const payload = {
   clientSubmissionId: '00000000-0000-4000-8000-000000000123',
@@ -40,6 +44,88 @@ describe('feedback submission validation', () => {
       category: 'content_correction',
       question: { bankId: 'listening', categoryId: 'part-a', topicId: 'topic-a', cardId: 'card-a' },
     }).success).toBe(true);
+  });
+
+  it('accepts a bounded allowlisted diagnostic bundle for the same app and platform', () => {
+    const result = feedbackSubmissionSchema.parse({
+      ...payload,
+      diagnostics: {
+        schemaVersion: 1,
+        feature: 'ai',
+        correlationId: 'A-TEST-01',
+        appVersion: payload.appDisplayVersion,
+        build: '42',
+        platform: payload.platform,
+        osVersion: '19.0',
+        events: [{
+          offsetMs: 0,
+          stage: 'api',
+          code: 'ai_timeout',
+          level: 'error',
+          capability: 'grammar',
+          requestId: 'req_test-1',
+          retryable: true,
+          httpStatus: 504,
+        }],
+      },
+    });
+    expect(result.diagnostics?.events[0]).toMatchObject({ code: 'ai_timeout', requestId: 'req_test-1' });
+  });
+
+  it('rejects diagnostic content, URIs, tokens, oversized traces, and mismatched metadata', () => {
+    const diagnostics = {
+      schemaVersion: 1,
+      feature: 'recording',
+      correlationId: 'R-TEST-01',
+      appVersion: payload.appDisplayVersion,
+      build: '42',
+      platform: payload.platform,
+      osVersion: '19.0',
+      events: [{ offsetMs: 0, stage: 'prepare', code: 'prepare_failed', level: 'error' }],
+    } as const;
+    expect(feedbackSubmissionSchema.safeParse({ ...payload, diagnostics: {
+      ...diagnostics,
+      events: [{ ...diagnostics.events[0], content: 'private answer' }],
+    } }).success).toBe(false);
+    expect(feedbackSubmissionSchema.safeParse({ ...payload, diagnostics: {
+      ...diagnostics,
+      events: [{ ...diagnostics.events[0], uri: 'file:///private.m4a' }],
+    } }).success).toBe(false);
+    expect(feedbackSubmissionSchema.safeParse({ ...payload, diagnostics: {
+      ...diagnostics,
+      events: [{ ...diagnostics.events[0], token: 'secret' }],
+    } }).success).toBe(false);
+    expect(feedbackSubmissionSchema.safeParse({ ...payload, diagnostics: {
+      ...diagnostics,
+      events: Array.from({ length: 31 }, (_, offsetMs) => ({ ...diagnostics.events[0], offsetMs })),
+    } }).success).toBe(false);
+    expect(feedbackSubmissionSchema.safeParse({ ...payload, diagnostics: { ...diagnostics, platform: 'ios' } }).success).toBe(false);
+    expect(feedbackSubmissionSchema.safeParse({ ...payload, diagnostics: { ...diagnostics, appVersion: 'v2026.08.14.0001' } }).success).toBe(false);
+  });
+});
+
+describe('feedback diagnostic retention', () => {
+  const createdAt = new Date('2026-08-14T00:00:00.000Z');
+
+  it('uses the same 365-day retention instant for the ticket and submitted diagnostics', () => {
+    const diagnostics = feedbackSubmissionSchema.parse({
+      ...payload,
+      diagnostics: {
+        schemaVersion: 1,
+        feature: 'ai',
+        correlationId: 'A-TEST-01',
+        appVersion: payload.appDisplayVersion,
+        build: '42',
+        platform: payload.platform,
+        osVersion: '19.0',
+        events: [{ offsetMs: 0, stage: 'api', code: 'ai_timeout', level: 'error' }],
+      },
+    }).diagnostics;
+
+    const retentionAt = retentionAtForFeedback(createdAt);
+    expect(retentionAt.toISOString()).toBe('2027-08-14T00:00:00.000Z');
+    expect(diagnosticsExpirationForSubmission(createdAt, diagnostics)).toEqual(retentionAt);
+    expect(diagnosticsExpirationForSubmission(createdAt, undefined)).toBeNull();
   });
 });
 

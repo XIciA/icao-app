@@ -2,7 +2,16 @@ appId: ${APP_ID}
 ---
 - launchApp:
     clearState: false
-- openLink: "feizhuicao://question-bank/sentences900/study/sentence900-3%E7%BA%A7/sentence900-3%E7%BA%A7-main?cardId=sentence900-main-001"
+- openLink: "readyoufife-dev://question-bank/sentences900/study/sentence900-3%E7%BA%A7/sentence900-3%E7%BA%A7-main?cardId=sentence900-main-001"
+- runFlow:
+    when:
+      visible: "在.*中打开"
+    commands:
+      - tapOn:
+          point: "68%,54%"
+- tapOn:
+    text: "Continue"
+    optional: true
 - assertVisible: "按住说话"
 - longPressOn: "按住说话"
 - assertVisible: "按住重录"

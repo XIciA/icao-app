@@ -60,7 +60,9 @@ if (
 }
 if (
   productionConfig.ios.bundleIdentifier !== app.expo.ios.bundleIdentifier ||
-  productionConfig.name !== app.expo.name
+  productionConfig.name !== app.expo.name ||
+  productionConfig.ios.usesAppleSignIn !== true ||
+  !productionConfig.plugins.includes('expo-apple-authentication')
 ) {
   throw new Error('The production app identity must remain unchanged.');
 }
@@ -92,13 +94,23 @@ if (!first.includes('Missing Android release signing environment')) {
 }
 
 const caddy = await readFile('infra/gateway/Caddyfile', 'utf8');
+const aliyunSmsOverlay = await readFile('infra/supabase/docker-compose.aliyun-sms.yml', 'utf8');
+const nativeAuthService = await readFile('src/features/auth/auth-service.ts', 'utf8');
 const iosRelease = await readFile('scripts/release-ios.sh', 'utf8');
+const iosTestFlightRelease = await readFile('scripts/release-ios-testflight.sh', 'utf8');
+const iosAppStoreRelease = await readFile('scripts/release-ios-app-store.sh', 'utf8');
 const androidRelease = await readFile('scripts/release-android.sh', 'utf8');
 const iosStandalone = await readFile('scripts/build-standalone-ios.sh', 'utf8');
+const iosTestFlightArchive = await readFile('scripts/archive-ios-testflight.sh', 'utf8');
+const iosReleaseProduct = await readFile('scripts/lib/ios-release-product.sh', 'utf8');
 const androidStandalone = await readFile('scripts/build-standalone-android.sh', 'utf8');
 const releaseCommon = await readFile('scripts/lib/release-common.sh', 'utf8');
 const packageJsonSource = await readFile('package.json', 'utf8');
 const iosDevelopment = await readFile('scripts/run-ios-development.sh', 'utf8');
+const criticalReleaseEvidence = await readFile('tools/critical-capability-release-evidence.mjs', 'utf8');
+const mainlineReleaseGuard = await readFile('tools/check-mainline-release.mjs', 'utf8');
+const prepareRelease = await readFile('tools/prepare-release.mjs', 'utf8');
+const apiRelease = await readFile('scripts/deploy-api-release.sh', 'utf8');
 if (!caddy.includes('api.readyoufife.com') || !caddy.includes('cloud.readyoufife.com')) {
   throw new Error('The production gateway is missing the Read You 5 API or Supabase host.');
 }
@@ -108,11 +120,67 @@ if (caddy.includes('api.feizhuicao.com') || caddy.includes('cloud.feizhuicao.com
 if (/download\./.test(caddy) || /file_server/.test(caddy)) {
   throw new Error('The production gateway must not expose a website or APK download host.');
 }
+for (const protectedAuthPath of ['/auth/v1/otp', '/auth/v1/resend', '/auth/v1/signup']) {
+  if (!caddy.includes(protectedAuthPath)) {
+    throw new Error(`The production gateway must block direct Native Auth start route: ${protectedAuthPath}`);
+  }
+}
+if (
+  !caddy.includes('method PUT PATCH')
+  || !caddy.includes('/auth/v1/user')
+  || !caddy.includes('header_up -Sb-Forwarded-For')
+) {
+  throw new Error('The production gateway is missing Auth mutation or forwarded-IP hardening.');
+}
+if (!aliyunSmsOverlay.includes('GOTRUE_SECURITY_SB_FORWARDED_FOR_ENABLED: "true"')) {
+  throw new Error('The real-SMS Auth overlay must trust only the API-supplied Sb-Forwarded-For header.');
+}
+if (
+  !nativeAuthService.includes("'/v1/auth/phone/otp/start'")
+  || !nativeAuthService.includes("'/v1/auth/phone/recovery/start'")
+  || !nativeAuthService.includes("'/v1/account/password'")
+) {
+  throw new Error('Native phone OTP and password mutations must use the server-owned routes.');
+}
 if (!iosRelease.includes('audio-sensitive-fingerprint.mjs verify ios')) {
   throw new Error('The iOS release is missing its audio E2E fingerprint gate.');
 }
 if (!androidRelease.includes('audio-sensitive-fingerprint.mjs verify android')) {
   throw new Error('The Android release is missing its audio E2E fingerprint gate.');
+}
+if (!androidRelease.includes('critical-capability-release-evidence.mjs verify android android')) {
+  throw new Error('The Android release is missing its critical-capability evidence gate.');
+}
+for (const [name, source] of [
+  ['iOS release', iosRelease],
+  ['iOS standalone', iosStandalone],
+  ['TestFlight release', iosTestFlightRelease],
+  ['TestFlight archive', iosTestFlightArchive],
+  ['App Store handoff', iosAppStoreRelease],
+  ['Android release', androidRelease],
+  ['Android standalone', androidStandalone],
+  ['API release', apiRelease],
+]) {
+  if (!source.includes('check-mainline-release.mjs')) {
+    throw new Error(`${name} must reject release sources outside origin/main.`);
+  }
+}
+if (
+  !mainlineReleaseGuard.includes("branch !== 'main'")
+  || !mainlineReleaseGuard.includes('release_source_not_origin_main')
+  || !mainlineReleaseGuard.includes("status', '--porcelain', '--untracked-files=all")
+) {
+  throw new Error('The shared mainline release guard is incomplete.');
+}
+if (
+  !prepareRelease.includes('release_prepare_requires_task_branch')
+  || !prepareRelease.includes("process.argv.includes('--materialize')")
+  || !packageJsonSource.includes('release:materialize')
+) {
+  throw new Error('Version preparation must be committed before mainline release materialization.');
+}
+if (apiRelease.includes('ICAO_API_RELEASE_ALLOW_DIRTY')) {
+  throw new Error('The API release must not retain a dirty-source escape hatch.');
 }
 for (const retiredReference of [
   '47.109.132.161',
@@ -137,7 +205,7 @@ if (
   throw new Error('The iOS development and standalone build variants are not isolated.');
 }
 for (const [name, source] of [
-  ['iOS standalone', iosStandalone],
+  ['iOS Release product verifier', iosReleaseProduct],
   ['Android standalone', androidStandalone],
 ]) {
   for (const retiredRuntime of ['47\\.109\\.132\\.161', 'api\\.feizhuicao\\.com', 'cloud\\.feizhuicao\\.com']) {
@@ -171,12 +239,95 @@ if (!iosStandalone.includes('EXPO_PUBLIC_ICAO_AUDIO_E2E is forbidden')) {
 }
 if (
   !iosStandalone.includes('expo prebuild --platform ios --no-install') ||
-  !iosStandalone.includes("Expected exactly one iOS Release app") ||
-  !iosStandalone.includes('assert_plist_value CFBundleVersion') ||
-  !iosStandalone.includes('EXDevLauncher.bundle') ||
-  !iosStandalone.includes('_expo._tcp')
+  !iosStandalone.includes('find_ios_release_app') ||
+  !iosStandalone.includes('verify_ios_release_app')
 ) {
   throw new Error('The standalone iOS build is missing its generated-project or product integrity gate.');
+}
+if (
+  !iosReleaseProduct.includes('assert_release_plist_value CFBundleVersion') ||
+  !iosReleaseProduct.includes('EXDevLauncher.bundle') ||
+  !iosReleaseProduct.includes('_expo._tcp') ||
+  !iosReleaseProduct.includes('TeamIdentifier=') ||
+  !iosReleaseProduct.includes('application-identifier') ||
+  !iosReleaseProduct.includes('com.apple.developer.applesignin')
+) {
+  throw new Error('The shared iOS Release product integrity gate is incomplete.');
+}
+if (
+  !iosTestFlightArchive.includes("-destination 'generic/platform=iOS'") ||
+  !iosTestFlightArchive.includes('archivePath') ||
+  !iosTestFlightArchive.includes('audio-sensitive-fingerprint.mjs verify ios') ||
+  !iosTestFlightArchive.includes('verify_ios_release_app') ||
+  !iosTestFlightArchive.includes('ApplicationProperties:Team') ||
+  !iosTestFlightArchive.includes('check_release_runtime apple') ||
+  !iosTestFlightArchive.includes('EXPO_PUBLIC_ICAO_AUDIO_E2E is forbidden') ||
+  !iosTestFlightArchive.includes('check-mainline-release.mjs')
+) {
+  throw new Error('The TestFlight archive is missing its production identity or product integrity gate.');
+}
+if (
+  !releaseCommon.includes('settings.external?.phone !== true') ||
+  !releaseCommon.includes('settings.phone_autoconfirm === true') ||
+  !releaseCommon.includes('settings.external?.[process.env.CHECK_SOCIAL_PROVIDER] !== true')
+) {
+  throw new Error('The Release runtime gate must verify enabled phone and required social providers.');
+}
+if (iosTestFlightArchive.includes('ICAO_SKIP_AUDIO_E2E')) {
+  throw new Error('The TestFlight archive must not allow its audio evidence gate to be bypassed.');
+}
+if (
+  !iosTestFlightRelease.includes('critical-capability-release-evidence.mjs verify testflight ios')
+  || !iosTestFlightArchive.includes('critical-capability-release-evidence.mjs verify testflight ios')
+) {
+  throw new Error('The TestFlight release is missing its critical-capability evidence gate.');
+}
+if (
+  !iosAppStoreRelease.includes('critical-capability-release-evidence.mjs verify app-store ios')
+  || !iosAppStoreRelease.includes('.generated/last-testflight-archive.txt')
+  || !iosAppStoreRelease.includes('CFBundleVersion')
+  || !iosAppStoreRelease.includes('No build was created and no upload or store submission was performed.')
+) {
+  throw new Error('The App Store handoff is missing its exact TestFlight build or critical-capability gate.');
+}
+for (const forbiddenBypass of ['skip', 'bypass', 'IGNORE_CRITICAL', 'SKIP_CRITICAL']) {
+  if (criticalReleaseEvidence.includes(`--${forbiddenBypass}`) || criticalReleaseEvidence.includes(`ICAO_${forbiddenBypass}`)) {
+    throw new Error(`The critical-capability gate must not expose a bypass: ${forbiddenBypass}`);
+  }
+}
+for (const requiredContract of [
+  'devRealDevice',
+  'aiLive',
+  'testflightRealDevice',
+  'record-device-check',
+  'finalize-device',
+  'run-ai-live',
+  'device_check_not_passed',
+  'ai_live_requires_production_api',
+  'ai_live_verifier_changed',
+  'device_observation_digest_mismatch',
+  'production_api_version_changed_after_ai_live',
+  'runbooks_changed_after_acknowledgement',
+  'commit_changed',
+  'releaseSourceFingerprint',
+  'criticalFingerprint',
+  "channel === 'app-store'",
+  'freshHours: 7 * 24',
+]) {
+  if (!criticalReleaseEvidence.includes(requiredContract)) {
+    throw new Error(`The critical-capability evidence contract is incomplete: ${requiredContract}`);
+  }
+}
+if (
+  !apiRelease.includes('migration-plan.mjs --require-current')
+  || !apiRelease.includes('candidate API deployment was blocked before cutover')
+) {
+  throw new Error('The production API candidate must verify the exact migration ledger before cutover.');
+}
+for (const forbiddenEvidencePath of ['import-ai-live', 'function deviceChecks()']) {
+  if (criticalReleaseEvidence.includes(forbiddenEvidencePath)) {
+    throw new Error(`The critical-capability gate exposes a forgeable evidence path: ${forbiddenEvidencePath}`);
+  }
 }
 if (!androidStandalone.includes('EXPO_PUBLIC_ICAO_AUDIO_E2E is forbidden')) {
   throw new Error('The Android Release build is missing its deterministic-audio guard.');

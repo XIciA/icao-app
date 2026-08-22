@@ -5,9 +5,10 @@ import { describe, expect, it } from 'vitest';
 
 import { AppModule } from '../src/app.module';
 import { AccountService } from '../src/account/account.service';
+import { AccountIdentityService } from '../src/account/account-identity.service';
 import { AUTH_VERIFIER, type AuthVerifier, type VerifiedAuthSession } from '../src/auth/auth.types';
+import { PhoneAuthService } from '../src/auth/phone-auth.service';
 import { SessionSecurityService } from '../src/auth/session-security.service';
-import { InviteAuthService } from '../src/auth/invite-auth.service';
 import { loadConfig } from '../src/config';
 import { DatabaseService } from '../src/database/database.service';
 import { EditorialService } from '../src/editorial/editorial.service';
@@ -20,15 +21,29 @@ process.env.SUPABASE_PUBLISHABLE_KEY = 'test-publishable-key-that-is-long-enough
 process.env.SUPABASE_PUBLIC_URL = 'http://127.0.0.1:8000';
 process.env.SUPABASE_SECRET_KEY = 'test-secret-key-that-is-long-enough';
 process.env.INVITE_AUTH_SECRET = 'test-invite-auth-secret-that-is-long-enough';
+process.env.ACCOUNT_IDENTITY_HASH_SECRET = 'test-account-identity-secret-that-is-long-enough';
 
 class FakeAuthVerifier implements AuthVerifier {
   async verify(token: string): Promise<VerifiedAuthSession> {
-    if (token !== 'valid-token') throw new UnauthorizedException('invalid_access_token');
+    if (!['valid-token', 'apple-token', 'legacy-invite-token'].includes(token)) throw new UnauthorizedException('invalid_access_token');
     return {
       accessToken: token,
+      authenticationMethods: [{ method: token === 'apple-token' ? 'oauth' : 'otp', timestamp: Math.floor(Date.now() / 1_000) }],
+      authUserId: token === 'apple-token'
+        ? '00000000-0000-4000-8000-000000000003'
+        : '00000000-0000-4000-8000-000000000001',
+      identities: token === 'valid-token'
+        ? [{ provider: 'phone', subject: '+8613800138000' }]
+        : token === 'apple-token'
+          ? [{ provider: 'apple', subject: 'apple-subject' }]
+          : [{ provider: 'email', subject: 'legacy@example.com' }],
       issuedAt: 1,
       sessionId: '00000000-0000-4000-8000-000000000002',
-      user: { id: '00000000-0000-4000-8000-000000000001', email: 'tester@example.com' },
+      user: token === 'valid-token'
+        ? { id: '00000000-0000-4000-8000-000000000001', phone: '+8613800138000' }
+        : token === 'apple-token'
+          ? { id: '00000000-0000-4000-8000-000000000003', email: 'private@privaterelay.appleid.com' }
+          : { id: '00000000-0000-4000-8000-000000000001', email: 'legacy@example.com' },
     };
   }
 }
@@ -39,21 +54,39 @@ async function testApp({ revoked = false }: { revoked?: boolean } = {}) {
     .useValue({ ping: async () => undefined })
     .overrideProvider(AUTH_VERIFIER)
     .useValue(new FakeAuthVerifier())
+    .overrideProvider(AccountIdentityService)
+    .useValue({
+      resolve: async (auth: VerifiedAuthSession) => {
+        if (auth.user.phone) return { ...auth.user, authUserId: auth.authUserId, providers: ['phone'] };
+        if (auth.identities.some((identity) => identity.provider === 'apple')) {
+          return { ...auth.user, authUserId: auth.authUserId, providers: ['apple'] };
+        }
+        throw new UnauthorizedException('unsupported_auth_identity');
+      },
+    })
     .overrideProvider(SessionSecurityService)
     .useValue({ assertActive: async () => { if (revoked) throw new UnauthorizedException('session_revoked'); }, revokeAll: async () => undefined })
-    .overrideProvider(InviteAuthService)
-    .useValue({
-      assertActiveAccount: async () => undefined,
-      deleteAccount: async () => undefined,
-      exchange: async () => ({
-        accessToken: 'invite-access-token',
-        refreshToken: 'invite-refresh-token',
-        expiresAt: 1_800_000_000,
-        user: { id: '00000000-0000-4000-8000-000000000001', displayName: '起落平安' },
-      }),
-    })
     .overrideProvider(AccountService)
-    .useValue({ revokeAll: async () => ({ revoked: true }), deleteAccount: async () => undefined })
+    .useValue({
+      authorizePasswordRecovery: async () => ({ authorized: true, expiresAt: 1_800_003_600_000 }),
+      deleteAccount: async () => undefined,
+      mergeWithPhoneOtp: async () => ({
+        account: { accountId: '00000000-0000-4000-8000-000000000001', phone: '+8613800138000', phoneBound: true, providers: ['phone', 'apple'] },
+        session: { accessToken: 'target-access-token', refreshToken: 'target-refresh-token' },
+      }),
+      startPhoneBinding: async () => ({ sent: true }),
+      updatePassword: async () => ({
+        session: { accessToken: 'next-access-token', refreshToken: 'next-refresh-token' },
+        updated: true,
+      }),
+      revokeAll: async () => ({ revoked: true }),
+      summary: async (accountId: string, phone?: string) => ({ accountId, phone, phoneBound: Boolean(phone), providers: phone ? ['phone'] : ['apple'] }),
+    })
+    .overrideProvider(PhoneAuthService)
+    .useValue({
+      start: async () => ({ accepted: true }),
+      startRecovery: async () => ({ accepted: true }),
+    })
     .overrideProvider(EditorialService)
     .useValue({
       list: async () => ({
@@ -133,6 +166,7 @@ describe('API foundation', () => {
       SUPABASE_PUBLISHABLE_KEY: process.env.SUPABASE_PUBLISHABLE_KEY,
       SUPABASE_SECRET_KEY: process.env.SUPABASE_SECRET_KEY,
       INVITE_AUTH_SECRET: process.env.INVITE_AUTH_SECRET,
+      ACCOUNT_IDENTITY_HASH_SECRET: process.env.ACCOUNT_IDENTITY_HASH_SECRET,
     };
     expect(loadConfig({ ...base, CORS_ORIGINS: 'https://feizhuicao.com,http://localhost:8081' }).corsOrigins).toEqual([
       'https://feizhuicao.com',
@@ -150,6 +184,7 @@ describe('API foundation', () => {
       SUPABASE_PUBLISHABLE_KEY: process.env.SUPABASE_PUBLISHABLE_KEY,
       SUPABASE_SECRET_KEY: process.env.SUPABASE_SECRET_KEY,
       INVITE_AUTH_SECRET: process.env.INVITE_AUTH_SECRET,
+      ACCOUNT_IDENTITY_HASH_SECRET: process.env.ACCOUNT_IDENTITY_HASH_SECRET,
     };
     expect(loadConfig({
       ...base,
@@ -167,8 +202,10 @@ describe('API foundation', () => {
     const live = await app.inject({ method: 'GET', url: '/health/live' });
     const ready = await app.inject({ method: 'GET', url: '/health/ready' });
     expect(live.statusCode).toBe(200);
+    expect(live.headers['x-icao-api-version']).toBe('development');
     expect(live.json().data).toEqual({ service: 'icao-api', status: 'ok' });
     expect(ready.statusCode).toBe(200);
+    expect(ready.headers['x-icao-api-version']).toBe('development');
     expect(ready.json().data).toEqual({ service: 'icao-api', status: 'ok', database: 'ok' });
     await app.close();
   });
@@ -188,7 +225,33 @@ describe('API foundation', () => {
     const app = await testApp();
     const response = await app.inject({ method: 'GET', url: '/v1/me', headers: { authorization: 'Bearer valid-token' } });
     expect(response.statusCode).toBe(200);
-    expect(response.json().data).toEqual({ id: '00000000-0000-4000-8000-000000000001', email: 'tester@example.com' });
+    expect(response.json().data).toEqual({
+      authUserId: '00000000-0000-4000-8000-000000000001',
+      id: '00000000-0000-4000-8000-000000000001',
+      phone: '+8613800138000',
+      providers: ['phone'],
+    });
+    await app.close();
+  });
+
+  it('accepts a verified Apple identity before any phone is bound', async () => {
+    const app = await testApp();
+    const response = await app.inject({ method: 'GET', url: '/v1/me', headers: { authorization: 'Bearer apple-token' } });
+    expect(response.statusCode).toBe(200);
+    expect(response.json().data).toEqual({
+      authUserId: '00000000-0000-4000-8000-000000000003',
+      email: 'private@privaterelay.appleid.com',
+      id: '00000000-0000-4000-8000-000000000003',
+      providers: ['apple'],
+    });
+    await app.close();
+  });
+
+  it('rejects a valid legacy invite session that has no +86 phone identity', async () => {
+    const app = await testApp();
+    const response = await app.inject({ method: 'GET', url: '/v1/me', headers: { authorization: 'Bearer legacy-invite-token' } });
+    expect(response.statusCode).toBe(401);
+    expect(response.json().error.code).toBe('unsupported_auth_identity');
     await app.close();
   });
 
@@ -204,28 +267,122 @@ describe('API foundation', () => {
     const app = await testApp();
     const headers = { authorization: 'Bearer valid-token' };
     const revoked = await app.inject({ method: 'POST', url: '/v1/account/sessions/revoke-all', headers });
-    const invalidDeletion = await app.inject({ method: 'DELETE', url: '/v1/account', headers, payload: { inviteCode: '', confirmation: '注销账号' } });
-    const deleted = await app.inject({ method: 'DELETE', url: '/v1/account', headers, payload: { inviteCode: '起落平安-7K4M-2Q9X', confirmation: '注销账号' } });
+    const invalidDeletion = await app.inject({ method: 'DELETE', url: '/v1/account', headers, payload: { confirmation: '删除账号' } });
+    const deleted = await app.inject({ method: 'DELETE', url: '/v1/account', headers, payload: { confirmation: '注销账号' } });
     expect(revoked.statusCode).toBe(201);
-    expect(revoked.json()).toEqual({ revoked: true });
+    expect(revoked.json().data).toEqual({ revoked: true });
     expect(invalidDeletion.statusCode).toBe(400);
     expect(invalidDeletion.json().error.code).toBe('invalid_account_deletion');
     expect(deleted.statusCode).toBe(204);
     await app.close();
   });
 
-  it('exchanges an invite code for a standard Supabase session envelope', async () => {
+  it('accepts a phone OTP merge only from an authenticated social account', async () => {
+    const app = await testApp();
+    const started = await app.inject({
+      method: 'POST',
+      url: '/v1/account/merge/phone/start',
+      headers: { authorization: 'Bearer apple-token' },
+      payload: { phone: '+8613800138000' },
+    });
+    const merged = await app.inject({
+      method: 'POST',
+      url: '/v1/account/merge/phone',
+      headers: { authorization: 'Bearer apple-token' },
+      payload: { phone: '+8613800138000', token: '123456' },
+    });
+    const malformed = await app.inject({
+      method: 'POST',
+      url: '/v1/account/merge/phone',
+      headers: { authorization: 'Bearer apple-token' },
+      payload: { phone: '13800138000', token: '1234' },
+    });
+    const unauthenticated = await app.inject({
+      method: 'POST',
+      url: '/v1/account/merge/phone',
+      payload: { phone: '+8613800138000', token: '123456' },
+    });
+    expect(started.statusCode).toBe(201);
+    expect(started.json().data).toEqual({ sent: true });
+    expect(merged.statusCode).toBe(201);
+    expect(merged.json().data).toEqual({
+      account: {
+        accountId: '00000000-0000-4000-8000-000000000001',
+        phone: '+8613800138000',
+        phoneBound: true,
+        providers: ['phone', 'apple'],
+      },
+      session: { accessToken: 'target-access-token', refreshToken: 'target-refresh-token' },
+    });
+    expect(malformed.statusCode).toBe(400);
+    expect(malformed.json().error.code).toBe('invalid_account_merge');
+    expect(unauthenticated.statusCode).toBe(401);
+    await app.close();
+  });
+
+  it('exposes neutral server-owned phone OTP starts and a guarded password update', async () => {
+    const app = await testApp();
+    const started = await app.inject({
+      method: 'POST',
+      url: '/v1/auth/phone/otp/start',
+      payload: { phone: '+8613800138000' },
+    });
+    const recovery = await app.inject({
+      method: 'POST',
+      url: '/v1/auth/phone/recovery/start',
+      payload: { phone: '+8613800138000' },
+    });
+    const invalid = await app.inject({
+      method: 'POST',
+      url: '/v1/auth/phone/otp/start',
+      payload: { phone: '13800138000' },
+    });
+    const password = await app.inject({
+      method: 'POST',
+      url: '/v1/account/password',
+      headers: { authorization: 'Bearer valid-token' },
+      payload: { password: 'newpassword10' },
+    });
+    const authorizedRecovery = await app.inject({
+      method: 'POST',
+      url: '/v1/account/password/recovery/authorize',
+      headers: { authorization: 'Bearer valid-token' },
+    });
+    const unauthenticatedRecovery = await app.inject({
+      method: 'POST',
+      url: '/v1/account/password/recovery/authorize',
+    });
+    const unauthenticatedPassword = await app.inject({
+      method: 'POST',
+      url: '/v1/account/password',
+      payload: { password: 'newpassword10' },
+    });
+    expect(started.statusCode).toBe(201);
+    expect(started.json().data).toEqual({ accepted: true });
+    expect(recovery.statusCode).toBe(202);
+    expect(recovery.json().data).toEqual({ accepted: true });
+    expect(invalid.statusCode).toBe(400);
+    expect(invalid.json().error.code).toBe('invalid_phone_number');
+    expect(password.statusCode).toBe(201);
+    expect(password.json().data).toEqual({
+      session: { accessToken: 'next-access-token', refreshToken: 'next-refresh-token' },
+      updated: true,
+    });
+    expect(authorizedRecovery.statusCode).toBe(201);
+    expect(authorizedRecovery.json().data).toEqual({ authorized: true, expiresAt: 1_800_003_600_000 });
+    expect(unauthenticatedRecovery.statusCode).toBe(401);
+    expect(unauthenticatedPassword.statusCode).toBe(401);
+    await app.close();
+  });
+
+  it('does not expose the retired Native invite-code session endpoint', async () => {
     const app = await testApp();
     const response = await app.inject({
       method: 'POST',
       url: '/v1/auth/invite/session',
       payload: { inviteCode: '起落平安-7K4M-2Q9X' },
     });
-    expect(response.statusCode).toBe(201);
-    expect(response.json().data).toMatchObject({
-      accessToken: 'invite-access-token',
-      user: { displayName: '起落平安' },
-    });
+    expect(response.statusCode).toBe(404);
     await app.close();
   });
 

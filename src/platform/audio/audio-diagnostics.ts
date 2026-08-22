@@ -2,11 +2,27 @@ export type AudioDiagnosticLevel = 'info' | 'warning' | 'error';
 
 export type AudioDiagnosticEvent = {
   at: string;
+  attempt?: number;
+  byteSize?: number;
+  canRecord?: boolean;
   code: string;
+  diagnosticId?: string;
+  durationMillis?: number;
+  elapsedMillis?: number;
+  format?: string;
+  isRecording?: boolean;
   level: AudioDiagnosticLevel;
+  mediaServicesDidReset?: boolean;
+  meteringDetected?: boolean;
   owner?: string;
+  mediaDurationMillis?: number;
+  operationDurationMillis?: number;
   phase?: string;
+  playbackDurationMillis?: number;
   reason?: string;
+  recorderState?: string;
+  recorderDurationMillis?: number;
+  runtimeEpoch?: number;
   scope: 'session' | 'recording' | 'playback' | 'transcription';
 };
 

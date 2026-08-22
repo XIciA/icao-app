@@ -1,0 +1,2360 @@
+{
+  "schemaVersion": 1,
+  "scope": "existing-vercel-web-source-and-export-inputs",
+  "baseline": {
+    "capturedAt": "2026-08-12T10:44:47.748Z",
+    "repositoryHead": "629a8ce4727803e4e28c36258828a7fd0353a31d",
+    "workingTreeMode": "exact-current-files-including-uncommitted-state",
+    "remoteProductionDeploymentVerified": false
+  },
+  "selection": {
+    "webGraph": {
+      "entry": "index.js",
+      "platform": "web",
+      "routerRoot": "src/app"
+    },
+    "exactPaths": [
+      ".vercelignore",
+      "app.config.js",
+      "app.json",
+      "assets/images/favicon.png",
+      "assets/images/icon.png",
+      "index.js",
+      "metro.config.js",
+      "package.json",
+      "pnpm-lock.yaml",
+      "pnpm-workspace.yaml",
+      "tsconfig.json",
+      "vercel.json"
+    ],
+    "trees": [
+      "api",
+      "public"
+    ],
+    "additionalRules": [
+      "src/**/*.web.{js,jsx,mjs,cjs,ts,tsx,mts,cts}",
+      "scripts/**/* whose basename contains web or promo",
+      "tools/**/* whose basename contains web or promo, excluding tools/check-web-freeze.mjs"
+    ]
+  },
+  "fileCount": 326,
+  "combinedSha256": "4dee53e84606f7406b78f08d5cfccb6d184b4d3567968882cf94ad89148228f8",
+  "files": [
+    {
+      "path": ".vercelignore",
+      "sha256": "18df591845bcc58d329df782b9f7b66572880d2b2ec18f6a8f212841064017eb",
+      "sources": [
+        "exact_web_config_or_asset"
+      ]
+    },
+    {
+      "path": "api/_lib/ai.ts",
+      "sha256": "d2c340f81b25238efcabb025a35e5d55274ad88936f74678a91949fd60f8833c",
+      "sources": [
+        "tree:api"
+      ]
+    },
+    {
+      "path": "api/_lib/http.ts",
+      "sha256": "fab0eea3837adec15eaedd4550d0d57d072cb634bacd8b47ad6696b80106c2b0",
+      "sources": [
+        "tree:api"
+      ]
+    },
+    {
+      "path": "api/_lib/session.ts",
+      "sha256": "c42a94166817edb79ae0a0c235343f1a2e0154f5b63ab6ebc4fac1a716e52a8e",
+      "sources": [
+        "tree:api"
+      ]
+    },
+    {
+      "path": "api/ai/consent.ts",
+      "sha256": "7adbb9d9b0a56c1cd81804d67842d1a31013720a07886a6aa744a9ab03a6d509",
+      "sources": [
+        "tree:api"
+      ]
+    },
+    {
+      "path": "api/ai/grammar-review.ts",
+      "sha256": "ccc317536da99f47b6d7dfffc6bdc4fdea9fb2f7a72454792fe47f29e1237bf2",
+      "sources": [
+        "tree:api"
+      ]
+    },
+    {
+      "path": "api/ai/polish.ts",
+      "sha256": "55a55e8da16b343f6e3c3917d4dea44ea0098781642a07bc93727343ff73c0c9",
+      "sources": [
+        "tree:api"
+      ]
+    },
+    {
+      "path": "api/ai/transcribe.ts",
+      "sha256": "536517a28496054001600cb359b31ac231f1865e06171c357a464ccad4893f86",
+      "sources": [
+        "tree:api"
+      ]
+    },
+    {
+      "path": "api/ai/word-lookup.ts",
+      "sha256": "ed1f4a59717fee4ccea7a72d35d8ae62fd48c9f4874b5cf33017c4ad54c98b39",
+      "sources": [
+        "tree:api"
+      ]
+    },
+    {
+      "path": "api/health.ts",
+      "sha256": "3601d9a6fb9bf55fcc15850b4fcfdbfe09742f186619ca1f3731fd1f2e8afd95",
+      "sources": [
+        "tree:api"
+      ]
+    },
+    {
+      "path": "api/session.ts",
+      "sha256": "5f34db87ce9c287bd789f0ffe94e12dd0a0235b447805fd84404384e5551a09a",
+      "sources": [
+        "tree:api"
+      ]
+    },
+    {
+      "path": "api/tsconfig.json",
+      "sha256": "b8d5d62ef3abcc4dcf5684b93912cdfa97a17556cda44ae9dee697cdd1e41e5d",
+      "sources": [
+        "tree:api"
+      ]
+    },
+    {
+      "path": "api/unavailable.ts",
+      "sha256": "787719f7f7723c4d836d6393710c115292ad24824a95307f3a0dd9f6d5303207",
+      "sources": [
+        "tree:api"
+      ]
+    },
+    {
+      "path": "app.config.js",
+      "sha256": "ef86f584c63ca164af3963837a14730e3a5cba85cb723c5b8e434bb2dfb0872a",
+      "sources": [
+        "exact_web_config_or_asset"
+      ]
+    },
+    {
+      "path": "app.json",
+      "sha256": "13ba66ba35eb7abe28dda7fe42c7e976cbb32c7b554b35bbb1ff12dda3b0bf87",
+      "sources": [
+        "exact_web_config_or_asset"
+      ]
+    },
+    {
+      "path": "assets/images/favicon.png",
+      "sha256": "033549abc62047426427a3083cd311409aa3301979afaa8c04f32c0723c9ffbe",
+      "sources": [
+        "exact_web_config_or_asset"
+      ]
+    },
+    {
+      "path": "assets/images/icon.png",
+      "sha256": "ce1fec3052cbd5cd1138f3dee94624b17083f6b094298b9fbd88f03c19058cb8",
+      "sources": [
+        "exact_web_config_or_asset"
+      ]
+    },
+    {
+      "path": "index.js",
+      "sha256": "f07698845ef2b71a717a252c859122e0d9be8ae5d07a5d407c0c97cf4d478a94",
+      "sources": [
+        "exact_web_config_or_asset",
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "metro.config.js",
+      "sha256": "f198870ad147b9572961c05327bc3616077328d9696aa5debb6103d8aeb7a71e",
+      "sources": [
+        "exact_web_config_or_asset"
+      ]
+    },
+    {
+      "path": "package.json",
+      "sha256": "e3f24387c649f411ea5cb2a163f4787360bf53ee0ec0c3a826278fd33c67daf8",
+      "sources": [
+        "exact_web_config_or_asset"
+      ]
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "sha256": "e48f0d9c864cf30a4494d304a72efbe9c55266d92330f5c10c867dc423fcd53d",
+      "sources": [
+        "exact_web_config_or_asset"
+      ]
+    },
+    {
+      "path": "pnpm-workspace.yaml",
+      "sha256": "05f294d91fe4dd95fde08a83ee12d106a8614c9f35f83e1e960f4870e609f94e",
+      "sources": [
+        "exact_web_config_or_asset"
+      ]
+    },
+    {
+      "path": "public/promo/apple-icon.png",
+      "sha256": "da678942d4656a903f61000551cc51c09464d7a223faaae304e8210e1ca19257",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/icon-dark-32x32.png",
+      "sha256": "8a1570b2955c3748b6844356a7487d88c60f9f1e699e870a3452a3decd1ba03c",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/icon-light-32x32.png",
+      "sha256": "83145e5bb033ace23cd8e7fbb63e7c39733aaf58f8a7280d7800995cced6f7c2",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/icon.svg",
+      "sha256": "263f117c0c69a44d3206a5702105c178ebaa164bca325f3c3973a13bd948f1bf",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/index.html",
+      "sha256": "b9df2fbf05aca4ae92aae13df4909934490fa7f7a9026f6e14e2de0fe3a56b44",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/chunks/460-61c97d362998eefc.js",
+      "sha256": "13bbc6b5d877b1539c389f6bf371c502a26aabfb5ebcf83a5b5ec35db8010a8d",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/chunks/4bd1b696-215e5051988c3dde.js",
+      "sha256": "f768811066891848dc107ada37148d3af9d37db69ed00ef12aae26c1017ad72d",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/chunks/794-5fb6eff04a716ab6.js",
+      "sha256": "941f0f21a78c296b8648934de9470f807b37cc95f7436205d8333353b55c1fee",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/chunks/999-dbb92bb463dd6256.js",
+      "sha256": "a203da1926b637484a585aea84f4260cfa1046d63fca40204e2d51599990001d",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/chunks/app/layout-6c8ab5637d981b23.js",
+      "sha256": "2ba2aed5ac0d1658f6dc642a71b94fd50d8184324493e52b0a438aca57c8a557",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/chunks/app/promo/page-a9e122fdff859af2.js",
+      "sha256": "7df9b67ed43dc7eb8dd3bbb863d94f1fb6a686226c0e5890f907a242009e5dee",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/chunks/main-app-1172a43c4d3d5d72.js",
+      "sha256": "1468dbd210f7275e78bad440ccffdfb8cffcf3ff3f40d17ce9d202bc700f2105",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/chunks/polyfills-42372ed130431b0a.js",
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/chunks/webpack-1fdb114fbf78b4cb.js",
+      "sha256": "1007d9531f0cd386c890a107cd214e577345370710c72c4e7585668c6c7e1ffb",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/css/bcb1779cbb38c543.css",
+      "sha256": "d2169567be078b66b73f7a3561ad72e7d47ef9c17ab4239cda353d21f8a106c1",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/css/d535c148c49e8fb7.css",
+      "sha256": "5df4431fbc46de5283bf2241aa384c0f6fecd82d487de11511ff97f7d7d381ce",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/css/ecab9b5ae9032a38.css",
+      "sha256": "c4891428fdf5bb2aa3516bd4ca3c4acac63950d91a1dc525c275ab2da64c39a6",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/013b72fa676f92e0-s.woff2",
+      "sha256": "e27f657e38d52887baa3b6b2f812bef93dfdd356f0810e40edd4ee284cc7e9f6",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/01bdb1c2bb2f530a-s.woff2",
+      "sha256": "c704af2f7f454c232781096f5dd48f7438174db64b40abf28963dc847045ec2a",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/060fd7a2ba6f57dc-s.woff2",
+      "sha256": "4670539162ec83c4603b5cc552e8492491b54622a408bcd98101aa239c7d2930",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/06d755a5cd3e2b96-s.woff2",
+      "sha256": "89a5c6ab5b4faa068df9c289cf79d1bab3e068f3e07b7fad019f0bc17333d1bc",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/09341845bc7215c3-s.woff2",
+      "sha256": "296b358f385d00a0e592fec49e8d6e2bebacfe3d3a482b4ec17ba1f83657b196",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/09d8b46d011a8a55-s.woff2",
+      "sha256": "1b8db7f344c8b80f918a87aab300f386f3f6094a8b638d2e6a2479d582af894a",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/0ac3ab6b6a54cd96-s.woff2",
+      "sha256": "7e395932ef1c5961d6b92263bfe71309648dcda03151d3873a3b1fa99dac0f1b",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/0cb7a0edc360425e-s.woff2",
+      "sha256": "ad1ec109702ef31152c19acc3a59e8fedbd237f15556be071d404e7ef3055e39",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/0de82041d2acf4c3-s.woff2",
+      "sha256": "042630ccc1f10a3c076c6358ec1100579053752045e3e3b6ac9229a4b90d8c11",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/1249fbbadbb69451-s.woff2",
+      "sha256": "8b3ae6c6a94924aedf8be6328745608a012f8d6042ef3ca6c3d6bb4f61bde86d",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/182682366c265526-s.woff2",
+      "sha256": "4708a6c176466c7823f3ce335ec94d5e9b008c0b0cf510f5802565887006e2b4",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/22a5144ee8d83bca-s.p.woff2",
+      "sha256": "9b6f5ff45b278c744b5f379a2c4ecbaf858a842b8eaf82ac8d21b699ca16c608",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/246116fa49278f72-s.woff2",
+      "sha256": "a7edea1ab0808d6aabe3ebade5131abdd4fcc8841c66e7b74aa0f9f6e38053aa",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/2ad4a039dd2c0f35-s.woff2",
+      "sha256": "474b4dbfe6db34fdc1b2edf4c5c8b7ebdad9ecb72c5d19dc00c1b10f5de8f010",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/2b5b02fc7e511755-s.woff2",
+      "sha256": "745994b5cd950ec201b66526375f057d540847cccfc70f4f24f5f571d26d3923",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/2cd94acf7f6a8cd1-s.woff2",
+      "sha256": "bc2ea3b31632e0588757317f7816124337dd7cfcb87bf7f2e15ef72dc3e5aea0",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/30af2a5bc088caeb-s.woff2",
+      "sha256": "6ef9dbc0196f0e56763181b5ee0ac59f65c3b93b9a73e40bf0784fd41bf9fb9e",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/3117748ae3be552d-s.woff2",
+      "sha256": "9ce339361b4d508f7d520796890d38be17fe5e3b7b3241303fd756d9ffda3162",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/373befd5a68230ff-s.woff2",
+      "sha256": "dbffed4fb73d0173f3bc41a8751c5c78f850f010a089ceecf85454769641e78b",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/37ae20ae1d329cc2-s.woff2",
+      "sha256": "834c8d0622f63a1ebab08a4e5da9f661c75141eb0b779c8a423b2eba418967e7",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/3832bef2caf4f297-s.woff2",
+      "sha256": "c5f3e637af016af27ab86cfbd694243dce1d6b3c3562377803ff7f70188ff80c",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/3b6ebd4dd223d8c1-s.woff2",
+      "sha256": "fb4e744db699c2b01be2831d9a090524456b800099aa42ec81a95c3225bb86ac",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/3da25081fc21e3b2-s.woff2",
+      "sha256": "2da04fe98e7eb332524d395cd4f13d9a4626c037d77599c50e1ad731af907e6e",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/3eb545844a1630b6-s.woff2",
+      "sha256": "d1a88f1ead7d8a19b91e6811a1e4e2114dd15516d8751d57f8f90360c289d885",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/41870aeb5505be99-s.woff2",
+      "sha256": "837c860c57686f1918dbeb348ad6811e9b26992e3ac8c574ea20642790dc4bae",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/45c8f5377f81d417-s.woff2",
+      "sha256": "ea40e335d816d52492ef32686cb4439ff65dc65b53c8baedfcbdeab6d44514b5",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/48d86e2f8821c61e-s.woff2",
+      "sha256": "6cf3eb9cad4cc2f78c164e83306cc9451bd3c4bfbacffc66fdaa9ae32da21e38",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/4957022da3161c6e-s.woff2",
+      "sha256": "e46ff0466edbaacfcf88f826d2acf6658b705983d8563f62baf9a12728474504",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/4be71ddc6c749643-s.woff2",
+      "sha256": "782452cbe372494b23f634e8b5d6c7893352def1a005c63f48b252dff79487b3",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/4dc4381bbf526d04-s.woff2",
+      "sha256": "6ceb5902615653f16ba0549272530f180107a9e5e8ef4503f1503637859648cc",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/4eb0814ea9e22f45-s.woff2",
+      "sha256": "17eb7afd55036b86748f51a779b9424a2a64563e949a70fea03a71d662ce486d",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/4f86cf50532e0e9b-s.woff2",
+      "sha256": "650a939f03de55a5cdca17ca8e4f43f54bf2687c25819102a76f62d99fee48f1",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/5022b11bb4a81e48-s.woff2",
+      "sha256": "e5313bcb399e45e9cca8c2337314e99d3c95972e38dbe0dce5585be0dc284d7e",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/5080c55e2dccd63d-s.woff2",
+      "sha256": "4587b84a41332990e380cba554e06e5dcdda3e3e17f29b25e81447488dd89217",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/5348b1e69a651725-s.woff2",
+      "sha256": "2c7385493055759bb67da7ddf9e88375a5c335c8693aabaaa83810d02c09ffb7",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/54c50561be23e605-s.woff2",
+      "sha256": "b6ce0831978c5889d28317fc03ba5d2ab08384976b1841e578f2edc66876abd9",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/567d6f765096ee76-s.woff2",
+      "sha256": "1868620dcde3a615ff47531bb0032e0bdfcbbb7696c7b7168492940a39d519cd",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/58045d1f8695a418-s.woff2",
+      "sha256": "cfbda09fec2567865a8a761ef93062ae5f711889b7523026b0ec0ca4f7a68e92",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/5a274ddc03d9a5ab-s.woff2",
+      "sha256": "ebe07064881bbfab65b1afc054cf484d77440374d98a138bf66d44cf5c671e59",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/5feee92221bb8605-s.woff2",
+      "sha256": "973a1037dceead92639ef647fdb7526c40846e3428976198c4ab04596ecee072",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/6067d3f78ecc4535-s.woff2",
+      "sha256": "2e7fd9066d4e2e3da7be15336a87da9d1725cbe4f796cd9c3a969d80f048100a",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/61a11ca45429493a-s.woff2",
+      "sha256": "40ffb358e64eedca24fae79dd9400f47f4f8da5250bc8a5289493da9c67941ac",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/63d030730737efae-s.woff2",
+      "sha256": "ae5cdcb1c4faf5acef0b9045f060a8e83d7c3266a4fe8ab930dd023ebf22870e",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/65f03d54ccadf4a8-s.woff2",
+      "sha256": "d67e4a94ba498635f764ddca7d1ec4271f5642f032eb24b426764480f66f8497",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/6bd056ddce336924-s.woff2",
+      "sha256": "496f8f9bab7cba81520d3d11f1570cf4579e83b59c4dd018e8cc8f1512ed3732",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/6dc0bae4a5666821-s.woff2",
+      "sha256": "80cbe1f2b9c2cd4db4e491003f7d09806d5b60ada1792bc17c7d4d81aa5a79a0",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/7513cc52807669ca-s.woff2",
+      "sha256": "84997861676c9bae5324a52de385c0467858d168805998d3509be31090d5ebf1",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/75ae81fea4aec8c5-s.woff2",
+      "sha256": "5315cd7852f4556ef0d06d95d22d6f7cde9e2fcff135134e1cec61f3d325ce2a",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/77f6534b6a3eb37a-s.woff2",
+      "sha256": "3538f75012bbf8d8934125d5f2701ad16075d5c0257bda002a75b3d5ac2abede",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/782d4006a26041e7-s.woff2",
+      "sha256": "4693770f950c84313f48173b13106c966b471a1aff3b110440093bf4b77ffebe",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/7d4881bb7e1bf84d-s.p.woff2",
+      "sha256": "5f3d6ad60f29d6cb708414ec6887163d63bf197377ef5417d2483ff31ace6c3b",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/7d509f4f988023eb-s.woff2",
+      "sha256": "14be1e31de35528e95e5732b588f3c6d25a14117e152fd94f7f1677f709b01e7",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/7d58f39a50828c68-s.woff2",
+      "sha256": "cbd375808a8f32d3bf51e277d238f9de60a56ec1c3c791a61993bf5cb2864b03",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/7db71cc013812f1c-s.woff2",
+      "sha256": "266ad8c16bc7f8282dad4b55e6fddd6e21f43520aee248647ae5715d59552dfa",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/7eb3f914ae6dd7a0-s.woff2",
+      "sha256": "3fa16c7d779824151a721cf2101aa3acda5b843f5e094e7602aa9ab258eb08fe",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/8051eb8307aa13c8-s.woff2",
+      "sha256": "ad7f9aece198ec03ecc186052adcab633e889bbb06cd20b8c059f3e94374803e",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/829dca987e1e010e-s.woff2",
+      "sha256": "a866e74045fa35af957ea063623a4759955c57e1d2dece7b4f14a10a71a2d1c1",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/842f675c7a332a48-s.woff2",
+      "sha256": "8a255b870c7bd24499b1b64e7e36d691cd5ad4e02e890967158ce72d0bba241b",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/866e2e7b0cbc2cb4-s.woff2",
+      "sha256": "815811bd7585bd7028bab0035b5258df50420917150bb02737002bb9b8ecb4e1",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/86b38dc7f713ddda-s.woff2",
+      "sha256": "6d50a9587f5e3b2b7b6061d7ceb17972b6ae471c6edc38d0e1db76ece7859324",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/8a3a66ae6bb27151-s.woff2",
+      "sha256": "36b0ad95f7484b64dabb96fcf83423c8e5fdd343290467a38f9fad93d3fe2bbc",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/8b56b70f6d577d9f-s.woff2",
+      "sha256": "c5f2c63f333640d2f7c24498c0ace4447e54f3bc0751c019ed98b55a8c319c5a",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/8d93dbb77672da11-s.woff2",
+      "sha256": "7240ed44b7738d40ffd8c01dd46ddc674fb329b7e46b307880d4fe69e4ce846f",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/8f5c2d0a25b8f50c-s.woff2",
+      "sha256": "bca890604cda0fca672386ec2a65d585832704c09dd628d141213fecfbb35074",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/966e6d14b6c229fc-s.woff2",
+      "sha256": "9576332f2a473094fb110562da8e21b547dcb69073dfe8e24167f0cf3dc3a231",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/9766a7e9e2e0ad5a-s.woff2",
+      "sha256": "6129fc8571c3e0cb0a4c41f5160c974a843b055009dc4ad8858bd808e18a2d86",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/9877fefe733dd250-s.woff2",
+      "sha256": "1f868051a8bf937bb03c809f1ad52dc1d2fb78037a1c4f942f0f1c4142d0e466",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/9c57f4420502d43a-s.woff2",
+      "sha256": "1ff783685059ccf2299afbcf41f485a330ea888f62b95c5f2c9c83bac5f78125",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/9cedd2ad7b0bcf3d-s.woff2",
+      "sha256": "4af6147be9f2e61c3aad5c855e12a5089c25a0d7bfe94b53d0a28eeb24729d5a",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/a00fb5ef1ca68e5d-s.woff2",
+      "sha256": "751bd5775c805c8e26c96e062d00d7632e3b93ccc4703f366649509ab211ebaf",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/a171b1d72388367c-s.woff2",
+      "sha256": "c49561885d2802a1eb759aa7b152a0d8f68842b789f3e16089d14e697f73bb92",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/a310fb84e6868735-s.woff2",
+      "sha256": "d12f6642ce00cabbc23a5f7abf7b5cefb6a93554d6bfa9808398922b5e645af1",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/a53504b22c396db6-s.woff2",
+      "sha256": "ae2d278a2ec633ead9e47ba12d777e073cb7c5f923d0eea282268f207c88ee7a",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/aa016aab0e6d1295-s.woff2",
+      "sha256": "58a6b173d5ca1dec92166ea3c6cb1a84a4144556d10928ac14e8e6b40e4787bd",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/aabb87babcdda375-s.woff2",
+      "sha256": "c8476db3fbba41856cbb3c1683a97df0964b804f6818bb96d34c4325514f9fd7",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/afe75c8050c8fd4e-s.woff2",
+      "sha256": "e8f01587de1e099b2ca32cb37ce6ffad2af11199048efa9f0cf13783784a333e",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/b201193f76404e13-s.woff2",
+      "sha256": "83bf094bd8a87732a5d2e79069c22b30ca46890e18c7fc9e539612873070c204",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/b20daecae68a588f-s.p.woff2",
+      "sha256": "c295abb1cb77ccdaceac3704c57853df46a761ba53a47c5260b1cb6992e8fda6",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/b2574bc564dca98d-s.woff2",
+      "sha256": "c93234bd053cc53f0f71f1cc13565b2d1f6bec16d4ebc90420430c06541c4f4d",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/b66cf8e69499582a-s.woff2",
+      "sha256": "f689f638f29fff460a2d5749edb5d5c38d7bef0389f32032d871f23fc6ebb008",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/b6a1339c290590d0-s.woff2",
+      "sha256": "803d6e7987b319aeb7c1f1c5671cb0005c50044483140832356fae0f046ca5dc",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/b6fe4b2295863fe4-s.woff2",
+      "sha256": "f52842471f7a4d931b81fcaa37ddcc7da2281ccc043b593c10f4dd351ad30fd2",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/b9408752a0c24fb9-s.woff2",
+      "sha256": "75b3bedbebc35f347c0ae3b416aa871941555357e7b0f83767eb5987875589ed",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/bb8ff9c700288292-s.woff2",
+      "sha256": "4769ea1f9d54b8f3ba8ad8cdced84deaf2806103d5423326c437039ecb418580",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/bc1ccfae4ae17995-s.woff2",
+      "sha256": "584785876a5f0cc425fce0736406554ad747fdc18aab43c4ad9a7e679c75e759",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/be15c189f996aeb2-s.woff2",
+      "sha256": "67d2655f88a0451e16d24831795ecc3f497feef462b2dae5a91dd0bc0c517172",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/c0d1f6928a1dbc31-s.woff2",
+      "sha256": "49e34eb82b76e0ebab35f4cf977b2a4828feaca62fabbc7b0fe52954cf266771",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/c36d8bb68a53eb60-s.woff2",
+      "sha256": "f86b1d47d8682617190bb64133f5548428a325ac9fb38eb34d9459cd31acfb7b",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/c5db947ee2561e06-s.woff2",
+      "sha256": "f3666a14f5ab7707c2e9ec73cb2a4075e1c66bcfddcef479c0144aaf03e09ca4",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/c77ac7f613b44045-s.woff2",
+      "sha256": "ce58eeb39a4a8a05a5f88929082030939424aae8b7e4bf174fb31e2185f77476",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/ca73d0c74010e612-s.woff2",
+      "sha256": "740e31fb7861be945ef6a565aeca97b49b4d5573f1c148aa4d6ada67619c2e37",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/cfbad6ceeeca5c58-s.woff2",
+      "sha256": "a71cf1538eb30d8f5fddd86ade1973aa7deb20b237edc3e8945ffd8d1cf03c3a",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/d24aebb82f01e48d-s.woff2",
+      "sha256": "90cc9eda826a15b41d93c8546e3e4c98708ecae34cd6f1317bff6bed6863d9e3",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/d2c6107607eb7d44-s.woff2",
+      "sha256": "889cb2eeb801941d1675036b3bd596c0d370faea1947d198468d6bc3f53107a3",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/d2c7d5e8db7ce20a-s.woff2",
+      "sha256": "2fea10a32b2490f49afda7a78f2d5c8ceae389933297bbb3684ea7b8181f46dd",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/d51f7558abc55aa6-s.woff2",
+      "sha256": "0b3cc9c8407854735da738293268f8aee553ff22caf5accf7e544f39b6392660",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/da718921282f76d0-s.woff2",
+      "sha256": "0af5a04314200627801ed9dff0c8cb2526c30dc76981fcede443a06cd35aace6",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/dae37106d788c7c9-s.woff2",
+      "sha256": "34de79ce62e48683ab06d69a248d275911403326cb26f91e081b0ed7105059a6",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/e038a29029a234f2-s.woff2",
+      "sha256": "16e1d48b6dd29eb240aec5db36184eb182933c082cd43de7f35af686d58087d2",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/e0d4cd45847004a4-s.woff2",
+      "sha256": "a56ca5009b41ad39553bcb89aba95e1d7ccde2e91cc07f6787af05c5dbef898b",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/e100c7a7874aebd9-s.woff2",
+      "sha256": "67bf8f9ba0a97c38d49bb52e11ba09bbe6cb966df6d194883bdda5c017b080fa",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/e26dff18031f4a7e-s.woff2",
+      "sha256": "655f4f75ebad483019e8741e32622e0692fb4cdb1c471dc512f865d471fdae51",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/e5b759c1d5c42d99-s.woff2",
+      "sha256": "17d443c3d5ed4bcf621fdb09c5171725681a5e845b4cc05ebddb4fc995373f17",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/ea21a07081db26d0-s.woff2",
+      "sha256": "0a47a21c2e7dca05341574000500a55eaa7e21e6bfa9a9f1a6323303b4101c60",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/eaee7682c49bd1c2-s.woff2",
+      "sha256": "5b70b8ca00cc3467f3fe5df9005fcb00e9f5d1df3a9bd945aafeecde2e9d243a",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/ec408158b9e08aea-s.woff2",
+      "sha256": "49cceeaa9f25f307a2dd4d3ce02bb9c33b035cbb461031c9dd2ffc1e90385557",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/ee5d9aad76ea4c0a-s.woff2",
+      "sha256": "381f1fa4ceaacc9e5431b13c4aac8b936945692efb290b332642696bde00c32d",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/efdbc7cff3271ee9-s.woff2",
+      "sha256": "c9ce19df1e39eaa09e3a60aa7b67c54c949e64f68972327c1105d1c76e61b955",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/f128be4e72405705-s.woff2",
+      "sha256": "19d4b346d120e63dd134d241c07b954ba26785b045f7b48e3f3a8821b5bf8403",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/f639721981034f88-s.woff2",
+      "sha256": "b7a545bbb08256bd809f11cfe66d88da3e22d169ea4407737b1ef0ec1ed3d791",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/fb6cfff6119f26e8-s.woff2",
+      "sha256": "bd365c058c05a9c6ef219b39a80be18443c2137767c2f3fef2249bf68c7f9b1d",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "public/promo/legacy/static/media/fd516adbc3328c82-s.woff2",
+      "sha256": "3789541ab21901c4ada9ebc8056a24b6efcd423eef7c6b897251380f697c3193",
+      "sources": [
+        "tree:public"
+      ]
+    },
+    {
+      "path": "scripts/analyze-web-bundle.mjs",
+      "sha256": "6b52c23f0476ceafc965e59257d0af6ab82ceaf9e1a88fcd04868ef125c5062a",
+      "sources": [
+        "web_build_or_deploy_tooling"
+      ]
+    },
+    {
+      "path": "scripts/check-promo-assets.mjs",
+      "sha256": "775076a7e6ce42421e4a81f63d44d57214baad97becb60a540e8a2881bbd1056",
+      "sources": [
+        "web_build_or_deploy_tooling"
+      ]
+    },
+    {
+      "path": "scripts/check-web-boot-shell.mjs",
+      "sha256": "7d8e4f7b29f657396eaae21db127797241b974643514e1593db55bba6105082c",
+      "sources": [
+        "web_build_or_deploy_tooling"
+      ]
+    },
+    {
+      "path": "scripts/check-web-content-data.mjs",
+      "sha256": "a983d2ba290deb0338d6bf1fd24afec0e2ee82dde9fb36b9ce413b22618c85c4",
+      "sources": [
+        "web_build_or_deploy_tooling"
+      ]
+    },
+    {
+      "path": "scripts/check-web-performance-report.mjs",
+      "sha256": "1f1747674d193b9692e064ad458ccd309effaf9f06e2e2a7f2cab6c65090d990",
+      "sources": [
+        "web_build_or_deploy_tooling"
+      ]
+    },
+    {
+      "path": "scripts/check-web-question-bank-assets.mjs",
+      "sha256": "cef0e23891794d3748ac822f34b4ba2bce144acc09dd49b2ce69546d96a9ddbb",
+      "sources": [
+        "web_build_or_deploy_tooling"
+      ]
+    },
+    {
+      "path": "scripts/inject-web-boot-shell.mjs",
+      "sha256": "8582ac019ddba077f3d248aa9215f880a7fda6b7f4564417e1a66f567721dc75",
+      "sources": [
+        "web_build_or_deploy_tooling"
+      ]
+    },
+    {
+      "path": "scripts/materialize-web-content-data.mjs",
+      "sha256": "a6be6884de33ce4a908b8500f252c637e7e006601159cce1330217807e6275e4",
+      "sources": [
+        "web_build_or_deploy_tooling"
+      ]
+    },
+    {
+      "path": "scripts/materialize-web-question-bank-assets.mjs",
+      "sha256": "18084492e9841233d4b8ca7cfd7ebd8b2d006854696c51caccc7f735d99aff4a",
+      "sources": [
+        "web_build_or_deploy_tooling"
+      ]
+    },
+    {
+      "path": "scripts/serve-web-export.mjs",
+      "sha256": "28f103c372516147cddb1718dda14e9f1eac03f9754b67f5775d88a23d09ab5f",
+      "sources": [
+        "web_build_or_deploy_tooling"
+      ]
+    },
+    {
+      "path": "scripts/web-bundle-baseline.json",
+      "sha256": "df248ef04489d2bc4e4f226d7aa3039184b78804504cd520c9f5eb7abd5c8ae7",
+      "sources": [
+        "web_build_or_deploy_tooling"
+      ]
+    },
+    {
+      "path": "src/app/(tabs)/_layout.tsx",
+      "sha256": "fd5a80c19c26a902df5886dbee47df6c4498b9d95e7278cb5161686f0e7edcee",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/app/(tabs)/discover.tsx",
+      "sha256": "a3d790a7cd9914028d3d312913de6bb48b3631a0fa05ffce78a98093b60705bd",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/app/(tabs)/index.tsx",
+      "sha256": "c891280815fe2825f17c5fa62e69c0ada981ad24b1ae2d0a792a4a864071f1cc",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/app/(tabs)/profile.tsx",
+      "sha256": "58b6cdaa80d28a2aacde9c3fe17016e2b9cfe7a623d47d1c6d6f6c743042ef06",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/app/_layout.tsx",
+      "sha256": "54901d27f40d4bc8f205ecc72f8df4f6407fa8a6be76538863a34666b1a03a8b",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/app/account/[slug].tsx",
+      "sha256": "a06e2abffa777696d379f1e7e22e8a4adcadd19d0ef4fc26e2f938c353127762",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/app/annotations.tsx",
+      "sha256": "89e63f0bd8274c555b9ecca525d4273e31856b7d83df75b254a990df128cbfee",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/app/auth/[slug].tsx",
+      "sha256": "86b7b730e0666e166b11c849b598376d13e821c8c75cdd8f1c1709950155c871",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/app/content/[slug].tsx",
+      "sha256": "35967f60adb0b813603f003008ab35041439b1496a47f4274e0c2c1bc29b586d",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/app/content/hotspot/[briefId].tsx",
+      "sha256": "c013df5c594192de3c81f38fda5665f42d4a75eee2f172683c37de82c318e3a5",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/app/content/hotspot/[briefId]/study.tsx",
+      "sha256": "e70819bd362588b086fa01f09fd972cae5eecce59f2871c53dbbed325bbf3885",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/app/content/resources/[articleSlug].tsx",
+      "sha256": "d284a1ea4c43a7fc34da69e4f7d22932032d70609e132463bc804d302f18b557",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/app/index.tsx",
+      "sha256": "1471b628ad1474d57b2c1c6ab651ce5e6a9df9bfa5369b68b36be906edf1350e",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/app/info/[slug].tsx",
+      "sha256": "3193da2aa0e27867805a52e73311fde6e7b6a1288ec11edf2e5d11627ee34559",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/app/learning-records.tsx",
+      "sha256": "b13aa6171f098c20d43ed705156f0ffa298bb615d47338134996efc29bcbbd47",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/app/legal/[slug].tsx",
+      "sha256": "6b20e97735aff69bf69dc26edaefd0b7f9705f658ee92b13652c63101496bd7f",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/app/question-bank/[bankId]/index.tsx",
+      "sha256": "04ceb3a057f61084cbc72d3d27334d1170aca841885e71560a0dc04476ee28ab",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/app/question-bank/[bankId]/study/[categoryId]/[topicId].tsx",
+      "sha256": "2c58b1d7bb5477cc782e3984b56c46c57b1c65b707dbac13ac70fcd8593bfe39",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/app/word-favorites.tsx",
+      "sha256": "e29160f60b08124a61b85102f818007bb25a5c79b65fff428782701774191297",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/components/account/account-ui.tsx",
+      "sha256": "2f23e8906b0b0857e86d1eed9dce4f1fd823a1007ffad7d4926b3bdf48b27572",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/components/auth/auth-ui.tsx",
+      "sha256": "40d8c3da232e3e99c9f87a695af345c187fb211b3b54fe4119256b4a1c98b600",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/components/auth/login-screen.web.tsx",
+      "sha256": "6388c43b02428cfec454c6ffb27c22f0d70b6e14cd9c53cb7f3ea8a8439cf247",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/components/auth/splash-screen.web.tsx",
+      "sha256": "1a05271336b051d4c15a3672d8ffc4f441af976775ec9b13016bd3ffbe35539d",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/components/navigation/FloatingTabBar.tsx",
+      "sha256": "c06a968802279863c22a201b549f18b36e1b347899ff8bf84d7d3f39680ed898",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/components/navigation/TopBar.tsx",
+      "sha256": "6a6e54abd9e5b4e75cd797dce2879ab225857346a5ffd4fecdbdc416f71313ef",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/components/platform/AppContentFrame.web.tsx",
+      "sha256": "2642b5f572664ba394b0939f2889c6708906a0bde5a1a3683717bdc05c1e711b",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/components/platform/AppModal.web.tsx",
+      "sha256": "8bc34fcf5b2949e4eb480a7c0468dbc6b629cb69a5fba9523ccf56f28d64e67b",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/components/platform/AppViewport.web.tsx",
+      "sha256": "564b6d64b625391be41bf8f539569263018b8da1e5926e877eae4eb34a35de2f",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/components/platform/ModalHost.web.tsx",
+      "sha256": "6611d287ab2eb5440c6eb3ddca224d92e48c840808d7c6f383ce5a0aa6fe0a97",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/components/platform/modal-host-context.ts",
+      "sha256": "ff03e6de2cf0858e3a7141e9a16d8606063aa65674f055edc8ae45fd36f904e2",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/components/platform/useAppViewportDimensions.web.ts",
+      "sha256": "02e6df320996e7a3b0dd5e249e91acdf0e9fe566fd32a8f07b6d714113ec6e98",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/components/platform/web-layout.ts",
+      "sha256": "374414b0a54aee86de8f54036d16e99503e7368450eaa4c829832c3edddfa3d2",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/components/screens/TabPlaceholderScreen.tsx",
+      "sha256": "552b73d60bc5c81c1c0dd12787c74ab808ebf269c59e8f09309dca8eb825ec1e",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/components/states/CenteredState.tsx",
+      "sha256": "1933afec81dec73c4bee3f56c578679913f65af5f3ab7f3134c446d3e1a7e69a",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/components/states/GlobalLoadingScreen.tsx",
+      "sha256": "d22b7f907deeab59b7033a8458348884bf7660b0dc6ccc3d4dbb911a54376641",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/components/ui/AppText.tsx",
+      "sha256": "23a45e909b34181ed0348f6fa3c1490827fbf7a2c13c0dd355f9a43bec9e5abd",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/components/ui/BottomSheet.tsx",
+      "sha256": "d019b94c1833a46e23f3ce97d40c83ec06e7ba9196597c09ec7ab35bb5820d73",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/components/ui/Button.tsx",
+      "sha256": "629961258b37beae2993711f89b4e39b8b37d12da65b492ce42edd7cdb8ffc0a",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/components/ui/Card.tsx",
+      "sha256": "906b332329acb6dbd48a3f10734a97a1673b0ebffdebf9e69c4b517cc094c916",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/components/ui/Screen.tsx",
+      "sha256": "d2a1a9b08518010120aadbda6e8a9dc4bde5e051557e2a410e96a087c6ce1482",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/components/ui/Tag.tsx",
+      "sha256": "fe63d2ac674117dd99a73aaae17c0726cda084d6bcdcbe0cbd87497216b46872",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/components/ui/TextField.tsx",
+      "sha256": "8fe4432ae3c9d5247644810c656bf7f60819a4037663896a5e9ae46da48da86c",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/components/ui/icons.ts",
+      "sha256": "d7c1505c2b5965fed28fdd8af486346419901c957de72c8c0eb43a5fd5e6f217",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/components/ui/index.ts",
+      "sha256": "b28938432d2b19d83c941e283fd1158cfda32e58ed1838437a59b890b7ef386e",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/components/visual/SoftGlow.tsx",
+      "sha256": "4a3dd15c4b260219ad5372ab98be7cb3cf698ea86c4518a809afb714bb36d854",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/config/app-version.ts",
+      "sha256": "3b3dcccdc726e6b15c7dc2ddd34fa47e6d96ac9ba3b10a672fe69a7281d53d38",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/account/AccountScreen.web.tsx",
+      "sha256": "89f9520b75745468fefa9c0ca36a5a1d32f18c63f077b1ed111a0c8c7c4f8a84",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/features/account/profile-store.ts",
+      "sha256": "8b78455df4aff4aa1079d6c49bbc9a74adc66bcb6c451e5d89959694c89dbacc",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/ai/ai-client.web.ts",
+      "sha256": "043b7baa264b1c8189e5d081c77fc4b1eca984003be82892f7e54837273a9cae",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/features/ai/exact-match.ts",
+      "sha256": "6a166cd95eba6f9ea21418844ff4376b53ccd55186b0d3a710834db63873f63b",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/ai/transcription-ui-capability.web.ts",
+      "sha256": "9b5a6ce95721cac8347c6531b6a6fd0e3acd9a7d4cee2bc5f4c71af93a48525d",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/features/auth/AuthProvider.web.tsx",
+      "sha256": "e6d50f42ebcc7a33b13703ca9ae6b28202f286072514395fe0a8e8e29b611621",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/features/auth/auth-service.web.ts",
+      "sha256": "91350cd64088e0e45a2354013dcc1a3ddf61ad933d52a723e3cb0ac3f0bacd22",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/features/auth/ui-acceptance-mode.ts",
+      "sha256": "afff5a5159d641c7c468bb245517a14ca6c0963ccdcbf7bb98cf81f106a1c867",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/content/ContentLibraryScreen.tsx",
+      "sha256": "eb29afd3d5c943d7098c1977a2b695e5c3349c9d3c6bf7b69838df025e12dc45",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/content/DiscoverHomeScreen.tsx",
+      "sha256": "94d8549bd51ed950e74a1aede0473be97640c5bddd9643d4e39c9494f319fc4b",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/content/LearningReportScreen.tsx",
+      "sha256": "56b26e2d59a5e1640ba202fa36a41599faa60bfa2866731f7e6bb13451d524f9",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/content/MockExamScreen.tsx",
+      "sha256": "236ac7eac748932cb8765f7e1396281b0d47eaa03724486d89b92a68b1397294",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/content/RadioPlayerScreen.tsx",
+      "sha256": "94e12998e82066cee0632f566951329a25bee32a4fee8465504afca37bbaf27a",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/content/VocabScreen.tsx",
+      "sha256": "f176efd46d9586ccedd3a9632392f86928e6cac017edfa24ea818f002103d703",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/content/courses/CourseCatalogScreen.web.tsx",
+      "sha256": "7a029f27a2a87d1646f0df89697f4989bb3b447552f19afaa13c0ab73a2f1290",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/features/content/courses/course-promo-catalog.web-data.ts",
+      "sha256": "07f2e50c8c1e1eb85b40a28f84074c3f85f95fc98a9f46daf8718dde9f744c57",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/content/hotspot/HotspotDetailScreen.tsx",
+      "sha256": "39111bc06d41b5fbc40845ecdc9ccda00c6f20a8681871d23b7b87fab836a31e",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/content/hotspot/HotspotListScreen.tsx",
+      "sha256": "1589bc04469899c65e087aaf439bfc8599d5e08cf2184e68eaefda73a2fc5fc2",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/content/hotspot/HotspotStudyScreen.tsx",
+      "sha256": "0ffb8bcc02149d0f5c52435b98a46a70e00eb11d7ab06a243152bec61ea68157",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/content/hotspot/build-hotspot-session.ts",
+      "sha256": "37469726a6f197e2d2da7644ba50fb944e8e40ff26c85d85ebc654eca76aa2a4",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/content/hotspot/data/opi-hotspots.json",
+      "sha256": "509added575e9acbc808df2187a117ba815b38cabdc7798e0ea979fdfa79226a",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/content/hotspot/repository.ts",
+      "sha256": "a48ebb8beec2a69e22b2883773e9640ccb6f6e0d99ef0d019d01a97442173b5a",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/editorial/EditorialArticleScreen.tsx",
+      "sha256": "9170766c3d47e35ba106c60e2d40b50bf3611b65cc65750b4f3bbc7985b64c90",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/editorial/ResourceEditorialScreen.tsx",
+      "sha256": "51ad9003e341698000a7b4dbf0cb441dbd6122def89658b53bf67e42c60cafae",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/editorial/repository.web.ts",
+      "sha256": "e43736894b23485371e2c9ccbdc0fbf1513e191698a7c2efe025d9181f572ab0",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/features/editorial/use-editorial.ts",
+      "sha256": "a556b2a46ea58354f445675577c9f369faea4fe402faf93f7e3e294374503ba1",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/feedback/feedback-client.ts",
+      "sha256": "6787a53cfe84d2602d712e2c849ea34455628bfc0156906e5a944a9f81e0c82d",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/info/InfoScreen.tsx",
+      "sha256": "2d953b9c9fad503de45e5484843ff775e4cf5271eb84aec3c0bfc3289874039a",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/mock-exam/build-session.ts",
+      "sha256": "993bafe4bed01116843e726a9bf8aa3684afa557981a7b5324e8e30bf4475cd8",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/mock-exam/legacy-draft-cleanup.ts",
+      "sha256": "2c5166fc69b51fd45fa5ef5901a0c04d236e99db83c3e42a840e4a50bcb9d41a",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/mock-exam/rules.ts",
+      "sha256": "d28b2d41225e86cd5d13dc405adb87ecf31894ec00049d981642421349272f87",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/profile/ProfileHomeScreen.tsx",
+      "sha256": "62a1ae70782f67d0fd2940c991a109a9696a8ef5ec4a454bb70fe16e340a0954",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/annotations/annotation-store.ts",
+      "sha256": "710bff5e9eac379cae2ec93b318efe4dcdda6ea56eb5b37d3d5381c234d2a14c",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/annotations/card-index.ts",
+      "sha256": "3245785f634d5d332b5e0c4aa9ceff2e2dad8170dfea6e72d5f21f9ad3d43b23",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/annotations/colors.ts",
+      "sha256": "3dbcb635004af0665a7762333860671b1a0da726b3fc85a3bafd6f215648191a",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/annotations/text.ts",
+      "sha256": "b294923402c8019969fb57bdd5dafd8adc90183c5cb24a29608eb60a9d00c025",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/annotations/types.ts",
+      "sha256": "d648ef01a088c278ea35b0a940f0246dbf1b7bbf03c70078dd5c4b335d7b0712",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/annotations/use-question-annotations.ts",
+      "sha256": "0a849e5071f91183fd6272e6979c7dbae561e3f51cf6ef22612dd34b8697c095",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/AiReviewResultView.web.tsx",
+      "sha256": "40da815fe7e594a1f8a7fb559f3ebda9936441c66506d74adf48a61e3d38509f",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/AnnotationToolbar.native.tsx",
+      "sha256": "96f467bfbfdeaa0d83fcb569f199a852b4fefa67c245f60f90d0a48e9ff788f4",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/AnswerCardSheet.tsx",
+      "sha256": "f4d8bf588f5a5be6ed227f0b5ec31dc7c97c4b489eabd4d1dae0b3c03df991cb",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/AudioTimeline.tsx",
+      "sha256": "42d8d909092bb2aabcd157aa8bce6247c3911990ed0df8a4ebe2c5b367be87a3",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/ChoiceList.tsx",
+      "sha256": "bdb656a635076a2f4699c74e261915b7894265f25243f49a46f9507bcf3b73f2",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/ImageQuestionCard.tsx",
+      "sha256": "cdf533850a655201372faff23fad15b8acb4fc08c121d1f8a462eeac482b0087",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/InteractiveStudyText.tsx",
+      "sha256": "96ecedb36b8c6024d54c1704409f6444d2b9ed757574d63d3f9fc810ab14a5e3",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/InteractiveWordTarget.tsx",
+      "sha256": "304d12b2b7ff52a7e4f92a5e84d058b39bd7e21e18769b6f47d89f0b86aa9c6d",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/LearningRecordsScreen.tsx",
+      "sha256": "d58daf55a52e7061877db9543cb3b5d214ff5c7fe371b7fd849368da58a805fa",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/MyAnnotationsScreen.tsx",
+      "sha256": "2106c8195a6cc5bf4dde08d473b7881d0b32f8c61d732cb84930a34392cf1b03",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/QuestionBankCatalog.tsx",
+      "sha256": "555ec95c420f55fc8d621aa18d10a2ec1eaf522c311545a05be2641c26130cb8",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/QuestionBankStudyScreen.tsx",
+      "sha256": "0fa76651b4fa7f2c5695d9e690fa418e5cfb6db7bccb1cf998ded2b29559c7ee",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/QuestionBankSwitcherHeader.tsx",
+      "sha256": "a24c9202c1b53f437a86a9e43ef2ca0765aae8002f225ff873f060c219a32a24",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/SpeakingPracticePanel.tsx",
+      "sha256": "07e55a5a4fc656433304c61206dbc6328fa55ca21296ecf91c9a3b06df734923",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/StudyAudioPlayer.web.tsx",
+      "sha256": "17a30613decc044d20491e7d5f5613b2ea76353753af414b9dcc0c4562cf8b41",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/StudyCardStack.tsx",
+      "sha256": "bb15bb9213bd3e97fdc42273831c858a054fa430eab31aaea2c2fb2c8b65422d",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/StudyReport.tsx",
+      "sha256": "ecc43152ad3b3cc8c0d26613e657638865e661384a371868d079f98a9d102fc5",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/StudyTaskRenderer.tsx",
+      "sha256": "001e98107f649c1efbc875ed12f492cf771d41112adf584ccddd40f9b41eaca9",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/components/StudyWorkbench.tsx",
+      "sha256": "0aafa1551ff17432047d2861233555d786f9e17afbccb1fb6f7abc88b5459de1",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/data/question-bank-release.json",
+      "sha256": "c52bd3f1fb66a2a1f15dca1255b22cbe9fb4201c21df3c8731915afc63a83ded",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/data/question-bank.json",
+      "sha256": "86a2f25692d8134dee03d4819bf6b7587ee6d2826bf631c883b7d58437cdfd95",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/data/repository.ts",
+      "sha256": "1624d97faf53a88363c50f62e586ccc1934f41c3e5e6d71f9f384e7aff08fcef",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/hooks/useQuestionBank.ts",
+      "sha256": "fbe2dfdd6dac2c4b0ae3792468ef8a0d5071bf198d41ed897d40f69734d9d760",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/hooks/useQuestionBankAsset.web.ts",
+      "sha256": "517abdb2935118ed920dca63cc0f71f3b144d17c79d9cacc0988e114a974117e",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/hooks/useQuestionBankAudioPreload.web.ts",
+      "sha256": "50cef24a7da0321547a934e78b0a87ded76875f62afa95c5aabbd65789523009",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/hooks/useStudySession.ts",
+      "sha256": "c85442628eec8c59fce90a8da80f75c2d6ed702d75be23057c6f6326706be773",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/lib/catalog-progress.web.ts",
+      "sha256": "317537f198f09c312c61940746a32958ded72a39a516f0de362765066a775669",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/lib/study-behavior.ts",
+      "sha256": "45f3af07bce150a8d91b592046c6c3423bd82f48cbc2bfdc233820bf4f58ab05",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/lib/study-gestures.ts",
+      "sha256": "79b70cfa23af61a8eef34be22379b66463a66ab29bbbf54ccf855191b0009500",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/lib/word-lookup-interaction.ts",
+      "sha256": "0770b4359e4925a5017d266d597e7e2e0957a7735f3c06073a4b3d5bde0f8964",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/platform/learning-record-storage.ts",
+      "sha256": "dfd33b90ffb1d3fb6a179422cbc70507c47a97777f556d54298257f2bc04e0b0",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/platform/learning-store.ts",
+      "sha256": "9559b22e770995cfa33ccbf767d83356b6bf030a84888153f4b4f4b4b0154dc5",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/platform/network-service.ts",
+      "sha256": "dfecf328b64e792722704115f420b73f779ee2fc4c56276c71aef329758d8279",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/platform/resource-service.web.ts",
+      "sha256": "e643297d340bb3cabd8b2b27dc4e6711d4008ac9392b204f047de9603f76f396",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/recording/expo-recorder-adapter.web.ts",
+      "sha256": "181e28773c73b1d4435727a74d4623e8d855343a29d4945b209127c20578b464",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/recording/recording-repository-error.ts",
+      "sha256": "806d177b084ef00090ab77513b8527de45e5957c2c5ceddb3cf876af4a010b66",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/recording/recording-repository.web.ts",
+      "sha256": "0e251c113d86749d0d83efc7c1f8294c699460ce4f90b531a815439342b2619a",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/recording/recording-state-machine.ts",
+      "sha256": "60002064e17c93746b12317897725c88328fa5e5d71c2d0a6bfbad177656b78d",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/recording/use-recording-playback.web.ts",
+      "sha256": "edf225cd26853b5a78c54f97c1efcdc0f344bbfa56e04fa97f0bca5ce762132f",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/recording/use-speaking-recording-controller.ts",
+      "sha256": "4dae5df2056b488b1f5b8780395d177b0e2d6fbea3a50137d092abc70ea9d42a",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/static-word-lookup/data/dataset.json",
+      "sha256": "542fcb493a1d2d048b21ba9924749df9a80623354f8f379f6f0dd87b02f80d9b",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/static-word-lookup/normalize.ts",
+      "sha256": "bd11bd7f664b6f24ace086463f59f873f96acf2eed1b01195f1692e42643b60e",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/question-bank/static-word-lookup/repository.ts",
+      "sha256": "7286e589810138a809863960810374c730432cad51bfba7591844fb6ca6212be",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/radio-player/RadioMiniPlayer.tsx",
+      "sha256": "c1edc12f256c423aee9c58e549698bd68d7c1604f0829b1b7250be34cea95e0d",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/radio-player/RadioPlayerProvider.web.tsx",
+      "sha256": "ad66b4644316bbc0c548cd5717af572fcf415ed8410cf6b13772fcb3c05ab1e5",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/features/radio-player/catalog.ts",
+      "sha256": "cc99db3c28b5c9bb188362362943a75d68e5d783d0fb69385740133e3a656972",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/radio-player/queue.ts",
+      "sha256": "6c767c6d866f07fc06071fad217c3a21321a2cd72adea9358e5d736a2dcb085e",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/radio-player/radio-interval.ts",
+      "sha256": "cc350177438af0aa7eaf220b7f4cb027aeaa2281e388a475cfbceb9b4dae856f",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/sync/learning-sync.ts",
+      "sha256": "a9eacc6c9285edbc93b3ae4934717d6a80aa9a8d4e49c6bb93c7cb3bc18cede5",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/vocabulary/VocabularyScreen.tsx",
+      "sha256": "99d6d8db4c244acaab410e9a714d519b9a2d84ad1beda4872ceb68fd65d83557",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/vocabulary/WordFavoritesScreen.tsx",
+      "sha256": "4f283ea4e7e323eec9632ba6fce7d272fe2ba55584b7e63a2a57108b2a575a4c",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/vocabulary/components/VocabularyLibraryViews.tsx",
+      "sha256": "31e2f57d78d3d82ebe2275927d5aaedeb269302246f8d676f31edb5236fd0f4e",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/vocabulary/components/VocabularyProgress.tsx",
+      "sha256": "cc4ebbc94514d20799b7a3dde7848e369ba8f0cf4490f2c3195066080837528f",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/vocabulary/components/VocabularyStudyViews.tsx",
+      "sha256": "9576d18bdb0726740280e042dbb1a6bb6bfe4be60c5eb6381a5b9249ebcf18fc",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/vocabulary/components/VocabularyTestViews.tsx",
+      "sha256": "4632dde72ce3fd582ac32b0a40e836d3e0ebab527196f18121e0fc501a8d54b9",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/vocabulary/favorites.ts",
+      "sha256": "34ca0fb94c6b9e8be8e9ecd1da93748a5b3599d618363fce419da5b0c3d26565",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/vocabulary/persistence.ts",
+      "sha256": "b02029ab191f8b091618401ebe273cc85885255a7f9aa0149aff2eafe8e329ed",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/vocabulary/progress-store.ts",
+      "sha256": "01651bb880c27a504411f3e65e6a470318ad2112c02db2131f359c7703de8da1",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/vocabulary/repository.web.ts",
+      "sha256": "2eb7d673249c9b795a7b7d32a9d931c6bdb41421934ff3ad39e9876c440f4c0e",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/features/vocabulary/speech.ts",
+      "sha256": "9d8d0b98e76e96d875a6259047c4d057270ba5381f00c13889a016f32551b481",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/vocabulary/test-engine.ts",
+      "sha256": "a3e7f9c21b6997bdc0cd5bf6cd95822c08696c3fa7aca827d89a857a347d7037",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/features/web-content/release.web.ts",
+      "sha256": "b1734a0a8a9519df5a3d7227463b59a6a47b4dc7b5fa9282750389f080416dfb",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/platform/AppRuntime.web.tsx",
+      "sha256": "22beabad60c3b227ad2558cd25005b0c1a3d426c76ba1c999df884fb26669a86",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/platform/api-client.web.ts",
+      "sha256": "ae85f3c5c1d438904f21a57b8d45536c384aa4afbb6cce578719c74eb5f3c153",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/platform/audio-upload.web.ts",
+      "sha256": "b4929fe151cb37b744d8d27540a295a133f980386159edcdc07d11a943528ac9",
+      "sources": [
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/platform/audio/audio-diagnostics.ts",
+      "sha256": "9a8baf6ff7c1e356ceb4a0aa22715d1592fbca0080cdeaade22bd7da90ce5556",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/platform/audio/audio-session-orchestrator.ts",
+      "sha256": "29003acc291f9c16707892dd9b2857eaef515e54dc51d5ec13b306748ec67695",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/platform/audio/index.ts",
+      "sha256": "71190d3986ad28e0212c56f440b8ff18dea823453b6ea9ffb7f67fdd5810140c",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/platform/feedback-upload.web.ts",
+      "sha256": "95dd46cb05d274312067ae7c85d7df0285b770c7be67ffcf116c84a8510ed720",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/platform/register-radio-playback-service.web.js",
+      "sha256": "9e60b884d286e12c53d9d66d9d1856b537e7367c9d04ee8e2b06f0b85ab94cd5",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/platform/storage.web.ts",
+      "sha256": "3fb4ac38743a9b798d48ec5bec9ce5b4ee4cbf70b68c8b65e1152a0e8fff6249",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/platform/use-app-fonts.web.ts",
+      "sha256": "c86989060d515ab523b2621c58d3aa1f1e8cdc2ccc4cff25ec2b895d6b304cc2",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/theme/font-families.web.ts",
+      "sha256": "591979208aec4758bbace2eb708bdbdd7d1ef2d294d6abef484320f327b150eb",
+      "sources": [
+        "metro_web_dependency_graph",
+        "platform_web_implementation"
+      ]
+    },
+    {
+      "path": "src/theme/index.ts",
+      "sha256": "552563951b698ac6cda6e67db73109101132e9ebaf80d4f5f7a879694cb83f5e",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "src/theme/tokens.ts",
+      "sha256": "a12723112d79fb8ce78395ebea79ae2057f8cedfde0788b7cfa5b55a9e0e22fb",
+      "sources": [
+        "metro_web_dependency_graph"
+      ]
+    },
+    {
+      "path": "tools/check-web-network-boundary.mjs",
+      "sha256": "015385ae5c2821c0034a55b49523b8baccc7e6e20d4ead3a940f1bc21a9d6d69",
+      "sources": [
+        "web_build_or_deploy_tooling"
+      ]
+    },
+    {
+      "path": "tools/web-content-sync.mjs",
+      "sha256": "22316452c43d054046cfee6430e8a73322b8ca61f30d428596d7356528d64a7d",
+      "sources": [
+        "web_build_or_deploy_tooling"
+      ]
+    },
+    {
+      "path": "tools/web-question-bank-content-migration.mjs",
+      "sha256": "f4af28aa4931126d18d818a64784d4b7ab4d688ecd9528e71bde8e9dc526ec8c",
+      "sources": [
+        "web_build_or_deploy_tooling"
+      ]
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "c4db549a08df0bf95f8f3050b8a5887a5c8c871a7ab7de5bdbde4b3f956bbe03",
+      "sources": [
+        "exact_web_config_or_asset"
+      ]
+    },
+    {
+      "path": "vercel.json",
+      "sha256": "a4771b117524a6cf697178b558c205cb893f8c452314c7c12f979ce2cce5d40c",
+      "sources": [
+        "exact_web_config_or_asset"
+      ]
+    }
+  ]
+}

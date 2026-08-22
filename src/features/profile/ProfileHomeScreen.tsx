@@ -5,6 +5,7 @@ import { Platform, Pressable, StyleSheet, View } from 'react-native';
 
 import { AppText, Card } from '@/components/ui';
 import { APP_DISPLAY_VERSION } from '@/config/app-version';
+import { isEdgeOneProductionWeb } from '@/config/web-runtime';
 import { colors, radii, spacing } from '@/theme';
 import { sqliteLearningStore } from '@/features/question-bank/platform/learning-store';
 import type { LearningRecord } from '@/features/question-bank/types';
@@ -18,12 +19,13 @@ const menu = [
   { slug: 'word-favorites', label: '单词收藏', icon: Star },
   { slug: 'settings', label: '设置', icon: Settings },
   { slug: 'feedback', label: '意见反馈', icon: MessageCircle },
-].filter((item) => Platform.OS !== 'web' || item.slug !== 'feedback');
+].filter((item) => Platform.OS !== 'web' || isEdgeOneProductionWeb() || item.slug !== 'feedback');
 
 export function ProfileHomeScreen() {
   const router = useRouter();
   const auth = useAuth();
   const profile = useProfile();
+  const cloudWeb = Platform.OS === 'web' && isEdgeOneProductionWeb();
   const [records, setRecords] = useState<LearningRecord[]>([]);
   useFocusEffect(
     useCallback(() => {
@@ -40,8 +42,8 @@ export function ProfileHomeScreen() {
   const cards = useMemo(() => sessionRecords.reduce((sum, item) => sum + item.completedCount, 0), [sessionRecords]);
   const accountLabel = auth.restoring
     ? '正在确认账号…'
-    : auth.session?.user.displayName
-      ? `${Platform.OS === 'web' ? 'Web 体验版' : '听你五个账号'} · ${auth.session.user.displayName}`
+    : auth.session
+      ? `${Platform.OS === 'web' ? cloudWeb ? '听你五个 Web' : 'Web 体验版' : '听你五个账号'} · ${auth.session.user.displayName ?? '已登录'}`
       : '尚未登录';
 
   function open(slug: string) {
@@ -104,7 +106,7 @@ export function ProfileHomeScreen() {
         </RowGroup>
       </View>
       <AppText style={styles.footer} variant="caption">
-        © 2026 听你五个 · {APP_DISPLAY_VERSION}{Platform.OS === 'web' ? ' · 数据仅存本机' : ''}
+        © 2026 听你五个 · {APP_DISPLAY_VERSION}{Platform.OS === 'web' ? cloudWeb ? ' · 三端云同步' : ' · 数据仅存本机' : ''}
       </AppText>
     </AccountScreen>
   );

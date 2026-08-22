@@ -38,7 +38,7 @@ trap cleanup EXIT INT TERM
 
 scp -i "$SSH_KEY" -q "$PROJECT_ROOT/tools/asr-vocabulary.mjs" \
   "$ECS_USER@$ECS_HOST:$REMOTE_STAGE/asr-vocabulary.mjs"
-scp -i "$SSH_KEY" -q "$PROJECT_ROOT/docs/ai/assets/asr-hotwords.json" \
+scp -i "$SSH_KEY" -q "$PROJECT_ROOT/docs/resources/ai/assets/asr-hotwords.json" \
   "$ECS_USER@$ECS_HOST:$REMOTE_STAGE/asr-hotwords.json"
 
 ssh -i "$SSH_KEY" -o BatchMode=yes "$ECS_USER@$ECS_HOST" sh -s -- "$REMOTE_STAGE" "$COMMAND" <<'REMOTE'

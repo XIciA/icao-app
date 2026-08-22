@@ -18,7 +18,7 @@ export function SplashScreen() {
         <AppText style={styles.slogan} variant="caption">在职飞行员一站一站学，助你稳稳拿下{'\n'}ICAO 4 级</AppText>
       </View>
       <View style={styles.actions}>
-        <Button onPress={() => router.replace('/auth/login')} size="lg">输入邀请码登录</Button>
+        <Button onPress={() => router.replace('/auth/login')} size="lg">登录 / 注册</Button>
         <LegalLinks />
       </View>
     </Screen>

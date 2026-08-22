@@ -42,19 +42,40 @@ export function getApiBaseUrl() {
   return process.env.EXPO_PUBLIC_ICAO_API_URL?.replace(/\/$/, '');
 }
 
+export async function withApiRequestTimeout<T>(
+  action: (signal: AbortSignal) => Promise<T>,
+  externalSignal?: AbortSignal | null,
+  timeoutMilliseconds = 45_000,
+) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMilliseconds);
+  try {
+    const signal = externalSignal
+      ? AbortSignal.any([controller.signal, externalSignal])
+      : controller.signal;
+    try {
+      return await action(signal);
+    } catch (error) {
+      if (controller.signal.aborted && !externalSignal?.aborted) {
+        throw new ApiClientError('ai_timeout', 408);
+      }
+      throw error;
+    }
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
 async function fetchOnce(path: string, init: RequestInit, token?: string) {
   const baseUrl = getApiBaseUrl();
   if (!baseUrl) throw new Error('api_not_configured');
   const headers = new Headers(init.headers);
   headers.set('accept', 'application/json');
   if (token) headers.set('authorization', `Bearer ${token}`);
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 45_000);
-  try {
-    return await fetch(`${baseUrl}${path}`, { ...init, headers, signal: init.signal ?? controller.signal });
-  } finally {
-    clearTimeout(timeout);
-  }
+  return withApiRequestTimeout(
+    (signal) => fetch(`${baseUrl}${path}`, { ...init, headers, signal }),
+    init.signal,
+  );
 }
 
 export async function apiFetch(path: string, init: RequestInit = {}) {
@@ -82,6 +103,16 @@ export async function invalidateApiSession() {
 }
 
 export async function apiRequest<T>(path: string, init: RequestInit = {}) {
+  if (
+    __DEV__
+    && process.env.EXPO_PUBLIC_ICAO_AUDIO_E2E === '1'
+    && path === '/v1/ai/consent'
+  ) {
+    return {
+      acceptedAt: new Date().toISOString(),
+      policyVersion: 'ai-learning-privacy-v4',
+    } as T;
+  }
   const response = await apiFetch(path, init);
   const body = await response.json().catch(() => undefined) as ApiSuccessEnvelope<T> | ApiErrorEnvelope | undefined;
   if (!body) throw rememberApiError(`api_http_${response.status}`, response.status);

@@ -6,6 +6,7 @@ describe('auth rules', () => {
     expect(authError({ code: 'unexpected_failure', message: 'Unexpected failure' }).message).toBe('auth_service_unavailable');
     expect(authError({ message: 'localStorage is not available' }).message).toBe('auth_session_storage_unavailable');
     expect(authError({ code: 'auth_failed', message: 'Authentication failed' }).message).toBe('auth_request_not_completed');
-    expect(authError({ message: 'Invalid login credentials' }).message).toBe('invalid_invite_code');
+    expect(authError({ code: 'otp_expired', message: 'Token has expired or is invalid' }).message).toBe('invalid_phone_otp');
+    expect(authError({ code: 'over_sms_send_rate_limit', message: 'rate limit' }).message).toBe('phone_otp_rate_limited');
   });
 });

@@ -102,7 +102,7 @@ function loadSources() {
   return { registry, banks: registry.bankIds.map((bankId) => sourceFilesFor(bankId, durationsByPath)), resources };
 }
 
-function validate({ registry, banks, resources }, { full = false } = {}) {
+function validate({ registry, banks, resources }, { full = false, requireResourceFiles = true } = {}) {
   const bankIds = new Set();
   const categoryIds = new Set();
   const topicIds = new Set();
@@ -187,12 +187,15 @@ function validate({ registry, banks, resources }, { full = false } = {}) {
     if (file.mimeType.startsWith('image/') && !file.sourceRelativePath.startsWith('images/')) fail(`resource_image_path:${file.objectKey}`);
     if (file.durationSeconds !== undefined && (!(file.durationSeconds > 0) || !Number.isFinite(file.durationSeconds))) fail(`resource_duration:${file.objectKey}`);
     if (!/^[a-f0-9]{64}$/.test(file.checksum)) fail(`resource_checksum:${file.objectKey}`);
-    const localPath = resourceFilePath(file.sourceRelativePath);
-    if (!existsSync(localPath)) fail(`resource_file_missing:${file.sourceRelativePath}`);
-    const size = statSync(localPath).size;
-    if (size !== file.sizeBytes) fail(`resource_size_mismatch:${file.objectKey}`);
-    if (full && fileChecksum(localPath) !== file.checksum) fail(`resource_hash_mismatch:${file.objectKey}`);
-    resourceBytes += size;
+    if (!Number.isInteger(file.sizeBytes) || file.sizeBytes < 1) fail(`resource_size:${file.objectKey}`);
+    if (requireResourceFiles) {
+      const localPath = resourceFilePath(file.sourceRelativePath);
+      if (!existsSync(localPath)) fail(`resource_file_missing:${file.sourceRelativePath}`);
+      const size = statSync(localPath).size;
+      if (size !== file.sizeBytes) fail(`resource_size_mismatch:${file.objectKey}`);
+      if (full && fileChecksum(localPath) !== file.checksum) fail(`resource_hash_mismatch:${file.objectKey}`);
+    }
+    resourceBytes += file.sizeBytes;
   }
   for (const path of referencedAudio) if (!publicPaths.has(path)) fail(`card_resource_missing:${path}`);
   for (const path of referencedImages) if (!publicPaths.has(path)) fail(`card_resource_missing:${path}`);
@@ -317,8 +320,8 @@ function extract({ force = false } = {}) {
   console.log(`content_extracted banks=${embedded.length} resources=${files.length}`);
 }
 
-function artifactsFromSources(sources) {
-  const stats = validate(sources);
+function artifactsFromSources(sources, { requireResourceFiles = true } = {}) {
+  const stats = validate(sources, { requireResourceFiles });
   const files = new Map();
   const bankManifest = [];
   for (const bank of sources.banks) {
@@ -403,9 +406,27 @@ function check({ full = false } = {}) {
   console.log(`content_check_ok full=${full} ${JSON.stringify(stats)}`);
 }
 
+function checkSource() {
+  const sources = loadSources();
+  const generated = artifactsFromSources(sources, { requireResourceFiles: false });
+  const expectedEmbedded = jsonBytes(sources.banks);
+  if (!existsSync(embeddedPath) || !readFileSync(embeddedPath).equals(expectedEmbedded)) {
+    fail('embedded_question_bank_outdated_run_content_build');
+  }
+  const expectedEmbeddedRelease = jsonBytes({
+    releaseVersion: sources.registry.releaseVersion,
+    releasedAt: sources.registry.releasedAt,
+  });
+  if (!existsSync(embeddedReleasePath) || !readFileSync(embeddedReleasePath).equals(expectedEmbeddedRelease)) {
+    fail('embedded_release_metadata_outdated_run_content_build');
+  }
+  console.log(`content_source_check_ok ${JSON.stringify(generated.stats)}`);
+}
+
 const [command, ...args] = process.argv.slice(2);
 if (command === 'extract') extract({ force: args.includes('--force') });
 else if (command === 'build') build();
 else if (command === 'check') check({ full: args.includes('--full') });
+else if (command === 'check-source') checkSource();
 else if (command === 'sync-durations') syncDurations();
-else fail('usage: question-bank-content.mjs <extract|build|check|sync-durations> [--force|--full]');
+else fail('usage: question-bank-content.mjs <extract|build|check|check-source|sync-durations> [--force|--full]');

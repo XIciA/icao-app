@@ -3,12 +3,14 @@ import { StyleSheet, View } from 'react-native';
 
 import { AppText, Button, Screen, Tag } from '@/components/ui';
 import { SoftGlow } from '@/components/visual/SoftGlow';
+import { isEdgeOneProductionWeb } from '@/config/web-runtime';
 import { colors, spacing } from '@/theme';
 
 import { BrandMark, TextLink } from './auth-ui';
 
 export function SplashScreen() {
   const router = useRouter();
+  const cloud = isEdgeOneProductionWeb();
   return (
     <Screen contentStyle={styles.splash}>
       <SoftGlow intensity={0.9} size={350} style={styles.glow} />
@@ -16,11 +18,13 @@ export function SplashScreen() {
         <BrandMark large />
         <AppText style={styles.brandName} variant="pageTitle">飞猪 ICAO</AppText>
         <AppText color={colors.primary} style={styles.brandEnglish} variant="micro">AVIATION ENGLISH</AppText>
-        <Tag>Web 体验版</Tag>
-        <AppText style={styles.slogan} variant="caption">对标 App 核心学习体验{'\n'}数据仅保存在当前浏览器</AppText>
+        <Tag>{cloud ? '三端同步版' : 'Web 体验版'}</Tag>
+        <AppText style={styles.slogan} variant="caption">
+          {cloud ? <>与 iOS、Android 共用正式账号{'\n'}学习数据自动同步</> : <>对标 App 核心学习体验{'\n'}数据仅保存在当前浏览器</>}
+        </AppText>
       </View>
       <View style={styles.actions}>
-        <Button onPress={() => router.replace('/auth/login')} size="lg">输入邀请码进入</Button>
+        <Button onPress={() => router.replace('/auth/login')} size="lg">{cloud ? '手机号登录 / 注册' : '输入邀请码进入'}</Button>
         <View style={styles.legal}>
           <AppText variant="micro">登录即代表同意 </AppText>
           <TextLink label="《用户协议》" onPress={() => router.push('/legal/agreement')} />
