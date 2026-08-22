@@ -111,6 +111,7 @@ const criticalReleaseEvidence = await readFile('tools/critical-capability-releas
 const mainlineReleaseGuard = await readFile('tools/check-mainline-release.mjs', 'utf8');
 const prepareRelease = await readFile('tools/prepare-release.mjs', 'utf8');
 const apiRelease = await readFile('scripts/deploy-api-release.sh', 'utf8');
+const apiDockerfile = await readFile('infra/api/Dockerfile', 'utf8');
 const apiConfig = await readFile('services/api/src/config.ts', 'utf8');
 const apiConfigPreflight = await readFile('services/api/src/config-preflight.ts', 'utf8');
 if (!caddy.includes('api.readyoufife.com') || !caddy.includes('cloud.readyoufife.com')) {
@@ -189,6 +190,15 @@ if (
   || apiRelease.includes('.generated/release/current-manifest.json')
 ) {
   throw new Error('The API release must use materialized current release metadata.');
+}
+if (
+  !apiRelease.includes('ICAO_API_BUILD_NPM_REGISTRY')
+  || !apiRelease.includes('--build-arg "ICAO_NPM_REGISTRY=$build_npm_registry"')
+  || !apiDockerfile.includes('ARG ICAO_NPM_REGISTRY=')
+  || !apiDockerfile.includes('COREPACK_NPM_REGISTRY="$ICAO_NPM_REGISTRY"')
+  || !apiDockerfile.includes('pnpm install --registry "$ICAO_NPM_REGISTRY" --frozen-lockfile')
+) {
+  throw new Error('The API image build must use its explicit HTTPS registry with locked dependencies.');
 }
 for (const retiredReference of [
   '47.109.132.161',

@@ -1,8 +1,10 @@
 FROM node:22-alpine
 
 ARG ICAO_API_RELEASE_ID=development
+ARG ICAO_NPM_REGISTRY=https://registry.npmmirror.com
 
-RUN corepack enable && corepack prepare pnpm@11.7.0 --activate
+RUN COREPACK_NPM_REGISTRY="$ICAO_NPM_REGISTRY" corepack enable \
+  && COREPACK_NPM_REGISTRY="$ICAO_NPM_REGISTRY" corepack prepare pnpm@11.7.0 --activate
 
 WORKDIR /app
 
@@ -11,7 +13,7 @@ COPY patches patches
 COPY packages/contracts/package.json packages/contracts/package.json
 COPY services/api/package.json services/api/package.json
 
-RUN pnpm install --frozen-lockfile --filter @icao/api...
+RUN pnpm install --registry "$ICAO_NPM_REGISTRY" --frozen-lockfile --filter @icao/api...
 
 COPY packages/contracts packages/contracts
 COPY services/api services/api

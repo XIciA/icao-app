@@ -24,6 +24,9 @@ node "$SOURCE_ROOT/tools/check-mainline-release.mjs" --root "$SOURCE_ROOT"
 
 load_release_runtime
 
+BUILD_NPM_REGISTRY=${ICAO_API_BUILD_NPM_REGISTRY:-https://registry.npmmirror.com}
+require_public_https_url ICAO_API_BUILD_NPM_REGISTRY "$BUILD_NPM_REGISTRY"
+
 DISPLAY_VERSION=${ICAO_API_RELEASE_ID:-$(node -p "require('$CURRENT_RELEASE').displayVersion")}
 case "$DISPLAY_VERSION" in
   ''|*[!A-Za-z0-9._-]*)
@@ -48,10 +51,11 @@ REMOTE_ARCHIVE=$REMOTE_RELEASE/source.tar.gz
 ssh -i "$SSH_KEY" -o BatchMode=yes "$ECS_USER@$ECS_HOST" "mkdir -p '$REMOTE_RELEASE'"
 scp -i "$SSH_KEY" -q "$ARCHIVE" "$ECS_USER@$ECS_HOST:$REMOTE_ARCHIVE"
 
-ssh -i "$SSH_KEY" -o BatchMode=yes "$ECS_USER@$ECS_HOST" sh -s -- "$RELEASE_ID" "$REMOTE_RELEASE" <<'REMOTE'
+ssh -i "$SSH_KEY" -o BatchMode=yes "$ECS_USER@$ECS_HOST" sh -s -- "$RELEASE_ID" "$REMOTE_RELEASE" "$BUILD_NPM_REGISTRY" <<'REMOTE'
 set -eu
 release_id=$1
 release_dir=$2
+build_npm_registry=$3
 source_dir=$release_dir/source
 rollback_image=icao-api:rollback-$release_id
 candidate_image=icao-api:candidate-$release_id
@@ -83,7 +87,12 @@ case "$running_release_id" in
     ;;
 esac
 
-docker build --build-arg "ICAO_API_RELEASE_ID=$release_id" -t "$candidate_image" -f "$source_dir/infra/api/Dockerfile" "$source_dir"
+docker build \
+  --build-arg "ICAO_API_RELEASE_ID=$release_id" \
+  --build-arg "ICAO_NPM_REGISTRY=$build_npm_registry" \
+  -t "$candidate_image" \
+  -f "$source_dir/infra/api/Dockerfile" \
+  "$source_dir"
 
 if ! docker run --rm \
   --network supabase_default \
