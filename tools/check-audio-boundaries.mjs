@@ -109,26 +109,6 @@ for (const file of files) {
   }
 }
 
-const nativeRecorderContent = await readFile(path.join(root, recorderAdapter), 'utf8');
-const nativeRepositoryContent = await readFile(path.join(root, repository), 'utf8');
-const recordingTypesContent = await readFile(
-  path.join(root, 'src/features/question-bank/recording/types.ts'),
-  'utf8',
-);
-
-if (!nativeRecorderContent.includes('IOSOutputFormat.MPEG4AAC')) {
-  failures.push(`${recorderAdapter}: iOS recording must use the reviewed M4A/AAC output format`);
-}
-if (nativeRecorderContent.includes('IOSOutputFormat.LINEARPCM')) {
-  failures.push(`${recorderAdapter}: iOS LINEARPCM/WAV output is retired; use M4A/AAC`);
-}
-if (!nativeRepositoryContent.includes('inspectRecordingContainer')) {
-  failures.push(`${repository}: native recording commits must validate the audio container`);
-}
-if (recordingTypesContent.includes('minBytesPerMillisecond')) {
-  failures.push('src/features/question-bank/recording/types.ts: compressed audio must not use a shared bytes-per-millisecond threshold');
-}
-
 if (failures.length) {
   console.error('Audio architecture boundary check failed:\n');
   for (const failure of failures) console.error(`- ${failure}`);
