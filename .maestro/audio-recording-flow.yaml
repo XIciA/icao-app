@@ -1,7 +1,15 @@
 appId: ${APP_ID}
 ---
 - launchApp:
-    clearState: false
+    clearState: true
+- runFlow:
+    when:
+      visible: "http://.*:8081"
+    commands:
+      - tapOn: "http://.*:8081"
+- extendedWaitUntil:
+    notVisible: "http://.*:8081"
+    timeout: 120000
 - openLink: "readyoufife-dev://question-bank/sentences900/study/sentence900-3%E7%BA%A7/sentence900-3%E7%BA%A7-main?cardId=sentence900-main-001"
 - runFlow:
     when:
@@ -9,12 +17,22 @@ appId: ${APP_ID}
     commands:
       - tapOn:
           point: "68%,54%"
-- tapOn:
-    text: "Continue"
-    optional: true
-- assertVisible: "按住说话"
-- longPressOn: "按住说话"
-- assertVisible: "按住重录"
+- extendedWaitUntil:
+    visible: "Continue"
+    timeout: 30000
+- tapOn: "Continue"
+- runFlow:
+    when:
+      visible: "Reload"
+    commands:
+      - tapOn:
+          point: "90%,48%"
+- assertVisible:
+    id: "integrated-record-button"
+- longPressOn:
+    id: "integrated-record-button"
+- assertVisible: "按住重新录音"
 - assertVisible: "我的回答"
-- assertVisible: "回放"
+- assertVisible: "回放我的录音"
+- tapOn: "转写"
 - assertVisible: "Audio lifecycle test transcript."
