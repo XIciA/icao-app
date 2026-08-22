@@ -19,7 +19,16 @@ describe('AI operation failure classification', () => {
     });
     expect(failure.diagnosticId).toMatch(/^A-[A-Z0-9]{5}-[A-Z0-9]{2}$/u);
     expect(aiFailureDisplayMessage(failure)).toContain(failure.diagnosticId);
-    expect(aiFailureDisplayMessage(failure)).not.toContain('request-safe-1');
+    expect(aiFailureDisplayMessage(failure)).toContain('服务请求编号：request-safe-1');
+  });
+
+  it('omits a malformed service request ID from the user-facing diagnostic', () => {
+    const failure = toAiOperationFailure(
+      new ApiClientError('ai_upstream_failed', 503, 'unsafe request <private>'),
+      'grammar',
+    );
+
+    expect(aiFailureDisplayMessage(failure)).not.toContain('unsafe request');
   });
 
   it('classifies authentication and non-retryable provider configuration failures', () => {
@@ -27,8 +36,10 @@ describe('AI operation failure classification', () => {
       stage: 'authentication', retryable: false, userAction: 'sign_in',
     });
     expect(toAiOperationFailure(new ApiClientError('ai_upstream_balance_insufficient', 503), 'grammar')).toMatchObject({
-      stage: 'provider', retryable: false, userAction: 'contact_support',
+      stage: 'provider', retryable: false, userAction: 'contact_support', userMessage: expect.stringContaining('余额不足'),
     });
+    expect(toAiOperationFailure(new ApiClientError('ai_upstream_auth_failed', 503), 'grammar').userMessage)
+      .toContain('凭据已失效');
   });
 
   it('keeps cancellation silent and does not turn it into a retryable fault', () => {

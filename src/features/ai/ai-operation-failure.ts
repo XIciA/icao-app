@@ -79,12 +79,36 @@ function failurePolicy(code: string, fallbackStage: AiFailureStage) {
       userMessage: '录音文件格式无效，请重新录制后转写。',
     };
   }
-  if (['api_not_configured', 'ai_not_configured', 'ai_upstream_auth_failed', 'ai_upstream_balance_insufficient'].includes(code)) {
+  if (code === 'api_not_configured') {
     return {
-      stage: code === 'api_not_configured' ? 'api' as const : 'provider' as const,
+      stage: 'api' as const,
       retryable: false,
       userAction: 'contact_support' as const,
-      userMessage: 'AI 服务配置异常，请提交诊断信息并联系支持。',
+      userMessage: '应用未连接到在线服务，请提交诊断信息并联系支持。',
+    };
+  }
+  if (code === 'ai_not_configured') {
+    return {
+      stage: 'provider' as const,
+      retryable: false,
+      userAction: 'contact_support' as const,
+      userMessage: 'AI 服务尚未完成配置，请提交诊断信息并联系支持。',
+    };
+  }
+  if (code === 'ai_upstream_auth_failed') {
+    return {
+      stage: 'provider' as const,
+      retryable: false,
+      userAction: 'contact_support' as const,
+      userMessage: 'AI 服务凭据已失效，请提交诊断信息并联系支持。',
+    };
+  }
+  if (code === 'ai_upstream_balance_insufficient') {
+    return {
+      stage: 'provider' as const,
+      retryable: false,
+      userAction: 'contact_support' as const,
+      userMessage: 'AI 服务余额不足，请提交诊断信息并联系支持。',
     };
   }
   if (code === 'ai_invalid_response') {
@@ -184,5 +208,8 @@ export function toAiOperationFailure(
 }
 
 export function aiFailureDisplayMessage(failure: AiOperationFailure) {
-  return `${failure.userMessage}（诊断编号：${failure.diagnosticId}）`;
+  const serviceRequestId = failure.requestId && /^[A-Za-z0-9_-]{1,80}$/u.test(failure.requestId)
+    ? `；服务请求编号：${failure.requestId}`
+    : '';
+  return `${failure.userMessage}（诊断编号：${failure.diagnosticId}${serviceRequestId}）`;
 }

@@ -111,6 +111,8 @@ const criticalReleaseEvidence = await readFile('tools/critical-capability-releas
 const mainlineReleaseGuard = await readFile('tools/check-mainline-release.mjs', 'utf8');
 const prepareRelease = await readFile('tools/prepare-release.mjs', 'utf8');
 const apiRelease = await readFile('scripts/deploy-api-release.sh', 'utf8');
+const apiConfig = await readFile('services/api/src/config.ts', 'utf8');
+const apiConfigPreflight = await readFile('services/api/src/config-preflight.ts', 'utf8');
 if (!caddy.includes('api.readyoufife.com') || !caddy.includes('cloud.readyoufife.com')) {
   throw new Error('The production gateway is missing the Read You 5 API or Supabase host.');
 }
@@ -313,16 +315,50 @@ for (const requiredContract of [
   'criticalFingerprint',
   "channel === 'app-store'",
   'freshHours: 7 * 24',
+  "const devEvidenceRequired = channel === 'android'",
 ]) {
   if (!criticalReleaseEvidence.includes(requiredContract)) {
     throw new Error(`The critical-capability evidence contract is incomplete: ${requiredContract}`);
   }
 }
 if (
+  criticalReleaseEvidence.includes("const devEvidenceRequired = channel === 'testflight'")
+  || criticalReleaseEvidence.includes('devEvidenceRequired: true')
+) {
+  throw new Error('TestFlight must not require Development Build real-device evidence before upload.');
+}
+if (
   !apiRelease.includes('migration-plan.mjs --require-current')
   || !apiRelease.includes('candidate API deployment was blocked before cutover')
+  || !apiRelease.includes('config-preflight.js')
+  || !apiRelease.includes('Candidate API production configuration is incomplete')
+  || !apiRelease.includes('x-icao-api-version:')
 ) {
-  throw new Error('The production API candidate must verify the exact migration ledger before cutover.');
+  throw new Error('The production API candidate must verify configuration, migration state, and release identity before cutover.');
+}
+for (const requiredAiRuntimeField of [
+  'AI_TEXT_PROVIDER',
+  'DEEPSEEK_API_KEY',
+  'DEEPSEEK_BASE_URL',
+  'AI_GRAMMAR_MODEL',
+  'AI_POLISH_MODEL',
+  'TENCENT_CLOUD_SECRET_ID',
+  'TENCENT_CLOUD_SECRET_KEY',
+  'TENCENT_ASR_ENDPOINT',
+  'AI_ASR_STAGING_BUCKET',
+]) {
+  if (!apiConfig.includes(requiredAiRuntimeField)) {
+    throw new Error(`The production AI runtime guard is missing: ${requiredAiRuntimeField}`);
+  }
+}
+if (
+  !apiConfig.includes('validateProductionAiRuntime')
+  || !apiConfig.includes("parsed.data.NODE_ENV === 'production'")
+  || !apiConfigPreflight.includes('loadConfig()')
+  || apiConfigPreflight.includes('deepseekApiKey')
+  || apiConfigPreflight.includes('tencentCloudSecret')
+) {
+  throw new Error('The production AI configuration preflight is incomplete or unsafe.');
 }
 for (const forbiddenEvidencePath of ['import-ai-live', 'function deviceChecks()']) {
   if (criticalReleaseEvidence.includes(forbiddenEvidencePath)) {

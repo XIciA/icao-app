@@ -515,13 +515,17 @@ async function verify(channel, platform) {
   assertFresh(acknowledgement.acknowledgedAt, 24, 'acknowledgement');
   assert(acknowledgement.runbooks?.audio === hashes.audio && acknowledgement.runbooks?.ai === hashes.ai, 'runbooks_changed_after_acknowledgement');
 
-  const dev = await readEvidence(`dev-device-${platform}.json`);
-  validateDeviceEvidence(dev, {
-    kind: 'dev',
-    platform,
-    identity,
-    freshHours: 7 * 24,
-  });
+  const devEvidenceRequired = channel === 'android';
+  let dev;
+  if (devEvidenceRequired) {
+    dev = await readEvidence(`dev-device-${platform}.json`);
+    validateDeviceEvidence(dev, {
+      kind: 'dev',
+      platform,
+      identity,
+      freshHours: 7 * 24,
+    });
+  }
 
   const verifierFingerprint = await hashFiles(AI_LIVE_VERIFIER_FILES);
   const aiLive = validateAiLive(await readEvidence('ai-live.json'), { verifierFingerprint });
@@ -552,12 +556,12 @@ async function verify(channel, platform) {
     runbooks: hashes,
     inputs: {
       acknowledgement: hashEvidence(acknowledgement),
-      devRealDevice: hashEvidence(dev),
+      ...(dev ? { devRealDevice: hashEvidence(dev) } : {}),
       aiLive: hashEvidence(aiLive),
       ...(testflight ? { testflightRealDevice: hashEvidence(testflight) } : {}),
     },
     rules: {
-      devEvidenceRequired: true,
+      devEvidenceRequired,
       aiLiveRequired: true,
       testflightEvidenceRequired: channel === 'app-store',
       releaseBypassSupported: false,
