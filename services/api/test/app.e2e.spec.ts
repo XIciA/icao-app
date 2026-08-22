@@ -23,6 +23,30 @@ process.env.SUPABASE_SECRET_KEY = 'test-secret-key-that-is-long-enough';
 process.env.INVITE_AUTH_SECRET = 'test-invite-auth-secret-that-is-long-enough';
 process.env.ACCOUNT_IDENTITY_HASH_SECRET = 'test-account-identity-secret-that-is-long-enough';
 
+function productionConfig(overrides: NodeJS.ProcessEnv = {}): NodeJS.ProcessEnv {
+  return {
+    NODE_ENV: 'production',
+    API_RELEASE_ID: 'release-config-test-1',
+    DATABASE_URL: 'postgresql://postgres:test@127.0.0.1:5432/postgres',
+    SUPABASE_URL: 'http://supabase.internal:8000',
+    SUPABASE_PUBLIC_URL: 'https://cloud.readyoufife.com',
+    SUPABASE_PUBLISHABLE_KEY: 'test-publishable-key-that-is-long-enough',
+    SUPABASE_SECRET_KEY: 'test-secret-key-that-is-long-enough',
+    INVITE_AUTH_SECRET: 'test-invite-auth-secret-that-is-long-enough',
+    ACCOUNT_IDENTITY_HASH_SECRET: 'test-account-identity-secret-that-is-long-enough',
+    AI_TEXT_PROVIDER: 'deepseek',
+    DEEPSEEK_API_KEY: 'test-deepseek-key',
+    DEEPSEEK_BASE_URL: 'https://api.deepseek.com',
+    AI_GRAMMAR_MODEL: 'deepseek-v4-flash',
+    AI_POLISH_MODEL: 'deepseek-v4-flash',
+    TENCENT_CLOUD_SECRET_ID: 'test-tencent-secret-id',
+    TENCENT_CLOUD_SECRET_KEY: 'test-tencent-secret-key',
+    TENCENT_ASR_ENDPOINT: 'asr.tencentcloudapi.com',
+    AI_ASR_STAGING_BUCKET: 'ai-transcription-inputs',
+    ...overrides,
+  };
+}
+
 class FakeAuthVerifier implements AuthVerifier {
   async verify(token: string): Promise<VerifiedAuthSession> {
     if (!['valid-token', 'apple-token', 'legacy-invite-token'].includes(token)) throw new UnauthorizedException('invalid_access_token');
@@ -176,25 +200,36 @@ describe('API foundation', () => {
   });
 
   it('requires Tencent Cloud credentials to be configured as a pair', () => {
-    const base = {
-      NODE_ENV: 'production',
-      DATABASE_URL: process.env.DATABASE_URL,
-      SUPABASE_URL: process.env.SUPABASE_URL,
-      SUPABASE_PUBLIC_URL: process.env.SUPABASE_PUBLIC_URL,
-      SUPABASE_PUBLISHABLE_KEY: process.env.SUPABASE_PUBLISHABLE_KEY,
-      SUPABASE_SECRET_KEY: process.env.SUPABASE_SECRET_KEY,
-      INVITE_AUTH_SECRET: process.env.INVITE_AUTH_SECRET,
-      ACCOUNT_IDENTITY_HASH_SECRET: process.env.ACCOUNT_IDENTITY_HASH_SECRET,
-    };
-    expect(loadConfig({
-      ...base,
-      TENCENT_CLOUD_SECRET_ID: 'test-tencent-secret-id',
-      TENCENT_CLOUD_SECRET_KEY: 'test-tencent-secret-key',
-    }).tencentAsrEndpoint).toBe('asr.tencentcloudapi.com');
-    expect(() => loadConfig({
-      ...base,
-      TENCENT_CLOUD_SECRET_ID: 'test-tencent-secret-id',
-    })).toThrow('invalid_api_configuration:TENCENT_CLOUD_CREDENTIALS');
+    expect(loadConfig(productionConfig()).tencentAsrEndpoint).toBe('asr.tencentcloudapi.com');
+    expect(() => loadConfig(productionConfig({ TENCENT_CLOUD_SECRET_KEY: undefined })))
+      .toThrow('invalid_api_configuration:TENCENT_CLOUD_CREDENTIALS');
+  });
+
+  it('requires every critical AI provider setting to be explicit in production', () => {
+    for (const field of [
+      'AI_TEXT_PROVIDER',
+      'DEEPSEEK_API_KEY',
+      'DEEPSEEK_BASE_URL',
+      'AI_GRAMMAR_MODEL',
+      'AI_POLISH_MODEL',
+      'TENCENT_CLOUD_SECRET_ID',
+      'TENCENT_CLOUD_SECRET_KEY',
+      'TENCENT_ASR_ENDPOINT',
+      'AI_ASR_STAGING_BUCKET',
+    ]) {
+      const environment = productionConfig();
+      delete environment[field];
+      expect(() => loadConfig(environment)).toThrow('invalid_api_configuration');
+    }
+  });
+
+  it('rejects unversioned or non-production AI endpoints in production', () => {
+    expect(() => loadConfig(productionConfig({ API_RELEASE_ID: 'unversioned' })))
+      .toThrow('invalid_api_configuration:API_RELEASE_ID');
+    expect(() => loadConfig(productionConfig({ DEEPSEEK_BASE_URL: 'http://api.deepseek.com' })))
+      .toThrow('invalid_api_configuration:DEEPSEEK_BASE_URL');
+    expect(() => loadConfig(productionConfig({ TENCENT_ASR_ENDPOINT: 'example.com' })))
+      .toThrow('invalid_api_configuration:TENCENT_ASR_ENDPOINT');
   });
 
   it('returns live and ready health envelopes', async () => {

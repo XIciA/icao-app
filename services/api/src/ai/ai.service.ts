@@ -19,6 +19,11 @@ const PROMPTS = {
 } as const;
 
 type UsageCapability = 'word_lookup' | 'transcribe' | 'grammar_review' | 'polish';
+type AiProviderName = 'dashscope' | 'deepseek' | 'tencent-asr';
+
+function safeLogToken(value: string) {
+  return value.replace(/[^A-Za-z0-9._:-]/gu, '_').slice(0, 120) || 'unknown';
+}
 
 @Injectable()
 export class AiService {
@@ -74,31 +79,48 @@ export class AiService {
   }
 
   private async run<T>(input: {
-    userId: string; requestId: string; capability: UsageCapability; model: string; promptVersion: string; units: number;
+    userId: string; requestId: string; capability: UsageCapability; provider: AiProviderName;
+    model: string; promptVersion: string; units: number;
     action: () => Promise<{ data: T; meta: ProviderMeta }>;
   }): Promise<T> {
     const started = Date.now();
+    const usage = {
+      userId: input.userId,
+      requestId: input.requestId,
+      capability: input.capability,
+      model: input.model,
+      promptVersion: input.promptVersion,
+    };
     try {
       const result = await input.action();
-      await this.logUsage({ ...input, status: 'success', latencyMs: Date.now() - started, quotaUnits: input.units, meta: result.meta })
+      await this.logUsage({ ...usage, status: 'success', latencyMs: Date.now() - started, quotaUnits: input.units, meta: result.meta })
         .catch(() => this.logger.error(`ai_usage_log_failed capability=${input.capability} status=success`));
       return result.data;
     } catch (error) {
       const observation = aiFailureObservation(error);
+      const latencyMs = Date.now() - started;
+      const status = this.status(error);
       const meteredFailure = Boolean(
         observation.meta
         && ((observation.meta.inputTokens ?? 0) > 0 || (observation.meta.outputTokens ?? 0) > 0),
       );
       await this.logUsage({
-        ...input,
-        status: this.status(error),
-        latencyMs: Date.now() - started,
+        ...usage,
+        status,
+        latencyMs,
         // User quota is charged only for a usable result. Provider token metadata
         // remains available for internal cost reconciliation when an upstream
         // response was metered but failed validation.
         quotaUnits: 0,
         ...observation,
       }).catch(() => this.logger.error(`ai_usage_log_failed capability=${input.capability} status=failed metered=${meteredFailure}`));
+      this.logger.warn(
+        `ai_operation_failed requestId=${safeLogToken(input.requestId)}`
+        + ` capability=${input.capability} provider=${input.provider}`
+        + ` model=${safeLogToken(input.model)} stage=${observation.upstreamStatus}`
+        + ` status=${status} failureCode=${observation.failureCode}`
+        + ` attemptCount=${observation.attemptCount} latencyMs=${latencyMs}`,
+      );
       if (observation.failureCode === 'internal_error') {
         throw new HttpException('ai_upstream_failed', 503);
       }
@@ -117,7 +139,7 @@ export class AiService {
 
     const rules = await this.assets.promptRules('word', [input.word, input.sentence]);
     const result = await this.run({
-      userId, requestId, capability: 'word_lookup', model: this.provider.textModel(), promptVersion: PROMPTS.word, units: 1,
+      userId, requestId, capability: 'word_lookup', provider: 'dashscope', model: this.provider.textModel(), promptVersion: PROMPTS.word, units: 1,
       action: async () => {
         const generated = await this.provider.generateJson<unknown>(rules, JSON.stringify({ task: 'Explain the selected word or phrase in this exact learning context.', input }), signal);
         const parsed = wordLookupResultSchema.parse(generated.data);
@@ -135,7 +157,7 @@ export class AiService {
     await this.requireConsent(userId);
     if (!audio.length || audio.length > 8 * 1024 * 1024) throw new BadRequestException('invalid_audio');
     return this.run({
-      userId, requestId, capability: 'transcribe', model,
+      userId, requestId, capability: 'transcribe', provider: 'tencent-asr', model,
       promptVersion: 'tencent-asr:raw:v1', units: 3,
       action: async () => {
         const result = await this.asr.transcribe(audio, mimeType, model, signal, requestId);
@@ -147,7 +169,7 @@ export class AiService {
   async grammarReview(userId: string, requestId: string, input: GrammarReviewRequest, signal?: AbortSignal) {
     await this.requireConsent(userId);
     const result = await this.run({
-      userId, requestId, capability: 'grammar_review', model: this.reviewProvider.textModel('grammar'), promptVersion: REVIEW_PROMPT_VERSION, units: 2,
+      userId, requestId, capability: 'grammar_review', provider: 'deepseek', model: this.reviewProvider.textModel('grammar'), promptVersion: REVIEW_PROMPT_VERSION, units: 2,
       action: () => this.generateReview(userId, {
         mode: 'grammar', module: input.module, questionId: input.questionId, transcript: input.transcript,
       }, signal),
@@ -163,7 +185,7 @@ export class AiService {
     await this.requireConsent(userId);
     const transcript = input.correctedText ?? input.transcript;
     const result = await this.run({
-      userId, requestId, capability: 'polish', model: this.reviewProvider.textModel('opi'), promptVersion: REVIEW_PROMPT_VERSION, units: 2,
+      userId, requestId, capability: 'polish', provider: 'deepseek', model: this.reviewProvider.textModel('opi'), promptVersion: REVIEW_PROMPT_VERSION, units: 2,
       action: () => this.generateReview(userId, {
         mode: 'opi', module: 'opi', questionId: input.questionId, transcript,
       }, signal),
@@ -188,6 +210,7 @@ export class AiService {
       userId,
       requestId,
       capability: input.mode === 'opi' ? 'polish' : 'grammar_review',
+      provider: 'deepseek',
       model: this.reviewProvider.textModel(input.mode),
       promptVersion: REVIEW_PROMPT_VERSION,
       units: input.mode === 'opi' ? 3 : 2,

@@ -152,13 +152,23 @@ describe('Supabase SMS hook', () => {
   it('requires every production adapter secret when Aliyun is enabled', () => {
     expect(() => loadConfig({
       NODE_ENV: 'production',
+      API_RELEASE_ID: 'release-sms-config-test-1',
       DATABASE_URL: 'postgresql://postgres:test@127.0.0.1:5432/postgres',
       SUPABASE_URL: 'http://127.0.0.1:8000',
-      SUPABASE_PUBLIC_URL: 'http://127.0.0.1:8000',
+      SUPABASE_PUBLIC_URL: 'https://cloud.readyoufife.com',
       SUPABASE_PUBLISHABLE_KEY: 'test-publishable-key-that-is-long-enough',
       SUPABASE_SECRET_KEY: 'test-secret-key-that-is-long-enough',
       INVITE_AUTH_SECRET: 'test-invite-auth-secret-that-is-long-enough',
       ACCOUNT_IDENTITY_HASH_SECRET: 'test-account-identity-secret-that-is-long-enough',
+      AI_TEXT_PROVIDER: 'deepseek',
+      DEEPSEEK_API_KEY: 'test-deepseek-key',
+      DEEPSEEK_BASE_URL: 'https://api.deepseek.com',
+      AI_GRAMMAR_MODEL: 'deepseek-v4-flash',
+      AI_POLISH_MODEL: 'deepseek-v4-flash',
+      TENCENT_CLOUD_SECRET_ID: 'test-tencent-secret-id',
+      TENCENT_CLOUD_SECRET_KEY: 'test-tencent-secret-key',
+      TENCENT_ASR_ENDPOINT: 'asr.tencentcloudapi.com',
+      AI_ASR_STAGING_BUCKET: 'ai-transcription-inputs',
       SMS_PROVIDER: 'aliyun',
     })).toThrow('invalid_api_configuration:ALIYUN_SMS_ACCESS_KEY_ID');
   });

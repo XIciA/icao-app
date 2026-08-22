@@ -48,6 +48,18 @@ const schema = z.object({
   CORS_ORIGINS: z.string().default('http://localhost:8081,http://127.0.0.1:8081,http://localhost:4173,http://127.0.0.1:4173'),
 });
 
+const PRODUCTION_AI_ENVIRONMENT_KEYS = [
+  'AI_TEXT_PROVIDER',
+  'DEEPSEEK_API_KEY',
+  'DEEPSEEK_BASE_URL',
+  'AI_GRAMMAR_MODEL',
+  'AI_POLISH_MODEL',
+  'TENCENT_CLOUD_SECRET_ID',
+  'TENCENT_CLOUD_SECRET_KEY',
+  'TENCENT_ASR_ENDPOINT',
+  'AI_ASR_STAGING_BUCKET',
+] as const;
+
 export type SmsConfig = {
   provider: 'disabled' | 'aliyun';
   legalEntityName: string;
@@ -142,6 +154,41 @@ function isValidSupabaseSmsHookSecret(value: string) {
     && decoded.toString('base64') === encoded;
 }
 
+function invalidConfiguration(...fields: string[]): never {
+  throw new Error(`invalid_api_configuration:${fields.join(', ')}`);
+}
+
+function requireProductionHttpsUrl(name: string, value: string) {
+  const url = new URL(value);
+  if (
+    url.protocol !== 'https:'
+    || url.username
+    || url.password
+    || url.search
+    || url.hash
+  ) invalidConfiguration(name);
+}
+
+function validateProductionAiRuntime(
+  environment: NodeJS.ProcessEnv,
+  data: z.infer<typeof schema>,
+) {
+  const missing = PRODUCTION_AI_ENVIRONMENT_KEYS.filter((name) => !environment[name]?.trim());
+  if (missing.length > 0) invalidConfiguration(...missing);
+  if (['development', 'test', 'unversioned'].includes(data.API_RELEASE_ID.toLowerCase())) {
+    invalidConfiguration('API_RELEASE_ID');
+  }
+  requireProductionHttpsUrl('DEEPSEEK_BASE_URL', data.DEEPSEEK_BASE_URL);
+  requireProductionHttpsUrl('SUPABASE_PUBLIC_URL', data.SUPABASE_PUBLIC_URL);
+  if (data.DEEPSEEK_BASE_URL.endsWith('/')) invalidConfiguration('DEEPSEEK_BASE_URL');
+  if (data.TENCENT_ASR_ENDPOINT !== 'asr.tencentcloudapi.com') {
+    invalidConfiguration('TENCENT_ASR_ENDPOINT');
+  }
+  if (!/^[a-z0-9][a-z0-9._-]{1,62}$/u.test(data.AI_ASR_STAGING_BUCKET)) {
+    invalidConfiguration('AI_ASR_STAGING_BUCKET');
+  }
+}
+
 export function loadConfig(environment: NodeJS.ProcessEnv = process.env): ApiConfig {
   const parsed = schema.safeParse(environment);
   if (!parsed.success) {
@@ -151,6 +198,7 @@ export function loadConfig(environment: NodeJS.ProcessEnv = process.env): ApiCon
   if (Boolean(parsed.data.TENCENT_CLOUD_SECRET_ID) !== Boolean(parsed.data.TENCENT_CLOUD_SECRET_KEY)) {
     throw new Error('invalid_api_configuration:TENCENT_CLOUD_CREDENTIALS');
   }
+  if (parsed.data.NODE_ENV === 'production') validateProductionAiRuntime(environment, parsed.data);
   if (Boolean(parsed.data.WECHAT_APP_ID) !== Boolean(parsed.data.WECHAT_APP_SECRET)) {
     throw new Error('invalid_api_configuration:WECHAT_CREDENTIALS');
   }

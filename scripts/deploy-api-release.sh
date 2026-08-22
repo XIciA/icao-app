@@ -57,6 +57,7 @@ rollback_image=icao-api:rollback-$release_id
 candidate_image=icao-api:candidate-$release_id
 backup_dir=/opt/icao/backups/api-$release_id
 runtime_compose=/opt/icao/runtime/api/docker-compose.yml
+runtime_env=/opt/icao/runtime/api/.env
 
 rm -rf "$source_dir"
 mkdir -p "$source_dir" "$backup_dir"
@@ -65,29 +66,69 @@ if [ -d /opt/icao/runtime/source ]; then
   tar -czf "$backup_dir/source-before.tar.gz" -C /opt/icao/runtime/source .
 fi
 if [ -f "$runtime_compose" ]; then cp "$runtime_compose" "$backup_dir/docker-compose-before.yml"; fi
+if [ ! -f "$runtime_env" ]; then
+  echo 'Production API environment file is missing.' >&2
+  exit 1
+fi
+cp -p "$runtime_env" "$backup_dir/runtime-env-before"
 install -m 600 "$source_dir/infra/api/docker-compose.runtime.yml" "$runtime_compose"
 running_image=$(docker inspect -f '{{.Image}}' icao-api)
 docker image inspect "$running_image" >/dev/null
 docker tag "$running_image" "$rollback_image"
+running_release_id=$(docker exec icao-api sh -lc 'printf "%s" "${API_RELEASE_ID:-unversioned}"')
+case "$running_release_id" in
+  ''|*[!A-Za-z0-9._-]*)
+    echo 'The running API release ID is invalid; rollback identity cannot be preserved.' >&2
+    exit 1
+    ;;
+esac
 
 docker build --build-arg "ICAO_API_RELEASE_ID=$release_id" -t "$candidate_image" -f "$source_dir/infra/api/Dockerfile" "$source_dir"
+
+if ! docker run --rm \
+  --network supabase_default \
+  --env-file "$runtime_env" \
+  -e "API_RELEASE_ID=$release_id" \
+  "$candidate_image" \
+  node services/api/dist/src/config-preflight.js; then
+  echo 'Candidate API production configuration is incomplete; deployment was blocked before cutover.' >&2
+  exit 1
+fi
 
 # The candidate reads the real migration ledger in an explicitly read-only
 # transaction. It must never replace the running API while any repository
 # migration is pending or the production ledger has drifted.
 if ! docker run --rm \
   --network supabase_default \
-  --env-file /opt/icao/runtime/api/.env \
+  --env-file "$runtime_env" \
   "$candidate_image" \
   node services/api/scripts/migration-plan.mjs --require-current; then
   echo 'Production schema is not current; candidate API deployment was blocked before cutover.' >&2
   exit 1
 fi
 
+candidate_runtime_env=$backup_dir/runtime-env-candidate
+umask 077
+awk -v release_id="$release_id" '
+  BEGIN { written = 0 }
+  /^API_RELEASE_ID=/ {
+    if (!written) print "API_RELEASE_ID=" release_id
+    written = 1
+    next
+  }
+  { print }
+  END { if (!written) print "API_RELEASE_ID=" release_id }
+' "$runtime_env" > "$candidate_runtime_env"
+install -m 600 "$candidate_runtime_env" "$runtime_env"
+
 docker tag "$candidate_image" icao-api:phase2a
 
 rollback() {
   docker tag "$rollback_image" icao-api:phase2a
+  install -m 600 "$backup_dir/runtime-env-before" "$runtime_env"
+  if [ -f "$backup_dir/docker-compose-before.yml" ]; then
+    install -m 600 "$backup_dir/docker-compose-before.yml" "$runtime_compose"
+  fi
   docker compose -f "$runtime_compose" up -d --force-recreate api
 }
 
@@ -107,6 +148,15 @@ if [ "$ready" -ne 1 ]; then
 fi
 
 if ! docker exec -e ICAO_LIVE_VERIFY_MODE=readiness icao-api node services/api/scripts/verify-live.mjs; then
+  rollback
+  exit 1
+fi
+
+active_release_id=$(curl -fsS -D - -o /dev/null http://127.0.0.1:3101/health/ready \
+  | tr -d '\r' \
+  | awk 'tolower($1) == "x-icao-api-version:" { print $2; exit }')
+if [ "$active_release_id" != "$release_id" ]; then
+  echo 'Candidate API release identity does not match the active readiness endpoint.' >&2
   rollback
   exit 1
 fi
