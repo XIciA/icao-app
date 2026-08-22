@@ -14,6 +14,16 @@ const migrationsFolder = fileURLToPath(new URL('../drizzle', import.meta.url));
 test('loads the repository journal with the exact Drizzle hashes', async () => {
   const migrations = await loadLocalMigrations(migrationsFolder);
   assert.ok(migrations.length >= 15);
+  assert.equal(migrations[8].tag, '0008_editorial_releases');
+  assert.equal(
+    migrations[8].hash,
+    '3b2e86cbe4e0f0d75a6036aa39b8645d3e918b20eed4e72d9b5bc569b20b2d55',
+  );
+  assert.equal(migrations[9].tag, '0009_invite_accounts');
+  assert.equal(
+    migrations[9].hash,
+    'eb3b9593e4208b5df1a87d8ba45837e692489f6d8640508f87708c38d4a21804',
+  );
   assert.equal(migrations[10].tag, '0010_common_virginia_dare');
   assert.equal(migrations[13].tag, '0013_futuristic_wilson_fisk');
   assert.equal(migrations[14].tag, '0014_feedback_ticket_retention');
