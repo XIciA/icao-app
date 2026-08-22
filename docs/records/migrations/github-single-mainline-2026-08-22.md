@@ -45,9 +45,10 @@ Vercel 与当前 API 的历史运行时只记录真实例外，不创建误导�
 - 发布历史关系已验证：`a0ca177`、`04778bc`、`75edb96`、`629a8ce` 均为整合分支祖先；
   历史发布 tag 已推送到远端。
 - 本地验证通过：`pnpm check:release`、`pnpm test:recording`、`pnpm typecheck`、
-  `pnpm check`、`pnpm check:web:edgeone`、`git diff --check`。
-- GitHub 使用 PR 合入 `main` 并通过仓库 CI；仓库设置为 PR 合入后自动删除临时分支，
-  关闭 squash/rebase 合入，只保留能够完整保留提交父关系的 merge。
+  `pnpm check`、`pnpm check:ci`、`pnpm check:web:edgeone`、`git diff --check`。
+- 本次历史整合使用普通 merge PR 合入 `main` 并通过仓库 CI，以保留发布提交父关系；收口后
+  GitHub 设置为 PR 合入后自动删除临时分支，日常只保留 squash merge，关闭 rebase 和普通
+  merge，保持后续 `main` 历史简洁。
 - 整理前的 6 条远端 `codex/*` 分支及本次临时整合分支已删除；本地旧功能分支、
   旧 OPI 分支和 4 个附加 worktree 已删除。仍需追溯的历史由 `main`、保全 tag 和本记录承担。
 - 最终审计标准：远端与本地都只保留 `main` 分支；开放 PR 为 0；`main` 工作树干净且
