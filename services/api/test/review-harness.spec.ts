@@ -45,8 +45,8 @@ describe('review harness', () => {
     })).toThrow('review_no_issue_text_changed');
   });
 
-  it('rejects issue entries that do not change the source', () => {
-    expect(() => parseAndValidateReview({
+  it('removes no-op issue annotations while preserving real corrections', () => {
+    expect(parseAndValidateReview({
       grammar: {
         issues: [
           { before: 'encounter', after: 'encountered', reasonZh: '应使用过去时。' },
@@ -56,7 +56,23 @@ describe('review harness', () => {
       },
     }, {
       mode: 'grammar', module: 'opi', questionId: 'q-5', transcript: 'Yesterday we encounter turbulence.',
-    })).toThrow('review_issue_without_change');
+    })).toEqual({
+      grammar: {
+        issues: [{ before: 'encounter', after: 'encountered', reasonZh: '应使用过去时。' }],
+        correctedText: 'Yesterday we encountered turbulence.',
+      },
+    });
+  });
+
+  it('still rejects changed text when only no-op issue annotations remain', () => {
+    expect(() => parseAndValidateReview({
+      grammar: {
+        issues: [{ before: 'turbulence', after: 'turbulence', reasonZh: '保持原样。' }],
+        correctedText: 'Yesterday we encountered turbulence.',
+      },
+    }, {
+      mode: 'grammar', module: 'opi', questionId: 'q-6', transcript: 'Yesterday we encounter turbulence.',
+    })).toThrow('review_no_issue_text_changed');
   });
 
   it('requires OPI mode to use the OPI module', () => {
