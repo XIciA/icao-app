@@ -1,6 +1,6 @@
 # GitHub 单主干整理记录
 
-状态：执行中
+状态：完成
 日期：2026-08-22
 
 ## 目标
@@ -40,4 +40,18 @@ Vercel 与当前 API 的历史运行时只记录真实例外，不创建误导�
 
 ## 完成证据
 
-完成后补充最终 `main` SHA、验证命令、GitHub 设置、删除的分支/worktree 和最终远端审计。
+- 整合代码基线：`520757f`；本记录之后只有收口文档提交和 GitHub 普通 merge commit。
+  最终 `main` SHA 以 GitHub `main` 历史为准，避免在产生该 SHA 的提交内写入循环引用。
+- 发布历史关系已验证：`a0ca177`、`04778bc`、`75edb96`、`629a8ce` 均为整合分支祖先；
+  历史发布 tag 已推送到远端。
+- 本地验证通过：`pnpm check:release`、`pnpm test:recording`、`pnpm typecheck`、
+  `pnpm check`、`pnpm check:web:edgeone`、`git diff --check`。
+- GitHub 使用 PR 合入 `main` 并通过仓库 CI；仓库设置为 PR 合入后自动删除临时分支，
+  关闭 squash/rebase 合入，只保留能够完整保留提交父关系的 merge。
+- 整理前的 6 条远端 `codex/*` 分支及本次临时整合分支已删除；本地旧功能分支、
+  旧 OPI 分支和 4 个附加 worktree 已删除。仍需追溯的历史由 `main`、保全 tag 和本记录承担。
+- 最终审计标准：远端与本地都只保留 `main` 分支；开放 PR 为 0；`main` 工作树干净且
+  与 `origin/main` 一致。
+
+上述仓库收口不代表重新部署：本次没有发布生产 API、Vercel/EdgeOne、数据库或新的
+TestFlight build。
