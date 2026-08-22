@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "ruleVersion": "question-bank-text-audit-v1.0.0",
   "releaseVersion": 12,
-  "generatedAt": "2026-07-30T16:52:40.659Z",
+  "generatedAt": "2026-08-22T14:19:48.267Z",
   "totals": {
     "files": 374,
     "textValues": 40564
@@ -2081,7 +2081,7 @@
     {
       "file": "content/question-banks/banks/radiotelephony/topics/atc-scenario-0172.json",
       "textValues": 76,
-      "textProjectionSha256": "1eb135bb3307930a592231b440ec3862105291a46d71672df78511b4db9ff612",
+      "textProjectionSha256": "4744ac743502e7fd90b9623a55bcc9961e0fc321e743e7a1aa8f602df4ebe294",
       "status": "reviewed"
     },
     {
