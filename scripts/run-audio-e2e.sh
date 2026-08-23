@@ -21,7 +21,7 @@ LOG_DIR="$PROJECT_ROOT/.generated/audio-e2e"
 mkdir -p "$LOG_DIR"
 
 cd "$PROJECT_ROOT"
-CI=1 EXPO_PUBLIC_ICAO_AUDIO_E2E=1 pnpm exec expo start --dev-client --port "$PORT" >"$LOG_DIR/metro-$PLATFORM.log" 2>&1 &
+CI=1 EXPO_NO_DOTENV=1 EXPO_PUBLIC_ICAO_AUDIO_E2E=1 pnpm exec expo start --dev-client --port "$PORT" >"$LOG_DIR/metro-$PLATFORM.log" 2>&1 &
 METRO_PID=$!
 trap 'kill "$METRO_PID" 2>/dev/null || true' EXIT HUP INT TERM
 

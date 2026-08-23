@@ -18,9 +18,31 @@ describe('API client cancellation and timeout boundary', () => {
 
   function pendingUntilAborted() {
     mockFetch.mockImplementation((_url: string, init?: RequestInit) => new Promise<Response>((_resolve, reject) => {
+      if (init?.signal?.aborted) {
+        reject(new DOMException('aborted', 'AbortError'));
+        return;
+      }
       init?.signal?.addEventListener('abort', () => reject(new DOMException('aborted', 'AbortError')), { once: true });
     }));
   }
+
+  it('sends a request with an external signal when React Native has no AbortSignal.any', async () => {
+    const abortSignalConstructor = AbortSignal as typeof AbortSignal & { any?: unknown };
+    const originalDescriptor = Object.getOwnPropertyDescriptor(abortSignalConstructor, 'any');
+    Object.defineProperty(abortSignalConstructor, 'any', { configurable: true, value: undefined });
+    mockFetch.mockResolvedValue({ status: 200 } as Response);
+    const { apiFetch } = jest.requireActual('@/platform/api-client') as typeof import('@/platform/api-client');
+    const controller = new AbortController();
+
+    try {
+      await expect(apiFetch('/v1/ai/review', { signal: controller.signal })).resolves.toMatchObject({ status: 200 });
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch.mock.calls[0]?.[1]?.signal).toBeInstanceOf(AbortSignal);
+    } finally {
+      if (originalDescriptor) Object.defineProperty(abortSignalConstructor, 'any', originalDescriptor);
+      else Reflect.deleteProperty(abortSignalConstructor, 'any');
+    }
+  });
 
   it('maps the internal 45 second deadline to ai_timeout', async () => {
     pendingUntilAborted();
@@ -44,5 +66,27 @@ describe('API client cancellation and timeout boundary', () => {
     controller.abort();
     await observed;
     expect(mockFetch).toHaveBeenCalledTimes(1);
+  });
+
+  it('forwards an already-aborted external signal without sending an active request', async () => {
+    pendingUntilAborted();
+    const { apiFetch } = jest.requireActual('@/platform/api-client') as typeof import('@/platform/api-client');
+    const controller = new AbortController();
+    controller.abort();
+
+    await expect(apiFetch('/v1/ai/review', { signal: controller.signal })).rejects.toMatchObject({ name: 'AbortError' });
+    expect(mockFetch).toHaveBeenCalledTimes(1);
+    expect(mockFetch.mock.calls[0]?.[1]?.signal?.aborted).toBe(true);
+  });
+
+  it('removes the external abort listener after a completed request', async () => {
+    mockFetch.mockResolvedValue({ status: 200 } as Response);
+    const { apiFetch } = jest.requireActual('@/platform/api-client') as typeof import('@/platform/api-client');
+    const controller = new AbortController();
+    const removeListener = jest.spyOn(controller.signal, 'removeEventListener');
+
+    await apiFetch('/v1/ai/review', { signal: controller.signal });
+
+    expect(removeListener).toHaveBeenCalledWith('abort', expect.any(Function));
   });
 });

@@ -1,4 +1,5 @@
 import type { AiConsent, AiReviewRequest, AiReviewResult, GrammarReviewRequest, GrammarReviewResult, PolishRequest, PolishResult, TranscribeResult } from '@icao/contracts';
+import Constants from 'expo-constants';
 import Storage from '@/platform/storage';
 
 import {
@@ -16,6 +17,12 @@ import { getAsrModel } from './asr-model-preference';
 const POLICY_VERSION = 'ai-learning-privacy-v4';
 const CONSENT_KEY = `icao.ai.consent.${POLICY_VERSION}`;
 const AUDIO_E2E_ENABLED = __DEV__ && process.env.EXPO_PUBLIC_ICAO_AUDIO_E2E === '1';
+
+function audioE2EProbeBaseUrl() {
+  const hostUri = Constants.expoConfig?.hostUri;
+  if (hostUri) return /^https?:\/\//u.test(hostUri) ? hostUri : `http://${hostUri}`;
+  return getApiBaseUrl();
+}
 
 async function withConsentRecovery<T>(action: () => Promise<T>) {
   try {
@@ -56,6 +63,15 @@ export async function clearLocalAiConsent() {
 export async function transcribeRecording(uri: string, signal?: AbortSignal) {
   if (AUDIO_E2E_ENABLED) {
     if (signal?.aborted) throw new Error('request_aborted');
+    const baseUrl = audioE2EProbeBaseUrl();
+    if (!baseUrl) throw new Error('api_not_configured');
+    const health = await withApiRequestTimeout(
+      (requestSignal) => fetch(`${baseUrl}/status`, { signal: requestSignal }),
+      signal,
+    );
+    if (!health.ok || (await health.text()).trim() !== 'packager-status:running') {
+      throw new Error('audio_e2e_api_unready');
+    }
     return {
       transcript: 'Audio lifecycle test transcript.',
     } satisfies TranscribeResult;

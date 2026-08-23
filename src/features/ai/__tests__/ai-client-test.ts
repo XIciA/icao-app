@@ -81,6 +81,20 @@ describe('Native AI client failure handling', () => {
     expect(mockApiRequest).toHaveBeenCalledTimes(1);
   });
 
+  it('forwards an external cancellation signal to the native review request', async () => {
+    mockApiRequest.mockResolvedValueOnce({
+      grammar: { correctedText: 'Ready.', issues: [] },
+      promptVersion: 'deepseek-review:v1',
+    });
+    const controller = new AbortController();
+
+    await client().reviewExpression({
+      mode: 'grammar', module: 'atc', questionId: 'question-signal', transcript: 'Ready.',
+    }, controller.signal);
+
+    expect(mockApiRequest).toHaveBeenCalledWith('/v1/ai/review', expect.objectContaining({ signal: controller.signal }));
+  });
+
   it('applies the same 45 second deadline to the native multipart upload', async () => {
     jest.useFakeTimers();
     const uploadFetch = jest.fn((_url: string, init?: RequestInit) => new Promise<Response>((_resolve, reject) => {
@@ -88,7 +102,8 @@ describe('Native AI client failure handling', () => {
     }));
     mockCreateAudioUploadForm.mockResolvedValue({ form: {} as FormData, fetch: uploadFetch });
 
-    const pending = client().transcribeRecording('file:///recording.m4a');
+    const controller = new AbortController();
+    const pending = client().transcribeRecording('file:///recording.m4a', controller.signal);
     const observed = expect(pending).rejects.toMatchObject({
       capability: 'transcribe',
       code: 'ai_timeout',
