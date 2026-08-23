@@ -6,6 +6,9 @@ const app = JSON.parse(await readFile(path.join(root, 'app.json'), 'utf8'));
 const releaseScriptPath = path.join(root, 'scripts/release-ios-testflight.sh');
 await access(releaseScriptPath);
 const releaseScript = await readFile(releaseScriptPath, 'utf8');
+const apiClient = await readFile(path.join(root, 'src/platform/api-client.ts'), 'utf8');
+const aiClient = await readFile(path.join(root, 'src/features/ai/ai-client.ts'), 'utf8');
+const audioE2eScript = await readFile(path.join(root, 'scripts/run-audio-e2e.sh'), 'utf8');
 const failures = [];
 
 if (app.expo.version !== '1.0.0') failures.push('Marketing Version must remain 1.0.0.');
@@ -33,6 +36,18 @@ for (const required of [
 }
 for (const forbidden of ['devicectl', 'run:ios', 'simulator', 'EXPO_PUBLIC_ICAO_AUDIO_E2E=1']) {
   if (releaseScript.includes(forbidden)) failures.push(`TestFlight release script contains a forbidden delivery step: ${forbidden}`);
+}
+for (const forbidden of ['AbortSignal.any', 'AbortSignal.timeout']) {
+  if (apiClient.includes(forbidden)) failures.push(`Native API client uses an unsupported React Native abort API: ${forbidden}`);
+}
+if (!audioE2eScript.includes('EXPO_NO_DOTENV=1')) {
+  failures.push('Native audio E2E can be overridden by local dotenv configuration.');
+}
+if (!aiClient.includes('packager-status:running')) {
+  failures.push('Native AI E2E does not require a real React Native fetch with an external abort signal.');
+}
+if (!aiClient.includes('Constants.expoConfig?.hostUri')) {
+  failures.push('Native AI E2E does not probe the same Metro origin used by the running development build.');
 }
 
 if (failures.length) {

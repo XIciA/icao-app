@@ -48,21 +48,28 @@ export async function withApiRequestTimeout<T>(
   timeoutMilliseconds = 45_000,
 ) {
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), timeoutMilliseconds);
+  let abortSource: 'external' | 'timeout' | undefined;
+  const abort = (source: 'external' | 'timeout') => {
+    if (abortSource) return;
+    abortSource = source;
+    controller.abort();
+  };
+  const forwardExternalAbort = () => abort('external');
+  const timeout = setTimeout(() => abort('timeout'), timeoutMilliseconds);
+  if (externalSignal?.aborted) forwardExternalAbort();
+  else externalSignal?.addEventListener('abort', forwardExternalAbort, { once: true });
   try {
-    const signal = externalSignal
-      ? AbortSignal.any([controller.signal, externalSignal])
-      : controller.signal;
     try {
-      return await action(signal);
+      return await action(controller.signal);
     } catch (error) {
-      if (controller.signal.aborted && !externalSignal?.aborted) {
+      if (abortSource === 'timeout') {
         throw new ApiClientError('ai_timeout', 408);
       }
       throw error;
     }
   } finally {
     clearTimeout(timeout);
+    externalSignal?.removeEventListener('abort', forwardExternalAbort);
   }
 }
 
