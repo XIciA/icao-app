@@ -5,7 +5,6 @@ import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { and, eq, inArray, sql } from 'drizzle-orm';
 import { AUTH_VERIFIER, type AuthVerifier, type VerifiedAuthSession } from '../auth/auth.types';
 import { PhoneAuthService } from '../auth/phone-auth.service';
-import { RecentSocialAuthGrantService } from '../auth/recent-social-auth-grant.service';
 import { SessionSecurityService } from '../auth/session-security.service';
 import { API_CONFIG, type ApiConfig } from '../config';
 import {
@@ -34,10 +33,10 @@ import { AccountIdentityService } from './account-identity.service';
 const RECENT_SOCIAL_AUTH_WINDOW_SECONDS = 10 * 60;
 
 function sortedProviders(providers: Iterable<string>): AccountSummary['providers'] {
-  const supported = new Set(['phone', 'wechat', 'apple']);
+  const supported = new Set(['phone', 'apple']);
   return [...new Set(providers)]
     .filter((provider): provider is AccountSummary['providers'][number] => supported.has(provider))
-    .sort((left, right) => ['phone', 'wechat', 'apple'].indexOf(left) - ['phone', 'wechat', 'apple'].indexOf(right));
+    .sort((left, right) => ['phone', 'apple'].indexOf(left) - ['phone', 'apple'].indexOf(right));
 }
 
 @Injectable()
@@ -51,7 +50,6 @@ export class AccountService {
     private readonly database: DatabaseService,
     private readonly identities: AccountIdentityService,
     private readonly phoneAuth: PhoneAuthService,
-    private readonly recentSocialAuth: RecentSocialAuthGrantService,
     private readonly sessions: SessionSecurityService,
     private readonly feedback: FeedbackService,
   ) {
@@ -229,16 +227,12 @@ export class AccountService {
   }
 
   async mergeWithPhoneOtp(source: VerifiedAuthSession, phone: string, token: string): Promise<MergePhoneAccountResponse> {
-    const recentProvider = this.assertSocialPhoneBindingAllowed(source);
+    this.assertSocialPhoneBindingAllowed(source);
     const { data, error } = await this.publicAuth.auth.verifyOtp({ phone, token, type: 'sms' });
     if (error || !data.session || data.user?.phone !== phone) throw new UnauthorizedException('invalid_phone_otp');
     const target = await this.verifier.verify(data.session.access_token);
     await this.sessions.assertActive(target);
     try {
-      if (
-        recentProvider === 'wechat'
-        && !this.recentSocialAuth.consume('wechat', source.authUserId, source.sessionId)
-      ) throw new UnauthorizedException('recent_social_auth_required');
       const existingPhoneAccountId = await this.identities.accountIdForIdentity('phone', phone);
       let account: AccountSummary;
       if (existingPhoneAccountId) {
@@ -337,7 +331,7 @@ export class AccountService {
   private assertSocialPhoneBindingAllowed(source: VerifiedAuthSession) {
     const providers = source.user.providers ?? [];
     if (providers.includes('phone')) throw new ConflictException('account_phone_identity_conflict');
-    if (!providers.some((provider) => provider === 'apple' || provider === 'wechat')) {
+    if (!providers.includes('apple')) {
       throw new UnauthorizedException('social_identity_required');
     }
     const appleAuthenticatedAt = Math.max(
@@ -357,10 +351,6 @@ export class AccountService {
       && now - appleAuthenticatedAt <= RECENT_SOCIAL_AUTH_WINDOW_SECONDS,
     );
     if (appleIsRecent) return 'apple' as const;
-    if (
-      providers.includes('wechat')
-      && this.recentSocialAuth.has('wechat', source.authUserId, source.sessionId)
-    ) return 'wechat' as const;
     throw new UnauthorizedException('recent_social_auth_required');
   }
 
@@ -369,7 +359,7 @@ export class AccountService {
     const targetAccountId = target.user.id;
     const sourceAccountId = source.user.id;
     if (targetAccountId === sourceAccountId) return this.summary(targetAccountId, target.user.phone);
-    if (!source.user.providers?.some((provider) => provider === 'apple' || provider === 'wechat')) {
+    if (!source.user.providers?.includes('apple')) {
       throw new UnauthorizedException('social_identity_required');
     }
     if (source.user.providers.includes('phone')) {
@@ -406,7 +396,7 @@ export class AccountService {
         provider: accountIdentities.provider,
         subjectHash: accountIdentities.subjectHash,
       }).from(accountIdentities).where(inArray(accountIdentities.accountId, [sourceAccountId, targetAccountId]));
-      for (const provider of ['apple', 'wechat']) {
+      for (const provider of ['apple']) {
         const sourceSubjects = identityRows.filter((row) => row.accountId === sourceAccountId && row.provider === provider);
         const targetSubjects = identityRows.filter((row) => row.accountId === targetAccountId && row.provider === provider);
         if (sourceSubjects.some((sourceIdentity) => targetSubjects.some((targetIdentity) => targetIdentity.subjectHash !== sourceIdentity.subjectHash))) {

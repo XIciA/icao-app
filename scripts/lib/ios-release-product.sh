@@ -122,8 +122,16 @@ verify_ios_release_app() {
   assert_release_plist_value CFBundleShortVersionString "$marketing_version"
   assert_release_plist_value CFBundleVersion "$build_number"
 
-  if ! /usr/libexec/PlistBuddy -c 'Print :CFBundleURLTypes' "$info_plist_path" 2>/dev/null | grep -Fq 'readyoufife'; then
-    echo 'The Release app is missing the readyoufife URL scheme.' >&2
+  if ! plutil -convert json -o - "$info_plist_path" | "${NODE_BINARY:-node}" -e '
+    let source = "";
+    process.stdin.on("data", (chunk) => { source += chunk; });
+    process.stdin.on("end", () => {
+      const plist = JSON.parse(source);
+      const schemes = (plist.CFBundleURLTypes ?? []).flatMap((entry) => entry.CFBundleURLSchemes ?? []).sort();
+      if (schemes.length !== 1 || schemes[0] !== "readyoufife") process.exit(1);
+    });
+  '; then
+    echo 'The Release app must contain only the readyoufife URL scheme.' >&2
     exit 1
   fi
   if /usr/libexec/PlistBuddy -c 'Print :NSBonjourServices' "$info_plist_path" 2>/dev/null | grep -Fq '_expo._tcp'; then
@@ -138,6 +146,14 @@ verify_ios_release_app() {
     echo 'The Release app still contains an Expo development resource bundle.' >&2
     exit 1
   fi
+  if find "$app_path" -print | grep -Eiq '/[^/]*(wechat|weixin|wxapi)'; then
+    echo 'The Release app contains a retired WeChat SDK file or resource.' >&2
+    exit 1
+  fi
+  if grep -aERl 'WXApi|WXApiObject|WechatOpenSDK|WeChatSDK|api\.weixin\.qq\.com|open\.weixin\.qq\.com|sns/oauth2/access_token|expo-native-wechat' "$app_path" >/dev/null 2>&1; then
+    echo 'The Release app contains a retired WeChat framework, class, privacy, or network marker.' >&2
+    exit 1
+  fi
 
   codesign --verify --deep --strict "$app_path"
 
@@ -150,6 +166,11 @@ verify_ios_release_app() {
   if ! /usr/libexec/PlistBuddy -c 'Print :com.apple.developer.applesignin:0' "$entitlements_path" 2>/dev/null | grep -Fxq 'Default'; then
     rm -f "$entitlements_path"
     echo 'The Release app is missing the Sign in with Apple entitlement.' >&2
+    exit 1
+  fi
+  if /usr/libexec/PlistBuddy -c 'Print :com.apple.developer.associated-domains' "$entitlements_path" >/dev/null 2>&1; then
+    rm -f "$entitlements_path"
+    echo 'The Release app must not contain associated-domain entitlements.' >&2
     exit 1
   fi
   rm -f "$entitlements_path"

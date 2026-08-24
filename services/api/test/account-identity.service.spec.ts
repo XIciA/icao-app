@@ -110,7 +110,7 @@ function authSession(overrides: Partial<VerifiedAuthSession> = {}): VerifiedAuth
   };
 }
 
-function identityHash(provider: 'apple' | 'phone' | 'wechat', subject: string) {
+function identityHash(provider: 'apple' | 'phone', subject: string) {
   return createHmac('sha256', hashSecret)
     .update(`account-identity-v1\0${provider}\0${subject}`)
     .digest('hex');
@@ -159,14 +159,14 @@ describe('AccountIdentityService', () => {
     })))).not.toContain('+8613800138000');
   });
 
-  it('fails closed when a new auth user presents a WeChat subject already owned by another auth user', async () => {
+  it('fails closed when a new auth user presents an Apple subject already owned by another auth user', async () => {
     const accountId = '22222222-2222-4222-8222-222222222222';
     const auth = authSession({
       authUserId: '33333333-3333-4333-8333-333333333333',
-      identities: [{ provider: 'wechat', subject: 'stable-wechat-union-id' }],
+      identities: [{ provider: 'apple', subject: 'stable-apple-subject' }],
       user: {
         id: '33333333-3333-4333-8333-333333333333',
-        providers: ['wechat'],
+        providers: ['apple'],
       },
     });
     const fixture = databaseFixture({
@@ -184,13 +184,61 @@ describe('AccountIdentityService', () => {
         && error.message === 'identity_account_conflict');
     expect(fixture.mutations.find((entry) => (
       entry.values as { provider?: string } | undefined
-    )?.provider === 'wechat')?.values).toEqual({
+    )?.provider === 'apple')?.values).toEqual({
       accountId,
       authUserId: auth.authUserId,
-      provider: 'wechat',
-      subjectHash: identityHash('wechat', 'stable-wechat-union-id'),
+      provider: 'apple',
+      subjectHash: identityHash('apple', 'stable-apple-subject'),
     });
     expect(fixture.db.selectDistinct).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    {
+      identity: { provider: 'phone', subject: '+8613800138000' },
+      provider: 'phone' as const,
+      user: {
+        id: '11111111-1111-4111-8111-111111111111',
+        phone: '+8613800138000',
+        providers: ['phone'] as const,
+      },
+    },
+    {
+      identity: { provider: 'apple', subject: 'stable-apple-subject' },
+      provider: 'apple' as const,
+      user: {
+        email: 'private@privaterelay.appleid.com',
+        id: '11111111-1111-4111-8111-111111111111',
+        providers: ['apple'] as const,
+      },
+    },
+  ])('reuses a historical $provider identity and refreshes its usage', async ({ identity, provider, user }) => {
+    const accountId = '22222222-2222-4222-8222-222222222222';
+    const auth = authSession({
+      identities: [identity],
+      user: { ...user, providers: [...user.providers] },
+    });
+    const hash = identityHash(provider, identity.subject);
+    const fixture = databaseFixture({
+      distinctSelects: [[{ provider }, { provider: 'wechat' }]],
+      transactionSelects: [
+        [{ accountId }],
+        [{ accountId }],
+        [{ sessionsRevokedAt: null, status: 'active' }],
+        [{ accountId, provider, subjectHash: hash }],
+      ],
+    });
+    const service = new AccountIdentityService(config, fixture.database);
+
+    await expect(service.resolve(auth)).resolves.toEqual(expect.objectContaining({
+      authUserId: auth.authUserId,
+      id: accountId,
+      providers: [provider],
+    }));
+    expect(fixture.mutations).toContainEqual(expect.objectContaining({
+      kind: 'update',
+      set: { lastUsedAt: expect.any(Date) },
+    }));
   });
 
   it('fails closed when a phone auth user changes numbers outside the protected binding flow', async () => {
@@ -223,11 +271,11 @@ describe('AccountIdentityService', () => {
 
   it('fails closed when the auth user and supplied identities point at different accounts', async () => {
     const auth = authSession({
-      identities: [{ provider: 'wechat', subject: 'conflicting-wechat-union-id' }],
+      identities: [{ provider: 'apple', subject: 'conflicting-apple-subject' }],
       user: {
         id: '11111111-1111-4111-8111-111111111111',
         phone: '+8613800138000',
-        providers: ['phone', 'wechat'],
+        providers: ['phone', 'apple'],
       },
     });
     const fixture = databaseFixture({
@@ -259,6 +307,42 @@ describe('AccountIdentityService', () => {
     await expect(service.resolve(auth))
       .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
         && error.message === 'unsupported_auth_identity');
+    expect(fixture.db.transaction).not.toHaveBeenCalled();
+    expect(fixture.mutations).toHaveLength(0);
+  });
+
+  it('rejects a valid legacy WeChat session before consulting or mutating its historical identity row', async () => {
+    const auth = authSession({
+      accessToken: 'valid-legacy-wechat-token',
+      identities: [{ provider: 'wechat', subject: 'legacy-wechat-openid' }],
+      user: {
+        id: '11111111-1111-4111-8111-111111111111',
+      },
+    });
+    const fixture = databaseFixture({
+      transactionSelects: [[{ accountId: '22222222-2222-4222-8222-222222222222' }]],
+    });
+    const service = new AccountIdentityService(config, fixture.database);
+
+    await expect(service.resolve(auth))
+      .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
+        && error.message === 'unsupported_auth_identity');
+    expect(fixture.db.transaction).not.toHaveBeenCalled();
+    expect(fixture.transaction.execute).not.toHaveBeenCalled();
+    expect(fixture.transaction.select).not.toHaveBeenCalled();
+    expect(fixture.mutations).toHaveLength(0);
+    expect(fixture.db.selectDistinct).not.toHaveBeenCalled();
+  });
+
+  it('filters but does not mutate preserved legacy provider rows when listing supported providers', async () => {
+    const fixture = databaseFixture({
+      distinctSelects: [[{ provider: 'wechat' }, { provider: 'apple' }, { provider: 'phone' }]],
+    });
+    const service = new AccountIdentityService(config, fixture.database);
+
+    await expect(service.providersForAccount('22222222-2222-4222-8222-222222222222'))
+      .resolves.toEqual(['phone', 'apple']);
+    expect(fixture.db.transaction).not.toHaveBeenCalled();
     expect(fixture.mutations).toHaveLength(0);
   });
 });

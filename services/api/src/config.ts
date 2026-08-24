@@ -39,9 +39,6 @@ const schema = z.object({
   SMS_SEND_MONTHLY_LIMIT: z.coerce.number().int().min(1).max(1_000_000).default(2_000),
   SMS_PHONE_HOURLY_LIMIT: z.coerce.number().int().min(1).max(100).default(5),
   SMS_PHONE_DAILY_LIMIT: z.coerce.number().int().min(1).max(1_000).default(10),
-  WECHAT_APP_ID: z.string().regex(/^wx[a-zA-Z0-9]{10,30}$/u).optional(),
-  WECHAT_APP_SECRET: z.string().min(16).optional(),
-  WECHAT_API_BASE_URL: z.string().url().default('https://api.weixin.qq.com'),
   CORS_ORIGINS: z.string().default('http://localhost:8081,http://127.0.0.1:8081,http://localhost:4173,http://127.0.0.1:4173'),
 });
 
@@ -111,11 +108,6 @@ export type ApiConfig = {
   aiAsrSignedUrlTtlSeconds: number;
   aiAsrStaleAudioTtlSeconds: number;
   sms?: SmsConfig;
-  wechat?: {
-    appId: string;
-    appSecret: string;
-    apiBaseUrl: string;
-  };
   corsOrigins: string[];
 };
 
@@ -193,9 +185,6 @@ export function loadConfig(environment: NodeJS.ProcessEnv = process.env): ApiCon
     throw new Error('invalid_api_configuration:TENCENT_CLOUD_CREDENTIALS');
   }
   if (parsed.data.NODE_ENV === 'production') validateProductionAiRuntime(environment, parsed.data);
-  if (Boolean(parsed.data.WECHAT_APP_ID) !== Boolean(parsed.data.WECHAT_APP_SECRET)) {
-    throw new Error('invalid_api_configuration:WECHAT_CREDENTIALS');
-  }
   if (/^https?:\/\//u.test(parsed.data.TENCENT_ASR_ENDPOINT) || parsed.data.TENCENT_ASR_ENDPOINT.includes('/')) {
     throw new Error('invalid_api_configuration:TENCENT_ASR_ENDPOINT');
   }
@@ -263,11 +252,6 @@ export function loadConfig(environment: NodeJS.ProcessEnv = process.env): ApiCon
       phoneHourlyLimit: parsed.data.SMS_PHONE_HOURLY_LIMIT,
       phoneDailyLimit: parsed.data.SMS_PHONE_DAILY_LIMIT,
     },
-    wechat: parsed.data.WECHAT_APP_ID && parsed.data.WECHAT_APP_SECRET ? {
-      appId: parsed.data.WECHAT_APP_ID,
-      appSecret: parsed.data.WECHAT_APP_SECRET,
-      apiBaseUrl: parsed.data.WECHAT_API_BASE_URL,
-    } : undefined,
     corsOrigins: parseCorsOrigins(parsed.data.CORS_ORIGINS),
   };
 }

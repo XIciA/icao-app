@@ -8,7 +8,7 @@ import type { AppSession } from '../auth-service';
 const mockGetSession = jest.fn();
 const mockRefreshSession = jest.fn();
 const mockAuthorizePasswordRecovery = jest.fn();
-const mockSignInWithWechat = jest.fn();
+const mockSignInWithApple = jest.fn();
 const mockSignOut = jest.fn();
 const mockUpdatePassword = jest.fn();
 const mockVerifyPhoneOtp = jest.fn();
@@ -19,7 +19,7 @@ jest.mock('../auth-service', () => ({
     onSessionChange: () => () => undefined,
     refreshSession: (...args: unknown[]) => mockRefreshSession(...args),
     authorizePasswordRecovery: (...args: unknown[]) => mockAuthorizePasswordRecovery(...args),
-    signInWithWechat: (...args: unknown[]) => mockSignInWithWechat(...args),
+    signInWithApple: (...args: unknown[]) => mockSignInWithApple(...args),
     signOut: (...args: unknown[]) => mockSignOut(...args),
     startAutoRefresh: jest.fn(),
     stopAutoRefresh: jest.fn(),
@@ -50,14 +50,14 @@ jest.mock('@/features/sync/learning-sync', () => ({
 const mockApiRequest = apiRequest as jest.MockedFunction<typeof apiRequest>;
 
 const socialSession: AppSession = {
-  accessToken: 'wechat-access-token',
-  refreshToken: 'wechat-refresh-token',
+  accessToken: 'apple-access-token',
+  refreshToken: 'apple-refresh-token',
   user: {
-    authUserId: 'wechat-auth-user',
+    authUserId: 'apple-auth-user',
     hasPassword: false,
-    id: 'wechat-auth-user',
+    id: 'apple-auth-user',
     phoneBound: false,
-    providers: ['wechat'],
+    providers: ['apple'],
     registrationPending: false,
   },
 };
@@ -96,7 +96,7 @@ describe('<AuthProvider /> internal-account gate', () => {
       authorized: true,
       expiresAt: Date.now() + 600_000,
     });
-    mockSignInWithWechat.mockReset().mockResolvedValue(socialSession);
+    mockSignInWithApple.mockReset().mockResolvedValue(socialSession);
     mockSignOut.mockReset().mockResolvedValue(undefined);
     mockUpdatePassword.mockReset().mockResolvedValue(phoneSession);
     mockVerifyPhoneOtp.mockReset().mockResolvedValue(phoneSession);
@@ -110,13 +110,13 @@ describe('<AuthProvider /> internal-account gate', () => {
 
     let login!: Promise<void>;
     await act(async () => {
-      login = currentAuth.signInWithWechat();
+      login = currentAuth.signInWithApple();
       await Promise.resolve();
     });
     expect(screen.getByTestId('auth-state').props.children).toBe('closed');
 
     await act(async () => {
-      resolveAccount({ accountId: 'account-1', phoneBound: false, providers: ['wechat'] });
+      resolveAccount({ accountId: 'account-1', phoneBound: false, providers: ['apple'] });
       await login;
     });
     expect(screen.getByTestId('auth-state').props.children).toBe('ready');
@@ -130,7 +130,7 @@ describe('<AuthProvider /> internal-account gate', () => {
     let failure: unknown;
     await act(async () => {
       try {
-        await currentAuth.signInWithWechat();
+        await currentAuth.signInWithApple();
       } catch (error) {
         failure = error;
       }

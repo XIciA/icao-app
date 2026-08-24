@@ -49,7 +49,9 @@ function productionConfig(overrides: NodeJS.ProcessEnv = {}): NodeJS.ProcessEnv 
 
 class FakeAuthVerifier implements AuthVerifier {
   async verify(token: string): Promise<VerifiedAuthSession> {
-    if (!['valid-token', 'apple-token', 'legacy-invite-token'].includes(token)) throw new UnauthorizedException('invalid_access_token');
+    if (!['valid-token', 'apple-token', 'legacy-invite-token', 'legacy-wechat-token'].includes(token)) {
+      throw new UnauthorizedException('invalid_access_token');
+    }
     return {
       accessToken: token,
       authenticationMethods: [{ method: token === 'apple-token' ? 'oauth' : 'otp', timestamp: Math.floor(Date.now() / 1_000) }],
@@ -60,7 +62,9 @@ class FakeAuthVerifier implements AuthVerifier {
         ? [{ provider: 'phone', subject: '+8613800138000' }]
         : token === 'apple-token'
           ? [{ provider: 'apple', subject: 'apple-subject' }]
-          : [{ provider: 'email', subject: 'legacy@example.com' }],
+          : token === 'legacy-wechat-token'
+            ? [{ provider: 'wechat', subject: 'legacy-wechat-openid' }]
+            : [{ provider: 'email', subject: 'legacy@example.com' }],
       issuedAt: 1,
       sessionId: '00000000-0000-4000-8000-000000000002',
       user: token === 'valid-token'
@@ -231,6 +235,7 @@ describe('API foundation', () => {
     expect(config).not.toHaveProperty('dashscopeApiKey');
     expect(config).not.toHaveProperty('dashscopeBaseUrl');
     expect(config).not.toHaveProperty('aiTextModel');
+    expect(config).not.toHaveProperty('wechat');
   });
 
   it('rejects unversioned or non-production AI endpoints in production', () => {
@@ -307,6 +312,18 @@ describe('API foundation', () => {
   it('rejects a valid legacy invite session that has no +86 phone identity', async () => {
     const app = await testApp();
     const response = await app.inject({ method: 'GET', url: '/v1/me', headers: { authorization: 'Bearer legacy-invite-token' } });
+    expect(response.statusCode).toBe(401);
+    expect(response.json().error.code).toBe('unsupported_auth_identity');
+    await app.close();
+  });
+
+  it('rejects a valid legacy WeChat token at the authenticated guard boundary', async () => {
+    const app = await testApp();
+    const response = await app.inject({
+      method: 'GET',
+      url: '/v1/me',
+      headers: { authorization: 'Bearer legacy-wechat-token' },
+    });
     expect(response.statusCode).toBe(401);
     expect(response.json().error.code).toBe('unsupported_auth_identity');
     await app.close();
@@ -438,6 +455,17 @@ describe('API foundation', () => {
       method: 'POST',
       url: '/v1/auth/invite/session',
       payload: { inviteCode: '起落平安-7K4M-2Q9X' },
+    });
+    expect(response.statusCode).toBe(404);
+    await app.close();
+  });
+
+  it('does not register the retired WeChat session endpoint', async () => {
+    const app = await testApp();
+    const response = await app.inject({
+      method: 'POST',
+      url: '/v1/auth/wechat/session',
+      payload: {},
     });
     expect(response.statusCode).toBe(404);
     await app.close();

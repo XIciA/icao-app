@@ -15,7 +15,7 @@ type IdentityCandidate = {
   subject: string;
 };
 
-const SUPPORTED_PROVIDERS = new Set<AuthIdentityProvider>(['phone', 'apple', 'wechat']);
+const SUPPORTED_PROVIDERS = new Set<AuthIdentityProvider>(['phone', 'apple']);
 
 @Injectable()
 export class AccountIdentityService {
@@ -61,9 +61,12 @@ export class AccountIdentityService {
 
   async resolve(auth: VerifiedAuthSession): Promise<AuthenticatedUser> {
     const candidates = this.candidates(auth);
+    if (candidates.length === 0) {
+      throw new UnauthorizedException('unsupported_auth_identity');
+    }
     const candidateHashes = candidates.map((candidate) => ({
       ...candidate,
-        hash: this.hashIdentity(candidate.provider, candidate.subject),
+      hash: this.hashIdentity(candidate.provider, candidate.subject),
     }));
 
     const accountId = await this.database.db.transaction(async (transaction) => {
@@ -80,9 +83,6 @@ export class AccountIdentityService {
           .where(inArray(accountIdentities.subjectHash, hashes));
       const linkedAccounts = [...new Set([...byAuthUser, ...bySubject].map((row) => row.accountId))];
       if (linkedAccounts.length > 1) throw new UnauthorizedException('identity_account_conflict');
-      if (linkedAccounts.length === 0 && candidateHashes.length === 0) {
-        throw new UnauthorizedException('unsupported_auth_identity');
-      }
 
       const resolvedAccountId = linkedAccounts[0] ?? auth.authUserId;
       await transaction.insert(accounts).values({ id: resolvedAccountId })
@@ -143,43 +143,6 @@ export class AccountIdentityService {
     };
   }
 
-  async registerWechatIdentity(authUserId: string, subject: string) {
-    const subjectHash = this.hashIdentity('wechat', subject);
-    return this.database.db.transaction(async (transaction) => {
-      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`wechat:${subjectHash}`}, 0))`);
-      const [existing] = await transaction.select({ accountId: accountIdentities.accountId })
-        .from(accountIdentities)
-        .where(and(
-          eq(accountIdentities.provider, 'wechat'),
-          eq(accountIdentities.subjectHash, subjectHash),
-        ))
-        .limit(1);
-      const accountId = existing?.accountId ?? authUserId;
-      await transaction.insert(accounts).values({ id: accountId })
-        .onConflictDoNothing({ target: accounts.id });
-      await transaction.insert(profiles).values({ userId: accountId })
-        .onConflictDoNothing({ target: profiles.userId });
-      await transaction.insert(accountIdentities).values({
-        accountId,
-        authUserId,
-        provider: 'wechat',
-        subjectHash,
-      }).onConflictDoNothing();
-      return accountId;
-    });
-  }
-
-  async authUserIdForWechatSubject(subject: string) {
-    const [identity] = await this.database.db.select({ authUserId: accountIdentities.authUserId })
-      .from(accountIdentities)
-      .where(and(
-        eq(accountIdentities.provider, 'wechat'),
-        eq(accountIdentities.subjectHash, this.hashIdentity('wechat', subject)),
-      ))
-      .limit(1);
-    return identity?.authUserId;
-  }
-
   async providersForAccount(accountId: string): Promise<AuthIdentityProvider[]> {
     const rows = await this.database.db.selectDistinct({ provider: accountIdentities.provider })
       .from(accountIdentities)
@@ -187,7 +150,7 @@ export class AccountIdentityService {
     return rows
       .map((row) => row.provider)
       .filter((provider): provider is AuthIdentityProvider => SUPPORTED_PROVIDERS.has(provider as AuthIdentityProvider))
-      .sort((left, right) => ['phone', 'wechat', 'apple'].indexOf(left) - ['phone', 'wechat', 'apple'].indexOf(right));
+      .sort((left, right) => ['phone', 'apple'].indexOf(left) - ['phone', 'apple'].indexOf(right));
   }
 
   async authUserIdsForAccount(accountId: string) {

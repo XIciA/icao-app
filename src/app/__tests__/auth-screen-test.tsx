@@ -8,7 +8,6 @@ const mockRequestPasswordRecoveryOtp = jest.fn();
 const mockVerifyPhoneOtp = jest.fn();
 const mockSignInWithPhonePassword = jest.fn();
 const mockSignInWithApple = jest.fn();
-const mockSignInWithWechat = jest.fn();
 const mockConsumePendingPath = jest.fn();
 const mockBack = jest.fn();
 const mockCanGoBack = jest.fn();
@@ -34,7 +33,6 @@ jest.mock('@/features/auth/AuthProvider', () => ({
     requestPasswordRecoveryOtp: mockRequestPasswordRecoveryOtp,
     signInWithPhonePassword: mockSignInWithPhonePassword,
     signInWithApple: mockSignInWithApple,
-    signInWithWechat: mockSignInWithWechat,
     verifyPhoneOtp: mockVerifyPhoneOtp,
   }),
 }));
@@ -57,7 +55,6 @@ describe('<LoginScreen />', () => {
     });
     mockSignInWithPhonePassword.mockReset().mockResolvedValue(undefined);
     mockSignInWithApple.mockReset().mockResolvedValue(undefined);
-    mockSignInWithWechat.mockReset().mockResolvedValue(undefined);
     mockConsumePendingPath.mockReset().mockReturnValue(undefined);
     mockBack.mockClear();
     mockCanGoBack.mockReset();
@@ -90,7 +87,7 @@ describe('<LoginScreen />', () => {
 
     expect(screen.getByText('验证码登录')).toBeTruthy();
     expect(screen.getByText('密码登录')).toBeTruthy();
-    expect(screen.getByText('微信登录')).toBeTruthy();
+    expect(screen.queryByText('微信登录')).toBeNull();
     expect(screen.getByTestId('apple-sign-in')).toBeTruthy();
     expect(screen.getByText('未注册手机号验证成功后会自动创建账号。')).toBeTruthy();
     expect(screen.getByRole('checkbox')).toBeTruthy();
@@ -169,11 +166,11 @@ describe('<LoginScreen />', () => {
     expect(mockReplace).not.toHaveBeenCalledWith('/account/password?mode=setup');
   });
 
-  it('uses WeChat as an auto-registration login after consent', async () => {
+  it('uses Apple as an auto-registration login after consent', async () => {
     const screen = await renderLoginScreen();
     await act(async () => { fireEvent.press(screen.getByRole('checkbox')); });
-    await act(async () => { fireEvent.press(screen.getByText('微信登录')); });
-    expect(mockSignInWithWechat).toHaveBeenCalledTimes(1);
+    await act(async () => { fireEvent.press(screen.getByTestId('apple-sign-in')); });
+    expect(mockSignInWithApple).toHaveBeenCalledTimes(1);
     expect(mockReplace).toHaveBeenCalledWith('/(tabs)');
   });
 

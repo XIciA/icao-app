@@ -15,7 +15,7 @@ const mockResendPhoneBindingOtp = jest.fn();
 const mockVerifyPhoneBindingOtp = jest.fn();
 const mockRouterReplace = jest.fn();
 let mockAuthSession: { user: { hasPassword: boolean; id: string; phone?: string; registrationPending: boolean } } | undefined;
-let mockAccount: { accountId: string; phone?: string; phoneBound: boolean; providers: ('phone' | 'apple' | 'wechat')[] } | undefined;
+let mockAccount: { accountId: string; phone?: string; phoneBound: boolean; providers: ('phone' | 'apple')[] } | undefined;
 let mockPasswordChangePurpose: 'recovery' | 'setup' | undefined;
 
 jest.mock('lucide-react-native', () => {
@@ -147,16 +147,16 @@ describe('base flow parity screens', () => {
   it('asks for fresh social verification without revealing phone occupancy', async () => {
     mockParams = { slug: 'bind-phone' };
     mockAuthSession = {
-      user: { hasPassword: false, id: 'wechat-auth-1', registrationPending: false },
+      user: { hasPassword: false, id: 'apple-auth-1', registrationPending: false },
     };
-    mockAccount = { accountId: 'account-wechat', phoneBound: false, providers: ['wechat'] };
+    mockAccount = { accountId: 'account-apple', phoneBound: false, providers: ['apple'] };
     mockRequestPhoneBindingOtp.mockRejectedValue(new Error('recent_social_auth_required'));
     const screen = await render(withSafeArea(<AccountScreen />));
 
     await act(async () => { fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000'); });
     await act(async () => { fireEvent.press(screen.getByText('获取验证码')); });
 
-    expect(screen.getByText(/重新使用微信或 Apple 登录验证身份/u)).toBeTruthy();
+    expect(screen.getByText(/重新使用 Apple 登录验证身份/u)).toBeTruthy();
     expect(screen.getByText('重新验证身份')).toBeTruthy();
     expect(screen.queryByText(/已有账号|归并/u)).toBeNull();
   });

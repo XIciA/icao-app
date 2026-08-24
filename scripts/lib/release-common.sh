@@ -65,6 +65,7 @@ load_release_runtime() {
 check_release_runtime() {
   required_social_provider=${1:-}
   node_binary=${NODE_BINARY:-$(command -v node)}
+  "$node_binary" "$PROJECT_ROOT/tools/check-wechat-runtime-freeze.mjs"
   CHECK_API_URL=$API_URL CHECK_SUPABASE_URL=$SUPABASE_URL CHECK_PUBLISHABLE_KEY=$PUBLISHABLE_KEY CHECK_SOCIAL_PROVIDER=$required_social_provider "$node_binary" <<'NODE'
 const api = await fetch(`${process.env.CHECK_API_URL}/health/ready`, {
   signal: AbortSignal.timeout(10_000),
@@ -82,6 +83,19 @@ if (settings.disable_signup === true || settings.external?.phone !== true || set
 }
 if (process.env.CHECK_SOCIAL_PROVIDER && settings.external?.[process.env.CHECK_SOCIAL_PROVIDER] !== true) {
   throw new Error(`Supabase Auth provider is not enabled: ${process.env.CHECK_SOCIAL_PROVIDER}`);
+}
+if (settings.external?.wechat === true) {
+  throw new Error('Supabase Auth must not enable the retired WeChat provider.');
+}
+
+const retiredWechat = await fetch(`${process.env.CHECK_API_URL}/v1/auth/wechat/session`, {
+  method: 'POST',
+  headers: { 'content-type': 'application/json' },
+  body: '{}',
+  signal: AbortSignal.timeout(10_000),
+});
+if (retiredWechat.status !== 404) {
+  throw new Error('The retired WeChat session route is still registered.');
 }
 
 for (const path of ['/v1/auth/phone/otp/start', '/v1/auth/phone/recovery/start']) {

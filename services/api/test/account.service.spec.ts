@@ -6,7 +6,6 @@ import { AccountService } from '../src/account/account.service';
 import type { AuthVerifier, VerifiedAuthSession } from '../src/auth/auth.types';
 import type { PhoneAuthService } from '../src/auth/phone-auth.service';
 import type { SessionSecurityService } from '../src/auth/session-security.service';
-import type { RecentSocialAuthGrantService } from '../src/auth/recent-social-auth-grant.service';
 import type { ApiConfig } from '../src/config';
 import type { DatabaseService } from '../src/database/database.service';
 import type { FeedbackService } from '../src/feedback/feedback.service';
@@ -26,7 +25,7 @@ function session(options: {
   issuedAt?: number;
   passwordSet?: boolean;
   phone?: string;
-  providers: Array<'apple' | 'phone' | 'wechat'>;
+  providers: Array<'apple' | 'phone'>;
 }): VerifiedAuthSession {
   const timestamp = options.issuedAt ?? Math.floor(Date.now() / 1_000);
   const defaultMethod = options.providers.includes('apple') ? 'oauth' : 'otp';
@@ -48,7 +47,6 @@ function session(options: {
 }
 
 function fixture(options: {
-  hasWechatGrant?: boolean;
   hasRecoveryGrant?: boolean;
   phoneAccountId?: string | null;
   signInWithOtp?: ReturnType<typeof vi.fn>;
@@ -118,10 +116,6 @@ function fixture(options: {
     assertActive: vi.fn().mockResolvedValue(undefined),
     revokeAll: vi.fn().mockResolvedValue(undefined),
   };
-  const recentSocialAuth = {
-    consume: vi.fn().mockReturnValue(options.hasWechatGrant ?? true),
-    has: vi.fn().mockReturnValue(options.hasWechatGrant ?? true),
-  };
   const phoneAuth = {
     authorizePasswordRecovery: vi.fn().mockReturnValue({ authorized: true, expiresAt: Date.now() + 600_000 }),
     consumePasswordRecovery: vi.fn().mockReturnValue(options.hasRecoveryGrant ?? true),
@@ -139,7 +133,6 @@ function fixture(options: {
     database as unknown as DatabaseService,
     identities as unknown as AccountIdentityService,
     phoneAuth as unknown as PhoneAuthService,
-    recentSocialAuth as unknown as RecentSocialAuthGrantService,
     sessions as unknown as SessionSecurityService,
     feedback as FeedbackService,
   );
@@ -147,7 +140,6 @@ function fixture(options: {
     identities,
     phoneAuth,
     service,
-    recentSocialAuth,
     sessions,
     signInWithOtp,
     signInWithPassword,
@@ -171,7 +163,7 @@ describe('AccountService phone merge', () => {
       accountId: '11111111-1111-4111-8111-111111111111',
       authUserId: '11111111-1111-4111-8111-111111111111',
       phone: '+8613900139000',
-      providers: ['phone', 'wechat'],
+      providers: ['phone', 'apple'],
     });
     const { service, verifyOtp } = fixture();
 
@@ -251,7 +243,7 @@ describe('AccountService phone merge', () => {
       authUserId: '11111111-1111-4111-8111-111111111111',
       providers: ['apple'],
     });
-    const { service, signInWithOtp } = fixture({ hasWechatGrant: false });
+    const { service, signInWithOtp } = fixture();
 
     await expect(service.startPhoneBinding(source, '+8613800138000', '203.0.113.9')).resolves.toEqual({ sent: true });
     expect(supabase.createClient).toHaveBeenLastCalledWith(
@@ -274,9 +266,9 @@ describe('AccountService phone merge', () => {
       accountId: '11111111-1111-4111-8111-111111111111',
       authUserId: '11111111-1111-4111-8111-111111111111',
       issuedAt: Math.floor(Date.now() / 1_000) - (11 * 60),
-      providers: ['wechat'],
+      providers: ['apple'],
     });
-    const { service, signInWithOtp } = fixture({ hasWechatGrant: false });
+    const { service, signInWithOtp } = fixture();
 
     await expect(service.startPhoneBinding(source, '+8613800138000'))
       .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
@@ -288,7 +280,7 @@ describe('AccountService phone merge', () => {
     const source = session({
       accountId: '11111111-1111-4111-8111-111111111111',
       authUserId: '11111111-1111-4111-8111-111111111111',
-      providers: ['wechat'],
+      providers: ['apple'],
     });
     const rateLimited = vi.fn().mockResolvedValue({
       data: { session: null, user: null },
@@ -320,7 +312,7 @@ describe('AccountService phone merge', () => {
     const source = session({
       accountId: '11111111-1111-4111-8111-111111111111',
       authUserId: '11111111-1111-4111-8111-111111111111',
-      providers: ['wechat'],
+      providers: ['apple'],
     });
     const { identities, service, transaction, verifier } = fixture({ verifyOtp });
 
@@ -336,7 +328,7 @@ describe('AccountService phone merge', () => {
     const source = session({
       accountId: '11111111-1111-4111-8111-111111111111',
       authUserId: '11111111-1111-4111-8111-111111111111',
-      providers: ['wechat'],
+      providers: ['apple'],
     });
     const { identities, service, sessions, signOut, transaction, verifier, verifyOtp } = fixture();
 
@@ -384,13 +376,13 @@ describe('AccountService phone merge', () => {
       execute: vi.fn().mockResolvedValue(undefined),
       insert: vi.fn(() => fluent(undefined)),
       select: vi.fn(() => fluent(rows.shift() ?? [])),
-      selectDistinct: vi.fn(() => fluent([{ provider: 'wechat' }, { provider: 'phone' }])),
+      selectDistinct: vi.fn(() => fluent([{ provider: 'apple' }, { provider: 'phone' }])),
     };
     const transaction = vi.fn(async (operation: (value: typeof transactionApi) => Promise<unknown>) => operation(transactionApi));
     const source = session({
       accountId: '11111111-1111-4111-8111-111111111111',
       authUserId: '11111111-1111-4111-8111-111111111111',
-      providers: ['wechat'],
+      providers: ['apple'],
     });
     const { identities, service, signOut } = fixture({ phoneAccountId: null, transaction });
 
@@ -399,7 +391,7 @@ describe('AccountService phone merge', () => {
         accountId: source.user.id,
         phone: '+8613800138000',
         phoneBound: true,
-        providers: ['phone', 'wechat'],
+        providers: ['phone', 'apple'],
       },
       session: {
         accessToken: 'phone-session-access-token',
