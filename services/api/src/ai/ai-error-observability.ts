@@ -1,6 +1,6 @@
 import { HttpException, ServiceUnavailableException } from '@nestjs/common';
 
-import type { ProviderMeta } from './ai-provider.service';
+import type { ProviderMeta } from './provider-meta';
 
 export type AiFailureObservation = {
   failureCode: string;

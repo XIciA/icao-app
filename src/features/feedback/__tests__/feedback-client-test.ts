@@ -29,7 +29,7 @@ const diagnosticBundle = {
   schemaVersion: 1 as const,
   feature: 'ai' as const,
   correlationId: 'A-TEST-01',
-  appVersion: 'v2026.08.12.0016',
+  appVersion: '1.0.0',
   build: '42',
   platform: 'ios' as const,
   osVersion: '19.0',

@@ -3,8 +3,8 @@ import { Inject, Injectable, ServiceUnavailableException } from '@nestjs/common'
 import type { AiReviewRequest } from '@icao/contracts';
 
 import { API_CONFIG, type ApiConfig } from '../config';
-import type { ProviderMeta } from './ai-provider.service';
 import { ObservedAiServiceException } from './ai-error-observability';
+import type { ProviderMeta } from './provider-meta';
 
 type Completion = {
   choices?: Array<{ finish_reason?: unknown; message?: { content?: unknown } }>;

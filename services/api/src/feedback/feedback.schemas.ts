@@ -3,6 +3,7 @@ import { z } from 'zod';
 const identifier = z.string().trim().min(1).max(160);
 const safeIdentifier = z.string().regex(/^[A-Za-z0-9][A-Za-z0-9:_-]{0,159}$/u);
 const stableCode = z.string().regex(/^[a-z][a-z0-9_]{0,119}$/u);
+const appDisplayVersion = z.string().regex(/^(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)$/u);
 
 const feedbackDiagnosticEventSchema = z.object({
   offsetMs: z.number().int().min(0).max(24 * 60 * 60 * 1_000),
@@ -29,7 +30,7 @@ const feedbackDiagnosticBundleSchema = z.object({
   schemaVersion: z.literal(1),
   feature: z.enum(['recording', 'ai']),
   correlationId: safeIdentifier,
-  appVersion: z.string().regex(/^v\d{4}\.\d{2}\.\d{2}\.\d{4}$/u),
+  appVersion: appDisplayVersion,
   build: z.string().trim().min(1).max(80).regex(/^[A-Za-z0-9._-]+$/u),
   platform: z.enum(['web', 'ios', 'android']),
   osVersion: z.string().trim().min(1).max(80),
@@ -47,7 +48,7 @@ export const feedbackSubmissionSchema = z.object({
   contact: z.string().trim().max(100).optional().transform((value) => value || undefined),
   source: z.enum(['profile', 'study']),
   sourceRoute: z.string().trim().min(1).max(500).transform((value) => value.split(/[?#]/u, 1)[0] || '/'),
-  appDisplayVersion: z.string().regex(/^v\d{4}\.\d{2}\.\d{2}\.\d{4}$/u),
+  appDisplayVersion,
   platform: z.enum(['web', 'ios', 'android']),
   osName: z.string().trim().max(80).optional(),
   osVersion: z.string().trim().max(80).optional(),

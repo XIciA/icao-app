@@ -25,11 +25,9 @@ const config: ApiConfig = {
   aiGrammarModel: 'test-grammar',
   aiPolishModel: 'test-polish',
   aiReviewMaxConcurrency: 50,
-  aiTextModel: 'test-text',
   aiTextProvider: 'deepseek',
   corsOrigins: ['http://127.0.0.1:8081'],
   databaseUrl: 'postgresql://postgres:test@127.0.0.1:5432/postgres',
-  dashscopeBaseUrl: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
   deepseekBaseUrl: 'https://api.deepseek.com',
   host: '127.0.0.1',
   inviteAuthSecret: 'different-test-invite-auth-secret-at-least-32-bytes',
@@ -139,7 +137,7 @@ describe('WechatAuthService', () => {
     expect(generateLink).toHaveBeenCalledWith({
       type: 'magiclink',
       email: expect.stringMatching(/^wechat-[a-f0-9]{64}@auth\.readyoufife\.invalid$/u),
-      options: { data: { account_provider: 'wechat' } },
+      options: { data: { account_provider: 'wechat', age_gate: '16_plus' } },
     });
     const bridgeEmail = generateLink.mock.calls[0]?.[0]?.email as string;
     expect(bridgeEmail).not.toContain('wechat-union-id');

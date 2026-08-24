@@ -42,7 +42,7 @@ export class PhoneAuthService {
         shouldCreateUser: true,
         data: {
           account_type: 'native_phone',
-          age_gate: '14_plus',
+          age_gate: '16_plus',
           password_set: false,
           registration_pending: false,
         },

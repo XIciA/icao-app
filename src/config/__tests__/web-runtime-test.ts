@@ -15,6 +15,9 @@ describe('Web runtime selection', () => {
       const runtime = require('../web-runtime') as typeof import('../web-runtime');
       expect(runtime.WEB_RUNTIME).toBe('vercel-legacy');
       expect(runtime.isEdgeOneProductionWeb()).toBe(false);
+      expect(runtime.isVercelLegacyWeb('web')).toBe(true);
+      expect(runtime.isFormalAppSurface('web')).toBe(false);
+      expect(runtime.isFormalAppSurface('ios')).toBe(true);
     });
   });
 
@@ -24,6 +27,8 @@ describe('Web runtime selection', () => {
       const runtime = require('../web-runtime') as typeof import('../web-runtime');
       expect(runtime.WEB_RUNTIME).toBe('edgeone-production');
       expect(runtime.isEdgeOneProductionWeb()).toBe(true);
+      expect(runtime.isVercelLegacyWeb('web')).toBe(false);
+      expect(runtime.isFormalAppSurface('web')).toBe(true);
     });
   });
 });

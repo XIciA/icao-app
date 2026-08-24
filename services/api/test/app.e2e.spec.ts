@@ -223,6 +223,16 @@ describe('API foundation', () => {
     }
   });
 
+  it('exposes only DeepSeek text AI and Tencent ASR production configuration', () => {
+    const config = loadConfig(productionConfig());
+    expect(config.aiTextProvider).toBe('deepseek');
+    expect(config.deepseekBaseUrl).toBe('https://api.deepseek.com');
+    expect(config.tencentAsrEndpoint).toBe('asr.tencentcloudapi.com');
+    expect(config).not.toHaveProperty('dashscopeApiKey');
+    expect(config).not.toHaveProperty('dashscopeBaseUrl');
+    expect(config).not.toHaveProperty('aiTextModel');
+  });
+
   it('rejects unversioned or non-production AI endpoints in production', () => {
     expect(() => loadConfig(productionConfig({ API_RELEASE_ID: 'unversioned' })))
       .toThrow('invalid_api_configuration:API_RELEASE_ID');
@@ -242,6 +252,18 @@ describe('API foundation', () => {
     expect(ready.statusCode).toBe(200);
     expect(ready.headers['x-icao-api-version']).toBe('development');
     expect(ready.json().data).toEqual({ service: 'icao-api', status: 'ok', database: 'ok' });
+    await app.close();
+  });
+
+  it('does not expose the retired dynamic AI word-lookup route', async () => {
+    const app = await testApp();
+    const response = await app.inject({
+      method: 'POST',
+      url: '/v1/ai/word-lookup',
+      headers: { authorization: 'Bearer valid-token' },
+      payload: { module: 'opi', questionId: 'q-1', word: 'runway', sentence: 'Cleared to land runway 27.' },
+    });
+    expect(response.statusCode).toBe(404);
     await app.close();
   });
 

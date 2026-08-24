@@ -95,7 +95,7 @@ export class WechatAuthService {
     const { data: link, error: linkError } = await this.adminAuth.auth.admin.generateLink({
       type: 'magiclink',
       email,
-      options: { data: { account_provider: 'wechat' } },
+      options: { data: { account_provider: 'wechat', age_gate: '16_plus' } },
     });
     const verificationType = link.properties?.verification_type;
     if (

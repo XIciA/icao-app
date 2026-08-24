@@ -7,6 +7,7 @@ import { Platform, Pressable, StyleSheet, View } from 'react-native';
 import { MessageCircle } from '@/components/ui/icons';
 import { AppText, Button } from '@/components/ui';
 import { useAuth } from '@/features/auth/AuthProvider';
+import { resolveLoginAgeCopy } from '@/features/auth/login-release-surface';
 import { colors, radii, spacing } from '@/theme';
 
 import { AuthField, AuthHeading, AuthShell, Checkbox, CodeField, Divider, PasswordField, TextLink } from './auth-ui';
@@ -49,6 +50,7 @@ export function LoginScreen() {
   const router = useRouter();
   const { mode } = useLocalSearchParams<{ mode?: string }>();
   const auth = useAuth();
+  const loginAgeCopy = resolveLoginAgeCopy(Platform.OS);
   const [entryView, setEntryView] = useState<EntryView>(mode === 'recovery' ? 'recovery' : 'login');
   const [loginMethod, setLoginMethod] = useState<LoginMethod>('otp');
   const [codePurpose, setCodePurpose] = useState<CodePurpose>();
@@ -107,7 +109,7 @@ export function LoginScreen() {
 
   function requireConsent() {
     if (accepted) return true;
-    setError('请确认已满14周岁，并同意用户协议与隐私政策。');
+    setError(loginAgeCopy.consentError);
     return false;
   }
 
@@ -151,7 +153,7 @@ export function LoginScreen() {
   }
 
   async function submitPasswordLogin() {
-    if (!validatePhone()) return;
+    if (!validatePhone() || !requireConsent()) return;
     if (!password) { setError('请输入登录密码。'); return; }
     setError('');
     setSubmitting(true);
@@ -301,7 +303,7 @@ export function LoginScreen() {
             <Button disabled={submitting} loading={submitting} onPress={() => void submitPasswordLogin()} size="lg">密码登录</Button>
           </>
         )}
-        <Checkbox checked={accepted} label="我已年满14周岁，并同意用户协议与隐私政策" onPress={() => setAccepted((value) => !value)} />
+        <Checkbox checked={accepted} label={loginAgeCopy.consentLabel} onPress={() => setAccepted((value) => !value)} />
         <LegalLinks router={router} />
       </View>
       <AppText style={styles.scopeNote} variant="caption">微信或 Apple 登录后可直接进入，手机号可稍后在账号安全中绑定。</AppText>

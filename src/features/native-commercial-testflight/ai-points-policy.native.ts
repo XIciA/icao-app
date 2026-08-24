@@ -1,6 +1,6 @@
 export const TESTFLIGHT_AI_POINTS_POLICY_VERSION = 'testflight-internal-v1' as const;
 
-export type AiPointOperation = 'speech_transcription' | 'speaking_feedback';
+export type AiPointOperation = 'static_word_lookup' | 'speech_transcription' | 'speaking_feedback';
 
 export type NativeAiPointsPolicy = Readonly<{
   version: string;
@@ -40,6 +40,7 @@ export const TESTFLIGHT_INTERNAL_AI_POINTS_POLICY: NativeAiPointsPolicy = Object
     membershipCycle: 1_000,
   }),
   operationCosts: Object.freeze({
+    static_word_lookup: 0,
     speech_transcription: 5,
     speaking_feedback: 10,
   }),
@@ -58,11 +59,12 @@ function isPositiveInteger(value: number) {
 }
 
 export function assertValidNativeAiPointsPolicy(policy: NativeAiPointsPolicy): void {
-  const pointValues = [
+  const positivePointValues = [
     policy.grantCycleDays,
     policy.grants.newAccount,
     policy.grants.membershipCycle,
-    ...Object.values(policy.operationCosts),
+    policy.operationCosts.speech_transcription,
+    policy.operationCosts.speaking_feedback,
     policy.safeguards.maxReservedPointsPerOperation,
     policy.safeguards.maxDailyReservedPoints,
   ];
@@ -73,8 +75,11 @@ export function assertValidNativeAiPointsPolicy(policy: NativeAiPointsPolicy): v
   if (policy.scope !== 'testflight_internal_placeholder' || policy.publicOffer !== false) {
     throw new Error('ai_points_policy_must_remain_internal');
   }
-  if (!pointValues.every(isPositiveInteger)) {
+  if (!positivePointValues.every(isPositiveInteger)) {
     throw new Error('ai_points_policy_values_must_be_positive_integers');
+  }
+  if (policy.operationCosts.static_word_lookup !== 0) {
+    throw new Error('static_word_lookup_must_remain_free');
   }
 
   const highestOperationCost = Math.max(...Object.values(policy.operationCosts));

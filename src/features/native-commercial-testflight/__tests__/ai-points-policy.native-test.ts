@@ -25,12 +25,14 @@ describe('TestFlight internal AI-points policy', () => {
     const values = [
       policy.grants.newAccount,
       policy.grants.membershipCycle,
-      ...Object.values(policy.operationCosts),
+      policy.operationCosts.speech_transcription,
+      policy.operationCosts.speaking_feedback,
       policy.safeguards.maxReservedPointsPerOperation,
       policy.safeguards.maxDailyReservedPoints,
     ];
 
     expect(values.every((value) => Number.isInteger(value) && value > 0)).toBe(true);
+    expect(policy.operationCosts.static_word_lookup).toBe(0);
     expect(policy.safeguards.maxReservedPointsPerOperation).toBeGreaterThanOrEqual(
       Math.max(...Object.values(policy.operationCosts)),
     );
@@ -64,6 +66,20 @@ describe('TestFlight internal AI-points policy', () => {
 
     expect(() => new StaticNativeAiPointsPolicyProvider(invalidPolicy)).toThrow(
       'ai_points_policy_must_remain_internal',
+    );
+  });
+
+  it('rejects any paid dynamic replacement for the local static dictionary', () => {
+    const invalidPolicy = {
+      ...TESTFLIGHT_INTERNAL_AI_POINTS_POLICY,
+      operationCosts: {
+        ...TESTFLIGHT_INTERNAL_AI_POINTS_POLICY.operationCosts,
+        static_word_lookup: 1,
+      },
+    } as NativeAiPointsPolicy;
+
+    expect(() => new StaticNativeAiPointsPolicyProvider(invalidPolicy)).toThrow(
+      'static_word_lookup_must_remain_free',
     );
   });
 });

@@ -28,6 +28,18 @@ const sample = `android {
 const first = plugin.applySigning(sample);
 const second = plugin.applySigning(first);
 
+for (const versionPath of [
+  'src/config/app-version.ts',
+  'src/config/app-version.ios.ts',
+  'src/config/app-version.android.ts',
+]) {
+  const source = await readFile(versionPath, 'utf8');
+  const displayVersion = source.match(/APP_DISPLAY_VERSION\s*=\s*['"]([^'"]+)['"]/u)?.[1];
+  if (displayVersion !== app.expo.version) {
+    throw new Error(`${versionPath} must match the ${app.expo.version} marketing version.`);
+  }
+}
+
 if (process.env.EXPO_PUBLIC_ICAO_AUDIO_E2E === '1') {
   throw new Error('The deterministic audio E2E adapter must never be enabled for Release builds.');
 }
@@ -114,6 +126,14 @@ const apiRelease = await readFile('scripts/deploy-api-release.sh', 'utf8');
 const apiDockerfile = await readFile('infra/api/Dockerfile', 'utf8');
 const apiConfig = await readFile('services/api/src/config.ts', 'utf8');
 const apiConfigPreflight = await readFile('services/api/src/config-preflight.ts', 'utf8');
+const apiAiRuntimeSources = (await Promise.all([
+  'services/api/src/config.ts',
+  'services/api/src/app.module.ts',
+  'services/api/src/ai/ai.controller.ts',
+  'services/api/src/ai/ai.service.ts',
+  'services/api/src/ai/deepseek-review-provider.service.ts',
+  'services/api/src/ai/tencent-asr.service.ts',
+].map((file) => readFile(file, 'utf8')))).join('\n');
 if (!caddy.includes('api.readyoufife.com') || !caddy.includes('cloud.readyoufife.com')) {
   throw new Error('The production gateway is missing the Read You 5 API or Supabase host.');
 }
@@ -366,6 +386,17 @@ for (const requiredAiRuntimeField of [
   if (!apiConfig.includes(requiredAiRuntimeField)) {
     throw new Error(`The production AI runtime guard is missing: ${requiredAiRuntimeField}`);
   }
+}
+for (const retiredAiRuntime of ['DASHSCOPE_', 'dashscope', 'qwen', '通义千问']) {
+  if (apiAiRuntimeSources.toLowerCase().includes(retiredAiRuntime.toLowerCase())) {
+    throw new Error(`The production Native API still references a retired AI runtime: ${retiredAiRuntime}`);
+  }
+}
+if (
+  !apiConfig.includes("AI_TEXT_PROVIDER: z.literal('deepseek')")
+  || apiAiRuntimeSources.includes("@Post('word-lookup')")
+) {
+  throw new Error('The production Native API must use DeepSeek text AI and local static word lookup only.');
 }
 if (
   !apiConfig.includes('validateProductionAiRuntime')

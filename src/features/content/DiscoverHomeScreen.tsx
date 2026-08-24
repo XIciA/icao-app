@@ -10,19 +10,20 @@ import {
   Radio,
   type LucideIcon,
 } from '@/components/ui/icons';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Platform, Pressable, StyleSheet, View } from 'react-native';
 
 import { AppText, Card, Screen } from '@/components/ui';
 import { SoftGlow } from '@/components/visual/SoftGlow';
 import { colors, fonts, radii, spacing } from '@/theme';
 
+import { isContentAvailableOnPlatform, resolveMockExamDiscoverCopy } from './native-release-surface';
+
 type Entry = { slug: string; title: string; en: string; description: string; icon: LucideIcon; mock?: boolean };
-const features: Entry[] = [
+const standardFeatures: Entry[] = [
   { slug: 'vocab', title: '单词学习', en: 'Vocabulary', description: '航空高频词汇记忆与测试', icon: BookMarked },
   { slug: 'radio', title: '随身听', en: 'Listening', description: '碎片时间沉浸式磨耳朵', icon: Radio },
-  { slug: 'mock-exam', title: 'AI 模考', en: 'Mock Exam', description: 'AI 考官问答实时评分', icon: Bot },
-  { slug: 'ai-report', title: '学习报告', en: 'Report', description: '个性化能力分析建议', icon: LineChart, mock: true },
 ];
+const reportEntry: Entry = { slug: 'ai-report', title: '学习报告', en: 'Report', description: '个性化能力分析建议', icon: LineChart, mock: true };
 const resourceEntries: Entry[] = [
   { slug: 'hotspot', title: 'OPI 热点', en: 'OPI Focus', description: '每日各考点真实考题资讯', icon: Flame },
   { slug: 'resources', title: '资源分享', en: 'Resources', description: '备考资料与实用工具合集', icon: FolderOpen },
@@ -34,21 +35,27 @@ const courseEntry: Entry = {
   description: '从入门到冲刺的系统化课程体系',
   icon: GraduationCap,
 };
-
 export function DiscoverHomeScreen() {
   const router = useRouter();
   const open = (slug: string) => router.push({ pathname: '/content/[slug]', params: { slug } });
+  const mockExamCopy = resolveMockExamDiscoverCopy(Platform.OS);
+  const features: Entry[] = [
+    ...standardFeatures,
+    { slug: 'mock-exam', ...mockExamCopy, icon: Bot },
+    reportEntry,
+  ];
+  const visibleFeatures = features.filter((entry) => isContentAvailableOnPlatform(entry.slug, Platform.OS));
+  const courseAvailable = isContentAvailableOnPlatform(courseEntry.slug, Platform.OS);
   return (
     <Screen background={<SoftGlow intensity={0.8} size={320} style={styles.glow} />} bottomInset scroll contentStyle={styles.screen}>
-      <View style={styles.header}><AppText variant="pageTitle">发现</AppText><AppText>功能、资源与课程，探索更多学习方式。</AppText></View>
+      <View style={styles.header}><AppText variant="pageTitle">发现</AppText><AppText>{courseAvailable ? '功能、资源与课程，探索更多学习方式。' : '功能与资源，探索更多学习方式。'}</AppText></View>
       <SectionTitle title="功能" en="Features" />
       <Card style={styles.featureCard}>
-        <View style={styles.grid}>{features.map((entry) => <Feature key={entry.slug} entry={entry} onPress={() => open(entry.slug)} />)}</View>
+        <View style={styles.grid}>{visibleFeatures.map((entry) => <Feature key={entry.slug} entry={entry} onPress={() => open(entry.slug)} />)}</View>
       </Card>
       <SectionTitle title="资源" en="Resources" />
       <View style={styles.list}>{resourceEntries.map((entry) => <ListEntry key={entry.slug} entry={entry} onPress={() => open(entry.slug)} />)}</View>
-      <SectionTitle title="课程" en="Courses" />
-      <ListEntry entry={courseEntry} onPress={() => open(courseEntry.slug)} emphasis />
+      {courseAvailable ? <><SectionTitle title="课程" en="Courses" /><ListEntry entry={courseEntry} onPress={() => open(courseEntry.slug)} emphasis /></> : null}
     </Screen>
   );
 }

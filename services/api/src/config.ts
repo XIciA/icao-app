@@ -12,9 +12,6 @@ const schema = z.object({
   SUPABASE_URL: z.string().url(),
   INVITE_AUTH_SECRET: z.string().min(32),
   ACCOUNT_IDENTITY_HASH_SECRET: z.string().min(32),
-  DASHSCOPE_API_KEY: z.string().min(10).optional(),
-  DASHSCOPE_BASE_URL: z.string().url().default('https://dashscope.aliyuncs.com/compatible-mode/v1'),
-  AI_TEXT_MODEL: z.string().min(1).default('qwen-turbo'),
   AI_TEXT_PROVIDER: z.literal('deepseek').default('deepseek'),
   DEEPSEEK_API_KEY: z.string().min(10).optional(),
   DEEPSEEK_BASE_URL: z.string().url().default('https://api.deepseek.com'),
@@ -98,9 +95,6 @@ export type ApiConfig = {
   supabaseUrl: string;
   inviteAuthSecret: string;
   accountIdentityHashSecret: string;
-  dashscopeApiKey?: string;
-  dashscopeBaseUrl: string;
-  aiTextModel: string;
   aiTextProvider: 'deepseek';
   deepseekApiKey?: string;
   deepseekBaseUrl: string;
@@ -240,9 +234,6 @@ export function loadConfig(environment: NodeJS.ProcessEnv = process.env): ApiCon
     supabaseUrl: parsed.data.SUPABASE_URL,
     inviteAuthSecret: parsed.data.INVITE_AUTH_SECRET,
     accountIdentityHashSecret: parsed.data.ACCOUNT_IDENTITY_HASH_SECRET,
-    dashscopeApiKey: parsed.data.DASHSCOPE_API_KEY,
-    dashscopeBaseUrl: parsed.data.DASHSCOPE_BASE_URL,
-    aiTextModel: parsed.data.AI_TEXT_MODEL,
     aiTextProvider: parsed.data.AI_TEXT_PROVIDER,
     deepseekApiKey: parsed.data.DEEPSEEK_API_KEY,
     deepseekBaseUrl: parsed.data.DEEPSEEK_BASE_URL,
