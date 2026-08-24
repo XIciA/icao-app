@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { execFileSync, spawnSync } from 'node:child_process';
+import { createHash, generateKeyPairSync } from 'node:crypto';
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync } from 'node:fs';
 import net from 'node:net';
 import { tmpdir } from 'node:os';
@@ -8,8 +9,13 @@ import { join } from 'node:path';
 import test, { after, before } from 'node:test';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
+import { exportJWK, SignJWT } from 'jose';
 
 import { RecentAuthService } from '../src/auth/recent-auth.service.ts';
+import { AppleAuthHttpError } from '../src/auth/apple-auth-http.ts';
+import { AppleAuthService } from '../src/auth/apple-auth.service.ts';
+import { IdentityDigestService } from '../src/account/identity-digest.service.ts';
+import { JoseAppleIdTokenVerifier } from '../src/auth/apple-id-token.verifier.ts';
 import * as databaseSchema from '../src/database/schema.ts';
 
 const migrationsDirectory = fileURLToPath(new URL('../drizzle', import.meta.url));
@@ -234,6 +240,60 @@ function recentAuthService(passwordVerifier = { verify: async () => undefined })
   );
 }
 
+const applePrivateKey = generateKeyPairSync('ec', { namedCurve: 'P-256' }).privateKey
+  .export({ format: 'pem', type: 'pkcs8' }).toString();
+
+function appleConfig(overrides = {}) {
+  return {
+    accountIdentityHashKeyVersion: 2,
+    accountIdentityHashPreviousKeys: [{ secret: 'previous-identity-digest-secret-32-bytes', version: 1 }],
+    accountIdentityHashSecret: 'current-identity-digest-secret-32-bytes',
+    appleCredentialEncryptionKey: Buffer.alloc(32, 7).toString('base64'),
+    appleKeyId: 'TESTKEY001',
+    applePrivateKey,
+    appleSignInClientId: 'com.feizhuicao.app',
+    appleTeamId: 'TESTTEAM01',
+    ...overrides,
+  };
+}
+
+function appleSession({
+  accountId = '50000000-0000-4000-8000-000000000001',
+  authUserId = '50000000-0000-4000-8000-000000000002',
+  sessionId = '50000000-0000-4000-8000-000000000003',
+  subject = 'apple-subject-1',
+} = {}) {
+  return {
+    ...authSession({ accountId, authUserId, sessionId }),
+    identities: [{ provider: 'apple', subject }],
+    user: { id: accountId, authUserId, providers: ['apple'] },
+  };
+}
+
+function appleIdToken({ audience = 'com.feizhuicao.app', expiresAt, nonce, subject }) {
+  const header = Buffer.from(JSON.stringify({ alg: 'RS256', kid: 'apple-test' })).toString('base64url');
+  const payload = Buffer.from(JSON.stringify({
+    aud: audience,
+    exp: expiresAt ?? Math.floor(Date.now() / 1_000) + 300,
+    iss: 'https://appleid.apple.com',
+    nonce: createHash('sha256').update(nonce).digest('hex'),
+    sub: subject,
+  })).toString('base64url');
+  return `${header}.${payload}.test-signature`;
+}
+
+function appleService(http, config = appleConfig()) {
+  return new AppleAuthService(
+    config,
+    http,
+    {
+      verify: async (token) => JSON.parse(Buffer.from(token.split('.')[1], 'base64url').toString('utf8')),
+    },
+    { db: serviceDatabase },
+    new IdentityDigestService(config),
+  );
+}
+
 test('the cumulative migration enables RLS on all 40 public tables', () => {
   assert.equal(
     queryScalar(`
@@ -432,6 +492,234 @@ test('password recent-auth verifies upstream before persisting a purpose-bound g
   assert.equal(
     queryScalar(`SELECT COUNT(*) FROM recent_auth_grants WHERE id = '${grant.grantId}' AND purpose = 'account_delete'`),
     '1',
+  );
+});
+
+test('Apple ID tokens require a valid RS256 signature and matching Apple JWKS kid', async () => {
+  const trusted = generateKeyPairSync('rsa', { modulusLength: 2048 });
+  const attacker = generateKeyPairSync('rsa', { modulusLength: 2048 });
+  const jwk = await exportJWK(trusted.publicKey);
+  Object.assign(jwk, { alg: 'RS256', kid: 'trusted-apple-key', use: 'sig' });
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async () => new Response(JSON.stringify({ keys: [jwk] }), {
+    headers: { 'cache-control': 'public, max-age=3600', 'content-type': 'application/json' },
+    status: 200,
+  });
+  try {
+    const verifier = new JoseAppleIdTokenVerifier();
+    const claims = {
+      aud: 'com.feizhuicao.app',
+      exp: Math.floor(Date.now() / 1_000) + 300,
+      iss: 'https://appleid.apple.com',
+      sub: 'signed-apple-subject',
+    };
+    const valid = await new SignJWT(claims)
+      .setProtectedHeader({ alg: 'RS256', kid: 'trusted-apple-key' })
+      .sign(trusted.privateKey);
+    assert.equal((await verifier.verify(valid, 'com.feizhuicao.app')).sub, claims.sub);
+
+    const forgedSignature = await new SignJWT(claims)
+      .setProtectedHeader({ alg: 'RS256', kid: 'trusted-apple-key' })
+      .sign(attacker.privateKey);
+    await assert.rejects(verifier.verify(forgedSignature, 'com.feizhuicao.app'), /invalid_apple_authorization/u);
+
+    const [validHeader, , validSignature] = valid.split('.');
+    const tamperedPayload = Buffer.from(JSON.stringify({ ...claims, sub: 'tampered-subject' })).toString('base64url');
+    await assert.rejects(
+      verifier.verify(`${validHeader}.${tamperedPayload}.${validSignature}`, 'com.feizhuicao.app'),
+      /invalid_apple_authorization/u,
+    );
+
+    const wrongKid = await new SignJWT(claims)
+      .setProtectedHeader({ alg: 'RS256', kid: 'unknown-apple-key' })
+      .sign(trusted.privateKey);
+    await assert.rejects(verifier.verify(wrongKid, 'com.feizhuicao.app'), /invalid_apple_authorization/u);
+
+    const wrongAlgorithm = await new SignJWT(claims)
+      .setProtectedHeader({ alg: 'RS512', kid: 'trusted-apple-key' })
+      .sign(trusted.privateKey);
+    await assert.rejects(verifier.verify(wrongAlgorithm, 'com.feizhuicao.app'), /invalid_apple_authorization/u);
+
+    for (const invalidClaims of [
+      { ...claims, aud: 'com.attacker.app' },
+      { ...claims, exp: Math.floor(Date.now() / 1_000) - 1 },
+      { ...claims, iss: 'https://attacker.example.com' },
+    ]) {
+      const invalid = await new SignJWT(invalidClaims)
+        .setProtectedHeader({ alg: 'RS256', kid: 'trusted-apple-key' })
+        .sign(trusted.privateKey);
+      await assert.rejects(verifier.verify(invalid, 'com.feizhuicao.app'), /invalid_apple_authorization/u);
+    }
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test('Apple authorization codes are exchanged once and only encrypted refresh tokens are persisted', async () => {
+  const source = appleSession();
+  const rawNonce = 'apple-register-nonce-00000001';
+  let exchangeCount = 0;
+  const http = {
+    exchangeAuthorizationCode: async () => {
+      exchangeCount += 1;
+      if (exchangeCount > 1) throw new AppleAuthHttpError('invalid_grant');
+      return {
+        accessToken: 'apple-short-lived-access-token',
+        idToken: appleIdToken({ nonce: rawNonce, subject: source.identities[0].subject }),
+        refreshToken: 'apple-long-lived-refresh-token',
+      };
+    },
+    revoke: async () => undefined,
+  };
+  const service = appleService(http);
+
+  await service.registerCredential(source, { authorizationCode: 'single-use-code-1', rawNonce });
+  await assert.rejects(
+    service.registerCredential(source, { authorizationCode: 'single-use-code-1', rawNonce }),
+    /invalid_apple_authorization/u,
+  );
+  const stored = queryScalar(`
+    SELECT status || ':' || (encrypted_refresh_token LIKE 'v1.%')::text
+      || ':' || (encrypted_refresh_token LIKE '%apple-long-lived-refresh-token%')::text
+    FROM apple_revocable_credentials
+    WHERE account_id = '${source.user.id}'
+  `);
+  assert.equal(stored, 'active:true:false');
+});
+
+test('Apple credential registration rejects expired or mismatched aud, nonce, and subject claims', async () => {
+  const cases = [
+    { label: 'aud', overrides: { audience: 'com.attacker.app' } },
+    { label: 'nonce', overrides: { nonce: 'different-nonce-000000000' } },
+    { label: 'subject', overrides: { subject: 'different-apple-subject' } },
+    { label: 'expiry', overrides: { expiresAt: Math.floor(Date.now() / 1_000) - 1 } },
+  ];
+  for (let index = 0; index < cases.length; index += 1) {
+    const entry = cases[index];
+    const suffix = index + 10;
+    const source = appleSession({
+      accountId: `50000000-0000-4000-8000-0000000000${suffix}`,
+      authUserId: `51000000-0000-4000-8000-0000000000${suffix}`,
+      sessionId: `52000000-0000-4000-8000-0000000000${suffix}`,
+      subject: `apple-claims-subject-${entry.label}`,
+    });
+    const rawNonce = `apple-claims-nonce-${entry.label}-000000`;
+    const http = {
+      exchangeAuthorizationCode: async () => ({
+        accessToken: 'temporary-access-token',
+        idToken: appleIdToken({
+          nonce: rawNonce,
+          subject: source.identities[0].subject,
+          ...entry.overrides,
+        }),
+        refreshToken: 'must-not-be-stored',
+      }),
+      revoke: async () => undefined,
+    };
+    await assert.rejects(
+      appleService(http).registerCredential(source, { authorizationCode: `code-${entry.label}-1234`, rawNonce }),
+      /invalid_apple_authorization/u,
+    );
+  }
+});
+
+test('Apple revoke treats only HTTP success as revoked and durably retries every failure class', async () => {
+  const failureCodes = ['invalid_grant', 'invalid_client', 'rate_limited', 'server_error'];
+  for (let index = 0; index < failureCodes.length; index += 1) {
+    const suffix = index + 20;
+    const source = appleSession({
+      accountId: `50000000-0000-4000-8000-0000000000${suffix}`,
+      authUserId: `51000000-0000-4000-8000-0000000000${suffix}`,
+      sessionId: `52000000-0000-4000-8000-0000000000${suffix}`,
+      subject: `apple-revoke-subject-${failureCodes[index]}`,
+    });
+    const rawNonce = `apple-revoke-nonce-${failureCodes[index]}-000000`;
+    const http = {
+      exchangeAuthorizationCode: async () => ({
+        accessToken: 'temporary-access-token',
+        idToken: appleIdToken({ nonce: rawNonce, subject: source.identities[0].subject }),
+        refreshToken: `refresh-${failureCodes[index]}`,
+      }),
+      revoke: async () => { throw new AppleAuthHttpError(failureCodes[index]); },
+    };
+    const service = appleService(http);
+    await service.registerCredential(source, { authorizationCode: `register-${failureCodes[index]}`, rawNonce });
+    const result = await service.revokeForAccount(source.user.id);
+    assert.equal(result.outcome, 'retryable');
+    assert.equal(
+      queryScalar(`SELECT status || ':' || last_error_code FROM apple_revocable_credentials WHERE account_id = '${source.user.id}'`),
+      `retryable:${failureCodes[index]}`,
+    );
+  }
+
+  const successSource = appleSession({
+    accountId: '50000000-0000-4000-8000-000000000030',
+    authUserId: '51000000-0000-4000-8000-000000000030',
+    sessionId: '52000000-0000-4000-8000-000000000030',
+    subject: 'apple-revoke-success-subject',
+  });
+  const rawNonce = 'apple-revoke-success-nonce-000000';
+  const successHttp = {
+    exchangeAuthorizationCode: async () => ({
+      accessToken: 'temporary-access-token',
+      idToken: appleIdToken({ nonce: rawNonce, subject: successSource.identities[0].subject }),
+      refreshToken: 'successful-refresh-token',
+    }),
+    revoke: async () => undefined,
+  };
+  const successService = appleService(successHttp);
+  await successService.registerCredential(successSource, { authorizationCode: 'register-success-code', rawNonce });
+  assert.deepEqual(await successService.revokeForAccount(successSource.user.id), { outcome: 'revoked' });
+  assert.equal(
+    queryScalar(`SELECT status || ':' || (last_error_code IS NULL)::text FROM apple_revocable_credentials WHERE account_id = '${successSource.user.id}'`),
+    'revoked:true',
+  );
+});
+
+test('a revoked Apple subject can register again only by fully replacing credential state', async () => {
+  const oldSource = appleSession({
+    accountId: '50000000-0000-4000-8000-000000000040',
+    authUserId: '51000000-0000-4000-8000-000000000040',
+    sessionId: '52000000-0000-4000-8000-000000000040',
+    subject: 'apple-reregister-subject',
+  });
+  const rawNonce = 'apple-reregister-old-nonce-000000';
+  const http = {
+    exchangeAuthorizationCode: async ({ authorizationCode }) => ({
+      accessToken: 'temporary-access-token',
+      idToken: appleIdToken({
+        nonce: authorizationCode.startsWith('old') ? rawNonce : 'apple-reregister-new-nonce-000000',
+        subject: oldSource.identities[0].subject,
+      }),
+      refreshToken: authorizationCode.startsWith('old') ? 'old-refresh-token' : 'new-refresh-token',
+    }),
+    revoke: async () => undefined,
+  };
+  const service = appleService(http);
+  await service.registerCredential(oldSource, { authorizationCode: 'old-code-1234', rawNonce });
+  await service.revokeForAccount(oldSource.user.id);
+
+  const newSource = appleSession({
+    accountId: '50000000-0000-4000-8000-000000000041',
+    authUserId: '51000000-0000-4000-8000-000000000041',
+    sessionId: '52000000-0000-4000-8000-000000000041',
+    subject: oldSource.identities[0].subject,
+  });
+  await service.registerCredential(newSource, {
+    authorizationCode: 'new-code-1234',
+    rawNonce: 'apple-reregister-new-nonce-000000',
+  });
+  assert.equal(
+    queryScalar(`
+      SELECT account_id::text || ':' || auth_user_id::text || ':' || status || ':'
+        || revoke_attempt_count::text || ':' || (last_error_code IS NULL)::text || ':'
+        || (revoked_at IS NULL)::text || ':' || (next_retry_at IS NULL)::text
+      FROM apple_revocable_credentials
+      WHERE subject_digest = (
+        SELECT subject_digest FROM apple_revocable_credentials WHERE account_id = '${newSource.user.id}'
+      )
+    `),
+    `${newSource.user.id}:${newSource.authUserId}:active:0:true:true:true`,
   );
 });
 

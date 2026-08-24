@@ -124,6 +124,19 @@ export type RecentAuthGrantResponse = {
   purpose: RecentAuthPurpose;
 };
 
+export type AppleCredentialRequest = {
+  authorizationCode: string;
+  rawNonce: string;
+};
+
+export type AppleRecentAuthRequest = AppleCredentialRequest & {
+  purpose: 'account_delete';
+};
+
+export type RegisterAppleCredentialResponse = {
+  registered: true;
+};
+
 export type DeleteAccountRequest = {
   confirmation: '注销账号';
 };

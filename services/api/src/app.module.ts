@@ -4,6 +4,11 @@ import { AUTH_VERIFIER } from './auth/auth.types';
 import { AccountController } from './account/account.controller';
 import { AccountService } from './account/account.service';
 import { AccountIdentityService } from './account/account-identity.service';
+import { IdentityDigestService } from './account/identity-digest.service';
+import { AppleAuthController } from './auth/apple-auth.controller';
+import { AppleAuthService } from './auth/apple-auth.service';
+import { APPLE_AUTH_HTTP, FetchAppleAuthHttp } from './auth/apple-auth-http';
+import { APPLE_ID_TOKEN_VERIFIER, JoseAppleIdTokenVerifier } from './auth/apple-id-token.verifier';
 import { MeController } from './auth/me.controller';
 import { PhoneAuthController } from './auth/phone-auth.controller';
 import { PhoneAuthService } from './auth/phone-auth.service';
@@ -40,7 +45,7 @@ import { FeedbackController } from './feedback/feedback.controller';
 import { FeedbackService } from './feedback/feedback.service';
 
 @Module({
-  controllers: [HealthController, MeController, PhoneAuthController, RecentAuthController, SupabaseSmsHookController, AccountController, QuestionBankController, ResourceController, EditorialController, SyncController, AiController, VocabularyController, FeedbackController],
+  controllers: [HealthController, MeController, PhoneAuthController, RecentAuthController, AppleAuthController, SupabaseSmsHookController, AccountController, QuestionBankController, ResourceController, EditorialController, SyncController, AiController, VocabularyController, FeedbackController],
   providers: [
     { provide: API_CONFIG, useFactory: () => loadConfig() },
     DatabaseService,
@@ -48,6 +53,7 @@ import { FeedbackService } from './feedback/feedback.service';
     { provide: AUTH_VERIFIER, useExisting: SupabaseAuthVerifier },
     SessionSecurityService,
     AccountIdentityService,
+    IdentityDigestService,
     RequireAuthGuard,
     AliyunSmsProvider,
     SupabaseSmsHookService,
@@ -55,6 +61,11 @@ import { FeedbackService } from './feedback/feedback.service';
     SupabaseRecentAuthPasswordVerifier,
     { provide: RECENT_AUTH_PASSWORD_VERIFIER, useExisting: SupabaseRecentAuthPasswordVerifier },
     RecentAuthService,
+    FetchAppleAuthHttp,
+    { provide: APPLE_AUTH_HTTP, useExisting: FetchAppleAuthHttp },
+    JoseAppleIdTokenVerifier,
+    { provide: APPLE_ID_TOKEN_VERIFIER, useExisting: JoseAppleIdTokenVerifier },
+    AppleAuthService,
     AccountService,
     QuestionBankService,
     ResourceService,
