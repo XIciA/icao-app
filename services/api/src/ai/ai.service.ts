@@ -1,8 +1,10 @@
 import { createHash, randomBytes, randomUUID } from 'node:crypto';
 import { BadRequestException, HttpException, Injectable, Logger } from '@nestjs/common';
 import { and, eq, sql } from 'drizzle-orm';
-import { CURRENT_AI_CONSENT_FLOW_REVISION, CURRENT_AI_CONSENT_POLICY_VERSION, type AiConsent, type AiConsentChallenge, type AiConsentRequest, type AiConsentStatus, type AiReviewRequest, type AiReviewResult, type GrammarReviewRequest, type PolishRequest, type PolishResult, type TencentAsrModel } from '@icao/contracts';
+import { CURRENT_AI_CONSENT_FLOW_REVISION, CURRENT_AI_CONSENT_POLICY_VERSION, type AiConsent, type AiConsentChallenge, type AiConsentRequest, type AiConsentStatus, type AiPointOperationSummary, type AiReviewRequest, type AiReviewResult, type GrammarReviewRequest, type PolishRequest, type PolishResult, type TencentAsrModel } from '@icao/contracts';
 
+import { PersistentCommerceBenefitsService } from '../commerce/persistent-commerce-benefits.service';
+import type { BillableAiCapability } from '../commerce/commerce-domain';
 import { DatabaseService } from '../database/database.service';
 import { aiConsentAuthorities, aiConsentChallenges, aiConsents, aiUsageLogs } from '../database/schema';
 import { DeepSeekReviewProviderService } from './deepseek-review-provider.service';
@@ -16,6 +18,7 @@ type UsageCapability = 'transcribe' | 'grammar_review' | 'polish';
 type AiProviderName = 'deepseek' | 'tencent-asr';
 const CONSENT_CHALLENGE_TTL_MS = 5 * 60 * 1000;
 const OPERATION_GRANT_TTL_MS = 2 * 60 * 1000;
+const AI_OPERATION_QUEUE_TIMEOUT_MS = 45 * 1000;
 
 export type AiOperationGrant = {
   userId: string;
@@ -58,6 +61,7 @@ export class AiService {
     private readonly database: DatabaseService,
     private readonly reviewProvider: DeepSeekReviewProviderService,
     private readonly asr: TencentAsrService,
+    private readonly commerce: PersistentCommerceBenefitsService = new PersistentCommerceBenefitsService(),
   ) {}
 
   async consentStatus(userId: string): Promise<AiConsentStatus> {
@@ -275,11 +279,86 @@ export class AiService {
     return 'failed';
   }
 
-  private async run<T>(input: {
+  private requestDigest(parts: Array<string | Buffer>) {
+    const digest = createHash('sha256');
+    for (const part of parts) {
+      digest.update(typeof part === 'string' ? part : new Uint8Array(part));
+      digest.update('\0');
+    }
+    return digest.digest('hex');
+  }
+
+  private waitForQueue(milliseconds: number, signal?: AbortSignal) {
+    return new Promise<void>((resolve, reject) => {
+      if (signal?.aborted) {
+        const error = new Error('request_aborted');
+        error.name = 'AbortError';
+        reject(error);
+        return;
+      }
+      const onAbort = () => {
+        clearTimeout(timeout);
+        signal?.removeEventListener('abort', onAbort);
+        const error = new Error('request_aborted');
+        error.name = 'AbortError';
+        reject(error);
+      };
+      const timeout = setTimeout(() => {
+        signal?.removeEventListener('abort', onAbort);
+        resolve();
+      }, milliseconds);
+      signal?.addEventListener('abort', onAbort, { once: true });
+    });
+  }
+
+  private async reservePoints<T>(input: {
+    userId: string;
+    operationId: string;
+    pointCapability: BillableAiCapability;
+    requestDigest: string;
+    signal?: AbortSignal;
+  }) {
+    const deadline = Date.now() + AI_OPERATION_QUEUE_TIMEOUT_MS;
+    while (true) {
+      let reservation;
+      try {
+        reservation = await this.database.db.transaction((transaction) => this.commerce.reserveAiPoints<T>(transaction, {
+          accountId: input.userId,
+          capability: input.pointCapability,
+          environment: 'production',
+          operationId: input.operationId,
+          requestDigest: input.requestDigest,
+          reservedAt: new Date(),
+        }));
+      } catch (error) {
+        const code = error instanceof Error ? error.message : 'ai_points_unavailable';
+        if (code === 'insufficient_ai_points') throw new HttpException(code, 402);
+        if (code === 'ai_operation_idempotency_conflict') throw new HttpException(code, 409);
+        if (code === 'ai_operation_lease_expired' || code === 'ai_operation_released') {
+          throw new HttpException('ai_operation_released', 409);
+        }
+        throw error;
+      }
+      if (reservation.state !== 'wait') return reservation;
+      if (Date.now() >= deadline) throw new HttpException('ai_operation_in_progress', 409);
+      await this.waitForQueue(reservation.retryAfterMs, input.signal);
+    }
+  }
+
+  private async run<T extends Record<string, unknown>>(input: {
     userId: string; requestId: string; capability: UsageCapability; provider: AiProviderName;
-    model: string; promptVersion: string; units: number;
+    model: string; promptVersion: string; units: number; grant: AiOperationGrant;
+    operationId: string; pointCapability: BillableAiCapability; requestDigest: string; signal?: AbortSignal;
     action: () => Promise<{ data: T; meta: ProviderMeta }>;
-  }): Promise<T> {
+  }): Promise<T & { aiPoints: AiPointOperationSummary }> {
+    const reservation = await this.reservePoints<T & { aiPoints: AiPointOperationSummary }>({
+      userId: input.userId,
+      operationId: input.operationId,
+      pointCapability: input.pointCapability,
+      requestDigest: input.requestDigest,
+      signal: input.signal,
+    });
+    if (reservation.state === 'replay') return reservation.data;
     const started = Date.now();
     const usage = {
       userId: input.userId,
@@ -289,10 +368,17 @@ export class AiService {
       promptVersion: input.promptVersion,
     };
     try {
-      const result = await input.action();
+      const result = await this.withAuthorizedOperation(input.userId, input.grant, input.action);
+      const data = await this.database.db.transaction((transaction) => this.commerce.settleAiPoints(transaction, {
+        accountId: input.userId,
+        environment: 'production',
+        operationId: input.operationId,
+        result: result.data,
+        settledAt: new Date(),
+      }));
       await this.logUsage({ ...usage, status: 'success', latencyMs: Date.now() - started, quotaUnits: input.units, meta: result.meta })
         .catch(() => this.logger.error(`ai_usage_log_failed capability=${input.capability} status=success`));
-      return result.data;
+      return data;
     } catch (error) {
       const observation = aiFailureObservation(error);
       const latencyMs = Date.now() - started;
@@ -311,6 +397,13 @@ export class AiService {
         quotaUnits: 0,
         ...observation,
       }).catch(() => this.logger.error(`ai_usage_log_failed capability=${input.capability} status=failed metered=${meteredFailure}`));
+      await this.database.db.transaction((transaction) => this.commerce.releaseAiPoints(transaction, {
+        accountId: input.userId,
+        environment: 'production',
+        failureCode: observation.failureCode,
+        operationId: input.operationId,
+        releasedAt: new Date(),
+      })).catch(() => this.logger.error(`ai_point_release_failed capability=${input.capability}`));
       this.logger.warn(
         `ai_operation_failed requestId=${safeLogToken(input.requestId)}`
         + ` capability=${input.capability} provider=${input.provider}`
@@ -325,41 +418,48 @@ export class AiService {
     }
   }
 
-  async transcribe(userId: string, requestId: string, audio: Buffer, mimeType: string, model: TencentAsrModel, grant: AiOperationGrant, signal?: AbortSignal) {
+  async transcribe(userId: string, requestId: string, audio: Buffer, mimeType: string, model: TencentAsrModel, grant: AiOperationGrant, signal?: AbortSignal, operationId = requestId) {
     if (!audio.length || audio.length > 8 * 1024 * 1024) throw new BadRequestException('invalid_audio');
-    return this.withAuthorizedOperation(userId, grant, () => this.run({
+    return this.run({
       userId, requestId, capability: 'transcribe', provider: 'tencent-asr', model,
-      promptVersion: 'tencent-asr:raw:v1', units: 3,
+      promptVersion: 'tencent-asr:raw:v1', units: 3, grant, operationId,
+      pointCapability: 'transcription', signal,
+      requestDigest: this.requestDigest(['transcription', mimeType, model, audio]),
       action: async () => {
         const result = await this.asr.transcribe(audio, mimeType, model, signal, requestId);
         return { data: { transcript: result.rawTranscript }, meta: result.meta };
       },
-    }));
+    });
   }
 
-  async grammarReview(userId: string, requestId: string, input: GrammarReviewRequest, grant: AiOperationGrant, signal?: AbortSignal) {
-    const result = await this.withAuthorizedOperation(userId, grant, () => this.run({
+  async grammarReview(userId: string, requestId: string, input: GrammarReviewRequest, grant: AiOperationGrant, signal?: AbortSignal, operationId = requestId) {
+    const result = await this.run({
       userId, requestId, capability: 'grammar_review', provider: 'deepseek', model: this.reviewProvider.textModel('grammar'), promptVersion: REVIEW_PROMPT_VERSION, units: 2,
+      grant, operationId, pointCapability: 'grammar_correction', signal,
+      requestDigest: this.requestDigest(['grammar_correction', JSON.stringify(input)]),
       action: () => this.generateReview(userId, {
         mode: 'grammar', module: input.module, questionId: input.questionId, transcript: input.transcript,
       }, signal),
-    }));
+    });
     return {
       correctedText: result.grammar.correctedText,
       issues: result.grammar.issues.map(legacyIssueText),
       promptVersion: REVIEW_PROMPT_VERSION,
+      aiPoints: result.aiPoints,
     };
   }
 
-  async polish(userId: string, requestId: string, input: PolishRequest, grant: AiOperationGrant, signal?: AbortSignal): Promise<PolishResult> {
+  async polish(userId: string, requestId: string, input: PolishRequest, grant: AiOperationGrant, signal?: AbortSignal, operationId = requestId): Promise<PolishResult> {
     const transcript = input.correctedText ?? input.transcript;
-    const result = await this.withAuthorizedOperation(userId, grant, () => this.run({
+    const result = await this.run({
       userId, requestId, capability: 'polish', provider: 'deepseek', model: this.reviewProvider.textModel('opi'), promptVersion: REVIEW_PROMPT_VERSION, units: 2,
+      grant, operationId, pointCapability: 'opi_refinement', signal,
+      requestDigest: this.requestDigest(['opi_refinement', JSON.stringify(input)]),
       action: () => this.generateReview(userId, {
         mode: 'opi', module: 'opi', questionId: input.questionId, transcript,
       }, signal),
-    }));
-    return { polishedText: result.polishedText!, promptVersion: REVIEW_PROMPT_VERSION };
+    });
+    return { polishedText: result.polishedText!, promptVersion: REVIEW_PROMPT_VERSION, aiPoints: result.aiPoints };
   }
 
   private generateReview(userId: string, input: AiReviewRequest, signal?: AbortSignal) {
@@ -373,8 +473,8 @@ export class AiService {
     });
   }
 
-  async review(userId: string, requestId: string, input: AiReviewRequest, grant: AiOperationGrant, signal?: AbortSignal): Promise<AiReviewResult> {
-    const result = await this.withAuthorizedOperation(userId, grant, () => this.run({
+  async review(userId: string, requestId: string, input: AiReviewRequest, grant: AiOperationGrant, signal?: AbortSignal, operationId = requestId): Promise<AiReviewResult> {
+    const result = await this.run({
       userId,
       requestId,
       capability: input.mode === 'opi' ? 'polish' : 'grammar_review',
@@ -382,8 +482,13 @@ export class AiService {
       model: this.reviewProvider.textModel(input.mode),
       promptVersion: REVIEW_PROMPT_VERSION,
       units: input.mode === 'opi' ? 3 : 2,
+      grant,
+      operationId,
+      pointCapability: input.mode === 'opi' ? 'opi_refinement' : 'grammar_correction',
+      requestDigest: this.requestDigest([input.mode === 'opi' ? 'opi_refinement' : 'grammar_correction', JSON.stringify(input)]),
+      signal,
       action: () => this.generateReview(userId, input, signal),
-    }));
-    return withReviewPromptVersion(result);
+    });
+    return { ...withReviewPromptVersion(result), aiPoints: result.aiPoints };
   }
 }

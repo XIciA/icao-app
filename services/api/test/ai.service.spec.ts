@@ -158,18 +158,35 @@ function reviewProvider(output: unknown) {
   };
 }
 
+function pointBenefits() {
+  return {
+    reserveAiPoints: vi.fn(async () => ({ state: 'execute', operationId: 'request-1', points: 3 })),
+    settleAiPoints: vi.fn(async (_transaction: unknown, input: { operationId: string; result: Record<string, unknown> }) => ({
+      ...input.result,
+      aiPoints: {
+        operationId: input.operationId,
+        ruleVersion: 'ai-points-v1',
+        estimated: 3,
+        charged: 3,
+        remaining: 97,
+      },
+    })),
+    releaseAiPoints: vi.fn(async () => ({ changed: true })),
+  };
+}
+
 function service(output: unknown) {
   const review = reviewProvider(output);
   return {
     review,
-    service: new AiService(database() as never, review as never, {} as never),
+    service: new AiService(database() as never, review as never, {} as never, pointBenefits() as never),
   };
 }
 
 describe('AiService DeepSeek review capabilities', () => {
   it('keeps a legacy v4 POST idempotent without refreshing an existing acceptance', async () => {
     const fixture = consentDatabase();
-    const ai = new AiService(fixture.database as never, reviewProvider({}) as never, {} as never);
+    const ai = new AiService(fixture.database as never, reviewProvider({}) as never, {} as never, pointBenefits() as never);
 
     await expect(ai.acceptConsent('user-1', {
       accepted: true,
@@ -187,7 +204,7 @@ describe('AiService DeepSeek review capabilities', () => {
 
   it('never lets the shipped legacy v4 POST recreate revoked consent', async () => {
     const fixture = consentDatabase();
-    const ai = new AiService(fixture.database as never, reviewProvider({}) as never, {} as never);
+    const ai = new AiService(fixture.database as never, reviewProvider({}) as never, {} as never, pointBenefits() as never);
 
     await ai.revokeConsent('user-1');
     await ai.issueConsentChallenge('user-1');
@@ -204,7 +221,7 @@ describe('AiService DeepSeek review capabilities', () => {
 
   it('recreates consent only with a current explicit-flow one-time challenge', async () => {
     const fixture = consentDatabase();
-    const ai = new AiService(fixture.database as never, reviewProvider({}) as never, {} as never);
+    const ai = new AiService(fixture.database as never, reviewProvider({}) as never, {} as never, pointBenefits() as never);
 
     await ai.revokeConsent('user-1');
     const challenge = await ai.issueConsentChallenge('user-1');
@@ -230,7 +247,7 @@ describe('AiService DeepSeek review capabilities', () => {
 
   it('strictly validates and consumes a supplied challenge even when consent is already active', async () => {
     const fixture = consentDatabase();
-    const ai = new AiService(fixture.database as never, reviewProvider({}) as never, {} as never);
+    const ai = new AiService(fixture.database as never, reviewProvider({}) as never, {} as never, pointBenefits() as never);
     const challenge = await ai.issueConsentChallenge('user-1');
 
     await expect(ai.acceptConsent('user-1', {
@@ -257,7 +274,7 @@ describe('AiService DeepSeek review capabilities', () => {
     vi.setSystemTime(new Date('2026-08-25T00:00:00.000Z'));
     try {
       const fixture = consentDatabase(null);
-      const ai = new AiService(fixture.database as never, reviewProvider({}) as never, {} as never);
+      const ai = new AiService(fixture.database as never, reviewProvider({}) as never, {} as never, pointBenefits() as never);
       const challenge = await ai.issueConsentChallenge('user-1');
       vi.advanceTimersByTime(5 * 60 * 1000 + 1);
 
@@ -275,7 +292,7 @@ describe('AiService DeepSeek review capabilities', () => {
   it('orders revoke before multipart admission so no file or provider is touched', async () => {
     const fixture = consentDatabase();
     const asr = { transcribe: vi.fn() };
-    const ai = new AiService(fixture.database as never, reviewProvider({}) as never, asr as never);
+    const ai = new AiService(fixture.database as never, reviewProvider({}) as never, asr as never, pointBenefits() as never);
     const controller = new AiController(ai);
     const toBuffer = vi.fn(async () => Buffer.from('audio'));
     const file = vi.fn(async () => ({
@@ -307,7 +324,7 @@ describe('AiService DeepSeek review capabilities', () => {
   it('rechecks the grant after file intake and blocks a revoke that committed meanwhile', async () => {
     const fixture = consentDatabase();
     const asr = { transcribe: vi.fn() };
-    const ai = new AiService(fixture.database as never, reviewProvider({}) as never, asr as never);
+    const ai = new AiService(fixture.database as never, reviewProvider({}) as never, asr as never, pointBenefits() as never);
     const controller = new AiController(ai);
     const toBuffer = vi.fn(async () => Buffer.from('audio'));
     let releaseFile!: (value: {
@@ -349,7 +366,7 @@ describe('AiService DeepSeek review capabilities', () => {
 
   it('returns the current policy as not accepted for a new account', async () => {
     const db = database(null);
-    const ai = new AiService(db as never, reviewProvider({}) as never, {} as never);
+    const ai = new AiService(db as never, reviewProvider({}) as never, {} as never, pointBenefits() as never);
 
     await expect(ai.consentStatus('user-new')).resolves.toEqual({
       accepted: false,
@@ -366,7 +383,7 @@ describe('AiService DeepSeek review capabilities', () => {
       revokedAt: null,
     });
     const review = reviewProvider({ grammar: { correctedText: 'Ready.', issues: [] } });
-    const ai = new AiService(db as never, review as never, {} as never);
+    const ai = new AiService(db as never, review as never, {} as never, pointBenefits() as never);
 
     await expect(ai.consentStatus('user-1')).resolves.toEqual({
       accepted: false,
@@ -395,7 +412,7 @@ describe('AiService DeepSeek review capabilities', () => {
       expect(transactionDepth).toBe(0);
       return { data: input.validate({ grammar: { correctedText: 'Ready.', issues: [] } }), meta: {} };
     });
-    const ai = new AiService(fixture as never, review as never, {} as never);
+    const ai = new AiService(fixture as never, review as never, {} as never, pointBenefits() as never);
 
     await expect(ai.review('user-1', 'request-no-held-transaction', {
       mode: 'grammar', module: 'atc', questionId: 'question-no-held-transaction', transcript: 'Ready.',
@@ -411,19 +428,19 @@ describe('AiService DeepSeek review capabilities', () => {
         issues: [{ before: 'He have', after: 'He has', reasonZh: '主语 He 为第三人称单数，应使用 has。' }],
       },
     });
-    const ai = new AiService(db as never, review as never, {} as never);
+    const ai = new AiService(db as never, review as never, {} as never, pointBenefits() as never);
 
     const result = await ai.review('user-1', 'request-1', {
       mode: 'grammar', module: 'opi', questionId: 'question-1', transcript: 'He have informed ATC.',
     }, await operationGrant(ai));
 
-    expect(result).toEqual({
+    expect(result).toEqual(expect.objectContaining({
       grammar: {
         correctedText: 'He has informed ATC.',
         issues: [{ before: 'He have', after: 'He has', reasonZh: '主语 He 为第三人称单数，应使用 has。' }],
       },
       promptVersion: 'deepseek-review:v1',
-    });
+    }));
     const call = review.generateValidated.mock.calls[0]![0];
     expect(call.mode).toBe('grammar');
     expect(JSON.parse(call.prompt)).toEqual({ transcript: 'He have informed ATC.' });
@@ -437,7 +454,7 @@ describe('AiService DeepSeek review capabilities', () => {
       grammar: { correctedText: 'I encountered turbulence.', issues: [] },
       polishedText: 'I encountered turbulence.',
     });
-    const ai = new AiService(db as never, review as never, {} as never);
+    const ai = new AiService(db as never, review as never, {} as never, pointBenefits() as never);
 
     const result = await ai.review('user-1', 'request-2', {
       mode: 'opi', module: 'opi', questionId: 'question-2', transcript: 'I encountered turbulence.',
@@ -460,11 +477,11 @@ describe('AiService DeepSeek review capabilities', () => {
       module: 'opi', questionId: 'question-3', questionText: 'not sent', transcript: 'He have informed ATC.',
     }, await operationGrant(ai));
 
-    expect(result).toEqual({
+    expect(result).toEqual(expect.objectContaining({
       correctedText: 'He has informed ATC.',
       issues: ['“He have” → “He has”：主谓一致错误。'],
       promptVersion: 'deepseek-review:v1',
-    });
+    }));
   });
 
   it('keeps legacy polish output compatible while using DeepSeek', async () => {
@@ -477,7 +494,7 @@ describe('AiService DeepSeek review capabilities', () => {
       module: 'opi', questionId: 'question-polish', questionText: 'not sent', transcript: 'I tell ATC.', correctedText: 'I informed ATC.',
     }, await operationGrant(ai));
 
-    expect(result).toEqual({ polishedText: 'I informed ATC.', promptVersion: 'deepseek-review:v1' });
+    expect(result).toEqual(expect.objectContaining({ polishedText: 'I informed ATC.', promptVersion: 'deepseek-review:v1' }));
     const call = review.generateValidated.mock.calls[0]![0];
     expect(JSON.parse(call.prompt)).toEqual({ transcript: 'I informed ATC.' });
   });
@@ -508,7 +525,7 @@ describe('AiService DeepSeek review capabilities', () => {
       }),
       textModel: vi.fn(() => 'deepseek-v4-flash'),
     };
-    const ai = new AiService(db as never, review as never, {} as never);
+    const ai = new AiService(db as never, review as never, {} as never, pointBenefits() as never);
 
     await expect(ai.review('user-1', 'request-failure', {
       mode: 'grammar', module: 'atc', questionId: 'question-5', transcript: 'Ready.',
@@ -532,7 +549,7 @@ describe('AiService DeepSeek review capabilities', () => {
       generateValidated: vi.fn(async () => { throw new Error('provider secret and private detail'); }),
       textModel: vi.fn(() => 'deepseek-v4-flash'),
     };
-    const ai = new AiService(db as never, review as never, {} as never);
+    const ai = new AiService(db as never, review as never, {} as never, pointBenefits() as never);
 
     await expect(ai.review('user-1', 'request-private-failure', {
       mode: 'grammar', module: 'atc', questionId: 'question-6', transcript: 'Ready.',
@@ -575,7 +592,7 @@ describe('AiService DeepSeek review capabilities', () => {
     const review = reviewProvider({
       grammar: { correctedText: 'Ready.', issues: [] },
     });
-    const ai = new AiService(db as never, review as never, {} as never);
+    const ai = new AiService(db as never, review as never, {} as never, pointBenefits() as never);
 
     await expect(ai.review('user-1', 'request-telemetry-failure', {
       mode: 'grammar', module: 'atc', questionId: 'question-7', transcript: 'Ready.',

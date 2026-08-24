@@ -164,9 +164,12 @@ describe('Native AI client failure handling', () => {
 
     await client().reviewExpression({
       mode: 'grammar', module: 'atc', questionId: 'question-signal', transcript: 'Ready.',
-    }, controller.signal);
+    }, controller.signal, '81000000-0000-4000-8000-000000000001');
 
-    expect(mockApiRequest).toHaveBeenCalledWith('/v1/ai/review', expect.objectContaining({ signal: controller.signal }));
+    expect(mockApiRequest).toHaveBeenCalledWith('/v1/ai/review', expect.objectContaining({
+      headers: expect.objectContaining({ 'x-ai-operation-id': '81000000-0000-4000-8000-000000000001' }),
+      signal: controller.signal,
+    }));
   });
 
   it('applies the same 45 second deadline to the native multipart upload', async () => {
@@ -177,7 +180,11 @@ describe('Native AI client failure handling', () => {
     mockCreateAudioUploadForm.mockResolvedValue({ form: {} as FormData, fetch: uploadFetch });
 
     const controller = new AbortController();
-    const pending = client().transcribeRecording('file:///recording.m4a', controller.signal);
+    const pending = client().transcribeRecording(
+      'file:///recording.m4a',
+      controller.signal,
+      '81000000-0000-4000-8000-000000000002',
+    );
     const observed = expect(pending).rejects.toMatchObject({
       capability: 'transcribe',
       code: 'ai_timeout',
@@ -187,5 +194,8 @@ describe('Native AI client failure handling', () => {
     await jest.advanceTimersByTimeAsync(45_001);
     await observed;
     expect(uploadFetch).toHaveBeenCalledTimes(1);
+    expect(uploadFetch).toHaveBeenCalledWith(expect.stringContaining('/v1/ai/transcribe'), expect.objectContaining({
+      headers: expect.objectContaining({ 'x-ai-operation-id': '81000000-0000-4000-8000-000000000002' }),
+    }));
   });
 });

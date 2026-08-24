@@ -57,4 +57,22 @@ describe('AI operation failure classification', () => {
       stage: 'provider', retryable: false, userAction: 'contact_support',
     });
   });
+
+  it('distinguishes exhausted points from a queued or safely restartable operation', () => {
+    expect(toAiOperationFailure(new ApiClientError('insufficient_ai_points', 402), 'grammar')).toMatchObject({
+      retryable: false,
+      stage: 'authorization',
+      userMessage: expect.stringContaining('AI 点数不足'),
+    });
+    expect(toAiOperationFailure(new ApiClientError('ai_operation_in_progress', 409), 'grammar')).toMatchObject({
+      retryable: true,
+      stage: 'api',
+      userMessage: expect.stringContaining('仍在处理中'),
+    });
+    expect(toAiOperationFailure(new ApiClientError('ai_operation_released', 409), 'grammar')).toMatchObject({
+      retryable: true,
+      stage: 'api',
+      userMessage: expect.stringContaining('重新点击'),
+    });
+  });
 });

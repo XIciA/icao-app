@@ -2,8 +2,9 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { AiController } from '../src/ai/ai.controller';
 
-function request() {
+function request(headers: Record<string, string> = {}) {
   return {
+    headers,
     id: 'request-1',
     user: { id: 'user-1' },
     raw: { once: vi.fn() },
@@ -67,9 +68,30 @@ describe('AiController review endpoint', () => {
     const controller = new AiController({ admitOperation, review } as never);
     const body = { mode: 'grammar' as const, module: 'atc' as const, questionId: 'q-1', transcript: 'We were ready.' };
 
-    await expect(controller.review(body, request() as never)).resolves.toEqual({ requestId: 'request-1', data: result });
+    await expect(controller.review(body, request({
+      'x-ai-operation-id': '82000000-0000-4000-8000-000000000001',
+    }) as never)).resolves.toEqual({ requestId: 'request-1', data: result });
     expect(admitOperation).toHaveBeenCalledWith('user-1');
-    expect(review).toHaveBeenCalledWith('user-1', 'request-1', body, grant, expect.any(AbortSignal));
+    expect(review).toHaveBeenCalledWith(
+      'user-1',
+      'request-1',
+      body,
+      grant,
+      expect.any(AbortSignal),
+      '82000000-0000-4000-8000-000000000001',
+    );
+  });
+
+  it('rejects a malformed AI operation id before admitting provider work', async () => {
+    const admitOperation = vi.fn();
+    const review = vi.fn();
+    const controller = new AiController({ admitOperation, review } as never);
+
+    await expect(controller.review({
+      mode: 'grammar', module: 'atc', questionId: 'q-1', transcript: 'Ready.',
+    }, request({ 'x-ai-operation-id': 'not-an-operation-id' }) as never)).rejects.toThrow('invalid_ai_operation_id');
+    expect(admitOperation).not.toHaveBeenCalled();
+    expect(review).not.toHaveBeenCalled();
   });
 
   it('rejects an OPI review with a non-OPI module', async () => {
