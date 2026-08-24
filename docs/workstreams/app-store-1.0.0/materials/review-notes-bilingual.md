@@ -8,7 +8,7 @@
 感谢审核“听你五个”1.0.0。本 App 是独立的航空英语练习工具，不代表 ICAO、民航监管机构、考试机构或其他政府组织，也不提供官方评分或认证。1.0.0 不提供未完成的学习报告，也不提供或宣传体系课程。
 
 一、审核登录
-请在登录页选择“手机号密码登录”。App Store Connect 的主要登录字段提供完整体验账号；下方受保护信息另提供购买与注销账号。两个账号均为正常 Production 账号，不需要接收短信、安装微信或使用审核员个人 Apple ID。
+请在登录页选择“手机号密码登录”。App Store Connect 的主要登录字段提供完整体验账号；下方受保护信息另提供购买与注销账号。两个账号均为正常 Production 账号，不需要接收短信或使用审核员个人 Apple ID。
 
 二、两个账号的用途
 1. 完整体验账号：用于会员题库、语音转写、语法纠错、表达优化、恢复购买和重复购买入口。
@@ -26,13 +26,10 @@
 六、录音、语音转写和文本 AI
 路径：【待最终包确认：练习题 → 口语记录】。首次主动录音时系统才申请麦克风权限。录音默认保留在本机；只有审核员主动点击“转写”并同意 AI 数据处理后才上传。单条 AI 录音最长3分钟。转写、语法纠错和表达优化在操作前显示预计 AI 点数，失败且未交付完整结果时不扣点。AI 结果会标明为 AI 转写或 AI 辅助内容，不是官方 ICAO 评分。
 
-七、微信未安装或取消授权
-微信登录不是审核必需路径。设备未安装微信、用户取消或提供方不可用时，App 会关闭该登录尝试并显示可理解的提示，不创建半成品账号。审核员可始终使用上方手机号密码账号。
-
-八、账号注销
+七、账号注销
 请使用购买与注销账号进入【待最终包确认：我的 → 账号与隐私 → 注销账号】。页面会说明注销将放弃账号、学习数据、会员剩余时间和 AI 点数。该审核账号已设置密码，输入当前密码即可完成近期身份重新验证并继续注销，不需要接收短信。仅未设置密码的普通手机号账号使用短信验证码作为替代重新验证方式。App 内正常用户注销不依赖客服，也没有反悔期。
 
-九、支持
+八、支持
 支持 URL：【待确认：公开 HTTPS 支持页 URL】
 隐私政策 URL：【待确认：公开 HTTPS 隐私政策 URL】
 审核联系人：【待填写姓名】
@@ -48,7 +45,7 @@
 Thank you for reviewing Ting Ni Wu Ge (听你五个) version 1.0.0. The app is an independent aviation-English practice tool. It is not affiliated with ICAO, a civil aviation authority, an examination provider, or any other government organization, and it does not provide official ratings or certifications. Version 1.0.0 does not expose the unfinished Learning Report and does not offer or promote courses.
 
 1. Review login
-On the sign-in screen, choose “Phone number and password.” The full-access account is provided in the primary sign-in fields in App Store Connect. A separate purchase-and-deletion account is provided in the protected review information. Both are normal Production accounts. The reviewer does not need to receive an SMS, install WeChat, or use a personal Apple ID to sign in.
+On the sign-in screen, choose “Phone number and password.” The full-access account is provided in the primary sign-in fields in App Store Connect. A separate purchase-and-deletion account is provided in the protected review information. Both are normal Production accounts. The reviewer does not need to receive an SMS or use a personal Apple ID to sign in.
 
 2. Purpose of the two accounts
 • Full-access account: member question banks, speech transcription, grammar correction, expression improvement, Restore Purchases, and the repeat-purchase flow.
@@ -66,13 +63,10 @@ Use the purchase-and-deletion account to select any product and complete an Appl
 6. Recording, speech transcription, and text AI
 Path: [VERIFY IN FINAL BUILD: Practice item > Speaking record]. Microphone permission is requested only after the reviewer actively starts recording. Recordings remain on the device by default and are uploaded only after the reviewer explicitly taps Transcribe and accepts the AI data notice. One AI recording is limited to three minutes. The app shows the estimated AI point cost before transcription, grammar correction, or expression improvement. No points are charged when a complete result is not delivered. Results are labeled as AI transcription or AI-assisted content and are not official ICAO ratings.
 
-7. WeChat not installed or authorization canceled
-WeChat is not required for review. If WeChat is not installed, authorization is canceled, or the provider is unavailable, the attempt closes with a clear message and no partial account is created. The reviewer can always use the phone-number-and-password account above.
-
-8. Account deletion
+7. Account deletion
 Use the purchase-and-deletion account and go to [VERIFY IN FINAL BUILD: Me > Account & Privacy > Delete Account]. The confirmation screen explains that deletion gives up the account, learning data, remaining membership time, and AI points. This review account has a password, so entering the current password completes recent reauthentication and no SMS is required. SMS verification is only the fallback for a normal phone account that has no password. Normal users can complete deletion in the app without customer support, and there is no grace period.
 
-9. Support
+8. Support
 Support URL: [CONFIRM PUBLIC HTTPS SUPPORT URL]
 Privacy Policy URL: [CONFIRM PUBLIC HTTPS PRIVACY POLICY URL]
 Review contact: [CONTACT NAME]
