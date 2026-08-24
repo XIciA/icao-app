@@ -222,6 +222,7 @@ test('lists the complete suffix and warns that 0012/0013 cannot skip 0010/0011',
       '0022_workable_nekra',
       '0023_apple_notification_reconciliation',
       '0024_apple_notification_retry_queue',
+      '0025_brief_ricochet',
     ],
   );
   assert.ok(

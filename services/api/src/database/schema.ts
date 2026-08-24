@@ -532,6 +532,16 @@ export const aiConsents = pgTable('ai_consents', {
   updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
 }).enableRLS();
 
+export const aiConsentAuthorities = pgTable('ai_consent_authorities', {
+  userId: uuid('user_id').primaryKey().references(() => accounts.id, { onDelete: 'cascade' }),
+  policyVersion: text('policy_version').notNull(),
+  revision: integer('revision').default(0).notNull(),
+  active: boolean('active').default(false).notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  check('ai_consent_authorities_revision_check', sql`${table.revision} >= 0`),
+]).enableRLS();
+
 export const aiConsentChallenges = pgTable('ai_consent_challenges', {
   id: uuid('id').defaultRandom().primaryKey(),
   userId: uuid('user_id').notNull().references(() => accounts.id, { onDelete: 'cascade' }),

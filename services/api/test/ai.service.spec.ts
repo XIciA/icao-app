@@ -4,7 +4,7 @@ import { CURRENT_AI_CONSENT_FLOW_REVISION, CURRENT_AI_CONSENT_POLICY_VERSION } f
 import { AiService } from '../src/ai/ai.service';
 import { ObservedAiServiceException } from '../src/ai/ai-error-observability';
 import { AiController } from '../src/ai/ai.controller';
-import { aiConsentChallenges, aiConsents } from '../src/database/schema';
+import { aiConsentAuthorities, aiConsentChallenges, aiConsents } from '../src/database/schema';
 
 type ConsentRow = {
   userId: string;
@@ -14,6 +14,24 @@ type ConsentRow = {
   revokedAt: Date | null;
 };
 
+type ConsentAuthorityRow = {
+  userId: string;
+  policyVersion: string;
+  revision: number;
+  active: boolean;
+  updatedAt: Date;
+};
+
+function authorityFor(consent: ConsentRow | null): ConsentAuthorityRow | null {
+  return consent ? {
+    userId: consent.userId,
+    policyVersion: consent.policyVersion,
+    revision: consent.revision,
+    active: consent.revokedAt === null,
+    updatedAt: consent.acceptedAt,
+  } : null;
+}
+
 function database(consent: ConsentRow | null = {
   userId: 'user-1',
   policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
@@ -21,10 +39,15 @@ function database(consent: ConsentRow | null = {
   revision: 1,
   revokedAt: null,
 }) {
+  const authority = authorityFor(consent);
   const values = vi.fn(() => ({ onConflictDoNothing: async () => undefined }));
   const transaction = {
     execute: vi.fn(async () => undefined),
-    select: () => ({ from: () => ({ where: () => ({ limit: async () => consent ? [consent] : [] }) }) }),
+    select: () => ({ from: (table: unknown) => ({ where: () => ({
+      limit: async () => table === aiConsentAuthorities
+        ? (authority ? [authority] : [])
+        : (consent ? [consent] : []),
+    }) }) }),
     insert: () => ({ values }),
   };
   return {
@@ -48,6 +71,7 @@ function consentDatabase(initialConsent: ConsentRow | null = {
   revokedAt: null,
 }) {
   let consent = initialConsent;
+  let authority = authorityFor(initialConsent);
   let challenges: Array<Record<string, unknown>> = [];
   let transactionTail = Promise.resolve();
   const execute = vi.fn<(query: unknown) => Promise<void>>();
@@ -57,21 +81,27 @@ function consentDatabase(initialConsent: ConsentRow | null = {
     select: () => ({
       from: (table: unknown) => ({
         where: () => ({
-          limit: async () => table === aiConsents
-            ? (consent ? [consent] : [])
-            : challenges.slice(0, 1),
+          limit: async () => {
+            if (table === aiConsents) return consent ? [consent] : [];
+            if (table === aiConsentAuthorities) return authority ? [authority] : [];
+            return challenges.slice(0, 1);
+          },
         }),
       }),
     }),
     delete: (table: unknown) => ({
       where: async () => {
         if (table === aiConsentChallenges) challenges = [];
+        if (table === aiConsents) consent = null;
       },
     }),
     update: (table: unknown) => ({
       set: (update: Partial<ConsentRow>) => ({
         where: async () => {
           if (table === aiConsents && consent) consent = { ...consent, ...update };
+          if (table === aiConsentAuthorities && authority) {
+            authority = { ...authority, ...update } as ConsentAuthorityRow;
+          }
         },
       }),
     }),
@@ -85,6 +115,13 @@ function consentDatabase(initialConsent: ConsentRow | null = {
           return {
             onConflictDoUpdate: async () => {
               consent = value as ConsentRow;
+            },
+          };
+        }
+        if (table === aiConsentAuthorities) {
+          return {
+            onConflictDoUpdate: async () => {
+              authority = value as ConsentAuthorityRow;
             },
           };
         }
@@ -103,7 +140,7 @@ function consentDatabase(initialConsent: ConsentRow | null = {
   return {
     database: { db },
     execute,
-    state: () => ({ consent, challenges: [...challenges] }),
+    state: () => ({ authority, consent, challenges: [...challenges] }),
   };
 }
 
@@ -158,7 +195,10 @@ describe('AiService DeepSeek review capabilities', () => {
       accepted: true,
       policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
     })).rejects.toThrow('ai_consent_challenge_required');
-    expect(fixture.state().consent).toMatchObject({ revision: 2, revokedAt: expect.any(Date) });
+    expect(fixture.state()).toMatchObject({
+      authority: { active: false, revision: 2 },
+      consent: null,
+    });
     expect(fixture.state().challenges).toHaveLength(1);
   });
 
@@ -180,6 +220,30 @@ describe('AiService DeepSeek review capabilities', () => {
     });
 
     await ai.revokeConsent('user-1');
+    await expect(ai.acceptConsent('user-1', {
+      accepted: true,
+      policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+      flowRevision: CURRENT_AI_CONSENT_FLOW_REVISION,
+      challenge: challenge.challenge,
+    })).rejects.toThrow('ai_consent_challenge_required');
+  });
+
+  it('strictly validates and consumes a supplied challenge even when consent is already active', async () => {
+    const fixture = consentDatabase();
+    const ai = new AiService(fixture.database as never, reviewProvider({}) as never, {} as never);
+    const challenge = await ai.issueConsentChallenge('user-1');
+
+    await expect(ai.acceptConsent('user-1', {
+      accepted: true,
+      policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+      flowRevision: CURRENT_AI_CONSENT_FLOW_REVISION,
+      challenge: challenge.challenge,
+    })).resolves.toEqual({
+      policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+      acceptedAt: '2026-08-14T00:00:00.000Z',
+    });
+    expect(fixture.state().challenges).toHaveLength(0);
+
     await expect(ai.acceptConsent('user-1', {
       accepted: true,
       policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
@@ -310,6 +374,33 @@ describe('AiService DeepSeek review capabilities', () => {
     });
     await expect(ai.admitOperation('user-1')).rejects.toThrow('ai_consent_required');
     expect(review.generateValidated).not.toHaveBeenCalled();
+  });
+
+  it('releases the consent transaction before calling a slow provider or writing usage', async () => {
+    const fixture = database();
+    let transactionDepth = 0;
+    const originalTransaction = fixture.db.transaction;
+    fixture.db.transaction = async (action) => {
+      transactionDepth += 1;
+      try {
+        return await originalTransaction(action);
+      } finally {
+        transactionDepth -= 1;
+      }
+    };
+    const review = reviewProvider({
+      grammar: { correctedText: 'Ready.', issues: [] },
+    });
+    review.generateValidated.mockImplementation(async (input: ReviewCall) => {
+      expect(transactionDepth).toBe(0);
+      return { data: input.validate({ grammar: { correctedText: 'Ready.', issues: [] } }), meta: {} };
+    });
+    const ai = new AiService(fixture as never, review as never, {} as never);
+
+    await expect(ai.review('user-1', 'request-no-held-transaction', {
+      mode: 'grammar', module: 'atc', questionId: 'question-no-held-transaction', transcript: 'Ready.',
+    }, await operationGrant(ai))).resolves.toMatchObject({ grammar: { correctedText: 'Ready.' } });
+    expect(transactionDepth).toBe(0);
   });
 
   it('sends only the transcript to the unified grammar review and returns structured issues', async () => {
@@ -457,13 +548,20 @@ describe('AiService DeepSeek review capabilities', () => {
   it('returns a successful paid result even when usage telemetry cannot be persisted', async () => {
     const failingValues = vi.fn(() => ({ onConflictDoNothing: async () => { throw new Error('database unavailable'); } }));
     const transactionDb = {
-      select: () => ({ from: () => ({ where: () => ({ limit: async () => [{
-          userId: 'user-1',
-          policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
-          acceptedAt: new Date('2026-08-14T00:00:00.000Z'),
-          revision: 1,
-          revokedAt: null,
-        }] }) }) }),
+      select: () => ({ from: (table: unknown) => ({ where: () => ({ limit: async () => table === aiConsentAuthorities
+        ? [{
+            userId: 'user-1',
+            policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+            revision: 1,
+            active: true,
+          }]
+        : [{
+            userId: 'user-1',
+            policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+            acceptedAt: new Date('2026-08-14T00:00:00.000Z'),
+            revision: 1,
+            revokedAt: null,
+          }] }) }) }),
       insert: () => ({ values: failingValues }),
       execute: vi.fn<(query: unknown) => Promise<void>>().mockResolvedValue(undefined),
     };

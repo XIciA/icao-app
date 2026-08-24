@@ -4,7 +4,7 @@ import { and, eq, sql } from 'drizzle-orm';
 import { CURRENT_AI_CONSENT_FLOW_REVISION, CURRENT_AI_CONSENT_POLICY_VERSION, type AiConsent, type AiConsentChallenge, type AiConsentRequest, type AiConsentStatus, type AiReviewRequest, type AiReviewResult, type GrammarReviewRequest, type PolishRequest, type PolishResult, type TencentAsrModel } from '@icao/contracts';
 
 import { DatabaseService } from '../database/database.service';
-import { aiConsentChallenges, aiConsents, aiUsageLogs } from '../database/schema';
+import { aiConsentAuthorities, aiConsentChallenges, aiConsents, aiUsageLogs } from '../database/schema';
 import { DeepSeekReviewProviderService } from './deepseek-review-provider.service';
 import { TencentAsrService } from './tencent-asr.service';
 import { reviewSystemPrompt, REVIEW_PROMPT_VERSION } from './deepseek-review-prompts';
@@ -37,8 +37,17 @@ function challengeDigest(challenge: string) {
   return createHash('sha256').update(challenge).digest('hex');
 }
 
-function isCurrentConsent<T extends { policyVersion: string; revokedAt: Date | null }>(consent: T | undefined): consent is T {
-  return consent?.policyVersion === CURRENT_AI_CONSENT_POLICY_VERSION && consent.revokedAt === null;
+function isCurrentConsent(
+  consent: { policyVersion: string; revision: number; revokedAt: Date | null } | undefined,
+  authority: { active: boolean; policyVersion: string; revision: number } | undefined,
+) {
+  return Boolean(
+    consent?.policyVersion === CURRENT_AI_CONSENT_POLICY_VERSION
+    && consent.revokedAt === null
+    && authority?.active
+    && authority.policyVersion === CURRENT_AI_CONSENT_POLICY_VERSION
+    && authority.revision === consent.revision,
+  );
 }
 
 @Injectable()
@@ -52,20 +61,27 @@ export class AiService {
   ) {}
 
   async consentStatus(userId: string): Promise<AiConsentStatus> {
-    const [consent] = await this.database.db.select().from(aiConsents).where(eq(aiConsents.userId, userId)).limit(1);
-    if (!isCurrentConsent(consent)) {
-      return { accepted: false, policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION };
-    }
-    return {
-      accepted: true,
-      policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
-      acceptedAt: consent.acceptedAt.toISOString(),
-    };
+    return this.database.db.transaction(async (transaction) => {
+      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${consentLockId(userId)}, 0))`);
+      const [consent] = await transaction.select().from(aiConsents).where(eq(aiConsents.userId, userId)).limit(1);
+      const [authority] = await transaction.select().from(aiConsentAuthorities)
+        .where(eq(aiConsentAuthorities.userId, userId)).limit(1);
+      if (!isCurrentConsent(consent, authority)) {
+        return { accepted: false, policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION };
+      }
+      return {
+        accepted: true,
+        policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+        acceptedAt: consent!.acceptedAt.toISOString(),
+      };
+    });
   }
 
   async issueConsentChallenge(userId: string): Promise<AiConsentChallenge> {
     return this.database.db.transaction(async (transaction) => {
       await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${consentLockId(userId)}, 0))`);
+      const [authority] = await transaction.select().from(aiConsentAuthorities)
+        .where(eq(aiConsentAuthorities.userId, userId)).limit(1);
       const [consent] = await transaction.select().from(aiConsents).where(eq(aiConsents.userId, userId)).limit(1);
       const challenge = randomBytes(32).toString('base64url');
       const expiresAt = new Date(Date.now() + CONSENT_CHALLENGE_TTL_MS);
@@ -75,7 +91,7 @@ export class AiService {
         policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
         flowRevision: CURRENT_AI_CONSENT_FLOW_REVISION,
         tokenHash: challengeDigest(challenge),
-        consentRevision: consent?.revision ?? 0,
+        consentRevision: authority?.revision ?? consent?.revision ?? 0,
         expiresAt,
       });
       return {
@@ -90,18 +106,16 @@ export class AiService {
   async acceptConsent(userId: string, input: AiConsentRequest): Promise<AiConsent> {
     return this.database.db.transaction(async (transaction) => {
       await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${consentLockId(userId)}, 0))`);
+      const [authority] = await transaction.select().from(aiConsentAuthorities)
+        .where(eq(aiConsentAuthorities.userId, userId)).limit(1);
       const [consent] = await transaction.select().from(aiConsents).where(eq(aiConsents.userId, userId)).limit(1);
-      const currentRevision = consent?.revision ?? 0;
-      if (isCurrentConsent(consent)) {
-        if (input.challenge) {
-          await transaction.delete(aiConsentChallenges).where(and(
-            eq(aiConsentChallenges.userId, userId),
-            eq(aiConsentChallenges.tokenHash, challengeDigest(input.challenge)),
-          ));
-        }
+      const currentRevision = authority?.revision ?? consent?.revision ?? 0;
+      const currentlyAccepted = isCurrentConsent(consent, authority);
+      const explicitAttempt = input.flowRevision !== undefined || input.challenge !== undefined;
+      if (!explicitAttempt && currentlyAccepted) {
         return {
           policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
-          acceptedAt: consent.acceptedAt.toISOString(),
+          acceptedAt: consent!.acceptedAt.toISOString(),
         };
       }
       if (input.flowRevision !== CURRENT_AI_CONSENT_FLOW_REVISION || !input.challenge) {
@@ -120,13 +134,38 @@ export class AiService {
       ) {
         throw new HttpException('ai_consent_challenge_required', 428);
       }
+      await transaction.delete(aiConsentChallenges).where(and(
+        eq(aiConsentChallenges.userId, userId),
+        eq(aiConsentChallenges.tokenHash, challengeDigest(input.challenge)),
+      ));
+      if (currentlyAccepted) {
+        return {
+          policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+          acceptedAt: consent!.acceptedAt.toISOString(),
+        };
+      }
       const now = new Date();
-      await transaction.delete(aiConsentChallenges).where(eq(aiConsentChallenges.userId, userId));
+      const nextRevision = currentRevision + 1;
+      await transaction.insert(aiConsentAuthorities).values({
+        userId,
+        policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+        revision: nextRevision,
+        active: true,
+        updatedAt: now,
+      }).onConflictDoUpdate({
+        target: aiConsentAuthorities.userId,
+        set: {
+          policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+          revision: nextRevision,
+          active: true,
+          updatedAt: now,
+        },
+      });
       await transaction.insert(aiConsents).values({
         userId,
         policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
         acceptedAt: now,
-        revision: currentRevision + 1,
+        revision: nextRevision,
         revokedAt: null,
         updatedAt: now,
       }).onConflictDoUpdate({
@@ -134,7 +173,7 @@ export class AiService {
         set: {
           policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
           acceptedAt: now,
-          revision: currentRevision + 1,
+          revision: nextRevision,
           revokedAt: null,
           updatedAt: now,
         },
@@ -146,16 +185,29 @@ export class AiService {
   async revokeConsent(userId: string) {
     return this.database.db.transaction(async (transaction) => {
       await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${consentLockId(userId)}, 0))`);
+      const [authority] = await transaction.select().from(aiConsentAuthorities)
+        .where(eq(aiConsentAuthorities.userId, userId)).limit(1);
       const [consent] = await transaction.select().from(aiConsents).where(eq(aiConsents.userId, userId)).limit(1);
       await transaction.delete(aiConsentChallenges).where(eq(aiConsentChallenges.userId, userId));
-      if (consent && consent.revokedAt === null) {
-        const now = new Date();
-        await transaction.update(aiConsents).set({
-          revision: consent.revision + 1,
-          revokedAt: now,
+      const now = new Date();
+      const currentRevision = authority?.revision ?? consent?.revision ?? 0;
+      const nextRevision = authority?.active || consent ? currentRevision + 1 : currentRevision;
+      await transaction.insert(aiConsentAuthorities).values({
+        userId,
+        policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+        revision: nextRevision,
+        active: false,
+        updatedAt: now,
+      }).onConflictDoUpdate({
+        target: aiConsentAuthorities.userId,
+        set: {
+          policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+          revision: nextRevision,
+          active: false,
           updatedAt: now,
-        }).where(eq(aiConsents.userId, userId));
-      }
+        },
+      });
+      await transaction.delete(aiConsents).where(eq(aiConsents.userId, userId));
       return { revoked: true as const };
     });
   }
@@ -163,12 +215,14 @@ export class AiService {
   async admitOperation(userId: string): Promise<AiOperationGrant> {
     return this.database.db.transaction(async (transaction) => {
       await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${consentLockId(userId)}, 0))`);
+      const [authority] = await transaction.select().from(aiConsentAuthorities)
+        .where(eq(aiConsentAuthorities.userId, userId)).limit(1);
       const [consent] = await transaction.select().from(aiConsents).where(eq(aiConsents.userId, userId)).limit(1);
-      if (!isCurrentConsent(consent)) throw new HttpException('ai_consent_required', 428);
+      if (!isCurrentConsent(consent, authority)) throw new HttpException('ai_consent_required', 428);
       return {
         userId,
         policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
-        consentRevision: consent.revision,
+        consentRevision: consent!.revision,
         nonce: randomUUID(),
         expiresAt: Date.now() + OPERATION_GRANT_TTL_MS,
       };
@@ -176,20 +230,25 @@ export class AiService {
   }
 
   private async withAuthorizedOperation<T>(userId: string, grant: AiOperationGrant, action: () => Promise<T>): Promise<T> {
-    return this.database.db.transaction(async (transaction) => {
+    await this.database.db.transaction(async (transaction) => {
       await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${consentLockId(userId)}, 0))`);
+      const [authority] = await transaction.select().from(aiConsentAuthorities)
+        .where(eq(aiConsentAuthorities.userId, userId)).limit(1);
       const [consent] = await transaction.select().from(aiConsents).where(eq(aiConsents.userId, userId)).limit(1);
       if (
         grant.userId !== userId
         || grant.policyVersion !== CURRENT_AI_CONSENT_POLICY_VERSION
         || grant.expiresAt <= Date.now()
-        || !isCurrentConsent(consent)
-        || consent.revision !== grant.consentRevision
+        || !isCurrentConsent(consent, authority)
+        || consent!.revision !== grant.consentRevision
       ) {
         throw new HttpException('ai_consent_required', 428);
       }
-      return action();
     });
+    // Provider calls and usage logging intentionally run after the short
+    // authority transaction releases its connection. A slow upstream must not
+    // exhaust the PostgreSQL pool or prevent a concurrent consent withdrawal.
+    return action();
   }
 
   private async logUsage(input: {
