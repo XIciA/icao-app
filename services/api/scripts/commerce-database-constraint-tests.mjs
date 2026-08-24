@@ -6,12 +6,19 @@ import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { join } from 'node:path';
 import test, { after, before } from 'node:test';
+import { drizzle } from 'drizzle-orm/postgres-js';
+import postgres from 'postgres';
+
+import { RecentAuthService } from '../src/auth/recent-auth.service.ts';
+import * as databaseSchema from '../src/database/schema.ts';
 
 const migrationsDirectory = fileURLToPath(new URL('../drizzle', import.meta.url));
 const clusterRoot = mkdtempSync(join(tmpdir(), 'icao-commerce-postgres-'));
 const dataDirectory = join(clusterRoot, 'data');
 const socketDirectory = join(clusterRoot, 'socket');
 let port;
+let serviceDatabaseClient;
+let serviceDatabase;
 
 function requireBinary(name) {
   const result = spawnSync('sh', ['-c', `command -v ${name}`], { encoding: 'utf8' });
@@ -180,13 +187,52 @@ before(async () => {
     .replaceAll('--> statement-breakpoint', '');
   const migration = psql(cumulativeMigration);
   assert.equal(migration.status, 0, migration.stderr);
+  serviceDatabaseClient = postgres({
+    database: 'postgres',
+    host: socketDirectory,
+    max: 2,
+    port,
+    username: 'postgres',
+  });
+  serviceDatabase = drizzle(serviceDatabaseClient, { schema: databaseSchema });
 });
 
-after(() => {
+after(async () => {
+  await serviceDatabaseClient?.end({ timeout: 5 });
   const pgCtl = requireBinary('pg_ctl');
   spawnSync(pgCtl, ['-D', dataDirectory, '-m', 'fast', '-w', 'stop'], { stdio: 'ignore' });
   rmSync(clusterRoot, { recursive: true, force: true });
 });
+
+function authSession({
+  accountId = '40000000-0000-4000-8000-000000000001',
+  authUserId = '40000000-0000-4000-8000-000000000002',
+  sessionId = '40000000-0000-4000-8000-000000000003',
+} = {}) {
+  return {
+    accessToken: 'not-a-real-token',
+    authenticationMethods: [],
+    authUserId,
+    identities: [],
+    issuedAt: Math.floor(Date.now() / 1_000),
+    passwordSet: true,
+    sessionId,
+    user: {
+      id: accountId,
+      authUserId,
+      phone: '+8613800000000',
+      providers: ['phone'],
+    },
+  };
+}
+
+function recentAuthService(passwordVerifier = { verify: async () => undefined }) {
+  return new RecentAuthService(
+    { accountIdentityHashSecret: 'recent-auth-integration-secret-32-bytes' },
+    { db: serviceDatabase },
+    passwordVerifier,
+  );
+}
 
 test('the cumulative migration enables RLS on all 40 public tables', () => {
   assert.equal(
@@ -314,6 +360,78 @@ test('recent-auth grants are purpose-bound to a durable challenge', () => {
   assert.equal(
     queryScalar(`SELECT COUNT(*) FROM recent_auth_grants WHERE challenge_id = '${secondChallengeId}'`),
     '0',
+  );
+
+  const mutateBoundChallenge = psql(`
+    UPDATE recent_auth_challenges
+    SET purpose = 'password_recovery'
+    WHERE id = '${challengeId}';
+  `);
+  assert.notEqual(mutateBoundChallenge.status, 0);
+  assert.match(mutateBoundChallenge.stderr, /recent_auth_challenge_binding_immutable/);
+});
+
+test('recent-auth grants survive service restarts and atomically reject replay, mismatch, and expiry', async () => {
+  const firstInstance = recentAuthService();
+  const restartedInstance = recentAuthService();
+  const source = authSession();
+
+  const restartGrant = await firstInstance.issueVerifiedGrant(source, 'password', 'account_delete');
+  await restartedInstance.consume(source, restartGrant.grantId, 'account_delete');
+  await assert.rejects(
+    firstInstance.consume(source, restartGrant.grantId, 'account_delete'),
+    /recent_auth_required/u,
+  );
+
+  const purposeGrant = await firstInstance.issueVerifiedGrant(source, 'password', 'account_delete');
+  await assert.rejects(
+    restartedInstance.consume(source, purposeGrant.grantId, 'password_recovery'),
+    /recent_auth_required/u,
+  );
+  assert.equal(
+    queryScalar(`SELECT (consumed_at IS NULL)::text FROM recent_auth_grants WHERE id = '${purposeGrant.grantId}'`),
+    'true',
+  );
+  await restartedInstance.consume(source, purposeGrant.grantId, 'account_delete');
+
+  const sessionGrant = await firstInstance.issueVerifiedGrant(source, 'password', 'account_delete');
+  await assert.rejects(
+    restartedInstance.consume(authSession({ sessionId: '40000000-0000-4000-8000-000000000004' }), sessionGrant.grantId, 'account_delete'),
+    /recent_auth_required/u,
+  );
+  await restartedInstance.consume(source, sessionGrant.grantId, 'account_delete');
+
+  const expiredGrant = await firstInstance.issueVerifiedGrant(
+    source,
+    'password',
+    'account_delete',
+    new Date(Date.now() - 10 * 60 * 1_000),
+  );
+  await assert.rejects(
+    restartedInstance.consume(source, expiredGrant.grantId, 'account_delete'),
+    /recent_auth_required/u,
+  );
+});
+
+test('password recent-auth verifies upstream before persisting a purpose-bound grant', async () => {
+  let verificationCount = 0;
+  const service = recentAuthService({
+    verify: async (_source, password) => {
+      assert.equal(password, 'review-account-password');
+      verificationCount += 1;
+    },
+  });
+  const grant = await service.issuePasswordGrant(
+    authSession({ sessionId: '40000000-0000-4000-8000-000000000005' }),
+    'account_delete',
+    'review-account-password',
+  );
+  assert.equal(verificationCount, 1);
+  assert.equal(grant.method, 'password');
+  assert.equal(grant.purpose, 'account_delete');
+  assert.equal(
+    queryScalar(`SELECT COUNT(*) FROM recent_auth_grants WHERE id = '${grant.grantId}' AND purpose = 'account_delete'`),
+    '1',
   );
 });
 

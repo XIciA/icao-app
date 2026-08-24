@@ -19,7 +19,7 @@
     "editorial:import": "node scripts/import-editorial.mjs",
     "start": "node dist/main.js",
     "test": "vitest run",
-    "test:commerce-db": "node --test scripts/commerce-database-constraint-tests.mjs",
+    "test:commerce-db": "tsx --test scripts/commerce-database-constraint-tests.mjs",
     "verify:account-live": "node scripts/verify-account-live.mjs",
     "verify:asr-live": "node scripts/verify-asr-live.mjs",
     "verify:review-live": "node scripts/verify-review-live.mjs",

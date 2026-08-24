@@ -7,6 +7,9 @@ import { AccountIdentityService } from './account/account-identity.service';
 import { MeController } from './auth/me.controller';
 import { PhoneAuthController } from './auth/phone-auth.controller';
 import { PhoneAuthService } from './auth/phone-auth.service';
+import { RecentAuthController } from './auth/recent-auth.controller';
+import { RecentAuthService } from './auth/recent-auth.service';
+import { RECENT_AUTH_PASSWORD_VERIFIER, SupabaseRecentAuthPasswordVerifier } from './auth/recent-auth-password.verifier';
 import { RequireAuthGuard } from './auth/require-auth.guard';
 import { SessionSecurityService } from './auth/session-security.service';
 import { SupabaseAuthVerifier } from './auth/supabase-auth.verifier';
@@ -37,7 +40,7 @@ import { FeedbackController } from './feedback/feedback.controller';
 import { FeedbackService } from './feedback/feedback.service';
 
 @Module({
-  controllers: [HealthController, MeController, PhoneAuthController, SupabaseSmsHookController, AccountController, QuestionBankController, ResourceController, EditorialController, SyncController, AiController, VocabularyController, FeedbackController],
+  controllers: [HealthController, MeController, PhoneAuthController, RecentAuthController, SupabaseSmsHookController, AccountController, QuestionBankController, ResourceController, EditorialController, SyncController, AiController, VocabularyController, FeedbackController],
   providers: [
     { provide: API_CONFIG, useFactory: () => loadConfig() },
     DatabaseService,
@@ -49,6 +52,9 @@ import { FeedbackService } from './feedback/feedback.service';
     AliyunSmsProvider,
     SupabaseSmsHookService,
     PhoneAuthService,
+    SupabaseRecentAuthPasswordVerifier,
+    { provide: RECENT_AUTH_PASSWORD_VERIFIER, useExisting: SupabaseRecentAuthPasswordVerifier },
+    RecentAuthService,
     AccountService,
     QuestionBankService,
     ResourceService,

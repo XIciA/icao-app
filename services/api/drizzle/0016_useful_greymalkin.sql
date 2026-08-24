@@ -189,7 +189,7 @@ AS $$
 BEGIN
   IF NOT EXISTS (
     SELECT 1
-    FROM recent_auth_challenges challenge
+    FROM public.recent_auth_challenges challenge
     WHERE challenge.id = NEW.challenge_id
       AND challenge.account_id = NEW.account_id
       AND challenge.auth_user_id = NEW.auth_user_id
@@ -204,6 +204,37 @@ BEGIN
 END;
 $$;--> statement-breakpoint
 CREATE CONSTRAINT TRIGGER recent_auth_grant_matches_challenge
-AFTER INSERT OR UPDATE ON recent_auth_grants
+AFTER INSERT OR UPDATE ON public.recent_auth_grants
 DEFERRABLE INITIALLY IMMEDIATE
-FOR EACH ROW EXECUTE FUNCTION enforce_recent_auth_grant_matches_challenge();
+FOR EACH ROW EXECUTE FUNCTION enforce_recent_auth_grant_matches_challenge();--> statement-breakpoint
+CREATE OR REPLACE FUNCTION prevent_recent_auth_challenge_binding_change()
+RETURNS trigger
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  IF (
+    OLD.account_id,
+    OLD.auth_user_id,
+    OLD.session_id,
+    OLD.method,
+    OLD.purpose,
+    OLD.target_digest
+  ) IS DISTINCT FROM (
+    NEW.account_id,
+    NEW.auth_user_id,
+    NEW.session_id,
+    NEW.method,
+    NEW.purpose,
+    NEW.target_digest
+  ) AND EXISTS (
+    SELECT 1 FROM public.recent_auth_grants grant_row
+    WHERE grant_row.challenge_id = OLD.id
+  ) THEN
+    RAISE EXCEPTION 'recent_auth_challenge_binding_immutable' USING ERRCODE = '23514';
+  END IF;
+  RETURN NEW;
+END;
+$$;--> statement-breakpoint
+CREATE TRIGGER recent_auth_challenge_binding_immutable
+BEFORE UPDATE ON public.recent_auth_challenges
+FOR EACH ROW EXECUTE FUNCTION prevent_recent_auth_challenge_binding_change();

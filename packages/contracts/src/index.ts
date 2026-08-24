@@ -109,6 +109,21 @@ export type InviteSessionResponse = {
 
 export type RevokeAllSessionsResponse = { revoked: true };
 
+export type RecentAuthPurpose = 'account_delete' | 'password_recovery' | 'phone_binding';
+export type RecentAuthMethod = 'password' | 'phone_otp' | 'apple';
+
+export type PasswordRecentAuthRequest = {
+  password: string;
+  purpose: 'account_delete';
+};
+
+export type RecentAuthGrantResponse = {
+  expiresAt: number;
+  grantId: string;
+  method: RecentAuthMethod;
+  purpose: RecentAuthPurpose;
+};
+
 export type DeleteAccountRequest = {
   confirmation: '注销账号';
 };
