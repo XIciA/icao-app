@@ -205,8 +205,7 @@ export class CommerceService {
     });
   }
 
-  async processAppleNotification(signedPayload: string) {
-    const processedAt = new Date();
+  async processAppleNotification(signedPayload: string, processedAt = new Date()) {
     let notification: VerifiedAppleNotification;
     try {
       notification = await this.appleVerifier.verifyNotification(signedPayload);
@@ -249,6 +248,7 @@ export class CommerceService {
           notificationType: notification.notificationType,
           subtype: notification.subtype,
           status: 'received',
+          signedPayload,
           signedPayloadHash: notification.signedPayloadHash,
           decodedPayload: notification.decodedPayload,
           signedAt: notification.signedDate,
@@ -277,7 +277,7 @@ export class CommerceService {
         .limit(1);
 
       let accountId = existingTransaction?.accountId ?? verified.appAccountToken;
-      if (!accountId || (!existingTransaction && !await this.isAccountActive(transaction, accountId))) {
+      if (!accountId) {
         await transaction.update(appleNotificationEvents).set({
           status: 'failed',
           errorCode: 'apple_notification_transaction_unresolved',
@@ -292,6 +292,19 @@ export class CommerceService {
       await transaction.execute(sql`
         select pg_advisory_xact_lock(hashtextextended(${`account:${accountId}`}, 0))
       `);
+      // The status check must happen after the same account lock used by
+      // account deletion. Otherwise a refund reversal can race deletion and
+      // recreate benefits after the deletion barrier has started.
+      const accountIsActive = await this.isAccountActive(transaction, accountId);
+      if (!existingTransaction && !accountIsActive) {
+        await this.markAppleNotificationIgnored(
+          transaction,
+          notification,
+          processedAt,
+          'apple_notification_account_closed',
+        );
+        return { duplicate: Boolean(existingEvent), processed: true };
+      }
 
       let orderId: string;
       let statusUpdateAccepted = true;
@@ -306,7 +319,8 @@ export class CommerceService {
         ) {
           throw new ConflictException('apple_transaction_signed_version_conflict');
         } else if (verified.signedDate > existingTransaction.signedDate) {
-          const clearRevocation = notification.notificationType === 'REFUND_REVERSED';
+          const clearRevocation = notification.notificationType === 'REFUND_REVERSED'
+            && accountIsActive;
           await transaction.update(appleTransactions).set({
             signedDate: verified.signedDate,
             signedPayloadHash: verified.signedPayloadHash,
@@ -371,13 +385,23 @@ export class CommerceService {
 
       if (statusUpdateAccepted) {
         if (notification.notificationType === 'REFUND_REVERSED') {
-          await this.restoreAppleOrder(transaction, {
-            accountId,
-            environment,
-            orderId,
-            processedAt,
-            transactionId: verified.transactionId,
-          });
+          if (accountIsActive) {
+            await this.restoreAppleOrder(transaction, {
+              accountId,
+              environment,
+              orderId,
+              processedAt,
+              transactionId: verified.transactionId,
+            });
+          } else {
+            await this.markAppleNotificationIgnored(
+              transaction,
+              notification,
+              processedAt,
+              'apple_notification_account_closed',
+            );
+            return { duplicate: Boolean(existingEvent), processed: true };
+          }
         } else if (
           verified.revocationDate
           || notification.notificationType === 'REFUND'
@@ -536,6 +560,22 @@ export class CommerceService {
     ));
   }
 
+  private async markAppleNotificationIgnored(
+    transaction: CommerceTransaction,
+    notification: VerifiedAppleNotification,
+    processedAt: Date,
+    reason: string,
+  ) {
+    await transaction.update(appleNotificationEvents).set({
+      status: 'processed',
+      errorCode: reason,
+      processedAt,
+    }).where(and(
+      eq(appleNotificationEvents.environment, notification.environment),
+      eq(appleNotificationEvents.notificationUuid, notification.notificationUuid),
+    ));
+  }
+
   private async revokeAppleOrder(
     transaction: CommerceTransaction,
     input: {
@@ -630,9 +670,8 @@ export class CommerceService {
       eq(appleTransactions.environment, input.environment),
       eq(appleTransactions.transactionId, input.transactionId),
     ));
-    await this.benefits.restoreOrderPointBatches(transaction, {
+    await this.benefits.prepareOrderPointBatchesForRestore(transaction, {
       accountId: input.accountId,
-      cycleKey,
       environment: input.environment,
       orderId: input.orderId,
       restoredAt: input.processedAt,
@@ -643,6 +682,13 @@ export class CommerceService {
       input.environment,
       input.processedAt,
     );
+    await this.benefits.restoreOrderPointBatches(transaction, {
+      accountId: input.accountId,
+      cycleKey,
+      environment: input.environment,
+      orderId: input.orderId,
+      restoredAt: input.processedAt,
+    });
   }
 
   private async rebuildMembership(
@@ -657,11 +703,6 @@ export class CommerceService {
         eq(membershipEntitlementSegments.environment, environment),
         eq(membershipEntitlementSegments.accountId, accountId),
       ));
-    const activeByOrder = new Map(
-      priorSegments
-        .filter((segment) => segment.status === 'active')
-        .map((segment) => [segment.orderId, segment]),
-    );
     const maximumRevisionByOrder = new Map<string, number>();
     for (const segment of priorSegments) {
       maximumRevisionByOrder.set(
@@ -721,7 +762,6 @@ export class CommerceService {
       }).returning({ id: membershipEntitlementSegments.id });
       if (!segment) throw new Error('membership_segment_insert_failed');
       const product = requireMembershipProductByKey(order.productKey);
-      const oldActiveSegment = activeByOrder.get(order.id);
       for (const [ordinal, batchDefinition] of product.aiPointBatches.entries()) {
         const scheduledAt = new Date(startsAt.getTime() + (batchDefinition.offsetDays * DAY_MS));
         if (scheduledAt >= endsAt) continue;
@@ -729,11 +769,13 @@ export class CommerceService {
         const existingBatch = batchByOrderOrdinal.get(batchKey);
         if (existingBatch) {
           if (existingBatch.status === 'revoked' || existingBatch.status === 'merged') continue;
-          const shouldReschedule = (
-            (!oldActiveSegment || oldActiveSegment.startsAt > asOf)
-            && existingBatch.availableAt > asOf
-          );
-          const availableAt = shouldReschedule ? scheduledAt : existingBatch.availableAt;
+          // An issued batch is a durable credit, but every still-scheduled
+          // batch follows the rebuilt membership segment. This also covers a
+          // later order that already started before an earlier order was
+          // refunded or restored.
+          const availableAt = existingBatch.status === 'scheduled'
+            ? scheduledAt
+            : existingBatch.availableAt;
           const status = availableAt <= asOf ? 'available' : 'scheduled';
           await transaction.update(aiPointBatches).set({
             entitlementSegmentId: segment.id,

@@ -244,6 +244,35 @@ export class PersistentCommerceBenefitsService {
     `);
   }
 
+  async prepareOrderPointBatchesForRestore(
+    transaction: CommerceTransaction,
+    input: {
+      accountId: string;
+      environment: 'sandbox' | 'production';
+      orderId: string;
+      restoredAt: Date;
+    },
+  ) {
+    const restoredAt = input.restoredAt.toISOString();
+    await transaction.execute(sql`
+      update ai_point_batches
+      set status = case
+          when exists (
+            select 1 from ai_point_ledger_entries entry
+            where entry.batch_id = ai_point_batches.id and entry.entry_type = 'grant'
+          ) then 'available'
+          else 'scheduled'
+        end,
+        revoked_at = null,
+        expires_at = null,
+        updated_at = ${restoredAt}::timestamptz
+      where environment = ${input.environment}
+        and account_id = ${input.accountId}::uuid
+        and source_order_id = ${input.orderId}::uuid
+        and status = 'revoked'
+    `);
+  }
+
   async restoreOrderPointBatches(
     transaction: CommerceTransaction,
     input: {
@@ -255,35 +284,28 @@ export class PersistentCommerceBenefitsService {
     },
   ) {
     const restoredAt = input.restoredAt.toISOString();
+    const revokeOperationPrefix = `refund-cycle:${input.cycleKey}:revoke:`;
     const restoreOperationPrefix = `refund-cycle:${input.cycleKey}:restore:`;
+    // Restore exactly the amount debited by this refund cycle. A batch that
+    // was still scheduled at refund time has a zero-point revoke and is
+    // credited only by its first grant if rebuilding makes it due.
     await transaction.execute(sql`
       insert into ai_point_ledger_entries (
         environment, account_id, batch_id, operation_id, entry_type, direction, points, created_at
       )
-      select environment, account_id, id, ${restoreOperationPrefix} || id::text,
-        'restore', 'credit', greatest(0, granted_points - consumed_points - reserved_points),
-        ${restoredAt}::timestamptz
-      from ai_point_batches
-      where environment = ${input.environment}
-        and account_id = ${input.accountId}::uuid
-        and source_order_id = ${input.orderId}::uuid
-        and status = 'revoked'
-        and available_at <= ${restoredAt}::timestamptz
+      select batch.environment, batch.account_id, batch.id,
+        ${restoreOperationPrefix} || batch.id::text,
+        'restore', 'credit', revoke.points, ${restoredAt}::timestamptz
+      from ai_point_batches batch
+      join ai_point_ledger_entries revoke
+        on revoke.batch_id = batch.id
+        and revoke.entry_type = 'revoke'
+        and revoke.operation_id = ${revokeOperationPrefix} || batch.id::text
+      where batch.environment = ${input.environment}
+        and batch.account_id = ${input.accountId}::uuid
+        and batch.source_order_id = ${input.orderId}::uuid
+        and revoke.points > 0
       on conflict do nothing
-    `);
-    await transaction.execute(sql`
-      update ai_point_batches
-      set status = case
-          when available_at <= ${restoredAt}::timestamptz then 'available'
-          else 'scheduled'
-        end,
-        revoked_at = null,
-        expires_at = null,
-        updated_at = ${restoredAt}::timestamptz
-      where environment = ${input.environment}
-        and account_id = ${input.accountId}::uuid
-        and source_order_id = ${input.orderId}::uuid
-        and status = 'revoked'
     `);
   }
 }

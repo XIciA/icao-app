@@ -1,0 +1,1 @@
+ALTER TABLE "apple_notification_events" ADD COLUMN "signed_payload" text;

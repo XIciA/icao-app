@@ -50,6 +50,7 @@ import { FeedbackController } from './feedback/feedback.controller';
 import { FeedbackService } from './feedback/feedback.service';
 import { PersistentCommerceBenefitsService } from './commerce/persistent-commerce-benefits.service';
 import { AppleNotificationController } from './commerce/apple-notification.controller';
+import { AppleNotificationReconciliationService } from './commerce/apple-notification-reconciliation.service';
 import { CommerceController } from './commerce/commerce.controller';
 import { CommerceService } from './commerce/commerce.service';
 import { APPLE_STORE_VERIFIER, configuredAppleStoreVerifier } from './commerce/apple-store-verifier';
@@ -67,6 +68,7 @@ import { APPLE_STORE_VERIFIER, configuredAppleStoreVerifier } from './commerce/a
     PersistentCommerceBenefitsService,
     { provide: APPLE_STORE_VERIFIER, inject: [API_CONFIG], useFactory: configuredAppleStoreVerifier },
     CommerceService,
+    AppleNotificationReconciliationService,
     RequireAuthGuard,
     AliyunSmsProvider,
     SmsDeliveryAuthority,

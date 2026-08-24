@@ -682,6 +682,7 @@ export const appleNotificationEvents = pgTable('apple_notification_events', {
   notificationType: text('notification_type').notNull(),
   subtype: text('subtype'),
   status: text('status').default('received').notNull(),
+  signedPayload: text('signed_payload'),
   signedPayloadHash: text('signed_payload_hash').notNull(),
   decodedPayload: jsonb('decoded_payload').notNull(),
   errorCode: text('error_code'),
