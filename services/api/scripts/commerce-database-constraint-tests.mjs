@@ -70,6 +70,76 @@ function queryScalar(sql) {
   ], { encoding: 'utf8' }).trim();
 }
 
+function trialMergeTransaction({
+  creditBatchId,
+  creditPoints,
+  label,
+  sourceAccountId,
+  sourceBatchId,
+  sourceConsumed,
+  sourceReservationId,
+  targetAccountId,
+  targetBatchId,
+  targetConsumed,
+  targetReservationId,
+}) {
+  const operationId = `trial-merge:${targetAccountId}:${sourceAccountId}`;
+  const settlementRows = [
+    { batchId: targetBatchId, consumed: targetConsumed, reservationId: targetReservationId },
+    { batchId: sourceBatchId, consumed: sourceConsumed, reservationId: sourceReservationId },
+  ].filter(({ consumed }) => consumed > 0);
+  const reservations = settlementRows.length === 0 ? '' : `
+    INSERT INTO ai_point_reservations (
+      id, environment, account_id, operation_id, capability, rule_version, points, status
+    ) VALUES
+      ${settlementRows.map(({ consumed, reservationId }, index) => `('${reservationId}', 'production', '${targetAccountId}', '${label}-settle-${index}', 'transcription', 'ai-points-v1', ${consumed}, 'reserved')`).join(',\n      ')};
+    INSERT INTO ai_point_reservation_allocations (
+      environment, account_id, reservation_id, batch_id, points
+    ) VALUES
+      ${settlementRows.map(({ batchId, consumed, reservationId }) => `('production', '${targetAccountId}', '${reservationId}', '${batchId}', ${consumed})`).join(',\n      ')};
+    UPDATE ai_point_reservations
+    SET status = 'settled', settled_at = now()
+    WHERE id IN (${settlementRows.map(({ reservationId }) => `'${reservationId}'`).join(', ')});
+  `;
+  return `
+    BEGIN;
+    INSERT INTO ai_point_batches (
+      id, environment, account_id, original_account_id, source_type, source_reference,
+      rule_version, ordinal, granted_points, reserved_points, available_at, status
+    ) VALUES
+      ('${targetBatchId}', 'production', '${targetAccountId}', '${targetAccountId}', 'trial',
+       '${label}-target', 'ai-points-v1', 0, 100, ${targetConsumed}, now(), 'available'),
+      ('${sourceBatchId}', 'production', '${targetAccountId}', '${sourceAccountId}', 'trial',
+       '${label}-source', 'ai-points-v1', 0, 100, ${sourceConsumed}, now(), 'available');
+    ${reservations}
+    UPDATE ai_point_batches
+    SET status = 'merged', reserved_points = 0,
+        consumed_points = CASE id
+          WHEN '${targetBatchId}' THEN ${targetConsumed}
+          ELSE ${sourceConsumed}
+        END
+    WHERE id IN ('${targetBatchId}', '${sourceBatchId}');
+    INSERT INTO ai_point_batches (
+      id, environment, account_id, original_account_id, source_type, source_reference,
+      rule_version, ordinal, granted_points, consumed_points, available_at, status
+    ) VALUES (
+      '${creditBatchId}', 'production', '${targetAccountId}', '${targetAccountId}', 'trial',
+      'merge:${targetAccountId}:${sourceAccountId}', 'ai-points-v1', 0, 100,
+      ${100 - creditPoints}, now(), 'available'
+    );
+    INSERT INTO ai_point_ledger_entries (
+      environment, account_id, batch_id, operation_id, entry_type, direction, points
+    ) VALUES
+      ('production', '${targetAccountId}', '${targetBatchId}', '${operationId}',
+       'merge_debit', 'debit', ${100 - targetConsumed}),
+      ('production', '${targetAccountId}', '${sourceBatchId}', '${operationId}',
+       'merge_debit', 'debit', ${100 - sourceConsumed}),
+      ('production', '${targetAccountId}', '${creditBatchId}', '${operationId}',
+       'merge_credit', 'credit', ${creditPoints});
+    COMMIT;
+  `;
+}
+
 before(async () => {
   port = await availablePort();
   mkdirSync(socketDirectory);
@@ -289,33 +359,142 @@ test('deferred commerce constraints enforce reservation transitions and batch ac
   const mergedTargetDebitBatch = '10000000-0000-4000-8000-000000000009';
   const mergedSourceDebitBatch = '10000000-0000-4000-8000-000000000010';
   const sourceAccountId = '00000000-0000-4000-8000-000000000002';
-  const validCarriedConsumption = psql(`
+  const validCarriedConsumption = psql(trialMergeTransaction({
+    creditBatchId: mergedTrialBatch,
+    creditPoints: 100,
+    label: 'db-test-no-consumption-merge',
+    sourceAccountId,
+    sourceBatchId: mergedSourceDebitBatch,
+    sourceConsumed: 0,
+    sourceReservationId: '20000000-0000-4000-8000-000000000010',
+    targetAccountId: accountId,
+    targetBatchId: mergedTargetDebitBatch,
+    targetConsumed: 0,
+    targetReservationId: '20000000-0000-4000-8000-000000000009',
+  }));
+  assert.equal(validCarriedConsumption.status, 0, validCarriedConsumption.stderr);
+  assert.equal(
+    queryScalar(`
+      SELECT
+        SUM(points) FILTER (WHERE entry_type = 'merge_debit')::text || ':' ||
+        SUM(points) FILTER (WHERE entry_type = 'merge_credit')::text || ':' ||
+        COUNT(*) FILTER (WHERE entry_type = 'merge_credit')::text
+      FROM ai_point_ledger_entries
+      WHERE operation_id = 'trial-merge:${accountId}:${sourceAccountId}'
+    `),
+    '200:100:1',
+  );
+
+  const partialTargetAccountId = '00000000-0000-4000-8000-000000000011';
+  const partialSourceAccountId = '00000000-0000-4000-8000-000000000012';
+  const partialTargetBatch = '10000000-0000-4000-8000-000000000012';
+  const partialSourceBatch = '10000000-0000-4000-8000-000000000013';
+  const partialCreditBatch = '10000000-0000-4000-8000-000000000014';
+  const exactPartialMerge = psql(trialMergeTransaction({
+    creditBatchId: partialCreditBatch,
+    creditPoints: 50,
+    label: 'db-test-partial-consumption-merge',
+    sourceAccountId: partialSourceAccountId,
+    sourceBatchId: partialSourceBatch,
+    sourceConsumed: 30,
+    sourceReservationId: '20000000-0000-4000-8000-000000000013',
+    targetAccountId: partialTargetAccountId,
+    targetBatchId: partialTargetBatch,
+    targetConsumed: 20,
+    targetReservationId: '20000000-0000-4000-8000-000000000012',
+  }));
+  assert.equal(exactPartialMerge.status, 0, exactPartialMerge.stderr);
+  assert.equal(
+    queryScalar(`
+      SELECT
+        SUM(points) FILTER (WHERE entry_type = 'merge_debit')::text || ':' ||
+        SUM(points) FILTER (WHERE entry_type = 'merge_credit')::text || ':' ||
+        batch.consumed_points::text
+      FROM ai_point_ledger_entries ledger
+      JOIN ai_point_batches batch ON batch.id = '${partialCreditBatch}'
+      WHERE ledger.operation_id = 'trial-merge:${partialTargetAccountId}:${partialSourceAccountId}'
+      GROUP BY batch.consumed_points
+    `),
+    '150:50:50',
+  );
+
+  const wrongCreditTargetAccountId = '00000000-0000-4000-8000-000000000021';
+  const wrongCreditSourceAccountId = '00000000-0000-4000-8000-000000000022';
+  const fabricatedCredit = psql(trialMergeTransaction({
+    creditBatchId: '10000000-0000-4000-8000-000000000017',
+    creditPoints: 100,
+    label: 'db-test-fabricated-credit',
+    sourceAccountId: wrongCreditSourceAccountId,
+    sourceBatchId: '10000000-0000-4000-8000-000000000016',
+    sourceConsumed: 50,
+    sourceReservationId: '20000000-0000-4000-8000-000000000016',
+    targetAccountId: wrongCreditTargetAccountId,
+    targetBatchId: '10000000-0000-4000-8000-000000000015',
+    targetConsumed: 50,
+    targetReservationId: '20000000-0000-4000-8000-000000000015',
+  }));
+  assert.notEqual(fabricatedCredit.status, 0);
+  assert.match(fabricatedCredit.stderr, /commerce_merge_conservation_invalid/);
+  assert.equal(
+    queryScalar(`SELECT COUNT(*) FROM ai_point_batches WHERE account_id = '${wrongCreditTargetAccountId}'`),
+    '0',
+    'a merge credit larger than the exact post-consumption balance must roll back',
+  );
+
+  const duplicateCreditBatch = '10000000-0000-4000-8000-000000000018';
+  const duplicateCredit = psql(`
     BEGIN;
     INSERT INTO ai_point_batches (
       id, environment, account_id, original_account_id, source_type, source_reference,
       rule_version, ordinal, granted_points, consumed_points, available_at, status
-    ) VALUES
-      ('${mergedTargetDebitBatch}', 'production', '${accountId}', '${accountId}', 'trial',
-       'db-test-merge-target-debit', 'ai-points-v1', 0, 100, 0, now(), 'merged'),
-      ('${mergedSourceDebitBatch}', 'production', '${accountId}', '${sourceAccountId}', 'trial',
-       'db-test-merge-source-debit', 'ai-points-v1', 0, 100, 0, now(), 'merged'),
-      ('${mergedTrialBatch}', 'production', '${accountId}', '${accountId}', 'trial',
-       'merge:${accountId}:${sourceAccountId}', 'ai-points-v1', 0, 100, 0, now(), 'available');
+    ) VALUES (
+      '${duplicateCreditBatch}', 'production', '${accountId}', '${accountId}', 'trial',
+      'merge:${accountId}:${sourceAccountId}', 'ai-points-v1', 1, 100, 0, now(), 'available'
+    );
+    INSERT INTO ai_point_ledger_entries (
+      environment, account_id, batch_id, operation_id, entry_type, direction, points
+    ) VALUES (
+      'production', '${accountId}', '${duplicateCreditBatch}',
+      'trial-merge:${accountId}:${sourceAccountId}', 'merge_credit', 'credit', 100
+    );
+    COMMIT;
+  `);
+  assert.notEqual(duplicateCredit.status, 0);
+  assert.match(duplicateCredit.stderr, /ai_point_ledger_merge_credit_operation/);
+  assert.equal(
+    queryScalar(`SELECT COUNT(*) FROM ai_point_batches WHERE id = '${duplicateCreditBatch}'`),
+    '0',
+    'a second target credit batch for one merge operation must roll back',
+  );
+
+  const reusedDebitCreditBatch = '10000000-0000-4000-8000-000000000019';
+  const reusedDebit = psql(`
+    BEGIN;
+    INSERT INTO ai_point_batches (
+      id, environment, account_id, original_account_id, source_type, source_reference,
+      rule_version, ordinal, granted_points, consumed_points, available_at, status
+    ) VALUES (
+      '${reusedDebitCreditBatch}', 'production', '${accountId}', '${accountId}', 'trial',
+      'merge:${accountId}:00000000-0000-4000-8000-000000000003',
+      'ai-points-v1', 0, 100, 0, now(), 'available'
+    );
     INSERT INTO ai_point_ledger_entries (
       environment, account_id, batch_id, operation_id, entry_type, direction, points
     ) VALUES
       ('production', '${accountId}', '${mergedTargetDebitBatch}',
-       'trial-merge:${accountId}:${sourceAccountId}', 'merge_debit', 'debit', 100),
+       'trial-merge:${accountId}:00000000-0000-4000-8000-000000000003', 'merge_debit', 'debit', 100),
       ('production', '${accountId}', '${mergedSourceDebitBatch}',
-       'trial-merge:${accountId}:${sourceAccountId}', 'merge_debit', 'debit', 100),
-      ('production', '${accountId}', '${mergedTrialBatch}',
-       'trial-merge:${accountId}:${sourceAccountId}', 'merge_credit', 'credit', 100);
+       'trial-merge:${accountId}:00000000-0000-4000-8000-000000000003', 'merge_debit', 'debit', 100),
+      ('production', '${accountId}', '${reusedDebitCreditBatch}',
+       'trial-merge:${accountId}:00000000-0000-4000-8000-000000000003', 'merge_credit', 'credit', 100);
     COMMIT;
   `);
-  assert.equal(validCarriedConsumption.status, 0, validCarriedConsumption.stderr);
+  assert.notEqual(reusedDebit.status, 0);
+  assert.match(reusedDebit.stderr, /ai_point_ledger_merge_debit_batch/);
   assert.equal(
-    queryScalar(`SELECT COUNT(*)::text || ':' || SUM(points)::text FROM ai_point_ledger_entries WHERE operation_id = 'trial-merge:${accountId}:${sourceAccountId}'`),
-    '3:300',
+    queryScalar(`SELECT COUNT(*) FROM ai_point_batches WHERE id = '${reusedDebitCreditBatch}'`),
+    '0',
+    'a debit batch already consumed by one credit operation must not back another credit',
   );
 
   const unbackedMergeBatch = '10000000-0000-4000-8000-000000000011';

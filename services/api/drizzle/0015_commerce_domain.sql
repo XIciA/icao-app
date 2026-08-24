@@ -221,6 +221,8 @@ CREATE UNIQUE INDEX "ai_point_batches_source_ordinal" ON "ai_point_batches" USIN
 CREATE INDEX "ai_point_batches_account_expiry" ON "ai_point_batches" USING btree ("environment","account_id","expires_at");--> statement-breakpoint
 CREATE INDEX "ai_point_batches_order" ON "ai_point_batches" USING btree ("source_order_id");--> statement-breakpoint
 CREATE UNIQUE INDEX "ai_point_ledger_idempotency" ON "ai_point_ledger_entries" USING btree ("environment","account_id","operation_id","entry_type","batch_id");--> statement-breakpoint
+CREATE UNIQUE INDEX "ai_point_ledger_merge_credit_operation" ON "ai_point_ledger_entries" USING btree ("environment","account_id","operation_id") WHERE "entry_type" = 'merge_credit';--> statement-breakpoint
+CREATE UNIQUE INDEX "ai_point_ledger_merge_debit_batch" ON "ai_point_ledger_entries" USING btree ("environment","batch_id") WHERE "entry_type" = 'merge_debit';--> statement-breakpoint
 CREATE INDEX "ai_point_ledger_account_sequence" ON "ai_point_ledger_entries" USING btree ("environment","account_id","sequence");--> statement-breakpoint
 CREATE INDEX "ai_point_ledger_reservation" ON "ai_point_ledger_entries" USING btree ("reservation_id");--> statement-breakpoint
 CREATE INDEX "ai_point_reservation_allocations_batch" ON "ai_point_reservation_allocations" USING btree ("batch_id");--> statement-breakpoint
@@ -271,6 +273,117 @@ BEGIN
 	END IF;
 END;
 $$;--> statement-breakpoint
+CREATE FUNCTION "commerce_assert_merge_operation"(
+	target_environment text,
+	target_account_id uuid,
+	target_operation_id text
+)
+RETURNS void LANGUAGE plpgsql SECURITY DEFINER SET search_path = public, pg_temp AS $$
+DECLARE
+	merge_entry_count bigint;
+	merge_credit_count bigint;
+	merge_credit_points bigint;
+	merge_credit_batch_id uuid;
+	merge_debit_count bigint;
+	merge_debit_points bigint;
+	invalid_merge_debit_count bigint;
+	target_merge_debit_count bigint;
+	source_merge_debit_count bigint;
+	credit_batch_source_type text;
+	credit_batch_source_reference text;
+	credit_batch_original_account_id uuid;
+	credit_batch_granted_points integer;
+	source_account_id_text text;
+	expected_credit_points bigint;
+BEGIN
+	SELECT COUNT(*) INTO merge_entry_count
+	FROM "ai_point_ledger_entries"
+	WHERE "environment" = target_environment
+		AND "account_id" = target_account_id
+		AND "operation_id" = target_operation_id
+		AND "entry_type" IN ('merge_debit', 'merge_credit');
+	IF merge_entry_count = 0 THEN RETURN; END IF;
+
+	SELECT COUNT(*), COALESCE(SUM("points"), 0)
+	INTO merge_credit_count, merge_credit_points
+	FROM "ai_point_ledger_entries"
+	WHERE "environment" = target_environment
+		AND "account_id" = target_account_id
+		AND "operation_id" = target_operation_id
+		AND "entry_type" = 'merge_credit';
+	IF merge_credit_count <> 1 THEN
+		RAISE EXCEPTION 'commerce_merge_credit_operation_invalid:%:%:%:count=%',
+			target_environment, target_account_id, target_operation_id, merge_credit_count USING ERRCODE = '23514';
+	END IF;
+	SELECT "batch_id" INTO merge_credit_batch_id
+	FROM "ai_point_ledger_entries"
+	WHERE "environment" = target_environment
+		AND "account_id" = target_account_id
+		AND "operation_id" = target_operation_id
+		AND "entry_type" = 'merge_credit'
+	LIMIT 1;
+
+	source_account_id_text := split_part(target_operation_id, ':', 3);
+	SELECT "source_type", "source_reference", "original_account_id", "granted_points"
+	INTO credit_batch_source_type, credit_batch_source_reference,
+		credit_batch_original_account_id, credit_batch_granted_points
+	FROM "ai_point_batches"
+	WHERE "id" = merge_credit_batch_id;
+	IF credit_batch_source_type <> 'trial'
+		OR credit_batch_source_reference <> 'merge:' || target_account_id::text || ':' || source_account_id_text
+		OR credit_batch_original_account_id <> target_account_id
+		OR credit_batch_granted_points <> 100
+		OR split_part(target_operation_id, ':', 1) <> 'trial-merge'
+		OR split_part(target_operation_id, ':', 2) <> target_account_id::text
+		OR source_account_id_text = ''
+		OR source_account_id_text = target_account_id::text
+		OR split_part(target_operation_id, ':', 4) <> ''
+	THEN
+		RAISE EXCEPTION 'commerce_merged_trial_credit_invalid:%:%:%',
+			target_environment, target_account_id, target_operation_id USING ERRCODE = '23514';
+	END IF;
+
+	SELECT
+		COUNT(*),
+		COALESCE(SUM(entry."points"), 0),
+		COUNT(*) FILTER (WHERE
+			debit_batch."id" = merge_credit_batch_id
+			OR debit_batch."source_type" <> 'trial'
+			OR debit_batch."status" <> 'merged'
+			OR debit_batch."granted_points" <> credit_batch_granted_points
+			OR debit_batch."reserved_points" <> 0
+			OR entry."points" <> GREATEST(
+				0,
+				debit_batch."granted_points" - debit_batch."consumed_points" - debit_batch."reserved_points"
+			)
+			OR debit_batch."original_account_id"::text NOT IN (
+				target_account_id::text,
+				source_account_id_text
+			)
+		),
+		COUNT(*) FILTER (WHERE debit_batch."original_account_id" = target_account_id),
+		COUNT(*) FILTER (WHERE debit_batch."original_account_id"::text = source_account_id_text)
+	INTO merge_debit_count, merge_debit_points, invalid_merge_debit_count,
+		target_merge_debit_count, source_merge_debit_count
+	FROM "ai_point_ledger_entries" entry
+	JOIN "ai_point_batches" debit_batch ON debit_batch."id" = entry."batch_id"
+	WHERE entry."environment" = target_environment
+		AND entry."account_id" = target_account_id
+		AND entry."operation_id" = target_operation_id
+		AND entry."entry_type" = 'merge_debit';
+	expected_credit_points := GREATEST(0, merge_debit_points - credit_batch_granted_points);
+	IF merge_debit_count <> 2
+		OR invalid_merge_debit_count <> 0
+		OR target_merge_debit_count <> 1
+		OR source_merge_debit_count <> 1
+		OR merge_credit_points <> expected_credit_points
+	THEN
+		RAISE EXCEPTION 'commerce_merge_conservation_invalid:%:%:%:debits=%:debit_points=%:credit_points=%:expected_credit_points=%',
+			target_environment, target_account_id, target_operation_id, merge_debit_count,
+			merge_debit_points, merge_credit_points, expected_credit_points USING ERRCODE = '23514';
+	END IF;
+END;
+$$;--> statement-breakpoint
 CREATE FUNCTION "commerce_assert_batch_totals"(target_batch_id uuid)
 RETURNS void LANGUAGE plpgsql SECURITY DEFINER SET search_path = public, pg_temp AS $$
 DECLARE
@@ -287,11 +400,6 @@ DECLARE
 	merge_credit_count bigint;
 	merge_credit_points bigint;
 	merge_credit_operation text;
-	merge_debit_count bigint;
-	merge_debit_points bigint;
-	invalid_merge_debit_count bigint;
-	target_merge_debit_count bigint;
-	source_merge_debit_count bigint;
 	carried_consumption bigint := 0;
 BEGIN
 	SELECT "reserved_points", "consumed_points", "granted_points", "source_type", "source_reference",
@@ -317,53 +425,15 @@ BEGIN
 	WHERE "batch_id" = target_batch_id AND "entry_type" = 'merge_credit';
 	IF batch_source_type = 'trial' AND batch_source_reference LIKE 'merge:%' THEN
 		IF merge_credit_count <> 1
-			OR merge_credit_points > granted
-			OR batch_original_account_id <> batch_account_id
-			OR split_part(batch_source_reference, ':', 1) <> 'merge'
-			OR split_part(batch_source_reference, ':', 2) <> batch_account_id::text
-			OR split_part(batch_source_reference, ':', 3) = ''
-			OR split_part(batch_source_reference, ':', 4) <> ''
-			OR merge_credit_operation <> 'trial-' || batch_source_reference
 		THEN
 			RAISE EXCEPTION 'commerce_merged_trial_credit_invalid:%:count=%:points=%:grant=%',
 				target_batch_id, merge_credit_count, merge_credit_points, granted USING ERRCODE = '23514';
 		END IF;
-		SELECT
-			COUNT(*),
-			COALESCE(SUM(entry."points"), 0),
-			COUNT(*) FILTER (WHERE
-				debit_batch."source_type" <> 'trial'
-				OR debit_batch."status" <> 'merged'
-				OR debit_batch."reserved_points" <> 0
-				OR entry."points" <> GREATEST(
-					0,
-					debit_batch."granted_points" - debit_batch."consumed_points" - debit_batch."reserved_points"
-				)
-				OR debit_batch."original_account_id"::text NOT IN (
-					batch_account_id::text,
-					split_part(batch_source_reference, ':', 3)
-				)
-			),
-			COUNT(*) FILTER (WHERE debit_batch."original_account_id" = batch_account_id),
-			COUNT(*) FILTER (WHERE debit_batch."original_account_id"::text = split_part(batch_source_reference, ':', 3))
-		INTO merge_debit_count, merge_debit_points, invalid_merge_debit_count,
-			target_merge_debit_count, source_merge_debit_count
-		FROM "ai_point_ledger_entries" entry
-		JOIN "ai_point_batches" debit_batch ON debit_batch."id" = entry."batch_id"
-		WHERE entry."environment" = batch_environment
-			AND entry."account_id" = batch_account_id
-			AND entry."operation_id" = merge_credit_operation
-			AND entry."entry_type" = 'merge_debit';
-		IF merge_debit_count < 2
-			OR invalid_merge_debit_count <> 0
-			OR target_merge_debit_count = 0
-			OR source_merge_debit_count = 0
-			OR merge_debit_points < merge_credit_points
-			OR merge_debit_points - merge_credit_points > granted
-		THEN
-			RAISE EXCEPTION 'commerce_merge_conservation_invalid:%:debits=%:debit_points=%:credit_points=%',
-				target_batch_id, merge_debit_count, merge_debit_points, merge_credit_points USING ERRCODE = '23514';
-		END IF;
+		PERFORM "commerce_assert_merge_operation"(
+			batch_environment,
+			batch_account_id,
+			merge_credit_operation
+		);
 		-- A merged trial carries prior settled usage without fabricating a new
 		-- reservation. Its single merge_credit records the remaining balance,
 		-- backed by the unused balances debited from both merge participants.
@@ -382,13 +452,33 @@ BEGIN
 	END IF;
 END;
 $$;--> statement-breakpoint
+CREATE FUNCTION "commerce_assert_batch_merge_operations"(target_batch_id uuid)
+RETURNS void LANGUAGE plpgsql SECURITY DEFINER SET search_path = public, pg_temp AS $$
+DECLARE merge_operation record;
+BEGIN
+	FOR merge_operation IN
+		SELECT DISTINCT "environment", "account_id", "operation_id"
+		FROM "ai_point_ledger_entries"
+		WHERE "batch_id" = target_batch_id AND "entry_type" = 'merge_debit'
+	LOOP
+		PERFORM "commerce_assert_merge_operation"(
+			merge_operation."environment",
+			merge_operation."account_id",
+			merge_operation."operation_id"
+		);
+	END LOOP;
+END;
+$$;--> statement-breakpoint
 CREATE FUNCTION "commerce_assert_reservation_batch_totals"(target_reservation_id uuid)
 RETURNS void LANGUAGE plpgsql SECURITY DEFINER SET search_path = public, pg_temp AS $$
 DECLARE target_batch_id uuid;
 BEGIN
 	FOR target_batch_id IN SELECT DISTINCT "batch_id" FROM "ai_point_reservation_allocations"
 		WHERE "reservation_id" = target_reservation_id
-	LOOP PERFORM "commerce_assert_batch_totals"(target_batch_id); END LOOP;
+	LOOP
+		PERFORM "commerce_assert_batch_totals"(target_batch_id);
+		PERFORM "commerce_assert_batch_merge_operations"(target_batch_id);
+	END LOOP;
 END;
 $$;--> statement-breakpoint
 CREATE FUNCTION "commerce_assert_reservation_state"(target_reservation_id uuid)
@@ -455,24 +545,48 @@ $$;--> statement-breakpoint
 CREATE FUNCTION "commerce_check_allocation_batch_total"()
 RETURNS trigger LANGUAGE plpgsql SECURITY DEFINER SET search_path = public, pg_temp AS $$
 BEGIN
-	IF TG_OP <> 'INSERT' THEN PERFORM "commerce_assert_batch_totals"(OLD."batch_id"); END IF;
-	IF TG_OP <> 'DELETE' THEN PERFORM "commerce_assert_batch_totals"(NEW."batch_id"); END IF;
+	IF TG_OP <> 'INSERT' THEN
+		PERFORM "commerce_assert_batch_totals"(OLD."batch_id");
+		PERFORM "commerce_assert_batch_merge_operations"(OLD."batch_id");
+	END IF;
+	IF TG_OP <> 'DELETE' THEN
+		PERFORM "commerce_assert_batch_totals"(NEW."batch_id");
+		PERFORM "commerce_assert_batch_merge_operations"(NEW."batch_id");
+	END IF;
 	RETURN NULL;
 END;
 $$;--> statement-breakpoint
 CREATE FUNCTION "commerce_check_batch_totals"()
 RETURNS trigger LANGUAGE plpgsql SECURITY DEFINER SET search_path = public, pg_temp AS $$
 BEGIN
-	IF TG_OP <> 'INSERT' THEN PERFORM "commerce_assert_batch_totals"(OLD."id"); END IF;
-	IF TG_OP <> 'DELETE' THEN PERFORM "commerce_assert_batch_totals"(NEW."id"); END IF;
+	IF TG_OP <> 'INSERT' THEN
+		PERFORM "commerce_assert_batch_totals"(OLD."id");
+		PERFORM "commerce_assert_batch_merge_operations"(OLD."id");
+	END IF;
+	IF TG_OP <> 'DELETE' THEN
+		PERFORM "commerce_assert_batch_totals"(NEW."id");
+		PERFORM "commerce_assert_batch_merge_operations"(NEW."id");
+	END IF;
 	RETURN NULL;
 END;
 $$;--> statement-breakpoint
 CREATE FUNCTION "commerce_check_ledger_batch_totals"()
 RETURNS trigger LANGUAGE plpgsql SECURITY DEFINER SET search_path = public, pg_temp AS $$
 BEGIN
-	IF TG_OP <> 'INSERT' THEN PERFORM "commerce_assert_batch_totals"(OLD."batch_id"); END IF;
-	IF TG_OP <> 'DELETE' THEN PERFORM "commerce_assert_batch_totals"(NEW."batch_id"); END IF;
+	IF TG_OP <> 'INSERT' THEN
+		PERFORM "commerce_assert_batch_totals"(OLD."batch_id");
+		PERFORM "commerce_assert_batch_merge_operations"(OLD."batch_id");
+		IF OLD."entry_type" IN ('merge_debit', 'merge_credit') THEN
+			PERFORM "commerce_assert_merge_operation"(OLD."environment", OLD."account_id", OLD."operation_id");
+		END IF;
+	END IF;
+	IF TG_OP <> 'DELETE' THEN
+		PERFORM "commerce_assert_batch_totals"(NEW."batch_id");
+		PERFORM "commerce_assert_batch_merge_operations"(NEW."batch_id");
+		IF NEW."entry_type" IN ('merge_debit', 'merge_credit') THEN
+			PERFORM "commerce_assert_merge_operation"(NEW."environment", NEW."account_id", NEW."operation_id");
+		END IF;
+	END IF;
 	RETURN NULL;
 END;
 $$;--> statement-breakpoint
@@ -524,7 +638,9 @@ AFTER INSERT OR UPDATE OR DELETE ON "ai_point_reservations"
 DEFERRABLE INITIALLY DEFERRED FOR EACH ROW
 EXECUTE FUNCTION "commerce_check_reservation_state"();--> statement-breakpoint
 REVOKE ALL ON FUNCTION "commerce_assert_reservation_allocation_total"(uuid) FROM PUBLIC, anon, authenticated;--> statement-breakpoint
+REVOKE ALL ON FUNCTION "commerce_assert_merge_operation"(text, uuid, text) FROM PUBLIC, anon, authenticated;--> statement-breakpoint
 REVOKE ALL ON FUNCTION "commerce_assert_batch_totals"(uuid) FROM PUBLIC, anon, authenticated;--> statement-breakpoint
+REVOKE ALL ON FUNCTION "commerce_assert_batch_merge_operations"(uuid) FROM PUBLIC, anon, authenticated;--> statement-breakpoint
 REVOKE ALL ON FUNCTION "commerce_assert_reservation_batch_totals"(uuid) FROM PUBLIC, anon, authenticated;--> statement-breakpoint
 REVOKE ALL ON FUNCTION "commerce_assert_reservation_state"(uuid) FROM PUBLIC, anon, authenticated;--> statement-breakpoint
 REVOKE ALL ON FUNCTION "commerce_guard_reservation_transition"() FROM PUBLIC, anon, authenticated;--> statement-breakpoint

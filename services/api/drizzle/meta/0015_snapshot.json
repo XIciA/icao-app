@@ -768,6 +768,56 @@
           "method": "btree",
           "with": {}
         },
+        "ai_point_ledger_merge_credit_operation": {
+          "name": "ai_point_ledger_merge_credit_operation",
+          "columns": [
+            {
+              "expression": "environment",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "account_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "operation_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "where": "\"ai_point_ledger_entries\".\"entry_type\" = 'merge_credit'",
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "ai_point_ledger_merge_debit_batch": {
+          "name": "ai_point_ledger_merge_debit_batch",
+          "columns": [
+            {
+              "expression": "environment",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "batch_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "where": "\"ai_point_ledger_entries\".\"entry_type\" = 'merge_debit'",
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
         "ai_point_ledger_account_sequence": {
           "name": "ai_point_ledger_account_sequence",
           "columns": [

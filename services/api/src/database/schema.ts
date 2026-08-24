@@ -535,6 +535,12 @@ export const aiPointLedgerEntries = pgTable('ai_point_ledger_entries', {
     table.entryType,
     table.batchId,
   ),
+  uniqueIndex('ai_point_ledger_merge_credit_operation')
+    .on(table.environment, table.accountId, table.operationId)
+    .where(sql`${table.entryType} = 'merge_credit'`),
+  uniqueIndex('ai_point_ledger_merge_debit_batch')
+    .on(table.environment, table.batchId)
+    .where(sql`${table.entryType} = 'merge_debit'`),
   index('ai_point_ledger_account_sequence').on(table.environment, table.accountId, table.sequence),
   index('ai_point_ledger_reservation').on(table.reservationId),
   foreignKey({
