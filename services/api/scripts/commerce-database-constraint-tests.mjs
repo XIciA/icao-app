@@ -290,6 +290,31 @@ test('recent-auth grants are purpose-bound to a durable challenge', () => {
   `);
   assert.notEqual(invalidPurpose.status, 0);
   assert.match(invalidPurpose.stderr, /recent_auth_challenges_purpose_check/);
+
+  const secondChallengeId = '30000000-0000-4000-8000-000000000006';
+  const mismatchedGrant = psql(`
+    INSERT INTO recent_auth_challenges (
+      id, account_id, auth_user_id, session_id, method, purpose, target_digest,
+      status, expires_at, verified_at
+    ) VALUES (
+      '${secondChallengeId}', '${accountId}', '${authUserId}', '${sessionId}', 'apple',
+      'account_delete', 'second-target-digest', 'verified', now() + interval '5 minutes', now()
+    );
+    INSERT INTO recent_auth_grants (
+      challenge_id, account_id, auth_user_id, session_id, method, purpose,
+      target_digest, expires_at
+    ) VALUES (
+      '${secondChallengeId}', '30000000-0000-4000-8000-000000000007', '${authUserId}',
+      '${sessionId}', 'apple', 'password_recovery', 'second-target-digest',
+      now() + interval '5 minutes'
+    );
+  `);
+  assert.notEqual(mismatchedGrant.status, 0);
+  assert.match(mismatchedGrant.stderr, /recent_auth_grant_challenge_mismatch/);
+  assert.equal(
+    queryScalar(`SELECT COUNT(*) FROM recent_auth_grants WHERE challenge_id = '${secondChallengeId}'`),
+    '0',
+  );
 });
 
 test('deferred commerce constraints enforce reservation transitions and batch accounting', () => {

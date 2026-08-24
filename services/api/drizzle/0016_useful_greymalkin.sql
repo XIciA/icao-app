@@ -78,6 +78,7 @@ CREATE TABLE "apple_revocable_credentials" (
 	"account_id" uuid NOT NULL,
 	"auth_user_id" uuid NOT NULL,
 	"subject_digest" text NOT NULL,
+	"digest_key_version" integer DEFAULT 1 NOT NULL,
 	"encrypted_refresh_token" text NOT NULL,
 	"encryption_version" integer DEFAULT 1 NOT NULL,
 	"status" text DEFAULT 'active' NOT NULL,
@@ -90,6 +91,7 @@ CREATE TABLE "apple_revocable_credentials" (
 	"updated_at" timestamp with time zone DEFAULT now() NOT NULL,
 	CONSTRAINT "apple_revocable_credentials_status_check" CHECK ("apple_revocable_credentials"."status" IN ('active', 'revoke_pending', 'retryable', 'revoked')),
 	CONSTRAINT "apple_revocable_credentials_attempts_check" CHECK ("apple_revocable_credentials"."revoke_attempt_count" >= 0),
+	CONSTRAINT "apple_revocable_credentials_digest_key_version_check" CHECK ("apple_revocable_credentials"."digest_key_version" > 0),
 	CONSTRAINT "apple_revocable_credentials_encryption_version_check" CHECK ("apple_revocable_credentials"."encryption_version" > 0)
 );
 --> statement-breakpoint
@@ -179,4 +181,29 @@ REVOKE ALL ON TABLE "account_security_events" FROM anon, authenticated;--> state
 REVOKE ALL ON TABLE "apple_revocable_credentials" FROM anon, authenticated;--> statement-breakpoint
 REVOKE ALL ON TABLE "lifetime_identity_benefit_claims" FROM anon, authenticated;--> statement-breakpoint
 REVOKE ALL ON TABLE "recent_auth_challenges" FROM anon, authenticated;--> statement-breakpoint
-REVOKE ALL ON TABLE "recent_auth_grants" FROM anon, authenticated;
+REVOKE ALL ON TABLE "recent_auth_grants" FROM anon, authenticated;--> statement-breakpoint
+CREATE OR REPLACE FUNCTION enforce_recent_auth_grant_matches_challenge()
+RETURNS trigger
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1
+    FROM recent_auth_challenges challenge
+    WHERE challenge.id = NEW.challenge_id
+      AND challenge.account_id = NEW.account_id
+      AND challenge.auth_user_id = NEW.auth_user_id
+      AND challenge.session_id = NEW.session_id
+      AND challenge.method = NEW.method
+      AND challenge.purpose = NEW.purpose
+      AND challenge.target_digest = NEW.target_digest
+  ) THEN
+    RAISE EXCEPTION 'recent_auth_grant_challenge_mismatch' USING ERRCODE = '23514';
+  END IF;
+  RETURN NEW;
+END;
+$$;--> statement-breakpoint
+CREATE CONSTRAINT TRIGGER recent_auth_grant_matches_challenge
+AFTER INSERT OR UPDATE ON recent_auth_grants
+DEFERRABLE INITIALLY IMMEDIATE
+FOR EACH ROW EXECUTE FUNCTION enforce_recent_auth_grant_matches_challenge();

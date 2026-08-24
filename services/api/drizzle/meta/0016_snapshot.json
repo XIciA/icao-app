@@ -1,6 +1,6 @@
 {
-  "id": "65faf382-c494-4725-9f17-1860089a2b57",
-  "prevId": "399255bf-d5be-4221-a0e3-5ea8297e87ef",
+  "id": "e4f74395-92fe-44f1-a4aa-f96de1bd8b76",
+  "prevId": "65faf382-c494-4725-9f17-1860089a2b57",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -2276,6 +2276,13 @@
           "primaryKey": false,
           "notNull": true
         },
+        "digest_key_version": {
+          "name": "digest_key_version",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 1
+        },
         "encrypted_refresh_token": {
           "name": "encrypted_refresh_token",
           "type": "text",
@@ -2428,6 +2435,10 @@
         "apple_revocable_credentials_attempts_check": {
           "name": "apple_revocable_credentials_attempts_check",
           "value": "\"apple_revocable_credentials\".\"revoke_attempt_count\" >= 0"
+        },
+        "apple_revocable_credentials_digest_key_version_check": {
+          "name": "apple_revocable_credentials_digest_key_version_check",
+          "value": "\"apple_revocable_credentials\".\"digest_key_version\" > 0"
         },
         "apple_revocable_credentials_encryption_version_check": {
           "name": "apple_revocable_credentials_encryption_version_check",
