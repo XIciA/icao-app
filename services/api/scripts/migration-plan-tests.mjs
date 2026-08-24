@@ -12,6 +12,8 @@ import {
 
 const migrationsFolder = fileURLToPath(new URL('../drizzle', import.meta.url));
 const commerceMigrationPath = fileURLToPath(new URL('../drizzle/0015_commerce_domain.sql', import.meta.url));
+const commerceSnapshotPath = fileURLToPath(new URL('../drizzle/meta/0015_snapshot.json', import.meta.url));
+const schemaPath = fileURLToPath(new URL('../src/database/schema.ts', import.meta.url));
 const commerceTables = [
   'commerce_products',
   'commerce_channel_products',
@@ -47,7 +49,12 @@ test('loads the repository journal with the exact Drizzle hashes', async () => {
 });
 
 test('locks every 0015 commerce table behind RLS and server-only grants', async () => {
-  const migrationSql = await readFile(commerceMigrationPath, 'utf8');
+  const [migrationSql, snapshotJson, schemaSource] = await Promise.all([
+    readFile(commerceMigrationPath, 'utf8'),
+    readFile(commerceSnapshotPath, 'utf8'),
+    readFile(schemaPath, 'utf8'),
+  ]);
+  const snapshot = JSON.parse(snapshotJson);
   for (const table of commerceTables) {
     assert.ok(
       migrationSql.includes(`ALTER TABLE "${table}" ENABLE ROW LEVEL SECURITY;`),
@@ -57,6 +64,18 @@ test('locks every 0015 commerce table behind RLS and server-only grants', async 
       migrationSql.includes(`REVOKE ALL ON TABLE "${table}" FROM anon, authenticated;`),
       `missing_anon_authenticated_revoke:${table}`,
     );
+    assert.equal(
+      snapshot.tables[`public.${table}`]?.isRLSEnabled,
+      true,
+      `snapshot_rls_disabled:${table}`,
+    );
+    const tableStart = schemaSource.indexOf(`pgTable('${table}'`);
+    const nextTableStart = schemaSource.indexOf('\nexport const ', tableStart + 1);
+    const tableBlock = schemaSource.slice(
+      tableStart,
+      nextTableStart === -1 ? schemaSource.length : nextTableStart,
+    );
+    assert.ok(tableStart >= 0 && tableBlock.includes(']).enableRLS();'), `schema_rls_disabled:${table}`);
   }
   assert.ok(
     migrationSql.includes(
@@ -69,10 +88,10 @@ test('locks every 0015 commerce table behind RLS and server-only grants', async 
 test('enforces commerce environment and account ownership through composite database keys', async () => {
   const migrationSql = await readFile(commerceMigrationPath, 'utf8');
   const requiredConstraints = [
-    'CREATE UNIQUE INDEX "commerce_orders_identity" ON "commerce_orders" USING btree ("id","environment","account_id")',
-    'CREATE UNIQUE INDEX "membership_segments_identity" ON "membership_entitlement_segments" USING btree ("id","environment","account_id")',
-    'CREATE UNIQUE INDEX "ai_point_batches_identity" ON "ai_point_batches" USING btree ("id","environment","account_id")',
-    'CREATE UNIQUE INDEX "ai_point_reservations_identity" ON "ai_point_reservations" USING btree ("id","environment","account_id")',
+    'CONSTRAINT "commerce_orders_identity" UNIQUE("id","environment","account_id")',
+    'CONSTRAINT "membership_segments_identity" UNIQUE("id","environment","account_id")',
+    'CONSTRAINT "ai_point_batches_identity" UNIQUE("id","environment","account_id")',
+    'CONSTRAINT "ai_point_reservations_identity" UNIQUE("id","environment","account_id")',
     '"apple_transactions_order_environment_account_fk" FOREIGN KEY ("order_id","environment","account_id") REFERENCES "public"."commerce_orders"("id","environment","account_id") ON DELETE restrict ON UPDATE cascade',
     '"membership_segments_order_environment_account_fk" FOREIGN KEY ("order_id","environment","account_id") REFERENCES "public"."commerce_orders"("id","environment","account_id") ON DELETE restrict ON UPDATE cascade',
     '"ai_point_batches_order_environment_account_fk" FOREIGN KEY ("source_order_id","environment","account_id") REFERENCES "public"."commerce_orders"("id","environment","account_id") ON DELETE restrict ON UPDATE cascade',
@@ -83,12 +102,51 @@ test('enforces commerce environment and account ownership through composite data
     '"ai_point_ledger_reservation_environment_account_fk" FOREIGN KEY ("reservation_id","environment","account_id") REFERENCES "public"."ai_point_reservations"("id","environment","account_id") ON DELETE restrict ON UPDATE cascade',
     '"direction" text NOT NULL',
     '"ai_point_ledger_direction_check" CHECK ("ai_point_ledger_entries"."direction" IN (\'credit\', \'debit\', \'neutral\'))',
+    '"ai_point_ledger_entry_direction_pair_check" CHECK',
     '"ai_point_batch_interval_days" integer NOT NULL',
     '"commerce_products_ai_batch_interval_positive" CHECK ("commerce_products"."ai_point_batch_interval_days" > 0)',
   ];
   for (const constraint of requiredConstraints) {
     assert.ok(migrationSql.includes(constraint), `missing_commerce_scope_constraint:${constraint}`);
   }
+});
+
+test('defers reservation allocation and active batch reserved totals until transaction commit', async () => {
+  const migrationSql = await readFile(commerceMigrationPath, 'utf8');
+  const requiredDeferredConstraints = [
+    'commerce_reservation_allocation_total_mismatch',
+    'commerce_batch_reserved_total_mismatch',
+    'ai_point_allocations_reservation_total_deferred',
+    'ai_point_reservations_allocation_total_deferred',
+    'ai_point_allocations_batch_total_deferred',
+    'ai_point_batches_reserved_total_deferred',
+    'ai_point_reservations_batch_total_deferred',
+  ];
+  for (const constraint of requiredDeferredConstraints) {
+    assert.ok(migrationSql.includes(constraint), `missing_deferred_commerce_constraint:${constraint}`);
+  }
+  assert.equal(
+    migrationSql.match(/DEFERRABLE INITIALLY DEFERRED/g)?.length,
+    5,
+    'all five commerce constraint triggers must validate final transaction state',
+  );
+});
+
+test('keeps ledger entry type and direction pairing aligned in schema, snapshot, and SQL', async () => {
+  const [migrationSql, snapshotJson, schemaSource] = await Promise.all([
+    readFile(commerceMigrationPath, 'utf8'),
+    readFile(commerceSnapshotPath, 'utf8'),
+    readFile(schemaPath, 'utf8'),
+  ]);
+  const constraintName = 'ai_point_ledger_entry_direction_pair_check';
+  const snapshot = JSON.parse(snapshotJson);
+  const snapshotConstraint = snapshot.tables['public.ai_point_ledger_entries']
+    ?.checkConstraints?.[constraintName]?.value;
+  assert.ok(migrationSql.includes(`CONSTRAINT "${constraintName}" CHECK`));
+  assert.ok(schemaSource.includes(`check('${constraintName}'`));
+  assert.match(snapshotConstraint, /merge_credit.*credit/s);
+  assert.match(snapshotConstraint, /merge_debit.*debit/s);
+  assert.match(snapshotConstraint, /settle.*neutral/s);
 });
 
 test('lists the complete suffix and warns that 0012/0013 cannot skip 0010/0011', async () => {

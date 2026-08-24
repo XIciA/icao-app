@@ -1,5 +1,5 @@
 {
-  "id": "9340fba0-2803-413b-9937-81e455ec5629",
+  "id": "399255bf-d5be-4221-a0e3-5ea8297e87ef",
   "prevId": "632a1434-8687-4314-9528-3b905e4e66bf",
   "version": "7",
   "dialect": "postgresql",
@@ -538,33 +538,6 @@
           "method": "btree",
           "with": {}
         },
-        "ai_point_batches_identity": {
-          "name": "ai_point_batches_identity",
-          "columns": [
-            {
-              "expression": "id",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            },
-            {
-              "expression": "environment",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            },
-            {
-              "expression": "account_id",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": true,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        },
         "ai_point_batches_account_expiry": {
           "name": "ai_point_batches_account_expiry",
           "columns": [
@@ -645,7 +618,17 @@
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
+      "uniqueConstraints": {
+        "ai_point_batches_identity": {
+          "name": "ai_point_batches_identity",
+          "nullsNotDistinct": false,
+          "columns": [
+            "id",
+            "environment",
+            "account_id"
+          ]
+        }
+      },
       "policies": {},
       "checkConstraints": {
         "ai_point_batches_environment_check": {
@@ -677,7 +660,7 @@
           "value": "\"ai_point_batches\".\"consumed_points\" + \"ai_point_batches\".\"reserved_points\" <= \"ai_point_batches\".\"granted_points\""
         }
       },
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.ai_point_ledger_entries": {
       "name": "ai_point_ledger_entries",
@@ -880,12 +863,16 @@
           "name": "ai_point_ledger_direction_check",
           "value": "\"ai_point_ledger_entries\".\"direction\" IN ('credit', 'debit', 'neutral')"
         },
+        "ai_point_ledger_entry_direction_pair_check": {
+          "name": "ai_point_ledger_entry_direction_pair_check",
+          "value": "(\n    (\"ai_point_ledger_entries\".\"entry_type\" IN ('grant', 'release', 'restore', 'merge_credit') AND \"ai_point_ledger_entries\".\"direction\" = 'credit')\n    OR (\"ai_point_ledger_entries\".\"entry_type\" IN ('reserve', 'revoke', 'expire', 'merge_debit') AND \"ai_point_ledger_entries\".\"direction\" = 'debit')\n    OR (\"ai_point_ledger_entries\".\"entry_type\" = 'settle' AND \"ai_point_ledger_entries\".\"direction\" = 'neutral')\n  )"
+        },
         "ai_point_ledger_points_nonnegative": {
           "name": "ai_point_ledger_points_nonnegative",
           "value": "\"ai_point_ledger_entries\".\"points\" >= 0"
         }
       },
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.ai_point_reservation_allocations": {
       "name": "ai_point_reservation_allocations",
@@ -996,7 +983,7 @@
           "value": "\"ai_point_reservation_allocations\".\"points\" > 0"
         }
       },
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.ai_point_reservations": {
       "name": "ai_point_reservations",
@@ -1100,33 +1087,6 @@
           "method": "btree",
           "with": {}
         },
-        "ai_point_reservations_identity": {
-          "name": "ai_point_reservations_identity",
-          "columns": [
-            {
-              "expression": "id",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            },
-            {
-              "expression": "environment",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            },
-            {
-              "expression": "account_id",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": true,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        },
         "ai_point_reservations_account_status": {
           "name": "ai_point_reservations_account_status",
           "columns": [
@@ -1157,7 +1117,17 @@
       },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
+      "uniqueConstraints": {
+        "ai_point_reservations_identity": {
+          "name": "ai_point_reservations_identity",
+          "nullsNotDistinct": false,
+          "columns": [
+            "id",
+            "environment",
+            "account_id"
+          ]
+        }
+      },
       "policies": {},
       "checkConstraints": {
         "ai_point_reservations_environment_check": {
@@ -1173,7 +1143,7 @@
           "value": "\"ai_point_reservations\".\"points\" > 0"
         }
       },
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.ai_quota_buckets": {
       "name": "ai_quota_buckets",
@@ -1626,7 +1596,7 @@
           "value": "\"apple_notification_events\".\"status\" IN ('received', 'processed', 'failed')"
         }
       },
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.apple_transactions": {
       "name": "apple_transactions",
@@ -1870,7 +1840,7 @@
           "value": "\"apple_transactions\".\"environment\" IN ('sandbox', 'production')"
         }
       },
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.commerce_channel_products": {
       "name": "commerce_channel_products",
@@ -1991,7 +1961,7 @@
           "value": "\"commerce_channel_products\".\"channel\" IN ('apple_app_store', 'alipay', 'wechat_pay')"
         }
       },
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.commerce_orders": {
       "name": "commerce_orders",
@@ -2058,6 +2028,24 @@
           "primaryKey": false,
           "notNull": true
         },
+        "membership_grant_source": {
+          "name": "membership_grant_source",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "membership_effective_at": {
+          "name": "membership_effective_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "membership_contribution_ms": {
+          "name": "membership_contribution_ms",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
         "status": {
           "name": "status",
           "type": "text",
@@ -2074,6 +2062,12 @@
         "revoked_at": {
           "name": "revoked_at",
           "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "revocation_cycle_key": {
+          "name": "revocation_cycle_key",
+          "type": "text",
           "primaryKey": false,
           "notNull": false
         },
@@ -2110,33 +2104,6 @@
             },
             {
               "expression": "external_order_id",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": true,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        },
-        "commerce_orders_identity": {
-          "name": "commerce_orders_identity",
-          "columns": [
-            {
-              "expression": "id",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            },
-            {
-              "expression": "environment",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            },
-            {
-              "expression": "account_id",
               "isExpression": false,
               "asc": true,
               "nulls": "last"
@@ -2206,7 +2173,17 @@
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
+      "uniqueConstraints": {
+        "commerce_orders_identity": {
+          "name": "commerce_orders_identity",
+          "nullsNotDistinct": false,
+          "columns": [
+            "id",
+            "environment",
+            "account_id"
+          ]
+        }
+      },
       "policies": {},
       "checkConstraints": {
         "commerce_orders_environment_check": {
@@ -2221,12 +2198,20 @@
           "name": "commerce_orders_status_check",
           "value": "\"commerce_orders\".\"status\" IN ('verified', 'refunded', 'revoked')"
         },
+        "commerce_orders_membership_source_check": {
+          "name": "commerce_orders_membership_source_check",
+          "value": "\"commerce_orders\".\"membership_grant_source\" IN ('purchase_discovery', 'refund_restore')"
+        },
+        "commerce_orders_membership_contribution_nonnegative": {
+          "name": "commerce_orders_membership_contribution_nonnegative",
+          "value": "\"commerce_orders\".\"membership_contribution_ms\" >= 0"
+        },
         "commerce_orders_duration_positive": {
           "name": "commerce_orders_duration_positive",
           "value": "\"commerce_orders\".\"duration_days\" > 0"
         }
       },
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.commerce_products": {
       "name": "commerce_products",
@@ -2329,7 +2314,7 @@
           "value": "\"commerce_products\".\"ai_points_per_batch\" > 0"
         }
       },
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.editorial_releases": {
       "name": "editorial_releases",
@@ -3242,33 +3227,6 @@
           "method": "btree",
           "with": {}
         },
-        "membership_segments_identity": {
-          "name": "membership_segments_identity",
-          "columns": [
-            {
-              "expression": "id",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            },
-            {
-              "expression": "environment",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            },
-            {
-              "expression": "account_id",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": true,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        },
         "membership_segments_account_window": {
           "name": "membership_segments_account_window",
           "columns": [
@@ -3350,7 +3308,17 @@
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
+      "uniqueConstraints": {
+        "membership_segments_identity": {
+          "name": "membership_segments_identity",
+          "nullsNotDistinct": false,
+          "columns": [
+            "id",
+            "environment",
+            "account_id"
+          ]
+        }
+      },
       "policies": {},
       "checkConstraints": {
         "membership_segments_environment_check": {
@@ -3366,7 +3334,7 @@
           "value": "\"membership_entitlement_segments\".\"ends_at\" > \"membership_entitlement_segments\".\"starts_at\""
         }
       },
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.profiles": {
       "name": "profiles",

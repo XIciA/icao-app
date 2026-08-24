@@ -191,6 +191,10 @@ describe('CommerceFoundationModel', () => {
     }), at(11));
     expect(commerce.membershipExpiresAt(state, ACCOUNT_A, 'production')).toEqual(at(25));
     const expiredOrder = state.orders.find((order) => order.externalOrderId === 'late-expired-history')!;
+    expect(expiredOrder).toMatchObject({
+      membershipGrantSource: 'purchase_discovery',
+      membershipContributionMs: 7 * DAY_MS,
+    });
     expect(state.membershipSegments.some((segment) => (
       segment.orderId === expiredOrder.id && segment.status === 'active'
     ))).toBe(false);
@@ -200,11 +204,11 @@ describe('CommerceFoundationModel', () => {
       purchasedAt: at(8),
       signedAt: at(11),
     }), at(11));
-    expect(commerce.membershipExpiresAt(state, ACCOUNT_A, 'production')).toEqual(at(29));
+    expect(commerce.membershipExpiresAt(state, ACCOUNT_A, 'production')).toEqual(at(30));
     const currentSegments = state.membershipSegments.filter((segment) => segment.status === 'active');
     expect(currentSegments.map((segment) => [segment.startsAt, segment.endsAt])).toEqual([
-      [at(11), at(25)],
-      [at(25), at(29)],
+      [at(11), at(15)],
+      [at(15), at(30)],
     ]);
   });
 
@@ -601,6 +605,10 @@ describe('CommerceFoundationModel', () => {
     });
     expect(commerce.recordAppleNotification(state, reversal, at(10)).created).toBe(true);
     expect(state.orders[0]?.status).toBe('verified');
+    expect(state.orders[0]).toMatchObject({
+      membershipGrantSource: 'refund_restore',
+      membershipContributionMs: 0,
+    });
     expect(commerce.membershipExpiresAt(state, ACCOUNT_A, 'production')).toBeUndefined();
     expect(commerce.availableAiPoints(state, ACCOUNT_A, 'production', at(10))).toBe(250);
     const ledgerLength = state.pointLedger.length;
@@ -622,6 +630,58 @@ describe('CommerceFoundationModel', () => {
     expect(commerce.membershipExpiresAt(state, ACCOUNT_A, 'production')).toBeUndefined();
     expect(commerce.availableAiPoints(state, ACCOUNT_A, 'production', at(11))).toBe(250);
     expect(state.appleNotifications).toHaveLength(4);
+  });
+
+  it('keeps repeated refund and reversal cycles symmetric and replayable', () => {
+    const state = createCommerceDomainState();
+    const commerce = new CommerceFoundationModel({ idFactory: ids() });
+    commerce.recordAppleNotification(state, appleNotification({
+      uuid: '00000000-0000-4000-8000-000000000031',
+      transaction: appleTransaction({ transactionId: 'repeated-refund-tx' }),
+    }), at(0));
+
+    const refund = (cycle: number) => appleNotification({
+      uuid: `00000000-0000-4000-8000-00000000003${cycle * 2}`,
+      type: 'REFUND',
+      signedAt: at((cycle * 2) - 1),
+      transaction: appleTransaction({
+        transactionId: 'repeated-refund-tx',
+        signedAt: at((cycle * 2) - 1),
+        revokedAt: at((cycle * 2) - 1),
+        payloadHash: `refund-cycle-${cycle}`,
+      }),
+    });
+    const reversal = (cycle: number) => appleNotification({
+      uuid: `00000000-0000-4000-8000-00000000003${(cycle * 2) + 1}`,
+      type: 'REFUND_REVERSED',
+      signedAt: at(cycle * 2),
+      transaction: appleTransaction({
+        transactionId: 'repeated-refund-tx',
+        signedAt: at(cycle * 2),
+        payloadHash: `reversal-cycle-${cycle}`,
+      }),
+    });
+
+    for (const cycle of [1, 2]) {
+      commerce.recordAppleNotification(state, refund(cycle), at((cycle * 2) - 1));
+      expect(commerce.availableAiPoints(state, ACCOUNT_A, 'production', at((cycle * 2) - 1))).toBe(0);
+      const reverseNotification = reversal(cycle);
+      commerce.recordAppleNotification(state, reverseNotification, at(cycle * 2));
+      expect(commerce.availableAiPoints(state, ACCOUNT_A, 'production', at(cycle * 2))).toBe(250);
+      const beforeReplay = state.pointLedger.length;
+      expect(commerce.recordAppleNotification(state, reverseNotification, at(cycle * 2)).created).toBe(false);
+      expect(state.pointLedger).toHaveLength(beforeReplay);
+    }
+
+    const accountLedger = state.pointLedger.filter((entry) => (
+      entry.accountId === ACCOUNT_A && entry.environment === 'production'
+    ));
+    expect(replaySpendablePointLedger(accountLedger)).toBe(250);
+    expect(accountLedger.filter((entry) => entry.entryType === 'revoke')).toHaveLength(2);
+    expect(accountLedger.filter((entry) => entry.entryType === 'restore')).toHaveLength(2);
+    expect(new Set(accountLedger.filter((entry) => (
+      entry.entryType === 'revoke' || entry.entryType === 'restore'
+    )).map((entry) => entry.operationId)).size).toBe(4);
   });
 });
 

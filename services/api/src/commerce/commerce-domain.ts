@@ -61,9 +61,13 @@ export type CommerceOrder = {
   externalProductId: string;
   durationDays: number;
   aiPointRuleVersion: string;
+  membershipGrantSource: 'purchase_discovery' | 'refund_restore';
+  membershipEffectiveAt: Date;
+  membershipContributionMs: number;
   status: 'verified' | 'refunded' | 'revoked';
   purchasedAt: Date;
   revokedAt?: Date;
+  revocationCycleKey?: string;
 };
 
 type Mutable<T> = { -readonly [Key in keyof T]: T[Key] };
@@ -220,9 +224,9 @@ function ledgerEntryExists(
 }
 
 /**
- * Cross-row allocation totals cannot be expressed as a PostgreSQL CHECK.
- * The future persistence repository must run this assertion after locking the
- * reservation and batches and before committing the same database transaction.
+ * Cross-row allocation totals cannot be expressed as a PostgreSQL CHECK. The
+ * 0015 migration therefore enforces them with deferred constraint triggers at
+ * commit; this assertion provides the same fail-fast rule in the pure model.
  */
 export function assertReservationAllocationTransaction(
   state: CommerceDomainState,
@@ -260,7 +264,8 @@ export function replaySpendablePointLedger(entries: readonly AiPointLedgerEntry[
  *
  * This is deliberately not a Nest provider and must not be registered in AppModule.
  * A later integration phase must load/persist the state in one locked database
- * transaction and run the exported allocation assertion before commit.
+ * transaction. The database remains authoritative through deferred constraint
+ * triggers, with the exported assertion used for earlier application feedback.
  */
 export class CommerceFoundationModel {
   private readonly idFactory: () => string;
@@ -334,6 +339,9 @@ export class CommerceFoundationModel {
       externalProductId: transaction.productId,
       durationDays: product.durationDays,
       aiPointRuleVersion: product.aiPointRuleVersion,
+      membershipGrantSource: 'purchase_discovery',
+      membershipEffectiveAt: new Date(transaction.purchaseDate),
+      membershipContributionMs: product.durationDays * DAY_MS,
       status: 'verified',
       purchasedAt: new Date(transaction.purchaseDate),
     };
@@ -344,7 +352,13 @@ export class CommerceFoundationModel {
       accountId,
     });
 
-    this.rebuildMembership(state, accountId, transaction.environment, processedAt);
+    this.rebuildMembership(
+      state,
+      accountId,
+      transaction.environment,
+      processedAt,
+      order.id,
+    );
     if (transaction.revocationDate) {
       this.refundAppleTransaction(
         state,
@@ -394,7 +408,6 @@ export class CommerceFoundationModel {
           state,
           notification.environment,
           transaction.transactionId,
-          notification.notificationUuid,
           processedAt,
         );
       } else if (transactionResult.statusUpdateAccepted && (
@@ -408,6 +421,9 @@ export class CommerceFoundationModel {
           transaction.transactionId,
           transaction.revocationDate ?? processedAt,
           processedAt,
+          transaction.revocationDate
+            ? undefined
+            : `notification:${notification.notificationUuid}`,
         );
       }
     }
@@ -427,6 +443,7 @@ export class CommerceFoundationModel {
     transactionId: string,
     revokedAt: Date,
     processedAt: Date,
+    cycleKey?: string,
   ) {
     assertEnvironment(environment);
     const transaction = state.appleTransactions.find((candidate) => (
@@ -437,10 +454,13 @@ export class CommerceFoundationModel {
     if (order.status === 'refunded' || order.status === 'revoked') {
       return { changed: false, order };
     }
+    const stableCycleKey = cycleKey
+      ?? `transaction:${environment}:${transactionId}:${transaction.signedPayloadHash}:${revokedAt.toISOString()}`;
     order.status = 'refunded';
     order.revokedAt = new Date(revokedAt);
+    order.revocationCycleKey = stableCycleKey;
     transaction.revocationDate = new Date(revokedAt);
-    this.revokeOrderBenefits(state, order, revokedAt);
+    this.revokeOrderBenefits(state, order, revokedAt, stableCycleKey);
     this.rebuildMembership(state, order.accountId, environment, processedAt);
     return { changed: true, order };
   }
@@ -449,7 +469,6 @@ export class CommerceFoundationModel {
     state: CommerceDomainState,
     environment: CommerceEnvironment,
     transactionId: string,
-    reversalOperationId: string,
     processedAt: Date,
   ) {
     assertEnvironment(environment);
@@ -459,17 +478,26 @@ export class CommerceFoundationModel {
     if (!transaction) throw new Error('apple_transaction_not_found');
     const order = this.requireOrder(state, transaction.orderId);
     if (order.status === 'verified') return { changed: false, order };
+    const revocationCycleKey = order.revocationCycleKey;
+    if (!revocationCycleKey) throw new Error('apple_refund_cycle_missing');
     order.status = 'verified';
     order.revokedAt = undefined;
+    order.membershipGrantSource = 'refund_restore';
+    order.membershipEffectiveAt = new Date(processedAt);
+    order.membershipContributionMs = Math.max(
+      0,
+      addDays(order.purchasedAt, order.durationDays).getTime() - processedAt.getTime(),
+    );
     transaction.revocationDate = undefined;
     transaction.revocationReason = undefined;
     this.rebuildMembership(state, order.accountId, environment, processedAt);
     this.restoreOrderPointBatches(
       state,
       order,
-      `restore:${reversalOperationId}`,
+      revocationCycleKey,
       processedAt,
     );
+    order.revocationCycleKey = undefined;
     return { changed: true, order };
   }
 
@@ -734,6 +762,7 @@ export class CommerceFoundationModel {
     accountId: string,
     environment: CommerceEnvironment,
     asOf: Date,
+    discoveredOrderId?: string,
   ) {
     this.expirePointBatches(state, accountId, environment, asOf);
     const activeSegments = state.membershipSegments.filter((segment) => (
@@ -747,12 +776,27 @@ export class CommerceFoundationModel {
       && order.environment === environment
       && order.status === 'verified'
     ));
-    // Existing segments are the durable record of already-correct sequencing.
-    // A newly discovered historical order contributes only the portion that is
-    // still naturally unexpired at the processing time and is appended after
-    // existing remaining segments. This prevents a late restore from granting a
-    // full old duration or moving/shrinking already-issued entitlement.
-    const plans = validOrders
+    type MembershipPlan = {
+      order: CommerceOrder;
+      current?: MembershipEntitlementSegment;
+      remainingMs: number;
+      sortAt: Date;
+      startsAt?: Date;
+      endsAt?: Date;
+    };
+    const discoveredOrder = discoveredOrderId
+      ? validOrders.find((order) => order.id === discoveredOrderId)
+      : undefined;
+    const isOutOfOrderDiscovery = Boolean(discoveredOrder && validOrders.some((order) => (
+      order.id !== discoveredOrder.id
+      && order.purchasedAt > discoveredOrder.purchasedAt
+    )));
+
+    // Status changes preserve the already-issued remaining segments. A first
+    // purchase discovery contributes its explicit full duration. Refund restore
+    // uses the smaller contribution persisted at reversal time, so it can never
+    // replenish historical membership that has already elapsed.
+    let plans: MembershipPlan[] = validOrders
       .map((order) => {
         const current = activeByOrder.get(order.id);
         const remainingMs = current
@@ -761,10 +805,7 @@ export class CommerceFoundationModel {
             : current.startsAt.getTime() <= asOf.getTime()
               ? current.endsAt.getTime() - asOf.getTime()
               : current.endsAt.getTime() - current.startsAt.getTime()
-          : Math.max(
-            0,
-            order.purchasedAt.getTime() + (order.durationDays * DAY_MS) - asOf.getTime(),
-          );
+          : order.membershipContributionMs;
         return {
           order,
           current,
@@ -780,6 +821,41 @@ export class CommerceFoundationModel {
         || left.order.id.localeCompare(right.order.id)
       ));
 
+    if (isOutOfOrderDiscovery) {
+      let canonicalCursor: Date | undefined;
+      const canonicalPlans: MembershipPlan[] = [];
+      for (const order of [...validOrders].sort((left, right) => (
+        left.membershipEffectiveAt.getTime() - right.membershipEffectiveAt.getTime()
+        || left.purchasedAt.getTime() - right.purchasedAt.getTime()
+        || left.id.localeCompare(right.id)
+      ))) {
+        const startsAt = canonicalCursor && canonicalCursor > order.membershipEffectiveAt
+          ? canonicalCursor
+          : order.membershipEffectiveAt;
+        const endsAt = new Date(startsAt.getTime() + order.membershipContributionMs);
+        canonicalCursor = endsAt;
+        if (endsAt <= asOf) continue;
+        const effectiveStart = startsAt < asOf ? asOf : startsAt;
+        canonicalPlans.push({
+          order,
+          current: activeByOrder.get(order.id),
+          remainingMs: endsAt.getTime() - effectiveStart.getTime(),
+          sortAt: effectiveStart,
+          startsAt: new Date(effectiveStart),
+          endsAt: new Date(endsAt),
+        });
+      }
+      const previousExpiry = activeSegments.reduce<Date | undefined>((latest, segment) => (
+        !latest || segment.endsAt > latest ? segment.endsAt : latest
+      ), undefined);
+      const last = canonicalPlans.at(-1);
+      if (last?.endsAt && previousExpiry && previousExpiry > last.endsAt) {
+        last.endsAt = new Date(previousExpiry);
+        last.remainingMs = last.endsAt.getTime() - (last.startsAt ?? asOf).getTime();
+      }
+      plans = canonicalPlans;
+    }
+
     for (const segment of activeSegments) {
       segment.status = 'superseded';
       segment.supersededAt = new Date(asOf);
@@ -794,14 +870,16 @@ export class CommerceFoundationModel {
       const revision = state.membershipSegments
         .filter((segment) => segment.orderId === plan.order.id && segment.environment === environment)
         .reduce((maximum, segment) => Math.max(maximum, segment.revision), 0) + 1;
+      const startsAt = plan.startsAt ?? cursor;
+      const endsAt = plan.endsAt ?? new Date(startsAt.getTime() + plan.remainingMs);
       const segment: MembershipEntitlementSegment = {
         id: this.idFactory(),
         environment,
         accountId,
         orderId: plan.order.id,
         revision,
-        startsAt: new Date(cursor),
-        endsAt: new Date(cursor.getTime() + plan.remainingMs),
+        startsAt: new Date(startsAt),
+        endsAt: new Date(endsAt),
         status: 'active',
       };
       state.membershipSegments.push(segment);
@@ -809,7 +887,7 @@ export class CommerceFoundationModel {
         segment,
         rescheduleFutureBatches: !plan.current || plan.current.startsAt > asOf,
       });
-      cursor = segment.endsAt;
+      if (segment.endsAt > cursor) cursor = segment.endsAt;
     }
 
     for (const { segment, rescheduleFutureBatches } of nextSegments) {
@@ -916,7 +994,12 @@ export class CommerceFoundationModel {
     return batch;
   }
 
-  private revokeOrderBenefits(state: CommerceDomainState, order: CommerceOrder, revokedAt: Date) {
+  private revokeOrderBenefits(
+    state: CommerceDomainState,
+    order: CommerceOrder,
+    revokedAt: Date,
+    cycleKey: string,
+  ) {
     for (const segment of state.membershipSegments.filter((candidate) => (
       candidate.orderId === order.id && candidate.environment === order.environment && candidate.status === 'active'
     ))) {
@@ -937,13 +1020,19 @@ export class CommerceFoundationModel {
     }
     for (const batch of state.pointBatches.filter((candidate) => (
       candidate.sourceOrderId === order.id && candidate.environment === order.environment
-    ))) this.revokeBatch(state, batch, revokedAt, 'revoke');
+    ))) this.revokeBatch(
+      state,
+      batch,
+      revokedAt,
+      'revoke',
+      `refund-cycle:${cycleKey}:revoke:${batch.id}`,
+    );
   }
 
   private restoreOrderPointBatches(
     state: CommerceDomainState,
     order: CommerceOrder,
-    operationId: string,
+    cycleKey: string,
     restoredAt: Date,
   ) {
     for (const batch of state.pointBatches.filter((candidate) => (
@@ -959,7 +1048,7 @@ export class CommerceFoundationModel {
           environment: batch.environment,
           accountId: batch.accountId,
           batchId: batch.id,
-          operationId,
+          operationId: `refund-cycle:${cycleKey}:restore:${batch.id}`,
           entryType: 'restore',
           direction: 'credit',
           points: Math.max(
@@ -977,6 +1066,7 @@ export class CommerceFoundationModel {
     batch: AiPointBatch,
     revokedAt: Date,
     entryType: 'revoke' | 'expire',
+    operationId = `${entryType}:${batch.id}`,
   ) {
     if (batch.status === 'revoked' || batch.status === 'merged' || batch.status === 'expired') return;
     const unused = batch.status === 'available'
@@ -988,7 +1078,7 @@ export class CommerceFoundationModel {
       environment: batch.environment,
       accountId: batch.accountId,
       batchId: batch.id,
-      operationId: `${entryType}:${batch.id}`,
+      operationId,
       entryType,
       direction: 'debit',
       points: unused,
