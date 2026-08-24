@@ -1,11 +1,11 @@
-import { createCipheriv, createDecipheriv, createHash, createSign, randomBytes, randomUUID } from 'node:crypto';
+import { createCipheriv, createDecipheriv, createHash, createHmac, createSign, randomBytes, randomUUID } from 'node:crypto';
 
 import { ConflictException, ForbiddenException, Inject, Injectable, Logger, OnModuleDestroy, OnModuleInit, ServiceUnavailableException } from '@nestjs/common';
 import { and, eq, inArray, isNull, lte, or, sql } from 'drizzle-orm';
 
 import { IdentityDigestService } from '../account/identity-digest.service';
 import { API_CONFIG, type ApiConfig } from '../config';
-import { accounts, appleCredentialIntakes, appleRevocableCredentials } from '../database/schema';
+import { accountSecurityEvents, accounts, appleCredentialIntakes, appleRevocableCredentials } from '../database/schema';
 import { DatabaseService } from '../database/database.service';
 import { APPLE_AUTH_HTTP, AppleAuthHttpError, type AppleAuthHttp } from './apple-auth-http';
 import type { VerifiedAuthSession } from './auth.types';
@@ -75,7 +75,7 @@ export class AppleAuthService implements OnModuleInit, OnModuleDestroy {
       claims = await this.idTokenVerifier.verify(response.idToken, apple.clientId);
       this.validateClaims(claims, subject, input.rawNonce, now, apple.clientId);
     } catch {
-      await this.revokeUnpersisted(response.refreshToken, apple, now);
+      await this.revokeUnpersisted(response.refreshToken, apple, now, source, subject);
       throw new ForbiddenException('invalid_apple_authorization');
     }
     const currentDigest = this.digests.current('apple-revocable-credential-v1', 'apple', subject);
@@ -103,11 +103,12 @@ export class AppleAuthService implements OnModuleInit, OnModuleDestroy {
         updatedAt: now,
       });
     } catch {
-      await this.revokeUnpersisted(response.refreshToken, apple, now);
+      await this.revokeUnpersisted(response.refreshToken, apple, now, source, subject);
       throw new ServiceUnavailableException('apple_credential_persistence_failed');
     }
     try {
-      await this.bindIntake(intakeId, now);
+      const outcome = await this.bindIntake(intakeId, now);
+      if (outcome === 'already_active') await this.compensateIntake(intakeId, now);
     } catch (error) {
       await this.compensateIntake(intakeId, now).catch(() => undefined);
       if (error instanceof ConflictException || error instanceof ForbiddenException) throw error;
@@ -137,8 +138,8 @@ export class AppleAuthService implements OnModuleInit, OnModuleDestroy {
       if (!intake) continue;
       if (intake.status === 'pending_binding') {
         try {
-          await this.bindIntake(row.id, now);
-          continue;
+          const outcome = await this.bindIntake(row.id, now);
+          if (outcome !== 'already_active') continue;
         } catch {
           // A pending intake that can no longer bind must be revoked durably.
         }
@@ -148,10 +149,10 @@ export class AppleAuthService implements OnModuleInit, OnModuleDestroy {
   }
 
   private async bindIntake(intakeId: string, now: Date) {
-    await this.database.db.transaction(async (transaction) => {
+    return this.database.db.transaction(async (transaction) => {
       const [intake] = await transaction.select().from(appleCredentialIntakes)
         .where(eq(appleCredentialIntakes.id, intakeId)).limit(1).for('update');
-      if (!intake) return;
+      if (!intake) return 'missing' as const;
       if (intake.status !== 'pending_binding' || !intake.encryptedRefreshToken) {
         throw new Error('apple_credential_intake_not_bindable');
       }
@@ -164,7 +165,7 @@ export class AppleAuthService implements OnModuleInit, OnModuleDestroy {
         await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`apple-credential:${digest}`}, 0))`);
       }
       const [account] = await transaction.select({ status: accounts.status }).from(accounts)
-        .where(eq(accounts.id, intake.accountId)).limit(1).for('key share');
+        .where(eq(accounts.id, intake.accountId)).limit(1).for('update');
       if (!account || account.status !== 'active') throw new ForbiddenException('account_not_active');
       const [existing] = await transaction.select({
         accountId: appleRevocableCredentials.accountId,
@@ -178,6 +179,7 @@ export class AppleAuthService implements OnModuleInit, OnModuleDestroy {
       if (existing && existing.status !== 'revoked' && existing.accountId !== intake.accountId) {
         throw new ConflictException('identity_account_conflict');
       }
+      if (existing && existing.status !== 'revoked') return 'already_active' as const;
       const values = {
         accountId: intake.accountId,
         authUserId: intake.authUserId,
@@ -202,6 +204,7 @@ export class AppleAuthService implements OnModuleInit, OnModuleDestroy {
         await transaction.insert(appleRevocableCredentials).values(values);
       }
       await transaction.delete(appleCredentialIntakes).where(eq(appleCredentialIntakes.id, intake.id));
+      return 'bound' as const;
     });
   }
 
@@ -291,6 +294,8 @@ export class AppleAuthService implements OnModuleInit, OnModuleDestroy {
     refreshToken: string,
     apple: ReturnType<AppleAuthService['requireConfiguration']>,
     now: Date,
+    source: VerifiedAuthSession,
+    subject: string,
   ) {
     try {
       await this.http.revoke({
@@ -298,18 +303,64 @@ export class AppleAuthService implements OnModuleInit, OnModuleDestroy {
         clientSecret: this.clientSecret(apple, now),
         refreshToken,
       });
-    } catch {
-      // The database failure is still surfaced; no plaintext credential is logged.
+      return;
+    } catch (error) {
+      const errorCode = this.httpErrorCode(error);
+      try {
+        await this.database.db.insert(accountSecurityEvents).values({
+          accountDigest: createHmac('sha256', this.config.accountIdentityHashSecret)
+            .update(`account-security-event-v1\0${source.user.id}`)
+            .digest('hex'),
+          subjectDigest: createHmac('sha256', this.config.accountIdentityHashSecret)
+            .update(`apple-unpersisted-revoke-risk-v1\0${subject}`)
+            .digest('hex'),
+          createdAt: now,
+          eventType: 'apple_unpersisted_credential_revoke_failed',
+          outcome: 'failed',
+          metadata: { errorCode, manualActionRequired: true },
+          retentionAt: new Date(now.getTime() + INTAKE_RETENTION_MS),
+        });
+      } catch {
+        this.logger.error('apple_unpersisted_credential_risk_marker_failed');
+      }
     }
   }
 
   async revokeForAccount(accountId: string, now = new Date()) {
+    const intakes = await this.database.db.select().from(appleCredentialIntakes)
+      .where(eq(appleCredentialIntakes.accountId, accountId));
+    for (const intake of intakes) {
+      if (!['revoked', 'manual_action_required'].includes(intake.status)) {
+        await this.compensateIntake(intake.id, now);
+      }
+    }
+    const currentIntakes = await this.database.db.select().from(appleCredentialIntakes)
+      .where(eq(appleCredentialIntakes.accountId, accountId));
+    const unresolvedIntake = currentIntakes.find(({ status }) => (
+      !['revoked', 'manual_action_required'].includes(status)
+    ));
+    if (unresolvedIntake) {
+      return {
+        errorCode: unresolvedIntake.lastErrorCode ?? 'unavailable',
+        outcome: 'retryable' as const,
+      };
+    }
     const allCredentials = await this.database.db.select().from(appleRevocableCredentials)
       .where(eq(appleRevocableCredentials.accountId, accountId));
-    if (allCredentials.length === 0) return { outcome: 'manual_action_required' as const };
+    const intakeManualActionRequired = currentIntakes.some(({ status }) => status === 'manual_action_required');
+    if (allCredentials.length === 0) {
+      if (intakeManualActionRequired || currentIntakes.length === 0) {
+        return { outcome: 'manual_action_required' as const };
+      }
+      return { outcome: 'revoked' as const };
+    }
     const credentials = allCredentials.filter(({ status }) => status !== 'revoked');
-    if (credentials.length === 0) return { outcome: 'revoked' as const };
-    let manualActionRequired = false;
+    if (credentials.length === 0) {
+      return {
+        outcome: intakeManualActionRequired ? 'manual_action_required' as const : 'revoked' as const,
+      };
+    }
+    let manualActionRequired = intakeManualActionRequired;
 
     for (const credential of credentials) {
       if (!credential.encryptedRefreshToken || credential.status === 'manual_action_required') {

@@ -57,7 +57,7 @@ BEGIN
   IF account_uuid IS NULL OR NOT EXISTS (
     SELECT 1 FROM public.accounts account
     WHERE account.id = account_uuid AND account.status = 'active'
-    FOR KEY SHARE
+    FOR UPDATE
   ) THEN
     RAISE EXCEPTION 'account_not_active' USING ERRCODE = '23514';
   END IF;
@@ -108,7 +108,7 @@ BEGIN
   IF NEW.status = 'active' AND NOT EXISTS (
     SELECT 1 FROM public.accounts account
     WHERE account.id = NEW.account_id AND account.status = 'active'
-    FOR KEY SHARE
+    FOR UPDATE
   ) THEN
     RAISE EXCEPTION 'account_not_active' USING ERRCODE = '23514';
   END IF;
@@ -128,7 +128,7 @@ BEGIN
     FROM public.feedback_tickets ticket
     JOIN public.accounts account ON account.id = ticket.user_id
     WHERE ticket.id = NEW.ticket_id AND account.status = 'active'
-    FOR KEY SHARE OF account
+    FOR UPDATE OF account
   ) THEN
     RAISE EXCEPTION 'account_not_active' USING ERRCODE = '23514';
   END IF;

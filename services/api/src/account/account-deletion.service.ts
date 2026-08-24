@@ -22,12 +22,15 @@ import {
   aiQuotaBuckets,
   aiUsageLogs,
   aiWordCache,
+  appleCredentialIntakes,
   appleRevocableCredentials,
   feedbackAttachments,
   feedbackTickets,
   inviteAccounts,
   learningRecords,
   profiles,
+  recentAuthChallenges,
+  recentAuthGrants,
   syncChanges,
   syncMutations,
   userCardStates,
@@ -96,9 +99,15 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
         .limit(1);
       if (idempotencyCollision) throw new ConflictException('account_deletion_idempotency_conflict');
 
-      const [account] = await transaction.select({ status: accounts.status }).from(accounts)
-        .where(eq(accounts.id, source.user.id)).limit(1);
-      if (!account || account.status !== 'active') throw new Error('account_deletion_not_available');
+      const [account] = await transaction.update(accounts).set({
+        sessionsRevokedAt: requestedAt,
+        status: 'deleting',
+        updatedAt: requestedAt,
+      }).where(and(
+        eq(accounts.id, source.user.id),
+        eq(accounts.status, 'active'),
+      )).returning({ id: accounts.id });
+      if (!account) throw new Error('account_deletion_not_available');
       await this.recentAuth.consumeInTransaction(
         transaction,
         source,
@@ -152,11 +161,6 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
           on conflict (session_id) do update set revoked_at = excluded.revoked_at
         `);
       }
-      await transaction.update(accounts).set({
-        sessionsRevokedAt: requestedAt,
-        status: 'deleting',
-        updatedAt: requestedAt,
-      }).where(eq(accounts.id, source.user.id));
       await transaction.insert(accountSecurityEvents).values({
         accountDigest: this.accountDigest(source.user.id),
         createdAt: requestedAt,
@@ -362,6 +366,8 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
       await transaction.delete(aiQuotaBuckets).where(eq(aiQuotaBuckets.userId, job.accountId));
       await transaction.delete(aiWordCache).where(eq(aiWordCache.userId, job.accountId));
       await transaction.delete(profiles).where(eq(profiles.userId, job.accountId));
+      await transaction.delete(recentAuthGrants).where(eq(recentAuthGrants.accountId, job.accountId));
+      await transaction.delete(recentAuthChallenges).where(eq(recentAuthChallenges.accountId, job.accountId));
       const authUserRows = await transaction.select({ authUserId: accountDeletionAuthUsers.authUserId })
         .from(accountDeletionAuthUsers).where(eq(accountDeletionAuthUsers.jobId, job.id));
       if (authUserRows.length > 0) {
@@ -372,6 +378,8 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
         }).where(inArray(inviteAccounts.userId, authUserRows.map(({ authUserId }) => authUserId)));
       }
       await transaction.delete(accountIdentities).where(eq(accountIdentities.accountId, job.accountId));
+      await transaction.delete(appleCredentialIntakes)
+        .where(eq(appleCredentialIntakes.accountId, job.accountId));
       await transaction.delete(appleRevocableCredentials)
         .where(eq(appleRevocableCredentials.accountId, job.accountId));
       await transaction.update(accounts).set({ status: 'deleted', updatedAt: now })
