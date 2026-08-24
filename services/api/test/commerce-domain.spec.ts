@@ -174,7 +174,7 @@ describe('CommerceFoundationModel', () => {
     }), at(0))).toThrow('apple_transaction_signed_version_conflict');
   });
 
-  it('appends the full duration whenever a valid Apple transaction is first discovered', () => {
+  it('rebuilds from Apple purchase time when old transactions are discovered later', () => {
     const state = createCommerceDomainState();
     const commerce = new CommerceFoundationModel({ idFactory: ids() });
     commerce.recordApplePurchase(state, appleTransaction({
@@ -189,11 +189,11 @@ describe('CommerceFoundationModel', () => {
       purchasedAt: at(0),
       signedAt: at(11),
     }), at(11));
-    expect(commerce.membershipExpiresAt(state, ACCOUNT_A, 'production')).toEqual(at(32));
+    expect(commerce.membershipExpiresAt(state, ACCOUNT_A, 'production')).toEqual(at(25));
     const expiredOrder = state.orders.find((order) => order.externalOrderId === 'late-expired-history')!;
     expect(expiredOrder).toMatchObject({
       membershipGrantSource: 'purchase_discovery',
-      membershipEffectiveAt: at(11),
+      membershipEffectiveAt: at(0),
       membershipContributionMs: 7 * DAY_MS,
     });
     expect(state.membershipSegments.some((segment) => (
@@ -205,17 +205,17 @@ describe('CommerceFoundationModel', () => {
       purchasedAt: at(8),
       signedAt: at(11),
     }), at(11));
-    expect(commerce.membershipExpiresAt(state, ACCOUNT_A, 'production')).toEqual(at(39));
+    expect(commerce.membershipExpiresAt(state, ACCOUNT_A, 'production')).toEqual(at(30));
     const currentSegments = state.membershipSegments.filter((segment) => segment.status === 'active');
     expect(currentSegments.map((segment) => [segment.startsAt, segment.endsAt])).toEqual([
-      [at(10), at(25)],
-      [at(25), at(32)],
-      [at(32), at(39)],
+      [at(0), at(7)],
+      [at(8), at(15)],
+      [at(15), at(30)],
     ]);
     expect(state.orders.find((order) => order.externalOrderId === 'late-partially-valid-history'))
       .toMatchObject({
         membershipGrantSource: 'purchase_discovery',
-        membershipEffectiveAt: at(11),
+        membershipEffectiveAt: at(8),
         membershipContributionMs: 7 * DAY_MS,
       });
 
@@ -233,7 +233,7 @@ describe('CommerceFoundationModel', () => {
     expect(commerce.membershipExpiresAt(state, ACCOUNT_A, 'production')).toEqual(at(54));
   });
 
-  it('removes the exact queued contribution for historical refunds and keeps replay order stable', () => {
+  it('does not refill elapsed membership when historical purchases are refunded or restored', () => {
     const state = createCommerceDomainState();
     const commerce = new CommerceFoundationModel({ idFactory: ids() });
     commerce.recordApplePurchase(state, appleTransaction({
@@ -247,7 +247,7 @@ describe('CommerceFoundationModel', () => {
       signedAt: at(11),
     }), at(11));
 
-    expect(commerce.membershipExpiresAt(state, ACCOUNT_A, 'production')).toEqual(at(32));
+    expect(commerce.membershipExpiresAt(state, ACCOUNT_A, 'production')).toEqual(at(25));
     expect(commerce.refundAppleTransaction(
       state,
       'production',
@@ -267,10 +267,10 @@ describe('CommerceFoundationModel', () => {
 
     expect(commerce.restoreAppleTransaction(state, 'production', 'historical-first', at(33)).changed)
       .toBe(true);
-    expect(commerce.membershipExpiresAt(state, ACCOUNT_A, 'production')).toEqual(at(32));
+    expect(commerce.membershipExpiresAt(state, ACCOUNT_A, 'production')).toEqual(at(25));
     const restored = state.orders.find((order) => order.externalOrderId === 'historical-first');
     expect(restored).toMatchObject({
-      membershipEffectiveAt: at(11),
+      membershipEffectiveAt: at(0),
       membershipContributionMs: 7 * DAY_MS,
     });
   });
@@ -293,17 +293,17 @@ describe('CommerceFoundationModel', () => {
       purchasedAt: at(8),
       signedAt: at(11),
     }), at(11));
-    expect(commerce.membershipExpiresAt(state, ACCOUNT_A, 'production')).toEqual(at(39));
+    expect(commerce.membershipExpiresAt(state, ACCOUNT_A, 'production')).toEqual(at(30));
     commerce.refundAppleTransaction(state, 'production', 'historical-first', at(32), at(32));
-    expect(commerce.membershipExpiresAt(state, ACCOUNT_A, 'production')).toEqual(at(32));
+    expect(commerce.membershipExpiresAt(state, ACCOUNT_A, 'production')).toEqual(at(30));
     expect(state.membershipSegments.filter((segment) => segment.status === 'active')
       .map((segment) => [segment.orderId, segment.startsAt, segment.endsAt])).toEqual([
-      [state.orders[0]!.id, at(10), at(25)],
-      [state.orders[2]!.id, at(25), at(32)],
+      [state.orders[2]!.id, at(8), at(15)],
+      [state.orders[0]!.id, at(15), at(30)],
     ]);
     expect(commerce.refundAppleTransaction(state, 'production', 'historical-first', at(32), at(32)).changed)
       .toBe(false);
-    expect(commerce.membershipExpiresAt(state, ACCOUNT_A, 'production')).toEqual(at(32));
+    expect(commerce.membershipExpiresAt(state, ACCOUNT_A, 'production')).toEqual(at(30));
   });
 
   it('accepts a newer verified JWS for the same transaction and advances revocation once', () => {
