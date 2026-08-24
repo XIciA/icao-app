@@ -161,6 +161,29 @@ describe('base flow parity screens', () => {
     expect(screen.queryByText(/已有账号|归并/u)).toBeNull();
   });
 
+  it('keeps the Apple account active on an occupied phone until the user explicitly signs out', async () => {
+    mockParams = { slug: 'bind-phone' };
+    mockAuthSession = {
+      user: { hasPassword: false, id: 'apple-auth-1', registrationPending: false },
+    };
+    mockAccount = { accountId: 'account-apple', phoneBound: false, providers: ['apple'] };
+    mockRequestPhoneBindingOtp.mockResolvedValue({ phone: '+8613800138000' });
+    mockVerifyPhoneBindingOtp.mockRejectedValueOnce(new Error('phone_already_registered'));
+    const screen = await render(withSafeArea(<AccountScreen />));
+
+    await act(async () => { fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000'); });
+    await act(async () => { fireEvent.press(screen.getByText('获取验证码')); });
+    await act(async () => { fireEvent.changeText(screen.getByLabelText('短信验证码'), '123456'); });
+    await act(async () => { fireEvent.press(screen.getByText('验证并完成绑定')); });
+
+    expect(screen.getByText('该手机号已有账号，请退出后使用手机号登录')).toBeTruthy();
+    expect(screen.getByText('退出并使用手机号登录')).toBeTruthy();
+    expect(mockSignOut).not.toHaveBeenCalled();
+    await act(async () => { fireEvent.press(screen.getByText('退出并使用手机号登录')); });
+    expect(mockSignOut).toHaveBeenCalledTimes(1);
+    expect(mockRouterReplace).toHaveBeenCalledWith('/auth/login');
+  });
+
   it('validates the first password before enabling save', async () => {
     mockParams = { slug: 'password', mode: 'recovery' };
     mockPasswordChangePurpose = 'recovery';

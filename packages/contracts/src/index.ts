@@ -31,7 +31,7 @@ export type AccountSummary = {
   phoneBound: boolean;
 };
 
-export type MergePhoneAccountRequest = {
+export type BindPhoneRequest = {
   phone: string;
   token: string;
 };
@@ -75,7 +75,7 @@ export type SocialAuthSessionResponse = {
   expiresAt?: number;
 };
 
-export type MergePhoneAccountResponse = {
+export type BindPhoneResponse = {
   account: AccountSummary;
   session: SocialAuthSessionResponse;
 };

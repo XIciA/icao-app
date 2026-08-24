@@ -415,8 +415,8 @@ function BindPhonePage() {
     } catch (cause) {
       const code = cause instanceof Error ? cause.message : '';
       setRecentAuthRequired(code === 'recent_social_auth_required');
-      setError(code === 'account_identity_conflict'
-        ? '该账号存在无法自动处理的身份冲突，请稍后联系客服'
+      setError(code === 'phone_already_registered'
+        ? '该手机号已有账号，请退出后使用手机号登录'
         : code === 'recent_social_auth_required'
           ? '为保护账号安全，请先重新使用 Apple 登录验证身份，再绑定手机号'
         : code === 'invalid_phone_otp'
@@ -435,6 +435,19 @@ function BindPhonePage() {
       router.replace('/auth/login');
     } catch {
       setError('暂时无法重新验证，请稍后重试');
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  async function signOutToPhoneLogin() {
+    setSubmitting(true);
+    setError('');
+    try {
+      await auth.signOut();
+      router.replace('/auth/login');
+    } catch {
+      setError('暂时无法退出，请稍后重试');
     } finally {
       setSubmitting(false);
     }
@@ -461,6 +474,7 @@ function BindPhonePage() {
         ) : null}
         {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
         {recentAuthRequired ? <Button disabled={submitting} onPress={() => void reauthenticate()} variant="outline">重新验证身份</Button> : null}
+        {error === '该手机号已有账号，请退出后使用手机号登录' ? <Button disabled={submitting} onPress={() => void signOutToPhoneLogin()} variant="outline">退出并使用手机号登录</Button> : null}
         {challenge ? (
           <>
             <Button disabled={submitting || code.length !== 6} loading={submitting} onPress={() => void verify()} size="lg">验证并完成绑定</Button>

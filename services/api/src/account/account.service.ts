@@ -1,8 +1,8 @@
 import { ConflictException, ForbiddenException, HttpException, HttpStatus, Inject, Injectable, ServiceUnavailableException } from '@nestjs/common';
-import type { AccountSummary, AuthorizePasswordRecoveryResponse, MergePhoneAccountResponse, StartPhoneBindingResponse, UpdatePhonePasswordResponse } from '@icao/contracts';
+import type { AccountSummary, AuthorizePasswordRecoveryResponse, BindPhoneResponse, StartPhoneBindingResponse, UpdatePhonePasswordResponse } from '@icao/contracts';
 import { isChinaMobileE164 } from '@icao/contracts';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
-import { and, eq, inArray, sql } from 'drizzle-orm';
+import { and, eq, sql } from 'drizzle-orm';
 import { AUTH_VERIFIER, type AuthVerifier, type VerifiedAuthSession } from '../auth/auth.types';
 import { PhoneAuthService } from '../auth/phone-auth.service';
 import { RecentAuthService } from '../auth/recent-auth.service';
@@ -10,9 +10,7 @@ import { SessionSecurityService } from '../auth/session-security.service';
 import { API_CONFIG, type ApiConfig } from '../config';
 import {
   accountIdentities,
-  accountMerges,
   accounts,
-  profiles,
 } from '../database/schema';
 import { DatabaseService } from '../database/database.service';
 import { AccountIdentityService } from './account-identity.service';
@@ -197,23 +195,34 @@ export class AccountService {
     }
   }
 
-  async mergeWithPhoneOtp(source: VerifiedAuthSession, phone: string, token: string): Promise<MergePhoneAccountResponse> {
+  async bindPhoneWithOtp(source: VerifiedAuthSession, phone: string, token: string): Promise<BindPhoneResponse> {
     this.assertSocialPhoneBindingAllowed(source);
     const { data, error } = await this.publicAuth.auth.verifyOtp({ phone, token, type: 'sms' });
-    if (error || !data.session || data.user?.phone !== phone) throw new ForbiddenException('invalid_phone_otp');
-    const target = await this.verifier.verify(data.session.access_token);
-    await this.sessions.assertActive(target);
+    if (error || !data.session) {
+      throw new ForbiddenException('invalid_phone_otp');
+    }
+    if (!data.user || data.user.phone !== phone) {
+      await this.adminAuth.auth.admin.signOut(data.session.access_token, 'local').catch(() => undefined);
+      throw new ForbiddenException('invalid_phone_otp');
+    }
     try {
-      const existingPhoneAccountId = await this.identities.accountIdForIdentity('phone', phone);
-      let account: AccountSummary;
-      if (existingPhoneAccountId) {
-        target.user = await this.identities.resolve(target);
-        account = await this.mergeAccounts(target, source);
-      } else {
-        account = await this.attachNewPhoneIdentity(source, target, phone);
+      const phoneSession = await this.verifier.verify(data.session.access_token);
+      if (phoneSession.authUserId !== data.user.id || phoneSession.user.phone !== phone) {
+        throw new ForbiddenException('invalid_phone_otp');
       }
+      phoneSession.user = {
+        ...phoneSession.user,
+        authUserId: phoneSession.authUserId,
+        phone,
+        providers: ['phone'],
+      };
+      // Consume the verified challenge before attempting the binding transaction.
+      // A conflict must not roll the challenge back and make the same OTP replayable.
+      await this.phoneAuth.consumeOtpIntent(phoneSession, 'phone_binding', new Date(), source.user.id);
+      const binding = await this.attachNewPhoneIdentity(source, phoneSession, phone);
+      if (binding.status === 'conflict') throw new ConflictException('phone_already_registered');
       return {
-        account,
+        account: binding.account,
         session: {
           accessToken: data.session.access_token,
           refreshToken: data.session.refresh_token,
@@ -230,7 +239,7 @@ export class AccountService {
     source: VerifiedAuthSession,
     phoneAuth: VerifiedAuthSession,
     phone: string,
-  ): Promise<AccountSummary> {
+  ): Promise<{ account: AccountSummary; status: 'bound' } | { status: 'conflict' }> {
     const sourceAccountId = source.user.id;
     const phoneAuthUserId = phoneAuth.authUserId;
     return this.database.db.transaction(async (transaction) => {
@@ -242,14 +251,7 @@ export class AccountService {
         .from(accounts)
         .where(eq(accounts.id, sourceAccountId))
         .limit(1);
-      if (!sourceAccount || sourceAccount.status !== 'active') throw new ConflictException('account_merge_state_changed');
-      await this.phoneAuth.consumeOtpIntentInTransaction(
-        transaction,
-        phoneAuth,
-        'phone_binding',
-        new Date(),
-        sourceAccountId,
-      );
+      if (!sourceAccount || sourceAccount.status !== 'active') throw new ConflictException('invalid_phone_binding');
       const phoneSubjectHash = this.identities.hashIdentity('phone', phone);
       const [existingPhoneIdentity] = await transaction.select({ accountId: accountIdentities.accountId })
         .from(accountIdentities)
@@ -258,12 +260,20 @@ export class AccountService {
           eq(accountIdentities.subjectHash, phoneSubjectHash),
         ))
         .limit(1);
-      if (existingPhoneIdentity) throw new ConflictException('account_merge_state_changed');
       const [existingAuthIdentity] = await transaction.select({ accountId: accountIdentities.accountId })
         .from(accountIdentities)
         .where(eq(accountIdentities.authUserId, phoneAuthUserId))
         .limit(1);
-      if (existingAuthIdentity) throw new ConflictException('account_merge_state_changed');
+      const [existingSourcePhoneIdentity] = await transaction.select({ accountId: accountIdentities.accountId })
+        .from(accountIdentities)
+        .where(and(
+          eq(accountIdentities.accountId, sourceAccountId),
+          eq(accountIdentities.provider, 'phone'),
+        ))
+        .limit(1);
+      if (existingPhoneIdentity || existingAuthIdentity || existingSourcePhoneIdentity) {
+        return { status: 'conflict' as const };
+      }
       await transaction.insert(accountIdentities).values({
         accountId: sourceAccountId,
         authUserId: phoneAuthUserId,
@@ -281,10 +291,13 @@ export class AccountService {
         .from(accountIdentities)
         .where(eq(accountIdentities.accountId, sourceAccountId));
       return {
-        accountId: sourceAccountId,
-        phone,
-        phoneBound: true,
-        providers: sortedProviders(providers.map((row) => row.provider)),
+        account: {
+          accountId: sourceAccountId,
+          phone,
+          phoneBound: true,
+          providers: sortedProviders(providers.map((row) => row.provider)),
+        },
+        status: 'bound' as const,
       };
     });
   }
@@ -296,7 +309,7 @@ export class AccountService {
 
   private assertSocialPhoneBindingAllowed(source: VerifiedAuthSession) {
     const providers = source.user.providers ?? [];
-    if (providers.includes('phone')) throw new ConflictException('account_phone_identity_conflict');
+    if (providers.includes('phone')) throw new ConflictException('invalid_phone_binding');
     if (!providers.includes('apple')) {
       throw new ForbiddenException('social_identity_required');
     }
@@ -320,187 +333,4 @@ export class AccountService {
     throw new ForbiddenException('recent_social_auth_required');
   }
 
-  private async mergeAccounts(target: VerifiedAuthSession, source: VerifiedAuthSession): Promise<AccountSummary> {
-    if (!isChinaMobileE164(target.user.phone)) throw new ForbiddenException('verified_phone_required');
-    const targetAccountId = target.user.id;
-    const sourceAccountId = source.user.id;
-    if (targetAccountId === sourceAccountId) {
-      await this.phoneAuth.consumeOtpIntent(target, 'phone_binding', new Date(), sourceAccountId);
-      return this.summary(targetAccountId, target.user.phone);
-    }
-    if (!source.user.providers?.includes('apple')) {
-      throw new ForbiddenException('social_identity_required');
-    }
-    if (source.user.providers.includes('phone')) {
-      throw new ConflictException('account_phone_identity_conflict');
-    }
-
-    const account = await this.database.db.transaction(async (transaction) => {
-      const lockIds = [sourceAccountId, targetAccountId].sort();
-      for (const accountId of lockIds) {
-        await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`account:${accountId}`}, 0))`);
-      }
-      await transaction.execute(sql`
-        select id from accounts
-        where id in (${sourceAccountId}::uuid, ${targetAccountId}::uuid)
-        order by id
-        for update
-      `);
-      const accountRows = await transaction.select({ id: accounts.id, status: accounts.status })
-        .from(accounts)
-        .where(inArray(accounts.id, [sourceAccountId, targetAccountId]));
-      if (accountRows.length !== 2 || accountRows.some((account) => account.status !== 'active')) {
-        throw new ConflictException('account_merge_state_changed');
-      }
-      await this.phoneAuth.consumeOtpIntentInTransaction(
-        transaction,
-        target,
-        'phone_binding',
-        new Date(),
-        sourceAccountId,
-      );
-      await transaction.update(accounts)
-        .set({ status: 'merging', updatedAt: new Date() })
-        .where(eq(accounts.id, sourceAccountId));
-
-      const sourceAuthUserRows = await transaction.selectDistinct({ authUserId: accountIdentities.authUserId })
-        .from(accountIdentities)
-        .where(eq(accountIdentities.accountId, sourceAccountId));
-
-      const identityRows = await transaction.select({
-        accountId: accountIdentities.accountId,
-        provider: accountIdentities.provider,
-        subjectHash: accountIdentities.subjectHash,
-      }).from(accountIdentities).where(inArray(accountIdentities.accountId, [sourceAccountId, targetAccountId]));
-      for (const provider of ['apple']) {
-        const sourceSubjects = identityRows.filter((row) => row.accountId === sourceAccountId && row.provider === provider);
-        const targetSubjects = identityRows.filter((row) => row.accountId === targetAccountId && row.provider === provider);
-        if (sourceSubjects.some((sourceIdentity) => targetSubjects.some((targetIdentity) => targetIdentity.subjectHash !== sourceIdentity.subjectHash))) {
-          throw new ConflictException('account_identity_conflict');
-        }
-      }
-
-      for (const { authUserId } of sourceAuthUserRows) {
-        await transaction.execute(sql`
-          insert into account_session_revocations (session_id, user_id, revoked_at)
-          select id, user_id, now()
-          from auth.sessions
-          where user_id = ${authUserId}::uuid
-          on conflict (session_id) do update set revoked_at = excluded.revoked_at
-        `);
-      }
-
-      await transaction.execute(sql`
-        insert into user_card_states (user_id, bank_id, topic_id, card_id, state, version, updated_at)
-        select ${targetAccountId}::uuid, bank_id, topic_id, card_id, state, version, updated_at
-        from user_card_states where user_id = ${sourceAccountId}::uuid
-        on conflict (user_id, bank_id, topic_id, card_id) do update
-        set state = excluded.state, version = excluded.version, updated_at = excluded.updated_at
-        where excluded.updated_at > user_card_states.updated_at
-      `);
-      await transaction.execute(sql`delete from user_card_states where user_id = ${sourceAccountId}::uuid`);
-      await transaction.execute(sql`
-        insert into learning_records (id, user_id, client_record_id, payload, occurred_at, version, updated_at)
-        select gen_random_uuid(), ${targetAccountId}::uuid, client_record_id, payload, occurred_at, version, updated_at
-        from learning_records where user_id = ${sourceAccountId}::uuid
-        on conflict (user_id, client_record_id) do update
-        set payload = excluded.payload, occurred_at = excluded.occurred_at, version = excluded.version,
-            updated_at = excluded.updated_at
-        where excluded.updated_at > learning_records.updated_at
-      `);
-      await transaction.execute(sql`delete from learning_records where user_id = ${sourceAccountId}::uuid`);
-      await transaction.execute(sql`
-        insert into sync_mutations (user_id, mutation_id, kind, payload_hash, result, created_at)
-        select ${targetAccountId}::uuid, mutation_id, kind, payload_hash, result, created_at
-        from sync_mutations where user_id = ${sourceAccountId}::uuid
-        on conflict (user_id, mutation_id) do nothing
-      `);
-      await transaction.execute(sql`delete from sync_mutations where user_id = ${sourceAccountId}::uuid`);
-      await transaction.execute(sql`
-        insert into user_documents (user_id, document_key, payload, version, updated_at)
-        select ${targetAccountId}::uuid, document_key, payload, version, updated_at
-        from user_documents where user_id = ${sourceAccountId}::uuid
-        on conflict (user_id, document_key) do update
-        set payload = excluded.payload, version = excluded.version, updated_at = excluded.updated_at
-        where excluded.updated_at > user_documents.updated_at
-      `);
-      await transaction.execute(sql`delete from user_documents where user_id = ${sourceAccountId}::uuid`);
-      await transaction.execute(sql`update sync_changes set user_id = ${targetAccountId}::uuid where user_id = ${sourceAccountId}::uuid`);
-      await transaction.execute(sql`
-        insert into ai_consents (user_id, policy_version, accepted_at, updated_at)
-        select ${targetAccountId}::uuid, policy_version, accepted_at, updated_at
-        from ai_consents where user_id = ${sourceAccountId}::uuid
-        on conflict (user_id) do update
-        set policy_version = excluded.policy_version, accepted_at = excluded.accepted_at,
-            updated_at = excluded.updated_at
-        where excluded.updated_at > ai_consents.updated_at
-      `);
-      await transaction.execute(sql`delete from ai_consents where user_id = ${sourceAccountId}::uuid`);
-      await transaction.execute(sql`
-        update ai_usage_logs set user_id = ${targetAccountId}::uuid
-        where user_id = ${sourceAccountId}::uuid and not exists (
-          select 1 from ai_usage_logs target
-          where target.user_id = ${targetAccountId}::uuid
-            and target.request_id = ai_usage_logs.request_id
-            and target.capability = ai_usage_logs.capability
-        )
-      `);
-      await transaction.execute(sql`delete from ai_usage_logs where user_id = ${sourceAccountId}::uuid`);
-      await transaction.execute(sql`
-        insert into ai_quota_buckets (user_id, bucket_date, used_units, updated_at)
-        select ${targetAccountId}::uuid, bucket_date, used_units, updated_at
-        from ai_quota_buckets where user_id = ${sourceAccountId}::uuid
-        on conflict (user_id, bucket_date) do update
-        set used_units = ai_quota_buckets.used_units + excluded.used_units,
-            updated_at = greatest(ai_quota_buckets.updated_at, excluded.updated_at)
-      `);
-      await transaction.execute(sql`delete from ai_quota_buckets where user_id = ${sourceAccountId}::uuid`);
-      await transaction.execute(sql`
-        insert into ai_word_cache (user_id, query_hash, result, created_at, expires_at)
-        select ${targetAccountId}::uuid, query_hash, result, created_at, expires_at
-        from ai_word_cache where user_id = ${sourceAccountId}::uuid
-        on conflict (user_id, query_hash) do update
-        set result = excluded.result, created_at = excluded.created_at, expires_at = excluded.expires_at
-        where excluded.created_at > ai_word_cache.created_at
-      `);
-      await transaction.execute(sql`delete from ai_word_cache where user_id = ${sourceAccountId}::uuid`);
-      await transaction.execute(sql`
-        update feedback_tickets set client_submission_id = gen_random_uuid()
-        where user_id = ${sourceAccountId}::uuid and exists (
-          select 1 from feedback_tickets target
-          where target.user_id = ${targetAccountId}::uuid
-            and target.client_submission_id = feedback_tickets.client_submission_id
-        )
-      `);
-      await transaction.execute(sql`update feedback_tickets set user_id = ${targetAccountId}::uuid where user_id = ${sourceAccountId}::uuid`);
-
-      await transaction.update(accountIdentities)
-        .set({ accountId: targetAccountId, lastUsedAt: new Date() })
-        .where(eq(accountIdentities.accountId, sourceAccountId));
-      await transaction.insert(accountMerges).values({
-        initiatedByAuthUserId: target.authUserId,
-        sourceAccountId,
-        targetAccountId,
-      });
-      await transaction.update(accounts).set({
-        mergedIntoAccountId: targetAccountId,
-        sessionsRevokedAt: new Date(),
-        status: 'merged',
-        updatedAt: new Date(),
-      }).where(eq(accounts.id, sourceAccountId));
-      await transaction.delete(profiles).where(eq(profiles.userId, sourceAccountId));
-      const providers = await transaction.selectDistinct({ provider: accountIdentities.provider })
-        .from(accountIdentities)
-        .where(eq(accountIdentities.accountId, targetAccountId));
-      return {
-        accountId: targetAccountId,
-        phone: target.user.phone,
-        phoneBound: true,
-        providers: sortedProviders(providers.map((row) => row.provider)),
-      };
-    });
-
-    await this.adminAuth.auth.admin.signOut(source.accessToken, 'global').catch(() => undefined);
-    return account;
-  }
 }

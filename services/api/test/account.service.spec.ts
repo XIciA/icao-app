@@ -64,7 +64,7 @@ function fixture(options: {
         refresh_token: 'phone-session-refresh-token',
       },
       user: {
-        id: 'phone-auth-user',
+        id: '22222222-2222-4222-8222-222222222222',
         phone: '+8613800138000',
       },
     },
@@ -143,7 +143,7 @@ function fixture(options: {
       purpose: 'password_recovery',
     }),
   };
-  const transaction = options.transaction ?? vi.fn().mockRejectedValue(new Error('merge_transaction_failed'));
+  const transaction = options.transaction ?? vi.fn().mockRejectedValue(new Error('binding_transaction_failed'));
   const database = { db: { transaction } };
   const service = new AccountService(
     {
@@ -174,7 +174,7 @@ function fixture(options: {
   };
 }
 
-describe('AccountService phone merge', () => {
+describe('AccountService phone binding', () => {
   beforeEach(() => {
     supabase.createClient.mockReset();
   });
@@ -190,9 +190,9 @@ describe('AccountService phone merge', () => {
     });
     const { service, verifyOtp } = fixture();
 
-    await expect(service.mergeWithPhoneOtp(source, '+8613800138000', '123456'))
+    await expect(service.bindPhoneWithOtp(source, '+8613800138000', '123456'))
       .rejects.toSatisfy((error: unknown) => error instanceof ConflictException
-        && error.message === 'account_phone_identity_conflict');
+        && error.message === 'invalid_phone_binding');
     expect(verifyOtp).not.toHaveBeenCalled();
   });
 
@@ -204,7 +204,7 @@ describe('AccountService phone merge', () => {
     });
     const { service, verifyOtp } = fixture();
 
-    await expect(service.mergeWithPhoneOtp(source, '+8613800138000', '123456'))
+    await expect(service.bindPhoneWithOtp(source, '+8613800138000', '123456'))
       .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
         && error.message === 'social_identity_required');
     expect(verifyOtp).not.toHaveBeenCalled();
@@ -219,7 +219,7 @@ describe('AccountService phone merge', () => {
     });
     const { service, verifyOtp } = fixture();
 
-    await expect(service.mergeWithPhoneOtp(source, '+8613800138000', '123456'))
+    await expect(service.bindPhoneWithOtp(source, '+8613800138000', '123456'))
       .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
         && error.message === 'recent_social_auth_required');
     expect(verifyOtp).not.toHaveBeenCalled();
@@ -235,7 +235,7 @@ describe('AccountService phone merge', () => {
     });
     const { service, verifyOtp } = fixture();
 
-    await expect(service.mergeWithPhoneOtp(source, '+8613800138000', '123456'))
+    await expect(service.bindPhoneWithOtp(source, '+8613800138000', '123456'))
       .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
         && error.message === 'recent_social_auth_required');
     expect(verifyOtp).not.toHaveBeenCalled();
@@ -254,7 +254,7 @@ describe('AccountService phone merge', () => {
     });
     const { service, verifyOtp } = fixture();
 
-    await expect(service.mergeWithPhoneOtp(source, '+8613800138000', '123456'))
+    await expect(service.bindPhoneWithOtp(source, '+8613800138000', '123456'))
       .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
         && error.message === 'recent_social_auth_required');
     expect(verifyOtp).not.toHaveBeenCalled();
@@ -309,7 +309,7 @@ describe('AccountService phone merge', () => {
         && error.message === 'phone_binding_otp_unavailable');
   });
 
-  it('does not resolve or merge an account when Supabase rejects the phone OTP', async () => {
+  it('does not bind an account when Supabase rejects the phone OTP', async () => {
     const verifyOtp = vi.fn().mockResolvedValue({
       data: { session: null, user: null },
       error: new Error('invalid otp'),
@@ -321,7 +321,7 @@ describe('AccountService phone merge', () => {
     });
     const { identities, service, transaction, verifier } = fixture({ verifyOtp });
 
-    await expect(service.mergeWithPhoneOtp(source, '+8613800138000', '000000'))
+    await expect(service.bindPhoneWithOtp(source, '+8613800138000', '000000'))
       .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
         && error.message === 'invalid_phone_otp');
     expect(verifier.verify).not.toHaveBeenCalled();
@@ -329,16 +329,16 @@ describe('AccountService phone merge', () => {
     expect(transaction).not.toHaveBeenCalled();
   });
 
-  it('verifies the phone session before the merge and revokes it locally if the transaction fails', async () => {
+  it('verifies the phone session before binding and revokes it locally if the transaction fails', async () => {
     const source = session({
       accountId: '11111111-1111-4111-8111-111111111111',
       authUserId: '11111111-1111-4111-8111-111111111111',
       providers: ['apple'],
     });
-    const { identities, service, sessions, signOut, transaction, verifier, verifyOtp } = fixture();
+    const { identities, phoneAuth, service, sessions, signOut, transaction, verifier, verifyOtp } = fixture();
 
-    await expect(service.mergeWithPhoneOtp(source, '+8613800138000', '123456'))
-      .rejects.toThrow('merge_transaction_failed');
+    await expect(service.bindPhoneWithOtp(source, '+8613800138000', '123456'))
+      .rejects.toThrow('binding_transaction_failed');
 
     expect(verifyOtp).toHaveBeenCalledWith({
       phone: '+8613800138000',
@@ -346,8 +346,9 @@ describe('AccountService phone merge', () => {
       type: 'sms',
     });
     expect(verifier.verify).toHaveBeenCalledWith('phone-session-access-token');
-    expect(sessions.assertActive).toHaveBeenCalledOnce();
-    expect(identities.resolve).toHaveBeenCalledOnce();
+    expect(sessions.assertActive).not.toHaveBeenCalled();
+    expect(identities.resolve).not.toHaveBeenCalled();
+    expect(phoneAuth.consumeOtpIntent).toHaveBeenCalledOnce();
     expect(transaction).toHaveBeenCalledOnce();
     expect(signOut).toHaveBeenCalledWith('phone-session-access-token', 'local');
   });
@@ -389,9 +390,9 @@ describe('AccountService phone merge', () => {
       authUserId: '11111111-1111-4111-8111-111111111111',
       providers: ['apple'],
     });
-    const { identities, service, signOut } = fixture({ phoneAccountId: null, transaction });
+    const { identities, phoneAuth, service, signOut } = fixture({ phoneAccountId: null, transaction });
 
-    await expect(service.mergeWithPhoneOtp(source, '+8613800138000', '123456')).resolves.toEqual({
+    await expect(service.bindPhoneWithOtp(source, '+8613800138000', '123456')).resolves.toEqual({
       account: {
         accountId: source.user.id,
         phone: '+8613800138000',
@@ -418,7 +419,143 @@ describe('AccountService phone merge', () => {
       expect.any(Date),
       false,
     );
+    expect(phoneAuth.consumeOtpIntent).toHaveBeenCalledWith(
+      expect.objectContaining({
+        authUserId: '22222222-2222-4222-8222-222222222222',
+        user: expect.objectContaining({ phone: '+8613800138000', providers: ['phone'] }),
+      }),
+      'phone_binding',
+      expect.any(Date),
+      source.user.id,
+    );
+    expect(phoneAuth.consumeOtpIntentInTransaction).not.toHaveBeenCalled();
     expect(signOut).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    {
+      name: 'phone subject is already occupied',
+      rows: [[{ status: 'active' }], [{ accountId: 'occupied-account' }]],
+    },
+    {
+      name: 'verified auth user maps inconsistently',
+      rows: [[{ status: 'active' }], [], [{ accountId: 'occupied-account' }], []],
+    },
+    {
+      name: 'source acquired a phone concurrently',
+      rows: [[{ status: 'active' }], [], [], [{ accountId: 'source-account' }]],
+    },
+  ])('consumes the OTP and returns the same neutral conflict when $name', async ({ rows }) => {
+    const inserted: unknown[] = [];
+    const results = [...rows];
+    const fluent = <T,>(result: T) => {
+      const query = {
+        from: vi.fn(),
+        limit: vi.fn(),
+        then: undefined as unknown,
+        values: vi.fn(),
+        where: vi.fn(),
+      };
+      query.from.mockReturnValue(query);
+      query.limit.mockReturnValue(query);
+      query.values.mockImplementation((value: unknown) => {
+        inserted.push(value);
+        return query;
+      });
+      query.where.mockReturnValue(query);
+      query.then = (resolve: (value: T) => unknown, reject: (cause: unknown) => unknown) => Promise.resolve(result).then(resolve, reject);
+      return query;
+    };
+    const transactionApi = {
+      execute: vi.fn().mockResolvedValue(undefined),
+      insert: vi.fn(() => fluent(undefined)),
+      select: vi.fn(() => fluent(results.shift() ?? [])),
+      selectDistinct: vi.fn(() => fluent([])),
+    };
+    const transaction = vi.fn(async (operation: (value: typeof transactionApi) => Promise<unknown>) => operation(transactionApi));
+    const source = session({
+      accountId: '11111111-1111-4111-8111-111111111111',
+      authUserId: '11111111-1111-4111-8111-111111111111',
+      providers: ['apple'],
+    });
+    const { identities, phoneAuth, service, signOut } = fixture({ transaction });
+
+    await expect(service.bindPhoneWithOtp(source, '+8613800138000', '123456'))
+      .rejects.toSatisfy((error: unknown) => error instanceof ConflictException
+        && error.getStatus() === 409
+        && error.message === 'phone_already_registered');
+
+    expect(phoneAuth.consumeOtpIntent).toHaveBeenCalledOnce();
+    expect(signOut).toHaveBeenCalledWith('phone-session-access-token', 'local');
+    expect(identities.claimLifetimeTrialInTransaction).not.toHaveBeenCalled();
+    expect(inserted).toEqual([]);
+  });
+
+  it('serializes concurrent claims so only one account can bind the phone', async () => {
+    let occupied = false;
+    let transactionQueue = Promise.resolve();
+    const inserted: unknown[] = [];
+    const transaction = vi.fn(<T,>(operation: (value: unknown) => Promise<T>) => {
+      const current = transactionQueue.then(async () => {
+        let selectCall = 0;
+        const fluent = <R,>(result: R) => {
+          const query = {
+            from: vi.fn(),
+            limit: vi.fn(),
+            then: undefined as unknown,
+            values: vi.fn(),
+            where: vi.fn(),
+          };
+          query.from.mockReturnValue(query);
+          query.limit.mockReturnValue(query);
+          query.values.mockImplementation((value: unknown) => {
+            inserted.push(value);
+            occupied = true;
+            return query;
+          });
+          query.where.mockReturnValue(query);
+          query.then = (resolve: (value: R) => unknown, reject: (cause: unknown) => unknown) => Promise.resolve(result).then(resolve, reject);
+          return query;
+        };
+        const transactionApi = {
+          execute: vi.fn().mockResolvedValue(undefined),
+          insert: vi.fn(() => fluent(undefined)),
+          select: vi.fn(() => {
+            selectCall += 1;
+            if (selectCall === 1) return fluent([{ status: 'active' }]);
+            if (selectCall === 2) return fluent(occupied ? [{ accountId: 'winner' }] : []);
+            return fluent([]);
+          }),
+          selectDistinct: vi.fn(() => fluent([{ provider: 'apple' }, { provider: 'phone' }])),
+        };
+        return operation(transactionApi);
+      });
+      transactionQueue = current.then(() => undefined, () => undefined);
+      return current;
+    });
+    const firstSource = session({
+      accountId: '11111111-1111-4111-8111-111111111111',
+      authUserId: '11111111-1111-4111-8111-111111111111',
+      providers: ['apple'],
+    });
+    const secondSource = session({
+      accountId: '33333333-3333-4333-8333-333333333333',
+      authUserId: '33333333-3333-4333-8333-333333333333',
+      providers: ['apple'],
+    });
+    const { service, signOut } = fixture({ transaction });
+
+    const results = await Promise.allSettled([
+      service.bindPhoneWithOtp(firstSource, '+8613800138000', '123456'),
+      service.bindPhoneWithOtp(secondSource, '+8613800138000', '654321'),
+    ]);
+
+    expect(results.filter((result) => result.status === 'fulfilled')).toHaveLength(1);
+    const [rejected] = results.filter((result) => result.status === 'rejected') as PromiseRejectedResult[];
+    expect(rejected?.reason).toSatisfy((error: unknown) => error instanceof ConflictException
+      && error.message === 'phone_already_registered');
+    expect(inserted).toHaveLength(1);
+    expect(signOut).toHaveBeenCalledTimes(1);
   });
 
   it('updates a password only through the internal Auth endpoint after a recent phone OTP', async () => {

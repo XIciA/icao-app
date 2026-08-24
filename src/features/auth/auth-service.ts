@@ -1,5 +1,5 @@
 import { createClient, type Session, type SupabaseClient } from '@supabase/supabase-js';
-import type { AccountSummary, AuthIdentityProvider, AuthorizePasswordRecoveryResponse, MergePhoneAccountResponse, StartPhoneBindingResponse, StartPhoneOtpResponse, UpdatePhonePasswordResponse } from '@icao/contracts';
+import type { AccountSummary, AuthIdentityProvider, AuthorizePasswordRecoveryResponse, BindPhoneResponse, StartPhoneBindingResponse, StartPhoneOtpResponse, UpdatePhonePasswordResponse } from '@icao/contracts';
 import { isChinaMobileE164, normalizeChinaMobile } from '@icao/contracts';
 
 import { apiRequest } from '@/platform/api-client';
@@ -269,7 +269,7 @@ export class SupabasePhoneAuthService implements AuthService {
   async requestPhoneBindingOtp(input: string): Promise<PhoneBindingChallenge> {
     const phone = normalizeChinaMobile(input);
     if (!phone) throw new Error('invalid_phone_number');
-    const response = await apiRequest<StartPhoneBindingResponse>('/v1/account/merge/phone/start', {
+    const response = await apiRequest<StartPhoneBindingResponse>('/v1/account/phone-binding/start', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ phone }),
@@ -279,7 +279,7 @@ export class SupabasePhoneAuthService implements AuthService {
   }
 
   async resendPhoneBindingOtp(challenge: PhoneBindingChallenge) {
-    const response = await apiRequest<StartPhoneBindingResponse>('/v1/account/merge/phone/start', {
+    const response = await apiRequest<StartPhoneBindingResponse>('/v1/account/phone-binding/start', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ phone: challenge.phone }),
@@ -289,7 +289,7 @@ export class SupabasePhoneAuthService implements AuthService {
 
   async verifyPhoneBindingOtp(challenge: PhoneBindingChallenge, token: string): Promise<PhoneBindingVerification> {
     if (!/^\d{6}$/u.test(token)) throw new Error('invalid_phone_otp');
-    const response = await apiRequest<MergePhoneAccountResponse>('/v1/account/merge/phone', {
+    const response = await apiRequest<BindPhoneResponse>('/v1/account/phone-binding/verify', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ phone: challenge.phone, token }),

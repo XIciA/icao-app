@@ -233,7 +233,7 @@ describe('SupabasePhoneAuthService', () => {
 
     const challenge = await new SupabasePhoneAuthService(client).requestPhoneBindingOtp('13800138000');
 
-    expect(mockApiRequest).toHaveBeenCalledWith('/v1/account/merge/phone/start', {
+    expect(mockApiRequest).toHaveBeenCalledWith('/v1/account/phone-binding/start', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ phone }),
@@ -243,14 +243,14 @@ describe('SupabasePhoneAuthService', () => {
     expect(challenge).toEqual({ phone });
   });
 
-  it('lets the server verify and merge a phone before switching the local session', async () => {
+  it('lets the server bind an unused phone before switching the local session', async () => {
     const { auth, client } = authClient();
     mockApiRequest.mockResolvedValueOnce({
       account: { accountId: 'account-1', phone, phoneBound: true, providers: ['phone', 'apple'] },
       session: { accessToken: 'target-access-token', refreshToken: 'target-refresh-token' },
     });
     const result = await new SupabasePhoneAuthService(client).verifyPhoneBindingOtp({ phone }, '123456');
-    expect(mockApiRequest).toHaveBeenCalledWith('/v1/account/merge/phone', {
+    expect(mockApiRequest).toHaveBeenCalledWith('/v1/account/phone-binding/verify', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ phone, token: '123456' }),
@@ -263,12 +263,23 @@ describe('SupabasePhoneAuthService', () => {
     expect(result.account.accountId).toBe('account-1');
   });
 
+  it('keeps the current Apple session when the verified phone already has an account', async () => {
+    const { auth, client } = authClient();
+    mockApiRequest.mockRejectedValueOnce(new Error('phone_already_registered'));
+
+    await expect(new SupabasePhoneAuthService(client).verifyPhoneBindingOtp({ phone }, '123456'))
+      .rejects.toThrow('phone_already_registered');
+
+    expect(auth.setSession).not.toHaveBeenCalled();
+    expect(auth.signOut).not.toHaveBeenCalled();
+  });
+
   it('resends binding codes through the same neutral server endpoint', async () => {
     const { auth, client } = authClient();
     mockApiRequest.mockResolvedValueOnce({ sent: true });
     const service = new SupabasePhoneAuthService(client);
     await service.resendPhoneBindingOtp({ phone });
-    expect(mockApiRequest).toHaveBeenCalledWith('/v1/account/merge/phone/start', {
+    expect(mockApiRequest).toHaveBeenCalledWith('/v1/account/phone-binding/start', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ phone }),
