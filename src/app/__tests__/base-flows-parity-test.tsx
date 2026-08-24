@@ -30,6 +30,7 @@ jest.mock('@/features/question-bank/recording/expo-recorder-adapter', () => ({
 }));
 
 jest.mock('@/features/ai/ai-client', () => ({
+  getCachedAiConsentHint: jest.fn().mockResolvedValue(false),
   hasAiConsent: jest.fn().mockResolvedValue(false),
   withdrawAiConsent: jest.fn().mockResolvedValue(undefined),
 }));

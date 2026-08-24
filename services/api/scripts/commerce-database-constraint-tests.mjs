@@ -25,6 +25,7 @@ import { PersistentCommerceBenefitsService } from '../src/commerce/persistent-co
 import { CommerceService } from '../src/commerce/commerce.service.ts';
 import { AppleNotificationReconciliationService } from '../src/commerce/apple-notification-reconciliation.service.ts';
 import { JoseAppleIdTokenVerifier } from '../src/auth/apple-id-token.verifier.ts';
+import { AiService } from '../src/ai/ai.service.ts';
 import * as databaseSchema from '../src/database/schema.ts';
 
 const migrationsDirectory = fileURLToPath(new URL('../drizzle', import.meta.url));
@@ -35,6 +36,7 @@ let port;
 let serviceDatabaseClient;
 let serviceDatabase;
 let notificationMigrationScrubEvidence;
+let aiConsentRollbackEvidence;
 
 function requireBinary(name) {
   const result = spawnSync('sh', ['-c', `command -v ${name}`], { encoding: 'utf8' });
@@ -218,6 +220,18 @@ before(async () => {
       `);
       assert.equal(legacyRows.status, 0, legacyRows.stderr);
     }
+    if (name === '0025_brief_ricochet.sql') {
+      const legacyConsent = psql(`
+        INSERT INTO accounts (id)
+        VALUES ('85000000-0000-4000-8000-000000000001');
+        INSERT INTO ai_consents (user_id, policy_version, accepted_at, updated_at)
+        VALUES (
+          '85000000-0000-4000-8000-000000000001',
+          'ai-learning-privacy-v4', now(), now()
+        );
+      `);
+      assert.equal(legacyConsent.status, 0, legacyConsent.stderr);
+    }
     const migration = psql(
       readFileSync(join(migrationsDirectory, name), 'utf8')
         .replaceAll('--> statement-breakpoint', ''),
@@ -246,11 +260,43 @@ before(async () => {
       `);
       assert.equal(cleanup.status, 0, cleanup.stderr);
     }
+    if (name === '0025_brief_ricochet.sql') {
+      const migrated = queryScalar(`
+        SELECT authority.active::text || ':' || authority.revision::text || ':' ||
+          consent.revision::text
+        FROM ai_consent_authorities authority
+        JOIN ai_consents consent ON consent.user_id = authority.user_id
+        WHERE authority.user_id = '85000000-0000-4000-8000-000000000001'
+      `);
+      const legacyDelete = psql(`
+        DELETE FROM ai_consents
+        WHERE user_id = '85000000-0000-4000-8000-000000000001';
+      `);
+      assert.equal(legacyDelete.status, 0, legacyDelete.stderr);
+      const authorityAfterDelete = queryScalar(`
+        SELECT active::text || ':' || revision::text
+        FROM ai_consent_authorities
+        WHERE user_id = '85000000-0000-4000-8000-000000000001'
+      `);
+      const legacyReaccept = psql(`
+        INSERT INTO ai_consents (user_id, policy_version, accepted_at, updated_at)
+        VALUES (
+          '85000000-0000-4000-8000-000000000001',
+          'ai-learning-privacy-v4', now(), now()
+        );
+      `);
+      aiConsentRollbackEvidence = {
+        authorityAfterDelete,
+        legacyReacceptRejected: legacyReaccept.status !== 0
+          && legacyReaccept.stderr.includes('ai_consent_authority_required'),
+        migrated,
+      };
+    }
   }
   serviceDatabaseClient = postgres({
     database: 'postgres',
     host: socketDirectory,
-    max: 2,
+    max: 5,
     port,
     username: 'postgres',
   });
@@ -272,6 +318,14 @@ test('0024 migration scrubs legacy nested JWS while retaining failed retry paylo
       '84000000-0000-4000-8000-000000000092:false:true:true',
     ].join(','),
   );
+});
+
+test('0025 keeps AI withdrawal fail-closed across an API rollback', () => {
+  assert.deepEqual(aiConsentRollbackEvidence, {
+    authorityAfterDelete: 'false:2',
+    legacyReacceptRejected: true,
+    migrated: 'true:1:1',
+  });
 });
 
 function authSession({
@@ -411,7 +465,7 @@ function deletionService({
   };
 }
 
-test('the cumulative migration enables RLS on all 45 public tables', () => {
+test('the cumulative migration enables RLS on all 47 public tables', () => {
   assert.equal(
     queryScalar(`
       SELECT COUNT(*)::text || ':' || COUNT(*) FILTER (WHERE relrowsecurity)::text
@@ -419,7 +473,7 @@ test('the cumulative migration enables RLS on all 45 public tables', () => {
       JOIN pg_namespace namespace ON namespace.oid = relation.relnamespace
       WHERE namespace.nspname = 'public' AND relation.relkind = 'r'
     `),
-    '45:45',
+    '47:47',
   );
 });
 
@@ -431,6 +485,8 @@ test('account-security authority tables are private to the API database role', (
     'account_deletion_status_rate_limits',
     'account_deletion_tombstones',
     'account_security_events',
+    'ai_consent_authorities',
+    'ai_consent_challenges',
     'apple_revocable_credentials',
     'apple_credential_intakes',
     'lifetime_identity_benefit_claims',
@@ -4028,4 +4084,130 @@ test('reports naturally expired non-renewing membership as inactive without dele
       eq(databaseSchema.membershipEntitlementSegments.accountId, accountId),
     ));
   assert.equal(segments.length, 1);
+});
+
+test('AI consent challenges are account-bound, one-time, and explicit after withdrawal', async () => {
+  const firstAccountId = '85000000-0000-4000-8000-000000000011';
+  const secondAccountId = '85000000-0000-4000-8000-000000000012';
+  await serviceDatabase.insert(databaseSchema.accounts).values([
+    { id: firstAccountId },
+    { id: secondAccountId },
+  ]);
+  const ai = new AiService(
+    { db: serviceDatabase },
+    {
+      generateValidated: async (input) => ({ data: input.validate({}), meta: {} }),
+      textModel: () => 'deepseek-v4-flash',
+    },
+    {},
+  );
+  const challenge = await ai.issueConsentChallenge(firstAccountId);
+  const acceptance = {
+    accepted: true,
+    policyVersion: 'ai-learning-privacy-v4',
+    flowRevision: 'native-explicit-consent-v1',
+    challenge: challenge.challenge,
+  };
+
+  await assert.rejects(
+    ai.acceptConsent(secondAccountId, acceptance),
+    (error) => error?.getStatus?.() === 428,
+  );
+  await ai.acceptConsent(firstAccountId, acceptance);
+  await assert.rejects(
+    ai.acceptConsent(firstAccountId, acceptance),
+    (error) => error?.getStatus?.() === 428,
+  );
+  await ai.revokeConsent(firstAccountId);
+  await assert.rejects(
+    ai.acceptConsent(firstAccountId, {
+      accepted: true,
+      policyVersion: 'ai-learning-privacy-v4',
+    }),
+    (error) => error?.getStatus?.() === 428,
+  );
+  const renewedChallenge = await ai.issueConsentChallenge(firstAccountId);
+  const renewedAcceptance = {
+    accepted: true,
+    policyVersion: 'ai-learning-privacy-v4',
+    flowRevision: 'native-explicit-consent-v1',
+    challenge: renewedChallenge.challenge,
+  };
+  const concurrentAcceptance = await Promise.allSettled([
+    ai.acceptConsent(firstAccountId, renewedAcceptance),
+    ai.acceptConsent(firstAccountId, renewedAcceptance),
+  ]);
+  assert.equal(concurrentAcceptance.filter((result) => result.status === 'fulfilled').length, 1);
+  assert.equal(concurrentAcceptance.filter((result) => (
+    result.status === 'rejected' && result.reason?.getStatus?.() === 428
+  )).length, 1);
+});
+
+test('five concurrent AI requests release the five-connection pool before provider work', async () => {
+  const accountIds = Array.from({ length: 5 }, (_, index) => (
+    `85000000-0000-4000-8000-00000000002${index}`
+  ));
+  const acceptedAt = new Date();
+  await serviceDatabase.insert(databaseSchema.accounts).values(
+    accountIds.map((id) => ({ id })),
+  );
+  await serviceDatabase.insert(databaseSchema.aiConsentAuthorities).values(
+    accountIds.map((userId) => ({
+      userId,
+      policyVersion: 'ai-learning-privacy-v4',
+      revision: 1,
+      active: true,
+      updatedAt: acceptedAt,
+    })),
+  );
+  await serviceDatabase.insert(databaseSchema.aiConsents).values(
+    accountIds.map((userId) => ({
+      userId,
+      policyVersion: 'ai-learning-privacy-v4',
+      acceptedAt,
+      revision: 1,
+      revokedAt: null,
+      updatedAt: acceptedAt,
+    })),
+  );
+  let entered = 0;
+  let releaseProvider;
+  const providerBarrier = new Promise((resolve) => { releaseProvider = resolve; });
+  const ai = new AiService(
+    { db: serviceDatabase },
+    {
+      generateValidated: async (input) => {
+        entered += 1;
+        if (entered === accountIds.length) releaseProvider();
+        await providerBarrier;
+        return {
+          data: input.validate({ grammar: { correctedText: 'Ready.', issues: [] } }),
+          meta: {},
+        };
+      },
+      textModel: () => 'deepseek-v4-flash',
+    },
+    {},
+  );
+  const requests = Promise.all(accountIds.map(async (userId, index) => {
+    const grant = await ai.admitOperation(userId);
+    return ai.review(userId, `pool-request-${index}`, {
+      mode: 'grammar',
+      module: 'atc',
+      questionId: `pool-question-${index}`,
+      transcript: 'Ready.',
+    }, grant);
+  }));
+  let timeout;
+  try {
+    await Promise.race([
+      requests,
+      new Promise((_, reject) => {
+        timeout = setTimeout(() => reject(new Error('ai_pool_deadlock')), 2_000);
+      }),
+    ]);
+  } finally {
+    clearTimeout(timeout);
+  }
+  assert.equal(entered, 5);
 });

@@ -1,4 +1,4 @@
-import type { AiConsent, AiReviewRequest, AiReviewResult, GrammarReviewRequest, GrammarReviewResult, PolishRequest, PolishResult, TranscribeResult } from '@icao/contracts';
+import { CURRENT_AI_CONSENT_FLOW_REVISION, CURRENT_AI_CONSENT_POLICY_VERSION, type AiConsent, type AiConsentChallenge, type AiConsentStatus, type AiReviewRequest, type AiReviewResult, type GrammarReviewRequest, type GrammarReviewResult, type PolishRequest, type PolishResult, type TranscribeResult } from '@icao/contracts';
 import Constants from 'expo-constants';
 import Storage from '@/platform/storage';
 
@@ -14,8 +14,7 @@ import { createAudioUploadForm } from '@/platform/audio-upload';
 import { toAiOperationFailure } from './ai-operation-failure';
 import { getAsrModel } from './asr-model-preference';
 
-const POLICY_VERSION = 'ai-learning-privacy-v4';
-const CONSENT_KEY = `icao.ai.consent.${POLICY_VERSION}`;
+const CONSENT_KEY = `icao.ai.consent.${CURRENT_AI_CONSENT_POLICY_VERSION}`;
 const AUDIO_E2E_ENABLED = __DEV__ && process.env.EXPO_PUBLIC_ICAO_AUDIO_E2E === '1';
 
 function audioE2EProbeBaseUrl() {
@@ -24,36 +23,56 @@ function audioE2EProbeBaseUrl() {
   return getApiBaseUrl();
 }
 
-async function withConsentRecovery<T>(action: () => Promise<T>) {
-  try {
-    return await action();
-  } catch (error) {
-    if (error && typeof error === 'object' && 'code' in error && error.code === 'ai_consent_required') {
-      await acceptAiConsent();
-      return action();
-    }
-    throw error;
-  }
+function consentRequired(error: unknown) {
+  return Boolean(error && typeof error === 'object' && 'code' in error && error.code === 'ai_consent_required');
+}
+
+async function invalidateRejectedConsent(error: unknown) {
+  if (consentRequired(error)) await clearLocalAiConsent().catch(() => undefined);
 }
 
 export async function hasAiConsent() {
   if (AUDIO_E2E_ENABLED) return true;
-  return (await Storage.getItem(CONSENT_KEY)) === 'accepted';
+  const status = await apiRequest<AiConsentStatus>('/v1/ai/consent');
+  const accepted = status.accepted && status.policyVersion === CURRENT_AI_CONSENT_POLICY_VERSION;
+  if (accepted) await Storage.setItem(CONSENT_KEY, 'accepted').catch(() => undefined);
+  else await clearLocalAiConsent().catch(() => undefined);
+  return accepted;
+}
+
+export async function getCachedAiConsentHint() {
+  return Storage.getItem(CONSENT_KEY).then((value) => value === 'accepted').catch(() => false);
 }
 
 export async function acceptAiConsent() {
+  // This function is called only after the Native consent sheet resolves with
+  // an explicit user action. The one-time server challenge prevents older
+  // shipped clients from recreating consent with their legacy bare POST.
+  const challenge = await apiRequest<AiConsentChallenge>('/v1/ai/consent/challenge', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+      flowRevision: CURRENT_AI_CONSENT_FLOW_REVISION,
+    }),
+  });
   const consent = await apiRequest<AiConsent>('/v1/ai/consent', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ accepted: true, policyVersion: POLICY_VERSION }),
+    body: JSON.stringify({
+      accepted: true,
+      policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+      flowRevision: CURRENT_AI_CONSENT_FLOW_REVISION,
+      challenge: challenge.challenge,
+    }),
   });
-  await Storage.setItem(CONSENT_KEY, 'accepted');
+  await Storage.setItem(CONSENT_KEY, 'accepted').catch(() => undefined);
   return consent;
 }
 
 export async function withdrawAiConsent() {
   await apiRequest<{ revoked: true }>('/v1/ai/consent', { method: 'DELETE' });
-  await clearLocalAiConsent();
+  await clearLocalAiConsent().catch(() => undefined);
 }
 
 export async function clearLocalAiConsent() {
@@ -77,7 +96,7 @@ export async function transcribeRecording(uri: string, signal?: AbortSignal) {
     } satisfies TranscribeResult;
   }
   try {
-    return await withConsentRecovery(async () => {
+    return await (async () => {
       const baseUrl = getApiBaseUrl();
       if (!baseUrl) throw new Error('api_not_configured');
       const token = await apiAccessToken();
@@ -109,28 +128,31 @@ export async function transcribeRecording(uri: string, signal?: AbortSignal) {
         throw rememberApiError(payload?.error?.code ?? `api_http_${response.status}`, response.status, payload?.requestId);
       }
       return payload.data;
-    });
+    })();
   } catch (error) {
+    await invalidateRejectedConsent(error);
     throw toAiOperationFailure(error, 'transcribe');
   }
 }
 
 export async function grammarReview(input: GrammarReviewRequest, signal?: AbortSignal) {
   try {
-    return await withConsentRecovery(() => apiRequest<GrammarReviewResult>('/v1/ai/grammar-review', {
+    return await apiRequest<GrammarReviewResult>('/v1/ai/grammar-review', {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input), signal,
-    }));
+    });
   } catch (error) {
+    await invalidateRejectedConsent(error);
     throw toAiOperationFailure(error, 'grammar');
   }
 }
 
 export async function polishExpression(input: PolishRequest, signal?: AbortSignal) {
   try {
-    return await withConsentRecovery(() => apiRequest<PolishResult>('/v1/ai/polish', {
+    return await apiRequest<PolishResult>('/v1/ai/polish', {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input), signal,
-    }));
+    });
   } catch (error) {
+    await invalidateRejectedConsent(error);
     throw toAiOperationFailure(error, 'polish');
   }
 }
@@ -138,10 +160,11 @@ export async function polishExpression(input: PolishRequest, signal?: AbortSigna
 export async function reviewExpression(input: AiReviewRequest, signal?: AbortSignal) {
   const capability = input.mode === 'opi' ? 'polish' : 'grammar';
   try {
-    return await withConsentRecovery(() => apiRequest<AiReviewResult>('/v1/ai/review', {
+    return await apiRequest<AiReviewResult>('/v1/ai/review', {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input), signal,
-    }));
+    });
   } catch (error) {
+    await invalidateRejectedConsent(error);
     throw toAiOperationFailure(error, capability);
   }
 }

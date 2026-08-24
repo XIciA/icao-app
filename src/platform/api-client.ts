@@ -113,6 +113,18 @@ export async function apiRequest<T>(path: string, init: RequestInit = {}) {
   if (
     __DEV__
     && process.env.EXPO_PUBLIC_ICAO_AUDIO_E2E === '1'
+    && path === '/v1/ai/consent/challenge'
+  ) {
+    return {
+      challenge: 'audio-e2e-explicit-consent-challenge',
+      expiresAt: new Date(Date.now() + 60_000).toISOString(),
+      flowRevision: 'native-explicit-consent-v1',
+      policyVersion: 'ai-learning-privacy-v4',
+    } as T;
+  }
+  if (
+    __DEV__
+    && process.env.EXPO_PUBLIC_ICAO_AUDIO_E2E === '1'
     && path === '/v1/ai/consent'
   ) {
     return {

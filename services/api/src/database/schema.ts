@@ -527,8 +527,34 @@ export const aiConsents = pgTable('ai_consents', {
   userId: uuid('user_id').primaryKey().references(() => accounts.id, { onDelete: 'cascade' }),
   policyVersion: text('policy_version').notNull(),
   acceptedAt: timestamp('accepted_at', { withTimezone: true }).defaultNow().notNull(),
+  revision: integer('revision').default(1).notNull(),
+  revokedAt: timestamp('revoked_at', { withTimezone: true }),
   updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
 }).enableRLS();
+
+export const aiConsentAuthorities = pgTable('ai_consent_authorities', {
+  userId: uuid('user_id').primaryKey().references(() => accounts.id, { onDelete: 'cascade' }),
+  policyVersion: text('policy_version').notNull(),
+  revision: integer('revision').default(0).notNull(),
+  active: boolean('active').default(false).notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  check('ai_consent_authorities_revision_check', sql`${table.revision} >= 0`),
+]).enableRLS();
+
+export const aiConsentChallenges = pgTable('ai_consent_challenges', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  userId: uuid('user_id').notNull().references(() => accounts.id, { onDelete: 'cascade' }),
+  policyVersion: text('policy_version').notNull(),
+  flowRevision: text('flow_revision').notNull(),
+  tokenHash: text('token_hash').notNull(),
+  consentRevision: integer('consent_revision').notNull(),
+  expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex('ai_consent_challenges_token_hash').on(table.tokenHash),
+  index('ai_consent_challenges_user').on(table.userId),
+]).enableRLS();
 
 export const aiUsageLogs = pgTable('ai_usage_logs', {
   id: uuid('id').defaultRandom().primaryKey(),

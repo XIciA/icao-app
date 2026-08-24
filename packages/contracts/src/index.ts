@@ -548,14 +548,40 @@ export function isTencentAsrModel(value: unknown): value is TencentAsrModel {
   return typeof value === 'string' && TENCENT_ASR_MODELS.includes(value as TencentAsrModel);
 }
 
+export const CURRENT_AI_CONSENT_POLICY_VERSION = 'ai-learning-privacy-v4' as const;
+export const CURRENT_AI_CONSENT_FLOW_REVISION = 'native-explicit-consent-v1' as const;
+
 export type AiConsentRequest = {
-  policyVersion: string;
-  accepted: boolean;
+  policyVersion: typeof CURRENT_AI_CONSENT_POLICY_VERSION;
+  accepted: true;
+  flowRevision?: typeof CURRENT_AI_CONSENT_FLOW_REVISION;
+  challenge?: string;
+};
+
+export type AiConsentChallengeRequest = {
+  policyVersion: typeof CURRENT_AI_CONSENT_POLICY_VERSION;
+  flowRevision: typeof CURRENT_AI_CONSENT_FLOW_REVISION;
+};
+
+export type AiConsentChallenge = {
+  policyVersion: typeof CURRENT_AI_CONSENT_POLICY_VERSION;
+  flowRevision: typeof CURRENT_AI_CONSENT_FLOW_REVISION;
+  challenge: string;
+  expiresAt: string;
 };
 
 export type AiConsent = {
-  policyVersion: string;
+  policyVersion: typeof CURRENT_AI_CONSENT_POLICY_VERSION;
   acceptedAt: string;
+};
+
+export type AiConsentStatus = {
+  accepted: true;
+  policyVersion: typeof CURRENT_AI_CONSENT_POLICY_VERSION;
+  acceptedAt: string;
+} | {
+  accepted: false;
+  policyVersion: typeof CURRENT_AI_CONSENT_POLICY_VERSION;
 };
 
 export type WordLookupRequest = {
