@@ -2,7 +2,7 @@
 
 状态：已确认
 确认日期：2026-08-12
-关联需求：[Native App 正式商业上线总需求](../requirements.md)
+关联需求：[Native App 正式商业上线总需求](../../workstreams/app-store-1.0.0/requirements.md)
 
 ## 决策
 
