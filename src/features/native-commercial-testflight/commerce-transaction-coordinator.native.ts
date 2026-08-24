@@ -6,11 +6,8 @@ import type {
   NativeCommerceProvider,
 } from './commerce-provider.native';
 
-/**
- * Release gate marker: this module is infrastructure only. It is intentionally
- * not mounted in the app lifecycle until account UI and server verification exist.
- */
-export const NATIVE_COMMERCE_INFRASTRUCTURE_ONLY = true as const;
+/** Release gate marker: the coordinator is ready for the authenticated iOS runtime. */
+export const NATIVE_COMMERCE_COORDINATOR_READY = true as const;
 
 export type CommerceTransactionConsumption =
   | Readonly<{ state: 'deferred' }>
@@ -27,8 +24,17 @@ export interface CommerceTransactionConsumer {
 
 export type CommerceTransactionCoordinationReport = Readonly<{
   observed: number;
+  observedReferences: readonly string[];
   serverVerified: number;
+  serverVerifiedReferences: readonly string[];
+  serverVerifiedTransactions: readonly Readonly<{
+    transactionReference: string;
+    offeringKey: CommerceTransaction['offeringKey'];
+    purchasedAt: string;
+    environment: CommerceTransaction['environment'];
+  }>[];
   finished: number;
+  finishedReferences: readonly string[];
   deferred: number;
   quarantined: number;
 }>;
@@ -86,8 +92,17 @@ export class NativeCommerceTransactionCoordinator {
   ): Promise<CommerceResult<CommerceTransactionCoordinationReport>> {
     const report = {
       observed: 0,
+      observedReferences: [] as string[],
       serverVerified: 0,
+      serverVerifiedReferences: [] as string[],
+      serverVerifiedTransactions: [] as {
+        transactionReference: string;
+        offeringKey: CommerceTransaction['offeringKey'];
+        purchasedAt: string;
+        environment: CommerceTransaction['environment'];
+      }[],
       finished: 0,
+      finishedReferences: [] as string[],
       deferred: 0,
       quarantined: 0,
     };
@@ -115,6 +130,7 @@ export class NativeCommerceTransactionCoordinator {
         if (observedReferences.has(transaction.transactionReference)) continue;
         observedReferences.add(transaction.transactionReference);
         report.observed += 1;
+        report.observedReferences.push(transaction.transactionReference);
         const consumption = await this.consumer
           .consume(transaction)
           .catch((): CommerceTransactionConsumption => ({ state: 'deferred' }));
@@ -136,10 +152,20 @@ export class NativeCommerceTransactionCoordinator {
           continue;
         }
         report.serverVerified += 1;
+        report.serverVerifiedReferences.push(transaction.transactionReference);
+        report.serverVerifiedTransactions.push({
+          transactionReference: transaction.transactionReference,
+          offeringKey: transaction.offeringKey,
+          purchasedAt: transaction.purchasedAt,
+          environment: transaction.environment,
+        });
         const finish = await this.provider.finishTransaction({
           acknowledgement: acknowledgement.value,
         });
-        if (finish.ok) report.finished += 1;
+        if (finish.ok) {
+          report.finished += 1;
+          report.finishedReferences.push(transaction.transactionReference);
+        }
         else report.deferred += 1;
       }
     } while (overflowed);

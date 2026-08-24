@@ -14,6 +14,7 @@ import { useAuth } from '@/features/auth/AuthProvider';
 import { useProfile } from '@/features/account/profile-store';
 
 const menu = [
+  ...(Platform.OS === 'ios' ? [{ slug: 'membership', label: '会员与购买', icon: Star }] : []),
   { slug: 'learning-records', label: '学习记录', icon: History },
   { slug: 'annotations', label: '我的标注', icon: Bookmark },
   { slug: 'word-favorites', label: '单词收藏', icon: Star },
@@ -50,6 +51,7 @@ export function ProfileHomeScreen() {
     if (slug === 'learning-records') router.push('/learning-records');
     else if (slug === 'annotations') router.push('/annotations');
     else if (slug === 'word-favorites') router.push('/word-favorites');
+    else if (slug === 'membership') router.push('/account/membership');
     else if (slug === 'settings') router.push('/account/settings');
     else if (slug === 'feedback')
       router.push({

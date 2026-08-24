@@ -2,6 +2,7 @@ import { useEffect, type PropsWithChildren } from 'react';
 import { AppState } from 'react-native';
 
 import { recordingRepository } from '@/features/question-bank/recording/recording-repository';
+import { CommerceRuntimeProvider } from '@/features/native-commercial-testflight/CommerceRuntimeProvider';
 import { RadioMiniPlayer } from '@/features/radio-player/RadioMiniPlayer';
 import { RadioPlayerProvider } from '@/features/radio-player/RadioPlayerProvider';
 import { purgeExpiredSafeDiagnostics } from '@/platform/diagnostics/safe-diagnostic-store';
@@ -22,5 +23,9 @@ export function AppRuntime({ children }: PropsWithChildren) {
     };
   }, []);
 
-  return <RadioPlayerProvider>{children}<RadioMiniPlayer /></RadioPlayerProvider>;
+  return (
+    <CommerceRuntimeProvider>
+      <RadioPlayerProvider>{children}<RadioMiniPlayer /></RadioPlayerProvider>
+    </CommerceRuntimeProvider>
+  );
 }
