@@ -11,7 +11,6 @@ SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 PROJECT_ROOT=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)
 . "$SCRIPT_DIR/lib/release-common.sh"
 . "$SCRIPT_DIR/lib/ios-release-product.sh"
-configure_ios_cng_product "$PROJECT_ROOT/ios"
 cd "$PROJECT_ROOT"
 
 node tools/check-mainline-release.mjs
@@ -99,11 +98,12 @@ plutil -insert teamID -string "$IOS_TEAM_ID" "$EXPORT_OPTIONS"
 plutil -insert uploadSymbols -bool YES "$EXPORT_OPTIONS"
 
 export NODE_BINARY=${NODE_BINARY:-$(command -v node)}
-ICAO_APP_VARIANT=production pnpm exec expo prebuild --platform ios --no-install
+ICAO_APP_VARIANT=production pnpm exec expo prebuild --platform ios --clean --no-install
 (
   cd "$PROJECT_ROOT/ios"
   pod install
 )
+configure_ios_cng_product "$PROJECT_ROOT/ios"
 verify_ios_storekit_dependencies "$PROJECT_ROOT/ios/Podfile.lock"
 
 xcodebuild \

@@ -54,6 +54,8 @@ function toStoreKitTransaction(purchase: Purchase): StoreKitTransaction | undefi
 
 export class ReactNativeIapStoreKitClient implements StoreKitClient {
   private connected = false;
+  private closed = false;
+  private connectPromise?: Promise<void>;
   private purchaseUpdatedSubscription?: EventSubscription;
   private purchaseErrorSubscription?: EventSubscription;
   private readonly purchasesByTransaction = new Map<string, Purchase>();
@@ -61,9 +63,24 @@ export class ReactNativeIapStoreKitClient implements StoreKitClient {
 
   async connect(handlers: StoreKitEventHandlers): Promise<void> {
     if (this.connected) return;
+    if (this.closed) throw new Error('storekit_client_disconnected');
     if (Platform.OS !== 'ios') throw new Error('storekit_platform_unsupported');
+    if (!this.connectPromise) {
+      this.connectPromise = this.performConnect(handlers).catch((error: unknown) => {
+        this.connectPromise = undefined;
+        throw error;
+      });
+    }
+    await this.connectPromise;
+  }
 
+  private async performConnect(handlers: StoreKitEventHandlers): Promise<void> {
     const didConnect = await initConnection();
+    if (this.closed) {
+      if (didConnect) await endConnection().catch(() => undefined);
+      throw new Error('storekit_client_disconnected');
+    }
+
     if (!didConnect) throw new Error('storekit_connection_failed');
 
     try {
@@ -114,8 +131,7 @@ export class ReactNativeIapStoreKitClient implements StoreKitClient {
     });
   }
 
-  async restorePurchases(): Promise<readonly StoreKitTransaction[]> {
-    await syncIOS();
+  async getTransactions(): Promise<readonly StoreKitTransaction[]> {
     const purchases = await getAllTransactionsIOS();
 
     return purchases.flatMap((purchase) => {
@@ -123,6 +139,11 @@ export class ReactNativeIapStoreKitClient implements StoreKitClient {
       if (!transaction) return [];
       return [transaction];
     });
+  }
+
+  async restorePurchases(): Promise<readonly StoreKitTransaction[]> {
+    await syncIOS();
+    return this.getTransactions();
   }
 
   async finishTransaction(
@@ -160,6 +181,8 @@ export class ReactNativeIapStoreKitClient implements StoreKitClient {
   }
 
   async disconnect(): Promise<void> {
+    if (this.closed) return;
+    this.closed = true;
     const wasConnected = this.connected;
     this.connected = false;
     this.purchaseUpdatedSubscription?.remove();

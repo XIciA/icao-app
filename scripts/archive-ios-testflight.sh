@@ -11,7 +11,6 @@ SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 PROJECT_ROOT=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)
 . "$SCRIPT_DIR/lib/release-common.sh"
 . "$SCRIPT_DIR/lib/ios-release-product.sh"
-configure_ios_cng_product "$PROJECT_ROOT/ios"
 
 node "$PROJECT_ROOT/tools/check-mainline-release.mjs" --root "$PROJECT_ROOT"
 
@@ -45,11 +44,12 @@ echo "Archive: $ARCHIVE_PATH"
 echo 'The publishable key is available only to the build process and is not printed.'
 
 cd "$PROJECT_ROOT"
-ICAO_APP_VARIANT=production pnpm exec expo prebuild --platform ios --no-install
+ICAO_APP_VARIANT=production pnpm exec expo prebuild --platform ios --clean --no-install
 (
   cd "$PROJECT_ROOT/ios"
   pod install
 )
+configure_ios_cng_product "$PROJECT_ROOT/ios"
 verify_ios_storekit_dependencies "$PROJECT_ROOT/ios/Podfile.lock"
 
 mkdir -p "$(dirname -- "$ARCHIVE_PATH")"

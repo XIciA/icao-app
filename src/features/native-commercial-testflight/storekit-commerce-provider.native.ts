@@ -155,6 +155,7 @@ type PendingPurchase = {
   productId: string;
   applicationAccountToken: string;
   requestStartedAt: number;
+  purchaseDispatched: boolean;
   resolve(result: CommerceResult<CommercePurchase>): void;
   cancelTimeout(): void;
 };
@@ -165,7 +166,7 @@ export class StoreKitNativeCommerceProvider implements NativeCommerceProvider {
   private disposed = false;
   private inboxOverflowed = false;
   private fallbackInboxKey = 0;
-  private reconciliationOffset = 0;
+  private readonly reconciliationDeliveredKeys = new Set<string>();
   private readonly transactionInbox = new Map<string, CommerceTransaction>();
   private readonly quarantineInbox = new Map<string, CommerceQuarantinedTransaction>();
   private readonly observedTransactions = new Map<string, CommerceTransaction>();
@@ -276,13 +277,6 @@ export class StoreKitNativeCommerceProvider implements NativeCommerceProvider {
     if (this.pendingPurchase) {
       return errorResult('commerce_purchase_busy', { retryable: true });
     }
-    if (!(await this.connect())) {
-      return this.disposed ? this.disposedResult() : connectionFailure();
-    }
-    // A second caller can pass the pre-connect check while the first caller connects.
-    if (this.pendingPurchase) {
-      return errorResult('commerce_purchase_busy', { retryable: true });
-    }
 
     let resolvePurchase!: (result: CommerceResult<CommercePurchase>) => void;
     const resultPromise = new Promise<CommerceResult<CommercePurchase>>((resolve) => {
@@ -292,35 +286,21 @@ export class StoreKitNativeCommerceProvider implements NativeCommerceProvider {
       productId: product.appleProductId,
       applicationAccountToken: request.applicationAccountToken,
       requestStartedAt: this.runtime.now(),
+      purchaseDispatched: false,
       resolve: resolvePurchase,
       cancelTimeout: () => undefined,
     };
+    this.pendingPurchase = pendingPurchase;
     pendingPurchase.cancelTimeout = this.runtime.schedule(this.purchaseEventTimeoutMs, () => {
       this.completePendingPurchase(
         pendingPurchase,
         errorResult('commerce_purchase_timed_out', {
           retryable: true,
-          charged: 'unknown',
+          charged: pendingPurchase.purchaseDispatched ? 'unknown' : false,
         }),
       );
     });
-    this.pendingPurchase = pendingPurchase;
-
-    // Native dispatch may itself hang. Transaction events and our timeout own completion.
-    void this.client
-      .requestPurchase({
-        productId: product.appleProductId,
-        applicationAccountToken: request.applicationAccountToken,
-      })
-      .catch(() => {
-        this.completePendingPurchase(
-          pendingPurchase,
-          errorResult('commerce_purchase_failed', {
-            retryable: true,
-            charged: 'unknown',
-          }),
-        );
-      });
+    void this.beginPurchase(pendingPurchase);
 
     return resultPromise;
   }
@@ -341,12 +321,35 @@ export class StoreKitNativeCommerceProvider implements NativeCommerceProvider {
 
     let storeTransactions: readonly StoreKitTransaction[];
     try {
+      storeTransactions = await this.client.getTransactions();
+    } catch {
+      return errorResult('commerce_restore_failed', { retryable: true });
+    }
+
+    return success(this.reconcileSnapshot(storeTransactions, this.drainInbox()));
+  }
+
+  async restorePurchases(): Promise<CommerceResult<CommerceRestore>> {
+    if (this.disposed) return this.disposedResult();
+    if (!(await this.connect())) {
+      return this.disposed ? this.disposedResult() : connectionFailure();
+    }
+
+    let storeTransactions: readonly StoreKitTransaction[];
+    try {
       storeTransactions = await this.client.restorePurchases();
     } catch {
       return errorResult('commerce_restore_failed', { retryable: true });
     }
 
-    const liveInbox = this.drainInbox();
+    this.reconciliationDeliveredKeys.clear();
+    return success(this.reconcileSnapshot(storeTransactions, this.drainInbox()));
+  }
+
+  private reconcileSnapshot(
+    storeTransactions: readonly StoreKitTransaction[],
+    liveInbox: CommerceTransactionInbox,
+  ): CommerceTransactionInbox {
     const recognizedByReference = new Map(
       liveInbox.transactions.map((transaction) => [transaction.transactionReference, transaction]),
     );
@@ -372,24 +375,23 @@ export class StoreKitNativeCommerceProvider implements NativeCommerceProvider {
     const entries = [
       ...[...recognizedByReference.values()].map((transaction) => ({
         kind: 'recognized' as const,
+        deliveryKey: `recognized:${transaction.transactionReference}`,
         sortKey: `${transaction.purchasedAt}:${transaction.transactionReference}`,
         transaction,
       })),
       ...[...quarantinedByReference.values()].map((transaction) => ({
         kind: 'quarantined' as const,
+        deliveryKey: `quarantined:${this.quarantineKey(transaction)}`,
         sortKey: `${transaction.purchasedAt ?? ''}:${this.quarantineKey(transaction)}`,
         transaction,
       })),
-    ].sort((left, right) => left.sortKey.localeCompare(right.sortKey));
+    ]
+      .sort((left, right) => left.sortKey.localeCompare(right.sortKey))
+      .filter((entry) => !this.reconciliationDeliveredKeys.has(entry.deliveryKey));
 
-    if (this.reconciliationOffset >= entries.length) this.reconciliationOffset = 0;
-    const page = entries.slice(
-      this.reconciliationOffset,
-      this.reconciliationOffset + MAX_INBOX_ENTRIES,
-    );
-    const nextOffset = this.reconciliationOffset + page.length;
-    const overflowed = nextOffset < entries.length;
-    this.reconciliationOffset = overflowed ? nextOffset : 0;
+    const page = entries.slice(0, MAX_INBOX_ENTRIES);
+    page.forEach((entry) => this.reconciliationDeliveredKeys.add(entry.deliveryKey));
+    const overflowed = liveInbox.overflowed || entries.length > page.length;
 
     const transactions: CommerceTransaction[] = [];
     const quarantinedTransactions: CommerceQuarantinedTransaction[] = [];
@@ -408,23 +410,14 @@ export class StoreKitNativeCommerceProvider implements NativeCommerceProvider {
         quarantinedTransactions.push(entry.transaction);
       }
     }
-    return success({
+    const inbox = {
       transactions,
       quarantinedTransactions,
       overflowed,
       entitlementGranted: false,
-    });
-  }
-
-  async restorePurchases(): Promise<CommerceResult<CommerceRestore>> {
-    const result = await this.reconcileTransactions();
-    if (!result.ok) return result;
-    return success({
-      transactions: result.value.transactions,
-      quarantinedTransactions: result.value.quarantinedTransactions,
-      overflowed: result.value.overflowed,
-      entitlementGranted: false,
-    });
+    } as const;
+    if (!overflowed) this.reconciliationDeliveredKeys.clear();
+    return inbox;
   }
 
   async markServerVerified(
@@ -512,11 +505,10 @@ export class StoreKitNativeCommerceProvider implements NativeCommerceProvider {
         pendingPurchase,
         errorResult('commerce_provider_disposed', {
           retryable: false,
-          charged: 'unknown',
+          charged: pendingPurchase.purchaseDispatched ? 'unknown' : false,
         }),
       );
     }
-    await this.connectPromise?.catch(() => undefined);
     await this.client.disconnect().catch(() => undefined);
     this.connectPromise = undefined;
     this.transactionInbox.clear();
@@ -526,7 +518,35 @@ export class StoreKitNativeCommerceProvider implements NativeCommerceProvider {
     this.finishedReferences.clear();
     this.validAcknowledgements = new WeakSet<object>();
     this.completedAcknowledgements = new WeakSet<object>();
-    this.reconciliationOffset = 0;
+    this.reconciliationDeliveredKeys.clear();
+  }
+
+  private async beginPurchase(pendingPurchase: PendingPurchase): Promise<void> {
+    if (!(await this.connect())) {
+      this.completePendingPurchase(
+        pendingPurchase,
+        this.disposed ? this.disposedResult() : connectionFailure(),
+      );
+      return;
+    }
+    if (this.disposed || this.pendingPurchase !== pendingPurchase) return;
+
+    pendingPurchase.purchaseDispatched = true;
+    try {
+      // Native dispatch may itself hang. Transaction events and our timeout own completion.
+      await this.client.requestPurchase({
+        productId: pendingPurchase.productId,
+        applicationAccountToken: pendingPurchase.applicationAccountToken,
+      });
+    } catch {
+      this.completePendingPurchase(
+        pendingPurchase,
+        errorResult('commerce_purchase_failed', {
+          retryable: true,
+          charged: 'unknown',
+        }),
+      );
+    }
   }
 
   private completePendingPurchase(

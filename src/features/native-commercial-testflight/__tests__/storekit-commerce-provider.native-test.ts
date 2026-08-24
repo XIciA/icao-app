@@ -44,6 +44,9 @@ class ManualRuntime implements StoreKitCommerceRuntime {
 class FakeStoreKitClient implements StoreKitClient {
   handlers?: StoreKitEventHandlers;
   connectionError = false;
+  connectNeverResolves = false;
+  getTransactionsCount = 0;
+  restorePurchasesCount = 0;
   products: readonly StoreKitProduct[] = listMembershipProducts().map((product, index) => ({
     productId: product.appleProductId,
     localizedPrice: `本地价格 ${index + 1}`,
@@ -63,9 +66,15 @@ class FakeStoreKitClient implements StoreKitClient {
   readonly requestStarted = new Promise<void>((resolve) => {
     this.requestStartedResolve = resolve;
   });
+  private connectStartedResolve!: () => void;
+  readonly connectStarted = new Promise<void>((resolve) => {
+    this.connectStartedResolve = resolve;
+  });
 
   async connect(handlers: StoreKitEventHandlers): Promise<void> {
+    this.connectStartedResolve();
     if (this.connectionError) throw new Error('offline');
+    if (this.connectNeverResolves) await new Promise<void>(() => undefined);
     this.handlers = handlers;
   }
 
@@ -84,7 +93,13 @@ class FakeStoreKitClient implements StoreKitClient {
     if (this.requestNeverResolves) await new Promise<void>(() => undefined);
   }
 
+  async getTransactions(): Promise<readonly StoreKitTransaction[]> {
+    this.getTransactionsCount += 1;
+    return this.restoredTransactions;
+  }
+
   async restorePurchases(): Promise<readonly StoreKitTransaction[]> {
+    this.restorePurchasesCount += 1;
     return this.restoredTransactions;
   }
 
@@ -407,7 +422,23 @@ describe('StoreKit native commerce provider', () => {
         }),
       }),
     );
+    expect(client.getTransactionsCount).toBe(1);
+    expect(client.restorePurchasesCount).toBe(0);
     expect(client.finished).toEqual([]);
+  });
+
+  it('uses StoreKit sync only for the explicit Restore Purchases action', async () => {
+    const client = new FakeStoreKitClient();
+    client.restoredTransactions = [purchasedTransaction()];
+    const { provider } = createProvider(client);
+
+    await provider.reconcileTransactions();
+    expect(client.getTransactionsCount).toBe(1);
+    expect(client.restorePurchasesCount).toBe(0);
+
+    await provider.restorePurchases();
+    expect(client.getTransactionsCount).toBe(1);
+    expect(client.restorePurchasesCount).toBe(1);
   });
 
   it('pages a large cold-start history so every transaction can be submitted for server verification', async () => {
@@ -440,6 +471,74 @@ describe('StoreKit native commerce provider', () => {
 
     expect(overflowStates).toEqual([true, true, false]);
     expect(delivered.size).toBe(513);
+  });
+
+  it('does not miss an earlier transaction inserted while a 513-entry history is paged', async () => {
+    const client = new FakeStoreKitClient();
+    client.restoredTransactions = Array.from({ length: 513 }, (_, index) =>
+      purchasedTransaction(undefined, {
+        transactionId: `mutable-history-${index}`,
+        purchaseToken: `mutable-history-jws-${index}`,
+        transactionDate: NOW + index,
+      }),
+    );
+    const { provider } = createProvider(client);
+    const delivered: string[] = [];
+
+    const firstPage = await provider.reconcileTransactions();
+    if (!firstPage.ok) throw new Error('reconciliation should succeed');
+    delivered.push(...firstPage.value.transactions.map(({ transactionReference }) => transactionReference));
+    client.restoredTransactions = [
+      purchasedTransaction(undefined, {
+        transactionId: 'inserted-earlier',
+        purchaseToken: 'inserted-earlier-jws',
+        transactionDate: NOW - 1,
+      }),
+      ...client.restoredTransactions,
+    ];
+
+    let overflowed = firstPage.value.overflowed;
+    while (overflowed) {
+      const page = await provider.reconcileTransactions();
+      if (!page.ok) throw new Error('reconciliation should succeed');
+      delivered.push(...page.value.transactions.map(({ transactionReference }) => transactionReference));
+      overflowed = page.value.overflowed;
+    }
+
+    expect(new Set(delivered).size).toBe(514);
+    expect(delivered).toContain('inserted-earlier');
+    expect(delivered).toContain('mutable-history-512');
+  });
+
+  it('propagates live-inbox overflow and recovers all 257 events from StoreKit history', async () => {
+    const client = new FakeStoreKitClient();
+    const { provider } = createProvider(client);
+    await provider.listOfferings();
+    const transactions = Array.from({ length: 257 }, (_, index) =>
+      purchasedTransaction(undefined, {
+        transactionId: `live-overflow-${index}`,
+        purchaseToken: `live-overflow-jws-${index}`,
+        transactionDate: NOW + index,
+      }),
+    );
+    transactions.forEach((transaction) => client.handlers?.onPurchaseUpdated(transaction));
+    client.restoredTransactions = transactions;
+
+    const firstPage = await provider.reconcileTransactions();
+    if (!firstPage.ok) throw new Error('reconciliation should succeed');
+    expect(firstPage.value.transactions).toHaveLength(256);
+    expect(firstPage.value.overflowed).toBe(true);
+
+    const secondPage = await provider.reconcileTransactions();
+    if (!secondPage.ok) throw new Error('reconciliation should succeed');
+    expect(secondPage.value.transactions).toHaveLength(1);
+    expect(secondPage.value.overflowed).toBe(false);
+    expect(
+      new Set([
+        ...firstPage.value.transactions,
+        ...secondPage.value.transactions,
+      ].map(({ transactionReference }) => transactionReference)).size,
+    ).toBe(257);
   });
 
   it('retains a deferred purchase when it is approved after the in-memory request has ended', async () => {
@@ -550,6 +649,29 @@ describe('StoreKit native commerce provider', () => {
         applicationAccountToken: ACCOUNT_TOKEN,
       }),
     ).resolves.toEqual(expect.objectContaining({ code: 'commerce_purchase_cancelled' }));
+  });
+
+  it('bounds a connection that never resolves and disposes without waiting for it', async () => {
+    const client = new FakeStoreKitClient();
+    client.connectNeverResolves = true;
+    const { provider, runtime } = createProvider(client);
+    const purchase = provider.purchase({
+      offeringKey: 'membership_31d_v1',
+      applicationAccountToken: ACCOUNT_TOKEN,
+    });
+    await client.connectStarted;
+
+    runtime.fireTimeouts();
+    await expect(purchase).resolves.toEqual(
+      expect.objectContaining({
+        code: 'commerce_purchase_timed_out',
+        charged: false,
+        retryable: true,
+      }),
+    );
+    await expect(provider.dispose()).resolves.toBeUndefined();
+    expect(client.requested).toEqual([]);
+    expect(client.disconnectCount).toBe(1);
   });
 
   it('requires a provider-owned exact-JWS server acknowledgement before idempotent finish', async () => {

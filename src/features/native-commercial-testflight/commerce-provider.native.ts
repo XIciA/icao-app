@@ -186,10 +186,12 @@ export interface NativeCommerceProvider {
   /** Drains native events already observed by this provider. */
   drainTransactionInbox(): Promise<CommerceResult<CommerceTransactionInbox>>;
   /**
-   * Must run on every app start. If overflowed is true, verify this page and call
-   * again until false so every StoreKit history entry is delivered boundedly.
+   * Must run on every app start. This is a silent history read and never invokes
+   * StoreKit account sync. If overflowed is true, verify this page and call again
+   * until false so every StoreKit history entry is delivered boundedly.
    */
   reconcileTransactions(): Promise<CommerceResult<CommerceTransactionInbox>>;
+  /** Explicit user action only. This is the sole provider path allowed to sync StoreKit. */
   restorePurchases(): Promise<CommerceResult<CommerceRestore>>;
   /** Call only after the service has verified and durably recorded the exact JWS. */
   markServerVerified(

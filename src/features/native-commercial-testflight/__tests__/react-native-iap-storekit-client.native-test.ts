@@ -163,6 +163,17 @@ describe('react-native-iap StoreKit client', () => {
     expect(finishTransaction).not.toHaveBeenCalled();
   });
 
+  it('reads startup history without synchronizing the App Store account', async () => {
+    const client = new ReactNativeIapStoreKitClient();
+    jest.mocked(getAllTransactionsIOS).mockResolvedValue([PURCHASE]);
+
+    await client.connect(createHandlers());
+    await expect(client.getTransactions()).resolves.toHaveLength(1);
+
+    expect(getAllTransactionsIOS).toHaveBeenCalledTimes(1);
+    expect(syncIOS).not.toHaveBeenCalled();
+  });
+
   it('forwards the UUID to StoreKit and explicitly disables automatic finish', async () => {
     const client = new ReactNativeIapStoreKitClient();
     await client.connect(createHandlers());
@@ -221,5 +232,22 @@ describe('react-native-iap StoreKit client', () => {
     expect(mockPurchaseUpdatedListeners.every((listener) => !listener.active)).toBe(true);
     expect(mockPurchaseErrorListeners.every((listener) => !listener.active)).toBe(true);
     expect(endConnection).toHaveBeenCalledTimes(2);
+  });
+
+  it('disconnects promptly while native connect is pending and closes a late connection', async () => {
+    let resolveConnection!: (connected: boolean) => void;
+    jest.mocked(initConnection).mockImplementation(
+      () => new Promise<boolean>((resolve) => (resolveConnection = resolve)),
+    );
+    const client = new ReactNativeIapStoreKitClient();
+    const connection = client.connect(createHandlers());
+
+    await expect(client.disconnect()).resolves.toBeUndefined();
+    resolveConnection(true);
+    await expect(connection).rejects.toThrow('storekit_client_disconnected');
+
+    expect(purchaseUpdatedListener).not.toHaveBeenCalled();
+    expect(purchaseErrorListener).not.toHaveBeenCalled();
+    expect(endConnection).toHaveBeenCalledTimes(1);
   });
 });
