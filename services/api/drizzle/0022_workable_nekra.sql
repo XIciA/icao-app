@@ -1,5 +1,5 @@
 ALTER TABLE "apple_credential_intakes" DROP CONSTRAINT "apple_credential_intakes_status_check";--> statement-breakpoint
-ALTER TABLE "apple_credential_intakes" ADD CONSTRAINT "apple_credential_intakes_status_check" CHECK ("apple_credential_intakes"."status" IN ('pending_exchange', 'pending_binding', 'revoke_pending', 'retryable', 'revoked', 'manual_action_required'));--> statement-breakpoint
+ALTER TABLE "apple_credential_intakes" ADD CONSTRAINT "apple_credential_intakes_status_check" CHECK ("apple_credential_intakes"."status" IN ('pending_exchange', 'pending_validation', 'pending_binding', 'revoke_pending', 'retryable', 'revoked', 'manual_action_required'));--> statement-breakpoint
 CREATE OR REPLACE FUNCTION enforce_active_apple_intake_create()
 RETURNS trigger
 LANGUAGE plpgsql

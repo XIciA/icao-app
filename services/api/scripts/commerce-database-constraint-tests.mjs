@@ -308,11 +308,11 @@ function appleIdToken({ audience = 'com.feizhuicao.app', expiresAt, nonce, subje
   return `${header}.${payload}.test-signature`;
 }
 
-function appleService(http, config = appleConfig()) {
+function appleService(http, config = appleConfig(), verifier = undefined) {
   return new AppleAuthService(
     config,
     http,
-    {
+    verifier ?? {
       verify: async (token) => JSON.parse(Buffer.from(token.split('.')[1], 'base64url').toString('utf8')),
     },
     { db: serviceDatabase },
@@ -1717,6 +1717,127 @@ test('repeated and concurrent Apple registration preserve the active token and d
   assert.equal(queryScalar(`SELECT COUNT(*) FROM apple_revocable_credentials WHERE account_id = '${retrySource.user.id}'`), '0');
 });
 
+test('Apple intake stays unbindable while ID token validation is in flight', async () => {
+  const source = appleSession({
+    accountId: '50000000-0000-4000-8000-000000000095',
+    authUserId: '51000000-0000-4000-8000-000000000095',
+    sessionId: '52000000-0000-4000-8000-000000000095',
+    subject: 'apple-pending-validation-subject',
+  });
+  const rawNonce = 'apple-pending-validation-nonce';
+  let verifierStarted;
+  let releaseVerifier;
+  const started = new Promise((resolve) => { verifierStarted = resolve; });
+  const release = new Promise((resolve) => { releaseVerifier = resolve; });
+  let revokeCount = 0;
+  const service = appleService(
+    {
+      exchangeAuthorizationCode: async () => ({
+        accessToken: 'temporary-access-token',
+        idToken: appleIdToken({ nonce: rawNonce, subject: source.identities[0].subject }),
+        refreshToken: 'pending-validation-refresh-token',
+      }),
+      revoke: async () => { revokeCount += 1; },
+    },
+    appleConfig(),
+    {
+      verify: async (token) => {
+        verifierStarted();
+        await release;
+        return JSON.parse(Buffer.from(token.split('.')[1], 'base64url').toString('utf8'));
+      },
+    },
+  );
+  const registration = service.registerCredential(source, {
+    authorizationCode: 'pending-validation-code',
+    rawNonce,
+  });
+  await started;
+  assert.equal(
+    queryScalar(`SELECT status || ':' || (encrypted_refresh_token IS NOT NULL)::text || ':'
+      || (lease_token IS NOT NULL)::text
+      FROM apple_credential_intakes WHERE account_id = '${source.user.id}'`),
+    'pending_validation:true:true',
+  );
+
+  await service.retryDueIntakes(new Date(Date.now() + 60_000));
+  assert.equal(
+    queryScalar(`SELECT status FROM apple_credential_intakes WHERE account_id = '${source.user.id}'`),
+    'pending_validation',
+    'the retry worker must never bind a token before its ID token is validated',
+  );
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM apple_revocable_credentials WHERE account_id = '${source.user.id}'`), '0');
+  assert.equal(revokeCount, 0);
+
+  releaseVerifier();
+  await registration;
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM apple_credential_intakes WHERE account_id = '${source.user.id}'`), '0');
+  assert.equal(
+    queryScalar(`SELECT status FROM apple_revocable_credentials WHERE account_id = '${source.user.id}'`),
+    'active',
+    'only successful validation may unlock the durable intake for binding',
+  );
+});
+
+test('expired Apple validation leases are compensated without binding the token', async () => {
+  for (const scenario of [
+    { expectedStatus: 'revoked', revokeFails: false, suffix: '096' },
+    { expectedStatus: 'manual_action_required', revokeFails: true, suffix: '097' },
+  ]) {
+    const source = appleSession({
+      accountId: `50000000-0000-4000-8000-000000000${scenario.suffix}`,
+      authUserId: `51000000-0000-4000-8000-000000000${scenario.suffix}`,
+      sessionId: `52000000-0000-4000-8000-000000000${scenario.suffix}`,
+      subject: `apple-expired-validation-subject-${scenario.suffix}`,
+    });
+    const rawNonce = `apple-expired-validation-nonce-${scenario.suffix}`;
+    let verifierStarted;
+    let releaseVerifier;
+    const started = new Promise((resolve) => { verifierStarted = resolve; });
+    const release = new Promise((resolve) => { releaseVerifier = resolve; });
+    let revokeCount = 0;
+    const http = {
+      exchangeAuthorizationCode: async () => ({
+        accessToken: 'temporary-access-token',
+        idToken: appleIdToken({ nonce: rawNonce, subject: source.identities[0].subject }),
+        refreshToken: `expired-validation-refresh-token-${scenario.suffix}`,
+      }),
+      revoke: async () => {
+        revokeCount += 1;
+        if (scenario.revokeFails) throw new AppleAuthHttpError('invalid_grant');
+      },
+    };
+    const registeringService = appleService(http, appleConfig(), {
+      verify: async (token) => {
+        verifierStarted();
+        await release;
+        return JSON.parse(Buffer.from(token.split('.')[1], 'base64url').toString('utf8'));
+      },
+    });
+    const registration = registeringService.registerCredential(source, {
+      authorizationCode: `expired-validation-code-${scenario.suffix}`,
+      rawNonce,
+    });
+    await started;
+
+    const recoveryWorker = appleService(http);
+    await recoveryWorker.retryDueIntakes(new Date(Date.now() + 3 * 60_000));
+    assert.equal(revokeCount, 1);
+    assert.equal(
+      queryScalar(`SELECT status || ':' || (encrypted_refresh_token IS NULL)::text
+        FROM apple_credential_intakes WHERE account_id = '${source.user.id}'`),
+      `${scenario.expectedStatus}:true`,
+      'a process crash after token persistence must converge through revoke or a conservative manual outcome',
+    );
+    assert.equal(queryScalar(`SELECT COUNT(*) FROM apple_revocable_credentials WHERE account_id = '${source.user.id}'`), '0');
+
+    releaseVerifier();
+    await assert.rejects(registration, /apple_credential_persistence_failed/u);
+    assert.equal(queryScalar(`SELECT COUNT(*) FROM apple_revocable_credentials WHERE account_id = '${source.user.id}'`), '0');
+    assert.equal(revokeCount, 1, 'a late verifier completion must not reclaim or rebind the terminal intake');
+  }
+});
+
 test('Apple credential registration rejects expired or mismatched aud, nonce, and subject claims', async () => {
   const cases = [
     { label: 'aud', overrides: { audience: 'com.attacker.app' } },
@@ -1758,6 +1879,7 @@ test('Apple credential registration rejects expired or mismatched aud, nonce, an
     subject: 'apple-verifier-failure-subject',
   });
   const config = appleConfig();
+  let verifierFailureRevokes = 0;
   const verifierFailure = new AppleAuthService(
     config,
     {
@@ -1766,7 +1888,7 @@ test('Apple credential registration rejects expired or mismatched aud, nonce, an
         idToken: 'invalid-signed-token',
         refreshToken: 'must-not-be-stored',
       }),
-      revoke: async () => undefined,
+      revoke: async () => { verifierFailureRevokes += 1; },
     },
     { verify: async () => { throw new Error('invalid_signature'); } },
     { db: serviceDatabase },
@@ -1779,6 +1901,14 @@ test('Apple credential registration rejects expired or mismatched aud, nonce, an
     }),
     (error) => error?.status === 403 && error?.message === 'invalid_apple_authorization',
   );
+  assert.equal(verifierFailureRevokes, 1);
+  assert.equal(
+    queryScalar(`SELECT status || ':' || (encrypted_refresh_token IS NULL)::text
+      FROM apple_credential_intakes WHERE account_id = '${verifierSource.user.id}'`),
+    'revoked:true',
+    'a verifier rejection must durably revoke the persisted token',
+  );
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM apple_revocable_credentials WHERE account_id = '${verifierSource.user.id}'`), '0');
 });
 
 test('Apple revoke treats only HTTP success as revoked and durably retries every failure class', async () => {

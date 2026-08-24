@@ -2409,7 +2409,7 @@
       "checkConstraints": {
         "apple_credential_intakes_status_check": {
           "name": "apple_credential_intakes_status_check",
-          "value": "\"apple_credential_intakes\".\"status\" IN ('pending_exchange', 'pending_binding', 'revoke_pending', 'retryable', 'revoked', 'manual_action_required')"
+          "value": "\"apple_credential_intakes\".\"status\" IN ('pending_exchange', 'pending_validation', 'pending_binding', 'revoke_pending', 'retryable', 'revoked', 'manual_action_required')"
         },
         "apple_credential_intakes_attempts_check": {
           "name": "apple_credential_intakes_attempts_check",

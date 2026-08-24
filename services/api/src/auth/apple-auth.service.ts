@@ -17,6 +17,7 @@ const INTAKE_RETENTION_MS = 183 * 24 * 60 * 60 * 1_000;
 const INTAKE_LEASE_MS = 2 * 60 * 1_000;
 const INTAKE_RETRY_INTERVAL_MS = 60_000;
 const EXCHANGE_CLAIM_LEASE_MS = 2 * 60 * 1_000;
+const VALIDATION_CLAIM_LEASE_MS = 2 * 60 * 1_000;
 
 type AppleAuthTransaction = Parameters<Parameters<DatabaseService['db']['transaction']>[0]>[0];
 
@@ -118,18 +119,32 @@ export class AppleAuthService implements OnModuleInit, OnModuleDestroy {
         intakeId,
         exchangeClaimToken,
         encryptedRefreshToken,
-        now,
+        new Date(),
       );
     } catch {
       throw new ServiceUnavailableException('apple_credential_persistence_failed');
     }
 
+    let validatedAt: Date;
     try {
       const claims = await this.idTokenVerifier.verify(response.idToken, apple.clientId);
-      this.validateClaims(claims, subject, input.rawNonce, now, apple.clientId);
+      validatedAt = new Date();
+      this.validateClaims(claims, subject, input.rawNonce, validatedAt, apple.clientId);
     } catch {
-      await this.compensateIntake(intakeId, now).catch(() => undefined);
+      await this.compensateIntake(intakeId, new Date(), exchangeClaimToken).catch(() => undefined);
       throw new ForbiddenException('invalid_apple_authorization');
+    }
+    try {
+      await this.finishValidationClaim(
+        source.user.id,
+        intakeId,
+        exchangeClaimToken,
+        validatedAt,
+      );
+    } catch (error) {
+      await this.compensateIntake(intakeId, new Date(), exchangeClaimToken).catch(() => undefined);
+      if (error instanceof ForbiddenException) throw error;
+      throw new ServiceUnavailableException('apple_credential_persistence_failed');
     }
     try {
       const outcome = await this.bindIntake(intakeId, now);
@@ -195,9 +210,8 @@ export class AppleAuthService implements OnModuleInit, OnModuleDestroy {
       if (!intake) throw new Error('apple_exchange_claim_lost');
       const [persisted] = await transaction.update(appleCredentialIntakes).set({
         encryptedRefreshToken,
-        status: 'pending_binding',
-        leaseToken: null,
-        leaseUntil: null,
+        status: 'pending_validation',
+        leaseUntil: new Date(now.getTime() + VALIDATION_CLAIM_LEASE_MS),
         lastErrorCode: null,
         updatedAt: now,
       }).where(eq(appleCredentialIntakes.id, intake.id)).returning({ id: appleCredentialIntakes.id });
@@ -233,6 +247,45 @@ export class AppleAuthService implements OnModuleInit, OnModuleDestroy {
     });
   }
 
+  private async finishValidationClaim(
+    accountId: string,
+    intakeId: string,
+    validationClaimToken: string,
+    now: Date,
+  ) {
+    await this.database.db.transaction(async (transaction) => {
+      const account = await this.lockAccountFence(transaction, accountId);
+      if (account.status !== 'active') throw new ForbiddenException('account_not_active');
+      const [claim] = await transaction.select({
+        leaseToken: appleCredentialIntakes.leaseToken,
+        leaseUntil: appleCredentialIntakes.leaseUntil,
+        status: appleCredentialIntakes.status,
+      }).from(appleCredentialIntakes).where(and(
+        eq(appleCredentialIntakes.id, intakeId),
+        eq(appleCredentialIntakes.accountId, accountId),
+      )).limit(1).for('update');
+      if (
+        claim?.status !== 'pending_validation'
+        || claim.leaseToken !== validationClaimToken
+        || !claim.leaseUntil
+        || claim.leaseUntil <= now
+      ) throw new Error('apple_validation_claim_lost');
+      const [validated] = await transaction.update(appleCredentialIntakes).set({
+        status: 'pending_binding',
+        leaseToken: null,
+        leaseUntil: null,
+        lastErrorCode: null,
+        updatedAt: now,
+      }).where(and(
+        eq(appleCredentialIntakes.id, intakeId),
+        eq(appleCredentialIntakes.accountId, accountId),
+        eq(appleCredentialIntakes.status, 'pending_validation'),
+        eq(appleCredentialIntakes.leaseToken, validationClaimToken),
+      )).returning({ id: appleCredentialIntakes.id });
+      if (!validated) throw new Error('apple_validation_claim_lost');
+    });
+  }
+
   async retryDueIntakes(now = new Date()) {
     await this.database.db.delete(appleCredentialIntakes).where(and(
       inArray(appleCredentialIntakes.status, ['revoked', 'manual_action_required']),
@@ -243,6 +296,10 @@ export class AppleAuthService implements OnModuleInit, OnModuleDestroy {
       .where(or(
         and(
           eq(appleCredentialIntakes.status, 'pending_exchange'),
+          lte(appleCredentialIntakes.leaseUntil, now),
+        ),
+        and(
+          eq(appleCredentialIntakes.status, 'pending_validation'),
           lte(appleCredentialIntakes.leaseUntil, now),
         ),
         eq(appleCredentialIntakes.status, 'pending_binding'),
@@ -258,6 +315,10 @@ export class AppleAuthService implements OnModuleInit, OnModuleDestroy {
       if (!intake) continue;
       if (intake.status === 'pending_exchange') {
         await this.expireExchangeClaim(row.id, now);
+        continue;
+      }
+      if (intake.status === 'pending_validation') {
+        await this.compensateIntake(row.id, now);
         continue;
       }
       if (intake.status === 'pending_binding') {
@@ -377,7 +438,7 @@ export class AppleAuthService implements OnModuleInit, OnModuleDestroy {
     });
   }
 
-  private async compensateIntake(intakeId: string, now: Date) {
+  private async compensateIntake(intakeId: string, now: Date, validationClaimToken?: string) {
     const [owner] = await this.database.db.select({ accountId: appleCredentialIntakes.accountId })
       .from(appleCredentialIntakes).where(eq(appleCredentialIntakes.id, intakeId)).limit(1);
     if (!owner) return;
@@ -392,7 +453,11 @@ export class AppleAuthService implements OnModuleInit, OnModuleDestroy {
         )).limit(1).for('update');
       if (!intake || ['revoked', 'manual_action_required'].includes(intake.status)) return undefined;
       if (intake.status === 'pending_exchange') return undefined;
-      if (intake.leaseToken && intake.leaseUntil && intake.leaseUntil > now) return undefined;
+      const ownsValidationClaim = intake.status === 'pending_validation'
+        && intake.leaseToken === validationClaimToken;
+      if (intake.leaseToken && intake.leaseUntil && intake.leaseUntil > now && !ownsValidationClaim) {
+        return undefined;
+      }
       const [updated] = await transaction.update(appleCredentialIntakes).set({
         status: 'revoke_pending',
         attemptCount: intake.attemptCount + 1,
@@ -402,7 +467,10 @@ export class AppleAuthService implements OnModuleInit, OnModuleDestroy {
         nextRetryAt: null,
         updatedAt: now,
       }).where(eq(appleCredentialIntakes.id, intake.id)).returning();
-      return updated ? { intake: updated, conservative: intake.status !== 'pending_binding' || intake.attemptCount > 0 } : undefined;
+      return updated ? {
+        intake: updated,
+        conservative: intake.status !== 'pending_binding' || intake.attemptCount > 0,
+      } : undefined;
     });
     if (!claimed) return;
     const { intake, conservative } = claimed;
@@ -501,6 +569,8 @@ export class AppleAuthService implements OnModuleInit, OnModuleDestroy {
       return {
         errorCode: unresolvedIntake.status === 'pending_exchange'
           ? 'exchange_in_progress'
+          : unresolvedIntake.status === 'pending_validation'
+            ? 'validation_in_progress'
           : unresolvedIntake.lastErrorCode ?? 'unavailable',
         outcome: 'retryable' as const,
       };

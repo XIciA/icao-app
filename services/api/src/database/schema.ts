@@ -162,7 +162,7 @@ export const appleCredentialIntakes = pgTable('apple_credential_intakes', {
   index('apple_credential_intakes_account_status').on(table.accountId, table.status),
   index('apple_credential_intakes_retry').on(table.status, table.nextRetryAt),
   index('apple_credential_intakes_retention').on(table.retentionAt),
-  check('apple_credential_intakes_status_check', sql`${table.status} IN ('pending_exchange', 'pending_binding', 'revoke_pending', 'retryable', 'revoked', 'manual_action_required')`),
+  check('apple_credential_intakes_status_check', sql`${table.status} IN ('pending_exchange', 'pending_validation', 'pending_binding', 'revoke_pending', 'retryable', 'revoked', 'manual_action_required')`),
   check('apple_credential_intakes_attempts_check', sql`${table.attemptCount} >= 0`),
   check('apple_credential_intakes_versions_check', sql`${table.digestKeyVersion} > 0 AND ${table.encryptionVersion} > 0`),
   check('apple_credential_intakes_aliases_check', sql`jsonb_typeof(${table.subjectDigestAliases}) = 'array'`),
