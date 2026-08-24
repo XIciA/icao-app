@@ -61,9 +61,12 @@ export class AccountIdentityService {
 
   async resolve(auth: VerifiedAuthSession): Promise<AuthenticatedUser> {
     const candidates = this.candidates(auth);
+    if (candidates.length === 0) {
+      throw new UnauthorizedException('unsupported_auth_identity');
+    }
     const candidateHashes = candidates.map((candidate) => ({
       ...candidate,
-        hash: this.hashIdentity(candidate.provider, candidate.subject),
+      hash: this.hashIdentity(candidate.provider, candidate.subject),
     }));
 
     const accountId = await this.database.db.transaction(async (transaction) => {
@@ -80,9 +83,6 @@ export class AccountIdentityService {
           .where(inArray(accountIdentities.subjectHash, hashes));
       const linkedAccounts = [...new Set([...byAuthUser, ...bySubject].map((row) => row.accountId))];
       if (linkedAccounts.length > 1) throw new UnauthorizedException('identity_account_conflict');
-      if (linkedAccounts.length === 0 && candidateHashes.length === 0) {
-        throw new UnauthorizedException('unsupported_auth_identity');
-      }
 
       const resolvedAccountId = linkedAccounts[0] ?? auth.authUserId;
       await transaction.insert(accounts).values({ id: resolvedAccountId })

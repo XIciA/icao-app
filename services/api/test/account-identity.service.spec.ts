@@ -193,6 +193,54 @@ describe('AccountIdentityService', () => {
     expect(fixture.db.selectDistinct).not.toHaveBeenCalled();
   });
 
+  it.each([
+    {
+      identity: { provider: 'phone', subject: '+8613800138000' },
+      provider: 'phone' as const,
+      user: {
+        id: '11111111-1111-4111-8111-111111111111',
+        phone: '+8613800138000',
+        providers: ['phone'] as const,
+      },
+    },
+    {
+      identity: { provider: 'apple', subject: 'stable-apple-subject' },
+      provider: 'apple' as const,
+      user: {
+        email: 'private@privaterelay.appleid.com',
+        id: '11111111-1111-4111-8111-111111111111',
+        providers: ['apple'] as const,
+      },
+    },
+  ])('reuses a historical $provider identity and refreshes its usage', async ({ identity, provider, user }) => {
+    const accountId = '22222222-2222-4222-8222-222222222222';
+    const auth = authSession({
+      identities: [identity],
+      user: { ...user, providers: [...user.providers] },
+    });
+    const hash = identityHash(provider, identity.subject);
+    const fixture = databaseFixture({
+      distinctSelects: [[{ provider }, { provider: 'wechat' }]],
+      transactionSelects: [
+        [{ accountId }],
+        [{ accountId }],
+        [{ sessionsRevokedAt: null, status: 'active' }],
+        [{ accountId, provider, subjectHash: hash }],
+      ],
+    });
+    const service = new AccountIdentityService(config, fixture.database);
+
+    await expect(service.resolve(auth)).resolves.toEqual(expect.objectContaining({
+      authUserId: auth.authUserId,
+      id: accountId,
+      providers: [provider],
+    }));
+    expect(fixture.mutations).toContainEqual(expect.objectContaining({
+      kind: 'update',
+      set: { lastUsedAt: expect.any(Date) },
+    }));
+  });
+
   it('fails closed when a phone auth user changes numbers outside the protected binding flow', async () => {
     const auth = authSession({
       user: {
@@ -259,6 +307,42 @@ describe('AccountIdentityService', () => {
     await expect(service.resolve(auth))
       .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
         && error.message === 'unsupported_auth_identity');
+    expect(fixture.db.transaction).not.toHaveBeenCalled();
+    expect(fixture.mutations).toHaveLength(0);
+  });
+
+  it('rejects a valid legacy WeChat session before consulting or mutating its historical identity row', async () => {
+    const auth = authSession({
+      accessToken: 'valid-legacy-wechat-token',
+      identities: [{ provider: 'wechat', subject: 'legacy-wechat-openid' }],
+      user: {
+        id: '11111111-1111-4111-8111-111111111111',
+      },
+    });
+    const fixture = databaseFixture({
+      transactionSelects: [[{ accountId: '22222222-2222-4222-8222-222222222222' }]],
+    });
+    const service = new AccountIdentityService(config, fixture.database);
+
+    await expect(service.resolve(auth))
+      .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
+        && error.message === 'unsupported_auth_identity');
+    expect(fixture.db.transaction).not.toHaveBeenCalled();
+    expect(fixture.transaction.execute).not.toHaveBeenCalled();
+    expect(fixture.transaction.select).not.toHaveBeenCalled();
+    expect(fixture.mutations).toHaveLength(0);
+    expect(fixture.db.selectDistinct).not.toHaveBeenCalled();
+  });
+
+  it('filters but does not mutate preserved legacy provider rows when listing supported providers', async () => {
+    const fixture = databaseFixture({
+      distinctSelects: [[{ provider: 'wechat' }, { provider: 'apple' }, { provider: 'phone' }]],
+    });
+    const service = new AccountIdentityService(config, fixture.database);
+
+    await expect(service.providersForAccount('22222222-2222-4222-8222-222222222222'))
+      .resolves.toEqual(['phone', 'apple']);
+    expect(fixture.db.transaction).not.toHaveBeenCalled();
     expect(fixture.mutations).toHaveLength(0);
   });
 });
