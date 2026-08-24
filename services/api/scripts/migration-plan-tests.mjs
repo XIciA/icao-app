@@ -218,6 +218,7 @@ test('lists the complete suffix and warns that 0012/0013 cannot skip 0010/0011',
       '0018_chief_union_jack',
       '0019_ordinary_hex',
       '0020_bitter_maelstrom',
+      '0021_unknown_doorman',
     ],
   );
   assert.ok(

@@ -1,8 +1,8 @@
-import { createHmac } from 'node:crypto';
+import { createHmac, randomUUID } from 'node:crypto';
 
 import { ForbiddenException, Inject, Injectable, Optional } from '@nestjs/common';
 import type { RecentAuthGrantResponse, RecentAuthMethod, RecentAuthPurpose } from '@icao/contracts';
-import { and, eq, gt, isNull } from 'drizzle-orm';
+import { and, eq, gt, isNull, lte, or } from 'drizzle-orm';
 
 import { API_CONFIG, type ApiConfig } from '../config';
 import { recentAuthChallenges, recentAuthGrants } from '../database/schema';
@@ -15,6 +15,7 @@ import {
 } from './recent-auth-password.verifier';
 
 const RECENT_AUTH_GRANT_TTL_MS = 5 * 60 * 1_000;
+const RECENT_AUTH_RESERVATION_TTL_MS = RECENT_AUTH_GRANT_TTL_MS;
 
 export type RecentAuthTransaction = Parameters<Parameters<DatabaseService['db']['transaction']>[0]>[0];
 
@@ -116,6 +117,73 @@ export class RecentAuthService {
     ));
   }
 
+  async reserve(
+    source: VerifiedAuthSession,
+    grantId: string,
+    purpose: RecentAuthPurpose,
+    now = new Date(),
+  ) {
+    const reservationToken = randomUUID();
+    const targetDigest = this.targetDigest(source.user.id, purpose);
+    const [reserved] = await this.database.db.update(recentAuthGrants).set({
+      reservationToken,
+      reservationExpiresAt: new Date(now.getTime() + RECENT_AUTH_RESERVATION_TTL_MS),
+    }).where(and(
+      eq(recentAuthGrants.id, grantId),
+      eq(recentAuthGrants.accountId, source.user.id),
+      eq(recentAuthGrants.authUserId, source.authUserId),
+      eq(recentAuthGrants.sessionId, source.sessionId),
+      eq(recentAuthGrants.purpose, purpose),
+      eq(recentAuthGrants.targetDigest, targetDigest),
+      gt(recentAuthGrants.expiresAt, now),
+      isNull(recentAuthGrants.consumedAt),
+      or(
+        isNull(recentAuthGrants.reservationToken),
+        lte(recentAuthGrants.reservationExpiresAt, now),
+      ),
+    )).returning({ challengeId: recentAuthGrants.challengeId });
+    if (!reserved) throw new ForbiddenException('recent_auth_required');
+    return reservationToken;
+  }
+
+  async commitReservation(
+    source: VerifiedAuthSession,
+    grantId: string,
+    purpose: RecentAuthPurpose,
+    reservationToken: string,
+    now = new Date(),
+  ) {
+    await this.database.db.transaction(async (transaction) => {
+      const [consumed] = await transaction.update(recentAuthGrants).set({
+        consumedAt: now,
+        reservationToken: null,
+        reservationExpiresAt: null,
+      }).where(and(
+        eq(recentAuthGrants.id, grantId),
+        eq(recentAuthGrants.accountId, source.user.id),
+        eq(recentAuthGrants.authUserId, source.authUserId),
+        eq(recentAuthGrants.sessionId, source.sessionId),
+        eq(recentAuthGrants.purpose, purpose),
+        eq(recentAuthGrants.reservationToken, reservationToken),
+        gt(recentAuthGrants.reservationExpiresAt, now),
+        isNull(recentAuthGrants.consumedAt),
+      )).returning({ challengeId: recentAuthGrants.challengeId });
+      if (!consumed) throw new ForbiddenException('recent_auth_required');
+      await this.consumeChallenge(transaction, consumed.challengeId, now);
+    });
+  }
+
+  async releaseReservation(grantId: string, reservationToken: string) {
+    await this.database.db.update(recentAuthGrants).set({
+      reservationToken: null,
+      reservationExpiresAt: null,
+    }).where(and(
+      eq(recentAuthGrants.id, grantId),
+      eq(recentAuthGrants.reservationToken, reservationToken),
+      isNull(recentAuthGrants.consumedAt),
+    ));
+  }
+
   async consumeInTransaction(
     transaction: RecentAuthTransaction,
     source: VerifiedAuthSession,
@@ -125,7 +193,7 @@ export class RecentAuthService {
   ) {
     const targetDigest = this.targetDigest(source.user.id, purpose);
     const [consumed] = await transaction.update(recentAuthGrants)
-      .set({ consumedAt: now })
+      .set({ consumedAt: now, reservationToken: null, reservationExpiresAt: null })
       .where(and(
         eq(recentAuthGrants.id, grantId),
         eq(recentAuthGrants.accountId, source.user.id),
@@ -135,14 +203,22 @@ export class RecentAuthService {
         eq(recentAuthGrants.targetDigest, targetDigest),
         gt(recentAuthGrants.expiresAt, now),
         isNull(recentAuthGrants.consumedAt),
+        or(
+          isNull(recentAuthGrants.reservationToken),
+          lte(recentAuthGrants.reservationExpiresAt, now),
+        ),
       ))
       .returning({ challengeId: recentAuthGrants.challengeId });
     if (!consumed) throw new ForbiddenException('recent_auth_required');
 
+    await this.consumeChallenge(transaction, consumed.challengeId, now);
+  }
+
+  private async consumeChallenge(transaction: RecentAuthTransaction, challengeId: string, now: Date) {
     const [challenge] = await transaction.update(recentAuthChallenges)
       .set({ consumedAt: now, status: 'consumed' })
       .where(and(
-        eq(recentAuthChallenges.id, consumed.challengeId),
+        eq(recentAuthChallenges.id, challengeId),
         eq(recentAuthChallenges.status, 'verified'),
         isNull(recentAuthChallenges.consumedAt),
       ))

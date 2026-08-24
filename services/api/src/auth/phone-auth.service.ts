@@ -4,7 +4,7 @@ import { ForbiddenException, HttpException, HttpStatus, Inject, Injectable, Serv
 import type { RecentAuthPurpose, StartPhoneOtpResponse } from '@icao/contracts';
 import { isChinaMobileE164 } from '@icao/contracts';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
-import { and, desc, eq, gt, isNull, lte } from 'drizzle-orm';
+import { and, desc, eq, gt, isNull, lte, sql } from 'drizzle-orm';
 
 import { API_CONFIG, type ApiConfig } from '../config';
 import { phoneOtpIntents } from '../database/schema';
@@ -189,13 +189,42 @@ export class PhoneAuthService {
     accountId: string | undefined,
     startedAt: Date,
   ) {
-    await this.database.db.insert(phoneOtpIntents).values({
-      accountId,
-      createdAt: startedAt,
-      expiresAt: new Date(startedAt.getTime() + OTP_INTENT_TTL_MS),
-      otpNotBefore: new Date((Math.floor(startedAt.getTime() / 1_000) + 1) * 1_000),
-      phoneDigest: this.phoneDigest(phone),
-      purpose,
+    const phoneDigest = this.phoneDigest(phone);
+    await this.database.db.transaction(async (transaction) => {
+      const scope = `${phoneDigest}:${purpose}:${accountId ?? 'unbound'}`;
+      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`phone-otp-intent:${scope}`}, 0))`);
+      const accountCondition = accountId
+        ? eq(phoneOtpIntents.accountId, accountId)
+        : isNull(phoneOtpIntents.accountId);
+      const [newerIntent] = await transaction.select({ id: phoneOtpIntents.id })
+        .from(phoneOtpIntents)
+        .where(and(
+          eq(phoneOtpIntents.phoneDigest, phoneDigest),
+          eq(phoneOtpIntents.purpose, purpose),
+          accountCondition,
+          eq(phoneOtpIntents.status, 'pending'),
+          gt(phoneOtpIntents.createdAt, startedAt),
+        ))
+        .limit(1);
+      if (newerIntent) return;
+      await transaction.update(phoneOtpIntents).set({
+        consumedAt: startedAt,
+        status: 'consumed',
+      }).where(and(
+        eq(phoneOtpIntents.phoneDigest, phoneDigest),
+        eq(phoneOtpIntents.purpose, purpose),
+        accountCondition,
+        eq(phoneOtpIntents.status, 'pending'),
+        lte(phoneOtpIntents.createdAt, startedAt),
+      ));
+      await transaction.insert(phoneOtpIntents).values({
+        accountId,
+        createdAt: startedAt,
+        expiresAt: new Date(startedAt.getTime() + OTP_INTENT_TTL_MS),
+        otpNotBefore: new Date(Math.floor(startedAt.getTime() / 1_000) * 1_000),
+        phoneDigest,
+        purpose,
+      });
     });
   }
 }

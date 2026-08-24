@@ -90,13 +90,18 @@ export class AccountService {
       throw new ForbiddenException('verified_phone_required');
     }
     let isPasswordRecovery = false;
+    let recoveryReservationToken: string | undefined;
     if (currentPassword === undefined) {
       const isFirstPasswordSetup = source.passwordSet === false;
       if (isFirstPasswordSetup) {
         await this.phoneAuth.consumeOtpIntent(source, 'login');
       } else {
         if (!recoveryGrantId) throw new ForbiddenException('phone_reauthentication_required');
-        await this.recentAuth.consume(source, recoveryGrantId, 'password_recovery');
+        recoveryReservationToken = await this.recentAuth.reserve(
+          source,
+          recoveryGrantId,
+          'password_recovery',
+        );
       }
       isPasswordRecovery = !isFirstPasswordSetup;
     }
@@ -115,8 +120,12 @@ export class AccountService {
       }),
       signal: AbortSignal.timeout(10_000),
     }).catch(() => undefined);
-    if (!response) throw new ServiceUnavailableException('phone_auth_unavailable');
+    if (!response) {
+      await this.releaseRecoveryReservation(recoveryGrantId, recoveryReservationToken);
+      throw new ServiceUnavailableException('phone_auth_unavailable');
+    }
     if (!response.ok) {
+      await this.releaseRecoveryReservation(recoveryGrantId, recoveryReservationToken);
       const body = await response.json().catch(() => undefined) as { code?: string; error_code?: string } | undefined;
       const code = body?.code ?? body?.error_code;
       if (code === 'weak_password') throw new HttpException('invalid_phone_password', HttpStatus.BAD_REQUEST);
@@ -129,6 +138,14 @@ export class AccountService {
         || code === 'current_password_required'
       ) throw new ForbiddenException('invalid_phone_or_password');
       throw new ServiceUnavailableException('phone_auth_unavailable');
+    }
+    if (recoveryGrantId && recoveryReservationToken) {
+      await this.recentAuth.commitReservation(
+        source,
+        recoveryGrantId,
+        'password_recovery',
+        recoveryReservationToken,
+      );
     }
     if (isPasswordRecovery) {
       const { error } = await this.adminAuth.auth.admin.signOut(source.accessToken, 'global');
@@ -174,13 +191,18 @@ export class AccountService {
     });
   }
 
+  private async releaseRecoveryReservation(grantId?: string, reservationToken?: string) {
+    if (grantId && reservationToken) {
+      await this.recentAuth.releaseReservation(grantId, reservationToken).catch(() => undefined);
+    }
+  }
+
   async mergeWithPhoneOtp(source: VerifiedAuthSession, phone: string, token: string): Promise<MergePhoneAccountResponse> {
     this.assertSocialPhoneBindingAllowed(source);
     const { data, error } = await this.publicAuth.auth.verifyOtp({ phone, token, type: 'sms' });
     if (error || !data.session || data.user?.phone !== phone) throw new ForbiddenException('invalid_phone_otp');
     const target = await this.verifier.verify(data.session.access_token);
     await this.sessions.assertActive(target);
-    await this.phoneAuth.consumeOtpIntent(target, 'phone_binding', new Date(), source.user.id);
     try {
       const existingPhoneAccountId = await this.identities.accountIdForIdentity('phone', phone);
       let account: AccountSummary;
@@ -221,6 +243,13 @@ export class AccountService {
         .where(eq(accounts.id, sourceAccountId))
         .limit(1);
       if (!sourceAccount || sourceAccount.status !== 'active') throw new ConflictException('account_merge_state_changed');
+      await this.phoneAuth.consumeOtpIntentInTransaction(
+        transaction,
+        phoneAuth,
+        'phone_binding',
+        new Date(),
+        sourceAccountId,
+      );
       const phoneSubjectHash = this.identities.hashIdentity('phone', phone);
       const [existingPhoneIdentity] = await transaction.select({ accountId: accountIdentities.accountId })
         .from(accountIdentities)
@@ -295,7 +324,10 @@ export class AccountService {
     if (!isChinaMobileE164(target.user.phone)) throw new ForbiddenException('verified_phone_required');
     const targetAccountId = target.user.id;
     const sourceAccountId = source.user.id;
-    if (targetAccountId === sourceAccountId) return this.summary(targetAccountId, target.user.phone);
+    if (targetAccountId === sourceAccountId) {
+      await this.phoneAuth.consumeOtpIntent(target, 'phone_binding', new Date(), sourceAccountId);
+      return this.summary(targetAccountId, target.user.phone);
+    }
     if (!source.user.providers?.includes('apple')) {
       throw new ForbiddenException('social_identity_required');
     }
@@ -320,6 +352,13 @@ export class AccountService {
       if (accountRows.length !== 2 || accountRows.some((account) => account.status !== 'active')) {
         throw new ConflictException('account_merge_state_changed');
       }
+      await this.phoneAuth.consumeOtpIntentInTransaction(
+        transaction,
+        target,
+        'phone_binding',
+        new Date(),
+        sourceAccountId,
+      );
       await transaction.update(accounts)
         .set({ status: 'merging', updatedAt: new Date() })
         .where(eq(accounts.id, sourceAccountId));

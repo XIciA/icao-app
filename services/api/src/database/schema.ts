@@ -87,6 +87,8 @@ export const recentAuthGrants = pgTable('recent_auth_grants', {
   purpose: text('purpose').notNull(),
   targetDigest: text('target_digest').notNull(),
   expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+  reservationToken: uuid('reservation_token'),
+  reservationExpiresAt: timestamp('reservation_expires_at', { withTimezone: true }),
   consumedAt: timestamp('consumed_at', { withTimezone: true }),
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
 }, (table) => [
@@ -96,6 +98,10 @@ export const recentAuthGrants = pgTable('recent_auth_grants', {
   check('recent_auth_grants_method_check', sql`${table.method} IN ('password', 'phone_otp', 'apple')`),
   check('recent_auth_grants_purpose_check', sql`${table.purpose} IN ('account_delete', 'password_recovery', 'phone_binding')`),
   check('recent_auth_grants_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
+  check('recent_auth_grants_reservation_check', sql`(
+    (${table.reservationToken} IS NULL AND ${table.reservationExpiresAt} IS NULL)
+    OR (${table.reservationToken} IS NOT NULL AND ${table.reservationExpiresAt} IS NOT NULL)
+  )`),
   check('recent_auth_grants_consumed_check', sql`${table.consumedAt} IS NULL OR ${table.consumedAt} >= ${table.createdAt}`),
 ]).enableRLS();
 
@@ -193,7 +199,7 @@ export const phoneOtpIntents = pgTable('phone_otp_intents', {
   check('phone_otp_intents_purpose_check', sql`${table.purpose} IN ('login', 'account_delete', 'password_recovery', 'phone_binding')`),
   check('phone_otp_intents_status_check', sql`${table.status} IN ('pending', 'consumed')`),
   check('phone_otp_intents_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
-  check('phone_otp_intents_otp_time_check', sql`${table.otpNotBefore} >= ${table.createdAt}`),
+  check('phone_otp_intents_otp_time_check', sql`${table.otpNotBefore} >= date_trunc('second', ${table.createdAt})`),
   check('phone_otp_intents_consumed_check', sql`${table.consumedAt} IS NULL OR ${table.consumedAt} >= ${table.createdAt}`),
   check('phone_otp_intents_account_check', sql`(
     (${table.purpose} IN ('login', 'password_recovery') AND ${table.accountId} IS NULL)

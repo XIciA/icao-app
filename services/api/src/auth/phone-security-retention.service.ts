@@ -1,7 +1,7 @@
 import { Injectable, Logger, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { sql } from 'drizzle-orm';
 
-import { phoneOtpIntents, smsDeliveryAttempts, smsUsageCounters } from '../database/schema';
+import { phoneOtpIntents, recentAuthChallenges, recentAuthGrants, smsDeliveryAttempts, smsUsageCounters } from '../database/schema';
 import { DatabaseService } from '../database/database.service';
 
 const CLEANUP_INTERVAL_MS = 60 * 60 * 1_000;
@@ -35,6 +35,29 @@ export class PhoneSecurityRetentionService implements OnModuleInit, OnModuleDest
         LIMIT ${CLEANUP_BATCH_SIZE}
       )
       AND ${phoneOtpIntents.expiresAt} <= ${nowIso}::timestamptz
+    `);
+    await this.database.db.execute(sql`
+      DELETE FROM ${recentAuthGrants}
+      WHERE ${recentAuthGrants.id} IN (
+        SELECT ${recentAuthGrants.id} FROM ${recentAuthGrants}
+        WHERE ${recentAuthGrants.expiresAt} <= ${nowIso}::timestamptz
+        LIMIT ${CLEANUP_BATCH_SIZE}
+      )
+      AND ${recentAuthGrants.expiresAt} <= ${nowIso}::timestamptz
+    `);
+    await this.database.db.execute(sql`
+      DELETE FROM ${recentAuthChallenges}
+      WHERE ${recentAuthChallenges.id} IN (
+        SELECT challenge.id
+        FROM recent_auth_challenges challenge
+        WHERE challenge.expires_at <= ${nowIso}::timestamptz
+          AND NOT EXISTS (
+            SELECT 1 FROM recent_auth_grants grant_row
+            WHERE grant_row.challenge_id = challenge.id
+          )
+        LIMIT ${CLEANUP_BATCH_SIZE}
+      )
+      AND ${recentAuthChallenges.expiresAt} <= ${nowIso}::timestamptz
     `);
     await this.database.db.execute(sql`
       DELETE FROM ${smsDeliveryAttempts}

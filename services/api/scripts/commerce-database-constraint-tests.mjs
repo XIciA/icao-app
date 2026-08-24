@@ -539,6 +539,7 @@ test('account deletion durably denies sessions, revokes commerce, deletes active
   const lifetimeClaimCountBefore = queryScalar('SELECT COUNT(*) FROM lifetime_identity_benefit_claims');
   const { recentAuth, service } = deletionService();
   const grant = await recentAuth.issueVerifiedGrant(source, 'password', 'account_delete');
+  const unusedGrant = await recentAuth.issueVerifiedGrant(source, 'password', 'account_delete');
   const batchId = queryScalar(`SELECT id FROM ai_point_batches WHERE account_id = '${accountId}' AND source_type = 'trial'`);
   const reservationId = '70000000-0000-4000-8000-000000000003';
   const reservation = psql(`
@@ -572,6 +573,9 @@ test('account deletion durably denies sessions, revokes commerce, deletes active
   assert.equal(queryScalar(`SELECT status FROM accounts WHERE id = '${accountId}'`), 'deleted');
   assert.equal(queryScalar(`SELECT COUNT(*) FROM profiles WHERE user_id = '${accountId}'`), '0');
   assert.equal(queryScalar(`SELECT COUNT(*) FROM account_identities WHERE account_id = '${accountId}'`), '0');
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM recent_auth_grants WHERE account_id = '${accountId}'`), '0');
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM recent_auth_challenges WHERE account_id = '${accountId}'`), '0');
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM recent_auth_grants WHERE id = '${unusedGrant.grantId}'`), '0');
   assert.equal(queryScalar(`SELECT status FROM ai_point_batches WHERE id = '${batchId}'`), 'revoked');
   assert.equal(queryScalar(`SELECT status FROM ai_point_reservations WHERE id = '${reservationId}'`), 'released');
   assert.equal(
@@ -811,7 +815,23 @@ test('account deletion write barrier drains committed writes and rejects every p
     phone: '+8613877777777',
     sessionId: '70000000-0000-4000-8000-000000000051',
   });
-  const fixture = deletionService();
+  const ticketSetup = psql(`
+    INSERT INTO feedback_tickets (
+      id, ticket_number, user_id, client_submission_id, category, description,
+      status, source, source_route, app_display_version, platform, retention_at
+    ) VALUES (
+      '70000000-0000-4000-8000-000000000053', 'DEL-RACE-1', '${accountId}',
+      '70000000-0000-4000-8000-000000000054', 'other', 'attachment race', 'received',
+      'profile', '/profile', '1.0.0', 'ios', now() + interval '1 year'
+    );
+  `);
+  assert.equal(ticketSetup.status, 0, ticketSetup.stderr);
+  const removedObjectBatches = [];
+  const fixture = deletionService({
+    feedback: {
+      removeObjects: async (keys) => { removedObjectBatches.push(keys); },
+    },
+  });
   const grant = await fixture.recentAuth.issueVerifiedGrant(source, 'password', 'account_delete');
   const writerClient = postgres({ database: 'postgres', host: socketDirectory, max: 1, port, username: 'postgres' });
   let writerInserted;
@@ -820,8 +840,14 @@ test('account deletion write barrier drains committed writes and rejects every p
   const release = new Promise((resolve) => { releaseWriter = resolve; });
   const writer = writerClient.begin(async (transaction) => {
     await transaction`
-      INSERT INTO ai_word_cache (user_id, query_hash, result, expires_at)
-      VALUES (${accountId}, 'deletion-write-barrier', ${transaction.json({ value: 'committed-before-delete' })}, now() + interval '1 hour')
+      INSERT INTO feedback_attachments (
+        id, ticket_id, object_key, mime_type, size_bytes, checksum, expires_at
+      ) VALUES (
+        '70000000-0000-4000-8000-000000000055',
+        '70000000-0000-4000-8000-000000000053',
+        'feedback/deletion-attachment-race.jpg', 'image/jpeg', 12, ${'a'.repeat(64)},
+        now() + interval '1 day'
+      )
     `;
     writerInserted();
     await release;
@@ -841,7 +867,8 @@ test('account deletion write barrier drains committed writes and rejects every p
   releaseWriter();
   await writer;
   assert.equal((await deletion).status, 'completed');
-  assert.equal(queryScalar(`SELECT COUNT(*) FROM ai_word_cache WHERE user_id = '${accountId}'`), '0');
+  assert.deepEqual(removedObjectBatches, [['feedback/deletion-attachment-race.jpg']]);
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM feedback_attachments WHERE id = '70000000-0000-4000-8000-000000000055'`), '0');
   await assert.rejects(
     writerClient`
       INSERT INTO ai_word_cache (user_id, query_hash, result, expires_at)
@@ -1071,6 +1098,48 @@ test('phone OTP intents are purpose-bound, restart-safe, and consumed once acros
     /phone_reauthentication_required/u,
   );
   await firstPhone.consumeOtpIntent(source, 'phone_binding', otpAt, accountId);
+
+  const exactSecond = Math.floor(Date.now() / 1_000) * 1_000;
+  const earlierStart = new Date(exactSecond + 100);
+  const laterStart = new Date(exactSecond + 700);
+  await Promise.all([
+    firstPhone.recordIntent(source.user.phone, 'phone_binding', accountId, laterStart),
+    secondPhone.recordIntent(source.user.phone, 'phone_binding', accountId, earlierStart),
+  ]);
+  assert.equal(
+    queryScalar(`
+      SELECT COUNT(*)::text || ':' ||
+        floor(extract(epoch from min(created_at)) * 1000)::bigint::text || ':' ||
+        floor(extract(epoch from min(otp_not_before)) * 1000)::bigint::text
+      FROM phone_otp_intents
+      WHERE phone_digest = '${phoneDigest}' AND purpose = 'phone_binding' AND status = 'pending'
+    `),
+    `1:${laterStart.getTime()}:${exactSecond}`,
+    'concurrent starts must retain only the newest request while accepting an OTP issued in that same second',
+  );
+  source.authenticationMethods = [{ method: 'otp', timestamp: exactSecond / 1_000 }];
+  const consumeAt = new Date(exactSecond + 2_000);
+  await assert.rejects(
+    serviceDatabase.transaction(async (transaction) => {
+      await firstPhone.consumeOtpIntentInTransaction(
+        transaction,
+        source,
+        'phone_binding',
+        consumeAt,
+        accountId,
+      );
+      throw new Error('simulated_phone_binding_failure');
+    }),
+    /simulated_phone_binding_failure/u,
+  );
+  assert.equal(
+    queryScalar(`SELECT COUNT(*) FROM phone_otp_intents
+      WHERE phone_digest = '${phoneDigest}' AND purpose = 'phone_binding'
+        AND status = 'pending' AND consumed_at IS NULL`),
+    '1',
+    'a downstream phone-binding failure must roll back proof consumption',
+  );
+  await firstPhone.consumeOtpIntent(source, 'phone_binding', consumeAt, accountId);
 });
 
 test('SMS delivery authority persists dedupe, rate limits, and lease fencing across instances', async () => {
@@ -1142,6 +1211,26 @@ test('SMS delivery authority persists dedupe, rate limits, and lease fencing acr
 
 test('phone and SMS retention cleanup removes only expired, non-active authority rows', async () => {
   const now = new Date('2026-08-24T12:00:00.000Z');
+  const auth = recentAuthService();
+  const retentionSource = authSession({
+    accountId: '72000000-0000-4000-8000-000000000010',
+    authUserId: '72000000-0000-4000-8000-000000000011',
+    sessionId: '72000000-0000-4000-8000-000000000012',
+  });
+  const expiredGrant = await auth.issueVerifiedGrant(
+    retentionSource,
+    'password',
+    'password_recovery',
+    new Date(now.getTime() - 10 * 60 * 1_000),
+  );
+  const activeGrant = await auth.issueVerifiedGrant(
+    retentionSource,
+    'password',
+    'password_recovery',
+    now,
+  );
+  const expiredChallengeId = queryScalar(`SELECT challenge_id FROM recent_auth_grants WHERE id = '${expiredGrant.grantId}'`);
+  const activeChallengeId = queryScalar(`SELECT challenge_id FROM recent_auth_grants WHERE id = '${activeGrant.grantId}'`);
   const setup = psql(`
     INSERT INTO phone_otp_intents (
       id, phone_digest, purpose, status, otp_not_before, expires_at, created_at
@@ -1184,6 +1273,10 @@ test('phone and SMS retention cleanup removes only expired, non-active authority
     queryScalar(`SELECT COUNT(*) FROM sms_usage_counters WHERE scope_key = 'sms-retention-expired-counter'`),
     '0',
   );
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM recent_auth_grants WHERE id = '${expiredGrant.grantId}'`), '0');
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM recent_auth_challenges WHERE id = '${expiredChallengeId}'`), '0');
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM recent_auth_grants WHERE id = '${activeGrant.grantId}'`), '1');
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM recent_auth_challenges WHERE id = '${activeChallengeId}'`), '1');
 });
 
 test('recent-auth grants are purpose-bound to a durable challenge', () => {
@@ -1309,6 +1402,43 @@ test('recent-auth grants survive service restarts and atomically reject replay, 
   );
 });
 
+test('recent-auth recovery reservations are exclusive, releasable, and commit exactly once', async () => {
+  const firstInstance = recentAuthService();
+  const secondInstance = recentAuthService();
+  const source = authSession({ sessionId: '40000000-0000-4000-8000-000000000006' });
+  const grant = await firstInstance.issueVerifiedGrant(source, 'phone_otp', 'password_recovery');
+  const attempts = await Promise.allSettled([
+    firstInstance.reserve(source, grant.grantId, 'password_recovery'),
+    secondInstance.reserve(source, grant.grantId, 'password_recovery'),
+  ]);
+  const fulfilled = attempts.find(({ status }) => status === 'fulfilled');
+  assert.ok(fulfilled && fulfilled.status === 'fulfilled');
+  assert.equal(attempts.filter(({ status }) => status === 'fulfilled').length, 1);
+  assert.equal(attempts.filter(({ status }) => status === 'rejected').length, 1);
+
+  await firstInstance.releaseReservation(grant.grantId, fulfilled.value);
+  const retryToken = await secondInstance.reserve(source, grant.grantId, 'password_recovery');
+  await secondInstance.commitReservation(
+    source,
+    grant.grantId,
+    'password_recovery',
+    retryToken,
+  );
+  await assert.rejects(
+    firstInstance.reserve(source, grant.grantId, 'password_recovery'),
+    /recent_auth_required/u,
+  );
+  assert.equal(
+    queryScalar(`
+      SELECT grant_row.consumed_at IS NOT NULL AND challenge.status = 'consumed'
+      FROM recent_auth_grants grant_row
+      JOIN recent_auth_challenges challenge ON challenge.id = grant_row.challenge_id
+      WHERE grant_row.id = '${grant.grantId}'
+    `),
+    't',
+  );
+});
+
 test('password recent-auth verifies upstream before persisting a purpose-bound grant', async () => {
   let verificationCount = 0;
   const service = recentAuthService({
@@ -1421,6 +1551,170 @@ test('Apple authorization codes are exchanged once and only encrypted refresh to
     WHERE account_id = '${source.user.id}'
   `);
   assert.equal(stored, 'active:true:false');
+});
+
+test('repeated and concurrent Apple registration preserve the active token and deletion revokes every intake', async () => {
+  const sequentialSource = appleSession({
+    accountId: '50000000-0000-4000-8000-000000000080',
+    authUserId: '51000000-0000-4000-8000-000000000080',
+    sessionId: '52000000-0000-4000-8000-000000000080',
+    subject: 'apple-repeat-active-subject',
+  });
+  const sequentialRevokes = [];
+  const sequentialService = appleService({
+    exchangeAuthorizationCode: async ({ authorizationCode }) => {
+      const isOld = authorizationCode === 'apple-repeat-old-code';
+      const nonce = isOld ? 'apple-repeat-old-nonce' : 'apple-repeat-new-nonce';
+      return {
+        accessToken: 'temporary-access-token',
+        idToken: appleIdToken({ nonce, subject: sequentialSource.identities[0].subject }),
+        refreshToken: isOld ? 'apple-repeat-old-refresh-token' : 'apple-repeat-new-refresh-token',
+      };
+    },
+    revoke: async ({ refreshToken }) => { sequentialRevokes.push(refreshToken); },
+  });
+  await sequentialService.registerCredential(sequentialSource, {
+    authorizationCode: 'apple-repeat-old-code',
+    rawNonce: 'apple-repeat-old-nonce',
+  });
+  await sequentialService.registerCredential(sequentialSource, {
+    authorizationCode: 'apple-repeat-new-code',
+    rawNonce: 'apple-repeat-new-nonce',
+  });
+  assert.deepEqual(sequentialRevokes, ['apple-repeat-new-refresh-token']);
+  assert.equal(
+    queryScalar(`SELECT COUNT(*) FROM apple_revocable_credentials WHERE account_id = '${sequentialSource.user.id}' AND status = 'active'`),
+    '1',
+  );
+  assert.deepEqual(await sequentialService.revokeForAccount(sequentialSource.user.id), { outcome: 'revoked' });
+  assert.deepEqual(
+    sequentialRevokes,
+    ['apple-repeat-new-refresh-token', 'apple-repeat-old-refresh-token'],
+    'a repeated registration must compensate the new token without overwriting the original active credential',
+  );
+
+  const concurrentSource = appleSession({
+    accountId: '50000000-0000-4000-8000-000000000081',
+    authUserId: '50000000-0000-4000-8000-000000000081',
+    sessionId: '52000000-0000-4000-8000-000000000081',
+    subject: 'apple-concurrent-active-subject',
+  });
+  const authSetup = psql(`
+    INSERT INTO auth.users (id) VALUES ('${concurrentSource.authUserId}');
+    INSERT INTO auth.sessions (id, user_id) VALUES ('${concurrentSource.sessionId}', '${concurrentSource.authUserId}');
+  `);
+  assert.equal(authSetup.status, 0, authSetup.stderr);
+  await new AccountIdentityService(appleConfig(), { db: serviceDatabase }).resolve(concurrentSource);
+  const concurrentRevokes = [];
+  const concurrentService = appleService({
+    exchangeAuthorizationCode: async ({ authorizationCode }) => {
+      const suffix = authorizationCode.endsWith('-a') ? 'a' : 'b';
+      return {
+        accessToken: 'temporary-access-token',
+        idToken: appleIdToken({
+          nonce: `apple-concurrent-nonce-${suffix}`,
+          subject: concurrentSource.identities[0].subject,
+        }),
+        refreshToken: `apple-concurrent-refresh-${suffix}`,
+      };
+    },
+    revoke: async ({ refreshToken }) => { concurrentRevokes.push(refreshToken); },
+  });
+  await Promise.all([
+    concurrentService.registerCredential(concurrentSource, {
+      authorizationCode: 'apple-concurrent-code-a',
+      rawNonce: 'apple-concurrent-nonce-a',
+    }),
+    concurrentService.registerCredential(concurrentSource, {
+      authorizationCode: 'apple-concurrent-code-b',
+      rawNonce: 'apple-concurrent-nonce-b',
+    }),
+  ]);
+  assert.equal(concurrentRevokes.length, 1, 'one concurrent intake must be compensated immediately');
+  assert.equal(
+    queryScalar(`SELECT COUNT(*) FROM apple_revocable_credentials WHERE account_id = '${concurrentSource.user.id}' AND status = 'active'`),
+    '1',
+  );
+  const deletion = deletionService({ appleAuth: concurrentService });
+  const grant = await deletion.recentAuth.issueVerifiedGrant(concurrentSource, 'apple', 'account_delete');
+  const result = await deletion.service.requestDeletion(concurrentSource, {
+    confirmation: '注销账号',
+    grantId: grant.grantId,
+    idempotencyKey: '53000000-0000-4000-8000-000000000081',
+  });
+  assert.equal(result.status, 'completed');
+  assert.equal(result.identityProviderOutcome, 'revoked');
+  assert.deepEqual(
+    [...concurrentRevokes].sort(),
+    ['apple-concurrent-refresh-a', 'apple-concurrent-refresh-b'],
+    'deletion must account for both the active credential and every compensating intake',
+  );
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM apple_credential_intakes WHERE account_id = '${concurrentSource.user.id}'`), '0');
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM apple_revocable_credentials WHERE account_id = '${concurrentSource.user.id}'`), '0');
+
+  const retrySource = appleSession({
+    accountId: '50000000-0000-4000-8000-000000000082',
+    authUserId: '50000000-0000-4000-8000-000000000082',
+    sessionId: '52000000-0000-4000-8000-000000000082',
+    subject: 'apple-retryable-intake-subject',
+  });
+  const retryAuthSetup = psql(`
+    INSERT INTO auth.users (id) VALUES ('${retrySource.authUserId}');
+    INSERT INTO auth.sessions (id, user_id) VALUES ('${retrySource.sessionId}', '${retrySource.authUserId}');
+  `);
+  assert.equal(retryAuthSetup.status, 0, retryAuthSetup.stderr);
+  await new AccountIdentityService(appleConfig(), { db: serviceDatabase }).resolve(retrySource);
+  let failFirstNewRevoke = true;
+  const retryRevokeAttempts = [];
+  const retryService = appleService({
+    exchangeAuthorizationCode: async ({ authorizationCode }) => {
+      const isOld = authorizationCode === 'apple-retry-old-code';
+      const suffix = isOld ? 'old' : 'new';
+      return {
+        accessToken: 'temporary-access-token',
+        idToken: appleIdToken({
+          nonce: `apple-retry-${suffix}-nonce`,
+          subject: retrySource.identities[0].subject,
+        }),
+        refreshToken: `apple-retry-${suffix}-refresh`,
+      };
+    },
+    revoke: async ({ refreshToken }) => {
+      retryRevokeAttempts.push(refreshToken);
+      if (refreshToken === 'apple-retry-new-refresh' && failFirstNewRevoke) {
+        failFirstNewRevoke = false;
+        throw new AppleAuthHttpError('server_error');
+      }
+    },
+  });
+  await retryService.registerCredential(retrySource, {
+    authorizationCode: 'apple-retry-old-code',
+    rawNonce: 'apple-retry-old-nonce',
+  });
+  await retryService.registerCredential(retrySource, {
+    authorizationCode: 'apple-retry-new-code',
+    rawNonce: 'apple-retry-new-nonce',
+  });
+  assert.equal(
+    queryScalar(`SELECT status FROM apple_credential_intakes WHERE account_id = '${retrySource.user.id}'`),
+    'retryable',
+  );
+  const retryDeletion = deletionService({ appleAuth: retryService });
+  const retryGrant = await retryDeletion.recentAuth.issueVerifiedGrant(retrySource, 'apple', 'account_delete');
+  const retryResult = await retryDeletion.service.requestDeletion(retrySource, {
+    confirmation: '注销账号',
+    grantId: retryGrant.grantId,
+    idempotencyKey: '53000000-0000-4000-8000-000000000082',
+  });
+  assert.equal(retryResult.status, 'completed');
+  assert.equal(retryResult.identityProviderOutcome, 'revoked');
+  assert.deepEqual(
+    retryRevokeAttempts,
+    ['apple-retry-new-refresh', 'apple-retry-new-refresh', 'apple-retry-old-refresh'],
+    'deletion must retry a failed intake revocation before revoking the preserved active credential',
+  );
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM apple_credential_intakes WHERE account_id = '${retrySource.user.id}'`), '0');
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM apple_revocable_credentials WHERE account_id = '${retrySource.user.id}'`), '0');
 });
 
 test('Apple credential registration rejects expired or mismatched aud, nonce, and subject claims', async () => {
@@ -1585,7 +1879,10 @@ test('Apple credential intake compensates persistence failure and an account-del
       idToken: appleIdToken({ nonce: persistenceNonce, subject: persistenceSource.identities[0].subject }),
       refreshToken: 'intake-persistence-raw-refresh-token',
     }),
-    revoke: async () => { persistenceRevokeCount += 1; },
+    revoke: async () => {
+      persistenceRevokeCount += 1;
+      throw new AppleAuthHttpError('server_error');
+    },
   });
   await assert.rejects(
     persistenceService.registerCredential(persistenceSource, {
@@ -1601,6 +1898,25 @@ test('Apple credential intake compensates persistence failure and an account-del
   assert.equal(removeFailureTrigger.status, 0, removeFailureTrigger.stderr);
   assert.equal(persistenceRevokeCount, 1);
   assert.equal(queryScalar(`SELECT COUNT(*) FROM apple_credential_intakes WHERE account_id = '${persistenceSource.user.id}'`), '0');
+  assert.equal(
+    queryScalar(`
+      SELECT outcome || ':' || (metadata->>'errorCode') || ':' || (metadata->>'manualActionRequired')
+      FROM account_security_events
+      WHERE event_type = 'apple_unpersisted_credential_revoke_failed'
+        AND subject_digest IS NOT NULL
+      ORDER BY created_at DESC
+      LIMIT 1
+    `),
+    'failed:server_error:true',
+  );
+  assert.equal(
+    queryScalar(`SELECT (to_jsonb(event_row)::text LIKE '%intake-persistence-raw-refresh-token%')::text
+      FROM account_security_events event_row
+      WHERE event_type = 'apple_unpersisted_credential_revoke_failed'
+      ORDER BY created_at DESC LIMIT 1`),
+    'false',
+    'the durable manual-risk marker must never contain the plaintext refresh token',
+  );
 
   for (const [index, revokeFails] of [false, true].entries()) {
     const suffix = 60 + index;

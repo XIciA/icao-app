@@ -18,7 +18,21 @@ const config = {
 function service(error: { code?: string; message: string } | null = null) {
   const signInWithOtp = vi.fn().mockResolvedValue({ data: { session: null, user: null }, error });
   const values = vi.fn().mockResolvedValue(undefined);
-  const database = { db: { insert: vi.fn(() => ({ values })) } } as unknown as DatabaseService;
+  const transactionApi = {
+    execute: vi.fn().mockResolvedValue(undefined),
+    insert: vi.fn(() => ({ values })),
+    select: vi.fn(() => ({
+      from: vi.fn(() => ({
+        where: vi.fn(() => ({ limit: vi.fn().mockResolvedValue([]) })),
+      })),
+    })),
+    update: vi.fn(() => ({
+      set: vi.fn(() => ({ where: vi.fn().mockResolvedValue(undefined) })),
+    })),
+  };
+  const database = {
+    db: { transaction: vi.fn(async (operation: (transaction: typeof transactionApi) => unknown) => operation(transactionApi)) },
+  } as unknown as DatabaseService;
   supabase.createClient.mockReturnValueOnce({ auth: { signInWithOtp } });
   return { instance: new PhoneAuthService(config, database), signInWithOtp, values };
 }
@@ -84,6 +98,8 @@ describe('PhoneAuthService', () => {
     await login.instance.start('+8613800138000', '203.0.113.8');
     expect(login.values).toHaveBeenCalledWith(expect.objectContaining({
       accountId: undefined,
+      createdAt: new Date(now),
+      otpNotBefore: new Date(Math.floor(now / 1_000) * 1_000),
       phoneDigest: expect.stringMatching(/^[a-f0-9]{64}$/u),
       purpose: 'login',
     }));
