@@ -201,6 +201,11 @@ export class RecordingRepository {
     }
   }
 
+  clearAll() {
+    if (!this.root.exists) return;
+    this.root.delete();
+  }
+
   private async validatedSettledFile(
     file: File,
     format: Extract<RawRecording, { kind: 'native-file' }>['format'],

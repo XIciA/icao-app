@@ -57,6 +57,16 @@ export function AppStack() {
   }, [auth, pathname]);
 
   if (auth.restoring) return <GlobalLoadingScreen />;
+  if (auth.accountDeletionPending) {
+    return (
+      <CenteredState
+        actionLabel="重新检查"
+        description="删除任务正在安全处理。完成前此账号不能继续使用；你可以关闭 App，稍后重新打开会自动继续检查。"
+        onAction={() => { void auth.resumeAccountDeletion().catch(() => undefined); }}
+        title="账号正在注销"
+      />
+    );
+  }
 
   return (
     <View style={styles.root}>

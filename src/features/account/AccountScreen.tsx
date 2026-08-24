@@ -647,11 +647,88 @@ function getPasswordUpdateError(cause: unknown) {
 }
 
 function DeleteAccountPage() {
-  const router = useRouter(); const auth = useAuth(); const [agreed, setAgreed] = useState(false); const [confirmation, setConfirmation] = useState(''); const [error, setError] = useState(''); const [deleting, setDeleting] = useState(false);
-  const risks = ['学习记录、标注、笔记、同步数据与 AI 账号数据将从活跃系统删除', '本机个人数据、会话与待同步队列将清除', '操作不可撤销；同一手机号再次注册将获得新的账号'];
-  const ready = agreed && confirmation === '注销账号';
-  async function remove() { if (!ready) return; setDeleting(true); setError(''); try { await auth.deleteAccount(); router.replace('/auth/login'); } catch { setError('注销失败，账号与本机数据均未删除'); } finally { setDeleting(false); } }
-  return <Page title="注销账号"><View style={styles.delete}><View style={styles.dangerHero}><View style={styles.dangerIcon}><AlertTriangle color={colors.destructive} size={30} /></View><AppText variant="sectionTitle">此操作不可撤销</AppText><AppText style={styles.center}>注销账号会永久删除当前账号及其活跃数据。</AppText></View><Card style={styles.risks}>{risks.map((risk) => <View key={risk} style={styles.risk}><View style={styles.riskDot}><AppText color={colors.destructive} variant="micro">×</AppText></View><AppText style={styles.flex}>{risk}</AppText></View>)}</Card><TextField label="确认文字" onChangeText={setConfirmation} placeholder="请输入：注销账号" value={confirmation} /><Pressable onPress={() => setAgreed(!agreed)} style={styles.consent}><View style={[styles.checkbox, agreed && styles.checkboxOn]}>{agreed ? <Check color={colors.primaryForeground} size={12} /> : null}</View><AppText variant="caption">我已知晓上述风险，仍要注销账号</AppText></Pressable>{error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}<Button disabled={!ready || deleting} onPress={() => void remove()} size="lg" variant="destructive">{deleting ? '正在注销…' : '永久注销账号'}</Button><Button disabled={deleting} onPress={router.back} size="lg" variant="outline">放弃，返回</Button></View></Page>;
+  const router = useRouter();
+  const auth = useAuth();
+  const [agreed, setAgreed] = useState(false);
+  const [confirmation, setConfirmation] = useState('');
+  const [password, setPassword] = useState('');
+  const [phoneOtp, setPhoneOtp] = useState('');
+  const [otpSent, setOtpSent] = useState(false);
+  const [otpSending, setOtpSending] = useState(false);
+  const [error, setError] = useState('');
+  const [deleting, setDeleting] = useState(false);
+  const hasApple = auth.session?.user.providers.includes('apple') === true;
+  const hasPassword = auth.session?.user.hasPassword === true;
+  const needsPhoneOtp = !hasApple && !hasPassword;
+  const authenticationReady = hasApple || (hasPassword ? password.length > 0 : /^\d{6}$/u.test(phoneOtp));
+  const ready = agreed && confirmation === '注销账号' && authenticationReady;
+  const risks = [
+    '学习记录、标注、笔记、同步数据与 AI 账号数据将从活跃系统删除',
+    '会员权益与剩余 AI 点数将失效；依法需要保留的交易记录不受影响',
+    '服务端完成删除后，本机个人资料、录音、会话与待同步队列将清除',
+    '操作不可撤销；重新注册会获得新的独立账号',
+  ];
+
+  async function requestOtp() {
+    setOtpSending(true);
+    setError('');
+    try {
+      await auth.requestAccountDeletionPhoneOtp();
+      setOtpSent(true);
+    } catch (cause) {
+      const code = cause instanceof Error ? cause.message : '';
+      setError(code === 'phone_otp_rate_limited' ? '验证码请求过于频繁，请稍后重试' : '验证码发送失败，请稍后重试');
+    } finally {
+      setOtpSending(false);
+    }
+  }
+
+  async function remove() {
+    if (!ready) return;
+    setDeleting(true);
+    setError('');
+    try {
+      await auth.deleteAccount({
+        ...(hasPassword && !hasApple ? { password } : {}),
+        ...(needsPhoneOtp ? { phoneOtp } : {}),
+      });
+      router.replace('/auth/login');
+    } catch (cause) {
+      const code = cause instanceof Error ? cause.message : '';
+      if (code === 'invalid_phone_or_password' || code === 'invalid_credentials') setError('登录密码不正确，请重新输入');
+      else if (code === 'invalid_phone_otp') setError('验证码错误或已过期，请重新获取');
+      else if (code === 'social_auth_cancelled') setError('已取消 Apple 身份验证，账号未注销');
+      else setError('暂时无法确认注销请求，请检查网络后重试；重复提交不会重复删除');
+    } finally {
+      setDeleting(false);
+    }
+  }
+
+  return (
+    <Page title="注销账号">
+      <View style={styles.delete}>
+        <View style={styles.dangerHero}>
+          <View style={styles.dangerIcon}><AlertTriangle color={colors.destructive} size={30} /></View>
+          <AppText variant="sectionTitle">此操作不可撤销</AppText>
+          <AppText style={styles.center}>注销账号会永久删除当前账号及其活跃数据。</AppText>
+        </View>
+        <Card style={styles.risks}>{risks.map((risk) => <View key={risk} style={styles.risk}><View style={styles.riskDot}><AppText color={colors.destructive} variant="micro">×</AppText></View><AppText style={styles.flex}>{risk}</AppText></View>)}</Card>
+        {hasApple ? <AppText variant="caption">提交时将由 Apple 弹窗再次验证你的身份。</AppText> : null}
+        {!hasApple && hasPassword ? <TextField label="登录密码" onChangeText={setPassword} secureTextEntry value={password} /> : null}
+        {needsPhoneOtp ? (
+          <View style={styles.formNoPad}>
+            <Button disabled={otpSending || deleting} onPress={() => void requestOtp()} variant="outline">{otpSending ? '正在发送…' : otpSent ? '重新发送验证码' : '发送短信验证码'}</Button>
+            <TextField keyboardType="number-pad" label="短信验证码" maxLength={6} onChangeText={setPhoneOtp} value={phoneOtp} />
+          </View>
+        ) : null}
+        <TextField label="确认文字" onChangeText={setConfirmation} placeholder="请输入：注销账号" value={confirmation} />
+        <Pressable onPress={() => setAgreed(!agreed)} style={styles.consent}><View style={[styles.checkbox, agreed && styles.checkboxOn]}>{agreed ? <Check color={colors.primaryForeground} size={12} /> : null}</View><AppText variant="caption">我已知晓上述风险，仍要注销账号</AppText></Pressable>
+        {error ? <AppText color={colors.destructive} variant="caption">{error}</AppText> : null}
+        <Button disabled={!ready || deleting} onPress={() => void remove()} size="lg" variant="destructive">{deleting ? '正在验证并注销…' : hasApple ? '通过 Apple 验证并注销' : '验证身份并永久注销'}</Button>
+        <Button disabled={deleting} onPress={router.back} size="lg" variant="outline">放弃，返回</Button>
+      </View>
+    </Page>
+  );
 }
 
 function Avatar({ uri, small = false }: { uri?: string | null; small?: boolean }) {

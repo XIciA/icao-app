@@ -9,6 +9,18 @@ import {
 
 jest.mock('@/platform/api-client', () => ({ apiRequest: jest.fn() }));
 
+const mockAppleSignIn = jest.fn();
+jest.mock('expo-apple-authentication', () => ({
+  AppleAuthenticationScope: { EMAIL: 1, FULL_NAME: 0 },
+  isAvailableAsync: jest.fn().mockResolvedValue(true),
+  signInAsync: (...args: unknown[]) => mockAppleSignIn(...args),
+}));
+jest.mock('expo-crypto', () => ({
+  CryptoDigestAlgorithm: { SHA256: 'SHA-256' },
+  digestStringAsync: jest.fn().mockResolvedValue('hashed-nonce'),
+  randomUUID: jest.fn().mockReturnValue('10000000-0000-4000-8000-000000000099'),
+}));
+
 const mockApiRequest = apiRequest as jest.MockedFunction<typeof apiRequest>;
 
 const phone = '+8613800138000';
@@ -51,6 +63,7 @@ function authClient() {
     getSession: jest.fn().mockResolvedValue({ data: { session: currentSession }, error: null }),
     refreshSession: jest.fn().mockResolvedValue({ data: { session: currentSession }, error: null }),
     resend: jest.fn().mockResolvedValue({ data: { user: null, session: null }, error: null }),
+    signInWithIdToken: jest.fn().mockResolvedValue({ data: { session: currentSession, user: currentSession.user }, error: null }),
     signInWithOtp: jest.fn().mockResolvedValue({ data: { user: null, session: null }, error: null }),
     signInWithPassword: jest.fn().mockResolvedValue({ data: { session: currentSession, user: currentSession.user }, error: null }),
     signOut: jest.fn().mockResolvedValue({ error: null }),
@@ -62,7 +75,13 @@ function authClient() {
 }
 
 describe('SupabasePhoneAuthService', () => {
-  beforeEach(() => mockApiRequest.mockReset());
+  beforeEach(() => {
+    mockApiRequest.mockReset();
+    mockAppleSignIn.mockReset().mockResolvedValue({
+      authorizationCode: 'apple-authorization-code',
+      identityToken: 'apple-identity-token',
+    });
+  });
 
   it('accepts only 10-64 character passwords containing a letter and a digit', () => {
     expect(isValidPhonePassword('password10')).toBe(true);
@@ -114,6 +133,88 @@ describe('SupabasePhoneAuthService', () => {
     expect(mockApiRequest).toHaveBeenCalledWith('/v1/account/password/recovery/authorize', {
       method: 'POST',
     });
+  });
+
+  it('uses the current password to obtain a one-time account deletion grant', async () => {
+    const { client } = authClient();
+    mockApiRequest.mockResolvedValueOnce({
+      expiresAt: Date.now() + 300_000,
+      grantId: '10000000-0000-4000-8000-000000000002',
+      method: 'password',
+      purpose: 'account_delete',
+    });
+
+    await new SupabasePhoneAuthService(client).authorizeAccountDeletionWithPassword('password10');
+
+    expect(mockApiRequest).toHaveBeenCalledWith('/v1/account/recent-auth/password', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ password: 'password10', purpose: 'account_delete' }),
+    });
+  });
+
+  it('starts and consumes a phone OTP before obtaining an account deletion grant', async () => {
+    const { auth, client } = authClient();
+    mockApiRequest
+      .mockResolvedValueOnce({ accepted: true })
+      .mockResolvedValueOnce({
+        expiresAt: Date.now() + 300_000,
+        grantId: '10000000-0000-4000-8000-000000000003',
+        method: 'phone_otp',
+        purpose: 'account_delete',
+      });
+    const service = new SupabasePhoneAuthService(client);
+
+    await service.requestAccountDeletionPhoneOtp();
+    const authorization = await service.authorizeAccountDeletionWithPhoneOtp('123456');
+
+    expect(mockApiRequest.mock.calls).toEqual([
+      ['/v1/account/recent-auth/phone/start', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ purpose: 'account_delete' }),
+      }],
+      ['/v1/account/recent-auth/phone', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ purpose: 'account_delete' }),
+      }],
+    ]);
+    expect(auth.verifyOtp).toHaveBeenCalledWith({ phone, token: '123456', type: 'sms' });
+    expect(authorization.session.user.id).toBe('user-1');
+  });
+
+  it('obtains an Apple deletion grant without replacing the current session', async () => {
+    const { auth, client } = authClient();
+    const appleUser = user({
+      app_metadata: { provider: 'apple', providers: ['apple'] },
+      identities: [{
+        id: 'apple-identity', identity_id: 'apple-identity', user_id: 'user-1', provider: 'apple',
+        identity_data: { sub: 'apple-subject' }, created_at: '2026-08-12T00:00:00.000Z',
+        updated_at: '2026-08-12T00:00:00.000Z', last_sign_in_at: '2026-08-12T00:00:00.000Z',
+      }],
+      phone: undefined,
+    });
+    auth.getSession.mockResolvedValueOnce({ data: { session: session(appleUser) }, error: null });
+    mockApiRequest.mockResolvedValueOnce({
+      expiresAt: Date.now() + 300_000,
+      grantId: '10000000-0000-4000-8000-000000000004',
+      method: 'apple',
+      purpose: 'account_delete',
+    });
+
+    await new SupabasePhoneAuthService(client).authorizeAccountDeletionWithApple();
+
+    expect(mockApiRequest).toHaveBeenCalledWith('/v1/account/recent-auth/apple', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        authorizationCode: 'apple-authorization-code',
+        purpose: 'account_delete',
+        rawNonce: '10000000-0000-4000-8000-000000000099',
+      }),
+    });
+    expect(auth.signInWithIdToken).not.toHaveBeenCalled();
   });
 
   it.each([

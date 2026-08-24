@@ -193,8 +193,13 @@ export function clearSafeDiagnosticCorrelation(feature: FeedbackDiagnosticFeatur
   return operation.catch(() => undefined);
 }
 
+export function clearSafeDiagnostics() {
+  const operation = afterPendingWrites(() => write([]));
+  writeQueue = operation.then(() => undefined, () => undefined);
+  return operation;
+}
+
 export async function resetSafeDiagnosticStoreForTests() {
-  await writeQueue.catch(() => undefined);
-  await Storage.removeItem(STORAGE_KEY).catch(() => undefined);
+  await clearSafeDiagnostics().catch(() => undefined);
   writeQueue = Promise.resolve();
 }

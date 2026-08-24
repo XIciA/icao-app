@@ -55,7 +55,9 @@ export function setAudioDiagnosticSink(next?: AudioDiagnosticSink) {
   sink = next;
 }
 
-export function resetAudioDiagnosticsForTests() {
+export function clearAudioDiagnostics() {
   recentEvents.length = 0;
   sink = undefined;
 }
+
+export const resetAudioDiagnosticsForTests = clearAudioDiagnostics;
