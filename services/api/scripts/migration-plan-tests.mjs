@@ -149,6 +149,7 @@ test('defers reservation allocation, batch accounting, and timestamp invariants 
     'commerce_reservation_allocation_total_mismatch',
     'commerce_batch_reserved_total_mismatch',
     'commerce_batch_consumed_total_mismatch',
+    'commerce_merge_conservation_invalid',
     'commerce_reservation_settled_timestamp_invalid',
     'commerce_reservation_transition_invalid',
     'ai_point_allocations_reservation_total_deferred',

@@ -482,11 +482,6 @@ export class CommerceFoundationModel {
     order.status = 'verified';
     order.revokedAt = undefined;
     order.membershipGrantSource = 'refund_restore';
-    order.membershipEffectiveAt = new Date(processedAt);
-    order.membershipContributionMs = Math.max(
-      0,
-      addDays(order.purchasedAt, order.durationDays).getTime() - processedAt.getTime(),
-    );
     transaction.revocationDate = undefined;
     transaction.revocationReason = undefined;
     this.rebuildMembership(state, order.accountId, environment, processedAt);
@@ -702,6 +697,16 @@ export class CommerceFoundationModel {
       reservation.accountId = targetAccountId;
     }
 
+    for (const environment of ['sandbox', 'production'] as const) {
+      this.rebaseMembershipContributionsForMerge(
+        state,
+        sourceAccountId,
+        targetAccountId,
+        environment,
+        mergedAt,
+      );
+    }
+
     for (const order of state.orders.filter((candidate) => candidate.accountId === sourceAccountId)) {
       order.accountId = targetAccountId;
     }
@@ -724,6 +729,34 @@ export class CommerceFoundationModel {
       this.rebuildMergedTrial(state, sourceAccountId, targetAccountId, environment, mergedAt);
     }
     return { changed: true, targetAccountId };
+  }
+
+  private rebaseMembershipContributionsForMerge(
+    state: CommerceDomainState,
+    sourceAccountId: string,
+    targetAccountId: string,
+    environment: CommerceEnvironment,
+    mergedAt: Date,
+  ) {
+    for (const order of state.orders.filter((candidate) => (
+      candidate.environment === environment
+      && candidate.status === 'verified'
+      && (candidate.accountId === sourceAccountId || candidate.accountId === targetAccountId)
+    ))) {
+      const segment = state.membershipSegments.find((candidate) => (
+        candidate.environment === environment
+        && candidate.orderId === order.id
+        && candidate.status === 'active'
+      ));
+      if (!segment || segment.endsAt <= mergedAt) {
+        order.membershipEffectiveAt = new Date(mergedAt);
+        order.membershipContributionMs = 0;
+        continue;
+      }
+      const effectiveAt = segment.startsAt > mergedAt ? segment.startsAt : mergedAt;
+      order.membershipEffectiveAt = new Date(effectiveAt);
+      order.membershipContributionMs = segment.endsAt.getTime() - effectiveAt.getTime();
+    }
   }
 
   availableAiPoints(
@@ -769,81 +802,49 @@ export class CommerceFoundationModel {
       && segment.status === 'active'
     ));
     const activeByOrder = new Map(activeSegments.map((segment) => [segment.orderId, segment]));
-    const latestByOrder = new Map<string, MembershipEntitlementSegment>();
-    for (const segment of state.membershipSegments.filter((candidate) => (
-      candidate.accountId === accountId && candidate.environment === environment
-    ))) {
-      const latest = latestByOrder.get(segment.orderId);
-      if (!latest || segment.revision > latest.revision) latestByOrder.set(segment.orderId, segment);
-    }
-    const validOrders = state.orders.filter((order) => (
-      order.accountId === accountId
-      && order.environment === environment
-      && order.status === 'verified'
-    ));
-    type MembershipPlan = {
-      order: CommerceOrder;
-      current?: MembershipEntitlementSegment;
-      remainingMs: number;
-      sortAt: Date;
-    };
-
-    // Status changes preserve the already-issued remaining segments. A first
-    // purchase discovery contributes its explicit full duration. Refund restore
-    // uses the smaller contribution persisted at reversal time, so it can never
-    // replenish historical membership that has already elapsed.
-    const plans: MembershipPlan[] = validOrders
-      .map((order) => {
-        const current = activeByOrder.get(order.id);
-        const latest = latestByOrder.get(order.id);
-        const hasUnissuedGrant = !latest || (
-          order.membershipGrantSource === 'refund_restore' && latest.status === 'revoked'
-        );
-        const remainingMs = current
-          ? current.endsAt.getTime() <= asOf.getTime()
-            ? 0
-            : current.startsAt.getTime() <= asOf.getTime()
-              ? current.endsAt.getTime() - asOf.getTime()
-              : current.endsAt.getTime() - current.startsAt.getTime()
-          : hasUnissuedGrant
-            ? order.membershipContributionMs
-            : 0;
-        return {
-          order,
-          current,
-          remainingMs,
-          sortAt: current?.startsAt ?? order.purchasedAt,
-        };
-      })
-      .filter((plan) => plan.remainingMs > 0)
+    const validOrders = state.orders
+      .filter((order) => (
+        order.accountId === accountId
+        && order.environment === environment
+        && order.status === 'verified'
+        && order.membershipContributionMs > 0
+      ))
       .sort((left, right) => (
-        Number(!left.current) - Number(!right.current)
-        || left.sortAt.getTime() - right.sortAt.getTime()
-        || left.order.purchasedAt.getTime() - right.order.purchasedAt.getTime()
-        || left.order.id.localeCompare(right.order.id)
+        left.membershipEffectiveAt.getTime() - right.membershipEffectiveAt.getTime()
+        || left.purchasedAt.getTime() - right.purchasedAt.getTime()
+        || left.id.localeCompare(right.id)
       ));
+
+    // Rebuild the complete entitlement timeline from persisted per-order
+    // contributions. The discovery time is the earliest possible start; an
+    // already queued contribution starts after prior contributions. Removing
+    // one order therefore removes exactly what it appended, including when the
+    // order was first discovered after its purchase date had already elapsed.
 
     for (const segment of activeSegments) {
       segment.status = 'superseded';
       segment.supersededAt = new Date(asOf);
     }
 
-    let cursor = new Date(asOf);
+    let cursor: Date | undefined;
     const nextSegments: Array<{
       segment: MembershipEntitlementSegment;
       rescheduleFutureBatches: boolean;
     }> = [];
-    for (const plan of plans) {
+    for (const order of validOrders) {
+      const current = activeByOrder.get(order.id);
       const revision = state.membershipSegments
-        .filter((segment) => segment.orderId === plan.order.id && segment.environment === environment)
+        .filter((segment) => segment.orderId === order.id && segment.environment === environment)
         .reduce((maximum, segment) => Math.max(maximum, segment.revision), 0) + 1;
-      const startsAt = cursor;
-      const endsAt = new Date(startsAt.getTime() + plan.remainingMs);
+      const startsAt = cursor && cursor > order.membershipEffectiveAt
+        ? cursor
+        : order.membershipEffectiveAt;
+      const endsAt = new Date(startsAt.getTime() + order.membershipContributionMs);
       const segment: MembershipEntitlementSegment = {
         id: this.idFactory(),
         environment,
         accountId,
-        orderId: plan.order.id,
+        orderId: order.id,
         revision,
         startsAt: new Date(startsAt),
         endsAt: new Date(endsAt),
@@ -852,9 +853,9 @@ export class CommerceFoundationModel {
       state.membershipSegments.push(segment);
       nextSegments.push({
         segment,
-        rescheduleFutureBatches: !plan.current || plan.current.startsAt > asOf,
+        rescheduleFutureBatches: !current || current.startsAt > asOf,
       });
-      if (segment.endsAt > cursor) cursor = segment.endsAt;
+      cursor = segment.endsAt;
     }
 
     for (const { segment, rescheduleFutureBatches } of nextSegments) {
@@ -1146,7 +1147,7 @@ export class CommerceFoundationModel {
       && batch.status !== 'revoked'
       && batch.status !== 'expired'
     ));
-    if (trialBatches.length === 0) return;
+    if (trialBatches.length < 2) return;
     const trialBatchIds = new Set(trialBatches.map((batch) => batch.id));
     for (const reservation of state.pointReservations.filter((candidate) => (
       candidate.environment === environment

@@ -279,14 +279,25 @@ DECLARE
 	granted integer;
 	batch_source_type text;
 	batch_source_reference text;
+	batch_environment text;
+	batch_account_id uuid;
+	batch_original_account_id uuid;
 	reserved_allocations bigint;
 	settled_allocations bigint;
 	merge_credit_count bigint;
 	merge_credit_points bigint;
+	merge_credit_operation text;
+	merge_debit_count bigint;
+	merge_debit_points bigint;
+	invalid_merge_debit_count bigint;
+	target_merge_debit_count bigint;
+	source_merge_debit_count bigint;
 	carried_consumption bigint := 0;
 BEGIN
-	SELECT "reserved_points", "consumed_points", "granted_points", "source_type", "source_reference"
-	INTO recorded_reserved, recorded_consumed, granted, batch_source_type, batch_source_reference
+	SELECT "reserved_points", "consumed_points", "granted_points", "source_type", "source_reference",
+		"environment", "account_id", "original_account_id"
+	INTO recorded_reserved, recorded_consumed, granted, batch_source_type, batch_source_reference,
+		batch_environment, batch_account_id, batch_original_account_id
 	FROM "ai_point_batches" WHERE "id" = target_batch_id;
 	IF NOT FOUND THEN RETURN; END IF;
 	-- Settled and released reservations keep immutable allocations for audit,
@@ -300,17 +311,62 @@ BEGIN
 	JOIN "ai_point_reservations" reservation ON reservation."id" = allocation."reservation_id"
 	WHERE allocation."batch_id" = target_batch_id;
 
-	SELECT COUNT(*), COALESCE(SUM("points"), 0)
-	INTO merge_credit_count, merge_credit_points
+	SELECT COUNT(*), COALESCE(SUM("points"), 0), MIN("operation_id")
+	INTO merge_credit_count, merge_credit_points, merge_credit_operation
 	FROM "ai_point_ledger_entries"
 	WHERE "batch_id" = target_batch_id AND "entry_type" = 'merge_credit';
 	IF batch_source_type = 'trial' AND batch_source_reference LIKE 'merge:%' THEN
-		IF merge_credit_count <> 1 OR merge_credit_points > granted THEN
+		IF merge_credit_count <> 1
+			OR merge_credit_points > granted
+			OR batch_original_account_id <> batch_account_id
+			OR split_part(batch_source_reference, ':', 1) <> 'merge'
+			OR split_part(batch_source_reference, ':', 2) <> batch_account_id::text
+			OR split_part(batch_source_reference, ':', 3) = ''
+			OR split_part(batch_source_reference, ':', 4) <> ''
+			OR merge_credit_operation <> 'trial-' || batch_source_reference
+		THEN
 			RAISE EXCEPTION 'commerce_merged_trial_credit_invalid:%:count=%:points=%:grant=%',
 				target_batch_id, merge_credit_count, merge_credit_points, granted USING ERRCODE = '23514';
 		END IF;
+		SELECT
+			COUNT(*),
+			COALESCE(SUM(entry."points"), 0),
+			COUNT(*) FILTER (WHERE
+				debit_batch."source_type" <> 'trial'
+				OR debit_batch."status" <> 'merged'
+				OR debit_batch."reserved_points" <> 0
+				OR entry."points" <> GREATEST(
+					0,
+					debit_batch."granted_points" - debit_batch."consumed_points" - debit_batch."reserved_points"
+				)
+				OR debit_batch."original_account_id"::text NOT IN (
+					batch_account_id::text,
+					split_part(batch_source_reference, ':', 3)
+				)
+			),
+			COUNT(*) FILTER (WHERE debit_batch."original_account_id" = batch_account_id),
+			COUNT(*) FILTER (WHERE debit_batch."original_account_id"::text = split_part(batch_source_reference, ':', 3))
+		INTO merge_debit_count, merge_debit_points, invalid_merge_debit_count,
+			target_merge_debit_count, source_merge_debit_count
+		FROM "ai_point_ledger_entries" entry
+		JOIN "ai_point_batches" debit_batch ON debit_batch."id" = entry."batch_id"
+		WHERE entry."environment" = batch_environment
+			AND entry."account_id" = batch_account_id
+			AND entry."operation_id" = merge_credit_operation
+			AND entry."entry_type" = 'merge_debit';
+		IF merge_debit_count < 2
+			OR invalid_merge_debit_count <> 0
+			OR target_merge_debit_count = 0
+			OR source_merge_debit_count = 0
+			OR merge_debit_points < merge_credit_points
+			OR merge_debit_points - merge_credit_points > granted
+		THEN
+			RAISE EXCEPTION 'commerce_merge_conservation_invalid:%:debits=%:debit_points=%:credit_points=%',
+				target_batch_id, merge_debit_count, merge_debit_points, merge_credit_points USING ERRCODE = '23514';
+		END IF;
 		-- A merged trial carries prior settled usage without fabricating a new
-		-- reservation. Its single merge_credit records the remaining balance.
+		-- reservation. Its single merge_credit records the remaining balance,
+		-- backed by the unused balances debited from both merge participants.
 		carried_consumption := granted - merge_credit_points;
 	ELSIF merge_credit_count <> 0 THEN
 		RAISE EXCEPTION 'commerce_merge_credit_source_mismatch:%', target_batch_id USING ERRCODE = '23514';
