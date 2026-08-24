@@ -149,6 +149,11 @@ export type CommerceEntitlementSummary = {
   };
 };
 
+export type CommerceEntitlementsResponse = {
+  production: CommerceEntitlementSummary;
+  sandbox: CommerceEntitlementSummary;
+};
+
 export type VerifyAppleTransactionResponse = {
   created: boolean;
   transactionId: string;

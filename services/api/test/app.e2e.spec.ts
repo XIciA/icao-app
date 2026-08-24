@@ -43,7 +43,6 @@ function productionConfig(overrides: NodeJS.ProcessEnv = {}): NodeJS.ProcessEnv 
     APPLE_KEY_ID: 'KEYID1234',
     APPLE_PRIVATE_KEY: '-----BEGIN PRIVATE KEY-----\\ntest-only-not-a-real-key-material\\n-----END PRIVATE KEY-----',
     APPLE_CREDENTIAL_ENCRYPTION_KEY: 'BwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwc=',
-    APPLE_COMMERCE_ENVIRONMENT: 'production',
     APPLE_IAP_BUNDLE_ID: 'com.readyoufife.ios',
     APPLE_IAP_APP_APPLE_ID: '1234567890',
     APPLE_IAP_ROOT_CERTIFICATES_BASE64: 'dGVzdC1yb290LWNlcnRpZmljYXRl',
@@ -174,10 +173,18 @@ async function testApp({ revoked = false }: { revoked?: boolean } = {}) {
         }],
       }),
       currentEntitlement: async () => ({
-        environment: 'production',
-        serverTime: '2026-08-24T00:00:00.000Z',
-        membership: { active: false, expiresAt: null },
-        aiPoints: { available: 100, nextGrantAt: null },
+        production: {
+          environment: 'production',
+          serverTime: '2026-08-24T00:00:00.000Z',
+          membership: { active: false, expiresAt: null },
+          aiPoints: { available: 100, nextGrantAt: null },
+        },
+        sandbox: {
+          environment: 'sandbox',
+          serverTime: '2026-08-24T00:00:00.000Z',
+          membership: { active: false, expiresAt: null },
+          aiPoints: { available: 0, nextGrantAt: null },
+        },
       }),
       verifyAppleTransaction: async () => ({
         created: true,
@@ -302,14 +309,12 @@ describe('API foundation', () => {
     }
   });
 
-  it('requires a server-owned Apple commerce environment and verifier trust roots in production', () => {
+  it('requires Apple verifier trust roots in production', () => {
     const configured = loadConfig(productionConfig());
-    expect(configured.appleCommerceEnvironment).toBe('production');
     expect(configured.appleIapBundleId).toBe('com.readyoufife.ios');
     expect(configured.appleIapAppAppleId).toBe(1_234_567_890);
     expect(configured.appleIapRootCertificates).toHaveLength(1);
     for (const field of [
-      'APPLE_COMMERCE_ENVIRONMENT',
       'APPLE_IAP_APP_APPLE_ID',
       'APPLE_IAP_ROOT_CERTIFICATES_BASE64',
     ]) {
@@ -687,8 +692,8 @@ describe('API foundation', () => {
     expect(catalog.statusCode).toBe(200);
     expect(catalog.json().data).toMatchObject({ priceSource: 'storekit' });
     expect(entitlement.json().data).toMatchObject({
-      environment: 'production',
-      aiPoints: { available: 100 },
+      production: { environment: 'production', aiPoints: { available: 100 } },
+      sandbox: { environment: 'sandbox', aiPoints: { available: 0 } },
     });
     expect(invalid.statusCode).toBe(400);
     expect(invalid.json().error.code).toBe('invalid_apple_transaction_request');

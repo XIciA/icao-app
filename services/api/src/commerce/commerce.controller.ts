@@ -1,7 +1,7 @@
 import { BadRequestException, Body, Controller, Get, HttpCode, Post, Req, UseGuards } from '@nestjs/common';
 import type {
   ApiSuccessEnvelope,
-  CommerceEntitlementSummary,
+  CommerceEntitlementsResponse,
   CommerceProductCatalogResponse,
   VerifyAppleTransactionRequest,
   VerifyAppleTransactionResponse,
@@ -42,7 +42,7 @@ export class CommerceController {
   @Get('entitlements/current')
   async currentEntitlement(
     @Req() request: AuthenticatedRequest,
-  ): Promise<ApiSuccessEnvelope<CommerceEntitlementSummary>> {
+  ): Promise<ApiSuccessEnvelope<CommerceEntitlementsResponse>> {
     return {
       requestId: request.id,
       data: await this.commerce.currentEntitlement(request.user!.id),

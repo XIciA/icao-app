@@ -1,6 +1,5 @@
 import type { AppleStoreVerifier } from './apple-store-verifier';
 import type { CommerceDomainState, CommerceFoundationModel } from './commerce-domain';
-import type { CommerceEnvironment } from './product-catalog';
 
 /**
  * Foundation-only boundary for verified Apple input. This class has no Nest
@@ -19,18 +18,16 @@ export class AppleCommerceFoundationBoundary {
   async ingestTransaction(
     state: CommerceDomainState,
     signedTransaction: string,
-    expectedEnvironment: CommerceEnvironment,
   ) {
-    const transaction = await this.verifier.verifyTransaction(signedTransaction, expectedEnvironment);
+    const transaction = await this.verifier.verifyTransaction(signedTransaction);
     return this.commerce.recordApplePurchase(state, transaction, this.now());
   }
 
   async ingestNotification(
     state: CommerceDomainState,
     signedPayload: string,
-    expectedEnvironment: CommerceEnvironment,
   ) {
-    const notification = await this.verifier.verifyNotification(signedPayload, expectedEnvironment);
+    const notification = await this.verifier.verifyNotification(signedPayload);
     return this.commerce.recordAppleNotification(state, notification, this.now());
   }
 }

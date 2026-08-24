@@ -36,6 +36,8 @@ export type VerifiedAppleTransaction = Readonly<{
   storefront?: string;
   currency?: string;
   priceMilliunits?: number;
+  productType: 'non_renewing_subscription';
+  quantity: 1;
   signedPayloadHash: string;
   decodedPayload: Readonly<Record<string, unknown>>;
 }>;

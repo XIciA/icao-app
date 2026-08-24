@@ -22,7 +22,6 @@ function config(): ApiConfig {
     supabaseUrl: 'http://supabase.internal:8000',
     inviteAuthSecret: 'test-invite-auth-secret-that-is-long-enough',
     accountIdentityHashSecret: 'test-account-identity-secret-that-is-long-enough',
-    appleCommerceEnvironment: 'sandbox',
     appleIapBundleId: 'com.readyoufife.ios',
     appleIapRootCertificates: [],
     aiTextProvider: 'deepseek',

@@ -54,6 +54,8 @@ function appleTransaction(input: {
     purchaseDate: purchasedAt,
     signedDate: input.signedAt ?? purchasedAt,
     revocationDate: input.revokedAt,
+    productType: 'non_renewing_subscription',
+    quantity: 1,
     signedPayloadHash: input.payloadHash ?? `hash-${input.transactionId}`,
     decodedPayload: { transactionId: input.transactionId },
   };
@@ -784,8 +786,8 @@ describe('AppleCommerceFoundationBoundary', () => {
     const transaction = appleTransaction({ transactionId: 'verified-boundary' });
     const seen: string[] = [];
     const verifier: AppleStoreVerifier = {
-      verifyTransaction: async (signed, environment) => {
-        seen.push(`transaction:${signed}:${environment}`);
+      verifyTransaction: async (signed) => {
+        seen.push(`transaction:${signed}`);
         return transaction;
       },
       verifyNotification: async () => {
@@ -796,8 +798,8 @@ describe('AppleCommerceFoundationBoundary', () => {
     const commerce = new CommerceFoundationModel({ idFactory: ids() });
     const ingestion = new AppleCommerceFoundationBoundary(verifier, commerce, () => at(0));
 
-    await ingestion.ingestTransaction(state, 'signed-jws', 'production');
-    expect(seen).toEqual(['transaction:signed-jws:production']);
+    await ingestion.ingestTransaction(state, 'signed-jws');
+    expect(seen).toEqual(['transaction:signed-jws']);
     expect(state.orders).toHaveLength(1);
   });
 });

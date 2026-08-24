@@ -20,7 +20,6 @@ const schema = z.object({
   APPLE_KEY_ID: z.string().min(3).optional(),
   APPLE_PRIVATE_KEY: z.string().min(32).optional(),
   APPLE_CREDENTIAL_ENCRYPTION_KEY: z.string().optional(),
-  APPLE_COMMERCE_ENVIRONMENT: z.enum(['sandbox', 'production']).optional(),
   APPLE_IAP_BUNDLE_ID: z.literal('com.readyoufife.ios').default('com.readyoufife.ios'),
   APPLE_IAP_APP_APPLE_ID: z.coerce.number().int().positive().optional(),
   APPLE_IAP_ROOT_CERTIFICATES_BASE64: z.string().optional(),
@@ -112,7 +111,6 @@ export type ApiConfig = {
   appleKeyId?: string;
   applePrivateKey?: string;
   appleCredentialEncryptionKey?: string;
-  appleCommerceEnvironment: 'sandbox' | 'production';
   appleIapBundleId: 'com.readyoufife.ios';
   appleIapAppAppleId?: number;
   appleIapRootCertificates: Buffer[];
@@ -217,7 +215,6 @@ function validateAppleRuntime(data: z.infer<typeof schema>) {
   } catch {
     invalidConfiguration('APPLE_PRIVATE_KEY');
   }
-  if (!data.APPLE_COMMERCE_ENVIRONMENT) invalidConfiguration('APPLE_COMMERCE_ENVIRONMENT');
   if (!data.APPLE_IAP_APP_APPLE_ID) invalidConfiguration('APPLE_IAP_APP_APPLE_ID');
   if (!data.APPLE_IAP_ROOT_CERTIFICATES_BASE64?.trim()) {
     invalidConfiguration('APPLE_IAP_ROOT_CERTIFICATES_BASE64');
@@ -344,8 +341,6 @@ export function loadConfig(environment: NodeJS.ProcessEnv = process.env): ApiCon
     appleKeyId: parsed.data.APPLE_KEY_ID,
     applePrivateKey: parsed.data.APPLE_PRIVATE_KEY?.replaceAll('\\n', '\n'),
     appleCredentialEncryptionKey: parsed.data.APPLE_CREDENTIAL_ENCRYPTION_KEY,
-    appleCommerceEnvironment: parsed.data.APPLE_COMMERCE_ENVIRONMENT
-      ?? (parsed.data.NODE_ENV === 'production' ? 'production' : 'sandbox'),
     appleIapBundleId: parsed.data.APPLE_IAP_BUNDLE_ID,
     appleIapAppAppleId: parsed.data.APPLE_IAP_APP_APPLE_ID,
     appleIapRootCertificates,

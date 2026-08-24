@@ -2864,12 +2864,14 @@ function verifiedCommerceTransaction({
     appAccountToken: accountId,
     purchaseDate,
     signedDate: purchaseDate,
+    productType: 'non_renewing_subscription',
+    quantity: 1,
     signedPayloadHash: createHash('sha256').update(`${environment}:${transactionId}:${productId}`).digest('hex'),
     decodedPayload: { environment, productId, transactionId },
   };
 }
 
-function persistentCommerceService(environment, signedTransactions) {
+function persistentCommerceService(signedTransactions) {
   const verifier = {
     verifyTransaction: async (signedTransaction) => {
       const transaction = signedTransactions.get(signedTransaction);
@@ -2879,7 +2881,6 @@ function persistentCommerceService(environment, signedTransactions) {
     verifyNotification: async () => { throw new Error('not_implemented_in_transaction_slice'); },
   };
   return new CommerceService({
-    appleCommerceEnvironment: environment,
     appleIapBundleId: 'com.readyoufife.ios',
   }, { db: serviceDatabase }, verifier);
 }
@@ -2897,7 +2898,7 @@ test('persists first purchase, exact replay, sequential membership and point bat
       purchaseDate: secondPurchaseAt,
     })],
   ]);
-  const commerce = persistentCommerceService('production', signedTransactions);
+  const commerce = persistentCommerceService(signedTransactions);
   await serviceDatabase.insert(databaseSchema.accounts).values({ id: accountId });
 
   const first = await commerce.verifyAppleTransaction(accountId, 'first-jws');
@@ -2944,7 +2945,7 @@ test('serializes concurrent replay without duplicate orders or benefits', async 
     transactionId: 'persistent-concurrent',
     productId: 'com.readyoufife.ios.membership.31d.v1',
   });
-  const commerce = persistentCommerceService('production', new Map([['concurrent-jws', transaction]]));
+  const commerce = persistentCommerceService(new Map([['concurrent-jws', transaction]]));
   await serviceDatabase.insert(databaseSchema.accounts).values({ id: accountId });
 
   const results = await Promise.all(
@@ -2977,14 +2978,17 @@ test('isolates identical transaction ids and entitlement queries across Apple en
     transactionId,
     productId: 'com.readyoufife.ios.membership.15d.v1',
   });
-  const production = persistentCommerceService('production', new Map([['production-jws', productionTransaction]]));
-  const sandbox = persistentCommerceService('sandbox', new Map([['sandbox-jws', sandboxTransaction]]));
+  const commerce = persistentCommerceService(new Map([
+    ['production-jws', productionTransaction],
+    ['sandbox-jws', sandboxTransaction],
+  ]));
   await serviceDatabase.insert(databaseSchema.accounts).values({ id: accountId });
 
-  await production.verifyAppleTransaction(accountId, 'production-jws');
-  await sandbox.verifyAppleTransaction(accountId, 'sandbox-jws');
-  const productionEntitlement = await production.currentEntitlement(accountId);
-  const sandboxEntitlement = await sandbox.currentEntitlement(accountId);
+  await commerce.verifyAppleTransaction(accountId, 'production-jws');
+  await commerce.verifyAppleTransaction(accountId, 'sandbox-jws');
+  const entitlements = await commerce.currentEntitlement(accountId);
+  const productionEntitlement = entitlements.production;
+  const sandboxEntitlement = entitlements.sandbox;
   assert.equal(productionEntitlement.environment, 'production');
   assert.equal(sandboxEntitlement.environment, 'sandbox');
   assert.equal(productionEntitlement.aiPoints.available, 250);
@@ -3008,7 +3012,7 @@ test('persists long membership point batches with only due points spendable', as
     transactionId: 'persistent-62-days',
     productId: 'com.readyoufife.ios.membership.62d.v1',
   });
-  const commerce = persistentCommerceService('production', new Map([['62-days-jws', transaction]]));
+  const commerce = persistentCommerceService(new Map([['62-days-jws', transaction]]));
   await serviceDatabase.insert(databaseSchema.accounts).values({ id: accountId });
   const result = await commerce.verifyAppleTransaction(accountId, '62-days-jws');
   const batches = await serviceDatabase.select().from(databaseSchema.aiPointBatches)
@@ -3041,7 +3045,7 @@ test('late purchase discovery rebuilds from Apple purchase time without refillin
     transactionId: 'late-discovery-expired',
     purchaseDate: expiredPurchaseAt,
   });
-  const commerce = persistentCommerceService('production', new Map([
+  const commerce = persistentCommerceService(new Map([
     ['current-jws', current],
     ['historical-jws', historical],
   ]));

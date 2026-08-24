@@ -7,6 +7,7 @@ import {
 } from '@nestjs/common';
 import type {
   CommerceEntitlementSummary,
+  CommerceEntitlementsResponse,
   CommerceProductCatalogResponse,
   VerifyAppleTransactionResponse,
 } from '@icao/contracts';
@@ -24,6 +25,7 @@ import {
 } from '../database/schema';
 import {
   APPLE_STORE_VERIFIER,
+  isRetryableAppleVerificationError,
   type AppleStoreVerifier,
 } from './apple-store-verifier';
 import type { VerifiedAppleTransaction } from './commerce-domain';
@@ -71,18 +73,21 @@ export class CommerceService {
     accountId: string,
     signedTransaction: string,
   ): Promise<VerifyAppleTransactionResponse> {
-    const environment = this.config.appleCommerceEnvironment;
     const processedAt = new Date();
     let verified: VerifiedAppleTransaction;
     try {
-      verified = await this.appleVerifier.verifyTransaction(signedTransaction, environment);
+      verified = await this.appleVerifier.verifyTransaction(signedTransaction);
     } catch (error) {
-      if (error instanceof Error && error.message === 'apple_commerce_not_configured') {
+      if (
+        isRetryableAppleVerificationError(error)
+        || (error instanceof Error && error.message === 'apple_commerce_not_configured')
+      ) {
         throw new ServiceUnavailableException('apple_commerce_unavailable');
       }
       throw new BadRequestException('invalid_apple_transaction');
     }
-    const product = this.validateVerifiedTransaction(verified, accountId, environment, processedAt);
+    const environment = verified.environment;
+    const product = this.validateVerifiedTransaction(verified, accountId, processedAt);
 
     return this.database.db.transaction(async (transaction) => {
       await transaction.execute(sql`
@@ -172,27 +177,35 @@ export class CommerceService {
     });
   }
 
-  async currentEntitlement(accountId: string): Promise<CommerceEntitlementSummary> {
-    const environment = this.config.appleCommerceEnvironment;
+  async currentEntitlement(accountId: string): Promise<CommerceEntitlementsResponse> {
     const now = new Date();
     return this.database.db.transaction(async (transaction) => {
       await transaction.execute(sql`
         select pg_advisory_xact_lock(hashtextextended(${`account:${accountId}`}, 0))
       `);
       await this.assertAccountActive(transaction, accountId);
-      return this.entitlementInTransaction(transaction, accountId, environment, now);
+      return {
+        production: await this.entitlementInTransaction(
+          transaction,
+          accountId,
+          'production',
+          now,
+        ),
+        sandbox: await this.entitlementInTransaction(
+          transaction,
+          accountId,
+          'sandbox',
+          now,
+        ),
+      };
     });
   }
 
   private validateVerifiedTransaction(
     transaction: VerifiedAppleTransaction,
     accountId: string,
-    expectedEnvironment: CommerceEnvironment,
     processedAt: Date,
   ) {
-    if (transaction.environment !== expectedEnvironment) {
-      throw new BadRequestException('apple_transaction_environment_mismatch');
-    }
     if (transaction.bundleId !== this.config.appleIapBundleId) {
       throw new BadRequestException('apple_transaction_bundle_mismatch');
     }
@@ -204,6 +217,12 @@ export class CommerceService {
     }
     if (transaction.revocationDate) {
       throw new BadRequestException('apple_transaction_revoked');
+    }
+    if (transaction.productType !== 'non_renewing_subscription') {
+      throw new BadRequestException('apple_transaction_type_invalid');
+    }
+    if (transaction.quantity !== 1) {
+      throw new BadRequestException('apple_transaction_quantity_invalid');
     }
     try {
       return requireMembershipProductByAppleId(transaction.productId);
