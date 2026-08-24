@@ -55,11 +55,13 @@ export type StartPhoneOtpResponse = {
 export type AuthorizePasswordRecoveryResponse = {
   authorized: true;
   expiresAt: number;
+  grantId: string;
 };
 
 export type UpdatePhonePasswordRequest = {
   password: string;
   currentPassword?: string;
+  recoveryGrantId?: string;
 };
 
 export type UpdatePhonePasswordResponse = {
@@ -109,8 +111,54 @@ export type InviteSessionResponse = {
 
 export type RevokeAllSessionsResponse = { revoked: true };
 
+export type RecentAuthPurpose = 'account_delete' | 'password_recovery' | 'phone_binding';
+export type RecentAuthMethod = 'password' | 'phone_otp' | 'apple';
+
+export type PasswordRecentAuthRequest = {
+  password: string;
+  purpose: 'account_delete';
+};
+
+export type PhoneRecentAuthRequest = {
+  purpose: 'account_delete';
+};
+
+export type StartPhoneRecentAuthRequest = PhoneRecentAuthRequest;
+
+export type RecentAuthGrantResponse = {
+  expiresAt: number;
+  grantId: string;
+  method: RecentAuthMethod;
+  purpose: RecentAuthPurpose;
+};
+
+export type AppleCredentialRequest = {
+  authorizationCode: string;
+  rawNonce: string;
+};
+
+export type AppleRecentAuthRequest = AppleCredentialRequest & {
+  purpose: 'account_delete';
+};
+
+export type RegisterAppleCredentialResponse = {
+  registered: true;
+};
+
 export type DeleteAccountRequest = {
   confirmation: '注销账号';
+  grantId: string;
+  idempotencyKey: string;
+};
+
+export type DeleteAccountResponse = {
+  identityProviderOutcome: 'pending' | 'revoked' | 'manual_action_required' | 'not_applicable';
+  jobId: string;
+  status: 'pending' | 'processing' | 'retryable' | 'completed';
+};
+
+export type AccountDeletionStatusRequest = {
+  idempotencyKey: string;
 };
 
 export type HealthStatus = {

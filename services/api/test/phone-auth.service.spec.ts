@@ -1,9 +1,9 @@
-import { ServiceUnavailableException, UnauthorizedException } from '@nestjs/common';
+import { ServiceUnavailableException } from '@nestjs/common';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { PhoneAuthService } from '../src/auth/phone-auth.service';
-import type { VerifiedAuthSession } from '../src/auth/auth.types';
 import type { ApiConfig } from '../src/config';
+import type { DatabaseService } from '../src/database/database.service';
 
 const supabase = vi.hoisted(() => ({ createClient: vi.fn() }));
 
@@ -17,32 +17,24 @@ const config = {
 
 function service(error: { code?: string; message: string } | null = null) {
   const signInWithOtp = vi.fn().mockResolvedValue({ data: { session: null, user: null }, error });
-  supabase.createClient.mockReturnValueOnce({ auth: { signInWithOtp } });
-  return { instance: new PhoneAuthService(config), signInWithOtp };
-}
-
-function authSession(options: {
-  authUserId?: string;
-  phone?: string;
-  sessionId?: string;
-  timestamp: number;
-}): VerifiedAuthSession {
-  const authUserId = options.authUserId ?? '11111111-1111-4111-8111-111111111111';
-  return {
-    accessToken: 'access-token',
-    authenticationMethods: [{ method: 'otp', timestamp: options.timestamp }],
-    authUserId,
-    identities: [{ provider: 'phone', subject: options.phone ?? '+8613800138000' }],
-    issuedAt: options.timestamp,
-    passwordSet: true,
-    sessionId: options.sessionId ?? '22222222-2222-4222-8222-222222222222',
-    user: {
-      authUserId,
-      id: authUserId,
-      phone: options.phone ?? '+8613800138000',
-      providers: ['phone'],
-    },
+  const values = vi.fn().mockResolvedValue(undefined);
+  const transactionApi = {
+    execute: vi.fn().mockResolvedValue(undefined),
+    insert: vi.fn(() => ({ values })),
+    select: vi.fn(() => ({
+      from: vi.fn(() => ({
+        where: vi.fn(() => ({ limit: vi.fn().mockResolvedValue([]) })),
+      })),
+    })),
+    update: vi.fn(() => ({
+      set: vi.fn(() => ({ where: vi.fn().mockResolvedValue(undefined) })),
+    })),
   };
+  const database = {
+    db: { transaction: vi.fn(async (operation: (transaction: typeof transactionApi) => unknown) => operation(transactionApi)) },
+  } as unknown as DatabaseService;
+  supabase.createClient.mockReturnValueOnce({ auth: { signInWithOtp } });
+  return { instance: new PhoneAuthService(config, database), signInWithOtp, values };
 }
 
 async function startRecoveryAt(instance: PhoneAuthService, now: number) {
@@ -98,66 +90,36 @@ describe('PhoneAuthService', () => {
     await expect(unavailable.startRecovery('+8613800138000', '203.0.113.8')).resolves.toEqual({ accepted: true });
   });
 
-  it('issues a short grant only for an OTP session created after the recovery request and consumes it once', async () => {
+  it('persists purpose-bound login and recovery intents without storing the raw phone', async () => {
     const now = 1_800_000_000_000;
-    const { instance } = service();
+    const login = service();
+    vi.useFakeTimers();
+    vi.setSystemTime(now);
+    await login.instance.start('+8613800138000', '203.0.113.8');
+    expect(login.values).toHaveBeenCalledWith(expect.objectContaining({
+      accountId: undefined,
+      createdAt: new Date(now),
+      otpNotBefore: new Date(Math.floor(now / 1_000) * 1_000),
+      phoneDigest: expect.stringMatching(/^[a-f0-9]{64}$/u),
+      purpose: 'login',
+    }));
+    expect(JSON.stringify(login.values.mock.calls)).not.toContain('+8613800138000');
+    vi.useRealTimers();
+
+    supabase.createClient.mockReset();
+    const { instance, values } = service();
     await startRecoveryAt(instance, now);
-    const recoverySession = authSession({ timestamp: Math.floor(now / 1_000) + 2 });
-
-    expect(instance.authorizePasswordRecovery(recoverySession, now + 2_000)).toEqual({
-      authorized: true,
-      expiresAt: now + 2_000 + (10 * 60 * 1_000),
-    });
-    expect(instance.consumePasswordRecovery(recoverySession, now + 2_001)).toBe(true);
-    expect(instance.consumePasswordRecovery(recoverySession, now + 2_002)).toBe(false);
-  });
-
-  it('rejects an OTP session that predates the latest recovery request', async () => {
-    const now = 1_800_000_000_000;
-    const { instance } = service();
-    await startRecoveryAt(instance, now);
-
-    expect(() => instance.authorizePasswordRecovery(
-      authSession({ timestamp: Math.floor(now / 1_000) }),
-      now + 2_000,
-    )).toThrowError(expect.objectContaining({
-      constructor: UnauthorizedException,
-      message: 'phone_reauthentication_required',
+    expect(values).toHaveBeenCalledWith(expect.objectContaining({
+      accountId: undefined,
+      purpose: 'password_recovery',
     }));
   });
 
-  it('does not grant recovery when the unknown-phone send was rejected upstream', async () => {
+  it('does not persist a recovery intent when the unknown-phone send was rejected upstream', async () => {
     const now = 1_800_000_000_000;
-    const { instance } = service({ code: 'otp_disabled', message: 'Signups not allowed for otp' });
+    const { instance, values } = service({ code: 'otp_disabled', message: 'Signups not allowed for otp' });
     await startRecoveryAt(instance, now);
-
-    expect(() => instance.authorizePasswordRecovery(
-      authSession({ timestamp: Math.floor(now / 1_000) + 2 }),
-      now + 2_000,
-    )).toThrow('phone_reauthentication_required');
-  });
-
-  it('expires both pending recovery requests and issued grants', async () => {
-    const now = 1_800_000_000_000;
-    const { instance } = service();
-    await startRecoveryAt(instance, now);
-    const recoverySession = authSession({ timestamp: Math.floor(now / 1_000) + 2 });
-
-    expect(() => instance.authorizePasswordRecovery(
-      recoverySession,
-      now + (10 * 60 * 1_000) + 1,
-    )).toThrow('phone_reauthentication_required');
-
-    supabase.createClient.mockReturnValueOnce({
-      auth: { signInWithOtp: vi.fn().mockResolvedValue({ data: { session: null, user: null }, error: null }) },
-    });
-    await startRecoveryAt(instance, now + (20 * 60 * 1_000));
-    const laterSession = authSession({ timestamp: Math.floor(now / 1_000) + (20 * 60) + 2 });
-    instance.authorizePasswordRecovery(laterSession, now + (20 * 60 * 1_000) + 2_000);
-    expect(instance.consumePasswordRecovery(
-      laterSession,
-      now + (30 * 60 * 1_000) + 2_001,
-    )).toBe(false);
+    expect(values).not.toHaveBeenCalled();
   });
 
   it('fails closed when the normal OTP start cannot reach the supplier', async () => {

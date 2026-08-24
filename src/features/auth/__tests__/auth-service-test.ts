@@ -100,13 +100,31 @@ describe('SupabasePhoneAuthService', () => {
 
   it('authorizes password recovery only through the authenticated server session', async () => {
     const { client } = authClient();
-    mockApiRequest.mockResolvedValueOnce({ authorized: true, expiresAt: Date.now() + 600_000 });
+    mockApiRequest.mockResolvedValueOnce({
+      authorized: true,
+      expiresAt: Date.now() + 600_000,
+      grantId: '10000000-0000-4000-8000-000000000001',
+    });
 
     await expect(new SupabasePhoneAuthService(client).authorizePasswordRecovery())
-      .resolves.toEqual(expect.objectContaining({ authorized: true }));
+      .resolves.toEqual(expect.objectContaining({
+        authorized: true,
+        grantId: '10000000-0000-4000-8000-000000000001',
+      }));
     expect(mockApiRequest).toHaveBeenCalledWith('/v1/account/password/recovery/authorize', {
       method: 'POST',
     });
+  });
+
+  it.each([
+    { authorized: true, expiresAt: Date.now() + 600_000 },
+    { authorized: true, expiresAt: Date.now() - 1, grantId: '10000000-0000-4000-8000-000000000001' },
+  ])('rejects a missing or expired password recovery grant', async (response) => {
+    const { client } = authClient();
+    mockApiRequest.mockResolvedValueOnce(response as never);
+
+    await expect(new SupabasePhoneAuthService(client).authorizePasswordRecovery())
+      .rejects.toThrow('phone_reauthentication_required');
   });
 
   it('returns the same +86 identity for OTP and password login', async () => {
@@ -155,6 +173,29 @@ describe('SupabasePhoneAuthService', () => {
     expect(auth.refreshSession).not.toHaveBeenCalled();
     expect(auth.updateUser).not.toHaveBeenCalled();
     expect(auth.signInWithPassword).not.toHaveBeenCalled();
+  });
+
+  it('passes the one-time recovery grant when replacing a forgotten password', async () => {
+    const { client } = authClient();
+    mockApiRequest.mockResolvedValueOnce({
+      session: { accessToken: 'next-access-token', refreshToken: 'next-refresh-token' },
+      updated: true,
+    });
+
+    await new SupabasePhoneAuthService(client).updatePassword(
+      'newpassword10',
+      undefined,
+      '10000000-0000-4000-8000-000000000001',
+    );
+
+    expect(mockApiRequest).toHaveBeenCalledWith('/v1/account/password', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        password: 'newpassword10',
+        recoveryGrantId: '10000000-0000-4000-8000-000000000001',
+      }),
+    });
   });
 
   it('does not update a password when current-password reauthentication fails', async () => {

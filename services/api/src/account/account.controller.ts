@@ -1,15 +1,19 @@
 import { BadRequestException, Body, Controller, Delete, Get, HttpCode, Post, Req, UseGuards } from '@nestjs/common';
-import type { AccountSummary, ApiSuccessEnvelope, AuthorizePasswordRecoveryResponse, DeleteAccountRequest, MergePhoneAccountRequest, MergePhoneAccountResponse, RevokeAllSessionsResponse, StartPhoneBindingRequest, StartPhoneBindingResponse, UpdatePhonePasswordRequest, UpdatePhonePasswordResponse } from '@icao/contracts';
+import type { AccountSummary, ApiSuccessEnvelope, AuthorizePasswordRecoveryResponse, DeleteAccountRequest, DeleteAccountResponse, MergePhoneAccountRequest, MergePhoneAccountResponse, RevokeAllSessionsResponse, StartPhoneBindingRequest, StartPhoneBindingResponse, UpdatePhonePasswordRequest, UpdatePhonePasswordResponse } from '@icao/contracts';
 
 import type { AuthenticatedRequest } from '../auth/auth.types';
 import { RequireAuthGuard } from '../auth/require-auth.guard';
 import { AccountService } from './account.service';
+import { AccountDeletionService } from './account-deletion.service';
 import { deleteAccountSchema, mergePhoneAccountSchema, startPhoneBindingSchema, updatePhonePasswordSchema } from './account.schemas';
 
 @Controller('v1/account')
 @UseGuards(RequireAuthGuard)
 export class AccountController {
-  constructor(private readonly account: AccountService) {}
+  constructor(
+    private readonly account: AccountService,
+    private readonly deletion: AccountDeletionService,
+  ) {}
 
   @Get()
   async summary(@Req() request: AuthenticatedRequest): Promise<ApiSuccessEnvelope<AccountSummary>> {
@@ -28,7 +32,15 @@ export class AccountController {
   ): Promise<ApiSuccessEnvelope<UpdatePhonePasswordResponse>> {
     const parsed = updatePhonePasswordSchema.safeParse(body);
     if (!parsed.success) throw new BadRequestException('invalid_phone_password');
-    return { requestId: request.id, data: await this.account.updatePassword(request.auth!, parsed.data.password, parsed.data.currentPassword) };
+    return {
+      requestId: request.id,
+      data: await this.account.updatePassword(
+        request.auth!,
+        parsed.data.password,
+        parsed.data.currentPassword,
+        parsed.data.recoveryGrantId,
+      ),
+    };
   }
 
   @Post('password/recovery/authorize')
@@ -63,10 +75,16 @@ export class AccountController {
   }
 
   @Delete()
-  @HttpCode(204)
-  async delete(@Body() body: DeleteAccountRequest, @Req() request: AuthenticatedRequest): Promise<void> {
+  @HttpCode(202)
+  async delete(
+    @Body() body: DeleteAccountRequest,
+    @Req() request: AuthenticatedRequest,
+  ): Promise<ApiSuccessEnvelope<DeleteAccountResponse>> {
     const parsed = deleteAccountSchema.safeParse(body);
     if (!parsed.success) throw new BadRequestException('invalid_account_deletion');
-    await this.account.deleteAccount(request.user!.id);
+    return {
+      requestId: request.id,
+      data: await this.deletion.requestDeletion(request.auth!, parsed.data),
+    };
   }
 }

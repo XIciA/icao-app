@@ -1,10 +1,11 @@
-import { HttpException } from '@nestjs/common';
 import { describe, expect, it, vi } from 'vitest';
 import { Webhook } from 'standardwebhooks';
+import { ServiceUnavailableException } from '@nestjs/common';
 
 import { submitAliyunOtp, type AliyunSmsProvider } from '../src/auth/sms/aliyun-sms.provider';
+import type { SmsDeliveryAuthority } from '../src/auth/sms/sms-delivery-authority';
 import { SupabaseSmsHookController } from '../src/auth/sms/supabase-sms-hook.controller';
-import { SmsUsageLimiter, SupabaseSmsHookService } from '../src/auth/sms/supabase-sms-hook.service';
+import { SupabaseSmsHookService } from '../src/auth/sms/supabase-sms-hook.service';
 import { loadConfig, type ApiConfig } from '../src/config';
 
 const signingSecret = `v1,whsec_${Buffer.from('icao-sms-hook-test-secret-32-byte').toString('base64')}`;
@@ -47,10 +48,26 @@ function smsPayload(phone = '+8613800138000', otp = '123456') {
   return { user: { id: 'user-1', phone }, sms: { otp, phone } };
 }
 
+function hookService(apiConfig: ApiConfig, provider: AliyunSmsProvider) {
+  const deliveries = new Map<string, 'processing' | 'completed'>();
+  const authority = {
+    claim: vi.fn(async (dedupeKey: string) => {
+      const existing = deliveries.get(dedupeKey);
+      if (existing === 'completed') return { outcome: 'duplicate_completed' as const };
+      if (existing === 'processing') return { outcome: 'duplicate_inflight' as const };
+      deliveries.set(dedupeKey, 'processing');
+      return { leaseToken: '11111111-1111-4111-8111-111111111111', outcome: 'claimed' as const, rules: [] };
+    }),
+    complete: vi.fn(async (dedupeKey: string) => { deliveries.set(dedupeKey, 'completed'); }),
+    fail: vi.fn(async (dedupeKey: string) => { deliveries.delete(dedupeKey); }),
+  };
+  return new SupabaseSmsHookService(apiConfig, provider, authority as unknown as SmsDeliveryAuthority);
+}
+
 describe('Supabase SMS hook', () => {
   it('deduplicates the same signed phone and OTP across different webhook IDs', async () => {
     const provider = { sendOtp: vi.fn().mockResolvedValue({ requestId: 'request-1' }) };
-    const service = new SupabaseSmsHookService(config(), provider as unknown as AliyunSmsProvider);
+    const service = hookService(config(), provider as unknown as AliyunSmsProvider);
     const first = signedHook(smsPayload(), 'msg_retry_1');
     const retry = signedHook(smsPayload(), 'msg_retry_2');
 
@@ -70,22 +87,26 @@ describe('Supabase SMS hook', () => {
     const provider = {
       sendOtp: vi.fn().mockImplementation(() => new Promise((resolve) => { completeSubmission = resolve; })),
     };
-    const service = new SupabaseSmsHookService(config(), provider as unknown as AliyunSmsProvider);
+    const service = hookService(config(), provider as unknown as AliyunSmsProvider);
     const first = signedHook(smsPayload(), 'msg_concurrent_1');
     const retry = signedHook(smsPayload(), 'msg_concurrent_2');
 
     const firstOperation = service.handle(first.rawBody, first.headers);
     const retryOperation = service.handle(retry.rawBody, retry.headers);
-    expect(provider.sendOtp).toHaveBeenCalledTimes(1);
+    const retryExpectation = expect(retryOperation).rejects.toSatisfy((error: unknown) => (
+      error instanceof ServiceUnavailableException && error.message === 'sms_delivery_in_progress'
+    ));
+    await vi.waitFor(() => expect(provider.sendOtp).toHaveBeenCalledTimes(1));
     completeSubmission?.({ requestId: 'request-1' });
-    await Promise.all([firstOperation, retryOperation]);
+    await retryExpectation;
+    await firstOperation;
 
     expect(provider.sendOtp).toHaveBeenCalledTimes(1);
   });
 
   it('uses sms.phone when a first-signup hook does not yet expose a user', async () => {
     const provider = { sendOtp: vi.fn().mockResolvedValue({ requestId: 'request-1' }) };
-    const service = new SupabaseSmsHookService(config(), provider as unknown as AliyunSmsProvider);
+    const service = hookService(config(), provider as unknown as AliyunSmsProvider);
     const hook = signedHook({
       metadata: { name: 'send-sms' },
       sms: { otp: '123456', phone: '8613800138000' },
@@ -101,7 +122,7 @@ describe('Supabase SMS hook', () => {
 
   it('rejects a hook when user.phone and sms.phone disagree', async () => {
     const provider = { sendOtp: vi.fn() };
-    const service = new SupabaseSmsHookService(config(), provider as unknown as AliyunSmsProvider);
+    const service = hookService(config(), provider as unknown as AliyunSmsProvider);
     const hook = signedHook({
       user: { id: 'user-1', phone: '+8613800138000' },
       sms: { otp: '123456', phone: '+8613900139000' },
@@ -114,7 +135,7 @@ describe('Supabase SMS hook', () => {
 
   it('fails closed for an invalid signature or non-mainland phone', async () => {
     const provider = { sendOtp: vi.fn() };
-    const service = new SupabaseSmsHookService(config(), provider as unknown as AliyunSmsProvider);
+    const service = hookService(config(), provider as unknown as AliyunSmsProvider);
     const invalidSignature = signedHook(smsPayload());
     invalidSignature.headers['webhook-signature'] = 'v1,invalid';
     await expect(service.handle(invalidSignature.rawBody, invalidSignature.headers))
@@ -128,25 +149,11 @@ describe('Supabase SMS hook', () => {
 
   it('rejects an oversized hook payload before signature work or SMS submission', async () => {
     const provider = { sendOtp: vi.fn() };
-    const service = new SupabaseSmsHookService(config(), provider as unknown as AliyunSmsProvider);
+    const service = hookService(config(), provider as unknown as AliyunSmsProvider);
 
     await expect(service.handle(Buffer.alloc(64 * 1024 + 1), {}))
       .rejects.toMatchObject({ status: 400 });
     expect(provider.sendOtp).not.toHaveBeenCalled();
-  });
-
-  it('enforces the recommended per-phone budget before another paid send', async () => {
-    const provider = { sendOtp: vi.fn().mockResolvedValue({}) };
-    const service = new SupabaseSmsHookService(config({
-      SMS_PHONE_HOURLY_LIMIT: '1',
-      SMS_PHONE_DAILY_LIMIT: '1',
-    }), provider as unknown as AliyunSmsProvider);
-    const first = signedHook(smsPayload(), 'msg_budget_1');
-    const second = signedHook(smsPayload('+8613800138000', '654321'), 'msg_budget_2');
-    await service.handle(first.rawBody, first.headers);
-    await expect(service.handle(second.rawBody, second.headers))
-      .rejects.toSatisfy((error: unknown) => error instanceof HttpException && error.getStatus() === 429);
-    expect(provider.sendOtp).toHaveBeenCalledTimes(1);
   });
 
   it('requires every production adapter secret when Aliyun is enabled', () => {
@@ -160,6 +167,7 @@ describe('Supabase SMS hook', () => {
       SUPABASE_SECRET_KEY: 'test-secret-key-that-is-long-enough',
       INVITE_AUTH_SECRET: 'test-invite-auth-secret-that-is-long-enough',
       ACCOUNT_IDENTITY_HASH_SECRET: 'test-account-identity-secret-that-is-long-enough',
+      IDENTITY_BENEFIT_DIGEST_SECRET: 'test-identity-benefit-secret-that-is-long-enough',
       AI_TEXT_PROVIDER: 'deepseek',
       DEEPSEEK_API_KEY: 'test-deepseek-key',
       DEEPSEEK_BASE_URL: 'https://api.deepseek.com',
@@ -171,6 +179,17 @@ describe('Supabase SMS hook', () => {
       AI_ASR_STAGING_BUCKET: 'ai-transcription-inputs',
       SMS_PROVIDER: 'aliyun',
     })).toThrow('invalid_api_configuration:ALIYUN_SMS_ACCESS_KEY_ID');
+  });
+
+  it('fails closed when any fixed OTP reaches a production API environment', () => {
+    for (const key of [
+      'GOTRUE_SMS_TEST_OTP',
+      'ICAO_TESTFLIGHT_SMS_TEST_OTP',
+      'SUPABASE_SMS_TEST_OTP',
+    ]) {
+      expect(() => config({ NODE_ENV: 'production', [key]: '+8613800138000=123456' }))
+        .toThrow('invalid_api_configuration:FIXED_SMS_OTP');
+    }
   });
 
   it('rejects placeholder, weak, non-canonical, or prefixless hook secrets', () => {
@@ -189,21 +208,6 @@ describe('Supabase SMS hook', () => {
     expect(() => config({ ALIYUN_SMS_ENDPOINT: 'sms.example.com' }))
       .toThrow('invalid_api_configuration:ALIYUN_SMS_ENDPOINT');
     expect(config().sms?.aliyunEndpoint).toBe('dysmsapi.aliyuncs.com');
-  });
-
-  it('discards expired limiter buckets at the next reservation', () => {
-    const sms = config().sms!;
-    const limiter = new SmsUsageLimiter(sms);
-    const beforeChinaMonthBoundary = Date.parse('2026-08-31T15:59:59.000Z');
-    const afterChinaMonthBoundary = Date.parse('2026-08-31T16:00:00.000Z');
-    limiter.reserve('+8613800138000', beforeChinaMonthBoundary);
-    const counters = (limiter as unknown as { counters: Map<string, unknown> }).counters;
-    expect(counters.size).toBe(4);
-
-    limiter.reserve('+8613800138000', afterChinaMonthBoundary);
-
-    expect(counters.size).toBe(4);
-    expect([...counters.keys()].every((key) => key.includes('2026-09'))).toBe(true);
   });
 
   it('returns the empty JSON response required by the GoTrue HTTP hook', async () => {

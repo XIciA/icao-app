@@ -77,6 +77,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [passwordAuthorization, setPasswordAuthorization] = useState<{
     accessToken: string;
     expiresAt: number;
+    grantId: string;
     purpose: 'recovery' | 'setup';
     userId: string;
   }>();
@@ -319,6 +320,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           setPasswordAuthorization({
             accessToken: next.accessToken,
             expiresAt: authorization.expiresAt,
+            grantId: authorization.grantId,
             purpose: passwordPurpose,
             userId: next.user.id,
           });
@@ -352,8 +354,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setPasswordAuthorization(undefined);
         throw new Error('phone_reauthentication_required');
       }
-      const next = await service.updatePassword(password, currentPassword);
       setPasswordAuthorization(undefined);
+      const next = await service.updatePassword(
+        password,
+        currentPassword,
+        authorization?.purpose === 'recovery' ? authorization.grantId : undefined,
+      );
       setSessionSnapshot(next);
     },
     async requestPhoneBindingOtp(phone) {

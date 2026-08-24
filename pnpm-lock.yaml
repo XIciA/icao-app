@@ -213,6 +213,9 @@ importers:
       fastify:
         specifier: 5.10.0
         version: 5.10.0
+      jose:
+        specifier: 6.2.10
+        version: 6.2.10
       postgres:
         specifier: 3.4.9
         version: 3.4.9
@@ -4650,6 +4653,9 @@ packages:
 
   jimp-compact@0.16.1:
     resolution: {integrity: sha512-dZ6Ra7u1G8c4Letq/B5EzAxj4tLFHL+cGtdpR+PVm4yzPDj+lCk+AbivWt1eOM+ikzkowtyV7qSqX6qr3t71Ww==}
+
+  jose@6.2.10:
+    resolution: {integrity: sha512-iiW7J9qRFlGxvCOIBDBDxFePQSn7ZMAnrYGhrrOo6siO/MIqwfyilLR27pkfDgUk+raLuzADS8A3S/KLBisc0g==}
 
   js-tokens@3.0.0:
     resolution: {integrity: sha512-poXEQHPMmTrYZuJgNRll2sbc3kJsSU1m/g1Q93IE6txNj3p6xOOOmdj1G/zCVGawYSPzTkSoWGg1otqbeqKJeg==}
@@ -12130,6 +12136,8 @@ snapshots:
     optional: true
 
   jimp-compact@0.16.1: {}
+
+  jose@6.2.10: {}
 
   js-tokens@3.0.0: {}
 

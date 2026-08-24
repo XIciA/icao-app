@@ -19,6 +19,7 @@ type FluentQuery<T> = {
   from: ReturnType<typeof vi.fn>;
   limit: ReturnType<typeof vi.fn>;
   onConflictDoNothing: ReturnType<typeof vi.fn>;
+  returning: ReturnType<typeof vi.fn>;
   set: ReturnType<typeof vi.fn>;
   then: Promise<T>['then'];
   values: ReturnType<typeof vi.fn>;
@@ -39,6 +40,15 @@ function fluent<T>(result: T): FluentQuery<T> {
     from: vi.fn(() => query),
     limit: vi.fn(() => query),
     onConflictDoNothing: vi.fn(() => query),
+    returning: vi.fn(() => {
+      const values = (query as unknown as { recordedValues?: unknown }).recordedValues;
+      const rows = (Array.isArray(values) ? values : [values])
+        .filter((value): value is { identityDigest: string } => Boolean(
+          value && typeof value === 'object' && 'identityDigest' in value,
+        ))
+        .map(({ identityDigest }) => ({ identityDigest }));
+      return Promise.resolve(rows);
+    }),
     set: vi.fn(() => query),
     then,
     values: vi.fn(() => query),
@@ -51,6 +61,7 @@ function mutationQuery(record: RecordedMutation) {
   const query = fluent(undefined);
   query.values.mockImplementation((values: unknown) => {
     record.values = values;
+    (query as unknown as { recordedValues?: unknown }).recordedValues = values;
     return query;
   });
   query.set.mockImplementation((set: unknown) => {

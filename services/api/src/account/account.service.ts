@@ -1,33 +1,20 @@
-import { ConflictException, HttpException, HttpStatus, Inject, Injectable, ServiceUnavailableException, UnauthorizedException } from '@nestjs/common';
+import { ConflictException, ForbiddenException, HttpException, HttpStatus, Inject, Injectable, ServiceUnavailableException } from '@nestjs/common';
 import type { AccountSummary, AuthorizePasswordRecoveryResponse, MergePhoneAccountResponse, StartPhoneBindingResponse, UpdatePhonePasswordResponse } from '@icao/contracts';
 import { isChinaMobileE164 } from '@icao/contracts';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { and, eq, inArray, sql } from 'drizzle-orm';
 import { AUTH_VERIFIER, type AuthVerifier, type VerifiedAuthSession } from '../auth/auth.types';
 import { PhoneAuthService } from '../auth/phone-auth.service';
+import { RecentAuthService } from '../auth/recent-auth.service';
 import { SessionSecurityService } from '../auth/session-security.service';
 import { API_CONFIG, type ApiConfig } from '../config';
 import {
-  accountSessionRevocations,
   accountIdentities,
   accountMerges,
   accounts,
-  aiConsents,
-  aiQuotaBuckets,
-  aiUsageLogs,
-  aiWordCache,
-  feedbackAttachments,
-  feedbackTickets,
-  inviteAccounts,
-  learningRecords,
   profiles,
-  syncChanges,
-  syncMutations,
-  userCardStates,
-  userDocuments,
 } from '../database/schema';
 import { DatabaseService } from '../database/database.service';
-import { FeedbackService } from '../feedback/feedback.service';
 import { AccountIdentityService } from './account-identity.service';
 
 const RECENT_SOCIAL_AUTH_WINDOW_SECONDS = 10 * 60;
@@ -50,8 +37,8 @@ export class AccountService {
     private readonly database: DatabaseService,
     private readonly identities: AccountIdentityService,
     private readonly phoneAuth: PhoneAuthService,
+    private readonly recentAuth: RecentAuthService,
     private readonly sessions: SessionSecurityService,
-    private readonly feedback: FeedbackService,
   ) {
     this.adminAuth = createClient(config.supabaseUrl, config.supabaseSecretKey, {
       auth: { autoRefreshToken: false, detectSessionInUrl: false, persistSession: false },
@@ -97,22 +84,24 @@ export class AccountService {
     source: VerifiedAuthSession,
     password: string,
     currentPassword?: string,
+    recoveryGrantId?: string,
   ): Promise<UpdatePhonePasswordResponse> {
     if (!isChinaMobileE164(source.user.phone) || !source.user.providers?.includes('phone')) {
-      throw new UnauthorizedException('verified_phone_required');
+      throw new ForbiddenException('verified_phone_required');
     }
     let isPasswordRecovery = false;
+    let recoveryReservationToken: string | undefined;
     if (currentPassword === undefined) {
-      const now = Math.floor(Date.now() / 1_000);
-      const recentOtp = source.authenticationMethods.some((entry) => (
-        entry.method === 'otp'
-        && entry.timestamp <= now + 60
-        && now - entry.timestamp <= RECENT_SOCIAL_AUTH_WINDOW_SECONDS
-      ));
-      if (!recentOtp) throw new UnauthorizedException('phone_reauthentication_required');
       const isFirstPasswordSetup = source.passwordSet === false;
-      if (!isFirstPasswordSetup && !this.phoneAuth.consumePasswordRecovery(source)) {
-        throw new UnauthorizedException('phone_reauthentication_required');
+      if (isFirstPasswordSetup) {
+        await this.phoneAuth.consumeOtpIntent(source, 'login');
+      } else {
+        if (!recoveryGrantId) throw new ForbiddenException('phone_reauthentication_required');
+        recoveryReservationToken = await this.recentAuth.reserve(
+          source,
+          recoveryGrantId,
+          'password_recovery',
+        );
       }
       isPasswordRecovery = !isFirstPasswordSetup;
     }
@@ -131,20 +120,32 @@ export class AccountService {
       }),
       signal: AbortSignal.timeout(10_000),
     }).catch(() => undefined);
-    if (!response) throw new ServiceUnavailableException('phone_auth_unavailable');
+    if (!response) {
+      await this.releaseRecoveryReservation(recoveryGrantId, recoveryReservationToken);
+      throw new ServiceUnavailableException('phone_auth_unavailable');
+    }
     if (!response.ok) {
+      await this.releaseRecoveryReservation(recoveryGrantId, recoveryReservationToken);
       const body = await response.json().catch(() => undefined) as { code?: string; error_code?: string } | undefined;
       const code = body?.code ?? body?.error_code;
       if (code === 'weak_password') throw new HttpException('invalid_phone_password', HttpStatus.BAD_REQUEST);
       if (code === 'same_password') throw new HttpException('password_unchanged', HttpStatus.BAD_REQUEST);
-      if (code === 'reauthentication_needed') throw new UnauthorizedException('phone_reauthentication_required');
+      if (code === 'reauthentication_needed') throw new ForbiddenException('phone_reauthentication_required');
       if (
         code === 'reauthentication_not_valid'
         || code === 'current_password_invalid'
         || code === 'current_password_mismatch'
         || code === 'current_password_required'
-      ) throw new UnauthorizedException('invalid_phone_or_password');
+      ) throw new ForbiddenException('invalid_phone_or_password');
       throw new ServiceUnavailableException('phone_auth_unavailable');
+    }
+    if (recoveryGrantId && recoveryReservationToken) {
+      await this.recentAuth.commitReservation(
+        source,
+        recoveryGrantId,
+        'password_recovery',
+        recoveryReservationToken,
+      );
     }
     if (isPasswordRecovery) {
       const { error } = await this.adminAuth.auth.admin.signOut(source.accessToken, 'global');
@@ -179,8 +180,9 @@ export class AccountService {
     };
   }
 
-  authorizePasswordRecovery(source: VerifiedAuthSession): AuthorizePasswordRecoveryResponse {
-    return this.phoneAuth.authorizePasswordRecovery(source);
+  async authorizePasswordRecovery(source: VerifiedAuthSession): Promise<AuthorizePasswordRecoveryResponse> {
+    const grant = await this.recentAuth.issuePhoneOtpGrant(source, 'password_recovery');
+    return { authorized: true, expiresAt: grant.expiresAt, grantId: grant.grantId };
   }
 
   private createRequestAuthClient() {
@@ -189,47 +191,16 @@ export class AccountService {
     });
   }
 
-  async deleteAccount(userId: string) {
-    const authUserIds = await this.identities.authUserIdsForAccount(userId);
-    const [feedbackObjectKeys, ticketRows] = await Promise.all([
-      this.feedback.userObjectKeys(userId),
-      this.database.db.select({ id: feedbackTickets.id }).from(feedbackTickets).where(eq(feedbackTickets.userId, userId)),
-    ]);
-    await Promise.all(authUserIds.map((authUserId) => this.sessions.revokeAll(authUserId)));
-    for (const authUserId of authUserIds) {
-      const { error } = await this.adminAuth.auth.admin.deleteUser(authUserId, false);
-      if (error) throw new Error('account_deletion_failed');
+  private async releaseRecoveryReservation(grantId?: string, reservationToken?: string) {
+    if (grantId && reservationToken) {
+      await this.recentAuth.releaseReservation(grantId, reservationToken).catch(() => undefined);
     }
-    await this.database.db.transaction(async (transaction) => {
-      const ticketIds = ticketRows.map((row) => row.id);
-      if (ticketIds.length > 0) await transaction.delete(feedbackAttachments).where(inArray(feedbackAttachments.ticketId, ticketIds));
-      await transaction.delete(feedbackTickets).where(eq(feedbackTickets.userId, userId));
-      await transaction.delete(userCardStates).where(eq(userCardStates.userId, userId));
-      await transaction.delete(learningRecords).where(eq(learningRecords.userId, userId));
-      await transaction.delete(syncMutations).where(eq(syncMutations.userId, userId));
-      await transaction.delete(userDocuments).where(eq(userDocuments.userId, userId));
-      await transaction.delete(syncChanges).where(eq(syncChanges.userId, userId));
-      await transaction.delete(aiConsents).where(eq(aiConsents.userId, userId));
-      await transaction.delete(aiUsageLogs).where(eq(aiUsageLogs.userId, userId));
-      await transaction.delete(aiQuotaBuckets).where(eq(aiQuotaBuckets.userId, userId));
-      await transaction.delete(aiWordCache).where(eq(aiWordCache.userId, userId));
-      await transaction.delete(profiles).where(eq(profiles.userId, userId));
-      if (authUserIds.length > 0) {
-        await transaction.delete(accountSessionRevocations).where(inArray(accountSessionRevocations.userId, authUserIds));
-        await transaction.update(inviteAccounts)
-          .set({ status: 'deleted', userId: null, deletedAt: new Date() })
-          .where(inArray(inviteAccounts.userId, authUserIds));
-      }
-      await transaction.delete(accountIdentities).where(eq(accountIdentities.accountId, userId));
-      await transaction.delete(accounts).where(eq(accounts.id, userId));
-    });
-    await this.feedback.removeObjects(feedbackObjectKeys).catch(() => undefined);
   }
 
   async mergeWithPhoneOtp(source: VerifiedAuthSession, phone: string, token: string): Promise<MergePhoneAccountResponse> {
     this.assertSocialPhoneBindingAllowed(source);
     const { data, error } = await this.publicAuth.auth.verifyOtp({ phone, token, type: 'sms' });
-    if (error || !data.session || data.user?.phone !== phone) throw new UnauthorizedException('invalid_phone_otp');
+    if (error || !data.session || data.user?.phone !== phone) throw new ForbiddenException('invalid_phone_otp');
     const target = await this.verifier.verify(data.session.access_token);
     await this.sessions.assertActive(target);
     try {
@@ -272,6 +243,13 @@ export class AccountService {
         .where(eq(accounts.id, sourceAccountId))
         .limit(1);
       if (!sourceAccount || sourceAccount.status !== 'active') throw new ConflictException('account_merge_state_changed');
+      await this.phoneAuth.consumeOtpIntentInTransaction(
+        transaction,
+        phoneAuth,
+        'phone_binding',
+        new Date(),
+        sourceAccountId,
+      );
       const phoneSubjectHash = this.identities.hashIdentity('phone', phone);
       const [existingPhoneIdentity] = await transaction.select({ accountId: accountIdentities.accountId })
         .from(accountIdentities)
@@ -292,6 +270,13 @@ export class AccountService {
         provider: 'phone',
         subjectHash: phoneSubjectHash,
       });
+      await this.identities.claimLifetimeTrialInTransaction(
+        transaction,
+        [{ provider: 'phone', subject: phone }],
+        sourceAccountId,
+        new Date(),
+        false,
+      );
       const providers = await transaction.selectDistinct({ provider: accountIdentities.provider })
         .from(accountIdentities)
         .where(eq(accountIdentities.accountId, sourceAccountId));
@@ -306,33 +291,14 @@ export class AccountService {
 
   async startPhoneBinding(source: VerifiedAuthSession, phone: string, sourceIp = '127.0.0.1'): Promise<StartPhoneBindingResponse> {
     this.assertSocialPhoneBindingAllowed(source);
-    const phoneAuth = createClient(this.config.supabaseUrl, this.config.supabasePublishableKey, {
-      auth: { autoRefreshToken: false, detectSessionInUrl: false, persistSession: false },
-      global: { headers: { 'Sb-Forwarded-For': sourceIp } },
-    });
-    const { error } = await phoneAuth.auth.signInWithOtp({
-      phone,
-      options: {
-        channel: 'sms',
-        shouldCreateUser: true,
-        data: { account_type: 'native_phone_binding_target' },
-      },
-    });
-    if (error) {
-      const code = error.code?.toLowerCase();
-      if (code === 'over_sms_send_rate_limit' || code === 'over_request_rate_limit') {
-        throw new HttpException('phone_binding_otp_rate_limited', HttpStatus.TOO_MANY_REQUESTS);
-      }
-      throw new ServiceUnavailableException('phone_binding_otp_unavailable');
-    }
-    return { sent: true };
+    return this.phoneAuth.startBinding(source, phone, sourceIp);
   }
 
   private assertSocialPhoneBindingAllowed(source: VerifiedAuthSession) {
     const providers = source.user.providers ?? [];
     if (providers.includes('phone')) throw new ConflictException('account_phone_identity_conflict');
     if (!providers.includes('apple')) {
-      throw new UnauthorizedException('social_identity_required');
+      throw new ForbiddenException('social_identity_required');
     }
     const appleAuthenticatedAt = Math.max(
       0,
@@ -351,16 +317,19 @@ export class AccountService {
       && now - appleAuthenticatedAt <= RECENT_SOCIAL_AUTH_WINDOW_SECONDS,
     );
     if (appleIsRecent) return 'apple' as const;
-    throw new UnauthorizedException('recent_social_auth_required');
+    throw new ForbiddenException('recent_social_auth_required');
   }
 
   private async mergeAccounts(target: VerifiedAuthSession, source: VerifiedAuthSession): Promise<AccountSummary> {
-    if (!isChinaMobileE164(target.user.phone)) throw new UnauthorizedException('verified_phone_required');
+    if (!isChinaMobileE164(target.user.phone)) throw new ForbiddenException('verified_phone_required');
     const targetAccountId = target.user.id;
     const sourceAccountId = source.user.id;
-    if (targetAccountId === sourceAccountId) return this.summary(targetAccountId, target.user.phone);
+    if (targetAccountId === sourceAccountId) {
+      await this.phoneAuth.consumeOtpIntent(target, 'phone_binding', new Date(), sourceAccountId);
+      return this.summary(targetAccountId, target.user.phone);
+    }
     if (!source.user.providers?.includes('apple')) {
-      throw new UnauthorizedException('social_identity_required');
+      throw new ForbiddenException('social_identity_required');
     }
     if (source.user.providers.includes('phone')) {
       throw new ConflictException('account_phone_identity_conflict');
@@ -383,6 +352,13 @@ export class AccountService {
       if (accountRows.length !== 2 || accountRows.some((account) => account.status !== 'active')) {
         throw new ConflictException('account_merge_state_changed');
       }
+      await this.phoneAuth.consumeOtpIntentInTransaction(
+        transaction,
+        target,
+        'phone_binding',
+        new Date(),
+        sourceAccountId,
+      );
       await transaction.update(accounts)
         .set({ status: 'merging', updatedAt: new Date() })
         .where(eq(accounts.id, sourceAccountId));

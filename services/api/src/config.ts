@@ -12,6 +12,14 @@ const schema = z.object({
   SUPABASE_URL: z.string().url(),
   INVITE_AUTH_SECRET: z.string().min(32),
   ACCOUNT_IDENTITY_HASH_SECRET: z.string().min(32),
+  IDENTITY_BENEFIT_DIGEST_SECRET: z.string().min(32).optional(),
+  IDENTITY_BENEFIT_DIGEST_KEY_VERSION: z.coerce.number().int().min(1).default(1),
+  IDENTITY_BENEFIT_DIGEST_PREVIOUS_KEYS: z.string().default('{}'),
+  APPLE_SIGN_IN_CLIENT_ID: z.string().min(3).optional(),
+  APPLE_TEAM_ID: z.string().min(3).optional(),
+  APPLE_KEY_ID: z.string().min(3).optional(),
+  APPLE_PRIVATE_KEY: z.string().min(32).optional(),
+  APPLE_CREDENTIAL_ENCRYPTION_KEY: z.string().optional(),
   AI_TEXT_PROVIDER: z.literal('deepseek').default('deepseek'),
   DEEPSEEK_API_KEY: z.string().min(10).optional(),
   DEEPSEEK_BASE_URL: z.string().url().default('https://api.deepseek.com'),
@@ -92,6 +100,14 @@ export type ApiConfig = {
   supabaseUrl: string;
   inviteAuthSecret: string;
   accountIdentityHashSecret: string;
+  identityBenefitDigestSecret?: string;
+  identityBenefitDigestKeyVersion?: number;
+  identityBenefitDigestPreviousKeys?: Array<{ secret: string; version: number }>;
+  appleSignInClientId?: string;
+  appleTeamId?: string;
+  appleKeyId?: string;
+  applePrivateKey?: string;
+  appleCredentialEncryptionKey?: string;
   aiTextProvider: 'deepseek';
   deepseekApiKey?: string;
   deepseekBaseUrl: string;
@@ -144,6 +160,57 @@ function invalidConfiguration(...fields: string[]): never {
   throw new Error(`invalid_api_configuration:${fields.join(', ')}`);
 }
 
+function parsePreviousIdentityHashKeys(value: string, currentVersion: number) {
+  let candidate: unknown;
+  try {
+    candidate = JSON.parse(value);
+  } catch {
+    invalidConfiguration('IDENTITY_BENEFIT_DIGEST_PREVIOUS_KEYS');
+  }
+  if (!candidate || typeof candidate !== 'object' || Array.isArray(candidate)) {
+    invalidConfiguration('IDENTITY_BENEFIT_DIGEST_PREVIOUS_KEYS');
+  }
+  const entries = Object.entries(candidate as Record<string, unknown>).map(([rawVersion, secret]) => ({
+    secret,
+    version: Number(rawVersion),
+  }));
+  if (entries.some(({ secret, version }) => (
+    !Number.isSafeInteger(version)
+    || version < 1
+    || version === currentVersion
+    || typeof secret !== 'string'
+    || secret.length < 32
+  ))) invalidConfiguration('IDENTITY_BENEFIT_DIGEST_PREVIOUS_KEYS');
+  if (new Set(entries.map(({ version }) => version)).size !== entries.length) {
+    invalidConfiguration('IDENTITY_BENEFIT_DIGEST_PREVIOUS_KEYS');
+  }
+  return entries as Array<{ secret: string; version: number }>;
+}
+
+function validateAppleRuntime(data: z.infer<typeof schema>) {
+  const fields = [
+    'APPLE_SIGN_IN_CLIENT_ID',
+    'APPLE_TEAM_ID',
+    'APPLE_KEY_ID',
+    'APPLE_PRIVATE_KEY',
+    'APPLE_CREDENTIAL_ENCRYPTION_KEY',
+  ] as const;
+  const missing = fields.filter((field) => !data[field]?.trim());
+  if (missing.length > 0) invalidConfiguration(...missing);
+  const encryptionKey = Buffer.from(data.APPLE_CREDENTIAL_ENCRYPTION_KEY!, 'base64');
+  if (
+    encryptionKey.byteLength !== 32
+    || encryptionKey.toString('base64') !== data.APPLE_CREDENTIAL_ENCRYPTION_KEY
+  ) invalidConfiguration('APPLE_CREDENTIAL_ENCRYPTION_KEY');
+  try {
+    if (!data.APPLE_PRIVATE_KEY!.replaceAll('\\n', '\n').includes('BEGIN PRIVATE KEY')) {
+      invalidConfiguration('APPLE_PRIVATE_KEY');
+    }
+  } catch {
+    invalidConfiguration('APPLE_PRIVATE_KEY');
+  }
+}
+
 function requireProductionHttpsUrl(name: string, value: string) {
   const url = new URL(value);
   if (
@@ -184,7 +251,22 @@ export function loadConfig(environment: NodeJS.ProcessEnv = process.env): ApiCon
   if (Boolean(parsed.data.TENCENT_CLOUD_SECRET_ID) !== Boolean(parsed.data.TENCENT_CLOUD_SECRET_KEY)) {
     throw new Error('invalid_api_configuration:TENCENT_CLOUD_CREDENTIALS');
   }
-  if (parsed.data.NODE_ENV === 'production') validateProductionAiRuntime(environment, parsed.data);
+  const previousIdentityHashKeys = parsePreviousIdentityHashKeys(
+    parsed.data.IDENTITY_BENEFIT_DIGEST_PREVIOUS_KEYS,
+    parsed.data.IDENTITY_BENEFIT_DIGEST_KEY_VERSION,
+  );
+  if (parsed.data.NODE_ENV === 'production') {
+    const fixedOtpKeys = [
+      'GOTRUE_SMS_TEST_OTP',
+      'ICAO_TESTFLIGHT_SMS_TEST_OTP',
+      'SUPABASE_SMS_TEST_OTP',
+    ];
+    if (fixedOtpKeys.some((key) => environment[key]?.trim())) {
+      invalidConfiguration('FIXED_SMS_OTP');
+    }
+    validateProductionAiRuntime(environment, parsed.data);
+    if (!parsed.data.IDENTITY_BENEFIT_DIGEST_SECRET) invalidConfiguration('IDENTITY_BENEFIT_DIGEST_SECRET');
+  }
   if (/^https?:\/\//u.test(parsed.data.TENCENT_ASR_ENDPOINT) || parsed.data.TENCENT_ASR_ENDPOINT.includes('/')) {
     throw new Error('invalid_api_configuration:TENCENT_ASR_ENDPOINT');
   }
@@ -210,6 +292,7 @@ export function loadConfig(environment: NodeJS.ProcessEnv = process.env): ApiCon
       throw new Error('invalid_api_configuration:SUPABASE_SMS_HOOK_SECRET');
     }
   }
+  if (parsed.data.NODE_ENV === 'production') validateAppleRuntime(parsed.data);
 
   return {
     databaseUrl: parsed.data.DATABASE_URL,
@@ -223,6 +306,14 @@ export function loadConfig(environment: NodeJS.ProcessEnv = process.env): ApiCon
     supabaseUrl: parsed.data.SUPABASE_URL,
     inviteAuthSecret: parsed.data.INVITE_AUTH_SECRET,
     accountIdentityHashSecret: parsed.data.ACCOUNT_IDENTITY_HASH_SECRET,
+    identityBenefitDigestSecret: parsed.data.IDENTITY_BENEFIT_DIGEST_SECRET,
+    identityBenefitDigestKeyVersion: parsed.data.IDENTITY_BENEFIT_DIGEST_KEY_VERSION,
+    identityBenefitDigestPreviousKeys: previousIdentityHashKeys,
+    appleSignInClientId: parsed.data.APPLE_SIGN_IN_CLIENT_ID,
+    appleTeamId: parsed.data.APPLE_TEAM_ID,
+    appleKeyId: parsed.data.APPLE_KEY_ID,
+    applePrivateKey: parsed.data.APPLE_PRIVATE_KEY?.replaceAll('\\n', '\n'),
+    appleCredentialEncryptionKey: parsed.data.APPLE_CREDENTIAL_ENCRYPTION_KEY,
     aiTextProvider: parsed.data.AI_TEXT_PROVIDER,
     deepseekApiKey: parsed.data.DEEPSEEK_API_KEY,
     deepseekBaseUrl: parsed.data.DEEPSEEK_BASE_URL,

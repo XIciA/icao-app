@@ -2,6 +2,12 @@ import { z } from 'zod';
 
 export const deleteAccountSchema = z.object({
   confirmation: z.literal('注销账号'),
+  grantId: z.uuid(),
+  idempotencyKey: z.uuidv4(),
+}).strict();
+
+export const accountDeletionStatusSchema = z.object({
+  idempotencyKey: z.uuidv4(),
 }).strict();
 
 export const mergePhoneAccountSchema = z.object({
@@ -16,4 +22,5 @@ export const startPhoneBindingSchema = z.object({
 export const updatePhonePasswordSchema = z.object({
   password: z.string().min(10).max(64).regex(/[A-Za-z]/u).regex(/[0-9]/u),
   currentPassword: z.string().min(1).max(256).optional(),
+  recoveryGrantId: z.uuid().optional(),
 }).strict();

@@ -1,14 +1,14 @@
-import { ConflictException, HttpException, ServiceUnavailableException, UnauthorizedException } from '@nestjs/common';
+import { ConflictException, ForbiddenException, HttpException, ServiceUnavailableException } from '@nestjs/common';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import type { AccountIdentityService } from '../src/account/account-identity.service';
 import { AccountService } from '../src/account/account.service';
 import type { AuthVerifier, VerifiedAuthSession } from '../src/auth/auth.types';
 import type { PhoneAuthService } from '../src/auth/phone-auth.service';
+import type { RecentAuthService } from '../src/auth/recent-auth.service';
 import type { SessionSecurityService } from '../src/auth/session-security.service';
 import type { ApiConfig } from '../src/config';
 import type { DatabaseService } from '../src/database/database.service';
-import type { FeedbackService } from '../src/feedback/feedback.service';
 
 const supabase = vi.hoisted(() => ({
   createClient: vi.fn(),
@@ -47,10 +47,12 @@ function session(options: {
 }
 
 function fixture(options: {
+  consumeOtpIntentError?: Error;
   hasRecoveryGrant?: boolean;
   phoneAccountId?: string | null;
   signInWithOtp?: ReturnType<typeof vi.fn>;
   signInWithPassword?: ReturnType<typeof vi.fn>;
+  startBindingError?: Error;
   transaction?: ReturnType<typeof vi.fn>;
   verifyOtp?: ReturnType<typeof vi.fn>;
 } = {}) {
@@ -108,6 +110,7 @@ function fixture(options: {
         : options.phoneAccountId ?? '22222222-2222-4222-8222-222222222222',
     ),
     authUserIdsForAccount: vi.fn().mockResolvedValue(['11111111-1111-4111-8111-111111111111']),
+    claimLifetimeTrialInTransaction: vi.fn().mockResolvedValue(undefined),
     hashIdentity: vi.fn().mockReturnValue('a'.repeat(64)),
     providersForAccount: vi.fn().mockResolvedValue(['phone']),
     resolve: vi.fn().mockResolvedValue(target.user),
@@ -117,12 +120,31 @@ function fixture(options: {
     revokeAll: vi.fn().mockResolvedValue(undefined),
   };
   const phoneAuth = {
-    authorizePasswordRecovery: vi.fn().mockReturnValue({ authorized: true, expiresAt: Date.now() + 600_000 }),
-    consumePasswordRecovery: vi.fn().mockReturnValue(options.hasRecoveryGrant ?? true),
+    consumeOtpIntent: options.consumeOtpIntentError
+      ? vi.fn().mockRejectedValue(options.consumeOtpIntentError)
+      : vi.fn().mockResolvedValue(undefined),
+    consumeOtpIntentInTransaction: options.consumeOtpIntentError
+      ? vi.fn().mockRejectedValue(options.consumeOtpIntentError)
+      : vi.fn().mockResolvedValue(undefined),
+    startBinding: options.startBindingError
+      ? vi.fn().mockRejectedValue(options.startBindingError)
+      : vi.fn().mockResolvedValue({ sent: true }),
+  };
+  const recentAuth = {
+    reserve: options.hasRecoveryGrant === false
+      ? vi.fn().mockRejectedValue(new ForbiddenException('phone_reauthentication_required'))
+      : vi.fn().mockResolvedValue('44444444-4444-4444-8444-444444444444'),
+    commitReservation: vi.fn().mockResolvedValue(undefined),
+    releaseReservation: vi.fn().mockResolvedValue(undefined),
+    issuePhoneOtpGrant: vi.fn().mockResolvedValue({
+      expiresAt: Date.now() + 300_000,
+      grantId: '33333333-3333-4333-8333-333333333333',
+      method: 'phone_otp',
+      purpose: 'password_recovery',
+    }),
   };
   const transaction = options.transaction ?? vi.fn().mockRejectedValue(new Error('merge_transaction_failed'));
   const database = { db: { transaction } };
-  const feedback = {};
   const service = new AccountService(
     {
       supabasePublishableKey: 'test-publishable-key-that-is-long-enough',
@@ -133,12 +155,13 @@ function fixture(options: {
     database as unknown as DatabaseService,
     identities as unknown as AccountIdentityService,
     phoneAuth as unknown as PhoneAuthService,
+    recentAuth as unknown as RecentAuthService,
     sessions as unknown as SessionSecurityService,
-    feedback as FeedbackService,
   );
   return {
     identities,
     phoneAuth,
+    recentAuth,
     service,
     sessions,
     signInWithOtp,
@@ -182,7 +205,7 @@ describe('AccountService phone merge', () => {
     const { service, verifyOtp } = fixture();
 
     await expect(service.mergeWithPhoneOtp(source, '+8613800138000', '123456'))
-      .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
+      .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
         && error.message === 'social_identity_required');
     expect(verifyOtp).not.toHaveBeenCalled();
   });
@@ -197,7 +220,7 @@ describe('AccountService phone merge', () => {
     const { service, verifyOtp } = fixture();
 
     await expect(service.mergeWithPhoneOtp(source, '+8613800138000', '123456'))
-      .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
+      .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
         && error.message === 'recent_social_auth_required');
     expect(verifyOtp).not.toHaveBeenCalled();
   });
@@ -213,7 +236,7 @@ describe('AccountService phone merge', () => {
     const { service, verifyOtp } = fixture();
 
     await expect(service.mergeWithPhoneOtp(source, '+8613800138000', '123456'))
-      .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
+      .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
         && error.message === 'recent_social_auth_required');
     expect(verifyOtp).not.toHaveBeenCalled();
   });
@@ -232,7 +255,7 @@ describe('AccountService phone merge', () => {
     const { service, verifyOtp } = fixture();
 
     await expect(service.mergeWithPhoneOtp(source, '+8613800138000', '123456'))
-      .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
+      .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
         && error.message === 'recent_social_auth_required');
     expect(verifyOtp).not.toHaveBeenCalled();
   });
@@ -243,22 +266,10 @@ describe('AccountService phone merge', () => {
       authUserId: '11111111-1111-4111-8111-111111111111',
       providers: ['apple'],
     });
-    const { service, signInWithOtp } = fixture();
+    const { phoneAuth, service } = fixture();
 
     await expect(service.startPhoneBinding(source, '+8613800138000', '203.0.113.9')).resolves.toEqual({ sent: true });
-    expect(supabase.createClient).toHaveBeenLastCalledWith(
-      'http://127.0.0.1:8000',
-      'test-publishable-key-that-is-long-enough',
-      expect.objectContaining({ global: { headers: { 'Sb-Forwarded-For': '203.0.113.9' } } }),
-    );
-    expect(signInWithOtp).toHaveBeenCalledWith({
-      phone: '+8613800138000',
-      options: {
-        channel: 'sms',
-        shouldCreateUser: true,
-        data: { account_type: 'native_phone_binding_target' },
-      },
-    });
+    expect(phoneAuth.startBinding).toHaveBeenCalledWith(source, '+8613800138000', '203.0.113.9');
   });
 
   it('rejects a stale social session before sending a phone-binding OTP', async () => {
@@ -271,7 +282,7 @@ describe('AccountService phone merge', () => {
     const { service, signInWithOtp } = fixture();
 
     await expect(service.startPhoneBinding(source, '+8613800138000'))
-      .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
+      .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
         && error.message === 'recent_social_auth_required');
     expect(signInWithOtp).not.toHaveBeenCalled();
   });
@@ -282,23 +293,17 @@ describe('AccountService phone merge', () => {
       authUserId: '11111111-1111-4111-8111-111111111111',
       providers: ['apple'],
     });
-    const rateLimited = vi.fn().mockResolvedValue({
-      data: { session: null, user: null },
-      error: { code: 'over_sms_send_rate_limit', message: 'supplier detail' },
-    });
-    const unavailable = vi.fn().mockResolvedValue({
-      data: { session: null, user: null },
-      error: { code: 'sms_send_failed', message: 'supplier detail' },
-    });
-
-    const rateLimitedService = fixture({ signInWithOtp: rateLimited }).service;
+    const rateLimitedService = fixture({
+      startBindingError: new HttpException('phone_binding_otp_rate_limited', 429),
+    }).service;
     await expect(rateLimitedService.startPhoneBinding(source, '+8613800138000'))
       .rejects.toSatisfy((error: unknown) => error instanceof HttpException
         && error.getStatus() === 429
         && error.message === 'phone_binding_otp_rate_limited');
 
-    supabase.createClient.mockReset();
-    const unavailableService = fixture({ signInWithOtp: unavailable }).service;
+    const unavailableService = fixture({
+      startBindingError: new ServiceUnavailableException('phone_binding_otp_unavailable'),
+    }).service;
     await expect(unavailableService.startPhoneBinding(source, '+8613800138000'))
       .rejects.toSatisfy((error: unknown) => error instanceof ServiceUnavailableException
         && error.message === 'phone_binding_otp_unavailable');
@@ -317,7 +322,7 @@ describe('AccountService phone merge', () => {
     const { identities, service, transaction, verifier } = fixture({ verifyOtp });
 
     await expect(service.mergeWithPhoneOtp(source, '+8613800138000', '000000'))
-      .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
+      .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
         && error.message === 'invalid_phone_otp');
     expect(verifier.verify).not.toHaveBeenCalled();
     expect(identities.resolve).not.toHaveBeenCalled();
@@ -406,6 +411,13 @@ describe('AccountService phone merge', () => {
       provider: 'phone',
       subjectHash: 'a'.repeat(64),
     });
+    expect(identities.claimLifetimeTrialInTransaction).toHaveBeenCalledWith(
+      transactionApi,
+      [{ provider: 'phone', subject: '+8613800138000' }],
+      source.user.id,
+      expect.any(Date),
+      false,
+    );
     expect(signOut).not.toHaveBeenCalled();
   });
 
@@ -442,7 +454,7 @@ describe('AccountService phone merge', () => {
     expect(fetchMock.mock.calls[0]?.[1]).toEqual(expect.objectContaining({
       headers: expect.objectContaining({ authorization: `Bearer ${source.accessToken}` }),
     }));
-    expect(phoneAuth.consumePasswordRecovery).not.toHaveBeenCalled();
+    expect(phoneAuth.consumeOtpIntent).toHaveBeenCalledWith(source, 'login');
     expect(signInWithPassword).toHaveBeenCalledOnce();
     expect(signInWithPassword).toHaveBeenCalledWith({ phone: '+8613800138000', password: 'newpassword10' });
     expect(signOut).toHaveBeenCalledWith(source.accessToken, 'local');
@@ -490,12 +502,21 @@ describe('AccountService phone merge', () => {
       phone: '+8613800138000',
       providers: ['phone'],
     });
-    const { phoneAuth, service, signInWithPassword } = fixture({ hasRecoveryGrant: false });
+    const { recentAuth, service, signInWithPassword } = fixture({ hasRecoveryGrant: false });
 
-    await expect(service.updatePassword(source, 'newpassword10'))
-      .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
+    await expect(service.updatePassword(
+      source,
+      'newpassword10',
+      undefined,
+      '33333333-3333-4333-8333-333333333333',
+    ))
+      .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
         && error.message === 'phone_reauthentication_required');
-    expect(phoneAuth.consumePasswordRecovery).toHaveBeenCalledOnce();
+    expect(recentAuth.reserve).toHaveBeenCalledWith(
+      source,
+      '33333333-3333-4333-8333-333333333333',
+      'password_recovery',
+    );
     expect(fetchMock).not.toHaveBeenCalled();
     expect(signInWithPassword).not.toHaveBeenCalled();
   });
@@ -509,19 +530,58 @@ describe('AccountService phone merge', () => {
       phone: '+8613800138000',
       providers: ['phone'],
     });
-    const { phoneAuth, service, sessions, signInWithPassword, signOut } = fixture();
+    const { recentAuth, service, sessions, signInWithPassword, signOut } = fixture();
 
-    await expect(service.updatePassword(source, 'newpassword10')).resolves.toEqual(expect.objectContaining({
+    await expect(service.updatePassword(
+      source,
+      'newpassword10',
+      undefined,
+      '33333333-3333-4333-8333-333333333333',
+    )).resolves.toEqual(expect.objectContaining({
       session: expect.objectContaining({ accessToken: 'new-password-access-token' }),
       updated: true,
     }));
-    expect(phoneAuth.consumePasswordRecovery).toHaveBeenCalledOnce();
+    expect(recentAuth.reserve).toHaveBeenCalledOnce();
+    expect(recentAuth.commitReservation).toHaveBeenCalledWith(
+      source,
+      '33333333-3333-4333-8333-333333333333',
+      'password_recovery',
+      '44444444-4444-4444-8444-444444444444',
+    );
     expect(signOut).toHaveBeenCalledWith(source.accessToken, 'global');
     expect(sessions.revokeAll).toHaveBeenCalledWith(source.authUserId);
     expect(signInWithPassword).toHaveBeenCalledWith({ phone: '+8613800138000', password: 'newpassword10' });
     expect(signOut).not.toHaveBeenCalledWith(source.accessToken, 'local');
     expect(signOut.mock.invocationCallOrder[0]).toBeLessThan(signInWithPassword.mock.invocationCallOrder[0]!);
     expect(sessions.revokeAll.mock.invocationCallOrder[0]).toBeLessThan(signInWithPassword.mock.invocationCallOrder[0]!);
+  });
+
+  it('releases a recovery grant reservation when the password update fails upstream', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
+      ok: false,
+      json: vi.fn().mockResolvedValue({ code: 'weak_password' }),
+    }));
+    const source = session({
+      accountId: '22222222-2222-4222-8222-222222222222',
+      authUserId: '22222222-2222-4222-8222-222222222222',
+      passwordSet: true,
+      phone: '+8613800138000',
+      providers: ['phone'],
+    });
+    const { recentAuth, service } = fixture();
+
+    await expect(service.updatePassword(
+      source,
+      'weakpassword',
+      undefined,
+      '33333333-3333-4333-8333-333333333333',
+    )).rejects.toSatisfy((error: unknown) => error instanceof HttpException
+      && error.message === 'invalid_phone_password');
+    expect(recentAuth.releaseReservation).toHaveBeenCalledWith(
+      '33333333-3333-4333-8333-333333333333',
+      '44444444-4444-4444-8444-444444444444',
+    );
+    expect(recentAuth.commitReservation).not.toHaveBeenCalled();
   });
 
   it('maps upstream reauthentication requirements to the stable recovery error', async () => {
@@ -540,7 +600,7 @@ describe('AccountService phone merge', () => {
     const { service, signInWithPassword } = fixture();
 
     await expect(service.updatePassword(source, 'newpassword10', 'oldpassword10'))
-      .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
+      .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
         && error.message === 'phone_reauthentication_required');
     expect(signInWithPassword).not.toHaveBeenCalled();
   });
@@ -553,10 +613,12 @@ describe('AccountService phone merge', () => {
       phone: '+8613800138000',
       providers: ['phone'],
     });
-    const { service } = fixture();
+    const { service } = fixture({
+      consumeOtpIntentError: new ForbiddenException('phone_reauthentication_required'),
+    });
 
     await expect(service.updatePassword(source, 'newpassword10'))
-      .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
+      .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
         && error.message === 'phone_reauthentication_required');
   });
 });

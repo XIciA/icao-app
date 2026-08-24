@@ -5,9 +5,11 @@ import { describe, expect, it } from 'vitest';
 
 import { AppModule } from '../src/app.module';
 import { AccountService } from '../src/account/account.service';
+import { AccountDeletionService } from '../src/account/account-deletion.service';
 import { AccountIdentityService } from '../src/account/account-identity.service';
 import { AUTH_VERIFIER, type AuthVerifier, type VerifiedAuthSession } from '../src/auth/auth.types';
 import { PhoneAuthService } from '../src/auth/phone-auth.service';
+import { RecentAuthService } from '../src/auth/recent-auth.service';
 import { SessionSecurityService } from '../src/auth/session-security.service';
 import { loadConfig } from '../src/config';
 import { DatabaseService } from '../src/database/database.service';
@@ -34,6 +36,12 @@ function productionConfig(overrides: NodeJS.ProcessEnv = {}): NodeJS.ProcessEnv 
     SUPABASE_SECRET_KEY: 'test-secret-key-that-is-long-enough',
     INVITE_AUTH_SECRET: 'test-invite-auth-secret-that-is-long-enough',
     ACCOUNT_IDENTITY_HASH_SECRET: 'test-account-identity-secret-that-is-long-enough',
+    IDENTITY_BENEFIT_DIGEST_SECRET: 'test-identity-benefit-secret-that-is-long-enough',
+    APPLE_SIGN_IN_CLIENT_ID: 'com.feizhuicao.app',
+    APPLE_TEAM_ID: 'TEAMID1234',
+    APPLE_KEY_ID: 'KEYID1234',
+    APPLE_PRIVATE_KEY: '-----BEGIN PRIVATE KEY-----\\ntest-only-not-a-real-key-material\\n-----END PRIVATE KEY-----',
+    APPLE_CREDENTIAL_ENCRYPTION_KEY: 'BwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwc=',
     AI_TEXT_PROVIDER: 'deepseek',
     DEEPSEEK_API_KEY: 'test-deepseek-key',
     DEEPSEEK_BASE_URL: 'https://api.deepseek.com',
@@ -96,8 +104,11 @@ async function testApp({ revoked = false }: { revoked?: boolean } = {}) {
     .useValue({ assertActive: async () => { if (revoked) throw new UnauthorizedException('session_revoked'); }, revokeAll: async () => undefined })
     .overrideProvider(AccountService)
     .useValue({
-      authorizePasswordRecovery: async () => ({ authorized: true, expiresAt: 1_800_003_600_000 }),
-      deleteAccount: async () => undefined,
+      authorizePasswordRecovery: async () => ({
+        authorized: true,
+        expiresAt: 1_800_003_600_000,
+        grantId: '00000000-0000-4000-8000-000000000096',
+      }),
       mergeWithPhoneOtp: async () => ({
         account: { accountId: '00000000-0000-4000-8000-000000000001', phone: '+8613800138000', phoneBound: true, providers: ['phone', 'apple'] },
         session: { accessToken: 'target-access-token', refreshToken: 'target-refresh-token' },
@@ -110,10 +121,39 @@ async function testApp({ revoked = false }: { revoked?: boolean } = {}) {
       revokeAll: async () => ({ revoked: true }),
       summary: async (accountId: string, phone?: string) => ({ accountId, phone, phoneBound: Boolean(phone), providers: phone ? ['phone'] : ['apple'] }),
     })
+    .overrideProvider(AccountDeletionService)
+    .useValue({
+      requestDeletion: async () => ({
+        identityProviderOutcome: 'not_applicable',
+        jobId: '00000000-0000-4000-8000-000000000099',
+        status: 'completed',
+      }),
+      statusByIdempotencyKey: async () => ({
+        identityProviderOutcome: 'not_applicable',
+        jobId: '00000000-0000-4000-8000-000000000099',
+        status: 'completed',
+      }),
+    })
     .overrideProvider(PhoneAuthService)
     .useValue({
       start: async () => ({ accepted: true }),
       startRecovery: async () => ({ accepted: true }),
+      startRecentAuth: async () => ({ accepted: true }),
+    })
+    .overrideProvider(RecentAuthService)
+    .useValue({
+      issuePhoneOtpGrant: async () => ({
+        expiresAt: 1_800_000_300_000,
+        grantId: '00000000-0000-4000-8000-000000000095',
+        method: 'phone_otp',
+        purpose: 'account_delete',
+      }),
+      issuePasswordGrant: async () => ({
+        expiresAt: 1_800_000_300_000,
+        grantId: '00000000-0000-4000-8000-000000000094',
+        method: 'password',
+        purpose: 'account_delete',
+      }),
     })
     .overrideProvider(EditorialService)
     .useValue({
@@ -342,12 +382,52 @@ describe('API foundation', () => {
     const headers = { authorization: 'Bearer valid-token' };
     const revoked = await app.inject({ method: 'POST', url: '/v1/account/sessions/revoke-all', headers });
     const invalidDeletion = await app.inject({ method: 'DELETE', url: '/v1/account', headers, payload: { confirmation: '删除账号' } });
-    const deleted = await app.inject({ method: 'DELETE', url: '/v1/account', headers, payload: { confirmation: '注销账号' } });
+    const nonV4Deletion = await app.inject({
+      method: 'DELETE',
+      url: '/v1/account',
+      headers,
+      payload: {
+        confirmation: '注销账号',
+        grantId: '00000000-0000-4000-8000-000000000097',
+        idempotencyKey: '00000000-0000-1000-8000-000000000098',
+      },
+    });
+    const deleted = await app.inject({
+      method: 'DELETE',
+      url: '/v1/account',
+      headers,
+      payload: {
+        confirmation: '注销账号',
+        grantId: '00000000-0000-4000-8000-000000000097',
+        idempotencyKey: '00000000-0000-4000-8000-000000000098',
+      },
+    });
+    const deletionStatus = await app.inject({
+      method: 'POST',
+      url: '/v1/account/deletion/status',
+      payload: { idempotencyKey: '00000000-0000-4000-8000-000000000098' },
+    });
+    const nonV4DeletionStatus = await app.inject({
+      method: 'POST',
+      url: '/v1/account/deletion/status',
+      payload: { idempotencyKey: '00000000-0000-1000-8000-000000000098' },
+    });
     expect(revoked.statusCode).toBe(201);
     expect(revoked.json().data).toEqual({ revoked: true });
     expect(invalidDeletion.statusCode).toBe(400);
     expect(invalidDeletion.json().error.code).toBe('invalid_account_deletion');
-    expect(deleted.statusCode).toBe(204);
+    expect(nonV4Deletion.statusCode).toBe(400);
+    expect(nonV4Deletion.json().error.code).toBe('invalid_account_deletion');
+    expect(deleted.statusCode).toBe(202);
+    expect(deleted.json().data).toEqual({
+      identityProviderOutcome: 'not_applicable',
+      jobId: '00000000-0000-4000-8000-000000000099',
+      status: 'completed',
+    });
+    expect(deletionStatus.statusCode).toBe(201);
+    expect(deletionStatus.json().data).toEqual(deleted.json().data);
+    expect(nonV4DeletionStatus.statusCode).toBe(400);
+    expect(nonV4DeletionStatus.json().error.code).toBe('invalid_account_deletion_status');
     await app.close();
   });
 
@@ -422,6 +502,18 @@ describe('API foundation', () => {
       url: '/v1/account/password/recovery/authorize',
       headers: { authorization: 'Bearer valid-token' },
     });
+    const recentPhoneStart = await app.inject({
+      method: 'POST',
+      url: '/v1/account/recent-auth/phone/start',
+      headers: { authorization: 'Bearer valid-token' },
+      payload: { purpose: 'account_delete' },
+    });
+    const recentPhone = await app.inject({
+      method: 'POST',
+      url: '/v1/account/recent-auth/phone',
+      headers: { authorization: 'Bearer valid-token' },
+      payload: { purpose: 'account_delete' },
+    });
     const unauthenticatedRecovery = await app.inject({
       method: 'POST',
       url: '/v1/account/password/recovery/authorize',
@@ -443,7 +535,20 @@ describe('API foundation', () => {
       updated: true,
     });
     expect(authorizedRecovery.statusCode).toBe(201);
-    expect(authorizedRecovery.json().data).toEqual({ authorized: true, expiresAt: 1_800_003_600_000 });
+    expect(authorizedRecovery.json().data).toEqual({
+      authorized: true,
+      expiresAt: 1_800_003_600_000,
+      grantId: '00000000-0000-4000-8000-000000000096',
+    });
+    expect(recentPhoneStart.statusCode).toBe(201);
+    expect(recentPhoneStart.json().data).toEqual({ accepted: true });
+    expect(recentPhone.statusCode).toBe(201);
+    expect(recentPhone.json().data).toEqual({
+      expiresAt: 1_800_000_300_000,
+      grantId: '00000000-0000-4000-8000-000000000095',
+      method: 'phone_otp',
+      purpose: 'account_delete',
+    });
     expect(unauthenticatedRecovery.statusCode).toBe(401);
     expect(unauthenticatedPassword.statusCode).toBe(401);
     await app.close();

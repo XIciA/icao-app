@@ -1,9 +1,7 @@
-import { createHash, createHmac } from 'node:crypto';
+import { createHmac } from 'node:crypto';
 
 import {
   BadRequestException,
-  HttpException,
-  HttpStatus,
   Inject,
   Injectable,
   Logger,
@@ -14,8 +12,9 @@ import { normalizeChinaMobile } from '@icao/contracts';
 import { Webhook } from 'standardwebhooks';
 import { z } from 'zod';
 
-import { API_CONFIG, type ApiConfig, DISABLED_SMS_CONFIG, type SmsConfig } from '../../config';
+import { API_CONFIG, type ApiConfig, DISABLED_SMS_CONFIG } from '../../config';
 import { AliyunSmsProvider } from './aliyun-sms.provider';
+import { SmsDeliveryAuthority } from './sms-delivery-authority';
 
 const payloadSchema = z.object({
   user: z.object({ phone: z.string().nullish() }).passthrough().nullish(),
@@ -34,76 +33,15 @@ function header(headers: HookHeaders, name: string) {
   return Array.isArray(value) ? value[0] : value;
 }
 
-const CHINA_TIME_OFFSET_MS = 8 * 60 * 60 * 1_000;
-
-function chinaTimeBuckets(now: number) {
-  const shifted = new Date(now + CHINA_TIME_OFFSET_MS);
-  const year = shifted.getUTCFullYear();
-  const month = shifted.getUTCMonth();
-  const day = shifted.getUTCDate();
-  const hour = shifted.getUTCHours();
-  const dayKey = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-  return {
-    day: { key: dayKey, expiresAt: Date.UTC(year, month, day + 1) - CHINA_TIME_OFFSET_MS },
-    hour: { key: `${dayKey}T${String(hour).padStart(2, '0')}`, expiresAt: Date.UTC(year, month, day, hour + 1) - CHINA_TIME_OFFSET_MS },
-    month: { key: dayKey.slice(0, 7), expiresAt: Date.UTC(year, month + 1, 1) - CHINA_TIME_OFFSET_MS },
-  };
-}
-
-export class SmsUsageLimiter {
-  private readonly counters = new Map<string, { count: number; expiresAt: number }>();
-
-  constructor(private readonly limits: SmsConfig) {}
-
-  private cleanup(now: number) {
-    for (const [key, counter] of this.counters) {
-      if (counter.expiresAt <= now) this.counters.delete(key);
-    }
-  }
-
-  reserve(phone: string, now = Date.now()) {
-    this.cleanup(now);
-    const time = chinaTimeBuckets(now);
-    const phoneHash = createHash('sha256').update(phone).digest('hex');
-    const rules = [
-      [`total:day:${time.day.key}`, this.limits.dailyLimit, time.day.expiresAt],
-      [`total:month:${time.month.key}`, this.limits.monthlyLimit, time.month.expiresAt],
-      [`phone:${phoneHash}:hour:${time.hour.key}`, this.limits.phoneHourlyLimit, time.hour.expiresAt],
-      [`phone:${phoneHash}:day:${time.day.key}`, this.limits.phoneDailyLimit, time.day.expiresAt],
-    ] as const;
-    if (rules.some(([key, limit]) => (this.counters.get(key)?.count ?? 0) >= limit)) {
-      throw new HttpException('sms_rate_limited', HttpStatus.TOO_MANY_REQUESTS);
-    }
-    for (const [key, , expiresAt] of rules) {
-      this.counters.set(key, { count: (this.counters.get(key)?.count ?? 0) + 1, expiresAt });
-    }
-    let released = false;
-    return () => {
-      if (released) return;
-      released = true;
-      for (const [key] of rules) {
-        const counter = this.counters.get(key);
-        const next = (counter?.count ?? 1) - 1;
-        if (next <= 0) this.counters.delete(key);
-        else if (counter) this.counters.set(key, { ...counter, count: next });
-      }
-    };
-  }
-}
-
 @Injectable()
 export class SupabaseSmsHookService {
   private readonly logger = new Logger(SupabaseSmsHookService.name);
-  private readonly completed = new Map<string, number>();
-  private readonly inflight = new Map<string, Promise<void>>();
-  private readonly limiter: SmsUsageLimiter;
 
   constructor(
     @Inject(API_CONFIG) private readonly config: ApiConfig,
     private readonly provider: AliyunSmsProvider,
-  ) {
-    this.limiter = new SmsUsageLimiter(config.sms ?? DISABLED_SMS_CONFIG);
-  }
+    private readonly authority: SmsDeliveryAuthority,
+  ) {}
 
   private verifier() {
     const sms = this.config.sms ?? DISABLED_SMS_CONFIG;
@@ -179,29 +117,17 @@ export class SupabaseSmsHookService {
       throw new BadRequestException('sms_hook_payload_too_large');
     }
     const input = this.verify(rawBody, headers);
-    const now = Date.now();
-    for (const [id, expiresAt] of this.completed) {
-      if (expiresAt <= now) this.completed.delete(id);
+    const claimed = await this.authority.claim(input.dedupeKey, input.phone);
+    if (claimed.outcome === 'duplicate_completed') return;
+    if (claimed.outcome === 'duplicate_inflight') {
+      throw new ServiceUnavailableException('sms_delivery_in_progress');
     }
-    if (this.completed.has(input.dedupeKey)) return;
-    const existing = this.inflight.get(input.dedupeKey);
-    if (existing) return existing;
-
-    const operation = (async () => {
-      const release = this.limiter.reserve(input.phone, now);
-      try {
-        await this.provider.sendOtp({ outId: input.dedupeKey, phone: input.phone, otp: input.otp });
-        this.completed.set(input.dedupeKey, now + 10 * 60 * 1_000);
-      } catch (error) {
-        release();
-        throw error;
-      }
-    })();
-    this.inflight.set(input.dedupeKey, operation);
     try {
-      await operation;
-    } finally {
-      this.inflight.delete(input.dedupeKey);
+      await this.provider.sendOtp({ outId: input.dedupeKey, phone: input.phone, otp: input.otp });
+      await this.authority.complete(input.dedupeKey, claimed.leaseToken);
+    } catch (error) {
+      await this.authority.fail(input.dedupeKey, claimed.leaseToken, claimed.rules).catch(() => undefined);
+      throw error;
     }
   }
 }

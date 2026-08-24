@@ -34,7 +34,7 @@ export type AuthService = {
   verifyPhoneOtp(phone: string, token: string): Promise<AppSession>;
   authorizePasswordRecovery(): Promise<AuthorizePasswordRecoveryResponse>;
   signInWithPhonePassword(phone: string, password: string): Promise<AppSession>;
-  updatePassword(password: string, currentPassword?: string): Promise<AppSession>;
+  updatePassword(password: string, currentPassword?: string, recoveryGrantId?: string): Promise<AppSession>;
   requestPhoneBindingOtp(phone: string): Promise<PhoneBindingChallenge>;
   resendPhoneBindingOtp(challenge: PhoneBindingChallenge): Promise<void>;
   verifyPhoneBindingOtp(challenge: PhoneBindingChallenge, token: string): Promise<PhoneBindingVerification>;
@@ -209,7 +209,7 @@ export class SupabasePhoneAuthService implements AuthService {
     const response = await apiRequest<AuthorizePasswordRecoveryResponse>('/v1/account/password/recovery/authorize', {
       method: 'POST',
     });
-    if (!response.authorized || response.expiresAt <= Date.now()) {
+    if (!response.authorized || !response.grantId || response.expiresAt <= Date.now()) {
       throw new Error('phone_reauthentication_required');
     }
     return response;
@@ -229,7 +229,7 @@ export class SupabasePhoneAuthService implements AuthService {
     return session;
   }
 
-  async updatePassword(password: string, currentPassword?: string) {
+  async updatePassword(password: string, currentPassword?: string, recoveryGrantId?: string) {
     if (!isValidPhonePassword(password)) throw new Error('invalid_phone_password');
     const { data: sessionData, error: sessionError } = await this.client.auth.getSession();
     if (sessionError) throw authError(sessionError);
@@ -244,6 +244,7 @@ export class SupabasePhoneAuthService implements AuthService {
       body: JSON.stringify({
         password,
         ...(currentPassword === undefined ? {} : { currentPassword }),
+        ...(recoveryGrantId === undefined ? {} : { recoveryGrantId }),
       }),
     });
     if (!response.updated) throw new Error('phone_auth_unavailable');

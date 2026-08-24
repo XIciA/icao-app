@@ -1,31 +1,40 @@
 import { createHmac } from 'node:crypto';
 
-import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
+import { Inject, Injectable, Optional, UnauthorizedException } from '@nestjs/common';
 import type { AuthIdentityProvider, AuthenticatedUser } from '@icao/contracts';
 import { isChinaMobileE164 } from '@icao/contracts';
 import { and, eq, inArray, sql } from 'drizzle-orm';
 
 import type { VerifiedAuthSession } from '../auth/auth.types';
 import { API_CONFIG, type ApiConfig } from '../config';
-import { accountIdentities, accounts, profiles } from '../database/schema';
+import { accountIdentities, accounts, lifetimeIdentityBenefitClaims, profiles } from '../database/schema';
 import { DatabaseService } from '../database/database.service';
+import { PersistentCommerceBenefitsService } from '../commerce/persistent-commerce-benefits.service';
+import { IdentityDigestService } from './identity-digest.service';
 
-type IdentityCandidate = {
+export type IdentityCandidate = {
   provider: AuthIdentityProvider;
   subject: string;
 };
 
 const SUPPORTED_PROVIDERS = new Set<AuthIdentityProvider>(['phone', 'apple']);
+const FREE_TRIAL_BENEFIT_KEY = 'free-trial-100-v1';
 
 @Injectable()
 export class AccountIdentityService {
+  private readonly commerce: PersistentCommerceBenefitsService;
+  private readonly digests: IdentityDigestService;
   private readonly hashKey: string;
 
   constructor(
     @Inject(API_CONFIG) config: ApiConfig,
     private readonly database: DatabaseService,
+    @Optional() digests?: IdentityDigestService,
+    @Optional() commerce?: PersistentCommerceBenefitsService,
   ) {
     this.hashKey = config.accountIdentityHashSecret;
+    this.digests = digests ?? new IdentityDigestService(config);
+    this.commerce = commerce ?? new PersistentCommerceBenefitsService();
   }
 
   hashIdentity(provider: AuthIdentityProvider, subject: string) {
@@ -85,6 +94,7 @@ export class AccountIdentityService {
       if (linkedAccounts.length > 1) throw new UnauthorizedException('identity_account_conflict');
 
       const resolvedAccountId = linkedAccounts[0] ?? auth.authUserId;
+      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`account:${resolvedAccountId}`}, 0))`);
       await transaction.insert(accounts).values({ id: resolvedAccountId })
         .onConflictDoNothing({ target: accounts.id });
       const [account] = await transaction.select({
@@ -127,6 +137,7 @@ export class AccountIdentityService {
       ) {
         throw new UnauthorizedException('identity_account_conflict');
       }
+      await this.claimLifetimeTrialInTransaction(transaction, candidates, resolvedAccountId, new Date());
       await transaction.update(accountIdentities)
         .set({ lastUsedAt: new Date() })
         .where(eq(accountIdentities.authUserId, auth.authUserId));
@@ -141,6 +152,38 @@ export class AccountIdentityService {
       phone: auth.user.phone,
       providers,
     };
+  }
+
+  async claimLifetimeTrialInTransaction(
+    transaction: Parameters<Parameters<DatabaseService['db']['transaction']>[0]>[0],
+    candidates: IdentityCandidate[],
+    accountId: string,
+    claimedAt: Date,
+    grantIfAllNew = true,
+  ) {
+    const aliases = [...new Map(candidates.flatMap((candidate) => (
+      this.digests.candidates('lifetime-benefit-v1', candidate.provider, candidate.subject)
+        .map(({ digest, version }) => ({
+          benefitKey: FREE_TRIAL_BENEFIT_KEY,
+          claimContextDigest: this.digests.accountContext(accountId),
+          digestKeyVersion: version,
+          identityDigest: digest,
+          provider: candidate.provider,
+          claimedAt,
+        }))
+    )).map((alias) => [`${alias.benefitKey}:${alias.identityDigest}`, alias])).values()];
+    for (const digest of aliases.map(({ identityDigest }) => identityDigest).sort()) {
+      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`lifetime-benefit:${digest}`}, 0))`);
+    }
+    const inserted = await transaction.insert(lifetimeIdentityBenefitClaims).values(aliases)
+      .onConflictDoNothing()
+      .returning({ identityDigest: lifetimeIdentityBenefitClaims.identityDigest });
+    if (!grantIfAllNew || inserted.length !== aliases.length) return;
+    await this.commerce.grantFreeTrial(transaction, {
+      accountId,
+      externalEligibilityClaimed: true,
+      grantedAt: claimedAt,
+    });
   }
 
   async providersForAccount(accountId: string): Promise<AuthIdentityProvider[]> {
