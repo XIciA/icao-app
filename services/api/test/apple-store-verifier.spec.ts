@@ -7,7 +7,10 @@ import type {
 } from '../src/commerce/commerce-domain';
 import { describe, expect, it } from 'vitest';
 
-import { OfficialAppleStoreVerifier } from '../src/commerce/apple-store-verifier';
+import {
+  OfficialAppleStoreVerifier,
+  sanitizeAppleNotificationAuditPayload,
+} from '../src/commerce/apple-store-verifier';
 
 // The payload fields come from Apple's App Store Server Library v3.1.0
 // signedTransaction model (MIT). A repository-owned certificate chain signs
@@ -79,6 +82,28 @@ async function expectVerificationStatus(
 }
 
 describe('OfficialAppleStoreVerifier', () => {
+  it('recursively removes every Apple raw nested JWS from audit payloads', () => {
+    const sanitized = sanitizeAppleNotificationAuditPayload({
+      notificationType: 'RESCIND_CONSENT',
+      data: {
+        environment: 'Production',
+        signedTransactionInfo: 'transaction.header.payload.signature',
+        nested: [{ signedRenewalInfo: 'renewal.header.payload.signature', safe: 'kept' }],
+      },
+      appData: {
+        bundleId: 'com.readyoufife.ios',
+        signedAppTransactionInfo: 'app.header.payload.signature',
+      },
+    });
+
+    expect(sanitized).toEqual({
+      notificationType: 'RESCIND_CONSENT',
+      data: { environment: 'Production', nested: [{ safe: 'kept' }] },
+      appData: { bundleId: 'com.readyoufife.ios' },
+    });
+    expect(JSON.stringify(sanitized)).not.toContain('header.payload.signature');
+  });
+
   it('verifies the official chain and maps a complete typed transaction', async () => {
     const transaction: VerifiedAppleTransaction = await verifier({
       root: NON_RENEWING_FIXTURE_ROOT_CA,
@@ -171,6 +196,16 @@ describe('OfficialAppleStoreVerifier', () => {
         environment: 'Sandbox',
       },
     });
+  });
+
+  it('rejects a notification whose ES256 signature was changed', async () => {
+    const [header, payload, signature] = SANDBOX_NOTIFICATION_WITHOUT_APP_ID.split('.');
+    const changedSignature = `${signature?.startsWith('A') ? 'B' : 'A'}${signature?.slice(1)}`;
+    await expectVerificationStatus(
+      verifier({ root: NON_RENEWING_FIXTURE_ROOT_CA })
+        .verifyNotification(`${header}.${payload}.${changedSignature}`),
+      VerificationStatus.VERIFICATION_FAILURE,
+    );
   });
 
   it('rejects a signed sandbox notification with a wrong bundle after fallback', async () => {

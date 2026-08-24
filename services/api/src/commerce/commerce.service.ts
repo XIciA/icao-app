@@ -19,6 +19,7 @@ import {
   accounts,
   aiPointBatches,
   aiPointLedgerEntries,
+  appleNotificationEvents,
   appleTransactions,
   commerceOrders,
   membershipEntitlementSegments,
@@ -29,6 +30,8 @@ import {
   type AppleStoreVerifier,
 } from './apple-store-verifier';
 import type { VerifiedAppleTransaction } from './commerce-domain';
+import type { VerifiedAppleNotification } from './commerce-domain';
+import { PersistentCommerceBenefitsService } from './persistent-commerce-benefits.service';
 import {
   MEMBERSHIP_PRODUCTS,
   requireMembershipProductByAppleId,
@@ -37,6 +40,8 @@ import {
 } from './product-catalog';
 
 const DAY_MS = 24 * 60 * 60 * 1_000;
+const APPLE_NOTIFICATION_RETRY_MS = 60_000;
+const APPLE_NOTIFICATION_RETENTION_MS = 7 * DAY_MS;
 type CommerceTransaction = Parameters<Parameters<DatabaseService['db']['transaction']>[0]>[0];
 
 function sameDate(left: Date, right: Date) {
@@ -53,6 +58,7 @@ export class CommerceService {
     @Inject(API_CONFIG) private readonly config: ApiConfig,
     private readonly database: DatabaseService,
     @Inject(APPLE_STORE_VERIFIER) private readonly appleVerifier: AppleStoreVerifier,
+    private readonly benefits: PersistentCommerceBenefitsService = new PersistentCommerceBenefitsService(),
   ) {}
 
   catalog(): CommerceProductCatalogResponse {
@@ -201,6 +207,262 @@ export class CommerceService {
     });
   }
 
+  async processAppleNotification(signedPayload: string, processedAt = new Date()) {
+    let notification: VerifiedAppleNotification;
+    try {
+      notification = await this.appleVerifier.verifyNotification(signedPayload);
+    } catch (error) {
+      if (
+        isRetryableAppleVerificationError(error)
+        || (error instanceof Error && error.message === 'apple_commerce_not_configured')
+      ) {
+        throw new ServiceUnavailableException('apple_commerce_unavailable');
+      }
+      throw new BadRequestException('invalid_apple_notification');
+    }
+    if (notification.transaction) {
+      this.validateNotificationTransaction(notification, processedAt);
+    }
+
+    const result = await this.database.db.transaction(async (transaction) => {
+      const eventKey = `${notification.environment}:${notification.notificationUuid}`;
+      await transaction.execute(sql`
+        select pg_advisory_xact_lock(hashtextextended(${`apple-notification:${eventKey}`}, 0))
+      `);
+      const [existingEvent] = await transaction.select()
+        .from(appleNotificationEvents)
+        .where(and(
+          eq(appleNotificationEvents.environment, notification.environment),
+          eq(appleNotificationEvents.notificationUuid, notification.notificationUuid),
+        ))
+        .limit(1);
+      if (existingEvent?.signedPayloadHash !== undefined
+        && existingEvent.signedPayloadHash !== notification.signedPayloadHash) {
+        throw new ConflictException('apple_notification_idempotency_conflict');
+      }
+      if (existingEvent?.status === 'processed' || existingEvent?.status === 'expired') {
+        await transaction.update(appleNotificationEvents).set({
+          decodedPayload: notification.decodedPayload,
+          signedPayload: null,
+          nextAttemptAt: null,
+          lockedAt: null,
+          leaseOwner: null,
+          leaseUntil: null,
+          retentionAt: null,
+        }).where(eq(appleNotificationEvents.id, existingEvent.id));
+        return { duplicate: true, processed: true };
+      }
+      if (existingEvent?.status === 'failed') {
+        // Compatibility for a candidate deployment that persisted the hash
+        // before raw-payload retention existed. The JWS has just been fully
+        // verified and its digest matches the existing UUID row. Rewriting
+        // decodedPayload also removes nested Apple JWS retained by that build.
+        await transaction.update(appleNotificationEvents).set({
+          decodedPayload: notification.decodedPayload,
+          signedPayload: existingEvent.signedPayload ?? signedPayload,
+          nextAttemptAt: existingEvent.nextAttemptAt
+            ?? new Date(processedAt.getTime() + APPLE_NOTIFICATION_RETRY_MS),
+          retentionAt: existingEvent.retentionAt
+            ?? new Date(processedAt.getTime() + APPLE_NOTIFICATION_RETENTION_MS),
+        }).where(eq(appleNotificationEvents.id, existingEvent.id));
+      }
+      if (!existingEvent) {
+        await transaction.insert(appleNotificationEvents).values({
+          environment: notification.environment,
+          notificationUuid: notification.notificationUuid,
+          notificationType: notification.notificationType,
+          subtype: notification.subtype,
+          status: 'received',
+          signedPayload,
+          signedPayloadHash: notification.signedPayloadHash,
+          decodedPayload: notification.decodedPayload,
+          signedAt: notification.signedDate,
+          receivedAt: processedAt,
+        });
+      }
+
+      if (!notification.transaction) {
+        await this.markAppleNotificationProcessed(transaction, notification, processedAt);
+        return { duplicate: false, processed: true };
+      }
+
+      const verified = notification.transaction;
+      const environment = notification.environment;
+      await transaction.execute(sql`
+        select pg_advisory_xact_lock(
+          hashtextextended(${`apple-transaction:${environment}:${verified.transactionId}`}, 0)
+        )
+      `);
+      const [existingTransaction] = await transaction.select()
+        .from(appleTransactions)
+        .where(and(
+          eq(appleTransactions.environment, environment),
+          eq(appleTransactions.transactionId, verified.transactionId),
+        ))
+        .limit(1);
+
+      let accountId = existingTransaction?.accountId ?? verified.appAccountToken;
+      if (!accountId) {
+        await transaction.update(appleNotificationEvents).set({
+          status: 'failed',
+          signedPayload,
+          errorCode: 'apple_notification_transaction_unresolved',
+          nextAttemptAt: new Date(processedAt.getTime() + APPLE_NOTIFICATION_RETRY_MS),
+          retentionAt: existingEvent?.retentionAt
+            ?? new Date(processedAt.getTime() + APPLE_NOTIFICATION_RETENTION_MS),
+          processedAt,
+        }).where(and(
+          eq(appleNotificationEvents.environment, environment),
+          eq(appleNotificationEvents.notificationUuid, notification.notificationUuid),
+        ));
+        return { duplicate: Boolean(existingEvent), processed: false };
+      }
+      accountId = accountId.toLowerCase();
+      await transaction.execute(sql`
+        select pg_advisory_xact_lock(hashtextextended(${`account:${accountId}`}, 0))
+      `);
+      // The status check must happen after the same account lock used by
+      // account deletion. Otherwise a refund reversal can race deletion and
+      // recreate benefits after the deletion barrier has started.
+      const accountIsActive = await this.isAccountActive(transaction, accountId);
+      if (!existingTransaction && !accountIsActive) {
+        await this.markAppleNotificationIgnored(
+          transaction,
+          notification,
+          processedAt,
+          'apple_notification_account_closed',
+        );
+        return { duplicate: Boolean(existingEvent), processed: true };
+      }
+
+      let orderId: string;
+      let statusUpdateAccepted = true;
+      if (existingTransaction) {
+        this.assertNotificationTransactionIdentity(existingTransaction, verified, accountId);
+        orderId = existingTransaction.orderId;
+        if (verified.signedDate < existingTransaction.signedDate) {
+          statusUpdateAccepted = false;
+        } else if (
+          sameDate(verified.signedDate, existingTransaction.signedDate)
+          && verified.signedPayloadHash !== existingTransaction.signedPayloadHash
+        ) {
+          throw new ConflictException('apple_transaction_signed_version_conflict');
+        } else if (verified.signedDate > existingTransaction.signedDate) {
+          const clearRevocation = notification.notificationType === 'REFUND_REVERSED'
+            && accountIsActive;
+          await transaction.update(appleTransactions).set({
+            signedDate: verified.signedDate,
+            signedPayloadHash: verified.signedPayloadHash,
+            decodedPayload: verified.decodedPayload,
+            storefront: verified.storefront,
+            currency: verified.currency,
+            priceMilliunits: verified.priceMilliunits,
+            revocationDate: clearRevocation
+              ? null
+              : verified.revocationDate ?? existingTransaction.revocationDate,
+            revocationReason: clearRevocation
+              ? null
+              : verified.revocationReason ?? existingTransaction.revocationReason,
+            updatedAt: processedAt,
+          }).where(eq(appleTransactions.id, existingTransaction.id));
+        }
+      } else {
+        const product = requireMembershipProductByAppleId(verified.productId);
+        const [order] = await transaction.insert(commerceOrders).values({
+          environment,
+          channel: 'apple_app_store',
+          externalOrderId: verified.transactionId,
+          accountId,
+          originalAccountId: accountId,
+          productKey: product.productKey,
+          externalProductId: verified.productId,
+          durationDays: product.durationDays,
+          aiPointRuleVersion: product.aiPointRuleVersion,
+          membershipGrantSource: 'purchase_discovery',
+          membershipEffectiveAt: verified.purchaseDate,
+          membershipContributionMs: product.durationDays * DAY_MS,
+          status: 'verified',
+          purchasedAt: verified.purchaseDate,
+          createdAt: processedAt,
+          updatedAt: processedAt,
+        }).returning({ id: commerceOrders.id });
+        if (!order) throw new Error('commerce_order_insert_failed');
+        orderId = order.id;
+        await transaction.insert(appleTransactions).values({
+          environment,
+          transactionId: verified.transactionId,
+          originalTransactionId: verified.originalTransactionId,
+          orderId,
+          accountId,
+          appAccountToken: verified.appAccountToken,
+          productId: verified.productId,
+          bundleId: verified.bundleId,
+          storefront: verified.storefront,
+          currency: verified.currency,
+          priceMilliunits: verified.priceMilliunits,
+          purchaseDate: verified.purchaseDate,
+          signedDate: verified.signedDate,
+          revocationDate: verified.revocationDate,
+          revocationReason: verified.revocationReason,
+          signedPayloadHash: verified.signedPayloadHash,
+          decodedPayload: verified.decodedPayload,
+          createdAt: processedAt,
+          updatedAt: processedAt,
+        });
+        await this.rebuildMembership(transaction, accountId, environment, processedAt);
+      }
+
+      if (statusUpdateAccepted) {
+        if (notification.notificationType === 'REFUND_REVERSED') {
+          if (accountIsActive) {
+            await this.restoreAppleOrder(transaction, {
+              accountId,
+              environment,
+              orderId,
+              processedAt,
+              transactionId: verified.transactionId,
+            });
+          } else {
+            await this.markAppleNotificationIgnored(
+              transaction,
+              notification,
+              processedAt,
+              'apple_notification_account_closed',
+            );
+            return { duplicate: Boolean(existingEvent), processed: true };
+          }
+        } else if (
+          verified.revocationDate
+          || notification.notificationType === 'REFUND'
+          || notification.notificationType === 'REVOKE'
+        ) {
+          await this.revokeAppleOrder(transaction, {
+            accountId,
+            environment,
+            notification,
+            orderId,
+            processedAt,
+            transactionId: verified.transactionId,
+          });
+        }
+      }
+
+      await this.markAppleNotificationProcessed(transaction, notification, processedAt);
+      return { duplicate: Boolean(existingEvent), processed: true };
+    });
+
+    if (!result.processed) {
+      // Persist the unresolved event before asking Apple to retry. A later
+      // client verification or history reconciliation can establish ownership.
+      throw new ServiceUnavailableException('apple_notification_reconciliation_pending');
+    }
+    return {
+      ...result,
+      environment: notification.environment,
+      notificationUuid: notification.notificationUuid,
+    };
+  }
+
   private validateVerifiedTransaction(
     transaction: VerifiedAppleTransaction,
     accountId: string,
@@ -231,12 +493,47 @@ export class CommerceService {
     }
   }
 
+  private validateNotificationTransaction(
+    notification: VerifiedAppleNotification,
+    processedAt: Date,
+  ) {
+    const transaction = notification.transaction!;
+    if (transaction.environment !== notification.environment) {
+      throw new BadRequestException('apple_notification_environment_mismatch');
+    }
+    if (transaction.bundleId !== this.config.appleIapBundleId) {
+      throw new BadRequestException('apple_transaction_bundle_mismatch');
+    }
+    if (transaction.purchaseDate > processedAt) {
+      throw new BadRequestException('apple_transaction_purchase_date_invalid');
+    }
+    if (transaction.productType !== 'non_renewing_subscription') {
+      throw new BadRequestException('apple_transaction_type_invalid');
+    }
+    if (transaction.quantity !== 1) {
+      throw new BadRequestException('apple_transaction_quantity_invalid');
+    }
+    try {
+      return requireMembershipProductByAppleId(transaction.productId);
+    } catch {
+      throw new BadRequestException('apple_transaction_product_unsupported');
+    }
+  }
+
   private async assertAccountActive(transaction: CommerceTransaction, accountId: string) {
     const [account] = await transaction.select({ status: accounts.status })
       .from(accounts)
       .where(eq(accounts.id, accountId))
       .limit(1);
     if (!account || account.status !== 'active') throw new ConflictException('account_not_active');
+  }
+
+  private async isAccountActive(transaction: CommerceTransaction, accountId: string) {
+    const [account] = await transaction.select({ status: accounts.status })
+      .from(accounts)
+      .where(eq(accounts.id, accountId))
+      .limit(1);
+    return account?.status === 'active';
   }
 
   private assertIdempotentReplay(
@@ -261,6 +558,180 @@ export class CommerceService {
     ) throw new ConflictException('apple_transaction_signed_version_conflict');
   }
 
+  private assertNotificationTransactionIdentity(
+    existing: typeof appleTransactions.$inferSelect,
+    verified: VerifiedAppleTransaction,
+    accountId: string,
+  ) {
+    if (
+      existing.accountId.toLowerCase() !== accountId.toLowerCase()
+      || (verified.appAccountToken
+        && verified.appAccountToken.toLowerCase() !== accountId.toLowerCase())
+      || existing.productId !== verified.productId
+      || existing.originalTransactionId !== verified.originalTransactionId
+      || existing.bundleId !== verified.bundleId
+      || !sameDate(existing.purchaseDate, verified.purchaseDate)
+    ) throw new ConflictException('apple_transaction_idempotency_conflict');
+  }
+
+  private async markAppleNotificationProcessed(
+    transaction: CommerceTransaction,
+    notification: VerifiedAppleNotification,
+    processedAt: Date,
+  ) {
+    await transaction.update(appleNotificationEvents).set({
+      status: 'processed',
+      signedPayload: null,
+      errorCode: null,
+      nextAttemptAt: null,
+      lockedAt: null,
+      leaseOwner: null,
+      leaseUntil: null,
+      retentionAt: null,
+      processedAt,
+    }).where(and(
+      eq(appleNotificationEvents.environment, notification.environment),
+      eq(appleNotificationEvents.notificationUuid, notification.notificationUuid),
+    ));
+  }
+
+  private async markAppleNotificationIgnored(
+    transaction: CommerceTransaction,
+    notification: VerifiedAppleNotification,
+    processedAt: Date,
+    reason: string,
+  ) {
+    await transaction.update(appleNotificationEvents).set({
+      status: 'processed',
+      signedPayload: null,
+      errorCode: reason,
+      nextAttemptAt: null,
+      lockedAt: null,
+      leaseOwner: null,
+      leaseUntil: null,
+      retentionAt: null,
+      processedAt,
+    }).where(and(
+      eq(appleNotificationEvents.environment, notification.environment),
+      eq(appleNotificationEvents.notificationUuid, notification.notificationUuid),
+    ));
+  }
+
+  private async revokeAppleOrder(
+    transaction: CommerceTransaction,
+    input: {
+      accountId: string;
+      environment: CommerceEnvironment;
+      notification: VerifiedAppleNotification;
+      orderId: string;
+      processedAt: Date;
+      transactionId: string;
+    },
+  ) {
+    const [order] = await transaction.select()
+      .from(commerceOrders)
+      .where(eq(commerceOrders.id, input.orderId))
+      .limit(1);
+    if (!order) throw new Error('commerce_order_not_found');
+    const targetStatus = input.notification.notificationType === 'REVOKE'
+      ? 'revoked' as const
+      : 'refunded' as const;
+    const revokedAt = input.notification.transaction?.revocationDate
+      ?? input.notification.signedDate;
+    if (order.status === 'verified') {
+      const cycleKey = `notification:${input.notification.notificationUuid}`;
+      await transaction.update(commerceOrders).set({
+        status: targetStatus,
+        revokedAt,
+        revocationCycleKey: cycleKey,
+        updatedAt: input.processedAt,
+      }).where(eq(commerceOrders.id, input.orderId));
+      await transaction.update(appleTransactions).set({
+        revocationDate: revokedAt,
+        revocationReason: input.notification.transaction?.revocationReason,
+        updatedAt: input.processedAt,
+      }).where(and(
+        eq(appleTransactions.environment, input.environment),
+        eq(appleTransactions.transactionId, input.transactionId),
+      ));
+      await this.benefits.revokeOrderBenefits(transaction, {
+        accountId: input.accountId,
+        cycleKey,
+        environment: input.environment,
+        orderId: input.orderId,
+        // The Apple revocation can predate receipt. Local reservation and
+        // ledger transitions must use processing time so they never precede
+        // rows that were created while the notification was in flight.
+        revokedAt: input.processedAt,
+      });
+      await this.rebuildMembership(
+        transaction,
+        input.accountId,
+        input.environment,
+        input.processedAt,
+      );
+    } else if (targetStatus === 'revoked' && order.status !== 'revoked') {
+      await transaction.update(commerceOrders).set({
+        status: 'revoked',
+        updatedAt: input.processedAt,
+      }).where(eq(commerceOrders.id, input.orderId));
+    }
+  }
+
+  private async restoreAppleOrder(
+    transaction: CommerceTransaction,
+    input: {
+      accountId: string;
+      environment: CommerceEnvironment;
+      orderId: string;
+      processedAt: Date;
+      transactionId: string;
+    },
+  ) {
+    const [order] = await transaction.select()
+      .from(commerceOrders)
+      .where(eq(commerceOrders.id, input.orderId))
+      .limit(1);
+    if (!order) throw new Error('commerce_order_not_found');
+    if (order.status === 'verified') return;
+    if (!order.revocationCycleKey) throw new Error('apple_refund_cycle_missing');
+    const cycleKey = order.revocationCycleKey;
+    await transaction.update(commerceOrders).set({
+      status: 'verified',
+      revokedAt: null,
+      revocationCycleKey: null,
+      membershipGrantSource: 'refund_restore',
+      updatedAt: input.processedAt,
+    }).where(eq(commerceOrders.id, input.orderId));
+    await transaction.update(appleTransactions).set({
+      revocationDate: null,
+      revocationReason: null,
+      updatedAt: input.processedAt,
+    }).where(and(
+      eq(appleTransactions.environment, input.environment),
+      eq(appleTransactions.transactionId, input.transactionId),
+    ));
+    await this.benefits.prepareOrderPointBatchesForRestore(transaction, {
+      accountId: input.accountId,
+      environment: input.environment,
+      orderId: input.orderId,
+      restoredAt: input.processedAt,
+    });
+    await this.rebuildMembership(
+      transaction,
+      input.accountId,
+      input.environment,
+      input.processedAt,
+    );
+    await this.benefits.restoreOrderPointBatches(transaction, {
+      accountId: input.accountId,
+      cycleKey,
+      environment: input.environment,
+      orderId: input.orderId,
+      restoredAt: input.processedAt,
+    });
+  }
+
   private async rebuildMembership(
     transaction: CommerceTransaction,
     accountId: string,
@@ -273,11 +744,6 @@ export class CommerceService {
         eq(membershipEntitlementSegments.environment, environment),
         eq(membershipEntitlementSegments.accountId, accountId),
       ));
-    const activeByOrder = new Map(
-      priorSegments
-        .filter((segment) => segment.status === 'active')
-        .map((segment) => [segment.orderId, segment]),
-    );
     const maximumRevisionByOrder = new Map<string, number>();
     for (const segment of priorSegments) {
       maximumRevisionByOrder.set(
@@ -337,7 +803,6 @@ export class CommerceService {
       }).returning({ id: membershipEntitlementSegments.id });
       if (!segment) throw new Error('membership_segment_insert_failed');
       const product = requireMembershipProductByKey(order.productKey);
-      const oldActiveSegment = activeByOrder.get(order.id);
       for (const [ordinal, batchDefinition] of product.aiPointBatches.entries()) {
         const scheduledAt = new Date(startsAt.getTime() + (batchDefinition.offsetDays * DAY_MS));
         if (scheduledAt >= endsAt) continue;
@@ -345,11 +810,13 @@ export class CommerceService {
         const existingBatch = batchByOrderOrdinal.get(batchKey);
         if (existingBatch) {
           if (existingBatch.status === 'revoked' || existingBatch.status === 'merged') continue;
-          const shouldReschedule = (
-            (!oldActiveSegment || oldActiveSegment.startsAt > asOf)
-            && existingBatch.availableAt > asOf
-          );
-          const availableAt = shouldReschedule ? scheduledAt : existingBatch.availableAt;
+          // An issued batch is a durable credit, but every still-scheduled
+          // batch follows the rebuilt membership segment. This also covers a
+          // later order that already started before an earlier order was
+          // refunded or restored.
+          const availableAt = existingBatch.status === 'scheduled'
+            ? scheduledAt
+            : existingBatch.availableAt;
           const status = availableAt <= asOf ? 'available' : 'scheduled';
           await transaction.update(aiPointBatches).set({
             entitlementSegmentId: segment.id,

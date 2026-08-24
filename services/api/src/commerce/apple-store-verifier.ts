@@ -76,6 +76,33 @@ function jsonRecord(value: object): Readonly<Record<string, unknown>> {
   return JSON.parse(JSON.stringify(value)) as Record<string, unknown>;
 }
 
+const APPLE_RAW_JWS_KEYS = new Set([
+  'signedTransactionInfo',
+  'signedRenewalInfo',
+  'signedAppTransactionInfo',
+]);
+
+export function sanitizeAppleNotificationAuditPayload(
+  value: Readonly<Record<string, unknown>>,
+): Readonly<Record<string, unknown>> {
+  const stripRawJws = (nested: unknown): unknown => {
+    if (Array.isArray(nested)) return nested.map(stripRawJws);
+    if (!nested || typeof nested !== 'object') return nested;
+    return Object.fromEntries(
+      Object.entries(nested as Record<string, unknown>)
+        .filter(([key]) => !APPLE_RAW_JWS_KEYS.has(key))
+        .map(([key, child]) => [key, stripRawJws(child)]),
+    );
+  };
+  return stripRawJws(value) as Readonly<Record<string, unknown>>;
+}
+
+function notificationAuditRecord(
+  payload: ResponseBodyV2DecodedPayload,
+): Readonly<Record<string, unknown>> {
+  return sanitizeAppleNotificationAuditPayload(jsonRecord(payload));
+}
+
 function normalizeTransaction(
   payload: JWSTransactionDecodedPayload,
   signedTransaction: string,
@@ -197,7 +224,7 @@ export class OfficialAppleStoreVerifier implements AppleStoreVerifier {
       subtype: optionalString(payload.subtype),
       signedDate: requireDate(payload.signedDate, 'apple_notification_signed_date_missing'),
       signedPayloadHash: sha256(signedPayload),
-      decodedPayload: jsonRecord(payload),
+      decodedPayload: notificationAuditRecord(payload),
       transaction,
     };
   }

@@ -1,13 +1,13 @@
 import assert from 'node:assert/strict';
 import { execFileSync, spawnSync } from 'node:child_process';
-import { createHash, createHmac, generateKeyPairSync } from 'node:crypto';
+import { createHash, createHmac, generateKeyPairSync, randomUUID } from 'node:crypto';
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync } from 'node:fs';
 import net from 'node:net';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { join } from 'node:path';
 import test, { after, before } from 'node:test';
-import { and, eq } from 'drizzle-orm';
+import { and, eq, sql } from 'drizzle-orm';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 import { exportJWK, SignJWT } from 'jose';
@@ -23,6 +23,7 @@ import { AccountIdentityService } from '../src/account/account-identity.service.
 import { AccountDeletionService } from '../src/account/account-deletion.service.ts';
 import { PersistentCommerceBenefitsService } from '../src/commerce/persistent-commerce-benefits.service.ts';
 import { CommerceService } from '../src/commerce/commerce.service.ts';
+import { AppleNotificationReconciliationService } from '../src/commerce/apple-notification-reconciliation.service.ts';
 import { JoseAppleIdTokenVerifier } from '../src/auth/apple-id-token.verifier.ts';
 import * as databaseSchema from '../src/database/schema.ts';
 
@@ -33,6 +34,7 @@ const socketDirectory = join(clusterRoot, 'socket');
 let port;
 let serviceDatabaseClient;
 let serviceDatabase;
+let notificationMigrationScrubEvidence;
 
 function requireBinary(name) {
   const result = spawnSync('sh', ['-c', `command -v ${name}`], { encoding: 'utf8' });
@@ -194,14 +196,57 @@ before(async () => {
   `);
   assert.equal(bootstrap.status, 0, bootstrap.stderr);
   assert.ok(existsSync(migrationsDirectory));
-  const cumulativeMigration = readdirSync(migrationsDirectory)
+  const migrationFiles = readdirSync(migrationsDirectory)
     .filter((name) => name.endsWith('.sql'))
-    .sort()
-    .map((name) => readFileSync(join(migrationsDirectory, name), 'utf8'))
-    .join('\n')
-    .replaceAll('--> statement-breakpoint', '');
-  const migration = psql(cumulativeMigration);
-  assert.equal(migration.status, 0, migration.stderr);
+    .sort();
+  for (const name of migrationFiles) {
+    if (name === '0024_apple_notification_retry_queue.sql') {
+      const legacyRows = psql(`
+        INSERT INTO apple_notification_events (
+          environment, notification_uuid, notification_type, status,
+          signed_payload, signed_payload_hash, decoded_payload,
+          signed_at, received_at, processed_at
+        ) VALUES
+          ('production', '84000000-0000-4000-8000-000000000091', 'RESCIND_CONSENT', 'processed',
+           'outer.processed.jws', '${'1'.repeat(64)}',
+           '{"data":{"signedTransactionInfo":"nested.transaction.jws","signedRenewalInfo":"nested.renewal.jws","safe":"kept"},"appData":{"signedAppTransactionInfo":"nested.app.jws","bundleId":"com.readyoufife.ios"}}'::jsonb,
+           now(), now(), now()),
+          ('sandbox', '84000000-0000-4000-8000-000000000092', 'REFUND', 'failed',
+           'outer.failed.jws', '${'2'.repeat(64)}',
+           '{"wrapper":[{"signedTransactionInfo":"deep.transaction.jws","safe":"kept"}]}'::jsonb,
+           now(), now(), now());
+      `);
+      assert.equal(legacyRows.status, 0, legacyRows.stderr);
+    }
+    const migration = psql(
+      readFileSync(join(migrationsDirectory, name), 'utf8')
+        .replaceAll('--> statement-breakpoint', ''),
+    );
+    assert.equal(migration.status, 0, `${name}:${migration.stderr}`);
+    if (name === '0024_apple_notification_retry_queue.sql') {
+      notificationMigrationScrubEvidence = queryScalar(`
+        SELECT string_agg(
+          notification_uuid::text || ':' || (signed_payload IS NULL)::text || ':' ||
+          (decoded_payload::text !~ 'signed(Transaction|Renewal|AppTransaction)Info')::text || ':' ||
+          (decoded_payload::text LIKE '%kept%')::text,
+          ',' ORDER BY notification_uuid
+        )
+        FROM apple_notification_events
+        WHERE notification_uuid IN (
+          '84000000-0000-4000-8000-000000000091',
+          '84000000-0000-4000-8000-000000000092'
+        )
+      `);
+      const cleanup = psql(`
+        DELETE FROM apple_notification_events
+        WHERE notification_uuid IN (
+          '84000000-0000-4000-8000-000000000091',
+          '84000000-0000-4000-8000-000000000092'
+        );
+      `);
+      assert.equal(cleanup.status, 0, cleanup.stderr);
+    }
+  }
   serviceDatabaseClient = postgres({
     database: 'postgres',
     host: socketDirectory,
@@ -217,6 +262,16 @@ after(async () => {
   const pgCtl = requireBinary('pg_ctl');
   spawnSync(pgCtl, ['-D', dataDirectory, '-m', 'fast', '-w', 'stop'], { stdio: 'ignore' });
   rmSync(clusterRoot, { recursive: true, force: true });
+});
+
+test('0024 migration scrubs legacy nested JWS while retaining failed retry payloads', () => {
+  assert.equal(
+    notificationMigrationScrubEvidence,
+    [
+      '84000000-0000-4000-8000-000000000091:true:true:true',
+      '84000000-0000-4000-8000-000000000092:false:true:true',
+    ].join(','),
+  );
 });
 
 function authSession({
@@ -2853,6 +2908,8 @@ function verifiedCommerceTransaction({
   environment = 'production',
   productId = 'com.readyoufife.ios.membership.7d.v1',
   purchaseDate = new Date(Date.now() - 1_000),
+  revocationDate,
+  signedDate = purchaseDate,
   transactionId,
 }) {
   return {
@@ -2863,22 +2920,81 @@ function verifiedCommerceTransaction({
     bundleId: 'com.readyoufife.ios',
     appAccountToken: accountId,
     purchaseDate,
-    signedDate: purchaseDate,
+    signedDate,
+    revocationDate,
     productType: 'non_renewing_subscription',
     quantity: 1,
-    signedPayloadHash: createHash('sha256').update(`${environment}:${transactionId}:${productId}`).digest('hex'),
+    signedPayloadHash: createHash('sha256')
+      .update(`${environment}:${transactionId}:${productId}:${signedDate.toISOString()}:${revocationDate?.toISOString() ?? ''}`)
+      .digest('hex'),
     decodedPayload: { environment, productId, transactionId },
   };
 }
 
-function persistentCommerceService(signedTransactions) {
+function verifiedCommerceNotification({
+  environment = 'production',
+  notificationType,
+  notificationUuid,
+  signedDate = new Date(),
+  transaction,
+}) {
+  return {
+    environment,
+    notificationUuid,
+    notificationType,
+    signedDate,
+    signedPayloadHash: createHash('sha256')
+      .update(`${environment}:${notificationUuid}:${notificationType}`)
+      .digest('hex'),
+    decodedPayload: { environment, notificationType, notificationUuid },
+    transaction,
+  };
+}
+
+function failedNotificationEvent({
+  attemptCount = 0,
+  leaseOwner,
+  leaseUntil,
+  lockedAt,
+  nextAttemptAt,
+  notification,
+  processedAt,
+  retentionAt,
+  signedPayload,
+}) {
+  return {
+    environment: notification.environment,
+    notificationUuid: notification.notificationUuid,
+    notificationType: notification.notificationType,
+    status: 'failed',
+    signedPayload,
+    signedPayloadHash: notification.signedPayloadHash,
+    decodedPayload: notification.decodedPayload,
+    errorCode: 'apple_notification_transaction_unresolved',
+    attemptCount,
+    nextAttemptAt,
+    lockedAt,
+    leaseOwner,
+    leaseUntil,
+    retentionAt,
+    signedAt: notification.signedDate,
+    receivedAt: processedAt,
+    processedAt,
+  };
+}
+
+function persistentCommerceService(signedTransactions, signedNotifications = new Map()) {
   const verifier = {
     verifyTransaction: async (signedTransaction) => {
       const transaction = signedTransactions.get(signedTransaction);
       if (!transaction) throw new Error('unknown_test_transaction');
       return transaction;
     },
-    verifyNotification: async () => { throw new Error('not_implemented_in_transaction_slice'); },
+    verifyNotification: async (signedPayload) => {
+      const notification = signedNotifications.get(signedPayload);
+      if (!notification) throw new Error('unknown_test_notification');
+      return notification;
+    },
   };
   return new CommerceService({
     appleIapBundleId: 'com.readyoufife.ios',
@@ -3060,4 +3176,856 @@ test('late purchase discovery rebuilds from Apple purchase time without refillin
     ));
   assert.equal(historicalOrder[0].membershipEffectiveAt.getTime(), expiredPurchaseAt.getTime());
   assert.equal(after.entitlement.aiPoints.available, 750);
+});
+
+test('processes refund, duplicate, reversal and stale notifications without double-changing benefits', async () => {
+  const accountId = '82000000-0000-4000-8000-000000000001';
+  const purchaseDate = new Date(Date.now() - 10_000);
+  const refundDate = new Date(Date.now() - 5_000);
+  const reversalDate = new Date(Date.now() - 2_000);
+  const purchase = verifiedCommerceTransaction({
+    accountId,
+    transactionId: 'notification-refund-cycle',
+    productId: 'com.readyoufife.ios.membership.31d.v1',
+    purchaseDate,
+  });
+  const refundTransaction = verifiedCommerceTransaction({
+    accountId,
+    transactionId: purchase.transactionId,
+    productId: purchase.productId,
+    purchaseDate,
+    revocationDate: refundDate,
+    signedDate: refundDate,
+  });
+  const reversalTransaction = verifiedCommerceTransaction({
+    accountId,
+    transactionId: purchase.transactionId,
+    productId: purchase.productId,
+    purchaseDate,
+    signedDate: reversalDate,
+  });
+  const staleRefundTransaction = verifiedCommerceTransaction({
+    accountId,
+    transactionId: purchase.transactionId,
+    productId: purchase.productId,
+    purchaseDate,
+    revocationDate: refundDate,
+    signedDate: new Date(refundDate.getTime() + 1),
+  });
+  const notifications = new Map([
+    ['refund-jws', verifiedCommerceNotification({
+      notificationType: 'REFUND',
+      notificationUuid: '82000000-0000-4000-8000-000000000011',
+      signedDate: refundDate,
+      transaction: refundTransaction,
+    })],
+    ['reversal-jws', verifiedCommerceNotification({
+      notificationType: 'REFUND_REVERSED',
+      notificationUuid: '82000000-0000-4000-8000-000000000012',
+      signedDate: reversalDate,
+      transaction: reversalTransaction,
+    })],
+    ['stale-refund-jws', verifiedCommerceNotification({
+      notificationType: 'REFUND',
+      notificationUuid: '82000000-0000-4000-8000-000000000013',
+      signedDate: reversalDate,
+      transaction: staleRefundTransaction,
+    })],
+  ]);
+  const commerce = persistentCommerceService(new Map([['purchase-jws', purchase]]), notifications);
+  await serviceDatabase.insert(databaseSchema.accounts).values({ id: accountId });
+  const purchaseResult = await commerce.verifyAppleTransaction(accountId, 'purchase-jws');
+  assert.equal(purchaseResult.entitlement.aiPoints.available, 1_000);
+
+  const [batch] = await serviceDatabase.select().from(databaseSchema.aiPointBatches)
+    .where(and(
+      eq(databaseSchema.aiPointBatches.environment, 'production'),
+      eq(databaseSchema.aiPointBatches.accountId, accountId),
+      eq(databaseSchema.aiPointBatches.sourceOrderId, (
+        await serviceDatabase.select({ id: databaseSchema.commerceOrders.id })
+          .from(databaseSchema.commerceOrders)
+          .where(eq(databaseSchema.commerceOrders.externalOrderId, purchase.transactionId))
+      )[0].id),
+    ));
+  assert.ok(batch);
+  const reservationId = '82000000-0000-4000-8000-000000000021';
+  await serviceDatabase.transaction(async (transaction) => {
+    await transaction.insert(databaseSchema.aiPointReservations).values({
+      id: reservationId,
+      environment: 'production',
+      accountId,
+      operationId: 'notification-refund-reservation',
+      capability: 'transcription',
+      ruleVersion: 'ai-points-v1',
+      points: 100,
+      status: 'reserved',
+    });
+    await transaction.insert(databaseSchema.aiPointReservationAllocations).values({
+      environment: 'production',
+      accountId,
+      reservationId,
+      batchId: batch.id,
+      points: 100,
+    });
+    await transaction.update(databaseSchema.aiPointBatches).set({ reservedPoints: 100 })
+      .where(eq(databaseSchema.aiPointBatches.id, batch.id));
+    await transaction.insert(databaseSchema.aiPointLedgerEntries).values({
+      environment: 'production',
+      accountId,
+      batchId: batch.id,
+      reservationId,
+      operationId: 'notification-refund-reservation',
+      entryType: 'reserve',
+      direction: 'debit',
+      points: 100,
+    });
+  });
+
+  const refund = await commerce.processAppleNotification('refund-jws');
+  const duplicate = await commerce.processAppleNotification('refund-jws');
+  assert.deepEqual(refund, {
+    duplicate: false,
+    processed: true,
+    environment: 'production',
+    notificationUuid: '82000000-0000-4000-8000-000000000011',
+  });
+  assert.equal(duplicate.duplicate, true);
+  let entitlement = await commerce.currentEntitlement(accountId);
+  assert.equal(entitlement.production.membership.active, false);
+  assert.equal(entitlement.production.aiPoints.available, 0);
+  const [releasedReservation] = await serviceDatabase.select()
+    .from(databaseSchema.aiPointReservations)
+    .where(eq(databaseSchema.aiPointReservations.id, reservationId));
+  assert.equal(releasedReservation.status, 'released');
+
+  await commerce.processAppleNotification('reversal-jws');
+  entitlement = await commerce.currentEntitlement(accountId);
+  assert.equal(entitlement.production.membership.active, true);
+  assert.equal(entitlement.production.aiPoints.available, 1_000);
+
+  await commerce.processAppleNotification('stale-refund-jws');
+  entitlement = await commerce.currentEntitlement(accountId);
+  assert.equal(entitlement.production.membership.active, true);
+  assert.equal(entitlement.production.aiPoints.available, 1_000);
+  const events = await serviceDatabase.select().from(databaseSchema.appleNotificationEvents)
+    .where(eq(databaseSchema.appleNotificationEvents.environment, 'production'));
+  assert.equal(events.filter((event) => event.notificationUuid.startsWith('82000000-')).length, 3);
+});
+
+test('keeps notification effects isolated between Sandbox and Production', async () => {
+  const accountId = '82000000-0000-4000-8000-000000000002';
+  const purchaseDate = new Date(Date.now() - 5_000);
+  const production = verifiedCommerceTransaction({
+    accountId,
+    environment: 'production',
+    transactionId: 'notification-environment-isolation',
+    purchaseDate,
+  });
+  const sandbox = verifiedCommerceTransaction({
+    accountId,
+    environment: 'sandbox',
+    transactionId: 'notification-environment-isolation',
+    purchaseDate,
+  });
+  const refundDate = new Date(Date.now() - 1_000);
+  const sandboxRefund = verifiedCommerceTransaction({
+    accountId,
+    environment: 'sandbox',
+    transactionId: sandbox.transactionId,
+    purchaseDate,
+    revocationDate: refundDate,
+    signedDate: refundDate,
+  });
+  const commerce = persistentCommerceService(new Map([
+    ['production-env-jws', production],
+    ['sandbox-env-jws', sandbox],
+  ]), new Map([
+    ['sandbox-refund-jws', verifiedCommerceNotification({
+      environment: 'sandbox',
+      notificationType: 'REFUND',
+      notificationUuid: '82000000-0000-4000-8000-000000000031',
+      signedDate: refundDate,
+      transaction: sandboxRefund,
+    })],
+  ]));
+  await serviceDatabase.insert(databaseSchema.accounts).values({ id: accountId });
+  await commerce.verifyAppleTransaction(accountId, 'production-env-jws');
+  await commerce.verifyAppleTransaction(accountId, 'sandbox-env-jws');
+  await commerce.processAppleNotification('sandbox-refund-jws');
+  const entitlement = await commerce.currentEntitlement(accountId);
+  assert.equal(entitlement.production.membership.active, true);
+  assert.equal(entitlement.production.aiPoints.available, 250);
+  assert.equal(entitlement.sandbox.membership.active, false);
+  assert.equal(entitlement.sandbox.aiPoints.available, 0);
+});
+
+test('automatically reconciles one persisted Sandbox notification after client ownership is known', async () => {
+  const accountId = '82000000-0000-4000-8000-000000000003';
+  const purchaseDate = new Date(Date.now() - 5_000);
+  const ownedTransaction = verifiedCommerceTransaction({
+    accountId,
+    environment: 'sandbox',
+    transactionId: 'notification-delayed-owner',
+    purchaseDate,
+  });
+  const unknownOwnerTransaction = { ...ownedTransaction, appAccountToken: undefined };
+  const notificationUuid = '82000000-0000-4000-8000-000000000041';
+  const commerce = persistentCommerceService(
+    new Map([['delayed-owner-purchase-jws', ownedTransaction]]),
+    new Map([['delayed-owner-refund-jws', verifiedCommerceNotification({
+      environment: 'sandbox',
+      notificationType: 'REFUND',
+      notificationUuid,
+      transaction: unknownOwnerTransaction,
+    })]]),
+  );
+  await serviceDatabase.insert(databaseSchema.accounts).values({ id: accountId });
+  await assert.rejects(
+    commerce.processAppleNotification('delayed-owner-refund-jws'),
+    (error) => error?.getStatus?.() === 503,
+  );
+  const [failedEvent] = await serviceDatabase.select().from(databaseSchema.appleNotificationEvents)
+    .where(eq(databaseSchema.appleNotificationEvents.notificationUuid, notificationUuid));
+  assert.equal(failedEvent.status, 'failed');
+  assert.equal(failedEvent.errorCode, 'apple_notification_transaction_unresolved');
+  assert.equal(failedEvent.signedPayload, 'delayed-owner-refund-jws');
+
+  await commerce.verifyAppleTransaction(accountId, 'delayed-owner-purchase-jws');
+  const reconciliation = new AppleNotificationReconciliationService(
+    { nodeEnv: 'test' },
+    { db: serviceDatabase },
+    commerce,
+  );
+  const reconciled = await reconciliation.reconcileFailedNotifications(
+    new Date(Date.now() + 61_000),
+  );
+  assert.deepEqual(reconciled, { attempted: 1, expired: 0, processed: 1 });
+  const entitlement = await commerce.currentEntitlement(accountId);
+  assert.equal(entitlement.sandbox.membership.active, false);
+  assert.equal(entitlement.sandbox.aiPoints.available, 0);
+  const [processedEvent] = await serviceDatabase.select().from(databaseSchema.appleNotificationEvents)
+    .where(eq(databaseSchema.appleNotificationEvents.notificationUuid, notificationUuid));
+  assert.equal(processedEvent.status, 'processed');
+  assert.equal(processedEvent.errorCode, null);
+  assert.equal(processedEvent.signedPayload, null);
+});
+
+test('rebuilds every scheduled batch across stacked orders and restores without double credit', async () => {
+  const accountId = '83000000-0000-4000-8000-000000000001';
+  const dayMs = 24 * 60 * 60 * 1_000;
+  const firstPurchaseAt = new Date(Date.now() - 10_000);
+  const secondPurchaseAt = new Date(firstPurchaseAt.getTime() + 1_000);
+  const refundAt = new Date(firstPurchaseAt.getTime() + (70 * dayMs));
+  const reversalAt = new Date(firstPurchaseAt.getTime() + (71 * dayMs));
+  const productId = 'com.readyoufife.ios.membership.62d.v1';
+  const first = verifiedCommerceTransaction({
+    accountId,
+    transactionId: 'multi-order-first',
+    productId,
+    purchaseDate: firstPurchaseAt,
+  });
+  const second = verifiedCommerceTransaction({
+    accountId,
+    transactionId: 'multi-order-second',
+    productId,
+    purchaseDate: secondPurchaseAt,
+  });
+  const refundedFirst = verifiedCommerceTransaction({
+    accountId,
+    transactionId: first.transactionId,
+    productId,
+    purchaseDate: firstPurchaseAt,
+    revocationDate: refundAt,
+    signedDate: refundAt,
+  });
+  const restoredFirst = verifiedCommerceTransaction({
+    accountId,
+    transactionId: first.transactionId,
+    productId,
+    purchaseDate: firstPurchaseAt,
+    signedDate: reversalAt,
+  });
+  const commerce = persistentCommerceService(new Map([
+    ['multi-first-jws', first],
+    ['multi-second-jws', second],
+  ]), new Map([
+    ['multi-refund-jws', verifiedCommerceNotification({
+      notificationType: 'REFUND',
+      notificationUuid: '83000000-0000-4000-8000-000000000011',
+      signedDate: refundAt,
+      transaction: refundedFirst,
+    })],
+    ['multi-reversal-jws', verifiedCommerceNotification({
+      notificationType: 'REFUND_REVERSED',
+      notificationUuid: '83000000-0000-4000-8000-000000000012',
+      signedDate: reversalAt,
+      transaction: restoredFirst,
+    })],
+  ]));
+  await serviceDatabase.insert(databaseSchema.accounts).values({ id: accountId });
+  await commerce.verifyAppleTransaction(accountId, 'multi-first-jws');
+  await commerce.verifyAppleTransaction(accountId, 'multi-second-jws');
+
+  const [secondOrder] = await serviceDatabase.select().from(databaseSchema.commerceOrders)
+    .where(eq(databaseSchema.commerceOrders.externalOrderId, second.transactionId));
+  let secondBatches = await serviceDatabase.select().from(databaseSchema.aiPointBatches)
+    .where(eq(databaseSchema.aiPointBatches.sourceOrderId, secondOrder.id));
+  secondBatches.sort((left, right) => left.ordinal - right.ordinal);
+  assert.deepEqual(secondBatches.map((batch) => batch.status), ['scheduled', 'scheduled']);
+
+  await commerce.processAppleNotification('multi-refund-jws', refundAt);
+  secondBatches = await serviceDatabase.select().from(databaseSchema.aiPointBatches)
+    .where(eq(databaseSchema.aiPointBatches.sourceOrderId, secondOrder.id));
+  secondBatches.sort((left, right) => left.ordinal - right.ordinal);
+  assert.deepEqual(secondBatches.map((batch) => batch.status), ['available', 'available']);
+  assert.equal(secondBatches[0].availableAt.getTime(), secondPurchaseAt.getTime());
+  assert.equal(secondBatches[1].availableAt.getTime(), secondPurchaseAt.getTime() + (31 * dayMs));
+
+  await commerce.processAppleNotification('multi-reversal-jws', reversalAt);
+  const [firstOrder] = await serviceDatabase.select().from(databaseSchema.commerceOrders)
+    .where(eq(databaseSchema.commerceOrders.externalOrderId, first.transactionId));
+  const firstBatches = await serviceDatabase.select().from(databaseSchema.aiPointBatches)
+    .where(eq(databaseSchema.aiPointBatches.sourceOrderId, firstOrder.id));
+  firstBatches.sort((left, right) => left.ordinal - right.ordinal);
+  assert.deepEqual(firstBatches.map((batch) => batch.status), ['available', 'available']);
+
+  for (const batch of [...firstBatches, ...secondBatches]) {
+    const ledger = await serviceDatabase.select().from(databaseSchema.aiPointLedgerEntries)
+      .where(eq(databaseSchema.aiPointLedgerEntries.batchId, batch.id));
+    const balance = ledger.reduce((total, entry) => (
+      total + (entry.direction === 'credit' ? entry.points : entry.direction === 'debit' ? -entry.points : 0)
+    ), 0);
+    assert.equal(balance, batch.grantedPoints - batch.consumedPoints - batch.reservedPoints);
+  }
+  const delayedBatchLedger = await serviceDatabase.select()
+    .from(databaseSchema.aiPointLedgerEntries)
+    .where(eq(databaseSchema.aiPointLedgerEntries.batchId, firstBatches[1].id));
+  assert.equal(delayedBatchLedger.filter((entry) => entry.entryType === 'grant').length, 1);
+  assert.equal(delayedBatchLedger.filter((entry) => entry.entryType === 'restore').length, 0);
+  assert.equal(delayedBatchLedger.filter((entry) => entry.entryType === 'revoke')[0].points, 0);
+
+  const activeSegments = await serviceDatabase.select()
+    .from(databaseSchema.membershipEntitlementSegments)
+    .where(and(
+      eq(databaseSchema.membershipEntitlementSegments.accountId, accountId),
+      eq(databaseSchema.membershipEntitlementSegments.status, 'active'),
+    ));
+  assert.equal(activeSegments.length, 2);
+  const orderedSegments = activeSegments.sort((left, right) => left.startsAt - right.startsAt);
+  assert.equal(orderedSegments[1].startsAt.getTime(), orderedSegments[0].endsAt.getTime());
+});
+
+test('rechecks account state behind the deletion lock and never restores a closing account', async () => {
+  const accountId = '83000000-0000-4000-8000-000000000002';
+  const purchaseAt = new Date(Date.now() - 10_000);
+  const refundAt = new Date(Date.now() - 5_000);
+  const reversalAt = new Date(Date.now() - 1_000);
+  const purchase = verifiedCommerceTransaction({
+    accountId,
+    transactionId: 'deletion-race-refund',
+    productId: 'com.readyoufife.ios.membership.31d.v1',
+    purchaseDate: purchaseAt,
+  });
+  const refund = verifiedCommerceTransaction({
+    accountId,
+    transactionId: purchase.transactionId,
+    productId: purchase.productId,
+    purchaseDate: purchaseAt,
+    revocationDate: refundAt,
+    signedDate: refundAt,
+  });
+  const reversal = verifiedCommerceTransaction({
+    accountId,
+    transactionId: purchase.transactionId,
+    productId: purchase.productId,
+    purchaseDate: purchaseAt,
+    signedDate: reversalAt,
+  });
+  const deletedReversal = verifiedCommerceTransaction({
+    accountId,
+    transactionId: purchase.transactionId,
+    productId: purchase.productId,
+    purchaseDate: purchaseAt,
+    signedDate: new Date(reversalAt.getTime() + 1),
+  });
+  const commerce = persistentCommerceService(new Map([['deletion-purchase-jws', purchase]]), new Map([
+    ['deletion-refund-jws', verifiedCommerceNotification({
+      notificationType: 'REFUND',
+      notificationUuid: '83000000-0000-4000-8000-000000000021',
+      signedDate: refundAt,
+      transaction: refund,
+    })],
+    ['deleting-reversal-jws', verifiedCommerceNotification({
+      notificationType: 'REFUND_REVERSED',
+      notificationUuid: '83000000-0000-4000-8000-000000000022',
+      signedDate: reversalAt,
+      transaction: reversal,
+    })],
+    ['deleted-reversal-jws', verifiedCommerceNotification({
+      notificationType: 'REFUND_REVERSED',
+      notificationUuid: '83000000-0000-4000-8000-000000000023',
+      signedDate: new Date(reversalAt.getTime() + 1),
+      transaction: deletedReversal,
+    })],
+  ]));
+  await serviceDatabase.insert(databaseSchema.accounts).values({ id: accountId });
+  await commerce.verifyAppleTransaction(accountId, 'deletion-purchase-jws');
+  await commerce.processAppleNotification('deletion-refund-jws');
+
+  let accountLockHeld;
+  const locked = new Promise((resolve) => { accountLockHeld = resolve; });
+  let releaseDeletion;
+  const deletionMayCommit = new Promise((resolve) => { releaseDeletion = resolve; });
+  const deletion = serviceDatabase.transaction(async (transaction) => {
+    await transaction.execute(sql`
+      select pg_advisory_xact_lock(hashtextextended(${`account:${accountId}`}, 0))
+    `);
+    await transaction.update(databaseSchema.accounts).set({ status: 'deleting' })
+      .where(eq(databaseSchema.accounts.id, accountId));
+    accountLockHeld();
+    await deletionMayCommit;
+  });
+  await locked;
+  const reversalWhileDeleting = commerce.processAppleNotification('deleting-reversal-jws');
+  await new Promise((resolve) => setTimeout(resolve, 20));
+  releaseDeletion();
+  await deletion;
+  await reversalWhileDeleting;
+
+  await serviceDatabase.update(databaseSchema.accounts).set({ status: 'deleted' })
+    .where(eq(databaseSchema.accounts.id, accountId));
+  await commerce.processAppleNotification('deleted-reversal-jws');
+
+  const [order] = await serviceDatabase.select().from(databaseSchema.commerceOrders)
+    .where(eq(databaseSchema.commerceOrders.externalOrderId, purchase.transactionId));
+  assert.equal(order.status, 'refunded');
+  const batches = await serviceDatabase.select().from(databaseSchema.aiPointBatches)
+    .where(eq(databaseSchema.aiPointBatches.sourceOrderId, order.id));
+  assert.ok(batches.every((batch) => batch.status === 'revoked'));
+  const activeSegments = await serviceDatabase.select().from(databaseSchema.membershipEntitlementSegments)
+    .where(and(
+      eq(databaseSchema.membershipEntitlementSegments.accountId, accountId),
+      eq(databaseSchema.membershipEntitlementSegments.status, 'active'),
+    ));
+  assert.equal(activeSegments.length, 0);
+  const ignoredEvents = await serviceDatabase.select().from(databaseSchema.appleNotificationEvents)
+    .where(eq(databaseSchema.appleNotificationEvents.errorCode, 'apple_notification_account_closed'));
+  const accountClosedEvents = ignoredEvents.filter(
+    (event) => event.notificationUuid.startsWith('83000000-'),
+  );
+  assert.equal(accountClosedEvents.length, 2);
+  assert.ok(accountClosedEvents.every((event) => event.signedPayload === null));
+  assert.ok(accountClosedEvents.every((event) => event.retentionAt === null));
+});
+
+test('fair durable retry queues advance through 151 Sandbox poisons without blocking Production', async () => {
+  const accountId = '84000000-0000-4000-8000-000000000001';
+  const queueNow = new Date(Date.now() + 120_000);
+  const purchaseAt = new Date(Date.now() - 10_000);
+  const purchase = verifiedCommerceTransaction({
+    accountId,
+    transactionId: 'queue-production-recovery',
+    purchaseDate: purchaseAt,
+  });
+  const recoveryTransaction = {
+    ...verifiedCommerceTransaction({
+      accountId,
+      transactionId: purchase.transactionId,
+      purchaseDate: purchaseAt,
+      signedDate: new Date(Date.now() - 1_000),
+    }),
+    appAccountToken: undefined,
+  };
+  const recoveryNotification = verifiedCommerceNotification({
+    notificationType: 'REFUND',
+    notificationUuid: '84000000-0000-4000-8000-000000000011',
+    transaction: recoveryTransaction,
+  });
+  const notifications = new Map([['production-queue-recovery-jws', recoveryNotification]]);
+  const commerce = persistentCommerceService(
+    new Map([['production-queue-purchase-jws', purchase]]),
+    notifications,
+  );
+  await serviceDatabase.insert(databaseSchema.accounts).values({ id: accountId });
+  await commerce.verifyAppleTransaction(accountId, 'production-queue-purchase-jws');
+
+  const poisonRows = Array.from({ length: 151 }, (_, index) => {
+    const notification = verifiedCommerceNotification({
+      environment: 'sandbox',
+      notificationType: 'REFUND',
+      notificationUuid: randomUUID(),
+      signedDate: new Date(queueNow.getTime() - 120_000 + index),
+    });
+    return failedNotificationEvent({
+      notification,
+      signedPayload: `sandbox-poison-${index}`,
+      processedAt: new Date(queueNow.getTime() - 120_000 + index),
+      nextAttemptAt: new Date(queueNow.getTime() - 60_000),
+      retentionAt: new Date(queueNow.getTime() + (7 * 24 * 60 * 60 * 1_000)),
+    });
+  });
+  await serviceDatabase.insert(databaseSchema.appleNotificationEvents).values([
+    ...poisonRows,
+    failedNotificationEvent({
+      notification: recoveryNotification,
+      signedPayload: 'production-queue-recovery-jws',
+      processedAt: new Date(queueNow.getTime() - 30_000),
+      nextAttemptAt: new Date(queueNow.getTime() - 1_000),
+      retentionAt: new Date(queueNow.getTime() + (7 * 24 * 60 * 60 * 1_000)),
+    }),
+  ]);
+  const worker = new AppleNotificationReconciliationService(
+    { nodeEnv: 'test' },
+    { db: serviceDatabase },
+    commerce,
+  );
+
+  const firstPass = await worker.reconcileFailedNotifications(queueNow);
+  assert.deepEqual(firstPass, { attempted: 26, expired: 0, processed: 1 });
+  const [productionEvent] = await serviceDatabase.select()
+    .from(databaseSchema.appleNotificationEvents)
+    .where(eq(
+      databaseSchema.appleNotificationEvents.notificationUuid,
+      recoveryNotification.notificationUuid,
+    ));
+  assert.equal(productionEvent.status, 'processed');
+  assert.equal(productionEvent.signedPayload, null);
+  assert.equal(productionEvent.attemptCount, 1);
+
+  for (let pass = 0; pass < 6; pass += 1) {
+    await worker.reconcileFailedNotifications(queueNow);
+  }
+  const sandboxEvents = await serviceDatabase.select()
+    .from(databaseSchema.appleNotificationEvents)
+    .where(and(
+      eq(databaseSchema.appleNotificationEvents.environment, 'sandbox'),
+      eq(databaseSchema.appleNotificationEvents.errorCode, 'apple_notification_reconciliation_retry'),
+    ));
+  assert.equal(sandboxEvents.length, 151);
+  assert.ok(sandboxEvents.every((event) => event.attemptCount === 1));
+  assert.ok(sandboxEvents.every((event) => event.nextAttemptAt > queueNow));
+
+  const secondAttemptAt = new Date(queueNow.getTime() + 61_000);
+  await worker.reconcileFailedNotifications(secondAttemptAt);
+  const twiceAttempted = await serviceDatabase.select()
+    .from(databaseSchema.appleNotificationEvents)
+    .where(and(
+      eq(databaseSchema.appleNotificationEvents.environment, 'sandbox'),
+      eq(databaseSchema.appleNotificationEvents.attemptCount, 2),
+    ));
+  assert.equal(twiceAttempted.length, 25);
+  assert.ok(twiceAttempted.every(
+    (event) => event.nextAttemptAt.getTime() === secondAttemptAt.getTime() + 120_000,
+  ));
+  await serviceDatabase.update(databaseSchema.appleNotificationEvents).set({
+    status: 'expired',
+    signedPayload: null,
+    nextAttemptAt: null,
+    lockedAt: null,
+    leaseOwner: null,
+    leaseUntil: null,
+    retentionAt: null,
+  }).where(and(
+    eq(databaseSchema.appleNotificationEvents.environment, 'sandbox'),
+    eq(databaseSchema.appleNotificationEvents.errorCode, 'apple_notification_reconciliation_retry'),
+  ));
+});
+
+test('claims atomically across workers and recovers an expired retry lease', async () => {
+  const queueNow = new Date(Date.now() + 300_000);
+  let verificationCount = 0;
+  const firstNotification = verifiedCommerceNotification({
+    notificationType: 'DID_CHANGE_RENEWAL_STATUS',
+    notificationUuid: '84000000-0000-4000-8000-000000000021',
+  });
+  const leasedNotification = verifiedCommerceNotification({
+    notificationType: 'DID_CHANGE_RENEWAL_STATUS',
+    notificationUuid: '84000000-0000-4000-8000-000000000022',
+  });
+  const notificationByPayload = new Map([
+    ['atomic-claim-jws', firstNotification],
+    ['expired-lease-jws', leasedNotification],
+  ]);
+  const commerce = new CommerceService({
+    appleIapBundleId: 'com.readyoufife.ios',
+  }, { db: serviceDatabase }, {
+    verifyTransaction: async () => { throw new Error('not_used'); },
+    verifyNotification: async (payload) => {
+      verificationCount += 1;
+      const notification = notificationByPayload.get(payload);
+      if (!notification) throw new Error('unknown_test_notification');
+      return notification;
+    },
+  });
+  await serviceDatabase.insert(databaseSchema.appleNotificationEvents).values([
+    failedNotificationEvent({
+      notification: firstNotification,
+      signedPayload: 'atomic-claim-jws',
+      processedAt: new Date(queueNow.getTime() - 120_000),
+      nextAttemptAt: new Date(queueNow.getTime() - 60_000),
+      retentionAt: new Date(queueNow.getTime() + 600_000),
+    }),
+    failedNotificationEvent({
+      notification: leasedNotification,
+      signedPayload: 'expired-lease-jws',
+      processedAt: new Date(queueNow.getTime() - 120_000),
+      nextAttemptAt: new Date(queueNow.getTime() - 60_000),
+      lockedAt: new Date(queueNow.getTime() - 1_000),
+      leaseOwner: '84000000-0000-4000-8000-000000000099',
+      leaseUntil: new Date(queueNow.getTime() + 60_000),
+      retentionAt: new Date(queueNow.getTime() + 600_000),
+    }),
+  ]);
+  const firstWorker = new AppleNotificationReconciliationService(
+    { nodeEnv: 'test' },
+    { db: serviceDatabase },
+    commerce,
+  );
+  const secondWorker = new AppleNotificationReconciliationService(
+    { nodeEnv: 'test' },
+    { db: serviceDatabase },
+    commerce,
+  );
+  const concurrent = await Promise.all([
+    firstWorker.reconcileFailedNotifications(queueNow),
+    secondWorker.reconcileFailedNotifications(queueNow),
+  ]);
+  assert.equal(concurrent.reduce((total, result) => total + result.attempted, 0), 1);
+  assert.equal(verificationCount, 1);
+  const [stillLeased] = await serviceDatabase.select()
+    .from(databaseSchema.appleNotificationEvents)
+    .where(eq(databaseSchema.appleNotificationEvents.notificationUuid, leasedNotification.notificationUuid));
+  assert.equal(stillLeased.status, 'failed');
+  assert.equal(stillLeased.attemptCount, 0);
+
+  const recovered = await firstWorker.reconcileFailedNotifications(
+    new Date(queueNow.getTime() + 61_000),
+  );
+  assert.deepEqual(recovered, { attempted: 1, expired: 0, processed: 1 });
+  assert.equal(verificationCount, 2);
+  const [recoveredEvent] = await serviceDatabase.select()
+    .from(databaseSchema.appleNotificationEvents)
+    .where(eq(databaseSchema.appleNotificationEvents.notificationUuid, leasedNotification.notificationUuid));
+  assert.equal(recoveredEvent.status, 'processed');
+  assert.equal(recoveredEvent.signedPayload, null);
+  assert.equal(recoveredEvent.leaseOwner, null);
+});
+
+test('does not expire an active twelfth-attempt lease at the retention boundary', async () => {
+  const queueNow = new Date(Date.now() + 450_000);
+  const retentionAt = new Date(queueNow.getTime() + 50);
+  const notification = verifiedCommerceNotification({
+    notificationType: 'DID_CHANGE_RENEWAL_STATUS',
+    notificationUuid: '84000000-0000-4000-8000-000000000029',
+  });
+  let markVerificationStarted;
+  let releaseVerification;
+  const verificationStarted = new Promise((resolve) => { markVerificationStarted = resolve; });
+  const verificationMayComplete = new Promise((resolve) => { releaseVerification = resolve; });
+  const commerce = new CommerceService({
+    appleIapBundleId: 'com.readyoufife.ios',
+  }, { db: serviceDatabase }, {
+    verifyTransaction: async () => { throw new Error('not_used'); },
+    verifyNotification: async (payload) => {
+      assert.equal(payload, 'twelfth-attempt-jws');
+      markVerificationStarted();
+      await verificationMayComplete;
+      return notification;
+    },
+  });
+  await serviceDatabase.insert(databaseSchema.appleNotificationEvents).values(
+    failedNotificationEvent({
+      attemptCount: 11,
+      notification,
+      signedPayload: 'twelfth-attempt-jws',
+      processedAt: new Date(queueNow.getTime() - 120_000),
+      nextAttemptAt: new Date(queueNow.getTime() - 60_000),
+      retentionAt,
+    }),
+  );
+  const firstWorker = new AppleNotificationReconciliationService(
+    { nodeEnv: 'test' },
+    { db: serviceDatabase },
+    commerce,
+  );
+  const secondWorker = new AppleNotificationReconciliationService(
+    { nodeEnv: 'test' },
+    { db: serviceDatabase },
+    commerce,
+  );
+
+  const firstRun = firstWorker.reconcileFailedNotifications(queueNow);
+  await verificationStarted;
+  const [claimed] = await serviceDatabase.select()
+    .from(databaseSchema.appleNotificationEvents)
+    .where(eq(databaseSchema.appleNotificationEvents.notificationUuid, notification.notificationUuid));
+  assert.equal(claimed.attemptCount, 12);
+  assert.ok(claimed.leaseUntil > queueNow);
+
+  const competingRun = await secondWorker.reconcileFailedNotifications(
+    new Date(retentionAt.getTime() + 1),
+  );
+  assert.deepEqual(competingRun, { attempted: 0, expired: 0, processed: 0 });
+  const [stillClaimed] = await serviceDatabase.select()
+    .from(databaseSchema.appleNotificationEvents)
+    .where(eq(databaseSchema.appleNotificationEvents.notificationUuid, notification.notificationUuid));
+  assert.equal(stillClaimed.status, 'failed');
+  assert.equal(stillClaimed.signedPayload, 'twelfth-attempt-jws');
+
+  releaseVerification();
+  assert.deepEqual(await firstRun, { attempted: 1, expired: 0, processed: 1 });
+  const [processed] = await serviceDatabase.select()
+    .from(databaseSchema.appleNotificationEvents)
+    .where(eq(databaseSchema.appleNotificationEvents.notificationUuid, notification.notificationUuid));
+  assert.equal(processed.status, 'processed');
+  assert.equal(processed.signedPayload, null);
+  assert.equal(processed.leaseOwner, null);
+});
+
+test('expires retained failures, enforces attempt limits and backfills verified legacy rows', async () => {
+  const queueNow = new Date(Date.now() + 600_000);
+  const retainedNotification = verifiedCommerceNotification({
+    environment: 'production',
+    notificationType: 'REFUND',
+    notificationUuid: '84000000-0000-4000-8000-000000000031',
+  });
+  const exhaustedNotification = verifiedCommerceNotification({
+    environment: 'sandbox',
+    notificationType: 'REFUND',
+    notificationUuid: '84000000-0000-4000-8000-000000000032',
+  });
+  const legacyNotification = verifiedCommerceNotification({
+    environment: 'production',
+    notificationType: 'REFUND',
+    notificationUuid: '84000000-0000-4000-8000-000000000033',
+    transaction: {
+      ...verifiedCommerceTransaction({
+        accountId: '84000000-0000-4000-8000-000000000003',
+        transactionId: 'legacy-null-payload-owner',
+      }),
+      appAccountToken: undefined,
+    },
+  });
+  const commerce = persistentCommerceService(new Map(), new Map([
+    ['legacy-null-payload-jws', legacyNotification],
+  ]));
+  await serviceDatabase.insert(databaseSchema.appleNotificationEvents).values([
+    failedNotificationEvent({
+      notification: retainedNotification,
+      signedPayload: 'retention-expired-jws',
+      processedAt: new Date(queueNow.getTime() - 120_000),
+      nextAttemptAt: new Date(queueNow.getTime() - 60_000),
+      retentionAt: new Date(queueNow.getTime() - 1),
+    }),
+    failedNotificationEvent({
+      attemptCount: 11,
+      notification: exhaustedNotification,
+      signedPayload: 'attempt-exhausted-jws',
+      processedAt: new Date(queueNow.getTime() - 120_000),
+      nextAttemptAt: new Date(queueNow.getTime() - 60_000),
+      retentionAt: new Date(queueNow.getTime() + 600_000),
+    }),
+    {
+      ...failedNotificationEvent({
+        notification: legacyNotification,
+        signedPayload: null,
+        processedAt: new Date(queueNow.getTime() - 120_000),
+        nextAttemptAt: null,
+        retentionAt: null,
+      }),
+      decodedPayload: {
+        data: { signedTransactionInfo: 'legacy.nested.jws', safe: 'kept' },
+      },
+    },
+  ]);
+  const worker = new AppleNotificationReconciliationService(
+    { nodeEnv: 'test' },
+    { db: serviceDatabase },
+    commerce,
+  );
+  const result = await worker.reconcileFailedNotifications(queueNow);
+  assert.deepEqual(result, { attempted: 1, expired: 2, processed: 0 });
+  const terminalEvents = await serviceDatabase.select()
+    .from(databaseSchema.appleNotificationEvents)
+    .where(and(
+      eq(databaseSchema.appleNotificationEvents.environment, 'production'),
+      eq(databaseSchema.appleNotificationEvents.notificationUuid, retainedNotification.notificationUuid),
+    ));
+  assert.equal(terminalEvents[0].status, 'expired');
+  assert.equal(terminalEvents[0].signedPayload, null);
+  assert.equal(terminalEvents[0].nextAttemptAt, null);
+  const [exhaustedEvent] = await serviceDatabase.select()
+    .from(databaseSchema.appleNotificationEvents)
+    .where(eq(databaseSchema.appleNotificationEvents.notificationUuid, exhaustedNotification.notificationUuid));
+  assert.equal(exhaustedEvent.status, 'expired');
+  assert.equal(exhaustedEvent.attemptCount, 12);
+  assert.equal(exhaustedEvent.signedPayload, null);
+
+  await assert.rejects(
+    commerce.processAppleNotification('legacy-null-payload-jws', queueNow),
+    (error) => error?.getStatus?.() === 503,
+  );
+  const [backfilled] = await serviceDatabase.select()
+    .from(databaseSchema.appleNotificationEvents)
+    .where(eq(databaseSchema.appleNotificationEvents.notificationUuid, legacyNotification.notificationUuid));
+  assert.equal(backfilled.status, 'failed');
+  assert.equal(backfilled.signedPayload, 'legacy-null-payload-jws');
+  assert.ok(backfilled.nextAttemptAt > queueNow);
+  assert.ok(backfilled.retentionAt > queueNow);
+  assert.equal(JSON.stringify(backfilled.decodedPayload).includes('signedTransactionInfo'), false);
+
+  const noRetry = await worker.reconcileFailedNotifications(new Date(queueNow.getTime() + 1_000));
+  assert.equal(noRetry.attempted, 0);
+  const [stillTerminal] = await serviceDatabase.select()
+    .from(databaseSchema.appleNotificationEvents)
+    .where(eq(databaseSchema.appleNotificationEvents.notificationUuid, retainedNotification.notificationUuid));
+  assert.equal(stillTerminal.attemptCount, 0);
+});
+
+test('rejects a changed payload for an already processed notification UUID', async () => {
+  const notificationUuid = '82000000-0000-4000-8000-000000000051';
+  const first = verifiedCommerceNotification({
+    notificationType: 'DID_CHANGE_RENEWAL_STATUS',
+    notificationUuid,
+  });
+  const changed = {
+    ...first,
+    notificationType: 'EXPIRED',
+    signedPayloadHash: 'f'.repeat(64),
+  };
+  const commerce = persistentCommerceService(new Map(), new Map([
+    ['first-event-jws', first],
+    ['changed-event-jws', changed],
+  ]));
+  await commerce.processAppleNotification('first-event-jws');
+  await assert.rejects(
+    commerce.processAppleNotification('changed-event-jws'),
+    (error) => error?.getStatus?.() === 409,
+  );
+  const events = await serviceDatabase.select().from(databaseSchema.appleNotificationEvents)
+    .where(eq(databaseSchema.appleNotificationEvents.notificationUuid, notificationUuid));
+  assert.equal(events.length, 1);
+  assert.equal(events[0].notificationType, 'DID_CHANGE_RENEWAL_STATUS');
+});
+
+test('reports naturally expired non-renewing membership as inactive without deleting history', async () => {
+  const accountId = '82000000-0000-4000-8000-000000000004';
+  const purchaseDate = new Date(Date.now() - (8 * 24 * 60 * 60 * 1_000));
+  const purchase = verifiedCommerceTransaction({
+    accountId,
+    transactionId: 'notification-expired-membership',
+    purchaseDate,
+  });
+  const commerce = persistentCommerceService(new Map([['expired-purchase-jws', purchase]]));
+  await serviceDatabase.insert(databaseSchema.accounts).values({ id: accountId });
+  await commerce.verifyAppleTransaction(accountId, 'expired-purchase-jws');
+  const entitlement = await commerce.currentEntitlement(accountId);
+  assert.equal(entitlement.production.membership.active, false);
+  assert.ok(entitlement.production.membership.expiresAt);
+  const segments = await serviceDatabase.select().from(databaseSchema.membershipEntitlementSegments)
+    .where(and(
+      eq(databaseSchema.membershipEntitlementSegments.environment, 'production'),
+      eq(databaseSchema.membershipEntitlementSegments.accountId, accountId),
+    ));
+  assert.equal(segments.length, 1);
 });

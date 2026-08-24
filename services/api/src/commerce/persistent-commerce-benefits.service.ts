@@ -126,4 +126,186 @@ export class PersistentCommerceBenefitsService {
       where account_id = ${input.accountId}::uuid and status = 'active'
     `);
   }
+
+  async revokeOrderBenefits(
+    transaction: CommerceTransaction,
+    input: {
+      accountId: string;
+      cycleKey: string;
+      environment: 'sandbox' | 'production';
+      orderId: string;
+      revokedAt: Date;
+    },
+  ) {
+    const revokedAt = input.revokedAt.toISOString();
+    const releaseOperationPrefix = `refund-cycle:${input.cycleKey}:release:`;
+    const revokeOperationPrefix = `refund-cycle:${input.cycleKey}:revoke:`;
+
+    // A reservation can span multiple purchase batches. If any allocation
+    // belongs to the refunded order, release the complete reservation so its
+    // immutable allocations and the per-batch reserved totals stay coherent.
+    await transaction.execute(sql`
+      with affected_reservations as (
+        select distinct reservation.id
+        from ai_point_reservations reservation
+        join ai_point_reservation_allocations allocation
+          on allocation.reservation_id = reservation.id
+        join ai_point_batches source_batch on source_batch.id = allocation.batch_id
+        where reservation.environment = ${input.environment}
+          and reservation.account_id = ${input.accountId}::uuid
+          and reservation.status = 'reserved'
+          and source_batch.source_order_id = ${input.orderId}::uuid
+      )
+      insert into ai_point_ledger_entries (
+        environment, account_id, batch_id, reservation_id, operation_id,
+        entry_type, direction, points, created_at
+      )
+      select allocation.environment, allocation.account_id, allocation.batch_id,
+        allocation.reservation_id,
+        ${releaseOperationPrefix} || allocation.reservation_id::text,
+        'release', 'credit', allocation.points, ${revokedAt}::timestamptz
+      from ai_point_reservation_allocations allocation
+      join affected_reservations affected on affected.id = allocation.reservation_id
+      on conflict do nothing
+    `);
+    await transaction.execute(sql`
+      with affected_reservations as (
+        select distinct reservation.id
+        from ai_point_reservations reservation
+        join ai_point_reservation_allocations allocation
+          on allocation.reservation_id = reservation.id
+        join ai_point_batches source_batch on source_batch.id = allocation.batch_id
+        where reservation.environment = ${input.environment}
+          and reservation.account_id = ${input.accountId}::uuid
+          and reservation.status = 'reserved'
+          and source_batch.source_order_id = ${input.orderId}::uuid
+      ), released as (
+        select allocation.batch_id, sum(allocation.points)::integer as points
+        from ai_point_reservation_allocations allocation
+        join affected_reservations affected on affected.id = allocation.reservation_id
+        group by allocation.batch_id
+      )
+      update ai_point_batches batch
+      set reserved_points = batch.reserved_points - released.points,
+        updated_at = ${revokedAt}::timestamptz
+      from released where batch.id = released.batch_id
+    `);
+    await transaction.execute(sql`
+      with affected_reservations as (
+        select distinct reservation.id
+        from ai_point_reservations reservation
+        join ai_point_reservation_allocations allocation
+          on allocation.reservation_id = reservation.id
+        join ai_point_batches source_batch on source_batch.id = allocation.batch_id
+        where reservation.environment = ${input.environment}
+          and reservation.account_id = ${input.accountId}::uuid
+          and reservation.status = 'reserved'
+          and source_batch.source_order_id = ${input.orderId}::uuid
+      )
+      update ai_point_reservations reservation
+      set status = 'released', released_at = ${revokedAt}::timestamptz
+      from affected_reservations affected
+      where reservation.id = affected.id
+    `);
+    await transaction.execute(sql`
+      insert into ai_point_ledger_entries (
+        environment, account_id, batch_id, operation_id, entry_type, direction, points, created_at
+      )
+      select environment, account_id, id, ${revokeOperationPrefix} || id::text,
+        'revoke', 'debit',
+        case when status = 'available'
+          then greatest(0, granted_points - consumed_points - reserved_points)
+          else 0
+        end,
+        ${revokedAt}::timestamptz
+      from ai_point_batches
+      where environment = ${input.environment}
+        and account_id = ${input.accountId}::uuid
+        and source_order_id = ${input.orderId}::uuid
+        and status in ('scheduled', 'available')
+      on conflict do nothing
+    `);
+    await transaction.execute(sql`
+      update ai_point_batches
+      set status = 'revoked', revoked_at = ${revokedAt}::timestamptz,
+        updated_at = ${revokedAt}::timestamptz
+      where environment = ${input.environment}
+        and account_id = ${input.accountId}::uuid
+        and source_order_id = ${input.orderId}::uuid
+        and status in ('scheduled', 'available')
+    `);
+    await transaction.execute(sql`
+      update membership_entitlement_segments
+      set status = 'revoked', revoked_at = ${revokedAt}::timestamptz
+      where environment = ${input.environment}
+        and account_id = ${input.accountId}::uuid
+        and order_id = ${input.orderId}::uuid
+        and status = 'active'
+    `);
+  }
+
+  async prepareOrderPointBatchesForRestore(
+    transaction: CommerceTransaction,
+    input: {
+      accountId: string;
+      environment: 'sandbox' | 'production';
+      orderId: string;
+      restoredAt: Date;
+    },
+  ) {
+    const restoredAt = input.restoredAt.toISOString();
+    await transaction.execute(sql`
+      update ai_point_batches
+      set status = case
+          when exists (
+            select 1 from ai_point_ledger_entries entry
+            where entry.batch_id = ai_point_batches.id and entry.entry_type = 'grant'
+          ) then 'available'
+          else 'scheduled'
+        end,
+        revoked_at = null,
+        expires_at = null,
+        updated_at = ${restoredAt}::timestamptz
+      where environment = ${input.environment}
+        and account_id = ${input.accountId}::uuid
+        and source_order_id = ${input.orderId}::uuid
+        and status = 'revoked'
+    `);
+  }
+
+  async restoreOrderPointBatches(
+    transaction: CommerceTransaction,
+    input: {
+      accountId: string;
+      cycleKey: string;
+      environment: 'sandbox' | 'production';
+      orderId: string;
+      restoredAt: Date;
+    },
+  ) {
+    const restoredAt = input.restoredAt.toISOString();
+    const revokeOperationPrefix = `refund-cycle:${input.cycleKey}:revoke:`;
+    const restoreOperationPrefix = `refund-cycle:${input.cycleKey}:restore:`;
+    // Restore exactly the amount debited by this refund cycle. A batch that
+    // was still scheduled at refund time has a zero-point revoke and is
+    // credited only by its first grant if rebuilding makes it due.
+    await transaction.execute(sql`
+      insert into ai_point_ledger_entries (
+        environment, account_id, batch_id, operation_id, entry_type, direction, points, created_at
+      )
+      select batch.environment, batch.account_id, batch.id,
+        ${restoreOperationPrefix} || batch.id::text,
+        'restore', 'credit', revoke.points, ${restoredAt}::timestamptz
+      from ai_point_batches batch
+      join ai_point_ledger_entries revoke
+        on revoke.batch_id = batch.id
+        and revoke.entry_type = 'revoke'
+        and revoke.operation_id = ${revokeOperationPrefix} || batch.id::text
+      where batch.environment = ${input.environment}
+        and batch.account_id = ${input.accountId}::uuid
+        and batch.source_order_id = ${input.orderId}::uuid
+        and revoke.points > 0
+      on conflict do nothing
+    `);
+  }
 }
