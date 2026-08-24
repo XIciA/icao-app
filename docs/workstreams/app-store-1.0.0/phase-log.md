@@ -16,8 +16,10 @@
 
 ## 当前验证
 
-- 当前已核验 `origin/main` 指向 `7d5ecb2caa464980245498ef8467b787d3e5dd43`。
-- 阶段1合入状态以该提交为准；阶段2商业化分支尚未合入 `origin/main`。
+- 当前已核验 `origin/main` 指向 `c7df40a4497cfdcfc01928c7856a8f1213fc1449`；该提交通过 PR #20
+  追加了 1.0.0 微信延期范围，且包含阶段1提交 `7d5ecb2caa464980245498ef8467b787d3e5dd43`。
+- 阶段1实现以 `7d5ecb2caa464980245498ef8467b787d3e5dd43` 为准；阶段2商业化分支尚未合入
+  `origin/main`。
 - 没有将本地候选或分支状态记为已部署；本记录不证明生产迁移、API部署、TestFlight上传或
   App Store Connect 配置已经完成。
 
