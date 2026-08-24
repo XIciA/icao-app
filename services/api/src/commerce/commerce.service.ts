@@ -40,6 +40,8 @@ import {
 } from './product-catalog';
 
 const DAY_MS = 24 * 60 * 60 * 1_000;
+const APPLE_NOTIFICATION_RETRY_MS = 60_000;
+const APPLE_NOTIFICATION_RETENTION_MS = 7 * DAY_MS;
 type CommerceTransaction = Parameters<Parameters<DatabaseService['db']['transaction']>[0]>[0];
 
 function sameDate(left: Date, right: Date) {
@@ -238,8 +240,31 @@ export class CommerceService {
         && existingEvent.signedPayloadHash !== notification.signedPayloadHash) {
         throw new ConflictException('apple_notification_idempotency_conflict');
       }
-      if (existingEvent?.status === 'processed') {
+      if (existingEvent?.status === 'processed' || existingEvent?.status === 'expired') {
+        await transaction.update(appleNotificationEvents).set({
+          decodedPayload: notification.decodedPayload,
+          signedPayload: null,
+          nextAttemptAt: null,
+          lockedAt: null,
+          leaseOwner: null,
+          leaseUntil: null,
+          retentionAt: null,
+        }).where(eq(appleNotificationEvents.id, existingEvent.id));
         return { duplicate: true, processed: true };
+      }
+      if (existingEvent?.status === 'failed') {
+        // Compatibility for a candidate deployment that persisted the hash
+        // before raw-payload retention existed. The JWS has just been fully
+        // verified and its digest matches the existing UUID row. Rewriting
+        // decodedPayload also removes nested Apple JWS retained by that build.
+        await transaction.update(appleNotificationEvents).set({
+          decodedPayload: notification.decodedPayload,
+          signedPayload: existingEvent.signedPayload ?? signedPayload,
+          nextAttemptAt: existingEvent.nextAttemptAt
+            ?? new Date(processedAt.getTime() + APPLE_NOTIFICATION_RETRY_MS),
+          retentionAt: existingEvent.retentionAt
+            ?? new Date(processedAt.getTime() + APPLE_NOTIFICATION_RETENTION_MS),
+        }).where(eq(appleNotificationEvents.id, existingEvent.id));
       }
       if (!existingEvent) {
         await transaction.insert(appleNotificationEvents).values({
@@ -280,7 +305,11 @@ export class CommerceService {
       if (!accountId) {
         await transaction.update(appleNotificationEvents).set({
           status: 'failed',
+          signedPayload,
           errorCode: 'apple_notification_transaction_unresolved',
+          nextAttemptAt: new Date(processedAt.getTime() + APPLE_NOTIFICATION_RETRY_MS),
+          retentionAt: existingEvent?.retentionAt
+            ?? new Date(processedAt.getTime() + APPLE_NOTIFICATION_RETENTION_MS),
           processedAt,
         }).where(and(
           eq(appleNotificationEvents.environment, environment),
@@ -552,7 +581,13 @@ export class CommerceService {
   ) {
     await transaction.update(appleNotificationEvents).set({
       status: 'processed',
+      signedPayload: null,
       errorCode: null,
+      nextAttemptAt: null,
+      lockedAt: null,
+      leaseOwner: null,
+      leaseUntil: null,
+      retentionAt: null,
       processedAt,
     }).where(and(
       eq(appleNotificationEvents.environment, notification.environment),
@@ -568,7 +603,13 @@ export class CommerceService {
   ) {
     await transaction.update(appleNotificationEvents).set({
       status: 'processed',
+      signedPayload: null,
       errorCode: reason,
+      nextAttemptAt: null,
+      lockedAt: null,
+      leaseOwner: null,
+      leaseUntil: null,
+      retentionAt: null,
       processedAt,
     }).where(and(
       eq(appleNotificationEvents.environment, notification.environment),

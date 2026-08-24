@@ -686,14 +686,26 @@ export const appleNotificationEvents = pgTable('apple_notification_events', {
   signedPayloadHash: text('signed_payload_hash').notNull(),
   decodedPayload: jsonb('decoded_payload').notNull(),
   errorCode: text('error_code'),
+  attemptCount: integer('attempt_count').default(0).notNull(),
+  nextAttemptAt: timestamp('next_attempt_at', { withTimezone: true }),
+  lockedAt: timestamp('locked_at', { withTimezone: true }),
+  leaseOwner: uuid('lease_owner'),
+  leaseUntil: timestamp('lease_until', { withTimezone: true }),
+  retentionAt: timestamp('retention_at', { withTimezone: true }),
   signedAt: timestamp('signed_at', { withTimezone: true }).notNull(),
   receivedAt: timestamp('received_at', { withTimezone: true }).defaultNow().notNull(),
   processedAt: timestamp('processed_at', { withTimezone: true }),
 }, (table) => [
   uniqueIndex('apple_notification_events_environment_uuid').on(table.environment, table.notificationUuid),
   index('apple_notification_events_status_received').on(table.status, table.receivedAt),
+  index('apple_notification_events_retry').on(table.environment, table.status, table.nextAttemptAt),
   check('apple_notification_events_environment_check', sql`${table.environment} IN ('sandbox', 'production')`),
-  check('apple_notification_events_status_check', sql`${table.status} IN ('received', 'processed', 'failed')`),
+  check('apple_notification_events_status_check', sql`${table.status} IN ('received', 'processed', 'failed', 'expired')`),
+  check('apple_notification_events_attempt_count_check', sql`${table.attemptCount} >= 0`),
+  check('apple_notification_events_lease_check', sql`(
+    (${table.lockedAt} IS NULL AND ${table.leaseOwner} IS NULL AND ${table.leaseUntil} IS NULL)
+    OR (${table.lockedAt} IS NOT NULL AND ${table.leaseOwner} IS NOT NULL AND ${table.leaseUntil} IS NOT NULL)
+  )`),
 ]).enableRLS();
 
 export const membershipEntitlementSegments = pgTable('membership_entitlement_segments', {
