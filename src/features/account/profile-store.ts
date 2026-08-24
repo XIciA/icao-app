@@ -51,6 +51,12 @@ export async function updateProfile(patch: Partial<UserProfile>): Promise<UserPr
   return next;
 }
 
+export async function clearProfile() {
+  await Storage.removeItem(PROFILE_STORAGE_KEY);
+  cachedProfile = { ...DEFAULT_PROFILE };
+  listeners.forEach((listener) => listener(cachedProfile!));
+}
+
 export function useProfile() {
   const [profile, setProfile] = useState<UserProfile>(cachedProfile ?? DEFAULT_PROFILE);
 

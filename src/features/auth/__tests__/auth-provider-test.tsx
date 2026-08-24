@@ -1,13 +1,17 @@
 import { act, render, waitFor } from '@testing-library/react-native';
 import { Text } from 'react-native';
 
-import { apiRequest } from '@/platform/api-client';
+import { ApiClientError, apiRequest } from '@/platform/api-client';
 import { AuthProvider, useAuth } from '../AuthProvider';
 import type { AppSession } from '../auth-service';
 
 const mockGetSession = jest.fn();
 const mockRefreshSession = jest.fn();
 const mockAuthorizePasswordRecovery = jest.fn();
+const mockAuthorizeAccountDeletionWithPassword = jest.fn();
+const mockAuthorizeAccountDeletionWithApple = jest.fn();
+const mockAuthorizeAccountDeletionWithPhoneOtp = jest.fn();
+const mockRequestAccountDeletionPhoneOtp = jest.fn();
 const mockSignInWithApple = jest.fn();
 const mockSignOut = jest.fn();
 const mockUpdatePassword = jest.fn();
@@ -19,6 +23,10 @@ jest.mock('../auth-service', () => ({
     onSessionChange: () => () => undefined,
     refreshSession: (...args: unknown[]) => mockRefreshSession(...args),
     authorizePasswordRecovery: (...args: unknown[]) => mockAuthorizePasswordRecovery(...args),
+    authorizeAccountDeletionWithPassword: (...args: unknown[]) => mockAuthorizeAccountDeletionWithPassword(...args),
+    authorizeAccountDeletionWithApple: (...args: unknown[]) => mockAuthorizeAccountDeletionWithApple(...args),
+    authorizeAccountDeletionWithPhoneOtp: (...args: unknown[]) => mockAuthorizeAccountDeletionWithPhoneOtp(...args),
+    requestAccountDeletionPhoneOtp: (...args: unknown[]) => mockRequestAccountDeletionPhoneOtp(...args),
     signInWithApple: (...args: unknown[]) => mockSignInWithApple(...args),
     signOut: (...args: unknown[]) => mockSignOut(...args),
     startAutoRefresh: jest.fn(),
@@ -28,14 +36,43 @@ jest.mock('../auth-service', () => ({
   }),
 }));
 
-jest.mock('@/platform/api-client', () => ({
-  apiFetch: jest.fn(),
-  apiRequest: jest.fn(),
-  setApiAccessTokenProvider: jest.fn(),
-  setApiAuthRecovery: jest.fn(),
-}));
+jest.mock('@/platform/api-client', () => {
+  class MockApiClientError extends Error {
+    readonly code: string;
+    readonly status: number;
+    readonly requestId?: string;
+
+    constructor(mockCode: string, mockStatus: number, mockRequestId?: string) {
+      super(mockCode);
+      this.code = mockCode;
+      this.status = mockStatus;
+      this.requestId = mockRequestId;
+    }
+  }
+  return {
+    ApiClientError: MockApiClientError,
+    apiFetch: jest.fn(),
+    apiRequest: jest.fn(),
+    setApiAccessTokenProvider: jest.fn(),
+    setApiAuthRecovery: jest.fn(),
+  };
+});
 
 jest.mock('@/features/ai/ai-client', () => ({ clearLocalAiConsent: jest.fn() }));
+
+const mockClearDeletedAccountLocalData = jest.fn();
+jest.mock('../account-deletion-local-cleanup', () => ({
+  clearDeletedAccountLocalData: (...args: unknown[]) => mockClearDeletedAccountLocalData(...args),
+}));
+
+const mockClearPendingAccountDeletion = jest.fn();
+const mockPendingAccountDeletionFor = jest.fn();
+const mockReadPendingAccountDeletion = jest.fn();
+jest.mock('../account-deletion-state', () => ({
+  clearPendingAccountDeletion: (...args: unknown[]) => mockClearPendingAccountDeletion(...args),
+  pendingAccountDeletionFor: (...args: unknown[]) => mockPendingAccountDeletionFor(...args),
+  readPendingAccountDeletion: (...args: unknown[]) => mockReadPendingAccountDeletion(...args),
+}));
 
 jest.mock('@/features/sync/learning-sync', () => ({
   archiveAndBindEmptyLearningSync: jest.fn(),
@@ -97,6 +134,23 @@ describe('<AuthProvider /> internal-account gate', () => {
       expiresAt: Date.now() + 600_000,
       grantId: '10000000-0000-4000-8000-000000000001',
     });
+    mockAuthorizeAccountDeletionWithPassword.mockReset().mockResolvedValue({
+      expiresAt: Date.now() + 300_000,
+      grantId: '10000000-0000-4000-8000-000000000010',
+      method: 'password',
+      purpose: 'account_delete',
+    });
+    mockAuthorizeAccountDeletionWithApple.mockReset();
+    mockAuthorizeAccountDeletionWithPhoneOtp.mockReset();
+    mockRequestAccountDeletionPhoneOtp.mockReset();
+    mockClearDeletedAccountLocalData.mockReset().mockResolvedValue(undefined);
+    mockClearPendingAccountDeletion.mockReset().mockResolvedValue(undefined);
+    mockPendingAccountDeletionFor.mockReset().mockResolvedValue({
+      accountId: 'phone-auth-user',
+      createdAt: 1,
+      idempotencyKey: '10000000-0000-4000-8000-000000000011',
+    });
+    mockReadPendingAccountDeletion.mockReset().mockResolvedValue(undefined);
     mockSignInWithApple.mockReset().mockResolvedValue(socialSession);
     mockSignOut.mockReset().mockResolvedValue(undefined);
     mockUpdatePassword.mockReset().mockResolvedValue(phoneSession);
@@ -121,6 +175,79 @@ describe('<AuthProvider /> internal-account gate', () => {
       await login;
     });
     expect(screen.getByTestId('auth-state').props.children).toBe('ready');
+  });
+
+  it('resumes a completed deletion before restoring any persisted login session', async () => {
+    mockReadPendingAccountDeletion.mockResolvedValueOnce({
+      accountId: 'account-deleting',
+      createdAt: 1,
+      idempotencyKey: '10000000-0000-4000-8000-000000000011',
+    });
+    mockApiRequest.mockResolvedValueOnce({
+      identityProviderOutcome: 'revoked',
+      jobId: '10000000-0000-4000-8000-000000000012',
+      status: 'completed',
+    });
+
+    const screen = await render(<AuthProvider><AuthStateProbe /></AuthProvider>);
+    await waitFor(() => expect(screen.getByTestId('auth-state').props.children).toBe('closed'));
+
+    expect(mockApiRequest).toHaveBeenCalledWith('/v1/account/deletion/status', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ idempotencyKey: '10000000-0000-4000-8000-000000000011' }),
+    });
+    expect(mockClearDeletedAccountLocalData).toHaveBeenCalledTimes(1);
+    expect(mockClearPendingAccountDeletion).toHaveBeenCalledTimes(1);
+    expect(mockSignOut).toHaveBeenCalledWith('local');
+  });
+
+  it('retains the deletion receipt and retries completed cleanup when local sign-out fails', async () => {
+    mockReadPendingAccountDeletion.mockResolvedValue({
+      accountId: 'account-deleting',
+      createdAt: 1,
+      idempotencyKey: '10000000-0000-4000-8000-000000000011',
+    });
+    mockApiRequest.mockResolvedValue({
+      identityProviderOutcome: 'revoked',
+      jobId: '10000000-0000-4000-8000-000000000012',
+      status: 'completed',
+    });
+    mockSignOut.mockRejectedValueOnce(new Error('secure_storage_unavailable'));
+
+    const screen = await render(<AuthProvider><AuthStateProbe /></AuthProvider>);
+    await waitFor(() => expect(currentAuth.restoring).toBe(false));
+    expect(screen.getByTestId('auth-state').props.children).toBe('closed');
+    expect(currentAuth.accountDeletionPending).toBe(true);
+    expect(mockClearPendingAccountDeletion).not.toHaveBeenCalled();
+
+    await act(async () => { await currentAuth.resumeAccountDeletion(); });
+
+    expect(mockClearDeletedAccountLocalData).toHaveBeenCalledTimes(2);
+    expect(mockSignOut).toHaveBeenCalledTimes(2);
+    expect(mockClearPendingAccountDeletion).toHaveBeenCalledTimes(1);
+    expect(currentAuth.accountDeletionPending).toBe(false);
+  });
+
+  it('blocks session restoration while a persisted deletion is still processing', async () => {
+    mockReadPendingAccountDeletion.mockResolvedValue({
+      accountId: 'account-deleting',
+      createdAt: 1,
+      idempotencyKey: '10000000-0000-4000-8000-000000000011',
+    });
+    mockApiRequest.mockResolvedValueOnce({
+      identityProviderOutcome: 'pending',
+      jobId: '10000000-0000-4000-8000-000000000012',
+      status: 'retryable',
+    });
+
+    const screen = await render(<AuthProvider><AuthStateProbe /></AuthProvider>);
+    await waitFor(() => expect(currentAuth.accountDeletionPending).toBe(true));
+
+    expect(screen.getByTestId('auth-state').props.children).toBe('closed');
+    expect(mockGetSession).not.toHaveBeenCalled();
+    expect(mockClearDeletedAccountLocalData).not.toHaveBeenCalled();
+    expect(mockSignOut).not.toHaveBeenCalled();
   });
 
   it('closes and clears a social session when account initialization fails', async () => {
@@ -305,5 +432,158 @@ describe('<AuthProvider /> internal-account gate', () => {
       '10000000-0000-4000-8000-000000000001',
     );
     expect(currentAuth.passwordChangePurpose).toBeUndefined();
+  });
+
+  it('submits a recently authenticated idempotent deletion and clears local data only after completion', async () => {
+    mockApiRequest
+      .mockResolvedValueOnce({ accountId: 'phone-auth-user', phone: '+8613800138000', phoneBound: true, providers: ['phone'] })
+      .mockResolvedValueOnce({
+        identityProviderOutcome: 'not_applicable',
+        jobId: '10000000-0000-4000-8000-000000000012',
+        status: 'completed',
+      });
+    const screen = await render(<AuthProvider><AuthStateProbe /></AuthProvider>);
+    await waitFor(() => expect(screen.getByTestId('auth-state').props.children).toBe('closed'));
+
+    await act(async () => {
+      await currentAuth.verifyPhoneOtp('+8613800138000', '123456');
+    });
+    await waitFor(() => expect(currentAuth.account?.accountId).toBe('phone-auth-user'));
+    await act(async () => {
+      await currentAuth.deleteAccount({ password: 'password10' });
+    });
+
+    expect(mockAuthorizeAccountDeletionWithPassword).toHaveBeenCalledWith('password10');
+    expect(mockApiRequest).toHaveBeenLastCalledWith('/v1/account', {
+      method: 'DELETE',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        confirmation: '注销账号',
+        grantId: '10000000-0000-4000-8000-000000000010',
+        idempotencyKey: '10000000-0000-4000-8000-000000000011',
+      }),
+    });
+    expect(mockClearDeletedAccountLocalData).toHaveBeenCalledTimes(1);
+    expect(mockClearPendingAccountDeletion).toHaveBeenCalledTimes(1);
+    expect(mockSignOut).toHaveBeenCalledWith('local');
+    expect(currentAuth.accountDeletionPending).toBe(false);
+  });
+
+  it('blocks the app and preserves local data while an accepted deletion is still processing', async () => {
+    mockApiRequest
+      .mockResolvedValueOnce({ accountId: 'phone-auth-user', phone: '+8613800138000', phoneBound: true, providers: ['phone'] })
+      .mockResolvedValueOnce({
+        identityProviderOutcome: 'pending',
+        jobId: '10000000-0000-4000-8000-000000000012',
+        status: 'retryable',
+      });
+    const screen = await render(<AuthProvider><AuthStateProbe /></AuthProvider>);
+    await waitFor(() => expect(screen.getByTestId('auth-state').props.children).toBe('closed'));
+
+    await act(async () => {
+      await currentAuth.verifyPhoneOtp('+8613800138000', '123456');
+    });
+    await waitFor(() => expect(currentAuth.account?.accountId).toBe('phone-auth-user'));
+    await act(async () => {
+      await currentAuth.deleteAccount({ password: 'password10' });
+    });
+
+    expect(currentAuth.accountDeletionPending).toBe(true);
+    expect(currentAuth.session).toBeUndefined();
+    expect(mockClearDeletedAccountLocalData).not.toHaveBeenCalled();
+    expect(mockSignOut).not.toHaveBeenCalledWith('local');
+  });
+
+  it('locks the app and checks the persisted receipt when the DELETE response is lost', async () => {
+    const pending = {
+      accountId: 'phone-auth-user',
+      createdAt: Date.now(),
+      idempotencyKey: '10000000-0000-4000-8000-000000000011',
+    };
+    mockReadPendingAccountDeletion.mockResolvedValueOnce(undefined).mockResolvedValue(pending);
+    mockApiRequest
+      .mockResolvedValueOnce({ accountId: 'phone-auth-user', phone: '+8613800138000', phoneBound: true, providers: ['phone'] })
+      .mockRejectedValueOnce(new Error('network_response_lost'))
+      .mockRejectedValueOnce(new Error('network_still_unavailable'));
+    const screen = await render(<AuthProvider><AuthStateProbe /></AuthProvider>);
+    await waitFor(() => expect(screen.getByTestId('auth-state').props.children).toBe('closed'));
+    await act(async () => { await currentAuth.verifyPhoneOtp('+8613800138000', '123456'); });
+    await waitFor(() => expect(currentAuth.account?.accountId).toBe('phone-auth-user'));
+
+    await act(async () => {
+      await currentAuth.deleteAccount({ password: 'password10' });
+    });
+
+    expect(currentAuth.accountDeletionPending).toBe(true);
+    expect(currentAuth.session).toBeUndefined();
+    expect(mockClearPendingAccountDeletion).not.toHaveBeenCalled();
+    expect(mockClearDeletedAccountLocalData).not.toHaveBeenCalled();
+    expect(mockApiRequest).toHaveBeenLastCalledWith('/v1/account/deletion/status', expect.objectContaining({
+      body: JSON.stringify({ idempotencyKey: pending.idempotencyKey }),
+    }));
+  });
+
+  it('does not let status polling clear the receipt while the DELETE request is still in flight', async () => {
+    let resolveDeletion!: (value: unknown) => void;
+    const deletionResponse = new Promise((resolve) => { resolveDeletion = resolve; });
+    mockApiRequest
+      .mockResolvedValueOnce({ accountId: 'phone-auth-user', phone: '+8613800138000', phoneBound: true, providers: ['phone'] })
+      .mockImplementationOnce(() => deletionResponse as never);
+    const screen = await render(<AuthProvider><AuthStateProbe /></AuthProvider>);
+    await waitFor(() => expect(screen.getByTestId('auth-state').props.children).toBe('closed'));
+    await act(async () => { await currentAuth.verifyPhoneOtp('+8613800138000', '123456'); });
+    await waitFor(() => expect(currentAuth.account?.accountId).toBe('phone-auth-user'));
+
+    let deletion!: Promise<void>;
+    await act(async () => {
+      deletion = currentAuth.deleteAccount({ password: 'password10' });
+      await Promise.resolve();
+      await Promise.resolve();
+    });
+    await waitFor(() => expect(currentAuth.accountDeletionPending).toBe(true));
+    await act(async () => { await currentAuth.resumeAccountDeletion(); });
+
+    expect(mockApiRequest).toHaveBeenCalledTimes(2);
+    expect(mockClearPendingAccountDeletion).not.toHaveBeenCalled();
+    resolveDeletion({
+      identityProviderOutcome: 'pending',
+      jobId: '10000000-0000-4000-8000-000000000012',
+      status: 'retryable',
+    });
+    await act(async () => { await deletion; });
+    expect(currentAuth.accountDeletionPending).toBe(true);
+    expect(currentAuth.session).toBeUndefined();
+  });
+
+  it('unlocks the current session only after a rejected DELETE is confirmed absent', async () => {
+    const pending = {
+      accountId: 'phone-auth-user',
+      createdAt: Date.now(),
+      idempotencyKey: '10000000-0000-4000-8000-000000000011',
+    };
+    mockReadPendingAccountDeletion.mockResolvedValueOnce(undefined).mockResolvedValueOnce(pending);
+    mockApiRequest
+      .mockResolvedValueOnce({ accountId: 'phone-auth-user', phone: '+8613800138000', phoneBound: true, providers: ['phone'] })
+      .mockRejectedValueOnce(new ApiClientError('recent_auth_required', 403))
+      .mockRejectedValueOnce(new ApiClientError('account_deletion_job_not_found', 404));
+    const screen = await render(<AuthProvider><AuthStateProbe /></AuthProvider>);
+    await waitFor(() => expect(screen.getByTestId('auth-state').props.children).toBe('closed'));
+    await act(async () => { await currentAuth.verifyPhoneOtp('+8613800138000', '123456'); });
+    await waitFor(() => expect(currentAuth.account?.accountId).toBe('phone-auth-user'));
+    let failure: unknown;
+
+    await act(async () => {
+      try {
+        await currentAuth.deleteAccount({ password: 'password10' });
+      } catch (error) {
+        failure = error;
+      }
+    });
+
+    expect(failure).toEqual(expect.objectContaining({ message: 'recent_auth_required' }));
+    expect(currentAuth.accountDeletionPending).toBe(false);
+    expect(currentAuth.session?.user.id).toBe('phone-auth-user');
+    expect(mockClearPendingAccountDeletion).toHaveBeenCalledTimes(1);
+    expect(mockClearDeletedAccountLocalData).not.toHaveBeenCalled();
   });
 });

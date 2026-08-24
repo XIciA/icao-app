@@ -46,3 +46,8 @@ export async function resolveSignedQuestionBankAsset(
   } satisfies CachedResource));
   return visibleResource.url;
 }
+
+export async function clearQuestionBankResourceCredentials() {
+  const keys = (await Storage.getAllKeys()).filter((key) => key.startsWith(RESOURCE_CACHE_PREFIX));
+  if (keys.length > 0) await Storage.multiRemove(keys);
+}

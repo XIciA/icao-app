@@ -1,4 +1,3 @@
-import Storage from '@/platform/storage';
 import TrackPlayer, {
   Event,
   RepeatMode,
@@ -28,10 +27,16 @@ import {
 } from './native-queue';
 import { nextManualTrack, nextTrack, previousTrack, selectShuffleTrack, type ShuffleState } from './queue';
 import { migrateRadioIntervalSeconds } from './radio-snapshot';
+import {
+  activateRadioPlayerSession,
+  clearRadioPlayerAccountData,
+  readRadioPlayerSnapshot,
+  registerRadioPlayerRuntimeReset,
+  saveRadioPlayerSnapshot,
+} from './radio-player-storage';
 import { ensureRadioTrackPlayer, setRadioContentPlaybackRate, setRadioRemoteHandlers } from './track-player-runtime';
 import type { RadioBankId, RadioCatalog, RadioPlaybackMode, RadioPlayerContextValue, RadioSubtitleMode, RadioTrack } from './types';
 
-const STORAGE_KEY = 'icao.radio-player.v1';
 const speedOptions = [0.75, 1, 1.25, 1.5] as const;
 const radioPlayerEvents: [
   Event.PlaybackActiveTrackChanged,
@@ -106,6 +111,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
   const activeNativeContentTrack = useRef<NativeRadioContentTrack | undefined>(undefined);
   const waitingForNextRef = useRef(false);
   const audioLease = useRef<AudioLease | undefined>(undefined);
+  const activeSessionUserId = useRef<string | undefined>(undefined);
   const stateRef = useRef({ bankId, trackId, bankTrackIds, catalogs, intervalSeconds, mode, subtitleMode, rate, position: 0, shuffle });
 
   const { catalog: currentCatalog, track: currentTrack } = findTrack(catalogs, bankId, trackId);
@@ -137,7 +143,7 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
   const saveSnapshot = useCallback(() => {
     const current = stateRef.current;
     if (!current.trackId) return Promise.resolve();
-    return Storage.setItem(STORAGE_KEY, JSON.stringify({
+    return saveRadioPlayerSnapshot(JSON.stringify({
       schemaVersion: 2,
       bankId: current.bankId,
       trackId: current.trackId,
@@ -159,6 +165,54 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
     waitingForNextRef.current = waiting;
     setWaitingForNextState(waiting);
   }, []);
+
+  const resetAccountRuntime = useCallback(async () => {
+    generation.current += 1;
+    pendingPlay.current = false;
+    pendingSeek.current = 0;
+    preparedTrackId.current = undefined;
+    requestedTrackId.current = undefined;
+    queuedNextTrackId.current = undefined;
+    nativeTransitionTrackId.current = undefined;
+    activeNativeContentTrack.current = undefined;
+    waitingForNextRef.current = false;
+    const firstBankId = embeddedCatalogs[0]?.bankId ?? 'listening';
+    const firstTrackId = embeddedCatalogs[0]?.tracks[0]?.id ?? '';
+    const emptyShuffle: ShuffleState = {
+      history: firstTrackId ? [firstTrackId] : [],
+      cursor: firstTrackId ? 0 : -1,
+    };
+    stateRef.current = {
+      bankId: firstBankId,
+      trackId: firstTrackId,
+      bankTrackIds: {},
+      catalogs: embeddedCatalogs,
+      intervalSeconds: 0,
+      mode: 'order',
+      subtitleMode: 'off',
+      rate: 1,
+      position: 0,
+      shuffle: emptyShuffle,
+    };
+    setCatalogs(embeddedCatalogs);
+    setBankId(firstBankId);
+    setTrackId(firstTrackId);
+    setBankTrackIds({});
+    setModeState('order');
+    setSubtitleModeState('off');
+    setRateState(1);
+    setIntervalSecondsState(0);
+    setWaitingForNextState(false);
+    setSourceState({ loading: false });
+    setSessionVisible(false);
+    setRestored(false);
+    setShuffle(emptyShuffle);
+    const lease = audioLease.current;
+    await TrackPlayer.reset().catch(() => undefined);
+    await releaseRadioLease(lease);
+  }, [embeddedCatalogs, releaseRadioLease]);
+
+  useEffect(() => registerRadioPlayerRuntimeReset(resetAccountRuntime), [resetAccountRuntime]);
 
   const resolveTrack = useCallback(async (track: RadioTrack, forceRefresh = false): Promise<NativeRadioContentTrack> => {
     const local = resolveQuestionBankAsset(track.audioPath);
@@ -290,8 +344,23 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
   }, [auth.restoring, auth.session]);
 
   useEffect(() => {
+    if (auth.restoring) return;
     let active = true;
-    void Storage.getItem(STORAGE_KEY).then((raw) => {
+    const userId = auth.session?.user.id;
+    if (!userId) {
+      void clearRadioPlayerAccountData()
+        .then(() => { if (active) activeSessionUserId.current = undefined; })
+        .catch(() => undefined);
+      return () => { active = false; };
+    }
+    const activateAndRestore = async () => {
+      if (activeSessionUserId.current && activeSessionUserId.current !== userId) {
+        await clearRadioPlayerAccountData();
+      }
+      if (!active) return;
+      if (!await activateRadioPlayerSession() || !active) return;
+      activeSessionUserId.current = userId;
+      const raw = await readRadioPlayerSnapshot();
       if (!active || !raw) return;
       try {
         const value = JSON.parse(raw) as Snapshot;
@@ -310,9 +379,10 @@ function ReadyRadioPlayerProvider({ children }: PropsWithChildren) {
       } catch {
         // Invalid local state safely falls back to the first available track.
       }
-    }).finally(() => { if (active) setRestored(true); });
+    };
+    void activateAndRestore().finally(() => { if (active) setRestored(true); });
     return () => { active = false; };
-  }, [embeddedCatalogs]);
+  }, [auth.restoring, auth.session?.user.id, embeddedCatalogs]);
 
   useEffect(() => audioSessionOrchestrator.register('radio', {
     deactivate: async () => {

@@ -1,6 +1,8 @@
 import { createClient, type Session, type SupabaseClient } from '@supabase/supabase-js';
-import type { AccountSummary, AuthIdentityProvider, AuthorizePasswordRecoveryResponse, BindPhoneResponse, StartPhoneBindingResponse, StartPhoneOtpResponse, UpdatePhonePasswordResponse } from '@icao/contracts';
+import type { AccountSummary, AuthIdentityProvider, AuthorizePasswordRecoveryResponse, BindPhoneResponse, RecentAuthGrantResponse, StartPhoneBindingResponse, StartPhoneOtpResponse, UpdatePhonePasswordResponse } from '@icao/contracts';
 import { isChinaMobileE164, normalizeChinaMobile } from '@icao/contracts';
+import * as AppleAuthentication from 'expo-apple-authentication';
+import * as Crypto from 'expo-crypto';
 
 import { apiRequest } from '@/platform/api-client';
 import { secureSessionStorage } from './secure-session-storage';
@@ -29,6 +31,10 @@ export type AuthService = {
   refreshSession(): Promise<AppSession | undefined>;
   isAppleSignInAvailable(): Promise<boolean>;
   signInWithApple(): Promise<AppSession>;
+  authorizeAccountDeletionWithApple(): Promise<RecentAuthGrantResponse>;
+  authorizeAccountDeletionWithPassword(password: string): Promise<RecentAuthGrantResponse>;
+  authorizeAccountDeletionWithPhoneOtp(token: string): Promise<{ grant: RecentAuthGrantResponse; session: AppSession }>;
+  requestAccountDeletionPhoneOtp(): Promise<void>;
   requestPhoneOtp(phone: string): Promise<void>;
   requestPasswordRecoveryOtp(phone: string): Promise<void>;
   verifyPhoneOtp(phone: string, token: string): Promise<AppSession>;
@@ -132,15 +138,87 @@ export class SupabasePhoneAuthService implements AuthService {
   }
 
   async isAppleSignInAvailable() {
-    const AppleAuthentication = await import('expo-apple-authentication');
     return AppleAuthentication.isAvailableAsync();
   }
 
   async signInWithApple() {
-    const [AppleAuthentication, Crypto] = await Promise.all([
-      import('expo-apple-authentication'),
-      import('expo-crypto'),
-    ]);
+    const credential = await this.appleCredential(true);
+    const { data, error } = await this.client.auth.signInWithIdToken({
+      provider: 'apple',
+      token: credential.identityToken,
+      nonce: credential.rawNonce,
+    });
+    if (error || !data.session) throw authError(error);
+    const session = appSession(data.session);
+    if (!session || !session.user.providers.includes('apple')) throw new Error('apple_auth_failed');
+    return session;
+  }
+
+  async authorizeAccountDeletionWithApple() {
+    const current = await this.getSession();
+    if (!current?.user.providers.includes('apple')) throw new Error('apple_reauthentication_required');
+    const credential = await this.appleCredential(false);
+    if (!credential.authorizationCode) throw new Error('apple_authorization_code_missing');
+    return apiRequest<RecentAuthGrantResponse>('/v1/account/recent-auth/apple', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        authorizationCode: credential.authorizationCode,
+        purpose: 'account_delete',
+        rawNonce: credential.rawNonce,
+      }),
+    });
+  }
+
+  async authorizeAccountDeletionWithPassword(password: string) {
+    if (!password) throw new Error('account_deletion_password_required');
+    return apiRequest<RecentAuthGrantResponse>('/v1/account/recent-auth/password', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ password, purpose: 'account_delete' }),
+    });
+  }
+
+  async requestAccountDeletionPhoneOtp() {
+    const response = await apiRequest<StartPhoneOtpResponse>('/v1/account/recent-auth/phone/start', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ purpose: 'account_delete' }),
+    });
+    if (!response.accepted) throw new Error('phone_otp_delivery_failed');
+  }
+
+  async authorizeAccountDeletionWithPhoneOtp(token: string) {
+    if (!/^\d{6}$/u.test(token)) throw new Error('invalid_phone_otp');
+    const current = await this.getSession();
+    if (!current?.user.phone || !current.user.providers.includes('phone')) {
+      throw new Error('phone_reauthentication_required');
+    }
+    const { data, error } = await this.client.auth.verifyOtp({
+      phone: current.user.phone,
+      token,
+      type: 'sms',
+    });
+    if (error || !data.session) throw authError(error);
+    const session = appSession(data.session);
+    if (
+      !session
+      || session.user.id !== current.user.id
+      || session.user.phone !== current.user.phone
+      || !session.user.providers.includes('phone')
+    ) {
+      await this.client.auth.signOut({ scope: 'local' }).catch(() => undefined);
+      throw new Error('phone_reauthentication_required');
+    }
+    const grant = await apiRequest<RecentAuthGrantResponse>('/v1/account/recent-auth/phone', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ purpose: 'account_delete' }),
+    });
+    return { grant, session };
+  }
+
+  private async appleCredential(requestProfile: boolean) {
     if (!await AppleAuthentication.isAvailableAsync()) throw new Error('apple_auth_unavailable');
     const rawNonce = Crypto.randomUUID();
     const nonce = await Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.SHA256, rawNonce);
@@ -148,25 +226,21 @@ export class SupabasePhoneAuthService implements AuthService {
     try {
       credential = await AppleAuthentication.signInAsync({
         nonce,
-        requestedScopes: [
+        requestedScopes: requestProfile ? [
           AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
           AppleAuthentication.AppleAuthenticationScope.EMAIL,
-        ],
+        ] : [],
       });
     } catch (error) {
       if ((error as { code?: string }).code === 'ERR_REQUEST_CANCELED') throw new Error('social_auth_cancelled');
       throw new Error('apple_auth_failed');
     }
     if (!credential.identityToken) throw new Error('apple_identity_token_missing');
-    const { data, error } = await this.client.auth.signInWithIdToken({
-      provider: 'apple',
-      token: credential.identityToken,
-      nonce: rawNonce,
-    });
-    if (error || !data.session) throw authError(error);
-    const session = appSession(data.session);
-    if (!session || !session.user.providers.includes('apple')) throw new Error('apple_auth_failed');
-    return session;
+    return {
+      authorizationCode: credential.authorizationCode,
+      identityToken: credential.identityToken,
+      rawNonce,
+    };
   }
 
   async requestPhoneOtp(input: string) {
