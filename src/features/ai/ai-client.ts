@@ -1,5 +1,6 @@
 import { CURRENT_AI_CONSENT_FLOW_REVISION, CURRENT_AI_CONSENT_POLICY_VERSION, type AiConsent, type AiConsentChallenge, type AiConsentStatus, type AiReviewRequest, type AiReviewResult, type GrammarReviewRequest, type GrammarReviewResult, type PolishRequest, type PolishResult, type TranscribeResult } from '@icao/contracts';
 import Constants from 'expo-constants';
+import { randomUUID } from 'expo-crypto';
 import Storage from '@/platform/storage';
 
 import {
@@ -79,7 +80,11 @@ export async function clearLocalAiConsent() {
   await Storage.removeItem(CONSENT_KEY);
 }
 
-export async function transcribeRecording(uri: string, signal?: AbortSignal) {
+export function createAiOperationId() {
+  return randomUUID();
+}
+
+export async function transcribeRecording(uri: string, signal?: AbortSignal, operationId = createAiOperationId()) {
   if (AUDIO_E2E_ENABLED) {
     if (signal?.aborted) throw new Error('request_aborted');
     const baseUrl = audioE2EProbeBaseUrl();
@@ -93,6 +98,7 @@ export async function transcribeRecording(uri: string, signal?: AbortSignal) {
     }
     return {
       transcript: 'Audio lifecycle test transcript.',
+      aiPoints: { operationId, ruleVersion: 'ai-points-v1', estimated: 5, charged: 5, remaining: 95 },
     } satisfies TranscribeResult;
   }
   try {
@@ -111,14 +117,14 @@ export async function transcribeRecording(uri: string, signal?: AbortSignal) {
         const upload = await createAudioUploadForm(uri, await getAsrModel());
         return withApiRequestTimeout((requestSignal) => upload.fetch(`${baseUrl}/v1/ai/transcribe`, {
           method: 'POST',
-          headers: { accept: 'application/json', authorization: `Bearer ${accessToken}` },
+          headers: { accept: 'application/json', authorization: `Bearer ${accessToken}`, 'x-ai-operation-id': operationId },
           body: upload.form,
           signal: requestSignal,
         }) as Promise<Response>, signal);
       };
       const firstResponse = await withApiRequestTimeout((requestSignal) => audioUpload.fetch(`${baseUrl}/v1/ai/transcribe`, {
         method: 'POST',
-        headers: { accept: 'application/json', authorization: `Bearer ${token}` },
+        headers: { accept: 'application/json', authorization: `Bearer ${token}`, 'x-ai-operation-id': operationId },
         body: audioUpload.form,
         signal: requestSignal,
       }) as Promise<Response>, signal);
@@ -135,10 +141,10 @@ export async function transcribeRecording(uri: string, signal?: AbortSignal) {
   }
 }
 
-export async function grammarReview(input: GrammarReviewRequest, signal?: AbortSignal) {
+export async function grammarReview(input: GrammarReviewRequest, signal?: AbortSignal, operationId = createAiOperationId()) {
   try {
     return await apiRequest<GrammarReviewResult>('/v1/ai/grammar-review', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input), signal,
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'x-ai-operation-id': operationId }, body: JSON.stringify(input), signal,
     });
   } catch (error) {
     await invalidateRejectedConsent(error);
@@ -146,10 +152,10 @@ export async function grammarReview(input: GrammarReviewRequest, signal?: AbortS
   }
 }
 
-export async function polishExpression(input: PolishRequest, signal?: AbortSignal) {
+export async function polishExpression(input: PolishRequest, signal?: AbortSignal, operationId = createAiOperationId()) {
   try {
     return await apiRequest<PolishResult>('/v1/ai/polish', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input), signal,
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'x-ai-operation-id': operationId }, body: JSON.stringify(input), signal,
     });
   } catch (error) {
     await invalidateRejectedConsent(error);
@@ -157,11 +163,11 @@ export async function polishExpression(input: PolishRequest, signal?: AbortSigna
   }
 }
 
-export async function reviewExpression(input: AiReviewRequest, signal?: AbortSignal) {
+export async function reviewExpression(input: AiReviewRequest, signal?: AbortSignal, operationId = createAiOperationId()) {
   const capability = input.mode === 'opi' ? 'polish' : 'grammar';
   try {
     return await apiRequest<AiReviewResult>('/v1/ai/review', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input), signal,
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'x-ai-operation-id': operationId }, body: JSON.stringify(input), signal,
     });
   } catch (error) {
     await invalidateRejectedConsent(error);

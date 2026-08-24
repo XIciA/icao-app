@@ -4170,6 +4170,22 @@ test('five concurrent AI requests release the five-connection pool before provid
       updatedAt: acceptedAt,
     })),
   );
+  await serviceDatabase.insert(databaseSchema.aiPointBatches).values(
+    accountIds.map((accountId) => ({
+      environment: 'production',
+      accountId,
+      originalAccountId: accountId,
+      sourceType: 'trial',
+      sourceReference: `trial:pool:${accountId}`,
+      ruleVersion: 'ai-points-v1',
+      ordinal: 0,
+      grantedPoints: 100,
+      availableAt: acceptedAt,
+      status: 'available',
+      createdAt: acceptedAt,
+      updatedAt: acceptedAt,
+    })),
+  );
   let entered = 0;
   let releaseProvider;
   const providerBarrier = new Promise((resolve) => { releaseProvider = resolve; });
@@ -4210,4 +4226,160 @@ test('five concurrent AI requests release the five-connection pool before provid
     clearTimeout(timeout);
   }
   assert.equal(entered, 5);
+});
+
+test('AI point runtime reserves, settles, replays, and spends membership before trial', async () => {
+  const accountId = '86000000-0000-4000-8000-000000000001';
+  const operationId = '86000000-0000-4000-8000-000000000002';
+  const now = new Date();
+  await serviceDatabase.insert(databaseSchema.accounts).values({ id: accountId });
+  await serviceDatabase.insert(databaseSchema.aiConsentAuthorities).values({
+    userId: accountId,
+    policyVersion: 'ai-learning-privacy-v4',
+    revision: 1,
+    active: true,
+    updatedAt: now,
+  });
+  await serviceDatabase.insert(databaseSchema.aiConsents).values({
+    userId: accountId,
+    policyVersion: 'ai-learning-privacy-v4',
+    acceptedAt: now,
+    revision: 1,
+    revokedAt: null,
+    updatedAt: now,
+  });
+  await serviceDatabase.insert(databaseSchema.aiPointBatches).values([
+    {
+      environment: 'production', accountId, originalAccountId: accountId,
+      sourceType: 'trial', sourceReference: `trial:${accountId}`, ruleVersion: 'ai-points-v1',
+      ordinal: 0, grantedPoints: 100, availableAt: now, status: 'available', createdAt: now, updatedAt: now,
+    },
+    {
+      environment: 'production', accountId, originalAccountId: accountId,
+      sourceType: 'membership', sourceReference: `membership:${accountId}`, ruleVersion: 'ai-points-v1',
+      ordinal: 0, grantedPoints: 10, availableAt: now, status: 'available', createdAt: now, updatedAt: now,
+    },
+  ]);
+  let providerCalls = 0;
+  const ai = new AiService(
+    { db: serviceDatabase },
+    {
+      generateValidated: async (input) => {
+        providerCalls += 1;
+        return {
+          data: input.validate({ grammar: { correctedText: 'Ready.', issues: [] } }),
+          meta: {},
+        };
+      },
+      textModel: () => 'deepseek-v4-flash',
+    },
+    {},
+    new PersistentCommerceBenefitsService(),
+  );
+  const request = {
+    mode: 'grammar',
+    module: 'atc',
+    questionId: 'point-question-1',
+    transcript: 'Ready.',
+  };
+  const first = await ai.review(
+    accountId,
+    'point-request-1',
+    request,
+    await ai.admitOperation(accountId),
+    undefined,
+    operationId,
+  );
+  const replay = await ai.review(
+    accountId,
+    'point-request-2',
+    request,
+    await ai.admitOperation(accountId),
+    undefined,
+    operationId,
+  );
+  assert.equal(providerCalls, 1);
+  assert.deepEqual(replay, first);
+  assert.deepEqual(first.aiPoints, {
+    operationId,
+    ruleVersion: 'ai-points-v1',
+    estimated: 3,
+    charged: 3,
+    remaining: 107,
+  });
+  assert.equal(
+    queryScalar(`
+      SELECT batch.source_type || ':' || allocation.points::text
+      FROM ai_point_reservation_allocations allocation
+      JOIN ai_point_batches batch ON batch.id = allocation.batch_id
+      JOIN ai_point_reservations reservation ON reservation.id = allocation.reservation_id
+      WHERE reservation.operation_id = '${operationId}'
+    `),
+    'membership:3',
+  );
+  assert.equal(
+    queryScalar(`SELECT COUNT(*) FROM ai_point_ledger_entries WHERE operation_id = '${operationId}'`),
+    '2',
+    'one reserve and one settle entry must be durable across replay',
+  );
+  await assert.rejects(
+    ai.review(
+      accountId,
+      'point-request-3',
+      { ...request, transcript: 'Changed.' },
+      await ai.admitOperation(accountId),
+      undefined,
+      operationId,
+    ),
+    (error) => error?.getStatus?.() === 409 && error?.message === 'ai_operation_idempotency_conflict',
+  );
+  assert.equal(providerCalls, 1);
+});
+
+test('AI point runtime releases a failed provider reservation and never charges it', async () => {
+  const accountId = '86000000-0000-4000-8000-000000000011';
+  const operationId = '86000000-0000-4000-8000-000000000012';
+  const now = new Date();
+  await serviceDatabase.insert(databaseSchema.accounts).values({ id: accountId });
+  await serviceDatabase.insert(databaseSchema.aiConsentAuthorities).values({
+    userId: accountId, policyVersion: 'ai-learning-privacy-v4', revision: 1, active: true, updatedAt: now,
+  });
+  await serviceDatabase.insert(databaseSchema.aiConsents).values({
+    userId: accountId, policyVersion: 'ai-learning-privacy-v4', acceptedAt: now,
+    revision: 1, revokedAt: null, updatedAt: now,
+  });
+  await serviceDatabase.insert(databaseSchema.aiPointBatches).values({
+    environment: 'production', accountId, originalAccountId: accountId,
+    sourceType: 'trial', sourceReference: `trial:${accountId}`, ruleVersion: 'ai-points-v1',
+    ordinal: 0, grantedPoints: 100, availableAt: now, status: 'available', createdAt: now, updatedAt: now,
+  });
+  const ai = new AiService(
+    { db: serviceDatabase },
+    {
+      generateValidated: async () => { throw new Error('provider_failed'); },
+      textModel: () => 'deepseek-v4-flash',
+    },
+    {},
+    new PersistentCommerceBenefitsService(),
+  );
+  await assert.rejects(
+    ai.review(accountId, 'point-failure-request', {
+      mode: 'grammar', module: 'atc', questionId: 'point-question-failure', transcript: 'Ready.',
+    }, await ai.admitOperation(accountId), undefined, operationId),
+    (error) => error?.getStatus?.() === 503,
+  );
+  assert.equal(
+    queryScalar(`
+      SELECT reservation.status || ':' || batch.reserved_points::text || ':' || batch.consumed_points::text
+      FROM ai_point_reservations reservation
+      JOIN ai_point_reservation_allocations allocation ON allocation.reservation_id = reservation.id
+      JOIN ai_point_batches batch ON batch.id = allocation.batch_id
+      WHERE reservation.operation_id = '${operationId}'
+    `),
+    'released:0:0',
+  );
+  assert.equal(
+    queryScalar(`SELECT string_agg(entry_type, ',' ORDER BY sequence) FROM ai_point_ledger_entries WHERE operation_id = '${operationId}'`),
+    'reserve,release',
+  );
 });

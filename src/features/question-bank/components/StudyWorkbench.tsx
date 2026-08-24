@@ -1,4 +1,5 @@
-import type { AiReviewResult } from '@icao/contracts';
+import type { AiPointOperationSummary, AiReviewResult } from '@icao/contracts';
+import { randomUUID } from 'expo-crypto';
 import { useRouter } from 'expo-router';
 import {
   Fragment,
@@ -114,6 +115,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     topicTitle,
   } = props;
   const [aiReview, setAiReview] = useState<AiReviewResult>();
+  const [lastPointUsage, setLastPointUsage] = useState<AiPointOperationSummary>();
   const [matchMessage, setMatchMessage] = useState<string>();
   const [busy, setBusy] = useState<'transcribe' | 'review'>();
   const [error, setError] = useState<string>();
@@ -126,6 +128,8 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   const [noteInputHeight, setNoteInputHeight] = useState(92);
   const [saveRevision, setSaveRevision] = useState(0);
   const activeRequest = useRef<AbortController | undefined>(undefined);
+  const transcribeOperationId = useRef<string | undefined>(undefined);
+  const reviewOperationId = useRef<string | undefined>(undefined);
   const answerInputRef = useRef<TextInput>(null);
   const noteInputRef = useRef<TextInput>(null);
   const currentCardKey = useRef(cardKey);
@@ -228,12 +232,15 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     const controller = activeRequest.current;
     if (controller) controller.abort();
     setAiReview(undefined);
+    setLastPointUsage(undefined);
     setMatchMessage(undefined);
     setError(undefined);
     setFailedAction(undefined);
     setFailureDiagnosticId(undefined);
     setAutoSaveError(undefined);
     setBusy(undefined);
+    transcribeOperationId.current = undefined;
+    reviewOperationId.current = undefined;
     setAnswerInputHeight(92);
     setNoteInputHeight(92);
     dirty.current = false;
@@ -292,10 +299,12 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
 
   const changeAnswer = useCallback((text: string) => {
     setAiReview(undefined);
+    setLastPointUsage(undefined);
     setMatchMessage(undefined);
     setError(undefined);
     setFailedAction(undefined);
     setFailureDiagnosticId(undefined);
+    reviewOperationId.current = undefined;
     onAnswerChange(text);
     markDirty();
   }, [markDirty, onAnswerChange]);
@@ -312,14 +321,24 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     activeRequest.current = controller;
     try {
       if (!await ensureConsent('audio')) return;
-      const result = await transcribeRecording(recordingUri, controller.signal);
+      const stableOperationId = transcribeOperationId.current ?? randomUUID();
+      transcribeOperationId.current = stableOperationId;
+      const result = await transcribeRecording(recordingUri, controller.signal, stableOperationId);
       if (controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
       changeAnswer(result.transcript);
+      setLastPointUsage(result.aiPoints);
+      transcribeOperationId.current = undefined;
       emitAudioDiagnostic({ code: 'transcription_completed', level: 'info', scope: 'transcription' });
     } catch (error) {
       if (activeRequest.current === controller && currentCardKey.current === requestCardKey) {
         const failure = toAiOperationFailure(error, 'transcribe');
-        if (controller.signal.aborted || failure.cancelled) return;
+        if (controller.signal.aborted || failure.cancelled) {
+          transcribeOperationId.current = undefined;
+          return;
+        }
+        if (failure.status !== undefined && failure.code !== 'ai_operation_in_progress') {
+          transcribeOperationId.current = undefined;
+        }
         if (Platform.OS !== 'web' && failure.code === 'ai_consent_required') setConsented(false);
         void recordSafeDiagnosticEvent({
           feature: 'ai',
@@ -373,20 +392,30 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
       }
       if (!await ensureConsent('text')) return;
       const module = bankId === 'radiotelephony' ? 'atc' : bankId === 'storytelling' ? 'story' : 'opi';
+      const stableOperationId = reviewOperationId.current ?? randomUUID();
+      reviewOperationId.current = stableOperationId;
       const result = await reviewExpression({
         mode: reviewKind === 'opi-analysis' ? 'opi' : 'grammar',
         module,
         questionId: sourceCardId,
         transcript: answerText,
-      }, controller.signal);
+      }, controller.signal, stableOperationId);
       if (controller.signal.aborted || activeRequest.current !== controller || currentCardKey.current !== requestCardKey) return;
       setAiReview(result);
+      setLastPointUsage(result.aiPoints);
+      reviewOperationId.current = undefined;
       markDirty();
     } catch (error) {
       if (activeRequest.current === controller && currentCardKey.current === requestCardKey) {
         const capability: AiCapability = reviewKind === 'opi-analysis' ? 'polish' : 'grammar';
         const failure = toAiOperationFailure(error, capability);
-        if (controller.signal.aborted || failure.cancelled) return;
+        if (controller.signal.aborted || failure.cancelled) {
+          reviewOperationId.current = undefined;
+          return;
+        }
+        if (failure.status !== undefined && failure.code !== 'ai_operation_in_progress') {
+          reviewOperationId.current = undefined;
+        }
         if (Platform.OS !== 'web' && failure.code === 'ai_consent_required') setConsented(false);
         void recordSafeDiagnosticEvent({
           feature: 'ai',
@@ -412,7 +441,9 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   }
 
   const title = activeTab === 'reference' ? referenceLabel : labels[activeTab];
+  const reviewPointCost = reviewKind === 'opi-analysis' ? 5 : reviewKind === 'exact-match' ? 0 : 3;
   const reviewLabel = '分析表达';
+  const reviewDisplayLabel = reviewPointCost ? `${reviewLabel} · ${reviewPointCost}点` : reviewLabel;
   const editableTab = activeTab === 'mine' || activeTab === 'notes' ? activeTab : undefined;
   const editing = Boolean(editableTab && editingTab === editableTab);
   const editAccessibilityLabel = editing ? `完成${title}` : `编辑${title}`;
@@ -476,7 +507,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
               style={({ pressed }) => [styles.transcribeAction, pressed && !transcribeDisabled ? styles.pressed : null, transcribeDisabled ? styles.headerActionDisabled : null]}
               testID="study-workbench-transcribe-action"
             >
-              <AppText color={transcribeDisabled ? colors.mutedForeground : colors.primary} variant="caption">转写</AppText>
+              <AppText color={transcribeDisabled ? colors.mutedForeground : colors.primary} variant="caption">转写 · 5点</AppText>
             </Pressable> : null}
             <Pressable
               accessibilityLabel={editAccessibilityLabel}
@@ -500,7 +531,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
               style={({ pressed }) => [styles.reviewAction, pressed && !reviewDisabled ? styles.pressed : null, reviewDisabled ? styles.headerActionDisabled : null]}
               testID="study-workbench-review-action"
             >
-              <AppText color={reviewDisabled ? colors.mutedForeground : colors.primary} variant="caption">{reviewLabel}</AppText>
+              <AppText color={reviewDisabled ? colors.mutedForeground : colors.primary} variant="caption">{reviewDisplayLabel}</AppText>
             </Pressable> : null}
           </View> : null}
         </View>
@@ -510,6 +541,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
             <View style={styles.responseSection}>
               {Platform.OS !== 'web' && recordingUri && !consented ? <AppText variant="micro">录音仅用于本次转写。</AppText> : null}
               {editing ? <TextInput accessibilityLabel="我的回答" autoFocus multiline onBlur={() => { onEditingTabChange(undefined); void persistCurrent(); }} onChangeText={changeAnswer} onContentSizeChange={({ nativeEvent }) => setAnswerInputHeight(Math.max(92, Math.ceil(nativeEvent.contentSize.height)))} placeholder={busy === 'transcribe' ? '正在转写…' : '输入回答'} placeholderTextColor={colors.mutedForeground} ref={answerInputRef} scrollEnabled={false} style={[styles.input, { height: answerInputHeight }]} textAlignVertical="top" value={answerText} /> : <View accessibilityLabel="我的回答内容" style={styles.input}><AppText color={answerText ? colors.foreground : colors.mutedForeground}>{answerText || (busy === 'transcribe' ? '正在转写…' : Platform.OS === 'web' ? '回答会显示在这里' : '录音或编辑后，回答会显示在这里')}</AppText></View>}
+              {lastPointUsage ? <AppText color={colors.mutedForeground} testID="study-workbench-point-usage" variant="micro">{`本次已扣 ${lastPointUsage.charged} 点，剩余 ${lastPointUsage.remaining} 点`}</AppText> : null}
               {transcriptionError ? <View style={styles.aiErrorActions}>
                 <AppText color={colors.destructive} style={styles.aiErrorCopy} variant="caption">{transcriptionError}</AppText>
                 <Pressable accessibilityLabel="提交 AI 诊断" accessibilityRole="button" onPress={openAiDiagnosticFeedback} style={({ pressed }) => [styles.aiRetry, pressed ? styles.pressed : null]}><AppText color={colors.primary} variant="caption">提交诊断</AppText></Pressable>

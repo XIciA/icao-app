@@ -65,6 +65,30 @@ function failurePolicy(code: string, fallbackStage: AiFailureStage) {
         : 'AI 数据处理同意已撤回或需要更新，请重新确认后再试。',
     };
   }
+  if (code === 'insufficient_ai_points') {
+    return {
+      stage: 'authorization' as const,
+      retryable: false,
+      userAction: 'none' as const,
+      userMessage: 'AI 点数不足，请在“会员与购买”中查看余额和下一次发放时间。',
+    };
+  }
+  if (code === 'ai_operation_in_progress') {
+    return {
+      stage: 'api' as const,
+      retryable: true,
+      userAction: 'retry' as const,
+      userMessage: '当前账号的上一项 AI 任务仍在处理中，请稍后重试。',
+    };
+  }
+  if (code === 'ai_operation_released' || code === 'ai_operation_idempotency_conflict') {
+    return {
+      stage: 'api' as const,
+      retryable: true,
+      userAction: 'retry' as const,
+      userMessage: '本次 AI 操作已结束，请重新点击后再试。',
+    };
+  }
   if (code === 'no_speech_detected') {
     return {
       stage: 'response_validation' as const,

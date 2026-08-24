@@ -6,6 +6,7 @@ import { StudyWorkbench } from '@/features/question-bank/components/StudyWorkben
 
 const mockTranscribeRecording = jest.fn(async (_uri: string, _signal?: AbortSignal) => ({
   transcript: 'normalized aviation transcript',
+  aiPoints: { operationId: 'op-transcribe', ruleVersion: 'ai-points-v1' as const, estimated: 5, charged: 5, remaining: 95 },
 }));
 const mockAcceptAiConsent = jest.fn(async () => ({ policyVersion: 'v1', acceptedAt: new Date().toISOString() }));
 const mockHasAiConsent = jest.fn(async () => true);
@@ -13,6 +14,7 @@ const mockAddRecord = jest.fn(async () => undefined);
 const mockReviewExpression = jest.fn(async (_input: unknown, _signal?: AbortSignal) => ({
   grammar: { correctedText: 'He has informed ATC.', issues: [{ before: 'He have', after: 'He has', reasonZh: '主谓一致错误。' }] },
   promptVersion: 'deepseek-review:v1' as const,
+  aiPoints: { operationId: 'op-review', ruleVersion: 'ai-points-v1' as const, estimated: 3, charged: 3, remaining: 92 },
 }));
 const mockRouterPush = jest.fn();
 
@@ -89,6 +91,7 @@ describe('AI speaking workbench', () => {
     await waitFor(() => expect(mockTranscribeRecording).toHaveBeenCalledTimes(1));
     await waitFor(() => expect(onAnswerChange).toHaveBeenCalledWith('normalized aviation transcript'));
     await waitFor(() => expect(screen.getByText('normalized aviation transcript')).toBeTruthy());
+    expect(screen.getByText('本次已扣 5 点，剩余 95 点')).toBeTruthy();
     await waitFor(() => expect(mockAddRecord).toHaveBeenCalledWith(expect.objectContaining({
       cardId: 'opi-card-1',
       id: expect.stringContaining('study-test-session'),

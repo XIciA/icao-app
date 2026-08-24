@@ -24,6 +24,17 @@ function multipartModel(file: MultipartFile) {
   return value;
 }
 
+function operationId(request: AuthenticatedRequest) {
+  const raw = request.headers?.['x-ai-operation-id'];
+  const value = Array.isArray(raw) ? raw[0] : raw;
+  if (value !== undefined && !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/iu.test(value)) {
+    throw new BadRequestException('invalid_ai_operation_id');
+  }
+  // Compatibility for pre-1.0.0 development builds. The formal client always
+  // supplies the stable header so an uncertain network retry can be replayed.
+  return value ?? request.id;
+}
+
 @Controller('v1/ai')
 @UseGuards(RequireAuthGuard)
 export class AiController {
@@ -55,11 +66,12 @@ export class AiController {
 
   @Post('transcribe')
   async transcribe(@Req() request: MultipartRequest): Promise<ApiSuccessEnvelope<TranscribeResult>> {
+    const stableOperationId = operationId(request);
     const grant = await this.ai.admitOperation(request.user!.id);
     const file = await request.file({ limits: { fileSize: 8 * 1024 * 1024, files: 1, fields: 8 } });
     if (!file || !file.mimetype.startsWith('audio/')) throw new BadRequestException('invalid_audio');
     const audio = await file.toBuffer();
-    return { requestId: request.id, data: await this.ai.transcribe(request.user!.id, request.id, audio, file.mimetype, multipartModel(file), grant, cancellationSignal(request)) };
+    return { requestId: request.id, data: await this.ai.transcribe(request.user!.id, request.id, audio, file.mimetype, multipartModel(file), grant, cancellationSignal(request), stableOperationId) };
   }
 
   @Post('grammar-review')
@@ -67,25 +79,28 @@ export class AiController {
     // Fastify parses bounded JSON before Nest invokes this method. The grant is
     // therefore acquired before validation/business work and is rechecked under
     // the consent lock immediately before the provider is called.
+    const stableOperationId = operationId(request);
     const grant = await this.ai.admitOperation(request.user!.id);
     const parsed = grammarSchema.safeParse(body);
     if (!parsed.success) throw new BadRequestException('invalid_grammar_review');
-    return { requestId: request.id, data: await this.ai.grammarReview(request.user!.id, request.id, parsed.data, grant, cancellationSignal(request)) };
+    return { requestId: request.id, data: await this.ai.grammarReview(request.user!.id, request.id, parsed.data, grant, cancellationSignal(request), stableOperationId) };
   }
 
   @Post('polish')
   async polish(@Body() body: PolishRequest, @Req() request: AiRequest): Promise<ApiSuccessEnvelope<PolishResult>> {
+    const stableOperationId = operationId(request);
     const grant = await this.ai.admitOperation(request.user!.id);
     const parsed = polishSchema.safeParse(body);
     if (!parsed.success) throw new BadRequestException('invalid_polish');
-    return { requestId: request.id, data: await this.ai.polish(request.user!.id, request.id, parsed.data, grant, cancellationSignal(request)) };
+    return { requestId: request.id, data: await this.ai.polish(request.user!.id, request.id, parsed.data, grant, cancellationSignal(request), stableOperationId) };
   }
 
   @Post('review')
   async review(@Body() body: AiReviewRequest, @Req() request: AiRequest): Promise<ApiSuccessEnvelope<AiReviewResult>> {
+    const stableOperationId = operationId(request);
     const grant = await this.ai.admitOperation(request.user!.id);
     const parsed = reviewSchema.safeParse(body);
     if (!parsed.success) throw new BadRequestException('invalid_ai_review');
-    return { requestId: request.id, data: await this.ai.review(request.user!.id, request.id, parsed.data, grant, cancellationSignal(request)) };
+    return { requestId: request.id, data: await this.ai.review(request.user!.id, request.id, parsed.data, grant, cancellationSignal(request), stableOperationId) };
   }
 }

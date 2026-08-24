@@ -599,8 +599,17 @@ export type WordLookupResult = {
   cached: boolean;
 };
 
+export type AiPointOperationSummary = {
+  operationId: string;
+  ruleVersion: 'ai-points-v1';
+  estimated: number;
+  charged: number;
+  remaining: number;
+};
+
 export type TranscribeResult = {
   transcript: string;
+  aiPoints?: AiPointOperationSummary;
 };
 
 export type ExactMatchOperation = 'equal' | 'missing' | 'extra' | 'replace' | 'order';
@@ -628,6 +637,7 @@ export type GrammarReviewResult = {
   correctedText: string;
   issues: string[];
   promptVersion: string;
+  aiPoints?: AiPointOperationSummary;
 };
 
 export type GrammarCorrectionIssue = {
@@ -650,6 +660,7 @@ export type AiReviewResult = {
   };
   polishedText?: string;
   promptVersion: 'deepseek-review:v1';
+  aiPoints?: AiPointOperationSummary;
 };
 
 export type PolishRequest = {
@@ -663,4 +674,5 @@ export type PolishRequest = {
 export type PolishResult = {
   polishedText: string;
   promptVersion: string;
+  aiPoints?: AiPointOperationSummary;
 };
