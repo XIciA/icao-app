@@ -4,7 +4,6 @@ import { type Href, useLocalSearchParams, useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Platform, Pressable, StyleSheet, View } from 'react-native';
 
-import { MessageCircle } from '@/components/ui/icons';
 import { AppText, Button } from '@/components/ui';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { resolveLoginAgeCopy } from '@/features/auth/login-release-surface';
@@ -31,10 +30,6 @@ export function loginErrorMessage(code: string) {
     case 'apple_auth_unavailable': return '当前设备暂不支持 Apple 登录。';
     case 'apple_auth_failed':
     case 'apple_identity_token_missing': return 'Apple 登录未完成，请稍后重试。';
-    case 'wechat_auth_unavailable': return '微信登录尚未完成平台配置，请稍后再试。';
-    case 'wechat_not_installed': return '当前设备未安装微信，请先安装微信或改用手机号登录。';
-    case 'wechat_authorization_invalid':
-    case 'wechat_auth_failed': return '微信登录未完成，请稍后重试。';
     case 'social_auth_cancelled': return '已取消登录。';
     case 'social_auth_unavailable': return '该登录方式暂时不可用，请改用其他方式。';
     case 'auth_network_error': return '网络连接失败，请检查网络后重试。';
@@ -123,13 +118,12 @@ export function LoginScreen() {
     router.replace((auth.consumePendingPath() ?? '/(tabs)') as Href);
   }
 
-  async function socialLogin(provider: 'apple' | 'wechat') {
+  async function socialLogin() {
     if (!requireConsent()) return;
     setError('');
     setSubmitting(true);
     try {
-      if (provider === 'apple') await auth.signInWithApple();
-      else await auth.signInWithWechat();
+      await auth.signInWithApple();
       enterApp();
     } catch (value) {
       showError(value);
@@ -265,21 +259,12 @@ export function LoginScreen() {
     <AuthShell>
       <AuthHeading title="登录 / 注册" subtitle="选择一种方式继续你的 ICAO 备考进度" />
       <View style={styles.socialSection}>
-        <Button
-          disabled={submitting}
-          leading={<MessageCircle color="#FFFFFF" size={19} />}
-          onPress={() => void socialLogin('wechat')}
-          size="lg"
-          style={styles.wechatButton}
-        >
-          微信登录
-        </Button>
         {Platform.OS === 'ios' ? (
           <AppleAuthentication.AppleAuthenticationButton
             buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
             buttonType={AppleAuthentication.AppleAuthenticationButtonType.CONTINUE}
             cornerRadius={radii.md}
-            onPress={() => { if (!submitting) void socialLogin('apple'); }}
+            onPress={() => { if (!submitting) void socialLogin(); }}
             style={styles.appleButton}
             testID="apple-sign-in"
           />
@@ -306,7 +291,7 @@ export function LoginScreen() {
         <Checkbox checked={accepted} label={loginAgeCopy.consentLabel} onPress={() => setAccepted((value) => !value)} />
         <LegalLinks router={router} />
       </View>
-      <AppText style={styles.scopeNote} variant="caption">微信或 Apple 登录后可直接进入，手机号可稍后在账号安全中绑定。</AppText>
+      <AppText style={styles.scopeNote} variant="caption">Apple 登录后可直接进入，手机号可稍后在账号安全中绑定。</AppText>
     </AuthShell>
   );
 }
@@ -352,7 +337,6 @@ function ScopeNote() {
 
 const styles = StyleSheet.create({
   socialSection: { gap: spacing[3], marginTop: spacing[6] },
-  wechatButton: { backgroundColor: '#07C160', borderColor: '#07C160' },
   appleButton: { height: 48, width: '100%' },
   methodTabs: { backgroundColor: colors.secondary, borderRadius: radii.lg, flexDirection: 'row', gap: spacing[1], padding: spacing[1] },
   methodTab: { alignItems: 'center', borderRadius: radii.md, flex: 1, minHeight: 42, justifyContent: 'center' },

@@ -8,11 +8,8 @@ import { MeController } from './auth/me.controller';
 import { PhoneAuthController } from './auth/phone-auth.controller';
 import { PhoneAuthService } from './auth/phone-auth.service';
 import { RequireAuthGuard } from './auth/require-auth.guard';
-import { RecentSocialAuthGrantService } from './auth/recent-social-auth-grant.service';
 import { SessionSecurityService } from './auth/session-security.service';
 import { SupabaseAuthVerifier } from './auth/supabase-auth.verifier';
-import { WechatAuthController } from './auth/wechat-auth.controller';
-import { WechatAuthService } from './auth/wechat-auth.service';
 import { AliyunSmsProvider } from './auth/sms/aliyun-sms.provider';
 import { SupabaseSmsHookController } from './auth/sms/supabase-sms-hook.controller';
 import { SupabaseSmsHookService } from './auth/sms/supabase-sms-hook.service';
@@ -40,7 +37,7 @@ import { FeedbackController } from './feedback/feedback.controller';
 import { FeedbackService } from './feedback/feedback.service';
 
 @Module({
-  controllers: [HealthController, MeController, PhoneAuthController, SupabaseSmsHookController, WechatAuthController, AccountController, QuestionBankController, ResourceController, EditorialController, SyncController, AiController, VocabularyController, FeedbackController],
+  controllers: [HealthController, MeController, PhoneAuthController, SupabaseSmsHookController, AccountController, QuestionBankController, ResourceController, EditorialController, SyncController, AiController, VocabularyController, FeedbackController],
   providers: [
     { provide: API_CONFIG, useFactory: () => loadConfig() },
     DatabaseService,
@@ -48,12 +45,10 @@ import { FeedbackService } from './feedback/feedback.service';
     { provide: AUTH_VERIFIER, useExisting: SupabaseAuthVerifier },
     SessionSecurityService,
     AccountIdentityService,
-    RecentSocialAuthGrantService,
     RequireAuthGuard,
     AliyunSmsProvider,
     SupabaseSmsHookService,
     PhoneAuthService,
-    WechatAuthService,
     AccountService,
     QuestionBankService,
     ResourceService,

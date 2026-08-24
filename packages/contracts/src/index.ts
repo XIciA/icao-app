@@ -22,7 +22,7 @@ export type AuthenticatedUser = {
   providers?: AuthIdentityProvider[];
 };
 
-export type AuthIdentityProvider = 'phone' | 'apple' | 'wechat';
+export type AuthIdentityProvider = 'phone' | 'apple';
 
 export type AccountSummary = {
   accountId: string;
@@ -65,10 +65,6 @@ export type UpdatePhonePasswordRequest = {
 export type UpdatePhonePasswordResponse = {
   session: SocialAuthSessionResponse;
   updated: true;
-};
-
-export type WechatSessionRequest = {
-  code: string;
 };
 
 export type SocialAuthSessionResponse = {

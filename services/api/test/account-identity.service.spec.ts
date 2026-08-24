@@ -110,7 +110,7 @@ function authSession(overrides: Partial<VerifiedAuthSession> = {}): VerifiedAuth
   };
 }
 
-function identityHash(provider: 'apple' | 'phone' | 'wechat', subject: string) {
+function identityHash(provider: 'apple' | 'phone', subject: string) {
   return createHmac('sha256', hashSecret)
     .update(`account-identity-v1\0${provider}\0${subject}`)
     .digest('hex');
@@ -159,14 +159,14 @@ describe('AccountIdentityService', () => {
     })))).not.toContain('+8613800138000');
   });
 
-  it('fails closed when a new auth user presents a WeChat subject already owned by another auth user', async () => {
+  it('fails closed when a new auth user presents an Apple subject already owned by another auth user', async () => {
     const accountId = '22222222-2222-4222-8222-222222222222';
     const auth = authSession({
       authUserId: '33333333-3333-4333-8333-333333333333',
-      identities: [{ provider: 'wechat', subject: 'stable-wechat-union-id' }],
+      identities: [{ provider: 'apple', subject: 'stable-apple-subject' }],
       user: {
         id: '33333333-3333-4333-8333-333333333333',
-        providers: ['wechat'],
+        providers: ['apple'],
       },
     });
     const fixture = databaseFixture({
@@ -184,11 +184,11 @@ describe('AccountIdentityService', () => {
         && error.message === 'identity_account_conflict');
     expect(fixture.mutations.find((entry) => (
       entry.values as { provider?: string } | undefined
-    )?.provider === 'wechat')?.values).toEqual({
+    )?.provider === 'apple')?.values).toEqual({
       accountId,
       authUserId: auth.authUserId,
-      provider: 'wechat',
-      subjectHash: identityHash('wechat', 'stable-wechat-union-id'),
+      provider: 'apple',
+      subjectHash: identityHash('apple', 'stable-apple-subject'),
     });
     expect(fixture.db.selectDistinct).not.toHaveBeenCalled();
   });
@@ -223,11 +223,11 @@ describe('AccountIdentityService', () => {
 
   it('fails closed when the auth user and supplied identities point at different accounts', async () => {
     const auth = authSession({
-      identities: [{ provider: 'wechat', subject: 'conflicting-wechat-union-id' }],
+      identities: [{ provider: 'apple', subject: 'conflicting-apple-subject' }],
       user: {
         id: '11111111-1111-4111-8111-111111111111',
         phone: '+8613800138000',
-        providers: ['phone', 'wechat'],
+        providers: ['phone', 'apple'],
       },
     });
     const fixture = databaseFixture({

@@ -27,7 +27,6 @@ type AuthContextValue = {
   exitUiAcceptanceMode(): void;
   rememberPendingPath(path: string): void;
   signInWithApple(): Promise<void>;
-  signInWithWechat(): Promise<void>;
   requestPhoneOtp(phone: string): Promise<void>;
   requestPasswordRecoveryOtp(phone: string): Promise<void>;
   verifyPhoneOtp(phone: string, token: string, purpose?: 'login' | 'recovery'): Promise<AppSession>;
@@ -56,7 +55,6 @@ const AuthContext = createContext<AuthContextValue>({
   exitUiAcceptanceMode: () => undefined,
   rememberPendingPath: () => undefined,
   signInWithApple: unavailable,
-  signInWithWechat: unavailable,
   requestPhoneOtp: unavailable,
   requestPasswordRecoveryOtp: unavailable,
   verifyPhoneOtp: unavailable,
@@ -306,14 +304,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setPasswordAuthorization(undefined);
       setAccount(undefined);
       await acceptAuthenticatedSession(await service.signInWithApple());
-    },
-    async signInWithWechat() {
-      if (!service) return unavailable();
-      setAccountReady(false);
-      setUiAcceptanceMode(false);
-      setPasswordAuthorization(undefined);
-      setAccount(undefined);
-      await acceptAuthenticatedSession(await service.signInWithWechat());
     },
     async requestPhoneOtp(phone) { if (!service) return unavailable(); await service.requestPhoneOtp(phone); },
     async requestPasswordRecoveryOtp(phone) { if (!service) return unavailable(); await service.requestPasswordRecoveryOtp(phone); },

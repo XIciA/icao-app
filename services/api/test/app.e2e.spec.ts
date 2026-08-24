@@ -231,6 +231,7 @@ describe('API foundation', () => {
     expect(config).not.toHaveProperty('dashscopeApiKey');
     expect(config).not.toHaveProperty('dashscopeBaseUrl');
     expect(config).not.toHaveProperty('aiTextModel');
+    expect(config).not.toHaveProperty('wechat');
   });
 
   it('rejects unversioned or non-production AI endpoints in production', () => {
@@ -438,6 +439,17 @@ describe('API foundation', () => {
       method: 'POST',
       url: '/v1/auth/invite/session',
       payload: { inviteCode: '起落平安-7K4M-2Q9X' },
+    });
+    expect(response.statusCode).toBe(404);
+    await app.close();
+  });
+
+  it('does not register the retired WeChat session endpoint', async () => {
+    const app = await testApp();
+    const response = await app.inject({
+      method: 'POST',
+      url: '/v1/auth/wechat/session',
+      payload: {},
     });
     expect(response.statusCode).toBe(404);
     await app.close();

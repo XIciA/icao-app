@@ -277,7 +277,7 @@ function SecurityPage() {
   const router = useRouter();
   const hasPassword = auth.session?.user.hasPassword === true;
   const phoneBound = auth.account?.phoneBound === true;
-  const providerLabel = auth.account?.providers.map((provider) => provider === 'wechat' ? '微信' : provider === 'apple' ? 'Apple' : '手机号').join(' + ') || '正在同步';
+  const providerLabel = auth.account?.providers.map((provider) => provider === 'apple' ? 'Apple' : '手机号').join(' + ') || '正在同步';
   const [startingPasswordSetup, setStartingPasswordSetup] = useState(false);
   const [passwordSetupError, setPasswordSetupError] = useState('');
 
@@ -309,7 +309,7 @@ function SecurityPage() {
         <Section title="登录与绑定">
           <Row first icon={Shield} label="已绑定方式" value={providerLabel} />
           <Row
-            hint={phoneBound ? '用于找回密码和敏感操作验证' : '推荐绑定，稍后也可以继续使用微信或 Apple 登录'}
+            hint={phoneBound ? '用于找回密码和敏感操作验证' : '推荐绑定，稍后也可以继续使用 Apple 登录'}
             icon={UserRound}
             label="绑定手机号"
             onPress={phoneBound ? undefined : () => router.push('/account/bind-phone')}
@@ -382,7 +382,7 @@ function BindPhonePage() {
       const code = cause instanceof Error ? cause.message : '';
       setRecentAuthRequired(code === 'recent_social_auth_required');
       setError(code === 'recent_social_auth_required'
-        ? '为保护账号安全，请先重新使用微信或 Apple 登录验证身份，再绑定手机号'
+        ? '为保护账号安全，请先重新使用 Apple 登录验证身份，再绑定手机号'
         : '暂时无法发送验证码，请检查手机号或稍后重试');
     } finally {
       setSubmitting(false);
@@ -418,7 +418,7 @@ function BindPhonePage() {
       setError(code === 'account_identity_conflict'
         ? '该账号存在无法自动处理的身份冲突，请稍后联系客服'
         : code === 'recent_social_auth_required'
-          ? '为保护账号安全，请先重新使用微信或 Apple 登录验证身份，再绑定手机号'
+          ? '为保护账号安全，请先重新使用 Apple 登录验证身份，再绑定手机号'
         : code === 'invalid_phone_otp'
           ? '验证码错误或已过期，请重新输入'
           : '绑定未完成，请稍后重试');

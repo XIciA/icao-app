@@ -1,5 +1,5 @@
 import { createClient, type Session, type SupabaseClient } from '@supabase/supabase-js';
-import type { AccountSummary, AuthIdentityProvider, AuthorizePasswordRecoveryResponse, MergePhoneAccountResponse, SocialAuthSessionResponse, StartPhoneBindingResponse, StartPhoneOtpResponse, UpdatePhonePasswordResponse } from '@icao/contracts';
+import type { AccountSummary, AuthIdentityProvider, AuthorizePasswordRecoveryResponse, MergePhoneAccountResponse, StartPhoneBindingResponse, StartPhoneOtpResponse, UpdatePhonePasswordResponse } from '@icao/contracts';
 import { isChinaMobileE164, normalizeChinaMobile } from '@icao/contracts';
 
 import { apiRequest } from '@/platform/api-client';
@@ -29,7 +29,6 @@ export type AuthService = {
   refreshSession(): Promise<AppSession | undefined>;
   isAppleSignInAvailable(): Promise<boolean>;
   signInWithApple(): Promise<AppSession>;
-  signInWithWechat(): Promise<AppSession>;
   requestPhoneOtp(phone: string): Promise<void>;
   requestPasswordRecoveryOtp(phone: string): Promise<void>;
   verifyPhoneOtp(phone: string, token: string): Promise<AppSession>;
@@ -53,7 +52,6 @@ function appSession(session: Session | null): AppSession | undefined {
   for (const identity of session.user.identities ?? []) {
     if (identity.provider === 'phone' || identity.provider === 'apple') providers.add(identity.provider);
   }
-  if (session.user.user_metadata?.account_provider === 'wechat') providers.add('wechat');
   if (providers.size === 0) return undefined;
   return {
     accessToken: session.access_token,
@@ -169,44 +167,6 @@ export class SupabasePhoneAuthService implements AuthService {
     const session = appSession(data.session);
     if (!session || !session.user.providers.includes('apple')) throw new Error('apple_auth_failed');
     return session;
-  }
-
-  async signInWithWechat() {
-    const appid = process.env.EXPO_PUBLIC_WECHAT_APP_ID?.trim();
-    const universalLink = process.env.EXPO_PUBLIC_WECHAT_UNIVERSAL_LINK?.trim();
-    if (!appid) throw new Error('wechat_auth_unavailable');
-    const [Wechat, Crypto] = await Promise.all([
-      import('expo-native-wechat'),
-      import('expo-crypto'),
-    ]);
-    try {
-      await Wechat.registerApp({ appid, universalLink: universalLink || undefined });
-      if (!await Wechat.isWechatInstalled()) throw new Error('wechat_not_installed');
-      const state = Crypto.randomUUID();
-      const result = await Wechat.sendAuthRequest({ scope: 'snsapi_userinfo', state });
-      if (!result.data.code || result.data.state !== state) throw new Error('wechat_authorization_invalid');
-      const sessionResponse = await apiRequest<SocialAuthSessionResponse>('/v1/auth/wechat/session', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ code: result.data.code }),
-      });
-      const { data, error } = await this.client.auth.setSession({
-        access_token: sessionResponse.accessToken,
-        refresh_token: sessionResponse.refreshToken,
-      });
-      if (error || !data.session) throw authError(error);
-      const session = appSession(data.session);
-      if (!session || !session.user.providers.includes('wechat')) throw new Error('wechat_auth_failed');
-      return session;
-    } catch (error) {
-      if (error instanceof Error && [
-        'wechat_not_installed',
-        'wechat_authorization_invalid',
-        'wechat_auth_unavailable',
-      ].includes(error.message)) throw error;
-      if ((error as { message?: string }).message?.includes('(-2)')) throw new Error('social_auth_cancelled');
-      throw new Error('wechat_auth_failed');
-    }
   }
 
   async requestPhoneOtp(input: string) {

@@ -70,18 +70,23 @@ process.env.ICAO_APP_VARIANT = 'production';
 const productionConfig = appConfig({ config: app.expo });
 if (originalVariant === undefined) delete process.env.ICAO_APP_VARIANT;
 else process.env.ICAO_APP_VARIANT = originalVariant;
+const productionPluginNames = productionConfig.plugins.map((entry) => Array.isArray(entry) ? entry[0] : entry);
 if (
   developmentConfig.ios.bundleIdentifier !== appConfig.DEVELOPMENT_IOS_BUNDLE_IDENTIFIER ||
   developmentConfig.ios.bundleIdentifier === app.expo.ios.bundleIdentifier ||
-  developmentConfig.name !== '听你五个 Dev'
+  developmentConfig.name !== '听你五个 Dev' ||
+  developmentConfig.scheme !== 'readyoufife-dev'
 ) {
   throw new Error('The iOS Development Build must use its own app identity.');
 }
 if (
   productionConfig.ios.bundleIdentifier !== app.expo.ios.bundleIdentifier ||
   productionConfig.name !== app.expo.name ||
+  productionConfig.scheme !== 'readyoufife' ||
   productionConfig.ios.usesAppleSignIn !== true ||
-  !productionConfig.plugins.includes('expo-apple-authentication')
+  Object.hasOwn(productionConfig.ios, 'associatedDomains') ||
+  !productionPluginNames.includes('expo-apple-authentication') ||
+  productionPluginNames.some((name) => /wechat|weixin/iu.test(String(name)))
 ) {
   throw new Error('The production app identity must remain unchanged.');
 }
@@ -124,6 +129,7 @@ const iosTestFlightArchive = await readFile('scripts/archive-ios-testflight.sh',
 const iosReleaseProduct = await readFile('scripts/lib/ios-release-product.sh', 'utf8');
 const androidStandalone = await readFile('scripts/build-standalone-android.sh', 'utf8');
 const releaseCommon = await readFile('scripts/lib/release-common.sh', 'utf8');
+const wechatRuntimeFreeze = await readFile('tools/check-wechat-runtime-freeze.mjs', 'utf8');
 const packageJsonSource = await readFile('package.json', 'utf8');
 const iosDevelopment = await readFile('scripts/run-ios-development.sh', 'utf8');
 const criticalReleaseEvidence = await readFile('tools/critical-capability-release-evidence.mjs', 'utf8');
@@ -307,11 +313,15 @@ if (
 }
 if (
   !iosReleaseProduct.includes('assert_release_plist_value CFBundleVersion') ||
+  !iosReleaseProduct.includes('CFBundleURLSchemes') ||
   !iosReleaseProduct.includes('EXDevLauncher.bundle') ||
   !iosReleaseProduct.includes('_expo._tcp') ||
   !iosReleaseProduct.includes('TeamIdentifier=') ||
   !iosReleaseProduct.includes('application-identifier') ||
-  !iosReleaseProduct.includes('com.apple.developer.applesignin')
+  !iosReleaseProduct.includes('com.apple.developer.applesignin') ||
+  !iosReleaseProduct.includes('com.apple.developer.associated-domains') ||
+  !iosReleaseProduct.includes('WechatOpenSDK') ||
+  !iosReleaseProduct.includes('api\\.weixin\\.qq\\.com')
 ) {
   throw new Error('The shared iOS Release product integrity gate is incomplete.');
 }
@@ -328,11 +338,27 @@ if (
   throw new Error('The TestFlight archive is missing its production identity or product integrity gate.');
 }
 if (
+  !releaseCommon.includes('tools/check-wechat-runtime-freeze.mjs') ||
   !releaseCommon.includes('settings.external?.phone !== true') ||
   !releaseCommon.includes('settings.phone_autoconfirm === true') ||
-  !releaseCommon.includes('settings.external?.[process.env.CHECK_SOCIAL_PROVIDER] !== true')
+  !releaseCommon.includes('settings.external?.[process.env.CHECK_SOCIAL_PROVIDER] !== true') ||
+  !releaseCommon.includes('settings.external?.wechat === true') ||
+  !releaseCommon.includes('/v1/auth/wechat/session') ||
+  !releaseCommon.includes('retiredWechat.status !== 404')
 ) {
-  throw new Error('The Release runtime gate must verify enabled phone and required social providers.');
+  throw new Error('The Release runtime gate must verify enabled providers and retired WeChat surfaces.');
+}
+for (const freezeContract of [
+  'expo-native-wechat',
+  'services/api/src/auth/wechat-auth.controller.ts',
+  'services/api/src',
+  'src/features/auth',
+  'production_scheme_invalid',
+  'associated_domains_present',
+]) {
+  if (!wechatRuntimeFreeze.includes(freezeContract)) {
+    throw new Error(`The WeChat runtime freeze contract is incomplete: ${freezeContract}`);
+  }
 }
 if (iosTestFlightArchive.includes('ICAO_SKIP_AUDIO_E2E')) {
   throw new Error('The TestFlight archive must not allow its audio evidence gate to be bypassed.');
