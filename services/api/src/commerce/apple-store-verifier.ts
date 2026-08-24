@@ -3,22 +3,22 @@ import { createHash } from 'node:crypto';
 import {
   Environment,
   SignedDataVerifier,
+  Type,
+  VerificationException,
+  VerificationStatus,
   type JWSTransactionDecodedPayload,
   type ResponseBodyV2DecodedPayload,
 } from '@apple/app-store-server-library';
 
 import type { VerifiedAppleNotification, VerifiedAppleTransaction } from './commerce-domain';
 import type { CommerceEnvironment } from './product-catalog';
+import type { ApiConfig } from '../config';
+
+export const APPLE_STORE_VERIFIER = Symbol('APPLE_STORE_VERIFIER');
 
 export interface AppleStoreVerifier {
-  verifyTransaction(
-    signedTransaction: string,
-    expectedEnvironment: CommerceEnvironment,
-  ): Promise<VerifiedAppleTransaction>;
-  verifyNotification(
-    signedPayload: string,
-    expectedEnvironment: CommerceEnvironment,
-  ): Promise<VerifiedAppleNotification>;
+  verifyTransaction(signedTransaction: string): Promise<VerifiedAppleTransaction>;
+  verifyNotification(signedPayload: string): Promise<VerifiedAppleNotification>;
 }
 
 export type OfficialAppleStoreVerifierOptions = Readonly<{
@@ -79,10 +79,14 @@ function jsonRecord(value: object): Readonly<Record<string, unknown>> {
 function normalizeTransaction(
   payload: JWSTransactionDecodedPayload,
   signedTransaction: string,
-  expectedEnvironment: CommerceEnvironment,
+  verifiedEnvironment: CommerceEnvironment,
 ): VerifiedAppleTransaction {
   const environment = normalizeEnvironment(payload.environment);
-  if (environment !== expectedEnvironment) throw new Error('apple_transaction_environment_mismatch');
+  if (environment !== verifiedEnvironment) throw new Error('apple_transaction_environment_mismatch');
+  if (payload.type !== Type.NON_RENEWING_SUBSCRIPTION) {
+    throw new Error('apple_transaction_type_invalid');
+  }
+  if (payload.quantity !== 1) throw new Error('apple_transaction_quantity_invalid');
   return {
     environment,
     transactionId: requireString(payload.transactionId, 'apple_transaction_id_missing'),
@@ -100,6 +104,8 @@ function normalizeTransaction(
     storefront: optionalString(payload.storefront),
     currency: optionalString(payload.currency),
     priceMilliunits: typeof payload.price === 'number' ? payload.price : undefined,
+    productType: 'non_renewing_subscription',
+    quantity: 1,
     signedPayloadHash: sha256(signedTransaction),
     decodedPayload: jsonRecord(payload),
   };
@@ -135,32 +141,47 @@ export class OfficialAppleStoreVerifier implements AppleStoreVerifier {
 
   async verifyTransaction(
     signedTransaction: string,
-    expectedEnvironment: CommerceEnvironment,
   ): Promise<VerifiedAppleTransaction> {
-    const payload = await this.verifiers[expectedEnvironment].verifyAndDecodeTransaction(signedTransaction);
-    return normalizeTransaction(payload, signedTransaction, expectedEnvironment);
+    return this.verifyAcrossEnvironments(async (environment, verifier) => {
+      const payload = await verifier.verifyAndDecodeTransaction(signedTransaction);
+      return normalizeTransaction(payload, signedTransaction, environment);
+    });
   }
 
   async verifyNotification(
     signedPayload: string,
-    expectedEnvironment: CommerceEnvironment,
   ): Promise<VerifiedAppleNotification> {
-    const verifier = this.verifiers[expectedEnvironment];
-    const payload = await verifier.verifyAndDecodeNotification(signedPayload);
-    const environment = normalizeEnvironment(
-      payload.data?.environment
-      ?? (expectedEnvironment === 'sandbox' ? Environment.SANDBOX : Environment.PRODUCTION),
-    );
-    if (environment !== expectedEnvironment) throw new Error('apple_notification_environment_mismatch');
-    const signedTransaction = payload.data?.signedTransactionInfo;
-    const transaction = signedTransaction
-      ? normalizeTransaction(
-        await verifier.verifyAndDecodeTransaction(signedTransaction),
-        signedTransaction,
-        expectedEnvironment,
-      )
-      : undefined;
-    return this.normalizeNotification(payload, signedPayload, environment, transaction);
+    return this.verifyAcrossEnvironments(async (environment, verifier) => {
+      const payload = await verifier.verifyAndDecodeNotification(signedPayload);
+      const payloadEnvironment = normalizeEnvironment(
+        payload.data?.environment
+        ?? (environment === 'sandbox' ? Environment.SANDBOX : Environment.PRODUCTION),
+      );
+      if (payloadEnvironment !== environment) throw new Error('apple_notification_environment_mismatch');
+      const signedTransaction = payload.data?.signedTransactionInfo;
+      const transaction = signedTransaction
+        ? normalizeTransaction(
+          await verifier.verifyAndDecodeTransaction(signedTransaction),
+          signedTransaction,
+          environment,
+        )
+        : undefined;
+      return this.normalizeNotification(payload, signedPayload, environment, transaction);
+    });
+  }
+
+  private async verifyAcrossEnvironments<T>(
+    operation: (
+      environment: CommerceEnvironment,
+      verifier: SignedDataVerifier,
+    ) => Promise<T>,
+  ): Promise<T> {
+    try {
+      return await operation('production', this.verifiers.production);
+    } catch (error) {
+      if (!isAppleEnvironmentProbeFailure(error)) throw error;
+    }
+    return operation('sandbox', this.verifiers.sandbox);
   }
 
   private normalizeNotification(
@@ -180,4 +201,39 @@ export class OfficialAppleStoreVerifier implements AppleStoreVerifier {
       transaction,
     };
   }
+}
+
+class UnconfiguredAppleStoreVerifier implements AppleStoreVerifier {
+  async verifyTransaction(): Promise<never> {
+    throw new Error('apple_commerce_not_configured');
+  }
+
+  async verifyNotification(): Promise<never> {
+    throw new Error('apple_commerce_not_configured');
+  }
+}
+
+export function configuredAppleStoreVerifier(config: ApiConfig): AppleStoreVerifier {
+  if (!config.appleIapAppAppleId || config.appleIapRootCertificates.length === 0) {
+    return new UnconfiguredAppleStoreVerifier();
+  }
+  return new OfficialAppleStoreVerifier({
+    appleRootCertificates: config.appleIapRootCertificates,
+    bundleId: config.appleIapBundleId,
+    appAppleId: config.appleIapAppAppleId,
+    enableOnlineChecks: true,
+  });
+}
+
+function isAppleEnvironmentProbeFailure(error: unknown) {
+  return error instanceof VerificationException
+    && (
+      error.status === VerificationStatus.INVALID_ENVIRONMENT
+      || error.status === VerificationStatus.INVALID_APP_IDENTIFIER
+    );
+}
+
+export function isRetryableAppleVerificationError(error: unknown) {
+  return error instanceof VerificationException
+    && error.status === VerificationStatus.RETRYABLE_VERIFICATION_FAILURE;
 }

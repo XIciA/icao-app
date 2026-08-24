@@ -20,6 +20,9 @@ const schema = z.object({
   APPLE_KEY_ID: z.string().min(3).optional(),
   APPLE_PRIVATE_KEY: z.string().min(32).optional(),
   APPLE_CREDENTIAL_ENCRYPTION_KEY: z.string().optional(),
+  APPLE_IAP_BUNDLE_ID: z.literal('com.readyoufife.ios').default('com.readyoufife.ios'),
+  APPLE_IAP_APP_APPLE_ID: z.coerce.number().int().positive().optional(),
+  APPLE_IAP_ROOT_CERTIFICATES_BASE64: z.string().optional(),
   AI_TEXT_PROVIDER: z.literal('deepseek').default('deepseek'),
   DEEPSEEK_API_KEY: z.string().min(10).optional(),
   DEEPSEEK_BASE_URL: z.string().url().default('https://api.deepseek.com'),
@@ -108,6 +111,9 @@ export type ApiConfig = {
   appleKeyId?: string;
   applePrivateKey?: string;
   appleCredentialEncryptionKey?: string;
+  appleIapBundleId: 'com.readyoufife.ios';
+  appleIapAppAppleId?: number;
+  appleIapRootCertificates: Buffer[];
   aiTextProvider: 'deepseek';
   deepseekApiKey?: string;
   deepseekBaseUrl: string;
@@ -209,6 +215,24 @@ function validateAppleRuntime(data: z.infer<typeof schema>) {
   } catch {
     invalidConfiguration('APPLE_PRIVATE_KEY');
   }
+  if (!data.APPLE_IAP_APP_APPLE_ID) invalidConfiguration('APPLE_IAP_APP_APPLE_ID');
+  if (!data.APPLE_IAP_ROOT_CERTIFICATES_BASE64?.trim()) {
+    invalidConfiguration('APPLE_IAP_ROOT_CERTIFICATES_BASE64');
+  }
+}
+
+function parseAppleRootCertificates(value: string | undefined) {
+  if (!value?.trim()) return [];
+  const encodedCertificates = value.split(',').map((entry) => entry.trim()).filter(Boolean);
+  if (encodedCertificates.length === 0) invalidConfiguration('APPLE_IAP_ROOT_CERTIFICATES_BASE64');
+  const certificates = encodedCertificates.map((encoded) => {
+    const certificate = Buffer.from(encoded, 'base64');
+    if (certificate.length === 0 || certificate.toString('base64') !== encoded) {
+      invalidConfiguration('APPLE_IAP_ROOT_CERTIFICATES_BASE64');
+    }
+    return certificate;
+  });
+  return certificates;
 }
 
 function requireProductionHttpsUrl(name: string, value: string) {
@@ -254,6 +278,9 @@ export function loadConfig(environment: NodeJS.ProcessEnv = process.env): ApiCon
   const previousIdentityHashKeys = parsePreviousIdentityHashKeys(
     parsed.data.IDENTITY_BENEFIT_DIGEST_PREVIOUS_KEYS,
     parsed.data.IDENTITY_BENEFIT_DIGEST_KEY_VERSION,
+  );
+  const appleIapRootCertificates = parseAppleRootCertificates(
+    parsed.data.APPLE_IAP_ROOT_CERTIFICATES_BASE64,
   );
   if (parsed.data.NODE_ENV === 'production') {
     const fixedOtpKeys = [
@@ -314,6 +341,9 @@ export function loadConfig(environment: NodeJS.ProcessEnv = process.env): ApiCon
     appleKeyId: parsed.data.APPLE_KEY_ID,
     applePrivateKey: parsed.data.APPLE_PRIVATE_KEY?.replaceAll('\\n', '\n'),
     appleCredentialEncryptionKey: parsed.data.APPLE_CREDENTIAL_ENCRYPTION_KEY,
+    appleIapBundleId: parsed.data.APPLE_IAP_BUNDLE_ID,
+    appleIapAppAppleId: parsed.data.APPLE_IAP_APP_APPLE_ID,
+    appleIapRootCertificates,
     aiTextProvider: parsed.data.AI_TEXT_PROVIDER,
     deepseekApiKey: parsed.data.DEEPSEEK_API_KEY,
     deepseekBaseUrl: parsed.data.DEEPSEEK_BASE_URL,

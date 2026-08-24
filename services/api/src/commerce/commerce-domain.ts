@@ -36,6 +36,8 @@ export type VerifiedAppleTransaction = Readonly<{
   storefront?: string;
   currency?: string;
   priceMilliunits?: number;
+  productType: 'non_renewing_subscription';
+  quantity: 1;
   signedPayloadHash: string;
   decodedPayload: Readonly<Record<string, unknown>>;
 }>;
@@ -340,7 +342,7 @@ export class CommerceFoundationModel {
       durationDays: product.durationDays,
       aiPointRuleVersion: product.aiPointRuleVersion,
       membershipGrantSource: 'purchase_discovery',
-      membershipEffectiveAt: new Date(processedAt),
+      membershipEffectiveAt: new Date(transaction.purchaseDate),
       membershipContributionMs: product.durationDays * DAY_MS,
       status: 'verified',
       purchasedAt: new Date(transaction.purchaseDate),
@@ -816,10 +818,10 @@ export class CommerceFoundationModel {
       ));
 
     // Rebuild the complete entitlement timeline from persisted per-order
-    // contributions. The discovery time is the earliest possible start; an
+    // contributions. The Apple purchase time is the earliest possible start; an
     // already queued contribution starts after prior contributions. Removing
-    // one order therefore removes exactly what it appended, including when the
-    // order was first discovered after its purchase date had already elapsed.
+    // one order therefore removes exactly what it appended. Discovering old
+    // history later never restarts already elapsed membership from discovery time.
 
     for (const segment of activeSegments) {
       segment.status = 'superseded';
