@@ -35,18 +35,23 @@ CREATE TABLE "ai_point_ledger_entries" (
 	"reservation_id" uuid,
 	"operation_id" text NOT NULL,
 	"entry_type" text NOT NULL,
+	"direction" text NOT NULL,
 	"points" integer NOT NULL,
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
 	CONSTRAINT "ai_point_ledger_environment_check" CHECK ("ai_point_ledger_entries"."environment" IN ('sandbox', 'production')),
-	CONSTRAINT "ai_point_ledger_entry_type_check" CHECK ("ai_point_ledger_entries"."entry_type" IN ('grant', 'reserve', 'settle', 'release', 'revoke', 'expire', 'merge')),
+	CONSTRAINT "ai_point_ledger_entry_type_check" CHECK ("ai_point_ledger_entries"."entry_type" IN ('grant', 'reserve', 'settle', 'release', 'revoke', 'expire', 'restore', 'merge_debit', 'merge_credit')),
+	CONSTRAINT "ai_point_ledger_direction_check" CHECK ("ai_point_ledger_entries"."direction" IN ('credit', 'debit', 'neutral')),
 	CONSTRAINT "ai_point_ledger_points_nonnegative" CHECK ("ai_point_ledger_entries"."points" >= 0)
 );
 --> statement-breakpoint
 CREATE TABLE "ai_point_reservation_allocations" (
+	"environment" text NOT NULL,
+	"account_id" uuid NOT NULL,
 	"reservation_id" uuid NOT NULL,
 	"batch_id" uuid NOT NULL,
 	"points" integer NOT NULL,
 	CONSTRAINT "ai_point_reservation_allocations_reservation_id_batch_id_pk" PRIMARY KEY("reservation_id","batch_id"),
+	CONSTRAINT "ai_point_reservation_allocations_environment_check" CHECK ("ai_point_reservation_allocations"."environment" IN ('sandbox', 'production')),
 	CONSTRAINT "ai_point_reservation_allocations_points_positive" CHECK ("ai_point_reservation_allocations"."points" > 0)
 );
 --> statement-breakpoint
@@ -148,6 +153,7 @@ CREATE TABLE "commerce_products" (
 	"base_price_cny_fen" integer NOT NULL,
 	"ai_point_rule_version" text NOT NULL,
 	"ai_point_batch_count" integer NOT NULL,
+	"ai_point_batch_interval_days" integer NOT NULL,
 	"ai_points_per_batch" integer NOT NULL,
 	"active" boolean DEFAULT true NOT NULL,
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
@@ -155,6 +161,7 @@ CREATE TABLE "commerce_products" (
 	CONSTRAINT "commerce_products_duration_positive" CHECK ("commerce_products"."duration_days" > 0),
 	CONSTRAINT "commerce_products_price_positive" CHECK ("commerce_products"."base_price_cny_fen" > 0),
 	CONSTRAINT "commerce_products_ai_batches_positive" CHECK ("commerce_products"."ai_point_batch_count" > 0),
+	CONSTRAINT "commerce_products_ai_batch_interval_positive" CHECK ("commerce_products"."ai_point_batch_interval_days" > 0),
 	CONSTRAINT "commerce_products_ai_points_positive" CHECK ("commerce_products"."ai_points_per_batch" > 0)
 );
 --> statement-breakpoint
@@ -175,17 +182,18 @@ CREATE TABLE "membership_entitlement_segments" (
 	CONSTRAINT "membership_segments_window_check" CHECK ("membership_entitlement_segments"."ends_at" > "membership_entitlement_segments"."starts_at")
 );
 --> statement-breakpoint
-ALTER TABLE "ai_point_batches" ADD CONSTRAINT "ai_point_batches_source_order_id_commerce_orders_id_fk" FOREIGN KEY ("source_order_id") REFERENCES "public"."commerce_orders"("id") ON DELETE restrict ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "ai_point_batches" ADD CONSTRAINT "ai_point_batches_entitlement_segment_id_membership_entitlement_segments_id_fk" FOREIGN KEY ("entitlement_segment_id") REFERENCES "public"."membership_entitlement_segments"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "ai_point_ledger_entries" ADD CONSTRAINT "ai_point_ledger_entries_batch_id_ai_point_batches_id_fk" FOREIGN KEY ("batch_id") REFERENCES "public"."ai_point_batches"("id") ON DELETE restrict ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "ai_point_ledger_entries" ADD CONSTRAINT "ai_point_ledger_entries_reservation_id_ai_point_reservations_id_fk" FOREIGN KEY ("reservation_id") REFERENCES "public"."ai_point_reservations"("id") ON DELETE restrict ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "ai_point_reservation_allocations" ADD CONSTRAINT "ai_point_reservation_allocations_reservation_id_ai_point_reservations_id_fk" FOREIGN KEY ("reservation_id") REFERENCES "public"."ai_point_reservations"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "ai_point_reservation_allocations" ADD CONSTRAINT "ai_point_reservation_allocations_batch_id_ai_point_batches_id_fk" FOREIGN KEY ("batch_id") REFERENCES "public"."ai_point_batches"("id") ON DELETE restrict ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "apple_transactions" ADD CONSTRAINT "apple_transactions_order_id_commerce_orders_id_fk" FOREIGN KEY ("order_id") REFERENCES "public"."commerce_orders"("id") ON DELETE restrict ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "ai_point_batches" ADD CONSTRAINT "ai_point_batches_order_environment_account_fk" FOREIGN KEY ("source_order_id","environment","account_id") REFERENCES "public"."commerce_orders"("id","environment","account_id") ON DELETE restrict ON UPDATE cascade;--> statement-breakpoint
+ALTER TABLE "ai_point_batches" ADD CONSTRAINT "ai_point_batches_segment_environment_account_fk" FOREIGN KEY ("entitlement_segment_id","environment","account_id") REFERENCES "public"."membership_entitlement_segments"("id","environment","account_id") ON DELETE restrict ON UPDATE cascade;--> statement-breakpoint
+ALTER TABLE "ai_point_ledger_entries" ADD CONSTRAINT "ai_point_ledger_batch_environment_account_fk" FOREIGN KEY ("batch_id","environment","account_id") REFERENCES "public"."ai_point_batches"("id","environment","account_id") ON DELETE restrict ON UPDATE cascade;--> statement-breakpoint
+ALTER TABLE "ai_point_ledger_entries" ADD CONSTRAINT "ai_point_ledger_reservation_environment_account_fk" FOREIGN KEY ("reservation_id","environment","account_id") REFERENCES "public"."ai_point_reservations"("id","environment","account_id") ON DELETE restrict ON UPDATE cascade;--> statement-breakpoint
+ALTER TABLE "ai_point_reservation_allocations" ADD CONSTRAINT "ai_point_allocations_reservation_environment_account_fk" FOREIGN KEY ("reservation_id","environment","account_id") REFERENCES "public"."ai_point_reservations"("id","environment","account_id") ON DELETE cascade ON UPDATE cascade;--> statement-breakpoint
+ALTER TABLE "ai_point_reservation_allocations" ADD CONSTRAINT "ai_point_allocations_batch_environment_account_fk" FOREIGN KEY ("batch_id","environment","account_id") REFERENCES "public"."ai_point_batches"("id","environment","account_id") ON DELETE restrict ON UPDATE cascade;--> statement-breakpoint
+ALTER TABLE "apple_transactions" ADD CONSTRAINT "apple_transactions_order_environment_account_fk" FOREIGN KEY ("order_id","environment","account_id") REFERENCES "public"."commerce_orders"("id","environment","account_id") ON DELETE restrict ON UPDATE cascade;--> statement-breakpoint
 ALTER TABLE "commerce_channel_products" ADD CONSTRAINT "commerce_channel_products_product_key_commerce_products_product_key_fk" FOREIGN KEY ("product_key") REFERENCES "public"."commerce_products"("product_key") ON DELETE restrict ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "commerce_orders" ADD CONSTRAINT "commerce_orders_product_key_commerce_products_product_key_fk" FOREIGN KEY ("product_key") REFERENCES "public"."commerce_products"("product_key") ON DELETE restrict ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "membership_entitlement_segments" ADD CONSTRAINT "membership_entitlement_segments_order_id_commerce_orders_id_fk" FOREIGN KEY ("order_id") REFERENCES "public"."commerce_orders"("id") ON DELETE restrict ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "membership_entitlement_segments" ADD CONSTRAINT "membership_segments_order_environment_account_fk" FOREIGN KEY ("order_id","environment","account_id") REFERENCES "public"."commerce_orders"("id","environment","account_id") ON DELETE restrict ON UPDATE cascade;--> statement-breakpoint
 CREATE UNIQUE INDEX "ai_point_batches_source_ordinal" ON "ai_point_batches" USING btree ("environment","source_type","source_reference","ordinal");--> statement-breakpoint
+CREATE UNIQUE INDEX "ai_point_batches_identity" ON "ai_point_batches" USING btree ("id","environment","account_id");--> statement-breakpoint
 CREATE INDEX "ai_point_batches_account_expiry" ON "ai_point_batches" USING btree ("environment","account_id","expires_at");--> statement-breakpoint
 CREATE INDEX "ai_point_batches_order" ON "ai_point_batches" USING btree ("source_order_id");--> statement-breakpoint
 CREATE UNIQUE INDEX "ai_point_ledger_idempotency" ON "ai_point_ledger_entries" USING btree ("environment","account_id","operation_id","entry_type","batch_id");--> statement-breakpoint
@@ -193,6 +201,7 @@ CREATE INDEX "ai_point_ledger_account_sequence" ON "ai_point_ledger_entries" USI
 CREATE INDEX "ai_point_ledger_reservation" ON "ai_point_ledger_entries" USING btree ("reservation_id");--> statement-breakpoint
 CREATE INDEX "ai_point_reservation_allocations_batch" ON "ai_point_reservation_allocations" USING btree ("batch_id");--> statement-breakpoint
 CREATE UNIQUE INDEX "ai_point_reservations_operation" ON "ai_point_reservations" USING btree ("environment","account_id","operation_id");--> statement-breakpoint
+CREATE UNIQUE INDEX "ai_point_reservations_identity" ON "ai_point_reservations" USING btree ("id","environment","account_id");--> statement-breakpoint
 CREATE INDEX "ai_point_reservations_account_status" ON "ai_point_reservations" USING btree ("environment","account_id","status");--> statement-breakpoint
 CREATE UNIQUE INDEX "apple_notification_events_environment_uuid" ON "apple_notification_events" USING btree ("environment","notification_uuid");--> statement-breakpoint
 CREATE INDEX "apple_notification_events_status_received" ON "apple_notification_events" USING btree ("status","received_at");--> statement-breakpoint
@@ -203,20 +212,22 @@ CREATE INDEX "apple_transactions_order" ON "apple_transactions" USING btree ("or
 CREATE UNIQUE INDEX "commerce_channel_products_external" ON "commerce_channel_products" USING btree ("channel","external_product_id");--> statement-breakpoint
 CREATE UNIQUE INDEX "commerce_channel_products_internal" ON "commerce_channel_products" USING btree ("channel","product_key");--> statement-breakpoint
 CREATE UNIQUE INDEX "commerce_orders_external" ON "commerce_orders" USING btree ("environment","channel","external_order_id");--> statement-breakpoint
+CREATE UNIQUE INDEX "commerce_orders_identity" ON "commerce_orders" USING btree ("id","environment","account_id");--> statement-breakpoint
 CREATE INDEX "commerce_orders_account_purchased" ON "commerce_orders" USING btree ("environment","account_id","purchased_at");--> statement-breakpoint
 CREATE INDEX "commerce_orders_product" ON "commerce_orders" USING btree ("product_key");--> statement-breakpoint
 CREATE UNIQUE INDEX "membership_segments_order_revision" ON "membership_entitlement_segments" USING btree ("environment","order_id","revision");--> statement-breakpoint
+CREATE UNIQUE INDEX "membership_segments_identity" ON "membership_entitlement_segments" USING btree ("id","environment","account_id");--> statement-breakpoint
 CREATE INDEX "membership_segments_account_window" ON "membership_entitlement_segments" USING btree ("environment","account_id","starts_at","ends_at");--> statement-breakpoint
 CREATE INDEX "membership_segments_active" ON "membership_entitlement_segments" USING btree ("environment","account_id","status");--> statement-breakpoint
 INSERT INTO "commerce_products" (
 	"product_key", "display_name", "duration_days", "base_price_cny_fen",
-	"ai_point_rule_version", "ai_point_batch_count", "ai_points_per_batch"
+	"ai_point_rule_version", "ai_point_batch_count", "ai_point_batch_interval_days", "ai_points_per_batch"
 ) VALUES
-	('membership_7d_v1', '7天会员', 7, 6800, 'ai-points-v1', 1, 250),
-	('membership_15d_v1', '15天会员', 15, 10800, 'ai-points-v1', 1, 500),
-	('membership_31d_v1', '31天会员', 31, 16800, 'ai-points-v1', 1, 1000),
-	('membership_62d_v1', '62天会员', 62, 29800, 'ai-points-v1', 2, 1000),
-	('membership_93d_v1', '93天会员', 93, 39800, 'ai-points-v1', 3, 1000);--> statement-breakpoint
+	('membership_7d_v1', '7天会员', 7, 6800, 'ai-points-v1', 1, 31, 250),
+	('membership_15d_v1', '15天会员', 15, 10800, 'ai-points-v1', 1, 31, 500),
+	('membership_31d_v1', '31天会员', 31, 16800, 'ai-points-v1', 1, 31, 1000),
+	('membership_62d_v1', '62天会员', 62, 29800, 'ai-points-v1', 2, 31, 1000),
+	('membership_93d_v1', '93天会员', 93, 39800, 'ai-points-v1', 3, 31, 1000);--> statement-breakpoint
 INSERT INTO "commerce_channel_products" (
 	"channel", "external_product_id", "product_key"
 ) VALUES

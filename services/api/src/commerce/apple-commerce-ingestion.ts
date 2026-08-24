@@ -1,15 +1,19 @@
 import type { AppleStoreVerifier } from './apple-store-verifier';
-import type { CommerceDomainService, CommerceDomainState } from './commerce-domain';
+import type { CommerceDomainState, CommerceFoundationModel } from './commerce-domain';
 import type { CommerceEnvironment } from './product-catalog';
 
 /**
- * The application boundary for Apple input. Only values returned by the verifier
- * are allowed to reach the commerce domain.
+ * Foundation-only boundary for verified Apple input. This class has no Nest
+ * decorators or persistence and must not be wired into AppModule.
+ * Real certificate/JWS fixtures and active App Store history reconciliation
+ * belong to the later persistence/integration phase; this boundary does not
+ * simulate either one.
  */
-export class AppleCommerceIngestionService {
+export class AppleCommerceFoundationBoundary {
   constructor(
     private readonly verifier: AppleStoreVerifier,
-    private readonly commerce: CommerceDomainService,
+    private readonly commerce: CommerceFoundationModel,
+    private readonly now: () => Date = () => new Date(),
   ) {}
 
   async ingestTransaction(
@@ -18,7 +22,7 @@ export class AppleCommerceIngestionService {
     expectedEnvironment: CommerceEnvironment,
   ) {
     const transaction = await this.verifier.verifyTransaction(signedTransaction, expectedEnvironment);
-    return this.commerce.recordApplePurchase(state, transaction);
+    return this.commerce.recordApplePurchase(state, transaction, this.now());
   }
 
   async ingestNotification(
@@ -27,6 +31,6 @@ export class AppleCommerceIngestionService {
     expectedEnvironment: CommerceEnvironment,
   ) {
     const notification = await this.verifier.verifyNotification(signedPayload, expectedEnvironment);
-    return this.commerce.recordAppleNotification(state, notification);
+    return this.commerce.recordAppleNotification(state, notification, this.now());
   }
 }

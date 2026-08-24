@@ -1,5 +1,5 @@
 import { sql } from 'drizzle-orm';
-import { bigint, bigserial, boolean, check, index, integer, jsonb, pgTable, primaryKey, text, timestamp, uniqueIndex, uuid } from 'drizzle-orm/pg-core';
+import { bigint, bigserial, boolean, check, foreignKey, index, integer, jsonb, pgTable, primaryKey, text, timestamp, uniqueIndex, uuid } from 'drizzle-orm/pg-core';
 
 export const accounts = pgTable('accounts', {
   id: uuid('id').defaultRandom().primaryKey(),
@@ -281,6 +281,7 @@ export const commerceProducts = pgTable('commerce_products', {
   basePriceCnyFen: integer('base_price_cny_fen').notNull(),
   aiPointRuleVersion: text('ai_point_rule_version').notNull(),
   aiPointBatchCount: integer('ai_point_batch_count').notNull(),
+  aiPointBatchIntervalDays: integer('ai_point_batch_interval_days').notNull(),
   aiPointsPerBatch: integer('ai_points_per_batch').notNull(),
   active: boolean('active').default(true).notNull(),
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
@@ -289,6 +290,7 @@ export const commerceProducts = pgTable('commerce_products', {
   check('commerce_products_duration_positive', sql`${table.durationDays} > 0`),
   check('commerce_products_price_positive', sql`${table.basePriceCnyFen} > 0`),
   check('commerce_products_ai_batches_positive', sql`${table.aiPointBatchCount} > 0`),
+  check('commerce_products_ai_batch_interval_positive', sql`${table.aiPointBatchIntervalDays} > 0`),
   check('commerce_products_ai_points_positive', sql`${table.aiPointsPerBatch} > 0`),
 ]);
 
@@ -326,6 +328,7 @@ export const commerceOrders = pgTable('commerce_orders', {
   updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
 }, (table) => [
   uniqueIndex('commerce_orders_external').on(table.environment, table.channel, table.externalOrderId),
+  uniqueIndex('commerce_orders_identity').on(table.id, table.environment, table.accountId),
   index('commerce_orders_account_purchased').on(table.environment, table.accountId, table.purchasedAt),
   index('commerce_orders_product').on(table.productKey),
   check('commerce_orders_environment_check', sql`${table.environment} IN ('sandbox', 'production')`),
@@ -339,8 +342,7 @@ export const appleTransactions = pgTable('apple_transactions', {
   environment: text('environment').notNull(),
   transactionId: text('transaction_id').notNull(),
   originalTransactionId: text('original_transaction_id').notNull(),
-  orderId: uuid('order_id').notNull()
-    .references(() => commerceOrders.id, { onDelete: 'restrict' }),
+  orderId: uuid('order_id').notNull(),
   accountId: uuid('account_id').notNull(),
   appAccountToken: uuid('app_account_token'),
   productId: text('product_id').notNull(),
@@ -361,6 +363,11 @@ export const appleTransactions = pgTable('apple_transactions', {
   index('apple_transactions_original').on(table.environment, table.originalTransactionId),
   index('apple_transactions_account_purchase').on(table.environment, table.accountId, table.purchaseDate),
   index('apple_transactions_order').on(table.orderId),
+  foreignKey({
+    columns: [table.orderId, table.environment, table.accountId],
+    foreignColumns: [commerceOrders.id, commerceOrders.environment, commerceOrders.accountId],
+    name: 'apple_transactions_order_environment_account_fk',
+  }).onDelete('restrict').onUpdate('cascade'),
   check('apple_transactions_environment_check', sql`${table.environment} IN ('sandbox', 'production')`),
 ]);
 
@@ -388,8 +395,7 @@ export const membershipEntitlementSegments = pgTable('membership_entitlement_seg
   id: uuid('id').defaultRandom().primaryKey(),
   environment: text('environment').notNull(),
   accountId: uuid('account_id').notNull(),
-  orderId: uuid('order_id').notNull()
-    .references(() => commerceOrders.id, { onDelete: 'restrict' }),
+  orderId: uuid('order_id').notNull(),
   revision: integer('revision').notNull(),
   startsAt: timestamp('starts_at', { withTimezone: true }).notNull(),
   endsAt: timestamp('ends_at', { withTimezone: true }).notNull(),
@@ -399,8 +405,14 @@ export const membershipEntitlementSegments = pgTable('membership_entitlement_seg
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
 }, (table) => [
   uniqueIndex('membership_segments_order_revision').on(table.environment, table.orderId, table.revision),
+  uniqueIndex('membership_segments_identity').on(table.id, table.environment, table.accountId),
   index('membership_segments_account_window').on(table.environment, table.accountId, table.startsAt, table.endsAt),
   index('membership_segments_active').on(table.environment, table.accountId, table.status),
+  foreignKey({
+    columns: [table.orderId, table.environment, table.accountId],
+    foreignColumns: [commerceOrders.id, commerceOrders.environment, commerceOrders.accountId],
+    name: 'membership_segments_order_environment_account_fk',
+  }).onDelete('restrict').onUpdate('cascade'),
   check('membership_segments_environment_check', sql`${table.environment} IN ('sandbox', 'production')`),
   check('membership_segments_status_check', sql`${table.status} IN ('active', 'superseded', 'revoked')`),
   check('membership_segments_window_check', sql`${table.endsAt} > ${table.startsAt}`),
@@ -413,10 +425,8 @@ export const aiPointBatches = pgTable('ai_point_batches', {
   originalAccountId: uuid('original_account_id').notNull(),
   sourceType: text('source_type').notNull(),
   sourceReference: text('source_reference').notNull(),
-  sourceOrderId: uuid('source_order_id')
-    .references(() => commerceOrders.id, { onDelete: 'restrict' }),
-  entitlementSegmentId: uuid('entitlement_segment_id')
-    .references(() => membershipEntitlementSegments.id, { onDelete: 'set null' }),
+  sourceOrderId: uuid('source_order_id'),
+  entitlementSegmentId: uuid('entitlement_segment_id'),
   ruleVersion: text('rule_version').notNull(),
   ordinal: integer('ordinal').notNull(),
   grantedPoints: integer('granted_points').notNull(),
@@ -430,8 +440,23 @@ export const aiPointBatches = pgTable('ai_point_batches', {
   updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
 }, (table) => [
   uniqueIndex('ai_point_batches_source_ordinal').on(table.environment, table.sourceType, table.sourceReference, table.ordinal),
+  uniqueIndex('ai_point_batches_identity').on(table.id, table.environment, table.accountId),
   index('ai_point_batches_account_expiry').on(table.environment, table.accountId, table.expiresAt),
   index('ai_point_batches_order').on(table.sourceOrderId),
+  foreignKey({
+    columns: [table.sourceOrderId, table.environment, table.accountId],
+    foreignColumns: [commerceOrders.id, commerceOrders.environment, commerceOrders.accountId],
+    name: 'ai_point_batches_order_environment_account_fk',
+  }).onDelete('restrict').onUpdate('cascade'),
+  foreignKey({
+    columns: [table.entitlementSegmentId, table.environment, table.accountId],
+    foreignColumns: [
+      membershipEntitlementSegments.id,
+      membershipEntitlementSegments.environment,
+      membershipEntitlementSegments.accountId,
+    ],
+    name: 'ai_point_batches_segment_environment_account_fk',
+  }).onDelete('restrict').onUpdate('cascade'),
   check('ai_point_batches_environment_check', sql`${table.environment} IN ('sandbox', 'production')`),
   check('ai_point_batches_source_check', sql`${table.sourceType} IN ('trial', 'membership', 'compensation')`),
   check('ai_point_batches_status_check', sql`${table.status} IN ('scheduled', 'available', 'expired', 'revoked', 'merged')`),
@@ -455,6 +480,7 @@ export const aiPointReservations = pgTable('ai_point_reservations', {
   releasedAt: timestamp('released_at', { withTimezone: true }),
 }, (table) => [
   uniqueIndex('ai_point_reservations_operation').on(table.environment, table.accountId, table.operationId),
+  uniqueIndex('ai_point_reservations_identity').on(table.id, table.environment, table.accountId),
   index('ai_point_reservations_account_status').on(table.environment, table.accountId, table.status),
   check('ai_point_reservations_environment_check', sql`${table.environment} IN ('sandbox', 'production')`),
   check('ai_point_reservations_status_check', sql`${table.status} IN ('reserved', 'settled', 'released')`),
@@ -462,14 +488,25 @@ export const aiPointReservations = pgTable('ai_point_reservations', {
 ]);
 
 export const aiPointReservationAllocations = pgTable('ai_point_reservation_allocations', {
-  reservationId: uuid('reservation_id').notNull()
-    .references(() => aiPointReservations.id, { onDelete: 'cascade' }),
-  batchId: uuid('batch_id').notNull()
-    .references(() => aiPointBatches.id, { onDelete: 'restrict' }),
+  environment: text('environment').notNull(),
+  accountId: uuid('account_id').notNull(),
+  reservationId: uuid('reservation_id').notNull(),
+  batchId: uuid('batch_id').notNull(),
   points: integer('points').notNull(),
 }, (table) => [
   primaryKey({ columns: [table.reservationId, table.batchId] }),
   index('ai_point_reservation_allocations_batch').on(table.batchId),
+  foreignKey({
+    columns: [table.reservationId, table.environment, table.accountId],
+    foreignColumns: [aiPointReservations.id, aiPointReservations.environment, aiPointReservations.accountId],
+    name: 'ai_point_allocations_reservation_environment_account_fk',
+  }).onDelete('cascade').onUpdate('cascade'),
+  foreignKey({
+    columns: [table.batchId, table.environment, table.accountId],
+    foreignColumns: [aiPointBatches.id, aiPointBatches.environment, aiPointBatches.accountId],
+    name: 'ai_point_allocations_batch_environment_account_fk',
+  }).onDelete('restrict').onUpdate('cascade'),
+  check('ai_point_reservation_allocations_environment_check', sql`${table.environment} IN ('sandbox', 'production')`),
   check('ai_point_reservation_allocations_points_positive', sql`${table.points} > 0`),
 ]);
 
@@ -477,12 +514,11 @@ export const aiPointLedgerEntries = pgTable('ai_point_ledger_entries', {
   sequence: bigserial('sequence', { mode: 'number' }).primaryKey(),
   environment: text('environment').notNull(),
   accountId: uuid('account_id').notNull(),
-  batchId: uuid('batch_id').notNull()
-    .references(() => aiPointBatches.id, { onDelete: 'restrict' }),
-  reservationId: uuid('reservation_id')
-    .references(() => aiPointReservations.id, { onDelete: 'restrict' }),
+  batchId: uuid('batch_id').notNull(),
+  reservationId: uuid('reservation_id'),
   operationId: text('operation_id').notNull(),
   entryType: text('entry_type').notNull(),
+  direction: text('direction').notNull(),
   points: integer('points').notNull(),
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
 }, (table) => [
@@ -495,7 +531,18 @@ export const aiPointLedgerEntries = pgTable('ai_point_ledger_entries', {
   ),
   index('ai_point_ledger_account_sequence').on(table.environment, table.accountId, table.sequence),
   index('ai_point_ledger_reservation').on(table.reservationId),
+  foreignKey({
+    columns: [table.batchId, table.environment, table.accountId],
+    foreignColumns: [aiPointBatches.id, aiPointBatches.environment, aiPointBatches.accountId],
+    name: 'ai_point_ledger_batch_environment_account_fk',
+  }).onDelete('restrict').onUpdate('cascade'),
+  foreignKey({
+    columns: [table.reservationId, table.environment, table.accountId],
+    foreignColumns: [aiPointReservations.id, aiPointReservations.environment, aiPointReservations.accountId],
+    name: 'ai_point_ledger_reservation_environment_account_fk',
+  }).onDelete('restrict').onUpdate('cascade'),
   check('ai_point_ledger_environment_check', sql`${table.environment} IN ('sandbox', 'production')`),
-  check('ai_point_ledger_entry_type_check', sql`${table.entryType} IN ('grant', 'reserve', 'settle', 'release', 'revoke', 'expire', 'merge')`),
+  check('ai_point_ledger_entry_type_check', sql`${table.entryType} IN ('grant', 'reserve', 'settle', 'release', 'revoke', 'expire', 'restore', 'merge_debit', 'merge_credit')`),
+  check('ai_point_ledger_direction_check', sql`${table.direction} IN ('credit', 'debit', 'neutral')`),
   check('ai_point_ledger_points_nonnegative', sql`${table.points} >= 0`),
 ]);

@@ -1,5 +1,5 @@
 {
-  "id": "7ec70315-8d69-4ecc-85e1-c116bc34eae5",
+  "id": "9340fba0-2803-413b-9937-81e455ec5629",
   "prevId": "632a1434-8687-4314-9528-3b905e4e66bf",
   "version": "7",
   "dialect": "postgresql",
@@ -538,6 +538,33 @@
           "method": "btree",
           "with": {}
         },
+        "ai_point_batches_identity": {
+          "name": "ai_point_batches_identity",
+          "columns": [
+            {
+              "expression": "id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "environment",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "account_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
         "ai_point_batches_account_expiry": {
           "name": "ai_point_batches_account_expiry",
           "columns": [
@@ -582,31 +609,39 @@
         }
       },
       "foreignKeys": {
-        "ai_point_batches_source_order_id_commerce_orders_id_fk": {
-          "name": "ai_point_batches_source_order_id_commerce_orders_id_fk",
+        "ai_point_batches_order_environment_account_fk": {
+          "name": "ai_point_batches_order_environment_account_fk",
           "tableFrom": "ai_point_batches",
           "tableTo": "commerce_orders",
           "columnsFrom": [
-            "source_order_id"
+            "source_order_id",
+            "environment",
+            "account_id"
           ],
           "columnsTo": [
-            "id"
+            "id",
+            "environment",
+            "account_id"
           ],
           "onDelete": "restrict",
-          "onUpdate": "no action"
+          "onUpdate": "cascade"
         },
-        "ai_point_batches_entitlement_segment_id_membership_entitlement_segments_id_fk": {
-          "name": "ai_point_batches_entitlement_segment_id_membership_entitlement_segments_id_fk",
+        "ai_point_batches_segment_environment_account_fk": {
+          "name": "ai_point_batches_segment_environment_account_fk",
           "tableFrom": "ai_point_batches",
           "tableTo": "membership_entitlement_segments",
           "columnsFrom": [
-            "entitlement_segment_id"
+            "entitlement_segment_id",
+            "environment",
+            "account_id"
           ],
           "columnsTo": [
-            "id"
+            "id",
+            "environment",
+            "account_id"
           ],
-          "onDelete": "set null",
-          "onUpdate": "no action"
+          "onDelete": "restrict",
+          "onUpdate": "cascade"
         }
       },
       "compositePrimaryKeys": {},
@@ -686,6 +721,12 @@
         },
         "entry_type": {
           "name": "entry_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "direction": {
+          "name": "direction",
           "type": "text",
           "primaryKey": false,
           "notNull": true
@@ -788,31 +829,39 @@
         }
       },
       "foreignKeys": {
-        "ai_point_ledger_entries_batch_id_ai_point_batches_id_fk": {
-          "name": "ai_point_ledger_entries_batch_id_ai_point_batches_id_fk",
+        "ai_point_ledger_batch_environment_account_fk": {
+          "name": "ai_point_ledger_batch_environment_account_fk",
           "tableFrom": "ai_point_ledger_entries",
           "tableTo": "ai_point_batches",
           "columnsFrom": [
-            "batch_id"
+            "batch_id",
+            "environment",
+            "account_id"
           ],
           "columnsTo": [
-            "id"
+            "id",
+            "environment",
+            "account_id"
           ],
           "onDelete": "restrict",
-          "onUpdate": "no action"
+          "onUpdate": "cascade"
         },
-        "ai_point_ledger_entries_reservation_id_ai_point_reservations_id_fk": {
-          "name": "ai_point_ledger_entries_reservation_id_ai_point_reservations_id_fk",
+        "ai_point_ledger_reservation_environment_account_fk": {
+          "name": "ai_point_ledger_reservation_environment_account_fk",
           "tableFrom": "ai_point_ledger_entries",
           "tableTo": "ai_point_reservations",
           "columnsFrom": [
-            "reservation_id"
+            "reservation_id",
+            "environment",
+            "account_id"
           ],
           "columnsTo": [
-            "id"
+            "id",
+            "environment",
+            "account_id"
           ],
           "onDelete": "restrict",
-          "onUpdate": "no action"
+          "onUpdate": "cascade"
         }
       },
       "compositePrimaryKeys": {},
@@ -825,7 +874,11 @@
         },
         "ai_point_ledger_entry_type_check": {
           "name": "ai_point_ledger_entry_type_check",
-          "value": "\"ai_point_ledger_entries\".\"entry_type\" IN ('grant', 'reserve', 'settle', 'release', 'revoke', 'expire', 'merge')"
+          "value": "\"ai_point_ledger_entries\".\"entry_type\" IN ('grant', 'reserve', 'settle', 'release', 'revoke', 'expire', 'restore', 'merge_debit', 'merge_credit')"
+        },
+        "ai_point_ledger_direction_check": {
+          "name": "ai_point_ledger_direction_check",
+          "value": "\"ai_point_ledger_entries\".\"direction\" IN ('credit', 'debit', 'neutral')"
         },
         "ai_point_ledger_points_nonnegative": {
           "name": "ai_point_ledger_points_nonnegative",
@@ -838,6 +891,18 @@
       "name": "ai_point_reservation_allocations",
       "schema": "",
       "columns": {
+        "environment": {
+          "name": "environment",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "account_id": {
+          "name": "account_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
         "reservation_id": {
           "name": "reservation_id",
           "type": "uuid",
@@ -875,31 +940,39 @@
         }
       },
       "foreignKeys": {
-        "ai_point_reservation_allocations_reservation_id_ai_point_reservations_id_fk": {
-          "name": "ai_point_reservation_allocations_reservation_id_ai_point_reservations_id_fk",
+        "ai_point_allocations_reservation_environment_account_fk": {
+          "name": "ai_point_allocations_reservation_environment_account_fk",
           "tableFrom": "ai_point_reservation_allocations",
           "tableTo": "ai_point_reservations",
           "columnsFrom": [
-            "reservation_id"
+            "reservation_id",
+            "environment",
+            "account_id"
           ],
           "columnsTo": [
-            "id"
+            "id",
+            "environment",
+            "account_id"
           ],
           "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "cascade"
         },
-        "ai_point_reservation_allocations_batch_id_ai_point_batches_id_fk": {
-          "name": "ai_point_reservation_allocations_batch_id_ai_point_batches_id_fk",
+        "ai_point_allocations_batch_environment_account_fk": {
+          "name": "ai_point_allocations_batch_environment_account_fk",
           "tableFrom": "ai_point_reservation_allocations",
           "tableTo": "ai_point_batches",
           "columnsFrom": [
-            "batch_id"
+            "batch_id",
+            "environment",
+            "account_id"
           ],
           "columnsTo": [
-            "id"
+            "id",
+            "environment",
+            "account_id"
           ],
           "onDelete": "restrict",
-          "onUpdate": "no action"
+          "onUpdate": "cascade"
         }
       },
       "compositePrimaryKeys": {
@@ -914,6 +987,10 @@
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {
+        "ai_point_reservation_allocations_environment_check": {
+          "name": "ai_point_reservation_allocations_environment_check",
+          "value": "\"ai_point_reservation_allocations\".\"environment\" IN ('sandbox', 'production')"
+        },
         "ai_point_reservation_allocations_points_positive": {
           "name": "ai_point_reservation_allocations_points_positive",
           "value": "\"ai_point_reservation_allocations\".\"points\" > 0"
@@ -1013,6 +1090,33 @@
             },
             {
               "expression": "operation_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "ai_point_reservations_identity": {
+          "name": "ai_point_reservations_identity",
+          "columns": [
+            {
+              "expression": "id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "environment",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "account_id",
               "isExpression": false,
               "asc": true,
               "nulls": "last"
@@ -1739,18 +1843,22 @@
         }
       },
       "foreignKeys": {
-        "apple_transactions_order_id_commerce_orders_id_fk": {
-          "name": "apple_transactions_order_id_commerce_orders_id_fk",
+        "apple_transactions_order_environment_account_fk": {
+          "name": "apple_transactions_order_environment_account_fk",
           "tableFrom": "apple_transactions",
           "tableTo": "commerce_orders",
           "columnsFrom": [
-            "order_id"
+            "order_id",
+            "environment",
+            "account_id"
           ],
           "columnsTo": [
-            "id"
+            "id",
+            "environment",
+            "account_id"
           ],
           "onDelete": "restrict",
-          "onUpdate": "no action"
+          "onUpdate": "cascade"
         }
       },
       "compositePrimaryKeys": {},
@@ -2012,6 +2120,33 @@
           "method": "btree",
           "with": {}
         },
+        "commerce_orders_identity": {
+          "name": "commerce_orders_identity",
+          "columns": [
+            {
+              "expression": "id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "environment",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "account_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
         "commerce_orders_account_purchased": {
           "name": "commerce_orders_account_purchased",
           "columns": [
@@ -2133,6 +2268,12 @@
           "primaryKey": false,
           "notNull": true
         },
+        "ai_point_batch_interval_days": {
+          "name": "ai_point_batch_interval_days",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
         "ai_points_per_batch": {
           "name": "ai_points_per_batch",
           "type": "integer",
@@ -2178,6 +2319,10 @@
         "commerce_products_ai_batches_positive": {
           "name": "commerce_products_ai_batches_positive",
           "value": "\"commerce_products\".\"ai_point_batch_count\" > 0"
+        },
+        "commerce_products_ai_batch_interval_positive": {
+          "name": "commerce_products_ai_batch_interval_positive",
+          "value": "\"commerce_products\".\"ai_point_batch_interval_days\" > 0"
         },
         "commerce_products_ai_points_positive": {
           "name": "commerce_products_ai_points_positive",
@@ -3097,6 +3242,33 @@
           "method": "btree",
           "with": {}
         },
+        "membership_segments_identity": {
+          "name": "membership_segments_identity",
+          "columns": [
+            {
+              "expression": "id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "environment",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "account_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
         "membership_segments_account_window": {
           "name": "membership_segments_account_window",
           "columns": [
@@ -3159,18 +3331,22 @@
         }
       },
       "foreignKeys": {
-        "membership_entitlement_segments_order_id_commerce_orders_id_fk": {
-          "name": "membership_entitlement_segments_order_id_commerce_orders_id_fk",
+        "membership_segments_order_environment_account_fk": {
+          "name": "membership_segments_order_environment_account_fk",
           "tableFrom": "membership_entitlement_segments",
           "tableTo": "commerce_orders",
           "columnsFrom": [
-            "order_id"
+            "order_id",
+            "environment",
+            "account_id"
           ],
           "columnsTo": [
-            "id"
+            "id",
+            "environment",
+            "account_id"
           ],
           "onDelete": "restrict",
-          "onUpdate": "no action"
+          "onUpdate": "cascade"
         }
       },
       "compositePrimaryKeys": {},

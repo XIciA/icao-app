@@ -66,6 +66,31 @@ test('locks every 0015 commerce table behind RLS and server-only grants', async 
   );
 });
 
+test('enforces commerce environment and account ownership through composite database keys', async () => {
+  const migrationSql = await readFile(commerceMigrationPath, 'utf8');
+  const requiredConstraints = [
+    'CREATE UNIQUE INDEX "commerce_orders_identity" ON "commerce_orders" USING btree ("id","environment","account_id")',
+    'CREATE UNIQUE INDEX "membership_segments_identity" ON "membership_entitlement_segments" USING btree ("id","environment","account_id")',
+    'CREATE UNIQUE INDEX "ai_point_batches_identity" ON "ai_point_batches" USING btree ("id","environment","account_id")',
+    'CREATE UNIQUE INDEX "ai_point_reservations_identity" ON "ai_point_reservations" USING btree ("id","environment","account_id")',
+    '"apple_transactions_order_environment_account_fk" FOREIGN KEY ("order_id","environment","account_id") REFERENCES "public"."commerce_orders"("id","environment","account_id") ON DELETE restrict ON UPDATE cascade',
+    '"membership_segments_order_environment_account_fk" FOREIGN KEY ("order_id","environment","account_id") REFERENCES "public"."commerce_orders"("id","environment","account_id") ON DELETE restrict ON UPDATE cascade',
+    '"ai_point_batches_order_environment_account_fk" FOREIGN KEY ("source_order_id","environment","account_id") REFERENCES "public"."commerce_orders"("id","environment","account_id") ON DELETE restrict ON UPDATE cascade',
+    '"ai_point_batches_segment_environment_account_fk" FOREIGN KEY ("entitlement_segment_id","environment","account_id") REFERENCES "public"."membership_entitlement_segments"("id","environment","account_id") ON DELETE restrict ON UPDATE cascade',
+    '"ai_point_allocations_reservation_environment_account_fk" FOREIGN KEY ("reservation_id","environment","account_id") REFERENCES "public"."ai_point_reservations"("id","environment","account_id") ON DELETE cascade ON UPDATE cascade',
+    '"ai_point_allocations_batch_environment_account_fk" FOREIGN KEY ("batch_id","environment","account_id") REFERENCES "public"."ai_point_batches"("id","environment","account_id") ON DELETE restrict ON UPDATE cascade',
+    '"ai_point_ledger_batch_environment_account_fk" FOREIGN KEY ("batch_id","environment","account_id") REFERENCES "public"."ai_point_batches"("id","environment","account_id") ON DELETE restrict ON UPDATE cascade',
+    '"ai_point_ledger_reservation_environment_account_fk" FOREIGN KEY ("reservation_id","environment","account_id") REFERENCES "public"."ai_point_reservations"("id","environment","account_id") ON DELETE restrict ON UPDATE cascade',
+    '"direction" text NOT NULL',
+    '"ai_point_ledger_direction_check" CHECK ("ai_point_ledger_entries"."direction" IN (\'credit\', \'debit\', \'neutral\'))',
+    '"ai_point_batch_interval_days" integer NOT NULL',
+    '"commerce_products_ai_batch_interval_positive" CHECK ("commerce_products"."ai_point_batch_interval_days" > 0)',
+  ];
+  for (const constraint of requiredConstraints) {
+    assert.ok(migrationSql.includes(constraint), `missing_commerce_scope_constraint:${constraint}`);
+  }
+});
+
 test('lists the complete suffix and warns that 0012/0013 cannot skip 0010/0011', async () => {
   const migrations = await loadLocalMigrations(migrationsFolder);
   const appliedRows = migrations.slice(0, 10).map((migration, index) => ({

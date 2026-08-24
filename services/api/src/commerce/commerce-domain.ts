@@ -3,7 +3,8 @@ import { randomUUID } from 'node:crypto';
 import {
   AI_POINT_RULE_VERSION,
   type CommerceEnvironment,
-  requireMembershipProductByAppleId,
+  requireMembershipProductByKey,
+  requireMembershipProductForChannel,
 } from './product-catalog';
 
 const DAY_MS = 24 * 60 * 60 * 1_000;
@@ -133,7 +134,17 @@ export type AiPointLedgerEntry = {
   batchId: string;
   reservationId?: string;
   operationId: string;
-  entryType: 'grant' | 'reserve' | 'settle' | 'release' | 'revoke' | 'expire' | 'merge';
+  entryType:
+    | 'grant'
+    | 'reserve'
+    | 'settle'
+    | 'release'
+    | 'revoke'
+    | 'expire'
+    | 'restore'
+    | 'merge_debit'
+    | 'merge_credit';
+  direction: 'credit' | 'debit' | 'neutral';
   points: number;
   createdAt: Date;
 };
@@ -208,7 +219,50 @@ function ledgerEntryExists(
   ));
 }
 
-export class CommerceDomainService {
+/**
+ * Cross-row allocation totals cannot be expressed as a PostgreSQL CHECK.
+ * The future persistence repository must run this assertion after locking the
+ * reservation and batches and before committing the same database transaction.
+ */
+export function assertReservationAllocationTransaction(
+  state: CommerceDomainState,
+  reservation: AiPointReservation,
+) {
+  const uniqueBatchIds = new Set<string>();
+  let allocatedPoints = 0;
+  for (const allocation of reservation.allocations) {
+    if (uniqueBatchIds.has(allocation.batchId)) throw new Error('duplicate_ai_reservation_batch');
+    uniqueBatchIds.add(allocation.batchId);
+    const batch = state.pointBatches.find((candidate) => candidate.id === allocation.batchId);
+    if (!batch) throw new Error('ai_point_batch_not_found');
+    if (
+      batch.environment !== reservation.environment
+      || batch.accountId !== reservation.accountId
+    ) throw new Error('ai_reservation_allocation_scope_mismatch');
+    if (!Number.isInteger(allocation.points) || allocation.points <= 0) {
+      throw new Error('invalid_ai_reservation_allocation');
+    }
+    allocatedPoints += allocation.points;
+  }
+  if (allocatedPoints !== reservation.points) throw new Error('ai_reservation_allocation_total_mismatch');
+}
+
+export function replaySpendablePointLedger(entries: readonly AiPointLedgerEntry[]) {
+  return entries.reduce((balance, entry) => {
+    if (entry.direction === 'credit') return balance + entry.points;
+    if (entry.direction === 'debit') return balance - entry.points;
+    return balance;
+  }, 0);
+}
+
+/**
+ * Pure, in-memory reference model for commerce invariants.
+ *
+ * This is deliberately not a Nest provider and must not be registered in AppModule.
+ * A later integration phase must load/persist the state in one locked database
+ * transaction and run the exported allocation assertion before commit.
+ */
+export class CommerceFoundationModel {
   private readonly idFactory: () => string;
 
   constructor(options: CommerceDomainOptions = {}) {
@@ -218,10 +272,11 @@ export class CommerceDomainService {
   recordApplePurchase(
     state: CommerceDomainState,
     transaction: VerifiedAppleTransaction,
-    recordedAt = transaction.purchaseDate,
+    processedAt: Date,
   ) {
     assertEnvironment(transaction.environment);
-    const product = requireMembershipProductByAppleId(transaction.productId);
+    if (transaction.purchaseDate > processedAt) throw new Error('apple_purchase_after_processing_time');
+    const product = requireMembershipProductForChannel('apple_app_store', transaction.productId);
     if (!transaction.appAccountToken) throw new Error('apple_app_account_token_required');
     const accountId = resolveMergedAccount(state, transaction.appAccountToken);
     const existing = state.appleTransactions.find((candidate) => (
@@ -236,7 +291,37 @@ export class CommerceDomainService {
         || existing.bundleId !== transaction.bundleId
         || !sameTime(existing.purchaseDate, transaction.purchaseDate)
       ) throw new Error('apple_transaction_idempotency_conflict');
-      return { created: false, order: this.requireOrder(state, existing.orderId) };
+      const order = this.requireOrder(state, existing.orderId);
+      let updated = false;
+      const signedDateComparison = transaction.signedDate.getTime() - existing.signedDate.getTime();
+      const exactReplay = signedDateComparison === 0
+        && transaction.signedPayloadHash === existing.signedPayloadHash;
+      if (signedDateComparison === 0 && !exactReplay) {
+        throw new Error('apple_transaction_signed_version_conflict');
+      }
+      const statusUpdateAccepted = signedDateComparison > 0 || exactReplay;
+      if (signedDateComparison > 0) {
+        existing.signedDate = new Date(transaction.signedDate);
+        existing.signedPayloadHash = transaction.signedPayloadHash;
+        existing.decodedPayload = transaction.decodedPayload;
+        existing.storefront = transaction.storefront;
+        existing.currency = transaction.currency;
+        existing.priceMilliunits = transaction.priceMilliunits;
+        updated = true;
+      }
+      if (transaction.revocationDate && statusUpdateAccepted) {
+        existing.revocationDate = new Date(transaction.revocationDate);
+        existing.revocationReason = transaction.revocationReason;
+        const result = this.refundAppleTransaction(
+          state,
+          transaction.environment,
+          transaction.transactionId,
+          transaction.revocationDate,
+          processedAt,
+        );
+        updated = updated || result.changed;
+      }
+      return { created: false, updated, statusUpdateAccepted, order };
     }
 
     const order: CommerceOrder = {
@@ -249,9 +334,8 @@ export class CommerceDomainService {
       externalProductId: transaction.productId,
       durationDays: product.durationDays,
       aiPointRuleVersion: product.aiPointRuleVersion,
-      status: transaction.revocationDate ? 'refunded' : 'verified',
+      status: 'verified',
       purchasedAt: new Date(transaction.purchaseDate),
-      revokedAt: transaction.revocationDate && new Date(transaction.revocationDate),
     };
     state.orders.push(order);
     state.appleTransactions.push({
@@ -260,17 +344,23 @@ export class CommerceDomainService {
       accountId,
     });
 
+    this.rebuildMembership(state, accountId, transaction.environment, processedAt);
     if (transaction.revocationDate) {
-      this.revokeOrderBenefits(state, order, transaction.revocationDate);
+      this.refundAppleTransaction(
+        state,
+        transaction.environment,
+        transaction.transactionId,
+        transaction.revocationDate,
+        processedAt,
+      );
     }
-    this.rebuildMembership(state, accountId, transaction.environment, recordedAt);
-    return { created: true, order };
+    return { created: true, updated: false, statusUpdateAccepted: true, order };
   }
 
   recordAppleNotification(
     state: CommerceDomainState,
     notification: VerifiedAppleNotification,
-    processedAt = notification.signedDate,
+    processedAt: Date,
   ) {
     assertEnvironment(notification.environment);
     if (notification.transaction && notification.transaction.environment !== notification.environment) {
@@ -295,17 +385,29 @@ export class CommerceDomainService {
       const transaction = notification.transaction.appAccountToken || !knownTransaction
         ? notification.transaction
         : { ...notification.transaction, appAccountToken: knownTransaction.accountId };
-      this.recordApplePurchase(state, transaction, transaction.purchaseDate);
+      const transactionResult = this.recordApplePurchase(state, transaction, processedAt);
       if (
+        transactionResult.statusUpdateAccepted
+        && notification.notificationType === 'REFUND_REVERSED'
+      ) {
+        this.restoreAppleTransaction(
+          state,
+          notification.environment,
+          transaction.transactionId,
+          notification.notificationUuid,
+          processedAt,
+        );
+      } else if (transactionResult.statusUpdateAccepted && (
         transaction.revocationDate
         || notification.notificationType === 'REFUND'
         || notification.notificationType === 'REVOKE'
-      ) {
+      )) {
         this.refundAppleTransaction(
           state,
           notification.environment,
           transaction.transactionId,
           transaction.revocationDate ?? processedAt,
+          processedAt,
         );
       }
     }
@@ -324,6 +426,7 @@ export class CommerceDomainService {
     environment: CommerceEnvironment,
     transactionId: string,
     revokedAt: Date,
+    processedAt: Date,
   ) {
     assertEnvironment(environment);
     const transaction = state.appleTransactions.find((candidate) => (
@@ -338,18 +441,55 @@ export class CommerceDomainService {
     order.revokedAt = new Date(revokedAt);
     transaction.revocationDate = new Date(revokedAt);
     this.revokeOrderBenefits(state, order, revokedAt);
-    this.rebuildMembership(state, order.accountId, environment, revokedAt);
+    this.rebuildMembership(state, order.accountId, environment, processedAt);
     return { changed: true, order };
   }
 
-  grantFreeTrial(
+  restoreAppleTransaction(
     state: CommerceDomainState,
-    accountId: string,
     environment: CommerceEnvironment,
-    grantedAt: Date,
+    transactionId: string,
+    reversalOperationId: string,
+    processedAt: Date,
   ) {
     assertEnvironment(environment);
+    const transaction = state.appleTransactions.find((candidate) => (
+      candidate.environment === environment && candidate.transactionId === transactionId
+    ));
+    if (!transaction) throw new Error('apple_transaction_not_found');
+    const order = this.requireOrder(state, transaction.orderId);
+    if (order.status === 'verified') return { changed: false, order };
+    order.status = 'verified';
+    order.revokedAt = undefined;
+    transaction.revocationDate = undefined;
+    transaction.revocationReason = undefined;
+    this.rebuildMembership(state, order.accountId, environment, processedAt);
+    this.restoreOrderPointBatches(
+      state,
+      order,
+      `restore:${reversalOperationId}`,
+      processedAt,
+    );
+    return { changed: true, order };
+  }
+
+  /**
+   * The auth-owned lifetime identity claim must already be atomically occupied.
+   * This model intentionally does not create a competing identity-claim table.
+   */
+  grantFreeTrial(
+    state: CommerceDomainState,
+    input: Readonly<{
+      accountId: string;
+      environment: CommerceEnvironment;
+      grantedAt: Date;
+      externalEligibilityClaimed: boolean;
+    }>,
+  ) {
+    const { accountId, environment, grantedAt } = input;
+    assertEnvironment(environment);
     assertAccountCanUseAi(state, accountId);
+    if (!input.externalEligibilityClaimed) throw new Error('free_trial_external_claim_required');
     const existing = state.pointBatches.find((batch) => (
       batch.environment === environment
       && batch.accountId === accountId
@@ -429,6 +569,7 @@ export class CommerceDomainService {
       allocations,
       createdAt: new Date(input.at),
     };
+    assertReservationAllocationTransaction(state, reservation);
     state.pointReservations.push(reservation);
     for (const allocation of allocations) {
       this.appendLedger(state, {
@@ -438,6 +579,7 @@ export class CommerceDomainService {
         reservationId: reservation.id,
         operationId: input.operationId,
         entryType: 'reserve',
+        direction: 'debit',
         points: allocation.points,
         createdAt: input.at,
       });
@@ -468,6 +610,7 @@ export class CommerceDomainService {
         reservationId: reservation.id,
         operationId,
         entryType: 'settle',
+        direction: 'neutral',
         points: allocation.points,
         createdAt: settledAt,
       });
@@ -500,6 +643,12 @@ export class CommerceDomainService {
     mergedAt: Date,
   ) {
     if (sourceAccountId === targetAccountId) return { changed: false, targetAccountId };
+    if (state.mergedAccounts.has(sourceAccountId)) {
+      const resolvedSource = resolveMergedAccount(state, sourceAccountId);
+      const resolvedTarget = resolveMergedAccount(state, targetAccountId);
+      if (resolvedSource === resolvedTarget) return { changed: false, targetAccountId: resolvedTarget };
+      throw new Error('account_merge_state_changed');
+    }
     assertAccountCanUseAi(state, sourceAccountId);
     assertAccountCanUseAi(state, targetAccountId);
 
@@ -598,6 +747,11 @@ export class CommerceDomainService {
       && order.environment === environment
       && order.status === 'verified'
     ));
+    // Existing segments are the durable record of already-correct sequencing.
+    // A newly discovered historical order contributes only the portion that is
+    // still naturally unexpired at the processing time and is appended after
+    // existing remaining segments. This prevents a late restore from granting a
+    // full old duration or moving/shrinking already-issued entitlement.
     const plans = validOrders
       .map((order) => {
         const current = activeByOrder.get(order.id);
@@ -607,7 +761,10 @@ export class CommerceDomainService {
             : current.startsAt.getTime() <= asOf.getTime()
               ? current.endsAt.getTime() - asOf.getTime()
               : current.endsAt.getTime() - current.startsAt.getTime()
-          : order.durationDays * DAY_MS;
+          : Math.max(
+            0,
+            order.purchasedAt.getTime() + (order.durationDays * DAY_MS) - asOf.getTime(),
+          );
         return {
           order,
           current,
@@ -617,7 +774,8 @@ export class CommerceDomainService {
       })
       .filter((plan) => plan.remainingMs > 0)
       .sort((left, right) => (
-        left.sortAt.getTime() - right.sortAt.getTime()
+        Number(!left.current) - Number(!right.current)
+        || left.sortAt.getTime() - right.sortAt.getTime()
         || left.order.purchasedAt.getTime() - right.order.purchasedAt.getTime()
         || left.order.id.localeCompare(right.order.id)
       ));
@@ -628,7 +786,10 @@ export class CommerceDomainService {
     }
 
     let cursor = new Date(asOf);
-    const nextSegments: MembershipEntitlementSegment[] = [];
+    const nextSegments: Array<{
+      segment: MembershipEntitlementSegment;
+      rescheduleFutureBatches: boolean;
+    }> = [];
     for (const plan of plans) {
       const revision = state.membershipSegments
         .filter((segment) => segment.orderId === plan.order.id && segment.environment === environment)
@@ -644,38 +805,31 @@ export class CommerceDomainService {
         status: 'active',
       };
       state.membershipSegments.push(segment);
-      nextSegments.push(segment);
+      nextSegments.push({
+        segment,
+        rescheduleFutureBatches: !plan.current || plan.current.startsAt > asOf,
+      });
       cursor = segment.endsAt;
     }
 
-    const membershipExpiry = nextSegments.at(-1)?.endsAt;
-    for (const segment of nextSegments) {
-      this.ensureMembershipPointBatches(state, segment, membershipExpiry!, asOf);
-    }
-    for (const batch of state.pointBatches.filter((candidate) => (
-      candidate.accountId === accountId
-      && candidate.environment === environment
-      && candidate.sourceType === 'membership'
-      && candidate.status !== 'revoked'
-      && candidate.status !== 'merged'
-      && candidate.status !== 'expired'
-    ))) {
-      if (!membershipExpiry) {
-        this.revokeBatch(state, batch, asOf, 'revoke');
-      } else {
-        batch.expiresAt = new Date(membershipExpiry);
-      }
+    for (const { segment, rescheduleFutureBatches } of nextSegments) {
+      this.ensureMembershipPointBatches(
+        state,
+        segment,
+        asOf,
+        rescheduleFutureBatches,
+      );
     }
   }
 
   private ensureMembershipPointBatches(
     state: CommerceDomainState,
     segment: MembershipEntitlementSegment,
-    membershipExpiry: Date,
     asOf: Date,
+    rescheduleFutureBatches: boolean,
   ) {
     const order = this.requireOrder(state, segment.orderId);
-    const product = requireMembershipProductByAppleId(order.externalProductId);
+    const product = requireMembershipProductByKey(order.productKey);
     for (const [ordinal, definition] of product.aiPointBatches.entries()) {
       const existing = state.pointBatches.find((batch) => (
         batch.environment === order.environment
@@ -686,14 +840,17 @@ export class CommerceDomainService {
       if (existing) {
         existing.accountId = order.accountId;
         existing.entitlementSegmentId = segment.id;
-        if (existing.availableAt > asOf) existing.availableAt = availableAt;
-        existing.expiresAt = new Date(membershipExpiry);
+        if (rescheduleFutureBatches && existing.availableAt > asOf) existing.availableAt = availableAt;
         if (existing.status !== 'revoked' && existing.status !== 'merged') {
           existing.status = existing.availableAt <= asOf ? 'available' : 'scheduled';
-          if (existing.status === 'available') this.appendGrantEntry(state, existing, existing.availableAt);
+          existing.expiresAt = undefined;
+          if (existing.status === 'available') {
+            this.appendGrantEntry(state, existing, existing.availableAt);
+          }
         }
         continue;
       }
+      if (availableAt >= segment.endsAt) continue;
       this.createPointBatch({
         state,
         environment: order.environment,
@@ -707,7 +864,6 @@ export class CommerceDomainService {
         ordinal,
         points: definition.points,
         availableAt,
-        expiresAt: membershipExpiry,
         createdAt: asOf,
       });
     }
@@ -784,6 +940,38 @@ export class CommerceDomainService {
     ))) this.revokeBatch(state, batch, revokedAt, 'revoke');
   }
 
+  private restoreOrderPointBatches(
+    state: CommerceDomainState,
+    order: CommerceOrder,
+    operationId: string,
+    restoredAt: Date,
+  ) {
+    for (const batch of state.pointBatches.filter((candidate) => (
+      candidate.sourceOrderId === order.id
+      && candidate.environment === order.environment
+      && candidate.status === 'revoked'
+    ))) {
+      batch.status = batch.availableAt <= restoredAt ? 'available' : 'scheduled';
+      batch.revokedAt = undefined;
+      batch.expiresAt = undefined;
+      if (batch.status === 'available') {
+        this.appendLedger(state, {
+          environment: batch.environment,
+          accountId: batch.accountId,
+          batchId: batch.id,
+          operationId,
+          entryType: 'restore',
+          direction: 'credit',
+          points: Math.max(
+            0,
+            batch.grantedPoints - batch.consumedPoints - batch.reservedPoints,
+          ),
+          createdAt: restoredAt,
+        });
+      }
+    }
+  }
+
   private revokeBatch(
     state: CommerceDomainState,
     batch: AiPointBatch,
@@ -791,7 +979,9 @@ export class CommerceDomainService {
     entryType: 'revoke' | 'expire',
   ) {
     if (batch.status === 'revoked' || batch.status === 'merged' || batch.status === 'expired') return;
-    const unused = Math.max(0, batch.grantedPoints - batch.consumedPoints - batch.reservedPoints);
+    const unused = batch.status === 'available'
+      ? Math.max(0, batch.grantedPoints - batch.consumedPoints - batch.reservedPoints)
+      : 0;
     batch.status = entryType === 'expire' ? 'expired' : 'revoked';
     batch.revokedAt = new Date(revokedAt);
     this.appendLedger(state, {
@@ -800,6 +990,7 @@ export class CommerceDomainService {
       batchId: batch.id,
       operationId: `${entryType}:${batch.id}`,
       entryType,
+      direction: 'debit',
       points: unused,
       createdAt: revokedAt,
     });
@@ -814,7 +1005,6 @@ export class CommerceDomainService {
     for (const batch of state.pointBatches.filter((candidate) => (
       candidate.accountId === accountId
       && candidate.environment === environment
-      && candidate.sourceType === 'membership'
       && (candidate.status === 'available' || candidate.status === 'scheduled')
       && candidate.expiresAt
       && candidate.expiresAt <= at
@@ -835,6 +1025,10 @@ export class CommerceDomainService {
       && (!candidate.expiresAt || candidate.expiresAt > at)
     ))) {
       batch.status = 'available';
+      // App Store credits become a durable asset once issued and must not
+      // inherit membership expiry. Other sources also default to no expiry
+      // unless an explicit source rule provided one.
+      batch.expiresAt = undefined;
       this.appendGrantEntry(state, batch, batch.availableAt);
     }
     return state.pointBatches
@@ -871,6 +1065,7 @@ export class CommerceDomainService {
         reservationId: reservation.id,
         operationId: reservation.operationId,
         entryType: 'release',
+        direction: 'credit',
         points: allocation.points,
         createdAt: releasedAt,
       });
@@ -890,6 +1085,9 @@ export class CommerceDomainService {
       batch.accountId === targetAccountId
       && batch.environment === environment
       && batch.sourceType === 'trial'
+      && batch.status !== 'merged'
+      && batch.status !== 'revoked'
+      && batch.status !== 'expired'
     ));
     if (trialBatches.length === 0) return;
     const trialBatchIds = new Set(trialBatches.map((batch) => batch.id));
@@ -899,15 +1097,20 @@ export class CommerceDomainService {
       && candidate.status === 'reserved'
       && candidate.allocations.some((allocation) => trialBatchIds.has(allocation.batchId))
     ))) this.releaseReservation(state, reservation, mergedAt);
-    const consumed = trialBatches.reduce((sum, batch) => sum + batch.consumedPoints, 0);
+    const consumed = Math.min(
+      FREE_TRIAL_POINTS,
+      trialBatches.reduce((sum, batch) => sum + batch.consumedPoints, 0),
+    );
+    const mergeOperationId = `trial-merge:${targetAccountId}:${sourceAccountId}`;
     for (const batch of trialBatches) {
       const unused = Math.max(0, batch.grantedPoints - batch.consumedPoints - batch.reservedPoints);
       this.appendLedger(state, {
         environment,
         accountId: targetAccountId,
         batchId: batch.id,
-        operationId: `merge:${targetAccountId}:${sourceAccountId}`,
-        entryType: 'merge',
+        operationId: mergeOperationId,
+        entryType: 'merge_debit',
+        direction: 'debit',
         points: unused,
         createdAt: mergedAt,
       });
@@ -916,9 +1119,8 @@ export class CommerceDomainService {
       batch.reservedPoints = 0;
     }
     const remaining = Math.max(0, FREE_TRIAL_POINTS - consumed);
-    if (remaining === 0) return;
-    const batch = this.createPointBatch({
-      state,
+    const batch: AiPointBatch = {
+      id: this.idFactory(),
       environment,
       accountId: targetAccountId,
       originalAccountId: targetAccountId,
@@ -926,15 +1128,24 @@ export class CommerceDomainService {
       sourceReference: `merge:${targetAccountId}:${sourceAccountId}`,
       ruleVersion: AI_POINT_RULE_VERSION,
       ordinal: 0,
+      grantedPoints: FREE_TRIAL_POINTS,
+      consumedPoints: consumed,
+      reservedPoints: 0,
+      availableAt: new Date(mergedAt),
+      status: 'available',
+      createdAt: mergedAt,
+    };
+    state.pointBatches.push(batch);
+    this.appendLedger(state, {
+      environment,
+      accountId: targetAccountId,
+      batchId: batch.id,
+      operationId: mergeOperationId,
+      entryType: 'merge_credit',
+      direction: 'credit',
       points: remaining,
-      availableAt: mergedAt,
       createdAt: mergedAt,
     });
-    const grant = state.pointLedger.find((entry) => entry.operationId === `grant:${batch.id}`);
-    if (grant) {
-      grant.entryType = 'merge';
-      grant.operationId = `merge:${targetAccountId}:${sourceAccountId}`;
-    }
   }
 
   private appendLedger(state: CommerceDomainState, entry: Omit<AiPointLedgerEntry, 'id'>) {
@@ -949,6 +1160,7 @@ export class CommerceDomainService {
       batchId: batch.id,
       operationId: `grant:${batch.id}`,
       entryType: 'grant',
+      direction: 'credit',
       points: batch.grantedPoints,
       createdAt: grantedAt,
     });
