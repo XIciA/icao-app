@@ -179,7 +179,7 @@ export class OfficialAppleStoreVerifier implements AppleStoreVerifier {
     try {
       return await operation('production', this.verifiers.production);
     } catch (error) {
-      if (!isAppleEnvironmentMismatch(error)) throw error;
+      if (!isAppleEnvironmentProbeFailure(error)) throw error;
     }
     return operation('sandbox', this.verifiers.sandbox);
   }
@@ -225,9 +225,12 @@ export function configuredAppleStoreVerifier(config: ApiConfig): AppleStoreVerif
   });
 }
 
-function isAppleEnvironmentMismatch(error: unknown) {
+function isAppleEnvironmentProbeFailure(error: unknown) {
   return error instanceof VerificationException
-    && error.status === VerificationStatus.INVALID_ENVIRONMENT;
+    && (
+      error.status === VerificationStatus.INVALID_ENVIRONMENT
+      || error.status === VerificationStatus.INVALID_APP_IDENTIFIER
+    );
 }
 
 export function isRetryableAppleVerificationError(error: unknown) {

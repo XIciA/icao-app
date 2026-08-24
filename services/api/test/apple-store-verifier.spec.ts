@@ -1,7 +1,10 @@
 import { createHash } from 'node:crypto';
 
 import { VerificationException, VerificationStatus } from '@apple/app-store-server-library';
-import type { VerifiedAppleTransaction } from '../src/commerce/commerce-domain';
+import type {
+  VerifiedAppleNotification,
+  VerifiedAppleTransaction,
+} from '../src/commerce/commerce-domain';
 import { describe, expect, it } from 'vitest';
 
 import { OfficialAppleStoreVerifier } from '../src/commerce/apple-store-verifier';
@@ -35,6 +38,21 @@ const QUANTITY_TWO_SIGNED_TRANSACTION = [
   NON_RENEWING_SIGNED_TRANSACTION.split('.')[0],
   'eyJ0cmFuc2FjdGlvbklkIjoiZml4dHVyZS1xdWFudGl0eS10d28tdmFsaWQiLCJvcmlnaW5hbFRyYW5zYWN0aW9uSWQiOiJmaXh0dXJlLXF1YW50aXR5LW9yaWdpbmFsIiwiYnVuZGxlSWQiOiJjb20uZXhhbXBsZSIsInByb2R1Y3RJZCI6ImNvbS5leGFtcGxlLm5vbnJlbmV3aW5nIiwicHVyY2hhc2VEYXRlIjoxNzg3NTg3MjAwMDAwLCJxdWFudGl0eSI6MiwidHlwZSI6Ik5vbi1SZW5ld2luZyBTdWJzY3JpcHRpb24iLCJhcHBBY2NvdW50VG9rZW4iOiI3ZTNmYjIwYi00Y2RiLTQ3Y2MtOTM2ZC05OWQ2NWY2MDgxMzgiLCJzaWduZWREYXRlIjoxNzg3NTg3MzgwMDAwLCJlbnZpcm9ubWVudCI6IlNhbmRib3gifQ',
   'HmQEbd-i7FZ6vOgL4aZxoIZ8-HX9Tj5QGtbshw6J28eJoLhlde0i-EqluU3rmpj5fReJh-V4ODYHBpCg6kd9aw',
+].join('.');
+const SANDBOX_NOTIFICATION_WITHOUT_APP_ID = [
+  NON_RENEWING_SIGNED_TRANSACTION.split('.')[0],
+  'eyJub3RpZmljYXRpb25UeXBlIjoiRElEX1JFTkVXIiwibm90aWZpY2F0aW9uVVVJRCI6IjAwMmUxNGQ1LTUxZjUtNDUwMy1iNWE4LWMzYTFhZjY4ZWIyMCIsInZlcnNpb24iOiIyLjAiLCJzaWduZWREYXRlIjoxNzg3NTg3ODAwMDAwLCJkYXRhIjp7ImVudmlyb25tZW50IjoiU2FuZGJveCIsImJ1bmRsZUlkIjoiY29tLmV4YW1wbGUiLCJidW5kbGVWZXJzaW9uIjoiMS4wLjAifX0',
+  'h1sJVZRIIjILWSfQEK6N5yMZLT4KXK7jU7VwNAVU044CEO222rWZ64KHa-QtgCHE8cBxSuwpi1x15JcH5eSPSA',
+].join('.');
+const SANDBOX_NOTIFICATION_WITH_WRONG_BUNDLE = [
+  NON_RENEWING_SIGNED_TRANSACTION.split('.')[0],
+  'eyJub3RpZmljYXRpb25UeXBlIjoiRElEX1JFTkVXIiwibm90aWZpY2F0aW9uVVVJRCI6IjEwMmUxNGQ1LTUxZjUtNDUwMy1iNWE4LWMzYTFhZjY4ZWIyMCIsInZlcnNpb24iOiIyLjAiLCJzaWduZWREYXRlIjoxNzg3NTg3ODAwMDAwLCJkYXRhIjp7ImVudmlyb25tZW50IjoiU2FuZGJveCIsImJ1bmRsZUlkIjoiY29tLmF0dGFja2VyLndyb25nIiwiYnVuZGxlVmVyc2lvbiI6IjEuMC4wIn19',
+  'Tc2zNc5B-X7PfuEF_iR068LWu-cq5p8bMygGQhzh8fTLaR-QLjQMbsJepHIXAYvk9SIKupVe_TDvWUE3qbfHmw',
+].join('.');
+const PRODUCTION_NOTIFICATION_WITH_WRONG_APP_ID = [
+  NON_RENEWING_SIGNED_TRANSACTION.split('.')[0],
+  'eyJub3RpZmljYXRpb25UeXBlIjoiRElEX1JFTkVXIiwibm90aWZpY2F0aW9uVVVJRCI6IjIwMmUxNGQ1LTUxZjUtNDUwMy1iNWE4LWMzYTFhZjY4ZWIyMCIsInZlcnNpb24iOiIyLjAiLCJzaWduZWREYXRlIjoxNzg3NTg3ODAwMDAwLCJkYXRhIjp7ImVudmlyb25tZW50IjoiUHJvZHVjdGlvbiIsImFwcEFwcGxlSWQiOjk5OTksImJ1bmRsZUlkIjoiY29tLmV4YW1wbGUiLCJidW5kbGVWZXJzaW9uIjoiMS4wLjAifX0',
+  'A5aW3ptE_bvG6q8iU6FGj8EW0MwOTt-Za5VXsr8dHuzJb7Gvg9V8K6kQZhOxk-YPro8QJIsBqT6j67-I4dZXaw',
 ].join('.');
 
 function verifier(options: { bundleId?: string; root?: Buffer } = {}) {
@@ -132,5 +150,42 @@ describe('OfficialAppleStoreVerifier', () => {
     await expect(verifier({ root: NON_RENEWING_FIXTURE_ROOT_CA })
       .verifyTransaction(QUANTITY_TWO_SIGNED_TRANSACTION))
       .rejects.toThrow('apple_transaction_quantity_invalid');
+  });
+
+  it('falls back to the sandbox verifier for a signed notification without appAppleId', async () => {
+    const notification: VerifiedAppleNotification = await verifier({
+      root: NON_RENEWING_FIXTURE_ROOT_CA,
+    }).verifyNotification(SANDBOX_NOTIFICATION_WITHOUT_APP_ID);
+    expect(notification).toMatchObject({
+      environment: 'sandbox',
+      notificationUuid: '002e14d5-51f5-4503-b5a8-c3a1af68eb20',
+      notificationType: 'DID_RENEW',
+      signedDate: new Date(1787587800000),
+      signedPayloadHash: createHash('sha256')
+        .update(SANDBOX_NOTIFICATION_WITHOUT_APP_ID).digest('hex'),
+      transaction: undefined,
+    });
+    expect(notification.decodedPayload).toMatchObject({
+      data: {
+        bundleId: 'com.example',
+        environment: 'Sandbox',
+      },
+    });
+  });
+
+  it('rejects a signed sandbox notification with a wrong bundle after fallback', async () => {
+    await expectVerificationStatus(
+      verifier({ root: NON_RENEWING_FIXTURE_ROOT_CA })
+        .verifyNotification(SANDBOX_NOTIFICATION_WITH_WRONG_BUNDLE),
+      VerificationStatus.INVALID_APP_IDENTIFIER,
+    );
+  });
+
+  it('rejects a signed production notification with a wrong appAppleId after fallback', async () => {
+    await expectVerificationStatus(
+      verifier({ root: NON_RENEWING_FIXTURE_ROOT_CA })
+        .verifyNotification(PRODUCTION_NOTIFICATION_WITH_WRONG_APP_ID),
+      VerificationStatus.INVALID_ENVIRONMENT,
+    );
   });
 });
