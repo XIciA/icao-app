@@ -224,4 +224,25 @@ INSERT INTO "commerce_channel_products" (
 	('apple_app_store', 'com.readyoufife.ios.membership.15d.v1', 'membership_15d_v1'),
 	('apple_app_store', 'com.readyoufife.ios.membership.31d.v1', 'membership_31d_v1'),
 	('apple_app_store', 'com.readyoufife.ios.membership.62d.v1', 'membership_62d_v1'),
-	('apple_app_store', 'com.readyoufife.ios.membership.93d.v1', 'membership_93d_v1');
+	('apple_app_store', 'com.readyoufife.ios.membership.93d.v1', 'membership_93d_v1');--> statement-breakpoint
+ALTER TABLE "commerce_products" ENABLE ROW LEVEL SECURITY;--> statement-breakpoint
+REVOKE ALL ON TABLE "commerce_products" FROM anon, authenticated;--> statement-breakpoint
+ALTER TABLE "commerce_channel_products" ENABLE ROW LEVEL SECURITY;--> statement-breakpoint
+REVOKE ALL ON TABLE "commerce_channel_products" FROM anon, authenticated;--> statement-breakpoint
+ALTER TABLE "commerce_orders" ENABLE ROW LEVEL SECURITY;--> statement-breakpoint
+REVOKE ALL ON TABLE "commerce_orders" FROM anon, authenticated;--> statement-breakpoint
+ALTER TABLE "apple_transactions" ENABLE ROW LEVEL SECURITY;--> statement-breakpoint
+REVOKE ALL ON TABLE "apple_transactions" FROM anon, authenticated;--> statement-breakpoint
+ALTER TABLE "apple_notification_events" ENABLE ROW LEVEL SECURITY;--> statement-breakpoint
+REVOKE ALL ON TABLE "apple_notification_events" FROM anon, authenticated;--> statement-breakpoint
+ALTER TABLE "membership_entitlement_segments" ENABLE ROW LEVEL SECURITY;--> statement-breakpoint
+REVOKE ALL ON TABLE "membership_entitlement_segments" FROM anon, authenticated;--> statement-breakpoint
+ALTER TABLE "ai_point_batches" ENABLE ROW LEVEL SECURITY;--> statement-breakpoint
+REVOKE ALL ON TABLE "ai_point_batches" FROM anon, authenticated;--> statement-breakpoint
+ALTER TABLE "ai_point_reservations" ENABLE ROW LEVEL SECURITY;--> statement-breakpoint
+REVOKE ALL ON TABLE "ai_point_reservations" FROM anon, authenticated;--> statement-breakpoint
+ALTER TABLE "ai_point_reservation_allocations" ENABLE ROW LEVEL SECURITY;--> statement-breakpoint
+REVOKE ALL ON TABLE "ai_point_reservation_allocations" FROM anon, authenticated;--> statement-breakpoint
+ALTER TABLE "ai_point_ledger_entries" ENABLE ROW LEVEL SECURITY;--> statement-breakpoint
+REVOKE ALL ON TABLE "ai_point_ledger_entries" FROM anon, authenticated;--> statement-breakpoint
+REVOKE ALL ON SEQUENCE "ai_point_ledger_entries_sequence_seq" FROM anon, authenticated;

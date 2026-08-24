@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import test from 'node:test';
 
@@ -10,6 +11,19 @@ import {
 } from './migration-plan-lib.mjs';
 
 const migrationsFolder = fileURLToPath(new URL('../drizzle', import.meta.url));
+const commerceMigrationPath = fileURLToPath(new URL('../drizzle/0015_commerce_domain.sql', import.meta.url));
+const commerceTables = [
+  'commerce_products',
+  'commerce_channel_products',
+  'commerce_orders',
+  'apple_transactions',
+  'apple_notification_events',
+  'membership_entitlement_segments',
+  'ai_point_batches',
+  'ai_point_reservations',
+  'ai_point_reservation_allocations',
+  'ai_point_ledger_entries',
+];
 
 test('loads the repository journal with the exact Drizzle hashes', async () => {
   const migrations = await loadLocalMigrations(migrationsFolder);
@@ -30,6 +44,26 @@ test('loads the repository journal with the exact Drizzle hashes', async () => {
   assert.match(migrations[14].hash, /^[a-f0-9]{64}$/);
   assert.equal(migrations[15].tag, '0015_commerce_domain');
   assert.match(migrations[15].hash, /^[a-f0-9]{64}$/);
+});
+
+test('locks every 0015 commerce table behind RLS and server-only grants', async () => {
+  const migrationSql = await readFile(commerceMigrationPath, 'utf8');
+  for (const table of commerceTables) {
+    assert.ok(
+      migrationSql.includes(`ALTER TABLE "${table}" ENABLE ROW LEVEL SECURITY;`),
+      `missing_rls:${table}`,
+    );
+    assert.ok(
+      migrationSql.includes(`REVOKE ALL ON TABLE "${table}" FROM anon, authenticated;`),
+      `missing_anon_authenticated_revoke:${table}`,
+    );
+  }
+  assert.ok(
+    migrationSql.includes(
+      'REVOKE ALL ON SEQUENCE "ai_point_ledger_entries_sequence_seq" FROM anon, authenticated;',
+    ),
+    'missing_anon_authenticated_sequence_revoke:ai_point_ledger_entries_sequence_seq',
+  );
 });
 
 test('lists the complete suffix and warns that 0012/0013 cannot skip 0010/0011', async () => {
