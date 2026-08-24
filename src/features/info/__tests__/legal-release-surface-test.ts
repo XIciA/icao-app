@@ -12,6 +12,9 @@ describe('legal copy release surface', () => {
     expect(combined).toContain('16周岁');
     expect(combined).toContain('DeepSeek 开放平台');
     expect(combined).toContain('腾讯云语音识别');
+    expect(combined).toContain('Apple App Store 以非自动续期方式购买');
+    expect(combined).toContain('手机号密码或 Apple 登录');
+    expect(combined).toContain('或相关权利人依法享有权利');
     expect(combined).toContain('本地静态词典查词不调用文本 AI、不消耗 AI 点数');
     expect(combined).not.toMatch(/阿里云百炼|通义千问/u);
   });
@@ -22,5 +25,8 @@ describe('legal copy release surface', () => {
     expect(combined).toContain('阿里云百炼通义千问');
     expect(combined).toContain('不满十四周岁');
     expect(combined).toContain('AI 单词查询缓存默认保留 30 天');
+    expect(combined).toContain('运营阶段提供的授权方式');
+    expect(combined).toContain('题库、音频、课程、文章');
+    expect(combined).not.toContain('非自动续期方式购买');
   });
 });

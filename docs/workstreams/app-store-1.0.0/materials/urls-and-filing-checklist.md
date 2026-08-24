@@ -28,7 +28,7 @@
 | --- | --- | --- | --- |
 | Support URL | `【待确认：公开 HTTPS App 支持页 URL】` | `https://yunqihangke.com/apps/readyoufife/support/` | 仅有官网源码候选；本轮未验证已部署和可达 |
 | Privacy Policy URL | `【待确认：公开 HTTPS App 隐私政策 URL】` | `https://yunqihangke.com/apps/readyoufife/privacy/` | 最终政策必须按实际数据流重写并公开，不能直接采用历史版本 |
-| Privacy Choices URL | `【待确认：公开 HTTPS 隐私选择页 URL】` | 无已确认独立页面 | 必须覆盖查阅、导出、更正、删除、撤回 AI 同意、注销和无法登录联系路径 |
+| Privacy Choices URL | `【待部署验证：公开 HTTPS 隐私选择页 URL】` | `https://yunqihangke.com/apps/readyoufife/privacy-choices/` | 源码已覆盖查阅、导出、更正、删除、撤回 AI 同意、注销和无法登录联系路径；正式值等公网部署后验证 |
 | 账号删除说明 | `【待确认：公开 HTTPS 账号删除页 URL】` | `https://yunqihangke.com/apps/readyoufife/account-deletion/` | 可作为隐私选择页的关联入口，不能单独替代全部隐私选择说明 |
 | 用户协议 | `【待确认：公开 HTTPS 用户协议 URL】` | `https://yunqihangke.com/apps/readyoufife/terms/` | 与 App 内主体、版本、年龄和服务边界一致 |
 | Marketing URL | 留空 | 无 | 首发无已验证独立营销页时不填 |

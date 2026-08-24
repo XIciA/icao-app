@@ -19,12 +19,13 @@
 | Apple SKU 建议 | `readyoufife-ios-prod` |
 | 版权 | `© 2026 云启航科（成都）科技有限公司` |
 | 隐私政策 URL | `https://yunqihangke.com/apps/readyoufife/privacy/` |
+| 隐私选择 URL | `https://yunqihangke.com/apps/readyoufife/privacy-choices/` |
 | 用户协议 URL | `https://yunqihangke.com/apps/readyoufife/terms/` |
 | 支持 URL | `https://yunqihangke.com/apps/readyoufife/support/` |
 | 账号删除 URL | `https://yunqihangke.com/apps/readyoufife/account-deletion/` |
 | Marketing URL | 可暂用 `https://yunqihangke.com/`；App 专属介绍页完成后再替换 |
 
-上述四个 App 专属 URL 的源码已经准备，但尚未部署和终审；上线前必须逐个使用公网无登录窗口验证 HTTP 200、HTTPS 证书、移动端排版和页面内容。
+上述五个 App 专属 URL 的源码已经准备，但尚未部署和终审；上线前必须逐个使用公网无登录窗口验证 HTTP 200、HTTPS 证书、移动端排版和页面内容。
 
 ## App Store 中文元数据草稿
 
