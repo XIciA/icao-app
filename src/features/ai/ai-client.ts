@@ -1,4 +1,4 @@
-import { CURRENT_AI_CONSENT_POLICY_VERSION, type AiConsent, type AiConsentStatus, type AiReviewRequest, type AiReviewResult, type GrammarReviewRequest, type GrammarReviewResult, type PolishRequest, type PolishResult, type TranscribeResult } from '@icao/contracts';
+import { CURRENT_AI_CONSENT_FLOW_REVISION, CURRENT_AI_CONSENT_POLICY_VERSION, type AiConsent, type AiConsentChallenge, type AiConsentStatus, type AiReviewRequest, type AiReviewResult, type GrammarReviewRequest, type GrammarReviewResult, type PolishRequest, type PolishResult, type TranscribeResult } from '@icao/contracts';
 import Constants from 'expo-constants';
 import Storage from '@/platform/storage';
 
@@ -45,10 +45,26 @@ export async function getCachedAiConsentHint() {
 }
 
 export async function acceptAiConsent() {
+  // This function is called only after the Native consent sheet resolves with
+  // an explicit user action. The one-time server challenge prevents older
+  // shipped clients from recreating consent with their legacy bare POST.
+  const challenge = await apiRequest<AiConsentChallenge>('/v1/ai/consent/challenge', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+      flowRevision: CURRENT_AI_CONSENT_FLOW_REVISION,
+    }),
+  });
   const consent = await apiRequest<AiConsent>('/v1/ai/consent', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ accepted: true, policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION }),
+    body: JSON.stringify({
+      accepted: true,
+      policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+      flowRevision: CURRENT_AI_CONSENT_FLOW_REVISION,
+      challenge: challenge.challenge,
+    }),
   });
   await Storage.setItem(CONSENT_KEY, 'accepted').catch(() => undefined);
   return consent;

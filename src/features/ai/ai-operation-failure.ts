@@ -55,12 +55,14 @@ function failurePolicy(code: string, fallbackStage: AiFailureStage) {
       userMessage: '登录状态已失效，请重新登录后再试。',
     };
   }
-  if (code === 'ai_consent_required') {
+  if (code === 'ai_consent_required' || code === 'ai_consent_challenge_required') {
     return {
       stage: 'authorization' as const,
       retryable: true,
       userAction: 'retry' as const,
-      userMessage: 'AI 数据处理同意已撤回或需要更新，请重新确认后再试。',
+      userMessage: code === 'ai_consent_challenge_required'
+        ? '本次 AI 数据处理同意确认已失效，请重新确认后再试。'
+        : 'AI 数据处理同意已撤回或需要更新，请重新确认后再试。',
     };
   }
   if (code === 'no_speech_detected') {

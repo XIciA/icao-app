@@ -1,9 +1,10 @@
+import { createHash, randomBytes, randomUUID } from 'node:crypto';
 import { BadRequestException, HttpException, Injectable, Logger } from '@nestjs/common';
-import { eq } from 'drizzle-orm';
-import { CURRENT_AI_CONSENT_POLICY_VERSION, type AiConsent, type AiConsentStatus, type AiReviewRequest, type AiReviewResult, type GrammarReviewRequest, type PolishRequest, type PolishResult, type TencentAsrModel } from '@icao/contracts';
+import { and, eq, sql } from 'drizzle-orm';
+import { CURRENT_AI_CONSENT_FLOW_REVISION, CURRENT_AI_CONSENT_POLICY_VERSION, type AiConsent, type AiConsentChallenge, type AiConsentRequest, type AiConsentStatus, type AiReviewRequest, type AiReviewResult, type GrammarReviewRequest, type PolishRequest, type PolishResult, type TencentAsrModel } from '@icao/contracts';
 
 import { DatabaseService } from '../database/database.service';
-import { aiConsents, aiUsageLogs } from '../database/schema';
+import { aiConsentChallenges, aiConsents, aiUsageLogs } from '../database/schema';
 import { DeepSeekReviewProviderService } from './deepseek-review-provider.service';
 import { TencentAsrService } from './tencent-asr.service';
 import { reviewSystemPrompt, REVIEW_PROMPT_VERSION } from './deepseek-review-prompts';
@@ -13,9 +14,31 @@ import type { ProviderMeta } from './provider-meta';
 
 type UsageCapability = 'transcribe' | 'grammar_review' | 'polish';
 type AiProviderName = 'deepseek' | 'tencent-asr';
+const CONSENT_CHALLENGE_TTL_MS = 5 * 60 * 1000;
+const OPERATION_GRANT_TTL_MS = 2 * 60 * 1000;
+
+export type AiOperationGrant = {
+  userId: string;
+  policyVersion: typeof CURRENT_AI_CONSENT_POLICY_VERSION;
+  consentRevision: number;
+  nonce: string;
+  expiresAt: number;
+};
 
 function safeLogToken(value: string) {
   return value.replace(/[^A-Za-z0-9._:-]/gu, '_').slice(0, 120) || 'unknown';
+}
+
+function consentLockId(userId: string) {
+  return `ai-consent:${userId}`;
+}
+
+function challengeDigest(challenge: string) {
+  return createHash('sha256').update(challenge).digest('hex');
+}
+
+function isCurrentConsent<T extends { policyVersion: string; revokedAt: Date | null }>(consent: T | undefined): consent is T {
+  return consent?.policyVersion === CURRENT_AI_CONSENT_POLICY_VERSION && consent.revokedAt === null;
 }
 
 @Injectable()
@@ -30,7 +53,7 @@ export class AiService {
 
   async consentStatus(userId: string): Promise<AiConsentStatus> {
     const [consent] = await this.database.db.select().from(aiConsents).where(eq(aiConsents.userId, userId)).limit(1);
-    if (consent?.policyVersion !== CURRENT_AI_CONSENT_POLICY_VERSION) {
+    if (!isCurrentConsent(consent)) {
       return { accepted: false, policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION };
     }
     return {
@@ -40,21 +63,133 @@ export class AiService {
     };
   }
 
-  async acceptConsent(userId: string, policyVersion: typeof CURRENT_AI_CONSENT_POLICY_VERSION): Promise<AiConsent> {
-    const now = new Date();
-    await this.database.db.insert(aiConsents).values({ userId, policyVersion, acceptedAt: now, updatedAt: now })
-      .onConflictDoUpdate({ target: aiConsents.userId, set: { policyVersion, acceptedAt: now, updatedAt: now } });
-    return { policyVersion, acceptedAt: now.toISOString() };
+  async issueConsentChallenge(userId: string): Promise<AiConsentChallenge> {
+    return this.database.db.transaction(async (transaction) => {
+      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${consentLockId(userId)}, 0))`);
+      const [consent] = await transaction.select().from(aiConsents).where(eq(aiConsents.userId, userId)).limit(1);
+      const challenge = randomBytes(32).toString('base64url');
+      const expiresAt = new Date(Date.now() + CONSENT_CHALLENGE_TTL_MS);
+      await transaction.delete(aiConsentChallenges).where(eq(aiConsentChallenges.userId, userId));
+      await transaction.insert(aiConsentChallenges).values({
+        userId,
+        policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+        flowRevision: CURRENT_AI_CONSENT_FLOW_REVISION,
+        tokenHash: challengeDigest(challenge),
+        consentRevision: consent?.revision ?? 0,
+        expiresAt,
+      });
+      return {
+        policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+        flowRevision: CURRENT_AI_CONSENT_FLOW_REVISION,
+        challenge,
+        expiresAt: expiresAt.toISOString(),
+      };
+    });
+  }
+
+  async acceptConsent(userId: string, input: AiConsentRequest): Promise<AiConsent> {
+    return this.database.db.transaction(async (transaction) => {
+      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${consentLockId(userId)}, 0))`);
+      const [consent] = await transaction.select().from(aiConsents).where(eq(aiConsents.userId, userId)).limit(1);
+      const currentRevision = consent?.revision ?? 0;
+      if (isCurrentConsent(consent)) {
+        if (input.challenge) {
+          await transaction.delete(aiConsentChallenges).where(and(
+            eq(aiConsentChallenges.userId, userId),
+            eq(aiConsentChallenges.tokenHash, challengeDigest(input.challenge)),
+          ));
+        }
+        return {
+          policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+          acceptedAt: consent.acceptedAt.toISOString(),
+        };
+      }
+      if (input.flowRevision !== CURRENT_AI_CONSENT_FLOW_REVISION || !input.challenge) {
+        throw new HttpException('ai_consent_challenge_required', 428);
+      }
+      const [challenge] = await transaction.select().from(aiConsentChallenges).where(and(
+        eq(aiConsentChallenges.userId, userId),
+        eq(aiConsentChallenges.tokenHash, challengeDigest(input.challenge)),
+      )).limit(1);
+      if (
+        !challenge
+        || challenge.policyVersion !== CURRENT_AI_CONSENT_POLICY_VERSION
+        || challenge.flowRevision !== CURRENT_AI_CONSENT_FLOW_REVISION
+        || challenge.consentRevision !== currentRevision
+        || challenge.expiresAt.getTime() <= Date.now()
+      ) {
+        throw new HttpException('ai_consent_challenge_required', 428);
+      }
+      const now = new Date();
+      await transaction.delete(aiConsentChallenges).where(eq(aiConsentChallenges.userId, userId));
+      await transaction.insert(aiConsents).values({
+        userId,
+        policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+        acceptedAt: now,
+        revision: currentRevision + 1,
+        revokedAt: null,
+        updatedAt: now,
+      }).onConflictDoUpdate({
+        target: aiConsents.userId,
+        set: {
+          policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+          acceptedAt: now,
+          revision: currentRevision + 1,
+          revokedAt: null,
+          updatedAt: now,
+        },
+      });
+      return { policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION, acceptedAt: now.toISOString() };
+    });
   }
 
   async revokeConsent(userId: string) {
-    await this.database.db.delete(aiConsents).where(eq(aiConsents.userId, userId));
-    return { revoked: true as const };
+    return this.database.db.transaction(async (transaction) => {
+      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${consentLockId(userId)}, 0))`);
+      const [consent] = await transaction.select().from(aiConsents).where(eq(aiConsents.userId, userId)).limit(1);
+      await transaction.delete(aiConsentChallenges).where(eq(aiConsentChallenges.userId, userId));
+      if (consent && consent.revokedAt === null) {
+        const now = new Date();
+        await transaction.update(aiConsents).set({
+          revision: consent.revision + 1,
+          revokedAt: now,
+          updatedAt: now,
+        }).where(eq(aiConsents.userId, userId));
+      }
+      return { revoked: true as const };
+    });
   }
 
-  private async requireConsent(userId: string) {
-    const consent = await this.consentStatus(userId);
-    if (!consent.accepted) throw new HttpException('ai_consent_required', 428);
+  async admitOperation(userId: string): Promise<AiOperationGrant> {
+    return this.database.db.transaction(async (transaction) => {
+      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${consentLockId(userId)}, 0))`);
+      const [consent] = await transaction.select().from(aiConsents).where(eq(aiConsents.userId, userId)).limit(1);
+      if (!isCurrentConsent(consent)) throw new HttpException('ai_consent_required', 428);
+      return {
+        userId,
+        policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+        consentRevision: consent.revision,
+        nonce: randomUUID(),
+        expiresAt: Date.now() + OPERATION_GRANT_TTL_MS,
+      };
+    });
+  }
+
+  private async withAuthorizedOperation<T>(userId: string, grant: AiOperationGrant, action: () => Promise<T>): Promise<T> {
+    return this.database.db.transaction(async (transaction) => {
+      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${consentLockId(userId)}, 0))`);
+      const [consent] = await transaction.select().from(aiConsents).where(eq(aiConsents.userId, userId)).limit(1);
+      if (
+        grant.userId !== userId
+        || grant.policyVersion !== CURRENT_AI_CONSENT_POLICY_VERSION
+        || grant.expiresAt <= Date.now()
+        || !isCurrentConsent(consent)
+        || consent.revision !== grant.consentRevision
+      ) {
+        throw new HttpException('ai_consent_required', 428);
+      }
+      return action();
+    });
   }
 
   private async logUsage(input: {
@@ -131,27 +266,25 @@ export class AiService {
     }
   }
 
-  async transcribe(userId: string, requestId: string, audio: Buffer, mimeType: string, model: TencentAsrModel, signal?: AbortSignal) {
-    await this.requireConsent(userId);
+  async transcribe(userId: string, requestId: string, audio: Buffer, mimeType: string, model: TencentAsrModel, grant: AiOperationGrant, signal?: AbortSignal) {
     if (!audio.length || audio.length > 8 * 1024 * 1024) throw new BadRequestException('invalid_audio');
-    return this.run({
+    return this.withAuthorizedOperation(userId, grant, () => this.run({
       userId, requestId, capability: 'transcribe', provider: 'tencent-asr', model,
       promptVersion: 'tencent-asr:raw:v1', units: 3,
       action: async () => {
         const result = await this.asr.transcribe(audio, mimeType, model, signal, requestId);
         return { data: { transcript: result.rawTranscript }, meta: result.meta };
       },
-    });
+    }));
   }
 
-  async grammarReview(userId: string, requestId: string, input: GrammarReviewRequest, signal?: AbortSignal) {
-    await this.requireConsent(userId);
-    const result = await this.run({
+  async grammarReview(userId: string, requestId: string, input: GrammarReviewRequest, grant: AiOperationGrant, signal?: AbortSignal) {
+    const result = await this.withAuthorizedOperation(userId, grant, () => this.run({
       userId, requestId, capability: 'grammar_review', provider: 'deepseek', model: this.reviewProvider.textModel('grammar'), promptVersion: REVIEW_PROMPT_VERSION, units: 2,
       action: () => this.generateReview(userId, {
         mode: 'grammar', module: input.module, questionId: input.questionId, transcript: input.transcript,
       }, signal),
-    });
+    }));
     return {
       correctedText: result.grammar.correctedText,
       issues: result.grammar.issues.map(legacyIssueText),
@@ -159,15 +292,14 @@ export class AiService {
     };
   }
 
-  async polish(userId: string, requestId: string, input: PolishRequest, signal?: AbortSignal): Promise<PolishResult> {
-    await this.requireConsent(userId);
+  async polish(userId: string, requestId: string, input: PolishRequest, grant: AiOperationGrant, signal?: AbortSignal): Promise<PolishResult> {
     const transcript = input.correctedText ?? input.transcript;
-    const result = await this.run({
+    const result = await this.withAuthorizedOperation(userId, grant, () => this.run({
       userId, requestId, capability: 'polish', provider: 'deepseek', model: this.reviewProvider.textModel('opi'), promptVersion: REVIEW_PROMPT_VERSION, units: 2,
       action: () => this.generateReview(userId, {
         mode: 'opi', module: 'opi', questionId: input.questionId, transcript,
       }, signal),
-    });
+    }));
     return { polishedText: result.polishedText!, promptVersion: REVIEW_PROMPT_VERSION };
   }
 
@@ -182,9 +314,8 @@ export class AiService {
     });
   }
 
-  async review(userId: string, requestId: string, input: AiReviewRequest, signal?: AbortSignal): Promise<AiReviewResult> {
-    await this.requireConsent(userId);
-    const result = await this.run({
+  async review(userId: string, requestId: string, input: AiReviewRequest, grant: AiOperationGrant, signal?: AbortSignal): Promise<AiReviewResult> {
+    const result = await this.withAuthorizedOperation(userId, grant, () => this.run({
       userId,
       requestId,
       capability: input.mode === 'opi' ? 'polish' : 'grammar_review',
@@ -193,7 +324,7 @@ export class AiService {
       promptVersion: REVIEW_PROMPT_VERSION,
       units: input.mode === 'opi' ? 3 : 2,
       action: () => this.generateReview(userId, input, signal),
-    });
+    }));
     return withReviewPromptVersion(result);
   }
 }

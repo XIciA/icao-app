@@ -1,9 +1,16 @@
 import { z } from 'zod';
-import { CURRENT_AI_CONSENT_POLICY_VERSION } from '@icao/contracts';
+import { CURRENT_AI_CONSENT_FLOW_REVISION, CURRENT_AI_CONSENT_POLICY_VERSION } from '@icao/contracts';
+
+export const consentChallengeSchema = z.object({
+  policyVersion: z.literal(CURRENT_AI_CONSENT_POLICY_VERSION),
+  flowRevision: z.literal(CURRENT_AI_CONSENT_FLOW_REVISION),
+}).strict();
 
 export const consentSchema = z.object({
   accepted: z.literal(true),
   policyVersion: z.literal(CURRENT_AI_CONSENT_POLICY_VERSION),
+  flowRevision: z.literal(CURRENT_AI_CONSENT_FLOW_REVISION).optional(),
+  challenge: z.string().trim().min(32).max(128).optional(),
 }).strict();
 
 export const grammarSchema = z.object({

@@ -109,6 +109,40 @@ describe('Native AI client failure handling', () => {
     expect(mockRemoveItem).toHaveBeenCalledTimes(1);
   });
 
+  it('uses a short-lived explicit-flow challenge after the user accepts', async () => {
+    mockApiRequest
+      .mockResolvedValueOnce({
+        challenge: 'explicit-consent-challenge-token-1234567890',
+        expiresAt: '2026-08-25T00:05:00.000Z',
+        flowRevision: 'native-explicit-consent-v1',
+        policyVersion: 'ai-learning-privacy-v4',
+      })
+      .mockResolvedValueOnce({
+        acceptedAt: '2026-08-25T00:00:00.000Z',
+        policyVersion: 'ai-learning-privacy-v4',
+      });
+
+    await client().acceptAiConsent();
+
+    expect(mockApiRequest).toHaveBeenNthCalledWith(1, '/v1/ai/consent/challenge', expect.objectContaining({
+      body: JSON.stringify({
+        policyVersion: 'ai-learning-privacy-v4',
+        flowRevision: 'native-explicit-consent-v1',
+      }),
+      method: 'POST',
+    }));
+    expect(mockApiRequest).toHaveBeenNthCalledWith(2, '/v1/ai/consent', expect.objectContaining({
+      body: JSON.stringify({
+        accepted: true,
+        policyVersion: 'ai-learning-privacy-v4',
+        flowRevision: 'native-explicit-consent-v1',
+        challenge: 'explicit-consent-challenge-token-1234567890',
+      }),
+      method: 'POST',
+    }));
+    expect(mockSetItem).toHaveBeenCalledWith('icao.ai.consent.ai-learning-privacy-v4', 'accepted');
+  });
+
   it('does not retry a potentially chargeable upstream failure', async () => {
     const { ApiClientError } = jest.requireActual('@/platform/api-client') as typeof import('@/platform/api-client');
     mockApiRequest.mockRejectedValueOnce(new ApiClientError('ai_upstream_limited', 503, 'request-limited-1'));

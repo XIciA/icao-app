@@ -1,21 +1,109 @@
 import { describe, expect, it, vi } from 'vitest';
-import { CURRENT_AI_CONSENT_POLICY_VERSION } from '@icao/contracts';
+import { CURRENT_AI_CONSENT_FLOW_REVISION, CURRENT_AI_CONSENT_POLICY_VERSION } from '@icao/contracts';
 
 import { AiService } from '../src/ai/ai.service';
 import { ObservedAiServiceException } from '../src/ai/ai-error-observability';
+import { AiController } from '../src/ai/ai.controller';
+import { aiConsentChallenges, aiConsents } from '../src/database/schema';
 
-function database(consent: { userId: string; policyVersion: string; acceptedAt: Date } | null = {
+type ConsentRow = {
+  userId: string;
+  policyVersion: string;
+  acceptedAt: Date;
+  revision: number;
+  revokedAt: Date | null;
+};
+
+function database(consent: ConsentRow | null = {
   userId: 'user-1',
   policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
   acceptedAt: new Date('2026-08-14T00:00:00.000Z'),
+  revision: 1,
+  revokedAt: null,
 }) {
   const values = vi.fn(() => ({ onConflictDoNothing: async () => undefined }));
+  const transaction = {
+    execute: vi.fn(async () => undefined),
+    select: () => ({ from: () => ({ where: () => ({ limit: async () => consent ? [consent] : [] }) }) }),
+    insert: () => ({ values }),
+  };
   return {
     values,
     db: {
-      select: () => ({ from: () => ({ where: () => ({ limit: async () => consent ? [consent] : [] }) }) }),
-      insert: () => ({ values }),
+      ...transaction,
+      transaction: <T>(action: (value: typeof transaction) => Promise<T>) => action(transaction),
     },
+  };
+}
+
+async function operationGrant(ai: AiService, userId = 'user-1') {
+  return ai.admitOperation(userId);
+}
+
+function consentDatabase(initialConsent: ConsentRow | null = {
+  userId: 'user-1',
+  policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+  acceptedAt: new Date('2026-08-14T00:00:00.000Z'),
+  revision: 1,
+  revokedAt: null,
+}) {
+  let consent = initialConsent;
+  let challenges: Array<Record<string, unknown>> = [];
+  let transactionTail = Promise.resolve();
+  const execute = vi.fn<(query: unknown) => Promise<void>>();
+  execute.mockResolvedValue(undefined);
+  const transaction = {
+    execute,
+    select: () => ({
+      from: (table: unknown) => ({
+        where: () => ({
+          limit: async () => table === aiConsents
+            ? (consent ? [consent] : [])
+            : challenges.slice(0, 1),
+        }),
+      }),
+    }),
+    delete: (table: unknown) => ({
+      where: async () => {
+        if (table === aiConsentChallenges) challenges = [];
+      },
+    }),
+    update: (table: unknown) => ({
+      set: (update: Partial<ConsentRow>) => ({
+        where: async () => {
+          if (table === aiConsents && consent) consent = { ...consent, ...update };
+        },
+      }),
+    }),
+    insert: (table: unknown) => ({
+      values: (value: Record<string, unknown>) => {
+        if (table === aiConsentChallenges) {
+          challenges = [value];
+          return Promise.resolve();
+        }
+        if (table === aiConsents) {
+          return {
+            onConflictDoUpdate: async () => {
+              consent = value as ConsentRow;
+            },
+          };
+        }
+        return { onConflictDoNothing: async () => undefined };
+      },
+    }),
+  };
+  const db = {
+    ...transaction,
+    transaction<T>(action: (value: typeof transaction) => Promise<T>) {
+      const result = transactionTail.then(() => action(transaction));
+      transactionTail = result.then(() => undefined, () => undefined);
+      return result;
+    },
+  };
+  return {
+    database: { db },
+    execute,
+    state: () => ({ consent, challenges: [...challenges] }),
   };
 }
 
@@ -42,6 +130,149 @@ function service(output: unknown) {
 }
 
 describe('AiService DeepSeek review capabilities', () => {
+  it('keeps a legacy v4 POST idempotent without refreshing an existing acceptance', async () => {
+    const fixture = consentDatabase();
+    const ai = new AiService(fixture.database as never, reviewProvider({}) as never, {} as never);
+
+    await expect(ai.acceptConsent('user-1', {
+      accepted: true,
+      policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+    })).resolves.toEqual({
+      policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+      acceptedAt: '2026-08-14T00:00:00.000Z',
+    });
+    expect(fixture.state().consent).toMatchObject({
+      acceptedAt: new Date('2026-08-14T00:00:00.000Z'),
+      revision: 1,
+      revokedAt: null,
+    });
+  });
+
+  it('never lets the shipped legacy v4 POST recreate revoked consent', async () => {
+    const fixture = consentDatabase();
+    const ai = new AiService(fixture.database as never, reviewProvider({}) as never, {} as never);
+
+    await ai.revokeConsent('user-1');
+    await ai.issueConsentChallenge('user-1');
+    await expect(ai.acceptConsent('user-1', {
+      accepted: true,
+      policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+    })).rejects.toThrow('ai_consent_challenge_required');
+    expect(fixture.state().consent).toMatchObject({ revision: 2, revokedAt: expect.any(Date) });
+    expect(fixture.state().challenges).toHaveLength(1);
+  });
+
+  it('recreates consent only with a current explicit-flow one-time challenge', async () => {
+    const fixture = consentDatabase();
+    const ai = new AiService(fixture.database as never, reviewProvider({}) as never, {} as never);
+
+    await ai.revokeConsent('user-1');
+    const challenge = await ai.issueConsentChallenge('user-1');
+    await expect(ai.acceptConsent('user-1', {
+      accepted: true,
+      policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+      flowRevision: CURRENT_AI_CONSENT_FLOW_REVISION,
+      challenge: challenge.challenge,
+    })).resolves.toMatchObject({ policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION });
+    expect(fixture.state()).toMatchObject({
+      challenges: [],
+      consent: { revision: 3, revokedAt: null },
+    });
+
+    await ai.revokeConsent('user-1');
+    await expect(ai.acceptConsent('user-1', {
+      accepted: true,
+      policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+      flowRevision: CURRENT_AI_CONSENT_FLOW_REVISION,
+      challenge: challenge.challenge,
+    })).rejects.toThrow('ai_consent_challenge_required');
+  });
+
+  it('rejects an expired explicit consent challenge', async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2026-08-25T00:00:00.000Z'));
+    try {
+      const fixture = consentDatabase(null);
+      const ai = new AiService(fixture.database as never, reviewProvider({}) as never, {} as never);
+      const challenge = await ai.issueConsentChallenge('user-1');
+      vi.advanceTimersByTime(5 * 60 * 1000 + 1);
+
+      await expect(ai.acceptConsent('user-1', {
+        accepted: true,
+        policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+        flowRevision: CURRENT_AI_CONSENT_FLOW_REVISION,
+        challenge: challenge.challenge,
+      })).rejects.toThrow('ai_consent_challenge_required');
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('orders revoke before multipart admission so no file or provider is touched', async () => {
+    const fixture = consentDatabase();
+    const asr = { transcribe: vi.fn() };
+    const ai = new AiService(fixture.database as never, reviewProvider({}) as never, asr as never);
+    const controller = new AiController(ai);
+    const toBuffer = vi.fn(async () => Buffer.from('audio'));
+    const file = vi.fn(async () => ({
+      fields: { model: { type: 'field', value: '16k_en' } },
+      mimetype: 'audio/wav',
+      toBuffer,
+    }));
+    const request = {
+      id: 'request-revoke-first',
+      user: { id: 'user-1' },
+      raw: { once: vi.fn() },
+      file,
+    };
+
+    const revoke = ai.revokeConsent('user-1');
+    const transcribe = expect(controller.transcribe(request as never)).rejects.toThrow('ai_consent_required');
+    await revoke;
+    await transcribe;
+
+    expect(file).not.toHaveBeenCalled();
+    expect(toBuffer).not.toHaveBeenCalled();
+    expect(asr.transcribe).not.toHaveBeenCalled();
+    const lockIds = fixture.execute.mock.calls.map(([query]) => (
+      (query as { queryChunks: unknown[] }).queryChunks.find((chunk) => typeof chunk === 'string')
+    ));
+    expect(lockIds).toEqual(['ai-consent:user-1', 'ai-consent:user-1']);
+  });
+
+  it('rechecks the grant after file intake and blocks a revoke that committed meanwhile', async () => {
+    const fixture = consentDatabase();
+    const asr = { transcribe: vi.fn() };
+    const ai = new AiService(fixture.database as never, reviewProvider({}) as never, asr as never);
+    const controller = new AiController(ai);
+    const toBuffer = vi.fn(async () => Buffer.from('audio'));
+    let releaseFile!: (value: {
+      fields: { model: { type: 'field'; value: string } };
+      mimetype: string;
+      toBuffer: typeof toBuffer;
+    }) => void;
+    const file = vi.fn(() => new Promise<Parameters<typeof releaseFile>[0]>((resolve) => { releaseFile = resolve; }));
+    const request = {
+      id: 'request-revoke-during-intake',
+      user: { id: 'user-1' },
+      raw: { once: vi.fn() },
+      file,
+    };
+
+    const pending = controller.transcribe(request as never);
+    await vi.waitFor(() => expect(file).toHaveBeenCalledTimes(1));
+    await ai.revokeConsent('user-1');
+    releaseFile({
+      fields: { model: { type: 'field', value: '16k_en' } },
+      mimetype: 'audio/wav',
+      toBuffer,
+    });
+
+    await expect(pending).rejects.toThrow('ai_consent_required');
+    expect(toBuffer).toHaveBeenCalledTimes(1);
+    expect(asr.transcribe).not.toHaveBeenCalled();
+  });
+
   it('returns accepted only for the current policy version', async () => {
     const { service: ai } = service({});
 
@@ -67,6 +298,8 @@ describe('AiService DeepSeek review capabilities', () => {
       userId: 'user-1',
       policyVersion: 'ai-learning-privacy-v3',
       acceptedAt: new Date('2026-07-01T00:00:00.000Z'),
+      revision: 1,
+      revokedAt: null,
     });
     const review = reviewProvider({ grammar: { correctedText: 'Ready.', issues: [] } });
     const ai = new AiService(db as never, review as never, {} as never);
@@ -75,9 +308,7 @@ describe('AiService DeepSeek review capabilities', () => {
       accepted: false,
       policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
     });
-    await expect(ai.review('user-1', 'request-old-policy', {
-      mode: 'grammar', module: 'atc', questionId: 'question-old-policy', transcript: 'Ready.',
-    })).rejects.toThrow('ai_consent_required');
+    await expect(ai.admitOperation('user-1')).rejects.toThrow('ai_consent_required');
     expect(review.generateValidated).not.toHaveBeenCalled();
   });
 
@@ -93,7 +324,7 @@ describe('AiService DeepSeek review capabilities', () => {
 
     const result = await ai.review('user-1', 'request-1', {
       mode: 'grammar', module: 'opi', questionId: 'question-1', transcript: 'He have informed ATC.',
-    });
+    }, await operationGrant(ai));
 
     expect(result).toEqual({
       grammar: {
@@ -119,7 +350,7 @@ describe('AiService DeepSeek review capabilities', () => {
 
     const result = await ai.review('user-1', 'request-2', {
       mode: 'opi', module: 'opi', questionId: 'question-2', transcript: 'I encountered turbulence.',
-    });
+    }, await operationGrant(ai));
 
     expect(result.polishedText).toBe('I encountered turbulence.');
     expect(review.generateValidated).toHaveBeenCalledTimes(1);
@@ -136,7 +367,7 @@ describe('AiService DeepSeek review capabilities', () => {
 
     const result = await ai.grammarReview('user-1', 'request-3', {
       module: 'opi', questionId: 'question-3', questionText: 'not sent', transcript: 'He have informed ATC.',
-    });
+    }, await operationGrant(ai));
 
     expect(result).toEqual({
       correctedText: 'He has informed ATC.',
@@ -153,7 +384,7 @@ describe('AiService DeepSeek review capabilities', () => {
 
     const result = await ai.polish('user-1', 'request-legacy-polish', {
       module: 'opi', questionId: 'question-polish', questionText: 'not sent', transcript: 'I tell ATC.', correctedText: 'I informed ATC.',
-    });
+    }, await operationGrant(ai));
 
     expect(result).toEqual({ polishedText: 'I informed ATC.', promptVersion: 'deepseek-review:v1' });
     const call = review.generateValidated.mock.calls[0]![0];
@@ -170,7 +401,7 @@ describe('AiService DeepSeek review capabilities', () => {
 
     await expect(ai.review('user-1', 'request-4', {
       mode: 'grammar', module: 'atc', questionId: 'question-4', transcript: 'We was maintaining FL180.',
-    })).rejects.toThrow();
+    }, await operationGrant(ai))).rejects.toThrow();
   });
 
   it('records only the typed failure code, category, and attempt count for a failed request', async () => {
@@ -190,7 +421,7 @@ describe('AiService DeepSeek review capabilities', () => {
 
     await expect(ai.review('user-1', 'request-failure', {
       mode: 'grammar', module: 'atc', questionId: 'question-5', transcript: 'Ready.',
-    })).rejects.toThrow('ai_invalid_response');
+    }, await operationGrant(ai))).rejects.toThrow('ai_invalid_response');
 
     expect(db.values).toHaveBeenLastCalledWith(expect.objectContaining({
       attemptCount: 2,
@@ -214,7 +445,7 @@ describe('AiService DeepSeek review capabilities', () => {
 
     await expect(ai.review('user-1', 'request-private-failure', {
       mode: 'grammar', module: 'atc', questionId: 'question-6', transcript: 'Ready.',
-    })).rejects.toThrow('ai_upstream_failed');
+    }, await operationGrant(ai))).rejects.toThrow('ai_upstream_failed');
 
     expect(db.values).toHaveBeenLastCalledWith(expect.objectContaining({
       failureCode: 'internal_error',
@@ -225,15 +456,22 @@ describe('AiService DeepSeek review capabilities', () => {
 
   it('returns a successful paid result even when usage telemetry cannot be persisted', async () => {
     const failingValues = vi.fn(() => ({ onConflictDoNothing: async () => { throw new Error('database unavailable'); } }));
-    const db = {
-      values: failingValues,
-      db: {
-        select: () => ({ from: () => ({ where: () => ({ limit: async () => [{
+    const transactionDb = {
+      select: () => ({ from: () => ({ where: () => ({ limit: async () => [{
           userId: 'user-1',
           policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
           acceptedAt: new Date('2026-08-14T00:00:00.000Z'),
+          revision: 1,
+          revokedAt: null,
         }] }) }) }),
-        insert: () => ({ values: failingValues }),
+      insert: () => ({ values: failingValues }),
+      execute: vi.fn<(query: unknown) => Promise<void>>().mockResolvedValue(undefined),
+    };
+    const db = {
+      values: failingValues,
+      db: {
+        ...transactionDb,
+        transaction: <T>(action: (transaction: typeof transactionDb) => Promise<T>) => action(transactionDb),
       },
     };
     const review = reviewProvider({
@@ -243,7 +481,7 @@ describe('AiService DeepSeek review capabilities', () => {
 
     await expect(ai.review('user-1', 'request-telemetry-failure', {
       mode: 'grammar', module: 'atc', questionId: 'question-7', transcript: 'Ready.',
-    })).resolves.toMatchObject({ grammar: { correctedText: 'Ready.' } });
+    }, await operationGrant(ai))).resolves.toMatchObject({ grammar: { correctedText: 'Ready.' } });
     expect(failingValues).toHaveBeenCalled();
   });
 });

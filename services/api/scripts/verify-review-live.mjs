@@ -121,9 +121,21 @@ try {
   const me = await api('/v1/me', token);
   assert(me.data?.id === accountId, 'business_account_resolution_failed');
 
+  const consentChallenge = await api('/v1/ai/consent/challenge', token, {
+    method: 'POST',
+    body: JSON.stringify({
+      flowRevision: 'native-explicit-consent-v1',
+      policyVersion: 'ai-learning-privacy-v4',
+    }),
+  });
   const consent = await api('/v1/ai/consent', token, {
     method: 'POST',
-    body: JSON.stringify({ accepted: true, policyVersion: 'ai-learning-privacy-v4' }),
+    body: JSON.stringify({
+      accepted: true,
+      challenge: consentChallenge.data?.challenge,
+      flowRevision: 'native-explicit-consent-v1',
+      policyVersion: 'ai-learning-privacy-v4',
+    }),
   });
   assert(consent.data?.policyVersion === 'ai-learning-privacy-v4', 'policy_version_mismatch');
 
