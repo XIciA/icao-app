@@ -188,7 +188,7 @@ after(() => {
   rmSync(clusterRoot, { recursive: true, force: true });
 });
 
-test('the cumulative migration enables RLS on all 31 public tables', () => {
+test('the cumulative migration enables RLS on all 40 public tables', () => {
   assert.equal(
     queryScalar(`
       SELECT COUNT(*)::text || ':' || COUNT(*) FILTER (WHERE relrowsecurity)::text
@@ -196,8 +196,100 @@ test('the cumulative migration enables RLS on all 31 public tables', () => {
       JOIN pg_namespace namespace ON namespace.oid = relation.relnamespace
       WHERE namespace.nspname = 'public' AND relation.relkind = 'r'
     `),
-    '31:31',
+    '40:40',
   );
+});
+
+test('account-security authority tables are private to the API database role', () => {
+  const protectedTables = [
+    'account_content_credential_revocations',
+    'account_deletion_auth_users',
+    'account_deletion_jobs',
+    'account_deletion_tombstones',
+    'account_security_events',
+    'apple_revocable_credentials',
+    'lifetime_identity_benefit_claims',
+    'recent_auth_challenges',
+    'recent_auth_grants',
+  ];
+  for (const role of ['anon', 'authenticated']) {
+    for (const table of protectedTables) {
+      assert.equal(
+        queryScalar(`SELECT has_table_privilege('${role}', '${table}', 'SELECT,INSERT,UPDATE,DELETE')::text`),
+        'false',
+        `${role} must not access ${table}`,
+      );
+    }
+  }
+});
+
+test('lifetime identity claims survive account deletion and remain globally single-use', () => {
+  const first = psql(`
+    INSERT INTO lifetime_identity_benefit_claims (
+      benefit_key, identity_digest, provider, claim_context_digest
+    ) VALUES ('trial-100-v1', 'identity-digest-1', 'phone', 'account-context-1');
+  `);
+  assert.equal(first.status, 0, first.stderr);
+
+  const duplicate = psql(`
+    INSERT INTO lifetime_identity_benefit_claims (
+      benefit_key, identity_digest, provider, claim_context_digest
+    ) VALUES ('trial-100-v1', 'identity-digest-1', 'phone', 'account-context-2');
+  `);
+  assert.notEqual(duplicate.status, 0);
+  assert.match(duplicate.stderr, /lifetime_identity_benefit_claims.*pk/);
+  assert.equal(
+    queryScalar(`SELECT claim_context_digest FROM lifetime_identity_benefit_claims WHERE identity_digest = 'identity-digest-1'`),
+    'account-context-1',
+  );
+});
+
+test('recent-auth grants are purpose-bound to a durable challenge', () => {
+  const challengeId = '30000000-0000-4000-8000-000000000001';
+  const grantId = '30000000-0000-4000-8000-000000000002';
+  const accountId = '30000000-0000-4000-8000-000000000003';
+  const authUserId = '30000000-0000-4000-8000-000000000004';
+  const sessionId = '30000000-0000-4000-8000-000000000005';
+  const setup = psql(`
+    INSERT INTO recent_auth_challenges (
+      id, account_id, auth_user_id, session_id, method, purpose, target_digest,
+      status, expires_at, verified_at
+    ) VALUES (
+      '${challengeId}', '${accountId}', '${authUserId}', '${sessionId}', 'password',
+      'account_delete', 'target-digest', 'verified', now() + interval '5 minutes', now()
+    );
+    INSERT INTO recent_auth_grants (
+      id, challenge_id, account_id, auth_user_id, session_id, method, purpose,
+      target_digest, expires_at
+    ) VALUES (
+      '${grantId}', '${challengeId}', '${accountId}', '${authUserId}', '${sessionId}',
+      'password', 'account_delete', 'target-digest', now() + interval '5 minutes'
+    );
+  `);
+  assert.equal(setup.status, 0, setup.stderr);
+
+  const duplicateGrant = psql(`
+    INSERT INTO recent_auth_grants (
+      challenge_id, account_id, auth_user_id, session_id, method, purpose,
+      target_digest, expires_at
+    ) VALUES (
+      '${challengeId}', '${accountId}', '${authUserId}', '${sessionId}',
+      'password', 'account_delete', 'target-digest', now() + interval '5 minutes'
+    );
+  `);
+  assert.notEqual(duplicateGrant.status, 0);
+  assert.match(duplicateGrant.stderr, /recent_auth_grants_challenge/);
+
+  const invalidPurpose = psql(`
+    INSERT INTO recent_auth_challenges (
+      account_id, auth_user_id, session_id, method, purpose, target_digest, expires_at
+    ) VALUES (
+      '${accountId}', '${authUserId}', '${sessionId}', 'password', 'purchase',
+      'target-digest', now() + interval '5 minutes'
+    );
+  `);
+  assert.notEqual(invalidPurpose.status, 0);
+  assert.match(invalidPurpose.stderr, /recent_auth_challenges_purpose_check/);
 });
 
 test('deferred commerce constraints enforce reservation transitions and batch accounting', () => {

@@ -50,6 +50,179 @@ export const accountSessionRevocations = pgTable('account_session_revocations', 
   index('account_session_revocations_user').on(table.userId),
 ]).enableRLS();
 
+export const recentAuthChallenges = pgTable('recent_auth_challenges', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  accountId: uuid('account_id').notNull(),
+  authUserId: uuid('auth_user_id').notNull(),
+  sessionId: uuid('session_id').notNull(),
+  method: text('method').notNull(),
+  purpose: text('purpose').notNull(),
+  targetDigest: text('target_digest').notNull(),
+  status: text('status').default('pending').notNull(),
+  expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+  verifiedAt: timestamp('verified_at', { withTimezone: true }),
+  consumedAt: timestamp('consumed_at', { withTimezone: true }),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  index('recent_auth_challenges_account_session').on(table.accountId, table.sessionId, table.purpose, table.status),
+  index('recent_auth_challenges_expiry').on(table.expiresAt),
+  check('recent_auth_challenges_method_check', sql`${table.method} IN ('password', 'phone_otp', 'apple')`),
+  check('recent_auth_challenges_purpose_check', sql`${table.purpose} IN ('account_delete', 'password_recovery', 'phone_binding')`),
+  check('recent_auth_challenges_status_check', sql`${table.status} IN ('pending', 'verified', 'consumed', 'expired')`),
+  check('recent_auth_challenges_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
+  check('recent_auth_challenges_verified_check', sql`${table.verifiedAt} IS NULL OR ${table.verifiedAt} >= ${table.createdAt}`),
+  check('recent_auth_challenges_consumed_check', sql`${table.consumedAt} IS NULL OR ${table.consumedAt} >= ${table.createdAt}`),
+]).enableRLS();
+
+export const recentAuthGrants = pgTable('recent_auth_grants', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  challengeId: uuid('challenge_id').notNull()
+    .references(() => recentAuthChallenges.id, { onDelete: 'restrict' }),
+  accountId: uuid('account_id').notNull(),
+  authUserId: uuid('auth_user_id').notNull(),
+  sessionId: uuid('session_id').notNull(),
+  method: text('method').notNull(),
+  purpose: text('purpose').notNull(),
+  targetDigest: text('target_digest').notNull(),
+  expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+  consumedAt: timestamp('consumed_at', { withTimezone: true }),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex('recent_auth_grants_challenge').on(table.challengeId),
+  index('recent_auth_grants_account_session').on(table.accountId, table.sessionId, table.purpose),
+  index('recent_auth_grants_expiry').on(table.expiresAt),
+  check('recent_auth_grants_method_check', sql`${table.method} IN ('password', 'phone_otp', 'apple')`),
+  check('recent_auth_grants_purpose_check', sql`${table.purpose} IN ('account_delete', 'password_recovery', 'phone_binding')`),
+  check('recent_auth_grants_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
+  check('recent_auth_grants_consumed_check', sql`${table.consumedAt} IS NULL OR ${table.consumedAt} >= ${table.createdAt}`),
+]).enableRLS();
+
+export const appleRevocableCredentials = pgTable('apple_revocable_credentials', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  accountId: uuid('account_id').notNull(),
+  authUserId: uuid('auth_user_id').notNull(),
+  subjectDigest: text('subject_digest').notNull(),
+  encryptedRefreshToken: text('encrypted_refresh_token').notNull(),
+  encryptionVersion: integer('encryption_version').default(1).notNull(),
+  status: text('status').default('active').notNull(),
+  revokeAttemptCount: integer('revoke_attempt_count').default(0).notNull(),
+  nextRetryAt: timestamp('next_retry_at', { withTimezone: true }),
+  lastAttemptAt: timestamp('last_attempt_at', { withTimezone: true }),
+  lastErrorCode: text('last_error_code'),
+  revokedAt: timestamp('revoked_at', { withTimezone: true }),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex('apple_revocable_credentials_auth_user').on(table.authUserId),
+  uniqueIndex('apple_revocable_credentials_subject').on(table.subjectDigest),
+  index('apple_revocable_credentials_account_status').on(table.accountId, table.status),
+  index('apple_revocable_credentials_retry').on(table.status, table.nextRetryAt),
+  check('apple_revocable_credentials_status_check', sql`${table.status} IN ('active', 'revoke_pending', 'retryable', 'revoked')`),
+  check('apple_revocable_credentials_attempts_check', sql`${table.revokeAttemptCount} >= 0`),
+  check('apple_revocable_credentials_encryption_version_check', sql`${table.encryptionVersion} > 0`),
+]).enableRLS();
+
+export const lifetimeIdentityBenefitClaims = pgTable('lifetime_identity_benefit_claims', {
+  benefitKey: text('benefit_key').notNull(),
+  identityDigest: text('identity_digest').notNull(),
+  provider: text('provider').notNull(),
+  digestKeyVersion: integer('digest_key_version').default(1).notNull(),
+  claimContextDigest: text('claim_context_digest').notNull(),
+  claimedAt: timestamp('claimed_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  primaryKey({ columns: [table.benefitKey, table.identityDigest] }),
+  index('lifetime_identity_benefit_claims_claimed').on(table.benefitKey, table.claimedAt),
+  check('lifetime_identity_benefit_claims_provider_check', sql`${table.provider} IN ('phone', 'apple')`),
+  check('lifetime_identity_benefit_claims_key_version_check', sql`${table.digestKeyVersion} > 0`),
+]).enableRLS();
+
+export const accountDeletionJobs = pgTable('account_deletion_jobs', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  accountId: uuid('account_id').notNull(),
+  requestedByAuthUserId: uuid('requested_by_auth_user_id').notNull(),
+  idempotencyKey: uuid('idempotency_key').notNull(),
+  status: text('status').default('pending').notNull(),
+  identityProviderOutcome: text('identity_provider_outcome').default('pending').notNull(),
+  attemptCount: integer('attempt_count').default(0).notNull(),
+  nextRetryAt: timestamp('next_retry_at', { withTimezone: true }),
+  lastErrorCode: text('last_error_code'),
+  requestedAt: timestamp('requested_at', { withTimezone: true }).defaultNow().notNull(),
+  startedAt: timestamp('started_at', { withTimezone: true }),
+  identityProvidersRevokedAt: timestamp('identity_providers_revoked_at', { withTimezone: true }),
+  authUsersDeletedAt: timestamp('auth_users_deleted_at', { withTimezone: true }),
+  activeDataDeletedAt: timestamp('active_data_deleted_at', { withTimezone: true }),
+  completedAt: timestamp('completed_at', { withTimezone: true }),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex('account_deletion_jobs_account').on(table.accountId),
+  uniqueIndex('account_deletion_jobs_idempotency').on(table.idempotencyKey),
+  index('account_deletion_jobs_retry').on(table.status, table.nextRetryAt),
+  check('account_deletion_jobs_status_check', sql`${table.status} IN ('pending', 'processing', 'retryable', 'completed')`),
+  check('account_deletion_jobs_identity_provider_outcome_check', sql`${table.identityProviderOutcome} IN ('pending', 'revoked', 'manual_action_required', 'not_applicable')`),
+  check('account_deletion_jobs_attempts_check', sql`${table.attemptCount} >= 0`),
+]).enableRLS();
+
+export const accountDeletionAuthUsers = pgTable('account_deletion_auth_users', {
+  jobId: uuid('job_id').notNull()
+    .references(() => accountDeletionJobs.id, { onDelete: 'restrict' }),
+  authUserId: uuid('auth_user_id').notNull(),
+  status: text('status').default('pending').notNull(),
+  attemptCount: integer('attempt_count').default(0).notNull(),
+  nextRetryAt: timestamp('next_retry_at', { withTimezone: true }),
+  lastErrorCode: text('last_error_code'),
+  deletedAt: timestamp('deleted_at', { withTimezone: true }),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  primaryKey({ columns: [table.jobId, table.authUserId] }),
+  index('account_deletion_auth_users_retry').on(table.status, table.nextRetryAt),
+  check('account_deletion_auth_users_status_check', sql`${table.status} IN ('pending', 'retryable', 'deleted')`),
+  check('account_deletion_auth_users_attempts_check', sql`${table.attemptCount} >= 0`),
+]).enableRLS();
+
+export const accountDeletionTombstones = pgTable('account_deletion_tombstones', {
+  accountId: uuid('account_id').primaryKey(),
+  jobId: uuid('job_id').notNull()
+    .references(() => accountDeletionJobs.id, { onDelete: 'restrict' }),
+  status: text('status').default('pending').notNull(),
+  legalRetentionUntil: timestamp('legal_retention_until', { withTimezone: true }).notNull(),
+  benefitsRevokedAt: timestamp('benefits_revoked_at', { withTimezone: true }),
+  activeDataDeletedAt: timestamp('active_data_deleted_at', { withTimezone: true }),
+  completedAt: timestamp('completed_at', { withTimezone: true }),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex('account_deletion_tombstones_job').on(table.jobId),
+  index('account_deletion_tombstones_retention').on(table.legalRetentionUntil),
+  check('account_deletion_tombstones_status_check', sql`${table.status} IN ('pending', 'completed')`),
+  check('account_deletion_tombstones_retention_check', sql`${table.legalRetentionUntil} > ${table.createdAt}`),
+]).enableRLS();
+
+export const accountContentCredentialRevocations = pgTable('account_content_credential_revocations', {
+  accountId: uuid('account_id').primaryKey(),
+  deletionJobId: uuid('deletion_job_id').notNull()
+    .references(() => accountDeletionJobs.id, { onDelete: 'restrict' }),
+  revokedBefore: timestamp('revoked_before', { withTimezone: true }).notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex('account_content_credential_revocations_job').on(table.deletionJobId),
+]).enableRLS();
+
+export const accountSecurityEvents = pgTable('account_security_events', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  accountDigest: text('account_digest').notNull(),
+  subjectDigest: text('subject_digest'),
+  eventType: text('event_type').notNull(),
+  outcome: text('outcome').notNull(),
+  metadata: jsonb('metadata').default(sql`'{}'::jsonb`).notNull(),
+  retentionAt: timestamp('retention_at', { withTimezone: true }).notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  index('account_security_events_account_created').on(table.accountDigest, table.createdAt),
+  index('account_security_events_retention').on(table.retentionAt),
+  check('account_security_events_outcome_check', sql`${table.outcome} IN ('succeeded', 'failed', 'pending')`),
+  check('account_security_events_retention_check', sql`${table.retentionAt} > ${table.createdAt}`),
+]).enableRLS();
+
 export const questionBankReleases = pgTable('question_bank_releases', {
   id: uuid('id').defaultRandom().primaryKey(),
   bankId: text('bank_id').notNull(),
