@@ -1,6 +1,11 @@
 import { access, readFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 
+import {
+  assertExpoPrebuildCommand,
+  runReleaseCommandContractSelfTest,
+} from './release-command-contract.mjs';
+
 const require = createRequire(import.meta.url);
 const app = JSON.parse(await readFile('app.json', 'utf8'));
 const appConfig = require('../app.config.js');
@@ -27,6 +32,8 @@ const sample = `android {
 `;
 const first = plugin.applySigning(sample);
 const second = plugin.applySigning(first);
+
+runReleaseCommandContractSelfTest();
 
 for (const versionPath of [
   'src/config/app-version.ts',
@@ -234,9 +241,26 @@ for (const retiredReference of [
 if (packageJsonSource.includes('scripts/publish-android-release.sh')) {
   throw new Error('The retired Android download-site publisher is still registered in package.json.');
 }
+assertExpoPrebuildCommand(iosDevelopment, {
+  label: 'iOS development',
+  platform: 'ios',
+  requireClean: false,
+  requireNoInstall: true,
+});
+for (const [label, source] of [
+  ['iOS standalone', iosStandalone],
+  ['TestFlight archive', iosTestFlightArchive],
+  ['TestFlight release', iosTestFlightRelease],
+]) {
+  assertExpoPrebuildCommand(source, {
+    label,
+    platform: 'ios',
+    requireClean: true,
+    requireNoInstall: true,
+  });
+}
 if (
   !iosDevelopment.includes('ICAO_APP_VARIANT=development') ||
-  !iosDevelopment.includes('expo prebuild --platform ios --no-install') ||
   !iosStandalone.includes('ICAO_APP_VARIANT=production') ||
   !packageJsonSource.includes('ICAO_APP_VARIANT=development expo start --dev-client')
 ) {
@@ -276,7 +300,6 @@ if (!iosStandalone.includes('EXPO_PUBLIC_ICAO_AUDIO_E2E is forbidden')) {
   throw new Error('The iOS Release build is missing its deterministic-audio guard.');
 }
 if (
-  !iosStandalone.includes('expo prebuild --platform ios --no-install') ||
   !iosStandalone.includes('find_ios_release_app') ||
   !iosStandalone.includes('verify_ios_release_app')
 ) {

@@ -1,5 +1,29 @@
 #!/bin/sh
 
+# Resolve the one cleanly generated Expo CNG workspace, scheme, and product.
+configure_ios_cng_product() {
+  ios_root=$1
+  if [ -n "${ICAO_IOS_WORKSPACE:-}${ICAO_IOS_SCHEME:-}${ICAO_IOS_PRODUCT_NAME:-}" ]; then
+    echo 'Release iOS product overrides are forbidden; use the uniquely generated CNG product.' >&2
+    exit 1
+  fi
+
+  identity_file=$(mktemp "${TMPDIR:-/tmp}/icao-ios-cng-identity.XXXXXX")
+  if ! node "$PROJECT_ROOT/tools/verify-ios-cng-product.mjs" "$ios_root" > "$identity_file"; then
+    rm -f "$identity_file"
+    exit 1
+  fi
+  IOS_WORKSPACE=$(sed -n '1p' "$identity_file")
+  IOS_SCHEME=$(sed -n '2p' "$identity_file")
+  IOS_PRODUCT_NAME=$(sed -n '3p' "$identity_file")
+  rm -f "$identity_file"
+
+  if [ -z "$IOS_WORKSPACE" ] || [ -z "$IOS_SCHEME" ] || [ -z "$IOS_PRODUCT_NAME" ]; then
+    echo 'The generated iOS CNG identity is incomplete.' >&2
+    exit 1
+  fi
+}
+
 find_ios_release_app() {
   product_dir=$1
   product_name=${2:-}
@@ -20,6 +44,26 @@ find_ios_release_app() {
     exit 1
   fi
   find "$product_dir" -maxdepth 1 -type d -name '*.app' -print -quit
+}
+
+verify_ios_storekit_dependencies() {
+  podfile_lock=$1
+
+  if [ ! -f "$podfile_lock" ]; then
+    echo "The generated Podfile.lock is missing: $podfile_lock" >&2
+    exit 1
+  fi
+
+  for required_pod in \
+    '  - NitroIap (16.3.2):' \
+    '  - NitroModules (0.36.5):' \
+    '  - openiap (3.2.1)'
+  do
+    if ! grep -Fq "$required_pod" "$podfile_lock"; then
+      echo "The iOS Release dependency graph is missing: $required_pod" >&2
+      exit 1
+    fi
+  done
 }
 
 verify_ios_release_app() {

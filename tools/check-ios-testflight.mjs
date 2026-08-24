@@ -19,6 +19,10 @@ if (!audioPlugin?.[1]?.microphonePermission) failures.push('Expo Audio microphon
 
 for (const required of [
   'ICAO_APP_VARIANT=production',
+  'configure_ios_cng_product "$PROJECT_ROOT/ios"',
+  '-workspace "$IOS_WORKSPACE"',
+  '-scheme "$IOS_SCHEME"',
+  'find_ios_release_app "$ARCHIVE_PATH/Products/Applications" "$IOS_PRODUCT_NAME"',
   "-destination 'generic/platform=iOS'",
   '-exportArchive',
   '--validate-app',
@@ -28,13 +32,22 @@ for (const required of [
   'pnpm check:audio',
   'pnpm test:recording',
   'pnpm typecheck',
+  'pnpm check:ios:testflight',
+  'verify_ios_storekit_dependencies',
   'git diff --check',
   'create-testflight-candidate.mjs',
   'assign-groups',
 ]) {
   if (!releaseScript.includes(required)) failures.push(`TestFlight release script is missing: ${required}`);
 }
-for (const forbidden of ['devicectl', 'run:ios', 'simulator', 'EXPO_PUBLIC_ICAO_AUDIO_E2E=1']) {
+for (const forbidden of [
+  'devicectl',
+  'run:ios',
+  'simulator',
+  'EXPO_PUBLIC_ICAO_AUDIO_E2E=1',
+  'ios/ICAO.xcworkspace',
+  'ICAO_IOS_SCHEME:-ICAO',
+]) {
   if (releaseScript.includes(forbidden)) failures.push(`TestFlight release script contains a forbidden delivery step: ${forbidden}`);
 }
 for (const forbidden of ['AbortSignal.any', 'AbortSignal.timeout']) {
