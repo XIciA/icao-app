@@ -111,6 +111,50 @@ export type InviteSessionResponse = {
 
 export type RevokeAllSessionsResponse = { revoked: true };
 
+export type CommerceEnvironment = 'sandbox' | 'production';
+
+export type CommerceProductOffering = {
+  productKey:
+    | 'membership_7d_v1'
+    | 'membership_15d_v1'
+    | 'membership_31d_v1'
+    | 'membership_62d_v1'
+    | 'membership_93d_v1';
+  storeProductId: string;
+  displayName: string;
+  durationDays: 7 | 15 | 31 | 62 | 93;
+  autoRenews: false;
+  recommended: boolean;
+};
+
+export type CommerceProductCatalogResponse = {
+  priceSource: 'storekit';
+  products: CommerceProductOffering[];
+};
+
+export type VerifyAppleTransactionRequest = {
+  signedTransaction: string;
+};
+
+export type CommerceEntitlementSummary = {
+  environment: CommerceEnvironment;
+  serverTime: string;
+  membership: {
+    active: boolean;
+    expiresAt: string | null;
+  };
+  aiPoints: {
+    available: number;
+    nextGrantAt: string | null;
+  };
+};
+
+export type VerifyAppleTransactionResponse = {
+  created: boolean;
+  transactionId: string;
+  entitlement: CommerceEntitlementSummary;
+};
+
 export type RecentAuthPurpose = 'account_delete' | 'password_recovery' | 'phone_binding';
 export type RecentAuthMethod = 'password' | 'phone_otp' | 'apple';
 

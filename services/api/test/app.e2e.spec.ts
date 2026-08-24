@@ -13,6 +13,7 @@ import { RecentAuthService } from '../src/auth/recent-auth.service';
 import { SessionSecurityService } from '../src/auth/session-security.service';
 import { loadConfig } from '../src/config';
 import { DatabaseService } from '../src/database/database.service';
+import { CommerceService } from '../src/commerce/commerce.service';
 import { EditorialService } from '../src/editorial/editorial.service';
 import { HttpErrorFilter } from '../src/http-error.filter';
 
@@ -42,6 +43,10 @@ function productionConfig(overrides: NodeJS.ProcessEnv = {}): NodeJS.ProcessEnv 
     APPLE_KEY_ID: 'KEYID1234',
     APPLE_PRIVATE_KEY: '-----BEGIN PRIVATE KEY-----\\ntest-only-not-a-real-key-material\\n-----END PRIVATE KEY-----',
     APPLE_CREDENTIAL_ENCRYPTION_KEY: 'BwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwc=',
+    APPLE_COMMERCE_ENVIRONMENT: 'production',
+    APPLE_IAP_BUNDLE_ID: 'com.readyoufife.ios',
+    APPLE_IAP_APP_APPLE_ID: '1234567890',
+    APPLE_IAP_ROOT_CERTIFICATES_BASE64: 'dGVzdC1yb290LWNlcnRpZmljYXRl',
     AI_TEXT_PROVIDER: 'deepseek',
     DEEPSEEK_API_KEY: 'test-deepseek-key',
     DEEPSEEK_BASE_URL: 'https://api.deepseek.com',
@@ -155,6 +160,36 @@ async function testApp({ revoked = false }: { revoked?: boolean } = {}) {
         purpose: 'account_delete',
       }),
     })
+    .overrideProvider(CommerceService)
+    .useValue({
+      catalog: () => ({
+        priceSource: 'storekit',
+        products: [{
+          productKey: 'membership_31d_v1',
+          storeProductId: 'com.readyoufife.ios.membership.31d.v1',
+          displayName: '31天会员',
+          durationDays: 31,
+          autoRenews: false,
+          recommended: true,
+        }],
+      }),
+      currentEntitlement: async () => ({
+        environment: 'production',
+        serverTime: '2026-08-24T00:00:00.000Z',
+        membership: { active: false, expiresAt: null },
+        aiPoints: { available: 100, nextGrantAt: null },
+      }),
+      verifyAppleTransaction: async () => ({
+        created: true,
+        transactionId: 'transaction-1',
+        entitlement: {
+          environment: 'production',
+          serverTime: '2026-08-24T00:00:00.000Z',
+          membership: { active: true, expiresAt: '2026-09-24T00:00:00.000Z' },
+          aiPoints: { available: 1_100, nextGrantAt: null },
+        },
+      }),
+    })
     .overrideProvider(EditorialService)
     .useValue({
       list: async () => ({
@@ -265,6 +300,26 @@ describe('API foundation', () => {
       delete environment[field];
       expect(() => loadConfig(environment)).toThrow('invalid_api_configuration');
     }
+  });
+
+  it('requires a server-owned Apple commerce environment and verifier trust roots in production', () => {
+    const configured = loadConfig(productionConfig());
+    expect(configured.appleCommerceEnvironment).toBe('production');
+    expect(configured.appleIapBundleId).toBe('com.readyoufife.ios');
+    expect(configured.appleIapAppAppleId).toBe(1_234_567_890);
+    expect(configured.appleIapRootCertificates).toHaveLength(1);
+    for (const field of [
+      'APPLE_COMMERCE_ENVIRONMENT',
+      'APPLE_IAP_APP_APPLE_ID',
+      'APPLE_IAP_ROOT_CERTIFICATES_BASE64',
+    ]) {
+      const environment = productionConfig();
+      delete environment[field];
+      expect(() => loadConfig(environment)).toThrow('invalid_api_configuration');
+    }
+    expect(() => loadConfig(productionConfig({
+      APPLE_IAP_ROOT_CERTIFICATES_BASE64: 'not valid base64',
+    }))).toThrow('invalid_api_configuration:APPLE_IAP_ROOT_CERTIFICATES_BASE64');
   });
 
   it('exposes only DeepSeek text AI and Tencent ASR production configuration', () => {
@@ -607,6 +662,38 @@ describe('API foundation', () => {
     expect(responses.map((response) => response.json().error.code)).toEqual([
       'missing_bearer_token', 'missing_bearer_token', 'missing_bearer_token', 'missing_bearer_token', 'missing_bearer_token', 'missing_bearer_token',
     ]);
+    await app.close();
+  });
+
+  it('protects the commerce surface and keeps Apple environment selection out of request bodies', async () => {
+    const app = await testApp();
+    const headers = { authorization: 'Bearer valid-token' };
+    const missing = await app.inject({ method: 'GET', url: '/v1/commerce/catalog' });
+    const catalog = await app.inject({ method: 'GET', url: '/v1/commerce/catalog', headers });
+    const entitlement = await app.inject({ method: 'GET', url: '/v1/commerce/entitlements/current', headers });
+    const invalid = await app.inject({
+      method: 'POST',
+      url: '/v1/commerce/apple/transactions/verify',
+      headers,
+      payload: { signedTransaction: 'not-a-jws', environment: 'production' },
+    });
+    const verified = await app.inject({
+      method: 'POST',
+      url: '/v1/commerce/apple/transactions/verify',
+      headers,
+      payload: { signedTransaction: `${'a'.repeat(100)}.b.c` },
+    });
+    expect(missing.statusCode).toBe(401);
+    expect(catalog.statusCode).toBe(200);
+    expect(catalog.json().data).toMatchObject({ priceSource: 'storekit' });
+    expect(entitlement.json().data).toMatchObject({
+      environment: 'production',
+      aiPoints: { available: 100 },
+    });
+    expect(invalid.statusCode).toBe(400);
+    expect(invalid.json().error.code).toBe('invalid_apple_transaction_request');
+    expect(verified.statusCode).toBe(200);
+    expect(verified.json().data).toMatchObject({ created: true, transactionId: 'transaction-1' });
     await app.close();
   });
 

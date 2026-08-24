@@ -49,9 +49,12 @@ import { FeedbackCleanupService } from './feedback/feedback-cleanup.service';
 import { FeedbackController } from './feedback/feedback.controller';
 import { FeedbackService } from './feedback/feedback.service';
 import { PersistentCommerceBenefitsService } from './commerce/persistent-commerce-benefits.service';
+import { CommerceController } from './commerce/commerce.controller';
+import { CommerceService } from './commerce/commerce.service';
+import { APPLE_STORE_VERIFIER, configuredAppleStoreVerifier } from './commerce/apple-store-verifier';
 
 @Module({
-  controllers: [HealthController, MeController, PhoneAuthController, RecentAuthController, AppleAuthController, SupabaseSmsHookController, AccountController, AccountDeletionStatusController, QuestionBankController, ResourceController, EditorialController, SyncController, AiController, VocabularyController, FeedbackController],
+  controllers: [HealthController, MeController, PhoneAuthController, RecentAuthController, AppleAuthController, SupabaseSmsHookController, AccountController, AccountDeletionStatusController, QuestionBankController, ResourceController, EditorialController, SyncController, AiController, VocabularyController, FeedbackController, CommerceController],
   providers: [
     { provide: API_CONFIG, useFactory: () => loadConfig() },
     DatabaseService,
@@ -61,6 +64,8 @@ import { PersistentCommerceBenefitsService } from './commerce/persistent-commerc
     AccountIdentityService,
     IdentityDigestService,
     PersistentCommerceBenefitsService,
+    { provide: APPLE_STORE_VERIFIER, inject: [API_CONFIG], useFactory: configuredAppleStoreVerifier },
+    CommerceService,
     RequireAuthGuard,
     AliyunSmsProvider,
     SmsDeliveryAuthority,

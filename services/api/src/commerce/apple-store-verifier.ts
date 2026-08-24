@@ -9,6 +9,9 @@ import {
 
 import type { VerifiedAppleNotification, VerifiedAppleTransaction } from './commerce-domain';
 import type { CommerceEnvironment } from './product-catalog';
+import type { ApiConfig } from '../config';
+
+export const APPLE_STORE_VERIFIER = Symbol('APPLE_STORE_VERIFIER');
 
 export interface AppleStoreVerifier {
   verifyTransaction(
@@ -180,4 +183,26 @@ export class OfficialAppleStoreVerifier implements AppleStoreVerifier {
       transaction,
     };
   }
+}
+
+class UnconfiguredAppleStoreVerifier implements AppleStoreVerifier {
+  async verifyTransaction(): Promise<never> {
+    throw new Error('apple_commerce_not_configured');
+  }
+
+  async verifyNotification(): Promise<never> {
+    throw new Error('apple_commerce_not_configured');
+  }
+}
+
+export function configuredAppleStoreVerifier(config: ApiConfig): AppleStoreVerifier {
+  if (!config.appleIapAppAppleId || config.appleIapRootCertificates.length === 0) {
+    return new UnconfiguredAppleStoreVerifier();
+  }
+  return new OfficialAppleStoreVerifier({
+    appleRootCertificates: config.appleIapRootCertificates,
+    bundleId: config.appleIapBundleId,
+    appAppleId: config.appleIapAppAppleId,
+    enableOnlineChecks: true,
+  });
 }
