@@ -20,9 +20,10 @@ jest.mock('expo-router', () => ({ useRouter: () => ({ push: jest.fn() }) }));
 describe('<DiscoverTab />', () => {
   it('exposes launch learning entries without the course catalog', async () => {
     const screen = await render(<DiscoverTab />);
-    ['单词学习', '随身听', 'AI 模考', 'OPI 热点', '资源分享'].forEach((label) => {
+    ['单词学习', '随身听', '模拟练习', 'OPI 热点', '资源分享'].forEach((label) => {
       expect(screen.getByText(label)).toBeTruthy();
     });
+    expect(screen.queryByText('AI 模考')).toBeNull();
     expect(screen.queryByText('学习报告')).toBeNull();
     expect(screen.queryByText('体系课程')).toBeNull();
     expect(screen.queryByText('从入门到冲刺的系统化课程体系')).toBeNull();
