@@ -51,6 +51,7 @@ ICAO_APP_VARIANT=production pnpm exec expo prebuild --platform ios --no-install
   cd "$PROJECT_ROOT/ios"
   pod install
 )
+verify_ios_storekit_dependencies "$PROJECT_ROOT/ios/Podfile.lock"
 
 mkdir -p "$(dirname -- "$ARCHIVE_PATH")"
 xcodebuild \

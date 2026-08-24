@@ -28,6 +28,8 @@ for (const required of [
   'pnpm check:audio',
   'pnpm test:recording',
   'pnpm typecheck',
+  'pnpm check:ios:testflight',
+  'verify_ios_storekit_dependencies',
   'git diff --check',
   'create-testflight-candidate.mjs',
   'assign-groups',

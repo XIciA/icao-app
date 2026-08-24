@@ -10,11 +10,16 @@ describe('disabled TestFlight native commerce provider', () => {
 
     const results = await Promise.all([
       provider.listOfferings(),
-      provider.purchase({ offeringKey: 'internal-test-offering' }),
+      provider.purchase({
+        offeringKey: 'membership_31d_v1',
+        applicationAccountToken: '00000000-0000-0000-0000-000000000000',
+      }),
       provider.restorePurchases(),
+      provider.finishTransaction({ transactionReference: 'not-a-transaction' }),
     ]);
 
     expect(results).toEqual([
+      TESTFLIGHT_COMMERCE_UNAVAILABLE_RESULT,
       TESTFLIGHT_COMMERCE_UNAVAILABLE_RESULT,
       TESTFLIGHT_COMMERCE_UNAVAILABLE_RESULT,
       TESTFLIGHT_COMMERCE_UNAVAILABLE_RESULT,
@@ -35,6 +40,7 @@ describe('disabled TestFlight native commerce provider', () => {
     expect(Object.keys(provider).sort()).toEqual([]);
     expect(Object.getOwnPropertyNames(Object.getPrototypeOf(provider)).sort()).toEqual([
       'constructor',
+      'finishTransaction',
       'listOfferings',
       'purchase',
       'restorePurchases',

@@ -1,6 +1,8 @@
 import {
   TESTFLIGHT_COMMERCE_UNAVAILABLE_RESULT,
   type CommerceCatalog,
+  type CommerceFinish,
+  type CommerceFinishRequest,
   type CommercePurchase,
   type CommercePurchaseRequest,
   type CommerceRestore,
@@ -23,6 +25,10 @@ export class DisabledTestFlightCommerceProvider implements NativeCommerceProvide
   }
 
   async restorePurchases(): Promise<CommerceResult<CommerceRestore>> {
+    return TESTFLIGHT_COMMERCE_UNAVAILABLE_RESULT;
+  }
+
+  async finishTransaction(_request: CommerceFinishRequest): Promise<CommerceResult<CommerceFinish>> {
     return TESTFLIGHT_COMMERCE_UNAVAILABLE_RESULT;
   }
 }

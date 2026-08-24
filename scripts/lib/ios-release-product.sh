@@ -22,6 +22,26 @@ find_ios_release_app() {
   find "$product_dir" -maxdepth 1 -type d -name '*.app' -print -quit
 }
 
+verify_ios_storekit_dependencies() {
+  podfile_lock=$1
+
+  if [ ! -f "$podfile_lock" ]; then
+    echo "The generated Podfile.lock is missing: $podfile_lock" >&2
+    exit 1
+  fi
+
+  for required_pod in \
+    '  - NitroIap (16.3.2):' \
+    '  - NitroModules (0.36.5):' \
+    '  - openiap (3.2.1)'
+  do
+    if ! grep -Fq "$required_pod" "$podfile_lock"; then
+      echo "The iOS Release dependency graph is missing: $required_pod" >&2
+      exit 1
+    fi
+  done
+}
+
 verify_ios_release_app() {
   app_path=$1
   api_url=$2
