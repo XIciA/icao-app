@@ -1,14 +1,19 @@
 import { describe, expect, it, vi } from 'vitest';
+import { CURRENT_AI_CONSENT_POLICY_VERSION } from '@icao/contracts';
 
 import { AiService } from '../src/ai/ai.service';
 import { ObservedAiServiceException } from '../src/ai/ai-error-observability';
 
-function database() {
+function database(consent: { userId: string; policyVersion: string; acceptedAt: Date } | null = {
+  userId: 'user-1',
+  policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+  acceptedAt: new Date('2026-08-14T00:00:00.000Z'),
+}) {
   const values = vi.fn(() => ({ onConflictDoNothing: async () => undefined }));
   return {
     values,
     db: {
-      select: () => ({ from: () => ({ where: () => ({ limit: async () => [{ userId: 'user-1' }] }) }) }),
+      select: () => ({ from: () => ({ where: () => ({ limit: async () => consent ? [consent] : [] }) }) }),
       insert: () => ({ values }),
     },
   };
@@ -37,6 +42,45 @@ function service(output: unknown) {
 }
 
 describe('AiService DeepSeek review capabilities', () => {
+  it('returns accepted only for the current policy version', async () => {
+    const { service: ai } = service({});
+
+    await expect(ai.consentStatus('user-1')).resolves.toEqual({
+      accepted: true,
+      policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+      acceptedAt: '2026-08-14T00:00:00.000Z',
+    });
+  });
+
+  it('returns the current policy as not accepted for a new account', async () => {
+    const db = database(null);
+    const ai = new AiService(db as never, reviewProvider({}) as never, {} as never);
+
+    await expect(ai.consentStatus('user-new')).resolves.toEqual({
+      accepted: false,
+      policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+    });
+  });
+
+  it('requires renewed consent after a policy version change', async () => {
+    const db = database({
+      userId: 'user-1',
+      policyVersion: 'ai-learning-privacy-v3',
+      acceptedAt: new Date('2026-07-01T00:00:00.000Z'),
+    });
+    const review = reviewProvider({ grammar: { correctedText: 'Ready.', issues: [] } });
+    const ai = new AiService(db as never, review as never, {} as never);
+
+    await expect(ai.consentStatus('user-1')).resolves.toEqual({
+      accepted: false,
+      policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+    });
+    await expect(ai.review('user-1', 'request-old-policy', {
+      mode: 'grammar', module: 'atc', questionId: 'question-old-policy', transcript: 'Ready.',
+    })).rejects.toThrow('ai_consent_required');
+    expect(review.generateValidated).not.toHaveBeenCalled();
+  });
+
   it('sends only the transcript to the unified grammar review and returns structured issues', async () => {
     const db = database();
     const review = reviewProvider({
@@ -184,7 +228,11 @@ describe('AiService DeepSeek review capabilities', () => {
     const db = {
       values: failingValues,
       db: {
-        select: () => ({ from: () => ({ where: () => ({ limit: async () => [{ userId: 'user-1' }] }) }) }),
+        select: () => ({ from: () => ({ where: () => ({ limit: async () => [{
+          userId: 'user-1',
+          policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+          acceptedAt: new Date('2026-08-14T00:00:00.000Z'),
+        }] }) }) }),
         insert: () => ({ values: failingValues }),
       },
     };

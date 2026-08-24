@@ -247,7 +247,9 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
     consentResolver.current = undefined;
   }, []);
 
-  useEffect(() => { void hasAiConsent().then(setConsented); }, []);
+  useEffect(() => {
+    void hasAiConsent().then(setConsented).catch(() => setConsented(false));
+  }, []);
 
   useEffect(() => {
     if (!dirty.current || saveRevision === 0) return;
@@ -269,11 +271,20 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
   }, []);
 
   const ensureConsent = useCallback(async (kind: AiConsentKind) => {
-    // The local acknowledgement is intentionally only a UI hint. Server
-    // consent is account-scoped, so re-register it idempotently before every
-    // AI action to survive account switches, revocation, and restored storage.
-    const acknowledged = consented || await hasAiConsent();
-    if (!acknowledged && !await requestAiConsent(kind)) return false;
+    if (Platform.OS === 'web') {
+      const acknowledged = consented || await hasAiConsent();
+      if (!acknowledged && !await requestAiConsent(kind)) return false;
+      await acceptAiConsent();
+      setConsented(true);
+      return true;
+    }
+    // The server is authoritative for the current account and policy version.
+    // A cached UI state must never unlock an upload after a remote revocation,
+    // account switch, or policy update.
+    const acknowledged = await hasAiConsent();
+    setConsented(acknowledged);
+    if (acknowledged) return true;
+    if (!await requestAiConsent(kind)) return false;
     await acceptAiConsent();
     setConsented(true);
     return true;
@@ -309,6 +320,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
       if (activeRequest.current === controller && currentCardKey.current === requestCardKey) {
         const failure = toAiOperationFailure(error, 'transcribe');
         if (controller.signal.aborted || failure.cancelled) return;
+        if (Platform.OS !== 'web' && failure.code === 'ai_consent_required') setConsented(false);
         void recordSafeDiagnosticEvent({
           feature: 'ai',
           correlationId: failure.diagnosticId,
@@ -375,6 +387,7 @@ export const StudyWorkbench = forwardRef<StudyWorkbenchHandle, Props>(function S
         const capability: AiCapability = reviewKind === 'opi-analysis' ? 'polish' : 'grammar';
         const failure = toAiOperationFailure(error, capability);
         if (controller.signal.aborted || failure.cancelled) return;
+        if (Platform.OS !== 'web' && failure.code === 'ai_consent_required') setConsented(false);
         void recordSafeDiagnosticEvent({
           feature: 'ai',
           correlationId: failure.diagnosticId,

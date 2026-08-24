@@ -1,5 +1,5 @@
-import { BadRequestException, Body, Controller, Delete, Post, Req, UseGuards } from '@nestjs/common';
-import { isTencentAsrModel, type AiReviewRequest, type AiReviewResult, type ApiSuccessEnvelope, type AiConsent, type GrammarReviewRequest, type GrammarReviewResult, type PolishRequest, type PolishResult, type TranscribeResult } from '@icao/contracts';
+import { BadRequestException, Body, Controller, Delete, Get, Post, Req, UseGuards } from '@nestjs/common';
+import { isTencentAsrModel, type AiReviewRequest, type AiReviewResult, type ApiSuccessEnvelope, type AiConsent, type AiConsentStatus, type GrammarReviewRequest, type GrammarReviewResult, type PolishRequest, type PolishResult, type TranscribeResult } from '@icao/contracts';
 import type { MultipartFile } from '@fastify/multipart';
 
 import type { AuthenticatedRequest } from '../auth/auth.types';
@@ -28,6 +28,11 @@ function multipartModel(file: MultipartFile) {
 @UseGuards(RequireAuthGuard)
 export class AiController {
   constructor(private readonly ai: AiService) {}
+
+  @Get('consent')
+  async consentStatus(@Req() request: AuthenticatedRequest): Promise<ApiSuccessEnvelope<AiConsentStatus>> {
+    return { requestId: request.id, data: await this.ai.consentStatus(request.user!.id) };
+  }
 
   @Post('consent')
   async consent(@Body() body: unknown, @Req() request: AuthenticatedRequest): Promise<ApiSuccessEnvelope<AiConsent>> {

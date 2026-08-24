@@ -12,7 +12,7 @@ import { AppText, BottomSheet, Button, Card, Screen, Tag, TextField } from '@/co
 import { APP_DISPLAY_VERSION } from '@/config/app-version';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { isValidPhonePassword, type PhoneBindingChallenge } from '@/features/auth/auth-service';
-import { hasAiConsent, withdrawAiConsent } from '@/features/ai/ai-client';
+import { getCachedAiConsentHint, hasAiConsent, withdrawAiConsent } from '@/features/ai/ai-client';
 import { MembershipPage } from '@/features/native-commercial-testflight/MembershipPage';
 import { ASR_MODEL_OPTIONS, getAsrModel, setAsrModel } from '@/features/ai/asr-model-preference';
 import { readAnnotationStore } from '@/features/question-bank/annotations/annotation-store';
@@ -161,10 +161,17 @@ function SettingsPage() {
   const [asrModel, setSelectedAsrModel] = useState<TencentAsrModel>(DEFAULT_TENCENT_ASR_MODEL);
   const [asrPickerVisible, setAsrPickerVisible] = useState(false);
   useEffect(() => {
-    void Promise.all([hasAiConsent(), getAsrModel()]).then(([consent, model]) => {
-      setAiConsent(consent);
-      setSelectedAsrModel(model);
+    let active = true;
+    void getAsrModel().then((model) => { if (active) setSelectedAsrModel(model); });
+    void getCachedAiConsentHint().then((hint) => {
+      if (active) setAiConsent(hint);
+      return hasAiConsent();
+    }).then((consent) => {
+      if (active) setAiConsent(consent);
+    }).catch(() => {
+      if (active) setAiConsent(false);
     });
+    return () => { active = false; };
   }, []);
 
   async function selectAsrModel(model: TencentAsrModel) {

@@ -11,6 +11,26 @@ function request() {
 }
 
 describe('AiController review endpoint', () => {
+  it('returns the authenticated account current consent status', async () => {
+    const status = { accepted: false, policyVersion: 'ai-learning-privacy-v4' as const };
+    const consentStatus = vi.fn(async () => status);
+    const controller = new AiController({ consentStatus } as never);
+
+    await expect(controller.consentStatus(request() as never)).resolves.toEqual({ requestId: 'request-1', data: status });
+    expect(consentStatus).toHaveBeenCalledWith('user-1');
+  });
+
+  it('rejects accepting a superseded policy version', async () => {
+    const acceptConsent = vi.fn();
+    const controller = new AiController({ acceptConsent } as never);
+
+    await expect(controller.consent({
+      accepted: true,
+      policyVersion: 'ai-learning-privacy-v3',
+    }, request() as never)).rejects.toThrow('invalid_ai_consent');
+    expect(acceptConsent).not.toHaveBeenCalled();
+  });
+
   it('passes a valid unified review request to the service', async () => {
     const result = {
       grammar: { issues: [], correctedText: 'We were ready.' },

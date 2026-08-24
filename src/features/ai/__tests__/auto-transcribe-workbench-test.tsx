@@ -84,7 +84,8 @@ describe('AI speaking workbench', () => {
       await Promise.resolve();
     });
 
-    await waitFor(() => expect(mockAcceptAiConsent).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockHasAiConsent).toHaveBeenCalledTimes(2));
+    expect(mockAcceptAiConsent).not.toHaveBeenCalled();
     await waitFor(() => expect(mockTranscribeRecording).toHaveBeenCalledTimes(1));
     await waitFor(() => expect(onAnswerChange).toHaveBeenCalledWith('normalized aviation transcript'));
     await waitFor(() => expect(screen.getByText('normalized aviation transcript')).toBeTruthy());
@@ -291,7 +292,9 @@ describe('AI speaking workbench', () => {
     expect(screen.queryByText(/诊断编号：A-/u)).toBeNull();
   });
 
-  it('re-registers account-scoped consent even when the local acknowledgement exists', async () => {
+  it('requires explicit consent when another device revokes after this screen cached acceptance', async () => {
+    mockHasAiConsent.mockReset();
+    mockHasAiConsent.mockResolvedValueOnce(true).mockResolvedValue(false);
     const screen = await render(
       <StudyWorkbench
         activeTab="mine"
@@ -327,7 +330,17 @@ describe('AI speaking workbench', () => {
       await Promise.resolve();
     });
 
+    await waitFor(() => expect(screen.getByLabelText('AI 数据处理提示')).toBeTruthy());
+    expect(mockAcceptAiConsent).not.toHaveBeenCalled();
+    expect(mockTranscribeRecording).not.toHaveBeenCalled();
+
+    await act(async () => {
+      fireEvent.press(screen.getByText('同意并继续'));
+      await Promise.resolve();
+    });
+
     await waitFor(() => expect(mockAcceptAiConsent).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockTranscribeRecording).toHaveBeenCalledTimes(1));
     expect(mockAcceptAiConsent.mock.invocationCallOrder[0]).toBeLessThan(mockTranscribeRecording.mock.invocationCallOrder[0]);
   });
 

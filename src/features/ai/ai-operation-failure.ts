@@ -60,7 +60,7 @@ function failurePolicy(code: string, fallbackStage: AiFailureStage) {
       stage: 'authorization' as const,
       retryable: true,
       userAction: 'retry' as const,
-      userMessage: 'AI 使用授权状态未同步，请重试。',
+      userMessage: 'AI 数据处理同意已撤回或需要更新，请重新确认后再试。',
     };
   }
   if (code === 'no_speech_detected') {

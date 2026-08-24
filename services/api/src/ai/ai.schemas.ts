@@ -1,8 +1,9 @@
 import { z } from 'zod';
+import { CURRENT_AI_CONSENT_POLICY_VERSION } from '@icao/contracts';
 
 export const consentSchema = z.object({
   accepted: z.literal(true),
-  policyVersion: z.string().trim().min(1).max(40),
+  policyVersion: z.literal(CURRENT_AI_CONSENT_POLICY_VERSION),
 }).strict();
 
 export const grammarSchema = z.object({

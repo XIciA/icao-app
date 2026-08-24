@@ -1,6 +1,6 @@
 import { BadRequestException, HttpException, Injectable, Logger } from '@nestjs/common';
 import { eq } from 'drizzle-orm';
-import type { AiConsent, AiReviewRequest, AiReviewResult, GrammarReviewRequest, PolishRequest, PolishResult, TencentAsrModel } from '@icao/contracts';
+import { CURRENT_AI_CONSENT_POLICY_VERSION, type AiConsent, type AiConsentStatus, type AiReviewRequest, type AiReviewResult, type GrammarReviewRequest, type PolishRequest, type PolishResult, type TencentAsrModel } from '@icao/contracts';
 
 import { DatabaseService } from '../database/database.service';
 import { aiConsents, aiUsageLogs } from '../database/schema';
@@ -28,7 +28,19 @@ export class AiService {
     private readonly asr: TencentAsrService,
   ) {}
 
-  async acceptConsent(userId: string, policyVersion: string): Promise<AiConsent> {
+  async consentStatus(userId: string): Promise<AiConsentStatus> {
+    const [consent] = await this.database.db.select().from(aiConsents).where(eq(aiConsents.userId, userId)).limit(1);
+    if (consent?.policyVersion !== CURRENT_AI_CONSENT_POLICY_VERSION) {
+      return { accepted: false, policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION };
+    }
+    return {
+      accepted: true,
+      policyVersion: CURRENT_AI_CONSENT_POLICY_VERSION,
+      acceptedAt: consent.acceptedAt.toISOString(),
+    };
+  }
+
+  async acceptConsent(userId: string, policyVersion: typeof CURRENT_AI_CONSENT_POLICY_VERSION): Promise<AiConsent> {
     const now = new Date();
     await this.database.db.insert(aiConsents).values({ userId, policyVersion, acceptedAt: now, updatedAt: now })
       .onConflictDoUpdate({ target: aiConsents.userId, set: { policyVersion, acceptedAt: now, updatedAt: now } });
@@ -41,8 +53,8 @@ export class AiService {
   }
 
   private async requireConsent(userId: string) {
-    const [consent] = await this.database.db.select().from(aiConsents).where(eq(aiConsents.userId, userId)).limit(1);
-    if (!consent) throw new HttpException('ai_consent_required', 428);
+    const consent = await this.consentStatus(userId);
+    if (!consent.accepted) throw new HttpException('ai_consent_required', 428);
   }
 
   private async logUsage(input: {

@@ -1,4 +1,6 @@
 const mockApiRequest = jest.fn();
+const mockGetItem = jest.fn(async (_key: string) => null as string | null);
+const mockRemoveItem = jest.fn(async (_key: string) => undefined);
 const mockSetItem = jest.fn(async (_key: string, _value: string) => undefined);
 const mockCreateAudioUploadForm = jest.fn();
 const mockGetAsrModel = jest.fn(async () => '16k_en');
@@ -22,8 +24,8 @@ jest.mock('@/features/ai/asr-model-preference', () => ({
 jest.mock('@/platform/storage', () => ({
   __esModule: true,
   default: {
-    getItem: jest.fn(async () => null),
-    removeItem: jest.fn(async () => undefined),
+    getItem: (key: string) => mockGetItem(key),
+    removeItem: (key: string) => mockRemoveItem(key),
     setItem: (key: string, value: string) => mockSetItem(key, value),
   },
 }));
@@ -34,6 +36,11 @@ describe('Native AI client failure handling', () => {
   beforeEach(() => {
     jest.resetModules();
     mockApiRequest.mockReset();
+    mockGetItem.mockReset();
+    mockGetItem.mockResolvedValue(null);
+    mockRemoveItem.mockReset();
+    mockRemoveItem.mockResolvedValue(undefined);
+    mockSetItem.mockClear();
     mockCreateAudioUploadForm.mockReset();
     process.env.EXPO_PUBLIC_ICAO_API_URL = 'https://api.example.test';
     const api = jest.requireActual('@/platform/api-client') as typeof import('@/platform/api-client');
@@ -51,22 +58,55 @@ describe('Native AI client failure handling', () => {
     return jest.requireActual('@/features/ai/ai-client') as typeof import('@/features/ai/ai-client');
   }
 
-  it('resynchronizes consent once before retrying a refused review', async () => {
+  it('does not silently accept or retry when another device has revoked consent', async () => {
     const { ApiClientError } = jest.requireActual('@/platform/api-client') as typeof import('@/platform/api-client');
-    mockApiRequest
-      .mockRejectedValueOnce(new ApiClientError('ai_consent_required', 428, 'request-consent-1'))
-      .mockResolvedValueOnce({ policyVersion: 'ai-learning-privacy-v4', acceptedAt: '2026-08-14T00:00:00.000Z' })
-      .mockResolvedValueOnce({
-        grammar: { correctedText: 'Ready.', issues: [] },
-        promptVersion: 'deepseek-review:v1',
-      });
+    mockApiRequest.mockRejectedValueOnce(new ApiClientError('ai_consent_required', 428, 'request-consent-1'));
 
     await expect(client().reviewExpression({
       mode: 'grammar', module: 'atc', questionId: 'question-1', transcript: 'Ready.',
-    })).resolves.toMatchObject({ grammar: { correctedText: 'Ready.' } });
+    })).rejects.toMatchObject({ code: 'ai_consent_required', requestId: 'request-consent-1' });
 
-    expect(mockApiRequest).toHaveBeenCalledTimes(3);
-    expect(mockApiRequest.mock.calls[1]?.[0]).toBe('/v1/ai/consent');
+    expect(mockApiRequest).toHaveBeenCalledTimes(1);
+    expect(mockApiRequest).not.toHaveBeenCalledWith('/v1/ai/consent', expect.objectContaining({ method: 'POST' }));
+    expect(mockRemoveItem).toHaveBeenCalledWith('icao.ai.consent.ai-learning-privacy-v4');
+  });
+
+  it('treats the server as authoritative when this device has an old accepted cache', async () => {
+    mockGetItem.mockResolvedValue('accepted');
+    mockApiRequest.mockResolvedValueOnce({
+      accepted: false,
+      policyVersion: 'ai-learning-privacy-v4',
+    });
+
+    await expect(client().getCachedAiConsentHint()).resolves.toBe(true);
+    await expect(client().hasAiConsent()).resolves.toBe(false);
+
+    expect(mockApiRequest).toHaveBeenCalledWith('/v1/ai/consent');
+    expect(mockRemoveItem).toHaveBeenCalledWith('icao.ai.consent.ai-learning-privacy-v4');
+  });
+
+  it('does not carry consent from the previous account after an account switch', async () => {
+    mockApiRequest
+      .mockResolvedValueOnce({ accepted: true, policyVersion: 'ai-learning-privacy-v4', acceptedAt: '2026-08-14T00:00:00.000Z' })
+      .mockResolvedValueOnce({ accepted: false, policyVersion: 'ai-learning-privacy-v4' });
+
+    await expect(client().hasAiConsent()).resolves.toBe(true);
+    await expect(client().hasAiConsent()).resolves.toBe(false);
+
+    expect(mockSetItem).toHaveBeenCalledTimes(1);
+    expect(mockRemoveItem).toHaveBeenCalledTimes(1);
+  });
+
+  it('rejects an accepted status for a superseded policy version', async () => {
+    mockApiRequest.mockResolvedValueOnce({
+      accepted: true,
+      policyVersion: 'ai-learning-privacy-v3',
+      acceptedAt: '2026-08-14T00:00:00.000Z',
+    });
+
+    await expect(client().hasAiConsent()).resolves.toBe(false);
+    expect(mockSetItem).not.toHaveBeenCalled();
+    expect(mockRemoveItem).toHaveBeenCalledTimes(1);
   });
 
   it('does not retry a potentially chargeable upstream failure', async () => {
