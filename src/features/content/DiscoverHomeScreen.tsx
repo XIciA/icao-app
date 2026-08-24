@@ -10,11 +10,13 @@ import {
   Radio,
   type LucideIcon,
 } from '@/components/ui/icons';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Platform, Pressable, StyleSheet, View } from 'react-native';
 
 import { AppText, Card, Screen } from '@/components/ui';
 import { SoftGlow } from '@/components/visual/SoftGlow';
 import { colors, fonts, radii, spacing } from '@/theme';
+
+import { isContentAvailableOnPlatform } from './native-release-surface';
 
 type Entry = { slug: string; title: string; en: string; description: string; icon: LucideIcon; mock?: boolean };
 const features: Entry[] = [
@@ -34,21 +36,21 @@ const courseEntry: Entry = {
   description: '从入门到冲刺的系统化课程体系',
   icon: GraduationCap,
 };
-
 export function DiscoverHomeScreen() {
   const router = useRouter();
   const open = (slug: string) => router.push({ pathname: '/content/[slug]', params: { slug } });
+  const visibleFeatures = features.filter((entry) => isContentAvailableOnPlatform(entry.slug, Platform.OS));
+  const courseAvailable = isContentAvailableOnPlatform(courseEntry.slug, Platform.OS);
   return (
     <Screen background={<SoftGlow intensity={0.8} size={320} style={styles.glow} />} bottomInset scroll contentStyle={styles.screen}>
-      <View style={styles.header}><AppText variant="pageTitle">发现</AppText><AppText>功能、资源与课程，探索更多学习方式。</AppText></View>
+      <View style={styles.header}><AppText variant="pageTitle">发现</AppText><AppText>{courseAvailable ? '功能、资源与课程，探索更多学习方式。' : '功能与资源，探索更多学习方式。'}</AppText></View>
       <SectionTitle title="功能" en="Features" />
       <Card style={styles.featureCard}>
-        <View style={styles.grid}>{features.map((entry) => <Feature key={entry.slug} entry={entry} onPress={() => open(entry.slug)} />)}</View>
+        <View style={styles.grid}>{visibleFeatures.map((entry) => <Feature key={entry.slug} entry={entry} onPress={() => open(entry.slug)} />)}</View>
       </Card>
       <SectionTitle title="资源" en="Resources" />
       <View style={styles.list}>{resourceEntries.map((entry) => <ListEntry key={entry.slug} entry={entry} onPress={() => open(entry.slug)} />)}</View>
-      <SectionTitle title="课程" en="Courses" />
-      <ListEntry entry={courseEntry} onPress={() => open(courseEntry.slug)} emphasis />
+      {courseAvailable ? <><SectionTitle title="课程" en="Courses" /><ListEntry entry={courseEntry} onPress={() => open(courseEntry.slug)} emphasis /></> : null}
     </Screen>
   );
 }

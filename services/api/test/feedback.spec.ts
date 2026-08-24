@@ -14,13 +14,18 @@ const payload = {
   description: '希望增加一个新的练习功能',
   source: 'profile',
   sourceRoute: '/profile?from=test',
-  appDisplayVersion: 'v2026.07.23.1331',
+  appDisplayVersion: '1.0.0',
   platform: 'web',
 } as const;
 
 describe('feedback submission validation', () => {
   it.each(['feature_suggestion', 'content_correction', 'other'] as const)('accepts category %s', (category) => {
     expect(feedbackSubmissionSchema.safeParse({ ...payload, category }).success).toBe(true);
+  });
+
+  it('accepts semantic display versions and rejects the legacy date-build format', () => {
+    expect(feedbackSubmissionSchema.safeParse({ ...payload, appDisplayVersion: '1.0.1' }).success).toBe(true);
+    expect(feedbackSubmissionSchema.safeParse({ ...payload, appDisplayVersion: 'v2026.07.23.1331' }).success).toBe(false);
   });
 
   it('trims descriptions, optional contact, and query strings', () => {
@@ -100,7 +105,7 @@ describe('feedback submission validation', () => {
       events: Array.from({ length: 31 }, (_, offsetMs) => ({ ...diagnostics.events[0], offsetMs })),
     } }).success).toBe(false);
     expect(feedbackSubmissionSchema.safeParse({ ...payload, diagnostics: { ...diagnostics, platform: 'ios' } }).success).toBe(false);
-    expect(feedbackSubmissionSchema.safeParse({ ...payload, diagnostics: { ...diagnostics, appVersion: 'v2026.08.14.0001' } }).success).toBe(false);
+    expect(feedbackSubmissionSchema.safeParse({ ...payload, diagnostics: { ...diagnostics, appVersion: '1.0.1' } }).success).toBe(false);
   });
 });
 

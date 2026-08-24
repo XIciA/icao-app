@@ -94,6 +94,7 @@ describe('<LoginScreen />', () => {
     expect(screen.getByTestId('apple-sign-in')).toBeTruthy();
     expect(screen.getByText('未注册手机号验证成功后会自动创建账号。')).toBeTruthy();
     expect(screen.getByRole('checkbox')).toBeTruthy();
+    expect(screen.getByText('我已年满16周岁，并同意用户协议与隐私政策')).toBeTruthy();
 
     await act(async () => { fireEvent.press(screen.getByRole('tab', { name: '密码登录' })); });
 
@@ -151,7 +152,7 @@ describe('<LoginScreen />', () => {
     const screen = await renderLoginScreen();
     await act(async () => { fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000'); });
     await act(async () => { fireEvent.press(screen.getByText('获取验证码')); });
-    expect(screen.getByText('请确认已满14周岁，并同意用户协议与隐私政策。')).toBeTruthy();
+    expect(screen.getByText('请确认已满16周岁，并同意用户协议与隐私政策。')).toBeTruthy();
     expect(mockRequestPhoneOtp).not.toHaveBeenCalled();
 
     await act(async () => { fireEvent.press(screen.getByRole('checkbox')); });
@@ -183,6 +184,7 @@ describe('<LoginScreen />', () => {
     await act(async () => { fireEvent.press(screen.getByRole('tab', { name: '密码登录' })); });
     await act(async () => { fireEvent.changeText(screen.getByPlaceholderText('请输入11位手机号'), '13800138000'); });
     await act(async () => { fireEvent.changeText(screen.getByPlaceholderText('请输入登录密码'), 'Flight2026safe'); });
+    await act(async () => { fireEvent.press(screen.getByRole('checkbox')); });
     await act(async () => { fireEvent.press(screen.getByRole('button', { name: '密码登录' })); });
 
     expect(mockSignInWithPhonePassword).toHaveBeenCalledWith('13800138000', 'Flight2026safe');

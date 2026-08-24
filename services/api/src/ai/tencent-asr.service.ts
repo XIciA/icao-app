@@ -9,8 +9,8 @@ import type { TencentAsrModel } from '@icao/contracts';
 import { asr } from 'tencentcloud-sdk-nodejs-asr';
 
 import { API_CONFIG, type ApiConfig } from '../config';
-import { type ProviderMeta } from './ai-provider.service';
 import { AsrAudioStorageService } from './asr-audio-storage.service';
+import { type ProviderMeta } from './provider-meta';
 
 const AsrClient = asr.v20190614.Client;
 

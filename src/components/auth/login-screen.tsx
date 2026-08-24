@@ -107,7 +107,7 @@ export function LoginScreen() {
 
   function requireConsent() {
     if (accepted) return true;
-    setError('请确认已满14周岁，并同意用户协议与隐私政策。');
+    setError('请确认已满16周岁，并同意用户协议与隐私政策。');
     return false;
   }
 
@@ -151,7 +151,7 @@ export function LoginScreen() {
   }
 
   async function submitPasswordLogin() {
-    if (!validatePhone()) return;
+    if (!validatePhone() || !requireConsent()) return;
     if (!password) { setError('请输入登录密码。'); return; }
     setError('');
     setSubmitting(true);
@@ -301,7 +301,7 @@ export function LoginScreen() {
             <Button disabled={submitting} loading={submitting} onPress={() => void submitPasswordLogin()} size="lg">密码登录</Button>
           </>
         )}
-        <Checkbox checked={accepted} label="我已年满14周岁，并同意用户协议与隐私政策" onPress={() => setAccepted((value) => !value)} />
+        <Checkbox checked={accepted} label="我已年满16周岁，并同意用户协议与隐私政策" onPress={() => setAccepted((value) => !value)} />
         <LegalLinks router={router} />
       </View>
       <AppText style={styles.scopeNote} variant="caption">微信或 Apple 登录后可直接进入，手机号可稍后在账号安全中绑定。</AppText>

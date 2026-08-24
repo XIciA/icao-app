@@ -1,11 +1,11 @@
 import { BadRequestException, Body, Controller, Delete, Post, Req, UseGuards } from '@nestjs/common';
-import { isTencentAsrModel, type AiReviewRequest, type AiReviewResult, type ApiSuccessEnvelope, type AiConsent, type GrammarReviewRequest, type GrammarReviewResult, type PolishRequest, type PolishResult, type TranscribeResult, type WordLookupRequest, type WordLookupResult } from '@icao/contracts';
+import { isTencentAsrModel, type AiReviewRequest, type AiReviewResult, type ApiSuccessEnvelope, type AiConsent, type GrammarReviewRequest, type GrammarReviewResult, type PolishRequest, type PolishResult, type TranscribeResult } from '@icao/contracts';
 import type { MultipartFile } from '@fastify/multipart';
 
 import type { AuthenticatedRequest } from '../auth/auth.types';
 import { RequireAuthGuard } from '../auth/require-auth.guard';
 import { AiService } from './ai.service';
-import { consentSchema, grammarSchema, polishSchema, reviewSchema, wordLookupSchema } from './ai.schemas';
+import { consentSchema, grammarSchema, polishSchema, reviewSchema } from './ai.schemas';
 
 type AiRequest = AuthenticatedRequest & { raw: { once(event: 'aborted', listener: () => void): void } };
 type MultipartRequest = AiRequest & { file(options?: object): Promise<MultipartFile | undefined> };
@@ -39,13 +39,6 @@ export class AiController {
   @Delete('consent')
   async revoke(@Req() request: AuthenticatedRequest): Promise<ApiSuccessEnvelope<{ revoked: true }>> {
     return { requestId: request.id, data: await this.ai.revokeConsent(request.user!.id) };
-  }
-
-  @Post('word-lookup')
-  async lookup(@Body() body: WordLookupRequest, @Req() request: AiRequest): Promise<ApiSuccessEnvelope<WordLookupResult>> {
-    const parsed = wordLookupSchema.safeParse(body);
-    if (!parsed.success) throw new BadRequestException('invalid_word_lookup');
-    return { requestId: request.id, data: await this.ai.wordLookup(request.user!.id, request.id, parsed.data, cancellationSignal(request)) };
   }
 
   @Post('transcribe')

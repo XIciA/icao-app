@@ -32,7 +32,7 @@ function service(output: unknown) {
   const review = reviewProvider(output);
   return {
     review,
-    service: new AiService(database() as never, {} as never, {} as never, review as never, {} as never),
+    service: new AiService(database() as never, review as never, {} as never),
   };
 }
 
@@ -45,7 +45,7 @@ describe('AiService DeepSeek review capabilities', () => {
         issues: [{ before: 'He have', after: 'He has', reasonZh: '主语 He 为第三人称单数，应使用 has。' }],
       },
     });
-    const ai = new AiService(db as never, {} as never, {} as never, review as never, {} as never);
+    const ai = new AiService(db as never, review as never, {} as never);
 
     const result = await ai.review('user-1', 'request-1', {
       mode: 'grammar', module: 'opi', questionId: 'question-1', transcript: 'He have informed ATC.',
@@ -71,7 +71,7 @@ describe('AiService DeepSeek review capabilities', () => {
       grammar: { correctedText: 'I encountered turbulence.', issues: [] },
       polishedText: 'I encountered turbulence.',
     });
-    const ai = new AiService(db as never, {} as never, {} as never, review as never, {} as never);
+    const ai = new AiService(db as never, review as never, {} as never);
 
     const result = await ai.review('user-1', 'request-2', {
       mode: 'opi', module: 'opi', questionId: 'question-2', transcript: 'I encountered turbulence.',
@@ -142,7 +142,7 @@ describe('AiService DeepSeek review capabilities', () => {
       }),
       textModel: vi.fn(() => 'deepseek-v4-flash'),
     };
-    const ai = new AiService(db as never, {} as never, {} as never, review as never, {} as never);
+    const ai = new AiService(db as never, review as never, {} as never);
 
     await expect(ai.review('user-1', 'request-failure', {
       mode: 'grammar', module: 'atc', questionId: 'question-5', transcript: 'Ready.',
@@ -166,7 +166,7 @@ describe('AiService DeepSeek review capabilities', () => {
       generateValidated: vi.fn(async () => { throw new Error('provider secret and private detail'); }),
       textModel: vi.fn(() => 'deepseek-v4-flash'),
     };
-    const ai = new AiService(db as never, {} as never, {} as never, review as never, {} as never);
+    const ai = new AiService(db as never, review as never, {} as never);
 
     await expect(ai.review('user-1', 'request-private-failure', {
       mode: 'grammar', module: 'atc', questionId: 'question-6', transcript: 'Ready.',
@@ -191,7 +191,7 @@ describe('AiService DeepSeek review capabilities', () => {
     const review = reviewProvider({
       grammar: { correctedText: 'Ready.', issues: [] },
     });
-    const ai = new AiService(db as never, {} as never, {} as never, review as never, {} as never);
+    const ai = new AiService(db as never, review as never, {} as never);
 
     await expect(ai.review('user-1', 'request-telemetry-failure', {
       mode: 'grammar', module: 'atc', questionId: 'question-7', transcript: 'Ready.',

@@ -26,8 +26,6 @@ import { ResourceService } from './resource/resource.service';
 import { SyncController } from './sync/sync.controller';
 import { SyncService } from './sync/sync.service';
 import { AiController } from './ai/ai.controller';
-import { AiAssetsService } from './ai/ai-assets.service';
-import { AiProviderService } from './ai/ai-provider.service';
 import { DeepSeekReviewProviderService } from './ai/deepseek-review-provider.service';
 import { AsrAudioStorageService } from './ai/asr-audio-storage.service';
 import { TencentAsrService } from './ai/tencent-asr.service';
@@ -61,8 +59,6 @@ import { FeedbackService } from './feedback/feedback.service';
     ResourceService,
     EditorialService,
     SyncService,
-    AiAssetsService,
-    AiProviderService,
     DeepSeekReviewProviderService,
     AsrAudioStorageService,
     TencentAsrService,

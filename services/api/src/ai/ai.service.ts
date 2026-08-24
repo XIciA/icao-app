@@ -1,25 +1,18 @@
 import { BadRequestException, HttpException, Injectable, Logger } from '@nestjs/common';
-import { createHash } from 'node:crypto';
-import { and, eq, gt } from 'drizzle-orm';
-import type { AiConsent, AiReviewRequest, AiReviewResult, GrammarReviewRequest, PolishRequest, PolishResult, TencentAsrModel, WordLookupRequest, WordLookupResult } from '@icao/contracts';
+import { eq } from 'drizzle-orm';
+import type { AiConsent, AiReviewRequest, AiReviewResult, GrammarReviewRequest, PolishRequest, PolishResult, TencentAsrModel } from '@icao/contracts';
 
 import { DatabaseService } from '../database/database.service';
-import { aiConsents, aiUsageLogs, aiWordCache } from '../database/schema';
-import { AiAssetsService } from './ai-assets.service';
-import { AiProviderService, type ProviderMeta } from './ai-provider.service';
+import { aiConsents, aiUsageLogs } from '../database/schema';
 import { DeepSeekReviewProviderService } from './deepseek-review-provider.service';
 import { TencentAsrService } from './tencent-asr.service';
 import { reviewSystemPrompt, REVIEW_PROMPT_VERSION } from './deepseek-review-prompts';
 import { legacyIssueText, parseAndValidateReview, withReviewPromptVersion } from './review-harness';
-import { wordLookupResultSchema } from './ai.schemas';
 import { aiFailureObservation } from './ai-error-observability';
+import type { ProviderMeta } from './provider-meta';
 
-const PROMPTS = {
-  word: 'word-lookup-v1',
-} as const;
-
-type UsageCapability = 'word_lookup' | 'transcribe' | 'grammar_review' | 'polish';
-type AiProviderName = 'dashscope' | 'deepseek' | 'tencent-asr';
+type UsageCapability = 'transcribe' | 'grammar_review' | 'polish';
+type AiProviderName = 'deepseek' | 'tencent-asr';
 
 function safeLogToken(value: string) {
   return value.replace(/[^A-Za-z0-9._:-]/gu, '_').slice(0, 120) || 'unknown';
@@ -31,8 +24,6 @@ export class AiService {
 
   constructor(
     private readonly database: DatabaseService,
-    private readonly assets: AiAssetsService,
-    private readonly provider: AiProviderService,
     private readonly reviewProvider: DeepSeekReviewProviderService,
     private readonly asr: TencentAsrService,
   ) {}
@@ -126,31 +117,6 @@ export class AiService {
       }
       throw error;
     }
-  }
-
-  async wordLookup(userId: string, requestId: string, input: WordLookupRequest, signal?: AbortSignal): Promise<WordLookupResult> {
-    await this.requireConsent(userId);
-    const normalized = JSON.stringify({ module: input.module, word: input.word.toLocaleLowerCase(), sentence: input.sentence.replace(/\s+/g, ' ').trim(), promptVersion: PROMPTS.word, model: this.provider.textModel() });
-    const queryHash = createHash('sha256').update(normalized).digest('hex');
-    const [cached] = await this.database.db.select().from(aiWordCache).where(and(
-      eq(aiWordCache.userId, userId), eq(aiWordCache.queryHash, queryHash), gt(aiWordCache.expiresAt, new Date()),
-    )).limit(1);
-    if (cached) return { ...(cached.result as Omit<WordLookupResult, 'cached'>), cached: true };
-
-    const rules = await this.assets.promptRules('word', [input.word, input.sentence]);
-    const result = await this.run({
-      userId, requestId, capability: 'word_lookup', provider: 'dashscope', model: this.provider.textModel(), promptVersion: PROMPTS.word, units: 1,
-      action: async () => {
-        const generated = await this.provider.generateJson<unknown>(rules, JSON.stringify({ task: 'Explain the selected word or phrase in this exact learning context.', input }), signal);
-        const parsed = wordLookupResultSchema.parse(generated.data);
-        return { data: { definition: parsed.definition, sentenceMeaning: parsed.contextExplanationZh }, meta: generated.meta };
-      },
-    });
-    const response = { word: input.word, ...result, promptVersion: PROMPTS.word, cached: false } satisfies WordLookupResult;
-    await this.database.db.insert(aiWordCache).values({
-      userId, queryHash, result: { ...response, cached: undefined }, expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
-    }).onConflictDoUpdate({ target: [aiWordCache.userId, aiWordCache.queryHash], set: { result: { ...response, cached: undefined }, expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000) } });
-    return response;
   }
 
   async transcribe(userId: string, requestId: string, audio: Buffer, mimeType: string, model: TencentAsrModel, signal?: AbortSignal) {

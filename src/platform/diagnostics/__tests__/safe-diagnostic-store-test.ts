@@ -18,7 +18,7 @@ jest.mock('@/platform/storage', () => ({
 }));
 
 const context = {
-  appVersion: 'v2026.08.14.0001',
+  appVersion: '1.0.0',
   build: '42',
   platform: 'ios' as const,
   osVersion: '19.0',
