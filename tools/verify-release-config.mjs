@@ -181,6 +181,9 @@ if (
 if (!aliyunSmsOverlay.includes('GOTRUE_SECURITY_SB_FORWARDED_FOR_ENABLED: "true"')) {
   throw new Error('The real-SMS Auth overlay must trust only the API-supplied Sb-Forwarded-For header.');
 }
+if (/GOTRUE_SMS_TEST_OTP|ICAO_TESTFLIGHT_SMS_TEST_OTP|SUPABASE_SMS_TEST_OTP/u.test(aliyunSmsOverlay)) {
+  throw new Error('The real-SMS Auth overlay must fail closed when any fixed OTP is configured.');
+}
 if (
   !nativeAuthService.includes("'/v1/auth/phone/otp/start'")
   || !nativeAuthService.includes("'/v1/auth/phone/recovery/start'")

@@ -15,6 +15,7 @@ import { APPLE_ID_TOKEN_VERIFIER, JoseAppleIdTokenVerifier } from './auth/apple-
 import { MeController } from './auth/me.controller';
 import { PhoneAuthController } from './auth/phone-auth.controller';
 import { PhoneAuthService } from './auth/phone-auth.service';
+import { PhoneSecurityRetentionService } from './auth/phone-security-retention.service';
 import { RecentAuthController } from './auth/recent-auth.controller';
 import { RecentAuthService } from './auth/recent-auth.service';
 import { RECENT_AUTH_PASSWORD_VERIFIER, SupabaseRecentAuthPasswordVerifier } from './auth/recent-auth-password.verifier';
@@ -24,6 +25,7 @@ import { SupabaseAuthVerifier } from './auth/supabase-auth.verifier';
 import { AliyunSmsProvider } from './auth/sms/aliyun-sms.provider';
 import { SupabaseSmsHookController } from './auth/sms/supabase-sms-hook.controller';
 import { SupabaseSmsHookService } from './auth/sms/supabase-sms-hook.service';
+import { SmsDeliveryAuthority } from './auth/sms/sms-delivery-authority';
 import { API_CONFIG, loadConfig } from './config';
 import { DatabaseService } from './database/database.service';
 import { HealthController } from './health.controller';
@@ -61,8 +63,10 @@ import { PersistentCommerceBenefitsService } from './commerce/persistent-commerc
     PersistentCommerceBenefitsService,
     RequireAuthGuard,
     AliyunSmsProvider,
+    SmsDeliveryAuthority,
     SupabaseSmsHookService,
     PhoneAuthService,
+    PhoneSecurityRetentionService,
     SupabaseRecentAuthPasswordVerifier,
     { provide: RECENT_AUTH_PASSWORD_VERIFIER, useExisting: SupabaseRecentAuthPasswordVerifier },
     RecentAuthService,

@@ -5,6 +5,7 @@ import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { and, eq, inArray, sql } from 'drizzle-orm';
 import { AUTH_VERIFIER, type AuthVerifier, type VerifiedAuthSession } from '../auth/auth.types';
 import { PhoneAuthService } from '../auth/phone-auth.service';
+import { RecentAuthService } from '../auth/recent-auth.service';
 import { SessionSecurityService } from '../auth/session-security.service';
 import { API_CONFIG, type ApiConfig } from '../config';
 import {
@@ -36,6 +37,7 @@ export class AccountService {
     private readonly database: DatabaseService,
     private readonly identities: AccountIdentityService,
     private readonly phoneAuth: PhoneAuthService,
+    private readonly recentAuth: RecentAuthService,
     private readonly sessions: SessionSecurityService,
   ) {
     this.adminAuth = createClient(config.supabaseUrl, config.supabaseSecretKey, {
@@ -82,22 +84,19 @@ export class AccountService {
     source: VerifiedAuthSession,
     password: string,
     currentPassword?: string,
+    recoveryGrantId?: string,
   ): Promise<UpdatePhonePasswordResponse> {
     if (!isChinaMobileE164(source.user.phone) || !source.user.providers?.includes('phone')) {
       throw new UnauthorizedException('verified_phone_required');
     }
     let isPasswordRecovery = false;
     if (currentPassword === undefined) {
-      const now = Math.floor(Date.now() / 1_000);
-      const recentOtp = source.authenticationMethods.some((entry) => (
-        entry.method === 'otp'
-        && entry.timestamp <= now + 60
-        && now - entry.timestamp <= RECENT_SOCIAL_AUTH_WINDOW_SECONDS
-      ));
-      if (!recentOtp) throw new UnauthorizedException('phone_reauthentication_required');
       const isFirstPasswordSetup = source.passwordSet === false;
-      if (!isFirstPasswordSetup && !this.phoneAuth.consumePasswordRecovery(source)) {
-        throw new UnauthorizedException('phone_reauthentication_required');
+      if (isFirstPasswordSetup) {
+        await this.phoneAuth.consumeOtpIntent(source, 'login');
+      } else {
+        if (!recoveryGrantId) throw new UnauthorizedException('phone_reauthentication_required');
+        await this.recentAuth.consume(source, recoveryGrantId, 'password_recovery');
       }
       isPasswordRecovery = !isFirstPasswordSetup;
     }
@@ -164,8 +163,9 @@ export class AccountService {
     };
   }
 
-  authorizePasswordRecovery(source: VerifiedAuthSession): AuthorizePasswordRecoveryResponse {
-    return this.phoneAuth.authorizePasswordRecovery(source);
+  async authorizePasswordRecovery(source: VerifiedAuthSession): Promise<AuthorizePasswordRecoveryResponse> {
+    const grant = await this.recentAuth.issuePhoneOtpGrant(source, 'password_recovery');
+    return { authorized: true, expiresAt: grant.expiresAt, grantId: grant.grantId };
   }
 
   private createRequestAuthClient() {
@@ -180,6 +180,7 @@ export class AccountService {
     if (error || !data.session || data.user?.phone !== phone) throw new UnauthorizedException('invalid_phone_otp');
     const target = await this.verifier.verify(data.session.access_token);
     await this.sessions.assertActive(target);
+    await this.phoneAuth.consumeOtpIntent(target, 'phone_binding', new Date(), source.user.id);
     try {
       const existingPhoneAccountId = await this.identities.accountIdForIdentity('phone', phone);
       let account: AccountSummary;
@@ -261,26 +262,7 @@ export class AccountService {
 
   async startPhoneBinding(source: VerifiedAuthSession, phone: string, sourceIp = '127.0.0.1'): Promise<StartPhoneBindingResponse> {
     this.assertSocialPhoneBindingAllowed(source);
-    const phoneAuth = createClient(this.config.supabaseUrl, this.config.supabasePublishableKey, {
-      auth: { autoRefreshToken: false, detectSessionInUrl: false, persistSession: false },
-      global: { headers: { 'Sb-Forwarded-For': sourceIp } },
-    });
-    const { error } = await phoneAuth.auth.signInWithOtp({
-      phone,
-      options: {
-        channel: 'sms',
-        shouldCreateUser: true,
-        data: { account_type: 'native_phone_binding_target' },
-      },
-    });
-    if (error) {
-      const code = error.code?.toLowerCase();
-      if (code === 'over_sms_send_rate_limit' || code === 'over_request_rate_limit') {
-        throw new HttpException('phone_binding_otp_rate_limited', HttpStatus.TOO_MANY_REQUESTS);
-      }
-      throw new ServiceUnavailableException('phone_binding_otp_unavailable');
-    }
-    return { sent: true };
+    return this.phoneAuth.startBinding(source, phone, sourceIp);
   }
 
   private assertSocialPhoneBindingAllowed(source: VerifiedAuthSession) {

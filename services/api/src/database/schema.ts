@@ -140,6 +140,60 @@ export const lifetimeIdentityBenefitClaims = pgTable('lifetime_identity_benefit_
   check('lifetime_identity_benefit_claims_key_version_check', sql`${table.digestKeyVersion} > 0`),
 ]).enableRLS();
 
+export const phoneOtpIntents = pgTable('phone_otp_intents', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  phoneDigest: text('phone_digest').notNull(),
+  purpose: text('purpose').notNull(),
+  accountId: uuid('account_id'),
+  status: text('status').default('pending').notNull(),
+  otpNotBefore: timestamp('otp_not_before', { withTimezone: true }).notNull(),
+  expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+  consumedAt: timestamp('consumed_at', { withTimezone: true }),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  index('phone_otp_intents_lookup').on(table.phoneDigest, table.purpose, table.accountId, table.status),
+  index('phone_otp_intents_expiry').on(table.expiresAt),
+  check('phone_otp_intents_purpose_check', sql`${table.purpose} IN ('login', 'account_delete', 'password_recovery', 'phone_binding')`),
+  check('phone_otp_intents_status_check', sql`${table.status} IN ('pending', 'consumed')`),
+  check('phone_otp_intents_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
+  check('phone_otp_intents_otp_time_check', sql`${table.otpNotBefore} >= ${table.createdAt}`),
+  check('phone_otp_intents_consumed_check', sql`${table.consumedAt} IS NULL OR ${table.consumedAt} >= ${table.createdAt}`),
+  check('phone_otp_intents_account_check', sql`(
+    (${table.purpose} IN ('login', 'password_recovery') AND ${table.accountId} IS NULL)
+    OR (${table.purpose} IN ('account_delete', 'phone_binding') AND ${table.accountId} IS NOT NULL)
+  )`),
+]).enableRLS();
+
+export const smsUsageCounters = pgTable('sms_usage_counters', {
+  scopeKey: text('scope_key').primaryKey(),
+  count: integer('count').default(0).notNull(),
+  expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  index('sms_usage_counters_expiry').on(table.expiresAt),
+  check('sms_usage_counters_count_check', sql`${table.count} >= 0`),
+]).enableRLS();
+
+export const smsDeliveryAttempts = pgTable('sms_delivery_attempts', {
+  dedupeKey: text('dedupe_key').primaryKey(),
+  phoneDigest: text('phone_digest').notNull(),
+  status: text('status').default('processing').notNull(),
+  leaseToken: uuid('lease_token').notNull(),
+  leaseUntil: timestamp('lease_until', { withTimezone: true }).notNull(),
+  attemptCount: integer('attempt_count').default(1).notNull(),
+  lastErrorCode: text('last_error_code'),
+  completedAt: timestamp('completed_at', { withTimezone: true }),
+  expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  index('sms_delivery_attempts_expiry').on(table.expiresAt),
+  index('sms_delivery_attempts_lease').on(table.status, table.leaseUntil),
+  check('sms_delivery_attempts_status_check', sql`${table.status} IN ('processing', 'retryable', 'completed')`),
+  check('sms_delivery_attempts_attempts_check', sql`${table.attemptCount} > 0`),
+  check('sms_delivery_attempts_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
+]).enableRLS();
+
 export const accountDeletionJobs = pgTable('account_deletion_jobs', {
   id: uuid('id').defaultRandom().primaryKey(),
   accountId: uuid('account_id').notNull(),

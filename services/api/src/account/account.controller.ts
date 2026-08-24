@@ -32,7 +32,15 @@ export class AccountController {
   ): Promise<ApiSuccessEnvelope<UpdatePhonePasswordResponse>> {
     const parsed = updatePhonePasswordSchema.safeParse(body);
     if (!parsed.success) throw new BadRequestException('invalid_phone_password');
-    return { requestId: request.id, data: await this.account.updatePassword(request.auth!, parsed.data.password, parsed.data.currentPassword) };
+    return {
+      requestId: request.id,
+      data: await this.account.updatePassword(
+        request.auth!,
+        parsed.data.password,
+        parsed.data.currentPassword,
+        parsed.data.recoveryGrantId,
+      ),
+    };
   }
 
   @Post('password/recovery/authorize')

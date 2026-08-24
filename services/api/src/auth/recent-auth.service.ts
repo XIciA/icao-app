@@ -1,6 +1,6 @@
 import { createHmac } from 'node:crypto';
 
-import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
+import { Inject, Injectable, Optional, UnauthorizedException } from '@nestjs/common';
 import type { RecentAuthGrantResponse, RecentAuthMethod, RecentAuthPurpose } from '@icao/contracts';
 import { and, eq, gt, isNull } from 'drizzle-orm';
 
@@ -8,6 +8,7 @@ import { API_CONFIG, type ApiConfig } from '../config';
 import { recentAuthChallenges, recentAuthGrants } from '../database/schema';
 import { DatabaseService } from '../database/database.service';
 import type { VerifiedAuthSession } from './auth.types';
+import { PhoneAuthService } from './phone-auth.service';
 import {
   RECENT_AUTH_PASSWORD_VERIFIER,
   type RecentAuthPasswordVerifier,
@@ -24,6 +25,7 @@ export class RecentAuthService {
     private readonly database: DatabaseService,
     @Inject(RECENT_AUTH_PASSWORD_VERIFIER)
     private readonly passwordVerifier: RecentAuthPasswordVerifier,
+    @Optional() private readonly phoneAuth?: PhoneAuthService,
   ) {}
 
   async issuePasswordGrant(
@@ -35,6 +37,19 @@ export class RecentAuthService {
     return this.issueVerifiedGrant(source, 'password', purpose);
   }
 
+  async issuePhoneOtpGrant(
+    source: VerifiedAuthSession,
+    purpose: RecentAuthPurpose,
+    now = new Date(),
+  ) {
+    const phoneAuth = this.phoneAuth;
+    if (!phoneAuth) throw new UnauthorizedException('phone_reauthentication_required');
+    return this.database.db.transaction(async (transaction) => {
+      await phoneAuth.consumeOtpIntentInTransaction(transaction, source, purpose, now);
+      return this.issueVerifiedGrantInTransaction(transaction, source, 'phone_otp', purpose, now);
+    });
+  }
+
   async issueVerifiedGrant(
     source: VerifiedAuthSession,
     method: RecentAuthMethod,
@@ -42,41 +57,52 @@ export class RecentAuthService {
     now = new Date(),
   ): Promise<RecentAuthGrantResponse> {
     const expiresAt = new Date(now.getTime() + RECENT_AUTH_GRANT_TTL_MS);
-    const targetDigest = this.targetDigest(source.user.id, purpose);
-    return this.database.db.transaction(async (transaction) => {
-      const [challenge] = await transaction.insert(recentAuthChallenges).values({
-        accountId: source.user.id,
-        authUserId: source.authUserId,
-        sessionId: source.sessionId,
-        method,
-        purpose,
-        targetDigest,
-        status: 'verified',
-        expiresAt,
-        verifiedAt: now,
-        createdAt: now,
-      }).returning({ id: recentAuthChallenges.id });
-      if (!challenge) throw new Error('recent_auth_challenge_not_created');
+    return this.database.db.transaction((transaction) => (
+      this.issueVerifiedGrantInTransaction(transaction, source, method, purpose, now, expiresAt)
+    ));
+  }
 
-      const [grant] = await transaction.insert(recentAuthGrants).values({
-        challengeId: challenge.id,
-        accountId: source.user.id,
-        authUserId: source.authUserId,
-        sessionId: source.sessionId,
-        method,
-        purpose,
-        targetDigest,
-        expiresAt,
-        createdAt: now,
-      }).returning({ id: recentAuthGrants.id });
-      if (!grant) throw new Error('recent_auth_grant_not_created');
-      return {
-        expiresAt: expiresAt.getTime(),
-        grantId: grant.id,
-        method,
-        purpose,
-      };
-    });
+  private async issueVerifiedGrantInTransaction(
+    transaction: RecentAuthTransaction,
+    source: VerifiedAuthSession,
+    method: RecentAuthMethod,
+    purpose: RecentAuthPurpose,
+    now: Date,
+    expiresAt = new Date(now.getTime() + RECENT_AUTH_GRANT_TTL_MS),
+  ): Promise<RecentAuthGrantResponse> {
+    const targetDigest = this.targetDigest(source.user.id, purpose);
+    const [challenge] = await transaction.insert(recentAuthChallenges).values({
+      accountId: source.user.id,
+      authUserId: source.authUserId,
+      sessionId: source.sessionId,
+      method,
+      purpose,
+      targetDigest,
+      status: 'verified',
+      expiresAt,
+      verifiedAt: now,
+      createdAt: now,
+    }).returning({ id: recentAuthChallenges.id });
+    if (!challenge) throw new Error('recent_auth_challenge_not_created');
+
+    const [grant] = await transaction.insert(recentAuthGrants).values({
+      challengeId: challenge.id,
+      accountId: source.user.id,
+      authUserId: source.authUserId,
+      sessionId: source.sessionId,
+      method,
+      purpose,
+      targetDigest,
+      expiresAt,
+      createdAt: now,
+    }).returning({ id: recentAuthGrants.id });
+    if (!grant) throw new Error('recent_auth_grant_not_created');
+    return {
+      expiresAt: expiresAt.getTime(),
+      grantId: grant.id,
+      method,
+      purpose,
+    };
   }
 
   consume(

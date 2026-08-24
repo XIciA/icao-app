@@ -9,6 +9,7 @@ import { AccountDeletionService } from '../src/account/account-deletion.service'
 import { AccountIdentityService } from '../src/account/account-identity.service';
 import { AUTH_VERIFIER, type AuthVerifier, type VerifiedAuthSession } from '../src/auth/auth.types';
 import { PhoneAuthService } from '../src/auth/phone-auth.service';
+import { RecentAuthService } from '../src/auth/recent-auth.service';
 import { SessionSecurityService } from '../src/auth/session-security.service';
 import { loadConfig } from '../src/config';
 import { DatabaseService } from '../src/database/database.service';
@@ -103,7 +104,11 @@ async function testApp({ revoked = false }: { revoked?: boolean } = {}) {
     .useValue({ assertActive: async () => { if (revoked) throw new UnauthorizedException('session_revoked'); }, revokeAll: async () => undefined })
     .overrideProvider(AccountService)
     .useValue({
-      authorizePasswordRecovery: async () => ({ authorized: true, expiresAt: 1_800_003_600_000 }),
+      authorizePasswordRecovery: async () => ({
+        authorized: true,
+        expiresAt: 1_800_003_600_000,
+        grantId: '00000000-0000-4000-8000-000000000096',
+      }),
       mergeWithPhoneOtp: async () => ({
         account: { accountId: '00000000-0000-4000-8000-000000000001', phone: '+8613800138000', phoneBound: true, providers: ['phone', 'apple'] },
         session: { accessToken: 'target-access-token', refreshToken: 'target-refresh-token' },
@@ -133,6 +138,22 @@ async function testApp({ revoked = false }: { revoked?: boolean } = {}) {
     .useValue({
       start: async () => ({ accepted: true }),
       startRecovery: async () => ({ accepted: true }),
+      startRecentAuth: async () => ({ accepted: true }),
+    })
+    .overrideProvider(RecentAuthService)
+    .useValue({
+      issuePhoneOtpGrant: async () => ({
+        expiresAt: 1_800_000_300_000,
+        grantId: '00000000-0000-4000-8000-000000000095',
+        method: 'phone_otp',
+        purpose: 'account_delete',
+      }),
+      issuePasswordGrant: async () => ({
+        expiresAt: 1_800_000_300_000,
+        grantId: '00000000-0000-4000-8000-000000000094',
+        method: 'password',
+        purpose: 'account_delete',
+      }),
     })
     .overrideProvider(EditorialService)
     .useValue({
@@ -462,6 +483,18 @@ describe('API foundation', () => {
       url: '/v1/account/password/recovery/authorize',
       headers: { authorization: 'Bearer valid-token' },
     });
+    const recentPhoneStart = await app.inject({
+      method: 'POST',
+      url: '/v1/account/recent-auth/phone/start',
+      headers: { authorization: 'Bearer valid-token' },
+      payload: { purpose: 'account_delete' },
+    });
+    const recentPhone = await app.inject({
+      method: 'POST',
+      url: '/v1/account/recent-auth/phone',
+      headers: { authorization: 'Bearer valid-token' },
+      payload: { purpose: 'account_delete' },
+    });
     const unauthenticatedRecovery = await app.inject({
       method: 'POST',
       url: '/v1/account/password/recovery/authorize',
@@ -483,7 +516,20 @@ describe('API foundation', () => {
       updated: true,
     });
     expect(authorizedRecovery.statusCode).toBe(201);
-    expect(authorizedRecovery.json().data).toEqual({ authorized: true, expiresAt: 1_800_003_600_000 });
+    expect(authorizedRecovery.json().data).toEqual({
+      authorized: true,
+      expiresAt: 1_800_003_600_000,
+      grantId: '00000000-0000-4000-8000-000000000096',
+    });
+    expect(recentPhoneStart.statusCode).toBe(201);
+    expect(recentPhoneStart.json().data).toEqual({ accepted: true });
+    expect(recentPhone.statusCode).toBe(201);
+    expect(recentPhone.json().data).toEqual({
+      expiresAt: 1_800_000_300_000,
+      grantId: '00000000-0000-4000-8000-000000000095',
+      method: 'phone_otp',
+      purpose: 'account_delete',
+    });
     expect(unauthenticatedRecovery.statusCode).toBe(401);
     expect(unauthenticatedPassword.statusCode).toBe(401);
     await app.close();

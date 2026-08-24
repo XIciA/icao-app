@@ -256,6 +256,14 @@ export function loadConfig(environment: NodeJS.ProcessEnv = process.env): ApiCon
     parsed.data.IDENTITY_BENEFIT_DIGEST_KEY_VERSION,
   );
   if (parsed.data.NODE_ENV === 'production') {
+    const fixedOtpKeys = [
+      'GOTRUE_SMS_TEST_OTP',
+      'ICAO_TESTFLIGHT_SMS_TEST_OTP',
+      'SUPABASE_SMS_TEST_OTP',
+    ];
+    if (fixedOtpKeys.some((key) => environment[key]?.trim())) {
+      invalidConfiguration('FIXED_SMS_OTP');
+    }
     validateProductionAiRuntime(environment, parsed.data);
     if (!parsed.data.IDENTITY_BENEFIT_DIGEST_SECRET) invalidConfiguration('IDENTITY_BENEFIT_DIGEST_SECRET');
   }

@@ -22,4 +22,5 @@ export const startPhoneBindingSchema = z.object({
 export const updatePhonePasswordSchema = z.object({
   password: z.string().min(10).max(64).regex(/[A-Za-z]/u).regex(/[0-9]/u),
   currentPassword: z.string().min(1).max(256).optional(),
+  recoveryGrantId: z.uuid().optional(),
 }).strict();

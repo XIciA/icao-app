@@ -55,11 +55,13 @@ export type StartPhoneOtpResponse = {
 export type AuthorizePasswordRecoveryResponse = {
   authorized: true;
   expiresAt: number;
+  grantId: string;
 };
 
 export type UpdatePhonePasswordRequest = {
   password: string;
   currentPassword?: string;
+  recoveryGrantId?: string;
 };
 
 export type UpdatePhonePasswordResponse = {
@@ -116,6 +118,12 @@ export type PasswordRecentAuthRequest = {
   password: string;
   purpose: 'account_delete';
 };
+
+export type PhoneRecentAuthRequest = {
+  purpose: 'account_delete';
+};
+
+export type StartPhoneRecentAuthRequest = PhoneRecentAuthRequest;
 
 export type RecentAuthGrantResponse = {
   expiresAt: number;
