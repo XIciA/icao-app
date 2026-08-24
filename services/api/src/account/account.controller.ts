@@ -1,11 +1,11 @@
 import { BadRequestException, Body, Controller, Delete, Get, HttpCode, Post, Req, UseGuards } from '@nestjs/common';
-import type { AccountSummary, ApiSuccessEnvelope, AuthorizePasswordRecoveryResponse, DeleteAccountRequest, DeleteAccountResponse, MergePhoneAccountRequest, MergePhoneAccountResponse, RevokeAllSessionsResponse, StartPhoneBindingRequest, StartPhoneBindingResponse, UpdatePhonePasswordRequest, UpdatePhonePasswordResponse } from '@icao/contracts';
+import type { AccountSummary, ApiSuccessEnvelope, AuthorizePasswordRecoveryResponse, BindPhoneRequest, BindPhoneResponse, DeleteAccountRequest, DeleteAccountResponse, RevokeAllSessionsResponse, StartPhoneBindingRequest, StartPhoneBindingResponse, UpdatePhonePasswordRequest, UpdatePhonePasswordResponse } from '@icao/contracts';
 
 import type { AuthenticatedRequest } from '../auth/auth.types';
 import { RequireAuthGuard } from '../auth/require-auth.guard';
 import { AccountService } from './account.service';
 import { AccountDeletionService } from './account-deletion.service';
-import { deleteAccountSchema, mergePhoneAccountSchema, startPhoneBindingSchema, updatePhonePasswordSchema } from './account.schemas';
+import { bindPhoneSchema, deleteAccountSchema, startPhoneBindingSchema, updatePhonePasswordSchema } from './account.schemas';
 
 @Controller('v1/account')
 @UseGuards(RequireAuthGuard)
@@ -50,7 +50,7 @@ export class AccountController {
     return { requestId: request.id, data: await this.account.authorizePasswordRecovery(request.auth!) };
   }
 
-  @Post('merge/phone/start')
+  @Post(['phone-binding/start', 'merge/phone/start'])
   async startPhoneBinding(
     @Body() body: StartPhoneBindingRequest,
     @Req() request: AuthenticatedRequest,
@@ -67,11 +67,11 @@ export class AccountController {
     };
   }
 
-  @Post('merge/phone')
-  async mergePhone(@Body() body: MergePhoneAccountRequest, @Req() request: AuthenticatedRequest): Promise<ApiSuccessEnvelope<MergePhoneAccountResponse>> {
-    const parsed = mergePhoneAccountSchema.safeParse(body);
-    if (!parsed.success) throw new BadRequestException('invalid_account_merge');
-    return { requestId: request.id, data: await this.account.mergeWithPhoneOtp(request.auth!, parsed.data.phone, parsed.data.token) };
+  @Post(['phone-binding/verify', 'merge/phone'])
+  async verifyPhoneBinding(@Body() body: BindPhoneRequest, @Req() request: AuthenticatedRequest): Promise<ApiSuccessEnvelope<BindPhoneResponse>> {
+    const parsed = bindPhoneSchema.safeParse(body);
+    if (!parsed.success) throw new BadRequestException('invalid_phone_binding');
+    return { requestId: request.id, data: await this.account.bindPhoneWithOtp(request.auth!, parsed.data.phone, parsed.data.token) };
   }
 
   @Delete()

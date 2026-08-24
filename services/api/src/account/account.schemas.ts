@@ -10,7 +10,7 @@ export const accountDeletionStatusSchema = z.object({
   idempotencyKey: z.uuidv4(),
 }).strict();
 
-export const mergePhoneAccountSchema = z.object({
+export const bindPhoneSchema = z.object({
   phone: z.string().regex(/^\+861[3-9]\d{9}$/u),
   token: z.string().regex(/^\d{6}$/u),
 }).strict();

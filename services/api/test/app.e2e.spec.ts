@@ -109,7 +109,7 @@ async function testApp({ revoked = false }: { revoked?: boolean } = {}) {
         expiresAt: 1_800_003_600_000,
         grantId: '00000000-0000-4000-8000-000000000096',
       }),
-      mergeWithPhoneOtp: async () => ({
+      bindPhoneWithOtp: async () => ({
         account: { accountId: '00000000-0000-4000-8000-000000000001', phone: '+8613800138000', phoneBound: true, providers: ['phone', 'apple'] },
         session: { accessToken: 'target-access-token', refreshToken: 'target-refresh-token' },
       }),
@@ -431,15 +431,27 @@ describe('API foundation', () => {
     await app.close();
   });
 
-  it('accepts a phone OTP merge only from an authenticated social account', async () => {
+  it('accepts canonical phone binding and keeps legacy routes as bind-only aliases', async () => {
     const app = await testApp();
     const started = await app.inject({
+      method: 'POST',
+      url: '/v1/account/phone-binding/start',
+      headers: { authorization: 'Bearer apple-token' },
+      payload: { phone: '+8613800138000' },
+    });
+    const bound = await app.inject({
+      method: 'POST',
+      url: '/v1/account/phone-binding/verify',
+      headers: { authorization: 'Bearer apple-token' },
+      payload: { phone: '+8613800138000', token: '123456' },
+    });
+    const legacyStarted = await app.inject({
       method: 'POST',
       url: '/v1/account/merge/phone/start',
       headers: { authorization: 'Bearer apple-token' },
       payload: { phone: '+8613800138000' },
     });
-    const merged = await app.inject({
+    const legacyBound = await app.inject({
       method: 'POST',
       url: '/v1/account/merge/phone',
       headers: { authorization: 'Bearer apple-token' },
@@ -447,7 +459,7 @@ describe('API foundation', () => {
     });
     const malformed = await app.inject({
       method: 'POST',
-      url: '/v1/account/merge/phone',
+      url: '/v1/account/phone-binding/verify',
       headers: { authorization: 'Bearer apple-token' },
       payload: { phone: '13800138000', token: '1234' },
     });
@@ -458,8 +470,8 @@ describe('API foundation', () => {
     });
     expect(started.statusCode).toBe(201);
     expect(started.json().data).toEqual({ sent: true });
-    expect(merged.statusCode).toBe(201);
-    expect(merged.json().data).toEqual({
+    expect(bound.statusCode).toBe(201);
+    expect(bound.json().data).toEqual({
       account: {
         accountId: '00000000-0000-4000-8000-000000000001',
         phone: '+8613800138000',
@@ -468,8 +480,12 @@ describe('API foundation', () => {
       },
       session: { accessToken: 'target-access-token', refreshToken: 'target-refresh-token' },
     });
+    expect(legacyStarted.statusCode).toBe(201);
+    expect(legacyStarted.json().data).toEqual({ sent: true });
+    expect(legacyBound.statusCode).toBe(201);
+    expect(legacyBound.json().data).toEqual(bound.json().data);
     expect(malformed.statusCode).toBe(400);
-    expect(malformed.json().error.code).toBe('invalid_account_merge');
+    expect(malformed.json().error.code).toBe('invalid_phone_binding');
     expect(unauthenticated.statusCode).toBe(401);
     await app.close();
   });
