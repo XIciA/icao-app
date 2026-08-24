@@ -95,6 +95,7 @@ describe('<AuthProvider /> internal-account gate', () => {
     mockAuthorizePasswordRecovery.mockReset().mockResolvedValue({
       authorized: true,
       expiresAt: Date.now() + 600_000,
+      grantId: '10000000-0000-4000-8000-000000000001',
     });
     mockSignInWithApple.mockReset().mockResolvedValue(socialSession);
     mockSignOut.mockReset().mockResolvedValue(undefined);
@@ -167,7 +168,11 @@ describe('<AuthProvider /> internal-account gate', () => {
     await act(async () => {
       await currentAuth.updatePassword('newpassword10');
     });
-    expect(mockUpdatePassword).toHaveBeenCalledWith('newpassword10', undefined);
+    expect(mockUpdatePassword).toHaveBeenCalledWith(
+      'newpassword10',
+      undefined,
+      '10000000-0000-4000-8000-000000000001',
+    );
     expect(currentAuth.session?.accessToken).toBe('next-access-token');
     expect(currentAuth.passwordChangePurpose).toBeUndefined();
     expect(mockRefreshSession).not.toHaveBeenCalled();
@@ -192,5 +197,113 @@ describe('<AuthProvider /> internal-account gate', () => {
     expect(currentAuth.session).toBeUndefined();
     expect(currentAuth.passwordChangePurpose).toBeUndefined();
     expect(mockApiRequest).not.toHaveBeenCalled();
+  });
+
+  it('does not submit an expired password recovery grant', async () => {
+    mockAuthorizePasswordRecovery.mockResolvedValueOnce({
+      authorized: true,
+      expiresAt: Date.now() - 1,
+      grantId: '10000000-0000-4000-8000-000000000001',
+    });
+    mockApiRequest.mockResolvedValueOnce({
+      accountId: 'phone-auth-user',
+      phone: '+8613800138000',
+      phoneBound: true,
+      providers: ['phone'],
+    });
+    const screen = await render(<AuthProvider><AuthStateProbe /></AuthProvider>);
+    await waitFor(() => expect(screen.getByTestId('auth-state').props.children).toBe('closed'));
+
+    await act(async () => {
+      await currentAuth.verifyPhoneOtp('+8613800138000', '123456', 'recovery');
+    });
+    let failure: unknown;
+    await act(async () => {
+      try {
+        await currentAuth.updatePassword('newpassword10');
+      } catch (error) {
+        failure = error;
+      }
+    });
+    expect(failure).toEqual(expect.objectContaining({ message: 'phone_reauthentication_required' }));
+    expect(mockUpdatePassword).not.toHaveBeenCalled();
+    expect(currentAuth.passwordChangePurpose).toBeUndefined();
+  });
+
+  it('invalidates a recovery grant when the authenticated session changes', async () => {
+    mockApiRequest
+      .mockResolvedValueOnce({
+        accountId: 'phone-auth-user',
+        phone: '+8613800138000',
+        phoneBound: true,
+        providers: ['phone'],
+      })
+      .mockResolvedValueOnce({
+        accountId: 'apple-auth-user',
+        phoneBound: false,
+        providers: ['apple'],
+      });
+    const screen = await render(<AuthProvider><AuthStateProbe /></AuthProvider>);
+    await waitFor(() => expect(screen.getByTestId('auth-state').props.children).toBe('closed'));
+
+    await act(async () => {
+      await currentAuth.verifyPhoneOtp('+8613800138000', '123456', 'recovery');
+      await currentAuth.signInWithApple();
+    });
+
+    let failure: unknown;
+    await act(async () => {
+      try {
+        await currentAuth.updatePassword('newpassword10');
+      } catch (error) {
+        failure = error;
+      }
+    });
+    expect(failure).toEqual(expect.objectContaining({ message: 'phone_reauthentication_required' }));
+    expect(mockUpdatePassword).not.toHaveBeenCalled();
+    expect(currentAuth.passwordChangePurpose).toBeUndefined();
+  });
+
+  it('consumes the recovery grant locally before the first password update attempt', async () => {
+    mockUpdatePassword.mockRejectedValueOnce(new Error('auth_service_unavailable'));
+    mockApiRequest.mockResolvedValueOnce({
+      accountId: 'phone-auth-user',
+      phone: '+8613800138000',
+      phoneBound: true,
+      providers: ['phone'],
+    });
+    const screen = await render(<AuthProvider><AuthStateProbe /></AuthProvider>);
+    await waitFor(() => expect(screen.getByTestId('auth-state').props.children).toBe('closed'));
+
+    await act(async () => {
+      await currentAuth.verifyPhoneOtp('+8613800138000', '123456', 'recovery');
+    });
+    let firstFailure: unknown;
+    await act(async () => {
+      try {
+        await currentAuth.updatePassword('newpassword10');
+      } catch (error) {
+        firstFailure = error;
+      }
+    });
+    expect(firstFailure).toEqual(expect.objectContaining({ message: 'auth_service_unavailable' }));
+
+    let replayFailure: unknown;
+    await act(async () => {
+      try {
+        await currentAuth.updatePassword('newpassword10');
+      } catch (error) {
+        replayFailure = error;
+      }
+    });
+    expect(replayFailure).toEqual(expect.objectContaining({ message: 'phone_reauthentication_required' }));
+
+    expect(mockUpdatePassword).toHaveBeenCalledTimes(1);
+    expect(mockUpdatePassword).toHaveBeenCalledWith(
+      'newpassword10',
+      undefined,
+      '10000000-0000-4000-8000-000000000001',
+    );
+    expect(currentAuth.passwordChangePurpose).toBeUndefined();
   });
 });
