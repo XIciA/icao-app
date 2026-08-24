@@ -43,6 +43,7 @@ import { FeedbackAttachmentStorage } from './feedback/feedback-attachment-storag
 import { FeedbackCleanupService } from './feedback/feedback-cleanup.service';
 import { FeedbackController } from './feedback/feedback.controller';
 import { FeedbackService } from './feedback/feedback.service';
+import { PersistentCommerceBenefitsService } from './commerce/persistent-commerce-benefits.service';
 
 @Module({
   controllers: [HealthController, MeController, PhoneAuthController, RecentAuthController, AppleAuthController, SupabaseSmsHookController, AccountController, QuestionBankController, ResourceController, EditorialController, SyncController, AiController, VocabularyController, FeedbackController],
@@ -54,6 +55,7 @@ import { FeedbackService } from './feedback/feedback.service';
     SessionSecurityService,
     AccountIdentityService,
     IdentityDigestService,
+    PersistentCommerceBenefitsService,
     RequireAuthGuard,
     AliyunSmsProvider,
     SupabaseSmsHookService,

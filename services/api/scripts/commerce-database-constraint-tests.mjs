@@ -15,6 +15,7 @@ import { RecentAuthService } from '../src/auth/recent-auth.service.ts';
 import { AppleAuthHttpError } from '../src/auth/apple-auth-http.ts';
 import { AppleAuthService } from '../src/auth/apple-auth.service.ts';
 import { IdentityDigestService } from '../src/account/identity-digest.service.ts';
+import { AccountIdentityService } from '../src/account/account-identity.service.ts';
 import { JoseAppleIdTokenVerifier } from '../src/auth/apple-id-token.verifier.ts';
 import * as databaseSchema from '../src/database/schema.ts';
 
@@ -347,6 +348,116 @@ test('lifetime identity claims survive account deletion and remain globally sing
   assert.equal(
     queryScalar(`SELECT claim_context_digest FROM lifetime_identity_benefit_claims WHERE identity_digest = 'identity-digest-1'`),
     'account-context-1',
+  );
+});
+
+test('phone and Apple identities atomically claim one persistent 100-point trial', async () => {
+  const accountId = '60000000-0000-4000-8000-000000000001';
+  const config = appleConfig();
+  const service = new AccountIdentityService(config, { db: serviceDatabase });
+  const authUser = psql(`INSERT INTO auth.users (id) VALUES ('${accountId}');`);
+  assert.equal(authUser.status, 0, authUser.stderr);
+  const source = {
+    ...authSession({ accountId, authUserId: accountId, sessionId: '60000000-0000-4000-8000-000000000002' }),
+    identities: [{ provider: 'apple', subject: 'dual-trial-apple-subject' }],
+    user: {
+      id: accountId,
+      phone: '+8613811111111',
+    },
+  };
+  await service.resolve(source);
+  await service.resolve(source);
+
+  assert.equal(
+    queryScalar(`SELECT COUNT(*) FROM lifetime_identity_benefit_claims WHERE claim_context_digest = (
+      SELECT claim_context_digest FROM lifetime_identity_benefit_claims
+      WHERE provider = 'phone' ORDER BY claimed_at DESC LIMIT 1
+    ) AND benefit_key = 'free-trial-100-v1'`),
+    '4',
+    'two identities times current and previous digest aliases must be occupied',
+  );
+  assert.equal(
+    queryScalar(`SELECT COUNT(*)::text || ':' || SUM(granted_points)::text FROM ai_point_batches
+      WHERE account_id = '${accountId}' AND source_type = 'trial'`),
+    '1:100',
+  );
+  assert.equal(
+    queryScalar(`SELECT COUNT(*) FROM ai_point_ledger_entries
+      WHERE account_id = '${accountId}' AND entry_type = 'grant' AND points = 100`),
+    '1',
+  );
+});
+
+test('deletion and re-registration cannot repeat an identity trial', async () => {
+  const oldAccountId = '60000000-0000-4000-8000-000000000010';
+  const newAccountId = '60000000-0000-4000-8000-000000000011';
+  const config = appleConfig();
+  const service = new AccountIdentityService(config, { db: serviceDatabase });
+  const phone = '+8613822222222';
+  const authUsers = psql(`INSERT INTO auth.users (id) VALUES ('${oldAccountId}'), ('${newAccountId}');`);
+  assert.equal(authUsers.status, 0, authUsers.stderr);
+  await service.resolve({
+    ...authSession({ accountId: oldAccountId, authUserId: oldAccountId, sessionId: '60000000-0000-4000-8000-000000000012' }),
+    user: { id: oldAccountId, phone },
+  });
+  const removeActiveIdentity = psql(`
+    DELETE FROM profiles WHERE user_id = '${oldAccountId}';
+    DELETE FROM account_identities WHERE account_id = '${oldAccountId}';
+    DELETE FROM accounts WHERE id = '${oldAccountId}';
+  `);
+  assert.equal(removeActiveIdentity.status, 0, removeActiveIdentity.stderr);
+
+  await service.resolve({
+    ...authSession({ accountId: newAccountId, authUserId: newAccountId, sessionId: '60000000-0000-4000-8000-000000000013' }),
+    user: { id: newAccountId, phone },
+  });
+  assert.equal(
+    queryScalar(`SELECT COUNT(*) FROM ai_point_batches
+      WHERE account_id IN ('${oldAccountId}', '${newAccountId}') AND source_type = 'trial'`),
+    '1',
+  );
+  assert.equal(
+    queryScalar(`SELECT COUNT(DISTINCT claim_context_digest) FROM lifetime_identity_benefit_claims
+      WHERE benefit_key = 'free-trial-100-v1' AND provider = 'phone'
+      AND identity_digest IN (
+        SELECT identity_digest FROM lifetime_identity_benefit_claims
+        WHERE claim_context_digest = (
+          SELECT claim_context_digest FROM lifetime_identity_benefit_claims
+          WHERE provider = 'phone' ORDER BY claimed_at DESC LIMIT 1
+        )
+      )`),
+    '1',
+  );
+});
+
+test('old and new digest-key deployments conflict on the shared alias and grant only once', async () => {
+  const oldConfig = {
+    accountIdentityHashKeyVersion: 1,
+    accountIdentityHashSecret: 'previous-identity-digest-secret-32-bytes',
+  };
+  const newConfig = appleConfig();
+  const phone = '+8613833333333';
+  const oldAccountId = '60000000-0000-4000-8000-000000000020';
+  const newAccountId = '60000000-0000-4000-8000-000000000021';
+  const oldService = new AccountIdentityService(oldConfig, { db: serviceDatabase });
+  const newService = new AccountIdentityService(newConfig, { db: serviceDatabase });
+  const authUsers = psql(`INSERT INTO auth.users (id) VALUES ('${oldAccountId}'), ('${newAccountId}');`);
+  assert.equal(authUsers.status, 0, authUsers.stderr);
+  const attempts = await Promise.allSettled([
+    oldService.resolve({
+      ...authSession({ accountId: oldAccountId, authUserId: oldAccountId, sessionId: '60000000-0000-4000-8000-000000000022' }),
+      user: { id: oldAccountId, phone },
+    }),
+    newService.resolve({
+      ...authSession({ accountId: newAccountId, authUserId: newAccountId, sessionId: '60000000-0000-4000-8000-000000000023' }),
+      user: { id: newAccountId, phone },
+    }),
+  ]);
+  assert.ok(attempts.some(({ status }) => status === 'fulfilled'));
+  assert.equal(
+    queryScalar(`SELECT COUNT(*) FROM ai_point_batches
+      WHERE account_id IN ('${oldAccountId}', '${newAccountId}') AND source_type = 'trial'`),
+    '1',
   );
 });
 

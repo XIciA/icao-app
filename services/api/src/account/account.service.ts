@@ -292,6 +292,13 @@ export class AccountService {
         provider: 'phone',
         subjectHash: phoneSubjectHash,
       });
+      await this.identities.claimLifetimeTrialInTransaction(
+        transaction,
+        [{ provider: 'phone', subject: phone }],
+        sourceAccountId,
+        new Date(),
+        false,
+      );
       const providers = await transaction.selectDistinct({ provider: accountIdentities.provider })
         .from(accountIdentities)
         .where(eq(accountIdentities.accountId, sourceAccountId));

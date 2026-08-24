@@ -108,6 +108,7 @@ function fixture(options: {
         : options.phoneAccountId ?? '22222222-2222-4222-8222-222222222222',
     ),
     authUserIdsForAccount: vi.fn().mockResolvedValue(['11111111-1111-4111-8111-111111111111']),
+    claimLifetimeTrialInTransaction: vi.fn().mockResolvedValue(undefined),
     hashIdentity: vi.fn().mockReturnValue('a'.repeat(64)),
     providersForAccount: vi.fn().mockResolvedValue(['phone']),
     resolve: vi.fn().mockResolvedValue(target.user),
@@ -406,6 +407,13 @@ describe('AccountService phone merge', () => {
       provider: 'phone',
       subjectHash: 'a'.repeat(64),
     });
+    expect(identities.claimLifetimeTrialInTransaction).toHaveBeenCalledWith(
+      transactionApi,
+      [{ provider: 'phone', subject: '+8613800138000' }],
+      source.user.id,
+      expect.any(Date),
+      false,
+    );
     expect(signOut).not.toHaveBeenCalled();
   });
 
