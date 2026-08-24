@@ -13,7 +13,7 @@ const migrationsFolder = fileURLToPath(new URL('../drizzle', import.meta.url));
 
 test('loads the repository journal with the exact Drizzle hashes', async () => {
   const migrations = await loadLocalMigrations(migrationsFolder);
-  assert.ok(migrations.length >= 15);
+  assert.ok(migrations.length >= 16);
   assert.equal(migrations[8].tag, '0008_editorial_releases');
   assert.equal(
     migrations[8].hash,
@@ -28,6 +28,8 @@ test('loads the repository journal with the exact Drizzle hashes', async () => {
   assert.equal(migrations[13].tag, '0013_futuristic_wilson_fisk');
   assert.equal(migrations[14].tag, '0014_feedback_ticket_retention');
   assert.match(migrations[14].hash, /^[a-f0-9]{64}$/);
+  assert.equal(migrations[15].tag, '0015_commerce_domain');
+  assert.match(migrations[15].hash, /^[a-f0-9]{64}$/);
 });
 
 test('lists the complete suffix and warns that 0012/0013 cannot skip 0010/0011', async () => {
@@ -50,6 +52,7 @@ test('lists the complete suffix and warns that 0012/0013 cannot skip 0010/0011',
       '0012_dry_sleeper',
       '0013_futuristic_wilson_fisk',
       '0014_feedback_ticket_retention',
+      '0015_commerce_domain',
     ],
   );
   assert.ok(
