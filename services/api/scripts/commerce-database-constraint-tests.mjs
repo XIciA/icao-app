@@ -1860,6 +1860,7 @@ test('Apple credential intake compensates persistence failure and an account-del
     subject: 'apple-intake-persistence-subject',
   });
   const persistenceNonce = 'apple-intake-persistence-nonce';
+  let persistenceExchangeCount = 0;
   let persistenceRevokeCount = 0;
   const failureTrigger = psql(`
     CREATE FUNCTION fail_test_apple_intake_insert() RETURNS trigger LANGUAGE plpgsql AS $$
@@ -1874,11 +1875,14 @@ test('Apple credential intake compensates persistence failure and an account-del
   `);
   assert.equal(failureTrigger.status, 0, failureTrigger.stderr);
   const persistenceService = appleService({
-    exchangeAuthorizationCode: async () => ({
-      accessToken: 'temporary-access-token',
-      idToken: appleIdToken({ nonce: persistenceNonce, subject: persistenceSource.identities[0].subject }),
-      refreshToken: 'intake-persistence-raw-refresh-token',
-    }),
+    exchangeAuthorizationCode: async () => {
+      persistenceExchangeCount += 1;
+      return {
+        accessToken: 'temporary-access-token',
+        idToken: appleIdToken({ nonce: persistenceNonce, subject: persistenceSource.identities[0].subject }),
+        refreshToken: 'intake-persistence-raw-refresh-token',
+      };
+    },
     revoke: async () => {
       persistenceRevokeCount += 1;
       throw new AppleAuthHttpError('server_error');
@@ -1896,32 +1900,14 @@ test('Apple credential intake compensates persistence failure and an account-del
     DROP FUNCTION fail_test_apple_intake_insert();
   `);
   assert.equal(removeFailureTrigger.status, 0, removeFailureTrigger.stderr);
-  assert.equal(persistenceRevokeCount, 1);
+  assert.equal(persistenceExchangeCount, 0, 'Apple exchange must not start until the durable claim commits');
+  assert.equal(persistenceRevokeCount, 0);
   assert.equal(queryScalar(`SELECT COUNT(*) FROM apple_credential_intakes WHERE account_id = '${persistenceSource.user.id}'`), '0');
-  assert.equal(
-    queryScalar(`
-      SELECT outcome || ':' || (metadata->>'errorCode') || ':' || (metadata->>'manualActionRequired')
-      FROM account_security_events
-      WHERE event_type = 'apple_unpersisted_credential_revoke_failed'
-        AND subject_digest IS NOT NULL
-      ORDER BY created_at DESC
-      LIMIT 1
-    `),
-    'failed:server_error:true',
-  );
-  assert.equal(
-    queryScalar(`SELECT (to_jsonb(event_row)::text LIKE '%intake-persistence-raw-refresh-token%')::text
-      FROM account_security_events event_row
-      WHERE event_type = 'apple_unpersisted_credential_revoke_failed'
-      ORDER BY created_at DESC LIMIT 1`),
-    'false',
-    'the durable manual-risk marker must never contain the plaintext refresh token',
-  );
 
-  for (const [index, revokeFails] of [false, true].entries()) {
+  for (const [index, firstRevokeFails] of [false, true].entries()) {
     const suffix = 60 + index;
     const accountId = `50000000-0000-4000-8000-0000000000${suffix}`;
-    const authUserId = `51000000-0000-4000-8000-0000000000${suffix}`;
+    const authUserId = accountId;
     const sessionId = `52000000-0000-4000-8000-0000000000${suffix}`;
     const source = appleSession({
       accountId,
@@ -1939,6 +1925,10 @@ test('Apple credential intake compensates persistence failure and an account-del
     let releaseExchange;
     const started = new Promise((resolve) => { exchangeStarted = resolve; });
     const release = new Promise((resolve) => { releaseExchange = resolve; });
+    let revokeStarted;
+    let releaseRevoke;
+    const revokePending = new Promise((resolve) => { revokeStarted = resolve; });
+    const revokeRelease = new Promise((resolve) => { releaseRevoke = resolve; });
     let revokeCount = 0;
     const rawNonce = `apple-intake-deletion-race-nonce-${index}`;
     const rawRefreshToken = `apple-intake-deletion-race-refresh-${index}`;
@@ -1954,7 +1944,11 @@ test('Apple credential intake compensates persistence failure and an account-del
       },
       revoke: async () => {
         revokeCount += 1;
-        if (revokeFails) throw new AppleAuthHttpError('server_error');
+        if (revokeCount === 1) {
+          revokeStarted();
+          await revokeRelease;
+          if (firstRevokeFails) throw new AppleAuthHttpError('server_error');
+        }
       },
     });
     const registration = service.registerCredential(source, {
@@ -1962,36 +1956,193 @@ test('Apple credential intake compensates persistence failure and an account-del
       rawNonce,
     });
     await started;
-    const deletion = deletionService({
-      appleAuth: { revokeForAccount: async () => ({ outcome: 'manual_action_required' }) },
-    });
+    assert.equal(
+      queryScalar(`SELECT status || ':' || (encrypted_refresh_token IS NULL)::text
+        FROM apple_credential_intakes WHERE account_id = '${accountId}'`),
+      'pending_exchange:true',
+      'the durable exchange claim must exist before the HTTP response is released',
+    );
+    const deletion = deletionService({ appleAuth: service });
     const grant = await deletion.recentAuth.issueVerifiedGrant(source, 'apple', 'account_delete');
-    assert.equal((await deletion.service.requestDeletion(source, {
+    const blocked = await deletion.service.requestDeletion(source, {
       confirmation: '注销账号',
       grantId: grant.grantId,
       idempotencyKey: `53000000-0000-4000-8000-0000000000${suffix}`,
-    })).status, 'completed');
+    });
+    assert.equal(blocked.status, 'retryable');
+    assert.equal(queryScalar(`SELECT status FROM accounts WHERE id = '${accountId}'`), 'deleting');
+    assert.equal(queryScalar(`SELECT status FROM apple_credential_intakes WHERE account_id = '${accountId}'`), 'pending_exchange');
+
     releaseExchange();
-    await assert.rejects(registration, /account_not_active/u);
-    assert.equal(revokeCount, 1);
-    assert.equal(queryScalar(`SELECT COUNT(*) FROM apple_revocable_credentials WHERE account_id = '${accountId}'`), '0');
+    await revokePending;
     assert.equal(
-      queryScalar(`SELECT status || ':' || (encrypted_refresh_token IS NULL)::text || ':' || COALESCE((encrypted_refresh_token LIKE '%${rawRefreshToken}%')::text, 'false') FROM apple_credential_intakes WHERE account_id = '${accountId}'`),
-      revokeFails ? 'retryable:false:false' : 'revoked:true:false',
+      queryScalar(`SELECT status || ':' || (encrypted_refresh_token IS NULL)::text
+        FROM apple_credential_intakes WHERE account_id = '${accountId}'`),
+      'revoke_pending:false',
+      'the exchanged token must be durable before compensation HTTP begins',
     );
+    const duringCompensation = await deletion.service.processJob(
+      blocked.jobId,
+      new Date(Date.now() + 70_000),
+    );
+    assert.equal(duringCompensation.status, 'retryable');
+    assert.equal(queryScalar(`SELECT status FROM apple_credential_intakes WHERE account_id = '${accountId}'`), 'revoke_pending');
+
+    releaseRevoke();
+    await assert.rejects(registration, /account_not_active/u);
+    assert.equal(
+      queryScalar(`SELECT status || ':' || (encrypted_refresh_token IS NULL)::text || ':'
+        || COALESCE((encrypted_refresh_token LIKE '%${rawRefreshToken}%')::text, 'false')
+        FROM apple_credential_intakes WHERE account_id = '${accountId}'`),
+      firstRevokeFails ? 'retryable:false:false' : 'revoked:true:false',
+    );
+    const completed = await deletion.service.processJob(
+      blocked.jobId,
+      new Date(Date.now() + 4 * 60_000),
+    );
+    assert.equal(completed.status, 'completed');
+    assert.equal(completed.identityProviderOutcome, 'revoked');
+    assert.equal(revokeCount, firstRevokeFails ? 2 : 1);
+    assert.equal(queryScalar(`SELECT COUNT(*) FROM apple_credential_intakes WHERE account_id = '${accountId}'`), '0');
+    assert.equal(queryScalar(`SELECT COUNT(*) FROM apple_revocable_credentials WHERE account_id = '${accountId}'`), '0');
+    if (index === 0) {
+      let lateExchangeCount = 0;
+      const lateService = appleService({
+        exchangeAuthorizationCode: async () => {
+          lateExchangeCount += 1;
+          throw new Error('must_not_exchange');
+        },
+        revoke: async () => undefined,
+      });
+      await assert.rejects(
+        lateService.registerCredential(source, {
+          authorizationCode: 'late-after-deletion-code',
+          rawNonce,
+        }),
+        /account_not_active/u,
+      );
+      assert.equal(lateExchangeCount, 0, 'a deleted account must fail before Apple exchange');
+      assert.equal(queryScalar(`SELECT COUNT(*) FROM apple_credential_intakes WHERE account_id = '${accountId}'`), '0');
+    }
   }
-  const expireIntake = psql(`
-    UPDATE apple_credential_intakes
-    SET created_at = now() - interval '184 days', retention_at = now() - interval '1 day'
-    WHERE account_id = '50000000-0000-4000-8000-000000000060';
+});
+
+test('expired Apple exchange claims become durable manual outcomes and allow deletion to close', async () => {
+  const accountId = '50000000-0000-4000-8000-000000000090';
+  const sessionId = '52000000-0000-4000-8000-000000000090';
+  const source = appleSession({
+    accountId,
+    authUserId: accountId,
+    sessionId,
+    subject: 'apple-expired-exchange-claim-subject',
+  });
+  const authSetup = psql(`
+    INSERT INTO auth.users (id) VALUES ('${accountId}');
+    INSERT INTO auth.sessions (id, user_id) VALUES ('${sessionId}', '${accountId}');
   `);
-  assert.equal(expireIntake.status, 0, expireIntake.stderr);
-  await appleService({
+  assert.equal(authSetup.status, 0, authSetup.stderr);
+  await new AccountIdentityService(appleConfig(), { db: serviceDatabase }).resolve(source);
+  const setup = psql(`
+    INSERT INTO apple_credential_intakes (
+      id, account_id, auth_user_id, subject_digest, subject_digest_aliases,
+      status, lease_token, lease_until, retention_at
+    ) VALUES (
+      '50000000-0000-4000-8000-000000000091', '${accountId}', '${accountId}',
+      '${'9'.repeat(64)}', '[]'::jsonb, 'pending_exchange',
+      '50000000-0000-4000-8000-000000000092', now() - interval '1 second',
+      now() + interval '183 days'
+    );
+  `);
+  assert.equal(setup.status, 0, setup.stderr);
+  const service = appleService({
     exchangeAuthorizationCode: async () => { throw new Error('unused'); },
     revoke: async () => undefined,
-  }).retryDueIntakes();
-  assert.equal(queryScalar(`SELECT COUNT(*) FROM apple_credential_intakes WHERE account_id = '50000000-0000-4000-8000-000000000060'`), '0');
-  assert.equal(queryScalar(`SELECT status FROM apple_credential_intakes WHERE account_id = '50000000-0000-4000-8000-000000000061'`), 'retryable');
+  });
+  await service.retryDueIntakes();
+  assert.equal(
+    queryScalar(`SELECT status || ':' || last_error_code || ':' || (encrypted_refresh_token IS NULL)::text
+      FROM apple_credential_intakes WHERE account_id = '${accountId}'`),
+    'manual_action_required:exchange_claim_expired:true',
+  );
+  assert.equal(
+    queryScalar(`SELECT outcome || ':' || (metadata->>'manualActionRequired')
+      FROM account_security_events WHERE event_type = 'apple_exchange_claim_expired'
+      ORDER BY created_at DESC LIMIT 1`),
+    'failed:true',
+  );
+
+  const deletion = deletionService({ appleAuth: service });
+  const grant = await deletion.recentAuth.issueVerifiedGrant(source, 'apple', 'account_delete');
+  const result = await deletion.service.requestDeletion(source, {
+    confirmation: '注销账号',
+    grantId: grant.grantId,
+    idempotencyKey: '53000000-0000-4000-8000-000000000090',
+  });
+  assert.equal(result.status, 'completed');
+  assert.equal(result.identityProviderOutcome, 'manual_action_required');
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM apple_credential_intakes WHERE account_id = '${accountId}'`), '0');
+});
+
+test('deletion reopens provider cutover when an intake becomes unresolved after the provider snapshot', async () => {
+  const accountId = '50000000-0000-4000-8000-000000000093';
+  const sessionId = '52000000-0000-4000-8000-000000000093';
+  const source = appleSession({
+    accountId,
+    authUserId: accountId,
+    sessionId,
+    subject: 'apple-finalize-cutover-subject',
+  });
+  const authSetup = psql(`
+    INSERT INTO auth.users (id) VALUES ('${accountId}');
+    INSERT INTO auth.sessions (id, user_id) VALUES ('${sessionId}', '${accountId}');
+  `);
+  assert.equal(authSetup.status, 0, authSetup.stderr);
+  await new AccountIdentityService(appleConfig(), { db: serviceDatabase }).resolve(source);
+  const setup = psql(`
+    INSERT INTO apple_credential_intakes (
+      id, account_id, auth_user_id, subject_digest, subject_digest_aliases,
+      status, retention_at, revoked_at
+    ) VALUES (
+      '50000000-0000-4000-8000-000000000094', '${accountId}', '${accountId}',
+      '${'8'.repeat(64)}', '[]'::jsonb, 'revoked', now() + interval '183 days', now()
+    );
+  `);
+  assert.equal(setup.status, 0, setup.stderr);
+  let providerCalls = 0;
+  const deletion = deletionService({
+    appleAuth: {
+      revokeForAccount: async () => {
+        providerCalls += 1;
+        const transition = providerCalls === 1
+          ? psql(`UPDATE apple_credential_intakes SET status = 'retryable', last_error_code = 'late_cutover'
+              WHERE account_id = '${accountId}';`)
+          : psql(`UPDATE apple_credential_intakes SET status = 'manual_action_required',
+              encrypted_refresh_token = NULL, last_error_code = 'late_cutover_manual'
+              WHERE account_id = '${accountId}';`);
+        assert.equal(transition.status, 0, transition.stderr);
+        return { outcome: 'manual_action_required' };
+      },
+    },
+  });
+  const grant = await deletion.recentAuth.issueVerifiedGrant(source, 'apple', 'account_delete');
+  const first = await deletion.service.requestDeletion(source, {
+    confirmation: '注销账号',
+    grantId: grant.grantId,
+    idempotencyKey: '53000000-0000-4000-8000-000000000093',
+  });
+  assert.equal(first.status, 'retryable');
+  assert.equal(first.identityProviderOutcome, 'pending');
+  assert.equal(queryScalar(`SELECT status FROM apple_credential_intakes WHERE account_id = '${accountId}'`), 'retryable');
+  assert.equal(
+    queryScalar(`SELECT (identity_providers_revoked_at IS NULL)::text || ':' || last_error_code
+      FROM account_deletion_jobs WHERE id = '${first.jobId}'`),
+    'true:apple_credential_state_unresolved',
+  );
+  const completed = await deletion.service.processJob(first.jobId, new Date(Date.now() + 2 * 60_000));
+  assert.equal(completed.status, 'completed');
+  assert.equal(completed.identityProviderOutcome, 'manual_action_required');
+  assert.equal(providerCalls, 2);
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM apple_credential_intakes WHERE account_id = '${accountId}'`), '0');
 });
 
 test('Apple revoke lease fencing survives marker crashes and two-worker HTTP races', async () => {

@@ -46,6 +46,8 @@ const RETENTION_INTERVAL_MS = 60 * 60 * 1_000;
 const DELETION_RECORD_RETENTION_MS = 3 * 365 * 24 * 60 * 60 * 1_000;
 const SECURITY_EVENT_RETENTION_MS = 183 * 24 * 60 * 60 * 1_000;
 
+class AppleCredentialStateUnresolvedError extends Error {}
+
 @Injectable()
 export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
   private readonly logger = new Logger(AccountDeletionService.name);
@@ -228,7 +230,11 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
     if (!job.identityProvidersRevokedAt) {
       const providers = await this.database.db.selectDistinct({ provider: accountIdentities.provider })
         .from(accountIdentities).where(eq(accountIdentities.accountId, job.accountId));
-      if (providers.some(({ provider }) => provider === 'apple')) {
+      const [intakeState] = await this.database.db.select({ id: appleCredentialIntakes.id })
+        .from(appleCredentialIntakes).where(eq(appleCredentialIntakes.accountId, job.accountId)).limit(1);
+      const [credentialState] = await this.database.db.select({ id: appleRevocableCredentials.id })
+        .from(appleRevocableCredentials).where(eq(appleRevocableCredentials.accountId, job.accountId)).limit(1);
+      if (providers.some(({ provider }) => provider === 'apple') || intakeState || credentialState) {
         let result;
         try {
           result = await this.appleAuth.revokeForAccount(job.accountId, now);
@@ -327,7 +333,10 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
 
     try {
       return await this.finalize(job, leaseToken, now);
-    } catch {
+    } catch (error) {
+      if (error instanceof AppleCredentialStateUnresolvedError) {
+        return this.reopenProviderStep(job, leaseToken, now);
+      }
       return this.markRetryable(job, leaseToken, 'account_data_finalize_failed', now);
     }
   }
@@ -335,6 +344,9 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
   private async finalize(job: typeof accountDeletionJobs.$inferSelect, leaseToken: string, now: Date) {
     return this.database.db.transaction(async (transaction) => {
       await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`account:${job.accountId}`}, 0))`);
+      const [account] = await transaction.select({ status: accounts.status }).from(accounts)
+        .where(eq(accounts.id, job.accountId)).limit(1).for('update');
+      if (!account || account.status !== 'deleting') throw new Error('account_deletion_state_invalid');
       const [current] = await transaction.select().from(accountDeletionJobs)
         .where(eq(accountDeletionJobs.id, job.id)).limit(1).for('update');
       if (!current) throw new Error('account_deletion_job_not_found');
@@ -343,6 +355,18 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
       if (!current.identityProvidersRevokedAt || !current.authUsersDeletedAt || !current.objectsDeletedAt) {
         throw new Error('account_deletion_steps_incomplete');
       }
+      const intakes = await transaction.select({ status: appleCredentialIntakes.status })
+        .from(appleCredentialIntakes)
+        .where(eq(appleCredentialIntakes.accountId, job.accountId))
+        .for('update');
+      const credentials = await transaction.select({ status: appleRevocableCredentials.status })
+        .from(appleRevocableCredentials)
+        .where(eq(appleRevocableCredentials.accountId, job.accountId))
+        .for('update');
+      if (
+        intakes.some(({ status }) => !['revoked', 'manual_action_required'].includes(status))
+        || credentials.some(({ status }) => !['revoked', 'manual_action_required'].includes(status))
+      ) throw new AppleCredentialStateUnresolvedError('apple_credential_state_unresolved');
 
       await this.commerce.revokeAccountBenefits(transaction, {
         accountId: job.accountId,
@@ -379,9 +403,15 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
       }
       await transaction.delete(accountIdentities).where(eq(accountIdentities.accountId, job.accountId));
       await transaction.delete(appleCredentialIntakes)
-        .where(eq(appleCredentialIntakes.accountId, job.accountId));
+        .where(and(
+          eq(appleCredentialIntakes.accountId, job.accountId),
+          inArray(appleCredentialIntakes.status, ['revoked', 'manual_action_required']),
+        ));
       await transaction.delete(appleRevocableCredentials)
-        .where(eq(appleRevocableCredentials.accountId, job.accountId));
+        .where(and(
+          eq(appleRevocableCredentials.accountId, job.accountId),
+          inArray(appleRevocableCredentials.status, ['revoked', 'manual_action_required']),
+        ));
       await transaction.update(accounts).set({ status: 'deleted', updatedAt: now })
         .where(eq(accounts.id, job.accountId));
       await transaction.update(accountDeletionTombstones).set({
@@ -424,6 +454,23 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
       status: 'retryable',
       leaseToken: null,
       lastErrorCode: code,
+      nextRetryAt: this.nextRetryAt(job.attemptCount, now),
+      updatedAt: now,
+    }).where(this.ownedLease(job.id, leaseToken)).returning();
+    return this.responseFor(updated ?? await this.requireJob(job.id));
+  }
+
+  private async reopenProviderStep(
+    job: typeof accountDeletionJobs.$inferSelect,
+    leaseToken: string,
+    now: Date,
+  ) {
+    const [updated] = await this.database.db.update(accountDeletionJobs).set({
+      status: 'retryable',
+      leaseToken: null,
+      identityProviderOutcome: 'pending',
+      identityProvidersRevokedAt: null,
+      lastErrorCode: 'apple_credential_state_unresolved',
       nextRetryAt: this.nextRetryAt(job.attemptCount, now),
       updatedAt: now,
     }).where(this.ownedLease(job.id, leaseToken)).returning();
