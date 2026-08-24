@@ -196,6 +196,12 @@ async function testApp({ revoked = false }: { revoked?: boolean } = {}) {
           aiPoints: { available: 1_100, nextGrantAt: null },
         },
       }),
+      processAppleNotification: async () => ({
+        duplicate: false,
+        environment: 'sandbox',
+        notificationUuid: '00000000-0000-4000-8000-000000000001',
+        processed: true,
+      }),
     })
     .overrideProvider(EditorialService)
     .useValue({
@@ -699,6 +705,26 @@ describe('API foundation', () => {
     expect(invalid.json().error.code).toBe('invalid_apple_transaction_request');
     expect(verified.statusCode).toBe(200);
     expect(verified.json().data).toMatchObject({ created: true, transactionId: 'transaction-1' });
+    await app.close();
+  });
+
+  it('accepts App Store Server Notifications V2 without an app bearer token', async () => {
+    const app = await testApp();
+    const signedPayload = `${'a'.repeat(100)}.b.c`;
+    const accepted = await app.inject({
+      method: 'POST',
+      url: '/v1/commerce/apple/notifications/v2',
+      payload: { signedPayload },
+    });
+    const malformed = await app.inject({
+      method: 'POST',
+      url: '/v1/commerce/apple/notifications/v2',
+      payload: { signedPayload: 'not-a-jws', environment: 'production' },
+    });
+    expect(accepted.statusCode).toBe(200);
+    expect(accepted.json()).toEqual({ accepted: true });
+    expect(malformed.statusCode).toBe(400);
+    expect(malformed.json().error.code).toBe('invalid_apple_notification_request');
     await app.close();
   });
 

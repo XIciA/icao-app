@@ -1,7 +1,7 @@
 import type { ApiConfig } from '../src/config';
 import type { DatabaseService } from '../src/database/database.service';
 import type { AppleStoreVerifier } from '../src/commerce/apple-store-verifier';
-import type { VerifiedAppleTransaction } from '../src/commerce/commerce-domain';
+import type { VerifiedAppleNotification, VerifiedAppleTransaction } from '../src/commerce/commerce-domain';
 import { CommerceService } from '../src/commerce/commerce.service';
 import { VerificationException, VerificationStatus } from '@apple/app-store-server-library';
 import { describe, expect, it, vi } from 'vitest';
@@ -30,6 +30,19 @@ function transaction(overrides: Partial<VerifiedAppleTransaction> = {}): Verifie
     quantity: 1,
     signedPayloadHash: 'a'.repeat(64),
     decodedPayload: {},
+    ...overrides,
+  };
+}
+
+function notification(overrides: Partial<VerifiedAppleNotification> = {}): VerifiedAppleNotification {
+  return {
+    environment: 'production',
+    notificationUuid: '00000000-0000-4000-8000-000000000010',
+    notificationType: 'REFUND',
+    signedDate: new Date(1),
+    signedPayloadHash: 'b'.repeat(64),
+    decodedPayload: {},
+    transaction: transaction(),
     ...overrides,
   };
 }
@@ -120,5 +133,59 @@ describe('CommerceService validation and catalog', () => {
         status: 400,
         response: { message: 'invalid_apple_transaction', statusCode: 400 },
       });
+  });
+
+  it('rejects a notification whose verified transaction crosses environments before database writes', async () => {
+    const verifier: AppleStoreVerifier = {
+      verifyTransaction: async () => transaction(),
+      verifyNotification: async () => notification({
+        transaction: transaction({ environment: 'sandbox' }),
+      }),
+    };
+    const transactionSpy = vi.fn();
+    const database = { db: { transaction: transactionSpy } } as unknown as DatabaseService;
+    await expect(new CommerceService(config(), database, verifier)
+      .processAppleNotification('signed-notification'))
+      .rejects.toMatchObject({
+        status: 400,
+        response: { message: 'apple_notification_environment_mismatch', statusCode: 400 },
+      });
+    expect(transactionSpy).not.toHaveBeenCalled();
+  });
+
+  it('maps a definite notification signature failure to bad request', async () => {
+    const verifier: AppleStoreVerifier = {
+      verifyTransaction: async () => transaction(),
+      verifyNotification: async () => {
+        throw new VerificationException(VerificationStatus.VERIFICATION_FAILURE);
+      },
+    };
+    const transactionSpy = vi.fn();
+    const database = { db: { transaction: transactionSpy } } as unknown as DatabaseService;
+    await expect(new CommerceService(config(), database, verifier)
+      .processAppleNotification('signed-notification'))
+      .rejects.toMatchObject({
+        status: 400,
+        response: { message: 'invalid_apple_notification', statusCode: 400 },
+      });
+    expect(transactionSpy).not.toHaveBeenCalled();
+  });
+
+  it('asks Apple to retry a transient notification verification failure', async () => {
+    const verifier: AppleStoreVerifier = {
+      verifyTransaction: async () => transaction(),
+      verifyNotification: async () => {
+        throw new VerificationException(VerificationStatus.RETRYABLE_VERIFICATION_FAILURE);
+      },
+    };
+    const transactionSpy = vi.fn();
+    const database = { db: { transaction: transactionSpy } } as unknown as DatabaseService;
+    await expect(new CommerceService(config(), database, verifier)
+      .processAppleNotification('signed-notification'))
+      .rejects.toMatchObject({
+        status: 503,
+        response: { message: 'apple_commerce_unavailable', statusCode: 503 },
+      });
+    expect(transactionSpy).not.toHaveBeenCalled();
   });
 });

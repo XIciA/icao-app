@@ -173,6 +173,16 @@ describe('OfficialAppleStoreVerifier', () => {
     });
   });
 
+  it('rejects a notification whose ES256 signature was changed', async () => {
+    const [header, payload, signature] = SANDBOX_NOTIFICATION_WITHOUT_APP_ID.split('.');
+    const changedSignature = `${signature?.startsWith('A') ? 'B' : 'A'}${signature?.slice(1)}`;
+    await expectVerificationStatus(
+      verifier({ root: NON_RENEWING_FIXTURE_ROOT_CA })
+        .verifyNotification(`${header}.${payload}.${changedSignature}`),
+      VerificationStatus.VERIFICATION_FAILURE,
+    );
+  });
+
   it('rejects a signed sandbox notification with a wrong bundle after fallback', async () => {
     await expectVerificationStatus(
       verifier({ root: NON_RENEWING_FIXTURE_ROOT_CA })
