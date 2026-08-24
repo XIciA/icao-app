@@ -22,8 +22,11 @@ export type CommerceFailureCode =
   | 'commerce_purchase_busy'
   | 'commerce_purchase_cancelled'
   | 'commerce_purchase_pending'
+  | 'commerce_purchase_timed_out'
   | 'commerce_purchase_failed'
   | 'commerce_restore_failed'
+  | 'commerce_provider_disposed'
+  | 'commerce_verification_required'
   | 'commerce_transaction_unknown'
   | 'commerce_finish_failed';
 
@@ -117,6 +120,28 @@ export type CommerceTransaction = Readonly<{
   requiresServerVerification: true;
 }>;
 
+/**
+ * A StoreKit transaction that cannot be associated with a supported offering.
+ * It is observable for reconciliation, but can never be finished by this provider.
+ */
+export type CommerceQuarantinedTransaction = Readonly<{
+  productId: string;
+  transactionReference?: string;
+  purchasedAt?: string;
+  signedTransaction?: string;
+  environment: CommerceTransactionEnvironment;
+  reason: 'unknown_product' | 'invalid_transaction';
+  finishAllowed: false;
+}>;
+
+export type CommerceTransactionInbox = Readonly<{
+  transactions: readonly CommerceTransaction[];
+  quarantinedTransactions: readonly CommerceQuarantinedTransaction[];
+  /** If true, StoreKit reconciliation must be run again to recover evicted entries. */
+  overflowed: boolean;
+  entitlementGranted: false;
+}>;
+
 export type CommercePurchase = Readonly<{
   transaction: CommerceTransaction;
   entitlementGranted: false;
@@ -125,25 +150,53 @@ export type CommercePurchase = Readonly<{
 
 export type CommerceRestore = Readonly<{
   transactions: readonly CommerceTransaction[];
+  quarantinedTransactions: readonly CommerceQuarantinedTransaction[];
+  overflowed: boolean;
   entitlementGranted: false;
 }>;
 
-export type CommerceFinishRequest = Readonly<{
-  /** Only call after the service has verified and recorded this transaction. */
+declare const SERVER_VERIFIED_ACKNOWLEDGEMENT_BRAND: unique symbol;
+
+/** Opaque provider-owned capability created only after the integration reports server success. */
+export type CommerceServerVerifiedAcknowledgement = Readonly<{
   transactionReference: string;
+  [SERVER_VERIFIED_ACKNOWLEDGEMENT_BRAND]: true;
+}>;
+
+export type CommerceServerVerificationRequest = Readonly<{
+  transactionReference: string;
+  /** Must exactly match the JWS submitted to and accepted by the service. */
+  signedTransaction: string;
+}>;
+
+export type CommerceFinishRequest = Readonly<{
+  acknowledgement: CommerceServerVerifiedAcknowledgement;
 }>;
 
 export type CommerceFinish = Readonly<{
   transactionReference: string;
   transactionFinished: true;
+  completion: 'finished' | 'already-finished';
 }>;
 
 /** Stable business boundary. StoreKit and channel product types stay behind it. */
 export interface NativeCommerceProvider {
   listOfferings(): Promise<CommerceResult<CommerceCatalog>>;
   purchase(request: CommercePurchaseRequest): Promise<CommerceResult<CommercePurchase>>;
+  /** Drains native events already observed by this provider. */
+  drainTransactionInbox(): Promise<CommerceResult<CommerceTransactionInbox>>;
+  /**
+   * Must run on every app start. If overflowed is true, verify this page and call
+   * again until false so every StoreKit history entry is delivered boundedly.
+   */
+  reconcileTransactions(): Promise<CommerceResult<CommerceTransactionInbox>>;
   restorePurchases(): Promise<CommerceResult<CommerceRestore>>;
+  /** Call only after the service has verified and durably recorded the exact JWS. */
+  markServerVerified(
+    request: CommerceServerVerificationRequest,
+  ): Promise<CommerceResult<CommerceServerVerifiedAcknowledgement>>;
   finishTransaction(request: CommerceFinishRequest): Promise<CommerceResult<CommerceFinish>>;
+  dispose(): Promise<void>;
 }
 
 export const TESTFLIGHT_COMMERCE_UNAVAILABLE_RESULT: CommerceUnavailableResult = Object.freeze({

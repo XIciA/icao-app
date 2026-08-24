@@ -11,12 +11,11 @@ SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 PROJECT_ROOT=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)
 . "$SCRIPT_DIR/lib/release-common.sh"
 . "$SCRIPT_DIR/lib/ios-release-product.sh"
+configure_ios_cng_product "$PROJECT_ROOT/ios"
 node "$PROJECT_ROOT/tools/check-mainline-release.mjs" --root "$PROJECT_ROOT"
 IOS_DEVICE=${ICAO_IOS_DEVICE:-OOMG}
 IOS_DEVICE_ID=${ICAO_IOS_DEVICE_ID:-00008150-0011395A3638401C}
-IOS_SCHEME=${ICAO_IOS_SCHEME:-ICAO}
 IOS_TEAM_ID=${ICAO_IOS_TEAM_ID:-3FX69S3S8P}
-IOS_PRODUCT_NAME=${ICAO_IOS_PRODUCT_NAME:-}
 IOS_BUNDLE_ID=${ICAO_IOS_BUNDLE_ID:-com.readyoufife.ios}
 DERIVED_DATA=${ICAO_IOS_DERIVED_DATA:-$HOME/Library/Developer/Xcode/DerivedData/ICAO-Standalone}
 NODE_BINARY=${NODE_BINARY:-$(command -v node)}
@@ -42,7 +41,7 @@ ICAO_APP_VARIANT=production pnpm exec expo prebuild --platform ios --no-install
 )
 verify_ios_storekit_dependencies "$PROJECT_ROOT/ios/Podfile.lock"
 xcodebuild \
-  -workspace "$PROJECT_ROOT/ios/ICAO.xcworkspace" \
+  -workspace "$IOS_WORKSPACE" \
   -scheme "$IOS_SCHEME" \
   -configuration Release \
   -destination "id=$IOS_DEVICE_ID" \

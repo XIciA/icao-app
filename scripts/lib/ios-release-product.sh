@@ -1,5 +1,14 @@
 #!/bin/sh
 
+# The generated Expo CNG project has one canonical workspace/product identity.
+# Release scripts may override it only through the documented environment variables.
+configure_ios_cng_product() {
+  ios_root=$1
+  IOS_WORKSPACE=${ICAO_IOS_WORKSPACE:-$ios_root/app.xcworkspace}
+  IOS_SCHEME=${ICAO_IOS_SCHEME:-app}
+  IOS_PRODUCT_NAME=${ICAO_IOS_PRODUCT_NAME:-app}
+}
+
 find_ios_release_app() {
   product_dir=$1
   product_name=${2:-}

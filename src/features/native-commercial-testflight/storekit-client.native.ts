@@ -12,11 +12,15 @@ export type StoreKitTransaction = Readonly<{
   purchaseToken?: string;
   transactionDate: number;
   environmentIOS?: string;
+  appAccountToken?: string;
 }>;
 
 export type StoreKitPurchaseError = Readonly<{
   code: string;
+  productId?: string;
 }>;
+
+export type StoreKitFinishCompletion = 'finished' | 'already-finished';
 
 export type StoreKitEventHandlers = Readonly<{
   onPurchaseUpdated(transaction: StoreKitTransaction): void;
@@ -31,5 +35,6 @@ export interface StoreKitClient {
     applicationAccountToken: string;
   }): Promise<void>;
   restorePurchases(): Promise<readonly StoreKitTransaction[]>;
-  finishTransaction(transactionReference: string): Promise<void>;
+  finishTransaction(transactionReference: string): Promise<StoreKitFinishCompletion>;
+  disconnect(): Promise<void>;
 }

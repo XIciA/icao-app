@@ -1,15 +1,25 @@
-import type { PurchaseIOS } from 'react-native-iap';
+import type { PurchaseError, PurchaseIOS } from 'react-native-iap';
 import {
+  endConnection,
   finishTransaction,
   getAllTransactionsIOS,
   getPendingTransactionsIOS,
   initConnection,
   purchaseErrorListener,
   purchaseUpdatedListener,
+  requestPurchase,
   syncIOS,
 } from 'react-native-iap';
 
 import { ReactNativeIapStoreKitClient } from '../react-native-iap-storekit-client.native';
+
+type ActiveListener<T> = {
+  active: boolean;
+  callback(value: T): void;
+};
+
+const mockPurchaseUpdatedListeners: ActiveListener<PurchaseIOS>[] = [];
+const mockPurchaseErrorListeners: ActiveListener<PurchaseError>[] = [];
 
 jest.mock('react-native-iap', () => ({
   endConnection: jest.fn(async () => true),
@@ -18,8 +28,16 @@ jest.mock('react-native-iap', () => ({
   getAllTransactionsIOS: jest.fn(async () => []),
   getPendingTransactionsIOS: jest.fn(async () => []),
   initConnection: jest.fn(async () => true),
-  purchaseErrorListener: jest.fn(() => ({ remove: jest.fn() })),
-  purchaseUpdatedListener: jest.fn(() => ({ remove: jest.fn() })),
+  purchaseErrorListener: jest.fn((callback: (error: PurchaseError) => void) => {
+    const listener = { active: true, callback };
+    mockPurchaseErrorListeners.push(listener);
+    return { remove: jest.fn(() => (listener.active = false)) };
+  }),
+  purchaseUpdatedListener: jest.fn((callback: (purchase: PurchaseIOS) => void) => {
+    const listener = { active: true, callback };
+    mockPurchaseUpdatedListeners.push(listener);
+    return { remove: jest.fn(() => (listener.active = false)) };
+  }),
   requestPurchase: jest.fn(async () => undefined),
   syncIOS: jest.fn(async () => true),
 }));
@@ -34,19 +52,35 @@ const PURCHASE: PurchaseIOS = {
   store: 'apple',
   transactionDate: Date.UTC(2026, 7, 24, 8),
   transactionId: 'unfinished-transaction',
+  environmentIOS: 'Sandbox',
+  appAccountToken: '12345678-1234-4234-8234-123456789abc',
 };
 
-const handlers = {
-  onPurchaseUpdated: jest.fn(),
-  onPurchaseError: jest.fn(),
-};
+function emitPurchase(purchase: PurchaseIOS): void {
+  mockPurchaseUpdatedListeners
+    .filter((listener) => listener.active)
+    .forEach((listener) => listener.callback(purchase));
+}
+
+function emitPurchaseError(error: PurchaseError): void {
+  mockPurchaseErrorListeners
+    .filter((listener) => listener.active)
+    .forEach((listener) => listener.callback(error));
+}
+
+function createHandlers() {
+  return {
+    onPurchaseUpdated: jest.fn(),
+    onPurchaseError: jest.fn(),
+  };
+}
 
 describe('react-native-iap StoreKit client', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    mockPurchaseUpdatedListeners.length = 0;
+    mockPurchaseErrorListeners.length = 0;
     jest.mocked(initConnection).mockResolvedValue(true);
-    jest.mocked(purchaseUpdatedListener).mockReturnValue({ remove: jest.fn() });
-    jest.mocked(purchaseErrorListener).mockReturnValue({ remove: jest.fn() });
     jest.mocked(getAllTransactionsIOS).mockResolvedValue([]);
     jest.mocked(getPendingTransactionsIOS).mockResolvedValue([]);
     jest.mocked(syncIOS).mockResolvedValue(true);
@@ -57,8 +91,10 @@ describe('react-native-iap StoreKit client', () => {
     const restartedClient = new ReactNativeIapStoreKitClient();
     jest.mocked(getPendingTransactionsIOS).mockResolvedValue([PURCHASE]);
 
-    await restartedClient.connect(handlers);
-    await restartedClient.finishTransaction(PURCHASE.transactionId);
+    await restartedClient.connect(createHandlers());
+    await expect(restartedClient.finishTransaction(PURCHASE.transactionId)).resolves.toBe(
+      'finished',
+    );
 
     expect(getPendingTransactionsIOS).toHaveBeenCalledTimes(1);
     expect(finishTransaction).toHaveBeenCalledWith({
@@ -67,14 +103,32 @@ describe('react-native-iap StoreKit client', () => {
     });
   });
 
-  it('rejects a transaction absent from StoreKit unfinished history', async () => {
+  it('returns already-finished for a transaction in history and remains idempotent', async () => {
+    const restartedClient = new ReactNativeIapStoreKitClient();
+    jest.mocked(getAllTransactionsIOS).mockResolvedValue([PURCHASE]);
+
+    await restartedClient.connect(createHandlers());
+    await expect(restartedClient.finishTransaction(PURCHASE.transactionId)).resolves.toBe(
+      'already-finished',
+    );
+    await expect(restartedClient.finishTransaction(PURCHASE.transactionId)).resolves.toBe(
+      'already-finished',
+    );
+
+    expect(getAllTransactionsIOS).toHaveBeenCalledTimes(1);
+    expect(finishTransaction).not.toHaveBeenCalled();
+  });
+
+  it('rejects a transaction absent from both unfinished and complete StoreKit history', async () => {
     const restartedClient = new ReactNativeIapStoreKitClient();
 
-    await restartedClient.connect(handlers);
+    await restartedClient.connect(createHandlers());
 
     await expect(restartedClient.finishTransaction('unknown-transaction')).rejects.toThrow(
       'storekit_transaction_unknown',
     );
+    expect(getPendingTransactionsIOS).toHaveBeenCalledTimes(1);
+    expect(getAllTransactionsIOS).toHaveBeenCalledTimes(1);
     expect(finishTransaction).not.toHaveBeenCalled();
   });
 
@@ -82,16 +136,16 @@ describe('react-native-iap StoreKit client', () => {
     const client = new ReactNativeIapStoreKitClient();
     jest.mocked(initConnection).mockResolvedValue(false);
 
-    await expect(client.connect(handlers)).rejects.toThrow('storekit_connection_failed');
+    await expect(client.connect(createHandlers())).rejects.toThrow('storekit_connection_failed');
     expect(purchaseUpdatedListener).not.toHaveBeenCalled();
     expect(purchaseErrorListener).not.toHaveBeenCalled();
   });
 
-  it('reconciles signed transaction history after restart without granting or finishing locally', async () => {
+  it('reconciles signed transaction history with server idempotency fields and no local finish', async () => {
     const restartedClient = new ReactNativeIapStoreKitClient();
     jest.mocked(getAllTransactionsIOS).mockResolvedValue([PURCHASE]);
 
-    await restartedClient.connect(handlers);
+    await restartedClient.connect(createHandlers());
     const restored = await restartedClient.restorePurchases();
 
     expect(syncIOS).toHaveBeenCalledTimes(1);
@@ -102,9 +156,70 @@ describe('react-native-iap StoreKit client', () => {
         purchaseState: 'purchased',
         purchaseToken: PURCHASE.purchaseToken,
         transactionDate: PURCHASE.transactionDate,
-        environmentIOS: undefined,
+        environmentIOS: 'Sandbox',
+        appAccountToken: PURCHASE.appAccountToken,
       },
     ]);
     expect(finishTransaction).not.toHaveBeenCalled();
+  });
+
+  it('forwards the UUID to StoreKit and explicitly disables automatic finish', async () => {
+    const client = new ReactNativeIapStoreKitClient();
+    await client.connect(createHandlers());
+
+    await client.requestPurchase({
+      productId: PURCHASE.productId,
+      applicationAccountToken: PURCHASE.appAccountToken as string,
+    });
+
+    expect(requestPurchase).toHaveBeenCalledWith({
+      request: {
+        apple: {
+          sku: PURCHASE.productId,
+          appAccountToken: PURCHASE.appAccountToken,
+          andDangerouslyFinishTransactionAutomatically: false,
+        },
+      },
+      type: 'in-app',
+    });
+  });
+
+  it('removes both listeners, ends the native connection once, and never duplicates callbacks', async () => {
+    const firstHandlers = createHandlers();
+    const firstClient = new ReactNativeIapStoreKitClient();
+    await firstClient.connect(firstHandlers);
+    emitPurchase(PURCHASE);
+    emitPurchaseError({
+      code: 'user-cancelled' as PurchaseError['code'],
+      message: 'cancelled',
+      productId: PURCHASE.productId,
+    });
+
+    await firstClient.disconnect();
+    await firstClient.disconnect();
+    const secondHandlers = createHandlers();
+    const secondClient = new ReactNativeIapStoreKitClient();
+    await secondClient.connect(secondHandlers);
+    emitPurchase({ ...PURCHASE, transactionId: 'second-transaction' });
+    emitPurchaseError({
+      code: 'pending' as PurchaseError['code'],
+      message: 'pending',
+      productId: PURCHASE.productId,
+    });
+    await secondClient.disconnect();
+
+    expect(firstHandlers.onPurchaseUpdated).toHaveBeenCalledTimes(1);
+    expect(firstHandlers.onPurchaseError).toHaveBeenCalledWith({
+      code: 'user-cancelled',
+      productId: PURCHASE.productId,
+    });
+    expect(secondHandlers.onPurchaseUpdated).toHaveBeenCalledTimes(1);
+    expect(secondHandlers.onPurchaseError).toHaveBeenCalledWith({
+      code: 'pending',
+      productId: PURCHASE.productId,
+    });
+    expect(mockPurchaseUpdatedListeners.every((listener) => !listener.active)).toBe(true);
+    expect(mockPurchaseErrorListeners.every((listener) => !listener.active)).toBe(true);
+    expect(endConnection).toHaveBeenCalledTimes(2);
   });
 });

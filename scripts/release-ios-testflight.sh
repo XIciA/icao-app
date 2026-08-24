@@ -11,6 +11,7 @@ SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 PROJECT_ROOT=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)
 . "$SCRIPT_DIR/lib/release-common.sh"
 . "$SCRIPT_DIR/lib/ios-release-product.sh"
+configure_ios_cng_product "$PROJECT_ROOT/ios"
 cd "$PROJECT_ROOT"
 
 node tools/check-mainline-release.mjs
@@ -79,7 +80,6 @@ node tools/app-store-connect-testflight.mjs verify-build
 load_release_runtime
 check_release_runtime apple
 
-IOS_SCHEME=${ICAO_IOS_SCHEME:-ICAO}
 IOS_TEAM_ID=${ICAO_IOS_TEAM_ID:-3FX69S3S8P}
 IOS_BUNDLE_ID=${ICAO_IOS_BUNDLE_ID:-com.readyoufife.ios}
 MARKETING_VERSION=$(node -p "require('$PROJECT_ROOT/app.json').expo.version")
@@ -107,7 +107,7 @@ ICAO_APP_VARIANT=production pnpm exec expo prebuild --platform ios --no-install
 verify_ios_storekit_dependencies "$PROJECT_ROOT/ios/Podfile.lock"
 
 xcodebuild \
-  -workspace "$PROJECT_ROOT/ios/ICAO.xcworkspace" \
+  -workspace "$IOS_WORKSPACE" \
   -scheme "$IOS_SCHEME" \
   -configuration Release \
   -destination 'generic/platform=iOS' \
@@ -123,11 +123,7 @@ xcodebuild \
   CURRENT_PROJECT_VERSION="$IOS_BUILD_NUMBER" \
   archive 2>&1 | redact_asc_output
 
-APP_PATH=$(find "$ARCHIVE_PATH/Products/Applications" -maxdepth 1 -type d -name '*.app' -print -quit)
-if [ -z "$APP_PATH" ]; then
-  echo 'The archived iOS app was not found.' >&2
-  exit 1
-fi
+APP_PATH=$(find_ios_release_app "$ARCHIVE_PATH/Products/Applications" "$IOS_PRODUCT_NAME")
 verify_ios_release_app \
   "$APP_PATH" \
   "$API_URL" \

@@ -11,13 +11,12 @@ SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 PROJECT_ROOT=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)
 . "$SCRIPT_DIR/lib/release-common.sh"
 . "$SCRIPT_DIR/lib/ios-release-product.sh"
+configure_ios_cng_product "$PROJECT_ROOT/ios"
 
 node "$PROJECT_ROOT/tools/check-mainline-release.mjs" --root "$PROJECT_ROOT"
 
-IOS_SCHEME=${ICAO_IOS_SCHEME:-ICAO}
 IOS_TEAM_ID=${ICAO_IOS_TEAM_ID:-3FX69S3S8P}
 IOS_BUNDLE_ID=${ICAO_IOS_BUNDLE_ID:-com.readyoufife.ios}
-IOS_PRODUCT_NAME=${ICAO_IOS_PRODUCT_NAME:-}
 NODE_BINARY=${NODE_BINARY:-$(command -v node)}
 MARKETING_VERSION=$($NODE_BINARY -p "require('$PROJECT_ROOT/app.json').expo.version")
 IOS_BUILD_NUMBER=$($NODE_BINARY -p "require('$PROJECT_ROOT/app.json').expo.ios.buildNumber || '1'")
@@ -55,7 +54,7 @@ verify_ios_storekit_dependencies "$PROJECT_ROOT/ios/Podfile.lock"
 
 mkdir -p "$(dirname -- "$ARCHIVE_PATH")"
 xcodebuild \
-  -workspace "$PROJECT_ROOT/ios/ICAO.xcworkspace" \
+  -workspace "$IOS_WORKSPACE" \
   -scheme "$IOS_SCHEME" \
   -configuration Release \
   -destination 'generic/platform=iOS' \

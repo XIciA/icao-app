@@ -60,6 +60,8 @@ for (const required of [
   'getAllTransactionsIOS',
   'getPendingTransactionsIOS',
   'finishTransaction',
+  'endConnection',
+  'disconnect()',
 ]) {
   if (!adapter.includes(required)) failures.push(`${adapterPath} is missing: ${required}`);
 }
@@ -70,7 +72,12 @@ for (const [file, content, required] of [
   [providerPath, provider, 'requiresServerVerification: true'],
   [providerPath, provider, 'entitlementGranted: false'],
   [providerPath, provider, 'transactionFinished: false'],
+  [providerPath, provider, 'commerce_purchase_timed_out'],
+  [contractPath, contract, 'drainTransactionInbox()'],
+  [contractPath, contract, 'reconcileTransactions()'],
+  [contractPath, contract, 'markServerVerified('],
   [contractPath, contract, 'finishTransaction('],
+  [contractPath, contract, 'dispose()'],
 ]) {
   if (!content.includes(required)) failures.push(`${file} is missing: ${required}`);
 }
@@ -78,6 +85,10 @@ for (const [file, content, required] of [
 const releaseHelper = await read(releaseHelperPath);
 for (const required of [
   'verify_ios_storekit_dependencies()',
+  'configure_ios_cng_product()',
+  'IOS_WORKSPACE=${ICAO_IOS_WORKSPACE:-$ios_root/app.xcworkspace}',
+  'IOS_SCHEME=${ICAO_IOS_SCHEME:-app}',
+  'IOS_PRODUCT_NAME=${ICAO_IOS_PRODUCT_NAME:-app}',
   'NitroIap (16.3.2)',
   'NitroModules (0.36.5)',
   'openiap (3.2.1)',
@@ -86,8 +97,19 @@ for (const required of [
 }
 for (const releaseScript of gatedReleaseScripts) {
   const content = await read(releaseScript);
+  if (!content.includes('configure_ios_cng_product "$PROJECT_ROOT/ios"')) {
+    failures.push(`${releaseScript} does not load the canonical Expo CNG iOS product identity.`);
+  }
+  if (!content.includes('-workspace "$IOS_WORKSPACE"') || !content.includes('-scheme "$IOS_SCHEME"')) {
+    failures.push(`${releaseScript} does not build the configured Expo CNG workspace and scheme.`);
+  }
   if (!content.includes('verify_ios_storekit_dependencies "$PROJECT_ROOT/ios/Podfile.lock"')) {
     failures.push(`${releaseScript} does not reject an archive without the pinned StoreKit native pods.`);
+  }
+  for (const forbidden of ['ios/ICAO.xcworkspace', 'ICAO_IOS_SCHEME:-ICAO']) {
+    if (content.includes(forbidden)) {
+      failures.push(`${releaseScript} still contains the legacy iOS product identity: ${forbidden}`);
+    }
   }
 }
 
