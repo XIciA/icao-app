@@ -24,10 +24,12 @@ ALTER TABLE "account_deletion_auth_users" ENABLE ROW LEVEL SECURITY;--> statemen
 CREATE TABLE "account_deletion_jobs" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"account_id" uuid NOT NULL,
-	"requested_by_auth_user_id" uuid NOT NULL,
+	"requested_by_auth_user_id" uuid,
 	"idempotency_key" uuid NOT NULL,
 	"status" text DEFAULT 'pending' NOT NULL,
 	"identity_provider_outcome" text DEFAULT 'pending' NOT NULL,
+	"object_cleanup_status" text DEFAULT 'pending' NOT NULL,
+	"object_keys" jsonb DEFAULT '[]'::jsonb NOT NULL,
 	"attempt_count" integer DEFAULT 0 NOT NULL,
 	"next_retry_at" timestamp with time zone,
 	"last_error_code" text,
@@ -35,11 +37,14 @@ CREATE TABLE "account_deletion_jobs" (
 	"started_at" timestamp with time zone,
 	"identity_providers_revoked_at" timestamp with time zone,
 	"auth_users_deleted_at" timestamp with time zone,
+	"objects_deleted_at" timestamp with time zone,
 	"active_data_deleted_at" timestamp with time zone,
 	"completed_at" timestamp with time zone,
 	"updated_at" timestamp with time zone DEFAULT now() NOT NULL,
 	CONSTRAINT "account_deletion_jobs_status_check" CHECK ("account_deletion_jobs"."status" IN ('pending', 'processing', 'retryable', 'completed')),
 	CONSTRAINT "account_deletion_jobs_identity_provider_outcome_check" CHECK ("account_deletion_jobs"."identity_provider_outcome" IN ('pending', 'revoked', 'manual_action_required', 'not_applicable')),
+	CONSTRAINT "account_deletion_jobs_object_cleanup_status_check" CHECK ("account_deletion_jobs"."object_cleanup_status" IN ('pending', 'retryable', 'completed', 'not_applicable')),
+	CONSTRAINT "account_deletion_jobs_object_keys_check" CHECK (jsonb_typeof("account_deletion_jobs"."object_keys") = 'array'),
 	CONSTRAINT "account_deletion_jobs_attempts_check" CHECK ("account_deletion_jobs"."attempt_count" >= 0)
 );
 --> statement-breakpoint
@@ -79,7 +84,7 @@ CREATE TABLE "apple_revocable_credentials" (
 	"auth_user_id" uuid NOT NULL,
 	"subject_digest" text NOT NULL,
 	"digest_key_version" integer DEFAULT 1 NOT NULL,
-	"encrypted_refresh_token" text NOT NULL,
+	"encrypted_refresh_token" text,
 	"encryption_version" integer DEFAULT 1 NOT NULL,
 	"status" text DEFAULT 'active' NOT NULL,
 	"revoke_attempt_count" integer DEFAULT 0 NOT NULL,
@@ -89,7 +94,7 @@ CREATE TABLE "apple_revocable_credentials" (
 	"revoked_at" timestamp with time zone,
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
 	"updated_at" timestamp with time zone DEFAULT now() NOT NULL,
-	CONSTRAINT "apple_revocable_credentials_status_check" CHECK ("apple_revocable_credentials"."status" IN ('active', 'revoke_pending', 'retryable', 'revoked')),
+	CONSTRAINT "apple_revocable_credentials_status_check" CHECK ("apple_revocable_credentials"."status" IN ('active', 'revoke_pending', 'retryable', 'revoked', 'manual_action_required')),
 	CONSTRAINT "apple_revocable_credentials_attempts_check" CHECK ("apple_revocable_credentials"."revoke_attempt_count" >= 0),
 	CONSTRAINT "apple_revocable_credentials_digest_key_version_check" CHECK ("apple_revocable_credentials"."digest_key_version" > 0),
 	CONSTRAINT "apple_revocable_credentials_encryption_version_check" CHECK ("apple_revocable_credentials"."encryption_version" > 0)

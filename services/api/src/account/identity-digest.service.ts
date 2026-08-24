@@ -18,9 +18,9 @@ export class IdentityDigestService {
 
   constructor(@Inject(API_CONFIG) config: ApiConfig) {
     this.keys = [{
-      secret: config.accountIdentityHashSecret,
-      version: config.accountIdentityHashKeyVersion ?? 1,
-    }, ...(config.accountIdentityHashPreviousKeys ?? [])];
+      secret: config.identityBenefitDigestSecret ?? config.accountIdentityHashSecret,
+      version: config.identityBenefitDigestKeyVersion ?? 1,
+    }, ...(config.identityBenefitDigestPreviousKeys ?? [])];
   }
 
   current(domain: DigestDomain, provider: AuthIdentityProvider, subject: string) {

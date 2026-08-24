@@ -210,7 +210,7 @@
           "name": "requested_by_auth_user_id",
           "type": "uuid",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "idempotency_key": {
           "name": "idempotency_key",
@@ -231,6 +231,20 @@
           "primaryKey": false,
           "notNull": true,
           "default": "'pending'"
+        },
+        "object_cleanup_status": {
+          "name": "object_cleanup_status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'pending'"
+        },
+        "object_keys": {
+          "name": "object_keys",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'[]'::jsonb"
         },
         "attempt_count": {
           "name": "attempt_count",
@@ -272,6 +286,12 @@
         },
         "auth_users_deleted_at": {
           "name": "auth_users_deleted_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "objects_deleted_at": {
+          "name": "objects_deleted_at",
           "type": "timestamp with time zone",
           "primaryKey": false,
           "notNull": false
@@ -361,6 +381,14 @@
         "account_deletion_jobs_identity_provider_outcome_check": {
           "name": "account_deletion_jobs_identity_provider_outcome_check",
           "value": "\"account_deletion_jobs\".\"identity_provider_outcome\" IN ('pending', 'revoked', 'manual_action_required', 'not_applicable')"
+        },
+        "account_deletion_jobs_object_cleanup_status_check": {
+          "name": "account_deletion_jobs_object_cleanup_status_check",
+          "value": "\"account_deletion_jobs\".\"object_cleanup_status\" IN ('pending', 'retryable', 'completed', 'not_applicable')"
+        },
+        "account_deletion_jobs_object_keys_check": {
+          "name": "account_deletion_jobs_object_keys_check",
+          "value": "jsonb_typeof(\"account_deletion_jobs\".\"object_keys\") = 'array'"
         },
         "account_deletion_jobs_attempts_check": {
           "name": "account_deletion_jobs_attempts_check",
@@ -2287,7 +2315,7 @@
           "name": "encrypted_refresh_token",
           "type": "text",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "encryption_version": {
           "name": "encryption_version",
@@ -2430,7 +2458,7 @@
       "checkConstraints": {
         "apple_revocable_credentials_status_check": {
           "name": "apple_revocable_credentials_status_check",
-          "value": "\"apple_revocable_credentials\".\"status\" IN ('active', 'revoke_pending', 'retryable', 'revoked')"
+          "value": "\"apple_revocable_credentials\".\"status\" IN ('active', 'revoke_pending', 'retryable', 'revoked', 'manual_action_required')"
         },
         "apple_revocable_credentials_attempts_check": {
           "name": "apple_revocable_credentials_attempts_check",

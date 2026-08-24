@@ -1,7 +1,7 @@
 import { createCipheriv, createDecipheriv, createHash, createSign, randomBytes } from 'node:crypto';
 
 import { Inject, Injectable, ServiceUnavailableException, UnauthorizedException } from '@nestjs/common';
-import { and, eq, inArray, ne, sql } from 'drizzle-orm';
+import { eq, inArray, sql } from 'drizzle-orm';
 
 import { IdentityDigestService } from '../account/identity-digest.service';
 import { API_CONFIG, type ApiConfig } from '../config';
@@ -105,15 +105,27 @@ export class AppleAuthService {
   }
 
   async revokeForAccount(accountId: string, now = new Date()) {
-    const apple = this.requireConfiguration();
-    const credentials = await this.database.db.select().from(appleRevocableCredentials)
-      .where(and(
-        eq(appleRevocableCredentials.accountId, accountId),
-        ne(appleRevocableCredentials.status, 'revoked'),
-      ));
-    if (credentials.length === 0) return { outcome: 'manual_action_required' as const };
+    const allCredentials = await this.database.db.select().from(appleRevocableCredentials)
+      .where(eq(appleRevocableCredentials.accountId, accountId));
+    if (allCredentials.length === 0) return { outcome: 'manual_action_required' as const };
+    const credentials = allCredentials.filter(({ status }) => status !== 'revoked');
+    if (credentials.length === 0) return { outcome: 'revoked' as const };
+    let manualActionRequired = false;
 
     for (const credential of credentials) {
+      if (!credential.encryptedRefreshToken || credential.status === 'manual_action_required') {
+        manualActionRequired = true;
+        if (credential.status !== 'manual_action_required') {
+          await this.database.db.update(appleRevocableCredentials).set({
+            status: 'manual_action_required',
+            nextRetryAt: null,
+            lastErrorCode: 'credential_unavailable',
+            updatedAt: now,
+          }).where(eq(appleRevocableCredentials.id, credential.id));
+        }
+        continue;
+      }
+      const apple = this.requireConfiguration();
       await this.database.db.update(appleRevocableCredentials).set({
         status: 'revoke_pending',
         lastAttemptAt: now,
@@ -131,6 +143,23 @@ export class AppleAuthService {
         });
       } catch (error) {
         const code = this.httpErrorCode(error);
+        if (code === 'invalid_grant' && (
+          credential.status === 'revoke_pending'
+          || credential.status === 'retryable'
+          || credential.revokeAttemptCount > 0
+        )) {
+          await this.database.db.update(appleRevocableCredentials).set({
+            encryptedRefreshToken: null,
+            status: 'manual_action_required',
+            revokeAttemptCount: credential.revokeAttemptCount + 1,
+            nextRetryAt: null,
+            lastAttemptAt: now,
+            lastErrorCode: 'invalid_grant_after_attempt',
+            updatedAt: now,
+          }).where(eq(appleRevocableCredentials.id, credential.id));
+          manualActionRequired = true;
+          continue;
+        }
         await this.database.db.update(appleRevocableCredentials).set({
           status: 'retryable',
           revokeAttemptCount: credential.revokeAttemptCount + 1,
@@ -142,6 +171,7 @@ export class AppleAuthService {
         return { errorCode: code, outcome: 'retryable' as const };
       }
       await this.database.db.update(appleRevocableCredentials).set({
+        encryptedRefreshToken: null,
         status: 'revoked',
         revokeAttemptCount: credential.revokeAttemptCount + 1,
         nextRetryAt: null,
@@ -151,7 +181,7 @@ export class AppleAuthService {
         updatedAt: now,
       }).where(eq(appleRevocableCredentials.id, credential.id));
     }
-    return { outcome: 'revoked' as const };
+    return { outcome: manualActionRequired ? 'manual_action_required' as const : 'revoked' as const };
   }
 
   private appleSubject(source: VerifiedAuthSession) {

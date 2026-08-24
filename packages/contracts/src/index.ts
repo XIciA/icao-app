@@ -139,6 +139,18 @@ export type RegisterAppleCredentialResponse = {
 
 export type DeleteAccountRequest = {
   confirmation: '注销账号';
+  grantId: string;
+  idempotencyKey: string;
+};
+
+export type DeleteAccountResponse = {
+  identityProviderOutcome: 'pending' | 'revoked' | 'manual_action_required' | 'not_applicable';
+  jobId: string;
+  status: 'pending' | 'processing' | 'retryable' | 'completed';
+};
+
+export type AccountDeletionStatusRequest = {
+  idempotencyKey: string;
 };
 
 export type HealthStatus = {

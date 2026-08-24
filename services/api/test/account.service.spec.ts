@@ -8,7 +8,6 @@ import type { PhoneAuthService } from '../src/auth/phone-auth.service';
 import type { SessionSecurityService } from '../src/auth/session-security.service';
 import type { ApiConfig } from '../src/config';
 import type { DatabaseService } from '../src/database/database.service';
-import type { FeedbackService } from '../src/feedback/feedback.service';
 
 const supabase = vi.hoisted(() => ({
   createClient: vi.fn(),
@@ -123,7 +122,6 @@ function fixture(options: {
   };
   const transaction = options.transaction ?? vi.fn().mockRejectedValue(new Error('merge_transaction_failed'));
   const database = { db: { transaction } };
-  const feedback = {};
   const service = new AccountService(
     {
       supabasePublishableKey: 'test-publishable-key-that-is-long-enough',
@@ -135,7 +133,6 @@ function fixture(options: {
     identities as unknown as AccountIdentityService,
     phoneAuth as unknown as PhoneAuthService,
     sessions as unknown as SessionSecurityService,
-    feedback as FeedbackService,
   );
   return {
     identities,

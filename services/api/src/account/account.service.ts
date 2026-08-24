@@ -8,26 +8,12 @@ import { PhoneAuthService } from '../auth/phone-auth.service';
 import { SessionSecurityService } from '../auth/session-security.service';
 import { API_CONFIG, type ApiConfig } from '../config';
 import {
-  accountSessionRevocations,
   accountIdentities,
   accountMerges,
   accounts,
-  aiConsents,
-  aiQuotaBuckets,
-  aiUsageLogs,
-  aiWordCache,
-  feedbackAttachments,
-  feedbackTickets,
-  inviteAccounts,
-  learningRecords,
   profiles,
-  syncChanges,
-  syncMutations,
-  userCardStates,
-  userDocuments,
 } from '../database/schema';
 import { DatabaseService } from '../database/database.service';
-import { FeedbackService } from '../feedback/feedback.service';
 import { AccountIdentityService } from './account-identity.service';
 
 const RECENT_SOCIAL_AUTH_WINDOW_SECONDS = 10 * 60;
@@ -51,7 +37,6 @@ export class AccountService {
     private readonly identities: AccountIdentityService,
     private readonly phoneAuth: PhoneAuthService,
     private readonly sessions: SessionSecurityService,
-    private readonly feedback: FeedbackService,
   ) {
     this.adminAuth = createClient(config.supabaseUrl, config.supabaseSecretKey, {
       auth: { autoRefreshToken: false, detectSessionInUrl: false, persistSession: false },
@@ -187,43 +172,6 @@ export class AccountService {
     return createClient(this.config.supabaseUrl, this.config.supabasePublishableKey, {
       auth: { autoRefreshToken: false, detectSessionInUrl: false, persistSession: false },
     });
-  }
-
-  async deleteAccount(userId: string) {
-    const authUserIds = await this.identities.authUserIdsForAccount(userId);
-    const [feedbackObjectKeys, ticketRows] = await Promise.all([
-      this.feedback.userObjectKeys(userId),
-      this.database.db.select({ id: feedbackTickets.id }).from(feedbackTickets).where(eq(feedbackTickets.userId, userId)),
-    ]);
-    await Promise.all(authUserIds.map((authUserId) => this.sessions.revokeAll(authUserId)));
-    for (const authUserId of authUserIds) {
-      const { error } = await this.adminAuth.auth.admin.deleteUser(authUserId, false);
-      if (error) throw new Error('account_deletion_failed');
-    }
-    await this.database.db.transaction(async (transaction) => {
-      const ticketIds = ticketRows.map((row) => row.id);
-      if (ticketIds.length > 0) await transaction.delete(feedbackAttachments).where(inArray(feedbackAttachments.ticketId, ticketIds));
-      await transaction.delete(feedbackTickets).where(eq(feedbackTickets.userId, userId));
-      await transaction.delete(userCardStates).where(eq(userCardStates.userId, userId));
-      await transaction.delete(learningRecords).where(eq(learningRecords.userId, userId));
-      await transaction.delete(syncMutations).where(eq(syncMutations.userId, userId));
-      await transaction.delete(userDocuments).where(eq(userDocuments.userId, userId));
-      await transaction.delete(syncChanges).where(eq(syncChanges.userId, userId));
-      await transaction.delete(aiConsents).where(eq(aiConsents.userId, userId));
-      await transaction.delete(aiUsageLogs).where(eq(aiUsageLogs.userId, userId));
-      await transaction.delete(aiQuotaBuckets).where(eq(aiQuotaBuckets.userId, userId));
-      await transaction.delete(aiWordCache).where(eq(aiWordCache.userId, userId));
-      await transaction.delete(profiles).where(eq(profiles.userId, userId));
-      if (authUserIds.length > 0) {
-        await transaction.delete(accountSessionRevocations).where(inArray(accountSessionRevocations.userId, authUserIds));
-        await transaction.update(inviteAccounts)
-          .set({ status: 'deleted', userId: null, deletedAt: new Date() })
-          .where(inArray(inviteAccounts.userId, authUserIds));
-      }
-      await transaction.delete(accountIdentities).where(eq(accountIdentities.accountId, userId));
-      await transaction.delete(accounts).where(eq(accounts.id, userId));
-    });
-    await this.feedback.removeObjects(feedbackObjectKeys).catch(() => undefined);
   }
 
   async mergeWithPhoneOtp(source: VerifiedAuthSession, phone: string, token: string): Promise<MergePhoneAccountResponse> {

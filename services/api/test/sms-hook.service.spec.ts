@@ -160,6 +160,7 @@ describe('Supabase SMS hook', () => {
       SUPABASE_SECRET_KEY: 'test-secret-key-that-is-long-enough',
       INVITE_AUTH_SECRET: 'test-invite-auth-secret-that-is-long-enough',
       ACCOUNT_IDENTITY_HASH_SECRET: 'test-account-identity-secret-that-is-long-enough',
+      IDENTITY_BENEFIT_DIGEST_SECRET: 'test-identity-benefit-secret-that-is-long-enough',
       AI_TEXT_PROVIDER: 'deepseek',
       DEEPSEEK_API_KEY: 'test-deepseek-key',
       DEEPSEEK_BASE_URL: 'https://api.deepseek.com',

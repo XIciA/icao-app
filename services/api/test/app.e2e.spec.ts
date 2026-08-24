@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 
 import { AppModule } from '../src/app.module';
 import { AccountService } from '../src/account/account.service';
+import { AccountDeletionService } from '../src/account/account-deletion.service';
 import { AccountIdentityService } from '../src/account/account-identity.service';
 import { AUTH_VERIFIER, type AuthVerifier, type VerifiedAuthSession } from '../src/auth/auth.types';
 import { PhoneAuthService } from '../src/auth/phone-auth.service';
@@ -34,6 +35,7 @@ function productionConfig(overrides: NodeJS.ProcessEnv = {}): NodeJS.ProcessEnv 
     SUPABASE_SECRET_KEY: 'test-secret-key-that-is-long-enough',
     INVITE_AUTH_SECRET: 'test-invite-auth-secret-that-is-long-enough',
     ACCOUNT_IDENTITY_HASH_SECRET: 'test-account-identity-secret-that-is-long-enough',
+    IDENTITY_BENEFIT_DIGEST_SECRET: 'test-identity-benefit-secret-that-is-long-enough',
     APPLE_SIGN_IN_CLIENT_ID: 'com.feizhuicao.app',
     APPLE_TEAM_ID: 'TEAMID1234',
     APPLE_KEY_ID: 'KEYID1234',
@@ -102,7 +104,6 @@ async function testApp({ revoked = false }: { revoked?: boolean } = {}) {
     .overrideProvider(AccountService)
     .useValue({
       authorizePasswordRecovery: async () => ({ authorized: true, expiresAt: 1_800_003_600_000 }),
-      deleteAccount: async () => undefined,
       mergeWithPhoneOtp: async () => ({
         account: { accountId: '00000000-0000-4000-8000-000000000001', phone: '+8613800138000', phoneBound: true, providers: ['phone', 'apple'] },
         session: { accessToken: 'target-access-token', refreshToken: 'target-refresh-token' },
@@ -114,6 +115,19 @@ async function testApp({ revoked = false }: { revoked?: boolean } = {}) {
       }),
       revokeAll: async () => ({ revoked: true }),
       summary: async (accountId: string, phone?: string) => ({ accountId, phone, phoneBound: Boolean(phone), providers: phone ? ['phone'] : ['apple'] }),
+    })
+    .overrideProvider(AccountDeletionService)
+    .useValue({
+      requestDeletion: async () => ({
+        identityProviderOutcome: 'not_applicable',
+        jobId: '00000000-0000-4000-8000-000000000099',
+        status: 'completed',
+      }),
+      statusByIdempotencyKey: async () => ({
+        identityProviderOutcome: 'not_applicable',
+        jobId: '00000000-0000-4000-8000-000000000099',
+        status: 'completed',
+      }),
     })
     .overrideProvider(PhoneAuthService)
     .useValue({
@@ -347,12 +361,33 @@ describe('API foundation', () => {
     const headers = { authorization: 'Bearer valid-token' };
     const revoked = await app.inject({ method: 'POST', url: '/v1/account/sessions/revoke-all', headers });
     const invalidDeletion = await app.inject({ method: 'DELETE', url: '/v1/account', headers, payload: { confirmation: '删除账号' } });
-    const deleted = await app.inject({ method: 'DELETE', url: '/v1/account', headers, payload: { confirmation: '注销账号' } });
+    const deleted = await app.inject({
+      method: 'DELETE',
+      url: '/v1/account',
+      headers,
+      payload: {
+        confirmation: '注销账号',
+        grantId: '00000000-0000-4000-8000-000000000097',
+        idempotencyKey: '00000000-0000-4000-8000-000000000098',
+      },
+    });
+    const deletionStatus = await app.inject({
+      method: 'POST',
+      url: '/v1/account/deletion/status',
+      payload: { idempotencyKey: '00000000-0000-4000-8000-000000000098' },
+    });
     expect(revoked.statusCode).toBe(201);
     expect(revoked.json().data).toEqual({ revoked: true });
     expect(invalidDeletion.statusCode).toBe(400);
     expect(invalidDeletion.json().error.code).toBe('invalid_account_deletion');
-    expect(deleted.statusCode).toBe(204);
+    expect(deleted.statusCode).toBe(202);
+    expect(deleted.json().data).toEqual({
+      identityProviderOutcome: 'not_applicable',
+      jobId: '00000000-0000-4000-8000-000000000099',
+      status: 'completed',
+    });
+    expect(deletionStatus.statusCode).toBe(201);
+    expect(deletionStatus.json().data).toEqual(deleted.json().data);
     await app.close();
   });
 

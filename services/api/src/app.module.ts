@@ -4,6 +4,9 @@ import { AUTH_VERIFIER } from './auth/auth.types';
 import { AccountController } from './account/account.controller';
 import { AccountService } from './account/account.service';
 import { AccountIdentityService } from './account/account-identity.service';
+import { AccountDeletionService } from './account/account-deletion.service';
+import { AccountDeletionStatusController } from './account/account-deletion-status.controller';
+import { ACCOUNT_AUTH_ADMIN, SupabaseAccountAuthAdmin } from './account/account-auth-admin';
 import { IdentityDigestService } from './account/identity-digest.service';
 import { AppleAuthController } from './auth/apple-auth.controller';
 import { AppleAuthService } from './auth/apple-auth.service';
@@ -46,7 +49,7 @@ import { FeedbackService } from './feedback/feedback.service';
 import { PersistentCommerceBenefitsService } from './commerce/persistent-commerce-benefits.service';
 
 @Module({
-  controllers: [HealthController, MeController, PhoneAuthController, RecentAuthController, AppleAuthController, SupabaseSmsHookController, AccountController, QuestionBankController, ResourceController, EditorialController, SyncController, AiController, VocabularyController, FeedbackController],
+  controllers: [HealthController, MeController, PhoneAuthController, RecentAuthController, AppleAuthController, SupabaseSmsHookController, AccountController, AccountDeletionStatusController, QuestionBankController, ResourceController, EditorialController, SyncController, AiController, VocabularyController, FeedbackController],
   providers: [
     { provide: API_CONFIG, useFactory: () => loadConfig() },
     DatabaseService,
@@ -69,6 +72,9 @@ import { PersistentCommerceBenefitsService } from './commerce/persistent-commerc
     { provide: APPLE_ID_TOKEN_VERIFIER, useExisting: JoseAppleIdTokenVerifier },
     AppleAuthService,
     AccountService,
+    SupabaseAccountAuthAdmin,
+    { provide: ACCOUNT_AUTH_ADMIN, useExisting: SupabaseAccountAuthAdmin },
+    AccountDeletionService,
     QuestionBankService,
     ResourceService,
     EditorialService,

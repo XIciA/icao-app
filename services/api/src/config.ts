@@ -12,8 +12,9 @@ const schema = z.object({
   SUPABASE_URL: z.string().url(),
   INVITE_AUTH_SECRET: z.string().min(32),
   ACCOUNT_IDENTITY_HASH_SECRET: z.string().min(32),
-  ACCOUNT_IDENTITY_HASH_KEY_VERSION: z.coerce.number().int().min(1).default(1),
-  ACCOUNT_IDENTITY_HASH_PREVIOUS_KEYS: z.string().default('{}'),
+  IDENTITY_BENEFIT_DIGEST_SECRET: z.string().min(32).optional(),
+  IDENTITY_BENEFIT_DIGEST_KEY_VERSION: z.coerce.number().int().min(1).default(1),
+  IDENTITY_BENEFIT_DIGEST_PREVIOUS_KEYS: z.string().default('{}'),
   APPLE_SIGN_IN_CLIENT_ID: z.string().min(3).optional(),
   APPLE_TEAM_ID: z.string().min(3).optional(),
   APPLE_KEY_ID: z.string().min(3).optional(),
@@ -99,8 +100,9 @@ export type ApiConfig = {
   supabaseUrl: string;
   inviteAuthSecret: string;
   accountIdentityHashSecret: string;
-  accountIdentityHashKeyVersion?: number;
-  accountIdentityHashPreviousKeys?: Array<{ secret: string; version: number }>;
+  identityBenefitDigestSecret?: string;
+  identityBenefitDigestKeyVersion?: number;
+  identityBenefitDigestPreviousKeys?: Array<{ secret: string; version: number }>;
   appleSignInClientId?: string;
   appleTeamId?: string;
   appleKeyId?: string;
@@ -163,10 +165,10 @@ function parsePreviousIdentityHashKeys(value: string, currentVersion: number) {
   try {
     candidate = JSON.parse(value);
   } catch {
-    invalidConfiguration('ACCOUNT_IDENTITY_HASH_PREVIOUS_KEYS');
+    invalidConfiguration('IDENTITY_BENEFIT_DIGEST_PREVIOUS_KEYS');
   }
   if (!candidate || typeof candidate !== 'object' || Array.isArray(candidate)) {
-    invalidConfiguration('ACCOUNT_IDENTITY_HASH_PREVIOUS_KEYS');
+    invalidConfiguration('IDENTITY_BENEFIT_DIGEST_PREVIOUS_KEYS');
   }
   const entries = Object.entries(candidate as Record<string, unknown>).map(([rawVersion, secret]) => ({
     secret,
@@ -178,9 +180,9 @@ function parsePreviousIdentityHashKeys(value: string, currentVersion: number) {
     || version === currentVersion
     || typeof secret !== 'string'
     || secret.length < 32
-  ))) invalidConfiguration('ACCOUNT_IDENTITY_HASH_PREVIOUS_KEYS');
+  ))) invalidConfiguration('IDENTITY_BENEFIT_DIGEST_PREVIOUS_KEYS');
   if (new Set(entries.map(({ version }) => version)).size !== entries.length) {
-    invalidConfiguration('ACCOUNT_IDENTITY_HASH_PREVIOUS_KEYS');
+    invalidConfiguration('IDENTITY_BENEFIT_DIGEST_PREVIOUS_KEYS');
   }
   return entries as Array<{ secret: string; version: number }>;
 }
@@ -250,11 +252,12 @@ export function loadConfig(environment: NodeJS.ProcessEnv = process.env): ApiCon
     throw new Error('invalid_api_configuration:TENCENT_CLOUD_CREDENTIALS');
   }
   const previousIdentityHashKeys = parsePreviousIdentityHashKeys(
-    parsed.data.ACCOUNT_IDENTITY_HASH_PREVIOUS_KEYS,
-    parsed.data.ACCOUNT_IDENTITY_HASH_KEY_VERSION,
+    parsed.data.IDENTITY_BENEFIT_DIGEST_PREVIOUS_KEYS,
+    parsed.data.IDENTITY_BENEFIT_DIGEST_KEY_VERSION,
   );
   if (parsed.data.NODE_ENV === 'production') {
     validateProductionAiRuntime(environment, parsed.data);
+    if (!parsed.data.IDENTITY_BENEFIT_DIGEST_SECRET) invalidConfiguration('IDENTITY_BENEFIT_DIGEST_SECRET');
   }
   if (/^https?:\/\//u.test(parsed.data.TENCENT_ASR_ENDPOINT) || parsed.data.TENCENT_ASR_ENDPOINT.includes('/')) {
     throw new Error('invalid_api_configuration:TENCENT_ASR_ENDPOINT');
@@ -295,8 +298,9 @@ export function loadConfig(environment: NodeJS.ProcessEnv = process.env): ApiCon
     supabaseUrl: parsed.data.SUPABASE_URL,
     inviteAuthSecret: parsed.data.INVITE_AUTH_SECRET,
     accountIdentityHashSecret: parsed.data.ACCOUNT_IDENTITY_HASH_SECRET,
-    accountIdentityHashKeyVersion: parsed.data.ACCOUNT_IDENTITY_HASH_KEY_VERSION,
-    accountIdentityHashPreviousKeys: previousIdentityHashKeys,
+    identityBenefitDigestSecret: parsed.data.IDENTITY_BENEFIT_DIGEST_SECRET,
+    identityBenefitDigestKeyVersion: parsed.data.IDENTITY_BENEFIT_DIGEST_KEY_VERSION,
+    identityBenefitDigestPreviousKeys: previousIdentityHashKeys,
     appleSignInClientId: parsed.data.APPLE_SIGN_IN_CLIENT_ID,
     appleTeamId: parsed.data.APPLE_TEAM_ID,
     appleKeyId: parsed.data.APPLE_KEY_ID,

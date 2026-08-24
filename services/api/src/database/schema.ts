@@ -8,7 +8,9 @@ export const accounts = pgTable('accounts', {
   sessionsRevokedAt: timestamp('sessions_revoked_at', { withTimezone: true }),
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
   updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
-}).enableRLS();
+}, (table) => [
+  check('accounts_status_check', sql`${table.status} IN ('active', 'merging', 'merged', 'deleting', 'deleted')`),
+]).enableRLS();
 
 export const profiles = pgTable('profiles', {
   userId: uuid('user_id').primaryKey().references(() => accounts.id, { onDelete: 'cascade' }),
@@ -103,7 +105,7 @@ export const appleRevocableCredentials = pgTable('apple_revocable_credentials', 
   authUserId: uuid('auth_user_id').notNull(),
   subjectDigest: text('subject_digest').notNull(),
   digestKeyVersion: integer('digest_key_version').default(1).notNull(),
-  encryptedRefreshToken: text('encrypted_refresh_token').notNull(),
+  encryptedRefreshToken: text('encrypted_refresh_token'),
   encryptionVersion: integer('encryption_version').default(1).notNull(),
   status: text('status').default('active').notNull(),
   revokeAttemptCount: integer('revoke_attempt_count').default(0).notNull(),
@@ -118,7 +120,7 @@ export const appleRevocableCredentials = pgTable('apple_revocable_credentials', 
   uniqueIndex('apple_revocable_credentials_subject').on(table.subjectDigest),
   index('apple_revocable_credentials_account_status').on(table.accountId, table.status),
   index('apple_revocable_credentials_retry').on(table.status, table.nextRetryAt),
-  check('apple_revocable_credentials_status_check', sql`${table.status} IN ('active', 'revoke_pending', 'retryable', 'revoked')`),
+  check('apple_revocable_credentials_status_check', sql`${table.status} IN ('active', 'revoke_pending', 'retryable', 'revoked', 'manual_action_required')`),
   check('apple_revocable_credentials_attempts_check', sql`${table.revokeAttemptCount} >= 0`),
   check('apple_revocable_credentials_digest_key_version_check', sql`${table.digestKeyVersion} > 0`),
   check('apple_revocable_credentials_encryption_version_check', sql`${table.encryptionVersion} > 0`),
@@ -141,10 +143,12 @@ export const lifetimeIdentityBenefitClaims = pgTable('lifetime_identity_benefit_
 export const accountDeletionJobs = pgTable('account_deletion_jobs', {
   id: uuid('id').defaultRandom().primaryKey(),
   accountId: uuid('account_id').notNull(),
-  requestedByAuthUserId: uuid('requested_by_auth_user_id').notNull(),
+  requestedByAuthUserId: uuid('requested_by_auth_user_id'),
   idempotencyKey: uuid('idempotency_key').notNull(),
   status: text('status').default('pending').notNull(),
   identityProviderOutcome: text('identity_provider_outcome').default('pending').notNull(),
+  objectCleanupStatus: text('object_cleanup_status').default('pending').notNull(),
+  objectKeys: jsonb('object_keys').default(sql`'[]'::jsonb`).notNull(),
   attemptCount: integer('attempt_count').default(0).notNull(),
   nextRetryAt: timestamp('next_retry_at', { withTimezone: true }),
   lastErrorCode: text('last_error_code'),
@@ -152,6 +156,7 @@ export const accountDeletionJobs = pgTable('account_deletion_jobs', {
   startedAt: timestamp('started_at', { withTimezone: true }),
   identityProvidersRevokedAt: timestamp('identity_providers_revoked_at', { withTimezone: true }),
   authUsersDeletedAt: timestamp('auth_users_deleted_at', { withTimezone: true }),
+  objectsDeletedAt: timestamp('objects_deleted_at', { withTimezone: true }),
   activeDataDeletedAt: timestamp('active_data_deleted_at', { withTimezone: true }),
   completedAt: timestamp('completed_at', { withTimezone: true }),
   updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
@@ -161,6 +166,8 @@ export const accountDeletionJobs = pgTable('account_deletion_jobs', {
   index('account_deletion_jobs_retry').on(table.status, table.nextRetryAt),
   check('account_deletion_jobs_status_check', sql`${table.status} IN ('pending', 'processing', 'retryable', 'completed')`),
   check('account_deletion_jobs_identity_provider_outcome_check', sql`${table.identityProviderOutcome} IN ('pending', 'revoked', 'manual_action_required', 'not_applicable')`),
+  check('account_deletion_jobs_object_cleanup_status_check', sql`${table.objectCleanupStatus} IN ('pending', 'retryable', 'completed', 'not_applicable')`),
+  check('account_deletion_jobs_object_keys_check', sql`jsonb_typeof(${table.objectKeys}) = 'array'`),
   check('account_deletion_jobs_attempts_check', sql`${table.attemptCount} >= 0`),
 ]).enableRLS();
 

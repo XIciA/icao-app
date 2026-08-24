@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { and, eq } from 'drizzle-orm';
+import { and, eq, sql } from 'drizzle-orm';
 
 import { aiPointBatches, aiPointLedgerEntries } from '../database/schema';
 import type { DatabaseService } from '../database/database.service';
@@ -64,5 +64,66 @@ export class PersistentCommerceBenefitsService {
       createdAt: ledger.createdAt,
     });
     return { batchId: batch.id, created: true as const };
+  }
+
+  async revokeAccountBenefits(
+    transaction: CommerceTransaction,
+    input: { accountId: string; deletionJobId: string; revokedAt: Date },
+  ) {
+    const revokedAt = input.revokedAt.toISOString();
+    await transaction.execute(sql`
+      insert into ai_point_ledger_entries (
+        environment, account_id, batch_id, reservation_id, operation_id,
+        entry_type, direction, points, created_at
+      )
+      select allocation.environment, allocation.account_id, allocation.batch_id,
+        allocation.reservation_id,
+        ${`account-delete:${input.deletionJobId}:release:`} || allocation.reservation_id::text,
+        'release', 'credit', allocation.points, ${revokedAt}::timestamptz
+      from ai_point_reservation_allocations allocation
+      join ai_point_reservations reservation on reservation.id = allocation.reservation_id
+      where reservation.account_id = ${input.accountId}::uuid and reservation.status = 'reserved'
+      on conflict do nothing
+    `);
+    await transaction.execute(sql`
+      with released as (
+        select allocation.batch_id, sum(allocation.points)::integer as points
+        from ai_point_reservation_allocations allocation
+        join ai_point_reservations reservation on reservation.id = allocation.reservation_id
+        where reservation.account_id = ${input.accountId}::uuid and reservation.status = 'reserved'
+        group by allocation.batch_id
+      )
+      update ai_point_batches batch
+      set reserved_points = batch.reserved_points - released.points,
+        updated_at = ${revokedAt}::timestamptz
+      from released where batch.id = released.batch_id
+    `);
+    await transaction.execute(sql`
+      update ai_point_reservations
+      set status = 'released', released_at = ${revokedAt}::timestamptz
+      where account_id = ${input.accountId}::uuid and status = 'reserved'
+    `);
+    await transaction.execute(sql`
+      insert into ai_point_ledger_entries (
+        environment, account_id, batch_id, operation_id, entry_type, direction, points, created_at
+      )
+      select environment, account_id, id, ${`account-delete:${input.deletionJobId}:revoke`},
+        'revoke', 'debit', granted_points - consumed_points - reserved_points,
+        ${revokedAt}::timestamptz
+      from ai_point_batches
+      where account_id = ${input.accountId}::uuid and status in ('scheduled', 'available')
+      on conflict do nothing
+    `);
+    await transaction.execute(sql`
+      update ai_point_batches
+      set status = 'revoked', revoked_at = ${revokedAt}::timestamptz,
+        updated_at = ${revokedAt}::timestamptz
+      where account_id = ${input.accountId}::uuid and status in ('scheduled', 'available')
+    `);
+    await transaction.execute(sql`
+      update membership_entitlement_segments
+      set status = 'revoked', revoked_at = ${revokedAt}::timestamptz
+      where account_id = ${input.accountId}::uuid and status = 'active'
+    `);
   }
 }
