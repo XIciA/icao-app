@@ -287,6 +287,8 @@ function appleSession({
   sessionId = '50000000-0000-4000-8000-000000000003',
   subject = 'apple-subject-1',
 } = {}) {
+  const account = psql(`INSERT INTO accounts (id) VALUES ('${accountId}') ON CONFLICT (id) DO NOTHING;`);
+  assert.equal(account.status, 0, account.stderr);
   return {
     ...authSession({ accountId, authUserId, sessionId }),
     identities: [{ provider: 'apple', subject }],
@@ -352,7 +354,7 @@ function deletionService({
   };
 }
 
-test('the cumulative migration enables RLS on all 43 public tables', () => {
+test('the cumulative migration enables RLS on all 45 public tables', () => {
   assert.equal(
     queryScalar(`
       SELECT COUNT(*)::text || ':' || COUNT(*) FILTER (WHERE relrowsecurity)::text
@@ -360,7 +362,7 @@ test('the cumulative migration enables RLS on all 43 public tables', () => {
       JOIN pg_namespace namespace ON namespace.oid = relation.relnamespace
       WHERE namespace.nspname = 'public' AND relation.relkind = 'r'
     `),
-    '43:43',
+    '45:45',
   );
 });
 
@@ -369,9 +371,11 @@ test('account-security authority tables are private to the API database role', (
     'account_content_credential_revocations',
     'account_deletion_auth_users',
     'account_deletion_jobs',
+    'account_deletion_status_rate_limits',
     'account_deletion_tombstones',
     'account_security_events',
     'apple_revocable_credentials',
+    'apple_credential_intakes',
     'lifetime_identity_benefit_claims',
     'phone_otp_intents',
     'recent_auth_challenges',
@@ -800,6 +804,153 @@ test('account deletion revokes a registered Apple credential before clearing pro
   );
 });
 
+test('account deletion write barrier drains committed writes and rejects every post-finalization write', async () => {
+  const accountId = '70000000-0000-4000-8000-000000000050';
+  const source = await deletionAccount({
+    accountId,
+    phone: '+8613877777777',
+    sessionId: '70000000-0000-4000-8000-000000000051',
+  });
+  const fixture = deletionService();
+  const grant = await fixture.recentAuth.issueVerifiedGrant(source, 'password', 'account_delete');
+  const writerClient = postgres({ database: 'postgres', host: socketDirectory, max: 1, port, username: 'postgres' });
+  let writerInserted;
+  let releaseWriter;
+  const inserted = new Promise((resolve) => { writerInserted = resolve; });
+  const release = new Promise((resolve) => { releaseWriter = resolve; });
+  const writer = writerClient.begin(async (transaction) => {
+    await transaction`
+      INSERT INTO ai_word_cache (user_id, query_hash, result, expires_at)
+      VALUES (${accountId}, 'deletion-write-barrier', ${transaction.json({ value: 'committed-before-delete' })}, now() + interval '1 hour')
+    `;
+    writerInserted();
+    await release;
+  });
+  await inserted;
+  let deletionSettled = false;
+  const deletion = fixture.service.requestDeletion(source, {
+    confirmation: '注销账号',
+    grantId: grant.grantId,
+    idempotencyKey: '70000000-0000-4000-8000-000000000052',
+  }).then((value) => {
+    deletionSettled = true;
+    return value;
+  });
+  await new Promise((resolve) => setTimeout(resolve, 50));
+  assert.equal(deletionSettled, false, 'deletion must wait for a writer holding the account row barrier');
+  releaseWriter();
+  await writer;
+  assert.equal((await deletion).status, 'completed');
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM ai_word_cache WHERE user_id = '${accountId}'`), '0');
+  await assert.rejects(
+    writerClient`
+      INSERT INTO ai_word_cache (user_id, query_hash, result, expires_at)
+      VALUES (${accountId}, 'deletion-write-after-finalize', ${writerClient.json({ value: 'must-fail' })}, now() + interval '1 hour')
+    `,
+    /account_not_active/u,
+  );
+  await writerClient.end({ timeout: 5 });
+});
+
+test('account deletion lease fencing prevents a stale worker from regressing completion', async () => {
+  const accountId = '70000000-0000-4000-8000-000000000060';
+  const source = await deletionAccount({
+    accountId,
+    phone: '+8613888888888',
+    sessionId: '70000000-0000-4000-8000-000000000061',
+  });
+  let firstStarted;
+  let releaseFirst;
+  const started = new Promise((resolve) => { firstStarted = resolve; });
+  const release = new Promise((resolve) => { releaseFirst = resolve; });
+  let deleteCalls = 0;
+  const fixture = deletionService({
+    authAdmin: {
+      deleteUser: async () => {
+        deleteCalls += 1;
+        if (deleteCalls === 1) {
+          firstStarted();
+          await release;
+          throw new Error('stale_worker_failure');
+        }
+      },
+    },
+  });
+  const grant = await fixture.recentAuth.issueVerifiedGrant(source, 'password', 'account_delete');
+  const first = fixture.service.requestDeletion(source, {
+    confirmation: '注销账号',
+    grantId: grant.grantId,
+    idempotencyKey: '70000000-0000-4000-8000-000000000062',
+  });
+  await started;
+  const jobId = queryScalar(`SELECT id FROM account_deletion_jobs WHERE account_id = '${accountId}'`);
+  const second = await fixture.service.processJob(jobId, new Date(Date.now() + 6 * 60 * 1_000));
+  assert.equal(second.status, 'completed');
+  releaseFirst();
+  assert.equal((await first).status, 'completed');
+  assert.equal(queryScalar(`SELECT status || ':' || (lease_token IS NULL)::text FROM account_deletion_jobs WHERE id = '${jobId}'`), 'completed:true');
+  assert.equal(deleteCalls, 2);
+});
+
+test('deletion capability collisions are uniformly 409, rate-limited, and purged after retention', async () => {
+  const accountIds = [
+    '70000000-0000-4000-8000-000000000070',
+    '70000000-0000-4000-8000-000000000071',
+  ];
+  const sources = await Promise.all(accountIds.map((accountId, index) => deletionAccount({
+    accountId,
+    phone: `+861389999999${index}`,
+    sessionId: `70000000-0000-4000-8000-00000000007${index + 2}`,
+  })));
+  const fixture = deletionService();
+  const grants = await Promise.all(sources.map((source) => (
+    fixture.recentAuth.issueVerifiedGrant(source, 'password', 'account_delete')
+  )));
+  const capability = '70000000-0000-4000-8000-000000000074';
+  const attempts = await Promise.allSettled(sources.map((source, index) => fixture.service.requestDeletion(source, {
+    confirmation: '注销账号',
+    grantId: grants[index].grantId,
+    idempotencyKey: capability,
+  })));
+  assert.equal(attempts.filter(({ status }) => status === 'fulfilled').length, 1);
+  const rejected = attempts.find(({ status }) => status === 'rejected');
+  assert.ok(rejected && rejected.status === 'rejected');
+  assert.equal(rejected.reason?.status, 409);
+  assert.equal(rejected.reason?.message, 'account_deletion_idempotency_conflict');
+  const winnerJobId = queryScalar(`SELECT id FROM account_deletion_jobs WHERE idempotency_key = '${capability}'`);
+  const loserAccountId = queryScalar(`SELECT id FROM accounts WHERE id IN ('${accountIds[0]}', '${accountIds[1]}') AND status = 'active'`);
+  const loserIndex = accountIds.indexOf(loserAccountId);
+  assert.equal(queryScalar(`SELECT (consumed_at IS NULL)::text FROM recent_auth_grants WHERE id = '${grants[loserIndex].grantId}'`), 'true');
+
+  for (let index = 0; index < 30; index += 1) {
+    assert.equal((await fixture.service.statusByIdempotencyKey(capability, '203.0.113.70')).status, 'completed');
+  }
+  await assert.rejects(
+    fixture.service.statusByIdempotencyKey(capability, '203.0.113.70'),
+    (error) => error?.status === 429 && error?.message === 'account_deletion_status_rate_limited',
+  );
+
+  const retentionNow = new Date();
+  const expire = psql(`
+    UPDATE account_deletion_tombstones
+    SET created_at = now() - interval '4 years', legal_retention_until = now() - interval '1 day'
+    WHERE job_id = '${winnerJobId}';
+    UPDATE account_security_events
+    SET created_at = now() - interval '184 days', retention_at = now() - interval '1 day'
+    WHERE metadata->>'deletionJobId' = '${winnerJobId}';
+  `);
+  assert.equal(expire.status, 0, expire.stderr);
+  await fixture.service.purgeExpiredRecords(retentionNow);
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM account_deletion_jobs WHERE id = '${winnerJobId}'`), '0');
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM account_deletion_tombstones WHERE job_id = '${winnerJobId}'`), '0');
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM account_security_events WHERE metadata->>'deletionJobId' = '${winnerJobId}'`), '0');
+  assert.equal(
+    queryScalar(`SELECT COUNT(*)::text || ':' || COUNT(*) FILTER (WHERE deletion_job_id IS NULL)::text FROM account_content_credential_revocations WHERE account_id = (SELECT id FROM accounts WHERE status = 'deleted' AND id IN ('${accountIds[0]}', '${accountIds[1]}'))`),
+    '1:1',
+    'content credential revocation must outlive deletion evidence without retaining a job FK',
+  );
+});
+
 test('phone OTP intents are purpose-bound, restart-safe, and consumed once across API instances', async () => {
   const config = appleConfig();
   const accountId = '71000000-0000-4000-8000-000000000001';
@@ -933,11 +1084,11 @@ test('SMS delivery authority persists dedupe, rate limits, and lease fencing acr
   ]);
   const claimed = [left, right].find(({ outcome }) => outcome === 'claimed');
   assert.ok(claimed && claimed.outcome === 'claimed');
-  assert.equal([left, right].filter(({ outcome }) => outcome === 'duplicate').length, 1);
+  assert.equal([left, right].filter(({ outcome }) => outcome === 'duplicate_inflight').length, 1);
   await first.complete('sms-dedupe-concurrent', '00000000-0000-4000-8000-000000000099', now);
   assert.equal(queryScalar(`SELECT status FROM sms_delivery_attempts WHERE dedupe_key = 'sms-dedupe-concurrent'`), 'processing');
   await first.complete('sms-dedupe-concurrent', claimed.leaseToken, now);
-  assert.equal((await second.claim('sms-dedupe-concurrent', phone, new Date(now.getTime() + 1_000))).outcome, 'duplicate');
+  assert.equal((await second.claim('sms-dedupe-concurrent', phone, new Date(now.getTime() + 1_000))).outcome, 'duplicate_completed');
 
   const expiring = await first.claim('sms-dedupe-expired-lease', '+8613811113333', now);
   assert.equal(expiring.outcome, 'claimed');
@@ -964,6 +1115,8 @@ test('SMS delivery authority persists dedupe, rate limits, and lease fencing acr
   const limitedPhone = '+8613811114444';
   const budget = await limited.claim('sms-budget-first', limitedPhone, now);
   assert.equal(budget.outcome, 'claimed');
+  assert.ok(budget.outcome === 'claimed');
+  await limited.fail('sms-budget-first', budget.leaseToken, budget.rules, now);
   await assert.rejects(
     limited.claim('sms-budget-second', limitedPhone, now),
     /sms_rate_limited/u,
@@ -983,7 +1136,7 @@ test('SMS delivery authority persists dedupe, rate limits, and lease fencing acr
   assert.equal(
     (await second.claim('sms-failed-retry', '+8613811115555', new Date(now.getTime() + 1_000))).outcome,
     'claimed',
-    'a provider failure must release its durable reservation so another instance can retry',
+    'a provider failure may retry delivery but must not refund the abuse budget',
   );
 });
 
@@ -1000,16 +1153,19 @@ test('phone and SMS retention cleanup removes only expired, non-active authority
     );
     INSERT INTO sms_delivery_attempts (
       dedupe_key, phone_digest, status, lease_token, lease_until, attempt_count,
-      expires_at, created_at, updated_at
+      completed_at, expires_at, created_at, updated_at
     ) VALUES
       ('sms-retention-completed', '${'d'.repeat(64)}', 'completed',
        '72000000-0000-4000-8000-000000000002', '${new Date(now.getTime() - 1_000).toISOString()}', 1,
+       '${new Date(now.getTime() - 2_000).toISOString()}',
        '${new Date(now.getTime() - 1_000).toISOString()}', '${new Date(now.getTime() - 20 * 60 * 1_000).toISOString()}', '${now.toISOString()}'),
       ('sms-retention-expired-lease', '${'e'.repeat(64)}', 'processing',
        '72000000-0000-4000-8000-000000000003', '${new Date(now.getTime() - 1_000).toISOString()}', 1,
+       NULL,
        '${new Date(now.getTime() - 1_000).toISOString()}', '${new Date(now.getTime() - 20 * 60 * 1_000).toISOString()}', '${now.toISOString()}'),
       ('sms-retention-active-lease', '${'f'.repeat(64)}', 'processing',
        '72000000-0000-4000-8000-000000000004', '${new Date(now.getTime() + 60_000).toISOString()}', 1,
+       NULL,
        '${new Date(now.getTime() - 1_000).toISOString()}', '${new Date(now.getTime() - 20 * 60 * 1_000).toISOString()}', '${now.toISOString()}');
     INSERT INTO sms_usage_counters (scope_key, count, expires_at)
     VALUES ('sms-retention-expired-counter', 1, '${new Date(now.getTime() - 1_000).toISOString()}');
@@ -1301,6 +1457,34 @@ test('Apple credential registration rejects expired or mismatched aud, nonce, an
       /invalid_apple_authorization/u,
     );
   }
+  const verifierSource = appleSession({
+    accountId: '50000000-0000-4000-8000-000000000019',
+    authUserId: '51000000-0000-4000-8000-000000000019',
+    sessionId: '52000000-0000-4000-8000-000000000019',
+    subject: 'apple-verifier-failure-subject',
+  });
+  const config = appleConfig();
+  const verifierFailure = new AppleAuthService(
+    config,
+    {
+      exchangeAuthorizationCode: async () => ({
+        accessToken: 'temporary-access-token',
+        idToken: 'invalid-signed-token',
+        refreshToken: 'must-not-be-stored',
+      }),
+      revoke: async () => undefined,
+    },
+    { verify: async () => { throw new Error('invalid_signature'); } },
+    { db: serviceDatabase },
+    new IdentityDigestService(config),
+  );
+  await assert.rejects(
+    verifierFailure.registerCredential(verifierSource, {
+      authorizationCode: 'verifier-failure-code',
+      rawNonce: 'verifier-failure-nonce',
+    }),
+    (error) => error?.status === 403 && error?.message === 'invalid_apple_authorization',
+  );
 });
 
 test('Apple revoke treats only HTTP success as revoked and durably retries every failure class', async () => {
@@ -1372,6 +1556,214 @@ test('Apple revoke treats only HTTP success as revoked and durably retries every
     queryScalar(`SELECT status || ':' || (last_error_code IS NULL)::text FROM apple_revocable_credentials WHERE account_id = '${successSource.user.id}'`),
     'revoked:true',
   );
+});
+
+test('Apple credential intake compensates persistence failure and an account-deletion registration race', async () => {
+  const persistenceSource = appleSession({
+    accountId: '50000000-0000-4000-8000-000000000050',
+    authUserId: '51000000-0000-4000-8000-000000000050',
+    sessionId: '52000000-0000-4000-8000-000000000050',
+    subject: 'apple-intake-persistence-subject',
+  });
+  const persistenceNonce = 'apple-intake-persistence-nonce';
+  let persistenceRevokeCount = 0;
+  const failureTrigger = psql(`
+    CREATE FUNCTION fail_test_apple_intake_insert() RETURNS trigger LANGUAGE plpgsql AS $$
+    BEGIN
+      IF NEW.account_id = '${persistenceSource.user.id}' THEN RAISE EXCEPTION 'simulated_intake_failure'; END IF;
+      RETURN NEW;
+    END;
+    $$;
+    CREATE TRIGGER fail_test_apple_intake_insert
+    BEFORE INSERT ON apple_credential_intakes
+    FOR EACH ROW EXECUTE FUNCTION fail_test_apple_intake_insert();
+  `);
+  assert.equal(failureTrigger.status, 0, failureTrigger.stderr);
+  const persistenceService = appleService({
+    exchangeAuthorizationCode: async () => ({
+      accessToken: 'temporary-access-token',
+      idToken: appleIdToken({ nonce: persistenceNonce, subject: persistenceSource.identities[0].subject }),
+      refreshToken: 'intake-persistence-raw-refresh-token',
+    }),
+    revoke: async () => { persistenceRevokeCount += 1; },
+  });
+  await assert.rejects(
+    persistenceService.registerCredential(persistenceSource, {
+      authorizationCode: 'intake-persistence-code',
+      rawNonce: persistenceNonce,
+    }),
+    /apple_credential_persistence_failed/u,
+  );
+  const removeFailureTrigger = psql(`
+    DROP TRIGGER fail_test_apple_intake_insert ON apple_credential_intakes;
+    DROP FUNCTION fail_test_apple_intake_insert();
+  `);
+  assert.equal(removeFailureTrigger.status, 0, removeFailureTrigger.stderr);
+  assert.equal(persistenceRevokeCount, 1);
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM apple_credential_intakes WHERE account_id = '${persistenceSource.user.id}'`), '0');
+
+  for (const [index, revokeFails] of [false, true].entries()) {
+    const suffix = 60 + index;
+    const accountId = `50000000-0000-4000-8000-0000000000${suffix}`;
+    const authUserId = `51000000-0000-4000-8000-0000000000${suffix}`;
+    const sessionId = `52000000-0000-4000-8000-0000000000${suffix}`;
+    const source = appleSession({
+      accountId,
+      authUserId,
+      sessionId,
+      subject: `apple-intake-deletion-race-${index}`,
+    });
+    const authSetup = psql(`
+      INSERT INTO auth.users (id) VALUES ('${authUserId}');
+      INSERT INTO auth.sessions (id, user_id) VALUES ('${sessionId}', '${authUserId}');
+    `);
+    assert.equal(authSetup.status, 0, authSetup.stderr);
+    await new AccountIdentityService(appleConfig(), { db: serviceDatabase }).resolve(source);
+    let exchangeStarted;
+    let releaseExchange;
+    const started = new Promise((resolve) => { exchangeStarted = resolve; });
+    const release = new Promise((resolve) => { releaseExchange = resolve; });
+    let revokeCount = 0;
+    const rawNonce = `apple-intake-deletion-race-nonce-${index}`;
+    const rawRefreshToken = `apple-intake-deletion-race-refresh-${index}`;
+    const service = appleService({
+      exchangeAuthorizationCode: async () => {
+        exchangeStarted();
+        await release;
+        return {
+          accessToken: 'temporary-access-token',
+          idToken: appleIdToken({ nonce: rawNonce, subject: source.identities[0].subject }),
+          refreshToken: rawRefreshToken,
+        };
+      },
+      revoke: async () => {
+        revokeCount += 1;
+        if (revokeFails) throw new AppleAuthHttpError('server_error');
+      },
+    });
+    const registration = service.registerCredential(source, {
+      authorizationCode: `deletion-race-code-${index}`,
+      rawNonce,
+    });
+    await started;
+    const deletion = deletionService({
+      appleAuth: { revokeForAccount: async () => ({ outcome: 'manual_action_required' }) },
+    });
+    const grant = await deletion.recentAuth.issueVerifiedGrant(source, 'apple', 'account_delete');
+    assert.equal((await deletion.service.requestDeletion(source, {
+      confirmation: '注销账号',
+      grantId: grant.grantId,
+      idempotencyKey: `53000000-0000-4000-8000-0000000000${suffix}`,
+    })).status, 'completed');
+    releaseExchange();
+    await assert.rejects(registration, /account_not_active/u);
+    assert.equal(revokeCount, 1);
+    assert.equal(queryScalar(`SELECT COUNT(*) FROM apple_revocable_credentials WHERE account_id = '${accountId}'`), '0');
+    assert.equal(
+      queryScalar(`SELECT status || ':' || (encrypted_refresh_token IS NULL)::text || ':' || COALESCE((encrypted_refresh_token LIKE '%${rawRefreshToken}%')::text, 'false') FROM apple_credential_intakes WHERE account_id = '${accountId}'`),
+      revokeFails ? 'retryable:false:false' : 'revoked:true:false',
+    );
+  }
+  const expireIntake = psql(`
+    UPDATE apple_credential_intakes
+    SET created_at = now() - interval '184 days', retention_at = now() - interval '1 day'
+    WHERE account_id = '50000000-0000-4000-8000-000000000060';
+  `);
+  assert.equal(expireIntake.status, 0, expireIntake.stderr);
+  await appleService({
+    exchangeAuthorizationCode: async () => { throw new Error('unused'); },
+    revoke: async () => undefined,
+  }).retryDueIntakes();
+  assert.equal(queryScalar(`SELECT COUNT(*) FROM apple_credential_intakes WHERE account_id = '50000000-0000-4000-8000-000000000060'`), '0');
+  assert.equal(queryScalar(`SELECT status FROM apple_credential_intakes WHERE account_id = '50000000-0000-4000-8000-000000000061'`), 'retryable');
+});
+
+test('Apple revoke lease fencing survives marker crashes and two-worker HTTP races', async () => {
+  const crashSource = appleSession({
+    accountId: '50000000-0000-4000-8000-000000000070',
+    authUserId: '51000000-0000-4000-8000-000000000070',
+    sessionId: '52000000-0000-4000-8000-000000000070',
+    subject: 'apple-revoke-marker-crash-subject',
+  });
+  const crashNonce = 'apple-revoke-marker-crash-nonce';
+  let crashRevokeCalls = 0;
+  const crashService = appleService({
+    exchangeAuthorizationCode: async () => ({
+      accessToken: 'temporary-access-token',
+      idToken: appleIdToken({ nonce: crashNonce, subject: crashSource.identities[0].subject }),
+      refreshToken: 'apple-marker-crash-refresh-token',
+    }),
+    revoke: async () => {
+      crashRevokeCalls += 1;
+      if (crashRevokeCalls > 1) throw new AppleAuthHttpError('invalid_grant');
+    },
+  });
+  await crashService.registerCredential(crashSource, { authorizationCode: 'marker-crash-code', rawNonce: crashNonce });
+  const markerFailure = psql(`
+    CREATE FUNCTION fail_test_apple_revoked_marker() RETURNS trigger LANGUAGE plpgsql AS $$
+    BEGIN
+      IF NEW.account_id = '${crashSource.user.id}' AND NEW.status = 'revoked' THEN
+        RAISE EXCEPTION 'simulated_revoked_marker_crash';
+      END IF;
+      RETURN NEW;
+    END;
+    $$;
+    CREATE TRIGGER fail_test_apple_revoked_marker
+    BEFORE UPDATE ON apple_revocable_credentials
+    FOR EACH ROW EXECUTE FUNCTION fail_test_apple_revoked_marker();
+  `);
+  assert.equal(markerFailure.status, 0, markerFailure.stderr);
+  const crashAt = new Date();
+  await assert.rejects(
+    crashService.revokeForAccount(crashSource.user.id, crashAt),
+    (error) => error?.cause?.message === 'simulated_revoked_marker_crash',
+  );
+  const removeMarkerFailure = psql(`
+    DROP TRIGGER fail_test_apple_revoked_marker ON apple_revocable_credentials;
+    DROP FUNCTION fail_test_apple_revoked_marker();
+  `);
+  assert.equal(removeMarkerFailure.status, 0, removeMarkerFailure.stderr);
+  assert.equal(queryScalar(`SELECT status || ':' || revoke_attempt_count::text FROM apple_revocable_credentials WHERE account_id = '${crashSource.user.id}'`), 'revoke_pending:1');
+  assert.deepEqual(
+    await crashService.revokeForAccount(crashSource.user.id, new Date(crashAt.getTime() + 3 * 60 * 1_000)),
+    { outcome: 'manual_action_required' },
+  );
+  assert.equal(queryScalar(`SELECT status || ':' || (encrypted_refresh_token IS NULL)::text FROM apple_revocable_credentials WHERE account_id = '${crashSource.user.id}'`), 'manual_action_required:true');
+
+  const raceSource = appleSession({
+    accountId: '50000000-0000-4000-8000-000000000071',
+    authUserId: '51000000-0000-4000-8000-000000000071',
+    sessionId: '52000000-0000-4000-8000-000000000071',
+    subject: 'apple-revoke-two-worker-subject',
+  });
+  const raceNonce = 'apple-revoke-two-worker-nonce';
+  let firstStarted;
+  let releaseFirst;
+  const started = new Promise((resolve) => { firstStarted = resolve; });
+  const release = new Promise((resolve) => { releaseFirst = resolve; });
+  const firstService = appleService({
+    exchangeAuthorizationCode: async () => ({
+      accessToken: 'temporary-access-token',
+      idToken: appleIdToken({ nonce: raceNonce, subject: raceSource.identities[0].subject }),
+      refreshToken: 'apple-two-worker-refresh-token',
+    }),
+    revoke: async () => { firstStarted(); await release; },
+  });
+  await firstService.registerCredential(raceSource, { authorizationCode: 'two-worker-code', rawNonce: raceNonce });
+  const raceAt = new Date();
+  const firstAttempt = firstService.revokeForAccount(raceSource.user.id, raceAt);
+  await started;
+  const secondService = appleService({
+    exchangeAuthorizationCode: async () => { throw new Error('unused'); },
+    revoke: async () => { throw new AppleAuthHttpError('invalid_grant'); },
+  });
+  assert.deepEqual(
+    await secondService.revokeForAccount(raceSource.user.id, new Date(raceAt.getTime() + 3 * 60 * 1_000)),
+    { outcome: 'manual_action_required' },
+  );
+  releaseFirst();
+  assert.deepEqual(await firstAttempt, { outcome: 'manual_action_required' });
+  assert.equal(queryScalar(`SELECT status || ':' || revoke_attempt_count::text || ':' || (revoke_lease_token IS NULL)::text FROM apple_revocable_credentials WHERE account_id = '${raceSource.user.id}'`), 'manual_action_required:2:true');
 });
 
 test('a revoked Apple subject can register again only by fully replacing credential state', async () => {

@@ -1,5 +1,5 @@
 import { Injectable, Logger, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
-import { and, inArray, lte, ne, or } from 'drizzle-orm';
+import { sql } from 'drizzle-orm';
 
 import { phoneOtpIntents, smsDeliveryAttempts, smsUsageCounters } from '../database/schema';
 import { DatabaseService } from '../database/database.service';
@@ -26,37 +26,35 @@ export class PhoneSecurityRetentionService implements OnModuleInit, OnModuleDest
   }
 
   async cleanup(now = new Date()) {
-    const intents = await this.database.db.select({ id: phoneOtpIntents.id })
-      .from(phoneOtpIntents)
-      .where(lte(phoneOtpIntents.expiresAt, now))
-      .limit(CLEANUP_BATCH_SIZE);
-    if (intents.length > 0) {
-      await this.database.db.delete(phoneOtpIntents)
-        .where(inArray(phoneOtpIntents.id, intents.map(({ id }) => id)));
-    }
-
-    const deliveries = await this.database.db.select({ dedupeKey: smsDeliveryAttempts.dedupeKey })
-      .from(smsDeliveryAttempts)
-      .where(and(
-        lte(smsDeliveryAttempts.expiresAt, now),
-        or(
-          ne(smsDeliveryAttempts.status, 'processing'),
-          lte(smsDeliveryAttempts.leaseUntil, now),
-        ),
-      ))
-      .limit(CLEANUP_BATCH_SIZE);
-    if (deliveries.length > 0) {
-      await this.database.db.delete(smsDeliveryAttempts)
-        .where(inArray(smsDeliveryAttempts.dedupeKey, deliveries.map(({ dedupeKey }) => dedupeKey)));
-    }
-
-    const counters = await this.database.db.select({ scopeKey: smsUsageCounters.scopeKey })
-      .from(smsUsageCounters)
-      .where(lte(smsUsageCounters.expiresAt, now))
-      .limit(CLEANUP_BATCH_SIZE);
-    if (counters.length > 0) {
-      await this.database.db.delete(smsUsageCounters)
-        .where(inArray(smsUsageCounters.scopeKey, counters.map(({ scopeKey }) => scopeKey)));
-    }
+    const nowIso = now.toISOString();
+    await this.database.db.execute(sql`
+      DELETE FROM ${phoneOtpIntents}
+      WHERE ${phoneOtpIntents.id} IN (
+        SELECT ${phoneOtpIntents.id} FROM ${phoneOtpIntents}
+        WHERE ${phoneOtpIntents.expiresAt} <= ${nowIso}::timestamptz
+        LIMIT ${CLEANUP_BATCH_SIZE}
+      )
+      AND ${phoneOtpIntents.expiresAt} <= ${nowIso}::timestamptz
+    `);
+    await this.database.db.execute(sql`
+      DELETE FROM ${smsDeliveryAttempts}
+      WHERE ${smsDeliveryAttempts.dedupeKey} IN (
+        SELECT ${smsDeliveryAttempts.dedupeKey} FROM ${smsDeliveryAttempts}
+        WHERE ${smsDeliveryAttempts.expiresAt} <= ${nowIso}::timestamptz
+          AND (${smsDeliveryAttempts.status} <> 'processing' OR ${smsDeliveryAttempts.leaseUntil} <= ${nowIso}::timestamptz)
+        LIMIT ${CLEANUP_BATCH_SIZE}
+      )
+      AND ${smsDeliveryAttempts.expiresAt} <= ${nowIso}::timestamptz
+      AND (${smsDeliveryAttempts.status} <> 'processing' OR ${smsDeliveryAttempts.leaseUntil} <= ${nowIso}::timestamptz)
+    `);
+    await this.database.db.execute(sql`
+      DELETE FROM ${smsUsageCounters}
+      WHERE ${smsUsageCounters.scopeKey} IN (
+        SELECT ${smsUsageCounters.scopeKey} FROM ${smsUsageCounters}
+        WHERE ${smsUsageCounters.expiresAt} <= ${nowIso}::timestamptz
+        LIMIT ${CLEANUP_BATCH_SIZE}
+      )
+      AND ${smsUsageCounters.expiresAt} <= ${nowIso}::timestamptz
+    `);
   }
 }

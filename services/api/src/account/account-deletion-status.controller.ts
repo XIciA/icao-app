@@ -22,7 +22,10 @@ export class AccountDeletionStatusController {
     if (!parsed.success) throw new BadRequestException('invalid_account_deletion_status');
     return {
       requestId: request.id,
-      data: await this.deletion.statusByIdempotencyKey(parsed.data.idempotencyKey),
+      data: await this.deletion.statusByIdempotencyKey(
+        parsed.data.idempotencyKey,
+        (request as AuthenticatedRequest & { ip?: string }).ip ?? 'unknown',
+      ),
     };
   }
 }

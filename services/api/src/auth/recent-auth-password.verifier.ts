@@ -1,4 +1,4 @@
-import { Inject, Injectable, ServiceUnavailableException, UnauthorizedException } from '@nestjs/common';
+import { ForbiddenException, Inject, Injectable, ServiceUnavailableException } from '@nestjs/common';
 import { isChinaMobileE164 } from '@icao/contracts';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 
@@ -28,7 +28,7 @@ export class SupabaseRecentAuthPasswordVerifier implements RecentAuthPasswordVer
       || !source.user.providers?.includes('phone')
       || source.passwordSet === false
     ) {
-      throw new UnauthorizedException('password_reauthentication_unavailable');
+      throw new ForbiddenException('password_reauthentication_unavailable');
     }
 
     const { data, error } = await this.publicAuth.auth.signInWithPassword({
@@ -44,7 +44,7 @@ export class SupabaseRecentAuthPasswordVerifier implements RecentAuthPasswordVer
       if (data.session) {
         await this.adminAuth.auth.admin.signOut(data.session.access_token, 'local').catch(() => undefined);
       }
-      throw new UnauthorizedException('invalid_phone_or_password');
+      throw new ForbiddenException('invalid_phone_or_password');
     }
 
     const { error: signOutError } = await this.adminAuth.auth.admin.signOut(data.session.access_token, 'local');

@@ -1,4 +1,4 @@
-import { ConflictException, HttpException, HttpStatus, Inject, Injectable, ServiceUnavailableException, UnauthorizedException } from '@nestjs/common';
+import { ConflictException, ForbiddenException, HttpException, HttpStatus, Inject, Injectable, ServiceUnavailableException } from '@nestjs/common';
 import type { AccountSummary, AuthorizePasswordRecoveryResponse, MergePhoneAccountResponse, StartPhoneBindingResponse, UpdatePhonePasswordResponse } from '@icao/contracts';
 import { isChinaMobileE164 } from '@icao/contracts';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
@@ -87,7 +87,7 @@ export class AccountService {
     recoveryGrantId?: string,
   ): Promise<UpdatePhonePasswordResponse> {
     if (!isChinaMobileE164(source.user.phone) || !source.user.providers?.includes('phone')) {
-      throw new UnauthorizedException('verified_phone_required');
+      throw new ForbiddenException('verified_phone_required');
     }
     let isPasswordRecovery = false;
     if (currentPassword === undefined) {
@@ -95,7 +95,7 @@ export class AccountService {
       if (isFirstPasswordSetup) {
         await this.phoneAuth.consumeOtpIntent(source, 'login');
       } else {
-        if (!recoveryGrantId) throw new UnauthorizedException('phone_reauthentication_required');
+        if (!recoveryGrantId) throw new ForbiddenException('phone_reauthentication_required');
         await this.recentAuth.consume(source, recoveryGrantId, 'password_recovery');
       }
       isPasswordRecovery = !isFirstPasswordSetup;
@@ -121,13 +121,13 @@ export class AccountService {
       const code = body?.code ?? body?.error_code;
       if (code === 'weak_password') throw new HttpException('invalid_phone_password', HttpStatus.BAD_REQUEST);
       if (code === 'same_password') throw new HttpException('password_unchanged', HttpStatus.BAD_REQUEST);
-      if (code === 'reauthentication_needed') throw new UnauthorizedException('phone_reauthentication_required');
+      if (code === 'reauthentication_needed') throw new ForbiddenException('phone_reauthentication_required');
       if (
         code === 'reauthentication_not_valid'
         || code === 'current_password_invalid'
         || code === 'current_password_mismatch'
         || code === 'current_password_required'
-      ) throw new UnauthorizedException('invalid_phone_or_password');
+      ) throw new ForbiddenException('invalid_phone_or_password');
       throw new ServiceUnavailableException('phone_auth_unavailable');
     }
     if (isPasswordRecovery) {
@@ -177,7 +177,7 @@ export class AccountService {
   async mergeWithPhoneOtp(source: VerifiedAuthSession, phone: string, token: string): Promise<MergePhoneAccountResponse> {
     this.assertSocialPhoneBindingAllowed(source);
     const { data, error } = await this.publicAuth.auth.verifyOtp({ phone, token, type: 'sms' });
-    if (error || !data.session || data.user?.phone !== phone) throw new UnauthorizedException('invalid_phone_otp');
+    if (error || !data.session || data.user?.phone !== phone) throw new ForbiddenException('invalid_phone_otp');
     const target = await this.verifier.verify(data.session.access_token);
     await this.sessions.assertActive(target);
     await this.phoneAuth.consumeOtpIntent(target, 'phone_binding', new Date(), source.user.id);
@@ -269,7 +269,7 @@ export class AccountService {
     const providers = source.user.providers ?? [];
     if (providers.includes('phone')) throw new ConflictException('account_phone_identity_conflict');
     if (!providers.includes('apple')) {
-      throw new UnauthorizedException('social_identity_required');
+      throw new ForbiddenException('social_identity_required');
     }
     const appleAuthenticatedAt = Math.max(
       0,
@@ -288,16 +288,16 @@ export class AccountService {
       && now - appleAuthenticatedAt <= RECENT_SOCIAL_AUTH_WINDOW_SECONDS,
     );
     if (appleIsRecent) return 'apple' as const;
-    throw new UnauthorizedException('recent_social_auth_required');
+    throw new ForbiddenException('recent_social_auth_required');
   }
 
   private async mergeAccounts(target: VerifiedAuthSession, source: VerifiedAuthSession): Promise<AccountSummary> {
-    if (!isChinaMobileE164(target.user.phone)) throw new UnauthorizedException('verified_phone_required');
+    if (!isChinaMobileE164(target.user.phone)) throw new ForbiddenException('verified_phone_required');
     const targetAccountId = target.user.id;
     const sourceAccountId = source.user.id;
     if (targetAccountId === sourceAccountId) return this.summary(targetAccountId, target.user.phone);
     if (!source.user.providers?.includes('apple')) {
-      throw new UnauthorizedException('social_identity_required');
+      throw new ForbiddenException('social_identity_required');
     }
     if (source.user.providers.includes('phone')) {
       throw new ConflictException('account_phone_identity_conflict');

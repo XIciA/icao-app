@@ -118,7 +118,10 @@ export class SupabaseSmsHookService {
     }
     const input = this.verify(rawBody, headers);
     const claimed = await this.authority.claim(input.dedupeKey, input.phone);
-    if (claimed.outcome === 'duplicate') return;
+    if (claimed.outcome === 'duplicate_completed') return;
+    if (claimed.outcome === 'duplicate_inflight') {
+      throw new ServiceUnavailableException('sms_delivery_in_progress');
+    }
     try {
       await this.provider.sendOtp({ outId: input.dedupeKey, phone: input.phone, otp: input.otp });
       await this.authority.complete(input.dedupeKey, claimed.leaseToken);

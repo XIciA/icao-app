@@ -22,7 +22,9 @@ export type SmsDeliveryClaim = {
   outcome: 'claimed';
   rules: UsageRule[];
 } | {
-  outcome: 'duplicate';
+  outcome: 'duplicate_completed';
+} | {
+  outcome: 'duplicate_inflight';
 };
 
 function chinaTimeBuckets(now: number) {
@@ -56,14 +58,12 @@ export class SmsDeliveryAuthority {
       await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`sms-delivery:${dedupeKey}`}, 0))`);
       const [existing] = await transaction.select().from(smsDeliveryAttempts)
         .where(eq(smsDeliveryAttempts.dedupeKey, dedupeKey)).limit(1);
-      if (
-        existing
-        && existing.expiresAt > now
-        && (
-          existing.status === 'completed'
-          || (existing.status === 'processing' && existing.leaseUntil > now)
-        )
-      ) return { outcome: 'duplicate' };
+      if (existing && existing.expiresAt > now && existing.status === 'completed') {
+        return { outcome: 'duplicate_completed' };
+      }
+      if (existing && existing.status === 'processing' && existing.leaseUntil > now) {
+        return { outcome: 'duplicate_inflight' };
+      }
 
       for (const rule of [...rules].sort((left, right) => left.scopeKey.localeCompare(right.scopeKey))) {
         await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`sms-usage:${rule.scopeKey}`}, 0))`);
@@ -138,7 +138,7 @@ export class SmsDeliveryAuthority {
     });
   }
 
-  async fail(dedupeKey: string, leaseToken: string, rules: UsageRule[], now = new Date()) {
+  async fail(dedupeKey: string, leaseToken: string, _rules: UsageRule[], now = new Date()) {
     await this.database.db.transaction(async (transaction) => {
       await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`sms-delivery:${dedupeKey}`}, 0))`);
       const [owned] = await transaction.select({ dedupeKey: smsDeliveryAttempts.dedupeKey })
@@ -149,27 +149,16 @@ export class SmsDeliveryAuthority {
           eq(smsDeliveryAttempts.status, 'processing'),
         )).limit(1);
       if (!owned) return;
-      for (const rule of [...rules].sort((left, right) => left.scopeKey.localeCompare(right.scopeKey))) {
-        await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`sms-usage:${rule.scopeKey}`}, 0))`);
-      }
-      const counters = await transaction.select().from(smsUsageCounters)
-        .where(inArray(smsUsageCounters.scopeKey, rules.map(({ scopeKey }) => scopeKey)));
-      for (const counter of counters) {
-        if (counter.count <= 1) {
-          await transaction.delete(smsUsageCounters).where(eq(smsUsageCounters.scopeKey, counter.scopeKey));
-        } else {
-          await transaction.update(smsUsageCounters).set({
-            count: counter.count - 1,
-            updatedAt: now,
-          }).where(eq(smsUsageCounters.scopeKey, counter.scopeKey));
-        }
-      }
       await transaction.update(smsDeliveryAttempts).set({
         lastErrorCode: 'sms_delivery_failed',
         leaseUntil: now,
         status: 'retryable',
         updatedAt: now,
-      }).where(eq(smsDeliveryAttempts.dedupeKey, dedupeKey));
+      }).where(and(
+        eq(smsDeliveryAttempts.dedupeKey, dedupeKey),
+        eq(smsDeliveryAttempts.leaseToken, leaseToken),
+        eq(smsDeliveryAttempts.status, 'processing'),
+      ));
     });
   }
 

@@ -109,6 +109,8 @@ export const appleRevocableCredentials = pgTable('apple_revocable_credentials', 
   encryptionVersion: integer('encryption_version').default(1).notNull(),
   status: text('status').default('active').notNull(),
   revokeAttemptCount: integer('revoke_attempt_count').default(0).notNull(),
+  revokeLeaseToken: uuid('revoke_lease_token'),
+  revokeLeaseUntil: timestamp('revoke_lease_until', { withTimezone: true }),
   nextRetryAt: timestamp('next_retry_at', { withTimezone: true }),
   lastAttemptAt: timestamp('last_attempt_at', { withTimezone: true }),
   lastErrorCode: text('last_error_code'),
@@ -124,6 +126,41 @@ export const appleRevocableCredentials = pgTable('apple_revocable_credentials', 
   check('apple_revocable_credentials_attempts_check', sql`${table.revokeAttemptCount} >= 0`),
   check('apple_revocable_credentials_digest_key_version_check', sql`${table.digestKeyVersion} > 0`),
   check('apple_revocable_credentials_encryption_version_check', sql`${table.encryptionVersion} > 0`),
+  check('apple_revocable_credentials_lease_check', sql`(
+    (${table.revokeLeaseToken} IS NULL AND ${table.revokeLeaseUntil} IS NULL)
+    OR (${table.revokeLeaseToken} IS NOT NULL AND ${table.revokeLeaseUntil} IS NOT NULL)
+  )`),
+]).enableRLS();
+
+export const appleCredentialIntakes = pgTable('apple_credential_intakes', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  accountId: uuid('account_id').notNull(),
+  authUserId: uuid('auth_user_id').notNull(),
+  subjectDigest: text('subject_digest').notNull(),
+  subjectDigestAliases: jsonb('subject_digest_aliases').default(sql`'[]'::jsonb`).notNull(),
+  digestKeyVersion: integer('digest_key_version').default(1).notNull(),
+  encryptedRefreshToken: text('encrypted_refresh_token'),
+  encryptionVersion: integer('encryption_version').default(1).notNull(),
+  status: text('status').default('pending_binding').notNull(),
+  attemptCount: integer('attempt_count').default(0).notNull(),
+  leaseToken: uuid('lease_token'),
+  leaseUntil: timestamp('lease_until', { withTimezone: true }),
+  nextRetryAt: timestamp('next_retry_at', { withTimezone: true }),
+  lastAttemptAt: timestamp('last_attempt_at', { withTimezone: true }),
+  lastErrorCode: text('last_error_code'),
+  revokedAt: timestamp('revoked_at', { withTimezone: true }),
+  retentionAt: timestamp('retention_at', { withTimezone: true }).notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  index('apple_credential_intakes_account_status').on(table.accountId, table.status),
+  index('apple_credential_intakes_retry').on(table.status, table.nextRetryAt),
+  index('apple_credential_intakes_retention').on(table.retentionAt),
+  check('apple_credential_intakes_status_check', sql`${table.status} IN ('pending_binding', 'revoke_pending', 'retryable', 'revoked', 'manual_action_required')`),
+  check('apple_credential_intakes_attempts_check', sql`${table.attemptCount} >= 0`),
+  check('apple_credential_intakes_versions_check', sql`${table.digestKeyVersion} > 0 AND ${table.encryptionVersion} > 0`),
+  check('apple_credential_intakes_aliases_check', sql`jsonb_typeof(${table.subjectDigestAliases}) = 'array'`),
+  check('apple_credential_intakes_retention_check', sql`${table.retentionAt} > ${table.createdAt}`),
 ]).enableRLS();
 
 export const lifetimeIdentityBenefitClaims = pgTable('lifetime_identity_benefit_claims', {
@@ -192,6 +229,12 @@ export const smsDeliveryAttempts = pgTable('sms_delivery_attempts', {
   check('sms_delivery_attempts_status_check', sql`${table.status} IN ('processing', 'retryable', 'completed')`),
   check('sms_delivery_attempts_attempts_check', sql`${table.attemptCount} > 0`),
   check('sms_delivery_attempts_expiry_check', sql`${table.expiresAt} > ${table.createdAt}`),
+  check('sms_delivery_attempts_lease_time_check', sql`${table.leaseUntil} >= ${table.createdAt}`),
+  check('sms_delivery_attempts_completed_time_check', sql`${table.completedAt} IS NULL OR ${table.completedAt} >= ${table.createdAt}`),
+  check('sms_delivery_attempts_state_time_check', sql`(
+    (${table.status} = 'completed' AND ${table.completedAt} IS NOT NULL)
+    OR (${table.status} <> 'completed' AND ${table.completedAt} IS NULL)
+  )`),
 ]).enableRLS();
 
 export const accountDeletionJobs = pgTable('account_deletion_jobs', {
@@ -204,6 +247,7 @@ export const accountDeletionJobs = pgTable('account_deletion_jobs', {
   objectCleanupStatus: text('object_cleanup_status').default('pending').notNull(),
   objectKeys: jsonb('object_keys').default(sql`'[]'::jsonb`).notNull(),
   attemptCount: integer('attempt_count').default(0).notNull(),
+  leaseToken: uuid('lease_token'),
   nextRetryAt: timestamp('next_retry_at', { withTimezone: true }),
   lastErrorCode: text('last_error_code'),
   requestedAt: timestamp('requested_at', { withTimezone: true }).defaultNow().notNull(),
@@ -262,12 +306,24 @@ export const accountDeletionTombstones = pgTable('account_deletion_tombstones', 
 
 export const accountContentCredentialRevocations = pgTable('account_content_credential_revocations', {
   accountId: uuid('account_id').primaryKey(),
-  deletionJobId: uuid('deletion_job_id').notNull()
-    .references(() => accountDeletionJobs.id, { onDelete: 'restrict' }),
+  deletionJobId: uuid('deletion_job_id')
+    .references(() => accountDeletionJobs.id, { onDelete: 'set null' }),
   revokedBefore: timestamp('revoked_before', { withTimezone: true }).notNull(),
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
 }, (table) => [
   uniqueIndex('account_content_credential_revocations_job').on(table.deletionJobId),
+]).enableRLS();
+
+export const accountDeletionStatusRateLimits = pgTable('account_deletion_status_rate_limits', {
+  scopeDigest: text('scope_digest').primaryKey(),
+  count: integer('count').default(0).notNull(),
+  windowStartedAt: timestamp('window_started_at', { withTimezone: true }).notNull(),
+  expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  index('account_deletion_status_rate_limits_expiry').on(table.expiresAt),
+  check('account_deletion_status_rate_limits_count_check', sql`${table.count} >= 0`),
+  check('account_deletion_status_rate_limits_expiry_check', sql`${table.expiresAt} > ${table.windowStartedAt}`),
 ]).enableRLS();
 
 export const accountSecurityEvents = pgTable('account_security_events', {

@@ -1,6 +1,6 @@
 import { createHmac } from 'node:crypto';
 
-import { HttpException, HttpStatus, Inject, Injectable, ServiceUnavailableException, UnauthorizedException } from '@nestjs/common';
+import { ForbiddenException, HttpException, HttpStatus, Inject, Injectable, ServiceUnavailableException } from '@nestjs/common';
 import type { RecentAuthPurpose, StartPhoneOtpResponse } from '@icao/contracts';
 import { isChinaMobileE164 } from '@icao/contracts';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
@@ -70,7 +70,7 @@ export class PhoneAuthService {
   ): Promise<StartPhoneOtpResponse> {
     const phone = source.user.phone;
     if (!isChinaMobileE164(phone) || !source.user.providers?.includes('phone')) {
-      throw new UnauthorizedException('phone_reauthentication_required');
+      throw new ForbiddenException('phone_reauthentication_required');
     }
     const startedAt = new Date();
     const { error } = await this.client(sourceIp).auth.signInWithOtp({
@@ -127,13 +127,13 @@ export class PhoneAuthService {
   ) {
     const phone = source.user.phone;
     if (!isChinaMobileE164(phone) || !source.user.providers?.includes('phone')) {
-      throw new UnauthorizedException('phone_reauthentication_required');
+      throw new ForbiddenException('phone_reauthentication_required');
     }
     const nowSeconds = Math.floor(now.getTime() / 1_000);
     const otpTimestamp = Math.max(...source.authenticationMethods
       .filter((entry) => entry.method === 'otp' && entry.timestamp <= nowSeconds + 60)
       .map((entry) => entry.timestamp), Number.NEGATIVE_INFINITY);
-    if (!Number.isFinite(otpTimestamp)) throw new UnauthorizedException('phone_reauthentication_required');
+    if (!Number.isFinite(otpTimestamp)) throw new ForbiddenException('phone_reauthentication_required');
     const accountCondition = purpose === 'login' || purpose === 'password_recovery'
       ? isNull(phoneOtpIntents.accountId)
       : eq(phoneOtpIntents.accountId, boundAccountId);
@@ -150,7 +150,7 @@ export class PhoneAuthService {
       .orderBy(desc(phoneOtpIntents.createdAt))
       .limit(1)
       .for('update');
-    if (!intent) throw new UnauthorizedException('phone_reauthentication_required');
+    if (!intent) throw new ForbiddenException('phone_reauthentication_required');
     const [updated] = await transaction.update(phoneOtpIntents).set({
       consumedAt: now,
       status: 'consumed',
@@ -158,7 +158,7 @@ export class PhoneAuthService {
       eq(phoneOtpIntents.id, intent.id),
       eq(phoneOtpIntents.status, 'pending'),
     )).returning({ id: phoneOtpIntents.id });
-    if (!updated) throw new UnauthorizedException('phone_reauthentication_required');
+    if (!updated) throw new ForbiddenException('phone_reauthentication_required');
   }
 
   private isRateLimit(code: string | undefined) {

@@ -134,6 +134,20 @@
       "when": 1787568409332,
       "tag": "0018_chief_union_jack",
       "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "7",
+      "when": 1787569500743,
+      "tag": "0019_ordinary_hex",
+      "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "7",
+      "when": 1787570168688,
+      "tag": "0020_bitter_maelstrom",
+      "breakpoints": true
     }
   ]
 }

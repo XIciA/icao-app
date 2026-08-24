@@ -382,6 +382,16 @@ describe('API foundation', () => {
     const headers = { authorization: 'Bearer valid-token' };
     const revoked = await app.inject({ method: 'POST', url: '/v1/account/sessions/revoke-all', headers });
     const invalidDeletion = await app.inject({ method: 'DELETE', url: '/v1/account', headers, payload: { confirmation: '删除账号' } });
+    const nonV4Deletion = await app.inject({
+      method: 'DELETE',
+      url: '/v1/account',
+      headers,
+      payload: {
+        confirmation: '注销账号',
+        grantId: '00000000-0000-4000-8000-000000000097',
+        idempotencyKey: '00000000-0000-1000-8000-000000000098',
+      },
+    });
     const deleted = await app.inject({
       method: 'DELETE',
       url: '/v1/account',
@@ -397,10 +407,17 @@ describe('API foundation', () => {
       url: '/v1/account/deletion/status',
       payload: { idempotencyKey: '00000000-0000-4000-8000-000000000098' },
     });
+    const nonV4DeletionStatus = await app.inject({
+      method: 'POST',
+      url: '/v1/account/deletion/status',
+      payload: { idempotencyKey: '00000000-0000-1000-8000-000000000098' },
+    });
     expect(revoked.statusCode).toBe(201);
     expect(revoked.json().data).toEqual({ revoked: true });
     expect(invalidDeletion.statusCode).toBe(400);
     expect(invalidDeletion.json().error.code).toBe('invalid_account_deletion');
+    expect(nonV4Deletion.statusCode).toBe(400);
+    expect(nonV4Deletion.json().error.code).toBe('invalid_account_deletion');
     expect(deleted.statusCode).toBe(202);
     expect(deleted.json().data).toEqual({
       identityProviderOutcome: 'not_applicable',
@@ -409,6 +426,8 @@ describe('API foundation', () => {
     });
     expect(deletionStatus.statusCode).toBe(201);
     expect(deletionStatus.json().data).toEqual(deleted.json().data);
+    expect(nonV4DeletionStatus.statusCode).toBe(400);
+    expect(nonV4DeletionStatus.json().error.code).toBe('invalid_account_deletion_status');
     await app.close();
   });
 

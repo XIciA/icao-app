@@ -3,11 +3,11 @@ import { z } from 'zod';
 export const deleteAccountSchema = z.object({
   confirmation: z.literal('注销账号'),
   grantId: z.uuid(),
-  idempotencyKey: z.uuid(),
+  idempotencyKey: z.uuidv4(),
 }).strict();
 
 export const accountDeletionStatusSchema = z.object({
-  idempotencyKey: z.uuid(),
+  idempotencyKey: z.uuidv4(),
 }).strict();
 
 export const mergePhoneAccountSchema = z.object({

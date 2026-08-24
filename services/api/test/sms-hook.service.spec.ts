@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import { Webhook } from 'standardwebhooks';
+import { ServiceUnavailableException } from '@nestjs/common';
 
 import { submitAliyunOtp, type AliyunSmsProvider } from '../src/auth/sms/aliyun-sms.provider';
 import type { SmsDeliveryAuthority } from '../src/auth/sms/sms-delivery-authority';
@@ -48,15 +49,17 @@ function smsPayload(phone = '+8613800138000', otp = '123456') {
 }
 
 function hookService(apiConfig: ApiConfig, provider: AliyunSmsProvider) {
-  const claimed = new Set<string>();
+  const deliveries = new Map<string, 'processing' | 'completed'>();
   const authority = {
     claim: vi.fn(async (dedupeKey: string) => {
-      if (claimed.has(dedupeKey)) return { outcome: 'duplicate' as const };
-      claimed.add(dedupeKey);
+      const existing = deliveries.get(dedupeKey);
+      if (existing === 'completed') return { outcome: 'duplicate_completed' as const };
+      if (existing === 'processing') return { outcome: 'duplicate_inflight' as const };
+      deliveries.set(dedupeKey, 'processing');
       return { leaseToken: '11111111-1111-4111-8111-111111111111', outcome: 'claimed' as const, rules: [] };
     }),
-    complete: vi.fn().mockResolvedValue(undefined),
-    fail: vi.fn(async (dedupeKey: string) => { claimed.delete(dedupeKey); }),
+    complete: vi.fn(async (dedupeKey: string) => { deliveries.set(dedupeKey, 'completed'); }),
+    fail: vi.fn(async (dedupeKey: string) => { deliveries.delete(dedupeKey); }),
   };
   return new SupabaseSmsHookService(apiConfig, provider, authority as unknown as SmsDeliveryAuthority);
 }
@@ -90,9 +93,13 @@ describe('Supabase SMS hook', () => {
 
     const firstOperation = service.handle(first.rawBody, first.headers);
     const retryOperation = service.handle(retry.rawBody, retry.headers);
+    const retryExpectation = expect(retryOperation).rejects.toSatisfy((error: unknown) => (
+      error instanceof ServiceUnavailableException && error.message === 'sms_delivery_in_progress'
+    ));
     await vi.waitFor(() => expect(provider.sendOtp).toHaveBeenCalledTimes(1));
     completeSubmission?.({ requestId: 'request-1' });
-    await Promise.all([firstOperation, retryOperation]);
+    await retryExpectation;
+    await firstOperation;
 
     expect(provider.sendOtp).toHaveBeenCalledTimes(1);
   });

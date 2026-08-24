@@ -1,11 +1,11 @@
-import { createCipheriv, createDecipheriv, createHash, createSign, randomBytes } from 'node:crypto';
+import { createCipheriv, createDecipheriv, createHash, createSign, randomBytes, randomUUID } from 'node:crypto';
 
-import { Inject, Injectable, ServiceUnavailableException, UnauthorizedException } from '@nestjs/common';
-import { eq, inArray, sql } from 'drizzle-orm';
+import { ConflictException, ForbiddenException, Inject, Injectable, Logger, OnModuleDestroy, OnModuleInit, ServiceUnavailableException } from '@nestjs/common';
+import { and, eq, inArray, isNull, lte, or, sql } from 'drizzle-orm';
 
 import { IdentityDigestService } from '../account/identity-digest.service';
 import { API_CONFIG, type ApiConfig } from '../config';
-import { appleRevocableCredentials } from '../database/schema';
+import { accounts, appleCredentialIntakes, appleRevocableCredentials } from '../database/schema';
 import { DatabaseService } from '../database/database.service';
 import { APPLE_AUTH_HTTP, AppleAuthHttpError, type AppleAuthHttp } from './apple-auth-http';
 import type { VerifiedAuthSession } from './auth.types';
@@ -13,6 +13,9 @@ import { APPLE_ID_TOKEN_VERIFIER, type AppleIdTokenVerifier } from './apple-id-t
 
 const APPLE_ISSUER = 'https://appleid.apple.com';
 const CLIENT_SECRET_TTL_SECONDS = 5 * 60;
+const INTAKE_RETENTION_MS = 183 * 24 * 60 * 60 * 1_000;
+const INTAKE_LEASE_MS = 2 * 60 * 1_000;
+const INTAKE_RETRY_INTERVAL_MS = 60_000;
 
 type AppleCredentialInput = {
   authorizationCode: string;
@@ -24,7 +27,10 @@ function base64urlJson(value: unknown) {
 }
 
 @Injectable()
-export class AppleAuthService {
+export class AppleAuthService implements OnModuleInit, OnModuleDestroy {
+  private readonly logger = new Logger(AppleAuthService.name);
+  private retryTimer?: NodeJS.Timeout;
+
   constructor(
     @Inject(API_CONFIG) private readonly config: ApiConfig,
     @Inject(APPLE_AUTH_HTTP) private readonly http: AppleAuthHttp,
@@ -32,6 +38,17 @@ export class AppleAuthService {
     private readonly database: DatabaseService,
     private readonly digests: IdentityDigestService,
   ) {}
+
+  onModuleInit() {
+    this.retryTimer = setInterval(() => {
+      void this.retryDueIntakes().catch(() => this.logger.error('apple_credential_intake_retry_failed'));
+    }, INTAKE_RETRY_INTERVAL_MS);
+    this.retryTimer.unref();
+  }
+
+  onModuleDestroy() {
+    if (this.retryTimer) clearInterval(this.retryTimer);
+  }
 
   async registerCredential(
     source: VerifiedAuthSession,
@@ -49,12 +66,18 @@ export class AppleAuthService {
       });
     } catch (error) {
       if (this.httpErrorCode(error) === 'invalid_grant') {
-        throw new UnauthorizedException('invalid_apple_authorization');
+        throw new ForbiddenException('invalid_apple_authorization');
       }
       throw new ServiceUnavailableException('apple_auth_unavailable');
     }
-    const claims = await this.idTokenVerifier.verify(response.idToken, apple.clientId);
-    this.validateClaims(claims, subject, input.rawNonce, now, apple.clientId);
+    let claims;
+    try {
+      claims = await this.idTokenVerifier.verify(response.idToken, apple.clientId);
+      this.validateClaims(claims, subject, input.rawNonce, now, apple.clientId);
+    } catch {
+      await this.revokeUnpersisted(response.refreshToken, apple, now);
+      throw new ForbiddenException('invalid_apple_authorization');
+    }
     const currentDigest = this.digests.current('apple-revocable-credential-v1', 'apple', subject);
     const candidateDigests = this.digests
       .candidates('apple-revocable-credential-v1', 'apple', subject)
@@ -65,30 +88,108 @@ export class AppleAuthService {
       this.encryptionContext(source.user.id, source.authUserId, currentDigest.digest),
     );
 
+    const intakeId = randomUUID();
+    try {
+      await this.database.db.insert(appleCredentialIntakes).values({
+        id: intakeId,
+        accountId: source.user.id,
+        authUserId: source.authUserId,
+        subjectDigest: currentDigest.digest,
+        subjectDigestAliases: candidateDigests,
+        digestKeyVersion: currentDigest.version,
+        encryptedRefreshToken,
+        retentionAt: new Date(now.getTime() + INTAKE_RETENTION_MS),
+        createdAt: now,
+        updatedAt: now,
+      });
+    } catch {
+      await this.revokeUnpersisted(response.refreshToken, apple, now);
+      throw new ServiceUnavailableException('apple_credential_persistence_failed');
+    }
+    try {
+      await this.bindIntake(intakeId, now);
+    } catch (error) {
+      await this.compensateIntake(intakeId, now).catch(() => undefined);
+      if (error instanceof ConflictException || error instanceof ForbiddenException) throw error;
+      throw new ServiceUnavailableException('apple_credential_persistence_failed');
+    }
+    return { registered: true as const };
+  }
+
+  async retryDueIntakes(now = new Date()) {
+    await this.database.db.delete(appleCredentialIntakes).where(and(
+      inArray(appleCredentialIntakes.status, ['revoked', 'manual_action_required']),
+      lte(appleCredentialIntakes.retentionAt, now),
+    ));
+    const rows = await this.database.db.select({ id: appleCredentialIntakes.id })
+      .from(appleCredentialIntakes)
+      .where(or(
+        eq(appleCredentialIntakes.status, 'pending_binding'),
+        and(
+          inArray(appleCredentialIntakes.status, ['retryable', 'revoke_pending']),
+          or(isNull(appleCredentialIntakes.nextRetryAt), lte(appleCredentialIntakes.nextRetryAt, now)),
+          or(isNull(appleCredentialIntakes.leaseUntil), lte(appleCredentialIntakes.leaseUntil, now)),
+        ),
+      )).limit(25);
+    for (const row of rows) {
+      const [intake] = await this.database.db.select({ status: appleCredentialIntakes.status })
+        .from(appleCredentialIntakes).where(eq(appleCredentialIntakes.id, row.id)).limit(1);
+      if (!intake) continue;
+      if (intake.status === 'pending_binding') {
+        try {
+          await this.bindIntake(row.id, now);
+          continue;
+        } catch {
+          // A pending intake that can no longer bind must be revoked durably.
+        }
+      }
+      await this.compensateIntake(row.id, now);
+    }
+  }
+
+  private async bindIntake(intakeId: string, now: Date) {
     await this.database.db.transaction(async (transaction) => {
+      const [intake] = await transaction.select().from(appleCredentialIntakes)
+        .where(eq(appleCredentialIntakes.id, intakeId)).limit(1).for('update');
+      if (!intake) return;
+      if (intake.status !== 'pending_binding' || !intake.encryptedRefreshToken) {
+        throw new Error('apple_credential_intake_not_bindable');
+      }
+      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`account:${intake.accountId}`}, 0))`);
+      const aliases = Array.isArray(intake.subjectDigestAliases)
+        ? intake.subjectDigestAliases.filter((digest): digest is string => typeof digest === 'string')
+        : [];
+      const candidateDigests = [...new Set([intake.subjectDigest, ...aliases])];
       for (const digest of [...candidateDigests].sort()) {
         await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`apple-credential:${digest}`}, 0))`);
       }
+      const [account] = await transaction.select({ status: accounts.status }).from(accounts)
+        .where(eq(accounts.id, intake.accountId)).limit(1).for('key share');
+      if (!account || account.status !== 'active') throw new ForbiddenException('account_not_active');
       const [existing] = await transaction.select({
         accountId: appleRevocableCredentials.accountId,
         id: appleRevocableCredentials.id,
         status: appleRevocableCredentials.status,
       }).from(appleRevocableCredentials)
-        .where(inArray(appleRevocableCredentials.subjectDigest, candidateDigests))
-        .limit(1);
-      if (existing && existing.status !== 'revoked' && existing.accountId !== source.user.id) {
-        throw new UnauthorizedException('identity_account_conflict');
+        .where(or(
+          inArray(appleRevocableCredentials.subjectDigest, candidateDigests),
+          eq(appleRevocableCredentials.authUserId, intake.authUserId),
+        )).limit(1);
+      if (existing && existing.status !== 'revoked' && existing.accountId !== intake.accountId) {
+        throw new ConflictException('identity_account_conflict');
       }
       const values = {
-        accountId: source.user.id,
-        authUserId: source.authUserId,
-        subjectDigest: currentDigest.digest,
-        digestKeyVersion: currentDigest.version,
-        encryptedRefreshToken,
-        encryptionVersion: 1,
+        accountId: intake.accountId,
+        authUserId: intake.authUserId,
+        subjectDigest: intake.subjectDigest,
+        digestKeyVersion: intake.digestKeyVersion,
+        encryptedRefreshToken: intake.encryptedRefreshToken,
+        encryptionVersion: intake.encryptionVersion,
         status: 'active',
         revokeAttemptCount: 0,
         nextRetryAt: null,
+        revokeLeaseToken: null,
+        revokeLeaseUntil: null,
         lastAttemptAt: null,
         lastErrorCode: null,
         revokedAt: null,
@@ -100,8 +201,106 @@ export class AppleAuthService {
       } else {
         await transaction.insert(appleRevocableCredentials).values(values);
       }
+      await transaction.delete(appleCredentialIntakes).where(eq(appleCredentialIntakes.id, intake.id));
     });
-    return { registered: true as const };
+  }
+
+  private async compensateIntake(intakeId: string, now: Date) {
+    const leaseToken = randomUUID();
+    const claimed = await this.database.db.transaction(async (transaction) => {
+      await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`apple-intake:${intakeId}`}, 0))`);
+      const [intake] = await transaction.select().from(appleCredentialIntakes)
+        .where(eq(appleCredentialIntakes.id, intakeId)).limit(1);
+      if (!intake || ['revoked', 'manual_action_required'].includes(intake.status)) return undefined;
+      if (intake.leaseToken && intake.leaseUntil && intake.leaseUntil > now) return undefined;
+      const [updated] = await transaction.update(appleCredentialIntakes).set({
+        status: 'revoke_pending',
+        attemptCount: intake.attemptCount + 1,
+        leaseToken,
+        leaseUntil: new Date(now.getTime() + INTAKE_LEASE_MS),
+        lastAttemptAt: now,
+        nextRetryAt: null,
+        updatedAt: now,
+      }).where(eq(appleCredentialIntakes.id, intake.id)).returning();
+      return updated ? { intake: updated, conservative: intake.status !== 'pending_binding' || intake.attemptCount > 0 } : undefined;
+    });
+    if (!claimed) return;
+    const { intake, conservative } = claimed;
+    if (!intake.encryptedRefreshToken) {
+      await this.finishIntake(intake.id, leaseToken, {
+        status: 'manual_action_required',
+        lastErrorCode: 'credential_unavailable',
+      }, now);
+      return;
+    }
+    const apple = this.requireConfiguration();
+    try {
+      await this.http.revoke({
+        clientId: apple.clientId,
+        clientSecret: this.clientSecret(apple, now),
+        refreshToken: this.decrypt(
+          intake.encryptedRefreshToken,
+          apple.encryptionKey,
+          this.encryptionContext(intake.accountId, intake.authUserId, intake.subjectDigest),
+        ),
+      });
+    } catch (error) {
+      const code = this.httpErrorCode(error);
+      if (code === 'invalid_grant' && conservative) {
+        await this.finishIntake(intake.id, leaseToken, {
+          encryptedRefreshToken: null,
+          status: 'manual_action_required',
+          lastErrorCode: 'invalid_grant_after_attempt',
+        }, now);
+        return;
+      }
+      await this.finishIntake(intake.id, leaseToken, {
+        status: 'retryable',
+        lastErrorCode: code,
+        nextRetryAt: new Date(now.getTime() + this.retryDelayMs(intake.attemptCount)),
+      }, now);
+      return;
+    }
+    await this.finishIntake(intake.id, leaseToken, {
+      encryptedRefreshToken: null,
+      status: 'revoked',
+      lastErrorCode: null,
+      revokedAt: now,
+    }, now);
+  }
+
+  private async finishIntake(
+    intakeId: string,
+    leaseToken: string,
+    values: Partial<typeof appleCredentialIntakes.$inferInsert>,
+    now: Date,
+  ) {
+    await this.database.db.update(appleCredentialIntakes).set({
+      ...values,
+      leaseToken: null,
+      leaseUntil: null,
+      updatedAt: now,
+    }).where(and(
+      eq(appleCredentialIntakes.id, intakeId),
+      eq(appleCredentialIntakes.leaseToken, leaseToken),
+      eq(appleCredentialIntakes.status, 'revoke_pending'),
+    ));
+  }
+
+  private async revokeUnpersisted(
+    refreshToken: string,
+    apple: ReturnType<AppleAuthService['requireConfiguration']>,
+    now: Date,
+  ) {
+    try {
+      await this.http.revoke({
+        clientId: apple.clientId,
+        clientSecret: this.clientSecret(apple, now),
+        refreshToken,
+      });
+    } catch {
+      // The database failure is still surfaced; no plaintext credential is logged.
+    }
   }
 
   async revokeForAccount(accountId: string, now = new Date()) {
@@ -126,11 +325,24 @@ export class AppleAuthService {
         continue;
       }
       const apple = this.requireConfiguration();
-      await this.database.db.update(appleRevocableCredentials).set({
+      const attemptNumber = credential.revokeAttemptCount + 1;
+      const revokeLeaseToken = randomUUID();
+      const [claimed] = await this.database.db.update(appleRevocableCredentials).set({
         status: 'revoke_pending',
+        revokeAttemptCount: attemptNumber,
+        revokeLeaseToken,
+        revokeLeaseUntil: new Date(now.getTime() + INTAKE_LEASE_MS),
         lastAttemptAt: now,
         updatedAt: now,
-      }).where(eq(appleRevocableCredentials.id, credential.id));
+      }).where(and(
+        eq(appleRevocableCredentials.id, credential.id),
+        eq(appleRevocableCredentials.revokeAttemptCount, credential.revokeAttemptCount),
+        eq(appleRevocableCredentials.status, credential.status),
+        credential.status === 'revoke_pending'
+          ? or(isNull(appleRevocableCredentials.revokeLeaseUntil), lte(appleRevocableCredentials.revokeLeaseUntil, now))
+          : inArray(appleRevocableCredentials.status, ['active', 'retryable']),
+      )).returning();
+      if (!claimed) return { errorCode: 'unavailable' as const, outcome: 'retryable' as const };
       try {
         await this.http.revoke({
           clientId: apple.clientId,
@@ -148,38 +360,70 @@ export class AppleAuthService {
           || credential.status === 'retryable'
           || credential.revokeAttemptCount > 0
         )) {
-          await this.database.db.update(appleRevocableCredentials).set({
+          const [finished] = await this.database.db.update(appleRevocableCredentials).set({
             encryptedRefreshToken: null,
             status: 'manual_action_required',
-            revokeAttemptCount: credential.revokeAttemptCount + 1,
+            revokeAttemptCount: attemptNumber,
+            revokeLeaseToken: null,
+            revokeLeaseUntil: null,
             nextRetryAt: null,
             lastAttemptAt: now,
             lastErrorCode: 'invalid_grant_after_attempt',
             updatedAt: now,
-          }).where(eq(appleRevocableCredentials.id, credential.id));
+          }).where(this.ownedCredentialRevoke(credential.id, attemptNumber, revokeLeaseToken))
+            .returning({ status: appleRevocableCredentials.status });
+          if (!finished) {
+            const status = await this.credentialStatus(credential.id);
+            if (status === 'revoked') continue;
+            if (status !== 'manual_action_required') {
+              return { errorCode: 'unavailable' as const, outcome: 'retryable' as const };
+            }
+          }
           manualActionRequired = true;
           continue;
         }
-        await this.database.db.update(appleRevocableCredentials).set({
+        const [finished] = await this.database.db.update(appleRevocableCredentials).set({
           status: 'retryable',
-          revokeAttemptCount: credential.revokeAttemptCount + 1,
-          nextRetryAt: new Date(now.getTime() + this.retryDelayMs(credential.revokeAttemptCount + 1)),
+          revokeAttemptCount: attemptNumber,
+          revokeLeaseToken: null,
+          revokeLeaseUntil: null,
+          nextRetryAt: new Date(now.getTime() + this.retryDelayMs(attemptNumber)),
           lastAttemptAt: now,
           lastErrorCode: code,
           updatedAt: now,
-        }).where(eq(appleRevocableCredentials.id, credential.id));
+        }).where(this.ownedCredentialRevoke(credential.id, attemptNumber, revokeLeaseToken))
+          .returning({ status: appleRevocableCredentials.status });
+        if (!finished) {
+          const status = await this.credentialStatus(credential.id);
+          if (status === 'revoked') continue;
+          if (status === 'manual_action_required') {
+            manualActionRequired = true;
+            continue;
+          }
+        }
         return { errorCode: code, outcome: 'retryable' as const };
       }
-      await this.database.db.update(appleRevocableCredentials).set({
+      const [finished] = await this.database.db.update(appleRevocableCredentials).set({
         encryptedRefreshToken: null,
         status: 'revoked',
-        revokeAttemptCount: credential.revokeAttemptCount + 1,
+        revokeAttemptCount: attemptNumber,
+        revokeLeaseToken: null,
+        revokeLeaseUntil: null,
         nextRetryAt: null,
         lastAttemptAt: now,
         lastErrorCode: null,
         revokedAt: now,
         updatedAt: now,
-      }).where(eq(appleRevocableCredentials.id, credential.id));
+      }).where(this.ownedCredentialRevoke(credential.id, attemptNumber, revokeLeaseToken))
+        .returning({ status: appleRevocableCredentials.status });
+      if (!finished) {
+        const status = await this.credentialStatus(credential.id);
+        if (status === 'manual_action_required') {
+          manualActionRequired = true;
+          continue;
+        }
+        if (status !== 'revoked') return { errorCode: 'unavailable' as const, outcome: 'retryable' as const };
+      }
     }
     return { outcome: manualActionRequired ? 'manual_action_required' as const : 'revoked' as const };
   }
@@ -189,9 +433,24 @@ export class AppleAuthService {
       .filter((identity) => identity.provider === 'apple')
       .map((identity) => identity.subject))];
     if (!source.user.providers?.includes('apple') || subjects.length !== 1) {
-      throw new UnauthorizedException('apple_reauthentication_unavailable');
+      throw new ForbiddenException('apple_reauthentication_unavailable');
     }
     return subjects[0]!;
+  }
+
+  private ownedCredentialRevoke(id: string, attemptNumber: number, leaseToken: string) {
+    return and(
+      eq(appleRevocableCredentials.id, id),
+      eq(appleRevocableCredentials.status, 'revoke_pending'),
+      eq(appleRevocableCredentials.revokeAttemptCount, attemptNumber),
+      eq(appleRevocableCredentials.revokeLeaseToken, leaseToken),
+    );
+  }
+
+  private async credentialStatus(id: string) {
+    const [row] = await this.database.db.select({ status: appleRevocableCredentials.status })
+      .from(appleRevocableCredentials).where(eq(appleRevocableCredentials.id, id)).limit(1);
+    return row?.status;
   }
 
   private validateClaims(
@@ -211,7 +470,7 @@ export class AppleAuthService {
       || claims.exp <= Math.floor(now.getTime() / 1_000)
       || claims.sub !== subject
       || claims.nonce !== nonce
-    ) throw new UnauthorizedException('invalid_apple_authorization');
+    ) throw new ForbiddenException('invalid_apple_authorization');
   }
 
   private requireConfiguration() {

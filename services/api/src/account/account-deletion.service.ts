@@ -1,6 +1,6 @@
-import { createHmac } from 'node:crypto';
+import { createHmac, randomUUID } from 'node:crypto';
 
-import { ConflictException, Inject, Injectable, Logger, NotFoundException, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
+import { ConflictException, HttpException, HttpStatus, Inject, Injectable, Logger, NotFoundException, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import type { DeleteAccountRequest, DeleteAccountResponse } from '@icao/contracts';
 import { and, eq, inArray, isNull, lte, ne, or, sql } from 'drizzle-orm';
 
@@ -13,6 +13,7 @@ import {
   accountContentCredentialRevocations,
   accountDeletionAuthUsers,
   accountDeletionJobs,
+  accountDeletionStatusRateLimits,
   accountDeletionTombstones,
   accountIdentities,
   accountSecurityEvents,
@@ -38,6 +39,7 @@ import { ACCOUNT_AUTH_ADMIN, type AccountAuthAdmin } from './account-auth-admin'
 
 const DELETION_LEASE_MS = 5 * 60 * 1_000;
 const RETRY_INTERVAL_MS = 60_000;
+const RETENTION_INTERVAL_MS = 60 * 60 * 1_000;
 const DELETION_RECORD_RETENTION_MS = 3 * 365 * 24 * 60 * 60 * 1_000;
 const SECURITY_EVENT_RETENTION_MS = 183 * 24 * 60 * 60 * 1_000;
 
@@ -45,6 +47,7 @@ const SECURITY_EVENT_RETENTION_MS = 183 * 24 * 60 * 60 * 1_000;
 export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
   private readonly logger = new Logger(AccountDeletionService.name);
   private retryTimer?: NodeJS.Timeout;
+  private retentionTimer?: NodeJS.Timeout;
 
   constructor(
     @Inject(API_CONFIG) private readonly config: ApiConfig,
@@ -62,21 +65,28 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
     }, RETRY_INTERVAL_MS);
     this.retryTimer.unref();
     void this.retryDueJobs().catch(() => this.logger.error('account_deletion_retry_worker_failed'));
+    this.retentionTimer = setInterval(() => {
+      void this.purgeExpiredRecords().catch(() => this.logger.error('account_security_retention_cleanup_failed'));
+    }, RETENTION_INTERVAL_MS);
+    this.retentionTimer.unref();
   }
 
   onModuleDestroy() {
     if (this.retryTimer) clearInterval(this.retryTimer);
+    if (this.retentionTimer) clearInterval(this.retentionTimer);
   }
 
   async requestDeletion(source: VerifiedAuthSession, input: DeleteAccountRequest) {
     const requestedAt = new Date();
-    const intent = await this.database.db.transaction(async (transaction) => {
+    let intent;
+    try {
+      intent = await this.database.db.transaction(async (transaction) => {
       await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`account:${source.user.id}`}, 0))`);
       const [existingForAccount] = await transaction.select().from(accountDeletionJobs)
         .where(eq(accountDeletionJobs.accountId, source.user.id)).limit(1);
       if (existingForAccount) {
         if (existingForAccount.idempotencyKey !== input.idempotencyKey) {
-          throw new ConflictException('account_deletion_already_requested');
+          throw new ConflictException('account_deletion_idempotency_conflict');
         }
         return existingForAccount;
       }
@@ -156,18 +166,23 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
         retentionAt: new Date(requestedAt.getTime() + SECURITY_EVENT_RETENTION_MS),
       });
       return job;
-    });
+      });
+    } catch (error) {
+      if (this.isUniqueViolation(error)) throw new ConflictException('account_deletion_idempotency_conflict');
+      throw error;
+    }
     return this.processJob(intent.id);
   }
 
-  async statusByIdempotencyKey(idempotencyKey: string) {
+  async statusByIdempotencyKey(idempotencyKey: string, sourceIp = 'unknown', now = new Date()) {
+    await this.assertStatusRateLimit(idempotencyKey, sourceIp, now);
     const [job] = await this.database.db.select().from(accountDeletionJobs)
       .where(eq(accountDeletionJobs.idempotencyKey, idempotencyKey)).limit(1);
     if (!job) throw new NotFoundException('account_deletion_job_not_found');
     if (
       job.status !== 'completed'
-      && (!job.nextRetryAt || job.nextRetryAt <= new Date())
-    ) return this.processJob(job.id);
+      && (!job.nextRetryAt || job.nextRetryAt <= now)
+    ) return this.processJob(job.id, now);
     return this.responseFor(job);
   }
 
@@ -183,7 +198,9 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
   }
 
   async processJob(jobId: string, now = new Date()): Promise<DeleteAccountResponse> {
+    const leaseToken = randomUUID();
     const [leased] = await this.database.db.update(accountDeletionJobs).set({
+      leaseToken,
       status: 'processing',
       attemptCount: sql`${accountDeletionJobs.attemptCount} + 1`,
       nextRetryAt: new Date(now.getTime() + DELETION_LEASE_MS),
@@ -212,22 +229,26 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
         try {
           result = await this.appleAuth.revokeForAccount(job.accountId, now);
         } catch {
-          return this.markRetryable(job, 'apple_auth_unavailable', now);
+          return this.markRetryable(job, leaseToken, 'apple_auth_unavailable', now);
         }
         if (result.outcome === 'retryable') {
-          return this.markRetryable(job, `apple_revoke_${result.errorCode}`, now);
+          return this.markRetryable(job, leaseToken, `apple_revoke_${result.errorCode}`, now);
         }
-        job = this.updatedJob(await this.database.db.update(accountDeletionJobs).set({
+        const rows = await this.database.db.update(accountDeletionJobs).set({
           identityProviderOutcome: result.outcome,
           identityProvidersRevokedAt: now,
           updatedAt: now,
-        }).where(eq(accountDeletionJobs.id, job.id)).returning());
+        }).where(this.ownedLease(job.id, leaseToken)).returning();
+        if (!rows[0]) return this.responseFor(await this.requireJob(jobId));
+        job = rows[0];
       } else {
-        job = this.updatedJob(await this.database.db.update(accountDeletionJobs).set({
+        const rows = await this.database.db.update(accountDeletionJobs).set({
           identityProviderOutcome: 'not_applicable',
           identityProvidersRevokedAt: now,
           updatedAt: now,
-        }).where(eq(accountDeletionJobs.id, job.id)).returning());
+        }).where(this.ownedLease(job.id, leaseToken)).returning();
+        if (!rows[0]) return this.responseFor(await this.requireJob(jobId));
+        job = rows[0];
       }
     }
 
@@ -241,6 +262,7 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
         try {
           await this.authAdmin.deleteUser(authUser.authUserId);
         } catch {
+          if (!await this.ownsLease(job.id, leaseToken)) return this.responseFor(await this.requireJob(jobId));
           await this.database.db.update(accountDeletionAuthUsers).set({
             status: 'retryable',
             attemptCount: authUser.attemptCount + 1,
@@ -251,8 +273,9 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
             eq(accountDeletionAuthUsers.jobId, job.id),
             eq(accountDeletionAuthUsers.authUserId, authUser.authUserId),
           ));
-          return this.markRetryable(job, 'auth_user_delete_failed', now);
+          return this.markRetryable(job, leaseToken, 'auth_user_delete_failed', now);
         }
+        if (!await this.ownsLease(job.id, leaseToken)) return this.responseFor(await this.requireJob(jobId));
         await this.database.db.update(accountDeletionAuthUsers).set({
           status: 'deleted',
           attemptCount: authUser.attemptCount + 1,
@@ -265,10 +288,12 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
           eq(accountDeletionAuthUsers.authUserId, authUser.authUserId),
         ));
       }
-      job = this.updatedJob(await this.database.db.update(accountDeletionJobs).set({
+      const rows = await this.database.db.update(accountDeletionJobs).set({
         authUsersDeletedAt: now,
         updatedAt: now,
-      }).where(eq(accountDeletionJobs.id, job.id)).returning());
+      }).where(this.ownedLease(job.id, leaseToken)).returning();
+      if (!rows[0]) return this.responseFor(await this.requireJob(jobId));
+      job = rows[0];
     }
 
     if (!job.objectsDeletedAt) {
@@ -279,34 +304,38 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
         try {
           await this.feedback.removeObjects(objectKeys);
         } catch {
+          if (!await this.ownsLease(job.id, leaseToken)) return this.responseFor(await this.requireJob(jobId));
           await this.database.db.update(accountDeletionJobs).set({
             objectCleanupStatus: 'retryable',
             updatedAt: now,
-          }).where(eq(accountDeletionJobs.id, job.id));
-          return this.markRetryable(job, 'object_cleanup_failed', now);
+          }).where(this.ownedLease(job.id, leaseToken));
+          return this.markRetryable(job, leaseToken, 'object_cleanup_failed', now);
         }
       }
-      job = this.updatedJob(await this.database.db.update(accountDeletionJobs).set({
+      const rows = await this.database.db.update(accountDeletionJobs).set({
         objectCleanupStatus: objectKeys.length === 0 ? 'not_applicable' : 'completed',
         objectsDeletedAt: now,
         updatedAt: now,
-      }).where(eq(accountDeletionJobs.id, job.id)).returning());
+      }).where(this.ownedLease(job.id, leaseToken)).returning();
+      if (!rows[0]) return this.responseFor(await this.requireJob(jobId));
+      job = rows[0];
     }
 
     try {
-      return await this.finalize(job, now);
+      return await this.finalize(job, leaseToken, now);
     } catch {
-      return this.markRetryable(job, 'account_data_finalize_failed', now);
+      return this.markRetryable(job, leaseToken, 'account_data_finalize_failed', now);
     }
   }
 
-  private async finalize(job: typeof accountDeletionJobs.$inferSelect, now: Date) {
+  private async finalize(job: typeof accountDeletionJobs.$inferSelect, leaseToken: string, now: Date) {
     return this.database.db.transaction(async (transaction) => {
       await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`account:${job.accountId}`}, 0))`);
       const [current] = await transaction.select().from(accountDeletionJobs)
-        .where(eq(accountDeletionJobs.id, job.id)).limit(1);
+        .where(eq(accountDeletionJobs.id, job.id)).limit(1).for('update');
       if (!current) throw new Error('account_deletion_job_not_found');
       if (current.status === 'completed') return this.responseFor(current);
+      if (current.status !== 'processing' || current.leaseToken !== leaseToken) return this.responseFor(current);
       if (!current.identityProvidersRevokedAt || !current.authUsersDeletedAt || !current.objectsDeletedAt) {
         throw new Error('account_deletion_steps_incomplete');
       }
@@ -360,10 +389,12 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
         completedAt: now,
         lastErrorCode: null,
         nextRetryAt: null,
+        leaseToken: null,
         objectKeys: [],
         requestedByAuthUserId: null,
         updatedAt: now,
-      }).where(eq(accountDeletionJobs.id, job.id)).returning();
+      }).where(this.ownedLease(job.id, leaseToken)).returning();
+      if (!completed) throw new Error('account_deletion_lease_lost');
       await transaction.insert(accountSecurityEvents).values({
         accountDigest: this.accountDigest(job.accountId),
         createdAt: now,
@@ -380,14 +411,82 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
     });
   }
 
-  private async markRetryable(job: typeof accountDeletionJobs.$inferSelect, code: string, now: Date) {
+  private async markRetryable(job: typeof accountDeletionJobs.$inferSelect, leaseToken: string, code: string, now: Date) {
     const [updated] = await this.database.db.update(accountDeletionJobs).set({
       status: 'retryable',
+      leaseToken: null,
       lastErrorCode: code,
       nextRetryAt: this.nextRetryAt(job.attemptCount, now),
       updatedAt: now,
-    }).where(eq(accountDeletionJobs.id, job.id)).returning();
-    return this.responseFor(updated!);
+    }).where(this.ownedLease(job.id, leaseToken)).returning();
+    return this.responseFor(updated ?? await this.requireJob(job.id));
+  }
+
+  async purgeExpiredRecords(now = new Date()) {
+    await this.database.db.delete(accountSecurityEvents).where(lte(accountSecurityEvents.retentionAt, now));
+    await this.database.db.delete(accountDeletionStatusRateLimits)
+      .where(lte(accountDeletionStatusRateLimits.expiresAt, now));
+    const expired = await this.database.db.select({ jobId: accountDeletionTombstones.jobId })
+      .from(accountDeletionTombstones)
+      .where(and(
+        eq(accountDeletionTombstones.status, 'completed'),
+        lte(accountDeletionTombstones.legalRetentionUntil, now),
+      )).limit(100);
+    if (expired.length === 0) return;
+    const jobIds = expired.map(({ jobId }) => jobId);
+    await this.database.db.transaction(async (transaction) => {
+      await transaction.update(accountContentCredentialRevocations).set({ deletionJobId: null })
+        .where(inArray(accountContentCredentialRevocations.deletionJobId, jobIds));
+      await transaction.delete(accountDeletionTombstones).where(inArray(accountDeletionTombstones.jobId, jobIds));
+      await transaction.delete(accountDeletionJobs).where(inArray(accountDeletionJobs.id, jobIds));
+    });
+  }
+
+  private async assertStatusRateLimit(idempotencyKey: string, sourceIp: string, now: Date) {
+    const windowMs = 60_000;
+    const rules = [
+      { limit: 60, scope: `ip:${sourceIp}` },
+      { limit: 30, scope: `capability:${idempotencyKey}` },
+    ].map(({ limit, scope }) => ({ limit, digest: this.securityDigest('account-deletion-status-v1', scope) }));
+    await this.database.db.transaction(async (transaction) => {
+      for (const rule of [...rules].sort((a, b) => a.digest.localeCompare(b.digest))) {
+        await transaction.execute(sql`select pg_advisory_xact_lock(hashtextextended(${`deletion-status:${rule.digest}`}, 0))`);
+        const [current] = await transaction.select().from(accountDeletionStatusRateLimits)
+          .where(eq(accountDeletionStatusRateLimits.scopeDigest, rule.digest)).limit(1);
+        if (current && current.expiresAt > now && current.count >= rule.limit) {
+          throw new HttpException('account_deletion_status_rate_limited', HttpStatus.TOO_MANY_REQUESTS);
+        }
+        await transaction.insert(accountDeletionStatusRateLimits).values({
+          scopeDigest: rule.digest,
+          count: 1,
+          windowStartedAt: now,
+          expiresAt: new Date(now.getTime() + windowMs),
+          updatedAt: now,
+        }).onConflictDoUpdate({
+          target: accountDeletionStatusRateLimits.scopeDigest,
+          set: {
+            count: sql`case when ${accountDeletionStatusRateLimits.expiresAt} <= ${now.toISOString()}::timestamptz then 1 else ${accountDeletionStatusRateLimits.count} + 1 end`,
+            windowStartedAt: sql`case when ${accountDeletionStatusRateLimits.expiresAt} <= ${now.toISOString()}::timestamptz then ${now.toISOString()}::timestamptz else ${accountDeletionStatusRateLimits.windowStartedAt} end`,
+            expiresAt: sql`case when ${accountDeletionStatusRateLimits.expiresAt} <= ${now.toISOString()}::timestamptz then ${new Date(now.getTime() + windowMs).toISOString()}::timestamptz else ${accountDeletionStatusRateLimits.expiresAt} end`,
+            updatedAt: now,
+          },
+        });
+      }
+    });
+  }
+
+  private ownedLease(jobId: string, leaseToken: string) {
+    return and(
+      eq(accountDeletionJobs.id, jobId),
+      eq(accountDeletionJobs.status, 'processing'),
+      eq(accountDeletionJobs.leaseToken, leaseToken),
+    );
+  }
+
+  private async ownsLease(jobId: string, leaseToken: string) {
+    const [owned] = await this.database.db.select({ id: accountDeletionJobs.id }).from(accountDeletionJobs)
+      .where(this.ownedLease(jobId, leaseToken)).limit(1);
+    return Boolean(owned);
   }
 
   private nextRetryAt(attempt: number, now: Date) {
@@ -425,8 +524,21 @@ export class AccountDeletionService implements OnModuleInit, OnModuleDestroy {
   }
 
   private accountDigest(accountId: string) {
+    return this.securityDigest('account-security-event-v1', accountId);
+  }
+
+  private securityDigest(context: string, value: string) {
     return createHmac('sha256', this.config.accountIdentityHashSecret)
-      .update(`account-security-event-v1\0${accountId}`)
+      .update(`${context}\0${value}`)
       .digest('hex');
+  }
+
+  private isUniqueViolation(error: unknown) {
+    let current: unknown = error;
+    for (let depth = 0; depth < 5 && current && typeof current === 'object'; depth += 1) {
+      if ('code' in current && (current as { code?: unknown }).code === '23505') return true;
+      current = 'cause' in current ? (current as { cause?: unknown }).cause : undefined;
+    }
+    return false;
   }
 }

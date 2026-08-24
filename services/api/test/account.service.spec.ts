@@ -1,4 +1,4 @@
-import { ConflictException, HttpException, ServiceUnavailableException, UnauthorizedException } from '@nestjs/common';
+import { ConflictException, ForbiddenException, HttpException, ServiceUnavailableException } from '@nestjs/common';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import type { AccountIdentityService } from '../src/account/account-identity.service';
@@ -129,7 +129,7 @@ function fixture(options: {
   };
   const recentAuth = {
     consume: options.hasRecoveryGrant === false
-      ? vi.fn().mockRejectedValue(new UnauthorizedException('phone_reauthentication_required'))
+      ? vi.fn().mockRejectedValue(new ForbiddenException('phone_reauthentication_required'))
       : vi.fn().mockResolvedValue(undefined),
     issuePhoneOtpGrant: vi.fn().mockResolvedValue({
       expiresAt: Date.now() + 300_000,
@@ -200,7 +200,7 @@ describe('AccountService phone merge', () => {
     const { service, verifyOtp } = fixture();
 
     await expect(service.mergeWithPhoneOtp(source, '+8613800138000', '123456'))
-      .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
+      .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
         && error.message === 'social_identity_required');
     expect(verifyOtp).not.toHaveBeenCalled();
   });
@@ -215,7 +215,7 @@ describe('AccountService phone merge', () => {
     const { service, verifyOtp } = fixture();
 
     await expect(service.mergeWithPhoneOtp(source, '+8613800138000', '123456'))
-      .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
+      .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
         && error.message === 'recent_social_auth_required');
     expect(verifyOtp).not.toHaveBeenCalled();
   });
@@ -231,7 +231,7 @@ describe('AccountService phone merge', () => {
     const { service, verifyOtp } = fixture();
 
     await expect(service.mergeWithPhoneOtp(source, '+8613800138000', '123456'))
-      .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
+      .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
         && error.message === 'recent_social_auth_required');
     expect(verifyOtp).not.toHaveBeenCalled();
   });
@@ -250,7 +250,7 @@ describe('AccountService phone merge', () => {
     const { service, verifyOtp } = fixture();
 
     await expect(service.mergeWithPhoneOtp(source, '+8613800138000', '123456'))
-      .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
+      .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
         && error.message === 'recent_social_auth_required');
     expect(verifyOtp).not.toHaveBeenCalled();
   });
@@ -277,7 +277,7 @@ describe('AccountService phone merge', () => {
     const { service, signInWithOtp } = fixture();
 
     await expect(service.startPhoneBinding(source, '+8613800138000'))
-      .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
+      .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
         && error.message === 'recent_social_auth_required');
     expect(signInWithOtp).not.toHaveBeenCalled();
   });
@@ -317,7 +317,7 @@ describe('AccountService phone merge', () => {
     const { identities, service, transaction, verifier } = fixture({ verifyOtp });
 
     await expect(service.mergeWithPhoneOtp(source, '+8613800138000', '000000'))
-      .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
+      .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
         && error.message === 'invalid_phone_otp');
     expect(verifier.verify).not.toHaveBeenCalled();
     expect(identities.resolve).not.toHaveBeenCalled();
@@ -505,7 +505,7 @@ describe('AccountService phone merge', () => {
       undefined,
       '33333333-3333-4333-8333-333333333333',
     ))
-      .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
+      .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
         && error.message === 'phone_reauthentication_required');
     expect(recentAuth.consume).toHaveBeenCalledWith(
       source,
@@ -561,7 +561,7 @@ describe('AccountService phone merge', () => {
     const { service, signInWithPassword } = fixture();
 
     await expect(service.updatePassword(source, 'newpassword10', 'oldpassword10'))
-      .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
+      .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
         && error.message === 'phone_reauthentication_required');
     expect(signInWithPassword).not.toHaveBeenCalled();
   });
@@ -575,11 +575,11 @@ describe('AccountService phone merge', () => {
       providers: ['phone'],
     });
     const { service } = fixture({
-      consumeOtpIntentError: new UnauthorizedException('phone_reauthentication_required'),
+      consumeOtpIntentError: new ForbiddenException('phone_reauthentication_required'),
     });
 
     await expect(service.updatePassword(source, 'newpassword10'))
-      .rejects.toSatisfy((error: unknown) => error instanceof UnauthorizedException
+      .rejects.toSatisfy((error: unknown) => error instanceof ForbiddenException
         && error.message === 'phone_reauthentication_required');
   });
 });

@@ -1,6 +1,6 @@
 import { createHmac } from 'node:crypto';
 
-import { Inject, Injectable, Optional, UnauthorizedException } from '@nestjs/common';
+import { ForbiddenException, Inject, Injectable, Optional } from '@nestjs/common';
 import type { RecentAuthGrantResponse, RecentAuthMethod, RecentAuthPurpose } from '@icao/contracts';
 import { and, eq, gt, isNull } from 'drizzle-orm';
 
@@ -43,7 +43,7 @@ export class RecentAuthService {
     now = new Date(),
   ) {
     const phoneAuth = this.phoneAuth;
-    if (!phoneAuth) throw new UnauthorizedException('phone_reauthentication_required');
+    if (!phoneAuth) throw new ForbiddenException('phone_reauthentication_required');
     return this.database.db.transaction(async (transaction) => {
       await phoneAuth.consumeOtpIntentInTransaction(transaction, source, purpose, now);
       return this.issueVerifiedGrantInTransaction(transaction, source, 'phone_otp', purpose, now);
@@ -137,7 +137,7 @@ export class RecentAuthService {
         isNull(recentAuthGrants.consumedAt),
       ))
       .returning({ challengeId: recentAuthGrants.challengeId });
-    if (!consumed) throw new UnauthorizedException('recent_auth_required');
+    if (!consumed) throw new ForbiddenException('recent_auth_required');
 
     const [challenge] = await transaction.update(recentAuthChallenges)
       .set({ consumedAt: now, status: 'consumed' })
@@ -147,7 +147,7 @@ export class RecentAuthService {
         isNull(recentAuthChallenges.consumedAt),
       ))
       .returning({ id: recentAuthChallenges.id });
-    if (!challenge) throw new UnauthorizedException('recent_auth_required');
+    if (!challenge) throw new ForbiddenException('recent_auth_required');
   }
 
   private targetDigest(accountId: string, purpose: RecentAuthPurpose) {
