@@ -8,6 +8,8 @@ import {
 
 const require = createRequire(import.meta.url);
 const app = JSON.parse(await readFile('app.json', 'utf8'));
+const rootPackage = JSON.parse(await readFile('package.json', 'utf8'));
+const apiPackage = JSON.parse(await readFile('services/api/package.json', 'utf8'));
 const appConfig = require('../app.config.js');
 const plugin = require('../plugins/with-android-release-signing');
 const iosIntegrityPlugin = require('../plugins/with-ios-release-integrity');
@@ -62,6 +64,14 @@ if (app.expo.android.package !== 'com.readyoufife.app') {
 }
 if (!app.expo.plugins.includes('./plugins/with-ios-release-integrity')) {
   throw new Error('The iOS Release integrity config plugin is missing.');
+}
+if (
+  rootPackage.dependencies?.['react-native-iap'] !== '16.3.2' ||
+  rootPackage.dependencies?.['react-native-nitro-modules'] !== '0.36.5' ||
+  apiPackage.dependencies?.['@apple/app-store-server-library'] !== '3.1.0' ||
+  Object.hasOwn(rootPackage.dependencies ?? {}, 'expo-native-wechat')
+) {
+  throw new Error('The StoreKit dependency set and WeChat runtime freeze must remain composed.');
 }
 const originalVariant = process.env.ICAO_APP_VARIANT;
 process.env.ICAO_APP_VARIANT = 'development';
@@ -312,6 +322,11 @@ if (
   throw new Error('The standalone iOS build is missing its generated-project or product integrity gate.');
 }
 if (
+  !iosReleaseProduct.includes('configure_ios_cng_product()') ||
+  !iosReleaseProduct.includes('verify_ios_storekit_dependencies()') ||
+  !iosReleaseProduct.includes('verify-ios-cng-product.mjs') ||
+  !iosReleaseProduct.includes('NitroIap (16.3.2)') ||
+  !iosReleaseProduct.includes('NitroModules (0.36.5)') ||
   !iosReleaseProduct.includes('assert_release_plist_value CFBundleVersion') ||
   !iosReleaseProduct.includes('CFBundleURLSchemes') ||
   !iosReleaseProduct.includes('EXDevLauncher.bundle') ||
@@ -323,7 +338,7 @@ if (
   !iosReleaseProduct.includes('WechatOpenSDK') ||
   !iosReleaseProduct.includes('api\\.weixin\\.qq\\.com')
 ) {
-  throw new Error('The shared iOS Release product integrity gate is incomplete.');
+  throw new Error('The shared iOS Release product integrity gate must compose StoreKit and no-WeChat checks.');
 }
 if (
   !iosTestFlightArchive.includes("-destination 'generic/platform=iOS'") ||
@@ -359,6 +374,12 @@ for (const freezeContract of [
   if (!wechatRuntimeFreeze.includes(freezeContract)) {
     throw new Error(`The WeChat runtime freeze contract is incomplete: ${freezeContract}`);
   }
+}
+if (
+  !packageJsonSource.includes('pnpm check:ios:storekit') ||
+  !packageJsonSource.includes('tools/check-wechat-runtime-freeze.mjs')
+) {
+  throw new Error('The Release self-test must compose StoreKit and WeChat-freeze verification.');
 }
 if (iosTestFlightArchive.includes('ICAO_SKIP_AUDIO_E2E')) {
   throw new Error('The TestFlight archive must not allow its audio evidence gate to be bypassed.');
