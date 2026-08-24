@@ -2,6 +2,8 @@ import { spawnSync } from 'node:child_process';
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 
+import { assertExpoPrebuildCommand } from './release-command-contract.mjs';
+
 const root = process.cwd();
 const packageJson = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'));
 const mappingPath = 'src/features/native-commercial-testflight/membership-products.native.ts';
@@ -64,6 +66,7 @@ for (const required of [
   'appAccountToken',
   'andDangerouslyFinishTransactionAutomatically: false',
   'syncIOS',
+  'syncPurchases()',
   'getAllTransactionsIOS',
   'getPendingTransactionsIOS',
   'finishTransaction',
@@ -74,7 +77,7 @@ for (const required of [
 }
 const adapterHistoryRead = adapter.slice(
   adapter.indexOf('async getTransactions()'),
-  adapter.indexOf('async restorePurchases()'),
+  adapter.indexOf('async syncPurchases()'),
 );
 if (!adapterHistoryRead.includes('getAllTransactionsIOS()') || adapterHistoryRead.includes('syncIOS()')) {
   failures.push(`${adapterPath} startup history read must use getAllTransactionsIOS without syncIOS.`);
@@ -89,6 +92,8 @@ for (const [file, content, required] of [
   [providerPath, provider, 'entitlementGranted: false'],
   [providerPath, provider, 'transactionFinished: false'],
   [providerPath, provider, 'commerce_purchase_timed_out'],
+  [providerPath, provider, 'nativeCallTimeoutMs'],
+  [providerPath, provider, 'runNativeCall'],
   [contractPath, contract, 'drainTransactionInbox()'],
   [contractPath, contract, 'reconcileTransactions()'],
   [contractPath, contract, 'markServerVerified('],
@@ -103,9 +108,22 @@ const startupReconciliation = provider.slice(
 );
 if (
   !startupReconciliation.includes('this.client.getTransactions()') ||
-  startupReconciliation.includes('this.client.restorePurchases()')
+  startupReconciliation.includes('this.client.syncPurchases()')
 ) {
   failures.push(`${providerPath} startup reconciliation must use only the silent StoreKit read.`);
+}
+const explicitRestore = provider.slice(
+  provider.indexOf('async restorePurchases()'),
+  provider.indexOf('private reconcileSnapshot('),
+);
+if (
+  !explicitRestore.includes('this.client.syncPurchases()') ||
+  !explicitRestore.includes('this.client.getTransactions()')
+) {
+  failures.push(`${providerPath} explicit restore must bound StoreKit sync and history separately.`);
+}
+if (occurrences(provider, 'this.runNativeCall(') < 7) {
+  failures.push(`${providerPath} does not bound every critical StoreKit native call.`);
 }
 for (const required of [
   'NATIVE_COMMERCE_INFRASTRUCTURE_ONLY = true',
@@ -144,8 +162,15 @@ for (const releaseScript of gatedReleaseScripts) {
   if (!content.includes('verify_ios_storekit_dependencies "$PROJECT_ROOT/ios/Podfile.lock"')) {
     failures.push(`${releaseScript} does not reject an archive without the pinned StoreKit native pods.`);
   }
-  if (!content.includes('expo prebuild --platform ios --clean --no-install')) {
-    failures.push(`${releaseScript} does not cleanly regenerate the ignored iOS CNG project.`);
+  try {
+    assertExpoPrebuildCommand(content, {
+      label: releaseScript,
+      platform: 'ios',
+      requireClean: true,
+      requireNoInstall: true,
+    });
+  } catch (error) {
+    failures.push(error instanceof Error ? error.message : String(error));
   }
   if (content.indexOf('configure_ios_cng_product') < content.indexOf('pod install')) {
     failures.push(`${releaseScript} validates the CNG product before CocoaPods creates the workspace.`);

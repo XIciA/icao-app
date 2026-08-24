@@ -36,8 +36,8 @@ export interface StoreKitClient {
   }): Promise<void>;
   /** Reads StoreKit history without presenting an App Store account sync flow. */
   getTransactions(): Promise<readonly StoreKitTransaction[]>;
-  /** Explicit user-initiated Restore Purchases flow. This may call StoreKit sync. */
-  restorePurchases(): Promise<readonly StoreKitTransaction[]>;
+  /** Explicit user-initiated Restore Purchases step. This is the only sync path. */
+  syncPurchases(): Promise<void>;
   finishTransaction(transactionReference: string): Promise<StoreKitFinishCompletion>;
   disconnect(): Promise<void>;
 }

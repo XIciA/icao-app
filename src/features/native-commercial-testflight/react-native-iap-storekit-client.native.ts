@@ -141,9 +141,8 @@ export class ReactNativeIapStoreKitClient implements StoreKitClient {
     });
   }
 
-  async restorePurchases(): Promise<readonly StoreKitTransaction[]> {
+  async syncPurchases(): Promise<void> {
     await syncIOS();
-    return this.getTransactions();
   }
 
   async finishTransaction(

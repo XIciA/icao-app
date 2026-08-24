@@ -146,9 +146,11 @@ describe('react-native-iap StoreKit client', () => {
     jest.mocked(getAllTransactionsIOS).mockResolvedValue([PURCHASE]);
 
     await restartedClient.connect(createHandlers());
-    const restored = await restartedClient.restorePurchases();
-
+    await restartedClient.syncPurchases();
     expect(syncIOS).toHaveBeenCalledTimes(1);
+    expect(getAllTransactionsIOS).not.toHaveBeenCalled();
+    const restored = await restartedClient.getTransactions();
+
     expect(restored).toEqual([
       {
         productId: PURCHASE.productId,

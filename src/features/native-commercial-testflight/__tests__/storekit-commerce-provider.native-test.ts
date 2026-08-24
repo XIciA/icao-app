@@ -45,8 +45,13 @@ class FakeStoreKitClient implements StoreKitClient {
   handlers?: StoreKitEventHandlers;
   connectionError = false;
   connectNeverResolves = false;
+  fetchNeverResolves = false;
+  historyNeverResolves = false;
+  syncNeverResolves = false;
+  disconnectNeverResolves = false;
+  finishNeverResolves = false;
   getTransactionsCount = 0;
-  restorePurchasesCount = 0;
+  syncPurchasesCount = 0;
   products: readonly StoreKitProduct[] = listMembershipProducts().map((product, index) => ({
     productId: product.appleProductId,
     localizedPrice: `本地价格 ${index + 1}`,
@@ -70,6 +75,26 @@ class FakeStoreKitClient implements StoreKitClient {
   readonly connectStarted = new Promise<void>((resolve) => {
     this.connectStartedResolve = resolve;
   });
+  private fetchStartedResolve!: () => void;
+  readonly fetchStarted = new Promise<void>((resolve) => {
+    this.fetchStartedResolve = resolve;
+  });
+  private historyStartedResolve!: () => void;
+  readonly historyStarted = new Promise<void>((resolve) => {
+    this.historyStartedResolve = resolve;
+  });
+  private syncStartedResolve!: () => void;
+  readonly syncStarted = new Promise<void>((resolve) => {
+    this.syncStartedResolve = resolve;
+  });
+  private disconnectStartedResolve!: () => void;
+  readonly disconnectStarted = new Promise<void>((resolve) => {
+    this.disconnectStartedResolve = resolve;
+  });
+  private finishStartedResolve!: () => void;
+  readonly finishStarted = new Promise<void>((resolve) => {
+    this.finishStartedResolve = resolve;
+  });
 
   async connect(handlers: StoreKitEventHandlers): Promise<void> {
     this.connectStartedResolve();
@@ -79,6 +104,8 @@ class FakeStoreKitClient implements StoreKitClient {
   }
 
   async fetchProducts(): Promise<readonly StoreKitProduct[]> {
+    this.fetchStartedResolve();
+    if (this.fetchNeverResolves) await new Promise<void>(() => undefined);
     return this.products;
   }
 
@@ -95,15 +122,20 @@ class FakeStoreKitClient implements StoreKitClient {
 
   async getTransactions(): Promise<readonly StoreKitTransaction[]> {
     this.getTransactionsCount += 1;
+    this.historyStartedResolve();
+    if (this.historyNeverResolves) await new Promise<void>(() => undefined);
     return this.restoredTransactions;
   }
 
-  async restorePurchases(): Promise<readonly StoreKitTransaction[]> {
-    this.restorePurchasesCount += 1;
-    return this.restoredTransactions;
+  async syncPurchases(): Promise<void> {
+    this.syncPurchasesCount += 1;
+    this.syncStartedResolve();
+    if (this.syncNeverResolves) await new Promise<void>(() => undefined);
   }
 
   async finishTransaction(transactionReference: string): Promise<StoreKitFinishCompletion> {
+    this.finishStartedResolve();
+    if (this.finishNeverResolves) await new Promise<void>(() => undefined);
     if (this.unknownFinishReferences.has(transactionReference)) {
       throw new Error('storekit_transaction_unknown');
     }
@@ -115,6 +147,8 @@ class FakeStoreKitClient implements StoreKitClient {
   async disconnect(): Promise<void> {
     this.disconnectCount += 1;
     this.handlers = undefined;
+    this.disconnectStartedResolve();
+    if (this.disconnectNeverResolves) await new Promise<void>(() => undefined);
   }
 }
 
@@ -139,6 +173,7 @@ function createProvider(client: FakeStoreKitClient, runtime = new ManualRuntime(
     provider: createStoreKitNativeCommerceProvider(client, {
       runtime,
       purchaseEventTimeoutMs: 100,
+      nativeCallTimeoutMs: 100,
     }),
     runtime,
   };
@@ -189,6 +224,38 @@ describe('StoreKit native commerce provider', () => {
     await expect(createProvider(invalidClient).provider.listOfferings()).resolves.toEqual(
       expect.objectContaining({ code: 'commerce_catalog_invalid', charged: false }),
     );
+  });
+
+  it('bounds StoreKit connection and catalog calls with retryable uncharged results', async () => {
+    const connectingClient = new FakeStoreKitClient();
+    connectingClient.connectNeverResolves = true;
+    const connecting = createProvider(connectingClient);
+    const connectionResult = connecting.provider.listOfferings();
+    await connectingClient.connectStarted;
+    connecting.runtime.fireTimeouts();
+    await expect(connectionResult).resolves.toEqual({
+      ok: false,
+      state: 'unavailable',
+      code: 'commerce_store_connection_failed',
+      charged: false,
+      retryable: true,
+    });
+    await connecting.provider.dispose();
+
+    const catalogClient = new FakeStoreKitClient();
+    catalogClient.fetchNeverResolves = true;
+    const catalog = createProvider(catalogClient);
+    const catalogResult = catalog.provider.listOfferings();
+    await catalogClient.fetchStarted;
+    catalog.runtime.fireTimeouts();
+    await expect(catalogResult).resolves.toEqual(
+      expect.objectContaining({
+        code: 'commerce_catalog_query_failed',
+        charged: false,
+        retryable: true,
+      }),
+    );
+    await catalog.provider.dispose();
   });
 
   it('returns a signed unfinished transaction and also retains it in the verification inbox', async () => {
@@ -423,7 +490,7 @@ describe('StoreKit native commerce provider', () => {
       }),
     );
     expect(client.getTransactionsCount).toBe(1);
-    expect(client.restorePurchasesCount).toBe(0);
+    expect(client.syncPurchasesCount).toBe(0);
     expect(client.finished).toEqual([]);
   });
 
@@ -434,11 +501,61 @@ describe('StoreKit native commerce provider', () => {
 
     await provider.reconcileTransactions();
     expect(client.getTransactionsCount).toBe(1);
-    expect(client.restorePurchasesCount).toBe(0);
+    expect(client.syncPurchasesCount).toBe(0);
 
     await provider.restorePurchases();
-    expect(client.getTransactionsCount).toBe(1);
-    expect(client.restorePurchasesCount).toBe(1);
+    expect(client.getTransactionsCount).toBe(2);
+    expect(client.syncPurchasesCount).toBe(1);
+  });
+
+  it('bounds silent history, explicit sync, and post-sync history independently', async () => {
+    const silentClient = new FakeStoreKitClient();
+    silentClient.historyNeverResolves = true;
+    const silent = createProvider(silentClient);
+    const silentResult = silent.provider.reconcileTransactions();
+    await silentClient.historyStarted;
+    silent.runtime.fireTimeouts();
+    await expect(silentResult).resolves.toEqual(
+      expect.objectContaining({
+        code: 'commerce_restore_failed',
+        charged: false,
+        retryable: true,
+      }),
+    );
+    expect(silentClient.syncPurchasesCount).toBe(0);
+    await silent.provider.dispose();
+
+    const syncClient = new FakeStoreKitClient();
+    syncClient.syncNeverResolves = true;
+    const sync = createProvider(syncClient);
+    const syncResult = sync.provider.restorePurchases();
+    await syncClient.syncStarted;
+    sync.runtime.fireTimeouts();
+    await expect(syncResult).resolves.toEqual(
+      expect.objectContaining({
+        code: 'commerce_restore_failed',
+        charged: false,
+        retryable: true,
+      }),
+    );
+    expect(syncClient.getTransactionsCount).toBe(0);
+    await sync.provider.dispose();
+
+    const restoredHistoryClient = new FakeStoreKitClient();
+    restoredHistoryClient.historyNeverResolves = true;
+    const restoredHistory = createProvider(restoredHistoryClient);
+    const restoredHistoryResult = restoredHistory.provider.restorePurchases();
+    await restoredHistoryClient.historyStarted;
+    restoredHistory.runtime.fireTimeouts();
+    await expect(restoredHistoryResult).resolves.toEqual(
+      expect.objectContaining({
+        code: 'commerce_restore_failed',
+        charged: false,
+        retryable: true,
+      }),
+    );
+    expect(restoredHistoryClient.syncPurchasesCount).toBe(1);
+    await restoredHistory.provider.dispose();
   });
 
   it('pages a large cold-start history so every transaction can be submitted for server verification', async () => {
@@ -761,6 +878,37 @@ describe('StoreKit native commerce provider', () => {
     );
   });
 
+  it('bounds a native finish that never resolves and preserves the verification capability', async () => {
+    const client = new FakeStoreKitClient();
+    client.restoredTransactions = [purchasedTransaction()];
+    client.finishNeverResolves = true;
+    const { provider, runtime } = createProvider(client);
+    await provider.reconcileTransactions();
+    const acknowledgement = await provider.markServerVerified({
+      transactionReference: 'transaction-31d',
+      signedTransaction: 'signed-jws-from-storekit',
+    });
+    if (!acknowledgement.ok) throw new Error('verification should succeed');
+
+    const finishing = provider.finishTransaction({ acknowledgement: acknowledgement.value });
+    await client.finishStarted;
+    runtime.fireTimeouts();
+    await expect(finishing).resolves.toEqual(
+      expect.objectContaining({
+        code: 'commerce_finish_failed',
+        charged: false,
+        retryable: true,
+      }),
+    );
+    expect(client.finished).toEqual([]);
+    await expect(
+      provider.markServerVerified({
+        transactionReference: 'transaction-31d',
+        signedTransaction: 'signed-jws-from-storekit',
+      }),
+    ).resolves.toEqual(acknowledgement);
+  });
+
   it('expires unconsumed acknowledgements when the bounded observation window evicts them', async () => {
     const client = new FakeStoreKitClient();
     const { provider } = createProvider(client);
@@ -860,6 +1008,27 @@ describe('StoreKit native commerce provider', () => {
       expect.objectContaining({ code: 'commerce_provider_disposed', charged: 'unknown' }),
     );
     expect(client.disconnectCount).toBe(1);
+    await expect(provider.drainTransactionInbox()).resolves.toEqual(
+      expect.objectContaining({ code: 'commerce_provider_disposed' }),
+    );
+  });
+
+  it('bounds a connected disconnect that never resolves and ignores its late callback', async () => {
+    const client = new FakeStoreKitClient();
+    const { provider, runtime } = createProvider(client);
+    await provider.listOfferings();
+    const lateHandlers = client.handlers;
+    client.disconnectNeverResolves = true;
+
+    const disposal = provider.dispose();
+    await client.disconnectStarted;
+    runtime.fireTimeouts();
+    await expect(disposal).resolves.toBeUndefined();
+
+    lateHandlers?.onPurchaseUpdated(
+      purchasedTransaction(undefined, { transactionId: 'after-dispose' }),
+    );
+    expect(client.finished).toEqual([]);
     await expect(provider.drainTransactionInbox()).resolves.toEqual(
       expect.objectContaining({ code: 'commerce_provider_disposed' }),
     );
