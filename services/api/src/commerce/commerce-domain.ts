@@ -340,7 +340,7 @@ export class CommerceFoundationModel {
       durationDays: product.durationDays,
       aiPointRuleVersion: product.aiPointRuleVersion,
       membershipGrantSource: 'purchase_discovery',
-      membershipEffectiveAt: new Date(transaction.purchaseDate),
+      membershipEffectiveAt: new Date(processedAt),
       membershipContributionMs: product.durationDays * DAY_MS,
       status: 'verified',
       purchasedAt: new Date(transaction.purchaseDate),
@@ -357,7 +357,6 @@ export class CommerceFoundationModel {
       accountId,
       transaction.environment,
       processedAt,
-      order.id,
     );
     if (transaction.revocationDate) {
       this.refundAppleTransaction(
@@ -762,7 +761,6 @@ export class CommerceFoundationModel {
     accountId: string,
     environment: CommerceEnvironment,
     asOf: Date,
-    discoveredOrderId?: string,
   ) {
     this.expirePointBatches(state, accountId, environment, asOf);
     const activeSegments = state.membershipSegments.filter((segment) => (
@@ -771,6 +769,13 @@ export class CommerceFoundationModel {
       && segment.status === 'active'
     ));
     const activeByOrder = new Map(activeSegments.map((segment) => [segment.orderId, segment]));
+    const latestByOrder = new Map<string, MembershipEntitlementSegment>();
+    for (const segment of state.membershipSegments.filter((candidate) => (
+      candidate.accountId === accountId && candidate.environment === environment
+    ))) {
+      const latest = latestByOrder.get(segment.orderId);
+      if (!latest || segment.revision > latest.revision) latestByOrder.set(segment.orderId, segment);
+    }
     const validOrders = state.orders.filter((order) => (
       order.accountId === accountId
       && order.environment === environment
@@ -781,31 +786,28 @@ export class CommerceFoundationModel {
       current?: MembershipEntitlementSegment;
       remainingMs: number;
       sortAt: Date;
-      startsAt?: Date;
-      endsAt?: Date;
     };
-    const discoveredOrder = discoveredOrderId
-      ? validOrders.find((order) => order.id === discoveredOrderId)
-      : undefined;
-    const isOutOfOrderDiscovery = Boolean(discoveredOrder && validOrders.some((order) => (
-      order.id !== discoveredOrder.id
-      && order.purchasedAt > discoveredOrder.purchasedAt
-    )));
 
     // Status changes preserve the already-issued remaining segments. A first
     // purchase discovery contributes its explicit full duration. Refund restore
     // uses the smaller contribution persisted at reversal time, so it can never
     // replenish historical membership that has already elapsed.
-    let plans: MembershipPlan[] = validOrders
+    const plans: MembershipPlan[] = validOrders
       .map((order) => {
         const current = activeByOrder.get(order.id);
+        const latest = latestByOrder.get(order.id);
+        const hasUnissuedGrant = !latest || (
+          order.membershipGrantSource === 'refund_restore' && latest.status === 'revoked'
+        );
         const remainingMs = current
           ? current.endsAt.getTime() <= asOf.getTime()
             ? 0
             : current.startsAt.getTime() <= asOf.getTime()
               ? current.endsAt.getTime() - asOf.getTime()
               : current.endsAt.getTime() - current.startsAt.getTime()
-          : order.membershipContributionMs;
+          : hasUnissuedGrant
+            ? order.membershipContributionMs
+            : 0;
         return {
           order,
           current,
@@ -821,41 +823,6 @@ export class CommerceFoundationModel {
         || left.order.id.localeCompare(right.order.id)
       ));
 
-    if (isOutOfOrderDiscovery) {
-      let canonicalCursor: Date | undefined;
-      const canonicalPlans: MembershipPlan[] = [];
-      for (const order of [...validOrders].sort((left, right) => (
-        left.membershipEffectiveAt.getTime() - right.membershipEffectiveAt.getTime()
-        || left.purchasedAt.getTime() - right.purchasedAt.getTime()
-        || left.id.localeCompare(right.id)
-      ))) {
-        const startsAt = canonicalCursor && canonicalCursor > order.membershipEffectiveAt
-          ? canonicalCursor
-          : order.membershipEffectiveAt;
-        const endsAt = new Date(startsAt.getTime() + order.membershipContributionMs);
-        canonicalCursor = endsAt;
-        if (endsAt <= asOf) continue;
-        const effectiveStart = startsAt < asOf ? asOf : startsAt;
-        canonicalPlans.push({
-          order,
-          current: activeByOrder.get(order.id),
-          remainingMs: endsAt.getTime() - effectiveStart.getTime(),
-          sortAt: effectiveStart,
-          startsAt: new Date(effectiveStart),
-          endsAt: new Date(endsAt),
-        });
-      }
-      const previousExpiry = activeSegments.reduce<Date | undefined>((latest, segment) => (
-        !latest || segment.endsAt > latest ? segment.endsAt : latest
-      ), undefined);
-      const last = canonicalPlans.at(-1);
-      if (last?.endsAt && previousExpiry && previousExpiry > last.endsAt) {
-        last.endsAt = new Date(previousExpiry);
-        last.remainingMs = last.endsAt.getTime() - (last.startsAt ?? asOf).getTime();
-      }
-      plans = canonicalPlans;
-    }
-
     for (const segment of activeSegments) {
       segment.status = 'superseded';
       segment.supersededAt = new Date(asOf);
@@ -870,8 +837,8 @@ export class CommerceFoundationModel {
       const revision = state.membershipSegments
         .filter((segment) => segment.orderId === plan.order.id && segment.environment === environment)
         .reduce((maximum, segment) => Math.max(maximum, segment.revision), 0) + 1;
-      const startsAt = plan.startsAt ?? cursor;
-      const endsAt = plan.endsAt ?? new Date(startsAt.getTime() + plan.remainingMs);
+      const startsAt = cursor;
+      const endsAt = new Date(startsAt.getTime() + plan.remainingMs);
       const segment: MembershipEntitlementSegment = {
         id: this.idFactory(),
         environment,

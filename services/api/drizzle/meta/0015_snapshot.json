@@ -147,7 +147,7 @@
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.account_merges": {
       "name": "account_merges",
@@ -223,7 +223,7 @@
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.account_session_revocations": {
       "name": "account_session_revocations",
@@ -271,7 +271,7 @@
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.accounts": {
       "name": "accounts",
@@ -324,7 +324,7 @@
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.ai_consents": {
       "name": "ai_consents",
@@ -377,7 +377,7 @@
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.ai_point_batches": {
       "name": "ai_point_batches",
@@ -1204,7 +1204,7 @@
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.ai_usage_logs": {
       "name": "ai_usage_logs",
@@ -1374,7 +1374,7 @@
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.ai_word_cache": {
       "name": "ai_word_cache",
@@ -1456,7 +1456,7 @@
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.apple_notification_events": {
       "name": "apple_notification_events",
@@ -2397,7 +2397,7 @@
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.feedback_attachments": {
       "name": "feedback_attachments",
@@ -2526,7 +2526,7 @@
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.feedback_tickets": {
       "name": "feedback_tickets",
@@ -2904,7 +2904,7 @@
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.invite_accounts": {
       "name": "invite_accounts",
@@ -2983,7 +2983,7 @@
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.invite_login_attempts": {
       "name": "invite_login_attempts",
@@ -3029,7 +3029,7 @@
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.learning_records": {
       "name": "learning_records",
@@ -3123,7 +3123,7 @@
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.membership_entitlement_segments": {
       "name": "membership_entitlement_segments",
@@ -3381,7 +3381,7 @@
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.question_bank_releases": {
       "name": "question_bank_releases",
@@ -3482,7 +3482,7 @@
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.resource_objects": {
       "name": "resource_objects",
@@ -3552,7 +3552,7 @@
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.sync_changes": {
       "name": "sync_changes",
@@ -3645,7 +3645,7 @@
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.sync_mutations": {
       "name": "sync_mutations",
@@ -3717,7 +3717,7 @@
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.user_card_states": {
       "name": "user_card_states",
@@ -3798,7 +3798,7 @@
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     },
     "public.user_documents": {
       "name": "user_documents",
@@ -3865,7 +3865,7 @@
       "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
-      "isRLSEnabled": false
+      "isRLSEnabled": true
     }
   },
   "enums": {},

@@ -271,21 +271,58 @@ BEGIN
 	END IF;
 END;
 $$;--> statement-breakpoint
-CREATE FUNCTION "commerce_assert_batch_reserved_total"(target_batch_id uuid)
+CREATE FUNCTION "commerce_assert_batch_totals"(target_batch_id uuid)
 RETURNS void LANGUAGE plpgsql SECURITY DEFINER SET search_path = public, pg_temp AS $$
-DECLARE expected_points integer; actual_points bigint;
+DECLARE
+	recorded_reserved integer;
+	recorded_consumed integer;
+	granted integer;
+	batch_source_type text;
+	batch_source_reference text;
+	reserved_allocations bigint;
+	settled_allocations bigint;
+	merge_credit_count bigint;
+	merge_credit_points bigint;
+	carried_consumption bigint := 0;
 BEGIN
-	SELECT "reserved_points" INTO expected_points FROM "ai_point_batches" WHERE "id" = target_batch_id;
+	SELECT "reserved_points", "consumed_points", "granted_points", "source_type", "source_reference"
+	INTO recorded_reserved, recorded_consumed, granted, batch_source_type, batch_source_reference
+	FROM "ai_point_batches" WHERE "id" = target_batch_id;
 	IF NOT FOUND THEN RETURN; END IF;
 	-- Settled and released reservations keep immutable allocations for audit,
-	-- but only currently reserved rows contribute to batch.reserved_points.
-	SELECT COALESCE(SUM(allocation."points"), 0) INTO actual_points
+	-- but only currently reserved rows contribute to batch.reserved_points and
+	-- only settled rows contribute to batch.consumed_points.
+	SELECT
+		COALESCE(SUM(allocation."points") FILTER (WHERE reservation."status" = 'reserved'), 0),
+		COALESCE(SUM(allocation."points") FILTER (WHERE reservation."status" = 'settled'), 0)
+	INTO reserved_allocations, settled_allocations
 	FROM "ai_point_reservation_allocations" allocation
 	JOIN "ai_point_reservations" reservation ON reservation."id" = allocation."reservation_id"
-	WHERE allocation."batch_id" = target_batch_id AND reservation."status" = 'reserved';
-	IF actual_points <> expected_points THEN
+	WHERE allocation."batch_id" = target_batch_id;
+
+	SELECT COUNT(*), COALESCE(SUM("points"), 0)
+	INTO merge_credit_count, merge_credit_points
+	FROM "ai_point_ledger_entries"
+	WHERE "batch_id" = target_batch_id AND "entry_type" = 'merge_credit';
+	IF batch_source_type = 'trial' AND batch_source_reference LIKE 'merge:%' THEN
+		IF merge_credit_count <> 1 OR merge_credit_points > granted THEN
+			RAISE EXCEPTION 'commerce_merged_trial_credit_invalid:%:count=%:points=%:grant=%',
+				target_batch_id, merge_credit_count, merge_credit_points, granted USING ERRCODE = '23514';
+		END IF;
+		-- A merged trial carries prior settled usage without fabricating a new
+		-- reservation. Its single merge_credit records the remaining balance.
+		carried_consumption := granted - merge_credit_points;
+	ELSIF merge_credit_count <> 0 THEN
+		RAISE EXCEPTION 'commerce_merge_credit_source_mismatch:%', target_batch_id USING ERRCODE = '23514';
+	END IF;
+
+	IF reserved_allocations <> recorded_reserved THEN
 		RAISE EXCEPTION 'commerce_batch_reserved_total_mismatch:%:expected=%:actual=%',
-			target_batch_id, expected_points, actual_points USING ERRCODE = '23514';
+			target_batch_id, reserved_allocations, recorded_reserved USING ERRCODE = '23514';
+	END IF;
+	IF settled_allocations + carried_consumption <> recorded_consumed THEN
+		RAISE EXCEPTION 'commerce_batch_consumed_total_mismatch:%:expected=%:actual=%',
+			target_batch_id, settled_allocations + carried_consumption, recorded_consumed USING ERRCODE = '23514';
 	END IF;
 END;
 $$;--> statement-breakpoint
@@ -295,7 +332,52 @@ DECLARE target_batch_id uuid;
 BEGIN
 	FOR target_batch_id IN SELECT DISTINCT "batch_id" FROM "ai_point_reservation_allocations"
 		WHERE "reservation_id" = target_reservation_id
-	LOOP PERFORM "commerce_assert_batch_reserved_total"(target_batch_id); END LOOP;
+	LOOP PERFORM "commerce_assert_batch_totals"(target_batch_id); END LOOP;
+END;
+$$;--> statement-breakpoint
+CREATE FUNCTION "commerce_assert_reservation_state"(target_reservation_id uuid)
+RETURNS void LANGUAGE plpgsql SECURITY DEFINER SET search_path = public, pg_temp AS $$
+DECLARE
+	reservation_status text;
+	created timestamp with time zone;
+	settled timestamp with time zone;
+	released timestamp with time zone;
+BEGIN
+	SELECT "status", "created_at", "settled_at", "released_at"
+	INTO reservation_status, created, settled, released
+	FROM "ai_point_reservations" WHERE "id" = target_reservation_id;
+	IF NOT FOUND THEN RETURN; END IF;
+	IF reservation_status = 'reserved' AND (settled IS NOT NULL OR released IS NOT NULL) THEN
+		RAISE EXCEPTION 'commerce_reservation_reserved_timestamp_invalid:%', target_reservation_id USING ERRCODE = '23514';
+	ELSIF reservation_status = 'settled' AND (settled IS NULL OR released IS NOT NULL OR settled < created) THEN
+		RAISE EXCEPTION 'commerce_reservation_settled_timestamp_invalid:%', target_reservation_id USING ERRCODE = '23514';
+	ELSIF reservation_status = 'released' AND (released IS NULL OR settled IS NOT NULL OR released < created) THEN
+		RAISE EXCEPTION 'commerce_reservation_released_timestamp_invalid:%', target_reservation_id USING ERRCODE = '23514';
+	END IF;
+END;
+$$;--> statement-breakpoint
+CREATE FUNCTION "commerce_guard_reservation_transition"()
+RETURNS trigger LANGUAGE plpgsql SECURITY DEFINER SET search_path = public, pg_temp AS $$
+BEGIN
+	IF TG_OP = 'INSERT' THEN
+		IF NEW."status" <> 'reserved' THEN
+			RAISE EXCEPTION 'commerce_reservation_must_start_reserved:%', NEW."id" USING ERRCODE = '23514';
+		END IF;
+		RETURN NEW;
+	END IF;
+	IF OLD."status" <> NEW."status" AND NOT (
+		OLD."status" = 'reserved' AND NEW."status" IN ('settled', 'released')
+	) THEN
+		RAISE EXCEPTION 'commerce_reservation_transition_invalid:%:%->%',
+			OLD."id", OLD."status", NEW."status" USING ERRCODE = '23514';
+	END IF;
+	IF OLD."status" IN ('settled', 'released') AND (
+		OLD."settled_at" IS DISTINCT FROM NEW."settled_at"
+		OR OLD."released_at" IS DISTINCT FROM NEW."released_at"
+	) THEN
+		RAISE EXCEPTION 'commerce_reservation_terminal_timestamp_immutable:%', OLD."id" USING ERRCODE = '23514';
+	END IF;
+	RETURN NEW;
 END;
 $$;--> statement-breakpoint
 CREATE FUNCTION "commerce_check_allocation_reservation_total"()
@@ -317,16 +399,24 @@ $$;--> statement-breakpoint
 CREATE FUNCTION "commerce_check_allocation_batch_total"()
 RETURNS trigger LANGUAGE plpgsql SECURITY DEFINER SET search_path = public, pg_temp AS $$
 BEGIN
-	IF TG_OP <> 'INSERT' THEN PERFORM "commerce_assert_batch_reserved_total"(OLD."batch_id"); END IF;
-	IF TG_OP <> 'DELETE' THEN PERFORM "commerce_assert_batch_reserved_total"(NEW."batch_id"); END IF;
+	IF TG_OP <> 'INSERT' THEN PERFORM "commerce_assert_batch_totals"(OLD."batch_id"); END IF;
+	IF TG_OP <> 'DELETE' THEN PERFORM "commerce_assert_batch_totals"(NEW."batch_id"); END IF;
 	RETURN NULL;
 END;
 $$;--> statement-breakpoint
-CREATE FUNCTION "commerce_check_batch_reserved_total"()
+CREATE FUNCTION "commerce_check_batch_totals"()
 RETURNS trigger LANGUAGE plpgsql SECURITY DEFINER SET search_path = public, pg_temp AS $$
 BEGIN
-	IF TG_OP <> 'INSERT' THEN PERFORM "commerce_assert_batch_reserved_total"(OLD."id"); END IF;
-	IF TG_OP <> 'DELETE' THEN PERFORM "commerce_assert_batch_reserved_total"(NEW."id"); END IF;
+	IF TG_OP <> 'INSERT' THEN PERFORM "commerce_assert_batch_totals"(OLD."id"); END IF;
+	IF TG_OP <> 'DELETE' THEN PERFORM "commerce_assert_batch_totals"(NEW."id"); END IF;
+	RETURN NULL;
+END;
+$$;--> statement-breakpoint
+CREATE FUNCTION "commerce_check_ledger_batch_totals"()
+RETURNS trigger LANGUAGE plpgsql SECURITY DEFINER SET search_path = public, pg_temp AS $$
+BEGIN
+	IF TG_OP <> 'INSERT' THEN PERFORM "commerce_assert_batch_totals"(OLD."batch_id"); END IF;
+	IF TG_OP <> 'DELETE' THEN PERFORM "commerce_assert_batch_totals"(NEW."batch_id"); END IF;
 	RETURN NULL;
 END;
 $$;--> statement-breakpoint
@@ -338,6 +428,17 @@ BEGIN
 	RETURN NULL;
 END;
 $$;--> statement-breakpoint
+CREATE FUNCTION "commerce_check_reservation_state"()
+RETURNS trigger LANGUAGE plpgsql SECURITY DEFINER SET search_path = public, pg_temp AS $$
+BEGIN
+	IF TG_OP <> 'INSERT' THEN PERFORM "commerce_assert_reservation_state"(OLD."id"); END IF;
+	IF TG_OP <> 'DELETE' THEN PERFORM "commerce_assert_reservation_state"(NEW."id"); END IF;
+	RETURN NULL;
+END;
+$$;--> statement-breakpoint
+CREATE TRIGGER "ai_point_reservations_transition_guard"
+BEFORE INSERT OR UPDATE ON "ai_point_reservations"
+FOR EACH ROW EXECUTE FUNCTION "commerce_guard_reservation_transition"();--> statement-breakpoint
 CREATE CONSTRAINT TRIGGER "ai_point_allocations_reservation_total_deferred"
 AFTER INSERT OR UPDATE OR DELETE ON "ai_point_reservation_allocations"
 DEFERRABLE INITIALLY DEFERRED FOR EACH ROW
@@ -350,22 +451,34 @@ CREATE CONSTRAINT TRIGGER "ai_point_allocations_batch_total_deferred"
 AFTER INSERT OR UPDATE OR DELETE ON "ai_point_reservation_allocations"
 DEFERRABLE INITIALLY DEFERRED FOR EACH ROW
 EXECUTE FUNCTION "commerce_check_allocation_batch_total"();--> statement-breakpoint
-CREATE CONSTRAINT TRIGGER "ai_point_batches_reserved_total_deferred"
+CREATE CONSTRAINT TRIGGER "ai_point_batches_totals_deferred"
 AFTER INSERT OR UPDATE OR DELETE ON "ai_point_batches"
 DEFERRABLE INITIALLY DEFERRED FOR EACH ROW
-EXECUTE FUNCTION "commerce_check_batch_reserved_total"();--> statement-breakpoint
+EXECUTE FUNCTION "commerce_check_batch_totals"();--> statement-breakpoint
 CREATE CONSTRAINT TRIGGER "ai_point_reservations_batch_total_deferred"
 AFTER INSERT OR UPDATE OR DELETE ON "ai_point_reservations"
 DEFERRABLE INITIALLY DEFERRED FOR EACH ROW
 EXECUTE FUNCTION "commerce_check_reservation_batch_totals"();--> statement-breakpoint
+CREATE CONSTRAINT TRIGGER "ai_point_ledger_batch_totals_deferred"
+AFTER INSERT OR UPDATE OR DELETE ON "ai_point_ledger_entries"
+DEFERRABLE INITIALLY DEFERRED FOR EACH ROW
+EXECUTE FUNCTION "commerce_check_ledger_batch_totals"();--> statement-breakpoint
+CREATE CONSTRAINT TRIGGER "ai_point_reservations_state_deferred"
+AFTER INSERT OR UPDATE OR DELETE ON "ai_point_reservations"
+DEFERRABLE INITIALLY DEFERRED FOR EACH ROW
+EXECUTE FUNCTION "commerce_check_reservation_state"();--> statement-breakpoint
 REVOKE ALL ON FUNCTION "commerce_assert_reservation_allocation_total"(uuid) FROM PUBLIC, anon, authenticated;--> statement-breakpoint
-REVOKE ALL ON FUNCTION "commerce_assert_batch_reserved_total"(uuid) FROM PUBLIC, anon, authenticated;--> statement-breakpoint
+REVOKE ALL ON FUNCTION "commerce_assert_batch_totals"(uuid) FROM PUBLIC, anon, authenticated;--> statement-breakpoint
 REVOKE ALL ON FUNCTION "commerce_assert_reservation_batch_totals"(uuid) FROM PUBLIC, anon, authenticated;--> statement-breakpoint
+REVOKE ALL ON FUNCTION "commerce_assert_reservation_state"(uuid) FROM PUBLIC, anon, authenticated;--> statement-breakpoint
+REVOKE ALL ON FUNCTION "commerce_guard_reservation_transition"() FROM PUBLIC, anon, authenticated;--> statement-breakpoint
 REVOKE ALL ON FUNCTION "commerce_check_allocation_reservation_total"() FROM PUBLIC, anon, authenticated;--> statement-breakpoint
 REVOKE ALL ON FUNCTION "commerce_check_reservation_allocation_total"() FROM PUBLIC, anon, authenticated;--> statement-breakpoint
 REVOKE ALL ON FUNCTION "commerce_check_allocation_batch_total"() FROM PUBLIC, anon, authenticated;--> statement-breakpoint
-REVOKE ALL ON FUNCTION "commerce_check_batch_reserved_total"() FROM PUBLIC, anon, authenticated;--> statement-breakpoint
+REVOKE ALL ON FUNCTION "commerce_check_batch_totals"() FROM PUBLIC, anon, authenticated;--> statement-breakpoint
+REVOKE ALL ON FUNCTION "commerce_check_ledger_batch_totals"() FROM PUBLIC, anon, authenticated;--> statement-breakpoint
 REVOKE ALL ON FUNCTION "commerce_check_reservation_batch_totals"() FROM PUBLIC, anon, authenticated;--> statement-breakpoint
+REVOKE ALL ON FUNCTION "commerce_check_reservation_state"() FROM PUBLIC, anon, authenticated;--> statement-breakpoint
 REVOKE ALL ON TABLE "commerce_products" FROM anon, authenticated;--> statement-breakpoint
 REVOKE ALL ON TABLE "commerce_channel_products" FROM anon, authenticated;--> statement-breakpoint
 REVOKE ALL ON TABLE "commerce_orders" FROM anon, authenticated;--> statement-breakpoint

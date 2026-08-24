@@ -1,13 +1,13 @@
 import assert from 'node:assert/strict';
 import { execFileSync, spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync } from 'node:fs';
 import net from 'node:net';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { join } from 'node:path';
 import test, { after, before } from 'node:test';
 
-const migrationPath = fileURLToPath(new URL('../drizzle/0015_commerce_domain.sql', import.meta.url));
+const migrationsDirectory = fileURLToPath(new URL('../drizzle', import.meta.url));
 const clusterRoot = mkdtempSync(join(tmpdir(), 'icao-commerce-postgres-'));
 const dataDirectory = join(clusterRoot, 'data');
 const socketDirectory = join(clusterRoot, 'socket');
@@ -86,10 +86,29 @@ before(async () => {
     '-w',
     'start',
   ], { stdio: 'ignore' });
-  const bootstrap = psql('CREATE ROLE anon; CREATE ROLE authenticated;');
+  const bootstrap = psql(`
+    CREATE ROLE anon;
+    CREATE ROLE authenticated;
+    CREATE SCHEMA auth;
+    CREATE TABLE auth.users (id uuid PRIMARY KEY);
+    CREATE SCHEMA storage;
+    CREATE TABLE storage.buckets (
+      id text PRIMARY KEY,
+      name text NOT NULL,
+      public boolean NOT NULL,
+      file_size_limit bigint,
+      allowed_mime_types text[]
+    );
+  `);
   assert.equal(bootstrap.status, 0, bootstrap.stderr);
-  assert.ok(existsSync(migrationPath));
-  const migration = psql(readFileSync(migrationPath, 'utf8').replaceAll('--> statement-breakpoint', ''));
+  assert.ok(existsSync(migrationsDirectory));
+  const cumulativeMigration = readdirSync(migrationsDirectory)
+    .filter((name) => name.endsWith('.sql'))
+    .sort()
+    .map((name) => readFileSync(join(migrationsDirectory, name), 'utf8'))
+    .join('\n')
+    .replaceAll('--> statement-breakpoint', '');
+  const migration = psql(cumulativeMigration);
   assert.equal(migration.status, 0, migration.stderr);
 });
 
@@ -99,12 +118,24 @@ after(() => {
   rmSync(clusterRoot, { recursive: true, force: true });
 });
 
-test('deferred commerce constraints validate final transaction state and roll back invalid commits', () => {
+test('the cumulative migration enables RLS on all 31 public tables', () => {
+  assert.equal(
+    queryScalar(`
+      SELECT COUNT(*)::text || ':' || COUNT(*) FILTER (WHERE relrowsecurity)::text
+      FROM pg_class relation
+      JOIN pg_namespace namespace ON namespace.oid = relation.relnamespace
+      WHERE namespace.nspname = 'public' AND relation.relkind = 'r'
+    `),
+    '31:31',
+  );
+});
+
+test('deferred commerce constraints enforce reservation transitions and batch accounting', () => {
   const accountId = '00000000-0000-4000-8000-000000000001';
   const batchOne = '10000000-0000-4000-8000-000000000001';
   const batchTwo = '10000000-0000-4000-8000-000000000002';
   const reservationOne = '20000000-0000-4000-8000-000000000001';
-  const valid = psql(`
+  const reserveForSettlement = psql(`
     BEGIN;
     INSERT INTO ai_point_batches (
       id, environment, account_id, original_account_id, source_type, source_reference,
@@ -127,21 +158,152 @@ test('deferred commerce constraints validate final transaction state and roll ba
       ('production', '${accountId}', '${reservationOne}', '${batchTwo}', 6);
     COMMIT;
   `);
-  assert.equal(valid.status, 0, valid.stderr);
+  assert.equal(reserveForSettlement.status, 0, reserveForSettlement.stderr);
 
   const settle = psql(`
     BEGIN;
-    UPDATE ai_point_reservations SET status = 'settled' WHERE id = '${reservationOne}';
-    UPDATE ai_point_batches SET reserved_points = 0 WHERE id IN ('${batchOne}', '${batchTwo}');
+    UPDATE ai_point_reservations
+    SET status = 'settled', settled_at = now()
+    WHERE id = '${reservationOne}';
+    UPDATE ai_point_batches
+    SET reserved_points = 0,
+        consumed_points = CASE id WHEN '${batchOne}' THEN 4 ELSE 6 END
+    WHERE id IN ('${batchOne}', '${batchTwo}');
+    INSERT INTO ai_point_ledger_entries (
+      environment, account_id, batch_id, reservation_id, operation_id, entry_type, direction, points
+    ) VALUES
+      ('production', '${accountId}', '${batchOne}', '${reservationOne}', 'db-test-valid', 'settle', 'neutral', 4),
+      ('production', '${accountId}', '${batchTwo}', '${reservationOne}', 'db-test-valid', 'settle', 'neutral', 6);
     COMMIT;
   `);
   assert.equal(settle.status, 0, settle.stderr);
-  const release = psql(`
+  assert.equal(
+    queryScalar(`SELECT status || ':' || (settled_at IS NOT NULL)::text FROM ai_point_reservations WHERE id = '${reservationOne}'`),
+    'settled:true',
+  );
+  assert.equal(
+    queryScalar(`SELECT SUM(consumed_points)::text || ':' || SUM(reserved_points)::text FROM ai_point_batches WHERE id IN ('${batchOne}', '${batchTwo}')`),
+    '10:0',
+  );
+
+  const idempotentSettle = psql(`
+    UPDATE ai_point_reservations SET status = 'settled' WHERE id = '${reservationOne}';
+  `);
+  assert.equal(idempotentSettle.status, 0, idempotentSettle.stderr);
+
+  const illegalTerminalTransition = psql(`
     BEGIN;
-    UPDATE ai_point_reservations SET status = 'released' WHERE id = '${reservationOne}';
+    UPDATE ai_point_reservations
+    SET status = 'released', settled_at = NULL, released_at = now()
+    WHERE id = '${reservationOne}';
     COMMIT;
   `);
-  assert.equal(release.status, 0, release.stderr);
+  assert.notEqual(illegalTerminalTransition.status, 0);
+  assert.match(illegalTerminalTransition.stderr, /commerce_reservation_transition_invalid/);
+  assert.equal(
+    queryScalar(`SELECT status FROM ai_point_reservations WHERE id = '${reservationOne}'`),
+    'settled',
+    'an illegal terminal transition must roll back',
+  );
+
+  const releaseBatch = '10000000-0000-4000-8000-000000000005';
+  const releaseReservation = '20000000-0000-4000-8000-000000000005';
+  const validRelease = psql(`
+    BEGIN;
+    INSERT INTO ai_point_batches (
+      id, environment, account_id, original_account_id, source_type, source_reference,
+      rule_version, ordinal, granted_points, reserved_points, available_at, status
+    ) VALUES (
+      '${releaseBatch}', 'production', '${accountId}', '${accountId}', 'trial',
+      'db-test-release', 'ai-points-v1', 0, 100, 5, now(), 'available'
+    );
+    INSERT INTO ai_point_reservations (
+      id, environment, account_id, operation_id, capability, rule_version, points, status
+    ) VALUES (
+      '${releaseReservation}', 'production', '${accountId}', 'db-test-release',
+      'transcription', 'ai-points-v1', 5, 'reserved'
+    );
+    INSERT INTO ai_point_reservation_allocations VALUES (
+      'production', '${accountId}', '${releaseReservation}', '${releaseBatch}', 5
+    );
+    COMMIT;
+    BEGIN;
+    UPDATE ai_point_reservations
+    SET status = 'released', released_at = now()
+    WHERE id = '${releaseReservation}';
+    UPDATE ai_point_batches SET reserved_points = 0 WHERE id = '${releaseBatch}';
+    INSERT INTO ai_point_ledger_entries (
+      environment, account_id, batch_id, reservation_id, operation_id, entry_type, direction, points
+    ) VALUES (
+      'production', '${accountId}', '${releaseBatch}', '${releaseReservation}',
+      'db-test-release', 'release', 'credit', 5
+    );
+    COMMIT;
+  `);
+  assert.equal(validRelease.status, 0, validRelease.stderr);
+  assert.equal(
+    queryScalar(`SELECT reservation.status || ':' || batch.reserved_points::text || ':' || batch.consumed_points::text FROM ai_point_reservations reservation JOIN ai_point_batches batch ON batch.id = '${releaseBatch}' WHERE reservation.id = '${releaseReservation}'`),
+    'released:0:0',
+  );
+
+  const noConsumedBatch = '10000000-0000-4000-8000-000000000006';
+  const noConsumedReservation = '20000000-0000-4000-8000-000000000006';
+  const reserveBeforeInvalidSettle = psql(`
+    BEGIN;
+    INSERT INTO ai_point_batches (
+      id, environment, account_id, original_account_id, source_type, source_reference,
+      rule_version, ordinal, granted_points, reserved_points, available_at, status
+    ) VALUES (
+      '${noConsumedBatch}', 'production', '${accountId}', '${accountId}', 'trial',
+      'db-test-no-consumed-settle', 'ai-points-v1', 0, 100, 5, now(), 'available'
+    );
+    INSERT INTO ai_point_reservations (
+      id, environment, account_id, operation_id, capability, rule_version, points, status
+    ) VALUES (
+      '${noConsumedReservation}', 'production', '${accountId}', 'db-test-no-consumed-settle',
+      'transcription', 'ai-points-v1', 5, 'reserved'
+    );
+    INSERT INTO ai_point_reservation_allocations VALUES (
+      'production', '${accountId}', '${noConsumedReservation}', '${noConsumedBatch}', 5
+    );
+    COMMIT;
+  `);
+  assert.equal(reserveBeforeInvalidSettle.status, 0, reserveBeforeInvalidSettle.stderr);
+  const settleWithoutConsumed = psql(`
+    BEGIN;
+    UPDATE ai_point_reservations
+    SET status = 'settled', settled_at = now()
+    WHERE id = '${noConsumedReservation}';
+    UPDATE ai_point_batches SET reserved_points = 0 WHERE id = '${noConsumedBatch}';
+    COMMIT;
+  `);
+  assert.notEqual(settleWithoutConsumed.status, 0);
+  assert.match(settleWithoutConsumed.stderr, /commerce_batch_consumed_total_mismatch/);
+  assert.equal(
+    queryScalar(`SELECT reservation.status || ':' || batch.reserved_points::text || ':' || batch.consumed_points::text FROM ai_point_reservations reservation JOIN ai_point_batches batch ON batch.id = '${noConsumedBatch}' WHERE reservation.id = '${noConsumedReservation}'`),
+    'reserved:5:0',
+    'a settle that does not transfer reserved points to consumed must roll back',
+  );
+
+  const mergedTrialBatch = '10000000-0000-4000-8000-000000000007';
+  const validCarriedConsumption = psql(`
+    BEGIN;
+    INSERT INTO ai_point_batches (
+      id, environment, account_id, original_account_id, source_type, source_reference,
+      rule_version, ordinal, granted_points, consumed_points, available_at, status
+    ) VALUES (
+      '${mergedTrialBatch}', 'production', '${accountId}', '${accountId}', 'trial',
+      'merge:${accountId}:source', 'ai-points-v1', 0, 100, 30, now(), 'available'
+    );
+    INSERT INTO ai_point_ledger_entries (
+      environment, account_id, batch_id, operation_id, entry_type, direction, points
+    ) VALUES (
+      'production', '${accountId}', '${mergedTrialBatch}', 'db-test-merge',
+      'merge_credit', 'credit', 70
+    );
+    COMMIT;
+  `);
+  assert.equal(validCarriedConsumption.status, 0, validCarriedConsumption.stderr);
 
   const invalidReservation = '20000000-0000-4000-8000-000000000002';
   const invalidReservationBatch = '10000000-0000-4000-8000-000000000003';
@@ -201,6 +363,46 @@ test('deferred commerce constraints validate final transaction state and roll ba
     queryScalar(`SELECT COUNT(*) FROM ai_point_batches WHERE id = '${invalidBatch}'`),
     '0',
     'failed deferred batch commit must roll back every row',
+  );
+
+  const invalidTimestampBatch = '10000000-0000-4000-8000-000000000008';
+  const invalidTimestampReservation = '20000000-0000-4000-8000-000000000008';
+  const timestampSetup = psql(`
+    BEGIN;
+    INSERT INTO ai_point_batches (
+      id, environment, account_id, original_account_id, source_type, source_reference,
+      rule_version, ordinal, granted_points, reserved_points, available_at, status
+    ) VALUES (
+      '${invalidTimestampBatch}', 'production', '${accountId}', '${accountId}', 'trial',
+      'db-test-invalid-timestamp', 'ai-points-v1', 0, 100, 5, now(), 'available'
+    );
+    INSERT INTO ai_point_reservations (
+      id, environment, account_id, operation_id, capability, rule_version, points, status
+    ) VALUES (
+      '${invalidTimestampReservation}', 'production', '${accountId}', 'db-test-invalid-timestamp',
+      'transcription', 'ai-points-v1', 5, 'reserved'
+    );
+    INSERT INTO ai_point_reservation_allocations VALUES (
+      'production', '${accountId}', '${invalidTimestampReservation}', '${invalidTimestampBatch}', 5
+    );
+    COMMIT;
+  `);
+  assert.equal(timestampSetup.status, 0, timestampSetup.stderr);
+  const invalidTimestamp = psql(`
+    BEGIN;
+    UPDATE ai_point_reservations
+    SET status = 'settled', settled_at = created_at - interval '1 second'
+    WHERE id = '${invalidTimestampReservation}';
+    UPDATE ai_point_batches
+    SET reserved_points = 0, consumed_points = 5
+    WHERE id = '${invalidTimestampBatch}';
+    COMMIT;
+  `);
+  assert.notEqual(invalidTimestamp.status, 0);
+  assert.match(invalidTimestamp.stderr, /commerce_reservation_settled_timestamp_invalid/);
+  assert.equal(
+    queryScalar(`SELECT status FROM ai_point_reservations WHERE id = '${invalidTimestampReservation}'`),
+    'reserved',
   );
 
   const invalidDirection = psql(`

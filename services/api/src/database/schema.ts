@@ -8,13 +8,13 @@ export const accounts = pgTable('accounts', {
   sessionsRevokedAt: timestamp('sessions_revoked_at', { withTimezone: true }),
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
   updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
-});
+}).enableRLS();
 
 export const profiles = pgTable('profiles', {
   userId: uuid('user_id').primaryKey().references(() => accounts.id, { onDelete: 'cascade' }),
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
   updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
-});
+}).enableRLS();
 
 export const accountIdentities = pgTable('account_identities', {
   id: uuid('id').defaultRandom().primaryKey(),
@@ -29,7 +29,7 @@ export const accountIdentities = pgTable('account_identities', {
   uniqueIndex('account_identities_auth_provider').on(table.authUserId, table.provider),
   index('account_identities_account').on(table.accountId),
   index('account_identities_auth_user').on(table.authUserId),
-]);
+]).enableRLS();
 
 export const accountMerges = pgTable('account_merges', {
   id: uuid('id').defaultRandom().primaryKey(),
@@ -40,7 +40,7 @@ export const accountMerges = pgTable('account_merges', {
 }, (table) => [
   uniqueIndex('account_merges_source').on(table.sourceAccountId),
   index('account_merges_target').on(table.targetAccountId),
-]);
+]).enableRLS();
 
 export const accountSessionRevocations = pgTable('account_session_revocations', {
   sessionId: uuid('session_id').primaryKey(),
@@ -48,7 +48,7 @@ export const accountSessionRevocations = pgTable('account_session_revocations', 
   revokedAt: timestamp('revoked_at', { withTimezone: true }).defaultNow().notNull(),
 }, (table) => [
   index('account_session_revocations_user').on(table.userId),
-]);
+]).enableRLS();
 
 export const questionBankReleases = pgTable('question_bank_releases', {
   id: uuid('id').defaultRandom().primaryKey(),
@@ -61,7 +61,7 @@ export const questionBankReleases = pgTable('question_bank_releases', {
 }, (table) => [
   uniqueIndex('question_bank_release_bank_version').on(table.bankId, table.version),
   uniqueIndex('question_bank_release_checksum').on(table.bankId, table.checksum),
-]);
+]).enableRLS();
 
 export const resourceObjects = pgTable('resource_objects', {
   objectKey: text('object_key').primaryKey(),
@@ -73,7 +73,7 @@ export const resourceObjects = pgTable('resource_objects', {
   mimeType: text('mime_type').notNull(),
   status: text('status').default('ready').notNull(),
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
-});
+}).enableRLS();
 
 export const editorialReleases = pgTable('editorial_releases', {
   id: uuid('id').defaultRandom().primaryKey(),
@@ -85,7 +85,7 @@ export const editorialReleases = pgTable('editorial_releases', {
 }, (table) => [
   uniqueIndex('editorial_release_version').on(table.version),
   uniqueIndex('editorial_release_checksum').on(table.checksum),
-]);
+]).enableRLS();
 
 export const inviteAccounts = pgTable('invite_accounts', {
   codeLookup: text('code_lookup').primaryKey(),
@@ -98,7 +98,7 @@ export const inviteAccounts = pgTable('invite_accounts', {
   deletedAt: timestamp('deleted_at', { withTimezone: true }),
 }, (table) => [
   uniqueIndex('invite_accounts_user').on(table.userId),
-]);
+]).enableRLS();
 
 export const inviteLoginAttempts = pgTable('invite_login_attempts', {
   sourceHash: text('source_hash').primaryKey(),
@@ -106,7 +106,7 @@ export const inviteLoginAttempts = pgTable('invite_login_attempts', {
   windowStartedAt: timestamp('window_started_at', { withTimezone: true }).defaultNow().notNull(),
   blockedUntil: timestamp('blocked_until', { withTimezone: true }),
   updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
-});
+}).enableRLS();
 
 export const feedbackTickets = pgTable('feedback_tickets', {
   id: uuid('id').defaultRandom().primaryKey(),
@@ -149,7 +149,7 @@ export const feedbackTickets = pgTable('feedback_tickets', {
   index('feedback_tickets_question').on(table.bankId, table.cardId),
   index('feedback_tickets_diagnostics_expires').on(table.diagnosticsExpiresAt),
   index('feedback_tickets_retention').on(table.retentionAt),
-]);
+]).enableRLS();
 
 export const feedbackAttachments = pgTable('feedback_attachments', {
   id: uuid('id').defaultRandom().primaryKey(),
@@ -166,7 +166,7 @@ export const feedbackAttachments = pgTable('feedback_attachments', {
   uniqueIndex('feedback_attachments_object_key').on(table.objectKey),
   index('feedback_attachments_ticket').on(table.ticketId),
   index('feedback_attachments_expiry').on(table.expiresAt),
-]);
+]).enableRLS();
 
 export const userCardStates = pgTable('user_card_states', {
   userId: uuid('user_id').notNull().references(() => accounts.id, { onDelete: 'cascade' }),
@@ -178,7 +178,7 @@ export const userCardStates = pgTable('user_card_states', {
   updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
 }, (table) => [
   primaryKey({ columns: [table.userId, table.bankId, table.topicId, table.cardId] }),
-]);
+]).enableRLS();
 
 export const learningRecords = pgTable('learning_records', {
   id: uuid('id').defaultRandom().primaryKey(),
@@ -190,7 +190,7 @@ export const learningRecords = pgTable('learning_records', {
   updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
 }, (table) => [
   uniqueIndex('learning_record_user_client').on(table.userId, table.clientRecordId),
-]);
+]).enableRLS();
 
 export const syncMutations = pgTable('sync_mutations', {
   userId: uuid('user_id').notNull().references(() => accounts.id, { onDelete: 'cascade' }),
@@ -201,7 +201,7 @@ export const syncMutations = pgTable('sync_mutations', {
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
 }, (table) => [
   primaryKey({ columns: [table.userId, table.mutationId] }),
-]);
+]).enableRLS();
 
 export const userDocuments = pgTable('user_documents', {
   userId: uuid('user_id').notNull().references(() => accounts.id, { onDelete: 'cascade' }),
@@ -211,7 +211,7 @@ export const userDocuments = pgTable('user_documents', {
   updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
 }, (table) => [
   primaryKey({ columns: [table.userId, table.documentKey] }),
-]);
+]).enableRLS();
 
 export const syncChanges = pgTable('sync_changes', {
   sequence: bigserial('sequence', { mode: 'number' }).primaryKey(),
@@ -223,14 +223,14 @@ export const syncChanges = pgTable('sync_changes', {
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
 }, (table) => [
   index('sync_changes_user_sequence').on(table.userId, table.sequence),
-]);
+]).enableRLS();
 
 export const aiConsents = pgTable('ai_consents', {
   userId: uuid('user_id').primaryKey().references(() => accounts.id, { onDelete: 'cascade' }),
   policyVersion: text('policy_version').notNull(),
   acceptedAt: timestamp('accepted_at', { withTimezone: true }).defaultNow().notNull(),
   updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
-});
+}).enableRLS();
 
 export const aiUsageLogs = pgTable('ai_usage_logs', {
   id: uuid('id').defaultRandom().primaryKey(),
@@ -252,7 +252,7 @@ export const aiUsageLogs = pgTable('ai_usage_logs', {
 }, (table) => [
   index('ai_usage_user_created').on(table.userId, table.createdAt),
   uniqueIndex('ai_usage_request_capability').on(table.requestId, table.capability),
-]);
+]).enableRLS();
 
 export const aiQuotaBuckets = pgTable('ai_quota_buckets', {
   userId: uuid('user_id').notNull().references(() => accounts.id, { onDelete: 'cascade' }),
@@ -261,7 +261,7 @@ export const aiQuotaBuckets = pgTable('ai_quota_buckets', {
   updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
 }, (table) => [
   primaryKey({ columns: [table.userId, table.bucketDate] }),
-]);
+]).enableRLS();
 
 export const aiWordCache = pgTable('ai_word_cache', {
   userId: uuid('user_id').notNull().references(() => accounts.id, { onDelete: 'cascade' }),
@@ -272,7 +272,7 @@ export const aiWordCache = pgTable('ai_word_cache', {
 }, (table) => [
   primaryKey({ columns: [table.userId, table.queryHash] }),
   index('ai_word_cache_expiry').on(table.expiresAt),
-]);
+]).enableRLS();
 
 export const commerceProducts = pgTable('commerce_products', {
   productKey: text('product_key').primaryKey(),

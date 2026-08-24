@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import test from 'node:test';
 
@@ -14,6 +15,29 @@ const migrationsFolder = fileURLToPath(new URL('../drizzle', import.meta.url));
 const commerceMigrationPath = fileURLToPath(new URL('../drizzle/0015_commerce_domain.sql', import.meta.url));
 const commerceSnapshotPath = fileURLToPath(new URL('../drizzle/meta/0015_snapshot.json', import.meta.url));
 const schemaPath = fileURLToPath(new URL('../src/database/schema.ts', import.meta.url));
+const legacyTables = [
+  'accounts',
+  'profiles',
+  'account_identities',
+  'account_merges',
+  'account_session_revocations',
+  'question_bank_releases',
+  'resource_objects',
+  'editorial_releases',
+  'invite_accounts',
+  'invite_login_attempts',
+  'feedback_tickets',
+  'feedback_attachments',
+  'user_card_states',
+  'learning_records',
+  'sync_mutations',
+  'user_documents',
+  'sync_changes',
+  'ai_consents',
+  'ai_usage_logs',
+  'ai_quota_buckets',
+  'ai_word_cache',
+];
 const commerceTables = [
   'commerce_products',
   'commerce_channel_products',
@@ -26,6 +50,7 @@ const commerceTables = [
   'ai_point_reservation_allocations',
   'ai_point_ledger_entries',
 ];
+const allTables = [...legacyTables, ...commerceTables];
 
 test('loads the repository journal with the exact Drizzle hashes', async () => {
   const migrations = await loadLocalMigrations(migrationsFolder);
@@ -48,21 +73,22 @@ test('loads the repository journal with the exact Drizzle hashes', async () => {
   assert.match(migrations[15].hash, /^[a-f0-9]{64}$/);
 });
 
-test('locks every 0015 commerce table behind RLS and server-only grants', async () => {
-  const [migrationSql, snapshotJson, schemaSource] = await Promise.all([
+test('locks all 31 tables behind RLS and keeps commerce tables server-only', async () => {
+  const migrations = await loadLocalMigrations(migrationsFolder);
+  const [migrationSql, snapshotJson, schemaSource, cumulativeMigrationSql] = await Promise.all([
     readFile(commerceMigrationPath, 'utf8'),
     readFile(commerceSnapshotPath, 'utf8'),
     readFile(schemaPath, 'utf8'),
+    Promise.all(migrations.map((migration) => (
+      readFile(join(migrationsFolder, `${migration.tag}.sql`), 'utf8')
+    ))).then((contents) => contents.join('\n')),
   ]);
   const snapshot = JSON.parse(snapshotJson);
-  for (const table of commerceTables) {
+  assert.equal(allTables.length, 31);
+  for (const table of allTables) {
     assert.ok(
-      migrationSql.includes(`ALTER TABLE "${table}" ENABLE ROW LEVEL SECURITY;`),
+      cumulativeMigrationSql.includes(`ALTER TABLE "${table}" ENABLE ROW LEVEL SECURITY;`),
       `missing_rls:${table}`,
-    );
-    assert.ok(
-      migrationSql.includes(`REVOKE ALL ON TABLE "${table}" FROM anon, authenticated;`),
-      `missing_anon_authenticated_revoke:${table}`,
     );
     assert.equal(
       snapshot.tables[`public.${table}`]?.isRLSEnabled,
@@ -75,7 +101,13 @@ test('locks every 0015 commerce table behind RLS and server-only grants', async 
       tableStart,
       nextTableStart === -1 ? schemaSource.length : nextTableStart,
     );
-    assert.ok(tableStart >= 0 && tableBlock.includes(']).enableRLS();'), `schema_rls_disabled:${table}`);
+    assert.ok(tableStart >= 0 && tableBlock.includes('.enableRLS();'), `schema_rls_disabled:${table}`);
+  }
+  for (const table of commerceTables) {
+    assert.ok(
+      migrationSql.includes(`REVOKE ALL ON TABLE "${table}" FROM anon, authenticated;`),
+      `missing_anon_authenticated_revoke:${table}`,
+    );
   }
   assert.ok(
     migrationSql.includes(
@@ -111,24 +143,30 @@ test('enforces commerce environment and account ownership through composite data
   }
 });
 
-test('defers reservation allocation and active batch reserved totals until transaction commit', async () => {
+test('defers reservation allocation, batch accounting, and timestamp invariants until commit', async () => {
   const migrationSql = await readFile(commerceMigrationPath, 'utf8');
   const requiredDeferredConstraints = [
     'commerce_reservation_allocation_total_mismatch',
     'commerce_batch_reserved_total_mismatch',
+    'commerce_batch_consumed_total_mismatch',
+    'commerce_reservation_settled_timestamp_invalid',
+    'commerce_reservation_transition_invalid',
     'ai_point_allocations_reservation_total_deferred',
     'ai_point_reservations_allocation_total_deferred',
     'ai_point_allocations_batch_total_deferred',
-    'ai_point_batches_reserved_total_deferred',
+    'ai_point_batches_totals_deferred',
     'ai_point_reservations_batch_total_deferred',
+    'ai_point_ledger_batch_totals_deferred',
+    'ai_point_reservations_state_deferred',
+    'ai_point_reservations_transition_guard',
   ];
   for (const constraint of requiredDeferredConstraints) {
     assert.ok(migrationSql.includes(constraint), `missing_deferred_commerce_constraint:${constraint}`);
   }
   assert.equal(
     migrationSql.match(/DEFERRABLE INITIALLY DEFERRED/g)?.length,
-    5,
-    'all five commerce constraint triggers must validate final transaction state',
+    7,
+    'all seven commerce constraint triggers must validate final transaction state',
   );
 });
 
