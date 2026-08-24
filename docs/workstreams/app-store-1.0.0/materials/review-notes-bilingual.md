@@ -5,7 +5,7 @@
 ## 中文模板
 
 ```text
-感谢审核“听你五个”1.0.0。本 App 是独立的航空英语练习工具，不代表 ICAO、民航监管机构、考试机构或其他政府组织，也不提供官方评分或认证。1.0.0 不提供或宣传体系课程。
+感谢审核“听你五个”1.0.0。本 App 是独立的航空英语练习工具，不代表 ICAO、民航监管机构、考试机构或其他政府组织，也不提供官方评分或认证。1.0.0 不提供未完成的学习报告，也不提供或宣传体系课程。
 
 一、审核登录
 请在登录页选择“手机号密码登录”。App Store Connect 的主要登录字段提供完整体验账号；下方受保护信息另提供购买与注销账号。两个账号均为正常 Production 账号，不需要接收短信、安装微信或使用审核员个人 Apple ID。
@@ -30,7 +30,7 @@
 微信登录不是审核必需路径。设备未安装微信、用户取消或提供方不可用时，App 会关闭该登录尝试并显示可理解的提示，不创建半成品账号。审核员可始终使用上方手机号密码账号。
 
 八、账号注销
-请使用购买与注销账号进入【待最终包确认：我的 → 账号与隐私 → 注销账号】。页面会说明注销将放弃账号、学习数据、会员剩余时间和 AI 点数。手机号账号通过短信验证码重新验证后完成注销；如审核环境无法接收该公司控制手机号的验证码，请通过审核消息联系我们，我们会在不改变正式流程的前提下配合重新准备账号。App 内正常用户注销不依赖客服，也没有反悔期。
+请使用购买与注销账号进入【待最终包确认：我的 → 账号与隐私 → 注销账号】。页面会说明注销将放弃账号、学习数据、会员剩余时间和 AI 点数。该审核账号已设置密码，输入当前密码即可完成近期身份重新验证并继续注销，不需要接收短信。仅未设置密码的普通手机号账号使用短信验证码作为替代重新验证方式。App 内正常用户注销不依赖客服，也没有反悔期。
 
 九、支持
 支持 URL：【待确认：公开 HTTPS 支持页 URL】
@@ -45,7 +45,7 @@
 ## English template
 
 ```text
-Thank you for reviewing Ting Ni Wu Ge (听你五个) version 1.0.0. The app is an independent aviation-English practice tool. It is not affiliated with ICAO, a civil aviation authority, an examination provider, or any other government organization, and it does not provide official ratings or certifications. Version 1.0.0 does not offer or promote courses.
+Thank you for reviewing Ting Ni Wu Ge (听你五个) version 1.0.0. The app is an independent aviation-English practice tool. It is not affiliated with ICAO, a civil aviation authority, an examination provider, or any other government organization, and it does not provide official ratings or certifications. Version 1.0.0 does not expose the unfinished Learning Report and does not offer or promote courses.
 
 1. Review login
 On the sign-in screen, choose “Phone number and password.” The full-access account is provided in the primary sign-in fields in App Store Connect. A separate purchase-and-deletion account is provided in the protected review information. Both are normal Production accounts. The reviewer does not need to receive an SMS, install WeChat, or use a personal Apple ID to sign in.
@@ -70,7 +70,7 @@ Path: [VERIFY IN FINAL BUILD: Practice item > Speaking record]. Microphone permi
 WeChat is not required for review. If WeChat is not installed, authorization is canceled, or the provider is unavailable, the attempt closes with a clear message and no partial account is created. The reviewer can always use the phone-number-and-password account above.
 
 8. Account deletion
-Use the purchase-and-deletion account and go to [VERIFY IN FINAL BUILD: Me > Account & Privacy > Delete Account]. The confirmation screen explains that deletion gives up the account, learning data, remaining membership time, and AI points. A phone account is reauthenticated by SMS before deletion. If the review environment cannot receive the verification code sent to the company-controlled number, please contact us in App Review messages so we can prepare the account again without changing the Production flow. Normal users can complete deletion in the app without customer support, and there is no grace period.
+Use the purchase-and-deletion account and go to [VERIFY IN FINAL BUILD: Me > Account & Privacy > Delete Account]. The confirmation screen explains that deletion gives up the account, learning data, remaining membership time, and AI points. This review account has a password, so entering the current password completes recent reauthentication and no SMS is required. SMS verification is only the fallback for a normal phone account that has no password. Normal users can complete deletion in the app without customer support, and there is no grace period.
 
 9. Support
 Support URL: [CONFIRM PUBLIC HTTPS SUPPORT URL]
@@ -85,8 +85,8 @@ All features use the normal Production account, service, AI, and order flows. Th
 ## 定稿门禁
 
 - [ ] 中英文中的菜单名、顺序和提示与最终候选 Build 完全一致。
-- [ ] 账号 B 的注销需要短信重新验证；已提供审核员可独立完成且不依赖固定 OTP、审核后门或人工
-  跳过复验的真实 Production 路径。若尚未解决，不得保留模板中“通过审核消息联系我们”的临时表述。
+- [ ] 账号 B 已设置密码，可由审核员通过当前密码独立完成近期身份重新验证和注销；不依赖短信、
+  固定 OTP、审核后门或人工协助。
 - [ ] 五档商品全部加入同一 1.0.0 审核提交，并处于可审核状态。
 - [ ] 支持 URL、隐私 URL 和审核联系方式已替换占位符。
 - [ ] 不出现真实审核手机号或密码，不出现 DeepSeek “绝不训练/零留存”等未核实承诺。
